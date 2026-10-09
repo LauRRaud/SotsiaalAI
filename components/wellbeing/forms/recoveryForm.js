@@ -26,7 +26,7 @@ export const recoveryForm = {
     {
       key: "situation",
       title: ["wellbeing.recovery.situation", "Olukord"],
-      lead: lead("situation", "Kus sa praegu oled? Vali igal real üks."),
+      lead: lead("situation", "Kus sa praegu oled? Vali igale küsimusele üks vastus."),
       fields: [
         {
           key: "recoveryReason",
@@ -39,6 +39,24 @@ export const recoveryForm = {
             ["long_overload", "Pikaajaline ülekoormus"]
           ])
         },
+        {
+          key: "supportNeed",
+          kind: "enum",
+          label: "Vajalik tugi",
+          options: options([
+            ["none", "Ei vaja eraldi tuge"],
+            ["manager", "Juhi kokkulepe"],
+            ["colleague", "Kolleegitugi"],
+            ["supervisor", "Supervisioon või muu kokkulepitud tugi"]
+          ])
+        }
+      ]
+    },
+    {
+      key: "state",
+      title: "Seis ja kontrollpunkt",
+      short: "Seis",
+      fields: [
         {
           key: "recoveryLevel",
           kind: "enum",
@@ -59,17 +77,6 @@ export const recoveryForm = {
             ["reduced", "Vähenenud"],
             ["low", "Madal"],
             ["not_sustainable", "Ei ole kestlik"]
-          ])
-        },
-        {
-          key: "supportNeed",
-          kind: "enum",
-          label: "Vajalik tugi",
-          options: options([
-            ["none", "Ei vaja eraldi tuge"],
-            ["manager", "Juhi kokkulepe"],
-            ["colleague", "Kolleegitugi"],
-            ["supervisor", "Supervisioon või muu kokkulepitud tugi"]
           ])
         },
         {
@@ -116,6 +123,8 @@ export const recoveryForm = {
       title: ["wellbeing.recovery.tasks_heading", "24-72h tööplaan"],
       short: "Tööplaan",
       lead: lead("tasks", "Jaga lähipäevade töö kolmeks. Üks rida on üks ülesanne."),
+      /* Kolm loendit kõrvuti: jagamine kolmeks on näha ühe pilguga. */
+      columns: 3,
       fields: [
         { key: "unavoidableTasks", kind: "text_list", label: "Vältimatud ülesanded" },
         { key: "deferrableTasks", kind: "text_list", label: "Edasilükatavad ülesanded" },

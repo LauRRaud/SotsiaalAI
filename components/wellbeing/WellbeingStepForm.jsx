@@ -14,7 +14,8 @@
  * KIRJELDUS
  *   { workflowType, endpoint, buildRecord, text, steps, signals, factors?,
  *     outputs?, links?, actionRoute?, safetyNotice? }
- *   steps: [{ key, title, short, lead, fields: [{ key, kind, label, hint?, options?, rows? }] }]
+ *   steps: [{ key, title, short?, lead?, columns?, fields: [{ key, kind, label, hint?, options?, rows? }] }]
+ *   `columns`: sammu väljad kõrvuti (nt kolm loendit, mille vahel inimene jagab).
  *   kind: "enum" (üks valik) | "boolean" | "enum_list" (mitu valikut) | "text" | "text_list"
  *   Tekst on kas sõne või [tõlkevõti, varutekst].
  *
@@ -24,7 +25,14 @@
  *    ei oleta ega salvesta.
  *  - Ohutusteade (`safetyNotice`) ilmub KOHE selle küsimuse all, mille vastus
  *    selle tingib, mitte alles tulemuse sammul.
- *  - Lõpus on alati kaks sammu: tulemus ja tugi.
+ *  - Üks samm = üks asi ja see mahub paneeli ära: kerimine vahetab sammu
+ *    kohapeal, mitte ei keri pikka lehte. Seepärast on lõpus eraldi sammud:
+ *    tulemus (signaal ja salvestamine), valmis tekstid (üks korraga, pika
+ *    teksti algus, kopeeritav), soovitused ja toe küsimine.
+ *  - Küsimuste paigutus tuleb vastusevariantidest, mitte käsitsi: kui sammu kõik
+ *    küsimused on lühikese skaalaga, on need tabel (silt vasakul, skaala
+ *    paremal); muidu on küsimus üleval ja variandid selle all ühelaiuste
+ *    lahtritena. Reeglid ja vaate lubatud „kaal": `forms/layout.js`.
  *
  * Kujundus: WellbeingStepForm.module.css; ühised osad kaustast components/stage.
  */
@@ -42,11 +50,18 @@ import TextAreaField from "@/components/stage/TextAreaField";
 import Button from "@/components/ui/Button";
 
 import { cleanFields, emptyFields, hasValue, missingInStep } from "./forms/formState";
+import { isTableStep, stackColumns } from "./forms/layout";
 import { wellbeingActionRoute } from "./forms/routes";
 import SupportRequestPanel from "./SupportRequestPanel";
 import styles from "./WellbeingStepForm.module.css";
 
 const lowerFirst = (text) => (text ? text.charAt(0).toLocaleLowerCase() + text.slice(1) : "");
+
+/* Valmis tekst, mis on sellest pikem, näitab algul ainult algust (vaade mahub
+   siis paneeli ära); „Näita kogu teksti" avab terve teksti. */
+const TEXT_PREVIEW_LINES = 7;
+const TEXT_PREVIEW_CHARS = 420;
+const isLongText = (text) => text.split("\n").length > TEXT_PREVIEW_LINES || text.length > TEXT_PREVIEW_CHARS;
 
 export default function WellbeingStepForm({ definition, onNavigate }) {
   const { t } = useI18n();
@@ -55,6 +70,9 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
   const [fields, setFields] = useState(() => emptyFields(definition));
   const [saveState, setSaveState] = useState("idle");
   const [savedRecordId, setSavedRecordId] = useState(null);
+  const [shownOutput, setShownOutput] = useState(0);
+  const [copyState, setCopyState] = useState("idle");
+  const [textOpen, setTextOpen] = useState(false);
 
   const inputSteps = definition.steps;
   const missing = inputSteps.map((step) => missingInStep(step, fields));
@@ -73,10 +91,41 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
   );
   const signal = record ? definition.signals[record.computedSignal.signalLevel] || null : null;
   const safetyActive = Boolean(definition.safetyNotice?.when(fields));
+  const hasOutputs = Boolean(definition.outputs?.length);
+  const outputs = record
+    ? (definition.outputs || [])
+        .map((output) => ({ title: tx(output.title), value: output.value(record) }))
+        .filter((output) => output.value)
+    : [];
+  const currentOutput = outputs[Math.min(shownOutput, Math.max(outputs.length - 1, 0))] || null;
+
+  /* Soovitused: arvutuse soovitatud töövormid ja vormi püsilingid. Püsilink jääb
+     ära, kui soovitus viib juba samasse kohta. */
+  const routeOf = definition.actionRoute || wellbeingActionRoute;
+  const recommended = record?.recommendedActions || [];
+  const nextCards = record
+    ? [
+        ...recommended.map((action) => ({
+          key: action.workflowType,
+          title: action.label,
+          description: action.reason,
+          href: routeOf(action.workflowType)
+        })),
+        ...(definition.links || [])
+          .filter((link) => !recommended.some((action) => routeOf(action.workflowType) === link.href))
+          .map((link) => ({
+            key: link.href,
+            title: tx(link.title),
+            description: link.description ? tx(link.description) : undefined,
+            href: link.href
+          }))
+      ]
+    : [];
 
   function updateField(key, value) {
     setFields((current) => ({ ...current, [key]: value }));
     setSaveState("idle");
+    setCopyState("idle");
   }
   function toggleInList(key, value) {
     setFields((current) => {
@@ -86,6 +135,17 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
       return { ...current, [key]: [...selected] };
     });
     setSaveState("idle");
+    setCopyState("idle");
+  }
+
+  async function copyOutput() {
+    if (!currentOutput) return;
+    try {
+      await navigator.clipboard.writeText(currentOutput.value);
+      setCopyState("copied");
+    } catch {
+      setCopyState("error");
+    }
   }
 
   async function save() {
@@ -110,7 +170,7 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
     }
   }
 
-  /* ---------- sammude kirjeldused sammuribale ja laiale vaatele ---------- */
+  /* ---------- sammude kirjeldused kiirmenüüle ja vaatele „Kõik sammud" ---------- */
   const describeInputStep = (step, index) => {
     const required = step.fields.filter((field) => field.kind === "enum").length;
     const left = missing[index];
@@ -118,9 +178,6 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
     if (required === 0) {
       return {
         state: filled.length ? "done" : "empty",
-        stateLabel: filled.length
-          ? t("wellbeing.flow.state.marked", { count: filled.length })
-          : t("wellbeing.flow.state.optional"),
         summary: filled.length ? filled.map((field) => tx(field.label)).join(" · ") : t("wellbeing.flow.summary.nothing_marked")
       };
     }
@@ -131,12 +188,6 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
       .map((field) => `${tx(field.label)}: ${lowerFirst(tx(field.options.find((option) => option.value === fields[field.key])?.label || ""))}`);
     return {
       state,
-      stateLabel:
-        state === "done"
-          ? t("wellbeing.flow.state.done")
-          : state === "partial"
-            ? `${done}/${required}`
-            : t("wellbeing.flow.state.empty"),
       summary:
         state === "empty"
           ? t("wellbeing.flow.summary.questions_empty", { total: required })
@@ -160,27 +211,39 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
       label: t("wellbeing.flow.result.title"),
       short: t("wellbeing.flow.result.title"),
       state: saveState === "saved" ? "done" : complete ? "partial" : "empty",
-      stateLabel:
-        saveState === "saved"
-          ? t("wellbeing.flow.state.saved")
-          : signal
-            ? lowerFirst(tx(signal.title))
-            : t("wellbeing.flow.state.waiting"),
-      summary: signal ? tx(signal.text) : t("wellbeing.flow.summary.result_waiting")
+      summary: signal ? `${tx(signal.title)}. ${tx(signal.text)}` : t("wellbeing.flow.summary.result_waiting")
+    },
+    ...(hasOutputs
+      ? [
+          {
+            key: "__texts",
+            label: t("wellbeing.flow.texts.title"),
+            short: t("wellbeing.flow.texts.short"),
+            state: "empty",
+            summary: record ? outputs.map((output) => output.title).join(" · ") : t("wellbeing.flow.summary.result_waiting")
+          }
+        ]
+      : []),
+    {
+      key: "__next",
+      label: t("wellbeing.flow.next.title"),
+      short: t("wellbeing.flow.next.title"),
+      state: "empty",
+      summary: nextCards.length ? nextCards.map((card) => card.title).join(" · ") : t("wellbeing.flow.summary.next")
     },
     {
       key: "__support",
       label: t("wellbeing.flow.support.title"),
       short: t("wellbeing.flow.support.title"),
       state: "empty",
-      stateLabel: t("wellbeing.flow.state.optional"),
       summary: t("wellbeing.flow.summary.support")
     }
   ];
 
   const nextButton = (flight, variant) => (
     <Button type="button" variant={variant} onClick={flight.next}>
-      {t("wellbeing.flow.next_to", { label: lowerFirst(steps[flight.index + 1]?.label) })}
+      {/* Lühike nimi (sama mis kiirmenüüs): nupp jääb lühike ja ütleb sama sõna. */}
+      {t("wellbeing.flow.next_to", { label: lowerFirst(steps[flight.index + 1]?.short || steps[flight.index + 1]?.label) })}
     </Button>
   );
 
@@ -213,17 +276,26 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
     </div>
   );
 
-  const renderField = (field) => {
+  const optionsOf = (field) => field.options.map((option) => ({ value: option.value, label: tx(option.label) }));
+
+  /* `stepTitle`: kui sammus on üks väli ja selle silt kordab sammu pealkirja,
+     jääb silt ainult ekraanilugejale. */
+  const renderField = (field, table, stepTitle) => {
     const value = fields[field.key];
     const label = tx(field.label);
+    const labelHidden = Boolean(stepTitle) && label === stepTitle;
     const hint = field.hint ? tx(field.hint) : undefined;
     let control;
     if (field.kind === "enum") {
       control = (
         <ChoiceRow
           label={label}
-          options={field.options.map((option) => ({ value: option.value, label: tx(option.label) }))}
+          options={optionsOf(field)}
           value={value}
+          layout={table ? "scale" : "stack"}
+          labelHidden={labelHidden}
+          /* Neli lühikest varianti virnas: kõik ühes reas, mitte 3 + 1. */
+          columns={table ? undefined : stackColumns(field, tx)}
           onChange={(next) => updateField(field.key, next)}
         />
       );
@@ -234,7 +306,8 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
         <ChoiceChips
           label={label}
           hint={hint}
-          options={field.options.map((option) => ({ value: option.value, label: tx(option.label) }))}
+          labelHidden={labelHidden}
+          options={optionsOf(field)}
           values={value || []}
           onToggle={(next) => toggleInList(field.key, next)}
         />
@@ -244,6 +317,7 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
         <TextAreaField
           label={label}
           hint={hint}
+          labelHidden={labelHidden}
           value={value}
           lines={field.kind === "text_list"}
           rows={field.rows || (field.kind === "text_list" ? 3 : 4)}
@@ -252,13 +326,50 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
         />
       );
     }
-    return (
-      <div key={field.key} className={field.kind === "boolean" ? styles.checkField : undefined}>
-        {control}
-        {safetyActive && definition.safetyNotice.fieldKey === field.key ? safetyNotice() : null}
-      </div>
+    if (safetyActive && definition.safetyNotice.fieldKey === field.key) {
+      return (
+        <div key={field.key}>
+          {control}
+          {safetyNotice()}
+        </div>
+      );
+    }
+    return <div key={field.key}>{control}</div>;
+  };
+
+  /* Sammu väljad: järjestikused märkekaardid lähevad ühte võrku, küsimused on
+     kas tabel (kõik lühikese skaalaga) või virn. */
+  const renderFields = (definitionStep, stepTitle) => {
+    const stepFields = definitionStep.fields;
+    const onlyTitle = stepFields.length === 1 ? stepTitle : undefined;
+    const table = isTableStep(definitionStep, tx);
+    const groups = [];
+    stepFields.forEach((field) => {
+      const last = groups[groups.length - 1];
+      if (field.kind === "boolean" && last?.checks) last.fields.push(field);
+      else groups.push({ checks: field.kind === "boolean", fields: [field] });
+    });
+    return groups.map((group) =>
+      group.checks ? (
+        <div key={group.fields[0].key} className={styles.checks}>
+          {group.fields.map((field) => renderField(field, table, onlyTitle))}
+        </div>
+      ) : (
+        renderField(group.fields[0], table, onlyTitle)
+      )
     );
   };
+
+  const signalBlock = () =>
+    signal ? (
+      <div className={styles.signal} data-tone={signal.tone}>
+        <span className={styles.signalDot} aria-hidden="true" />
+        <div>
+          <strong className={styles.signalTitle}>{tx(signal.title)}</strong>
+          <p className={styles.signalText}>{tx(signal.text)}</p>
+        </div>
+      </div>
+    ) : null;
 
   const renderStep = (step, index, flight) => {
     if (index < inputSteps.length) {
@@ -272,7 +383,13 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
           note={required ? t("wellbeing.flow.progress", { done: required - missing[index], total: required }) : undefined}
           actions={nextButton(flight)}
         >
-          {definitionStep.fields.map(renderField)}
+          {definitionStep.columns ? (
+            <div className={styles.columns} style={{ "--columns": definitionStep.columns }}>
+              {renderFields(definitionStep, step.label)}
+            </div>
+          ) : (
+            renderFields(definitionStep, step.label)
+          )}
         </StepPanel>
       );
     }
@@ -292,15 +409,6 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
             ? tx(definition.text.failed)
             : t("wellbeing.flow.privacy");
       const factorLists = definition.factors ? definition.factors(record, tx) : [];
-      const outputs = (definition.outputs || [])
-        .map((output) => ({ title: tx(output.title), value: output.value(record) }))
-        .filter((output) => output.value);
-      const routeOf = definition.actionRoute || wellbeingActionRoute;
-      const actions = record.recommendedActions || [];
-      /* Püsilink jääb ära, kui soovitus viib juba samasse kohta. */
-      const links = (definition.links || []).filter(
-        (link) => !actions.some((action) => routeOf(action.workflowType) === link.href)
-      );
       return (
         <StepPanel
           title={step.label}
@@ -308,25 +416,16 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
           note={note}
           actions={
             <>
-              {nextButton(flight, "secondary")}
-              <Button type="button" onClick={save} disabled={saveState === "saving"}>
+              <Button type="button" variant="secondary" onClick={save} disabled={saveState === "saving"}>
                 {saveState === "saving" ? tx(definition.text.saving) : tx(definition.text.save)}
               </Button>
+              {nextButton(flight)}
             </>
           }
         >
           <div className={styles.block}>
-            {signal ? (
-              <div className={styles.signal} data-tone={signal.tone}>
-                <span className={styles.signalDot} aria-hidden="true" />
-                <div>
-                  <strong className={styles.signalTitle}>{tx(signal.title)}</strong>
-                  <p className={styles.signalText}>{tx(signal.text)}</p>
-                </div>
-              </div>
-            ) : null}
+            {signalBlock()}
             {safetyActive ? safetyNotice() : null}
-
             {factorLists.length ? (
               <div className={styles.factors}>
                 {factorLists.map((list) => (
@@ -345,49 +444,102 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
                 ))}
               </div>
             ) : null}
-
-            {outputs.length ? (
-              <div className={styles.outputs}>
-                <h4 className={styles.subheading}>{t("wellbeing.flow.result.outputs")}</h4>
-                {outputs.map((output, outputIndex) => (
-                  <details key={output.title} className={styles.output} open={outputIndex === 0}>
-                    <summary className={styles.outputTitle}>{output.title}</summary>
-                    <pre className={styles.outputText}>{output.value}</pre>
-                  </details>
-                ))}
-              </div>
-            ) : null}
-
-            {actions.length || links.length ? (
-              <div className={styles.nextSteps}>
-                <h4 className={styles.subheading}>{t("wellbeing.flow.result.next_steps")}</h4>
-                <ActionCardGrid label={t("wellbeing.flow.result.next_steps")}>
-                  {actions.map((action) => (
-                    <ActionCard
-                      key={action.workflowType}
-                      title={action.label}
-                      description={action.reason}
-                      onClick={() => onNavigate?.(routeOf(action.workflowType))}
-                    />
-                  ))}
-                  {links.map((link) => (
-                    <ActionCard
-                      key={link.href}
-                      title={tx(link.title)}
-                      description={link.description ? tx(link.description) : undefined}
-                      onClick={() => onNavigate?.(link.href)}
-                    />
-                  ))}
-                </ActionCardGrid>
-              </div>
-            ) : definition.text.noActions ? (
-              <p className={styles.quiet}>{tx(definition.text.noActions)}</p>
-            ) : null}
           </div>
         </StepPanel>
       );
     }
 
+    if (step.key === "__texts") {
+      if (!record || !currentOutput) {
+        return (
+          <StepPanel title={step.label} lead={t("wellbeing.flow.texts.lead")}>
+            {waitingForAnswers(flight)}
+          </StepPanel>
+        );
+      }
+      const long = isLongText(currentOutput.value);
+      const copyNote =
+        copyState === "copied"
+          ? t("wellbeing.support.status_copied")
+          : copyState === "error"
+            ? t("wellbeing.support.status_copy_failed")
+            : undefined;
+      return (
+        <StepPanel
+          title={step.label}
+          lead={t("wellbeing.flow.texts.lead")}
+          note={copyNote}
+          actions={
+            <>
+              <Button type="button" variant="secondary" onClick={copyOutput}>
+                {t("wellbeing.support.copy_text")}
+              </Button>
+              {nextButton(flight)}
+            </>
+          }
+        >
+          <div className={styles.block}>
+            {outputs.length > 1 ? (
+              <ChoiceRow
+                label={t("wellbeing.flow.texts.choose")}
+                labelHidden
+                columns={outputs.length <= 4 ? outputs.length : 3}
+                options={outputs.map((output, outputIndex) => ({ value: String(outputIndex), label: output.title }))}
+                value={String(outputs.indexOf(currentOutput))}
+                onChange={(next) => {
+                  setShownOutput(Number(next));
+                  setTextOpen(false);
+                  setCopyState("idle");
+                }}
+              />
+            ) : null}
+            <div className={styles.output}>
+              <pre
+                className={styles.outputText}
+                data-clamped={long && !textOpen ? "1" : "0"}
+                /* Kahe rea tekstivaliku all on eelvaatel vähem ridu, et vaade mahuks ära. */
+                style={{ "--preview-lines": outputs.length > 4 ? 3 : 6 }}
+                tabIndex={0}
+                aria-label={currentOutput.title}
+              >
+                {currentOutput.value}
+              </pre>
+              {long ? (
+                <button type="button" className={styles.outputToggle} aria-expanded={textOpen} onClick={() => setTextOpen((open) => !open)}>
+                  {textOpen ? t("wellbeing.flow.texts.show_less") : t("wellbeing.flow.texts.show_all")}
+                </button>
+              ) : null}
+            </div>
+          </div>
+        </StepPanel>
+      );
+    }
+
+    if (step.key === "__next") {
+      if (!record) {
+        return (
+          <StepPanel title={step.label} lead={t("wellbeing.flow.next.lead")}>
+            {waitingForAnswers(flight)}
+          </StepPanel>
+        );
+      }
+      return (
+        <StepPanel title={step.label} lead={nextCards.length ? t("wellbeing.flow.next.lead") : undefined} actions={nextButton(flight)}>
+          {nextCards.length ? (
+            <ActionCardGrid label={step.label}>
+              {nextCards.map((card) => (
+                <ActionCard key={card.key} title={card.title} description={card.description} onClick={() => onNavigate?.(card.href)} />
+              ))}
+            </ActionCardGrid>
+          ) : (
+            <p className={styles.quiet}>{definition.text.noActions ? tx(definition.text.noActions) : t("wellbeing.flow.next.none")}</p>
+          )}
+        </StepPanel>
+      );
+    }
+
+    /* Viimane samm: toe küsimine. Siit edasi ei ole kuhugi kerida, seega võib
+       see samm olla teistest pikem (avatud mustand). */
     return (
       <StepPanel title={step.label} lead={t("wellbeing.flow.support.lead")}>
         {record ? (

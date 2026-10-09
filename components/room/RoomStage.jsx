@@ -33,6 +33,7 @@ import { rememberRoomHubPath, readRoomHubPath } from "@/lib/roomHubReturn";
 import { panelHasRoomDock } from "@/lib/roomDock";
 import { ADMIN_SURFACES } from "@/lib/admin/surfaces";
 import { usePanelInfoView } from "@/components/ui/PanelInfoSlot";
+import { useAnnounceDock } from "@/components/stage/DockSteps";
 import IconButton from "@/components/glass/IconButton";
 import {
   GuideBookIcon,
@@ -1522,6 +1523,10 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     };
   }, [openInfoModal, t]);
 
+  /* Sammudega leht joonistab oma sammud doki sisse (components/stage/DockSteps);
+     siin ütleme talle, kas sellel lehel on dokk üldse olemas. */
+  useAnnounceDock(Boolean(panelDock));
+
   const initialKey =
     cardPageKey ||
     (isProfileHub
@@ -1963,6 +1968,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
             backItem={panelDock.back}
             currentItem={panelDock.current}
             infoItem={dockInfoItem}
+            stepsOutlet
             forceInitial
             onSelect={handleSelect}
             t={t}

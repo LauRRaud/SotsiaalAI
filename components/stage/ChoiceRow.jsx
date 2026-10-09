@@ -1,10 +1,21 @@
 "use client";
 
 /**
- * ChoiceRow — üks küsimus, üks rida, üks puudutus.
+ * ChoiceRow — üks küsimus, üks puudutus.
  *
- * Asendab rippvaliku seal, kus vastusevariante on kuni neli-viis: kõik
+ * Asendab rippvaliku seal, kus vastusevariante on kuni viis-kuus: kõik
  * variandid on kohe näha ja vastamiseks piisab ühest vajutusest.
+ *
+ * Kaks paigutust, mõlemas on variandid ÜHELAIUSED lahtrid (mitte eri pikkusega
+ * nupud, mis murduvad suvaliselt):
+ *  - `layout="scale"`: silt vasakul, lühikese skaala lahtrid paremal ühes reas.
+ *    Mitu sellist rida üksteise all annavad tabeli, kus veerud on kohakuti.
+ *  - `layout="stack"` (vaikimisi): küsimus üleval, variandid selle all võrgus.
+ *    Sobib pikkadele või paljudele variantidele. `columns` sunnib veergude
+ *    arvu (nt neli lühikest varianti ühes reas).
+ *
+ * `labelHidden`: silt on ainult ekraanilugejale (nt valik, mille pealkiri on
+ * juba sammu pealkirjas).
  *
  * Ligipääsetavus: `radiogroup` rändava tabulatsiooniga. Nooled liiguvad
  * variantide vahel ja valivad (nagu päris raadionuppudel); vastamata reale
@@ -19,7 +30,16 @@ import styles from "./ChoiceRow.module.css";
 
 const ARROW_STEP = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
 
-export default function ChoiceRow({ label, options, value, onChange, disabled = false }) {
+export default function ChoiceRow({
+  label,
+  options,
+  value,
+  onChange,
+  layout = "stack",
+  columns,
+  labelHidden = false,
+  disabled = false
+}) {
   const labelId = useId();
   const groupRef = useRef(null);
   const selectedIndex = options.findIndex((option) => option.value === value);
@@ -34,8 +54,16 @@ export default function ChoiceRow({ label, options, value, onChange, disabled = 
   };
 
   return (
-    <div className={styles.row} role="radiogroup" aria-labelledby={labelId} ref={groupRef}>
-      <span className={styles.label} id={labelId}>
+    <div
+      className={styles.row}
+      data-layout={layout}
+      data-cols={columns || undefined}
+      style={{ "--choice-count": options.length, "--choice-cols": columns || undefined }}
+      role="radiogroup"
+      aria-labelledby={labelId}
+      ref={groupRef}
+    >
+      <span className={labelHidden ? "sr-only" : styles.label} id={labelId}>
         {label}
       </span>
       <div className={styles.options}>

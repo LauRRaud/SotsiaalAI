@@ -8,6 +8,7 @@
  * (kasutus: ülesannete loendid), `onChange` annab siis massiivi. Tühi rida jääb
  * kirjutamise ajal alles (muidu ei saaks uut rida alustada); kutsuja puhastab
  * loendi enne salvestamist (`cleanLines` failis `lines.js`).
+ * `labelHidden`: silt on ainult ekraanilugejale (sammu pealkiri ütleb sama).
  *
  * Kujundus: TextAreaField.module.css. Väli ise on platvormi `Textarea`.
  */
@@ -21,11 +22,21 @@ import styles from "./TextAreaField.module.css";
 const toLines = (value) => (Array.isArray(value) ? value.join("\n") : String(value || ""));
 const fromLines = (text) => String(text || "").split("\n");
 
-export default function TextAreaField({ label, hint, value, onChange, lines = false, rows = 4, maxLength, disabled = false }) {
+export default function TextAreaField({
+  label,
+  hint,
+  value,
+  onChange,
+  lines = false,
+  rows = 4,
+  maxLength,
+  labelHidden = false,
+  disabled = false
+}) {
   const id = useId();
   return (
     <div className={styles.field}>
-      <label className={styles.label} htmlFor={id}>
+      <label className={labelHidden ? "sr-only" : styles.label} htmlFor={id}>
         {label}
       </label>
       {hint ? (

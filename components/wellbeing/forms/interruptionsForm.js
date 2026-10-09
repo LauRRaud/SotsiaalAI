@@ -16,19 +16,30 @@ export const interruptionsForm = {
   text: formText("interruptions"),
   steps: [
     {
+      key: "class",
+      title: "Katkestuse liik",
+      short: "Liik",
+      lead: flowLead("choose_one"),
+      fields: enumFields(selectFields, ["interruptionClass"])
+    },
+    {
       key: "pattern",
       title: ["wellbeing.interruptions.situation", "Katkestuse muster"],
       short: "Muster",
-      lead: ["wellbeing.interruptions.intro", ""],
-      fields: enumFields(selectFields, ["interruptionClass", "frequency", "workImpact", "immediateResponseNeed", "canWait"])
+      fields: enumFields(selectFields, ["frequency", "workImpact", "immediateResponseNeed", "canWait"])
     },
     {
       key: "agreement",
       title: ["wellbeing.interruptions.agreement", "Kokkuleppe raam"],
       short: "Raam",
-      lead: flowLead("choose_one"),
+      fields: enumFields(selectFields, ["neededAgreement", "counterpart"])
+    },
+    {
+      key: "effect",
+      title: "Kanal ja taastumine",
+      short: "Mõju",
       fields: [
-        ...enumFields(selectFields, ["neededAgreement", "counterpart", "wrongChannelShare", "recoveryImpact"]),
+        ...enumFields(selectFields, ["wrongChannelShare", "recoveryImpact"]),
         checkField("documentationInterruption", [
           "wellbeing.interruptions.documentation_interruption",
           "Dokumenteerimine või süsteem katkestab töövoogu"

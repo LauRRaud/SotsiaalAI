@@ -1,18 +1,9 @@
-/* ChoiceRow: küsimuse silt vasakul, vastusevariandid paremal. */
+/* ChoiceRow: küsimus ja ühelaiused vastuselahtrid. Kaks paigutust, vt ChoiceRow.jsx. */
 
 .row {
   min-width: 0;
   display: grid;
-  /* Variantide veerg on nii lai kui vaja, aga kuni 65% reast: pikad variandid
-     murduvad oma veerus mitmele reale ega suru silti kokku. */
-  grid-template-columns: minmax(0, 1fr) fit-content(65%);
-  align-items: center;
-  gap: 0.4rem 1.1rem;
-  padding-block: 0.22rem;
-  border-bottom: 1px solid color-mix(in srgb, var(--text-warm) 10%, transparent);
-}
-.row:last-child {
-  border-bottom: 0;
+  gap: 0.45rem;
 }
 .label {
   min-width: 0;
@@ -20,50 +11,88 @@
 }
 .options {
   min-width: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
+  display: grid;
   gap: 0.4rem;
 }
 .option {
   composes: cell from "./cell.module.css";
-  display: inline-flex;
+  min-width: 0;
+  min-height: 2.5rem;
+  display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 2.1rem;
-  padding: 0 0.85rem;
-  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  border-radius: 0.75rem;
   color: var(--text-soft);
   font-size: var(--fs-small, 0.875rem);
-  white-space: nowrap;
+  line-height: 1.25;
+  text-align: center;
+  overflow-wrap: anywhere;
 }
 .option[aria-checked="true"] {
   color: var(--text-warm);
   font-weight: 560;
 }
 
-/* Kitsas pind: silt üles, variandid selle alla vasakule. Puutesiht suuremaks.
-   Konteineripäring kehtib seal, kus lehel on konteiner (`.feature-page`);
-   meediapäring on varu lehtedele, kus seda ei ole. */
+/* --- stack: küsimus üleval, variandid võrgus ---------------------------------
+   Veerge on nii palju, kui mahub; iga lahter on sama lai ja vasakult joondatud
+   reas, nii et viis varianti annab 3 + 2, mitte kolm eri pikkusega rida. */
+.row[data-layout="stack"] {
+  padding-block: 0.55rem;
+}
+.row[data-layout="stack"]:first-child {
+  padding-top: 0;
+}
+.row[data-layout="stack"] .label {
+  font-weight: 560;
+}
+.row[data-layout="stack"] .options {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 11.5rem), 1fr));
+}
+/* Lühike skaala virnas: kõik variandid ühes reas, terve laiuse peale. */
+.row[data-layout="stack"][data-cols] .options {
+  grid-template-columns: repeat(var(--choice-cols), minmax(0, 1fr));
+}
+
+/* --- scale: silt vasakul, lühike skaala paremal ühes reas ------------------- */
+.row[data-layout="scale"] {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 58%);
+  align-items: center;
+  gap: 0.4rem 1.1rem;
+  padding-block: 0.3rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--text-warm) 10%, transparent);
+}
+.row[data-layout="scale"]:last-child {
+  border-bottom: 0;
+}
+.row[data-layout="scale"] .options {
+  grid-template-columns: repeat(var(--choice-count, 3), minmax(0, 1fr));
+}
+
+/* Kitsas pind: skaala läheb sildi alla (lahtrid jäävad ühes reas ühelaiused),
+   puutesiht suuremaks. Konteineripäring kehtib seal, kus lehel on konteiner
+   (`.feature-page`); meediapäring on varu lehtedele, kus seda ei ole. */
 @container (max-width: 40rem) {
-  .row {
+  .row[data-layout="scale"] {
     grid-template-columns: minmax(0, 1fr);
-    padding-block: 0.6rem;
+    padding-block: 0.55rem;
   }
-  .options {
-    justify-content: flex-start;
+  .row[data-layout="stack"] .options,
+  .row[data-layout="stack"][data-cols="4"] .options {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .option {
     min-height: var(--hit-target-min, 2.75rem);
   }
 }
 @media (max-width: 640px) {
-  .row {
+  .row[data-layout="scale"] {
     grid-template-columns: minmax(0, 1fr);
-    padding-block: 0.6rem;
+    padding-block: 0.55rem;
   }
-  .options {
-    justify-content: flex-start;
+  .row[data-layout="stack"] .options,
+  .row[data-layout="stack"][data-cols="4"] .options {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .option {
     min-height: var(--hit-target-min, 2.75rem);

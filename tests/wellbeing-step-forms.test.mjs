@@ -10,6 +10,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { cleanFields, emptyFields, hasValue, missingInStep } from '../components/wellbeing/forms/formState.js';
 import { hardCaseForm } from '../components/wellbeing/forms/hardCaseForm.js';
+import { isRowOfFour, isScale, isTableStep, stackColumns, stepWeight, STEP_WEIGHT_LIMIT } from '../components/wellbeing/forms/layout.js';
 import { interruptionsForm } from '../components/wellbeing/forms/interruptionsForm.js';
 import { quickCheckForm } from '../components/wellbeing/forms/quickCheckForm.js';
 import { recoveryForm } from '../components/wellbeing/forms/recoveryForm.js';
@@ -47,6 +48,8 @@ const catalog = JSON.parse(fs.readFileSync(new URL('../messages/et.json', import
 const fieldsOf = (form) => form.steps.flatMap((step) => step.fields);
 const label = (entry) => (Array.isArray(entry) ? entry[0] : entry);
 const inCatalog = (key) => key.split('.').reduce((node, part) => (node && typeof node === 'object' ? node[part] : undefined), catalog);
+/** Sildi tekst nii, nagu inimene seda eesti keeles näeb. */
+const text = (entry) => (Array.isArray(entry) ? inCatalog(entry[0]) || entry[1] : entry);
 
 /** Kõik [tõlkevõti, varutekst] paarid kirjeldusest. */
 function translationKeys(node, found = []) {
@@ -94,7 +97,8 @@ for (const form of FORMS) {
     const stepKeys = form.steps.map((step) => step.key);
     assert.equal(new Set(stepKeys).size, stepKeys.length);
     assert.ok(stepKeys.every((key) => !key.startsWith('__')), 'sammu võti ei kattu tulemuse ega toe sammuga');
-    assert.ok(form.steps.every((step) => label(step.title) && label(step.lead)));
+    /* Juhis on valikuline: korduv „vali üks" on ainult esimesel sammul. */
+    assert.ok(form.steps.every((step) => label(step.title)));
     assert.ok(tool(name), 'töövoog on tööriistade loendis');
     assert.equal(form.endpoint, `/api/wellbeing/${name}`);
   });
@@ -163,7 +167,20 @@ for (const form of FORMS) {
     }
   });
 
+  test(`${name}: iga vaade on nii väike, et mahub paneeli ära`, () => {
+    for (const step of form.steps) {
+      const weight = stepWeight(step, text);
+      assert.ok(weight <= STEP_WEIGHT_LIMIT, `${step.key}: kaal ${weight}, piir ${STEP_WEIGHT_LIMIT}. Jaga samm kaheks.`);
+      assert.ok(step.fields.length > 0, step.key);
+    }
+  });
+
   if (form.safetyNotice) {
+    test(`${name}: ohutusteate küsimus on omaette vaates, et teade mahuks selle alla`, () => {
+      const step = form.steps.find((item) => item.fields.some((field) => field.key === form.safetyNotice.fieldKey));
+      assert.equal(step.fields.length, 1, step.key);
+    });
+
     test(`${name}: ohutusteade ilmub täpselt siis, kui arvutus seda nõuab`, () => {
       const trigger = fieldsOf(form).find((field) => field.key === form.safetyNotice.fieldKey);
       assert.ok(trigger && trigger.kind === 'enum', 'ohutusteate küsimus on vormis');
@@ -199,4 +216,23 @@ test('loendiväli: tühjad read ja ääretühikud jäävad salvestamisel välja'
   assert.deepEqual(cleanLines(null), []);
   const cleaned = cleanFields(recoveryForm, { ...emptyFields(recoveryForm), unavoidableTasks: [' kriitiline kontakt ', ''] });
   assert.deepEqual(cleaned.unavoidableTasks, ['kriitiline kontakt']);
+});
+
+test('paigutus: lühikeste skaalade samm on tabel, pikkade variantidega samm on virn', () => {
+  const scale = (key, labels) => ({ key, kind: 'enum', label: key, options: labels.map((item) => ({ value: item, label: item })) });
+  const short = scale('a', ['Madal', 'Mõõdukas', 'Kõrge', 'Väga kõrge']);
+  const long = scale('b', ['Emotsionaalselt raske', 'Eetiline dilemma', 'Töökorralduslikult keeruline']);
+  const four = scale('c', ['Ühe nädala pärast', 'Kahe nädala pärast', 'Kuu aja pärast', 'Järgmisel korral']);
+  const same = (entry) => entry;
+  assert.equal(isScale(short, same), true);
+  assert.equal(isScale(long, same), false);
+  assert.equal(isTableStep({ fields: [short, scale('d', ['Selge', 'Ebaselge'])] }, same), true);
+  assert.equal(isTableStep({ fields: [short, long] }, same), false, 'üks pikk küsimus teeb terve sammu virnaks');
+  assert.equal(isTableStep({ fields: [short] }, same), false, 'üks küsimus ei ole tabel');
+  assert.equal(isRowOfFour(four, same), true);
+  assert.equal(stackColumns(four, same), 4);
+  assert.equal(stackColumns(long, same), undefined);
+  /* Kolm kõrvuti loendit kaaluvad nagu üks, üksteise all nagu kolm. */
+  const lists = ['x', 'y', 'z'].map((key) => ({ key, kind: 'text_list', label: key }));
+  assert.ok(stepWeight({ fields: lists, columns: 3 }, same) < stepWeight({ fields: lists }, same) / 2);
 });

@@ -7769,6 +7769,10 @@
           "title": "Riskimärgid",
           "short": "Riskid",
           "lead": "Märgi, kui mõni neist praegu kehtib. Võid ka tühjaks jätta."
+        },
+        "pressure": {
+          "title": "Katkestused ja kättesaadavus",
+          "short": "Katkestused"
         }
       },
       "risk_hints": {
@@ -8012,7 +8016,7 @@
       "saved": "Taastumisplaan salvestati privaatselt.",
       "save_failed": "Salvestamine ebaõnnestus. Proovi uuesti.",
       "steps": {
-        "situation": "Kus sa praegu oled? Vali igal real üks.",
+        "situation": "Kus sa praegu oled? Vali igale küsimusele üks vastus.",
         "load": "Märgi kõik, mis sind praegu kõige rohkem koormab.",
         "tasks": "Jaga lähipäevade töö kolmeks. Üks rida on üks ülesanne."
       }
@@ -8021,20 +8025,13 @@
       "progress": "{done}/{total} vastatud",
       "next_to": "Edasi: {label}",
       "privacy": "Sisestus on privaatne. Seda ei jagata ilma sinu kinnituseta.",
-      "state": {
-        "empty": "vastamata",
-        "done": "vastatud",
-        "optional": "valikuline",
-        "marked": "täidetud {count}",
-        "waiting": "ootab vastuseid",
-        "saved": "salvestatud"
-      },
       "summary": {
         "questions_empty": "{total} küsimust, igaüks ühe puudutusega.",
         "questions_left": "Vastamata on veel {left}.",
         "nothing_marked": "Midagi ei ole lisatud.",
         "result_waiting": "Näitan tulemust, kui küsimused on vastatud.",
-        "support": "Kõik jääb privaatseks, kuni ise teisiti otsustad."
+        "support": "Kõik jääb privaatseks, kuni ise teisiti otsustad.",
+        "next": "Kuhu siit edasi minna."
       },
       "result": {
         "title": "Tulemus",
@@ -8050,10 +8047,23 @@
         "lead": "Vaikimisi jääb kõik privaatseks. Tuge küsid siis, kui ise soovid."
       },
       "leads": {
-        "choose_one": "Vali igal real üks.",
+        "choose_one": "Vali igale küsimusele üks vastus.",
         "mark_all": "Märgi kõik, mis kehtivad. Võid ka tühjaks jätta.",
         "general_text": "Kirjelda üldistatult. Ära kirjuta nimesid ega detaile, mille järgi inimest saab ära tunda.",
         "own_words": "Sõnasta oma sõnadega. Tühjaks jäetud koha kohta jääb mustandisse meeldetuletus."
+      },
+      "texts": {
+        "title": "Valmis tekstid",
+        "short": "Tekstid",
+        "lead": "Vali tekst, vaata üle ja kopeeri sinna, kus seda vajad. Midagi ei saadeta.",
+        "choose": "Vali tekst",
+        "show_all": "Näita kogu teksti",
+        "show_less": "Näita vähem"
+      },
+      "next": {
+        "title": "Soovitused",
+        "lead": "Sinu vastuste põhjal. Ükski samm ei ole kohustuslik.",
+        "none": "Praegu eraldi soovitusi ei ole."
       }
     }
   },
