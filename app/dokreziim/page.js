@@ -41,11 +41,14 @@ export default async function DocumentWorkspaceRoute({ searchParams }) {
     .map((value) => value.trim())
     .filter(Boolean)))
   const initialArtifactId = String(params?.artifact || "").trim()
+  /* `?path=audio` avab ruumi heli rajal: Dokumentide kaart „Transkribeeri heli"
+     ja juhtumi salvesti link lubavad transkripti, mitte lähtefailide valikut. */
+  const initialPath = String(params?.path || "").trim() === "audio" ? "audio" : "compose"
 
   return (
     <>
       {subscriptionInactive ? <SubscriptionReadOnlyBanner /> : null}
-      <AgentModePage initialDocumentIds={initialDocumentIds} initialArtifactId={initialArtifactId} />
+      <AgentModePage initialDocumentIds={initialDocumentIds} initialArtifactId={initialArtifactId} initialPath={initialPath} />
     </>
   )
 }

@@ -105,7 +105,7 @@ test('sisenemise kaardid: neli tegevust viivad teisele lehele, kaks selle lehe o
   const t = translator('et');
   const cards = entryCards({ t, locale: 'et', researchEnabled: true });
   assert.deepEqual(cards.map((card) => card.key), ['analyze', 'compose', 'transcribe', 'research', 'add', 'list']);
-  assert.deepEqual(cards.map((card) => card.href), ['/vestlus', '/dokreziim', '/dokreziim', '/vestlus', null, null]);
+  assert.deepEqual(cards.map((card) => card.href), ['/vestlus', '/dokreziim', '/dokreziim?path=audio', '/vestlus', null, null]);
   assert.deepEqual(cards.map((card) => card.view), [null, null, null, null, 'add', 'list']);
   for (const card of cards) assert.ok(card.title && card.description && !looksRaw(card.title) && !looksRaw(card.description), card.key);
   /* Kui süvauuringut ei saa käivitada, ütleb kaart seda selgituse asemel. */

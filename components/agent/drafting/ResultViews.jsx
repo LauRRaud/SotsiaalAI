@@ -85,7 +85,11 @@ export function TextView({ t, title, notice, state, error, sheet, editor, text, 
               <span className={styles.fieldLabel}>{t("documents.form.title_label")}</span>
               <Input value={editor.title} onChange={(event) => editor.onTitle(event.target.value)} autoComplete="off" />
             </label>
-            <TextAreaField label={t("documents.form.content_label")} rows={10} value={editor.content} onChange={editor.onContent} />
+            {/* Toimeti kõrgus tuleb akna kõrgusest (vt `.editorArea`): vaade mahub
+                paneeli ja nupurida jääb nähtavale; pikk tekst kerib välja sees. */}
+            <div className={styles.editorArea}>
+              <TextAreaField label={t("documents.form.content_label")} rows={6} value={editor.content} onChange={editor.onContent} />
+            </div>
           </>
         ) : (
           <p className={styles.text}>{text}</p>

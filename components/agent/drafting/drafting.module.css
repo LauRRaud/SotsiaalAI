@@ -321,3 +321,14 @@
     justify-content: flex-start;
   }
 }
+
+/* Tulemuse toimeti: nii kõrge, kui aken lubab, et pealkiri, tekst ja nupurida
+   mahuksid paneeli korraga ära (640 px kõrguses aknas umbes 190 px). Pikem tekst
+   kerib välja sees ja välja saab ise suuremaks venitada. Sama põhimõte mis
+   koostatud teksti lehel (components/documents/detail/detail.module.css). */
+.editorArea :global(textarea) {
+  height: clamp(8rem, calc(100dvh - 28rem), 30rem);
+  min-height: 8rem;
+  overflow: auto;
+  resize: vertical;
+}

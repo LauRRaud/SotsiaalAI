@@ -80,7 +80,7 @@ export default function MeetingAudioSection({ caseId, locked, caseBusy, active, 
       glow={active}
       notice={
         noticeKey
-          ? { text: t(noticeKey, ""), linkText: t("casework.note.audio_open_documents", ""), href: localizePath("/dokreziim", locale) }
+          ? { text: t(noticeKey, ""), linkText: t("casework.note.audio_open_documents", ""), href: localizePath("/dokreziim?path=audio", locale) }
           : null
       }
       errorText={errorKey ? t(errorKey, "") : ""}

@@ -127,7 +127,7 @@ function markChatWorkspaceRestore() {
   } catch {}
 }
 
-export default function AgentModePage({ initialDocumentIds = [], initialArtifactId = "", embedded = false, onBack = null, hideHeader = false }) {
+export default function AgentModePage({ initialDocumentIds = [], initialArtifactId = "", initialPath = "compose", embedded = false, onBack = null, hideHeader = false }) {
   const router = useRouter()
   const { t, locale } = useI18n()
   const { effectiveRole, isAdmin, refresh: refreshEffectiveRole } = useEffectiveRole()
@@ -187,8 +187,9 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
   const [workspaceVersions, setWorkspaceVersions] = useState([])
 
   /* Mis on ees: jada (`compose` või heli rada `audio`) ja vaate võti. Tulemuse
-     lingiga (?artifact=) avatud ruum avaneb tulemuse teksti juures. */
-  const [level, setLevel] = useState("compose")
+     lingiga (?artifact=) avatud ruum avaneb tulemuse teksti juures; lingiga
+     `?path=audio` avatud ruum heli rajal (pöörduja vaates heli rada ei ole). */
+  const [level, setLevel] = useState(initialPath === "audio" && !String(initialArtifactId || "").trim() ? "audio" : "compose")
   const [view, setView] = useState(String(initialArtifactId || "").trim() ? "text" : "")
   /* Isikuandmete kontrolli küsimus: `{ action: "compose" | "refine", originalText, … }`. */
   const [privacyPrompt, setPrivacyPrompt] = useState(null)
