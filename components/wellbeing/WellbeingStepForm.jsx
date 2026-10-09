@@ -268,11 +268,8 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
         <StepPanel
           title={step.label}
           lead={tx(definitionStep.lead)}
-          note={
-            required
-              ? t("wellbeing.flow.progress", { done: required - missing[index], total: required })
-              : t("wellbeing.flow.optional_note")
-          }
+          /* Valikulisel sammul ütleb juhis ise, et selle võib tühjaks jätta. */
+          note={required ? t("wellbeing.flow.progress", { done: required - missing[index], total: required }) : undefined}
           actions={nextButton(flight)}
         >
           {definitionStep.fields.map(renderField)}

@@ -21,7 +21,17 @@ import WorkBoundariesWorkflow from "./WorkBoundariesWorkflow";
 import WorkProcessesWorkflow from "./WorkProcessesWorkflow";
 
 /* Töövood, mis on viidud ühisele sammuvormile (`WellbeingStepForm`). */
-const STAGED_TOOLS = new Set(["quick-check", "recovery"]);
+const STAGED_TOOLS = new Set([
+  "quick-check",
+  "hard-case",
+  "workplace-violence",
+  "recovery",
+  "work-boundaries",
+  "interruptions",
+  "work-processes",
+  "role-boundaries",
+  "starter-support"
+]);
 
 const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAAL.PRO_CHAT_WORKSPACE_RESTORE__";
 const WORKSPACE_SUBPAGE_ENTRY_STORAGE_KEY = "__SOTSIAAL.PRO_WORKSPACE_SUBPAGE_ENTRY__";

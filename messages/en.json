@@ -8019,7 +8019,6 @@
     },
     "flow": {
       "progress": "{done}/{total} answered",
-      "optional_note": "You may leave this step empty.",
       "next_to": "Next: {label}",
       "privacy": "What you enter is private. It is not shared without your confirmation.",
       "state": {
@@ -8049,6 +8048,12 @@
       "support": {
         "title": "Support",
         "lead": "Everything stays private by default. You ask for support when you choose to."
+      },
+      "leads": {
+        "choose_one": "Choose one on each row.",
+        "mark_all": "Mark everything that applies. You may leave this empty.",
+        "general_text": "Describe in general terms. Do not write names or details by which a person can be recognised.",
+        "own_words": "Put it in your own words. Where you leave a gap, the draft keeps a reminder."
       }
     }
   },
