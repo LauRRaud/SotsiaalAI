@@ -8132,6 +8132,32 @@
         "draft": "Draft",
         "ready_to_share": "Confirmed shareable version",
         "in_covision": "Taken to Covision"
+      },
+      "views": {
+        "list": {
+          "title": "Records",
+          "short": "Records",
+          "lead": "Only you see these records. Deleting a record also removes it from the anonymous summary."
+        },
+        "record": {
+          "title": "Record",
+          "short": "Record"
+        },
+        "next": {
+          "title": "Next step",
+          "short": "Step",
+          "change": "Change the agreement"
+        },
+        "drafts": {
+          "title": "Drafts",
+          "short": "Drafts"
+        },
+        "unfinished": {
+          "title": "Unfinished",
+          "short": "Unfinished"
+        },
+        "open": "Open",
+        "confirm_delete": "Press again to delete"
       }
     },
     "overview": {

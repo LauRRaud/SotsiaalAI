@@ -18,7 +18,7 @@ import { starterSupportForm } from '../components/wellbeing/forms/starterSupport
 import { workBoundariesForm } from '../components/wellbeing/forms/workBoundariesForm.js';
 import { workplaceViolenceForm } from '../components/wellbeing/forms/workplaceViolenceForm.js';
 import { workProcessesForm } from '../components/wellbeing/forms/workProcessesForm.js';
-import { wellbeingHasLabel, wellbeingLabel } from '../lib/wellbeing/displayLabels.js';
+import { wellbeingHasExactLabel, wellbeingHasLabel, wellbeingLabel } from '../lib/wellbeing/displayLabels.js';
 import { WELLBEING_FIELD_SCHEMAS } from '../lib/wellbeing/fieldSchemas.js';
 import { formatQuickCheckFactor } from '../lib/wellbeing/quickCheck.js';
 import { buildWellbeingShareableDraft, WELLBEING_OUTPUT_TYPES, WELLBEING_RECIPIENT_TYPES } from '../lib/wellbeing/supportDraftText.js';
@@ -75,11 +75,19 @@ test('igal vastusevariandil, mille server vastu võtab, on eestikeelne silt', ()
   assert.deepEqual(missing, []);
 });
 
-test('igal arvutatud märkel (koormus, ressurss, risk) on silt', () => {
+test('igal arvutatud märkel (koormus, ressurss, risk) on TÄPNE silt ühises sõnastikus', () => {
+  /* „Minu kirjed" ja „Ülevaade" näitavad tegureid ühise sõnastiku kaudu. Varem
+     luges see test kiirkontrolli tegurid kaetuks kiirkontrolli enda siltide
+     järgi; kirjete lehel tuli nende asemel võtme lõpp („kõrge") või toores võti. */
   const codes = factorCodes();
   assert.ok(codes.length > 50, 'märkekoodid leiti lähtekoodist');
-  const missing = codes.filter((code) => formatQuickCheckFactor(code) === code && !wellbeingHasLabel(code));
-  assert.deepEqual(missing, []);
+  assert.deepEqual(codes.filter((code) => !wellbeingHasExactLabel(code)), []);
+});
+
+test('kiirkontrolli tegurite laused on kahes kohas samad', () => {
+  const quick = factorCodes().filter((code) => formatQuickCheckFactor(code) !== code);
+  assert.ok(quick.length >= 10, `kiirkontrolli tegureid leiti ${quick.length}`);
+  for (const code of quick) assert.equal(wellbeingLabel(code).toLowerCase(), formatQuickCheckFactor(code).toLowerCase(), code);
 });
 
 test('sildita väärtus on näha: varukuju vahetab ainult alakriipsud', () => {

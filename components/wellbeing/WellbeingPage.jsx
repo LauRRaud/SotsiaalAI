@@ -22,6 +22,7 @@ import WorkProcessesWorkflow from "./WorkProcessesWorkflow";
 
 /* Töövood, mis on viidud ühisele sammuvormile (`WellbeingStepForm`). */
 const STAGED_TOOLS = new Set([
+  "my-records",
   "quick-check",
   "hard-case",
   "workplace-violence",

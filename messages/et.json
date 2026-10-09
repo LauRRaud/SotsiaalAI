@@ -8132,6 +8132,32 @@
         "draft": "Mustand",
         "ready_to_share": "Kinnitatud jagatav versioon",
         "in_covision": "Viidud Kovisiooni"
+      },
+      "views": {
+        "list": {
+          "title": "Kirjed",
+          "short": "Kirjed",
+          "lead": "Ainult sina näed neid kirjeid. Kustutamine eemaldab kirje ka anonüümsest koondist."
+        },
+        "record": {
+          "title": "Kirje",
+          "short": "Kirje"
+        },
+        "next": {
+          "title": "Järgmine samm",
+          "short": "Samm",
+          "change": "Muuda kokkulepet"
+        },
+        "drafts": {
+          "title": "Mustandid",
+          "short": "Mustandid"
+        },
+        "unfinished": {
+          "title": "Pooleli",
+          "short": "Pooleli"
+        },
+        "open": "Ava",
+        "confirm_delete": "Vajuta uuesti, et kustutada"
       }
     },
     "overview": {
