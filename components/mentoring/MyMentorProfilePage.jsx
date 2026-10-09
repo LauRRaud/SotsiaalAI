@@ -1,49 +1,70 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+/**
+ * Minu mentoriprofiil: profiili loomine, muutmine ja seis.
+ *
+ * KUJU (09.10). Leht oli üks pikk vorm klaaspaneeli sees olevas tumedas
+ * kaardis. Nüüd on see sammulava (`components/stage/StepFlight.jsx`): vorm on
+ * lõigatud väikesteks vaadeteks (nimi, valdkonnad, keeled ja vormid, kolm
+ * teksti) ja viimane samm on profiili seis. Olemasoleva profiiliga avaneb leht
+ * seisu vaates, uue profiili tegija alustab esimesest sammust.
+ *
+ * Vaated on failis ./entry/MyProfileViews.jsx, otsused failis
+ * ./entry/entryRows.js. Siin on andmed, päringud ja see, mis vaateid olekuga
+ * seob.
+ *
+ * MIS ON TEISITI KUI ENNE (ja miks):
+ *  - „Esita ülevaatusele” salvestab enne pooleli muudatused. Varem esitati
+ *    serveris olev versioon ja vastus kirjutas vormi üle: salvestamata
+ *    muudatused kadusid vaikides. Samal põhjusel ei puutu seisu tegevused
+ *    (peatamine, mahutavus) enam vormi.
+ *  - Leht ütleb enne esitamist, mis on puudu (nimi, lühitutvustus, valdkond).
+ *    Server keeldus ka enne, aga vastas üldise veaga.
+ *  - Mentorluse lõpetamine on jäädav (lõpetatud profiili ei saa taastada ega
+ *    muuta), seepärast küsib see teist vajutust ja ütleb seda välja.
+ *  - Lõpetatud või suletud profiili väljad on lukus: salvestamine ei saaks
+ *    õnnestuda.
+ *  - Loendid on üks kirje real (koma töötab endiselt) ja leht ütleb, kui kirjeid
+ *    on rohkem, kui server alles jätab.
+ *  - Kui seis on mujal muutunud (vastus 409), loeb leht värske seisu ise:
+ *    veateade palus vaadet värskendada, aga lehel ei olnud selleks nuppu.
+ */
+
+import { useCallback, useEffect, useRef, useState } from "react";
+
 import { useI18n } from "@/components/i18n/I18nProvider";
+import StepFlight from "@/components/stage/StepFlight";
 import Button from "@/components/ui/Button";
-import Input from "@/components/ui/Input";
-import Textarea from "@/components/ui/Textarea";
-import { SubpageHeader } from "@/components/ui/SubpageHeader";
-import Form from "@/components/ui/Form";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
-import styles from "./MentoringPage.module.css";
+import { localizePath } from "@/lib/localizePath";
 
-const EMPTY_FORM = Object.freeze({
-  displayName: "",
-  title: "",
-  organization: "",
-  fields: "",
-  topics: "",
-  languages: "",
-  formats: "",
-  bioShort: "",
-  bioFull: "",
-  experienceSummary: ""
-});
+import { EntryShell } from "./entry/EntryParts";
+import {
+  EMPTY_FORM,
+  PROFILE_LIMITS,
+  PROFILE_VIEW_KEYS,
+  isDirty,
+  missingForReview,
+  overLimit,
+  profilePayload,
+  profileStateModel,
+  profileSteps,
+  statusWord,
+  toForm
+} from "./entry/entryRows";
+import { ListsView, StateView, TextView, WhoView } from "./entry/MyProfileViews";
 
-function toForm(profile) {
-  if (!profile) return { ...EMPTY_FORM };
-  return {
-    displayName: profile.displayName || "",
-    title: profile.title || "",
-    organization: profile.organization || "",
-    fields: (profile.fields || []).join(", "),
-    topics: (profile.topics || []).join(", "),
-    languages: (profile.languages || []).join(", "),
-    formats: (profile.formats || []).join(", "),
-    bioShort: profile.bioShort || "",
-    bioFull: profile.bioFull || "",
-    experienceSummary: profile.experienceSummary || ""
-  };
-}
+/* Teine vajutus mentorluse lõpetamiseks peab tulema selle aja sees. */
+const CONFIRM_MS = 8000;
 
-function splitList(value) {
-  return String(value || "")
-    .split(",")
-    .map((item) => item.trim())
-    .filter(Boolean);
+async function readProfileResponse(response, t, fallbackKey) {
+  const payload = await response.json().catch(() => ({}));
+  if (!response.ok || payload?.ok === false) {
+    const error = new Error(resolveApiMessage({ payload, t, fallbackKey }));
+    error.status = response.status;
+    throw error;
+  }
+  return payload?.profile || null;
 }
 
 export default function MyMentorProfilePage() {
@@ -54,17 +75,27 @@ export default function MyMentorProfilePage() {
   const [loadError, setLoadError] = useState("");
   const [feedback, setFeedback] = useState("");
   const [busy, setBusy] = useState(false);
+  /* Vaade, kust leht avaneb: olemasoleva profiiliga seis, muidu esimene samm. */
+  const [startView, setStartView] = useState("who");
+  /* Teist vajutust ootav tegevus (`retire`). */
+  const [confirming, setConfirming] = useState("");
+  const confirmTimer = useRef(0);
+
+  const armConfirm = useCallback((key) => {
+    window.clearTimeout(confirmTimer.current);
+    setConfirming(key);
+    confirmTimer.current = window.setTimeout(() => setConfirming(""), CONFIRM_MS);
+  }, []);
+  useEffect(() => () => window.clearTimeout(confirmTimer.current), []);
 
   const load = useCallback(async (signal) => {
     setLoadError("");
     try {
       const response = await fetch("/api/mentoring/profile", { cache: "no-store", signal });
-      const payload = await response.json().catch(() => ({}));
-      if (!response.ok || payload?.ok === false) {
-        throw new Error(resolveApiMessage({ payload, t, fallbackKey: "mentoring.errors.load_failed" }));
-      }
-      setProfile(payload?.profile || null);
-      setForm(toForm(payload?.profile));
+      const loaded = await readProfileResponse(response, t, "mentoring.errors.load_failed");
+      setProfile(loaded);
+      setForm(toForm(loaded));
+      setStartView(loaded ? "state" : "who");
     } catch (error) {
       if (error?.name === "AbortError") return;
       setLoadError(error?.message || t("mentoring.errors.load_failed"));
@@ -79,232 +110,333 @@ export default function MyMentorProfilePage() {
     return () => controller.abort();
   }, [load]);
 
-  const save = useCallback(async (event) => {
-    event?.preventDefault?.();
+  const model = profileStateModel(profile);
+  const dirty = isDirty(form, profile);
+  const locked = !model.editable;
+  const hasName = Boolean(form.displayName.trim());
+  const canSave = !busy && !locked && dirty && hasName;
+  const missing = missingForReview(form);
+  const over = overLimit(form);
+
+  /* Seis muutus mujal (nt admin vaatas profiili üle või see salvestati teises
+     aknas): loeme värske seisu, et järgmine katse ei põrkaks vana versiooni
+     taha. Pooleli vormi see ei puutu. */
+  async function refreshAfterConflict(error, keepForm) {
+    if (error?.status !== 409) return;
+    try {
+      const response = await fetch("/api/mentoring/profile", { cache: "no-store" });
+      const fresh = await readProfileResponse(response, t, "mentoring.errors.load_failed");
+      setProfile(fresh);
+      if (!keepForm) setForm(toForm(fresh));
+    } catch {
+      /* värskendus on abiks, mitte nõue: algne veateade jääb ette */
+    }
+  }
+
+  /** Salvestab vormi. Tagastab, kas õnnestus (esitamine ootab selle järel). */
+  async function save() {
     setBusy(true);
     setFeedback("");
     try {
       const response = await fetch("/api/mentoring/profile", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          displayName: form.displayName,
-          title: form.title,
-          organization: form.organization,
-          fields: splitList(form.fields),
-          topics: splitList(form.topics),
-          languages: splitList(form.languages),
-          formats: splitList(form.formats),
-          bioShort: form.bioShort,
-          bioFull: form.bioFull,
-          experienceSummary: form.experienceSummary,
-          expectedVersion: profile?.version
-        })
+        body: JSON.stringify(profilePayload(form, profile?.version))
       });
-      const payload = await response.json().catch(() => ({}));
-      if (!response.ok || payload?.ok === false) {
-        throw new Error(resolveApiMessage({ payload, t, fallbackKey: "mentoring.errors.save_failed" }));
-      }
-      setProfile(payload?.profile || null);
-      setForm(toForm(payload?.profile));
-      setFeedback(t("mentoring.my_profile.saved"));
+      const saved = await readProfileResponse(response, t, "mentoring.errors.save_failed");
+      setProfile(saved);
+      setForm(toForm(saved));
+      /* Lause ütleb, mis salvestamisest sai: mustand vajab veel esitamist ja
+         kataloogis oleva profiili sisu muutus läheb uuesti ülevaatusele. */
+      const status = String(saved?.status || "").toUpperCase();
+      setFeedback(
+        status === "DRAFT" || status === "REJECTED"
+          ? t("mentoring.my_profile.saved_draft")
+          : status === "PENDING_REVIEW"
+            ? t("mentoring.my_profile.saved_pending")
+            : t("mentoring.my_profile.saved")
+      );
+      return true;
     } catch (error) {
       setFeedback(error?.message || t("mentoring.errors.save_failed"));
+      await refreshAfterConflict(error, true);
+      return false;
     } finally {
       setBusy(false);
     }
-  }, [form, profile, t]);
+  }
 
-  const runAction = useCallback(async (action, extra = {}) => {
+  /* Seisu tegevus muudab ainult seisu või mahutavust, mitte profiili sisu:
+     vormi see ei puutu, muidu kaoksid pooleli muudatused. */
+  async function runAction(action, extra = {}) {
     setBusy(true);
     setFeedback("");
+    setConfirming("");
     try {
       const response = await fetch("/api/mentoring/profile", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action, ...extra })
       });
-      const payload = await response.json().catch(() => ({}));
-      if (!response.ok || payload?.ok === false) {
-        throw new Error(resolveApiMessage({ payload, t, fallbackKey: "mentoring.errors.save_failed" }));
-      }
-      setProfile(payload?.profile || null);
-      setForm(toForm(payload?.profile));
+      setProfile(await readProfileResponse(response, t, "mentoring.errors.save_failed"));
       setFeedback(t(`mentoring.my_profile.action_done.${action}`));
     } catch (error) {
       setFeedback(error?.message || t("mentoring.errors.save_failed"));
+      await refreshAfterConflict(error, dirty);
     } finally {
       setBusy(false);
     }
-  }, [t]);
+  }
 
-  const status = profile?.status || null;
+  async function submitForReview() {
+    if (dirty && !(await save())) return;
+    await runAction("submit");
+  }
+
+  const onField = (key) => (value) => {
+    setForm((previous) => ({ ...previous, [key]: value }));
+    setFeedback("");
+  };
+  const onEnter = () => {
+    if (canSave) void save();
+  };
+
+  const note = feedback
+    || (locked
+      ? t("mentoring.my_profile.locked")
+      : !dirty
+        ? ""
+        : hasName
+          ? t("mentoring.my_profile.unsaved")
+          : t("mentoring.my_profile.name_required"));
+  const saveButton = locked ? null : (
+    <Button type="button" variant="primary" disabled={!canSave} onClick={() => void save()}>
+      {t("mentoring.my_profile.save")}
+    </Button>
+  );
+  const listHint = (key, hint) => (over[key] ? `${hint} ${t("mentoring.my_profile.list_over", { max: PROFILE_LIMITS[key] })}` : hint);
+  const formProps = { disabled: locked || busy, note, actions: saveButton };
+
+  const steps = profileSteps({ t, form, profile });
+
+  const renderView = (step) => {
+    switch (step.key) {
+      case "areas":
+        return (
+          <ListsView
+            title={t("mentoring.my_profile.views.areas.title")}
+            lead={t("mentoring.my_profile.views.areas.lead")}
+            left={{
+              label: t("mentoring.my_profile.fields"),
+              hint: listHint("fields", t("mentoring.my_profile.list_hint", { max: PROFILE_LIMITS.fields })),
+              value: form.fields,
+              onChange: onField("fields")
+            }}
+            right={{
+              label: t("mentoring.my_profile.topics"),
+              hint: listHint("topics", t("mentoring.my_profile.list_hint", { max: PROFILE_LIMITS.topics })),
+              value: form.topics,
+              onChange: onField("topics")
+            }}
+            {...formProps}
+          />
+        );
+      case "ways":
+        return (
+          <ListsView
+            title={t("mentoring.my_profile.views.ways.title")}
+            rows={3}
+            left={{
+              label: t("mentoring.my_profile.languages"),
+              hint: listHint("languages", t("mentoring.my_profile.languages_hint", { max: PROFILE_LIMITS.languages })),
+              value: form.languages,
+              onChange: onField("languages")
+            }}
+            right={{
+              label: t("mentoring.my_profile.formats"),
+              hint: listHint("formats", t("mentoring.my_profile.formats_hint", { max: PROFILE_LIMITS.formats })),
+              value: form.formats,
+              onChange: onField("formats")
+            }}
+            {...formProps}
+          />
+        );
+      case "intro":
+        return (
+          <TextView
+            title={t("mentoring.my_profile.views.intro.title")}
+            label={t("mentoring.my_profile.bio_short")}
+            hint={t("mentoring.my_profile.bio_short_hint", { max: PROFILE_LIMITS.bioShort })}
+            value={form.bioShort}
+            rows={5}
+            maxLength={PROFILE_LIMITS.bioShort}
+            onChange={onField("bioShort")}
+            {...formProps}
+          />
+        );
+      case "story":
+        return (
+          <TextView
+            title={t("mentoring.my_profile.views.story.title")}
+            label={t("mentoring.my_profile.bio_full")}
+            hint={t("mentoring.my_profile.bio_full_hint")}
+            value={form.bioFull}
+            rows={8}
+            maxLength={PROFILE_LIMITS.text}
+            onChange={onField("bioFull")}
+            {...formProps}
+          />
+        );
+      case "experience":
+        return (
+          <TextView
+            title={t("mentoring.my_profile.views.experience.title")}
+            label={t("mentoring.my_profile.experience")}
+            hint={t("mentoring.my_profile.experience_hint")}
+            value={form.experienceSummary}
+            rows={8}
+            maxLength={PROFILE_LIMITS.text}
+            onChange={onField("experienceSummary")}
+            {...formProps}
+          />
+        );
+      case "state": {
+        const missingNames = {
+          display_name: t("mentoring.my_profile.missing.display_name"),
+          bio_short: t("mentoring.my_profile.missing.bio_short"),
+          fields: t("mentoring.my_profile.missing.fields")
+        };
+        const help = {
+          none: t("mentoring.my_profile.state_help.none"),
+          draft: t("mentoring.my_profile.state_help.draft"),
+          pending_review: t("mentoring.my_profile.state_help.pending_review"),
+          active: t("mentoring.my_profile.state_help.active"),
+          rejected: t("mentoring.my_profile.state_help.rejected"),
+          paused: t("mentoring.my_profile.state_help.paused"),
+          retired: t("mentoring.my_profile.state_help.retired"),
+          revoked: t("mentoring.my_profile.state_help.revoked")
+        };
+        const capacityValue = String(profile?.capacity || "").toUpperCase() === "FULL" ? "FULL" : "OPEN";
+        const cards = [
+          model.canPause
+            ? {
+                key: "pause",
+                title: t("mentoring.my_profile.pause"),
+                description: t("mentoring.my_profile.pause_hint"),
+                disabled: busy,
+                onClick: () => void runAction("pause")
+              }
+            : null,
+          model.canResume
+            ? {
+                key: "resume",
+                title: t("mentoring.my_profile.resume"),
+                description: t("mentoring.my_profile.resume_hint"),
+                disabled: busy,
+                onClick: () => void runAction("resume")
+              }
+            : null,
+          model.canRetire
+            ? {
+                key: "retire",
+                title: confirming === "retire" ? t("mentoring.my_profile.confirm_retire") : t("mentoring.my_profile.retire"),
+                description: t("mentoring.my_profile.retire_hint"),
+                disabled: busy,
+                onClick: () => (confirming === "retire" ? void runAction("retire") : armConfirm("retire"))
+              }
+            : null
+        ].filter(Boolean);
+        /* Mis on esitamiseks puudu, näeb nii uue profiili tegija kui see, kelle
+           mustand või tagasi lükatud profiil ootab esitamist. */
+        const reviewNote = !profile || model.canSubmit
+          ? missing.length
+            ? t("mentoring.my_profile.missing_lead", { items: missing.map((key) => missingNames[key]).join(", ") })
+            : model.canSubmit
+              ? t("mentoring.my_profile.ready_for_review")
+              : ""
+          : "";
+        const showSave = dirty && saveButton;
+        return (
+          <StateView
+            t={t}
+            chip={profile ? statusWord("profile_status", profile.status, t) : null}
+            reason={model.reasonKey ? t(`mentoring.review_reason.${model.reasonKey}`) : ""}
+            help={help[model.helpKey] || ""}
+            review={reviewNote ? { text: reviewNote, tone: missing.length ? undefined : "ok" } : null}
+            capacity={
+              model.canSetCapacity
+                ? {
+                    value: capacityValue,
+                    disabled: busy,
+                    options: [
+                      { value: "OPEN", label: t("mentoring.my_profile.capacity_open") },
+                      { value: "FULL", label: t("mentoring.my_profile.capacity_full") }
+                    ],
+                    onChange: (value) => {
+                      if (value !== capacityValue) void runAction("capacity", { capacity: value });
+                    }
+                  }
+                : null
+            }
+            cards={cards}
+            backHref={localizePath("/mentorlus")}
+            note={note}
+            actions={
+              showSave || model.canSubmit ? (
+                <>
+                  {showSave ? saveButton : null}
+                  {model.canSubmit ? (
+                    <Button
+                      type="button"
+                      variant={showSave ? "secondary" : "primary"}
+                      disabled={busy || missing.length > 0}
+                      onClick={() => void submitForReview()}
+                    >
+                      {t("mentoring.my_profile.submit_review")}
+                    </Button>
+                  ) : null}
+                </>
+              ) : null
+            }
+          />
+        );
+      }
+      default:
+        return (
+          <WhoView
+            t={t}
+            form={form}
+            onField={onField}
+            onEnter={onEnter}
+            maxLength={PROFILE_LIMITS.line}
+            {...formProps}
+          />
+        );
+    }
+  };
 
   return (
-    <main className={styles.page}>
-      <div className={styles.shell} data-glass-back-anchor="">
-        <SubpageHeader title={t("mentoring.my_profile.title")} />
-        <p className={styles.lead}>{t("mentoring.my_profile.lead")}</p>
-        <p aria-live="polite" className={styles.liveRegion} role="status" tabIndex={-1}>
-          {feedback}
-        </p>
-
-        {loading ? <p className={styles.loading}>{t("mentoring.labels.loading")}</p> : null}
-        {loadError ? (
-          <div className={styles.loadError}>
-            <p>{loadError}</p>
-            <Button onClick={() => { setLoading(true); void load(); }} variant="secondary">
-              {t("mentoring.labels.retry")}
-            </Button>
-          </div>
-        ) : null}
-
-        {!loading && !loadError ? (
-          <>
-            {status ? (
-              <p className={styles.statusLine}>
-                <span className={styles.badge}>{t(`mentoring.profile_status.${status.toLowerCase()}`)}</span>
-                {status === "REJECTED" && profile?.reviewReasonKey ? (
-                  <span> {t(`mentoring.review_reason.${profile.reviewReasonKey}`)}</span>
-                ) : null}
-              </p>
-            ) : (
-              <p className={styles.statusLine}>{t("mentoring.my_profile.not_created")}</p>
-            )}
-            <p className={styles.statusLine}>{t("mentoring.my_profile.moderation_note")}</p>
-
-            <Form className={styles.form} onSubmit={save}>
-              <label>
-                <span>{t("mentoring.my_profile.display_name")}</span>
-                <Input
-                  maxLength={600}
-                  onChange={(event) => setForm((prev) => ({ ...prev, displayName: event.target.value }))}
-                  required
-                  value={form.displayName}
-                />
-              </label>
-              <label>
-                <span>{t("mentoring.my_profile.job_title")}</span>
-                <Input
-                  maxLength={600}
-                  onChange={(event) => setForm((prev) => ({ ...prev, title: event.target.value }))}
-                  value={form.title}
-                />
-              </label>
-              <label>
-                <span>{t("mentoring.my_profile.organization")}</span>
-                <Input
-                  maxLength={600}
-                  onChange={(event) => setForm((prev) => ({ ...prev, organization: event.target.value }))}
-                  value={form.organization}
-                />
-                <span className={styles.fieldHint}>{t("mentoring.my_profile.organization_hint")}</span>
-              </label>
-              <label>
-                <span>{t("mentoring.my_profile.fields")}</span>
-                <Input
-                  onChange={(event) => setForm((prev) => ({ ...prev, fields: event.target.value }))}
-                  value={form.fields}
-                />
-                <span className={styles.fieldHint}>{t("mentoring.my_profile.list_hint")}</span>
-              </label>
-              <label>
-                <span>{t("mentoring.my_profile.topics")}</span>
-                <Input
-                  onChange={(event) => setForm((prev) => ({ ...prev, topics: event.target.value }))}
-                  value={form.topics}
-                />
-              </label>
-              <label>
-                <span>{t("mentoring.my_profile.languages")}</span>
-                <Input
-                  onChange={(event) => setForm((prev) => ({ ...prev, languages: event.target.value }))}
-                  value={form.languages}
-                />
-              </label>
-              <label>
-                <span>{t("mentoring.my_profile.formats")}</span>
-                <Input
-                  onChange={(event) => setForm((prev) => ({ ...prev, formats: event.target.value }))}
-                  value={form.formats}
-                />
-                <span className={styles.fieldHint}>{t("mentoring.my_profile.formats_hint")}</span>
-              </label>
-              <label>
-                <span>{t("mentoring.my_profile.bio_short")}</span>
-                <Textarea
-                  maxLength={600}
-                  onChange={(event) => setForm((prev) => ({ ...prev, bioShort: event.target.value }))}
-                  rows={3}
-                  value={form.bioShort}
-                />
-              </label>
-              <label>
-                <span>{t("mentoring.my_profile.bio_full")}</span>
-                <Textarea
-                  maxLength={4000}
-                  onChange={(event) => setForm((prev) => ({ ...prev, bioFull: event.target.value }))}
-                  rows={5}
-                  value={form.bioFull}
-                />
-              </label>
-              <label>
-                <span>{t("mentoring.my_profile.experience")}</span>
-                <Textarea
-                  maxLength={4000}
-                  onChange={(event) => setForm((prev) => ({ ...prev, experienceSummary: event.target.value }))}
-                  rows={4}
-                  value={form.experienceSummary}
-                />
-              </label>
-              <div className={styles.actions}>
-                <Button disabled={busy || !form.displayName.trim()} type="submit">
-                  {t("mentoring.my_profile.save")}
-                </Button>
-                {status === "DRAFT" || status === "REJECTED" ? (
-                  <Button disabled={busy} onClick={() => runAction("submit")} variant="secondary">
-                    {t("mentoring.my_profile.submit_review")}
-                  </Button>
-                ) : null}
-              </div>
-            </Form>
-
-            {status ? (
-              <div className={styles.dangerZone}>
-                <div className={styles.actions}>
-                  {status === "ACTIVE" ? (
-                    <>
-                      <Button
-                        disabled={busy}
-                        onClick={() => runAction("capacity", { capacity: profile?.capacity === "OPEN" ? "FULL" : "OPEN" })}
-                        variant="secondary"
-                      >
-                        {profile?.capacity === "OPEN"
-                          ? t("mentoring.my_profile.set_full")
-                          : t("mentoring.my_profile.set_open")}
-                      </Button>
-                      <Button disabled={busy} onClick={() => runAction("pause")} variant="secondary">
-                        {t("mentoring.my_profile.pause")}
-                      </Button>
-                    </>
-                  ) : null}
-                  {status === "PAUSED" ? (
-                    <Button disabled={busy} onClick={() => runAction("resume")} variant="secondary">
-                      {t("mentoring.my_profile.resume")}
-                    </Button>
-                  ) : null}
-                  {status !== "RETIRED" && status !== "REVOKED" ? (
-                    <Button disabled={busy} onClick={() => runAction("retire")} variant="secondary">
-                      {t("mentoring.my_profile.retire")}
-                    </Button>
-                  ) : null}
-                </div>
-                <p className={styles.fieldHint}>{t("mentoring.my_profile.retire_hint")}</p>
-              </div>
-            ) : null}
-          </>
-        ) : null}
-      </div>
-    </main>
+    <EntryShell
+      title={t("mentoring.my_profile.title")}
+      loadingText={loading ? t("mentoring.labels.loading") : ""}
+      error={loadError}
+      retryText={t("mentoring.labels.retry")}
+      onRetry={() => {
+        setLoading(true);
+        void load();
+      }}
+    >
+      {!loading && !loadError ? (
+        <StepFlight
+          label={t("mentoring.my_profile.title")}
+          steps={steps}
+          initialIndex={Math.max(0, PROFILE_VIEW_KEYS.indexOf(startView))}
+          /* Teade käib selle sammu kohta, kus tegu tehti: teises sammus see enam ei kehti. */
+          onStepChange={() => setFeedback("")}
+        >
+          {renderView}
+        </StepFlight>
+      ) : null}
+    </EntryShell>
   );
 }

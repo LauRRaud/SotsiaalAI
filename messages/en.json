@@ -490,7 +490,10 @@
       "deleted_user": "Account deleted",
       "back_to_mentoring": "Back to mentoring",
       "unknown_time": "Unknown time",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "open": "Open",
+      "opens_new_tab": "opens in a new tab",
+      "part_position": "Part {current} of {total}: {label}"
     },
     "errors": {
       "load_failed": "Loading mentoring data failed.",
@@ -577,93 +580,215 @@
       "title": "Mentoring",
       "lead": "Mentoring is practical support from a more experienced colleague to someone starting out or in a new role. The platform keeps the relationship's memory: request, agreement, meetings, summaries and your private notes.",
       "empty_title": "You have no mentoring relationships yet",
-      "empty_help": "Pick a mentor from the catalog and send a request — or create your own mentor profile.",
-      "boundary_note": "Mentoring does not replace supervision (a qualified process leader) or co-vision (a peer group) — those are separate forms on the platform.",
-      "my_relations": "My mentoring relationships",
+      "empty_help": "Pick a mentor from the catalog and send a request, or create your own mentor profile.",
+      "boundary_note": "Mentoring does not replace supervision (a qualified process leader) or co-vision (a peer group). Those are separate forms on the platform.",
       "relation_as_mentor": "Mentee: {name}",
       "relation_as_mentee": "Mentor: {name}",
       "last_activity": "Last activity: {date}",
       "open_relation": "Open relationship",
-      "incoming_requests": "Incoming requests",
       "incoming_help": "Your decision as a mentor. A decline reason is never forwarded to the requester.",
       "request_expires": "Expires: {date}",
       "accept": "Accept",
       "decline": "Decline",
-      "my_requests": "My requests",
       "cancel_request": "Cancel request",
       "request_accepted_feedback": "Request accepted. The relationship now awaits both parties' agreement confirmation.",
       "request_declined_feedback": "Request declined.",
       "request_cancelled_feedback": "Request cancelled.",
-      "mentor_view": "Mentor view",
-      "mentor_view_help": "Your mentor profile and capacity.",
       "manage_profile": "Manage profile",
       "become_mentor": "Become a mentor",
-      "catalog": "Mentor catalog",
       "catalog_help": "Data is self-declared by the mentor; being listed is not a quality mark. Ordering is neutral.",
       "filter_field": "Field",
       "filter_topic": "Topic",
       "filter_language": "Language",
-      "filter_apply": "Filter",
       "external_badge": "Profile from the public ESTA database, last checked {date}",
       "capacity_open": "Accepting requests",
       "capacity_full": "Not accepting new requests right now",
-      "view_profile": "View profile",
       "view_external_profile": "View ESTA profile",
       "catalog_empty": "There are no mentors on the platform yet. See the public ESTA database or become a mentor yourself.",
       "esta_title": "ESTA mentor database",
       "esta_help": "An independent public database on the Estonian Social Work Association website. Contact happens directly with the mentor, outside the platform.",
-      "esta_link": "Open the ESTA mentors page (eswa.ee)",
-      "closed_relations": "Closed relationships",
-      "open_archive": "Open archive view"
+      "open_archive": "Open archive view",
+      "all_parts": "All of mentoring",
+      "views": {
+        "find": {
+          "title": "Find a mentor",
+          "short": "Find a mentor",
+          "filters": "Catalog filters",
+          "summary": "Mentors in the catalog: {count}",
+          "summary_empty": "No mentors on the platform yet."
+        },
+        "relations": {
+          "title": "My mentoring relationships",
+          "short": "My relationships",
+          "groups": "Which relationships to show",
+          "group_open": "Ongoing",
+          "group_closed": "Closed"
+        },
+        "requests": {
+          "title": "Requests",
+          "short": "Requests",
+          "groups": "Which requests to show",
+          "group_incoming": "Incoming",
+          "group_sent": "Sent by me",
+          "sent_lead": "The mentor responds on the platform. You can cancel a pending request.",
+          "empty": "No requests.",
+          "summary_incoming": "Awaiting your answer: {name}",
+          "summary_sent": "Awaiting the mentor's answer: {name}",
+          "confirm_decline": "Press again to decline",
+          "confirm_cancel": "Press again to cancel"
+        },
+        "mentor": {
+          "title": "Me as a mentor",
+          "short": "As a mentor"
+        },
+        "more": "and others"
+      },
+      "no_profile": "You have no mentor profile yet.",
+      "manage_profile_help": "Profile content, status and whether you accept new requests.",
+      "become_mentor_help": "Create a mentor profile. It enters the catalog after review.",
+      "mentor_not_listed": "Mentor no longer in the catalog",
+      "filter_all_field": "All fields",
+      "filter_all_topic": "All topics",
+      "filter_all_language": "All languages",
+      "filter_failed": "Filtering failed. Try again.",
+      "filter_empty": "No mentors match this selection.",
+      "catalog_failed": "The list of mentors could not be loaded.",
+      "catalog_capped": "Showing the first {count} mentors. Narrow the selection with a filter.",
+      "external_chip": "ESTA database",
+      "external_checked": "Checked {date}"
     },
     "profile_public": {
       "title": "Mentor profile",
       "unavailable": "This profile is no longer available.",
       "self_declared": "Data is self-declared by the mentor; being listed is not a quality mark.",
-      "languages": "Languages: {languages}",
-      "formats": "Formats: {formats}",
       "request_title": "Request mentoring",
       "request_help": "Describe your goal and expectation in generalized terms. The mentor sees this text to make their decision.",
       "request_message": "Goal and expectation",
       "no_client_data": "Do not include client data or identifiable data of third persons.",
       "request_submit": "Send request",
       "request_sent": "Request sent. The mentor is notified and responds on the platform.",
-      "capacity_full_note": "This mentor is not accepting new requests right now."
+      "capacity_full_note": "This mentor is not accepting new requests right now.",
+      "all_parts": "Whole profile",
+      "views": {
+        "about": {
+          "title": "Mentor",
+          "short": "Mentor"
+        },
+        "story": {
+          "title": "Introduction and experience",
+          "short": "Introduction"
+        },
+        "request": {
+          "title": "Mentoring request",
+          "short": "Request"
+        }
+      },
+      "group": {
+        "fields": "Fields",
+        "topics": "Topics",
+        "languages": "Languages",
+        "formats": "Formats"
+      },
+      "experience": "Experience",
+      "external_help": "Contact happens directly with the mentor, outside the platform.",
+      "request_sent_short": "Request sent"
     },
     "my_profile": {
       "title": "My mentor profile",
-      "lead": "The profile becomes visible in the catalog after an admin review. This is moderation, not a quality mark.",
       "saved": "Profile saved.",
-      "not_created": "You have no mentor profile yet. Fill in the form and save.",
-      "moderation_note": "The profile enters the catalog after review (moderation, not a qualification confirmation).",
       "display_name": "Name in the catalog",
       "job_title": "Position",
-      "organization": "Organization (free text)",
-      "organization_hint": "Text only — there are no organization accounts on the platform.",
+      "organization": "Organization",
+      "organization_hint": "Free text. It is not linked to an organization on the platform.",
       "fields": "Fields",
-      "list_hint": "Separate with commas.",
+      "list_hint": "One per line or separated by commas. Up to {max}.",
       "topics": "Topics",
       "languages": "Languages",
       "formats": "Formats",
-      "formats_hint": "E.g. in person, online.",
+      "formats_hint": "For example in person or online. Up to {max}.",
       "bio_short": "Short introduction",
       "bio_full": "Longer introduction",
       "experience": "Experience summary",
       "save": "Save",
       "submit_review": "Submit for review",
-      "set_full": "Mark: not accepting new requests",
-      "set_open": "Mark: accepting requests",
       "pause": "Pause profile",
       "resume": "Resume profile",
       "retire": "Retire from mentoring",
-      "retire_hint": "Retiring removes the profile from the catalog; existing relationships remain until closed separately.",
+      "retire_hint": "The profile is removed from the catalog and cannot be restored. Existing relationships remain until closed separately.",
       "action_done": {
         "submit": "Profile submitted for review.",
-        "pause": "Profile paused — removed from the catalog.",
+        "pause": "Profile paused and removed from the catalog.",
         "resume": "Profile is back in the catalog.",
         "retire": "Mentoring retired.",
         "capacity": "Capacity updated."
-      }
+      },
+      "views": {
+        "who": {
+          "title": "Name and workplace",
+          "short": "Name",
+          "lead": "This is how colleagues see you in the mentor catalog."
+        },
+        "areas": {
+          "title": "Fields and topics",
+          "short": "Fields",
+          "lead": "Where can you support a colleague? Mentors are found in the catalog by field."
+        },
+        "ways": {
+          "title": "Languages and formats",
+          "short": "Languages"
+        },
+        "intro": {
+          "title": "Short introduction",
+          "short": "Short intro"
+        },
+        "story": {
+          "title": "Longer introduction",
+          "short": "Introduction"
+        },
+        "experience": {
+          "title": "Experience",
+          "short": "Experience"
+        },
+        "state": {
+          "title": "Status and submission",
+          "short": "Status",
+          "summary_none": "No profile yet"
+        }
+      },
+      "saved_draft": "Draft saved. To enter the catalog, submit the profile for review in the “Status” step.",
+      "saved_pending": "Profile saved. The change awaits review.",
+      "unsaved": "You have unsaved changes.",
+      "name_required": "Add a name to save (the “Name and workplace” step).",
+      "locked": "This profile can no longer be edited.",
+      "list_over": "Only the first {max} are saved.",
+      "languages_hint": "For example Estonian, Russian, English. Up to {max}.",
+      "bio_short_hint": "A few sentences shown in the catalog list. Up to {max} characters.",
+      "bio_full_hint": "Shown on your profile page instead of the short introduction.",
+      "experience_hint": "Where and how long you have worked and whom you have guided. Do not include client data.",
+      "missing_lead": "To submit for review, add: {items}.",
+      "missing": {
+        "display_name": "a name",
+        "bio_short": "a short introduction",
+        "fields": "at least one field"
+      },
+      "ready_for_review": "The profile is ready to be submitted.",
+      "state_help": {
+        "none": "You have no mentor profile yet. Fill in the steps and save.",
+        "draft": "Only you see the draft. The profile enters the catalog after review. This is moderation, not a confirmation of qualification.",
+        "pending_review": "The profile awaits review. This is moderation, not a confirmation of qualification.",
+        "active": "The profile is visible in the catalog. If you change its content, it goes back to review.",
+        "rejected": "Correct the profile and submit it for review again.",
+        "paused": "A paused profile is not shown in the catalog. Existing relationships continue.",
+        "retired": "Mentoring is retired. This profile cannot be edited or restored.",
+        "revoked": "The profile is closed and cannot be edited here."
+      },
+      "capacity_question": "Do you accept new requests?",
+      "capacity_open": "Yes, I do",
+      "capacity_full": "Not right now",
+      "pause_hint": "The profile leaves the catalog until you resume it.",
+      "resume_hint": "The profile returns to the catalog.",
+      "confirm_retire": "Press again to retire",
+      "state_actions": "Profile status actions"
     },
     "relation": {
       "title": "Mentoring relationship",

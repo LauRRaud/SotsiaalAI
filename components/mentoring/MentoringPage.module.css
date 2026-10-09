@@ -96,41 +96,11 @@
   width: fit-content;
 }
 
-.badgeExternal {
-  border-color: rgba(206, 206, 206, 0.5);
-  color: var(--text-warm);
-}
-
-.tagRow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-}
-
-.tag {
-  padding: 0.1rem 0.5rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
-  font-size: 0.75rem;
-  color: var(--text-soft);
-}
-
 .actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
   margin-top: 0.5rem;
-}
-
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  margin: 0 0 1rem;
-}
-
-.filters input {
-  min-width: 11rem;
 }
 
 .form {
@@ -211,19 +181,6 @@
   padding-left: 1.1rem;
   color: var(--text-soft);
   line-height: 1.6;
-}
-
-.externalLinkBlock {
-  margin-top: 1.4rem;
-  padding: 1rem 1.1rem;
-  border: 1px solid var(--glass-border-soft);
-  border-radius: calc(var(--panel-radius) * 0.6);
-  background: rgba(255, 255, 255, 0.03);
-}
-
-.externalLinkBlock a {
-  color: var(--text-warm);
-  text-decoration: underline;
 }
 
 .tableWrap {
