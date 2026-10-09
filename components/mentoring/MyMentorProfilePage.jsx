@@ -50,6 +50,7 @@ import {
   profileStateModel,
   profileSteps,
   statusWord,
+  mergeAfterConflict,
   toForm
 } from "./entry/entryRows";
 import { ListsView, StateView, TextView, WhoView } from "./entry/MyProfileViews";
@@ -120,21 +121,30 @@ export default function MyMentorProfilePage() {
 
   /* Seis muutus mujal (nt admin vaatas profiili üle või see salvestati teises
      aknas): loeme värske seisu, et järgmine katse ei põrkaks vana versiooni
-     taha. Pooleli vormi see ei puutu. */
+     taha. Pooleli vormist jäävad alles inimese enda muudatused; väljad, mida ta
+     ei puutunud, saavad serveri värske väärtuse (`mergeAfterConflict`), muidu
+     kirjutaks järgmine salvestamine need vana väärtusega üle. Tagastab, kas
+     värske seis saadi kätte. */
   async function refreshAfterConflict(error, keepForm) {
-    if (error?.status !== 409) return;
+    if (error?.status !== 409) return false;
     try {
       const response = await fetch("/api/mentoring/profile", { cache: "no-store" });
       const fresh = await readProfileResponse(response, t, "mentoring.errors.load_failed");
+      const before = profile;
       setProfile(fresh);
-      if (!keepForm) setForm(toForm(fresh));
+      setForm((current) => (keepForm ? mergeAfterConflict(current, before, fresh) : toForm(fresh)));
+      return true;
     } catch {
       /* värskendus on abiks, mitte nõue: algne veateade jääb ette */
+      return false;
     }
   }
 
   /** Salvestab vormi. Tagastab, kas õnnestus (esitamine ootab selle järel). */
   async function save() {
+    /* Väljad jäävad salvestamise ajal kirjutatavaks (fookus ei tohi kaduda),
+       seepärast hoiab topeltsaatmise ära see kontroll, mitte välja lukustamine. */
+    if (busy) return false;
     setBusy(true);
     setFeedback("");
     try {
@@ -159,7 +169,9 @@ export default function MyMentorProfilePage() {
       return true;
     } catch (error) {
       setFeedback(error?.message || t("mentoring.errors.save_failed"));
-      await refreshAfterConflict(error, true);
+      /* Värske seis on käes ja inimese muudatused alles: lause ütleb seda,
+         mitte „värskenda vaadet" (leht tegi seda juba ise). */
+      if (await refreshAfterConflict(error, true)) setFeedback(t("mentoring.my_profile.conflict_kept"));
       return false;
     } finally {
       setBusy(false);
@@ -215,7 +227,9 @@ export default function MyMentorProfilePage() {
     </Button>
   );
   const listHint = (key, hint) => (over[key] ? `${hint} ${t("mentoring.my_profile.list_over", { max: PROFILE_LIMITS[key] })}` : hint);
-  const formProps = { disabled: locked || busy, note, actions: saveButton };
+  /* Väljad on lukus ainult siis, kui profiili ei saa muuta. Salvestamise ajal
+     jäävad need kirjutatavaks: lukustatud väli kaotaks klaviatuuri fookuse. */
+  const formProps = { disabled: locked, note, actions: saveButton };
 
   const steps = profileSteps({ t, form, profile });
 

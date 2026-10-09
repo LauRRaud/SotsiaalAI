@@ -788,7 +788,8 @@
       "pause_hint": "Profiil läheb kataloogist välja, kuni selle taastad.",
       "resume_hint": "Profiil läheb tagasi kataloogi.",
       "confirm_retire": "Vajuta uuesti, et lõpetada",
-      "state_actions": "Profiili seisu tegevused"
+      "state_actions": "Profiili seisu tegevused",
+      "conflict_kept": "Profiili muudeti vahepeal mujal. Sinu muudatused on alles: vaata need üle ja salvesta uuesti."
     },
     "relation": {
       "title": "Mentorlussuhe",

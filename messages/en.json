@@ -788,7 +788,8 @@
       "pause_hint": "The profile leaves the catalog until you resume it.",
       "resume_hint": "The profile returns to the catalog.",
       "confirm_retire": "Press again to retire",
-      "state_actions": "Profile status actions"
+      "state_actions": "Profile status actions",
+      "conflict_kept": "The profile was changed elsewhere in the meantime. Your changes are kept: look them over and save again."
     },
     "relation": {
       "title": "Mentoring relationship",

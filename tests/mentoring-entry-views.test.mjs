@@ -38,6 +38,7 @@ import {
   sentRows,
   splitList,
   statusWord,
+  mergeAfterConflict,
   toForm
 } from '../components/mentoring/entry/entryRows.js';
 import {
@@ -434,6 +435,31 @@ test('lehed on sammulaval, ilma teise kaardi, lehe pealkirja ja status-rollita',
   assert.ok(lines(PAGES[0]).includes('startWide') && lines(PAGES[0]).includes('parts'));
   assert.ok(lines(PAGES[2]).includes('parts') && !lines(PAGES[2]).includes('startWide'));
   assert.ok(!lines(PAGES[1]).includes('parts'), 'profiilivorm on sammud');
+});
+
+test('versioonikonflikti järel jäävad vormi ainult inimese muudatused', () => {
+  const before = { displayName: 'Mari', bioShort: 'vana tutvustus', fields: ['lastekaitse'], topics: [] };
+  const fresh = { displayName: 'Mari M.', bioShort: 'admin parandas', fields: ['lastekaitse', 'võlanõustamine'], topics: ['läbipõlemine'] };
+  const form = { ...toForm(before), bioShort: 'minu uus tutvustus' };
+  const merged = mergeAfterConflict(form, before, fresh);
+  /* Minu muudetud väli jääb; puutumata väljad saavad serveri värske väärtuse. */
+  assert.equal(merged.bioShort, 'minu uus tutvustus');
+  assert.equal(merged.displayName, 'Mari M.');
+  assert.equal(merged.fields, toForm(fresh).fields);
+  assert.equal(merged.topics, toForm(fresh).topics);
+  /* Kui midagi ei muudetud, on tulemus serveri vorm; kui kõik muudeti, jääb minu vorm. */
+  assert.deepEqual(mergeAfterConflict(toForm(before), before, fresh), toForm(fresh));
+  const mine = Object.fromEntries(Object.keys(toForm(before)).map((key) => [key, 'x']));
+  assert.deepEqual(mergeAfterConflict(mine, before, fresh), mine);
+});
+
+test('ülevaatuse parandused: silt ei korda vaate nime, väli ei lukustu salvestamise ajaks', () => {
+  const views = read('../components/mentoring/entry/MyProfileViews.jsx');
+  assert.match(views, /export function TextView[\s\S]*?labelHidden/);
+  const page = read('../components/mentoring/MyMentorProfilePage.jsx');
+  assert.ok(page.includes('const formProps = { disabled: locked, note, actions: saveButton };'));
+  assert.ok(page.includes('if (busy) return false;'), 'topeltsaatmist hoiab ära kontroll, mitte välja lukustamine');
+  assert.ok(page.includes('mergeAfterConflict(current, before, fresh)'));
 });
 
 test('lehe kujundus on oma moodulis ja klassinimedega, ilma paljaste siltide valijateta', () => {

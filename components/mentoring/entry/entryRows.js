@@ -251,7 +251,10 @@ export function homeParts({ t, mentors, catalogFailed, openRelations, closedRela
       ? t("mentoring.home.views.requests.summary_incoming", { name: firstAndMore(incoming, (row) => row.name, more) })
       : pendingSent.length
         ? t("mentoring.home.views.requests.summary_sent", { name: firstAndMore(pendingSent, (row) => row.name, more) })
-        : t("mentoring.home.views.requests.empty"),
+        : sent.length
+          ? /* Vastuse saanud taotlused on osas alles: plaat ei tohi öelda „taotlusi ei ole". */
+            [sent[0].name, sent[0].chip].filter(Boolean).join(": ")
+          : t("mentoring.home.views.requests.empty"),
     mentor: profile ? profileWord || profile.displayName || "" : t("mentoring.home.no_profile")
   };
   return HOME_VIEW_KEYS.map((key) => ({
@@ -348,6 +351,24 @@ function comparable(form) {
 }
 
 /** Kas vormis on midagi, mida salvestatud profiilis ei ole. */
+/**
+ * Vorm pärast versioonikonflikti. Profiili muudeti vahepeal mujal: väljad, mida
+ * inimene selles vormis EI muutnud, saavad serveri värske väärtuse; tema
+ * muudetud väljad jäävad. Ilma selleta kirjutaks järgmine salvestamine kogu
+ * vana vormiga üle ka need serveri muudatused, mida inimene ei puutunud, ja
+ * versioonikontrollist ei oleks kasu.
+ */
+export function mergeAfterConflict(form, before, fresh) {
+  const base = toForm(before);
+  const next = toForm(fresh);
+  const merged = {};
+  for (const key of Object.keys(next)) {
+    const mine = String(form?.[key] ?? "");
+    merged[key] = mine === base[key] ? next[key] : mine;
+  }
+  return merged;
+}
+
 export function isDirty(form, profile) {
   return comparable(form) !== comparable(toForm(profile));
 }
@@ -471,7 +492,8 @@ export function publicParts({ t, model, sent }) {
     short: t(`mentoring.profile_public.views.${key}.short`),
     state: key === "request" ? (sent ? "done" : model.canRequest ? "partial" : "empty") : "partial",
     summary: summary[key] || undefined,
-    /* Tutvustus võib olla pikk tekst: selle järgi ühist kõrgust ei võeta. */
-    free: key === "story"
+    /* Tutvustus võib olla pikk tekst ja mentori vaates võib olla kuni 36 silti
+       (valdkonnad, teemad, keeled, vormid): nende järgi ühist kõrgust ei võeta. */
+    free: key === "story" || key === "about"
   }));
 }

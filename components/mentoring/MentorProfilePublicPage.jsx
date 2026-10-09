@@ -150,9 +150,10 @@ export default function MentorProfilePublicPage({ profileId }) {
             groups={model.groups.map((group) => ({ ...group, title: groupTitles[group.key] }))}
             note={
               model.external
-                ? checkedText
+                ? /* Kontrollimise kuupäevata kirjel ütleb sama lause juba lingikaart. */
+                  checkedText
                   ? t("mentoring.home.external_badge", { date: checkedText })
-                  : t("mentoring.profile_public.external_help")
+                  : ""
                 : t("mentoring.profile_public.self_declared")
             }
             externalLink={model.externalUrl}

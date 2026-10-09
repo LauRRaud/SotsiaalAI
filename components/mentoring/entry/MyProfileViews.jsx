@@ -113,11 +113,24 @@ export function ListsView({ title, lead, left, right, rows = 4, disabled, note, 
   );
 }
 
-/** Üks tekst vaate kohta. */
+/**
+ * Üks tekst vaate kohta. Välja silt on sama mis vaate nimi („Lühitutvustus"
+ * kiirmenüüs ja uuesti paneelil), seepärast jääb silt ekraanilugejale ja
+ * paneel algab juhisega.
+ */
 export function TextView({ title, label, hint, value, onChange, rows, maxLength, disabled, note, actions }) {
   return (
     <StepPanel title={title} note={note} actions={actions}>
-      <TextAreaField label={label} hint={hint} value={value} rows={rows} maxLength={maxLength} disabled={disabled} onChange={onChange} />
+      <TextAreaField
+        label={label}
+        labelHidden
+        hint={hint}
+        value={value}
+        rows={rows}
+        maxLength={maxLength}
+        disabled={disabled}
+        onChange={onChange}
+      />
     </StepPanel>
   );
 }

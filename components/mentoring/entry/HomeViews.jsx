@@ -72,7 +72,17 @@ export function FindView({ t, filters, notice, failed, onRetry, rows, emptyText,
     <StepPanel title={t("mentoring.home.views.find.title")} lead={t("mentoring.home.catalog_help")}>
       <div className={styles.stack}>
         {filters.length ? (
-          <div className={styles.filters} role="group" aria-label={t("mentoring.home.views.find.filters")}>
+          <div
+            className={styles.filters}
+            role="group"
+            aria-label={t("mentoring.home.views.find.filters")}
+            /* Rippvaliku loend on Reacti portaal: selle klahvivajutused jõuavad
+               lavani, mis vahetaks PageUp ja PageDown peale laua osa ja jätaks
+               loendi teise osa peale lahti. */
+            onKeyDown={(event) => {
+              if (event.key === "PageDown" || event.key === "PageUp") event.stopPropagation();
+            }}
+          >
             {filters.map((filter) => (
               <div key={filter.key} className={styles.filter}>
                 <Dropdown ariaLabel={filter.label} value={filter.value} options={filter.options} onChange={filter.onChange} />
