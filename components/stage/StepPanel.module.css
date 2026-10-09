@@ -17,10 +17,12 @@
   color: var(--text-warm);
   text-wrap: balance;
 }
+/* Pealkiri saab fookuse ainult programmist (sammu vahetusel), et ekraanilugeja
+   alustaks uuest sammust; rõngast siia ei joonistata. */
+.title:focus,
 .title:focus-visible {
   outline: none;
-  border-radius: 0.35rem;
-  box-shadow: var(--focus-ring);
+  box-shadow: none;
 }
 .lead {
   margin: 0;

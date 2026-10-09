@@ -3,7 +3,9 @@
 .row {
   min-width: 0;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  /* Variantide veerg on nii lai kui vaja, aga kuni 65% reast: pikad variandid
+     murduvad oma veerus mitmele reale ega suru silti kokku. */
+  grid-template-columns: minmax(0, 1fr) fit-content(65%);
   align-items: center;
   gap: 0.4rem 1.1rem;
   padding-block: 0.22rem;
@@ -17,6 +19,7 @@
   color: var(--text-warm);
 }
 .options {
+  min-width: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;

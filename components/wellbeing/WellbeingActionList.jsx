@@ -14,7 +14,7 @@ export default function WellbeingActionList({ actions = [], actionRoutes = {}, o
   if (!actions.length) return null;
 
   return (
-    <ActionCardGrid label={t("wellbeing.quick_check.result.next_steps")}>
+    <ActionCardGrid label={t("wellbeing.flow.result.next_steps")}>
       {actions.map((action) => (
         <ActionCard
           key={action.workflowType}

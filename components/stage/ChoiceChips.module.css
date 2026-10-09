@@ -1,0 +1,46 @@
+/* ChoiceChips: silt (ja vihje) üleval, märgitavad variandid selle all. */
+
+.field {
+  min-width: 0;
+  display: grid;
+  gap: 0.4rem;
+  padding-block: 0.4rem;
+}
+.label {
+  color: var(--text-warm);
+}
+.hint {
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+}
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.option {
+  composes: cell from "./cell.module.css";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.1rem;
+  padding: 0 0.85rem;
+  border-radius: 999px;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+}
+.option[aria-checked="true"] {
+  color: var(--text-warm);
+  font-weight: 560;
+}
+
+@container (max-width: 40rem) {
+  .option {
+    min-height: var(--hit-target-min, 2.75rem);
+  }
+}
+@media (max-width: 640px) {
+  .option {
+    min-height: var(--hit-target-min, 2.75rem);
+  }
+}

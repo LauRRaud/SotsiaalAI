@@ -7769,50 +7769,13 @@
           "title": "Riskimärgid",
           "short": "Riskid",
           "lead": "Märgi, kui mõni neist praegu kehtib. Võid ka tühjaks jätta."
-        },
-        "result": {
-          "title": "Tulemus",
-          "short": "Tulemus",
-          "lead": "Töökorralduslik signaal sinu vastuste põhjal."
-        },
-        "support": {
-          "title": "Tugi",
-          "short": "Tugi",
-          "lead": "Vaikimisi jääb kõik privaatseks. Tuge küsid siis, kui ise soovid."
         }
-      },
-      "progress": "{done}/{total} vastatud",
-      "next_to": "Edasi: {label}",
-      "next": "Edasi",
-      "state": {
-        "empty": "vastamata",
-        "done": "vastatud",
-        "optional": "valikuline",
-        "marked": "märgitud {count}",
-        "waiting": "ootab vastuseid",
-        "saved": "salvestatud"
-      },
-      "summary": {
-        "questions_empty": "{total} küsimust, igaüks ühe puudutusega.",
-        "questions_left": "Vastamata on veel {left}.",
-        "no_high_load": "Kõrgeid koormusi ei ole.",
-        "resources_ok": "Põhiressursid on olemas.",
-        "no_marks": "Midagi ei ole märgitud.",
-        "result_waiting": "Näitan tulemust, kui küsimused on vastatud.",
-        "support": "Kõik jääb privaatseks, kuni ise teisiti otsustad."
-      },
-      "result": {
-        "none_title": "Tulemust veel ei ole",
-        "none_text": "Signaali näitan siis, kui küsimused on vastatud. Enne seda ei oleta ma midagi.",
-        "missing": "{label}: {left} vastamata",
-        "next_steps": "Soovitatud järgmised sammud"
       },
       "risk_hints": {
         "difficult_case": "Juhtum vajab jagamist kolleegi või juhiga.",
         "covision": "Rühma pilk aitaks edasi.",
         "support": "Töökorralduses on vaja midagi kokku leppida."
-      },
-      "risks_note": "Märked jäävad privaatseks nagu kogu kiirkontroll."
+      }
     },
     "hard_case": {
       "title": "Raske juhtum",
@@ -8047,7 +8010,46 @@
       "save": "Salvesta taastumisplaan",
       "open_boundaries": "Ava tööpiirid",
       "saved": "Taastumisplaan salvestati privaatselt.",
-      "save_failed": "Salvestamine ebaõnnestus. Proovi uuesti."
+      "save_failed": "Salvestamine ebaõnnestus. Proovi uuesti.",
+      "steps": {
+        "situation": "Kus sa praegu oled? Vali igal real üks.",
+        "load": "Märgi kõik, mis sind praegu kõige rohkem koormab.",
+        "tasks": "Jaga lähipäevade töö kolmeks. Üks rida on üks ülesanne."
+      }
+    },
+    "flow": {
+      "progress": "{done}/{total} vastatud",
+      "optional_note": "Selle sammu võid ka tühjaks jätta.",
+      "next_to": "Edasi: {label}",
+      "privacy": "Sisestus on privaatne. Seda ei jagata ilma sinu kinnituseta.",
+      "state": {
+        "empty": "vastamata",
+        "done": "vastatud",
+        "optional": "valikuline",
+        "marked": "täidetud {count}",
+        "waiting": "ootab vastuseid",
+        "saved": "salvestatud"
+      },
+      "summary": {
+        "questions_empty": "{total} küsimust, igaüks ühe puudutusega.",
+        "questions_left": "Vastamata on veel {left}.",
+        "nothing_marked": "Midagi ei ole lisatud.",
+        "result_waiting": "Näitan tulemust, kui küsimused on vastatud.",
+        "support": "Kõik jääb privaatseks, kuni ise teisiti otsustad."
+      },
+      "result": {
+        "title": "Tulemus",
+        "lead": "Töökorralduslik signaal sinu vastuste põhjal.",
+        "none_title": "Tulemust veel ei ole",
+        "none_text": "Signaali näitan siis, kui küsimused on vastatud. Enne seda ei oleta ma midagi.",
+        "missing": "{label}: {left} vastamata",
+        "outputs": "Valmis tekstid",
+        "next_steps": "Soovitatud järgmised sammud"
+      },
+      "support": {
+        "title": "Tugi",
+        "lead": "Vaikimisi jääb kõik privaatseks. Tuge küsid siis, kui ise soovid."
+      }
     }
   },
   "voimalused": {

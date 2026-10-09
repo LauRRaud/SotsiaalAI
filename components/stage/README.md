@@ -13,6 +13,8 @@ vaja.
 | `StepPanel.jsx` | Ühe sammu kuju: pealkiri, lühike juhis, sisu, all märkus ja nupud. |
 | `ChoiceRow.jsx` | Üks küsimus ühel real, vastusevariandid kohe näha (rippvaliku asemel). |
 | `CheckCard.jsx` | Märkeruut kaardina: pealkiri ja selgitus eraldi ridadel. |
+| `ChoiceChips.jsx` | Mitu valikut korraga (märgi kõik, mis sobivad). |
+| `TextAreaField.jsx` | Tekstiväli sildi ja vihjega; `lines` teeb sellest loendi (üks rida on üks kirje). |
 | `ActionCard.jsx` | Tegevus pealkirja ja selgitusega; `ActionCardGrid` paneb kaardid kahte veergu. |
 | `cell.module.css` | Kolme eelmise ühine „lahter” (ääris, taust, valitud olek). |
 
@@ -42,7 +44,10 @@ alumise kiirmenüü klasse (`gc-shortcut-*` failis `app/styles/carousel.css`).
    valikute jaoks `CheckCard`-i ja tegevuste jaoks `ActionCard`-i.
 4. Lehele omane kujundus pane lehe komponendi kõrvale faili `Leht.module.css`.
 
-Näide: `components/wellbeing/QuickCheckWorkflow.jsx` (tööheaolu kiirkontroll).
+Näide: tööheaolu töövormid. Seal on kõigil vormidel üks ühine sammuvorm
+(`components/wellbeing/WellbeingStepForm.jsx`) ja iga vorm on ainult kirjeldus
+(`components/wellbeing/forms/*.js`): sammud, küsimused, signaalide tekstid ja valmis
+tekstid. Uue küsimuse lisamiseks või järjekorra muutmiseks piisab kirjelduse muutmisest.
 
 ## Reeglid
 
