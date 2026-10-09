@@ -443,3 +443,12 @@ test('komaga valikuväärtus jääb loendis üheks tervikuks', () => {
     assert.equal(saved.category, withComma[0]);
   }
 });
+
+test('assistendi koopia hoiatus jääb pärast salvestamist lava kohale', () => {
+  const page = read('../components/workspace/WorkspaceFeaturePage.jsx');
+  assert.ok(page.includes('if (SAVE_WARNING_KEYS.has(serviceProfileSaveNoticeKey(savedProfile).key)) setSaveWarning(savedText);'));
+  assert.ok(page.includes('"workspace_feature_pages.service_profile.save_success_removal_pending"'));
+  assert.ok(page.includes('"workspace_feature_pages.service_profile.save_success_assistant_sync_failed"'));
+  /* Hoiatus kustub alles järgmise salvestamise alguses, mitte esimese muudatusega. */
+  assert.equal(page.split('setSaveWarning("")').length - 1, 1);
+});

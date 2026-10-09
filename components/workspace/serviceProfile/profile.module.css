@@ -118,6 +118,12 @@
   background: color-mix(in srgb, var(--status-error, #eb9a76) 10%, transparent);
   color: var(--text-warm);
 }
+/* Hoiatus, mis ei ole viga: salvestatud, aga midagi on veel pooleli. */
+.notice[data-tone="wait"] {
+  border-color: color-mix(in srgb, #e6c27a 60%, transparent);
+  border-inline-start-width: 3px;
+  color: var(--text-warm);
+}
 .chip {
   flex: none;
   justify-self: start;

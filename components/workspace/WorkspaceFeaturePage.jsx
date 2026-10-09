@@ -131,6 +131,13 @@ function createPreInquiryActionId() {
 
 /* SOL-SPROF-02: „salvestati" ei tohi katta kinni seda, et assistendi koopia
    eemaldamine alles käib või ebaõnnestus. Otsuse ise teeb testitav moodul. */
+/* Salvestamise teated, mis on hoiatused: profiil on kirjas, aga assistendi
+   koopia ei ole veel inimese valikuga kooskõlas. */
+const SAVE_WARNING_KEYS = new Set([
+  "workspace_feature_pages.service_profile.save_success_removal_pending",
+  "workspace_feature_pages.service_profile.save_success_assistant_sync_failed"
+]);
+
 function serviceProfileSaveNotice(t, profile) {
   const notice = serviceProfileSaveNoticeKey(profile);
   return readText(t, notice.key, notice.fallback);
@@ -3766,6 +3773,12 @@ function ServiceProfileSurface({ t, locale }) {
   const [confirmingServiceId, setConfirmingServiceId] = useState("");
   const licence = useServiceLicenceStatuses({ t, locale });
   const [notice, setNotice] = useState("");
+  /* SOL-SPROF-02 hoiatus (assistendi koopia eemaldamine on pooleli või selle
+     uuendamine ebaõnnestus) seisab lava kohal kuni järgmise salvestamiseni.
+     Jalarea vaikse teatena kadus see esimese muudatusega ja „Kõik sammud"
+     vaates seda ei olnud: inimene ei saanud teada, et tema andmed on
+     assistendis veel alles. */
+  const [saveWarning, setSaveWarning] = useState("");
   const [error, setError] = useState("");
   const [conflictProfile, setConflictProfile] = useState(null);
   /* Mis on ees: vaate võti ja avatud teenus või teeninduskoht (`{ kind, index }`). */
@@ -4064,6 +4077,7 @@ function ServiceProfileSurface({ t, locale }) {
 
     setSaving(true);
     setNotice("");
+    setSaveWarning("");
     setError("");
 
     try {
@@ -4104,7 +4118,9 @@ function ServiceProfileSurface({ t, locale }) {
       /* Registrikood võis muutuda ja hinnang vajab seetõttu värsket vaadet. */
       licence.reset();
       void licence.load();
-      setNotice(serviceProfileSaveNotice(t, savedProfile));
+      const savedText = serviceProfileSaveNotice(t, savedProfile);
+      if (SAVE_WARNING_KEYS.has(serviceProfileSaveNoticeKey(savedProfile).key)) setSaveWarning(savedText);
+      else setNotice(savedText);
     } catch (saveError) {
       setError(saveError?.message || readText(t, "workspace_feature_pages.service_profile.errors.save_failed", "Teenuseprofiili ei saanud salvestada."));
     } finally {
@@ -4337,6 +4353,11 @@ function ServiceProfileSurface({ t, locale }) {
       {error ? (
         <p className={profileStyles.notice} data-tone="risk" role="alert">
           {error}
+        </p>
+      ) : null}
+      {saveWarning ? (
+        <p className={profileStyles.notice} data-tone="wait" aria-live="polite">
+          {saveWarning}
         </p>
       ) : null}
       {conflictProfile ? (
