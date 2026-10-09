@@ -8241,6 +8241,7 @@ model CareClient {
   doorSteps          CareDoorStep[]
   usualStates        CareUsualState[]
   changeSignals      CareChangeSignal[]
+  crisisProfiles     CareCrisisProfile[]
 
   @@unique([organizationId, internalCode])
   @@index([organizationId, status, displayName])
@@ -8573,6 +8574,35 @@ model CareChangeSignal {
 
   @@index([clientId, openedAt])
   @@index([organizationId, handledAt])
+}
+
+/// KODUTEENUS K5-b — KRIISIVALMIDUS kliendi juures (kava II.6.12): kui palju tuge inimene
+/// kriisis vajab (Sotsiaalkindlustusameti juhendi kolm rühma), millest ta sõltub ja kes
+/// lähedastest saab aidata. Üks kehtiv rida kliendi kohta (osaline unikaalne indeks
+/// migratsioonis); uus hinnang lõpetab eelmise.
+model CareCrisisProfile {
+  id             String   @id @default(cuid())
+  organizationId String
+  clientId       String
+  /// DAILY | WEEKLY | SELF (`CareCrisisLevel`).
+  level          String
+  /// ELECTRICITY | HEATING | WATER | COMMUNICATION | MOBILITY | MEDICINE; võib olla tühi.
+  dependencies   String[]
+  /// Kes lähedastest saab aidata (vaba tekst).
+  helper         String?
+  note           String?
+
+  createdByMembershipId String?
+  createdByName         String?
+  createdAt             DateTime  @default(now())
+  endedAt               DateTime?
+  endedByMembershipId   String?
+  endedByName           String?
+
+  client CareClient @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId, endedAt])
+  @@index([clientId, createdAt])
 }
 
 model CareClientSupply {

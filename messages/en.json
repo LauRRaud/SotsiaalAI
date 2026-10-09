@@ -12742,7 +12742,10 @@
       "change_text_required": "Write in one sentence what was different.",
       "change_outcome_required": "Choose what you did.",
       "change_signal_not_found": "The noticed change was not found.",
-      "change_signal_handled": "This noticed change has already been answered."
+      "change_signal_handled": "This noticed change has already been answered.",
+      "crisis_level_required": "Choose how much support the client needs in a crisis.",
+      "crisis_dependency_invalid": "Unknown dependency.",
+      "crisis_not_found": "There is no assessment."
     },
     "incidents": {
       "title": "Incident register",
@@ -13752,6 +13755,58 @@
       "note_label": "Note (if needed)",
       "answer_save": "Mark as answered",
       "answered_by": "{name}, {date}"
+    },
+    "crisis": {
+      "title": "Crisis readiness",
+      "link": "Crisis list",
+      "none": "Crisis readiness has not been assessed.",
+      "add": "Assess crisis readiness",
+      "edit": "Change",
+      "save": "Save",
+      "cancel": "Cancel",
+      "clear": "Remove the assessment",
+      "level_label": "How much support is needed in a crisis",
+      "levels": {
+        "DAILY": "Needs a care worker's support every day",
+        "WEEKLY": "Needs support once or twice a week",
+        "SELF": "Manages alone for seven days with supplies"
+      },
+      "dependencies_label": "Depends on",
+      "dependencies_hint": "Mark what makes the situation worse quickly when it fails. May stay empty.",
+      "dependencies": {
+        "ELECTRICITY": "electricity (a device or an alarm button)",
+        "HEATING": "heating",
+        "WATER": "water",
+        "COMMUNICATION": "communication",
+        "MOBILITY": "moving",
+        "MEDICINE": "medicines"
+      },
+      "helper_label": "Which relative can help",
+      "note_label": "Note",
+      "depends_on": "depends on: {list}",
+      "helper_line": "helps: {name}",
+      "weekly": "planned {time} a week",
+      "no_visits": "no visit pattern",
+      "list_title": "Crisis list",
+      "list_intro": "Clients on the list: {count}. State on {date}. Download the list once a month and print it: in a crisis the application, the network or electricity may not work.",
+      "truncated": "The first {count} clients are shown.",
+      "download": "Download as a table",
+      "download_hint": "The file opens in a spreadsheet. Keep the printout where it can be found without a computer.",
+      "group_time": "Planned visit time a week in total {time}",
+      "group_empty": "No clients in this group.",
+      "unset_title": "Not assessed",
+      "unset_empty": "All clients have been assessed.",
+      "sheet": {
+        "level": "Group",
+        "name": "Name",
+        "address": "Address",
+        "phone": "Phone",
+        "dependencies": "Depends on",
+        "helper": "Who can help",
+        "note": "Note",
+        "weekly_hours": "Visits a week (hours)",
+        "unset": "Not assessed"
+      }
     }
   },
   "stage": {

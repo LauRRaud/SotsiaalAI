@@ -11,6 +11,7 @@ import { CARE_CLIENT_STATUSES, CARE_ENTRY_KINDS, CARE_STATUS_REASONS, CareClient
 import HomeCareCallNote from "./HomeCareCallNote";
 import HomeCareCard from "./HomeCareCard";
 import HomeCareChangeSignals from "./HomeCareChangeSignals";
+import HomeCareCrisis from "./HomeCareCrisis";
 import HomeCareClientForm from "./HomeCareClientForm";
 import HomeCareDecisionView, { minutesLabel } from "./HomeCareDecisionView";
 import HomeCareEntryForm from "./HomeCareEntryForm";
@@ -446,6 +447,9 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
         canWrite={canWrite && !ended}
         isCoordinator={access.isCoordinator}
       />
+
+      {/* Kriisivalmidus (K5-b): kui palju tuge klient kriisis vajab ja millest ta sõltub. */}
+      <HomeCareCrisis organizationId={organizationId} clientId={client.id} initial={data.crisis || null} canEdit={canWrite && access.isCoordinator} />
 
       {/* Täna kehtiv otsus ja otsustatud maht (K2-c). Kogu meeskonnale lugemiseks. */}
       <section className="hc-section" aria-labelledby={`${fieldId}-decision`}>

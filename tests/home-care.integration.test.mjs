@@ -88,6 +88,7 @@ import { addMoneyEntry, retractMoneyEntry } from '../lib/homeCare/money.js';
 import { markSupply, trackSupply, untrackSupply } from '../lib/homeCare/supplies.js';
 import { saveDoorSteps } from '../lib/homeCare/doorSteps.js';
 import { handleChangeSignal, saveUsualState } from '../lib/homeCare/changes.js';
+import { clearCrisisProfile, getCrisisList, setCrisisProfile } from '../lib/homeCare/crisis.js';
 import { composeNoAnswerText } from '../lib/homeCare/noAnswerText.js';
 import { assertNotificationRecipient, serializeNotificationEvent } from '../lib/notifications.js';
 
@@ -1863,6 +1864,8 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
   /* Tavaline seis ja märkamine (K5-a), et väljavõttes oleksid ka need kogud. */
   await saveUsualState(lead, client.id, { areas: { MOOD: 'Jutukas' } }, deps());
   await db.careChangeSignal.create({ data: { organizationId: f.orgA.id, clientId: client.id, area: 'MOOD', reason: 'MAJOR' } });
+  /* Kriisivalmidus (K5-b), et väljavõttes oleks ka see kogu. */
+  await setCrisisProfile(lead, client.id, { level: 'DAILY', dependencies: ['HEATING'] }, deps());
   const obstacleOfAnu = await reportObstacle(anu, { kind: 'LATE_30' }, deps());
   await handleObstacle(lead, obstacleOfAnu.obstacle.id, {}, deps());
   /* Ühe päeva erand (K3-b): järgmise esmaspäeva käik jääb ära. */
@@ -1973,6 +1976,7 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
     doorSteps: await db.careDoorStep.count({ where: ofOrg }),
     usualStates: await db.careUsualState.count({ where: ofOrg }),
     changeSignals: await db.careChangeSignal.count({ where: ofOrg }),
+    crisisProfiles: await db.careCrisisProfile.count({ where: ofOrg }),
     auditEvents: await db.dataAuditLog.count({
       where: { action: { startsWith: 'org.home_care_' }, meta: { path: ['organizationId'], equals: f.orgA.id }, createdAt: { lt: (await exportRows())[0].createdAt } }
     })
@@ -4820,5 +4824,81 @@ test('„kas midagi oli teisiti?": tavaline seis, vastus käigu kirjel, märkami
     'org.home_care_usual_state_changed:saved',
     'org.home_care_usual_state_changed:saved'
   ]);
+  for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['change', 'clientId', 'organizationId']);
+});
+
+test('kriisivalmidus: hinnang kliendi juures, õigused, nimekiri rühmade kaupa ja nädala käiguaeg', async (t) => {
+  const f = await fixture(t);
+  const north = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Põhi ${f.tag}`, type: 'TEAM' } });
+  await db.organizationCapabilityGrant.create({
+    data: { membershipId: f.members.cover.id, capability: 'HOME_CARE_COORDINATOR', scopeType: 'UNIT', scopeUnitId: north.id, validFrom: at('2026-01-01T00:00:00Z') }
+  });
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const unitLead = await f.ctx(f.users.cover, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm', address: 'Pikk 1', contactPhone: '5555 1234' }, deps())).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi', unitId: north.id }, deps())).client;
+  const uus = (await createClient(lead, { displayName: 'Uus Klient' }, deps())).client;
+  const ended = (await createClient(lead, { displayName: 'Lõppenud Klient' }, deps())).client;
+  await addTeamMember(lead, linda.id, { membershipId: f.members.anu.id }, deps());
+  await createSlots(lead, linda.id, { weekdays: [1, 3, 5], startTime: '09:00', plannedMinutes: 30, workerMembershipId: f.members.anu.id }, deps(at('2026-10-01T08:00:00Z')));
+  /* Lõppenud mustririda nädala aega ei loe. */
+  await createSlots(lead, linda.id, { weekdays: [2], startTime: '12:00', plannedMinutes: 60, validUntil: '2026-10-05' }, deps(at('2026-10-01T08:00:00Z')));
+
+  /* HINNANG: ainult hooldusjuht; meeskond loeb. */
+  assert.equal((await openClient(anu, linda.id, deps())).crisis, null);
+  await expectError(setCrisisProfile(anu, linda.id, { level: 'DAILY' }, deps()), 403, 'org.errors.missing_capability');
+  await expectError(setCrisisProfile(leadB, linda.id, { level: 'DAILY' }, deps()), 404);
+  await expectError(setCrisisProfile(lead, linda.id, { dependencies: ['WATER'] }, deps()), 400, 'home_care.errors.crisis_level_required');
+  await expectError(clearCrisisProfile(lead, linda.id, deps()), 404, 'home_care.errors.crisis_not_found');
+  const first = await setCrisisProfile(lead, linda.id, { level: 'WEEKLY', dependencies: ['HEATING'] }, deps());
+  assert.deepEqual([first.crisis.level, first.crisis.dependencies, first.crisis.setByName], ['WEEKLY', ['HEATING'], 'Juta Juht']);
+  /* Uus hinnang lõpetab eelmise; rida jääb alles. */
+  const second = await setCrisisProfile(lead, linda.id, { level: 'DAILY', dependencies: ['HEATING', 'ELECTRICITY'], helper: ' Poeg  Mart ', note: 'Hapnikuaparaat' }, deps(at('2026-10-09T08:05:00Z')));
+  assert.deepEqual([second.crisis.level, second.crisis.dependencies, second.crisis.helper, second.crisis.note], ['DAILY', ['ELECTRICITY', 'HEATING'], 'Poeg Mart', 'Hapnikuaparaat']);
+  assert.deepEqual((await openClient(anu, linda.id, deps())).crisis.level, 'DAILY');
+  assert.deepEqual((await db.careCrisisProfile.findMany({ where: { clientId: linda.id }, orderBy: { createdAt: 'asc' } })).map((row) => [row.level, Boolean(row.endedAt)]), [
+    ['WEEKLY', true],
+    ['DAILY', false]
+  ]);
+  await setCrisisProfile(unitLead, peeter.id, { level: 'SELF' }, deps());
+  await expectError(setCrisisProfile(unitLead, linda.id, { level: 'SELF' }, deps()), 403);
+  /* Lõppenud teenusega klient nimekirja ei tule, kuigi tal on hinnang. */
+  await setCrisisProfile(lead, ended.id, { level: 'DAILY' }, deps());
+  const endedVersion = (await db.careClient.findUnique({ where: { id: ended.id }, select: { version: true } })).version;
+  await setClientStatus(lead, ended.id, { version: endedVersion, status: 'ENDED', statusReason: 'MOVED' }, deps());
+
+  /* NIMEKIRI: rühmad kiireloomulisuse järjekorras, nädala käiguaeg, hindamata eraldi. */
+  const list = await getCrisisList(lead, deps());
+  assert.deepEqual(list.groups.map((group) => [group.level, group.clients.map((item) => item.client.displayName), group.weeklyMinutes]), [
+    ['DAILY', ['Linda Tamm'], 90],
+    ['WEEKLY', [], 0],
+    ['SELF', ['Peeter Põhi'], 0]
+  ]);
+  assert.deepEqual([list.groups[0].clients[0].address, list.groups[0].clients[0].phone, list.groups[0].clients[0].weeklyMinutes], ['Pikk 1', '5555 1234', 90]);
+  assert.deepEqual(list.unset.map((item) => item.client.displayName), ['Uus Klient']);
+  assert.deepEqual([list.clientCount, list.truncated, list.today], [3, false, '2026-10-09']);
+  /* Üksuse hooldusjuht näeb ainult oma üksuse kliente; hooldaja ei näe nimekirja. */
+  const scoped = await getCrisisList(unitLead, deps());
+  assert.deepEqual([scoped.groups.flatMap((group) => group.clients.map((item) => item.client.displayName)), scoped.unset.length], [['Peeter Põhi'], 0]);
+  await expectError(getCrisisList(anu, deps()), 403, 'org.errors.missing_capability');
+
+  /* MAHAVÕTMINE: klient läheb tagasi hindamata hulka. */
+  assert.equal((await clearCrisisProfile(lead, linda.id, deps())).crisis, null);
+  assert.deepEqual((await getCrisisList(lead, deps())).unset.map((item) => item.client.displayName), ['Linda Tamm', 'Uus Klient']);
+  assert.equal(uus.id.length > 0, true);
+
+  /* ANDMEBAAS hoiab reeglid ka ilma teenuseta. */
+  const raw = (data) => db.careCrisisProfile.create({ data: { organizationId: f.orgA.id, clientId: uus.id, level: 'SELF', dependencies: [], ...data } });
+  await assert.rejects(raw({ level: 'MUU' }), /CareCrisisProfile_level_check/);
+  await assert.rejects(raw({ dependencies: ['GAAS'] }), /CareCrisisProfile_dependencies_check/);
+  await assert.rejects(raw({ helper: '   ' }), /CareCrisisProfile_text_check/);
+  await raw({});
+  await assert.rejects(raw({}), /CareCrisisProfile_active_key|Unique constraint/);
+
+  /* AUDIT: ainult kliendi ID ja muutuse liik. */
+  const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_crisis_changed', meta: { path: ['organizationId'], equals: f.orgA.id } } });
+  assert.deepEqual(audit.map((entry) => entry.meta.change).sort(), ['cleared', 'set', 'set', 'set', 'set']);
   for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['change', 'clientId', 'organizationId']);
 });
