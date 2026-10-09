@@ -12290,7 +12290,6 @@
     "not_a_decision": "This is not a decision. The local authority decides subsistence benefit.",
     "stays_on_device": "The calculation runs on your device. What you enter is not sent anywhere and is not saved.",
     "actions": {
-      "calculate": "Calculate estimate",
       "login": "Log in"
     },
     "section": {
@@ -12311,7 +12310,7 @@
       "single_occupant": "I live alone and am a pensioner or have partial or no work ability"
     },
     "hints": {
-      "excluded_income": "Do not include one-off benefits, disability benefits, student loans or study allowances — the law does not count them as income.",
+      "excluded_income": "Do not include one-off benefits, disability benefits, student loans or study allowances: the law does not count them as income.",
       "rooms": "If there are as many rooms as residents, the whole area is counted.",
       "current_month": "Earlier housing debt is not counted."
     },
@@ -12349,8 +12348,8 @@
     "issues": {
       "NO_FAMILY_MEMBERS": "Add at least one family member.",
       "UNSUPPORTED_DATE": "There is no confirmed subsistence rate for this date.",
-      "DWELLING_AREA_REQUIRED": "Enter the dwelling area — the norm cannot be applied without it.",
-      "ROOM_COUNT_REQUIRED": "Enter the number of rooms — it decides whether the area is capped.",
+      "DWELLING_AREA_REQUIRED": "Enter the dwelling area: the norm cannot be applied without it.",
+      "ROOM_COUNT_REQUIRED": "Enter the number of rooms: it decides whether the area is capped.",
       "GATE_UNANSWERED": "Answer all the clarifying questions.",
       "UNKNOWN_HOUSING_COST_KIND": "Unknown housing cost type.",
       "NEGATIVE_AMOUNT": "An amount cannot be negative.",
@@ -12366,7 +12365,44 @@
       "no": "No"
     },
     "auth_required": "Log in to make an estimate.",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "views": {
+      "family": {
+        "title": "Family",
+        "short": "Family",
+        "summary": "Adults {adults}, minors {minors}"
+      },
+      "income": {
+        "title": "Last month's income",
+        "short": "Income",
+        "question": "What was the family's income last month?"
+      },
+      "housing": {
+        "title": "Housing",
+        "short": "Housing",
+        "question": "How large is your dwelling?"
+      },
+      "costs": {
+        "title": "Housing costs",
+        "short": "Costs",
+        "question": "Which housing costs are due this month?",
+        "note": "Leave a cost you do not have empty."
+      },
+      "utilities": {
+        "title": "Utilities",
+        "short": "Utilities",
+        "question": "Which utility costs are due this month?"
+      },
+      "gates": {
+        "title": "Details",
+        "short": "Details",
+        "none": "There are no further questions: no housing costs have been entered."
+      },
+      "result": {
+        "title": "Estimate",
+        "short": "Estimate"
+      }
+    }
   },
   "urgent": {
     "title": "Urgent help request",
