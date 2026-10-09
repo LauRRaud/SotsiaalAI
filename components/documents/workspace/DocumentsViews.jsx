@@ -34,7 +34,8 @@ import Input from "@/components/ui/Input";
 
 import styles from "./documents.module.css";
 
-function Chip({ tone, children }) {
+/** Märk: tüüp või seis ühe sõnaga. Sama märk on detaililehtedel (../detail). */
+export function Chip({ tone, children }) {
   return (
     <span className={styles.chip} data-tone={tone}>
       {children}
@@ -69,8 +70,8 @@ function Notices({ t, notice }) {
   );
 }
 
-/** Tegevusrea nupud kirjeldusest: `href` teeb lingi (allalaadimine, teine leht), muidu nupp. */
-function ActionButtons({ actions }) {
+/** Tegevusrea nupud kirjeldusest: `href` teeb lingi (allalaadimine, teine leht), muidu nupp. Sama rida on detaililehtedel (../detail). */
+export function ActionButtons({ actions }) {
   return actions.map((action) =>
     action.href ? (
       <Button key={action.key} as="a" href={action.href} size="sm" variant={action.variant || "secondary"} disabled={action.disabled}>
@@ -342,7 +343,8 @@ function RenameForm({ t, rename }) {
         aria-label={t("documents.views.item.rename_label")}
         autoComplete="off"
       />
-      <Button type="submit" size="sm" variant="primary">
+      {/* Laval hoitakse kõik vaated lehel: läige ainult ees oleval (`rename.glow`). */}
+      <Button type="submit" size="sm" variant="primary" glow={rename.glow !== false}>
         {t("buttons.save")}
       </Button>
       <Button type="button" size="sm" variant="secondary" onClick={rename.onCancel}>
@@ -362,9 +364,11 @@ function RenameForm({ t, rename }) {
  * kasvab teise vajutuse sõnadega paremale ja selgitus tuleb selle kõrvale,
  * nii et nupp jääb kursori alla ja miski muu selle kohale ei nihku.
  */
-export function ItemView({ t, notice, sheet, rename, share, analysis, actions, danger }) {
+export function ItemView({ t, title = "", notice, sheet, rename, share, analysis, actions, danger }) {
   return (
-    <StepPanel title={t("documents.views.item.title")} question={sheet.title} actions={<ActionButtons actions={actions} />}>
+    /* `title`: detaililehel kannab see osa teist nime („Andmed ja tegevused");
+       ekraanilugeja peab kuulma sama nime, mis on kiirmenüüs. */
+    <StepPanel title={title || t("documents.views.item.title")} question={sheet.title} actions={<ActionButtons actions={actions} />}>
       <div className={styles.stack}>
         <Notices t={t} notice={notice} />
         <div className={styles.line}>

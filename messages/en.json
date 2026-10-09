@@ -4364,25 +4364,28 @@
     "approved_at": "Approved",
     "artifact_detail_title": "Agent result",
     "detail_title": "Document",
-    "file_label": "File",
-    "size_label": "File size",
     "draft_notice": "This draft is editable. Download becomes available after approval.",
     "template_label": "Selected template",
-    "sources_section_title": "Sources",
     "sources_label": "Sources: {count}",
     "empty_sources": "No source documents linked.",
     "meeting_summary_share": {
-      "title": "Share the summary to a shared room",
-      "hint": "The person sees the confirmed summary in the room and can reply.",
       "loading": "Loading rooms…",
       "room_label": "Room",
       "select_room": "Select a shared room",
       "share": "Share to room",
       "sharing": "Sharing…",
-      "success": "The summary was shared to the room.",
+      "success": "The summary was shared to the room “{room}”.",
       "error": "Sharing the summary failed.",
-      "no_rooms": "You don't have any rooms yet.",
-      "request_approval": "Ask participants to confirm"
+      "no_rooms": "You have no open room with anyone besides you in it.",
+      "request_approval": "Ask the room's specialists to confirm",
+      "question": "Which room should the summary be shared to?",
+      "lead": "The summary “{title}” is posted to the room as a message. All room members see it and can reply.",
+      "request_approval_desc": "The other specialists in the room get a notice and can answer whether they confirm the summary or have a correction. The person is not asked for confirmation.",
+      "confirm": "Press again to share",
+      "confirm_note": "The summary will be posted to the room “{room}”. The room members see it at once.",
+      "rooms_failed": "Loading the rooms failed.",
+      "approval_requested": "The request for confirmation is open to the other specialists in the room.",
+      "approval_failed": "The summary was shared to the room “{room}”, but asking for confirmation failed."
     },
     "filters": {
       "all": "All"
@@ -4457,7 +4460,6 @@
       "saving": "Saving...",
       "save": "Save",
       "save_draft": "Save draft",
-      "refine_stub": "Ask agent to refine",
       "approving": "Approving...",
       "approve": "Approve",
       "select_document": "Select document: {title}",
@@ -4471,8 +4473,7 @@
       "deleted": "Document deleted.",
       "artifact_deleted": "Agent result deleted.",
       "copied": "Copied to clipboard.",
-      "approved": "Approved. Your professional DOCX and PDF files are ready to download.",
-      "refine_stub": "Agent refinement will be added in work mode. You can continue editing manually."
+      "approved": "Approved. Your professional DOCX and PDF files are ready to download."
     },
     "confirm": {
       "delete_document": "Delete this document permanently? This cannot be undone.",
@@ -4962,6 +4963,57 @@
         "summary_confirmed": "Confirmation is on file",
         "summary_pending": "No confirmation saved yet"
       }
+    },
+    "detail": {
+      "views": {
+        "text": {
+          "title": "Text",
+          "short": "Text"
+        },
+        "approve": {
+          "title": "Approval",
+          "short": "Approval"
+        },
+        "sheet": {
+          "title": "Details and actions",
+          "short": "Details"
+        },
+        "share": {
+          "title": "Sharing to a room",
+          "short": "Sharing"
+        },
+        "sources": {
+          "title": "Sources",
+          "short": "Sources"
+        }
+      },
+      "summary": {
+        "words": "Words in the text: {count}",
+        "empty_text": "The text is empty.",
+        "approve": "The draft is waiting for approval",
+        "share": "Choose a room and share the approved summary",
+        "shared": "Shared to the room “{room}”"
+      },
+      "unsaved": "Unsaved changes",
+      "unsaved_leave": "The text has unsaved changes. Save them in the “Text” part before you leave the page.",
+      "facts": {
+        "created": "Created"
+      },
+      "open_drafting": "Open in the drafting workspace",
+      "approve": {
+        "question": "Is the text “{title}” ready to be approved?",
+        "lead": "Approval saves the title and the text as they are now in the “Text” part. An approved text can be downloaded, but it can no longer be changed.",
+        "unsaved": "The text has unsaved changes. They will be approved together with the text.",
+        "empty": "The text is empty. An empty text cannot be approved.",
+        "confirm": "Press again to approve",
+        "confirm_note": "After approval the text can no longer be changed.",
+        "done_no_pdf": "Approved. The Word file can now be downloaded. A PDF could not be made from this text because PDF does not support all of its characters."
+      },
+      "sources": {
+        "lead": "The files this text was drafted from.",
+        "opens_new_tab": "The draft has unsaved changes. The file opens in a new tab so the text you are working on stays here."
+      },
+      "leave_confirm": "Press again to leave without saving"
     }
   },
   "research": {

@@ -309,7 +309,7 @@ test('leht on sammulaval osadena ja ei kasuta enam vana ühist kihti', () => {
   /* Vanad üldreeglid on eemaldatud; teiste lehtede reegel samas plokis jäi alles. */
   const featureCss = read('../app/styles/feature-pages.css');
   assert.ok(!/\.documents-(entry|upload|list|item|provenance|notice|error|page)/.test(featureCss) && !featureCss.includes('feature-page--documents'));
-  assert.ok(featureCss.includes('.artifact-detail-document {'), 'koostatud teksti detaili reegel jäi alles');
+  assert.ok(featureCss.includes('.feature-page--agent {'), 'koostamise lehe reegel jäi alles');
   assert.ok(!read('../app/styles/workspace.css').includes('.documents-dropzone'));
   /* Kujundus on mooduli klassidega: paljaste siltide peale reegleid ei kirjutata. */
   const css = read(STYLES).replace(/\/\*[\s\S]*?\*\//g, '');
@@ -348,4 +348,18 @@ test('faili lisamise vaade: kukutusala kannab ainult juhist, abitekst ja valitud
   /* Liik ja malli otstarve on ühelaiused lahtrid; malli otstarve ainult malli puhul. */
   assert.ok(views.includes('{form.templateFor ? (') && /templateFor:\s+uploadKind === "TEMPLATE"/.test(read(PAGE)));
   assert.equal(views.split('<ChoiceRow').length - 1, 3, 'liik, malli otstarve ja loendi filter');
+});
+
+// Kinnitatud tekstist ei tehta PDF-i, kui selles on märke, mida PDF-i kirjatüüp ei kanna;
+// loend pakkus linki ikka ja see vastas veaga.
+test('loendi avatud tekst: PDF-i linki ei pakuta, kui PDF-i ei tehtud', async () => {
+  const { pdfWasRendered } = await import('../components/documents/workspace/documentRows.js');
+  assert.equal(pdfWasRendered({ provenance: { rendered: { docx: true, pdf: false } } }), false);
+  assert.equal(pdfWasRendered({ provenance: { rendered: { docx: true, pdf: true } } }), true);
+  assert.equal(pdfWasRendered({ provenance: {} }), true, 'vanem kirje ilma märketa');
+  assert.equal(pdfWasRendered(null), true);
+  const final = (rendered) => itemActions({ id: 'a1', type: 'final', raw: { downloadUrls: { docx: '/d', pdf: '/p' }, provenance: { rendered } } }, { locale: 'et' });
+  assert.equal(final({ docx: true, pdf: false }).pdf, null);
+  assert.equal(final({ docx: true, pdf: true }).pdf, '/p');
+  assert.equal(final({ docx: true, pdf: false }).docx, '/d');
 });

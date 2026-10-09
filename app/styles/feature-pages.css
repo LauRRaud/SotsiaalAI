@@ -194,7 +194,6 @@ html[data-reduce-transparency="1"] .feature-page__surface {
 }
 
 .feature-page__intro,
-.feature-notice,
 .feature-page :where([role="alert"], [role="status"]):not(:empty) {
   padding: 0.75rem 0.9rem;
   border-inline-start: 0.18rem solid color-mix(in srgb, var(--dusk-sunset, #c59b77) 70%, transparent);
@@ -205,10 +204,6 @@ html[data-reduce-transparency="1"] .feature-page__surface {
 .feature-page :where([role="alert"]):not(:empty) {
   border-inline-start-color: var(--status-error, #f0a49b);
   color: var(--status-error, #f0a49b);
-}
-
-.feature-notice--success {
-  border-inline-start-color: var(--success, #5da879);
 }
 
 .feature-page__copy {
@@ -224,7 +219,7 @@ html[data-reduce-transparency="1"] .feature-page__surface {
 }
 
 .feature-field,
-.feature-page :where(form > label, fieldset label, .artifact-detail-fields > label),
+.feature-page :where(form > label, fieldset label),
 .wellbeing-workflow :where(label):not(.ui-checkbox) {
   min-width: 0;
   display: grid;
@@ -233,7 +228,7 @@ html[data-reduce-transparency="1"] .feature-page__surface {
 }
 
 .feature-field > span:first-child,
-.feature-page :where(form > label, fieldset label, .artifact-detail-fields > label) > span:first-child,
+.feature-page :where(form > label, fieldset label) > span:first-child,
 .wellbeing-workflow :where(label):not(.ui-checkbox) > span:first-child {
   color: var(--text-warm);
   font-size: var(--fs-small, 0.9rem);
@@ -389,64 +384,8 @@ html[data-reduce-transparency="1"] .feature-page__surface {
   font-size: var(--fs-small, 0.9rem);
 }
 
-/* Dokumendi detail ja koostamine */
-.artifact-detail-document {
-  padding: 1rem;
-  border-radius: 0.8rem;
-  background: color-mix(in srgb, var(--surface-deep, #141414) 58%, transparent);
-}
-
-.feature-page--document-detail {
-  --feature-content-max: 48rem;
-}
-
-.document-detail-card > h1 {
-  margin: 0;
-  font-size: clamp(1.4rem, 1.1rem + 1cqi, 2rem);
-}
-
-.feature-page--artifact {
-  --feature-content-max: 66rem;
-}
-
-.artifact-detail-card,
-.artifact-detail-layout,
-.artifact-detail-content,
-.artifact-detail-fields,
-.artifact-detail-sources > div {
-  display: grid;
-  gap: var(--feature-gap);
-}
-
-.artifact-detail-header,
-.artifact-detail-heading,
-.artifact-detail-heading h1,
-.artifact-detail-content :where(h2, p) {
-  margin: 0;
-}
-
-.artifact-detail-statuses {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-}
-
-.artifact-detail-statuses > span {
-  padding: 0.3rem 0.65rem;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--dusk-sunset, #c59b77) 12%, transparent);
-  color: var(--text-warm);
-  font-size: var(--fs-small, 0.9rem);
-}
-
-.artifact-detail-sources > div > div {
-  display: grid;
-  gap: 0.2rem;
-  padding: 0.75rem;
-  border-radius: 0.75rem;
-  background: color-mix(in srgb, var(--text-warm) 5%, transparent);
-}
-
+/* Dokumendi koostamine. (Faili ja koostatud teksti detaililehed on oma
+   moodulis: components/documents/detail ja components/documents/workspace.) */
 .feature-page--agent {
   --feature-content-max: 76rem;
 }

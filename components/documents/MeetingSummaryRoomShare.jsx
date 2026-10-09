@@ -1,136 +1,138 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
-import Button from "@/components/ui/Button";
-import Checkbox from "@/components/ui/Checkbox";
-import Dropdown from "@/components/ui/Dropdown";
+/**
+ * U10: spetsialisti kinnitatud kohtumise kokkuvõtte jagamine ühisesse ruumi.
+ *
+ * Kokkuvõte läheb ruumi sõnumina: leht saadab ainult teksti tunnuse ja ruumi
+ * sõnumite marsruut otsib kinnitatud MEETING_SUMMARY sisu ise üles ning
+ * kontrollib seda serveris. Ruumi liikmed näevad kokkuvõtet ja saavad vastata.
+ *
+ * KUJU (09.10). Jagamine oli koostatud teksti lehe lõpus pealkirja, rippvaliku,
+ * märkeruudu ja nupuga. Nüüd on see lehe omaette väike vaade (`ShareView`
+ * failis ./detail/DetailViews.jsx): ruumid on valikus kohe näha, kinnituse
+ * küsimine on selgitusega märkekaart ja jagamine küsib teist vajutust. Ruumi
+ * postitatud kokkuvõtet on liikmed juba näinud, seda tagasi võtta ei saa.
+ *
+ * KES SEDA NÄEB, otsustab leht (`canShareMeetingSummary`, ./detail/detailModel.js):
+ * see komponent joonistatakse ainult neile, kes jagada tohivad.
+ *
+ * Siin on ruumide laadimine, valik ja jagamise päring. Õnnestumisest (ka
+ * osalisest: jagati, aga kinnitust ei saanud küsida) teatab komponent lehele
+ * (`onShared`), sest see teade peab jääma ette ka siis, kui vaade vahetub.
+ */
+
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+
 import { useI18n } from "@/components/i18n/I18nProvider";
 
-const MEETING_SUMMARY_SHARE_ROLES = new Set(["SOCIAL_WORKER", "SERVICE_PROVIDER"]);
+import { ShareView } from "./detail/DetailViews";
+import { useTwoPress } from "./detail/detailHooks";
+import { RequestFailure, failureText, serverMessage, shareOutcome, shareRoomOptions } from "./detail/detailModel";
 
-/**
- * U10: share a specialist-confirmed meeting summary into a shared room.
- * Posts the artifact by id to the room-message endpoint, which resolves and
- * validates the confirmed MEETING_SUMMARY content server-side. The person then
- * sees the summary in the room and can reply ("understood" / "correction").
- */
-export default function MeetingSummaryRoomShare({ artifactId }) {
+export default function MeetingSummaryRoomShare({ artifactId, title, glow = true, onShared }) {
   const { t } = useI18n();
-  const { data: session } = useSession();
-  const [rooms, setRooms] = useState([]);
+  const [rooms, setRooms] = useState({ status: "loading", list: [] });
+  const [attempt, setAttempt] = useState(0);
   const [selectedRoomId, setSelectedRoomId] = useState("");
-  const [loadingRooms, setLoadingRooms] = useState(true);
-  const [sharing, setSharing] = useState(false);
-  /* T20 P2 (O-CO-2 = a): kinnitusring on valikuline — jagaja otsustab siin. */
+  /* T20 P2 (O-CO-2 = a): kinnitusring on valikuline, jagaja otsustab siin. */
   const [requestApproval, setRequestApproval] = useState(false);
-  const [notice, setNotice] = useState("");
+  const [sharing, setSharing] = useState(false);
   const [error, setError] = useState("");
-  const userRole = String(session?.user?.role || "").trim().toUpperCase();
-  const canShare = Boolean(session?.user?.isAdmin || MEETING_SUMMARY_SHARE_ROLES.has(userRole));
+  /* Üks jagamise päring korraga. Nuppu selleks välja ei lülitata: väljalülitatud
+     nupp kaotaks klaviatuuri fookuse. */
+  const busyRef = useRef(false);
+  const confirm = useTwoPress();
 
   useEffect(() => {
-    if (!canShare) {
-      setLoadingRooms(false);
-      return;
-    }
     let cancelled = false;
     (async () => {
-      setLoadingRooms(true);
+      setRooms({ status: "loading", list: [] });
       try {
         const res = await fetch("/api/rooms", { cache: "no-store" });
         const data = await res.json().catch(() => ({}));
         if (cancelled) return;
-        const list = Array.isArray(data?.rooms)
-          ? data.rooms.filter((room) => Number(room?.memberCount) > 1)
-          : [];
-        setRooms(list);
-        // Sharing a client summary is privacy-sensitive: require an explicit
-        // room choice instead of silently defaulting to the first room.
+        /* Laadimise viga ei ole „ruume ei ole”: vaade ütleb, et loendit ei saanud kätte. */
+        if (!res.ok || !Array.isArray(data?.rooms)) {
+          setRooms({ status: "error", list: [] });
+          return;
+        }
+        setRooms({ status: "ready", list: data.rooms });
+        /* Kliendi kokkuvõtte jagamine on privaatsuse seisukohalt tundlik: ruum
+           valitakse alati ise, esimest ruumi vaikimisi ette ei panda. */
         setSelectedRoomId("");
       } catch {
-        if (!cancelled) setRooms([]);
-      } finally {
-        if (!cancelled) setLoadingRooms(false);
+        if (!cancelled) setRooms({ status: "error", list: [] });
       }
     })();
     return () => {
       cancelled = true;
     };
-  }, [canShare]);
+  }, [attempt]);
+
+  const options = useMemo(() => shareRoomOptions(rooms.list, t), [rooms.list, t]);
+  const selected = options.find((option) => option.value === selectedRoomId) || null;
 
   const shareToRoom = useCallback(async () => {
-    if (sharing || !selectedRoomId) return;
+    if (busyRef.current || !selected) return;
+    busyRef.current = true;
     setSharing(true);
-    setNotice("");
     setError("");
     try {
-      const res = await fetch(`/api/rooms/${encodeURIComponent(selectedRoomId)}/messages`, {
+      const res = await fetch(`/api/rooms/${encodeURIComponent(selected.value)}/messages`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           summaryArtifactId: artifactId,
-          // FINAL approval plus this explicit share action confirms that the
-          // approved summary text may be posted to the selected private room.
+          /* Teksti kinnitamine ja see jagamise tegevus koos kinnitavad, et
+             kinnitatud kokkuvõtte võib valitud ruumi postitada. */
           privacyDecision: { action: "send_original" },
-          // T20 P2: valikuline kinnitusring professionaalidelt (O-CO-2 = a).
+          /* T20 P2: valikuline kinnitusring professionaalidelt (O-CO-2 = a). */
           requestSummaryApproval: requestApproval
         })
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok || data?.ok === false) {
-        throw new Error(data?.message || t("documents.meeting_summary_share.error", "Kokkuvõtte jagamine ebaõnnestus."));
+        throw new RequestFailure(serverMessage(data, t, t("documents.meeting_summary_share.error")));
       }
-      setNotice(t("documents.meeting_summary_share.success", "Kokkuvõte jagati ruumi."));
+      onShared?.({ room: selected.label, ...shareOutcome(data, { asked: requestApproval }) });
     } catch (shareError) {
-      setError(shareError?.message || t("documents.meeting_summary_share.error", "Kokkuvõtte jagamine ebaõnnestus."));
+      setError(failureText(shareError, t("documents.meeting_summary_share.error")));
     } finally {
+      busyRef.current = false;
       setSharing(false);
     }
-  }, [artifactId, requestApproval, selectedRoomId, sharing, t]);
+  }, [artifactId, onShared, requestApproval, selected, t]);
 
-  if (!canShare) return null;
+  /* Valiku muutus võtab teise vajutuse ootelt maha: selgitus nupu kõrval
+     nimetas ruumi, mis oli valitud esimese vajutuse ajal. */
+  const change = (apply) => (value) => {
+    confirm.disarm();
+    setError("");
+    apply(value);
+  };
 
   return (
-    <div>
-      <h2>{t("documents.meeting_summary_share.title", "Jaga kokkuvõte ühisesse ruumi")}</h2>
-      <p>{t("documents.meeting_summary_share.hint", "Pöörduja näeb kinnitatud kokkuvõtet ruumis ja saab vastata.")}</p>
-      {loadingRooms ? (
-        <p>{t("documents.meeting_summary_share.loading", "Laen ruume…")}</p>
-      ) : rooms.length ? (
-        <div>
-          <label>
-            <span>{t("documents.meeting_summary_share.room_label", "Ruum")}</span>
-            <Dropdown
-              value={selectedRoomId}
-              onChange={setSelectedRoomId}
-              ariaLabel={t("documents.meeting_summary_share.room_label", "Ruum")}
-              placeholder={t("documents.meeting_summary_share.select_room", "Vali ühine ruum")}
-              options={rooms.map((room) => ({ value: room.id, label: room.title || room.id }))}
-            />
-          </label>
-          <Checkbox
-            checked={requestApproval}
-            onChange={setRequestApproval}
-            label={t("documents.meeting_summary_share.request_approval", "Küsi osalejatelt kinnitust")}
-          />
-          <Button
-            type="button"
-            size="sm"
-            variant="primary"
-            onClick={() => void shareToRoom()}
-            disabled={sharing || !selectedRoomId}
-          >
-            {sharing
-              ? t("documents.meeting_summary_share.sharing", "Jagan…")
-              : t("documents.meeting_summary_share.share", "Jaga ruumi")}
-          </Button>
-        </div>
-      ) : (
-        <p>{t("documents.meeting_summary_share.no_rooms", "Sul pole veel ühtegi ruumi.")}</p>
-      )}
-      {notice ? <p>{notice}</p> : null}
-      {error ? <p>{error}</p> : null}
-    </div>
+    <ShareView
+      t={t}
+      title={title}
+      rooms={{
+        status: rooms.status,
+        options,
+        value: selected ? selected.value : "",
+        onChange: change(setSelectedRoomId),
+        onRetry: () => setAttempt((value) => value + 1)
+      }}
+      approval={{ checked: requestApproval, onChange: change(setRequestApproval) }}
+      note={error}
+      tone="risk"
+      sharing={sharing}
+      glow={glow}
+      confirm={confirm.action("share", {
+        label: t("documents.meeting_summary_share.share"),
+        armedLabel: t("documents.meeting_summary_share.confirm"),
+        note: t("documents.meeting_summary_share.confirm_note", { room: selected?.label || "" }),
+        run: () => void shareToRoom()
+      })}
+    />
   );
 }

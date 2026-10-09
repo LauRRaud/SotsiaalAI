@@ -9,17 +9,20 @@ import { getLocaleFromCookies, getMessagesSync } from "@/lib/i18n"
 import { localizePath } from "@/lib/localizePath"
 import { buildLocalizedMetadata } from "@/lib/metadata"
 
+/* Vahelehe nimi tuleb kataloogist lehe keeles: rühma `documents.meta` kataloogis
+   ei ole, nii et varem oli nimi igas keeles eestikeelne varutekst. Aadress on
+   dokumentide lehe oma (nagu teistel alamlehtedel), mitte marsruudi muster
+   nurksulgudega: üksiku teksti leht ei ole avalik aadress. */
 export async function generateMetadata() {
   const cookieStore = await cookies()
   const locale = getLocaleFromCookies(cookieStore)
   const messages = getMessagesSync(locale)
-  const meta = messages?.documents?.meta || {}
 
   return buildLocalizedMetadata({
     locale,
-    pathname: "/documents/artifacts/[id]",
-    title: meta.artifactTitle || meta.title || "Agendi tulemus",
-    description: meta.artifactDescription || meta.description || ""
+    pathname: "/documents",
+    title: messages?.documents?.artifact_detail_title || messages?.documents?.page_title || undefined,
+    description: ""
   })
 }
 

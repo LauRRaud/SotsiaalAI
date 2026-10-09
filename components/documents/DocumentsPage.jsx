@@ -56,10 +56,9 @@ import {
   viewKeysFor
 } from "./workspace/documentRows"
 import styles from "./workspace/documents.module.css"
+import { consumeListReturn, markListReturn } from "./workspace/listReturn"
 
 const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAAL.PRO_CHAT_WORKSPACE_RESTORE__"
-const LIST_RETURN_STORAGE_KEY = "__SOTSIAAL.PRO_DOCUMENTS_LIST_RETURN__"
-const LIST_RETURN_MAX_AGE_MS = 30 * 60 * 1000
 const WORKSPACE_WINDOW = 50
 /* Teine vajutus (kustutamine, peatamine) peab tulema selle aja sees. */
 const CONFIRM_MS = 8000
@@ -103,29 +102,6 @@ function markChatWorkspaceRestore() {
       JSON.stringify({ ts: Date.now() })
     )
   } catch {}
-}
-
-/* Koostatud teksti detailileht on omaette leht ja toob siia tagasi lehe
-   algusesse. Kes läks sinna loendist, tahab tagasi tulles loendit näha: märk
-   pannakse lahkudes ja loetakse üks kord tagasi jõudes. */
-function markListReturn() {
-  if (typeof window === "undefined") return
-  try {
-    window.sessionStorage.setItem(LIST_RETURN_STORAGE_KEY, JSON.stringify({ ts: Date.now() }))
-  } catch {}
-}
-
-function consumeListReturn() {
-  if (typeof window === "undefined") return false
-  try {
-    const raw = window.sessionStorage.getItem(LIST_RETURN_STORAGE_KEY)
-    if (!raw) return false
-    window.sessionStorage.removeItem(LIST_RETURN_STORAGE_KEY)
-    const ts = Number(JSON.parse(raw)?.ts || 0)
-    return Number.isFinite(ts) && Date.now() - ts < LIST_RETURN_MAX_AGE_MS
-  } catch {
-    return false
-  }
 }
 
 function emptyFamily(extra = {}) {
