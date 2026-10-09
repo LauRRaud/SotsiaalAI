@@ -7,15 +7,20 @@
  * existing carriers and safe local purge. Everything autosaves to the device;
  * text + checklist always work — camera, voice and OCR are optional inputs
  * with a typing alternative.
+ *
+ * KUJU (09.10, omaniku reeglid ja välitöö leping FIELD-A0 ptk 7.2). Leht oli
+ * üks pikk veerg, kus faasi kõik osad olid üksteise all. Nüüd on igas faasis
+ * kaks kuni kolm vaadet ja korraga on ees üks: vaate tegevus on all servas,
+ * telefonis pöidla ulatuses. See fail hoiab andmeid, päringuid ja olekut;
+ * vaated joonistab `visit/VisitViews.jsx`, jaotus ja väikesed reeglid on
+ * `visit/visitViews.js`-is. Kustutamine, tagasivõtmine, sulgemine ja
+ * ärajätmine küsivad teist vajutust (`twoPress`).
  */
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
-import Checkbox from "@/components/ui/Checkbox";
-import Dropdown from "@/components/ui/Dropdown";
-import Input from "@/components/ui/Input";
 import {
   FIELD_ITEM_STATE,
   FIELD_NOTE_KIND,
@@ -30,6 +35,32 @@ import {
 } from "@/lib/field/visitMarkers";
 import FieldConnection from "./FieldConnection";
 import { useFieldSync } from "./useFieldSync";
+import {
+  AiDraftView,
+  CaptureView,
+  ConsentView,
+  FinishView,
+  HandoverView,
+  NoteView,
+  PackView,
+  ReviewView,
+  SafetyView,
+  VisitHead,
+  VisitTabs
+} from "./visit/VisitViews";
+import styles from "./visit/visit.module.css";
+import {
+  VISIT_PHASES,
+  availableViews,
+  closeAllowed,
+  mainViewOf,
+  nextConfirm,
+  photoAllowed,
+  placeAfterLoad,
+  recordingClock,
+  safetyArmed,
+  safetyWarnings
+} from "./visit/visitViews";
 import { isServiceLogUiEnabled } from "@/lib/serviceLog/flags";
 import { mergeVisibleFieldNotes } from "@/lib/field/continuity";
 import {
@@ -38,13 +69,8 @@ import {
   nextFieldRecordingChunk
 } from "@/lib/field/recordingLimits";
 
-const PHASES = ["prep", "on_site", "follow_up"];
-
-function phaseForStatus(status) {
-  if (status === FIELD_VISIT_STATUS.IN_PROGRESS) return "on_site";
-  if (status === FIELD_VISIT_STATUS.WRAP_UP || status === FIELD_VISIT_STATUS.CLOSED) return "follow_up";
-  return "prep";
-}
+/* Teise vajutuse ootamise aeg: sama mis mujal platvormil. */
+const CONFIRM_MS = 8000;
 
 async function compressPhoto(file, maxSide = 1600) {
   // Canvas re-encode both shrinks the photo and drops every EXIF/GPS field
@@ -71,8 +97,29 @@ export default function FieldVisitRoom({ visitId }) {
   const { applyVisitStatus } = sync;
   const [detail, setDetail] = useState(null);
   const [loadState, setLoadState] = useState("loading");
-  const [phase, setPhase] = useState("prep");
+  /* Kus inimene on: faas ja selle vaade. `picked` ütleb, et inimene valis faasi
+     ise; kuni ta seda teinud ei ole, järgib faas külastuse olekut. */
+  const [place, setPlace] = useState({ phase: "prep", view: mainViewOf("prep"), picked: false });
+  const openPhase = useCallback((phase) => setPlace({ phase, view: mainViewOf(phase), picked: true }), []);
+  const openView = useCallback((view) => setPlace((current) => ({ ...current, view, picked: true })), []);
   const [notice, setNotice] = useState(null);
+
+  /* Kustutamine, tagasivõtmine, sulgemine ja ärajätmine küsivad teist vajutust. */
+  const [confirming, setConfirming] = useState("");
+  const confirmTimer = useRef(0);
+  const twoPress = useCallback(
+    (key, action) => {
+      window.clearTimeout(confirmTimer.current);
+      const next = nextConfirm(confirming, key);
+      setConfirming(next.confirming);
+      if (next.fire) return action();
+      confirmTimer.current = window.setTimeout(() => setConfirming(""), CONFIRM_MS);
+      return null;
+    },
+    [confirming]
+  );
+  useEffect(() => () => window.clearTimeout(confirmTimer.current), []);
+  const confirmLabel = (key, label) => (confirming === key ? t("field.confirm.again") : label);
 
   const [noteBody, setNoteBody] = useState("");
   const [provenance, setProvenance] = useState(FIELD_PROVENANCE.TOOTAJA_TAHELEPANEK);
@@ -136,7 +183,7 @@ export default function FieldVisitRoom({ visitId }) {
       const body = await response.json();
       setDetail(body);
       setLoadState("ready");
-      setPhase((current) => (current === "prep" ? phaseForStatus(body?.visit?.status) : current));
+      setPlace((current) => placeAfterLoad(current, body?.visit?.status));
       /* SOL-FIELD-02: sulgemine on paketi esimene tähtaeg. Seadmel on ainult see
          olek, mis paketti kirjutades kehtis — värske vastus on ainus koht, kus
          me sulgemisest üldse teada saame (ka siis, kui sulges teine seade). */
@@ -447,6 +494,7 @@ export default function FieldVisitRoom({ visitId }) {
           return;
         }
         setAiDraft({ source: "ocr", clientItemId, text: body.draft || "" });
+        setPlace({ phase: "follow_up", view: "aiDraft", picked: true });
       } catch {
         setNotice(t("field.errors.ocrFailed"));
       }
@@ -474,6 +522,7 @@ export default function FieldVisitRoom({ visitId }) {
           clientItemId: attachment.clientItemId,
           text: body?.transcriptDocument?.content || ""
         });
+        setPlace({ phase: "follow_up", view: "aiDraft", picked: true });
       } catch {
         setNotice(t("field.errors.transcribeFailed"));
       }
@@ -582,6 +631,29 @@ export default function FieldVisitRoom({ visitId }) {
     else setNotice(t("field.errors.deleteFailed"));
   }, [visitId, loadDetail, t]);
 
+  const removeAttachment = useCallback(async (attachment) => {
+    const response = await fetch(
+      `/api/field/visits/${encodeURIComponent(visitId)}/attachments/${encodeURIComponent(attachment.clientItemId)}`,
+      { method: "DELETE" }
+    );
+    if (response.ok) loadDetail();
+    else setNotice(t("field.errors.deleteFailed"));
+  }, [visitId, loadDetail, t]);
+
+  /* Seadme üksuse tegevused (nimed annab `deviceItemActions`). */
+  const onItemAction = (item, action) => {
+    const id = item.clientItemId;
+    if (action === "approve") return sync.approveItem(id);
+    if (action === "retry") return sync.retryItem(id);
+    if (action === "recovery") return sync.retryRecoveryImport(id);
+    if (action === "cancel") return sync.cancelItem(id);
+    /* Kumbki valik kirjutab teise versiooni teksti üle: see küsib teist vajutust. */
+    if (action === "keepDevice") return twoPress(`conflict:${id}:device`, () => sync.resolveConflict(id, "device"));
+    if (action === "keepServer") return twoPress(`conflict:${id}:server`, () => sync.resolveConflict(id, "server"));
+    if (action === "remove") return twoPress(`item:${id}`, () => sync.deleteItem(id));
+    return null;
+  };
+
   const purgeLocal = useCallback(async () => {
     for (const item of sync.items) {
       if (item.state === FIELD_ITEM_STATE.SYNCED) await sync.deleteItem(item.clientItemId);
@@ -590,23 +662,27 @@ export default function FieldVisitRoom({ visitId }) {
     setNotice(t("field.purge.done"));
   }, [sync, t]);
 
+  /* Lehe raam annab main-elemendi; siin on tavaline plokk. Lehe pealkiri on ainult
+     ekraanilugejale, kuni külastus on laetud (siis on pealkiri külastuse eesmärk). */
+  const srTitle = <h1 className="sr-only">{t("field.meta.visitTitle")}</h1>;
+
   if (sessionStatus === "loading") {
-    return <main className="fld-page"><p className="fld-muted">{t("field.loading")}</p></main>;
+    return <div className={styles.page}><p className={styles.quiet}>{t("field.loading")}</p></div>;
   }
   if (!userId || !allowed) {
     return (
-      <main className="fld-page">
-        <h1 className="fld-title">{t("field.title")}</h1>
-        <p className="fld-muted">{userId ? t("field.roleRequired") : t("field.loginRequired")}</p>
-      </main>
+      <div className={styles.page}>
+        {srTitle}
+        <p className={styles.quiet}>{userId ? t("field.roleRequired") : t("field.loginRequired")}</p>
+      </div>
     );
   }
   if (loadState === "not-found") {
     return (
-      <main className="fld-page">
-        <h1 className="fld-title">{t("field.title")}</h1>
-        <p className="fld-muted">{t("field.errors.notFound")}</p>
-      </main>
+      <div className={styles.page}>
+        {srTitle}
+        <p className={styles.quiet}>{t("field.errors.notFound")}</p>
+      </div>
     );
   }
 
@@ -618,550 +694,213 @@ export default function FieldVisitRoom({ visitId }) {
   const view = visit || packView;
   const readOnly = view?.status === FIELD_VISIT_STATUS.CLOSED || view?.status === FIELD_VISIT_STATUS.CANCELLED;
 
+  const armed = safetyArmed(view?.safety);
+  const deadlineText = view?.safety?.deadlineAt ? new Date(view.safety.deadlineAt).toLocaleString() : "—";
+  const views = availableViews(place.phase, { readOnly, hasVisit: Boolean(visit), hasDraft: Boolean(aiDraft) });
+  const currentView = views.includes(place.view) ? place.view : views[0];
+  const canChange = !readOnly && Boolean(visit);
+
   return (
-    <main className="fld-page fld-page--visit">
+    <div className={styles.page}>
       {/* Ühenduse seis on kiirmenüüs ja vajadusel teatena sisu alguses; varem
           oli see kleepuv riba, mis kerides jäi sisu peale (kujundusaudit K04). */}
       <FieldConnection t={t} online={!offline} pendingCount={sync.pendingCount} failedCount={sync.failedCount} />
 
-      {loadState === "loading" && !view ? <p className="fld-muted">{t("field.loading")}</p> : null}
+      {!view ? srTitle : null}
+      {loadState === "loading" && !view ? <p className={styles.quiet}>{t("field.loading")}</p> : null}
       {loadState === "offline-empty" && !view ? (
-        <p className="fld-warn">{t("field.errors.offlineNoPack")}</p>
+        <p className={styles.warn}>{t("field.errors.offlineNoPack")}</p>
       ) : null}
       {loadState === "error" && !view ? (
-        <div className="fld-error" role="alert">
+        <div className={styles.alert} role="alert">
           <p>{t("field.errors.loadFailed")}</p>
           <Button variant="secondary" size="sm" onClick={loadDetail}>{t("field.retry")}</Button>
         </div>
       ) : null}
 
+      {/* Faili valija on peidetud ja elab lehel, et see ei kaoks vaate vahetusel. */}
+      <input
+        ref={photoInputRef}
+        type="file"
+        accept="image/*"
+        capture="environment"
+        hidden
+        onChange={onPhotoPicked}
+        aria-hidden="true"
+        tabIndex={-1}
+      />
+
       {view ? (
         <>
-          <header className="fld-visit-head">
-            <h1 className="fld-title">{view.goal || t("field.visit.untitled")}</h1>
-            <p className="fld-muted">
-              {t(`field.status.${view.status || "DRAFT"}`)}
-              {view.locationText ? ` · ${view.locationText}` : ""}
-              {visit?.packStale ? ` · ${t("field.pack.stale")}` : ""}
-            </p>
-          </header>
+          <VisitHead t={t} view={view} stale={Boolean(visit?.packStale)} armed={armed} />
 
-          {notice ? (
-            <p className="fld-notice" role="status">{notice}</p>
+          {/* `aria-live`, mitte status-roll: ühine lehekiht joonistab iga
+              status-rolliga elemendi teatekastina. Element on alati lehel ja
+              muutub ainult selle tekst: koos tekstiga tekkivat teadet
+              ekraanilugeja sageli välja ei ütle. */}
+          <p className={notice ? styles.notice : "sr-only"} aria-live="polite">{notice || ""}</p>
+
+          {/* Käimasolev helisalvestus on näha ja peatatav igas vaates: mikrofon
+              ei tohi jääda sisse nii, et lõpetamise nupp on teise vaate taga. */}
+          {recording && currentView !== "capture" ? (
+            <div className={styles.recording}>
+              <span className={styles.recordingDot} aria-hidden="true" />
+              <span className={styles.recordingText}>
+                {t("field.audio.recording")} · {recordingClock(recordingSeconds)}
+              </span>
+              <Button variant="secondary" size="sm" onClick={stopRecording}>{t("field.audio.stop")}</Button>
+            </div>
           ) : null}
 
-          <nav className="fld-phases" aria-label={t("field.phases.label")}>
-            {PHASES.map((key) => (
-              <button
-                key={key}
-                type="button"
-                className={`fld-phase ${phase === key ? "fld-phase--active" : ""}`}
-                aria-current={phase === key ? "step" : undefined}
-                onClick={() => setPhase(key)}
-              >
-                {t(`field.phase.${key}`)}
-              </button>
-            ))}
-          </nav>
+          <VisitTabs
+            t={t}
+            phases={VISIT_PHASES}
+            phase={place.phase}
+            onPhase={openPhase}
+            views={views}
+            current={currentView}
+            onView={openView}
+          />
 
-          {phase === "prep" ? (
-            <section className="fld-section" aria-label={t("field.phase.prep")}>
-              {(view.packKeyQuestions || []).length ? (
-                <>
-                  <h2 className="fld-h2">{t("field.pack.questions")}</h2>
-                  <ul className="fld-plain-list">
-                    {(view.packKeyQuestions || []).map((question, index) => (
-                      <li key={index}>{question}</li>
-                    ))}
-                  </ul>
-                </>
-              ) : null}
-              {view.packSummaryText ? (
-                <>
-                  <h2 className="fld-h2">{t("field.pack.summary")}</h2>
-                  <p className="fld-body-text">{view.packSummaryText}</p>
-                </>
-              ) : null}
-              {!readOnly && visit ? (
-                <div className="fld-actions">
-                  <Button onClick={takePack} disabled={offline}>
-                    {sync.pack ? t("field.pack.refresh") : t("field.pack.take")}
-                  </Button>
-                </div>
-              ) : null}
-              {sync.pack ? <p className="fld-hint">{t("field.pack.onDevice")}</p> : null}
-              {offline && !sync.pack ? <p className="fld-hint">{t("field.pack.needsOnline")}</p> : null}
-
-              {!readOnly ? (
-                <div className="fld-safety">
-                  <h2 className="fld-h2">{t("field.safety.title")}</h2>
-                  {view.safety?.armedAt && !view.safety?.cancelledAt ? (
-                    <>
-                      <p className="fld-body-text">
-                        {t("field.safety.armedUntil").replace(
-                          "{time}",
-                          view.safety.deadlineAt ? new Date(view.safety.deadlineAt).toLocaleString() : "—"
-                        )}
-                      </p>
-                      {view.safety.escalatedAt ? (
-                        <p className="fld-warn">{t("field.safety.escalated")}</p>
-                      ) : null}
-                      {view.safety.escalationStatus === "FAILED" ? (
-                        <p className="fld-warn">{t("field.safety.escalationFailed")}</p>
-                      ) : null}
-                      {view.safety.escalationStatus === "UNKNOWN" ? (
-                        <p className="fld-warn">{t("field.safety.deliveryUnknown")}</p>
-                      ) : null}
-                      {view.safety.resolvedNoticeStatus === "FAILED" ? (
-                        <p className="fld-warn">{t("field.safety.resolvedFailed")}</p>
-                      ) : null}
-                      <Button variant="secondary" onClick={() => patchVisit({ action: "cancel_safety" })} disabled={offline}>
-                        {t("field.safety.cancel")}
-                      </Button>
-                    </>
-                  ) : (
-                    <>
-                      <p className="fld-hint">{t("field.safety.explain")}</p>
-                      <p className="fld-hint fld-hint--strong">{t("field.safety.notEmergency")}</p>
-                      <label className="fld-label" htmlFor="fld-safety-deadline">{t("field.safety.deadline")}</label>
-                      <Input
-                        id="fld-safety-deadline"
-                        type="datetime-local"
-                        className="fld-input"
-                        value={safetyDeadline}
-                        onChange={(event) => setSafetyDeadline(event.target.value)}
-                      />
-                      <label className="fld-label" htmlFor="fld-safety-email">{t("field.safety.contactEmail")}</label>
-                      <Input
-                        id="fld-safety-email"
-                        type="email"
-                        className="fld-input"
-                        value={safetyEmail}
-                        onChange={(event) => setSafetyEmail(event.target.value)}
-                        autoComplete="off"
-                      />
-                      <label className="fld-label" htmlFor="fld-safety-name">{t("field.safety.contactName")}</label>
-                      <Input
-                        id="fld-safety-name"
-                        className="fld-input"
-                        value={safetyName}
-                        onChange={(event) => setSafetyName(event.target.value)}
-                        autoComplete="off"
-                      />
-                      <label className="fld-label" htmlFor="fld-safety-note">{t("field.safety.instructions")}</label>
-                      <textarea
-                        id="fld-safety-note"
-                        className="fld-input"
-                        rows={2}
-                        value={safetyInstructions}
-                        onChange={(event) => setSafetyInstructions(event.target.value)}
-                      />
-                      <Button onClick={armSafety} disabled={offline}>{t("field.safety.arm")}</Button>
-                      {offline ? <p className="fld-hint">{t("field.safety.needsOnline")}</p> : null}
-                    </>
-                  )}
-                </div>
-              ) : null}
-            </section>
-          ) : null}
-
-          {phase === "on_site" ? (
-            <section className="fld-section" aria-label={t("field.phase.on_site")}>
-              <div className="fld-actions">
-                <Button
-                  variant="secondary"
-                  onClick={() => confirmMarker("arrival")}
-                  disabled={readOnly || Boolean(visit?.arrivedConfirmedAt) || Boolean(sync.markers.arrival)}
-                >
-                  {visit?.arrivedConfirmedAt || sync.markers.arrival
-                    ? t("field.markers.arrived")
-                    : t("field.markers.confirmArrival")}
-                </Button>
-                <Button
-                  variant="secondary"
-                  onClick={() => confirmMarker("departure")}
-                  disabled={readOnly || Boolean(visit?.departedConfirmedAt) || Boolean(sync.markers.departure)}
-                >
-                  {visit?.departedConfirmedAt || sync.markers.departure
-                    ? t("field.markers.departed")
-                    : t("field.markers.confirmDeparture")}
-                </Button>
-              </div>
-              {/* SOL-FIELD-04: ootel marker on hoiatus, LÄBIKUKKUNUD marker on
-                  tõrge koos põhjuse ja korduskatsega. Vaikselt kadumine on
-                  keelatud, sest ta on edust eristamatu. */}
-              {failedMarkers.length ? (
-                <div className="fld-warn" role="status">
-                  <p>{t("field.markers.failedTitle")}</p>
-                  <p>{t(`field.markers.reason.${failedMarkers[0].reason || "server"}`)}</p>
-                  <Button variant="secondary" onClick={flushAndReload} disabled={offline}>
-                    {t("field.markers.retry")}
-                  </Button>
-                </div>
-              ) : pendingMarkers.length ? (
-                <p className="fld-hint">{t("field.markers.pendingSync")}</p>
-              ) : null}
-
-              <div className="fld-composer">
-                <h2 className="fld-h2">{t("field.note.title")}</h2>
-                <label className="fld-label" htmlFor="fld-note">{t("field.note.body")}</label>
-                <textarea
-                  id="fld-note"
-                  className="fld-input fld-input--note"
-                  rows={3}
-                  value={noteBody}
-                  onChange={(event) => setNoteBody(event.target.value)}
-                  disabled={readOnly}
-                />
-                <label className="fld-label" htmlFor="fld-provenance">{t("field.note.provenance")}</label>
-                <Dropdown
-                  id="fld-provenance"
-                  className="fld-input"
-                  value={provenance}
-                  onChange={setProvenance}
-                  ariaLabel={t("field.note.provenance")}
-                  options={FIELD_PROVENANCES.filter((value) => value !== FIELD_PROVENANCE.AI_MUSTAND).map((value) => ({
-                    value,
-                    label: t(`field.provenance.${value}`)
-                  }))}
-                />
-                <Button fullWidth onClick={saveNote} disabled={readOnly || !noteBody.trim()}>
-                  {t("field.note.save")}
-                </Button>
-              </div>
-
-              <div className="fld-inputsbar">
-                <h2 className="fld-h2">{t("field.inputs.title")}</h2>
-                <p className="fld-hint">{t("field.inputs.alternative")}</p>
-                <div className="fld-actions">
-                  <Button
-                    variant="secondary"
-                    onClick={() => photoInputRef.current?.click()}
-                    disabled={readOnly || (!consentFor("photo") && (!clientDocumentRequested || !documentRequestReason.trim()))}
-                  >
-                    {t("field.photo.take")}
-                  </Button>
-                  <input
-                    ref={photoInputRef}
-                    type="file"
-                    accept="image/*"
-                    capture="environment"
-                    hidden
-                    onChange={onPhotoPicked}
-                    aria-hidden="true"
-                    tabIndex={-1}
-                  />
-                  {recording ? (
-                    <Button variant="secondary" onClick={stopRecording}>
-                      {t("field.audio.stop")} · {Math.floor(recordingSeconds / 60)}:{String(recordingSeconds % 60).padStart(2, "0")}
-                    </Button>
-                  ) : (
-                    <Button variant="secondary" onClick={startRecording} disabled={readOnly}>
-                      {t("field.audio.start")}
-                    </Button>
-                  )}
-                </div>
-                <p className="fld-hint">{t("field.audio.limit")}</p>
-                <p className="fld-hint">{t("field.photo.policy")}</p>
-                {!consentFor("photo") ? (
-                  <div className="fld-consent">
-                    <label className="fld-label">
-                      <Checkbox
-                        bare
-                        checked={clientDocumentRequested}
-                        onChange={setClientDocumentRequested}
-                        disabled={readOnly}
-                      />
-                      {t("field.photo.clientDocumentRequested")}
-                    </label>
-                    {clientDocumentRequested ? (
-                      <>
-                        <label className="fld-label" htmlFor="fld-document-request-reason">
-                          {t("field.photo.requestReason")}
-                        </label>
-                        <Input
-                          id="fld-document-request-reason"
-                          className="fld-input"
-                          value={documentRequestReason}
-                          onChange={(event) => setDocumentRequestReason(event.target.value)}
-                          maxLength={500}
-                          disabled={readOnly}
-                        />
-                      </>
-                    ) : null}
-                  </div>
-                ) : null}
-              </div>
-
-              <div className="fld-consent">
-                <h2 className="fld-h2">{t("field.consent.title")}</h2>
-                <label className="fld-label" htmlFor="fld-consent-kind">{t("field.consent.kindLabel")}</label>
-                <Dropdown
-                  id="fld-consent-kind"
-                  className="fld-input"
-                  value={consentKind}
-                  onChange={setConsentKind}
-                  ariaLabel={t("field.consent.kindLabel")}
-                  options={[
-                    { value: "audio", label: t("field.consent.kind.audio") },
-                    { value: "photo", label: t("field.consent.kind.photo") }
-                  ]}
-                />
-                <label className="fld-label" htmlFor="fld-consent-subject">{t("field.consent.subject")}</label>
-                <Input
-                  id="fld-consent-subject"
-                  className="fld-input"
-                  value={consentSubject}
-                  onChange={(event) => setConsentSubject(event.target.value)}
-                  autoComplete="off"
-                />
-                <Button variant="secondary" onClick={saveConsent} disabled={readOnly || !consentSubject.trim()}>
-                  {t("field.consent.save")}
-                </Button>
-              </div>
-            </section>
-          ) : null}
-
-          {phase === "follow_up" ? (
-            <section className="fld-section" aria-label={t("field.phase.follow_up")}>
-              <h2 className="fld-h2">{t("field.review.title")}</h2>
-              {visibleNotes.length ? (
-                <ul className="fld-items" aria-label={t("field.review.serverNotes")}>
-                  {visibleNotes.filter((note) => note.source === "server").map((note) => (
-                    <li key={`server-${note.clientItemId}`} className="fld-item" data-source="server">
-                      <div className="fld-item__body">
-                        <span className="fld-item__type">{t(`field.item.${note.kind}`)}</span>
-                        <span className="fld-item__text">{note.body}</span>
-                        <span className="fld-item__state">
-                          {t("field.review.serverCopy")} · {t(`field.provenance.${note.provenance}`)} · {t("field.review.revision").replace("{revision}", String(note.revision))}
-                          {note.conflict ? ` · ${t("field.itemState.CONFLICT")}` : ""}
-                        </span>
-                      </div>
-                      {!readOnly && (!note.consentWithdrawnAt || note.kind !== FIELD_NOTE_KIND.CONSENT) ? (
-                        <Button size="sm" variant="ghost" onClick={() => removeServerNote(note)}>
-                          {note.kind === FIELD_NOTE_KIND.CONSENT
-                            ? t("field.review.withdrawConsent")
-                            : t("field.review.deleteServer")}
-                        </Button>
-                      ) : null}
-                    </li>
-                  ))}
-                </ul>
-              ) : null}
-              {deviceReviewItems.length === 0 && visibleNotes.length === 0 ? (
-                <p className="fld-muted">{t("field.review.empty")}</p>
-              ) : (
-                <ul className="fld-items">
-                  {deviceReviewItems.map((item) => (
-                    <li key={item.clientItemId} className="fld-item" data-state={item.state}>
-                      <div className="fld-item__body">
-                        <span className="fld-item__type">
-                          {item.itemType === "attachment"
-                            ? t(`field.item.${item.payload?.role || "photo"}`)
-                            : t(`field.item.${item.payload?.kind || "note"}`)}
-                        </span>
-                        {item.itemType === "note" ? (
-                          <span className="fld-item__text">{item.payload?.body || ""}</span>
-                        ) : null}
-                        <span className="fld-item__state">{t(`field.itemState.${item.state}`)}</span>
-                        {item.lastError && item.state === FIELD_ITEM_STATE.FAILED ? (
-                          <span className="fld-item__error">{t(item.lastError) || item.lastError}</span>
-                        ) : null}
-                      </div>
-                      <div className="fld-item__actions">
-                        {item.state === FIELD_ITEM_STATE.DEVICE_ONLY ? (
-                          <Button size="sm" onClick={() => sync.approveItem(item.clientItemId)}>
-                            {t("field.review.approve")}
-                          </Button>
-                        ) : null}
-                        {item.state === FIELD_ITEM_STATE.FAILED ? (
-                          <>
-                            <Button size="sm" variant="secondary" onClick={() => sync.retryItem(item.clientItemId)}>
-                              {t("field.retry")}
-                            </Button>
-                            {item.lastError === "field.errors.visit_read_only" ? (
-                              <Button size="sm" onClick={() => sync.retryRecoveryImport(item.clientItemId)}>
-                                {t("field.review.recoveryImport")}
-                              </Button>
-                            ) : null}
-                          </>
-                        ) : null}
-                        {item.state === FIELD_ITEM_STATE.QUEUED ? (
-                          <Button size="sm" variant="secondary" onClick={() => sync.cancelItem(item.clientItemId)}>
-                            {t("field.cancel")}
-                          </Button>
-                        ) : null}
-                        {item.state === FIELD_ITEM_STATE.CONFLICT ? (
-                          <>
-                            <Button size="sm" onClick={() => sync.resolveConflict(item.clientItemId, "device")}>
-                              {t("field.conflict.keepDevice")}
-                            </Button>
-                            <Button size="sm" variant="secondary" onClick={() => sync.resolveConflict(item.clientItemId, "server")}>
-                              {t("field.conflict.keepServer")}
-                            </Button>
-                          </>
-                        ) : null}
-                        <Button size="sm" variant="ghost" onClick={() => sync.deleteItem(item.clientItemId)}>
-                          {t("field.review.remove")}
-                        </Button>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              )}
-
-              {attachments.length ? (
-                <>
-                  <h2 className="fld-h2">{t("field.attachments.title")}</h2>
-                  <ul className="fld-items">
-                    {attachments.map((attachment) => (
-                      <li key={attachment.clientItemId} className="fld-item">
-                        <div className="fld-item__body">
-                          <span className="fld-item__type">{t(`field.item.${attachment.role}`)}</span>
-                          <span className="fld-item__state">
-                            {attachment.documentGone
-                              ? t("field.attachments.gone")
-                              : attachment.document?.title || ""}
-                          </span>
-                        </div>
-                        <div className="fld-item__actions">
-                          {attachment.role === "photo" && attachment.documentId ? (
-                            <Button size="sm" variant="secondary" onClick={() => runOcr(attachment.clientItemId)} disabled={offline}>
-                              {t("field.ocr.run")}
-                            </Button>
-                          ) : null}
-                          {attachment.role === "audio" && attachment.documentId ? (
-                            <Button size="sm" variant="secondary" onClick={() => runTranscribe(attachment)} disabled={offline}>
-                              {t("field.transcribe.run")}
-                            </Button>
-                          ) : null}
-                          {!readOnly ? (
-                            <Button
-                              size="sm"
-                              variant="ghost"
-                              onClick={async () => {
-                                const response = await fetch(
-                                  `/api/field/visits/${encodeURIComponent(visitId)}/attachments/${encodeURIComponent(attachment.clientItemId)}`,
-                                  { method: "DELETE" }
-                                );
-                                if (response.ok) loadDetail();
-                                else setNotice(t("field.errors.deleteFailed"));
-                              }}
-                              disabled={offline}
-                            >
-                              {t("field.review.remove")}
-                            </Button>
-                          ) : null}
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </>
-              ) : null}
-
-              {aiDraft ? (
-                <div className="fld-aidraft" role="dialog" aria-label={t("field.ai.title")}>
-                  <h2 className="fld-h2">{t("field.ai.title")}</h2>
-                  <p className="fld-hint">{t("field.ai.disclaimer")}</p>
-                  <textarea
-                    className="fld-input"
-                    rows={6}
-                    value={aiDraft.text}
-                    onChange={(event) => setAiDraft({ ...aiDraft, text: event.target.value })}
-                    aria-label={t("field.ai.draft")}
-                  />
-                  <div className="fld-actions">
-                    <Button onClick={confirmAiDraft}>{t("field.ai.confirm")}</Button>
-                    <Button variant="secondary" onClick={() => setAiDraft(null)}>{t("field.ai.discard")}</Button>
-                  </div>
-                </div>
-              ) : null}
-
-              {!readOnly && visit ? (
-                <div className="fld-handover">
-                  <h2 className="fld-h2">{t("field.handover.title")}</h2>
-                  <label className="fld-check">
-                    <Checkbox
-                      bare
-                      checked={handoverArtifact}
-                      onChange={setHandoverArtifact}
-                    />
-                    <span>{t("field.handover.toArtifact")}</span>
-                  </label>
-                  {visit.preInquiryId ? (
-                    <>
-                      <label className="fld-label" htmlFor="fld-handover-note">{t("field.handover.toPreInquiry")}</label>
-                      <textarea
-                        id="fld-handover-note"
-                        className="fld-input"
-                        rows={4}
-                        value={handoverNote}
-                        onChange={(event) => setHandoverNote(event.target.value)}
-                        placeholder={t("field.handover.notePlaceholder")}
-                      />
-                      <label className="fld-label" htmlFor="fld-next-contact">{t("field.handover.nextContact")}</label>
-                      <Input
-                        id="fld-next-contact"
-                        type="date"
-                        className="fld-input"
-                        value={nextContactOn}
-                        onChange={(event) => setNextContactOn(event.target.value)}
-                      />
-                    </>
-                  ) : (
-                    <p className="fld-hint">{t("field.handover.noPreInquiry")}</p>
-                  )}
-                  <Button fullWidth onClick={doHandover} disabled={offline}>{t("field.handover.send")}</Button>
-                  {visit.handoverArtifactAt || visit.handoverPreInquiryAt ? (
-                    <p className="fld-hint">{t("field.handover.alreadyDone")}</p>
-                  ) : null}
-                </div>
-              ) : null}
-
-              {!readOnly && visit ? (
-                <div className="fld-actions fld-actions--footer">
-                  <Button
-                    variant="secondary"
-                    onClick={() => patchVisit({ action: "close" })}
-                    disabled={offline || sync.closeBlockers.blocked || visit.status !== FIELD_VISIT_STATUS.WRAP_UP}
-                  >
-                    {t("field.visit.close")}
-                  </Button>
-                  <Button variant="ghost" onClick={() => patchVisit({ action: "cancel_visit" })} disabled={offline}>
-                    {t("field.visit.cancel")}
-                  </Button>
-                </div>
-              ) : null}
-              {sync.closeBlockers.blocked ? <p className="fld-hint">{t("field.visit.closeBlocked")}</p> : null}
-
-              {/* SILD TEENUSPÄEVIKUSSE (leping 8.4). Ilmub alles SULETUD
-                  külastuse juures: enne seda ei ole kestus lõplik ja eeltäide
-                  annaks vale koguse.
-
-                  LINK, MITTE AUTOMAATNE LOOMINE. Külastus ei ole alati
-                  arveldatav teenus ja arve alusdokument ei tohi tekkida ilma
-                  inimese kinnituseta — vorm täitub, inimene kinnitab. */}
-              {isServiceLogUiEnabled() && visit?.closedAt ? (
-                <div className="fld-actions">
-                  <Button
-                    as="a"
-                    variant="secondary"
-                    href={`/teenuspaevik?visit=${encodeURIComponent(visit.id)}`}
-                  >
-                    {t("field.visit.createServiceEntry")}
-                  </Button>
-                </div>
-              ) : null}
-
-              <div className="fld-purge">
-                <h2 className="fld-h2">{t("field.purge.title")}</h2>
-                <p className="fld-hint">{t("field.purge.explain")}</p>
-                <Button variant="secondary" onClick={purgeLocal}>{t("field.purge.run")}</Button>
-              </div>
-            </section>
-          ) : null}
+          <div className={styles.view}>
+            {currentView === "aiDraft" && aiDraft ? (
+              <AiDraftView
+                t={t}
+                text={aiDraft.text}
+                onText={(text) => setAiDraft({ ...aiDraft, text })}
+                onConfirm={confirmAiDraft}
+                onDiscard={() => twoPress("draft", () => setAiDraft(null))}
+                discardLabel={confirmLabel("draft", t("field.ai.discard"))}
+              />
+            ) : currentView === "pack" ? (
+              <PackView
+                t={t}
+                view={view}
+                canTake={canChange}
+                hasPack={Boolean(sync.pack)}
+                offline={offline}
+                onTake={takePack}
+              />
+            ) : currentView === "safety" ? (
+              <SafetyView
+                t={t}
+                armed={armed}
+                deadlineText={deadlineText}
+                warnings={safetyWarnings(view.safety)}
+                form={{ deadline: safetyDeadline, email: safetyEmail, name: safetyName, instructions: safetyInstructions }}
+                onForm={(patch) => {
+                  if ("deadline" in patch) setSafetyDeadline(patch.deadline);
+                  if ("email" in patch) setSafetyEmail(patch.email);
+                  if ("name" in patch) setSafetyName(patch.name);
+                  if ("instructions" in patch) setSafetyInstructions(patch.instructions);
+                }}
+                offline={offline}
+                onArm={armSafety}
+                onCancel={() => twoPress("cancel-safety", () => patchVisit({ action: "cancel_safety" }))}
+                cancelLabel={confirmLabel("cancel-safety", t("field.safety.cancel"))}
+              />
+            ) : currentView === "note" ? (
+              <NoteView
+                t={t}
+                readOnly={readOnly}
+                offline={offline}
+                arrived={Boolean(visit?.arrivedConfirmedAt) || Boolean(sync.markers.arrival)}
+                departed={Boolean(visit?.departedConfirmedAt) || Boolean(sync.markers.departure)}
+                onMarker={confirmMarker}
+                failedReason={failedMarkers.length ? failedMarkers[0].reason || "server" : ""}
+                markersPending={pendingMarkers.length > 0}
+                onRetryMarkers={flushAndReload}
+                body={noteBody}
+                onBody={setNoteBody}
+                provenance={provenance}
+                onProvenance={setProvenance}
+                provenanceOptions={FIELD_PROVENANCES.filter((value) => value !== FIELD_PROVENANCE.AI_MUSTAND).map((value) => ({
+                  value,
+                  label: t(`field.provenance.${value}`)
+                }))}
+                onSave={saveNote}
+              />
+            ) : currentView === "capture" ? (
+              <CaptureView
+                t={t}
+                readOnly={readOnly}
+                photoEnabled={photoAllowed({
+                  readOnly,
+                  hasConsent: Boolean(consentFor("photo")),
+                  documentRequested: clientDocumentRequested,
+                  reason: documentRequestReason
+                })}
+                onPhoto={() => photoInputRef.current?.click()}
+                recording={recording}
+                recordingSeconds={recordingSeconds}
+                onStartRecording={startRecording}
+                onStopRecording={stopRecording}
+                needsBasis={!consentFor("photo")}
+                documentRequested={clientDocumentRequested}
+                onDocumentRequested={setClientDocumentRequested}
+                reason={documentRequestReason}
+                onReason={setDocumentRequestReason}
+              />
+            ) : currentView === "consent" ? (
+              <ConsentView
+                t={t}
+                readOnly={readOnly}
+                kind={consentKind}
+                onKind={setConsentKind}
+                subject={consentSubject}
+                onSubject={setConsentSubject}
+                onSave={saveConsent}
+              />
+            ) : currentView === "review" ? (
+              <ReviewView
+                t={t}
+                readOnly={readOnly}
+                offline={offline}
+                serverNotes={visibleNotes.filter((note) => note.source === "server")}
+                deviceItems={deviceReviewItems}
+                attachments={attachments}
+                confirmLabel={confirmLabel}
+                onRemoveServerNote={(note) => twoPress(`note:${note.clientItemId}`, () => removeServerNote(note))}
+                onItemAction={onItemAction}
+                onOcr={(attachment) => runOcr(attachment.clientItemId)}
+                onTranscribe={runTranscribe}
+                onRemoveAttachment={(attachment) => twoPress(`att:${attachment.clientItemId}`, () => removeAttachment(attachment))}
+              />
+            ) : currentView === "handover" ? (
+              <HandoverView
+                t={t}
+                offline={offline}
+                toArtifact={handoverArtifact}
+                onToArtifact={setHandoverArtifact}
+                hasPreInquiry={Boolean(visit?.preInquiryId)}
+                note={handoverNote}
+                onNote={setHandoverNote}
+                nextContactOn={nextContactOn}
+                onNextContactOn={setNextContactOn}
+                alreadyDone={Boolean(visit?.handoverArtifactAt || visit?.handoverPreInquiryAt)}
+                onSend={doHandover}
+              />
+            ) : (
+              <FinishView
+                t={t}
+                canChange={canChange}
+                closeEnabled={canChange && closeAllowed({ offline, blocked: sync.closeBlockers.blocked, status: visit.status })}
+                closeBlocked={sync.closeBlockers.blocked}
+                offline={offline}
+                closeLabel={confirmLabel("close-visit", t("field.visit.close"))}
+                cancelLabel={confirmLabel("cancel-visit", t("field.visit.cancel"))}
+                purgeLabel={confirmLabel("purge", t("field.purge.run"))}
+                onClose={() => twoPress("close-visit", () => patchVisit({ action: "close" }))}
+                onCancelVisit={() => twoPress("cancel-visit", () => patchVisit({ action: "cancel_visit" }))}
+                onPurge={() => twoPress("purge", purgeLocal)}
+                serviceEntryHref={
+                  isServiceLogUiEnabled() && visit?.closedAt ? `/teenuspaevik?visit=${encodeURIComponent(visit.id)}` : ""
+                }
+              />
+            )}
+          </div>
         </>
       ) : null}
-    </main>
+    </div>
   );
 }

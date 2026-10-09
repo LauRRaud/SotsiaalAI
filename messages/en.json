@@ -148,7 +148,6 @@
       "description": "Mobile field-work shell: visit preparation, offline notes and safe handover."
     },
     "title": "Field work",
-    "lead": "Prepare a visit, work offline and hand the material over to an existing workspace.",
     "loading": "Loading…",
     "saving": "Saving…",
     "retry": "Try again",
@@ -278,7 +277,8 @@
       "needsOnline": "Taking the pack needs a connection.",
       "stale": "The pack is stale — the source has changed since",
       "questions": "Key questions",
-      "summary": "Preparation summary"
+      "summary": "Preparation summary",
+      "empty": "The pack has no key questions or summary."
     },
     "markers": {
       "confirmArrival": "Confirm arrival",
@@ -299,7 +299,6 @@
       }
     },
     "note": {
-      "title": "Quick note",
       "body": "Note text",
       "provenance": "Origin of the information",
       "referral": "Referral",
@@ -317,7 +316,6 @@
       "AMETLIKULT_KONTROLLITUD": "Officially verified"
     },
     "inputs": {
-      "title": "Voice and photo",
       "alternative": "All inputs are optional — text and the checklist always work."
     },
     "photo": {
@@ -335,11 +333,11 @@
       "saved": "The audio draft is on the device. You can transcribe it after sending.",
       "failed": "Recording failed.",
       "consentFirst": "Add a consent record before recording audio.",
-      "limit": "Maximum 10 minutes and 25 MB. Hiding or closing the view stops the microphone immediately.",
-      "limitReached": "The audio draft reached its local duration or size limit and recording was stopped."
+      "limit": "Maximum 10 minutes and 25 MB. Hiding or closing the page stops the microphone immediately.",
+      "limitReached": "The audio draft reached its local duration or size limit and recording was stopped.",
+      "recording": "Recording audio"
     },
     "consent": {
-      "title": "Consent",
       "kindLabel": "For what",
       "kind": {
         "audio": "audio recording",
@@ -351,7 +349,6 @@
       "recordBody": "Verbal consent: {kind}."
     },
     "safety": {
-      "title": "Safety signal (check-in window)",
       "explain": "If you do not confirm your departure by the deadline, the server e-mails your chosen trusted contact. The signal works even when your device is offline.",
       "notEmergency": "This is NOT an emergency service and does not replace one — in danger, call 112.",
       "deadline": "I will confirm departure by",
@@ -368,7 +365,8 @@
       "deliveryUnknown": "Email delivery is uncertain. Blind redelivery has been stopped.",
       "resolvedFailed": "The resolved notice did not reach the contact. Reach out to them yourself.",
       "fillRequired": "Set the deadline and the contact's e-mail.",
-      "needsOnline": "Arming the safety signal needs a connection — a deliberate limit so the signal truly lives on the server."
+      "needsOnline": "Arming the safety signal needs a connection — a deliberate limit so the signal truly lives on the server.",
+      "more": "Add the contact's name and an instruction"
     },
     "review": {
       "title": "Review before sending",
@@ -380,7 +378,8 @@
       "revision": "revision {revision}",
       "deleteServer": "Delete from server",
       "withdrawConsent": "Withdraw consent",
-      "recoveryImport": "Recover into closed visit"
+      "recoveryImport": "Recover into closed visit",
+      "deviceItems": "On this device"
     },
     "item": {
       "note": "Note",
@@ -425,7 +424,6 @@
       "run": "Transcribe"
     },
     "handover": {
-      "title": "Hand over to a workspace",
       "toArtifact": "Create a visit summary draft (artifact)",
       "toPreInquiry": "Addition to the pre-inquiry work plan (appended AFTER the existing text)",
       "notePlaceholder": "The summary you hand over to the pre-inquiry…",
@@ -452,6 +450,21 @@
       "confirmTitle": "Deletion is waiting for your permission",
       "confirmBody": "You have seen three warnings and the content has been on the device for over 37 days. The server does not have it. Deletion is final and happens only with your explicit permission.",
       "confirmDelete": "Delete from this device"
+    },
+    "view": {
+      "label": "Views of this phase",
+      "pack": "Pack",
+      "safety": "Safety signal",
+      "note": "Note",
+      "capture": "Photo, audio",
+      "consent": "Consent",
+      "review": "Review",
+      "handover": "Handover",
+      "finish": "Finishing",
+      "aiDraft": "Draft"
+    },
+    "confirm": {
+      "again": "Press again to confirm"
     }
   },
   "mentoring": {

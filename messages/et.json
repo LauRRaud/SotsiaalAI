@@ -148,17 +148,16 @@
       "description": "Mobiilne välitöö kest: külastuse ettevalmistus, võrguta märkmed ja turvaline üleandmine."
     },
     "title": "Välitöö",
-    "lead": "Valmista külastus ette, tööta võrguta ja anna materjal üle olemasolevasse tööruumi.",
     "loading": "Laen…",
     "saving": "Salvestan…",
     "retry": "Proovi uuesti",
     "cancel": "Tühista",
     "loginRequired": "Välitöö vaade vajab sisselogimist.",
     "roleRequired": "Välitöö kest on professionaalse töö pind ega ole selle kontoga kasutatav.",
-    "storeUnsupported": "See brauser ei toeta turvalist kohalikku hoidlat — võrguta töö ei ole saadaval, võrgus töö toimib.",
+    "storeUnsupported": "See brauser ei toeta turvalist kohalikku hoidlat: võrguta töö ei ole saadaval, võrgus töö toimib.",
     "errors": {
       "consent_required": "Selleks on vaja kliendi nõusolekut.",
-      "delete_failed": "Kustutamine ebaõnnestus. Fail võis jääda alles — proovi uuesti.",
+      "delete_failed": "Kustutamine ebaõnnestus. Fail võis jääda alles, proovi uuesti.",
       "file_required": "Fail on valimata.",
       "handover_failed": "Üleandmine ebaõnnestus.",
       "invalid_attachment_role": "Tundmatu manuse liik.",
@@ -220,9 +219,9 @@
       "transcribeFailed": "Transkribeerimine ebaõnnestus."
     },
     "sync": {
-      "online": "Võrgus — kõik saadetud.",
-      "onlinePending": "Võrgus — {count} üksust ootab saatmist.",
-      "offline": "Võrguta — kõik salvestub sellesse seadmesse.",
+      "online": "Võrgus, kõik on saadetud.",
+      "onlinePending": "Võrgus, {count} üksust ootab saatmist.",
+      "offline": "Võrguta: kõik salvestub sellesse seadmesse.",
       "needsLogin": "Saatmine vajab sisselogimist; andmed on seadmes alles.",
       "failed": "{count} üksust vajab tähelepanu",
       "short": {
@@ -244,7 +243,7 @@
     "list": {
       "open": "Pooleli külastused",
       "closed": "Lõpetatud",
-      "empty": "Ühtegi külastust pole — alusta ettevalmistusest.",
+      "empty": "Ühtegi külastust ei ole. Alusta ettevalmistusest.",
       "loadMore": "Näita rohkem"
     },
     "visit": {
@@ -276,9 +275,10 @@
       "taken": "Pakett on seadmes.",
       "onDevice": "Pakett on selles seadmes ja töötab võrguta.",
       "needsOnline": "Paketi võtmine vajab ühendust.",
-      "stale": "Pakett on aegunud — allikas on vahepeal muutunud",
+      "stale": "Pakett on aegunud: allikas on vahepeal muutunud",
       "questions": "Võtmeküsimused",
-      "summary": "Ettevalmistuse kokkuvõte"
+      "summary": "Ettevalmistuse kokkuvõte",
+      "empty": "Paketis ei ole võtmeküsimusi ega kokkuvõtet."
     },
     "markers": {
       "confirmArrival": "Kinnita saabumine",
@@ -286,9 +286,9 @@
       "confirmDeparture": "Kinnita lahkumine",
       "departed": "Lahkumine kinnitatud",
       "storedOffline": "Kinnitus on seadmes; see jõuab serverisse ühenduse taastumisel.",
-      "pendingSync": "Kinnitus EI OLE veel serverisse jõudnud — kui tähtaeg möödub enne ühendust, saab usalduskontakt teate.",
+      "pendingSync": "Kinnitus EI OLE veel serverisse jõudnud. Kui tähtaeg möödub enne ühendust, saab usalduskontakt teate.",
       "needsPack": "Kinnitamiseks võta pakett enne seadmesse.",
-      "failedTitle": "Kinnitus EI JÕUDNUD serverisse — ta on seadmes alles.",
+      "failedTitle": "Kinnitus EI JÕUDNUD serverisse. See on seadmes alles.",
       "retry": "Proovi kinnitust uuesti",
       "reason": {
         "auth": "Sisselogimine on aegunud. Logi uuesti sisse ja proovi uuesti.",
@@ -299,7 +299,6 @@
       }
     },
     "note": {
-      "title": "Kiire märge",
       "body": "Märkme tekst",
       "provenance": "Info päritolu",
       "referral": "Suunamine",
@@ -317,8 +316,7 @@
       "AMETLIKULT_KONTROLLITUD": "Ametlikult kontrollitud"
     },
     "inputs": {
-      "title": "Hääl ja foto",
-      "alternative": "Kõik sisendid on valikulised — tekst ja checklist töötavad alati."
+      "alternative": "Kõik sisendid on valikulised: tekst ja checklist töötavad alati."
     },
     "photo": {
       "take": "Tee foto",
@@ -335,11 +333,11 @@
       "saved": "Helimustand on seadmes. Transkribeerida saad pärast saatmist.",
       "failed": "Heli salvestamine ebaõnnestus.",
       "consentFirst": "Lisa enne heli salvestamist nõusolekukirje.",
-      "limit": "Maksimaalselt 10 minutit ja 25 MB. Vaate peitmine või sulgemine lõpetab mikrofoni kohe.",
-      "limitReached": "Helimustand jõudis kohaliku kestuse või mahu piirini ja salvestamine peatati."
+      "limit": "Maksimaalselt 10 minutit ja 25 MB. Lehe peitmine või sulgemine lõpetab mikrofoni kohe.",
+      "limitReached": "Helimustand jõudis kohaliku kestuse või mahu piirini ja salvestamine peatati.",
+      "recording": "Heli salvestub"
     },
     "consent": {
-      "title": "Nõusolek",
       "kindLabel": "Mille jaoks",
       "kind": {
         "audio": "heli salvestamine",
@@ -351,9 +349,8 @@
       "recordBody": "Suuline nõusolek: {kind}."
     },
     "safety": {
-      "title": "Turvasignaal (kontrollaken)",
       "explain": "Kui sa ei kinnita lahkumist tähtajaks, saadab server sinu valitud usalduskontaktile e-kirja. Signaal töötab ka siis, kui su seade on võrguta.",
-      "notEmergency": "See EI OLE hädaabiteenus ega asenda seda — ohu korral helista 112.",
+      "notEmergency": "See EI OLE hädaabiteenus ega asenda seda. Ohu korral helista 112.",
       "deadline": "Kinnitan lahkumise hiljemalt",
       "contactEmail": "Usalduskontakti e-post",
       "contactName": "Usalduskontakti nimi",
@@ -363,12 +360,13 @@
       "armedUntil": "Turvasignaal on sees kuni {time}.",
       "armedBadge": "turvasignaal sees",
       "cancel": "Lülita turvasignaal välja",
-      "escalated": "Kontaktile on saadetud teade. Kui kõik on korras, kinnita lahkumine — kontakt saab siis „lahenenud” teate.",
+      "escalated": "Kontaktile on saadetud teade. Kui kõik on korras, kinnita lahkumine: kontakt saab siis teate, et olukord lahenes.",
       "escalationFailed": "Teadet EI õnnestunud kontaktile saata. Võta temaga ise ühendust.",
       "deliveryUnknown": "Kirja kohaletoimetamise tulemus on teadmata. Pime kordussaatmine on peatatud.",
       "resolvedFailed": "Lahendusteade ei jõudnud kontaktini. Võta temaga ise ühendust.",
       "fillRequired": "Määra tähtaeg ja kontakti e-post.",
-      "needsOnline": "Turvasignaali sisselülitamine vajab ühendust — see on teadlik piir, et signaal oleks päriselt serveris."
+      "needsOnline": "Turvasignaali sisselülitamine vajab ühendust. See on teadlik piir, et signaal oleks päriselt serveris.",
+      "more": "Lisa kontakti nimi ja juhis"
     },
     "review": {
       "title": "Kontrolli enne saatmist",
@@ -380,7 +378,8 @@
       "revision": "versioon {revision}",
       "deleteServer": "Kustuta serverist",
       "withdrawConsent": "Võta nõusolek tagasi",
-      "recoveryImport": "Taasta suletud külastusse"
+      "recoveryImport": "Taasta suletud külastusse",
+      "deviceItems": "Selles seadmes"
     },
     "item": {
       "note": "Märge",
@@ -390,11 +389,11 @@
       "audio": "Heli"
     },
     "itemState": {
-      "DEVICE_ONLY": "Ainult seadmes — ootab sinu kontrolli",
+      "DEVICE_ONLY": "Ainult seadmes, ootab sinu kontrolli",
       "QUEUED": "Saatmist ootav",
       "UPLOADING": "Sünkroonimisel",
       "SYNCED": "Sünkroonitud",
-      "CONFLICT": "Konflikt — vali versioon",
+      "CONFLICT": "Konflikt: vali versioon",
       "FAILED": "Ebaõnnestunud",
       "CANCELLED": "Saatmine tühistatud",
       "PURGE_PENDING": "Kustutamist ootav",
@@ -409,14 +408,14 @@
       "gone": "Fail on kustutatud"
     },
     "ai": {
-      "title": "AI mustand — kontrolli enne kinnitamist",
+      "title": "AI mustand: kontrolli enne kinnitamist",
       "disclaimer": "See tekst on kontrollimata mustand (AI/OCR/STT). Paranda vead ja kinnita alles siis, kui sisu vastab tegelikkusele.",
       "draft": "Mustandi tekst",
-      "confirm": "Kinnitan — salvesta märkmena",
+      "confirm": "Kinnitan, salvesta märkmena",
       "discard": "Loobu",
       "confirmed": "Mustand kinnitati ja salvestati märkmena (päritolu: AI mustand).",
       "confirmQueued": "Kinnitatud tekst on seadmes ja saadetakse ühenduse taastumisel. Toorheli kustutuskell käivitub alles siis, kui tekst on serveris.",
-      "confirmFailed": "Kinnituse saatmine ebaõnnestus. Tekst on seadmes alles — proovi kirje juures uuesti."
+      "confirmFailed": "Kinnituse saatmine ebaõnnestus. Tekst on seadmes alles, proovi kirje juures uuesti."
     },
     "ocr": {
       "run": "Loe tekst pildilt"
@@ -425,12 +424,11 @@
       "run": "Transkribeeri"
     },
     "handover": {
-      "title": "Anna üle tööruumi",
       "toArtifact": "Loo külastuse kokkuvõtte mustand (artefakt)",
       "toPreInquiry": "Täiendus eelpöördumise tööplaani (lisatakse olemasoleva teksti JÄRELE)",
       "notePlaceholder": "Kokkuvõte, mille annad eelpöördumise juurde üle…",
       "nextContact": "Järgmine kontakt",
-      "noPreInquiry": "Külastus ei ole eelpöördumisega seotud — üleandmine loob ainult kokkuvõtte mustandi.",
+      "noPreInquiry": "Külastus ei ole eelpöördumisega seotud. Üleandmine loob ainult kokkuvõtte mustandi.",
       "send": "Anna üle",
       "done": "Üleandmine õnnestus.",
       "alreadyDone": "Üleandmine on tehtud; vajadusel saad seda korrata.",
@@ -445,13 +443,28 @@
     },
     "retention": {
       "warnTitle": "Saatmata sisu on kadumas",
-      "warnBody": "See sisu ei ole serverisse jõudnud ja on seadmes üle 30 päeva vana. Kinnita, et oled hoiatust näinud. Kolme kinnitatud hoiatuse järel küsime eraldi luba kustutamiseks — ilma selleta sisu ei kao.",
+      "warnBody": "See sisu ei ole serverisse jõudnud ja on seadmes üle 30 päeva vana. Kinnita, et oled hoiatust näinud. Kolme kinnitatud hoiatuse järel küsime eraldi luba kustutamiseks: ilma selleta sisu ei kao.",
       "warnCount": "Kinnitatud hoiatusi: {seen}/{needed}",
       "acknowledge": "Sain aru",
       "unnamedItem": "Nimeta kirje",
       "confirmTitle": "Kustutamine ootab sinu luba",
       "confirmBody": "Oled näinud kolme hoiatust ja sisu on seadmes üle 37 päeva. Serveris seda ei ole. Kustutamine on lõplik ja toimub ainult sinu selgel loal.",
       "confirmDelete": "Kustuta sellest seadmest"
+    },
+    "view": {
+      "label": "Faasi vaated",
+      "pack": "Pakett",
+      "safety": "Turvasignaal",
+      "note": "Märge",
+      "capture": "Foto ja heli",
+      "consent": "Nõusolek",
+      "review": "Kontroll",
+      "handover": "Üleandmine",
+      "finish": "Lõpetamine",
+      "aiDraft": "Mustand"
+    },
+    "confirm": {
+      "again": "Vajuta uuesti, et kinnitada"
     }
   },
   "mentoring": {
