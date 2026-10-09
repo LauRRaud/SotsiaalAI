@@ -332,6 +332,12 @@ test('ülevaatuse parandused: raamistiku vaade ei korda oma nime, otsing ei vaju
   assert.ok(views.includes('event.target.value = "";'), 'failiväli tühjendatakse pärast lugemist');
 });
 
+test('töölaua sees avatud lehel ei korrata paneelil lehe pealkirja', () => {
+  const panel = read('../components/chat/WorkspacePanel.jsx');
+  assert.ok(panel.includes('const EMBEDDED_TITLE_IN_DOCK = new Set(["documents", "pre_inquiries"]);'));
+  assert.ok(panel.includes('headerClassName={EMBEDDED_TITLE_IN_DOCK.has(activeEmbeddedFeature) ? "sr-only" : undefined}'));
+});
+
 test('faili lisamise vaade: kukutusala kannab ainult juhist, abitekst ja valitud fail on omal kohal (K07)', () => {
   const views = read(VIEWS);
   const start = views.indexOf('className={styles.dropzone}');
