@@ -123,6 +123,18 @@ export default function HomeCareDeadlines({ context, deadlines }) {
         )
       )}
 
+      {section("away_long", deadlines.awayLong || [], (item) =>
+        clientLine(
+          item,
+          [
+            item.reason ? t(`home_care.status_reason.AWAY.${item.reason}`) : null,
+            t("home_care.deadlines.away_since", { date: planDayLabel(item.since), days: item.days })
+          ]
+            .filter(Boolean)
+            .join(" · ")
+        )
+      )}
+
       {section("supplies_open", deadlines.suppliesOpen || [], (item) =>
         clientLine(
           item,
