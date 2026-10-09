@@ -4150,8 +4150,12 @@ function ServiceProfileSurface({ t, locale }) {
 
   /* Salvestamine on iga vaate all servas samas kohas ja salvestab terve profiili. */
   const nameMissing = !form.organizationName.trim();
-  const saveButton = (
-    <Button type="submit" disabled={loading || saving || nameMissing || publish.blocking.length > 0}>
+  /* Lava hoiab kõik vaated lehel (avatud teenusel 21), aga põhinupp joonistab
+     oma läike eraldi WebGL-pinnale ja brauser lubab neid korraga piiratud arvu:
+     üle piiri visatakse vanimad minema ja nupu asemele jääb valge kast. Läige
+     on seepärast ainult ees oleval vaatel. */
+  const saveButton = (glow) => (
+    <Button type="submit" glow={glow} disabled={loading || saving || nameMissing || publish.blocking.length > 0}>
       {saving ? tp("actions.saving", "Salvestan...") : tp("actions.save", "Salvesta muudatused")}
     </Button>
   );
@@ -4196,7 +4200,8 @@ function ServiceProfileSurface({ t, locale }) {
     onClick: removeOpened
   };
 
-  const renderView = (step) => {
+  const renderView = (step, stepIndex, flight) => {
+    const save = saveButton(flight?.isActive !== false);
     if (level === "service") {
       const index = opened.index;
       const presentation = serviceAvailabilityPresentation(t, savedService?.availability || openedService.availability);
@@ -4211,7 +4216,7 @@ function ServiceProfileSurface({ t, locale }) {
           service={openedService}
           options={options}
           note={note}
-          save={saveButton}
+          save={save}
           remove={removeAction}
           onField={(field, value) => updateServiceItem(index, field, value)}
           onContactStrategy={(nextValue) => {
@@ -4279,7 +4284,7 @@ function ServiceProfileSurface({ t, locale }) {
           location={openedLocation}
           options={options}
           note={note}
-          save={saveButton}
+          save={save}
           remove={removeAction}
           onField={(field, value) => updateServiceLocation(index, field, value)}
           address={{
@@ -4306,7 +4311,7 @@ function ServiceProfileSurface({ t, locale }) {
         form={form}
         options={options}
         note={note}
-        save={saveButton}
+        save={save}
         onField={updateField}
         services={{
           rows: serviceRows(form),

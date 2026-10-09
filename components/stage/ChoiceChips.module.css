@@ -73,9 +73,14 @@
 :global(html.theme-light) .option[aria-checked="true"] .box {
   color: #f6f4f0;
 }
+/* Pikk liitsõna kitsas lahtris (telefon) poolitatakse silbi kohalt ja
+   sidekriipsuga, kui brauseril on selle keele poolitusreeglid; muidu murdub
+   sõna sealt, kust mahub. Ilma selleta murdus „toimetulekuraskus|tes" suvalisest
+   kohast. */
 .text {
   min-width: 0;
   overflow-wrap: anywhere;
+  hyphens: auto;
 }
 
 @container (max-width: 40rem) {

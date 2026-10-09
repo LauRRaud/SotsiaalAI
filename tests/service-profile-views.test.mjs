@@ -457,3 +457,9 @@ test('töölaua sees avatud teenuseprofiilil ei korrata paneelil lehe pealkirja'
   const panel = read('../components/chat/WorkspacePanel.jsx');
   assert.match(panel, /const EMBEDDED_TITLE_IN_DOCK = new Set\(\[[^\]]*"service_profile"[^\]]*\]\);/);
 });
+
+test('põhinupu läige on ainult ees oleval vaatel', () => {
+  const page = read('../components/workspace/WorkspaceFeaturePage.jsx');
+  assert.ok(page.includes('const save = saveButton(flight?.isActive !== false);'));
+  assert.ok(!page.includes('save={saveButton}'), 'ükski vaade ei saa nuppu, mille läige on alati sees');
+});
