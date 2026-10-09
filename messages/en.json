@@ -10971,7 +10971,16 @@
       "invalid_request_id": "Invalid request key.",
       "search_too_short": "Type at least two letters.",
       "client_ended": "The service has ended. A new entry can be added by the care coordinator.",
-      "incident_retract_coordinator": "An incident is retracted by the care coordinator. If there is a mistake, correct the entry or talk to the coordinator."
+      "incident_retract_coordinator": "An incident is retracted by the care coordinator. If there is a mistake, correct the entry or talk to the coordinator.",
+      "chronology_period_required": "Choose the start and the end of the period.",
+      "chronology_too_many": "There are too many entries in the period (over 500). Choose a shorter period.",
+      "chronology_items_required": "Select at least one entry.",
+      "chronology_entry_invalid": "A selected entry is outside this period or has been retracted meanwhile. Load the entries again.",
+      "chronology_entry_changed": "A selected entry was corrected after you reviewed it. Press “Show entries” and review them again.",
+      "chronology_text_required": "The released text cannot be empty. Leave the entry out of the document.",
+      "chronology_requester_required": "Write who asked for the document.",
+      "chronology_basis_required": "Write on what basis the document is released.",
+      "release_not_found": "The release was not found."
     },
     "incidents": {
       "title": "Incident register",
@@ -11004,6 +11013,65 @@
         "STATUS": "Status",
         "ASSIGNED": "Responsible"
       }
+    },
+    "chronology": {
+      "title": "Client chronology",
+      "link": "Compile a chronology",
+      "back": "Back to the client page",
+      "intro": "Choose a period and review the entries. Only the entries you select go into the document, and you can remove third-party details from the text. The diary entries are not changed.",
+      "period_title": "Period",
+      "load": "Show entries",
+      "entries_title": "Entries ({selected}/{total} selected)",
+      "empty": "There are no entries in this period.",
+      "include": "Include in the document",
+      "restricted": "coordinator only; left out by default",
+      "edit_text": "Edit the released text",
+      "reset_text": "Restore the diary text",
+      "text_label": "Released text",
+      "edited": "text changed",
+      "details_title": "Document details",
+      "requester": "Who asked",
+      "requester_hint": "For example the authority and the official's name.",
+      "basis": "On what basis",
+      "basis_hint": "For example the request number and the legal basis.",
+      "registry_ref": "Reference in the organisation's document register (optional)",
+      "summary": "Summary for the cover page (optional)",
+      "create": "Compile the document",
+      "created": "The document has been compiled and added to the release log.",
+      "open_document": "Open the document",
+      "print_hint": "The document opens in a new tab. To get a PDF, choose “Print” in the browser and “Save as PDF” as the destination.",
+      "doc": {
+        "title": "Client chronology",
+        "client": "Client",
+        "period": "Period",
+        "requester": "Requested by",
+        "basis": "Basis",
+        "registry_ref": "Document register reference",
+        "compiled_by": "Compiled by",
+        "compiled_at": "Compiled at",
+        "entry_count": "Entries",
+        "content_hash": "Content hash",
+        "summary": "Summary",
+        "entries_title": "Entries in time order",
+        "redacted": "the compiler has shortened the text for release",
+        "privacy_note": "This document contains special categories of personal data. It may be used only for the purpose it was released for.",
+        "scope_note": "The document holds the entries the compiler selected from the client's home care diary for the stated period; it may not be the whole diary.",
+        "print_hint": "To get a PDF, choose “Print” in the browser and “Save as PDF” as the destination. This line is not printed."
+      }
+    },
+    "releases": {
+      "title": "Release log",
+      "link": "Releases",
+      "back": "Back to clients",
+      "intro": "Every compiled chronology: for whom, on what basis and who compiled it. The official register is the organisation's document management; this list is a work log.",
+      "empty": "There are no releases yet.",
+      "period": "Period: {from} – {to}",
+      "entries": "Entries: {count}",
+      "compiled": "Compiled by {name}",
+      "requester": "Requested by: {value}",
+      "basis": "Basis: {value}",
+      "registry_ref": "Document register reference: {value}",
+      "hash": "Content hash: {value}"
     }
   }
 }
