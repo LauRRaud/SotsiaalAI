@@ -8,6 +8,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import OrgHeader from "@/components/org/OrgHeader";
 
 import HomeCareClientForm from "./HomeCareClientForm";
+import { minutesLabel } from "./HomeCareDecisionView";
 import HomeCareOutbox from "./HomeCareOutbox";
 import { clientHref, homeCareBase, useHomeCareApi } from "./homeCareClient";
 
@@ -21,7 +22,7 @@ import { clientHref, homeCareBase, useHomeCareApi } from "./homeCareClient";
  * OTSING näitab ainult nime ja seisu. Meeskonnast väljas oleva kliendi leht
  * küsib avamisel põhjust (asendaja tee).
  */
-export default function HomeCareHome({ context, initial, unitOptions }) {
+export default function HomeCareHome({ context, initial, unitOptions, myDay = null }) {
   const { t } = useI18n();
   const router = useRouter();
   const organizationId = context.organization.id;
@@ -71,6 +72,33 @@ export default function HomeCareHome({ context, initial, unitOptions }) {
         ownerId={context.membership?.id || ""}
         timeZone={context.organization.timezone || "Europe/Tallinn"}
       />
+
+      {/* Tänane päev (K3-a): sulle määratud tänased käigud kellaaja järjekorras. */}
+      {myDay?.visits?.length ? (
+        <div className="hc-section">
+          <h3 className="hc-section-title">{t("home_care.slots.today_title")}</h3>
+          <ul className="hc-list">
+            {myDay.visits.map((visit) => (
+              <li key={visit.slotId}>
+                <Link className="hc-client" href={clientHref(organizationId, visit.client.id)} prefetch={false}>
+                  <span className="hc-client__name">
+                    {visit.startTime} {visit.client.displayName}
+                    {visit.done ? (
+                      <>
+                        {" "}
+                        <span className="hc-badge">{t("home_care.slots.done_badge")}</span>
+                      </>
+                    ) : null}
+                  </span>
+                  <span className="hc-client__meta">
+                    {[minutesLabel(t, visit.plannedMinutes), visit.client.address, visit.note].filter(Boolean).join(" · ")}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
 
       {isCoordinator ? (
         <div className="hc-row">

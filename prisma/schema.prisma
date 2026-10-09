@@ -5702,6 +5702,7 @@ model OrganizationMembership {
   careClientTeams       CareClientTeamMember[]
   careEntriesAuthored   CareClientEntry[]             @relation("CareClientEntryAuthor")
   careEntriesCompanion  CareClientEntry[]             @relation("CareClientEntryCompanion")
+  careVisitSlots        CareVisitSlot[]
 
   // Üks AKTIIVNE liikmesus org + kasutaja kohta → osaline unikaalindeks migratsioonis.
   @@index([organizationId, status])
@@ -8227,6 +8228,7 @@ model CareClient {
   statusChanges      CareClientStatusChange[]
   carePlans          CarePlan[]
   decisions          CareDecision[]
+  visitSlots         CareVisitSlot[]
 
   @@unique([organizationId, internalCode])
   @@index([organizationId, status, displayName])
@@ -8409,6 +8411,40 @@ model CareDecision {
 
   @@index([clientId, validFrom])
   @@index([organizationId, validUntil])
+}
+
+/// Käigumuster (kiht 3, K3-a): kliendi korduv käik nädalas. Nädalapäev 1 (esmaspäev)
+/// kuni 7, algus minutites südaööst asutuse aja järgi, plaanitud kestus ja töötaja.
+/// Kehtib päevast päevani (AAAA-KK-PP; tühi lõpp = edasi). Juba alanud rea muudatus
+/// lõpetab vana rea ja loob uue, et möödunud päevade plaan ei muutuks.
+/// Vahemikud ja päevade kuju → CHECK migratsioonis.
+model CareVisitSlot {
+  id             String @id @default(cuid())
+  organizationId String
+  clientId       String
+
+  weekday        Int
+  startMinute    Int
+  plannedMinutes Int
+  /// SetNull: liikmesuse kadumisel jääb käik määramata, mitte ei kao.
+  workerMembershipId String?
+  note               String?
+
+  validFrom  String
+  validUntil String?
+
+  version Int @default(1)
+
+  createdByMembershipId String?
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  client CareClient              @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  worker OrganizationMembership? @relation(fields: [workerMembershipId], references: [id], onDelete: SetNull)
+
+  @@index([clientId, weekday, startMinute])
+  @@index([organizationId, weekday])
+  @@index([workerMembershipId, weekday])
 }
 
 /// Kliendi seisu muutuste ajalugu (K1-j): millal teenus peatati, lõpetati või

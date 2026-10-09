@@ -18,6 +18,7 @@ import HomeCareHistory from "./HomeCareHistory";
 import HomeCareOutbox from "./HomeCareOutbox";
 import HomeCarePlanView from "./HomeCarePlanView";
 import HomeCareReasonForm from "./HomeCareReasonForm";
+import HomeCareSlotList from "./HomeCareSlotList";
 import HomeCareTeam from "./HomeCareTeam";
 import {
   ACCESS_REASON_REQUIRED,
@@ -357,6 +358,23 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
             prefetch={false}
           >
             {t("home_care.decision.edit_link")}
+          </Link>
+        ) : null}
+      </section>
+
+      {/* Käigumuster (K3-a): mis päevadel ja kellaaegadel siin käiakse ja kes läheb. */}
+      <section className="hc-section" aria-labelledby={`${fieldId}-slots`}>
+        <h2 className="hc-section-title" id={`${fieldId}-slots`}>
+          {t("home_care.slots.title")}
+        </h2>
+        <HomeCareSlotList slots={data.slots} today={data.today || ""} />
+        {access.isCoordinator ? (
+          <Link
+            className="hc-btn hc-btn--quiet hc-btn--link"
+            href={`/org/${organizationId}/koduteenus/kliendid/${client.id}/kaigud`}
+            prefetch={false}
+          >
+            {t("home_care.slots.edit_link")}
           </Link>
         ) : null}
       </section>

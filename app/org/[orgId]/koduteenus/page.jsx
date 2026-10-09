@@ -2,6 +2,7 @@ import { unstable_noStore as noStore } from "next/cache";
 
 import HomeCareHome from "@/components/homeCare/HomeCareHome";
 import { listClientUnitOptions, listClients } from "@/lib/homeCare/clients";
+import { getMyDay } from "@/lib/homeCare/slots";
 
 import { requireHomeCarePage } from "./_serverContext";
 
@@ -25,6 +26,8 @@ export default async function HomeCarePage({ params }) {
 
   const initial = await listClients(fullContext);
   const unitOptions = initial.isCoordinator ? await listClientUnitOptions(fullContext) : null;
+  /* Hooldaja tänane päev (K3-a): talle määratud tänased käigud. */
+  const myDay = await getMyDay(fullContext);
 
-  return <HomeCareHome context={auth.context} initial={initial} unitOptions={unitOptions} />;
+  return <HomeCareHome context={auth.context} initial={initial} unitOptions={unitOptions} myDay={myDay} />;
 }
