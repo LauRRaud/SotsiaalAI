@@ -8225,6 +8225,7 @@ model CareClient {
   importedHistories  CareImportedHistory[]
   doorTags           CareClientDoorTag[]
   statusChanges      CareClientStatusChange[]
+  carePlans          CarePlan[]
 
   @@unique([organizationId, internalCode])
   @@index([organizationId, status, displayName])
@@ -8254,9 +8255,81 @@ model CareActivity {
   createdAt             DateTime  @default(now())
   updatedAt             DateTime  @updatedAt
 
-  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  organization Organization   @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  planLines    CarePlanLine[]
 
   @@index([organizationId, archivedAt, group, position])
+}
+
+/// Hoolduskava (kiht 2, K2-b): mida kliendi juures tehakse, kui sageli ja kuidas.
+/// Versioonidena: mustand → kehtiv → asendatud. Kehtivat kava kohapeal ei muudeta.
+/// Kliendil korraga kõige rohkem üks mustand ja üks kehtiv kava → osalised
+/// unikaalindeksid migratsioonis; seisu ja ajatemplite sobivus → CHECK.
+model CarePlan {
+  id             String @id @default(cuid())
+  organizationId String
+  clientId       String
+  /// Kava järjekorranumber kliendi juures (1, 2, …).
+  number         Int
+  /// DRAFT | ACTIVE | REPLACED (`CarePlanStatus`).
+  status         String @default("DRAFT")
+
+  /// Teenuse eesmärgid kliendi jaoks, kirja pandud koos kliendiga.
+  goals    String? @db.Text
+  /// Järgmise ülevaatuse päev (AAAA-KK-PP).
+  reviewOn String?
+  note     String? @db.Text
+
+  version Int @default(1)
+
+  createdByMembershipId   String?
+  createdByName           String?
+  activatedAt             DateTime?
+  activatedByMembershipId String?
+  activatedByName         String?
+  replacedAt              DateTime?
+  createdAt               DateTime  @default(now())
+  updatedAt               DateTime  @updatedAt
+
+  client CareClient     @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  lines  CarePlanLine[]
+
+  @@unique([clientId, number])
+  @@index([organizationId, status, reviewOn])
+}
+
+/// Hoolduskava rida: toiming kataloogist, sagedus ja see, kuidas toimingut tehakse.
+/// Toimingu nimi ja rühm on koopiana real: kehtiv kava ei muutu, kui kataloogis
+/// toiming ümber nimetatakse. Üks rida toimingu kohta kavas → osaline unikaalindeks.
+model CarePlanLine {
+  id         String  @id @default(cuid())
+  planId     String
+  clientId   String
+  activityId String?
+
+  activityName  String
+  activityGroup String
+
+  /// DAILY | WEEKLY | MONTHLY | AS_NEEDED (`CarePlanFrequency`).
+  frequencyKind  String
+  /// Kordade arv päevas, nädalas või kuus; „vajadusel" korral NULL.
+  frequencyCount Int?
+  /// Täpsustus oma sõnadega („E, K, R hommikul").
+  frequencyNote  String?
+  /// GUIDE | TOGETHER | ASSIST | FOR (`CarePlanMode`).
+  mode           String
+  /// Toiming, mis peab toimuma (toit, küte talvel, ravimi meeldetuletus).
+  critical       Boolean @default(false)
+  note           String?
+  position       Int     @default(0)
+  createdAt      DateTime @default(now())
+
+  plan     CarePlan      @relation(fields: [planId], references: [id], onDelete: Cascade)
+  activity CareActivity? @relation(fields: [activityId], references: [id], onDelete: SetNull)
+
+  @@index([planId, position])
+  @@index([clientId])
+  @@index([activityId])
 }
 
 /// Kliendi seisu muutuste ajalugu (K1-j): millal teenus peatati, lõpetati või
