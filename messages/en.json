@@ -4165,7 +4165,6 @@
     "outputs_description": "Recent draft and approved text results created by the agent workflow.",
     "framework_acceptance": {
       "title": "Professional-use acceptance record",
-      "manage_title": "Professional-use framework",
       "manage_pending": "If you skipped the framework agreement or DigiDoc file during registration, open it here, download the files, and save the confirmation without registering again.",
       "manage_confirmed": "The confirmation was saved on {date}. You can reopen the framework agreement, the signed DigiDoc file, and the system-created acceptance record here whenever needed.",
       "manage_confirmed_short": "Confirmation is on file from {date}. Current version: {version}.",
@@ -4326,7 +4325,6 @@
       "ready_help_worker": "Your selected documents are ready. Continue in Document drafting to prepare a specialist-facing draft."
     },
     "client_document_library": {
-      "title": "My source files",
       "description": "This page lists every file uploaded for document drafting. Removing a file from a task does not delete it; permanent deletion happens only here.",
       "back_to_compose": "Back to document drafting",
       "empty": "You have not uploaded any source files yet."
@@ -4630,7 +4628,6 @@
     },
     "workspace": {
       "entry_title": "What would you like to do?",
-      "entry_description": "Choose an action or add a file. Everything you create collects in one list below.",
       "entry": {
         "analyze_title": "Understand a document",
         "analyze_desc": "Upload a file into the chat and let the AI explain its content, risks and next steps.",
@@ -4640,11 +4637,9 @@
         "transcribe_desc": "Turn an audio file into a transcript and review it before use.",
         "research_title": "Run deep research",
         "research_desc": "Start deep research over the knowledge base in chat, with sources and uncertainty.",
-        "add_file_title": "Add a file",
-        "add_file_desc": "Upload a new document, template or audio file here."
+        "add_file_title": "Add a file"
       },
       "research_disabled": "Deep research can't be started right now. Earlier jobs stay visible.",
-      "list_title": "Your documents",
       "filter_label": "Filter by type",
       "filters": {
         "files": "Files",
@@ -4653,16 +4648,12 @@
         "research": "Research",
         "service_log": "Service log"
       },
-      "empty_all": "Nothing here yet. Start from an action above or add a file.",
       "empty_filtered": "No items in this view.",
       "truncated": "Showing the latest items. Older ones may be hidden.",
       "load_more": "Load older items",
       "search": "Search",
-      "search_placeholder": "Search your entire workspace",
       "untitled": "Untitled",
       "compose_from": "Draft from this",
-      "hide": "Hide",
-      "rag_toggle": "Allow in work mode (goes into shared search)",
       "rag_removal_pending": "Removing the old search copy",
       "rag_removal_failed": "Removal of the old search copy is waiting for retry",
       "research_open": "Open in chat",
@@ -4753,6 +4744,57 @@
       "microphone_lost": "The microphone was lost and the recording was stopped. The parts saved so far are kept.",
       "unsupported": "This browser cannot record audio. Record with the phone's recorder and upload the file.",
       "part_title": "Meeting recording {date}, part {part}"
+    },
+    "views": {
+      "all": "All parts",
+      "position": "Part {current} of {total}: {label}",
+      "back_to_list": "Back to the list",
+      "confirm_delete": "Press again to delete",
+      "confirm_stop": "Press again to stop",
+      "chips": {
+        "shared": "In work mode",
+        "removal_pending": "Removal in progress",
+        "removal_failed": "Removal waiting"
+      },
+      "entry": {
+        "title": "Actions",
+        "short": "Actions",
+        "summary": "Understand, draft, transcribe or research",
+        "add_file_desc": "Upload a PDF, DOCX or TXT file: a document, a template or a material.",
+        "list_desc": "Open your files, drafts, analyses and research from one list."
+      },
+      "add": {
+        "title": "Add a file",
+        "short": "Add a file",
+        "summary": "PDF, DOCX or TXT, up to 25 MB",
+        "about": "About the file",
+        "choice": "File choice",
+        "remove_file": "Remove the file"
+      },
+      "list": {
+        "title": "Your documents",
+        "short": "List",
+        "empty": "Nothing here yet. Choose an action or add a file.",
+        "count": "Items in the list: {count}",
+        "search_placeholder": "Search documents"
+      },
+      "sources": {
+        "title": "My source files",
+        "short": "Source files"
+      },
+      "item": {
+        "title": "Opened document",
+        "short": "Opened document",
+        "open_text": "Open the text",
+        "share_title": "Allow in work mode",
+        "rename_label": "New title"
+      },
+      "framework": {
+        "title": "Professional-use framework",
+        "short": "Framework",
+        "summary_confirmed": "Confirmation is on file",
+        "summary_pending": "No confirmation saved yet"
+      }
     }
   },
   "research": {

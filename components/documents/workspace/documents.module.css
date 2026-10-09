@@ -1,0 +1,424 @@
+/* Dokumentide leht: sisenemine, faili lisamine, loend, avatud dokument ja raamistik.
+   Vaate kuju (küsimus, juhis, tegevusrida all servas) tuleb StepPanel-ist,
+   valikud ChoiceRow-st ja kaardid ActionCard-ist (components/stage). Siin on
+   ainult see, mis on selle lehe oma. Leht ei kasuta enam vana ühist kihti
+   (`feature-page`), seepärast ütleb iga osa oma laiuse, veerised ja värvi ise. */
+
+/* Leht on konteiner: kitsal pinnal (telefon, kitsas tööpaneel) lähevad kaks
+   veergu üksteise alla. Töölaua sees võib paneel olla lai; rida ja väli ei
+   pea siis üle terve laiuse venima. */
+.page {
+  min-width: 0;
+  width: min(100%, 46rem);
+  margin-inline: auto;
+  display: grid;
+  gap: 0.7rem;
+  color: var(--text-warm);
+  container-type: inline-size;
+}
+/* Pöörduja lähtefailid: sammulava ei ole, loend ja avatud fail vahetuvad kohapeal. */
+.flat {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+/* Faili lisamise vorm ümbritseb vaadet; vaade peab lava kõrguse ikka täitma,
+   et tegevusrida seisaks all servas. */
+.form {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.flat > :last-child,
+.form > :last-child {
+  flex: 1 1 auto;
+}
+
+.stack {
+  min-width: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+.quiet {
+  margin: 0;
+  max-width: 68ch;
+  color: var(--text-soft);
+}
+
+/* Teade: õnnestumine sulgub ise või nupust, viga jääb ette kuni järgmise tegevuseni. */
+.notices {
+  min-width: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+.notice {
+  margin: 0;
+  max-width: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.3rem 1rem;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.9rem;
+  background: var(--glass-cell-bg);
+  color: var(--text-soft);
+}
+.notice[data-tone="ok"] {
+  border-color: color-mix(in srgb, var(--status-success, #c5cf9b) 55%, transparent);
+  color: var(--text-warm);
+}
+.notice[data-tone="risk"] {
+  border-color: color-mix(in srgb, var(--status-error, #eb9a76) 60%, transparent);
+  border-inline-start-width: 3px;
+  background: color-mix(in srgb, var(--status-error, #eb9a76) 10%, transparent);
+  color: var(--text-warm);
+}
+.textButton {
+  width: auto;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  color: var(--text-warm);
+  font: inherit;
+  font-size: var(--fs-small, 0.875rem);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  cursor: pointer;
+}
+.textButton:focus-visible {
+  outline: none;
+  border-radius: 0.3rem;
+  box-shadow: var(--focus-ring);
+}
+
+/* Märk: tüüp või seis. */
+.chip {
+  flex: none;
+  padding: 0.12rem 0.6rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 999px;
+  color: var(--text-soft);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+.chip[data-tone="ok"] {
+  border-color: color-mix(in srgb, var(--status-success, #c5cf9b) 55%, transparent);
+  color: var(--status-success, #c5cf9b);
+}
+.chip[data-tone="wait"] {
+  border-color: color-mix(in srgb, #e6c27a 55%, transparent);
+  color: #e6c27a;
+}
+.chip[data-tone="risk"] {
+  border-color: color-mix(in srgb, var(--status-error, #eb9a76) 60%, transparent);
+  color: var(--status-error, #eb9a76);
+}
+:global(html.theme-light) .chip[data-tone="ok"] {
+  color: #2f6a3f;
+}
+:global(html.theme-light) .chip[data-tone="wait"] {
+  color: #7a5a12;
+}
+:global(html.theme-light) .chip[data-tone="risk"] {
+  color: #9a3d1f;
+}
+
+/* --- Faili lisamine: faili andmed üleval, faili valik selle all ------------ */
+/* Faili andmed: pealkiri ja liik kõrvuti; malli otstarve (ainult malli puhul)
+   nende all terves laiuses, et kuus lahtrit mahuksid kahte ritta. */
+.about {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 16rem) minmax(0, 1fr);
+  align-items: start;
+  /* Valikureal on oma alumine õhk: ridade vahele ei ole seda topelt vaja. */
+  gap: 0.2rem 1.5rem;
+}
+.choice,
+.choiceWide {
+  min-width: 0;
+}
+.choiceWide {
+  grid-column: 1 / -1;
+}
+/* Väli on nii lai, kui pealkiri vajab, mitte paneeli laiune. */
+.field {
+  min-width: 0;
+  max-width: 22rem;
+  display: grid;
+  gap: 0.35rem;
+}
+.fieldLabel {
+  color: var(--text-warm);
+  font-weight: 560;
+}
+/* Faili valik: kukutusala vasakul, abirida ja valitud fail selle kõrval. */
+.pick {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+  align-items: center;
+  gap: 0.6rem 1.5rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid color-mix(in srgb, var(--text-warm) 12%, transparent);
+}
+.pickInfo {
+  min-width: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+/* Kukutusala kannab ainult juhist (kujundusaudit K07: juhis ja lubatud
+   failitüüpide abitekst jooksid samas nupus kokku). */
+.dropzone {
+  composes: cell from "../../stage/cell.module.css";
+  width: 100%;
+  min-height: 4.5rem;
+  display: grid;
+  place-items: center;
+  padding: 0.7rem 1rem;
+  border-width: 1.5px;
+  border-style: dashed;
+  border-radius: 1rem;
+  color: var(--text-soft);
+  line-height: 1.4;
+  text-align: center;
+  text-wrap: balance;
+}
+.dropzone:hover,
+.dropzone[data-drag-active="true"] {
+  border-color: color-mix(in srgb, var(--text-warm) 46%, transparent);
+  color: var(--text-warm);
+}
+.dropzone[data-drag-active="true"] {
+  background: var(--glass-cell-bg-hover);
+}
+/* Lubatud failitüübid: vaikne abirida kukutusala kõrval. */
+.help {
+  margin: 0;
+  max-width: none;
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.4;
+}
+/* Valitud fail omal real: nimi, suurus ja eemaldamine. */
+.fileRow {
+  min-width: 0;
+  min-height: 2.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.8rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid color-mix(in srgb, var(--text-warm) 10%, transparent);
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+}
+.fileName {
+  min-width: 0;
+  color: var(--text-warm);
+  font-weight: 560;
+  overflow-wrap: anywhere;
+}
+
+/* --- Loend: otsing ja tüübifilter, read ------------------------------------ */
+/* Otsing vasakul, tüübifilter (kuus lahtrit kahes reas) paremal: nii jääb
+   loendi ridadele rohkem ruumi kui siis, kui need oleksid üksteise all. Filter
+   on nii lai, kui lahtrid vajavad; otsing saab ülejäänu. */
+.tools {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 0.5rem 1.4rem;
+}
+.search {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.searchInput {
+  flex: 1 1 auto;
+  width: auto;
+  min-width: 0;
+  max-width: 18rem;
+}
+.filter {
+  min-width: 0;
+}
+.rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+.rowItem {
+  margin: 0;
+  max-width: none;
+}
+/* Rida on üks vajutatav lahter: pealkiri, märgid ja aeg, tee edasi. */
+.row {
+  composes: cell from "../../stage/cell.module.css";
+  width: 100%;
+  min-height: var(--hit-target-min, 2.75rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 0.25rem 1rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 0.9rem;
+  text-align: left;
+}
+.rowTitle {
+  min-width: 0;
+  font-weight: 560;
+  color: var(--text-warm);
+  overflow-wrap: anywhere;
+}
+.rowMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 0.3rem 0.6rem;
+}
+.time,
+.rowOpen {
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+/* Vanemate laadimine: selgitus ja nupp loendi lõpus. */
+.more {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 1rem;
+}
+
+/* --- Avatud dokument ------------------------------------------------------- */
+.line {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.7rem;
+}
+.meta {
+  margin: 0;
+  max-width: none;
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+  overflow-wrap: anywhere;
+}
+/* Ümbernimetamine: väli ja kaks nuppu ühel real. */
+.rename {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.6rem;
+}
+.renameInput {
+  flex: 1 1 14rem;
+  width: auto;
+  min-width: 0;
+  max-width: 22rem;
+}
+/* Faktid: nimetus ja väärtus paarina, paarid reas üksteise järel. Viis lahtrit
+   võrgus tegid vaate kõrgeks; reana mahuvad need kahele reale. */
+.facts {
+  min-width: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 1.4rem;
+}
+.fact {
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.5;
+}
+.factLabel {
+  flex: none;
+  color: var(--text-dim);
+}
+.factValue {
+  min-width: 0;
+  margin: 0;
+  color: var(--text-warm);
+  overflow-wrap: anywhere;
+}
+/* Töörežiimi luba on märkekaart: nii lai, kui selgitus vajab. */
+.share {
+  min-width: 0;
+  max-width: 32rem;
+}
+/* Kustutamine või peatamine: nupp vasakul, teise vajutuse selgitus selle kõrval.
+   Nupp ei murdu ega liigu, kui selgitus ilmub: rida on joondatud üles, nii et
+   ka nupust kõrgem (mitmerealine) selgitus ei lükka nuppu allapoole; lühike
+   selgitus seisab nupu keskjoonel. */
+.confirm {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.3rem 0.9rem;
+}
+.confirmButton {
+  flex: none;
+  white-space: nowrap;
+}
+.confirmNote {
+  flex: 1 1 14rem;
+  align-self: center;
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.4;
+}
+/* Analüüsi tekst on pikk lugemistekst: täislaius on siin omal kohal. */
+.text {
+  margin: 0;
+  max-width: 68ch;
+  color: var(--text-warm);
+  line-height: 1.55;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* Sama piir mis ChoiceRow-l: sellest kitsamal pinnal on valikud kahes veerus
+   terve laiuse peal ja rühmade osad lähevad üksteise alla. */
+@container (max-width: 40rem) {
+  .about,
+  .pick,
+  .tools {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .field,
+  .searchInput,
+  .renameInput {
+    max-width: none;
+  }
+}
+@container (max-width: 34rem) {
+  .row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .rowMeta {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: flex-start;
+  }
+}

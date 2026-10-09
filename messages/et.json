@@ -4165,7 +4165,6 @@
     "outputs_description": "Siin näed agendi loodud mustandeid ja kinnitatud tulemusi ning saad need hiljem uuesti avada või alla laadida.",
     "framework_acceptance": {
       "title": "Tööalase kasutuse kinnituse kirje",
-      "manage_title": "Tööalase kasutuse raamistik",
       "manage_pending": "Kui sul jäi registreerimisel raamleping või DigiDoc-fail võtmata, ava raamistik siit, laadi failid alla ja salvesta kinnitus ilma uuesti registreerimata.",
       "manage_confirmed": "Kinnitus on salvestatud {date}. Vajadusel saad siit uuesti võtta nii raamlepingu, allkirjastatud DigiDoc-faili kui ka süsteemi loodud kinnituse kirje.",
       "manage_confirmed_short": "Kinnitus on olemas alates {date}. Praegune versioon: {version}.",
@@ -4326,7 +4325,6 @@
       "ready_help_worker": "Valitud dokumendid on valmis. Jätka dokumendi koostamise lehel, et koostada spetsialisti töömustand."
     },
     "client_document_library": {
-      "title": "Minu lähtefailid",
       "description": "Siin näed kõiki dokumendi koostamiseks üles laaditud faile. Faili töölt eemaldamine ei kustuta seda; jäädav kustutamine toimub ainult siin.",
       "back_to_compose": "Tagasi dokumendi koostamisse",
       "empty": "Sul ei ole veel üles laaditud lähtefaile."
@@ -4630,7 +4628,6 @@
     },
     "workspace": {
       "entry_title": "Mida soovid teha?",
-      "entry_description": "Vali tegevus või lisa fail. Kõik tulemused kogunevad allpool ühte loendisse.",
       "entry": {
         "analyze_title": "Mõista dokumenti",
         "analyze_desc": "Lae fail vestlusesse ja lase AI-l selgitada sisu, riske ja järgmisi samme.",
@@ -4640,11 +4637,9 @@
         "transcribe_desc": "Koosta helifailist transkript ja vaata see enne kasutamist üle.",
         "research_title": "Tee süvauuring",
         "research_desc": "Käivita vestluses teadmusbaasi põhjal süvauuring koos allikate ja ebakindlusega.",
-        "add_file_title": "Lisa fail",
-        "add_file_desc": "Lae siia uus dokument, mall või helifail."
+        "add_file_title": "Lisa fail"
       },
       "research_disabled": "Süvauuringut ei saa praegu käivitada. Varasemad tööd jäävad nähtavaks.",
-      "list_title": "Sinu dokumendid",
       "filter_label": "Filtreeri tüübi järgi",
       "filters": {
         "files": "Failid",
@@ -4653,16 +4648,12 @@
         "research": "Uuringud",
         "service_log": "Teenuspäevik"
       },
-      "empty_all": "Siin ei ole veel ühtegi objekti. Alusta tegevusest ülal või lisa fail.",
       "empty_filtered": "Selle vaate all ei ole ühtegi objekti.",
       "truncated": "Kuvatud on viimased objektid. Vanemad võivad olla varjatud.",
       "load_more": "Laadi vanemad objektid",
       "search": "Otsi",
-      "search_placeholder": "Otsi kogu oma tööruumist",
       "untitled": "Pealkirjata",
       "compose_from": "Koosta sellest",
-      "hide": "Peida",
-      "rag_toggle": "Luba töörežiimis (läheb jagatud otsingusse)",
       "rag_removal_pending": "Vana otsingukoopia eemaldamine on pooleli",
       "rag_removal_failed": "Vana otsingukoopia eemaldamine ootab uut katset",
       "research_open": "Ava vestluses",
@@ -4753,6 +4744,57 @@
       "microphone_lost": "Mikrofon katkes ja salvestamine lõpetati. Seni salvestatud osad on alles.",
       "unsupported": "See brauser ei toeta heli salvestamist. Salvesta telefoni diktofoniga ja laadi fail üles.",
       "part_title": "Kohtumise salvestis {date}, osa {part}"
+    },
+    "views": {
+      "all": "Kõik osad",
+      "position": "Osa {current}/{total}: {label}",
+      "back_to_list": "Tagasi loendisse",
+      "confirm_delete": "Vajuta uuesti, et kustutada",
+      "confirm_stop": "Vajuta uuesti, et peatada",
+      "chips": {
+        "shared": "Töörežiimis",
+        "removal_pending": "Eemaldamine pooleli",
+        "removal_failed": "Eemaldamine ootab"
+      },
+      "entry": {
+        "title": "Tegevused",
+        "short": "Tegevused",
+        "summary": "Mõista, koosta, transkribeeri või uuri",
+        "add_file_desc": "Laadi üles PDF-, DOCX- või TXT-fail: dokument, mall või materjal.",
+        "list_desc": "Ava oma failid, mustandid, analüüsid ja uuringud ühest loendist."
+      },
+      "add": {
+        "title": "Faili lisamine",
+        "short": "Faili lisamine",
+        "summary": "PDF, DOCX või TXT, kuni 25 MB",
+        "about": "Faili andmed",
+        "choice": "Faili valik",
+        "remove_file": "Eemalda fail"
+      },
+      "list": {
+        "title": "Sinu dokumendid",
+        "short": "Loend",
+        "empty": "Siin ei ole veel midagi. Vali tegevus või lisa fail.",
+        "count": "Kirjeid loendis: {count}",
+        "search_placeholder": "Otsi dokumentidest"
+      },
+      "sources": {
+        "title": "Minu lähtefailid",
+        "short": "Lähtefailid"
+      },
+      "item": {
+        "title": "Avatud dokument",
+        "short": "Avatud dokument",
+        "open_text": "Ava tekst",
+        "share_title": "Luba töörežiimis",
+        "rename_label": "Uus pealkiri"
+      },
+      "framework": {
+        "title": "Tööalase kasutuse raamistik",
+        "short": "Raamistik",
+        "summary_confirmed": "Kinnitus on olemas",
+        "summary_pending": "Kinnitust ei ole veel salvestatud"
+      }
     }
   },
   "research": {
