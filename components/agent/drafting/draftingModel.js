@@ -388,13 +388,34 @@ export function privacyChoices(prompt) {
   return ["edit", ...(prompt.redactedText ? ["redacted"] : []), ...(prompt.allowOriginal ? ["original"] : [])];
 }
 
-/** Isikuandmete kontrolli valikute sõnad: samad, mida kasutab vestluse sisestusriba. */
+/**
+ * Isikuandmete kontrolli sõnad. Küsimus tuleb ette enne TASULIST tööd ja selle
+ * põhinupp käivitab töö: nupp ütleb seepärast, mida ta teeb (koostab või
+ * täiendab), mitte vestluse sõna „saada". „Muudan teksti" ja „Kontrolli
+ * uuesti" on samad mis vestluses.
+ */
 export const PRIVACY_CHOICE_KEYS = Object.freeze({
   retry: "privacy_guard.retry",
   edit: "privacy_guard.edit",
   redacted: "privacy_guard.send_redacted",
   original: "privacy_guard.send_original"
 });
+export const PRIVACY_ACTIONS = Object.freeze(["compose", "refine"]);
+
+/** Valiku sõna: tasulise töö käivitavad valikud kannavad töö nime. */
+export function privacyChoiceKey(action, choice) {
+  if (PRIVACY_ACTIONS.includes(action) && (choice === "redacted" || choice === "original")) return `documents.drafting.privacy.${action}_${choice}`;
+  return PRIVACY_CHOICE_KEYS[choice] || "";
+}
+
+/** Küsimuse tekst ja kontrolli tõrke lause selle töö kohta, mille ette küsimus tuli. */
+export function privacyTextKeys(action, unavailable = false) {
+  const known = PRIVACY_ACTIONS.includes(action);
+  return {
+    title: unavailable ? "privacy_guard.unavailable_title" : "privacy_guard.title",
+    text: known ? `documents.drafting.privacy.${action}_${unavailable ? "unavailable" : "body"}` : unavailable ? "privacy_guard.unavailable" : "privacy_guard.body"
+  };
+}
 
 /** Kestus kujul 12:05 (minutid ja sekundid); tunnist pikem 1:02:05. */
 export function formatDuration(seconds) {

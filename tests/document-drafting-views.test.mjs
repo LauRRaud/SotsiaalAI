@@ -10,9 +10,9 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {
   AUDIENCE_OPTIONS, AUDIO_SOURCE_LIST_LIMIT, AUDIO_VIEWS, AUDIO_WAYS, CLIENT_AGENT_TASK_OPTIONS, CLIENT_MAX_DOCUMENTS, COMPOSE_VIEWS_CLIENT, COMPOSE_VIEWS_WORKER,
-  CONFIRM_KINDS, FREE_VIEWS, LANGUAGE_OPTIONS, LENGTH_OPTIONS, PRESS_GAP_MS, PRIVACY_CHOICE_KEYS, PRIVACY_WORKFLOW, RECENT_RESULTS_LIMIT, TONE_OPTIONS, VERSION_KINDS, VIEW_TEXT_KEYS,
+  CONFIRM_KINDS, FREE_VIEWS, LANGUAGE_OPTIONS, LENGTH_OPTIONS, PRESS_GAP_MS, PRIVACY_ACTIONS, PRIVACY_CHOICE_KEYS, PRIVACY_WORKFLOW, RECENT_RESULTS_LIMIT, TONE_OPTIONS, VERSION_KINDS, VIEW_TEXT_KEYS,
   activeViewFor, audioFileProblem, audioSourceRows, clientStatusLabel, clientTaskArtifactType, composeBlocker, confirmPress, confirmTexts, formatDuration, hasUnsavedText,
-  instructionLimit, isComposableType, isTemplateCompatible, isVersionActive, outputTypeOptions, pressAllowed, privacyChoices, recentResultRows, recordingPurposeLabel, refineBlocker,
+  instructionLimit, isComposableType, isTemplateCompatible, isVersionActive, outputTypeOptions, pressAllowed, privacyChoiceKey, privacyChoices, privacyTextKeys, recentResultRows, recordingPurposeLabel, refineBlocker,
   resultSheet, resultStateOf, serverMessage, snippet, sourceRows, statusLabel, summaryBlocker, templateOptions, textAtRisk, transcribeBlocker, transcriptEdited, typeLabel,
   versionRows, viewKeysFor, viewStates,
 } from '../components/agent/drafting/draftingModel.js';
@@ -161,6 +161,17 @@ test('võtmed, mis pannakse kokku väärtusest, on iga võimaliku väärtuse jao
       for (const option of list) assert.equal(typeof at(messages, option.labelKey), 'string', `${lang}: valik ${option.value}`);
     }
     for (const key of Object.values(PRIVACY_CHOICE_KEYS)) assert.equal(typeof at(messages, key), 'string', `${lang}: ${key}`);
+    /* Tasulise töö käivitav valik kannab töö nime, mitte vestluse sõna „saada". */
+    for (const action of PRIVACY_ACTIONS) {
+      for (const choice of ['retry', 'edit', 'redacted', 'original']) assert.equal(typeof at(messages, privacyChoiceKey(action, choice)), 'string', `${lang}: ${action} ${choice}`);
+      for (const unavailable of [false, true]) {
+        const words = privacyTextKeys(action, unavailable);
+        assert.equal(typeof at(messages, words.title), 'string', `${lang}: ${words.title}`);
+        assert.equal(typeof at(messages, words.text), 'string', `${lang}: ${words.text}`);
+      }
+      assert.notEqual(at(messages, privacyChoiceKey(action, 'redacted')), at(messages, PRIVACY_CHOICE_KEYS.redacted), `${lang}: ${action} ei kasuta vestluse sõna`);
+    }
+    assert.equal(typeof at(messages, 'documents.drafting.privacy.not_started'), 'string');
     for (const [kind, texts] of Object.entries(CONFIRM_KINDS)) {
       assert.equal(typeof at(messages, texts.note), 'string', `${lang}: teise vajutuse selgitus ${kind}`);
       if (texts.label) assert.equal(typeof at(messages, texts.label), 'string', `${lang}: teise vajutuse nupp ${kind}`);
