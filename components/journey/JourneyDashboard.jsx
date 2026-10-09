@@ -10,6 +10,8 @@ import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import Form from "@/components/ui/Form";
 import Input from "@/components/ui/Input";
+import { JOURNEY_TEXT_LIMITS } from "@/lib/journey/constants";
+import { journeyErrorText } from "@/lib/journey/errorText";
 import { localizePath } from "@/lib/localizePath";
 import { openOwnerScopedStore, purgeUnscopedRows } from "@/lib/device/ownerScopedStorage";
 import { pushWithTransition } from "@/lib/routeTransition";
@@ -202,6 +204,13 @@ function DraftReview({ draft, setDraft, onSave, onSaveAndStart, onEditDescriptio
   }, [setDraft]);
 
   const lifeDomains = useMemo(() => readDraftLifeDomains(draft), [draft]);
+  const wish = typeof draft?.context?.personWish === "string" ? draft.context.personWish : "";
+  const updateWish = useCallback((value) => {
+    setDraft((current) => ({
+      ...current,
+      context: { ...(current?.context || {}), personWish: value }
+    }));
+  }, [setDraft]);
   const suggestedActions = useMemo(() => normalizeListItems(draft.suggestedActions), [draft.suggestedActions]);
 
   return (
@@ -232,6 +241,24 @@ function DraftReview({ draft, setDraft, onSave, onSaveAndStart, onEditDescriptio
           maxLength={12000}
         />
         <small>{t("journey.labels.character_count", { current: draft.summary.length, limit: 12000 }, "{current}/{limit}")}</small>
+      </ReviewBlock>
+
+      {/* Soov on omaette väli: kokkuvõtte korrastab platvorm, soovi ei puuduta keegi
+          peale inimese enda. */}
+      <ReviewBlock title={t("journey.wish.review_title", "Mida sina soovid?")}>
+        <label htmlFor="journey-wish">
+          {t("journey.wish.label", "Kirjuta oma sõnadega, mida sa tahad, et juhtuks või muutuks.")}
+        </label>
+        <textarea
+          id="journey-wish"
+          value={wish}
+          onChange={(event) => updateWish(event.target.value)}
+          maxLength={JOURNEY_TEXT_LIMITS.personWish}
+        />
+        <small>{t("journey.labels.character_count", { current: wish.length, limit: JOURNEY_TEXT_LIMITS.personWish }, "{current}/{limit}")}</small>
+        <p>
+          {t("journey.wish.hint", "Seda teksti platvorm ei muuda ega sõnasta ümber. Teised näevad seda ainult siis, kui sa selle jagamiseks ise valid.")}
+        </p>
       </ReviewBlock>
 
       <div>
@@ -484,7 +511,7 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
     });
     const payload = await response.json().catch(() => ({}));
     if (!response.ok || !payload.ok) {
-      throw new Error(payload.message || t("journey.messages.load_failed", "Loading the journey failed."));
+      throw new Error(journeyErrorText(t, payload.message, t("journey.messages.load_failed", "Loading the journey failed.")));
     }
     const items = Array.isArray(payload.journeys) ? payload.journeys : [];
     setJourneys((current) => append ? [...current, ...items] : items);
@@ -587,7 +614,7 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload.ok) {
-        throw new Error(payload.message || t("journey.messages.draft_failed", "Teekonna ülevaate koostamine ebaõnnestus."));
+        throw new Error(journeyErrorText(t, payload.message, t("journey.messages.draft_failed", "Teekonna ülevaate koostamine ebaõnnestus.")));
       }
       const clientActionId = createJourneyActionId();
       createActionIdRef.current = clientActionId;
@@ -631,7 +658,7 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload.ok) {
-        throw new Error(payload.message || t("journey.messages.save_failed", "Saving the journey failed."));
+        throw new Error(journeyErrorText(t, payload.message, t("journey.messages.save_failed", "Saving the journey failed.")));
       }
       setSituation("");
       setDraft(DEFAULT_DRAFT);
@@ -663,7 +690,7 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload.ok) {
-        throw new Error(payload.message || t("journey.messages.archive_failed", "Archiving the journey failed."));
+        throw new Error(journeyErrorText(t, payload.message, t("journey.messages.archive_failed", "Archiving the journey failed.")));
       }
       setNotice(t("journey.messages.archived", "Journey archived."));
       await loadJourneys();

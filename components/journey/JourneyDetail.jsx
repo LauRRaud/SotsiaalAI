@@ -14,6 +14,8 @@ import Input from "@/components/ui/Input";
 import { localizePath } from "@/lib/localizePath";
 import { buildServiceMapHandoff } from "@/lib/journey/serviceMapHandoff";
 import { buildAssistiveDevicesHandoff } from "@/lib/journey/assistiveDevices";
+import { JOURNEY_TEXT_LIMITS } from "@/lib/journey/constants";
+import { journeyErrorText } from "@/lib/journey/errorText";
 import { buildHelpMediationHandoff } from "@/lib/journey/helpMediationHandoff";
 import { buildHealthContactQuestionsDraft, hasHealthContactSignal } from "@/lib/journey/healthContact";
 import { linkedPreInquiryState } from "@/lib/journey/linkedPreInquiryState";
@@ -307,6 +309,75 @@ const START_SECTION_IDS = Object.freeze({
   SERVICE_MAP: "teekond-teenusekaart",
   PRE_INQUIRY: "teekond-eelpoordumine"
 });
+
+/**
+ * Inimese soov tema enda sõnadega. Omaette väli, mitte osa kokkuvõttest:
+ * kokkuvõtte korrastab platvorm, soovi ei puuduta keegi peale inimese enda.
+ * Jagamisse läheb see ainult siis, kui inimene valib „inimese soov".
+ */
+function JourneyWish({ journey, busy, onSave, t }) {
+  const wish = typeof journey?.context?.personWish === "string" ? journey.context.personWish : "";
+  const limit = JOURNEY_TEXT_LIMITS.personWish;
+  const [editing, setEditing] = useState(false);
+  const [text, setText] = useState(wish);
+
+  const submit = async (event) => {
+    event.preventDefault();
+    if (await onSave(text)) setEditing(false);
+  };
+
+  return (
+    <section id="teekond-soov">
+      <h2>{t("journey.wish.title", "Sinu soov")}</h2>
+      {editing ? (
+        <Form onSubmit={submit}>
+          <label htmlFor="journey-detail-wish">
+            {t("journey.wish.label", "Kirjuta oma sõnadega, mida sa tahad, et juhtuks või muutuks.")}
+          </label>
+          <textarea
+            id="journey-detail-wish"
+            value={text}
+            onChange={(event) => setText(event.target.value)}
+            maxLength={limit}
+          />
+          <small>{t("journey.labels.character_count", { current: text.length, limit }, "{current}/{limit}")}</small>
+          <p>
+            {t("journey.wish.hint", "Seda teksti platvorm ei muuda ega sõnasta ümber. Teised näevad seda ainult siis, kui sa selle jagamiseks ise valid.")}
+          </p>
+          <div>
+            <Button type="submit" disabled={busy}>
+              {t("journey.wish.save", "Salvesta soov")}
+            </Button>
+            <Button type="button" variant="linkBrand" onClick={() => setEditing(false)} disabled={busy}>
+              {t("journey.actions.decline", "Loobu")}
+            </Button>
+          </div>
+        </Form>
+      ) : (
+        <>
+          {wish ? (
+            wish.split("\n").filter((line) => line.trim()).map((line, index) => <p key={`${index}-${line.slice(0, 12)}`}>{line}</p>)
+          ) : (
+            <p>{t("journey.wish.empty", "Sa ei ole oma soovi veel kirja pannud.")}</p>
+          )}
+          {journey?.status !== "ARCHIVED" ? (
+            <Button
+              type="button"
+              variant="primary"
+              disabled={busy}
+              onClick={() => {
+                setText(wish);
+                setEditing(true);
+              }}
+            >
+              {wish ? t("journey.wish.edit", "Muuda soovi") : t("journey.wish.add", "Lisa oma soov")}
+            </Button>
+          ) : null}
+        </>
+      )}
+    </section>
+  );
+}
 
 function JourneyRoadmap({ journey, t }) {
   /* Rajal on ainult read, mille seisu platvorm päriselt teab (vt `lib/journey/roadmap.js`). */
@@ -847,7 +918,7 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
       return;
     }
     if (!response.ok || !payload.ok) {
-      throw new Error(payload.message || t("journey.messages.load_failed", "Loading the journey failed."));
+      throw new Error(journeyErrorText(t, payload.message, t("journey.messages.load_failed", "Loading the journey failed.")));
     }
     setJourney(payload.journey || null);
     setForm(createFormState(payload.journey));
@@ -932,7 +1003,7 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload.ok) {
-        throw new Error(payload.message || t("journey.messages.save_failed", "Saving the journey failed."));
+        throw new Error(journeyErrorText(t, payload.message, t("journey.messages.save_failed", "Saving the journey failed.")));
       }
       setJourney(payload.journey);
       setForm(createFormState(payload.journey));
@@ -962,7 +1033,7 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload.ok) {
-        throw new Error(payload.message || t("journey.messages.archive_failed", "Archiving the journey failed."));
+        throw new Error(journeyErrorText(t, payload.message, t("journey.messages.archive_failed", "Archiving the journey failed.")));
       }
       setJourney(payload.journey);
       setForm(createFormState(payload.journey));
@@ -987,7 +1058,7 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
         body: JSON.stringify({ status: "ACTIVE", expectedUpdatedAt: journey.updatedAt })
       });
       const payload = await response.json().catch(() => ({}));
-      if (!response.ok || !payload.ok) throw new Error(payload.message || t("journey.messages.reopen_failed", "Teekonna taasavamine ebaõnnestus."));
+      if (!response.ok || !payload.ok) throw new Error(journeyErrorText(t, payload.message, t("journey.messages.reopen_failed", "Teekonna taasavamine ebaõnnestus.")));
       setJourney(payload.journey); setDeleteArmed(false);
       setNotice(t("journey.messages.reopened", "Teekond taasavati."));
     } catch (reopenError) { setError(reopenError.message); } finally { setBusy(false); }
@@ -1003,7 +1074,7 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
         body: JSON.stringify({ confirmation: "DELETE" })
       });
       const payload = await response.json().catch(() => ({}));
-      if (!response.ok || !payload.ok) throw new Error(payload.message || t("journey.messages.delete_failed", "Teekonna kustutamine ebaõnnestus."));
+      if (!response.ok || !payload.ok) throw new Error(journeyErrorText(t, payload.message, t("journey.messages.delete_failed", "Teekonna kustutamine ebaõnnestus.")));
       pushWithTransition(router, localizePath("/teekond", locale));
     } catch (deleteError) { setError(deleteError.message); setBusy(false); }
   }, [journeyId, locale, router, t]);
@@ -1021,11 +1092,45 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
     try {
       await downloadJourneyExport(journey, `teekond-${journey.id}.json`);
     } catch (exportError) {
-      setError(exportError.message || t("journey.messages.export_failed", "Eksport ebaõnnestus."));
+      setError(journeyErrorText(t, exportError.message, t("journey.messages.export_failed", "Eksport ebaõnnestus.")));
     } finally {
       setBusy(false);
     }
   }, [journey, t]);
+
+  /* Soovi salvestamine: kogu kontekst läheb kaasa nagu teenuse jätkumise kontrollil,
+     sest server asendab konteksti tervikuna. Tühi tekst eemaldab soovi. */
+  const handleSaveWish = useCallback(async (value) => {
+    if (!journey || !journeyId) return false;
+    const wish = String(value || "").trim();
+    const context = { ...(journey.context || {}) };
+    if (wish) context.personWish = wish;
+    else delete context.personWish;
+    setBusy(true);
+    setError("");
+    setNotice("");
+    try {
+      const response = await fetch(`/api/journeys/${encodeURIComponent(journeyId)}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ context, expectedUpdatedAt: journey.updatedAt })
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload.ok) {
+        throw new Error(journeyErrorText(t, payload.message, t("journey.messages.save_failed", "Saving the journey failed.")));
+      }
+      setJourney(payload.journey);
+      setForm(createFormState(payload.journey));
+      setContinuityForm(createServiceContinuityState(payload.journey));
+      setNotice(wish ? t("journey.wish.saved", "Sinu soov on salvestatud.") : t("journey.wish.removed", "Soov on eemaldatud."));
+      return true;
+    } catch (saveError) {
+      setError(saveError.message || t("journey.messages.save_failed", "Saving the journey failed."));
+      return false;
+    } finally {
+      setBusy(false);
+    }
+  }, [journey, journeyId, t]);
 
   const handleLoadMorePreInquiries = useCallback(async () => {
     const cursor = journey?.linkedPreInquiriesPage?.nextCursor;
@@ -1094,7 +1199,7 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload.ok) {
-        throw new Error(payload.message || t("journey.messages.save_failed", "Saving the journey failed."));
+        throw new Error(journeyErrorText(t, payload.message, t("journey.messages.save_failed", "Saving the journey failed.")));
       }
       setJourney(payload.journey);
       setForm(createFormState(payload.journey));
@@ -1295,6 +1400,8 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
                   {t("journey.privacy.description", "Midagi ei jagata enne sinu kinnitust. Teised näevad ainult seda infot, mille sa hiljem eraldi kinnitad ja jagad.")}
                 </p>
               </section>
+
+              <JourneyWish journey={journey} busy={busy} onSave={handleSaveWish} t={t} />
 
               <JourneyRoadmap journey={journey} t={t} />
 

@@ -22,8 +22,10 @@ import {
   createJourneyForUser,
   exportJourneyForUser,
   getJourneyDetailForUser,
-  listLinkedPreInquiriesForJourney
+  listLinkedPreInquiriesForJourney,
+  updateJourneyForUser
 } from '../lib/journey/service.js';
+import { buildPreInquiryPrefillFromJourney } from '../lib/journey/preInquiryHandoff.js';
 import { acceptPreInquiry } from '../lib/preInquiries.js';
 
 const url = new URL(process.env.JOURNEY_TEST_DATABASE_URL || process.env.HOME_CARE_TEST_DATABASE_URL || 'postgres://invalid/invalid');
@@ -166,4 +168,50 @@ test('Teekond ja eelpöördumine: seis saatja silmade läbi, raja faktid ja võ�
   const text = JSON.stringify(exported);
   assert.ok(text.includes('"state":"REPLACED"') && text.includes('"state":"RECALLED"'));
   assert.equal(text.includes(foreign.id), false);
+
+  /* INIMESE SOOV (K1-a). Salvestub muutmata konteksti kõrvale, muu kontekst jääb alles,
+     võõras seda muuta ei saa ja eelpöördumisse läheb see ainult inimese valikul. */
+  let current = await detail();
+  assert.equal(current.context?.personWish, undefined);
+  const withNote = await updateJourneyForUser(
+    person.id,
+    journey.id,
+    { context: { ...(current.context || {}), contextNote: 'Arsti kiri on olemas.' }, expectedUpdatedAt: current.updatedAt },
+    { db }
+  );
+  const wished = await updateJourneyForUser(
+    person.id,
+    journey.id,
+    { context: { ...(withNote.context || {}), personWish: 'Tahan, et ema saaks kodus edasi elada.' }, expectedUpdatedAt: withNote.updatedAt },
+    { db }
+  );
+  assert.equal(wished.context.personWish, 'Tahan, et ema saaks kodus edasi elada.');
+  assert.equal(wished.context.contextNote, 'Arsti kiri on olemas.');
+  /* Uuendamise vastus kannab seotud pöördumisi ja raja fakte endiselt kaasa. */
+  assert.equal(wished.linkedPreInquiries.length > 0, true);
+  assert.equal(wished.preInquiryFacts.total, inquiryIds.length - 1);
+  /* Liiga pikk soov on viga ja salvestatud soov jääb alles. */
+  await assert.rejects(
+    updateJourneyForUser(person.id, journey.id, { context: { ...wished.context, personWish: 'x'.repeat(1001) }, expectedUpdatedAt: wished.updatedAt }, { db }),
+    (error) => error.status === 400 && error.field === 'personWish'
+  );
+  /* Võõras ja saaja ei saa soovi muuta. */
+  for (const other of [stranger, specialist]) {
+    await assert.rejects(
+      updateJourneyForUser(other.id, journey.id, { context: { personWish: 'Võõra tekst' }, expectedUpdatedAt: wished.updatedAt }, { db }),
+      (error) => error.status === 404
+    );
+  }
+  current = await detail();
+  assert.equal(current.context.personWish, 'Tahan, et ema saaks kodus edasi elada.');
+  /* Jagamine: ainult valikuga. */
+  assert.equal(buildPreInquiryPrefillFromJourney(current, { shareKeys: ['summary'] }).situation.includes('kodus edasi elada'), false);
+  assert.ok(buildPreInquiryPrefillFromJourney(current, { shareKeys: ['wish'] }).situation.includes('Kasutaja soov: Tahan, et ema saaks kodus edasi elada.'));
+  /* Inimese väljavõttes on soov sees. */
+  assert.ok(JSON.stringify(await exportJourneyForUser(person.id, journey.id, { db })).includes('Tahan, et ema saaks kodus edasi elada.'));
+  /* Eemaldamine: kontekst ilma soovita. */
+  const { personWish: _removed, ...rest } = current.context;
+  const cleared = await updateJourneyForUser(person.id, journey.id, { context: rest, expectedUpdatedAt: current.updatedAt }, { db });
+  assert.equal(Object.hasOwn(cleared.context, 'personWish'), false);
+  assert.equal(cleared.context.contextNote, 'Arsti kiri on olemas.');
 });

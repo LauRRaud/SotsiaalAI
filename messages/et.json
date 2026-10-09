@@ -7533,6 +7533,18 @@
       "next_recommended": "järgmine soovitatud samm",
       "todo": "mitte alustatud"
     },
+    "wish": {
+      "title": "Sinu soov",
+      "review_title": "Mida sina soovid?",
+      "label": "Kirjuta oma sõnadega, mida sa tahad, et juhtuks või muutuks.",
+      "hint": "Seda teksti platvorm ei muuda ega sõnasta ümber. Teised näevad seda ainult siis, kui sa selle jagamiseks ise valid.",
+      "empty": "Sa ei ole oma soovi veel kirja pannud.",
+      "add": "Lisa oma soov",
+      "edit": "Muuda soovi",
+      "save": "Salvesta soov",
+      "saved": "Sinu soov on salvestatud.",
+      "removed": "Soov on eemaldatud."
+    },
     "activity": {
       "title": "Tehtud sammud",
       "created": "teekond loodud",
@@ -7610,6 +7622,36 @@
         "ownWords": "kasutaja enda sõnastatud vajadus",
         "continue": "Alusta abisoovi"
       }
+    }
+  },
+  "journeys": {
+    "errors": {
+      "not_found": "Teekonda ei leitud.",
+      "list_too_long": "Loendis on liiga palju ridu.",
+      "field_too_long": "Tekst on liiga pikk.",
+      "summary_required": "Kokkuvõte on kohustuslik.",
+      "title_required": "Pealkiri on kohustuslik.",
+      "situation_required": "Kirjelda oma olukorda, enne kui jätkad.",
+      "client_action_id_required": "Salvestamine ei õnnestunud. Laadi leht uuesti ja proovi veel kord.",
+      "client_action_id_invalid": "Salvestamine ei õnnestunud. Laadi leht uuesti ja proovi veel kord.",
+      "idempotency_conflict": "See salvestus on juba tehtud teise sisuga. Laadi leht uuesti.",
+      "conversation_not_found": "Vestlust, millest Teekond alustati, ei leitud.",
+      "status_invalid": "Seda seisu ei saa valida.",
+      "create_limit_reached": "Sul on juba väga palju Teekondi. Arhiveeri või kustuta mõni, enne kui uue lood.",
+      "version_required": "Leht on vananenud. Laadi see uuesti ja proovi veel kord.",
+      "conflict": "Teekonda on vahepeal mujal muudetud ja see muudatus ei läinud kirja. Laadi leht uuesti, et näha uusimat seisu.",
+      "archived": "Arhiveeritud Teekonda ei saa muuta. Ava see enne uuesti.",
+      "delete_confirmation_required": "Kustutamiseks on vaja kinnitust.",
+      "page_limit_invalid": "Loendi laadimine ei õnnestunud.",
+      "cursor_invalid": "Loendi jätkamine ei õnnestunud. Laadi leht uuesti.",
+      "load_failed": "Teekonna laadimine ei õnnestunud.",
+      "save_failed": "Teekonna salvestamine ei õnnestunud.",
+      "delete_failed": "Teekonna kustutamine ei õnnestunud.",
+      "pre_inquiry_draft_failed": "Eelpöördumise eelvaate koostamine ei õnnestunud.",
+      "rate_limited": "Liiga palju päringuid. Proovi mõne aja pärast uuesti.",
+      "draft_failed": "Teekonna ülevaate koostamine ei õnnestunud.",
+      "help_request_draft_failed": "Abisoovi eelvaate koostamine ei õnnestunud.",
+      "export_failed": "Teekonna allalaadimine ei õnnestunud."
     }
   },
   "serviceMap": {
