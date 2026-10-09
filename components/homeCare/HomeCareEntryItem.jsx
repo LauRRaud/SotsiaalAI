@@ -139,6 +139,11 @@ export default function HomeCareEntryItem({
         {entry.contactMode !== CareContactMode.VISIT ? (
           <span className="hc-badge">{t(`home_care.entry.contact.${entry.contactMode}`)}</span>
         ) : null}
+        {entry.call ? (
+          <span className="hc-badge">
+            {t(`home_care.call.callers.${entry.call.caller}`)} · {t(`home_care.call.topics.${entry.call.topic}`)}
+          </span>
+        ) : null}
         {incident ? <span className="hc-badge">{t(`home_care.incident.status.${incident.status}`)}</span> : null}
         {entry.coordinatorOnly ? <span className="hc-badge">{t("home_care.entry.coordinator_only")}</span> : null}
         {entry.writtenLater ? <span className="hc-badge">{t("home_care.entry.written_later")}</span> : null}

@@ -8,6 +8,7 @@ import DateField from "@/components/ui/DateField";
 import Dropdown from "@/components/ui/Dropdown";
 import { CARE_CLIENT_STATUSES, CARE_ENTRY_KINDS, CareClientStatus } from "@/lib/homeCare/constants";
 
+import HomeCareCallNote from "./HomeCareCallNote";
 import HomeCareCard from "./HomeCareCard";
 import HomeCareClientForm from "./HomeCareClientForm";
 import HomeCareEntryForm from "./HomeCareEntryForm";
@@ -314,6 +315,14 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
             viewerMembershipId={access.membershipId}
             clientName={client.displayName}
             timeZone={timeZone}
+            onSaved={upsertEntry}
+          />
+          {/* Kõne ei ole käik: selle märkimine ei tohi nõuda vormi täitmist. */}
+          <HomeCareCallNote
+            organizationId={organizationId}
+            clientId={client.id}
+            clientName={client.displayName}
+            viewerMembershipId={access.membershipId}
             onSaved={upsertEntry}
           />
         </section>

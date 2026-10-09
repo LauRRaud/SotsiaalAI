@@ -83,6 +83,9 @@ export default function HomeCareHome({ context, initial, unitOptions }) {
           <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/valjastused`}>
             {t("home_care.releases.link")}
           </Link>
+          <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/koned`}>
+            {t("home_care.calls.link")}
+          </Link>
           {context.writable ? (
             <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/sissetoomine`}>
               {t("home_care.import.link")}
@@ -137,6 +140,7 @@ export default function HomeCareHome({ context, initial, unitOptions }) {
             </div>
           </form>
           <p className="hc-hint">{t("home_care.home.search_hint")}</p>
+          {isCoordinator ? <p className="hc-hint">{t("home_care.home.search_phone_hint")}</p> : null}
           {search.error ? (
             <p className="hc-error" role="alert">
               {search.error}
@@ -155,7 +159,11 @@ export default function HomeCareHome({ context, initial, unitOptions }) {
                       <span className="hc-client__name">{client.displayName}</span>
                       <span className="hc-client__meta">
                         {client.status !== "ACTIVE" ? `${t(`home_care.status.${client.status}`)} · ` : ""}
-                        {client.needsReason ? t("home_care.home.needs_reason") : t("home_care.client.basis.TEAM")}
+                        {client.matchedPhone
+                          ? t("home_care.home.matched_phone")
+                          : client.needsReason
+                            ? t("home_care.home.needs_reason")
+                            : t("home_care.client.basis.TEAM")}
                       </span>
                     </Link>
                   </li>
