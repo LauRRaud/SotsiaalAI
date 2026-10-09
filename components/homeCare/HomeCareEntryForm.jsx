@@ -12,8 +12,10 @@ import {
   CARE_ENTRY_KINDS,
   CARE_INCIDENT_ACTIONS,
   CARE_INCIDENT_TYPES,
+  CARE_MEDICATION_ACTIONS,
   CARE_PLAN_MODES,
   COORDINATOR_ONLY_INCIDENT_TYPES,
+  CareActivityGroup,
   CareActivityOutcome,
   CareContactMode,
   CareEntryKind,
@@ -56,12 +58,18 @@ function restoredSkipped(value) {
   return Object.fromEntries(Object.entries(value).filter(([, reason]) => reason === "" || CARE_ACTIVITY_SKIP_REASONS.includes(reason)));
 }
 
-/** Mustandist loetud kavavälised toimingud: ainult ID ja nimi. */
+/** Mustandist loetud kavavälised toimingud: ID, nimi ja rühm (rühma järgi tuntakse ravimitoiming). */
 function restoredExtra(value) {
   if (!Array.isArray(value)) return [];
   return value
     .filter((item) => item && typeof item.activityId === "string" && typeof item.name === "string")
-    .map((item) => ({ activityId: item.activityId, name: item.name }));
+    .map((item) => ({ activityId: item.activityId, name: item.name, group: typeof item.group === "string" ? item.group : "" }));
+}
+
+/** Mustandist loetud „ravimitoiming → mida tegin": ainult tuntud märked. */
+function restoredMedication(value) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return {};
+  return Object.fromEntries(Object.entries(value).filter(([, action]) => CARE_MEDICATION_ACTIONS.includes(action)));
 }
 
 /**
@@ -165,7 +173,11 @@ export default function HomeCareEntryForm({
   const [extra, setExtra] = useState(() =>
     (entry?.visit?.activities || [])
       .filter((item) => item.activityId && !(plan?.lines || []).some((line) => line.activityId === item.activityId))
-      .map((item) => ({ activityId: item.activityId, name: item.name }))
+      .map((item) => ({ activityId: item.activityId, name: item.name, group: item.group || "" }))
+  );
+  /* Ravimitoimingu märge (K5-d): toiming → mida tegin. Ainult rühma MEDICATION tehtud toimingul. */
+  const [medication, setMedication] = useState(() =>
+    Object.fromEntries((entry?.visit?.activities || []).filter((item) => item.activityId && item.medication).map((item) => [item.activityId, item.medication]))
   );
   /* Asutuse kataloog laaditakse alles siis, kui inimene tahab lisada muu toimingu. */
   /* „Kas midagi oli teisiti?" (K5-a): "" = vastamata, NO või YES; valdkonnad ja suur muutus ainult vastusega YES. */
@@ -199,23 +211,29 @@ export default function HomeCareEntryForm({
   /* Valikus on kehtiva kava read ja selle kirje kavavälised toimingud, selles järjekorras. */
   const planChoices = (plan?.lines || [])
     .filter((line) => line.activityId)
-    .map((line) => ({ activityId: line.activityId, name: line.activityName, mode: line.mode, critical: Boolean(line.critical) }));
+    .map((line) => ({ activityId: line.activityId, name: line.activityName, mode: line.mode, critical: Boolean(line.critical), group: line.activityGroup || "" }));
   const visitChoices = [
     ...planChoices,
     ...extra
       .filter((item) => !planChoices.some((choice) => choice.activityId === item.activityId))
-      .map((item) => ({ activityId: item.activityId, name: item.name, mode: CarePlanMode.TOGETHER, critical: false }))
+      .map((item) => ({ activityId: item.activityId, name: item.name, mode: CarePlanMode.TOGETHER, critical: false, group: item.group || "" }))
   ];
+  const isMedication = (choice) => choice.group === CareActivityGroup.MEDICATION;
   /* Tehtud toimingud tegemise viisiga ja tegemata jäänud toimingud põhjusega, loendi järjekorras. */
   const doneList = isVisit
     ? visitChoices.flatMap((choice) => {
-        if (done[choice.activityId]) return [{ activityId: choice.activityId, mode: done[choice.activityId] }];
+        if (done[choice.activityId]) {
+          const action = isMedication(choice) ? medication[choice.activityId] : null;
+          return [{ activityId: choice.activityId, mode: done[choice.activityId], ...(action ? { medication: action } : {}) }];
+        }
         if (skipped[choice.activityId]) return [{ activityId: choice.activityId, outcome: skipped[choice.activityId] }];
         return [];
       })
     : [];
   /* Tegemata märgitud toiming, mille põhjus on veel valimata: sellega salvestada ei saa. */
   const reasonMissing = isVisit && planChoices.some((choice) => skipped[choice.activityId] === "");
+  /* Tehtuks märgitud ravimitoiming, mille juures ei ole öeldud, mida tehti: sellega uut kirjet salvestada ei saa. */
+  const medicationMissing = isVisit && visitChoices.some((choice) => isMedication(choice) && done[choice.activityId] && !medication[choice.activityId]);
   /* Tavaline käik märgitud toimingutega ei vaja teksti; muu liigi kirje on tekst. Valimata põhjusega
      märge loeb samuti: muidu küsiks brauser teksti ja inimene ei näeks, et puudu on põhjus. */
   /* Küsimus käigu lõpus: ainult uuel tavalisel käigu kirjel. Vastus „jah" nõuab ühte lauset. */
@@ -268,7 +286,7 @@ export default function HomeCareEntryForm({
   }, []);
 
   useEffect(() => {
-    latestRef.current = { kind, contactMode, text, occurredLocal, companion, incidentType, assessment, actions, visitMinutes, done, skipped, extra, different, diffAreas, diffMajor };
+    latestRef.current = { kind, contactMode, text, occurredLocal, companion, incidentType, assessment, actions, visitMinutes, done, skipped, extra, different, diffAreas, diffMajor, medication };
   });
 
   /* Mustandi salvestus: kohe (leht läheb peitu, vorm suletakse) või viitega (kirjutamise ajal). */
@@ -312,6 +330,7 @@ export default function HomeCareEntryForm({
         setDone(restoredDone(state.done));
         setSkipped(restoredSkipped(state.skipped));
         setExtra(restoredExtra(state.extra));
+        setMedication(restoredMedication(state.medication));
         setDifferent(state.different === "YES" || state.different === "NO" ? state.different : "");
         setDiffAreas(Array.isArray(state.diffAreas) ? CARE_CHANGE_AREAS.filter((area) => state.diffAreas.includes(area)) : []);
         setDiffMajor(state.diffMajor === true);
@@ -351,7 +370,7 @@ export default function HomeCareEntryForm({
     if (!device || !touchedRef.current) return undefined;
     const timer = setTimeout(saveDraftNow, DRAFT_SAVE_DELAY_MS);
     return () => clearTimeout(timer);
-  }, [device, saveDraftNow, kind, contactMode, text, occurredLocal, companion, incidentType, assessment, actions, visitMinutes, done, skipped, extra, different, diffAreas, diffMajor]);
+  }, [device, saveDraftNow, kind, contactMode, text, occurredLocal, companion, incidentType, assessment, actions, visitMinutes, done, skipped, extra, different, diffAreas, diffMajor, medication]);
 
   const toggleAction = (code) => {
     touch();
@@ -407,7 +426,7 @@ export default function HomeCareEntryForm({
     const activity = (catalogue || []).find((item) => item.id === activityId);
     if (!activity) return;
     touch();
-    setExtra((current) => [...current, { activityId: activity.id, name: activity.name }]);
+    setExtra((current) => [...current, { activityId: activity.id, name: activity.name, group: activity.group || "" }]);
     setDone((current) => ({ ...current, [activity.id]: CarePlanMode.TOGETHER }));
   };
 
@@ -429,6 +448,7 @@ export default function HomeCareEntryForm({
     setDone({});
     setSkipped({});
     setExtra([]);
+    setMedication({});
     setDifferent("");
     setDiffAreas([]);
     setDiffMajor(false);
@@ -537,6 +557,10 @@ export default function HomeCareEntryForm({
     if (sendingRef.current) return;
     if (reasonMissing) {
       setError(t("home_care.visit.reason_missing"));
+      return;
+    }
+    if (medicationMissing) {
+      setError(t("home_care.medication.missing"));
       return;
     }
     if (changed && !diffAreas.length) {
@@ -668,6 +692,32 @@ export default function HomeCareEntryForm({
                 <p className="hc-hint" role="status">
                   {t("home_care.visit.reason_pick")}
                 </p>
+              ) : null}
+              {/* Ravimitoiming (K5-d): mida tegid. Need on eri toimingud, seepärast vaikimisi valikut ei ole. */}
+              {done[choice.activityId] && isMedication(choice) ? (
+                <>
+                  <div className="hc-chips" role="group" aria-label={t("home_care.medication.action_label", { name: choice.name })}>
+                    {CARE_MEDICATION_ACTIONS.map((value) => (
+                      <button
+                        key={value}
+                        type="button"
+                        className="hc-chip"
+                        aria-pressed={medication[choice.activityId] === value}
+                        onClick={() => {
+                          touch();
+                          setMedication((current) => ({ ...current, [choice.activityId]: value }));
+                        }}
+                      >
+                        {t(`home_care.medication.actions.${value}`)}
+                      </button>
+                    ))}
+                  </div>
+                  {!medication[choice.activityId] ? (
+                    <p className="hc-hint" role="status">
+                      {t("home_care.medication.pick")}
+                    </p>
+                  ) : null}
+                </>
               ) : null}
               {done[choice.activityId] ? (
                 <div className="hc-chips" role="group" aria-label={t("home_care.visit.mode_label", { name: choice.name })}>

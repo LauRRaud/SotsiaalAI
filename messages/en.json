@@ -12862,7 +12862,9 @@
       "referrals_invalid": "The list is not understood.",
       "referrals_too_many": "The list can hold up to {limit} rows.",
       "referral_name_required": "A row has a phone or an explanation but no name.",
-      "referral_phone_invalid": "A phone number may hold digits, spaces, a plus, brackets and a hyphen."
+      "referral_phone_invalid": "A phone number may hold digits, spaces, a plus, brackets and a hyphen.",
+      "medication_action_invalid": "Unknown medication mark.",
+      "medication_action_not_allowed": "A medication mark can be put only on a medication activity."
     },
     "incidents": {
       "title": "Incident register",
@@ -13939,6 +13941,24 @@
       "add_row": "Add a row",
       "save": "Save",
       "cancel": "Cancel"
+    },
+    "medication": {
+      "action_label": "{name}: what you did",
+      "pick": "Choose what you did: reminding, seeing it taken and giving are different actions.",
+      "missing": "Choose at the medication activity what you did.",
+      "actions": {
+        "REMINDED": "reminded",
+        "SAW_TAKEN": "saw it taken",
+        "GAVE": "gave"
+      },
+      "states": {
+        "DUE": "medication planned",
+        "MARKED": "medication marked",
+        "NOT_DONE": "medication not done",
+        "UNMARKED": "medication not marked",
+        "MISSED": "medication visit not done"
+      },
+      "open_count": "The medication mark is missing on {count} visits. Ask the care worker."
     }
   },
   "stage": {

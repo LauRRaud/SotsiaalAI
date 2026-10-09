@@ -8369,6 +8369,9 @@ model CareEntryActivity {
   /// DONE | REFUSED | NOT_NEEDED | COULD_NOT (`CareActivityOutcome`, K2-f).
   /// Tegemata saab jääda ainult kava toiming (CHECK migratsioonis).
   outcome        String  @default("DONE")
+  /// RAVIMITOIMING (K5-d): mida hooldaja tegi: REMINDED | SAW_TAKEN | GAVE. Ainult rühma
+  /// MEDICATION tehtud toimingul (CHECK migratsioonis). Annuseid ega ravimeid ei hoita.
+  medicationAction String?
   outsidePlan    Boolean @default(false)
   position       Int     @default(0)
   createdAt      DateTime @default(now())

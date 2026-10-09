@@ -183,6 +183,7 @@ export default function HomeCareEntryItem({
                   ) : (
                     t(`home_care.visit.modes.${activity.mode}`)
                   )}
+                  {activity.medication ? ` · ${t(`home_care.medication.actions.${activity.medication}`)}` : ""}
                   {activity.outsidePlan ? (
                     <>
                       {" "}
