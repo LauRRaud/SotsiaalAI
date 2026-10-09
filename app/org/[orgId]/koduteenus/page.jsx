@@ -26,7 +26,7 @@ export default async function HomeCarePage({ params }) {
 
   const initial = await listClients(fullContext);
   const unitOptions = initial.isCoordinator ? await listClientUnitOptions(fullContext) : null;
-  /* Hooldaja tänane päev (K3-a): talle määratud tänased käigud. */
+  /* Hooldaja päevad (K3-a, K3-d): talle määratud tänased ja järgmise nädala käigud. */
   const myDay = await getMyDay(fullContext);
 
   return <HomeCareHome context={auth.context} initial={initial} unitOptions={unitOptions} myDay={myDay} />;

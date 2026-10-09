@@ -10,7 +10,57 @@ import OrgHeader from "@/components/org/OrgHeader";
 import HomeCareClientForm from "./HomeCareClientForm";
 import { minutesLabel } from "./HomeCareDecisionView";
 import HomeCareOutbox from "./HomeCareOutbox";
+import { planDayLabel } from "./HomeCarePlanView";
 import { clientHref, homeCareBase, useHomeCareApi } from "./homeCareClient";
+
+/** Üks käik hooldaja päevas: kellaaeg, klient ja selle päeva erandid (K3-b). */
+function MyVisit({ organizationId, visit }) {
+  const { t } = useI18n();
+  return (
+    <li>
+      <Link className="hc-client" href={clientHref(organizationId, visit.client.id)} prefetch={false}>
+        <span className="hc-client__name">
+          {visit.startTime} {visit.client.displayName}
+          {visit.done ? (
+            <>
+              {" "}
+              <span className="hc-badge">{t("home_care.slots.done_badge")}</span>
+            </>
+          ) : null}
+          {visit.state === "CANCELLED" ? (
+            <>
+              {" "}
+              <span className="hc-badge hc-badge--warn">{t("home_care.day.states.CANCELLED")}</span>
+            </>
+          ) : null}
+          {visit.covering ? (
+            <>
+              {" "}
+              <span className="hc-badge">{t("home_care.day.covering")}</span>
+            </>
+          ) : null}
+          {visit.change?.timeChanged ? (
+            <>
+              {" "}
+              <span className="hc-badge">{t("home_care.day.changed_time")}</span>
+            </>
+          ) : null}
+        </span>
+        <span className="hc-client__meta">
+          {[
+            minutesLabel(t, visit.plannedMinutes),
+            visit.client.address,
+            visit.note,
+            visit.state === "CANCELLED" && visit.change?.reason ? t(`home_care.day.cancel_reasons.${visit.change.reason}`) : null,
+            visit.change?.note
+          ]
+            .filter(Boolean)
+            .join(" · ")}
+        </span>
+      </Link>
+    </li>
+  );
+}
 
 /**
  * Koduteenuse avaleht: minu kliendid (hooldaja) või kõik kliendid (hooldusjuht).
@@ -80,51 +130,31 @@ export default function HomeCareHome({ context, initial, unitOptions, myDay = nu
           <h3 className="hc-section-title">{t("home_care.slots.today_title")}</h3>
           <ul className="hc-list">
             {myDay.visits.map((visit) => (
-              <li key={visit.slotId}>
-                <Link className="hc-client" href={clientHref(organizationId, visit.client.id)} prefetch={false}>
-                  <span className="hc-client__name">
-                    {visit.startTime} {visit.client.displayName}
-                    {visit.done ? (
-                      <>
-                        {" "}
-                        <span className="hc-badge">{t("home_care.slots.done_badge")}</span>
-                      </>
-                    ) : null}
-                    {/* Päeva erandid (K3-b): ära jäetud käik, asendus ja muudetud kellaaeg. */}
-                    {visit.state === "CANCELLED" ? (
-                      <>
-                        {" "}
-                        <span className="hc-badge hc-badge--warn">{t("home_care.day.states.CANCELLED")}</span>
-                      </>
-                    ) : null}
-                    {visit.covering ? (
-                      <>
-                        {" "}
-                        <span className="hc-badge">{t("home_care.day.covering")}</span>
-                      </>
-                    ) : null}
-                    {visit.change?.timeChanged ? (
-                      <>
-                        {" "}
-                        <span className="hc-badge">{t("home_care.day.changed_time")}</span>
-                      </>
-                    ) : null}
-                  </span>
-                  <span className="hc-client__meta">
-                    {[
-                      minutesLabel(t, visit.plannedMinutes),
-                      visit.client.address,
-                      visit.note,
-                      visit.state === "CANCELLED" && visit.change?.reason ? t(`home_care.day.cancel_reasons.${visit.change.reason}`) : null,
-                      visit.change?.note
-                    ]
-                      .filter(Boolean)
-                      .join(" · ")}
-                  </span>
-                </Link>
-              </li>
+              <MyVisit key={visit.slotId} organizationId={organizationId} visit={visit} />
             ))}
           </ul>
+        </div>
+      ) : null}
+
+      {/* Järgmised päevad (K3-d): siit näeb, mis teate „sinu käigud muutusid" taga on. */}
+      {myDay?.next?.length ? (
+        <div className="hc-section">
+          <h3 className="hc-section-title">{t("home_care.slots.next_title")}</h3>
+          {myDay.next.map((item) => (
+            <div key={item.day}>
+              <p className="hc-sub">
+                {t(`home_care.slots.weekdays_long.${item.weekday}`)} {planDayLabel(item.day)}
+                {item.absent ? ` · ${t("home_care.slots.next_absent")}` : ""}
+              </p>
+              {item.visits.length ? (
+                <ul className="hc-list">
+                  {item.visits.map((visit) => (
+                    <MyVisit key={visit.slotId} organizationId={organizationId} visit={visit} />
+                  ))}
+                </ul>
+              ) : null}
+            </div>
+          ))}
         </div>
       ) : null}
 

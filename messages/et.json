@@ -6256,7 +6256,8 @@
       "casework_retention_warning": "Arhiveeritud juhtum kustub 30 päeva pärast",
       "home_care_incident_reported": "Koduteenuses on uus erijuhtum või täiendus",
       "home_care_concern_raised": "Koduteenuses on uus mure hooldusjuhile",
-      "home_care_incident_assigned": "Sulle määrati koduteenuse erijuhtum"
+      "home_care_incident_assigned": "Sulle määrati koduteenuse erijuhtum",
+      "home_care_visits_changed": "Sinu koduteenuse käigud muutusid"
     },
     "center": {
       "title": "Teavitused",
@@ -12591,7 +12592,9 @@
       "saved": "Käigud on salvestatud.",
       "ended": "Käik on lõpetatud. Möödunud päevade plaan jäi alles.",
       "today_title": "Täna",
-      "done_badge": "tehtud"
+      "done_badge": "tehtud",
+      "next_title": "Järgmised päevad",
+      "next_absent": "puudumine märgitud"
     },
     "day": {
       "link": "Päevaplaan",

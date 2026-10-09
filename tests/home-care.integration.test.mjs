@@ -3397,7 +3397,14 @@ test('puudumised ja käigu tähtsus: märkimine, õigused ning päevaplaani katm
   await expectError(moveVisit(lead, peeter.id, peeterMorning.id, { day: today, workerMembershipId: f.members.anu.id }, deps()), 400, 'home_care.errors.visit_worker_absent');
 
   /* Puuduja enda päevas käike ei ole; kolleegi päev on tavaline. */
-  assert.deepEqual(await getMyDay(anu, deps()), { today, weekday: 5, absent: true, visits: [] });
+  const dayOfAnu = await getMyDay(anu, deps());
+  assert.deepEqual([dayOfAnu.today, dayOfAnu.weekday, dayOfAnu.absent, dayOfAnu.visits], [today, 5, true, []]);
+  /* Puudumise päevad on ka järgmiste päevade seas, käikudeta. */
+  assert.deepEqual(dayOfAnu.next.map((item) => [item.day, item.absent, item.visits.map((visit) => visit.startTime)]), [
+    ['2026-10-10', true, []],
+    ['2026-10-11', true, []],
+    ['2026-10-16', false, ['09:00', '12:00', '17:00']]
+  ]);
   const dayOfBert = await getMyDay(bert, deps());
   assert.deepEqual([dayOfBert.absent, dayOfBert.visits.map((visit) => visit.startTime)], [false, ['10:00']]);
 
@@ -3454,4 +3461,126 @@ test('puudumised ja käigu tähtsus: märkimine, õigused ning päevaplaani katm
   const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_absence_changed', meta: { path: ['organizationId'], equals: f.orgA.id } } });
   assert.deepEqual(audit.map((entry) => entry.meta.change).sort(), ['created', 'created', 'created', 'removed', 'updated']);
   for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['absenceId', 'change', 'organizationId']);
+});
+
+test('teade töötajale käikude muutumisest ja hooldaja järgmised päevad', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, deps())).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi' }, deps())).client;
+  await addTeamMember(lead, linda.id, { membershipId: f.members.anu.id }, deps());
+  await addTeamMember(lead, linda.id, { membershipId: f.members.bert.id }, deps());
+  await addTeamMember(lead, peeter.id, { membershipId: f.members.bert.id }, deps());
+  await addTeamMember(lead, peeter.id, { membershipId: f.members.lead.id }, deps());
+  const today = '2026-10-09';
+  const early = at('2026-10-01T08:00:00Z');
+  const TYPE = 'HOME_CARE_VISITS_CHANGED';
+  const eventsFor = (user) => db.notificationEvent.findMany({ where: { userId: user.id, type: TYPE }, orderBy: [{ createdAt: 'asc' }, { id: 'asc' }] });
+  const counts = () => Promise.all([f.users.anu, f.users.bert, f.users.lead].map(async (user) => (await eventsFor(user)).length));
+  /* Töötaja luges teate läbi: järgmine muutus toob uue. */
+  const readAll = () => db.notificationEvent.updateMany({ where: { type: TYPE, workspaceId: f.orgA.id, readAt: null }, data: { readAt: NOW } });
+  let tick = 0;
+  const live = () => depsWithNotify(at(`2026-10-09T08:${String(++tick).padStart(2, '0')}:00Z`));
+
+  /* MUSTER: Anule määratud käik kahel nädalapäeval toob talle ühe teate; teised ei saa midagi. */
+  const made = await createSlots(lead, linda.id, { weekdays: [5, 1], startTime: '09:00', plannedMinutes: 30, workerMembershipId: f.members.anu.id }, depsWithNotify(early));
+  assert.deepEqual(await counts(), [1, 0, 0]);
+  const [first] = await eventsFor(f.users.anu);
+  assert.deepEqual(
+    [first.sourceType, first.sourceId, first.targetKind, first.targetId, first.workspaceId],
+    ['ORGANIZATION_MEMBERSHIP', f.members.anu.id, 'CARE_WORKER_DAYS', f.members.anu.id, f.orgA.id]
+  );
+  /* Teavituse reas ei ole klienti, käiku, päeva ega kellaaega; link ei kanna asutuse ega kliendi ID-d. */
+  const stored = JSON.stringify(first);
+  for (const secret of ['Linda', linda.id, ...made.slots.map((slot) => slot.id), '09:00']) assert.equal(stored.includes(secret), false, secret);
+  const shown = serializeNotificationEvent(first);
+  assert.deepEqual([shown.href, shown.labelKey], [`/org/koduteenus/paevad/${f.members.anu.id}`, 'notifications.events.home_care_visits_changed']);
+  /* Adressaat on ainult selle kehtiva liikmesuse omanik. */
+  const probe = { type: TYPE, userId: f.users.anu.id, sourceId: f.members.anu.id, targetId: f.members.anu.id };
+  await assertNotificationRecipient(db, probe);
+  await assert.rejects(assertNotificationRecipient(db, { ...probe, userId: f.users.bert.id }), (error) => error.status === 404);
+  await assert.rejects(assertNotificationRecipient(db, { ...probe, targetId: f.members.bert.id }), (error) => error.status === 404);
+
+  /* ÜKS LUGEMATA TEADE KORRAGA: teine muutus, kui eelmine teade on lugemata, uut ei lisa. */
+  await createSlots(lead, linda.id, { weekdays: [3], startTime: '11:00', plannedMinutes: 30, workerMembershipId: f.members.anu.id }, depsWithNotify(early));
+  assert.deepEqual(await counts(), [1, 0, 0]);
+  await readAll();
+  /* Määramata käik ei puuduta kedagi; muutja ise teadet ei saa, kuigi käik on tema oma. */
+  const open = await createSlots(lead, peeter.id, { weekdays: [5], startTime: '14:00', plannedMinutes: 45 }, depsWithNotify(early));
+  await createSlots(lead, peeter.id, { weekdays: [2], startTime: '08:00', plannedMinutes: 30, workerMembershipId: f.members.lead.id }, depsWithNotify(early));
+  assert.deepEqual(await counts(), [1, 0, 0]);
+
+  /* MUSTRI MUUTUS: reedene käik läheb Anult Berdile: mõlemad saavad teate. */
+  const friday = made.slots.find((slot) => slot.weekday === 5);
+  const changed = await changeSlot(lead, linda.id, friday.id, { version: 1, startTime: '09:00', plannedMinutes: 30, workerMembershipId: f.members.bert.id }, live());
+  assert.deepEqual(await counts(), [2, 1, 0]);
+  const newFriday = changed.slots.find((slot) => slot.weekday === 5 && slot.startTime === '09:00');
+  assert.equal(newFriday.validFrom, today);
+  await readAll();
+
+  /* PÄEV: tänane käik tõstetakse Berdilt Anule: mõlemad saavad teate. */
+  await moveVisit(lead, linda.id, newFriday.id, { day: today, workerMembershipId: f.members.anu.id, startTime: '09:00' }, live());
+  assert.deepEqual(await counts(), [3, 2, 0]);
+  /* Sama käik jääb ära, kui teated on lugemata: uusi ei tule. */
+  await cancelVisit(lead, linda.id, newFriday.id, { day: today, reason: 'CLIENT_AWAY' }, live());
+  assert.deepEqual(await counts(), [3, 2, 0]);
+  /* Tagasivõtmine pärast lugemist: käik on jälle mustri järgi Berdi oma, Anu päev ei muutunud. */
+  await readAll();
+  await restoreVisit(lead, linda.id, newFriday.id, { day: today }, live());
+  assert.deepEqual(await counts(), [3, 3, 0]);
+  await readAll();
+  /* Ärajätmine teatab selle päeva tegijale; määramata käigu ärajätmine ei teata kellelegi. */
+  await cancelVisit(lead, linda.id, newFriday.id, { day: today, reason: 'CLIENT_CANCELLED' }, live());
+  await cancelVisit(lead, peeter.id, open.slots.find((slot) => slot.startTime === '14:00').id, { day: today, reason: 'OTHER' }, live());
+  assert.deepEqual(await counts(), [3, 4, 0]);
+  await readAll();
+  /* Möödunud päeva käigule põhjuse panemine ei muuda kellegi eesolevat päeva: teadet ei tule. */
+  await cancelVisit(lead, linda.id, friday.id, { day: '2026-10-02', reason: 'CLIENT_AWAY' }, live());
+  assert.deepEqual(await counts(), [3, 4, 0]);
+
+  /* HOOLDAJA JÄRGMISED PÄEVAD: homsest nädal ette, ainult päevad, kus on käike või puudumine. */
+  const nextOf = async (who) =>
+    (await getMyDay(who, deps())).next.map((item) => [item.day, item.weekday, item.absent, item.visits.map((visit) => [visit.startTime, visit.client.displayName, visit.state, visit.covering])]);
+  assert.deepEqual(await nextOf(anu), [
+    ['2026-10-12', 1, false, [['09:00', 'Linda Tamm', 'PLANNED', false]]],
+    ['2026-10-14', 3, false, [['11:00', 'Linda Tamm', 'PLANNED', false]]]
+  ]);
+  /* Berdi järgmine reede; tänane ära jäetud käik on tema tänases päevas märgiga. */
+  assert.deepEqual(await nextOf(bert), [['2026-10-16', 5, false, [['09:00', 'Linda Tamm', 'PLANNED', false]]]]);
+  assert.deepEqual((await getMyDay(bert, deps())).visits.map((visit) => [visit.startTime, visit.state]), [['09:00', 'CANCELLED']]);
+  /* Esmaspäevane käik tõstetakse Berdile kella 10 peale ja kolmapäevane jääb ära; Anul on teisipäevast puudumine. */
+  const monday = made.slots.find((slot) => slot.weekday === 1);
+  const wednesday = (await getClientSlots(lead, linda.id, deps())).slots.find((slot) => slot.weekday === 3);
+  await moveVisit(lead, linda.id, monday.id, { day: '2026-10-12', workerMembershipId: f.members.bert.id, startTime: '10:00' }, live());
+  await cancelVisit(lead, linda.id, wednesday.id, { day: '2026-10-14', reason: 'CLIENT_AWAY' }, live());
+  assert.deepEqual(await counts(), [4, 5, 0]);
+  await createAbsence(lead, { membershipId: f.members.anu.id, fromDay: '2026-10-13', toDay: '2026-10-14', kind: 'PLANNED' }, deps());
+  assert.deepEqual(await nextOf(anu), [
+    ['2026-10-13', 2, true, []],
+    ['2026-10-14', 3, true, []]
+  ]);
+  assert.deepEqual(await nextOf(bert), [
+    ['2026-10-12', 1, false, [['10:00', 'Linda Tamm', 'PLANNED', false]]],
+    ['2026-10-16', 5, false, [['09:00', 'Linda Tamm', 'PLANNED', false]]]
+  ]);
+
+  /* MUSTRI LÕPETAMINE: täna alanud rida kustub; töötaja saab teate ka siis ja link ei jää rippuma. */
+  await readAll();
+  await endSlot(lead, linda.id, newFriday.id, { version: newFriday.version }, live());
+  assert.equal(await db.careVisitSlot.count({ where: { id: newFriday.id } }), 0);
+  assert.deepEqual(await counts(), [4, 6, 0]);
+  const last = (await eventsFor(f.users.bert)).at(-1);
+  await assertNotificationRecipient(db, { type: TYPE, userId: f.users.bert.id, sourceId: last.sourceId, targetId: last.targetId });
+  assert.deepEqual(await nextOf(bert), [['2026-10-12', 1, false, [['10:00', 'Linda Tamm', 'PLANNED', false]]]]);
+  /* Peatatud liikmesusega töötajale teadet ei tehta ja vana teade ei ole enam tema oma. */
+  await readAll();
+  await db.organizationMembership.update({ where: { id: f.members.bert.id }, data: { status: 'SUSPENDED' } });
+  await moveVisit(lead, linda.id, monday.id, { day: '2026-10-12', workerMembershipId: f.members.anu.id, startTime: '09:00' }, live());
+  assert.deepEqual(await counts(), [5, 6, 0]);
+  await assert.rejects(
+    assertNotificationRecipient(db, { type: TYPE, userId: f.users.bert.id, sourceId: last.sourceId, targetId: last.targetId }),
+    (error) => error.status === 404
+  );
 });

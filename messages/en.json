@@ -6256,7 +6256,8 @@
       "casework_retention_warning": "An archived case will be deleted in 30 days",
       "home_care_incident_reported": "There is a new incident or follow-up in home care",
       "home_care_concern_raised": "There is a new concern for the care coordinator in home care",
-      "home_care_incident_assigned": "A home care incident was assigned to you"
+      "home_care_incident_assigned": "A home care incident was assigned to you",
+      "home_care_visits_changed": "Your home care visits changed"
     },
     "center": {
       "title": "Notifications",
@@ -12591,7 +12592,9 @@
       "saved": "The visits are saved.",
       "ended": "The visit is ended. The plan of past days was kept.",
       "today_title": "Today",
-      "done_badge": "done"
+      "done_badge": "done",
+      "next_title": "Next days",
+      "next_absent": "absence marked"
     },
     "day": {
       "link": "Day plan",
