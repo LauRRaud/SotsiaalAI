@@ -12394,7 +12394,9 @@
       "supply_already_tracked": "Seda varu selle kliendi juures juba jälgitakse.",
       "supply_not_found": "Seda varu ei leitud.",
       "supply_ended": "Selle varu jälgimine on lõpetatud.",
-      "supply_state_required": "Vali varu seis."
+      "supply_state_required": "Vali varu seis.",
+      "door_steps_invalid": "Sammud peavad olema loendina.",
+      "door_steps_too_many": "Samme võib olla kuni {limit}."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -13305,6 +13307,29 @@
       "cancel": "Loobu",
       "untrack": "Lõpeta jälgimine",
       "open_line": "{kind}: {state} · täiendab {name} · märgitud {when}"
+    },
+    "no_answer": {
+      "title": "Kui uks ei avane",
+      "none": "Samme ei ole kokku lepitud. Pane kirja, mida kliendiga kokku leppisite: mida teha ja mis järjekorras, kui uks ei avane.",
+      "add": "Lisa sammud",
+      "edit": "Muuda samme",
+      "steps_label": "Sammud, iga samm eraldi real",
+      "steps_hint": "Kirjuta kliendi enda sõnadega ja selles järjekorras, nagu kokku leppisite, kuni {limit} sammu. Kirja võib panna ka selle, mida ei tehta.",
+      "save": "Salvesta",
+      "cancel": "Loobu",
+      "start": "Ei saa sisse",
+      "emergency": "Kui inimene on hädas või kardad halvimat, helista 112 ja tee, mida häirekeskus ütleb.",
+      "call_112": "Helista 112",
+      "run_hint": "Puuduta samme, mille tegid. Igale puudutusele jääb kellaaeg; kirjutama ei pea midagi.",
+      "done_at": "tehtud kell {time}",
+      "note_label": "Mis edasi sai (valikuline)",
+      "record": "Salvesta erijuhtumina",
+      "recorded": "Erijuhtum on kirjas ja hooldusjuht saab teate.",
+      "text_head": "Ei saanud sisse.",
+      "text_step": "kell {time}: {step}",
+      "text_skipped": "Tegemata sammud: {steps}",
+      "text_none_done": "Ühtegi kokkulepitud sammu ei ole märgitud.",
+      "text_no_steps": "Kokkulepitud samme ei ole."
     }
   },
   "stage": {

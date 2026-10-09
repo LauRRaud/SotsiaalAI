@@ -8238,6 +8238,7 @@ model CareClient {
   keys               CareKey[]
   moneyEntries       CareMoneyEntry[]
   supplies           CareClientSupply[]
+  doorSteps          CareDoorStep[]
 
   @@unique([organizationId, internalCode])
   @@index([organizationId, status, displayName])
@@ -8494,6 +8495,29 @@ model CareVisitChange {
   @@index([organizationId, day])
   @@index([clientId, day])
   @@index([workerMembershipId, day])
+}
+
+/// Kliendiga kokku lepitud samm „kui uks ei avane" (K4-f, kava II.6.5). Samme ei muudeta
+/// ega kustutata: uus loend lõpetab eelmise read (`endedAt`). Kehtivas loendis on igal
+/// kohal üks samm (osaline unikaalindeks migratsioonis).
+model CareDoorStep {
+  id             String @id @default(cuid())
+  organizationId String
+  clientId       String
+  /// Järjekord 1 kuni 8.
+  position       Int
+  text           String
+
+  createdByMembershipId String?
+  createdByName         String?
+  createdAt             DateTime  @default(now())
+  endedAt               DateTime?
+  endedByMembershipId   String?
+
+  client CareClient @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@index([clientId, endedAt, position])
+  @@index([organizationId])
 }
 
 /// Jälgitav varu kliendi kodus (K4-e, kava II.6.11): mis varu, kes täiendab ja viimane
