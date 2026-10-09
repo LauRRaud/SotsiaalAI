@@ -92,6 +92,7 @@ import { clearCrisisProfile, getCrisisList, setCrisisProfile } from '../lib/home
 import { getReferralContacts, saveReferralContacts } from '../lib/homeCare/referralContacts.js';
 import { addWorkerRecord, endWorkerRecord, getWorkerCards } from '../lib/homeCare/workerRecords.js';
 import { getFridgeSheet } from '../lib/homeCare/fridgeSheet.js';
+import { getMonthOpenItems } from '../lib/homeCare/monthClose.js';
 import { composeNoAnswerText } from '../lib/homeCare/noAnswerText.js';
 import { assertNotificationRecipient, serializeNotificationEvent } from '../lib/notifications.js';
 
@@ -5209,4 +5210,54 @@ test('„peaaegu juhtus": erijuhtumi kirje registris ja teade hooldusjuhile', as
   /* Meeskond näeb kirjet päevikus (see ei ole ainult hooldusjuhile). */
   const page = await openClient(anu, linda.id, deps());
   assert.equal(page.entries.items.find((item) => item.id === made.entry.id).incident.type, 'NEAR_MISS');
+});
+
+test('kuu lahtised asjad: tegemata käigud ainult teenusel oldud päevadel, lahtised erijuhtumid, märkamised ja märkimata ravim', async (t) => {
+  const f = await fixture(t);
+  const north = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Põhi ${f.tag}`, type: 'TEAM' } });
+  await db.organizationCapabilityGrant.create({
+    data: { membershipId: f.members.cover.id, capability: 'HOME_CARE_COORDINATOR', scopeType: 'UNIT', scopeUnitId: north.id, validFrom: at('2026-01-01T00:00:00Z') }
+  });
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const unitLead = await f.ctx(f.users.cover, f.orgA);
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, deps(at('2026-09-01T08:00:00Z')))).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi', unitId: north.id }, deps(at('2026-09-01T08:00:00Z')))).client;
+  for (const client of [linda, peeter]) await addTeamMember(lead, client.id, { membershipId: f.members.anu.id }, deps());
+  const early = deps(at('2026-09-01T08:00:00Z'));
+  /* Linda: esmaspäeviti ja neljapäeviti kell 9; Peeter: kolmapäeviti kell 10. Muster algab 28.09. */
+  await createSlots(lead, linda.id, { weekdays: [1, 4], startTime: '09:00', plannedMinutes: 30, workerMembershipId: f.members.anu.id, validFrom: '2026-09-28' }, early);
+  await createSlots(lead, peeter.id, { weekdays: [3], startTime: '10:00', plannedMinutes: 30, workerMembershipId: f.members.anu.id, validFrom: '2026-09-28' }, early);
+  const visit = (client, when) => createEntry(anu, client.id, { kind: 'NOTE', contactMode: 'VISIT', text: 'Käik', visitMinutes: 30, occurredAt: when }, deps(at(when)));
+  const version = async (client) => (await db.careClient.findUnique({ where: { id: client.id }, select: { version: true } })).version;
+
+  /* Oktoober kuni 09.10 (reede): Linda käigud 01.10 (N), 05.10 (E), 08.10 (N); Peetri käik 07.10 (K). */
+  await visit(linda, '2026-10-01T06:30:00Z');
+  /* 05.10 oli Linda haiglas (ära 04.10 kuni 06.10): see käik ei ole tegemata käik. */
+  await setClientStatus(lead, linda.id, { version: await version(linda), status: 'AWAY', statusReason: 'HOSPITAL' }, deps(at('2026-10-04T08:00:00Z')));
+  await setClientStatus(lead, linda.id, { version: await version(linda), status: 'ACTIVE' }, deps(at('2026-10-06T08:00:00Z')));
+  /* 08.10 käik jäi kirja panemata; Peetri 07.10 käik jäeti ette ära. */
+  const peeterSlot = (await getClientSlots(lead, peeter.id, deps())).slots[0];
+  await cancelVisit(lead, peeter.id, peeterSlot.id, { day: '2026-10-07', reason: 'CLIENT_AWAY' }, deps(at('2026-10-06T08:00:00Z')));
+
+  const open = await getMonthOpenItems(lead, { month: '2026-10' }, deps());
+  assert.deepEqual(open.missing.map((item) => [item.client.displayName, item.day, item.startTime]), [['Linda Tamm', '2026-10-08', '09:00']]);
+  assert.deepEqual([open.missingCount, open.openIncidents, open.openSignals, open.medicationUnmarked, open.clear], [1, 0, 0, 0, false]);
+
+  /* Septembris algas muster 28.09 (esmaspäev): Linda 28.09 käik ja Peetri 30.09 käik on tegemata. */
+  const september = await getMonthOpenItems(lead, { month: '2026-09' }, deps());
+  assert.deepEqual(september.missing.map((item) => [item.client.displayName, item.day]), [['Linda Tamm', '2026-09-28'], ['Peeter Põhi', '2026-09-30']]);
+  /* Üksuse hooldusjuht näeb ainult oma üksuse kliente; tuleviku kuu on tühi; hooldaja ei näe. */
+  assert.deepEqual((await getMonthOpenItems(unitLead, { month: '2026-09' }, deps())).missing.map((item) => item.client.displayName), ['Peeter Põhi']);
+  assert.deepEqual(await getMonthOpenItems(lead, { month: '2026-11' }, deps()), { month: '2026-11', missing: [], missingCount: 0, openIncidents: 0, openSignals: 0, medicationUnmarked: 0, clear: true });
+  await expectError(getMonthOpenItems(anu, { month: '2026-10' }, deps()), 403, 'org.errors.missing_capability');
+
+  /* LAHTISED ASJAD: erijuhtum (lahtine), märkamine (vastuseta), ravimitoiming ilma märketa. */
+  await createEntry(anu, linda.id, { kind: 'INCIDENT', incidentType: 'FALL', text: 'Kukkus köögis', occurredAt: '2026-10-08T07:00:00Z' }, deps(at('2026-10-08T07:05:00Z')));
+  await createEntry(anu, linda.id, { kind: 'NOTE', contactMode: 'VISIT', text: 'Ei saanud voodist üles', visitMinutes: 30, change: { answer: 'YES', areas: ['MOBILITY'], major: true }, occurredAt: '2026-10-08T06:00:00Z' }, deps(at('2026-10-08T06:05:00Z')));
+  const pills = (await createActivity(lead, { group: 'MEDICATION', name: 'Hommikused ravimid' }, deps())).activity;
+  await createEntry(anu, linda.id, { kind: 'NOTE', contactMode: 'VISIT', activities: [{ activityId: pills.id, mode: 'GUIDE' }], occurredAt: '2026-10-09T06:00:00Z' }, deps(at('2026-10-09T06:05:00Z')));
+  const after = await getMonthOpenItems(lead, { month: '2026-10' }, deps());
+  /* 08.10 käigu kirje on nüüd olemas (märkamisega käik), seega tegemata käike enam ei ole. */
+  assert.deepEqual([after.missingCount, after.openIncidents, after.openSignals, after.medicationUnmarked, after.clear], [0, 1, 1, 1, false]);
 });

@@ -110,6 +110,48 @@ export default function HomeCareMonth({ context, initial }) {
         {data.truncated ? <p className="hc-notice">{t("home_care.deadlines.truncated", { count: data.clients.length })}</p> : null}
       </section>
 
+      {/* Kuu lahtised asjad (K5-j): mida enne kuu numbrite saatmist üle vaadata. Kuud ei lukustata. */}
+      {data.openItems ? (
+        <section className="hc-section" aria-labelledby="hc-month-open">
+          <h3 className="hc-section-title" id="hc-month-open">
+            {t("home_care.month_open.title")}
+          </h3>
+          {data.openItems.clear ? (
+            <p className="hc-sub">{t("home_care.month_open.clear")}</p>
+          ) : (
+            <ul className="hc-list hc-list--plain">
+              {data.openItems.missingCount ? <li>{t("home_care.month_open.missing", { count: data.openItems.missingCount })}</li> : null}
+              {data.openItems.openIncidents ? (
+                <li>
+                  <Link href={`/org/${organizationId}/koduteenus/erijuhtumid`}>{t("home_care.month_open.incidents", { count: data.openItems.openIncidents })}</Link>
+                </li>
+              ) : null}
+              {data.openItems.openSignals ? (
+                <li>
+                  <Link href={`/org/${organizationId}/koduteenus/tahtajad`}>{t("home_care.month_open.signals", { count: data.openItems.openSignals })}</Link>
+                </li>
+              ) : null}
+              {data.openItems.medicationUnmarked ? <li>{t("home_care.month_open.medication", { count: data.openItems.medicationUnmarked })}</li> : null}
+            </ul>
+          )}
+          {data.openItems.missing.length ? (
+            <ul className="hc-list">
+              {data.openItems.missing.map((item) => (
+                <li key={`${item.day}-${item.startTime}-${item.client.id}`}>
+                  <Link className="hc-client" href={clientHref(organizationId, item.client.id)} prefetch={false}>
+                    <span className="hc-client__name">{item.client.displayName}</span>
+                    <span className="hc-client__meta">{t("home_care.month_open.missing_line", { date: planDayLabel(item.day), time: item.startTime })}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+          {data.openItems.missingCount > data.openItems.missing.length ? (
+            <p className="hc-hint">{t("home_care.month_open.missing_more", { shown: data.openItems.missing.length, count: data.openItems.missingCount })}</p>
+          ) : null}
+        </section>
+      ) : null}
+
       <section className="hc-section" aria-labelledby={`${fieldId}-clients`}>
         <h3 className="hc-section-title" id={`${fieldId}-clients`}>
           {t("home_care.month.clients_title")}

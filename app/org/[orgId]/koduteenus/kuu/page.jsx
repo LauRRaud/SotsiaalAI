@@ -2,6 +2,7 @@ import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 
 import HomeCareMonth from "@/components/homeCare/HomeCareMonth";
+import { getMonthOpenItems } from "@/lib/homeCare/monthClose";
 import { getMonthSummary } from "@/lib/homeCare/provided";
 import { isOrgError } from "@/lib/org/errors";
 
@@ -23,7 +24,7 @@ export default async function HomeCareMonthPage({ params }) {
 
   let initial;
   try {
-    initial = await getMonthSummary(fullContext, {});
+    initial = { ...(await getMonthSummary(fullContext, {})), openItems: await getMonthOpenItems(fullContext, {}) };
   } catch (error) {
     if (!isOrgError(error)) throw error;
     notFound();
