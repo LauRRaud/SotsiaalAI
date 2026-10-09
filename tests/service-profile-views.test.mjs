@@ -277,6 +277,11 @@ test('avaldamise kontrolli iga rida viib profiili vaatesse, kus seda saab parand
   assert.deepEqual(open.filter((row) => row.blocking).map((row) => [row.key, row.view]), [['service', 'services'], ['contact', 'contact']]);
   assert.equal(open.find((row) => row.key === 'contact').textKey, 'publish_checks.contact_missing');
   assert.equal(open.at(-1).textKey, 'map_status.empty');
+  /* Aadressita profiil: kaardikirje olek FAILED ei tee reast „vastet ei leitud". */
+  assert.equal(serviceProfilePublishChecks(bare, { geocodingStatus: 'FAILED' }).at(-1).textKey, 'map_status.empty');
+  assert.equal(serviceProfilePublishChecks(bare, { geocodingStatus: 'FAILED', address: 'Lossi 1' }).at(-1).textKey, 'map_status.failed');
+  const withPlace = { ...bare, serviceLocations: [{ address: 'Lossi 1', mapVisible: true }] };
+  assert.equal(serviceProfilePublishChecks(withPlace, { geocodingStatus: 'FAILED' }).at(-1).textKey, 'map_status.failed');
 
   assert.equal(serviceProfileMapStatus({ geocodingStatus: 'manually_confirmed' }).matched, true);
   assert.equal(serviceProfileMapStatus({ geocodingStatus: 'AMBIGUOUS' }).key, 'map_status.ambiguous');
@@ -299,6 +304,8 @@ test('vaadete seis ja kokkuvõte tulevad vormist', () => {
   assert.equal(states.check, 'done');
   const assistantRow = serviceProfilePublishChecks(form, profile.serviceMapEntry).find((row) => row.key === 'assistant');
   assert.equal(assistantRow.optional, true);
+  /* Leht annab märke vaatele edasi: muidu kannab valik silti „Vaata üle". */
+  assert.ok(read('../components/workspace/WorkspaceFeaturePage.jsx').includes('optional: Boolean(row.optional),'));
   assert.equal(profileViewStates({ ...form, mapVisible: false }, profile.serviceMapEntry).check, 'partial', 'päris puudus jätab sammu pooleli');
   assert.equal(profileViewStates(createServiceProfileForm(), null).who, 'empty');
   assert.equal(profileViewStates({ ...form, organizationName: '', registryCode: '123' }, null).who, 'partial');

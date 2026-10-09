@@ -581,7 +581,13 @@ export function serviceProfileMapStatus(mapEntry) {
  */
 export function serviceProfilePublishChecks(form, mapEntry) {
   const state = serviceProfilePublishState(form);
-  const map = serviceProfileMapStatus(mapEntry);
+  /* Kui aadressi ei ole kusagil (ei kohal ega kaardikirjel), ei ole ka midagi
+     vastendada: rida ütleb siis „pärast aadressi salvestamist", mitte „vastet
+     ei leitud". Kaardikirje võib aadressita profiilil kanda olekut FAILED. */
+  const hasAddress =
+    form.serviceLocations.some((location) => String(location.address || location.normalizedAddress || "").trim()) ||
+    Boolean(String(mapEntry?.normalizedAddress || mapEntry?.address || "").trim());
+  const map = serviceProfileMapStatus(hasAddress ? mapEntry : null);
   const row = (key, ok, view, okText, openText) => {
     const [textKey, fallback] = ok ? okText : openText;
     return { key, ok, view, blocking: state.blocking.includes(key), textKey, fallback };

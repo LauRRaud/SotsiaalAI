@@ -4334,6 +4334,8 @@ function ServiceProfileSurface({ t, locale }) {
             key: row.key,
             ok: row.ok,
             blocking: row.blocking,
+            /* Valik (assistendi luba) kannab silti „Sinu valik", mitte „Vaata üle". */
+            optional: Boolean(row.optional),
             text: tp(row.textKey, row.fallback),
             detail: row.detail || "",
             /* Rida, mis ei ole korras, viib vaatesse, kus seda saab parandada. */
