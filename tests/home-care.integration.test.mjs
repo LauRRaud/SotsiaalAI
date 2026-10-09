@@ -91,6 +91,7 @@ import { handleChangeSignal, saveUsualState } from '../lib/homeCare/changes.js';
 import { clearCrisisProfile, getCrisisList, setCrisisProfile } from '../lib/homeCare/crisis.js';
 import { getReferralContacts, saveReferralContacts } from '../lib/homeCare/referralContacts.js';
 import { addWorkerRecord, endWorkerRecord, getWorkerCards } from '../lib/homeCare/workerRecords.js';
+import { getFridgeSheet } from '../lib/homeCare/fridgeSheet.js';
 import { composeNoAnswerText } from '../lib/homeCare/noAnswerText.js';
 import { assertNotificationRecipient, serializeNotificationEvent } from '../lib/notifications.js';
 
@@ -5144,4 +5145,45 @@ test('püsivuse näit kliendi lehel ja üle aasta vanad ohuread tähtaegade lehe
   await line(peeter.id, 'RISK', at('2026-06-01T08:00:00Z'));
   const due = (await getDeadlines(lead, deps())).riskLinesDue;
   assert.deepEqual(due.map((item) => [item.client.displayName, item.lines, item.oldestOn, item.days]), [['Linda Tamm', 2, '2025-09-01', 403]]);
+});
+
+test('külmkapileht: koostab meeskond või hooldusjuht kehtivast mustrist ja kavast; midagi ei salvestata', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const clerk = await f.ctx(f.users.clerk, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm', address: 'Pikk 1' }, deps())).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi' }, deps())).client;
+  await addTeamMember(lead, linda.id, { membershipId: f.members.anu.id }, deps());
+  await addTeamMember(lead, peeter.id, { membershipId: f.members.bert.id }, deps());
+  const stove = (await createActivity(lead, { group: 'HEATING', name: 'Ahju kütmine' }, deps())).activity;
+  const draft = (await saveCarePlanDraft(lead, linda.id, { goals: 'Kodus edasi elada.', lines: [{ activityId: stove.id, frequencyKind: 'DAILY', frequencyCount: 1, mode: 'FOR' }] }, deps())).draft;
+  await activateCarePlan(lead, linda.id, { version: draft.version }, deps());
+  const early = deps(at('2026-10-01T08:00:00Z'));
+  await createSlots(lead, linda.id, { weekdays: [1, 4], startTime: '09:00', plannedMinutes: 30, workerMembershipId: f.members.anu.id }, early);
+  /* Lõppenud mustririda lehele ei lähe. */
+  await createSlots(lead, linda.id, { weekdays: [6], startTime: '15:00', plannedMinutes: 60, validUntil: '2026-10-05' }, early);
+  const counts = async () => [await db.dataAuditLog.count({ where: { meta: { path: ['organizationId'], equals: f.orgA.id } } }), await db.careClientEntry.count({ where: { clientId: linda.id } })];
+  const before = await counts();
+
+  const sheet = await getFridgeSheet(anu, linda.id, { phone: ' 5555  1234 ' }, deps());
+  assert.match(sheet.html, /<span class="day">Esmaspäev<\/span> kell 9\.00–9\.30 · Anu<\/li>/);
+  assert.match(sheet.html, /<span class="day">Neljapäev<\/span> kell 9\.00–9\.30 · Anu<\/li>/);
+  assert.equal(sheet.html.includes('Laupäev'), false);
+  assert.match(sheet.html, /<li>Ahju kütmine<\/li>/);
+  assert.match(sheet.html, /<p class="call">5555 1234<\/p>/);
+  assert.match(sheet.html, /kehtib alates 09\.10\.2026/);
+  /* Lehel ei ole aadressi, töötaja perekonnanime ega kava eesmärke. */
+  for (const secret of ['Pikk 1', 'Hooldaja', 'Kodus edasi elada']) assert.equal(sheet.html.includes(secret), false, secret);
+  /* Hooldusjuht saab sama lehe; telefonita lehel on joon. */
+  assert.match((await getFridgeSheet(lead, linda.id, {}, deps())).html, /<span class="blank">/);
+  assert.deepEqual(await counts(), before);
+
+  /* ÕIGUSED: võõra kliendi hooldaja, kõrvaline liige ja teine asutus lehte ei saa; vigane number lükatakse tagasi. */
+  await expectError(getFridgeSheet(bert, linda.id, {}, deps()), 403, 'home_care.errors.access_reason_required');
+  await expectError(getFridgeSheet(clerk, linda.id, {}, deps()), 404, 'home_care.errors.client_not_found');
+  await expectError(getFridgeSheet(leadB, linda.id, {}, deps()), 404);
+  await expectError(getFridgeSheet(anu, linda.id, { phone: 'helista õhtul' }, deps()), 400, 'home_care.errors.referral_phone_invalid');
 });

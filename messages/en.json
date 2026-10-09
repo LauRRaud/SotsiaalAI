@@ -14041,6 +14041,25 @@
     "continuity": {
       "one": "In the last four weeks one worker came here ({visits} visits).",
       "many": "In the last four weeks {workers} different workers came here; {top} of them made {percent}% of the visits ({visits} visits)."
+    },
+    "fridge": {
+      "phone_label": "The organisation's phone for the fridge sheet",
+      "hint": "The fridge sheet is a large-print page for the client's home: who comes on which day, what we do together and where to call. The number is remembered on this device.",
+      "open": "Open the fridge sheet",
+      "popup_blocked": "The browser did not allow a new window. Allow pop-ups for this page and try again.",
+      "doc": {
+        "title": "Your home care",
+        "print_hint": "Print this page (Ctrl+P). The top line is for you: cut it off before taking the page to the client.",
+        "for_client": "For:",
+        "who_title": "Who comes and when",
+        "time": "at {from}–{to}",
+        "worker_unknown": "a care worker",
+        "no_visits": "We will agree the visits with you.",
+        "what_title": "What we do together",
+        "no_plan": "We will agree this with you.",
+        "call_title": "If something is different or the time does not suit, call",
+        "valid_from": "valid from {date}"
+      }
     }
   },
   "stage": {
