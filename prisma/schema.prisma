@@ -5704,6 +5704,7 @@ model OrganizationMembership {
   careEntriesCompanion  CareClientEntry[]             @relation("CareClientEntryCompanion")
   careVisitSlots        CareVisitSlot[]
   careVisitChanges      CareVisitChange[]
+  careAbsences          CareAbsence[]
 
   // Üks AKTIIVNE liikmesus org + kasutaja kohta → osaline unikaalindeks migratsioonis.
   @@index([organizationId, status])
@@ -8428,6 +8429,9 @@ model CareVisitSlot {
   weekday        Int
   startMinute    Int
   plannedMinutes Int
+  /// Käigu tähtsus (K3-c, kava II.6.10): A peab toimuma täna, B võib samal päeval
+  /// nihkuda, C võib nädala sees nihkuda (`CareVisitPriority`).
+  priority       String @default("B")
   /// SetNull: liikmesuse kadumisel jääb käik määramata, mitte ei kao.
   workerMembershipId String?
   note               String?
@@ -8484,6 +8488,31 @@ model CareVisitChange {
   @@index([organizationId, day])
   @@index([clientId, day])
   @@index([workerMembershipId, day])
+}
+
+/// Töötaja puudumine (kiht 3, K3-c): päevast päevani (AAAA-KK-PP, mõlemad kaasa
+/// arvatud). Liik ütleb ainult, kas puudumine oli plaaniline või ootamatu; haigust
+/// ega muud põhjust ei hoita ja vaba teksti välja ei ole.
+model CareAbsence {
+  id             String @id @default(cuid())
+  organizationId String
+  membershipId   String
+  fromDay        String
+  toDay          String
+  /// PLANNED | SUDDEN (`CareAbsenceKind`).
+  kind           String
+
+  version Int @default(1)
+
+  createdByMembershipId String?
+  createdByName         String?
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  membership OrganizationMembership @relation(fields: [membershipId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId, toDay])
+  @@index([membershipId, fromDay])
 }
 
 /// Kliendi seisu muutuste ajalugu (K1-j): millal teenus peatati, lõpetati või

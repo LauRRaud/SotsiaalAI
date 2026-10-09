@@ -74,6 +74,7 @@ export default function HomeCareHome({ context, initial, unitOptions, myDay = nu
       />
 
       {/* Tänane päev (K3-a): sulle määratud tänased käigud kellaaja järjekorras. */}
+      {myDay?.absent ? <p className="hc-notice">{t("home_care.absences.my_notice")}</p> : null}
       {myDay?.visits?.length ? (
         <div className="hc-section">
           <h3 className="hc-section-title">{t("home_care.slots.today_title")}</h3>
@@ -137,6 +138,9 @@ export default function HomeCareHome({ context, initial, unitOptions, myDay = nu
           </Link>
           <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/paev`}>
             {t("home_care.day.link")}
+          </Link>
+          <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/puudumised`}>
+            {t("home_care.absences.link")}
           </Link>
           <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/tahtajad`}>
             {t("home_care.deadlines.link")}

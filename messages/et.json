@@ -11706,7 +11706,17 @@
       "visit_day_far": "Nii kaugele ette käiku muuta ei saa.",
       "visit_worker_invalid": "Käigu saab tõsta ainult asutuse hooldajale.",
       "visit_cancel_reason_required": "Vali, miks käik ära jääb.",
-      "visit_change_not_found": "Sellel käigul sel päeval muudatust ei ole."
+      "visit_change_not_found": "Sellel käigul sel päeval muudatust ei ole.",
+      "absence_days_required": "Märgi puudumise esimene ja viimane päev.",
+      "absence_period_invalid": "Viimane päev ei saa olla enne esimest.",
+      "absence_from_past": "Nii kaugele minevikku puudumist märkida ei saa.",
+      "absence_too_long": "Puudumine võib kesta kuni {limit} päeva.",
+      "absence_kind_required": "Vali, kas puudumine on plaaniline või ootamatu.",
+      "absence_worker_invalid": "Puudumise saab märkida ainult asutuse hooldajale.",
+      "absence_overlap": "Sellel töötajal on neil päevadel juba puudumine märgitud.",
+      "absence_not_found": "Puudumist ei leitud. Laadi leht uuesti.",
+      "slot_priority_invalid": "Käigu tähtsus ei sobi.",
+      "visit_worker_absent": "See töötaja puudub sel päeval."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -12323,8 +12333,8 @@
       "next": "Järgmine päev",
       "today_button": "Mine tänasele päevale",
       "week_label": "Nädala päevad",
-      "week_day": "{weekday} {date}: käike {planned}, määramata {unassigned}, kirjeta {missing}",
-      "totals": "Käike {planned}, plaanitud aeg {amount}. Tehtud {done}, kirje puudub {missing}, ära jäetud {cancelled}, määramata {unassigned}.",
+      "week_day": "{weekday} {date}: käike {planned}, määramata {unassigned}, kirjeta {missing}, tegija puudub {uncovered}",
+      "totals": "Käike {planned}, plaanitud aeg {amount}. Tehtud {done}, kirje puudub {missing}, ära jäetud {cancelled}, määramata {unassigned}, tegija puudub {uncovered}.",
       "empty": "Sellel päeval plaanitud käike ei ole.",
       "unassigned_title": "Määramata",
       "away_title": "Klient on ajutiselt ära",
@@ -12357,7 +12367,55 @@
       "cancel_save": "Jäta käik ära",
       "restore": "Võta muudatus tagasi",
       "close_form": "Loobu",
-      "saved": "Päevaplaan on muudetud. Käigumuster jäi samaks."
+      "saved": "Päevaplaan on muudetud. Käigumuster jäi samaks.",
+      "uncovered_title": "Tegija puudub",
+      "uncovered_hint": "Need käigud vajavad asendajat või otsust. Tähtsamad on ees.",
+      "absent_worker": "{name} puudub",
+      "team_option": "{name} · meeskonnas"
+    },
+    "priority": {
+      "label": "Käigu tähtsus",
+      "hint": "Tähtsus ütleb, mis peab toimuma ka siis, kui töötajaid on vähem.",
+      "A": "A: peab toimuma täna",
+      "B": "B: võib samal päeval nihkuda",
+      "C": "C: võib nädala sees nihkuda",
+      "short": {
+        "A": "peab toimuma täna",
+        "B": "võib samal päeval nihkuda",
+        "C": "võib nädala sees nihkuda"
+      }
+    },
+    "absences": {
+      "link": "Puudumised",
+      "back": "Tagasi päevaplaani",
+      "title": "Puudumised",
+      "intro": "Märgi, millal hooldaja tööl ei ole. Päevaplaan tõstab siis esile käigud, mille tegija puudub, ega paku teda asendajaks. Põhjust siin ei küsita.",
+      "list_title": "Märgitud puudumised",
+      "none": "Puudumisi ei ole märgitud.",
+      "no_workers": "Asutuses ei ole veel ühtegi hooldajat (inimest mõne kliendi meeskonnas).",
+      "new_title": "Uus puudumine",
+      "edit_title": "Muuda puudumist: {name}",
+      "worker_label": "Töötaja",
+      "worker_placeholder": "Vali töötaja",
+      "from_label": "Esimene päev",
+      "to_label": "Viimane päev",
+      "kind_label": "Liik",
+      "kinds": {
+        "PLANNED": "plaaniline",
+        "SUDDEN": "ootamatu"
+      },
+      "kind_hint": "Plaaniline on näiteks puhkus või koolitus. Põhjust ei küsita ega salvestata.",
+      "period": "{from} kuni {to} ({days} päeva)",
+      "current_badge": "praegu ära",
+      "save": "Salvesta",
+      "cancel": "Loobu",
+      "add": "Märgi puudumine",
+      "edit": "Muuda",
+      "remove": "Kustuta",
+      "remove_confirm": "Kinnita: puudumine märgiti ekslikult",
+      "saved": "Puudumine on salvestatud.",
+      "removed": "Puudumine on kustutatud.",
+      "my_notice": "Sul on täna märgitud puudumine. Sinu tänased käigud on hooldusjuhi päevaplaanis."
     }
   },
   "stage": {
