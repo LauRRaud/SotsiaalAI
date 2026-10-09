@@ -13,7 +13,8 @@ const request = (question, { stream = true, key = 'synthetic-key' } = {}) => new
 const authenticate = async () => ({ userId: 'synthetic-user' });
 const answer = { kind: 'grounded', blocks: [{ text: 'Vaide esitad 30 päeva jooksul.', factual: true, refs: ['S1'] }], limitations: [], clarification: null };
 const completed = question => ({ id: 't1', state: 'completed', mode: 'real', question, answer, sources: [{ ref: 'S1', title: 'Haldusmenetluse seadus', pages: [1], used: true }] });
-const events = async response => { const out = []; for await (const ev of createSSEReader(response.body)) out.push({ event: ev.event, data: JSON.parse(ev.data) }); return out; };
+// A comment line (the opening one, a keep-alive) reaches the reader as an event without data; the client skips it too.
+const events = async response => { const out = []; for await (const ev of createSSEReader(response.body)) if (ev.data) out.push({ event: ev.event, data: JSON.parse(ev.data) }); return out; };
 const gate = () => { let open; const promise = new Promise(resolve => { open = resolve; }); return { promise, open }; };
 
 test('a monetary quota failure remains a 429 with the EUR metric, even when a stopped turn exists', async () => {
@@ -107,8 +108,11 @@ test('a reader that goes away does not stop the turn; the same key reads the sav
   };
   const session = async () => ({ config: {}, store: {}, service });
   const response = await pilotPost(request('Kuidas vaidlustada?'), { authenticate, session });
-  const reader = response.body.getReader();
-  const first = new TextDecoder().decode((await reader.read()).value);
+  const reader = response.body.getReader(), decoder = new TextDecoder();
+  // ADR-126: the stream's first bytes are its opening comment, written before the turn starts, so the headers leave at once.
+  let first = decoder.decode((await reader.read()).value);
+  assert.ok(first.startsWith(': open\n\n'), 'the opening comment comes first');
+  while (!/event: delta/.test(first)) first += decoder.decode((await reader.read()).value);
   assert.match(first, /event: delta/);
   await reader.cancel(); // the connection is lost
   release.open();
@@ -135,6 +139,54 @@ test('a reconnect while the first request still works waits for its saved turn a
     session: async () => ({ config: {}, store: { existing: async () => ({ id: 't1' }) }, service: { run: async () => pending, access: async () => ({}), restore: async () => pending } }) }));
   assert.equal(stuck[0].data.status, 409);
   assert.equal(stuck[0].data.body.messageKey, 'm4Pilot.pending');
+});
+
+// ADR-126 (10.10.2026): the wait covered the state 'claimed' alone. A turn is 'claimed' only until its first stage is
+// reserved; during every model call it is '<stage>_sent', and a reconnect then got "pending" (409) at once.
+test('ADR-126: a reconnect during a model call waits for the saved turn in every running state', async () => {
+  for (const state of ['plan_reserved', 'plan_sent', 'embedding_sent', 'rerank_sent', 'answer_reserved', 'answer_sent']) {
+    let restores = 0, runs = 0, reads = 0;
+    const running = { id: 't1', state, mode: 'real', question: 'Kuidas vaidlustada?' };
+    const session = async () => ({ config: {}, store: { existing: async () => { reads++; return { id: 't1', updatedAt: new Date() }; } }, service: {
+      run: async () => { runs++; return running; },
+      access: async () => ({}),
+      restore: async () => (++restores < 3 ? running : completed('Kuidas vaidlustada?')) } });
+    const all = await events(await pilotPost(request('Kuidas vaidlustada?'), { authenticate, session, settle: { intervalMs: 5, limitMs: 2000 } }));
+    assert.deepEqual(all.map(ev => ev.event), ['done'], state);
+    assert.equal(all[0].data.status, 200, state);
+    assert.equal(all[0].data.body.answer, 'Vaide esitad 30 päeva jooksul. [S1]', state);
+    assert.deepEqual([runs, restores, reads], [1, 3, 3], `${state}: one run, the saved row read until the turn ended`);
+  }
+});
+
+test('ADR-126: a running row no write has touched is a dead process\'s and is not waited for; an ended turn is not waited for at all', async () => {
+  // The row was last written five minutes ago: one read, then "pending" as before, well inside the limit.
+  let reads = 0;
+  const running = { id: 't1', state: 'answer_sent', mode: 'real', question: 'Kuidas vaidlustada?' };
+  const dead = async () => ({ config: {}, store: { existing: async () => { reads++; return { id: 't1', updatedAt: new Date(Date.now() - 5 * 60000) }; } },
+    service: { run: async () => running, access: async () => ({}), restore: async () => running } });
+  const started = Date.now();
+  const stale = await events(await pilotPost(request('Kuidas vaidlustada?'), { authenticate, session: dead, settle: { intervalMs: 5, limitMs: 20000 } }));
+  assert.equal(stale[0].data.status, 409);
+  assert.equal(stale[0].data.body.messageKey, 'm4Pilot.pending');
+  assert.equal(reads, 1);
+  assert.ok(Date.now() - started < 5000, 'the limit was not waited out');
+  // A time given as text (a row read as JSON) is read the same way.
+  reads = 0;
+  const text = async () => ({ config: {}, store: { existing: async () => { reads++; return { id: 't1', updatedAt: new Date(Date.now() - 5 * 60000).toISOString() }; } },
+    service: { run: async () => running, access: async () => ({}), restore: async () => running } });
+  assert.equal((await events(await pilotPost(request('Kuidas vaidlustada?'), { authenticate, session: text, settle: { intervalMs: 5, limitMs: 20000 } })))[0].data.status, 409);
+  assert.equal(reads, 1);
+  // Ended states are answered at once, with no read of the row: unknown, waiting for recovery, refused, stopped.
+  for (const [state, key, status] of [['unknown', 'm4Pilot.unknown', 409], ['needs_recovery', 'm4Pilot.pending', 409], ['answer_rejected', 'm4Pilot.answerFailed', 200], ['stopped', 'm4Pilot.answerFailed', 200]]) {
+    let looked = 0;
+    const ended = async () => ({ config: {}, store: { existing: async () => { looked++; return { id: 't1', updatedAt: new Date() }; } },
+      service: { run: async () => ({ id: 't1', state, mode: 'real', question: 'Kuidas vaidlustada?' }), access: async () => ({}), restore: async () => { throw new Error('not read'); } } });
+    const reply = await events(await pilotPost(request('Kuidas vaidlustada?'), { authenticate, session: ended, settle: { intervalMs: 5, limitMs: 20000 } }));
+    assert.equal(reply[0].data.status, status, state);
+    assert.equal(reply[0].data.body.messageKey, key, state);
+    assert.equal(looked, 0, state);
+  }
 });
 
 // ADR-125 (10.10.2026): a provider call that passes its time limit throws a DOMException, and a DOMException's code is
