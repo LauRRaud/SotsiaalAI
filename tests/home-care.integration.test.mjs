@@ -5187,3 +5187,19 @@ test('külmkapileht: koostab meeskond või hooldusjuht kehtivast mustrist ja kav
   await expectError(getFridgeSheet(leadB, linda.id, {}, deps()), 404);
   await expectError(getFridgeSheet(anu, linda.id, { phone: 'helista õhtul' }, deps()), 400, 'home_care.errors.referral_phone_invalid');
 });
+
+test('„peaaegu juhtus": erijuhtumi kirje registris ja teade hooldusjuhile', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, deps())).client;
+  await addTeamMember(lead, linda.id, { membershipId: f.members.anu.id }, deps());
+  const made = await createEntry(anu, linda.id, { kind: 'INCIDENT', incidentType: 'NEAR_MISS', text: 'Peaaegu juhtus: libisesin või komistasin. Trepp oli jääs.' }, depsWithNotify());
+  assert.deepEqual([made.entry.kind, made.entry.incident.type, made.entry.incident.status, made.entry.coordinatorOnly], ['INCIDENT', 'NEAR_MISS', 'OPEN', false]);
+  /* Hooldusjuht saab erijuhtumi teate; kirjutaja ise ei saa. */
+  const count = (user) => db.notificationEvent.count({ where: { userId: user.id, type: 'HOME_CARE_INCIDENT_REPORTED' } });
+  assert.deepEqual([await count(f.users.lead), await count(f.users.anu)], [1, 0]);
+  /* Meeskond näeb kirjet päevikus (see ei ole ainult hooldusjuhile). */
+  const page = await openClient(anu, linda.id, deps());
+  assert.equal(page.entries.items.find((item) => item.id === made.entry.id).incident.type, 'NEAR_MISS');
+});
