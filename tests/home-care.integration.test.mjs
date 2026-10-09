@@ -58,6 +58,7 @@ import {
   listChronologyReleases
 } from '../lib/homeCare/chronology.js';
 import { applyClientImport, previewClientImport } from '../lib/homeCare/clientImport.js';
+import { importHistory, readHistory, removeHistory, searchHistory } from '../lib/homeCare/importedHistory.js';
 import { getCoordinatorOverview } from '../lib/homeCare/overview.js';
 import { assertNotificationRecipient, serializeNotificationEvent } from '../lib/notifications.js';
 
@@ -1447,4 +1448,113 @@ test('klientide sissetoomine tabelist: eelvaade, kordused, skoop ja kõik-või-m
   /* Lipp väljas: sissetoomist ei ole. */
   const offContext = await f.ctx(f.users.lead, f.orgA, { ORG_WORKSPACE_ENABLED: '1' });
   await expectError(previewClientImport(offContext, { text }, { db, env: { ORG_WORKSPACE_ENABLED: '1' } }), 404);
+});
+
+test('imporditud ajalugu: ületoomine, lugemine lehekülgede kaupa, otsing, eemaldamine ja ligipääs', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const cover = await f.ctx(f.users.cover, f.orgA);
+  const clerk = await f.ctx(f.users.clerk, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  const { client } = await createClient(lead, { displayName: 'Linda Tamm' }, deps());
+  const { client: otherClient } = await createClient(lead, { displayName: 'Jaan Kask' }, deps());
+  await addTeamMember(lead, client.id, { membershipId: f.members.anu.id }, deps());
+  /* Cia on teise kliendi meeskonnas: selle kliendi juures on ta asendaja, kes peab andma põhjuse. */
+  await addTeamMember(lead, otherClient.id, { membershipId: f.members.cover.id }, deps());
+
+  /* 60 lõiku: võtme kokkulepe ühes kohas, pesumasin teises. */
+  const paragraphs = Array.from({ length: 60 }, (_, index) => `Käik ${index + 1}. ${'Tõin toidu ja koristasin. '.repeat(20).trim()}`);
+  paragraphs[4] += ' Võtme andis naaber Mati Kask.';
+  paragraphs[40] += ' Pesumasin lekkis jälle.';
+  const text = paragraphs.join('\r\n\r\n');
+
+  /* Ainult hooldusjuht toob üle; sisendi kontroll. */
+  await expectError(importHistory(anu, client.id, { title: 'Drive', text }, deps()), 403, 'org.errors.missing_capability');
+  await expectError(importHistory(clerk, client.id, { title: 'Drive', text }, deps()), 404, 'home_care.errors.client_not_found');
+  await expectError(importHistory(leadB, client.id, { title: 'Drive', text }, deps()), 404, 'home_care.errors.client_not_found');
+  await expectError(importHistory(lead, client.id, { title: '  ', text }, deps()), 400, 'home_care.errors.history_title_required');
+  await expectError(importHistory(lead, client.id, { title: 'Drive', text: '  \n ' }, deps()), 400, 'home_care.errors.history_text_required');
+  await expectError(importHistory(lead, client.id, { title: 'Drive', text: 'x'.repeat(1_000_001) }, deps()), 400, 'home_care.errors.history_too_large');
+  assert.equal(await db.careImportedHistory.count({ where: { clientId: client.id } }), 0);
+
+  const { history } = await importHistory(lead, client.id, { title: ' Drive’i päevik  2023–2026 ', text }, deps(at('2026-10-09T09:00:00Z')));
+  assert.equal(history.title, 'Drive’i päevik 2023–2026');
+  assert.equal(history.importedByName, 'Juta Juht');
+  assert.equal(history.createdAt, '2026-10-09T09:00:00.000Z');
+  assert.ok(history.blockCount > 1 && history.blockCount <= 60);
+  /* Midagi ei kadunud: lõigud kokku annavad sama teksti (reavahetused ühtlustatud). */
+  const stored = await db.careImportedHistoryBlock.findMany({ where: { historyId: history.id }, orderBy: { position: 'asc' } });
+  assert.equal(stored.length, history.blockCount);
+  assert.deepEqual(stored.map((row) => row.position), stored.map((_, index) => index + 1));
+  assert.equal(stored.map((row) => row.text).join('\n\n'), paragraphs.join('\n\n'));
+  assert.equal(history.charCount, stored.reduce((sum, row) => sum + row.text.length, 0));
+  assert.ok(stored.every((row) => row.searchText && row.searchVersion === 'sb1'));
+
+  /* SAMA TEKST TEIST KORDA ei lähe (ka teiste reavahetustega); teisele kliendile läheb. */
+  await expectError(importHistory(lead, client.id, { title: 'Uuesti', text: paragraphs.join('\n\n') }, deps()), 409, 'home_care.errors.history_already_imported');
+  assert.equal(await db.careImportedHistory.count({ where: { clientId: client.id } }), 1);
+  const second = await importHistory(lead, otherClient.id, { title: 'Sama tekst', text }, deps());
+  assert.ok(second.history.id);
+
+  /* Ajalugu on kliendi lehe andmetes loendina (ilma tekstita). */
+  const opened = await openClient(anu, client.id, deps());
+  assert.deepEqual(opened.histories.map((row) => row.id), [history.id]);
+  assert.equal(JSON.stringify(opened.histories).includes('Pesumasin'), false);
+
+  /* LUGEMINE lehekülgede kaupa, teksti järjekorras; loeb meeskond, mitte kõrvaline. */
+  const pageOne = await readHistory(anu, client.id, history.id, {}, deps());
+  assert.equal(pageOne.blocks[0].position, 1);
+  assert.ok(pageOne.blocks[0].text.startsWith('Käik 1.'));
+  const collected = [...pageOne.blocks];
+  let cursor = pageOne;
+  while (cursor.hasMore) {
+    cursor = await readHistory(anu, client.id, history.id, { after: String(cursor.nextAfter) }, deps());
+    collected.push(...cursor.blocks);
+  }
+  assert.deepEqual(collected.map((block) => block.position), stored.map((row) => row.position));
+  await expectError(readHistory(clerk, client.id, history.id, {}, deps()), 404, 'home_care.errors.client_not_found');
+  await expectError(readHistory(cover, client.id, history.id, {}, deps()), 403, 'home_care.errors.access_reason_required');
+  /* Teise kliendi ajalugu selle kliendi alt ei avane. */
+  await expectError(readHistory(lead, client.id, second.history.id, {}, deps()), 404, 'home_care.errors.history_not_found');
+  /* Lugemine jätab kliendi avamislogisse rea. */
+  assert.ok((await db.careClientAccess.count({ where: { clientId: client.id, membershipId: f.members.anu.id } })) >= 1);
+
+  /* OTSING: sõna ja sõna algus leiavad õige lõigu; teise kliendi teksti ei leia. */
+  const key = await searchHistory(anu, client.id, { q: 'naaber Mati' }, deps());
+  assert.equal(key.items.length, 1);
+  assert.ok(key.items[0].text.includes('Võtme andis naaber Mati Kask.'));
+  assert.equal(key.items[0].title, 'Drive’i päevik 2023–2026');
+  const wash = await searchHistory(anu, client.id, { q: 'pesu' }, deps());
+  assert.equal(wash.items.length, 1);
+  assert.ok(wash.items[0].text.includes('Pesumasin lekkis jälle.'));
+  assert.deepEqual((await searchHistory(anu, client.id, { q: 'olematu' }, deps())).items, []);
+  await expectError(searchHistory(anu, client.id, { q: 'a' }, deps()), 400, 'home_care.errors.search_too_short');
+  await expectError(searchHistory(clerk, client.id, { q: 'pesu' }, deps()), 404, 'home_care.errors.client_not_found');
+  /* Päeviku otsing imporditud teksti kirjete hulka ei too. */
+  assert.deepEqual((await searchEntries(anu, client.id, { q: 'pesu' }, deps())).items, []);
+
+  /* Audit: ainult ID-d. */
+  const audit = await db.dataAuditLog.findMany({ where: { resourceId: history.id } });
+  assert.deepEqual(audit.map((row) => row.action), ['org.home_care_history_imported']);
+  assert.deepEqual(Object.keys(audit[0].meta).sort(), ['clientId', 'historyId', 'organizationId']);
+
+  /* EEMALDAMINE: ainult hooldusjuht; lõigud kustuvad koos ajalooga. */
+  await expectError(removeHistory(anu, client.id, history.id, deps()), 403, 'org.errors.missing_capability');
+  await expectError(removeHistory(lead, otherClient.id, history.id, deps()), 404, 'home_care.errors.history_not_found');
+  assert.deepEqual(await removeHistory(lead, client.id, history.id, deps()), { removed: true });
+  assert.equal(await db.careImportedHistoryBlock.count({ where: { historyId: history.id } }), 0);
+  assert.equal((await openClient(anu, client.id, deps())).histories.length, 0);
+  /* Pärast eemaldamist saab sama teksti uuesti üle tuua. */
+  const again = await importHistory(lead, client.id, { title: 'Uuesti', text }, deps());
+  assert.ok(again.history.id);
+
+  /* Kliendi kustutamisel kustub ka ajalugu. */
+  await db.careClient.delete({ where: { id: otherClient.id } });
+  assert.equal(await db.careImportedHistory.count({ where: { id: second.history.id } }), 0);
+  /* Andmebaas ei luba tühja pealkirja. */
+  await assert.rejects(
+    db.careImportedHistory.create({ data: { organizationId: f.orgA.id, clientId: client.id, title: '  ', charCount: 1, blockCount: 1, contentSha256: 'x', importedByMembershipId: f.members.lead.id, importedByName: 'x' } }),
+    /title_not_blank/
+  );
 });

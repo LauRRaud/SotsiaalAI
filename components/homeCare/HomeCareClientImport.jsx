@@ -6,7 +6,7 @@ import { useId, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import OrgHeader from "@/components/org/OrgHeader";
 import Dropdown from "@/components/ui/Dropdown";
-import { CLIENT_IMPORT_MAX_ROWS, ClientImportStatus } from "@/lib/homeCare/clientTable";
+import { CLIENT_IMPORT_MAX_CHARS, CLIENT_IMPORT_MAX_ROWS, ClientImportStatus } from "@/lib/homeCare/clientTable";
 
 import { homeCareBase, useHomeCareApi } from "./homeCareClient";
 
@@ -60,11 +60,16 @@ export default function HomeCareClientImport({ context, unitOptions }) {
     event.target.value = "";
     if (!file) return;
     invalidate();
+    /* Hiigelfaili ei loeta mällu: üks märk on kuni neli baiti. */
+    if (file.size > CLIENT_IMPORT_MAX_CHARS * 4) {
+      setFileNote(t("home_care.errors.import_too_large"));
+      return;
+    }
     try {
       const content = await file.text();
       /* Fail, mis ei ole UTF-8 (vanem Exceli CSV), annab täpitähtede asemel
-         asendusmärgid. Parem öelda kohe, kui tuua üle „K�lli". */
-      setFileNote(content.includes("�") ? t("home_care.import.file_encoding") : "");
+         asendusmärgid. Parem öelda kohe, kui tuua üle katkise täpitähega nimi. */
+      setFileNote(content.includes("\uFFFD") ? t("home_care.import.file_encoding") : "");
       setText(content);
     } catch {
       setFileNote(t("home_care.import.file_failed"));

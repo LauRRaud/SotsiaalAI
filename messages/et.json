@@ -11056,7 +11056,12 @@
       "import_no_rows": "Tabelis on ainult päiserida, kliente ei ole.",
       "import_too_many_rows": "Tabelis on üle 500 rea. Too kliendid üle osade kaupa.",
       "import_row_invalid": "Selle rea andmed ei sobi.",
-      "import_changed": "Klientide nimekiri muutus vahepeal. Kontrolli tabel uuesti."
+      "import_changed": "Klientide nimekiri muutus vahepeal. Kontrolli tabel uuesti.",
+      "history_title_required": "Kirjuta, kust tekst pärit on.",
+      "history_text_required": "Tekst on tühi.",
+      "history_too_large": "Tekst on liiga pikk (üle miljoni märgi). Too see üle osade kaupa.",
+      "history_already_imported": "See tekst on sellele kliendile juba üle toodud.",
+      "history_not_found": "Seda ajalugu ei leitud."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -11210,6 +11215,26 @@
       "apply": "Too kliendid üle ({count})",
       "done": "Üle toodud kliente: {count}. Meeskonnad ja püsikaardid saad lisada iga kliendi lehel.",
       "to_clients": "Klientide juurde"
+    },
+    "history": {
+      "title": "Varasem ajalugu teisest kohast",
+      "empty": "Kui kliendi kohta on seni peetud päevikut mujal (näiteks Drive’is), saab selle siia üle tuua.",
+      "mark": "imporditud ajalugu, autorid ja ajad kontrollimata",
+      "meta": "Üle toodud {time} · {name} · {count} märki",
+      "show": "Näita teksti",
+      "hide": "Peida tekst",
+      "remove": "Eemalda",
+      "remove_confirm": "Eemalda siit, algne dokument jääb alles",
+      "add": "Too üle senine päevik",
+      "add_hint": "Kopeeri kliendi senine päevik ja kleebi see siia või vali tekstifail. Tekst tuuakse üle nii, nagu see on: sellest ei tehta kirjeid ega tuletata kuupäevi. Kontrolli, et see on õige kliendi päevik.",
+      "name_label": "Kust see pärit on",
+      "name_hint": "Näiteks „Drive’i päevik 2023–2026”.",
+      "text_label": "Päeviku tekst",
+      "file_label": "või vali tekstifail",
+      "save": "Too üle",
+      "hits_title": "Leitud varasemast ajaloost",
+      "hits_hint": "Need lõigud on imporditud tekstist; liigi ja ajavahemiku filter neile ei kehti.",
+      "hits_more": "Tabamusi on rohkem. Täpsusta otsingut."
     }
   },
   "stage": {

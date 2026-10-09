@@ -12,6 +12,7 @@ import HomeCareCard from "./HomeCareCard";
 import HomeCareClientForm from "./HomeCareClientForm";
 import HomeCareEntryForm from "./HomeCareEntryForm";
 import HomeCareEntryItem from "./HomeCareEntryItem";
+import HomeCareHistory from "./HomeCareHistory";
 import HomeCareOutbox from "./HomeCareOutbox";
 import HomeCareReasonForm from "./HomeCareReasonForm";
 import HomeCareTeam from "./HomeCareTeam";
@@ -52,6 +53,7 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
   const timeZone = context.organization.timezone || "Europe/Tallinn";
   const page = useHomeCareApi();
   const diary = useHomeCareApi();
+  const past = useHomeCareApi();
   const fieldId = useId();
 
   const [data, setData] = useState(initial || null);
@@ -59,6 +61,8 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
   const [entries, setEntries] = useState(initial?.entries || { items: [], hasMore: false, nextCursor: null });
   const [filter, setFilter] = useState(NO_FILTER);
   const [applied, setApplied] = useState(NO_FILTER);
+  /* Otsingu tabamused imporditud ajaloost: `null`, kui otsingut ei ole. */
+  const [historyHits, setHistoryHits] = useState(null);
   const [lapsed, setLapsed] = useState(false);
   const [panel, setPanel] = useState(null);
   const [status, setStatus] = useState(initial?.client?.status || CareClientStatus.ACTIVE);
@@ -74,6 +78,7 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
       setEntries(result.data.entries);
       setApplied(NO_FILTER);
       setFilter(NO_FILTER);
+      setHistoryHits(null);
       setNeedsReason(false);
       setLapsed(false);
       page.setError("");
@@ -106,12 +111,31 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
     return diary.call(`${base}/kirjed${text ? `?${text}` : ""}`, { fallbackKey: "home_care.errors.list_failed" });
   };
 
+  /* Otsisõna otsitakse ka kliendi imporditud ajaloost (senine päevik teisest
+     kohast). Liigi ja ajavahemiku filter sinna ei kehti: sellel tekstil ei ole
+     kontrollitud aegu ega liike. */
+  const searchHistory = async (query) => {
+    const q = (query.q || "").trim();
+    if (!q || !(data?.histories || []).length) {
+      setHistoryHits(null);
+      return;
+    }
+    const result = await past.call(`${base}/ajalugu/otsing`, {
+      method: "POST",
+      body: { q },
+      fallbackKey: "home_care.errors.search_failed",
+      quiet: true
+    });
+    setHistoryHits(result.ok ? result.data : null);
+  };
+
   const applyFilter = async (next) => {
     const result = await fetchEntries(next);
     if (result.ok) {
       setEntries(result.data.entries);
       setApplied(next);
       setFilter(next);
+      await searchHistory(next);
     } else if (result.messageKey === ACCESS_REASON_REQUIRED) {
       setLapsed(true);
     }
@@ -421,7 +445,39 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
             </button>
           </div>
         ) : null}
+
+        {historyHits && historyHits.items.length > 0 ? (
+          <>
+            <h3 className="hc-section-title">{t("home_care.history.hits_title")}</h3>
+            <p className="hc-hint">{t("home_care.history.hits_hint")}</p>
+            <ul className="hc-list hc-list--plain">
+              {historyHits.items.map((hit) => (
+                <li key={`${hit.historyId}-${hit.position}`} className="hc-entry">
+                  <div className="hc-entry__head">
+                    <span className="hc-entry__author">{hit.title}</span>
+                    <span className="hc-badge hc-badge--warn">{t("home_care.history.mark")}</span>
+                  </div>
+                  <p className="hc-entry__text">{hit.text}</p>
+                </li>
+              ))}
+            </ul>
+            {historyHits.hasMore ? <p className="hc-hint">{t("home_care.history.hits_more")}</p> : null}
+          </>
+        ) : null}
       </section>
+
+      <HomeCareHistory
+        organizationId={organizationId}
+        clientId={client.id}
+        histories={data.histories || []}
+        timeZone={timeZone}
+        isCoordinator={access.isCoordinator}
+        canWrite={canWrite}
+        onChange={(next) => {
+          setData((current) => ({ ...current, histories: next }));
+          setHistoryHits(null);
+        }}
+      />
 
       {access.isCoordinator ? null : (
         <section className="hc-section" aria-labelledby={`${fieldId}-team`}>

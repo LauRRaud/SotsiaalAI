@@ -11056,7 +11056,12 @@
       "import_no_rows": "The table has only a header row, no clients.",
       "import_too_many_rows": "The table has more than 500 rows. Import the clients in parts.",
       "import_row_invalid": "The data in this row is not valid.",
-      "import_changed": "The client list changed in the meantime. Check the table again."
+      "import_changed": "The client list changed in the meantime. Check the table again.",
+      "history_title_required": "Write where the text comes from.",
+      "history_text_required": "The text is empty.",
+      "history_too_large": "The text is too long (over a million characters). Import it in parts.",
+      "history_already_imported": "This text has already been imported for this client.",
+      "history_not_found": "This history was not found."
     },
     "incidents": {
       "title": "Incident register",
@@ -11210,6 +11215,26 @@
       "apply": "Import the clients ({count})",
       "done": "Clients imported: {count}. Add teams and cards on each client's page.",
       "to_clients": "To the clients"
+    },
+    "history": {
+      "title": "Earlier history from another place",
+      "empty": "If a diary about this client has been kept elsewhere (for example in Drive), it can be imported here.",
+      "mark": "imported history, authors and times not verified",
+      "meta": "Imported {time} · {name} · {count} characters",
+      "show": "Show the text",
+      "hide": "Hide the text",
+      "remove": "Remove",
+      "remove_confirm": "Remove from here, the original stays",
+      "add": "Import the existing diary",
+      "add_hint": "Copy the client's existing diary and paste it here, or choose a text file. The text is imported as it is: no entries are made from it and no dates are derived. Check that it is the right client's diary.",
+      "name_label": "Where it comes from",
+      "name_hint": "For example “Drive diary 2023–2026”.",
+      "text_label": "Diary text",
+      "file_label": "or choose a text file",
+      "save": "Import",
+      "hits_title": "Found in the earlier history",
+      "hits_hint": "These passages are from imported text; the kind and period filters do not apply to them.",
+      "hits_more": "There are more matches. Narrow the search."
     }
   },
   "stage": {

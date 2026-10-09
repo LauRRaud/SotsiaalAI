@@ -8123,6 +8123,7 @@ model CareClient {
   accesses  CareClientAccess[]
   incidentUpdates CareIncidentUpdate[]
   chronologyReleases CareChronologyRelease[]
+  importedHistories  CareImportedHistory[]
 
   @@unique([organizationId, internalCode])
   @@index([organizationId, status, displayName])
@@ -8425,6 +8426,53 @@ model CareChronologyRelease {
   @@unique([createdByMembershipId, clientRequestId])
   @@index([organizationId, createdAt])
   @@index([clientId, createdAt])
+}
+
+/// KODUTEENUS K1-f — imporditud ajalugu: kliendi senine päevik teisest kohast
+/// (näiteks Drive'i dokument), toodud üle ÜHE tekstina kliendi ajaloo algusesse.
+/// Autorid ja ajad on kontrollimata ja tekstist ei tuletata fakte, seepärast ei
+/// ole need päeviku kirjed (`CareClientEntry`) ega satu kronoloogiasse.
+model CareImportedHistory {
+  id             String @id @default(cuid())
+  organizationId String
+  clientId       String
+  /// Kust tekst pärit on, koostaja sõnadega (nt „Drive'i päevik 2023–2026").
+  title          String
+
+  charCount     Int
+  blockCount    Int
+  /// Sisu räsi: sama teksti teine ületoomine samale kliendile tuntakse ära.
+  contentSha256 String
+
+  importedByMembershipId String
+  importedByName         String
+  createdAt              DateTime @default(now())
+
+  client CareClient                 @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  blocks CareImportedHistoryBlock[]
+
+  @@unique([clientId, contentSha256])
+  @@index([clientId, createdAt])
+}
+
+/// Imporditud ajaloo lõige: tekst on jagatud lõikudeks ainult näitamise ja
+/// otsingu jaoks; lõikude järjestus on teksti järjestus.
+model CareImportedHistoryBlock {
+  id             String @id @default(cuid())
+  historyId      String
+  organizationId String
+  clientId       String
+  position       Int
+  text           String @db.Text
+
+  /// Otsinguabi nagu päeviku kirjel (K1-c): sõnad ja tüved.
+  searchText    String? @db.Text
+  searchVersion String?
+
+  history CareImportedHistory @relation(fields: [historyId], references: [id], onDelete: Cascade)
+
+  @@unique([historyId, position])
+  @@index([clientId])
 }
 
 /// Väljastatud dokumendi rida: kirje hetkekoopia väljastamise hetkel. MUUTUMATU.
