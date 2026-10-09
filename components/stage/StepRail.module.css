@@ -57,6 +57,12 @@
   color: #f6f4f0;
 }
 
+/* Kui dokis ei ole lehe nime, lõpeb doki oma eraldaja kohe sammude ees: teist
+   joont selle kõrvale ei ole vaja. */
+:global(.gc-shortcut-divider) + :global(.gc-dock-steps) > .lead {
+  display: none;
+}
+
 /* Telefonis ei mahu lehe nimi ja sammud korraga kiirmenüüsse: sammude ajal
    jääb lehe nimi dokist välja (leht näitab seda siis ise sammu kohal). */
 @media (max-width: 768px) {

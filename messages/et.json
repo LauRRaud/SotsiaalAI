@@ -2338,7 +2338,8 @@
         "view_service_map": "Vaata teenusekaardil",
         "view_profile": "Vaata profiili",
         "edit": "Muuda",
-        "copy_short": "Kopeeri"
+        "copy_short": "Kopeeri",
+        "new_inquiry": "Uus eelpöördumine"
       },
       "receiver_workspace": "Eelpöördumiste vastuvõtt",
       "recipients_lead": "Kontaktid ilmuvad, kui olukord, piirkond ja pöördumise suund on piisavalt selged.",
@@ -2383,7 +2384,21 @@
       "start": {
         "title": "Koosta eelpöördumine",
         "lead": "Eelpöördumine aitab olukorra arusaadavalt kirja panna ja valida, kelle poole pöörduda. See ei ole ametlik hindamine ega teenuse määramise otsus.",
-        "journey_locked": "Teekonnast jätkamiseks ava eelpöördumine konkreetse Teekonna vaatest."
+        "options": {
+          "find_recipient": {
+            "title": "Aita mul leida, kelle poole pöörduda",
+            "description": "Kirjelda olukorda. Sotsiaal.pro küsib vajadusel täpsustusi ja aitab leida sobiva KOV kontakti, lastekaitse kontakti või teenuseosutaja."
+          },
+          "known_contact": {
+            "title": "Mul on kontakt juba olemas",
+            "description": "Vali kontakt Teenusekaardilt või otsi adressaati nime, KOV-i, teenuse või piirkonna järgi."
+          },
+          "journey": {
+            "title": "Jätkan Teekonnast",
+            "description": "Kasuta oma privaatses Teekonnas salvestatud infot ja vali, mida soovid eelpöördumises jagada.",
+            "description_open": "Ava oma Teekond ja alusta eelpöördumist sealt: nii tuleb sinu valitud info kaasa. Teekond jääb privaatseks."
+          }
+        }
       },
       "overview": {
         "title": "Eelinfo ülevaade",
@@ -2406,7 +2421,35 @@
         "delivery_email": "e-kirja tekst",
         "delivery_manual": "salvestamine, kopeerimine või allalaadimine",
         "referral_hint": "Sa saad teenuseosutajalt küsida lisainfot või pöörduda KOV-i poole."
-      }
+      },
+      "steps": {
+        "label": "Eelpöördumise sammud",
+        "journey": {
+          "title": "Teekonna info",
+          "short": "Teekond"
+        },
+        "collect": {
+          "title": "Täpsusta eelinfot",
+          "short": "Eelinfo"
+        },
+        "review": {
+          "title": "Eelinfo ülevaade",
+          "short": "Ülevaade"
+        },
+        "recipient": {
+          "title": "Adressaat",
+          "short": "Adressaat"
+        },
+        "preview": {
+          "title": "Pöördumise eelvaade",
+          "short": "Eelvaade"
+        },
+        "saved": {
+          "title": "Minu eelpöördumised",
+          "short": "Minu omad"
+        }
+      },
+      "new_confirm": "Uue alustamine tühjendab praeguse salvestamata teksti. Vajuta plussi uuesti, kui soovid alustada uut."
     },
     "service_map": {
       "title": "Teenusekaart",

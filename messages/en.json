@@ -2338,7 +2338,8 @@
         "view_service_map": "View on service map",
         "view_profile": "View profile",
         "edit": "Edit",
-        "copy_short": "Copy"
+        "copy_short": "Copy",
+        "new_inquiry": "New pre-inquiry"
       },
       "receiver_workspace": "Pre-inquiry receiving",
       "recipients_lead": "Contacts appear once the situation, area, and inquiry direction are clear enough.",
@@ -2383,7 +2384,21 @@
       "start": {
         "title": "Create a pre-inquiry",
         "lead": "A pre-inquiry helps you describe the situation clearly and choose who to contact. It is not an official assessment or a service decision.",
-        "journey_locked": "To continue from a Journey, open the pre-inquiry from that Journey's view."
+        "options": {
+          "find_recipient": {
+            "title": "Help me find who to contact",
+            "description": "Describe the situation. Sotsiaal.pro asks for details where needed and helps find a suitable municipality contact, child protection contact or service provider."
+          },
+          "known_contact": {
+            "title": "I already have a contact",
+            "description": "Choose a contact from the Service map or search for a recipient by name, municipality, service or area."
+          },
+          "journey": {
+            "title": "I continue from my Journey",
+            "description": "Use the information saved in your private Journey and choose what you want to share in the pre-inquiry.",
+            "description_open": "Open your Journey and start the pre-inquiry from there: the information you choose comes along. The Journey stays private."
+          }
+        }
       },
       "overview": {
         "title": "Pre-info overview",
@@ -2406,7 +2421,35 @@
         "delivery_email": "email text",
         "delivery_manual": "saving, copying or downloading",
         "referral_hint": "You can ask the service provider for more information or contact the municipality."
-      }
+      },
+      "steps": {
+        "label": "Steps of the pre-inquiry",
+        "journey": {
+          "title": "Journey information",
+          "short": "Journey"
+        },
+        "collect": {
+          "title": "Add the details",
+          "short": "Details"
+        },
+        "review": {
+          "title": "Pre-info overview",
+          "short": "Overview"
+        },
+        "recipient": {
+          "title": "Recipient",
+          "short": "Recipient"
+        },
+        "preview": {
+          "title": "Preview of the pre-inquiry",
+          "short": "Preview"
+        },
+        "saved": {
+          "title": "My pre-inquiries",
+          "short": "Mine"
+        }
+      },
+      "new_confirm": "Starting a new one clears the current unsaved text. Press the plus again if you want to start a new one."
     },
     "service_map": {
       "title": "Service map",
