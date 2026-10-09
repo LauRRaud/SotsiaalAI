@@ -2,7 +2,7 @@
 
 import { useId, useRef, useState } from "react";
 
-import { fromLocalInputValue, newClientActionKey, toLocalInputValue } from "@/components/casework/caseWorkClient";
+import { newClientActionKey } from "@/components/casework/caseWorkClient";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Dropdown from "@/components/ui/Dropdown";
 import {
@@ -16,15 +16,20 @@ import {
   HOME_CARE_LIMITS
 } from "@/lib/homeCare/constants";
 
-import { homeCareBase, useHomeCareApi } from "./homeCareClient";
+import { fromZonedInputValue, homeCareBase, toZonedInputValue, useHomeCareApi } from "./homeCareClient";
 
 /**
  * Päevikukirje vorm: uus kirje või olemasoleva parandus.
  *
- * KORDUSSAATMINE. Esimesel katsel pannakse paika päringu võti, sündmuse aeg ja
- * tehtud sammude kellaajad. Kui salvestus ebaõnnestub ja inimene vajutab
- * uuesti, läheb teele TÄPSELT sama keha: server tunneb korduse ära ja teist
- * kirjet ei teki. Uus võti tekib alles siis, kui sisu muudetakse.
+ * KORDUSSAATMINE. Esimesel katsel pannakse paika päringu võti. Kui salvestus
+ * ebaõnnestub ja inimene vajutab uuesti, läheb teele TÄPSELT sama keha: server
+ * tunneb korduse ära ja teist kirjet ei teki. Uus võti tekib alles siis, kui
+ * sisu muudetakse.
+ *
+ * KELL. Kui inimene aega ei sisesta, EI saada vorm seadme kellaaega: sündmuse
+ * aja ja tehtud sammude kellaajad paneb server. Valesti käiva kellaga telefon
+ * saaks muidu vastuseks „aeg ei saa olla tulevikus", kuigi keegi aega ei
+ * sisestanud. Sisestatud aeg on asutuse ajavööndis, nagu kõik ajad lehel.
  *
  * VEA KORRAL JÄÄB TEKST ALLES. Vorm tühjendatakse ainult õnnestumise järel.
  *
@@ -36,6 +41,7 @@ export default function HomeCareEntryForm({
   clientId,
   team = [],
   viewerMembershipId = null,
+  timeZone,
   entry = null,
   onSaved,
   onCancel
@@ -126,28 +132,26 @@ export default function HomeCareEntryForm({
     ]);
     if (attemptRef.current?.signature === signature) return attemptRef.current.body;
 
-    const nowIso = new Date().toISOString();
-    const occurredAt = occurredLocal
-      ? fromLocalInputValue(occurredLocal)
-      : correcting
-        ? entry.occurredAt
-        : nowIso;
     const body = {
       kind,
       contactMode,
       text,
-      occurredAt,
       companionMembershipId: companion || null
     };
+    /* Aeg läheb kaasa ainult siis, kui inimene selle sisestas. Paranduses
+       tähendab puuduv aeg „jäta nagu on", uuel kirjel „praegu" (serveri kell). */
+    if (occurredLocal) body.occurredAt = fromZonedInputValue(occurredLocal, timeZone) || occurredLocal;
     if (isIncident) {
       body.incidentType = incidentType;
       body.incidentAssessment = assessment;
-      body.incidentActions = actionCodes.map((code) => ({ code, at: actions[code] || nowIso }));
+      /* Varem salvestatud sammu kellaaeg jääb; uue sammu kellaaja paneb server. */
+      body.incidentActions = actionCodes.map((code) => (actions[code] ? { code, at: actions[code] } : { code }));
     }
     if (correcting) {
       body.reason = reason;
+      body.revision = entry.revision;
     } else {
-      body.deviceCreatedAt = nowIso;
+      body.deviceCreatedAt = new Date().toISOString();
       body.clientRequestId = newClientActionKey();
     }
     attemptRef.current = { signature, body };
@@ -299,7 +303,7 @@ export default function HomeCareEntryForm({
             id={`${fieldId}-occurred`}
             className="hc-input"
             type="datetime-local"
-            value={occurredLocal || (correcting ? toLocalInputValue(entry.occurredAt) : "")}
+            value={occurredLocal || (correcting ? toZonedInputValue(entry.occurredAt, timeZone) : "")}
             onChange={(event) => {
               touch();
               setOccurredLocal(event.target.value);

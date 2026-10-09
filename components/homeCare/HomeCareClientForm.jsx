@@ -31,7 +31,11 @@ export default function HomeCareClientForm({ organizationId, client = null, unit
   const submit = async (event) => {
     event.preventDefault();
     const body = { displayName, internalCode, address, contactPhone, contactNote };
-    if (units.length > 0) body.unitId = unitId || null;
+    /* Üksus läheb kaasa ainult siis, kui see muutus. Arhiveeritud üksuses
+       kliendi muid andmeid peab saama parandada ilma üksust vahetamata. */
+    if (units.length > 0 && (!client || (unitId || null) !== (client.unitId || null))) {
+      body.unitId = unitId || null;
+    }
     const result = client
       ? await call(`${homeCareBase(organizationId)}/kliendid/${client.id}`, {
           method: "PATCH",

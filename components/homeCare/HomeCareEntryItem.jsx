@@ -49,6 +49,9 @@ export default function HomeCareEntryItem({
   const retracted = Boolean(entry.retractedAt);
   const incident = entry.incident;
   const canEdit = canWrite && !showClient && (entry.isMine || isCoordinator);
+  /* Erijuhtumi tühistab hooldusjuht: autori tühistus võtaks lahtise juhtumi
+     registrist vaikselt maha. Server keelab sama. */
+  const canRetract = canEdit && (!incident || isCoordinator);
   const canSeeHistory = !showClient && (entry.isMine || isCoordinator) && entry.revision > 1;
   const canSetIncident = canWrite && isCoordinator && incident && !retracted;
 
@@ -63,7 +66,7 @@ export default function HomeCareEntryItem({
     event.preventDefault();
     const result = await call(`${base}/tuhista`, {
       method: "POST",
-      body: { reason },
+      body: { reason, revision: entry.revision },
       fallbackKey: "home_care.errors.save_failed"
     });
     if (result.ok) {
@@ -103,6 +106,7 @@ export default function HomeCareEntryItem({
           clientId={clientId}
           team={team}
           viewerMembershipId={viewerMembershipId}
+          timeZone={timeZone}
           entry={entry}
           onCancel={close}
           onSaved={(next) => {
@@ -178,14 +182,14 @@ export default function HomeCareEntryItem({
       {canEdit || canSeeHistory || canSetIncident ? (
         <div className="hc-row">
           {canEdit && !retracted ? (
-            <>
-              <button className="hc-btn hc-btn--quiet" type="button" onClick={() => setMode("correct")} disabled={busy}>
-                {t("home_care.entry.correct")}
-              </button>
-              <button className="hc-btn hc-btn--quiet" type="button" onClick={() => setMode("retract")} disabled={busy}>
-                {t("home_care.entry.retract")}
-              </button>
-            </>
+            <button className="hc-btn hc-btn--quiet" type="button" onClick={() => setMode("correct")} disabled={busy}>
+              {t("home_care.entry.correct")}
+            </button>
+          ) : null}
+          {canRetract && !retracted ? (
+            <button className="hc-btn hc-btn--quiet" type="button" onClick={() => setMode("retract")} disabled={busy}>
+              {t("home_care.entry.retract")}
+            </button>
           ) : null}
           {canSeeHistory ? (
             <button

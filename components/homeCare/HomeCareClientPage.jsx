@@ -6,20 +6,23 @@ import { useId, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import DateField from "@/components/ui/DateField";
 import Dropdown from "@/components/ui/Dropdown";
-import {
-  CARE_ACCESS_REASONS,
-  CARE_CLIENT_STATUSES,
-  CARE_ENTRY_KINDS,
-  CareAccessReason,
-  CareClientStatus
-} from "@/lib/homeCare/constants";
+import { CARE_CLIENT_STATUSES, CARE_ENTRY_KINDS, CareClientStatus } from "@/lib/homeCare/constants";
 
 import HomeCareCard from "./HomeCareCard";
 import HomeCareClientForm from "./HomeCareClientForm";
 import HomeCareEntryForm from "./HomeCareEntryForm";
 import HomeCareEntryItem from "./HomeCareEntryItem";
+import HomeCareReasonForm from "./HomeCareReasonForm";
 import HomeCareTeam from "./HomeCareTeam";
-import { ACCESS_REASON_REQUIRED, formatDateTime, homeCareBase, useHomeCareApi } from "./homeCareClient";
+import {
+  ACCESS_REASON_REQUIRED,
+  HomeCareAccessProvider,
+  formatDateTime,
+  homeCareBase,
+  useHomeCareApi
+} from "./homeCareClient";
+
+const NO_FILTER = Object.freeze({ kind: "", from: "", to: "" });
 
 function sortEntries(items) {
   return [...items].sort((a, b) => {
@@ -35,6 +38,11 @@ function sortEntries(items) {
  *
  * Meeskonda mittekuuluv hooldaja näeb sisu asemel põhjuse küsimist. Enne
  * põhjuse andmist ei näita leht kliendi kohta midagi.
+ *
+ * LUBA VÕIB LÕPPEDA, KUI LEHT ON LAHTI (päev sai läbi, inimene eemaldati
+ * meeskonnast). Siis ei asendata lehte põhjuse küsimisega, vaid vorm ilmub
+ * lehe algusesse: pooleli olev kirje jääb alles ja salvestub pärast põhjuse
+ * andmist sama võtmega.
  */
 export default function HomeCareClientPage({ context, clientId, initial, needsReason: initialNeedsReason, unitOptions }) {
   const { t } = useI18n();
@@ -47,10 +55,9 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
   const [data, setData] = useState(initial || null);
   const [needsReason, setNeedsReason] = useState(Boolean(initialNeedsReason));
   const [entries, setEntries] = useState(initial?.entries || { items: [], hasMore: false, nextCursor: null });
-  const [filter, setFilter] = useState({ kind: "", from: "", to: "" });
-  const [applied, setApplied] = useState({ kind: "", from: "", to: "" });
-  const [reasonCode, setReasonCode] = useState(CareAccessReason.COVERING);
-  const [reasonText, setReasonText] = useState("");
+  const [filter, setFilter] = useState(NO_FILTER);
+  const [applied, setApplied] = useState(NO_FILTER);
+  const [lapsed, setLapsed] = useState(false);
   const [panel, setPanel] = useState(null);
   const [status, setStatus] = useState(initial?.client?.status || CareClientStatus.ACTIVE);
   const [statusNote, setStatusNote] = useState(initial?.client?.statusNote || "");
@@ -63,27 +70,18 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
     if (result.ok) {
       setData(result.data);
       setEntries(result.data.entries);
-      setApplied({ kind: "", from: "", to: "" });
-      setFilter({ kind: "", from: "", to: "" });
-      setStatus(result.data.client.status);
-      setStatusNote(result.data.client.statusNote || "");
+      setApplied(NO_FILTER);
+      setFilter(NO_FILTER);
       setNeedsReason(false);
+      setLapsed(false);
       page.setError("");
     } else if (result.messageKey === ACCESS_REASON_REQUIRED) {
-      setNeedsReason(true);
+      /* Sisu on juba ees: jätame lehe alles ja küsime põhjust selle kohal. */
+      if (data) setLapsed(true);
+      else setNeedsReason(true);
       page.setError("");
     }
     return result.ok;
-  };
-
-  const submitReason = async (event) => {
-    event.preventDefault();
-    const result = await page.call(`${base}/ava`, {
-      method: "POST",
-      body: { reasonCode, reason: reasonText },
-      fallbackKey: "home_care.errors.open_failed"
-    });
-    if (result.ok) await reload();
   };
 
   const entriesUrl = (query, cursor) => {
@@ -102,6 +100,8 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
       setEntries(result.data.entries);
       setApplied(next);
       setFilter(next);
+    } else if (result.messageKey === ACCESS_REASON_REQUIRED) {
+      setLapsed(true);
     }
   };
 
@@ -110,22 +110,43 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
     const result = await diary.call(entriesUrl(applied, entries.nextCursor), {
       fallbackKey: "home_care.errors.list_failed"
     });
-    if (!result.ok) return;
+    if (!result.ok) {
+      if (result.messageKey === ACCESS_REASON_REQUIRED) setLapsed(true);
+      return;
+    }
     setEntries((current) => {
       const known = new Set(current.items.map((item) => item.id));
       return {
-        items: [...current.items, ...result.data.entries.items.filter((item) => !known.has(item.id))],
+        /* Sorteerime uuesti: vahepeal lisatud tagantjärele kirje võib kuuluda
+           äsja laetud lehe kirjete vahele. */
+        items: sortEntries([...current.items, ...result.data.entries.items.filter((item) => !known.has(item.id))]),
         hasMore: result.data.entries.hasMore,
         nextCursor: result.data.entries.nextCursor
       };
     });
   };
 
+  /* Salvestatud või muudetud kirje. Filtriga päevikus otsustab SERVER, kas
+     kirje sinna kuulub: laeme filtreeritud lehe uuesti, selle asemel et
+     liigi- ja kuupäevareegleid brauseris korrata. */
   const upsertEntry = (entry) => {
+    if (applied.kind || applied.from || applied.to) {
+      applyFilter(applied);
+      return;
+    }
     setEntries((current) => ({
       ...current,
       items: sortEntries([entry, ...current.items.filter((item) => item.id !== entry.id)])
     }));
+  };
+
+  /* Seisu vorm avaneb alati kliendi PRAEGUSE seisuga. Pooleli jäänud valik ei
+     tohi järgmisel avamisel ees olla: „Lõpetatud" jääks muidu märkamatult
+     salvestama. */
+  const openStatusPanel = () => {
+    setStatus(data.client.status);
+    setStatusNote(data.client.statusNote || "");
+    setPanel("status");
   };
 
   const saveStatus = async (event) => {
@@ -147,52 +168,12 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
         <Link className="hc-back" href={backHref}>
           {t("home_care.client.back")}
         </Link>
-        <form className="hc-section" onSubmit={submitReason}>
-          <h1 className="hc-title">{t("home_care.reason.title")}</h1>
-          <p className="hc-sub">{t("home_care.reason.intro")}</p>
-          <div className="hc-field">
-            <span className="hc-label" id={`${fieldId}-reason`}>
-              {t("home_care.reason.code_label")}
-            </span>
-            <div className="hc-chips" role="group" aria-labelledby={`${fieldId}-reason`}>
-              {CARE_ACCESS_REASONS.map((code) => (
-                <button
-                  key={code}
-                  type="button"
-                  className="hc-chip"
-                  aria-pressed={reasonCode === code}
-                  onClick={() => setReasonCode(code)}
-                >
-                  {t(`home_care.reason.codes.${code}`)}
-                </button>
-              ))}
-            </div>
-          </div>
-          <div className="hc-field">
-            <label className="hc-label" htmlFor={`${fieldId}-reason-text`}>
-              {t("home_care.reason.text_label")}
-            </label>
-            <input
-              id={`${fieldId}-reason-text`}
-              className="hc-input"
-              value={reasonText}
-              onChange={(event) => setReasonText(event.target.value)}
-              maxLength={300}
-              autoComplete="off"
-            />
-          </div>
-          {page.error ? (
-            <p className="hc-error" role="alert">
-              {page.error}
-            </p>
-          ) : null}
-          <div className="hc-row">
-            <button className="hc-btn hc-btn--primary" type="submit" disabled={page.busy || !context.writable}>
-              {t("home_care.reason.submit")}
-            </button>
-          </div>
-          {context.writable ? null : <p className="hc-hint">{t("home_care.client.read_only")}</p>}
-        </form>
+        <HomeCareReasonForm
+          organizationId={organizationId}
+          clientId={clientId}
+          writable={Boolean(context.writable)}
+          onGranted={() => reload()}
+        />
       </section>
     );
   }
@@ -218,10 +199,21 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
   const activeTeam = team.filter((member) => member.active);
 
   return (
+    <HomeCareAccessProvider onReasonRequired={() => setLapsed(true)}>
     <section className="hc-shell">
       <Link className="hc-back" href={backHref}>
         {t("home_care.client.back")}
       </Link>
+
+      {lapsed ? (
+        <HomeCareReasonForm
+          organizationId={organizationId}
+          clientId={client.id}
+          writable={canWrite}
+          heading="h2"
+          onGranted={() => setLapsed(false)}
+        />
+      ) : null}
 
       <header className="hc-head">
         <h1 className="hc-title">{client.displayName}</h1>
@@ -269,6 +261,7 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
             clientId={client.id}
             team={team}
             viewerMembershipId={access.membershipId}
+            timeZone={timeZone}
             onSaved={upsertEntry}
           />
         </section>
@@ -411,7 +404,7 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
               <button className="hc-btn hc-btn--quiet" type="button" onClick={() => setPanel("details")}>
                 {t("home_care.client.edit")}
               </button>
-              <button className="hc-btn hc-btn--quiet" type="button" onClick={() => setPanel("status")}>
+              <button className="hc-btn hc-btn--quiet" type="button" onClick={openStatusPanel}>
                 {t("home_care.client.status_title")}
               </button>
             </div>
@@ -481,5 +474,6 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
         </section>
       ) : null}
     </section>
+    </HomeCareAccessProvider>
   );
 }

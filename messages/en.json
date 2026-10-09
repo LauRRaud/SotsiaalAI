@@ -10962,7 +10962,8 @@
       "invalid_id": "Invalid reference.",
       "invalid_request_id": "Invalid request key.",
       "search_too_short": "Type at least two letters.",
-      "client_ended": "The service has ended. A new entry can be added by the care coordinator."
+      "client_ended": "The service has ended. A new entry can be added by the care coordinator.",
+      "incident_retract_coordinator": "An incident is retracted by the care coordinator. If there is a mistake, correct the entry or talk to the coordinator."
     }
   }
 }

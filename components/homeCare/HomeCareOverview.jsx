@@ -32,9 +32,20 @@ export default function HomeCareOverview({ context, overview }) {
      lahtiste kui ka eilsest saadik kirjutatute seas. */
   const onIncidentChange = (entry) => {
     const merge = (item) => (item.id === entry.id ? { ...item, ...entry, client: item.client } : item);
-    setOpenIncidents((current) =>
-      current.map(merge).filter((item) => item.incident?.status !== CareIncidentStatus.CLOSED)
-    );
+    const isOpen = entry.incident && !entry.retractedAt && entry.incident.status !== CareIncidentStatus.CLOSED;
+    setOpenIncidents((current) => {
+      const next = current.map(merge).filter((item) => item.incident?.status !== CareIncidentStatus.CLOSED);
+      /* Uuesti avatud juhtum tuleb lahtiste hulka tagasi: klient võetakse reast,
+         kust nuppu vajutati (kirjed pärast eilset). */
+      if (isOpen && !next.some((item) => item.id === entry.id)) {
+        const source = recent.find((item) => item.id === entry.id);
+        if (source) {
+          next.push({ ...source, ...entry, client: source.client });
+          next.sort((a, b) => (a.occurredAt < b.occurredAt ? 1 : a.occurredAt > b.occurredAt ? -1 : 0));
+        }
+      }
+      return next;
+    });
     setRecent((current) => current.map(merge));
   };
 

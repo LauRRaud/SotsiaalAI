@@ -150,7 +150,7 @@ test('võti, otsing, kaardirida ja kalendripäev', () => {
   rejects(() => normalizeIsoDay('9.10.2026'), 'home_care.errors.invalid_date');
 });
 
-test('„hiljem kirjutatud" arvutatakse seadme kirjutamisajast, mitte serveri omast', () => {
+test('„hiljem kirjutatud" arvutatakse serveri salvestusajast; seadme väide märki ära ei võta', () => {
   const base = {
     id: 'e1', clientId: 'c1', kind: 'NOTE', contactMode: 'VISIT', text: 'x', authorName: 'Anu',
     authorMembershipId: 'mem_1', revision: 1, retractedAt: null, _count: { reads: 0 }
@@ -159,14 +159,16 @@ test('„hiljem kirjutatud" arvutatakse seadme kirjutamisajast, mitte serveri om
   assert.equal(onTime.writtenLater, false);
   const late = serializeEntry({ ...base, occurredAt: new Date('2026-10-08T17:00:00Z'), createdAt: new Date('2026-10-09T07:30:00Z') });
   assert.equal(late.writtenLater, true);
-  /* Võrguta järjekorras oodanud kirje: seadmes kirjutati kohe, server sai hiljem. */
-  const queued = serializeEntry({
+  /* Seadme kirjutamisaeg on seadme väide. Kui server sai kirje kuus tundi
+     pärast sündmust, on see hiljem kirjutatud, ükskõik mida seade ütleb:
+     muidu saaks tagantjärele kirje jätta märgita. */
+  const claimed = serializeEntry({
     ...base,
     occurredAt: new Date('2026-10-09T07:00:00Z'),
     deviceCreatedAt: new Date('2026-10-09T07:10:00Z'),
     createdAt: new Date('2026-10-09T13:00:00Z')
   });
-  assert.equal(queued.writtenLater, false);
+  assert.equal(claimed.writtenLater, true);
 
   assert.equal(serializeEntry({ ...base, occurredAt: NOW, createdAt: NOW }, { viewerMembershipId: 'mem_1' }).isMine, true);
   assert.equal(serializeEntry({ ...base, occurredAt: NOW, createdAt: NOW }, { viewerMembershipId: 'mem_2' }).isMine, false);
@@ -186,4 +188,90 @@ test('töötaja nimi: profiil, muidu ametinimetus, muidu tühi', () => {
   assert.equal(personName({ user: { profile: { firstName: 'Anu', lastName: 'Hooldaja' } }, jobTitle: 'hooldaja' }), 'Anu Hooldaja');
   assert.equal(personName({ user: null, jobTitle: 'Hooldustöötaja' }), 'Hooldustöötaja');
   assert.equal(personName(null), '');
+});
+
+test('kutsemallid: hooldusjuhi malli annab ainult omanik ja ainult aktiivse mooduliga', async () => {
+  const { OWNER_ONLY_INVITE_TEMPLATES, isTemplateOffered } = await import('../lib/org/constants.js');
+  assert.ok(OWNER_ONLY_INVITE_TEMPLATES.includes('HOME_CARE_COORDINATOR'));
+  assert.ok(OWNER_ONLY_INVITE_TEMPLATES.includes('ORG_OWNER'));
+  assert.equal(isTemplateOffered('HOME_CARE_COORDINATOR', []), false);
+  assert.equal(isTemplateOffered('HOME_CARE_COORDINATOR', ['HOME_CARE']), true);
+  /* Varasemate mallide nähtavus ei sõltu moodulitest (ka mitte „Üksuse juht",
+     mille üks õigus nõuab vastuvõtu moodulit). */
+  for (const key of ['ORG_OWNER', 'MEMBER_ADMIN', 'UNIT_LEAD', 'INBOX_COORDINATOR', 'MEMBER']) {
+    assert.equal(isTemplateOffered(key, []), true, key);
+  }
+  assert.equal(isTemplateOffered('OLEMATU', ['HOME_CARE']), false);
+});
+
+test('kordussaatmise räsi: serveri pandud aeg ei muuda räsi, päringu oma muudab', () => {
+  /* Aeg saatmata: server paneb `now`; korduskatsel on `now` teine, räsi sama. */
+  const first = normalizeEntryInput({ text: 'Ajata' }, { now: NOW });
+  const again = normalizeEntryInput({ text: 'Ajata' }, { now: new Date('2026-10-09T08:01:00Z') });
+  assert.notEqual(first.occurredAt.toISOString(), again.occurredAt.toISOString());
+  assert.equal(entryRequestHash('c1', first), entryRequestHash('c1', again));
+  /* Sama kehtib tehtud sammu kellaaja kohta. */
+  const stepA = normalizeEntryInput({ kind: 'INCIDENT', incidentType: 'FALL', text: 'x', incidentActions: [{ code: 'CALLED_112' }] }, { now: NOW });
+  const stepB = normalizeEntryInput(
+    { kind: 'INCIDENT', incidentType: 'FALL', text: 'x', incidentActions: [{ code: 'CALLED_112' }] },
+    { now: new Date('2026-10-09T08:02:00Z') }
+  );
+  assert.equal(entryRequestHash('c1', stepA), entryRequestHash('c1', stepB));
+  assert.equal(stepA.incidentActions[0].at, NOW.toISOString());
+  /* Päringus antud aeg on sisu: teine aeg on teine päring. */
+  const timed = normalizeEntryInput({ text: 'Ajata', occurredAt: '2026-10-09T07:00:00Z' }, { now: NOW });
+  assert.notEqual(entryRequestHash('c1', first), entryRequestHash('c1', timed));
+});
+
+test('parandus ei ole täisasendus: saatmata väljad jäävad kirjelt', () => {
+  const stored = {
+    kind: 'CONCERN',
+    contactMode: 'PHONE',
+    occurredAt: new Date('2026-10-08T10:00:00Z'),
+    companionMembershipId: 'mem_other',
+    incidentType: null,
+    incidentAssessment: null,
+    incidentActions: null
+  };
+  const fixed = normalizeEntryInput({ text: 'Täpsustatud' }, { now: NOW, base: stored });
+  assert.equal(fixed.kind, 'CONCERN');
+  assert.equal(fixed.contactMode, 'PHONE');
+  assert.equal(fixed.occurredAt.toISOString(), '2026-10-08T10:00:00.000Z');
+  assert.equal(fixed.companionMembershipId, 'mem_other');
+  /* Selge `null` võtab kaaslase maha; puuduv väli ei võta. */
+  assert.equal(normalizeEntryInput({ text: 'x', companionMembershipId: null }, { now: NOW, base: stored }).companionMembershipId, null);
+
+  const incident = {
+    kind: 'INCIDENT',
+    contactMode: 'VISIT',
+    occurredAt: new Date('2026-10-08T10:00:00Z'),
+    companionMembershipId: null,
+    incidentType: 'FALL',
+    incidentAssessment: 'Libises',
+    incidentActions: [{ code: 'CALLED_112', at: '2026-10-08T10:05:00.000Z' }]
+  };
+  const incidentFixed = normalizeEntryInput({ text: 'Uus tekst' }, { now: NOW, base: incident });
+  assert.equal(incidentFixed.incidentType, 'FALL');
+  assert.equal(incidentFixed.incidentAssessment, 'Libises');
+  assert.deepEqual(incidentFixed.incidentActions, incident.incidentActions);
+});
+
+test('vigane sisend on 400, mitte erind: objektita keha, NUL-märk, seadme kell', () => {
+  rejects(() => normalizeEntryInput(null, { now: NOW }), 'home_care.errors.entry_text_required');
+  rejects(() => normalizeEntryInput(['x'], { now: NOW }), 'home_care.errors.entry_text_required');
+  rejects(() => normalizeClientInput(null), 'home_care.errors.name_required');
+  /* Objekt liigi kohal loetakse puuduvaks väljaks (vaikimisi tavaline kirje), mitte ei viska erindit. */
+  assert.equal(normalizeEntryInput({ text: 'x', kind: { toString: 0 } }, { now: NOW }).kind, 'NOTE');
+  const nul = String.fromCharCode(0);
+  assert.equal(normalizeEntryInput({ text: `Tõin${nul} toidu` }, { now: NOW }).text, 'Tõin toidu');
+  /* Seadme kirjutamisaeg hoitakse ainult mõistlikus aknas; muu jäetakse kõrvale. */
+  assert.equal(normalizeEntryInput({ text: 'x', deviceCreatedAt: '2026-10-09T07:59:00Z' }, { now: NOW }).deviceCreatedAt.toISOString(), '2026-10-09T07:59:00.000Z');
+  assert.equal(normalizeEntryInput({ text: 'x', deviceCreatedAt: '2026-10-09T09:00:00Z' }, { now: NOW }).deviceCreatedAt, null);
+  assert.equal(normalizeEntryInput({ text: 'x', deviceCreatedAt: '2026-09-01T09:00:00Z' }, { now: NOW }).deviceCreatedAt, null);
+  assert.equal(normalizeEntryInput({ text: 'x', deviceCreatedAt: 'sodi' }, { now: NOW }).deviceCreatedAt, null);
+  /* Tulevikus olev sammu kellaaeg on sisestusviga. */
+  rejects(
+    () => normalizeEntryInput({ kind: 'INCIDENT', incidentType: 'FALL', text: 'x', incidentActions: [{ code: 'CALLED_112', at: '2026-10-09T09:00:00Z' }] }, { now: NOW }),
+    'home_care.errors.invalid_incident_actions'
+  );
 });

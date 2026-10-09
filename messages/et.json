@@ -10962,7 +10962,8 @@
       "invalid_id": "Vigane viide.",
       "invalid_request_id": "Vigane päringu võti.",
       "search_too_short": "Kirjuta vähemalt kaks tähte.",
-      "client_ended": "Teenus on lõpetatud. Uue kirje saab lisada hooldusjuht."
+      "client_ended": "Teenus on lõpetatud. Uue kirje saab lisada hooldusjuht.",
+      "incident_retract_coordinator": "Erijuhtumi tühistab hooldusjuht. Vea korral paranda kirjet või räägi hooldusjuhiga."
     }
   }
 }

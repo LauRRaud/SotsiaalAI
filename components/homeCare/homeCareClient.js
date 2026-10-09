@@ -1,9 +1,10 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { createContext, createElement, useCallback, useContext, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
+import { localDateTimeToUtc } from "@/lib/time/estonianDay";
 
 /**
  * KODUTEENUS K1 — brauseripoolne API kutsuja ja ajavormingud.
@@ -18,8 +19,21 @@ export function homeCareBase(organizationId) {
   return `/api/org/${encodeURIComponent(organizationId)}/koduteenus`;
 }
 
+/**
+ * Kliendi leht annab siit alla teate „luba on lõppenud". Põhjusega avamise luba
+ * kehtib päeva lõpuni ja meeskonnast võidakse inimene eemaldada ka siis, kui
+ * leht on lahti: ükskõik milline päring võib siis vastata „vali põhjus". Leht
+ * näitab sel juhul põhjuse vormi ILMA pooleli olevat kirjet kaotamata.
+ */
+const HomeCareAccessContext = createContext(null);
+
+export function HomeCareAccessProvider({ onReasonRequired, children }) {
+  return createElement(HomeCareAccessContext.Provider, { value: onReasonRequired }, children);
+}
+
 export function useHomeCareApi() {
   const { t, locale } = useI18n();
+  const onReasonRequired = useContext(HomeCareAccessContext);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
 
@@ -41,6 +55,7 @@ export function useHomeCareApi() {
           const messageKey = typeof payload?.messageKey === "string" ? payload.messageKey : "";
           const message = resolveApiMessage({ payload, t, fallbackKey });
           if (!quiet) setError(message);
+          if (messageKey === ACCESS_REASON_REQUIRED) onReasonRequired?.();
           return { ok: false, status: response.status, messageKey, message };
         }
         return { ok: true, status: response.status, data: payload };
@@ -52,7 +67,7 @@ export function useHomeCareApi() {
         setBusy(false);
       }
     },
-    [locale, t]
+    [locale, onReasonRequired, t]
   );
 
   return { call, busy, error, setError };
@@ -77,6 +92,48 @@ export function formatTime(isoValue, timeZone) {
   return parts ? `${parts.hour}:${parts.minute}` : "";
 }
 
+const FALLBACK_TIME_ZONE = "Europe/Tallinn";
+
+/** Vigane ajavööndi nimi annab Eesti aja, mitte erindi keset lehte. */
+function safeTimeZone(timeZone) {
+  if (typeof timeZone !== "string" || !timeZone) return FALLBACK_TIME_ZONE;
+  try {
+    new Intl.DateTimeFormat("en-GB", { timeZone });
+    return timeZone;
+  } catch {
+    return FALLBACK_TIME_ZONE;
+  }
+}
+
+/**
+ * `datetime-local` välja väärtus ASUTUSE ajavööndis.
+ *
+ * Kõik kellaajad lehel on asutuse ajas. Kui väli loeks ja kirjutaks seadme
+ * ajavööndis, näitaks teises vööndis seade parandusvormis teist kellaaega kui
+ * päevik ja „parandatud" aeg nihkuks vööndite vahe võrra.
+ */
+export function toZonedInputValue(isoValue, timeZone) {
+  const parts = dateParts(isoValue, timeZone);
+  return parts ? `${parts.year}-${parts.month}-${parts.day}T${parts.hour}:${parts.minute}` : "";
+}
+
+/** Välja väärtus (asutuse seinakell) → ISO hetk. Vigane väärtus on `null`. */
+export function fromZonedInputValue(value, timeZone) {
+  const match = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/.exec(String(value || ""));
+  if (!match) return null;
+  const date = localDateTimeToUtc(
+    {
+      year: Number(match[1]),
+      month: Number(match[2]),
+      day: Number(match[3]),
+      hour: Number(match[4]),
+      minute: Number(match[5])
+    },
+    safeTimeZone(timeZone)
+  );
+  return Number.isNaN(date.getTime()) ? null : date.toISOString();
+}
+
 function dateParts(isoValue, timeZone) {
   if (!isoValue) return null;
   const date = new Date(isoValue);
@@ -84,7 +141,7 @@ function dateParts(isoValue, timeZone) {
   let formatter;
   try {
     formatter = new Intl.DateTimeFormat("en-GB", {
-      timeZone: timeZone || "Europe/Tallinn",
+      timeZone: safeTimeZone(timeZone),
       year: "numeric",
       month: "2-digit",
       day: "2-digit",

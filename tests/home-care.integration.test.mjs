@@ -346,8 +346,19 @@ test('kirje: kordussaatmine, nähtavus, teade järgmisele, hiljem kirjutatud', a
 
   assert.equal(first.entry.authorName, 'Anu Hooldaja');
   assert.equal(first.entry.writtenLater, false);
-  const late = await createEntry(anu, client.id, { text: 'Eile õhtul kukkus peaaegu', occurredAt: '2026-10-08T17:00:00Z' }, deps());
+  /* „Kirjutatud hiljem" tuleb serveri kellast: seadme väide, et kirje kirjutati
+     kohe pärast sündmust, märki ära ei võta. */
+  const late = await createEntry(
+    anu,
+    client.id,
+    { text: 'Eile õhtul kukkus peaaegu', occurredAt: '2026-10-08T17:00:00Z', deviceCreatedAt: '2026-10-08T17:05:00Z' },
+    deps()
+  );
   assert.equal(late.entry.writtenLater, true);
+  /* Vigane keha, NUL-märk ja liiga suur versioon on 400, mitte 500. */
+  await expectError(createEntry(anu, client.id, null, deps()), 400, 'home_care.errors.entry_text_required');
+  await expectError(createEntry(anu, client.id, { text: { toString: 0 } }, deps()), 400, 'home_care.errors.entry_text_required');
+  await expectError(updateClient(lead, client.id, { version: 3000000000, address: 'x' }, deps()), 400, 'home_care.errors.version_required');
   await expectError(createEntry(anu, client.id, { text: 'Homme', occurredAt: '2026-10-10T08:00:00Z' }, deps()), 400, 'home_care.errors.occurred_at_in_future');
   await expectError(createEntry(anu, client.id, { text: '   ' }, deps()), 400, 'home_care.errors.entry_text_required');
 
@@ -363,7 +374,20 @@ test('kirje: kordussaatmine, nähtavus, teade järgmisele, hiljem kirjutatud', a
   const leadPage = await openClient(lead, client.id, deps());
   assert.equal(leadPage.entries.items.some((row) => row.id === concern.entry.id), true);
   /* Bert ei saa murekirjet ka ID järgi parandada ega näha selle ajalugu. */
-  await expectError(correctEntry(bert, client.id, concern.entry.id, { text: 'x', kind: 'CONCERN', reason: 'proov' }, deps()), 404, 'home_care.errors.entry_not_found');
+  await expectError(correctEntry(bert, client.id, concern.entry.id, { text: 'x', kind: 'CONCERN', reason: 'proov', revision: 1 }, deps()), 404, 'home_care.errors.entry_not_found');
+  /* Ainult teksti saatev parandus EI muuda muret tavaliseks kirjeks ega nihuta
+     sündmuse aega: saatmata väljad jäävad nii, nagu need kirjel on. */
+  const concernFixed = await correctEntry(
+    anu,
+    client.id,
+    concern.entry.id,
+    { text: 'Poeg võtab pensioni ära, nägin kahel korral', reason: 'Täpsustus', revision: 1 },
+    deps(at('2026-10-09T08:10:00Z'))
+  );
+  assert.equal(concernFixed.entry.kind, 'CONCERN');
+  assert.equal(concernFixed.entry.coordinatorOnly, true);
+  assert.equal(concernFixed.entry.occurredAt, concern.entry.occurredAt);
+  assert.equal((await openClient(bert, client.id, deps())).entries.items.some((row) => row.id === concern.entry.id), false);
   await expectError(listEntryRevisions(bert, client.id, concern.entry.id, deps()), 404, 'home_care.errors.entry_not_found');
 
   /* Teade järgmisele: autori ja hooldusjuhi lugemine ei loe; teise hooldaja oma loeb. */
@@ -398,6 +422,23 @@ test('kirje: kordussaatmine, nähtavus, teade järgmisele, hiljem kirjutatud', a
   const pageTwo = await listEntries(anu, client.id, { take: 2, cursor: pageOne.nextCursor }, deps());
   assert.equal(pageTwo.items.some((row) => pageOne.items.some((seen) => seen.id === row.id)), false);
   await expectError(listEntries(anu, client.id, { cursor: 'sodi' }, deps()), 400, 'org.errors.invalid_cursor');
+
+  /* Päeviku lugemine lehe marsruudist mööda jätab samuti avamisjälje. */
+  const opensBefore = await db.careClientAccess.count({ where: { clientId: client.id, membershipId: f.members.bert.id } });
+  await listEntries(bert, client.id, {}, deps(at('2026-10-09T12:00:00Z')));
+  assert.equal(
+    await db.careClientAccess.count({ where: { clientId: client.id, membershipId: f.members.bert.id } }),
+    opensBefore + 1
+  );
+
+  /* Kordus tuntakse ära ka siis, kui aeg jäi saatmata ja server pani selle ise:
+     teisel katsel on serveri kell teine, kirje on sama. */
+  const noTime = { text: 'Ajata kirje', clientRequestId: `req-${f.tag}-notime` };
+  const noTimeFirst = await createEntry(anu, client.id, noTime, deps(at('2026-10-09T12:10:00Z')));
+  const noTimeRepeat = await createEntry(anu, client.id, noTime, deps(at('2026-10-09T12:11:00Z')));
+  assert.equal(noTimeRepeat.created, false);
+  assert.equal(noTimeRepeat.entry.id, noTimeFirst.entry.id);
+  assert.equal(noTimeRepeat.entry.occurredAt, '2026-10-09T12:10:00.000Z');
 });
 
 test('parandus ja tühistus jätavad jälje; parandusjälge ei saa muuta', async (t) => {
@@ -414,14 +455,26 @@ test('parandus ja tühistus jätavad jälje; parandusjälge ei saa muuta', async
   await openClient(anu, client.id, deps());
   await expectError(correctEntry(anu, client.id, entry.id, { text: 'Uus' }, deps()), 400, 'home_care.errors.reason_required');
   /* Kolleeg näeb kirjet, aga ei paranda seda. */
-  await expectError(correctEntry(bert, client.id, entry.id, { text: 'Uus', reason: 'Tahan' }, deps()), 403, 'home_care.errors.entry_not_editable');
+  await expectError(correctEntry(anu, client.id, entry.id, { text: 'Uus', reason: 'Versioonita' }, deps()), 400, 'home_care.errors.version_required');
+  await expectError(correctEntry(bert, client.id, entry.id, { text: 'Uus', reason: 'Tahan', revision: 1 }, deps()), 403, 'home_care.errors.entry_not_editable');
   /* Teise kliendi all sama kirje ID: 404. */
-  await expectError(correctEntry(lead, other.id, entry.id, { text: 'Uus', reason: 'Vale klient' }, deps()), 404, 'home_care.errors.entry_not_found');
+  await expectError(correctEntry(lead, other.id, entry.id, { text: 'Uus', reason: 'Vale klient', revision: 1 }, deps()), 404, 'home_care.errors.entry_not_found');
 
-  const corrected = await correctEntry(anu, client.id, entry.id, { text: 'Tuletasin ravimeid meelde, võttis ise', reason: 'Kirjutasin valesti: ei andnud, vaid tuletasin meelde' }, deps(at('2026-10-09T09:00:00Z')));
+  const corrected = await correctEntry(anu, client.id, entry.id, { text: 'Tuletasin ravimeid meelde, võttis ise', reason: 'Kirjutasin valesti: ei andnud, vaid tuletasin meelde', revision: 1 }, deps(at('2026-10-09T09:00:00Z')));
   assert.equal(corrected.entry.revision, 2);
   assert.equal(corrected.entry.corrected, true);
   assert.equal(corrected.entry.text, 'Tuletasin ravimeid meelde, võttis ise');
+  /* Parandus ei nihuta sündmuse aega paranduse hetkeks ega muuda liiki. */
+  assert.equal(corrected.entry.occurredAt, entry.occurredAt);
+  assert.equal(corrected.entry.kind, 'NOTE');
+  /* Vana vormi pealt (nähtud versioon 1) tehtud parandus ei kirjuta uut üle
+     ega tee sama parandust kaks korda. */
+  await expectError(
+    correctEntry(lead, client.id, entry.id, { text: 'Vana vormi sisu', reason: 'Hiline salvestus', revision: 1 }, deps()),
+    409,
+    'home_care.errors.entry_changed'
+  );
+  assert.equal(await db.careClientEntryRevision.count({ where: { entryId: entry.id } }), 1);
 
   const { revisions } = await listEntryRevisions(anu, client.id, entry.id, deps());
   assert.equal(revisions.length, 1);
@@ -445,12 +498,13 @@ test('parandus ja tühistus jätavad jälje; parandusjälge ei saa muuta', async
   );
 
   /* Hooldusjuht tühistab; teine tühistus ja parandus pärast seda on 409. */
-  const retracted = await retractEntry(lead, client.id, entry.id, { reason: 'Kirje läks vale kliendi alla' }, deps(at('2026-10-09T10:00:00Z')));
+  await expectError(retractEntry(lead, client.id, entry.id, { reason: 'Vana vaade', revision: 1 }, deps()), 409, 'home_care.errors.entry_changed');
+  const retracted = await retractEntry(lead, client.id, entry.id, { reason: 'Kirje läks vale kliendi alla', revision: 2 }, deps(at('2026-10-09T10:00:00Z')));
   assert.equal(retracted.entry.text, null);
   assert.equal(retracted.entry.revision, 3);
   assert.ok(retracted.entry.retractedAt);
-  await expectError(retractEntry(lead, client.id, entry.id, { reason: 'Uuesti' }, deps()), 409, 'home_care.errors.entry_retracted');
-  await expectError(correctEntry(anu, client.id, entry.id, { text: 'Uus', reason: 'Hilja' }, deps()), 409, 'home_care.errors.entry_retracted');
+  await expectError(retractEntry(lead, client.id, entry.id, { reason: 'Uuesti', revision: 3 }, deps()), 409, 'home_care.errors.entry_retracted');
+  await expectError(correctEntry(anu, client.id, entry.id, { text: 'Uus', reason: 'Hilja', revision: 3 }, deps()), 409, 'home_care.errors.entry_retracted');
   const after = await listEntryRevisions(lead, client.id, entry.id, deps());
   assert.deepEqual(after.revisions.map((row) => [row.kind, row.revision]), [['RETRACTION', 2], ['CORRECTION', 1]]);
   assert.equal(after.revisions[0].text, 'Tuletasin ravimeid meelde, võttis ise');
@@ -492,7 +546,18 @@ test('erijuhtum: liigid, vaikimisi nähtavus, seis hooldusjuhi käes', async (t)
   assert.deepEqual(bertPage.entries.items.map((row) => row.id), [fall.entry.id]);
 
   /* Erijuhtumit ei saa parandusega tavaliseks kirjeks muuta. */
-  await expectError(correctEntry(anu, client.id, fall.entry.id, { kind: 'NOTE', text: 'Polnud midagi', reason: 'Proov' }, deps()), 400, 'home_care.errors.incident_kind_fixed');
+  await expectError(correctEntry(anu, client.id, fall.entry.id, { kind: 'NOTE', text: 'Polnud midagi', reason: 'Proov', revision: 1 }, deps()), 400, 'home_care.errors.incident_kind_fixed');
+  /* Ainult teksti parandus jätab erijuhtumi liigi, hinnangu ja sammud alles. */
+  const fallFixed = await correctEntry(anu, client.id, fall.entry.id, { text: 'Leidsin köögi põrandalt, teadvusel, rääkis selgelt', reason: 'Täpsustus', revision: 1 }, deps());
+  assert.equal(fallFixed.entry.incident.type, 'FALL');
+  assert.equal(fallFixed.entry.incident.assessment, 'Arvan, et libises vaibal');
+  assert.deepEqual(fallFixed.entry.incident.actions, fall.entry.incident.actions);
+  /* Autor ei saa erijuhtumit tühistada: see võtaks lahtise juhtumi registrist maha. */
+  await expectError(
+    retractEntry(anu, client.id, fall.entry.id, { reason: 'Eksisin', revision: 2 }, deps()),
+    403,
+    'home_care.errors.incident_retract_coordinator'
+  );
 
   let overview = await getCoordinatorOverview(lead, deps());
   assert.equal(overview.openIncidents.length, 2);
@@ -504,6 +569,19 @@ test('erijuhtum: liigid, vaikimisi nähtavus, seis hooldusjuhi käes', async (t)
   overview = await getCoordinatorOverview(lead, deps());
   assert.deepEqual(overview.openIncidents.map((row) => row.id), [abuse.entry.id]);
   await expectError(setIncidentStatus(lead, client.id, fall.entry.id, { status: 'MUU' }, deps()), 400, 'home_care.errors.invalid_incident_status');
+
+  /* Piiratud nähtavust ei saa autor liigi muutmisega maha võtta: kirjel võib
+     olla hooldusjuhi lahendusmärkus. Hooldusjuht saab. */
+  await setIncidentStatus(lead, client.id, abuse.entry.id, { status: 'CLOSED', note: 'Teatatud politseile' }, deps());
+  const declassify = await correctEntry(anu, client.id, abuse.entry.id, { incidentType: 'OTHER', text: 'Sinikad käsivartel', reason: 'Liik oli vale', revision: 1 }, deps());
+  assert.equal(declassify.entry.incident.type, 'OTHER');
+  assert.equal(declassify.entry.coordinatorOnly, true);
+  assert.equal((await openClient(bert, client.id, deps())).entries.items.some((row) => row.id === abuse.entry.id), false);
+  const byLead = await correctEntry(lead, client.id, abuse.entry.id, { incidentType: 'OTHER', text: 'Sinikad käsivartel', reason: 'Võib meeskonnale näidata', revision: 2 }, deps());
+  assert.equal(byLead.entry.coordinatorOnly, false);
+  /* Hooldusjuht võib erijuhtumi tühistada. */
+  const gone = await retractEntry(lead, client.id, abuse.entry.id, { reason: 'Topeltkirje', revision: 3 }, deps());
+  assert.ok(gone.entry.retractedAt);
 });
 
 test('kliendi andmed: versioonikontroll ja seis', async (t) => {
@@ -555,7 +633,7 @@ test('lõpetatud teenus: päevikusse kirjutab ainult hooldusjuht', async (t) => 
   await expectError(
     createEntry(anu, client.id, { ...last, text: 'Sama võti, muu sisu.' }, deps()),
     409,
-    'home_care.errors.client_ended'
+    'home_care.errors.idempotency_conflict'
   );
   /* Asendaja lõpetatud kliendi lehte põhjusega ei ava; ka varem antud luba ei kehti. */
   const { client: other } = await createClient(lead, { displayName: 'Teine klient' }, deps());
@@ -613,4 +691,57 @@ test('üksuse hooldusjuht: klient peab olema tema üksuses; valik näitab ainult
   await createEntry(bert, own.client.id, { text: 'Põhja kirje.', clientRequestId: `unit-${f.tag}-2` }, deps());
   const overview = await getCoordinatorOverview(bert, deps());
   assert.deepEqual(overview.recent.map((entry) => entry.client.id), [own.client.id]);
+});
+
+test('põhjusega luba: kehtib ainult hooldajale; kordus õnnestub ka pärast ligipääsu kadumist', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const { client } = await createClient(lead, { displayName: 'Linda Tamm' }, deps());
+  const { client: own } = await createClient(lead, { displayName: 'Mart Mets' }, deps());
+  await addTeamMember(lead, own.id, { membershipId: f.members.cover.id }, deps());
+  await addTeamMember(lead, own.id, { membershipId: f.members.bert.id }, deps());
+  let cover = await f.ctx(f.users.cover, f.orgA);
+
+  await openClientWithReason(cover, client.id, { reasonCode: 'COVERING' }, deps());
+  const body = { text: 'Asenduskäik', companionMembershipId: f.members.bert.id, clientRequestId: `grant-${f.tag}-1` };
+  const saved = await createEntry(cover, client.id, body, deps(at('2026-10-09T09:00:00Z')));
+  assert.equal(saved.entry.companionName, 'Bert Hooldaja');
+
+  /* Hooldusjuht eemaldab Cia tema ainsast meeskonnast: ta ei ole enam hooldaja
+     ja ka tänane põhjusega luba enam ei kehti. */
+  await removeTeamMember(lead, own.id, f.members.cover.id, deps(at('2026-10-09T10:00:00Z')));
+  cover = await f.ctx(f.users.cover, f.orgA);
+  await expectError(openClient(cover, client.id, deps(at('2026-10-09T10:05:00Z'))), 404, 'home_care.errors.client_not_found');
+  await expectError(listEntries(cover, client.id, {}, deps(at('2026-10-09T10:05:00Z'))), 404, 'home_care.errors.client_not_found');
+  await expectError(
+    createEntry(cover, client.id, { text: 'Uus kirje', clientRequestId: `grant-${f.tag}-2` }, deps(at('2026-10-09T10:06:00Z'))),
+    404,
+    'home_care.errors.client_not_found'
+  );
+
+  /* Juba salvestunud kirje kordus vastab endiselt sama kirjega, kuigi ligipääs
+     on kadunud ja kaasas olnud kolleegi liikmesus lõppenud. */
+  await endMembership(f.orgA.id, f.members.bert.id, { actorUserId: f.users.lead.id, reason: 'Lahkus' }, { db });
+  const repeat = await createEntry(cover, client.id, body, deps(at('2026-10-09T10:10:00Z')));
+  assert.equal(repeat.created, false);
+  assert.equal(repeat.entry.id, saved.entry.id);
+  assert.equal(await db.careClientEntry.count({ where: { clientId: client.id } }), 1);
+});
+
+test('arhiveeritud üksuse kliendi andmeid saab muuta; arhiveeritud üksusesse viia ei saa', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const unit = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Vana ${f.tag}`, type: 'TEAM' } });
+  const { client } = await createClient(lead, { displayName: 'Üksuse klient', unitId: unit.id }, deps());
+  const { client: free } = await createClient(lead, { displayName: 'Üksuseta klient' }, deps());
+  await db.organizationUnit.update({ where: { id: unit.id }, data: { status: 'ARCHIVED', archivedAt: NOW } });
+
+  const edited = await updateClient(lead, client.id, { version: 1, contactPhone: '5550002', unitId: unit.id }, deps());
+  assert.equal(edited.client.contactPhone, '5550002');
+  assert.equal(edited.client.unitId, unit.id);
+  await expectError(updateClient(lead, free.id, { version: 1, unitId: unit.id }, deps()), 400, 'home_care.errors.invalid_unit');
+
+  /* Sama tunnus kahel kliendil: eelkontroll annab 409. */
+  await updateClient(lead, client.id, { version: 2, internalCode: `K-${f.tag}` }, deps());
+  await expectError(updateClient(lead, free.id, { version: 1, internalCode: `K-${f.tag}` }, deps()), 409, 'home_care.errors.internal_code_taken');
 });
