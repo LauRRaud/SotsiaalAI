@@ -11124,7 +11124,11 @@
       "history_not_found": "This history was not found.",
       "door_tag_missing": "This client has no valid door tag.",
       "invalid_call": "A call note needs both the caller and the topic.",
-      "invalid_month": "The month is not in the right form."
+      "invalid_month": "The month is not in the right form.",
+      "export_whole_org_only": "Only the coordinator of the whole organisation can make a complete export.",
+      "export_too_large": "The export is too large for one file. Contact platform support to get it in parts.",
+      "invalid_export_reason": "Choose what the export is for.",
+      "export_failed": "Making the export failed. Try again."
     },
     "incidents": {
       "title": "Incident register",
@@ -11372,6 +11376,54 @@
       "row": "{label}: {count} (previous month {before})",
       "empty": "No call notes were made in this or the previous month.",
       "how": "A worker makes a call note on the client page with the button “Call: the client or a relative called”. Retracted entries are not counted."
+    },
+    "export": {
+      "link": "Complete export",
+      "title": "Complete export",
+      "intro": "All home care data in one file: for a backup, at a supervisor's request or to move to another system. The file is in JSON format and other software can read it.",
+      "who_hint": "Only the coordinator of the whole organisation can make an export. Every export leaves a row in the organisation's work log: who, when and why.",
+      "contents_title": "What is in the file",
+      "count": {
+        "clients": "Clients: {count}",
+        "entries": "Diary entries: {count}",
+        "access": "Client page opens: {count}",
+        "histories": "Earlier history texts: {count}",
+        "releases": "Released chronologies: {count}"
+      },
+      "contents_more": "The file also holds teams, card lines, the trail of corrections and retractions, read marks, incident follow-ups, the trail of door tags, staff names and the home care work log.",
+      "excluded_title": "What is not in the file",
+      "excluded": {
+        "entry_search_helpers": "Search helpers (word stems and base forms): they are derived from the entry text and the text itself is in the file.",
+        "request_keys": "Repeat-send keys: a technical guard against saving twice.",
+        "door_tag_marks": "Door tag marks: a mark is a working address. The file holds the trail of making and cancelling a tag.",
+        "device_queue": "Entries still waiting for a connection on a worker's device: they have not reached the server.",
+        "user_accounts": "Staff e-mail addresses and sign-in data. The file holds only the names of staff that home care rows refer to.",
+        "service_diary": "Service diary billing entries: a separate function with its own export."
+      },
+      "make_title": "Make an export",
+      "reason_label": "What the export is for",
+      "reasons": {
+        "BACKUP": "our own backup",
+        "LEAVING": "leaving or moving to another system",
+        "AUTHORITY": "a supervisor's or authority's request",
+        "OTHER": "other"
+      },
+      "reason_hint": "The reason goes to the organisation's work log with your name, the time and the file's checksum.",
+      "start": "Make an export",
+      "confirm_notice": "The file holds the names, addresses and diaries of all clients. Save it only where client files may be kept and do not send it by e-mail.",
+      "confirm": "Yes, make and download",
+      "working": "Making the export. This can take up to a couple of minutes; do not close the page.",
+      "done": "The export has been downloaded: {rows} rows, {size}.",
+      "checksum": "Checksum (SHA-256): {sha}",
+      "checksum_hint": "The same sum is in the organisation's work log. To prove later that the file is unchanged, compute the file's SHA-256 and compare.",
+      "mismatch": "The downloaded file does not match the server's checksum. The file was not saved; try again.",
+      "recent_title": "Recent exports",
+      "recent_empty": "No export has been made yet.",
+      "rows": "{count} rows",
+      "recent_checksum": "Checksum: {sha}",
+      "size_kb": "{n} kB",
+      "size_mb": "{n} MB",
+      "decimal_mark": "."
     }
   },
   "stage": {

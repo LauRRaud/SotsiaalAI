@@ -11,7 +11,8 @@
 // `npm test` seda faili ei käivita.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { randomUUID } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
+import { gunzipSync } from 'node:zlib';
 import { PrismaClient } from '../generated/prisma/client.ts';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { resolveOrgAccessContext } from '../lib/org/accessContext.js';
@@ -58,6 +59,8 @@ import {
   listChronologyReleases
 } from '../lib/homeCare/chronology.js';
 import { getCallCounts } from '../lib/homeCare/calls.js';
+import { createHomeCareExport, getHomeCareExportOverview } from '../lib/homeCare/export.js';
+import { HOME_CARE_EXPORT_KEYS, checkHomeCareExport } from '../lib/homeCare/exportFormat.js';
 import { applyClientImport, previewClientImport } from '../lib/homeCare/clientImport.js';
 import { importHistory, readHistory, removeHistory, searchHistory } from '../lib/homeCare/importedHistory.js';
 import {
@@ -1737,4 +1740,272 @@ test('kõnemärge ja loendur: kirje väljad, kuu arvud skoobis, telefoninumbri j
   assert.deepEqual((await searchClients(bert, { q: '5559876' }, deps())).clients.map((row) => row.displayName), ['Põhja Peeter']);
   /* Nimeotsing töötab nagu enne ja nimega leitu ei tule teist korda. */
   assert.deepEqual((await searchClients(lead, { q: 'Linda' }, deps())).clients.map((row) => [row.displayName, row.matchedPhone]), [['Linda Tamm', undefined]]);
+});
+
+test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ainult kogu asutuse hooldusjuht', async (t) => {
+  const f = await fixture(t);
+  const north = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Põhi ${f.tag}`, type: 'TEAM' } });
+  await db.organizationCapabilityGrant.create({
+    data: { membershipId: f.members.bert.id, capability: 'HOME_CARE_COORDINATOR', scopeType: 'UNIT', scopeUnitId: north.id, validFrom: at('2026-01-01T00:00:00Z') }
+  });
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const cover = await f.ctx(f.users.cover, f.orgA);
+  const clerk = await f.ctx(f.users.clerk, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+
+  /* Asutus A: iga kogu saab vähemalt ühe rea. */
+  const { client } = await createClient(
+    lead,
+    { displayName: 'Linda Tamm', internalCode: 'LT-9', address: 'Kase 3, Rakvere', contactPhone: '+372 555 12 34', contactNote: 'Tütar Mari helistab õhtuti.' },
+    deps()
+  );
+  const { client: northClient } = await createClient(lead, { displayName: 'Põhja Peeter', unitId: north.id }, deps());
+  await addTeamMember(lead, client.id, { membershipId: f.members.anu.id }, deps());
+  await addTeamMember(lead, northClient.id, { membershipId: f.members.cover.id }, deps());
+  await addCardLine(anu, client.id, { kind: 'ACCESS', text: 'Võti on naabri käes.' }, deps());
+  const note = await createEntry(anu, client.id, { text: 'Tõin toidu.', occurredAt: '2026-10-07T07:00:00Z' }, deps());
+  await createEntry(anu, client.id, { kind: 'HANDOVER', text: 'Pesumasin lekib.', occurredAt: '2026-10-08T06:00:00Z' }, deps());
+  const concern = await createEntry(anu, client.id, { kind: 'CONCERN', text: 'Poeg võtab pensioni ära.', occurredAt: '2026-10-08T09:00:00Z' }, deps());
+  const fall = await createEntry(anu, client.id, { kind: 'INCIDENT', incidentType: 'FALL', text: 'Leidsin köögi põrandalt.', occurredAt: '2026-10-09T04:00:00Z' }, deps());
+  await addIncidentUpdate(anu, client.id, fall.entry.id, { text: 'Tütar tuleb õhtul.' }, deps(at('2026-10-09T08:10:00Z')));
+  const call = await createEntry(anu, client.id, { text: 'Tütar küsis seisu.', contactMode: 'PHONE', callTopic: 'STATUS', callCaller: 'RELATIVE', occurredAt: '2026-10-08T12:00:00Z' }, deps());
+  await correctEntry(anu, client.id, note.entry.id, { text: 'Tõin toidu ja ravimid.', reason: 'Täpsustus', revision: 1 }, deps());
+  const wrong = await createEntry(anu, client.id, { text: 'Vale kliendi kirje.', occurredAt: '2026-10-08T07:00:00Z' }, deps());
+  await retractEntry(lead, client.id, wrong.entry.id, { reason: 'Vale klient', revision: 1 }, deps());
+  await openClient(lead, client.id, deps());
+  await openClientWithReason(cover, client.id, { reasonCode: 'COVERING', reason: 'Anu on haige' }, deps());
+  /* Asendaja avab lehe: teade järgmisele saab lugemismärgi. */
+  await openClient(cover, client.id, deps());
+  await importHistory(lead, client.id, { title: 'Drive’i päevik', text: 'Esimene lõik.\n\nTeine lõik.\n\nKolmas lõik.' }, deps());
+  await createChronologyRelease(
+    lead,
+    client.id,
+    { from: '2026-10-07', to: '2026-10-09', requester: 'PPA', basis: 'Päring nr 1', items: [{ entryId: fall.entry.id, revision: 1 }] },
+    deps(at('2026-10-09T10:00:00Z'))
+  );
+  await issueDoorTag(lead, client.id, deps());
+  const tag = await db.careClientDoorTag.findFirst({ where: { clientId: client.id }, select: { token: true } });
+  /* Lehekülgede kaupa lugemine: üle kahe lehe avamisi, et ükski rida ei jääks vahele ega korduks. */
+  await db.careClientAccess.createMany({
+    data: Array.from({ length: 1100 }, () => ({
+      organizationId: f.orgA.id,
+      clientId: northClient.id,
+      membershipId: f.members.cover.id,
+      actorName: 'Cia Asendaja',
+      basis: 'TEAM'
+    }))
+  });
+
+  /* Asutus B: selle andmed ei tohi asutuse A faili sattuda. */
+  const { client: foreignClient } = await createClient(leadB, { displayName: 'Võõras Klient' }, deps());
+  await createEntry(leadB, foreignClient.id, { text: 'Teise asutuse kirje.' }, deps());
+
+  const exportRows = () =>
+    db.dataAuditLog.findMany({
+      where: { action: 'org.home_care_export_created', meta: { path: ['organizationId'], equals: f.orgA.id } },
+      orderBy: { createdAt: 'asc' }
+    });
+
+  /* ÕIGUS: ainult kogu asutuse hooldusjuht; keeldumine ei jäta jälge ega anna faili. */
+  await expectError(createHomeCareExport(anu, { reasonCode: 'BACKUP' }, deps()), 403, 'org.errors.missing_capability');
+  await expectError(createHomeCareExport(clerk, { reasonCode: 'BACKUP' }, deps()), 403, 'org.errors.missing_capability');
+  await expectError(createHomeCareExport(bert, { reasonCode: 'BACKUP' }, deps()), 403, 'home_care.errors.export_whole_org_only');
+  await expectError(getHomeCareExportOverview(bert, deps()), 403, 'home_care.errors.export_whole_org_only');
+  await expectError(getHomeCareExportOverview(anu, deps()), 403, 'org.errors.missing_capability');
+  await expectError(createHomeCareExport(lead, {}, deps()), 400, 'home_care.errors.invalid_export_reason');
+  await expectError(createHomeCareExport(lead, { reasonCode: 'CURIOSITY' }, deps()), 400, 'home_care.errors.invalid_export_reason');
+  await expectError(createHomeCareExport(lead, { reasonCode: 'BACKUP' }, { db, env: { ORG_WORKSPACE_ENABLED: '1', HOME_CARE_ENABLED: '0' } }), 404);
+  assert.equal((await exportRows()).length, 0);
+
+  const read = (result) => {
+    const raw = gunzipSync(result.body);
+    return { raw, text: raw.toString('utf8'), doc: JSON.parse(raw.toString('utf8')) };
+  };
+  const result = await createHomeCareExport(lead, { reasonCode: 'leaving' }, deps(at('2026-10-09T12:00:00Z')));
+  const { raw, text, doc } = read(result);
+
+  /* Kontrollsumma ja suurus on PAKKIMATA failist: seda näeb asutus oma kettal. */
+  assert.equal(createHash('sha256').update(raw).digest('hex'), result.contentSha256);
+  assert.equal(raw.length, result.byteCount);
+  assert.equal(result.body.length, result.packedByteCount);
+
+  /* Kuju: päis, kogud lepitud järjekorras, lõpus koguarvud. */
+  assert.deepEqual(Object.keys(doc), ['format', 'version', 'exportId', 'generatedAt', 'organization', 'exportedBy', 'reasonCode', 'manifest', ...HOME_CARE_EXPORT_KEYS, 'totals']);
+  assert.equal(doc.exportId, result.exportId);
+  assert.equal(doc.generatedAt, '2026-10-09T12:00:00.000Z');
+  assert.equal(doc.reasonCode, 'LEAVING');
+  assert.equal(doc.organization.id, f.orgA.id);
+  assert.deepEqual(doc.exportedBy, { membershipId: f.members.lead.id, name: 'Juta Juht' });
+  assert.deepEqual(doc.manifest.includes, [...HOME_CARE_EXPORT_KEYS]);
+  assert.ok(doc.manifest.excludes.every((item) => item.key && item.why));
+
+  /* Sisemine kooskõla: koguarvud, kordumatud ID-d, iga viide leiab oma rea. */
+  const check = checkHomeCareExport(doc);
+  assert.deepEqual(check.problems, []);
+  assert.deepEqual(check.notes, []);
+  assert.deepEqual(doc.totals, result.totals);
+  assert.equal(result.rowCount, Object.values(doc.totals).reduce((sum, count) => sum + count, 0));
+
+  /* Koguarvud on samad mis andmebaasis (sõltumatu päring iga kogu kohta). */
+  const ofOrg = { organizationId: f.orgA.id };
+  const expected = {
+    units: await db.organizationUnit.count({ where: ofOrg }),
+    /* Ainult need, kellele read viitavad: koostaja, hooldaja ja asendaja. */
+    people: 3,
+    clients: await db.careClient.count({ where: ofOrg }),
+    teamMembers: await db.careClientTeamMember.count({ where: { client: ofOrg } }),
+    cardLines: await db.careClientCardLine.count({ where: { client: ofOrg } }),
+    entries: await db.careClientEntry.count({ where: ofOrg }),
+    entryRevisions: await db.careClientEntryRevision.count({ where: { entry: ofOrg } }),
+    entryReads: await db.careClientEntryRead.count({ where: { entry: ofOrg } }),
+    incidentUpdates: await db.careIncidentUpdate.count({ where: ofOrg }),
+    accessLog: await db.careClientAccess.count({ where: ofOrg }),
+    chronologyReleases: await db.careChronologyRelease.count({ where: ofOrg }),
+    chronologyReleaseItems: await db.careChronologyReleaseItem.count({ where: { release: ofOrg } }),
+    importedHistories: await db.careImportedHistory.count({ where: ofOrg }),
+    importedHistoryBlocks: await db.careImportedHistoryBlock.count({ where: ofOrg }),
+    doorTags: await db.careClientDoorTag.count({ where: ofOrg }),
+    auditEvents: await db.dataAuditLog.count({
+      where: { action: { startsWith: 'org.home_care_' }, meta: { path: ['organizationId'], equals: f.orgA.id }, createdAt: { lt: (await exportRows())[0].createdAt } }
+    })
+  };
+  assert.deepEqual(doc.totals, expected);
+  for (const key of HOME_CARE_EXPORT_KEYS) assert.ok(doc.totals[key] > 0, `kogu ${key} on tühi: test ei tõenda seda`);
+  assert.ok(doc.totals.accessLog > 1100);
+
+  /* Sisu: kliendi andmed, piiratud nähtavusega kirje, tühistatud kirje, kõnemärge, parandusjälg, põhjusega avamine. */
+  const exported = doc.clients.find((row) => row.id === client.id);
+  assert.deepEqual(
+    [exported.displayName, exported.internalCode, exported.address, exported.contactPhone, exported.contactNote, exported.status],
+    ['Linda Tamm', 'LT-9', 'Kase 3, Rakvere', '+372 555 12 34', 'Tütar Mari helistab õhtuti.', 'ACTIVE']
+  );
+  assert.equal(doc.clients.find((row) => row.id === northClient.id).unitId, north.id);
+  const entry = (id) => doc.entries.find((row) => row.id === id);
+  assert.equal(entry(concern.entry.id).coordinatorOnly, true);
+  assert.equal(entry(note.entry.id).text, 'Tõin toidu ja ravimid.');
+  assert.equal(entry(note.entry.id).revision, 2);
+  assert.ok(entry(wrong.entry.id).retractedAt);
+  assert.deepEqual([entry(call.entry.id).callTopic, entry(call.entry.id).callCaller], ['STATUS', 'RELATIVE']);
+  assert.equal(entry(fall.entry.id).incidentType, 'FALL');
+  assert.equal(entry(note.entry.id).authorName, 'Anu Hooldaja');
+  assert.deepEqual(doc.entryRevisions.map((row) => row.kind).sort(), ['CORRECTION', 'RETRACTION']);
+  assert.equal(doc.entryRevisions.find((row) => row.kind === 'CORRECTION').text, 'Tõin toidu.');
+  assert.ok(doc.accessLog.some((row) => row.basis === 'REASON' && row.reasonCode === 'COVERING' && row.reason === 'Anu on haige'));
+  assert.deepEqual(doc.importedHistoryBlocks.map((row) => row.text), ['Esimene lõik.\n\nTeine lõik.\n\nKolmas lõik.']);
+  assert.equal(doc.chronologyReleases[0].requester, 'PPA');
+  assert.equal(doc.chronologyReleaseItems[0].entryId, fall.entry.id);
+  /* Töötajatest on failis ainult need, kellele read viitavad, ja ainult nimega: Bert ja raamatupidaja ei ole kirjetes ega jälgedes. */
+  assert.deepEqual(doc.people.map((row) => row.name).sort(), ['Anu Hooldaja', 'Cia Asendaja', 'Juta Juht']);
+  assert.ok(doc.people.every((row) => Object.keys(row).sort().join() === 'id,name'));
+  for (const absent of ['Bert Hooldaja', 'Dan Raamatupidaja', f.members.bert.id, f.members.clerk.id]) assert.equal(text.includes(absent), false, absent);
+  /* Tööloend: ainult koduteenuse read, ainult see asutus, tegija liikmesuse ID-na. */
+  assert.ok(doc.auditEvents.every((row) => row.action.startsWith('org.home_care_') && row.meta.organizationId === f.orgA.id));
+  assert.ok(doc.auditEvents.every((row) => doc.people.some((person) => person.id === row.actorMembershipId)));
+
+  /* Mida failis EI OLE: sildi tunnus, tehnilised väljad, konto andmed, teise asutuse read. */
+  assert.ok(tag.token.length >= 22);
+  assert.equal(text.includes(tag.token), false);
+  for (const key of ['token', 'searchText', 'searchVersion', 'clientRequestId', 'requestSha256', 'requestHash', 'actorUserId', 'userId', 'email']) {
+    assert.equal(text.includes(`"${key}"`), false, key);
+  }
+  assert.equal(text.includes('@example.invalid'), false);
+  for (const foreign of ['Võõras Klient', 'Teise asutuse kirje.', foreignClient.id, f.orgB.id, f.members.leadB.id, 'Eve Juht']) {
+    assert.equal(text.includes(foreign), false, foreign);
+  }
+
+  /* TÖÖLOEND: üks rida, ainult ID, kood, arvud ja kontrollsumma. */
+  const rows = await exportRows();
+  assert.equal(rows.length, 1);
+  assert.equal(rows[0].resourceId, result.exportId);
+  assert.equal(rows[0].resourceType, 'CARE_EXPORT');
+  assert.equal(rows[0].actorUserId, f.users.lead.id);
+  assert.deepEqual(rows[0].meta, {
+    organizationId: f.orgA.id,
+    membershipId: f.members.lead.id,
+    exportId: result.exportId,
+    reasonCode: 'LEAVING',
+    clientCount: 2,
+    entryCount: doc.totals.entries,
+    rowCount: result.rowCount,
+    byteCount: result.byteCount,
+    contentSha256: result.contentSha256
+  });
+
+  /* Lehe sisu: põhiarvud ja viimased väljavõtted. */
+  const overview = await getHomeCareExportOverview(lead, deps());
+  assert.deepEqual(overview.counts, {
+    clients: 2,
+    entries: doc.totals.entries,
+    accessLog: doc.totals.accessLog,
+    importedHistories: 1,
+    chronologyReleases: 1
+  });
+  assert.equal(overview.recent.length, 1);
+  assert.deepEqual(
+    [overview.recent[0].id, overview.recent[0].byName, overview.recent[0].reasonCode, overview.recent[0].rowCount, overview.recent[0].byteCount, overview.recent[0].contentSha256],
+    [result.exportId, 'Juta Juht', 'LEAVING', result.rowCount, result.byteCount, result.contentSha256]
+  );
+
+  /* ÜKS HETK. Keset lugemist (pärast kliente, enne kirjeid) lisab teine ühendus
+     uue kliendi ja talle kirje. Fail peab olema hetkest enne seda: uut kirjet ei
+     ole ja ükski viide ei jää õhku. Ilma hetktõmmiseta oleks failis kirje, mille
+     klienti seal ei ole. */
+  let injected = null;
+  const interleaved = new Proxy(db, {
+    get(target, prop) {
+      if (prop !== '$transaction') return Reflect.get(target, prop);
+      return (callback, options) =>
+        target.$transaction(
+          (tx) =>
+            callback(
+              new Proxy(tx, {
+                get(inner, key) {
+                  if (key !== 'careClientEntry') return Reflect.get(inner, key);
+                  return new Proxy(inner.careClientEntry, {
+                    get(model, method) {
+                      if (method !== 'findMany') return Reflect.get(model, method);
+                      return async (args) => {
+                        if (!injected) {
+                          const late = await createClient(lead, { displayName: 'Hiljem Lisatud' }, deps());
+                          const lateEntry = await createEntry(lead, late.client.id, { text: 'Lisatud keset väljavõtet.' }, deps());
+                          injected = { clientId: late.client.id, entryId: lateEntry.entry.id };
+                        }
+                        return model.findMany(args);
+                      };
+                    }
+                  });
+                }
+              })
+            ),
+          options
+        );
+    }
+  });
+  const second = await createHomeCareExport(lead, { reasonCode: 'BACKUP' }, { ...deps(at('2026-10-09T12:05:00Z')), db: interleaved });
+  const snapshot = read(second);
+  assert.ok(injected);
+  assert.equal(await db.careClientEntry.count({ where: { id: injected.entryId } }), 1);
+  assert.deepEqual(checkHomeCareExport(snapshot.doc).problems, []);
+  assert.equal(snapshot.text.includes(injected.entryId), false);
+  assert.equal(snapshot.text.includes(injected.clientId), false);
+  assert.equal(snapshot.doc.totals.clients, 2);
+  assert.equal(snapshot.doc.totals.entries, doc.totals.entries);
+  /* Eelmise väljavõtte tööloendi rida on järgmises failis. */
+  assert.ok(snapshot.doc.auditEvents.some((row) => row.action === 'org.home_care_export_created' && row.resourceId === result.exportId));
+  assert.notEqual(second.exportId, result.exportId);
+  assert.notEqual(second.contentSha256, result.contentSha256);
+  assert.equal((await exportRows()).length, 2);
+
+  /* Liiga suur fail: viga, mitte poolik fail, ja tööloendisse rida ei teki. */
+  await expectError(createHomeCareExport(lead, { reasonCode: 'BACKUP' }, { ...deps(), maxPackedBytes: 64 }), 413, 'home_care.errors.export_too_large');
+  assert.equal((await exportRows()).length, 2);
+
+  /* Teise asutuse fail on tema oma. */
+  const other = read(await createHomeCareExport(leadB, { reasonCode: 'BACKUP' }, deps()));
+  assert.deepEqual(checkHomeCareExport(other.doc).problems, []);
+  assert.deepEqual(other.doc.clients.map((row) => row.displayName), ['Võõras Klient']);
+  assert.equal(other.text.includes('Linda Tamm'), false);
+  assert.equal(other.doc.totals.accessLog, await db.careClientAccess.count({ where: { organizationId: f.orgB.id } }));
 });
