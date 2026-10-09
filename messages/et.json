@@ -12294,7 +12294,16 @@
       "key_closed": "See võti ei ole enam asutuse käes.",
       "key_changed": "Võti anti vahepeal edasi. Laadi leht uuesti.",
       "key_outcome_invalid": "Vali, kas võti tagastati kliendile või on kadunud.",
-      "key_too_many": "Ühel kliendil võib arvel olla kuni {limit} võtit."
+      "key_too_many": "Ühel kliendil võib arvel olla kuni {limit} võtit.",
+      "money_kind_required": "Vali, mis rahaga juhtus.",
+      "money_amount_invalid": "Kirjuta summa eurodes, näiteks 12,50.",
+      "money_note_required": "Kirjuta, mille peale raha läks.",
+      "money_day_invalid": "Päev ei saa olla tulevikus ega rohkem kui kuu aega tagasi.",
+      "money_exceeds_balance": "Sinu käes on selle kliendi raha {held} eurot; rohkem kulutada ega tagastada ei saa.",
+      "money_holder_required": "Raha saab kirja panna asutuse liige.",
+      "money_not_found": "Seda rida ei leitud.",
+      "money_retracted": "See rida on juba tühistatud.",
+      "money_retract_negative": "Seda rida ei saa tühistada: jääk läheks alla nulli. Tühista enne hilisem kulutus või tagastus."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -12785,7 +12794,9 @@
       "work_nature_due_title": "Töö iseloomu märked, mis vajavad ülevaatust",
       "work_nature_due_empty": "Ühegi märke ülevaatus ei ole 30 päeva sees.",
       "preconditions_open_title": "Teenus ootab eeltingimust",
-      "preconditions_open_empty": "Täitmata eeltingimusi ei ole."
+      "preconditions_open_empty": "Täitmata eeltingimusi ei ole.",
+      "money_open_title": "Kliendi raha töötaja käes üle nädala",
+      "money_open_empty": "Üle nädala lahtisi jääke ei ole."
     },
     "visit": {
       "title": "Mida tegid",
@@ -13140,6 +13151,29 @@
       "unreturned_title": "Tagastamata võtmed (teenus on lõppenud)",
       "unreturned_empty": "Lõppenud teenusega klientide võtmeid asutuse käes ei ole.",
       "register_empty": "Asutuse käes võtmeid ei ole."
+    },
+    "money": {
+      "title": "Kliendi raha",
+      "intro": "See on arvestus, mitte makse: pane kirja sularaha, mille klient sulle andis, ja mida sellega tegid. Pangakaardi andmeid ega PIN-koodi siia ei kirjutata.",
+      "balance": "Sinu käes on selle kliendi raha {amount}.",
+      "balance_none": "Sinu käes selle kliendi raha ei ole.",
+      "kinds": {
+        "RECEIVED": "Sain kliendilt",
+        "SPENT": "Kulutasin",
+        "RETURNED": "Tagastasin kliendile"
+      },
+      "kind_label": "Mis rahaga juhtus",
+      "amount_label": "Summa eurodes",
+      "note_label": "Mille jaoks",
+      "note_hint": "Kulutuse juures kirjuta, mille peale raha läks (näiteks pood või apteek).",
+      "add": "Lisa rida",
+      "save": "Salvesta",
+      "cancel": "Loobu",
+      "retract": "Tühista rida",
+      "holders_title": "Selle kliendi raha töötajate käes",
+      "holder_line": "{name}: {amount} (viimane rida {date})",
+      "mine_title": "Minu käes olev kliendiraha",
+      "open_line": "{name} käes {amount}, viimane rida {date}"
     }
   },
   "stage": {

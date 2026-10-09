@@ -8236,6 +8236,7 @@ model CareClient {
   workNatures        CareWorkNature[]
   preconditions      CarePrecondition[]
   keys               CareKey[]
+  moneyEntries       CareMoneyEntry[]
 
   @@unique([organizationId, internalCode])
   @@index([organizationId, status, displayName])
@@ -8492,6 +8493,33 @@ model CareVisitChange {
   @@index([organizationId, day])
   @@index([clientId, day])
   @@index([workerMembershipId, day])
+}
+
+/// Kliendi sularaha hooldaja käes (K4-c, kava II.6.11): arvestus, mitte makse. Summa on
+/// sentides. Rida ei kustutata: ekslik rida tühistatakse (`retractedAt`).
+model CareMoneyEntry {
+  id             String @id @default(cuid())
+  organizationId String
+  clientId       String
+  /// Kelle käes raha on: rea kirjutaja ise.
+  holderMembershipId String
+  holderName         String?
+  /// RECEIVED | SPENT | RETURNED (`CareMoneyKind`).
+  kind           String
+  amountCents    Int
+  note           String?
+  /// Päev kujul AAAA-KK-PP asutuse ajavööndis.
+  occurredOn     String
+
+  createdAt               DateTime  @default(now())
+  retractedAt             DateTime?
+  retractedByMembershipId String?
+  retractedByName         String?
+
+  client CareClient @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId, holderMembershipId])
+  @@index([clientId, holderMembershipId, createdAt])
 }
 
 /// Kliendi kodu võti asutuse käes (K4-b, kava II.6.11). Võtmel on numbriripats ilma nime

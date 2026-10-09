@@ -7,6 +7,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import OrgHeader from "@/components/org/OrgHeader";
 
 import { daysLabel } from "./HomeCareDecisionView";
+import { euroText } from "./HomeCareMoney";
 import HomeCareOutbox from "./HomeCareOutbox";
 import { preconditionLine } from "./HomeCarePreconditions";
 import { planDayLabel } from "./HomeCarePlanView";
@@ -22,7 +23,7 @@ import { clientHref } from "./homeCareClient";
  * Lingid kliendi lehele on `prefetch={false}`: lehe avamine jätab avamislogisse rea.
  */
 export default function HomeCareDeadlines({ context, deadlines }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const fieldId = useId();
   const organizationId = context.organization.id;
   const timeZone = context.organization.timezone || "Europe/Tallinn";
@@ -110,6 +111,15 @@ export default function HomeCareDeadlines({ context, deadlines }) {
           preconditionLine(t, item),
           item.overdue ? <span className="hc-badge hc-badge--danger">{t("home_care.deadlines.overdue_badge")}</span> : null,
           item.id
+        )
+      )}
+
+      {section("money_open", deadlines.moneyOpen || [], (item) =>
+        clientLine(
+          item,
+          t("home_care.money.open_line", { name: item.holderName || "—", amount: euroText(item.balanceCents, locale), date: planDayLabel(item.lastOn) }),
+          null,
+          item.key
         )
       )}
 
