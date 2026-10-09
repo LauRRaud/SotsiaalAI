@@ -91,6 +91,17 @@ export async function proxy(req) {
     const gone = req.nextUrl.clone();
     gone.pathname = MISSING_ROUTE_PATHNAME;
     gone.search = "";
+    /* PÖÖRDPROKSI TAGA PEAB ÜMBERKIRJUTUS MINEMA HTTP-GA. Mõõdetud tootmises
+       09.10.2026 (`next start --hostname 127.0.0.1` nginxi taga): päis
+       `X-Forwarded-Proto: https` teeb siinse aadressi kujuks
+       `https://localhost:3000/_puudub`. Next võrdleb seda oma algaadressiga
+       (`https://127.0.0.1:3000`), peab aadressi võõraks ja toob selle välise
+       päringuna üle TLS-i pordist, mis räägib ainult HTTP-d: vastus oli 500,
+       mitte 404. Lipud, mille taga see haru seni oli, on tootmises sees, seega
+       haru ei käivitunud seal enne koduteenuse lehti kordagi.
+       Serveri enda aadressile (localhost) sunnime seetõttu HTTP: ümberkirjutus
+       jõuab siis alati kohale ja annab sama 404-lehe mis iga olematu marsruut. */
+    if (isLocalHostname(gone.hostname)) gone.protocol = "http:";
     return NextResponse.rewrite(gone);
   }
 
