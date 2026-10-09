@@ -11,6 +11,7 @@ import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import Form from "@/components/ui/Form";
 import Input from "@/components/ui/Input";
+import JourneyAssessment from "@/components/journey/JourneyAssessment";
 import JourneySteps from "@/components/journey/JourneySteps";
 import { localizePath } from "@/lib/localizePath";
 import { buildServiceMapHandoff } from "@/lib/journey/serviceMapHandoff";
@@ -1415,6 +1416,12 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
                 journey={journey}
                 t={t}
                 onStepsChange={(steps) => setJourney((current) => (current ? { ...current, steps } : current))}
+              />
+
+              <JourneyAssessment
+                journey={journey}
+                t={t}
+                onAssessmentsChange={(assessments) => setJourney((current) => (current ? { ...current, assessments } : current))}
               />
 
               <JourneyRoadmap journey={journey} t={t} />
