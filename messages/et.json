@@ -2236,9 +2236,6 @@
         "assessment": "Eelkaardistus",
         "assessment_review": "Vaata eelinfo üle",
         "receiving_settings": "Vastuvõtt",
-        "received": "Saabunud eelpöördumised",
-        "selected_received": "Valitud eelpöördumine",
-        "receiver_workflow": "Vastuvõtja tööplaan",
         "received_assessment_review": "Eelkaardistuse struktureeritud eelinfo",
         "saved": "Minu eelpöördumised"
       },
@@ -2294,7 +2291,6 @@
         "domains_title": "Eluvaldkonnad",
         "extra_details": "Lisainfo ja taust",
         "review_note": "Ülevaade koondab täpselt need eelkaardistuse vastused ja täpsustused, mis lähevad salvestatud eelpöördumise ning allalaaditava eelinfo juurde.",
-        "receiver_review_note": "Siin on eelpöördumise vastused struktureeritud kujul. Tekstiekspordi saad kasutada siis, kui vajad tervet eelinfot ühe kopeeritava plokina.",
         "review_path": "Valitud rada",
         "review_progress": "Põhiküsimuste ülevaade",
         "review_answered": "vastatud",
@@ -2315,7 +2311,6 @@
         "download": "Laadi alla",
         "new": "Uus",
         "open": "Ava",
-        "accept": "Märgi vastuvõetuks",
         "open_room": "Ava vestlusruum",
         "opening_room": "Avan...",
         "write_email": "Kirjuta e-kiri",
@@ -2329,7 +2324,6 @@
         "prepare_draft": "Koosta pöördumise eelvaade",
         "send_internal": "Saada platvormis",
         "save_workflow": "Salvesta tööplaan",
-        "mark_ready": "Märgi vastuvõetuks",
         "archive": "Arhiveeri",
         "show_more_contacts": "Vaata rohkem kontakte",
         "show_less_contacts": "Näita vähem",
@@ -2341,7 +2335,6 @@
         "copy_short": "Kopeeri",
         "new_inquiry": "Uus eelpöördumine"
       },
-      "receiver_workspace": "Eelpöördumiste vastuvõtt",
       "recipients_lead": "Kontaktid ilmuvad, kui olukord, piirkond ja pöördumise suund on piisavalt selged.",
       "loading": "Laen eelpöördumisi...",
       "untitled": "Pealkirjata",
@@ -2361,8 +2354,6 @@
       "preferences_save_success": "Vastuvõtu seaded salvestati.",
       "send_success": "Eelpöördumine saadetud.",
       "received_download": "Laadi eelinfo alla",
-      "receiver_workflow_note": "Kasuta seda plokki kohtumise või järgmise kontakti ettevalmistamiseks. Märkmed on nähtavad vastuvõtja töövaates, mitte pöörduja mustandis.",
-      "next_contact_hint": "Kuupäev on nähtav ainult vastuvõtja töövaates.",
       "workflow_save_success": "Vastuvõtja tööplaan salvestati.",
       "errors": {
         "load_failed": "Eelpöördumisi ei saanud laadida.",
@@ -2540,6 +2531,89 @@
           "more": "Veel",
           "less": "Vähem",
           "changed": "muudetud"
+        },
+        "receiver": {
+          "flow_label": "Pöördumiste vastuvõtt",
+          "steps": {
+            "queue": {
+              "title": "Tööjärg",
+              "short": "Järg"
+            },
+            "inquiry": {
+              "title": "Pöördumine",
+              "short": "Pöördumine"
+            },
+            "info": {
+              "title": "Eelinfo",
+              "short": "Eelinfo"
+            },
+            "check": {
+              "title": "Kontroll",
+              "short": "Kontroll"
+            },
+            "plan": {
+              "title": "Tööplaan",
+              "short": "Plaan"
+            },
+            "prepare": {
+              "title": "Ettevalmistus",
+              "short": "Ettevalmistus"
+            },
+            "network": {
+              "title": "Võrgustik",
+              "short": "Võrgustik"
+            },
+            "settings": {
+              "title": "Vastuvõtt",
+              "short": "Vastuvõtt"
+            }
+          },
+          "queue": {
+            "title": "Tööjärg",
+            "groups": "Milliseid pöördumisi näidata",
+            "group_new": "Uued · {count}",
+            "group_mine": "Minu töös · {count}",
+            "group_archived": "Arhiiv · {count}",
+            "empty_new": "Uusi pöördumisi ei ole.",
+            "empty_mine": "Sinu töös ei ole praegu ühtegi pöördumist.",
+            "empty_archived": "Arhiivis ei ole pöördumisi.",
+            "summary": "{new} uut · {mine} töös"
+          },
+          "state": {
+            "new": "uus, ootab {days}. päeva",
+            "accepted": "vastu võetud {date}",
+            "contact_later": "järgmine kontakt {date}",
+            "contact_due": "kontakti aeg käes ({date})",
+            "archived": "arhiveeritud"
+          },
+          "arrived": "saabus {date}",
+          "accept": "Võtan vastu",
+          "inquiry": {
+            "title": "Pöördumine",
+            "text": "Pöördumise tekst"
+          },
+          "info": {
+            "title": "Eelinfo",
+            "empty": "Pöörduja ei täitnud eelkaardistust. Kogu info on pöördumise tekstis."
+          },
+          "check": {
+            "title": "Kontroll",
+            "lead": "Mis on enne järgmist kontakti üle vaadatud. Seda näed ainult sina."
+          },
+          "plan": {
+            "title": "Tööplaan",
+            "lead": "Ettevalmistus järgmiseks kontaktiks. Seda näed ainult sina, pöörduja ei näe.",
+            "restore": "Võta tagasi töösse",
+            "save_and_accept": "Võtan vastu ja salvestan",
+            "accept_note": "Salvestamine märgib pöördumise vastuvõetuks ja pöörduja näeb seda."
+          },
+          "prepare": {
+            "title": "Ettevalmistus"
+          },
+          "network": {
+            "title": "Võrgustik",
+            "lead": "Kui selle inimese abistamiseks on vaja teist spetsialisti, kaasa ta siit. Inimene otsustab ise, kas ta jagamisega nõustub."
+          }
         }
       },
       "sender_state": {

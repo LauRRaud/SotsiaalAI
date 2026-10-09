@@ -24,6 +24,7 @@ import { localizePath } from "@/lib/localizePath";
 import { preInquiryAvailabilityNotices, serviceAvailabilityPresentation } from "@/lib/serviceAvailabilityUi";
 import { normalizePreInquiryJourneySharedInfo } from "@/lib/preInquiryJourneySharedInfo";
 import { normalizePreInquiryReceiverChecklist } from "@/lib/preInquiryReceiverWorkflow";
+import { preInquiryReceiverQueue, preInquiryReceiverState } from "@/lib/preInquiryReceiverQueue";
 import { preInquirySenderState, preInquirySenderTone } from "@/lib/preInquirySenderState";
 import { serviceProfileSaveNoticeKey } from "@/lib/privacy/serviceProfileSaveNotice";
 import {
@@ -56,6 +57,7 @@ import { ContextView, JourneyView, PathView, SituationView, UrgencyView, WhoView
 import DomainsView from "./preInquiry/DomainsView";
 import { AssistantView, RecipientView, ReviewView, SavedView, SendView, TextView } from "./preInquiry/FlowViews";
 import PreInquiryStart from "./preInquiry/PreInquiryStart";
+import { CheckView, InfoView, InquiryView, NetworkView, PlanView, PrepareView, QueueView, SettingsView } from "./preInquiry/ReceiverViews";
 import viewStyles from "./preInquiry/views.module.css";
 import HelpMatchDecisionPanel from "./HelpMatchDecisionPanel";
 import ServiceMapLeaflet from "./ServiceMapLeaflet";
@@ -66,7 +68,6 @@ const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAAL.PRO_CHAT_WORKSPACE_RESTOR
 const SERVICE_MAP_RESULT_BUTTON_LIMIT = 24;
 
 const bodyTextClassName = "feature-page__copy";
-const receivingCheckboxLabelClassName = "feature-page__checkbox";
 const serviceMapChoiceCardClassName = "service-map-choice-card";
 
 const ADMIN_WORKSPACE_ROLES = Object.freeze([
@@ -78,6 +79,7 @@ const ADMIN_WORKSPACE_ROLES = Object.freeze([
 /* Sammude ja alguse valikute tekstid on tõlkekataloogis
    (workspace_feature_pages.pre_inquiries.steps / .start.options). */
 const PRE_INQUIRY_STEPS_KEY = "workspace_feature_pages.pre_inquiries.steps";
+const PRE_INQUIRY_RECEIVER_STEPS_KEY = "workspace_feature_pages.pre_inquiries.views.receiver.steps";
 
 const PRE_INQUIRY_START_KEY = "workspace_feature_pages.pre_inquiries.start.options";
 const PRE_INQUIRY_START_OPTIONS = Object.freeze(["find_recipient", "known_contact", "journey"]);
@@ -116,16 +118,6 @@ function readRequestedWorkspaceRole() {
   const params = new URLSearchParams(window.location.search || "");
   const value = params.get("workspaceRole");
   return value ? normalizeWorkspaceRole(value) : "";
-}
-
-function roleLabel(t, role) {
-  if (role === "CLIENT") {
-    return readText(t, "workspace_feature_pages.roles.client", "Pöörduja");
-  }
-  if (role === "SERVICE_PROVIDER") {
-    return readText(t, "workspace_feature_pages.roles.service_provider", "Teenuseosutaja");
-  }
-  return readText(t, "workspace_feature_pages.roles.social_worker", "Sotsiaaltöötaja");
 }
 
 function workspaceReturn(locale, router, options = {}) {
@@ -387,6 +379,20 @@ function formatDate(value, locale = "et") {
     }).format(date);
   } catch {
     return date.toLocaleString();
+  }
+}
+
+/* Kuupäev ilma kellaajata (loendi märgid). Kuupäevasõne „2026-10-12" loetakse
+   kohaliku päevana, mitte UTC keskööna, et päev ei nihkuks. */
+function formatDay(value, locale = "et") {
+  if (!value) return "";
+  const plain = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(value));
+  const date = plain ? new Date(Number(plain[1]), Number(plain[2]) - 1, Number(plain[3])) : new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  try {
+    return new Intl.DateTimeFormat(locale, { day: "2-digit", month: "2-digit", year: "numeric" }).format(date);
+  } catch {
+    return date.toLocaleDateString();
   }
 }
 
@@ -782,7 +788,7 @@ function CaseworkPreparationPanel({ t, inquiry, locale = "et", embedded = false 
   );
 }
 
-function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", isAdmin = false, currentUserId = "", embedded = false }) {
+function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", isAdmin = false, currentUserId = "" }) {
   const router = useRouter();
   const chatWindowRef = useRef(null);
   const inputBarRef = useRef(null);
@@ -833,6 +839,10 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
   const [savePrivacyPrompt, setSavePrivacyPrompt] = useState(null);
   const [workflowMode, setWorkflowMode] = useState("");
   const [activeWorkflowStep, setActiveWorkflowStep] = useState("path");
+  /* Vastuvõtja: milline vaade on ees ja millist järje rühma ta vaatab
+     (tühi = uued, kui neid on, muidu minu töös). */
+  const [receiverStep, setReceiverStep] = useState("queue");
+  const [receiverGroup, setReceiverGroup] = useState("");
   const [assessmentPathChosen, setAssessmentPathChosen] = useState(false);
   /**
    * TEEKONNA JAGAMISVALIK (SOL-JOUR-01, P0).
@@ -1126,9 +1136,11 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     : "";
   const isRecipientRole = activeRole === "SOCIAL_WORKER" || activeRole === "SERVICE_PROVIDER";
   const receiverInquiries = isAdmin && isRecipientRole ? inquiries : receivedInquiries;
+  /* Pöördumine avatakse tööjärjest teadliku vajutusega; esimest rida ei avata ise. */
   const activeReceivedInquiry = activeInquiryId
     ? receiverInquiries.find((inquiry) => inquiry.id === activeInquiryId) || null
-    : receiverInquiries[0] || null;
+    : null;
+  const receiverQueue = useMemo(() => preInquiryReceiverQueue(receiverInquiries), [receiverInquiries]);
   const activeReceivedJourneySharedInfo = useMemo(
     () => getInquiryJourneySharedInfo(activeReceivedInquiry),
     [activeReceivedInquiry]
@@ -1461,9 +1473,15 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
   // Deep-link from a journey's "Seotud eelpöördumised" list: open the requested
   // authored inquiry once the list has loaded. handleOpenInquiry is reached via a
   // ref so the effect only depends on `inquiries`.
+  //
+  // The effect waits for the list. It used to run on the first render too, when
+  // the list was still empty: it then took the single-fetch path, the arriving
+  // list cancelled that fetch, and the link opened nothing unless the single
+  // fetch happened to win the race.
   handleOpenInquiryRef.current = handleOpenInquiry;
   useEffect(() => {
     if (openInquiryLoadedRef.current || typeof window === "undefined") return;
+    if (loading || !currentUserId) return;
     const params = new URLSearchParams(window.location.search || "");
     const requestedId = String(params.get("openInquiry") || "").trim();
     if (!requestedId) return;
@@ -1504,7 +1522,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     return () => {
       cancelled = true;
     };
-  }, [currentUserId, inquiries]);
+  }, [currentUserId, inquiries, loading]);
 
   function updateAssessmentState(updater) {
     setAssessmentState((current) => {
@@ -1674,6 +1692,8 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     setDraftTouched(true);
     setWorkflowMode("existing");
     setActiveWorkflowStep("text");
+    /* Vastuvõtja jõuab lingist („ava pöördumine") otse selle pöördumise vaatesse. */
+    setReceiverStep("inquiry");
     setAssessmentPathChosen(Boolean(inquiry.assessmentState?.path));
     /* Avatud eelpöördumise valik on see, mis TEMA juures salvestatud on —
        mitte vaikehulk. Vale vaikehulk näitaks siin võõra rea kohta valikut,
@@ -1951,7 +1971,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
         })
       : inquiry.userEditedDraft || inquiry.generatedDraft || inquiry.situation || "";
     if (downloadTextFile(content, buildPreInquiryDownloadName(inquiry.topic))) {
-      setNotice(readText(t, "workspace_feature_pages.pre_inquiries.received_download", "Eelpöördumise eelinfo alla laaditud."));
+      setNotice(readText(t, "workspace_feature_pages.pre_inquiries.download_success", "Pöördumise tekst laaditi alla."));
     }
   }
 
@@ -2073,7 +2093,12 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       if (updated) {
         setInquiries((current) => current.map((item) => item.id === updated.id ? updated : item));
       }
-      setNotice(readText(t, "workspace_feature_pages.pre_inquiries.workflow_save_success", "Vastuvõtja tööplaan salvestati."));
+      /* Arhiveerimine ütleb, mis juhtus, mitte „tööplaan salvestati". */
+      setNotice(
+        status === "ARCHIVED"
+          ? readText(t, "workspace_feature_pages.pre_inquiries.archive_success", "Eelpöördumine arhiveeriti.")
+          : readText(t, "workspace_feature_pages.pre_inquiries.workflow_save_success", "Vastuvõtja tööplaan salvestati.")
+      );
     } catch (workflowError) {
       setError(workflowError?.message || readText(t, "workspace_feature_pages.pre_inquiries.errors.workflow_save_failed", "Vastuvõtja tööplaani ei saanud salvestada."));
     } finally {
@@ -2295,210 +2320,283 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
   }
 
   if (isRecipientRole) {
+    /* ---------- Vastuvõtja töövoog: tööjärg ja avatud pöördumise vaated ----------
+       Vaated on failis ./preInquiry/ReceiverViews.jsx, seisu ja järjekorra
+       reegel failis lib/preInquiryReceiverQueue.js. */
+    /* Avatud saab olla ainult rida, mis on tööjärjes: saatmata rida (admini
+       proovivaates enda mustand) ei ole kellegi vastuvõtus. */
+    const activeReceivedState = activeReceivedInquiry ? preInquiryReceiverState(activeReceivedInquiry) : null;
+    const opened = activeReceivedState && activeReceivedState.group !== "none" ? activeReceivedInquiry : null;
+    const openedState = opened ? activeReceivedState : null;
+    const queueGroup = receiverGroup || (receiverQueue.new.length ? "new" : receiverQueue.mine.length ? "mine" : "new");
+    const receiverStateLabel = (state) => {
+      if (state.group === "archived") return { text: tr("views.receiver.state.archived", "arhiveeritud"), tone: "quiet" };
+      if (state.group === "new") {
+        return { text: tr("views.receiver.state.new", "uus, ootab {days}. päeva").replace("{days}", String((state.days ?? 0) + 1)), tone: "wait" };
+      }
+      if (state.contact === "due") {
+        return { text: tr("views.receiver.state.contact_due", "kontakti aeg käes ({date})").replace("{date}", formatDay(state.contactOn, locale)), tone: "wait" };
+      }
+      if (state.contact === "later") {
+        return { text: tr("views.receiver.state.contact_later", "järgmine kontakt {date}").replace("{date}", formatDay(state.contactOn, locale)), tone: "ok" };
+      }
+      return { text: tr("views.receiver.state.accepted", "vastu võetud {date}").replace("{date}", formatDay(state.at, locale)).trim(), tone: "ok" };
+    };
+    const receiverMeta = (inquiry) =>
+      [
+        inquiry.authorErasedAt ? tr("deleted_author", "Kustutatud kasutaja pöördumine") : "",
+        inquiry.selectedRecipientName,
+        tr("views.receiver.arrived", "saabus {date}").replace("{date}", formatDay(inquiry.sentAt || inquiry.updatedAt, locale))
+      ]
+        .filter(Boolean)
+        .join(" · ");
+    const acceptAction = (inquiry) => ({
+      label: acceptingInquiryId === inquiry.id ? tr("actions.saving", "Salvestan...") : tr("views.receiver.accept", "Võtan vastu"),
+      busy: Boolean(acceptingInquiryId),
+      onClick: () => handleAcceptInquiry(inquiry)
+    });
+    const queueRows = receiverQueue[queueGroup].map(({ inquiry, state }) => {
+      const label = receiverStateLabel(state);
+      return {
+        id: inquiry.id,
+        title: inquiry.topic || tr("untitled", "Pealkirjata"),
+        state: label.text,
+        tone: label.tone,
+        meta: receiverMeta(inquiry),
+        excerpt: inquiry.situation || "",
+        selected: inquiry.id === opened?.id,
+        onOpen: () => {
+          setActiveInquiryId(inquiry.id);
+          setNotice("");
+          setError("");
+          setReceiverStep("inquiry");
+        },
+        accept: state.group === "new" ? acceptAction(inquiry) : null
+      };
+    });
+    const queueGroups = [
+      { value: "new", label: tr("views.receiver.queue.group_new", "Uued · {count}").replace("{count}", String(receiverQueue.new.length)) },
+      { value: "mine", label: tr("views.receiver.queue.group_mine", "Minu töös · {count}").replace("{count}", String(receiverQueue.mine.length)) },
+      { value: "archived", label: tr("views.receiver.queue.group_archived", "Arhiiv · {count}").replace("{count}", String(receiverQueue.archived.length)) }
+    ];
+    const queueEmptyText = !receiverInquiries.length
+      ? tr("empty_received", "Sulle adresseeritud eelpöördumised ilmuvad siia.")
+      : queueGroup === "mine"
+        ? tr("views.receiver.queue.empty_mine", "Sinu töös ei ole praegu ühtegi pöördumist.")
+        : queueGroup === "archived"
+          ? tr("views.receiver.queue.empty_archived", "Arhiivis ei ole pöördumisi.")
+          : tr("views.receiver.queue.empty_new", "Uusi pöördumisi ei ole.");
+
+    const receiverKeys = ["queue", ...(opened ? ["inquiry", "info", "check", "plan", "prepare", "network"] : []), "settings"];
+    const planTouched = Boolean(receiverNoteDraft.trim() || nextContactOnDraft);
+    const checkedCount = receiverChecklistDraft.filter((item) => item.checked).length;
+    const receiverStepState = {
+      queue: "empty",
+      inquiry: openedState && openedState.group !== "new" ? "done" : "empty",
+      info: "empty",
+      check: !receiverChecklistDraft.length ? "empty" : checkedCount === receiverChecklistDraft.length ? "done" : checkedCount ? "partial" : "empty",
+      plan: planTouched ? "done" : "empty",
+      prepare: "empty",
+      network: "empty",
+      settings: acceptsPreInquiries ? "done" : "empty"
+    };
+    const receiverStepSummary = {
+      queue: tr("views.receiver.queue.summary", "{new} uut · {mine} töös")
+        .replace("{new}", String(receiverQueue.new.length))
+        .replace("{mine}", String(receiverQueue.mine.length)),
+      inquiry: opened ? (opened.topic || tr("untitled", "Pealkirjata")).slice(0, 90) : "",
+      check: receiverChecklistDraft.length ? `${checkedCount}/${receiverChecklistDraft.length}` : "",
+      plan: nextContactOnDraft ? formatDay(nextContactOnDraft, locale) : ""
+    };
+    const receiverSteps = receiverKeys.map((key) => ({
+      key,
+      label: readText(t, `${PRE_INQUIRY_RECEIVER_STEPS_KEY}.${key}.title`, key),
+      short: readText(t, `${PRE_INQUIRY_RECEIVER_STEPS_KEY}.${key}.short`, key),
+      state: receiverStepState[key],
+      summary: receiverStepSummary[key] || undefined,
+      /* Loend ja eelinfo võivad olla pikad: nende järgi ühist kõrgust ei võeta. */
+      free: key === "queue" || key === "info" || key === "prepare" || key === "network"
+    }));
+    const savingPlan = Boolean(opened && savingReceiverWorkflowId === opened.id);
+    /* Tööplaani salvestamine märgib uue pöördumise serveris vastuvõetuks
+       (updatePreInquiryReceiverWorkflow seab openedAt). Nupp ütleb seda ette. */
+    const savePlanLabel = savingPlan
+      ? tr("actions.saving", "Salvestan...")
+      : openedState?.group === "new"
+        ? tr("views.receiver.plan.save_and_accept", "Võtan vastu ja salvestan")
+        : tr("actions.save_workflow", "Salvesta tööplaan");
+    const savePlanButton = opened ? (
+      <Button type="button" variant="primary" disabled={savingPlan} onClick={() => handleSaveReceiverWorkflow(opened)}>
+        {savePlanLabel}
+      </Button>
+    ) : null;
+    const acceptNote = openedState?.group === "new" ? tr("views.receiver.plan.accept_note", "Salvestamine märgib pöördumise vastuvõetuks ja pöörduja näeb seda.") : "";
+
+    const renderReceiverView = (step) => {
+      switch (step.key) {
+        case "inquiry": {
+          const label = receiverStateLabel(openedState);
+          const text = opened.userEditedDraft || opened.generatedDraft || "";
+          const mailto = buildPreInquiryReplyMailto(opened);
+          return (
+            <InquiryView
+              tr={tr}
+              topic={opened.topic || tr("untitled", "Pealkirjata")}
+              meta={receiverMeta(opened)}
+              state={label.text}
+              tone={label.tone}
+              situation={opened.situation || ""}
+              text={text.trim() && text.trim() !== String(opened.situation || "").trim() ? text : ""}
+              actions={
+                <>
+                  {openedState.group === "new" ? (
+                    <Button type="button" variant="primary" disabled={Boolean(acceptingInquiryId)} onClick={() => handleAcceptInquiry(opened)}>
+                      {acceptAction(opened).label}
+                    </Button>
+                  ) : null}
+                  <Button type="button" variant="secondary" disabled={openingRoomInquiryId === opened.id || !opened.authorId} onClick={() => handleOpenInquiryRoom(opened)}>
+                    {openingRoomInquiryId === opened.id ? tr("actions.opening_room", "Avan...") : tr("actions.open_room", "Ava vestlusruum")}
+                  </Button>
+                  {mailto ? (
+                    <Button as="a" href={mailto} variant="secondary">
+                      {tr("actions.write_email", "Kirjuta e-kiri")}
+                    </Button>
+                  ) : null}
+                </>
+              }
+            />
+          );
+        }
+        case "info":
+          return (
+            <InfoView
+              tr={tr}
+              empty={!shouldShowActiveReceivedJourneySharedInfo && !activeReceivedInquiryAssessmentReview}
+              actions={
+                <Button type="button" variant="secondary" onClick={() => handleDownloadReceivedInquiry(opened)}>
+                  {tr("received_download", "Laadi eelinfo alla")}
+                </Button>
+              }
+            >
+              {shouldShowActiveReceivedJourneySharedInfo ? (
+                <JourneySharedInfoBlock info={activeReceivedJourneySharedInfo} t={t} audience={activeReceivedJourneySharedInfoAudience} serviceLabel={opened.selectedRecipientName || ""} />
+              ) : null}
+              {activeReceivedInquiryAssessmentReview ? (
+                <PreInquiryAssessmentReviewSection
+                  t={t}
+                  title={tr("sections.received_assessment_review", "Eelkaardistuse struktureeritud eelinfo")}
+                  review={activeReceivedInquiryAssessmentReview}
+                  situation={opened.situation || ""}
+                />
+              ) : null}
+            </InfoView>
+          );
+        case "check":
+          return (
+            <CheckView
+              tr={tr}
+              checklist={receiverChecklistDraft.map((item) => ({ id: item.id, checked: item.checked, label: readChecklistLabel(t, item) }))}
+              onCheck={updateReceiverChecklistItem}
+              note={acceptNote}
+              actions={savePlanButton}
+            />
+          );
+        case "plan":
+          return (
+            <PlanView
+              tr={tr}
+              note={receiverNoteDraft}
+              onNote={setReceiverNoteDraft}
+              contactOn={nextContactOnDraft}
+              onContactOn={setNextContactOnDraft}
+              footNote={acceptNote}
+              actions={
+                <>
+                  {savePlanButton}
+                  {opened.status === "ARCHIVED" ? (
+                    <Button type="button" variant="secondary" disabled={savingPlan} onClick={() => handleSaveReceiverWorkflow(opened, "READY")}>
+                      {tr("views.receiver.plan.restore", "Võta tagasi töösse")}
+                    </Button>
+                  ) : (
+                    <Button type="button" variant="secondary" disabled={savingPlan} onClick={() => handleSaveReceiverWorkflow(opened, "ARCHIVED")}>
+                      {tr("actions.archive", "Arhiveeri")}
+                    </Button>
+                  )}
+                </>
+              }
+            />
+          );
+        case "prepare":
+          return (
+            <PrepareView tr={tr}>
+              <CaseworkPreparationPanel t={t} inquiry={opened} locale={locale} embedded />
+            </PrepareView>
+          );
+        case "network":
+          return (
+            <NetworkView tr={tr}>
+              {/* COLLAB-P4: võrgustikku kaasamine sünnib SIIT, sest jagamise
+                  lähteobjekt on just see pöördumine. */}
+              <NetworkShareComposer preInquiryId={opened.id} />
+            </NetworkView>
+          );
+        case "settings":
+          return (
+            <SettingsView
+              tr={tr}
+              canToggle={activeRole === "SOCIAL_WORKER"}
+              accepts={acceptsPreInquiries}
+              onAccepts={setAcceptsPreInquiries}
+              note={
+                activeRole !== "SOCIAL_WORKER"
+                  ? tr("receiving.provider_note", "Vastuvõtukanalid on teenuseprofiilis. Siin kuvatakse sulle adresseeritud eelpöördumised.")
+                  : isAdmin
+                    ? tr("receiving.admin_note", "Admini testvaade; salvestus käib ainult sinu kontole.")
+                    : tr("receiving.note", "Lubab sinu kontole adresseeritud eelpöördumised platvormis vastu võtta.")
+              }
+              saving={savingPreferences}
+              onSave={handleSavePreferences}
+            />
+          );
+        default:
+          return (
+            <QueueView tr={tr} groups={queueGroups} group={queueGroup} onGroup={setReceiverGroup} rows={queueRows} emptyText={queueEmptyText}>
+              {/* COLLAB-P4: saabuv võrgustikujagamine on saaja jaoks sama kujuga mis
+                  saabuv eelpöördumine: samal laual, mitte teises postkastis.
+                  Komponent ei joonista midagi, kui jagamisi ei ole. */}
+              <NetworkShareInbox />
+            </QueueView>
+          );
+      }
+    };
+
     return (
       <div className="pre-inquiry-workflow pre-inquiry-workflow--receiver">
-        <div className="feature-page__intro">
-          <p className={bodyTextClassName}>
-            {`${roleLabel(t, activeRole)} · ${readText(t, "workspace_feature_pages.pre_inquiries.receiver_workspace", "Eelpöördumiste vastuvõtt")}`}
-          </p>
-        </div>
-
-        {loading ? <p className={bodyTextClassName}>{readText(t, "workspace_feature_pages.pre_inquiries.loading", "Laen eelpöördumisi...")}</p> : null}
+        {loading ? <p className={viewStyles.quiet}>{tr("loading", "Laen eelpöördumisi...")}</p> : null}
         {error ? (
-          <p>
+          <p className={viewStyles.notice} data-tone="risk" role="alert">
             {error}
           </p>
         ) : null}
         {notice ? (
-          <p>
+          <p className={viewStyles.notice} aria-live="polite">
             {notice}
           </p>
         ) : null}
-
-        <SectionCard flat={embedded} title={readText(t, "workspace_feature_pages.pre_inquiries.sections.receiving_settings", "Vastuvõtt")}>
-          {activeRole === "SOCIAL_WORKER" ? (
-            <div>
-              <Checkbox
-                checked={acceptsPreInquiries}
-                onChange={(value) => setAcceptsPreInquiries(Boolean(value))}
-                label={
-                  <span className={receivingCheckboxLabelClassName}>
-                    {readText(t, "workspace_feature_pages.pre_inquiries.receiving.accepts_platform", "Võtan eelpöördumisi platvormil vastu")}
-                  </span>
-                }
-              />
-              <p>
-                {isAdmin
-                  ? readText(t, "workspace_feature_pages.pre_inquiries.receiving.admin_note", "Admini testvaade; salvestus käib ainult sinu kontole.")
-                  : readText(t, "workspace_feature_pages.pre_inquiries.receiving.note", "Lubab sinu kontole adresseeritud eelpöördumised platvormis vastu võtta.")}
-              </p>
-              <Button type="button" size="sm" disabled={savingPreferences} onClick={handleSavePreferences}>
-                {savingPreferences
-                  ? readText(t, "workspace_feature_pages.pre_inquiries.actions.saving", "Salvestan...")
-                  : readText(t, "workspace_feature_pages.pre_inquiries.actions.save_preferences", "Salvesta vastuvõtt")}
-              </Button>
-            </div>
-          ) : (
-            <p className={bodyTextClassName}>
-              {readText(t, "workspace_feature_pages.pre_inquiries.receiving.provider_note", "Vastuvõtukanalid on teenuseprofiilis. Siin kuvatakse sulle adresseeritud eelpöördumised.")}
-            </p>
-          )}
-        </SectionCard>
-
-        <SectionCard flat={embedded} title={readText(t, "workspace_feature_pages.pre_inquiries.sections.received", "Saabunud eelpöördumised")}>
-          <div>
-            {receiverInquiries.length ? receiverInquiries.map((inquiry) => (
-              <article key={inquiry.id}>
-                <div>
-                  <div>
-                    <h3>{inquiry.topic || readText(t, "workspace_feature_pages.pre_inquiries.untitled", "Pealkirjata")}</h3>
-                    <p>
-                      {[
-                        inquiry.author?.email || (inquiry.authorErasedAt
-                          ? readText(t, "workspace_feature_pages.pre_inquiries.deleted_author", "Kustutatud kasutaja pöördumine")
-                          : ""),
-                        inquiry.selectedRecipientName,
-                        formatDate(inquiry.updatedAt, locale)
-                      ].filter(Boolean).join(" · ")}
-                    </p>
-                  </div>
-                  <span>
-                    {inquiry.status || "DRAFT"}
-                  </span>
-                </div>
-                <p>
-                  {inquiry.situation}
-                </p>
-                <div>
-                  <Button type="button" size="sm" onClick={() => handleOpenInquiry(inquiry)}>
-                    {readText(t, "workspace_feature_pages.pre_inquiries.actions.open", "Ava")}
-                  </Button>
-                  <Button type="button" size="sm" disabled={acceptingInquiryId === inquiry.id || ["READY", "ARCHIVED"].includes(inquiry.status)} onClick={() => handleAcceptInquiry(inquiry)}>
-                    {acceptingInquiryId === inquiry.id
-                      ? readText(t, "workspace_feature_pages.pre_inquiries.actions.saving", "Salvestan...")
-                      : readText(t, "workspace_feature_pages.pre_inquiries.actions.accept", "Märgi vastuvõetuks")}
-                  </Button>
-                  <Button type="button" size="sm" disabled={openingRoomInquiryId === inquiry.id || !inquiry.authorId} onClick={() => handleOpenInquiryRoom(inquiry)}>
-                    {openingRoomInquiryId === inquiry.id
-                      ? readText(t, "workspace_feature_pages.pre_inquiries.actions.opening_room", "Avan...")
-                      : readText(t, "workspace_feature_pages.pre_inquiries.actions.open_room", "Ava vestlusruum")}
-                  </Button>
-                  {buildPreInquiryReplyMailto(inquiry) ? (
-                    <a href={buildPreInquiryReplyMailto(inquiry)}>
-                      {readText(t, "workspace_feature_pages.pre_inquiries.actions.write_email", "Kirjuta e-kiri")}
-                    </a>
-                  ) : null}
-                </div>
-              </article>
-            )) : (
-              <p className={bodyTextClassName}>{readText(t, "workspace_feature_pages.pre_inquiries.empty_received", "Sulle adresseeritud eelpöördumised ilmuvad siia, kui vastuvõtt on lubatud ja adressaat on kontoga seotud.")}</p>
-            )}
-          </div>
-        </SectionCard>
-
-        {/* COLLAB-P4: saabuv võrgustikujagamine on saaja jaoks sama kujuga mis
-            saabuv eelpöördumine: samal laual, mitte teises postkastis. Komponent
-            ei joonista midagi, kui jagamisi ei ole. Varem oli see pandud saatja
-            töövoo harusse, kuhu vastuvõtja ei jõua, ja jäi seetõttu nägemata. */}
-        <NetworkShareInbox />
-
-        {activeReceivedInquiry ? (
-          <CaseworkPreparationPanel t={t} inquiry={activeReceivedInquiry} locale={locale} embedded={embedded} />
-        ) : null}
-
-        {activeReceivedInquiry ? (
-          <SectionCard flat={embedded} title={readText(t, "workspace_feature_pages.pre_inquiries.sections.selected_received", "Valitud eelpöördumine")}>
-            <div>
-              <div>
-                <p>{activeReceivedInquiry.topic || readText(t, "workspace_feature_pages.pre_inquiries.untitled", "Pealkirjata")}</p>
-                <Button type="button" size="sm" onClick={() => handleDownloadReceivedInquiry(activeReceivedInquiry)}>
-                  {readText(t, "workspace_feature_pages.pre_inquiries.received_download", "Laadi eelinfo alla")}
-                </Button>
-              </div>
-              <p className={bodyTextClassName}>{activeReceivedInquiry.situation}</p>
-              {shouldShowActiveReceivedJourneySharedInfo ? (
-                <JourneySharedInfoBlock info={activeReceivedJourneySharedInfo} t={t} audience={activeReceivedJourneySharedInfoAudience} serviceLabel={activeReceivedInquiry.selectedRecipientName || ""} />
-              ) : null}
-              {activeReceivedInquiry.assessmentState ? (
-                <ServiceProfileTextarea
-                  readOnly
-                  value={buildPreInquiryAssessmentExportText(activeReceivedInquiry.assessmentState, {
-                    topic: activeReceivedInquiry.topic || "",
-                    situation: activeReceivedInquiry.situation || "",
-                    draft: activeReceivedInquiry.userEditedDraft || activeReceivedInquiry.generatedDraft || "",
-                    recipientName: activeReceivedInquiry.selectedRecipientName || ""
-                  })}
-                />
-              ) : null}
-              {activeReceivedInquiry.userEditedDraft || activeReceivedInquiry.generatedDraft ? (
-                <ServiceProfileTextarea readOnly value={activeReceivedInquiry.userEditedDraft || activeReceivedInquiry.generatedDraft || ""} />
-              ) : null}
-            </div>
-          </SectionCard>
-        ) : null}
-
-        {activeReceivedInquiry ? (
-          <SectionCard flat={embedded} title={readText(t, "workspace_feature_pages.pre_inquiries.sections.receiver_workflow", "Vastuvõtja tööplaan")}>
-            <p className={bodyTextClassName}>
-              {readText(t, "workspace_feature_pages.pre_inquiries.receiver_workflow_note", "Kasuta seda plokki kohtumise või järgmise kontakti ettevalmistamiseks. Märkmed on nähtavad vastuvõtja töövaates, mitte pöörduja mustandis.")}
-            </p>
-            <div>
-              {receiverChecklistDraft.map((item) => (
-                <Checkbox
-                  key={item.id}
-                  name={`receiver-workflow-${item.id}`}
-                  checked={item.checked}
-                  onChange={(checked) => updateReceiverChecklistItem(item.id, checked)}
-                  label={readChecklistLabel(t, item)}
-                />
-              ))}
-            </div>
-            <Label>
-              <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.receiver_note", "Sisemine märge")}</span>
-              <ServiceProfileTextarea
-                value={receiverNoteDraft}
-                onChange={(event) => setReceiverNoteDraft(event.target.value)}
-                placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.receiver_note", "Mida on vaja enne järgmist kontakti täpsustada või ette valmistada?")}
-              />
-            </Label>
-            <Label>
-              <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.next_contact_on", "Järgmise kontakti kuupäev")}</span>
-              <Input
-                type="date"
-                value={nextContactOnDraft}
-                onChange={(event) => setNextContactOnDraft(event.target.value)}
-              />
-              <small>{readText(t, "workspace_feature_pages.pre_inquiries.next_contact_hint", "Kuupäev on nähtav ainult vastuvõtja töövaates.")}</small>
-            </Label>
-            <div>
-              <Button type="button" size="sm" disabled={savingReceiverWorkflowId === activeReceivedInquiry.id} onClick={() => handleSaveReceiverWorkflow(activeReceivedInquiry)}>
-                {savingReceiverWorkflowId === activeReceivedInquiry.id
-                  ? readText(t, "workspace_feature_pages.pre_inquiries.actions.saving", "Salvestan...")
-                  : readText(t, "workspace_feature_pages.pre_inquiries.actions.save_workflow", "Salvesta tööplaan")}
-              </Button>
-              <Button type="button" size="sm" disabled={savingReceiverWorkflowId === activeReceivedInquiry.id || activeReceivedInquiry.status === "READY"} onClick={() => handleSaveReceiverWorkflow(activeReceivedInquiry, "READY")}>
-                {readText(t, "workspace_feature_pages.pre_inquiries.actions.mark_ready", "Märgi vastuvõetuks")}
-              </Button>
-              <Button type="button" size="sm" variant="primary" disabled={savingReceiverWorkflowId === activeReceivedInquiry.id || activeReceivedInquiry.status === "ARCHIVED"} onClick={() => handleSaveReceiverWorkflow(activeReceivedInquiry, "ARCHIVED")}>
-                {readText(t, "workspace_feature_pages.pre_inquiries.actions.archive", "Arhiveeri")}
-              </Button>
-            </div>
-            {/* COLLAB-P4: võrgustikku kaasamine sünnib SIIT, sest jagamise
-                lähteobjekt on just see pöördumine. Eraldi komponent hoiab selle
-                faili muudatuse ühe rea peal. */}
-            <NetworkShareComposer preInquiryId={activeReceivedInquiry.id} />
-          </SectionCard>
-        ) : null}
-
-        {activeReceivedInquiryAssessmentReview ? (
-          <PreInquiryAssessmentReviewSection
-            t={t}
-            title={readText(t, "workspace_feature_pages.pre_inquiries.sections.received_assessment_review", "Eelkaardistuse struktureeritud eelinfo")}
-            review={activeReceivedInquiryAssessmentReview}
-            situation={activeReceivedInquiry?.situation || ""}
-            note={readText(t, "workspace_feature_pages.pre_inquiries.assessment.receiver_review_note", "Siin on eelpöördumise vastused struktureeritud kujul. Tekstiekspordi saad kasutada siis, kui vajad tervet eelinfot ühe kopeeritava plokina.")}
-          />
-        ) : null}
+        {/* Vaadete loend muutub, kui pöördumine avatakse või suletakse: siis
+            ehitatakse lava uuesti ja see avaneb vaatel, kuhu vastuvõtja läks. */}
+        <StepFlight
+          key={receiverKeys.join("|")}
+          label={tr("views.receiver.flow_label", "Pöördumiste vastuvõtt")}
+          steps={receiverSteps}
+          initialIndex={Math.max(0, receiverKeys.indexOf(receiverStep))}
+          activeKey={receiverKeys.includes(receiverStep) ? receiverStep : "queue"}
+          onStepChange={(index, step) => {
+            if (step) setReceiverStep(step.key);
+          }}
+        >
+          {renderReceiverView}
+        </StepFlight>
       </div>
     );
   }
@@ -2511,7 +2609,8 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     flowAdvanceRef.current = window.setTimeout(() => setActiveWorkflowStep(key), 420);
   };
   const stepAfter = (key) => flowKeys[flowKeys.indexOf(key) + 1];
-  const formatStateDate = (value) => formatDate(value, locale);
+  /* Seisu märgis on kuupäev ilma kellaajata, nagu vastuvõtja tööjärjes. */
+  const formatStateDate = (value) => formatDay(value, locale);
   const senderStateLabel = (inquiry) => {
     const state = preInquirySenderState(inquiry);
     const text = tr(`sender_state.${state.key}`, state.key)
@@ -5367,7 +5466,7 @@ export default function WorkspaceFeaturePage({ feature, embedded = false, onBack
               /* Pöörduja eelpöördumise vaadetel on igal vaatel oma pealkiri
                  (algus, sammud); lehe suur pealkiri jääks selle kohale kordama.
                  Ekraanilugejale jääb see alles. */
-              headerClassName={featureKey === "pre_inquiries" && activeWorkspaceRole === "CLIENT" ? "sr-only" : undefined}
+              headerClassName={featureKey === "pre_inquiries" ? "sr-only" : undefined}
               /* ⓘ EI ole enam siin: platvormi ainus lehe-ⓘ elab paneeli
                  nurgas × kõrval (PanelFrame). Rollipõhise sisu (pre_inquiry
                  vs intake) annab talle usePanelInfoSlot ülalpool. */
@@ -5375,7 +5474,7 @@ export default function WorkspaceFeaturePage({ feature, embedded = false, onBack
               {title}
             </SubpageHeader>
           ) : null}
-          {featureKey === "pre_inquiries" ? <PreInquiriesSurface t={t} locale={locale} activeRole={activeWorkspaceRole} isAdmin={isAdmin} currentUserId={session?.user?.id || ""} embedded={embedded} /> : null}
+          {featureKey === "pre_inquiries" ? <PreInquiriesSurface t={t} locale={locale} activeRole={activeWorkspaceRole} isAdmin={isAdmin} currentUserId={session?.user?.id || ""} /> : null}
           {featureKey === "service_map" ? <ServiceMapSurface t={t} locale={locale} activeRole={activeWorkspaceRole} isAdmin={isAdmin} isAuthenticated={Boolean(session?.user?.id)} onRoleChange={handleAdminWorkspaceRoleChange} onBack={handleBack} /> : null}
           {featureKey === "service_profile" ? <ServiceProfileSurface t={t} locale={locale} /> : null}
         </div>

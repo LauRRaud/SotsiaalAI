@@ -2236,9 +2236,6 @@
         "assessment": "Pre-assessment",
         "assessment_review": "Review the pre-assessment before sending",
         "receiving_settings": "Receiving",
-        "received": "Received pre-inquiries",
-        "selected_received": "Selected pre-inquiry",
-        "receiver_workflow": "Receiver workflow",
         "received_assessment_review": "Structured pre-assessment information",
         "saved": "My pre-inquiries"
       },
@@ -2294,7 +2291,6 @@
         "domains_title": "Life domains",
         "extra_details": "Additional information and background",
         "review_note": "The overview gathers exactly the pre-assessment answers and details that go into the saved pre-inquiry and downloadable information.",
-        "receiver_review_note": "The pre-inquiry answers are shown here in structured form. Use the text export when you need all pre-information in one copyable block.",
         "review_path": "Selected path",
         "review_progress": "Core question overview",
         "review_answered": "answered",
@@ -2315,7 +2311,6 @@
         "download": "Download",
         "new": "New",
         "open": "Open",
-        "accept": "Mark as accepted",
         "open_room": "Open conversation room",
         "opening_room": "Opening...",
         "write_email": "Write email",
@@ -2329,7 +2324,6 @@
         "prepare_draft": "Prepare letter draft",
         "send_internal": "Send in platform",
         "save_workflow": "Save workflow",
-        "mark_ready": "Mark as accepted",
         "archive": "Archive",
         "show_more_contacts": "Show more contacts",
         "show_less_contacts": "Show less",
@@ -2341,7 +2335,6 @@
         "copy_short": "Copy",
         "new_inquiry": "New pre-inquiry"
       },
-      "receiver_workspace": "Pre-inquiry receiving",
       "recipients_lead": "Contacts appear once the situation, area, and inquiry direction are clear enough.",
       "loading": "Loading pre-inquiries...",
       "untitled": "Untitled",
@@ -2361,8 +2354,6 @@
       "preferences_save_success": "Receiving settings saved.",
       "send_success": "Pre-inquiry sent.",
       "received_download": "Download pre-information",
-      "receiver_workflow_note": "Use this block to prepare for a meeting or next contact. Notes are visible in the receiver workflow, not in the inquirer's draft.",
-      "next_contact_hint": "The date is visible only in the receiver workspace.",
       "workflow_save_success": "Receiver workflow saved.",
       "errors": {
         "load_failed": "Pre-inquiries could not be loaded.",
@@ -2540,6 +2531,89 @@
           "more": "More",
           "less": "Less",
           "changed": "changed"
+        },
+        "receiver": {
+          "flow_label": "Receiving pre-inquiries",
+          "steps": {
+            "queue": {
+              "title": "Work queue",
+              "short": "Queue"
+            },
+            "inquiry": {
+              "title": "Pre-inquiry",
+              "short": "Pre-inquiry"
+            },
+            "info": {
+              "title": "Pre-information",
+              "short": "Pre-info"
+            },
+            "check": {
+              "title": "Checklist",
+              "short": "Checklist"
+            },
+            "plan": {
+              "title": "Work plan",
+              "short": "Plan"
+            },
+            "prepare": {
+              "title": "Preparation",
+              "short": "Preparation"
+            },
+            "network": {
+              "title": "Network",
+              "short": "Network"
+            },
+            "settings": {
+              "title": "Receiving",
+              "short": "Receiving"
+            }
+          },
+          "queue": {
+            "title": "Work queue",
+            "groups": "Which pre-inquiries to show",
+            "group_new": "New · {count}",
+            "group_mine": "In my work · {count}",
+            "group_archived": "Archive · {count}",
+            "empty_new": "There are no new pre-inquiries.",
+            "empty_mine": "You have no pre-inquiries in work right now.",
+            "empty_archived": "The archive is empty.",
+            "summary": "{new} new · {mine} in work"
+          },
+          "state": {
+            "new": "new, waiting day {days}",
+            "accepted": "accepted {date}",
+            "contact_later": "next contact {date}",
+            "contact_due": "contact is due ({date})",
+            "archived": "archived"
+          },
+          "arrived": "arrived {date}",
+          "accept": "I accept this",
+          "inquiry": {
+            "title": "Pre-inquiry",
+            "text": "Text of the pre-inquiry"
+          },
+          "info": {
+            "title": "Pre-information",
+            "empty": "The applicant did not fill in the pre-mapping. All the information is in the text of the pre-inquiry."
+          },
+          "check": {
+            "title": "Checklist",
+            "lead": "What has been looked over before the next contact. Only you see this."
+          },
+          "plan": {
+            "title": "Work plan",
+            "lead": "Preparation for the next contact. Only you see this, the applicant does not.",
+            "restore": "Take back into work",
+            "save_and_accept": "Accept and save",
+            "accept_note": "Saving marks the pre-inquiry as accepted and the applicant sees it."
+          },
+          "prepare": {
+            "title": "Preparation"
+          },
+          "network": {
+            "title": "Network",
+            "lead": "If helping this person needs another specialist, involve them from here. The person decides whether they agree to the sharing."
+          }
         }
       },
       "sender_state": {

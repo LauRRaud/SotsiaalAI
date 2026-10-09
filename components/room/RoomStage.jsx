@@ -167,6 +167,13 @@ const ROOM_ARRIVAL_COMPLETE_COOKIE = "sotsiaalai_room_arrival_complete";
 const CARDLESS_DOCK_LABELS = {
   "/autorilt": "about.links.author",
 };
+/* Leht, mille kaart avab teise tee: kaart „Pöördumised" viib vestluse töölaua
+   teele, aga otselink (Teekonnast, „ava pöördumine") avab /eelpoordumised.
+   Dokk näitab siis sama kaardi nime ja ikooni (nimi sõltub rollist), muidu
+   jääks otselingi leht dokis nimeta, ja leht ise pealkirja ei kanna. */
+const DOCK_CARD_ALIASES = {
+  "/eelpoordumised": "/vestlus?workspace=pre_inquiries",
+};
 
 /* Tellija otsus: saabumiskõnd toimub IGAL platvormi laadimisel —
  * mitte mingit "olen näinud" salvestust. Ainult sama laadimise sees
@@ -1467,6 +1474,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     const current =
       cards.find((item) => item.href === here) ||
       allCardsByHref.get(here) ||
+      allCardsByHref.get(DOCK_CARD_ALIASES[normalized]) ||
       (cardless ? { key: normalized, label: t(cardless), href: normalized } : null);
     return {
       cards,
