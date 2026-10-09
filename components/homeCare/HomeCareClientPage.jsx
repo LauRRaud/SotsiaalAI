@@ -11,7 +11,7 @@ import { CARE_CLIENT_STATUSES, CARE_ENTRY_KINDS, CARE_STATUS_REASONS, CareClient
 import HomeCareCallNote from "./HomeCareCallNote";
 import HomeCareCard from "./HomeCareCard";
 import HomeCareClientForm from "./HomeCareClientForm";
-import HomeCareDecisionView from "./HomeCareDecisionView";
+import HomeCareDecisionView, { minutesLabel } from "./HomeCareDecisionView";
 import HomeCareEntryForm from "./HomeCareEntryForm";
 import HomeCareEntryItem from "./HomeCareEntryItem";
 import HomeCareHistory from "./HomeCareHistory";
@@ -332,6 +332,24 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
           {t("home_care.decision.title")}
         </h2>
         {data.decision ? <HomeCareDecisionView decision={data.decision} /> : <p className="hc-hint">{t("home_care.decision.none")}</p>}
+        {/* Osutatud aeg (K2-e): selle nädala ja selle kuu käigu kirjed. */}
+        {data.provided
+          ? ["week", "month"].map((period) => {
+              const sums = data.provided[period];
+              return (
+                <p className="hc-entry__meta" key={period}>
+                  {sums.visits === 0
+                    ? t(`home_care.provided.${period}_none`)
+                    : [
+                        t(`home_care.provided.${period}`, { visits: sums.visits, amount: minutesLabel(t, sums.minutes) }),
+                        sums.withoutLength ? t("home_care.provided.without_length", { count: sums.withoutLength }) : null
+                      ]
+                        .filter(Boolean)
+                        .join(" · ")}
+                </p>
+              );
+            })
+          : null}
         {access.isCoordinator ? (
           <Link
             className="hc-btn hc-btn--quiet hc-btn--link"
