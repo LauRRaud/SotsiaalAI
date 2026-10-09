@@ -87,6 +87,7 @@ import { addKey, closeKey, getKeyRegister, handOverKey } from '../lib/homeCare/k
 import { addMoneyEntry, retractMoneyEntry } from '../lib/homeCare/money.js';
 import { markSupply, trackSupply, untrackSupply } from '../lib/homeCare/supplies.js';
 import { saveDoorSteps } from '../lib/homeCare/doorSteps.js';
+import { handleChangeSignal, saveUsualState } from '../lib/homeCare/changes.js';
 import { composeNoAnswerText } from '../lib/homeCare/noAnswerText.js';
 import { assertNotificationRecipient, serializeNotificationEvent } from '../lib/notifications.js';
 
@@ -1859,6 +1860,9 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
   const trackedSupply = await trackSupply(lead, client.id, { kind: 'FIREWOOD', responsible: 'Poeg' }, deps());
   await markSupply(anu, client.id, trackedSupply.supplyId, { state: 'LOW' }, deps());
   await saveDoorSteps(lead, client.id, { steps: ['Koputa aknale'] }, deps());
+  /* Tavaline seis ja märkamine (K5-a), et väljavõttes oleksid ka need kogud. */
+  await saveUsualState(lead, client.id, { areas: { MOOD: 'Jutukas' } }, deps());
+  await db.careChangeSignal.create({ data: { organizationId: f.orgA.id, clientId: client.id, area: 'MOOD', reason: 'MAJOR' } });
   const obstacleOfAnu = await reportObstacle(anu, { kind: 'LATE_30' }, deps());
   await handleObstacle(lead, obstacleOfAnu.obstacle.id, {}, deps());
   /* Ühe päeva erand (K3-b): järgmise esmaspäeva käik jääb ära. */
@@ -1967,6 +1971,8 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
     supplies: await db.careClientSupply.count({ where: ofOrg }),
     supplyChecks: await db.careSupplyCheck.count({ where: ofOrg }),
     doorSteps: await db.careDoorStep.count({ where: ofOrg }),
+    usualStates: await db.careUsualState.count({ where: ofOrg }),
+    changeSignals: await db.careChangeSignal.count({ where: ofOrg }),
     auditEvents: await db.dataAuditLog.count({
       where: { action: { startsWith: 'org.home_care_' }, meta: { path: ['organizationId'], equals: f.orgA.id }, createdAt: { lt: (await exportRows())[0].createdAt } }
     })
@@ -4677,4 +4683,142 @@ test('peatamine ja lõpetamine: surma allikas, teade käikude töötajatele ja k
   /* Lõppenud teenusega klient ei ole enam „ära" nimekirjas; mustri read jäid alles (ekslik lõpetamine on tagasi võetav). */
   assert.deepEqual((await getDeadlines(lead, deps())).awayLong, []);
   assert.equal(await db.careVisitSlot.count({ where: { clientId: linda.id } }), 5);
+});
+
+test('„kas midagi oli teisiti?": tavaline seis, vastus käigu kirjel, märkamise reegel ja hooldusjuhi vastus', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const cover = await f.ctx(f.users.cover, f.orgA);
+  const clerk = await f.ctx(f.users.clerk, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, deps())).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi' }, deps())).client;
+  for (const member of [f.members.anu, f.members.bert]) await addTeamMember(lead, linda.id, { membershipId: member.id }, deps());
+  await addTeamMember(lead, peeter.id, { membershipId: f.members.anu.id }, deps());
+
+  /* TAVALINE SEIS: meeskond ja hooldusjuht kirjutavad; kõrvaline ja teine asutus ei saa. */
+  assert.deepEqual((await openClient(anu, linda.id, deps())).usualState, []);
+  const first = await saveUsualState(anu, linda.id, { areas: { MOOD: ' Jutukas,  räägib lastelastest ', MOBILITY: 'Liigub rulaatoriga' } }, deps());
+  assert.deepEqual(first.usualState.map((row) => [row.area, row.text, row.byName]), [
+    ['MOBILITY', 'Liigub rulaatoriga', 'Anu Hooldaja'],
+    ['MOOD', 'Jutukas, räägib lastelastest', 'Anu Hooldaja']
+  ]);
+  /* Muudetud valdkonna eelmine rida lõpeb; muutmata jääb puutumata; tühi tekst eemaldab valdkonna. */
+  const second = await saveUsualState(lead, linda.id, { areas: { MOOD: 'Vaikne, aga vastab', MOBILITY: 'Liigub rulaatoriga', HOME: '' } }, deps(at('2026-10-09T08:05:00Z')));
+  assert.deepEqual(second.usualState.map((row) => [row.area, row.text, row.byName]), [
+    ['MOBILITY', 'Liigub rulaatoriga', 'Anu Hooldaja'],
+    ['MOOD', 'Vaikne, aga vastab', 'Juta Juht']
+  ]);
+  await saveUsualState(lead, linda.id, { areas: { MOBILITY: '' } }, deps(at('2026-10-09T08:06:00Z')));
+  assert.deepEqual((await openClient(bert, linda.id, deps())).usualState.map((row) => row.area), ['MOOD']);
+  assert.equal(await db.careUsualState.count({ where: { clientId: linda.id } }), 3);
+  await expectError(saveUsualState(clerk, linda.id, { areas: { MOOD: 'x' } }, deps()), 404, 'home_care.errors.client_not_found');
+  await expectError(saveUsualState(leadB, linda.id, { areas: { MOOD: 'x' } }, deps()), 404);
+  await expectError(saveUsualState(bert, peeter.id, { areas: { MOOD: 'x' } }, deps()), 403, 'home_care.errors.access_reason_required');
+
+  /* VASTUS KÄIGU KIRJEL. „Ei" ei ava midagi; üks tavaline „jah" samuti mitte. */
+  const TYPE = 'HOME_CARE_CHANGE_NOTICED';
+  const noticed = () => Promise.all([f.users.lead, f.users.anu, f.users.bert].map((user) => db.notificationEvent.count({ where: { userId: user.id, type: TYPE } })));
+  const signals = () => db.careChangeSignal.findMany({ where: { clientId: linda.id }, orderBy: [{ openedAt: 'asc' }, { area: 'asc' }] });
+  const visit = (who, change, text, when) =>
+    createEntry(who, linda.id, { kind: 'NOTE', contactMode: 'VISIT', text, change, occurredAt: when }, depsWithNotify(at(when)));
+  const no = await visit(anu, { answer: 'NO' }, 'Kõik nagu ikka', '2026-09-20T09:00:00Z');
+  assert.deepEqual(no.entry.change, { answer: 'NO', areas: [], major: false });
+  const one = await visit(anu, { answer: 'YES', areas: ['MOOD', 'EATING'] }, 'Ei tahtnud süüa ega rääkida', '2026-09-21T09:00:00Z');
+  assert.deepEqual(one.entry.change, { answer: 'YES', areas: ['EATING', 'MOOD'], major: false });
+  /* Sama hooldaja teine märge ei loe: muutust peab nägema teine silmapaar. */
+  await visit(anu, { answer: 'YES', areas: ['MOOD'] }, 'Ikka vaikne', '2026-09-23T09:00:00Z');
+  assert.deepEqual([(await signals()).length, await noticed()], [0, [0, 0, 0]]);
+  await expectError(visit(anu, { answer: 'YES', areas: ['MOOD'] }, '', '2026-09-24T09:00:00Z'), 400, 'home_care.errors.change_text_required');
+
+  /* TEINE HOOLDAJA 14 päeva sees, sama valdkond: märkamine tekib selle valdkonna kohta; hooldusjuht saab teate. */
+  const two = await visit(bert, { answer: 'YES', areas: ['MOOD', 'HOME'] }, 'Vaikne, nõud pesemata', '2026-10-02T09:00:00Z');
+  let rows = await signals();
+  assert.deepEqual(rows.map((row) => [row.area, row.reason, row.entryId, row.handledAt]), [['MOOD', 'TWO_WORKERS', two.entry.id, null]]);
+  assert.deepEqual(await noticed(), [1, 0, 0]);
+  /* Teavituses ei ole klienti, valdkonda ega teksti; link viib suunajale. */
+  const event = await db.notificationEvent.findFirst({ where: { userId: f.users.lead.id, type: TYPE } });
+  const stored = JSON.stringify(event);
+  for (const secret of ['Linda', linda.id, 'MOOD', 'Vaikne']) assert.equal(stored.includes(secret), false, secret);
+  const shown = serializeNotificationEvent(event);
+  assert.deepEqual([shown.href, shown.labelKey], [`/org/koduteenus/muutus/${rows[0].id}`, 'notifications.events.home_care_change_noticed']);
+  await assertNotificationRecipient(db, { type: TYPE, userId: f.users.lead.id, sourceId: rows[0].id, targetId: rows[0].id });
+  await assert.rejects(assertNotificationRecipient(db, { type: TYPE, userId: f.users.anu.id, sourceId: rows[0].id, targetId: rows[0].id }), (error) => error.status === 404);
+  /* Lahtise märkamise kõrvale teist ei teki; liiga vana märge (üle 14 päeva) paari ei anna. */
+  await visit(anu, { answer: 'YES', areas: ['MOOD'] }, 'Sama', '2026-10-03T09:00:00Z');
+  await visit(bert, { answer: 'YES', areas: ['EATING'] }, 'Sõi vähe', '2026-10-08T09:00:00Z');
+  assert.deepEqual((await signals()).map((row) => row.area), ['MOOD']);
+
+  /* SUUR MUUTUS avab märkamise kohe, ka ühe hooldaja märkega. */
+  const big = await visit(anu, { answer: 'YES', areas: ['MOBILITY'], major: true }, 'Ei saanud voodist üles', '2026-10-09T07:30:00Z');
+  rows = await signals();
+  assert.deepEqual(rows.map((row) => [row.area, row.reason]), [['MOOD', 'TWO_WORKERS'], ['MOBILITY', 'MAJOR']]);
+  assert.equal(rows[1].entryId, big.entry.id);
+  assert.deepEqual(await noticed(), [2, 0, 0]);
+  /* Ilma teavitusteta kutsuja ei saada ka seda teadet; kordussaatmine ei ava teist märkamist. */
+  const body = { kind: 'NOTE', contactMode: 'VISIT', text: 'Nahk punetab', change: { answer: 'YES', areas: ['SKIN_PAIN'], major: true }, clientRequestId: randomUUID() };
+  await createEntry(bert, linda.id, body, deps(at('2026-10-09T07:40:00Z')));
+  await createEntry(bert, linda.id, body, depsWithNotify(at('2026-10-09T07:41:00Z')));
+  assert.deepEqual([(await signals()).length, await noticed()], [3, [2, 0, 0]]);
+
+  /* KLIENDI LEHT: märkamisi näeb ainult hooldusjuht; päevikus on vastus kirje küljes. */
+  assert.equal((await openClient(anu, linda.id, deps())).changeSignals, null);
+  const page = await openClient(lead, linda.id, deps());
+  assert.deepEqual(page.changeSignals.open.map((row) => [row.area, row.reason, row.days]), [
+    ['MOOD', 'TWO_WORKERS', 7],
+    ['MOBILITY', 'MAJOR', 0],
+    ['SKIN_PAIN', 'MAJOR', 0]
+  ]);
+  assert.deepEqual(page.entries.items.find((item) => item.id === big.entry.id).change, { answer: 'YES', areas: ['MOBILITY'], major: true });
+  /* TÄHTAEGADE LEHT: kõige kauem oodanu ees. */
+  const due = (await getDeadlines(lead, deps())).changesOpen;
+  assert.deepEqual(due.map((row) => [row.client.displayName, row.area, row.days]), [
+    ['Linda Tamm', 'MOOD', 7],
+    ['Linda Tamm', 'MOBILITY', 0],
+    ['Linda Tamm', 'SKIN_PAIN', 0]
+  ]);
+
+  /* VASTUS: ainult hooldusjuht, liik kohustuslik, üks kord. */
+  const mood = rows[0];
+  await expectError(handleChangeSignal(anu, mood.id, { outcome: 'WATCHING' }, deps()), 403, 'org.errors.missing_capability');
+  await expectError(handleChangeSignal(leadB, mood.id, { outcome: 'WATCHING' }, deps()), 404, 'home_care.errors.change_signal_not_found');
+  await expectError(handleChangeSignal(lead, mood.id, { note: 'x' }, deps()), 400, 'home_care.errors.change_outcome_required');
+  const handled = await handleChangeSignal(lead, mood.id, { outcome: 'TOLD_RELATIVE', note: '  Tütar tuleb  nädalavahetusel ' }, deps(at('2026-10-09T09:00:00Z')));
+  assert.deepEqual(handled.changeSignals.open.map((row) => row.area), ['MOBILITY', 'SKIN_PAIN']);
+  assert.deepEqual(handled.changeSignals.handled.map((row) => [row.area, row.outcome, row.note, row.handledByName]), [
+    ['MOOD', 'TOLD_RELATIVE', 'Tütar tuleb nädalavahetusel', 'Juta Juht']
+  ]);
+  await expectError(handleChangeSignal(lead, mood.id, { outcome: 'WATCHING' }, deps()), 409, 'home_care.errors.change_signal_handled');
+
+  /* Vastuse saanud märked uut märkamist ei ava: alles kahe eri hooldaja UUED märked teevad seda. */
+  await visit(anu, { answer: 'YES', areas: ['MOOD'] }, 'Jälle vaikne', '2026-10-09T10:00:00Z');
+  assert.equal((await signals()).filter((row) => row.area === 'MOOD').length, 1);
+  await visit(bert, { answer: 'YES', areas: ['MOOD'] }, 'Ei vastanud küsimustele', '2026-10-09T11:00:00Z');
+  assert.deepEqual((await signals()).filter((row) => row.area === 'MOOD').map((row) => Boolean(row.handledAt)), [true, false]);
+
+  /* ANDMEBAAS hoiab reeglid ka ilma teenuseta. */
+  const raw = (data) => db.careClientEntry.create({ data: { organizationId: f.orgA.id, clientId: linda.id, authorMembershipId: f.members.anu.id, authorName: 'x', kind: 'NOTE', contactMode: 'VISIT', text: 'x', occurredAt: NOW, ...data } });
+  await assert.rejects(raw({ changeAnswer: 'YES', changeAreas: [] }), /CareClientEntry_changeAreas_check/);
+  await assert.rejects(raw({ changeAnswer: 'NO', changeAreas: ['MOOD'] }), /CareClientEntry_changeAreas_check/);
+  await assert.rejects(raw({ changeAnswer: 'YES', changeAreas: ['MUU'] }), /CareClientEntry_changeAreas_check/);
+  await assert.rejects(raw({ changeAnswer: 'VIST' }), /CareClientEntry_changeAnswer_check/);
+  await assert.rejects(raw({ changeAreas: ['MOOD'] }), /CareClientEntry_changeAreas_check/);
+  await assert.rejects(raw({ changeMajor: true }), /CareClientEntry_changeAreas_check/);
+  await assert.rejects(db.careChangeSignal.create({ data: { organizationId: f.orgA.id, clientId: linda.id, area: 'MOBILITY', reason: 'MAJOR' } }), /CareChangeSignal_open_key|Unique constraint/);
+  await assert.rejects(db.careChangeSignal.create({ data: { organizationId: f.orgA.id, clientId: peeter.id, area: 'HOME', reason: 'MAJOR', handledAt: NOW } }), /CareChangeSignal_handled_check/);
+  await assert.rejects(db.careUsualState.create({ data: { organizationId: f.orgA.id, clientId: linda.id, area: 'MOOD', text: 'teine kehtiv' } }), /CareUsualState_active_key|Unique constraint/);
+
+  /* AUDIT: ainult kliendi ID ja muutuse liik. */
+  const audit = await db.dataAuditLog.findMany({
+    where: { action: { in: ['org.home_care_usual_state_changed', 'org.home_care_change_signal_handled'] }, meta: { path: ['organizationId'], equals: f.orgA.id } }
+  });
+  assert.deepEqual(audit.map((entry) => `${entry.action}:${entry.meta.change}`).sort(), [
+    'org.home_care_change_signal_handled:handled',
+    'org.home_care_usual_state_changed:saved',
+    'org.home_care_usual_state_changed:saved',
+    'org.home_care_usual_state_changed:saved'
+  ]);
+  for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['change', 'clientId', 'organizationId']);
 });

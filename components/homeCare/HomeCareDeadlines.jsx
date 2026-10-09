@@ -10,6 +10,7 @@ import { daysLabel } from "./HomeCareDecisionView";
 import { euroText } from "./HomeCareMoney";
 import HomeCareOutbox from "./HomeCareOutbox";
 import { preconditionLine } from "./HomeCarePreconditions";
+import { changeSignalLine, changeWaitingText } from "./HomeCareChangeSignals";
 import { planDayLabel } from "./HomeCarePlanView";
 import { clientHref, formatDateTime } from "./homeCareClient";
 
@@ -74,6 +75,8 @@ export default function HomeCareDeadlines({ context, deadlines }) {
         <p className="hc-sub">{t("home_care.deadlines.intro", { count: deadlines.clientCount })}</p>
         {deadlines.truncated ? <p className="hc-notice">{t("home_care.deadlines.truncated", { count: deadlines.clientCount })}</p> : null}
       </div>
+
+      {section("changes_open", deadlines.changesOpen || [], (item) => clientLine(item, `${changeSignalLine(t, item)} · ${changeWaitingText(t, item)}`, null, item.id))}
 
       {section("decisions_ending", deadlines.decisionsEnding, (item) =>
         clientLine(
