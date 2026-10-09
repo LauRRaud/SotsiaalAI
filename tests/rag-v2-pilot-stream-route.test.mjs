@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { pilotPost, pilotRole } from '../lib/chat/m4PilotServer.js';
+import { pilotFailure, pilotPost, pilotRole } from '../lib/chat/m4PilotServer.js';
 import { createSSEReader } from '../components/chat/utils/sse.js';
 
 // ADR-040: the real POST handler with local test adapters for the authentication, the RAG session, the service and
@@ -135,6 +135,42 @@ test('a reconnect while the first request still works waits for its saved turn a
     session: async () => ({ config: {}, store: { existing: async () => ({ id: 't1' }) }, service: { run: async () => pending, access: async () => ({}), restore: async () => pending } }) }));
   assert.equal(stuck[0].data.status, 409);
   assert.equal(stuck[0].data.body.messageKey, 'm4Pilot.pending');
+});
+
+// ADR-125 (10.10.2026): a provider call that passes its time limit throws a DOMException, and a DOMException's code is
+// a number (23 for a timeout). Both places that ask whether a failure is a usage refusal called startsWith on that
+// number, so a TypeError took the timeout's place: the turn's saved row was never read back, and a failure reply made
+// from the timeout itself threw instead of answering.
+test('ADR-125: a provider timeout ends as the chat\'s own failure reply, not as a TypeError', async () => {
+  const timeout = (extra = {}) => Object.assign(new DOMException('x', 'TimeoutError'), extra);
+  assert.equal(timeout().code, 23);
+  assert.deepEqual(pilotFailure(timeout()), { status: 500, body: { ok: false, code: 'pilot_failed' } });
+  const result = async (response, stream) => (stream ? (await events(response)).at(-1).data : { status: response.status, body: await response.json() });
+  for (const stream of [false, true]) {
+    const plain = await pilotPost(request('Kuidas vaidlustada?', { stream }), { authenticate, session: async () => ({ config: {}, store: {},
+      service: { run: async () => { throw timeout(); } } }) });
+    assert.deepEqual(await result(plain, stream), { status: 500, body: { ok: false, code: 'pilot_failed' } });
+    // The service names the turn it failed in. A call whose outcome is unknown is not a failed answer: the row is read
+    // back once and the reply stays the failure, with the failure's status and code.
+    let reads = 0;
+    const unknown = await pilotPost(request('Kuidas vaidlustada?', { stream }), { authenticate, session: async () => ({ config: {},
+      store: { existing: async () => { reads++; return { id: 't1', state: 'unknown' }; } },
+      service: { run: async () => { throw timeout({ pilotTurnId: 't1' }); }, access: async () => ({}), restore: async () => { throw Error('an unknown turn is not restored here'); } } }) });
+    assert.deepEqual(await result(unknown, stream), { status: 500, body: { ok: false, code: 'pilot_failed' } });
+    assert.equal(reads, 1);
+    // A turn the timeout left stopped is read back as the failed turn it is, as after any other failure.
+    const stopped = await result(await pilotPost(request('Kuidas vaidlustada?', { stream }), { authenticate, session: async () => ({ config: {},
+      store: { existing: async () => ({ id: 't1', state: 'stopped' }) },
+      service: { run: async () => { throw timeout({ pilotTurnId: 't1' }); }, access: async () => ({}),
+        restore: async () => ({ id: 't1', state: 'stopped', mode: 'real', question: 'Kuidas vaidlustada?', failureKind: 'validation' }) } }) }), stream);
+    assert.deepEqual([stopped.status, stopped.body.messageKey, stopped.body.completionStatus, stopped.body.pilotState], [200, 'm4Pilot.answerFailed', 'FAILED', 'stopped']);
+  }
+  // Before the turn starts the same error is a JSON reply too, and a crisis sentence still ends with its notice.
+  const early = await pilotPost(request('Kuidas vaidlustada?'), { authenticate, session: async () => { throw timeout(); } });
+  assert.deepEqual([early.status, await early.json()], [500, { ok: false, code: 'pilot_failed' }]);
+  const crisis = await events(await pilotPost(request('Tahan end tappa'), { authenticate, session: async () => ({ config: {}, store: {},
+    service: { run: async () => { throw timeout(); } } }) }));
+  assert.deepEqual([crisis.at(-1).data.status, crisis.at(-1).data.body.messageKey], [200, 'chat.crisis.notice']);
 });
 
 test('checks before the answer keep their JSON status; a crisis sentence still ends with its notice', async () => {
