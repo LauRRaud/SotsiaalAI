@@ -93,6 +93,7 @@ import { getReferralContacts, saveReferralContacts } from '../lib/homeCare/refer
 import { addWorkerRecord, endWorkerRecord, getWorkerCards } from '../lib/homeCare/workerRecords.js';
 import { getFridgeSheet } from '../lib/homeCare/fridgeSheet.js';
 import { getMonthOpenItems } from '../lib/homeCare/monthClose.js';
+import { endRelative, saveRelative } from '../lib/homeCare/relatives.js';
 import { composeNoAnswerText } from '../lib/homeCare/noAnswerText.js';
 import { assertNotificationRecipient, serializeNotificationEvent } from '../lib/notifications.js';
 
@@ -1874,6 +1875,8 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
   await saveReferralContacts(lead, { contacts: [{ name: 'Valla sotsiaaltöötaja', phone: '5555 1234' }] }, deps());
   /* Töötaja kaardi rida (K5-e), et väljavõttes oleks ka see kogu. */
   await addWorkerRecord(lead, { membershipId: f.members.anu.id, kind: 'BACKGROUND_CHECK', doneOn: '2026-01-10' }, deps());
+  /* Lähedane ja jagamisaste (K5-k), et väljavõttes oleks ka see kogu. */
+  await saveRelative(lead, client.id, { name: 'Mari Tamm', relation: 'tütar', level: 1 }, deps());
   const obstacleOfAnu = await reportObstacle(anu, { kind: 'LATE_30' }, deps());
   await handleObstacle(lead, obstacleOfAnu.obstacle.id, {}, deps());
   /* Ühe päeva erand (K3-b): järgmise esmaspäeva käik jääb ära. */
@@ -1987,6 +1990,7 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
     crisisProfiles: await db.careCrisisProfile.count({ where: ofOrg }),
     referralContacts: await db.careReferralContact.count({ where: ofOrg }),
     workerRecords: await db.careWorkerRecord.count({ where: ofOrg }),
+    clientRelatives: await db.careClientRelative.count({ where: ofOrg }),
     auditEvents: await db.dataAuditLog.count({
       where: { action: { startsWith: 'org.home_care_' }, meta: { path: ['organizationId'], equals: f.orgA.id }, createdAt: { lt: (await exportRows())[0].createdAt } }
     })
@@ -5260,4 +5264,67 @@ test('kuu lahtised asjad: tegemata käigud ainult teenusel oldud päevadel, laht
   const after = await getMonthOpenItems(lead, { month: '2026-10' }, deps());
   /* 08.10 käigu kirje on nüüd olemas (märkamisega käik), seega tegemata käike enam ei ole. */
   assert.deepEqual([after.missingCount, after.openIncidents, after.openSignals, after.medicationUnmarked, after.clear], [0, 1, 1, 1, false]);
+});
+
+test('lähedased ja jagamisaste: hooldusjuht muudab, meeskond loeb, ülevaatus poole aasta järel', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const clerk = await f.ctx(f.users.clerk, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, deps())).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi' }, deps())).client;
+  await addTeamMember(lead, linda.id, { membershipId: f.members.anu.id }, deps());
+
+  assert.deepEqual((await openClient(anu, linda.id, deps())).relatives, []);
+  /* Ainult hooldusjuht lisab; hooldaja, kõrvaline ja teine asutus mitte. */
+  const mari = { name: 'Mari Tamm', relation: 'tütar', phone: '+372 5555 1234', level: 2, noTell: 'rahaasjad' };
+  await expectError(saveRelative(anu, linda.id, mari, deps()), 403, 'org.errors.missing_capability');
+  await expectError(saveRelative(clerk, linda.id, mari, deps()), 404, 'home_care.errors.client_not_found');
+  await expectError(saveRelative(leadB, linda.id, mari, deps()), 404);
+  await expectError(saveRelative(lead, linda.id, { name: 'Mari' }, deps()), 400, 'home_care.errors.relative_level_required');
+
+  const old = deps(at('2026-03-01T08:00:00Z'));
+  await saveRelative(lead, linda.id, mari, old);
+  const two = await saveRelative(lead, linda.id, { name: 'Jaan Naaber', relation: 'naaber', level: 1 }, deps());
+  assert.deepEqual(two.relatives.map((row) => [row.name, row.relation, row.phone, row.level, row.noTell, row.agreedOn, row.reviewDue]), [
+    ['Mari Tamm', 'tütar', '+372 5555 1234', 2, 'rahaasjad', '2026-03-01', true],
+    ['Jaan Naaber', 'naaber', null, 1, null, '2026-10-09', false]
+  ]);
+  /* Meeskond loeb sama loendit. */
+  assert.deepEqual((await openClient(anu, linda.id, deps())).relatives.map((row) => [row.name, row.level]), [['Mari Tamm', 2], ['Jaan Naaber', 1]]);
+
+  /* TÄHTAEGADE LEHT: üle poole aasta vana kokkulepe on nimekirjas. */
+  const due = (await getDeadlines(lead, deps())).relativesDue;
+  assert.deepEqual(due.map((item) => [item.client.displayName, item.name, item.relation, item.agreedOn, item.days]), [['Linda Tamm', 'Mari Tamm', 'tütar', '2026-03-01', 222]]);
+
+  /* UUESTI KINNITAMINE: vana rida lõpeb, uus kannab tänast päeva ja uut astet; ajalugu jääb. */
+  const mariRow = two.relatives[0];
+  const confirmed = await saveRelative(lead, linda.id, { ...mari, level: 3, relativeId: mariRow.id }, deps(at('2026-10-09T08:05:00Z')));
+  assert.deepEqual(confirmed.relatives.map((row) => [row.name, row.level, row.agreedOn, row.reviewDue]).sort(), [
+    ['Jaan Naaber', 1, '2026-10-09', false],
+    ['Mari Tamm', 3, '2026-10-09', false]
+  ]);
+  assert.deepEqual((await getDeadlines(lead, deps())).relativesDue, []);
+  assert.deepEqual([await db.careClientRelative.count({ where: { clientId: linda.id } }), await db.careClientRelative.count({ where: { clientId: linda.id, endedAt: null } })], [3, 2]);
+  /* Lõpetatud rida ei saa uuesti asendada; teise kliendi rida selle kliendi all ei leita. */
+  await expectError(saveRelative(lead, linda.id, { ...mari, relativeId: mariRow.id }, deps()), 404, 'home_care.errors.relative_not_found');
+  const jaan = confirmed.relatives.find((row) => row.name === 'Jaan Naaber');
+  await expectError(endRelative(lead, peeter.id, jaan.id, deps()), 404, 'home_care.errors.relative_not_found');
+  await expectError(endRelative(anu, linda.id, jaan.id, deps()), 403, 'org.errors.missing_capability');
+  const after = await endRelative(lead, linda.id, jaan.id, deps());
+  assert.deepEqual(after.relatives.map((row) => row.name), ['Mari Tamm']);
+
+  /* ANDMEBAAS hoiab reeglid ka ilma teenuseta. */
+  const raw = (data) => db.careClientRelative.create({ data: { organizationId: f.orgA.id, clientId: peeter.id, name: 'Keegi', level: 1, agreedOn: '2026-10-09', ...data } });
+  await assert.rejects(raw({ level: 0 }), /CareClientRelative_level_check/);
+  await assert.rejects(raw({ level: 4 }), /CareClientRelative_level_check/);
+  await assert.rejects(raw({ name: '  ' }), /CareClientRelative_text_check/);
+  await assert.rejects(raw({ agreedOn: '09.10.2026' }), /CareClientRelative_agreedOn_check/);
+
+  /* AUDIT: ainult kliendi ID ja muutuse liik (lähedase nime ega telefoni seal ei ole). */
+  const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_relative_changed', meta: { path: ['organizationId'], equals: f.orgA.id } } });
+  assert.deepEqual(audit.map((entry) => entry.meta.change).sort(), ['added', 'added', 'changed', 'removed']);
+  for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['change', 'clientId', 'organizationId']);
+  assert.equal(JSON.stringify(audit).includes('Mari'), false);
 });

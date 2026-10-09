@@ -127,6 +127,15 @@ export default function HomeCareDeadlines({ context, deadlines }) {
         )
       )}
 
+      {section("relatives_due", deadlines.relativesDue || [], (item) =>
+        clientLine(
+          item,
+          t("home_care.deadlines.relatives_line", { name: item.relation ? `${item.name} (${item.relation})` : item.name, date: planDayLabel(item.agreedOn) }),
+          null,
+          item.key
+        )
+      )}
+
       {section("risk_lines_due", deadlines.riskLinesDue || [], (item) =>
         clientLine(item, t("home_care.deadlines.risk_lines_line", { count: item.lines, date: planDayLabel(item.oldestOn) }))
       )}

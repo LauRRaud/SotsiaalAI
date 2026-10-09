@@ -8244,6 +8244,7 @@ model CareClient {
   usualStates        CareUsualState[]
   changeSignals      CareChangeSignal[]
   crisisProfiles     CareCrisisProfile[]
+  relatives          CareClientRelative[]
 
   @@unique([organizationId, internalCode])
   @@index([organizationId, status, displayName])
@@ -8660,6 +8661,36 @@ model CareWorkerRecord {
 
   @@index([organizationId, endedAt])
   @@index([membershipId, endedAt])
+}
+
+/// KODUTEENUS K5-k — kliendi LÄHEDANE ja JAGAMISASTE (kava II.6.8): kellele ja mida klient
+/// on lubanud rääkida. Aste 1: kas käidi; 2: ka mida koos tehti; 3: lisaks võtab hooldusjuht
+/// ühendust, kui hooldajad on märganud muutust. Muudatus lõpetab rea ja teeb uue.
+model CareClientRelative {
+  id             String  @id @default(cuid())
+  organizationId String
+  clientId       String
+  name           String
+  /// Kes ta kliendile on (vaba tekst: tütar, naaber).
+  relation       String?
+  phone          String?
+  /// 1 kuni 3 (CHECK migratsioonis).
+  level          Int
+  /// „Sellest ma ei taha, et räägitaks."
+  noTell         String?
+  /// Päev (AAAA-KK-PP), millal klient kokkulepet viimati kinnitas.
+  agreedOn       String
+
+  createdByMembershipId String?
+  createdByName         String?
+  createdAt             DateTime  @default(now())
+  endedAt               DateTime?
+  endedByMembershipId   String?
+
+  client CareClient @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@index([clientId, endedAt])
+  @@index([organizationId, endedAt])
 }
 
 model CareClientSupply {

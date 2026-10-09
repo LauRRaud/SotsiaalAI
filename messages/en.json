@@ -13013,7 +13013,12 @@
       "worker_record_day_future": "The day cannot be in the future.",
       "worker_record_period_invalid": "The validity cannot end before the day it was done.",
       "worker_record_title_required": "Write the training topic.",
-      "worker_records_too_many": "A worker can have up to {limit} rows."
+      "worker_records_too_many": "A worker can have up to {limit} rows.",
+      "relative_name_required": "Write the relative's name.",
+      "relative_level_required": "Choose what the client allows us to tell them.",
+      "relative_day_future": "The day of confirmation cannot be in the future.",
+      "relative_not_found": "The relative was not found.",
+      "relatives_too_many": "A client can have up to {limit} relatives."
     },
     "incidents": {
       "title": "Incident register",
@@ -13526,7 +13531,10 @@
       "workers_due_empty": "Nothing expires.",
       "risk_lines_due_title": "Risk lines due for review",
       "risk_lines_due_empty": "No risk line is over a year old.",
-      "risk_lines_line": "{count} risk lines, the oldest on the card since {date}: go through them with the team and see whether they still hold"
+      "risk_lines_line": "{count} risk lines, the oldest on the card since {date}: go through them with the team and see whether they still hold",
+      "relatives_due_title": "Sharing agreements with relatives to ask the client about again",
+      "relatives_due_empty": "No agreement is over half a year old.",
+      "relatives_line": "{name}, last confirmed {date}"
     },
     "visit": {
       "title": "What you did",
@@ -14190,6 +14198,30 @@
       "incidents": "Open incidents in this month: {count}",
       "signals": "Noticed changes without an answer in this month: {count}",
       "medication": "Medication activities with no mark of what was done: {count}. Ask the care worker and have the entry corrected."
+    },
+    "relatives": {
+      "title": "Relatives and what we tell them",
+      "none": "No relatives are recorded. Without the client's permission we tell nobody about them.",
+      "rule": "Tell a relative only what their level allows. The diary text is not read out to a relative.",
+      "add": "Add a relative",
+      "edit": "Change or confirm again",
+      "remove": "Remove",
+      "save": "Save",
+      "cancel": "Cancel",
+      "edit_hint": "Agree this with the client without the relative present. Saving confirms the agreement with today's date.",
+      "name_label": "Name",
+      "relation_label": "Who they are to the client",
+      "phone_label": "Phone",
+      "level_label": "What the client allows us to tell them",
+      "levels": {
+        "1": "level 1: whether we came",
+        "2": "level 2: also what we did together",
+        "3": "level 3: we also get in touch when we notice a change"
+      },
+      "no_tell_label": "What the client does not want told",
+      "no_tell_line": "do not tell: {text}",
+      "agreed_on": "confirmed {date}",
+      "review_due": "ask the client again"
     }
   },
   "stage": {
