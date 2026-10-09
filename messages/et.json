@@ -10089,7 +10089,9 @@
       "superseded": "Parandatud",
       "pending_payment": "Ootab makset",
       "open": "Avaldatud",
-      "matched": "Sobitus leitud"
+      "matched": "Sobitus leitud",
+      "closed": "Suletud",
+      "cancelled": "Tühistatud"
     },
     "actions": {
       "recall": "Võta tagasi",
@@ -10179,6 +10181,45 @@
       "RECALLED": "tagasi võetud",
       "ENDED": "lõppenud",
       "DRAFT": "mustand"
+    },
+    "views": {
+      "all": "Kõik jagamised",
+      "position": "Osa {current}/{total}: {label}",
+      "more": "ja teised",
+      "open": "Ava",
+      "back": "Tagasi loendisse",
+      "attention": "Võrgustikku kaasamise ettepanek ootab sinu otsust.",
+      "tile_unavailable": "Seda osa ei saanud laadida.",
+      "tile_timeout": "Laadimine võttis liiga kaua.",
+      "truncated": "Kirjeid on rohkem, kui siia mahub. Siin on ainult uusimad.",
+      "edit_text": "Muuda teksti",
+      "short": {
+        "network_shares": "Kaasamine",
+        "urgent_requests": "Kiired abipalved",
+        "pre_inquiries": "Eelpöördumised",
+        "rooms": "Ruumid",
+        "invites": "Kutsed",
+        "help": "Abikirjed",
+        "mentoring": "Mentorlus",
+        "outgoing_network_shares": "Saadetud jagamised",
+        "wellbeing_support_shares": "Tööheaolu tugi",
+        "service_report_shares": "Teenusaruanded",
+        "room_summaries": "Kokkuvõtted",
+        "private_records": "Kinnitused"
+      },
+      "confirm": {
+        "recall": "Kinnita tagasivõtmine",
+        "revoke": "Kinnita kutse tagasivõtmine",
+        "leave": "Kinnita lahkumine",
+        "share_confirm": "Kinnita nõusolek",
+        "share_decline": "Kinnita keeldumine"
+      },
+      "consequence": {
+        "urgent_recall": "Kas võtta abipalve tagasi? Vastuvõtulaud ei saa seda siis enam töösse võtta ja tagasivõttu ei saa tühistada.",
+        "share_confirm": "Pärast kinnitamist saab töötaja selle kokkuvõtte saata. Otsust ei saa siin hiljem muuta.",
+        "share_decline": "Pärast keeldumist seda kokkuvõtet ei saadeta. Otsust ei saa siin hiljem muuta."
+      },
+      "untitled_room": "Nimeta ruum"
     }
   },
   "effective_practices": {

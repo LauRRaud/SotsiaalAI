@@ -35,21 +35,12 @@
 }
 /* Laadimise viga või puuduv profiil: lause ja selle tegevus, mitte kast. */
 .fault {
-  min-width: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem 1rem;
+  composes: fault from "../../stage/rows.module.css";
 }
 /* Ühine paneelikiht annab `role="alert"` elemendile tausta, äärise ja polstri;
    siin on viga tavaline lause. */
 .faultText {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background: none;
-  color: var(--text-warm);
+  composes: faultText from "../../stage/rows.module.css";
 }
 /* Teade on nii lai kui tema lause, mitte paneeli laiune kast. */
 .notice {
@@ -123,11 +114,7 @@
 
 /* --- Loend ------------------------------------------------------------------ */
 .rows {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 0.4rem;
+  composes: rows from "../../stage/rows.module.css";
 }
 .rowItem {
   min-width: 0;
@@ -148,15 +135,10 @@
   text-decoration: none;
 }
 .rowMain {
-  min-width: 0;
-  display: grid;
-  gap: 0.1rem;
+  composes: rowMain from "../../stage/rows.module.css";
 }
 .rowTitle {
-  min-width: 0;
-  color: var(--text-warm);
-  font-weight: 560;
-  overflow-wrap: anywhere;
+  composes: rowTitle from "../../stage/rows.module.css";
 }
 .rowSub {
   min-width: 0;
@@ -177,19 +159,13 @@
   overflow: hidden;
 }
 .rowMeta {
-  min-width: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: flex-end;
-  gap: 0.3rem 0.6rem;
+  composes: rowMeta from "../../stage/rows.module.css";
 }
-.time,
+.time {
+  composes: rowTime from "../../stage/rows.module.css";
+}
 .rowOpen {
-  color: var(--text-dim);
-  font-size: var(--fs-small, 0.875rem);
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
+  composes: rowTime from "../../stage/rows.module.css";
 }
 /* Rida, mis ei vii kuhugi: nimi vasakul, seis ja üks tegevus paremal (minu
    saadetud taotlus). Kitsal pinnal murduvad seis ja tegevus nime alla. */

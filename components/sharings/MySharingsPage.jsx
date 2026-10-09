@@ -1,20 +1,72 @@
 "use client";
 
+/**
+ * Minu jagamised: kõik, mida inimene on platvormil jaganud või mida tema kohta
+ * jagada soovitakse, koos otsuste ja tagasivõttudega.
+ *
+ * KUJU (09.10, omaniku kujundusreeglid). Leht oli üks pikk veerg: nähtav
+ * pealkiri ja kaksteist sektsiooni üksteise all, iga kirje omaette kõrge kaart.
+ * Nüüd on leht sammulava (`components/stage/StepFlight.jsx`) laua kujul: see
+ * avaneb kõigi osade ülevaates (iga plaat ütleb sõnadega, mis seal ootab, või
+ * miks osa on tühi) ja osa avaneb omaette vaates madala loendina. Osad ei ole
+ * sammud, seepärast annab leht lavale `parts` ja oma sõnad („Kõik jagamised").
+ *
+ * Osa sees vahetub sisu kohapeal: loend, avatud kirje ja (eelpöördumisel)
+ * paranduse vorm. Vaated on failis ./desk/SharingsViews.jsx, read ja reeglid
+ * failis ./desk/sharingRows.js. Siin on andmed, päringud ja see, mis vaateid
+ * olekuga seob.
+ *
+ * MIS JÄI SAMAKS. Iga päring (aadress, keha, päised), iga lukk ja iga
+ * laadimise haru: leht laadib kõik osad korraga aadressilt /api/my-sharings,
+ * laadimata osa saab eraldi uuesti proovida ja eelpöördumiste järgmine
+ * lehekülg laaditakse ainult sellele osale. Nõusoleku ja privaatsuse laused
+ * (kes näeb, kust tuli, kui kaua kehtib; mida tagasivõtt ei tee; mida
+ * jagatakse ja mida mitte) on sõna-sõnalt samad.
+ *
+ * MIS ON TEISITI (ja miks):
+ *  - Tagasivõtt, kutse tühistamine ja ruumist lahkumine küsisid kinnitust
+ *    eraldi aknas. Nüüd küsib nupp teist vajutust ja sama tagajärje lause
+ *    seisab nupu kõrval.
+ *  - Kiireloomulise abipalve tagasivõtt ja ettepaneku otsus (nõustun või ei
+ *    nõustu) läksid teele ühe vajutusega. Kumbagi ei saa inimene siin tagasi
+ *    pöörata, seepärast küsivad ka need teist vajutust.
+ *  - Seisu sõna tuleb loendist: kood, millel sõna ei ole, ei jõua ekraanile.
+ *  - Teade tegevuse õnnestumise kohta seisab laua kohal ja jääb ette järgmise
+ *    tegevuseni; viga on selles vaates, kus tegevus tehti.
+ */
+
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+
 import { useI18n } from "@/components/i18n/I18nProvider";
-import Button from "@/components/ui/Button";
-import ModalConfirm from "@/components/ui/ModalConfirm";
-import Panel from "@/components/ui/Panel";
+import StepFlight from "@/components/stage/StepFlight";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
-import { SubpageHeader } from "@/components/ui/SubpageHeader";
-import Form from "@/components/ui/Form";
-import Input from "@/components/ui/Input";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import { localizePath } from "@/lib/localizePath";
 import { pushWithTransition } from "@/lib/routeTransition";
-import OwnershipBar from "./OwnershipBar";
-import styles from "./MySharingsPage.module.css";
+
+import { CorrectionView, DeskLead, ItemView, PartSwap, PartView, PrivacyView, SharingsShell, TileSummary } from "./desk/SharingsViews";
+import {
+  CONFIRMED_ACTIONS,
+  CORRECTION_LIMITS,
+  SECTION_ORDER,
+  SECTION_TEXTS,
+  correctionProblem,
+  deskLead,
+  isUnavailable,
+  opensItems,
+  shareErrorText,
+  sharingParts,
+  sharingRow,
+  sharingRows,
+  sharingSheet
+} from "./desk/sharingRows";
+
+/* Lause, mille leht ise kokku pani (serveri vastusest või kataloogist). Kõik
+   muu, mis püütakse (võrk katkes, brauseri enda ingliskeelne tekst), saab
+   kataloogi üldise lause: brauseri teksti ekraanile ei lasta. */
+class SaidError extends Error {}
+const said = (error, fallback) => (error instanceof SaidError && error.message ? error.message : fallback);
 
 const EMPTY_SHARINGS = Object.freeze({
   preInquiries: [],
@@ -33,6 +85,35 @@ const EMPTY_SHARINGS = Object.freeze({
 
 const SHARING_SECTION_KEYS = Object.freeze(Object.keys(EMPTY_SHARINGS));
 
+/* Teine vajutus peab tulema selle aja sees. Aken on pikem kui mujal (8 s):
+   tagajärje lause nupu kõrval on siin kaks lauset ja selle lugemine ei tohi
+   kellaga võidu käia. */
+const CONFIRM_MS = 20000;
+/* Lühim vahe esimese ja teise vajutuse vahel: topeltklõps on alla selle. */
+const CONFIRM_MIN_GAP_MS = 400;
+const NO_NOTICE = Object.freeze({ text: "", tone: "" });
+
+/* Tagasivõtt, kutse tühistamine ja lahkumine: kuhu päring läheb ja mis on
+   selle kehas. Neli tegevust, üks rada (`runAction`). */
+const ACTION_REQUESTS = Object.freeze({
+  recall: (item) => ({
+    url: `/api/pre-inquiries/${encodeURIComponent(item.id)}/recall`,
+    body: { expectedUpdatedAt: item.updatedAt }
+  }),
+  revoke: (item, locale) => ({
+    url: `/api/invites/${encodeURIComponent(item.id)}/revoke`,
+    body: { locale }
+  }),
+  mentoringRecall: (item) => ({
+    url: `/api/mentoring/relations/${encodeURIComponent(item.relationId)}/preparation`,
+    body: { action: "recall", noteId: item.id }
+  }),
+  leave: (item, locale) => ({
+    url: `/api/rooms/${encodeURIComponent(item.id)}/leave`,
+    body: { locale }
+  })
+});
+
 function emptySectionMeta() {
   return Object.fromEntries(SHARING_SECTION_KEYS.map((key) => [key, {
     status: "EMPTY",
@@ -41,40 +122,11 @@ function emptySectionMeta() {
   }]));
 }
 
-function statusKey(item) {
-  if (item.recalledAt) return "recalled";
-  if (item.supersededById) return "superseded";
-  return String(item.status || "sent").toLowerCase();
-}
-
-function Section({ title, help, empty, items, sectionState, retrying = false, onRetry, retryLabel, unavailableLabel, children }) {
-  const unavailable = ["UNAVAILABLE", "TIMEOUT"].includes(sectionState?.status);
-  return (
-    <section className={styles.section}>
-      <div className={styles.sectionHeading}>
-        <h2>{title}</h2>
-        <p>{help}</p>
-      </div>
-      {unavailable ? (
-        <Panel variant="subpage" padding="sm" className={styles.sectionError}>
-          <p role="status">{unavailableLabel}</p>
-          <Button variant="secondary" disabled={retrying} onClick={onRetry}>{retryLabel}</Button>
-        </Panel>
-      ) : items.length ? <div className={styles.cards}>{children}</div> : <p className={styles.empty}>{empty}</p>}
-    </section>
-  );
-}
-
-function helpMapVisibilityKey(item) {
-  const value = String(item.mapVisibility || "OUT_OF_SYNC").toLowerCase();
-  return `my_sharings.ownership.help_map_${value}`;
-}
-
 export default function MySharingsPage() {
   const router = useRouter();
   const { t, locale } = useI18n();
   /* ⓘ kiirmenüüsse (lib/dashboardInfoContent → `my_sharings`). Selgitus, mis
-     seni seisis pealkirja all sissejuhatusena, elab nüüd seal: info ei ole
+     seni seisis pealkirja all sissejuhatusena, elab seal: info ei ole
      pealkirja alamärkus. */
   usePanelInfoSlot({ infoId: "my_sharings" });
   const [sharings, setSharings] = useState(EMPTY_SHARINGS);
@@ -82,14 +134,34 @@ export default function MySharingsPage() {
   const [retryingSection, setRetryingSection] = useState("");
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState("");
-  const [feedback, setFeedback] = useState("");
+  /* Teade laua kohal: tegevus õnnestus (või õnnestus, aga ülevaadet ei saanud
+     värskendada). Jääb ette järgmise tegevuseni. */
+  const [notice, setNotice] = useState(NO_NOTICE);
+  /* Viga selles vaates, kus tegevus tehti. */
   const [actionError, setActionError] = useState("");
   const [busyKey, setBusyKey] = useState("");
-  const [confirmAction, setConfirmAction] = useState(null);
+  /* Avatud kirje: osa võti ja kirje id. Korraga on lahti üks. */
+  const [opened, setOpened] = useState(null);
   const [correction, setCorrection] = useState(null);
   const [privacyPrompt, setPrivacyPrompt] = useState(null);
-  const feedbackRef = useRef(null);
+  /* Teist vajutust ootav tegevus: `<tegevus>:<kirje id>`. */
+  const [confirming, setConfirming] = useState("");
+  const confirmTimer = useRef(0);
+  const armedAt = useRef(0);
+  const noticeRef = useRef(null);
   const mutationInFlightRef = useRef("");
+
+  const armConfirm = useCallback((key) => {
+    window.clearTimeout(confirmTimer.current);
+    armedAt.current = Date.now();
+    setConfirming(key);
+    confirmTimer.current = window.setTimeout(() => setConfirming(""), CONFIRM_MS);
+  }, []);
+  const disarm = useCallback(() => {
+    window.clearTimeout(confirmTimer.current);
+    setConfirming("");
+  }, []);
+  useEffect(() => () => window.clearTimeout(confirmTimer.current), []);
 
   const formatter = useMemo(
     () => new Intl.DateTimeFormat(locale || "et", { dateStyle: "medium", timeStyle: "short" }),
@@ -102,6 +174,30 @@ export default function MySharingsPage() {
       ? formatter.format(date)
       : t("my_sharings.labels.unknown_time");
   }, [formatter, t]);
+  /* Kaasamise lõpp on andmebaasis kuupäev (kesköö UTC järgi). Kellaajaga
+     vormindaja näitas selle kõrval kellaaega „02:00" ja UTC-st läänes eelmist
+     päeva: kuupäev loetakse samas ajavööndis, kus see salvestati. */
+  const dayFormatter = useMemo(
+    () => new Intl.DateTimeFormat(locale || "et", { dateStyle: "medium", timeZone: "UTC" }),
+    [locale]
+  );
+  const formatDay = useCallback((value) => {
+    if (!value) return t("my_sharings.labels.unknown_time");
+    const date = new Date(value);
+    return Number.isFinite(date.getTime())
+      ? dayFormatter.format(date)
+      : t("my_sharings.labels.unknown_time");
+  }, [dayFormatter, t]);
+  /* Teenusaruande kuu tuleb kujul 2026-09: ekraanil on see sõnaga. Muu kujuga
+     väärtus jääb nii, nagu server selle andis. */
+  const monthFormatter = useMemo(
+    () => new Intl.DateTimeFormat(locale || "et", { month: "long", year: "numeric", timeZone: "UTC" }),
+    [locale]
+  );
+  const formatMonth = useCallback((value) => {
+    const match = /^(\d{4})-(0[1-9]|1[0-2])$/.exec(String(value || ""));
+    return match ? monthFormatter.format(new Date(Date.UTC(Number(match[1]), Number(match[2]) - 1, 1))) : String(value || "");
+  }, [monthFormatter]);
 
   const loadSharings = useCallback(async ({ signal, preserveData = false, section = null, cursor = null, append = false } = {}) => {
     if (!preserveData) setLoadError("");
@@ -115,7 +211,7 @@ export default function MySharingsPage() {
         : await fetch("/api/my-sharings", { cache: "no-store", signal });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || payload?.ok === false) {
-        throw new Error(resolveApiMessage({
+        throw new SaidError(resolveApiMessage({
           payload,
           t,
           fallbackKey: "my_sharings.errors.load_failed"
@@ -149,7 +245,7 @@ export default function MySharingsPage() {
     } catch (error) {
       if (error?.name === "AbortError") return false;
       if (!preserveData) {
-        setLoadError(error?.message || t("my_sharings.errors.load_failed"));
+        setLoadError(said(error, t("my_sharings.errors.load_failed")));
       }
       return false;
     } finally {
@@ -164,34 +260,40 @@ export default function MySharingsPage() {
     return () => controller.abort();
   }, [loadSharings]);
 
+  /* Pärast tegevust läheb fookus teatele laua kohal: nupp, mida vajutati, võib
+     koos kirjega kadunud olla, ja teade on neutraalne koht (mitte järgmise
+     kirje tagasivõtmise nupp). Fookus kerib teate ka nähtavale: pika teksti
+     all olevat nuppu vajutanud inimene ei näeks muidu, mis juhtus. */
   useEffect(() => {
-    if (!feedback && !actionError) return;
-    if (confirmAction) return;
-    feedbackRef.current?.focus({ preventScroll: true });
-  }, [actionError, confirmAction, feedback]);
+    if (!notice.text) return;
+    noticeRef.current?.focus();
+  }, [notice]);
 
-  const ownershipLabels = useMemo(() => ({
+  const factLabels = useMemo(() => ({
     visibility: t("my_sharings.ownership.visibility"),
     origin: t("my_sharings.ownership.origin"),
     validity: t("my_sharings.ownership.validity")
   }), [t]);
 
+  /* Iga tegevus algab puhtalt lehelt: eelmise tegevuse teade ega viga ei jää
+     uue tulemuse kõrvale seisma. */
   const resetMessages = useCallback(() => {
-    setFeedback("");
+    setNotice(NO_NOTICE);
     setActionError("");
   }, []);
 
-  /* COLLAB-P4. Suund on siin teistpidi kui ülejäänud lehel: need ei ole asjad,
-     mida inimene on jaganud, vaid ettepanek jagada tema KOHTA. Ühendav mõiste
-     ei ole suund, vaid „kus mu info liigub" — seepärast on nad samas kohas ja
-     eristuvad pealkirja, mitte eraldi lehega.
-     Otsus läheb otse, ilma ModalConfirm'ita: kinnitamine EI ole pöördumatu
-     (töötaja peab veel saatma) ja keeldumine on ohutu suund. Lisaklikk siin
-     ainult väsitaks inimest, kes nagunii kaalub. */
+  /* Tegevus õnnestus: teade ette ja kogu ülevaade uuesti. Kui värskendus ei
+     õnnestu, ütleb teade seda (muidu jääks ekraanile vana seis ilma märkuseta). */
+  const finishAction = useCallback(async (doneText) => {
+    setNotice({ text: doneText, tone: "ok" });
+    const refreshed = await loadSharings({ preserveData: true });
+    if (!refreshed) setNotice({ text: t("my_sharings.errors.refresh_failed"), tone: "risk" });
+  }, [loadSharings, t]);
+
   /**
    * SK-V1: kiireloomulise abipalve tagasivõtt.
    *
-   * Sama piir mis eelpöördumisel — kuni keegi ei ole lugenud. Serveri kontroll
+   * Sama piir mis eelpöördumisel: kuni keegi ei ole lugenud. Serveri kontroll
    * on ülimuslik: `canRecall` siin on ainult nupu nähtavus, mitte luba.
    */
   const recallUrgentRequest = useCallback(async (request) => {
@@ -208,25 +310,27 @@ export default function MySharingsPage() {
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || payload?.ok === false) {
-        throw new Error(resolveApiMessage({
+        throw new SaidError(resolveApiMessage({
           payload,
           t,
           fallbackKey: "my_sharings.errors.action_failed"
         }));
       }
-      setFeedback(t("my_sharings.notice.urgent_recalled"));
-      const refreshed = await loadSharings({ preserveData: true });
-      if (!refreshed) setActionError(t("my_sharings.errors.refresh_failed"));
+      await finishAction(t("my_sharings.notice.urgent_recalled"));
     } catch (error) {
-      setActionError(error?.message || t("my_sharings.errors.action_failed"));
+      setActionError(said(error, t("my_sharings.errors.action_failed")));
     } finally {
       if (mutationInFlightRef.current === key) {
         mutationInFlightRef.current = "";
         setBusyKey("");
       }
     }
-  }, [loadSharings, locale, resetMessages, t]);
+  }, [finishAction, locale, resetMessages, t]);
 
+  /* COLLAB-P4. Suund on siin teistpidi kui ülejäänud lehel: need ei ole asjad,
+     mida inimene on jaganud, vaid ettepanek jagada tema KOHTA. Ühendav mõiste
+     ei ole suund, vaid „kus mu info liigub": seepärast on nad samal laual ja
+     eristuvad osa nime, mitte eraldi lehega. */
   const decideNetworkShare = useCallback(async (share, decision) => {
     const key = `share:${share.id}`;
     if (mutationInFlightRef.current) return;
@@ -247,53 +351,35 @@ export default function MySharingsPage() {
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || payload?.ok === false) {
-        const code = typeof payload?.message === "string" ? payload.message : "";
-        const shareText = code.startsWith("network_share.") ? t(`my_sharings.share_errors.${code.slice("network_share.".length)}`) : "";
-        const known = typeof shareText === "string" && shareText && !shareText.startsWith("my_sharings.");
+        const sentence = shareErrorText(payload?.message, t);
         /* Tekst või seis on vahepeal muutunud: laadime jagamised uuesti, et inimene
            näeks seda, mille üle ta nüüd otsustab. */
         if (response.status === 409 || response.status === 428) await loadSharings({ preserveData: true });
-        throw new Error(known ? shareText : t("my_sharings.errors.action_failed"));
+        throw new SaidError(sentence || t("my_sharings.errors.action_failed"));
       }
-      setFeedback(t(`my_sharings.notice.${decision === "CONFIRMED" ? "share_confirmed" : "share_declined"}`));
-      const refreshed = await loadSharings({ preserveData: true });
-      if (!refreshed) setActionError(t("my_sharings.errors.refresh_failed"));
+      await finishAction(t(decision === "CONFIRMED" ? "my_sharings.notice.share_confirmed" : "my_sharings.notice.share_declined"));
     } catch (error) {
-      setActionError(error?.message || t("my_sharings.errors.action_failed"));
+      setActionError(said(error, t("my_sharings.errors.action_failed")));
     } finally {
       if (mutationInFlightRef.current === key) {
         mutationInFlightRef.current = "";
         setBusyKey("");
       }
     }
-  }, [loadSharings, locale, resetMessages, t]);
+  }, [finishAction, loadSharings, locale, resetMessages, t]);
 
-  const openConfirmAction = useCallback((action) => {
-    resetMessages();
-    setConfirmAction(action);
-  }, [resetMessages]);
-
-  const runConfirmedAction = useCallback(async () => {
-    const action = confirmAction;
-    if (!action || mutationInFlightRef.current) return;
+  /* Eelpöördumise ja mentorluse ettevalmistuse tagasivõtt, kutse tühistamine
+     ja ruumist lahkumine. Kutsutakse ainult teise vajutuse pealt (`twoPress`). */
+  const runAction = useCallback(async (action) => {
+    const request = ACTION_REQUESTS[action?.kind];
+    if (!request || mutationInFlightRef.current) return;
     const key = `${action.kind}:${action.item.id}`;
     mutationInFlightRef.current = key;
     setBusyKey(key);
     resetMessages();
     try {
-      const target = action.kind === "recall"
-        ? `/api/pre-inquiries/${encodeURIComponent(action.item.id)}/recall`
-        : action.kind === "revoke"
-          ? `/api/invites/${encodeURIComponent(action.item.id)}/revoke`
-          : action.kind === "mentoringRecall"
-            ? `/api/mentoring/relations/${encodeURIComponent(action.item.relationId)}/preparation`
-            : `/api/rooms/${encodeURIComponent(action.item.id)}/leave`;
-      const body = action.kind === "recall"
-        ? { expectedUpdatedAt: action.item.updatedAt }
-        : action.kind === "mentoringRecall"
-          ? { action: "recall", noteId: action.item.id }
-          : { locale };
-      const response = await fetch(target, {
+      const { url, body } = request(action.item, locale);
+      const response = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-ui-locale": locale || "et" },
         body: JSON.stringify(body)
@@ -305,36 +391,29 @@ export default function MySharingsPage() {
           t,
           fallbackKey: "my_sharings.errors.action_failed"
         });
+        /* Mentor jõudis ettevalmistuse vahepeal avada: osa laaditakse uuesti,
+           et nupp, mida enam ei saa kasutada, ette ei jääks. */
         if (action.kind === "mentoringRecall" && response.status === 409) {
           await loadSharings({ preserveData: true, section: "mentoringPreparations" });
-          setConfirmAction(null);
           setActionError(message);
           return;
         }
-        throw new Error(message);
+        throw new SaidError(message);
       }
-      setConfirmAction(null);
-      setFeedback(t(`my_sharings.notice.${action.kind === "recall"
-        ? "recalled"
-        : action.kind === "revoke"
-          ? "invite_revoked"
-          : action.kind === "mentoringRecall"
-            ? "mentoring_recalled"
-            : "room_left"}`));
-      const refreshed = await loadSharings({ preserveData: true });
-      if (!refreshed) setActionError(t("my_sharings.errors.refresh_failed"));
+      await finishAction(t(CONFIRMED_ACTIONS[action.kind].done));
     } catch (error) {
-      setActionError(error?.message || t("my_sharings.errors.action_failed"));
+      setActionError(said(error, t("my_sharings.errors.action_failed")));
     } finally {
       if (mutationInFlightRef.current === key) {
         mutationInFlightRef.current = "";
         setBusyKey("");
       }
     }
-  }, [confirmAction, loadSharings, locale, resetMessages, t]);
+  }, [finishAction, loadSharings, locale, resetMessages, t]);
 
   const openCorrection = useCallback((item) => {
-    resetMessages();
+    disarm();
+    setActionError("");
     setPrivacyPrompt(null);
     setCorrection({
       id: item.id,
@@ -343,10 +422,23 @@ export default function MySharingsPage() {
       situation: item.situation || "",
       text: item.sharedText || ""
     });
-  }, [resetMessages]);
+  }, [disarm]);
+
+  const closeCorrection = useCallback(() => {
+    setActionError("");
+    setCorrection(null);
+    setPrivacyPrompt(null);
+  }, []);
 
   const sendCorrection = useCallback(async (privacyDecision = null) => {
     if (!correction || mutationInFlightRef.current) return;
+    /* Sama kontroll, mille server teeb: tühi parandus ei lähe teele. */
+    const problem = correctionProblem(correction);
+    if (problem) {
+      setPrivacyPrompt(null);
+      setActionError(t(problem));
+      return;
+    }
     const key = `correct:${correction.id}`;
     mutationInFlightRef.current = key;
     setBusyKey(key);
@@ -369,7 +461,7 @@ export default function MySharingsPage() {
           setPrivacyPrompt(payload);
           return;
         }
-        throw new Error(resolveApiMessage({
+        throw new SaidError(resolveApiMessage({
           payload,
           t,
           fallbackKey: "my_sharings.errors.action_failed"
@@ -377,433 +469,278 @@ export default function MySharingsPage() {
       }
       setCorrection(null);
       setPrivacyPrompt(null);
-      setFeedback(t("my_sharings.notice.corrected"));
-      const refreshed = await loadSharings({ preserveData: true });
-      if (!refreshed) setActionError(t("my_sharings.errors.refresh_failed"));
+      await finishAction(t("my_sharings.notice.corrected"));
     } catch (error) {
-      setActionError(error?.message || t("my_sharings.errors.action_failed"));
+      setActionError(said(error, t("my_sharings.errors.action_failed")));
     } finally {
       if (mutationInFlightRef.current === key) {
         mutationInFlightRef.current = "";
         setBusyKey("");
       }
     }
-  }, [correction, loadSharings, resetMessages, t]);
+  }, [correction, finishAction, resetMessages, t]);
 
-  const allEmpty = Object.values(sharings).every((items) => !Array.isArray(items) || items.length === 0);
-  const hasUnavailableSection = Object.values(sectionMeta).some((meta) => ["UNAVAILABLE", "TIMEOUT"].includes(meta?.status));
+  /* Ühe osa uus katse ja järgmine lehekülg. Kui päring ei õnnestu, ütleb vaade
+     seda: varem jäi ebaõnnestunud „Laadi veel" ilma ühegi märgita. */
+  const reloadSection = useCallback(async (section, { cursor = null, append = false } = {}) => {
+    setActionError("");
+    const loaded = await loadSharings({ preserveData: true, section, cursor, append });
+    if (!loaded) setActionError(t("my_sharings.errors.load_failed"));
+  }, [loadSharings, t]);
 
-  const sectionProps = useCallback((key) => ({
-    sectionState: sectionMeta[key],
-    retrying: retryingSection === key,
-    retryLabel: t("my_sharings.actions.retry_section"),
-    unavailableLabel: t(sectionMeta[key]?.status === "TIMEOUT"
-      ? "my_sharings.errors.section_timeout"
-      : "my_sharings.errors.section_unavailable"),
-    onRetry: () => { void loadSharings({ preserveData: true, section: key }); }
-  }), [loadSharings, retryingSection, sectionMeta, t]);
+  /* Teise osa ette tulles ei jää eelmise osa viga ega pooleli kinnitus uue
+     osa külge. */
+  const leavePart = useCallback(() => {
+    disarm();
+    setActionError("");
+  }, [disarm]);
 
-  const preInquiryValidity = useCallback((item) => {
-    if (item.recalledAt) return t("my_sharings.ownership.recalled", { date: formatDate(item.recalledAt) });
-    if (item.supersededById) return t("my_sharings.ownership.superseded");
-    if (item.deliveryChannel === "EXTERNAL_EMAIL") return t("my_sharings.ownership.external_final");
-    if (item.openedAt) return t("my_sharings.ownership.opened", { date: formatDate(item.openedAt) });
-    return t("my_sharings.ownership.until_recall");
-  }, [formatDate, t]);
+  const openItem = useCallback((section, id) => {
+    disarm();
+    setActionError("");
+    setOpened({ section, id: String(id) });
+  }, [disarm]);
+
+  const closeItem = useCallback(() => {
+    disarm();
+    setActionError("");
+    setOpened(null);
+  }, [disarm]);
+
+  const openedItem = useMemo(() => {
+    if (!opened) return null;
+    const list = Array.isArray(sharings[opened.section]) ? sharings[opened.section] : [];
+    return list.find((item) => String(item.id) === opened.id) || null;
+  }, [opened, sharings]);
+
+  /* Avatud kirje kadus loendist (lahkuti ruumist, kutse võeti tagasi, osa jäi
+     laadimata): avatud vaadet ei ole enam millestki joonistada, tagasi loendisse. */
+  useEffect(() => {
+    if (opened && !loading && !openedItem) setOpened(null);
+  }, [loading, opened, openedItem]);
+
+  const rowContext = useMemo(() => ({ t, formatDate, formatDay, formatMonth }), [formatDate, formatDay, formatMonth, t]);
+  const sections = useMemo(
+    () => Object.fromEntries(SECTION_ORDER.map((key) => [key, {
+      rows: sharingRows(key, sharings[key], rowContext),
+      status: sectionMeta[key]?.status || "EMPTY"
+    }])),
+    [rowContext, sectionMeta, sharings]
+  );
+  const parts = useMemo(() => sharingParts({ t, sections }), [sections, t]);
+  const lead = deskLead({ t, parts, sections });
+  /* Plaadi kokkuvõte: otsust ootava osa ees on märge sõna ja raamiga. Kõik muu,
+     mida mudel osale annab (seis, märge), läheb lavale muutmata kaasa. */
+  const steps = parts.map((part) => ({
+    ...part,
+    summary: part.flag ? <TileSummary flag={part.flag} text={part.summary} /> : part.summary
+  }));
+
+  /* Tegevus, mis küsib teist vajutust. Esimene vajutus muudab nupu sõnad ja
+     toob tagajärje nupu kõrvale; teine (kuni CONFIRM_MS jooksul) teeb töö ära.
+     Topeltklõps on kaks vajutust samal nupul: teine neist ei tohi kohe midagi
+     teha, seepärast peab kinnitus tulema vähemalt CONFIRM_MIN_GAP_MS hiljem. */
+  const twoPress = (key, name, run) => {
+    const words = CONFIRMED_ACTIONS[name];
+    const armed = confirming === key;
+    return {
+      key,
+      armed,
+      label: t(armed ? words.armed : words.label),
+      note: armed ? t(words.consequence) : "",
+      onClick: () => {
+        if (!armed) return armConfirm(key);
+        if (Date.now() - armedAt.current < CONFIRM_MIN_GAP_MS) return undefined;
+        disarm();
+        return run();
+      }
+    };
+  };
+
+  function renderItem(section, item, title, active) {
+    const sheet = sharingSheet(section, item, rowContext);
+    const { can } = sheet;
+    const buttons = [];
+    if (can.decide) {
+      buttons.push({ ...twoPress(`shareConfirm:${item.id}`, "shareConfirm", () => void decideNetworkShare(item, "CONFIRMED")), primary: true });
+      buttons.push(twoPress(`shareDecline:${item.id}`, "shareDecline", () => void decideNetworkShare(item, "DECLINED")));
+    }
+    if (can.recallUrgent) buttons.push(twoPress(`urgentRecall:${item.id}`, "urgentRecall", () => void recallUrgentRequest(item)));
+    if (can.recall) buttons.push(twoPress(`recall:${item.id}`, "recall", () => void runAction({ kind: "recall", item })));
+    if (can.leave) buttons.push(twoPress(`leave:${item.id}`, "leave", () => void runAction({ kind: "leave", item })));
+    if (can.revoke) buttons.push(twoPress(`revoke:${item.id}`, "revoke", () => void runAction({ kind: "revoke", item })));
+    if (can.mentoringRecall) buttons.push(twoPress(`mentoringRecall:${item.id}`, "mentoringRecall", () => void runAction({ kind: "mentoringRecall", item })));
+
+    const actions = [];
+    if (can.correct) actions.push({ key: "correct", label: t("my_sharings.actions.correct"), onClick: () => openCorrection(item) });
+    if (can.relationId) {
+      actions.push({
+        key: "relation",
+        label: t("my_sharings.mentoring.open_relation"),
+        onClick: () => pushWithTransition(router, localizePath(`/mentorlus/suhe/${can.relationId}`, locale))
+      });
+    }
+
+    return (
+      <ItemView
+        t={t}
+        title={title}
+        error={active ? actionError : ""}
+        sheet={sheet}
+        factLabels={factLabels}
+        confirm={buttons.length ? { buttons, note: buttons.find((button) => button.armed)?.note || "", hint: sheet.hint } : null}
+        actions={actions}
+        busy={Boolean(busyKey)}
+        glow={active}
+        onInactive={disarm}
+        onBack={closeItem}
+      />
+    );
+  }
+
+  const renderPart = (step, index, flight) => {
+    const section = step.key;
+    /* Lava hoiab kõiki osi korraga elus: viga ja põhinupu helk on ainult sellel
+       osal, mis on ees. */
+    const active = flight?.isActive !== false;
+    const meta = sectionMeta[section];
+    const error = active ? actionError : "";
+
+    if (section === "preInquiries" && correction) {
+      /* Vanal lehel seisis paranduse vorm kirje kaardi sees, rea „Kes näeb"
+         all. Vaade on nüüd omaette, seepärast ütleb see ise, kellele parandus
+         läheb; isikuandmete küsimuse juures on ka tekst, mille kohta küsitakse. */
+      const corrected = (Array.isArray(sharings.preInquiries) ? sharings.preInquiries : []).find((item) => String(item.id) === String(correction.id));
+      const visibility = corrected ? sharingRow("preInquiries", corrected, rowContext).facts?.visibility : "";
+      const who = visibility ? `${factLabels.visibility}: ${visibility}` : "";
+      if (privacyPrompt) {
+        return (
+          <PartSwap mode="privacy">
+            <PrivacyView
+              t={t}
+              title={step.label}
+              error={error}
+              busy={Boolean(busyKey)}
+              who={who}
+              texts={[
+                { key: "topic", label: t("my_sharings.correction.topic"), value: correction.topic },
+                { key: "situation", label: t("my_sharings.correction.situation"), value: correction.situation },
+                { key: "text", label: t("my_sharings.correction.text"), value: correction.text }
+              ]}
+              prompt={{
+                onEdit: () => {
+                  setActionError("");
+                  setPrivacyPrompt(null);
+                },
+                onRedacted: () => void sendCorrection({ action: "use_redacted" }),
+                onOriginal: privacyPrompt.allowOriginal ? () => void sendCorrection({ action: "send_original" }) : null
+              }}
+            />
+          </PartSwap>
+        );
+      }
+      return (
+        <PartSwap mode="correction">
+          <CorrectionView
+            t={t}
+            title={step.label}
+            error={error}
+            limits={CORRECTION_LIMITS}
+            busy={Boolean(busyKey)}
+            glow={active}
+            who={who}
+            form={{
+              topic: correction.topic,
+              situation: correction.situation,
+              text: correction.text,
+              onTopic: (value) => setCorrection((current) => (current ? { ...current, topic: value } : current)),
+              onSituation: (value) => setCorrection((current) => (current ? { ...current, situation: value } : current)),
+              onText: (value) => setCorrection((current) => (current ? { ...current, text: value } : current)),
+              onSubmit: (event) => {
+                event.preventDefault();
+                void sendCorrection();
+              },
+              onCancel: closeCorrection
+            }}
+          />
+        </PartSwap>
+      );
+    }
+
+    if (opened?.section === section && openedItem) {
+      return <PartSwap mode={`item:${opened.id}`}>{renderItem(section, openedItem, step.label, active)}</PartSwap>;
+    }
+
+    const paging = meta?.paging;
+    const loadingSection = retryingSection === section;
+    return (
+      <PartSwap mode="list">
+        <PartView
+          t={t}
+          title={step.label}
+          lead={t(SECTION_TEXTS[section].help)}
+          error={error}
+          unavailable={
+            isUnavailable(meta?.status)
+              ? {
+                  text: t(meta.status === "TIMEOUT" ? "my_sharings.errors.section_timeout" : "my_sharings.errors.section_unavailable"),
+                  busy: loadingSection,
+                  onRetry: () => void reloadSection(section)
+                }
+              : null
+          }
+          rows={sections[section].rows.map((row) => ({
+            ...row,
+            onOpen: opensItems(section) ? () => openItem(section, row.id) : null
+          }))}
+          emptyText={t(SECTION_TEXTS[section].empty)}
+          /* Tagasivõtu piir kehtib iga eelpöördumise kohta: see seisab loendi
+             all üks kord (varem iga kaardi peal) ja uuesti avatud kirjes. */
+          note={section === "preInquiries" && sections[section].rows.length ? t("my_sharings.notice.memory") : ""}
+          more={
+            paging?.hasMore
+              ? paging.nextCursor
+                ? { busy: loadingSection, onClick: () => void reloadSection(section, { cursor: paging.nextCursor, append: true }) }
+                : /* Server annab järgmise lehekülje ainult eelpöördumistele.
+                     Teistes osades lõppes loend varem vaikides ära. */
+                  { note: t("my_sharings.views.truncated") }
+              : null
+          }
+          factLabels={factLabels}
+        />
+      </PartSwap>
+    );
+  };
 
   return (
-    <main className={styles.page}>
-      <div className={styles.shell} data-glass-back-anchor>
-        <SubpageHeader
-          title={t("my_sharings.title")}
-          onBack={() => pushWithTransition(router, localizePath("/profiil", locale))}
-          backAriaLabel={t("my_sharings.back")}
-        />
-        <div
-          ref={feedbackRef}
-          className={styles.liveRegion}
-          role={actionError && !confirmAction ? "alert" : "status"}
-          aria-live="polite"
-          tabIndex={-1}
+    <SharingsShell
+      title={t("my_sharings.title")}
+      notice={notice}
+      noticeRef={noticeRef}
+      loadingText={loading ? t("my_sharings.loading") : ""}
+      error={!loading ? loadError : ""}
+      retryText={t("my_sharings.actions.retry")}
+      onRetry={() => {
+        setLoading(true);
+        void loadSharings();
+      }}
+    >
+      {!loading && !loadError ? (
+        <StepFlight
+          label={t("my_sharings.title")}
+          steps={steps}
+          startWide
+          parts
+          texts={{
+            all: t("my_sharings.views.all"),
+            position: (current, total, label) => t("my_sharings.views.position", { current, total, label })
+          }}
+          wideLead={lead ? <DeskLead lead={lead} /> : null}
+          onStepChange={leavePart}
         >
-          {confirmAction ? feedback : actionError || feedback}
-        </div>
-
-        {loading ? <p className={styles.loading}>{t("my_sharings.loading")}</p> : null}
-        {!loading && loadError ? (
-          <Panel variant="subpage" padding="sm" className={styles.loadError}>
-            <p role="alert">{loadError}</p>
-            <Button variant="secondary" onClick={() => { setLoading(true); void loadSharings(); }}>
-              {t("my_sharings.actions.retry")}
-            </Button>
-          </Panel>
-        ) : null}
-
-        {!loading && !loadError && allEmpty && !hasUnavailableSection ? <p className={styles.emptyAll}>{t("my_sharings.empty_all")}</p> : null}
-
-        {!loading && !loadError ? (
-          <div className={styles.ledger}>
-            {/* Kõige ülal, sest need on ainsad read lehel, mis nõuavad inimeselt
-                tegutsemist. Ajaloo alla jäädes kaoksid nad ära. */}
-            <Section
-              {...sectionProps("networkShares")}
-              title={t("my_sharings.sections.network_shares")}
-              help={t("my_sharings.section_help.network_shares")}
-              empty={t("my_sharings.empty.network_shares")}
-              items={sharings.networkShares}
-            >
-              {sharings.networkShares.map((item) => {
-                const busy = busyKey === `share:${item.id}`;
-                return (
-                  <Panel as="article" variant="glass" padding="sm" className={styles.card} key={item.id}>
-                    <div className={styles.cardTopline}>
-                      <div>
-                        <span className={styles.eyebrow}>
-                          {item.awaitingDecision
-                            ? t("my_sharings.labels.awaiting_your_decision")
-                            : t(`my_sharings.share_status.${item.status}`, item.status)}
-                        </span>
-                        <h3>{t("my_sharings.labels.share_incoming")}</h3>
-                      </div>
-                    </div>
-
-                    <p className={styles.sharedText}>{item.summaryText}</p>
-
-                    <dl className={styles.meta}>
-                      <div>
-                        <dt>{t("my_sharings.labels.share_purpose")}</dt>
-                        <dd>{item.purpose}</dd>
-                      </div>
-                      <div>
-                        <dt>{t("my_sharings.labels.share_boundary")}</dt>
-                        <dd>{item.sharingBoundary}</dd>
-                      </div>
-                      <div>
-                        <dt>{t("my_sharings.labels.share_ends")}</dt>
-                        <dd>{formatDate(item.participationEndsOn)}</dd>
-                      </div>
-                    </dl>
-
-                    {item.awaitingDecision ? (
-                      <div className={styles.cardActions}>
-                        <Button
-                          variant="primary"
-                          disabled={busy}
-                          onClick={() => void decideNetworkShare(item, "CONFIRMED")}
-                        >
-                          {t("my_sharings.actions.confirm_share")}
-                        </Button>
-                        <Button
-                          variant="secondary"
-                          disabled={busy}
-                          onClick={() => void decideNetworkShare(item, "DECLINED")}
-                        >
-                          {t("my_sharings.actions.decline_share")}
-                        </Button>
-                      </div>
-                    ) : null}
-                  </Panel>
-                );
-              })}
-            </Section>
-
-            {/* SK-V1. Vastust ootav kiireloomuline abipalve on kõige ärevamas
-                hetkes tehtud jagamine — ta seisab kohe otsust ootavate järel ja
-                mitte ajaloo all. Keeldumise PÕHJUS on siin nähtav tekst: ilma
-                temata oleks „ei jõudnud" ainult uks, mis kinni käis. */}
-            <Section
-              {...sectionProps("urgentRequests")}
-              title={t("my_sharings.sections.urgent_requests")}
-              help={t("my_sharings.section_help.urgent_requests")}
-              empty={t("my_sharings.empty.urgent_requests")}
-              items={sharings.urgentRequests}
-            >
-              {sharings.urgentRequests.map((item) => {
-                const busy = busyKey === `urgent:${item.id}`;
-                return (
-                  <Panel as="article" variant="glass" padding="sm" className={styles.card} key={item.id}>
-                    <div className={styles.cardTopline}>
-                      <div>
-                        <span className={styles.eyebrow}>{t(`urgent.status.${item.status}`, item.status)}</span>
-                        <h3>{t("my_sharings.labels.urgent_request")}</h3>
-                      </div>
-                      <time dateTime={item.sentAt || undefined}>{formatDate(item.sentAt)}</time>
-                    </div>
-
-                    <p className={styles.sharedText}>{item.situationVerbatim}</p>
-
-                    <dl className={styles.meta}>
-                      <div>
-                        <dt>{t("urgent.desk.reading_time")}</dt>
-                        <dd>{item.readingTimePromise}</dd>
-                      </div>
-                      {item.declineReason ? (
-                        <div>
-                          <dt>{t("my_sharings.labels.urgent_decline_reason")}</dt>
-                          <dd>{item.declineReason}</dd>
-                        </div>
-                      ) : null}
-                    </dl>
-
-                    {item.canRecall ? (
-                      <div className={styles.cardActions}>
-                        <Button
-                          variant="secondary"
-                          disabled={busy || Boolean(busyKey)}
-                          onClick={() => void recallUrgentRequest(item)}
-                        >
-                          {t("urgent.sent.recall")}
-                        </Button>
-                      </div>
-                    ) : null}
-                  </Panel>
-                );
-              })}
-            </Section>
-
-            <Section
-              {...sectionProps("preInquiries")}
-              title={t("my_sharings.sections.pre_inquiries")}
-              help={t("my_sharings.section_help.pre_inquiries")}
-              empty={t("my_sharings.empty.pre_inquiries")}
-              items={sharings.preInquiries}
-            >
-              {sharings.preInquiries.map((item) => {
-                const isCorrecting = correction?.id === item.id;
-                const recipient = item.recipientLabel || t("my_sharings.labels.unknown_recipient");
-                return (
-                  <Panel as="article" variant="glass" padding="sm" className={styles.card} key={item.id}>
-                    <div className={styles.cardTopline}>
-                      <div>
-                        <span className={styles.eyebrow}>{t(`my_sharings.status.${statusKey(item)}`)}</span>
-                        <h3>{item.topic || recipient}</h3>
-                      </div>
-                      <time dateTime={item.sentAt || undefined}>{formatDate(item.sentAt)}</time>
-                    </div>
-                    <OwnershipBar
-                      labels={ownershipLabels}
-                      visibility={t(item.deliveryChannel === "EXTERNAL_EMAIL" ? "my_sharings.ownership.external_email" : "my_sharings.ownership.shared_with", { name: recipient })}
-                      origin={t("my_sharings.ownership.you_sent")}
-                      validity={preInquiryValidity(item)}
-                    />
-                    <p className={styles.memoryNote}>{t("my_sharings.notice.memory")}</p>
-                    <div className={styles.actions}>
-                      {item.canRecall ? (
-                        <Button
-                          variant="secondary"
-                          disabled={Boolean(busyKey)}
-                          onClick={() => openConfirmAction({ kind: "recall", item })}
-                        >
-                          {t("my_sharings.actions.recall")}
-                        </Button>
-                      ) : null}
-                      {item.canCorrect ? (
-                        <Button variant="secondary" disabled={Boolean(busyKey)} onClick={() => openCorrection(item)}>
-                          {t("my_sharings.actions.correct")}
-                        </Button>
-                      ) : null}
-                    </div>
-                    {isCorrecting ? (
-                      <Form className={styles.correctionForm} onSubmit={(event) => { event.preventDefault(); void sendCorrection(); }}>
-                        <div className={styles.correctionHeading}>
-                          <h4>{t("my_sharings.correction.title")}</h4>
-                          <p>{t("my_sharings.notice.correction")}</p>
-                        </div>
-                        <label>
-                          <span>{t("my_sharings.correction.topic")}</span>
-                          <Input disabled={Boolean(busyKey)} maxLength={1000} value={correction.topic} onChange={(event) => setCorrection((current) => ({ ...current, topic: event.target.value }))} />
-                        </label>
-                        <label>
-                          <span>{t("my_sharings.correction.situation")}</span>
-                          <textarea required disabled={Boolean(busyKey)} maxLength={12000} rows={4} value={correction.situation} onChange={(event) => setCorrection((current) => ({ ...current, situation: event.target.value }))} />
-                        </label>
-                        <label>
-                          <span>{t("my_sharings.correction.text")}</span>
-                          <textarea required disabled={Boolean(busyKey)} maxLength={12000} rows={7} value={correction.text} onChange={(event) => setCorrection((current) => ({ ...current, text: event.target.value }))} />
-                        </label>
-                        {privacyPrompt ? (
-                          <div className={styles.privacyPrompt} role="alert">
-                            <h5>{t("my_sharings.correction.privacy_title")}</h5>
-                            <p>{t("my_sharings.correction.privacy_body")}</p>
-                            <div className={styles.actions}>
-                              <Button type="button" variant="secondary" disabled={Boolean(busyKey)} onClick={() => void sendCorrection({ action: "use_redacted" })}>{t("my_sharings.actions.use_redacted")}</Button>
-                              {privacyPrompt.allowOriginal ? <Button type="button" variant="secondary" disabled={Boolean(busyKey)} onClick={() => void sendCorrection({ action: "send_original" })}>{t("my_sharings.actions.send_original")}</Button> : null}
-                            </div>
-                          </div>
-                        ) : null}
-                        <div className={styles.actions}>
-                          <Button type="submit" disabled={Boolean(busyKey)}>{t("my_sharings.actions.send_correction")}</Button>
-                          <Button type="button" variant="secondary" disabled={Boolean(busyKey)} onClick={() => { setCorrection(null); setPrivacyPrompt(null); }}>{t("my_sharings.actions.cancel")}</Button>
-                        </div>
-                      </Form>
-                    ) : null}
-                  </Panel>
-                );
-              })}
-              {sectionMeta.preInquiries?.paging?.hasMore ? (
-                <Button
-                  variant="secondary"
-                  disabled={retryingSection === "preInquiries"}
-                  onClick={() => void loadSharings({
-                    preserveData: true,
-                    section: "preInquiries",
-                    cursor: sectionMeta.preInquiries.paging.nextCursor,
-                    append: true
-                  })}
-                >
-                  {t("my_sharings.actions.load_more")}
-                </Button>
-              ) : null}
-            </Section>
-
-            <Section {...sectionProps("rooms")} title={t("my_sharings.sections.rooms")} help={t("my_sharings.section_help.rooms")} empty={t("my_sharings.empty.rooms")} items={sharings.rooms}>
-              {sharings.rooms.map((item) => (
-                <Panel as="article" variant="glass" padding="sm" className={styles.card} key={item.id}>
-                  <div className={styles.cardTopline}><h3>{item.title || t("my_sharings.sections.rooms")}</h3><span className={styles.eyebrow}>{t(item.role === "OWNER" ? "my_sharings.labels.room_owner" : "my_sharings.labels.room_member")}</span></div>
-                  <OwnershipBar labels={ownershipLabels} visibility={t("my_sharings.ownership.room_members")} origin={t("my_sharings.ownership.you_joined")} validity={t(item.canLeave ? "my_sharings.ownership.active" : "my_sharings.ownership.owner")} />
-                  {item.canLeave ? <div className={styles.actions}><Button variant="secondary" disabled={Boolean(busyKey)} onClick={() => openConfirmAction({ kind: "leave", item })}>{t("my_sharings.actions.leave_room")}</Button></div> : null}
-                </Panel>
-              ))}
-            </Section>
-
-            <Section {...sectionProps("invites")} title={t("my_sharings.sections.invites")} help={t("my_sharings.section_help.invites")} empty={t("my_sharings.empty.invites")} items={sharings.invites}>
-              {sharings.invites.map((item) => (
-                <Panel as="article" variant="glass" padding="sm" className={styles.card} key={item.id}>
-                  <div className={styles.cardTopline}><div><span className={styles.eyebrow}>{t(`my_sharings.status.${String(item.status).toLowerCase()}`)}</span><h3>{item.roomTitle || item.inviteeEmail}</h3></div><time dateTime={item.expiresAt}>{formatDate(item.expiresAt)}</time></div>
-                  <OwnershipBar labels={ownershipLabels} visibility={t("my_sharings.ownership.invite_recipient", { name: item.inviteeEmail })} origin={t("my_sharings.ownership.you_invited")} validity={t("my_sharings.ownership.expires", { date: formatDate(item.expiresAt) })} />
-                  {item.canRevoke ? <div className={styles.actions}><Button variant="secondary" disabled={Boolean(busyKey)} onClick={() => openConfirmAction({ kind: "revoke", item })}>{t("my_sharings.actions.revoke_invite")}</Button></div> : null}
-                </Panel>
-              ))}
-            </Section>
-
-            <Section {...sectionProps("helpListings")} title={t("my_sharings.sections.help")} help={t("my_sharings.section_help.help")} empty={t("my_sharings.empty.help")} items={sharings.helpListings}>
-              {sharings.helpListings.map((item) => (
-                <Panel as="article" variant="glass" padding="sm" className={styles.card} key={`${item.kind}:${item.id}`}>
-                  <div className={styles.cardTopline}><div><span className={styles.eyebrow}>{t(`my_sharings.labels.${item.kind}`)}</span><h3>{item.title || t(`my_sharings.labels.${item.kind}`)}</h3></div><span>{t(`my_sharings.status.${String(item.status).toLowerCase()}`)}</span></div>
-                  <OwnershipBar labels={ownershipLabels} visibility={t(helpMapVisibilityKey(item))} origin={t("my_sharings.ownership.you_submitted_help")} validity={item.expiresAt ? t("my_sharings.ownership.expires", { date: formatDate(item.expiresAt) }) : t("my_sharings.ownership.no_expiry")} />
-                </Panel>
-              ))}
-            </Section>
-
-            <Section {...sectionProps("mentoringPreparations")} title={t("my_sharings.mentoring.section_title")} help={t("my_sharings.mentoring.section_help")} empty={t("my_sharings.mentoring.empty")} items={sharings.mentoringPreparations || []}>
-              {(sharings.mentoringPreparations || []).map((item) => (
-                <Panel as="article" variant="glass" padding="sm" className={styles.card} key={item.id}>
-                  <div className={styles.cardTopline}>
-                    <div>
-                      <span className={styles.eyebrow}>
-                        {t(item.recalledAt
-                          ? "my_sharings.mentoring.recalled"
-                          : item.openedAt
-                            ? "my_sharings.mentoring.opened"
-                            : item.sharedAt
-                              ? "my_sharings.mentoring.shared"
-                              : "my_sharings.mentoring.private")}
-                      </span>
-                      <h3>{t("my_sharings.mentoring.item_title")}</h3>
-                    </div>
-                    <time dateTime={item.createdAt}>{formatDate(item.createdAt)}</time>
-                  </div>
-                  <OwnershipBar
-                    labels={ownershipLabels}
-                    visibility={t(item.sharedAt && !item.recalledAt
-                      ? "my_sharings.mentoring.visible_to_mentor"
-                      : "my_sharings.ownership.private_record")}
-                    origin={t("my_sharings.mentoring.origin")}
-                    validity={item.sharedAt
-                      ? t("my_sharings.mentoring.shared_at", { date: formatDate(item.sharedAt) })
-                      : t("my_sharings.ownership.active")}
-                  />
-                  {item.relationId ? (
-                    <div className={styles.actions}>
-                      {item.canRecall ? (
-                        <Button
-                          variant="secondary"
-                          disabled={Boolean(busyKey)}
-                          onClick={() => openConfirmAction({ kind: "mentoringRecall", item })}
-                        >
-                          {t("my_sharings.actions.recall")}
-                        </Button>
-                      ) : null}
-                      <Button
-                        variant="secondary"
-                        disabled={Boolean(busyKey)}
-                        onClick={() => {
-                          pushWithTransition(router, localizePath(`/mentorlus/suhe/${item.relationId}`, locale));
-                        }}
-                      >
-                        {t("my_sharings.mentoring.open_relation")}
-                      </Button>
-                    </div>
-                  ) : item.sharedAt && !item.recalledAt && !item.openedAt ? (
-                    <p role="status" className={styles.memoryNote}>{t("my_sharings.mentoring.action_unavailable")}</p>
-                  ) : null}
-                </Panel>
-              ))}
-            </Section>
-
-            <Section {...sectionProps("outgoingNetworkShares")} title={t("my_sharings.sections.outgoing_network_shares")} help={t("my_sharings.section_help.outgoing_network_shares")} empty={t("my_sharings.empty.outgoing_network_shares")} items={sharings.outgoingNetworkShares}>
-              {sharings.outgoingNetworkShares.map((item) => (
-                <Panel as="article" variant="glass" padding="sm" className={styles.card} key={item.id}>
-                  <div className={styles.cardTopline}><h3>{item.recipientLabel || t("my_sharings.labels.unknown_recipient")}</h3><span>{t(`my_sharings.share_status.${item.status}`, item.status)}</span></div>
-                  <OwnershipBar labels={ownershipLabels} visibility={t("my_sharings.ownership.shared_with", { name: item.recipientLabel || t("my_sharings.labels.unknown_recipient") })} origin={t("my_sharings.ownership.you_sent")} validity={item.participationEndsOn ? t("my_sharings.ownership.expires", { date: formatDate(item.participationEndsOn) }) : t("my_sharings.ownership.active")} />
-                </Panel>
-              ))}
-            </Section>
-
-            <Section {...sectionProps("wellbeingSupportShares")} title={t("my_sharings.sections.wellbeing_support_shares")} help={t("my_sharings.section_help.wellbeing_support_shares")} empty={t("my_sharings.empty.wellbeing_support_shares")} items={sharings.wellbeingSupportShares}>
-              {sharings.wellbeingSupportShares.map((item) => (
-                <Panel as="article" variant="glass" padding="sm" className={styles.card} key={item.id}>
-                  <div className={styles.cardTopline}><h3>{item.recipientLabel || item.organizationName || t("my_sharings.labels.unknown_recipient")}</h3><span>{t(`my_sharings.share_status.${item.status}`, item.status)}</span></div>
-                  <OwnershipBar labels={ownershipLabels} visibility={t("my_sharings.ownership.shared_with", { name: item.recipientLabel || item.organizationName || t("my_sharings.labels.unknown_recipient") })} origin={t("my_sharings.ownership.you_sent")} validity={item.closedAt ? t("my_sharings.ownership.closed", { date: formatDate(item.closedAt) }) : t("my_sharings.ownership.active")} />
-                </Panel>
-              ))}
-            </Section>
-
-            <Section {...sectionProps("serviceReportShares")} title={t("my_sharings.sections.service_report_shares")} help={t("my_sharings.section_help.service_report_shares")} empty={t("my_sharings.empty.service_report_shares")} items={sharings.serviceReportShares}>
-              {sharings.serviceReportShares.map((item) => (
-                <Panel as="article" variant="glass" padding="sm" className={styles.card} key={item.id}>
-                  <div className={styles.cardTopline}><h3>{item.recipientLabel || t("my_sharings.labels.unknown_recipient")}</h3><span>{item.month}</span></div>
-                  <OwnershipBar labels={ownershipLabels} visibility={t("my_sharings.ownership.shared_with", { name: item.recipientLabel || t("my_sharings.labels.unknown_recipient") })} origin={t("my_sharings.ownership.you_sent")} validity={item.recalledAt ? t("my_sharings.ownership.recalled", { date: formatDate(item.recalledAt) }) : t("my_sharings.ownership.active")} />
-                </Panel>
-              ))}
-            </Section>
-
-            <Section {...sectionProps("roomSummaries")} title={t("my_sharings.sections.room_summaries")} help={t("my_sharings.section_help.room_summaries")} empty={t("my_sharings.empty.room_summaries")} items={sharings.roomSummaries}>
-              {sharings.roomSummaries.map((item) => (
-                <Panel as="article" variant="glass" padding="sm" className={styles.card} key={item.id}>
-                  <div className={styles.cardTopline}><h3>{item.title || item.roomTitle || t("my_sharings.sections.room_summaries")}</h3><time dateTime={item.sharedAt || undefined}>{formatDate(item.sharedAt)}</time></div>
-                  <OwnershipBar labels={ownershipLabels} visibility={t("my_sharings.ownership.room_members")} origin={t("my_sharings.ownership.you_sent")} validity={t("my_sharings.ownership.active")} />
-                </Panel>
-              ))}
-            </Section>
-
-            <Section {...sectionProps("privateRecords")} title={t("my_sharings.sections.private_records")} help={t("my_sharings.section_help.private_records")} empty={t("my_sharings.empty.private_records")} items={sharings.privateRecords}>
-              {sharings.privateRecords.map((item) => (
-                <Panel as="article" variant="glass" padding="sm" className={styles.card} key={`${item.privateType}:${item.id}`}>
-                  <div className={styles.cardTopline}><h3>{item.frameworkKey || t("my_sharings.labels.private_record")}</h3><span>{item.frameworkVersion || ""}</span></div>
-                  <OwnershipBar labels={ownershipLabels} visibility={t("my_sharings.ownership.private_record")} origin={t("my_sharings.ownership.you_confirmed")} validity={t("my_sharings.ownership.accepted", { date: formatDate(item.createdAt) })} />
-                </Panel>
-              ))}
-            </Section>
-          </div>
-        ) : null}
-      </div>
-
-      {confirmAction ? (
-        <ModalConfirm
-          message={t(`my_sharings.confirm.${confirmAction.kind}`)}
-          confirmLabel={t(`my_sharings.actions.${["recall", "mentoringRecall"].includes(confirmAction.kind) ? "recall" : confirmAction.kind === "revoke" ? "revoke_invite" : "leave_room"}`)}
-          cancelLabel={t("my_sharings.actions.cancel")}
-          disabled={Boolean(busyKey)}
-          overlayClassName={styles.modalOverlay}
-          contentClassName={styles.modalContent}
-          actionsClassName={styles.modalActions}
-          onConfirm={runConfirmedAction}
-          onCancel={() => { if (!mutationInFlightRef.current) setConfirmAction(null); }}
-        >
-          {actionError ? <p className={styles.modalError} role="alert">{actionError}</p> : null}
-        </ModalConfirm>
+          {renderPart}
+        </StepFlight>
       ) : null}
-    </main>
+    </SharingsShell>
   );
 }

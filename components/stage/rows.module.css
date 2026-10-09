@@ -1,0 +1,72 @@
+/**
+ * Madalate loendiridade ühised osad.
+ *
+ * Ümber tehtud lehed (mentorlus, minu jagamised jt) näitavad kirjeid madalate
+ * ridadena: pealkiri ja selle all üks rida, paremal märgid ja aeg. Need reeglid
+ * olid igas lehe moodulis sõna-sõnalt samad. Lehe moodul võtab need siit
+ * (`composes: rowTitle from "../../stage/rows.module.css"`) ja lisab oma
+ * erisused; rea enda kuju (veerud, polster) jääb lehe moodulisse.
+ */
+
+/* Loend ise. Ühine paneelikiht annab igale loendireale alumise vahe ja proosa
+   laiuse: `rowItem` võtab need maha. */
+.rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+.rowItem {
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+}
+
+/* Rea vasak pool: pealkiri ja selle all olev rida. */
+.rowMain {
+  min-width: 0;
+  display: grid;
+  gap: 0.1rem;
+}
+.rowTitle {
+  min-width: 0;
+  color: var(--text-warm);
+  font-weight: 560;
+  overflow-wrap: anywhere;
+}
+
+/* Rea parem pool: märgid, aeg ja tee edasi. */
+.rowMeta {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 0.3rem 0.6rem;
+}
+.rowTime {
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Laadimise viga: lause ja selle tegevus, mitte kast. Ühine paneelikiht annab
+   hoiatuse rolliga elemendile tausta, äärise ja polstri; `faultText` võtab need
+   maha. */
+.fault {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+}
+.faultText {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--text-warm);
+}

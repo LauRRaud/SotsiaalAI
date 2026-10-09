@@ -10089,7 +10089,9 @@
       "superseded": "Corrected",
       "pending_payment": "Awaiting payment",
       "open": "Published",
-      "matched": "Match found"
+      "matched": "Match found",
+      "closed": "Closed",
+      "cancelled": "Cancelled"
     },
     "actions": {
       "recall": "Recall",
@@ -10179,6 +10181,45 @@
       "RECALLED": "recalled",
       "ENDED": "ended",
       "DRAFT": "draft"
+    },
+    "views": {
+      "all": "All shares",
+      "position": "Part {current} of {total}: {label}",
+      "more": "and others",
+      "open": "Open",
+      "back": "Back to the list",
+      "attention": "A network involvement proposal is waiting for your decision.",
+      "tile_unavailable": "This part could not be loaded.",
+      "tile_timeout": "Loading took too long.",
+      "truncated": "There are more entries than fit here. Only the newest are shown.",
+      "edit_text": "Edit the text",
+      "short": {
+        "network_shares": "Involvement",
+        "urgent_requests": "Urgent requests",
+        "pre_inquiries": "Pre-inquiries",
+        "rooms": "Rooms",
+        "invites": "Invites",
+        "help": "Help listings",
+        "mentoring": "Mentoring",
+        "outgoing_network_shares": "Sent shares",
+        "wellbeing_support_shares": "Wellbeing support",
+        "service_report_shares": "Service reports",
+        "room_summaries": "Summaries",
+        "private_records": "Confirmations"
+      },
+      "confirm": {
+        "recall": "Confirm recall",
+        "revoke": "Confirm revoking the invite",
+        "leave": "Confirm leaving",
+        "share_confirm": "Confirm consent",
+        "share_decline": "Confirm refusal"
+      },
+      "consequence": {
+        "urgent_recall": "Take this request back? The intake desk can then no longer take it on, and taking it back cannot be undone.",
+        "share_confirm": "After you confirm, the worker can send this summary. You cannot change the decision here later.",
+        "share_decline": "After you decline, this summary will not be sent. You cannot change the decision here later."
+      },
+      "untitled_room": "Untitled room"
     }
   },
   "effective_practices": {
