@@ -925,6 +925,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
       ],
       doorTags: [{ id: 'g1', clientId: 'c1', createdByMembershipId: 'm1' }],
       clientStatusChanges: [{ id: 's1', clientId: 'c1', actorMembershipId: 'm1' }],
+      activities: [{ id: 'act1', createdByMembershipId: 'm1' }],
       auditEvents: [{ id: 'x1', actorMembershipId: 'm1' }]
     };
     doc.totals = Object.fromEntries(HOME_CARE_EXPORT_KEYS.map((key) => [key, doc[key].length]));
@@ -958,6 +959,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
     'importedHistoryBlocks',
     'doorTags',
     'clientStatusChanges',
+    'activities',
     'auditEvents',
     'people'
   ]);
@@ -976,10 +978,19 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
      failis on sama kogu puudumine viga. */
   const older = make();
   older.version = 1;
-  delete older.clientStatusChanges;
-  delete older.totals.clientStatusChanges;
+  for (const key of ['clientStatusChanges', 'activities']) {
+    delete older[key];
+    delete older.totals[key];
+  }
   assert.deepEqual([checkHomeCareExport(older).ok, checkHomeCareExport(older).problems], [true, []]);
+  /* Versioon 2 tunneb seisu ajalugu, aga mitte veel toimingute kataloogi. */
+  const second = make();
+  second.version = 2;
+  delete second.activities;
+  delete second.totals.activities;
+  assert.deepEqual([checkHomeCareExport(second).ok, checkHomeCareExport(second).problems], [true, []]);
   assert.match(problems((doc) => { delete doc.clientStatusChanges; }).join(' '), /clientStatusChanges/);
+  assert.match(problems((doc) => { delete doc.activities; }).join(' '), /activities/);
   assert.match(problems((doc) => { delete doc.exportId; })[0], /exportId/);
   /* Poolik fail: lõpus olevad koguarvud puuduvad. */
   assert.ok(problems((doc) => { delete doc.totals; }).some((line) => /poolik/.test(line)));

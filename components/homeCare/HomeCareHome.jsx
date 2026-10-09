@@ -86,6 +86,9 @@ export default function HomeCareHome({ context, initial, unitOptions }) {
           <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/koned`}>
             {t("home_care.calls.link")}
           </Link>
+          <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/toimingud`}>
+            {t("home_care.activities.link")}
+          </Link>
           {initial?.canExport ? (
             <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/valjavote`}>
               {t("home_care.export.link")}

@@ -11639,7 +11639,14 @@
       "invalid_export_reason": "Choose what the export is for.",
       "export_failed": "Making the export failed. Try again.",
       "export_in_progress": "An export for this organisation is already being made. Wait until it is ready.",
-      "status_reason_required": "Choose why the client is away or why the service ended."
+      "status_reason_required": "Choose why the client is away or why the service ended.",
+      "activity_group_required": "Choose a group.",
+      "activity_name_required": "Write the name of the activity.",
+      "activity_name_taken": "An activity with this name already exists.",
+      "activity_not_found": "The activity was not found.",
+      "activity_limit_reached": "The catalogue already has a great many activities. Archive one before you add a new one.",
+      "activity_catalogue_not_empty": "The catalogue already has activities. The starting list can be added only to an empty catalogue.",
+      "activity_position_invalid": "The position number is not valid."
     },
     "incidents": {
       "title": "Incident register",
@@ -11937,6 +11944,47 @@
       "size_kb": "{n} kB",
       "size_mb": "{n} MB",
       "decimal_mark": "."
+    },
+    "activities": {
+      "link": "Activities",
+      "title": "Activities",
+      "intro": "The organisation's activities in its own words. Each activity belongs to one group of the regulation; the care plan, the visit record and the report will use the same activities.",
+      "empty": "No activities have been added yet.",
+      "empty_editor": "No activities have been added yet. You can start from the 16 groups of the regulation and then rename the activities in your own words.",
+      "seed": "Add the regulation's 16 groups as a starting list",
+      "domains": {
+        "HOME_HELP": "Home help",
+        "PERSONAL_HELP": "Personal help"
+      },
+      "groups": {
+        "SHOPPING": "Shopping and bringing purchases home",
+        "SERVICES_AND_ERRANDS": "Using services and running errands",
+        "HEATING": "Ordering and storing heating material, and heating",
+        "HOME_SAFETY": "Watching the safety of the home and keeping the living environment safe",
+        "HOUSEKEEPING": "Tidying the home, keeping the yard and following upkeep rules",
+        "OTHER_HOME_HELP": "Other home help",
+        "HYGIENE": "Personal hygiene, using the toilet and incontinence aids",
+        "NUTRITION": "Eating",
+        "DRESSING": "Dressing and grooming",
+        "LAUNDRY": "Changing bed linen and doing laundry",
+        "MEDICATION": "Taking medicines and watching the state of health as instructed by a health worker",
+        "ABILITY_MONITORING": "Watching functional ability during the service",
+        "NETWORK": "Keeping contact with close ones and encouraging taking part in community life",
+        "MENTAL_SUPPORT": "Getting mental health and spiritual support",
+        "ASSISTIVE_TECH": "Using assistive technology",
+        "OTHER_PERSONAL_HELP": "Other personal help"
+      },
+      "group_empty": "This group has no activities yet.",
+      "add": "Add an activity",
+      "edit": "Edit",
+      "archive": "Archive",
+      "restore": "Restore",
+      "save": "Save",
+      "name": "Name of the activity",
+      "note": "Note for the care worker (you may leave this empty)",
+      "group": "Group",
+      "archived_title": "Archived activities",
+      "source": "The groups come from regulation no 40 of the Minister of Social Protection of 29.06.2023, \"Requirements for home care\" (§ 2)."
     }
   },
   "stage": {
