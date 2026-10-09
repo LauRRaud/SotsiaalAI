@@ -11663,7 +11663,12 @@
       "decision_volume_period_required": "Vali, kas maht on nädala või kuu kohta.",
       "decision_not_found": "Otsust ei leitud. Laadi leht uuesti.",
       "decision_retracted": "See otsus on tühistatud ja seda ei saa muuta.",
-      "decision_too_many": "Ühe kliendi juurde saab sisestada kuni {limit} otsust."
+      "decision_too_many": "Ühe kliendi juurde saab sisestada kuni {limit} otsust.",
+      "visit_minutes_invalid": "Käigu kestus ei sobi. Sisesta minutid, 1 kuni {limit}.",
+      "visit_activity_unknown": "Toimingut ei leitud kliendi hoolduskavast ega asutuse kataloogist. Laadi leht uuesti.",
+      "visit_activity_repeated": "Sama toiming on kirjel kaks korda.",
+      "visit_mode_required": "Vali, kuidas toiming tehti.",
+      "visit_too_many_activities": "Ühel kirjel saab olla kuni {limit} toimingut."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -12150,6 +12155,30 @@
         "in": "{count} päeva pärast",
         "yesterday": "eile",
         "ago": "{count} päeva tagasi"
+      }
+    },
+    "visit": {
+      "title": "Mida tegid",
+      "no_plan": "Kehtivat hoolduskava ei ole. Toimingu saad lisada asutuse kataloogist.",
+      "mode_label": "Kuidas tehti: {name}",
+      "modes": {
+        "GUIDE": "tegi ise, juhendasin",
+        "TOGETHER": "tegime koos",
+        "ASSIST": "aitasin osaliselt",
+        "FOR": "tegin tema eest"
+      },
+      "add_other": "Lisa muu toiming",
+      "other_placeholder": "Vali toiming kataloogist",
+      "catalogue_done": "Kõik kataloogi toimingud on juba loendis.",
+      "minutes_label": "Käigu kestus minutites (võid jätta tühjaks)",
+      "minutes_quick": "Kestuse kiirvalik",
+      "minutes": "{minutes} min",
+      "lasted": "käik kestis {minutes} min",
+      "text_optional": "Kui käik läks nagu tavaliselt, võib tekst tühjaks jääda. Kirjuta, kui märkasid midagi uut.",
+      "outside_plan": "väljaspool kava",
+      "doc": {
+        "minutes": "Käik kestis {minutes} min.",
+        "done": "Tehtud: {list}."
       }
     }
   },

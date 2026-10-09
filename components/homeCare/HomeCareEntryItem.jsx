@@ -35,6 +35,7 @@ export default function HomeCareEntryItem({
   team = [],
   viewerMembershipId = null,
   showClient = false,
+  plan = null,
   onChange
 }) {
   const { t } = useI18n();
@@ -111,6 +112,7 @@ export default function HomeCareEntryItem({
           viewerMembershipId={viewerMembershipId}
           timeZone={timeZone}
           entry={entry}
+          plan={plan}
           onCancel={close}
           onSaved={(next) => {
             onChange?.(next);
@@ -163,9 +165,31 @@ export default function HomeCareEntryItem({
 
       {retracted ? (
         <p className="hc-entry__text hc-entry__text--muted">{t("home_care.entry.retracted")}</p>
-      ) : (
+      ) : entry.text ? (
         <p className="hc-entry__text">{entry.text}</p>
-      )}
+      ) : null}
+
+      {/* Käigu kirje (K2-d): kestus ja tehtud toimingud koos sellega, kuidas tehti. */}
+      {entry.visit ? (
+        <div className="hc-entry__meta">
+          {entry.visit.minutes ? <span>{t("home_care.visit.lasted", { minutes: entry.visit.minutes })}</span> : null}
+          {entry.visit.activities.length > 0 ? (
+            <ul className="hc-list hc-list--plain">
+              {entry.visit.activities.map((activity) => (
+                <li key={activity.id}>
+                  {activity.name} · {t(`home_care.visit.modes.${activity.mode}`)}
+                  {activity.outsidePlan ? (
+                    <>
+                      {" "}
+                      <span className="hc-badge">{t("home_care.visit.outside_plan")}</span>
+                    </>
+                  ) : null}
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </div>
+      ) : null}
 
       {incident && !retracted && incident.assessment ? (
         <p className="hc-entry__meta">
@@ -349,7 +373,19 @@ export default function HomeCareEntryItem({
                   <p className="hc-entry__meta">
                     {t("home_care.entry.reason_label")}: {revision.reason}
                   </p>
-                  <p className="hc-entry__text hc-entry__text--muted">{revision.text}</p>
+                  {revision.text ? <p className="hc-entry__text hc-entry__text--muted">{revision.text}</p> : null}
+                  {revision.visit ? (
+                    <p className="hc-entry__meta">
+                      {[
+                        revision.visit.minutes ? t("home_care.visit.lasted", { minutes: revision.visit.minutes }) : null,
+                        ...(revision.visit.activities || []).map(
+                          (activity) => `${activity.name} · ${t(`home_care.visit.modes.${activity.mode}`)}`
+                        )
+                      ]
+                        .filter(Boolean)
+                        .join("; ")}
+                    </p>
+                  ) : null}
                 </li>
               ))}
             </ul>

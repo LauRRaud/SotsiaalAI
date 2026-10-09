@@ -1834,6 +1834,8 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
     await saveCarePlanDraft(lead, northClient.id, { goals: 'Kodus edasi elada.', lines: [{ activityId: exportCatalogue[0].id, frequencyKind: 'WEEKLY', frequencyCount: 1, mode: 'TOGETHER' }] }, deps())
   ).draft;
   await activateCarePlan(lead, northClient.id, { version: exportDraft.version }, deps());
+  /* Käigu kirje (K2-d): tehtud toiming kirje küljes, et väljavõttes oleks ka see kogu. */
+  await createEntry(lead, northClient.id, { visitMinutes: 30, activities: [{ activityId: exportCatalogue[0].id, mode: 'TOGETHER' }] }, deps());
   /* Otsus ja maht (K2-c), et väljavõttes oleks ka see kogu. */
   await createDecision(lead, northClient.id, { kind: 'ACT', validFrom: '2026-09-01', volumeHours: '6,5', volumePeriod: 'WEEK' }, deps());
   /* Seisu ajalugu (K1-j): ära ja tagasi, et väljavõttes oleks ka see kogu. */
@@ -1925,6 +1927,7 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
     carePlans: await db.carePlan.count({ where: ofOrg }),
     carePlanLines: await db.carePlanLine.count({ where: { plan: ofOrg } }),
     decisions: await db.careDecision.count({ where: ofOrg }),
+    entryActivities: await db.careEntryActivity.count({ where: ofOrg }),
     auditEvents: await db.dataAuditLog.count({
       where: { action: { startsWith: 'org.home_care_' }, meta: { path: ['organizationId'], equals: f.orgA.id }, createdAt: { lt: (await exportRows())[0].createdAt } }
     })
@@ -2554,4 +2557,187 @@ test('tähtajad: lõppevad otsused, otsuseta kliendid, ülevaatamist ootavad ja 
   /* Päev hiljem kui Aino otsuse lõpp: ta on otsuseta klientide seas. */
   const after = await getDeadlines(lead, deps(at('2026-10-30T08:00:00Z')));
   assert.deepEqual(after.noDecision.map((item) => [item.client.displayName, item.lastEndedOn])[0], ['Aino Lõppev', '2026-10-29']);
+});
+
+test('käigu kirje: kestus, tehtud toimingud kavast ja kataloogist, kordussaatmine, parandus ja kronoloogia', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  const { client } = await createClient(lead, { displayName: 'Linda Tamm' }, deps());
+  await addTeamMember(lead, client.id, { membershipId: f.members.anu.id }, deps());
+  const catalogue = (await seedDefaultActivities(lead, deps())).activities;
+  const byGroup = (group) => catalogue.find((item) => item.group === group);
+  const heating = byGroup('HEATING');
+  const hygiene = byGroup('HYGIENE');
+  const shopping = byGroup('SHOPPING');
+  const laundry = byGroup('LAUNDRY');
+  /* Kehtivas kavas on kütmine ja hügieen; ostud ja pesu on kataloogis, aga mitte kavas. */
+  const { draft } = await saveCarePlanDraft(
+    lead,
+    client.id,
+    {
+      lines: [
+        { activityId: heating.id, frequencyKind: 'DAILY', frequencyCount: 1, mode: 'FOR', critical: true },
+        { activityId: hygiene.id, frequencyKind: 'WEEKLY', frequencyCount: 2, mode: 'ASSIST' }
+      ]
+    },
+    deps()
+  );
+  await activateCarePlan(lead, client.id, { version: draft.version }, deps());
+  const heatingLine = (await openClient(anu, client.id, deps())).plan.lines.find((line) => line.activityId === heating.id);
+  const shape = (entry) => (entry.visit ? [entry.visit.minutes, entry.visit.activities.map((item) => [item.name, item.group, item.mode, item.outsidePlan])] : null);
+
+  /* Vigane käigu kirje ei salvestu. */
+  const bad = (input, key) => expectError(createEntry(anu, client.id, input, deps()), 400, key);
+  await bad({ visitMinutes: 0, text: 'x' }, 'home_care.errors.visit_minutes_invalid');
+  await bad({ activities: [{ activityId: 'cmv0olematutoiming00000000', mode: 'FOR' }] }, 'home_care.errors.visit_activity_unknown');
+  await bad({ activities: [{ activityId: heating.id, mode: 'FOR' }, { activityId: heating.id, mode: 'GUIDE' }] }, 'home_care.errors.visit_activity_repeated');
+  await bad({ activities: [{ activityId: heating.id, mode: 'ALONE' }] }, 'home_care.errors.visit_mode_required');
+  await bad({ kind: 'HANDOVER', activities: [{ activityId: heating.id, mode: 'FOR' }] }, 'home_care.errors.entry_text_required');
+  assert.equal(await db.careClientEntry.count({ where: { clientId: client.id } }), 0);
+
+  /* TAVALINE KÄIK ILMA TEKSTITA: toiming kavast kannab kava sõnastust ja viidet kava reale;
+     kavas puuduv toiming tuleb kataloogist ja on kavaväline. */
+  const body = {
+    visitMinutes: 45,
+    activities: [
+      { activityId: heating.id, mode: 'FOR' },
+      { activityId: shopping.id, mode: 'TOGETHER' }
+    ],
+    clientRequestId: `visit-${f.tag}-1`
+  };
+  const made = await createEntry(anu, client.id, body, deps());
+  const visit = made.entry;
+  assert.deepEqual([made.created, visit.text, visit.kind, visit.contactMode], [true, '', 'NOTE', 'VISIT']);
+  assert.deepEqual(shape(visit), [45, [[heating.name, 'HEATING', 'FOR', false], [shopping.name, 'SHOPPING', 'TOGETHER', true]]]);
+  const stored = await db.careEntryActivity.findMany({ where: { entryId: visit.id }, orderBy: { position: 'asc' } });
+  assert.deepEqual(
+    stored.map((row) => [row.planLineId, row.activityId, row.outsidePlan, row.organizationId, row.clientId]),
+    [
+      [heatingLine.id, heating.id, false, f.orgA.id, client.id],
+      [null, shopping.id, true, f.orgA.id, client.id]
+    ]
+  );
+
+  /* KORDUSSAATMINE: sama keha annab sama kirje ja toimingute ridu ei teki juurde; muu sisu on konflikt. */
+  const again = await createEntry(anu, client.id, body, deps());
+  assert.deepEqual([again.created, again.entry.id, shape(again.entry)], [false, visit.id, shape(visit)]);
+  assert.equal(await db.careEntryActivity.count({ where: { entryId: visit.id } }), 2);
+  await expectError(createEntry(anu, client.id, { ...body, visitMinutes: 50 }, deps()), 409, 'home_care.errors.idempotency_conflict');
+  await expectError(
+    createEntry(anu, client.id, { ...body, activities: [{ activityId: heating.id, mode: 'GUIDE' }, body.activities[1]] }, deps()),
+    409,
+    'home_care.errors.idempotency_conflict'
+  );
+
+  /* Telefonikontaktil käigu välju ei ole. */
+  const phone = (await createEntry(anu, client.id, { contactMode: 'PHONE', text: 'Helistas tütar.', visitMinutes: 30, activities: [{ activityId: heating.id, mode: 'FOR' }] }, deps())).entry;
+  assert.equal(phone.visit, null);
+  assert.equal(await db.careEntryActivity.count({ where: { entryId: phone.id } }), 0);
+
+  /* Käigu kirje on näha päevikus ja hooldusjuhi ülevaates. */
+  const page = await listEntries(lead, client.id, {}, deps());
+  assert.deepEqual(shape(page.items.find((item) => item.id === visit.id)), shape(visit));
+  const overview = await getCoordinatorOverview(lead, deps());
+  assert.deepEqual(shape(overview.recent.find((item) => item.id === visit.id)), shape(visit));
+
+  /* PARANDUS. Kataloogi ümbernimetamine kirjet ei muuda; ainult teksti saatev parandus jätab käigu kirje alles. */
+  await updateActivity(lead, heating.id, { version: heating.version, name: 'Ahju kütmine' }, deps());
+  const first = (await correctEntry(anu, client.id, visit.id, { text: 'Tõin ka ajalehe.', reason: 'Lisan märkuse.', revision: 1 }, deps())).entry;
+  assert.deepEqual([first.text, first.revision, shape(first)], ['Tõin ka ajalehe.', 2, shape(visit)]);
+  /* Toimingute parandus: olemasolev toiming hoiab oma nime ja kavaviite, muutub tegemise viis;
+     eemaldatud toiming kaob ja lisatud kavaväline toiming tuleb kataloogist; kestus tühjendatakse. */
+  const second = (
+    await correctEntry(
+      anu,
+      client.id,
+      visit.id,
+      {
+        text: 'Tõin ka ajalehe.',
+        reason: 'Parandan toimingud.',
+        revision: 2,
+        visitMinutes: null,
+        activities: [
+          { activityId: heating.id, mode: 'TOGETHER' },
+          { activityId: laundry.id, mode: 'FOR' }
+        ]
+      },
+      deps()
+    )
+  ).entry;
+  assert.deepEqual(shape(second), [null, [[heating.name, 'HEATING', 'TOGETHER', false], [laundry.name, 'LAUNDRY', 'FOR', true]]]);
+  assert.equal((await db.careEntryActivity.findFirst({ where: { entryId: visit.id, activityId: heating.id } })).planLineId, heatingLine.id);
+  /* Parandusjälg hoiab käigu kirje sellisena, nagu see enne parandust oli. */
+  const { revisions } = await listEntryRevisions(anu, client.id, visit.id, deps());
+  assert.deepEqual(
+    revisions.map((row) => [row.revision, row.text, row.visit?.minutes, row.visit?.activities.map((item) => [item.name, item.mode, item.outsidePlan])]),
+    [
+      [2, 'Tõin ka ajalehe.', 45, [[heating.name, 'FOR', false], [shopping.name, 'TOGETHER', true]]],
+      [1, '', 45, [[heating.name, 'FOR', false], [shopping.name, 'TOGETHER', true]]]
+    ]
+  );
+  /* Kontakti viisi muutmine telefoniks võtab käigu kirje maha. */
+  const third = (await correctEntry(anu, client.id, visit.id, { text: 'Tegelikult oli see kõne.', contactMode: 'PHONE', reason: 'Vale kontakti viis.', revision: 3 }, deps())).entry;
+  assert.equal(third.visit, null);
+  assert.equal(await db.careEntryActivity.count({ where: { entryId: visit.id } }), 0);
+  assert.equal((await db.careClientEntry.findUnique({ where: { id: visit.id } })).visitMinutes, null);
+
+  /* Arhiveeritud ja teise asutuse toimingut uuele kirjele märkida ei saa. */
+  await updateActivity(lead, laundry.id, { version: laundry.version, archived: true }, deps());
+  await bad({ activities: [{ activityId: laundry.id, mode: 'FOR' }] }, 'home_care.errors.visit_activity_unknown');
+  const foreign = (await seedDefaultActivities(leadB, deps())).activities[0];
+  await bad({ activities: [{ activityId: foreign.id, mode: 'FOR' }] }, 'home_care.errors.visit_activity_unknown');
+
+  /* TÜHISTATUD kirjel käigu kirjet aktiivsel pinnal ei ole; read jäävad andmebaasi alles. */
+  const gone = (await createEntry(anu, client.id, { visitMinutes: 30, activities: [{ activityId: hygiene.id, mode: 'ASSIST' }] }, deps())).entry;
+  const retracted = (await retractEntry(anu, client.id, gone.id, { reason: 'Vale klient.', revision: 1 }, deps())).entry;
+  assert.equal(retracted.visit, null);
+  assert.equal(await db.careEntryActivity.count({ where: { entryId: gone.id } }), 1);
+
+  /* KRONOLOOGIA: käigu kirje rida lisandub tekstile; tekstita käik ei ole tühi rida. */
+  const withText = (await createEntry(anu, client.id, { text: 'Kõik korras.', visitMinutes: 30, activities: [{ activityId: hygiene.id, mode: 'ASSIST' }], occurredAt: '2026-10-09T06:00:00Z' }, deps())).entry;
+  const tickOnly = (await createEntry(anu, client.id, { visitMinutes: 20, activities: [{ activityId: heating.id, mode: 'FOR' }], occurredAt: '2026-10-09T07:00:00Z' }, deps())).entry;
+  const chronology = await draftChronology(lead, client.id, { from: '2026-10-09', to: '2026-10-09' }, deps());
+  const textOf = (entryId) => chronology.items.find((item) => item.entryId === entryId).text;
+  assert.equal(textOf(withText.id), `Kõik korras.\nKäik kestis 30 min. Tehtud: ${hygiene.name} (aitasin osaliselt).`);
+  /* Kava rida kannab toimingu nime kava kehtestamise hetkest, mitte kataloogi uut nime. */
+  assert.equal(textOf(tickOnly.id), `Käik kestis 20 min. Tehtud: ${heating.name} (tegin tema eest).`);
+  /* Muutmata tekstiga väljastus ei ole „muudetud"; väljastatud rida on sama tekst. */
+  const release = await createChronologyRelease(
+    lead,
+    client.id,
+    {
+      from: '2026-10-09',
+      to: '2026-10-09',
+      requester: 'Politsei- ja Piirivalveamet',
+      basis: 'Päring 09.10.2026',
+      items: [
+        { entryId: withText.id, revision: 1 },
+        { entryId: tickOnly.id, revision: 1 }
+      ]
+    },
+    deps()
+  );
+  const releasedItems = await db.careChronologyReleaseItem.findMany({ where: { releaseId: release.release.id }, orderBy: { position: 'asc' } });
+  assert.deepEqual(
+    releasedItems.map((item) => [item.text, item.redacted]),
+    [
+      [textOf(withText.id), false],
+      [textOf(tickOnly.id), false]
+    ]
+  );
+
+  /* Andmebaas hoiab vigase rea eemal ka siis, kui rakendus eksib. */
+  const row = (data) =>
+    db.careEntryActivity.create({
+      data: { organizationId: f.orgA.id, entryId: tickOnly.id, clientId: client.id, activityName: 'Proov', activityGroup: 'HEATING', mode: 'FOR', ...data }
+    });
+  await assert.rejects(row({ mode: 'ALONE' }), /CareEntryActivity_mode_check/);
+  await assert.rejects(row({ activityGroup: 'KÜTE' }), /CareEntryActivity_activityGroup_check/);
+  await assert.rejects(row({ activityName: '  ' }), /CareEntryActivity_activityName_check/);
+  await assert.rejects(row({ activityId: heating.id }), /CareEntryActivity_entryId_activityId_key|Unique constraint/);
+  await assert.rejects(row({ outsidePlan: true, planLineId: heatingLine.id }), /CareEntryActivity_outsidePlan_check/);
+  await assert.rejects(db.careClientEntry.update({ where: { id: tickOnly.id }, data: { visitMinutes: 1441 } }), /CareClientEntry_visitMinutes_check/);
+  await assert.rejects(db.careClientEntry.update({ where: { id: tickOnly.id }, data: { visitMinutes: 0 } }), /CareClientEntry_visitMinutes_check/);
 });
