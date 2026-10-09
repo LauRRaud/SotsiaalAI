@@ -1,48 +1,67 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+/**
+ * Kutsu osaleja: kutse koostööruumi ja selle ruumi saadetud kutsed.
+ *
+ * KUJU (09.10). Leht oli üks kuue väljaga vorm, mis oli venitatud paneeli
+ * laiuseks nähtava pealkirja all, ja selle all kutsete tabel: 674 px sisu
+ * 496 px kerivas kastis. Nüüd on kutse väikesed vaated: ruum ja kutsuja nimi
+ * (ainult uue ruumi puhul), keda kutsutakse, e-posti aadress, tasumine ja
+ * saatmine ning saadetud kutsed. Vaated on failis ./views/InviteViews.jsx,
+ * reeglid failis ./views/inviteRows.js; siin on andmed, päringud ja see, mis
+ * vaateid olekuga seob.
+ *
+ * KAKS KASUTUST, SAMAD VAATED.
+ *  - Töölaua sees (`embedded`): vaated on sammulaval (`components/stage`); samm
+ *    ja nool edasi on all kiirmenüüs ning lehe nime paneelil ei korrata.
+ *  - Modaalina (ruumide leht; sponsormakse tagasitulek vestluses): kiirmenüü
+ *    jääb modaali taha ja on sel ajal kättesaamatu, seepärast vahetatakse
+ *    vaateid modaali enda ülaservas olevast lahtrite reast.
+ *
+ * KUTSE ON PÄRIS E-KIRI ja „Tasun tema eest" viib makseni. Päringud ja nende
+ * kehad on samad mis vanal vormil. Muutunud on see, kust neid käivitatakse:
+ * saatmine käib ainult saatmise vaate nupust (Enter väljal viib järgmise vaate
+ * juurde, mitte ei saada kutset), valik „Tasun tema eest" küsib teist vajutust
+ * ja kutse tühistamine samuti.
+ *
+ * KUI MIDAGI ON PUUDU, viib saatmise nupp selle vaate juurde, kus puudus on,
+ * ja ütleb seal, mis see on (`inviteProblem`).
+ */
+
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSession } from "next-auth/react";
-import { useI18n } from "@/components/i18n/I18nProvider";
-import RichText from "@/components/i18n/RichText";
+
 import { BackArrowIcon } from "@/components/brand/icons/CardIcons";
 import IconButton from "@/components/glass/IconButton";
+import { useI18n } from "@/components/i18n/I18nProvider";
+import ChoiceRow from "@/components/stage/ChoiceRow";
+import StepFlight from "@/components/stage/StepFlight";
 import Button from "@/components/ui/Button";
 import { DashboardInfoTrigger } from "@/components/ui/DashboardInfoOverlay";
-import Checkbox from "@/components/ui/Checkbox";
-import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import Modal from "@/components/ui/Modal";
-import OptionCard from "@/components/ui/OptionCard";
-import Form from "@/components/ui/Form";
-import Input from "@/components/ui/Input";
-import {
-  INVITE_RELATIONSHIP_CLIENT,
-  inviteRelationshipTypesForInviter,
-  sponsoredRolesForInviteRelationship,
-} from "@/lib/invites/participantTypes";
-import { getPublicSponsoredInviteAmount } from "@/lib/subscriptionPlans";
-import { localizePath } from "@/lib/localizePath";
+import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
+import { inviteRelationshipTypesForInviter, sponsoredRolesForInviteRelationship } from "@/lib/invites/participantTypes";
+import { localizePath } from "@/lib/localizePath";
+import { getPublicSponsoredInviteAmount } from "@/lib/subscriptionPlans";
 
-function parseEmails(raw) {
-  if (!raw) return [];
-  const list = String(raw)
-    .split(/[,;\n\r]/)
-    .map((s) => s.trim().toLowerCase())
-    .filter(Boolean);
-  return [...new Set(list)];
-}
-function formatEuroAmount(amount, locale = "et") {
-  try {
-    return new Intl.NumberFormat(locale, {
-      style: "currency",
-      currency: "EUR",
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }).format(amount);
-  } catch {
-    return `${Number(amount || 0).toFixed(2)} EUR`;
-  }
-}
+import { EmailsView, InviteNotice, RoomView, SendView, SentView, SignedOutView, WhoView } from "./views/InviteViews";
+import {
+  PAYMENT_HOST,
+  PAYMENT_SELF,
+  effectiveChoice,
+  inviteErrorView,
+  inviteProblem,
+  inviteRows,
+  inviteViewKeys,
+  inviteViewStates,
+  parseEmails,
+  relationshipLabelKey,
+  sentenceCase,
+  sponsorProblem,
+  sponsoredRoleOptions
+} from "./views/inviteRows";
+import styles from "./views/invite.module.css";
 
 const sponsoredCheckoutDisabled = ["false", "0", "off"].includes(
   String(process.env.NEXT_PUBLIC_SPONSORED_INVITE_CHECKOUT_OPEN || "false")
@@ -59,62 +78,44 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
   const [roomTitle, setRoomTitle] = useState("");
   const [hostDisplayName, setHostDisplayName] = useState("");
   const [emails, setEmails] = useState("");
-  const [paymentMode, setPaymentMode] = useState("SELF_PAID");
+  const [paymentMode, setPaymentMode] = useState(PAYMENT_SELF);
   const [busy, setBusy] = useState(false);
-  const [message, setMessage] = useState("");
-  const [error, setError] = useState("");
+  /* Saatmise tulemus seisab vaadete kohal kuni järgmise saatmiseni; viga
+     kuulub ühe vaate juurde ja seisab selle vaate all servas. */
+  const [notice, setNotice] = useState(null);
+  const [problem, setProblem] = useState(null);
   const [relationshipType, setRelationshipType] = useState("");
   const [targetRole, setTargetRole] = useState(null);
   const [invites, setInvites] = useState([]);
   const [loadingList, setLoadingList] = useState(false);
+  /* Loendi laadimise viga: vana leht jättis ebaõnnestunud laadimise järel
+     lihtsalt tühja loendi, nagu kutseid ei olekski. */
+  const [listError, setListError] = useState("");
   const [sponsoredCheckoutAgreed, setSponsoredCheckoutAgreed] = useState(false);
   // Makse-tagasituleku olek (invitePayment URL-parameeter). Kui seatud, näitab
   // modal PUHAST staatuskaarti (mitte kutse-loomise vormi) — vt handleClose.
   const [paymentReturn, setPaymentReturn] = useState(null);
-  const formatSentenceCase = (text) => {
-    const raw = typeof text === "string" ? text.trim() : "";
-    if (!raw) return text;
-    if (raw !== raw.toUpperCase()) return text;
-    const lower = raw.toLocaleLowerCase(locale || "et");
-    return `${lower.charAt(0).toLocaleUpperCase(locale || "et")}${lower.slice(1)}`;
-  };
-  const sendLabel = formatSentenceCase(t("invite.send"));
-  const sponsoredSelected = paymentMode === "SPONSORED_BY_HOST";
+  /* Milline vaade on ees. Tühi tähendab esimest vaadet. */
+  const [view, setView] = useState("");
+  /* Kutse, mille uuesti saatmine või tühistamine parajasti käib. */
+  const [actionId, setActionId] = useState("");
+  const sentListRef = useRef(null);
+
+  const sponsoredSelected = paymentMode === PAYMENT_HOST;
   const isWorkspaceReturn = embedded || openSource === "workspace";
   const inviteHeaderTitle = t("invite.eyebrow");
   const allowedRelationshipTypes = useMemo(
     () => inviteRelationshipTypesForInviter(session?.user?.role),
     [session?.user?.role],
   );
-  const effectiveRelationshipType = allowedRelationshipTypes.includes(relationshipType)
-    ? relationshipType
-    : allowedRelationshipTypes.length === 1
-      ? allowedRelationshipTypes[0]
-      : "";
-  const sponsoredRoleOptions = useMemo(() => {
-    const roleKey = {
-      CLIENT: "client",
-      SOCIAL_WORKER: "worker",
-      SERVICE_PROVIDER: "provider",
-    };
-    // Hind sõltub sellest, keda kutsud: sponsorkutse = üks kuu KUTSUTU rolli
-    // ligipääsu, seega kannab iga valik oma rolli kuutellimuse summat.
-    return sponsoredRolesForInviteRelationship(effectiveRelationshipType).map((value) => ({
-      value,
-      label: `${t(`invite.sponsored.role.${roleKey[value]}`)} - ${formatEuroAmount(
-        getPublicSponsoredInviteAmount(value),
-        locale,
-      )}`,
-    }));
-  }, [effectiveRelationshipType, locale, t]);
-  const allowedSponsoredRoles = sponsoredRoleOptions.map((option) => option.value);
-  const effectiveTargetRole = allowedSponsoredRoles.includes(targetRole)
-    ? targetRole
-    : allowedSponsoredRoles.length === 1
-      ? allowedSponsoredRoles[0]
-      : null;
-  const inviteEmailsRequiredError = error === t("invite.error.emails_required");
-  const inviteRelationshipRequiredError = error === t("invite.error.relationship_required");
+  const effectiveRelationshipType = effectiveChoice(allowedRelationshipTypes, relationshipType);
+  // Hind sõltub sellest, keda kutsud: sponsorkutse = üks kuu KUTSUTU rolli
+  // ligipääsu, seega kannab iga valik oma rolli kuutellimuse summat.
+  const roleOptions = useMemo(
+    () => sponsoredRoleOptions(effectiveRelationshipType, { t, locale, amountOf: getPublicSponsoredInviteAmount }),
+    [effectiveRelationshipType, locale, t],
+  );
+  const effectiveTargetRole = effectiveChoice(roleOptions.map((option) => option.value), targetRole) || null;
   const inviteCheckoutAgreementReplacements = useMemo(
     () => ({
       terms: {
@@ -128,11 +129,18 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
     }),
     [locale],
   );
+  const viewKeys = useMemo(() => inviteViewKeys({ hasRoom: Boolean(roomId) }), [roomId]);
+  const activeView = viewKeys.includes(view) ? view : viewKeys[0];
+
   useEffect(() => {
     if (embedded) return undefined;
     const handler = (e) => {
       setRoomId(e?.detail?.roomId || null);
       setOpenSource(String(e?.detail?.source || "").trim().toLowerCase());
+      /* Modaal avaneb esimesel vaatel ja ilma eelmise korra teadeteta. */
+      setView("");
+      setNotice(null);
+      setProblem(null);
       setOpen(true);
     };
     window.addEventListener("sotsiaalai:open-invite", handler);
@@ -164,7 +172,7 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
     }
   }, [open, roomId]);
   useEffect(() => {
-    if (paymentMode !== "SPONSORED_BY_HOST") {
+    if (paymentMode !== PAYMENT_HOST) {
       setTargetRole(null);
       setSponsoredCheckoutAgreed(false);
     }
@@ -219,6 +227,7 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
     if (!roomId) {
       setInvites([]);
       setLoadingList(false);
+      setListError("");
       return;
     }
     setLoadingList(true);
@@ -229,76 +238,77 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
       const data = await res.json().catch(() => ({}));
       if (res.ok && data?.invites) {
         setInvites(data.invites);
+        setListError("");
+      } else if (!res.ok) {
+        setListError(resolveApiMessage({ payload: data, t, fallbackKey: "invite.error_generic" }));
       }
     } catch (err) {
       console.error("invite list", err);
+      setListError(t("invite.error_generic"));
     } finally {
       setLoadingList(false);
     }
-  }, [roomId]);
+  }, [roomId, t]);
   useEffect(() => {
     if (open) loadInvites();
   }, [open, roomId, loadInvites]);
   const emailsParsed = useMemo(() => parseEmails(emails), [emails]);
-  const multipleEmailsForSponsored = emailsParsed.length > 1;
+
+  /* Viga kuulub vaate juurde: leht viib inimese sinna, kus seda parandada saab. */
+  const showProblem = useCallback((text, viewKey) => {
+    setProblem({ text, view: viewKey });
+    setView(viewKey);
+  }, []);
+  /* Kui inimene hakkab vaates midagi muutma, ei jää selle vaate vana viga ette. */
+  const clearProblem = useCallback((viewKey) => {
+    setProblem((current) => (current?.view === viewKey ? null : current));
+  }, []);
+
+  /* Siia jõuab alles teine vajutus nupul „Tasun tema eest" (vt `SendView`). */
   const startSponsoredFlow = useCallback(() => {
-    setError("");
-    setMessage("");
-    if (!effectiveRelationshipType) {
-      setError(t("invite.error.relationship_required"));
-      return;
-    }
-    if (multipleEmailsForSponsored) {
-      setError(t("invite.error.sponsored_single_email_required"));
+    setProblem(null);
+    const blocked = sponsorProblem({ relationshipType: effectiveRelationshipType, emails: emailsParsed });
+    if (blocked) {
+      showProblem(t(blocked.key), blocked.view);
       return;
     }
     const roles = sponsoredRolesForInviteRelationship(effectiveRelationshipType);
     setTargetRole(roles.length === 1 ? roles[0] : null);
     setSponsoredCheckoutAgreed(false);
-    setPaymentMode("SPONSORED_BY_HOST");
-  }, [effectiveRelationshipType, multipleEmailsForSponsored, t]);
-  async function submit(e) {
-    e.preventDefault();
-    setError("");
-    setMessage("");
+    setPaymentMode(PAYMENT_HOST);
+  }, [effectiveRelationshipType, emailsParsed, showProblem, t]);
+
+  async function submit() {
+    if (busy) return;
+    setProblem(null);
+    setNotice(null);
     const parsed = emailsParsed;
-    if (!effectiveRelationshipType) {
-      setError(t("invite.error.relationship_required"));
-      return;
-    }
-    if (!parsed.length) {
-      setError(t("invite.error.emails_required"));
+    const missing = inviteProblem({
+      hasRoom: Boolean(roomId),
+      relationshipType: effectiveRelationshipType,
+      emails: parsed,
+      roomTitle,
+      hostName: hostDisplayName,
+      paymentMode,
+      targetRole: effectiveTargetRole,
+      checkoutClosed: sponsoredCheckoutDisabled,
+      agreed: sponsoredCheckoutAgreed
+    });
+    if (missing) {
+      showProblem(t(missing.key), missing.view);
       return;
     }
     const trimmedRoomTitle = roomTitle.trim();
     const trimmedHostName = hostDisplayName.trim();
-    if (!roomId && !trimmedRoomTitle) {
-      setError(t("invite.room_title_required"));
-      return;
-    }
-    if (!roomId && !trimmedHostName) {
-      setError(t("invite.host_name_required"));
-      return;
-    }
-    if (paymentMode === "SPONSORED_BY_HOST" && parsed.length !== 1) {
-      setError(t("invite.error.sponsored_single_email_required"));
-      return;
-    }
-    if (paymentMode === "SPONSORED_BY_HOST" && !effectiveTargetRole) {
-      setError(t("invite.error.sponsor_plan_required"));
-      return;
-    }
-    if (paymentMode === "SPONSORED_BY_HOST" && sponsoredCheckoutDisabled) {
-      setError(t("invite.error.checkout_temporarily_disabled"));
-      return;
-    }
-    if (paymentMode === "SPONSORED_BY_HOST" && !sponsoredCheckoutAgreed) {
-      setError(t("invite.error.checkout_terms_required"));
-      return;
-    }
+    /* Serveri keeldumine läheb selle vaate juurde, mille asi see on. */
+    const refusal = (payload) => {
+      const error = new Error(resolveApiMessage({ payload, t, fallbackKey: "invite.send_failed" }));
+      error.view = inviteErrorView(payload?.messageKey, viewKeys);
+      return error;
+    };
     setBusy(true);
     try {
-      if (paymentMode === "SPONSORED_BY_HOST") {
+      if (paymentMode === PAYMENT_HOST) {
         const res = await fetch("/api/invites/sponsored/init", {
           method: "POST",
           headers: {
@@ -319,15 +329,7 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
           }),
         });
         const data = await res.json().catch(() => ({}));
-        if (!res.ok || data?.ok === false) {
-          throw new Error(
-            resolveApiMessage({
-              payload: data,
-              t,
-              fallbackKey: "invite.send_failed",
-            }),
-          );
-        }
+        if (!res.ok || data?.ok === false) throw refusal(data);
         const checkoutUrl =
           typeof data?.checkoutUrl === "string" ? data.checkoutUrl.trim() : "";
         if (!checkoutUrl) {
@@ -336,7 +338,7 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
         if (!roomId && data?.roomId) {
           setRoomId(data.roomId);
         }
-        setMessage(t("subscription.payment.redirect_demo"));
+        setNotice({ text: t("subscription.payment.redirect_demo") });
         if (typeof window !== "undefined") {
           window.location.assign(checkoutUrl);
         }
@@ -359,15 +361,7 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
         }),
       });
       const data = await res.json().catch(() => ({}));
-      if (!res.ok || data?.ok === false) {
-        throw new Error(
-          resolveApiMessage({
-            payload: data,
-            t,
-            fallbackKey: "invite.send_failed",
-          }),
-        );
-      }
+      if (!res.ok || data?.ok === false) throw refusal(data);
       /* SOL-INV-03: „Kutsed saadetud" oli varem tingimusteta. Kui mõni kiri ei
          jõudnud välja, peab saatja seda NÄGEMA — muidu ootab ta vastust
          inimeselt, kes ei saanud kunagi linki. */
@@ -375,26 +369,33 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
         (inv) => inv.emailDelivery && inv.emailDelivery !== "sent",
       );
       if (undelivered.length) {
-        setMessage(
-          t("invite.success_delivery_pending", {
+        setNotice({
+          tone: "wait",
+          text: t("invite.success_delivery_pending", {
             emails: undelivered.map((inv) => inv.inviteeEmail).join(", "),
           }),
-        );
+        });
       } else {
-        setMessage(t("invite.success"));
+        setNotice({ tone: "ok", text: t("invite.success") });
       }
       setEmails("");
       if (!roomId && data?.roomId) {
         setRoomId(data.roomId);
       }
       loadInvites();
+      /* Saadetud kutse on kohe näha: leht läheb kutsete vaatesse. */
+      setView("sent");
     } catch (err) {
-      setError(err?.message || t("invite.send_failed"));
+      showProblem(err?.message || t("invite.send_failed"), err?.view || "send");
     } finally {
       setBusy(false);
     }
   }
   async function action(id, kind) {
+    if (actionId) return;
+    setActionId(id);
+    setProblem(null);
+    setNotice(null);
     try {
       const url =
         kind === "resend"
@@ -421,24 +422,23 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
       }
       // SOL-INV-03: kordussaatmine ütleb samuti tulemuse, mitte kavatsuse.
       if (kind === "resend") {
-        setMessage(
-          data?.emailDelivery && data.emailDelivery !== "sent"
-            ? t("invite.resend_delivery_pending")
-            : t("invite.resend_sent"),
-        );
+        const pending = data?.emailDelivery && data.emailDelivery !== "sent";
+        setNotice({
+          tone: pending ? "wait" : "ok",
+          text: pending ? t("invite.resend_delivery_pending") : t("invite.resend_sent"),
+        });
+      } else {
+        setNotice({ text: t("invite.revoked") });
       }
       await loadInvites();
+      /* Tühistatud kutse real nuppe enam ei ole: fookus läheb loendile, mitte
+         järgmise rea tühistamise nupule. */
+      if (kind !== "resend") sentListRef.current?.focus({ preventScroll: true });
     } catch (err) {
-      setError(err?.message || t("invite.action_failed"));
+      setProblem({ text: err?.message || t("invite.action_failed"), view: "sent" });
+    } finally {
+      setActionId("");
     }
-  }
-  function formatStatus(inv) {
-    if (inv.status === "ACCEPTED" && inv.acceptedBillingSource) {
-      return inv.acceptedBillingSource === "SELF"
-        ? t("invite.status.accepted_self")
-        : t("invite.status.accepted_sponsored");
-    }
-    return inv.status;
   }
   if (!open) return null;
   // Makse-tagasitulek: PUHAS staatuskaart (mitte kutse-loomise vorm), et
@@ -474,7 +474,8 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
         <div className="invite-payment-status-body" data-state={paymentReturn.state}>
           <h2 className="invite-payment-status-title">{statusTitle}</h2>
           <p
-            role={positive ? "status" : "alert"}
+            role={positive ? undefined : "alert"}
+            aria-live={positive ? "polite" : undefined}
             className={`invite-payment-status-msg${positive ? "" : " invite-payment-status-msg--error"}`}
           >
             {statusMessage}
@@ -486,303 +487,262 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
       </Modal>
     );
   }
-  const content = (
-    <div className="invite-participant-workbench">
-      {!hideHeader ? (
-        <>
-          {/* Modaalis (portaal, väljaspool paneeli) on see ainus tagasitee —
-              legacy BackButton asemel klaasikeele ikoonnupp brand-noolega. */}
-          <IconButton
-            aria-label={t("buttons.back")}
-            layoutClassName="invite-modal-back"
-            onClick={handleClose}
-          >
-            <BackArrowIcon />
-          </IconButton>
-          <SubpageHeader
-            showBack={false}
-            titleAs="h2"
-            rightSlot={
-              <DashboardInfoTrigger
-                infoId="invites"
-                title={inviteHeaderTitle}
-              />
-            }
-          >
-            {inviteHeaderTitle}
-          </SubpageHeader>
-        </>
-      ) : null}
 
-      <div>
-        {!session?.user?.id ? (
-          <div>
-            <p>{t("invite.login_required")}</p>
-          </div>
-        ) : (
-          <Form className="invite-participant-form" onSubmit={submit}>
-            {!roomId ? (
-              <>
-                <div>
-                  <Input
-                    id="invite-room-title"
-                    className="invite-field-input"
-                    value={roomTitle}
-                    onChange={(e) => setRoomTitle(e.target.value)}
-                    disabled={busy}
-                    placeholder={t("invite.room_title")}
-                    aria-label={t("invite.room_title")}
-                  />
-                </div>
-                <div>
-                  <Input
-                    id="invite-host-name"
-                    className="invite-field-input"
-                    value={hostDisplayName}
-                    onChange={(e) => setHostDisplayName(e.target.value)}
-                    disabled={busy}
-                    placeholder={t("invite.host_name_ph")}
-                    aria-label={t("invite.host_name")}
-                  />
-                </div>
-              </>
-            ) : null}
-            <fieldset
-              className="invite-participant-type"
-              aria-describedby="invite-participant-scope"
-              aria-invalid={inviteRelationshipRequiredError ? "true" : undefined}
-              disabled={busy}
-            >
-              <legend>{t("invite.participant.question")}</legend>
-              <div className="invite-participant-options">
-                {allowedRelationshipTypes.map((type) => (
-                  <OptionCard
-                    key={type}
-                    type="radio"
-                    name="inviteRelationshipType"
-                    value={type}
-                    checked={effectiveRelationshipType === type}
-                    onChange={(event) => {
-                      setError("");
-                      setMessage("");
-                      setRelationshipType(event.target.value);
-                      setTargetRole(null);
-                    }}
-                    disabled={busy}
-                    fitTextLines={2}
-                  >
-                    <span>
-                      {type === INVITE_RELATIONSHIP_CLIENT
-                        ? t("invite.participant.client")
-                        : t("invite.participant.professional")}
-                    </span>
-                  </OptionCard>
-                ))}
-              </div>
-              <p id="invite-participant-scope" className="invite-participant-scope">
-                {t("invite.participant.scope")}
-              </p>
-              {inviteRelationshipRequiredError ? (
-                <p role="alert" className="invite-participant-error">
-                  {error}
-                </p>
-              ) : null}
-            </fieldset>
-            <div>
-              <Input
-                id="invite-emails"
-                className="invite-field-input"
-                value={emails}
-                onChange={(e) => setEmails(e.target.value)}
-                placeholder={t("invite.classic.emails_ph")}
-                aria-label={t("invite.classic.emails")}
-                aria-invalid={inviteEmailsRequiredError ? "true" : undefined}
-                aria-describedby={inviteEmailsRequiredError ? "invite-emails-error" : undefined}
-                disabled={busy}
-              />
-              {inviteEmailsRequiredError ? (
-                <p id="invite-emails-error">
-                  {t("invite.error.emails_required")}
-                </p>
-              ) : null}
-            </div>
-            <div>
-              <OptionCard
-                type="checkbox"
-                name="sponsoredInvite"
-                value="SPONSORED_BY_HOST"
-                checked={sponsoredSelected}
-                onChange={(e) => {
-                  if (e.target.checked) {
-                    startSponsoredFlow();
-                    return;
-                  }
-                  setError("");
-                  setMessage("");
-                  setPaymentMode("SELF_PAID");
-                }}
-                disabled={busy}
-                fitTextLines={3}
-              >
-                <span>
-                  {t("invite.pay.host")}
-                </span>
-              </OptionCard>
+  const signedIn = Boolean(session?.user?.id);
+  const relationshipOptions = allowedRelationshipTypes.map((type) => ({ value: type, label: t(relationshipLabelKey(type)) }));
+  const goAfter = (key) => {
+    const next = viewKeys[viewKeys.indexOf(key) + 1];
+    if (next) setView(next);
+  };
+  const errorOf = (key) => (problem?.view === key ? problem.text : "");
+  const missingText = t("invite.views.send.missing");
+  const facts = [
+    {
+      key: "who",
+      label: t("invite.views.send.fact_who"),
+      value: effectiveRelationshipType ? t(relationshipLabelKey(effectiveRelationshipType)) : missingText,
+      missing: !effectiveRelationshipType
+    },
+    {
+      key: "emails",
+      label: t("invite.views.send.fact_emails"),
+      value: emailsParsed.length ? emailsParsed.join(", ") : missingText,
+      missing: !emailsParsed.length
+    },
+    ...(roomId
+      ? []
+      : [
+          {
+            key: "room",
+            label: t("invite.views.send.fact_room"),
+            value: roomTitle.trim() || missingText,
+            missing: !roomTitle.trim()
+          }
+        ]),
+    {
+      key: "payer",
+      label: t("invite.views.send.fact_payer"),
+      value: t(sponsoredSelected ? "invite.payer.host" : "invite.payer.self"),
+      missing: false
+    }
+  ];
+  const states = inviteViewStates({
+    roomTitle,
+    hostName: hostDisplayName,
+    relationshipType: effectiveRelationshipType,
+    emails: emailsParsed,
+    inviteCount: invites.length
+  });
+  const summaries = {
+    room: roomTitle.trim(),
+    who: effectiveRelationshipType ? t(relationshipLabelKey(effectiveRelationshipType)) : "",
+    emails: emailsParsed.join(", "),
+    send: t(sponsoredSelected ? "invite.payer.host" : "invite.payer.self")
+  };
+  const steps = viewKeys.map((key) => ({
+    key,
+    label: t(`invite.views.${key}.title`),
+    short: t(`invite.views.${key}.short`),
+    state: states[key],
+    summary: summaries[key] || undefined,
+    /* Kutsete loend võib olla pikk: selle järgi teiste vaadete kõrgust ei võeta. */
+    free: key === "sent"
+  }));
 
-              {sponsoredSelected ? (
-                <div id="invite-sponsored-panel">
-                  <div>
-                    <div>
-                      {sponsoredRoleOptions.map((option) => (
-                        <OptionCard
-                          key={option.value}
-                          type="radio"
-                          name="targetRole"
-                          value={option.value}
-                          checked={effectiveTargetRole === option.value}
-                          onChange={(e) => setTargetRole(e.target.value)}
-                          disabled={busy}
-                          fitTextLines={2}
-                        >
-                          <span>
-                            {option.label}
-                          </span>
-                        </OptionCard>
-                      ))}
-                    </div>
-                    <div>
-                      <p>
-                        {t("invite.sponsored.checkout.title")}
-                      </p>
-                      <div>
-                        <Checkbox
-                          id="invite-sponsored-consent"
-                          name="inviteSponsoredConsent"
-                          checked={sponsoredCheckoutAgreed}
-                          disabled={busy}
-                          onChange={(next) => setSponsoredCheckoutAgreed(next)}
-                          label={
-                            <RichText
-                              as="span"
-                              value={t("invite.sponsored.checkout.agreement")}
-                              replacements={inviteCheckoutAgreementReplacements}
-                            />
-                          }
-                        />
-                      </div>
-                      <div>
-                        <Button
-                          type="submit"
-                          disabled={sponsoredCheckoutDisabled || busy || !effectiveTargetRole || !sponsoredCheckoutAgreed}
-                        >
-                          {busy
-                            ? t("invite.sending")
-                            : t("invite.sponsored.confirm_and_pay")}
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ) : null}
-            </div>
-
-            {((error && !inviteEmailsRequiredError && !inviteRelationshipRequiredError) || message || !sponsoredSelected) ? (
-              <div>
-                {error && !inviteEmailsRequiredError && !inviteRelationshipRequiredError ? (
-                  <p role="alert">
-                    {error}
-                  </p>
-                ) : null}
-                {message ? (
-                  <p role="status">
-                    {message}
-                  </p>
-                ) : null}
-                {!sponsoredSelected ? (
+  /* `flight` on olemas ainult sammulaval. Seal on kõik vaated korraga
+     monteeritud, seepärast kannab põhinupu läiget ainult ees olev vaade. */
+  const renderView = (key, flight = null) => {
+    const glow = flight ? flight.isActive !== false : true;
+    switch (key) {
+      case "room":
+        return (
+          <RoomView
+            t={t}
+            roomTitle={roomTitle}
+            onRoomTitle={(value) => {
+              clearProblem("room");
+              setRoomTitle(value);
+            }}
+            hostName={hostDisplayName}
+            onHostName={(value) => {
+              clearProblem("room");
+              setHostDisplayName(value);
+            }}
+            error={errorOf("room")}
+            onEnter={() => goAfter("room")}
+          />
+        );
+      case "who":
+        return (
+          <WhoView
+            t={t}
+            options={relationshipOptions}
+            value={effectiveRelationshipType}
+            onChange={(value) => {
+              clearProblem("who");
+              setRelationshipType(value);
+              setTargetRole(null);
+            }}
+            error={errorOf("who")}
+          />
+        );
+      case "emails":
+        return (
+          <EmailsView
+            t={t}
+            value={emails}
+            onChange={(value) => {
+              clearProblem("emails");
+              setEmails(value);
+            }}
+            error={errorOf("emails")}
+            onEnter={() => goAfter("emails")}
+          />
+        );
+      case "sent":
+        return (
+          <SentView
+            t={t}
+            listRef={sentListRef}
+            loading={loadingList}
+            emptyText={t(roomId ? "invite.empty" : "invite.views.sent.empty_no_room")}
+            error={errorOf("sent") || listError}
+            onRefresh={loadInvites}
+            rows={inviteRows(invites, { t }).map((row) => ({
+              ...row,
+              busy: Boolean(actionId),
+              onResend: () => action(row.id, "resend"),
+              onRevoke: () => action(row.id, "revoke")
+            }))}
+          />
+        );
+      default:
+        return (
+          <SendView
+            t={t}
+            facts={facts}
+            error={errorOf("send")}
+            pay={{
+              host: sponsoredSelected,
+              closed: sponsoredCheckoutDisabled,
+              closedText: t("invite.error.checkout_temporarily_disabled"),
+              busy,
+              onChoose: startSponsoredFlow,
+              roles:
+                roleOptions.length > 1
+                  ? {
+                      options: roleOptions,
+                      value: effectiveTargetRole,
+                      onChange: (value) => {
+                        clearProblem("send");
+                        setTargetRole(value);
+                      }
+                    }
+                  : null,
+              roleLine: roleOptions.length === 1 ? t("invite.views.send.role_single", { role: roleOptions[0].label }) : "",
+              agreed: sponsoredCheckoutAgreed,
+              onAgree: (next) => {
+                clearProblem("send");
+                setSponsoredCheckoutAgreed(next);
+              },
+              agreementLinks: inviteCheckoutAgreementReplacements
+            }}
+            actions={
+              sponsoredSelected ? (
+                <>
                   <Button
-                    type="submit"
-                    disabled={busy}
+                    type="button"
+                    size="sm"
+                    variant="secondary"
+                    onClick={() => {
+                      setProblem(null);
+                      setPaymentMode(PAYMENT_SELF);
+                    }}
                   >
-                    {busy ? t("invite.sending") : sendLabel}
+                    {t("invite.pay.back_to_self")}
                   </Button>
-                ) : null}
-              </div>
-            ) : null}
-          </Form>
-        )}
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant="primary"
+                    glow={glow}
+                    disabled={sponsoredCheckoutDisabled || busy || !effectiveTargetRole || !sponsoredCheckoutAgreed}
+                    onClick={submit}
+                  >
+                    {busy ? t("invite.sending") : t("invite.sponsored.confirm_and_pay")}
+                  </Button>
+                </>
+              ) : (
+                <Button type="button" size="sm" variant="primary" glow={glow} disabled={busy} onClick={submit}>
+                  {busy ? t("invite.sending") : sentenceCase(t("invite.send"), locale)}
+                </Button>
+              )
+            }
+          />
+        );
+    }
+  };
 
-        <div>
-          <div>
-            <span>
-              {t("invite.list")}
-            </span>
-            <Button
-              type="button"
-              onClick={loadInvites}
-              disabled={loadingList}
-            >
-              {loadingList ? t("invite.loading") : t("invite.refresh")}
-            </Button>
-          </div>
-          {invites.length === 0 ? (
-            <p>
-              {t("invite.empty")}
-            </p>
-          ) : (
-            <div>
-              <div>
-                <span>{t("invite.table.email")}</span>
-                <span>{t("invite.table.payer")}</span>
-                <span>{t("invite.table.status")}</span>
-                <span></span>
-              </div>
-              {invites.map((inv) => (
-                <div key={inv.id}>
-                  <div>
-                    <span>{inv.inviteeEmail}</span>
-                  </div>
-                  <div>
-                    <span>
-                      {inv.paymentMode === "SPONSORED_BY_HOST"
-                        ? t("invite.payer.host")
-                        : t("invite.payer.self")}
-                    </span>
-                  </div>
-                  <div>
-                    <span>{formatStatus(inv)}</span>
-                  </div>
-                  <span>
-                    {inv.status === "SENT" ? (
-                      <>
-                        <Button
-                          type="button"
-                          onClick={() => action(inv.id, "resend")}
-                        >
-                          {t("invite.resend")}
-                        </Button>
-                        <Button
-                          type="button"
-                          onClick={() => action(inv.id, "revoke")}
-                        >
-                          {t("buttons.cancel")}
-                        </Button>
-                      </>
-                    ) : null}
-                  </span>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
-  );
+  const header = !hideHeader ? (
+    <>
+      {/* Modaalis (portaal, väljaspool paneeli) on see ainus tagasitee —
+          legacy BackButton asemel klaasikeele ikoonnupp brand-noolega. */}
+      <IconButton
+        aria-label={t("buttons.back")}
+        layoutClassName="invite-modal-back"
+        onClick={handleClose}
+      >
+        <BackArrowIcon />
+      </IconButton>
+      <SubpageHeader
+        showBack={false}
+        titleAs="h2"
+        /* Töölaua sees on lehe nimi kiirmenüüs: pealkiri jääb ekraanilugejale.
+           Modaalis kiirmenüüd ei ole ja pealkiri ütleb, mis aken lahti on. */
+        headerClassName={embedded ? "sr-only" : undefined}
+        rightSlot={
+          <DashboardInfoTrigger
+            infoId="invites"
+            title={inviteHeaderTitle}
+          />
+        }
+      >
+        {inviteHeaderTitle}
+      </SubpageHeader>
+    </>
+  ) : null;
 
   if (embedded) {
     return (
-      <div>
-        {content}
-      </div>
+      <>
+        {/* Päis seisab lehe ümbrisest väljas: ümbris on konteiner ja võtaks
+            päise ⓘ-nupu paigutuse enda külge. */}
+        {header}
+        <div className={styles.page}>
+          {signedIn ? (
+            <>
+              <InviteNotice notice={notice} />
+              {/* Vaadete loend muutub, kui ruum on loodud (ruumi vaadet enam ei
+                  ole): siis ehitatakse lava uuesti ja see avaneb vaatel, kuhu
+                  inimene läks. */}
+              <StepFlight
+                key={viewKeys.join("|")}
+                label={inviteHeaderTitle}
+                steps={steps}
+                initialIndex={Math.max(0, viewKeys.indexOf(activeView))}
+                activeKey={activeView}
+                onStepChange={(index, step) => {
+                  if (step) setView(step.key);
+                }}
+              >
+                {(step, index, flight) => renderView(step.key, flight)}
+              </StepFlight>
+            </>
+          ) : (
+            <SignedOutView t={t} title={inviteHeaderTitle} />
+          )}
+        </div>
+      </>
     );
   }
 
@@ -794,7 +754,26 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
       className="invite-modal-overlay"
       contentClassName="invite-modal-card"
     >
-      {content.props.children}
+      {header}
+      <div className={styles.dialog}>
+        {signedIn ? (
+          <>
+            <InviteNotice notice={notice} />
+            {/* Modaali ajal on kiirmenüü kättesaamatu: vaateid vahetab see rida. */}
+            <ChoiceRow
+              label={t("invite.views.switch_label")}
+              labelHidden
+              columns={viewKeys.length}
+              options={viewKeys.map((key) => ({ value: key, label: t(`invite.views.${key}.short`) }))}
+              value={activeView}
+              onChange={setView}
+            />
+            <div className={styles.dialogView}>{renderView(activeView)}</div>
+          </>
+        ) : (
+          <SignedOutView t={t} title={inviteHeaderTitle} />
+        )}
+      </div>
     </Modal>
   );
 }

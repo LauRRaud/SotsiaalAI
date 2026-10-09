@@ -419,49 +419,6 @@ html[data-reduce-transparency="1"] .feature-page__surface {
   background: color-mix(in srgb, var(--text-warm) 5%, transparent);
 }
 
-/* Materjalid */
-.feature-page--materials {
-  --feature-content-max: 58rem;
-  display: grid;
-  gap: var(--feature-gap);
-}
-
-.materials-submit-section,
-.materials-library-section {
-  margin-block-start: var(--feature-gap);
-}
-
-.materials-submit-section .feature-form > button:first-of-type {
-  min-height: 6rem;
-  border-style: dashed;
-  border-radius: 1rem;
-}
-
-.materials-item {
-  min-width: 0;
-  display: grid;
-  grid-template-columns: minmax(0, 1.4fr) auto;
-  gap: 0.45rem 0.8rem;
-  align-items: center;
-  padding: 0.85rem;
-  border: 1px solid color-mix(in srgb, var(--text-warm) 11%, transparent);
-  border-radius: 0.85rem;
-  background: color-mix(in srgb, var(--surface-deep, #141414) 34%, transparent);
-}
-
-.materials-item > span:nth-of-type(2) {
-  grid-column: 1 / -1;
-  display: grid;
-  gap: 0.2rem;
-  color: var(--text-dim);
-  font-size: var(--fs-micro, 0.78rem);
-}
-
-.materials-item > a,
-.materials-item > button {
-  justify-self: start;
-}
-
 /* Pöördumised ja teenuseprofiil */
 .feature-page--workspace {
   --feature-content-max: 70rem;
@@ -510,38 +467,6 @@ html[data-reduce-transparency="1"] .feature-page__surface {
   display: flex;
   flex-direction: column;
   gap: var(--feature-gap);
-}
-
-.help-listings-body,
-.help-listings-panel,
-.help-listings-scroll,
-.help-listings-scroll > div {
-  min-height: 0;
-}
-
-.help-listings-scroll > div {
-  display: grid;
-  gap: 0.7rem;
-}
-
-.help-listings-item-card {
-  width: 100%;
-  min-height: var(--hit-target-min, 2.75rem);
-  display: grid;
-  gap: 0.55rem;
-  padding: 0.9rem 1rem;
-  border: 1px solid var(--glass-cell-border);
-  border-radius: 0.85rem;
-  color: var(--text-warm);
-  background: var(--glass-cell-bg);
-  text-align: start;
-  cursor: pointer;
-}
-
-.help-listings-item-card:hover,
-.help-listings-item-card:focus-visible {
-  background: var(--glass-cell-bg-hover);
-  border-color: color-mix(in srgb, var(--text-warm) 34%, transparent);
 }
 
 /* Halduse avaleht on valikupaneel, mitte täislai admin-töölaud. Admini
@@ -1117,13 +1042,8 @@ html[data-reduce-transparency="1"] .feature-page__surface {
 }
 
 @container feature-page (max-width: 42rem) {
-  .agent-mode-workspace > div,
-  .materials-item {
+  .agent-mode-workspace > div {
     grid-template-columns: minmax(0, 1fr);
-  }
-
-  .materials-item > span:nth-of-type(2) {
-    grid-column: 1;
   }
 
   .agent-mode-workspace > div > section:has(.chat-window),
@@ -1161,11 +1081,6 @@ html[data-reduce-transparency="1"] .feature-page__surface {
   .wellbeing-workflow :where(section > div:has(> button)) > * {
     flex: 1 1 100%;
     justify-content: center;
-  }
-
-  .materials-item > a,
-  .materials-item > button {
-    justify-self: stretch;
   }
 }
 

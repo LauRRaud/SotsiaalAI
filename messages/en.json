@@ -2207,7 +2207,6 @@
   "materials_page": {
     "title": "Materials",
     "choose_file": "Choose file",
-    "files_selected": "{count} files selected",
     "comment_placeholder": "Add a short description: what this file is and why it could be useful.",
     "comment_placeholder_multiple": "Add a short note for each file (for example: filename + why it is useful).",
     "submit": "Send material",
@@ -2216,20 +2215,25 @@
     "retention": {
       "until": "Retention deadline: {date}",
       "decision_pending": "Retention deadline: decision pending",
-      "layer_until": "{layer}: until {date}",
-      "layer_state": "{layer}: {state}",
       "layers": {
         "original": "Original file",
         "derivative": "Sanitized derivative",
         "rag": "RAG copy"
+      },
+      "until_date": "until {date}",
+      "state": {
+        "scheduled": "kept",
+        "not_present": "not created",
+        "deleted": "deleted",
+        "unknown": "status unknown"
       }
     },
     "mine": {
-      "title": "My submitted materials",
       "loading": "Loading your materials...",
       "empty": "You have not submitted any materials yet.",
       "withdraw": "Withdraw",
-      "load_more": "Show more"
+      "load_more": "Show more",
+      "withdrawn": "The material was withdrawn."
     },
     "errors": {
       "load_failed": "Failed to load materials.",
@@ -2246,7 +2250,9 @@
       "delete_failed": "Failed to delete material.",
       "file_count_exceeded": "You can send at most 10 files per request.",
       "daily_upload_quota_exceeded": "Daily upload limit reached. Please try again tomorrow.",
-      "storage_quota_exceeded": "Storage quota reached. Delete some files and try again."
+      "storage_quota_exceeded": "Storage quota reached. Delete some files and try again.",
+      "withdraw_not_allowed": "A material in this status cannot be withdrawn.",
+      "delete_pending": "Removing the material was not completed. Try again in a while."
     },
     "admin": {
       "title": "Submitted materials",
@@ -2263,15 +2269,12 @@
       "sanitized_preview": "Sanitized preview",
       "rag_author_prompt": "Author",
       "rag_rights_holder_prompt": "Rights holder",
-      "rag_rights_basis_prompt": "Rights basis: PUBLIC_DOMAIN, OPEN_LICENSE or DOCUMENTED_PERMISSION",
       "rag_rights_evidence_prompt": "Documented evidence reference",
       "rag_classification_confirm": "I confirm that the material contains no client case, confidential information or personal data.",
       "mark_reviewed": "Mark reviewed",
       "mark_imported": "Mark imported",
       "import_requires_policy": "Import becomes available after the rights, audience, and removal rules are approved.",
-      "notification_status": "Admin notification: {status} ({attempts} attempts)",
       "reject": "Reject",
-      "review_note_prompt": "Review note (optional):",
       "status": {
         "pending": "Pending",
         "reviewed": "Reviewed",
@@ -2279,8 +2282,75 @@
         "imported": "Imported"
       },
       "delete": "Delete",
-      "delete_confirm": "Delete this material?"
-    }
+      "empty_filtered": "No materials with this status.",
+      "submitter": "Sender",
+      "review_fact": "Review",
+      "note_label": "Review note (optional)",
+      "reject_confirm": "Press again to reject",
+      "delete_again": "Press again to delete",
+      "deleted": "The material was deleted.",
+      "notification_label": "Admin notification",
+      "notification_attempts": "{status}, {attempts} attempts",
+      "notification": {
+        "pending": "pending",
+        "sending": "sending",
+        "retry": "will be retried",
+        "sent": "sent",
+        "failed": "failed",
+        "unknown": "status unknown"
+      },
+      "error_code": "error code {code}",
+      "rights": {
+        "lead": "To import, confirm who holds the rights to the material and on what basis it may be used.",
+        "basis_label": "Rights basis",
+        "basis": {
+          "public_domain": "Public domain",
+          "open_license": "Open licence",
+          "documented_permission": "Documented permission"
+        },
+        "submit": "Confirm and mark imported"
+      }
+    },
+    "views": {
+      "list": {
+        "title": "My submitted materials",
+        "short": "My materials"
+      },
+      "send": {
+        "title": "Sending a material",
+        "short": "Sending",
+        "lead": "Send a learning material or document that could add to the platform's knowledge base. The material is reviewed before it is added.",
+        "pick_again": "Choose other files",
+        "file_help": "Allowed files: PDF, DOCX and TXT. Up to {count} files at a time, each up to {size} MB.",
+        "none_selected": "No file selected.",
+        "clear": "Clear selection",
+        "comment_label": "Note"
+      },
+      "item": {
+        "title": "Submitted material",
+        "short": "Material",
+        "sent_at": "Sent",
+        "size": "Size",
+        "withdraw_confirm": "Press again to withdraw",
+        "withdraw_note": "A withdrawal cannot be undone."
+      },
+      "review": {
+        "title": "Submitted materials",
+        "short": "Submitted"
+      },
+      "submission": {
+        "title": "Material under review",
+        "short": "Review"
+      },
+      "rights": {
+        "title": "Rights and import",
+        "short": "Import"
+      },
+      "open": "Open",
+      "back_to_list": "Back to the list",
+      "cancel": "Cancel"
+    },
+    "status_unknown": "Status unknown"
   },
   "accessibility": {
     "dock": {
@@ -4062,7 +4132,10 @@
       "statusClosed": "This listing is closed.",
       "noOwnOptions": "You do not have a suitable open opposite listing.",
       "targetGroupsHint": "For example young person, older person, adult, or all age groups",
-      "aiPromptPrefix": "Help me understand and respond to this listing:"
+      "aiPromptPrefix": "Help me understand and respond to this listing:",
+      "otherRequests": "Other people's requests",
+      "otherOffers": "Other people's offers",
+      "openShort": "Open"
     },
     "sources": {
       "dialog_label": "Conversation sources",
@@ -5746,7 +5819,10 @@
       "scope": "The participant will only get access to this collaboration room. The invitation does not grant access to your other rooms, private conversations, documents or Journey."
     },
     "pay": {
-      "host": "I'll pay for them"
+      "host": "I'll pay for them",
+      "confirm": "Press again to pay for them",
+      "back_to_self": "Invitee pays themselves",
+      "note": "You buy the invitee one month of access. The payment goes through Maksekeskus."
     },
     "sponsored": {
       "confirm_and_pay": "Start payment",
@@ -5769,15 +5845,9 @@
     },
     "sending": "Sending...",
     "send": "SEND INVITE",
-    "list": "Invites",
     "loading": "Loading...",
     "refresh": "Refresh",
     "empty": "No invites yet",
-    "table": {
-      "email": "Email",
-      "payer": "Payer",
-      "status": "Status"
-    },
     "payer": {
       "host": "I'll pay for them",
       "self": "Invitee activates their own subscription"
@@ -5793,7 +5863,13 @@
     "error_generic": "Error.",
     "status": {
       "accepted_self": "Joined (own plan)",
-      "accepted_sponsored": "Joined (sponsored)"
+      "accepted_sponsored": "Joined (sponsored)",
+      "sent": "Sent",
+      "pending_payment": "Awaiting payment",
+      "accepted": "Joined",
+      "expired": "Expired",
+      "revoked": "Revoked",
+      "unknown": "Status unknown"
     },
     "error": {
       "rate_limited": "Too many requests. Please try again later.",
@@ -5807,7 +5883,44 @@
       "sponsor_capacity_full": "Sponsored seats limit is full.",
       "checkout_temporarily_disabled": "Payments are temporarily disabled right now.",
       "checkout_terms_required": "Please agree to the terms before starting sponsored payment."
-    }
+    },
+    "views": {
+      "room": {
+        "title": "Room and your name",
+        "short": "Room"
+      },
+      "who": {
+        "title": "Participant",
+        "short": "Participant"
+      },
+      "emails": {
+        "title": "Email address",
+        "short": "Email",
+        "question": "Which address should the invitation go to?",
+        "hint": "Separate several addresses with commas. If you pay for the invitee yourself, you can invite one person at a time."
+      },
+      "send": {
+        "title": "Payment and sending",
+        "short": "Sending",
+        "fact_who": "Invitee",
+        "fact_emails": "Email",
+        "fact_room": "Room",
+        "fact_payer": "Pays",
+        "missing": "missing",
+        "role_question": "Which access are you buying for the invitee?",
+        "role_single": "You are buying: {role}"
+      },
+      "sent": {
+        "title": "Sent invitations",
+        "short": "Invitations",
+        "empty_no_room": "Invitations appear here after you send the first one."
+      },
+      "switch_label": "Parts of the invitation"
+    },
+    "confirm_cancel": "Cancel",
+    "revoke": "Revoke invitation",
+    "revoke_confirm": "Press again to revoke",
+    "revoked": "The invitation was revoked."
   },
   "email": {
     "account": {

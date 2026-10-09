@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import DocumentsPage from "@/components/documents/DocumentsPage";
@@ -180,8 +180,10 @@ function dispatchWorkspaceEvent(eventName, detail = {}) {
 /* Töölaua sees avanevad lehed, mis on ümber tehtud nii, et lehe nimi on all
    kiirmenüüs. Otseteel (/documents, /eelpoordumised) neil nähtavat pealkirja ei
    ole; siin, kaardilt avatuna, joonistas töölaud selle paneelile tagasi. Kui
-   mõni teine töölaua leht ümber tehakse, lisa see siia. */
-const EMBEDDED_TITLE_IN_DOCK = new Set(["documents", "pre_inquiries", "service_profile"]);
+   mõni teine töölaua leht ümber tehakse, lisa see siia. Abisoovide ja
+   abipakkumiste loend ei ole töölaua enda leht, vaid tuleb vestluselt
+   (`embeddedPanelNode`): selle võti on paneeli kirjelduses (`embeddedPanelMeta.infoId`). */
+const EMBEDDED_TITLE_IN_DOCK = new Set(["documents", "pre_inquiries", "service_profile", "invite", "materials", "help_requests", "help_offers"]);
 
 export default function WorkspacePanel({
   t,
@@ -199,6 +201,7 @@ export default function WorkspacePanel({
   visible = true
 }) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const panelRef = useRef(null);
   const cardActivationGuardRef = useRef({ key: "", ts: 0 });
   const preferenceRequestRef = useRef(0);
@@ -555,6 +558,12 @@ export default function WorkspacePanel({
     : "chat-workspace-title";
   const embeddedPanelTitle = embeddedPanelMeta?.title || "";
   const embeddedPanelInfoId = embeddedPanelMeta?.infoId || "workspace";
+  /* Kuulutuste loendi nimi on kiirmenüüs ainult siis, kui aadress seda lehte
+     nimetab (otselink `?workspace=help_requests`). Vana töölaua kaardilt
+     avatuna aadress ei muutu ja kiirmenüü loendit ei nimeta: siis jääb
+     pealkiri paneelile, muidu ei ütleks lehe nime miski. */
+  const embeddedPanelTitleInDock =
+    EMBEDDED_TITLE_IN_DOCK.has(embeddedPanelMeta?.infoId) && searchParams?.get("workspace") === embeddedPanelMeta?.infoId;
 
   /* Paneeli ainsale ⓘ-le (PanelFrame, × kõrval) õige sisu: avatud kuulutuste-
      paneel või manustatud moodul. Paljas Töölaud EI registreeri — siis kehtib
@@ -609,6 +618,9 @@ export default function WorkspacePanel({
             anchorBack={false}
             holdPressedVisualDisabled
             titleId={activeTitleId}
+            /* Abisoovide ja abipakkumiste nimi on kiirmenüüs nagu teistel ümber
+               tehtud lehtedel (vt EMBEDDED_TITLE_IN_DOCK). */
+            headerClassName={embeddedPanelTitleInDock ? "sr-only" : undefined}
             /* ⓘ elab paneeli nurgas × kõrval (PanelFrame); sisu antakse
                usePanelInfoSlot'iga ülalpool. */
           >
