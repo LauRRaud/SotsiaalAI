@@ -11098,6 +11098,15 @@
       "item_blocked": "ootab ligipääsu",
       "blocked_hint": "Sul ei ole praegu selle kliendi päevikule ligipääsu. Ava kliendi leht (asendajana vali põhjus) või räägi hooldusjuhiga. Kirje jääb seadmesse alles ja saadetakse, kui ligipääs taastub.",
       "retry": "Proovi uuesti saata"
+    },
+    "dictation": {
+      "start": "Dikteeri",
+      "stop": "Lõpeta ja lisa tekst",
+      "discard": "Katkesta, ära lisa",
+      "listening": "Kuulan. Kui oled lõpetanud, vajuta „Lõpeta ja lisa tekst”.",
+      "transcribing": "Muudan kõne tekstiks…",
+      "hint": "Kõne muudetakse tekstiks platvormi kõnetuvastuses ja lisatakse välja lõppu; helisalvestist ei hoita. Loe tekst enne salvestamist üle.",
+      "cut": "Kirje pikkuse piir ({limit} märki) sai täis ja dikteeritud teksti lõpp jäi välja. Salvesta see kirje ja jätka uues."
     }
   }
 }

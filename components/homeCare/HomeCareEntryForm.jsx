@@ -15,8 +15,10 @@ import {
   CareEntryKind,
   HOME_CARE_LIMITS
 } from "@/lib/homeCare/constants";
+import { appendDictatedText } from "@/lib/homeCare/dictation";
 import { OUTBOX_LIMIT, isDraftWorthKeeping, isUnreachable } from "@/lib/homeCare/outbox";
 
+import HomeCareDictation from "./HomeCareDictation";
 import {
   formatDateTime,
   fromZonedInputValue,
@@ -63,6 +65,9 @@ const DRAFT_TIME_HINT_MS = 10 * 60 * 1000;
  * salvestuskatse võtit, et pärast taastamist muutmata kujul salvestatud kirje
  * oleks serverile kordus, mitte teine kirje.
  *
+ * DIKTEERIMINE lisab teksti välja lõppu (platvormi enda kõnetuvastus). Tekst
+ * ei salvestu enne, kui inimene on selle üle lugenud ja salvestamist vajutanud.
+ *
  * SALVESTAMISE AJAL ON VORM LUKUS (`inert`). Pärast päringut tühjendatakse
  * vorm; kui inimene saaks vahepeal edasi kirjutada, kaoks lisatud lause koos
  * tühjendamisega. Nõrga leviga võib päring kesta kümneid sekundeid, seepärast
@@ -101,6 +106,8 @@ export default function HomeCareEntryForm({
   const [reason, setReason] = useState("");
   const [saved, setSaved] = useState(false);
   const [queued, setQueued] = useState(false);
+  /* Dikteeritud tekst ei mahtunud kirje pikkuse piiri ja lõpp jäi välja. */
+  const [dictationCut, setDictationCut] = useState(false);
   /* `""` = ei ole taastatud; muidu mustandi kirjutamise aeg või `"-"`, kui see ei ole teada. */
   const [restored, setRestored] = useState("");
   /* Lukk kogu salvestamise ajaks, ka järjekorda panemise ajal (`busy` katab ainult päringu). */
@@ -142,8 +149,21 @@ export default function HomeCareEntryForm({
     touchedRef.current = true;
     setSaved(false);
     setQueued(false);
+    setDictationCut(false);
     if (error) setError("");
   };
+
+  /* Püsiv viide: kõnetuvastuse hook hoiab seda oma sõltuvustes. Välja praegune
+     tekst loetakse viitest (uuendatakse pärast iga joonistust): tuvastus jõuab
+     kohale sekundeid hiljem ja inimene võib vahepeal edasi kirjutada. */
+  const addDictated = useCallback((spoken) => {
+    const next = appendDictatedText(latestRef.current?.text ?? "", spoken, HOME_CARE_LIMITS.ENTRY_TEXT_MAX);
+    touchedRef.current = true;
+    setSaved(false);
+    setQueued(false);
+    setDictationCut(next.cut);
+    setText(next.text);
+  }, []);
 
   useEffect(() => {
     latestRef.current = { kind, contactMode, text, occurredLocal, companion, incidentType, assessment, actions };
@@ -238,6 +258,7 @@ export default function HomeCareEntryForm({
     attemptRef.current = null;
     touchedRef.current = false;
     setRestored("");
+    setDictationCut(false);
     device?.clearDraft(clientId);
     setKind(CareEntryKind.NOTE);
     setContactMode(CareContactMode.VISIT);
@@ -424,6 +445,15 @@ export default function HomeCareEntryForm({
         <p className="hc-hint" id={`${fieldId}-text-hint`}>
           {t("home_care.entry.write_what_you_saw")}
         </p>
+        <HomeCareDictation onText={addDictated} disabled={busy || sending} describedBy={`${fieldId}-dictation-hint`} />
+        <p className="hc-hint" id={`${fieldId}-dictation-hint`}>
+          {t("home_care.dictation.hint")}
+        </p>
+        {dictationCut ? (
+          <p className="hc-notice hc-notice--warn" role="status">
+            {t("home_care.dictation.cut", { limit: HOME_CARE_LIMITS.ENTRY_TEXT_MAX })}
+          </p>
+        ) : null}
       </div>
 
       {isIncident ? (
