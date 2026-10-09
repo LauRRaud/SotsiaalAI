@@ -3,6 +3,7 @@ import { unstable_noStore as noStore } from "next/cache";
 import HomeCareHome from "@/components/homeCare/HomeCareHome";
 import { listClientUnitOptions, listClients } from "@/lib/homeCare/clients";
 import { getMyDay } from "@/lib/homeCare/dayPlan";
+import { getReferralContacts } from "@/lib/homeCare/referralContacts";
 
 import { requireHomeCarePage } from "./_serverContext";
 
@@ -28,6 +29,8 @@ export default async function HomeCarePage({ params }) {
   const unitOptions = initial.isCoordinator ? await listClientUnitOptions(fullContext) : null;
   /* Hooldaja päevad (K3-a, K3-d): talle määratud tänased ja järgmise nädala käigud. */
   const myDay = await getMyDay(fullContext);
+  /* „Kuhu suunata" (K5-c): asutuse enda loend, käepärast igale koduteenuse liikmele. */
+  const referrals = await getReferralContacts(fullContext);
 
-  return <HomeCareHome context={auth.context} initial={initial} unitOptions={unitOptions} myDay={myDay} />;
+  return <HomeCareHome context={auth.context} initial={initial} unitOptions={unitOptions} myDay={myDay} referrals={referrals} />;
 }

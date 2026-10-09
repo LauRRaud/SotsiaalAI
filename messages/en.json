@@ -12745,7 +12745,11 @@
       "change_signal_handled": "This noticed change has already been answered.",
       "crisis_level_required": "Choose how much support the client needs in a crisis.",
       "crisis_dependency_invalid": "Unknown dependency.",
-      "crisis_not_found": "There is no assessment."
+      "crisis_not_found": "There is no assessment.",
+      "referrals_invalid": "The list is not understood.",
+      "referrals_too_many": "The list can hold up to {limit} rows.",
+      "referral_name_required": "A row has a phone or an explanation but no name.",
+      "referral_phone_invalid": "A phone number may hold digits, spaces, a plus, brackets and a hyphen."
     },
     "incidents": {
       "title": "Incident register",
@@ -13807,6 +13811,21 @@
         "weekly_hours": "Visits a week (hours)",
         "unset": "Not assessed"
       }
+    },
+    "referrals": {
+      "title": "Where to refer",
+      "none": "There is no list yet. Put here the places a care worker can refer a person to when the question is not the care worker's job.",
+      "emergency": "If the person is in danger, call 112.",
+      "add": "Make the list",
+      "edit": "Change the list",
+      "edit_hint": "Write the name of each place, the phone and when to turn to it. Check the numbers before saving: care workers have this list at hand on the phone. A row with an empty name is left out.",
+      "row": "Row {number}",
+      "name_label": "Name",
+      "phone_label": "Phone",
+      "note_label": "When to turn to it",
+      "add_row": "Add a row",
+      "save": "Save",
+      "cancel": "Cancel"
     }
   },
   "stage": {

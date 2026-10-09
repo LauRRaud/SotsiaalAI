@@ -89,6 +89,7 @@ import { markSupply, trackSupply, untrackSupply } from '../lib/homeCare/supplies
 import { saveDoorSteps } from '../lib/homeCare/doorSteps.js';
 import { handleChangeSignal, saveUsualState } from '../lib/homeCare/changes.js';
 import { clearCrisisProfile, getCrisisList, setCrisisProfile } from '../lib/homeCare/crisis.js';
+import { getReferralContacts, saveReferralContacts } from '../lib/homeCare/referralContacts.js';
 import { composeNoAnswerText } from '../lib/homeCare/noAnswerText.js';
 import { assertNotificationRecipient, serializeNotificationEvent } from '../lib/notifications.js';
 
@@ -1866,6 +1867,8 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
   await db.careChangeSignal.create({ data: { organizationId: f.orgA.id, clientId: client.id, area: 'MOOD', reason: 'MAJOR' } });
   /* Kriisivalmidus (K5-b), et väljavõttes oleks ka see kogu. */
   await setCrisisProfile(lead, client.id, { level: 'DAILY', dependencies: ['HEATING'] }, deps());
+  /* Loend „kuhu suunata" (K5-c), et väljavõttes oleks ka see kogu. */
+  await saveReferralContacts(lead, { contacts: [{ name: 'Valla sotsiaaltöötaja', phone: '5555 1234' }] }, deps());
   const obstacleOfAnu = await reportObstacle(anu, { kind: 'LATE_30' }, deps());
   await handleObstacle(lead, obstacleOfAnu.obstacle.id, {}, deps());
   /* Ühe päeva erand (K3-b): järgmise esmaspäeva käik jääb ära. */
@@ -1977,6 +1980,7 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
     usualStates: await db.careUsualState.count({ where: ofOrg }),
     changeSignals: await db.careChangeSignal.count({ where: ofOrg }),
     crisisProfiles: await db.careCrisisProfile.count({ where: ofOrg }),
+    referralContacts: await db.careReferralContact.count({ where: ofOrg }),
     auditEvents: await db.dataAuditLog.count({
       where: { action: { startsWith: 'org.home_care_' }, meta: { path: ['organizationId'], equals: f.orgA.id }, createdAt: { lt: (await exportRows())[0].createdAt } }
     })
@@ -4901,4 +4905,55 @@ test('kriisivalmidus: hinnang kliendi juures, õigused, nimekiri rühmade kaupa 
   const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_crisis_changed', meta: { path: ['organizationId'], equals: f.orgA.id } } });
   assert.deepEqual(audit.map((entry) => entry.meta.change).sort(), ['cleared', 'set', 'set', 'set', 'set']);
   for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['change', 'clientId', 'organizationId']);
+});
+
+test('„kuhu suunata": asutuse loend, kes loeb ja kes muudab, versioonid ja andmebaasi reeglid', async (t) => {
+  const f = await fixture(t);
+  const north = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Põhi ${f.tag}`, type: 'TEAM' } });
+  await db.organizationCapabilityGrant.create({
+    data: { membershipId: f.members.cover.id, capability: 'HOME_CARE_COORDINATOR', scopeType: 'UNIT', scopeUnitId: north.id, validFrom: at('2026-01-01T00:00:00Z') }
+  });
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const unitLead = await f.ctx(f.users.cover, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+
+  /* Algus: loendit ei ole; muuta tohib ainult kogu asutuse hooldusjuht. */
+  assert.deepEqual(await getReferralContacts(anu, deps()), { referrals: [], canEditReferrals: false });
+  assert.equal((await getReferralContacts(lead, deps())).canEditReferrals, true);
+  assert.equal((await getReferralContacts(unitLead, deps())).canEditReferrals, false);
+  const input = { contacts: [{ name: 'Valla sotsiaaltöötaja', phone: '5555 1234', note: 'tööpäeviti 8–16' }, { name: '' }, { name: 'Perearstikeskus', phone: '+372 473 0000' }] };
+  await expectError(saveReferralContacts(anu, input, deps()), 403, 'org.errors.missing_capability');
+  await expectError(saveReferralContacts(unitLead, input, deps()), 403, 'org.errors.missing_capability');
+  await expectError(saveReferralContacts(lead, { contacts: [{ phone: '112' }] }, deps()), 400, 'home_care.errors.referral_name_required');
+
+  const saved = await saveReferralContacts(lead, input, deps());
+  assert.deepEqual(saved.referrals.map((row) => [row.position, row.name, row.phone, row.note]), [
+    [1, 'Valla sotsiaaltöötaja', '5555 1234', 'tööpäeviti 8–16'],
+    [2, 'Perearstikeskus', '+372 473 0000', null]
+  ]);
+  /* Hooldaja loeb sama loendit; teine asutus ei näe seda. */
+  assert.deepEqual((await getReferralContacts(anu, deps())).referrals.map((row) => row.name), ['Valla sotsiaaltöötaja', 'Perearstikeskus']);
+  assert.deepEqual((await getReferralContacts(leadB, deps())).referrals, []);
+  /* Muutmata loend ei tee midagi; muudetud loend lõpetab eelmise read. */
+  const again = await saveReferralContacts(lead, input, deps());
+  assert.deepEqual(again.referrals.map((row) => row.id), saved.referrals.map((row) => row.id));
+  const changed = await saveReferralContacts(lead, { contacts: [{ name: 'Perearstikeskus', phone: '+372 473 0000' }] }, deps(at('2026-10-09T08:05:00Z')));
+  assert.deepEqual(changed.referrals.map((row) => [row.position, row.name]), [[1, 'Perearstikeskus']]);
+  assert.deepEqual([await db.careReferralContact.count({ where: { organizationId: f.orgA.id } }), await db.careReferralContact.count({ where: { organizationId: f.orgA.id, endedAt: null } })], [3, 1]);
+  const cleared = await saveReferralContacts(lead, { contacts: [] }, deps(at('2026-10-09T08:06:00Z')));
+  assert.deepEqual(cleared.referrals, []);
+
+  /* ANDMEBAAS hoiab reeglid ka ilma teenuseta. */
+  const raw = (data) => db.careReferralContact.create({ data: { organizationId: f.orgA.id, position: 1, name: 'Koht', ...data } });
+  await assert.rejects(raw({ position: 21 }), /CareReferralContact_position_check/);
+  await assert.rejects(raw({ name: '   ' }), /CareReferralContact_text_check/);
+  await assert.rejects(raw({ phone: '1' }), /CareReferralContact_text_check/);
+  await raw({});
+  await assert.rejects(raw({}), /CareReferralContact_active_key|Unique constraint/);
+
+  /* AUDIT: ainult asutuse ID ja muutuse liik (nimesid ega numbreid seal ei ole). */
+  const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_referrals_changed', meta: { path: ['organizationId'], equals: f.orgA.id } } });
+  assert.deepEqual(audit.map((entry) => entry.meta.change).sort(), ['cleared', 'saved', 'saved']);
+  for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['change', 'organizationId']);
 });

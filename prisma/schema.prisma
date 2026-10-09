@@ -5605,6 +5605,7 @@ model Organization {
   careClients            CareClient[]
   careClientEntries      CareClientEntry[]
   careActivities         CareActivity[]
+  careReferralContacts   CareReferralContact[]
 
   @@unique([createdByUserId, creationClientActionId], name: "Organization_creation_action_unique")
   @@index([status])
@@ -8603,6 +8604,31 @@ model CareCrisisProfile {
 
   @@index([organizationId, endedAt])
   @@index([clientId, createdAt])
+}
+
+/// KODUTEENUS K5-c — „KUHU SUUNATA" (kava II.3.7 punkt 5): asutuse enda loend kohtadest,
+/// kuhu hooldaja saab inimese suunata. Numbrid ja ajad muutuvad, seepärast ei ole need
+/// koodis. Kehtivas loendis on igal kohal üks rida (osaline unikaalne indeks migratsioonis);
+/// uus loend lõpetab eelmise read.
+model CareReferralContact {
+  id             String  @id @default(cuid())
+  organizationId String
+  /// Järjekord 1 kuni 20.
+  position       Int
+  name           String
+  phone          String?
+  /// Millal sinna pöörduda või millal vastatakse.
+  note           String?
+
+  createdByMembershipId String?
+  createdByName         String?
+  createdAt             DateTime  @default(now())
+  endedAt               DateTime?
+  endedByMembershipId   String?
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId, endedAt, position])
 }
 
 model CareClientSupply {
