@@ -86,6 +86,8 @@ import { addPrecondition, closePrecondition } from '../lib/homeCare/precondition
 import { addKey, closeKey, getKeyRegister, handOverKey } from '../lib/homeCare/keys.js';
 import { addMoneyEntry, retractMoneyEntry } from '../lib/homeCare/money.js';
 import { markSupply, trackSupply, untrackSupply } from '../lib/homeCare/supplies.js';
+import { saveDoorSteps } from '../lib/homeCare/doorSteps.js';
+import { composeNoAnswerText } from '../lib/homeCare/noAnswerText.js';
 import { assertNotificationRecipient, serializeNotificationEvent } from '../lib/notifications.js';
 
 const url = new URL(process.env.HOME_CARE_TEST_DATABASE_URL || 'postgres://invalid/invalid');
@@ -1856,6 +1858,7 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
   await addMoneyEntry(anu, client.id, { kind: 'RECEIVED', amount: '10' }, deps());
   const trackedSupply = await trackSupply(lead, client.id, { kind: 'FIREWOOD', responsible: 'Poeg' }, deps());
   await markSupply(anu, client.id, trackedSupply.supplyId, { state: 'LOW' }, deps());
+  await saveDoorSteps(lead, client.id, { steps: ['Koputa aknale'] }, deps());
   const obstacleOfAnu = await reportObstacle(anu, { kind: 'LATE_30' }, deps());
   await handleObstacle(lead, obstacleOfAnu.obstacle.id, {}, deps());
   /* Ühe päeva erand (K3-b): järgmise esmaspäeva käik jääb ära. */
@@ -1963,6 +1966,7 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
     moneyEntries: await db.careMoneyEntry.count({ where: ofOrg }),
     supplies: await db.careClientSupply.count({ where: ofOrg }),
     supplyChecks: await db.careSupplyCheck.count({ where: ofOrg }),
+    doorSteps: await db.careDoorStep.count({ where: ofOrg }),
     auditEvents: await db.dataAuditLog.count({
       where: { action: { startsWith: 'org.home_care_' }, meta: { path: ['organizationId'], equals: f.orgA.id }, createdAt: { lt: (await exportRows())[0].createdAt } }
     })
@@ -4522,4 +4526,93 @@ test('varud kliendi kodus: jälgimine, seisu märkimine ja lõppevad varud hoold
   const count = (change) => audit.filter((entry) => entry.meta.change === change).length;
   assert.deepEqual([count('tracked'), count('marked'), count('untracked')], [5, 5, 1]);
   for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['change', 'clientId', 'organizationId', 'supplyId']);
+});
+
+test('sammud „kui uks ei avane": loendi salvestamine, õigused ja erijuhtumi kirje sammudest', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const clerk = await f.ctx(f.users.clerk, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, deps())).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi' }, deps())).client;
+  await addTeamMember(lead, linda.id, { membershipId: f.members.anu.id }, deps());
+  await addTeamMember(lead, peeter.id, { membershipId: f.members.bert.id }, deps());
+  const input = { steps: ['  Koputa magamistoa   aknale ', '', 'Helista naabrile Maiele, kellel on võti', 'Helista pojale', '   '] };
+
+  /* Algus: samme ei ole. */
+  assert.deepEqual((await openClient(anu, linda.id, deps())).doorSteps, []);
+
+  /* Muudavad kliendi meeskond ja hooldusjuht; teise kliendi hooldaja (põhjusega avaja) ja võõras ei muuda. */
+  await expectError(saveDoorSteps(clerk, linda.id, input, deps()), 404, 'home_care.errors.client_not_found');
+  await expectError(saveDoorSteps(bert, linda.id, input, deps()), 403, 'home_care.errors.access_reason_required');
+  await openClientWithReason(bert, linda.id, { reasonCode: 'COVERING', reason: 'Anu on haige' }, deps());
+  await expectError(saveDoorSteps(bert, linda.id, input, deps()), 403, 'org.errors.missing_capability');
+  await expectError(saveDoorSteps(leadB, linda.id, input, deps()), 404, 'home_care.errors.client_not_found');
+  await expectError(saveDoorSteps(anu, linda.id, { steps: 'Koputa' }, deps()), 400, 'home_care.errors.door_steps_invalid');
+  await expectError(saveDoorSteps(anu, linda.id, { steps: Array.from({ length: 9 }, (_, index) => `Samm ${index + 1}`) }, deps()), 400, 'home_care.errors.door_steps_too_many');
+  await expectError(saveDoorSteps(anu, linda.id, { steps: ['x'.repeat(201)] }, deps()), 400, 'home_care.errors.text_too_long');
+  assert.equal(await db.careDoorStep.count({ where: { organizationId: f.orgA.id } }), 0);
+
+  /* SALVESTAMINE: tühjad read jäävad välja, järjekord jääb, tekst on ühe reana. */
+  const saved = await saveDoorSteps(anu, linda.id, input, deps());
+  assert.deepEqual(saved.doorSteps.map((step) => [step.position, step.text]), [
+    [1, 'Koputa magamistoa aknale'],
+    [2, 'Helista naabrile Maiele, kellel on võti'],
+    [3, 'Helista pojale']
+  ]);
+  /* Näeb igaüks, kes tohib kliendi lehte avada, ka põhjusega avaja. */
+  assert.deepEqual((await openClient(bert, linda.id, deps())).doorSteps.map((step) => step.text), saved.doorSteps.map((step) => step.text));
+  /* Sama loend uuesti ei tee uusi ridu. */
+  const again = await saveDoorSteps(lead, linda.id, { steps: saved.doorSteps.map((step) => step.text) }, deps());
+  assert.deepEqual(again.doorSteps.map((step) => step.id), saved.doorSteps.map((step) => step.id));
+  assert.equal(await db.careDoorStep.count({ where: { clientId: linda.id } }), 3);
+
+  /* UUS LOEND lõpetab eelmise read; vana kokkulepe jääb alles. */
+  const later = at('2026-10-09T09:00:00Z');
+  const changed = await saveDoorSteps(lead, linda.id, { steps: ['Helista pojale', 'Ära helista kohe tütrele Soome'] }, deps(later));
+  assert.deepEqual(changed.doorSteps.map((step) => [step.position, step.text]), [[1, 'Helista pojale'], [2, 'Ära helista kohe tütrele Soome']]);
+  const all = await db.careDoorStep.findMany({ where: { clientId: linda.id }, orderBy: [{ createdAt: 'asc' }, { position: 'asc' }] });
+  assert.deepEqual(all.map((row) => [row.text, Boolean(row.endedAt), row.createdByName]), [
+    ['Koputa magamistoa aknale', true, 'Anu Hooldaja'],
+    ['Helista naabrile Maiele, kellel on võti', true, 'Anu Hooldaja'],
+    ['Helista pojale', true, 'Anu Hooldaja'],
+    ['Helista pojale', false, 'Juta Juht'],
+    ['Ära helista kohe tütrele Soome', false, 'Juta Juht']
+  ]);
+
+  /* „EI SAA SISSE": sammudest kokku pandud tekst läheb tavalise kirje teed pidi erijuhtumiks ja hooldusjuht saab teate. */
+  const translate = (key, vars = {}) =>
+    ({
+      'home_care.no_answer.text_head': 'Ei saanud sisse.',
+      'home_care.no_answer.text_step': `kell ${vars.time}: ${vars.step}`,
+      'home_care.no_answer.text_skipped': `Tegemata sammud: ${vars.steps}`,
+      'home_care.no_answer.text_none_done': 'Ühtegi kokkulepitud sammu ei ole märgitud.',
+      'home_care.no_answer.text_no_steps': 'Kokkulepitud samme ei ole.'
+    })[key];
+  const text = composeNoAnswerText(translate, changed.doorSteps, { [changed.doorSteps[0].id]: '11:02' }, 'Poeg tuleb tunni pärast võtmega.');
+  assert.equal(text, 'Ei saanud sisse.\nkell 11:02: Helista pojale\nTegemata sammud: Ära helista kohe tütrele Soome\nPoeg tuleb tunni pärast võtmega.');
+  const incident = await createEntry(anu, linda.id, { kind: 'INCIDENT', incidentType: 'DOOR_NOT_OPENED', text, clientRequestId: `door-${f.tag}-1` }, depsWithNotify());
+  assert.deepEqual([incident.entry.kind, incident.entry.incident.type, incident.entry.text], ['INCIDENT', 'DOOR_NOT_OPENED', text]);
+  const events = await db.notificationEvent.findMany({ where: { userId: f.users.lead.id, type: 'HOME_CARE_INCIDENT_REPORTED', sourceId: incident.entry.id } });
+  assert.equal(events.length, 1);
+
+  /* TÜHI LOEND: kokkulepitud samme enam ei ole. */
+  const cleared = await saveDoorSteps(lead, linda.id, { steps: [] }, deps(at('2026-10-09T10:00:00Z')));
+  assert.deepEqual(cleared.doorSteps, []);
+  assert.equal(await db.careDoorStep.count({ where: { clientId: linda.id, endedAt: null } }), 0);
+
+  /* Andmebaas hoiab vigase rea eemal ka siis, kui rakendus eksib. */
+  const raw = (data) => db.careDoorStep.create({ data: { organizationId: f.orgA.id, clientId: peeter.id, position: 1, text: 'Koputa', ...data } });
+  await assert.rejects(raw({ position: 0 }), /CareDoorStep_position_check/);
+  await assert.rejects(raw({ position: 9 }), /CareDoorStep_position_check/);
+  await assert.rejects(raw({ text: '   ' }), /CareDoorStep_text_check/);
+  await raw({});
+  await assert.rejects(raw({ text: 'Teine samm samal kohal' }), (error) => error.code === 'P2002');
+
+  /* AUDIT: ainult kliendi ID ja muutuse liik (sammude teksti seal ei ole). */
+  const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_door_steps_changed', meta: { path: ['organizationId'], equals: f.orgA.id } } });
+  assert.deepEqual(audit.map((entry) => entry.meta.change).sort(), ['cleared', 'saved', 'saved']);
+  for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['change', 'clientId', 'organizationId']);
 });

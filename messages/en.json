@@ -12394,7 +12394,9 @@
       "supply_already_tracked": "This supply is already followed for this client.",
       "supply_not_found": "This supply was not found.",
       "supply_ended": "Following this supply has ended.",
-      "supply_state_required": "Choose the state of the supply."
+      "supply_state_required": "Choose the state of the supply.",
+      "door_steps_invalid": "The steps must be a list.",
+      "door_steps_too_many": "There can be up to {limit} steps."
     },
     "incidents": {
       "title": "Incident register",
@@ -13305,6 +13307,29 @@
       "cancel": "Cancel",
       "untrack": "Stop following",
       "open_line": "{kind}: {state} · refilled by {name} · marked {when}"
+    },
+    "no_answer": {
+      "title": "If the door does not open",
+      "none": "No steps are agreed. Write down what you agreed with the client: what to do, and in which order, when the door does not open.",
+      "add": "Add steps",
+      "edit": "Change the steps",
+      "steps_label": "Steps, one per line",
+      "steps_hint": "Write in the client's own words and in the agreed order, up to {limit} steps. You can also write what is not to be done.",
+      "save": "Save",
+      "cancel": "Cancel",
+      "start": "Cannot get in",
+      "emergency": "If the person is in trouble or you fear the worst, call 112 and do what the emergency centre says.",
+      "call_112": "Call 112",
+      "run_hint": "Touch the steps you took. Each touch keeps the time; you do not have to write anything.",
+      "done_at": "done at {time}",
+      "note_label": "What happened next (optional)",
+      "record": "Save as an incident",
+      "recorded": "The incident is recorded and the coordinator is notified.",
+      "text_head": "Could not get in.",
+      "text_step": "at {time}: {step}",
+      "text_skipped": "Steps not taken: {steps}",
+      "text_none_done": "No agreed step is marked.",
+      "text_no_steps": "No steps are agreed."
     }
   },
   "stage": {

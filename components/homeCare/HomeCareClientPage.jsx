@@ -19,6 +19,7 @@ import HomeCareOutbox from "./HomeCareOutbox";
 import HomeCarePlanView from "./HomeCarePlanView";
 import HomeCareReasonForm from "./HomeCareReasonForm";
 import HomeCareKeys from "./HomeCareKeys";
+import HomeCareNoAnswer from "./HomeCareNoAnswer";
 import HomeCareMoney from "./HomeCareMoney";
 import HomeCarePreconditions from "./HomeCarePreconditions";
 import HomeCareSlotList from "./HomeCareSlotList";
@@ -330,6 +331,19 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
         lines={card}
         canEdit={canWrite && access.canEditCard}
         onChange={(next) => setData((current) => ({ ...current, card: next }))}
+      />
+
+      {/* Kui uks ei avane (K4-f): kokkulepitud sammud ja nupp „Ei saa sisse". Kohe püsikaardi järel, sest seda on vaja ukse taga. */}
+      <HomeCareNoAnswer
+        organizationId={organizationId}
+        clientId={client.id}
+        clientName={client.displayName}
+        viewerMembershipId={access.membershipId}
+        timeZone={timeZone}
+        initial={data.doorSteps || []}
+        canEdit={canWrite && access.canEditCard}
+        canRecord={canAddEntry}
+        onSaved={upsertEntry}
       />
 
       {/* Eeltingimus enne teenuse algust (K4-a): kuni see on täitmata, teenust ei alustata. */}
