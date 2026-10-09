@@ -67,7 +67,7 @@ Sama töö (kell 9.00 kuu 1. ja 3. kuupäeval; nimi nüüd „Abivahendite info 
 1. abivahendite värskendus nagu seni ([ADR-098](adr-098-monthly-assistive-refresh.md));
 2. ametlike lehtede lugemine selle käsuga (umbes 25 minutit).
 
-Kui kumbki midagi ei asendanud ega oota, lõpeb töö aruandega ja raha ei kulu. Kui ametlik leht asendati, lähevad asendatud leht ja registri räsid samal käivitusel PR-iga koodihoidlasse, ka siis, kui täiendust ei osteta (seis loeb lehe juba asendatuks). Täiendus tehakse ainult siis, kui see mahub kuu lakke; kui ootavad mõlemad osad, tehakse kaks täiendust järjest (abivahendid versioon N, ametlikud lehed N+1). Kuu kulu peab töö ühes failis mõlema osa kohta (`tmp/rag-v2-assistive-refresh/reports/spending-<aasta-kuu>.json`).
+Kui kumbki midagi ei asendanud ega oota, raha ei kulu. Alates ADR-117-st teeb töö siiski igal käivitusel PR-i, sest iga ring muudab kinnitatud lugemiste tabelit. Kui ametlik leht asendati, lähevad asendatud leht ja registri räsid samal käivitusel PR-iga koodihoidlasse, ka siis, kui täiendust ei osteta (seis loeb lehe juba asendatuks). Täiendus tehakse ainult siis, kui see mahub kuu lakke; kui ootavad mõlemad osad, tehakse kaks täiendust järjest (abivahendid versioon N, ametlikud lehed N+1). Kuu kulu peab töö ühes failis mõlema osa kohta (`tmp/rag-v2-assistive-refresh/reports/spending-<aasta-kuu>.json`).
 
 Töö ei tee: kinni peetud lehe lubamist, kättesaamatu lehe lugemist teist teed pidi, loendis oleva, kuid salvestamata lehe lisamist.
 
@@ -87,6 +87,6 @@ Töö ei tee: kinni peetud lehe lubamist, kättesaamatu lehe lugemist teist teed
 
 ## Mis jääb lahti
 
-- Muutmata lehe kontrolli kuupäev ei uuene: allika kaardil jääb `source_checked_at` esimese lugemise päevaks. Lehel, millel oma muutmise kuupäeva ei ole, ütleb vastus summa selle vana päeva seisuga, kuigi leht on hiljem üle loetud.
-- Varasemad 31 ametlikku lehte (`web_pages.json`, alalehtedega) ei ole selles käsus; neist kaks on abivahendite värskenduses.
+- ~~Muutmata lehe kontrolli kuupäev ei uuene.~~ Lahendatud 09.10.2026 õhtul: [ADR-117](adr-117-confirmed-reading-day.md) (kinnitatud lugemiste tabel, mida allika kaart loeb).
+- ~~Varasemad 31 ametlikku lehte ei ole selles käsus.~~ Lahendatud samas: käsk loeb ka salvestatud lehed, mida ükski loend ei nimeta (29; kaks abivahendite lehte jäävad abivahendite värskendusse).
 - Loenditest käsitsi välja jäetud lehed (töötajate nimekirjad, tühjad lehed) jäävad välja ka edaspidi; uut lehte käsk ise ei otsi.

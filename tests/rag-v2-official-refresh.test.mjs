@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { decidePage, pageActions, robotsCrawlDelay } from '../lib/rag-v2/web-page.js';
 import { siteManners, CRAWL_DELAY_CAP_MS } from '../lib/rag-v2/web-collect.js';
-import { pageOutcome, refreshSummary, registerAfterRefresh, markdownAfterRefresh, incrementSelection } from '../lib/rag-v2/official-refresh.js';
+import { pageOutcome, refreshSummary, registerAfterRefresh, markdownAfterRefresh, incrementSelection, restEntries, checksAfterRefresh, WEB_PAGE_CHECKS } from '../lib/rag-v2/official-refresh.js';
 
 // ADR-116 (09.10.2026): the 330 official guidance pages of the corpus are read again every month. An answer now says
 // a page's figure as of the day the page was last changed (ADR-114), so a stored copy that has gone stale shows as an
@@ -92,4 +92,39 @@ test('a site is asked no faster than its robots.txt asks: the collector\'s own g
   assert(own[0] > 2000 && own[0] <= 2500, 'the run\'s own pause when the site asks for less');
   const capped = await pauses('User-agent: *\nCrawl-delay: 3600\n', 2500);
   assert(capped[0] > CRAWL_DELAY_CAP_MS - 1000 && capped[0] <= CRAWL_DELAY_CAP_MS);
+});
+
+// ADR-117 (09.10.2026): the first official pages were collected with the pages below them, so their stored copies are
+// in no list; and a page that reads unchanged kept the day of its first reading as the day it was checked.
+test('the stored pages no list names are read by their own addresses; a listed page and another refresh\'s pages are left to their own round', () => {
+  const meta = (id, more = {}) => ({ source_id: id, url: `https://amet.example/${id}`, title: `Leht ${id}`, register_title: `Loendi pealkiri ${id}`, publisher: 'Näidisamet', source_type: 'web_page', language: 'et', ...more });
+  const stored = [{ folder: 'naidisamet', meta: meta('juhis--alaleht', { jurisdiction_level: 'NATIONAL', tags: ['Ligipääsetavus'] }) }, { folder: 'naidisamet', meta: meta('juhis') },
+    { folder: 'naidisamet', meta: meta('loendis') }, { folder: 'naidisamet', meta: meta('abivahend') }, { folder: 'naidisamet', meta: meta('abivahend--alaleht') }, { folder: 'naidisamet', meta: meta('abivahendid_muu') }];
+  const entries = restEntries(stored, ['loendis'], ['abivahend']);
+  assert.deepEqual(entries.map(entry => entry.source_id), ['abivahendid_muu', 'juhis', 'juhis--alaleht']);
+  // The entry is the stored copy's own: the list's title when the copy keeps one, and no sub-page is looked for.
+  assert.deepEqual(entries[2], { source_id: 'juhis--alaleht', url: 'https://amet.example/juhis--alaleht', title: 'Loendi pealkiri juhis--alaleht', publisher: 'Näidisamet', source_type: 'web_page', language: 'et',
+    jurisdiction_level: 'NATIONAL', topic_tags: ['Ligipääsetavus'], subpages: false });
+  assert.equal(restEntries([{ folder: 'naidisamet', meta: { ...meta('vana'), register_title: undefined } }], [])[0].title, 'Leht vana');
+  // A copy that does not lie in its publisher's folder could not be found again by the collector: an error, not a guess.
+  assert.throws(() => restEntries([{ folder: 'muu-kaust', meta: meta('juhis') }], []), { code: 'refresh_stored_page_unreadable' });
+  assert.throws(() => restEntries([{ folder: 'naidisamet', meta: { ...meta('juhis'), url: null } }], []), { code: 'refresh_stored_page_unreadable' });
+  assert.deepEqual(restEntries([{ folder: 'naidisamet', meta: null }, { folder: 'naidisamet', meta: {} }], []), []);
+});
+
+test('the table of confirmed readings: a day only moves forward, nothing is taken out, and a bad hash, day or table is an error', () => {
+  const a = 'a'.repeat(64), b = 'b'.repeat(64), c = 'c'.repeat(64);
+  const first = checksAfterRefresh(null, [b, a, a], '2026-11-01');
+  assert.deepEqual(first, { table: { schema_version: WEB_PAGE_CHECKS, checks: { [a]: '2026-11-01', [b]: '2026-11-01' } }, moved: 2 });
+  assert.deepEqual(Object.keys(first.table.checks), [a, b]);
+  // The second round of the month confirms one page, brings a new copy, and does not name the third: that one keeps its day.
+  const second = checksAfterRefresh(first.table, [a, c], '2026-11-03');
+  assert.deepEqual(second, { table: { schema_version: WEB_PAGE_CHECKS, checks: { [a]: '2026-11-03', [b]: '2026-11-01', [c]: '2026-11-03' } }, moved: 2 });
+  // A round dated earlier (a clock set back, a report read again) moves nothing.
+  assert.deepEqual(checksAfterRefresh(second.table, [a, b, c], '2026-10-15'), { table: second.table, moved: 0 });
+  assert.deepEqual(checksAfterRefresh(second.table, [], '2026-12-01'), { table: second.table, moved: 0 });
+  assert.deepEqual(first.table.checks, { [a]: '2026-11-01', [b]: '2026-11-01' });
+  for (const hash of ['abc', 'A'.repeat(64), `${a}0`, null, 7]) assert.throws(() => checksAfterRefresh(null, [hash], '2026-11-01'), { code: 'refresh_check_hash_invalid' });
+  for (const day of ['1.11.2026', '2026-13-40', '2026-11-01T09:00:00Z', null]) assert.throws(() => checksAfterRefresh(null, [a], day), { code: 'refresh_check_day_invalid' });
+  assert.throws(() => checksAfterRefresh({ schema_version: 'other', checks: {} }, [a], '2026-11-01'), { code: 'refresh_check_table_invalid' });
 });

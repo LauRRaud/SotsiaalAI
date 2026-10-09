@@ -1,6 +1,6 @@
 # ADR-098: abivahendite info uuendamine kord kuus
 
-Kuupäev: 06.10.2026. Seis: skriptid ja seis on paigas, esimene päris käivitus tehtud; ajastatud töö on loodud. Korpuse täiendust selle tee kaudu ei ole veel tehtud (esimesel käivitusel ei olnud midagi rakendada). Alates 09.10.2026 loeb sama ajastatud töö abivahendite värskenduse järel ka 330 ametlikku juhislehte ([ADR-116](adr-116-official-pages-monthly-refresh.md)); kuu lagi 0,10 USD on mõlemale ühine.
+Kuupäev: 06.10.2026. Seis: skriptid ja seis on paigas, esimene päris käivitus tehtud; ajastatud töö on loodud. Korpuse täiendust selle tee kaudu ei ole veel tehtud (esimesel käivitusel ei olnud midagi rakendada). Alates 09.10.2026 loeb sama ajastatud töö abivahendite värskenduse järel ka 330 ametlikku juhislehte ([ADR-116](adr-116-official-pages-monthly-refresh.md)); kuu lagi 0,10 USD on mõlemale ühine. Samast päevast kirjutab värskendus kinnitatud lugemiste tabelit ([ADR-117](adr-117-confirmed-reading-day.md)): müüjate ja organisatsioonide lehe kontrolli kuupäev liigub vastustes edasi ka siis, kui leht ei muutunud.
 
 ## Probleem
 
