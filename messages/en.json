@@ -12845,6 +12845,26 @@
       "withdraw": "The obstacle has passed",
       "change": "Change the notice",
       "again": "Report a new obstacle"
+    },
+    "week": {
+      "link": "Week plan",
+      "title": "Week plan",
+      "intro": "Visits by worker and day, with absences. You can look about three months ahead. Press a day to open that day's plan; nothing is changed here.",
+      "heading": "Week {week}: {from} to {to}",
+      "previous": "Previous week",
+      "next": "Next week",
+      "this_week": "Go to this week",
+      "totals": "Visits {visits}, planned time {amount}. Unassigned {unassigned}, worker absent {uncovered}.",
+      "days_label": "Days of the week",
+      "day_cell": "{day}: visits {visits}, unassigned {unassigned}, worker absent {uncovered}",
+      "open_short": "open {count}",
+      "worker_total": "Visits {visits}, planned time {amount}",
+      "worker_uncovered": "uncovered {count}",
+      "cell": "{day}: visits {visits}, {amount}",
+      "cell_absent": "{day}: absent, uncovered visits {uncovered}",
+      "absent_short": "absent",
+      "empty": "No visits are planned for this week.",
+      "legend": "The number is the count of visits on that day. “absent” means an absence is marked for the worker; a number in that cell is the count of their uncovered visits. “open” are visits with no worker or whose worker is absent."
     }
   },
   "stage": {

@@ -78,7 +78,7 @@ import {
 import { getCoordinatorOverview } from '../lib/homeCare/overview.js';
 import { getMonthSummary } from '../lib/homeCare/provided.js';
 import { createAbsence, getAbsences, removeAbsence, updateAbsence } from '../lib/homeCare/absences.js';
-import { cancelVisit, getDayPlan, getMyDay, moveVisit, restoreVisit } from '../lib/homeCare/dayPlan.js';
+import { cancelVisit, getDayPlan, getMyDay, getWeekPlan, moveVisit, restoreVisit } from '../lib/homeCare/dayPlan.js';
 import { changeSlot, createSlots, endSlot, getClientSlots, getSlotEditor } from '../lib/homeCare/slots.js';
 import { handleObstacle, reportObstacle, withdrawObstacle } from '../lib/homeCare/obstacles.js';
 import { assertNotificationRecipient, serializeNotificationEvent } from '../lib/notifications.js';
@@ -3745,4 +3745,106 @@ test('hooldaja takistuse teade: teatamine, tagasivõtmine, hooldusjuhi päevapla
   const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_obstacle_changed', meta: { path: ['organizationId'], equals: f.orgA.id } } });
   assert.deepEqual(audit.map((entry) => entry.meta.change).sort(), ['handled', 'handled', 'reported', 'reported', 'reported', 'reported', 'withdrawn', 'withdrawn']);
   for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['change', 'obstacleId', 'organizationId']);
+});
+
+test('nädalaplaan: käigud töötaja ja päeva kaupa, puudumised ette, skoop ja nädalate piirid', async (t) => {
+  const f = await fixture(t);
+  const north = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Põhi ${f.tag}`, type: 'TEAM' } });
+  await db.organizationCapabilityGrant.create({
+    data: { membershipId: f.members.cover.id, capability: 'HOME_CARE_COORDINATOR', scopeType: 'UNIT', scopeUnitId: north.id, validFrom: at('2026-01-01T00:00:00Z') }
+  });
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const unitLead = await f.ctx(f.users.cover, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, deps())).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi', unitId: north.id }, deps())).client;
+  const mari = (await createClient(lead, { displayName: 'Mari Ära' }, deps())).client;
+  await addTeamMember(lead, linda.id, { membershipId: f.members.anu.id }, deps());
+  await addTeamMember(lead, linda.id, { membershipId: f.members.bert.id }, deps());
+  await addTeamMember(lead, peeter.id, { membershipId: f.members.bert.id }, deps());
+  await addTeamMember(lead, mari.id, { membershipId: f.members.bert.id }, deps());
+  const early = at('2026-10-01T08:00:00Z');
+  const add = (client, weekdays, startTime, plannedMinutes, member) =>
+    createSlots(lead, client.id, { weekdays, startTime, plannedMinutes, ...(member ? { workerMembershipId: member.id } : {}) }, deps(early));
+  /* Linda: E, K, R kell 9 (30 min) ja R kell 17 (60 min), Anu. Peeter: T ja N kell 10 (45 min), Bert; R kell 14 (20 min) määramata. */
+  const morning = await add(linda, [1, 3, 5], '09:00', 30, f.members.anu);
+  await add(linda, [5], '17:00', 60, f.members.anu);
+  await add(peeter, [2, 4], '10:00', 45, f.members.bert);
+  await add(peeter, [5], '14:00', 20, null);
+  /* Ajutiselt ära oleva kliendi käigud ei ole kellegi koormus. */
+  await add(mari, [1, 2, 3, 4, 5], '08:00', 30, f.members.bert);
+  const mariNow = await db.careClient.findUnique({ where: { id: mari.id }, select: { version: true } });
+  await setClientStatus(lead, mari.id, { version: mariNow.version, status: 'AWAY', statusReason: 'HOSPITAL' }, deps());
+
+  /* Ainult hooldusjuht; teise asutuse juht näeb oma tühja nädalat; vigane päev on viga. */
+  await expectError(getWeekPlan(anu, {}, deps()), 403, 'org.errors.missing_capability');
+  await expectError(getWeekPlan(lead, { week: 'abc' }, deps()), 400, 'home_care.errors.invalid_date');
+  const foreign = await getWeekPlan(leadB, {}, deps());
+  assert.deepEqual([foreign.workers, foreign.totals], [[], { visits: 0, minutes: 0, unassigned: 0, uncovered: 0 }]);
+
+  /* SEE NÄDAL (41: 05.10 kuni 11.10; täna on reede 09.10). */
+  const cells = (row) => row.days.map((day) => day.visits);
+  const now = await getWeekPlan(lead, {}, deps());
+  assert.deepEqual(
+    [now.week, now.monday, now.sunday, now.today, now.thisWeek, now.previousWeek, now.nextWeek],
+    [41, '2026-10-05', '2026-10-11', '2026-10-09', '2026-10-05', '2026-09-28', '2026-10-12']
+  );
+  assert.deepEqual(
+    now.days.map((day) => [day.day, day.weekday, day.visits, day.minutes, day.unassigned, day.uncovered]),
+    [
+      ['2026-10-05', 1, 1, 30, 0, 0],
+      ['2026-10-06', 2, 1, 45, 0, 0],
+      ['2026-10-07', 3, 1, 30, 0, 0],
+      ['2026-10-08', 4, 1, 45, 0, 0],
+      ['2026-10-09', 5, 3, 110, 1, 0],
+      ['2026-10-10', 6, 0, 0, 0, 0],
+      ['2026-10-11', 7, 0, 0, 0, 0]
+    ]
+  );
+  assert.deepEqual(now.totals, { visits: 7, minutes: 260, unassigned: 1, uncovered: 0 });
+  assert.deepEqual(
+    now.workers.map((row) => [row.name, row.active, row.visits, row.minutes, row.uncovered, cells(row)]),
+    [
+      ['Anu Hooldaja', true, 4, 150, 0, [1, 0, 1, 0, 2, 0, 0]],
+      ['Bert Hooldaja', true, 2, 90, 0, [0, 1, 0, 1, 0, 0, 0]]
+    ]
+  );
+  assert.deepEqual([now.unassigned.visits, now.unassigned.minutes, now.unassigned.days.map((day) => day.visits)], [1, 20, [0, 0, 0, 0, 1, 0, 0]]);
+
+  /* JÄRGMINE NÄDAL: Anul on kolmapäevast reedeni plaaniline puudumine; reede hommikune käik on juba Berdile tõstetud. */
+  await createAbsence(lead, { membershipId: f.members.anu.id, fromDay: '2026-10-14', toDay: '2026-10-16', kind: 'PLANNED' }, deps());
+  const friday = morning.slots.find((slot) => slot.weekday === 5 && slot.startTime === '09:00');
+  await moveVisit(lead, linda.id, friday.id, { day: '2026-10-16', workerMembershipId: f.members.bert.id, startTime: '09:00' }, deps());
+  /* Nädala leiab mis tahes selle nädala päeva järgi. */
+  const next = await getWeekPlan(lead, { week: '2026-10-14' }, deps());
+  assert.deepEqual([next.week, next.monday, next.previousWeek, next.nextWeek], [42, '2026-10-12', '2026-10-05', '2026-10-19']);
+  assert.deepEqual(
+    next.days.map((day) => [day.visits, day.minutes, day.unassigned, day.uncovered]),
+    [[1, 30, 0, 0], [1, 45, 0, 0], [1, 30, 0, 1], [1, 45, 0, 0], [3, 110, 1, 1], [0, 0, 0, 0], [0, 0, 0, 0]]
+  );
+  assert.deepEqual(next.totals, { visits: 7, minutes: 260, unassigned: 1, uncovered: 2 });
+  const [anuRow, bertRow] = next.workers;
+  assert.deepEqual([anuRow.name, anuRow.visits, anuRow.minutes, anuRow.uncovered], ['Anu Hooldaja', 1, 30, 2]);
+  assert.deepEqual(
+    anuRow.days.map((day) => [day.visits, day.uncovered, day.absent]),
+    [[1, 0, false], [0, 0, false], [0, 1, true], [0, 0, true], [0, 1, true], [0, 0, false], [0, 0, false]]
+  );
+  /* Asendus on asendaja koormuses: Berdil on reedel Linda hommikune käik. */
+  assert.deepEqual([bertRow.name, bertRow.visits, bertRow.minutes, cells(bertRow)], ['Bert Hooldaja', 3, 120, [0, 1, 0, 1, 1, 0, 0]]);
+
+  /* ÜKSUSE HOOLDUSJUHT näeb ainult oma üksuse klientide käike. */
+  const unitView = await getWeekPlan(unitLead, {}, deps());
+  assert.deepEqual([unitView.workers.map((row) => [row.name, row.visits]), unitView.totals], [[['Bert Hooldaja', 2]], { visits: 3, minutes: 110, unassigned: 1, uncovered: 0 }]);
+
+  /* PIIRID: ette 13 ja tagasi 8 nädalat; kaugem nädal annab lähima lubatud nädala. */
+  const far = await getWeekPlan(lead, { week: '2027-06-01' }, deps());
+  assert.deepEqual([far.monday, far.week, far.nextWeek, far.previousWeek], ['2027-01-04', 1, null, '2026-12-28']);
+  const old = await getWeekPlan(lead, { week: '2026-01-01' }, deps());
+  assert.deepEqual([old.monday, old.previousWeek, old.nextWeek, old.totals.visits], ['2026-08-10', null, '2026-08-17', 0]);
+  /* Eelmine nädal: muster algas neljapäeval 01.10, varasemaid käike ei ole. */
+  const before = await getWeekPlan(lead, { week: now.previousWeek }, deps());
+  assert.deepEqual(before.days.map((day) => day.visits), [0, 0, 0, 1, 3, 0, 0]);
+  /* Nädalaplaan ei salvesta midagi. */
+  assert.equal(await db.careVisitChange.count({ where: { organizationId: f.orgA.id } }), 1);
 });

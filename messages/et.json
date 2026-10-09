@@ -12845,6 +12845,26 @@
       "withdraw": "Takistus on möödas",
       "change": "Muuda teadet",
       "again": "Teata uuest takistusest"
+    },
+    "week": {
+      "link": "Nädalaplaan",
+      "title": "Nädalaplaan",
+      "intro": "Käigud töötaja ja päeva kaupa, koos puudumistega. Ette näed umbes kolm kuud. Vajuta päevale, et avada selle päeva plaan; siin midagi ei muudeta.",
+      "heading": "Nädal {week}: {from} kuni {to}",
+      "previous": "Eelmine nädal",
+      "next": "Järgmine nädal",
+      "this_week": "Mine sellele nädalale",
+      "totals": "Käike {visits}, plaanitud aeg {amount}. Määramata {unassigned}, tegija puudub {uncovered}.",
+      "days_label": "Nädala päevad",
+      "day_cell": "{day}: käike {visits}, määramata {unassigned}, tegija puudub {uncovered}",
+      "open_short": "lahti {count}",
+      "worker_total": "Käike {visits}, plaanitud aeg {amount}",
+      "worker_uncovered": "katmata {count}",
+      "cell": "{day}: käike {visits}, {amount}",
+      "cell_absent": "{day}: puudub, katmata käike {uncovered}",
+      "absent_short": "puudub",
+      "empty": "Sellel nädalal plaanitud käike ei ole.",
+      "legend": "Arv on käikude arv sel päeval. „puudub” tähendab, et töötajal on puudumine märgitud; kui lahtris on siis arv, on see tema katmata käikude arv. „lahti” on käigud, millel ei ole tegijat või mille tegija puudub."
     }
   },
   "stage": {

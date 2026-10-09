@@ -180,6 +180,9 @@ export default function HomeCareHome({ context, initial, unitOptions, myDay = nu
           <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/paev`}>
             {t("home_care.day.link")}
           </Link>
+          <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/nadal`}>
+            {t("home_care.week.link")}
+          </Link>
           <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/puudumised`}>
             {t("home_care.absences.link")}
           </Link>
