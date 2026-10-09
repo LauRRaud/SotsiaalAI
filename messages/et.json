@@ -13423,7 +13423,10 @@
       "changes_open_title": "Märgatud muutused ootavad vastust",
       "changes_open_empty": "Vastuseta märkamisi ei ole.",
       "workers_due_title": "Töötajate koolitused ja taustakontrollid",
-      "workers_due_empty": "Midagi ei aegu."
+      "workers_due_empty": "Midagi ei aegu.",
+      "risk_lines_due_title": "Ohuread, mis vajavad ülevaatust",
+      "risk_lines_due_empty": "Üle aasta vanu ohuridu ei ole.",
+      "risk_lines_line": "ohuridu {count}, vanim kirjas alates {date}: vaata koos meeskonnaga üle, kas need kehtivad"
     },
     "visit": {
       "title": "Mida tegid",
@@ -14034,6 +14037,10 @@
       "done_on": "tehtud {date}",
       "valid_until": "kehtib kuni {date} ({when})",
       "expired": "aegunud"
+    },
+    "continuity": {
+      "one": "Viimasel neljal nädalal käis siin üks töötaja (käike {visits}).",
+      "many": "Viimasel neljal nädalal käis siin {workers} eri töötajat; {top} neist tegid {percent}% käikudest (käike {visits})."
     }
   },
   "stage": {

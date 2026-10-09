@@ -475,6 +475,19 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
               );
             })
           : null}
+        {/* Püsivuse näit (K5-f): mitu eri töötajat tegi viimase nelja nädala käigud. */}
+        {data.continuity ? (
+          <p className="hc-sub">
+            {data.continuity.workers === 1
+              ? t("home_care.continuity.one", { visits: data.continuity.visits })
+              : t("home_care.continuity.many", {
+                  workers: data.continuity.workers,
+                  top: data.continuity.topWorkers,
+                  percent: data.continuity.topPercent,
+                  visits: data.continuity.visits
+                })}
+          </p>
+        ) : null}
         {access.isCoordinator ? (
           <Link
             className="hc-btn hc-btn--quiet hc-btn--link"
