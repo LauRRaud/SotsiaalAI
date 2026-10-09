@@ -8,6 +8,7 @@ import ChatMessageItem from "@/components/alalehed/chat/ChatMessageItem";
 import ConversationView from "@/components/alalehed/chat/ConversationView";
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
 import DocumentsDropdown from "@/components/documents/DocumentsDropdown";
+import ActionCard from "@/components/stage/ActionCard";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import { cn } from "@/components/ui/cn";
@@ -50,6 +51,9 @@ import {
 import { buildRoomChatPath } from "@/lib/roomPath";
 import { pushWithTransition } from "@/lib/routeTransition";
 import AdminRoleViewCycleButton from "./AdminRoleViewCycleButton";
+import PreInquiryStart from "./preInquiry/PreInquiryStart";
+import PreInquirySteps from "./preInquiry/PreInquirySteps";
+import preInquiryStyles from "./preInquiry/preInquiry.module.css";
 import HelpMatchDecisionPanel from "./HelpMatchDecisionPanel";
 import ServiceMapLeaflet from "./ServiceMapLeaflet";
 import ServiceLicenceStatus, { useServiceLicenceStatuses } from "@/components/service-provider/ServiceLicenceStatus";
@@ -68,31 +72,13 @@ const ADMIN_WORKSPACE_ROLES = Object.freeze([
   "SERVICE_PROVIDER"
 ]);
 
-const PRE_INQUIRY_WORKFLOW_STEPS = Object.freeze([
-  { id: "collect", label: "Täpsusta eelinfot" },
-  { id: "review", label: "Eelinfo ülevaade" },
-  { id: "recipient", label: "Adressaat" },
-  { id: "preview", label: "Pöördumise eelvaade" },
-  { id: "saved", label: "Minu eelpöördumised" }
-]);
+/* Sammude ja alguse valikute tekstid on tõlkekataloogis
+   (workspace_feature_pages.pre_inquiries.steps / .start.options). */
+const PRE_INQUIRY_STEPS_KEY = "workspace_feature_pages.pre_inquiries.steps";
+const PRE_INQUIRY_WORKFLOW_STEPS = Object.freeze(["collect", "review", "recipient", "preview", "saved"]);
 
-const PRE_INQUIRY_START_OPTIONS = Object.freeze([
-  {
-    id: "find_recipient",
-    title: "Aita mul leida, kelle poole pöörduda",
-    description: "Kirjelda olukorda. Sotsiaal.pro küsib vajadusel täpsustusi ja aitab leida sobiva KOV kontakti, lastekaitse kontakti või teenuseosutaja."
-  },
-  {
-    id: "known_contact",
-    title: "Mul on kontakt juba olemas",
-    description: "Vali kontakt Teenusekaardilt või otsi adressaati nime, KOV-i, teenuse või piirkonna järgi."
-  },
-  {
-    id: "journey",
-    title: "Jätkan Teekonnast",
-    description: "Kasuta oma privaatses Teekonnas salvestatud infot ja vali, mida soovid eelpöördumises jagada."
-  }
-]);
+const PRE_INQUIRY_START_KEY = "workspace_feature_pages.pre_inquiries.start.options";
+const PRE_INQUIRY_START_OPTIONS = Object.freeze(["find_recipient", "known_contact", "journey"]);
 
 function readText(t, key, fallback) {
   return typeof t === "function" ? t(key, fallback) : fallback;
@@ -817,6 +803,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
   const inputRef = useRef(null);
   const fileInputRef = useRef(null);
   const composerDraftApiRef = useRef(null);
+  const newInquiryConfirmRef = useRef(0);
   const [activeInquiryId, setActiveInquiryId] = useState("");
   const [journeySourceId, setJourneySourceId] = useState("");
   const [topic, setTopic] = useState("");
@@ -1621,6 +1608,22 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     }));
   }
 
+  /* „Uus eelpöördumine" on kiirmenüüs ikoon. Kui pooleli on kirjutatud teksti,
+     ei tühjenda esimene vajutus midagi: see ütleb, mis kaoks, ja alles teine
+     vajutus (kaheksa sekundi sees) alustab uut. */
+  function handleNewInquiryFromDock() {
+    const unsaved = Boolean(String(situation || "").trim() || String(assistantInput || "").trim() || draftTouched);
+    const now = Date.now();
+    if (unsaved && now - newInquiryConfirmRef.current > 8000) {
+      newInquiryConfirmRef.current = now;
+      setError("");
+      setNotice(readText(t, "workspace_feature_pages.pre_inquiries.new_confirm", "Uue alustamine tühjendab praeguse salvestamata teksti. Vajuta plussi uuesti, kui soovid alustada uut."));
+      return;
+    }
+    newInquiryConfirmRef.current = 0;
+    handleNewInquiry();
+  }
+
   function handleNewInquiry() {
     createActionIdRef.current = createPreInquiryActionId();
     setActiveInquiryId("");
@@ -2186,6 +2189,12 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
   }
 
   function handleStartWorkflow(mode) {
+    /* Teekonna info tuleb kaasa ainult Teekonna vaatest alustades. Varem oli
+       see valik siin lihtsalt lukus; nüüd viib see inimese sinna, kust saab. */
+    if (mode === "journey" && !canUseJourneyPrefill) {
+      pushWithTransition(router, localizePath("/teekond", locale));
+      return;
+    }
     setWorkflowMode(mode);
     setNotice("");
     setError("");
@@ -2212,42 +2221,30 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     setActiveWorkflowStep("preview");
   }
 
+  const preInquirySteps = [...(workflowMode === "journey" ? ["journey"] : []), ...PRE_INQUIRY_WORKFLOW_STEPS].map((key) => ({
+    key,
+    label: readText(t, `${PRE_INQUIRY_STEPS_KEY}.${key}.title`, key),
+    short: readText(t, `${PRE_INQUIRY_STEPS_KEY}.${key}.short`, key)
+  }));
+
   if (!isRecipientRole && !workflowMode) {
     return (
-      <div>
-        <section>
-          <div>
-            <h1>
-              {readText(t, "workspace_feature_pages.pre_inquiries.start.title", "Koosta eelpöördumine")}
-            </h1>
-            <p>
-              {readText(t, "workspace_feature_pages.pre_inquiries.start.lead", "Eelpöördumine aitab olukorra arusaadavalt kirja panna ja valida, kelle poole pöörduda. See ei ole ametlik hindamine ega teenuse määramise otsus.")}
-            </p>
-          </div>
-          <div>
-            {PRE_INQUIRY_START_OPTIONS.map((option) => {
-              const disabled = option.id === "journey" && !canUseJourneyPrefill;
-              return (
-                <button
-                  key={option.id}
-                  type="button"
-                  disabled={disabled}
-                  aria-disabled={disabled ? "true" : "false"}
-                  onClick={() => !disabled && handleStartWorkflow(option.id)}
-                >
-                  <span>{option.title}</span>
-                  <span>{option.description}</span>
-                  {disabled ? (
-                    <span>
-                      {readText(t, "workspace_feature_pages.pre_inquiries.start.journey_locked", "Teekonnast jätkamiseks ava eelpöördumine konkreetse Teekonna vaatest.")}
-                    </span>
-                  ) : null}
-                </button>
-              );
-            })}
-          </div>
-        </section>
-      </div>
+      <PreInquiryStart
+        title={readText(t, "workspace_feature_pages.pre_inquiries.start.title", "Koosta eelpöördumine")}
+        lead={readText(t, "workspace_feature_pages.pre_inquiries.start.lead", "Eelpöördumine aitab olukorra arusaadavalt kirja panna ja valida, kelle poole pöörduda. See ei ole ametlik hindamine ega teenuse määramise otsus.")}
+        options={PRE_INQUIRY_START_OPTIONS.map((id) => ({
+          id,
+          title: readText(t, `${PRE_INQUIRY_START_KEY}.${id}.title`, ""),
+          description: readText(
+            t,
+            id === "journey" && !canUseJourneyPrefill
+              ? `${PRE_INQUIRY_START_KEY}.journey.description_open`
+              : `${PRE_INQUIRY_START_KEY}.${id}.description`,
+            ""
+          )
+        }))}
+        onStart={handleStartWorkflow}
+      />
     );
   }
 
@@ -2456,9 +2453,16 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
 
   return (
     <div className="pre-inquiry-workflow">
-      <Button type="button" size="sm" onClick={handleNewInquiry}>
-        {readText(t, "workspace_feature_pages.pre_inquiries.actions.new", "Uus")}
-      </Button>
+      {/* Sammud ja „Uus eelpöördumine" on all kiirmenüüs, mitte paneeli ülaosas. */}
+      <PreInquirySteps
+        steps={preInquirySteps}
+        activeId={activeWorkflowStep}
+        onSelect={setActiveWorkflowStep}
+        label={readText(t, `${PRE_INQUIRY_STEPS_KEY}.label`, "Eelpöördumise sammud")}
+        stepLabel={(step, index) => t("stage.step_position", { current: index + 1, total: preInquirySteps.length, label: step.label })}
+        newLabel={readText(t, "workspace_feature_pages.pre_inquiries.actions.new_inquiry", "Uus eelpöördumine")}
+        onNew={handleNewInquiryFromDock}
+      />
 
       {loading ? <p className={bodyTextClassName}>{readText(t, "workspace_feature_pages.pre_inquiries.loading", "Laen eelpöördumisi...")}</p> : null}
       {error ? (
@@ -2472,21 +2476,9 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
         </p>
       ) : null}
 
-      <div aria-label="Eelpöördumise sammud">
-        {PRE_INQUIRY_WORKFLOW_STEPS.map((step, index) => (
-          <button
-            key={step.id}
-            type="button"
-            data-active={activeWorkflowStep === step.id ? "true" : undefined}
-            onClick={() => setActiveWorkflowStep(step.id)}
-          >
-            <span>{index + 1}</span>
-            <strong>{step.label}</strong>
-          </button>
-        ))}
-      </div>
-
       <div>
+        {/* Ülevaade on oma sammu sisu, mitte plokk iga sammu kohal. */}
+        {activeWorkflowStep === "review" ? (
         <aside>
           <div>
             <h2>{readText(t, "workspace_feature_pages.pre_inquiries.overview.title", "Eelinfo ülevaade")}</h2>
@@ -2519,6 +2511,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
             </div>
           ) : null}
         </aside>
+        ) : null}
         <div>
 
       {activeWorkflowStep === "journey" ? (
@@ -2588,16 +2581,14 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
           </div>
         </div>
         ) : (
-          <div>
+          <div className={preInquiryStyles.paths}>
             {PRE_INQUIRY_ASSESSMENT_PATHS.map((path) => (
-              <button
+              <ActionCard
                 key={path.id}
-                type="button"
+                title={path.title}
+                description={path.description}
                 onClick={() => handleAssessmentPathChange(path.id)}
-              >
-                <span>{path.title}</span>
-                <span>{path.description}</span>
-              </button>
+              />
             ))}
           </div>
         )}
@@ -5652,6 +5643,10 @@ export default function WorkspaceFeaturePage({ feature, embedded = false, onBack
               showBack={false}
               holdPressedVisualDisabled
               anchorBack={!embedded && isServiceMap}
+              /* Pöörduja eelpöördumise vaadetel on igal vaatel oma pealkiri
+                 (algus, sammud); lehe suur pealkiri jääks selle kohale kordama.
+                 Ekraanilugejale jääb see alles. */
+              headerClassName={featureKey === "pre_inquiries" && activeWorkspaceRole === "CLIENT" ? "sr-only" : undefined}
               /* ⓘ EI ole enam siin: platvormi ainus lehe-ⓘ elab paneeli
                  nurgas × kõrval (PanelFrame). Rollipõhise sisu (pre_inquiry
                  vs intake) annab talle usePanelInfoSlot ülalpool. */

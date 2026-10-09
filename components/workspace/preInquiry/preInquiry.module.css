@@ -1,0 +1,10 @@
+/* Eelpöördumise lehe enda kujundus. Leht ise on veel suures ühisfailis
+   (components/workspace/WorkspaceFeaturePage.jsx); siia tuleb iga osa kujundus
+   sedamööda, kuidas osad sealt välja tõstetakse. */
+
+/* Eelkaardistuse kolm viisi: kaardid üksteise all. */
+.paths {
+  min-width: 0;
+  display: grid;
+  gap: 0.5rem;
+}
