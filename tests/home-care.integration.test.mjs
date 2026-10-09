@@ -81,6 +81,7 @@ import { createAbsence, getAbsences, removeAbsence, updateAbsence } from '../lib
 import { cancelVisit, getDayPlan, getMyDay, getWeekPlan, moveVisit, restoreVisit } from '../lib/homeCare/dayPlan.js';
 import { changeSlot, createSlots, endSlot, getClientSlots, getSlotEditor } from '../lib/homeCare/slots.js';
 import { handleObstacle, reportObstacle, withdrawObstacle } from '../lib/homeCare/obstacles.js';
+import { clearWorkNature, setWorkNature } from '../lib/homeCare/workNature.js';
 import { assertNotificationRecipient, serializeNotificationEvent } from '../lib/notifications.js';
 
 const url = new URL(process.env.HOME_CARE_TEST_DATABASE_URL || 'postgres://invalid/invalid');
@@ -1845,6 +1846,7 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
   const exportSlot = (await createSlots(lead, northClient.id, { weekdays: [1], startTime: '09:00', plannedMinutes: 45, workerMembershipId: f.members.cover.id }, deps())).slots[0];
   /* Puudumine (K3-c): meeskonna liikme tulevane plaaniline puudumine. */
   await createAbsence(lead, { membershipId: f.members.cover.id, fromDay: '2026-10-20', toDay: '2026-10-21', kind: 'PLANNED' }, deps());
+  await setWorkNature(lead, client.id, { kinds: ['PHYSICAL'], reason: 'Tõstmine ilma tõstukita.' }, deps());
   const obstacleOfAnu = await reportObstacle(anu, { kind: 'LATE_30' }, deps());
   await handleObstacle(lead, obstacleOfAnu.obstacle.id, {}, deps());
   /* Ühe päeva erand (K3-b): järgmise esmaspäeva käik jääb ära. */
@@ -1945,6 +1947,7 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
     visitChanges: await db.careVisitChange.count({ where: ofOrg }),
     absences: await db.careAbsence.count({ where: ofOrg }),
     obstacles: await db.careObstacle.count({ where: ofOrg }),
+    workNatures: await db.careWorkNature.count({ where: ofOrg }),
     auditEvents: await db.dataAuditLog.count({
       where: { action: { startsWith: 'org.home_care_' }, meta: { path: ['organizationId'], equals: f.orgA.id }, createdAt: { lt: (await exportRows())[0].createdAt } }
     })
@@ -3847,4 +3850,119 @@ test('nädalaplaan: käigud töötaja ja päeva kaupa, puudumised ette, skoop ja
   assert.deepEqual(before.days.map((day) => day.visits), [0, 0, 0, 1, 3, 0, 0]);
   /* Nädalaplaan ei salvesta midagi. */
   assert.equal(await db.careVisitChange.count({ where: { organizationId: f.orgA.id } }), 1);
+});
+
+test('töö iseloom: märge kliendi juures, õigused ja raske töö käikude loendurid', async (t) => {
+  const f = await fixture(t);
+  const north = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Põhi ${f.tag}`, type: 'TEAM' } });
+  await db.organizationCapabilityGrant.create({
+    data: { membershipId: f.members.cover.id, capability: 'HOME_CARE_COORDINATOR', scopeType: 'UNIT', scopeUnitId: north.id, validFrom: at('2026-01-01T00:00:00Z') }
+  });
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const unitLead = await f.ctx(f.users.cover, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, deps())).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi', unitId: north.id }, deps())).client;
+  await addTeamMember(lead, linda.id, { membershipId: f.members.anu.id }, deps());
+  await addTeamMember(lead, linda.id, { membershipId: f.members.bert.id }, deps());
+  await addTeamMember(lead, peeter.id, { membershipId: f.members.bert.id }, deps());
+  const input = { kinds: ['PAIR_ONLY', 'PHYSICAL'], reason: '  Tõstmine voodist ratastooli   ilma tõstukita. ', reviewOn: '2026-10-20' };
+
+  /* Algus: märget ei ole. */
+  assert.equal((await openClient(anu, linda.id, deps())).workNature, null);
+
+  /* Paneb ainult hooldusjuht, kelle skoobis klient on; vigane sisend ei salvestu. */
+  await expectError(setWorkNature(anu, linda.id, input, deps()), 403, 'org.errors.missing_capability');
+  await expectError(setWorkNature(unitLead, linda.id, input, deps()), 403);
+  await expectError(setWorkNature(leadB, linda.id, input, deps()), 404, 'home_care.errors.client_not_found');
+  const bad = (patch, key) => expectError(setWorkNature(lead, linda.id, { ...input, ...patch }, deps()), 400, key);
+  await bad({ kinds: [] }, 'home_care.errors.work_nature_kinds_required');
+  await bad({ kinds: 'PHYSICAL' }, 'home_care.errors.work_nature_kinds_required');
+  await bad({ kinds: ['PHYSICAL', 'LAZY'] }, 'home_care.errors.work_nature_kinds_required');
+  await bad({ reason: '   ' }, 'home_care.errors.work_nature_reason_required');
+  await bad({ reason: 'x'.repeat(501) }, 'home_care.errors.text_too_long');
+  await bad({ reviewOn: '2026-10-08' }, 'home_care.errors.work_nature_review_past');
+  await bad({ reviewOn: 'homme' }, 'home_care.errors.invalid_date');
+  assert.equal(await db.careWorkNature.count({ where: { organizationId: f.orgA.id } }), 0);
+  await expectError(clearWorkNature(lead, linda.id, deps()), 404, 'home_care.errors.work_nature_not_found');
+
+  /* MÄRGE: liigid sõnastiku järjekorras, põhjus ühe reana; näeb igaüks, kes tohib kliendi lehte avada. */
+  const set = await setWorkNature(lead, linda.id, input, deps());
+  assert.deepEqual(set.workNature, {
+    id: set.workNature.id,
+    kinds: ['PHYSICAL', 'PAIR_ONLY'],
+    reason: 'Tõstmine voodist ratastooli ilma tõstukita.',
+    reviewOn: '2026-10-20',
+    setByName: 'Juta Juht',
+    setAt: NOW.toISOString()
+  });
+  assert.deepEqual((await openClient(anu, linda.id, deps())).workNature, set.workNature);
+  assert.equal((await openClient(bert, peeter.id, deps())).workNature, null);
+
+  /* UUS MÄRGE lõpetab eelmise: kehtiv on üks, vana jääb ajalukku. Ülevaatuse päev võib puududa. */
+  const later = at('2026-10-09T09:00:00Z');
+  const changed = await setWorkNature(lead, linda.id, { kinds: ['MENTAL'], reason: 'Klient on sageli ärritunud.' }, deps(later));
+  assert.deepEqual([changed.workNature.kinds, changed.workNature.reviewOn], [['MENTAL'], null]);
+  assert.deepEqual(
+    (await db.careWorkNature.findMany({ where: { clientId: linda.id }, orderBy: { createdAt: 'asc' } })).map((row) => [row.kinds, Boolean(row.endedAt), row.endedByName]),
+    [[['PHYSICAL', 'PAIR_ONLY'], true, 'Juta Juht'], [['MENTAL'], false, null]]
+  );
+  /* Üksuse hooldusjuht paneb märke oma üksuse kliendile, ülevaatusega nädala pärast. */
+  await setWorkNature(unitLead, peeter.id, { kinds: ['ENVIRONMENT'], reason: 'Ahiküte ja vesi kaevust.', reviewOn: '2026-10-16' }, deps());
+
+  /* TÄHTAJAD: märked, mille ülevaatus on 30 päeva sees; märge ilma ülevaatuse päevata siia ei tule. */
+  const deadlines = await getDeadlines(lead, deps());
+  assert.deepEqual(deadlines.workNatureDue.map((item) => [item.client.displayName, item.reviewOn, item.daysLeft, item.overdue]), [['Peeter Põhi', '2026-10-16', 7, false]]);
+  assert.deepEqual((await getDeadlines(lead, deps(at('2026-10-20T08:00:00Z')))).workNatureDue.map((item) => [item.daysLeft, item.overdue]), [[-4, true]]);
+
+  /* LOENDURID. Käigud: Anu 2 × Linda juures, Bert 1 × Linda ja 1 × Peetri juures; Linda ja Peeter on mõlemad märgiga. */
+  const visit = (who, client, hour) => createEntry(who, client.id, { text: 'Käik.', visitMinutes: 30, occurredAt: `2026-10-0${hour}T07:00:00Z` }, deps());
+  await visit(anu, linda, 5);
+  await visit(anu, linda, 6);
+  await visit(bert, linda, 7);
+  await visit(bert, peeter, 8);
+  const month = await getMonthSummary(lead, {}, deps());
+  assert.deepEqual(month.workers.map((row) => [row.name, row.visits, row.heavy]), [['Anu Hooldaja', 2, 2], ['Bert Hooldaja', 2, 2]]);
+  /* Üksuse hooldusjuht näeb ainult oma üksuse käike. */
+  assert.deepEqual((await getMonthSummary(unitLead, {}, deps())).workers.map((row) => [row.name, row.visits, row.heavy]), [['Bert Hooldaja', 1, 1]]);
+  /* Käigu määramisel on meeskonnaliikme juures ka raske töö käikude arv KÕIGI klientide juures 28 päeva jooksul. */
+  assert.deepEqual(
+    (await getSlotEditor(lead, linda.id, deps())).team.map((member) => [member.name, member.recentVisits, member.heavyRecent]),
+    [['Anu Hooldaja', 2, 2], ['Bert Hooldaja', 1, 2]]
+  );
+
+  /* Nädalaplaan: plaanitud käigud märgiga klientide juures töötaja kaupa. */
+  const early = at('2026-10-01T08:00:00Z');
+  await createSlots(lead, linda.id, { weekdays: [1, 3], startTime: '09:00', plannedMinutes: 30, workerMembershipId: f.members.anu.id }, deps(early));
+  await createSlots(lead, peeter.id, { weekdays: [2], startTime: '10:00', plannedMinutes: 30, workerMembershipId: f.members.bert.id }, deps(early));
+  const week = await getWeekPlan(lead, {}, deps());
+  assert.deepEqual(week.workers.map((row) => [row.name, row.visits, row.heavy]), [['Anu Hooldaja', 2, 2], ['Bert Hooldaja', 1, 1]]);
+
+  /* MAHAVÕTMINE: märget ei ole, rida jääb ajalukku; nädalaplaan loeb ainult praegu kehtivaid märkeid, kuu kokkuvõte selle kuu omi. */
+  await expectError(clearWorkNature(anu, linda.id, deps()), 403, 'org.errors.missing_capability');
+  assert.deepEqual(await clearWorkNature(lead, linda.id, deps(at('2026-10-09T10:00:00Z'))), { workNature: null });
+  assert.equal((await openClient(anu, linda.id, deps())).workNature, null);
+  assert.equal(await db.careWorkNature.count({ where: { clientId: linda.id } }), 2);
+  assert.deepEqual((await getWeekPlan(lead, {}, deps())).workers.map((row) => [row.name, row.heavy]), [['Anu Hooldaja', 0], ['Bert Hooldaja', 1]]);
+  assert.deepEqual((await getMonthSummary(lead, {}, deps())).workers.map((row) => row.heavy), [2, 2]);
+  /* Järgmisel kuul Linda märget enam ei olnud: novembri käik tema juures ei ole raske töö käik. */
+  await createEntry(anu, linda.id, { text: 'Novembri käik.', visitMinutes: 30, occurredAt: '2026-11-03T08:00:00Z' }, deps(at('2026-11-03T09:00:00Z')));
+  const november = await getMonthSummary(lead, { month: '2026-11' }, deps(at('2026-11-04T08:00:00Z')));
+  assert.deepEqual(november.workers.map((row) => [row.name, row.visits, row.heavy]), [['Anu Hooldaja', 1, 0]]);
+
+  /* Andmebaas hoiab vigase rea eemal ka siis, kui rakendus eksib. */
+  const raw = (data) => db.careWorkNature.create({ data: { organizationId: f.orgA.id, clientId: linda.id, kinds: ['PHYSICAL'], reason: 'Põhjus', ...data } });
+  await assert.rejects(raw({ kinds: [] }), /CareWorkNature_kinds_check/);
+  await assert.rejects(raw({ kinds: ['LAZY'] }), /CareWorkNature_kinds_check/);
+  await assert.rejects(raw({ reason: '   ' }), /CareWorkNature_reason_check/);
+  await assert.rejects(raw({ reviewOn: '20.10.2026' }), /CareWorkNature_reviewOn_check/);
+  await raw({});
+  await assert.rejects(raw({}), (error) => error.code === 'P2002');
+
+  /* AUDIT: ainult ID-d ja muutuse liik (liike ega põhjust seal ei ole). */
+  const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_work_nature_changed', meta: { path: ['organizationId'], equals: f.orgA.id } } });
+  assert.deepEqual(audit.map((entry) => entry.meta.change).sort(), ['cleared', 'set', 'set', 'set']);
+  for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['change', 'clientId', 'organizationId', 'workNatureId']);
 });

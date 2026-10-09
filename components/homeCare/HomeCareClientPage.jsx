@@ -19,6 +19,7 @@ import HomeCareOutbox from "./HomeCareOutbox";
 import HomeCarePlanView from "./HomeCarePlanView";
 import HomeCareReasonForm from "./HomeCareReasonForm";
 import HomeCareSlotList from "./HomeCareSlotList";
+import HomeCareWorkNature from "./HomeCareWorkNature";
 import HomeCareTeam from "./HomeCareTeam";
 import {
   ACCESS_REASON_REQUIRED,
@@ -325,6 +326,14 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
         lines={card}
         canEdit={canWrite && access.canEditCard}
         onChange={(next) => setData((current) => ({ ...current, card: next }))}
+      />
+
+      {/* Töö iseloom (K3-g): kohe püsikaardi järel, sest „ainult kahekesi" peab olema näha enne minekut. */}
+      <HomeCareWorkNature
+        organizationId={organizationId}
+        clientId={client.id}
+        initial={data.workNature || null}
+        canEdit={canWrite && access.isCoordinator}
       />
 
       {/* Täna kehtiv otsus ja otsustatud maht (K2-c). Kogu meeskonnale lugemiseks. */}

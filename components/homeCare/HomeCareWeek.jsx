@@ -151,6 +151,7 @@ export default function HomeCareWeek({ context, initial }) {
           </h3>
           <p className="hc-sub">
             {t("home_care.week.worker_total", { visits: worker.visits, amount: minutesLabel(t, worker.minutes) })}
+            {worker.heavy ? ` · ${t("home_care.work_nature.heavy_visits", { count: worker.heavy })}` : ""}
             {worker.uncovered ? ` · ${t("home_care.week.worker_uncovered", { count: worker.uncovered })}` : ""}
           </p>
           <div className="hc-week" role="group" aria-label={worker.name || "—"}>

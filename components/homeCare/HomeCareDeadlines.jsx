@@ -102,6 +102,14 @@ export default function HomeCareDeadlines({ context, deadlines }) {
       )}
 
       {section("no_plan", deadlines.noPlan, (item) => clientLine(item, null))}
+
+      {section("work_nature_due", deadlines.workNatureDue || [], (item) =>
+        clientLine(
+          item,
+          t("home_care.deadlines.review_on", { date: planDayLabel(item.reviewOn), when: daysLabel(t, item.daysLeft) }),
+          item.overdue ? <span className="hc-badge hc-badge--danger">{t("home_care.deadlines.overdue_badge")}</span> : null
+        )
+      )}
     </section>
   );
 }

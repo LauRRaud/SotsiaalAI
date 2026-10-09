@@ -87,7 +87,9 @@ export default function HomeCareSlots({ context, initial }) {
     { value: "", label: t("home_care.slots.worker_none") },
     ...team.map((member) => ({
       value: member.membershipId,
-      label: t("home_care.slots.worker_option", { name: member.name || "—", count: member.recentVisits })
+      label: member.heavyRecent
+        ? t("home_care.work_nature.worker_option", { name: member.name || "—", count: member.recentVisits, heavy: member.heavyRecent })
+        : t("home_care.slots.worker_option", { name: member.name || "—", count: member.recentVisits })
     }))
   ];
   /* Muudetava käigu töötaja võib olla meeskonnast lahkunud: valik peab teda siiski näitama. */
