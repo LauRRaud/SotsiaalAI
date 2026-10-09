@@ -8019,7 +8019,6 @@
     },
     "flow": {
       "progress": "{done}/{total} vastatud",
-      "optional_note": "Selle sammu võid ka tühjaks jätta.",
       "next_to": "Edasi: {label}",
       "privacy": "Sisestus on privaatne. Seda ei jagata ilma sinu kinnituseta.",
       "state": {
@@ -8049,6 +8048,12 @@
       "support": {
         "title": "Tugi",
         "lead": "Vaikimisi jääb kõik privaatseks. Tuge küsid siis, kui ise soovid."
+      },
+      "leads": {
+        "choose_one": "Vali igal real üks.",
+        "mark_all": "Märgi kõik, mis kehtivad. Võid ka tühjaks jätta.",
+        "general_text": "Kirjelda üldistatult. Ära kirjuta nimesid ega detaile, mille järgi inimest saab ära tunda.",
+        "own_words": "Sõnasta oma sõnadega. Tühjaks jäetud koha kohta jääb mustandisse meeldetuletus."
       }
     }
   },

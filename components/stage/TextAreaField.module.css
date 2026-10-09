@@ -16,6 +16,7 @@
 .input {
   width: 100%;
   min-width: 0;
-  min-height: 5.5rem;
+  /* Kõrguse määrab `rows`; ühine lehekiht annaks muidu igale tekstiväljale 7rem. */
+  min-height: 3.5rem;
   resize: vertical;
 }
