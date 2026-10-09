@@ -1,0 +1,381 @@
+/* Supervisiooni protsessi laud ning jagamise ja sulgemise eelvaade. Lava,
+   plaadid ja kiirmenüü tulevad components/stage-ist; vaate kuju (juhis,
+   tegevusrida) StepPanel-ist; märk, takistuse lause ja lingiread avalehtede
+   tükkidest (../entry/EntryBits.jsx).
+
+   Lehe kest on ainult paigutus: klaaspind on juba PanelFrame. Vana kest
+   (SupervisionPage.module.css `.page` + `.shell`) joonistas selle sisse teise
+   klaaskasti, suure pealkirja ja sakiriba. */
+
+.shell {
+  min-width: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+.stack {
+  min-width: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+.quiet {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--text-soft);
+}
+.state {
+  min-width: 0;
+  display: grid;
+  justify-items: start;
+  gap: 0.6rem;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Päis lava kohal: protsessi nimi, minu roll ja seis vasakul, tee tagasi lauale
+   paremal. Nimi ei ole lehe pealkiri (see on kiirmenüüs), vaid ütleb, milline
+   protsess on lahti; seepärast on ta tavalise teksti suurune. */
+.head {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 0.8rem;
+}
+.processName {
+  min-width: 0;
+  margin: 0;
+  color: var(--text-warm);
+  font-size: var(--fs-body, 1rem);
+  font-weight: 560;
+  letter-spacing: normal;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+/* Tee mujale tekstina (tagasi lauale, ava kontrakt): alla joonitud sõna, mitte nupp. */
+.textButton {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-soft);
+  font: inherit;
+  font-size: var(--fs-small, 0.875rem);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.textButton:hover {
+  color: var(--text-warm);
+}
+.textButton:focus-visible {
+  outline: none;
+  border-radius: 0.3rem;
+  box-shadow: var(--focus-ring);
+}
+.back {
+  composes: textButton;
+  margin-left: auto;
+}
+
+/* Teated lava kohal: need jäävad ette igas osas (suletud protsess, ootel
+   kontraktikinnitus, viimase teo tulemus). Lause, mitte kaart: serva joon
+   ütleb, et see on teade. */
+.notices {
+  min-width: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+.notices:empty {
+  display: none;
+}
+.notice {
+  margin: 0;
+  max-width: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem 0.8rem;
+  padding-inline-start: 0.7rem;
+  border-inline-start: 3px solid color-mix(in srgb, var(--text-warm) 30%, transparent);
+  color: var(--text-soft);
+}
+.notice[data-tone="wait"] {
+  border-inline-start-color: color-mix(in srgb, #e6c27a 70%, transparent);
+  color: var(--text-warm);
+}
+
+/* Avatavad read: rida on üks vajutatav lahter (pealkiri, märgid, tee edasi).
+   Ühine lehekiht annab igale loendireale alumise vahe; rea laius on sama mis
+   supervisiooni laua ridadel. */
+.rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+.rowItem {
+  min-width: 0;
+  max-width: 72ch;
+  margin: 0;
+}
+.row {
+  composes: cell from "../../stage/cell.module.css";
+  width: 100%;
+  min-height: var(--hit-target-min, 2.75rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 0.3rem 1rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.9rem;
+  text-align: left;
+}
+.rowMain {
+  min-width: 0;
+  display: grid;
+  gap: 0.05rem;
+}
+/* Pealkirjata kirje real on sisu algus: kuni kaks rida, terve tekst on avatud kirjes. */
+.rowTitle {
+  min-width: 0;
+  font-weight: 560;
+  color: var(--text-warm);
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.rowSub {
+  min-width: 0;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+.rowMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.3rem 0.5rem;
+}
+.time,
+.rowOpen {
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Rida, mida ei avata (osaleja, kontraktiversioon): sisu vasakul, tegevus paremal. */
+.item {
+  min-width: 0;
+  max-width: 72ch;
+  margin: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.3rem 1rem;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.9rem;
+  background: var(--glass-cell-bg);
+}
+.itemMain {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem 0.7rem;
+}
+.itemName {
+  min-width: 0;
+  color: var(--text-warm);
+  font-weight: 560;
+  overflow-wrap: anywhere;
+}
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.4rem;
+}
+
+/* Avatud kirje: märgid ühel real, nimi ja tekst. */
+.line {
+  margin: 0;
+  max-width: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.8rem;
+}
+.name {
+  margin: 0;
+  max-width: 68ch;
+  color: var(--text-warm);
+  font-weight: 560;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+/* Sisestatud tekst on plain text: reavahed jäävad alles ja pikk sõne murdub. */
+.text {
+  margin: 0;
+  max-width: 68ch;
+  color: var(--text-warm);
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* Väljad: nii laiad, kui sisu vajab (tunnus ja kellaaeg ei ole paneeli laiused). */
+.fields {
+  min-width: 0;
+  display: grid;
+  gap: 0.8rem;
+}
+.field {
+  min-width: 0;
+  display: grid;
+  gap: 0.35rem;
+  max-width: 30rem;
+}
+.field[data-size="sm"] {
+  max-width: 17rem;
+}
+.fieldLabel {
+  color: var(--text-warm);
+}
+.fieldHint {
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+}
+.fieldError {
+  color: var(--status-error, #eb9a76);
+  font-size: var(--fs-small, 0.875rem);
+}
+.input {
+  width: 100%;
+  min-width: 0;
+}
+
+/* Faktid: nimetus vasakul, väärtus paremal. */
+.facts {
+  margin: 0;
+  max-width: 46rem;
+  display: grid;
+  gap: 0;
+}
+.fact {
+  display: grid;
+  grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
+  gap: 0.2rem 1rem;
+  padding-block: 0.45rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--text-warm) 10%, transparent);
+}
+.fact:last-child {
+  border-bottom: 0;
+}
+.factLabel {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+}
+.factValue {
+  margin: 0;
+  color: var(--text-warm);
+  overflow-wrap: anywhere;
+}
+.factValue[data-long="true"] {
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+.factValue[data-missing="true"] {
+  color: var(--text-soft);
+}
+
+/* Lühikesed laused üksteise all (suletud protsessi faktid, juhised). */
+.lines {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.2rem;
+}
+.lineItem {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--text-soft);
+}
+
+/* Sulgemise eelvaade: kaks selgelt eristatud tulpa, „Kustub" ja „Jääb". Tulba
+   eristab serva joon, mitte kaart klaaspaneeli sees. */
+.columns {
+  min-width: 0;
+  max-width: 54rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 0.8rem 1.6rem;
+}
+.column {
+  min-width: 0;
+  display: grid;
+  align-content: start;
+  gap: 0.35rem;
+  padding-inline-start: 0.8rem;
+  border-inline-start: 3px solid color-mix(in srgb, var(--text-warm) 30%, transparent);
+}
+.column[data-kind="deleted"] {
+  border-inline-start-color: color-mix(in srgb, var(--status-error, #eb9a76) 60%, transparent);
+}
+.column[data-kind="kept"] {
+  border-inline-start-color: color-mix(in srgb, var(--status-success, #c5cf9b) 55%, transparent);
+}
+/* Tulba nimi on pealkiri (h2) tavalise teksti suuruses: ühine lehekiht teeks
+   selle suureks ja lisaks ülavahe. */
+.columnTitle {
+  margin: 0;
+  color: var(--text-warm);
+  font-size: var(--fs-body, 1rem);
+  font-weight: 560;
+  letter-spacing: normal;
+  line-height: 1.4;
+}
+
+/* Tagasivõtmatu tegu ei tohi näha välja nagu „Salvesta": sama nupp, hoiatav toon. */
+.danger {
+  border-color: color-mix(in srgb, var(--status-error, #eb9a76) 60%, transparent);
+  color: var(--status-error, #eb9a76);
+}
+:global(html.theme-light) .danger {
+  color: #9a3d1f;
+}
+
+@media (max-width: 640px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .rowMeta {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: flex-start;
+  }
+  .item {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .buttons {
+    justify-content: flex-start;
+  }
+  .field,
+  .field[data-size] {
+    max-width: none;
+  }
+  .fact {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

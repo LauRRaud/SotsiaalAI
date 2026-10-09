@@ -1,56 +1,36 @@
 "use client";
 
-import { useI18n } from "@/components/i18n/I18nProvider";
-import PrivacyBadge from "./PrivacyBadge";
-import styles from "./SupervisionPage.module.css";
-
 /**
- * Vaade 8 „Kinnitatud väljundite kapp" (Q2.6). Puhas lugemisvaade: kinnitatud
- * kokkuvõtted + kehtiv kontrakt. Märgis ütleb, MIKS need siin on — need jäävad
- * alles ka pärast sulgemist (erinevalt jagatud toorsisust, mis kustub).
+ * Protsessi laua osa „Kinnitatud väljundite kapp" (Q2.6 vaade 8).
+ *
+ * Puhas lugemisvaade: kinnitatud kokkuvõtted ja kehtiv kontrakt. Märgis ütleb,
+ * MIKS need siin on: need jäävad alles ka pärast sulgemist (erinevalt jagatud
+ * toorsisust, mis kustub).
+ *
+ * KUJU (09.10). Paneel näitas kõiki tekste korraga üksteise all kaartides. Nüüd
+ * on kapis loend ja üks tekst avaneb korraga. Vaade on failis
+ * ./process/ProcessViews.jsx, read teeb ./process/processRows.js.
  */
+
+import { useMemo, useState } from "react";
+
+import { useI18n } from "@/components/i18n/I18nProvider";
+
+import { CabinetView } from "./process/ProcessViews";
+import { cabinetRows } from "./process/processRows";
+
 export default function KappPanel({ process }) {
-  const { t } = useI18n();
-  const approved = (process.summaries || []).filter((summary) => summary.status === "APPROVED");
-  const hasContent = approved.length > 0 || Boolean(process.activeContract);
+  const { t, locale } = useI18n();
+  const [openId, setOpenId] = useState("");
+  const rows = useMemo(() => cabinetRows(process, { t, locale }), [locale, process, t]);
 
   return (
-    <section className={styles.section}>
-      <div className={styles.sectionHeading}>
-        <h2>{t("supervision.kapp.title")}</h2>
-        <p>{t("supervision.kapp.intro")}</p>
-      </div>
-
-      <PrivacyBadge scope="persistent" />
-
-      {!hasContent ? <p className={styles.empty}>{t("supervision.kapp.empty")}</p> : null}
-
-      {hasContent ? (
-        <div className={styles.itemList}>
-          {process.activeContract ? (
-            <article className={styles.item}>
-              <div className={styles.badgeRow}>
-                <span className={styles.badge}>
-                  {t("supervision.contract.versionN", { n: process.activeContract.versionNumber })}
-                </span>
-              </div>
-              <h3 className={styles.itemTitle}>{t("supervision.outcome.contract")}</h3>
-              <p className={styles.itemBody}>{process.activeContract.body}</p>
-            </article>
-          ) : null}
-
-          {approved.map((summary) => (
-            <article key={summary.id} className={styles.item}>
-              <div className={styles.badgeRow}>
-                <span className={styles.badge}>
-                  {t(`supervision.summaries.${summary.kind === "FINAL" ? "final" : "meeting"}`)}
-                </span>
-              </div>
-              <p className={styles.itemBody}>{summary.body}</p>
-            </article>
-          ))}
-        </div>
-      ) : null}
-    </section>
+    <CabinetView
+      t={t}
+      rows={rows}
+      row={rows.find((row) => row.id === openId) || null}
+      onOpen={setOpenId}
+      onBack={() => setOpenId("")}
+    />
   );
 }
