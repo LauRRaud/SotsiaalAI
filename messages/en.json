@@ -5229,7 +5229,16 @@
       },
       "privacy": {
         "signed_out": "Your sign-in has expired. Sign in again and then try again.",
-        "checking": "Checking the instruction for personal data…"
+        "checking": "Checking the instruction for personal data…",
+        "compose_body": "The instruction contains personal data. Before composing, choose whether to edit the instruction, compose with the masked instruction, or continue with the original where this workflow allows it.",
+        "compose_redacted": "Compose with the masked instruction",
+        "compose_original": "Compose with the original instruction",
+        "compose_unavailable": "The text was not composed. Check again.",
+        "refine_body": "The instruction contains personal data. Before refining, choose whether to edit the instruction, refine with the masked instruction, or continue with the original where this workflow allows it.",
+        "refine_redacted": "Refine with the masked instruction",
+        "refine_original": "Refine with the original instruction",
+        "refine_unavailable": "The text was not refined. Check again.",
+        "not_started": "The work was not started. Check the instruction and try again."
       },
       "text": {
         "created": "Created",

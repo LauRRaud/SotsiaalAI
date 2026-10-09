@@ -5229,7 +5229,16 @@
       },
       "privacy": {
         "signed_out": "Sisselogimine on aegunud. Logi uuesti sisse ja proovi siis uuesti.",
-        "checking": "Kontrollin, kas juhises on isikuandmeid…"
+        "checking": "Kontrollin, kas juhises on isikuandmeid…",
+        "compose_body": "Juhises on isikuandmeid. Vali enne koostamist, kas muudad juhist, koostad maskeeritud juhisega või jätkad algsega, kui see töövoog seda lubab.",
+        "compose_redacted": "Koosta maskeeritud juhisega",
+        "compose_original": "Koosta algse juhisega",
+        "compose_unavailable": "Teksti ei koostatud. Kontrolli uuesti.",
+        "refine_body": "Juhises on isikuandmeid. Vali enne täiendamist, kas muudad juhist, täiendad maskeeritud juhisega või jätkad algsega, kui see töövoog seda lubab.",
+        "refine_redacted": "Täienda maskeeritud juhisega",
+        "refine_original": "Täienda algse juhisega",
+        "refine_unavailable": "Teksti ei täiendatud. Kontrolli uuesti.",
+        "not_started": "Tööd ei käivitatud. Kontrolli juhist ja proovi uuesti."
       },
       "text": {
         "created": "Loodud",

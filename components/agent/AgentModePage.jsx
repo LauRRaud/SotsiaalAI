@@ -75,7 +75,8 @@ import {
   CLIENT_AGENT_TASK_OPTIONS,
   CLIENT_MAX_DOCUMENTS,
   FREE_VIEWS,
-  PRIVACY_CHOICE_KEYS,
+  privacyChoiceKey,
+  privacyTextKeys,
   PRIVACY_WORKFLOW,
   RECENT_RESULTS_LIMIT,
   WORKSPACE_VERSION_LIMIT,
@@ -926,7 +927,13 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
       limit: instructionMax,
       busy: resultBusy || audio.summarizingAudio
     })
-    if (blocker) return undefined
+    if (blocker) {
+      /* Isikuandmete küsimuse valik on küsimuse juba sulgenud: kui töö siiski
+         ei käivitu (maskeeritud juhis on piirist pikem), öeldakse see välja,
+         muidu ei teeks vajutus midagi ega ütleks midagi. */
+      if (options.confirmed) setRunError(t(blocker === "too_long" ? "documents.artifacts.errors.instruction_too_long" : "documents.drafting.privacy.not_started"))
+      return undefined
+    }
     return guarded("compose", hasDraftEdits && !options.confirmed, () =>
       runPaid(async () => {
         const privacy = options.skipPrivacy
@@ -959,7 +966,10 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
       limit: instructionLimit(),
       busy: resultBusy
     })
-    if (blocker) return undefined
+    if (blocker) {
+      if (options.confirmed) setRunError(t(blocker === "too_long" ? "documents.artifacts.errors.instruction_too_long" : "documents.drafting.privacy.not_started"))
+      return undefined
+    }
     return runPaid(async () => {
       const privacy = options.skipPrivacy
         ? { text, privacyDecision: options.privacyDecision }
@@ -1282,13 +1292,14 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
     if (!privacyPrompt || privacyPrompt.action !== action) return null
     const findings = (Array.isArray(privacyPrompt.findings) ? privacyPrompt.findings : []).map((finding) => finding?.label).filter(Boolean)
     const main = privacyPrompt.unavailable ? "retry" : "redacted"
+    const words = privacyTextKeys(action, Boolean(privacyPrompt.unavailable))
     return {
-      title: t(privacyPrompt.unavailable ? "privacy_guard.unavailable_title" : "privacy_guard.title"),
-      text: t(privacyPrompt.unavailable ? "privacy_guard.unavailable" : "privacy_guard.body"),
+      title: t(words.title),
+      text: t(words.text),
       findings: findings.join(", "),
       choices: privacyChoices(privacyPrompt).map((choice) => ({
         key: choice,
-        label: t(PRIVACY_CHOICE_KEYS[choice]),
+        label: t(privacyChoiceKey(action, choice)),
         primary: choice === main,
         onPress: () => answerPrivacy(choice)
       }))
