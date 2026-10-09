@@ -23,6 +23,22 @@
   margin: 0;
 }
 
+/* Avatav rida on üks vajutatav lahter: vasakul pealkiri ja selle all üks rida,
+   paremal märgid ja aeg, lõpus tee edasi. */
+.row {
+  composes: cell from "./cell.module.css";
+  width: 100%;
+  min-height: var(--hit-target-min, 2.75rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 0.25rem 1rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 0.9rem;
+  text-align: left;
+  text-decoration: none;
+}
+
 /* Rea vasak pool: pealkiri ja selle all olev rida. */
 .rowMain {
   min-width: 0;

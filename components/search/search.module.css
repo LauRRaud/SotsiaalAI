@@ -1,0 +1,84 @@
+/**
+ * Minu otsing: üks väli ja selle all tulemused madalate ridadena.
+ * Ridade ühised osad tulevad failist components/stage/rows.module.css.
+ */
+.page {
+  min-width: 0;
+  color: var(--text-warm);
+  container-type: inline-size;
+}
+.stack {
+  min-width: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+/* Väli on nii lai kui pealkirja otsimiseks vaja, mitte paneeli laiune; nupp on
+   kohe selle kõrval. */
+.search {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+}
+.field {
+  flex: 0 1 24rem;
+  min-width: min(100%, 12rem);
+}
+/* Seisu rida on alati olemas (ekraanilugeja jaoks), tühjana ei võta see ruumi. */
+.status {
+  margin: 0;
+  max-width: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-soft);
+}
+.status:empty {
+  display: none;
+}
+.fault {
+  composes: fault from "../stage/rows.module.css";
+}
+.faultText {
+  composes: faultText from "../stage/rows.module.css";
+}
+.rows {
+  composes: rows from "../stage/rows.module.css";
+}
+.rowItem {
+  composes: rowItem from "../stage/rows.module.css";
+}
+.row {
+  composes: row from "../stage/rows.module.css";
+}
+.rowTitle {
+  composes: rowTitle from "../stage/rows.module.css";
+}
+.rowMeta {
+  composes: rowMeta from "../stage/rows.module.css";
+}
+.kind {
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+}
+.time {
+  composes: rowTime from "../stage/rows.module.css";
+}
+.open {
+  composes: rowTime from "../stage/rows.module.css";
+}
+.more {
+  justify-self: start;
+}
+
+/* Kitsal pinnal murduvad liik ja aeg pealkirja alla. */
+@container (max-width: 34rem) {
+  .row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .rowMeta {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+  }
+}
