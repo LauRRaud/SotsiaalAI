@@ -1679,9 +1679,10 @@ export default function ChatBody({
   const loadListingsPanel = useCallback(async (panelConfig, options = {}) => {
     if (!panelConfig) return;
     const append = options?.append === true;
-    const offset = append
-      ? (Number.isFinite(Number(listingsPanelState.nextOffset)) ? Number(listingsPanelState.nextOffset) : 0)
-      : 0;
+    /* Nihe tuleb kutsujalt, mitte olekust: olekust lugedes sõltuks see
+       funktsioon nihkest ja avamise efekt (allpool) laeks pärast iga „Lae
+       juurde" esimese lehe uuesti, nii et lisatud read kaoksid. */
+    const offset = append && Number.isFinite(Number(options?.offset)) ? Number(options.offset) : 0;
 
     setListingsPanelState((prev) => ({
       ...prev,
@@ -1718,7 +1719,7 @@ export default function ChatBody({
         error: error?.message || helpUi.loadFailed
       }));
     }
-  }, [helpUi.loadFailed, listingsPanelState.nextOffset, locale]);
+  }, [helpUi.loadFailed, locale]);
   const openListingsPanel = useCallback((panelConfig) => {
     setShowSourcesPanel(false);
     if (listingsPanelCloseTimerRef.current && typeof window !== "undefined") {
@@ -2694,7 +2695,7 @@ export default function ChatBody({
       onClose={closeListingsPanel}
       onBackToProfile={activeListingsPanel?.returnToProfile ? backToProfileFromListingsPanel : undefined}
       onBackToWorkspace={activeListingsPanel?.returnToWorkspace ? backToWorkspaceFromListingsPanel : undefined}
-      onLoadMore={() => loadListingsPanel(activeListingsPanel, { append: true })}
+      onLoadMore={() => loadListingsPanel(activeListingsPanel, { append: true, offset: listingsPanelState.nextOffset })}
       onSelectItem={openSelectedListing}
       detailNode={inlineSelectedListingNode}
     />

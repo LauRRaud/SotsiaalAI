@@ -334,9 +334,10 @@
   color: #9a3d1f;
 }
 
-/* Kitsal pinnal (telefon, kitsas tööpaneel, modaali vaade) lähevad rea osad
-   üksteise alla. */
-@container (max-width: 36rem) {
+/* Kitsal pinnal (telefon, kitsas tööpaneel) lähevad rea osad üksteise alla.
+   Piir on modaali vaate laiusest (36rem) allpool: modaalis jäävad väljad oma
+   sisu laiuseks nagu tööpaneelis. */
+@container (max-width: 30rem) {
   .field,
   .field[data-size] {
     flex-basis: 100%;

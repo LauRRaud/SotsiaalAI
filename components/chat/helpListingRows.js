@@ -19,7 +19,13 @@ export function listingKind({ items = [], infoId = "", title = "", ui = {} } = {
   return title && title === ui.helpOffers ? "offer" : "request";
 }
 
-/** Loendi rida: pealkiri, märksõnade kokkuvõte ja märgid (minu kuulutus, seis). */
+/**
+ * Loendi rida: pealkiri, märksõnade kokkuvõte ja märgid (minu kuulutus, seis).
+ *
+ * SEISUMÄRK. Need loendid küsivad ainult avatud kuulutusi (`status=OPEN`), nii
+ * et „Aktiivne" igal real ei ütleks midagi. Märk tuleb ainult muu seisu kohta
+ * (sõna annab server kuulutuse keeles, vt lib/help/listingViews.js).
+ */
 export function listingRows(items, ui = {}) {
   return (Array.isArray(items) ? items : []).map((item) => ({
     key: `${item.kind}-${item.id}`,
@@ -28,7 +34,9 @@ export function listingRows(items, ui = {}) {
     own: Boolean(item.isOwn),
     chips: [
       ...(item.isOwn ? [{ key: "own", text: ui.ownListing, tone: "own" }] : []),
-      ...(item.statusLabel ? [{ key: "status", text: String(item.statusLabel), tone: "quiet" }] : [])
+      ...(item.statusLabel && String(item.status || "").trim().toUpperCase() !== "OPEN"
+        ? [{ key: "status", text: String(item.statusLabel), tone: "quiet" }]
+        : [])
     ],
     item
   }));

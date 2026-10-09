@@ -24,9 +24,11 @@ export const INVITE_VIEW_KEYS = Object.freeze(["room", "who", "emails", "send", 
 /**
  * Ruumi vaade on ainult siis, kui kutsega luuakse uus ruum. Olemasolevasse
  * ruumi kutsudes (ja pärast esimest saatmist) ruumi nime enam ei küsita.
+ * Saadetud kutsete vaade on ainult siis, kui ruum on olemas: enne esimest
+ * saatmist ei ole ruumi ega kutseid ja samm viiks tühja loendi juurde.
  */
 export function inviteViewKeys({ hasRoom = false } = {}) {
-  return hasRoom ? INVITE_VIEW_KEYS.filter((key) => key !== "room") : [...INVITE_VIEW_KEYS];
+  return INVITE_VIEW_KEYS.filter((key) => (hasRoom ? key !== "room" : key !== "sent"));
 }
 
 /** Aadressid väljalt: koma, semikoolon või reavahetus eraldab; kordused jäävad välja. */

@@ -18,6 +18,7 @@
 
 import { ALLOWED_DOCUMENT_TYPES, MAX_DOCUMENT_SIZE_BYTES } from "@/lib/documents/constants";
 import { formatDate, formatFileSize } from "@/lib/documents/presentation";
+import { RAG_AVAILABLE } from "@/lib/rag/retired";
 import { getMaterialsFileCountLimit } from "@/lib/storageGuardrails";
 
 /** Vaated, millel on kataloogis nimi ja lühinimi (`materials_page.views.<võti>`). */
@@ -96,8 +97,19 @@ export function materialDownloadHref(id) {
   return `/api/materials/${encodeURIComponent(id)}/download`;
 }
 
+/**
+ * Kas materjal on vaataja enda saadetud. Administraatorile annab server ka
+ * teiste saadetud materjalid (real on siis saatja kaasas): võõrast materjali
+ * siit tagasi võtta ei pakuta, selleks on ülevaatuse vaade. Kui saatjat real ei
+ * ole, on loend vaataja enda oma.
+ */
+export function isOwnMaterial(item, viewerId = "") {
+  const sender = String(item?.submittedByUser?.id || "");
+  return !sender || !viewerId || sender === String(viewerId);
+}
+
 /** Avatud materjal: seis, faktid (saadetud, suurus, säilitamine), oma selgitus ja tegevused. */
-export function materialSheet(item, { t, locale } = {}) {
+export function materialSheet(item, { t, locale, viewerId = "" } = {}) {
   const status = materialStatus(item?.status, t);
   return {
     title: item?.originalName || t("materials_page.views.item.title"),
@@ -110,7 +122,7 @@ export function materialSheet(item, { t, locale } = {}) {
     ].filter(hasValue),
     comment: String(item?.comment || "").trim(),
     downloadHref: materialDownloadHref(item?.id),
-    canWithdraw: canWithdraw(item?.status)
+    canWithdraw: canWithdraw(item?.status) && isOwnMaterial(item, viewerId)
   };
 }
 
@@ -232,7 +244,11 @@ export function submissionSheet(item, { t, locale } = {}) {
     comment: String(item?.comment || "").trim(),
     reviewNote: String(item?.reviewNote || "").trim(),
     previewHref: materialPreviewHref(item?.id),
-    ...reviewActions(item?.status)
+    ...reviewActions(item?.status),
+    /* Import vanasse teadmusbaasi on peatatud (lib/rag/retired.js): server
+       keeldub sellest alati. Kuni see nii on, importi ei pakuta, muidu täidaks
+       ülevaataja õiguste vormi ja saaks vastuseks keeldumise. */
+    importOffered: RAG_AVAILABLE
   };
 }
 

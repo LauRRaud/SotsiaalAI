@@ -251,7 +251,7 @@ export default function MaterialsPage({ locale = "et", embedded = false, onBack 
     body = (
       <MaterialItemView
         t={t}
-        sheet={materialSheet(opened, { t, locale: resolvedLocale })}
+        sheet={materialSheet(opened, { t, locale: resolvedLocale, viewerId: session?.user?.id || "" })}
         error={itemError}
         busy={Boolean(withdrawingId)}
         onBack={() => setOpenedId("")}

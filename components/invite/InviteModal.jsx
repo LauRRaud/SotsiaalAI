@@ -100,6 +100,7 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
   /* Kutse, mille uuesti saatmine või tühistamine parajasti käib. */
   const [actionId, setActionId] = useState("");
   const sentListRef = useRef(null);
+  const rootRef = useRef(null);
 
   const sponsoredSelected = paymentMode === PAYMENT_HOST;
   const isWorkspaceReturn = embedded || openSource === "workspace";
@@ -440,6 +441,31 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
       setActionId("");
     }
   }
+  /* Fookus ei tohi kaduda koos nupuga, mida vajutati. Modaalis vahetab vaadet
+     ka Enter väljal, puuduv väli ja saatmine: fookus läheb siis uue vaate
+     pealkirjale (lüliti enda vajutusel jääb lülitile). Maksja valik vahetab
+     saatmise vaate nupud välja: fookus läheb sama vaate pealkirjale. */
+  const focusHeading = useCallback(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    const scope = root.querySelector('section[data-active="1"]') || root;
+    scope.querySelector("[data-step-heading]")?.focus({ preventScroll: true });
+  }, []);
+  const shownViewRef = useRef("");
+  useEffect(() => {
+    const before = shownViewRef.current;
+    shownViewRef.current = activeView;
+    if (embedded || !before || before === activeView) return;
+    if (rootRef.current?.querySelector("[data-view-switch]")?.contains(document.activeElement)) return;
+    focusHeading();
+  }, [activeView, embedded, focusHeading]);
+  const payerRef = useRef(sponsoredSelected);
+  useEffect(() => {
+    if (payerRef.current === sponsoredSelected) return;
+    payerRef.current = sponsoredSelected;
+    focusHeading();
+  }, [sponsoredSelected, focusHeading]);
+
   if (!open) return null;
   // Makse-tagasitulek: PUHAS staatuskaart (mitte kutse-loomise vorm), et
   // vältida "vorm üle vestluse" segadust. URL-ist tulev pending tähendab
@@ -718,7 +744,7 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
         {/* Päis seisab lehe ümbrisest väljas: ümbris on konteiner ja võtaks
             päise ⓘ-nupu paigutuse enda külge. */}
         {header}
-        <div className={styles.page}>
+        <div className={styles.page} ref={rootRef}>
           {signedIn ? (
             <>
               <InviteNotice notice={notice} />
@@ -755,19 +781,21 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
       contentClassName="invite-modal-card"
     >
       {header}
-      <div className={styles.dialog}>
+      <div className={styles.dialog} ref={rootRef}>
         {signedIn ? (
           <>
             <InviteNotice notice={notice} />
             {/* Modaali ajal on kiirmenüü kättesaamatu: vaateid vahetab see rida. */}
-            <ChoiceRow
-              label={t("invite.views.switch_label")}
-              labelHidden
-              columns={viewKeys.length}
-              options={viewKeys.map((key) => ({ value: key, label: t(`invite.views.${key}.short`) }))}
-              value={activeView}
-              onChange={setView}
-            />
+            <div data-view-switch>
+              <ChoiceRow
+                label={t("invite.views.switch_label")}
+                labelHidden
+                columns={viewKeys.length}
+                options={viewKeys.map((key) => ({ value: key, label: t(`invite.views.${key}.short`) }))}
+                value={activeView}
+                onChange={setView}
+              />
+            </div>
             <div className={styles.dialogView}>{renderView(activeView)}</div>
           </>
         ) : (

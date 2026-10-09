@@ -213,7 +213,7 @@ test('aadressid loetakse väljalt: koma, semikoolon ja reavahetus eraldavad, kor
 });
 
 test('ruumi vaade on ainult uue ruumi puhul', () => {
-  assert.deepEqual(inviteViewKeys(), ['room', 'who', 'emails', 'send', 'sent']);
+  assert.deepEqual(inviteViewKeys(), ['room', 'who', 'emails', 'send'], 'enne esimest saatmist ei ole ruumi ega kutsete loendit');
   assert.deepEqual(inviteViewKeys({ hasRoom: true }), ['who', 'emails', 'send', 'sent']);
   assert.equal(effectiveChoice(['COLLEAGUE'], ''), 'COLLEAGUE', 'ainus lubatud seos on vaikimisi valitud');
   assert.equal(effectiveChoice(['CLIENT', 'COLLEAGUE'], ''), '');
@@ -537,6 +537,10 @@ test('minu materjalide rida on madal ja avatud materjal kannab kõike muud', () 
   /* Tagasi saab võtta ootel või tagasi lükatud materjali, nagu vanal lehel. */
   assert.deepEqual(MATERIAL_STATUSES.filter(canWithdraw), ['pending', 'rejected']);
   assert.equal(materialSheet({ ...item, id: 'a b', status: 'imported' }, { t }).canWithdraw, false);
+  /* Administraatori loendis on ka teiste materjalid: võõrast siit tagasi võtta ei pakuta. */
+  const foreign = { ...item, submittedByUser: { id: 'u2', email: 'teine@example.test' } };
+  assert.equal(materialSheet(foreign, { t, viewerId: 'u1' }).canWithdraw, false);
+  assert.equal(materialSheet(foreign, { t, viewerId: 'u2' }).canWithdraw, true);
   assert.equal(materialSheet({ ...item, id: 'a b' }, { t }).downloadHref, '/api/materials/a%20b/download');
 });
 
@@ -714,14 +718,14 @@ const ui = {
 
 test('kuulutuste read: minu omad enne, rühma pealkiri ainult siis, kui mõlemad rühmad on olemas', () => {
   const items = [
-    { kind: 'request', id: 'a', title: 'Abisoov: Koduabi - Tartu linn', summary: 'Koduabi, Tartu linn', statusLabel: 'Aktiivne', isOwn: false },
-    { kind: 'request', id: 'b', title: 'Abisoov: Transport', summary: '', statusLabel: 'Aktiivne', isOwn: true },
+    { kind: 'request', id: 'a', title: 'Abisoov: Koduabi - Tartu linn', summary: 'Koduabi, Tartu linn', status: 'MATCHED', statusLabel: 'Ühendatud', isOwn: false },
+    { kind: 'request', id: 'b', title: 'Abisoov: Transport', summary: '', status: 'OPEN', statusLabel: 'Aktiivne', isOwn: true },
     { kind: 'request', id: 'c', title: 'Abisoov: Nõustamine', summary: 'Nõustamine' }
   ];
   const rows = listingRows(items, ui);
   assert.equal(rows[0].key, 'request-a');
-  assert.deepEqual(rows[0].chips, [{ key: 'status', text: 'Aktiivne', tone: 'quiet' }]);
-  assert.deepEqual(rows[1].chips.map((chip) => chip.text), ['Minu kuulutus', 'Aktiivne']);
+  assert.deepEqual(rows[0].chips, [{ key: 'status', text: 'Ühendatud', tone: 'quiet' }]);
+  assert.deepEqual(rows[1].chips.map((chip) => chip.text), ['Minu kuulutus'], 'avatud kuulutuste loendis „Aktiivne" igal real ei seisa');
   assert.deepEqual(rows[2].chips, []);
   assert.equal(rows[1].item, items[1], 'rida kannab kuulutust, mille avamise tegevus saab');
 

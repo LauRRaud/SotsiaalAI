@@ -41,9 +41,16 @@ function Chip({ tone, children }) {
   );
 }
 
-/** Vaate viga paneeli all servas (`StepPanel note`): seal, kus seda parandada saab. */
+/** Vaate viga paneeli all servas (`StepPanel note`): seal, kus seda parandada saab.
+    `role="alert"`: viga ilmub koos oma tekstiga ja peab kohe kõlama. */
 function footError(text) {
-  return text ? <span className={styles.footError}>{text}</span> : "";
+  return text ? (
+    <span className={styles.footError} role="alert">
+      {text}
+    </span>
+  ) : (
+    ""
+  );
 }
 
 /**
@@ -116,9 +123,11 @@ export function RoomView({ t, roomTitle, onRoomTitle, hostName, onHostName, erro
  * valiku all sõna-sõnalt samana mis vanal vormil.
  */
 export function WhoView({ t, options, value, onChange, error }) {
+  const scopeId = useId();
   return (
     <StepPanel title={t("invite.views.who.title")} question={t("invite.participant.question")} note={footError(error)}>
-      <div className={styles.stack}>
+      {/* Valik viitab lausele, mis ütleb, millele kutsutu ligi pääseb. */}
+      <div className={styles.stack} role="group" aria-describedby={scopeId}>
         <ChoiceRow
           label={t("invite.participant.question")}
           labelHidden
@@ -127,7 +136,9 @@ export function WhoView({ t, options, value, onChange, error }) {
           value={value}
           onChange={onChange}
         />
-        <p className={styles.scope}>{t("invite.participant.scope")}</p>
+        <p className={styles.scope} id={scopeId}>
+          {t("invite.participant.scope")}
+        </p>
       </div>
     </StepPanel>
   );

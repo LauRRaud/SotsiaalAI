@@ -111,9 +111,11 @@ export function SubmissionView({ t, sheet, note, error, busy, onBack, onReview, 
           <Button as="a" href={sheet.previewHref} size="sm" variant="secondary">
             {t("materials_page.admin.sanitized_preview")}
           </Button>
-          <Button type="button" size="sm" variant="secondary" disabled={busy || !sheet.canImport} onClick={onImport}>
-            {t("materials_page.admin.mark_imported")}
-          </Button>
+          {sheet.importOffered ? (
+            <Button type="button" size="sm" variant="secondary" disabled={busy || !sheet.canImport} onClick={onImport}>
+              {t("materials_page.admin.mark_imported")}
+            </Button>
+          ) : null}
         </>
       }
     >
