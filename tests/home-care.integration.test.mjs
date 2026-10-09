@@ -38,7 +38,17 @@ import {
   retractEntry,
   setIncidentStatus
 } from '../lib/homeCare/entries.js';
+import {
+  addIncidentUpdate,
+  assignIncident,
+  getIncident,
+  getIncidentTrail,
+  listIncidentAssignees,
+  listIncidents,
+  locateEntryForViewer
+} from '../lib/homeCare/incidents.js';
 import { getCoordinatorOverview } from '../lib/homeCare/overview.js';
+import { assertNotificationRecipient, serializeNotificationEvent } from '../lib/notifications.js';
 
 const url = new URL(process.env.HOME_CARE_TEST_DATABASE_URL || 'postgres://invalid/invalid');
 if (!['localhost', '127.0.0.1'].includes(url.hostname) || !url.pathname.endsWith('home_care_probe')) {
@@ -142,7 +152,9 @@ async function fixture(t) {
   return { tag, orgA, orgB, users, members, ctx, org, member, user };
 }
 
-const deps = (now = NOW) => ({ db, now, env: ENV });
+/* Vaikimisi ilma teavitusteta: teavituste test annab saatja ise ette. */
+const deps = (now = NOW) => ({ db, now, env: ENV, notify: null });
+const depsWithNotify = (now = NOW) => ({ db, now, env: ENV });
 
 test('hooldusjuht loob kliendi; hooldaja ei saa; võõras asutus ei näe', async (t) => {
   const f = await fixture(t);
@@ -744,4 +756,254 @@ test('arhiveeritud üksuse kliendi andmeid saab muuta; arhiveeritud üksusesse v
   /* Sama tunnus kahel kliendil: eelkontroll annab 409. */
   await updateClient(lead, client.id, { version: 2, internalCode: `K-${f.tag}` }, deps());
   await expectError(updateClient(lead, free.id, { version: 1, internalCode: `K-${f.tag}` }, deps()), 409, 'home_care.errors.internal_code_taken');
+});
+
+test('erijuhtumite register: skoop, vaated, filtrid ja loendurid', async (t) => {
+  const f = await fixture(t);
+  const north = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Põhi ${f.tag}`, type: 'TEAM' } });
+  await db.organizationCapabilityGrant.create({
+    data: { membershipId: f.members.bert.id, capability: 'HOME_CARE_COORDINATOR', scopeType: 'UNIT', scopeUnitId: north.id, validFrom: at('2026-01-01T00:00:00Z') }
+  });
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const { client: inNorth } = await createClient(lead, { displayName: 'Põhja klient', unitId: north.id }, deps());
+  const { client: noUnit } = await createClient(lead, { displayName: 'Üksuseta klient' }, deps());
+  await addTeamMember(lead, inNorth.id, { membershipId: f.members.anu.id }, deps());
+  await addTeamMember(lead, noUnit.id, { membershipId: f.members.anu.id }, deps());
+
+  const fall = await createEntry(anu, inNorth.id, { kind: 'INCIDENT', incidentType: 'FALL', text: 'Kukkus köögis', occurredAt: '2026-10-09T07:00:00Z' }, deps());
+  const complaint = await createEntry(anu, noUnit.id, { kind: 'INCIDENT', incidentType: 'COMPLAINT', text: 'Kaebus hilinemise kohta', occurredAt: '2026-10-08T10:00:00Z' }, deps());
+  const thanks = await createEntry(anu, noUnit.id, { kind: 'INCIDENT', incidentType: 'THANKS', text: 'Tänas abi eest', occurredAt: '2026-10-07T10:00:00Z' }, deps());
+  const mistake = await createEntry(anu, noUnit.id, { kind: 'INCIDENT', incidentType: 'OTHER', text: 'Vale klient', occurredAt: '2026-10-09T06:00:00Z' }, deps());
+  await createEntry(anu, noUnit.id, { text: 'Tavaline kirje registrisse ei kuulu' }, deps());
+  await retractEntry(lead, noUnit.id, mistake.entry.id, { reason: 'Vale klient', revision: 1 }, deps());
+  await setIncidentStatus(lead, noUnit.id, thanks.entry.id, { status: 'CLOSED', note: 'Edastatud meeskonnale' }, deps());
+
+  /* Vaikimisi lahtised, uuemad ees; tühistatud erijuhtumit registris ei ole. */
+  const open = await listIncidents(lead, {}, deps());
+  assert.equal(open.filter, 'ACTIVE');
+  assert.deepEqual(open.items.map((row) => row.id), [fall.entry.id, complaint.entry.id]);
+  assert.deepEqual(open.items.map((row) => row.client.displayName), ['Põhja klient', 'Üksuseta klient']);
+  assert.deepEqual(open.counts, { OPEN: 2, IN_REVIEW: 0, CLOSED: 1 });
+  const closed = await listIncidents(lead, { status: 'CLOSED' }, deps());
+  assert.deepEqual(closed.items.map((row) => row.id), [thanks.entry.id]);
+  assert.equal(closed.items[0].updateCount, 1);
+  assert.equal((await listIncidents(lead, { status: 'ALL' }, deps())).items.length, 3);
+
+  /* Filtrid: liik, kalendripäev, klient; leheküljed. */
+  assert.deepEqual((await listIncidents(lead, { type: 'COMPLAINT' }, deps())).items.map((row) => row.id), [complaint.entry.id]);
+  assert.deepEqual((await listIncidents(lead, { from: '2026-10-09', to: '2026-10-09' }, deps())).items.map((row) => row.id), [fall.entry.id]);
+  assert.deepEqual((await listIncidents(lead, { clientId: noUnit.id }, deps())).items.map((row) => row.id), [complaint.entry.id]);
+  const pageOne = await listIncidents(lead, { take: 1 }, deps());
+  assert.equal(pageOne.hasMore, true);
+  const pageTwo = await listIncidents(lead, { take: 1, cursor: pageOne.nextCursor }, deps());
+  assert.deepEqual(pageTwo.items.map((row) => row.id), [complaint.entry.id]);
+  await expectError(listIncidents(lead, { status: 'MUU' }, deps()), 400, 'home_care.errors.invalid_incident_status');
+
+  /* Üksuse hooldusjuht näeb ainult oma üksuse klientide erijuhtumeid; hooldaja registrit ei näe. */
+  const bertOpen = await listIncidents(bert, {}, deps());
+  assert.deepEqual(bertOpen.items.map((row) => row.id), [fall.entry.id]);
+  assert.deepEqual(bertOpen.counts, { OPEN: 1, IN_REVIEW: 0, CLOSED: 0 });
+  await expectError(listIncidents(anu, {}, deps()), 403, 'org.errors.missing_capability');
+  assert.equal((await getIncident(bert, fall.entry.id, deps())).client.displayName, 'Põhja klient');
+  await expectError(getIncident(bert, complaint.entry.id, deps()), 404, 'home_care.errors.entry_not_found');
+  /* Tühistatud erijuhtumit registris ei ole, ka mitte ühekaupa küsides. */
+  await expectError(getIncident(lead, mistake.entry.id, deps()), 404, 'home_care.errors.entry_not_found');
+
+  /* Vastutaja, kes ei ole enam hooldusjuht selle kliendi skoobis, on registris märgitud. */
+  await assignIncident(lead, inNorth.id, fall.entry.id, { membershipId: f.members.bert.id }, deps());
+  const fresh = (await listIncidents(lead, {}, deps())).items.find((row) => row.id === fall.entry.id);
+  assert.equal(fresh.incident.assignee.name, 'Bert Hooldaja');
+  assert.equal(fresh.assigneeStale, false);
+  await db.organizationCapabilityGrant.updateMany({ where: { membershipId: f.members.bert.id }, data: { revokedAt: NOW } });
+  const drifted = (await listIncidents(lead, {}, deps())).items.find((row) => row.id === fall.entry.id);
+  assert.equal(drifted.assigneeStale, true);
+  assert.equal((await getIncident(lead, fall.entry.id, deps())).assigneeStale, true);
+});
+
+test('juhtumi käik: täiendus, seis ja vastutaja; kes mida näeb', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const clerk = await f.ctx(f.users.clerk, f.orgA);
+  const { client } = await createClient(lead, { displayName: 'Linda Tamm' }, deps());
+  await addTeamMember(lead, client.id, { membershipId: f.members.anu.id }, deps());
+  await addTeamMember(lead, client.id, { membershipId: f.members.bert.id }, deps());
+  const { entry } = await createEntry(anu, client.id, { kind: 'INCIDENT', incidentType: 'FALL', text: 'Kukkus köögis' }, deps());
+  const note = await createEntry(anu, client.id, { text: 'Tavaline kirje' }, deps());
+
+  await expectError(addIncidentUpdate(anu, client.id, entry.id, { text: '  ' }, deps()), 400, 'home_care.errors.text_required');
+  await expectError(addIncidentUpdate(anu, client.id, note.entry.id, { text: 'x' }, deps()), 400, 'home_care.errors.not_an_incident');
+  /* Kolleeg näeb erijuhtumit päevikus, aga käiku ei näe ega täienda. */
+  await expectError(addIncidentUpdate(bert, client.id, entry.id, { text: 'Kolleegi täiendus' }, deps()), 403, 'home_care.errors.entry_not_editable');
+  await expectError(getIncidentTrail(bert, client.id, entry.id, deps()), 403, 'home_care.errors.entry_not_editable');
+  await expectError(getIncidentTrail(clerk, client.id, entry.id, deps()), 404, 'home_care.errors.client_not_found');
+
+  const byAuthor = await addIncidentUpdate(anu, client.id, entry.id, { text: 'Tütar helistas tagasi, tuleb õhtul.' }, deps(at('2026-10-09T08:10:00Z')));
+  assert.equal(byAuthor.update.kind, 'NOTE');
+  assert.equal(byAuthor.update.byCoordinator, false);
+  await addIncidentUpdate(lead, client.id, entry.id, { text: 'Rääkisin perearstiga; kahtlus ravimite koostoimele.' }, deps(at('2026-10-09T08:20:00Z')));
+  await setIncidentStatus(lead, client.id, entry.id, { status: 'IN_REVIEW' }, deps(at('2026-10-09T08:30:00Z')));
+
+  /* Vastutaja peab olema hooldusjuht, kelle skoobis klient on. */
+  assert.deepEqual((await listIncidentAssignees(lead, client.id, deps())).assignees.map((row) => row.name), ['Juta Juht']);
+  await expectError(assignIncident(lead, client.id, entry.id, { membershipId: f.members.anu.id }, deps()), 400, 'home_care.errors.invalid_member');
+  /* Puuduv võti ei ole „võta vastutaja maha": vigane keha on 400. */
+  await expectError(assignIncident(lead, client.id, entry.id, {}, deps()), 400, 'home_care.errors.invalid_member');
+  await expectError(assignIncident(lead, client.id, entry.id, null, deps()), 400, 'home_care.errors.invalid_member');
+  await expectError(assignIncident(anu, client.id, entry.id, { membershipId: f.members.lead.id }, deps()), 403, 'org.errors.missing_capability');
+  const assigned = await assignIncident(lead, client.id, entry.id, { membershipId: f.members.lead.id }, deps(at('2026-10-09T08:40:00Z')));
+  assert.deepEqual(assigned.entry.incident.assignee, { membershipId: f.members.lead.id, name: 'Juta Juht' });
+  /* Sama vastutaja uuesti määramine ei tee uut rida. */
+  await assignIncident(lead, client.id, entry.id, { membershipId: f.members.lead.id }, deps());
+  await setIncidentStatus(lead, client.id, entry.id, { status: 'CLOSED', note: 'Vaip eemaldatud' }, deps(at('2026-10-09T09:00:00Z')));
+
+  const trail = await getIncidentTrail(lead, client.id, entry.id, deps());
+  assert.deepEqual(
+    trail.updates.map((row) => [row.kind, row.actorName, row.byCoordinator]),
+    [['NOTE', 'Anu Hooldaja', false], ['NOTE', 'Juta Juht', true], ['STATUS', 'Juta Juht', true], ['ASSIGNED', 'Juta Juht', true], ['STATUS', 'Juta Juht', true]]
+  );
+  assert.deepEqual([trail.updates[2].fromStatus, trail.updates[2].toStatus], ['OPEN', 'IN_REVIEW']);
+  assert.equal(trail.updates[3].assigneeName, 'Juta Juht');
+  assert.equal(trail.updates[3].assigned, true);
+  assert.equal(trail.updates[4].text, 'Vaip eemaldatud');
+  /* Autor näeb ainult oma täiendust, mitte hooldusjuhi märkmeid. */
+  const own = await getIncidentTrail(anu, client.id, entry.id, deps());
+  assert.deepEqual(own.updates.map((row) => row.text), ['Tütar helistas tagasi, tuleb õhtul.']);
+  assert.equal(JSON.stringify(own).includes('perearstiga'), false);
+
+  /* Vastutaja mahavõtmine jätab samuti rea. */
+  const unassigned = await assignIncident(lead, client.id, entry.id, { membershipId: null }, deps(at('2026-10-09T09:10:00Z')));
+  assert.equal(unassigned.entry.incident.assignee, null);
+  const lastRow = (await getIncidentTrail(lead, client.id, entry.id, deps())).updates.at(-1);
+  assert.equal(lastRow.kind, 'ASSIGNED');
+  assert.equal(lastRow.assigned, false);
+
+  /* Käik on muutmatu ja tühja täiendust andmebaas sisse ei lase. */
+  await assert.rejects(db.careIncidentUpdate.updateMany({ where: { entryId: entry.id }, data: { text: 'võltsitud' } }), /immutable/);
+  await assert.rejects(
+    db.careIncidentUpdate.create({ data: { organizationId: f.orgA.id, clientId: client.id, entryId: entry.id, kind: 'NOTE', text: '  ', actorMembershipId: f.members.lead.id, actorName: 'x' } }),
+    /note_has_text/
+  );
+  /* Tühistatud erijuhtumile täiendust ei lisata. */
+  await retractEntry(lead, client.id, entry.id, { reason: 'Topelt', revision: 1 }, deps());
+  await expectError(addIncidentUpdate(lead, client.id, entry.id, { text: 'Hiline' }, deps()), 409, 'home_care.errors.entry_retracted');
+});
+
+test('teavitused: hooldusjuht saab teate ilma sisuta, kirjutaja ise mitte', async (t) => {
+  const f = await fixture(t);
+  const north = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Põhi ${f.tag}`, type: 'TEAM' } });
+  await db.organizationCapabilityGrant.create({
+    data: { membershipId: f.members.bert.id, capability: 'HOME_CARE_COORDINATOR', scopeType: 'UNIT', scopeUnitId: north.id, validFrom: at('2026-01-01T00:00:00Z') }
+  });
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const clerk = await f.ctx(f.users.clerk, f.orgA);
+  const { client: inNorth } = await createClient(lead, { displayName: 'Põhja klient', unitId: north.id }, deps());
+  const { client: noUnit } = await createClient(lead, { displayName: 'Üksuseta klient' }, deps());
+  await addTeamMember(lead, inNorth.id, { membershipId: f.members.anu.id }, deps());
+  await addTeamMember(lead, noUnit.id, { membershipId: f.members.anu.id }, deps());
+  const eventsFor = (user) => db.notificationEvent.findMany({ where: { userId: user.id }, orderBy: { createdAt: 'asc' } });
+
+  /* Tavaline kirje teadet ei tee. */
+  await createEntry(anu, inNorth.id, { text: 'Tavaline kirje' }, depsWithNotify());
+  assert.equal((await eventsFor(f.users.lead)).length, 0);
+
+  /* Erijuhtum üksuse kliendi juures: teate saavad kogu asutuse ja selle üksuse hooldusjuht. */
+  const body = { kind: 'INCIDENT', incidentType: 'FALL', text: 'Salajane sisu: kukkus köögis', clientRequestId: `ntf-${f.tag}-1` };
+  const fall = await createEntry(anu, inNorth.id, body, depsWithNotify());
+  let leadEvents = await eventsFor(f.users.lead);
+  assert.deepEqual(leadEvents.map((row) => row.type), ['HOME_CARE_INCIDENT_REPORTED']);
+  assert.equal(leadEvents[0].sourceId, fall.entry.id);
+  assert.equal(leadEvents[0].targetKind, 'CARE_CLIENT_ENTRY');
+  assert.equal(leadEvents[0].workspaceId, f.orgA.id);
+  assert.equal((await eventsFor(f.users.bert)).length, 1);
+  assert.equal((await eventsFor(f.users.anu)).length, 0, 'kirjutaja ise teadet ei saa');
+  assert.equal((await eventsFor(f.users.clerk)).length, 0);
+  /* Teavituse reas ei ole kliendi nime, teksti ega liiki; link ei kanna asutuse ega kliendi ID-d. */
+  const stored = JSON.stringify(leadEvents[0]);
+  for (const secret of ['Põhja klient', 'Salajane', 'FALL', inNorth.id]) assert.equal(stored.includes(secret), false, secret);
+  const shown = serializeNotificationEvent(leadEvents[0]);
+  assert.equal(shown.href, `/org/koduteenus/kirje/${fall.entry.id}`);
+  assert.equal(shown.labelKey, 'notifications.events.home_care_incident_reported');
+
+  /* Kordussaatmine teist teadet ei tee. */
+  await createEntry(anu, inNorth.id, body, depsWithNotify(at('2026-10-09T08:05:00Z')));
+  assert.equal((await eventsFor(f.users.lead)).length, 1);
+
+  /* Mure üksuseta kliendi juures: ainult kogu asutuse hooldusjuht, oma tüübiga. */
+  const concern = await createEntry(anu, noUnit.id, { kind: 'CONCERN', text: 'Poeg võtab pensioni' }, depsWithNotify());
+  leadEvents = await eventsFor(f.users.lead);
+  assert.deepEqual(leadEvents.map((row) => row.type), ['HOME_CARE_INCIDENT_REPORTED', 'HOME_CARE_CONCERN_RAISED']);
+  assert.equal((await eventsFor(f.users.bert)).length, 1);
+
+  /* Hooldusjuhi enda erijuhtum: talle endale teadet ei tule, teisele hooldusjuhile tuleb. */
+  await createEntry(lead, inNorth.id, { kind: 'INCIDENT', incidentType: 'OTHER', text: 'Juhi kirje' }, depsWithNotify());
+  assert.equal((await eventsFor(f.users.lead)).length, 2);
+  assert.equal((await eventsFor(f.users.bert)).length, 2);
+
+  /* Autori täiendus on omaette teade; hooldusjuhi täiendus teadet ei tee. */
+  const followUp = { text: 'Tütar helistas', clientRequestId: `upd-${f.tag}-1` };
+  const sent = await addIncidentUpdate(anu, inNorth.id, fall.entry.id, followUp, depsWithNotify());
+  assert.equal(sent.created, true);
+  assert.equal((await eventsFor(f.users.lead)).length, 3);
+  /* Täienduse kordussaatmine ei tee teist rida ega teist teadet; sama võti muu tekstiga on 409. */
+  const resent = await addIncidentUpdate(anu, inNorth.id, fall.entry.id, followUp, depsWithNotify(at('2026-10-09T08:15:00Z')));
+  assert.equal(resent.created, false);
+  assert.equal(resent.update.id, sent.update.id);
+  assert.equal(await db.careIncidentUpdate.count({ where: { entryId: fall.entry.id } }), 1);
+  assert.equal((await eventsFor(f.users.lead)).length, 3);
+  await expectError(
+    addIncidentUpdate(anu, inNorth.id, fall.entry.id, { ...followUp, text: 'Muu tekst' }, depsWithNotify()),
+    409,
+    'home_care.errors.idempotency_conflict'
+  );
+  await addIncidentUpdate(lead, inNorth.id, fall.entry.id, { text: 'Juhi märkus' }, depsWithNotify());
+  assert.equal((await eventsFor(f.users.lead)).length, 3);
+  assert.equal((await eventsFor(f.users.bert)).length, 3);
+
+  /* Vastutaja määramine: teade määratule, iseendale määrates mitte. */
+  await assignIncident(lead, inNorth.id, fall.entry.id, { membershipId: f.members.bert.id }, depsWithNotify());
+  const bertEvents = await eventsFor(f.users.bert);
+  assert.equal(bertEvents.at(-1).type, 'HOME_CARE_INCIDENT_ASSIGNED');
+  await assignIncident(lead, inNorth.id, fall.entry.id, { membershipId: f.members.lead.id }, depsWithNotify());
+  assert.equal((await eventsFor(f.users.lead)).length, 3);
+
+  /* Teavituse link viib sinna, kuhu vaataja õigus lubab; õiguseta liige saab 404. */
+  assert.deepEqual(await locateEntryForViewer(lead, fall.entry.id, deps()), { clientId: inNorth.id, kind: 'INCIDENT', isCoordinator: true, retracted: false });
+  assert.deepEqual(await locateEntryForViewer(anu, fall.entry.id, deps()), { clientId: inNorth.id, kind: 'INCIDENT', isCoordinator: false, retracted: false });
+  assert.equal((await locateEntryForViewer(lead, concern.entry.id, deps())).kind, 'CONCERN');
+  await expectError(locateEntryForViewer(clerk, fall.entry.id, deps()), 404, 'home_care.errors.client_not_found');
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  await expectError(locateEntryForViewer(leadB, fall.entry.id, deps()), 404, 'home_care.errors.entry_not_found');
+
+  /* Parandusega mureks muudetud kirje on hooldusjuhile uus mure ja teeb teate. */
+  const plain = await createEntry(anu, noUnit.id, { text: 'Algul tavaline kirje' }, depsWithNotify());
+  const before = (await eventsFor(f.users.lead)).length;
+  await correctEntry(anu, noUnit.id, plain.entry.id, { kind: 'CONCERN', text: 'Tegelikult mure', reason: 'Vale liik', revision: 1 }, depsWithNotify());
+  const afterFix = await eventsFor(f.users.lead);
+  assert.equal(afterFix.length, before + 1);
+  assert.equal(afterFix.at(-1).type, 'HOME_CARE_CONCERN_RAISED');
+  /* Autor muudab mure liigi tagasi: piiratud nähtavus jääb, seega teade ei kao. */
+  await correctEntry(anu, noUnit.id, plain.entry.id, { kind: 'NOTE', text: 'Tegelikult mure', reason: 'Proov', revision: 2 }, depsWithNotify());
+  const kept = afterFix.at(-1);
+  await assertNotificationRecipient(db, { type: kept.type, userId: f.users.lead.id, sourceId: kept.sourceId, targetId: kept.targetId });
+
+  /* Teadet näidatakse ainult senikaua, kuni inimene on hooldusjuht, kelle
+     skoobis klient on: üksuse hooldusjuhi teade kaob, kui tema luba ära võetakse. */
+  const bertEvent = (await eventsFor(f.users.bert))[0];
+  const probe = { type: bertEvent.type, userId: f.users.bert.id, sourceId: bertEvent.sourceId, targetId: bertEvent.targetId };
+  await assertNotificationRecipient(db, probe);
+  await db.organizationCapabilityGrant.updateMany({ where: { membershipId: f.members.bert.id }, data: { revokedAt: NOW } });
+  await assert.rejects(assertNotificationRecipient(db, probe), (error) => error.status === 404);
+  /* Tühistatud erijuhtumi teade ei jää loendisse ja suunaja viib kliendi lehele. */
+  await retractEntry(lead, inNorth.id, fall.entry.id, { reason: 'Proov', revision: 1 }, deps());
+  const leadFirst = (await eventsFor(f.users.lead))[0];
+  await assert.rejects(
+    assertNotificationRecipient(db, { type: leadFirst.type, userId: f.users.lead.id, sourceId: leadFirst.sourceId, targetId: leadFirst.targetId }),
+    (error) => error.status === 404
+  );
+  assert.equal((await locateEntryForViewer(lead, fall.entry.id, deps())).retracted, true);
 });

@@ -5830,7 +5830,10 @@
       "room_summary_approval_response": "Osaleja vastas kokkuvõtte kinnitusringile",
       "room_ownership_transferred": "Ruumi omanik vahetus",
       "casework_draft_external_transfer_marked": "Mustand märgiti üle kantuks",
-      "casework_retention_warning": "Arhiveeritud juhtum kustub 30 päeva pärast"
+      "casework_retention_warning": "Arhiveeritud juhtum kustub 30 päeva pärast",
+      "home_care_incident_reported": "Koduteenuses on uus erijuhtum või täiendus",
+      "home_care_concern_raised": "Koduteenuses on uus mure hooldusjuhile",
+      "home_care_incident_assigned": "Sulle määrati koduteenuse erijuhtum"
     },
     "center": {
       "title": "Teavitused",
@@ -10881,7 +10884,9 @@
       "set_in_review": "Võtan ülevaatamisele",
       "close": "Sulge",
       "reopen": "Ava uuesti",
-      "resolution_label": "Mida tehti"
+      "resolution_label": "Mida tehti",
+      "assignee": "Vastutab: {name}",
+      "assignee_stale": "vajab uut vastutajat"
     },
     "filter": {
       "title": "Päevik",
@@ -10964,6 +10969,38 @@
       "search_too_short": "Kirjuta vähemalt kaks tähte.",
       "client_ended": "Teenus on lõpetatud. Uue kirje saab lisada hooldusjuht.",
       "incident_retract_coordinator": "Erijuhtumi tühistab hooldusjuht. Vea korral paranda kirjet või räägi hooldusjuhiga."
+    },
+    "incidents": {
+      "title": "Erijuhtumite register",
+      "intro": "Kõik erijuhtumid, kaebused ja tänud sinu vastutusalas. Lahtised on ees.",
+      "link": "Erijuhtumite register",
+      "back": "Tagasi klientide juurde",
+      "tab_active": "Lahtised ({count})",
+      "tab_closed": "Suletud ({count})",
+      "tab_all": "Kõik",
+      "type_all": "Kõik liigid",
+      "empty": "Selliseid erijuhtumeid ei ole.",
+      "focused": "Teavitusest avatud erijuhtum",
+      "empty_other": "Teisi selliseid erijuhtumeid ei ole."
+    },
+    "trail": {
+      "toggle": "Käik ja täiendused",
+      "title": "Juhtumi käik",
+      "empty": "Käigus ei ole veel midagi.",
+      "add_label": "Täiendus",
+      "add": "Lisa täiendus",
+      "add_hint": "Kirje teksti see ei muuda. Hooldusjuht saab täienduse kohta teate.",
+      "add_hint_coordinator": "Kirje teksti see ei muuda. Seda täiendust näeb ainult hooldusjuht.",
+      "author_only_note": "Siin on sinu täiendused. Hooldusjuhi märkmeid siin ei näidata.",
+      "assignee_label": "Vastutaja",
+      "assignee_none": "Määramata",
+      "assigned_to": "vastutab {name}",
+      "unassigned": "vastutaja eemaldatud",
+      "kind": {
+        "NOTE": "Täiendus",
+        "STATUS": "Seis",
+        "ASSIGNED": "Vastutaja"
+      }
     }
   }
 }

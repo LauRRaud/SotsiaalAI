@@ -8121,6 +8121,7 @@ model CareClient {
   cardLines CareClientCardLine[]
   entries   CareClientEntry[]
   accesses  CareClientAccess[]
+  incidentUpdates CareIncidentUpdate[]
 
   @@unique([organizationId, internalCode])
   @@index([organizationId, status, displayName])
@@ -8198,8 +8199,9 @@ model CareClientEntry {
 
   /// Sündmuse aeg (millal see juhtus), eraldi kirjutamise ajast.
   occurredAt      DateTime
-  /// Millal kirje seadmes kirjutati. Võrguta töö korral on serveri `createdAt`
-  /// hilisem; „hiljem kirjutatud" arvutatakse selle ja `occurredAt` vahest.
+  /// Millal kirje seadmes kirjutati (seadme väide, hoitakse ainult mõistlikus
+  /// aknas). „Hiljem kirjutatud" arvutatakse SERVERI `createdAt` ja
+  /// `occurredAt` vahest; seadme aeg on võrguta töö jaoks.
   deviceCreatedAt DateTime?
 
   /// „Kaasas": teine töötaja samal käigul.
@@ -8214,6 +8216,8 @@ model CareClientEntry {
   /// OPEN | IN_REVIEW | CLOSED.
   incidentStatus                 String?
   incidentAssigneeMembershipId   String?
+  /// Vastutaja nime hetkekoopia (sama põhjus mis `authorName`-il).
+  incidentAssigneeName           String?
   incidentResolvedAt             DateTime?
   incidentResolvedByMembershipId String?
   incidentResolutionNote         String?   @db.Text
@@ -8234,8 +8238,9 @@ model CareClientEntry {
   author       OrganizationMembership? @relation("CareClientEntryAuthor", fields: [authorMembershipId], references: [id], onDelete: SetNull)
   companion    OrganizationMembership? @relation("CareClientEntryCompanion", fields: [companionMembershipId], references: [id], onDelete: SetNull)
 
-  revisions CareClientEntryRevision[]
-  reads     CareClientEntryRead[]
+  revisions       CareClientEntryRevision[]
+  reads           CareClientEntryRead[]
+  incidentUpdates CareIncidentUpdate[]
 
   @@unique([authorMembershipId, clientRequestId])
   @@index([clientId, occurredAt])
@@ -8320,4 +8325,45 @@ model CareClientAccess {
   @@index([clientId, createdAt])
   @@index([organizationId, createdAt])
   @@index([clientId, membershipId, createdAt])
+}
+
+/// KODUTEENUS K1-b — erijuhtumi käik: täiendused, seisumuutused ja vastutaja
+/// määramised ajajärjestuses. Kirjet ennast pärast salvestamist täiendusega ei
+/// muudeta; siia lisandub uus rida. MUUTUMATU (BEFORE UPDATE trigger), seepärast
+/// ainult kaskaadiga võõrvõtmed ja nimede hetkekoopiad.
+model CareIncidentUpdate {
+  id             String @id @default(cuid())
+  organizationId String
+  clientId       String
+  entryId        String
+
+  /// NOTE (täiendus) | STATUS (seisumuutus) | ASSIGNED (vastutaja määramine).
+  kind String
+  /// Täienduse tekst või seisumuutuse selgitus.
+  text String? @db.Text
+
+  fromStatus String?
+  toStatus   String?
+
+  assigneeMembershipId String?
+  assigneeName         String?
+
+  actorMembershipId String
+  actorName         String
+  /// TRUE = kirjutas hooldusjuht. Autori täiendust näeb autor ise; hooldusjuhi
+  /// ridu näeb ainult hooldusjuht.
+  byCoordinator     Boolean @default(false)
+
+  /// Seadmes genereeritud võti: täienduse kordussaatmine ei tekita teist rida.
+  clientRequestId String?
+
+  createdAt DateTime @default(now())
+
+  entry  CareClientEntry @relation(fields: [entryId], references: [id], onDelete: Cascade)
+  client CareClient      @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@unique([actorMembershipId, clientRequestId])
+  @@index([entryId, createdAt])
+  @@index([organizationId, createdAt])
+  @@index([clientId])
 }

@@ -81,9 +81,14 @@ export default function HomeCareOverview({ context, overview }) {
       </div>
 
       <section className="hc-section">
-        <h3 className="hc-section-title">
-          {t("home_care.overview.incidents_title")} ({openIncidents.length})
-        </h3>
+        <div className="hc-row hc-row--between">
+          <h3 className="hc-section-title">
+            {t("home_care.overview.incidents_title")} ({openIncidents.length})
+          </h3>
+          <Link className="hc-btn hc-btn--quiet hc-btn--link" href={`/org/${organizationId}/koduteenus/erijuhtumid`}>
+            {t("home_care.incidents.link")}
+          </Link>
+        </div>
         {renderList(openIncidents, "home_care.overview.incidents_empty")}
       </section>
 
