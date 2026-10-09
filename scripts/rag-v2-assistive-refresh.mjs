@@ -17,6 +17,10 @@
 //      again by that rule on its second equal reading; a page the rule now leaves out is reported and stays as it is
 //   4. the changed sources are collected under <state>/increment with their register, and a report says what was
 //      found. --mark-ingested says the increment went into the corpus: the next run compares against it.
+//   5. the table of confirmed readings (--checks, ADR-117): for every web page of step 3 whose stored copy read the
+//      same today or was placed today, the hash of the copy's bytes and today's date. The chat's source card reads the
+//      table, so a page that is confirmed every month is not said "as of" the day it was first read. The table is a
+//      repository file and holds hashes and dates only. The points' and the care homes' pages are not in it.
 // The state lives outside the repository (the pages hold phone numbers and the companies' own texts):
 //   <state>/accepted/points.json      the accepted reading of the table
 //   <state>/pending.json              the changes the last reading proposed
@@ -33,7 +37,7 @@
 //     [--from-reading <points.json>] [--approve-removals key,key] [--skip-points] [--skip-pages] [--dry-run]
 //     [--skip-care] [--care-from <table.xlsx>] [--approve-care-removals key,key]
 //     [--official-list Andmebaasi/register/web_pages.json] [--official id,id] [--official-stored Andmebaasi/veebilehed]
-//     [--organisations-list Andmebaasi/register/web_pages_organisations.json]
+//     [--organisations-list Andmebaasi/register/web_pages_organisations.json] [--checks lib/rag-v2/search/web-page-checks.json]
 //   node … scripts/rag-v2-assistive-refresh.mjs --state <dir> --mark-ingested
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -45,6 +49,7 @@ import { COLLECTOR_AGENT } from '../lib/rag-v2/web-collect.js';
 import { ASSISTIVE_REFRESH, decidePoints, refreshedPointPages } from '../lib/rag-v2/assistive-refresh.js';
 import { CARE_PRICES, SKA_CARE_PAGE, tableLink, sheetRows, careTable, decideHomes, refreshedCarePages } from '../lib/rag-v2/care-prices.js';
 import { chosenMetadata, lowerWords, selectPage } from '../lib/rag-v2/web-select.js';
+import { checksAfterRefresh } from '../lib/rag-v2/official-refresh.js';
 
 const { values } = parseArgs({ options: { state: { type: 'string' }, municipalities: { type: 'string', default: 'Andmebaasi/KOV' }, 'from-reading': { type: 'string' },
   'approve-removals': { type: 'string', default: '' }, 'skip-points': { type: 'boolean', default: false }, 'skip-pages': { type: 'boolean', default: false },
@@ -52,7 +57,8 @@ const { values } = parseArgs({ options: { state: { type: 'string' }, municipalit
   'skip-care': { type: 'boolean', default: false }, 'care-from': { type: 'string' }, 'approve-care-removals': { type: 'string', default: '' },
   'official-list': { type: 'string', default: 'Andmebaasi/register/web_pages.json' },
   official: { type: 'string', default: 'sotsiaalkindlustusamet_ska_abivahendi_vajajale,sotsiaalkindlustusamet_ska_abivahendi_ettevottele' },
-  'official-stored': { type: 'string', default: 'Andmebaasi/veebilehed' }, 'organisations-list': { type: 'string', default: 'Andmebaasi/register/web_pages_organisations.json' } } });
+  'official-stored': { type: 'string', default: 'Andmebaasi/veebilehed' }, 'organisations-list': { type: 'string', default: 'Andmebaasi/register/web_pages_organisations.json' },
+  checks: { type: 'string', default: 'lib/rag-v2/search/web-page-checks.json' } } });
 if (!values.state) throw Error('usage: --state <dir outside the repository> [--from-reading <points.json>] [--approve-removals key,key] [--skip-points] [--skip-pages] [--dry-run] | --mark-ingested');
 const state = path.resolve(values.state), dry = values['dry-run'];
 const readJson = async (file, fallback = null) => fs.readFile(file, 'utf8').then(JSON.parse, () => fallback);
@@ -80,6 +86,8 @@ for (const slug of (await fs.readdir(values.municipalities)).sort()) {
 }
 const report = { refresh: ASSISTIVE_REFRESH, at: stamp, dryRun: dry, points: null, pointPages: null, care: null, carePages: null, pages: null, increment: null };
 const changedSources = [];
+// The stored copies of web pages that this run found the same or placed: their bytes are confirmed today (ADR-117).
+const confirmedCopies = [];
 
 if (!values['skip-points']) {
   const accepted = await readJson(path.join(state, 'accepted', 'points.json'));
@@ -181,7 +189,11 @@ if (!values['skip-pages']) {
   report.pages = [];
   for (const run of runs) {
     const { rows } = await readJson(path.join(run.summary.run, 'report.json'));
-    const applied = rows.filter(row => row.applied);
+    const applied = rows.filter(row => row.applied), copies = await walk(run.stored);
+    for (const row of rows.filter(item => item.status === 'unchanged' || item.applied)) {
+      const copy = copies.find(name => name.endsWith(`/${row.id}.json`))?.replace(/\.json$/u, '.html');
+      if (copy) confirmedCopies.push(path.join(run.stored, copy));
+    }
     for (const row of applied) {
       // The stored copy the collector has just placed: <publisher>/<id>.
       const rel = (await walk(run.stored)).find(name => name.endsWith(`/${row.id}.json`))?.replace(/\.json$/u, '');
@@ -211,6 +223,8 @@ if (!values['skip-pages']) {
     const summary = JSON.parse(out.trim().split('\n').at(-1)), { rows } = await readJson(path.join(summary.run, 'report.json')), confirmed = rows.filter(row => row.status === 'confirmed');
     const read = async (base, rel) => ({ html: await fs.readFile(path.join(base, `${rel}.html`), 'utf8'), meta: await readJson(path.join(base, `${rel}.json`)) });
     const relOf = row => kept.find(item => item.meta.source_id === row.id)?.rel;
+    // A page that reads as it did when it was chosen: the chosen copy in the corpus still says what the page says.
+    for (const row of rows.filter(item => item.status === 'unchanged')) { const rel = relOf(row); if (rel) confirmedCopies.push(path.join(organisations, `${rel}.html`)); }
     // The rule's reading: the pages as stored and the confirmed ones as read now.
     const texts = [];
     for (const { rel } of kept) texts.push(await fs.readFile(path.join(organisations, `${rel}.html`), 'utf8'));
@@ -224,6 +238,8 @@ if (!values['skip-pages']) {
       const metadata = `${JSON.stringify(chosenMetadata(page.meta, chosen), null, 2)}\n`;
       for (const ext of ['html', 'json']) await write(path.join(work, 'previous', stamp.replace(/[:.]/gu, '-'), `${rel}.${ext}`), ext === 'html' ? before.html : `${JSON.stringify(before.meta, null, 2)}\n`);
       await write(path.join(organisations, `${rel}.html`), chosen.html); await write(path.join(organisations, `${rel}.json`), metadata);
+      // The copy as chosen from today's reading: the same bytes as before, or new ones that the increment brings.
+      if (!dry || chosen.html === before.html) confirmedCopies.push(path.join(organisations, `${rel}.html`));
       if (!dry) for (const ext of ['html', 'json']) await fs.rm(path.join(work, 'proposals', `${rel}.${ext}`), { force: true });
       // A change inside what the choice takes out changes nothing in the corpus.
       if (chosen.html === before.html) { sameAsChosen.push(row.url); continue; }
@@ -236,6 +252,16 @@ if (!values['skip-pages']) {
   }
 }
 
+if (!values['skip-pages']) {
+  const bytes = [];
+  for (const file of confirmedCopies) bytes.push(sha(await fs.readFile(file)));
+  report.checks = { file: values.checks, confirmed: bytes.length, moved: 0 };
+  if (!dry && bytes.length) {
+    const outcome = checksAfterRefresh(await readJson(values.checks), bytes, stamp.slice(0, 10));
+    report.checks.moved = outcome.moved;
+    if (outcome.moved) await write(values.checks, `${JSON.stringify(outcome.table, null, 2)}\n`);
+  }
+}
 const waiting = (await walk(increment)).filter(name => name.endsWith('.html'));
 if (waiting.length && !dry) execFileSync(process.execPath, ['scripts/rag-v2-export-register.mjs', '--root', increment], { encoding: 'utf8' });
 report.increment = waiting.length ? { sources: waiting.length, addedByThisRun: changedSources.length, dir: increment } : null;

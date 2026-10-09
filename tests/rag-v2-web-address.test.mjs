@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { modelSourceMetadata, modelProjection, webAddress, WEB_SOURCE_TYPES } from '../lib/rag-v2/search/model-context.js';
+import fs from 'node:fs';
+import { modelSourceMetadata, modelProjection, webAddress, confirmedReading, WEB_SOURCE_TYPES } from '../lib/rag-v2/search/model-context.js';
 import { completedView } from '../lib/rag-v2/pilot/service.js';
 import { historyRecord, historyTurn, historyMessages } from '../lib/rag-v2/pilot/history.js';
 import { dialogueRequest, WEB_ADDRESS_INSTRUCTIONS } from '../lib/rag-v2/pilot/dialogue.js';
@@ -122,4 +123,45 @@ test('a web page\'s card carries the day the page says it was last changed; othe
   first.source_metadata = { ...first.source_metadata, source_type: field('web_page'), page_updated: { ...field('2026-09-18') } };
   const cards = Object.values(modelProjection(packet.evidence, {}, { measure: 'none' }).context.sources).filter(one => one.page_updated);
   assert.deepEqual(cards.map(one => one.page_updated), ['2026-09-18']);
+});
+
+// ADR-117 (09.10.2026): a page that the monthly refresh reads again and finds the same was not stored or indexed again,
+// so its card kept the day of the first reading and an answer said a figure of the page "as of" that old day. The
+// refresh keeps a table of the stored bytes it has confirmed; the card takes the later day from it.
+test('a card takes the day a later reading confirmed the very bytes of its document; nothing else moves the day', () => {
+  const bytes = 'a'.repeat(64), other = 'b'.repeat(64);
+  const doc = (type, checked, hash = bytes) => ({ document: { fields: { source_type: field(type), authority: field('Amet'), language: field('et'), source_urls: field(['https://amet.example/maarad']),
+    source_checked_at: checked === undefined ? undefined : { value: checked, provenance: [{ kind: 'metadata', path: '/checked_at' }], review_state: 'imported_not_verified' } }, legacy_metadata: {} },
+  version: { source_hash: hash } });
+  const card = modelSourceMetadata(doc('web_page', '2026-10-08'), { [bytes]: '2026-11-03' });
+  assert.deepEqual(card.source_checked_at, { value: '2026-11-03', provenance: [{ kind: 'refresh_reading', table: 'rag-v2/web-page-checks-1', source_hash: bytes }], review_state: 'imported_not_verified' });
+  // The other fields of the card are as before.
+  assert.deepEqual([card.web_address.value, card.source_type.value, card.authority.value], ['amet.example/maarad', 'web_page', 'Amet']);
+  // Every collected page: the table names only bytes a reading confirmed, whatever the source's declared type.
+  for (const type of ['vendor_page', 'organization_page', 'research_report']) assert.equal(modelSourceMetadata(doc(type, '2026-10-06'), { [bytes]: '2026-11-01' }).source_checked_at.value, '2026-11-01');
+  // A document that has no day of its own takes the table's; a full time stamp is compared by its day.
+  assert.equal(modelSourceMetadata(doc('web_page', undefined), { [bytes]: '2026-11-01' }).source_checked_at.value, '2026-11-01');
+  assert.equal(modelSourceMetadata(doc('web_page', '2026-10-08T07:15:00.000Z'), { [bytes]: '2026-11-01' }).source_checked_at.value, '2026-11-01');
+  // Not later than the document's own day, other bytes, a value that is not a day, no table: the card keeps its own.
+  const own = modelSourceMetadata(doc('web_page', '2026-10-08'), {}).source_checked_at;
+  assert.deepEqual(own, { value: '2026-10-08', provenance: [{ kind: 'metadata', path: '/checked_at' }], review_state: 'imported_not_verified' });
+  for (const checks of [{ [bytes]: '2026-10-08' }, { [bytes]: '2026-10-01' }, { [other]: '2026-11-03' }, { [bytes]: '3.11.2026' }, { [bytes]: '2026-13-40' }, { [bytes]: 20261103 }, { [bytes]: '2026-11-03T09:00:00Z' }, null])
+    assert.deepEqual(modelSourceMetadata(doc('web_page', '2026-10-08'), checks).source_checked_at, own, JSON.stringify(checks));
+  assert.equal(modelSourceMetadata(doc('web_page', '2026-10-08T23:00:00Z'), { [bytes]: '2026-10-08' }).source_checked_at.value, '2026-10-08T23:00:00Z');
+  // A name every object has is not an entry of the table, and a document without a version's bytes has no entry.
+  assert.equal(confirmedReading(doc('web_page', '2026-10-08', 'constructor'), {}), null);
+  assert.equal(confirmedReading({ document: { fields: { source_type: field('web_page') } } }, { [bytes]: '2026-11-03' }), null);
+  // The sources panel shows the same day: it reads the card's value.
+  const row = turnRow(), first = row.payload.packet.evidence.find(entry => entry.evidence_id === row.payload.packet.reference_map.S1.evidence_id);
+  first.source_metadata = { ...first.source_metadata, source_checked_at: card.source_checked_at };
+  assert.equal(completedView(row, 'real').sources.find(source => source.ref === 'S1').checked, '2026-11-03');
+});
+
+test('the table in the repository is what the reader expects: the version it names, hashes of bytes and plain days in order', () => {
+  const table = JSON.parse(fs.readFileSync(new URL('../lib/rag-v2/search/web-page-checks.json', import.meta.url), 'utf8'));
+  assert.deepEqual(Object.keys(table), ['schema_version', 'checks']);
+  assert.equal(table.schema_version, 'rag-v2/web-page-checks-1');
+  const keys = Object.keys(table.checks);
+  assert.deepEqual(keys, [...keys].sort((a, b) => a.localeCompare(b, 'en')));
+  for (const [bytes, day] of Object.entries(table.checks)) { assert.match(bytes, /^[0-9a-f]{64}$/u); assert.match(day, /^\d{4}-\d{2}-\d{2}$/u); assert.equal(Number.isNaN(Date.parse(day)), false); }
 });
