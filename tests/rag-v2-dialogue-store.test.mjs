@@ -13,6 +13,7 @@ import { DIALOGUE_STATE_VERSION, PERSON_DIALOGUE_STATE_VERSION, FACT_STATE_VERSI
 import { SEARCH_ASSIST_VERSION } from '../lib/rag-v2/pilot/search-assist.js';
 import { runtimeAdapters } from '../lib/rag-v2/pilot/retrieval.js';
 import { RECORD_RETRIEVAL_VERSION } from '../lib/rag-v2/search/structured-record-source.js';
+import { UNIFIED_RETRIEVAL_VERSION } from '../lib/rag-v2/search/unified.js';
 import { recordStoredTurns, PLACEHOLDERS } from '../lib/rag-v2/pilot/history-backfill.js';
 
 const url = new URL(process.env.M4_TEST_DATABASE_URL || 'postgres://invalid/invalid');
@@ -463,11 +464,13 @@ test('M4-C real DB: an expired head with an answer goes on from its record, one 
 
 // State v5 through the service: the real place check and scope of the retrieval adapter in one conversation, a planned
 // answer per turn. Each turn checks that both search lanes and the saved state read one region for the person searched.
-async function regionConversation(t, { clarifications = [], requests = null, select = false } = {}) {
+async function regionConversation(t, { clarifications = [], requests = null, select = false, stages = null, searches = null, unified = false } = {}) {
   const user = await db.user.create({ data: { email: `m4c-${randomUUID()}@example.invalid` } });
   const conv = await db.conversation.create({ data: { userId: user.id, role: 'CLIENT', metadata: { m4: true }, expiresAt: null } });
   const config = { id: randomUUID(), configHash: randomUUID(), tenant: 'm4c-test', mode: 'real', users: [user.id], documents: { doc: 'v1' },
     dialogueVersion: DIALOGUE_VERSION, dialogueStateVersion: REGION_STATE_VERSION, searchAssist: SEARCH_ASSIST_VERSION, recordCatalogue: RECORD_RETRIEVAL_VERSION,
+    // The live plan's routing: only with it does a turn take the short route of a greeting or a thank-you.
+    ...(unified ? { retrievalRouting: UNIFIED_RETRIEVAL_VERSION } : {}),
     embedding: embeddingConfig({ embedding_mode: 'real', provider: 'openai', model: 'text-embedding-3-large', dimensions: 3072, endpoint: 'https://api.openai.com/v1/embeddings' }),
     model: 'gpt-5.6-luna', reasoning: 'low', maxInputTokens: 64000, maxOutputTokens: 1000, expiresAt: null, retentionHours: null,
     prices: { embeddingInput: 1, answerInput: 1, answerOutput: 1 }, budget: { attempts: 24, embeddingAttempts: 12, answerAttempts: 12, tokens: 1000000, nanoUsd: 1000000 } };
@@ -482,6 +485,7 @@ async function regionConversation(t, { clarifications = [], requests = null, sel
   const adapters = { preflight: async () => {}, canonical: async () => {}, dialogueStateContext: async () => ({ regions: directory }),
     checkedPlaces: (c, query, places) => runtime.checkedPlaces(c, query, places),
     search: async (c, query, vector, assist) => {
+      searches?.push({ vector: vector === null ? null : 'given', greeting: assist?.greeting === true, thanks: assist?.thanks === true, rerank: assist?.rerank ? 'given' : null, variants: assist?.variants?.length ?? null });
       const { scope, knowledgeRegion } = await runtime.searchScope(c, query, directory, assist?.variants || []);
       scopes.push({ person: scope.person ?? query.person, region: knowledgeRegion.region ?? null, state: scope.state,
         own: scope.region ?? null, source: knowledgeRegion.state });
@@ -494,6 +498,7 @@ async function regionConversation(t, { clarifications = [], requests = null, sel
   const unit = Array.from({ length: 3072 }, (_, i) => i === 0 ? 1 : 0);
   const service = new PilotService({ store: new PilotStore(db), readConfig: async () => config, adapters, call: async ({ stage, body }) => {
     const usage = { input: 20, output: stage === 'embedding' ? 0 : 10 };
+    stages?.push(stage);
     if (stage === 'embedding') return { value: Array.isArray(body.input) ? body.input.map(() => unit) : unit, usage, requestId: 'synthetic' };
     if (stage === 'plan' || stage === 'rerank') requests?.push({ stage, input: JSON.parse(body.input[0].content) });
     if (stage === 'plan') return { value: plans.shift(), usage, requestId: 'synthetic' };
@@ -902,4 +907,39 @@ test('dialogue state DB (ADR-119): a long message after a question is planned wi
   const long = await turn('Tegelikult tahan teada hoopis seda, kuidas taotleda puudega lapse hooldajale toetust ja kes selle üle otsustab.', 'same', { queries: ['puudega lapse hooldajatoetuse taotlemine'], person: 'user', places: [] });
   assert.deepEqual(requests.filter(request => request.stage !== 'embedding').slice(-2).map(request => 'assistant_question' in request.input), [false, false]);
   assert.equal('assistantQuestion' in long.assist, false);
+});
+
+// ADR-120: through the service and the database. A message that is only a thank-you makes one provider call, the
+// answer: no search plan, no embedding, no selection. The search is asked for the turn's scope alone, and the person and
+// the place are the same for the message after it.
+test('dialogue state DB (ADR-120): a thank-you mid-topic makes the answer call only and keeps the person and the place', async t => {
+  const stages = [], searches = [];
+  const turn = await regionConversation(t, { stages, searches, select: true, unified: true });
+  const first = await turn('Elan Kose vallas. Kas hooldamise eest saab abi?', 'new', { queries: ['hooldajatoetus Kose vald'], person: 'user',
+    places: [{ turn: 1, quote: 'Elan Kose vallas', name: 'Kose vald', person: 'user', relation: 'lives' }] });
+  assert.deepEqual([stages.splice(0), searches.splice(0).map(search => [search.vector, search.thanks, search.rerank])], [['plan', 'embedding', 'rerank', 'answer'], [['given', false, 'given']]]);
+  assert.deepEqual(first.people.user, ['kose_vald', 'reported']);
+  // The thank-you: the answer call alone; the search stand-in gets no vector, no selection hook and the mark.
+  const thanks = await turn('Suur aitäh!', 'same', { queries: ['ei tohi kasutada'] });
+  assert.deepEqual(stages.splice(0), ['answer']);
+  assert.deepEqual(searches.splice(0), [{ vector: null, greeting: true, thanks: true, rerank: null, variants: 0 }]);
+  assert.deepEqual([thanks.assist.thanks, 'greeting' in thanks.assist, thanks.assist.queries, thanks.assist.rerank, thanks.assist.failures], [true, false, [], null, []]);
+  // The scope and the saved state are the same person and place as before it.
+  assert.deepEqual([thanks.searched.region, thanks.searched.person, thanks.people.user], ['kose_vald', 'user', ['kose_vald', 'reported']]);
+  // The plan that was queued for the thank-you was never asked for: it is the next message's.
+  const next = await turn('Ja kui palju see on?', 'same', { queries: ['hooldajatoetuse suurus'], person: 'user', places: [] });
+  assert.deepEqual(stages.splice(0), ['plan', 'plan', 'embedding', 'rerank', 'answer'].slice(1));
+  assert.deepEqual([next.searched.region, next.people.user, next.query.scopeTurns.map(item => item.text)], ['kose_vald', ['kose_vald', 'reported'],
+    ['Elan Kose vallas. Kas hooldamise eest saab abi?', 'Suur aitäh!', 'Ja kui palju see on?']]);
+});
+
+test('dialogue state DB (ADR-120): a thank-you with a request in it, and a word that may answer a question, take the full route', async t => {
+  const stages = [], searches = [];
+  const turn = await regionConversation(t, { stages, searches, unified: true });
+  await turn('Kas hooldamise eest saab abi?', 'new', { queries: ['hooldajatoetus'], person: 'user', places: [] });
+  stages.splice(0); searches.splice(0);
+  for (const message of ['Aitäh, aga mis see maksab?', 'ok aitäh', 'jah']) {
+    const full = await turn(message, 'same', { queries: ['hooldajatoetuse suurus'], person: 'user', places: [] });
+    assert.deepEqual([stages.splice(0), searches.splice(0).map(search => search.thanks), 'thanks' in full.assist], [['plan', 'embedding', 'answer'], [false], false], message);
+  }
 });

@@ -1,6 +1,6 @@
 # ADR-119: Luna enda täpsustav küsimus jõuab otsinguplaani ja valikuni
 
-Kuupäev: 09.10.2026. Teostus Claude Opus 5.5. Omanik: „Do this task here: Luna täpsustav küsimus jõuab otsinguni“. Seis: **kood ja testid tehtud; mõju päris plaanidele on mõõtmata (tasuline, ootab luba).**
+Kuupäev: 09.10.2026. Teostus Claude Opus 5.5. Omanik: „Do this task here: Luna täpsustav küsimus jõuab otsinguni“. Seis: **serveris alates 09.10.2026 kell 22.30 (väljalase `d7840637`); mõõdetud samal õhtul 18 päris pöördega (0,0809 USD).**
 
 ## Probleem
 
@@ -42,7 +42,27 @@ Vestluse plaan võtab otsinguabi versiooni koodist ja väljalase uuendab plaani 
 - Ühiktestid (värske põhiharu peal): 1240, neist 1218 läbi ja 22 vahele jäetud; ESLint muudetud failidel. Uus test: sisendi kuju küsimusega ja ilma (ilma on täht-tähelt endine), juhiste ridade koht, skeem muutmata, reegli sõnastus, ja millal küsimus antakse (eelmise sõnumi vastus, otse vastamine, 12 ja 13 sõna, vastuseta jäänud eelmine sõnum, puuduv või tühi küsimus). Varasemaid versiooninumbreid ja juhiste lõppu hoidvad testid on uuendatud; ülejäänud juhiste räsi on sama.
 - **Kohalik andmebaas, teenuse kaudu** (`tests/rag-v2-dialogue-store.test.mjs`, 37/37; `tests/rag-v2-pilot-store.test.mjs`, 48/48): kaks uut testi. Lühike vastus küsimusele: plaani ja valiku päringus on küsimus, pöörde kirjes märge, otsingu tekstis ega päringutes küsimust ei ole, inimese elukoht jääb. Esimene sõnum, sõnum pärast vastust, mis midagi ei küsinud, ja pikk sõnum pärast küsimust: küsimust ei ole.
 
-## Kontrollimata
+## Mõõdetud päris vestluses (09.10.2026)
 
-- **Mida päris mudel selle väljaga teeb.** Päringu kuju on testitud, plaani käitumine mitte: see vajab tasulist jooksu (mõni vestlus, kus Luna küsib ja inimene vastab lühidalt, iga kaks korda). Üks mudeli jooks ei ole tõend.
-- Kas plaan hakkab mõnikord otsima küsimuse enda teemat ka siis, kui lühike sõnum sellele ei vasta.
+Omaniku loal (lagi 0,10 USD) töötava väljalaske enda vestlusteenuse kaudu: viis vestluse algust abiotsija rollis, igaüks kaks korda; seal, kus Luna vastus lõppes küsimusega, saadeti lühike vastus kindla reegli järgi („Tartu linnas“ küsimusele, kus inimene elab; „jah“ jah-ei-küsimusele). **18 pööret, 0,0809 USD**, kõik lõpuni.
+
+| | Tulemus |
+|---|---|
+| Esimesi sõnumeid | 10; neist 8 vastust lõppes küsimusega (kaks „ema ei saa üksi hakkama“ vastust ei küsinud midagi) |
+| Lühikesi vastuseid | 8; **kõigil 8 jõudis Luna küsimus plaani ja valikuni** |
+| Plaani päringutes on sõnu, mis olid ainult Luna küsimuses | vähemalt 4 juhul 8-st |
+
+Näited (kasutaja esimene sõnum → Luna küsimus → vastus → plaani päringud):
+
+- „Kohtutäitur võtab mu palgast nii palju, et elamiseks ei jää raha.“ → „Kas täidetakse lapse elatisnõuet ja kas sul on ülalpeetavaid?“ → „jah“ → päringud elatisnõude sundtäitmisest ja ülalpeetavatest. Kasutaja sõnumites neid sõnu ei olnud.
+- Sama algus teisel korral → „Kas oled juba kohtutäiturile avalduse arestivaba summa tagamiseks esitanud, ja kas sul on ülalpeetavaid?“ → „jah“ → päringud arestivabast miinimumist ülalpeetavatega ja avaldusest kohtutäiturile.
+- „Mu laps ei taha enam koolis käia.“ → „Mis omavalitsuses sa elad? Siis saan aidata leida kohaliku lastekaitsetöötaja kontakti.“ → „Tartu linnas“ → kolmas päring Tartu linna lastekaitsetöötaja kohta.
+
+Kahele kahe osaga küsimusele vastatud „jah“ puhul küsis Luna järgmises vastuses, kumba osa „jah“ tähendas, ja vastas mõlema võimaluse kohta. Ükski päring ei olnud küsimuse enda sõnastuse kohta.
+
+**Mida see mõõtmine ei näita:**
+
+- Võrdlust varasemaga ei ole: eelmist plaani ei saa enam käivitada. Näha on, et küsimus antakse kaasa ja et päringud kasutavad selle sõnu; kui palju vastused sellest paranesid, ei ole mõõdetud.
+- Valikuvastust („toetuse kohta“, „esimene variant“) ei tulnud ette: ükski Luna küsimus ei pakkunud kahte teemat.
+- Sõnumit, mis on lühike, kuid Luna küsimusele ei vasta, ei proovitud.
+- Ühel juhul kahest märkis plaan vastuse „Tartu linnas“ küsimusele tegeliku elukoha kohta seoseks „muu“, mitte „elab“; otsing tehti sellegipoolest Tartu kohta. Kas see on uus või varasem käitumine, ei ole teada.

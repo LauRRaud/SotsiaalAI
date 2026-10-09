@@ -78,7 +78,8 @@ test('prompt v10 keeps every v9 guardrail in each answer language, and v9 plans 
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-11'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-10'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-9'));
-  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-40');
+  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-41');
+  assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-40'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-39'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-38'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-37'));
@@ -387,4 +388,29 @@ test('dialogue prompt 29 to 32 (ADR-102): a finding carries its year, an older s
     'a card without a publication date is never a reason to leave such a figure out']) assert.ok(TIME_INSTRUCTIONS.includes(phrase), phrase);
   // About 615 tokens more in every dialogue turn's instructions than before v29, and about 150 more since v40.
   assert.ok(tokenCount(TIME_INSTRUCTIONS) < 800, String(tokenCount(TIME_INSTRUCTIONS)));
+});
+
+// ADR-120 (09.10.2026): a turn whose message is only a thank-you takes the short route and has no evidence. Its first
+// measured replies were kind "unsupported" with a limitation ("Mul pole praegu lisateavet, mida sulle juurde anda.").
+// Dialogue prompt 41 tells such a turn, and only such a turn, how to answer.
+test('dialogue prompt 41 (ADR-120): a turn that is only a thank-you is told how to reply; every other turn reads what it read', async () => {
+  const { THANKS_INSTRUCTIONS, dialogueRequest: request } = await import('../lib/rag-v2/pilot/dialogue.js');
+  const model = { model: 'gpt-6-luna', maxOutputTokens: 4096, reasoning: 'low' }, evidence = { evidence: [] };
+  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-41');
+  const plain = request(model, 'Kas saab toetust?', evidence, 'et', {}).instructions, thanks = request(model, 'Aitäh!', evidence, 'et', { messageKind: 'thanks' }).instructions;
+  // One more line, right after the rules on asking; without the mark, and with any other value of it, nothing.
+  assert.deepEqual([thanks.split(THANKS_INSTRUCTIONS).length, plain.includes(THANKS_INSTRUCTIONS), thanks.replace(THANKS_INSTRUCTIONS, '') === plain], [2, false, true]);
+  assert.ok(thanks.includes(ASKING_INSTRUCTIONS + THANKS_INSTRUCTIONS));
+  for (const other of [{ messageKind: 'greeting' }, { messageKind: true }, { userRole: 'help_seeker' }, null, undefined])
+    assert.equal(request(model, 'Aitäh!', evidence, 'et', other).instructions.includes(THANKS_INSTRUCTIONS), false, JSON.stringify(other));
+  // A role's own lines stay beside it.
+  const specialist = request(model, 'Aitäh!', evidence, 'et', { messageKind: 'thanks', userRole: 'specialist' }).instructions;
+  assert.equal(specialist.replace(THANKS_INSTRUCTIONS, ''), request(model, 'Aitäh!', evidence, 'et', { userRole: 'specialist' }).instructions);
+  for (const phrase of ['dialogue.messageKind is "thanks"', 'the current message only thanks and asks nothing', 'do not repeat the earlier answer, state no limitation and ask no new question about the matter',
+    'Answer with kind "clarification", no blocks and no limitations', 'one short friendly sentence, in the language of that message', 'says the user may write again when something else comes up'])
+    assert.ok(THANKS_INSTRUCTIONS.includes(phrase), phrase);
+  // The dialogue the answer model reads carries the mark only when the turn has one.
+  const accepted = { context: { scopeId: 's' }, userTurns: [{ turnId: 't1', text: 'Aitäh!', mode: 'new', correctionOf: null }], selection: { replyToBlock: null } };
+  assert.equal(dialogueInput(accepted, null, null, null, 'thanks').value.messageKind, 'thanks');
+  assert.equal('messageKind' in dialogueInput(accepted, null, null, 'specialist').value, false);
 });
