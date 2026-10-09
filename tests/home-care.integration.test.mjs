@@ -77,6 +77,7 @@ import {
 } from '../lib/homeCare/doorTags.js';
 import { getCoordinatorOverview } from '../lib/homeCare/overview.js';
 import { getMonthSummary } from '../lib/homeCare/provided.js';
+import { createAbsence, getAbsences, removeAbsence, updateAbsence } from '../lib/homeCare/absences.js';
 import { cancelVisit, getDayPlan, getMyDay, moveVisit, restoreVisit } from '../lib/homeCare/dayPlan.js';
 import { changeSlot, createSlots, endSlot, getClientSlots, getSlotEditor } from '../lib/homeCare/slots.js';
 import { assertNotificationRecipient, serializeNotificationEvent } from '../lib/notifications.js';
@@ -1841,6 +1842,8 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
   await createEntry(lead, northClient.id, { visitMinutes: 30, activities: [{ activityId: exportCatalogue[0].id, mode: 'TOGETHER' }] }, deps());
   /* Käigumuster (K3-a): korduv käik meeskonna liikmele, et väljavõttes oleks ka see kogu. */
   const exportSlot = (await createSlots(lead, northClient.id, { weekdays: [1], startTime: '09:00', plannedMinutes: 45, workerMembershipId: f.members.cover.id }, deps())).slots[0];
+  /* Puudumine (K3-c): meeskonna liikme tulevane plaaniline puudumine. */
+  await createAbsence(lead, { membershipId: f.members.cover.id, fromDay: '2026-10-20', toDay: '2026-10-21', kind: 'PLANNED' }, deps());
   /* Ühe päeva erand (K3-b): järgmise esmaspäeva käik jääb ära. */
   await cancelVisit(lead, northClient.id, exportSlot.id, { day: '2026-10-12', reason: 'OTHER' }, deps());
   /* Otsus ja maht (K2-c), et väljavõttes oleks ka see kogu. */
@@ -1937,6 +1940,7 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
     entryActivities: await db.careEntryActivity.count({ where: ofOrg }),
     visitSlots: await db.careVisitSlot.count({ where: ofOrg }),
     visitChanges: await db.careVisitChange.count({ where: ofOrg }),
+    absences: await db.careAbsence.count({ where: ofOrg }),
     auditEvents: await db.dataAuditLog.count({
       where: { action: { startsWith: 'org.home_care_' }, meta: { path: ['organizationId'], equals: f.orgA.id }, createdAt: { lt: (await exportRows())[0].createdAt } }
     })
@@ -3174,7 +3178,7 @@ test('päevaplaan: käigud töötaja kaupa, ümbertõstmine, ärajätmine, tagas
   /* PÄEVAPLAAN: töötaja kaupa, määramata eraldi, ajutiselt ära oleva kliendi käik eraldi. */
   const view = await getDayPlan(lead, {}, deps());
   assert.deepEqual([view.day, view.today, view.weekday, view.previousDay, view.nextDay, view.canEdit], [today, today, 5, '2026-10-08', '2026-10-10', true]);
-  assert.deepEqual(view.totals, { planned: 4, minutes: 165, done: 1, missing: 0, cancelled: 0, unassigned: 1 });
+  assert.deepEqual(view.totals, { planned: 4, minutes: 165, done: 1, missing: 0, cancelled: 0, unassigned: 1, uncovered: 0 });
   assert.deepEqual(rows(view.unassigned), [['14:00', 'Peeter Põhi', 'PLANNED']]);
   assert.deepEqual(
     view.workers.map((worker) => [worker.name, rows(worker.visits)]),
@@ -3272,7 +3276,7 @@ test('päevaplaan: käigud töötaja kaupa, ümbertõstmine, ärajätmine, tagas
   await expectError(restoreVisit(anu, linda.id, lindaMorning.id, { day: today }, deps()), 403, 'org.errors.missing_capability');
   /* Õhtune käik jääb ära: hooldaja näeb seda oma päevas ära jäetuna koos põhjusega. */
   const cancelled = await cancelVisit(lead, linda.id, lindaEvening.id, { day: today, reason: 'CLIENT_CANCELLED', note: 'Läheb tütre juurde' }, deps());
-  assert.deepEqual(cancelled.totals, { planned: 3, minutes: 135, done: 1, missing: 0, cancelled: 1, unassigned: 1 });
+  assert.deepEqual(cancelled.totals, { planned: 3, minutes: 135, done: 1, missing: 0, cancelled: 1, unassigned: 1, uncovered: 0 });
   const dayOfAnu = await getMyDay(anu, deps());
   const evening = dayOfAnu.visits.find((visit) => visit.slotId === lindaEvening.id);
   assert.deepEqual([evening.state, evening.done, evening.change.reason, evening.change.note], ['CANCELLED', false, 'CLIENT_CANCELLED', 'Läheb tütre juurde']);
@@ -3304,4 +3308,150 @@ test('päevaplaan: käigud töötaja kaupa, ümbertõstmine, ärajätmine, tagas
   const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_visit_changed', meta: { path: ['organizationId'], equals: f.orgA.id } } });
   assert.deepEqual(audit.map((entry) => entry.meta.change).sort(), ['cancelled', 'cancelled', 'cancelled', 'moved', 'moved', 'restored', 'restored']);
   for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['change', 'clientId', 'organizationId', 'slotId']);
+});
+
+test('puudumised ja käigu tähtsus: märkimine, õigused ning päevaplaani katmata käigud tähtsuse järjekorras', async (t) => {
+  const f = await fixture(t);
+  const north = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Põhi ${f.tag}`, type: 'TEAM' } });
+  await db.organizationCapabilityGrant.create({
+    data: { membershipId: f.members.cover.id, capability: 'HOME_CARE_COORDINATOR', scopeType: 'UNIT', scopeUnitId: north.id, validFrom: at('2026-01-01T00:00:00Z') }
+  });
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const unitLead = await f.ctx(f.users.cover, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, deps())).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi', unitId: north.id }, deps())).client;
+  await addTeamMember(lead, linda.id, { membershipId: f.members.anu.id }, deps());
+  await addTeamMember(lead, linda.id, { membershipId: f.members.bert.id }, deps());
+  await addTeamMember(lead, peeter.id, { membershipId: f.members.bert.id }, deps());
+  const today = '2026-10-09';
+  const early = at('2026-10-01T08:00:00Z');
+  const slotOf = async (client, startTime, member, priority) =>
+    (await createSlots(lead, client.id, { weekdays: [5], startTime, plannedMinutes: 30, workerMembershipId: member.id, priority }, deps(early))).slots.find((slot) => slot.startTime === startTime);
+
+  /* KÄIGU TÄHTSUS: mustri real; puudumisel on see B; tundmatu väärtus on viga. */
+  const lindaMorning = await slotOf(linda, '09:00', f.members.anu, 'C');
+  const lindaNoon = await slotOf(linda, '12:00', f.members.anu, 'A');
+  const lindaEvening = await slotOf(linda, '17:00', f.members.anu);
+  const peeterMorning = await slotOf(peeter, '10:00', f.members.bert);
+  assert.deepEqual([lindaMorning.priority, lindaNoon.priority, lindaEvening.priority, peeterMorning.priority], ['C', 'A', 'B', 'B']);
+  await expectError(
+    createSlots(lead, linda.id, { weekdays: [1], startTime: '09:00', plannedMinutes: 30, priority: 'D' }, deps()),
+    400,
+    'home_care.errors.slot_priority_invalid'
+  );
+
+  /* Algus: puudumisi ei ole; hooldajad on inimesed, kes on mõne kliendi meeskonnas. */
+  const empty = await getAbsences(lead, deps());
+  assert.deepEqual([empty.today, empty.absences, empty.careWorkers.map((worker) => worker.name), empty.canEdit], [today, [], ['Anu Hooldaja', 'Bert Hooldaja'], true]);
+  /* Puudumisi näeb ja märgib ainult hooldusjuht (ka üksuse oma); teise asutuse juht näeb oma tühja loendit. */
+  const input = { membershipId: f.members.anu.id, fromDay: today, toDay: '2026-10-11', kind: 'SUDDEN' };
+  await expectError(getAbsences(anu, deps()), 403, 'org.errors.missing_capability');
+  await expectError(createAbsence(anu, input, deps()), 403, 'org.errors.missing_capability');
+  const foreign = await getAbsences(leadB, deps());
+  assert.deepEqual([foreign.absences, foreign.careWorkers], [[], []]);
+
+  /* Vigane sisend ei salvestu. */
+  const bad = (patch, key) => expectError(createAbsence(lead, { ...input, ...patch }, deps()), 400, key);
+  await bad({ fromDay: '' }, 'home_care.errors.absence_days_required');
+  await bad({ toDay: null }, 'home_care.errors.absence_days_required');
+  await bad({ toDay: '2026-10-08' }, 'home_care.errors.absence_period_invalid');
+  await bad({ fromDay: '2026-10-01' }, 'home_care.errors.absence_from_past');
+  await bad({ toDay: '2027-10-10' }, 'home_care.errors.absence_too_long');
+  await bad({ kind: 'SICK' }, 'home_care.errors.absence_kind_required');
+  /* Töötaja, kes ei ole ühegi kliendi meeskonnas, ja teise asutuse töötaja ei ole selle asutuse hooldajad. */
+  await bad({ membershipId: f.members.clerk.id }, 'home_care.errors.absence_worker_invalid');
+  await bad({ membershipId: f.members.leadB.id }, 'home_care.errors.absence_worker_invalid');
+  await bad({ membershipId: 'x' }, 'home_care.errors.absence_worker_invalid');
+  assert.equal(await db.careAbsence.count({ where: { organizationId: f.orgA.id } }), 0);
+
+  /* MÄRKIMINE: kolm päeva, täna kestev; sama töötaja puudumised ei tohi kattuda. */
+  const made = await createAbsence(lead, input, deps());
+  assert.deepEqual(
+    made.absences.map((row) => [row.id, row.name, row.fromDay, row.toDay, row.days, row.kind, row.current, row.version]),
+    [[made.absenceId, 'Anu Hooldaja', today, '2026-10-11', 3, 'SUDDEN', true, 1]]
+  );
+  await expectError(createAbsence(lead, { ...input, fromDay: '2026-10-11', toDay: '2026-10-15', kind: 'PLANNED' }, deps()), 409, 'home_care.errors.absence_overlap');
+  /* Üksuse hooldusjuht märgib teise töötaja tulevase plaanilise puudumise. */
+  const planned = await createAbsence(unitLead, { membershipId: f.members.bert.id, fromDay: '2026-10-20', toDay: '2026-10-21', kind: 'PLANNED' }, deps());
+  assert.deepEqual(planned.absences.map((row) => [row.name, row.days, row.kind, row.current]), [
+    ['Anu Hooldaja', 3, 'SUDDEN', true],
+    ['Bert Hooldaja', 2, 'PLANNED', false]
+  ]);
+
+  /* PÄEVAPLAAN: puuduja tegemata käigud on omaette rühmas, tähtsamad ees (A, B, C). */
+  const rows = (visits) => visits.map((visit) => [visit.startTime, visit.client.displayName, visit.priority, visit.state, visit.workerAbsent]);
+  const view = await getDayPlan(lead, {}, deps());
+  assert.deepEqual(rows(view.uncovered), [
+    ['12:00', 'Linda Tamm', 'A', 'PLANNED', true],
+    ['17:00', 'Linda Tamm', 'B', 'PLANNED', true],
+    ['09:00', 'Linda Tamm', 'C', 'MISSING', true]
+  ]);
+  assert.deepEqual([view.totals.uncovered, view.totals.planned, view.unassigned, view.workers.map((worker) => worker.name)], [3, 4, [], ['Bert Hooldaja']]);
+  assert.deepEqual(view.week.find((item) => item.day === today).uncovered, 3);
+  /* Puudujat asendajaks ei pakuta; kliendi meeskond on kaasas, et tuttavat töötajat enne pakkuda. */
+  assert.deepEqual(view.careWorkers.map((worker) => [worker.name, worker.absent]), [['Anu Hooldaja', true], ['Bert Hooldaja', false]]);
+  assert.deepEqual([[...view.teams[linda.id]].sort(), view.teams[peeter.id]], [[f.members.anu.id, f.members.bert.id].sort(), [f.members.bert.id]]);
+  await expectError(moveVisit(lead, peeter.id, peeterMorning.id, { day: today, workerMembershipId: f.members.anu.id }, deps()), 400, 'home_care.errors.visit_worker_absent');
+
+  /* Puuduja enda päevas käike ei ole; kolleegi päev on tavaline. */
+  assert.deepEqual(await getMyDay(anu, deps()), { today, weekday: 5, absent: true, visits: [] });
+  const dayOfBert = await getMyDay(bert, deps());
+  assert.deepEqual([dayOfBert.absent, dayOfBert.visits.map((visit) => visit.startTime)], [false, ['10:00']]);
+
+  /* Tehtud käik ei vaja asendajat: päeva kirje katab hommikuse käigu ja see läheb puuduja nime alla tehtuna. */
+  await createEntry(bert, linda.id, { text: 'Käisin Anu asemel.', visitMinutes: 30, occurredAt: '2026-10-09T06:10:00Z' }, deps());
+  const afterRecord = await getDayPlan(lead, {}, deps());
+  assert.deepEqual(rows(afterRecord.uncovered).map((row) => row[0]), ['12:00', '17:00']);
+  assert.deepEqual(afterRecord.workers.map((worker) => [worker.name, rows(worker.visits).map((row) => [row[0], row[3]])]), [
+    ['Anu Hooldaja', [['09:00', 'DONE']]],
+    ['Bert Hooldaja', [['10:00', 'PLANNED']]]
+  ]);
+  /* Tähtsaim käik tõstetakse meeskonnakaaslasele: see ei ole enam katmata ja on tema päevas. */
+  const covered = await moveVisit(lead, linda.id, lindaNoon.id, { day: today, workerMembershipId: f.members.bert.id, startTime: '12:00' }, deps());
+  assert.deepEqual([rows(covered.uncovered).map((row) => row[0]), covered.totals.uncovered], [['17:00'], 1]);
+  assert.deepEqual((await getMyDay(bert, deps())).visits.map((visit) => [visit.startTime, visit.client.displayName, visit.covering]), [
+    ['10:00', 'Peeter Põhi', false],
+    ['12:00', 'Linda Tamm', false]
+  ]);
+
+  /* MUUTMINE: töötaja tuli varem tagasi. Nõuab nähtud versiooni ja hooldusjuhti; oma päevadega ei kattu iseendaga. */
+  const shorter = { fromDay: today, toDay: today, kind: 'SUDDEN' };
+  await expectError(updateAbsence(lead, made.absenceId, shorter, deps()), 400, 'home_care.errors.version_required');
+  await expectError(updateAbsence(lead, made.absenceId, { ...shorter, version: 5 }, deps()), 409, 'home_care.errors.version_conflict');
+  await expectError(updateAbsence(anu, made.absenceId, { ...shorter, version: 1 }, deps()), 403, 'org.errors.missing_capability');
+  await expectError(updateAbsence(leadB, made.absenceId, { ...shorter, version: 1 }, deps()), 404, 'home_care.errors.absence_not_found');
+  const updated = await updateAbsence(lead, made.absenceId, { ...shorter, version: 1 }, deps());
+  assert.deepEqual(updated.absences.map((row) => [row.name, row.toDay, row.days, row.version])[0], ['Anu Hooldaja', today, 1, 2]);
+  /* Muutmine ei tohi tekitada kattumist sama töötaja teise puudumisega. */
+  const second = await createAbsence(lead, { ...input, fromDay: '2026-10-12', toDay: '2026-10-13', kind: 'PLANNED' }, deps());
+  await expectError(updateAbsence(lead, made.absenceId, { fromDay: today, toDay: '2026-10-12', kind: 'SUDDEN', version: 2 }, deps()), 409, 'home_care.errors.absence_overlap');
+
+  /* KUSTUTAMINE: ekslik puudumine kaob ja päevaplaanis ei ole enam katmata käike. */
+  await expectError(removeAbsence(lead, made.absenceId, {}, deps()), 400, 'home_care.errors.version_required');
+  await expectError(removeAbsence(anu, made.absenceId, { version: 2 }, deps()), 403, 'org.errors.missing_capability');
+  const removed = await removeAbsence(lead, made.absenceId, { version: 2 }, deps());
+  assert.deepEqual(removed.absences.map((row) => row.id).includes(made.absenceId), false);
+  await expectError(removeAbsence(lead, made.absenceId, { version: 2 }, deps()), 404, 'home_care.errors.absence_not_found');
+  const calm = await getDayPlan(lead, {}, deps());
+  assert.deepEqual([calm.uncovered, calm.totals.uncovered, (await getMyDay(anu, deps())).absent], [[], 0, false]);
+  assert.equal(second.absences.length, 3);
+
+  /* Käigu tähtsuse muutus tänasest: juba kehtinud rida lõpeb ja uus kannab uut tähtsust. */
+  const changed = await changeSlot(lead, linda.id, lindaEvening.id, { version: 1, startTime: '17:00', plannedMinutes: 30, workerMembershipId: f.members.anu.id, priority: 'A' }, deps());
+  assert.deepEqual(changed.slots.filter((slot) => slot.startTime === '17:00').map((slot) => [slot.priority, slot.validFrom]), [['A', today]]);
+
+  /* Andmebaas hoiab vigase rea eemal ka siis, kui rakendus eksib. */
+  const raw = (data) => db.careAbsence.create({ data: { organizationId: f.orgA.id, membershipId: f.members.anu.id, fromDay: '2026-11-01', toDay: '2026-11-02', kind: 'PLANNED', ...data } });
+  await assert.rejects(raw({ kind: 'SICK' }), /CareAbsence_kind_check/);
+  await assert.rejects(raw({ toDay: '2026-10-31' }), /CareAbsence_days_check/);
+  await assert.rejects(raw({ fromDay: '01.11.2026' }), /CareAbsence_days_check/);
+  await assert.rejects(db.careVisitSlot.update({ where: { id: peeterMorning.id }, data: { priority: 'D' } }), /CareVisitSlot_priority_check/);
+
+  /* AUDIT: puudumise muutus jätab rea ainult ID ja muutuse liigiga (töötajat, päevi ega liiki seal ei ole). */
+  const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_absence_changed', meta: { path: ['organizationId'], equals: f.orgA.id } } });
+  assert.deepEqual(audit.map((entry) => entry.meta.change).sort(), ['created', 'created', 'created', 'removed', 'updated']);
+  for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['absenceId', 'change', 'organizationId']);
 });

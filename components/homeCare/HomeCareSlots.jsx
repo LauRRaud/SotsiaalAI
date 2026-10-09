@@ -6,7 +6,7 @@ import { useId, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import OrgHeader from "@/components/org/OrgHeader";
 import Dropdown from "@/components/ui/Dropdown";
-import { HOME_CARE_LIMITS } from "@/lib/homeCare/constants";
+import { CARE_VISIT_PRIORITIES, CareVisitPriority, HOME_CARE_LIMITS } from "@/lib/homeCare/constants";
 
 import HomeCareOutbox from "./HomeCareOutbox";
 import { WEEKDAYS, slotLine } from "./HomeCareSlotList";
@@ -15,7 +15,14 @@ import { homeCareBase, useHomeCareApi } from "./homeCareClient";
 /* Plaanitud kestuse kiirvalikud minutites. */
 const MINUTE_CHOICES = Object.freeze([15, 30, 45, 60, 90]);
 
-const EMPTY_FORM = Object.freeze({ weekdays: [], startTime: "09:00", plannedMinutes: "45", workerMembershipId: "", note: "" });
+const EMPTY_FORM = Object.freeze({
+  weekdays: [],
+  startTime: "09:00",
+  plannedMinutes: "45",
+  priority: CareVisitPriority.B,
+  workerMembershipId: "",
+  note: ""
+});
 
 /**
  * Kliendi käigumuster hooldusjuhile: korduvad käigud nädalas.
@@ -67,6 +74,7 @@ export default function HomeCareSlots({ context, initial }) {
       weekdays: [slot.weekday],
       startTime: slot.startTime,
       plannedMinutes: String(slot.plannedMinutes),
+      priority: slot.priority || CareVisitPriority.B,
       workerMembershipId: slot.worker?.membershipId || "",
       note: slot.note || ""
     });
@@ -93,6 +101,7 @@ export default function HomeCareSlots({ context, initial }) {
     const fields = {
       startTime: form.startTime,
       plannedMinutes: form.plannedMinutes,
+      priority: form.priority,
       workerMembershipId: form.workerMembershipId || null,
       note: form.note
     };
@@ -193,6 +202,17 @@ export default function HomeCareSlots({ context, initial }) {
             </button>
           ))}
         </div>
+      </div>
+      <div className="hc-field">
+        <span className="hc-label">{t("home_care.priority.label")}</span>
+        <div className="hc-chips" role="group" aria-label={t("home_care.priority.label")}>
+          {CARE_VISIT_PRIORITIES.map((value) => (
+            <button key={value} type="button" className="hc-chip" aria-pressed={form.priority === value} onClick={() => setField("priority", value)}>
+              {t(`home_care.priority.${value}`)}
+            </button>
+          ))}
+        </div>
+        <p className="hc-hint">{t("home_care.priority.hint")}</p>
       </div>
       <div className="hc-field">
         <span className="hc-label">{t("home_care.slots.worker_label")}</span>

@@ -13,6 +13,8 @@ export function slotLine(t, slot, today) {
     slot.startTime,
     minutesLabel(t, slot.plannedMinutes),
     slot.worker ? slot.worker.name || "—" : t("home_care.slots.unassigned"),
+    /* Tähtsus on näha, kui see erineb tavalisest (B). */
+    slot.priority && slot.priority !== "B" ? t(`home_care.priority.short.${slot.priority}`) : null,
     slot.validFrom > today ? t("home_care.slots.from", { date: planDayLabel(slot.validFrom) }) : null,
     slot.validUntil ? t("home_care.slots.until", { date: planDayLabel(slot.validUntil) }) : null,
     slot.note

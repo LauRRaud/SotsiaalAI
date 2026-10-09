@@ -11706,7 +11706,17 @@
       "visit_day_far": "A visit that far ahead cannot be changed.",
       "visit_worker_invalid": "A visit can be moved only to a care worker of the organisation.",
       "visit_cancel_reason_required": "Choose why the visit is cancelled.",
-      "visit_change_not_found": "This visit has no change on that day."
+      "visit_change_not_found": "This visit has no change on that day.",
+      "absence_days_required": "State the first and the last day of the absence.",
+      "absence_period_invalid": "The last day cannot be before the first.",
+      "absence_from_past": "An absence cannot be marked that far in the past.",
+      "absence_too_long": "An absence can last up to {limit} days.",
+      "absence_kind_required": "Choose whether the absence is planned or sudden.",
+      "absence_worker_invalid": "An absence can be marked only for a care worker of the organisation.",
+      "absence_overlap": "This worker already has an absence marked for those days.",
+      "absence_not_found": "The absence was not found. Reload the page.",
+      "slot_priority_invalid": "The importance of the visit is not valid.",
+      "visit_worker_absent": "This worker is absent on that day."
     },
     "incidents": {
       "title": "Incident register",
@@ -12323,8 +12333,8 @@
       "next": "Next day",
       "today_button": "Go to today",
       "week_label": "Days of the week",
-      "week_day": "{weekday} {date}: {planned} visits, {unassigned} not assigned, {missing} without a record",
-      "totals": "{planned} visits, planned time {amount}. Done {done}, no record {missing}, cancelled {cancelled}, not assigned {unassigned}.",
+      "week_day": "{weekday} {date}: {planned} visits, {unassigned} not assigned, {missing} without a record, {uncovered} with the worker absent",
+      "totals": "{planned} visits, planned time {amount}. Done {done}, no record {missing}, cancelled {cancelled}, not assigned {unassigned}, worker absent {uncovered}.",
       "empty": "No visits are planned for this day.",
       "unassigned_title": "Not assigned",
       "away_title": "The client is temporarily away",
@@ -12357,7 +12367,55 @@
       "cancel_save": "Cancel the visit",
       "restore": "Undo the change",
       "close_form": "Close",
-      "saved": "The day plan is changed. The pattern of visits stayed the same."
+      "saved": "The day plan is changed. The pattern of visits stayed the same.",
+      "uncovered_title": "The worker is absent",
+      "uncovered_hint": "These visits need a replacement or a decision. The more important ones come first.",
+      "absent_worker": "{name} is absent",
+      "team_option": "{name} · on the team"
+    },
+    "priority": {
+      "label": "Importance of the visit",
+      "hint": "Importance says what must happen even when fewer workers are at work.",
+      "A": "A: must happen today",
+      "B": "B: may shift within the day",
+      "C": "C: may shift within the week",
+      "short": {
+        "A": "must happen today",
+        "B": "may shift within the day",
+        "C": "may shift within the week"
+      }
+    },
+    "absences": {
+      "link": "Absences",
+      "back": "Back to the day plan",
+      "title": "Absences",
+      "intro": "Mark when a care worker is not at work. The day plan then brings forward the visits whose worker is absent and does not offer that worker as a replacement. The reason is not asked here.",
+      "list_title": "Marked absences",
+      "none": "No absences are marked.",
+      "no_workers": "The organisation has no care worker yet (a person on some client's team).",
+      "new_title": "New absence",
+      "edit_title": "Change the absence: {name}",
+      "worker_label": "Worker",
+      "worker_placeholder": "Choose a worker",
+      "from_label": "First day",
+      "to_label": "Last day",
+      "kind_label": "Kind",
+      "kinds": {
+        "PLANNED": "planned",
+        "SUDDEN": "sudden"
+      },
+      "kind_hint": "Planned is, for example, a holiday or training. The reason is not asked or stored.",
+      "period": "{from} to {to} ({days} days)",
+      "current_badge": "away now",
+      "save": "Save",
+      "cancel": "Cancel",
+      "add": "Mark an absence",
+      "edit": "Change",
+      "remove": "Delete",
+      "remove_confirm": "Confirm: the absence was marked by mistake",
+      "saved": "The absence is saved.",
+      "removed": "The absence is deleted.",
+      "my_notice": "An absence is marked for you today. Your visits today are in the coordinator's day plan."
     }
   },
   "stage": {

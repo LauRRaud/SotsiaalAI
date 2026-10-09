@@ -54,7 +54,8 @@ export default function HomeCareDay({ context, initial }) {
   };
 
   const openForm = (visit, mode) => {
-    setForm({ workerMembershipId: visit.worker?.membershipId || "", startTime: visit.startTime, reason: "", note: "" });
+    /* Puuduvat töötajat valikus ei ole: tema käigu ümbertõstmine algab seisust „määramata". */
+    setForm({ workerMembershipId: visit.workerAbsent ? "" : visit.worker?.membershipId || "", startTime: visit.startTime, reason: "", note: "" });
     setOpen({ slotId: visit.slotId, mode });
     setNotice("");
   };
@@ -68,10 +69,18 @@ export default function HomeCareDay({ context, initial }) {
     setNotice(t("home_care.day.saved"));
   };
 
-  const workerOptions = [
-    { value: "", label: t("home_care.day.worker_none") },
-    ...(data.careWorkers || []).map((worker) => ({ value: worker.membershipId, label: worker.name || "—" }))
-  ];
+  /* Kellele saab selle käigu tõsta: kliendi meeskonna liikmed ees (nemad tunnevad klienti), sel päeval puudujaid ei pakuta. */
+  const optionsFor = (visit) => {
+    const team = new Set(data.teams?.[visit.client.id] || []);
+    const present = (data.careWorkers || []).filter((worker) => !worker.absent);
+    return [
+      { value: "", label: t("home_care.day.worker_none") },
+      ...present
+        .filter((worker) => team.has(worker.membershipId))
+        .map((worker) => ({ value: worker.membershipId, label: t("home_care.day.team_option", { name: worker.name || "—" }) })),
+      ...present.filter((worker) => !team.has(worker.membershipId)).map((worker) => ({ value: worker.membershipId, label: worker.name || "—" }))
+    ];
+  };
 
   const visitRow = (visit) => {
     const isOpen = open?.slotId === visit.slotId;
@@ -86,6 +95,18 @@ export default function HomeCareDay({ context, initial }) {
           </Link>
         </span>{" "}
         <span className={`hc-badge${STATE_BADGE[visit.state] || ""}`}>{t(`home_care.day.states.${visit.state}`)}</span>
+        {visit.workerAbsent || visit.priority === "A" ? (
+          <>
+            {" "}
+            <span className="hc-badge">{t(`home_care.priority.short.${visit.priority}`)}</span>
+          </>
+        ) : null}
+        {visit.workerAbsent ? (
+          <>
+            {" "}
+            <span className="hc-badge hc-badge--danger">{t("home_care.day.absent_worker", { name: visit.worker?.name || "—" })}</span>
+          </>
+        ) : null}
         {visit.change?.workerChanged ? (
           <>
             {" "}
@@ -158,7 +179,7 @@ export default function HomeCareDay({ context, initial }) {
                 value={form.workerMembershipId}
                 onChange={(value) => setField("workerMembershipId", value)}
                 ariaLabel={t("home_care.day.worker_label")}
-                options={workerOptions}
+                options={optionsFor(visit)}
               />
             </div>
             <div className="hc-field">
@@ -272,7 +293,8 @@ export default function HomeCareDay({ context, initial }) {
     </section>
   );
 
-  const empty = data.unassigned.length === 0 && data.workers.length === 0 && data.away.length === 0;
+  const uncovered = data.uncovered || [];
+  const empty = uncovered.length === 0 && data.unassigned.length === 0 && data.workers.length === 0 && data.away.length === 0;
 
   return (
     <section className="ow-shell hc-shell">
@@ -311,13 +333,14 @@ export default function HomeCareDay({ context, initial }) {
                 date: planDayLabel(item.day),
                 planned: item.planned,
                 unassigned: item.unassigned,
-                missing: item.missing
+                missing: item.missing,
+                uncovered: item.uncovered || 0
               })}
               onClick={() => load(item.day)}
               disabled={busy}
             >
               {t(`home_care.slots.weekdays.${item.weekday}`)} {item.planned}
-              {item.unassigned || item.missing ? " !" : ""}
+              {item.unassigned || item.missing || item.uncovered ? " !" : ""}
             </button>
           ))}
         </div>
@@ -333,9 +356,13 @@ export default function HomeCareDay({ context, initial }) {
             done: data.totals.done,
             missing: data.totals.missing,
             cancelled: data.totals.cancelled,
-            unassigned: data.totals.unassigned
+            unassigned: data.totals.unassigned,
+            uncovered: data.totals.uncovered || 0
           })}
         </p>
+        <Link className="hc-btn hc-btn--quiet hc-btn--link" href={`/org/${organizationId}/koduteenus/puudumised`}>
+          {t("home_care.absences.link")}
+        </Link>
         {notice ? (
           <p className="hc-ok" role="status">
             {notice}
@@ -349,6 +376,7 @@ export default function HomeCareDay({ context, initial }) {
       </section>
 
       {empty ? <p className="hc-sub">{t("home_care.day.empty")}</p> : null}
+      {uncovered.length ? group("uncovered", t("home_care.day.uncovered_title"), uncovered, t("home_care.day.uncovered_hint")) : null}
       {data.unassigned.length ? group("unassigned", t("home_care.day.unassigned_title"), data.unassigned) : null}
       {data.workers.map((worker) => group(`w-${worker.membershipId}`, worker.name || "—", worker.visits))}
       {data.away.length ? group("away", t("home_care.day.away_title"), data.away, t("home_care.day.away_hint")) : null}
