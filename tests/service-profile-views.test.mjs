@@ -294,7 +294,12 @@ test('vaadete seis ja kokkuvõte tulevad vormist', () => {
   assert.equal(states.services, 'done');
   assert.equal(states.locations, 'done');
   assert.equal(states.visibility, 'done');
-  assert.equal(states.check, 'partial');
+  /* Näidisprofiilil on puudu ainult assistendi luba. See on teenuseosutaja valik, mitte nõue:
+     kontrolli samm on valmis ja „üle vaadata" hulka see ei loe. */
+  assert.equal(states.check, 'done');
+  const assistantRow = serviceProfilePublishChecks(form, profile.serviceMapEntry).find((row) => row.key === 'assistant');
+  assert.equal(assistantRow.optional, true);
+  assert.equal(profileViewStates({ ...form, mapVisible: false }, profile.serviceMapEntry).check, 'partial', 'päris puudus jätab sammu pooleli');
   assert.equal(profileViewStates(createServiceProfileForm(), null).who, 'empty');
   assert.equal(profileViewStates({ ...form, organizationName: '', registryCode: '123' }, null).who, 'partial');
 
@@ -303,7 +308,9 @@ test('vaadete seis ja kokkuvõte tulevad vormist', () => {
   assert.equal(summaries.who, 'Hoolekanne MTÜ');
   assert.equal(summaries.visibility, 'Avaldatud');
   assert.equal(summaries.services, 'views.services.summary:{"count":1,"published":1}');
-  assert.equal(summaries.check, 'views.check.summary_open:{"count":1}');
+  /* Ainus lahtine rida on assistendi luba, mis on valik: kokkuvõte ütleb „korras". */
+  assert.equal(summaries.check, '[views.check.summary_ok]');
+  assert.equal(profileViewSummaries({ ...form, mapVisible: false }, profile.serviceMapEntry, { tp, options }).check, 'views.check.summary_open:{"count":1}');
 
   const service = form.serviceItems[0];
   const serviceStates = serviceViewStates(service, { savedAvailability: service.availability, licenceRow: { badge: { tone: 'POSITIVE' } } });

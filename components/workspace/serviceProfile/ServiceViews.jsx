@@ -97,8 +97,10 @@ function ScopeView({ tp, service, onField, note, save }) {
 function CategoryView({ tp, service, options, onField, note, save }) {
   return (
     <StepPanel title={tp("views.category.title", "Teenuse kategooriad")} note={note} actions={save}>
+      {/* Silt on sama mis vaate nimi kiirmenüüs: see jääb ekraanilugejale. */}
       <ChipsField
         label={tp("service_items.categories", "Teenuse kategooriad")}
+        labelHidden
         hint={tp("field_help.categories", "Kategooriad on standardvalikud. Neid kasutatakse teenusekaardi otsingus ja eelpöördumiste sobitamises.")}
         value={service.categories}
         options={options.category}
@@ -111,7 +113,13 @@ function CategoryView({ tp, service, options, onField, note, save }) {
 function TargetView({ tp, service, options, onField, note, save }) {
   return (
     <StepPanel title={tp("views.target.title", "Sihtrühmad")} note={note} actions={save}>
-      <ChipsField label={tp("service_items.target_groups", "Sihtrühmad")} value={service.targetGroups} options={options.targetGroup} onChange={(value) => onField("targetGroups", value)} />
+      <ChipsField
+        label={tp("service_items.target_groups", "Sihtrühmad")}
+        labelHidden
+        value={service.targetGroups}
+        options={options.targetGroup}
+        onChange={(value) => onField("targetGroups", value)}
+      />
     </StepPanel>
   );
 }
@@ -234,6 +242,7 @@ function AvailabilityView({ tp, service, availability, onField, note, save }) {
       <div className={styles.stack}>
         <ChoiceRow
           label={tp("service_items.availability_status", "Kättesaadavus")}
+          labelHidden
           columns={2}
           options={availability.options}
           value={service.availabilityStatus}
@@ -380,6 +389,7 @@ function ServiceContactView({ tp, service, options, onField, onContactStrategy, 
       <div className={styles.stack}>
         <ChoiceRow
           label={tp("contact_strategy.label", "Teenuse kontakt")}
+          labelHidden
           columns={options.contactStrategy.length}
           options={options.contactStrategy}
           value={service.contactStrategy}
@@ -409,7 +419,7 @@ function ServiceContactView({ tp, service, options, onField, onContactStrategy, 
  * `ServiceLicenceStatus` (`children`); siin on selle raam ja uue kontrolli nupp.
  * Kontroll käib kõigi teenuste kohta korraga.
  */
-function LicenceView({ tp, licence, note, save }) {
+function LicenceView({ tp, service, licence, note, save }) {
   return (
     <StepPanel
       title={tp("views.licence.title", "Tegevusluba")}
@@ -426,7 +436,13 @@ function LicenceView({ tp, licence, note, save }) {
     >
       <div className={styles.stack}>
         {licence.notice ? <Notice>{licence.notice}</Notice> : null}
-        {licence.hasRow ? <div className={styles.licence}>{licence.children}</div> : <p className={styles.quiet}>{tp("views.licence.empty", "Tegevusloa seis ilmub siia pärast teenuse salvestamist.")}</p>}
+        {/* „Ilmub pärast salvestamist" on tõsi ainult salvestamata teenuse kohta;
+            salvestatud teenusel ilma reata (laadimine ebaõnnestus või käib) seda ei öelda. */}
+        {licence.hasRow ? (
+          <div className={styles.licence}>{licence.children}</div>
+        ) : service.id ? null : (
+          <p className={styles.quiet}>{tp("views.licence.empty", "Tegevusloa seis ilmub siia pärast teenuse salvestamist.")}</p>
+        )}
       </div>
     </StepPanel>
   );

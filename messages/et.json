@@ -3385,7 +3385,8 @@
           "review": "Vaata üle",
           "missing": "Puudu",
           "summary_ok": "Kõik on korras",
-          "summary_open": "Üle vaadata: {count}"
+          "summary_open": "Üle vaadata: {count}",
+          "optional": "Sinu valik"
         },
         "service": {
           "title": "Teenus",

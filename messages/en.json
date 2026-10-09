@@ -3385,7 +3385,8 @@
           "review": "Review",
           "missing": "Missing",
           "summary_ok": "Everything is in order",
-          "summary_open": "To review: {count}"
+          "summary_open": "To review: {count}",
+          "optional": "Your choice"
         },
         "service": {
           "title": "Service",

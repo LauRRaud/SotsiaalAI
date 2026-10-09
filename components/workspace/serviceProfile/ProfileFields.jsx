@@ -80,10 +80,11 @@ export function TextField({ label, hint, value, onChange, rows = 3, maxLength = 
  * tuli); lahtrid on ühelaiused ja märgitud lahter on kohe näha, seepärast ei
  * ole all enam eraldi rida „Valitud: …".
  */
-export function ChipsField({ label, hint, value, options, onChange }) {
+export function ChipsField({ label, hint, value, options, onChange, labelHidden = false }) {
   return (
     <ChoiceChips
       label={label}
+      labelHidden={labelHidden}
       hint={hint}
       options={optionsWithSelected(options, value)}
       values={splitList(value)}

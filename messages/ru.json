@@ -3385,7 +3385,8 @@
           "review": "Проверьте",
           "missing": "Не хватает",
           "summary_ok": "Всё в порядке",
-          "summary_open": "Проверить: {count}"
+          "summary_open": "Проверить: {count}",
+          "optional": "Ваш выбор"
         },
         "service": {
           "title": "Услуга",

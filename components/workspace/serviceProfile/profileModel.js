@@ -602,9 +602,15 @@ export function serviceProfilePublishChecks(form, mapEntry) {
     row("contact", state.hasContact, "contact",
       ["publish_checks.contact_ready", "Kontakt või platvormisisene pöördumisviis on olemas."],
       ["publish_checks.contact_missing", "Lisa kontakt või luba platvormisisesed eelpöördumised."]),
-    row("assistant", Boolean(form.assistantRecommendationAllowed), "visibility",
-      ["publish_checks.assistant_allowed", "Assistent võib avaldatud teenuseid soovitada."],
-      ["publish_checks.assistant_blocked", "Assistent ei soovita neid teenuseid enne eraldi loa andmist."]),
+    /* Assistendi luba on teenuseosutaja VALIK, mitte nõue: rida ütleb seisu, aga
+       ei loe „üle vaadata" hulka ega takista kontrolli sammu valmis saamast.
+       Muidu survestaks kontroll nõusolekut andma. */
+    {
+      ...row("assistant", Boolean(form.assistantRecommendationAllowed), "visibility",
+        ["publish_checks.assistant_allowed", "Assistent võib avaldatud teenuseid soovitada."],
+        ["publish_checks.assistant_blocked", "Assistent ei soovita neid teenuseid enne eraldi loa andmist."]),
+      optional: true
+    },
     { key: "address", ok: map.matched, view: "locations", blocking: false, textKey: map.key, fallback: map.fallback, detail: String(mapEntry?.normalizedAddress || mapEntry?.address || "") }
   ];
 }
@@ -640,7 +646,8 @@ export function profileViewStates(form, mapEntry) {
   const checks = serviceProfilePublishChecks(form, mapEntry);
   const named = form.serviceItems.filter(keepsService).length;
   const kept = form.serviceLocations.filter(keepsLocation).length;
-  const okCount = checks.filter((item) => item.ok).length;
+  const required = checks.filter((item) => !item.optional);
+  const okCount = required.filter((item) => item.ok).length;
   return {
     who: has(form.organizationName) ? "done" : has(form.organizationType) || has(form.registryCode) ? "partial" : "empty",
     about: fill(has(form.shortDescription), has(form.longDescription)),
@@ -651,7 +658,7 @@ export function profileViewStates(form, mapEntry) {
     locations: !kept ? "empty" : publish.hasMappableLocation ? "done" : "partial",
     services: !named ? "empty" : publish.hasPublishableService ? "done" : "partial",
     visibility: publish.published && form.mapVisible ? "done" : publish.published || form.mapVisible || form.status === "REVIEW" ? "partial" : "empty",
-    check: okCount === checks.length ? "done" : okCount ? "partial" : "empty"
+    check: okCount === required.length ? "done" : okCount ? "partial" : "empty"
   };
 }
 
@@ -698,7 +705,7 @@ export function profileViewSummaries(form, mapEntry, { tp, options }) {
   const named = form.serviceItems.filter(keepsService);
   const kept = form.serviceLocations.filter(keepsLocation).length;
   const published = named.filter((item) => item.mapVisible !== false && String(item.status || "").toUpperCase() === "PUBLISHED").length;
-  const open = serviceProfilePublishChecks(form, mapEntry).filter((item) => !item.ok).length;
+  const open = serviceProfilePublishChecks(form, mapEntry).filter((item) => !item.ok && !item.optional).length;
   return {
     who: short(form.organizationName),
     about: short(form.shortDescription || form.longDescription),

@@ -285,8 +285,14 @@ function CheckView({ tp, check, note, save }) {
         <ul className={styles.checks}>
           {check.rows.map((row) => (
             <li key={row.key} className={styles.check} data-tone={row.blocking ? "risk" : undefined}>
-              <Chip tone={row.blocking ? "risk" : row.ok ? "ok" : "wait"}>
-                {row.blocking ? tp("views.check.missing", "Puudu") : row.ok ? tp("views.check.ok", "Korras") : tp("views.check.review", "Vaata üle")}
+              <Chip tone={row.blocking ? "risk" : row.ok ? "ok" : row.optional ? undefined : "wait"}>
+                {row.blocking
+                  ? tp("views.check.missing", "Puudu")
+                  : row.ok
+                    ? tp("views.check.ok", "Korras")
+                    : row.optional
+                      ? tp("views.check.optional", "Sinu valik")
+                      : tp("views.check.review", "Vaata üle")}
               </Chip>
               <span className={styles.checkText}>
                 {row.text}
