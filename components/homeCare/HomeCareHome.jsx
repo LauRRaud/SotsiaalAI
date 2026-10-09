@@ -8,6 +8,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import OrgHeader from "@/components/org/OrgHeader";
 
 import HomeCareClientForm from "./HomeCareClientForm";
+import HomeCareObstacle from "./HomeCareObstacle";
 import { minutesLabel } from "./HomeCareDecisionView";
 import HomeCareOutbox from "./HomeCareOutbox";
 import { planDayLabel } from "./HomeCarePlanView";
@@ -134,6 +135,16 @@ export default function HomeCareHome({ context, initial, unitOptions, myDay = nu
             ))}
           </ul>
         </div>
+      ) : null}
+
+      {/* „Mul on takistus" (K3-e): hooldaja teatab ise, kui tänane päev ei lähe plaani järgi. */}
+      {myDay && !myDay.absent && (myDay.obstacle || myDay.visits?.some((visit) => !visit.done && visit.state !== "CANCELLED")) ? (
+        <HomeCareObstacle
+          organizationId={organizationId}
+          timeZone={context.organization.timezone || "Europe/Tallinn"}
+          initial={myDay.obstacle || null}
+          canReport={Boolean(context.writable)}
+        />
       ) : null}
 
       {/* Järgmised päevad (K3-d): siit näeb, mis teate „sinu käigud muutusid" taga on. */}

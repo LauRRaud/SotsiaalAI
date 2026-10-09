@@ -6,12 +6,12 @@ import { useId, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import OrgHeader from "@/components/org/OrgHeader";
 import Dropdown from "@/components/ui/Dropdown";
-import { CARE_VISIT_CANCEL_REASONS, CarePlannedState, CareVisitChangeKind, HOME_CARE_LIMITS } from "@/lib/homeCare/constants";
+import { CARE_VISIT_CANCEL_REASONS, CareObstacleKind, CarePlannedState, CareVisitChangeKind, HOME_CARE_LIMITS } from "@/lib/homeCare/constants";
 
 import { minutesLabel } from "./HomeCareDecisionView";
 import HomeCareOutbox from "./HomeCareOutbox";
 import { planDayLabel } from "./HomeCarePlanView";
-import { clientHref, homeCareBase, useHomeCareApi } from "./homeCareClient";
+import { clientHref, formatTime, homeCareBase, useHomeCareApi } from "./homeCareClient";
 
 const STATE_BADGE = {
   [CarePlannedState.MISSING]: " hc-badge--danger",
@@ -67,6 +67,16 @@ export default function HomeCareDay({ context, initial }) {
     setData(result.data);
     setOpen(null);
     setNotice(t("home_care.day.saved"));
+  };
+
+  /* Takistuse teade (K3-e): vaadatuks märkimine; „ei saa täna töötada" juurest ka päeva puudumine. */
+  const handleObstacle = async (obstacle, markAbsent) => {
+    const url = `${homeCareBase(organizationId)}/takistus/${encodeURIComponent(obstacle.id)}`;
+    const result = await call(url, { method: "POST", body: { markAbsent }, fallbackKey: "home_care.errors.save_failed" });
+    if (!result.ok) return;
+    setData(result.data);
+    setOpen(null);
+    setNotice(t(markAbsent ? "home_care.day.obstacle_absent_saved" : "home_care.day.obstacle_handled_saved"));
   };
 
   /* Kellele saab selle käigu tõsta: kliendi meeskonna liikmed ees (nemad tunnevad klienti), sel päeval puudujaid ei pakuta. */
@@ -294,7 +304,15 @@ export default function HomeCareDay({ context, initial }) {
   );
 
   const uncovered = data.uncovered || [];
-  const empty = uncovered.length === 0 && data.unassigned.length === 0 && data.workers.length === 0 && data.away.length === 0;
+  const obstacles = data.obstacles || [];
+  const empty =
+    uncovered.length === 0 && obstacles.length === 0 && data.unassigned.length === 0 && data.workers.length === 0 && data.away.length === 0;
+  const obstacleLine = (obstacle, name) =>
+    t("home_care.day.obstacle_line", {
+      name: name || "—",
+      kind: t(`home_care.obstacle.kinds_about.${obstacle.kind}`),
+      time: formatTime(obstacle.reportedAt, timeZone)
+    });
 
   return (
     <section className="ow-shell hc-shell">
@@ -377,8 +395,45 @@ export default function HomeCareDay({ context, initial }) {
 
       {empty ? <p className="hc-sub">{t("home_care.day.empty")}</p> : null}
       {uncovered.length ? group("uncovered", t("home_care.day.uncovered_title"), uncovered, t("home_care.day.uncovered_hint")) : null}
+      {obstacles.length ? (
+        <section className="hc-section" aria-labelledby={`${fieldId}-obstacles`}>
+          <h3 className="hc-section-title" id={`${fieldId}-obstacles`}>
+            {t("home_care.day.obstacles_title")} · {obstacles.length}
+          </h3>
+          <p className="hc-hint">{t("home_care.day.obstacles_hint")}</p>
+          {obstacles.map((obstacle) => (
+            <div key={obstacle.id}>
+              <p className="hc-notice hc-notice--warn">{obstacleLine(obstacle, obstacle.name)}</p>
+              {obstacle.visits.length ? (
+                <ul className="hc-list hc-list--plain">{obstacle.visits.map(visitRow)}</ul>
+              ) : (
+                <p className="hc-hint">{t("home_care.day.obstacle_none")}</p>
+              )}
+              {canEdit && !open ? (
+                <div className="hc-row">
+                  <button className="hc-btn" type="button" onClick={() => handleObstacle(obstacle, false)} disabled={busy}>
+                    {t("home_care.day.obstacle_handle")}
+                  </button>
+                  {obstacle.kind === CareObstacleKind.CANNOT_WORK ? (
+                    <button className="hc-btn" type="button" onClick={() => handleObstacle(obstacle, true)} disabled={busy}>
+                      {t("home_care.day.obstacle_absent")}
+                    </button>
+                  ) : null}
+                </div>
+              ) : null}
+            </div>
+          ))}
+        </section>
+      ) : null}
       {data.unassigned.length ? group("unassigned", t("home_care.day.unassigned_title"), data.unassigned) : null}
-      {data.workers.map((worker) => group(`w-${worker.membershipId}`, worker.name || "—", worker.visits))}
+      {data.workers.map((worker) =>
+        group(
+          `w-${worker.membershipId}`,
+          worker.name || "—",
+          worker.visits,
+          worker.obstacle ? t("home_care.day.obstacle_seen", { line: obstacleLine(worker.obstacle, worker.name) }) : null
+        )
+      )}
       {data.away.length ? group("away", t("home_care.day.away_title"), data.away, t("home_care.day.away_hint")) : null}
     </section>
   );

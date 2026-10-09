@@ -5705,6 +5705,7 @@ model OrganizationMembership {
   careVisitSlots        CareVisitSlot[]
   careVisitChanges      CareVisitChange[]
   careAbsences          CareAbsence[]
+  careObstacles         CareObstacle[]
 
   // Üks AKTIIVNE liikmesus org + kasutaja kohta → osaline unikaalindeks migratsioonis.
   @@index([organizationId, status])
@@ -8513,6 +8514,33 @@ model CareAbsence {
 
   @@index([organizationId, toDay])
   @@index([membershipId, fromDay])
+}
+
+/// Hooldaja teade „Mul on takistus" (K3-e, kava II.6.10). Ainult liik viiest valikust:
+/// vaba teksti ega põhjust lähemalt ei hoita. Rida ei kustutata: töötaja võtab teate
+/// tagasi (`withdrawnAt`) või hooldusjuht vaatab selle üle (`handledAt`). Ühel töötajal
+/// on päeva kohta üks lahtine teade (osaline unikaalindeks migratsioonis).
+model CareObstacle {
+  id             String @id @default(cuid())
+  organizationId String
+  membershipId   String
+  /// Päev kujul AAAA-KK-PP asutuse ajavööndis.
+  day            String
+  /// LATE_30 | LATE_60 | CAR_BROKEN | ROAD_BLOCKED | CANNOT_WORK (`CareObstacleKind`).
+  kind           String
+
+  withdrawnAt           DateTime?
+  handledAt             DateTime?
+  handledByMembershipId String?
+  handledByName         String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  membership OrganizationMembership @relation(fields: [membershipId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId, day])
+  @@index([membershipId, day])
 }
 
 /// Kliendi seisu muutuste ajalugu (K1-j): millal teenus peatati, lõpetati või
