@@ -11686,7 +11686,14 @@
       "slot_too_many": "Ühel kliendil saab olla kuni {limit} korduvat käiku.",
       "slot_not_found": "Käiku ei leitud. Laadi leht uuesti.",
       "slot_ended": "See käik on juba lõpetatud.",
-      "slot_end_past": "Käiku ei saa lõpetada tagasiulatuvalt."
+      "slot_end_past": "Käiku ei saa lõpetada tagasiulatuvalt.",
+      "visit_not_on_day": "Sellel päeval seda käiku plaanis ei ole.",
+      "visit_day_required": "Päev on märkimata.",
+      "visit_day_past": "Nii vana päeva käiku enam muuta ei saa.",
+      "visit_day_far": "Nii kaugele ette käiku muuta ei saa.",
+      "visit_worker_invalid": "Käigu saab tõsta ainult asutuse hooldajale.",
+      "visit_cancel_reason_required": "Vali, miks käik ära jääb.",
+      "visit_change_not_found": "Sellel käigul sel päeval muudatust ei ole."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -12242,7 +12249,8 @@
       "missed_title": "Ära jäänud käigud",
       "missed_empty": "Selles kuus ära jäänud käike kirjas ei ole.",
       "how": "Ära jäänud käiguks loetakse erijuhtumid „ei avanud ust” ja „keeldus abist”. Kui käigul oli kaks töötajat, on kliendi aeg loetud üks kord ja töötajate juures kummalgi. Kilomeetreid siin ei ole: sõite koduteenuse päevik ei mõõda.",
-      "not_done": "tegemata toiminguid: keeldus {refused}, polnud vaja {notNeeded}, ei saanud teha {couldNot}"
+      "not_done": "tegemata toiminguid: keeldus {refused}, polnud vaja {notNeeded}, ei saanud teha {couldNot}",
+      "cancelled_count": "ära jäetud plaanitud käike {count}"
     },
     "slots": {
       "title": "Käigud nädalas",
@@ -12293,6 +12301,50 @@
       "ended": "Käik on lõpetatud. Möödunud päevade plaan jäi alles.",
       "today_title": "Täna",
       "done_badge": "tehtud"
+    },
+    "day": {
+      "link": "Päevaplaan",
+      "title": "Päevaplaan",
+      "intro": "Käigumuster koos selle päeva muudatustega. Käik on tehtud, kui kliendi juures on sel päeval käigu kirje; siin seda käsitsi ei märgita.",
+      "previous": "Eelmine päev",
+      "next": "Järgmine päev",
+      "today_button": "Mine tänasele päevale",
+      "week_label": "Nädala päevad",
+      "week_day": "{weekday} {date}: käike {planned}, määramata {unassigned}, kirjeta {missing}",
+      "totals": "Käike {planned}, plaanitud aeg {amount}. Tehtud {done}, kirje puudub {missing}, ära jäetud {cancelled}, määramata {unassigned}.",
+      "empty": "Sellel päeval plaanitud käike ei ole.",
+      "unassigned_title": "Määramata",
+      "away_title": "Klient on ajutiselt ära",
+      "away_hint": "Muster kehtib, aga käiku ei tehta, kuni klient on ära.",
+      "states": {
+        "PLANNED": "ees",
+        "DONE": "tehtud",
+        "MISSING": "kirje puudub",
+        "CANCELLED": "ära jäetud"
+      },
+      "changed_worker": "ümber tõstetud",
+      "changed_time": "aeg muudetud",
+      "covering": "asendus",
+      "cancel_reasons": {
+        "CLIENT_AWAY": "klient ei ole kodus",
+        "CLIENT_CANCELLED": "klient ütles ära",
+        "WORKER_ABSENT": "töötaja puudub, asendajat ei leitud",
+        "OTHER": "muu põhjus"
+      },
+      "move": "Tõsta ümber",
+      "move_title": "Tõsta käik ümber: {client}",
+      "worker_label": "Kes läheb sel päeval",
+      "worker_none": "Määramata",
+      "time_label": "Algusaeg sel päeval",
+      "note_label": "Märkus (võid jätta tühjaks)",
+      "move_save": "Salvesta muudatus",
+      "cancel": "Jäta ära",
+      "cancel_title": "Jäta käik ära: {client}",
+      "reason_label": "Miks käik ära jääb",
+      "cancel_save": "Jäta käik ära",
+      "restore": "Võta muudatus tagasi",
+      "close_form": "Loobu",
+      "saved": "Päevaplaan on muudetud. Käigumuster jäi samaks."
     }
   },
   "stage": {

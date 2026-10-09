@@ -1,4 +1,4 @@
-import { getMyDay } from "@/lib/homeCare/slots";
+import { getMyDay } from "@/lib/homeCare/dayPlan";
 
 import { homeCareRoute, orgJson } from "../_shared";
 

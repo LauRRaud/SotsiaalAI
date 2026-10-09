@@ -2,7 +2,7 @@ import { unstable_noStore as noStore } from "next/cache";
 
 import HomeCareHome from "@/components/homeCare/HomeCareHome";
 import { listClientUnitOptions, listClients } from "@/lib/homeCare/clients";
-import { getMyDay } from "@/lib/homeCare/slots";
+import { getMyDay } from "@/lib/homeCare/dayPlan";
 
 import { requireHomeCarePage } from "./_serverContext";
 

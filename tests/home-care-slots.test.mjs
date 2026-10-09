@@ -1,9 +1,9 @@
-// KODUTEENUS kiht 3, K3-a — käigumuster: nädalapäev, kehtivus ja tehtud käigu reegel.
+// KODUTEENUS kiht 3, K3-a — käigumuster: nädalapäev ja kehtivus (tehtud käigu reegel on päevaplaani testis).
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { HOME_CARE_LIMITS } from '../lib/homeCare/constants.js';
-import { doneSlotIds, shiftDay, slotActiveOn, timeText, weekdayOf } from '../lib/homeCare/slots.js';
+import { shiftDay, slotActiveOn, timeText, weekdayOf } from '../lib/homeCare/slots.js';
 
 const sql = readFileSync(new URL('../prisma/migrations/20261010130000_home_care_visit_slots/migration.sql', import.meta.url), 'utf8');
 
@@ -38,20 +38,6 @@ test('muster kehtib õigel nädalapäeval ja ainult oma kehtivuse sees', () => {
   assert.equal(slotActiveOn(slot, '2026-10-30'), false); // pärast lõppu
   assert.equal(slotActiveOn(slot, '2026-10-12'), false); // esmaspäev
   assert.equal(slotActiveOn({ ...slot, validUntil: null }, '2027-10-08'), true);
-});
-
-test('tehtud käik: päeva kirjed katavad plaanitud käike kellaaja järjekorras', () => {
-  const planned = [
-    { id: 'evening', startMinute: 1050 },
-    { id: 'morning', startMinute: 540 },
-    { id: 'noon', startMinute: 720 }
-  ];
-  assert.deepEqual([...doneSlotIds(planned, 0)], []);
-  assert.deepEqual([...doneSlotIds(planned, 1)], ['morning']);
-  assert.deepEqual([...doneSlotIds(planned, 2)], ['morning', 'noon']);
-  /* Rohkem kirjeid kui plaanitud käike: kõik on tehtud, üle ei loeta. */
-  assert.deepEqual([...doneSlotIds(planned, 5)].sort(), ['evening', 'morning', 'noon']);
-  assert.deepEqual([...doneSlotIds([], 3)], []);
 });
 
 test('käigumustri tekstid on kolmes keeles', () => {

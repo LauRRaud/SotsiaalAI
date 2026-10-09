@@ -5703,6 +5703,7 @@ model OrganizationMembership {
   careEntriesAuthored   CareClientEntry[]             @relation("CareClientEntryAuthor")
   careEntriesCompanion  CareClientEntry[]             @relation("CareClientEntryCompanion")
   careVisitSlots        CareVisitSlot[]
+  careVisitChanges      CareVisitChange[]
 
   // Üks AKTIIVNE liikmesus org + kasutaja kohta → osaline unikaalindeks migratsioonis.
   @@index([organizationId, status])
@@ -8229,6 +8230,7 @@ model CareClient {
   carePlans          CarePlan[]
   decisions          CareDecision[]
   visitSlots         CareVisitSlot[]
+  visitChanges       CareVisitChange[]
 
   @@unique([organizationId, internalCode])
   @@index([organizationId, status, displayName])
@@ -8439,12 +8441,49 @@ model CareVisitSlot {
   createdAt             DateTime @default(now())
   updatedAt             DateTime @updatedAt
 
-  client CareClient              @relation(fields: [clientId], references: [id], onDelete: Cascade)
-  worker OrganizationMembership? @relation(fields: [workerMembershipId], references: [id], onDelete: SetNull)
+  client  CareClient              @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  worker  OrganizationMembership? @relation(fields: [workerMembershipId], references: [id], onDelete: SetNull)
+  changes CareVisitChange[]
 
   @@index([clientId, weekday, startMinute])
   @@index([organizationId, weekday])
   @@index([workerMembershipId, weekday])
+}
+
+/// Ühe päeva erand käigumustris (kiht 3, K3-b): MOVED (teine töötaja ja/või teine
+/// kellaaeg) või CANCELLED (ära jäetud, põhjusega). Ühel käigul ühel päeval kõige
+/// rohkem üks erand. MOVED real on `workerMembershipId` selle päeva tegelik töötaja
+/// (NULL = määramata) ja `startMinute` uus algus (NULL = mustri aeg).
+/// Liigi ja väljade sobivus → CHECK migratsioonis.
+model CareVisitChange {
+  id             String @id @default(cuid())
+  organizationId String
+  clientId       String
+  slotId         String
+  /// Päev kujul AAAA-KK-PP.
+  day            String
+  /// MOVED | CANCELLED (`CareVisitChangeKind`).
+  kind           String
+
+  workerMembershipId String?
+  startMinute        Int?
+  /// CANCELLED: `CareVisitCancelReason`.
+  reason             String?
+  note               String?
+
+  createdByMembershipId String?
+  createdByName         String?
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  slot   CareVisitSlot           @relation(fields: [slotId], references: [id], onDelete: Cascade)
+  client CareClient              @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  worker OrganizationMembership? @relation(fields: [workerMembershipId], references: [id], onDelete: SetNull)
+
+  @@unique([slotId, day])
+  @@index([organizationId, day])
+  @@index([clientId, day])
+  @@index([workerMembershipId, day])
 }
 
 /// Kliendi seisu muutuste ajalugu (K1-j): millal teenus peatati, lõpetati või
