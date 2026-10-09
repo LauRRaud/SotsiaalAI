@@ -38,9 +38,17 @@ export function useHomeCareApi() {
   const [error, setError] = useState("");
 
   const call = useCallback(
-    async (url, { method = "GET", body, fallbackKey = "home_care.errors.request_failed", quiet = false } = {}) => {
+    async (
+      url,
+      { method = "GET", body, fallbackKey = "home_care.errors.request_failed", quiet = false, timeoutMs = 0 } = {}
+    ) => {
       setBusy(true);
       if (!quiet) setError("");
+      /* `timeoutMs`: nõrga leviga rippuma jäänud päring katkestatakse ja vastab
+         nagu võrguviga (`status: 0`). Ilma selleta jääks salvestamise nupp
+         minutiteks kinni ja kirje ei jõuaks ka seadme järjekorda. */
+      const controller = timeoutMs > 0 && typeof AbortController === "function" ? new AbortController() : null;
+      const timer = controller ? setTimeout(() => controller.abort(), timeoutMs) : null;
       try {
         const headers = { "x-ui-locale": locale || "et" };
         if (body !== undefined) headers["Content-Type"] = "application/json";
@@ -48,6 +56,7 @@ export function useHomeCareApi() {
           method,
           headers,
           cache: "no-store",
+          signal: controller?.signal,
           body: body !== undefined ? JSON.stringify(body) : undefined
         });
         const payload = await response.json().catch(() => ({}));
@@ -64,6 +73,7 @@ export function useHomeCareApi() {
         if (!quiet) setError(message);
         return { ok: false, status: 0, messageKey: "", message };
       } finally {
+        if (timer) clearTimeout(timer);
         setBusy(false);
       }
     },

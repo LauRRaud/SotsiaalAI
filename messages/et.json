@@ -10845,7 +10845,13 @@
       },
       "read_count": "loetud: {count}",
       "unread": "keegi ei ole veel lugenud",
-      "occurred_hint": "Jäta tühjaks, kui kirjutad kohe pärast käiku."
+      "occurred_hint": "Jäta tühjaks, kui kirjutad kohe pärast käiku.",
+      "sent_later": "saadetud hiljem: seade oli võrguta",
+      "queued": "Serveriga ei saanud ühendust. Kirje on selles seadmes turvaliselt ootel ja saadetakse, kui ühendus taastub.",
+      "draft_restored": "Taastasin pooleli jäänud kirje.",
+      "draft_clear": "Tühjenda",
+      "arrived_at": "Salvestatud serveris {time}",
+      "draft_restored_at": "Taastasin pooleli jäänud kirje, mille kirjutasid {time}. Kui salvestad selle hiljem, kontrolli sündmuse aega."
     },
     "incident": {
       "type_label": "Mis juhtus",
@@ -10980,7 +10986,8 @@
       "chronology_text_required": "Väljastatav tekst ei saa olla tühi. Jäta kirje dokumendist välja.",
       "chronology_requester_required": "Kirjuta, kes dokumenti küsis.",
       "chronology_basis_required": "Kirjuta, mis alusel dokument väljastatakse.",
-      "release_not_found": "Väljastust ei leitud."
+      "release_not_found": "Väljastust ei leitud.",
+      "invalid_waited": "Kirje ootas seadmes liiga kaua. Kirjuta see kliendi lehel uuesti ja sisesta sündmuse aeg käsitsi."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -11072,6 +11079,25 @@
       "basis": "Alus: {value}",
       "registry_ref": "Dokumendiregistri viide: {value}",
       "hash": "Sisu räsi: {value}"
+    },
+    "outbox": {
+      "title": "Seadmes ootel kirjeid: {count}",
+      "hint": "Need kirjed on ainult selles seadmes (krüpteeritult) ja saadetakse, kui ühendus taastub. Ära kustuta brauseri andmeid enne, kui need on saadetud.",
+      "send_now": "Saada kohe",
+      "sending": "Saadan…",
+      "item_pending": "ootab ühendust",
+      "item_attention": "vajab tähelepanu",
+      "written_at": "Kirjutatud {time} (seadme kell)",
+      "last_error": "Viimane katse: {message}",
+      "attention_hint": "Server ei võtnud seda kirjet vastu. Tekst on siin alles: kopeeri see, kirjuta kirje kliendi lehel uuesti ja kustuta see siis siit.",
+      "delete": "Kustuta sellest seadmest",
+      "delete_confirm": "Kustuta päriselt, kirje läheb kaotsi",
+      "keep": "Jäta alles",
+      "unreadable": "Seda kirjet ei saa selles seadmes enam avada",
+      "full": "Seadmes on juba {limit} saatmata kirjet. Taasta ühendus ja saada need enne ära.",
+      "item_blocked": "ootab ligipääsu",
+      "blocked_hint": "Sul ei ole praegu selle kliendi päevikule ligipääsu. Ava kliendi leht (asendajana vali põhjus) või räägi hooldusjuhiga. Kirje jääb seadmesse alles ja saadetakse, kui ligipääs taastub.",
+      "retry": "Proovi uuesti saata"
     }
   }
 }

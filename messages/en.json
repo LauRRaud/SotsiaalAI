@@ -10845,7 +10845,13 @@
       },
       "read_count": "read: {count}",
       "unread": "nobody has read it yet",
-      "occurred_hint": "Leave empty if you are writing right after the visit."
+      "occurred_hint": "Leave empty if you are writing right after the visit.",
+      "sent_later": "sent later: the device was offline",
+      "queued": "The server could not be reached. The entry is kept safely on this device and will be sent when the connection returns.",
+      "draft_restored": "Your unfinished entry was restored.",
+      "draft_clear": "Clear",
+      "arrived_at": "Saved on the server {time}",
+      "draft_restored_at": "Your unfinished entry from {time} was restored. If you save it later, check the time of the event."
     },
     "incident": {
       "type_label": "What happened",
@@ -10980,7 +10986,8 @@
       "chronology_text_required": "The released text cannot be empty. Leave the entry out of the document.",
       "chronology_requester_required": "Write who asked for the document.",
       "chronology_basis_required": "Write on what basis the document is released.",
-      "release_not_found": "The release was not found."
+      "release_not_found": "The release was not found.",
+      "invalid_waited": "The entry waited on the device for too long. Write it again on the client's page and enter the time of the event by hand."
     },
     "incidents": {
       "title": "Incident register",
@@ -11072,6 +11079,25 @@
       "basis": "Basis: {value}",
       "registry_ref": "Document register reference: {value}",
       "hash": "Content hash: {value}"
+    },
+    "outbox": {
+      "title": "Entries waiting on this device: {count}",
+      "hint": "These entries are only on this device (encrypted) and will be sent when the connection returns. Do not clear the browser's data before they are sent.",
+      "send_now": "Send now",
+      "sending": "Sending…",
+      "item_pending": "waiting for a connection",
+      "item_attention": "needs attention",
+      "written_at": "Written {time} (device clock)",
+      "last_error": "Last attempt: {message}",
+      "attention_hint": "The server did not accept this entry. The text is kept here: copy it, write the entry again on the client's page and then delete it from here.",
+      "delete": "Delete from this device",
+      "delete_confirm": "Delete for good, the entry will be lost",
+      "keep": "Keep",
+      "unreadable": "This entry can no longer be opened on this device",
+      "full": "There are already {limit} unsent entries on this device. Restore the connection and send them first.",
+      "item_blocked": "waiting for access",
+      "blocked_hint": "You do not have access to this client's diary right now. Open the client's page (as a covering worker, choose a reason) or talk to the care coordinator. The entry stays on this device and will be sent when access returns.",
+      "retry": "Try sending again"
     }
   }
 }

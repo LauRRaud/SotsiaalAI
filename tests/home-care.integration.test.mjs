@@ -1244,3 +1244,78 @@ test('kronoloogia: mustand, väljastus hetkekoopiana, tööloend ja ligipääs',
   await db.careClient.delete({ where: { id: northClient.id } });
   assert.equal(await db.careChronologyRelease.count({ where: { id: northRelease.id } }), 0);
 });
+
+test('võrguta kirje: ooteaeg nihutab sündmuse aega, kordus teise ooteajaga on sama kirje', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const { client } = await createClient(lead, { displayName: 'Linda Tamm' }, deps());
+  await addTeamMember(lead, client.id, { membershipId: f.members.anu.id }, deps());
+  const HOUR = 60 * 60 * 1000;
+  const key = '22222222-3333-4444-8555-666666666666';
+  const body = { text: 'Tõin toidu ja ravimid.', clientRequestId: key };
+
+  /* Kirje sündis kell 05:00 keldris ilma levita ja jõudis serverisse 08:00. */
+  const first = await createEntry(anu, client.id, { ...body, waitedMs: 3 * HOUR }, deps());
+  assert.equal(first.created, true);
+  assert.equal(first.entry.occurredAt, '2026-10-09T05:00:00.000Z');
+  assert.equal(first.entry.createdAt, '2026-10-09T08:00:00.000Z');
+  assert.deepEqual([first.entry.writtenLater, first.entry.sentLater], [false, true]);
+  const stored = await db.careClientEntry.findUnique({ where: { id: first.entry.id }, select: { deviceQueuedSec: true } });
+  assert.equal(stored.deviceQueuedSec, 3 * 3600);
+
+  /* Vastus läks kaotsi; järjekord saadab tund hiljem uuesti, ooteaeg on nüüd
+     neli tundi. See on SAMA kirje, mitte konflikt ega teine kirje, ja esimese
+     salvestuse aeg jääb. */
+  const again = await createEntry(anu, client.id, { ...body, waitedMs: 4 * HOUR }, deps(at('2026-10-09T09:00:00Z')));
+  assert.equal(again.created, false);
+  assert.equal(again.entry.id, first.entry.id);
+  assert.equal(again.entry.occurredAt, '2026-10-09T05:00:00.000Z');
+  assert.equal(await db.careClientEntry.count({ where: { clientId: client.id } }), 1);
+  /* Sama võti teise tekstiga on endiselt konflikt. */
+  await expectError(createEntry(anu, client.id, { ...body, text: 'Muu tekst', waitedMs: HOUR }, deps()), 409, 'home_care.errors.idempotency_conflict');
+
+  /* KORDUS ENNE OOTEAJA KONTROLLI. Seade oli üle 30 päeva võrguta ega saanud
+     esimese salvestuse vastust: uus saatmine peab vastama „salvestatud", mitte
+     käskima juba päevikus olevat kirjet uuesti kirjutada. */
+  const stale = await createEntry(anu, client.id, { ...body, waitedMs: 40 * 24 * HOUR }, deps(at('2026-11-18T08:00:00Z')));
+  assert.equal(stale.created, false);
+  assert.equal(stale.entry.id, first.entry.id);
+  /* Uue võtmega sama pikk ooteaeg on endiselt viga ja kirjet ei teki. */
+  await expectError(
+    createEntry(anu, client.id, { text: 'Uus kirje', clientRequestId: '22222222-3333-4444-8555-777777777777', waitedMs: 40 * 24 * HOUR }, deps()),
+    400,
+    'home_care.errors.invalid_waited'
+  );
+
+  /* Vigane ooteaeg lükatakse tagasi enne salvestamist. */
+  await expectError(createEntry(anu, client.id, { text: 'x', waitedMs: -5 }, deps()), 400, 'home_care.errors.invalid_waited');
+  await expectError(createEntry(anu, client.id, { text: 'x', waitedMs: 31 * 24 * HOUR }, deps()), 400, 'home_care.errors.invalid_waited');
+  assert.equal(await db.careClientEntry.count({ where: { clientId: client.id } }), 1);
+
+  /* Erijuhtum järjekorrast: sammu kellaaeg on sündmuse, mitte kohalejõudmise oma. */
+  const fall = await createEntry(
+    anu,
+    client.id,
+    { kind: 'INCIDENT', incidentType: 'FALL', text: 'Leidsin põrandalt.', incidentActions: [{ code: 'CALLED_112' }], waitedMs: HOUR },
+    deps()
+  );
+  assert.equal(fall.entry.occurredAt, '2026-10-09T07:00:00.000Z');
+  assert.equal(fall.entry.incident.actions[0].at, '2026-10-09T07:00:00.000Z');
+
+  /* PARANDUS ei muuda ooteaega ega nihuta sündmuse aega. */
+  const fixed = await correctEntry(anu, client.id, first.entry.id, { text: 'Tõin toidu.', reason: 'Täpsustus', revision: 1, waitedMs: 9 * HOUR }, deps(at('2026-10-09T10:00:00Z')));
+  assert.equal(fixed.entry.occurredAt, '2026-10-09T05:00:00.000Z');
+  assert.equal(fixed.entry.sentLater, true);
+  assert.equal((await db.careClientEntry.findUnique({ where: { id: first.entry.id }, select: { deviceQueuedSec: true } })).deviceQueuedSec, 3 * 3600);
+
+  /* Negatiivset väärtust ei lase läbi ka andmebaas ise. */
+  await assert.rejects(
+    db.careClientEntry.update({ where: { id: first.entry.id }, data: { deviceQueuedSec: -1 } }),
+    /device_queued_not_negative/
+  );
+
+  /* Päeviku loend kannab sama märki. */
+  const listed = await listEntries(anu, client.id, {}, deps());
+  assert.equal(listed.items.find((row) => row.id === first.entry.id).sentLater, true);
+});
