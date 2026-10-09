@@ -8226,6 +8226,7 @@ model CareClient {
   doorTags           CareClientDoorTag[]
   statusChanges      CareClientStatusChange[]
   carePlans          CarePlan[]
+  decisions          CareDecision[]
 
   @@unique([organizationId, internalCode])
   @@index([organizationId, status, displayName])
@@ -8330,6 +8331,50 @@ model CarePlanLine {
   @@index([planId, position])
   @@index([clientId])
   @@index([activityId])
+}
+
+/// Otsus ja maht (kiht 2, K2-c): mille alusel ja kui palju abi klient saab.
+/// SHS § 18 lg 2: haldusakt või haldusleping. Kirje on asutuse ühine (mitte ühe
+/// töötaja teenuspäeviku suunamine). Otsust ei kustutata: ekslik kirje tühistatakse.
+/// Päevade kuju, perioodi järjekord ja mahu väljade sobivus → CHECK migratsioonis.
+model CareDecision {
+  id             String @id @default(cuid())
+  organizationId String
+  clientId       String
+
+  /// ACT | CONTRACT (`CareDecisionKind`).
+  kind           String
+  /// Kes otsustas (omavalitsus), vaba tekst.
+  issuerName     String?
+  documentNumber String?
+  /// Päevad kujul AAAA-KK-PP. `validUntil` NULL = tähtajatu.
+  decidedOn      String?
+  validFrom      String
+  validUntil     String?
+
+  /// Otsustatud maht minutites `volumePeriod` kohta; ekraanil tundides. Mõlemad
+  /// koos või mitte kumbki (otsuses võib olla ainult toimingute loetelu).
+  volumeMinutes Int?
+  /// WEEK | MONTH (`CareVolumePeriod`).
+  volumePeriod  String?
+  /// Tasu ja omaosalus oma sõnadega; hinda siin ei arvutata.
+  feeNote       String?
+  note          String? @db.Text
+
+  version Int @default(1)
+
+  createdByMembershipId   String?
+  createdByName           String?
+  retractedAt             DateTime?
+  retractedByMembershipId String?
+  retractedByName         String?
+  createdAt               DateTime  @default(now())
+  updatedAt               DateTime  @updatedAt
+
+  client CareClient @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@index([clientId, validFrom])
+  @@index([organizationId, validUntil])
 }
 
 /// Kliendi seisu muutuste ajalugu (K1-j): millal teenus peatati, lõpetati või

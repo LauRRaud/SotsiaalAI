@@ -931,6 +931,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
         { id: 'pl1', planId: 'p1', clientId: 'c1', activityId: 'act1' },
         { id: 'pl2', planId: 'p1', clientId: 'c1', activityId: null }
       ],
+      decisions: [{ id: 'd1', clientId: 'c1', createdByMembershipId: 'm1', retractedByMembershipId: null }],
       auditEvents: [{ id: 'x1', actorMembershipId: 'm1' }]
     };
     doc.totals = Object.fromEntries(HOME_CARE_EXPORT_KEYS.map((key) => [key, doc[key].length]));
@@ -967,6 +968,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
     'activities',
     'carePlans',
     'carePlanLines',
+    'decisions',
     'auditEvents',
     'people'
   ]);
@@ -985,7 +987,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
      failis on sama kogu puudumine viga. */
   const older = make();
   older.version = 1;
-  for (const key of ['clientStatusChanges', 'activities', 'carePlans', 'carePlanLines']) {
+  for (const key of ['clientStatusChanges', 'activities', 'carePlans', 'carePlanLines', 'decisions']) {
     delete older[key];
     delete older.totals[key];
   }
@@ -993,7 +995,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 2 tunneb seisu ajalugu, aga mitte veel toimingute kataloogi. */
   const second = make();
   second.version = 2;
-  for (const key of ['activities', 'carePlans', 'carePlanLines']) {
+  for (const key of ['activities', 'carePlans', 'carePlanLines', 'decisions']) {
     delete second[key];
     delete second.totals[key];
   }
@@ -1001,11 +1003,20 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 3 tunneb kataloogi, aga mitte veel hoolduskavasid. */
   const third = make();
   third.version = 3;
-  for (const key of ['carePlans', 'carePlanLines']) {
+  for (const key of ['carePlans', 'carePlanLines', 'decisions']) {
     delete third[key];
     delete third.totals[key];
   }
   assert.deepEqual([checkHomeCareExport(third).ok, checkHomeCareExport(third).problems], [true, []]);
+  /* Versioon 4 tunneb hoolduskavasid, aga mitte veel otsuseid. */
+  const fourth = make();
+  fourth.version = 4;
+  delete fourth.decisions;
+  delete fourth.totals.decisions;
+  assert.deepEqual([checkHomeCareExport(fourth).ok, checkHomeCareExport(fourth).problems], [true, []]);
+  /* Otsus, mis viitab olematule kliendile, on viga; uue versiooni failis on kogu puudumine viga. */
+  assert.match(problems((doc) => { doc.decisions[0].clientId = 'olematu'; }).join(' '), /decisions/);
+  assert.match(problems((doc) => { delete doc.decisions; }).join(' '), /decisions/);
   /* Kava rida, mis viitab olematule kavale, on viga; tühi toiminguviide (toiming kustutatud) ei ole. */
   assert.match(problems((doc) => { doc.carePlanLines[0].planId = 'olematu'; }).join(' '), /carePlanLines/);
   assert.match(problems((doc) => { delete doc.clientStatusChanges; }).join(' '), /clientStatusChanges/);

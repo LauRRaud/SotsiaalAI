@@ -11,6 +11,7 @@ import { CARE_CLIENT_STATUSES, CARE_ENTRY_KINDS, CARE_STATUS_REASONS, CareClient
 import HomeCareCallNote from "./HomeCareCallNote";
 import HomeCareCard from "./HomeCareCard";
 import HomeCareClientForm from "./HomeCareClientForm";
+import HomeCareDecisionView from "./HomeCareDecisionView";
 import HomeCareEntryForm from "./HomeCareEntryForm";
 import HomeCareEntryItem from "./HomeCareEntryItem";
 import HomeCareHistory from "./HomeCareHistory";
@@ -324,6 +325,23 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
         canEdit={canWrite && access.canEditCard}
         onChange={(next) => setData((current) => ({ ...current, card: next }))}
       />
+
+      {/* Täna kehtiv otsus ja otsustatud maht (K2-c). Kogu meeskonnale lugemiseks. */}
+      <section className="hc-section" aria-labelledby={`${fieldId}-decision`}>
+        <h2 className="hc-section-title" id={`${fieldId}-decision`}>
+          {t("home_care.decision.title")}
+        </h2>
+        {data.decision ? <HomeCareDecisionView decision={data.decision} /> : <p className="hc-hint">{t("home_care.decision.none")}</p>}
+        {access.isCoordinator ? (
+          <Link
+            className="hc-btn hc-btn--quiet hc-btn--link"
+            href={`/org/${organizationId}/koduteenus/kliendid/${client.id}/otsused`}
+            prefetch={false}
+          >
+            {t("home_care.decision.edit_link")}
+          </Link>
+        ) : null}
+      </section>
 
       {/* Kehtiv hoolduskava (K2-b): mida siin tehakse, kui sageli ja kuidas. Kogu meeskonnale lugemiseks. */}
       <section className="hc-section" aria-labelledby={`${fieldId}-plan`}>
