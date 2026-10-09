@@ -106,3 +106,20 @@ test('an address miswritten by a letter is shown as its source gives it and lead
   const twins = messageLinks([{ web: 'kopsuliit-a.example', webUrl: 'https://kopsuliit-a.example' }, { web: 'kopsuliit-b.example', webUrl: 'https://kopsuliit-b.example' }]);
   assert.deepEqual(splitByLinks('Vaata kopsuliit-c.example.', twins), ['Vaata kopsuliit-c.example.']);
 });
+
+// ADR-114 (09.10.2026): a collected page declares no publication date, and an answer left a page's amounts out for
+// want of a time to give with them. The card carries the day the page itself says it was last changed.
+test('a web page\'s card carries the day the page says it was last changed; other sources and other values do not', () => {
+  const page = (type, day) => ({ document: { fields: { source_type: field(type), authority: field('Amet'), language: field('et'), source_urls: field(['https://amet.example/maarad']) },
+    legacy_metadata: day === undefined ? {} : { page_updated: day } } });
+  const card = modelSourceMetadata(page('web_page', '2026-09-18'));
+  assert.deepEqual([card.page_updated.value, card.page_updated.review_state, card.web_address.value], ['2026-09-18', 'imported_not_verified', 'amet.example/maarad']);
+  for (const type of ['vendor_page', 'organization_page']) assert.equal(modelSourceMetadata(page(type, '2026-01-02')).page_updated.value, '2026-01-02');
+  for (const other of [page('web_page'), page('web_page', '18.09.2026'), page('web_page', '2026-13-40'), page('web_page', 20260918), page('web_page', '2026-09-18T10:00:00Z'), page('research_report', '2026-09-18'),
+    bundle('web_page', ['https://amet.example/juhis'])]) assert.equal('page_updated' in modelSourceMetadata(other), false);
+  // The model sees the plain day on the page's source card.
+  const packet = municipalPacket({ records: 1, passages: 1 }), first = packet.evidence.find(entry => entry.evidence_id === packet.reference_map.S1.evidence_id);
+  first.source_metadata = { ...first.source_metadata, source_type: field('web_page'), page_updated: { ...field('2026-09-18') } };
+  const cards = Object.values(modelProjection(packet.evidence, {}, { measure: 'none' }).context.sources).filter(one => one.page_updated);
+  assert.deepEqual(cards.map(one => one.page_updated), ['2026-09-18']);
+});

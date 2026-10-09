@@ -78,7 +78,8 @@ test('prompt v10 keeps every v9 guardrail in each answer language, and v9 plans 
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-11'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-10'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-9'));
-  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-39');
+  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-40');
+  assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-39'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-38'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-37'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-36'));
@@ -377,9 +378,12 @@ test('dialogue prompt 29 to 32 (ADR-102): a finding carries its year, an older s
   // A general rule: no year, number, place or topic that an answer could repeat as a fact.
   assert.doesNotMatch(TIME_INSTRUCTIONS, /\d|Tallinn|hoold|pension|euro/iu);
   // v38 (ADR-114): what holds now is said also when the event asked about lies ahead; the future is not a limitation.
-  // v39: the note stands in the block's text; two measured answers had repeated it under limitations.
+  // v39 and v40: the note stands in the block's text, and what the figure will be later is neither asked nor a limitation.
   for (const phrase of ['When what the user asks about still lies ahead', 'state it with the time of its state and add shortly, in the text of that block, that it may differ by then',
-    'a future event is no reason to leave such a figure out, and that note is not written under limitations']) assert.ok(TIME_INSTRUCTIONS.includes(phrase), phrase);
-  // About 615 tokens more in every dialogue turn's instructions than before v29, and about 60 more since v38.
-  assert.ok(tokenCount(TIME_INSTRUCTIONS) < 700, String(tokenCount(TIME_INSTRUCTIONS)));
+    'What it will be at that later time is not asked of you: it is not a reason to leave the present figure out and it is not a limitation']) assert.ok(TIME_INSTRUCTIONS.includes(phrase), phrase);
+  // v40: a web page has no publication date; its figure is said as of the day the page was last changed, else the day it was read.
+  for (const phrase of ['page_updated, the day the page itself says it was last changed', 'is said as of page_updated, or as of source_checked_at, the day the page was read, when page_updated is missing too',
+    'a card without a publication date is never a reason to leave such a figure out']) assert.ok(TIME_INSTRUCTIONS.includes(phrase), phrase);
+  // About 615 tokens more in every dialogue turn's instructions than before v29, and about 150 more since v40.
+  assert.ok(tokenCount(TIME_INSTRUCTIONS) < 800, String(tokenCount(TIME_INSTRUCTIONS)));
 });
