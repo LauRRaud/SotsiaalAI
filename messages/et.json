@@ -12186,6 +12186,37 @@
         "minutes": "Käik kestis {minutes} min.",
         "done": "Tehtud: {list}."
       }
+    },
+    "provided": {
+      "week": "Sel nädalal: käike {visits}, kokku {amount}",
+      "week_none": "Sel nädalal käigu kirjeid ei ole.",
+      "month": "Sel kuul: käike {visits}, kokku {amount}",
+      "month_none": "Sel kuul käigu kirjeid ei ole.",
+      "without_length": "kestus märkimata {count} käigul"
+    },
+    "month": {
+      "link": "Kuu kokkuvõte",
+      "title": "Kuu kokkuvõte",
+      "intro": "Käigu kirjed kuu kaupa: osutatud aeg otsustatud mahu kõrval, töötajate aeg ja ära jäänud käigud. Arvesse lähevad tühistamata kirjed, millel on kestus või tehtud toimingud.",
+      "previous": "Eelmine kuu",
+      "next": "Järgmine kuu",
+      "totals": "Kokku: käike {visits}, aeg {amount}; kestus märkimata {without} käigul; ära jäänud käike {missed}.",
+      "until_today": "Jooksev kuu: otsustatud aeg on arvestatud tänase päevani ({date}).",
+      "clients_title": "Kliendi kaupa",
+      "clients_empty": "Selles vaates kliente ei ole.",
+      "client_line": "käike {visits}, osutatud {amount}",
+      "expected": "otsustatud selle aja kohta {amount}",
+      "expected_none": "otsustatud mahtu selle aja kohta ei ole",
+      "decision_volume": "otsuses {volume}",
+      "missed_count": "ära jäänud käike {count}",
+      "over_badge": "üle otsustatu",
+      "workers_title": "Töötaja kaupa",
+      "workers_empty": "Selles kuus käigu kirjeid ei ole.",
+      "worker_line": "käike {visits}, aeg {amount}",
+      "worker_companion": "kaasas {visits} käigul, {amount}",
+      "missed_title": "Ära jäänud käigud",
+      "missed_empty": "Selles kuus ära jäänud käike kirjas ei ole.",
+      "how": "Ära jäänud käiguks loetakse erijuhtumid „ei avanud ust” ja „keeldus abist”. Kui käigul oli kaks töötajat, on kliendi aeg loetud üks kord ja töötajate juures kummalgi. Kilomeetreid siin ei ole: sõite koduteenuse päevik ei mõõda."
     }
   },
   "stage": {

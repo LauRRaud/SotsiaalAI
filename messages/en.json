@@ -12186,6 +12186,37 @@
         "minutes": "The visit lasted {minutes} min.",
         "done": "Done: {list}."
       }
+    },
+    "provided": {
+      "week": "This week: {visits} visits, {amount} in total",
+      "week_none": "No visit records this week.",
+      "month": "This month: {visits} visits, {amount} in total",
+      "month_none": "No visit records this month.",
+      "without_length": "length not marked on {count} visits"
+    },
+    "month": {
+      "link": "Month summary",
+      "title": "Month summary",
+      "intro": "Visit records by month: provided time next to the decided volume, the workers' time and missed visits. Entries that are not retracted and have a length or done activities are counted.",
+      "previous": "Previous month",
+      "next": "Next month",
+      "totals": "In total: {visits} visits, time {amount}; length not marked on {without} visits; {missed} missed visits.",
+      "until_today": "Current month: the decided time is counted up to today ({date}).",
+      "clients_title": "By client",
+      "clients_empty": "There are no clients in this view.",
+      "client_line": "{visits} visits, provided {amount}",
+      "expected": "decided for this period {amount}",
+      "expected_none": "no decided volume for this period",
+      "decision_volume": "the decision says {volume}",
+      "missed_count": "{count} missed visits",
+      "over_badge": "over the decided time",
+      "workers_title": "By worker",
+      "workers_empty": "There are no visit records in this month.",
+      "worker_line": "{visits} visits, time {amount}",
+      "worker_companion": "accompanied on {visits} visits, {amount}",
+      "missed_title": "Missed visits",
+      "missed_empty": "No missed visits are on record for this month.",
+      "how": "The incidents \"did not open the door\" and \"refused help\" are counted as missed visits. When two workers were on a visit, the client's time is counted once and each worker gets it. There are no kilometres here: the home care diary does not measure trips."
     }
   },
   "stage": {

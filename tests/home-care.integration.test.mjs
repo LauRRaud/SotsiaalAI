@@ -76,6 +76,7 @@ import {
   revokeDoorTag
 } from '../lib/homeCare/doorTags.js';
 import { getCoordinatorOverview } from '../lib/homeCare/overview.js';
+import { getMonthSummary } from '../lib/homeCare/provided.js';
 import { assertNotificationRecipient, serializeNotificationEvent } from '../lib/notifications.js';
 
 const url = new URL(process.env.HOME_CARE_TEST_DATABASE_URL || 'postgres://invalid/invalid');
@@ -2740,4 +2741,118 @@ test('käigu kirje: kestus, tehtud toimingud kavast ja kataloogist, kordussaatmi
   await assert.rejects(row({ outsidePlan: true, planLineId: heatingLine.id }), /CareEntryActivity_outsidePlan_check/);
   await assert.rejects(db.careClientEntry.update({ where: { id: tickOnly.id }, data: { visitMinutes: 1441 } }), /CareClientEntry_visitMinutes_check/);
   await assert.rejects(db.careClientEntry.update({ where: { id: tickOnly.id }, data: { visitMinutes: 0 } }), /CareClientEntry_visitMinutes_check/);
+});
+
+test('osutatud aeg: kliendi lehe nädal ja kuu ning hooldusjuhi kuu kokkuvõte', async (t) => {
+  const f = await fixture(t);
+  const north = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Põhi ${f.tag}`, type: 'TEAM' } });
+  await db.organizationCapabilityGrant.create({
+    data: { membershipId: f.members.bert.id, capability: 'HOME_CARE_COORDINATOR', scopeType: 'UNIT', scopeUnitId: north.id, validFrom: at('2026-01-01T00:00:00Z') }
+  });
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  const heating = (await seedDefaultActivities(lead, deps())).activities.find((item) => item.group === 'HEATING');
+  const make = async (displayName, extra = {}) => (await createClient(lead, { displayName, ...extra }, deps())).client;
+  const done = [{ activityId: heating.id, mode: 'FOR' }];
+  const visit = (who, client, occurredAt, extra = {}) => createEntry(who, client.id, { occurredAt, activities: done, ...extra }, deps());
+
+  /* Täna on reede 09.10.2026; nädal on 05.10 kuni 11.10. */
+  const linda = await make('Linda Tamm');
+  await addTeamMember(lead, linda.id, { membershipId: f.members.anu.id }, deps());
+  await createDecision(lead, linda.id, { kind: 'ACT', validFrom: '2026-09-01', volumeHours: '6,5', volumePeriod: 'WEEK' }, deps());
+  await visit(anu, linda, '2026-10-05T07:00:00Z', { visitMinutes: 60 });
+  await visit(anu, linda, '2026-10-07T07:00:00Z', { visitMinutes: 45, companionMembershipId: f.members.bert.id });
+  await visit(anu, linda, '2026-10-02T07:00:00Z'); // eelmine nädal, kestus märkimata
+  await visit(anu, linda, '2026-09-30T07:00:00Z', { visitMinutes: 30 }); // september
+  /* Ei loe: tekstiga kirje ilma käigu kirjeta, telefonikõne ja tühistatud käik. */
+  await createEntry(anu, linda.id, { text: 'Rääkisime ilmast.', occurredAt: '2026-10-08T07:00:00Z' }, deps());
+  await createEntry(anu, linda.id, { contactMode: 'PHONE', text: 'Helistas tütar.', occurredAt: '2026-10-08T08:00:00Z' }, deps());
+  const wrong = (await visit(anu, linda, '2026-10-06T07:00:00Z', { visitMinutes: 90 })).entry;
+  await retractEntry(anu, linda.id, wrong.id, { reason: 'Vale klient.', revision: 1 }, deps());
+  /* Ära jäänud käik on erijuhtum „ei avanud ust". */
+  const missed = (await createEntry(anu, linda.id, { kind: 'INCIDENT', incidentType: 'DOOR_NOT_OPENED', text: 'Ei avanud ust.', occurredAt: '2026-10-08T06:00:00Z' }, deps())).entry;
+
+  const peeter = await make('Peeter Põhi', { unitId: north.id });
+  await createDecision(lead, peeter.id, { kind: 'ACT', validFrom: '2026-10-06', volumeHours: '20', volumePeriod: 'MONTH' }, deps());
+  await visit(lead, peeter, '2026-10-06T08:00:00Z', { visitMinutes: 120 });
+  await make('Mari Maht');
+  const endel = await make('Endel Lõppenud');
+  await visit(lead, endel, '2026-10-01T08:00:00Z', { visitMinutes: 20 });
+  await setClientStatus(lead, endel.id, { version: 1, status: 'ENDED', statusReason: 'MOVED' }, deps());
+
+  /* KLIENDI LEHT: selle nädala ja selle kuu käigud ja aeg; näeb kogu meeskond. */
+  assert.deepEqual((await openClient(anu, linda.id, deps())).provided, {
+    week: { fromDay: '2026-10-05', toDay: '2026-10-11', visits: 2, minutes: 105, withoutLength: 0 },
+    month: { month: '2026-10', visits: 3, minutes: 105, withoutLength: 1 }
+  });
+  assert.deepEqual((await openClient(lead, peeter.id, deps())).provided.week, { fromDay: '2026-10-05', toDay: '2026-10-11', visits: 1, minutes: 120, withoutLength: 0 });
+
+  /* KUU KOKKUVÕTE: jooksev kuu, otsustatud aeg tänase päevani. */
+  const view = await getMonthSummary(lead, {}, deps());
+  assert.deepEqual(
+    [view.month, view.previousMonth, view.nextMonth, view.today, view.fromDay, view.untilDay, view.complete, view.truncated],
+    ['2026-10', '2026-09', null, '2026-10-09', '2026-10-01', '2026-10-09', false, false]
+  );
+  assert.deepEqual(view.totals, { visits: 5, minutes: 245, withoutLength: 1, missed: 1 });
+  assert.deepEqual(
+    view.clients.map((row) => [row.client.displayName, row.client.status, row.visits, row.minutes, row.withoutLength, row.missed, row.volumeMinutes, row.volumePeriod, row.expectedMinutes]),
+    [
+      /* Lõppenud teenusega klient on kokkuvõttes, sest tal oli selles kuus käik. */
+      ['Endel Lõppenud', 'ENDED', 1, 20, 0, 0, null, null, null],
+      /* 9 päeva nädalamahust 6,5 tundi: 9 × 390 / 7 = 501 minutit. */
+      ['Linda Tamm', 'ACTIVE', 3, 105, 1, 1, 390, 'WEEK', 501],
+      ['Mari Maht', 'ACTIVE', 0, 0, 0, 0, null, null, null],
+      /* Otsus algas 06.10: 4 päeva kuumahust 20 tundi oktoobris: 4 × 1200 / 31 = 155 minutit. */
+      ['Peeter Põhi', 'ACTIVE', 1, 120, 0, 0, 1200, 'MONTH', 155]
+    ]
+  );
+  /* Töötajad: autor saab käigu aja; „kaasas" olnud töötaja saab selle eraldi real. Kliendi aeg loetakse üks kord. */
+  const worker = (membershipId) => view.workers.find((row) => row.membershipId === membershipId);
+  assert.deepEqual(
+    [f.members.anu.id, f.members.lead.id, f.members.bert.id].map((id) => [worker(id).visits, worker(id).minutes, worker(id).companionVisits, worker(id).companionMinutes]),
+    [
+      [3, 105, 0, 0],
+      [2, 140, 0, 0],
+      [0, 0, 1, 45]
+    ]
+  );
+  assert.equal(view.workers.length, 3);
+  assert.deepEqual(view.workers.map((row) => row.name), [...view.workers.map((row) => row.name)].sort((a, b) => a.localeCompare(b, 'et')));
+  assert.deepEqual(
+    view.missed.map((row) => [row.entryId, row.client.displayName, row.type, row.occurredAt]),
+    [[missed.id, 'Linda Tamm', 'DOOR_NOT_OPENED', '2026-10-08T06:00:00.000Z']]
+  );
+
+  /* SEPTEMBER: terve kuu; Peetri otsus ei kehtinud veel. */
+  const september = await getMonthSummary(lead, { month: '2026-09' }, deps());
+  assert.deepEqual(
+    [september.month, september.nextMonth, september.untilDay, september.complete, september.totals],
+    ['2026-09', '2026-10', '2026-09-30', true, { visits: 1, minutes: 30, withoutLength: 0, missed: 0 }]
+  );
+  const row = (summary, name) => summary.clients.find((item) => item.client.displayName === name);
+  assert.deepEqual([row(september, 'Linda Tamm').minutes, row(september, 'Linda Tamm').expectedMinutes], [30, 1671]);
+  assert.deepEqual([row(september, 'Peeter Põhi').volumeMinutes, row(september, 'Peeter Põhi').expectedMinutes], [null, null]);
+  /* Lõppenud teenusega klient, kellel selles kuus käiku ei olnud, kokkuvõttes ei ole. */
+  assert.equal(row(september, 'Endel Lõppenud'), undefined);
+
+  /* Tulevane kuu: otsustatud aega ei arvutata; vigane kuu on viga. */
+  const future = await getMonthSummary(lead, { month: '2026-11' }, deps());
+  assert.deepEqual(
+    [future.untilDay, future.complete, future.totals.visits, future.clients.every((item) => item.expectedMinutes === null)],
+    [null, false, 0, true]
+  );
+  await expectError(getMonthSummary(lead, { month: '2026-13' }, deps()), 400, 'home_care.errors.invalid_month');
+
+  /* Üksuse hooldusjuht näeb ainult oma üksuse klienti ja tema käikude tegijat. */
+  const scoped = await getMonthSummary(bert, {}, deps());
+  assert.deepEqual(
+    [scoped.clients.map((item) => item.client.displayName), scoped.totals, scoped.workers.map((item) => item.membershipId), scoped.missed],
+    [['Peeter Põhi'], { visits: 1, minutes: 120, withoutLength: 0, missed: 0 }, [f.members.lead.id], []]
+  );
+  /* Hooldaja ei ole hooldusjuht; teise asutuse juht näeb oma tühja asutust. */
+  await expectError(getMonthSummary(anu, {}, deps()), 403, 'org.errors.missing_capability');
+  const foreign = await getMonthSummary(leadB, {}, deps());
+  assert.deepEqual([foreign.clients, foreign.workers, foreign.missed, foreign.totals.visits], [[], [], [], 0]);
 });
