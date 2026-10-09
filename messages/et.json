@@ -10798,7 +10798,9 @@
       "overview_link": "Hooldusjuhi ülevaade",
       "show_ended": "Näita lõpetatuid",
       "show_active": "Näita aktiivseid",
-      "empty_ended": "Lõpetatud kliente ei ole."
+      "empty_ended": "Lõpetatud kliente ei ole.",
+      "search_phone_hint": "Hooldusjuhina leiad kliendi ka telefoninumbri järgi (vähemalt viis numbrit).",
+      "matched_phone": "telefoninumbri järgi"
     },
     "status": {
       "ACTIVE": "Aktiivne",
@@ -11067,7 +11069,9 @@
       "history_too_large": "Tekst on liiga pikk (üle miljoni märgi). Too see üle osade kaupa.",
       "history_already_imported": "See tekst on sellele kliendile juba üle toodud.",
       "history_not_found": "Seda ajalugu ei leitud.",
-      "door_tag_missing": "Sellel kliendil ei ole kehtivat uksesilti."
+      "door_tag_missing": "Sellel kliendil ei ole kehtivat uksesilti.",
+      "invalid_call": "Kõnemärkel peab olema nii helistaja kui ka teema.",
+      "invalid_month": "Kuu ei ole õigel kujul."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -11269,6 +11273,52 @@
         "what": "Koduteenuse töötaja: skanni kood telefoni kaameraga.",
         "safe": "Kood ei ava kellegi andmeid ilma sisselogimiseta."
       }
+    },
+    "call": {
+      "open": "Kõne: klient või lähedane helistas",
+      "caller_label": "Kes helistas",
+      "topic_label": "Mille pärast",
+      "note_label": "Selgitus (valikuline)",
+      "note_hint": "Kui selgitust ei kirjuta, läheb päevikusse helistaja ja teema.",
+      "save": "Salvesta kõnemärge",
+      "saved": "Kõnemärge on päevikus.",
+      "callers": {
+        "RELATIVE": "lähedane",
+        "CLIENT": "klient ise",
+        "OTHER": "keegi muu"
+      },
+      "topics": {
+        "STATUS": "küsis seisu",
+        "CHANGE": "soovib muudatust",
+        "CONCERN": "mure",
+        "OTHER": "muu"
+      },
+      "auto": {
+        "caller": {
+          "RELATIVE": "Helistas lähedane.",
+          "CLIENT": "Helistas klient ise.",
+          "OTHER": "Helistas keegi muu."
+        },
+        "topic": {
+          "STATUS": "Küsis, kuidas läheb.",
+          "CHANGE": "Soovis muudatust.",
+          "CONCERN": "Oli mures.",
+          "OTHER": "Muu teema."
+        }
+      }
+    },
+    "calls": {
+      "link": "Kõnede loendur",
+      "title": "Kõnede loendur",
+      "intro": "Millest ja kes helistab, kuu kaupa. Loendur loeb kõnemärkeid, mille töötajad kliendi lehel teevad; siin on ainult arvud.",
+      "previous": "Eelmine kuu",
+      "next": "Järgmine kuu",
+      "total": "Kõnesid kokku: {count} (eelmisel kuul {before})",
+      "by_topic": "Teema järgi",
+      "by_caller": "Helistaja järgi",
+      "row": "{label}: {count} (eelmisel kuul {before})",
+      "empty": "Selles ega eelmises kuus ei ole ühtegi kõnemärget tehtud.",
+      "how": "Kõnemärke teeb töötaja kliendi lehel nupust „Kõne: klient või lähedane helistas”. Tühistatud kirjeid loendur ei loe."
     }
   },
   "stage": {

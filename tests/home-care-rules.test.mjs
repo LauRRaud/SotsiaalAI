@@ -5,6 +5,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { coordinatorScope, isCoordinatorFor, visibleClientsWhere, personName } from '../lib/homeCare/access.js';
+import { resolveCallMonth } from '../lib/homeCare/calls.js';
 import { chronologyContentHash } from '../lib/homeCare/chronology.js';
 import {
   CHRONOLOGY_DOCUMENT_CSP,
@@ -829,4 +830,57 @@ test('uksesilt: tunnus on juhuslik ja aadressist ei loe välja asutust, klienti 
   assert.ok(html.indexOf('Linda') < html.indexOf('<section class="tag">'));
   assert.ok(html.includes('http-equiv="Content-Security-Policy"'));
   assert.ok(html.indexOf('http-equiv="Content-Security-Policy"') < html.indexOf('<style>'));
+});
+
+/* Kirje „Tõin toidu." kordussaatmise räsi koodiga, mis oli harul enne kõnemärke
+   välju (arvutatud `origin/main` failist `lib/homeCare/validation.js`). */
+const LEGACY_PLAIN_HASH = 'c78183943a0239ea45db2478aece5ff4c841844f27423da5839f7a3a381e480a';
+
+test('kõnemärge: väljad ainult telefonikontaktil, vana räsi jääb samaks, kuu on asutuse kalendrikuu', () => {
+  /* Kõnemärge: mõlemad väljad koos. */
+  const callNote = normalizeEntryInput({ text: 'Tütar küsis seisu.', contactMode: 'PHONE', callTopic: 'status', callCaller: 'RELATIVE' }, { now: NOW });
+  assert.deepEqual([callNote.contactMode, callNote.callTopic, callNote.callCaller], ['PHONE', 'STATUS', 'RELATIVE']);
+  /* Tavaline telefonikirje ilma kõnemärketa. */
+  const phone = normalizeEntryInput({ text: 'Helistasin apteeki.', contactMode: 'PHONE' }, { now: NOW });
+  assert.deepEqual([phone.callTopic, phone.callCaller], [null, null]);
+  /* Käigul kõnemärget ei ole, ka siis, kui väljad saadeti. */
+  const visit = normalizeEntryInput({ text: 'Käik.', contactMode: 'VISIT', callTopic: 'STATUS', callCaller: 'CLIENT' }, { now: NOW });
+  assert.deepEqual([visit.callTopic, visit.callCaller], [null, null]);
+  /* Üks väli ilma teiseta ja tundmatu väärtus on viga. */
+  for (const bad of [
+    { callTopic: 'STATUS' },
+    { callCaller: 'CLIENT' },
+    { callTopic: 'GOSSIP', callCaller: 'CLIENT' },
+    { callTopic: 'STATUS', callCaller: 'NEIGHBOUR' }
+  ]) {
+    assert.throws(
+      () => normalizeEntryInput({ text: 'x', contactMode: 'PHONE', ...bad }, { now: NOW }),
+      (error) => error.status === 400 && error.messageKey === 'home_care.errors.invalid_call',
+      JSON.stringify(bad)
+    );
+  }
+
+  /* PARANDUS: saatmata väljad jäävad; kontakti viisi muutmine käiguks võtab kõnemärke ära. */
+  const base = { kind: 'NOTE', contactMode: 'PHONE', callTopic: 'CHANGE', callCaller: 'CLIENT', occurredAt: new Date('2026-10-08T10:00:00Z'), companionMembershipId: null };
+  const kept = normalizeEntryInput({ text: 'Täpsustus' }, { now: NOW, base });
+  assert.deepEqual([kept.callTopic, kept.callCaller], ['CHANGE', 'CLIENT']);
+  const toVisit = normalizeEntryInput({ text: 'Tegelikult käik', contactMode: 'VISIT' }, { now: NOW, base });
+  assert.deepEqual([toVisit.callTopic, toVisit.callCaller], [null, null]);
+
+  /* RÄSI: ilma kõnemärketa kirje räsi ei tohi muutuda (seadmes ootav vanem kirje
+     peab pärast uuendust olema endiselt kordus). Väärtus on arvutatud enne
+     kõnemärke väljade lisamist. */
+  const plain = normalizeEntryInput({ text: 'Tõin toidu.' }, { now: NOW });
+  assert.equal(entryRequestHash('c1', plain), LEGACY_PLAIN_HASH);
+  assert.notEqual(entryRequestHash('c1', callNote), entryRequestHash('c1', { ...callNote, callTopic: 'CONCERN' }));
+  assert.notEqual(entryRequestHash('c1', callNote), entryRequestHash('c1', { ...callNote, callTopic: null, callCaller: null }));
+
+  /* Loenduri kuu: tühi tähendab käesolevat kuud ASUTUSE ajavööndis. */
+  assert.deepEqual(resolveCallMonth('2026-09', NOW, 'Europe/Tallinn'), { year: 2026, month: 9 });
+  assert.deepEqual(resolveCallMonth(undefined, NOW, 'Europe/Tallinn'), { year: 2026, month: 10 });
+  /* 31.10 kell 22:30 UTC on Tallinnas juba 1. november. */
+  assert.deepEqual(resolveCallMonth('', new Date('2026-10-31T22:30:00Z'), 'Europe/Tallinn'), { year: 2026, month: 11 });
+  for (const bad of ['2026-13', '2026-0', '26-10', '2026/10', 'oktoober']) {
+    assert.throws(() => resolveCallMonth(bad, NOW, 'Europe/Tallinn'), (error) => error.status === 400 && error.messageKey === 'home_care.errors.invalid_month', bad);
+  }
 });

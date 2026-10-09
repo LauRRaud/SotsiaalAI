@@ -8211,6 +8211,12 @@ model CareClientEntry {
   /// märk „saadetud hiljem".
   deviceQueuedSec Int?
 
+  /// KÕNEMÄRGE (K1-h): mille pärast ja kes helistas. Ainult telefonikontakti
+  /// kirjel; mõlemad koos või mitte kumbki (CHECK migratsioonis). Loendur loeb
+  /// neid kuu kaupa.
+  callTopic  String?
+  callCaller String?
+
   /// „Kaasas": teine töötaja samal käigul.
   companionMembershipId String?
   companionName         String?

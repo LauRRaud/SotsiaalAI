@@ -57,6 +57,7 @@ import {
   getChronologyRelease,
   listChronologyReleases
 } from '../lib/homeCare/chronology.js';
+import { getCallCounts } from '../lib/homeCare/calls.js';
 import { applyClientImport, previewClientImport } from '../lib/homeCare/clientImport.js';
 import { importHistory, readHistory, removeHistory, searchHistory } from '../lib/homeCare/importedHistory.js';
 import {
@@ -1646,4 +1647,94 @@ test('uksesilt: üks kehtiv silt, uus tühistab vana, silt ei anna ligipääsu',
   await issueDoorTag(lead, otherClient.id, deps());
   await db.careClient.delete({ where: { id: otherClient.id } });
   assert.equal(await db.careClientDoorTag.count({ where: { clientId: otherClient.id } }), 0);
+});
+
+test('kõnemärge ja loendur: kirje väljad, kuu arvud skoobis, telefoninumbri järgi leiab ainult hooldusjuht', async (t) => {
+  const f = await fixture(t);
+  const north = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Põhi ${f.tag}`, type: 'TEAM' } });
+  await db.organizationCapabilityGrant.create({
+    data: { membershipId: f.members.bert.id, capability: 'HOME_CARE_COORDINATOR', scopeType: 'UNIT', scopeUnitId: north.id, validFrom: at('2026-01-01T00:00:00Z') }
+  });
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  const { client } = await createClient(lead, { displayName: 'Linda Tamm', contactPhone: '+372 555 12 34' }, deps());
+  const { client: northClient } = await createClient(lead, { displayName: 'Põhja Peeter', unitId: north.id, contactPhone: '5559876' }, deps());
+  await addTeamMember(lead, client.id, { membershipId: f.members.anu.id }, deps());
+  await addTeamMember(lead, northClient.id, { membershipId: f.members.anu.id }, deps());
+
+  const callNote = (clientId, topic, caller, occurredAt, extra = {}) =>
+    createEntry(anu, clientId, { text: 'Kõne.', contactMode: 'PHONE', callTopic: topic, callCaller: caller, occurredAt, ...extra }, deps());
+  const first = await callNote(client.id, 'STATUS', 'RELATIVE', '2026-10-02T08:00:00Z');
+  assert.deepEqual(first.entry.call, { topic: 'STATUS', caller: 'RELATIVE' });
+  assert.equal(first.entry.contactMode, 'PHONE');
+  await callNote(client.id, 'STATUS', 'RELATIVE', '2026-10-05T08:00:00Z');
+  await callNote(client.id, 'CHANGE', 'CLIENT', '2026-10-06T08:00:00Z');
+  await callNote(northClient.id, 'CONCERN', 'RELATIVE', '2026-10-07T08:00:00Z');
+  /* Septembri kõned ja kuuvahetus asutuse ajas: 30.09 kell 21:30 UTC on Tallinnas juba 1. oktoober. */
+  await callNote(client.id, 'STATUS', 'OTHER', '2026-09-15T08:00:00Z');
+  await callNote(client.id, 'OTHER', 'CLIENT', '2026-09-30T21:30:00Z');
+  /* Tavaline kirje ja tavaline telefonikirje loendurisse ei lähe. */
+  await createEntry(anu, client.id, { text: 'Käik.' }, deps());
+  const plainPhone = await createEntry(anu, client.id, { text: 'Helistasin apteeki.', contactMode: 'PHONE' }, deps());
+  assert.equal(plainPhone.entry.call, null);
+  /* Tühistatud kõnemärge loendurisse ei lähe. */
+  const wrong = await callNote(client.id, 'CONCERN', 'CLIENT', '2026-10-08T07:00:00Z');
+  await retractEntry(lead, client.id, wrong.entry.id, { reason: 'Vale klient', revision: 1 }, deps());
+
+  const october = await getCallCounts(lead, { month: '2026-10' }, deps());
+  assert.equal(october.month, '2026-10');
+  assert.equal(october.previousMonth, '2026-09');
+  /* Käesolevast kuust edasi ei sirvita. */
+  assert.equal(october.nextMonth, null);
+  assert.equal(october.counts.total, 5);
+  assert.deepEqual(october.counts.byTopic, { STATUS: 2, CHANGE: 1, CONCERN: 1, OTHER: 1 });
+  assert.deepEqual(october.counts.byCaller, { RELATIVE: 3, CLIENT: 2, OTHER: 0 });
+  assert.equal(october.counts.matrix.STATUS.RELATIVE, 2);
+  assert.equal(october.counts.matrix.OTHER.CLIENT, 1);
+  assert.equal(october.previous.total, 1);
+  assert.deepEqual(october.previous.byTopic, { STATUS: 1, CHANGE: 0, CONCERN: 0, OTHER: 0 });
+  /* Vaikimisi kuu on käesolev (testi „praegu" on 09.10.2026). */
+  assert.equal((await getCallCounts(lead, {}, deps())).month, '2026-10');
+  const september = await getCallCounts(lead, { month: '2026-09' }, deps());
+  assert.equal(september.counts.total, 1);
+  assert.equal(september.nextMonth, '2026-10');
+  /* Vastuses ei ole nimesid ega teksti. */
+  assert.equal(/Linda|Peeter|Kõne\./.test(JSON.stringify(october)), false);
+
+  /* SKOOP: üksuse hooldusjuht näeb oma üksuse kõnesid; hooldaja ja teine asutus ei näe. */
+  const scoped = await getCallCounts(bert, { month: '2026-10' }, deps());
+  assert.equal(scoped.counts.total, 1);
+  assert.deepEqual(scoped.counts.byTopic, { STATUS: 0, CHANGE: 0, CONCERN: 1, OTHER: 0 });
+  await expectError(getCallCounts(anu, {}, deps()), 403, 'org.errors.missing_capability');
+  assert.equal((await getCallCounts(leadB, { month: '2026-10' }, deps())).counts.total, 0);
+  await expectError(getCallCounts(lead, { month: '2026-13' }, deps()), 400, 'home_care.errors.invalid_month');
+
+  /* Kõnemärke väljad: sisendi kontroll, parandus ja andmebaasi reeglid. */
+  await expectError(createEntry(anu, client.id, { text: 'x', contactMode: 'PHONE', callTopic: 'STATUS' }, deps()), 400, 'home_care.errors.invalid_call');
+  const visit = await createEntry(anu, client.id, { text: 'Käik', contactMode: 'VISIT', callTopic: 'STATUS', callCaller: 'CLIENT' }, deps());
+  assert.equal(visit.entry.call, null);
+  const corrected = await correctEntry(anu, client.id, first.entry.id, { text: 'Tegelikult käisin kohal.', contactMode: 'VISIT', reason: 'Vale kontakti viis', revision: 1 }, deps());
+  assert.equal(corrected.entry.call, null);
+  assert.equal((await getCallCounts(lead, { month: '2026-10' }, deps())).counts.byTopic.STATUS, 1);
+  /* Parandusjälg hoiab, mis kõnemärge enne oli. */
+  const trail = await db.careClientEntryRevision.findFirst({ where: { entryId: first.entry.id } });
+  assert.deepEqual([trail.snapshot.callTopic, trail.snapshot.callCaller], ['STATUS', 'RELATIVE']);
+  await assert.rejects(db.careClientEntry.update({ where: { id: visit.entry.id }, data: { callTopic: 'STATUS' } }), /call_fields_together/);
+  await assert.rejects(db.careClientEntry.update({ where: { id: visit.entry.id }, data: { callTopic: 'STATUS', callCaller: 'CLIENT' } }), /call_only_on_phone/);
+
+  /* TELEFONINUMBRI JÄRGI: ainult hooldusjuht, oma skoobis; kirjaviis ei loe. */
+  const byPhone = await searchClients(lead, { q: '555 1234' }, deps());
+  assert.deepEqual(byPhone.clients.map((row) => [row.displayName, row.matchedPhone]), [['Linda Tamm', true]]);
+  assert.deepEqual((await searchClients(lead, { q: '+3725551234' }, deps())).clients.map((row) => row.displayName), ['Linda Tamm']);
+  /* Alla viie numbri ei otsita: lühike jupp sobiks liiga paljudele. */
+  assert.deepEqual((await searchClients(lead, { q: '5551' }, deps())).clients, []);
+  /* Hooldaja numbri järgi ei leia, ka oma klienti mitte. */
+  assert.deepEqual((await searchClients(anu, { q: '5551234' }, deps())).clients, []);
+  /* Üksuse hooldusjuht leiab ainult oma üksuse kliendi. */
+  assert.deepEqual((await searchClients(bert, { q: '5551234' }, deps())).clients, []);
+  assert.deepEqual((await searchClients(bert, { q: '5559876' }, deps())).clients.map((row) => row.displayName), ['Põhja Peeter']);
+  /* Nimeotsing töötab nagu enne ja nimega leitu ei tule teist korda. */
+  assert.deepEqual((await searchClients(lead, { q: 'Linda' }, deps())).clients.map((row) => [row.displayName, row.matchedPhone]), [['Linda Tamm', undefined]]);
 });

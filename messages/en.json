@@ -10798,7 +10798,9 @@
       "overview_link": "Coordinator overview",
       "show_ended": "Show ended",
       "show_active": "Show active",
-      "empty_ended": "There are no ended clients."
+      "empty_ended": "There are no ended clients.",
+      "search_phone_hint": "As a coordinator you can also find a client by phone number (at least five digits).",
+      "matched_phone": "by phone number"
     },
     "status": {
       "ACTIVE": "Active",
@@ -11067,7 +11069,9 @@
       "history_too_large": "The text is too long (over a million characters). Import it in parts.",
       "history_already_imported": "This text has already been imported for this client.",
       "history_not_found": "This history was not found.",
-      "door_tag_missing": "This client has no valid door tag."
+      "door_tag_missing": "This client has no valid door tag.",
+      "invalid_call": "A call note needs both the caller and the topic.",
+      "invalid_month": "The month is not in the right form."
     },
     "incidents": {
       "title": "Incident register",
@@ -11269,6 +11273,52 @@
         "what": "Home care worker: scan the code with the phone camera.",
         "safe": "The code opens nobody's data without signing in."
       }
+    },
+    "call": {
+      "open": "Call: the client or a relative called",
+      "caller_label": "Who called",
+      "topic_label": "What about",
+      "note_label": "Explanation (optional)",
+      "note_hint": "Without an explanation the diary gets the caller and the topic.",
+      "save": "Save the call note",
+      "saved": "The call note is in the diary.",
+      "callers": {
+        "RELATIVE": "relative",
+        "CLIENT": "the client",
+        "OTHER": "someone else"
+      },
+      "topics": {
+        "STATUS": "asked how things are",
+        "CHANGE": "wants a change",
+        "CONCERN": "a worry",
+        "OTHER": "other"
+      },
+      "auto": {
+        "caller": {
+          "RELATIVE": "A relative called.",
+          "CLIENT": "The client called.",
+          "OTHER": "Someone else called."
+        },
+        "topic": {
+          "STATUS": "Asked how things are.",
+          "CHANGE": "Wanted a change.",
+          "CONCERN": "Was worried.",
+          "OTHER": "Another matter."
+        }
+      }
+    },
+    "calls": {
+      "link": "Call counter",
+      "title": "Call counter",
+      "intro": "What people call about and who calls, month by month. The counter counts the call notes workers make on the client page; only numbers are shown here.",
+      "previous": "Previous month",
+      "next": "Next month",
+      "total": "Calls in total: {count} (previous month {before})",
+      "by_topic": "By topic",
+      "by_caller": "By caller",
+      "row": "{label}: {count} (previous month {before})",
+      "empty": "No call notes were made in this or the previous month.",
+      "how": "A worker makes a call note on the client page with the button “Call: the client or a relative called”. Retracted entries are not counted."
     }
   },
   "stage": {
