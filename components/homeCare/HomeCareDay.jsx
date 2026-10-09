@@ -378,9 +378,14 @@ export default function HomeCareDay({ context, initial }) {
             uncovered: data.totals.uncovered || 0
           })}
         </p>
-        <Link className="hc-btn hc-btn--quiet hc-btn--link" href={`/org/${organizationId}/koduteenus/puudumised`}>
-          {t("home_care.absences.link")}
-        </Link>
+        <div className="hc-row">
+          <Link className="hc-btn hc-btn--quiet hc-btn--link" href={`/org/${organizationId}/koduteenus/nadal`}>
+            {t("home_care.week.link")}
+          </Link>
+          <Link className="hc-btn hc-btn--quiet hc-btn--link" href={`/org/${organizationId}/koduteenus/puudumised`}>
+            {t("home_care.absences.link")}
+          </Link>
+        </div>
         {notice ? (
           <p className="hc-ok" role="status">
             {notice}
