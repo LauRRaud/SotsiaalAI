@@ -2428,9 +2428,33 @@
           "title": "Journey information",
           "short": "Journey"
         },
-        "collect": {
-          "title": "Add the details",
-          "short": "Details"
+        "path": {
+          "title": "Way of describing",
+          "short": "Way"
+        },
+        "situation": {
+          "title": "Situation",
+          "short": "Situation"
+        },
+        "who": {
+          "title": "About whom",
+          "short": "About whom"
+        },
+        "urgency": {
+          "title": "Urgency",
+          "short": "Urgency"
+        },
+        "domains": {
+          "title": "Life domains",
+          "short": "Domains"
+        },
+        "context": {
+          "title": "Background",
+          "short": "Background"
+        },
+        "assistant": {
+          "title": "Clarify with the assistant",
+          "short": "Assistant"
         },
         "review": {
           "title": "Pre-info overview",
@@ -2440,16 +2464,96 @@
           "title": "Recipient",
           "short": "Recipient"
         },
-        "preview": {
-          "title": "Preview of the pre-inquiry",
-          "short": "Preview"
+        "text": {
+          "title": "Text of the pre-inquiry",
+          "short": "Text"
+        },
+        "send": {
+          "title": "Sending",
+          "short": "Sending"
         },
         "saved": {
           "title": "My pre-inquiries",
           "short": "Mine"
         }
       },
-      "new_confirm": "Starting a new one clears the current unsaved text. Press the plus again if you want to start a new one."
+      "new_confirm": "Starting a new one clears the current unsaved text. Press again if you want to start a new one.",
+      "views": {
+        "flow_label": "Pre-inquiry",
+        "path": {
+          "title": "How do you want to describe the situation?",
+          "lead": "This is not an official assessment. You can change the way later."
+        },
+        "situation": {
+          "title": "Situation",
+          "lead": "Describe in your own words what is going on. You do not need the name of a service.",
+          "municipality_placeholder": "For example Põltsamaa municipality"
+        },
+        "who": {
+          "title": "About whom"
+        },
+        "urgency": {
+          "question": "How urgent is the situation?"
+        },
+        "domains": {
+          "title": "Life domains",
+          "previous": "Previous question",
+          "next": "Next question",
+          "all": "All domains"
+        },
+        "context": {
+          "title": "Background",
+          "lead": "You may leave everything empty. A precise background saves the receiver from asking again."
+        },
+        "journey": {
+          "title": "What to use from the Journey"
+        },
+        "assistant": {
+          "title": "Clarify with the assistant",
+          "lead": "The assistant asks for details and helps find a suitable contact. You may skip this step."
+        },
+        "review": {
+          "missing": "Not added",
+          "all_answers": "All answers"
+        },
+        "recipient": {
+          "title": "Recipient",
+          "lead": "Contacts come from the Service map. Choose who the pre-inquiry goes to; Sotsiaal.pro itself is not a recipient."
+        },
+        "text": {
+          "title": "Text of the pre-inquiry",
+          "lead": "Read it through and edit. This is the text the receiver sees.",
+          "draft": "Text"
+        },
+        "send": {
+          "title": "Sending",
+          "internal_hint": "The pre-inquiry reaches the receiver's inbox. You will see here when it has been accepted.",
+          "email_hint": "The text opens in your e-mail application for review. The platform itself does not send the e-mail.",
+          "confirm_hint": "Marks the pre-inquiry as sent. The platform cannot see acceptance for an e-mail.",
+          "save_hint": "Stays under your pre-inquiries. Nothing is sent.",
+          "copy_hint": "The text to the clipboard, to paste where you need it.",
+          "download_hint": "A text file with the pre-info to your device.",
+          "no_recipient": "No recipient is chosen. You can save, copy or download the pre-inquiry.",
+          "check_note": "Before sending, check the recipient, the text and the pre-info."
+        },
+        "saved": {
+          "more": "More",
+          "less": "Less",
+          "changed": "changed"
+        }
+      },
+      "sender_state": {
+        "draft": "being written",
+        "ready": "saved, not sent",
+        "downloaded": "downloaded",
+        "sent_waiting": "sent, waiting to be accepted (day {days})",
+        "accepted": "accepted {date}",
+        "answered": "the recipient has answered",
+        "sent_external": "sent by e-mail, acceptance unknown",
+        "recalled": "recalled",
+        "replaced": "replaced by a correction",
+        "archived": "archived"
+      }
     },
     "service_map": {
       "title": "Service map",
@@ -8224,8 +8328,6 @@
       }
     },
     "flow": {
-      "progress": "{done}/{total} answered",
-      "next_to": "Next: {label}",
       "privacy": "What you enter is private. It is not shared without your confirmation.",
       "summary": {
         "questions_empty": "{total} questions, one tap each.",
@@ -8249,7 +8351,6 @@
         "lead": "Everything stays private by default. You ask for support when you choose to."
       },
       "leads": {
-        "choose_one": "Choose one answer for each question.",
         "mark_all": "Mark everything that applies. You may leave this empty.",
         "general_text": "Describe in general terms. Do not write names or details by which a person can be recognised.",
         "own_words": "Put it in your own words. Where you leave a gap, the draft keeps a reminder."
@@ -11591,6 +11692,7 @@
   "stage": {
     "rail_label": "Steps",
     "all_steps": "All steps",
-    "step_position": "Step {current} of {total}: {label}"
+    "step_position": "Step {current} of {total}: {label}",
+    "next_step": "Next step"
   }
 }

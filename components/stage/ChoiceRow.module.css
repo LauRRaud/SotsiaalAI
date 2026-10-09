@@ -35,8 +35,9 @@
 }
 
 /* --- stack: küsimus üleval, variandid võrgus ---------------------------------
-   Veerge on nii palju, kui mahub; iga lahter on sama lai ja vasakult joondatud
-   reas, nii et viis varianti annab 3 + 2, mitte kolm eri pikkusega rida. */
+   Veergude arv tuleb komponendilt (kuni kolm; neli lühikest ühes reas). Võrk on
+   nii lai kui sisu vajab: iga lahter on pikima sildi laiune ja kõik on
+   omavahel ühelaiused. Viis varianti annab 3 + 2, mitte kolm eri pikkusega rida. */
 .row[data-layout="stack"] {
   padding-block: 0.55rem;
 }
@@ -47,11 +48,13 @@
   font-weight: 560;
 }
 .row[data-layout="stack"] .options {
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 11.5rem), 1fr));
+  display: inline-grid;
+  justify-self: start;
+  max-width: 100%;
+  grid-template-columns: repeat(var(--choice-cols, 3), minmax(0, 1fr));
 }
-/* Lühike skaala virnas: kõik variandid ühes reas, terve laiuse peale. */
-.row[data-layout="stack"][data-cols] .options {
-  grid-template-columns: repeat(var(--choice-cols), minmax(0, 1fr));
+.row[data-layout="stack"] .option {
+  min-width: 7rem;
 }
 
 /* --- scale: silt vasakul, lühike skaala paremal ühes reas ------------------- */
@@ -77,9 +80,14 @@
     grid-template-columns: minmax(0, 1fr);
     padding-block: 0.55rem;
   }
-  .row[data-layout="stack"] .options,
-  .row[data-layout="stack"][data-cols="4"] .options {
+  /* Telefonis kaks veergu terve laiuse peale: puutesiht on tähtsam. */
+  .row[data-layout="stack"] .options {
+    display: grid;
+    justify-self: stretch;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .row[data-layout="stack"] .option {
+    min-width: 0;
   }
   .option {
     min-height: var(--hit-target-min, 2.75rem);
@@ -90,9 +98,14 @@
     grid-template-columns: minmax(0, 1fr);
     padding-block: 0.55rem;
   }
-  .row[data-layout="stack"] .options,
-  .row[data-layout="stack"][data-cols="4"] .options {
+  /* Telefonis kaks veergu terve laiuse peale: puutesiht on tähtsam. */
+  .row[data-layout="stack"] .options {
+    display: grid;
+    justify-self: stretch;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .row[data-layout="stack"] .option {
+    min-width: 0;
   }
   .option {
     min-height: var(--hit-target-min, 2.75rem);

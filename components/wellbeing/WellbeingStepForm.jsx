@@ -25,6 +25,8 @@
  *    ei oleta ega salvesta.
  *  - Ohutusteade (`safetyNotice`) ilmub KOHE selle küsimuse all, mille vastus
  *    selle tingib, mitte alles tulemuse sammul.
+ *  - Paneelis ei ole „Edasi" nuppu: edasi liigutakse kiirmenüü noolest või
+ *    kerides, ja ainult valikutega vaade liigub pärast viimast vastust ise.
  *  - Üks samm = üks asi ja see mahub paneeli ära: kerimine vahetab sammu
  *    kohapeal, mitte ei keri pikka lehte. Seepärast on lõpus eraldi sammud:
  *    tulemus (signaal ja salvestamine), valmis tekstid (üks korraga, pika
@@ -37,7 +39,7 @@
  * Kujundus: WellbeingStepForm.module.css; ühised osad kaustast components/stage.
  */
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import ActionCard, { ActionCardGrid } from "@/components/stage/ActionCard";
@@ -54,6 +56,9 @@ import { isTableStep, stackColumns } from "./forms/layout";
 import { wellbeingActionRoute } from "./forms/routes";
 import SupportRequestPanel from "./SupportRequestPanel";
 import styles from "./WellbeingStepForm.module.css";
+
+/* Viivitus enne iseliikumist: inimene näeb, et tema valik märgiti. */
+const AUTO_ADVANCE_MS = 420;
 
 const lowerFirst = (text) => (text ? text.charAt(0).toLocaleLowerCase() + text.slice(1) : "");
 
@@ -122,10 +127,25 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
       ]
     : [];
 
+  /* Aktiivse vaate lennujuht (`flight`), et vastus saaks vaate ise edasi viia. */
+  const flightRef = useRef(null);
+  const advanceRef = useRef(0);
+  useEffect(() => () => window.clearTimeout(advanceRef.current), []);
+
   function updateField(key, value) {
+    const next = { ...fields, [key]: value };
     setFields((current) => ({ ...current, [key]: value }));
     setSaveState("idle");
     setCopyState("idle");
+    /* Paneelis ei ole „Edasi" nuppu. Vaade, kus on ainult ühe valikuga
+       küsimused, liigub ise edasi kohe, kui see vastus tegi vaate täis. Kui
+       vastus toob ohutusteate, jääb vaade ette: teade tuleb enne läbi lugeda. */
+    window.clearTimeout(advanceRef.current);
+    const step = inputSteps.find((item) => item.fields.some((field) => field.key === key));
+    if (!step || !step.fields.every((field) => field.kind === "enum")) return;
+    if (missingInStep(step, fields) === 0 || missingInStep(step, next) !== 0) return;
+    if (definition.safetyNotice?.fieldKey === key && definition.safetyNotice.when(next)) return;
+    advanceRef.current = window.setTimeout(() => flightRef.current?.next(), AUTO_ADVANCE_MS);
   }
   function toggleInList(key, value) {
     setFields((current) => {
@@ -235,17 +255,12 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
       key: "__support",
       label: t("wellbeing.flow.support.title"),
       short: t("wellbeing.flow.support.title"),
+      /* Toe mustand võib avaneda pikaks: seda ei võeta teiste vaadete kõrguseks. */
+      free: true,
       state: "empty",
       summary: t("wellbeing.flow.summary.support")
     }
   ];
-
-  const nextButton = (flight, variant) => (
-    <Button type="button" variant={variant} onClick={flight.next}>
-      {/* Lühike nimi (sama mis kiirmenüüs): nupp jääb lühike ja ütleb sama sõna. */}
-      {t("wellbeing.flow.next_to", { label: lowerFirst(steps[flight.index + 1]?.short || steps[flight.index + 1]?.label) })}
-    </Button>
-  );
 
   const safetyNotice = () => (
     <div className={styles.safety} role="alert">
@@ -278,12 +293,9 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
 
   const optionsOf = (field) => field.options.map((option) => ({ value: option.value, label: tx(option.label) }));
 
-  /* `stepTitle`: kui sammus on üks väli ja selle silt kordab sammu pealkirja,
-     jääb silt ainult ekraanilugejale. */
-  const renderField = (field, table, stepTitle) => {
+  const renderField = (field, table) => {
     const value = fields[field.key];
     const label = tx(field.label);
-    const labelHidden = Boolean(stepTitle) && label === stepTitle;
     const hint = field.hint ? tx(field.hint) : undefined;
     let control;
     if (field.kind === "enum") {
@@ -293,7 +305,6 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
           options={optionsOf(field)}
           value={value}
           layout={table ? "scale" : "stack"}
-          labelHidden={labelHidden}
           /* Neli lühikest varianti virnas: kõik ühes reas, mitte 3 + 1. */
           columns={table ? undefined : stackColumns(field, tx)}
           onChange={(next) => updateField(field.key, next)}
@@ -306,7 +317,6 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
         <ChoiceChips
           label={label}
           hint={hint}
-          labelHidden={labelHidden}
           options={optionsOf(field)}
           values={value || []}
           onToggle={(next) => toggleInList(field.key, next)}
@@ -317,7 +327,6 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
         <TextAreaField
           label={label}
           hint={hint}
-          labelHidden={labelHidden}
           value={value}
           lines={field.kind === "text_list"}
           rows={field.rows || (field.kind === "text_list" ? 3 : 4)}
@@ -339,9 +348,8 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
 
   /* Sammu väljad: järjestikused märkekaardid lähevad ühte võrku, küsimused on
      kas tabel (kõik lühikese skaalaga) või virn. */
-  const renderFields = (definitionStep, stepTitle) => {
+  const renderFields = (definitionStep) => {
     const stepFields = definitionStep.fields;
-    const onlyTitle = stepFields.length === 1 ? stepTitle : undefined;
     const table = isTableStep(definitionStep, tx);
     const groups = [];
     stepFields.forEach((field) => {
@@ -352,10 +360,10 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
     return groups.map((group) =>
       group.checks ? (
         <div key={group.fields[0].key} className={styles.checks}>
-          {group.fields.map((field) => renderField(field, table, onlyTitle))}
+          {group.fields.map((field) => renderField(field, table))}
         </div>
       ) : (
-        renderField(group.fields[0], table, onlyTitle)
+        renderField(group.fields[0], table)
       )
     );
   };
@@ -372,23 +380,20 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
     ) : null;
 
   const renderStep = (step, index, flight) => {
+    if (flight.isActive) flightRef.current = flight;
     if (index < inputSteps.length) {
       const definitionStep = inputSteps[index];
-      const required = definitionStep.fields.filter((field) => field.kind === "enum").length;
       return (
         <StepPanel
           title={step.label}
           lead={tx(definitionStep.lead)}
-          /* Valikulisel sammul ütleb juhis ise, et selle võib tühjaks jätta. */
-          note={required ? t("wellbeing.flow.progress", { done: required - missing[index], total: required }) : undefined}
-          actions={nextButton(flight)}
         >
           {definitionStep.columns ? (
             <div className={styles.columns} style={{ "--columns": definitionStep.columns }}>
-              {renderFields(definitionStep, step.label)}
+              {renderFields(definitionStep)}
             </div>
           ) : (
-            renderFields(definitionStep, step.label)
+            renderFields(definitionStep)
           )}
         </StepPanel>
       );
@@ -419,7 +424,6 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
               <Button type="button" variant="secondary" onClick={save} disabled={saveState === "saving"}>
                 {saveState === "saving" ? tx(definition.text.saving) : tx(definition.text.save)}
               </Button>
-              {nextButton(flight)}
             </>
           }
         >
@@ -474,7 +478,6 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
               <Button type="button" variant="secondary" onClick={copyOutput}>
                 {t("wellbeing.support.copy_text")}
               </Button>
-              {nextButton(flight)}
             </>
           }
         >
@@ -524,7 +527,7 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
         );
       }
       return (
-        <StepPanel title={step.label} lead={nextCards.length ? t("wellbeing.flow.next.lead") : undefined} actions={nextButton(flight)}>
+        <StepPanel title={step.label} lead={nextCards.length ? t("wellbeing.flow.next.lead") : undefined}>
           {nextCards.length ? (
             <ActionCardGrid label={step.label}>
               {nextCards.map((card) => (

@@ -21,7 +21,6 @@ export const workProcessesForm = {
       key: "overview",
       title: ["wellbeing.work_processes.situation", "Töövoo üldpilt"],
       short: "Üldpilt",
-      lead: flowLead("choose_one"),
       fields: enumFields(selectFields, ["analysisFocus", "counterpart"])
     },
     {

@@ -21,7 +21,6 @@ export const starterSupportForm = {
       key: "stage",
       title: ["wellbeing.starter_support.stage", "Etapp ja roll"],
       short: "Etapp",
-      lead: flowLead("choose_one"),
       fields: enumFields(selectFields, ["experienceStage", "roleArea"])
     },
     {

@@ -8,7 +8,7 @@ import ChatMessageItem from "@/components/alalehed/chat/ChatMessageItem";
 import ConversationView from "@/components/alalehed/chat/ConversationView";
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
 import DocumentsDropdown from "@/components/documents/DocumentsDropdown";
-import ActionCard from "@/components/stage/ActionCard";
+import StepFlight from "@/components/stage/StepFlight";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import { cn } from "@/components/ui/cn";
@@ -24,6 +24,7 @@ import { localizePath } from "@/lib/localizePath";
 import { preInquiryAvailabilityNotices, serviceAvailabilityPresentation } from "@/lib/serviceAvailabilityUi";
 import { normalizePreInquiryJourneySharedInfo } from "@/lib/preInquiryJourneySharedInfo";
 import { normalizePreInquiryReceiverChecklist } from "@/lib/preInquiryReceiverWorkflow";
+import { preInquirySenderState, preInquirySenderTone } from "@/lib/preInquirySenderState";
 import { serviceProfileSaveNoticeKey } from "@/lib/privacy/serviceProfileSaveNotice";
 import {
   CARRIER_CLASS,
@@ -51,9 +52,11 @@ import {
 import { buildRoomChatPath } from "@/lib/roomPath";
 import { pushWithTransition } from "@/lib/routeTransition";
 import AdminRoleViewCycleButton from "./AdminRoleViewCycleButton";
+import { ContextView, JourneyView, PathView, SituationView, UrgencyView, WhoView } from "./preInquiry/CollectViews";
+import DomainsView from "./preInquiry/DomainsView";
+import { AssistantView, RecipientView, ReviewView, SavedView, SendView, TextView } from "./preInquiry/FlowViews";
 import PreInquiryStart from "./preInquiry/PreInquiryStart";
-import PreInquirySteps from "./preInquiry/PreInquirySteps";
-import preInquiryStyles from "./preInquiry/preInquiry.module.css";
+import viewStyles from "./preInquiry/views.module.css";
 import HelpMatchDecisionPanel from "./HelpMatchDecisionPanel";
 import ServiceMapLeaflet from "./ServiceMapLeaflet";
 import ServiceLicenceStatus, { useServiceLicenceStatuses } from "@/components/service-provider/ServiceLicenceStatus";
@@ -75,7 +78,6 @@ const ADMIN_WORKSPACE_ROLES = Object.freeze([
 /* Sammude ja alguse valikute tekstid on tõlkekataloogis
    (workspace_feature_pages.pre_inquiries.steps / .start.options). */
 const PRE_INQUIRY_STEPS_KEY = "workspace_feature_pages.pre_inquiries.steps";
-const PRE_INQUIRY_WORKFLOW_STEPS = Object.freeze(["collect", "review", "recipient", "preview", "saved"]);
 
 const PRE_INQUIRY_START_KEY = "workspace_feature_pages.pre_inquiries.start.options";
 const PRE_INQUIRY_START_OPTIONS = Object.freeze(["find_recipient", "known_contact", "journey"]);
@@ -481,22 +483,6 @@ function getPreInquiryReferralNotice(entry) {
   return "Selle teenuse saamine võib vajada KOV-i otsust, SKA suunamist või spetsialisti hinnangut.";
 }
 
-function getPreInquiryStatusLabel(status) {
-  switch (status) {
-    case "READY":
-      return "valmis ülevaatamiseks";
-    case "SENT":
-      return "saadetud";
-    case "DOWNLOADED":
-      return "alla laaditud";
-    case "ARCHIVED":
-      return "arhiveeritud";
-    case "DRAFT":
-    default:
-      return "koostamisel";
-  }
-}
-
 function buildPreInquiryDownloadName(topic) {
   const slug = String(topic || "eelpoordumine")
     .toLocaleLowerCase("et")
@@ -804,6 +790,8 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
   const fileInputRef = useRef(null);
   const composerDraftApiRef = useRef(null);
   const newInquiryConfirmRef = useRef(0);
+  /* Ainult valikutega vaate iseliikumise taimer (vt saatja töövoog allpool). */
+  const flowAdvanceRef = useRef(0);
   const [activeInquiryId, setActiveInquiryId] = useState("");
   const [journeySourceId, setJourneySourceId] = useState("");
   const [topic, setTopic] = useState("");
@@ -844,7 +832,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
   const [error, setError] = useState("");
   const [savePrivacyPrompt, setSavePrivacyPrompt] = useState(null);
   const [workflowMode, setWorkflowMode] = useState("");
-  const [activeWorkflowStep, setActiveWorkflowStep] = useState("collect");
+  const [activeWorkflowStep, setActiveWorkflowStep] = useState("path");
   const [assessmentPathChosen, setAssessmentPathChosen] = useState(false);
   /**
    * TEEKONNA JAGAMISVALIK (SOL-JOUR-01, P0).
@@ -1138,7 +1126,6 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     : "";
   const isRecipientRole = activeRole === "SOCIAL_WORKER" || activeRole === "SERVICE_PROVIDER";
   const receiverInquiries = isAdmin && isRecipientRole ? inquiries : receivedInquiries;
-  const showReceivedInquiries = isRecipientRole;
   const activeReceivedInquiry = activeInquiryId
     ? receiverInquiries.find((inquiry) => inquiry.id === activeInquiryId) || null
     : receiverInquiries[0] || null;
@@ -1466,7 +1453,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       });
     });
     setWorkflowMode("known_contact");
-    setActiveWorkflowStep("collect");
+    setActiveWorkflowStep("path");
     setAssessmentPathChosen(false);
     setNotice("Valitud adressaat on eelpöördumise töövoogu kaasa võetud. Saad seda enne saatmist muuta.");
   }, [entries]);
@@ -1608,16 +1595,16 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     }));
   }
 
-  /* „Uus eelpöördumine" on kiirmenüüs ikoon. Kui pooleli on kirjutatud teksti,
-     ei tühjenda esimene vajutus midagi: see ütleb, mis kaoks, ja alles teine
-     vajutus (kaheksa sekundi sees) alustab uut. */
-  function handleNewInquiryFromDock() {
+  /* „Uus eelpöördumine" on vaates „Minu eelpöördumised". Kui pooleli on
+     kirjutatud teksti, ei tühjenda esimene vajutus midagi: see ütleb, mis kaoks,
+     ja alles teine vajutus (kaheksa sekundi sees) alustab uut. */
+  function handleNewInquiryGuarded() {
     const unsaved = Boolean(String(situation || "").trim() || String(assistantInput || "").trim() || draftTouched);
     const now = Date.now();
     if (unsaved && now - newInquiryConfirmRef.current > 8000) {
       newInquiryConfirmRef.current = now;
       setError("");
-      setNotice(readText(t, "workspace_feature_pages.pre_inquiries.new_confirm", "Uue alustamine tühjendab praeguse salvestamata teksti. Vajuta plussi uuesti, kui soovid alustada uut."));
+      setNotice(readText(t, "workspace_feature_pages.pre_inquiries.new_confirm", "Uue alustamine tühjendab praeguse salvestamata teksti. Vajuta uuesti, kui soovid alustada uut."));
       return;
     }
     newInquiryConfirmRef.current = 0;
@@ -1649,7 +1636,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     setShowMoreContacts(false);
     setDraftTouched(false);
     setWorkflowMode("");
-    setActiveWorkflowStep("collect");
+    setActiveWorkflowStep("path");
     setAssessmentPathChosen(false);
     /* Uus eelpöördumine ei ole ühestki Teekonnast tulnud — jagamisvalikut ei
        ole olemas. Vaikehulk oleks siin väide kasutaja nõusoleku kohta, mida ta
@@ -1686,7 +1673,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     setShowMoreContacts(false);
     setDraftTouched(true);
     setWorkflowMode("existing");
-    setActiveWorkflowStep("preview");
+    setActiveWorkflowStep("text");
     setAssessmentPathChosen(Boolean(inquiry.assessmentState?.path));
     /* Avatud eelpöördumise valik on see, mis TEMA juures salvestatud on —
        mitte vaikehulk. Vale vaikehulk näitaks siin võõra rea kohta valikut,
@@ -2206,7 +2193,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       setActiveWorkflowStep("journey");
       return;
     }
-    setActiveWorkflowStep("collect");
+    setActiveWorkflowStep("path");
   }
 
   function handleSelectRecipient(entry, serviceAction = null) {
@@ -2218,13 +2205,72 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       ? "ORGANIZATION_INBOX"
       : entry.type === "SERVICE_PROVIDER" ? "SERVICE_PROVIDER" : "KOV_CONTACT");
     setDraftTouched(false);
-    setActiveWorkflowStep("preview");
+    setActiveWorkflowStep("text");
   }
 
-  const preInquirySteps = [...(workflowMode === "journey" ? ["journey"] : []), ...PRE_INQUIRY_WORKFLOW_STEPS].map((key) => ({
+  /* ---------- Saatja töövoog: vaated sammulaval ----------
+     Iga vaade on omaette komponent kaustas ./preInquiry (CollectViews,
+     DomainsView, FlowViews). Siin on ainult see, mis vaateid lehe olekuga seob:
+     millised vaated on, mis seisus need on ja mis tegevus kuhu viib. */
+  const tr = (key, fallback) => readText(t, `workspace_feature_pages.pre_inquiries.${key}`, fallback);
+  const subject = normalizedAssessmentState.subject;
+  const supportContext = normalizedAssessmentState.supportContext;
+  const hasDomains = normalizedAssessmentState.path !== "QUICK_DESCRIPTION";
+  const domainQuestionCount = PRE_INQUIRY_DOMAIN_DEFINITIONS.reduce((sum, definition) => sum + definition.primaryQuestions.length, 0);
+  const domainAnswerCount = normalizedAssessmentState.domains.reduce(
+    (sum, domain) => sum + (domain.primaryAnswers || []).filter((answer) => answer.screenAnswer).length,
+    0
+  );
+  const flowKeys = [
+    ...(workflowMode === "journey" ? ["journey"] : []),
+    "path",
+    "situation",
+    "who",
+    "urgency",
+    ...(hasDomains ? ["domains"] : []),
+    "context",
+    "assistant",
+    "review",
+    "recipient",
+    "text",
+    "send",
+    "saved"
+  ];
+  const partial = (done, any) => (done ? "done" : any ? "partial" : "empty");
+  const flowState = {
+    journey: journeyShareSelections.length ? "done" : "empty",
+    path: assessmentPathChosen ? "done" : "empty",
+    situation: partial(Boolean(situation.trim() && subject.municipalityText?.trim()), Boolean(situation.trim() || subject.municipalityText?.trim())),
+    who: partial(Boolean(subject.concernsAbout && subject.consentStatus), Boolean(subject.concernsAbout || subject.consentStatus)),
+    urgency: subject.urgency ? "done" : "empty",
+    domains: partial(domainAnswerCount === domainQuestionCount, domainAnswerCount > 0),
+    context: supportContext.existingSupport || supportContext.supportAdequacy || supportContext.personWish ? "done" : "empty",
+    assistant: assistantMessage ? "done" : "empty",
+    review: "empty",
+    recipient: selectedRecipient ? "done" : "empty",
+    text: draftTouched || activeInquiry ? "done" : "empty",
+    send: partial(Boolean(activeInquiry?.sentAt || activeInquiry?.status === "SENT"), Boolean(activeInquiry)),
+    saved: "empty"
+  };
+  const flowSummary = {
+    path: assessmentPathChosen ? selectedAssessmentPath.title : "",
+    situation: situation.trim().slice(0, 90),
+    who: [subject.concernsAbout, subject.consentStatus].filter(Boolean).join(" · "),
+    urgency: subject.urgency,
+    domains: hasDomains ? `${domainAnswerCount}/${domainQuestionCount}` : "",
+    context: supportContext.personWish.trim().slice(0, 90),
+    recipient: selectedRecipient?.title || "",
+    text: topic.trim().slice(0, 90),
+    saved: savedInquiries.length ? String(savedInquiries.length) : ""
+  };
+  const preInquirySteps = flowKeys.map((key) => ({
     key,
     label: readText(t, `${PRE_INQUIRY_STEPS_KEY}.${key}.title`, key),
-    short: readText(t, `${PRE_INQUIRY_STEPS_KEY}.${key}.short`, key)
+    short: readText(t, `${PRE_INQUIRY_STEPS_KEY}.${key}.short`, key),
+    state: flowState[key],
+    summary: flowSummary[key] || undefined,
+    /* Loendid ja ülevaade võivad olla pikad: nende järgi ühist kõrgust ei võeta. */
+    free: key === "review" || key === "recipient" || key === "saved"
   }));
 
   if (!isRecipientRole && !workflowMode) {
@@ -2350,6 +2396,12 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
           </div>
         </SectionCard>
 
+        {/* COLLAB-P4: saabuv võrgustikujagamine on saaja jaoks sama kujuga mis
+            saabuv eelpöördumine: samal laual, mitte teises postkastis. Komponent
+            ei joonista midagi, kui jagamisi ei ole. Varem oli see pandud saatja
+            töövoo harusse, kuhu vastuvõtja ei jõua, ja jäi seetõttu nägemata. */}
+        <NetworkShareInbox />
+
         {activeReceivedInquiry ? (
           <CaseworkPreparationPanel t={t} inquiry={activeReceivedInquiry} locale={locale} embedded={embedded} />
         ) : null}
@@ -2451,769 +2503,438 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     );
   }
 
+  /* Paneelis ei ole „Edasi" nuppu (omanik 09.10): edasi liigutakse kiirmenüü
+     noolest või kerides. Ainult valikutega vaade viib pärast vastamist ise
+     edasi; ohuteate korral jääb vaade ette. */
+  const advanceFlow = (key) => {
+    window.clearTimeout(flowAdvanceRef.current);
+    flowAdvanceRef.current = window.setTimeout(() => setActiveWorkflowStep(key), 420);
+  };
+  const stepAfter = (key) => flowKeys[flowKeys.indexOf(key) + 1];
+  const formatStateDate = (value) => formatDate(value, locale);
+  const senderStateLabel = (inquiry) => {
+    const state = preInquirySenderState(inquiry);
+    const text = tr(`sender_state.${state.key}`, state.key)
+      .replace("{date}", state.at ? formatStateDate(state.at) : "")
+      .replace("{days}", String((state.days ?? 0) + 1));
+    return { text: text.trim(), tone: preInquirySenderTone(state.key) };
+  };
+  const describeRecipient = (entry) => ({
+    typeLabel: getPreInquiryRecipientTypeLabel(t, entry),
+    subtitle: getPreInquiryRecipientSubtitle(t, entry),
+    reason: getPreInquiryRecipientReason(entry),
+    region: getPreInquiryRecipientRegion(entry),
+    meta: [getPreInquiryChannelLabel(t, entry.deliveryChannel), entry.email, entry.municipalityName || entry.county].filter(Boolean).join(" · "),
+    referral: getPreInquiryReferralNotice(entry),
+    availability: preInquiryAvailabilityNotices(entry, t),
+    serviceActions:
+      entry.type === "SERVICE_PROVIDER"
+        ? (Array.isArray(entry.serviceActions) ? entry.serviceActions : []).filter((action) => action.platformAllowed || action.emailAllowed)
+        : null,
+    mapHref: entry.type !== "ORGANIZATION_INBOX" ? localizePath(`/teenusekaart?entryId=${encodeURIComponent(entry.id)}`, locale) : "",
+    profileHref: entry.providerProfileId ? localizePath(`/teenuseprofiil?profileId=${encodeURIComponent(entry.providerProfileId)}`, locale) : ""
+  });
+  const sendBlocked = saving || !effectiveSituation.trim() || activeInquiry?.status === "ARCHIVED";
+  const mailto = activeInquiryMailto || selectedRecipientMailto;
+  const sendChoices = [
+    selectedRecipientId && selectedRecipientSupportsPlatform
+      ? {
+          key: "send",
+          title: saving ? tr("actions.saving", "Salvestan...") : tr("actions.send_internal", "Saada platvormis"),
+          description: tr("views.send.internal_hint", "Pöördumine jõuab vastuvõtja Pöördumiste vaatesse. Näed siin, kui see on vastu võetud."),
+          disabled: sendBlocked,
+          onClick: (event) => handleSave(event, { status: "SENT" })
+        }
+      : null,
+    mailto
+      ? {
+          key: "email",
+          title: tr("actions.open_email", "Ava e-kirjana"),
+          description: tr("views.send.email_hint", "Tekst avaneb sinu e-posti rakenduses ülevaatamiseks. Platvorm ise e-kirja ei saada."),
+          onClick: () => {
+            window.location.href = mailto;
+          }
+        }
+      : null,
+    activeInquiryMailto && activeInquiry.status !== "SENT"
+      ? {
+          key: "confirm-email",
+          title: tr("actions.confirm_external_sent", "Kinnita, et saatsid e-kirja"),
+          description: tr("views.send.confirm_hint", "Märgib pöördumise saadetuks. Vastuvõttu platvorm e-kirja puhul ei näe."),
+          disabled: saving,
+          onClick: () => handleConfirmExternalSent(activeInquiry)
+        }
+      : null,
+    {
+      key: "save",
+      title: saving ? tr("actions.saving", "Salvestan...") : tr("actions.save", "Salvesta eelpöördumine"),
+      description: tr("views.send.save_hint", "Jääb sinu eelpöördumiste alla. Midagi ei saadeta."),
+      disabled: sendBlocked,
+      onClick: handleSave
+    },
+    {
+      key: "copy",
+      title: tr("actions.copy", "Kopeeri tekst"),
+      description: tr("views.send.copy_hint", "Pöördumise tekst lõikelauale, et kleepida see sinna, kus vaja."),
+      disabled: !draft.trim(),
+      onClick: handleCopy
+    },
+    {
+      key: "download",
+      title: tr("actions.download", "Laadi alla"),
+      description: tr("views.send.download_hint", "Tekstifail koos eelinfoga sinu seadmesse."),
+      disabled: !draft.trim() && !effectiveSituation.trim(),
+      onClick: handleDownload
+    }
+  ].filter(Boolean);
+  const sendSummary = selectedRecipient
+    ? `${tr("preview.recipient_prefix", "Adressaat")}: ${selectedRecipient.title}. ${tr("preview.delivery_prefix", "Saatmise viis")}: ${
+        selectedRecipientSupportsPlatform
+          ? tr("preview.delivery_platform", "platvormisisene eelpöördumine")
+          : selectedRecipientSupportsEmail
+            ? tr("preview.delivery_email", "e-kirja tekst")
+            : tr("preview.delivery_manual", "salvestamine, kopeerimine või allalaadimine")
+      }.`
+    : tr("views.send.no_recipient", "Adressaat on valimata. Saad pöördumise salvestada, kopeerida või alla laadida.");
+  const sendNotices = [
+    selectedRecipientReferralNotice
+      ? `${selectedRecipientReferralNotice} ${tr("preview.referral_hint", "Sa saad teenuseosutajalt küsida lisainfot või pöörduda KOV-i poole.")}`
+      : "",
+    ...selectedRecipientAvailabilityNotices.map(
+      ({ service, presentation }) => `${presentation.icon} ${service.name}: ${presentation.label}. ${presentation.ageText}. ${presentation.warning}`
+    )
+  ].filter(Boolean);
+  const privacyPromptBlock = savePrivacyPrompt ? (
+    <div className={viewStyles.notice} data-tone="risk" role="alert">
+      <p className={viewStyles.quiet}>
+        {savePrivacyPrompt.warning || readText(t, "privacy.confirmation.warning", "Tekst sisaldab isikuandmeid. Vali enne jatkamist, kuidas neid toodelda.")}
+      </p>
+      {savePrivacyPrompt.findings?.length ? (
+        <p className={viewStyles.quiet}>
+          {readText(t, "privacy.confirmation.detected", "Leitud:")} {savePrivacyPrompt.findings.map((finding) => finding?.label).filter(Boolean).join(", ")}
+        </p>
+      ) : null}
+      {savePrivacyPrompt.redactedText ? <p className={viewStyles.quiet}>{savePrivacyPrompt.redactedText}</p> : null}
+      <div className={viewStyles.links}>
+        <Button
+          type="button"
+          size="sm"
+          onClick={() => {
+            handleEditSaveText();
+            setActiveWorkflowStep("text");
+          }}
+        >
+          {readText(t, "privacy.confirmation.actions.edit", "Muudan teksti")}
+        </Button>
+        <Button type="button" size="sm" variant="secondary" onClick={handleSaveRedacted} disabled={saving}>
+          {readText(t, "privacy.confirmation.actions.send_redacted", "Saada maskeeritult")}
+        </Button>
+        {savePrivacyPrompt.allowOriginal ? (
+          <Button type="button" size="sm" variant="secondary" onClick={handleSaveOriginal} disabled={saving}>
+            {readText(t, "privacy.confirmation.actions.send_original", "Saada siiski")}
+          </Button>
+        ) : null}
+      </div>
+    </div>
+  ) : null;
+  const savedItems = savedInquiries.map((inquiry) => {
+    const state = senderStateLabel(inquiry);
+    return {
+      id: inquiry.id,
+      title: inquiry.topic || tr("untitled", "Pealkirjata"),
+      state: state.text,
+      tone: state.tone,
+      meta: [
+        inquiry.recipientOrganization?.displayName || inquiry.selectedRecipientName,
+        inquiry.updatedAt ? `${tr("views.saved.changed", "muudetud")} ${formatDate(inquiry.updatedAt, locale)}` : ""
+      ]
+        .filter(Boolean)
+        .join(" · "),
+      openLabel: tr("actions.open", "Ava"),
+      onOpen: () => handleOpenInquiry(inquiry),
+      actions: [
+        inquiry.status === "ARCHIVED"
+          ? { key: "reopen", label: tr("actions.reopen", "Taasava muutmiseks"), disabled: saving, onClick: () => handleReopenAuthoredInquiry(inquiry) }
+          : null,
+        {
+          key: "copy",
+          label: tr("actions.copy_short", "Kopeeri"),
+          onClick: () => navigator?.clipboard?.writeText(inquiry.userEditedDraft || inquiry.generatedDraft || inquiry.situation || "")
+        },
+        { key: "download", label: tr("actions.download", "Laadi alla"), onClick: () => handleDownloadSavedInquiry(inquiry) },
+        {
+          key: "archive",
+          label: tr("actions.archive", "Arhiveeri"),
+          disabled: saving || inquiry.status === "SENT" || inquiry.status === "ARCHIVED",
+          onClick: () => handleArchiveAuthoredInquiry(inquiry)
+        }
+      ].filter(Boolean)
+    };
+  });
+
+  const renderFlowView = (step) => {
+    switch (step.key) {
+      case "journey":
+        return (
+          <JourneyView
+            tr={tr}
+            options={journeyShareOptions}
+            labels={JOURNEY_SHARE_LABELS}
+            selected={journeyShareSelections}
+            busy={journeyShareBusy}
+            /* Valik EI OLE lõplik enne serveri vastust: me ei muuda siin olekut
+               ise, vaid küsime uue projektsiooni ja võtame ta tervikuna üle. Nii
+               ei saa ekraan näidata kitsamat valikut kui tekst tegelikult on. */
+            onToggle={(id, checked) =>
+              void refreshJourneyProjection(
+                checked ? [...new Set([...journeyShareSelections, id])] : journeyShareSelections.filter((item) => item !== id)
+              )
+            }
+          >
+            {activeDraftJourneySharedInfo ? (
+              <JourneySharedInfoBlock info={activeDraftJourneySharedInfo} t={t} audience={activeDraftJourneySharedInfoAudience} serviceLabel={selectedRecipient?.title || ""} />
+            ) : (
+              <p className={viewStyles.quiet}>
+                {tr("journey_share.empty", "Teekonna kokkuvõtet ei ole veel kaasa tulnud. Ava eelpöördumine konkreetse Teekonna vaatest või jätka uut eelpöördumist.")}
+              </p>
+            )}
+          </JourneyView>
+        );
+      case "path":
+        return (
+          <PathView
+            tr={tr}
+            paths={PRE_INQUIRY_ASSESSMENT_PATHS}
+            value={normalizedAssessmentState.path}
+            chosen={assessmentPathChosen}
+            onChoose={(pathId) => {
+              handleAssessmentPathChange(pathId);
+              setActiveWorkflowStep("situation");
+            }}
+          />
+        );
+      case "situation":
+        return (
+          <SituationView
+            tr={tr}
+            situation={situation}
+            onSituation={(value) => {
+              setSituation(value);
+              setDraftTouched(false);
+            }}
+            municipality={subject.municipalityText}
+            onMunicipality={(value) => updateAssessmentSubject("municipalityText", value)}
+          />
+        );
+      case "who":
+        return (
+          <WhoView
+            tr={tr}
+            subjectOptions={PRE_INQUIRY_SUBJECT_OPTIONS}
+            consentOptions={PRE_INQUIRY_CONSENT_OPTIONS}
+            subject={subject}
+            onSubject={(field, value) => {
+              updateAssessmentSubject(field, value);
+              const filled = { ...subject, [field]: value };
+              if (filled.concernsAbout && filled.consentStatus && !(subject.concernsAbout && subject.consentStatus)) advanceFlow(stepAfter("who"));
+            }}
+            childNote={
+              subject.concernsAbout === "Lapse või noore kohta" && hasDomains
+                ? tr("assessment.child_note", "See eelkaardistus lähtub praegu täisealise inimese eluvaldkondade põhiküsimustest. Lapse või noore olukorra puhul kirjelda mure kindlasti ka oma sõnadega; eraldi lapse ja pere eelkaardistus vajab oma küsimustikku.")
+                : ""
+            }
+          />
+        );
+      case "urgency":
+        return (
+          <UrgencyView
+            tr={tr}
+            urgencyOptions={PRE_INQUIRY_URGENCY_OPTIONS}
+            urgency={subject.urgency}
+            onUrgency={(value) => {
+              updateAssessmentSubject("urgency", value);
+              const risk = normalizePreInquiryAssessmentState({ ...normalizedAssessmentState, subject: { ...subject, urgency: value } }).riskGate.userVisibleMessage;
+              if (!risk && !subject.urgency) advanceFlow(stepAfter("urgency"));
+              else window.clearTimeout(flowAdvanceRef.current);
+            }}
+            riskMessage={normalizedAssessmentState.riskGate.userVisibleMessage}
+          />
+        );
+      case "domains":
+        return (
+          <DomainsView
+            tr={tr}
+            definitions={PRE_INQUIRY_DOMAIN_DEFINITIONS}
+            domains={normalizedAssessmentState.domains}
+            path={normalizedAssessmentState.path}
+            screenOptions={PRE_INQUIRY_SCREEN_OPTIONS}
+            followUpsOf={getPreInquiryQuestionFollowUpQuestions}
+            onAnswer={updatePrimaryQuestionAnswer}
+            onFollowUp={updatePrimaryQuestionFollowUpAnswer}
+          />
+        );
+      case "context":
+        return <ContextView tr={tr} support={supportContext} onSupport={updateAssessmentSupport} />;
+      case "assistant":
+        return (
+          <AssistantView tr={tr}>
+            <ConversationView
+              t={t}
+              chatWindowRef={chatWindowRef}
+              isStreamingAny={assisting}
+              hiddenCount={0}
+              pageSize={0}
+              onRevealOlder={() => {}}
+              canHideOlder={false}
+              onHideOlder={() => {}}
+              onJumpToBottom={() => {}}
+              messageItems={conversationItems}
+              mainClassName="documents-agent-conversation-main"
+              windowClassName="documents-agent-conversation-window"
+              isMobile={false}
+              isLightTheme
+            />
+            <ChatComposer
+              t={t}
+              locale={locale}
+              isLightTheme
+              hideTools
+              embedded
+              forcePlaceholderVisible
+              placeholderText=""
+              acceptAttr=""
+              ensureAnalysisPanelVisible={() => {}}
+              fileInputRef={fileInputRef}
+              onFileChange={() => {}}
+              inputBarRef={inputBarRef}
+              inputRef={inputRef}
+              onFocusInput={() => setInputFocused(true)}
+              onBlurInput={() => setInputFocused(false)}
+              isGenerating={assisting}
+              isStreamingAny={false}
+              isRoomMode={false}
+              roomBlocked={false}
+              roomAuthRequired={false}
+              onStop={() => {}}
+              onSend={handleComposerSend}
+              voiceEnabled={false}
+              showDictationButton={false}
+              recording={false}
+              recordingPulse={false}
+              handleMic={() => {}}
+              draftApiRef={composerDraftApiRef}
+              inputFocused={inputFocused}
+              isMobile={false}
+              activeModeKey="pre_inquiry"
+            />
+          </AssistantView>
+        );
+      case "review":
+        return (
+          <ReviewView tr={tr} rows={preInquiryOverviewRows} missing={preInquiryMissingInfo}>
+            <PreInquiryAssessmentReviewSection
+              t={t}
+              title={tr("sections.assessment_review", "Vaata eelinfo üle")}
+              review={assessmentReview}
+              situation={effectiveSituation}
+              note={tr("assessment.review_note", "Ülevaade koondab täpselt need eelkaardistuse vastused ja täpsustused, mis lähevad salvestatud eelpöördumise ning allalaaditava eelinfo juurde.")}
+            />
+          </ReviewView>
+        );
+      case "recipient":
+        return (
+          <RecipientView
+            tr={tr}
+            types={[
+              ["KOV_CONTACT", tr("recipient.kov", "KOV kontakt")],
+              ["ORGANIZATION_INBOX", tr("recipient.organization_inbox", "Organisatsiooni vastuvõtutiim")],
+              ["SERVICE_PROVIDER", tr("recipient.provider", "Teenuseosutaja")]
+            ]}
+            type={recipientType}
+            onType={(value) => {
+              setRecipientType(value);
+              setSelectedRecipientId("");
+              setSelectedProviderServiceId("");
+              setSelectedProviderLocationId("");
+              setShowMoreContacts(false);
+              setDraftTouched(false);
+            }}
+            query={recipientQuery}
+            onQuery={setRecipientQuery}
+            confidence={assistantRoutingConfidence}
+            recipients={visibleRecommendedRecipients}
+            describe={describeRecipient}
+            selectedId={selectedRecipientId}
+            onSelect={handleSelectRecipient}
+            hasMore={recommendedRecipients.length > 3}
+            showMore={showMoreContacts}
+            onToggleMore={() => setShowMoreContacts((value) => !value)}
+          />
+        );
+      case "text":
+        return (
+          <TextView
+            tr={tr}
+            topic={topic}
+            onTopic={(value) => {
+              setTopic(value);
+              setDraftTouched(false);
+            }}
+            draft={draft}
+            onDraft={(value) => {
+              setDraft(value);
+              setDraftTouched(true);
+            }}
+            remaining={(count) => t("workspace_feature_pages.pre_inquiries.remaining_characters", { count: Math.max(0, count) })}
+          >
+            {activeDraftJourneySharedInfo ? (
+              <JourneySharedInfoBlock info={activeDraftJourneySharedInfo} t={t} audience={activeDraftJourneySharedInfoAudience} serviceLabel={selectedRecipient?.title || ""} />
+            ) : null}
+          </TextView>
+        );
+      case "send":
+        return (
+          <SendView
+            tr={tr}
+            summary={sendSummary}
+            notices={sendNotices}
+            privacyPrompt={privacyPromptBlock}
+            choices={sendChoices}
+          />
+        );
+      default:
+        return <SavedView tr={tr} items={savedItems} onNew={handleNewInquiryGuarded} />;
+    }
+  };
+
   return (
     <div className="pre-inquiry-workflow">
-      {/* Sammud ja „Uus eelpöördumine" on all kiirmenüüs, mitte paneeli ülaosas. */}
-      <PreInquirySteps
-        steps={preInquirySteps}
-        activeId={activeWorkflowStep}
-        onSelect={setActiveWorkflowStep}
-        label={readText(t, `${PRE_INQUIRY_STEPS_KEY}.label`, "Eelpöördumise sammud")}
-        stepLabel={(step, index) => t("stage.step_position", { current: index + 1, total: preInquirySteps.length, label: step.label })}
-        newLabel={readText(t, "workspace_feature_pages.pre_inquiries.actions.new_inquiry", "Uus eelpöördumine")}
-        onNew={handleNewInquiryFromDock}
-      />
-
-      {loading ? <p className={bodyTextClassName}>{readText(t, "workspace_feature_pages.pre_inquiries.loading", "Laen eelpöördumisi...")}</p> : null}
+      {loading ? <p className={viewStyles.quiet}>{tr("loading", "Laen eelpöördumisi...")}</p> : null}
       {error ? (
-        <p>
+        <p className={viewStyles.notice} data-tone="risk" role="alert">
           {error}
         </p>
       ) : null}
       {notice ? (
-        <p>
+        <p className={viewStyles.notice} aria-live="polite">
           {notice}
         </p>
       ) : null}
-
-      <div>
-        {/* Ülevaade on oma sammu sisu, mitte plokk iga sammu kohal. */}
-        {activeWorkflowStep === "review" ? (
-        <aside>
-          <div>
-            <h2>{readText(t, "workspace_feature_pages.pre_inquiries.overview.title", "Eelinfo ülevaade")}</h2>
-            <p>
-              {readText(t, "workspace_feature_pages.pre_inquiries.overview.lead", "Siin näed infot, mida kasutatakse pöördumise koostamiseks. Enne saatmist saad kõike muuta.")}
-            </p>
-          </div>
-          {preInquiryOverviewRows.length ? (
-            <dl>
-              {preInquiryOverviewRows.slice(0, 8).map(([label, value]) => (
-                <div key={label}>
-                  <dt>{label}</dt>
-                  <dd>{value}</dd>
-                </div>
-              ))}
-            </dl>
-          ) : (
-            <p>
-              {readText(t, "workspace_feature_pages.pre_inquiries.overview.empty", "Eelinfo täitub töövoo käigus.")}
-            </p>
-          )}
-          {preInquiryMissingInfo.length ? (
-            <div>
-              <p>
-                {readText(t, "workspace_feature_pages.pre_inquiries.overview.missing_hint", "Need andmed võivad aidata sobivamat kontakti leida, kuid sa ei pea kõike lisama.")}
-              </p>
-              <ul>
-                {preInquiryMissingInfo.slice(0, 6).map((item) => <li key={item}>{item}</li>)}
-              </ul>
-            </div>
-          ) : null}
-        </aside>
-        ) : null}
-        <div>
-
-      {activeWorkflowStep === "journey" ? (
-        <SectionCard flat={embedded} title="Vali, mida soovid eelpöördumises kasutada">
-          <p className={bodyTextClassName}>
-            {readText(t, "workspace_feature_pages.pre_inquiries.journey_share.lead", "Teekonna info on privaatne. Märgi ainult need osad, mida soovid selle eelpöördumise koostamisel kasutada.")}
-          </p>
-          {activeDraftJourneySharedInfo ? (
-            <JourneySharedInfoBlock info={activeDraftJourneySharedInfo} t={t} audience={activeDraftJourneySharedInfoAudience} serviceLabel={selectedRecipient?.title || ""} />
-          ) : (
-            <p className={bodyTextClassName}>{readText(t, "workspace_feature_pages.pre_inquiries.journey_share.empty", "Teekonna kokkuvõtet ei ole veel kaasa tulnud. Ava eelpöördumine konkreetse Teekonna vaatest või jätka uut eelpöördumist.")}</p>
-          )}
-          <div>
-            {journeyShareOptions.map((id) => (
-              <Checkbox
-                key={id}
-                checked={journeyShareSelections.includes(id)}
-                disabled={journeyShareBusy}
-                onChange={(checked) => {
-                  /* Valik EI OLE lõplik enne serveri vastust: me ei muuda siin
-                     olekut ise, vaid küsime uue projektsiooni ja võtame ta
-                     tervikuna üle. Nii ei saa ekraan näidata kitsamat valikut
-                     kui tekst tegelikult on. */
-                  const nextKeys = checked
-                    ? [...new Set([...journeyShareSelections, id])]
-                    : journeyShareSelections.filter((item) => item !== id);
-                  void refreshJourneyProjection(nextKeys);
-                }}
-                label={JOURNEY_SHARE_LABELS[id] || id}
-              />
-            ))}
-          </div>
-          <div>
-            <Button type="button" size="sm" variant="primary" onClick={() => setActiveWorkflowStep("recipient")}>
-              {readText(t, "workspace_feature_pages.pre_inquiries.actions.choose_recipient", "Vali adressaat")}
-            </Button>
-            <Button type="button" size="sm" onClick={() => setActiveWorkflowStep("collect")}>
-              {readText(t, "workspace_feature_pages.pre_inquiries.sections.assistant", "Täpsusta eelinfot")}
-            </Button>
-          </div>
-        </SectionCard>
-      ) : null}
-
-      {activeWorkflowStep === "collect" ? (
-      <>
-      <SectionCard flat={embedded} title="Aitan sul pöördumise ette valmistada">
-        <p className={bodyTextClassName}>
-          {readText(t, "workspace_feature_pages.pre_inquiries.assessment.intro", "Tere. Kirjelda lühidalt, mis olukord on. Sa ei pea kõike õigesti sõnastama. Küsin vajadusel ainult neid täpsustusi, mis aitavad pöördumise selgemaks teha ja sobiva kontakti leida.")}
-        </p>
-        <p className={bodyTextClassName}>
-          {readText(t, "workspace_feature_pages.pre_inquiries.assessment.note", "Eelkaardistus ei ole ametlik abivajaduse hindamine ega teenuse määramise otsus. See aitab olukorda läbi mõelda ja pöördumist ette valmistada.")}
-        </p>
-        {assessmentPathChosen ? (
-        <div>
-          <div>
-            <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.assessment_path", "Eelkaardistuse viis")}</span>
-            <DocumentsDropdown
-              ariaLabel={readText(t, "workspace_feature_pages.pre_inquiries.fields.assessment_path", "Eelkaardistuse viis")}
-              portal
-              value={normalizedAssessmentState.path}
-              onChange={handleAssessmentPathChange}
-              options={PRE_INQUIRY_ASSESSMENT_PATHS.map((path) => ({ value: path.id, label: path.title }))}
-            />
-            {selectedAssessmentPath?.description ? (
-              <span>{selectedAssessmentPath.description}</span>
-            ) : null}
-          </div>
-        </div>
-        ) : (
-          <div className={preInquiryStyles.paths}>
-            {PRE_INQUIRY_ASSESSMENT_PATHS.map((path) => (
-              <ActionCard
-                key={path.id}
-                title={path.title}
-                description={path.description}
-                onClick={() => handleAssessmentPathChange(path.id)}
-              />
-            ))}
-          </div>
-        )}
-
-        {assessmentPathChosen ? (
-        <>
-        <div>
-          <div>
-            <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.concerns_about", "Kelle kohta pöördumine käib")}</span>
-            <DocumentsDropdown
-              ariaLabel={readText(t, "workspace_feature_pages.pre_inquiries.fields.concerns_about", "Kelle kohta pöördumine käib")}
-              portal
-              value={normalizedAssessmentState.subject.concernsAbout}
-              onChange={(value) => updateAssessmentSubject("concernsAbout", value)}
-              options={PRE_INQUIRY_SUBJECT_OPTIONS.map((option) => ({ value: option, label: option }))}
-            />
-          </div>
-          <div>
-            <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.urgency", "Kiireloomulisus")}</span>
-            <DocumentsDropdown
-              ariaLabel={readText(t, "workspace_feature_pages.pre_inquiries.fields.urgency", "Kiireloomulisus")}
-              portal
-              value={normalizedAssessmentState.subject.urgency}
-              onChange={(value) => updateAssessmentSubject("urgency", value)}
-              options={PRE_INQUIRY_URGENCY_OPTIONS.map((option) => ({ value: option, label: option }))}
-            />
-          </div>
-          <div>
-            <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.consent", "Nõusolek või pöördumise alus")}</span>
-            <DocumentsDropdown
-              ariaLabel={readText(t, "workspace_feature_pages.pre_inquiries.fields.consent", "Nõusolek või pöördumise alus")}
-              portal
-              value={normalizedAssessmentState.subject.consentStatus}
-              onChange={(value) => updateAssessmentSubject("consentStatus", value)}
-              options={PRE_INQUIRY_CONSENT_OPTIONS.map((option) => ({ value: option, label: option }))}
-            />
-          </div>
-          <Label>
-            <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.municipality", "KOV või piirkond")}</span>
-            <ServiceProfileInput
-              value={normalizedAssessmentState.subject.municipalityText}
-              onChange={(event) => updateAssessmentSubject("municipalityText", event.target.value)}
-              maxLength={180}
-              placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.municipality", "Näiteks Tallinn, Põltsamaa vald või piirkond")}
-            />
-          </Label>
-        </div>
-
-        {normalizedAssessmentState.riskGate.userVisibleMessage ? (
-          <p>
-            {normalizedAssessmentState.riskGate.userVisibleMessage}
-          </p>
-        ) : null}
-        {normalizedAssessmentState.subject.concernsAbout === "Lapse või noore kohta" && normalizedAssessmentState.path !== "QUICK_DESCRIPTION" ? (
-          <p>
-            {readText(t, "workspace_feature_pages.pre_inquiries.assessment.child_note", "See eelkaardistus lähtub praegu täisealise inimese eluvaldkondade põhiküsimustest. Lapse või noore olukorra puhul kirjelda mure kindlasti ka oma sõnadega; eraldi lapse ja pere eelkaardistus vajab oma küsimustikku.")}
-          </p>
-        ) : null}
-
-        <Label>
-          <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.situation", "Olukorra kirjeldus inimese sõnadega")}</span>
-          <ServiceProfileTextarea
-            value={situation}
-            onChange={(event) => {
-              setSituation(event.target.value);
-              setDraftTouched(false);
-            }}
-            maxLength={12000}
-            placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.situation", "Kirjelda lühidalt, mis olukord vajab abi. Teenuse nime ei pea teadma.")}
-          />
-        </Label>
-
-        {normalizedAssessmentState.path !== "QUICK_DESCRIPTION" ? (
-          <details>
-            <summary>{readText(t, "workspace_feature_pages.pre_inquiries.assessment.domains_title", "Eluvaldkonnad")}</summary>
-            <div>
-            {PRE_INQUIRY_DOMAIN_DEFINITIONS.map((definition) => {
-              const domain = normalizedAssessmentState.domains.find((item) => item.id === definition.id) || {};
-              return (
-                <div key={definition.id}>
-                  <div>
-                    <h4>{definition.title}</h4>
-                    <p>{definition.helperText}</p>
-                  </div>
-                  <div>
-                    {definition.primaryQuestions.map((primaryQuestion) => {
-                      const primaryAnswer = domain.primaryAnswers?.find((answer) => answer.id === primaryQuestion.id) || {};
-                      const followUpQuestions = getPreInquiryQuestionFollowUpQuestions(
-                        primaryQuestion,
-                        normalizedAssessmentState.path,
-                        primaryAnswer.screenAnswer
-                      );
-                      return (
-                        <div key={primaryQuestion.id}>
-                          <div>
-                            <p>{primaryQuestion.title}</p>
-                            <p>{primaryQuestion.question}</p>
-                          </div>
-                          <div>
-                            {PRE_INQUIRY_SCREEN_OPTIONS.map((option) => (
-                              <OptionCard
-                                key={option.value}
-                                type="radio"
-                                name={`pre-inquiry-question-${definition.id}-${primaryQuestion.id}`}
-                                value={option.value}
-                                checked={primaryAnswer.screenAnswer === option.value}
-                                onChange={() => updatePrimaryQuestionAnswer(definition.id, primaryQuestion.id, option.value)}
-                                fitTextLines={2}
-                              >
-                                <span>{option.label}</span>
-                              </OptionCard>
-                            ))}
-                          </div>
-                          {followUpQuestions.length ? (
-                            <div>
-                              {followUpQuestions.map((question) => (
-                                <Label key={question}>
-                                  <span>{question}</span>
-                                  <ServiceProfileTextarea
-                                    value={primaryAnswer.followUpAnswers?.[question] || ""}
-                                    onChange={(event) => updatePrimaryQuestionFollowUpAnswer(definition.id, primaryQuestion.id, question, event.target.value)}
-                                    maxLength={2000}
-                                    placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.follow_up", "Vasta oma sõnadega. Võid jätta tühjaks, kui ei tea.")}
-                                  />
-                                </Label>
-                              ))}
-                            </div>
-                          ) : null}
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              );
-            })}
-            </div>
-          </details>
-        ) : null}
-
-        <details>
-          <summary>{readText(t, "workspace_feature_pages.pre_inquiries.assessment.extra_details", "Lisainfo ja taust")}</summary>
-          <div>
-          <Label>
-            <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.existing_support", "Olemasolev abi")}</span>
-            <ServiceProfileTextarea
-              value={normalizedAssessmentState.supportContext.existingSupport}
-              onChange={(event) => updateAssessmentSupport("existingSupport", event.target.value)}
-              maxLength={4000}
-              placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.existing_support", "Kes või mis praegu aitab?")}
-            />
-          </Label>
-          <Label>
-            <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.support_adequacy", "Kas abist piisab")}</span>
-            <ServiceProfileTextarea
-              value={normalizedAssessmentState.supportContext.supportAdequacy}
-              onChange={(event) => updateAssessmentSupport("supportAdequacy", event.target.value)}
-              maxLength={180}
-              placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.support_adequacy", "Näiteks piisab, ei piisa või abistaja on ülekoormatud")}
-            />
-          </Label>
-          <Label>
-            <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.person_wish", "Inimese enda soov")}</span>
-            <ServiceProfileTextarea
-              value={normalizedAssessmentState.supportContext.personWish}
-              onChange={(event) => updateAssessmentSupport("personWish", event.target.value)}
-              maxLength={4000}
-              placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.person_wish", "Mida inimene ise kõige rohkem soovib?")}
-            />
-          </Label>
-          </div>
-        </details>
-        </>
-        ) : null}
-      </SectionCard>
-
-      <div>
-        <Button type="button" size="sm" variant="primary" onClick={() => setActiveWorkflowStep("review")}>
-          {readText(t, "workspace_feature_pages.pre_inquiries.sections.assessment_review", "Vaata eelinfo üle")}
-        </Button>
-        <Button type="button" size="sm" onClick={() => setActiveWorkflowStep("recipient")}>
-          {readText(t, "workspace_feature_pages.pre_inquiries.actions.choose_recipient", "Vali adressaat")}
-        </Button>
-      </div>
-      </>
-      ) : null}
-
-      <details open style={{ display: activeWorkflowStep === "review" ? undefined : "none" }}>
-        <summary>{readText(t, "workspace_feature_pages.pre_inquiries.sections.assessment_review", "Vaata eelinfo üle")}</summary>
-      <PreInquiryAssessmentReviewSection
-        t={t}
-        title={readText(t, "workspace_feature_pages.pre_inquiries.sections.assessment_review", "Vaata eelinfo üle")}
-        review={assessmentReview}
-        situation={effectiveSituation}
-        note={readText(t, "workspace_feature_pages.pre_inquiries.assessment.review_note", "Ülevaade koondab täpselt need eelkaardistuse vastused ja täpsustused, mis lähevad salvestatud eelpöördumise ning allalaaditava eelinfo juurde.")}
-      />
-      </details>
-      <details
-        className="pre-inquiry-assistant-panel"
-        open
-        style={{ display: activeWorkflowStep === "collect" ? undefined : "none" }}
+      {/* Vaadete loend muutub, kui inimene valib teise viisi (eluvaldkonnad
+          lisanduvad või kaovad) või jätkab Teekonnast: siis ehitatakse lava
+          uuesti ja ta avaneb samal vaatel, kus inimene parajasti oli. */}
+      <StepFlight
+        key={flowKeys.join("|")}
+        label={tr("views.flow_label", "Eelpöördumine")}
+        steps={preInquirySteps}
+        initialIndex={Math.max(0, flowKeys.indexOf(activeWorkflowStep))}
+        activeKey={activeWorkflowStep}
+        onStepChange={(index, step) => {
+          if (step) setActiveWorkflowStep(step.key);
+        }}
       >
-        <summary>{readText(t, "workspace_feature_pages.pre_inquiries.sections.assistant", "Täpsusta eelinfot")}</summary>
-      <SectionCard flat={embedded} title="Aita pöördumist selgemaks teha">
-        <div>
-          <div>
-            <div>
-              <ConversationView
-                t={t}
-                chatWindowRef={chatWindowRef}
-                isStreamingAny={assisting}
-                hiddenCount={0}
-                pageSize={0}
-                onRevealOlder={() => {}}
-                canHideOlder={false}
-                onHideOlder={() => {}}
-                onJumpToBottom={() => {}}
-                messageItems={conversationItems}
-                mainClassName="documents-agent-conversation-main"
-                windowClassName="documents-agent-conversation-window"
-                isMobile={false}
-                isLightTheme
-              />
-            </div>
-
-            <div>
-              <div>
-                <ChatComposer
-                  t={t}
-                  locale={locale}
-                  isLightTheme
-                  hideTools
-                  embedded
-                  forcePlaceholderVisible
-                  placeholderText=""
-                  acceptAttr=""
-                  ensureAnalysisPanelVisible={() => {}}
-                  fileInputRef={fileInputRef}
-                  onFileChange={() => {}}
-                  inputBarRef={inputBarRef}
-                  inputRef={inputRef}
-                  onFocusInput={() => setInputFocused(true)}
-                  onBlurInput={() => setInputFocused(false)}
-                  isGenerating={assisting}
-                  isStreamingAny={false}
-                  isRoomMode={false}
-                  roomBlocked={false}
-                  roomAuthRequired={false}
-                  onStop={() => {}}
-                  onSend={handleComposerSend}
-                  voiceEnabled={false}
-                  showDictationButton={false}
-                  recording={false}
-                  recordingPulse={false}
-                  handleMic={() => {}}
-                  draftApiRef={composerDraftApiRef}
-                  inputFocused={inputFocused}
-                  isMobile={false}
-                  activeModeKey="pre_inquiry"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {activeRole === "SOCIAL_WORKER" ? (
-          <div>
-            <Checkbox
-              checked={acceptsPreInquiries}
-              onChange={(value) => setAcceptsPreInquiries(Boolean(value))}
-              label={
-                <span className={receivingCheckboxLabelClassName}>
-                  {readText(t, "workspace_feature_pages.pre_inquiries.receiving.accepts_platform", "Võtan eelpöördumisi platvormil vastu")}
-                </span>
-              }
-            />
-            <p>
-              {isAdmin
-                ? readText(t, "workspace_feature_pages.pre_inquiries.receiving.admin_note", "Admini testvaade; salvestus käib ainult sinu kontole.")
-                : readText(t, "workspace_feature_pages.pre_inquiries.receiving.note", "Lubab sinu kontole adresseeritud eelpöördumised platvormis vastu võtta.")}
-            </p>
-            <Button type="button" size="sm" disabled={savingPreferences} onClick={handleSavePreferences}>
-              {savingPreferences
-                ? readText(t, "workspace_feature_pages.pre_inquiries.actions.saving", "Salvestan...")
-                : readText(t, "workspace_feature_pages.pre_inquiries.actions.save_preferences", "Salvesta vastuvõtt")}
-            </Button>
-          </div>
-        ) : null}
-      </SectionCard>
-      </details>
-
-      <div style={{ display: activeWorkflowStep === "recipient" || activeWorkflowStep === "preview" ? undefined : "none" }}>
-      {activeWorkflowStep === "recipient" ? (
-      <SectionCard flat={embedded} title={readText(t, "workspace_feature_pages.pre_inquiries.sections.recipient", "Sobivad kontaktid")}>
-        <p className={bodyTextClassName}>
-          {readText(t, "workspace_feature_pages.pre_inquiries.recipients_lead", "Kontaktid tulevad teenusekaardi struktureeritud andmekihist pärast seda, kui olukord, piirkond ja soovitud pöördumise suund on piisavalt selged. Sotsiaal.pro ei ole selles nimekirjas eelpöördumise adressaat.")}
-        </p>
-        <div>
-          <div role="group" aria-label={readText(t, "workspace_feature_pages.pre_inquiries.fields.recipient_type", "Adressaadi tüüp")}>
-            {[
-              ["KOV_CONTACT", readText(t, "workspace_feature_pages.pre_inquiries.recipient.kov", "KOV kontakt")],
-              ["ORGANIZATION_INBOX", readText(t, "workspace_feature_pages.pre_inquiries.recipient.organization_inbox", "Organisatsiooni vastuvõtutiim")],
-              ["SERVICE_PROVIDER", readText(t, "workspace_feature_pages.pre_inquiries.recipient.provider", "Teenuseosutaja")]
-            ].map(([value, label]) => (
-              <OptionCard
-                key={value}
-                type="checkbox"
-                name="pre-inquiry-recipient-type"
-                value={value}
-                checked={recipientType === value}
-                showIndicator={false}
-                onChange={() => {
-                  setRecipientType((current) => current === value ? "" : value);
-                  setSelectedRecipientId("");
-                  setSelectedProviderServiceId("");
-                  setSelectedProviderLocationId("");
-                  setShowMoreContacts(false);
-                  setDraftTouched(false);
-                }}
-                fitTextLines={2}
-              >
-                <span>{label}</span>
-              </OptionCard>
-            ))}
-          </div>
-          <Label>
-            <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.recipient_search", "Otsi adressaati")}</span>
-            <ServiceProfileInput value={recipientQuery} onChange={(event) => setRecipientQuery(event.target.value)} placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.recipient", "KOV kontakt, organisatsiooni vastuvõtutiim, teenuseosutaja või piirkond")} />
-          </Label>
-        </div>
-        {assistantRoutingConfidence ? (
-          <div>
-            <p>
-              {readText(t, "workspace_feature_pages.pre_inquiries.routing.confidence", "Kontaktisoovituse kindlus")}
-            </p>
-            <p>
-              {assistantRoutingConfidence.label || assistantRoutingConfidence.level}
-            </p>
-            {assistantRoutingConfidence.text ? (
-              <p>{assistantRoutingConfidence.text}</p>
-            ) : null}
-          </div>
-        ) : null}
-        <div>
-          {visibleRecommendedRecipients.length ? visibleRecommendedRecipients.map((entry) => {
-            const isSelectedRecipient = selectedRecipientId === entry.id;
-            return (
-              <article
-                key={entry.id}
-                className="pre-inquiry-recipient-card"
-                data-selected={isSelectedRecipient ? "true" : undefined}
-              >
-                <span>
-                  <span>{entry.title}</span>
-                  <span>
-                    {getPreInquiryRecipientTypeLabel(t, entry)}
-                  </span>
-                </span>
-                <span>{getPreInquiryRecipientSubtitle(t, entry)}</span>
-                <span>
-                  {getPreInquiryRecipientReason(entry)}
-                </span>
-                {entry.routingReason ? (
-                  <span>
-                    {entry.routingReason}
-                  </span>
-                ) : null}
-                {getPreInquiryRecipientRegion(entry) ? (
-                  <span>
-                    {getPreInquiryRecipientRegion(entry)}
-                  </span>
-                ) : null}
-                <span>
-                  {[
-                    getPreInquiryChannelLabel(t, entry.deliveryChannel),
-                    entry.email,
-                    entry.municipalityName || entry.county
-                  ].filter(Boolean).join(" · ")}
-                </span>
-                {isSelectedRecipient ? (
-                  <span>
-                    {readText(t, "workspace_feature_pages.pre_inquiries.recipient.selected", "Valitud kontakt")}
-                  </span>
-                ) : null}
-                {getPreInquiryReferralNotice(entry) ? (
-                  <span>
-                    {getPreInquiryReferralNotice(entry)}
-                  </span>
-                ) : null}
-                {preInquiryAvailabilityNotices(entry, t).map(({ service, presentation }) => (
-                  <span
-                    key={`${service.id || service.name}-availability`}
-                    className="pre-inquiry-recipient-card__availability"
-                    data-tone={presentation.tone}
-                    role="status"
-                  >
-                    {presentation.icon} {service.name}: {presentation.label}. {presentation.ageText}. {presentation.warning}
-                  </span>
-                ))}
-                <span>
-                  {entry.type === "SERVICE_PROVIDER" && Array.isArray(entry.serviceActions)
-                    ? entry.serviceActions.filter((action) => action.platformAllowed || action.emailAllowed).map((action) => (
-                        <Button key={action.providerServiceId} type="button" size="sm" onClick={() => handleSelectRecipient(entry, action)}>
-                          {readText(t, "workspace_feature_pages.pre_inquiries.actions.choose_contact", "Vali see kontakt")}: {action.name}
-                        </Button>
-                      ))
-                    : entry.type !== "SERVICE_PROVIDER" ? (
-                        <Button type="button" size="sm" onClick={() => handleSelectRecipient(entry)}>
-                          {readText(t, "workspace_feature_pages.pre_inquiries.actions.choose_contact", "Vali see kontakt")}
-                        </Button>
-                      ) : null}
-                  {entry.type !== "ORGANIZATION_INBOX" ? (
-                    <Button as="a" href={localizePath(`/teenusekaart?entryId=${encodeURIComponent(entry.id)}`, locale)} size="sm" variant="linkBrand">
-                      {readText(t, "workspace_feature_pages.pre_inquiries.actions.view_service_map", "Vaata teenusekaardil")}
-                    </Button>
-                  ) : null}
-                  {entry.providerProfileId ? (
-                    <Button as="a" href={localizePath(`/teenuseprofiil?profileId=${encodeURIComponent(entry.providerProfileId)}`, locale)} size="sm" variant="linkBrand">
-                      {readText(t, "workspace_feature_pages.pre_inquiries.actions.view_profile", "Vaata profiili")}
-                    </Button>
-                  ) : null}
-                </span>
-              </article>
-            );
-          }) : (
-            <p className={bodyTextClassName}>{readText(t, "workspace_feature_pages.pre_inquiries.recipients_hint", "Kontaktide soovitamiseks lisa vähemalt piirkond või KOV ning lühike olukorra kirjeldus.")}</p>
-          )}
-          {recommendedRecipients.length > 3 ? (
-            <Button type="button" size="sm" onClick={() => setShowMoreContacts((value) => !value)}>
-              {showMoreContacts
-                ? readText(t, "workspace_feature_pages.pre_inquiries.actions.show_less_contacts", "Näita vähem")
-                : readText(t, "workspace_feature_pages.pre_inquiries.actions.show_more_contacts", "Vaata rohkem kontakte")}
-            </Button>
-          ) : null}
-        </div>
-      </SectionCard>
-      ) : null}
-
-      <div className={cn(activeWorkflowStep !== "preview" && "hidden")}>
-      <SectionCard flat={embedded} title="Pöördumise eelvaade">
-        <Label>
-          <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.topic", "Teema")}</span>
-          <ServiceProfileInput maxLength={1000} value={topic} onChange={(event) => { setTopic(event.target.value); setDraftTouched(false); }} placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.topic", "Lühike pealkiri")} />
-          <small>{t("workspace_feature_pages.pre_inquiries.remaining_characters", { count: Math.max(0, 1000 - topic.length) })}</small>
-        </Label>
-        <ServiceProfileTextarea maxLength={12000} value={draft} onChange={(event) => { setDraft(event.target.value); setDraftTouched(true); }} placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.draft", "Koostatud pöördumise tekst")} />
-        <small>{t("workspace_feature_pages.pre_inquiries.remaining_characters", { count: Math.max(0, 12000 - draft.length) })}</small>
-        {activeDraftJourneySharedInfo ? (
-          <JourneySharedInfoBlock info={activeDraftJourneySharedInfo} t={t} audience={activeDraftJourneySharedInfoAudience} serviceLabel={selectedRecipient?.title || ""} />
-        ) : null}
-        {savePrivacyPrompt ? (
-          <div>
-            <p>
-              {savePrivacyPrompt.warning || readText(t, "privacy.confirmation.warning", "Tekst sisaldab isikuandmeid. Vali enne jatkamist, kuidas neid toodelda.")}
-            </p>
-            {savePrivacyPrompt.findings?.length ? (
-              <p>
-                {readText(t, "privacy.confirmation.detected", "Leitud:")}{" "}
-                {savePrivacyPrompt.findings.map((finding) => finding?.label).filter(Boolean).join(", ")}
-              </p>
-            ) : null}
-            {savePrivacyPrompt.redactedText ? (
-              <p>
-                {savePrivacyPrompt.redactedText}
-              </p>
-            ) : null}
-            <div>
-              <Button type="button" size="sm" variant="primary" onClick={handleEditSaveText}>
-                {readText(t, "privacy.confirmation.actions.edit", "Muudan teksti")}
-              </Button>
-              <Button type="button" size="sm" onClick={handleSaveRedacted} disabled={saving}>
-                {readText(t, "privacy.confirmation.actions.send_redacted", "Saada maskeeritult")}
-              </Button>
-              {savePrivacyPrompt.allowOriginal ? (
-                <Button type="button" size="sm" variant="primary" onClick={handleSaveOriginal} disabled={saving}>
-                  {readText(t, "privacy.confirmation.actions.send_original", "Saada siiski")}
-                </Button>
-              ) : null}
-            </div>
-          </div>
-        ) : null}
-        <div>
-          <p>{readText(t, "workspace_feature_pages.pre_inquiries.preview.no_auto_send", "Midagi ei saadeta automaatselt.")}</p>
-          <p>
-            {readText(t, "workspace_feature_pages.pre_inquiries.preview.check_note", "Enne kinnitamist kontrolli adressaati, saatmise viisi, pöördumise teksti ja eelinfot. Platvormisisene pöördumine jõuab vastuvõtja Pöördumiste vaatesse; e-kirja tekst avaneb sinu e-posti rakenduses ülevaatamiseks.")}
-          </p>
-          {selectedRecipient ? (
-            <p>
-              {readText(t, "workspace_feature_pages.pre_inquiries.preview.recipient_prefix", "Adressaat")}: {selectedRecipient.title}. {readText(t, "workspace_feature_pages.pre_inquiries.preview.delivery_prefix", "Saatmise viis")}: {selectedRecipientSupportsPlatform ? readText(t, "workspace_feature_pages.pre_inquiries.preview.delivery_platform", "platvormisisene eelpöördumine") : selectedRecipientSupportsEmail ? readText(t, "workspace_feature_pages.pre_inquiries.preview.delivery_email", "e-kirja tekst") : readText(t, "workspace_feature_pages.pre_inquiries.preview.delivery_manual", "salvestamine, kopeerimine või allalaadimine")}.
-            </p>
-          ) : null}
-          {selectedRecipientReferralNotice ? (
-            <p>{selectedRecipientReferralNotice} {readText(t, "workspace_feature_pages.pre_inquiries.preview.referral_hint", "Sa saad teenuseosutajalt küsida lisainfot või pöörduda KOV-i poole.")}</p>
-          ) : null}
-          {selectedRecipientAvailabilityNotices.map(({ service, presentation }) => (
-            <p key={`${service.id || service.name}-preview-availability`} role="status">
-              {presentation.icon} {service.name}: {presentation.label}. {presentation.ageText}. {presentation.warning}
-            </p>
-          ))}
-        </div>
-        <div>
-          {activeInquiryMailto || selectedRecipientMailto ? (
-            <Button as="a" href={activeInquiryMailto || selectedRecipientMailto} size="sm">
-              {readText(t, "workspace_feature_pages.pre_inquiries.actions.open_email", "Ava e-kirjana")}
-            </Button>
-          ) : null}
-          {activeInquiryMailto && activeInquiry.status !== "SENT" ? (
-            <Button type="button" size="sm" disabled={saving} onClick={() => handleConfirmExternalSent(activeInquiry)}>
-              {readText(t, "workspace_feature_pages.pre_inquiries.actions.confirm_external_sent", "Kinnita, et saatsid e-kirja")}
-            </Button>
-          ) : null}
-          <Button type="button" size="sm" disabled={saving || !effectiveSituation.trim() || activeInquiry?.status === "ARCHIVED"} onClick={handleSave}>
-            {saving
-              ? readText(t, "workspace_feature_pages.pre_inquiries.actions.saving", "Salvestan...")
-              : readText(t, "workspace_feature_pages.pre_inquiries.actions.save", "Salvesta eelpöördumine")}
-          </Button>
-          {selectedRecipientId && selectedRecipientSupportsPlatform ? (
-            <Button type="button" size="sm" disabled={saving || !effectiveSituation.trim() || activeInquiry?.status === "ARCHIVED"} onClick={(event) => handleSave(event, { status: "SENT" })}>
-              {saving
-                ? readText(t, "workspace_feature_pages.pre_inquiries.actions.saving", "Salvestan...")
-                : readText(t, "workspace_feature_pages.pre_inquiries.actions.send_internal", "Saada platvormis")}
-            </Button>
-          ) : null}
-          <Button type="button" size="sm" disabled={!draft.trim()} onClick={handleCopy}>{readText(t, "workspace_feature_pages.pre_inquiries.actions.copy", "Kopeeri tekst")}</Button>
-          <Button type="button" size="sm" disabled={!draft.trim() && !effectiveSituation.trim()} onClick={handleDownload}>{readText(t, "workspace_feature_pages.pre_inquiries.actions.download", "Laadi alla")}</Button>
-        </div>
-      </SectionCard>
-      </div>
-      </div>
-
-      {/* COLLAB-P4: saabuv võrgustikujagamine on saaja jaoks sama kujuga mis
-          saabuv eelpöördumine — samal laual, mitte teises postkastis. Komponent
-          ei renderda midagi, kui jagamisi ei ole. */}
-      {showReceivedInquiries ? <NetworkShareInbox /> : null}
-
-      {showReceivedInquiries ? (
-        <SectionCard flat={embedded} title={readText(t, "workspace_feature_pages.pre_inquiries.sections.received", "Saabunud eelpöördumised")}>
-          <div>
-            {receivedInquiries.length ? receivedInquiries.map((inquiry) => (
-              <article key={inquiry.id}>
-                <div>
-                  <h3>{inquiry.topic || readText(t, "workspace_feature_pages.pre_inquiries.untitled", "Pealkirjata")}</h3>
-                  <p>
-                    {[
-                      inquiry.author?.email || (inquiry.authorErasedAt
-                        ? readText(t, "workspace_feature_pages.pre_inquiries.deleted_author", "Kustutatud kasutaja pöördumine")
-                        : ""),
-                      inquiry.selectedRecipientName,
-                      formatDate(inquiry.updatedAt)
-                    ].filter(Boolean).join(" · ")}
-                  </p>
-                </div>
-                <div>
-                  <span>
-                    {getPreInquiryChannelLabel(t, inquiry.deliveryChannel)}
-                  </span>
-                  <Button type="button" size="sm" onClick={() => handleOpenInquiry(inquiry)}>
-                    {readText(t, "workspace_feature_pages.pre_inquiries.actions.open", "Ava")}
-                  </Button>
-                </div>
-              </article>
-            )) : (
-              <p className={bodyTextClassName}>{readText(t, "workspace_feature_pages.pre_inquiries.empty_received", "Sulle adresseeritud eelpöördumised ilmuvad siia, kui vastuvõtt on lubatud ja adressaat on kontoga seotud.")}</p>
-            )}
-          </div>
-        </SectionCard>
-      ) : null}
-
-      <SectionCard flat={embedded} className={cn(activeWorkflowStep !== "saved" && "hidden")} title={readText(t, "workspace_feature_pages.pre_inquiries.sections.saved", "Minu eelpöördumised")}>
-        <div>
-          {savedInquiries.length ? savedInquiries.map((inquiry) => (
-            <article key={inquiry.id}>
-              <div>
-                <h3>{inquiry.topic || readText(t, "workspace_feature_pages.pre_inquiries.untitled", "Pealkirjata")}</h3>
-                <p>
-                  {[
-                    inquiry.recipientOrganization?.displayName || inquiry.selectedRecipientName,
-                    inquiry.selectedRecipientEmail,
-                    inquiry.createdAt ? `loodud ${formatDate(inquiry.createdAt, locale)}` : "",
-                    inquiry.updatedAt ? `muudetud ${formatDate(inquiry.updatedAt, locale)}` : ""
-                  ].filter(Boolean).join(" · ")}
-                </p>
-              </div>
-              <div>
-                <span>
-                  {getPreInquiryStatusLabel(inquiry.status)}
-                </span>
-                <span>
-                  {getPreInquiryChannelLabel(t, inquiry.deliveryChannel)}
-                </span>
-                <Button type="button" size="sm" onClick={() => handleOpenInquiry(inquiry)}>
-                  {readText(t, "workspace_feature_pages.pre_inquiries.actions.open", "Ava")}
-                </Button>
-                {inquiry.status === "ARCHIVED" ? (
-                  <Button type="button" size="sm" variant="primary" disabled={saving} onClick={() => handleReopenAuthoredInquiry(inquiry)}>
-                    {readText(t, "workspace_feature_pages.pre_inquiries.actions.reopen", "Taasava muutmiseks")}
-                  </Button>
-                ) : inquiry.status !== "SENT" ? (
-                  <Button type="button" size="sm" variant="primary" onClick={() => handleOpenInquiry(inquiry)}>
-                    {readText(t, "workspace_feature_pages.pre_inquiries.actions.edit", "Muuda")}
-                  </Button>
-                ) : null}
-                <Button type="button" size="sm" variant="primary" onClick={() => navigator?.clipboard?.writeText(inquiry.userEditedDraft || inquiry.generatedDraft || inquiry.situation || "")}>
-                  {readText(t, "workspace_feature_pages.pre_inquiries.actions.copy_short", "Kopeeri")}
-                </Button>
-                <Button type="button" size="sm" variant="primary" onClick={() => handleDownloadSavedInquiry(inquiry)}>
-                  {readText(t, "workspace_feature_pages.pre_inquiries.actions.download", "Laadi alla")}
-                </Button>
-                <Button
-                  type="button"
-                  size="sm"
-                  variant="primary"
-                  disabled={saving || inquiry.status === "SENT" || inquiry.status === "ARCHIVED"}
-                  onClick={() => handleArchiveAuthoredInquiry(inquiry)}
-                >
-                  {readText(t, "workspace_feature_pages.pre_inquiries.actions.archive", "Arhiveeri")}
-                </Button>
-              </div>
-            </article>
-          )) : (
-            <p className={bodyTextClassName}>{readText(t, "workspace_feature_pages.pre_inquiries.empty_saved", "Sul ei ole veel salvestatud eelpöördumisi.")}</p>
-          )}
-        </div>
-      </SectionCard>
-        </div>
-      </div>
+        {renderFlowView}
+      </StepFlight>
     </div>
   );
 }

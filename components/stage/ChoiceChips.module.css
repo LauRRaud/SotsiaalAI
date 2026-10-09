@@ -19,10 +19,14 @@
   color: var(--text-dim);
   font-size: var(--fs-small, 0.875rem);
 }
+/* Võrk on nii lai kui sisu vajab: lahtrid on pikima sildi laiused ja omavahel
+   ühelaiused, mitte paneeli kolmandikud. */
 .options {
   min-width: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 11.5rem), 1fr));
+  display: inline-grid;
+  justify-self: start;
+  max-width: 100%;
+  grid-template-columns: repeat(var(--choice-cols, 3), minmax(0, 1fr));
   gap: 0.4rem;
 }
 .option {
@@ -76,6 +80,8 @@
 
 @container (max-width: 40rem) {
   .options {
+    display: grid;
+    justify-self: stretch;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .option {
@@ -84,6 +90,8 @@
 }
 @media (max-width: 640px) {
   .options {
+    display: grid;
+    justify-self: stretch;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .option {

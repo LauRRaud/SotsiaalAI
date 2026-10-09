@@ -1,4 +1,4 @@
-/* StepPanel: sammu pealkiri, juhis, sisu ja tegevusrida all servas. */
+/* StepPanel: küsimus või juhis, sisu ja vaate enda tegevused all servas. */
 
 .panel {
   --step-gap: clamp(0.7rem, 1.6cqi, 1rem);
@@ -11,24 +11,12 @@
   display: grid;
   gap: 0.3rem;
 }
-/* Sammu pealkiri on lehe pealkirja mõõtu ja kaaluga (feature-pages.css
-   .glass-subpage-title): leht ise pealkirja ei kanna, selle nimi on kiirmenüüs. */
-.title {
+/* Nähtav küsimus paneeli ülaservas: sama kaal mis küsimuse sildil (ChoiceRow). */
+.question {
   margin: 0;
-  font-family: var(--font-display, inherit);
-  font-size: clamp(1.45rem, 1.15rem + 1.2cqi, 2rem);
-  font-weight: 500;
-  line-height: 1.12;
-  letter-spacing: -0.018em;
   color: var(--text-warm);
+  font-weight: 560;
   text-wrap: balance;
-}
-/* Pealkiri saab fookuse ainult programmist (sammu vahetusel), et ekraanilugeja
-   alustaks uuest sammust; rõngast siia ei joonistata. */
-.title:focus,
-.title:focus-visible {
-  outline: none;
-  box-shadow: none;
 }
 .lead {
   margin: 0;

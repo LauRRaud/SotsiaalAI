@@ -2428,9 +2428,33 @@
           "title": "Teekonna info",
           "short": "Teekond"
         },
-        "collect": {
-          "title": "Täpsusta eelinfot",
-          "short": "Eelinfo"
+        "path": {
+          "title": "Kirjeldamise viis",
+          "short": "Viis"
+        },
+        "situation": {
+          "title": "Olukord",
+          "short": "Olukord"
+        },
+        "who": {
+          "title": "Kelle kohta",
+          "short": "Kelle kohta"
+        },
+        "urgency": {
+          "title": "Kiireloomulisus",
+          "short": "Kiirus"
+        },
+        "domains": {
+          "title": "Eluvaldkonnad",
+          "short": "Valdkonnad"
+        },
+        "context": {
+          "title": "Taust",
+          "short": "Taust"
+        },
+        "assistant": {
+          "title": "Täpsusta abilisega",
+          "short": "Abiline"
         },
         "review": {
           "title": "Eelinfo ülevaade",
@@ -2440,16 +2464,96 @@
           "title": "Adressaat",
           "short": "Adressaat"
         },
-        "preview": {
-          "title": "Pöördumise eelvaade",
-          "short": "Eelvaade"
+        "text": {
+          "title": "Pöördumise tekst",
+          "short": "Tekst"
+        },
+        "send": {
+          "title": "Saatmine",
+          "short": "Saatmine"
         },
         "saved": {
           "title": "Minu eelpöördumised",
           "short": "Minu omad"
         }
       },
-      "new_confirm": "Uue alustamine tühjendab praeguse salvestamata teksti. Vajuta plussi uuesti, kui soovid alustada uut."
+      "new_confirm": "Uue alustamine tühjendab praeguse salvestamata teksti. Vajuta uuesti, kui soovid alustada uut.",
+      "views": {
+        "flow_label": "Eelpöördumine",
+        "path": {
+          "title": "Kuidas soovid olukorda kirjeldada?",
+          "lead": "See ei ole ametlik hindamine. Viisi saad hiljem muuta."
+        },
+        "situation": {
+          "title": "Olukord",
+          "lead": "Kirjelda oma sõnadega, mis toimub. Teenuse nime ei pea teadma.",
+          "municipality_placeholder": "Näiteks Põltsamaa vald"
+        },
+        "who": {
+          "title": "Kelle kohta"
+        },
+        "urgency": {
+          "question": "Kui kiire olukord on?"
+        },
+        "domains": {
+          "title": "Eluvaldkonnad",
+          "previous": "Eelmine küsimus",
+          "next": "Järgmine küsimus",
+          "all": "Kõik valdkonnad"
+        },
+        "context": {
+          "title": "Taust",
+          "lead": "Võid kõik tühjaks jätta. Täpsem taust säästab vastuvõtjat üle küsimast."
+        },
+        "journey": {
+          "title": "Mida Teekonnast kasutada"
+        },
+        "assistant": {
+          "title": "Täpsusta abilisega",
+          "lead": "Abiline küsib täpsustusi ja aitab leida sobiva kontakti. Selle sammu võid vahele jätta."
+        },
+        "review": {
+          "missing": "Lisamata",
+          "all_answers": "Kõik vastused"
+        },
+        "recipient": {
+          "title": "Adressaat",
+          "lead": "Kontaktid tulevad teenusekaardilt. Vali, kellele pöördumine läheb; Sotsiaal.pro ise ei ole adressaat."
+        },
+        "text": {
+          "title": "Pöördumise tekst",
+          "lead": "Loe üle ja muuda. Seda teksti näeb vastuvõtja.",
+          "draft": "Tekst"
+        },
+        "send": {
+          "title": "Saatmine",
+          "internal_hint": "Pöördumine jõuab vastuvõtja Pöördumiste vaatesse. Näed siin, kui see on vastu võetud.",
+          "email_hint": "Tekst avaneb sinu e-posti rakenduses ülevaatamiseks. Platvorm ise e-kirja ei saada.",
+          "confirm_hint": "Märgib pöördumise saadetuks. Vastuvõttu platvorm e-kirja puhul ei näe.",
+          "save_hint": "Jääb sinu eelpöördumiste alla. Midagi ei saadeta.",
+          "copy_hint": "Pöördumise tekst lõikelauale, et kleepida see sinna, kus vaja.",
+          "download_hint": "Tekstifail koos eelinfoga sinu seadmesse.",
+          "no_recipient": "Adressaat on valimata. Saad pöördumise salvestada, kopeerida või alla laadida.",
+          "check_note": "Enne saatmist kontrolli adressaati, teksti ja eelinfot."
+        },
+        "saved": {
+          "more": "Veel",
+          "less": "Vähem",
+          "changed": "muudetud"
+        }
+      },
+      "sender_state": {
+        "draft": "koostamisel",
+        "ready": "salvestatud, saatmata",
+        "downloaded": "alla laaditud",
+        "sent_waiting": "saadetud, ootab vastuvõtmist ({days}. päev)",
+        "accepted": "vastu võetud {date}",
+        "answered": "vastuvõtja on vastanud",
+        "sent_external": "saadetud e-kirjaga, vastuvõtt teadmata",
+        "recalled": "tagasi võetud",
+        "replaced": "asendatud parandusega",
+        "archived": "arhiveeritud"
+      }
     },
     "service_map": {
       "title": "Teenusekaart",
@@ -8224,8 +8328,6 @@
       }
     },
     "flow": {
-      "progress": "{done}/{total} vastatud",
-      "next_to": "Edasi: {label}",
       "privacy": "Sisestus on privaatne. Seda ei jagata ilma sinu kinnituseta.",
       "summary": {
         "questions_empty": "{total} küsimust, igaüks ühe puudutusega.",
@@ -8249,7 +8351,6 @@
         "lead": "Vaikimisi jääb kõik privaatseks. Tuge küsid siis, kui ise soovid."
       },
       "leads": {
-        "choose_one": "Vali igale küsimusele üks vastus.",
         "mark_all": "Märgi kõik, mis kehtivad. Võid ka tühjaks jätta.",
         "general_text": "Kirjelda üldistatult. Ära kirjuta nimesid ega detaile, mille järgi inimest saab ära tunda.",
         "own_words": "Sõnasta oma sõnadega. Tühjaks jäetud koha kohta jääb mustandisse meeldetuletus."
@@ -11591,6 +11692,7 @@
   "stage": {
     "rail_label": "Sammud",
     "all_steps": "Kõik sammud",
-    "step_position": "Samm {current}/{total}: {label}"
+    "step_position": "Samm {current}/{total}: {label}",
+    "next_step": "Järgmine samm"
   }
 }

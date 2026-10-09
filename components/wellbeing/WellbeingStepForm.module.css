@@ -7,10 +7,23 @@
 }
 /* Märkekaardid kõrvuti, et kolm kaarti ei oleks kolm täislaiuses riba. */
 .checks {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  display: inline-grid;
+  max-width: 100%;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.5rem;
   padding-block: 0.4rem;
+}
+@container (max-width: 40rem) {
+  .checks {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .checks {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 .checks > div {
   display: grid;
@@ -143,12 +156,12 @@
   mask-image: linear-gradient(#000 55%, transparent);
 }
 .outputToggle {
-  width: 100%;
+  width: auto;
   min-height: 2.5rem;
-  padding: 0 1rem;
+  margin: 0 0.4rem 0.4rem;
+  padding: 0 0.6rem;
   border: 0;
-  border-top: 1px solid var(--glass-cell-border);
-  border-radius: 0 0 1rem 1rem;
+  border-radius: 0.6rem;
   background: none;
   box-shadow: none;
   color: var(--text-warm);

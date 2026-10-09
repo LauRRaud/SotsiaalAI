@@ -7,7 +7,8 @@
  * variandid on kohe näha ja vastamiseks piisab ühest vajutusest.
  *
  * Kaks paigutust, mõlemas on variandid ÜHELAIUSED lahtrid (mitte eri pikkusega
- * nupud, mis murduvad suvaliselt):
+ * nupud, mis murduvad suvaliselt). Lahter on nii lai kui küsimuse pikim silt,
+ * mitte paneeli laiune: lühikesi vastuseid ei venitata üle terve akna.
  *  - `layout="scale"`: silt vasakul, lühikese skaala lahtrid paremal ühes reas.
  *    Mitu sellist rida üksteise all annavad tabeli, kus veerud on kohakuti.
  *  - `layout="stack"` (vaikimisi): küsimus üleval, variandid selle all võrgus.
@@ -57,8 +58,7 @@ export default function ChoiceRow({
     <div
       className={styles.row}
       data-layout={layout}
-      data-cols={columns || undefined}
-      style={{ "--choice-count": options.length, "--choice-cols": columns || undefined }}
+      style={{ "--choice-count": options.length, "--choice-cols": columns || Math.min(options.length, 3) }}
       role="radiogroup"
       aria-labelledby={labelId}
       ref={groupRef}

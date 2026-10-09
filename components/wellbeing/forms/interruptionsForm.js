@@ -19,7 +19,6 @@ export const interruptionsForm = {
       key: "class",
       title: "Katkestuse liik",
       short: "Liik",
-      lead: flowLead("choose_one"),
       fields: enumFields(selectFields, ["interruptionClass"])
     },
     {

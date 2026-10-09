@@ -7,7 +7,7 @@
 import { buildRoleBoundariesRecord } from "@/lib/wellbeing/roleBoundaries";
 
 import { selectFields, signalCopy } from "./data/roleBoundariesData.js";
-import { checkField, enumFields, flowLead, formText, output, signals } from "./helpers.js";
+import { checkField, enumFields, formText, output, signals } from "./helpers.js";
 
 export const roleBoundariesForm = {
   workflowType: "role-boundaries",
@@ -19,7 +19,6 @@ export const roleBoundariesForm = {
       key: "expectation",
       title: ["wellbeing.role_boundaries.expectation", "Ootus ja roll"],
       short: "Ootus",
-      lead: flowLead("choose_one"),
       fields: enumFields(selectFields, ["expectationSource", "expectedAction"])
     },
     {

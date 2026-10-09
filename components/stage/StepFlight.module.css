@@ -1,4 +1,4 @@
-/* StepFlight: lennulava, „Keri" vihje ja „Kõik sammud". Vaata StepFlight.jsx. */
+/* StepFlight: lennulava ja „Kõik sammud". Vaata StepFlight.jsx. */
 
 .root {
   min-width: 0;
@@ -6,11 +6,7 @@
   gap: 0.5rem;
 }
 
-/* Sammuriba ise elab kiirmenüüs (StepRail). Siin on ainult „Kõik sammud" lüliti
-   kuju ja telefonis lehe nimi sammu kohal. */
-.wideToggle[data-on="1"] {
-  padding: 0;
-}
+/* Samm ise on kiirmenüüs (StepRail). Siin on telefoni jaoks rida sammu kohal. */
 .kicker {
   display: none;
   margin: 0;
@@ -25,7 +21,6 @@
     display: block;
   }
 }
-
 /* --- Lava: jaamad sügavuses (flight-effect.md §3) ----------------------- */
 .stage {
   /* Lava lõikab üle ääre ulatuva ära (vt allpool). Et servas oleva nupu
@@ -95,42 +90,6 @@
   transition: opacity 260ms var(--ease-soft);
 }
 
-/* --- „Keri" vihje ----------------------------------------------------------
-   Samad sügavusse taanduvad raamid mis avalehel ja ligipääsetavuse vaates
-   (room.css .scroll-frames), väiksemana. Seisab tegevusrea keskel: vasakul on
-   seal märge, paremal „Edasi". Kitsal ekraanil ruumi ei ole ja vihjet ei näita;
-   seal on sammud kiirmenüüs ja „Edasi" nupp käe all. */
-.hint {
-  position: absolute;
-  left: 50%;
-  bottom: calc(var(--step-bleed) + 0.1rem);
-  z-index: 2;
-  translate: -50% 0;
-  display: flex;
-  align-items: center;
-  gap: 0.15rem;
-  pointer-events: none;
-}
-.hint :global(.scroll-frames) {
-  scale: 0.5;
-  margin: -0.5rem -0.6rem;
-}
-.hintLabel {
-  color: var(--text-dim);
-  font-size: 0.74rem;
-  font-weight: 560;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-@media (max-width: 640px) {
-  .hint {
-    display: none;
-  }
-}
-:global(html[data-reduce-motion="1"]) .hint :global(.scroll-frames) {
-  display: none;
-}
-
 /* --- Kõik sammud: lai vaade --------------------------------------------- */
 .overview {
   list-style: none;
@@ -185,7 +144,8 @@
 .tileTop {
   min-width: 0;
   display: flex;
-  align-items: center;
+  /* Number on rõngata tekst: kahe rea pealkirja kõrval seisab see esimese rea joonel. */
+  align-items: baseline;
   gap: 0.55rem;
 }
 .tileTitle {

@@ -19,7 +19,6 @@ export const hardCaseForm = {
       key: "situation",
       title: "Juhtum ja roll",
       short: "Juhtum",
-      lead: flowLead("choose_one"),
       fields: enumFields(selectFields, ["caseType", "professionalRole"])
     },
     {

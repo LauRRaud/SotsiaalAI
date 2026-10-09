@@ -12,8 +12,8 @@
  * eri sügavustel, kaamera lendab nende vahel, vähendatud liikumisel ristsulandus).
  * Uut 3D-süsteemi siin ei ole.
  *
- * SAMMURIBA ei ole klaaspaneeli sees: sammud seisavad all kiirmenüüs lehe nime
- * kõrval (`StepRail`, `DockSteps`). Paneel on ainult sisu jaoks.
+ * SAMM ON KIIRMENÜÜS, mitte klaaspaneeli sees: all kiirmenüüs lehe nime kõrval
+ * (`StepRail`, `DockSteps`). Paneel on ainult sisu jaoks.
  *
  * KERIMINE VAHETAB SISU KOHAPEAL. Sammud on tehtud nii, et üks samm mahub
  * paneeli ära; siis viib sisse kerimine järgmise sammu juurde ja välja kerimine
@@ -22,16 +22,29 @@
  * samm vahetub alles lõpus.
  *
  * PANEEL EI HÜPLE. Lava hoiab kõigil sammudel sama kõrgust (kõrgeima sammu
- * oma, kuni see paneeli mahub), nii et pealkiri ja „Edasi" on igal sammul
- * samas kohas (`StepPanel` kinnitab tegevusrea alla).
+ * oma, kuni see paneeli mahub).
+ *
+ * EDASI LIIGUTAKSE KIIRMENÜÜST. Paneelis ei ole „Edasi" nuppu ega kerimise
+ * vihjet (omanik 09.10: need klaaskasti juurde ei sobi). Kiirmenüüs on
+ * „3/12 sammu nimi" ja nool „Järgmine samm", mis süttib, kui ees olev samm on
+ * tehtud. Sammude rida seal ei seisa (see venitas kiirmenüü liiga pikaks):
+ * vajutus sammu nimele avab kõik sammud kiirmenüüs ja valik tõmbab selle
+ * tagasi lühikeseks. Leht võib ka ise edasi viia (`flight.next()`), kui vaade
+ * sai vastatud.
  *
  * KASUTUS.
  *   <StepFlight label="Kiirkontrolli sammud" steps={steps}>
  *     {(step, index, flight) => <StepPanel …>…</StepPanel>}
  *   </StepFlight>
- * `steps`: [{ key, label, short?, state?: "empty" | "partial" | "done", summary? }]
- *   (`state` on numbriringi täide, `summary` üks-kaks rida vaates „Kõik sammud")
+ * `steps`: [{ key, label, short?, state?: "empty" | "partial" | "done", summary?, free? }]
+ *   (`state` on sammu numbri heledus, `summary` üks-kaks rida vaates „Kõik sammud",
+ *   `free` märgib vaate, mis võib olla pikk ja mille järgi ühist kõrgust ei võeta)
  * `flight`: { index, count, isActive, goTo(index), next(), prev() }
+ *
+ * JUHITUD KASUTUS. Kui lehe enda olek otsustab, milline samm on ees (nt pärast
+ * salvestamist „mine eelvaatesse"), anna `activeKey` (sammu võti) ja kuula
+ * `onStepChange(index, step)`. Võtme muutus lennutab selle sammu juurde;
+ * kerimine ja kiirmenüü teatavad uuest sammust tagasi.
  *
  * Kujundus: StepFlight.module.css (selle faili kõrval).
  */
@@ -42,6 +55,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import useStationFlight from "@/components/register/useStationFlight";
 import { usePanelInfoView } from "@/components/ui/PanelInfoSlot";
 
+import { ancestorCanScroll, isTypingTarget } from "./scroll";
 import StepRail, { StepNumber } from "./StepRail";
 import styles from "./StepFlight.module.css";
 
@@ -53,22 +67,6 @@ const FLIGHT_COOLDOWN_MS = 560;
 const SETTLE_AFTER_SCROLL_MS = 280;
 const WHEEL_INTENT = 48;
 const SWIPE_MIN = 56;
-
-/** Kas mõni kerivkast sihtmärgi ja dokumendi vahel saab selles suunas veel kerida? */
-function ancestorCanScroll(start, delta) {
-  let node = start instanceof Element ? start : null;
-  while (node && node !== document.documentElement) {
-    if (node.scrollHeight > node.clientHeight + 1) {
-      const overflowY = window.getComputedStyle(node).overflowY;
-      if (overflowY === "auto" || overflowY === "scroll") {
-        if (delta < 0 && node.scrollTop > 0) return true;
-        if (delta > 0 && node.scrollTop + node.clientHeight < node.scrollHeight - 1) return true;
-      }
-    }
-    node = node.parentElement;
-  }
-  return false;
-}
 
 function closestScroller(start) {
   let node = start?.parentElement || null;
@@ -101,22 +99,7 @@ function naturalHeight(plane) {
   return height;
 }
 
-function isTypingTarget(target) {
-  return target instanceof Element && Boolean(target.closest("input, textarea, select, [contenteditable='true']"));
-}
-
-function WideIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinejoin="round" aria-hidden="true">
-      <rect x="4" y="4" width="6.5" height="6.5" rx="1.5" />
-      <rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5" />
-      <rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5" />
-      <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5" />
-    </svg>
-  );
-}
-
-export default function StepFlight({ steps, children, label, initialIndex = 0, onStepChange }) {
+export default function StepFlight({ steps, children, label, initialIndex = 0, activeKey, onStepChange }) {
   const { t } = useI18n();
   const count = steps.length;
   const { dollyRef, planeProps, activeIndex, mode, flyTo } = useStationFlight({
@@ -130,10 +113,6 @@ export default function StepFlight({ steps, children, label, initialIndex = 0, o
   });
   const [wide, setWide] = useState(false);
   const [stageHeight, setStageHeight] = useState(null);
-  /* „Keri" vihje on näha, kuni inimene on korra sammu vahetanud (sama reegel
-     mis keele ja ligipääsetavuse vaates): et oleks aru saada, et kerimine
-     vahetab siin sammu, mitte ei keri lehte. */
-  const [moved, setMoved] = useState(false);
   const infoOpen = usePanelInfoView().open;
 
   const rootRef = useRef(null);
@@ -167,13 +146,24 @@ export default function StepFlight({ steps, children, label, initialIndex = 0, o
     setWide(true);
   }, []);
 
+  /* Teatame sammu vahetusest ainult siis, kui samm päriselt vahetus: muidu
+     kirjutaks esimene joonistus lehe oleku üle. */
+  const reportedRef = useRef(activeIndex);
+  const stepsRef = useRef(steps);
+  stepsRef.current = steps;
   useEffect(() => {
-    onStepChange?.(activeIndex);
+    if (reportedRef.current === activeIndex) return;
+    reportedRef.current = activeIndex;
+    onStepChange?.(activeIndex, stepsRef.current[activeIndex]);
   }, [activeIndex, onStepChange]);
 
+  /* Lehe olek juhib sammu: võtme muutus lennutab selle sammu juurde. */
   useEffect(() => {
-    if (activeIndex !== initialIndex || wide) setMoved(true);
-  }, [activeIndex, initialIndex, wide]);
+    if (activeKey === undefined || activeKey === null) return;
+    const index = stepsRef.current.findIndex((step) => step.key === activeKey);
+    if (index < 0 || (index === activeRef.current && !wideRef.current)) return;
+    goTo(index, { user: true, arrive: true });
+  }, [activeKey, goTo]);
 
   /* Lava kõrgus. Jaamad on absoluutselt paigutatud ega anna lavale ise
      kõrgust, seega mõõdame. Lava on nii kõrge kui kõrgeim samm (et paneel sammu
@@ -186,8 +176,11 @@ export default function StepFlight({ steps, children, label, initialIndex = 0, o
     const apply = () => {
       const active = planesRef.current.get(activeRef.current);
       if (!active) return;
+      /* Ühine kõrgus tuleb tavalistest vaadetest. Vaade, mis võib olla pikk
+         (loend, lugemine; kirjelduses `free`), ei tee teisi enda kõrguseks. */
       let tallest = 0;
-      planesRef.current.forEach((plane) => {
+      planesRef.current.forEach((plane, index) => {
+        if (stepsRef.current[index]?.free) return;
         tallest = Math.max(tallest, naturalHeight(plane));
       });
       const steady = Math.min(tallest, fitHeight(stage));
@@ -322,33 +315,26 @@ export default function StepFlight({ steps, children, label, initialIndex = 0, o
 
       <StepRail
         steps={steps}
-        activeIndex={wide ? -1 : activeIndex}
+        activeIndex={activeIndex}
+        wide={wide}
         hidden={infoOpen}
         label={label ? `${label}: ${t("stage.rail_label")}` : t("stage.rail_label")}
-        stepLabel={(step, index) => t("stage.step_position", { current: index + 1, total: count, label: step.label })}
+        allLabel={t("stage.all_steps")}
+        stepLabel={(step, index) => t("stage.step_position", { current: index + 1, total: count, label: step?.label || "" })}
         onSelect={(index) => goTo(index, { user: true, arrive: true })}
-        end={
-          <button
-            type="button"
-            className={`${styles.wideToggle} gc-shortcut`}
-            data-on={wide ? "1" : "0"}
-            aria-pressed={wide}
-            aria-label={t("stage.all_steps")}
-            title={t("stage.all_steps")}
-            onClick={() => (wide ? goTo(activeIndex, { user: true, arrive: true }) : openWide())}
-          >
-            <span className="gc-shortcut-icon" aria-hidden="true">
-              <WideIcon />
-            </span>
-          </button>
-        }
+        next={{
+          label: t("stage.next_step"),
+          disabled: !wide && activeIndex >= count - 1,
+          ready: !wide && steps[activeIndex]?.state === "done",
+          onClick: () => (wide ? goTo(hoverRef.current ?? activeIndex, { user: true, arrive: true }) : goTo(activeIndex + 1, { user: true }))
+        }}
       />
 
-      {/* Telefonis ei mahu lehe nimi sammude kõrvale kiirmenüüsse; siis ütleb
-          selle leht ise. Ekraanilugeja kuuleb sama ülalolevast teatest. */}
+      {/* Telefonis on kiirmenüüs ainult „3/12"; lehe ja sammu nime ütleb
+          siis see rida. Ekraanilugeja kuuleb sama ülalolevast teatest. */}
       <p className={styles.kicker} aria-hidden="true">
         {label ? `${label} · ` : ""}
-        {wide ? t("stage.all_steps") : `${activeIndex + 1}/${count}`}
+        {wide ? t("stage.all_steps") : `${steps[activeIndex]?.short || steps[activeIndex]?.label || ""} · ${activeIndex + 1}/${count}`}
       </p>
 
       <div
@@ -358,12 +344,6 @@ export default function StepFlight({ steps, children, label, initialIndex = 0, o
         data-wide={wide ? "1" : "0"}
         style={!wide && stageHeight ? { "--step-stage-h": `${stageHeight}px` } : undefined}
       >
-        {!wide && !moved && count > 1 ? (
-          <div className={styles.hint} aria-hidden="true">
-            <span className="scroll-frames" />
-            <span className={styles.hintLabel}>{t("room.scroll_label")}</span>
-          </div>
-        ) : null}
         <div className={styles.dolly} ref={dollyRef}>
           {steps.map((step, index) => {
             const { ref: registerPlane, ...plane } = planeProps(index);
