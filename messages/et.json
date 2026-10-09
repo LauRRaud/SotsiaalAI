@@ -7614,6 +7614,41 @@
       "archived": "Arhiveeritud Teekonna märkeid saab vaadata, mitte lisada.",
       "failed": "Märke salvestamine ei õnnestunud. Proovi uuesti."
     },
+    "paper": {
+      "tab_title": "Minu Teekond",
+      "screen_hint": "Prindi see leht või salvesta PDF-ina (brauseri menüüst „Prindi”). Lehel on ainult see, mille sa valisid.",
+      "printed": "Prinditud {date}",
+      "wish": "Minu soov",
+      "summary": "Olukord lühidalt",
+      "steps_open": "Järgmised sammud",
+      "steps_done": "Tehtud",
+      "doer": "Teeb: {name}",
+      "due": "Tähtaeg: {date}",
+      "done_on": "tehtud {date}",
+      "pre_inquiries": "Kuhu olen pöördunud",
+      "untitled": "Eelpöördumine",
+      "sent_on": "saadetud {date}",
+      "answered_on": "viimane vastus {date}",
+      "assessment": "Kuidas mul läheb",
+      "questions": "Mida tahan küsida või selgitada",
+      "notes": "Märkmed",
+      "footer": "See leht on sinu oma. Sina otsustad, kellele seda näitad."
+    },
+    "paper_ui": {
+      "title": "Paberleht",
+      "intro": "Prindi oma Teekond ühele lehele, et see kohtumisele kaasa võtta. Vali, mis lehele läheb.",
+      "parts": {
+        "wish": "minu soov",
+        "summary": "olukorra kokkuvõte",
+        "steps": "sammud",
+        "pre_inquiries": "kuhu olen pöördunud",
+        "assessment": "kuidas mul läheb",
+        "questions": "mida tahan küsida"
+      },
+      "never": "Ettevaatlikke tähelepanekuid lehele ei panda. Lehel on alati ruumi käsitsi märkmeteks.",
+      "open": "Ava prinditav leht",
+      "none": "Vali vähemalt üks osa."
+    },
     "activity": {
       "title": "Tehtud sammud",
       "created": "teekond loodud",

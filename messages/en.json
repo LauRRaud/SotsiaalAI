@@ -7614,6 +7614,41 @@
       "archived": "The marks of an archived journey can be viewed, not added.",
       "failed": "Saving the mark failed. Try again."
     },
+    "paper": {
+      "tab_title": "My journey",
+      "screen_hint": "Print this page or save it as a PDF (\"Print\" in the browser menu). The page holds only what you chose.",
+      "printed": "Printed {date}",
+      "wish": "My wish",
+      "summary": "The situation in short",
+      "steps_open": "Next steps",
+      "steps_done": "Done",
+      "doer": "Done by: {name}",
+      "due": "Due: {date}",
+      "done_on": "done {date}",
+      "pre_inquiries": "Where I have turned",
+      "untitled": "Pre-inquiry",
+      "sent_on": "sent {date}",
+      "answered_on": "last answer {date}",
+      "assessment": "How I am doing",
+      "questions": "What I want to ask or clear up",
+      "notes": "Notes",
+      "footer": "This page is yours. You decide who sees it."
+    },
+    "paper_ui": {
+      "title": "Paper sheet",
+      "intro": "Print your journey on one sheet to take to a meeting. Choose what goes on the sheet.",
+      "parts": {
+        "wish": "my wish",
+        "summary": "summary of the situation",
+        "steps": "steps",
+        "pre_inquiries": "where I have turned",
+        "assessment": "how I am doing",
+        "questions": "what I want to ask"
+      },
+      "never": "Cautious observations are never put on the sheet. The sheet always has room for handwritten notes.",
+      "open": "Open the printable sheet",
+      "none": "Choose at least one part."
+    },
     "activity": {
       "title": "Completed steps",
       "created": "journey created",

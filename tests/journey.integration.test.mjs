@@ -18,6 +18,7 @@ import { randomUUID } from 'node:crypto';
 import { PrismaClient } from '../generated/prisma/client.ts';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { journeyRoadmap } from '../lib/journey/roadmap.js';
+import { renderPaperSheetHtml } from '../lib/journey/paperSheet.js';
 import {
   createJourneyForUser,
   exportJourneyForUser,
@@ -173,6 +174,10 @@ test('Teekond ja eelpöördumine: seis saatja silmade läbi, raja faktid ja võ�
   view = await detail();
   /* Faktid: tagasi võetu ei loe saadetuks; avatud on endiselt üks. */
   assert.deepEqual(view.preInquiryFacts, { total: inquiryIds.length, sent: inquiryIds.length - 1, opened: 1, answered: 1 });
+  /* PABERLEHT (K1-e) päris andmetest: lehel on ainult teel olevad pöördumised (parandus ja
+     väljaspool saadetu); tagasi võetut ja parandusega asendatut seal ei ole. */
+  const sheet = renderPaperSheetHtml({ journey: view, parts: ['pre_inquiries'], locale: 'et' });
+  assert.equal((sheet.match(/<li>/g) || []).length, 2);
 
   /* Loend on lehekülgede kaupa, faktid kõigi pöördumiste pealt. */
   const page = await listLinkedPreInquiriesForJourney(person.id, journey.id, { db, limit: 1 });
@@ -451,6 +456,9 @@ test('enda hinnang muutusele: algseis, muutus, omaniku piir, arhiveeritud Teekon
   /* Teekonna leht ja uuendamise vastus kannavad hinnanguid kaasa. */
   const detail = await getJourneyDetailForUser(person.id, journey.id, { db });
   assert.equal(detail.assessments.change, 'BETTER');
+  /* Paberleht (K1-e) loeb sama pilti: algseis, viimane märge ja muutus sõnadega. */
+  const paper = renderPaperSheetHtml({ journey: detail, parts: ['assessment'], locale: 'et' });
+  assert.ok(paper.includes('Võrreldes algusega on läinud paremaks.') && paper.includes('Koduteenus käib kaks korda nädalas.'));
   const updated = await updateJourneyForUser(person.id, journey.id, { title: 'Ema vajab kodus abi', expectedUpdatedAt: detail.updatedAt }, { db });
   assert.equal(updated.assessments.items.length, 3);
 

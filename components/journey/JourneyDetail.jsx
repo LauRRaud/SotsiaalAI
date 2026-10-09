@@ -12,6 +12,7 @@ import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import Form from "@/components/ui/Form";
 import Input from "@/components/ui/Input";
 import JourneyAssessment from "@/components/journey/JourneyAssessment";
+import JourneyPaperSheet from "@/components/journey/JourneyPaperSheet";
 import JourneySteps from "@/components/journey/JourneySteps";
 import { localizePath } from "@/lib/localizePath";
 import { buildServiceMapHandoff } from "@/lib/journey/serviceMapHandoff";
@@ -1423,6 +1424,8 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
                 t={t}
                 onAssessmentsChange={(assessments) => setJourney((current) => (current ? { ...current, assessments } : current))}
               />
+
+              <JourneyPaperSheet journey={journey} locale={locale} t={t} />
 
               <JourneyRoadmap journey={journey} t={t} />
 
