@@ -35,6 +35,16 @@ test('seotud eelpöördumise seis tuleb faktidest, mitte saaja töövoo seisust'
     assert.ok(!['READY', 'DRAFT', 'DOWNLOADED'].includes(linkedPreInquiryState({ status, sentAt: at })), status);
   }
 
+  /* SAAJA VASTAS ühises ruumis: tugevam kui avamine, ka siis, kui üks kindel inimene
+     pöördumist „avanud" ei ole (organisatsiooni vastuvõtulaud). */
+  assert.equal(linkedPreInquiryState({ status: 'READY', sentAt: at, openedAt: at, replyCount: 2 }), 'ANSWERED');
+  assert.equal(linkedPreInquiryState({ status: 'SENT', sentAt: at, replyCount: 1 }), 'ANSWERED');
+  assert.equal(linkedPreInquiryState({ status: 'READY', sentAt: at, openedAt: at, replyCount: 0 }), 'OPENED');
+  /* Saatmata pöördumine ei saa olla vastatud; tagasi võetud ja asendatud jäävad tugevamaks. */
+  assert.equal(linkedPreInquiryState({ status: 'DRAFT', replyCount: 3 }), 'DRAFT');
+  assert.equal(linkedPreInquiryState({ status: 'SENT', sentAt: at, recalledAt: at, replyCount: 1 }), 'RECALLED');
+  assert.equal(linkedPreInquiryState({ status: 'READY', sentAt: at, openedAt: at, supersededById: 'p2', replyCount: 1 }), 'REPLACED');
+
   /* Tagasi võetud ja parandusega asendatud on tugevamad kui avamine. */
   assert.equal(linkedPreInquiryState({ status: 'SENT', sentAt: at, recalledAt: at }), 'RECALLED');
   assert.equal(linkedPreInquiryState({ status: 'READY', sentAt: at, openedAt: at, supersededById: 'p2' }), 'REPLACED');

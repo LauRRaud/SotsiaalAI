@@ -7528,6 +7528,7 @@
       "saved": "Ülevaade salvestatud",
       "pre_inquiry": "Eelpöördumine saadetud",
       "response": "Saaja on pöördumise avanud",
+      "answered": "Saaja on vastanud",
       "done": "tehtud",
       "current": "pooleli",
       "next_recommended": "järgmine soovitatud samm",
@@ -7603,10 +7604,12 @@
         "SENT": "saadetud, saaja ei ole veel avanud",
         "SENT_OUTSIDE": "saadetud väljaspool platvormi",
         "OPENED": "saaja on avanud",
+        "ANSWERED": "saaja on vastanud",
         "RECALLED": "tagasi võetud",
         "REPLACED": "asendatud parandusega",
         "ARCHIVED": "arhiveeritud"
-      }
+      },
+      "last_reply": "viimane vastus {date}"
     },
     "share": {
       "title": "Vali, millist infot soovid eelpöördumises kasutada.",

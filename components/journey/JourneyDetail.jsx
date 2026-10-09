@@ -387,6 +387,7 @@ function JourneyRoadmap({ journey, t }) {
     saved: t("journey.roadmap.saved", "Ülevaade salvestatud"),
     pre_inquiry: t("journey.roadmap.pre_inquiry", "Eelpöördumine saadetud"),
     response: t("journey.roadmap.response", "Saaja on pöördumise avanud"),
+    answered: t("journey.roadmap.answered", "Saaja on vastanud"),
     steps: t("journey.roadmap.steps", "Sinu sammud")
   };
   const steps = journeyRoadmap(journey).map((step) => ({ title: titles[step.key], state: step.state }));
@@ -479,6 +480,11 @@ function LinkedPreInquiries({ journey, t, locale, onLoadMore }) {
           <li key={item.id}>
             <span>{topic}</span>
             <span>{preInquiryStateLabel(t, item)}</span>
+            {item?.lastReplyAt ? (
+              <span>
+                {t("journey.related.last_reply", { date: formatDate(item.lastReplyAt, locale) }, "viimane vastus {date}")}
+              </span>
+            ) : null}
             <Button as="a" href={href} variant="linkBrand">
               {t("journey.related.open", "Ava")}
             </Button>

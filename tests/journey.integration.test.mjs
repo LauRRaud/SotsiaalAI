@@ -48,7 +48,9 @@ test('Teekond ja eelpöördumine: seis saatja silmade läbi, raja faktid ja võ�
   const stranger = await user('teine', 'CLIENT');
   const inquiryIds = [];
   const journeyIds = [];
+  const roomIds = [];
   t.after(async () => {
+    await db.room.deleteMany({ where: { id: { in: roomIds } } });
     await db.preInquiry.deleteMany({ where: { id: { in: inquiryIds } } });
     await db.journey.deleteMany({ where: { id: { in: journeyIds } } });
     await db.user.deleteMany({ where: { id: { in: [person.id, specialist.id, stranger.id] } } });
@@ -73,8 +75,8 @@ test('Teekond ja eelpöördumine: seis saatja silmade läbi, raja faktid ja võ�
   /* Värske Teekond: seoseid ei ole, eelpöördumine on valitud suunana „järgmine". */
   let view = await detail();
   assert.deepEqual(view.linkedPreInquiries, []);
-  assert.deepEqual(view.preInquiryFacts, { total: 0, sent: 0, opened: 0 });
-  assert.deepEqual(roadmapOf(view), { situation: 'done', saved: 'done', pre_inquiry: 'next', response: 'todo', steps: 'todo' });
+  assert.deepEqual(view.preInquiryFacts, { total: 0, sent: 0, opened: 0, answered: 0 });
+  assert.deepEqual(roadmapOf(view), { situation: 'done', saved: 'done', pre_inquiry: 'next', response: 'todo', answered: 'todo', steps: 'todo' });
 
   const inquiry = (data) =>
     db.preInquiry.create({
@@ -94,7 +96,7 @@ test('Teekond ja eelpöördumine: seis saatja silmade läbi, raja faktid ja võ�
   inquiryIds.push(first.id);
   assert.equal(await stateOf(first.id), 'DRAFT');
   view = await detail();
-  assert.deepEqual(view.preInquiryFacts, { total: 1, sent: 0, opened: 0 });
+  assert.deepEqual(view.preInquiryFacts, { total: 1, sent: 0, opened: 0, answered: 0 });
   assert.equal(roadmapOf(view).pre_inquiry, 'current');
   await db.preInquiry.update({ where: { id: first.id }, data: { status: 'READY' } });
   assert.equal(await stateOf(first.id), 'READY');
@@ -103,7 +105,7 @@ test('Teekond ja eelpöördumine: seis saatja silmade läbi, raja faktid ja võ�
   await db.preInquiry.update({ where: { id: first.id }, data: { status: 'SENT', sentAt: new Date('2026-10-09T08:00:00Z') } });
   assert.equal(await stateOf(first.id), 'SENT');
   view = await detail();
-  assert.deepEqual(view.preInquiryFacts, { total: 1, sent: 1, opened: 0 });
+  assert.deepEqual(view.preInquiryFacts, { total: 1, sent: 1, opened: 0, answered: 0 });
   assert.deepEqual([roadmapOf(view).pre_inquiry, roadmapOf(view).response], ['done', 'todo']);
 
   /* VIGA ISE. Saaja võtab pöördumise vastu päris funktsiooniga: andmebaasis läheb
@@ -119,10 +121,35 @@ test('Teekond ja eelpöördumine: seis saatja silmade läbi, raja faktid ja võ�
   assert.equal(opened.state, 'OPENED');
   assert.equal(opened.status, 'READY');
   assert.ok(opened.sentAt && opened.openedAt);
-  assert.deepEqual(view.preInquiryFacts, { total: 1, sent: 1, opened: 1 });
+  assert.deepEqual(view.preInquiryFacts, { total: 1, sent: 1, opened: 1, answered: 0 });
   assert.deepEqual([roadmapOf(view).pre_inquiry, roadmapOf(view).response], ['done', 'done']);
   /* Võõras ei saa pöördumist vastu võtta. */
   await assert.rejects(acceptPreInquiry(stranger.id, first.id, { db }), (error) => error.status === 404);
+
+  /* SAAJA VASTUS JÕUAB TEEKONDA (K1-c). Ühises ruumis kirjutab kõigepealt saatja ise:
+     see ei ole vastus. Siis kirjutab saaja: Teekond näitab „saaja on vastanud" ja
+     viimase vastuse aega. Kustutatud sõnumit ja abilise sõnumit ei loeta. */
+  const room = await db.room.create({
+    data: { ownerId: person.id, title: 'Eelpöördumine', originType: 'PRE_INQUIRY', originId: first.id }
+  });
+  roomIds.push(room.id);
+  const say = (authorId, content, extra = {}) => db.roomMessage.create({ data: { roomId: room.id, authorId, content, ...extra } });
+  await say(person.id, 'Tere, kas saite mu pöördumise kätte?', { createdAt: new Date('2026-10-09T08:30:00Z') });
+  view = await detail();
+  assert.equal(view.linkedPreInquiries.find((item) => item.id === first.id).state, 'OPENED');
+  assert.equal(view.preInquiryFacts.answered, 0);
+  await say(specialist.id, 'Kustutatud vastus.', { createdAt: new Date('2026-10-09T08:40:00Z'), deletedAt: new Date('2026-10-09T08:41:00Z') });
+  await say(specialist.id, 'Abilise tekst.', { createdAt: new Date('2026-10-09T08:45:00Z'), senderType: 'ASSISTANT' });
+  assert.equal((await detail()).preInquiryFacts.answered, 0);
+  await say(specialist.id, 'Tere! Sain kätte, helistan teile homme.', { createdAt: new Date('2026-10-09T09:00:00Z') });
+  await say(specialist.id, 'Sobib ka kell 14.', { createdAt: new Date('2026-10-09T09:10:00Z') });
+  view = await detail();
+  const answered = view.linkedPreInquiries.find((item) => item.id === first.id);
+  assert.deepEqual([answered.state, answered.replyCount, answered.lastReplyAt], ['ANSWERED', 2, '2026-10-09T09:10:00.000Z']);
+  assert.deepEqual(view.preInquiryFacts, { total: 1, sent: 1, opened: 1, answered: 1 });
+  assert.deepEqual([roadmapOf(view).response, roadmapOf(view).answered], ['done', 'done']);
+  /* Vastuse SISU Teekonda ei tule: ainult arv ja aeg. */
+  assert.equal(JSON.stringify(view).includes('helistan teile homme'), false);
 
   /* Tagasi võetud pöördumine ei ole saadetud; parandusega asendatud on „asendatud". */
   const recalled = await inquiry({ status: 'SENT', sentAt: new Date('2026-10-09T09:00:00Z'), recalledAt: new Date('2026-10-09T09:05:00Z') });
@@ -144,7 +171,7 @@ test('Teekond ja eelpöördumine: seis saatja silmade läbi, raja faktid ja võ�
   assert.equal(await stateOf(outside.id), 'SENT_OUTSIDE');
   view = await detail();
   /* Faktid: tagasi võetu ei loe saadetuks; avatud on endiselt üks. */
-  assert.deepEqual(view.preInquiryFacts, { total: inquiryIds.length, sent: inquiryIds.length - 1, opened: 1 });
+  assert.deepEqual(view.preInquiryFacts, { total: inquiryIds.length, sent: inquiryIds.length - 1, opened: 1, answered: 1 });
 
   /* Loend on lehekülgede kaupa, faktid kõigi pöördumiste pealt. */
   const page = await listLinkedPreInquiriesForJourney(person.id, journey.id, { db, limit: 1 });
@@ -159,7 +186,11 @@ test('Teekond ja eelpöördumine: seis saatja silmade läbi, raja faktid ja võ�
     data: { authorId: stranger.id, recipientOwnerId: specialist.id, recipientType: 'KOV_CONTACT', sourceJourneyId: journey.id, situation: 'Võõras.', status: 'SENT', sentAt: new Date() }
   });
   inquiryIds.push(foreign.id);
+  const foreignRoom = await db.room.create({ data: { ownerId: stranger.id, title: 'Võõras', originType: 'PRE_INQUIRY', originId: foreign.id } });
+  roomIds.push(foreignRoom.id);
+  await db.roomMessage.create({ data: { roomId: foreignRoom.id, authorId: specialist.id, content: 'Vastus võõrale.' } });
   view = await detail();
+  assert.equal(view.preInquiryFacts.answered, 1);
   assert.equal(view.linkedPreInquiries.some((item) => item.id === foreign.id), false);
   assert.equal(view.preInquiryFacts.total, inquiryIds.length - 1);
   await assert.rejects(getJourneyDetailForUser(stranger.id, journey.id, { db }), (error) => error.status === 404);
@@ -170,6 +201,8 @@ test('Teekond ja eelpöördumine: seis saatja silmade läbi, raja faktid ja võ�
   const text = JSON.stringify(exported);
   assert.ok(text.includes('"state":"REPLACED"') && text.includes('"state":"RECALLED"'));
   assert.equal(text.includes(foreign.id), false);
+  assert.ok(text.includes('"replyCount":2'));
+  assert.equal(text.includes('helistan teile homme'), false);
 
   /* INIMESE SOOV (K1-a). Salvestub muutmata konteksti kõrvale, muu kontekst jääb alles,
      võõras seda muuta ei saa ja eelpöördumisse läheb see ainult inimese valikul. */
