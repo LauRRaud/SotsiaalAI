@@ -80,3 +80,15 @@ Mõõtmised (serveri enda vestlusteenusest läbi, ajutiste kasutajatega):
 Kokku 14 pööret, 0,0544 USD; korpuse v73 ost 0,0620 USD.
 
 **Mida see ei tõenda.** Sama küsimus andis juhistega 38 ja 39 erineva tulemuse, nii et üks jooks ei ole tõend; juhistega 40 on kaks jooksu kahest korras, mis on vähe. Rahvapensioni vastuse piirang on kaitstav (inimene küsis tuleviku summat), aga näitab, et „ei saa öelda“ ei kao juhisega täielikult. Teisi vastuseid (kas uus lause lisab kuhugi asjatu märkuse) vaadati ainult kahe oleviku küsimusega.
+
+### Kolmas partii (korpus v74)
+
+Samal päeval lisati 37 ametlikku juhislehte ([ADR-115](../rag-v2/adr-115-state-level-help-third-batch.md)): Justiits- ja Digiministeeriumi lehed õigusabist, lähenemiskeelust, kuriteoohvri õigustest, täitemenetlusest ja maksejõuetusest ning haridusasutuste lehed toe vajadusega õpilasest. Kolm küsimust pärast paigaldust (0,0120 USD), kõik lõppesid:
+
+| Küsimus | Tulemus |
+|---|---|
+| Endine elukaaslane käib ukse taga ja helistab; mis on lähenemiskeeld ja kuidas selle saab | viitab ministeeriumi lähenemiskeelu ja kuriteoohvrite õiguste lehele, tsiviilkohtumenetluse seadustikule ja ohvriabi lehtedele; ütleb, kes keelu määrab, et tsiviilkohtumenetluses võib see olla kuni kolmeks aastaks, ja annab ohvriabi kriisitelefoni; piiranguid ei olnud |
+| Pensionär, maavaidlus naabriga; kust saab tasuta õigusnõu | viitab lehele „Tasuta õigusnõu eakatele“ ja riigi õigusabi seadusele: teabepäevad, küsimuse esitamine juristile, riigi õigusabi tingimused; piirang, et selle vaidluse jaoks tasuta personaalset nõustamist ei saa kinnitada |
+| Poeg käib 3. klassis ja ei saa õppimisega hakkama; mis tuge kool andma peab | viitab ministeeriumi lehele toe vajadusega õpilastest, põhikooli- ja gümnaasiumiseadusele ja Sotsiaalkindlustusameti lehele: kooli kohustus tuge hinnata ja anda, tugispetsialistid tasuta, kellest alustada, millal Rajaleidja; piiranguid ei olnud |
+
+Kõigis kolmes oli uus leht vastusele antud lõikude hulgas ja viidatud. 09.10.2026 mõõtmised kokku 17 pööret, 0,0664 USD; korpuseostud v73 ja v74 kokku 0,0809 USD; päev kokku 0,1473 USD.
