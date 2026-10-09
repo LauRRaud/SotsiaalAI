@@ -94,6 +94,7 @@ import { addWorkerRecord, endWorkerRecord, getWorkerCards } from '../lib/homeCar
 import { getFridgeSheet } from '../lib/homeCare/fridgeSheet.js';
 import { getMonthOpenItems } from '../lib/homeCare/monthClose.js';
 import { endRelative, saveRelative } from '../lib/homeCare/relatives.js';
+import { saveSafetyCard } from '../lib/homeCare/safetyCard.js';
 import { composeNoAnswerText } from '../lib/homeCare/noAnswerText.js';
 import { assertNotificationRecipient, serializeNotificationEvent } from '../lib/notifications.js';
 
@@ -1877,6 +1878,8 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
   await addWorkerRecord(lead, { membershipId: f.members.anu.id, kind: 'BACKGROUND_CHECK', doneOn: '2026-01-10' }, deps());
   /* Lähedane ja jagamisaste (K5-k), et väljavõttes oleks ka see kogu. */
   await saveRelative(lead, client.id, { name: 'Mari Tamm', relation: 'tütar', level: 1 }, deps());
+  /* Ohutuskaardi vastus (K5-n), et väljavõttes oleks ka see kogu. */
+  await saveSafetyCard(lead, client.id, { items: { ANIMALS: { answer: 'NO' } } }, deps());
   const obstacleOfAnu = await reportObstacle(anu, { kind: 'LATE_30' }, deps());
   await handleObstacle(lead, obstacleOfAnu.obstacle.id, {}, deps());
   /* Ühe päeva erand (K3-b): järgmise esmaspäeva käik jääb ära. */
@@ -1991,6 +1994,7 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
     referralContacts: await db.careReferralContact.count({ where: ofOrg }),
     workerRecords: await db.careWorkerRecord.count({ where: ofOrg }),
     clientRelatives: await db.careClientRelative.count({ where: ofOrg }),
+    safetyItems: await db.careSafetyItem.count({ where: ofOrg }),
     auditEvents: await db.dataAuditLog.count({
       where: { action: { startsWith: 'org.home_care_' }, meta: { path: ['organizationId'], equals: f.orgA.id }, createdAt: { lt: (await exportRows())[0].createdAt } }
     })
@@ -5429,4 +5433,77 @@ test('möödunud päeva plaan loeb kliendi tolle päeva seisu: ära olnud päev 
   assert.deepEqual([nextWeek.totals.visits, nextWeek.clients], [10, 2]);
   /* Hooldaja enda päev (täna) ei muutunud: Peetri käiku seal ei ole. */
   assert.deepEqual(names((await getMyDay(anu, deps())).visits), ['Linda Tamm', 'Mari Mets']);
+});
+
+test('ohutuskaart: meeskond ja hooldusjuht täidavad, vastuste ajalugu, ülevaatus aasta järel ja tähtaegade nimekiri', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const clerk = await f.ctx(f.users.clerk, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, deps())).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi' }, deps())).client;
+  const mari = (await createClient(lead, { displayName: 'Mari Mets' }, deps())).client;
+  await addTeamMember(lead, linda.id, { membershipId: f.members.anu.id }, deps());
+  await addTeamMember(lead, peeter.id, { membershipId: f.members.bert.id }, deps());
+
+  assert.deepEqual((await openClient(anu, linda.id, deps())).safety, { items: [], assessedOn: null, reviewDue: false });
+  /* Meeskond täidab; võõra kliendi hooldaja, kõrvaline ja teine asutus mitte. */
+  const old = deps(at('2025-09-01T08:00:00Z'));
+  const first = await saveSafetyCard(anu, linda.id, { items: { ANIMALS: { answer: 'YES', note: ' Koer on  õues lahti ' }, SMOKING: { answer: 'NO' } } }, old);
+  assert.deepEqual(first.safety.items.map((item) => [item.topic, item.answer, item.note, item.byName, item.on]), [
+    ['ANIMALS', 'YES', 'Koer on õues lahti', 'Anu Hooldaja', '2025-09-01'],
+    ['SMOKING', 'NO', null, 'Anu Hooldaja', '2025-09-01']
+  ]);
+  await expectError(saveSafetyCard(bert, linda.id, { items: { FIRE: { answer: 'YES' } } }, deps()), 403, 'home_care.errors.access_reason_required');
+  await expectError(saveSafetyCard(clerk, linda.id, { items: { FIRE: { answer: 'YES' } } }, deps()), 404, 'home_care.errors.client_not_found');
+  await expectError(saveSafetyCard(leadB, linda.id, { items: { FIRE: { answer: 'YES' } } }, deps()), 404);
+  await expectError(saveSafetyCard(anu, linda.id, { items: { FIRE: { note: 'ahi' } } }, deps()), 400, 'home_care.errors.safety_answer_required');
+
+  /* Aasta hiljem: vanim vastus on üle aasta vana → kaart vajab ülevaatust, ka pärast ühe uue vastuse lisamist. */
+  const added = await saveSafetyCard(lead, linda.id, { items: { FIRE: { answer: 'YES', note: 'Ahiküte' } } }, deps());
+  assert.deepEqual([added.safety.items.map((item) => item.topic), added.safety.assessedOn, added.safety.reviewDue], [['ANIMALS', 'SMOKING', 'FIRE'], '2025-09-01', true]);
+  /* Muutmata vastus ei tee uut rida; muudetud vastus lõpetab eelmise; tühi vastus võtab teema maha. */
+  await saveSafetyCard(lead, linda.id, { items: { FIRE: { answer: 'YES', note: 'Ahiküte' } } }, deps());
+  assert.equal(await db.careSafetyItem.count({ where: { clientId: linda.id } }), 3);
+  const reviewed = await saveSafetyCard(
+    lead,
+    linda.id,
+    { items: { ANIMALS: { answer: 'YES', note: 'Koer on nüüd ketis' }, SMOKING: { answer: '' }, FIRE: { answer: 'YES', note: 'Ahiküte' } } },
+    deps(at('2026-10-09T08:05:00Z'))
+  );
+  assert.deepEqual(reviewed.safety.items.map((item) => [item.topic, item.note, item.byName]), [
+    ['ANIMALS', 'Koer on nüüd ketis', 'Juta Juht'],
+    ['FIRE', 'Ahiküte', 'Juta Juht']
+  ]);
+  assert.deepEqual([reviewed.safety.assessedOn, reviewed.safety.reviewDue], ['2026-10-09', false]);
+  assert.deepEqual([await db.careSafetyItem.count({ where: { clientId: linda.id } }), await db.careSafetyItem.count({ where: { clientId: linda.id, endedAt: null } })], [4, 2]);
+  /* Asendaja (põhjusega avaja) loeb kaarti nagu iga lehe avaja: siin loeb seda meeskonna liige. */
+  assert.deepEqual((await openClient(anu, linda.id, deps())).safety.items.map((item) => item.topic), ['ANIMALS', 'FIRE']);
+
+  /* TÄHTAEGADE LEHT: vanad kaardid enne, siis täitmata; ajutiselt ära ja lõppenud kliente ei ole. */
+  await saveSafetyCard(lead, peeter.id, { items: { NO_SIGNAL: { answer: 'YES' } } }, deps(at('2025-06-01T08:00:00Z')));
+  const away = (await createClient(lead, { displayName: 'Ära Klient' }, deps())).client;
+  await setClientStatus(lead, away.id, { version: (await db.careClient.findUnique({ where: { id: away.id } })).version, status: 'AWAY', statusReason: 'HOSPITAL' }, deps());
+  const due = (await getDeadlines(lead, deps())).safetyDue;
+  assert.deepEqual(due.map((item) => [item.client.displayName, item.state, item.assessedOn]), [
+    ['Peeter Põhi', 'OLD', '2025-06-01'],
+    ['Mari Mets', 'NONE', null]
+  ]);
+  assert.equal(mari.id.length > 0, true);
+
+  /* ANDMEBAAS hoiab reeglid ka ilma teenuseta. */
+  const raw = (data) => db.careSafetyItem.create({ data: { organizationId: f.orgA.id, clientId: mari.id, topic: 'ANIMALS', answer: 'YES', ...data } });
+  await assert.rejects(raw({ topic: 'MUU' }), /CareSafetyItem_topic_check/);
+  await assert.rejects(raw({ answer: 'VIST' }), /CareSafetyItem_answer_check/);
+  await assert.rejects(raw({ note: '   ' }), /CareSafetyItem_note_check/);
+  await raw({});
+  await assert.rejects(raw({}), /CareSafetyItem_active_key|Unique constraint/);
+
+  /* AUDIT: ainult kliendi ID ja muutuse liik (vastuseid ega märkusi seal ei ole). */
+  const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_safety_card_changed', meta: { path: ['organizationId'], equals: f.orgA.id } } });
+  assert.equal(audit.length, 4);
+  for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['change', 'clientId', 'organizationId']);
+  assert.equal(JSON.stringify(audit).includes('Koer'), false);
 });

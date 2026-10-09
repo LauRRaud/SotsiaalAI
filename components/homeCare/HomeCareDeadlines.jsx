@@ -127,6 +127,10 @@ export default function HomeCareDeadlines({ context, deadlines }) {
         )
       )}
 
+      {section("safety_due", deadlines.safetyDue || [], (item) =>
+        clientLine(item, item.state === "OLD" ? t("home_care.deadlines.safety_old", { date: planDayLabel(item.assessedOn) }) : t("home_care.deadlines.safety_none"))
+      )}
+
       {section("relatives_due", deadlines.relativesDue || [], (item) =>
         clientLine(
           item,

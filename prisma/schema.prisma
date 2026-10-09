@@ -8245,6 +8245,7 @@ model CareClient {
   changeSignals      CareChangeSignal[]
   crisisProfiles     CareCrisisProfile[]
   relatives          CareClientRelative[]
+  safetyItems        CareSafetyItem[]
 
   @@unique([organizationId, internalCode])
   @@index([organizationId, status, displayName])
@@ -8680,6 +8681,31 @@ model CareClientRelative {
   noTell         String?
   /// Päev (AAAA-KK-PP), millal klient kokkulepet viimati kinnitas.
   agreedOn       String
+
+  createdByMembershipId String?
+  createdByName         String?
+  createdAt             DateTime  @default(now())
+  endedAt               DateTime?
+  endedByMembershipId   String?
+
+  client CareClient @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@index([clientId, endedAt])
+  @@index([organizationId, endedAt])
+}
+
+/// KODUTEENUS K5-n — OHUTUSKAARDI rida (kava II.6.4): üks teema kümnest kodu kui töökoha
+/// kohta, vastus YES või NO ja soovi korral lühike faktipõhine märkus. Üks kehtiv vastus
+/// kliendi ja teema kohta (osaline unikaalne indeks migratsioonis); uus vastus lõpetab eelmise.
+model CareSafetyItem {
+  id             String  @id @default(cuid())
+  organizationId String
+  clientId       String
+  /// ANIMALS | SMOKING | FIRE | WINTER_ACCESS | LIFTING | OTHER_PEOPLE | AGGRESSION |
+  /// PROTECTIVE_GEAR | PAIR_ONLY | NO_SIGNAL (`CareSafetyTopic`).
+  topic          String
+  answer         String
+  note           String?
 
   createdByMembershipId String?
   createdByName         String?

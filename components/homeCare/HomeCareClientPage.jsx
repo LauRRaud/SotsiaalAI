@@ -22,6 +22,7 @@ import HomeCareOutbox from "./HomeCareOutbox";
 import HomeCarePlanView from "./HomeCarePlanView";
 import HomeCareReasonForm from "./HomeCareReasonForm";
 import HomeCareRelatives from "./HomeCareRelatives";
+import HomeCareSafetyCard from "./HomeCareSafetyCard";
 import HomeCareKeys from "./HomeCareKeys";
 import HomeCareNearMiss from "./HomeCareNearMiss";
 import HomeCareNoAnswer from "./HomeCareNoAnswer";
@@ -365,6 +366,9 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
         canEdit={canWrite && access.canEditCard}
         onChange={(next) => setData((current) => ({ ...current, card: next }))}
       />
+
+      {/* Ohutuskaart (K5-n): kodu kui töökoht. Kohe püsikaardi järel, sest seda peab enne minekut teadma. */}
+      <HomeCareSafetyCard organizationId={organizationId} clientId={client.id} initial={data.safety || null} canEdit={canWrite && access.canEditCard} />
 
       {/* Peatamisel ja lõpetamisel üle vaadata (K4-g): mis on selle kliendi juures veel lahti. Hooldusjuhile. */}
       {access.isCoordinator && client.status !== CareClientStatus.ACTIVE && reviewItems.length ? (
