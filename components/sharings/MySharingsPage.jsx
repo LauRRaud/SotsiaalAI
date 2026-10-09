@@ -241,15 +241,19 @@ export default function MySharingsPage() {
           "x-ui-locale": locale || "et",
           "Idempotency-Key": crypto.randomUUID()
         },
-        body: JSON.stringify({ decision })
+        /* Räsi on see, mille leht sai koos kuvatud tekstiga: kinnitus käib selle
+           teksti kohta, mida inimene luges, mitte selle kohta, mis real vahepeal on. */
+        body: JSON.stringify({ decision, expectedContentHash: share.contentHash || null })
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || payload?.ok === false) {
-        throw new Error(resolveApiMessage({
-          payload,
-          t,
-          fallbackKey: "my_sharings.errors.action_failed"
-        }));
+        const code = typeof payload?.message === "string" ? payload.message : "";
+        const shareText = code.startsWith("network_share.") ? t(`my_sharings.share_errors.${code.slice("network_share.".length)}`) : "";
+        const known = typeof shareText === "string" && shareText && !shareText.startsWith("my_sharings.");
+        /* Tekst või seis on vahepeal muutunud: laadime jagamised uuesti, et inimene
+           näeks seda, mille üle ta nüüd otsustab. */
+        if (response.status === 409 || response.status === 428) await loadSharings({ preserveData: true });
+        throw new Error(known ? shareText : t("my_sharings.errors.action_failed"));
       }
       setFeedback(t(`my_sharings.notice.${decision === "CONFIRMED" ? "share_confirmed" : "share_declined"}`));
       const refreshed = await loadSharings({ preserveData: true });
