@@ -30,7 +30,7 @@ import { useAccessibility } from "@/components/accessibility/AccessibilityProvid
 import { localizePath } from "@/lib/localizePath";
 import { inertOutside } from "@/lib/inertOutside";
 import { rememberRoomHubPath, readRoomHubPath } from "@/lib/roomHubReturn";
-import { dockLabelRoutes, panelHasRoomDock } from "@/lib/roomDock";
+import { dockLabelRoutes, panelHasRoomDock, pickDockLabel } from "@/lib/roomDock";
 import { ADMIN_SURFACES } from "@/lib/admin/surfaces";
 import { usePanelInfoView } from "@/components/ui/PanelInfoSlot";
 import { useAnnounceDock } from "@/components/stage/DockSteps";
@@ -166,6 +166,9 @@ const ROOM_ARRIVAL_COMPLETE_COOKIE = "sotsiaalai_room_arrival_complete";
    ja tühja riba peale. Tee → i18n-võti (vt panelDock allpool). */
 const CARDLESS_DOCK_LABELS = {
   "/autorilt": "about.links.author",
+  /* Kaart on ainult teenuseosutaja rollil; teise rolliga vaataja
+     (administraator) saab lehe nime siit. */
+  "/teenuseprofiil": "chat.workspace.cards.service_profile.title",
 };
 /* Leht, mille kaart avab teise tee: kaart „Pöördumised" viib vestluse töölaua
    teele, aga otselink (Teekonnast, „ava pöördumine") avab /eelpoordumised.
@@ -1479,9 +1482,11 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     const cardless = CARDLESS_DOCK_LABELS[normalized];
     /* Alamtee ja sama lehe teine päring kannavad oma lehe nime: järjekord ja
        põhjus on failis lib/roomDock.js (`dockLabelRoutes`). */
-    const byRoute = dockLabelRoutes(normalized, search, DOCK_CARD_ALIASES)
-      .map((href) => allCardsByHref.get(href))
-      .find(Boolean);
+    const byRoute = pickDockLabel(
+      dockLabelRoutes(normalized, search, DOCK_CARD_ALIASES),
+      (href) => allCardsByHref.get(href),
+      (href) => (CARDLESS_DOCK_LABELS[href] ? t(CARDLESS_DOCK_LABELS[href]) : "")
+    );
     const current =
       cards.find((item) => item.href === here) ||
       byRoute ||
