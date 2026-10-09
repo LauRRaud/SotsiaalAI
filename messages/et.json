@@ -12280,7 +12280,11 @@
       "unit_none": "Üksuseta (kogu asutus)",
       "status_reason": "Mille pärast",
       "status_ended_hint": "Lõpetatud kliendi saab hiljem uuesti aktiivseks muuta. Päevik ja seisu ajalugu jäävad alles.",
-      "status_history": "Seisu ajalugu"
+      "status_history": "Seisu ajalugu",
+      "status_source": "Kellelt teade tuli (kohustuslik)",
+      "status_death_next": "Edasi",
+      "status_death_save": "Kinnitan ja salvestan",
+      "status_death_confirm": "Kinnita, et teade on kindel. Räägi enne ise hooldajatega, kes selle kliendi juures käisid: pärast salvestamist kaob klient nende päevast ja nad saavad teate, et käigud muutusid. Ekslikult tehtud muudatuse saab tagasi võtta, kui märgid kliendi uuesti teenusele."
     },
     "card": {
       "title": "Enne kui lähed",
@@ -12626,7 +12630,8 @@
       "supply_ended": "Selle varu jälgimine on lõpetatud.",
       "supply_state_required": "Vali varu seis.",
       "door_steps_invalid": "Sammud peavad olema loendina.",
-      "door_steps_too_many": "Samme võib olla kuni {limit}."
+      "door_steps_too_many": "Samme võib olla kuni {limit}.",
+      "status_source_required": "Kirjuta, kellelt teade tuli."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -13129,7 +13134,10 @@
       "feedback_at_end_empty": "Viimase kolme kuu jooksul lõppenud teenuste kohta on tagasiside kirjas.",
       "feedback_ended_on": "teenus lõppes {date}",
       "supplies_open_title": "Varud, mis hakkavad lõppema või on otsas",
-      "supplies_open_empty": "Ükski jälgitav varu ei ole lõppemas."
+      "supplies_open_empty": "Ükski jälgitav varu ei ole lõppemas.",
+      "away_long_title": "Ajutiselt ära üle kuu",
+      "away_long_empty": "Keegi ei ole olnud ära üle kuu.",
+      "away_since": "ära alates {date} ({days} päeva)"
     },
     "visit": {
       "title": "Mida tegid",
@@ -13560,6 +13568,17 @@
       "text_skipped": "Tegemata sammud: {steps}",
       "text_none_done": "Ühtegi kokkulepitud sammu ei ole märgitud.",
       "text_no_steps": "Kokkulepitud samme ei ole."
+    },
+    "review": {
+      "ended_title": "Lõpetamisel üle vaadata",
+      "away_title": "Kuni klient on ära",
+      "keys_return": "Asutuse käes on selle kliendi võtmeid {count}: tagasta need ja märgi võtmete juures tagastatuks.",
+      "money_return": "Töötajate käes on selle kliendi raha {amount}: see tuleb tagastada.",
+      "slots_end": "Käigumustris on veel ridu {count}: lõpeta need, muidu jätkuvad käigud, kui klient uuesti teenusele tuleb.",
+      "supplies_end": "Jälgitavaid varusid on {count}: lõpeta jälgimine.",
+      "preconditions_open": "Täitmata eeltingimusi on {count}: märgi, et neid ei ole enam vaja.",
+      "away_paused": "Käigud on peatatud. Käigumuster jääb alles ja käigud jätkuvad, kui märgid kliendi uuesti teenusele.",
+      "away_keys": "Asutuse käes on selle kliendi võtmeid {count}. Lepi kokku, kes kodul silma peal hoiab (küte, lemmikloom, riknev toit, post)."
     }
   },
   "stage": {

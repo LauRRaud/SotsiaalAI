@@ -692,7 +692,7 @@ test('kliendi andmed: versioonikontroll ja seis', async (t) => {
   assert.equal((await openClient(anu, client.id, deps())).statusHistory.length, 3);
   await expectError(setClientStatus(anu, client.id, { version: 5, status: 'AWAY', statusReason: 'HOSPITAL' }, deps()), 403, 'org.errors.missing_capability');
   /* Vana versiooniga muutus ei jäta ajalukku rida. */
-  await expectError(setClientStatus(lead, client.id, { version: 4, status: 'ENDED', statusReason: 'DIED' }, deps()), 409, 'home_care.errors.version_conflict');
+  await expectError(setClientStatus(lead, client.id, { version: 4, status: 'ENDED', statusReason: 'DIED', statusNote: 'Tütar helistas' }, deps()), 409, 'home_care.errors.version_conflict');
   assert.equal(await db.careClientStatusChange.count({ where: { clientId: client.id } }), 3);
 
   /* Andmebaas hoiab vigase rea eemal ka siis, kui rakendus eksib. */
@@ -4400,7 +4400,7 @@ test('tagasiside küsimine: kellelt on aeg küsida ja mis lõppenud teenuste koh
   /* TEENUSE LÕPP: lõppenud teenus ilma tagasisideta on nimekirjas; surma korral ei küsita; kuu enne lõppu kirja pandud tagasiside loeb. */
   const end = async (client, statusReason, when) => {
     const row = await db.careClient.findUnique({ where: { id: client.id }, select: { version: true } });
-    await setClientStatus(lead, client.id, { version: row.version, status: 'ENDED', statusReason }, deps(at(when)));
+    await setClientStatus(lead, client.id, { version: row.version, status: 'ENDED', statusReason, statusNote: 'Lähedane teatas' }, deps(at(when)));
   };
   await end(uus, 'MOVED', '2026-10-05T10:00:00Z');
   await end(vana, 'DIED', '2026-10-06T10:00:00Z');
@@ -4615,4 +4615,66 @@ test('sammud „kui uks ei avane": loendi salvestamine, õigused ja erijuhtumi k
   const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_door_steps_changed', meta: { path: ['organizationId'], equals: f.orgA.id } } });
   assert.deepEqual(audit.map((entry) => entry.meta.change).sort(), ['cleared', 'saved', 'saved']);
   for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['change', 'clientId', 'organizationId']);
+});
+
+test('peatamine ja lõpetamine: surma allikas, teade käikude töötajatele ja kaua ära olnud kliendid', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, deps())).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi' }, deps())).client;
+  for (const client of [linda, peeter]) await addTeamMember(lead, client.id, { membershipId: f.members.anu.id }, deps());
+  for (const member of [f.members.bert, f.members.cover]) await addTeamMember(lead, linda.id, { membershipId: member.id }, deps());
+  const early = at('2026-08-01T08:00:00Z');
+  await createSlots(lead, linda.id, { weekdays: [1, 5], startTime: '09:00', plannedMinutes: 30, workerMembershipId: f.members.anu.id }, deps(early));
+  await createSlots(lead, linda.id, { weekdays: [3], startTime: '09:00', plannedMinutes: 30, workerMembershipId: f.members.bert.id }, deps(early));
+  /* Määramata käik ja juba lõppenud rida ei too kellelegi teadet. */
+  await createSlots(lead, linda.id, { weekdays: [2], startTime: '12:00', plannedMinutes: 30 }, deps(early));
+  await createSlots(lead, linda.id, { weekdays: [4], startTime: '12:00', plannedMinutes: 30, workerMembershipId: f.members.cover.id, validUntil: '2026-08-20' }, deps(early));
+  const TYPE = 'HOME_CARE_VISITS_CHANGED';
+  const counts = () =>
+    Promise.all([f.users.anu, f.users.bert, f.users.cover, f.users.lead].map((user) => db.notificationEvent.count({ where: { userId: user.id, type: TYPE } })));
+  const readAll = () => db.notificationEvent.updateMany({ where: { type: TYPE, workspaceId: f.orgA.id, readAt: null }, data: { readAt: NOW } });
+  const version = async (client) => (await db.careClient.findUnique({ where: { id: client.id }, select: { version: true } })).version;
+  const set = async (client, input, when) => setClientStatus(lead, client.id, { version: await version(client), ...input }, depsWithNotify(at(when)));
+  assert.deepEqual(await counts(), [0, 0, 0, 0]);
+
+  /* PEATAMINE: mõlemad mustris määratud töötajad saavad ühe teate; lõppenud rea töötaja ja juht ei saa. */
+  await set(linda, { status: 'AWAY', statusReason: 'HOSPITAL' }, '2026-09-01T08:00:00Z');
+  assert.deepEqual(await counts(), [1, 1, 0, 0]);
+  /* Põhjuse muutus samas seisus (haiglast lähedase juurde) päevi ei muuda: teadet ei tule. */
+  await readAll();
+  await set(linda, { status: 'AWAY', statusReason: 'WITH_FAMILY' }, '2026-09-02T08:00:00Z');
+  assert.deepEqual(await counts(), [1, 1, 0, 0]);
+  /* Käigumustrita klient: kedagi ei ole teavitada. */
+  await set(peeter, { status: 'AWAY', statusReason: 'HOSPITAL' }, '2026-10-01T08:00:00Z');
+  assert.deepEqual(await counts(), [1, 1, 0, 0]);
+
+  /* KAUA ÄRA: üle 30 päeva ära olnud klient on nimekirjas, hiljuti lahkunu ei ole. */
+  const due = (await getDeadlines(lead, deps())).awayLong;
+  assert.deepEqual(
+    due.map((item) => [item.client.displayName, item.since, item.days, item.reason]),
+    [['Linda Tamm', '2026-09-02', 37, 'WITH_FAMILY']]
+  );
+
+  /* TAGASI TEENUSELE: käigud jätkuvad, töötajad saavad teate. */
+  await set(linda, { status: 'ACTIVE' }, '2026-10-09T08:10:00Z');
+  assert.deepEqual(await counts(), [2, 2, 0, 0]);
+  assert.deepEqual((await getDeadlines(lead, deps())).awayLong, []);
+  await readAll();
+
+  /* SURM: ilma allikata ei salvestata; tühikud ei ole allikas; muu alus allikat ei nõua. */
+  const died = { status: 'ENDED', statusReason: 'DIED' };
+  await expectError(set(linda, died, '2026-10-09T08:20:00Z'), 400, 'home_care.errors.status_source_required');
+  await expectError(set(linda, { ...died, statusNote: '   ' }, '2026-10-09T08:20:00Z'), 400, 'home_care.errors.status_source_required');
+  assert.deepEqual([(await db.careClient.findUnique({ where: { id: linda.id } })).status, await counts()], ['ACTIVE', [2, 2, 0, 0]]);
+  const ended = await set(linda, { ...died, statusNote: 'Tütar Mari helistas' }, '2026-10-09T08:21:00Z');
+  assert.deepEqual([ended.client.status, ended.client.statusReason, ended.client.statusNote], ['ENDED', 'DIED', 'Tütar Mari helistas']);
+  assert.deepEqual(await counts(), [3, 3, 0, 0]);
+  /* Teavituses ei ole klienti ega põhjust. */
+  const stored = JSON.stringify(await db.notificationEvent.findMany({ where: { type: TYPE, workspaceId: f.orgA.id } }));
+  for (const secret of ['Linda', linda.id, 'DIED', 'Mari']) assert.equal(stored.includes(secret), false, secret);
+  await set(peeter, { status: 'ENDED', statusReason: 'MOVED' }, '2026-10-09T08:22:00Z');
+  /* Lõppenud teenusega klient ei ole enam „ära" nimekirjas; mustri read jäid alles (ekslik lõpetamine on tagasi võetav). */
+  assert.deepEqual((await getDeadlines(lead, deps())).awayLong, []);
+  assert.equal(await db.careVisitSlot.count({ where: { clientId: linda.id } }), 5);
 });

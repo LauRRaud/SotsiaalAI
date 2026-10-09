@@ -6,7 +6,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import DateField from "@/components/ui/DateField";
 import Dropdown from "@/components/ui/Dropdown";
-import { CARE_CLIENT_STATUSES, CARE_ENTRY_KINDS, CARE_STATUS_REASONS, CareClientStatus } from "@/lib/homeCare/constants";
+import { CARE_CLIENT_STATUSES, CARE_ENTRY_KINDS, CARE_STATUS_REASONS, CareClientStatus, CareEndReason } from "@/lib/homeCare/constants";
 
 import HomeCareCallNote from "./HomeCareCallNote";
 import HomeCareCard from "./HomeCareCard";
@@ -34,6 +34,7 @@ import {
   useHomeCareApi
 } from "./homeCareClient";
 import { getOutboxManager } from "./homeCareOutbox";
+import { euroText } from "./HomeCareMoney";
 
 const NO_FILTER = Object.freeze({ kind: "", from: "", to: "", q: "" });
 
@@ -58,7 +59,7 @@ function sortEntries(items) {
  * andmist sama võtmega.
  */
 export default function HomeCareClientPage({ context, clientId, initial, needsReason: initialNeedsReason, unitOptions }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const organizationId = context.organization.id;
   const timeZone = context.organization.timezone || "Europe/Tallinn";
   const page = useHomeCareApi();
@@ -78,6 +79,7 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
   const [status, setStatus] = useState(initial?.client?.status || CareClientStatus.ACTIVE);
   const [statusReason, setStatusReason] = useState(initial?.client?.statusReason || "");
   const [statusNote, setStatusNote] = useState(initial?.client?.statusNote || "");
+  const [confirmDeath, setConfirmDeath] = useState(false);
 
   const base = `${homeCareBase(organizationId)}/kliendid/${clientId}`;
   const backHref = `/org/${organizationId}/koduteenus`;
@@ -207,6 +209,7 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
     setStatus(data.client.status);
     setStatusReason(data.client.statusReason || "");
     setStatusNote(data.client.statusNote || "");
+    setConfirmDeath(false);
     setPanel("status");
   };
 
@@ -214,15 +217,23 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
   const reasonOptions = CARE_STATUS_REASONS[status] || [];
   const chooseStatus = (value) => {
     if (value === status) return;
+    setConfirmDeath(false);
     setStatus(value);
     if (!(CARE_STATUS_REASONS[value] || []).includes(statusReason)) setStatusReason("");
     /* Selgitus kuulub samuti seisu juurde: „haiglas alates 9.10" ei tohi minna kaasa lõpetamisele. */
     setStatusNote(value === data.client.status ? data.client.statusNote || "" : "");
   };
   const reasonMissing = reasonOptions.length > 0 && !reasonOptions.includes(statusReason);
+  /* Surm (kava II.6.5): allikas on kohustuslik ja salvestamine käib kahes sammus. */
+  const death = status === CareClientStatus.ENDED && statusReason === CareEndReason.DIED;
+  const sourceMissing = death && !statusNote.trim();
 
   const saveStatus = async (event) => {
     event.preventDefault();
+    if (death && !confirmDeath) {
+      setConfirmDeath(true);
+      return;
+    }
     const result = await page.call(`${base}/seis`, {
       method: "POST",
       body: { status, statusReason: reasonOptions.length ? statusReason : null, statusNote, version: data.client.version },
@@ -234,6 +245,7 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
         client: result.data.client,
         statusHistory: result.data.statusHistory || current.statusHistory
       }));
+      setConfirmDeath(false);
       setPanel(null);
     }
   };
@@ -272,6 +284,21 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
   const ended = client.status === CareClientStatus.ENDED;
   const canWrite = Boolean(access.canWrite);
   const canAddEntry = canWrite && (!ended || access.isCoordinator);
+  /* Lahtised asjad peatatud või lõppenud kliendi juures, arvutatud lehe enda andmetest. */
+  const heldCents = (data.money?.holders || []).reduce((sum, holder) => sum + holder.balanceCents, 0);
+  const reviewItems = ended
+    ? [
+        data.keys?.length ? { key: "keys", text: t("home_care.review.keys_return", { count: data.keys.length }) } : null,
+        heldCents > 0 ? { key: "money", text: t("home_care.review.money_return", { amount: euroText(heldCents, locale) }) } : null,
+        data.slots?.length ? { key: "slots", text: t("home_care.review.slots_end", { count: data.slots.length }) } : null,
+        data.supplies?.length ? { key: "supplies", text: t("home_care.review.supplies_end", { count: data.supplies.length }) } : null,
+        data.preconditions?.length ? { key: "preconditions", text: t("home_care.review.preconditions_open", { count: data.preconditions.length }) } : null
+      ].filter(Boolean)
+    : [
+        { key: "paused", text: t("home_care.review.away_paused") },
+        data.keys?.length ? { key: "keys", text: t("home_care.review.away_keys", { count: data.keys.length }) } : null,
+        heldCents > 0 ? { key: "money", text: t("home_care.review.money_return", { amount: euroText(heldCents, locale) }) } : null
+      ].filter(Boolean);
   const filterActive = Boolean(applied.kind || applied.from || applied.to || applied.q);
   const activeTeam = team.filter((member) => member.active);
 
@@ -332,6 +359,20 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
         canEdit={canWrite && access.canEditCard}
         onChange={(next) => setData((current) => ({ ...current, card: next }))}
       />
+
+      {/* Peatamisel ja lõpetamisel üle vaadata (K4-g): mis on selle kliendi juures veel lahti. Hooldusjuhile. */}
+      {access.isCoordinator && client.status !== CareClientStatus.ACTIVE && reviewItems.length ? (
+        <section className="hc-section" aria-labelledby={`${fieldId}-review`}>
+          <h2 className="hc-section-title" id={`${fieldId}-review`}>
+            {t(ended ? "home_care.review.ended_title" : "home_care.review.away_title")}
+          </h2>
+          <ul className="hc-list hc-list--plain">
+            {reviewItems.map((item) => (
+              <li key={item.key}>{item.text}</li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
 
       {/* Kui uks ei avane (K4-f): kokkulepitud sammud ja nupp „Ei saa sisse". Kohe püsikaardi järel, sest seda on vaja ukse taga. */}
       <HomeCareNoAnswer
@@ -783,7 +824,10 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
                         type="button"
                         className="hc-chip"
                         aria-pressed={statusReason === value}
-                        onClick={() => setStatusReason(value)}
+                        onClick={() => {
+                          setConfirmDeath(false);
+                          setStatusReason(value);
+                        }}
                       >
                         {t(`home_care.status_reason.${status}.${value}`)}
                       </button>
@@ -794,7 +838,7 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
               ) : null}
               <div className="hc-field">
                 <label className="hc-label" htmlFor={`${fieldId}-status-note`}>
-                  {t("home_care.client.status_note")}
+                  {death ? t("home_care.client.status_source") : t("home_care.client.status_note")}
                 </label>
                 <input
                   id={`${fieldId}-status-note`}
@@ -803,11 +847,13 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
                   onChange={(event) => setStatusNote(event.target.value)}
                   maxLength={300}
                   autoComplete="off"
+                  required={death}
                 />
               </div>
+              {death && confirmDeath ? <p className="hc-notice hc-notice--warn">{t("home_care.client.status_death_confirm")}</p> : null}
               <div className="hc-row">
-                <button className="hc-btn hc-btn--primary" type="submit" disabled={page.busy || reasonMissing}>
-                  {t("home_care.client.status_save")}
+                <button className="hc-btn hc-btn--primary" type="submit" disabled={page.busy || reasonMissing || sourceMissing}>
+                  {death ? (confirmDeath ? t("home_care.client.status_death_save") : t("home_care.client.status_death_next")) : t("home_care.client.status_save")}
                 </button>
                 <button className="hc-btn" type="button" onClick={() => setPanel(null)} disabled={page.busy}>
                   {t("home_care.client.cancel")}
