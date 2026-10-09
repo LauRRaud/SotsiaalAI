@@ -1,9 +1,9 @@
 {
   "schema_version": "rag-v2/legal-acts-in-index-1",
-  "generated_at": "2026-10-08T18:04:35.650Z",
+  "generated_at": "2026-10-09T15:43:27.178Z",
   "tenant": "sotsiaalai-corpus",
-  "store_generation": "generation_84a66d231c66b396f433de04ecc8820072a94d6a9ff42bc85d1c6a8ce29d2b04",
-  "policy_documents": 8446,
+  "store_generation": "generation_bdec132be247a77e806c278f9d899059dff9c853f456529b120f2c796c7b1cea",
+  "policy_documents": 8659,
   "acts": [
     {
       "document_id": "document_005199d74750ea0e1516034366803c9226115d36349d91b74b6ec0e360d34f6a",
@@ -2732,6 +2732,18 @@
       "index_to": null
     },
     {
+      "document_id": "document_5cc6031b6e5e4013e6040aed362f22c7f0931926229b832683e405b899e7bd4b",
+      "version_id": "version_542bad4ff99caa2028d9d170c634610222db2d0132eb482bd7ec767a48984673",
+      "globaal_id": "103062026035",
+      "group": "157934",
+      "title": "Riigi õigusabi seadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/103062026035.xml",
+      "index_from": "2026-06-12",
+      "index_to": "2026-10-31"
+    },
+    {
       "document_id": "document_5d595936653bd4ea0bd3b79b2d75e01258b45382d451466b44274a185119fb3e",
       "version_id": "version_d1c5638ad8e6a757d2136a487022e37f98ecbbd79569a1820798040f13ac331e",
       "globaal_id": "421122018052",
@@ -5264,6 +5276,18 @@
       "index_to": null
     },
     {
+      "document_id": "document_b22c1197ed13d768f3223a6bb2fd42ebaecf761b66eafa7b31439174d51f5dc5",
+      "version_id": "version_3765e5babef9b32a90342149d133ef5ab5bac9a81a9afc1d58cb3fdc00afd851",
+      "globaal_id": "109072026055",
+      "group": "1000822",
+      "title": "Korrakaitseseadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/109072026055.xml",
+      "index_from": "2026-10-01",
+      "index_to": null
+    },
+    {
       "document_id": "document_b28943ea6743076e9648d9d119aa613c9704207c8ce9a9cfa4dc2d4fc0637335",
       "version_id": "version_e07ab5b87bef11935ca006584e3e443aadbb7396a6cad1a3875dc3341562fed6",
       "globaal_id": "422062018014",
@@ -5374,6 +5398,18 @@
       "source_path": "oigusaktid/403022018028.xml",
       "index_from": "2018-02-06",
       "index_to": null
+    },
+    {
+      "document_id": "document_b72e9171afa27a7a9e11549b65fa3f0a0a0e76b381236334fce788605696126c",
+      "version_id": "version_be5f439854ff046865f4ffdfb1a08029d95c89066b7016f59ef0d170f95d3bcb",
+      "globaal_id": "111072026078",
+      "group": "135277",
+      "title": "Kriminaalmenetluse seadustik",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/111072026078.xml",
+      "index_from": "2026-10-01",
+      "index_to": "2026-10-31"
     },
     {
       "document_id": "document_b76ec50ac753e1844fd63d60820bac97261ca1377da56e9f6798854f876150f1",
