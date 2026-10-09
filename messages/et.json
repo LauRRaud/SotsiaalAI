@@ -8162,7 +8162,6 @@
     },
     "overview": {
       "title": "Ülevaade",
-      "intro": "Ülevaade koondab sinu privaatsed tööheaolu sisestused ja näitab töö nõudmiste, ressursside ning korduvate mustrite seisu.",
       "period_label": "Periood",
       "period_all": "Kõik",
       "period_week": "Nädal",
@@ -8181,7 +8180,6 @@
       "no_manager_memo": "Memo tekib siis, kui tööheaolu kirjeid on olemas.",
       "next_steps": "Soovitatud järgmised töövood",
       "no_actions": "Salvesta mõned tööheaolu kirjed, et soovitused tekiksid sinu andmete põhjal.",
-      "privacy": "Ülevaade kasutab sinu privaatseid sisestusi. Juhiga jagatav memo on koondatud tekst, mida ei saadeta automaatselt.",
       "no_load_factors": "Koormustegureid ei ole veel piisavalt.",
       "no_resource_factors": "Ressursipuudujääke ei ole veel piisavalt.",
       "no_risk_markers": "Riskimustreid ei ole veel piisavalt.",
@@ -8196,7 +8194,27 @@
       "memo_draft_ready": "Juhiga jagatav memo on kinnitatud, kuid seda ei saadeta automaatselt.",
       "memo_draft_conflict": "Memo mustand muutus teises vaates. Kopeeri oma parandused, laadi Ülevaade uuesti ja proovi värske versiooniga.",
       "memo_draft_error": "Memo mustandi salvestamine või kinnitamine ebaõnnestus.",
-      "manager_memo_summary": "Koondatud ülevaade"
+      "views": {
+        "summary": {
+          "title": "Kokkuvõte",
+          "short": "Kokkuvõte",
+          "lead": "Sinu enda tööheaolu sisestused ühe pilguga. Seda näed ainult sina."
+        },
+        "patterns": {
+          "title": "Mustrid",
+          "short": "Mustrid"
+        },
+        "memo": {
+          "title": "Memo juhile",
+          "short": "Memo",
+          "lead": "Koondatud tekst juhiga aruteluks. Seda ei saadeta automaatselt: sina otsustad, kas ja kuidas seda kasutad."
+        },
+        "next": {
+          "title": "Järgmised töövood",
+          "short": "Edasi",
+          "covision": "Aruta olukorda kolleegidega struktureeritud kohtumisel."
+        }
+      }
     },
     "quick_check": {
       "title": "Kiirkontroll",

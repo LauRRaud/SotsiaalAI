@@ -1,45 +1,41 @@
 "use client";
 
+/**
+ * Tööheaolu „Ülevaade": töötaja enda sisestuste koond valitud perioodi kohta.
+ *
+ * KUJU (09.10). Leht oli üks pikk veerg vanal ühisel kihil. Nüüd on see
+ * sammulava (`components/stage/StepFlight.jsx`) vaadetena: kokkuvõte, mustrid,
+ * memo juhile ja järgmised töövood. Vaated on failis ./overview/OverviewViews.jsx.
+ * Siin on andmed, päringud ja see, mis vaateid olekuga seob.
+ *
+ * Sildid tulevad tõlkekataloogist ja ühisest tööheaolu sõnastikust
+ * (`lib/wellbeing/displayLabels.js`); varem olid signaalide ja töövoogude nimed
+ * siin eestikeelsete sõnedena ja soovitatud töövood trükiti sisemise nimega
+ * („hard-case").
+ */
+
 import { useEffect, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
-import Button from "@/components/ui/Button";
-import Checkbox from "@/components/ui/Checkbox";
+import StepFlight from "@/components/stage/StepFlight";
 import ContentTrustBadge from "@/components/ui/ContentTrustBadge";
-import { formatQuickCheckFactor } from "@/lib/wellbeing/quickCheck";
-import { WellbeingOutputCard as OutputCard } from "./WellbeingControls";
+import { wellbeingLabel } from "@/lib/wellbeing/displayLabels";
+import { wellbeingTools } from "@/lib/wellbeingTools";
 
-const signalLabels = {
-  green: "Roheline",
-  yellow: "Kollane",
-  red: "Punane",
-  insufficient_data: "Andmeid vähe"
-};
+import { wellbeingActionRoute } from "./forms/routes";
+import { MemoView, NextWorkflowsView, PatternsView, SummaryView } from "./overview/OverviewViews";
 
-const workflowLabels = {
-  "quick-check": "Kiirkontroll",
-  "hard-case": "Raske juhtum",
-  "workplace-violence": "Töövägivald",
-  recovery: "Taastumine",
-  "work-boundaries": "Tööpiirid",
-  interruptions: "Katkestused",
-  "work-processes": "Tööprotsessid",
-  "role-boundaries": "Rollipiirid",
-  "starter-support": "Alustaja tugi",
-  covision: "Kovisioon"
-};
+const SIGNAL_TONES = { green: "ok", yellow: "wait", red: "risk", insufficient_data: "quiet" };
+const SIGNAL_FALLBACKS = { green: "Roheline", yellow: "Kollane", red: "Punane", insufficient_data: "Andmeid vähe" };
+const VIEW_KEYS = ["summary", "patterns", "memo", "next"];
+const VIEWS_KEY = "wellbeing.overview.views";
 
 function stripManagerMemoHeading(value) {
   const text = String(value || "").trim();
   return text.replace(/^Juhiga jagatav memo\s*/i, "").trimStart();
 }
 
-export default function OverviewWorkflow() {
+export default function OverviewWorkflow({ onNavigate }) {
   const { t } = useI18n();
-  const periodOptions = [
-    { key: "all", label: t("wellbeing.overview.period_all", "Kõik") },
-    { key: "week", label: t("wellbeing.overview.period_week", "Nädal") },
-    { key: "month", label: t("wellbeing.overview.period_month", "Kuu") }
-  ];
   const [status, setStatus] = useState("loading");
   const [overview, setOverview] = useState(null);
   const [selectedPeriod, setSelectedPeriod] = useState("all");
@@ -82,12 +78,19 @@ export default function OverviewWorkflow() {
     };
   }, [selectedPeriod]);
 
-  const periodSignal = overview?.periodSignal || "insufficient_data";
-  const recordCount = overview?.recordCount || 0;
-  const quickCheckCount = overview?.quickCheckCount || 0;
+  const periodSignal = SIGNAL_TONES[overview?.periodSignal] ? overview.periodSignal : "insufficient_data";
   const signalCounts = overview?.signalCounts || { green: 0, yellow: 0, red: 0 };
   const managerMemo = overview?.managerMemo;
   const memoText = editedMemo || stripManagerMemoHeading(managerMemo?.text || "");
+  const signalLabel = (level) => t(`wellbeing.my_records.signal_level.${level}`, SIGNAL_FALLBACKS[level] || level);
+  /* Töövoo nimi kataloogist; kovisioonil on oma kaardi nimi. Tundmatu liik jääb
+     tööriistade loendi nime juurde, mitte sisemise võtme juurde. */
+  const workflowLabel = (type) =>
+    type === "covision"
+      ? t("chat.workspace.cards.kovision.title", "Kovisioon")
+      : t(`wellbeing.my_records.workflow.${String(type || "").replaceAll("-", "_")}`, wellbeingTools.find((tool) => tool.id === type)?.title || "");
+  const factorItems = (items) =>
+    (Array.isArray(items) ? items : []).map((item) => ({ key: item.key, label: item.label || wellbeingLabel(item.key), count: item.count }));
 
   async function saveManagerMemoDraft() {
     const textToSave = String(memoText || "").trim();
@@ -162,213 +165,143 @@ export default function OverviewWorkflow() {
     }
   }
 
+  const recordCount = overview?.recordCount || 0;
+  /* Ülevaade ei soovita iseennast: inimene on juba siin. */
+  const recommended = (Array.isArray(overview?.recommendedWorkflowTypes) ? overview.recommendedWorkflowTypes : []).filter((type) => type !== "overview");
+  const memoStatus = draftStatus === "draft_saved"
+    ? t("wellbeing.overview.memo_draft_saved", "Memo mustand salvestati privaatselt. Enne kasutamist kinnita jagatav versioon.")
+    : draftStatus === "ready"
+      ? t("wellbeing.overview.memo_draft_ready", "Juhiga jagatav memo on kinnitatud, kuid seda ei saadeta automaatselt.")
+      : draftStatus === "conflict"
+        ? t("wellbeing.overview.memo_draft_conflict", "Memo mustand muutus teises vaates. Kopeeri oma parandused, laadi Ülevaade uuesti ja proovi värske versiooniga.")
+        : draftStatus === "error"
+          ? t("wellbeing.overview.memo_draft_error", "Memo mustandi salvestamine või kinnitamine ebaõnnestus.")
+          : "";
+
+  const steps = VIEW_KEYS.map((key) => ({
+    key,
+    label: t(`${VIEWS_KEY}.${key}.title`, key),
+    short: t(`${VIEWS_KEY}.${key}.short`, key),
+    state:
+      key === "summary" ? (recordCount ? "done" : "empty")
+        : key === "memo" ? (draft?.userConfirmed === true ? "done" : draft?.id ? "partial" : "empty")
+          : key === "next" ? (recommended.length ? "partial" : "empty")
+            : "empty",
+    summary: key === "summary" && status === "ready" ? signalLabel(periodSignal) : undefined,
+    /* Mustrid ja memo võivad olla pikad: nende järgi ühist kõrgust ei võeta. */
+    free: key === "patterns" || key === "memo" || key === "next"
+  }));
+
+  const renderView = (step) => {
+    switch (step.key) {
+      case "patterns":
+        return (
+          <PatternsView
+            t={t}
+            signals={["green", "yellow", "red"].map((level) => ({ key: level, label: signalLabel(level), count: signalCounts[level] || 0, tone: SIGNAL_TONES[level] }))}
+            groups={[
+              {
+                key: "demands",
+                title: t("wellbeing.overview.work_demands", "Töö nõudmised"),
+                items: factorItems(overview?.workDemands || overview?.topLoadFactors),
+                empty: t("wellbeing.overview.no_load_factors", "Koormustegureid ei ole veel piisavalt.")
+              },
+              {
+                key: "resources",
+                title: t("wellbeing.overview.work_resources", "Tööressursid"),
+                items: factorItems(overview?.workResources || overview?.topResourceFactors),
+                empty: t("wellbeing.overview.no_resource_factors", "Ressursipuudujääke ei ole veel piisavalt.")
+              },
+              {
+                key: "risks",
+                title: t("wellbeing.overview.risk_events", "Riskisündmused"),
+                items: factorItems(overview?.riskEvents || overview?.riskMarkers),
+                empty: t("wellbeing.overview.no_risk_markers", "Riskimustreid ei ole veel piisavalt.")
+              }
+            ]}
+          />
+        );
+      case "memo":
+        return (
+          <MemoView
+            t={t}
+            empty={!memoText && !managerMemo?.text}
+            badge={
+              <ContentTrustBadge
+                generatedText={draft?.generatedText || managerMemo?.text || ""}
+                editedText={draft?.editedText}
+                currentText={memoText}
+                userConfirmed={draft?.userConfirmed === true}
+              />
+            }
+            text={memoText}
+            onText={(value) => {
+              setEditedMemo(value);
+              setUserReviewed(false);
+              setUserConfirmed(false);
+              if (draft?.id) setDraftStatus("editing");
+            }}
+            reviewed={userReviewed}
+            onReviewed={setUserReviewed}
+            confirmed={userConfirmed}
+            onConfirmed={setUserConfirmed}
+            status={memoStatus}
+            save={{ disabled: !String(memoText || "").trim() || draftStatus === "saving", onClick: saveManagerMemoDraft }}
+            confirm={{ disabled: !draft?.id || !userReviewed || !userConfirmed || draftStatus === "saving", onClick: confirmManagerMemoDraft }}
+          />
+        );
+      case "next":
+        return (
+          <NextWorkflowsView
+            t={t}
+            items={recommended.map((type) => ({
+              key: type,
+              title: workflowLabel(type) || type,
+              description:
+                type === "covision"
+                  ? t("wellbeing.overview.views.next.covision", "Aruta olukorda kolleegidega struktureeritud kohtumisel.")
+                  : wellbeingTools.find((tool) => tool.id === type)?.description || "",
+              onClick: () => onNavigate?.(wellbeingActionRoute(type))
+            }))}
+          />
+        );
+      default:
+        return (
+          <SummaryView
+            t={t}
+            loading={status === "loading" && !overview}
+            failed={status === "error"}
+            period={{
+              value: selectedPeriod,
+              onChange: setSelectedPeriod,
+              options: ["all", "week", "month"].map((key) => ({
+                value: key,
+                label: t(`wellbeing.overview.period_${key}`, key === "all" ? "Kõik" : key === "week" ? "Nädal" : "Kuu")
+              }))
+            }}
+            signal={{ text: signalLabel(periodSignal), tone: SIGNAL_TONES[periodSignal] }}
+            counts={[
+              { key: "records", label: t("wellbeing.overview.record_count", "Töövoo kirjeid"), value: recordCount },
+              { key: "quick", label: t("wellbeing.overview.quick_check_count", "Kiirkontrolle"), value: overview?.quickCheckCount || 0 }
+            ]}
+            truncated={
+              overview?.truncated
+                ? t("wellbeing.overview.truncated", "Ülevaade tabas kaitsepiiri ja ei sisalda kõiki selle perioodi kirjeid. Vali lühem periood, et näha tervikpilti.")
+                : ""
+            }
+            workflows={(overview?.workflowCounts || []).map((item) => ({
+              key: item.workflowType,
+              label: item.label || workflowLabel(item.workflowType) || item.workflowType,
+              count: item.count
+            }))}
+          />
+        );
+    }
+  };
+
   return (
-    <div>
-      <section aria-labelledby="wellbeing-overview-heading">
-        <div>
-          <h2 id="wellbeing-overview-heading">{t("wellbeing.overview.title", "Ülevaade")}</h2>
-          <p>
-            {t(
-              "wellbeing.overview.intro",
-              "Ülevaade koondab sinu privaatsed tööheaolu sisestused ja näitab töö nõudmiste, ressursside ning korduvate mustrite seisu."
-            )}
-          </p>
-        </div>
-        <div>
-          <span>{signalLabels[periodSignal] || signalLabels.insufficient_data}</span>
-          <p>{t("wellbeing.overview.record_count", "Töövoo kirjeid")}: {recordCount}</p>
-          <p>{t("wellbeing.overview.quick_check_count", "Kiirkontrolle")}: {quickCheckCount}</p>
-          {overview?.truncated ? (
-            <p>
-              {t(
-                "wellbeing.overview.truncated",
-                "Ülevaade tabas kaitsepiiri ja ei sisalda kõiki selle perioodi kirjeid. Vali lühem periood, et näha tervikpilti."
-              )}
-            </p>
-          ) : null}
-          <p>{t("wellbeing.overview.period_label", "Periood")}: {overview?.period?.label || periodOptions.find((option) => option.key === selectedPeriod)?.label}</p>
-        </div>
-      </section>
-
-      <div aria-label={t("wellbeing.overview.period_label", "Periood")}>
-        {periodOptions.map((option) => (
-          <Button
-            key={option.key}
-            type="button"
-            size="sm"
-            aria-pressed={selectedPeriod === option.key}
-            onClick={() => setSelectedPeriod(option.key)}
-          >
-            {option.label}
-          </Button>
-        ))}
-      </div>
-
-      {status === "error" ? (
-        <p>{t("wellbeing.overview.load_failed", "Ülevaate laadimine ebaõnnestus.")}</p>
-      ) : null}
-
-      <section aria-labelledby="wellbeing-overview-output">
-        <h3 id="wellbeing-overview-output">{t("wellbeing.overview.patterns", "Mustrid")}</h3>
-        <div>
-          <div>
-            <h4>{t("wellbeing.overview.signals", "Signaalid")}</h4>
-            <ul>
-              <li>{signalLabels.green}: {signalCounts.green}</li>
-              <li>{signalLabels.yellow}: {signalCounts.yellow}</li>
-              <li>{signalLabels.red}: {signalCounts.red}</li>
-            </ul>
-          </div>
-          <OverviewList
-            title={t("wellbeing.overview.work_demands", "Töö nõudmised")}
-            items={overview?.workDemands || overview?.topLoadFactors || []}
-            emptyText={status === "loading" ? t("wellbeing.overview.loading", "Laadin...") : t("wellbeing.overview.no_load_factors", "Koormustegureid ei ole veel piisavalt.")}
-          />
-          <OverviewList
-            title={t("wellbeing.overview.work_resources", "Tööressursid")}
-            items={overview?.workResources || overview?.topResourceFactors || []}
-            emptyText={status === "loading" ? t("wellbeing.overview.loading", "Laadin...") : t("wellbeing.overview.no_resource_factors", "Ressursipuudujääke ei ole veel piisavalt.")}
-          />
-          <OverviewList
-            title={t("wellbeing.overview.risk_events", "Riskisündmused")}
-            items={overview?.riskEvents || overview?.riskMarkers || []}
-            emptyText={status === "loading" ? t("wellbeing.overview.loading", "Laadin...") : t("wellbeing.overview.no_risk_markers", "Riskimustreid ei ole veel piisavalt.")}
-          />
-          <WorkflowList
-            title={t("wellbeing.overview.workflow_counts", "Töövood")}
-            items={overview?.workflowCounts || []}
-            emptyText={status === "loading" ? t("wellbeing.overview.loading", "Laadin...") : t("wellbeing.overview.no_workflows", "Töövoo kirjeid ei ole veel.")}
-          />
-        </div>
-      </section>
-
-      <section aria-labelledby="wellbeing-overview-manager-memo">
-        <h3 id="wellbeing-overview-manager-memo">
-          {t("wellbeing.overview.manager_memo", "Juhiga jagatav memo")}
-        </h3>
-        <div>
-          <OutputCard
-            title={t("wellbeing.overview.manager_memo_summary", "Koondatud ülevaade")}
-            value={managerMemo?.text || t("wellbeing.overview.no_manager_memo", "Memo tekib siis, kui tööheaolu kirjeid on olemas.")}
-            stripTitles={["Juhiga jagatav memo"]}
-          />
-        </div>
-        <div>
-          <ContentTrustBadge
-            generatedText={draft?.generatedText || managerMemo?.text || ""}
-            editedText={draft?.editedText}
-            currentText={memoText}
-            userConfirmed={draft?.userConfirmed === true}
-          />
-          <label>
-            <span>{t("wellbeing.overview.memo_preview_label", "Memo mustand")}</span>
-            <textarea
-              value={memoText}
-              onChange={(event) => {
-                setEditedMemo(event.target.value);
-                setUserReviewed(false);
-                setUserConfirmed(false);
-                if (draft?.id) setDraftStatus("editing");
-              }}
-              rows={11}
-              maxLength={4000}
-            />
-          </label>
-          <div>
-            <Checkbox
-              checked={userReviewed}
-              onChange={setUserReviewed}
-              label={t("wellbeing.overview.reviewed", "Olen memo üle vaadanud ja liigsed detailid eemaldanud.")}
-            />
-            <Checkbox
-              checked={userConfirmed}
-              onChange={setUserConfirmed}
-              label={t("wellbeing.overview.confirmed", "Kinnitan, et see versioon sobib juhiga arutelu sisendiks.")}
-            />
-          </div>
-          <div>
-            <Button
-              type="button"
-              onClick={saveManagerMemoDraft}
-              disabled={!String(memoText || "").trim() || draftStatus === "saving"}
-            >
-              {t("wellbeing.overview.save_memo_draft", "Salvesta memo mustand")}
-            </Button>
-            <Button
-              type="button"
-              onClick={confirmManagerMemoDraft}
-              disabled={!draft?.id || !userReviewed || !userConfirmed || draftStatus === "saving"}
-            >
-              {t("wellbeing.overview.confirm_memo_draft", "Kinnita jagatav memo")}
-            </Button>
-          </div>
-          <p role="status">
-            {draftStatus === "draft_saved"
-              ? t("wellbeing.overview.memo_draft_saved", "Memo mustand salvestati privaatselt. Enne kasutamist kinnita jagatav versioon.")
-              : draftStatus === "ready"
-                ? t("wellbeing.overview.memo_draft_ready", "Juhiga jagatav memo on kinnitatud, kuid seda ei saadeta automaatselt.")
-                : draftStatus === "conflict"
-                  ? t("wellbeing.overview.memo_draft_conflict", "Memo mustand muutus teises vaates. Kopeeri oma parandused, laadi Ülevaade uuesti ja proovi värske versiooniga.")
-                : draftStatus === "error"
-                  ? t("wellbeing.overview.memo_draft_error", "Memo mustandi salvestamine või kinnitamine ebaõnnestus.")
-                  : ""}
-          </p>
-        </div>
-      </section>
-
-      <section aria-labelledby="wellbeing-overview-actions">
-        <h3 id="wellbeing-overview-actions">{t("wellbeing.overview.next_steps", "Soovitatud järgmised töövood")}</h3>
-        {(overview?.recommendedWorkflowTypes || []).length > 0 ? (
-          <ul>
-            {overview.recommendedWorkflowTypes.map((workflowType) => (
-              <li key={workflowType}>{workflowType}</li>
-            ))}
-          </ul>
-        ) : (
-          <p>{t("wellbeing.overview.no_actions", "Salvesta mõned kiirkontrollid, et soovitused tekiksid sinu andmete põhjal.")}</p>
-        )}
-      </section>
-
-      <p>
-        {t(
-          "wellbeing.overview.privacy",
-          "Ülevaade kasutab sinu privaatseid sisestusi. Juhiga jagatav memo on koondatud tekst, mida ei saadeta automaatselt."
-        )}
-      </p>
-    </div>
-  );
-}
-
-function WorkflowList({ title, items, emptyText }) {
-  return (
-    <div>
-      <h4>{title}</h4>
-      {items.length > 0 ? (
-        <ul>
-          {items.map((item) => (
-            <li key={item.workflowType}>{item.label || workflowLabels[item.workflowType] || item.workflowType}: {item.count}</li>
-          ))}
-        </ul>
-      ) : (
-        <p>{emptyText}</p>
-      )}
-    </div>
-  );
-}
-
-function OverviewList({ title, items, emptyText }) {
-  return (
-    <div>
-      <h4>{title}</h4>
-      {items.length > 0 ? (
-        <ul>
-          {items.map((item) => (
-            <li key={item.key}>{item.label || formatQuickCheckFactor(item.key)}: {item.count}</li>
-          ))}
-        </ul>
-      ) : (
-        <p>{emptyText}</p>
-      )}
-    </div>
+    <StepFlight label={t("wellbeing.overview.title", "Ülevaade")} steps={steps}>
+      {renderView}
+    </StepFlight>
   );
 }
