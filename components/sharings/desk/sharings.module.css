@@ -148,16 +148,7 @@
 /* Avatav rida on üks vajutatav lahter: pealkiri ja selle all üks rida, märgid
    ja aeg, tee edasi. */
 .row {
-  composes: cell from "../../stage/cell.module.css";
-  width: 100%;
-  min-height: var(--hit-target-min, 2.75rem);
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto auto;
-  align-items: center;
-  gap: 0.25rem 1rem;
-  padding: 0.45rem 0.9rem;
-  border-radius: 0.9rem;
-  text-align: left;
+  composes: row from "../../stage/rows.module.css";
 }
 /* Rida, mis ootab inimese otsust: tugevam raam ja äärejoon lisaks märgile. */
 .row[data-attention="1"] {

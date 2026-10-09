@@ -1,12 +1,14 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 import { useI18n } from "@/components/i18n/I18nProvider";
-import { SubpageHeader } from "@/components/ui/SubpageHeader";
+import StepPanel from "@/components/stage/StepPanel";
+import Button from "@/components/ui/Button";
 import Form from "@/components/ui/Form";
 import Input from "@/components/ui/Input";
 import { localizePath } from "@/lib/localizePath";
+
+import styles from "./search.module.css";
 
 function formatDate(value, locale) {
   try { return new Intl.DateTimeFormat(locale, { day: "2-digit", month: "2-digit", year: "numeric" }).format(new Date(value)); } catch { return ""; }
@@ -14,7 +16,12 @@ function formatDate(value, locale) {
 
 export default function PersonalSearchPage() {
   const { t, locale } = useI18n();
-  const router = useRouter();
+  /* Kataloog annab puuduva sõna asemel võtme enda: tundmatu liik või seis jääb
+     siis näitamata, mitte ei jõua võtmena ekraanile. */
+  const word = (key) => {
+    const text = t(key);
+    return text === key ? "" : text;
+  };
   const [query, setQuery] = useState("");
   const [state, setState] = useState("idle");
   const [results, setResults] = useState([]);
@@ -74,61 +81,84 @@ export default function PersonalSearchPage() {
   useEffect(() => () => abortRef.current?.abort(), []);
   const onSubmit = (event) => { event.preventDefault(); search(query); };
 
+  const status = state === "loading" ? t("personal_search.loading") : state === "empty" ? t("personal_search.empty") : "";
+
+  /* Lehe nimi on all kiirmenüüs: paneel algab sellega, mida siit otsida saab.
+     Leht on lame (üks väli ja selle tulemused), sammulava siin ei ole. */
   return (
-    <main className="personal-search" lang={locale}>
-      <SubpageHeader showBack onBack={() => router.push(localizePath("/vestlus", locale))}>{t("personal_search.title", "Minu otsing")}</SubpageHeader>
-      <p>{t("personal_search.intro", "Otsi oma vestlusi, Teekondi ja dokumente pealkirja järgi.")}</p>
-      <Form role="search" onSubmit={onSubmit}>
-        <label htmlFor="personal-search-query">{t("personal_search.label", "Otsing")}</label>
-        <div>
-          <Input id="personal-search-query" value={query} onChange={(event) => setQuery(event.target.value)} maxLength={120} autoComplete="off" />
-          <button type="submit">{t("personal_search.submit", "Otsi")}</button>
-        </div>
-      </Form>
-      <p role="status" aria-live="polite" aria-atomic="true">
-        {state === "loading" ? t("personal_search.loading", "Otsin sinu objekte…") : ""}
-        {state === "empty" ? t("personal_search.empty", "Vasteid ei leitud.") : ""}
-      </p>
-      {state === "error" ? (
-        <div role="alert">
-          <p>{t("personal_search.error", "Otsingut ei saanud praegu teha. Proovi uuesti.")}</p>
-          <button type="button" onClick={() => search(query)}>{t("personal_search.retry", "Proovi uuesti")}</button>
-        </div>
-      ) : null}
-      {unavailableKinds.length ? (
-        <p role="alert">
-          {t("personal_search.partial", {
-            kinds: unavailableKinds.map((kind) => t(`personal_search.kinds.${kind}`, kind)).join(", ")
-          })}
-        </p>
-      ) : null}
-      {state === "results" ? (
-        <>
-          <ol aria-label={t("personal_search.results", "Otsingutulemused")}>
-            {results.map((item) => (
-              <li key={`${item.kind}:${item.href}`}>
-                <a href={localizePath(item.href, locale)}>
-                  <span>{item.title || t(`personal_search.untitled.${item.kind}`, item.kind)}</span>
-                  <span>{t(`personal_search.kinds.${item.kind}`, item.kind)}</span>
-                  <span>{item.status ? t(`personal_search.status.${String(item.status).toLowerCase()}`, item.status) : ""}</span>
-                  <time dateTime={item.updatedAt || undefined}>{formatDate(item.updatedAt, locale)}</time>
-                </a>
-              </li>
-            ))}
-          </ol>
-          {pagination.hasMore ? (
-            <button
-              type="button"
-              disabled={loadingMore}
-              onClick={() => search(query, { append: true, cursor: pagination.nextCursor })}
-            >
-              {loadingMore
-                ? t("personal_search.loading_more", "Laadin…")
-                : t("personal_search.load_more", "Näita rohkem")}
-            </button>
+    <section className={styles.page} lang={locale}>
+      <h1 className="sr-only">{t("personal_search.title")}</h1>
+      <StepPanel title={t("personal_search.title")} question={t("personal_search.intro")}>
+        <div className={styles.stack}>
+          <Form role="search" className={styles.search} onSubmit={onSubmit}>
+            <div className={styles.field}>
+              <Input
+                id="personal-search-query"
+                aria-label={t("personal_search.label")}
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                maxLength={120}
+                autoComplete="off"
+              />
+            </div>
+            <Button type="submit" size="sm" variant="primary" disabled={state === "loading"}>
+              {t("personal_search.submit")}
+            </Button>
+          </Form>
+          <p className={styles.status} aria-live="polite" aria-atomic="true">
+            {status}
+          </p>
+          {state === "error" ? (
+            <div className={styles.fault}>
+              <p className={styles.faultText} role="alert">
+                {t("personal_search.error")}
+              </p>
+              <Button type="button" size="sm" variant="secondary" onClick={() => search(query)}>
+                {t("personal_search.retry")}
+              </Button>
+            </div>
           ) : null}
-        </>
-      ) : null}
-    </main>
+          {unavailableKinds.length ? (
+            <p className={styles.faultText} role="alert">
+              {t("personal_search.partial", { kinds: unavailableKinds.map((kind) => word(`personal_search.kinds.${kind}`)).filter(Boolean).join(", ") })}
+            </p>
+          ) : null}
+          {state === "results" ? (
+            <>
+              <ol className={styles.rows} aria-label={t("personal_search.results")}>
+                {results.map((item) => {
+                  const kind = word(`personal_search.kinds.${item.kind}`);
+                  const itemStatus = item.status ? word(`personal_search.status.${String(item.status).toLowerCase()}`) : "";
+                  return (
+                    <li className={styles.rowItem} key={`${item.kind}:${item.href}`}>
+                      <a className={styles.row} href={localizePath(item.href, locale)}>
+                        {/* Pealkiri on TEKST: sisu tuleb React'i lapsena, mitte HTML-ina. */}
+                        <span className={styles.rowTitle}>{item.title || word(`personal_search.untitled.${item.kind}`) || kind}</span>
+                        <span className={styles.rowMeta}>
+                          <span className={styles.kind}>{[kind, itemStatus].filter(Boolean).join(" · ")}</span>
+                          <time className={styles.time} dateTime={item.updatedAt || undefined}>
+                            {formatDate(item.updatedAt, locale)}
+                          </time>
+                        </span>
+                        <span className={styles.open} aria-hidden="true">
+                          ›
+                        </span>
+                      </a>
+                    </li>
+                  );
+                })}
+              </ol>
+              {pagination.hasMore ? (
+                <div className={styles.more}>
+                  <Button type="button" size="sm" variant="secondary" disabled={loadingMore} onClick={() => search(query, { append: true, cursor: pagination.nextCursor })}>
+                    {loadingMore ? t("personal_search.loading_more") : t("personal_search.load_more")}
+                  </Button>
+                </div>
+              ) : null}
+            </>
+          ) : null}
+        </div>
+      </StepPanel>
+    </section>
   );
 }
