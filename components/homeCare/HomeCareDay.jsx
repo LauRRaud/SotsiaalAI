@@ -106,6 +106,15 @@ export default function HomeCareDay({ context, initial }) {
           </Link>
         </span>{" "}
         <span className={`hc-badge${STATE_BADGE[visit.state] || ""}`}>{t(`home_care.day.states.${visit.state}`)}</span>
+        {/* Ravimitoiming (K5-d): kavas on ravim; märk on hoiatus ainult siis, kui märge puudub või käik jäi tegemata. */}
+        {visit.medication ? (
+          <>
+            {" "}
+            <span className={`hc-badge${visit.medication === "MISSED" ? " hc-badge--danger" : visit.medication === "UNMARKED" || visit.medication === "NOT_DONE" ? " hc-badge--warn" : ""}`}>
+              {t(`home_care.medication.states.${visit.medication}`)}
+            </span>
+          </>
+        ) : null}
         {visit.workerAbsent || visit.priority === "A" ? (
           <>
             {" "}
@@ -381,6 +390,7 @@ export default function HomeCareDay({ context, initial }) {
             uncovered: data.totals.uncovered || 0
           })}
         </p>
+        {data.medicationOpen ? <p className="hc-notice hc-notice--warn">{t("home_care.medication.open_count", { count: data.medicationOpen })}</p> : null}
         <div className="hc-row">
           <Link className="hc-btn hc-btn--quiet hc-btn--link" href={`/org/${organizationId}/koduteenus/nadal`}>
             {t("home_care.week.link")}

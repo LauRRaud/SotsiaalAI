@@ -12862,7 +12862,9 @@
       "referrals_invalid": "Loend ei ole arusaadav.",
       "referrals_too_many": "Loendis võib olla kuni {limit} rida.",
       "referral_name_required": "Real on telefon või selgitus, aga nimi puudub.",
-      "referral_phone_invalid": "Telefoninumbris võivad olla numbrid, tühikud, pluss, sulud ja sidekriips."
+      "referral_phone_invalid": "Telefoninumbris võivad olla numbrid, tühikud, pluss, sulud ja sidekriips.",
+      "medication_action_invalid": "Tundmatu ravimitoimingu märge.",
+      "medication_action_not_allowed": "Ravimitoimingu märke saab panna ainult ravimitoimingule."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -13939,6 +13941,24 @@
       "add_row": "Lisa rida",
       "save": "Salvesta",
       "cancel": "Loobu"
+    },
+    "medication": {
+      "action_label": "{name}: mida tegid",
+      "pick": "Vali, mida tegid: meeldetuletus, võtmise nägemine ja andmine on eri toimingud.",
+      "missing": "Vali ravimitoimingu juures, mida tegid.",
+      "actions": {
+        "REMINDED": "tuletasin meelde",
+        "SAW_TAKEN": "nägin võtmas",
+        "GAVE": "andsin"
+      },
+      "states": {
+        "DUE": "ravim kavas",
+        "MARKED": "ravim märgitud",
+        "NOT_DONE": "ravim jäi tegemata",
+        "UNMARKED": "ravim märkimata",
+        "MISSED": "ravimikäik tegemata"
+      },
+      "open_count": "Ravimimärge puudub {count} käigul. Küsi hooldajalt järele."
     }
   },
   "stage": {

@@ -4957,3 +4957,78 @@ test('„kuhu suunata": asutuse loend, kes loeb ja kes muudab, versioonid ja and
   assert.deepEqual(audit.map((entry) => entry.meta.change).sort(), ['cleared', 'saved', 'saved']);
   for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['change', 'organizationId']);
 });
+
+test('ravimitoimingu märge: käigu kirjel, ainult ravimitoimingul, parandus ja päevaplaani märk', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, deps())).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi' }, deps())).client;
+  const mari = (await createClient(lead, { displayName: 'Mari Mets' }, deps())).client;
+  for (const client of [linda, peeter, mari]) await addTeamMember(lead, client.id, { membershipId: f.members.anu.id }, deps());
+  const pills = (await createActivity(lead, { group: 'MEDICATION', name: 'Hommikused ravimid' }, deps())).activity;
+  const stove = (await createActivity(lead, { group: 'HEATING', name: 'Ahju kütmine' }, deps())).activity;
+  /* Lindal ja Maril on kavas ravimitoiming, Peetril ainult kütmine. */
+  const plan = async (client, lines) => {
+    const draft = (await saveCarePlanDraft(lead, client.id, { goals: 'Kodus edasi elada.', lines }, deps())).draft;
+    await activateCarePlan(lead, client.id, { version: draft.version }, deps());
+  };
+  const line = (activity) => ({ activityId: activity.id, frequencyKind: 'DAILY', frequencyCount: 1, mode: 'GUIDE' });
+  await plan(linda, [line(pills), line(stove)]);
+  await plan(mari, [line(pills)]);
+  await plan(peeter, [line(stove)]);
+  const early = deps(at('2026-10-01T08:00:00Z'));
+  for (const client of [linda, peeter, mari]) {
+    await createSlots(lead, client.id, { weekdays: [5], startTime: client === mari ? '08:00' : '12:00', plannedMinutes: 30, workerMembershipId: f.members.anu.id }, early);
+  }
+  const medicationOf = async (when) => {
+    const day = await getDayPlan(lead, {}, deps(at(when)));
+    const visits = day.workers.flatMap((worker) => worker.visits);
+    return [Object.fromEntries(visits.map((visit) => [visit.client.displayName, visit.medication])), day.medicationOpen];
+  };
+
+  /* HOMMIK (11:00 kohaliku aja järgi): Mari kell 8 käik on tegemata, teised on ees. */
+  assert.deepEqual(await medicationOf('2026-10-09T08:00:00Z'), [{ 'Linda Tamm': 'DUE', 'Peeter Põhi': null, 'Mari Mets': 'MISSED' }, 1]);
+
+  /* MÄRGE ainult ravimitoimingul ja ainult loendist. */
+  const visit = (client, activities, extra = {}) => createEntry(anu, client.id, { kind: 'NOTE', contactMode: 'VISIT', activities, ...extra }, deps(at('2026-10-09T10:00:00Z')));
+  await expectError(visit(linda, [{ activityId: stove.id, mode: 'FOR', medication: 'GAVE' }]), 400, 'home_care.errors.medication_action_not_allowed');
+  await expectError(visit(linda, [{ activityId: pills.id, mode: 'GUIDE', medication: 'SÜSTISIN' }]), 400, 'home_care.errors.medication_action_invalid');
+
+  /* Linda: käik kirjas ilma ravimita (ainult kütmine) → märkimata; Peeter: ravimit kavas ei ole → märki ei ole. */
+  await visit(linda, [{ activityId: stove.id, mode: 'FOR' }]);
+  await visit(peeter, [{ activityId: stove.id, mode: 'FOR' }]);
+  assert.deepEqual(await medicationOf('2026-10-09T10:05:00Z'), [{ 'Linda Tamm': 'UNMARKED', 'Peeter Põhi': null, 'Mari Mets': 'MISSED' }, 2]);
+
+  /* Mari keeldus ravimist: see on märge (tegemata), mitte puuduv märge. */
+  await visit(mari, [{ activityId: pills.id, outcome: 'REFUSED' }], { text: 'Ei tahtnud võtta' });
+  /* Linda teine kirje samal päeval: ravim märgitud. */
+  const marked = await visit(linda, [{ activityId: pills.id, mode: 'GUIDE', medication: 'SAW_TAKEN' }]);
+  assert.deepEqual(marked.entry.visit.activities.map((item) => [item.name, item.outcome, item.medication]), [['Hommikused ravimid', 'DONE', 'SAW_TAKEN']]);
+  assert.deepEqual(await medicationOf('2026-10-09T10:10:00Z'), [{ 'Linda Tamm': 'MARKED', 'Peeter Põhi': null, 'Mari Mets': 'NOT_DONE' }, 0]);
+
+  /* PARANDUS: saatmata märge jääb alles; uus märge asendab; tegemata muutes märge kaob. */
+  const correct = (activities, revision) =>
+    correctEntry(anu, linda.id, marked.entry.id, { reason: 'Parandus', revision, activities }, deps(at('2026-10-09T10:20:00Z')));
+  const kept = await correct([{ activityId: pills.id, mode: 'TOGETHER' }], marked.entry.revision);
+  assert.deepEqual(kept.entry.visit.activities.map((item) => [item.mode, item.medication]), [['TOGETHER', 'SAW_TAKEN']]);
+  const changed = await correct([{ activityId: pills.id, mode: 'TOGETHER', medication: 'GAVE' }], kept.entry.revision);
+  assert.equal(changed.entry.visit.activities[0].medication, 'GAVE');
+  const refusedLater = await correct([{ activityId: pills.id, outcome: 'COULD_NOT' }], changed.entry.revision);
+  assert.deepEqual(refusedLater.entry.visit.activities.map((item) => [item.outcome, item.medication]), [['COULD_NOT', null]]);
+  assert.deepEqual((await medicationOf('2026-10-09T10:30:00Z'))[0]['Linda Tamm'], 'NOT_DONE');
+  /* Tühistatud kirje märget ei loe: Mari käik on kirjas, ravimi kohta enam midagi ei ole. */
+  const mariEntry = await db.careClientEntry.findFirst({ where: { clientId: mari.id }, select: { id: true, revision: true } });
+  await retractEntry(anu, mari.id, mariEntry.id, { reason: 'Vale klient', revision: mariEntry.revision }, deps(at('2026-10-09T10:40:00Z')));
+  assert.deepEqual((await medicationOf('2026-10-09T10:45:00Z'))[0]['Mari Mets'], 'MISSED');
+
+  /* ANDMEBAAS hoiab reegli ka ilma teenuseta. */
+  const anyEntry = await db.careClientEntry.findFirst({ where: { clientId: linda.id }, select: { id: true } });
+  const raw = (data) =>
+    db.careEntryActivity.create({
+      data: { organizationId: f.orgA.id, entryId: anyEntry.id, clientId: linda.id, activityName: 'x', activityGroup: 'MEDICATION', mode: 'GUIDE', ...data }
+    });
+  await assert.rejects(raw({ medicationAction: 'SÜSTISIN' }), /CareEntryActivity_medicationAction_check/);
+  await assert.rejects(raw({ medicationAction: 'GAVE', activityGroup: 'HEATING' }), /CareEntryActivity_medicationAction_check/);
+  await assert.rejects(raw({ medicationAction: 'GAVE', outcome: 'REFUSED' }), /CareEntryActivity_medicationAction_check/);
+});
