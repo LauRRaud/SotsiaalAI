@@ -1,7 +1,8 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 
+import { newClientActionKey } from "@/components/casework/caseWorkClient";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Dropdown from "@/components/ui/Dropdown";
 import { CareIncidentUpdateKind, HOME_CARE_LIMITS } from "@/lib/homeCare/constants";
@@ -26,15 +27,28 @@ export default function HomeCareIncidentTrail({ organizationId, entry, timeZone,
   const [updates, setUpdates] = useState(null);
   const [text, setText] = useState("");
   const [assignees, setAssignees] = useState(null);
+  /* Sama täienduse korduskatsel läheb teele sama võti; teksti muutmine teeb uue. */
+  const attemptRef = useRef(null);
 
   const base = `${homeCareBase(organizationId)}/kliendid/${entry.clientId}/kirjed/${entry.id}`;
   const retracted = Boolean(entry.retractedAt);
   const assigneeId = entry.incident?.assignee?.membershipId || "";
 
-  const load = async () => {
+  const load = useCallback(async () => {
     const result = await call(`${base}/kaik`, { fallbackKey: "home_care.errors.list_failed" });
     setUpdates(result.ok ? result.data.updates || [] : null);
-  };
+  }, [base, call]);
+
+  /* Seisu või vastutaja muutus (ka kirje rea nuppudest) lisab käiku rea. Lahtine
+     käik laaditakse siis uuesti, muidu jääks uus rida ja sulgemise selgitus
+     nägemata, kuni paneel suletakse ja avatakse. */
+  const trailKey = `${entry.incident?.status || ""}|${assigneeId}`;
+  const seenKey = useRef(trailKey);
+  useEffect(() => {
+    if (seenKey.current === trailKey) return;
+    seenKey.current = trailKey;
+    if (open) load();
+  }, [trailKey, open, load]);
 
   const toggle = async () => {
     if (open) {
@@ -51,14 +65,17 @@ export default function HomeCareIncidentTrail({ organizationId, entry, timeZone,
 
   const add = async (event) => {
     event.preventDefault();
+    if (attemptRef.current?.text !== text) attemptRef.current = { text, key: newClientActionKey() };
     const result = await call(`${base}/kaik`, {
       method: "POST",
-      body: { text },
+      body: { text, clientRequestId: attemptRef.current.key },
       fallbackKey: "home_care.errors.save_failed"
     });
     if (result.ok) {
-      setUpdates((current) => [...(current || []), result.data.update]);
+      const saved = result.data.update;
+      setUpdates((current) => [...(current || []).filter((item) => item.id !== saved.id), saved]);
       setText("");
+      attemptRef.current = null;
     }
   };
 
@@ -70,8 +87,8 @@ export default function HomeCareIncidentTrail({ organizationId, entry, timeZone,
       fallbackKey: "home_care.errors.save_failed"
     });
     if (result.ok) {
+      /* Käik laaditakse uuesti siis, kui kirje uus vastutaja siia jõuab (vt efekt ülal). */
       onEntryChange?.(result.data.entry);
-      await load();
     }
   };
 
@@ -83,8 +100,8 @@ export default function HomeCareIncidentTrail({ organizationId, entry, timeZone,
       return update.text ? `${change}. ${update.text}` : change;
     }
     if (update.kind === CareIncidentUpdateKind.ASSIGNED) {
-      return update.assigneeName
-        ? t("home_care.trail.assigned_to", { name: update.assigneeName })
+      return update.assigned
+        ? t("home_care.trail.assigned_to", { name: update.assigneeName || "—" })
         : t("home_care.trail.unassigned");
     }
     return update.text || "";

@@ -10885,7 +10885,8 @@
       "close": "Sulge",
       "reopen": "Ava uuesti",
       "resolution_label": "Mida tehti",
-      "assignee": "Vastutab: {name}"
+      "assignee": "Vastutab: {name}",
+      "assignee_stale": "vajab uut vastutajat"
     },
     "filter": {
       "title": "Päevik",

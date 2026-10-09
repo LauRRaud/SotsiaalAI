@@ -172,7 +172,15 @@ export default function HomeCareEntryItem({
         </p>
       ) : null}
       {incident && incident.assignee ? (
-        <p className="hc-entry__meta">{t("home_care.incident.assignee", { name: incident.assignee.name })}</p>
+        <p className="hc-entry__meta">
+          {t("home_care.incident.assignee", { name: incident.assignee.name || "—" })}
+          {entry.assigneeStale ? (
+            <>
+              {" "}
+              <span className="hc-badge hc-badge--warn">{t("home_care.incident.assignee_stale")}</span>
+            </>
+          ) : null}
+        </p>
       ) : null}
       {entry.companionName ? (
         <p className="hc-entry__meta">{t("home_care.entry.with_companion", { name: entry.companionName })}</p>

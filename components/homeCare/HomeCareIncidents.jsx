@@ -38,17 +38,18 @@ export default function HomeCareIncidents({ context, initial, focused: initialFo
   const [draft, setDraft] = useState({ type: "", from: "", to: "" });
   const [applied, setApplied] = useState({ type: "", from: "", to: "" });
 
-  const url = (nextStatus, query, cursor) => {
+  const url = (nextStatus, query, cursor, take) => {
     const params = new URLSearchParams({ status: nextStatus });
     if (query.type) params.set("type", query.type);
     if (query.from) params.set("from", query.from);
     if (query.to) params.set("to", query.to);
     if (cursor) params.set("cursor", cursor);
+    if (take) params.set("take", String(take));
     return `${homeCareBase(organizationId)}/erijuhtumid?${params.toString()}`;
   };
 
-  const load = async (nextStatus, query) => {
-    const result = await call(url(nextStatus, query), { fallbackKey: "home_care.errors.list_failed" });
+  const load = async (nextStatus, query, take) => {
+    const result = await call(url(nextStatus, query, null, take), { fallbackKey: "home_care.errors.list_failed" });
     if (!result.ok) return;
     setPage(result.data.incidents);
     setStatus(nextStatus);
@@ -69,9 +70,12 @@ export default function HomeCareIncidents({ context, initial, focused: initialFo
     });
   };
 
+  /* Pärast muudatust laaditakse uuesti NII PALJU RIDU, kui parajasti näha on
+     (server piirab saja reaga): „näita vanemaid" kaudu avatud read ja lahtine
+     käik ei tohi muudatuse järel eest kaduda. */
   const onChange = (entry) => {
     setFocused((current) => (current && current.id === entry.id ? { ...current, ...entry, client: current.client } : current));
-    load(status, applied);
+    load(status, applied, Math.max(page.items.length, 1));
   };
 
   const counts = page.counts || EMPTY_PAGE.counts;

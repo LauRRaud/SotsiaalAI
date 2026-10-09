@@ -16,7 +16,8 @@ export async function GET(request, context) {
       from: params.get("from") || undefined,
       to: params.get("to") || undefined,
       clientId: params.get("clientId") || undefined,
-      cursor: params.get("cursor") || undefined
+      cursor: params.get("cursor") || undefined,
+      take: params.get("take") || undefined
     });
     return orgJson({ ok: true, incidents: page });
   });

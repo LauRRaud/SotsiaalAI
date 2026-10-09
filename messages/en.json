@@ -10885,7 +10885,8 @@
       "close": "Close",
       "reopen": "Reopen",
       "resolution_label": "What was done",
-      "assignee": "Responsible: {name}"
+      "assignee": "Responsible: {name}",
+      "assignee_stale": "needs a new responsible person"
     },
     "filter": {
       "title": "Diary",

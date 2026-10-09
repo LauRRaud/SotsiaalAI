@@ -63,7 +63,7 @@ export default async function HomeCareEntryRedirectPage({ params }) {
   }
 
   const base = `/org/${entry.organizationId}/koduteenus`;
-  if (target.isCoordinator && target.kind === CareEntryKind.INCIDENT) {
+  if (target.isCoordinator && target.kind === CareEntryKind.INCIDENT && !target.retracted) {
     redirect(`${base}/erijuhtumid?juhtum=${encodeURIComponent(entry.id)}`);
   }
   redirect(`${base}/kliendid/${target.clientId}`);

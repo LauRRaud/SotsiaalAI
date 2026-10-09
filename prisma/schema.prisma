@@ -8354,11 +8354,15 @@ model CareIncidentUpdate {
   /// ridu näeb ainult hooldusjuht.
   byCoordinator     Boolean @default(false)
 
+  /// Seadmes genereeritud võti: täienduse kordussaatmine ei tekita teist rida.
+  clientRequestId String?
+
   createdAt DateTime @default(now())
 
   entry  CareClientEntry @relation(fields: [entryId], references: [id], onDelete: Cascade)
   client CareClient      @relation(fields: [clientId], references: [id], onDelete: Cascade)
 
+  @@unique([actorMembershipId, clientRequestId])
   @@index([entryId, createdAt])
   @@index([organizationId, createdAt])
   @@index([clientId])

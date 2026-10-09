@@ -25,7 +25,8 @@ export async function POST(request, context) {
       const clientId = await readParam(context, "clientId");
       const entryId = await readParam(context, "entryId");
       const body = await readJsonBody(request);
-      return orgJson({ ok: true, ...(await addIncidentUpdate(auth.context, clientId, entryId, body)) }, 201);
+      const result = await addIncidentUpdate(auth.context, clientId, entryId, body);
+      return orgJson({ ok: true, update: result.update }, result.created ? 201 : 200);
     }
   );
 }

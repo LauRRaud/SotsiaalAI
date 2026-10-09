@@ -27,10 +27,13 @@ CREATE TABLE "CareIncidentUpdate" (
     "actorMembershipId" TEXT NOT NULL,
     "actorName" TEXT NOT NULL,
     "byCoordinator" BOOLEAN NOT NULL DEFAULT false,
+    "clientRequestId" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "CareIncidentUpdate_pkey" PRIMARY KEY ("id")
 );
+
+CREATE UNIQUE INDEX "CareIncidentUpdate_actorMembershipId_clientRequestId_key" ON "CareIncidentUpdate"("actorMembershipId", "clientRequestId");
 
 CREATE INDEX "CareIncidentUpdate_entryId_createdAt_idx" ON "CareIncidentUpdate"("entryId", "createdAt");
 

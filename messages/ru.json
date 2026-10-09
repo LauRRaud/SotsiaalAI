@@ -10885,7 +10885,8 @@
       "close": "Закрыть",
       "reopen": "Открыть снова",
       "resolution_label": "Что было сделано",
-      "assignee": "Отвечает: {name}"
+      "assignee": "Отвечает: {name}",
+      "assignee_stale": "нужен новый ответственный"
     },
     "filter": {
       "title": "Дневник",
