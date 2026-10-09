@@ -9,6 +9,7 @@ import OrgHeader from "@/components/org/OrgHeader";
 
 import HomeCareClientForm from "./HomeCareClientForm";
 import { keyName, keyWhere } from "./HomeCareKeys";
+import { euroText } from "./HomeCareMoney";
 import HomeCareObstacle from "./HomeCareObstacle";
 import { minutesLabel } from "./HomeCareDecisionView";
 import HomeCareOutbox from "./HomeCareOutbox";
@@ -77,7 +78,7 @@ function MyVisit({ organizationId, visit }) {
  * küsib avamisel põhjust (asendaja tee).
  */
 export default function HomeCareHome({ context, initial, unitOptions, myDay = null }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const router = useRouter();
   const organizationId = context.organization.id;
   const list = useHomeCareApi();
@@ -158,6 +159,23 @@ export default function HomeCareHome({ context, initial, unitOptions, myDay = nu
                     ) : null}
                   </span>
                   <span className="hc-client__meta">{key.client.displayName}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+
+      {/* Minu käes olev kliendiraha (K4-c): jääk kliendi kaupa. */}
+      {myDay?.money?.length ? (
+        <div className="hc-section">
+          <h3 className="hc-section-title">{t("home_care.money.mine_title")}</h3>
+          <ul className="hc-list">
+            {myDay.money.map((item) => (
+              <li key={item.client.id}>
+                <Link className="hc-client" href={clientHref(organizationId, item.client.id)} prefetch={false}>
+                  <span className="hc-client__name">{item.client.displayName}</span>
+                  <span className="hc-client__meta">{euroText(item.balanceCents, locale)}</span>
                 </Link>
               </li>
             ))}

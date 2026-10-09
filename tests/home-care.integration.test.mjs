@@ -84,6 +84,7 @@ import { handleObstacle, reportObstacle, withdrawObstacle } from '../lib/homeCar
 import { clearWorkNature, setWorkNature } from '../lib/homeCare/workNature.js';
 import { addPrecondition, closePrecondition } from '../lib/homeCare/preconditions.js';
 import { addKey, closeKey, getKeyRegister, handOverKey } from '../lib/homeCare/keys.js';
+import { addMoneyEntry, retractMoneyEntry } from '../lib/homeCare/money.js';
 import { assertNotificationRecipient, serializeNotificationEvent } from '../lib/notifications.js';
 
 const url = new URL(process.env.HOME_CARE_TEST_DATABASE_URL || 'postgres://invalid/invalid');
@@ -1851,6 +1852,7 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
   await setWorkNature(lead, client.id, { kinds: ['PHYSICAL'], reason: 'Tõstmine ilma tõstukita.' }, deps());
   await addPrecondition(lead, client.id, { kind: 'CLEANING', responsible: 'Linna sotsiaaltöötaja' }, deps());
   await addKey(lead, client.id, { tag: '5', holderMembershipId: f.members.anu.id }, deps());
+  await addMoneyEntry(anu, client.id, { kind: 'RECEIVED', amount: '10' }, deps());
   const obstacleOfAnu = await reportObstacle(anu, { kind: 'LATE_30' }, deps());
   await handleObstacle(lead, obstacleOfAnu.obstacle.id, {}, deps());
   /* Ühe päeva erand (K3-b): järgmise esmaspäeva käik jääb ära. */
@@ -1955,6 +1957,7 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
     preconditions: await db.carePrecondition.count({ where: ofOrg }),
     keys: await db.careKey.count({ where: ofOrg }),
     keyHandovers: await db.careKeyHandover.count({ where: ofOrg }),
+    moneyEntries: await db.careMoneyEntry.count({ where: ofOrg }),
     auditEvents: await db.dataAuditLog.count({
       where: { action: { startsWith: 'org.home_care_' }, meta: { path: ['organizationId'], equals: f.orgA.id }, createdAt: { lt: (await exportRows())[0].createdAt } }
     })
@@ -4238,4 +4241,105 @@ test('võtmeraamat: arvele võtmine, üleandmine, lõpetamine, võti päevaplaan
   const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_key_changed', meta: { path: ['organizationId'], equals: f.orgA.id } } });
   assert.deepEqual(audit.map((entry) => entry.meta.change).sort(), ['added', 'added', 'added', 'added', 'handed_over', 'handed_over', 'handed_over', 'lost', 'returned']);
   for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['change', 'clientId', 'keyId', 'organizationId']);
+});
+
+test('kliendi raha: saadud, kulutatud ja tagastatud, jääk hoidja kaupa, tühistamine ja lahtine jääk hooldusjuhile', async (t) => {
+  const f = await fixture(t);
+  const north = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Põhi ${f.tag}`, type: 'TEAM' } });
+  await db.organizationCapabilityGrant.create({
+    data: { membershipId: f.members.cover.id, capability: 'HOME_CARE_COORDINATOR', scopeType: 'UNIT', scopeUnitId: north.id, validFrom: at('2026-01-01T00:00:00Z') }
+  });
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const clerk = await f.ctx(f.users.clerk, f.orgA);
+  const unitLead = await f.ctx(f.users.cover, f.orgA);
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, deps())).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi', unitId: north.id }, deps())).client;
+  await addTeamMember(lead, linda.id, { membershipId: f.members.anu.id }, deps());
+  await addTeamMember(lead, linda.id, { membershipId: f.members.bert.id }, deps());
+  await addTeamMember(lead, peeter.id, { membershipId: f.members.bert.id }, deps());
+  const today = '2026-10-09';
+
+  /* Algus: raha kellegi käes ei ole. */
+  const empty = (await openClient(anu, linda.id, deps())).money;
+  assert.deepEqual(empty, { today, balanceCents: 0, entries: [], holders: [] });
+
+  /* Kirja paneb see, kes tohib kliendi lehte avada; vigane sisend ei salvestu. */
+  await expectError(addMoneyEntry(clerk, linda.id, { kind: 'RECEIVED', amount: '10' }, deps()), 404, 'home_care.errors.client_not_found');
+  const bad = (patch, key) => expectError(addMoneyEntry(anu, linda.id, { kind: 'RECEIVED', amount: '20', ...patch }, deps()), 400, key);
+  await bad({ kind: 'STOLEN' }, 'home_care.errors.money_kind_required');
+  for (const amount of ['', '0', '-5', '12,345', 'kümme', '1e3', '10001', '10000.01']) await bad({ amount }, 'home_care.errors.money_amount_invalid');
+  await bad({ kind: 'SPENT', amount: '5' }, 'home_care.errors.money_note_required');
+  await bad({ occurredOn: '2026-10-10' }, 'home_care.errors.money_day_invalid');
+  await bad({ occurredOn: '2026-09-01' }, 'home_care.errors.money_day_invalid');
+  /* Kulutada ega tagastada ei saa raha, mida käes ei ole. */
+  await bad({ kind: 'RETURNED', amount: '1' }, 'home_care.errors.money_exceeds_balance');
+  assert.equal(await db.careMoneyEntry.count({ where: { organizationId: f.orgA.id } }), 0);
+
+  /* SAADUD, KULUTATUD, TAGASTATUD: jääk on sentides ja koma ning punkt on mõlemad lubatud. */
+  const got = await addMoneyEntry(anu, linda.id, { kind: 'RECEIVED', amount: '20' }, deps());
+  assert.deepEqual([got.money.balanceCents, got.money.entries.map((row) => [row.kind, row.amountCents, row.note, row.occurredOn, row.canRetract])], [2000, [['RECEIVED', 2000, null, today, true]]]);
+  const spent = await addMoneyEntry(anu, linda.id, { kind: 'SPENT', amount: '12,35', note: '  Pood:   leib ja piim ' }, deps(at('2026-10-09T08:10:00Z')));
+  assert.deepEqual([spent.money.balanceCents, spent.money.entries[0].note, spent.money.entries[0].amountCents], [765, 'Pood: leib ja piim', 1235]);
+  await expectError(addMoneyEntry(anu, linda.id, { kind: 'RETURNED', amount: '7.66' }, deps()), 400, 'home_care.errors.money_exceeds_balance');
+  const back = await addMoneyEntry(anu, linda.id, { kind: 'RETURNED', amount: '7.65' }, deps(at('2026-10-09T08:20:00Z')));
+  assert.deepEqual([back.money.balanceCents, back.money.entries.map((row) => row.kind)], [0, ['RETURNED', 'SPENT', 'RECEIVED']]);
+
+  /* Iga hoidja jääk on eraldi: Bert näeb ainult oma ridu, hooldusjuht näeb kõigi hoidjate jääke ja ridu. */
+  await addMoneyEntry(bert, linda.id, { kind: 'RECEIVED', amount: '50', occurredOn: '2026-10-01' }, deps(at('2026-10-01T09:00:00Z')));
+  await addMoneyEntry(bert, linda.id, { kind: 'SPENT', amount: '9,90', note: 'Apteek', occurredOn: '2026-10-01' }, deps(at('2026-10-01T10:00:00Z')));
+  const ofBert = (await openClient(bert, linda.id, deps())).money;
+  assert.deepEqual([ofBert.balanceCents, ofBert.entries.map((row) => [row.kind, row.canRetract]), ofBert.holders], [4010, [['SPENT', false], ['RECEIVED', false]], []]);
+  assert.equal((await openClient(anu, linda.id, deps())).money.entries.length, 3);
+  const ofLead = (await openClient(lead, linda.id, deps())).money;
+  assert.deepEqual(ofLead.holders, [{ membershipId: f.members.bert.id, name: 'Bert Hooldaja', balanceCents: 4010, lastOn: '2026-10-01' }]);
+  assert.deepEqual([ofLead.balanceCents, ofLead.entries.length, ofLead.entries.every((row) => row.canRetract), ofLead.entries[0].holderName], [0, 5, true, 'Anu Hooldaja']);
+
+  /* HOOLDAJA AVALEHT: kliendid, kelle raha on tema käes. */
+  await addMoneyEntry(bert, peeter.id, { kind: 'RECEIVED', amount: '5' }, deps());
+  assert.deepEqual((await getMyDay(bert, deps())).money, [
+    { client: { id: linda.id, displayName: 'Linda Tamm' }, balanceCents: 4010 },
+    { client: { id: peeter.id, displayName: 'Peeter Põhi' }, balanceCents: 500 }
+  ]);
+  assert.deepEqual((await getMyDay(anu, deps())).money, []);
+
+  /* TÄHTAJAD: jääk, mille viimasest reast on üle nädala; tänane jääk sinna ei kuulu. Üksuse juht näeb oma üksust. */
+  const deadlines = await getDeadlines(lead, deps());
+  assert.deepEqual(deadlines.moneyOpen.map((item) => [item.client.displayName, item.holderName, item.balanceCents, item.lastOn, item.days]), [['Linda Tamm', 'Bert Hooldaja', 4010, '2026-10-01', 8]]);
+  assert.deepEqual((await getDeadlines(unitLead, deps())).moneyOpen, []);
+  assert.deepEqual((await getDeadlines(unitLead, deps(at('2026-10-20T08:00:00Z')))).moneyOpen.map((item) => [item.client.displayName, item.balanceCents, item.days]), [['Peeter Põhi', 500, 11]]);
+
+  /* TÜHISTAMINE: autor samal päeval, hooldusjuht igal ajal; võõrast rida ei leia; jääk ei tohi minna alla nulli. */
+  const bertRows = await db.careMoneyEntry.findMany({ where: { clientId: linda.id, holderMembershipId: f.members.bert.id }, orderBy: { createdAt: 'asc' } });
+  await expectError(retractMoneyEntry(anu, linda.id, bertRows[0].id, deps()), 404, 'home_care.errors.money_not_found');
+  await expectError(retractMoneyEntry(bert, linda.id, bertRows[1].id, deps()), 403, 'org.errors.missing_capability');
+  await expectError(retractMoneyEntry(unitLead, linda.id, bertRows[1].id, deps()), 403, 'home_care.errors.access_reason_required');
+  /* Saadud raha rida ei saa tühistada, kui sellest on juba kulutatud: 50 − 9,90 jääks −9,90. */
+  await addMoneyEntry(bert, linda.id, { kind: 'SPENT', amount: '40.10', note: 'Elektriarve' }, deps());
+  await expectError(retractMoneyEntry(lead, linda.id, bertRows[0].id, deps()), 409, 'home_care.errors.money_retract_negative');
+  const afterRetract = await retractMoneyEntry(lead, linda.id, bertRows[1].id, deps(at('2026-10-09T09:00:00Z')));
+  assert.deepEqual(afterRetract.money.holders.map((holder) => [holder.name, holder.balanceCents]), [['Bert Hooldaja', 990]]);
+  await expectError(retractMoneyEntry(lead, linda.id, bertRows[1].id, deps()), 409, 'home_care.errors.money_retracted');
+  /* Anu tühistab oma tänase tagastuse: raha on jälle tema käes. */
+  const anuRows = await db.careMoneyEntry.findMany({ where: { clientId: linda.id, holderMembershipId: f.members.anu.id }, orderBy: { createdAt: 'asc' } });
+  const undone = await retractMoneyEntry(anu, linda.id, anuRows[2].id, deps(at('2026-10-09T09:30:00Z')));
+  assert.deepEqual([undone.money.balanceCents, undone.money.entries.map((row) => row.kind)], [765, ['SPENT', 'RECEIVED']]);
+  /* Tühistatud rida jääb alles koos tühistajaga. */
+  const kept = await db.careMoneyEntry.findUnique({ where: { id: bertRows[1].id } });
+  assert.deepEqual([kept.amountCents, kept.retractedByName, kept.retractedAt.toISOString()], [990, 'Juta Juht', '2026-10-09T09:00:00.000Z']);
+
+  /* Andmebaas hoiab vigase rea eemal ka siis, kui rakendus eksib. */
+  const raw = (data) =>
+    db.careMoneyEntry.create({ data: { organizationId: f.orgA.id, clientId: linda.id, holderMembershipId: f.members.anu.id, kind: 'RECEIVED', amountCents: 100, occurredOn: today, ...data } });
+  await assert.rejects(raw({ kind: 'STOLEN' }), /CareMoneyEntry_kind_check/);
+  await assert.rejects(raw({ amountCents: 0 }), /CareMoneyEntry_amount_check/);
+  await assert.rejects(raw({ amountCents: 1000001 }), /CareMoneyEntry_amount_check/);
+  await assert.rejects(raw({ note: '  ' }), /CareMoneyEntry_note_check/);
+  await assert.rejects(raw({ occurredOn: '09.10.2026' }), /CareMoneyEntry_occurredOn_check/);
+
+  /* AUDIT: ainult ID-d ja muutuse liik (summat, liiki ega märkust seal ei ole). */
+  const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_money_changed', meta: { path: ['organizationId'], equals: f.orgA.id } } });
+  assert.deepEqual([audit.filter((entry) => entry.meta.change === 'added').length, audit.filter((entry) => entry.meta.change === 'retracted').length], [7, 2]);
+  for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['change', 'clientId', 'moneyEntryId', 'organizationId']);
 });

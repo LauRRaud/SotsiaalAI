@@ -12294,7 +12294,16 @@
       "key_closed": "The organisation no longer holds this key.",
       "key_changed": "The key was handed on in the meantime. Reload the page.",
       "key_outcome_invalid": "Choose whether the key was returned to the client or is lost.",
-      "key_too_many": "A client can have up to {limit} keys registered."
+      "key_too_many": "A client can have up to {limit} keys registered.",
+      "money_kind_required": "Choose what happened with the money.",
+      "money_amount_invalid": "Write the amount in euros, for example 12.50.",
+      "money_note_required": "Write what the money went on.",
+      "money_day_invalid": "The day cannot be in the future or more than a month back.",
+      "money_exceeds_balance": "You hold {held} euros of this client's money; you cannot spend or return more.",
+      "money_holder_required": "Money can be recorded by a member of the organisation.",
+      "money_not_found": "This line was not found.",
+      "money_retracted": "This line is already cancelled.",
+      "money_retract_negative": "This line cannot be cancelled: the balance would go below zero. Cancel the later spending or return first."
     },
     "incidents": {
       "title": "Incident register",
@@ -12785,7 +12794,9 @@
       "work_nature_due_title": "Work marks that need a review",
       "work_nature_due_empty": "No mark is due for review within 30 days.",
       "preconditions_open_title": "Service waiting for a precondition",
-      "preconditions_open_empty": "No preconditions are open."
+      "preconditions_open_empty": "No preconditions are open.",
+      "money_open_title": "Client's money held by a worker for over a week",
+      "money_open_empty": "No balance has been open for over a week."
     },
     "visit": {
       "title": "What you did",
@@ -13140,6 +13151,29 @@
       "unreturned_title": "Keys not returned (the service has ended)",
       "unreturned_empty": "The organisation holds no keys of clients whose service has ended.",
       "register_empty": "The organisation holds no keys."
+    },
+    "money": {
+      "title": "Client's money",
+      "intro": "This is a record, not a payment: write down the cash the client gave you and what you did with it. Card details and PIN codes are never written here.",
+      "balance": "You hold {amount} of this client's money.",
+      "balance_none": "You hold none of this client's money.",
+      "kinds": {
+        "RECEIVED": "Received from the client",
+        "SPENT": "Spent",
+        "RETURNED": "Returned to the client"
+      },
+      "kind_label": "What happened with the money",
+      "amount_label": "Amount in euros",
+      "note_label": "What for",
+      "note_hint": "For spending, write what the money went on (for example shop or pharmacy).",
+      "add": "Add a line",
+      "save": "Save",
+      "cancel": "Cancel",
+      "retract": "Cancel the line",
+      "holders_title": "This client's money held by staff",
+      "holder_line": "{name}: {amount} (last line {date})",
+      "mine_title": "Clients' money I hold",
+      "open_line": "{name} holds {amount}, last line {date}"
     }
   },
   "stage": {

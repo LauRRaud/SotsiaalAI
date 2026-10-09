@@ -19,6 +19,7 @@ import HomeCareOutbox from "./HomeCareOutbox";
 import HomeCarePlanView from "./HomeCarePlanView";
 import HomeCareReasonForm from "./HomeCareReasonForm";
 import HomeCareKeys from "./HomeCareKeys";
+import HomeCareMoney from "./HomeCareMoney";
 import HomeCarePreconditions from "./HomeCarePreconditions";
 import HomeCareSlotList from "./HomeCareSlotList";
 import HomeCareWorkNature from "./HomeCareWorkNature";
@@ -355,6 +356,15 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
         canManage={access.isCoordinator}
         canWrite={canWrite}
         myMembershipId={access.membershipId}
+      />
+
+      {/* Kliendi sularaha vaataja käes (K4-c): arvestus, mitte makse. */}
+      <HomeCareMoney
+        organizationId={organizationId}
+        clientId={client.id}
+        initial={data.money || null}
+        canWrite={canWrite && !ended}
+        isCoordinator={access.isCoordinator}
       />
 
       {/* Täna kehtiv otsus ja otsustatud maht (K2-c). Kogu meeskonnale lugemiseks. */}
