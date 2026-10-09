@@ -18,6 +18,7 @@ import { readRoomHubPath } from "@/lib/roomHubReturn";
 import {
   isCanvasRoute,
   isWideRoute,
+  isWorkspaceHubRoute,
   panelHasOwnExit,
   panelHasRoomDock
 } from "@/lib/roomDock";
@@ -212,8 +213,11 @@ export default function PanelFrame({ children }) {
     normalized === "/profiil" && !String(searchParams?.get("sektsioon") || "").trim();
   /* Töölaud koos alamkomplektidega (/toolaud/tooheaolu, /toolaud/kovisioon)
      on karussell (RoomStage), mitte paneel — lehed ise on ainult marsruudi-
-     markerid sr-only sisuga (omanik 21.07, vt app/toolaud/page.jsx). */
-  const isWorkspaceHub = normalized === "/toolaud" || normalized.startsWith("/toolaud/");
+     markerid sr-only sisuga (omanik 21.07, vt app/toolaud/page.jsx).
+     AINULT need kolm menüüteed: Töölaua all olevad sisulehed (Juhtumitöö laud,
+     kiireloomuline vastuvõtt) saavad paneeli nagu iga teine leht. Loend on
+     lib/roomDock.js-is. */
+  const isWorkspaceHub = isWorkspaceHubRoute(normalized);
   const isAdmin = normalized.startsWith("/admin");
   const isConversation = normalized.startsWith("/vestlus");
   const workspaceParam = String(searchParams?.get("workspace") || "").trim();
