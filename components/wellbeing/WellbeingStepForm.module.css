@@ -1,0 +1,169 @@
+/* Tööheaolu sammuvormi enda kujundus: signaal, ohutusteade, tegurid, väljundid.
+   Sammulava, valikuread ja kaardid tulevad kaustast components/stage. */
+
+.block {
+  display: grid;
+  gap: clamp(0.8rem, 1.8cqi, 1.1rem);
+}
+.checkField + .checkField {
+  margin-top: 0.6rem;
+}
+
+/* --- Signaal ----------------------------------------------------------------- */
+.signal {
+  --signal: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 1rem;
+  background: var(--glass-cell-bg);
+}
+.signal[data-tone="ok"] {
+  --signal: var(--status-success, #c5cf9b);
+}
+.signal[data-tone="warn"] {
+  --signal: #e6c27a;
+}
+.signal[data-tone="risk"] {
+  --signal: var(--status-error, #eb9a76);
+}
+.signalDot {
+  flex: none;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  background: var(--signal);
+}
+.signal[data-tone="none"] .signalDot {
+  background: none;
+  border: 1px solid var(--signal);
+}
+.signalTitle {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 560;
+  color: var(--text-warm);
+}
+.signalText {
+  margin: 0.1rem 0 0;
+  color: var(--text-soft);
+}
+
+/* --- Ohutusteade: kohe selle küsimuse all, mille vastus selle tingib -------- */
+.safety {
+  margin-top: 0.6rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid color-mix(in srgb, var(--status-error, #eb9a76) 60%, transparent);
+  border-inline-start-width: 3px;
+  border-radius: 0.9rem;
+  background: color-mix(in srgb, var(--status-error, #eb9a76) 10%, transparent);
+}
+.safetyTitle {
+  display: block;
+  font-weight: 560;
+  color: var(--text-warm);
+}
+.safetyText {
+  margin: 0.15rem 0 0;
+  color: var(--text-soft);
+}
+
+/* --- Tegurid ja väljundid ---------------------------------------------------- */
+.factors {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: 0.9rem 1.2rem;
+}
+.subheading {
+  margin: 0 0 0.3rem;
+  color: var(--text-dim);
+  font-size: 0.74rem;
+  font-weight: 560;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.2rem;
+  color: var(--text-warm);
+}
+.quiet {
+  margin: 0;
+  color: var(--text-soft);
+}
+.outputs,
+.nextSteps {
+  display: grid;
+  gap: 0.4rem;
+}
+/* Valmis tekst avaneb pealkirja vajutusel: korraga ei ole ekraanil viit pikka teksti. */
+.output {
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 1rem;
+  background: var(--glass-cell-bg);
+}
+.outputTitle {
+  min-height: var(--hit-target-min, 2.75rem);
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 1rem;
+  font-weight: 560;
+  color: var(--text-warm);
+  cursor: pointer;
+  list-style: none;
+}
+.outputTitle::-webkit-details-marker {
+  display: none;
+}
+.outputTitle::after {
+  content: "";
+  margin-left: auto;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 160ms var(--ease-soft);
+}
+.output[open] > .outputTitle::after {
+  transform: rotate(-135deg);
+}
+.outputTitle:focus-visible {
+  outline: none;
+  border-radius: 1rem;
+  box-shadow: var(--focus-ring);
+}
+.outputText {
+  margin: 0;
+  padding: 0 1rem 0.9rem;
+  color: var(--text-soft);
+  font: inherit;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+/* --- Tugi -------------------------------------------------------------------
+   Ühine toe paneel joonistab enda ümber kasti; sammu sees on see liigne. */
+.support > section {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .outputTitle::after {
+    transition: none;
+  }
+}

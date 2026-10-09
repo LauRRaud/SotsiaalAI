@@ -20,6 +20,9 @@ import WorkplaceViolenceWorkflow from "./WorkplaceViolenceWorkflow";
 import WorkBoundariesWorkflow from "./WorkBoundariesWorkflow";
 import WorkProcessesWorkflow from "./WorkProcessesWorkflow";
 
+/* Töövood, mis on viidud ühisele sammuvormile (`WellbeingStepForm`). */
+const STAGED_TOOLS = new Set(["quick-check", "recovery"]);
+
 const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAAL.PRO_CHAT_WORKSPACE_RESTORE__";
 const WORKSPACE_SUBPAGE_ENTRY_STORAGE_KEY = "__SOTSIAAL.PRO_WORKSPACE_SUBPAGE_ENTRY__";
 
@@ -79,7 +82,7 @@ export default function WellbeingPage({ activeTool = null, locale = "et" }) {
      komponendi kõrval). Vana ühine kiht (`wellbeing-workflow`) kujundab
      klassideta märgistust struktuuriselektoritega ja jääb ainult nendele
      töövoogudele, mida ei ole veel üle viidud. */
-  const staged = activeTool?.id === "quick-check";
+  const staged = STAGED_TOOLS.has(activeTool?.id);
   const legacyClass = (name) => (activeTool && !staged ? name : undefined);
 
   const handleBack = useCallback(() => {

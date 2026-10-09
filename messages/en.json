@@ -7769,50 +7769,13 @@
           "title": "Risk markers",
           "short": "Risks",
           "lead": "Mark what applies right now. You may leave this empty."
-        },
-        "result": {
-          "title": "Result",
-          "short": "Result",
-          "lead": "A work-organisation signal based on your answers."
-        },
-        "support": {
-          "title": "Support",
-          "short": "Support",
-          "lead": "Everything stays private by default. You ask for support when you choose to."
         }
-      },
-      "progress": "{done}/{total} answered",
-      "next_to": "Next: {label}",
-      "next": "Next",
-      "state": {
-        "empty": "not answered",
-        "done": "answered",
-        "optional": "optional",
-        "marked": "marked {count}",
-        "waiting": "waiting for answers",
-        "saved": "saved"
-      },
-      "summary": {
-        "questions_empty": "{total} questions, one tap each.",
-        "questions_left": "{left} still unanswered.",
-        "no_high_load": "No high loads.",
-        "resources_ok": "The main resources are in place.",
-        "no_marks": "Nothing is marked.",
-        "result_waiting": "The result appears when the questions are answered.",
-        "support": "Everything stays private until you decide otherwise."
-      },
-      "result": {
-        "none_title": "No result yet",
-        "none_text": "I show the signal when the questions are answered. Until then I do not guess.",
-        "missing": "{label}: {left} unanswered",
-        "next_steps": "Suggested next steps"
       },
       "risk_hints": {
         "difficult_case": "The case needs to be shared with a colleague or manager.",
         "covision": "A group's view would help.",
         "support": "Something in the work arrangement needs an agreement."
-      },
-      "risks_note": "The marks stay private like the whole quick check."
+      }
     },
     "hard_case": {
       "title": "Difficult case",
@@ -8047,7 +8010,46 @@
       "save": "Save recovery plan",
       "open_boundaries": "Open work boundaries",
       "saved": "Recovery plan saved privately.",
-      "save_failed": "Saving failed. Please try again."
+      "save_failed": "Saving failed. Please try again.",
+      "steps": {
+        "situation": "Where are you right now? Choose one on each row.",
+        "load": "Mark everything that weighs on you most right now.",
+        "tasks": "Split the coming days' work into three. One line is one task."
+      }
+    },
+    "flow": {
+      "progress": "{done}/{total} answered",
+      "optional_note": "You may leave this step empty.",
+      "next_to": "Next: {label}",
+      "privacy": "What you enter is private. It is not shared without your confirmation.",
+      "state": {
+        "empty": "not answered",
+        "done": "answered",
+        "optional": "optional",
+        "marked": "filled {count}",
+        "waiting": "waiting for answers",
+        "saved": "saved"
+      },
+      "summary": {
+        "questions_empty": "{total} questions, one tap each.",
+        "questions_left": "{left} still unanswered.",
+        "nothing_marked": "Nothing has been added.",
+        "result_waiting": "The result appears when the questions are answered.",
+        "support": "Everything stays private until you decide otherwise."
+      },
+      "result": {
+        "title": "Result",
+        "lead": "A work-organisation signal based on your answers.",
+        "none_title": "No result yet",
+        "none_text": "I show the signal when the questions are answered. Until then I do not guess.",
+        "missing": "{label}: {left} unanswered",
+        "outputs": "Ready texts",
+        "next_steps": "Suggested next steps"
+      },
+      "support": {
+        "title": "Support",
+        "lead": "Everything stays private by default. You ask for support when you choose to."
+      }
     }
   },
   "voimalused": {

@@ -54,12 +54,3 @@ export const QUICK_CHECK_EMPTY = Object.freeze({
   covisionNeed: false,
   supportNeed: false
 });
-
-export const QUICK_CHECK_WORKFLOW_SLUGS = Object.freeze({
-  "hard-case": "raske-juhtum",
-  "work-processes": "tooprotsessid",
-  interruptions: "katkestused",
-  recovery: "taastumine",
-  "work-boundaries": "toopiirid",
-  "role-boundaries": "rollipiirid"
-});
