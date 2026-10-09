@@ -1,6 +1,6 @@
 # ADR-114: tulevase sündmuse korral öeldakse praegune summa; kolm puuduvat seadust (korpus v73)
 
-Kuupäev: 09.10.2026. Teostus Claude Opus 5.5. Omanik 09.10.2026: „nii, on meil veel RAG süsteemi arendust. Jätka“ ja „luba on antud raha kulutada“; ulatuse ja kulupiiri (selle töölõigu peale 0,30 USD) määras tegija ja ütles need omanikule. Seis: **korpus v73 on ostetud ja töös** (indeks `d0aa63f4`, 8659 dokumenti, 75 102 lõiku, kulu 0,0620 USD); juhised 38 ja lugeja piir on töös ja mõõdetud kuue küsimusega (0,0247 USD, jaotis „Mõõtmine“): summad tulevad, kolm seadust jõuavad vastustesse. Juhised 39 (märkus teksti, mitte piirangute alla) on mõõtmata.
+Kuupäev: 09.10.2026. Teostus Claude Opus 5.5. Omanik 09.10.2026: „nii, on meil veel RAG süsteemi arendust. Jätka“ ja „luba on antud raha kulutada“; ulatuse ja kulupiiri (selle töölõigu peale 0,30 USD) määras tegija ja ütles need omanikule. Seis: **korpus v73 on ostetud ja töös** (indeks `d0aa63f4`, 8659 dokumenti, 75 102 lõiku, kulu 0,0620 USD); juhised 38 ja lugeja piir on töös ja mõõdetud kuue küsimusega (0,0247 USD, jaotis „Mõõtmine“): summad tulevad, kolm seadust jõuavad vastustesse. Juhised 39 mõõdeti kolme küsimusega (0,0129 USD): sama küsimus andis kahel jooksul erineva tulemuse, põhjus ja parandus on jaotises „Juhised 40“. Juhised 40 on mõõtmata.
 
 Lähtekoht on [vastuste kontroll 08.10.2026](../audits/rag-v2-state-content-check-2026-10-08.md): 14 küsimusest viis andsid leiu. Siin on neist kolm; kaks jäävad lahti (jaotis „Mis jääb lahti“).
 
@@ -66,6 +66,20 @@ Pärast paigaldust (väljalase `03ee35cc`, juhised 38, korpus v73) kuus küsimus
 | Kutsuti kannatanuna ütlusi andma, mis õigused | kriminaalmenetluse seadustikust: tõendid, taotlused ja kaebused, protokolliga tutvumine, saatja, samast soost küsitleja, ohvriabi |
 
 **Mis jäi viltu.** Kahes tuleviku-küsimuses kirjutas vastus märkuse „summa võib selleks ajaks muutuda“ nii teksti kui ka piirangute alla, mistõttu vastus sai sildi „osaline“. Juhised 39 (`m4-grounded-dialogue-39`) ütlevad, et märkus käib ploki tekstis ja seda ei kirjutata piirangute alla. Kas see mõjub, mõõdetakse pärast järgmist paigaldust ja kirjutatakse [kontrolli aruandesse](../audits/rag-v2-state-content-check-2026-10-08.md).
+
+## Juhised 40: lehe enda kuupäev kaardil
+
+Juhised 39 mõõdeti kolme küsimusega (0,0129 USD). Hooldekodu küsimus („ema läheb järgmisel kuul hooldekodusse“) sai summad koos seisu ajaga ja lause, et hind võib selleks ajaks erineda. Kaks asja ei olnud korras:
+
+- **Lapse sünni küsimus jäi seekord jälle summadeta.** Piirang: „summade veebilehe kaardil puudub avaldamiskuupäev ning laps sünnib alles kevadel“. Aja reeglid nõuavad summa juurde seisu aega allika kaardi avaldamiskuupäeva järgi, aga korjatud veebilehel avaldamiskuupäeva ei ole. Eelmisel mõõtmisel võttis mudel aasta lehe tekstist, seekord jättis summad välja. Sama küsimus andis kahel jooksul erineva tulemuse.
+- **Märkus oli pensioni vastuses endiselt ka piirangute all.**
+
+Otsus:
+
+- **Allika kaart saab välja `page_updated`** (`modelSourceMetadata`): päev, mille leht ise oma viimase muutmise kohta ütleb. Korjaja on selle iga lehe kõrvale salvestanud (324 salvestatud lehest 143-l); uuesti sisse lugeda ega osta ei ole vaja, sest väärtus on hoidlas olemas. Ainult veebiallikatel ja ainult korrektse kuupäevana.
+- **Aja reeglid** (`m4-grounded-dialogue-40`): kui kaardil avaldamiskuupäeva ei ole, öeldakse lehe summa `page_updated` päeva seisuga, selle puudumisel lehe lugemise päeva (`source_checked_at`) seisuga; kuupäeva puudumine ei ole põhjus summa välja jätta. Tuleviku kohta: see, mis summa hiljem on, ei ole küsitud; see ei ole põhjus praegust summat välja jätta ega ole piirang.
+
+Aja reeglid on nüüd 788 tokenit (enne v38 umbes 615). Mõõtmine järgneb paigaldusele; tulemus kirjutatakse [kontrolli aruandesse](../audits/rag-v2-state-content-check-2026-10-08.md).
 
 ## Mis jääb lahti
 
