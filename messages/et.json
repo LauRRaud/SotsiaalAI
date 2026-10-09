@@ -8492,13 +8492,46 @@
       "notDecision": "See info ei ole ametlik hindamine, otsus ega teenuse määramine.",
       "yes": "Jah",
       "no": "Ei",
-      "unknownShort": "Teadmata"
+      "unknownShort": "Teadmata",
+      "firstSteps": {
+        "CONTACT_KOV": "Võta ühendust kohaliku omavalitsusega",
+        "CONTACT_PROVIDER": "Võta ühendust teenuseosutajaga",
+        "CREATE_PRE_INQUIRY": "Koosta eelpöördumine",
+        "OPEN_SERVICE_MAP": "Leia kontakt Teenusekaardilt",
+        "ANALYZE_DOCUMENT": "Vaata dokument üle",
+        "CHECK_SOURCE": "Vaata ametlikku allikat",
+        "CONTACT_HEALTH_PROVIDER": "Võta ühendust tervishoiuteenuse osutajaga",
+        "UNKNOWN": "Teadmata"
+      },
+      "accessTypes": {
+        "DIRECT_CONTACT": "Otse pöördumine",
+        "KOV_ASSESSMENT": "Kohaliku omavalitsuse hindamine",
+        "KOV_DECISION": "Kohaliku omavalitsuse otsus",
+        "PROVIDER_CONTACT": "Pöördumine teenuseosutaja poole",
+        "DOCUMENT_REVIEW": "Dokumendi läbivaatamine",
+        "HEALTH_CONTACT_FIRST": "Esmalt tervisekontakt",
+        "UNKNOWN": "Teadmata"
+      },
+      "decisionByValues": {
+        "KOV": "Kohalik omavalitsus",
+        "SERVICE_PROVIDER": "Teenuseosutaja",
+        "HEALTHCARE_PROVIDER": "Tervishoiuteenuse osutaja",
+        "OTHER_AUTHORITY": "Muu asutus",
+        "UNKNOWN": "Teadmata"
+      },
+      "sourceStatuses": {
+        "CONFIRMED": "Kinnitatud",
+        "PARTIAL": "Osaliselt kinnitatud",
+        "NEEDS_CHECK": "Vajab kontrollimist",
+        "UNKNOWN": "Teadmata"
+      }
     },
     "healthContact": {
       "title": "Tervisekontakt",
       "description": "See kontakt võib sobida tervisega seotud küsimuse esmaseks täpsustamiseks.",
       "notMedicalPlatform": "Sotsiaal.pro ei anna meditsiinilist hinnangut, diagnoosi ega ravisoovitust."
-    }
+    },
+    "contactCheckedAt": "Kontakt kontrollitud"
   },
   "wellbeing": {
     "checkpoint": {
