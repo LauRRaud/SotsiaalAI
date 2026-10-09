@@ -1,0 +1,117 @@
+/**
+ * Toimetulekutoetuse eelhinnang: lehe enda kujundus.
+ * Vaate kuju (küsimus, sisu, all serv) annab components/stage/StepPanel.
+ */
+.page {
+  min-width: 0;
+  color: var(--text-warm);
+  container-type: inline-size;
+}
+.stack {
+  min-width: 0;
+  display: grid;
+  gap: 0.8rem;
+}
+
+/* Arvuväljad reas: väli on nii lai kui summa vajab, mitte paneeli laiune.
+   Nimed on eri pikkusega, seepärast joonduvad väljad rea alumise serva järgi. */
+.fields {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.8rem 1.2rem;
+}
+.field {
+  flex: 0 1 13rem;
+  min-width: 9rem;
+  display: grid;
+  gap: 0.3rem;
+}
+.field[data-size="count"] {
+  flex-basis: 11rem;
+}
+.fieldLabel {
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.3;
+}
+.hint {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.4;
+}
+.check {
+  max-width: 34rem;
+}
+
+/* Täpsustav küsimus: küsimus vasakul, „Jah" ja „Ei" paremal; selgitus selle all. */
+.gate {
+  min-width: 0;
+  display: grid;
+  gap: 0.25rem;
+}
+
+/* Tulemus: summa suurelt, selle all, millest see tuli. */
+.amount {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 620;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+.facts {
+  margin: 0;
+  max-width: 28rem;
+  display: grid;
+  gap: 0.3rem;
+}
+.fact {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.factLabel {
+  color: var(--text-soft);
+}
+.factValue {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.caveat {
+  margin: 0;
+  max-width: 62ch;
+  font-weight: 560;
+}
+.quiet {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--text-soft);
+}
+
+/* Mis on puudu: iga lause oma real, äärejoonega. Ühine paneelikiht annab
+   loendireale proosa laiuse ja alumise vahe. */
+.issues {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+.issue {
+  margin: 0;
+  max-width: none;
+  padding-inline-start: 0.8rem;
+  border-inline-start: 2px solid color-mix(in srgb, var(--text-warm) 40%, transparent);
+}
+
+/* Kitsal pinnal on iga väli omal real. */
+@container (max-width: 30rem) {
+  .field,
+  .field[data-size] {
+    flex-basis: 100%;
+  }
+}
