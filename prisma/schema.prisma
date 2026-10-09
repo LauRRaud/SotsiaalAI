@@ -8235,6 +8235,7 @@ model CareClient {
   visitChanges       CareVisitChange[]
   workNatures        CareWorkNature[]
   preconditions      CarePrecondition[]
+  keys               CareKey[]
 
   @@unique([organizationId, internalCode])
   @@index([organizationId, status, displayName])
@@ -8491,6 +8492,60 @@ model CareVisitChange {
   @@index([organizationId, day])
   @@index([clientId, day])
   @@index([workerMembershipId, day])
+}
+
+/// Kliendi kodu võti asutuse käes (K4-b, kava II.6.11). Võtmel on numbriripats ilma nime
+/// ja aadressita; seos kliendiga on ainult siin. Võtit ei kustutata: see tagastatakse
+/// kliendile (`RETURNED`) või märgitakse kadunuks (`LOST`). Asutuse käes olevate võtmete
+/// seas on ripatsi number kordumatu (osaline unikaalindeks migratsioonis).
+model CareKey {
+  id             String  @id @default(cuid())
+  organizationId String
+  clientId       String
+  tag            String
+  /// Mille võti („välisuks", „värav"). Valikuline.
+  label          String?
+
+  /// Kelle käes võti praegu on; NULL = asutuses (kontoris).
+  holderMembershipId String?
+  holderName         String?
+  heldSince          DateTime @default(now())
+
+  createdByMembershipId String?
+  createdByName         String?
+  createdAt             DateTime  @default(now())
+  closedAt              DateTime?
+  /// RETURNED | LOST (`CareKeyOutcome`).
+  outcome               String?
+  closedByMembershipId  String?
+  closedByName          String?
+
+  client    CareClient        @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  handovers CareKeyHandover[]
+
+  @@index([organizationId, closedAt])
+  @@index([clientId, closedAt])
+  @@index([holderMembershipId, closedAt])
+}
+
+/// Võtme üleandmise jälg: kellelt kellele ja kes kirja pani. Muutmatu.
+model CareKeyHandover {
+  id             String  @id @default(cuid())
+  organizationId String
+  keyId          String
+
+  fromMembershipId       String?
+  fromName               String?
+  toMembershipId         String?
+  toName                 String?
+  recordedByMembershipId String?
+  recordedByName         String?
+  createdAt              DateTime @default(now())
+
+  key CareKey @relation(fields: [keyId], references: [id], onDelete: Cascade)
+
+  @@index([keyId, createdAt])
+  @@index([organizationId])
 }
 
 /// Eeltingimus enne teenuse algust (K4-a, kava II.3.7 punkt 3): mida oodatakse, kes

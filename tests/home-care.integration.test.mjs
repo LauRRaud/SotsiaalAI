@@ -83,6 +83,7 @@ import { changeSlot, createSlots, endSlot, getClientSlots, getSlotEditor } from 
 import { handleObstacle, reportObstacle, withdrawObstacle } from '../lib/homeCare/obstacles.js';
 import { clearWorkNature, setWorkNature } from '../lib/homeCare/workNature.js';
 import { addPrecondition, closePrecondition } from '../lib/homeCare/preconditions.js';
+import { addKey, closeKey, getKeyRegister, handOverKey } from '../lib/homeCare/keys.js';
 import { assertNotificationRecipient, serializeNotificationEvent } from '../lib/notifications.js';
 
 const url = new URL(process.env.HOME_CARE_TEST_DATABASE_URL || 'postgres://invalid/invalid');
@@ -1849,6 +1850,7 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
   await createAbsence(lead, { membershipId: f.members.cover.id, fromDay: '2026-10-20', toDay: '2026-10-21', kind: 'PLANNED' }, deps());
   await setWorkNature(lead, client.id, { kinds: ['PHYSICAL'], reason: 'Tõstmine ilma tõstukita.' }, deps());
   await addPrecondition(lead, client.id, { kind: 'CLEANING', responsible: 'Linna sotsiaaltöötaja' }, deps());
+  await addKey(lead, client.id, { tag: '5', holderMembershipId: f.members.anu.id }, deps());
   const obstacleOfAnu = await reportObstacle(anu, { kind: 'LATE_30' }, deps());
   await handleObstacle(lead, obstacleOfAnu.obstacle.id, {}, deps());
   /* Ühe päeva erand (K3-b): järgmise esmaspäeva käik jääb ära. */
@@ -1951,6 +1953,8 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
     obstacles: await db.careObstacle.count({ where: ofOrg }),
     workNatures: await db.careWorkNature.count({ where: ofOrg }),
     preconditions: await db.carePrecondition.count({ where: ofOrg }),
+    keys: await db.careKey.count({ where: ofOrg }),
+    keyHandovers: await db.careKeyHandover.count({ where: ofOrg }),
     auditEvents: await db.dataAuditLog.count({
       where: { action: { startsWith: 'org.home_care_' }, meta: { path: ['organizationId'], equals: f.orgA.id }, createdAt: { lt: (await exportRows())[0].createdAt } }
     })
@@ -4075,4 +4079,163 @@ test('eeltingimus enne teenuse algust: lisamine, lõpetamine, märk loendis ja t
   assert.deepEqual([...new Set(audit.map((entry) => entry.meta.change))].sort(), ['added', 'done', 'dropped']);
   assert.equal(audit.filter((entry) => entry.meta.change === 'added').length, 13);
   for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['change', 'clientId', 'organizationId', 'preconditionId']);
+});
+
+test('võtmeraamat: arvele võtmine, üleandmine, lõpetamine, võti päevaplaanis ja hooldaja päevas', async (t) => {
+  const f = await fixture(t);
+  const north = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Põhi ${f.tag}`, type: 'TEAM' } });
+  await db.organizationCapabilityGrant.create({
+    data: { membershipId: f.members.cover.id, capability: 'HOME_CARE_COORDINATOR', scopeType: 'UNIT', scopeUnitId: north.id, validFrom: at('2026-01-01T00:00:00Z') }
+  });
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const clerk = await f.ctx(f.users.clerk, f.orgA);
+  const unitLead = await f.ctx(f.users.cover, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, deps())).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi', unitId: north.id }, deps())).client;
+  await addTeamMember(lead, linda.id, { membershipId: f.members.anu.id }, deps());
+  await addTeamMember(lead, linda.id, { membershipId: f.members.bert.id }, deps());
+  await addTeamMember(lead, peeter.id, { membershipId: f.members.bert.id }, deps());
+  const input = { tag: ' 17 ', label: 'välisuks', holderMembershipId: f.members.anu.id };
+
+  /* Algus: võtmeid ei ole; kellele saab anda, on asutuse hooldajad. */
+  const opened = await openClient(anu, linda.id, deps());
+  assert.deepEqual([opened.keys, opened.keyReceivers.map((worker) => worker.name)], [[], ['Anu Hooldaja', 'Bert Hooldaja']]);
+
+  /* Arvele võtab ainult hooldusjuht, kelle skoobis klient on; vigane sisend ei salvestu. */
+  await expectError(addKey(anu, linda.id, input, deps()), 403, 'org.errors.missing_capability');
+  await expectError(addKey(unitLead, linda.id, input, deps()), 403);
+  await expectError(addKey(leadB, linda.id, input, deps()), 404, 'home_care.errors.client_not_found');
+  const bad = (patch, key) => expectError(addKey(lead, linda.id, { ...input, ...patch }, deps()), 400, key);
+  await bad({ tag: '  ' }, 'home_care.errors.key_tag_required');
+  await bad({ tag: 'x'.repeat(21) }, 'home_care.errors.text_too_long');
+  /* Hoidja peab olema asutuse hooldaja: raamatupidaja ja teise asutuse töötaja ei sobi. */
+  await bad({ holderMembershipId: f.members.clerk.id }, 'home_care.errors.key_holder_invalid');
+  await bad({ holderMembershipId: f.members.leadB.id }, 'home_care.errors.key_holder_invalid');
+  assert.equal(await db.careKey.count({ where: { organizationId: f.orgA.id } }), 0);
+
+  /* ARVELE: ripatsi number ilma tühikuteta; võti on Anu käes. Sama number teist korda ei sobi (ka teise kliendi juures). */
+  const added = await addKey(lead, linda.id, input, deps());
+  assert.deepEqual(added.keys, [
+    { id: added.keyId, tag: '17', label: 'välisuks', holder: { membershipId: f.members.anu.id, name: 'Anu Hooldaja' }, heldSince: NOW.toISOString() }
+  ]);
+  await expectError(addKey(lead, peeter.id, { tag: '17' }, deps()), 409, 'home_care.errors.key_tag_taken');
+  /* Teine võti jääb kontorisse; üksuse hooldusjuht võtab oma üksuse kliendi võtme arvele. */
+  const office = await addKey(lead, linda.id, { tag: 'A-2' }, deps());
+  assert.deepEqual(office.keys.map((key) => [key.tag, key.label, key.holder]), [['17', 'välisuks', { membershipId: f.members.anu.id, name: 'Anu Hooldaja' }], ['A-2', null, null]]);
+  const peeterKey = await addKey(unitLead, peeter.id, { tag: '30', holderMembershipId: f.members.bert.id }, deps());
+  /* Näeb igaüks, kes tohib kliendi lehte avada. */
+  assert.deepEqual((await openClient(bert, linda.id, deps())).keys.map((key) => key.tag), ['17', 'A-2']);
+
+  /* HOOLDAJA PÄEV: minu käes olevad võtmed ja tänase käigu võti. */
+  const early = at('2026-10-01T08:00:00Z');
+  const slotOf = async (client, startTime, member) =>
+    (await createSlots(lead, client.id, { weekdays: [5], startTime, plannedMinutes: 30, ...(member ? { workerMembershipId: member.id } : {}) }, deps(early))).slots.find((slot) => slot.startTime === startTime);
+  const lindaNoon = await slotOf(linda, '12:00', f.members.bert);
+  await slotOf(linda, '15:00', f.members.anu);
+  await slotOf(linda, '18:00', null);
+  await slotOf(peeter, '16:00', f.members.bert);
+  const dayOfAnu = await getMyDay(anu, deps());
+  assert.deepEqual(dayOfAnu.keys.map((key) => [key.tag, key.label, key.client.displayName, key.clientEnded]), [['17', 'välisuks', 'Linda Tamm', false]]);
+  assert.deepEqual(dayOfAnu.visits.map((visit) => [visit.startTime, visit.key]), [['15:00', { held: true, holders: [], office: false }]]);
+  /* Berdil Linda võtit ei ole: tema käigu juures on kirjas, kelle käes võtmed on. Peetri võti on tal endal. */
+  assert.deepEqual(
+    (await getMyDay(bert, deps())).visits.map((visit) => [visit.startTime, visit.client.displayName, visit.key]),
+    [
+      ['12:00', 'Linda Tamm', { held: false, holders: ['Anu Hooldaja'], office: true }],
+      ['16:00', 'Peeter Põhi', { held: true, holders: [], office: false }]
+    ]
+  );
+
+  /* PÄEVAPLAAN: sama info hooldusjuhile; määramata käigul on kirjas, kus võtmed on. */
+  const plan = await getDayPlan(lead, {}, deps());
+  const keyOf = (list, time) => list.find((visit) => visit.startTime === time).key;
+  const all = plan.workers.flatMap((worker) => worker.visits);
+  assert.deepEqual(
+    [keyOf(all, '12:00'), keyOf(all, '15:00'), keyOf(all, '16:00'), keyOf(plan.unassigned, '18:00')],
+    [
+      { held: false, holders: ['Anu Hooldaja'], office: true },
+      { held: true, holders: [], office: false },
+      { held: true, holders: [], office: false },
+      { held: false, holders: ['Anu Hooldaja'], office: true }
+    ]
+  );
+
+  /* ÜLEANDMINE: annab hoidja ise või hooldusjuht; saaja on asutuse hooldaja või kontor. */
+  await expectError(handOverKey(bert, linda.id, added.keyId, { toMembershipId: f.members.bert.id }, deps()), 403, 'org.errors.missing_capability');
+  await expectError(handOverKey(clerk, linda.id, added.keyId, { toMembershipId: f.members.bert.id }, deps()), 403, 'org.errors.missing_capability');
+  await expectError(handOverKey(anu, linda.id, added.keyId, { toMembershipId: f.members.anu.id }, deps()), 400, 'home_care.errors.key_same_holder');
+  await expectError(handOverKey(anu, linda.id, added.keyId, { toMembershipId: f.members.clerk.id }, deps()), 400, 'home_care.errors.key_holder_invalid');
+  await expectError(handOverKey(anu, peeter.id, added.keyId, { toMembershipId: f.members.bert.id }, deps()), 404, 'home_care.errors.key_not_found');
+  const later = at('2026-10-09T09:00:00Z');
+  const handed = await handOverKey(anu, linda.id, added.keyId, { toMembershipId: f.members.bert.id }, deps(later));
+  assert.deepEqual(handed.keys.find((key) => key.tag === '17').holder, { membershipId: f.members.bert.id, name: 'Bert Hooldaja' });
+  assert.equal(handed.keys.find((key) => key.tag === '17').heldSince, later.toISOString());
+  /* Nüüd on Berdi käigul võti olemas ja Anu omal ei ole. */
+  assert.deepEqual((await getMyDay(bert, deps())).visits.map((visit) => visit.key.held), [true, true]);
+  assert.deepEqual((await getMyDay(anu, deps())).visits.map((visit) => visit.key), [{ held: false, holders: ['Bert Hooldaja'], office: true }]);
+  assert.deepEqual((await getMyDay(anu, deps())).keys, []);
+  /* Hooldusjuht võtab kontori võtme ja annab Anule; Bert annab oma võtme tagasi kontorisse. */
+  await handOverKey(lead, linda.id, office.keyId, { toMembershipId: f.members.anu.id }, deps(later));
+  await handOverKey(bert, linda.id, added.keyId, { toMembershipId: null }, deps(at('2026-10-09T10:00:00Z')));
+  assert.deepEqual((await openClient(lead, linda.id, deps())).keys.map((key) => [key.tag, key.holder?.name || null]), [['17', null], ['A-2', 'Anu Hooldaja']]);
+  /* Üleandmiste jälg: kellelt, kellele ja kes kirja pani. */
+  assert.deepEqual(
+    (await db.careKeyHandover.findMany({ where: { keyId: added.keyId }, orderBy: [{ createdAt: 'asc' }, { id: 'asc' }] })).map((row) => [row.fromName, row.toName, row.recordedByName]),
+    [
+      [null, 'Anu Hooldaja', 'Juta Juht'],
+      ['Anu Hooldaja', 'Bert Hooldaja', 'Anu Hooldaja'],
+      ['Bert Hooldaja', null, 'Bert Hooldaja']
+    ]
+  );
+
+  /* VÕTMERAAMAT: hooldusjuhi skoobis; lõppenud teenusega kliendi võti on tagastamata võtmete seas; hoidja, kes ei ole enam töötaja, on märgitud. */
+  await expectError(getKeyRegister(anu, deps()), 403, 'org.errors.missing_capability');
+  const register = await getKeyRegister(lead, deps());
+  assert.deepEqual(
+    [register.total, register.unreturned, register.keys.map((key) => [key.client.displayName, key.tag, key.holder?.name || null, key.holderInactive])],
+    [3, [], [['Linda Tamm', '17', null, false], ['Linda Tamm', 'A-2', 'Anu Hooldaja', false], ['Peeter Põhi', '30', 'Bert Hooldaja', false]]]
+  );
+  assert.deepEqual((await getKeyRegister(unitLead, deps())).keys.map((key) => key.tag), ['30']);
+  assert.deepEqual((await getKeyRegister(leadB, deps())).total, 0);
+  const peeterNow = await db.careClient.findUnique({ where: { id: peeter.id }, select: { version: true } });
+  await setClientStatus(lead, peeter.id, { version: peeterNow.version, status: 'ENDED', statusReason: 'MOVED' }, deps());
+  await db.organizationMembership.update({ where: { id: f.members.bert.id }, data: { status: 'SUSPENDED' } });
+  const afterEnd = await getKeyRegister(lead, deps());
+  assert.deepEqual(afterEnd.unreturned.map((key) => [key.client.displayName, key.tag, key.clientEnded, key.holderInactive]), [['Peeter Põhi', '30', true, true]]);
+  assert.deepEqual(afterEnd.keys.map((key) => key.tag), ['17', 'A-2']);
+
+  /* LÕPETAMINE: tagastatud kliendile või kadunud; ainult hooldusjuht; lõpetatud võtit üle anda ei saa ja number vabaneb. */
+  await expectError(closeKey(anu, linda.id, office.keyId, { outcome: 'RETURNED' }, deps()), 403, 'org.errors.missing_capability');
+  await expectError(closeKey(lead, linda.id, office.keyId, { outcome: 'SOLD' }, deps()), 400, 'home_care.errors.key_outcome_invalid');
+  const closed = await closeKey(lead, linda.id, office.keyId, { outcome: 'LOST' }, deps(at('2026-10-09T11:00:00Z')));
+  assert.deepEqual(closed.keys.map((key) => key.tag), ['17']);
+  await expectError(handOverKey(lead, linda.id, office.keyId, { toMembershipId: null }, deps()), 409, 'home_care.errors.key_closed');
+  await expectError(closeKey(lead, linda.id, office.keyId, { outcome: 'RETURNED' }, deps()), 409, 'home_care.errors.key_closed');
+  await closeKey(lead, peeter.id, peeterKey.keyId, { outcome: 'RETURNED' }, deps());
+  assert.deepEqual((await getKeyRegister(lead, deps())).unreturned, []);
+  const reused = await addKey(lead, linda.id, { tag: 'a-2' }, deps());
+  assert.deepEqual(reused.keys.map((key) => key.tag), ['17', 'a-2']);
+  assert.deepEqual(
+    (await db.careKey.findMany({ where: { organizationId: f.orgA.id, closedAt: { not: null } }, orderBy: { tag: 'asc' } })).map((row) => [row.tag, row.outcome, row.closedByName]),
+    [['30', 'RETURNED', 'Juta Juht'], ['A-2', 'LOST', 'Juta Juht']]
+  );
+  /* Berdil Linda võtit ei ole: mõlemad võtmed on kontoris. */
+  assert.equal((await getDayPlan(lead, {}, deps())).workers.flatMap((worker) => worker.visits).find((visit) => visit.slotId === lindaNoon.id).key.held, false);
+
+  /* Andmebaas hoiab vigase rea eemal ka siis, kui rakendus eksib. */
+  const raw = (data) => db.careKey.create({ data: { organizationId: f.orgA.id, clientId: linda.id, tag: '99', ...data } });
+  await assert.rejects(raw({ tag: '   ' }), /CareKey_tag_check/);
+  await assert.rejects(raw({ label: '  ' }), /CareKey_label_check/);
+  await assert.rejects(raw({ closedAt: NOW }), /CareKey_outcome_check/);
+  await assert.rejects(raw({ outcome: 'LOST' }), /CareKey_outcome_check/);
+  await assert.rejects(raw({ closedAt: NOW, outcome: 'SOLD' }), /CareKey_outcome_check/);
+  await assert.rejects(raw({ tag: '17' }), (error) => error.code === 'P2002');
+
+  /* AUDIT: ainult ID-d ja muutuse liik (ripatsi numbrit, kirjeldust ega hoidjat seal ei ole). */
+  const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_key_changed', meta: { path: ['organizationId'], equals: f.orgA.id } } });
+  assert.deepEqual(audit.map((entry) => entry.meta.change).sort(), ['added', 'added', 'added', 'added', 'handed_over', 'handed_over', 'handed_over', 'lost', 'returned']);
+  for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['change', 'clientId', 'keyId', 'organizationId']);
 });

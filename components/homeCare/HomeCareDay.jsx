@@ -9,6 +9,7 @@ import Dropdown from "@/components/ui/Dropdown";
 import { CARE_VISIT_CANCEL_REASONS, CareObstacleKind, CarePlannedState, CareVisitChangeKind, HOME_CARE_LIMITS } from "@/lib/homeCare/constants";
 
 import { minutesLabel } from "./HomeCareDecisionView";
+import { keyWhere } from "./HomeCareKeys";
 import HomeCareOutbox from "./HomeCareOutbox";
 import { planDayLabel } from "./HomeCarePlanView";
 import { clientHref, formatTime, homeCareBase, useHomeCareApi } from "./homeCareClient";
@@ -142,7 +143,9 @@ export default function HomeCareDay({ context, initial }) {
             visit.client.address,
             visit.note,
             cancelled && visit.change?.reason ? t(`home_care.day.cancel_reasons.${visit.change.reason}`) : null,
-            visit.change?.note
+            visit.change?.note,
+            /* Võti (K4-b): tegemata käigul, mille tegijal selle kliendi võtit ei ole. */
+            visit.key && !visit.key.held && !cancelled && !done ? keyWhere(t, visit.key) : null
           ]
             .filter(Boolean)
             .join(" · ")}
