@@ -7528,6 +7528,7 @@
       "saved": "Overview saved",
       "pre_inquiry": "Pre-inquiry sent",
       "response": "The recipient has opened the pre-inquiry",
+      "answered": "The recipient has answered",
       "done": "done",
       "current": "in progress",
       "next_recommended": "next recommended step",
@@ -7603,10 +7604,12 @@
         "SENT": "sent, not yet opened by the recipient",
         "SENT_OUTSIDE": "sent outside the platform",
         "OPENED": "opened by the recipient",
+        "ANSWERED": "the recipient has answered",
         "RECALLED": "taken back",
         "REPLACED": "replaced by a correction",
         "ARCHIVED": "archived"
-      }
+      },
+      "last_reply": "last answer {date}"
     },
     "share": {
       "title": "Choose which information to use in the pre-inquiry.",
