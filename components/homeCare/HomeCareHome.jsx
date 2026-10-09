@@ -8,6 +8,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import OrgHeader from "@/components/org/OrgHeader";
 
 import HomeCareClientForm from "./HomeCareClientForm";
+import { keyName, keyWhere } from "./HomeCareKeys";
 import HomeCareObstacle from "./HomeCareObstacle";
 import { minutesLabel } from "./HomeCareDecisionView";
 import HomeCareOutbox from "./HomeCareOutbox";
@@ -53,7 +54,9 @@ function MyVisit({ organizationId, visit }) {
             visit.client.address,
             visit.note,
             visit.state === "CANCELLED" && visit.change?.reason ? t(`home_care.day.cancel_reasons.${visit.change.reason}`) : null,
-            visit.change?.note
+            visit.change?.note,
+            /* Võti (K4-b): kui selle kliendi võti ei ole minu käes, siis kelle käes see on. */
+            visit.key && !visit.key.held && visit.state !== "CANCELLED" ? keyWhere(t, visit.key) : null
           ]
             .filter(Boolean)
             .join(" · ")}
@@ -137,6 +140,31 @@ export default function HomeCareHome({ context, initial, unitOptions, myDay = nu
         </div>
       ) : null}
 
+      {/* Minu käes olevad võtmed (K4-b): ripatsi number, kelle võti ja mille võti. */}
+      {myDay?.keys?.length ? (
+        <div className="hc-section">
+          <h3 className="hc-section-title">{t("home_care.keys.mine_title")}</h3>
+          <ul className="hc-list">
+            {myDay.keys.map((key) => (
+              <li key={key.id}>
+                <Link className="hc-client" href={clientHref(organizationId, key.client.id)} prefetch={false}>
+                  <span className="hc-client__name">
+                    {keyName(t, key)}
+                    {key.clientEnded ? (
+                      <>
+                        {" "}
+                        <span className="hc-badge hc-badge--warn">{t("home_care.keys.return_badge")}</span>
+                      </>
+                    ) : null}
+                  </span>
+                  <span className="hc-client__meta">{key.client.displayName}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+
       {/* „Mul on takistus" (K3-e): hooldaja teatab ise, kui tänane päev ei lähe plaani järgi. */}
       {myDay && !myDay.absent && (myDay.obstacle || myDay.visits?.some((visit) => !visit.done && visit.state !== "CANCELLED")) ? (
         <HomeCareObstacle
@@ -185,6 +213,9 @@ export default function HomeCareHome({ context, initial, unitOptions, myDay = nu
           </Link>
           <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/puudumised`}>
             {t("home_care.absences.link")}
+          </Link>
+          <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/votmed`}>
+            {t("home_care.keys.link")}
           </Link>
           <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/tahtajad`}>
             {t("home_care.deadlines.link")}

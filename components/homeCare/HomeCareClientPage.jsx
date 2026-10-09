@@ -18,6 +18,7 @@ import HomeCareHistory from "./HomeCareHistory";
 import HomeCareOutbox from "./HomeCareOutbox";
 import HomeCarePlanView from "./HomeCarePlanView";
 import HomeCareReasonForm from "./HomeCareReasonForm";
+import HomeCareKeys from "./HomeCareKeys";
 import HomeCarePreconditions from "./HomeCarePreconditions";
 import HomeCareSlotList from "./HomeCareSlotList";
 import HomeCareWorkNature from "./HomeCareWorkNature";
@@ -343,6 +344,17 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
         clientId={client.id}
         initial={data.workNature || null}
         canEdit={canWrite && access.isCoordinator}
+      />
+
+      {/* Võtmed (K4-b): mis võtmed asutuse käes on ja kelle käes iga võti praegu on. */}
+      <HomeCareKeys
+        organizationId={organizationId}
+        clientId={client.id}
+        initial={data.keys || []}
+        receivers={data.keyReceivers || []}
+        canManage={access.isCoordinator}
+        canWrite={canWrite}
+        myMembershipId={access.membershipId}
       />
 
       {/* Täna kehtiv otsus ja otsustatud maht (K2-c). Kogu meeskonnale lugemiseks. */}

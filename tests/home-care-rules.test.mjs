@@ -945,6 +945,8 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
       obstacles: [{ id: 'ob1', membershipId: 'm1', handledByMembershipId: null }],
       workNatures: [{ id: 'wn1', clientId: 'c1', createdByMembershipId: 'm1', endedByMembershipId: null }],
       preconditions: [{ id: 'pc1', clientId: 'c1', createdByMembershipId: 'm1', closedByMembershipId: null }],
+      keys: [{ id: 'key1', clientId: 'c1', holderMembershipId: null, createdByMembershipId: 'm1', closedByMembershipId: null }],
+      keyHandovers: [{ id: 'kh1', keyId: 'key1', fromMembershipId: null, toMembershipId: 'm1', recordedByMembershipId: 'm1' }],
       auditEvents: [{ id: 'x1', actorMembershipId: 'm1' }]
     };
     doc.totals = Object.fromEntries(HOME_CARE_EXPORT_KEYS.map((key) => [key, doc[key].length]));
@@ -989,6 +991,8 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
     'obstacles',
     'workNatures',
     'preconditions',
+    'keys',
+    'keyHandovers',
     'auditEvents',
     'people'
   ]);
@@ -1007,7 +1011,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
      failis on sama kogu puudumine viga. */
   const older = make();
   older.version = 1;
-  for (const key of ['clientStatusChanges', 'activities', 'carePlans', 'carePlanLines', 'decisions', 'entryActivities', 'visitSlots', 'visitChanges', 'absences', 'obstacles', 'workNatures', 'preconditions']) {
+  for (const key of ['clientStatusChanges', 'activities', 'carePlans', 'carePlanLines', 'decisions', 'entryActivities', 'visitSlots', 'visitChanges', 'absences', 'obstacles', 'workNatures', 'preconditions', 'keys', 'keyHandovers']) {
     delete older[key];
     delete older.totals[key];
   }
@@ -1015,7 +1019,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 2 tunneb seisu ajalugu, aga mitte veel toimingute kataloogi. */
   const second = make();
   second.version = 2;
-  for (const key of ['activities', 'carePlans', 'carePlanLines', 'decisions', 'entryActivities', 'visitSlots', 'visitChanges', 'absences', 'obstacles', 'workNatures', 'preconditions']) {
+  for (const key of ['activities', 'carePlans', 'carePlanLines', 'decisions', 'entryActivities', 'visitSlots', 'visitChanges', 'absences', 'obstacles', 'workNatures', 'preconditions', 'keys', 'keyHandovers']) {
     delete second[key];
     delete second.totals[key];
   }
@@ -1023,7 +1027,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 3 tunneb kataloogi, aga mitte veel hoolduskavasid. */
   const third = make();
   third.version = 3;
-  for (const key of ['carePlans', 'carePlanLines', 'decisions', 'entryActivities', 'visitSlots', 'visitChanges', 'absences', 'obstacles', 'workNatures', 'preconditions']) {
+  for (const key of ['carePlans', 'carePlanLines', 'decisions', 'entryActivities', 'visitSlots', 'visitChanges', 'absences', 'obstacles', 'workNatures', 'preconditions', 'keys', 'keyHandovers']) {
     delete third[key];
     delete third.totals[key];
   }
@@ -1031,7 +1035,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 4 tunneb hoolduskavasid, aga mitte veel otsuseid. */
   const fourth = make();
   fourth.version = 4;
-  for (const key of ['decisions', 'entryActivities', 'visitSlots', 'visitChanges', 'absences', 'obstacles', 'workNatures', 'preconditions']) {
+  for (const key of ['decisions', 'entryActivities', 'visitSlots', 'visitChanges', 'absences', 'obstacles', 'workNatures', 'preconditions', 'keys', 'keyHandovers']) {
     delete fourth[key];
     delete fourth.totals[key];
   }
@@ -1039,7 +1043,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 5 tunneb otsuseid, aga mitte veel käigul tehtud toiminguid. */
   const fifth = make();
   fifth.version = 5;
-  for (const key of ['entryActivities', 'visitSlots', 'visitChanges', 'absences', 'obstacles', 'workNatures', 'preconditions']) {
+  for (const key of ['entryActivities', 'visitSlots', 'visitChanges', 'absences', 'obstacles', 'workNatures', 'preconditions', 'keys', 'keyHandovers']) {
     delete fifth[key];
     delete fifth.totals[key];
   }
@@ -1047,7 +1051,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 6 tunneb tehtud toiminguid, aga mitte veel käigumustrit. */
   const sixth = make();
   sixth.version = 6;
-  for (const key of ['visitSlots', 'visitChanges', 'absences', 'obstacles', 'workNatures', 'preconditions']) {
+  for (const key of ['visitSlots', 'visitChanges', 'absences', 'obstacles', 'workNatures', 'preconditions', 'keys', 'keyHandovers']) {
     delete sixth[key];
     delete sixth.totals[key];
   }
@@ -1055,7 +1059,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 7 tunneb käigumustrit, aga mitte veel ühe päeva erandeid. */
   const seventh = make();
   seventh.version = 7;
-  for (const key of ['visitChanges', 'absences', 'obstacles', 'workNatures', 'preconditions']) {
+  for (const key of ['visitChanges', 'absences', 'obstacles', 'workNatures', 'preconditions', 'keys', 'keyHandovers']) {
     delete seventh[key];
     delete seventh.totals[key];
   }
@@ -1063,7 +1067,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 8 tunneb ühe päeva erandeid, aga mitte veel puudumisi. */
   const eighth = make();
   eighth.version = 8;
-  for (const key of ['absences', 'obstacles', 'workNatures', 'preconditions']) {
+  for (const key of ['absences', 'obstacles', 'workNatures', 'preconditions', 'keys', 'keyHandovers']) {
     delete eighth[key];
     delete eighth.totals[key];
   }
@@ -1071,7 +1075,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 9 tunneb puudumisi, aga mitte veel takistuse teateid. */
   const ninth = make();
   ninth.version = 9;
-  for (const key of ['obstacles', 'workNatures', 'preconditions']) {
+  for (const key of ['obstacles', 'workNatures', 'preconditions', 'keys', 'keyHandovers']) {
     delete ninth[key];
     delete ninth.totals[key];
   }
@@ -1079,7 +1083,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 10 tunneb takistuse teateid, aga mitte veel töö iseloomu märkeid. */
   const tenth = make();
   tenth.version = 10;
-  for (const key of ['workNatures', 'preconditions']) {
+  for (const key of ['workNatures', 'preconditions', 'keys', 'keyHandovers']) {
     delete tenth[key];
     delete tenth.totals[key];
   }
@@ -1087,9 +1091,22 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 11 tunneb töö iseloomu märkeid, aga mitte veel eeltingimusi. */
   const eleventh = make();
   eleventh.version = 11;
-  delete eleventh.preconditions;
-  delete eleventh.totals.preconditions;
+  for (const key of ['preconditions', 'keys', 'keyHandovers']) {
+    delete eleventh[key];
+    delete eleventh.totals[key];
+  }
   assert.deepEqual([checkHomeCareExport(eleventh).ok, checkHomeCareExport(eleventh).problems], [true, []]);
+  /* Versioon 12 tunneb eeltingimusi, aga mitte veel võtmeraamatut. */
+  const twelfth = make();
+  twelfth.version = 12;
+  for (const key of ['keys', 'keyHandovers']) {
+    delete twelfth[key];
+    delete twelfth.totals[key];
+  }
+  assert.deepEqual([checkHomeCareExport(twelfth).ok, checkHomeCareExport(twelfth).problems], [true, []]);
+  /* Uue versiooni failis on võtmete kogu puudumine viga; üleandmine, mis viitab olematule võtmele, samuti. */
+  assert.match(problems((doc) => { delete doc.keys; }).join(' '), /keys/);
+  assert.match(problems((doc) => { doc.keyHandovers[0].keyId = 'olematu'; }).join(' '), /keyHandovers/);
   /* Uue versiooni failis on eeltingimuste kogu puudumine viga; olematule kliendile viitav rida samuti. */
   assert.match(problems((doc) => { delete doc.preconditions; }).join(' '), /preconditions/);
   assert.match(problems((doc) => { doc.preconditions[0].clientId = 'olematu'; }).join(' '), /preconditions/);
