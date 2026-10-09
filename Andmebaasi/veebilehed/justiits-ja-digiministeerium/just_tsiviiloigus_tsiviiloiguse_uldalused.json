@@ -1,0 +1,61 @@
+{
+  "document_id": "web-just_tsiviiloigus_tsiviiloiguse_uldalused",
+  "title": "Tsiviilõiguse üldalused",
+  "register_title": "Tsiviilõiguse üldalused",
+  "source_id": "just_tsiviiloigus_tsiviiloiguse_uldalused",
+  "source_type": "web_page",
+  "publisher": "Justiits- ja Digiministeerium",
+  "language": "et",
+  "url": "https://www.just.ee/era-ja-avalik-oigus/tsiviiloigus/tsiviiloiguse-uldalused",
+  "url_final": "https://www.justdigi.ee/era-ja-avalik-oigus/tsiviiloigus/tsiviiloiguse-uldalused",
+  "source_path": "just_tsiviiloigus_tsiviiloiguse_uldalused.html",
+  "source_format": "html",
+  "source_sha256": "a016e9d908e746040d458594c6f9bb1dea9fbbe2f4bd535d27976c66c0af9490",
+  "content_sha256": "927034c9048ceacb7a1a42130b930e35b316ceecde5c0da5c43df0bf99700698",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:27:18.271Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2021-09-10",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "6dc6e81fb55bc668018d28b9d62607fa68e71e68ff15e47a16cf4d88122dfb90",
+    "stats": {
+      "words": 76,
+      "blocks": 7,
+      "headings": 1,
+      "tables": 0,
+      "links": 0,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "thin_content"
+    ],
+    "needs_review": true
+  },
+  "documents": []
+}

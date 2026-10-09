@@ -1,0 +1,116 @@
+{
+  "document_id": "web-just_haldusoigus_avalik_teave",
+  "title": "Avalik teave",
+  "register_title": "Avalik teave",
+  "source_id": "just_haldusoigus_avalik_teave",
+  "source_type": "web_page",
+  "publisher": "Justiits- ja Digiministeerium",
+  "language": "et",
+  "url": "https://www.just.ee/era-ja-avalik-oigus/haldusoigus/avalik-teave",
+  "url_final": "https://www.justdigi.ee/era-ja-avalik-oigus/haldusoigus/avalik-teave",
+  "source_path": "just_haldusoigus_avalik_teave.html",
+  "source_format": "html",
+  "source_sha256": "8669cf3641e3bea15c29ea70e22b780c3ce0b819e100b1d47de3a0e40f8ed527",
+  "content_sha256": "8ea327b1e77a83aac9318fb72246638a599bb6279dc317622bc36889ec16c369",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:27:23.367Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-10-07",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "98e646625b74611b2cf67a31059886488b1c2e8b6f29b814984b2f7176be6ab6",
+    "stats": {
+      "words": 550,
+      "blocks": 44,
+      "headings": 6,
+      "tables": 0,
+      "links": 14,
+      "linksToOtherSites": 4
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 2,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed"
+    ],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2025-01/AvTS%20kitsaskohtade%20anal%C3%BC%C3%BCs-1.pdf",
+      "text": "Avaliku teabe seadus: võimalikud kitsaskohad ja lahendused. Analüüs | 6.33 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2024-06/20240528_AvTS_TR_protokoll.pdf",
+      "text": "Töörühma kohtumise protokoll 28.05.2024 | 348.05 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2024-06/AvTS%20protokoll%2014.05.2024_kinnitamiseks%20%28003%29.pdf",
+      "text": "Töörühma kohtumise protokoll 14.05.2024 | 285.94 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2024-05/AvTS%20protokoll%2030.04.2024_kinnitatud.docx",
+      "text": "Töörühma kohtumise protokoll 30.04.2024 | 42.83 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2024-05/AvTS%20protokoll%2016.04.2024_kinnitatud.docx",
+      "text": "Töörühma kohtumise protokoll 16.04.2024 | 43.83 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2024-05/AvTS%20tr%20protokoll%2002.04.2024_kinnitatud.docx",
+      "text": "Töörühma kohtumise protokoll 02.04.2024 | 41.07 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2024-05/AvTS_tr_protokoll_19.03.2024_sissejuhatus%20%281%29.pdf",
+      "text": "Töörühma kohtumise protokoll 19.03.2024 | 282.89 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2024-04/AvTS_tooryhmale_esitletud%2019.03.2024.pdf",
+      "text": "Justiitsministeeriumi esitlus töörühmale | 240.31 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2026-07/Andmekaitse%C3%B5iguse%20ja%20avaliku%20teabe%20juhised.pdf",
+      "text": "reguleerimise kohta eelnõudes",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

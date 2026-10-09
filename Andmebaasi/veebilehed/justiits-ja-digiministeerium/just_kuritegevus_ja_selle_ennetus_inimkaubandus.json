@@ -1,0 +1,176 @@
+{
+  "document_id": "web-just_kuritegevus_ja_selle_ennetus_inimkaubandus",
+  "title": "Inimkaubandus",
+  "register_title": "Inimkaubandus",
+  "source_id": "just_kuritegevus_ja_selle_ennetus_inimkaubandus",
+  "source_type": "web_page",
+  "publisher": "Justiits- ja Digiministeerium",
+  "language": "et",
+  "url": "https://www.just.ee/kuritegevus-ja-selle-ennetus/inimkaubandus",
+  "url_final": "https://www.justdigi.ee/kuritegevus-ja-selle-ennetus/inimkaubandus",
+  "source_path": "just_kuritegevus_ja_selle_ennetus_inimkaubandus.html",
+  "source_format": "html",
+  "source_sha256": "9b599b22a7264fd4577b318f1ef8ea881452d1d1a807636284f29e47ac5c362d",
+  "content_sha256": "8dd94edd4562868a4b2eb06b3411216bfa819b950c4bf96757d6520d57d95aef",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:27:43.412Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-10-05",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "f2b8d58f8f2ec9e0a7c49297d444e70e74cb7ea718af63d2cb74ad517a6783da",
+    "stats": {
+      "words": 1251,
+      "blocks": 60,
+      "headings": 17,
+      "tables": 0,
+      "links": 55,
+      "linksToOtherSites": 40
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 1,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "email_needs_review"
+    ],
+    "needs_review": true
+  },
+  "documents": [
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2026-04/RSM_EST_0.pdf",
+      "text": "Eesti riiklik suunamismehhanism inimkaubanduse ohvri abistamiseks (PDF) | 3.56 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2026-10/IK_juhend_160926.pdf",
+      "text": "Inimkaubanduse tõkestamine: lisamaterjal ohvrite tuvastamise ja abistamise hõlbustamiseks",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2025-04/%C3%84rakasutamise%20viisid.pdf",
+      "text": "poliitikaülevaated inimkaubanduse mustritest",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2025-04/%C3%84rakasutamise%20viisid_kokkuv%C3%B5te.pdf",
+      "text": "Poliitikaülevaade inimkaubanduse viimaste suundumuste ja modus operandi kohta | 411.09 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2025-04/Ps%C3%BChholoogiline%20sund%20ja%20k%C3%BCsitlemine%20kriminaalmenetluses_kokkuv%C3%B5te.pdf",
+      "text": "Psühholoogiline sund ja küsitlemine kriminaalmenetluses (Julia Korkman) | 362.17 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.just.ee/sites/default/files/documents/2024-04/tooalase_ekspluateerimise_ennetamine_vastutustundliku_ettevotluse_abil_0.pdf",
+      "text": "Tööalase ekspluateerimise ennetamine vastutustundliku ettevõtluse abil",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2021-08/tooalase_ekspluateerimise_eesmargil_toimuva_inimkaubanduse_avastamise_juhis.pdf",
+      "text": "Tööalase ekspluateerimise eesmärgil toimuva inimkaubanduse avastamise juhis | 2.65 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://oigus.ut.ee/sites/default/files/oi/est-toolkit-for-responsible-businesses_web_1.pdf",
+      "text": "Juhis ettevõtjatele töövõtuahelas toimuva inimkaubanduse tuvastamiseks",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2022-04/inglisekeelne-lendleht_31.3.22.pdf",
+      "text": "Infovoldik ENG | 62.52 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2022-04/ukrainakeelne-lendleht_31.3.22.pdf",
+      "text": "Infovoldik UA | 102.93 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2022-04/venekeelne-lendleht_31.3.22.pdf",
+      "text": "Infovoldik RUS | 99.48 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://cbss.org/wp-content/uploads/2020/03/Media_guidelines_EE-min.pdf",
+      "text": "Meedia juhendmaterjal",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2021-08/inimkaubaduse%20seletav%20s%C3%B5naraamat.pdf",
+      "text": "Inimkaubaduse seletav sõnaraamat | 7.59 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2021-08/Juhendmaterjal%20omavalitsusuksustele%20meetmed%20tohustamaks%20inimkaubanduse%20vastu%20voitlemist%20kohalikul%20tasandil.pdf",
+      "text": "Juhendmaterjal kohalikele omavalitsustele inimkaubanduse juhtumitega tegelemiseks | 578.03 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://maailmakool.ee/wp-content/uploads/2024/08/inimkaubanduse-ilmingud-uhiskonnas.pdf",
+      "text": "“Inimkaubanduse ilmingud ühiskonnas”",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://maailmakool.ee/wp-content/uploads/2024/08/inimkaubanduse-liigid-ja-pohjused.pdf",
+      "text": "\"Inimkaubanduse liigid ja põhjused”",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2021-10/inimkaubanduse_ohvrite_juhendmaterjal_spetsialistile_est_0.pdf",
+      "text": "Inimkaubanduse ohvrite toetamise juhendmaterjal spetsialistile | 621.04 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2021-10/visup_oppematerjalid_est.pdf",
+      "text": "VISUP õppematerjalid EST | 2.54 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2021-10/visup_training_materials_eng.pdf",
+      "text": "VISUP training materials ENG | 2.66 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

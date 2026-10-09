@@ -1,0 +1,68 @@
+{
+  "document_id": "web-just_haldusoigus_andmekaitse",
+  "title": "Andmekaitse ja isikuandmete vastutustundliku töötlemise põhimõtted",
+  "register_title": "Andmekaitse ja isikuandmete vastutustundliku töötlemise põhimõtted",
+  "source_id": "just_haldusoigus_andmekaitse",
+  "source_type": "web_page",
+  "publisher": "Justiits- ja Digiministeerium",
+  "language": "et",
+  "url": "https://www.just.ee/era-ja-avalik-oigus/haldusoigus/andmekaitse",
+  "url_final": "https://www.justdigi.ee/era-ja-avalik-oigus/haldusoigus/andmekaitse",
+  "source_path": "just_haldusoigus_andmekaitse.html",
+  "source_format": "html",
+  "source_sha256": "94a75599d3f380313a0e14e6db2341f88a063f9baa2c6241ad6121fde303f0ca",
+  "content_sha256": "57cefc169b51ad63fb3fea0e67e2a67c06f8216e6f7abeccd7f1f16939e097fd",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:27:20.827Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-07-02",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "5acf341d90ede4607b7de0ef4646503df5e96058826a13e5f3f21ef93020b5e7",
+    "stats": {
+      "words": 926,
+      "blocks": 23,
+      "headings": 8,
+      "tables": 0,
+      "links": 4,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 1,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed"
+    ],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2026-07/Andmekaitse%C3%B5iguse%20ja%20avaliku%20teabe%20juhised.pdf",
+      "text": "Andmekaitseõiguse ja avaliku teabe juhised eelnõu koostajale | 808.01 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "document_id": "web-just_lapsed_ja_noored_nooresobralik_oigussusteem",
+  "title": "Nooresõbralik õigussüsteem",
+  "register_title": "Nooresõbralik õigussüsteem",
+  "source_id": "just_lapsed_ja_noored_nooresobralik_oigussusteem",
+  "source_type": "web_page",
+  "publisher": "Justiits- ja Digiministeerium",
+  "language": "et",
+  "url": "https://www.just.ee/kuritegevus-ja-selle-ennetus/lapsed-ja-noored/nooresobralik-oigussusteem",
+  "url_final": "https://www.justdigi.ee/kuritegevus-ja-selle-ennetus/lapsed-ja-noored/nooresobralik-oigussusteem",
+  "source_path": "just_lapsed_ja_noored_nooresobralik_oigussusteem.html",
+  "source_format": "html",
+  "source_sha256": "148be7e7e566f8b23af1d4e770918d860ea7f9aeb61d7adc4e094e2cf2c0f05d",
+  "content_sha256": "aea9119ccec9353b8b0ecf099d77acb41dd149e449a0dfb02d9af16770f93ad9",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:27:53.520Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2024-05-27",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "02046fe01f1393e0bb0b4952ca77846cd583b3e9a3753391f29465739e4b0c89",
+    "stats": {
+      "words": 1847,
+      "blocks": 59,
+      "headings": 25,
+      "tables": 0,
+      "links": 37,
+      "linksToOtherSites": 32
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 1,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed"
+    ],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.just.ee/sites/default/files/documents/2022-09/JUM%20eeldef%20%C3%BClevaade%20veebi.pdf",
+      "text": "Loe projekti kohta lähemalt siit",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.just.ee/sites/default/files/documents/2022-09/JUM%20eeldef%20%C3%BClevaade%20veebi_ENG.PDF",
+      "text": "Read about the project here",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.just.ee/sites/default/files/documents/2022-09/RUS_%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%BE%D0%B5%20%D0%BE%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5.pdf",
+      "text": "Описание русскоязычного проекта здесь",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2021-11/Koolitusprogramm_Noorekesksed%20l%C3%A4henemised%20alaealiste%20erikohtlemisel.pdf",
+      "text": "Koolitusprogramm: Noorekesksed lähenemised alaealiste erikohtlemisel | 233.17 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2024-05/Taastava%20%C3%B5iguse%20kuu%20%202021.pdf",
+      "text": "Taastava õiguse kuu 2021.pdf | 691.25 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2024-05/Taastava%20%C3%B5iguse%20kuu%20%202022.pdf",
+      "text": "Taastava õiguse kuu 2022.pdf | 690.1 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

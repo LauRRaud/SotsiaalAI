@@ -1,0 +1,84 @@
+{
+  "document_id": "web-just_oigusabi_oigusnou_erivajadustega_inimestele",
+  "title": "Õigusnõu erivajadustega inimestele",
+  "register_title": "Õigusnõu erivajadustega inimestele",
+  "source_id": "just_oigusabi_oigusnou_erivajadustega_inimestele",
+  "source_type": "web_page",
+  "publisher": "Justiits- ja Digiministeerium",
+  "language": "et",
+  "url": "https://www.just.ee/kohtud-ja-oigusteenused/oigusabi/oigusnou-erivajadustega-inimestele",
+  "url_final": "https://www.justdigi.ee/kohtud-ja-oigusteenused/oigusabi/oigusnou-erivajadustega-inimestele",
+  "source_path": "just_oigusabi_oigusnou_erivajadustega_inimestele.html",
+  "source_format": "html",
+  "source_sha256": "118887de80dd1dfe1ad9f9e7ad20e672aabad9448d07b4e08ad3cbb001dfd72d",
+  "content_sha256": "716d126076cb439c56812783cda50e5f7fbfab9e969c262b470ec9f4774038c2",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:26:43.434Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-01-05",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "195c0a5dd57336973a69f3bf717c0b2df781e5217781d821e0b34fc30ce13378",
+    "stats": {
+      "words": 205,
+      "blocks": 16,
+      "headings": 3,
+      "tables": 0,
+      "links": 6,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2022-01/Erivajadustega%20isikute%20%C3%B5igusn%C3%B5ustamise%20konkursi%20v%C3%A4ljakuulutamine.pdf",
+      "text": "Erivajadustega isikute õigusnõustamise konkursi väljakuulutamine | 450.71 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2022-01/Justiitsministri%2015.02.2021.%20a%20m%C3%A4%C3%A4ruse%20nr%204%20Riigi%20toetatav%20oigusnoustamine%20seletuskiri.pdf",
+      "text": "Justiitsministri 15.02.2021. a määruse nr 4 Riigi toetatav oigusnoustamine seletuskiri | 879.74 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2022-01/Erivajadustega%20isikute%20%C3%B5igusn%C3%B5u%20toetamise%20konkursi%20komisjon.pdf",
+      "text": "Erivajadustega isikute õigusnõustamise toetamise konkursi komisjon | 401.11 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2022-03/Erivajadustega%20isikute%20%C3%B5igusn%C3%B5ustamise%20k%C3%A4ttesaadavuse%20parandamiseks%20toetuse%20eraldamine.pdf",
+      "text": "Erivajadustega isikute õigusnõustamise kättesaadavuse parandamiseks toetuse eraldamine | 259.98 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

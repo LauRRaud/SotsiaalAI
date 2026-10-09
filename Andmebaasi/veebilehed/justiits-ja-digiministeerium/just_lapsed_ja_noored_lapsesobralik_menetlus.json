@@ -1,0 +1,96 @@
+{
+  "document_id": "web-just_lapsed_ja_noored_lapsesobralik_menetlus",
+  "title": "Lapsesõbralik menetlus",
+  "register_title": "Lapsesõbralik menetlus",
+  "source_id": "just_lapsed_ja_noored_lapsesobralik_menetlus",
+  "source_type": "web_page",
+  "publisher": "Justiits- ja Digiministeerium",
+  "language": "et",
+  "url": "https://www.just.ee/kuritegevus-ja-selle-ennetus/lapsed-ja-noored/lapsesobralik-menetlus",
+  "url_final": "https://www.justdigi.ee/kuritegevus-ja-selle-ennetus/lapsed-ja-noored/lapsesobralik-menetlus",
+  "source_path": "just_lapsed_ja_noored_lapsesobralik_menetlus.html",
+  "source_format": "html",
+  "source_sha256": "c57baf54b57cdc4f2d80731349731cf49608d9c79d3ff2dc2346ed5e449f8771",
+  "content_sha256": "31039250aefdfed7973dc469868385804147ba3b81a86b5a725e07dd4b5226f2",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:27:50.888Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2023-08-11",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "290dd7f051dc8269a8c437d85ed641bd5937ae5bd23c1aa03327e55f0a29f4ba",
+    "stats": {
+      "words": 771,
+      "blocks": 26,
+      "headings": 9,
+      "tables": 0,
+      "links": 7,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2021-12/KohusLahendab_A5_EST_preview.pdf",
+      "text": "Laps perekonnaasjades ärakuulatavana kohtus EE | 1.58 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2021-12/LapsSuudistatavana_A5_EST_preview.pdf",
+      "text": "Laps süüdistatavana kohtus EE | 2.04 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2021-12/LapsTunnistajana_A5_EST_preview.pdf",
+      "text": "Laps tunnistaja või kannatanuna kohtus EE | 1.41 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2021-12/KohusLahendab_A5_RUS_preview.pdf",
+      "text": "Laps perekonnaasjades ärakuulatavana kohtus RU | 1.58 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2021-12/LapsSuudistatavana_A5_RUS_preview.pdf",
+      "text": "Laps süüdistatavana kohtus RU | 1.76 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2021-12/LapsTunnistajana_A5_RUS_preview.pdf",
+      "text": "Laps tunnistaja või kannatanuna kohtus RU | 1.38 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

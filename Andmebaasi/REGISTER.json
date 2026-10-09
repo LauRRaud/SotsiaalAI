@@ -31,7 +31,7 @@
       "sources": 612
     },
     "register": {
-      "files": 8,
+      "files": 9,
       "sources": 0
     },
     "taastatud_allikad": {
@@ -43,17 +43,17 @@
       "sources": 0
     },
     "veebilehed": {
-      "files": 648,
-      "sources": 324
+      "files": 722,
+      "sources": 361
     }
   },
   "corpus": {
     "written_by": "rag-v2/register-corpus-1",
-    "version": "v73",
-    "index_generation": "d0aa63f4",
+    "version": "v74",
+    "index_generation": "3dff55b3",
     "read_at": "2026-10-09",
-    "documents": 8659,
-    "units": 75102,
+    "documents": 8696,
+    "units": 75543,
     "note": "What the RAG on the server holds: the documents of the corpus policy by what they are (by_content), and by where the source file is kept (from_repository, outside_repository). One file of the repository may give many documents (a municipality package gives its services, forms and contacts). On a source entry, corpus_documents is the number of corpus documents the file gives; 0 means the file is not in the corpus.",
     "by_content": [
       {
@@ -116,9 +116,9 @@
       {
         "content": "official_pages",
         "name": "official guidance pages",
-        "documents": 323,
+        "documents": 360,
         "by_source_type": {
-          "web_page": 323
+          "web_page": 360
         }
       },
       {
@@ -180,9 +180,9 @@
         }
       },
       "veebilehed": {
-        "documents": 324,
+        "documents": 361,
         "by_source_type": {
-          "web_page": 323,
+          "web_page": 360,
           "research_report": 1
         }
       },
@@ -34191,6 +34191,672 @@
       "original_path": "veebilehed/haridus-ja-noorteamet-rajaleidja/rajaleidja_kvm.json"
     },
     {
+      "path": "veebilehed/haridus-ja-noorteamet/harno_eesti_lasteaedade_ja_koolide_toimimine_ja_pohimotted.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "38c4b9b3e448a470365ca02086399bddf38c775856376fba004fecea6ebb114b",
+      "original_path": "veebilehed/haridus-ja-noorteamet/harno_eesti_lasteaedade_ja_koolide_toimimine_ja_pohimotted.html",
+      "title": "Eesti lasteaedade ja koolide toimimine ja põhimõtted",
+      "document_id": "web-harno_eesti_lasteaedade_ja_koolide_toimimine_ja_pohimotted",
+      "metadata_path": "veebilehed/haridus-ja-noorteamet/harno_eesti_lasteaedade_ja_koolide_toimimine_ja_pohimotted.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/haridus-ja-noorteamet/harno_eesti_lasteaedade_ja_koolide_toimimine_ja_pohimotted.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "e660dcdc05200b3f19e2712db18ddd3a5e964184886ddd4b6f4b35df15a45e44",
+      "original_path": "veebilehed/haridus-ja-noorteamet/harno_eesti_lasteaedade_ja_koolide_toimimine_ja_pohimotted.json"
+    },
+    {
+      "path": "veebilehed/haridus-ja-noorteamet/harno_kaasav_haridus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "0e73dc81b933efc5812d3755bc9fc41309f4b031746ccffff34683b6a7ca744e",
+      "original_path": "veebilehed/haridus-ja-noorteamet/harno_kaasav_haridus.html",
+      "title": "Kaasav haridus",
+      "document_id": "web-harno_kaasav_haridus",
+      "metadata_path": "veebilehed/haridus-ja-noorteamet/harno_kaasav_haridus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/haridus-ja-noorteamet/harno_kaasav_haridus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "437ce7132300d3303d5387bb07e49ab570c58f40d61b26ebc2105484125697bc",
+      "original_path": "veebilehed/haridus-ja-noorteamet/harno_kaasav_haridus.json"
+    },
+    {
+      "path": "veebilehed/haridus-ja-noorteamet/harno_lapsevanema_tugi_lapsele.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "2fa295144011b3fe5f947c45726a988be1d48a2f6d4efb4644e24115a6dbc941",
+      "original_path": "veebilehed/haridus-ja-noorteamet/harno_lapsevanema_tugi_lapsele.html",
+      "title": "Lapsevanema tugi lapsele",
+      "document_id": "web-harno_lapsevanema_tugi_lapsele",
+      "metadata_path": "veebilehed/haridus-ja-noorteamet/harno_lapsevanema_tugi_lapsele.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/haridus-ja-noorteamet/harno_lapsevanema_tugi_lapsele.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "2c967c0db6147190454676b575889eb98d5bfdb81f981caa61c75e086477cf39",
+      "original_path": "veebilehed/haridus-ja-noorteamet/harno_lapsevanema_tugi_lapsele.json"
+    },
+    {
+      "path": "veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_alusharidus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "938cac6e6970a9ec94060363e6d66fa9d97861f7f5fb888c6f373d80fceaccf6",
+      "original_path": "veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_alusharidus.html",
+      "title": "Alusharidus",
+      "document_id": "web-hm_alus_pohi_ja_keskharidus_alusharidus",
+      "metadata_path": "veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_alusharidus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_alusharidus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "b2cab7bc687fa9931f2c2862ab5dd06182cdc7ba091927c4a52e5775ab6d4b7a",
+      "original_path": "veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_alusharidus.json"
+    },
+    {
+      "path": "veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_oppimiskohustus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "ec42b6f2aa87eafb38c8d4c8a9807c0cd7c7fa324f2ec5422a1e4388386eed53",
+      "original_path": "veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_oppimiskohustus.html",
+      "title": "Õppimiskohustus",
+      "document_id": "web-hm_alus_pohi_ja_keskharidus_oppimiskohustus",
+      "metadata_path": "veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_oppimiskohustus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_oppimiskohustus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "5fe13f2f50573a944f41b526f91a4b350c1c7242b70975b1ea87b0844b6bb210",
+      "original_path": "veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_oppimiskohustus.json"
+    },
+    {
+      "path": "veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_pohiharidus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "bdda264ebec1e01ff131d662bf22a57d28d0f21ea46acad4dfdec9e9ca621b96",
+      "original_path": "veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_pohiharidus.html",
+      "title": "Põhiharidus",
+      "document_id": "web-hm_alus_pohi_ja_keskharidus_pohiharidus",
+      "metadata_path": "veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_pohiharidus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_pohiharidus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "5c42bdfbed0225d37e88e5bd1bd96728794b38738b6247e4d94bc4e2cd1e19b7",
+      "original_path": "veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_pohiharidus.json"
+    },
+    {
+      "path": "veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_toe_vajadusega_opilased.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "238f068b9aa533d266e48591c1ace2b9190cd789645469ae035b7e653dd5baf2",
+      "original_path": "veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_toe_vajadusega_opilased.html",
+      "title": "Toe vajadusega õpilased: õppekorraldus ja tugiteenused",
+      "document_id": "web-hm_alus_pohi_ja_keskharidus_toe_vajadusega_opilased",
+      "metadata_path": "veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_toe_vajadusega_opilased.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_toe_vajadusega_opilased.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "57920d171de3d08944bdba54f6514bc5a659f37bcc106f08d8cf27b0307da185",
+      "original_path": "veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_toe_vajadusega_opilased.json"
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_elukutsed_advokaat.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "3cad9b3df54c61a84bd0290aa822a09868224efaa737f8dc92a041c6670a31bb",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_elukutsed_advokaat.html",
+      "title": "Advokaat",
+      "document_id": "web-just_elukutsed_advokaat",
+      "metadata_path": "veebilehed/justiits-ja-digiministeerium/just_elukutsed_advokaat.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_elukutsed_advokaat.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "04c5d947ac1fc2c8a36dcaccb9b1c4961c60f52dca0ab7dbdd6b45159c6ae5c4",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_elukutsed_advokaat.json"
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_elukutsed_kohtutaitur.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "ddec9a174bf90883fcdbdce6a5c7d3cc287dff0e67fe092d4a5ec9b0d33ab4e2",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_elukutsed_kohtutaitur.html",
+      "title": "Kohtutäitur",
+      "document_id": "web-just_elukutsed_kohtutaitur",
+      "metadata_path": "veebilehed/justiits-ja-digiministeerium/just_elukutsed_kohtutaitur.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_elukutsed_kohtutaitur.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "38e507fa08e40d312d594a654d5f18e29a2d3c5901e832f95bd6a1c2dbba2db7",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_elukutsed_kohtutaitur.json"
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_elukutsed_notar.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "341c9fcc6c34afe5ef8ce4e5be90853c19bb46739f15710aac9c9241754a7e2f",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_elukutsed_notar.html",
+      "title": "Notar",
+      "document_id": "web-just_elukutsed_notar",
+      "metadata_path": "veebilehed/justiits-ja-digiministeerium/just_elukutsed_notar.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_elukutsed_notar.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "5491ada1aa68b23b3d5ec115f753a672fd80705f951279f6c463008e574ee51f",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_elukutsed_notar.json"
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_elukutsed_pankrotihaldur.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "ce08ac4d9c53e80b1c4435166eab1f0adc600ec4648d6ebe2e2b4e176bdb1a8c",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_elukutsed_pankrotihaldur.html",
+      "title": "Pankrotihaldur",
+      "document_id": "web-just_elukutsed_pankrotihaldur",
+      "metadata_path": "veebilehed/justiits-ja-digiministeerium/just_elukutsed_pankrotihaldur.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_elukutsed_pankrotihaldur.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "6acd38860ae5d3205ab7c5aed4d23c074fab63747830752e5eea05a9cd05cc62",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_elukutsed_pankrotihaldur.json"
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_haldusoigus_andmekaitse.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "94a75599d3f380313a0e14e6db2341f88a063f9baa2c6241ad6121fde303f0ca",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_haldusoigus_andmekaitse.html",
+      "title": "Andmekaitse ja isikuandmete vastutustundliku töötlemise põhimõtted",
+      "document_id": "web-just_haldusoigus_andmekaitse",
+      "metadata_path": "veebilehed/justiits-ja-digiministeerium/just_haldusoigus_andmekaitse.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_haldusoigus_andmekaitse.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "b962d04812ac856a834b8cd499a834d813499ba927c9d1029ddc9bb1435a6123",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_haldusoigus_andmekaitse.json"
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_haldusoigus_avalik_teave.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "8669cf3641e3bea15c29ea70e22b780c3ce0b819e100b1d47de3a0e40f8ed527",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_haldusoigus_avalik_teave.html",
+      "title": "Avalik teave",
+      "document_id": "web-just_haldusoigus_avalik_teave",
+      "metadata_path": "veebilehed/justiits-ja-digiministeerium/just_haldusoigus_avalik_teave.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_haldusoigus_avalik_teave.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "9a4d7380ba2884ff6d96e2ccd7700f560b8eb6d8530d902c7803e85ed0e5c909",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_haldusoigus_avalik_teave.json"
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_haldusoigus_halduskorraldus_ja_menetlus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "329a552b684fece136c56017c0283fffc57f5b4ffcaa9a754c22b60d102e3dd3",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_haldusoigus_halduskorraldus_ja_menetlus.html",
+      "title": "Halduskorraldus- ja menetlus",
+      "document_id": "web-just_haldusoigus_halduskorraldus_ja_menetlus",
+      "metadata_path": "veebilehed/justiits-ja-digiministeerium/just_haldusoigus_halduskorraldus_ja_menetlus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_haldusoigus_halduskorraldus_ja_menetlus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "4fb2a245568c782efa2eb6824d91d6aedb9a891290010d185ed7999c645008b1",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_haldusoigus_halduskorraldus_ja_menetlus.json"
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_alternatiivkaristused.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "202af90a4fdcf7b79be578afe5e9eb5a435dd8d587c60d7cefc731cc8d10179f",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_alternatiivkaristused.html",
+      "title": "Alternatiivkaristused",
+      "document_id": "web-just_kuritegevus_ja_selle_ennetus_alternatiivkaristused",
+      "metadata_path": "veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_alternatiivkaristused.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_alternatiivkaristused.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "ea048bedfc70fd0d5ff82fc79c934b992ffc3beb3982516d7e6bb4fe25e32700",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_alternatiivkaristused.json"
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_inimkaubandus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "9b599b22a7264fd4577b318f1ef8ea881452d1d1a807636284f29e47ac5c362d",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_inimkaubandus.html",
+      "title": "Inimkaubandus",
+      "document_id": "web-just_kuritegevus_ja_selle_ennetus_inimkaubandus",
+      "metadata_path": "veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_inimkaubandus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_inimkaubandus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "ea490e6effeebf084c7ecb87162f975a0d05b4d9830f0781a2d7089ec6f8d208",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_inimkaubandus.json"
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_perevagivald.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "6eeb4ee94034ddcf5698f284f52b49ed7a08f980ed8944ffd182869333662d23",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_perevagivald.html",
+      "title": "Perevägivald",
+      "document_id": "web-just_kuritegevus_ja_selle_ennetus_perevagivald",
+      "metadata_path": "veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_perevagivald.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_perevagivald.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "7d535bd63a39b76428d500c6168474d7c807fd95ce0864449f4ce1d1a84f35fc",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_perevagivald.json"
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_seksuaalne_vaarkohtlemine.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "8b7f3e33fed8d5a4c244ad9aa0bf7f6bc54b0a1b039483a041e852341189ba5f",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_seksuaalne_vaarkohtlemine.html",
+      "title": "Seksuaalne väärkohtlemine",
+      "document_id": "web-just_kuritegevus_ja_selle_ennetus_seksuaalne_vaarkohtlemine",
+      "metadata_path": "veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_seksuaalne_vaarkohtlemine.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_seksuaalne_vaarkohtlemine.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "7fe42e71c6337c766576b67f22932c07bf19e3c8260bde8aae1102a24ec20518",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_seksuaalne_vaarkohtlemine.json"
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_vangla_ja_kriminaalhooldus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "46c538949525721a2467545566e1958b4ae3c421f86f1d0099a64bba1c47dd86",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_vangla_ja_kriminaalhooldus.html",
+      "title": "Vangla ja kriminaalhooldus",
+      "document_id": "web-just_kuritegevus_ja_selle_ennetus_vangla_ja_kriminaalhooldus",
+      "metadata_path": "veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_vangla_ja_kriminaalhooldus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_vangla_ja_kriminaalhooldus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "0ada6812766840530773851f8e2b5f89b3f871c56d8e53e7cf859909c87d6f1e",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_vangla_ja_kriminaalhooldus.json"
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_lapsed_ja_noored_lapsesobralik_menetlus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "c57baf54b57cdc4f2d80731349731cf49608d9c79d3ff2dc2346ed5e449f8771",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_lapsed_ja_noored_lapsesobralik_menetlus.html",
+      "title": "Lapsesõbralik menetlus",
+      "document_id": "web-just_lapsed_ja_noored_lapsesobralik_menetlus",
+      "metadata_path": "veebilehed/justiits-ja-digiministeerium/just_lapsed_ja_noored_lapsesobralik_menetlus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_lapsed_ja_noored_lapsesobralik_menetlus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "704bd60fafb2c08db77ce8ccd28a8179da02521b86824b82a558f5c03053f9e9",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_lapsed_ja_noored_lapsesobralik_menetlus.json"
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_lapsed_ja_noored_nooresobralik_oigussusteem.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "148be7e7e566f8b23af1d4e770918d860ea7f9aeb61d7adc4e094e2cf2c0f05d",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_lapsed_ja_noored_nooresobralik_oigussusteem.html",
+      "title": "Nooresõbralik õigussüsteem",
+      "document_id": "web-just_lapsed_ja_noored_nooresobralik_oigussusteem",
+      "metadata_path": "veebilehed/justiits-ja-digiministeerium/just_lapsed_ja_noored_nooresobralik_oigussusteem.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_lapsed_ja_noored_nooresobralik_oigussusteem.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "5d4afb3a83c408758a09a6ea05bc7e8a96d3fdc458bf7dcfc7254f591c5ec4af",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_lapsed_ja_noored_nooresobralik_oigussusteem.json"
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_maksejouetus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "7efa23fcd5b5ce26ef47bb784ce57777d2341961b3f6140bcb4b276e937679f5",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_maksejouetus.html",
+      "title": "Maksejõuetus",
+      "document_id": "web-just_maksejouetus",
+      "metadata_path": "veebilehed/justiits-ja-digiministeerium/just_maksejouetus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_maksejouetus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "f141ede9986fd26c98fcade577e0d970c5c8516399ffee8812ce14c76104969a",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_maksejouetus.json"
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_ohvrite_toetamine_kahjude_heastamine_ja_taastav_oigus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "2ef1c1168cf5b0707bc34b1b9170f46148885947f584173bbb7818f1e887617e",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_ohvrite_toetamine_kahjude_heastamine_ja_taastav_oigus.html",
+      "title": "Taastav õigus",
+      "document_id": "web-just_ohvrite_toetamine_kahjude_heastamine_ja_taastav_oigus",
+      "metadata_path": "veebilehed/justiits-ja-digiministeerium/just_ohvrite_toetamine_kahjude_heastamine_ja_taastav_oigus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_ohvrite_toetamine_kahjude_heastamine_ja_taastav_oigus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "f70e36fee2a05bb1f2e96c670ddda37866f58a427f074d7619930b29a201e6ef",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_ohvrite_toetamine_kahjude_heastamine_ja_taastav_oigus.json"
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_ohvrite_toetamine_kuriteoohvrite_oigused.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "12c99735398c87d0c89c9d998a4253ed5090e394be5571ae5c88d79aadc7f4d4",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_ohvrite_toetamine_kuriteoohvrite_oigused.html",
+      "title": "Kuriteoohvrite õigused",
+      "document_id": "web-just_ohvrite_toetamine_kuriteoohvrite_oigused",
+      "metadata_path": "veebilehed/justiits-ja-digiministeerium/just_ohvrite_toetamine_kuriteoohvrite_oigused.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_ohvrite_toetamine_kuriteoohvrite_oigused.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "fcc496a2499fcb1c2cbdb111eb468580ba75d4c9c7d73557b6a91c871b33d63f",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_ohvrite_toetamine_kuriteoohvrite_oigused.json"
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_ohvrite_toetamine_lahenemiskeeld.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "55c638b0230d4cd5d1e41647facdf09a5eeb3665af3055ea43fd4135ae7c8cec",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_ohvrite_toetamine_lahenemiskeeld.html",
+      "title": "Lähenemiskeeld",
+      "document_id": "web-just_ohvrite_toetamine_lahenemiskeeld",
+      "metadata_path": "veebilehed/justiits-ja-digiministeerium/just_ohvrite_toetamine_lahenemiskeeld.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_ohvrite_toetamine_lahenemiskeeld.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "fe3648b5561f67544a4211ae755cc3821f3820789fa3d59f9cce81640304faf2",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_ohvrite_toetamine_lahenemiskeeld.json"
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_oigusabi_oigusnou_erivajadustega_inimestele.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "118887de80dd1dfe1ad9f9e7ad20e672aabad9448d07b4e08ad3cbb001dfd72d",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_oigusabi_oigusnou_erivajadustega_inimestele.html",
+      "title": "Õigusnõu erivajadustega inimestele",
+      "document_id": "web-just_oigusabi_oigusnou_erivajadustega_inimestele",
+      "metadata_path": "veebilehed/justiits-ja-digiministeerium/just_oigusabi_oigusnou_erivajadustega_inimestele.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_oigusabi_oigusnou_erivajadustega_inimestele.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "e602d6e6c3caa6c84b8c79ba4adba3c8c9c09d2833b03aa2173f53a3f9f12cf2",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_oigusabi_oigusnou_erivajadustega_inimestele.json"
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_oigusabi_riigi_toetatud_oigusabi.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "f2dc900ee56205e4695b45defff1aa97e3e71a8ce68ec2b3158006f6ef8e7fa3",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_oigusabi_riigi_toetatud_oigusabi.html",
+      "title": "Õigusabi",
+      "document_id": "web-just_oigusabi_riigi_toetatud_oigusabi",
+      "metadata_path": "veebilehed/justiits-ja-digiministeerium/just_oigusabi_riigi_toetatud_oigusabi.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_oigusabi_riigi_toetatud_oigusabi.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "1bc3e0a0c01b3152bcf015406f0f19d1b0560be3a2cb13a2b76812fa49317e7a",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_oigusabi_riigi_toetatud_oigusabi.json"
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_oigusabi_tasuta_oigusnou_eakatele.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "b21be55cf4f05b3da84f7cb4f970139f70ec9cc8e5b4c33dc786fc854b64ac2f",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_oigusabi_tasuta_oigusnou_eakatele.html",
+      "title": "Tasuta õigusnõu eakatele",
+      "document_id": "web-just_oigusabi_tasuta_oigusnou_eakatele",
+      "metadata_path": "veebilehed/justiits-ja-digiministeerium/just_oigusabi_tasuta_oigusnou_eakatele.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_oigusabi_tasuta_oigusnou_eakatele.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "9021937364c0f64e03f6dd2fb5ae1a303ab09fb7f42a50b21c40fa43901bc988",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_oigusabi_tasuta_oigusnou_eakatele.json"
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_registrid_parimisregister.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "e048de011bed5687a0d9f8dd6a3af5fea5b7a3512fa06a105f856b0a0a38adc8",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_registrid_parimisregister.html",
+      "title": "Pärimisregister",
+      "document_id": "web-just_registrid_parimisregister",
+      "metadata_path": "veebilehed/justiits-ja-digiministeerium/just_registrid_parimisregister.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_registrid_parimisregister.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "38802800235f5f735af95a76162ed12ebf570102e26e0e13a430afd913ff724e",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_registrid_parimisregister.json"
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_registrid_taitmisregister.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "2d446a1329e145b47bdcc697551c021adebdfd2c118b96d9a83ef1c1eda864be",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_registrid_taitmisregister.html",
+      "title": "Täitmisregister",
+      "document_id": "web-just_registrid_taitmisregister",
+      "metadata_path": "veebilehed/justiits-ja-digiministeerium/just_registrid_taitmisregister.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_registrid_taitmisregister.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "4b4de0a33e5e5272d63bc6b7a3004943769ff1824cf0eed4762ee87768b0f5a4",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_registrid_taitmisregister.json"
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_tsiviilmenetlus_taitemenetlus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "d0f932554f68e27889ce4cf614a26fae098f758b74d430ce814d3646d2ea84b5",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_tsiviilmenetlus_taitemenetlus.html",
+      "title": "Täitemenetlus",
+      "document_id": "web-just_tsiviilmenetlus_taitemenetlus",
+      "metadata_path": "veebilehed/justiits-ja-digiministeerium/just_tsiviilmenetlus_taitemenetlus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_tsiviilmenetlus_taitemenetlus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "0f5138873404487999f39f4b5bfa86a9554fa7359a57033d18303a54733504d5",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_tsiviilmenetlus_taitemenetlus.json"
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_tsiviilmenetlus_tsiviilkohtumenetlus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "e911255ec023fe87d1a92b8c63a3fff7551f206d1b5a93c3d497857eb4a02a33",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_tsiviilmenetlus_tsiviilkohtumenetlus.html",
+      "title": "Tsiviilkohtumenetlus",
+      "document_id": "web-just_tsiviilmenetlus_tsiviilkohtumenetlus",
+      "metadata_path": "veebilehed/justiits-ja-digiministeerium/just_tsiviilmenetlus_tsiviilkohtumenetlus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_tsiviilmenetlus_tsiviilkohtumenetlus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "82c20231529f7058f62fc0a2ca2c3af5ee836c389c7c88a3ef220e5e4e1c6402",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_tsiviilmenetlus_tsiviilkohtumenetlus.json"
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_miinimumelatise_muutmine.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "92bb89a2b41e087169addd63f738b84b168a00a6846f6593f6e1ee7b6ead683d",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_miinimumelatise_muutmine.html",
+      "title": "Miinimumelatis",
+      "document_id": "web-just_tsiviiloigus_miinimumelatise_muutmine",
+      "metadata_path": "veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_miinimumelatise_muutmine.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_miinimumelatise_muutmine.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "349dd02bdda83b69fd7ed0e35d16dbf19bcb2437dac89aaa59c37c24aa120c6d",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_miinimumelatise_muutmine.json"
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_parimisoigus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "68b5fc14e4f51779aa2c2db0c09a2f2607379613389a584a384151840d810216",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_parimisoigus.html",
+      "title": "Pärimisõigus",
+      "document_id": "web-just_tsiviiloigus_parimisoigus",
+      "metadata_path": "veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_parimisoigus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_parimisoigus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "7a28c8f8c15839274e5ce52ca6fbf29abfe24e921017a3f6964803d59793d5a8",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_parimisoigus.json"
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_perekonnaoigus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "b46be7ece47b1d73c92f1c8050375d7edc649d81d0ba5fd29b59a92f2ea239dd",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_perekonnaoigus.html",
+      "title": "Perekonnaõigus",
+      "document_id": "web-just_tsiviiloigus_perekonnaoigus",
+      "metadata_path": "veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_perekonnaoigus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_perekonnaoigus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "2bc15e78a3be84d757f8993d82a8edc834a0fb07e1ba472ea8f09a77250664b6",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_perekonnaoigus.json"
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_tsiviiloiguse_uldalused.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "a016e9d908e746040d458594c6f9bb1dea9fbbe2f4bd535d27976c66c0af9490",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_tsiviiloiguse_uldalused.html",
+      "title": "Tsiviilõiguse üldalused",
+      "document_id": "web-just_tsiviiloigus_tsiviiloiguse_uldalused",
+      "metadata_path": "veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_tsiviiloiguse_uldalused.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_tsiviiloiguse_uldalused.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "8b70c64f14c5b7e381c357b53d08f2bb7d0df1d77f7b313f3c0ee52e1f0665b1",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_tsiviiloiguse_uldalused.json"
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_volaoigus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "eb6a91ebf51819b359e07ad6aca3b50fc9f04c933e9287a5acd686d3b7aea9c8",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_volaoigus.html",
+      "title": "Võlaõigus",
+      "document_id": "web-just_tsiviiloigus_volaoigus",
+      "metadata_path": "veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_volaoigus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_volaoigus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "5d905d38f272b9d7ed50041b049bccc236ce0fdfa8c0363cb078dd51b3c27a97",
+      "original_path": "veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_volaoigus.json"
+    },
+    {
       "path": "veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_elatisevolgnik_ja_pankrotimenetlus.html",
       "category": "veebilehed",
       "role": "source",
@@ -39714,6 +40380,13 @@
       "role": "source_planning_register",
       "sha256": "94d8093398d2fd263b39b2adf0d0ceb075879966ad408341eba7e409f3f46810",
       "original_path": "register/web_pages_state_help_2.json"
+    },
+    {
+      "path": "register/web_pages_state_help_3.json",
+      "category": "register",
+      "role": "source_planning_register",
+      "sha256": "4340edde0123fcdcbab6834c54ca3f38344bb9c9df345ab3976654bb17d345e0",
+      "original_path": "register/web_pages_state_help_3.json"
     },
     {
       "path": "register/newsletter_documents.json",

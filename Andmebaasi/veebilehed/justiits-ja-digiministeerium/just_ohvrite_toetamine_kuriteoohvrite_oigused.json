@@ -1,0 +1,69 @@
+{
+  "document_id": "web-just_ohvrite_toetamine_kuriteoohvrite_oigused",
+  "title": "Kuriteoohvrite õigused",
+  "register_title": "Kuriteoohvrite õigused",
+  "source_id": "just_ohvrite_toetamine_kuriteoohvrite_oigused",
+  "source_type": "web_page",
+  "publisher": "Justiits- ja Digiministeerium",
+  "language": "et",
+  "url": "https://www.just.ee/kuritegevus-ja-selle-ennetus/ohvrite-toetamine/kuriteoohvrite-oigused",
+  "url_final": "https://www.justdigi.ee/kuritegevus-ja-selle-ennetus/ohvrite-toetamine/kuriteoohvrite-oigused",
+  "source_path": "just_ohvrite_toetamine_kuriteoohvrite_oigused.html",
+  "source_format": "html",
+  "source_sha256": "12c99735398c87d0c89c9d998a4253ed5090e394be5571ae5c88d79aadc7f4d4",
+  "content_sha256": "929f1d5e0a96c63ef5aa597f8d637e65e842ddd5ab7c20249dc06b91e3fa2fe8",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:27:30.964Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-09-16",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "dd38fdd0045cbb123db09adae088c436f76cf993a30b802d70bb58d0e53719b5",
+    "stats": {
+      "words": 1039,
+      "blocks": 25,
+      "headings": 9,
+      "tables": 0,
+      "links": 11,
+      "linksToOtherSites": 10
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 1,
+      "personLinks": 0,
+      "contactCards": 1,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed",
+      "email_needs_review"
+    ],
+    "needs_review": true
+  },
+  "documents": [
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2026-09/Kuriteoohvri%20infoleht%202026%20%281%29.pdf",
+      "text": "Kuriteoohvri infoleht",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

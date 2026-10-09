@@ -1,0 +1,59 @@
+{
+  "document_id": "web-just_tsiviiloigus_volaoigus",
+  "title": "Võlaõigus",
+  "register_title": "Võlaõigus",
+  "source_id": "just_tsiviiloigus_volaoigus",
+  "source_type": "web_page",
+  "publisher": "Justiits- ja Digiministeerium",
+  "language": "et",
+  "url": "https://www.just.ee/era-ja-avalik-oigus/tsiviiloigus/volaoigus",
+  "url_final": "https://www.justdigi.ee/era-ja-avalik-oigus/tsiviiloigus/volaoigus",
+  "source_path": "just_tsiviiloigus_volaoigus.html",
+  "source_format": "html",
+  "source_sha256": "eb6a91ebf51819b359e07ad6aca3b50fc9f04c933e9287a5acd686d3b7aea9c8",
+  "content_sha256": "bd854da73c609bcd0b4671a23054c7d866f886887a886129bb3fb3b76115688e",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:27:15.782Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-04-23",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "143506f899c3dac0cb7beb0d07256c2ead74018c22f85c203fe843f8e9fa1926",
+    "stats": {
+      "words": 291,
+      "blocks": 10,
+      "headings": 3,
+      "tables": 0,
+      "links": 1,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

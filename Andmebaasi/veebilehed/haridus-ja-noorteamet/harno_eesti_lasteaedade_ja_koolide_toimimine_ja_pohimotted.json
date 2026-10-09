@@ -1,0 +1,58 @@
+{
+  "document_id": "web-harno_eesti_lasteaedade_ja_koolide_toimimine_ja_pohimotted",
+  "title": "Eesti lasteaedade ja koolide toimimine ja põhimõtted",
+  "register_title": "Eesti lasteaedade ja koolide toimimine ja põhimõtted",
+  "source_id": "harno_eesti_lasteaedade_ja_koolide_toimimine_ja_pohimotted",
+  "source_type": "web_page",
+  "publisher": "Haridus- ja Noorteamet",
+  "language": "et",
+  "url": "https://harno.ee/eesti-lasteaedade-ja-koolide-toimimine-ja-pohimotted",
+  "source_path": "harno_eesti_lasteaedade_ja_koolide_toimimine_ja_pohimotted.html",
+  "source_format": "html",
+  "source_sha256": "38c4b9b3e448a470365ca02086399bddf38c775856376fba004fecea6ebb114b",
+  "content_sha256": "fe1e379408e20de9e007bc8ce9b75d9be8f43d204a55e098179e76b95a9e15cd",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:28:07.344Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-05-21",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Fri, 09 Oct 2026 16:26:09 GMT",
+      "etag": null
+    },
+    "raw_sha256": "8ce2a0a32548efc638f6744f0b004d8db578aee6085d4538fb0532c5d204ba74",
+    "stats": {
+      "words": 932,
+      "blocks": 38,
+      "headings": 11,
+      "tables": 0,
+      "links": 10,
+      "linksToOtherSites": 9
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}
