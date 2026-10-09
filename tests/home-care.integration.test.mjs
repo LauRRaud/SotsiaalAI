@@ -4343,3 +4343,66 @@ test('kliendi raha: saadud, kulutatud ja tagastatud, jääk hoidja kaupa, tühis
   assert.deepEqual([audit.filter((entry) => entry.meta.change === 'added').length, audit.filter((entry) => entry.meta.change === 'retracted').length], [7, 2]);
   for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['change', 'clientId', 'moneyEntryId', 'organizationId']);
 });
+
+test('tagasiside küsimine: kellelt on aeg küsida ja mis lõppenud teenuste kohta tagasiside puudub', async (t) => {
+  const f = await fixture(t);
+  const north = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Põhi ${f.tag}`, type: 'TEAM' } });
+  await db.organizationCapabilityGrant.create({
+    data: { membershipId: f.members.cover.id, capability: 'HOME_CARE_COORDINATOR', scopeType: 'UNIT', scopeUnitId: north.id, validFrom: at('2026-01-01T00:00:00Z') }
+  });
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const unitLead = await f.ctx(f.users.cover, f.orgA);
+  /* Kliendid eri aegadest: vana (teenusel poolteist aastat), uus (kuu aega) ja kolm kuud teenusel olnud. */
+  const make = async (displayName, createdAt, unitId) => {
+    const { client } = await createClient(lead, { displayName, ...(unitId ? { unitId } : {}) }, deps(at(createdAt)));
+    await db.careClient.update({ where: { id: client.id }, data: { createdAt: at(createdAt) } });
+    await addTeamMember(lead, client.id, { membershipId: f.members.anu.id }, deps());
+    return client;
+  };
+  const vana = await make('Vana Klient', '2025-04-01T08:00:00Z');
+  const uus = await make('Uus Klient', '2026-09-10T08:00:00Z');
+  const kolm = await make('Kolme Kuu Klient', '2026-07-01T08:00:00Z', north.id);
+  const kiidetud = await make('Kiidetud Klient', '2025-04-01T08:00:00Z');
+  const feedback = (client, incidentType, occurredAt) =>
+    createEntry(anu, client.id, { kind: 'INCIDENT', incidentType, text: 'Tagasiside.', occurredAt }, deps(at(occurredAt)));
+  /* Vanal kliendil on tagasiside 14 kuu tagant, kiidetud kliendil kuu tagant. Kukkumine ei ole tagasiside. */
+  await feedback(vana, 'FEEDBACK', '2025-08-01T09:00:00Z');
+  await feedback(kiidetud, 'THANKS', '2026-09-20T09:00:00Z');
+  await feedback(uus, 'FALL', '2026-10-01T09:00:00Z');
+
+  const names = (list) => list.map((item) => [item.client.displayName, item.lastOn, item.days]);
+  const view = await getDeadlines(lead, deps());
+  /* Kauem küsimata enne: vana klient (viimane tagasiside 434 päeva tagasi), siis kolm kuud teenusel olnud klient, kellelt ei ole kordagi küsitud. */
+  assert.deepEqual(names(view.feedbackOverdue), [
+    ['Vana Klient', '2025-08-01', 434],
+    ['Kolme Kuu Klient', null, 100]
+  ]);
+  assert.deepEqual(view.feedbackAtEnd, []);
+  /* Üksuse hooldusjuht näeb oma üksuse kliente. */
+  assert.deepEqual(names((await getDeadlines(unitLead, deps())).feedbackOverdue), [['Kolme Kuu Klient', null, 100]]);
+
+  /* Kaebus loeb samuti tagasisideks; tühistatud kirje ei loe. */
+  const complaint = await feedback(kolm, 'COMPLAINT', '2026-10-08T09:00:00Z');
+  assert.deepEqual(names((await getDeadlines(lead, deps())).feedbackOverdue).map((row) => row[0]), ['Vana Klient']);
+  await retractEntry(lead, kolm.id, complaint.entry.id, { reason: 'Vale klient', revision: 1 }, deps());
+  assert.deepEqual(names((await getDeadlines(lead, deps())).feedbackOverdue).map((row) => row[0]), ['Vana Klient', 'Kolme Kuu Klient']);
+
+  /* TEENUSE LÕPP: lõppenud teenus ilma tagasisideta on nimekirjas; surma korral ei küsita; kuu enne lõppu kirja pandud tagasiside loeb. */
+  const end = async (client, statusReason, when) => {
+    const row = await db.careClient.findUnique({ where: { id: client.id }, select: { version: true } });
+    await setClientStatus(lead, client.id, { version: row.version, status: 'ENDED', statusReason }, deps(at(when)));
+  };
+  await end(uus, 'MOVED', '2026-10-05T10:00:00Z');
+  await end(vana, 'DIED', '2026-10-06T10:00:00Z');
+  await end(kiidetud, 'NO_LONGER_NEEDED', '2026-10-07T10:00:00Z');
+  const ended = await getDeadlines(lead, deps());
+  assert.deepEqual(ended.feedbackAtEnd.map((item) => [item.client.displayName, item.endedOn, item.lastOn]), [['Uus Klient', '2026-10-05', null]]);
+  /* Lõppenud teenusega kliendid ei ole enam korrapärase küsimise nimekirjas. */
+  assert.deepEqual(names(ended.feedbackOverdue).map((row) => row[0]), ['Kolme Kuu Klient']);
+  /* Pärast lõppu kirja pandud tagasiside võtab kliendi nimekirjast; kolm kuud hiljem lõppemist enam ei näidata. */
+  await createEntry(lead, uus.id, { kind: 'INCIDENT', incidentType: 'FEEDBACK', text: 'Tütar oli rahul.', occurredAt: '2026-10-08T09:00:00Z' }, deps());
+  assert.deepEqual((await getDeadlines(lead, deps())).feedbackAtEnd, []);
+  const later = await getDeadlines(lead, deps(at('2027-02-01T08:00:00Z')));
+  assert.deepEqual(later.feedbackAtEnd, []);
+});
