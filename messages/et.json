@@ -4656,7 +4656,7 @@
       "case_summary": "Juhtumikokkuvõte",
       "pre_assessment_summary": "Eelpöördumise kokkuvõte",
       "star_helper": "STAR-i sisestamise abimaterjal",
-      "case_brief": "Juhtumikokkuvõte",
+      "case_brief": "Juhtumi lühiülevaade",
       "report_draft": "Aruande mustand",
       "action_plan": "Tegevuskava",
       "checklist": "Kontrollnimekiri",
@@ -4734,194 +4734,6 @@
       "description": "Siin näed kõiki dokumendi koostamiseks üles laaditud faile. Faili töölt eemaldamine ei kustuta seda; jäädav kustutamine toimub ainult siin.",
       "back_to_compose": "Tagasi dokumendi koostamisse",
       "empty": "Sul ei ole veel üles laaditud lähtefaile."
-    },
-    "agent_workspace": {
-      "selected_documents_title": "Valitud dokumendid",
-      "selected_documents_description": "Need failid on praegu selle dokumenditöö juures kasutusel. Valikut saad muuta Dokumentides.",
-      "empty_documents": "Selle dokumenditöö jaoks ei ole veel ühtegi faili valitud.",
-      "unavailable_documents": "Valitud dokumendid ei ole siin enam saadaval. Mine tagasi Dokumentidesse ja vali failid uuesti.",
-      "select_documents": "Vali dokumendid",
-      "missing_documents": "{count} varem valitud dokumenti ei õnnestunud laadida.",
-      "goal_title": "Töö eesmärk",
-      "goal_description": "Vali, millist teksti agent koostab, kellele see on mõeldud ja millise tooni ning pikkusega tulemus peab olema.",
-      "template_label": "Mall",
-      "template_description": "Laadi mall Dokumentidesse ja vali siin, kas agent kasutab seda mustandi koostamisel.",
-      "template_none": "Ilma mallita",
-      "template_loading": "Laadin sobivaid malle...",
-      "template_help": "Vali mall, kui tahad juhtida mustandi struktuuri.",
-      "template_empty": "Sobivat malli ei leitud. Laadi mall enne Dokumentides üles.",
-      "template_selected": "Valitud mall: {title}",
-      "output_type_label": "Väljundi tüüp",
-      "tone_label": "Toon",
-      "language_label": "Keel",
-      "length_label": "Pikkus",
-      "conversation_title": "Vestlus agendiga",
-      "conversation_description": "Anna esimene juhis või täpsusta praegust mustandit vestluses. Agent kasutab valitud dokumente ja sinu määratud töö eesmärki.",
-      "audio_input": {
-        "title": "Kasuta helifaili dokumendi koostamiseks",
-        "description": "Vali olemasolev helisalvestus või laadi üles helifail. Esmalt koostatakse kogu salvestise transkript. Seejärel saad transkripti üle vaadata ja koostada selle põhjal täpse kokkuvõtte.",
-        "processing_note": "Helifaili kasutatakse ainult valitud dokumendi koostamiseks. Transkript ja kokkuvõte tekivad eraldi kasutaja tegevuse alusel.",
-        "coming_soon": "Helifaili põhjal dokumendi koostamine lisandub järgmises etapis.",
-        "existing_title": "Olemasolevad helisalvestused",
-        "existing_empty": "Õigustatud helisalvestusi ei leitud.",
-        "existing_loading": "Laen helisalvestusi...",
-        "choose_existing": "Vali",
-        "selected_source": "Valitud helifail: {title}",
-        "upload_label": "Laadi üles helifail",
-        "upload_help": "Lubatud on ainult audiofailid. Fail ei muutu avalikuks.",
-        "uploading": "Laadin üles...",
-        "upload_success": "Helifail lisati Documents alla.",
-        "transcribe": "Koosta transkript",
-        "transcribing": "Transkript on töötlemisel...",
-        "transcript_title": "Transkripti ülevaatus",
-        "transcript_ready": "Transkript valmis.",
-        "transcript_link": "Ava transkript",
-        "source_recording": "Helikõne salvestus",
-        "source_upload": "Üles laaditud helifail",
-        "duration": "Kestus: {duration}",
-        "purpose": "Eesmärk: {purpose}",
-        "room_context": "Kõne aeg: {date}",
-        "no_auto_transcription": "Transkriptsioon ei käivitu automaatselt.",
-        "source_options": [
-          {
-            "value": "upload_file",
-            "label": "Laadi üles helifail"
-          },
-          {
-            "value": "choose_existing",
-            "label": "Vali olemasolev helisalvestus dokumentidest"
-          }
-        ],
-        "sources": {
-          "upload_file": "Laadi üles helifail",
-          "choose_existing": "Vali olemasolev helisalvestus dokumentidest",
-          "record_now": "Salvesta heli siin"
-        },
-        "draft_types": {
-          "meeting_summary": "kohtumise kokkuvõte",
-          "case_summary": "juhtumikokkuvõte",
-          "pre_assessment_summary": "eelpöördumise kokkuvõte",
-          "star_helper": "STAR-i sisestamise abimaterjal",
-          "letter_draft": "ametlik kiri/vastus",
-          "action_plan": "tegevuskava",
-          "other": "muu dokument"
-        },
-        "steps_label": "Töövoog",
-        "step_audio": "1. Vali helifail",
-        "step_transcript": "2. Koosta transkript",
-        "step_review": "3. Vaata transkript üle",
-        "step_summary": "4. Koosta kokkuvõte",
-        "transcript_edit_label": "Transkripti tekst",
-        "transcript_edit_help": "Vaata transkript enne kokkuvõtte koostamist üle. Vajadusel paranda teksti ja salvesta muudatus.",
-        "save_transcript": "Salvesta transkript",
-        "saving_transcript": "Salvestan transkripti...",
-        "transcript_saved": "Transkript salvestati.",
-        "summary_title": "Täpne kokkuvõte",
-        "summary_help": "Kokkuvõte koostatakse ainult üle vaadatud transkripti põhjal. See koondab kordused teemade alla ega lisa uusi fakte.",
-        "create_summary": "Koosta kokkuvõte",
-        "summary_creating": "Kokkuvõte on koostamisel...",
-        "summary_ready": "Kokkuvõte valmis muudetava mustandina.",
-        "summary_link": "Ava kokkuvõte",
-        "source_recorded": "Siin salvestatud heli",
-        "record_help": "Salvesta näost näkku kohtumine seadme mikrofoniga. Salvestis läheb sinu dokumentidesse ega muutu avalikuks.",
-        "record_success": "Salvestise osa on dokumentides. Vali see ja transkribeeri."
-      },
-      "conversation_intro_empty": "Tere! Too esmalt dokumendid kaasa ja siis kirjelda, mida soovid koostada.",
-      "conversation_intro_with_docs": "Tere! Kirjelda, mida pean valitud {count} dokumendi põhjal koostama.",
-      "conversation_ready_help": "Saada esimene juhis vestluses. Agent kasutab valitud dokumente ja töö eesmärki.",
-      "conversation_refine_help": "Saada uus sõnum, et praegust mustandit täpsustada või suunda muuta.",
-      "conversation_generating": "Koostan mustandit valitud dokumentide põhjal...",
-      "conversation_refining": "Täiendan praegust mustandit sinu juhise järgi...",
-      "needs_documents": "Agendi käivitamiseks too Dokumentidest kaasa vähemalt üks dokument.",
-      "result_title": "Praegune mustand",
-      "result_description": "Viimati loodud mustand ilmub siia samasse tööruumi, et saaksid selle üle vaadata enne järgmist sammu.",
-      "result_results_link_intro": "Varem salvestatud ja kinnitatud tulemused leiad",
-      "result_results_link_label": "Agendi tulemustest",
-      "result_empty": "Kui käivitad agendi, ilmub loodud mustand siia.",
-      "result_ready": "Mustand on tööruumis valmis. Salvesta või kinnita see, et see liiguks Dokumentidesse.",
-      "result_unsaved": "See mustand on ainult praeguses tööruumis. Dokumentidesse liigub see pärast Salvesta või Kinnita tegevust.",
-      "result_dirty": "Selles mustandis on salvestamata muudatused. Dokumentides nähtav versioon ei ole veel uuenenud.",
-      "result_removed": "Aktiivne tulemus eemaldati tööruumist. Kui see oli varem salvestatud, jääb see Dokumentidesse alles.",
-      "clear_result": "Eemalda tööruumist",
-      "restore_saved": "Taasta salvestatud versioon",
-      "saved_version_restored": "Salvestatud versioon taastati tööruumis.",
-      "version_history_title": "Versiooniajalugu",
-      "version_history_description": "Siin on sama tööruumi viimased agendi loodud versioonid. Saad mõne varasema variandi tagasi tuua ilma Dokumentide vaatesse minemata.",
-      "version_current": "Praegune",
-      "restore_version": "Taasta versioon",
-      "version_restored": "Valitud versioon taastati tööruumis.",
-      "quick_actions_title": "Proovi teist väljundit",
-      "quick_actions_description": "Kasuta samu dokumente ja sama juhist, aga käivita agent kiiresti teise väljundi tüübi jaoks.",
-      "quick_action_button": "Loo kui {type}",
-      "quick_result_ready": "Uus mustand loodi samas tööruumis valitud teise väljunditüübiga.",
-      "refine_in_chat": "Täpsustused käivad nüüd agendi vestluses. Muuda siin sisu käsitsi ainult siis, kui tahad mustandit ise toimetada.",
-      "refine": "Täienda mustandit",
-      "refine_ready": "Mustandit täiendati tööruumis. Salvesta või kinnita see versioon, kui tahad selle Dokumentidesse viia.",
-      "refine_continues_after_stop": "Ootamine peatati. Server lõpetab paranduse tähtaja piires; ava mustand uuesti või korda sama toimingut, et tulemus taastada.",
-      "saved_to_documents": "Mustand salvestati Dokumentidesse.",
-      "open_detail": "Ava täisvaates",
-      "summary_documents": "Dokumendid: {count}",
-      "summary_output": "Väljund: {type}",
-      "summary_template": "Mall: {title}",
-      "back_to_chat": "Tagasi vestlusesse",
-      "client_selected_documents_description": "Lisa siia selle töö jaoks vajalik fail või failid. Selles töös saad kasutada kuni 2 faili.",
-      "client_selected_documents_fill_form_description": "Lisa siia täidetav vorm või taotlus ning vajadusel teine fail, kus on info, mida vormi sisse panna. Selles töös saad kasutada kuni 2 faili.",
-      "client_empty_documents": "Faile pole veel lisatud.",
-      "client_upload_button": "Lisa fail",
-      "client_uploading": "Laen faili üles...",
-      "client_file_limit_reached": "Selles töös saad kasutada kuni {count} faili.",
-      "client_file_added": "Fail lisati sellesse töösse: {title}",
-      "client_file_removed": "Fail eemaldati sellest tööst.",
-      "client_remove_document": "Eemalda",
-      "client_task_title": "Mida soovid koostada",
-      "client_task_description": "Vali konkreetne tulemus, mida soovid nende failide põhjal koostada.",
-      "client_task_label": "Tulemus",
-      "client_needs_documents": "Lisa enne alustamist vähemalt üks fail.",
-      "client_result_description": "Siia ilmub agendi koostatud tulemus. Selle saad üle vaadata, muuta, salvestada ja alla laadida.",
-      "client_conversation_description": "Kirjuta, mida soovid valmis saada. Agent võib enne tulemuse koostamist küsida lühikesi täpsustusi.",
-      "client_result_ready": "Tulemus on valmis. Vaata see üle ja salvesta või märgi valmis.",
-      "client_result_unsaved": "See tulemus on praegu ainult tööruumis. Salvesta see, kui soovid selle hiljem uuesti avada.",
-      "client_result_dirty": "Selles tulemuses on salvestamata muudatused.",
-      "client_result_removed": "Aktiivne tulemus eemaldati tööruumist.",
-      "client_saved": "Tulemus salvestati.",
-      "client_finish": "Märgi valmis",
-      "client_finished": "Tulemus märgiti valmis ja on nüüd allalaaditav.",
-      "client_status_draft": "Pooleli",
-      "client_status_final": "Valmis",
-      "client_results_title": "Minu tulemused",
-      "client_results_description": "Siin on viimased salvestatud või lõpetatud tulemused, mida saad uuesti avada, kopeerida või alla laadida.",
-      "client_recent_results_loading": "Laadin viimaseid tulemusi...",
-      "client_recent_results_empty": "Siin pole veel ühtegi salvestatud tulemust.",
-      "client_open_result": "Ava",
-      "client_tasks": {
-        "letter_request": "Kirja või taotluse mustand",
-        "letter_reply": "Vastus kirjale",
-        "fill_form": "Täida vorm või blankett"
-      },
-      "tones": {
-        "professional": "Professionaalne",
-        "supportive": "Toetav",
-        "plain": "Lihtne keel"
-      },
-      "lengths": {
-        "short": "Lühike",
-        "standard": "Tavaline",
-        "detailed": "Põhjalik"
-      },
-      "version_kinds": {
-        "loaded": "Avatud",
-        "generated": "Loodud",
-        "refined": "Täiendatud",
-        "rerun": "Uus käivitus"
-      },
-      "output_type_description": "Vali, kas soovid kohtumise kokkuvõtet, juhtumikokkuvõtet, aruande mustandit, kontrollnimekirja või muud tulemust.",
-      "scope_output_description": "Vali, kas valmis tekst vormistatakse spetsialistile või pöördujale.",
-      "style_settings_label": "Stiil ja keel",
-      "style_settings_description": "Määra siin toon, keel ja pikkus, et agent oskaks teksti sobivalt vormistada.",
-      "conversation_intro_empty_client": "Tere! Too esmalt dokumendid kaasa ja siis kirjelda, millise teksti või vormi täitmise tulemuse pean koostama.",
-      "conversation_intro_empty_worker": "Tere! Too esmalt dokumendid kaasa ja siis kirjelda, millise spetsialisti töömustandi pean koostama.",
-      "conversation_intro_with_docs_client": "Tere! Kirjelda, millise teksti, vastuse või vormi täitmise tulemuse pean valitud {count} dokumendi põhjal koostama.",
-      "conversation_intro_with_docs_worker": "Tere! Kirjelda, mida pean valitud {count} dokumendi põhjal spetsialisti jaoks koostama."
     },
     "errors": {
       "load_documents": "Dokumentide laadimine ebaõnnestus.",
@@ -5253,6 +5065,318 @@
       },
       "leave_confirm": "Vajuta uuesti, et lahkuda salvestamata",
       "leave_asked": "Tekstis on salvestamata muudatusi. Vajuta uuesti, et lahkuda salvestamata."
+    },
+    "drafting": {
+      "back_to_chat": "Tagasi vestlusesse",
+      "views": {
+        "sources": {
+          "title": "Lähtefailid",
+          "short": "Lähtefailid"
+        },
+        "type": {
+          "title": "Väljundi tüüp",
+          "short": "Väljund"
+        },
+        "template": {
+          "title": "Mall",
+          "short": "Mall"
+        },
+        "style": {
+          "title": "Kellele ja kuidas",
+          "short": "Stiil"
+        },
+        "instruction": {
+          "title": "Juhis",
+          "short": "Juhis"
+        },
+        "task": {
+          "title": "Ülesanne",
+          "short": "Ülesanne"
+        },
+        "files": {
+          "title": "Failid",
+          "short": "Failid"
+        },
+        "text": {
+          "title": "Tekst",
+          "short": "Tekst"
+        },
+        "refine": {
+          "title": "Täiendamine",
+          "short": "Täiendamine"
+        },
+        "versions": {
+          "title": "Versioonid",
+          "short": "Versioonid"
+        },
+        "approve": {
+          "title": "Kinnitamine",
+          "short": "Kinnitamine"
+        },
+        "finish": {
+          "title": "Valmis märkimine",
+          "short": "Valmis"
+        },
+        "results": {
+          "title": "Minu tulemused",
+          "short": "Minu tulemused"
+        },
+        "audio": {
+          "title": "Helifail",
+          "short": "Helifail"
+        },
+        "transcribe": {
+          "title": "Transkripti koostamine",
+          "short": "Transkript"
+        },
+        "review": {
+          "title": "Transkripti ülevaatus",
+          "short": "Ülevaatus"
+        },
+        "summary": {
+          "title": "Kokkuvõte",
+          "short": "Kokkuvõte"
+        }
+      },
+      "summary": {
+        "files": "Faile: {count}",
+        "no_files": "Faile ei ole valitud",
+        "no_type": "Väljund on valimata",
+        "no_instruction": "Juhis on kirjutamata",
+        "text_failed": "Teksti ei saanud avada",
+        "no_refine": "Kirjuta, mida muuta",
+        "versions": "Versioone: {count}",
+        "results": "Tekste: {count}",
+        "no_audio": "Helifail on valimata",
+        "no_transcript": "Transkripti ei ole veel",
+        "transcript_ready": "Transkript ootab ülevaatust",
+        "no_summary": "Kokkuvõtet ei ole veel"
+      },
+      "sources": {
+        "lead": "Tekst koostatakse nendest failidest.",
+        "empty": "Ühtegi faili ei ole veel valitud.",
+        "unavailable": "Valitud failid ei ole enam saadaval. Vali failid lehel Dokumendid uuesti.",
+        "unavailable_client": "Valitud failid ei ole enam saadaval. Lisa fail uuesti.",
+        "missing": "Valitud faile, mida ei saanud laadida: {count}.",
+        "ways": "Kust lähtefailid tulevad",
+        "pick_title": "Vali fail Dokumentidest",
+        "pick_desc": "Ava lehel Dokumendid fail, luba see töörežiimis ja vajuta „Koosta sellest”.",
+        "audio_title": "Koosta helisalvestisest",
+        "audio_desc": "Salvesta kohtumine või vali helifail, koosta transkript ja selle kokkuvõte.",
+        "earlier_title": "Varem koostatud tekstid",
+        "earlier_desc": "Mustandid ja kinnitatud tekstid on lehel Dokumendid."
+      },
+      "files": {
+        "lead": "Lisa selle töö jaoks vajalik fail või failid: PDF, DOCX või TXT, kokku kuni {count} faili.",
+        "lead_form": "Lisa täidetav vorm või taotlus ja vajadusel teine fail, kus on vormi sisse minev info: PDF, DOCX või TXT, kokku kuni {count} faili.",
+        "empty": "Faile ei ole veel lisatud.",
+        "add": "Lisa fail",
+        "uploading": "Laadin faili üles…",
+        "limit": "Selles töös saab kasutada kuni {count} faili.",
+        "added": "Fail on lisatud: {title}",
+        "removed": "Fail on sellest tööst eemaldatud.",
+        "remove": "Eemalda"
+      },
+      "type": {
+        "question": "Millist teksti koostad?",
+        "next_note": "Valik kehtib järgmise koostamise kohta. Praegune tekst jääb oma tüüpi."
+      },
+      "task": {
+        "question": "Mida soovid koostada?"
+      },
+      "tasks": {
+        "letter_request": "Kirja või taotluse mustand",
+        "letter_reply": "Vastus kirjale",
+        "fill_form": "Vormi või blanketi täitmine"
+      },
+      "template": {
+        "lead": "Mall annab tekstile ülesehituse. Malli lisad lehel Dokumendid ja lubad seal töörežiimis.",
+        "none": "Ilma mallita",
+        "loading": "Laadin malle…",
+        "empty": "Selle väljundi jaoks sobivat malli ei ole.",
+        "open_documents": "Ava Dokumendid"
+      },
+      "style": {
+        "audience": "Kellele",
+        "tone": "Toon",
+        "language": "Keel",
+        "length": "Pikkus",
+        "tones": {
+          "professional": "Professionaalne",
+          "supportive": "Toetav",
+          "plain": "Lihtne keel"
+        },
+        "lengths": {
+          "short": "Lühike",
+          "standard": "Tavaline",
+          "detailed": "Põhjalik"
+        }
+      },
+      "instruction": {
+        "lead": "Kirjelda, mida valitud failide põhjal koostada.",
+        "lead_client": "Kirjuta, mida soovid valmis saada.",
+        "compose": "Koosta tekst",
+        "compose_again": "Koosta uus tekst",
+        "stop": "Peata",
+        "working": "Koostan teksti valitud failide põhjal…",
+        "needs_files": "Teksti koostamiseks on vaja vähemalt üht lähtefaili.",
+        "needs_files_client": "Lisa enne vähemalt üks fail.",
+        "needs_type": "Vali enne väljundi tüüp.",
+        "needs_text": "Kirjuta juhis, siis saab teksti koostada.",
+        "replace_note": "Uus tekst tuleb tööruumis praeguse asemele. Praegune jääb lehele Dokumendid alles.",
+        "replace_note_client": "Uus tekst tuleb praeguse asemele. Praegune jääb sinu tulemuste hulka alles.",
+        "template": "Mall: {title}"
+      },
+      "privacy": {
+        "signed_out": "Sisselogimine on aegunud. Logi uuesti sisse ja proovi siis uuesti.",
+        "checking": "Kontrollin, kas juhises on isikuandmeid…"
+      },
+      "text": {
+        "created": "Loodud",
+        "unsaved": "Tekstis on salvestamata muudatused.",
+        "only_here": "See tekst on praegu ainult selles tööruumis. Salvesta see, et see alles jääks.",
+        "open_detail": "Ava täisvaates",
+        "clear": "Eemalda tööruumist",
+        "sources": "Allikad:",
+        "final_note": "Seda teksti ei saa enam muuta.",
+        "downloads": "Allalaadimine"
+      },
+      "refine": {
+        "lead": "Kirjuta, mida tekstis muuta. Täiendamine kasutab samu faile ja arvestab muudatusi, mida oled tekstis ise teinud.",
+        "action": "Täienda teksti",
+        "working": "Täiendan teksti sinu juhise järgi…",
+        "needs_files": "Täiendamiseks on vaja lähtefaile, millest tekst koostati.",
+        "needs_files_client": "Täiendamiseks lisa failid, millest tekst koostati.",
+        "needs_content": "Tekst on tühi.",
+        "needs_text": "Kirjuta, mida muuta, siis saab teksti täiendada."
+      },
+      "versions": {
+        "lead": "Selle tööruumi viimased versioonid, kuni {count}. Need on alles seni, kuni tööruum on avatud.",
+        "empty": "Versioone ei ole veel.",
+        "current": "Praegune",
+        "restore": "Taasta",
+        "restore_saved": "Taasta salvestatud tekst",
+        "kinds": {
+          "loaded": "Avatud",
+          "generated": "Koostatud",
+          "refined": "Täiendatud",
+          "rerun": "Uus koostamine"
+        }
+      },
+      "approve": {
+        "lead": "Kinnitamine salvestab teksti ja lukustab selle: kinnitatud teksti ei saa enam muuta. Seejärel saad teksti DOCX- ja PDF-failina alla laadida.",
+        "done": "Tekst on kinnitatud ja seda ei saa enam muuta."
+      },
+      "finish": {
+        "lead": "Valmis märkimine salvestab teksti ja lukustab selle: valmis teksti ei saa enam muuta. Seejärel saad selle alla laadida.",
+        "done": "Tekst on valmis ja seda ei saa enam muuta.",
+        "action": "Märgi valmis"
+      },
+      "results": {
+        "lead": "Sinu viimased salvestatud tekstid, kuni {count}.",
+        "empty": "Salvestatud tekste ei ole veel.",
+        "opened": "Avatud",
+        "status_draft": "Pooleli",
+        "status_final": "Valmis"
+      },
+      "feedback": {
+        "text_ready": "Tekst on valmis. Vaata see üle ja muuda, kui vaja.",
+        "new_text_ready": "Uus tekst on valmis.",
+        "compose_stopped": "Ootamine on peatatud.",
+        "refined": "Tekst on täiendatud.",
+        "refine_stopped": "Ootamine on peatatud. Server lõpetab täiendamise ise: ava tekst uuesti või korda sama täiendust, et tulemust näha.",
+        "saved": "Mustand on salvestatud.",
+        "saved_client": "Tekst on salvestatud.",
+        "finished": "Tekst on märgitud valmis ja selle saab alla laadida.",
+        "deleted": "Tulemus on kustutatud.",
+        "cleared": "Tekst on tööruumist eemaldatud. Salvestatud tekst on lehel Dokumendid alles.",
+        "cleared_client": "Tekst on tööruumist eemaldatud. Salvestatud tekst on sinu tulemuste hulgas alles.",
+        "version_restored": "Versioon on toimetis. Salvesta, kui tahad selle alles jätta.",
+        "saved_restored": "Salvestatud tekst on taastatud."
+      },
+      "confirm": {
+        "compose": "Vajuta uuesti, et koostada",
+        "leave": "Vajuta uuesti, et lahkuda",
+        "clear": "Vajuta uuesti, et eemaldada",
+        "open": "Vajuta uuesti, et avada",
+        "restore": "Vajuta uuesti, et taastada",
+        "approve": "Vajuta uuesti, et kinnitada",
+        "finish": "Vajuta uuesti, et märkida valmis",
+        "choose": "Vajuta uuesti, et valida",
+        "replace_note": "Tekstis on salvestamata muudatused. Uus tekst tuleb nende asemele.",
+        "leave_note": "Salvestamata muudatused lähevad lahkudes kaotsi.",
+        "esc_note": "Salvestamata muudatused lähevad lahkudes kaotsi. Vajuta uuesti Esc, et lahkuda.",
+        "clear_note": "Tekstis on salvestamata muudatused. Eemaldades lähevad need kaotsi.",
+        "open_note": "Tekstis on salvestamata muudatused. Teise tulemuse avamisel lähevad need kaotsi.",
+        "restore_note": "Toimetis on muudatusi, mida ei ole üheski versioonis. Taastamisel lähevad need kaotsi.",
+        "delete_note": "Tulemus kustutatakse jäädavalt.",
+        "approve_note": "Pärast kinnitamist ei saa teksti enam muuta.",
+        "finish_note": "Pärast valmis märkimist ei saa teksti enam muuta.",
+        "transcript_note": "Transkripti parandused on salvestamata. Teise helifaili valimisel lähevad need kaotsi.",
+        "recording_note": "Salvestamine käib või osa salvestisest ei ole veel salvestatud. Jätkates see katkeb ja salvestamata osa läheb kaotsi. Vali sama uuesti, et jätkata.",
+        "panel_note": "Salvestamata muudatused lähevad lahkudes kaotsi. Vajuta uuesti, et lahkuda."
+      },
+      "audio": {
+        "back": "Koostamine",
+        "back_label": "Tagasi koostamise juurde",
+        "ways_label": "Kust helifail tuleb",
+        "ways": {
+          "record_now": "Salvesta siin",
+          "upload_file": "Laadi fail üles",
+          "choose_existing": "Vali dokumentidest"
+        },
+        "record_help": "Salvesta näost näkku kohtumine seadme mikrofoniga. Salvestis läheb sinu dokumentidesse ega muutu avalikuks.",
+        "upload": "Vali helifail",
+        "uploading": "Laadin üles…",
+        "upload_help": "Sobib helifail, näiteks MP3, M4A, WAV, OGG või WebM. Fail läheb sinu dokumentidesse ega muutu avalikuks.",
+        "upload_done": "Helifail on sinu dokumentides ja valitud.",
+        "record_done": "Salvestise osa on sinu dokumentides ja valitud. Koosta sellest transkript.",
+        "record_part_waiting": "Uus salvestise osa on sinu dokumentides. Vali see loendist, kui praegune transkript on valmis.",
+        "existing_help": "Siin on sinu viimased helifailid, kuni {count}.",
+        "loading": "Laadin helifaile…",
+        "empty": "Helifaile ei ole veel.",
+        "choose": "Vali",
+        "chosen": "Valitud",
+        "has_transcript": "Transkript olemas",
+        "selected": "Valitud helifail: {title}",
+        "origin_call": "Helikõne salvestis",
+        "origin_recorded": "Siin salvestatud",
+        "origin_upload": "Üles laaditud",
+        "duration": "Kestus {duration}",
+        "purpose": "Eesmärk: {purpose}",
+        "call_time": "Kõne aeg {date}",
+        "manual_note": "Transkript ja kokkuvõte koostatakse ainult sinu vajutusel."
+      },
+      "transcribe": {
+        "lead": "Transkript koostatakse kogu valitud helifailist ja salvestatakse sinu dokumentidesse.",
+        "language": "Salvestise ja kokkuvõtte keel",
+        "action": "Koosta transkript",
+        "working": "Koostan transkripti…",
+        "done": "Transkript on valmis. Vaata see üle.",
+        "exists": "Transkript on olemas",
+        "exists_note": "Selle helifaili transkript on juba koostatud. Vaata see üle järgmises vaates.",
+        "needs_audio": "Vali enne helifail.",
+        "done_other": "Transkript on valmis: {title}. Vali see helifail, et transkripti näha."
+      },
+      "review": {
+        "lead": "Vaata transkript üle ja paranda vead. Kokkuvõte koostatakse sellest tekstist.",
+        "label": "Transkripti tekst",
+        "empty": "Transkripti ei ole veel.",
+        "retry": "Ava uuesti",
+        "download": "Laadi transkript alla",
+        "save": "Salvesta parandused",
+        "saved": "Transkript on salvestatud.",
+        "unsaved": "Parandused on salvestamata."
+      },
+      "summary_view": {
+        "lead": "Kokkuvõte koostatakse üle vaadatud transkriptist ja avaneb muudetava mustandina. Salvestamata parandused salvestatakse enne.",
+        "action": "Koosta kokkuvõte",
+        "working": "Koostan kokkuvõtet…",
+        "ready": "Kokkuvõte on valmis",
+        "open": "Ava mustand",
+        "needs_transcript": "Kokkuvõtteks on vaja transkripti.",
+        "needs_text": "Transkripti tekst on tühi."
+      }
     }
   },
   "research": {

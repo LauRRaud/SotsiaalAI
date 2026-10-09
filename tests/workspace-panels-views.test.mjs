@@ -808,7 +808,7 @@ test('vanad üldreeglid on eemaldatud ja need, mida veel kasutatakse, on alles',
   }
   assert.ok(!workspace.includes('invite-participant'));
   /* Avatud kuulutuse ümbris, kutse modaal ja makse tagasituleku kaart kasutavad üldreegleid edasi. */
-  assert.ok(feature.includes('.feature-page--help-listings {') && feature.includes('.agent-mode-workspace > div {'));
+  assert.ok(feature.includes('.feature-page--help-listings {'));
   for (const name of ['.invite-modal-back {', '.invite-modal-overlay {', '.invite-modal-card {', '.invite-payment-status-body {']) assert.ok(workspace.includes(name), name);
 });
 

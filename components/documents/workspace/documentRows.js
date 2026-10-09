@@ -38,7 +38,7 @@ export function viewKeysFor({ client = false, opened = false } = {}) {
 export const ENTRY_CARDS = Object.freeze([
   { key: "analyze", titleKey: "documents.workspace.entry.analyze_title", descKey: "documents.workspace.entry.analyze_desc", path: "/vestlus" },
   { key: "compose", titleKey: "documents.workspace.entry.compose_title", descKey: "documents.workspace.entry.compose_desc", path: "/dokreziim" },
-  { key: "transcribe", titleKey: "documents.workspace.entry.transcribe_title", descKey: "documents.workspace.entry.transcribe_desc", path: "/dokreziim" },
+  { key: "transcribe", titleKey: "documents.workspace.entry.transcribe_title", descKey: "documents.workspace.entry.transcribe_desc", path: "/dokreziim?path=audio" },
   {
     key: "research",
     titleKey: "documents.workspace.entry.research_title",

@@ -4735,194 +4735,6 @@
       "back_to_compose": "Back to document drafting",
       "empty": "You have not uploaded any source files yet."
     },
-    "agent_workspace": {
-      "selected_documents_title": "Selected documents",
-      "selected_documents_description": "These are the files currently included in this agent session. You can change the selection from Documents.",
-      "empty_documents": "No documents have been brought into Document drafting yet.",
-      "unavailable_documents": "The selected documents are no longer available here. Go back to Documents and choose the files again.",
-      "select_documents": "Choose documents",
-      "missing_documents": "{count} previously selected document(s) could not be loaded.",
-      "goal_title": "Work goal",
-      "goal_description": "Choose what the agent should prepare, who it is for, and what tone the result should use.",
-      "template_label": "Template",
-      "template_description": "Upload the template in Documents. Choose here whether the agent should use it for the draft.",
-      "template_none": "No template",
-      "template_loading": "Loading compatible templates...",
-      "template_help": "Choose a template if you want to guide the draft structure.",
-      "template_empty": "No suitable template was found. Upload one first in Documents.",
-      "template_selected": "Selected template: {title}",
-      "output_type_label": "Output type",
-      "tone_label": "Tone",
-      "language_label": "Language",
-      "length_label": "Length",
-      "conversation_title": "Conversation with the agent",
-      "conversation_description": "Send the first instruction or refine the current draft in the conversation. The agent uses the selected documents and your chosen work goal.",
-      "audio_input": {
-        "title": "Use an audio file for document drafting",
-        "description": "Choose an existing audio recording or upload an audio file. First, the full recording transcript is created. You can then review the transcript and create an accurate summary from it.",
-        "processing_note": "The audio file is used only for the selected document task. The transcript and summary are created through separate user actions.",
-        "coming_soon": "Document drafting from audio files will be added in the next stage.",
-        "existing_title": "Existing audio recordings",
-        "existing_empty": "No authorized audio recordings found.",
-        "existing_loading": "Loading audio recordings...",
-        "choose_existing": "Choose",
-        "selected_source": "Selected audio file: {title}",
-        "upload_label": "Upload audio file",
-        "upload_help": "Only audio files are allowed. The file is not made public.",
-        "uploading": "Uploading...",
-        "upload_success": "Audio file was added to Documents.",
-        "transcribe": "Create transcript",
-        "transcribing": "Transcript is processing...",
-        "transcript_title": "Transcript review",
-        "transcript_ready": "Transcript ready.",
-        "transcript_link": "Open transcript",
-        "source_recording": "Call recording",
-        "source_upload": "Uploaded audio file",
-        "duration": "Duration: {duration}",
-        "purpose": "Purpose: {purpose}",
-        "room_context": "Call time: {date}",
-        "no_auto_transcription": "Transcription does not start automatically.",
-        "source_options": [
-          {
-            "value": "upload_file",
-            "label": "Upload an audio file"
-          },
-          {
-            "value": "choose_existing",
-            "label": "Choose an existing audio recording from Documents"
-          }
-        ],
-        "sources": {
-          "upload_file": "Upload an audio file",
-          "choose_existing": "Choose an existing audio recording from Documents",
-          "record_now": "Record audio here"
-        },
-        "draft_types": {
-          "meeting_summary": "meeting summary",
-          "case_summary": "case summary",
-          "pre_assessment_summary": "pre-assessment summary",
-          "star_helper": "STAR entry support material",
-          "letter_draft": "official letter/reply",
-          "action_plan": "action plan",
-          "other": "other document"
-        },
-        "steps_label": "Workflow",
-        "step_audio": "1. Choose audio file",
-        "step_transcript": "2. Create transcript",
-        "step_review": "3. Review transcript",
-        "step_summary": "4. Create summary",
-        "transcript_edit_label": "Transcript text",
-        "transcript_edit_help": "Review the transcript before creating the summary. Edit the text if needed and save the change.",
-        "save_transcript": "Save transcript",
-        "saving_transcript": "Saving transcript...",
-        "transcript_saved": "Transcript saved.",
-        "summary_title": "Accurate summary",
-        "summary_help": "The summary is created only from the reviewed transcript. It groups repetitions by topic and does not add new facts.",
-        "create_summary": "Create summary",
-        "summary_creating": "Summary is being created...",
-        "summary_ready": "Summary ready as an editable draft.",
-        "summary_link": "Open summary",
-        "source_recorded": "Audio recorded here",
-        "record_help": "Record a meeting in person with the device's microphone. The recording goes to your documents and does not become public.",
-        "record_success": "A part of the recording is in Documents. Select it and transcribe."
-      },
-      "conversation_intro_empty": "Hello! First bring documents into Document drafting and then describe what you want me to create.",
-      "conversation_intro_with_docs": "Hello! Describe what I should create based on the {count} selected document(s).",
-      "conversation_ready_help": "Send the first instruction in the conversation. The agent will use the selected documents and the chosen work goal.",
-      "conversation_refine_help": "Send another message to refine the current draft or change direction.",
-      "conversation_generating": "Creating a draft from the selected documents...",
-      "conversation_refining": "Refining the current draft based on your instruction...",
-      "needs_documents": "Bring at least one document from Documents to start the agent.",
-      "result_title": "Current draft",
-      "result_description": "The latest generated draft appears here in the same workspace, so you can review it before moving on.",
-      "result_results_link_intro": "Previously saved and approved results are under",
-      "result_results_link_label": "Agent results",
-      "result_empty": "When you start the agent, the generated draft will appear here.",
-      "result_ready": "Draft is ready in the workspace. Save or approve it to add it under Documents.",
-      "result_unsaved": "This draft exists only in the current workspace. It moves to Documents after Save or Approve.",
-      "result_dirty": "This draft has unsaved changes. The version under Documents has not been updated yet.",
-      "result_removed": "The active result was removed from the workspace. If it was saved earlier, it remains available under Documents.",
-      "clear_result": "Remove from workspace",
-      "restore_saved": "Restore saved version",
-      "saved_version_restored": "The saved version was restored in the workspace.",
-      "version_history_title": "Version history",
-      "version_history_description": "These are the latest agent-generated versions in this workspace. You can restore an earlier variant without leaving Document drafting.",
-      "version_current": "Current",
-      "restore_version": "Restore version",
-      "version_restored": "The selected version was restored in the workspace.",
-      "quick_actions_title": "Try another output",
-      "quick_actions_description": "Use the same documents and instruction, but run the agent again for a different output type.",
-      "quick_action_button": "Create as {type}",
-      "quick_result_ready": "A new draft was created in the same workspace using a different output type.",
-      "refine_in_chat": "Refinements now happen in the agent conversation. Edit the content here manually only when you want to adjust the draft yourself.",
-      "refine": "Refine draft",
-      "refine_ready": "The draft was refined in the workspace. Save or approve this version if it should move to Documents.",
-      "refine_continues_after_stop": "Waiting was stopped. The server will finish the refinement within its deadline; reopen the draft or repeat the same action to recover the result.",
-      "saved_to_documents": "Draft saved under Documents.",
-      "open_detail": "Open full draft",
-      "summary_documents": "Documents: {count}",
-      "summary_output": "Output: {type}",
-      "summary_template": "Template: {title}",
-      "back_to_chat": "Back to chat",
-      "client_selected_documents_description": "Add the file or files needed for this task here. You can use up to 2 files in this task.",
-      "client_selected_documents_fill_form_description": "Add the form or application you want to fill in, and if needed a second file with the information that should go into it. You can use up to 2 files in this task.",
-      "client_empty_documents": "No files have been added yet.",
-      "client_upload_button": "Add file",
-      "client_uploading": "Uploading file...",
-      "client_file_limit_reached": "You can use up to {count} files in this task.",
-      "client_file_added": "File added to this task: {title}",
-      "client_file_removed": "File removed from this task.",
-      "client_remove_document": "Remove",
-      "client_task_title": "What do you want to draft",
-      "client_task_description": "Choose the specific result you want the agent to create from these files.",
-      "client_task_label": "Result",
-      "client_needs_documents": "Add at least one file before you start.",
-      "client_result_description": "The agent's result appears here. You can review it, edit it, save it, and download it.",
-      "client_conversation_description": "Write what you want to get done. Before creating the result, the agent may ask a few short follow-up questions.",
-      "client_result_ready": "The result is ready. Review it, then save it or mark it as ready.",
-      "client_result_unsaved": "This result currently exists only in the workspace. Save it if you want to reopen it later.",
-      "client_result_dirty": "This result has unsaved changes.",
-      "client_result_removed": "The active result was removed from the workspace.",
-      "client_saved": "Result saved.",
-      "client_finish": "Mark as ready",
-      "client_finished": "Result marked as ready and available for download.",
-      "client_status_draft": "In progress",
-      "client_status_final": "Ready",
-      "client_results_title": "My results",
-      "client_results_description": "Here are your latest saved or finished results that you can reopen, copy, or download.",
-      "client_recent_results_loading": "Loading recent results...",
-      "client_recent_results_empty": "There are no saved results here yet.",
-      "client_open_result": "Open",
-      "client_tasks": {
-        "letter_request": "Letter or application draft",
-        "letter_reply": "Reply to a letter",
-        "fill_form": "Fill a form or blank"
-      },
-      "tones": {
-        "professional": "Professional",
-        "supportive": "Supportive",
-        "plain": "Plain language"
-      },
-      "lengths": {
-        "short": "Short",
-        "standard": "Standard",
-        "detailed": "Detailed"
-      },
-      "version_kinds": {
-        "loaded": "Opened",
-        "generated": "Generated",
-        "refined": "Refined",
-        "rerun": "Re-run"
-      },
-      "output_type_description": "Choose whether the agent creates a meeting summary, case summary, report draft, or another result.",
-      "scope_output_description": "Choose whether the text is written for a specialist or for the person seeking help.",
-      "style_settings_label": "Style and language",
-      "style_settings_description": "Tone, language, and length define how the finished text should sound.",
-      "conversation_intro_empty_client": "Hello! First bring documents into Document drafting and then describe which text or form-filling result I should create.",
-      "conversation_intro_empty_worker": "Hello! First bring documents into Document drafting and then describe which specialist-facing draft I should create.",
-      "conversation_intro_with_docs_client": "Hello! Describe which text, reply, or form-filling result I should create based on the {count} selected document(s).",
-      "conversation_intro_with_docs_worker": "Hello! Describe what specialist-facing draft I should create based on the {count} selected document(s)."
-    },
     "errors": {
       "load_documents": "Failed to load documents.",
       "read_failed": "Failed to open document.",
@@ -5253,6 +5065,318 @@
       },
       "leave_confirm": "Press again to leave without saving",
       "leave_asked": "The text has unsaved changes. Press again to leave without saving."
+    },
+    "drafting": {
+      "back_to_chat": "Back to chat",
+      "views": {
+        "sources": {
+          "title": "Source files",
+          "short": "Source files"
+        },
+        "type": {
+          "title": "Output type",
+          "short": "Output"
+        },
+        "template": {
+          "title": "Template",
+          "short": "Template"
+        },
+        "style": {
+          "title": "For whom and how",
+          "short": "Style"
+        },
+        "instruction": {
+          "title": "Instruction",
+          "short": "Instruction"
+        },
+        "task": {
+          "title": "Task",
+          "short": "Task"
+        },
+        "files": {
+          "title": "Files",
+          "short": "Files"
+        },
+        "text": {
+          "title": "Text",
+          "short": "Text"
+        },
+        "refine": {
+          "title": "Refining",
+          "short": "Refining"
+        },
+        "versions": {
+          "title": "Versions",
+          "short": "Versions"
+        },
+        "approve": {
+          "title": "Approval",
+          "short": "Approval"
+        },
+        "finish": {
+          "title": "Marking as ready",
+          "short": "Ready"
+        },
+        "results": {
+          "title": "My results",
+          "short": "My results"
+        },
+        "audio": {
+          "title": "Audio file",
+          "short": "Audio file"
+        },
+        "transcribe": {
+          "title": "Creating the transcript",
+          "short": "Transcript"
+        },
+        "review": {
+          "title": "Transcript review",
+          "short": "Review"
+        },
+        "summary": {
+          "title": "Summary",
+          "short": "Summary"
+        }
+      },
+      "summary": {
+        "files": "Files: {count}",
+        "no_files": "No files chosen",
+        "no_type": "No output chosen",
+        "no_instruction": "No instruction yet",
+        "text_failed": "The text could not be opened",
+        "no_refine": "Write what to change",
+        "versions": "Versions: {count}",
+        "results": "Texts: {count}",
+        "no_audio": "No audio file chosen",
+        "no_transcript": "No transcript yet",
+        "transcript_ready": "The transcript is ready for review",
+        "no_summary": "No summary yet"
+      },
+      "sources": {
+        "lead": "The text is drafted from these files.",
+        "empty": "No files have been chosen yet.",
+        "unavailable": "The chosen files are no longer available. Choose the files again on the Documents page.",
+        "unavailable_client": "The chosen files are no longer available. Add the file again.",
+        "missing": "Chosen files that could not be loaded: {count}.",
+        "ways": "Where the source files come from",
+        "pick_title": "Choose a file from Documents",
+        "pick_desc": "On the Documents page, open a file, allow it in work mode and press “Draft from this”.",
+        "audio_title": "Draft from a recording",
+        "audio_desc": "Record a meeting or choose an audio file, then create a transcript and its summary.",
+        "earlier_title": "Texts drafted earlier",
+        "earlier_desc": "Drafts and approved texts are on the Documents page."
+      },
+      "files": {
+        "lead": "Add the file or files this task needs: PDF, DOCX or TXT, up to {count} files in all.",
+        "lead_form": "Add the form or application to fill in and, if needed, a second file with the information that goes into it: PDF, DOCX or TXT, up to {count} files in all.",
+        "empty": "No files have been added yet.",
+        "add": "Add a file",
+        "uploading": "Uploading the file…",
+        "limit": "This task can use up to {count} files.",
+        "added": "File added: {title}",
+        "removed": "The file was removed from this task.",
+        "remove": "Remove"
+      },
+      "type": {
+        "question": "What kind of text are you drafting?",
+        "next_note": "The choice applies to the next draft. The current text keeps its type."
+      },
+      "task": {
+        "question": "What do you want to draft?"
+      },
+      "tasks": {
+        "letter_request": "Draft of a letter or application",
+        "letter_reply": "Reply to a letter",
+        "fill_form": "Filling in a form"
+      },
+      "template": {
+        "lead": "A template gives the text its structure. Add a template on the Documents page and allow it in work mode there.",
+        "none": "No template",
+        "loading": "Loading templates…",
+        "empty": "There is no template that fits this output.",
+        "open_documents": "Open Documents"
+      },
+      "style": {
+        "audience": "For whom",
+        "tone": "Tone",
+        "language": "Language",
+        "length": "Length",
+        "tones": {
+          "professional": "Professional",
+          "supportive": "Supportive",
+          "plain": "Plain language"
+        },
+        "lengths": {
+          "short": "Short",
+          "standard": "Standard",
+          "detailed": "Detailed"
+        }
+      },
+      "instruction": {
+        "lead": "Describe what to draft from the chosen files.",
+        "lead_client": "Write what you want to get done.",
+        "compose": "Draft the text",
+        "compose_again": "Draft a new text",
+        "stop": "Stop",
+        "working": "Drafting the text from the chosen files…",
+        "needs_files": "Drafting needs at least one source file.",
+        "needs_files_client": "Add at least one file first.",
+        "needs_type": "Choose the output type first.",
+        "needs_text": "Write the instruction, then the text can be drafted.",
+        "replace_note": "The new text takes the current one's place in the room. The current one stays on the Documents page.",
+        "replace_note_client": "The new text takes the current one's place. The current one stays among your results.",
+        "template": "Template: {title}"
+      },
+      "privacy": {
+        "signed_out": "Your sign-in has expired. Sign in again and then try again.",
+        "checking": "Checking the instruction for personal data…"
+      },
+      "text": {
+        "created": "Created",
+        "unsaved": "The text has unsaved changes.",
+        "only_here": "This text is only in this room for now. Save it to keep it.",
+        "open_detail": "Open in full view",
+        "clear": "Remove from the room",
+        "sources": "Sources:",
+        "final_note": "This text can no longer be changed.",
+        "downloads": "Downloads"
+      },
+      "refine": {
+        "lead": "Write what to change in the text. Refining uses the same files and takes into account the changes you have made in the text yourself.",
+        "action": "Refine the text",
+        "working": "Refining the text by your instruction…",
+        "needs_files": "Refining needs the source files the text was drafted from.",
+        "needs_files_client": "To refine, add the files the text was drafted from.",
+        "needs_content": "The text is empty.",
+        "needs_text": "Write what to change, then the text can be refined."
+      },
+      "versions": {
+        "lead": "The latest versions in this room, up to {count}. They are kept only while the room is open.",
+        "empty": "No versions yet.",
+        "current": "Current",
+        "restore": "Restore",
+        "restore_saved": "Restore the saved text",
+        "kinds": {
+          "loaded": "Opened",
+          "generated": "Drafted",
+          "refined": "Refined",
+          "rerun": "New draft"
+        }
+      },
+      "approve": {
+        "lead": "Approving saves the text and locks it: an approved text can no longer be changed. After that you can download the text as a DOCX and a PDF file.",
+        "done": "The text is approved and can no longer be changed."
+      },
+      "finish": {
+        "lead": "Marking as ready saves the text and locks it: a ready text can no longer be changed. After that you can download it.",
+        "done": "The text is ready and can no longer be changed.",
+        "action": "Mark as ready"
+      },
+      "results": {
+        "lead": "Your latest saved texts, up to {count}.",
+        "empty": "No saved texts yet.",
+        "opened": "Open",
+        "status_draft": "In progress",
+        "status_final": "Ready"
+      },
+      "feedback": {
+        "text_ready": "The text is ready. Review it and change it if needed.",
+        "new_text_ready": "The new text is ready.",
+        "compose_stopped": "Waiting was stopped.",
+        "refined": "The text has been refined.",
+        "refine_stopped": "Waiting was stopped. The server finishes the refinement by itself: open the text again or repeat the same refinement to see the result.",
+        "saved": "The draft is saved.",
+        "saved_client": "The text is saved.",
+        "finished": "The text is marked as ready and can be downloaded.",
+        "deleted": "The result was deleted.",
+        "cleared": "The text was removed from the room. The saved text is still on the Documents page.",
+        "cleared_client": "The text was removed from the room. The saved text is still among your results.",
+        "version_restored": "The version is in the editor. Save it if you want to keep it.",
+        "saved_restored": "The saved text was restored."
+      },
+      "confirm": {
+        "compose": "Press again to draft",
+        "leave": "Press again to leave",
+        "clear": "Press again to remove",
+        "open": "Press again to open",
+        "restore": "Press again to restore",
+        "approve": "Press again to approve",
+        "finish": "Press again to mark as ready",
+        "choose": "Press again to choose",
+        "replace_note": "The text has unsaved changes. The new text takes their place.",
+        "leave_note": "Unsaved changes are lost when you leave.",
+        "esc_note": "Unsaved changes are lost when you leave. Press Esc again to leave.",
+        "clear_note": "The text has unsaved changes. They are lost when you remove it.",
+        "open_note": "The text has unsaved changes. They are lost when you open another result.",
+        "restore_note": "The editor has changes that are in no version. They are lost when you restore.",
+        "delete_note": "The result is deleted for good.",
+        "approve_note": "After approval the text can no longer be changed.",
+        "finish_note": "After marking as ready the text can no longer be changed.",
+        "transcript_note": "The transcript corrections are unsaved. They are lost when you choose another audio file.",
+        "recording_note": "Recording is running or a part of the recording is not saved yet. If you continue, it stops and the unsaved part is lost. Choose the same again to continue.",
+        "panel_note": "Unsaved changes are lost when you leave. Press again to leave."
+      },
+      "audio": {
+        "back": "Drafting",
+        "back_label": "Back to drafting",
+        "ways_label": "Where the audio file comes from",
+        "ways": {
+          "record_now": "Record here",
+          "upload_file": "Upload a file",
+          "choose_existing": "Choose from Documents"
+        },
+        "record_help": "Record a meeting in person with the device's microphone. The recording goes to your documents and does not become public.",
+        "upload": "Choose an audio file",
+        "uploading": "Uploading…",
+        "upload_help": "An audio file fits, for example MP3, M4A, WAV, OGG or WebM. The file goes to your documents and does not become public.",
+        "upload_done": "The audio file is in your documents and chosen.",
+        "record_done": "A part of the recording is in your documents and chosen. Create a transcript from it.",
+        "record_part_waiting": "A new part of the recording is in your documents. Choose it from the list when the current transcript is done.",
+        "existing_help": "Here are your latest audio files, up to {count}.",
+        "loading": "Loading audio files…",
+        "empty": "No audio files yet.",
+        "choose": "Choose",
+        "chosen": "Chosen",
+        "has_transcript": "Has a transcript",
+        "selected": "Chosen audio file: {title}",
+        "origin_call": "Call recording",
+        "origin_recorded": "Recorded here",
+        "origin_upload": "Uploaded",
+        "duration": "Duration {duration}",
+        "purpose": "Purpose: {purpose}",
+        "call_time": "Call time {date}",
+        "manual_note": "The transcript and the summary are created only when you press the button."
+      },
+      "transcribe": {
+        "lead": "The transcript is created from the whole chosen audio file and saved to your documents.",
+        "language": "Language of the recording and the summary",
+        "action": "Create the transcript",
+        "working": "Creating the transcript…",
+        "done": "The transcript is ready. Review it.",
+        "exists": "The transcript exists",
+        "exists_note": "This audio file already has a transcript. Review it in the next view.",
+        "needs_audio": "Choose an audio file first.",
+        "done_other": "The transcript is ready: {title}. Choose that audio file to see it."
+      },
+      "review": {
+        "lead": "Review the transcript and correct the mistakes. The summary is created from this text.",
+        "label": "Transcript text",
+        "empty": "No transcript yet.",
+        "retry": "Open again",
+        "download": "Download the transcript",
+        "save": "Save the corrections",
+        "saved": "The transcript is saved.",
+        "unsaved": "The corrections are unsaved."
+      },
+      "summary_view": {
+        "lead": "The summary is created from the reviewed transcript and opens as an editable draft. Unsaved corrections are saved first.",
+        "action": "Create the summary",
+        "working": "Creating the summary…",
+        "ready": "The summary is ready",
+        "open": "Open the draft",
+        "needs_transcript": "The summary needs a transcript.",
+        "needs_text": "The transcript text is empty."
+      }
     }
   },
   "research": {

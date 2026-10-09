@@ -1,47 +1,121 @@
 "use client"
 
-import Link from "next/link"
+/**
+ * Koostamisruum „Koosta dokument": valitud failide ja juhise põhjal koostatakse
+ * tekst, mida saab üle vaadata, täiendada, salvestada ja kinnitada; heli rajal
+ * koostatakse helifailist transkript ja selle kokkuvõte.
+ *
+ * KUJU (09.10, kujundusaudit K07 ja omaniku reeglid). Ruum oli üks pikk pind:
+ * väljundi seaded, heli rada, valitud failid, vestlus ja tulemuse toimeti seisid
+ * korraga ees kahes tumedas kastis. Nüüd on ruum sammulaval
+ * (`components/stage/StepFlight.jsx`) ja igal asjal on oma väike vaade:
+ *
+ *  - KOOSTAMISE JADA (päris järjekord, seepärast nummerdatud sammud):
+ *    lähtefailid, väljundi tüüp, mall, kellele ja kuidas, juhis. Kui tulemus on
+ *    olemas, jätkuvad samas jadas tulemuse vaated: tekst, täiendamine,
+ *    versioonid ja kinnitamine. Pöördujal on lühem tee (ülesanne, failid, juhis)
+ *    ja lõpus tema viimased tulemused.
+ *  - HELI RADA (ainult spetsialistil) on oma jada: helifail, transkript,
+ *    ülevaatus, kokkuvõte. Sinna minnakse lähtefailide vaatest. Selle vaadete
+ *    loend on alati sama, et lava ei ehitataks salvestamise ajal ümber.
+ *
+ * VESTLUST SIIN ENAM EI OLE. Juhis kirjutati varem vestluse sisestusribale ja
+ * sama saatmisnupp kas koostas uue teksti või täiendas mustandit, olenevalt
+ * sellest, mis parajasti ees oli. Nüüd on need kaks eri vaadet ja kaks nimega
+ * nuppu. Vestluse mullid kordasid sama teksti, mis on toimetis.
+ *
+ * TASULISED TÖÖD käivituvad ainult nimega nupust (`PaidButton`), mitte
+ * kerimisest ega sammu vahetusest:
+ *    koostamine    POST /api/documents/artifacts/generate   (vaade „Juhis")
+ *    täiendamine   POST /api/documents/artifacts/refine     (vaade „Täiendamine")
+ *    transkript    POST /api/documents/<id>/transcribe      (heli rada, ./drafting/useAudioPath.js)
+ *    kokkuvõte     POST /api/documents/<id>/summary         (heli rada, ./drafting/useAudioPath.js)
+ * Päringud ise (aadress, keha, kavatsuse võti, järjekord) on samad mis enne.
+ * Koostamise ja täiendamise ees käib isikuandmete kontroll, mille varem tegi
+ * vestluse sisestusriba (`checkPrivacy`). Topeltklõps ja pooleli päring jäävad
+ * vahele (`runPaid`), klahvikordus ei vajuta ühtegi nuppu (`onRootKeyDown`).
+ *
+ * SALVESTAMATA TEKST EI KAO VAIKSELT. Uus koostamine, vanema versiooni
+ * taastamine, tulemuse eemaldamine, teise tulemuse avamine ja lehelt lahkumine
+ * selle lehe oma nuppudest küsivad teist vajutust, kui toimetis on salvestamata
+ * tekst (`guarded`). Akna sulgemisel küsib brauser ise; Esc küsib teist
+ * vajutust, kui fookus on ruumi sees.
+ *
+ * KUS MIS ON. Siin on tulemuse töö (koostamine, täiendamine, salvestamine,
+ * kinnitamine) ja see, mis vaateid olekuga seob. Kaustas ./drafting:
+ *    useSourceFiles.js   lähtefailid ja mallid
+ *    useAudioPath.js     heli raja andmed ja päringud
+ *    usePressGuards.js   teine vajutus ja tasulise töö värav
+ *    AudioPath.jsx       heli raja vaadete sidumine
+ *    ComposeViews.jsx, ResultViews.jsx, AudioViews.jsx   vaated (ainult kuju)
+ *    draftingModel.js    reeglid ilma JSX-ita
+ *    drafting.module.css kujundus
+ */
+
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useRouter } from "next/navigation"
-import { useAccessibility } from "@/components/accessibility/AccessibilityProvider"
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole"
 import { useI18n } from "@/components/i18n/I18nProvider"
-import AdminRoleViewCycleButton from "@/components/workspace/AdminRoleViewCycleButton"
-import ChatComposer from "@/components/alalehed/chat/ChatComposer"
-import ChatMessageItem from "@/components/alalehed/chat/ChatMessageItem"
-import ConversationView from "@/components/alalehed/chat/ConversationView"
-import { detectMobileViewport } from "@/components/alalehed/chat/chatLayoutVars"
-import DocumentsDropdown from "@/components/documents/DocumentsDropdown"
-import SessionRecorder from "@/components/documents/SessionRecorder"
-import Button from "@/components/ui/Button"
+import StepFlight from "@/components/stage/StepFlight"
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot"
 import { SubpageHeader } from "@/components/ui/SubpageHeader"
-import Input from "@/components/ui/Input"
-import Panel from "@/components/ui/Panel"
-import OptionCard from "@/components/ui/OptionCard"
-import Textarea from "@/components/ui/Textarea"
-import { AGENT_ARTIFACT_TYPE_VALUES } from "@/lib/documents/constants"
+import AdminRoleViewCycleButton from "@/components/workspace/AdminRoleViewCycleButton"
 import { clientTaskInstruction } from "@/lib/documents/agentTasks"
-import {
-  artifactStatusLabel,
-  artifactTypeLabel,
-  formatDate,
-  formatFileSize,
-  kindLabel,
-  templateForLabel
-} from "@/lib/documents/presentation"
 import { localizePath } from "@/lib/localizePath"
+import { requestPrivacyCheck } from "@/lib/privacy/privacyCheckClient"
 import { pushWithTransition } from "@/lib/routeTransition"
 import { buildIntentSignature, resolveIntentKey } from "@/lib/usage/intentKey"
 
+import AudioPath from "./drafting/AudioPath"
+import { ChoiceView, InstructionView, SourcesView, StyleView, TemplateView } from "./drafting/ComposeViews"
+import { footNote } from "./drafting/DraftingBits"
+import { ApproveView, RefineView, ResultsView, TextView, VersionsView } from "./drafting/ResultViews"
+import {
+  AUDIO_VIEWS,
+  CLIENT_AGENT_TASK_OPTIONS,
+  CLIENT_MAX_DOCUMENTS,
+  FREE_VIEWS,
+  PRIVACY_CHOICE_KEYS,
+  PRIVACY_WORKFLOW,
+  RECENT_RESULTS_LIMIT,
+  WORKSPACE_VERSION_LIMIT,
+  activeViewFor,
+  audienceOptions,
+  clientStatusLabel,
+  clientTaskOptions,
+  composeBlocker,
+  confirmTexts,
+  hasUnsavedText,
+  instructionLimit,
+  isComposableType,
+  isTemplateCompatible,
+  languageOptions,
+  lengthOptions,
+  outputTypeOptions,
+  privacyChoices,
+  recentResultRows,
+  refineBlocker,
+  resultSheet,
+  resultStateOf,
+  serverMessage,
+  snippet,
+  sourceRows,
+  statusLabel,
+  templateOptions,
+  textAtRisk,
+  toneOptions,
+  typeLabel,
+  versionRows,
+  viewKeysFor,
+  viewStates
+} from "./drafting/draftingModel"
+import styles from "./drafting/drafting.module.css"
+import useAudioPath from "./drafting/useAudioPath"
+import { setPanelLeaveGuard } from "@/lib/panelLeaveGuard"
+import usePressGuards from "./drafting/usePressGuards"
+import useSourceFiles from "./drafting/useSourceFiles"
+
 const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAAL.PRO_CHAT_WORKSPACE_RESTORE__"
-const WORKSPACE_VERSION_LIMIT = 8
-const CLIENT_MAX_DOCUMENTS = 2
-const CLIENT_AGENT_TASK_OPTIONS = [
-  { value: "LETTER_REQUEST", artifactType: "LETTER_DRAFT", labelKey: "documents.agent_workspace.client_tasks.letter_request" },
-  { value: "LETTER_REPLY", artifactType: "LETTER_DRAFT", labelKey: "documents.agent_workspace.client_tasks.letter_reply" },
-  { value: "FILL_FORM", artifactType: "OTHER", labelKey: "documents.agent_workspace.client_tasks.fill_form" }
-]
 
 function markChatWorkspaceRestore() {
   if (typeof window === "undefined") return
@@ -53,58 +127,9 @@ function markChatWorkspaceRestore() {
   } catch {}
 }
 
-function createWorkspaceMessage({ role, text, attachments = [] }) {
-  return {
-    id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
-    role,
-    text: String(text || ""),
-    attachments: Array.isArray(attachments) ? attachments : []
-  }
-}
-
-function isTemplateCompatible(template, artifactType) {
-  const templateType = String(template?.templateFor || "").trim().toUpperCase()
-  const targetType = String(artifactType || "").trim().toUpperCase()
-  return !templateType || templateType === "OTHER" || templateType === targetType
-}
-
-function templateOptionLabel(template, t) {
-  const title = String(template?.title || template?.originalName || "").trim()
-  const target = template?.templateFor ? templateForLabel(template.templateFor, t) : ""
-  return target ? `${title} - ${target}` : title
-}
-
-const audioInputSourceOptions = [
-  { value: "record_now", labelKey: "documents.agent_workspace.audio_input.sources.record_now" },
-  { value: "upload_file", labelKey: "documents.agent_workspace.audio_input.sources.upload_file" },
-  { value: "choose_existing", labelKey: "documents.agent_workspace.audio_input.sources.choose_existing" }
-]
-
-function formatArtifactMessage(artifact, t) {
-  if (!artifact) return ""
-  const title = String(artifact?.title || "").trim()
-  const content = String(artifact?.content || "").trim()
-  if (title && content) return `${title}\n\n${content}`
-  if (content) return content
-  return title || t("documents.agent_workspace.result_empty")
-}
-
-function buildSourceAttachments(sources, t) {
-  return Array.isArray(sources)
-    ? sources
-        .filter((source) => source?.id)
-        .map((source) => ({
-          label: source?.title || source?.originalName || t("documents.actions.download"),
-          url: `/api/documents/${encodeURIComponent(source.id)}/download`,
-          fileName: source?.originalName || undefined
-        }))
-    : []
-}
-
-export default function AgentModePage({ initialDocumentIds = [], initialArtifactId = "", embedded = false, onBack = null, hideHeader = false }) {
+export default function AgentModePage({ initialDocumentIds = [], initialArtifactId = "", initialPath = "compose", embedded = false, onBack = null, hideHeader = false }) {
   const router = useRouter()
   const { t, locale } = useI18n()
-  const { prefs } = useAccessibility()
   const { effectiveRole, isAdmin, refresh: refreshEffectiveRole } = useEffectiveRole()
   const isClientRole = effectiveRole === "CLIENT"
   /* Paneeli ainus ⓘ (PanelFrame, × kõrval). Manustatuna on ⓘ omanik Töölaud. */
@@ -116,40 +141,20 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
   const documentsHref = localizePath("/documents", locale)
   const chatHref = localizePath("/vestlus", locale)
   const backHref = chatHref
-  const isLightTheme = prefs?.theme === "light"
-  const roleScope = effectiveRole === "CLIENT" ? "client" : "worker"
   const defaultAudience = effectiveRole === "CLIENT" ? "client" : "worker"
-  const initialDocumentIdsSignature = Array.isArray(initialDocumentIds)
-    ? initialDocumentIds.map((value) => String(value || "").trim()).filter(Boolean).join("\u001f")
-    : String(initialDocumentIds || "").trim()
-  const initialSelectedDocumentIds = useMemo(
-    () => Array.from(new Set(initialDocumentIdsSignature.split("\u001f").map((value) => value.trim()).filter(Boolean))),
-    [initialDocumentIdsSignature]
-  )
-  const chatWindowRef = useRef(null)
-  const inputBarRef = useRef(null)
-  const inputRef = useRef(null)
-  const fileInputRef = useRef(null)
   const clientUploadInputRef = useRef(null)
-  const audioUploadInputRef = useRef(null)
-  const composerDraftApiRef = useRef(null)
   const activeRequestAbortRef = useRef(null)
   // Ühe kavatsuse võti elab kuni serveri kindla vastuseni: sama sisendiga kordus kannab sama
   // võtit (server ei võta teist tasu ega loo teist mustandit), õnnestumise järel ta kustub,
   // seega tahtlik uus jooks on aus uus töö. Vt lib/usage/intentKey.js.
   const generateIntentRef = useRef(null)
   const refineIntentRef = useRef(null)
-  const summaryIntentRef = useRef(null)
-  const [selectedDocumentIds, setSelectedDocumentIds] = useState(initialSelectedDocumentIds)
-  const [documents, setDocuments] = useState([])
-  const [templates, setTemplates] = useState([])
-  const [missingDocumentIds, setMissingDocumentIds] = useState([])
-  const [documentsLoading, setDocumentsLoading] = useState(selectedDocumentIds.length > 0)
-  const [templatesLoading, setTemplatesLoading] = useState(true)
-  const [documentsError, setDocumentsError] = useState("")
-  const [templatesError, setTemplatesError] = useState("")
-  const [clientUploadError, setClientUploadError] = useState("")
-  const [clientUploading, setClientUploading] = useState(false)
+  const surfaceRef = useRef(null)
+  const focusFrame = useRef(0)
+
+  /* Lähtefailid ja mallid: valik, laadimine ja pöörduja faili lisamine. */
+  const files = useSourceFiles({ initialDocumentIds, isClientRole, locale, t })
+  const { selectedDocumentIds, documents, missingDocumentIds, documentsLoading, documentsError, templates, templatesLoading, templatesError, clientUploadError, clientUploading } = files
   const [recentArtifacts, setRecentArtifacts] = useState([])
   const [recentArtifactsLoading, setRecentArtifactsLoading] = useState(isClientRole)
   const [recentArtifactsError, setRecentArtifactsError] = useState("")
@@ -163,20 +168,6 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
   const [instruction, setInstruction] = useState("")
   const [selectedTemplateId, setSelectedTemplateId] = useState("")
   const [clientTask, setClientTask] = useState("LETTER_REQUEST")
-  const [audioSourceMode, setAudioSourceMode] = useState("choose_existing")
-  const [audioSources, setAudioSources] = useState([])
-  const [audioSourcesLoading, setAudioSourcesLoading] = useState(false)
-  const [audioSourcesError, setAudioSourcesError] = useState("")
-  const [selectedAudioDocumentId, setSelectedAudioDocumentId] = useState("")
-  const [audioUploading, setAudioUploading] = useState(false)
-  const [audioWorkflowError, setAudioWorkflowError] = useState("")
-  const [audioWorkflowFeedback, setAudioWorkflowFeedback] = useState("")
-  const [transcribingAudio, setTranscribingAudio] = useState(false)
-  const [audioTranscriptDocument, setAudioTranscriptDocument] = useState(null)
-  const [audioTranscriptDraft, setAudioTranscriptDraft] = useState("")
-  const [savingAudioTranscript, setSavingAudioTranscript] = useState(false)
-  const [summarizingAudio, setSummarizingAudio] = useState(false)
-  const [audioSummaryArtifact, setAudioSummaryArtifact] = useState(null)
 
   const [persistedArtifactId, setPersistedArtifactId] = useState(String(initialArtifactId || "").trim())
   const [workspaceResult, setWorkspaceResult] = useState(null)
@@ -194,9 +185,50 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
   const [runFeedback, setRunFeedback] = useState(null)
   const [approvalNotice, setApprovalNotice] = useState(null)
   const [workspaceVersions, setWorkspaceVersions] = useState([])
-  const [conversationMessages, setConversationMessages] = useState([])
-  const [inputFocused, setInputFocused] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
+
+  /* Mis on ees: jada (`compose` või heli rada `audio`) ja vaate võti. Tulemuse
+     lingiga (?artifact=) avatud ruum avaneb tulemuse teksti juures; lingiga
+     `?path=audio` avatud ruum heli rajal (pöörduja vaates heli rada ei ole). */
+  const [level, setLevel] = useState(initialPath === "audio" && !String(initialArtifactId || "").trim() ? "audio" : "compose")
+  const [view, setView] = useState(String(initialArtifactId || "").trim() ? "text" : "")
+  /* Isikuandmete kontrolli küsimus: `{ action: "compose" | "refine", originalText, … }`. */
+  const [privacyPrompt, setPrivacyPrompt] = useState(null)
+  /* Isikuandmete kontroll käib: `compose`, `refine` või tühi. */
+  const [checkingPrivacy, setCheckingPrivacy] = useState("")
+  /* Teine vajutus ja tasulise töö värav (vt ./drafting/usePressGuards.js). */
+  const { confirming, disarm: disarmConfirm, press: pressConfirm, guarded, runPaid } = usePressGuards()
+
+  /* Fookus ees oleva vaate sisse: vajutatud nupp kaob sageli koos tegevusega
+     (rida muutub, lava ehitatakse ümber). Vaade võib esimesel kaadril veel
+     peidus olla, seepärast proovime kaadrite kaupa (nagu StepFlight sammu
+     vahetusel). Kui otsitud välja ei ole, läheb fookus vaate pealkirjale. */
+  const focusActive = useCallback((selector = "") => {
+    window.cancelAnimationFrame(focusFrame.current)
+    const deadline = performance.now() + 1200
+    const tryFocus = () => {
+      const plane = surfaceRef.current?.querySelector('[data-active="1"]')
+      const target = (selector ? plane?.querySelector(selector) : null) || plane?.querySelector("[data-step-heading]")
+      target?.focus({ preventScroll: true })
+      if ((target && document.activeElement === target) || performance.now() > deadline) return
+      focusFrame.current = window.requestAnimationFrame(tryFocus)
+    }
+    focusFrame.current = window.requestAnimationFrame(tryFocus)
+  }, [])
+  useEffect(() => () => window.cancelAnimationFrame(focusFrame.current), [])
+
+  /* Heli raja andmed ja päringud. Olek elab siin, mitte heli raja vaadete
+     küljes: valitud helifail ja transkripti parandused jäävad alles, kui inimene
+     käib vahepeal koostamise jadas. */
+  const audio = useAudioPath({
+    isClientRole,
+    locale,
+    t,
+    language,
+    busy: { starting, refiningResult, savingResult, approvingResult },
+    onSummary: handleAudioSummary,
+    /* Vajutatud „Vali" asendus märgiga „Valitud": fookus läheb vaate pealkirjale. */
+    onPicked: () => focusActive()
+  })
 
   function createWorkspaceVersion({ kind, title, content, type, templateId = selectedTemplateId }) {
     return {
@@ -238,10 +270,18 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
     })
   }
 
-  function applyWorkspaceResult(nextResult) {
+  /* `keepChoices`: sama tulemuse salvestamine või kinnitamine. Siis uueneb
+     ainult tulemus ise; täiendamise juhis (teine vaade) ning järgmise koostamise
+     jaoks valitud liik ja mall jäävad nii, nagu inimene need jättis. Ilma selleta
+     tühjendas salvestamine tekstivaates täiendamise vaatesse kirjutatud juhise ja
+     viis valitud liigi vaikselt tagasi avatud tulemuse omaks, nii et „Koosta uus
+     tekst" oleks saatnud vana liigi. Uue või teise tulemuse puhul (koostamine,
+     avamine, kokkuvõte) võetakse valikud tulemuselt. */
+  function applyWorkspaceResult(nextResult, { keepChoices = false } = {}) {
     setWorkspaceResult(nextResult)
     setResultTitle(String(nextResult?.title || ""))
     setResultContent(String(nextResult?.content || ""))
+    if (keepChoices) return
     setRefineInstruction("")
     if (nextResult?.type) setOutputType(String(nextResult.type))
     setSelectedTemplateId(String(nextResult?.templateId || ""))
@@ -256,7 +296,7 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
     setPersistedArtifactId("")
     setArtifactError("")
     setWorkspaceVersions([])
-    setConversationMessages([])
+    setPrivacyPrompt(null)
   }
 
   function buildWorkspaceHref(nextArtifactId = "", nextDocumentIds = selectedDocumentIds) {
@@ -266,6 +306,15 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
     if (nextArtifactId) params.set("artifact", nextArtifactId)
     const query = params.toString()
     return query ? `${basePath}?${query}` : basePath
+  }
+
+  /* Ruumi aadress kannab valitud faile ja avatud tulemust, et lehe uuesti
+     laadimine tooks sama töö tagasi. Töölaua sees (`embedded`) on ruum vestluse
+     lehe osa: seal viiks aadressi vahetus inimese töölaualt ära ja tühjendaks
+     kogu ruumi oleku, seepärast aadressi seal ei muudeta. */
+  function syncWorkspaceUrl(nextArtifactId = "", nextDocumentIds = selectedDocumentIds) {
+    if (embedded) return
+    router.replace(buildWorkspaceHref(nextArtifactId, nextDocumentIds), { scroll: false })
   }
 
   const clearResultMessages = useCallback(() => {
@@ -281,19 +330,6 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
     return () => window.clearTimeout(timer)
   }, [approvalNotice])
 
-  useEffect(() => {
-    if (typeof window === "undefined") return undefined
-    const updateMobileState = () => setIsMobile(detectMobileViewport())
-    updateMobileState()
-    const mobileQuery = window.matchMedia("(max-width: 768px)")
-    mobileQuery.addEventListener?.("change", updateMobileState)
-    window.addEventListener("resize", updateMobileState)
-    return () => {
-      mobileQuery.removeEventListener?.("change", updateMobileState)
-      window.removeEventListener("resize", updateMobileState)
-    }
-  }, [])
-
   useEffect(() => () => {
     activeRequestAbortRef.current?.abort?.()
   }, [])
@@ -303,175 +339,6 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
       setAudience(defaultAudience)
     }
   }, [audienceTouched, defaultAudience])
-
-  useEffect(() => {
-    setSelectedDocumentIds((current) => {
-      if (
-        current.length === initialSelectedDocumentIds.length &&
-        current.every((id, index) => id === initialSelectedDocumentIds[index])
-      ) {
-        return current
-      }
-      return initialSelectedDocumentIds
-    })
-  }, [initialSelectedDocumentIds])
-
-  useEffect(() => {
-    let cancelled = false
-    const controller = new AbortController()
-
-    async function loadDocuments() {
-      if (!selectedDocumentIds.length) {
-        setDocuments([])
-        setMissingDocumentIds([])
-        setDocumentsError("")
-        setDocumentsLoading(false)
-        return
-      }
-
-      setDocumentsLoading(true)
-      setDocumentsError("")
-
-      try {
-        const results = await Promise.all(selectedDocumentIds.map(async (id) => {
-          try {
-            const response = await fetch(`/api/documents/${encodeURIComponent(id)}`, {
-              cache: "no-store",
-              signal: controller.signal
-            })
-            const payload = await response.json().catch(() => ({}))
-            if (!response.ok) {
-              return {
-                id,
-                error: payload?.message || t("documents.errors.load_documents"),
-                status: response.status
-              }
-            }
-            return { id, document: payload?.document || null }
-          } catch (error) {
-            if (controller.signal.aborted) return { id, aborted: true }
-            return {
-              id,
-              error: error?.message || t("documents.errors.load_documents")
-            }
-          }
-        }))
-
-        if (cancelled) return
-
-        const nextDocuments = []
-        const nextMissingIds = []
-        let nextError = ""
-
-        for (const result of results) {
-          if (result?.document) {
-            nextDocuments.push(result.document)
-            continue
-          }
-          if (result?.aborted) continue
-          nextMissingIds.push(result.id)
-          if (!nextError && result?.status && ![403, 404].includes(result.status)) {
-            nextError = result.error || t("documents.errors.load_documents")
-          }
-        }
-
-        setDocuments(nextDocuments)
-        setMissingDocumentIds(nextMissingIds)
-        setDocumentsError(nextError)
-      } finally {
-        if (!cancelled) setDocumentsLoading(false)
-      }
-    }
-
-    void loadDocuments()
-
-    return () => {
-      cancelled = true
-      controller.abort()
-    }
-  }, [selectedDocumentIds, t])
-
-  useEffect(() => {
-    let cancelled = false
-    const controller = new AbortController()
-
-    async function loadTemplates() {
-      if (isClientRole) {
-        setTemplates([])
-        setTemplatesError("")
-        setTemplatesLoading(false)
-        return
-      }
-
-      setTemplatesLoading(true)
-      setTemplatesError("")
-
-      try {
-        const params = new URLSearchParams({
-          kind: "TEMPLATE",
-          limit: "50"
-        })
-        const response = await fetch(`/api/documents?${params.toString()}`, {
-          cache: "no-store",
-          signal: controller.signal
-        })
-        const payload = await response.json().catch(() => ({}))
-        if (!response.ok) throw new Error(payload?.message || t("documents.errors.load_documents"))
-        if (cancelled) return
-        setTemplates(Array.isArray(payload?.documents) ? payload.documents : [])
-      } catch (error) {
-        if (controller.signal.aborted || cancelled) return
-        setTemplates([])
-        setTemplatesError(error?.message || t("documents.errors.load_documents"))
-      } finally {
-        if (!cancelled) setTemplatesLoading(false)
-      }
-    }
-
-    void loadTemplates()
-
-    return () => {
-      cancelled = true
-      controller.abort()
-    }
-  }, [isClientRole, t])
-
-  const refreshAudioSources = useCallback(async ({ signal } = {}) => {
-    if (isClientRole) {
-      setAudioSources([])
-      setAudioSourcesError("")
-      setAudioSourcesLoading(false)
-      return []
-    }
-
-    setAudioSourcesLoading(true)
-    setAudioSourcesError("")
-    try {
-      const response = await fetch("/api/documents/audio-sources", {
-        cache: "no-store",
-        headers: { "x-ui-locale": locale },
-        signal
-      })
-      const payload = await response.json().catch(() => ({}))
-      if (!response.ok) throw new Error(payload?.message || t("documents.errors.audio_sources_load_failed"))
-      const nextSources = Array.isArray(payload?.audioSources) ? payload.audioSources : []
-      setAudioSources(nextSources)
-      return nextSources
-    } catch (error) {
-      if (signal?.aborted) return []
-      setAudioSources([])
-      setAudioSourcesError(error?.message || t("documents.errors.audio_sources_load_failed"))
-      return []
-    } finally {
-      if (!signal?.aborted) setAudioSourcesLoading(false)
-    }
-  }, [isClientRole, locale, t])
-
-  useEffect(() => {
-    const controller = new AbortController()
-    void refreshAudioSources({ signal: controller.signal })
-    return () => controller.abort()
-  }, [refreshAudioSources])
 
   useEffect(() => {
     let cancelled = false
@@ -582,71 +449,11 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
     }
   }, [persistedArtifactId, t, workspaceResult?.id])
 
-  const outputTypeOptions = useMemo(() => {
-    if (isClientRole) {
-      return CLIENT_AGENT_TASK_OPTIONS.map((option) => ({
-        value: option.value,
-        label: t(option.labelKey),
-        artifactType: option.artifactType
-      }))
-    }
-
-    return AGENT_ARTIFACT_TYPE_VALUES
-      .filter((value) => value !== "TRANSCRIPT_SUMMARY")
-      .map((value) => ({ value, label: artifactTypeLabel(value, t) }))
-  }, [isClientRole, t])
-  const audienceOptions = useMemo(
-    () => [
-      { value: "worker", label: t("chat.deep_research.scope_output_worker") },
-      { value: "client", label: t("chat.deep_research.scope_output_client") }
-    ],
-    [t]
-  )
-  const toneOptions = useMemo(
-    () => [
-      { value: "professional", label: t("documents.agent_workspace.tones.professional") },
-      { value: "supportive", label: t("documents.agent_workspace.tones.supportive") },
-      { value: "plain", label: t("documents.agent_workspace.tones.plain") }
-    ],
-    [t]
-  )
-  const languageOptions = useMemo(
-    () => [
-      { value: "et", label: t("common.languages.et") },
-      { value: "en", label: t("common.languages.en") },
-      { value: "ru", label: t("common.languages.ru") }
-    ],
-    [t]
-  )
-  const lengthOptions = useMemo(
-    () => [
-      { value: "short", label: t("documents.agent_workspace.lengths.short") },
-      { value: "standard", label: t("documents.agent_workspace.lengths.standard") },
-      { value: "detailed", label: t("documents.agent_workspace.lengths.detailed") }
-    ],
-    [t]
-  )
-
   const selectedCount = documents.length
-  const selectedAudioSource = useMemo(
-    () => audioSources.find((source) => source.id === selectedAudioDocumentId) || null,
-    [audioSources, selectedAudioDocumentId]
-  )
-  const activeTranscriptDocument = audioTranscriptDocument || selectedAudioSource?.transcript || null
-  const canTranscribeAudio = Boolean(selectedAudioSource?.id) && !transcribingAudio && !audioUploading
-  const canSaveAudioTranscript =
-    Boolean(activeTranscriptDocument?.id && audioTranscriptDraft.trim()) &&
-    String(audioTranscriptDraft || "") !== String(activeTranscriptDocument?.content || activeTranscriptDocument?.preview || "")
-  const canCreateAudioSummary =
-    Boolean(activeTranscriptDocument?.id && audioTranscriptDraft.trim()) &&
-    !starting &&
-    !summarizingAudio &&
-    !savingAudioTranscript &&
-    !refiningResult &&
-    !savingResult &&
-    !approvingResult
   const selectedCountLimitReached = isClientRole && selectedCount >= CLIENT_MAX_DOCUMENTS
-  const templateTargetType = String(workspaceResult?.type || outputType || "REPORT_DRAFT")
+  /* Malli vaade näitab malle selle liigi jaoks, millega JÄRGMINE koostamine
+     tehakse (valitud liik), mitte avatud tulemuse liigi jaoks. */
+  const templateTargetType = String(outputType || workspaceResult?.type || "REPORT_DRAFT")
   const allowedTemplates = useMemo(() => templates.filter((template) => template.agentAllowed), [templates])
   const activeTemplate =
     allowedTemplates.find((template) => template.id === selectedTemplateId) ||
@@ -660,22 +467,11 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
     }
     return base
   }, [activeTemplate, allowedTemplates, templateTargetType])
-  const templateOptions = useMemo(
-    () => compatibleTemplates.map((template) => ({ value: template.id, label: templateOptionLabel(template, t) })),
-    [compatibleTemplates, t]
-  )
-  const templateDropdownOptions = useMemo(
-    () => [{ value: "", label: t("documents.agent_workspace.template_none") }, ...templateOptions],
-    [t, templateOptions]
-  )
   const hasWorkspaceResult = Boolean(workspaceResult)
   const isWorkspaceResultSaved = Boolean(workspaceResult?.id)
   const canPersistResult = hasWorkspaceResult && resultContent.trim().length > 0
   const canClearWorkspaceResult = hasWorkspaceResult && !starting && !refiningResult && !savingResult && !approvingResult
-  const hasDraftEdits =
-    hasWorkspaceResult &&
-    (String(resultTitle || "").trim() !== String(workspaceResult?.title || "").trim() ||
-      String(resultContent || "") !== String(workspaceResult?.content || ""))
+  const hasDraftEdits = hasUnsavedText(workspaceResult, resultTitle, resultContent)
   const canRestoreSavedVersion =
     isWorkspaceResultSaved &&
     workspaceResult?.status === "DRAFT" &&
@@ -683,75 +479,20 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
     !refiningResult &&
     !savingResult &&
     !approvingResult
-  const canRunAlternateOutput =
-    !isClientRole &&
-    selectedCount > 0 &&
-    instruction.trim().length > 0 &&
-    !starting &&
-    !refiningResult &&
-    !savingResult &&
-    !approvingResult
-  const alternateOutputOptions = outputTypeOptions.filter((option) => option.value !== String(workspaceResult?.type || outputType || ""))
   const activeArtifactDetailHref = !isClientRole && isWorkspaceResultSaved
     ? localizePath(`/documents/artifacts/${encodeURIComponent(workspaceResult.id)}`, locale)
     : ""
   const artifactResultsHref = !isClientRole ? localizePath("/documents?artifacts=all#artifacts", locale) : ""
-  const isAgentBusy = starting || refiningResult
-  const conversationIntroText = selectedCount
-    ? t(`documents.agent_workspace.conversation_intro_with_docs_${roleScope}`, { count: selectedCount })
-    : t(`documents.agent_workspace.conversation_intro_empty_${roleScope}`)
-  const conversationHelpText = isAgentBusy
-    ? starting
-      ? t("documents.agent_workspace.conversation_generating")
-      : t("documents.agent_workspace.conversation_refining")
-    : !selectedCount
-      ? t(isClientRole ? "documents.agent_workspace.client_needs_documents" : "documents.agent_workspace.needs_documents")
-      : hasWorkspaceResult && workspaceResult?.status === "DRAFT" && resultContent.trim()
-        ? t("documents.agent_workspace.conversation_refine_help")
-        : t("documents.agent_workspace.conversation_ready_help")
-  const clientResultLabel =
-    outputTypeOptions.find((option) => option.value === clientTask)?.label || t("documents.agent_workspace.client_tasks.letter_request")
-  const agentConversationVars = useMemo(
-    () => ({
-      "--chat-window-max-w": "100%",
-      "--chat-window-shift-x": "0rem",
-      "--chat-window-shift-y": "0rem",
-      "--chat-window-top-offset": "0rem",
-      "--chat-window-pad-top": isMobile ? "0.4rem" : "0.7rem",
-      "--chat-window-pad-bottom": isMobile ? "1.15rem" : "1.4rem",
-      "--chat-window-top-safe": isMobile ? "0.65rem" : "0.85rem",
-      "--chat-window-bottom-gap": "0rem",
-      "--chat-window-mobile-extra-height": "0rem",
-      "--chat-window-mobile-width-right": "0rem",
-      "--chat-window-bottom-safe": "0rem",
-      "--chat-window-fade-top": "0rem",
-      "--chat-window-fade-bottom": "0rem",
-      "--chat-window-pad-x": isMobile ? "0.52rem" : "0.9rem",
-      "--chat-content-top-offset": "0rem",
-      "--chat-content-spacer": isMobile ? "0.1rem" : "0.2rem",
-      "--chat-content-bottom-spacer": isMobile ? "0.45rem" : "0.35rem",
-      "--chat-input-shift": "0rem",
-      "--chat-input-focus-shift": "0rem",
-      "--chat-inputbar-left-pull": "0rem",
-      "--chat-attach-left-pull": "0rem",
-      "--chat-hpad-left": isMobile ? "0.08rem" : "0rem",
-      "--chat-hpad-right": isMobile ? "0.08rem" : "0rem",
-      "--chat-hpad": "0rem",
-      "--chat-input-max-w": "100%",
-      "--chat-vk-offset": "0px",
-      "--chat-composer-main-control-size": "3.34rem",
-      "--chat-composer-send-control-size": "3rem",
-      "--chat-composer-send-icon-size": "1.1rem",
-      "--chat-composer-listen-icon-size": "2.05rem",
-      "--chat-composer-mic-icon-size": "1.82rem",
-      "--chat-send-btn-scale": "0.965",
-      "--chat-send-btn-shift-x": "0.1rem",
-      "--chat-send-btn-shift-y": "0rem",
-      "--inputbar-h": "3.08rem",
-      "--chat-window-top-text-fade-extra": "0rem"
-    }),
-    [isMobile]
-  )
+  const resultBusy = starting || refiningResult || savingResult || approvingResult
+  const resultState = resultStateOf({ result: workspaceResult, loading: artifactLoading, error: artifactError })
+  /* Tekst, mida ei ole salvestatud ega üheski tööruumi versioonis. */
+  const versionTextAtRisk = textAtRisk({ result: workspaceResult, title: resultTitle, content: resultContent, versions: workspaceVersions })
+  const instructionMax = instructionLimit({ client: isClientRole, task: clientTask })
+
+  const activeLevel = isClientRole ? "compose" : level
+  const viewKeys = viewKeysFor({ client: isClientRole, level: activeLevel, resultState })
+  const activeView = activeViewFor(view, viewKeys)
+  const stageKey = `${activeLevel}|${viewKeys.join("|")}`
 
   useEffect(() => {
     if (workspaceResult || !selectedTemplateId) return
@@ -761,34 +502,99 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
     }
   }, [allowedTemplates, outputType, selectedTemplateId, workspaceResult])
 
+  /* Salvestamata teksti korral küsib brauser akna sulgemisel või lehe uuesti
+     laadimisel ise üle. Platvormi sees lahkumist (kiirmenüü) see ei kata. */
+  const unsavedAnywhere = hasDraftEdits || audio.canSaveAudioTranscript
+  /* „Kokkuvõte on valmis" ja tee mustandi juurde kehtivad ainult seni, kuni see
+     kokkuvõte ON ruumis avatud tulemus. Kui see eemaldati või avati teine
+     tulemus, viiks nupp võõra teksti juurde. */
+  const summaryOpen = Boolean(audio.audioSummaryArtifact?.id) && String(audio.audioSummaryArtifact.id) === String(workspaceResult?.id || "")
+  const escPassedRef = useRef(false)
   useEffect(() => {
-    if (!workspaceResult?.content || conversationMessages.length > 0) return
-    setConversationMessages([
-      createWorkspaceMessage({
-        role: "ai",
-        text: formatArtifactMessage(workspaceResult, t),
-        attachments: buildSourceAttachments(workspaceResult.sources, t)
-      })
-    ])
-  }, [conversationMessages.length, t, workspaceResult])
+    if (!unsavedAnywhere) return undefined
+    const warn = (event) => {
+      event.preventDefault()
+      event.returnValue = ""
+    }
+    window.addEventListener("beforeunload", warn)
+    return () => window.removeEventListener("beforeunload", warn)
+  }, [unsavedAnywhere])
 
-  function appendConversationMessage(message) {
-    const nextMessage = createWorkspaceMessage(message)
-    setConversationMessages((current) => [...current, nextMessage])
-    return nextMessage
+  /* PLATVORMI SEES LAHKUMINE. Kiirmenüü tagasi-nool ja paneeli sulgemine ei ole
+     selle lehe nupud: leht peab need kinni ühise värava kaudu
+     (lib/panelLeaveGuard.js). Esc püütakse akna tasemel PÜÜDMISE faasis:
+     PanelFrame kuulab Esc-i samal aknal mullitamise faasis ja jätab vahele
+     sündmuse, mille keegi on juba kinni pidanud. Nii kehtib küsimus ka siis, kui
+     fookus ei ole ruumi sees (pärast klõpsu paneeli taustale on fookus lehel
+     endal ja ruumi enda `onKeyDown` klahvi ei näeks).
+     Mõlemad loevad värsket olekut viite kaudu: kuulaja pannakse üks kord. */
+  const leaveGuardRef = useRef(null)
+  leaveGuardRef.current = () => pressConfirm("panel") === "run"
+  const escGuardRef = useRef(null)
+  escGuardRef.current = (event) => {
+    if (event.key !== "Escape" || event.defaultPrevented) return
+    const target = event.target instanceof Element ? event.target : null
+    /* Tekstiväljal, dialoogis ja oma Esc-alaga osas Esc paneeli ei sulge: seal ei ole midagi kaitsta. */
+    if (target?.closest("input, textarea, select, [contenteditable='true'], [role='dialog'], [data-esc-scope]")) return
+    if (document.body.classList.contains("modal-open") || document.documentElement.classList.contains("login-modal-open")) return
+    /* Teine Esc läheb edasi ja paneel sulgub; esimene (ja topeltvajutuse teine pool) peetakse kinni. */
+    if (pressConfirm("esc") !== "run") event.preventDefault()
+  }
+  useEffect(() => {
+    if (!unsavedAnywhere) return undefined
+    const release = setPanelLeaveGuard((reason) => (reason === "close" && escPassedRef.current ? true : leaveGuardRef.current()))
+    const onKey = (event) => {
+      escPassedRef.current = false
+      escGuardRef.current?.(event)
+      /* Esc, mille see kuulaja läbi lasi, sulgeb paneeli PanelFrame'i kaudu
+         SAMA sündmuse mullitamise faasis: värav ei tohi sama vajutust teist
+         korda küsida. Luba kehtib ainult selle sündmuse lõpuni. */
+      if (event.key === "Escape" && !event.defaultPrevented) {
+        escPassedRef.current = true
+        window.setTimeout(() => {
+          escPassedRef.current = false
+        }, 0)
+      }
+    }
+    window.addEventListener("keydown", onKey, true)
+    return () => {
+      release()
+      window.removeEventListener("keydown", onKey, true)
+    }
+  }, [unsavedAnywhere])
+
+  /* Kui vaadete loend muutub (tulemus tekkis või kadus, jada vahetus), ehitatakse
+     lava uuesti ja fookus läheb uue vaate pealkirjale. Esimesel joonistusel
+     fookust ei võeta. */
+  const shownStage = useRef(stageKey)
+  useEffect(() => {
+    if (shownStage.current === stageKey) return
+    shownStage.current = stageKey
+    focusActive()
+  }, [focusActive, stageKey])
+
+  const openView = (key) => {
+    disarmConfirm()
+    setView(key)
   }
 
-  function removeConversationMessage(messageId) {
-    setConversationMessages((current) => current.filter((entry) => entry.id !== messageId))
+  /**
+   * Kas salvestil on pooleli töö: salvestamine käib, osa on veel üles laadimisel
+   * või osa jäi salvestamata ja ootab uut katset. Salvesti ütleb seda oma
+   * juurelemendil (`data-recorder-busy`). Ainult salvestamise faasi lugedes
+   * võeti salvesti lehelt maha ka siis, kui osa oli veel teel või ebaõnnestunud:
+   * ebaõnnestunud osa elab ainult salvesti olekus ja oleks jäljetult kadunud.
+   */
+  function recorderBusy() {
+    const node = surfaceRef.current?.querySelector("[data-recorder-phase]")
+    if (!node) return false
+    return node.getAttribute("data-recorder-busy") === "1" || (node.getAttribute("data-recorder-phase") || "idle") !== "idle"
   }
 
-  function handleJumpToBottom() {
-    const node = chatWindowRef.current
-    if (!node) return
-    node.scrollTo({
-      top: node.scrollHeight,
-      behavior: "smooth"
-    })
+  /* Tee teisele lehele selle lehe oma nupust: salvestamata tekst küsib teist vajutust. */
+  function leaveTo(href) {
+    if (!href) return undefined
+    return guarded(`leave:${href}`, unsavedAnywhere, () => pushWithTransition(router, href))
   }
 
   function handleStopAgentRequest() {
@@ -812,312 +618,35 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
     }
   }
 
-  async function handleClientUpload(event) {
-    const file = event?.target?.files?.[0]
-    event.target.value = ""
-    if (!file) return
-
-    if (selectedCount >= CLIENT_MAX_DOCUMENTS) {
-      setClientUploadError(t("documents.agent_workspace.client_file_limit_reached", { count: CLIENT_MAX_DOCUMENTS }))
-      return
-    }
-
-    setClientUploading(true)
-    setClientUploadError("")
-    clearResultMessages()
-
-    try {
-      const formData = new FormData()
-      formData.append("file", file)
-      formData.append("kind", "MATERIAL")
-      formData.append("agentAllowed", "true")
-
-      const uploadResponse = await fetch("/api/documents", {
-        method: "POST",
-        headers: { "x-ui-locale": locale },
-        body: formData
+  async function handleClientUpload(file) {
+    const added = await files.uploadClientFile(file, { onStart: clearResultMessages })
+    if (!added) return
+    syncWorkspaceUrl(persistedArtifactId, added.ids)
+    setRunFeedback({
+      message: t("documents.drafting.files.added", {
+        title: added.document.title || added.document.originalName
       })
-      const uploadPayload = await uploadResponse.json().catch(() => ({}))
-      if (!uploadResponse.ok) throw new Error(uploadPayload?.message || t("documents.errors.upload_failed"))
-
-      const nextDocument = uploadPayload?.document || null
-      if (!nextDocument?.id || !nextDocument.agentAllowed) throw new Error(t("documents.errors.upload_failed"))
-      const nextIds = Array.from(new Set([...selectedDocumentIds, nextDocument.id])).slice(0, CLIENT_MAX_DOCUMENTS)
-      setDocuments((current) => [...current, nextDocument].slice(0, CLIENT_MAX_DOCUMENTS))
-      setSelectedDocumentIds(nextIds)
-      setMissingDocumentIds((current) => current.filter((id) => id !== nextDocument.id))
-      router.replace(buildWorkspaceHref(persistedArtifactId, nextIds), { scroll: false })
-      setRunFeedback({
-        message: t("documents.agent_workspace.client_file_added", {
-          title: nextDocument.title || nextDocument.originalName
-        })
-      })
-    } catch (error) {
-      setClientUploadError(error?.message || t("documents.errors.upload_failed"))
-    } finally {
-      setClientUploading(false)
-    }
+    })
   }
 
   function handleClientRemoveDocument(documentId) {
-    const nextId = String(documentId || "").trim()
-    if (!nextId) return
+    const nextIds = files.removeFile(documentId)
+    if (!nextIds) return
     clearResultMessages()
-    const nextIds = selectedDocumentIds.filter((id) => id !== nextId)
-    setSelectedDocumentIds(nextIds)
-    setDocuments((current) => current.filter((document) => document.id !== nextId))
-    setMissingDocumentIds((current) => current.filter((id) => id !== nextId))
-    router.replace(buildWorkspaceHref(persistedArtifactId, nextIds), { scroll: false })
-    setRunFeedback({ message: t("documents.agent_workspace.client_file_removed") })
+    syncWorkspaceUrl(persistedArtifactId, nextIds)
+    setRunFeedback({ message: t("documents.drafting.files.removed") })
+    /* Vajutatud nupp kadus koos reaga. */
+    focusActive()
   }
 
-  async function loadTranscriptDocument(transcript) {
-    const transcriptId = String(transcript?.id || "").trim()
-    if (!transcriptId) return null
-    try {
-      const response = await fetch(`/api/documents/${encodeURIComponent(transcriptId)}`, {
-        cache: "no-store",
-        headers: { "x-ui-locale": locale }
-      })
-      const payload = await response.json().catch(() => ({}))
-      if (!response.ok) throw new Error(payload?.message || t("documents.errors.read_failed"))
-      return payload?.document || transcript
-    } catch {
-      return transcript
-    }
-  }
-
-  async function handleSelectAudioSource(documentId) {
-    const nextId = String(documentId || "").trim()
-    const nextSource = audioSources.find((source) => source.id === nextId) || null
-    setSelectedAudioDocumentId(nextId)
-    setAudioTranscriptDocument(null)
-    setAudioTranscriptDraft("")
-    setAudioSummaryArtifact(null)
-    setAudioWorkflowError("")
-    setAudioWorkflowFeedback(nextSource?.title ? t("documents.agent_workspace.audio_input.selected_source", { title: nextSource.title }) : "")
-    if (nextId) {
-      void fetch(`/api/documents/${encodeURIComponent(nextId)}/audio-select`, {
-        method: "POST",
-        headers: { "x-ui-locale": locale }
-      }).catch(() => {})
-    }
-    if (nextSource?.transcript?.id) {
-      const transcript = await loadTranscriptDocument(nextSource.transcript)
-      setAudioTranscriptDocument(transcript)
-      setAudioTranscriptDraft(String(transcript?.content || transcript?.preview || "").trim())
-    }
-  }
-
-  async function handleAudioUpload(event) {
-    const file = event?.target?.files?.[0]
-    if (event?.target) event.target.value = ""
-    if (!file) return
-
-    if (!String(file.type || "").toLowerCase().startsWith("audio/") && !["video/webm", "video/mp4", "application/ogg"].includes(String(file.type || "").toLowerCase())) {
-      setAudioWorkflowFeedback("")
-      setAudioWorkflowError(t("documents.errors.audio_mime_not_allowed"))
-      return
-    }
-
-    setAudioUploading(true)
-    setAudioWorkflowError("")
-    setAudioWorkflowFeedback("")
-    setAudioTranscriptDocument(null)
-    setAudioTranscriptDraft("")
-    setAudioSummaryArtifact(null)
-
-    try {
-      const formData = new FormData()
-      formData.append("file", file)
-      formData.append("title", file.name || t("documents.agent_workspace.audio_input.upload_label"))
-      const response = await fetch("/api/documents/audio-sources", {
-        method: "POST",
-        headers: { "x-ui-locale": locale },
-        body: formData
-      })
-      const payload = await response.json().catch(() => ({}))
-      if (!response.ok) throw new Error(payload?.message || t("documents.errors.audio_upload_failed"))
-      const audioSource = payload?.audioSource || null
-      const nextSources = audioSource
-        ? [audioSource, ...audioSources.filter((source) => source.id !== audioSource.id)]
-        : await refreshAudioSources()
-      setAudioSources(nextSources)
-      if (audioSource?.id) {
-        setAudioSourceMode("upload_file")
-        setSelectedAudioDocumentId(audioSource.id)
-      }
-      setAudioWorkflowFeedback(t("documents.agent_workspace.audio_input.upload_success"))
-    } catch (error) {
-      setAudioWorkflowFeedback("")
-      setAudioWorkflowError(error?.message || t("documents.errors.audio_upload_failed"))
-    } finally {
-      setAudioUploading(false)
-    }
-  }
-
-  // A part of a meeting recorded here is an audio source like an uploaded file; the newest part is the selected one.
-  function handleRecordedPart(audioSource) {
-    if (!audioSource?.id) return
-    setAudioSources((sources) => [audioSource, ...sources.filter((source) => source.id !== audioSource.id)])
-    setSelectedAudioDocumentId(audioSource.id)
-    setAudioTranscriptDocument(null)
-    setAudioTranscriptDraft("")
-    setAudioSummaryArtifact(null)
-    setAudioWorkflowError("")
-    setAudioWorkflowFeedback(t("documents.agent_workspace.audio_input.record_success"))
-  }
-
-  async function handleTranscribeAudio() {
-    if (!selectedAudioSource?.id || transcribingAudio) return
-
-    setTranscribingAudio(true)
-    setAudioWorkflowError("")
-    setAudioWorkflowFeedback("")
-    setAudioSummaryArtifact(null)
-
-    try {
-      const response = await fetch(`/api/documents/${encodeURIComponent(selectedAudioSource.id)}/transcribe`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-ui-locale": locale
-        },
-        // Ühe helifaili transkriptsioon ON kavatsus: sama allika teist transkripti ei ole
-        // olemas (marsruut tagastab olemasoleva), seega on allika id ise stabiilne võti.
-        body: JSON.stringify({ language, idempotencyKey: selectedAudioSource.id })
-      })
-      const payload = await response.json().catch(() => ({}))
-      if (!response.ok) throw new Error(payload?.message || t("documents.errors.transcription_failed"))
-      const transcript = payload?.transcriptDocument || null
-      if (!transcript?.id) throw new Error(t("documents.errors.transcription_failed"))
-      setAudioTranscriptDocument(transcript)
-      setAudioTranscriptDraft(String(transcript.content || transcript.preview || "").trim())
-      setAudioSources((current) =>
-        current.map((source) =>
-          source.id === selectedAudioSource.id
-            ? { ...source, transcript: { ...transcript, preview: String(transcript.content || "").slice(0, 1200) } }
-            : source
-        )
-      )
-      setAudioWorkflowFeedback(t("documents.agent_workspace.audio_input.transcript_ready"))
-    } catch (error) {
-      setAudioWorkflowFeedback("")
-      setAudioWorkflowError(error?.message || t("documents.errors.transcription_failed"))
-    } finally {
-      setTranscribingAudio(false)
-    }
-  }
-
-  async function saveAudioTranscriptIfNeeded() {
-    const transcript = activeTranscriptDocument
-    if (!transcript?.id || !audioTranscriptDraft.trim()) return transcript
-    if (!canSaveAudioTranscript) return transcript
-    setSavingAudioTranscript(true)
-    try {
-      const response = await fetch(`/api/documents/${encodeURIComponent(transcript.id)}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          "x-ui-locale": locale
-        },
-        body: JSON.stringify({
-          content: audioTranscriptDraft,
-          expectedUpdatedAt: transcript.updatedAt
-        })
-      })
-      const payload = await response.json().catch(() => ({}))
-      if (!response.ok) {
-        if (response.status === 409 && payload?.document?.id) {
-          setAudioTranscriptDocument(payload.document)
-        }
-        throw new Error(payload?.message || t("documents.errors.update_failed"))
-      }
-      const updated = payload?.document || transcript
-      setAudioTranscriptDocument(updated)
-      setAudioTranscriptDraft(String(updated.content || "").trim())
-      setAudioWorkflowFeedback(t("documents.agent_workspace.audio_input.transcript_saved"))
-      return updated
-    } finally {
-      setSavingAudioTranscript(false)
-    }
-  }
-
-  async function handleSaveAudioTranscript() {
-    if (!canSaveAudioTranscript) return
-    setAudioWorkflowError("")
-    setAudioWorkflowFeedback("")
-    try {
-      await saveAudioTranscriptIfNeeded()
-    } catch (error) {
-      setAudioWorkflowError(error?.message || t("documents.errors.update_failed"))
-    }
-  }
-
-  async function handleCreateAudioSummary() {
-    if (!canCreateAudioSummary || !activeTranscriptDocument?.id) return
-    setSummarizingAudio(true)
-    setAudioWorkflowError("")
-    setAudioWorkflowFeedback("")
-    try {
-      const transcript = await saveAudioTranscriptIfNeeded()
-      const transcriptDocument = {
-        id: transcript.id,
-        title: transcript.title,
-        originalName: transcript.originalName || transcript.title,
-        kind: transcript.kind || "AUDIO_TRANSCRIPT",
-        agentAllowed: true,
-        mime: transcript.mime || "text/plain",
-        size: transcript.size || String(transcript.content || audioTranscriptDraft || "").length,
-        sourceDocumentId: transcript.sourceDocumentId || selectedAudioSource?.id || null,
-        content: transcript.content || audioTranscriptDraft || "",
-        createdAt: transcript.createdAt,
-        updatedAt: transcript.updatedAt
-      }
-      // Sama transkripti võib pärast muutmist ausalt uuesti kokku võtta, seega ei ole võti
-      // siin transkripti id, vaid kavatsuse allkiri: kordus sama sisuga kannab sama võtit.
-      const summaryPayload = {
-        language,
-        content: transcriptDocument.content
-      }
-      summaryIntentRef.current = resolveIntentKey(
-        summaryIntentRef.current,
-        buildIntentSignature({ ...summaryPayload, transcriptId: transcript.id })
-      )
-      const response = await fetch(`/api/documents/${encodeURIComponent(transcript.id)}/summary`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-ui-locale": locale
-        },
-        body: JSON.stringify({
-          ...summaryPayload,
-          idempotencyKey: summaryIntentRef.current.key
-        })
-      })
-      const payload = await response.json().catch(() => ({}))
-      if (!response.ok) throw new Error(payload?.message || t("documents.errors.summary_failed"))
-      summaryIntentRef.current = null
-      const summary = payload?.summaryArtifact || null
-      if (!summary?.id) throw new Error(t("documents.errors.summary_failed"))
-      setAudioSummaryArtifact(summary)
-      setDocuments([transcriptDocument])
-      setSelectedDocumentIds([transcriptDocument.id])
-      setMissingDocumentIds([])
-      setOutputType("TRANSCRIPT_SUMMARY")
-      applyWorkspaceResult(summary)
-      setPersistedArtifactId(summary.id)
-      setAudioWorkflowFeedback(t("documents.agent_workspace.audio_input.summary_ready"))
-      appendConversationMessage({
-        role: "ai",
-        text: formatArtifactMessage(summary, t),
-        attachments: buildSourceAttachments(summary.sources, t)
-      })
-    } catch (error) {
-      setAudioWorkflowError(error?.message || t("documents.errors.summary_failed"))
-    } finally {
-      setSummarizingAudio(false)
-    }
+  /* Heli raja kokkuvõte on uus tulemus: transkript saab lähtefailiks ja kokkuvõte
+     tööruumi tekstiks, millest algavad ka tööruumi versioonid. */
+  function handleAudioSummary({ summary, transcriptDocument }) {
+    files.replaceWith(transcriptDocument)
+    setOutputType("TRANSCRIPT_SUMMARY")
+    applyWorkspaceResult(summary)
+    resetWorkspaceVersionsFromResult(summary, "generated")
+    setPersistedArtifactId(summary.id)
   }
 
   async function handleOpenClientArtifact(artifactId) {
@@ -1125,24 +654,10 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
     if (!nextArtifactId) return
 
     clearResultMessages()
+    setPrivacyPrompt(null)
     setPersistedArtifactId(nextArtifactId)
-    router.replace(buildWorkspaceHref(nextArtifactId), { scroll: false })
-  }
-
-  async function handleCopyRecentArtifact(artifactId) {
-    try {
-      const response = await fetch(`/api/documents/artifacts/${encodeURIComponent(artifactId)}`, {
-        cache: "no-store"
-      })
-      const payload = await response.json().catch(() => ({}))
-      if (!response.ok) throw new Error(payload?.message || t("documents.errors.copy_failed"))
-      await navigator.clipboard.writeText(String(payload?.artifact?.content || ""))
-      setRunError("")
-      setRunFeedback({ message: t("documents.feedback.copied") })
-    } catch (error) {
-      setRunFeedback(null)
-      setRunError(error?.message || t("documents.errors.copy_failed"))
-    }
+    syncWorkspaceUrl(nextArtifactId)
+    setView("text")
   }
 
   async function handleDeleteClientArtifact(artifactId) {
@@ -1162,9 +677,9 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
       setRecentArtifacts((current) => current.filter((artifact) => artifact.id !== nextArtifactId))
       if (workspaceResult?.id === nextArtifactId) {
         clearWorkspaceResult()
-        router.replace(buildWorkspaceHref(""), { scroll: false })
+        syncWorkspaceUrl("")
       }
-      setRunFeedback({ message: t("documents.feedback.artifact_deleted") })
+      setRunFeedback({ message: t("documents.drafting.feedback.deleted") })
     } catch (error) {
       setRunError(error?.message || t("documents.artifacts.errors.delete_failed"))
     }
@@ -1175,7 +690,7 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
     instructionOverride = instruction,
     documentsOverride = null,
     historyKind = "generated",
-    feedbackKey = "documents.agent_workspace.result_ready",
+    feedbackKey = "documents.drafting.feedback.text_ready",
     privacyDecision
   } = {}) {
     const effectiveInstruction = String(instructionOverride || "").trim()
@@ -1225,7 +740,7 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
         })
       })
       const payload = await response.json().catch(() => ({}))
-      if (!response.ok) throw new Error(payload?.message || t("documents.errors.create_artifact_failed"))
+      if (!response.ok) throw new Error(serverMessage(payload, t, "documents.errors.create_artifact_failed"))
       // Server andis kindla vastuse: kavatsus on lahendatud ja järgmine jooks on uus töö.
       generateIntentRef.current = null
 
@@ -1237,12 +752,12 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
       resetWorkspaceVersionsFromResult(nextDraft, historyKind)
       setPersistedArtifactId(nextDraftId)
       setRunFeedback({ message: t(feedbackKey) })
-      router.replace(buildWorkspaceHref(nextDraftId), { scroll: false })
+      syncWorkspaceUrl(nextDraftId)
       if (isClientRole) await refreshRecentArtifacts()
       return nextDraft
     } catch (error) {
       if (error?.name === "AbortError") {
-        setRunFeedback({ message: t("chat.error.interrupted") })
+        setRunFeedback({ message: t("documents.drafting.feedback.compose_stopped") })
         return null
       }
       setRunError(error?.message || t("documents.errors.create_artifact_failed"))
@@ -1311,7 +826,7 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
         })
       })
       const payload = await response.json().catch(() => ({}))
-      if (!response.ok) throw new Error(payload?.message || t("documents.artifacts.errors.update_failed"))
+      if (!response.ok) throw new Error(serverMessage(payload, t, "documents.artifacts.errors.update_failed"))
       refineIntentRef.current = null
 
       const nextContent = String(payload?.content || "")
@@ -1334,7 +849,7 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
         type: effectiveType,
         templateId: isClientRole ? "" : selectedTemplateId
       })
-      setRunFeedback({ message: t("documents.agent_workspace.refine_ready") })
+      setRunFeedback({ message: t("documents.drafting.feedback.refined") })
       setWorkspaceResult((current) =>
         current
           ? {
@@ -1347,7 +862,7 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
       return nextDraft
     } catch (error) {
       if (error?.name === "AbortError") {
-        setRunFeedback({ message: t("documents.agent_workspace.refine_continues_after_stop") })
+        setRunFeedback({ message: t("documents.drafting.feedback.refine_stopped") })
         return null
       }
       setRunError(error?.message || t("documents.artifacts.errors.update_failed"))
@@ -1360,83 +875,120 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
     }
   }
 
-  async function handleConversationSend(message, options = {}) {
-    const trimmed = String(message || "").trim()
-    if (!trimmed) return false
-    if (!selectedCount) {
-      setRunError(t(isClientRole ? "documents.agent_workspace.client_needs_documents" : "documents.agent_workspace.needs_documents"))
-      return false
-    }
-
-    const userMessage = appendConversationMessage({ role: "user", text: trimmed })
-
-    const shouldRefine =
-      hasWorkspaceResult &&
-      workspaceResult?.status === "DRAFT" &&
-      String(resultContent || "").trim().length > 0
-
-    if (shouldRefine) {
-      setRefineInstruction(trimmed)
-      const nextDraft = await handleRefine(trimmed, {
-        privacyDecision: options?.privacyDecision
-      })
-      if (!nextDraft?.content) {
-        removeConversationMessage(userMessage.id)
-        return false
+  /**
+   * Isikuandmete kontroll enne koostamist või täiendamist: sama päring ja sama
+   * töövoo nimi, mille vestluse sisestusriba dokumendirežiimis saatis. Kui tekstis
+   * on isikuandmeid, jääb töö seisma ja vaates on valikud (`answerPrivacy`); kui
+   * kontroll ise ei vasta, saab proovida uuesti või teksti muuta.
+   * @returns {Promise<{ text: string, privacyDecision?: { action: string } } | null>}
+   */
+  async function checkPrivacy(action, text) {
+    setCheckingPrivacy(action)
+    try {
+      const { response, payload } = await requestPrivacyCheck({ text, workflow: PRIVACY_WORKFLOW })
+      if (response.status === 401) {
+        setPrivacyPrompt(null)
+        setRunError(serverMessage(payload, t, "documents.drafting.privacy.signed_out"))
+        return null
       }
-      appendConversationMessage({
-        role: "ai",
-        text: formatArtifactMessage(nextDraft, t),
-        attachments: buildSourceAttachments(nextDraft.sources || workspaceResult?.sources, t)
-      })
-      return true
+      if (response.status === 409 && payload?.needsPrivacyConfirmation) {
+        setPrivacyPrompt({ ...payload, action, originalText: text })
+        return null
+      }
+      if (!response.ok || payload?.ok === false) {
+        throw new Error("privacy_check_failed")
+      }
+      return {
+        text: String(payload?.text || text),
+        privacyDecision: payload?.appliedDecision
+          ? { action: payload.appliedDecision }
+          : undefined
+      }
+    } catch {
+      setPrivacyPrompt({ action, originalText: text, unavailable: true, allowOriginal: false, redactedText: "", findings: [] })
+      return null
+    } finally {
+      setCheckingPrivacy("")
     }
-
-    setInstruction(trimmed)
-    const nextDraft = await runGeneration({
-      typeOverride: outputType,
-      instructionOverride: trimmed,
-      historyKind: hasWorkspaceResult ? "rerun" : "generated",
-      feedbackKey: isClientRole
-        ? "documents.agent_workspace.client_result_ready"
-        : hasWorkspaceResult
-          ? "documents.agent_workspace.quick_result_ready"
-          : "documents.agent_workspace.result_ready",
-      privacyDecision: options?.privacyDecision
-    })
-    if (!nextDraft?.content) {
-      removeConversationMessage(userMessage.id)
-      return false
-    }
-    appendConversationMessage({
-      role: "ai",
-      text: formatArtifactMessage(nextDraft, t),
-      attachments: buildSourceAttachments(nextDraft.sources, t)
-    })
-    return true
   }
 
-  async function handleAlternateOutput(option) {
-    if (!canRunAlternateOutput || !option?.value) return
-    const userMessage = appendConversationMessage({
-      role: "user",
-      text: t("documents.agent_workspace.quick_action_button", { type: option.label })
+  /**
+   * „Koosta tekst". `options` tuleb isikuandmete kontrolli valikust: seal on
+   * tekst juba valitud ja teist vajutust (salvestamata tekst) enam ei küsita.
+   */
+  function pressCompose(options = {}) {
+    const text = String(options.textOverride ?? instruction).trim()
+    const blocker = composeBlocker({
+      client: isClientRole,
+      documentCount: selectedCount,
+      type: outputType,
+      instruction: text,
+      limit: instructionMax,
+      busy: resultBusy || audio.summarizingAudio
     })
-    const nextDraft = await runGeneration({
-      typeOverride: option.value,
-      instructionOverride: instruction,
-      historyKind: "rerun",
-      feedbackKey: "documents.agent_workspace.quick_result_ready"
+    if (blocker) return undefined
+    return guarded("compose", hasDraftEdits && !options.confirmed, () =>
+      runPaid(async () => {
+        const privacy = options.skipPrivacy
+          ? { text, privacyDecision: options.privacyDecision }
+          : await checkPrivacy("compose", text)
+        if (!privacy) return
+        const nextText = String(privacy.text || text).trim()
+        setInstruction(nextText)
+        const nextDraft = await runGeneration({
+          typeOverride: outputType,
+          instructionOverride: nextText,
+          historyKind: hasWorkspaceResult ? "rerun" : "generated",
+          feedbackKey: hasWorkspaceResult ? "documents.drafting.feedback.new_text_ready" : "documents.drafting.feedback.text_ready",
+          privacyDecision: privacy.privacyDecision
+        })
+        /* Valmis tekst tuleb ette; lava ehitatakse tulemuse vaadetega uuesti. */
+        if (nextDraft) setView("text")
+      })
+    )
+  }
+
+  /** „Täienda teksti": täiendus läheb teele ainult selle nupu vajutusest. */
+  function pressRefine(options = {}) {
+    const text = String(options.textOverride ?? refineInstruction).trim()
+    const blocker = refineBlocker({
+      resultState,
+      documentCount: selectedCount,
+      content: resultContent,
+      instruction: text,
+      limit: instructionLimit(),
+      busy: resultBusy
     })
-    if (!nextDraft?.content) {
-      removeConversationMessage(userMessage.id)
-      return
+    if (blocker) return undefined
+    return runPaid(async () => {
+      const privacy = options.skipPrivacy
+        ? { text, privacyDecision: options.privacyDecision }
+        : await checkPrivacy("refine", text)
+      if (!privacy) return
+      const nextText = String(privacy.text || text).trim()
+      setRefineInstruction(nextText)
+      const nextDraft = await handleRefine(nextText, { privacyDecision: privacy.privacyDecision })
+      if (nextDraft) openView("text")
+    })
+  }
+
+  /* Isikuandmete kontrolli valik: muuda teksti, proovi kontrolli uuesti või
+     jätka sama tööd maskeeritud või algse tekstiga. */
+  function answerPrivacy(choice) {
+    const prompt = privacyPrompt
+    if (!prompt) return undefined
+    const press = prompt.action === "refine" ? pressRefine : pressCompose
+    setPrivacyPrompt(null)
+    if (choice === "retry") return press({ textOverride: prompt.originalText, confirmed: true })
+    if (choice === "redacted" && prompt.redactedText) {
+      return press({ skipPrivacy: true, textOverride: prompt.redactedText, privacyDecision: { action: "use_redacted" }, confirmed: true })
     }
-    appendConversationMessage({
-      role: "ai",
-      text: formatArtifactMessage(nextDraft, t),
-      attachments: buildSourceAttachments(nextDraft.sources, t)
-    })
+    if (choice === "original" && prompt.allowOriginal) {
+      return press({ skipPrivacy: true, textOverride: prompt.originalText, privacyDecision: { action: "send_original" }, confirmed: true })
+    }
+    /* „Muudan teksti": fookus tagasi juhise väljale. */
+    focusActive("textarea")
+    return undefined
   }
 
   function handleRestoreSavedVersion() {
@@ -1446,7 +998,8 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
     setResultContent(String(workspaceResult?.content || ""))
     setRefineInstruction("")
     setSelectedTemplateId(String(workspaceResult?.templateId || ""))
-    setRunFeedback({ message: t("documents.agent_workspace.saved_version_restored") })
+    setRunFeedback({ message: t("documents.drafting.feedback.saved_restored") })
+    focusActive()
   }
 
   function handleRestoreWorkspaceVersion(versionId) {
@@ -1458,15 +1011,17 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
     setResultContent(String(version.content || ""))
     setRefineInstruction("")
     setSelectedTemplateId(String(version.templateId || ""))
-    setRunFeedback({ message: t("documents.agent_workspace.version_restored") })
+    setRunFeedback({ message: t("documents.drafting.feedback.version_restored") })
+    /* Vajutatud „Taasta" kadus: see rida on nüüd praegune. */
+    focusActive()
   }
 
   function handleClearWorkspaceResult() {
     if (!canClearWorkspaceResult) return
     clearResultMessages()
     clearWorkspaceResult()
-    router.replace(buildWorkspaceHref(""), { scroll: false })
-    setRunFeedback({ message: t(isClientRole ? "documents.agent_workspace.client_result_removed" : "documents.agent_workspace.result_removed") })
+    syncWorkspaceUrl("")
+    setRunFeedback({ message: t(isClientRole ? "documents.drafting.feedback.cleared_client" : "documents.drafting.feedback.cleared") })
   }
 
   async function persistCurrentDraft({ suppressFeedback = false } = {}) {
@@ -1507,25 +1062,25 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
     const resultPayload = await response.json().catch(() => ({}))
     if (!response.ok) {
       throw new Error(
-        resultPayload?.message ||
-          (workspaceResult.id ? t("documents.artifacts.errors.update_failed") : t("documents.artifacts.errors.create_failed"))
+        serverMessage(
+          resultPayload,
+          t,
+          workspaceResult.id ? "documents.artifacts.errors.update_failed" : "documents.artifacts.errors.create_failed"
+        )
       )
     }
 
     const nextArtifact = resultPayload?.artifact || null
-    applyWorkspaceResult(nextArtifact)
+    applyWorkspaceResult(nextArtifact, { keepChoices: true })
     const nextArtifactId = String(nextArtifact?.id || "").trim()
     setPersistedArtifactId(nextArtifactId)
     setArtifactError("")
-    if (nextArtifactId) router.replace(buildWorkspaceHref(nextArtifactId), { scroll: false })
+    if (nextArtifactId) syncWorkspaceUrl(nextArtifactId)
     if (!suppressFeedback) {
       setRunFeedback({
-        message:
-          workspaceResult.id
-            ? t(isClientRole ? "documents.agent_workspace.client_saved" : "documents.feedback.saved")
-            : t(isClientRole ? "documents.agent_workspace.client_saved" : "documents.agent_workspace.saved_to_documents"),
+        message: t(isClientRole ? "documents.drafting.feedback.saved_client" : "documents.drafting.feedback.saved"),
         actionUrl: !isClientRole && nextArtifactId ? localizePath(`/documents/artifacts/${encodeURIComponent(nextArtifactId)}`, locale) : "",
-        actionLabel: !isClientRole && nextArtifactId ? t("documents.agent_workspace.open_detail") : ""
+        actionLabel: !isClientRole && nextArtifactId ? t("documents.drafting.text.open_detail") : ""
       })
     }
 
@@ -1534,7 +1089,7 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
   }
 
   async function handleSaveDraft() {
-    if (!canPersistResult || savingResult || approvingResult) return
+    if (!canPersistResult || refiningResult || savingResult || approvingResult) return
 
     setSavingResult(true)
     clearResultMessages()
@@ -1548,7 +1103,7 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
   }
 
   async function handleApprove() {
-    if (!canPersistResult || savingResult || approvingResult) return
+    if (!canPersistResult || refiningResult || savingResult || approvingResult) return
 
     setApprovingResult(true)
     clearResultMessages()
@@ -1567,13 +1122,13 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
       const payload = await response.json().catch(() => ({}))
       if (!response.ok) throw new Error(payload?.message || t("documents.artifacts.errors.approve_failed"))
 
-      applyWorkspaceResult(payload?.artifact || artifact)
+      applyWorkspaceResult(payload?.artifact || artifact, { keepChoices: true })
       setPersistedArtifactId(artifactId)
       setApprovalNotice({
-        message: t(isClientRole ? "documents.agent_workspace.client_finished" : "documents.feedback.approved"),
+        message: t(isClientRole ? "documents.drafting.feedback.finished" : "documents.feedback.approved"),
         downloadUrls: payload?.downloadUrls || payload?.artifact?.downloadUrls || {}
       })
-      router.replace(buildWorkspaceHref(artifactId), { scroll: false })
+      syncWorkspaceUrl(artifactId)
       if (isClientRole) await refreshRecentArtifacts()
     } catch (error) {
       setRunError(error?.message || t("documents.artifacts.errors.approve_failed"))
@@ -1592,47 +1147,6 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
     }
   }
 
-  function isWorkspaceVersionActive(version) {
-    return String(version?.title || "").trim() === String(resultTitle || "").trim() && String(version?.content || "") === String(resultContent || "")
-  }
-
-  const conversationItems = useMemo(() => {
-    const baseMessages = conversationMessages.length
-      ? conversationMessages
-      : [createWorkspaceMessage({ role: "ai", text: conversationIntroText })]
-
-    const items = baseMessages.map((message) => (
-      <ChatMessageItem
-        key={message.id}
-        role={message.role}
-        text={message.text}
-        attachments={message.attachments}
-        t={t}
-      />
-    ))
-
-    if (isAgentBusy) {
-      items.push(
-        <ChatMessageItem
-          key="agent-mode-working"
-          role="ai"
-          text={starting ? t("documents.agent_workspace.conversation_generating") : t("documents.agent_workspace.conversation_refining")}
-          t={t}
-        />
-      )
-    }
-
-    return items
-  }, [conversationIntroText, conversationMessages, isAgentBusy, starting, t])
-
-  function clientArtifactStatusLabel(status) {
-    return t(
-      status === "FINAL"
-        ? "documents.agent_workspace.client_status_final"
-        : "documents.agent_workspace.client_status_draft"
-    )
-  }
-
   const handleBack = useCallback(() => {
     if (typeof onBack === "function") {
       onBack()
@@ -1648,6 +1162,640 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
     })
   }, [backHref, onBack, router])
 
+  /* Kaks reeglit kogu ruumi kohta.
+     1. Klahvikordus ei vajuta ühtegi nuppu ega linki: all hoitud Enter ei tohi
+        läbida teist vajutust ega käivitada tasulist tööd uuesti kohe, kui
+        eelmine lõppes.
+     2. Esc-i salvestamata teksti korral peab kinni akna tasemel kuulaja
+        (vt „PLATVORMI SEES LAHKUMINE" ülal), mitte see funktsioon: nii kehtib
+        see ka siis, kui fookus ei ole ruumi sees. */
+  function onRootKeyDown(event) {
+    const target = event.target instanceof Element ? event.target : null
+    if (event.repeat && (event.key === "Enter" || event.key === " ") && target?.closest("button, a[href]")) {
+      event.preventDefault()
+    }
+  }
+
+  /* ---- Sõnad ja read vaadetele ------------------------------------------ */
+
+  const armed = confirmTexts(confirming)
+  /* Teise vajutuse ajal kannab nupp teise vajutuse sõnu. */
+  const labelFor = (key, label) => (confirming === key && armed?.labelKey ? t(armed.labelKey) : label)
+  /* Selgitus, miks teist vajutust küsitakse: selle vaate jalareal, mis on ees. */
+  const armedNote = armed ? t(armed.noteKey) : ""
+  const downloadLinks = (urls) => [
+    ...(urls?.docx ? [{ key: "docx", label: t("documents.actions.download_docx"), href: urls.docx }] : []),
+    ...(urls?.pdf ? [{ key: "pdf", label: t("documents.actions.download_pdf"), href: urls.pdf }] : [])
+  ]
+  const composeNotice = approvalNotice
+    ? { ok: approvalNotice.message, links: downloadLinks(approvalNotice.downloadUrls), onClose: () => setApprovalNotice(null), error: runError }
+    : runFeedback
+      ? {
+          ok: runFeedback.message,
+          links: runFeedback.actionUrl ? [{ key: "open", label: labelFor(`leave:${runFeedback.actionUrl}`, runFeedback.actionLabel), onClick: () => leaveTo(runFeedback.actionUrl) }] : [],
+          onClose: () => setRunFeedback(null),
+          error: runError
+        }
+      : { ok: "", error: runError }
+  /* Teade on selles vaates, mis on parajasti ees. */
+  const noticeFor = (key) => (key === activeView ? composeNotice : null)
+  const noteFor = (key, text = "", go = null) => {
+    const active = key === activeView
+    return footNote({ text: (active && armedNote) || text, go: active && armedNote ? null : go })
+  }
+  const viewTitle = (key) => t(`documents.drafting.views.${key}.title`)
+  const viewShort = (key) => t(`documents.drafting.views.${key}.short`)
+  const filesViewKey = isClientRole ? "files" : "sources"
+  const toFiles = { label: viewShort(filesViewKey), onClick: () => openView(filesViewKey) }
+
+  const typeOptions = isClientRole ? clientTaskOptions(t) : outputTypeOptions(t)
+  const clientTaskLabel = typeOptions.find((option) => option.value === clientTask)?.label || ""
+  const audienceChoices = audienceOptions(t)
+  const toneChoices = toneOptions(t)
+  const languageChoices = languageOptions(t)
+  const lengthChoices = lengthOptions(t)
+  const labelOf = (choices, value) => choices.find((option) => option.value === value)?.label || ""
+  const sheet = resultSheet(workspaceResult, { client: isClientRole, t, locale })
+  const hasTranscript = Boolean(audio.activeTranscriptDocument?.id)
+
+  const states = viewStates({
+    documentCount: selectedCount,
+    missingCount: missingDocumentIds.length,
+    templateChosen: Boolean(activeTemplate),
+    instruction,
+    resultState,
+    unsaved: hasDraftEdits,
+    refineText: refineInstruction,
+    versionCount: workspaceVersions.length,
+    recentCount: recentArtifacts.length,
+    audioChosen: Boolean(audio.selectedAudioSource),
+    hasTranscript,
+    transcriptUnsaved: audio.canSaveAudioTranscript,
+    summaryReady: summaryOpen
+  })
+  const filesSummary = documentsLoading
+    ? t("documents.loading")
+    : selectedCount
+      ? t("documents.drafting.summary.files", { count: selectedCount })
+      : t("documents.drafting.summary.no_files")
+  const summaries = {
+    sources: filesSummary,
+    files: filesSummary,
+    type: isComposableType(outputType) ? typeLabel(outputType, t) : t("documents.drafting.summary.no_type"),
+    task: clientTaskLabel,
+    template: activeTemplate ? activeTemplate.title || activeTemplate.originalName : t("documents.drafting.template.none"),
+    style: [labelOf(audienceChoices, audience), labelOf(toneChoices, tone), labelOf(languageChoices, language), labelOf(lengthChoices, length)].filter(Boolean).join(" · "),
+    instruction: snippet(instruction) || t("documents.drafting.summary.no_instruction"),
+    text:
+      resultState === "loading"
+        ? t("documents.loading")
+        : resultState === "failed"
+          ? t("documents.drafting.summary.text_failed")
+          : hasDraftEdits
+            ? t("documents.drafting.text.unsaved")
+            : snippet(resultTitle) || (isClientRole ? clientStatusLabel(workspaceResult?.status, t) : typeLabel(workspaceResult?.type, t)),
+    refine: snippet(refineInstruction) || t("documents.drafting.summary.no_refine"),
+    versions: t("documents.drafting.summary.versions", { count: workspaceVersions.length }),
+    approve: statusLabel(workspaceResult?.status, t),
+    finish: clientStatusLabel(workspaceResult?.status, t),
+    results: recentArtifactsLoading ? t("documents.loading") : t("documents.drafting.summary.results", { count: recentArtifacts.length }),
+    audio: audio.selectedAudioSource ? snippet(audio.selectedAudioSource.title || audio.selectedAudioSource.originalName) : t("documents.drafting.summary.no_audio"),
+    transcribe: hasTranscript ? t("documents.drafting.transcribe.exists") : t("documents.drafting.summary.no_transcript"),
+    review: !hasTranscript
+      ? t("documents.drafting.summary.no_transcript")
+      : audio.canSaveAudioTranscript
+        ? t("documents.drafting.review.unsaved")
+        : t("documents.drafting.summary.transcript_ready"),
+    summary: summaryOpen ? t("documents.drafting.summary_view.ready") : t("documents.drafting.summary.no_summary")
+  }
+  const steps = viewKeys.map((key) => ({
+    key,
+    label: viewTitle(key),
+    short: viewShort(key),
+    state: states[key],
+    summary: summaries[key],
+    free: FREE_VIEWS.includes(key)
+  }))
+
+  /* Isikuandmete kontrolli küsimus selle vaate jaoks, kust töö käivitati. */
+  const privacyFor = (action) => {
+    if (!privacyPrompt || privacyPrompt.action !== action) return null
+    const findings = (Array.isArray(privacyPrompt.findings) ? privacyPrompt.findings : []).map((finding) => finding?.label).filter(Boolean)
+    const main = privacyPrompt.unavailable ? "retry" : "redacted"
+    return {
+      title: t(privacyPrompt.unavailable ? "privacy_guard.unavailable_title" : "privacy_guard.title"),
+      text: t(privacyPrompt.unavailable ? "privacy_guard.unavailable" : "privacy_guard.body"),
+      findings: findings.join(", "),
+      choices: privacyChoices(privacyPrompt).map((choice) => ({
+        key: choice,
+        label: t(PRIVACY_CHOICE_KEYS[choice]),
+        primary: choice === main,
+        onPress: () => answerPrivacy(choice)
+      }))
+    }
+  }
+
+  /* Heli rajalt tagasi koostamise jadasse. Kui salvestamine käib, küsib
+     lahkumine teist vajutust: jada vahetus lõpetab salvestamise. */
+  const leaveAudio = (key, nextView) =>
+    guarded(key, recorderBusy(), () => {
+      setLevel("compose")
+      setView(nextView)
+    })
+
+  function renderSources(key, glow) {
+    const unavailable = !documentsLoading && selectedDocumentIds.length > 0 && documents.length === 0
+    const problems = [
+      ...(clientUploadError ? [{ key: "upload", text: clientUploadError }] : []),
+      ...(documentsError ? [{ key: "load", text: documentsError }] : []),
+      ...(missingDocumentIds.length ? [{ key: "missing", text: t("documents.drafting.sources.missing", { count: missingDocumentIds.length }) }] : [])
+    ]
+    const rows = sourceRows(documents, { t, locale })
+    if (isClientRole) {
+      return (
+        <SourcesView
+          t={t}
+          title={viewTitle(key)}
+          lead={t(clientTask === "FILL_FORM" ? "documents.drafting.files.lead_form" : "documents.drafting.files.lead", { count: CLIENT_MAX_DOCUMENTS })}
+          notice={noticeFor(key)}
+          loading={documentsLoading}
+          problems={problems}
+          rows={rows.map((row) => ({ ...row, onRemove: () => handleClientRemoveDocument(row.key) }))}
+          emptyText={t(unavailable ? "documents.drafting.sources.unavailable_client" : "documents.drafting.files.empty")}
+          upload={{
+            inputRef: clientUploadInputRef,
+            accept: ".pdf,.docx,.txt",
+            label: clientUploading ? t("documents.drafting.files.uploading") : t("documents.drafting.files.add"),
+            disabled: clientUploading || selectedCountLimitReached,
+            onPick: () => clientUploadInputRef.current?.click?.(),
+            onFile: (file) => void handleClientUpload(file)
+          }}
+          note={noteFor(key, selectedCountLimitReached ? t("documents.drafting.files.limit", { count: CLIENT_MAX_DOCUMENTS }) : "")}
+          glow={glow}
+        />
+      )
+    }
+    const documentsLeaveKey = `leave:${documentsHref}`
+    const earlierLeaveKey = `leave:${artifactResultsHref}`
+    return (
+      <SourcesView
+        t={t}
+        title={viewTitle(key)}
+        lead={rows.length ? t("documents.drafting.sources.lead") : undefined}
+        notice={noticeFor(key)}
+        loading={documentsLoading}
+        problems={problems}
+        rows={rows}
+        emptyText={t(unavailable ? "documents.drafting.sources.unavailable" : "documents.drafting.sources.empty")}
+        cardsLabel={t("documents.drafting.sources.ways")}
+        cards={[
+          {
+            key: "pick",
+            title: labelFor(documentsLeaveKey, t("documents.drafting.sources.pick_title")),
+            description: confirming === documentsLeaveKey ? armedNote : t("documents.drafting.sources.pick_desc"),
+            onClick: () => leaveTo(documentsHref)
+          },
+          {
+            key: "audio",
+            title: t("documents.drafting.sources.audio_title"),
+            description: t("documents.drafting.sources.audio_desc"),
+            onClick: () => {
+              disarmConfirm()
+              setLevel("audio")
+              setView(AUDIO_VIEWS[0])
+            }
+          },
+          {
+            key: "earlier",
+            title: labelFor(earlierLeaveKey, t("documents.drafting.sources.earlier_title")),
+            description: confirming === earlierLeaveKey ? armedNote : t("documents.drafting.sources.earlier_desc"),
+            onClick: () => leaveTo(artifactResultsHref)
+          }
+        ]}
+        glow={glow}
+      />
+    )
+  }
+
+  function renderStyle(key) {
+    /* Iga valik muudab ühte seadet ja võtab vana teate maha. */
+    const row = (rowKey, label, options, value, onChange) => ({
+      key: rowKey,
+      label,
+      options,
+      value,
+      onChange: (nextValue) => {
+        onChange(nextValue)
+        clearResultMessages()
+      }
+    })
+    return (
+      <StyleView
+        t={t}
+        title={viewTitle(key)}
+        notice={noticeFor(key)}
+        rows={[
+          row("audience", t("documents.drafting.style.audience"), audienceChoices, audience, (nextValue) => {
+            setAudienceTouched(true)
+            setAudience(nextValue)
+          }),
+          row("tone", t("documents.drafting.style.tone"), toneChoices, tone, setTone),
+          row("language", t("documents.drafting.style.language"), languageChoices, language, setLanguage),
+          row("length", t("documents.drafting.style.length"), lengthChoices, length, setLength)
+        ]}
+        note={noteFor(key)}
+      />
+    )
+  }
+
+  function renderInstruction(key, glow) {
+    const blocker = composeBlocker({
+      client: isClientRole,
+      documentCount: selectedCount,
+      type: outputType,
+      instruction,
+      limit: instructionMax,
+      busy: resultBusy || audio.summarizingAudio
+    })
+    const checking = checkingPrivacy === "compose"
+    const blockText = checking
+      ? t("documents.drafting.privacy.checking")
+      : starting
+        ? t("documents.drafting.instruction.working")
+        : blocker === "documents"
+          ? t(isClientRole ? "documents.drafting.instruction.needs_files_client" : "documents.drafting.instruction.needs_files")
+          : blocker === "type"
+            ? t("documents.drafting.instruction.needs_type")
+            : blocker === "instruction"
+              ? t("documents.drafting.instruction.needs_text")
+              : blocker === "too_long"
+                ? t("documents.artifacts.errors.instruction_too_long")
+                : hasWorkspaceResult && isWorkspaceResultSaved
+                  ? t(isClientRole ? "documents.drafting.instruction.replace_note_client" : "documents.drafting.instruction.replace_note")
+                  : ""
+    const go = starting || checking ? null : blocker === "documents" ? toFiles : blocker === "type" ? { label: viewShort("type"), onClick: () => openView("type") } : null
+    const privacy = privacyFor("compose")
+    return (
+      <InstructionView
+        t={t}
+        title={viewTitle(key)}
+        lead={t(isClientRole ? "documents.drafting.instruction.lead_client" : "documents.drafting.instruction.lead")}
+        notice={noticeFor(key)}
+        glow={glow}
+        prompt={{
+          label: viewTitle(key),
+          value: instruction,
+          limit: instructionMax,
+          onChange: (value) => {
+            setInstruction(value)
+            /* Küsimus käis eelmise teksti kohta. */
+            if (privacyPrompt?.action === "compose") setPrivacyPrompt(null)
+          },
+          chips: [
+            { key: "files", text: selectedCount ? t("documents.drafting.summary.files", { count: selectedCount }) : "" },
+            { key: "type", text: isClientRole ? clientTaskLabel : isComposableType(outputType) ? typeLabel(outputType, t) : "" },
+            { key: "audience", text: isClientRole ? "" : labelOf(audienceChoices, audience) },
+            { key: "template", text: !isClientRole && activeTemplate ? t("documents.drafting.instruction.template", { title: activeTemplate.title || activeTemplate.originalName }) : "" }
+          ].filter((chip) => chip.text),
+          privacy,
+          note: noteFor(key, blockText, go),
+          stop: starting ? { label: t("documents.drafting.instruction.stop"), onPress: handleStopAgentRequest } : null,
+          action: labelFor("compose", t(hasWorkspaceResult ? "documents.drafting.instruction.compose_again" : "documents.drafting.instruction.compose")),
+          disabled: Boolean(blocker) || checking || Boolean(privacy),
+          onPress: () => pressCompose()
+        }}
+      />
+    )
+  }
+
+  function renderText(key, glow) {
+    const editable = resultState === "draft"
+    const final = resultState === "final"
+    const saveDisabled = !canPersistResult || refiningResult || savingResult || approvingResult
+    const detailLeaveKey = `leave:${activeArtifactDetailHref}`
+    const actions = []
+    if (editable || final) {
+      if (isClientRole && isWorkspaceResultSaved) {
+        actions.push({
+          key: "delete",
+          label: labelFor("delete", t("documents.actions.delete")),
+          disabled: resultBusy,
+          /* Kustutamine on jäädav: alati teine vajutus. */
+          onClick: () => guarded("delete", true, () => void handleDeleteClientArtifact(workspaceResult.id))
+        })
+      }
+      actions.push({
+        key: "clear",
+        label: labelFor("clear", t("documents.drafting.text.clear")),
+        disabled: !canClearWorkspaceResult,
+        onClick: () => guarded("clear", hasDraftEdits, handleClearWorkspaceResult)
+      })
+      if (activeArtifactDetailHref) {
+        actions.push({
+          key: "detail",
+          label: labelFor(detailLeaveKey, t("documents.drafting.text.open_detail")),
+          onClick: () => leaveTo(activeArtifactDetailHref)
+        })
+      }
+      actions.push({ key: "copy", label: t("documents.actions.copy"), onClick: () => void handleCopyResult() })
+      if (editable) {
+        actions.push({
+          key: "save",
+          label: savingResult ? t("documents.actions.saving") : t(isClientRole ? "documents.actions.save" : "documents.actions.save_draft"),
+          variant: "primary",
+          disabled: saveDisabled,
+          onClick: () => void handleSaveDraft()
+        })
+      }
+    }
+    /* Mustand, mis on ainult selles tööruumis (ilma id-ta), tuleb enne salvestada;
+       salvestatud mustandil ütleb rida, kui toimetis on salvestamata muudatusi. */
+    const flag = !editable
+      ? ""
+      : !isWorkspaceResultSaved
+        ? t("documents.drafting.text.only_here")
+        : hasDraftEdits
+          ? t("documents.drafting.text.unsaved")
+          : ""
+    return (
+      <TextView
+        t={t}
+        title={viewTitle(key)}
+        notice={noticeFor(key)}
+        state={resultState}
+        error={artifactError}
+        sheet={sheet}
+        flag={flag}
+        editor={
+          editable
+            ? {
+                title: resultTitle,
+                onTitle: (value) => {
+                  setResultTitle(value)
+                  clearResultMessages()
+                },
+                content: resultContent,
+                onContent: (value) => {
+                  setResultContent(value)
+                  clearResultMessages()
+                }
+              }
+            : null
+        }
+        text={workspaceResult?.content || ""}
+        sourcesLabel={t("documents.drafting.text.sources")}
+        note={noteFor(
+          key,
+          final ? t("documents.drafting.text.final_note") : "",
+          final ? { label: t("documents.drafting.text.downloads"), onClick: () => openView(isClientRole ? "finish" : "approve") } : null
+        )}
+        actions={actions}
+        glow={glow}
+      />
+    )
+  }
+
+  function renderRefine(key, glow) {
+    const blocker = refineBlocker({
+      resultState,
+      documentCount: selectedCount,
+      content: resultContent,
+      instruction: refineInstruction,
+      limit: instructionLimit(),
+      busy: resultBusy
+    })
+    const checking = checkingPrivacy === "refine"
+    const blockText = checking
+      ? t("documents.drafting.privacy.checking")
+      : refiningResult
+        ? t("documents.drafting.refine.working")
+        : blocker === "documents"
+          ? t(isClientRole ? "documents.drafting.refine.needs_files_client" : "documents.drafting.refine.needs_files")
+          : blocker === "empty_text"
+            ? t("documents.drafting.refine.needs_content")
+            : blocker === "instruction"
+              ? t("documents.drafting.refine.needs_text")
+              : blocker === "too_long"
+                ? t("documents.artifacts.errors.instruction_too_long")
+                : ""
+    const privacy = privacyFor("refine")
+    return (
+      <RefineView
+        t={t}
+        title={viewTitle(key)}
+        lead={t("documents.drafting.refine.lead")}
+        notice={noticeFor(key)}
+        glow={glow}
+        prompt={{
+          label: viewTitle(key),
+          value: refineInstruction,
+          limit: instructionLimit(),
+          rows: 5,
+          onChange: (value) => {
+            setRefineInstruction(value)
+            if (privacyPrompt?.action === "refine") setPrivacyPrompt(null)
+          },
+          privacy,
+          note: noteFor(key, blockText, !refiningResult && !checking && blocker === "documents" ? toFiles : null),
+          stop: refiningResult ? { label: t("documents.drafting.instruction.stop"), onPress: handleStopAgentRequest } : null,
+          action: t("documents.drafting.refine.action"),
+          disabled: Boolean(blocker) || checking || Boolean(privacy),
+          onPress: () => pressRefine()
+        }}
+      />
+    )
+  }
+
+  function renderApprove(key, glow) {
+    const final = resultState === "final"
+    const disabled = !canPersistResult || refiningResult || savingResult || approvingResult
+    return (
+      <ApproveView
+        t={t}
+        title={viewTitle(key)}
+        lead={
+          final
+            ? t(isClientRole ? "documents.drafting.finish.done" : "documents.drafting.approve.done")
+            : t(isClientRole ? "documents.drafting.finish.lead" : "documents.drafting.approve.lead")
+        }
+        notice={noticeFor(key)}
+        sheet={sheet}
+        approve={
+          final
+            ? null
+            : {
+                label: approvingResult
+                  ? t("documents.actions.approving")
+                  : labelFor(key, t(isClientRole ? "documents.drafting.finish.action" : "documents.actions.approve")),
+                disabled,
+                /* Kinnitatud teksti ei saa enam muuta: alati teine vajutus. */
+                onClick: () => guarded(key, true, () => void handleApprove())
+              }
+        }
+        downloads={downloadLinks(workspaceResult?.downloadUrls)}
+        note={noteFor(key, !final && !canPersistResult ? t("documents.drafting.refine.needs_content") : "")}
+        glow={glow}
+      />
+    )
+  }
+
+  const renderView = (step, stepIndex, flight) => {
+    const key = step.key
+    /* Lava hoiab kõik vaated lehel, aga põhinupp joonistab oma läike eraldi
+       pinnale ja brauser lubab neid korraga piiratud arvu: läige on ainult ees
+       oleval vaatel. */
+    const glow = flight?.isActive !== false
+    if (activeLevel === "audio") {
+      return (
+        <AudioPath
+          viewKey={key}
+          active={key === activeView}
+          glow={glow}
+          t={t}
+          locale={locale}
+          audio={audio}
+          summaryOpen={summaryOpen}
+          press={{ guarded, runPaid, labelFor, armedNote }}
+          language={{ options: languageChoices, value: language, onChange: setLanguage }}
+          unsavedText={hasDraftEdits}
+          recorderBusy={recorderBusy}
+          viewTitle={viewTitle}
+          viewShort={viewShort}
+          onView={openView}
+          onClose={() => leaveAudio("exit", "sources")}
+          onOpenResult={() => leaveAudio("exit:result", "text")}
+        />
+      )
+    }
+    switch (key) {
+      case "sources":
+      case "files":
+        return renderSources(key, glow)
+
+      case "type":
+        return (
+          <ChoiceView
+            t={t}
+            title={viewTitle(key)}
+            question={t("documents.drafting.type.question")}
+            notice={noticeFor(key)}
+            options={typeOptions}
+            value={outputType}
+            onChange={(nextValue) => {
+              setOutputType(nextValue)
+              clearResultMessages()
+            }}
+            note={noteFor(key, hasWorkspaceResult ? t("documents.drafting.type.next_note") : "")}
+          />
+        )
+
+      case "task":
+        return (
+          <ChoiceView
+            t={t}
+            title={viewTitle(key)}
+            question={t("documents.drafting.task.question")}
+            notice={noticeFor(key)}
+            options={typeOptions}
+            value={clientTask}
+            onChange={(nextValue) => {
+              setClientTask(nextValue)
+              clearResultMessages()
+            }}
+            note={noteFor(key)}
+          />
+        )
+
+      case "template": {
+        const leaveKey = `leave:${documentsHref}`
+        return (
+          <TemplateView
+            t={t}
+            title={viewTitle(key)}
+            lead={t("documents.drafting.template.lead")}
+            notice={noticeFor(key)}
+            loading={templatesLoading}
+            error={templatesError}
+            options={templateOptions(compatibleTemplates, t)}
+            value={selectedTemplateId}
+            onChange={(nextValue) => {
+              setSelectedTemplateId(nextValue)
+              clearResultMessages()
+            }}
+            status={templatesLoading || templatesError || compatibleTemplates.length ? "" : t("documents.drafting.template.empty")}
+            link={{ label: labelFor(leaveKey, t("documents.drafting.template.open_documents")), onClick: () => leaveTo(documentsHref) }}
+            note={noteFor(key)}
+          />
+        )
+      }
+
+      case "style":
+        return renderStyle(key)
+
+      case "instruction":
+        return renderInstruction(key, glow)
+
+      case "text":
+        return renderText(key, glow)
+
+      case "refine":
+        return renderRefine(key, glow)
+
+      case "versions":
+        return (
+          <VersionsView
+            t={t}
+            title={viewTitle(key)}
+            lead={t("documents.drafting.versions.lead", { count: WORKSPACE_VERSION_LIMIT })}
+            notice={noticeFor(key)}
+            rows={versionRows(workspaceVersions, { title: resultTitle, content: resultContent, t, locale }).map((row) => ({
+              ...row,
+              restoreLabel: labelFor(`version:${row.key}`, t("documents.drafting.versions.restore")),
+              /* Rida, mis on juba toimetis, ei vaja taastamist. */
+              onRestore: row.current ? null : () => guarded(`version:${row.key}`, versionTextAtRisk, () => handleRestoreWorkspaceVersion(row.key))
+            }))}
+            emptyText={t("documents.drafting.versions.empty")}
+            saved={
+              canRestoreSavedVersion
+                ? {
+                    label: labelFor("saved", t("documents.drafting.versions.restore_saved")),
+                    onClick: () => guarded("saved", versionTextAtRisk, handleRestoreSavedVersion)
+                  }
+                : null
+            }
+            note={noteFor(key)}
+          />
+        )
+
+      case "approve":
+      case "finish":
+        return renderApprove(key, glow)
+
+      case "results":
+        return (
+          <ResultsView
+            t={t}
+            title={viewTitle(key)}
+            lead={t("documents.drafting.results.lead", { count: RECENT_RESULTS_LIMIT })}
+            notice={noticeFor(key)}
+            loading={recentArtifactsLoading}
+            error={recentArtifactsError}
+            rows={recentResultRows(recentArtifacts, { currentId: workspaceResult?.id || "", t, locale }).map((row) => ({
+              ...row,
+              openLabel: labelFor(`open:${row.key}`, t("documents.actions.open")),
+              /* Teise tulemuse avamine asendab toimetis oleva teksti. */
+              onOpen: () => (row.current ? openView("text") : guarded(`open:${row.key}`, hasDraftEdits, () => void handleOpenClientArtifact(row.key)))
+            }))}
+            emptyText={t("documents.drafting.results.empty")}
+            note={noteFor(key)}
+          />
+        )
+
+      default:
+        return null
+    }
+  }
+
   const content = (
     <>
       {isAdmin && !embedded ? (
@@ -1659,967 +1807,46 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
           ariaLabel={t("chat.workspace.view_role.label", "Töölaua vaade")}
         />
       ) : null}
-      <div className="feature-page feature-page--agent" data-dock-scroll-behavior="recede">
-        <div className="feature-page__surface agent-mode-page">
-          {!hideHeader ? (
-            <SubpageHeader
-              onBack={handleBack}
-              backAriaLabel={t("documents.agent_workspace.back_to_chat")}
-              showBack={false}
-              anchorBack={false}
-              /* ⓘ elab paneeli nurgas × kõrval (PanelFrame); vt
-                 usePanelInfoSlot ülalpool. */
-            >
-              {t("chat.tools.agent_mode")}
-            </SubpageHeader>
-          ) : null}
-          <section className="agent-mode-workspace">
-          {documentsError ? <div>{documentsError}</div> : null}
-          {runError ? <div>{runError}</div> : null}
-          {artifactError ? <div>{artifactError}</div> : null}
-          {missingDocumentIds.length ? (
-            <div>
-              {t("documents.agent_workspace.missing_documents", { count: missingDocumentIds.length })}
-            </div>
-          ) : null}
-          {runFeedback ? (
-            <div>
-              <span>{runFeedback.message}</span>
-              <div>
-                {runFeedback.actionUrl ? <Link href={runFeedback.actionUrl}>{runFeedback.actionLabel}</Link> : null}
-                <button type="button" onClick={() => setRunFeedback(null)}>{t("common.close")}</button>
-              </div>
-            </div>
-          ) : null}
-          {approvalNotice ? (
-            <div>
-              <span>{approvalNotice.message}</span>
-              <div>
-                {approvalNotice.downloadUrls?.docx ? <a href={approvalNotice.downloadUrls.docx}>{t("documents.actions.download_docx")}</a> : null}
-                {approvalNotice.downloadUrls?.pdf ? <a href={approvalNotice.downloadUrls.pdf}>{t("documents.actions.download_pdf")}</a> : null}
-                <button type="button" onClick={() => setApprovalNotice(null)}>{t("common.close")}</button>
-              </div>
-            </div>
-          ) : null}
+      {/* `onKeyDown` kuulab siin oma laste klahvivajutusi (vt `onRootKeyDown`);
+          element ise ei ole vajutatav. */}
+      <div className={styles.page} data-dock-scroll-behavior="recede" ref={surfaceRef} onKeyDown={onRootKeyDown}>
+        {/* Lehe nimi on kiirmenüüs; pealkiri jääb ekraanilugejale. */}
+        {!hideHeader ? (
+          <SubpageHeader
+            onBack={handleBack}
+            backAriaLabel={t("documents.drafting.back_to_chat")}
+            showBack={false}
+            anchorBack={false}
+            headerClassName="sr-only"
+            /* ⓘ elab paneeli nurgas × kõrval (PanelFrame); vt
+               usePanelInfoSlot ülalpool. */
+          >
+            {t("chat.tools.agent_mode")}
+          </SubpageHeader>
+        ) : null}
 
-          <div>
-            <Panel variant="secondary" padding="sm">
-              <div>
-                <h2>
-                  {t(isClientRole ? "documents.agent_workspace.client_task_title" : "documents.agent_workspace.goal_title")}
-                </h2>
-                <p>
-                  {t(isClientRole ? "documents.agent_workspace.client_task_description" : "documents.agent_workspace.goal_description")}
-                </p>
-              </div>
-
-              <div>
-                {!isClientRole ? (
-                  <div>
-                    <div>
-                      <div>
-                        <span>{t("documents.agent_workspace.template_label")}</span>
-                        <p>{t("documents.agent_workspace.template_description")}</p>
-                      </div>
-                      <div>
-                      <DocumentsDropdown
-                        ariaLabel={t("documents.agent_workspace.template_label")}
-                        value={selectedTemplateId}
-                        disabled={templatesLoading || (!compatibleTemplates.length && !selectedTemplateId)}
-                        onChange={(nextValue) => {
-                          setSelectedTemplateId(nextValue)
-                          clearResultMessages()
-                        }}
-                        options={templateDropdownOptions}
-                        placeholder={t("documents.agent_workspace.template_none")}
-                      />
-                      </div>
-                    </div>
-                    <p>
-                      {templatesLoading
-                        ? t("documents.agent_workspace.template_loading")
-                        : templatesError
-                          ? templatesError
-                          : activeTemplate
-                            ? t("documents.agent_workspace.template_selected", { title: activeTemplate.title || activeTemplate.originalName })
-                            : compatibleTemplates.length
-                              ? t("documents.agent_workspace.template_help")
-                              : t("documents.agent_workspace.template_empty")}
-                    </p>
-                  </div>
-                ) : null}
-
-                <div>
-                  <span>
-                    {t(isClientRole ? "documents.agent_workspace.client_task_label" : "documents.agent_workspace.output_type_label")}
-                  </span>
-                  {!isClientRole ? (
-                    <p>
-                      {t("documents.agent_workspace.output_type_description")}
-                    </p>
-                  ) : null}
-                  <div>
-                    {outputTypeOptions.map((option) => (
-                      <OptionCard
-                        key={option.value}
-                        type="radio"
-                        name="agent-output-type"
-                        value={option.value}
-                        checked={(isClientRole ? clientTask : outputType) === option.value}
-                        onChange={(event) => {
-                          const nextValue = event.target.value
-                          if (isClientRole) {
-                            setClientTask(nextValue)
-                          } else {
-                            setOutputType(nextValue)
-                          }
-                          clearResultMessages()
-                        }}
-                        fitTextLines={2}
-                      >
-                        <span>
-                          {option.label}
-                        </span>
-                      </OptionCard>
-                    ))}
-                  </div>
-                </div>
-
-                {!isClientRole ? (
-                  <>
-                    <div>
-                      <div>
-                        <div>
-                          <div>
-                            <h3>
-                              {t("documents.agent_workspace.audio_input.title")}
-                            </h3>
-                            <p>
-                              {t("documents.agent_workspace.audio_input.description")}
-                            </p>
-                          </div>
-
-                          <div aria-label={t("documents.agent_workspace.audio_input.steps_label")}>
-                            {["step_audio", "step_transcript", "step_review", "step_summary"].map((stepKey) => (
-                              <span key={stepKey}>
-                                {t(`documents.agent_workspace.audio_input.${stepKey}`)}
-                              </span>
-                            ))}
-                          </div>
-
-                          <div>
-                            {audioInputSourceOptions.map((option) => (
-                              <OptionCard
-                                key={option.value}
-                                type="radio"
-                                name="agent-audio-source"
-                                value={option.value}
-                                checked={audioSourceMode === option.value}
-                                onChange={(event) => {
-                                  setAudioSourceMode(event.target.value)
-                                  setAudioWorkflowError("")
-                                  setAudioWorkflowFeedback("")
-                                }}
-                                fitTextLines={2}
-                              >
-                                <span>
-                                  {t(option.labelKey)}
-                                </span>
-                              </OptionCard>
-                            ))}
-                          </div>
-
-                          {audioSourceMode === "choose_existing" ? (
-                            <div>
-                              <div>
-                                <h4>
-                                  {t("documents.agent_workspace.audio_input.existing_title")}
-                                </h4>
-                                <p>
-                                  {t("documents.agent_workspace.audio_input.no_auto_transcription")}
-                                </p>
-                              </div>
-                              {audioSourcesLoading ? (
-                                <div>
-                                  {t("documents.agent_workspace.audio_input.existing_loading")}
-                                </div>
-                              ) : null}
-                              {!audioSourcesLoading && !audioSources.length ? (
-                                <div>
-                                  {t("documents.agent_workspace.audio_input.existing_empty")}
-                                </div>
-                              ) : null}
-                              {!audioSourcesLoading && audioSources.length ? (
-                                <div>
-                                  {audioSources.map((source) => {
-                                    const isSelected = source.id === selectedAudioDocumentId
-                                    const sourceLabel = source.kind === "CALL_AUDIO_RECORDING"
-                                      ? t("documents.agent_workspace.audio_input.source_recording")
-                                      : source.recording
-                                        ? t("documents.agent_workspace.audio_input.source_recorded")
-                                        : t("documents.agent_workspace.audio_input.source_upload")
-                                    return (
-                                      <article key={source.id}>
-                                        <div>
-                                          <div>
-                                            <div>{source.title || source.originalName}</div>
-                                            <div>
-                                              {sourceLabel} - {formatDate(source.createdAt, locale)}
-                                            </div>
-                                            {source.callRecording?.durationSeconds ? (
-                                              <div>
-                                                {t("documents.agent_workspace.audio_input.duration", { duration: `${source.callRecording.durationSeconds}s` })}
-                                              </div>
-                                            ) : null}
-                                            {source.callRecording?.purpose || source.callRecording?.purposeText ? (
-                                              <div>
-                                                {t("documents.agent_workspace.audio_input.purpose", { purpose: source.callRecording.purposeText || source.callRecording.purpose })}
-                                              </div>
-                                            ) : null}
-                                            {source.callRecording?.callStartedAt ? (
-                                              <div>
-                                                {t("documents.agent_workspace.audio_input.room_context", { date: formatDate(source.callRecording.callStartedAt, locale) })}
-                                              </div>
-                                            ) : null}
-                                          </div>
-                                          <Button
-                                            type="button"
-                                            size="sm"
-                                            variant={isSelected ? "primary" : "linkBrand"}
-                                            onClick={() => void handleSelectAudioSource(source.id)}
-                                          >
-                                            {t("documents.agent_workspace.audio_input.choose_existing")}
-                                          </Button>
-                                        </div>
-                                      </article>
-                                    )
-                                  })}
-                                </div>
-                              ) : null}
-                            </div>
-                          ) : null}
-
-                          {audioSourceMode === "record_now" ? (
-                            <div>
-                              <p>
-                                {t("documents.agent_workspace.audio_input.record_help")}
-                              </p>
-                              <SessionRecorder
-                                ButtonComponent={Button}
-                                buttonProps={{ size: "sm" }}
-                                onPartSaved={handleRecordedPart}
-                              />
-                            </div>
-                          ) : null}
-
-                          {audioSourceMode === "upload_file" ? (
-                            <div>
-                              <input
-                                ref={audioUploadInputRef}
-                                type="file"
-                                accept="audio/*,.ogg,.oga,.opus,.webm,.mp3,.m4a,.wav,.flac,.aac"
-                                className="hidden"
-                                onChange={handleAudioUpload}
-                              />
-                              <div>
-                                <Button
-                                  type="button"
-                                  size="sm"
-                                  onClick={() => audioUploadInputRef.current?.click()}
-                                  disabled={audioUploading}
-                                >
-                                  {audioUploading ? t("documents.agent_workspace.audio_input.uploading") : t("documents.agent_workspace.audio_input.upload_label")}
-                                </Button>
-                              </div>
-                              <p>
-                                {t("documents.agent_workspace.audio_input.upload_help")}
-                              </p>
-                            </div>
-                          ) : null}
-
-                          {selectedAudioSource ? (
-                            <div>
-                              {t("documents.agent_workspace.audio_input.selected_source", { title: selectedAudioSource.title || selectedAudioSource.originalName })}
-                            </div>
-                          ) : null}
-
-                          <div>
-                            <Button
-                              type="button"
-                              size="sm"
-                              onClick={() => void handleTranscribeAudio()}
-                              disabled={!canTranscribeAudio}
-                            >
-                              {transcribingAudio ? t("documents.agent_workspace.audio_input.transcribing") : t("documents.agent_workspace.audio_input.transcribe")}
-                            </Button>
-                          </div>
-
-                          {activeTranscriptDocument ? (
-                            <div>
-                              <div>
-                                <h4>
-                                  {t("documents.agent_workspace.audio_input.transcript_title")}
-                                </h4>
-                                <p>
-                                  {t("documents.agent_workspace.audio_input.transcript_ready")}{" "}
-                                  <a href={`/api/documents/${encodeURIComponent(activeTranscriptDocument.id)}/download`}>
-                                    {t("documents.agent_workspace.audio_input.transcript_link")}
-                                  </a>
-                                </p>
-                                <p>
-                                  {t("documents.agent_workspace.audio_input.transcript_edit_help")}
-                                </p>
-                              </div>
-                              <label>
-                                <span>
-                                  {t("documents.agent_workspace.audio_input.transcript_edit_label")}
-                                </span>
-                                <Textarea
-                                  value={audioTranscriptDraft}
-                                  onChange={(event) => setAudioTranscriptDraft(event.target.value)}
-                                  rows={8}
-                                />
-                              </label>
-                              <div>
-                                <Button
-                                  type="button"
-                                  size="sm"
-                                  variant="primary"
-                                  onClick={() => void handleSaveAudioTranscript()}
-                                  disabled={!canSaveAudioTranscript || savingAudioTranscript}
-                                >
-                                  {savingAudioTranscript ? t("documents.agent_workspace.audio_input.saving_transcript") : t("documents.agent_workspace.audio_input.save_transcript")}
-                                </Button>
-                              </div>
-                            </div>
-                          ) : null}
-
-                          {activeTranscriptDocument ? (
-                            <div>
-                              <div>
-                                <h4>
-                                  {t("documents.agent_workspace.audio_input.summary_title")}
-                                </h4>
-                                <p>
-                                  {t("documents.agent_workspace.audio_input.summary_help")}
-                                </p>
-                                {audioSummaryArtifact?.id ? (
-                                  <p>
-                                    {t("documents.agent_workspace.audio_input.summary_ready")}{" "}
-                                    <Link href={localizePath(`/documents/artifacts/${encodeURIComponent(audioSummaryArtifact.id)}`, locale)}>
-                                      {t("documents.agent_workspace.audio_input.summary_link")}
-                                    </Link>
-                                  </p>
-                                ) : null}
-                              </div>
-                              <div>
-                                <Button
-                                  type="button"
-                                  size="sm"
-                                  onClick={() => void handleCreateAudioSummary()}
-                                  disabled={!canCreateAudioSummary}
-                                >
-                                  {summarizingAudio ? t("documents.agent_workspace.audio_input.summary_creating") : t("documents.agent_workspace.audio_input.create_summary")}
-                                </Button>
-                              </div>
-                            </div>
-                          ) : null}
-
-                          <p>
-                            {t("documents.agent_workspace.audio_input.processing_note")}
-                          </p>
-                          {audioSourcesError || audioWorkflowError ? (
-                            <div>
-                              {audioWorkflowError || audioSourcesError}
-                            </div>
-                          ) : null}
-                          {audioWorkflowFeedback ? (
-                            <div>
-                              {audioWorkflowFeedback}
-                            </div>
-                          ) : null}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div>
-                      <span>{t("chat.deep_research.scope_output_label")}</span>
-                      <p>
-                        {t("documents.agent_workspace.scope_output_description")}
-                      </p>
-                      <div>
-                        {audienceOptions.map((option) => (
-                          <OptionCard
-                            key={option.value}
-                            type="radio"
-                            name="agent-audience"
-                            value={option.value}
-                            checked={audience === option.value}
-                            onChange={(event) => {
-                              setAudienceTouched(true)
-                              setAudience(event.target.value)
-                              clearResultMessages()
-                            }}
-                            fitTextLines={2}
-                          >
-                            <span>
-                              {option.label}
-                            </span>
-                          </OptionCard>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <div>
-                        <span>{t("documents.agent_workspace.style_settings_label")}</span>
-                        <p>
-                          {t("documents.agent_workspace.style_settings_description")}
-                        </p>
-                      </div>
-                      <label>
-                        <span>{t("documents.agent_workspace.tone_label")}</span>
-                        <DocumentsDropdown
-                          ariaLabel={t("documents.agent_workspace.tone_label")}
-                          value={tone}
-                          onChange={(nextValue) => {
-                            setTone(nextValue)
-                            clearResultMessages()
-                          }}
-                          options={toneOptions}
-                        />
-                      </label>
-                      <label>
-                        <span>{t("documents.agent_workspace.language_label")}</span>
-                        <DocumentsDropdown
-                          ariaLabel={t("documents.agent_workspace.language_label")}
-                          value={language}
-                          onChange={(nextValue) => {
-                            setLanguage(nextValue)
-                            clearResultMessages()
-                          }}
-                          options={languageOptions}
-                        />
-                      </label>
-                      <label>
-                        <span>{t("documents.agent_workspace.length_label")}</span>
-                        <DocumentsDropdown
-                          ariaLabel={t("documents.agent_workspace.length_label")}
-                          value={length}
-                          onChange={(nextValue) => {
-                            setLength(nextValue)
-                            clearResultMessages()
-                          }}
-                          options={lengthOptions}
-                        />
-                      </label>
-                    </div>
-                  </>
-                ) : null}
-              </div>
-            </Panel>
-
-            <section>
-              <Panel variant="secondary" padding="sm">
-                <div>
-                  <div>
-                    <h2>{t("documents.agent_workspace.selected_documents_title")}</h2>
-                    <p>
-                      {t(
-                        isClientRole
-                          ? clientTask === "FILL_FORM"
-                            ? "documents.agent_workspace.client_selected_documents_fill_form_description"
-                            : "documents.agent_workspace.client_selected_documents_description"
-                          : "documents.agent_workspace.selected_documents_description"
-                      )}
-                    </p>
-                  </div>
-                  <div>
-                    {!isClientRole && selectedDocumentIds.length ? (
-                      <Link href={documentsHref}>
-                        {t("documents.back_to_documents")}
-                      </Link>
-                    ) : null}
-                  </div>
-                </div>
-
-                {isClientRole ? (
-                  <div>
-                    <Button
-                      type="button"
-                      size="sm"
-                      onClick={() => clientUploadInputRef.current?.click?.()}
-                      disabled={clientUploading || selectedCountLimitReached}
-                    >
-                      {clientUploading ? t("documents.agent_workspace.client_uploading") : t("documents.agent_workspace.client_upload_button")}
-                    </Button>
-                    <input
-                      ref={clientUploadInputRef}
-                      type="file"
-                      accept=".pdf,.docx,.txt"
-                      className="sr-only"
-                      onChange={handleClientUpload}
-                    />
-                  </div>
-                ) : null}
-
-                <div>
-                  {clientUploadError ? (
-                    <div>
-                      {clientUploadError}
-                    </div>
-                  ) : null}
-                  {documentsLoading ? <div>{t("documents.loading")}</div> : null}
-                  {!documentsLoading && !selectedDocumentIds.length ? (
-                    <div>
-                      <div>
-                        <p>{t(isClientRole ? "documents.agent_workspace.client_empty_documents" : "documents.agent_workspace.empty_documents")}</p>
-                      </div>
-                      {!isClientRole ? (
-                        <Button as="a" href={documentsHref} size="sm">
-                          {t("documents.agent_workspace.select_documents")}
-                        </Button>
-                      ) : null}
-                    </div>
-                  ) : null}
-                  {!documentsLoading && selectedDocumentIds.length > 0 && documents.length === 0 ? (
-                    <div>
-                      <p>{t("documents.agent_workspace.unavailable_documents")}</p>
-                      {!isClientRole ? (
-                        <Button as="a" href={documentsHref} size="sm">
-                          {t("documents.back_to_documents")}
-                        </Button>
-                      ) : null}
-                    </div>
-                  ) : null}
-                  {documents.map((document) => (
-                    <article key={document.id}>
-                      <div>
-                        <div>
-                          <div>
-                            <h3>{document.title}</h3>
-                            <span>{kindLabel(document.kind, t)}</span>
-                            {document.templateFor ? <span>{templateForLabel(document.templateFor, t)}</span> : null}
-                          </div>
-                          <p>
-                            {document.originalName} - {formatFileSize(document.size)} - {formatDate(document.updatedAt, locale)}
-                          </p>
-                        </div>
-                        <div>
-                          <Button as="a" href={`/api/documents/${encodeURIComponent(document.id)}/download`} size="sm" variant="linkBrand">
-                            {t("documents.actions.download")}
-                          </Button>
-                          {isClientRole ? (
-                            <Button
-                              type="button"
-                              size="sm"
-                              variant="danger"
-                              onClick={() => void handleClientRemoveDocument(document.id)}
-                            >
-                              {t("documents.agent_workspace.client_remove_document")}
-                            </Button>
-                          ) : null}
-                        </div>
-                      </div>
-                    </article>
-                  ))}
-                </div>
-              </Panel>
-            </section>
-
-            <section>
-              <Panel variant="secondary" padding="sm">
-                <div>
-                  <h2>{t("documents.agent_workspace.conversation_title")}</h2>
-                  <p>
-                    {t(isClientRole ? "documents.agent_workspace.client_conversation_description" : "documents.agent_workspace.conversation_description")}
-                  </p>
-                </div>
-
-                <div>
-                  <div>
-                    <span>
-                      {t("documents.agent_workspace.summary_documents", { count: selectedCount })}
-                    </span>
-                    <span>
-                      {t("documents.agent_workspace.summary_output", { type: isClientRole ? clientResultLabel : artifactTypeLabel(outputType, t) })}
-                    </span>
-                    {!isClientRole ? (
-                      <span>
-                        {audienceOptions.find((option) => option.value === audience)?.label}
-                      </span>
-                    ) : null}
-                    {!isClientRole && activeTemplate ? (
-                      <span>
-                        {t("documents.agent_workspace.summary_template", { title: activeTemplate.title || activeTemplate.originalName })}
-                      </span>
-                    ) : null}
-                  </div>
-                  <p>{conversationHelpText}</p>
-                </div>
-
-                <div style={agentConversationVars}>
-                  <ConversationView
-                    t={t}
-                    chatWindowRef={chatWindowRef}
-                    isStreamingAny={isAgentBusy}
-                    hiddenCount={0}
-                    pageSize={0}
-                    onRevealOlder={() => {}}
-                    canHideOlder={false}
-                    onHideOlder={() => {}}
-                    onJumpToBottom={handleJumpToBottom}
-                    messageItems={conversationItems}
-                    isMobile={isMobile}
-                    isLightTheme={isLightTheme}
-                  />
-
-                  <div>
-                      <ChatComposer
-                        t={t}
-                        locale={locale}
-                        isLightTheme={isLightTheme}
-                        hideTools
-                        embedded
-                        forcePlaceholderVisible
-                        placeholderText={t("chat.input.placeholder")}
-                        acceptAttr=""
-                        ensureAnalysisPanelVisible={() => {}}
-                        fileInputRef={fileInputRef}
-                        onFileChange={() => {}}
-                        inputBarRef={inputBarRef}
-                        inputRef={inputRef}
-                        onFocusInput={() => setInputFocused(true)}
-                        onBlurInput={() => setInputFocused(false)}
-                        isGenerating={isAgentBusy}
-                        isStreamingAny={false}
-                        isRoomMode={false}
-                        roomBlocked={false}
-                        roomAuthRequired={false}
-                        onStop={handleStopAgentRequest}
-                        onSend={handleConversationSend}
-                        showDictationButton={false}
-                        voiceEnabled={false}
-                        speakLatestReply={undefined}
-                        canSpeakLatest={false}
-                        isSpeaking={false}
-                        recording={false}
-                        recordingPulse={false}
-                        handleMic={undefined}
-                        draftApiRef={composerDraftApiRef}
-                        inputFocused={inputFocused}
-                        isMobile={isMobile}
-                        activeModeKey="document"
-                      />
-                  </div>
-                </div>
-
-              </Panel>
-            </section>
-
-            <section>
-              <Panel variant="secondary" padding="sm">
-                <div>
-                  <div>
-                    <h2>{t("documents.agent_workspace.result_title")}</h2>
-                    <p>
-                      {t(isClientRole ? "documents.agent_workspace.client_result_description" : "documents.agent_workspace.result_description")}
-                    </p>
-                    {!isClientRole ? (
-                      <p>
-                        {t("documents.agent_workspace.result_results_link_intro")}{" "}
-                        <Link href={artifactResultsHref}>
-                          {t("documents.agent_workspace.result_results_link_label")}
-                        </Link>
-                        .
-                      </p>
-                    ) : null}
-                  </div>
-                  {hasWorkspaceResult ? (
-                    <div>
-                      {activeArtifactDetailHref ? (
-                        <Link href={activeArtifactDetailHref}>
-                          {t("documents.agent_workspace.open_detail")}
-                        </Link>
-                      ) : null}
-                      <Button
-                        type="button"
-                        size="sm"
-                        variant="primary"
-                        onClick={handleClearWorkspaceResult}
-                        disabled={!canClearWorkspaceResult}
-                      >
-                        {t("documents.agent_workspace.clear_result")}
-                      </Button>
-                    </div>
-                  ) : null}
-                </div>
-
-                {artifactLoading ? <div>{t("documents.loading")}</div> : null}
-                {!artifactLoading && !workspaceResult && !artifactError ? (
-                  <div>
-                    <p>{t("documents.agent_workspace.result_empty")}</p>
-                  </div>
-                ) : null}
-
-                {!artifactLoading && workspaceResult ? (
-                  <div>
-                    <div>
-                      <span>
-                        {isClientRole ? clientResultLabel : artifactTypeLabel(workspaceResult.type, t)}
-                      </span>
-                      <span>
-                        {isClientRole ? clientArtifactStatusLabel(workspaceResult.status) : artifactStatusLabel(workspaceResult.status, t)}
-                      </span>
-                    </div>
-                    <div>
-                      <span>{formatDate(workspaceResult.createdAt, locale)}</span>
-                      <span>{t("documents.updated_at")} {formatDate(workspaceResult.updatedAt, locale)}</span>
-                      {!isClientRole && workspaceResult.approvedAt ? <span>{t("documents.approved_at")} {formatDate(workspaceResult.approvedAt, locale)}</span> : null}
-                      <span>{t("documents.sources_label", { count: workspaceResult.sourceCount || 0 })}</span>
-                    </div>
-
-                    {!isWorkspaceResultSaved ? (
-                      <div>
-                        {t(isClientRole ? "documents.agent_workspace.client_result_unsaved" : "documents.agent_workspace.result_unsaved")}
-                      </div>
-                    ) : null}
-                    {isWorkspaceResultSaved && hasDraftEdits ? (
-                      <div>
-                        {t(isClientRole ? "documents.agent_workspace.client_result_dirty" : "documents.agent_workspace.result_dirty")}
-                      </div>
-                    ) : null}
-                    {activeTemplate ? (
-                      <div>
-                        {t("documents.agent_workspace.template_selected", { title: activeTemplate.title || activeTemplate.originalName })}
-                      </div>
-                    ) : null}
-
-                    {!isClientRole && alternateOutputOptions.length ? (
-                      <div>
-                        <div>
-                          <h3>{t("documents.agent_workspace.quick_actions_title")}</h3>
-                          <p>{t("documents.agent_workspace.quick_actions_description")}</p>
-                        </div>
-                        <div>
-                          {alternateOutputOptions.map((option) => (
-                            <button
-                              key={option.value}
-                              type="button"
-                              onClick={() => {
-                                void handleAlternateOutput(option)
-                              }}
-                              disabled={!canRunAlternateOutput}
-                            >
-                              {t("documents.agent_workspace.quick_action_button", { type: option.label })}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    ) : null}
-
-                    {workspaceResult.status === "DRAFT" ? (
-                      <>
-                        <div>
-                          {t("documents.agent_workspace.refine_in_chat")}
-                        </div>
-                        <div>
-                          <Input
-                            value={resultTitle}
-                            onChange={(event) => {
-                              setResultTitle(event.target.value)
-                              clearResultMessages()
-                            }}
-                            placeholder={t("documents.form.artifact_title_placeholder")}
-                          />
-                          <Textarea
-                            value={resultContent}
-                            onChange={(event) => {
-                              setResultContent(event.target.value)
-                              clearResultMessages()
-                            }}
-                            rows={14}
-                          />
-                        </div>
-                        <div>
-                          <Button type="button" size="sm" onClick={() => void handleApprove()} disabled={!canPersistResult || refiningResult || savingResult || approvingResult}>
-                            {approvingResult ? t("documents.actions.approving") : t(isClientRole ? "documents.agent_workspace.client_finish" : "documents.actions.approve")}
-                          </Button>
-                          <Button type="button" size="sm" variant="primary" onClick={() => void handleSaveDraft()} disabled={!canPersistResult || refiningResult || savingResult || approvingResult}>
-                            {savingResult ? t("documents.actions.saving") : t(isClientRole ? "documents.actions.save" : "documents.actions.save_draft")}
-                          </Button>
-                          {!isClientRole && canRestoreSavedVersion ? (
-                            <Button type="button" size="sm" variant="primary" onClick={handleRestoreSavedVersion}>
-                              {t("documents.agent_workspace.restore_saved")}
-                            </Button>
-                          ) : null}
-                          <Button type="button" size="sm" variant="primary" onClick={() => void handleCopyResult()}>
-                            {t("documents.actions.copy")}
-                          </Button>
-                        </div>
-                        {!isClientRole && workspaceVersions.length ? (
-                          <div>
-                            <div>
-                              <h3>{t("documents.agent_workspace.version_history_title")}</h3>
-                              <p>{t("documents.agent_workspace.version_history_description")}</p>
-                            </div>
-                            {workspaceVersions.slice().reverse().map((version) => {
-                              const isActive = isWorkspaceVersionActive(version)
-                              return (
-                                <div key={version.id}>
-                                  <div>
-                                    <div>
-                                      <div>
-                                        <span>
-                                          {version.title || artifactTypeLabel(version.type, t)}
-                                        </span>
-                                        <span>
-                                          {t(`documents.agent_workspace.version_kinds.${version.kind}`)}
-                                        </span>
-                                        {isActive ? (
-                                          <span>
-                                            {t("documents.agent_workspace.version_current")}
-                                          </span>
-                                        ) : null}
-                                      </div>
-                                      <p>
-                                        {artifactTypeLabel(version.type, t)} - {formatDate(version.createdAt, locale)}
-                                      </p>
-                                    </div>
-                                    {!isActive ? (
-                                      <Button
-                                        type="button"
-                                        size="sm"
-                                        variant="primary"
-                                        onClick={() => handleRestoreWorkspaceVersion(version.id)}
-                                      >
-                                        {t("documents.agent_workspace.restore_version")}
-                                      </Button>
-                                    ) : null}
-                                  </div>
-                                </div>
-                              )
-                            })}
-                          </div>
-                        ) : null}
-                      </>
-                    ) : (
-                      <>
-                        <div>
-                          {workspaceResult.content}
-                        </div>
-                        <div>
-                          {workspaceResult.downloadUrls?.docx ? <Button as="a" href={workspaceResult.downloadUrls.docx} size="sm">{t("documents.actions.download_docx")}</Button> : null}
-                          {workspaceResult.downloadUrls?.pdf ? <Button as="a" href={workspaceResult.downloadUrls.pdf} size="sm" variant="linkBrand">{t("documents.actions.download_pdf")}</Button> : null}
-                          <Button type="button" size="sm" variant="primary" onClick={() => void handleCopyResult()}>
-                            {t("documents.actions.copy")}
-                          </Button>
-                        </div>
-                      </>
-                    )}
-
-                    {workspaceResult.sources?.length ? (
-                      <div>
-                        {workspaceResult.sources.map((source) => (
-                          <a key={source.id} href={`/api/documents/${encodeURIComponent(source.id)}/download`}>
-                            <div>{source.title}</div>
-                            <div>{source.originalName}</div>
-                            <div>{t("documents.actions.download")}</div>
-                          </a>
-                        ))}
-                      </div>
-                    ) : null}
-                  </div>
-                ) : null}
-              </Panel>
-            </section>
-
-            {isClientRole ? (
-              <Panel variant="secondary" padding="sm">
-                <div>
-                  <h2>{t("documents.agent_workspace.client_results_title")}</h2>
-                  <p>{t("documents.agent_workspace.client_results_description")}</p>
-                </div>
-
-                {recentArtifactsError ? (
-                  <div>
-                    {recentArtifactsError}
-                  </div>
-                ) : null}
-                {recentArtifactsLoading ? (
-                  <div>
-                    {t("documents.agent_workspace.client_recent_results_loading")}
-                  </div>
-                ) : null}
-                {!recentArtifactsLoading && !recentArtifacts.length ? (
-                  <div>
-                    {t("documents.agent_workspace.client_recent_results_empty")}
-                  </div>
-                ) : null}
-
-                {!recentArtifactsLoading && recentArtifacts.length ? (
-                  <div>
-                    {recentArtifacts.map((artifact) => (
-                      <article key={artifact.id}>
-                        <div>
-                          <div>
-                            <div>
-                              <h3>
-                                {artifact.title || artifact.snippet || t("documents.agent_workspace.result_title")}
-                              </h3>
-                              <span>
-                                {clientArtifactStatusLabel(artifact.status)}
-                              </span>
-                            </div>
-                            <p>
-                              {formatDate(artifact.updatedAt || artifact.createdAt, locale)}
-                            </p>
-                          </div>
-                          <div>
-                            <Button type="button" size="sm" variant="primary" onClick={() => void handleOpenClientArtifact(artifact.id)}>
-                              {t("documents.agent_workspace.client_open_result")}
-                            </Button>
-                              {artifact.downloadUrls?.docx ? (
-                                <Button as="a" href={artifact.downloadUrls.docx} size="sm" variant="linkBrand">
-                                  {t("documents.actions.download_docx")}
-                                </Button>
-                              ) : null}
-                              {artifact.downloadUrls?.pdf ? (
-                                <Button as="a" href={artifact.downloadUrls.pdf} size="sm" variant="linkBrand">
-                                  {t("documents.actions.download_pdf")}
-                                </Button>
-                              ) : null}
-                              <Button
-                                type="button"
-                                size="sm"
-                                variant="primary"
-                                onClick={() => void handleCopyRecentArtifact(artifact.id)}
-                            >
-                              {t("documents.actions.copy")}
-                            </Button>
-                            <Button type="button" size="sm" variant="danger" onClick={() => void handleDeleteClientArtifact(artifact.id)}>
-                              {t("documents.actions.delete")}
-                            </Button>
-                          </div>
-                        </div>
-                      </article>
-                    ))}
-                  </div>
-                ) : null}
-              </Panel>
-            ) : null}
-          </div>
-        </section>
-        </div>
+        {/* Vaadete loend muutub, kui tulemus tekib või kaob ja kui minnakse
+            heli rajale: siis ehitatakse lava uuesti ja see avaneb vaatel, kuhu
+            inimene läks. Heli raja loend on alati sama. */}
+        <StepFlight
+          key={stageKey}
+          label={t("chat.tools.agent_mode")}
+          steps={steps}
+          initialIndex={Math.max(0, viewKeys.indexOf(activeView))}
+          activeKey={activeView}
+          onStepChange={(index, step) => {
+            if (!step) return
+            disarmConfirm()
+            setView(step.key)
+          }}
+        >
+          {renderView}
+        </StepFlight>
       </div>
     </>
   )
 
   if (embedded) return content
 
-  return (
-    <section className="feature-page-frame">
-      {content}
-    </section>
-  )
+  return <section>{content}</section>
 }
