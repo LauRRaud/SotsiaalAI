@@ -57,6 +57,7 @@ import {
   getChronologyRelease,
   listChronologyReleases
 } from '../lib/homeCare/chronology.js';
+import { applyClientImport, previewClientImport } from '../lib/homeCare/clientImport.js';
 import { getCoordinatorOverview } from '../lib/homeCare/overview.js';
 import { assertNotificationRecipient, serializeNotificationEvent } from '../lib/notifications.js';
 
@@ -1318,4 +1319,132 @@ test('võrguta kirje: ooteaeg nihutab sündmuse aega, kordus teise ooteajaga on 
   /* Päeviku loend kannab sama märki. */
   const listed = await listEntries(anu, client.id, {}, deps());
   assert.equal(listed.items.find((row) => row.id === first.entry.id).sentLater, true);
+});
+
+test('klientide sissetoomine tabelist: eelvaade, kordused, skoop ja kõik-või-mitte-midagi', async (t) => {
+  const f = await fixture(t);
+  const north = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Põhi ${f.tag}`, type: 'TEAM' } });
+  const south = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Lõuna ${f.tag}`, type: 'TEAM' } });
+  await db.organizationCapabilityGrant.create({
+    data: { membershipId: f.members.bert.id, capability: 'HOME_CARE_COORDINATOR', scopeType: 'UNIT', scopeUnitId: north.id, validFrom: at('2026-01-01T00:00:00Z') }
+  });
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  await createClient(lead, { displayName: 'Olemas Olev', internalCode: 'OO-1' }, deps());
+  await createClient(lead, { displayName: 'Lõuna Leida', unitId: south.id }, deps());
+
+  const text = [
+    'Nimi\tTunnus\tAadress\tTelefon\tMärkus\tSünniaasta',
+    'Linda Tamm\tLT-1\tKase 3\t5551234\tTütar Mari\t1940',
+    'Olemas Olev\tOO-1\t\t\t\t',
+    'Jaan Kask\t\tTamme 5\t\t\t',
+    'olemas olev\t\t\t\t\t',
+    '\tX-1\t\t\t\t'
+  ].join('\n');
+
+  /* EELVAADE ei salvesta midagi. */
+  const before = await db.careClient.count({ where: { organizationId: f.orgA.id } });
+  const preview = await previewClientImport(lead, { text }, deps());
+  assert.deepEqual(preview.columns.sort(), ['address', 'contactNote', 'contactPhone', 'displayName', 'internalCode']);
+  assert.deepEqual(preview.ignoredHeaders, ['Sünniaasta']);
+  assert.deepEqual(preview.rows.map((row) => [row.line, row.status]), [[2, 'new'], [3, 'exists'], [4, 'new'], [5, 'same_name'], [6, 'error']]);
+  assert.deepEqual(preview.summary, { total: 5, new: 2, exists: 1, repeated: 0, sameName: 1, errors: 1 });
+  assert.equal(await db.careClient.count({ where: { organizationId: f.orgA.id } }), before);
+  /* Eelvaade ei kanna aadressi ega telefoni tagasi: ainult nimi, tunnus ja seis. */
+  assert.deepEqual(Object.keys(preview.rows[0]).sort(), ['displayName', 'errorKey', 'internalCode', 'line', 'status']);
+
+  /* Ainult hooldusjuht; võõras asutus loob oma asutusse, mitte siia. */
+  await expectError(previewClientImport(anu, { text }, deps()), 403, 'org.errors.missing_capability');
+  await expectError(applyClientImport(anu, { text }, deps()), 403, 'org.errors.missing_capability');
+  /* Üksuse hooldusjuht: ainult oma üksusesse; teise üksuse klientide nimesid eelvaade ei reeda. */
+  await expectError(previewClientImport(bert, { text }, deps()), 403, 'org.errors.missing_capability');
+  await expectError(applyClientImport(bert, { text, unitId: south.id }, deps()), 403, 'org.errors.missing_capability');
+  const scoped = await previewClientImport(bert, { text: 'Nimi\nLõuna Leida\nOlemas Olev', unitId: north.id }, deps());
+  assert.deepEqual(scoped.rows.map((row) => row.status), ['new', 'new']);
+  await expectError(previewClientImport(lead, { text, unitId: 'cmv0aaaaaaaaaaaaaaaaaaaaa' }, deps()), 400, 'home_care.errors.invalid_unit');
+  await expectError(previewClientImport(lead, { text: 'Aadress\nKase 3' }, deps()), 400, 'home_care.errors.import_name_column_missing');
+  await expectError(applyClientImport(lead, { text: '' }, deps()), 400, 'home_care.errors.import_empty');
+
+  /* SISSETOOMINE: uued read; samanimeline ainult kinnitusega. */
+  const first = await applyClientImport(lead, { text }, deps());
+  assert.equal(first.created, 2);
+  assert.equal(first.summary.sameNameSkipped, 1);
+  const linda = await db.careClient.findFirst({ where: { organizationId: f.orgA.id, internalCode: 'LT-1' } });
+  assert.deepEqual(
+    [linda.displayName, linda.address, linda.contactPhone, linda.contactNote, linda.status, linda.unitId, linda.createdByMembershipId],
+    ['Linda Tamm', 'Kase 3', '5551234', 'Tütar Mari', 'ACTIVE', null, f.members.lead.id]
+  );
+  /* Iga loodud klient jätab sama auditirea mis käsitsi loodu, ilma nimeta. */
+  const audit = await db.dataAuditLog.findMany({ where: { resourceId: linda.id } });
+  assert.equal(audit.length, 1);
+  assert.equal(audit[0].action, 'org.home_care_client_created');
+  assert.equal(JSON.stringify(audit[0].meta).includes('Linda'), false);
+
+  /* SAMA TABEL TEIST KORDA ei tekita ühtegi kordust: tunnusega rida on olemas,
+     tunnuseta rida on nüüd „sama nimi". */
+  const again = await applyClientImport(lead, { text }, deps());
+  assert.equal(again.created, 0);
+  assert.deepEqual(again.summary, { total: 5, new: 0, exists: 2, repeated: 0, sameName: 2, errors: 1, sameNameSkipped: 2 });
+  assert.equal(await db.careClient.count({ where: { organizationId: f.orgA.id } }), before + 2);
+
+  /* Kinnitatud samanimeline tuuakse üle (rida 5 on teine inimene). */
+  const confirmed = await applyClientImport(lead, { text, confirmedLines: [5, 6, 99, -1, 'x'] }, deps());
+  assert.equal(confirmed.created, 1);
+  assert.equal(await db.careClient.count({ where: { organizationId: f.orgA.id, displayName: { equals: 'olemas olev', mode: 'insensitive' } } }), 2);
+
+  /* Üksuse hooldusjuht toob oma üksusesse; klient saab selle üksuse. */
+  const toNorth = await applyClientImport(bert, { text: 'Nimi;Tunnus\nPõhja Peeter;PP-1', unitId: north.id }, deps());
+  assert.equal(toNorth.created, 1);
+  assert.equal((await db.careClient.findFirst({ where: { organizationId: f.orgA.id, internalCode: 'PP-1' } })).unitId, north.id);
+
+  /* Teise asutuse sama tunnus ei sega (kordumatus on asutuse piires). */
+  const other = await applyClientImport(leadB, { text: 'Nimi;Tunnus\nLinda Tamm;LT-1' }, deps());
+  assert.equal(other.created, 1);
+
+  /* KÕIK VÕI MITTE MIDAGI. Teise kliendi loomine ebaõnnestub (keegi lõi sama
+     tunnusega kliendi eelvaate ja sissetoomise vahel): ka esimene rida võetakse
+     tagasi ja hooldusjuht saab teate tabel uuesti kontrollida. */
+  let creates = 0;
+  const failing = new Proxy(db, {
+    get(target, prop) {
+      if (prop !== '$transaction') return Reflect.get(target, prop);
+      return (run, options) =>
+        target.$transaction(
+          (tx) =>
+            run(
+              new Proxy(tx, {
+                get(inner, key) {
+                  if (key !== 'careClient') return Reflect.get(inner, key);
+                  return new Proxy(inner.careClient, {
+                    get(model, method) {
+                      if (method !== 'create') return Reflect.get(model, method);
+                      return (args) => {
+                        creates += 1;
+                        if (creates === 2) throw Object.assign(new Error('unique'), { code: 'P2002' });
+                        return model.create(args);
+                      };
+                    }
+                  });
+                }
+              })
+            ),
+          options
+        );
+    }
+  });
+  const countBefore = await db.careClient.count({ where: { organizationId: f.orgA.id } });
+  await expectError(
+    applyClientImport(lead, { text: ['Nimi;Tunnus', 'Esimene Uus;EU-1', 'Teine Uus;TU-2'].join('\n') }, { ...deps(), db: failing }),
+    409,
+    'home_care.errors.import_changed'
+  );
+  assert.equal(creates, 2);
+  assert.equal(await db.careClient.count({ where: { organizationId: f.orgA.id } }), countBefore);
+  assert.equal(await db.careClient.count({ where: { organizationId: f.orgA.id, internalCode: 'EU-1' } }), 0);
+
+  /* Lipp väljas: sissetoomist ei ole. */
+  const offContext = await f.ctx(f.users.lead, f.orgA, { ORG_WORKSPACE_ENABLED: '1' });
+  await expectError(previewClientImport(offContext, { text }, { db, env: { ORG_WORKSPACE_ENABLED: '1' } }), 404);
 });

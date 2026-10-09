@@ -11046,7 +11046,15 @@
       "chronology_requester_required": "Kirjuta, kes dokumenti küsis.",
       "chronology_basis_required": "Kirjuta, mis alusel dokument väljastatakse.",
       "release_not_found": "Väljastust ei leitud.",
-      "invalid_waited": "Kirje ootas seadmes liiga kaua. Kirjuta see kliendi lehel uuesti ja sisesta sündmuse aeg käsitsi."
+      "invalid_waited": "Kirje ootas seadmes liiga kaua. Kirjuta see kliendi lehel uuesti ja sisesta sündmuse aeg käsitsi.",
+      "import_failed": "Sissetoomine ei õnnestunud. Proovi uuesti.",
+      "import_empty": "Tabel on tühi. Kleebi tabel koos päisereaga.",
+      "import_too_large": "Tabel on liiga suur. Too kliendid üle osade kaupa.",
+      "import_name_column_missing": "Tabelist ei leitud nime veergu. Esimesel real peavad olema veergude nimed ja üks neist peab olema „Nimi”.",
+      "import_no_rows": "Tabelis on ainult päiserida, kliente ei ole.",
+      "import_too_many_rows": "Tabelis on üle 500 rea. Too kliendid üle osade kaupa.",
+      "import_row_invalid": "Selle rea andmed ei sobi.",
+      "import_changed": "Klientide nimekiri muutus vahepeal. Kontrolli tabel uuesti."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -11166,6 +11174,40 @@
       "transcribing": "Muudan kõne tekstiks…",
       "hint": "Kõne muudetakse tekstiks platvormi kõnetuvastuses ja lisatakse välja lõppu; helisalvestist ei hoita. Loe tekst enne salvestamist üle.",
       "cut": "Kirje pikkuse piir ({limit} märki) sai täis ja dikteeritud teksti lõpp jäi välja. Salvesta see kirje ja jätka uues."
+    },
+    "import": {
+      "link": "Too kliendid tabelist",
+      "title": "Klientide sissetoomine tabelist",
+      "intro": "Kopeeri klientide tabel (näiteks arvutustabelist) ja kleebi see siia või vali CSV-fail. Iga rida on üks klient. Enne sissetoomist näed, mis igast reast saab.",
+      "columns_hint": "Esimene rida peab olema veergude nimedega. Tuntakse ära: Nimi (kohustuslik), Tunnus, Aadress, Telefon, Märkus. Kuni {limit} rida korraga.",
+      "text_label": "Tabel",
+      "text_hint": "Tunnus on asutuse enda tähis (näiteks sama nimi, mis teises süsteemis). Tunnusega klienti ei tooda teist korda üle.",
+      "file_label": "või vali fail (CSV või tekst)",
+      "file_encoding": "Failis on märke, mida ei saanud lugeda (täpitähed on katki). Salvesta fail UTF-8 kujul või kopeeri tabel ja kleebi see ülal olevasse välja.",
+      "file_failed": "Faili ei saanud lugeda.",
+      "check": "Kontrolli",
+      "preview_title": "Tabelis on {total} rida",
+      "count_new": "Uusi kliente: {count}",
+      "count_exists": "Juba olemas (sama tunnus): {count}",
+      "count_repeated": "Sama tunnus tabelis teist korda: {count}",
+      "count_same_name": "Sama nimega klient on juba olemas: {count}",
+      "count_errors": "Vigaseid ridu: {count}",
+      "ignored_columns": "Neid veerge ei kasutata: {columns}",
+      "no_name": "(nimi puudub)",
+      "row_line": "Rida {line}",
+      "status": {
+        "new": "uus",
+        "exists": "juba olemas",
+        "repeated": "tabelis teist korda",
+        "same_name": "sama nimi on olemas",
+        "error": "viga"
+      },
+      "confirm_same_name": "See on teine inimene: too ikkagi üle",
+      "show_new": "Näita uusi kliente ({count})",
+      "hide_new": "Peida uued kliendid",
+      "apply": "Too kliendid üle ({count})",
+      "done": "Üle toodud kliente: {count}. Meeskonnad ja püsikaardid saad lisada iga kliendi lehel.",
+      "to_clients": "Klientide juurde"
     }
   },
   "stage": {

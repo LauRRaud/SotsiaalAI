@@ -11046,7 +11046,15 @@
       "chronology_requester_required": "Write who asked for the document.",
       "chronology_basis_required": "Write on what basis the document is released.",
       "release_not_found": "The release was not found.",
-      "invalid_waited": "The entry waited on the device for too long. Write it again on the client's page and enter the time of the event by hand."
+      "invalid_waited": "The entry waited on the device for too long. Write it again on the client's page and enter the time of the event by hand.",
+      "import_failed": "The import failed. Try again.",
+      "import_empty": "The table is empty. Paste the table with its header row.",
+      "import_too_large": "The table is too large. Import the clients in parts.",
+      "import_name_column_missing": "No name column was found. The first row must hold the column names and one of them must be “Name”.",
+      "import_no_rows": "The table has only a header row, no clients.",
+      "import_too_many_rows": "The table has more than 500 rows. Import the clients in parts.",
+      "import_row_invalid": "The data in this row is not valid.",
+      "import_changed": "The client list changed in the meantime. Check the table again."
     },
     "incidents": {
       "title": "Incident register",
@@ -11166,6 +11174,40 @@
       "transcribing": "Turning speech into text…",
       "hint": "Speech is turned into text by the platform's speech recognition and added to the end of the field; the recording is not kept. Read the text before saving.",
       "cut": "The entry's length limit ({limit} characters) was reached and the end of the dictated text was left out. Save this entry and continue in a new one."
+    },
+    "import": {
+      "link": "Import clients from a table",
+      "title": "Import clients from a table",
+      "intro": "Copy the client table (for example from a spreadsheet) and paste it here, or choose a CSV file. Each row is one client. Before importing you see what becomes of each row.",
+      "columns_hint": "The first row must hold the column names. Recognised: Name (required), Code, Address, Phone, Note. Up to {limit} rows at a time.",
+      "text_label": "Table",
+      "text_hint": "The code is the organisation's own mark (for example the same name as in another system). A client with a code is not imported a second time.",
+      "file_label": "or choose a file (CSV or text)",
+      "file_encoding": "The file has characters that could not be read (accented letters are broken). Save the file as UTF-8 or copy the table and paste it into the field above.",
+      "file_failed": "The file could not be read.",
+      "check": "Check",
+      "preview_title": "The table has {total} rows",
+      "count_new": "New clients: {count}",
+      "count_exists": "Already there (same code): {count}",
+      "count_repeated": "Same code a second time in the table: {count}",
+      "count_same_name": "A client with the same name already exists: {count}",
+      "count_errors": "Rows with errors: {count}",
+      "ignored_columns": "These columns are not used: {columns}",
+      "no_name": "(no name)",
+      "row_line": "Row {line}",
+      "status": {
+        "new": "new",
+        "exists": "already there",
+        "repeated": "second time in the table",
+        "same_name": "same name exists",
+        "error": "error"
+      },
+      "confirm_same_name": "This is another person: import anyway",
+      "show_new": "Show the new clients ({count})",
+      "hide_new": "Hide the new clients",
+      "apply": "Import the clients ({count})",
+      "done": "Clients imported: {count}. Add teams and cards on each client's page.",
+      "to_clients": "To the clients"
     }
   },
   "stage": {
