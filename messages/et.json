@@ -976,7 +976,8 @@
           "ended_by_timer": "Platvorm lõpetas suhte {date}.",
           "after_keeps": "Kinnitatud kokkuvõtted, viimane kokkulepe, kohtumiste kirjed ja sinu märkmed on siin loetavad."
         }
-      }
+      },
+      "summary_correction_pending": "Parandus on pooleli"
     },
     "admin": {
       "title": "Mentorluse haldus",
@@ -1041,7 +1042,8 @@
           "not_checked": "Kontrollimata",
           "source": "Kirje ESTA lehel"
         }
-      }
+      },
+      "back_to_profile": "Tagasi profiili juurde"
     }
   },
   "workspace": {

@@ -155,8 +155,9 @@ export function QueueItemView({ t, mode, model, chip, groupTitles, reasons, reas
           note={note}
           actions={
             <>
+              {/* See nupp viib tagasi profiili juurde; „Loobu" on teise vajutuse tühistamine. */}
               <Button type="button" {...SMALL_BUTTON} onClick={onCancelReject}>
-                {t("mentoring.labels.cancel")}
+                {t("mentoring.admin.back_to_profile")}
               </Button>
               <TwoStep
                 cancelLabel={t("mentoring.labels.cancel")}

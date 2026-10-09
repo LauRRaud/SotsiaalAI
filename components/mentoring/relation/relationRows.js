@@ -224,9 +224,19 @@ export function meetingBody(form) {
  * saab kinnitatud kokkuvõtteid ainult lugeda.
  */
 export function summaryRows(summaries, { t, formatDay, closed = false }) {
+  const pendingCorrections = new Set(
+    list(summaries)
+      .filter((summary) => summary?.correctionOfId && ["DRAFT", "PENDING_CONFIRM"].includes(code(summary.status)))
+      .map((summary) => String(summary.correctionOfId))
+  );
   const rows = list(summaries)
     .filter((summary) => summary?.id && ["DRAFT", "PENDING_CONFIRM", "CONFIRMED"].includes(code(summary.status)))
     .map((summary) => {
+      /* Kinnitatud kokkuvõte, mille parandus on juba pooleli (mustand või
+         kinnitamisel): server keeldub teisest parandusest (409) ja iga uus
+         katse ebaõnnestuks samamoodi. Nuppu siis ei pakuta ja rida ütleb, et
+         parandus on pooleli: inimene avab selle, mitte ei alusta uut. */
+      const correctionPending = pendingCorrections.has(String(summary.id));
       const status = code(summary.status);
       const pending = status === "PENDING_CONFIRM";
       const word = relationWord("summary_status", status, t);
@@ -241,7 +251,7 @@ export function summaryRows(summaries, { t, formatDay, closed = false }) {
             : t("mentoring.relation.views.summaries.chip_confirm")
           : word.text,
         tone: pending ? (mineConfirmed ? "quiet" : "wait") : word.tone,
-        extra: superseded ? t("mentoring.relation.summary_superseded") : "",
+        extra: superseded ? t("mentoring.relation.summary_superseded") : correctionPending ? t("mentoring.relation.summary_correction_pending") : "",
         time: status === "CONFIRMED" ? formatDay(summary.confirmedAt) : "",
         status,
         version: summary.version,
@@ -251,7 +261,7 @@ export function summaryRows(summaries, { t, formatDay, closed = false }) {
         othersDraft: !closed && status === "DRAFT" && summary.createdByMe !== true,
         canConfirm: !closed && pending && !mineConfirmed,
         canDiscard: !closed && status !== "CONFIRMED",
-        canCorrect: !closed && status === "CONFIRMED" && !superseded
+        canCorrect: !closed && status === "CONFIRMED" && !superseded && !correctionPending
       };
     });
   return [...rows.filter((row) => row.working), ...rows.filter((row) => !row.working)];
@@ -386,8 +396,10 @@ const PART_SUMMARIES = {
   },
   meetings({ relation, t, formatDate }) {
     const rows = meetingRows(relation?.meetings, { t, formatDate });
-    /* Server annab kohtumised uuemast vanemani: varaseim plaanitud on loendi lõpus. */
-    const planned = rows.filter((row) => row.planned).at(-1);
+    /* Server annab kohtumised uuemast vanemani: varaseim plaanitud on loendi
+       lõpus. Lõpetatud suhtes plaanis kohtumisi enam ei ole: plaat ütleb siis
+       viimase kohtumise. */
+    const planned = isClosed(relation) ? null : rows.filter((row) => row.planned).at(-1);
     if (planned) return { state: "done", summary: t("mentoring.relation.views.meetings.summary_planned", { date: planned.title }) };
     if (rows.length) return { state: "partial", summary: t("mentoring.relation.views.meetings.summary_last", { date: rows[0].title }) };
     return { state: "empty", summary: t("mentoring.relation.views.meetings.summary_empty") };

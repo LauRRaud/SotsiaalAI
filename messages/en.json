@@ -976,7 +976,8 @@
           "ended_by_timer": "The platform ended the relationship on {date}.",
           "after_keeps": "Confirmed summaries, the last agreement, meeting records and your notes can be read here."
         }
-      }
+      },
+      "summary_correction_pending": "A correction is in progress"
     },
     "admin": {
       "title": "Mentoring administration",
@@ -1041,7 +1042,8 @@
           "not_checked": "Not checked",
           "source": "Record on the ESTA site"
         }
-      }
+      },
+      "back_to_profile": "Back to the profile"
     }
   },
   "workspace": {

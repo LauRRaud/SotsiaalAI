@@ -305,6 +305,10 @@ export default function MentoringRelationPage({ relationId }) {
   const progress = progressLine(relation, context);
   const capText = (key, rows) => (Array.isArray(rows) && rows.length >= LIST_CAPS[key] ? t("mentoring.relation.capped", { count: LIST_CAPS[key] }) : "");
   const noteFor = (part, fallback = "") => (feedback?.part === part ? feedback.text : fallback);
+  /* Osa, kus tegu tehti, võib pärast värskendust kaduda (teine pool lõpetas
+     suhte, mentee võttis ettevalmistuse tagasi). Teade ei tohi siis vaikselt
+     kaduda: see seisab lava kohal. */
+  const orphanNote = feedback?.text && !parts.some((part) => part.key === feedback.part) ? feedback.text : "";
   const clearNote = () => setFeedback(null);
 
   const renderPart = (step, index, flight) => {
@@ -760,7 +764,7 @@ export default function MentoringRelationPage({ relationId }) {
             mode={closing && !closed ? "close" : "read"}
             lines={
               closed
-                ? [closedLine(relation, context), t("mentoring.relation.views.state.after_keeps")]
+                ? [closedLine(relation, context), progress, t("mentoring.relation.views.state.after_keeps")].filter(Boolean)
                 : [progress, draftRelation ? t("mentoring.relation.draft_hint") : ""].filter(Boolean)
             }
             cards={cards}
@@ -802,6 +806,11 @@ export default function MentoringRelationPage({ relationId }) {
   return (
     <EntryShell {...shellProps}>
       <RelationHead t={t} who={head.who} chip={head.chip} reason={head.reason} backHref={backHref} />
+      {orphanNote ? (
+        <p className={entry.notice} role="alert">
+          {orphanNote}
+        </p>
+      ) : null}
       <StepFlight
         /* Osade loend muutub, kui suhe lõpeb (eesmärkide osa kaob) või kui
            mentorile jõuab esimene ettevalmistus: siis ehitatakse lava uuesti. */

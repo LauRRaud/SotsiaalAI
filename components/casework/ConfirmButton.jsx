@@ -26,6 +26,10 @@ import { useEffect, useRef, useState } from "react";
 
 /* Lühim vahe esimese ja teise vajutuse vahel: topeltklõps on alla selle. */
 const MIN_GAP_MS = 400;
+/* Kinnituse ootus aegub. Laval jääb osa lehele ka siis, kui inimene teise osa
+   avab: ilma aegumiseta oleks nupp hiljem tagasi tulles ikka relvastatud ja üks
+   vajutus viiks lõpliku teo läbi. Sama aeg mis mentorluse avalehtedel. */
+const CONFIRM_MS = 8000;
 
 export default function ConfirmButton({
   label,
@@ -44,6 +48,12 @@ export default function ConfirmButton({
   useEffect(() => {
     if (disabled) setArmed(false);
   }, [disabled]);
+
+  useEffect(() => {
+    if (!armed) return undefined;
+    const timer = window.setTimeout(() => setArmed(false), CONFIRM_MS);
+    return () => window.clearTimeout(timer);
+  }, [armed]);
 
   /* Esimene ja teine aste on SAMA nupp, mille tekst vahetub: fookus jääb
      nupule. Just seepärast ei tohi üks liigutus mõlemat astet läbida: all
