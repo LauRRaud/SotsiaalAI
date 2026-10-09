@@ -8162,7 +8162,6 @@
     },
     "overview": {
       "title": "Overview",
-      "intro": "Overview combines your private wellbeing entries and shows work demands, resources, and recurring patterns.",
       "period_label": "Period",
       "period_all": "All",
       "period_week": "Week",
@@ -8181,7 +8180,6 @@
       "no_manager_memo": "The memo appears when wellbeing records exist.",
       "next_steps": "Recommended next workflows",
       "no_actions": "Save a few wellbeing records to generate recommendations from your data.",
-      "privacy": "Overview uses your private entries. The manager memo is aggregated text and is not sent automatically.",
       "no_load_factors": "There are not enough load factors yet.",
       "no_resource_factors": "There are not enough resource gaps yet.",
       "no_risk_markers": "There are not enough risk patterns yet.",
@@ -8196,7 +8194,27 @@
       "memo_draft_ready": "The manager memo is confirmed, but it is not sent automatically.",
       "memo_draft_conflict": "The memo draft changed in another view. Copy your edits, reload Overview, and try again with the latest version.",
       "memo_draft_error": "Saving or confirming the memo draft failed.",
-      "manager_memo_summary": "Consolidated overview"
+      "views": {
+        "summary": {
+          "title": "Summary",
+          "short": "Summary",
+          "lead": "Your own wellbeing entries at a glance. Only you see this."
+        },
+        "patterns": {
+          "title": "Patterns",
+          "short": "Patterns"
+        },
+        "memo": {
+          "title": "Memo for the manager",
+          "short": "Memo",
+          "lead": "A summarised text for a talk with your manager. It is not sent automatically: you decide whether and how to use it."
+        },
+        "next": {
+          "title": "Next workflows",
+          "short": "Next",
+          "covision": "Discuss the situation with colleagues in a structured meeting."
+        }
+      }
     },
     "quick_check": {
       "title": "Quick check",

@@ -333,3 +333,9 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* Silt seisab omaette, seega algab suure tähega (sõnastikus on sildid väikese
+   algustähega, sest neid liidetakse ka lausesse). */
+.tags li::first-letter {
+  text-transform: uppercase;
+}

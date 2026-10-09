@@ -23,6 +23,7 @@ import WorkProcessesWorkflow from "./WorkProcessesWorkflow";
 /* Töövood, mis on viidud ühisele sammuvormile (`WellbeingStepForm`). */
 const STAGED_TOOLS = new Set([
   "my-records",
+  "overview",
   "quick-check",
   "hard-case",
   "workplace-violence",
@@ -141,7 +142,7 @@ export default function WellbeingPage({ activeTool = null, locale = "et" }) {
           ) : activeTool?.id === "quick-check" ? (
             <QuickCheckWorkflow onNavigate={navigate} />
           ) : activeTool?.id === "overview" ? (
-            <OverviewWorkflow />
+            <OverviewWorkflow onNavigate={navigate} />
           ) : activeTool?.id === "hard-case" ? (
             <HardCaseWorkflow onNavigate={navigate} />
           ) : activeTool?.id === "workplace-violence" ? (

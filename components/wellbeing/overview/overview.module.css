@@ -1,0 +1,34 @@
+/* Tööheaolu „Ülevaade": see, mis on omane ainult sellele lehele. Loendid, märgid
+   ja sildid tulevad ühisest ../records/records.module.css-ist. */
+
+/* Arv seisu real: nimetus tuhmim, arv selgem. */
+.count {
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  white-space: nowrap;
+}
+.count strong {
+  color: var(--text-warm);
+  font-weight: 560;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Memo: tekst vasakul, selle kõrval märk (kelle tekst see on) ja kaks kinnitust.
+   Nii mahub vaade paneeli ära; kitsal ekraanil lähevad need üksteise alla. */
+.memo {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(13rem, 17rem);
+  align-items: start;
+  gap: 0.6rem 1rem;
+}
+.checks {
+  min-width: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+@media (max-width: 640px) {
+  .memo {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
