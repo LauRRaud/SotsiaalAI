@@ -1,23 +1,28 @@
 "use client";
 
-import Button from "@/components/ui/Button";
+import { useI18n } from "@/components/i18n/I18nProvider";
+import ActionCard, { ActionCardGrid } from "@/components/stage/ActionCard";
 
+/**
+ * Soovitatud järgmised sammud töövormi tulemuse all.
+ *
+ * Pealkiri ja põhjendus on eraldi ridadel (ActionCard); varem olid need ühe
+ * pillnupu sees kokku kirjutatud.
+ */
 export default function WellbeingActionList({ actions = [], actionRoutes = {}, onNavigate }) {
+  const { t } = useI18n();
   if (!actions.length) return null;
 
   return (
-    <div aria-label="Soovitatud järgmised sammud">
+    <ActionCardGrid label={t("wellbeing.quick_check.result.next_steps")}>
       {actions.map((action) => (
-        <Button
+        <ActionCard
           key={action.workflowType}
-          type="button"
-          className="wellbeing-choice-btn"
+          title={action.label}
+          description={action.reason}
           onClick={() => onNavigate?.(actionRoutes[action.workflowType] || "/tooheaolu")}
-        >
-          <span>{action.label}</span>
-          {action.reason ? <small>{action.reason}</small> : null}
-        </Button>
+        />
       ))}
-    </div>
+    </ActionCardGrid>
   );
 }

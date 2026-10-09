@@ -7753,7 +7753,66 @@
       "privacy": "Kiirkontroll salvestub privaatselt. Jaga selle põhjal tehtud tähelepanekuid alles siis, kui oled sisu üle vaadanud.",
       "saving": "Salvestan...",
       "saved": "Kiirkontroll salvestati privaatselt.",
-      "save_failed": "Salvestamine ebaõnnestus. Proovi uuesti."
+      "save_failed": "Salvestamine ebaõnnestus. Proovi uuesti.",
+      "steps": {
+        "demands": {
+          "title": "Töö nõudmised",
+          "short": "Nõudmised",
+          "lead": "Mõtle viimasele kahele nädalale. Vali igal real üks."
+        },
+        "resources": {
+          "title": "Tööressursid",
+          "short": "Ressursid",
+          "lead": "Mis sind selle koormuse juures toetab? Vali igal real üks."
+        },
+        "risks": {
+          "title": "Riskimärgid",
+          "short": "Riskid",
+          "lead": "Märgi, kui mõni neist praegu kehtib. Võid ka tühjaks jätta."
+        },
+        "result": {
+          "title": "Tulemus",
+          "short": "Tulemus",
+          "lead": "Töökorralduslik signaal sinu vastuste põhjal."
+        },
+        "support": {
+          "title": "Tugi",
+          "short": "Tugi",
+          "lead": "Vaikimisi jääb kõik privaatseks. Tuge küsid siis, kui ise soovid."
+        }
+      },
+      "progress": "{done}/{total} vastatud",
+      "next_to": "Edasi: {label}",
+      "next": "Edasi",
+      "state": {
+        "empty": "vastamata",
+        "done": "vastatud",
+        "optional": "valikuline",
+        "marked": "märgitud {count}",
+        "waiting": "ootab vastuseid",
+        "saved": "salvestatud"
+      },
+      "summary": {
+        "questions_empty": "{total} küsimust, igaüks ühe puudutusega.",
+        "questions_left": "Vastamata on veel {left}.",
+        "no_high_load": "Kõrgeid koormusi ei ole.",
+        "resources_ok": "Põhiressursid on olemas.",
+        "no_marks": "Midagi ei ole märgitud.",
+        "result_waiting": "Näitan tulemust, kui küsimused on vastatud.",
+        "support": "Kõik jääb privaatseks, kuni ise teisiti otsustad."
+      },
+      "result": {
+        "none_title": "Tulemust veel ei ole",
+        "none_text": "Signaali näitan siis, kui küsimused on vastatud. Enne seda ei oleta ma midagi.",
+        "missing": "{label}: {left} vastamata",
+        "next_steps": "Soovitatud järgmised sammud"
+      },
+      "risk_hints": {
+        "difficult_case": "Juhtum vajab jagamist kolleegi või juhiga.",
+        "covision": "Rühma pilk aitaks edasi.",
+        "support": "Töökorralduses on vaja midagi kokku leppida."
+      },
+      "risks_note": "Märked jäävad privaatseks nagu kogu kiirkontroll."
     },
     "hard_case": {
       "title": "Raske juhtum",
@@ -11108,5 +11167,10 @@
       "hint": "Kõne muudetakse tekstiks platvormi kõnetuvastuses ja lisatakse välja lõppu; helisalvestist ei hoita. Loe tekst enne salvestamist üle.",
       "cut": "Kirje pikkuse piir ({limit} märki) sai täis ja dikteeritud teksti lõpp jäi välja. Salvesta see kirje ja jätka uues."
     }
+  },
+  "stage": {
+    "rail_label": "Sammud",
+    "all_steps": "Kõik sammud",
+    "step_position": "Samm {current}/{total}: {label}"
   }
 }
