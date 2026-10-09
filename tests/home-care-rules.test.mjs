@@ -4,6 +4,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
 import { coordinatorScope, isCoordinatorFor, visibleClientsWhere, personName } from '../lib/homeCare/access.js';
 import { resolveCallMonth } from '../lib/homeCare/calls.js';
 import { chronologyContentHash } from '../lib/homeCare/chronology.js';
@@ -22,11 +23,19 @@ import {
   readClientTable,
   rowsToCreate
 } from '../lib/homeCare/clientTable.js';
-import { HOME_CARE_LIMITS } from '../lib/homeCare/constants.js';
+import { CARE_EXPORT_REASONS, HOME_CARE_LIMITS } from '../lib/homeCare/constants.js';
 import { appendDictatedText } from '../lib/homeCare/dictation.js';
 import { renderDoorTagHtml } from '../lib/homeCare/doorTagDocument.js';
 import { doorTagPath, doorTagUrl, isDoorTagToken, newDoorTagToken } from '../lib/homeCare/doorTags.js';
 import { serializeEntry } from '../lib/homeCare/entries.js';
+import {
+  HOME_CARE_EXPORT_COLLECTIONS,
+  HOME_CARE_EXPORT_EXCLUSIONS,
+  HOME_CARE_EXPORT_FORMAT,
+  HOME_CARE_EXPORT_KEYS,
+  HOME_CARE_EXPORT_VERSION,
+  checkHomeCareExport
+} from '../lib/homeCare/exportFormat.js';
 import {
   HISTORY_BLOCK_MAX,
   HISTORY_BLOCK_TARGET,
@@ -883,4 +892,118 @@ test('kõnemärge: väljad ainult telefonikontaktil, vana räsi jääb samaks, k
   for (const bad of ['2026-13', '2026-0', '26-10', '2026/10', 'oktoober', '0000-01', '1999-12', '3000-01']) {
     assert.throws(() => resolveCallMonth(bad, NOW, 'Europe/Tallinn'), (error) => error.status === 400 && error.messageKey === 'home_care.errors.invalid_month', bad);
   }
+});
+
+test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viited', () => {
+  const make = () => {
+    const doc = {
+      format: HOME_CARE_EXPORT_FORMAT,
+      version: HOME_CARE_EXPORT_VERSION,
+      exportId: 'e1',
+      generatedAt: '2026-10-09T12:00:00.000Z',
+      organization: { id: 'o1' },
+      manifest: { includes: [...HOME_CARE_EXPORT_KEYS], excludes: [] },
+      units: [{ id: 'u1' }],
+      people: [{ id: 'm1', name: 'Anu Hooldaja' }],
+      clients: [
+        { id: 'c1', unitId: 'u1', createdByMembershipId: 'm1' },
+        { id: 'c2', unitId: null, createdByMembershipId: null }
+      ],
+      teamMembers: [{ id: 't1', clientId: 'c1', membershipId: 'm1' }],
+      cardLines: [{ id: 'l1', clientId: 'c1' }],
+      entries: [{ id: 'n1', clientId: 'c1', authorMembershipId: 'm1' }],
+      entryRevisions: [{ id: 'r1', entryId: 'n1', clientId: 'c1', actorMembershipId: 'm1' }],
+      entryReads: [{ id: 'd1', entryId: 'n1', membershipId: 'm1' }],
+      incidentUpdates: [{ id: 'i1', entryId: 'n1', clientId: 'c1', actorMembershipId: 'm1' }],
+      accessLog: [{ id: 'a1', clientId: 'c1', membershipId: 'm1' }],
+      chronologyReleases: [{ id: 'k1', clientId: 'c1', entryCount: 1, createdByMembershipId: 'm1' }],
+      chronologyReleaseItems: [{ id: 'ki1', releaseId: 'k1' }],
+      importedHistories: [{ id: 'h1', clientId: 'c1', blockCount: 2, importedByMembershipId: 'm1' }],
+      importedHistoryBlocks: [
+        { id: 'b1', historyId: 'h1', clientId: 'c1' },
+        { id: 'b2', historyId: 'h1', clientId: 'c1' }
+      ],
+      doorTags: [{ id: 'g1', clientId: 'c1', createdByMembershipId: 'm1' }],
+      auditEvents: [{ id: 'x1', actorMembershipId: 'm1' }]
+    };
+    doc.totals = Object.fromEntries(HOME_CARE_EXPORT_KEYS.map((key) => [key, doc[key].length]));
+    return doc;
+  };
+  const problems = (change) => {
+    const doc = make();
+    change(doc);
+    return checkHomeCareExport(doc).problems;
+  };
+
+  /* Korras fail: vigu ega tähelepanekuid ei ole; tühi üksuse viide on lubatud. */
+  const good = checkHomeCareExport(make());
+  assert.deepEqual([good.ok, good.problems, good.notes], [true, [], []]);
+  assert.equal(good.totals.clients, 2);
+
+  /* Kogude järjekord on leping: vanem kogu on failis enne seda, kes talle viitab. */
+  assert.deepEqual(HOME_CARE_EXPORT_KEYS, [
+    'units',
+    'clients',
+    'teamMembers',
+    'cardLines',
+    'entries',
+    'entryRevisions',
+    'entryReads',
+    'incidentUpdates',
+    'accessLog',
+    'chronologyReleases',
+    'chronologyReleaseItems',
+    'importedHistories',
+    'importedHistoryBlocks',
+    'doorTags',
+    'auditEvents',
+    'people'
+  ]);
+  for (const collection of HOME_CARE_EXPORT_COLLECTIONS) {
+    for (const parent of collection.parents) {
+      assert.ok(HOME_CARE_EXPORT_KEYS.indexOf(parent.collection) < HOME_CARE_EXPORT_KEYS.indexOf(collection.key), `${collection.key} → ${parent.collection}`);
+    }
+  }
+
+  /* Vale kuju. */
+  assert.equal(checkHomeCareExport(null).ok, false);
+  assert.equal(checkHomeCareExport([]).ok, false);
+  assert.match(problems((doc) => { doc.format = 'muu'; })[0], /vorming/);
+  assert.match(problems((doc) => { doc.version = 2; })[0], /versioon/);
+  assert.match(problems((doc) => { delete doc.exportId; })[0], /exportId/);
+  /* Poolik fail: lõpus olevad koguarvud puuduvad. */
+  assert.ok(problems((doc) => { delete doc.totals; }).some((line) => /poolik/.test(line)));
+  assert.ok(problems((doc) => { delete doc.accessLog; }).some((line) => /accessLog/.test(line)));
+
+  /* Arvud ja ID-d. */
+  assert.match(problems((doc) => { doc.entries.push({ id: 'n2', clientId: 'c1' }); })[0], /entries.*2 rida.*koguarv ütleb 1/);
+  assert.ok(problems((doc) => { doc.clients[1].id = 'c1'; }).some((line) => /clients.*kordub 1/.test(line)));
+  assert.ok(problems((doc) => { delete doc.cardLines[0].id; }).some((line) => /cardLines.*ilma ID-ta/.test(line)));
+
+  /* Viited: kirje ilma kliendita, parandus ilma kirjeta, lõik ilma ajaloota, tundmatu üksus. */
+  assert.deepEqual(problems((doc) => { doc.entries[0].clientId = 'c9'; }), ['Kogus „entries" ei leia 1 rea väli „clientId" oma rida kogust „clients".']);
+  assert.ok(problems((doc) => { doc.entryRevisions[0].entryId = 'n9'; }).some((line) => /entryRevisions.*entryId.*entries/.test(line)));
+  assert.ok(problems((doc) => { doc.importedHistoryBlocks[1].historyId = 'h9'; }).some((line) => /importedHistoryBlocks.*historyId/.test(line)));
+  assert.ok(problems((doc) => { doc.clients[0].unitId = 'u9'; }).some((line) => /clients.*unitId.*units/.test(line)));
+  /* Kohustuslik viide ei tohi olla tühi. */
+  assert.ok(problems((doc) => { doc.teamMembers[0].clientId = null; }).some((line) => /teamMembers.*clientId/.test(line)));
+
+  /* Rea enda väide: lõikude ja väljastuse ridade arv. */
+  assert.ok(problems((doc) => { doc.importedHistories[0].blockCount = 3; }).some((line) => /lõikude arv/.test(line)));
+  assert.ok(problems((doc) => { doc.chronologyReleases[0].entryCount = 2; }).some((line) => /ridade arv/.test(line)));
+
+  /* Tundmatu töötaja on tähelepanek, mitte viga: need viited on andmebaasis võõrvõtmeta jäljed. */
+  const loose = make();
+  loose.entries[0].authorMembershipId = 'm9';
+  const looseCheck = checkHomeCareExport(loose);
+  assert.equal(looseCheck.ok, true);
+  assert.deepEqual(looseCheck.notes, ['Kogus „entries" on 1 viidet töötajale, keda loendis „people" ei ole.']);
+
+  /* Iga väljajätt ja iga põhjus on lehel sõnadega kirjas kõigis kolmes keeles. */
+  for (const locale of ['et', 'en', 'ru']) {
+    const messages = JSON.parse(readFileSync(new URL(`../messages/${locale}.json`, import.meta.url), 'utf8')).home_care.export;
+    assert.deepEqual(Object.keys(messages.excluded).sort(), HOME_CARE_EXPORT_EXCLUSIONS.map((item) => item.key).sort(), locale);
+    assert.deepEqual(Object.keys(messages.reasons).sort(), [...CARE_EXPORT_REASONS].sort(), locale);
+  }
+  assert.ok(HOME_CARE_EXPORT_EXCLUSIONS.every((item) => item.why.length > 20));
 });

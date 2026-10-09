@@ -11124,7 +11124,12 @@
       "history_not_found": "Seda ajalugu ei leitud.",
       "door_tag_missing": "Sellel kliendil ei ole kehtivat uksesilti.",
       "invalid_call": "Kõnemärkel peab olema nii helistaja kui ka teema.",
-      "invalid_month": "Kuu ei ole õigel kujul."
+      "invalid_month": "Kuu ei ole õigel kujul.",
+      "export_whole_org_only": "Täieliku väljavõtte saab teha ainult kogu asutuse hooldusjuht.",
+      "export_too_large": "Väljavõte on ühe faili jaoks liiga suur. Võta ühendust platvormi toega, et see osade kaupa kätte saada.",
+      "invalid_export_reason": "Vali, milleks väljavõte tehakse.",
+      "export_failed": "Väljavõtte koostamine ei õnnestunud. Proovi uuesti.",
+      "export_in_progress": "Selle asutuse väljavõte on juba koostamisel. Oota, kuni see valmis saab."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -11372,6 +11377,56 @@
       "row": "{label}: {count} (eelmisel kuul {before})",
       "empty": "Selles ega eelmises kuus ei ole ühtegi kõnemärget tehtud.",
       "how": "Kõnemärke teeb töötaja kliendi lehel nupust „Kõne: klient või lähedane helistas”. Tühistatud kirjeid loendur ei loe."
+    },
+    "export": {
+      "link": "Täielik väljavõte",
+      "title": "Täielik väljavõte",
+      "intro": "Kõik koduteenuse andmed ühe failina: varukoopiaks, järelevalve nõudel või teise süsteemi viimiseks. Fail on JSON-vormingus ja seda loeb ka muu tarkvara.",
+      "who_hint": "Väljavõtte saab teha ainult kogu asutuse hooldusjuht. Iga väljavõte jätab asutuse tööloendisse rea: kes, millal ja milleks.",
+      "contents_title": "Mis failis on",
+      "count": {
+        "clients": "Kliente: {count}",
+        "entries": "Päeviku kirjeid: {count}",
+        "access": "Kliendi lehe avamisi: {count}",
+        "histories": "Varasema ajaloo tekste: {count}",
+        "releases": "Väljastatud kronoloogiaid: {count}"
+      },
+      "contents_more": "Lisaks on failis meeskonnad, püsikaardi read, paranduste ja tühistuste jälg, lugemismärgid, erijuhtumite käik, uksesiltide jälg, töötajate nimed ja koduteenuse tööloend.",
+      "excluded_title": "Mida failis ei ole",
+      "excluded": {
+        "entry_search_helpers": "Otsinguabi (sõnade tüved ja algvormid): see on tuletatud kirje tekstist ja tekst ise on failis.",
+        "request_keys": "Kordussaatmise võtmed: tehniline kaitse topeltsalvestuse vastu.",
+        "door_tag_marks": "Uksesiltide tunnused: tunnus on töötav aadress. Failis on sildi tegemise ja tühistamise jälg.",
+        "device_queue": "Kirjed, mis ootavad veel töötaja seadmes võrku: need ei ole serverisse jõudnud.",
+        "user_accounts": "Töötajate e-posti aadressid ja sisselogimise andmed. Failis on ainult nende töötajate nimed, kellele koduteenuse read viitavad.",
+        "service_diary": "Teenuspäeviku arvestuskirjed: see on eraldi funktsioon oma väljavõttega."
+      },
+      "make_title": "Koosta väljavõte",
+      "reason_label": "Milleks väljavõte tehakse",
+      "reasons": {
+        "BACKUP": "oma varukoopia",
+        "LEAVING": "lahkumine või teise süsteemi viimine",
+        "AUTHORITY": "järelevalve või ametiasutuse nõue",
+        "OTHER": "muu"
+      },
+      "reason_hint": "Põhjus läheb asutuse tööloendisse koos sinu nime, aja ja faili kontrollsummaga.",
+      "start": "Koosta väljavõte",
+      "confirm_notice": "Fail sisaldab kõigi klientide nimesid, aadresse ja päevikuid. Salvesta see ainult kohta, kus tohib hoida kliendi toimikuid, ja ära saada seda e-postiga.",
+      "confirm": "Jah, koosta ja laadi alla",
+      "working": "Koostan väljavõtet. See võib võtta kuni paar minutit; ära sulge lehte.",
+      "ready": "Väljavõte on valmis: {rows} rida, {size}. Kui allalaadimine ise ei alanud, vajuta „Salvesta fail”.",
+      "save_file": "Salvesta fail",
+      "checksum": "Kontrollsumma (SHA-256): {sha}",
+      "checksum_hint": "Brauser arvutas faili kontrollsumma üle ja see klapib serveri omaga. Sama summa on asutuse tööloendis: kui tahad hiljem tõendada, et fail on muutmata, arvuta faili SHA-256 ja võrdle.",
+      "not_verified": "Brauser ei saanud faili kontrollsummat üle arvutada; suurus klapib. Arvuta faili SHA-256 ise ja võrdle ülal oleva summaga, enne kui failile toetud.",
+      "mismatch": "Alla laaditud fail ei klapi serveri andmetega (suurus või kontrollsumma). Faili ei antud salvestada; proovi uuesti.",
+      "recent_title": "Viimased väljavõtted",
+      "recent_empty": "Ühtegi väljavõtet ei ole veel tehtud.",
+      "rows": "{count} rida",
+      "recent_checksum": "Kontrollsumma: {sha}",
+      "size_kb": "{n} kB",
+      "size_mb": "{n} MB",
+      "decimal_mark": ","
     }
   },
   "stage": {
