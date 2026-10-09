@@ -490,7 +490,10 @@
       "deleted_user": "Kasutaja kustutatud",
       "back_to_mentoring": "Tagasi mentorlusse",
       "unknown_time": "Aeg teadmata",
-      "cancel": "Loobu"
+      "cancel": "Loobu",
+      "open": "Ava",
+      "opens_new_tab": "avaneb uuel vahelehel",
+      "part_position": "Osa {current}/{total}: {label}"
     },
     "errors": {
       "load_failed": "Mentorluse andmete laadimine ebaõnnestus.",
@@ -577,93 +580,216 @@
       "title": "Mentorlus",
       "lead": "Mentorlus on kogenuma kolleegi praktiline tugi alustajale või uues rollis töötajale. Platvorm hoiab suhte mälu: taotlus, kokkulepe, kohtumised, kokkuvõtted ja sinu privaatsed märkmed.",
       "empty_title": "Sul ei ole veel mentorlussuhteid",
-      "empty_help": "Vali kataloogist mentor ja esita taotlus — või loo ise mentoriprofiil.",
-      "boundary_note": "Mentorlus ei asenda supervisiooni (kvalifitseeritud protsessijuht) ega kovisiooni (võrdsete grupp) — need on platvormil eraldi vormid.",
-      "my_relations": "Minu mentorlussuhted",
+      "empty_help": "Vali kataloogist mentor ja esita taotlus või loo ise mentoriprofiil.",
+      "boundary_note": "Mentorlus ei asenda supervisiooni (kvalifitseeritud protsessijuht) ega kovisiooni (võrdsete grupp). Need on platvormil eraldi vormid.",
       "relation_as_mentor": "Mentee: {name}",
       "relation_as_mentee": "Mentor: {name}",
       "last_activity": "Viimane tegevus: {date}",
       "open_relation": "Ava suhteruum",
-      "incoming_requests": "Saabunud taotlused",
       "incoming_help": "Sinu kui mentori otsustada. Keeldumise põhjendust taotlejale ei edastata.",
       "request_expires": "Aegub: {date}",
       "accept": "Võta vastu",
       "decline": "Keeldu",
-      "my_requests": "Minu taotlused",
       "cancel_request": "Tühista taotlus",
       "request_accepted_feedback": "Taotlus vastu võetud. Suhe ootab nüüd mõlema poole kokkuleppekinnitust.",
       "request_declined_feedback": "Taotlus tagasi lükatud.",
       "request_cancelled_feedback": "Taotlus tühistatud.",
-      "mentor_view": "Mentori vaade",
-      "mentor_view_help": "Sinu mentoriprofiil ja mahutavus.",
       "manage_profile": "Halda profiili",
       "become_mentor": "Hakka mentoriks",
-      "catalog": "Mentorite kataloog",
       "catalog_help": "Andmed esitab mentor ise; kataloogis olek ei ole kvaliteedimärgis. Järjestus on neutraalne.",
       "filter_field": "Valdkond",
       "filter_topic": "Teema",
       "filter_language": "Keel",
-      "filter_apply": "Filtreeri",
       "external_badge": "Profiil ESTA avalikust andmebaasist, viimati kontrollitud {date}",
       "capacity_open": "Võtab taotlusi vastu",
       "capacity_full": "Praegu uusi taotlusi ei võta",
-      "view_profile": "Vaata profiili",
       "view_external_profile": "Vaata ESTA profiili",
       "catalog_empty": "Platvormil pole veel mentoreid. Vaata ESTA avalikku andmebaasi või hakka ise mentoriks.",
       "esta_title": "ESTA mentorite andmebaas",
       "esta_help": "Sõltumatu avalik andmebaas Eesti Sotsiaaltöö Assotsiatsiooni lehel. Kontakt käib otse mentoriga, väljaspool platvormi.",
-      "esta_link": "Ava ESTA mentorite leht (eswa.ee)",
-      "closed_relations": "Lõppenud suhted",
-      "open_archive": "Ava järelvaade"
+      "open_archive": "Ava järelvaade",
+      "all_parts": "Kogu mentorlus",
+      "views": {
+        "find": {
+          "title": "Leia mentor",
+          "short": "Leia mentor",
+          "filters": "Kataloogi filtrid",
+          "summary": "Mentoreid kataloogis: {count}",
+          "summary_empty": "Platvormil ei ole veel mentoreid."
+        },
+        "relations": {
+          "title": "Minu mentorlussuhted",
+          "short": "Minu suhted",
+          "groups": "Milliseid suhteid näidata",
+          "group_open": "Käimas",
+          "group_closed": "Lõppenud"
+        },
+        "requests": {
+          "title": "Taotlused",
+          "short": "Taotlused",
+          "groups": "Milliseid taotlusi näidata",
+          "group_incoming": "Saabunud",
+          "group_sent": "Minu saadetud",
+          "sent_lead": "Mentor vastab platvormil. Ootel taotluse saad tühistada.",
+          "empty": "Taotlusi ei ole.",
+          "summary_incoming": "Ootab sinu vastust: {name}",
+          "summary_sent": "Ootab mentori vastust: {name}",
+          "confirm_decline": "Vajuta uuesti, et keelduda",
+          "confirm_cancel": "Vajuta uuesti, et tühistada"
+        },
+        "mentor": {
+          "title": "Mina mentorina",
+          "short": "Mentorina"
+        },
+        "more": "ja teised"
+      },
+      "no_profile": "Sul ei ole veel mentoriprofiili.",
+      "manage_profile_help": "Profiili sisu, seis ja uute taotluste vastuvõtmine.",
+      "become_mentor_help": "Loo mentoriprofiil. Kataloogi jõuab see pärast ülevaatust.",
+      "mentor_not_listed": "Mentor ei ole enam kataloogis",
+      "filter_all_field": "Kõik valdkonnad",
+      "filter_all_topic": "Kõik teemad",
+      "filter_all_language": "Kõik keeled",
+      "filter_failed": "Filtreerimine ebaõnnestus. Proovi uuesti.",
+      "filter_empty": "Selle valikuga mentoreid ei leitud.",
+      "catalog_failed": "Mentorite loendit ei saanud laadida.",
+      "catalog_capped": "Näitan esimest {count} mentorit. Kitsenda valikut filtriga.",
+      "external_chip": "ESTA andmebaas",
+      "external_checked": "Kontrollitud {date}"
     },
     "profile_public": {
       "title": "Mentori profiil",
       "unavailable": "See profiil pole enam saadaval.",
       "self_declared": "Andmed esitab mentor ise; kataloogis olek ei ole kvaliteedimärgis.",
-      "languages": "Keeled: {languages}",
-      "formats": "Vormid: {formats}",
       "request_title": "Soovi mentorlust",
       "request_help": "Kirjelda üldistatult oma eesmärki ja ootust. Mentor näeb seda teksti oma otsuse tegemiseks.",
       "request_message": "Eesmärk ja ootus",
       "no_client_data": "Ära lisa kliendiandmeid ega kolmandate isikute tuvastatavaid andmeid.",
       "request_submit": "Esita taotlus",
       "request_sent": "Taotlus esitatud. Mentor saab teate ja vastab platvormil.",
-      "capacity_full_note": "See mentor ei võta praegu uusi taotlusi vastu."
+      "capacity_full_note": "See mentor ei võta praegu uusi taotlusi vastu.",
+      "all_parts": "Kogu profiil",
+      "views": {
+        "about": {
+          "title": "Mentor",
+          "short": "Mentor"
+        },
+        "story": {
+          "title": "Tutvustus ja kogemus",
+          "short": "Tutvustus"
+        },
+        "request": {
+          "title": "Mentorluse taotlus",
+          "short": "Taotlus"
+        }
+      },
+      "group": {
+        "fields": "Valdkonnad",
+        "topics": "Teemad",
+        "languages": "Keeled",
+        "formats": "Vormid"
+      },
+      "experience": "Kogemus",
+      "external_help": "Kontakt käib otse mentoriga, väljaspool platvormi.",
+      "request_sent_short": "Taotlus on esitatud"
     },
     "my_profile": {
       "title": "Minu mentoriprofiil",
-      "lead": "Profiil muutub kataloogis nähtavaks pärast admini ülevaatust. See on moderatsioon, mitte kvaliteedimärgis.",
       "saved": "Profiil salvestatud.",
-      "not_created": "Sul pole veel mentoriprofiili. Täida vorm ja salvesta.",
-      "moderation_note": "Kataloogi pääseb profiil pärast ülevaatust (moderatsioon, mitte kvalifikatsioonikinnitus).",
       "display_name": "Nimi kataloogis",
       "job_title": "Amet",
-      "organization": "Organisatsioon (vabatekst)",
-      "organization_hint": "Ainult tekstina — organisatsioonikontot platvormil ei ole.",
+      "organization": "Organisatsioon",
+      "organization_hint": "Vabatekst. Platvormi organisatsiooniga seda ei seota.",
       "fields": "Valdkonnad",
-      "list_hint": "Eralda komadega.",
+      "list_hint": "Üks real või komadega eraldatult. Kuni {max}.",
       "topics": "Teemad",
       "languages": "Keeled",
       "formats": "Vormid",
-      "formats_hint": "Nt kohtumine, veebi teel.",
+      "formats_hint": "Näiteks kohtumine või veebi teel. Kuni {max}.",
       "bio_short": "Lühitutvustus",
       "bio_full": "Pikem tutvustus",
       "experience": "Kogemuse kokkuvõte",
       "save": "Salvesta",
       "submit_review": "Esita ülevaatusele",
-      "set_full": "Märgi: uusi taotlusi ei võta",
-      "set_open": "Märgi: võtan taotlusi vastu",
       "pause": "Peata profiil",
       "resume": "Taasta profiil",
       "retire": "Lõpeta mentorlus",
-      "retire_hint": "Lõpetamine võtab profiili kataloogist maha; olemasolevad suhted jäävad, kuni need eraldi suletakse.",
+      "retire_hint": "Profiil võetakse kataloogist maha ja seda ei saa taastada. Olemasolevad suhted jäävad, kuni need eraldi suletakse.",
       "action_done": {
         "submit": "Profiil esitatud ülevaatusele.",
-        "pause": "Profiil peatatud — kataloogist väljas.",
+        "pause": "Profiil on peatatud ja kataloogist väljas.",
         "resume": "Profiil taas kataloogis.",
         "retire": "Mentorlus lõpetatud.",
         "capacity": "Mahutavus uuendatud."
-      }
+      },
+      "views": {
+        "who": {
+          "title": "Nimi ja töökoht",
+          "short": "Nimi",
+          "lead": "Nii näevad sind kolleegid mentorite kataloogis."
+        },
+        "areas": {
+          "title": "Valdkonnad ja teemad",
+          "short": "Valdkonnad",
+          "lead": "Mille juures saad kolleegi toetada? Valdkonna järgi leitakse sind kataloogist."
+        },
+        "ways": {
+          "title": "Keeled ja vormid",
+          "short": "Keeled ja vormid"
+        },
+        "intro": {
+          "title": "Lühitutvustus",
+          "short": "Lühitutvustus"
+        },
+        "story": {
+          "title": "Pikem tutvustus",
+          "short": "Tutvustus"
+        },
+        "experience": {
+          "title": "Kogemus",
+          "short": "Kogemus"
+        },
+        "state": {
+          "title": "Seis ja esitamine",
+          "short": "Seis",
+          "summary_none": "Profiili ei ole veel"
+        }
+      },
+      "saved_draft": "Mustand salvestatud. Kataloogi jõudmiseks esita profiil ülevaatusele sammus „Seis ja esitamine”.",
+      "saved_pending": "Profiil salvestatud. Muudatus ootab ülevaatust.",
+      "unsaved": "Muudatused on salvestamata.",
+      "name_required": "Salvestamiseks lisa nimi (samm „Nimi ja töökoht”).",
+      "locked": "Seda profiili ei saa enam muuta.",
+      "list_over": "Salvestatakse esimesed {max}.",
+      "languages_hint": "Näiteks eesti, vene, inglise. Kuni {max}.",
+      "bio_short_hint": "Paar lauset, mida näidatakse kataloogi loendis. Kuni {max} tähemärki.",
+      "bio_full_hint": "Seda näidatakse sinu profiili lehel lühitutvustuse asemel.",
+      "experience_hint": "Kus ja kui kaua oled töötanud ning keda juhendanud. Ära lisa kliendiandmeid.",
+      "missing_lead": "Ülevaatusele esitamiseks lisa: {items}.",
+      "missing": {
+        "display_name": "nimi",
+        "bio_short": "lühitutvustus",
+        "fields": "vähemalt üks valdkond"
+      },
+      "ready_for_review": "Profiil on esitamiseks valmis.",
+      "state_help": {
+        "none": "Sul ei ole veel mentoriprofiili. Täida sammud ja salvesta.",
+        "draft": "Mustandit näed ainult sina. Kataloogi jõuab profiil pärast ülevaatust. See on modereerimine, mitte kvalifikatsiooni kinnitus.",
+        "pending_review": "Profiil ootab ülevaatust. See on modereerimine, mitte kvalifikatsiooni kinnitus.",
+        "active": "Profiil on kataloogis nähtav. Kui muudad selle sisu, läheb profiil uuesti ülevaatusele.",
+        "rejected": "Paranda profiili ja esita see uuesti ülevaatusele.",
+        "paused": "Peatatud profiili kataloogis ei näidata. Olemasolevad suhted jätkuvad.",
+        "retired": "Mentorlus on lõpetatud. Seda profiili ei saa muuta ega taastada.",
+        "revoked": "Profiil on suletud ja seda ei saa siin muuta."
+      },
+      "capacity_question": "Kas võtad uusi taotlusi vastu?",
+      "capacity_open": "Võtan vastu",
+      "capacity_full": "Praegu ei võta",
+      "pause_hint": "Profiil läheb kataloogist välja, kuni selle taastad.",
+      "resume_hint": "Profiil läheb tagasi kataloogi.",
+      "confirm_retire": "Vajuta uuesti, et lõpetada",
+      "state_actions": "Profiili seisu tegevused",
+      "conflict_kept": "Profiili muudeti vahepeal mujal. Sinu muudatused on alles: vaata need üle ja salvesta uuesti."
     },
     "relation": {
       "title": "Mentorlussuhe",

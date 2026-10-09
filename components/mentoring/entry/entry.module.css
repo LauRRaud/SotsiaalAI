@@ -1,0 +1,403 @@
+/* Mentorluse avalehed (avaleht, minu mentoriprofiil, mentori profiil): lehe kest,
+   loendiread, märgid, lingikaart ja profiilivormi väljad.
+   Lava, plaadid ja kiirmenüü tulevad components/stage-ist; vaate kuju (juhis,
+   tegevusrida) StepPanel-ist, valikud ChoiceRow-st ja tekstiväljad
+   TextAreaField-ist. Lehe pind on klaaspaneel ise: siin ei ole ühtegi kasti,
+   mis kogu sisu veel kord ümbritseks. */
+
+.shell {
+  min-width: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+.stack {
+  min-width: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+
+/* --- Laused ---------------------------------------------------------------- */
+.quiet {
+  margin: 0;
+  color: var(--text-soft);
+}
+.small {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+}
+/* Kogu vaate sissejuhatus plaatide kohal. */
+.lead {
+  margin: 0;
+  max-width: 68ch;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+}
+/* Laadimise viga või puuduv profiil: lause ja selle tegevus, mitte kast. */
+.fault {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+}
+/* Ühine paneelikiht annab `role="alert"` elemendile tausta, äärise ja polstri;
+   siin on viga tavaline lause. */
+.faultText {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--text-warm);
+}
+/* Teade on nii lai kui tema lause, mitte paneeli laiune kast. */
+.notice {
+  justify-self: start;
+  max-width: min(100%, 68ch);
+  margin: 0;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.9rem;
+  background: var(--glass-cell-bg);
+  color: var(--text-soft);
+}
+.notice[data-tone="risk"] {
+  border-color: color-mix(in srgb, var(--status-error, #eb9a76) 60%, transparent);
+  border-inline-start-width: 3px;
+  color: var(--text-warm);
+}
+.notice[data-tone="ok"] {
+  border-color: color-mix(in srgb, var(--status-success, #c5cf9b) 55%, transparent);
+}
+.empty {
+  min-width: 0;
+  display: grid;
+  gap: 0.35rem;
+  max-width: 62ch;
+}
+.emptyTitle {
+  margin: 0;
+  color: var(--text-warm);
+  font-weight: 560;
+}
+
+/* --- Märk: seis ühe sõnaga -------------------------------------------------- */
+.chip {
+  flex: none;
+  padding: 0.12rem 0.6rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 999px;
+  color: var(--text-soft);
+  font-size: 0.78rem;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.chip[data-tone="ok"] {
+  border-color: color-mix(in srgb, var(--status-success, #c5cf9b) 55%, transparent);
+  color: var(--status-success, #c5cf9b);
+}
+.chip[data-tone="wait"] {
+  border-color: color-mix(in srgb, #e6c27a 55%, transparent);
+  color: #e6c27a;
+}
+.chip[data-tone="risk"] {
+  border-color: color-mix(in srgb, var(--status-error, #eb9a76) 60%, transparent);
+  color: var(--status-error, #eb9a76);
+}
+:global(html.theme-light) .chip[data-tone="wait"] {
+  color: #7a5a12;
+}
+
+/* --- Filtrid: kolm lühikest valikut reas, mitte paneeli laiused väljad ------- */
+.filters {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.6rem;
+}
+.filter {
+  flex: 0 1 13rem;
+  min-width: 9rem;
+}
+
+/* --- Loend ------------------------------------------------------------------ */
+.rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+.rowItem {
+  min-width: 0;
+  max-width: none;
+}
+/* Rida on üks vajutatav lahter: nimi vasakul, märk ja aeg selle kõrval, tee
+   edasi paremal. */
+.row {
+  composes: cell from "../../stage/cell.module.css";
+  min-height: var(--hit-target-min, 2.75rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 0.3rem 1rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.9rem;
+  text-align: left;
+  text-decoration: none;
+}
+.rowMain {
+  min-width: 0;
+  display: grid;
+  gap: 0.1rem;
+}
+.rowTitle {
+  min-width: 0;
+  color: var(--text-warm);
+  font-weight: 560;
+  overflow-wrap: anywhere;
+}
+.rowSub {
+  min-width: 0;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+/* Lühitutvustus real: üks rida, terve tekst on mentori profiilis. */
+.rowExcerpt {
+  min-width: 0;
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+.rowMeta {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 0.3rem 0.6rem;
+}
+.time,
+.rowOpen {
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+/* Rida, mis ei vii kuhugi: nimi vasakul, seis ja üks tegevus paremal (minu
+   saadetud taotlus). Kitsal pinnal murduvad seis ja tegevus nime alla. */
+.item {
+  min-width: 0;
+  max-width: none;
+  min-height: var(--hit-target-min, 2.75rem);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem 1rem;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.9rem;
+  background: var(--glass-cell-bg);
+}
+.itemTitle {
+  flex: 1 1 12rem;
+}
+/* Otsust ootav taotlus: kes, mis ajani, tema tekst ja kaks nuppu. */
+.card {
+  min-width: 0;
+  max-width: none;
+  display: grid;
+  gap: 0.45rem;
+  padding: 0.7rem 0.95rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 1rem;
+  background: var(--glass-cell-bg);
+}
+.cardHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.3rem 1rem;
+}
+.cardText {
+  margin: 0;
+  max-width: 68ch;
+  color: var(--text-warm);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.line {
+  margin: 0;
+  max-width: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 0.7rem;
+}
+.lineText {
+  color: var(--text-soft);
+}
+
+/* --- Lingikaart: pealkiri ja selgitus eraldi ridadel, nii lai kui sisu vajab -- */
+.linkCard {
+  composes: cell from "../../stage/cell.module.css";
+  justify-self: start;
+  max-width: min(100%, 30rem);
+  min-height: var(--hit-target-min, 2.75rem);
+  display: grid;
+  align-content: start;
+  gap: 0.2rem;
+  padding: 0.8rem 0.95rem;
+  border-radius: 1rem;
+  text-align: left;
+  text-decoration: none;
+}
+.linkTitle {
+  font-weight: 560;
+  overflow-wrap: anywhere;
+}
+.linkDescription {
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+.textLink {
+  justify-self: start;
+  color: var(--text-warm);
+  font-size: var(--fs-small, 0.875rem);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+.textLink:focus-visible {
+  outline: none;
+  border-radius: 0.3rem;
+  box-shadow: var(--focus-ring);
+}
+
+/* --- Mentori profiil: sildirühmad ja pikk tekst ------------------------------ */
+.groups {
+  min-width: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+/* Rühma nimi vasakul, sildid selle kõrval reas. */
+.group {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 8rem) minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0.3rem 0.8rem;
+}
+.section {
+  min-width: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+.groupTitle {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 0.74rem;
+  font-weight: 560;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.tags {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+.tag {
+  max-width: 100%;
+  padding: 0.16rem 0.6rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.7rem;
+  background: var(--glass-cell-bg);
+  color: var(--text-warm);
+  font-size: 0.82rem;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+/* Tutvustus ja kogemus: pikk tekst täislaiuses, reavahetused jäävad alles. */
+.text {
+  margin: 0;
+  max-width: 68ch;
+  color: var(--text-warm);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* --- Profiilivorm ------------------------------------------------------------ */
+/* Väli on nii lai kui sisu vajab: nimi ei ole paneeli laiune. */
+.field {
+  min-width: 0;
+  display: grid;
+  align-content: start;
+  gap: 0.35rem;
+  max-width: 30rem;
+}
+.fieldLabel {
+  color: var(--text-warm);
+}
+.fieldHint {
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+}
+/* Kaks välja kõrvuti; kitsal pinnal üksteise all. */
+.pair {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 0.7rem 0.8rem;
+}
+/* Seisu tegevused: kaks kaarti kõrvuti; üks kaart ei veni paneeli laiuseks. */
+.actionCards {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 0.6rem;
+}
+
+@media (max-width: 640px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .rowMeta {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: flex-start;
+  }
+  .filter {
+    flex-basis: 100%;
+  }
+  .group,
+  .pair,
+  .actionCards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .field {
+    max-width: none;
+  }
+  .linkCard {
+    justify-self: stretch;
+    max-width: none;
+  }
+}
