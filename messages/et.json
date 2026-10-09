@@ -6371,7 +6371,8 @@
       "home_care_incident_reported": "Koduteenuses on uus erijuhtum või täiendus",
       "home_care_concern_raised": "Koduteenuses on uus mure hooldusjuhile",
       "home_care_incident_assigned": "Sulle määrati koduteenuse erijuhtum",
-      "home_care_visits_changed": "Sinu koduteenuse käigud muutusid"
+      "home_care_visits_changed": "Sinu koduteenuse käigud muutusid",
+      "home_care_obstacle_reported": "Hooldaja teatas takistusest"
     },
     "center": {
       "title": "Teavitused",
@@ -12099,7 +12100,14 @@
       "absence_overlap": "Sellel töötajal on neil päevadel juba puudumine märgitud.",
       "absence_not_found": "Puudumist ei leitud. Laadi leht uuesti.",
       "slot_priority_invalid": "Käigu tähtsus ei sobi.",
-      "visit_worker_absent": "See töötaja puudub sel päeval."
+      "visit_worker_absent": "See töötaja puudub sel päeval.",
+      "obstacle_kind_required": "Vali, mis juhtus.",
+      "obstacle_not_worker": "Takistusest saab teatada hooldaja, kes on mõne kliendi meeskonnas.",
+      "obstacle_not_found": "Seda teadet ei leitud.",
+      "obstacle_handled": "Hooldusjuht on teate juba üle vaadanud. Kui midagi muutus, teata uuesti.",
+      "obstacle_withdrawn": "Töötaja võttis teate tagasi.",
+      "obstacle_absence_invalid": "Puudumise saab siit märkida ainult teate „ei saa täna töötada” juurest.",
+      "obstacle_busy": "Teade oli juba saatmisel. Vaata, kas see on kirjas, ja proovi vajadusel uuesti."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -12756,7 +12764,16 @@
       "uncovered_title": "Tegija puudub",
       "uncovered_hint": "Need käigud vajavad asendajat või otsust. Tähtsamad on ees.",
       "absent_worker": "{name} puudub",
-      "team_option": "{name} · meeskonnas"
+      "team_option": "{name} · meeskonnas",
+      "obstacles_title": "Takistused",
+      "obstacles_hint": "Hooldaja teatas ise. Tema tegemata käigud on tähtsuse järjekorras: tõsta ümber või jäta ära, siis märgi teade vaadatuks.",
+      "obstacle_line": "{name}: {kind} (teatas kell {time})",
+      "obstacle_none": "Tegemata käike sel töötajal sellel päeval ei ole.",
+      "obstacle_handle": "Märgi vaadatuks",
+      "obstacle_absent": "Märgi selleks päevaks puudumine",
+      "obstacle_seen": "{line}. Vaadatud.",
+      "obstacle_handled_saved": "Teade on märgitud vaadatuks.",
+      "obstacle_absent_saved": "Puudumine on märgitud. Töötaja tegemata käigud on rühmas „Tegija puudub”."
     },
     "priority": {
       "label": "Käigu tähtsus",
@@ -12801,6 +12818,33 @@
       "saved": "Puudumine on salvestatud.",
       "removed": "Puudumine on kustutatud.",
       "my_notice": "Sul on täna märgitud puudumine. Sinu tänased käigud on hooldusjuhi päevaplaanis."
+    },
+    "obstacle": {
+      "button": "Mul on takistus",
+      "choose_title": "Mis juhtus?",
+      "hint": "Põhjust lähemalt kirjutama ei pea. Hooldusjuht näeb teadet ja sinu tänaseid tegemata käike.",
+      "kinds": {
+        "LATE_30": "Hilinen umbes pool tundi",
+        "LATE_60": "Hilinen umbes tunni",
+        "CAR_BROKEN": "Auto on rikkis",
+        "ROAD_BLOCKED": "Tee on läbimatu",
+        "CANNOT_WORK": "Ei saa täna töötada"
+      },
+      "kinds_about": {
+        "LATE_30": "hilineb umbes pool tundi",
+        "LATE_60": "hilineb umbes tunni",
+        "CAR_BROKEN": "auto on rikkis",
+        "ROAD_BLOCKED": "tee on läbimatu",
+        "CANNOT_WORK": "ei saa täna töötada"
+      },
+      "send": "Teata hooldusjuhile",
+      "cancel": "Loobu",
+      "sent": "Sinu teade kell {time}: „{kind}”.",
+      "sent_hint": "Hooldusjuht näeb seda oma päevaplaanis.",
+      "handled_hint": "Hooldusjuht on teate üle vaadanud.",
+      "withdraw": "Takistus on möödas",
+      "change": "Muuda teadet",
+      "again": "Teata uuest takistusest"
     }
   },
   "stage": {

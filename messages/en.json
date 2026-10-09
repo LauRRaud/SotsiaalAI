@@ -6371,7 +6371,8 @@
       "home_care_incident_reported": "There is a new incident or follow-up in home care",
       "home_care_concern_raised": "There is a new concern for the care coordinator in home care",
       "home_care_incident_assigned": "A home care incident was assigned to you",
-      "home_care_visits_changed": "Your home care visits changed"
+      "home_care_visits_changed": "Your home care visits changed",
+      "home_care_obstacle_reported": "A care worker reported an obstacle"
     },
     "center": {
       "title": "Notifications",
@@ -12099,7 +12100,14 @@
       "absence_overlap": "This worker already has an absence marked for those days.",
       "absence_not_found": "The absence was not found. Reload the page.",
       "slot_priority_invalid": "The importance of the visit is not valid.",
-      "visit_worker_absent": "This worker is absent on that day."
+      "visit_worker_absent": "This worker is absent on that day.",
+      "obstacle_kind_required": "Choose what happened.",
+      "obstacle_not_worker": "An obstacle can be reported by a care worker who is on a client's team.",
+      "obstacle_not_found": "This notice was not found.",
+      "obstacle_handled": "The coordinator has already looked at the notice. If something changed, report again.",
+      "obstacle_withdrawn": "The worker withdrew the notice.",
+      "obstacle_absence_invalid": "An absence can be marked here only from the notice “cannot work today”.",
+      "obstacle_busy": "The notice was already being sent. Check whether it is recorded and try again if needed."
     },
     "incidents": {
       "title": "Incident register",
@@ -12756,7 +12764,16 @@
       "uncovered_title": "The worker is absent",
       "uncovered_hint": "These visits need a replacement or a decision. The more important ones come first.",
       "absent_worker": "{name} is absent",
-      "team_option": "{name} · on the team"
+      "team_option": "{name} · on the team",
+      "obstacles_title": "Obstacles",
+      "obstacles_hint": "Reported by the care worker. Their visits not yet done are in order of importance: move or cancel them, then mark the notice as seen.",
+      "obstacle_line": "{name}: {kind} (reported at {time})",
+      "obstacle_none": "This worker has no visits left to do on this day.",
+      "obstacle_handle": "Mark as seen",
+      "obstacle_absent": "Mark an absence for this day",
+      "obstacle_seen": "{line}. Seen.",
+      "obstacle_handled_saved": "The notice is marked as seen.",
+      "obstacle_absent_saved": "The absence is marked. The worker's visits not yet done are in the group “Worker absent”."
     },
     "priority": {
       "label": "Importance of the visit",
@@ -12801,6 +12818,33 @@
       "saved": "The absence is saved.",
       "removed": "The absence is deleted.",
       "my_notice": "An absence is marked for you today. Your visits today are in the coordinator's day plan."
+    },
+    "obstacle": {
+      "button": "I have an obstacle",
+      "choose_title": "What happened?",
+      "hint": "You do not need to explain further. The coordinator sees the notice and your visits not yet done today.",
+      "kinds": {
+        "LATE_30": "I am about half an hour late",
+        "LATE_60": "I am about an hour late",
+        "CAR_BROKEN": "The car has broken down",
+        "ROAD_BLOCKED": "The road is impassable",
+        "CANNOT_WORK": "I cannot work today"
+      },
+      "kinds_about": {
+        "LATE_30": "about half an hour late",
+        "LATE_60": "about an hour late",
+        "CAR_BROKEN": "the car has broken down",
+        "ROAD_BLOCKED": "the road is impassable",
+        "CANNOT_WORK": "cannot work today"
+      },
+      "send": "Tell the coordinator",
+      "cancel": "Cancel",
+      "sent": "Your notice at {time}: “{kind}”.",
+      "sent_hint": "The coordinator sees it in the day plan.",
+      "handled_hint": "The coordinator has looked at the notice.",
+      "withdraw": "The obstacle has passed",
+      "change": "Change the notice",
+      "again": "Report a new obstacle"
     }
   },
   "stage": {

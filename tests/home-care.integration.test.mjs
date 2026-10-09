@@ -80,6 +80,7 @@ import { getMonthSummary } from '../lib/homeCare/provided.js';
 import { createAbsence, getAbsences, removeAbsence, updateAbsence } from '../lib/homeCare/absences.js';
 import { cancelVisit, getDayPlan, getMyDay, moveVisit, restoreVisit } from '../lib/homeCare/dayPlan.js';
 import { changeSlot, createSlots, endSlot, getClientSlots, getSlotEditor } from '../lib/homeCare/slots.js';
+import { handleObstacle, reportObstacle, withdrawObstacle } from '../lib/homeCare/obstacles.js';
 import { assertNotificationRecipient, serializeNotificationEvent } from '../lib/notifications.js';
 
 const url = new URL(process.env.HOME_CARE_TEST_DATABASE_URL || 'postgres://invalid/invalid');
@@ -1844,6 +1845,8 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
   const exportSlot = (await createSlots(lead, northClient.id, { weekdays: [1], startTime: '09:00', plannedMinutes: 45, workerMembershipId: f.members.cover.id }, deps())).slots[0];
   /* Puudumine (K3-c): meeskonna liikme tulevane plaaniline puudumine. */
   await createAbsence(lead, { membershipId: f.members.cover.id, fromDay: '2026-10-20', toDay: '2026-10-21', kind: 'PLANNED' }, deps());
+  const obstacleOfAnu = await reportObstacle(anu, { kind: 'LATE_30' }, deps());
+  await handleObstacle(lead, obstacleOfAnu.obstacle.id, {}, deps());
   /* Ühe päeva erand (K3-b): järgmise esmaspäeva käik jääb ära. */
   await cancelVisit(lead, northClient.id, exportSlot.id, { day: '2026-10-12', reason: 'OTHER' }, deps());
   /* Otsus ja maht (K2-c), et väljavõttes oleks ka see kogu. */
@@ -1941,6 +1944,7 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
     visitSlots: await db.careVisitSlot.count({ where: ofOrg }),
     visitChanges: await db.careVisitChange.count({ where: ofOrg }),
     absences: await db.careAbsence.count({ where: ofOrg }),
+    obstacles: await db.careObstacle.count({ where: ofOrg }),
     auditEvents: await db.dataAuditLog.count({
       where: { action: { startsWith: 'org.home_care_' }, meta: { path: ['organizationId'], equals: f.orgA.id }, createdAt: { lt: (await exportRows())[0].createdAt } }
     })
@@ -3178,7 +3182,7 @@ test('päevaplaan: käigud töötaja kaupa, ümbertõstmine, ärajätmine, tagas
   /* PÄEVAPLAAN: töötaja kaupa, määramata eraldi, ajutiselt ära oleva kliendi käik eraldi. */
   const view = await getDayPlan(lead, {}, deps());
   assert.deepEqual([view.day, view.today, view.weekday, view.previousDay, view.nextDay, view.canEdit], [today, today, 5, '2026-10-08', '2026-10-10', true]);
-  assert.deepEqual(view.totals, { planned: 4, minutes: 165, done: 1, missing: 0, cancelled: 0, unassigned: 1, uncovered: 0 });
+  assert.deepEqual(view.totals, { planned: 4, minutes: 165, done: 1, missing: 0, cancelled: 0, unassigned: 1, uncovered: 0, obstacles: 0 });
   assert.deepEqual(rows(view.unassigned), [['14:00', 'Peeter Põhi', 'PLANNED']]);
   assert.deepEqual(
     view.workers.map((worker) => [worker.name, rows(worker.visits)]),
@@ -3276,7 +3280,7 @@ test('päevaplaan: käigud töötaja kaupa, ümbertõstmine, ärajätmine, tagas
   await expectError(restoreVisit(anu, linda.id, lindaMorning.id, { day: today }, deps()), 403, 'org.errors.missing_capability');
   /* Õhtune käik jääb ära: hooldaja näeb seda oma päevas ära jäetuna koos põhjusega. */
   const cancelled = await cancelVisit(lead, linda.id, lindaEvening.id, { day: today, reason: 'CLIENT_CANCELLED', note: 'Läheb tütre juurde' }, deps());
-  assert.deepEqual(cancelled.totals, { planned: 3, minutes: 135, done: 1, missing: 0, cancelled: 1, unassigned: 1, uncovered: 0 });
+  assert.deepEqual(cancelled.totals, { planned: 3, minutes: 135, done: 1, missing: 0, cancelled: 1, unassigned: 1, uncovered: 0, obstacles: 0 });
   const dayOfAnu = await getMyDay(anu, deps());
   const evening = dayOfAnu.visits.find((visit) => visit.slotId === lindaEvening.id);
   assert.deepEqual([evening.state, evening.done, evening.change.reason, evening.change.note], ['CANCELLED', false, 'CLIENT_CANCELLED', 'Läheb tütre juurde']);
@@ -3583,4 +3587,162 @@ test('teade töötajale käikude muutumisest ja hooldaja järgmised päevad', as
     assertNotificationRecipient(db, { type: TYPE, userId: f.users.bert.id, sourceId: last.sourceId, targetId: last.targetId }),
     (error) => error.status === 404
   );
+});
+
+test('hooldaja takistuse teade: teatamine, tagasivõtmine, hooldusjuhi päevaplaan ja puudumine teate juurest', async (t) => {
+  const f = await fixture(t);
+  const north = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Põhi ${f.tag}`, type: 'TEAM' } });
+  const south = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Lõuna ${f.tag}`, type: 'TEAM' } });
+  await db.organizationCapabilityGrant.create({
+    data: { membershipId: f.members.cover.id, capability: 'HOME_CARE_COORDINATOR', scopeType: 'UNIT', scopeUnitId: south.id, validFrom: at('2026-01-01T00:00:00Z') }
+  });
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const clerk = await f.ctx(f.users.clerk, f.orgA);
+  const southLead = await f.ctx(f.users.cover, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm', unitId: north.id }, deps())).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi', unitId: south.id }, deps())).client;
+  await addTeamMember(lead, linda.id, { membershipId: f.members.anu.id }, deps());
+  await addTeamMember(lead, peeter.id, { membershipId: f.members.bert.id }, deps());
+  const today = '2026-10-09';
+  const early = at('2026-10-01T08:00:00Z');
+  const slotOf = async (client, startTime, member, priority) =>
+    (await createSlots(lead, client.id, { weekdays: [5], startTime, plannedMinutes: 30, workerMembershipId: member.id, priority }, deps(early))).slots.find((slot) => slot.startTime === startTime);
+  /* Anu päev: 07:00 (tehtud), 09:00 C, 12:00 A, 17:00 B. Bert: 10:00. Kell on 08:00 UTC = 11:00 Tallinnas. */
+  await slotOf(linda, '07:00', f.members.anu);
+  await slotOf(linda, '09:00', f.members.anu, 'C');
+  const noon = await slotOf(linda, '12:00', f.members.anu, 'A');
+  await slotOf(linda, '17:00', f.members.anu);
+  await slotOf(peeter, '10:00', f.members.bert);
+  await createEntry(anu, linda.id, { text: 'Hommikune käik.', visitMinutes: 30, occurredAt: '2026-10-09T04:10:00Z' }, deps());
+
+  const TYPE = 'HOME_CARE_OBSTACLE_REPORTED';
+  const eventsFor = (user) => db.notificationEvent.findMany({ where: { userId: user.id, type: TYPE }, orderBy: [{ createdAt: 'asc' }, { id: 'asc' }] });
+  const counts = () => Promise.all([f.users.lead, f.users.cover, f.users.anu, f.users.bert].map(async (user) => (await eventsFor(user)).length));
+  let tick = 0;
+  const live = () => depsWithNotify(at(`2026-10-09T08:${String(++tick).padStart(2, '0')}:00Z`));
+
+  /* TEATAMINE: liik on kohustuslik valik; teatab ainult hooldaja (mõne kliendi meeskonnas). */
+  await expectError(reportObstacle(anu, {}, live()), 400, 'home_care.errors.obstacle_kind_required');
+  await expectError(reportObstacle(anu, { kind: 'SICK' }, live()), 400, 'home_care.errors.obstacle_kind_required');
+  await expectError(reportObstacle(clerk, { kind: 'LATE_30' }, live()), 403, 'home_care.errors.obstacle_not_worker');
+  await expectError(reportObstacle(lead, { kind: 'LATE_30' }, live()), 403, 'home_care.errors.obstacle_not_worker');
+  assert.equal(await db.careObstacle.count({ where: { organizationId: f.orgA.id } }), 0);
+  assert.equal((await getMyDay(anu, deps())).obstacle, null);
+
+  const sentAt = live();
+  const sent = await reportObstacle(anu, { kind: 'LATE_30' }, sentAt);
+  assert.deepEqual(sent.obstacle, { id: sent.obstacle.id, kind: 'LATE_30', reportedAt: sentAt.now.toISOString(), handled: false });
+  assert.deepEqual((await getMyDay(anu, deps())).obstacle, sent.obstacle);
+  /* Teavitus: kogu asutuse hooldusjuht saab; Lõuna üksuse hooldusjuht ei saa, sest Anu kliendid on Põhjas. */
+  assert.deepEqual(await counts(), [1, 0, 0, 0]);
+  const [event] = await eventsFor(f.users.lead);
+  assert.deepEqual([event.sourceType, event.sourceId, event.targetKind, event.targetId, event.workspaceId], ['CARE_OBSTACLE', sent.obstacle.id, 'CARE_OBSTACLE', sent.obstacle.id, f.orgA.id]);
+  const stored = JSON.stringify(event);
+  for (const secret of ['LATE_30', 'Anu', f.members.anu.id, 'Linda', linda.id]) assert.equal(stored.includes(secret), false, secret);
+  assert.equal(serializeNotificationEvent(event).href, `/org/koduteenus/takistus/${sent.obstacle.id}`);
+  const probe = { type: TYPE, userId: f.users.lead.id, sourceId: sent.obstacle.id, targetId: sent.obstacle.id };
+  await assertNotificationRecipient(db, probe);
+  await assertNotificationRecipient(db, { ...probe, userId: f.users.cover.id });
+  await assert.rejects(assertNotificationRecipient(db, { ...probe, userId: f.users.bert.id }), (error) => error.status === 404);
+  await assert.rejects(assertNotificationRecipient(db, { ...probe, userId: f.users.leadB.id }), (error) => error.status === 404);
+
+  /* Sama liigi kordus ei tee uut rida ega uut teavitust (topeltvajutus). */
+  const again = await reportObstacle(anu, { kind: 'LATE_30' }, live());
+  assert.equal(again.obstacle.id, sent.obstacle.id);
+  assert.deepEqual([await db.careObstacle.count({ where: { organizationId: f.orgA.id } }), await counts()], [1, [1, 0, 0, 0]]);
+
+  /* PÄEVAPLAAN: lahtise teatega töötaja tegemata käigud on teate juures tähtsuse järjekorras; tehtud käik jääb tema rühma. */
+  const rows = (visits) => visits.map((visit) => [visit.startTime, visit.priority, visit.state]);
+  const view = await getDayPlan(lead, {}, deps());
+  assert.deepEqual(
+    view.obstacles.map((item) => [item.id, item.name, item.kind, item.reportedAt, rows(item.visits)]),
+    [[sent.obstacle.id, 'Anu Hooldaja', 'LATE_30', sentAt.now.toISOString(), [['12:00', 'A', 'PLANNED'], ['17:00', 'B', 'PLANNED'], ['09:00', 'C', 'MISSING']]]]
+  );
+  assert.deepEqual(view.workers.map((worker) => [worker.name, worker.obstacle, rows(worker.visits)]), [
+    ['Anu Hooldaja', null, [['07:00', 'B', 'DONE']]],
+    ['Bert Hooldaja', null, [['10:00', 'B', 'PLANNED']]]
+  ]);
+  assert.deepEqual([view.totals.obstacles, view.totals.planned, view.totals.uncovered], [1, 5, 0]);
+  /* Üksuse hooldusjuht näeb teadet ainult siis, kui töötajal on sel päeval käik tema skoobis. */
+  const southView = await getDayPlan(southLead, {}, deps());
+  assert.deepEqual([southView.obstacles, southView.workers.map((worker) => worker.name)], [[], ['Bert Hooldaja']]);
+  /* Teade ise käike ei muuda: erandeid ega puudumisi ei tekkinud. */
+  assert.deepEqual([await db.careVisitChange.count({ where: { organizationId: f.orgA.id } }), await db.careAbsence.count({ where: { organizationId: f.orgA.id } })], [0, 0]);
+
+  /* TEINE LIIK võtab eelmise lahtise teate tagasi ja teeb uue; hooldusjuht saab uue teavituse. */
+  const changed = await reportObstacle(anu, { kind: 'CAR_BROKEN' }, live());
+  assert.notEqual(changed.obstacle.id, sent.obstacle.id);
+  assert.deepEqual(await counts(), [2, 0, 0, 0]);
+  assert.deepEqual(
+    (await db.careObstacle.findMany({ where: { organizationId: f.orgA.id }, orderBy: { createdAt: 'asc' } })).map((row) => [row.kind, Boolean(row.withdrawnAt), Boolean(row.handledAt)]),
+    [['LATE_30', true, false], ['CAR_BROKEN', false, false]]
+  );
+  /* Tagasi võetud teate teavitus ei ole enam näidatav. */
+  await assert.rejects(assertNotificationRecipient(db, probe), (error) => error.status === 404);
+  assert.deepEqual((await getDayPlan(lead, {}, deps())).obstacles.map((item) => item.kind), ['CAR_BROKEN']);
+
+  /* TAGASIVÕTMINE: ainult oma teade; pärast seda teadet päevaplaanis ei ole ja käigud on tagasi töötaja rühmas. */
+  await expectError(withdrawObstacle(bert, changed.obstacle.id, deps()), 404, 'home_care.errors.obstacle_not_found');
+  await expectError(withdrawObstacle(lead, changed.obstacle.id, deps()), 404, 'home_care.errors.obstacle_not_found');
+  await expectError(withdrawObstacle(anu, 'olematu-id', deps()), 404, 'home_care.errors.obstacle_not_found');
+  assert.deepEqual(await withdrawObstacle(anu, changed.obstacle.id, live()), { obstacle: null });
+  assert.deepEqual(await withdrawObstacle(anu, changed.obstacle.id, live()), { obstacle: null });
+  const calm = await getDayPlan(lead, {}, deps());
+  assert.deepEqual([calm.obstacles, calm.totals.obstacles, calm.workers[0].visits.length], [[], 0, 4]);
+  await expectError(handleObstacle(lead, changed.obstacle.id, {}, deps()), 409, 'home_care.errors.obstacle_withdrawn');
+
+  /* VAADATUKS MÄRKIMINE: ainult hooldusjuht; puudumist saab märkida ainult teate „ei saa täna töötada" juurest. */
+  const late = await reportObstacle(anu, { kind: 'LATE_60' }, live());
+  await expectError(handleObstacle(anu, late.obstacle.id, {}, deps()), 403, 'org.errors.missing_capability');
+  await expectError(handleObstacle(leadB, late.obstacle.id, {}, deps()), 404, 'home_care.errors.obstacle_not_found');
+  await expectError(handleObstacle(lead, late.obstacle.id, { markAbsent: true }, deps()), 400, 'home_care.errors.obstacle_absence_invalid');
+  assert.deepEqual(await handleObstacle(lead, late.obstacle.id, {}, deps(at('2026-10-09T08:30:00Z'))), { day: today });
+  /* Teine kord ei muuda midagi. */
+  assert.deepEqual(await handleObstacle(southLead, late.obstacle.id, {}, deps(at('2026-10-09T08:40:00Z'))), { day: today });
+  const handled = await db.careObstacle.findUnique({ where: { id: late.obstacle.id } });
+  assert.deepEqual([handled.handledAt.toISOString(), handled.handledByMembershipId, handled.handledByName], ['2026-10-09T08:30:00.000Z', f.members.lead.id, 'Juta Juht']);
+  /* Vaadatud teade: käigud on tagasi töötaja rühmas, teade on rühma juures märgiks; töötaja näeb, et teade on vaadatud. */
+  const seen = await getDayPlan(lead, {}, deps());
+  assert.deepEqual([seen.obstacles, seen.workers[0].name, seen.workers[0].visits.length], [[], 'Anu Hooldaja', 4]);
+  assert.deepEqual(
+    [seen.workers[0].obstacle.id, seen.workers[0].obstacle.kind, seen.workers[0].obstacle.handledByName, seen.workers[1].obstacle],
+    [late.obstacle.id, 'LATE_60', 'Juta Juht', null]
+  );
+  assert.deepEqual((await getMyDay(anu, deps())).obstacle, { ...late.obstacle, handled: true });
+  await expectError(withdrawObstacle(anu, late.obstacle.id, deps()), 409, 'home_care.errors.obstacle_handled');
+
+  /* „EI SAA TÄNA TÖÖTADA": hooldusjuht märgib teate juurest päeva puudumise; tegemata käigud lähevad rühma „tegija puudub". */
+  const cannot = await reportObstacle(anu, { kind: 'CANNOT_WORK' }, live());
+  assert.deepEqual(await counts(), [4, 0, 0, 0]);
+  assert.deepEqual(rows((await getDayPlan(lead, {}, deps())).obstacles[0].visits).map((row) => row[0]), ['12:00', '17:00', '09:00']);
+  assert.deepEqual(await handleObstacle(lead, cannot.obstacle.id, { markAbsent: true }, deps()), { day: today });
+  assert.deepEqual(
+    (await db.careAbsence.findMany({ where: { organizationId: f.orgA.id } })).map((row) => [row.membershipId, row.fromDay, row.toDay, row.kind, row.createdByName]),
+    [[f.members.anu.id, today, today, 'SUDDEN', 'Juta Juht']]
+  );
+  const absent = await getDayPlan(lead, {}, deps());
+  assert.deepEqual([absent.obstacles, rows(absent.uncovered).map((row) => row[0]), absent.totals.uncovered], [[], ['12:00', '17:00', '09:00'], 3]);
+  assert.equal((await getMyDay(anu, deps())).absent, true);
+  /* Kordus ei tee teist puudumist. */
+  await handleObstacle(lead, cannot.obstacle.id, { markAbsent: true }, deps());
+  assert.equal(await db.careAbsence.count({ where: { organizationId: f.orgA.id } }), 1);
+  /* Katmata käigu saab kolleegile tõsta nagu ikka. */
+  const covered = await moveVisit(lead, linda.id, noon.id, { day: today, workerMembershipId: f.members.bert.id, startTime: '12:00' }, deps());
+  assert.equal(covered.totals.uncovered, 2);
+
+  /* Andmebaas hoiab vigase rea eemal ka siis, kui rakendus eksib. */
+  const raw = (data) => db.careObstacle.create({ data: { organizationId: f.orgA.id, membershipId: f.members.bert.id, day: '2026-10-10', kind: 'LATE_30', ...data } });
+  await assert.rejects(raw({ kind: 'SICK' }), /CareObstacle_kind_check/);
+  await assert.rejects(raw({ day: '10.10.2026' }), /CareObstacle_day_check/);
+  await assert.rejects(raw({ withdrawnAt: NOW, handledAt: NOW }), /CareObstacle_state_check/);
+  await raw({});
+  await assert.rejects(raw({ kind: 'LATE_60' }), (error) => error.code === 'P2002');
+
+  /* AUDIT: iga muutus jätab rea ainult ID ja muutuse liigiga (töötajat, päeva ega takistuse liiki seal ei ole). */
+  const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_obstacle_changed', meta: { path: ['organizationId'], equals: f.orgA.id } } });
+  assert.deepEqual(audit.map((entry) => entry.meta.change).sort(), ['handled', 'handled', 'reported', 'reported', 'reported', 'reported', 'withdrawn', 'withdrawn']);
+  for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['change', 'obstacleId', 'organizationId']);
 });

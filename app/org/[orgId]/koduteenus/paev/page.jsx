@@ -16,18 +16,26 @@ export const metadata = {
 };
 
 /** Hooldusjuhi päevaplaan. Ilma hooldusjuhi õiguseta on leht 404. */
-export default async function HomeCareDayPage({ params }) {
+export default async function HomeCareDayPage({ params, searchParams }) {
   noStore();
   const { orgId } = await params;
+  /* `?paev=AAAA-KK-PP` avab selle päeva (takistuse teate link); vigane väärtus annab tänase. */
+  const query = (await searchParams) || {};
+  const day = typeof query.paev === "string" ? query.paev : undefined;
   const { auth, fullContext } = await requireHomeCarePage(orgId, `/org/${orgId}/koduteenus/paev`);
 
-  let initial;
-  try {
-    initial = await getDayPlan(fullContext, {});
-  } catch (error) {
-    if (!isOrgError(error)) throw error;
-    notFound();
-  }
+  const load = async (dayQuery) => {
+    try {
+      return await getDayPlan(fullContext, dayQuery);
+    } catch (error) {
+      if (!isOrgError(error)) throw error;
+      return error;
+    }
+  };
+  let initial = await load({ day });
+  /* Vigane päev aadressis annab tänase plaani; muu keeldumine (hooldusjuhi õigus puudub) on 404. */
+  if (initial instanceof Error && initial.messageKey === "home_care.errors.invalid_date") initial = await load({});
+  if (initial instanceof Error) notFound();
 
   return <HomeCareDay context={auth.context} initial={initial} />;
 }
