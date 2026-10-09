@@ -7581,6 +7581,39 @@
       "archived": "The steps of an archived journey can be viewed, not changed.",
       "failed": "Saving the step failed. Try again."
     },
+    "assessment": {
+      "title": "How you are doing",
+      "intro": "This is your own assessment and only you see it. The first mark is the starting point; later you see whether things have got better.",
+      "empty": "You have not yet marked how you are doing.",
+      "question": "How are you coping with your situation right now?",
+      "levels": {
+        "1": "very hard",
+        "2": "hard",
+        "3": "so-so",
+        "4": "rather well",
+        "5": "well"
+      },
+      "note_label": "What has changed? (may be left empty)",
+      "add_first": "Mark the starting point",
+      "add": "Mark how things are now",
+      "save": "Save the mark",
+      "delete": "Delete the mark",
+      "baseline_line": "Starting point {date}: {level}.",
+      "latest_line": "Latest mark {date}: {level}.",
+      "summary_better": "Compared with the start, things have got better.",
+      "summary_same": "Compared with the start, things have stayed the same.",
+      "summary_harder": "Compared with the start, things have got harder.",
+      "harder_hint": "If things have got harder, it is worth talking about it with the person who helps you, or creating a new pre-inquiry.",
+      "change": {
+        "BASELINE": "starting point",
+        "BETTER": "better than at the start",
+        "SAME": "the same as at the start",
+        "HARDER": "harder than at the start"
+      },
+      "history_title": "All marks ({count})",
+      "archived": "The marks of an archived journey can be viewed, not added.",
+      "failed": "Saving the mark failed. Try again."
+    },
     "activity": {
       "title": "Completed steps",
       "created": "journey created",
@@ -7694,7 +7727,10 @@
       "step_date_invalid": "The due date is not a real date.",
       "step_state_invalid": "A step cannot have this state.",
       "step_not_found": "The step was not found. Reload the page.",
-      "step_limit_reached": "This journey already has a great many steps. Delete one before you add a new one."
+      "step_limit_reached": "This journey already has a great many steps. Delete one before you add a new one.",
+      "assessment_level_required": "Choose how you are coping right now.",
+      "assessment_not_found": "The mark was not found. Reload the page.",
+      "assessment_limit_reached": "This journey already has a great many marks. Delete one before you add a new one."
     }
   },
   "serviceMap": {

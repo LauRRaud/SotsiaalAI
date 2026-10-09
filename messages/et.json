@@ -7581,6 +7581,39 @@
       "archived": "Arhiveeritud Teekonna samme saab vaadata, mitte muuta.",
       "failed": "Sammu salvestamine ei õnnestunud. Proovi uuesti."
     },
+    "assessment": {
+      "title": "Kuidas sul läheb",
+      "intro": "See on sinu enda hinnang ja ainult sinu näha. Esimene märge on algseis; hiljem näed, kas on läinud paremaks.",
+      "empty": "Sa ei ole veel märkinud, kuidas sul läheb.",
+      "question": "Kuidas sa praegu oma olukorraga toime tuled?",
+      "levels": {
+        "1": "väga raske",
+        "2": "raske",
+        "3": "nii ja naa",
+        "4": "pigem hästi",
+        "5": "hästi"
+      },
+      "note_label": "Mis on muutunud? (võid jätta tühjaks)",
+      "add_first": "Märgi algseis",
+      "add": "Märgi, kuidas praegu on",
+      "save": "Salvesta märge",
+      "delete": "Kustuta märge",
+      "baseline_line": "Algseis {date}: {level}.",
+      "latest_line": "Viimane märge {date}: {level}.",
+      "summary_better": "Võrreldes algusega on läinud paremaks.",
+      "summary_same": "Võrreldes algusega on jäänud samaks.",
+      "summary_harder": "Võrreldes algusega on läinud raskemaks.",
+      "harder_hint": "Kui on läinud raskemaks, tasub sellest rääkida inimesega, kes sind aitab, või koostada uus eelpöördumine.",
+      "change": {
+        "BASELINE": "algseis",
+        "BETTER": "parem kui alguses",
+        "SAME": "sama mis alguses",
+        "HARDER": "raskem kui alguses"
+      },
+      "history_title": "Kõik märked ({count})",
+      "archived": "Arhiveeritud Teekonna märkeid saab vaadata, mitte lisada.",
+      "failed": "Märke salvestamine ei õnnestunud. Proovi uuesti."
+    },
     "activity": {
       "title": "Tehtud sammud",
       "created": "teekond loodud",
@@ -7694,7 +7727,10 @@
       "step_date_invalid": "Tähtaeg ei ole õige kuupäev.",
       "step_state_invalid": "Seda seisu ei saa sammule panna.",
       "step_not_found": "Sammu ei leitud. Laadi leht uuesti.",
-      "step_limit_reached": "Sellel Teekonnal on juba väga palju samme. Kustuta mõni, enne kui uue lisad."
+      "step_limit_reached": "Sellel Teekonnal on juba väga palju samme. Kustuta mõni, enne kui uue lisad.",
+      "assessment_level_required": "Vali, kuidas sa praegu toime tuled.",
+      "assessment_not_found": "Märget ei leitud. Laadi leht uuesti.",
+      "assessment_limit_reached": "Sellel Teekonnal on juba väga palju märkeid. Kustuta mõni, enne kui uue lisad."
     }
   },
   "serviceMap": {

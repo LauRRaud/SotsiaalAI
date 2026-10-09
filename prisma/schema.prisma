@@ -1685,6 +1685,7 @@ model Journey {
   conversation Conversation? @relation(fields: [conversationId], references: [id], onDelete: SetNull)
   preInquiries PreInquiry[]
   steps        JourneyStep[]
+  assessments  JourneyAssessment[]
 
   @@index([ownerUserId, updatedAt])
   @@index([ownerUserId, status, updatedAt])
@@ -1725,6 +1726,34 @@ model JourneyStep {
   @@unique([ownerUserId, clientActionId])
   @@index([journeyId, state])
   @@index([ownerUserId, state, dueOn])
+}
+
+/// TEEKOND K1-d — inimese enda hinnang muutusele. Esimene märge on algseis; iga
+/// järgmine näitab, kas on läinud paremaks, samaks või raskemaks. INIMESE hinnang:
+/// spetsialisti oma on teine asi ega kirjuta seda üle. Privaatne nagu Teekond ise.
+/// Märget ei muudeta (hilisem ümberkirjutus teeks võrdluse mõttetuks); valesti
+/// pandud märke saab kustutada.
+model JourneyAssessment {
+  id          String @id @default(cuid())
+  journeyId   String
+  ownerUserId String
+
+  /// Viieastmelise sõnalise skaala järjekorranumber 1–5 (CHECK migratsioonis).
+  /// Inimesele näidatakse sõna, mitte arvu.
+  level Int
+  /// Mis on muutunud, inimese enda sõnadega.
+  note  String? @db.Text
+
+  /// Seadmes genereeritud võti: kordussaatmine ei tekita teist märget.
+  clientActionId String?
+
+  createdAt DateTime @default(now())
+
+  journey Journey @relation(fields: [journeyId], references: [id], onDelete: Cascade)
+
+  @@unique([ownerUserId, clientActionId])
+  @@index([journeyId, createdAt])
+  @@index([ownerUserId, createdAt])
 }
 
 model WellbeingRecord {

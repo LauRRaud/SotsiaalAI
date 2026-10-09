@@ -28,6 +28,7 @@ import {
 import { buildPreInquiryPrefillFromJourney } from '../lib/journey/preInquiryHandoff.js';
 import { createJourneyStep, deleteJourneyStep, listJourneySteps, updateJourneyStep } from '../lib/journey/steps.js';
 import { DATA_EXPORT_REGISTRY } from '../lib/dataExport/registry.js';
+import { createJourneyAssessment, deleteJourneyAssessment, listJourneyAssessments } from '../lib/journey/assessments.js';
 import { acceptPreInquiry } from '../lib/preInquiries.js';
 
 const url = new URL(process.env.JOURNEY_TEST_DATABASE_URL || process.env.HOME_CARE_TEST_DATABASE_URL || 'postgres://invalid/invalid');
@@ -391,4 +392,97 @@ test('Teekonna sammud: omaniku piir, seisud, kordussaatmine, arhiveeritud Teekon
   await refused(deleteJourneyStep(person.id, other.id, victim.id, deps()), 404, 'journeys.errors.step_not_found');
   await db.journey.delete({ where: { id: other.id } });
   assert.equal(await db.journeyStep.count({ where: { journeyId: other.id } }), 0);
+});
+
+test('enda hinnang muutusele: algseis, muutus, omaniku piir, arhiveeritud Teekond ja väljavõtted', async (t) => {
+  const tag = randomUUID().slice(0, 8);
+  const user = (name) => db.user.create({ data: { email: `ja-${tag}-${name}@example.invalid`, role: 'CLIENT', profile: { create: { firstName: name, lastName: 'Proov' } } } });
+  const person = await user('inimene');
+  const stranger = await user('teine');
+  const journeyIds = [];
+  t.after(async () => {
+    await db.journey.deleteMany({ where: { id: { in: journeyIds } } });
+    await db.user.deleteMany({ where: { id: { in: [person.id, stranger.id] } } });
+  });
+  const make = async (owner, title) => {
+    const journey = await createJourneyForUser(owner.id, { title, summary: 'Kokkuvõte.', status: 'ACTIVE', sharingStatus: 'PRIVATE', clientActionId: randomUUID() }, { db });
+    journeyIds.push(journey.id);
+    return journey;
+  };
+  const journey = await make(person, 'Ema vajab abi');
+  const other = await make(person, 'Teine Teekond');
+  const foreign = await make(stranger, 'Võõra Teekond');
+  const at = (iso) => ({ db, now: new Date(iso) });
+  const refused = (promise, status, message) =>
+    assert.rejects(promise, (error) => error.status === status && (!message || error.message === message));
+
+  /* Tühi algus. */
+  assert.deepEqual((await listJourneyAssessments(person.id, journey.id, { db })).assessments, { baseline: null, latest: null, change: null, items: [] });
+
+  /* ALGSEIS: esimene märge; muutust veel ei ole. */
+  const key = randomUUID();
+  let picture = (await createJourneyAssessment(person.id, journey.id, { level: 2, note: ' Ei saa üksi poes käia. ', clientActionId: key }, at('2026-10-01T08:00:00Z'))).assessments;
+  assert.deepEqual([picture.baseline.level, picture.baseline.note, picture.baseline.change, picture.latest, picture.change], [2, 'Ei saa üksi poes käia.', 'BASELINE', null, null]);
+  /* Kordussaatmine sama võtmega ei tee teist märget; sama võti teisel Teekonnal on viga. */
+  picture = (await createJourneyAssessment(person.id, journey.id, { level: 2, clientActionId: key }, at('2026-10-01T08:00:05Z'))).assessments;
+  assert.equal(picture.items.length, 1);
+  await refused(createJourneyAssessment(person.id, other.id, { level: 3, clientActionId: key }, { db }), 409, 'journeys.errors.idempotency_conflict');
+
+  /* HILISEMAD MÄRKED: muutus on võrreldes algseisuga, loend uuemast vanemani. */
+  await createJourneyAssessment(person.id, journey.id, { level: 1, note: 'Kukkusin uuesti.' }, at('2026-10-10T08:00:00Z'));
+  picture = (await createJourneyAssessment(person.id, journey.id, { level: 4, note: 'Koduteenus käib kaks korda nädalas.' }, at('2026-10-20T08:00:00Z'))).assessments;
+  assert.deepEqual(picture.items.map((item) => [item.level, item.change]), [[4, 'BETTER'], [1, 'HARDER'], [2, 'BASELINE']]);
+  assert.deepEqual([picture.baseline.level, picture.latest.level, picture.change], [2, 4, 'BETTER']);
+
+  /* Sisendi kontroll ja andmebaasi enda piir. */
+  await refused(createJourneyAssessment(person.id, journey.id, {}, { db }), 400, 'journeys.errors.assessment_level_required');
+  await refused(createJourneyAssessment(person.id, journey.id, { level: 6 }, { db }), 400, 'journeys.errors.assessment_level_required');
+  await assert.rejects(db.journeyAssessment.create({ data: { journeyId: journey.id, ownerUserId: person.id, level: 0 } }), /JourneyAssessment_level_check/);
+
+  /* VÕÕRA PIIR: teine inimene ei näe, ei lisa ega kustuta; teise Teekonna kaudu märget kätte ei saa. */
+  const firstId = picture.baseline.id;
+  await refused(listJourneyAssessments(stranger.id, journey.id, { db }), 404, 'journeys.errors.not_found');
+  await refused(createJourneyAssessment(stranger.id, journey.id, { level: 5 }, { db }), 404, 'journeys.errors.not_found');
+  await refused(deleteJourneyAssessment(stranger.id, journey.id, firstId, { db }), 404, 'journeys.errors.not_found');
+  await refused(deleteJourneyAssessment(stranger.id, foreign.id, firstId, { db }), 404, 'journeys.errors.assessment_not_found');
+  await refused(deleteJourneyAssessment(person.id, other.id, firstId, { db }), 404, 'journeys.errors.assessment_not_found');
+  assert.equal(await db.journeyAssessment.count({ where: { journeyId: journey.id } }), 3);
+
+  /* Teekonna leht ja uuendamise vastus kannavad hinnanguid kaasa. */
+  const detail = await getJourneyDetailForUser(person.id, journey.id, { db });
+  assert.equal(detail.assessments.change, 'BETTER');
+  const updated = await updateJourneyForUser(person.id, journey.id, { title: 'Ema vajab kodus abi', expectedUpdatedAt: detail.updatedAt }, { db });
+  assert.equal(updated.assessments.items.length, 3);
+
+  /* VÄLJAVÕTTED: inimese Teekonna fail ja andmekoopia kannavad tema märkeid; võõra omi mitte. */
+  const exported = await exportJourneyForUser(person.id, journey.id, { db });
+  assert.deepEqual(exported.assessments.map((item) => [item.level, item.change]), [[4, 'BETTER'], [1, 'HARDER'], [2, 'BASELINE']]);
+  assert.ok(JSON.stringify(exported).includes('Koduteenus käib kaks korda nädalas.'));
+  await createJourneyAssessment(stranger.id, foreign.id, { level: 3, note: 'Võõra märge.' }, { db });
+  const entry = DATA_EXPORT_REGISTRY.find((item) => item.name === 'journeys');
+  const file = (await entry.collect({ db, userId: person.id })).find((item) => item.name === 'journey_assessments.ndjson');
+  assert.equal(file.count, 3);
+  assert.ok(file.content.toString('utf8').includes('Kukkusin uuesti.'));
+  assert.equal(file.content.toString('utf8').includes('Võõra märge.'), false);
+  assert.equal(file.content.toString('utf8').includes('clientActionId'), false);
+
+  /* KUSTUTAMINE: valesti pandud algseisu kustutamisel saab algseisuks järgmine märge. */
+  picture = (await deleteJourneyAssessment(person.id, journey.id, firstId, { db })).assessments;
+  assert.deepEqual(picture.items.map((item) => [item.level, item.change]), [[4, 'BETTER'], [1, 'BASELINE']]);
+  await refused(deleteJourneyAssessment(person.id, journey.id, firstId, { db }), 404, 'journeys.errors.assessment_not_found');
+
+  /* Piir: Teekonnal on kuni 60 märget. */
+  await db.journeyAssessment.createMany({ data: Array.from({ length: 60 }, () => ({ journeyId: other.id, ownerUserId: person.id, level: 3 })) });
+  await refused(createJourneyAssessment(person.id, other.id, { level: 3 }, { db }), 409, 'journeys.errors.assessment_limit_reached');
+
+  /* ARHIVEERITUD Teekond: märkeid saab lugeda, mitte lisada ega kustutada. */
+  const current = await getJourneyDetailForUser(person.id, journey.id, { db });
+  await updateJourneyForUser(person.id, journey.id, { status: 'ARCHIVED', expectedUpdatedAt: current.updatedAt }, { db });
+  assert.equal((await listJourneyAssessments(person.id, journey.id, { db })).assessments.items.length, 2);
+  await refused(createJourneyAssessment(person.id, journey.id, { level: 5 }, { db }), 409, 'journeys.errors.archived');
+  await refused(deleteJourneyAssessment(person.id, journey.id, picture.items[0].id, { db }), 409, 'journeys.errors.archived');
+
+  /* Kaskaad: Teekonna kustutus viib märked kaasa. */
+  await db.journey.delete({ where: { id: other.id } });
+  assert.equal(await db.journeyAssessment.count({ where: { journeyId: other.id } }), 0);
 });
