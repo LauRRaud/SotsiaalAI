@@ -372,6 +372,7 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
             viewerMembershipId={access.membershipId}
             clientName={client.displayName}
             timeZone={timeZone}
+            plan={data.plan}
             onSaved={upsertEntry}
           />
           {/* Kõne ei ole käik: selle märkimine ei tohi nõuda vormi täitmist. */}
@@ -499,6 +500,7 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
                 isCoordinator={access.isCoordinator}
                 team={team}
                 viewerMembershipId={access.membershipId}
+                plan={data.plan}
                 onChange={upsertEntry}
               />
             ))}

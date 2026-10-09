@@ -8256,8 +8256,9 @@ model CareActivity {
   createdAt             DateTime  @default(now())
   updatedAt             DateTime  @updatedAt
 
-  organization Organization   @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-  planLines    CarePlanLine[]
+  organization   Organization        @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  planLines      CarePlanLine[]
+  doneActivities CareEntryActivity[]
 
   @@index([organizationId, archivedAt, group, position])
 }
@@ -8325,12 +8326,42 @@ model CarePlanLine {
   position       Int     @default(0)
   createdAt      DateTime @default(now())
 
-  plan     CarePlan      @relation(fields: [planId], references: [id], onDelete: Cascade)
-  activity CareActivity? @relation(fields: [activityId], references: [id], onDelete: SetNull)
+  plan           CarePlan            @relation(fields: [planId], references: [id], onDelete: Cascade)
+  activity       CareActivity?       @relation(fields: [activityId], references: [id], onDelete: SetNull)
+  doneActivities CareEntryActivity[]
 
   @@index([planId, position])
   @@index([clientId])
   @@index([activityId])
+}
+
+/// Käigul tehtud toiming (kiht 2, K2-d): päeviku kirje rida. Kannab toimingu nime
+/// ja rühma koopiat ning seda, KUIDAS tehti (`CarePlanMode`). `planLineId` on kava
+/// rida, kust toiming võeti; kavaväline toiming (`outsidePlan`) tuleb kataloogist.
+/// Üks toiming kirjel üks kord → osaline unikaalindeks migratsioonis.
+model CareEntryActivity {
+  id             String  @id @default(cuid())
+  organizationId String
+  entryId        String
+  clientId       String
+  planLineId     String?
+  activityId     String?
+  activityName   String
+  activityGroup  String
+  /// GUIDE | TOGETHER | ASSIST | FOR.
+  mode           String
+  outsidePlan    Boolean @default(false)
+  position       Int     @default(0)
+  createdAt      DateTime @default(now())
+
+  entry    CareClientEntry @relation(fields: [entryId], references: [id], onDelete: Cascade)
+  planLine CarePlanLine?   @relation(fields: [planLineId], references: [id], onDelete: SetNull)
+  activity CareActivity?   @relation(fields: [activityId], references: [id], onDelete: SetNull)
+
+  @@index([entryId, position])
+  @@index([clientId])
+  @@index([activityId])
+  @@index([planLineId])
 }
 
 /// Otsus ja maht (kiht 2, K2-c): mille alusel ja kui palju abi klient saab.
@@ -8488,6 +8519,10 @@ model CareClientEntry {
   callTopic  String?
   callCaller String?
 
+  /// KÄIGU KIRJE (K2-d): käigu kestus minutites. Ainult käigul (kontakti viis
+  /// VISIT; selle hoiab rakendus). Tehtud toimingud on `activities`.
+  visitMinutes Int?
+
   /// „Kaasas": teine töötaja samal käigul.
   companionMembershipId String?
   companionName         String?
@@ -8533,6 +8568,7 @@ model CareClientEntry {
   revisions       CareClientEntryRevision[]
   reads           CareClientEntryRead[]
   incidentUpdates CareIncidentUpdate[]
+  activities      CareEntryActivity[]
 
   @@unique([authorMembershipId, clientRequestId])
   @@index([clientId, occurredAt])

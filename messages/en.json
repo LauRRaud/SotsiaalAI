@@ -11663,7 +11663,12 @@
       "decision_volume_period_required": "Choose whether the volume is for a week or a month.",
       "decision_not_found": "The decision was not found. Reload the page.",
       "decision_retracted": "This decision is retracted and cannot be changed.",
-      "decision_too_many": "Up to {limit} decisions can be entered for one client."
+      "decision_too_many": "Up to {limit} decisions can be entered for one client.",
+      "visit_minutes_invalid": "The length of the visit is not valid. Enter minutes, 1 to {limit}.",
+      "visit_activity_unknown": "The activity was not found in the client's care plan or the organisation's catalogue. Reload the page.",
+      "visit_activity_repeated": "The same activity is on the entry twice.",
+      "visit_mode_required": "Choose how the activity was done.",
+      "visit_too_many_activities": "One entry can hold up to {limit} activities."
     },
     "incidents": {
       "title": "Incident register",
@@ -12150,6 +12155,30 @@
         "in": "in {count} days",
         "yesterday": "yesterday",
         "ago": "{count} days ago"
+      }
+    },
+    "visit": {
+      "title": "What you did",
+      "no_plan": "There is no care plan in force. You can add an activity from the organisation's catalogue.",
+      "mode_label": "How it was done: {name}",
+      "modes": {
+        "GUIDE": "did it themselves, I guided",
+        "TOGETHER": "we did it together",
+        "ASSIST": "I helped in part",
+        "FOR": "I did it for them"
+      },
+      "add_other": "Add another activity",
+      "other_placeholder": "Choose an activity from the catalogue",
+      "catalogue_done": "All activities of the catalogue are already in the list.",
+      "minutes_label": "Length of the visit in minutes (may be left empty)",
+      "minutes_quick": "Quick choice of length",
+      "minutes": "{minutes} min",
+      "lasted": "the visit lasted {minutes} min",
+      "text_optional": "If the visit went as usual, the text may stay empty. Write if you noticed something new.",
+      "outside_plan": "outside the plan",
+      "doc": {
+        "minutes": "The visit lasted {minutes} min.",
+        "done": "Done: {list}."
       }
     }
   },

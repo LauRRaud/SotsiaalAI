@@ -10,9 +10,11 @@ import {
   CARE_ENTRY_KINDS,
   CARE_INCIDENT_ACTIONS,
   CARE_INCIDENT_TYPES,
+  CARE_PLAN_MODES,
   COORDINATOR_ONLY_INCIDENT_TYPES,
   CareContactMode,
   CareEntryKind,
+  CarePlanMode,
   HOME_CARE_LIMITS
 } from "@/lib/homeCare/constants";
 import { appendDictatedText } from "@/lib/homeCare/dictation";
@@ -36,6 +38,22 @@ const SAVE_TIMEOUT_MS = 25_000;
 const DRAFT_BEFORE_SEND_MS = 400;
 /* Alates sellest vanusest pakub taastatud mustand sündmuse ajaks oma kirjutamise aja. */
 const DRAFT_TIME_HINT_MS = 10 * 60 * 1000;
+/* Käigu kestuse kiirvalikud minutites. */
+const VISIT_MINUTE_CHOICES = Object.freeze([15, 30, 45, 60, 90]);
+
+/** Mustandist loetud „toiming → kuidas tehti": ainult tuntud väärtused. */
+function restoredDone(value) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return {};
+  return Object.fromEntries(Object.entries(value).filter(([, mode]) => CARE_PLAN_MODES.includes(mode)));
+}
+
+/** Mustandist loetud kavavälised toimingud: ainult ID ja nimi. */
+function restoredExtra(value) {
+  if (!Array.isArray(value)) return [];
+  return value
+    .filter((item) => item && typeof item.activityId === "string" && typeof item.name === "string")
+    .map((item) => ({ activityId: item.activityId, name: item.name }));
+}
 
 /**
  * Päevikukirje vorm: uus kirje või olemasoleva parandus.
@@ -68,6 +86,12 @@ const DRAFT_TIME_HINT_MS = 10 * 60 * 1000;
  * DIKTEERIMINE lisab teksti välja lõppu (platvormi enda kõnetuvastus). Tekst
  * ei salvestu enne, kui inimene on selle üle lugenud ja salvestamist vajutanud.
  *
+ * KÄIGU KIRJE (K2-d). Kui kontakti viis on käik, saab märkida, mida tehti (kliendi
+ * kehtiva hoolduskava toimingud; muu toimingu saab lisada asutuse kataloogist), kuidas
+ * tehti ja kui kaua käik kestis. Tavalisel käigul, kus toimingud on märgitud, võib
+ * tekst tühjaks jääda. Need väljad lähevad uuel kirjel kaasa ainult siis, kui need
+ * on täidetud; parandus saadab need alati, et ka eemaldamine jõuaks serverisse.
+ *
  * SALVESTAMISE AJAL ON VORM LUKUS (`inert`). Pärast päringut tühjendatakse
  * vorm; kui inimene saaks vahepeal edasi kirjutada, kaoks lisatud lause koos
  * tühjendamisega. Nõrga leviga võib päring kesta kümneid sekundeid, seepärast
@@ -81,11 +105,13 @@ export default function HomeCareEntryForm({
   clientName = "",
   timeZone,
   entry = null,
+  plan = null,
   onSaved,
   onCancel
 }) {
   const { t } = useI18n();
   const { call, busy, error, setError } = useHomeCareApi();
+  const catalogueApi = useHomeCareApi();
   const fieldId = useId();
   const attemptRef = useRef(null);
   const correcting = Boolean(entry);
@@ -103,6 +129,19 @@ export default function HomeCareEntryForm({
     for (const action of entry?.incident?.actions || []) map[action.code] = action.at || null;
     return map;
   });
+  /* Käigu kirje: kestus minutites ja tehtud toimingud kujul „toiming → kuidas tehti". */
+  const [visitMinutes, setVisitMinutes] = useState(entry?.visit?.minutes ? String(entry.visit.minutes) : "");
+  const [done, setDone] = useState(() =>
+    Object.fromEntries((entry?.visit?.activities || []).filter((item) => item.activityId).map((item) => [item.activityId, item.mode]))
+  );
+  /* Toimingud, mida kehtivas kavas ei ole: kataloogist lisatud või parandataval kirjel juba olemas. */
+  const [extra, setExtra] = useState(() =>
+    (entry?.visit?.activities || [])
+      .filter((item) => item.activityId && !(plan?.lines || []).some((line) => line.activityId === item.activityId))
+      .map((item) => ({ activityId: item.activityId, name: item.name }))
+  );
+  /* Asutuse kataloog laaditakse alles siis, kui inimene tahab lisada muu toimingu. */
+  const [catalogue, setCatalogue] = useState(null);
   const [reason, setReason] = useState("");
   const [saved, setSaved] = useState(false);
   const [queued, setQueued] = useState(false);
@@ -125,6 +164,25 @@ export default function HomeCareEntryForm({
   const latestRef = useRef(null);
 
   const isIncident = kind === CareEntryKind.INCIDENT;
+  const isVisit = contactMode === CareContactMode.VISIT;
+  /* Valikus on kehtiva kava read ja selle kirje kavavälised toimingud, selles järjekorras. */
+  const planChoices = (plan?.lines || [])
+    .filter((line) => line.activityId)
+    .map((line) => ({ activityId: line.activityId, name: line.activityName, mode: line.mode, critical: Boolean(line.critical) }));
+  const visitChoices = [
+    ...planChoices,
+    ...extra
+      .filter((item) => !planChoices.some((choice) => choice.activityId === item.activityId))
+      .map((item) => ({ activityId: item.activityId, name: item.name, mode: CarePlanMode.TOGETHER, critical: false }))
+  ];
+  const doneList = isVisit
+    ? visitChoices.filter((choice) => done[choice.activityId]).map((choice) => ({ activityId: choice.activityId, mode: done[choice.activityId] }))
+    : [];
+  /* Tavaline käik märgitud toimingutega ei vaja teksti; muu liigi kirje on tekst. */
+  const textRequired = !(kind === CareEntryKind.NOTE && doneList.length > 0);
+  const otherOptions = (catalogue || [])
+    .filter((activity) => !visitChoices.some((choice) => choice.activityId === activity.id))
+    .map((activity) => ({ value: activity.id, label: activity.name }));
   const coordinatorOnly =
     kind === CareEntryKind.CONCERN || (isIncident && COORDINATOR_ONLY_INCIDENT_TYPES.includes(incidentType));
 
@@ -166,7 +224,7 @@ export default function HomeCareEntryForm({
   }, []);
 
   useEffect(() => {
-    latestRef.current = { kind, contactMode, text, occurredLocal, companion, incidentType, assessment, actions };
+    latestRef.current = { kind, contactMode, text, occurredLocal, companion, incidentType, assessment, actions, visitMinutes, done, extra };
   });
 
   /* Mustandi salvestus: kohe (leht läheb peitu, vorm suletakse) või viitega (kirjutamise ajal). */
@@ -206,6 +264,9 @@ export default function HomeCareEntryForm({
         setIncidentType(CARE_INCIDENT_TYPES.includes(state.incidentType) ? state.incidentType : "");
         setAssessment(savedAssessment);
         setActions(state.actions && typeof state.actions === "object" ? state.actions : {});
+        setVisitMinutes(typeof state.visitMinutes === "string" ? state.visitMinutes : "");
+        setDone(restoredDone(state.done));
+        setExtra(restoredExtra(state.extra));
         const typedTime = typeof state.occurredLocal === "string" ? state.occurredLocal : "";
         const age = Date.now() - Number(draft.savedAtMs);
         setOccurredLocal(typedTime);
@@ -242,7 +303,7 @@ export default function HomeCareEntryForm({
     if (!device || !touchedRef.current) return undefined;
     const timer = setTimeout(saveDraftNow, DRAFT_SAVE_DELAY_MS);
     return () => clearTimeout(timer);
-  }, [device, saveDraftNow, kind, contactMode, text, occurredLocal, companion, incidentType, assessment, actions]);
+  }, [device, saveDraftNow, kind, contactMode, text, occurredLocal, companion, incidentType, assessment, actions, visitMinutes, done, extra]);
 
   const toggleAction = (code) => {
     touch();
@@ -252,6 +313,34 @@ export default function HomeCareEntryForm({
       else next[code] = null;
       return next;
     });
+  };
+
+  const toggleDone = (choice) => {
+    touch();
+    setDone((current) => {
+      const next = { ...current };
+      if (next[choice.activityId]) delete next[choice.activityId];
+      else next[choice.activityId] = choice.mode;
+      return next;
+    });
+  };
+
+  const setDoneMode = (activityId, mode) => {
+    touch();
+    setDone((current) => ({ ...current, [activityId]: mode }));
+  };
+
+  const loadCatalogue = async () => {
+    const result = await catalogueApi.call(`${homeCareBase(organizationId)}/toimingud`, { fallbackKey: "home_care.errors.list_failed" });
+    if (result.ok) setCatalogue((result.data.activities || []).filter((activity) => !activity.archivedAt));
+  };
+
+  const addOther = (activityId) => {
+    const activity = (catalogue || []).find((item) => item.id === activityId);
+    if (!activity) return;
+    touch();
+    setExtra((current) => [...current, { activityId: activity.id, name: activity.name }]);
+    setDone((current) => ({ ...current, [activity.id]: CarePlanMode.TOGETHER }));
   };
 
   const reset = () => {
@@ -268,6 +357,9 @@ export default function HomeCareEntryForm({
     setIncidentType("");
     setAssessment("");
     setActions({});
+    setVisitMinutes("");
+    setDone({});
+    setExtra([]);
     setReason("");
   };
 
@@ -282,7 +374,9 @@ export default function HomeCareEntryForm({
       isIncident ? incidentType : "",
       isIncident ? assessment : "",
       isIncident ? actionCodes : [],
-      reason
+      reason,
+      isVisit ? visitMinutes.trim() : "",
+      doneList
     ]);
     if (attemptRef.current?.signature === signature) return attemptRef.current.body;
 
@@ -300,6 +394,18 @@ export default function HomeCareEntryForm({
       body.incidentAssessment = assessment;
       /* Varem salvestatud sammu kellaaeg jääb; uue sammu kellaaja paneb server. */
       body.incidentActions = actionCodes.map((code) => (actions[code] ? { code, at: actions[code] } : { code }));
+    }
+    /* Kestus läheb numbrina; muu sisestuse lükkab server selge teatega tagasi. */
+    const minutes = isVisit ? visitMinutes.trim() : "";
+    const minutesValue = /^\d+$/.test(minutes) ? Number(minutes) : minutes;
+    if (correcting) {
+      if (isVisit) {
+        body.visitMinutes = minutes ? minutesValue : null;
+        body.activities = doneList;
+      }
+    } else {
+      if (minutes) body.visitMinutes = minutesValue;
+      if (doneList.length) body.activities = doneList;
     }
     if (correcting) {
       body.reason = reason;
@@ -425,6 +531,102 @@ export default function HomeCareEntryForm({
         </>
       ) : null}
 
+      {isVisit ? (
+        <fieldset className="hc-fieldset">
+          <legend className="hc-label">{t("home_care.visit.title")}</legend>
+          {visitChoices.length === 0 ? <p className="hc-hint">{t("home_care.visit.no_plan")}</p> : null}
+          {visitChoices.map((choice) => (
+            <div key={choice.activityId}>
+              <button
+                type="button"
+                className="hc-chip"
+                aria-pressed={Boolean(done[choice.activityId])}
+                onClick={() => toggleDone(choice)}
+              >
+                {choice.name}
+              </button>
+              {choice.critical && !done[choice.activityId] ? (
+                <>
+                  {" "}
+                  <span className="hc-badge hc-badge--warn">{t("home_care.plan.critical_badge")}</span>
+                </>
+              ) : null}
+              {done[choice.activityId] ? (
+                <div className="hc-chips" role="group" aria-label={t("home_care.visit.mode_label", { name: choice.name })}>
+                  {CARE_PLAN_MODES.map((value) => (
+                    <button
+                      key={value}
+                      type="button"
+                      className="hc-chip"
+                      aria-pressed={done[choice.activityId] === value}
+                      onClick={() => setDoneMode(choice.activityId, value)}
+                    >
+                      {t(`home_care.visit.modes.${value}`)}
+                    </button>
+                  ))}
+                </div>
+              ) : null}
+            </div>
+          ))}
+          {catalogue ? (
+            otherOptions.length > 0 ? (
+              <Dropdown
+                value=""
+                onChange={addOther}
+                ariaLabel={t("home_care.visit.add_other")}
+                placeholder={t("home_care.visit.other_placeholder")}
+                options={otherOptions}
+              />
+            ) : (
+              <p className="hc-hint">{t("home_care.visit.catalogue_done")}</p>
+            )
+          ) : (
+            <button className="hc-btn hc-btn--quiet" type="button" onClick={loadCatalogue} disabled={catalogueApi.busy}>
+              {t("home_care.visit.add_other")}
+            </button>
+          )}
+          {catalogueApi.error ? (
+            <p className="hc-error" role="alert">
+              {catalogueApi.error}
+            </p>
+          ) : null}
+          <div className="hc-field">
+            <label className="hc-label" htmlFor={`${fieldId}-minutes`}>
+              {t("home_care.visit.minutes_label")}
+            </label>
+            <input
+              id={`${fieldId}-minutes`}
+              className="hc-input"
+              type="number"
+              inputMode="numeric"
+              min={1}
+              max={HOME_CARE_LIMITS.VISIT_MINUTES_MAX}
+              value={visitMinutes}
+              onChange={(event) => {
+                touch();
+                setVisitMinutes(event.target.value);
+              }}
+            />
+            <div className="hc-chips" role="group" aria-label={t("home_care.visit.minutes_quick")}>
+              {VISIT_MINUTE_CHOICES.map((value) => (
+                <button
+                  key={value}
+                  type="button"
+                  className="hc-chip"
+                  aria-pressed={visitMinutes === String(value)}
+                  onClick={() => {
+                    touch();
+                    setVisitMinutes(visitMinutes === String(value) ? "" : String(value));
+                  }}
+                >
+                  {t("home_care.visit.minutes", { minutes: value })}
+                </button>
+              ))}
+            </div>
+          </div>
+        </fieldset>
+      ) : null}
+
       <div className="hc-field">
         <label className="hc-label" htmlFor={`${fieldId}-text`}>
           {textLabel}
@@ -439,11 +641,11 @@ export default function HomeCareEntryForm({
           }}
           maxLength={HOME_CARE_LIMITS.ENTRY_TEXT_MAX}
           rows={4}
-          required
+          required={textRequired}
           aria-describedby={`${fieldId}-text-hint`}
         />
         <p className="hc-hint" id={`${fieldId}-text-hint`}>
-          {t("home_care.entry.write_what_you_saw")}
+          {textRequired ? t("home_care.entry.write_what_you_saw") : t("home_care.visit.text_optional")}
         </p>
         <HomeCareDictation onText={addDictated} disabled={busy || sending} describedBy={`${fieldId}-dictation-hint`} />
         <p className="hc-hint" id={`${fieldId}-dictation-hint`}>
