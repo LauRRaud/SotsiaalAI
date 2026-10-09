@@ -880,7 +880,7 @@ test('kõnemärge: väljad ainult telefonikontaktil, vana räsi jääb samaks, k
   assert.deepEqual(resolveCallMonth(undefined, NOW, 'Europe/Tallinn'), { year: 2026, month: 10 });
   /* 31.10 kell 22:30 UTC on Tallinnas juba 1. november. */
   assert.deepEqual(resolveCallMonth('', new Date('2026-10-31T22:30:00Z'), 'Europe/Tallinn'), { year: 2026, month: 11 });
-  for (const bad of ['2026-13', '2026-0', '26-10', '2026/10', 'oktoober']) {
+  for (const bad of ['2026-13', '2026-0', '26-10', '2026/10', 'oktoober', '0000-01', '1999-12', '3000-01']) {
     assert.throws(() => resolveCallMonth(bad, NOW, 'Europe/Tallinn'), (error) => error.status === 400 && error.messageKey === 'home_care.errors.invalid_month', bad);
   }
 });
