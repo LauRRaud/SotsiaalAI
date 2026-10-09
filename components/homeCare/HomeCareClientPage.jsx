@@ -16,6 +16,7 @@ import HomeCareClientForm from "./HomeCareClientForm";
 import HomeCareDecisionView, { minutesLabel } from "./HomeCareDecisionView";
 import HomeCareEntryForm from "./HomeCareEntryForm";
 import HomeCareEntryItem from "./HomeCareEntryItem";
+import HomeCareFridgeSheet from "./HomeCareFridgeSheet";
 import HomeCareHistory from "./HomeCareHistory";
 import HomeCareOutbox from "./HomeCareOutbox";
 import HomeCarePlanView from "./HomeCarePlanView";
@@ -514,6 +515,8 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
             {t("home_care.slots.edit_link")}
           </Link>
         ) : null}
+        {/* Külmkapileht (K5-g): prinditav leht kliendi koju. Meeskond ja hooldusjuht. */}
+        {access.canEditCard && data.slots?.length ? <HomeCareFridgeSheet organizationId={organizationId} clientId={client.id} /> : null}
       </section>
 
       {/* Kehtiv hoolduskava (K2-b): mida siin tehakse, kui sageli ja kuidas. Kogu meeskonnale lugemiseks. */}

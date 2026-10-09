@@ -14041,6 +14041,25 @@
     "continuity": {
       "one": "Viimasel neljal nädalal käis siin üks töötaja (käike {visits}).",
       "many": "Viimasel neljal nädalal käis siin {workers} eri töötajat; {top} neist tegid {percent}% käikudest (käike {visits})."
+    },
+    "fridge": {
+      "phone_label": "Asutuse telefon külmkapilehele",
+      "hint": "Külmkapileht on suure kirjaga leht kliendi koju: kes ja mis päeval tuleb, mida koos teeme ja kuhu helistada. Number jääb sellesse seadmesse meelde.",
+      "open": "Ava külmkapileht",
+      "popup_blocked": "Brauser ei lubanud uut akent avada. Luba selle lehe hüpikaknad ja proovi uuesti.",
+      "doc": {
+        "title": "Teie koduteenus",
+        "print_hint": "Prindi see leht (Ctrl+P). Ülemine rida on sulle: lõika see enne lehe viimist ära.",
+        "for_client": "Kellele:",
+        "who_title": "Kes ja millal tuleb",
+        "time": "kell {from}–{to}",
+        "worker_unknown": "hooldaja",
+        "no_visits": "Käigud lepime teiega kokku.",
+        "what_title": "Mida koos teeme",
+        "no_plan": "Selle lepime teiega kokku.",
+        "call_title": "Kui midagi on teisiti või aeg ei sobi, helistage",
+        "valid_from": "kehtib alates {date}"
+      }
     }
   },
   "stage": {
