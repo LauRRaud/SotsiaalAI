@@ -1,6 +1,6 @@
 # ADR-121: kontaktide kirje ei tõrju abi kokkuvõtteid välja
 
-Kuupäev: 09.10.2026. Teostus Claude Opus 5.5. Omanik: „Do this task here: Tallinna üldkataloog ei tõrju kokkuvõtteid välja“. Seis: **kood tehtud ja mõõdetud tasuta 63 salvestatud pöörde kordusega serveris; midagi ei ostetud.**
+Kuupäev: 09.10.2026. Teostus Claude Opus 5.5. Omanik: „Do this task here: Tallinna üldkataloog ei tõrju kokkuvõtteid välja“. Seis: **serveris alates 09.10.2026 kell 23.20 (väljalase `20e68d52`); mõõdetud tasuta 63 salvestatud pöörde kordusega ja samal ööl 12 päris pöördega (0,0659 USD).**
 
 ## Probleem
 
@@ -58,7 +58,25 @@ Kirjekanal `record-catalogue-5`: **kui kontaktide kirje kõrvale jääb alla kuu
 - Kohalike teenustega kirjekanali test (`tests/rag-v2-structured-records.integration.test.mjs`): 9/11; ADR-089 test (kirje avatakse, on märgitud, jääb esimesena välja) läbib muutmata. Kaks läbimata testi vajavad eesti keele morfoloogiat, mida selles arvutis ei ole; need ei puuduta kirjekanalit.
 - Serveri kordus enne ja pärast (tabelid eespool).
 
+## Mõõdetud päris vastustega (09.10.2026 öösel, omaniku luba testimiseks)
+
+Kaks haru samade küsimustega: töötav väljalase (reegel sees) ja mõõtmiskoopia, kus reegel on välja lülitatud. Vastuseid ei loetud tekstina (vastus võib nimetada ametnikku), vaid loendati kindla sõnaloendi järgi, mitut abi liiki vastus nimetab.
+
+| Küsimus | Haru | Kontaktide kirje | Abi liike vastuses (kaks korda küsitud) |
+|---|---|---|---|
+| „Elan Tallinnas. Mu ema ei saa enam üksi kodus hakkama. Mis abi on võimalik?“ | reegliga | avati (11 inimest) | 5 ja 1 |
+| | reeglita | avati (11 inimest) | 4 ja 3 |
+| „Elan Tallinnas ja raha on otsas, toiduks ei jätku. Kust abi saab?“ | reegliga | avati (7 inimest) | 2 ja 3 |
+| | reeglita | avati (7 inimest) | 3 ja 2 |
+| „Elan Tallinnas ja tahan taotleda toimetulekutoetust. Kelle poole ma pöörduma peaksin?“ | reegliga | **ei avatud** | 1 ja 0 |
+| | reeglita | avati (12 inimest) | 1 ja 0 |
+
+- Kahel tavalisel küsimusel reegel ei rakendunud: kirje kõrvale jäi piisavalt kokkuvõtteid ja mõlemad harud käitusid samamoodi. Erinevus abi liikide arvus (11 ja 12 nelja vastuse peale) on mudeli kõikumine.
+- Küsimusel, mis vea esile tõi, reegel rakendus mõlemal korral. **Vastustes ei olnud näha ei kahju ega kasu:** kummaski harus ei andnud ükski vastus telefoni ega e-posti ja abi liike nimetati sama palju. See küsimus küsib, kelle poole pöörduda, mitte mis abi on.
+- Kokku 12 pööret, 0,0659 USD.
+
+**Järeldus:** reegel teeb kirjekanalis seda, milleks ta tehti (9 kokkuvõtet 1 asemel), ega muuda tavalisi Tallinna küsimusi. Et see teeks vastuse paremaks, ei ole nende pööretega näidatud.
+
 ## Kontrollimata
 
-- Päris vastus Tallinna linnaosata küsimusele: kas üheksa kokkuvõttega vastus nimetab rohkem abi liike. Vajab tasulisi pöördeid (kaks küsimust, kumbki kaks korda, umbes 0,02 USD) ja luba.
 - Omavalitsused, mille kohta salvestatud pöördeid ei ole (63 omavalitsust 78-st): reegel on üldine, kuid mõõdetud on 15.

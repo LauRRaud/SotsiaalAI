@@ -1,6 +1,10 @@
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import net from 'node:net';
+import fs from 'node:fs/promises';
+import os from 'node:os';
+import path from 'node:path';
+import { spawn } from 'node:child_process';
 import { id, hash, stable } from '../lib/rag-v2/contracts.js';
 import { MockEmbedding, indexUnit } from '../lib/rag-v2/search/embedding.js';
 import { searchConfig } from '../lib/rag-v2/search/indexing.js';
@@ -303,4 +307,57 @@ test('chat profile v6 adds the passage that holds the subsection an own-act refe
   // v6 is v5 with the rule.
   const settings = profileId => queryForProfile(retrievalProfile(profileId), { text: 'x', language: 'et' });
   assert.deepEqual(settings(CHAT_SUBSECTIONS_PROFILE), { ...settings(CHAT_POOL_PROFILE), referenceSubsections: true });
+});
+
+// ADR-124: the runner itself, spawned with no database settings. The preloaded module ends the child on any connection or
+// request (exit 97), so "stopped before the database was opened" and "bought nothing" are observed, not inferred.
+const NO_NETWORK = `data:text/javascript;base64,${Buffer.from(`import net from 'node:net';
+const stop = () => { process.stderr.write('network_attempt'); process.exit(97); };
+net.Socket.prototype.connect = stop; globalThis.fetch = stop;`).toString('base64')}`;
+const runner = (args, settings = {}) => new Promise(resolve => {
+  const env = { ...Object.fromEntries(Object.entries(process.env).filter(([name]) => !/^(RAG_V2_|OPENAI_)/u.test(name))), ...settings };
+  const child = spawn(process.execPath, ['--import', NO_NETWORK, 'scripts/rag-v2-graph-experiment.mjs', ...args], { env });
+  let stdout = '', stderr = '';
+  child.stdout.on('data', d => { stdout += d; }); child.stderr.on('data', d => { stderr += d; });
+  child.on('close', code => resolve({ code, stdout, stderr }));
+});
+
+test('the experiment runner buys nothing: a text without a saved vector stops it before the database is opened (ADR-124)', async () => {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'rag-v2-graph-experiment-'));
+  try {
+    const file = async (name, value) => { const at = path.join(dir, name); await fs.writeFile(at, JSON.stringify(value)); return at; };
+    const question = (name, text, queries) => ({ id: name, text, queries, evidence_text: ['välja arvatud'], kind: 'within_document' });
+    const questions = [question('benefit-exception', 'Kes ei saa toetust?', ['toetuse erandid']), question('benefit-payment', 'Millal toetus makstakse?', [])];
+    const catalogue = await file('catalogue.json', { date: '2026-10-15', questions }), undated = await file('undated.json', { questions });
+    const empty = await file('empty.json', {}), partial = await file('partial.json', { 'Kes ei saa toetust?': [0.1], 'toetuse erandid': [0.2] });
+    const saved = await file('saved.json', { 'Kes ei saa toetust?': [0.1], 'toetuse erandid': [0.2], 'Millal toetus makstakse?': [0.3] });
+    const out = path.join(dir, 'out');
+    const refused = await runner(['--catalogue', catalogue, '--out', out, '--vectors', empty]);
+    assert.equal(refused.code, 3, refused.stderr);
+    const { detail, ...refusal } = JSON.parse(refused.stderr);
+    assert.deepEqual(refusal, { ok: false, code: 'vectors_missing', date: '2026-10-15', vectors: empty, missing: 3, questions: ['benefit-exception', 'benefit-payment'] });
+    assert.match(detail, /nothing was opened or bought.*--allow-purchase/u);
+    assert.equal(refused.stdout, '');
+    await assert.rejects(fs.access(out), { code: 'ENOENT' });
+    // The default file is <out>/vectors.json, which a new folder for a new date does not have.
+    assert.equal((await runner(['--catalogue', catalogue, '--out', out])).code, 3);
+    // One text short is still a purchase. --date is the day in use, also for a catalogue that has none of its own.
+    const coming = JSON.parse((await runner(['--catalogue', undated, '--out', out, '--vectors', partial, '--date', '2027-01-01'])).stderr);
+    assert.deepEqual([coming.code, coming.date, coming.missing, coming.questions], ['vectors_missing', '2027-01-01', 1, ['benefit-payment']]);
+    const noDate = [['--catalogue', undated], ['--catalogue', catalogue, '--date', '01.01.2027'], ['--catalogue', catalogue, '--date']];
+    for (const invalid of await Promise.all(noDate.map(args => runner(['--out', out, '--vectors', saved, ...args])))) {
+      assert.deepEqual([invalid.code, JSON.parse(invalid.stderr)], [2, { ok: false, problems: ['date'] }]);
+    }
+    // With every vector saved, or with --allow-purchase, the run goes on to the database, which no setting names here.
+    for (const opened of await Promise.all([['--vectors', saved], ['--vectors', empty, '--allow-purchase']].map(args => runner(['--catalogue', catalogue, '--out', out, ...args])))) {
+      assert.equal(opened.code, 1, opened.stderr);
+      assert.match(opened.stderr, /local_postgres_required/u);
+      assert.doesNotMatch(opened.stderr, /vectors_missing|network_attempt/u);
+    }
+    // And with settings that name one, the preloaded module ends the run at its first connection: it does see a database
+    // being opened, so its silence in the refusals above means none was.
+    const connecting = await runner(['--catalogue', catalogue, '--out', out, '--vectors', saved], { RAG_V2_POSTGRES_URL: 'postgresql://rag_v2_dev:unused@127.0.0.1:55432/rag_v2_dev',
+      RAG_V2_QDRANT_URL: 'http://127.0.0.1:56333', RAG_V2_QDRANT_KEY: 'unused'.repeat(4) });
+    assert.deepEqual([connecting.code, connecting.stderr], [97, 'network_attempt']);
+  } finally { await fs.rm(dir, { recursive: true, force: true }); }
 });
