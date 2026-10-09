@@ -4,7 +4,7 @@ import { ANSWER_SCHEMA, PROMPT_VERSION, READABLE_PROMPT_VERSIONS, answerInstruct
 import { REGION_STATE_VERSION, dialogueStateContract } from '../lib/rag-v2/pilot/dialogue-state.js';
 import { FEE_QUALIFICATION_INSTRUCTIONS, WEB_ADDRESS_INSTRUCTIONS, TIME_INSTRUCTIONS, ASKING_INSTRUCTIONS, ROLE_INSTRUCTIONS, roleWorkInstructions, dialogueInput, KNOWN_PLACES_INSTRUCTIONS, NAMED_PLACE_INSTRUCTIONS, DIALOGUE_PROMPT_VERSION, READABLE_DIALOGUE_PROMPT_VERSIONS, COMPLETENESS_INSTRUCTIONS, BARE_CORRECTION_INSTRUCTIONS, PRIOR_CLAIM_INSTRUCTIONS, CONTACT_ENTRY_INSTRUCTIONS, CONTACT_DIRECTORY_INSTRUCTIONS, VERSION_CHANGES_INSTRUCTIONS, dialogueRequest } from '../lib/rag-v2/pilot/dialogue.js';
 import { UNIFIED_RETRIEVAL_INSTRUCTIONS, UNIFIED_RETRIEVAL_VERSION } from '../lib/rag-v2/pilot/retrieval-plan.js';
-import { SEARCH_ASSIST_VERSION, PLAN_ELIGIBILITY_INSTRUCTIONS, RERANK_SAFEGUARD_INSTRUCTIONS, PLAN_CORRECTION_INSTRUCTIONS, PLAN_ANSWERED_INSTRUCTIONS, PLAN_DUTY_INSTRUCTIONS, PLAN_SETTLEMENT_INSTRUCTIONS, PLAN_WORRY_INSTRUCTIONS, PLAN_ROLE_INSTRUCTIONS, RERANK_ANSWERED_INSTRUCTIONS, RERANK_WORRY_INSTRUCTIONS, RERANK_CHANGE_INSTRUCTIONS, queryPlanRequest, rerankRequest } from '../lib/rag-v2/pilot/search-assist.js';
+import { SEARCH_ASSIST_VERSION, PLAN_ELIGIBILITY_INSTRUCTIONS, RERANK_SAFEGUARD_INSTRUCTIONS, PLAN_CORRECTION_INSTRUCTIONS, PLAN_ANSWERED_INSTRUCTIONS, PLAN_DUTY_INSTRUCTIONS, PLAN_SETTLEMENT_INSTRUCTIONS, PLAN_WORRY_INSTRUCTIONS, PLAN_ROLE_INSTRUCTIONS, PLAN_ASKED_INSTRUCTIONS, RERANK_ANSWERED_INSTRUCTIONS, RERANK_WORRY_INSTRUCTIONS, RERANK_ASKED_INSTRUCTIONS, RERANK_CHANGE_INSTRUCTIONS, queryPlanRequest, rerankRequest } from '../lib/rag-v2/pilot/search-assist.js';
 import { tokenCount } from '../lib/rag-v2/search/embedding.js';
 import { hash } from '../lib/rag-v2/contracts.js';
 
@@ -236,16 +236,16 @@ test('dialogue prompt 22 (ADR-062): valid_from chooses the version and never dat
   const assist = { model: 'gpt-6-luna', searchAssist: SEARCH_ASSIST_VERSION };
   // search-assist-6 (ADR-072) adds one line to the plan's instructions and search-assist-7 (ADR-077) one to the plan's and
   // two to the selection's, search-assist-8 (ADR-079) one more to the plan's, search-assist-9 (ADR-103) another and
-  // search-assist-10 (ADR-106) one to each and search-assist-11 (ADR-107) one to the plan's; without those nine lines
-  // both texts are those of search-assist-5.
+  // search-assist-10 (ADR-106) one to each, search-assist-11 (ADR-107) one to the plan's and search-assist-13 (ADR-119)
+  // one to each; without those eleven lines both texts are those of search-assist-5.
   const asFive = text => text.replaceAll(SEARCH_ASSIST_VERSION, 'rag-v2/search-assist-5');
   const without = (text, ...lines) => lines.reduce((rest, line) => { assert.equal(rest.split(`${line}\n`).length, 2, line.slice(0, 40)); return rest.replace(`${line}\n`, ''); }, text);
-  // The lines of search-assist-9, search-assist-10 and search-assist-11 are the plan's last three.
-  const planText = queryPlanRequest(assist, ['küsimus'], 'et').instructions, planEnd = `\n${PLAN_SETTLEMENT_INSTRUCTIONS}\n${PLAN_WORRY_INSTRUCTIONS}\n${PLAN_ROLE_INSTRUCTIONS}`;
+  // The lines of search-assist-9, search-assist-10, search-assist-11 and search-assist-13 are the plan's last four.
+  const planText = queryPlanRequest(assist, ['küsimus'], 'et').instructions, planEnd = `\n${PLAN_SETTLEMENT_INSTRUCTIONS}\n${PLAN_WORRY_INSTRUCTIONS}\n${PLAN_ROLE_INSTRUCTIONS}\n${PLAN_ASKED_INSTRUCTIONS}`;
   assert.ok(planText.endsWith(planEnd));
   assert.deepEqual([SEARCH_ASSIST_VERSION, hash(asFive(without(planText.slice(0, -planEnd.length), PLAN_CORRECTION_INSTRUCTIONS, PLAN_ANSWERED_INSTRUCTIONS, PLAN_DUTY_INSTRUCTIONS, PLAN_ELIGIBILITY_INSTRUCTIONS))),
-    hash(asFive(without(rerankRequest(assist, ['küsimus'], [{ id: 'P1', title: 't', text: 'x' }], '2026-10-01').instructions, RERANK_ANSWERED_INSTRUCTIONS, RERANK_WORRY_INSTRUCTIONS, RERANK_CHANGE_INSTRUCTIONS, RERANK_SAFEGUARD_INSTRUCTIONS)))],
-  ['rag-v2/search-assist-12', 'ac80d12eefde1aa4abce6b0f87f4bd03d395001bd35c347dca35e639fd13f6e7', '100f26ab81538a103a93e34d6f58e79d0156319c51dd6ca0e449a26b2db206d4']);
+    hash(asFive(without(rerankRequest(assist, ['küsimus'], [{ id: 'P1', title: 't', text: 'x' }], '2026-10-01').instructions, RERANK_ANSWERED_INSTRUCTIONS, RERANK_WORRY_INSTRUCTIONS, RERANK_ASKED_INSTRUCTIONS, RERANK_CHANGE_INSTRUCTIONS, RERANK_SAFEGUARD_INSTRUCTIONS)))],
+  ['rag-v2/search-assist-13', 'ac80d12eefde1aa4abce6b0f87f4bd03d395001bd35c347dca35e639fd13f6e7', '100f26ab81538a103a93e34d6f58e79d0156319c51dd6ca0e449a26b2db206d4']);
   // The request: a unified-retrieval turn carries A, the sentence and B in that order; every dialogue turn carries C.
   const config = { model: 'gpt-6-luna', maxOutputTokens: 4096, reasoning: 'medium' };
   const unified = dialogueRequest({ ...config, retrievalRouting: UNIFIED_RETRIEVAL_VERSION }, 'Kui suur on toetus?', { evidence: [] }, 'et', {}).instructions;
@@ -338,7 +338,8 @@ test('dialogue prompt 35 and search-assist-11 (ADR-107): the answer and the plan
   const withRole = queryPlanRequest(assist, ['Küsimus?'], 'et', [], 1, 'specialist'), without = queryPlanRequest(assist, ['Küsimus?'], 'et');
   assert.equal(JSON.parse(withRole.input[0].content).role, 'specialist');
   assert.equal('role' in JSON.parse(without.input[0].content), false);
-  assert.ok(withRole.instructions.endsWith(`\n${PLAN_ROLE_INSTRUCTIONS}`) && withRole.instructions === without.instructions);
+  // The role's line was the plan's last until search-assist-13 (ADR-119) added its own after it.
+  assert.ok(withRole.instructions.endsWith(`\n${PLAN_ROLE_INSTRUCTIONS}\n${PLAN_ASKED_INSTRUCTIONS}`) && withRole.instructions === without.instructions);
   for (const phrase of ['role, when present, says how the user is signed in', 'the person a request is about is by default in the municipality the specialist says they work in',
     'when the request needs local rules, services or contacts and that person has no place of their own, keep that municipality\'s name in one query',
     'stays the specialist\'s place with the relation other in places; it is nobody\'s residence', 'For other roles nothing changes']) assert.ok(PLAN_ROLE_INSTRUCTIONS.includes(phrase), phrase);
