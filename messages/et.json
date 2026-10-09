@@ -2548,8 +2548,10 @@
         "downloaded": "alla laaditud",
         "sent_waiting": "saadetud, ootab vastuvõtmist ({days}. päev)",
         "accepted": "vastu võetud {date}",
+        "answered": "vastuvõtja on vastanud",
         "sent_external": "saadetud e-kirjaga, vastuvõtt teadmata",
         "recalled": "tagasi võetud",
+        "replaced": "asendatud parandusega",
         "archived": "arhiveeritud"
       }
     },

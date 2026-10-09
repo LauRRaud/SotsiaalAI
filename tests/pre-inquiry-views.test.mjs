@@ -6,6 +6,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import { PRE_INQUIRY_SENDER_STATE_KEYS } from '../lib/preInquirySenderState.js';
 
 const read = (path) => fs.readFileSync(new URL(path, import.meta.url), 'utf8');
 const catalog = (lang) => JSON.parse(read(`../messages/${lang}.json`)).workspace_feature_pages.pre_inquiries;
@@ -44,7 +45,8 @@ test('igal töövoo vaatel on nimi ja lühinimi kiirmenüü jaoks', () => {
 });
 
 test('pöörduja seisu sõnad on kataloogis iga seisu jaoks', () => {
-  const states = ['draft', 'ready', 'downloaded', 'sent_waiting', 'accepted', 'sent_external', 'recalled', 'archived'];
+  const states = PRE_INQUIRY_SENDER_STATE_KEYS;
+  assert.equal(states.length, 10);
   for (const lang of ['et', 'en', 'ru']) {
     const labels = catalog(lang).sender_state;
     for (const state of states) assert.equal(typeof labels[state], 'string', `${lang}: ${state}`);

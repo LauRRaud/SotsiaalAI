@@ -2548,8 +2548,10 @@
         "downloaded": "downloaded",
         "sent_waiting": "sent, waiting to be accepted (day {days})",
         "accepted": "accepted {date}",
+        "answered": "the recipient has answered",
         "sent_external": "sent by e-mail, acceptance unknown",
         "recalled": "recalled",
+        "replaced": "replaced by a correction",
         "archived": "archived"
       }
     },
