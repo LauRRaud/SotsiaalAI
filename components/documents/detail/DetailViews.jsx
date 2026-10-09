@@ -8,15 +8,15 @@
  * pealkirja ja sisu väljad, viis nuppu reas, jagamine, mall ja allikad). Nüüd
  * on igal asjal oma vaade, samade klotsidega mis dokumentide lehel:
  *  - `ReadView`     kinnitatud tekst või transkript lugemiseks
- *  - `EditView`     mustandi pealkiri ja tekst; väli kasvab koos tekstiga
+ *  - `EditView`     mustandi pealkiri ja tekst; vaade mahub paneeli, tekst kerib väljas
  *  - `ApproveView`  mustandi kinnitamine (teine vajutus)
  *  - `ShareView`    kohtumise kokkuvõtte jagamine ruumi (teine vajutus)
  *  - `SourcesView`  mall ja allikfailid, iga rida viib faili oma lehele
  * Andmete ja tegevuste vaade on dokumentide lehe avatud dokumendi vaade ise
  * (`ItemView` failis ../workspace/DocumentsViews.jsx).
  *
- * PIKK TEKST KERIB KOGU PANEELI, mitte kasti paneeli sees: lugemise tekst on
- * tavaline lõik ja toimetamise väli kasvab oma sisu kõrguseks.
+ * PIKK TEKST LUGEMISEKS KERIB KOGU PANEELI, mitte kasti paneeli sees: lugemise
+ * tekst on tavaline lõik. Toimetamise väli on erand (vt `EditView`).
  *
  * Siin on ainult kuju. Andmed, päringud ja olek on lehtede failides
  * (../DocumentDetailPage.jsx, ../ArtifactDetailPage.jsx,
@@ -27,7 +27,7 @@
  */
 
 import Link from "next/link";
-import { useEffect, useId, useLayoutEffect } from "react";
+import { useId } from "react";
 
 import CheckCard from "@/components/stage/CheckCard";
 import ChoiceRow from "@/components/stage/ChoiceRow";
@@ -136,64 +136,30 @@ export function ReadView({ t, title, text, note, tone, actions = [] }) {
   );
 }
 
-function closestScroller(start) {
-  let node = start?.parentElement || null;
-  while (node && node !== window.document.documentElement) {
-    const overflowY = window.getComputedStyle(node).overflowY;
-    if (overflowY === "auto" || overflowY === "scroll") return node;
-    node = node.parentElement;
-  }
-  return null;
-}
-
-/* Väli on nii kõrge kui tema tekst. Kõrgust mõõtes tõmbub väli hetkeks kokku;
-   paneeli kerimiskoht pannakse tagasi, et pika teksti lõpus kirjutades leht
-   ei hüppaks. Laias vaates („Kõik osad”) on lava peidus ja mõõta ei saa. */
-function fitToContent(area) {
-  if (!area || !area.getClientRects().length) return;
-  const scroller = closestScroller(area);
-  const top = scroller ? scroller.scrollTop : 0;
-  area.style.height = "auto";
-  area.style.height = `${area.scrollHeight + area.offsetHeight - area.clientHeight}px`;
-  if (scroller && scroller.scrollTop !== top) scroller.scrollTop = top;
-}
-
-/**
- * Tekstiväli, mis kasvab koos sisuga: mitu lehekülge teksti ei keri kastis
- * paneeli sees, vaid kogu paneel kerib. Laiuse muutus (aken, laiast vaatest
- * tagasi tulek) murrab read teisiti, siis mõõdetakse uuesti.
- */
-function useGrowingField(id, value) {
-  useLayoutEffect(() => {
-    fitToContent(window.document.getElementById(id));
-  }, [id, value]);
-  useEffect(() => {
-    const area = window.document.getElementById(id);
-    if (!area || typeof ResizeObserver === "undefined") return undefined;
-    let width = area.clientWidth;
-    const observer = new ResizeObserver(() => {
-      if (area.clientWidth === width) return;
-      width = area.clientWidth;
-      fitToContent(area);
-    });
-    observer.observe(area);
-    return () => observer.disconnect();
-  }, [id]);
-}
-
 /**
  * Mustandi pealkiri ja tekst. Üks vaade, üks salvestus: mõlemad väljad lähevad
  * ühe päringuga. Välju päringu ajaks ei lukustata (fookus kaoks); topelt
  * salvestamise peab kinni leht.
+ *
+ * VAADE MAHUB PANEELI, tekst kerib oma väljas. Esimene versioon kasvatas välja
+ * teksti kõrguseks ja lasi kogu paneelil kerida: siis oli salvestusnupp koos
+ * seisureaga („salvestatud", viga, „salvestamata muudatused") mitme lehekülje
+ * kaugusel teksti lõpus ja kleepuvat riba lava sees teha ei saa (lava lõikab
+ * selle ära; mõõdetud brauseris). Toimetamisel peab salvestamine olema kogu aeg
+ * näha, seepärast on väli paneeli kõrgune ja jalus paigal. Välja saab nurgast
+ * kõrgemaks venitada. Ctrl+S (Macis Cmd+S) salvestab samuti.
+ * `hint`: seisurea vaikimisi tekst, kui muud öelda ei ole.
+ * `back.armed`: lahkumise teine vajutus ootab ja jalus ütleb, mis kaotsi läheks.
  */
-export function EditView({ t, title, onTitle, content, onContent, note, tone, saving, glow = true, onSave, onCopy, back }) {
+export function EditView({ t, title, onTitle, content, onContent, note, tone, hint, saving, glow = true, onSave, onCopy, back }) {
   const formId = useId();
   const areaId = useId();
-  useGrowingField(areaId, content);
+  const noteId = useId();
+  const shownNote = back.armed ? footNote(back.note, "risk") : footNote(note || hint, note ? tone : "ok");
   return (
     <StepPanel
       title={t("documents.detail.views.text.title")}
-      note={footNote(note, tone)}
+      note={<span id={noteId}>{shownNote}</span>}
       actions={
         <>
           <Button type="button" size="sm" variant="linkBrand" onClick={back.onClick}>
@@ -208,7 +174,18 @@ export function EditView({ t, title, onTitle, content, onContent, note, tone, sa
         </>
       }
     >
-      <form id={formId} className={styles.editor} noValidate onSubmit={onSave}>
+      <form
+        id={formId}
+        className={styles.editor}
+        noValidate
+        onSubmit={onSave}
+        onKeyDown={(event) => {
+          if ((event.ctrlKey || event.metaKey) && !event.altKey && event.key.toLowerCase() === "s") {
+            event.preventDefault();
+            if (!event.repeat) onSave(event);
+          }
+        }}
+      >
         <label className={styles.field}>
           <span className={styles.fieldLabel}>{t("documents.form.title_label")}</span>
           <Input
@@ -219,11 +196,19 @@ export function EditView({ t, title, onTitle, content, onContent, note, tone, sa
             autoComplete="off"
           />
         </label>
-        {/* Vaate nimi on „Tekst”: välja silt on ainult ekraanilugejale. */}
+        {/* Vaate nimi on „Tekst": välja silt on ainult ekraanilugejale. */}
         <label className="sr-only" htmlFor={areaId}>
           {t("documents.form.content_label")}
         </label>
-        <Textarea id={areaId} name="artifactContent" className={styles.area} rows={8} value={content} onChange={(event) => onContent(event.target.value)} />
+        <Textarea
+          id={areaId}
+          name="artifactContent"
+          className={styles.area}
+          rows={8}
+          value={content}
+          aria-describedby={noteId}
+          onChange={(event) => onContent(event.target.value)}
+        />
       </form>
     </StepPanel>
   );
@@ -327,21 +312,28 @@ export function ShareView({ t, title, rooms, approval, note, tone, sharing, glow
 
 /**
  * Millest tekst koostati: valitud mall ja allikfailid. Rida viib faili oma
- * lehele; `unsaved` hoiatab, et mustandis on salvestamata muudatusi, enne kui
- * inimene lehelt lahkub.
+ * lehele. `unsaved`: mustandis on salvestamata muudatusi; siis avaneb fail
+ * uues vahelehes, et pooleli tekst jääks siia alles (lehe sees liikudes
+ * brauser lahkumise eel ei küsi ja tekst läheks kaotsi).
  */
 export function SourcesView({ t, template, sources, unsaved }) {
   const rows = [...(template ? [template] : []), ...sources];
   return (
     <StepPanel title={t("documents.detail.views.sources.title")} lead={t("documents.detail.sources.lead")}>
       <div className={shared.stack}>
-        {unsaved ? <p className={shared.quiet}>{t("documents.detail.unsaved_leave")}</p> : null}
+        {unsaved ? <p className={shared.quiet}>{t("documents.detail.sources.opens_new_tab")}</p> : null}
         {rows.length ? (
           <ul className={shared.rows}>
             {rows.map((row) => (
               <li key={row.key} className={shared.rowItem}>
                 {/* Eellaadimist ei ole: allikaid võib olla kümme ja iga leht teeb oma päringu. */}
-                <Link className={`${shared.row} ${styles.linkRow}`} href={row.href} prefetch={false}>
+                <Link
+                  className={`${shared.row} ${styles.linkRow}`}
+                  href={row.href}
+                  prefetch={false}
+                  target={unsaved ? "_blank" : undefined}
+                  rel={unsaved ? "noopener" : undefined}
+                >
                   <span className={styles.rowMain}>
                     <span className={shared.rowTitle}>{row.title}</span>
                     {row.sub ? <span className={styles.rowSub}>{row.sub}</span> : null}

@@ -176,6 +176,12 @@ export function itemSheet(item, { t, locale, plain = false }) {
   };
 }
 
+/** Kas kinnitatud tekstist tehti PDF. Teadmata (vanem kirje) loetakse tehtuks. */
+export function pdfWasRendered(artifact) {
+  const rendered = artifact?.provenance?.rendered;
+  return !(Boolean(rendered) && typeof rendered === "object" && !rendered.pdf);
+}
+
 /**
  * Mida avatud dokumendiga teha saab.
  *
@@ -221,7 +227,10 @@ export function itemActions(item, { locale, client = false } = {}) {
         ...none,
         open: localizePath(`/documents/artifacts/${id}`, locale),
         docx: raw.downloadUrls?.docx || null,
-        pdf: raw.downloadUrls?.pdf || null,
+        /* PDF-i ei tehta, kui tekstis on märke, mida PDF-i kirjatüüp ei kanna
+           (kirillitsa, emotikonid): link vastaks siis veaga. Sama reegel mis
+           detaililehel (`artifactDownloads`, ../detail/detailModel.js). */
+        pdf: pdfWasRendered(raw) ? raw.downloadUrls?.pdf || null : null,
         copy: true,
         remove: "artifact"
       };

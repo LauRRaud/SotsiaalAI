@@ -4384,7 +4384,7 @@
       "confirm": "Press again to share",
       "confirm_note": "The summary will be posted to the room “{room}”. The room members see it at once.",
       "rooms_failed": "Loading the rooms failed.",
-      "approval_requested": "The other specialists in the room were asked for confirmation.",
+      "approval_requested": "The request for confirmation is open to the other specialists in the room.",
       "approval_failed": "The summary was shared to the room “{room}”, but asking for confirmation failed."
     },
     "filters": {
@@ -5010,7 +5010,8 @@
         "done_no_pdf": "Approved. The Word file can now be downloaded. A PDF could not be made from this text because PDF does not support all of its characters."
       },
       "sources": {
-        "lead": "The files this text was drafted from."
+        "lead": "The files this text was drafted from.",
+        "opens_new_tab": "The draft has unsaved changes. The file opens in a new tab so the text you are working on stays here."
       },
       "leave_confirm": "Press again to leave without saving"
     }

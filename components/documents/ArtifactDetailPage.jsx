@@ -61,6 +61,7 @@ import {
   wordCount
 } from "./detail/detailModel"
 import { ItemView } from "./workspace/DocumentsViews"
+import { hasListReturn } from "./workspace/listReturn"
 import styles from "./workspace/documents.module.css"
 
 const NO_NOTICE = Object.freeze({ view: "", ok: "", error: "" })
@@ -271,7 +272,12 @@ export default function ArtifactDetailPage({ artifactId }) {
     }
   }
 
-  const listHref = documentsHref(locale, { artifacts: true })
+  /* Kes tuli loendist, läheb tagasi tavalisele dokumentide lehele: see kasutab
+     tagasituleku märgi ära ja avab loendi sama filtriga, millega lahkuti.
+     Süvalink koostatud tekstide filtriga on neile, kes tulid mujalt
+     (koostamisruum, vestlus); see jätaks märgi alles ja järgmine tavaline
+     külastus avaneks loendis. Loetakse vajutuse ajal, mitte lehe laadimisel. */
+  const listTarget = () => documentsHref(locale, { artifacts: !hasListReturn() })
 
   /* Kustutamine on jäädav. Siia jõuab alles teine vajutus. */
   function deleteArtifact() {
@@ -284,14 +290,14 @@ export default function ArtifactDetailPage({ artifactId }) {
           throw new RequestFailure(serverMessage(payload, t, t("documents.errors.delete_artifact_failed")))
         }
         /* Teksti enam ei ole: tagasi koostatud tekstide loendisse. */
-        pushWithTransition(router, listHref)
+        pushWithTransition(router, listTarget())
       } catch (error) {
         setNotice({ view: "sheet", ok: "", error: failureText(error, t("documents.errors.delete_artifact_failed")) })
       }
     })
   }
 
-  const goList = () => pushWithTransition(router, listHref)
+  const goList = () => pushWithTransition(router, listTarget())
   const back = { label: t("documents.back_to_documents"), onClick: goList }
 
   /* Lehelt lahkumine salvestamata tekstiga küsib teist vajutust: väljadel olev
@@ -344,9 +350,10 @@ export default function ArtifactDetailPage({ artifactId }) {
       short: t(`documents.detail.views.${key}.short`),
       state: stepState[key],
       summary: stepSummary[key],
-      /* Tekst ja allikate loend võivad olla pikad: nende järgi ühist kõrgust
-         ei võeta ja siis kerib kogu paneel. */
-      free: key === "text" || key === "sources"
+      /* Kinnitatud tekst ja allikate loend võivad olla pikad: nende järgi
+         ühist kõrgust ei võeta ja siis kerib kogu paneel. Mustandi toimetamise
+         vaade mahub paneeli (tekst kerib väljas), et salvestamine oleks näha. */
+      free: (key === "text" && !draft) || key === "sources"
     }))
 
     const renderPart = (step, _index, flight) => {
@@ -385,6 +392,7 @@ export default function ArtifactDetailPage({ artifactId }) {
           return (
             <ItemView
               t={t}
+              title={t("documents.detail.views.sheet.title")}
               notice={{ ok: own.ok, error: own.error, onClose: () => setNotice(NO_NOTICE) }}
               /* Mustandis on salvestamata muudatusi: märkus ütleb, miks siit
                  lahkuvad tegevused (koostamisruum, tagasi) küsivad teist vajutust. */
@@ -417,9 +425,13 @@ export default function ArtifactDetailPage({ artifactId }) {
                 title={shownTitle}
                 text={String(artifact.content || "")}
                 {...footFor("text")}
+                /* Allalaadimine on teksti juures, nagu vanal lehel: kinnitatud
+                   teksti avaja tuleb enamasti just faili järele. */
                 actions={[
                   { key: "back", label: back.label, variant: "linkBrand", onClick: back.onClick },
-                  { key: "copy", label: t("documents.actions.copy"), onClick: () => void copyContent() }
+                  { key: "copy", label: t("documents.actions.copy"), onClick: () => void copyContent() },
+                  ...(downloads.pdf ? [{ key: "pdf", label: t("documents.actions.download_pdf"), href: downloads.pdf }] : []),
+                  ...(downloads.docx ? [{ key: "docx", label: t("documents.actions.download_docx"), variant: "primary", href: downloads.docx }] : [])
                 ]}
               />
             )
@@ -434,8 +446,8 @@ export default function ArtifactDetailPage({ artifactId }) {
               onContent={editField(setContent)}
               saving={pending === "save"}
               glow={glow}
-              /* Lahkumise teine vajutus ootab: jalus ütleb, mis kaotsi läheks. */
-              {...(toList.armed ? { note: toList.note, tone: "risk" } : footFor("text", { unsaved: dirty }))}
+              {...footFor("text", { unsaved: dirty })}
+              hint={t("documents.draft_notice")}
               onSave={saveDraft}
               onCopy={() => void copyContent()}
               back={toList}

@@ -4384,7 +4384,7 @@
       "confirm": "Vajuta uuesti, et jagada",
       "confirm_note": "Kokkuvõte postitatakse ruumi „{room}”. Ruumi liikmed näevad seda kohe.",
       "rooms_failed": "Ruumide laadimine ebaõnnestus.",
-      "approval_requested": "Ruumi teistelt spetsialistidelt küsiti kinnitust.",
+      "approval_requested": "Kinnituse küsimine on ruumi teistele spetsialistidele avatud.",
       "approval_failed": "Kokkuvõte jagati ruumi „{room}”, aga kinnituse küsimine ebaõnnestus."
     },
     "filters": {
@@ -5010,7 +5010,8 @@
         "done_no_pdf": "Kinnitatud. Wordi faili saab nüüd alla laadida. PDF-i sellest tekstist teha ei saanud, sest PDF ei toeta kõiki teksti märke."
       },
       "sources": {
-        "lead": "Failid, millest see tekst koostati."
+        "lead": "Failid, millest see tekst koostati.",
+        "opens_new_tab": "Mustandis on salvestamata muudatusi. Fail avaneb uues vahelehes, et pooleli tekst jääks siia alles."
       },
       "leave_confirm": "Vajuta uuesti, et lahkuda salvestamata"
     }

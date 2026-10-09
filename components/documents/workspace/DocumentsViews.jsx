@@ -343,7 +343,8 @@ function RenameForm({ t, rename }) {
         aria-label={t("documents.views.item.rename_label")}
         autoComplete="off"
       />
-      <Button type="submit" size="sm" variant="primary">
+      {/* Laval hoitakse kõik vaated lehel: läige ainult ees oleval (`rename.glow`). */}
+      <Button type="submit" size="sm" variant="primary" glow={rename.glow !== false}>
         {t("buttons.save")}
       </Button>
       <Button type="button" size="sm" variant="secondary" onClick={rename.onCancel}>
@@ -363,9 +364,11 @@ function RenameForm({ t, rename }) {
  * kasvab teise vajutuse sõnadega paremale ja selgitus tuleb selle kõrvale,
  * nii et nupp jääb kursori alla ja miski muu selle kohale ei nihku.
  */
-export function ItemView({ t, notice, sheet, rename, share, analysis, actions, danger }) {
+export function ItemView({ t, title = "", notice, sheet, rename, share, analysis, actions, danger }) {
   return (
-    <StepPanel title={t("documents.views.item.title")} question={sheet.title} actions={<ActionButtons actions={actions} />}>
+    /* `title`: detaililehel kannab see osa teist nime („Andmed ja tegevused");
+       ekraanilugeja peab kuulma sama nime, mis on kiirmenüüs. */
+    <StepPanel title={title || t("documents.views.item.title")} question={sheet.title} actions={<ActionButtons actions={actions} />}>
       <div className={styles.stack}>
         <Notices t={t} notice={notice} />
         <div className={styles.line}>

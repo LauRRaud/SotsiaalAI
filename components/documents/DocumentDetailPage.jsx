@@ -174,7 +174,7 @@ export default function DocumentDetailPage({ documentId }) {
     });
   }
 
-  function renderSheet() {
+  function renderSheet(glow = true) {
     const can = itemActions(item, { locale, client: isClientRole });
     const actions = [];
     if (can.download) actions.push({ key: "download", label: t("documents.actions.download"), variant: "primary", href: can.download });
@@ -190,11 +190,12 @@ export default function DocumentDetailPage({ documentId }) {
     return (
       <ItemView
         t={t}
+        title={t("documents.detail.views.sheet.title")}
         notice={{ ok: notice.ok, error: notice.error, onClose: () => setNotice(NO_NOTICE) }}
         sheet={documentSheet(item, { t, locale, plain: isClientRole })}
         rename={
           can.rename && renameTitle !== null
-            ? { value: renameTitle, onChange: setRenameTitle, onSave: () => void saveRename(), onCancel: closeRename }
+            ? { value: renameTitle, glow, onChange: setRenameTitle, onSave: () => void saveRename(), onCancel: closeRename }
             : null
         }
         share={
@@ -255,7 +256,7 @@ export default function DocumentDetailPage({ documentId }) {
           position: (current, total, label) => t("documents.views.position", { current, total, label })
         }}
       >
-        {(step) => (step.key === "text" ? <ReadView t={t} title={sheet.title} text={text} /> : renderSheet())}
+        {(step, _index, flight) => (step.key === "text" ? <ReadView t={t} title={sheet.title} text={text} /> : renderSheet(flight?.isActive !== false))}
       </StepFlight>
     );
   }

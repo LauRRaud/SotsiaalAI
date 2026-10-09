@@ -55,18 +55,22 @@
   color: var(--text-warm);
   font-weight: 560;
 }
-/* Teksti väli on pikk tekst: täislaius on siin omal kohal. Kõrguse annab
-   sisu (vt DetailViews.jsx `useGrowingField`), seepärast ei keri väli ise ega
-   saa seda käsitsi venitada; ühine kiht annaks muidu oma miinimumkõrguse ja
-   venitamise nurga. */
+/* Teksti väli on pikk tekst: täislaius on siin omal kohal. Kõrgus on selline,
+   et vaade koos pealkirja välja ja jalusega mahub paneeli (640 px aknas umbes
+   245 px, kõrgemas aknas rohkem), ja tekst kerib väljas: nii on salvestusnupp
+   ja seisurida kogu aeg näha. 24.7rem on kõik muu peale välja (akna ja paneeli
+   servad, pealkirja väli, jalus; mõõdetud 1536 x 640 aknas), telefonis 27rem
+   (nupud murduvad kahele reale; mõõdetud 390 x 844 aknas). Välja saab nurgast
+   kõrgemaks venitada; siis kerib paneel. */
 .area {
   display: block;
   box-sizing: border-box;
   width: 100%;
   min-width: 0;
-  min-height: 12rem;
-  overflow: hidden;
-  resize: none;
+  height: clamp(9rem, calc(100dvh - 24.7rem), 34rem);
+  min-height: 9rem;
+  overflow: auto;
+  resize: vertical;
   line-height: 1.55;
 }
 
@@ -92,6 +96,12 @@
 .select {
   min-width: 0;
   max-width: 24rem;
+}
+
+@media (max-width: 640px) {
+  .area {
+    height: clamp(9rem, calc(100dvh - 27rem), 34rem);
+  }
 }
 
 /* Sama piir mis dokumentide lehel: kitsal pinnal on väli terve laiuse peal. */

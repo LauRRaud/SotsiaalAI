@@ -494,11 +494,10 @@ test('lehed on dokumentide lehe klotsidega sammulaval ja ei kasuta enam vana üh
   for (const name of ['text', 'approve', 'share', 'sources']) {
     assert.ok(!new RegExp(`question=\\{t\\("documents\\.detail\\.views\\.${name}\\.title"\\)\\}`).test(views), `${name}: vaate nimi ei ole paneelil nähtav küsimus`);
   }
-  /* Pikk tekst kerib kogu paneeli: väli kasvab sisu kõrguseks ega keri ise. */
-  assert.ok(views.includes('useGrowingField(areaId, content)') && views.includes('area.style.height = `${area.scrollHeight + area.offsetHeight - area.clientHeight}px`'));
+  /* Lugemise tekst kerib kogu paneeli; mustandi toimetamise vaade mahub paneeli ja tekst
+     kerib väljas (vt testi „mustandi toimetamine" allpool). */
   const css = read(STYLES);
-  assert.match(css, /\.area\s*\{[^}]*overflow:\s*hidden[^}]*resize:\s*none/);
-  assert.ok(artifactPage.includes('free: key === "text" || key === "sources"') && documentPage.includes('free: key === "text"'));
+  assert.ok(artifactPage.includes('free: (key === "text" && !draft) || key === "sources"') && documentPage.includes('free: key === "text"'));
 
   /* Vanad üldreeglid on eemaldatud koos lehtedega, mis neid kasutasid. */
   const featureCss = read('../app/styles/feature-pages.css');
@@ -530,4 +529,58 @@ test('iga klass, mida vaated ja lehed kasutavad, on kujundusfailis olemas; laena
   const documentsViews = read('../components/documents/workspace/DocumentsViews.jsx');
   for (const name of ['Chip', 'ActionButtons', 'ItemView']) assert.ok(documentsViews.includes(`export function ${name}(`), `${name} on eksporditud`);
   assert.ok(read(VIEWS).includes('import { ActionButtons, Chip } from "../workspace/DocumentsViews";'));
+});
+
+// --- Ülevaatuse ja brauserikontrolli järel (09.10) -------------------------------------
+// Mustandi toimetamise vaade kasvatas alguses välja teksti kõrguseks: salvestusnupp ja
+// seisurida olid siis mitme lehekülje kaugusel teksti lõpus (kleepuvat riba lava sees teha
+// ei saa, mõõdetud brauseris). Nüüd mahub vaade paneeli ja tekst kerib väljas.
+test('mustandi toimetamine: vaade mahub paneeli, salvestamine on jaluses ja Ctrl+S salvestab', () => {
+  const views = read(VIEWS);
+  const page = read(ARTIFACT_PAGE);
+  const css = read(STYLES);
+  /* Väli ei kasva enam teksti kõrguseks ja mustandi tekstivaade ei ole „vaba". */
+  assert.ok(!views.includes('fitToContent') && !views.includes('useGrowingField'));
+  assert.ok(page.includes('free: (key === "text" && !draft) || key === "sources"'));
+  assert.match(css, /\.area \{[^}]*height: clamp\(9rem, calc\(100dvh - 24\.7rem\), 34rem\);[^}]*overflow: auto;[^}]*resize: vertical;/s);
+  /* Salvestusnupp on vaate jaluses (StepPanel actions), seisurida selle kõrval. */
+  const edit = views.slice(views.indexOf('export function EditView('), views.indexOf('export function ApproveView('));
+  assert.ok(edit.includes('<Button type="submit" form={formId} size="sm" variant="primary" glow={glow}>'));
+  assert.ok(edit.includes('aria-describedby={noteId}'), 'seisurida on väljaga seotud');
+  assert.ok(edit.includes('if ((event.ctrlKey || event.metaKey) && !event.altKey && event.key.toLowerCase() === "s")'));
+  assert.ok(edit.includes('if (!event.repeat) onSave(event);'), 'all hoitud klahv ei salvesta mitu korda');
+  /* Vaikimisi seisurida ütleb, et mustand on muudetav (vanal lehel väljade all). */
+  assert.ok(page.includes('hint={t("documents.draft_notice")}'));
+});
+
+test('salvestamata mustandist avaneb allikas uues vahelehes; kinnitatud teksti juures on allalaadimine', () => {
+  const views = read(VIEWS);
+  const page = read(ARTIFACT_PAGE);
+  assert.ok(views.includes('target={unsaved ? "_blank" : undefined}'));
+  assert.ok(views.includes('rel={unsaved ? "noopener" : undefined}'));
+  for (const lang of LANGS) assert.ok(at(catalog(lang), 'documents.detail.sources.opens_new_tab'), lang);
+  const read_view = page.slice(page.indexOf('<ReadView'), page.indexOf('const toList = leaving("text"'));
+  assert.ok(read_view.includes('downloads.docx') && read_view.includes('downloads.pdf'));
+});
+
+test('tagasi dokumentidesse: loendist tulnu läheb tavalisele lehele, mis märgi ära kasutab', async () => {
+  const { isFreshListReturn } = await import('../components/documents/workspace/listReturn.js');
+  const now = 1_000_000_000;
+  assert.equal(isFreshListReturn(now - 60_000, now), true);
+  assert.equal(isFreshListReturn(now - 31 * 60_000, now), false, 'pool tundi vana märk ei kehti');
+  assert.equal(isFreshListReturn(0, now), false);
+  assert.equal(isFreshListReturn(Number.NaN, now), false);
+  const page = read(ARTIFACT_PAGE);
+  assert.ok(page.includes('documentsHref(locale, { artifacts: !hasListReturn() })'));
+  const list = read('../components/documents/DocumentsPage.jsx');
+  assert.ok(list.includes('import { consumeListReturn, markListReturn } from "./workspace/listReturn"'));
+  assert.ok(!list.includes('LIST_RETURN_STORAGE_KEY'), 'märgi võti on ühes kohas');
+});
+
+test('avatud dokumendi vaade kannab detaililehel oma osa nime ja ümbernimetamise nupu läige on juhitav', () => {
+  const shared = read('../components/documents/workspace/DocumentsViews.jsx');
+  assert.ok(shared.includes('title={title || t("documents.views.item.title")}'));
+  assert.ok(shared.includes('glow={rename.glow !== false}'));
+  assert.equal(read(ARTIFACT_PAGE).split('title={t("documents.detail.views.sheet.title")}').length - 1, 1);
+  assert.equal(read(DOCUMENT_PAGE).split('title={t("documents.detail.views.sheet.title")}').length - 1, 1);
 });
