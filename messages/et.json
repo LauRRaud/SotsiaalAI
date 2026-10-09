@@ -2207,7 +2207,6 @@
   "materials_page": {
     "title": "Materjalid",
     "choose_file": "Vali fail",
-    "files_selected": "{count} faili valitud",
     "comment_placeholder": "Lisa lühike kirjeldus: mis fail see on ja milleks see võiks kasulik olla.",
     "comment_placeholder_multiple": "Lisa lühike selgitus iga faili kohta (nt failinimi + milleks see kasulik on).",
     "submit": "Saada materjal",
@@ -2216,20 +2215,25 @@
     "retention": {
       "until": "Säilitamise tähtaeg: {date}",
       "decision_pending": "Säilitamise tähtaeg: otsus ootel",
-      "layer_until": "{layer}: kuni {date}",
-      "layer_state": "{layer}: {state}",
       "layers": {
         "original": "Originaalfail",
         "derivative": "Sanitiseeritud derivaat",
         "rag": "RAG-koopia"
+      },
+      "until_date": "kuni {date}",
+      "state": {
+        "scheduled": "säilitatakse",
+        "not_present": "ei ole loodud",
+        "deleted": "kustutatud",
+        "unknown": "seis teadmata"
       }
     },
     "mine": {
-      "title": "Minu saadetud materjalid",
       "loading": "Laen sinu materjale...",
       "empty": "Sa pole veel materjale saatnud.",
       "withdraw": "Võta tagasi",
-      "load_more": "Näita veel"
+      "load_more": "Näita veel",
+      "withdrawn": "Materjal võeti tagasi."
     },
     "errors": {
       "load_failed": "Materjalide laadimine ebaõnnestus.",
@@ -2246,7 +2250,9 @@
       "delete_failed": "Materjali kustutamine ebaõnnestus.",
       "file_count_exceeded": "Saad korraga saata kuni 10 faili.",
       "daily_upload_quota_exceeded": "Päevane üleslaadimise limiit on täitunud. Proovi homme uuesti.",
-      "storage_quota_exceeded": "Salvestusmaht on täis. Kustuta mõni fail ja proovi uuesti."
+      "storage_quota_exceeded": "Salvestusmaht on täis. Kustuta mõni fail ja proovi uuesti.",
+      "withdraw_not_allowed": "Selles seisus materjali ei saa tagasi võtta.",
+      "delete_pending": "Materjali eemaldamine jäi pooleli. Proovi mõne aja pärast uuesti."
     },
     "admin": {
       "title": "Laekunud materjalid",
@@ -2263,15 +2269,12 @@
       "sanitized_preview": "Puhastatud eelvaade",
       "rag_author_prompt": "Autor",
       "rag_rights_holder_prompt": "Õiguste omaja",
-      "rag_rights_basis_prompt": "Õiguste alus: PUBLIC_DOMAIN, OPEN_LICENSE või DOCUMENTED_PERMISSION",
       "rag_rights_evidence_prompt": "Dokumenteeritud tõendi viide",
       "rag_classification_confirm": "Kinnitan, et materjal ei sisalda kliendijuhtumit, konfidentsiaalset teavet ega isikuandmeid.",
       "mark_reviewed": "Märgi üle vaadatuks",
       "mark_imported": "Märgi impordituks",
       "import_requires_policy": "Import avaneb pärast õiguste, sihtrühma ja eemaldamise reegli kinnitamist.",
-      "notification_status": "Admini teavitus: {status} (katseid {attempts})",
       "reject": "Lükka tagasi",
-      "review_note_prompt": "Märkus ülevaatuse kohta (valikuline):",
       "status": {
         "pending": "Ootel",
         "reviewed": "Üle vaadatud",
@@ -2279,8 +2282,75 @@
         "imported": "Imporditud"
       },
       "delete": "Kustuta",
-      "delete_confirm": "Kas kustutan selle materjali?"
-    }
+      "empty_filtered": "Selle seisundiga materjale ei ole.",
+      "submitter": "Saatja",
+      "review_fact": "Ülevaatus",
+      "note_label": "Märkus ülevaatuse kohta (valikuline)",
+      "reject_confirm": "Vajuta uuesti, et tagasi lükata",
+      "delete_again": "Vajuta uuesti, et kustutada",
+      "deleted": "Materjal kustutati.",
+      "notification_label": "Admini teavitus",
+      "notification_attempts": "{status}, katseid {attempts}",
+      "notification": {
+        "pending": "ootel",
+        "sending": "saatmisel",
+        "retry": "proovitakse uuesti",
+        "sent": "saadetud",
+        "failed": "ebaõnnestus",
+        "unknown": "seis teadmata"
+      },
+      "error_code": "veakood {code}",
+      "rights": {
+        "lead": "Impordiks kinnita, kellele materjali õigused kuuluvad ja mille alusel seda kasutada tohib.",
+        "basis_label": "Õiguste alus",
+        "basis": {
+          "public_domain": "Avalik omand",
+          "open_license": "Avatud litsents",
+          "documented_permission": "Dokumenteeritud luba"
+        },
+        "submit": "Kinnita ja märgi impordituks"
+      }
+    },
+    "views": {
+      "list": {
+        "title": "Minu saadetud materjalid",
+        "short": "Minu materjalid"
+      },
+      "send": {
+        "title": "Materjali saatmine",
+        "short": "Saatmine",
+        "lead": "Saada õppematerjal või dokument, mis võiks täiendada platvormi teadmistebaasi. Enne lisamist vaadatakse materjal üle.",
+        "pick_again": "Vali teised failid",
+        "file_help": "Lubatud failid: PDF, DOCX ja TXT. Korraga kuni {count} faili, iga fail kuni {size} MB.",
+        "none_selected": "Faili ei ole valitud.",
+        "clear": "Eemalda valik",
+        "comment_label": "Selgitus"
+      },
+      "item": {
+        "title": "Saadetud materjal",
+        "short": "Materjal",
+        "sent_at": "Saadetud",
+        "size": "Suurus",
+        "withdraw_confirm": "Vajuta uuesti, et tagasi võtta",
+        "withdraw_note": "Tagasivõtmist ei saa tühistada."
+      },
+      "review": {
+        "title": "Laekunud materjalid",
+        "short": "Laekunud"
+      },
+      "submission": {
+        "title": "Laekunud materjal",
+        "short": "Ülevaatus"
+      },
+      "rights": {
+        "title": "Õigused ja import",
+        "short": "Import"
+      },
+      "open": "Ava",
+      "back_to_list": "Tagasi loendisse",
+      "cancel": "Loobu"
+    },
+    "status_unknown": "Seis teadmata"
   },
   "accessibility": {
     "dock": {
@@ -4062,7 +4132,10 @@
       "statusClosed": "Kuulutus on suletud.",
       "noOwnOptions": "Teil ei ole sobivat avatud vastaskirjet.",
       "targetGroupsHint": "Nt noor, eakas, täiskasvanu või kõigile vanusegruppidele",
-      "aiPromptPrefix": "Aita mul mõista ja vastata sellele kuulutusele:"
+      "aiPromptPrefix": "Aita mul mõista ja vastata sellele kuulutusele:",
+      "otherRequests": "Teiste abisoovid",
+      "otherOffers": "Teiste abipakkumised",
+      "openShort": "Ava"
     },
     "sources": {
       "dialog_label": "Vastuste allikad",
@@ -5730,7 +5803,7 @@
   },
   "invite": {
     "success": "Kutsed saadetud",
-    "success_delivery_pending": "Kutsed on loodud, aga kõik kirjad ei jõudnud veel välja: {emails}. Proovime automaatselt uuesti — võid ka „Saada uuesti“ vajutada.",
+    "success_delivery_pending": "Kutsed on loodud, aga kõik kirjad ei jõudnud veel välja: {emails}. Proovime automaatselt uuesti. Võid ka vajutada „Saada uuesti”.",
     "resend_sent": "Kutse saadeti uuesti.",
     "resend_delivery_pending": "Kiri ei jõudnud kohe välja. Proovime automaatselt uuesti; link jääb kehtima.",
     "eyebrow": "Kutsu osaleja",
@@ -5746,7 +5819,10 @@
       "scope": "Osaleja saab ligipääsu ainult sellele koostööruumile. Kutse ei anna ligipääsu sinu teistele ruumidele, eravestlustele, dokumentidele ega Teekonnale."
     },
     "pay": {
-      "host": "Tasun tema eest"
+      "host": "Tasun tema eest",
+      "confirm": "Vajuta uuesti, et tasuda tema eest",
+      "back_to_self": "Kutsutu tasub ise",
+      "note": "Ostad kutsutule ühe kuu ligipääsu. Makse käib Maksekeskuse kaudu."
     },
     "sponsored": {
       "confirm_and_pay": "Alusta makset",
@@ -5769,15 +5845,9 @@
     },
     "sending": "Saadan...",
     "send": "SAADA KUTSE",
-    "list": "Kutsed",
     "loading": "Laen...",
     "refresh": "Värskenda",
     "empty": "Kutsete nimekiri on tühi",
-    "table": {
-      "email": "Email",
-      "payer": "Maksja",
-      "status": "Staatus"
-    },
     "payer": {
       "host": "Tasun tema eest",
       "self": "Kutsutu teeb tellimuse ise"
@@ -5793,7 +5863,13 @@
     "error_generic": "Viga.",
     "status": {
       "accepted_self": "Liitunud (oma plaan)",
-      "accepted_sponsored": "Liitunud (sponsoreeritud)"
+      "accepted_sponsored": "Liitunud (sponsoreeritud)",
+      "sent": "Saadetud",
+      "pending_payment": "Ootab makset",
+      "accepted": "Liitunud",
+      "expired": "Aegunud",
+      "revoked": "Tühistatud",
+      "unknown": "Seis teadmata"
     },
     "error": {
       "rate_limited": "Liiga palju päringuid. Proovi hiljem uuesti.",
@@ -5807,7 +5883,44 @@
       "sponsor_capacity_full": "Sponsoreeritud kohtade limiit on täis.",
       "checkout_temporarily_disabled": "Maksmine on hetkel ajutiselt peatatud.",
       "checkout_terms_required": "Enne sponsoreeritud makse algatamist peab tingimustega nõustuma."
-    }
+    },
+    "views": {
+      "room": {
+        "title": "Ruum ja sinu nimi",
+        "short": "Ruum"
+      },
+      "who": {
+        "title": "Osaleja",
+        "short": "Osaleja"
+      },
+      "emails": {
+        "title": "E-posti aadress",
+        "short": "E-post",
+        "question": "Mis aadressile kutse saata?",
+        "hint": "Mitu aadressi eralda komaga. Kui tasud kutsutu eest ise, saad korraga kutsuda ühe inimese."
+      },
+      "send": {
+        "title": "Tasumine ja saatmine",
+        "short": "Saatmine",
+        "fact_who": "Kutsutav",
+        "fact_emails": "E-post",
+        "fact_room": "Ruum",
+        "fact_payer": "Tasub",
+        "missing": "puudub",
+        "role_question": "Millise ligipääsu kutsutule ostad?",
+        "role_single": "Ostad: {role}"
+      },
+      "sent": {
+        "title": "Saadetud kutsed",
+        "short": "Kutsed",
+        "empty_no_room": "Siia ilmuvad kutsed pärast esimese kutse saatmist."
+      },
+      "switch_label": "Kutse osad"
+    },
+    "confirm_cancel": "Loobu",
+    "revoke": "Tühista kutse",
+    "revoke_confirm": "Vajuta uuesti, et tühistada",
+    "revoked": "Kutse tühistati."
   },
   "email": {
     "account": {

@@ -1,0 +1,451 @@
+/* Materjalid: minu saadetud materjalid, avatud materjal, saatmine ja laekunud
+   materjalide ülevaatus. Vaate kuju (küsimus, juhis, tegevusrida all servas)
+   tuleb StepPanel-ist, valikud ChoiceRow-st ja märkekaart CheckCard-ist
+   (components/stage). Leht ei kasuta enam vana ühist kihti (`feature-page`),
+   seepärast ütleb iga osa oma laiuse, veerised ja värvi ise. */
+
+/* Leht on konteiner: kitsal pinnal (telefon, kitsas tööpaneel) lähevad kaks
+   veergu üksteise alla. Töölaua sees võib paneel olla lai; rida ja väli ei pea
+   siis üle terve laiuse venima. */
+.page,
+.panel {
+  min-width: 0;
+  width: min(100%, 46rem);
+  margin-inline: auto;
+  display: grid;
+  gap: 0.7rem;
+  color: var(--text-warm);
+  container-type: inline-size;
+}
+/* Ülevaatus materjalide lehe sees on juba lehe laiuses. */
+.page .panel {
+  width: 100%;
+}
+/* Vaated vahetuvad kohapeal; saatmise vorm ümbritseb oma vaadet. */
+.flat,
+.form {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.flat > :last-child,
+.form > :last-child {
+  flex: 1 1 auto;
+}
+
+.stack {
+  min-width: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+.quiet {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--text-soft);
+}
+
+/* Teade vaadete kohal: õnnestumine kaob ise, viga jääb ette. */
+.notice {
+  margin: 0;
+  max-width: none;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.9rem;
+  background: var(--glass-cell-bg);
+  color: var(--text-warm);
+  overflow-wrap: anywhere;
+}
+.notice[data-tone="ok"] {
+  border-color: color-mix(in srgb, var(--status-success, #c5cf9b) 55%, transparent);
+}
+.notice[data-tone="risk"] {
+  border-color: color-mix(in srgb, var(--status-error, #eb9a76) 60%, transparent);
+  border-inline-start-width: 3px;
+  background: color-mix(in srgb, var(--status-error, #eb9a76) 10%, transparent);
+}
+/* Vaate viga paneeli all servas: sama koht mis vaate teatel, aga loetava tooniga. */
+.footError {
+  color: var(--status-error, #eb9a76);
+}
+:global(html.theme-light) .footError {
+  color: #9a3d1f;
+}
+
+/* Märk: materjali seis. */
+.chip {
+  flex: none;
+  padding: 0.12rem 0.6rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 999px;
+  color: var(--text-soft);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+.chip[data-tone="ok"] {
+  border-color: color-mix(in srgb, var(--status-success, #c5cf9b) 55%, transparent);
+  color: var(--status-success, #c5cf9b);
+}
+.chip[data-tone="wait"] {
+  border-color: color-mix(in srgb, #e6c27a 55%, transparent);
+  color: #e6c27a;
+}
+.chip[data-tone="risk"] {
+  border-color: color-mix(in srgb, var(--status-error, #eb9a76) 60%, transparent);
+  color: var(--status-error, #eb9a76);
+}
+:global(html.theme-light) .chip[data-tone="ok"] {
+  color: #2f6a3f;
+}
+:global(html.theme-light) .chip[data-tone="wait"] {
+  color: #7a5a12;
+}
+:global(html.theme-light) .chip[data-tone="risk"] {
+  color: #9a3d1f;
+}
+
+/* --- Loend ------------------------------------------------------------------ */
+/* Loendi kohal: tee saatmise juurde (ja administraatoril ülevaatuse juurde). */
+.bar {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.6rem;
+}
+/* Ülevaatuse loendi kohal: seisu filter vasakul, koguarv paremal. */
+.tools {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.3rem 1rem;
+}
+.filter {
+  min-width: 0;
+}
+.rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+.rowItem {
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+}
+/* Rida on üks vajutatav lahter: nimi, seis ja aeg, tee edasi. */
+.row {
+  composes: cell from "../../stage/cell.module.css";
+  width: 100%;
+  min-height: var(--hit-target-min, 2.75rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 0.25rem 1rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 0.9rem;
+  text-align: left;
+}
+.rowMain {
+  min-width: 0;
+  display: grid;
+  gap: 0.05rem;
+}
+.rowTitle {
+  min-width: 0;
+  font-weight: 560;
+  color: var(--text-warm);
+  overflow-wrap: anywhere;
+}
+.rowSub {
+  min-width: 0;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+.rowMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 0.3rem 0.6rem;
+}
+.time,
+.rowOpen {
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.more {
+  justify-self: start;
+}
+
+/* --- Avatud materjal -------------------------------------------------------- */
+.line {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.7rem;
+}
+/* Faktid: nimetus ja väärtus paarina, paarid reas üksteise järel. Lahtritena
+   võrgus tegid need vaate kõrgeks; reana mahuvad need kahele-kolmele reale. */
+.facts {
+  min-width: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 1.4rem;
+}
+.fact {
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.5;
+}
+.factLabel {
+  flex: none;
+  color: var(--text-dim);
+}
+.factValue {
+  min-width: 0;
+  margin: 0;
+  color: var(--text-warm);
+  overflow-wrap: anywhere;
+}
+/* Saatja selgitus on sisestatud tekst: reavahed jäävad alles ja pikk string murdub. */
+.text,
+.reviewNote {
+  margin: 0;
+  max-width: 68ch;
+  color: var(--text-warm);
+  line-height: 1.55;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.text[data-missing="true"] {
+  color: var(--text-soft);
+}
+/* Eelmise ülevaatuse märkus: serva joon eristab selle saatja selgitusest. */
+.reviewNote {
+  padding-inline-start: 0.8rem;
+  border-inline-start: 2px solid color-mix(in srgb, var(--text-warm) 40%, transparent);
+  color: var(--text-soft);
+}
+/* Tagasivõtmine või kustutamine: nupp vasakul, selgitus selle kõrval. Nupp ei
+   murdu ega liigu, kui see küsib teist vajutust. */
+.confirm {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem 0.9rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid color-mix(in srgb, var(--text-warm) 12%, transparent);
+}
+.confirmNote {
+  flex: 1 1 14rem;
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.4;
+}
+/* Pöördumatu tegu ei tohi näha välja nagu tavaline tegevus: sama nupp, hoiatav toon. */
+.danger {
+  flex: none;
+  border-color: color-mix(in srgb, var(--status-error, #eb9a76) 60%, transparent);
+  color: var(--status-error, #eb9a76);
+  white-space: nowrap;
+}
+:global(html.theme-light) .danger {
+  color: #9a3d1f;
+}
+
+/* --- Saatmine: failide valik üleval, selgitus selle all ---------------------- */
+/* Faili valik: nupp vasakul, abirida ja valitud failid selle kõrval. */
+.pick {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+  align-items: center;
+  gap: 0.6rem 1.5rem;
+}
+.pickInfo {
+  min-width: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+/* Nupp kannab ainult juhist; lubatud failid on abireal selle kõrval. */
+.picker {
+  composes: cell from "../../stage/cell.module.css";
+  width: 100%;
+  min-height: 4.5rem;
+  display: grid;
+  place-items: center;
+  padding: 0.7rem 1rem;
+  border-width: 1.5px;
+  border-style: dashed;
+  border-radius: 1rem;
+  color: var(--text-soft);
+  line-height: 1.4;
+  text-align: center;
+  text-wrap: balance;
+}
+.picker:hover {
+  border-color: color-mix(in srgb, var(--text-warm) 46%, transparent);
+  color: var(--text-warm);
+}
+.help {
+  margin: 0;
+  max-width: none;
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.4;
+}
+/* Valitud failid: nimed sildikestena reas (kümme faili ei tee vaadet kõrgeks). */
+.fileRow {
+  min-width: 0;
+  min-height: 2.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 0.8rem;
+  padding-top: 0.4rem;
+  border-top: 1px solid color-mix(in srgb, var(--text-warm) 10%, transparent);
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+}
+.files {
+  list-style: none;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+.file {
+  min-width: 0;
+  max-width: 100%;
+  margin: 0;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  padding: 0.14rem 0.6rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.7rem;
+  background: var(--glass-cell-bg);
+  line-height: 1.3;
+}
+.fileName {
+  min-width: 0;
+  color: var(--text-warm);
+  overflow-wrap: anywhere;
+}
+.textButton {
+  width: auto;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  color: var(--text-warm);
+  font: inherit;
+  font-size: var(--fs-small, 0.875rem);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.textButton:focus-visible {
+  outline: none;
+  border-radius: 0.3rem;
+  box-shadow: var(--focus-ring);
+}
+/* Selgitus on tekst, aga mitte paneeli laiune. */
+.comment {
+  min-width: 0;
+  max-width: 38rem;
+}
+
+/* --- Ülevaatus: märkus ja tegevused, õiguste vorm --------------------------- */
+/* Märkuse väli vasakul, ülevaatuse tegevused selle kõrval alumisel joonel. */
+.review {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.5rem 0.8rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid color-mix(in srgb, var(--text-warm) 12%, transparent);
+}
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+}
+/* Väljad: nii laiad, kui sisu vajab, kõrvuti seni, kuni mahuvad. */
+.fields {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.6rem 0.8rem;
+}
+.field {
+  min-width: 0;
+  flex: 1 1 15rem;
+  max-width: 22rem;
+  display: grid;
+  gap: 0.35rem;
+}
+.field[data-size="sm"] {
+  flex-basis: 12rem;
+  max-width: 15rem;
+}
+.field[data-size="lg"] {
+  flex-basis: 18rem;
+  max-width: 26rem;
+}
+.fieldLabel {
+  color: var(--text-warm);
+  font-size: var(--fs-small, 0.875rem);
+}
+.input {
+  width: 100%;
+  min-width: 0;
+}
+/* Kinnitus on märkekaart: nii lai, kui lause vajab. */
+.check {
+  min-width: 0;
+  max-width: 36rem;
+}
+
+/* Kitsal pinnal lähevad kaks veergu üksteise alla ja rea märgid omale reale. */
+@container (max-width: 36rem) {
+  .pick {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .field,
+  .field[data-size] {
+    flex-basis: 100%;
+    max-width: none;
+  }
+  .row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .rowMeta {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: flex-start;
+  }
+}
