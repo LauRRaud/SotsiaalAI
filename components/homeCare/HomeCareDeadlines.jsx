@@ -123,6 +123,18 @@ export default function HomeCareDeadlines({ context, deadlines }) {
         )
       )}
 
+      {/* Tagasiside (K4-d): kellelt on aeg küsida. Kirja pannakse see kliendi päevikusse. */}
+      <p className="hc-hint">{t("home_care.deadlines.feedback_hint")}</p>
+      {section("feedback_overdue", deadlines.feedbackOverdue || [], (item) =>
+        clientLine(
+          item,
+          item.lastOn ? t("home_care.deadlines.feedback_last", { date: planDayLabel(item.lastOn) }) : t("home_care.deadlines.feedback_never")
+        )
+      )}
+      {section("feedback_at_end", deadlines.feedbackAtEnd || [], (item) =>
+        clientLine(item, t("home_care.deadlines.feedback_ended_on", { date: planDayLabel(item.endedOn) }))
+      )}
+
       {section("work_nature_due", deadlines.workNatureDue || [], (item) =>
         clientLine(
           item,

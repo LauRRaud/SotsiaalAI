@@ -12829,7 +12829,15 @@
       "preconditions_open_title": "Service waiting for a precondition",
       "preconditions_open_empty": "No preconditions are open.",
       "money_open_title": "Client's money held by a worker for over a week",
-      "money_open_empty": "No balance has been open for over a week."
+      "money_open_empty": "No balance has been open for over a week.",
+      "feedback_hint": "Feedback is asked regularly and when a service ends, from relatives too. Write it into the client's diary as an incident of the kind feedback, thanks or complaint.",
+      "feedback_overdue_title": "No feedback asked for over a year",
+      "feedback_overdue_empty": "Feedback has been asked from every client within a year.",
+      "feedback_last": "last feedback {date}",
+      "feedback_never": "no feedback recorded",
+      "feedback_at_end_title": "Service ended, feedback not asked",
+      "feedback_at_end_empty": "Feedback is recorded for the services that ended in the last three months.",
+      "feedback_ended_on": "service ended {date}"
     },
     "visit": {
       "title": "What you did",

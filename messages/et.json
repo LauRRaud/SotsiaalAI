@@ -12829,7 +12829,15 @@
       "preconditions_open_title": "Teenus ootab eeltingimust",
       "preconditions_open_empty": "Täitmata eeltingimusi ei ole.",
       "money_open_title": "Kliendi raha töötaja käes üle nädala",
-      "money_open_empty": "Üle nädala lahtisi jääke ei ole."
+      "money_open_empty": "Üle nädala lahtisi jääke ei ole.",
+      "feedback_hint": "Tagasisidet küsitakse korrapäraselt ja teenuse lõppemisel, ka lähedaselt. Kirja paned selle kliendi päevikusse erijuhtumina, mille liik on tagasiside, tänu või kaebus.",
+      "feedback_overdue_title": "Tagasiside küsimata üle aasta",
+      "feedback_overdue_empty": "Kõigilt klientidelt on aasta jooksul tagasisidet küsitud.",
+      "feedback_last": "viimane tagasiside {date}",
+      "feedback_never": "tagasisidet ei ole kirjas",
+      "feedback_at_end_title": "Teenus lõppes, tagasiside küsimata",
+      "feedback_at_end_empty": "Viimase kolme kuu jooksul lõppenud teenuste kohta on tagasiside kirjas.",
+      "feedback_ended_on": "teenus lõppes {date}"
     },
     "visit": {
       "title": "Mida tegid",
