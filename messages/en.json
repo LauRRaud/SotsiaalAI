@@ -5830,7 +5830,10 @@
       "room_summary_approval_response": "A participant responded to the summary confirmation round",
       "room_ownership_transferred": "The room owner has changed",
       "casework_draft_external_transfer_marked": "A draft was marked as transferred",
-      "casework_retention_warning": "An archived case will be deleted in 30 days"
+      "casework_retention_warning": "An archived case will be deleted in 30 days",
+      "home_care_incident_reported": "There is a new incident or follow-up in home care",
+      "home_care_concern_raised": "There is a new concern for the care coordinator in home care",
+      "home_care_incident_assigned": "A home care incident was assigned to you"
     },
     "center": {
       "title": "Notifications",
@@ -10881,7 +10884,8 @@
       "set_in_review": "Take into review",
       "close": "Close",
       "reopen": "Reopen",
-      "resolution_label": "What was done"
+      "resolution_label": "What was done",
+      "assignee": "Responsible: {name}"
     },
     "filter": {
       "title": "Diary",
@@ -10964,6 +10968,38 @@
       "search_too_short": "Type at least two letters.",
       "client_ended": "The service has ended. A new entry can be added by the care coordinator.",
       "incident_retract_coordinator": "An incident is retracted by the care coordinator. If there is a mistake, correct the entry or talk to the coordinator."
+    },
+    "incidents": {
+      "title": "Incident register",
+      "intro": "All incidents, complaints and thanks in your area of responsibility. Open ones come first.",
+      "link": "Incident register",
+      "back": "Back to clients",
+      "tab_active": "Open ({count})",
+      "tab_closed": "Closed ({count})",
+      "tab_all": "All",
+      "type_all": "All types",
+      "empty": "There are no such incidents.",
+      "focused": "Incident opened from a notification",
+      "empty_other": "There are no other such incidents."
+    },
+    "trail": {
+      "toggle": "Trail and follow-ups",
+      "title": "Incident trail",
+      "empty": "There is nothing in the trail yet.",
+      "add_label": "Follow-up",
+      "add": "Add follow-up",
+      "add_hint": "This does not change the entry text. The care coordinator is notified of the follow-up.",
+      "add_hint_coordinator": "This does not change the entry text. Only the care coordinator sees this follow-up.",
+      "author_only_note": "These are your follow-ups. The care coordinator's notes are not shown here.",
+      "assignee_label": "Responsible",
+      "assignee_none": "Not assigned",
+      "assigned_to": "{name} is responsible",
+      "unassigned": "responsible person removed",
+      "kind": {
+        "NOTE": "Follow-up",
+        "STATUS": "Status",
+        "ASSIGNED": "Responsible"
+      }
     }
   }
 }

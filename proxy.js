@@ -54,11 +54,15 @@ export const FLAGGED_PAGE_REWRITES = [
  * nagu `/org/<id>/olematu`, mitte 200-ga, mille kehas on 404-leht.
  */
 export const FLAGGED_PAGE_PREFIXES = [
-  { parent: "/org/", segment: "koduteenus", isEnabled: isHomeCareEnabled }
+  { parent: "/org/", segment: "koduteenus", isEnabled: isHomeCareEnabled },
+  /* Teavituse suunaja `/org/koduteenus/kirje/<id>`: teel ei ole organisatsiooni
+     ID-d, seega kogu `/org/koduteenus/` alampuu kuulub samale lipule. */
+  { parent: "/org/koduteenus/", segment: null, isEnabled: isHomeCareEnabled }
 ];
 
 function matchesFlaggedPrefix(entry, pathname) {
   if (!pathname.startsWith(entry.parent)) return false;
+  if (entry.segment === null) return true;
   const parts = pathname.slice(entry.parent.length).split("/");
   return parts.length >= 2 && parts[0].length > 0 && parts[1] === entry.segment;
 }
@@ -152,6 +156,7 @@ export const config = {
     "/toolaud/juhtumitoo",
     "/org/:orgId/koduteenus",
     "/org/:orgId/koduteenus/:path*",
+    "/org/koduteenus/:path*",
     "/(et|ru|en)",
     "/(et|ru|en)/:path*"
   ]

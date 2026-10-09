@@ -462,6 +462,14 @@
   text-underline-offset: 0.2em;
 }
 
+/* Kliendi nimi ülevaate ja registri real on link kliendi lehele: täismõõdus
+   puutesiht, mitte tekstirea kõrgune. */
+.hc-entry__head .hc-entry__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--hc-touch);
+}
+
 /* Telefoninumber on ukse taga kõige sagedamini vajutatav link. */
 .hc-tel {
   display: inline-flex;

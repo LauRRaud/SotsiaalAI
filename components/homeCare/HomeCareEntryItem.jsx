@@ -7,6 +7,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import { CareContactMode, CareEntryKind, CareIncidentStatus, HOME_CARE_LIMITS } from "@/lib/homeCare/constants";
 
 import HomeCareEntryForm from "./HomeCareEntryForm";
+import HomeCareIncidentTrail from "./HomeCareIncidentTrail";
 import { clientHref, formatDateTime, formatTime, homeCareBase, useHomeCareApi } from "./homeCareClient";
 
 const KIND_BADGE = {
@@ -54,6 +55,8 @@ export default function HomeCareEntryItem({
   const canRetract = canEdit && (!incident || isCoordinator);
   const canSeeHistory = !showClient && (entry.isMine || isCoordinator) && entry.revision > 1;
   const canSetIncident = canWrite && isCoordinator && incident && !retracted;
+  /* Juhtumi käiku näevad hooldusjuht ja autor (autor ainult oma täiendusi). */
+  const canSeeTrail = Boolean(incident) && (isCoordinator || entry.isMine);
 
   const close = () => {
     setMode(null);
@@ -168,6 +171,9 @@ export default function HomeCareEntryItem({
           {t("home_care.incident.resolution_label")}: {incident.resolutionNote}
         </p>
       ) : null}
+      {incident && incident.assignee ? (
+        <p className="hc-entry__meta">{t("home_care.incident.assignee", { name: incident.assignee.name })}</p>
+      ) : null}
       {entry.companionName ? (
         <p className="hc-entry__meta">{t("home_care.entry.with_companion", { name: entry.companionName })}</p>
       ) : null}
@@ -228,6 +234,17 @@ export default function HomeCareEntryItem({
             </button>
           ) : null}
         </div>
+      ) : null}
+
+      {canSeeTrail ? (
+        <HomeCareIncidentTrail
+          organizationId={organizationId}
+          entry={entry}
+          timeZone={timeZone}
+          canWrite={canWrite}
+          isCoordinator={isCoordinator}
+          onEntryChange={onChange}
+        />
       ) : null}
 
       {mode === "retract" ? (
