@@ -12706,7 +12706,8 @@
       "show_active": "Näita aktiivseid",
       "empty_ended": "Lõpetatud kliente ei ole.",
       "search_phone_hint": "Hooldusjuhina leiad kliendi ka telefoninumbri järgi (vähemalt viis numbrit).",
-      "matched_phone": "telefoninumbri järgi"
+      "matched_phone": "telefoninumbri järgi",
+      "matched_relative": "lähedase järgi: {name} · {level}"
     },
     "status": {
       "ACTIVE": "Aktiivne",
@@ -14346,6 +14347,12 @@
       "no_tell_line": "mitte rääkida: {text}",
       "agreed_on": "kinnitatud {date}",
       "review_due": "küsi kliendilt üle"
+    },
+    "recent": {
+      "yesterday": "Eile",
+      "today": "Täna",
+      "away": "klient ei olnud teenusel",
+      "none": "käiku plaanis ei olnud"
     }
   },
   "stage": {

@@ -521,6 +521,21 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
         <h2 className="hc-section-title" id={`${fieldId}-slots`}>
           {t("home_care.slots.title")}
         </h2>
+        {/* Eilne ja tänane käik seisuga (K5-l): vastus küsimusele „kas käidi?" ühe pilguga. */}
+        {data.recentVisits ? (
+          <ul className="hc-list hc-list--plain">
+            {data.recentVisits.map((item, index) => (
+              <li key={item.day}>
+                <strong>{t(index === 0 ? "home_care.recent.yesterday" : "home_care.recent.today")}:</strong>{" "}
+                {item.away
+                  ? t("home_care.recent.away")
+                  : item.visits.length
+                    ? item.visits.map((visit) => `${visit.startTime} ${t(`home_care.day.states.${visit.state}`)}`).join(", ")
+                    : t("home_care.recent.none")}
+              </li>
+            ))}
+          </ul>
+        ) : null}
         <HomeCareSlotList slots={data.slots} today={data.today || ""} />
         {access.isCoordinator ? (
           <Link

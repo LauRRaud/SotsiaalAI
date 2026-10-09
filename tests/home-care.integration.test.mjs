@@ -5328,3 +5328,55 @@ test('lähedased ja jagamisaste: hooldusjuht muudab, meeskond loeb, ülevaatus p
   for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['change', 'clientId', 'organizationId']);
   assert.equal(JSON.stringify(audit).includes('Mari'), false);
 });
+
+test('kõnele vastamine: otsing lähedase nime ja numbri järgi ning eilne ja tänane käik kliendi lehel', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const clerk = await f.ctx(f.users.clerk, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, deps(at('2026-09-01T08:00:00Z')))).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi' }, deps(at('2026-09-01T08:00:00Z')))).client;
+  await addTeamMember(lead, linda.id, { membershipId: f.members.anu.id }, deps());
+  await addTeamMember(lead, peeter.id, { membershipId: f.members.bert.id }, deps());
+  await saveRelative(lead, linda.id, { name: 'Mari Kask', relation: 'tütar', phone: '+372 5555 1234', level: 2 }, deps());
+  await saveRelative(lead, peeter.id, { name: 'Mari Kask-Põhi', relation: 'minia', phone: '5300 0001', level: 1 }, deps());
+  const found = async (who, q) => (await searchClients(who, { q }, deps())).clients.map((row) => [row.displayName, row.matchedRelative ? `${row.matchedRelative.name}:${row.matchedRelative.level}` : null, Boolean(row.matchedPhone)]);
+
+  /* NIMI: hooldusjuht leiab mõlemad; hooldaja ainult oma kliendi lähedase; kõrvaline ja teine asutus mitte midagi. */
+  assert.deepEqual(await found(lead, 'mari kask'), [['Linda Tamm', 'Mari Kask:2', false], ['Peeter Põhi', 'Mari Kask-Põhi:1', false]]);
+  assert.deepEqual(await found(anu, 'Mari Kask'), [['Linda Tamm', 'Mari Kask:2', false]]);
+  assert.deepEqual(await found(bert, 'Mari Kask'), [['Peeter Põhi', 'Mari Kask-Põhi:1', false]]);
+  assert.deepEqual(await found(clerk, 'Mari Kask'), []);
+  assert.deepEqual(await found(leadB, 'Mari Kask'), []);
+  /* Kliendi nime järgi leitud real on lähedase märge ainult siis, kui ka lähedane klapib. */
+  assert.deepEqual(await found(lead, 'Linda'), [['Linda Tamm', null, false]]);
+  /* NUMBER: ainult hooldusjuht; tühikud ja pluss ei loe. Hooldaja numbri järgi ei leia. */
+  assert.deepEqual(await found(lead, '5555 1234'), [['Linda Tamm', 'Mari Kask:2', false]]);
+  assert.deepEqual(await found(lead, '53000001'), [['Peeter Põhi', 'Mari Kask-Põhi:1', false]]);
+  assert.deepEqual(await found(anu, '5555 1234'), []);
+  /* Eemaldatud lähedase järgi enam ei leia. */
+  const mari = (await openClient(lead, linda.id, deps())).relatives[0];
+  await endRelative(lead, linda.id, mari.id, deps());
+  assert.deepEqual(await found(lead, '5555 1234'), []);
+
+  /* EILNE JA TÄNANE KÄIK. NOW on reede 09.10 kell 11 kohaliku aja järgi; muster N ja R kell 9. */
+  assert.equal((await openClient(anu, linda.id, deps())).recentVisits, null);
+  await createSlots(lead, linda.id, { weekdays: [4, 5], startTime: '09:00', plannedMinutes: 30, workerMembershipId: f.members.anu.id, validFrom: '2026-10-01' }, deps(at('2026-09-20T08:00:00Z')));
+  await createEntry(anu, linda.id, { kind: 'NOTE', contactMode: 'VISIT', text: 'Käik', visitMinutes: 30, occurredAt: '2026-10-08T06:10:00Z' }, deps(at('2026-10-08T06:40:00Z')));
+  const page = await openClient(anu, linda.id, deps());
+  assert.deepEqual(page.recentVisits, [
+    { day: '2026-10-08', away: false, visits: [{ startTime: '09:00', state: 'DONE' }] },
+    { day: '2026-10-09', away: false, visits: [{ startTime: '09:00', state: 'MISSING' }] }
+  ]);
+  /* Hommikul enne käiku on tänane käik plaanis. */
+  assert.deepEqual((await openClient(anu, linda.id, deps(at('2026-10-09T05:00:00Z')))).recentVisits[1].visits, [{ startTime: '09:00', state: 'PLANNED' }]);
+  /* Klient läks täna ära: tänast käiku ei näidata, eilne jääb. */
+  const version = (await db.careClient.findUnique({ where: { id: linda.id }, select: { version: true } })).version;
+  await setClientStatus(lead, linda.id, { version, status: 'AWAY', statusReason: 'HOSPITAL' }, deps(at('2026-10-09T07:00:00Z')));
+  assert.deepEqual((await openClient(anu, linda.id, deps())).recentVisits, [
+    { day: '2026-10-08', away: false, visits: [{ startTime: '09:00', state: 'DONE' }] },
+    { day: '2026-10-09', away: true, visits: [] }
+  ]);
+});

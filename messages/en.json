@@ -12706,7 +12706,8 @@
       "show_active": "Show active",
       "empty_ended": "There are no ended clients.",
       "search_phone_hint": "As a coordinator you can also find a client by phone number (at least five digits).",
-      "matched_phone": "by phone number"
+      "matched_phone": "by phone number",
+      "matched_relative": "by a relative: {name} · {level}"
     },
     "status": {
       "ACTIVE": "Active",
@@ -14346,6 +14347,12 @@
       "no_tell_line": "do not tell: {text}",
       "agreed_on": "confirmed {date}",
       "review_due": "ask the client again"
+    },
+    "recent": {
+      "yesterday": "Yesterday",
+      "today": "Today",
+      "away": "the client was not on the service",
+      "none": "no visit was planned"
     }
   },
   "stage": {
