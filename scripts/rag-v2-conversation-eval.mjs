@@ -204,8 +204,10 @@ try {
         expect: Object.fromEntries(Object.entries(listed.expect || {}).filter(([key]) => key !== 'previous_state_cleared')) } : listed;
       let result = null, error = null, firstText = null;
       const started = performance.now(), streaming = values.stream ? { onAnswerText: () => { firstText ??= performance.now() - started; } } : {};
+      // A scenario's role is sent with every turn, as the chat sends the signed-in user's (ADR-107): without it no
+      // specialist's or service provider's conversation could be replayed here.
       try { result = await service.run(userId, { question: turn.text, contextMode: turn.mode, convId: conversation.id, clientTurnKey: randomUUID(), language: 'et',
-        ...(values.reasoning ? { reasoning: values.reasoning } : {}) }, streaming); }
+        ...(values.reasoning ? { reasoning: values.reasoning } : {}), ...(scenario.role ? { userRole: scenario.role } : {}) }, streaming); }
       catch (failure) { error = failure.code || 'turn_failed'; result = failure.pilotTurnId ? { id: failure.pilotTurnId } : null; }
       const row = result?.id ? openTurn(await prisma.m4PilotTurn.findUnique({ where: { id: result.id } })) : null;
       const observed = observe(row, error);
@@ -219,7 +221,7 @@ try {
         ...checkTurn(turn.expect, { ...observed, evidenceTexts, ...turnPassages(row?.payload?.packet, row?.payload?.answer) }, { today, validity: id => legal.get(id) || null, version: id => versions.get(id) || null }) });
       console.error(JSON.stringify({ scenario: scenario.id, turn: turns.length, verdict: turns.at(-1).verdict, usd: +spent.toFixed(4) }));
     }
-    report.scenarios.push({ id: scenario.id, title: scenario.title, source: scenario.source, conversation: conversation.id, turns });
+    report.scenarios.push({ id: scenario.id, title: scenario.title, source: scenario.source, ...(scenario.role ? { role: scenario.role } : {}), conversation: conversation.id, turns });
   }
 } finally {
   report.finished_at = new Date().toISOString();
