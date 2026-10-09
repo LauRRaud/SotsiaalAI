@@ -257,6 +257,13 @@ export const BackArrowIcon = (props) => (
   </Svg>
 );
 
+/* Edasi — sama teravik mis Tagasi, teises suunas (sammudega lehe „järgmine samm" dokis) */
+export const NextArrowIcon = (props) => (
+  <Svg {...props}>
+    <path {...P} d="M9 5l7 7-7 7" />
+  </Svg>
+);
+
 /* Meist / Teave — info-ring */
 export const AboutInfoIcon = (props) => (
   <Svg {...props}>

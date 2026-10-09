@@ -26,7 +26,7 @@ export default function ChoiceChips({ label, hint, options, values = [], onToggl
         {label}
       </span>
       {hint ? <span className={styles.hint}>{hint}</span> : null}
-      <div className={styles.options}>
+      <div className={styles.options} style={{ "--choice-cols": Math.min(options.length, 3) }}>
         {options.map((option) => (
           <button
             key={option.value}

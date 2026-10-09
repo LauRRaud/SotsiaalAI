@@ -19,7 +19,6 @@ export const workBoundariesForm = {
       key: "focus",
       title: "Kokkuleppe fookus",
       short: "Fookus",
-      lead: flowLead("choose_one"),
       fields: enumFields(selectFields, ["agreementType"])
     },
     {

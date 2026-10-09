@@ -1,0 +1,138 @@
+/* DomainsView: riba (eelmine, kus ma olen, järgmine), üks küsimus või valdkondade ülevaade. */
+
+.domains {
+  min-width: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+
+/* Riba on nii lai kui vaja, mitte paneeli laiune. */
+.bar {
+  display: inline-grid;
+  justify-self: start;
+  max-width: 100%;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.4rem;
+}
+.arrow {
+  composes: cell from "../../stage/cell.module.css";
+  width: 2.5rem;
+  height: 2.5rem;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-radius: 50%;
+  color: var(--text-warm);
+}
+.arrow svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+.where {
+  composes: cell from "../../stage/cell.module.css";
+  min-height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  min-width: min(100%, 15rem);
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+}
+.whereDomain {
+  min-width: 0;
+  font-weight: 560;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.whereCount {
+  flex: none;
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Küsimus tuleb ette pehmelt; liikumist vähendades kohe. */
+.question {
+  min-width: 0;
+  display: grid;
+  gap: 0.5rem;
+  animation: domain-question-in 240ms var(--ease-soft) both;
+}
+@keyframes domain-question-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.35rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.topic {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 0.74rem;
+  font-weight: 560;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.helper {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+}
+
+/* Ülevaade: seitse valdkonda ühelaiuste lahtritena, igaühel vastatud küsimuste arv. */
+.overview {
+  min-width: 0;
+  display: inline-grid;
+  justify-self: start;
+  max-width: 100%;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+@media (max-width: 640px) {
+  .overview {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.domain {
+  composes: cell from "../../stage/cell.module.css";
+  min-height: 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.75rem;
+  text-align: left;
+}
+.domain[aria-current="true"] {
+  border-color: color-mix(in srgb, var(--text-warm) 62%, transparent);
+}
+.domainTitle {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.domainCount {
+  flex: none;
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+  font-variant-numeric: tabular-nums;
+}
+.domain[data-state="done"] .domainCount {
+  color: var(--status-success, #c5cf9b);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .question {
+    animation: none;
+  }
+}
+:global(html[data-reduce-motion="1"]) .question {
+  animation: none;
+}

@@ -25,10 +25,12 @@
   max-width: 62ch;
   color: var(--text-soft);
 }
-/* Kolm teed on üksteise all täislaiuses: selgitused on paari lause pikkused ja
-   kitsas veerus venitaksid kaardi kõrgeks. */
+/* Kolm teed kõrvuti: kolm võrdset kaarti, mitte kolm täislaiuses riba. Kitsal
+   ekraanil lähevad üksteise alla. */
 .options {
   min-width: 0;
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  align-items: stretch;
   gap: 0.5rem;
 }

@@ -18,7 +18,6 @@ export const workplaceViolenceForm = {
     {
       key: "situation",
       title: ["wellbeing.workplace_violence.situation", "Olukord"],
-      lead: flowLead("choose_one"),
       fields: enumFields(selectFields, ["violenceType"])
     },
     {

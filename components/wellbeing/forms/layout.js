@@ -13,7 +13,9 @@
  * Kaalud ja piir on mõõdetud brauseris 1536 × 640 aknas (09.10.2026): sammu
  * kõrgus oli umbes 86 px + 46 px × kaal ja paneeli mahub 445 px. Näiteks kaks
  * kahe rea küsimust juhisega (kaal 6,6) mõõtis 410 px, kuus tabelirida juhisega
- * (kaal 8,1) 476 px ja ei mahtunud.
+ * (kaal 8,1) 476 px ja ei mahtunud. Pärast seda võeti paneelist ära sammu
+ * pealkiri ja „Edasi" nupp, nii et püsiosa on nüüd umbes 60 px väiksem ja sama
+ * piir jätab varu.
  *
  * `text(entry)` annab sildi teksti (kirjelduses on silt sõne või [võti, varu]).
  */
