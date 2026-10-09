@@ -22,6 +22,7 @@ import HomeCareKeys from "./HomeCareKeys";
 import HomeCareMoney from "./HomeCareMoney";
 import HomeCarePreconditions from "./HomeCarePreconditions";
 import HomeCareSlotList from "./HomeCareSlotList";
+import HomeCareSupplies from "./HomeCareSupplies";
 import HomeCareWorkNature from "./HomeCareWorkNature";
 import HomeCareTeam from "./HomeCareTeam";
 import {
@@ -356,6 +357,16 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
         canManage={access.isCoordinator}
         canWrite={canWrite}
         myMembershipId={access.membershipId}
+      />
+
+      {/* Varud kliendi kodus (K4-e): seisu märgib igaüks, kes siin käib. */}
+      <HomeCareSupplies
+        organizationId={organizationId}
+        clientId={client.id}
+        initial={data.supplies || []}
+        timeZone={timeZone}
+        canWrite={canWrite && !ended}
+        canManage={access.isCoordinator}
       />
 
       {/* Kliendi sularaha vaataja käes (K4-c): arvestus, mitte makse. */}

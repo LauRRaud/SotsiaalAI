@@ -8237,6 +8237,7 @@ model CareClient {
   preconditions      CarePrecondition[]
   keys               CareKey[]
   moneyEntries       CareMoneyEntry[]
+  supplies           CareClientSupply[]
 
   @@unique([organizationId, internalCode])
   @@index([organizationId, status, displayName])
@@ -8493,6 +8494,57 @@ model CareVisitChange {
   @@index([organizationId, day])
   @@index([clientId, day])
   @@index([workerMembershipId, day])
+}
+
+/// Jälgitav varu kliendi kodus (K4-e, kava II.6.11): mis varu, kes täiendab ja viimane
+/// märgitud seis. Rida ei kustutata (jälgimine lõpetatakse, `endedAt`). Kliendi juures on
+/// iga varu kohta üks kehtiv rida (osaline unikaalindeks migratsioonis).
+model CareClientSupply {
+  id             String  @id @default(cuid())
+  organizationId String
+  clientId       String
+  /// FIREWOOD | WATER | FOOD | HYGIENE (`CareSupplyKind`).
+  kind           String
+  /// Kes varu täiendab (nimi või roll).
+  responsible    String
+  /// ENOUGH | LOW | OUT (`CareSupplyState`) või NULL, kui seisu ei ole veel märgitud.
+  state          String?
+  stateNote      String?
+
+  checkedAt             DateTime?
+  checkedByMembershipId String?
+  checkedByName         String?
+  createdByMembershipId String?
+  createdByName         String?
+  createdAt             DateTime  @default(now())
+  endedAt               DateTime?
+  endedByMembershipId   String?
+  endedByName           String?
+
+  client CareClient        @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  checks CareSupplyCheck[]
+
+  @@index([organizationId, endedAt, state])
+  @@index([clientId, endedAt])
+}
+
+/// Varu seisu märkimise jälg: kes, millal ja mis seisu märkis. Muutmatu.
+model CareSupplyCheck {
+  id             String  @id @default(cuid())
+  organizationId String
+  supplyId       String
+  clientId       String
+  state          String
+  note           String?
+
+  checkedByMembershipId String?
+  checkedByName         String?
+  createdAt             DateTime @default(now())
+
+  supply CareClientSupply @relation(fields: [supplyId], references: [id], onDelete: Cascade)
+
+  @@index([supplyId, createdAt])
+  @@index([organizationId])
 }
 
 /// Kliendi sularaha hooldaja käes (K4-c, kava II.6.11): arvestus, mitte makse. Summa on

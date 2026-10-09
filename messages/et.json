@@ -12336,7 +12336,13 @@
       "money_holder_required": "Raha saab kirja panna asutuse liige.",
       "money_not_found": "Seda rida ei leitud.",
       "money_retracted": "See rida on juba tühistatud.",
-      "money_retract_negative": "Seda rida ei saa tühistada: jääk läheks alla nulli. Tühista enne hilisem kulutus või tagastus."
+      "money_retract_negative": "Seda rida ei saa tühistada: jääk läheks alla nulli. Tühista enne hilisem kulutus või tagastus.",
+      "supply_kind_required": "Vali, mis varu jälgida.",
+      "supply_responsible_required": "Kirjuta, kes varu täiendab.",
+      "supply_already_tracked": "Seda varu selle kliendi juures juba jälgitakse.",
+      "supply_not_found": "Seda varu ei leitud.",
+      "supply_ended": "Selle varu jälgimine on lõpetatud.",
+      "supply_state_required": "Vali varu seis."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -12837,7 +12843,9 @@
       "feedback_never": "tagasisidet ei ole kirjas",
       "feedback_at_end_title": "Teenus lõppes, tagasiside küsimata",
       "feedback_at_end_empty": "Viimase kolme kuu jooksul lõppenud teenuste kohta on tagasiside kirjas.",
-      "feedback_ended_on": "teenus lõppes {date}"
+      "feedback_ended_on": "teenus lõppes {date}",
+      "supplies_open_title": "Varud, mis hakkavad lõppema või on otsas",
+      "supplies_open_empty": "Ükski jälgitav varu ei ole lõppemas."
     },
     "visit": {
       "title": "Mida tegid",
@@ -13215,6 +13223,36 @@
       "holder_line": "{name}: {amount} (viimane rida {date})",
       "mine_title": "Minu käes olev kliendiraha",
       "open_line": "{name} käes {amount}, viimane rida {date}"
+    },
+    "supplies": {
+      "title": "Varud",
+      "none": "Varusid ei jälgita. Lülita sisse need, mille lõppemine jätaks kliendi hätta, näiteks küttepuud või joogivesi.",
+      "kinds": {
+        "FIREWOOD": "küttepuud",
+        "WATER": "joogivesi",
+        "FOOD": "toit",
+        "HYGIENE": "hügieenitarbed"
+      },
+      "states": {
+        "ENOUGH": "piisav",
+        "LOW": "hakkab lõppema",
+        "OUT": "otsas"
+      },
+      "state_label": "{kind}: seis",
+      "unchecked": "seisu ei ole veel märgitud",
+      "checked": "märkis {name} {when}",
+      "responsible": "täiendab {name}",
+      "note_button": "Lisa märkus",
+      "note_label": "Märkus (näiteks: jätkub umbes kolmeks päevaks)",
+      "note_save": "Salvesta märkus",
+      "track": "Lisa jälgitav varu",
+      "kind_label": "Mis varu",
+      "responsible_label": "Kes täiendab",
+      "responsible_hint": "Kirjuta nimi või roll: lähedane, hooldaja, vald.",
+      "save": "Salvesta",
+      "cancel": "Loobu",
+      "untrack": "Lõpeta jälgimine",
+      "open_line": "{kind}: {state} · täiendab {name} · märgitud {when}"
     }
   },
   "stage": {
