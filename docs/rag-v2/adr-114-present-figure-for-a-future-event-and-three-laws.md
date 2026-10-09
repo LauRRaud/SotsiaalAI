@@ -42,7 +42,7 @@ Kontrolli leid 2 („eestkoste küsimus ei leidnud uusi allikaid“) on pöörde
 
 ## Kontrollitud
 
-- Ühiktestid: 839, neist 817 läbi ja 22 vahele jäetud. Juhiste test kontrollib uue lause sõnastust, seda, et aja reeglites ei ole ühtegi arvu ega teemat, ja uut versiooni; töötluse sõrmejälje test läbib uue salvestusega. ESLint muudetud failidel.
+- Ühiktestid (värske põhiharu peal, kuhu teised tööd olid vahepeal lisanud 52 muudatust): 1087, neist 1065 läbi ja 22 vahele jäetud. Juhiste test kontrollib uue lause sõnastust, seda, et aja reeglites ei ole ühtegi arvu ega teemat, ja uut versiooni; töötluse sõrmejälje test läbib uue salvestusega. ESLint muudetud failidel.
 - Serveris: ost `complete` (1036, teadmata 0); indeks `ready`; vestlusplaani kontroll `ready`; teenus töötab; planeerija ootab uuele põlvkonnale 8842 dokumenti (tegelikult 8659).
 - Registri räsid vastavad failidele; õigusaktide nimekiri igakuise kehtivuse kontrolli jaoks on uuendatud (552 akti).
 - [ADR-113](adr-113-stopped-purchase-vectors-count.md) esimene päris jooks: varasemate ostude loendis oli nüüd ka 26.09 peatunud ost (44 kausta) ning plaan, ost ja indeksi ehitus võtsid selle vastu; peatunud ostudest tuli 0 sisendit, nagu pidigi.
