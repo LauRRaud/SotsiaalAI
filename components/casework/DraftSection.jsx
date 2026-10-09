@@ -5,131 +5,100 @@
  *
  * OLEKUTEE ON NÄHTAV, MITTE PEIDETUD. Iga element kannab oma seisu ja liigub
  * ühes suunas; liides pakub AINULT neid siirdeid, mida olekumasin lubab
- * (`ALLOWED_TRANSITIONS`). Vaba valik koos serveri veateatega õpetaks kasutajat
- * arvama, et viga on tema tehtud.
+ * (`ALLOWED_TRANSITIONS` failis ./sections/sectionRows.js). Vaba valik koos
+ * serveri veateatega õpetaks kasutajat arvama, et viga on tema tehtud.
  *
  * `ULE_KANTUD` EI OLE SIIN VALIK ja see ei ole väljajätt (L19): sinna viib
- * ainult E6 „Märgi üle kantuks", mis loob samas tehingus auditirea. Sektsioon
- * ütleb selle välja, et puuduv nupp ei näeks välja nagu puudujääk.
+ * ainult E6 „Märgi üle kantuks", mis loob samas tehingus auditirea. Seisu vaade
+ * ütleb selle välja, et puuduv valik ei näeks välja nagu puudujääk.
  *
  * TERMINAALSE ELEMENDI SISU EI MUUDETA. `ULE_KANTUD` ja `EI_KANTA` on ptk 2.2
- * lõpp-punktid — vorm on kinni ja lause ütleb, miks.
+ * lõpp-punktid — väljade vormi ei ole ja lause ütleb, miks.
  *
- * LAVA OSA (09.10). Sektsioon on juhtumi lava üks osa (`CaseWorkDetail.jsx`):
- * oma raamitud kaarti, pealkirja ega juhist ta enam ei joonista, need annab
- * osa vaade. Ülekandeajalugu on juhtumi lava OMA osa: siit teatatakse ainult,
- * et ülekandetegu toimus (`onTransferRecorded`). Sisu on veel vanal `cw-*`
- * kihil ja ootab oma ümbertegemist.
+ * KUJU (09.10): VÄIKESED VAATED. Sektsioon on juhtumi lava üks osa
+ * (`CaseWorkDetail.jsx`) ja oli seal üks pikk veerg: tüübi rippvalik, loend ja
+ * selle all avatud element väljade, siirde vormi ja ülekandepaneeliga. Nüüd on
+ * korraga ees üks asi: elementide loend, uue elemendi valik või avatud element,
+ * mille kolm vaadet (väljad, seis, STAR2-sse viimine) vahetuvad sakkidest.
+ * Element ei saa olla juhtumi lava osa: neid on juhtumil mitu ja need avanevad
+ * loendist. Ülekandeajalugu on juhtumi lava OMA osa: siit teatatakse ainult,
+ * et ülekandetegu toimus (`onTransferRecorded`).
+ *
+ * Siin on andmed, päringud ja see, mis vaateid olekuga seob. Vaated on failides
+ * ./sections/DraftViews.jsx ja ./sections/SectionBits.jsx, read ja reeglid
+ * failis ./sections/sectionRows.js, ülekandeteod failis ./TransferPanel.jsx.
  */
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useId, useMemo, useRef, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import { PROVENANCES, provenanceLabelKey } from "@/lib/workspaces/provenance";
+import Button from "@/components/ui/Button";
 
-import ConfirmButton from "./ConfirmButton";
-import { TransferActions } from "./TransferPanel";
-import styles from "./cases/cases.module.css";
+import { Chip } from "./cases/CaseListViews";
 import { caseWorkRequest } from "./caseWorkClient";
+import {
+  DraftCreateView,
+  draftFieldAddView,
+  draftFieldView,
+  draftFieldsView,
+  draftStateView,
+  draftTransferView
+} from "./sections/DraftViews";
+import { ItemListView, OpenView, useSwapFocus } from "./sections/SectionBits";
+import {
+  DRAFT_TABS,
+  asksReviewKind,
+  canAddDraftField,
+  draftFieldRows,
+  draftHead,
+  draftRows,
+  draftStateModel,
+  draftTabs,
+  draftTypeOptions,
+  provenanceOptions,
+  reviewKindOptions,
+  transitionNeedsConfirm
+} from "./sections/sectionRows";
+import { notify, useCaseList, useRowOpening, useSectionRun } from "./sections/useSectionData";
+import { useTransferActions } from "./TransferPanel";
+
+const EMPTY_FIELD = Object.freeze({ fieldKey: "", text: "", provenance: "" });
 
 /**
- * Ptk 4.5 kaheksa elementi, sama järjekord mis teenuskihis (`DRAFT_TYPES`).
- * Loend on oma konstandina, sest teenuskiht toob Prisma kliendi; kahe loendi
- * lahkuminekut hoiab ära `draftUi.test.js`.
+ * `locked`: juhtum ei ole aktiivne. `caseBusy`: juhtumi enda kirjutus käib.
+ * `active`: see osa on laval ees (ainult siis joonistab põhinupp oma helgi).
  */
-export const DRAFT_TYPE_ORDER = Object.freeze([
-  "POORDUMISE_KOKKUVOTE",
-  "ABIVAJADUSE_HINDAMINE",
-  "ELUVALDKONNA_KIRJELDUS",
-  "EESMARGI_SONASTUS",
-  "TEGEVUS",
-  "VASTUTAJA_JA_TAHTAEG",
-  "KOHTUMISE_MARGE",
-  "TEENUSE_SUUNAMISE_ALUS"
-]);
-
-/**
- * Lubatud siirded — sama kaart mis `STAR2_TRANSFER_TRANSITIONS`
- * `lib/workspaces/provenance.js`-is, MIINUS `ULE_KANTUD` (L19).
- *
- * `VALMIS_ULEKANDEKS` juurest jääb liidesesse ainult `EI_KANTA`, ja see on
- * õige: ülekantuks märkimine on eraldi tegu eraldi marsruudil.
- */
-const ALLOWED_TRANSITIONS = Object.freeze({
-  MUSTAND: Object.freeze(["VAJAB_KONTROLLI", "EI_KANTA"]),
-  VAJAB_KONTROLLI: Object.freeze(["KONTROLLITUD", "EI_KANTA"]),
-  KONTROLLITUD: Object.freeze(["VALMIS_ULEKANDEKS", "EI_KANTA"]),
-  VALMIS_ULEKANDEKS: Object.freeze(["EI_KANTA"]),
-  ULE_KANTUD: Object.freeze([]),
-  EI_KANTA: Object.freeze([])
-});
-
-const REVIEW_KINDS = ["KLIENDIGA", "DOKUMENDIGA"];
-const PAGE_SIZE = 25;
-
-function isTerminal(state) {
-  return (ALLOWED_TRANSITIONS[state] || []).length === 0;
-}
-
-export default function DraftSection({ caseId, writeDisabled, onChanged, onListLoaded, onTransferRecorded }) {
+export default function DraftSection({ caseId, locked, caseBusy, active, onChanged, onListLoaded, onTransferRecorded }) {
   const { t, locale } = useI18n();
+  const root = `/cases/${encodeURIComponent(caseId)}/drafts`;
 
-  /* Juhtumi ülevaade näitab selle osa esimest rida: loend teatatakse üles
-     pärast iga täislaadimist. Viide, mitte sõltuvus: muidu laadiks vanema iga
-     uus funktsioon loendi uuesti. */
-  const listLoadedRef = useRef(onListLoaded);
-  useEffect(() => {
-    listLoadedRef.current = onListLoaded;
-  }, [onListLoaded]);
+  const { busy, errorKey, setErrorKey, run } = useSectionRun();
+  /* Pagineerimine on kohustuslik: vanemad elemendid ei tohi kaduda. Loend
+     teatatakse üles pärast iga täislaadimist (juhtumi ülevaade näitab selle osa
+     esimest rida). */
+  const { items: drafts, cursor: draftsCursor, status, load: loadDrafts, retry } = useCaseList({
+    path: root,
+    locale,
+    onLoaded: onListLoaded,
+    onError: setErrorKey
+  });
 
-  const [drafts, setDrafts] = useState([]);
-  const [draftsCursor, setDraftsCursor] = useState(null);
   const [openDraft, setOpenDraft] = useState(null);
-  const [errorKey, setErrorKey] = useState(null);
-  const [busy, setBusy] = useState(false);
+  /* Loend või uue elemendi valik: need vahetuvad kohapeal. */
+  const [mode, setMode] = useState("list");
   const [draftType, setDraftType] = useState("");
+  /* Kopeerimiste salvestamata jäljed elemendi kaupa (SOL-CW-05, L22). Need
+     elavad SIIN, mitte avatud elemendi juures: elemendi sulgemine ei tohi
+     kirjutamata tõendit ega selle hoiatust ära visata. */
+  const [pendingAudits, setPendingAudits] = useState({});
 
   const requestedDraftId = useRef(null);
-
-  const run = useCallback(async (task) => {
-    setBusy(true);
-    setErrorKey(null);
-    try {
-      return await task();
-    } catch (error) {
-      setErrorKey(error?.messageKey || "casework.errors.unexpected");
-      return null;
-    } finally {
-      setBusy(false);
-    }
-  }, []);
-
-  const loadDrafts = useCallback(
-    async ({ cursor = null, append = false } = {}) => {
-      try {
-        const params = new URLSearchParams({ limit: String(PAGE_SIZE) });
-        if (cursor) params.set("cursor", cursor);
-        const body = await caseWorkRequest(`/cases/${encodeURIComponent(caseId)}/drafts?${params.toString()}`, {
-          locale
-        });
-        setDrafts((previous) => (append ? [...previous, ...(body.items || [])] : body.items || []));
-        setDraftsCursor(body.nextCursor || null);
-        if (!append) listLoadedRef.current?.(body.items || []);
-      } catch (error) {
-        setErrorKey(error?.messageKey || "casework.errors.unexpected");
-      }
-    },
-    [caseId, locale]
-  );
 
   const loadDraft = useCallback(
     async (draftId) => {
       requestedDraftId.current = draftId;
       try {
-        const body = await caseWorkRequest(
-          `/cases/${encodeURIComponent(caseId)}/drafts/${encodeURIComponent(draftId)}`,
-          { locale }
-        );
+        const body = await caseWorkRequest(`${root}/${encodeURIComponent(draftId)}`, { locale });
         /* Aegunud vastus ei kirjuta värskemat üle — vt sama valvurit märkme ja
            ettevalmistuse sektsioonis. */
         if (requestedDraftId.current !== draftId) return;
@@ -139,82 +108,71 @@ export default function DraftSection({ caseId, writeDisabled, onChanged, onListL
         setErrorKey(error?.messageKey || "casework.errors.unexpected");
       }
     },
-    [caseId, locale]
+    [locale, root, setErrorKey]
   );
-
-  useEffect(() => {
-    loadDrafts();
-  }, [loadDrafts]);
 
   const createDraft = useCallback(
-    async (event) => {
-      event.preventDefault();
-      const created = await run(() =>
-        caseWorkRequest(`/cases/${encodeURIComponent(caseId)}/drafts`, {
-          method: "POST",
-          locale,
-          body: { draftType }
-        })
-      );
-      if (!created?.draft?.id) return;
-      setDraftType("");
-      await loadDrafts();
-      await loadDraft(created.draft.id);
-      onChanged?.();
-    },
-    [caseId, draftType, loadDraft, loadDrafts, locale, onChanged, run]
+    () =>
+      run(async () => {
+        const created = await caseWorkRequest(root, { method: "POST", locale, body: { draftType } });
+        if (!created?.draft?.id) return;
+        setDraftType("");
+        await loadDrafts();
+        await loadDraft(created.draft.id);
+        /* Valik annab koha tagasi alles siis, kui uus element on ees (või selle
+           avamine ebaõnnestus ja ees on loend koos teatega). */
+        setMode("list");
+        notify(onChanged);
+      }),
+    [draftType, loadDraft, loadDrafts, locale, onChanged, root, run]
   );
 
-  const saveField = useCallback(
-    async (fieldKey, text, provenance) => {
-      const done = await run(() =>
-        caseWorkRequest(`/cases/${encodeURIComponent(caseId)}/drafts/${encodeURIComponent(openDraft.id)}/fields`, {
-          method: "PUT",
-          locale,
-          body: { fieldKey, text, provenance }
-        })
-      );
-      if (!done) return false;
-      await loadDraft(openDraft.id);
-      return true;
+  const { openingId, open: openFromList } = useRowOpening(loadDraft);
+
+  const closeDraft = useCallback(() => {
+    requestedDraftId.current = null;
+    setOpenDraft(null);
+  }, []);
+
+  const openDraftId = openDraft?.id || null;
+
+  /**
+   * Kirjutus avatud elementi: päring ja kohe selle järel värske seis. Mõlemad
+   * on ühe `run()` sees, et teine vajutus ei jõuaks nende vahele. `list`: seis
+   * muutus, seega laaditakse uuesti ka loend ja teatatakse juhtumile.
+   */
+  const write = useCallback(
+    (path, options, { list = false } = {}) => {
+      if (!openDraftId) return Promise.resolve(null);
+      return run(async () => {
+        const body = await caseWorkRequest(`${root}/${encodeURIComponent(openDraftId)}${path}`, { locale, ...options });
+        /* Kui element suleti päringu ajal, ei ava vastus seda uuesti. */
+        await Promise.all([requestedDraftId.current === openDraftId ? loadDraft(openDraftId) : null, list ? loadDrafts() : null]);
+        if (list) notify(onChanged);
+        return body;
+      });
     },
-    [caseId, loadDraft, locale, openDraft, run]
+    [loadDraft, loadDrafts, locale, onChanged, openDraftId, root, run]
   );
 
-  const removeField = useCallback(
-    async (fieldKey) => {
-      const params = new URLSearchParams({ fieldKey });
-      const done = await run(() =>
-        caseWorkRequest(
-          `/cases/${encodeURIComponent(caseId)}/drafts/${encodeURIComponent(openDraft.id)}/fields?${params.toString()}`,
-          { method: "DELETE", locale }
+  const actions = useMemo(
+    () => ({
+      saveField: (fieldKey, text, provenance) => write("/fields", { method: "PUT", body: { fieldKey, text, provenance } }),
+      removeField: (fieldKey) => write(`/fields?${new URLSearchParams({ fieldKey }).toString()}`, { method: "DELETE" }),
+      transition: (expectedFrom, to, reviewKind) =>
+        write(
+          "/transition",
+          {
+            method: "POST",
+            /* `expectedFrom` tuleb AVATUD ELEMENDI seisust, mitte vormist: nii
+               kannab ta seda, mida kasutaja ekraanil nägi, ja vahepealne muutus
+               annab ausa 409. */
+            body: { expectedFrom, to, reviewKind: reviewKind || undefined }
+          },
+          { list: true }
         )
-      );
-      if (!done) return false;
-      await loadDraft(openDraft.id);
-      return true;
-    },
-    [caseId, loadDraft, locale, openDraft, run]
-  );
-
-  const transition = useCallback(
-    async (expectedFrom, to, reviewKind) => {
-      const done = await run(() =>
-        caseWorkRequest(`/cases/${encodeURIComponent(caseId)}/drafts/${encodeURIComponent(openDraft.id)}/transition`, {
-          method: "POST",
-          locale,
-          /* `expectedFrom` tuleb AVATUD ELEMENDI seisust, mitte vormist: nii
-             kannab ta seda, mida kasutaja ekraanil nägi, ja vahepealne muutus
-             annab ausa 409. */
-          body: { expectedFrom, to, reviewKind: reviewKind || undefined }
-        })
-      );
-      if (!done) return false;
-      await Promise.all([loadDraft(openDraft.id), loadDrafts()]);
-      onChanged?.();
-      return true;
-    },
-    [caseId, loadDraft, loadDrafts, locale, onChanged, openDraft, run]
+    }),
+    [write]
   );
 
   /**
@@ -227,311 +185,310 @@ export default function DraftSection({ caseId, writeDisabled, onChanged, onListL
        ajalugu ütleks, et jälge ei tekkinud. Ajalugu ise on juhtumi lava oma
        osa, seega märk läheb üles juhtumile. */
     onTransferRecorded?.();
-    if (openDraft?.id) await Promise.all([loadDraft(openDraft.id), loadDrafts()]);
-    onChanged?.();
-  }, [loadDraft, loadDrafts, onChanged, onTransferRecorded, openDraft]);
+    if (openDraftId) {
+      await Promise.all([requestedDraftId.current === openDraftId ? loadDraft(openDraftId) : null, loadDrafts()]);
+    }
+    notify(onChanged);
+  }, [loadDraft, loadDrafts, onChanged, onTransferRecorded, openDraftId]);
 
-  const disabled = writeDisabled || busy;
+  /** Avatud elemendi ootel jälgede järjekord: lisamine ja asendamine käivad funktsiooniga. */
+  const setOpenPending = useCallback(
+    (update) => {
+      if (!openDraftId) return;
+      setPendingAudits((current) => ({ ...current, [openDraftId]: update(current[openDraftId] || []) }));
+    },
+    [openDraftId]
+  );
+
+  const swapRef = useSwapFocus(openDraft ? `open:${openDraft.id}` : mode);
+  const blocked = locked || caseBusy || busy;
+  const errorText = errorKey ? t(errorKey, "") : "";
+  const rows = useMemo(
+    () =>
+      draftRows(drafts, { t, pendingAudits }).map((row) => ({
+        id: row.id,
+        title: row.title,
+        chips: [
+          { key: "state", text: row.state, tone: row.tone },
+          ...(row.review ? [{ key: "review", text: row.review }] : []),
+          ...(row.pending ? [{ key: "pending", text: t("casework.transfer.audit_pending_chip", ""), tone: "wait" }] : [])
+        ]
+      })),
+    [drafts, pendingAudits, t]
+  );
+
+  if (openDraft) {
+    return (
+      <DraftEditor
+        key={openDraft.id}
+        t={t}
+        locale={locale}
+        caseId={caseId}
+        draft={openDraft}
+        locked={locked}
+        busy={caseBusy || busy}
+        glow={active}
+        errorText={errorText}
+        actions={actions}
+        pendingAudits={pendingAudits[openDraft.id] || null}
+        setPendingAudits={setOpenPending}
+        onTransferChanged={onTransferChanged}
+        onClose={closeDraft}
+      />
+    );
+  }
+
+  if (mode === "create") {
+    return (
+      <DraftCreateView
+        t={t}
+        swapRef={swapRef}
+        options={draftTypeOptions(t)}
+        value={draftType}
+        onChange={setDraftType}
+        busy={blocked}
+        glow={active}
+        errorText={errorText}
+        onSubmit={createDraft}
+        onCancel={() => setMode("list")}
+      />
+    );
+  }
 
   return (
-    <div className={styles.section}>
-      {errorKey ? (
-        <p className="cw-error" role="alert">
-          {t(errorKey, "")}
-        </p>
-      ) : null}
-
-      <form className="cw-form cw-form--inline" onSubmit={createDraft}>
-        <select
-          className="cw-input"
-          value={draftType}
-          onChange={(event) => setDraftType(event.target.value)}
-          disabled={disabled}
-          required
-          aria-label={t("casework.draft.choose_type", "")}
-        >
-          <option value="">{t("casework.draft.choose_type", "")}</option>
-          {DRAFT_TYPE_ORDER.map((value) => (
-            <option key={value} value={value}>
-              {t(`casework.draft.type_${value}`, "")}
-            </option>
-          ))}
-        </select>
-        <button className="cw-button" type="submit" disabled={disabled || !draftType}>
+    /* Kustutamist loendis EI OLE: mustand on ahela lüli ja tema jälg on tõend.
+       Lõpetamise tee on „Ei kanta" — teadlik lõpp. */
+    <ItemListView
+      t={t}
+      title={t("casework.page.parts.drafts.title", "")}
+      lead={t("casework.draft.section_hint", "")}
+      swapRef={swapRef}
+      errorText={errorText}
+      status={status}
+      rows={rows}
+      emptyText={t("casework.draft.empty", "")}
+      openText={t("casework.draft.open", "")}
+      openingId={openingId}
+      more={
+        draftsCursor
+          ? { busy, label: t("casework.draft.load_more", ""), onClick: () => run(() => loadDrafts({ cursor: draftsCursor, append: true })) }
+          : null
+      }
+      onOpen={openFromList}
+      onRetry={() => {
+        setErrorKey(null);
+        retry();
+      }}
+      actions={
+        <Button type="button" size="sm" variant="primary" glow={active} disabled={blocked} onClick={() => setMode("create")}>
           {t("casework.draft.create", "")}
-        </button>
-      </form>
-
-      {!drafts.length ? <p className="cw-empty">{t("casework.draft.empty", "")}</p> : null}
-
-      <ul className="cw-list">
-        {drafts.map((draft) => (
-          <li className="cw-case" key={draft.id}>
-            <span className="cw-case-label">{t(`casework.draft.type_${draft.draftType}`, "")}</span>
-            <span className="cw-case-meta">
-              <span className="cw-badge">{t(`casework.star2.${draft.transferState}`, "")}</span>
-              {draft.reviewKind ? <span className="cw-badge">{t(`casework.star2.${draft.reviewKind}`, "")}</span> : null}
-            </span>
-            <button className="cw-button" type="button" onClick={() => loadDraft(draft.id)}>
-              {t("casework.draft.open", "")}
-            </button>
-            {/* Kustutusnuppu EI OLE: mustand on ahela lüli ja tema jälg on
-                tõend. Lõpetamise tee on „Ei kanta" — teadlik lõpp. */}
-          </li>
-        ))}
-      </ul>
-
-      {draftsCursor ? (
-        <button
-          className="cw-button"
-          type="button"
-          disabled={busy}
-          onClick={() => run(() => loadDrafts({ cursor: draftsCursor, append: true }))}
-        >
-          {t("casework.draft.load_more", "")}
-        </button>
-      ) : null}
-
-      {openDraft ? (
-        <DraftEditor
-          key={openDraft.id}
-          caseId={caseId}
-          draft={openDraft}
-          locale={locale}
-          disabled={disabled}
-          t={t}
-          onSaveField={saveField}
-          onRemoveField={removeField}
-          onTransition={transition}
-          onTransferChanged={onTransferChanged}
-          onClose={() => {
-            requestedDraftId.current = null;
-            setOpenDraft(null);
-          }}
-        />
-      ) : null}
-    </div>
+        </Button>
+      }
+    />
   );
 }
 
+/**
+ * Avatud element: hoiab, milline sakk ja alamvaade on ees, pooleli välju ja
+ * valitud siiret. Joonistavad vaated failis ./sections/DraftViews.jsx.
+ */
 function DraftEditor({
+  t,
+  locale,
   caseId,
   draft,
-  locale,
-  disabled,
-  t,
-  onSaveField,
-  onRemoveField,
-  onTransition,
+  locked,
+  busy,
+  glow,
+  errorText,
+  actions,
+  pendingAudits,
+  setPendingAudits,
   onTransferChanged,
   onClose
 }) {
-  const fields = Array.isArray(draft.fields) ? draft.fields : [];
-  const terminal = isTerminal(draft.transferState);
-  const writable = disabled || terminal;
-
-  return (
-    <div className={styles.editor}>
-      <h3 className="cw-section-title">
-        {t("casework.draft.open_draft", "")}: {t(`casework.draft.type_${draft.draftType}`, "")} —{" "}
-        {t(`casework.star2.${draft.transferState}`, "")}
-      </h3>
-
-      {draft.transferredAt ? (
-        <p className="cw-hint">
-          {t("casework.draft.transferred_at", "")}:{" "}
-          {new Date(draft.transferredAt).toLocaleString(locale || "et", { dateStyle: "short", timeStyle: "short" })}
-        </p>
-      ) : null}
-
-      {/* L7 loendus mustandi vaates: SISU kustub, rida ja ülekande tõend jäävad.
-          Kuupäev tuleb serverist, mitte pinnal arvutatuna. */}
-      {draft.purgeDueAt && !draft.contentPurgedAt ? (
-        <p className="cw-hint">
-          {t("casework.draft.purge_due_at", "").replace(
-            "{date}",
-            new Date(draft.purgeDueAt).toLocaleDateString(locale || "et", { dateStyle: "medium" })
-          )}
-        </p>
-      ) : null}
-
-      {terminal ? <p className="cw-notice">{t("casework.draft.terminal_notice", "")}</p> : null}
-
-      <button className="cw-button" type="button" onClick={onClose}>
-        {t("casework.draft.close", "")}
-      </button>
-
-      {!fields.length ? <p className="cw-empty">{t("casework.draft.fields_empty", "")}</p> : null}
-
-      <ul className="cw-list">
-        {fields.map((field) => (
-          <li className="cw-item" key={field.id}>
-            {/* Tekst on TEKST: sisu tuleb React'i lapsena, mitte HTML-ina. */}
-            <span className="cw-item-text">
-              {field.fieldKey}: {field.text}
-            </span>
-            <span className="cw-item-meta">
-              <span className="cw-badge">
-                {t(provenanceLabelKey(field.provenance) || "casework.errors.provenance_unknown", "")}
-              </span>
-            </span>
-            <ConfirmButton
-              label={t("casework.draft.remove_field", "")}
-              confirmLabel={t("casework.draft.confirm_remove_field", "")}
-              cancelLabel={t("casework.draft.cancel", "")}
-              disabled={writable}
-              onConfirm={() => onRemoveField(field.fieldKey)}
-            />
-          </li>
-        ))}
-      </ul>
-
-      {!terminal ? <FieldForm disabled={disabled} t={t} onSave={onSaveField} /> : null}
-
-      <TransitionForm draft={draft} disabled={disabled} t={t} onTransition={onTransition} />
-
-      {/* Kopeerimine on lubatud KA terminaalses seisus: `ULE_KANTUD` mustandi
-          sisu võib olla vaja teist korda STAR-i viia ja kopeerimine ei muuda
-          midagi (L9). Ülekantuks märkimise nupu näitab paneel ise ainult sealt,
-          kust olekumasin edasi lubab. */}
-      <TransferActions
-        caseId={caseId}
-        draft={draft}
-        locale={locale}
-        disabled={disabled}
-        t={t}
-        onChanged={onTransferChanged}
-      />
-    </div>
-  );
-}
-
-function FieldForm({ disabled, t, onSave }) {
-  const [fieldKey, setFieldKey] = useState("");
-  const [text, setText] = useState("");
-  /* Päritolul EI OLE vaikeväärtust (L4) — märgis, mille inimene ei valinud, ei
-     ole märgis. */
-  const [provenance, setProvenance] = useState("");
-
-  return (
-    <form
-      className="cw-form cw-form--inline"
-      onSubmit={async (event) => {
-        event.preventDefault();
-        const saved = await onSave(fieldKey, text, provenance);
-        /* Väli tühjendatakse AINULT õnnestumisel — tõrge ei tohi kasutaja
-           teksti ära kustutada. */
-        if (saved) {
-          setFieldKey("");
-          setText("");
-          setProvenance("");
-        }
-      }}
-    >
-      <input
-        className="cw-input"
-        type="text"
-        value={fieldKey}
-        onChange={(event) => setFieldKey(event.target.value.toUpperCase())}
-        disabled={disabled}
-        maxLength={64}
-        placeholder="EESMARK"
-        aria-label={t("casework.draft.field_key", "")}
-      />
-      <input
-        className="cw-input"
-        type="text"
-        value={text}
-        onChange={(event) => setText(event.target.value)}
-        disabled={disabled}
-        maxLength={4000}
-        aria-label={t("casework.draft.field_text", "")}
-      />
-      <select
-        className="cw-input"
-        value={provenance}
-        onChange={(event) => setProvenance(event.target.value)}
-        disabled={disabled}
-        required
-        aria-label={t("casework.draft.provenance_required", "")}
-      >
-        <option value="">{t("casework.draft.provenance_required", "")}</option>
-        {PROVENANCES.map((value) => (
-          <option key={value} value={value}>
-            {t(provenanceLabelKey(value) || "", "")}
-          </option>
-        ))}
-      </select>
-      <button className="cw-button" type="submit" disabled={disabled || !fieldKey.trim() || !text.trim() || !provenance}>
-        {t("casework.draft.save_field", "")}
-      </button>
-    </form>
-  );
-}
-
-function TransitionForm({ draft, disabled, t, onTransition }) {
-  const targets = ALLOWED_TRANSITIONS[draft.transferState] || [];
+  const formId = useId();
+  const [tab, setTab] = useState(DRAFT_TABS[0]);
+  /* Alamvaade saki asemel: uus väli (`add`) või avatud väli (`field`). */
+  const [sub, setSub] = useState(null);
+  const [newField, setNewField] = useState(EMPTY_FIELD);
+  /* Avatud välja pooleli parandus võtme kaupa. */
+  const [edits, setEdits] = useState({});
   const [to, setTo] = useState("");
   const [reviewKind, setReviewKind] = useState("");
 
-  if (!targets.length) return null;
+  /* Kopeerimine on lubatud KA terminaalses seisus: `ULE_KANTUD` mustandi sisu
+     võib olla vaja teist korda STAR-i viia ja kopeerimine ei muuda midagi (L9).
+     Ülekantuks märkimise nupu näitab vaade ainult sealt, kust olekumasin edasi
+     lubab. */
+  const transfer = useTransferActions({
+    caseId,
+    draft,
+    locale,
+    disabled: locked || busy,
+    pendingAudits,
+    setPendingAudits,
+    onChanged: onTransferChanged,
+    t
+  });
 
-  return (
-    <form
-      className="cw-form cw-form--inline"
-      onSubmit={async (event) => {
-        event.preventDefault();
-        const moved = await onTransition(draft.transferState, to, reviewKind);
-        if (moved) {
-          setTo("");
-          setReviewKind("");
-        }
-      }}
-    >
-      <select
-        className="cw-input"
-        value={to}
-        onChange={(event) => setTo(event.target.value)}
-        disabled={disabled}
-        required
-        aria-label={t("casework.draft.transition_to", "")}
-      >
-        <option value="">{t("casework.draft.transition_to", "")}</option>
-        {targets.map((value) => (
-          <option key={value} value={value}>
-            {t(`casework.star2.${value}`, "")}
-          </option>
-        ))}
-      </select>
+  /* Seisu muutus (siire, ülekantuks märkimine) võtab vajutatud nupu ära: fookus
+     läheb siis vaate pealkirjale, mitte ei jää õhku. */
+  const swapRef = useSwapFocus(`${sub ? `${sub.view}:${sub.key || ""}` : "tab"}:${draft.transferState}`, { onMount: true });
+  const context = { t, locale };
+  const view = draftStateModel(draft, context);
+  const fields = draftFieldRows(draft, context);
+  const openField = sub?.view === "field" ? fields.find((row) => row.key === sub.key) || null : null;
+  /* Valitud siht kehtib ainult seni, kuni olekumasin seda SELLEST seisust
+     lubab: kui element liikus vahepeal edasi (teine aken, 409), ei tohi vana
+     valik jääda nupu taha ootama. */
+  const chosen = view.targets.some((option) => option.value === to) ? to : "";
+  const headModel = draftHead(draft, context);
 
-      {/* `reviewKind` on AINULT `VAJAB_KONTROLLI` täpsustus — mujal ei küsita
-          ja server nullib ta niikuinii. */}
-      {to === "VAJAB_KONTROLLI" ? (
-        <select
-          className="cw-input"
-          value={reviewKind}
-          onChange={(event) => setReviewKind(event.target.value)}
-          disabled={disabled}
-          aria-label={t("casework.draft.review_kind", "")}
-        >
-          <option value="">{t("casework.draft.review_kind", "")}</option>
-          {REVIEW_KINDS.map((value) => (
-            <option key={value} value={value}>
-              {t(`casework.star2.${value}`, "")}
-            </option>
-          ))}
-        </select>
-      ) : null}
+  /* Avatud elemendi identiteet on nähtav igas vaates; seis ja tee tagasi
+     loendisse on sakkidega vaadetes. Alamvaatel on oma „Loobu" või „Tagasi" all
+     servas. */
+  const identity = { label: t("casework.draft.open_draft", ""), name: headModel.title };
+  const tabbed = {
+    swapRef,
+    head: {
+      ...identity,
+      chips: (
+        <>
+          <Chip tone={headModel.tone}>{headModel.state}</Chip>
+          {headModel.review ? <Chip>{headModel.review}</Chip> : null}
+          {/* Salvestamata jälg on näha elemendi igal sakil, mitte ainult
+              seal, kus kopeeriti (L8: tõendi vaikne kadu on halvem kui nähtav). */}
+          {transfer.pendingCount ? <Chip tone="wait">{t("casework.transfer.audit_pending_chip", "")}</Chip> : null}
+        </>
+      ),
+      back: { label: t("casework.draft.back_to_list", ""), onClick: onClose }
+    },
+    errorText,
+    tabs: {
+      label: t("casework.draft.tabs_label", ""),
+      tabs: draftTabs(draft, { t, pendingAudits: transfer.pendingCount }),
+      current: tab,
+      columns: DRAFT_TABS.length,
+      pendingText: t("casework.transfer.audit_pending_chip", ""),
+      onSelect: setTab
+    }
+  };
+  /* Alamvaates sakke ei ole: vorm ja avatud väli vajavad kogu ruumi. */
+  const focused = { swapRef, head: identity, errorText, tabs: null };
+  const writeLocked = locked || view.terminal;
 
-      <button className="cw-button" type="submit" disabled={disabled || !to}>
-        {t("casework.draft.transition", "")}
-      </button>
+  /* Milline vaade on ees: alamvaade, kui see on avatud, muidu sakk. Vaade on
+     kirjeldus ja selle joonistab alati sama `OpenView` (vt selle selgitust). */
+  const screen = () => {
+    if (sub?.view === "add" && !view.terminal) {
+      return {
+        frame: focused,
+        view: draftFieldAddView({
+          t,
+          formId,
+          draft: newField,
+          onChange: (patch) => setNewField((current) => ({ ...current, ...patch })),
+          provenanceOptions: provenanceOptions(t),
+          locked,
+          busy,
+          glow,
+          canSubmit: canAddDraftField(newField),
+          onSubmit: async (event) => {
+            event.preventDefault();
+            if (!canAddDraftField(newField)) return;
+            const saved = await actions.saveField(newField.fieldKey, newField.text, newField.provenance);
+            /* Väli tühjendatakse AINULT õnnestumisel — tõrge ei tohi kasutaja
+               teksti ära kustutada. */
+            if (!saved) return;
+            setNewField(EMPTY_FIELD);
+            setSub(null);
+          },
+          /* Loobumine jätab pooleli välja alles: vorm avaneb sellega uuesti. */
+          onCancel: () => setSub(null)
+        })
+      };
+    }
 
-      {/* Puuduv „STAR2-sse kantud" valik ütleb end ise välja, et ta ei näeks
-          välja nagu puudujääk. */}
-      {draft.transferState === "VALMIS_ULEKANDEKS" ? (
-        <span className="cw-muted">{t("casework.draft.mark_transferred_elsewhere", "")}</span>
-      ) : null}
-    </form>
-  );
+    if (openField) {
+      const text = edits[openField.key] ?? openField.text;
+      const forget = () =>
+        setEdits((current) => {
+          const rest = { ...current };
+          delete rest[openField.key];
+          return rest;
+        });
+      return {
+        frame: focused,
+        view: draftFieldView({
+          t,
+          row: openField,
+          text,
+          onText: (value) => setEdits((current) => ({ ...current, [openField.key]: value })),
+          locked: writeLocked,
+          terminal: view.terminal,
+          busy,
+          glow,
+          canSave: Boolean(text.trim()) && text !== openField.text,
+          remove: {
+            disabled: locked || busy,
+            onConfirm: async () => {
+              const done = await actions.removeField(openField.key);
+              /* Väli on eemaldatud: ees on jälle väljade loend ja fookus selle pealkirjal. */
+              if (!done) return;
+              forget();
+              setSub(null);
+            }
+          },
+          /* Päritolu teksti salvestamisega ei muutu (L4): server jätab
+             olemasoleva rea märgise alles, kaasa läheb rea enda märgis. */
+          onSave: async () => {
+            const saved = await actions.saveField(openField.key, text, openField.provenance);
+            if (saved) forget();
+          },
+          onBack: () => setSub(null)
+        })
+      };
+    }
+
+    if (tab === "state") {
+      return {
+        frame: tabbed,
+        view: draftStateView({
+          t,
+          view,
+          to: chosen,
+          onTo: setTo,
+          review: asksReviewKind(chosen) ? { options: reviewKindOptions(t), value: reviewKind, onChange: setReviewKind } : null,
+          locked,
+          busy,
+          glow,
+          needsConfirm: transitionNeedsConfirm(chosen),
+          onTransition: async () => {
+            if (!chosen) return;
+            const moved = await actions.transition(draft.transferState, chosen, asksReviewKind(chosen) ? reviewKind : "");
+            if (!moved) return;
+            setTo("");
+            setReviewKind("");
+          }
+        })
+      };
+    }
+
+    if (tab === "transfer") return { frame: tabbed, view: draftTransferView({ t, model: transfer, glow }) };
+
+    return {
+      frame: tabbed,
+      view: draftFieldsView({
+        t,
+        rows: fields,
+        terminal: view.terminal,
+        add: view.terminal ? null : { disabled: locked || busy, onClick: () => setSub({ view: "add" }) },
+        glow,
+        onOpen: (key) => setSub({ view: "field", key })
+      })
+    };
+  };
+
+  return <OpenView {...screen()} />;
 }

@@ -15,96 +15,86 @@
  * see on ainus koht, kust märgis muutub. Teksti parandamine EI muuda teda
  * (server eirab saadetud `provenance`-i) ja seda tõendab teenuskihi test.
  *
- * LAVA OSA (09.10). Sektsioon on juhtumi lava üks osa (`CaseWorkDetail.jsx`):
- * oma raamitud kaarti, pealkirja ega juhist ta enam ei joonista, need annab
- * osa vaade. Sisu on veel vanal `cw-*` kihil ja ootab oma ümbertegemist.
+ * KUJU (09.10): VÄIKESED VAATED. Sektsioon on juhtumi lava üks osa
+ * (`CaseWorkDetail.jsx`) ja oli seal üks pikk veerg: loomise vorm, loend ja
+ * selle all avatud ettevalmistus viie tekstikasti ja küsimuste loendiga. Nüüd
+ * on korraga ees üks asi: ettevalmistuste loend, uue ettevalmistuse vorm või
+ * avatud ettevalmistus, mille vaated (ülevaade, viis välja, küsimused)
+ * vahetuvad sakkidest. Ettevalmistus ei saa olla juhtumi lava osa: neid on
+ * juhtumil mitu ja need avanevad loendist, seepärast vahetub sisu osa sees.
+ *
+ * Siin on andmed, päringud ja see, mis vaateid olekuga seob. Vaated on failides
+ * ./sections/PrepViews.jsx ja ./sections/SectionBits.jsx, read ja reeglid
+ * failis ./sections/sectionRows.js.
  */
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import { PROVENANCE, PROVENANCES, provenanceLabelKey } from "@/lib/workspaces/provenance";
+import Button from "@/components/ui/Button";
 
-import ConfirmButton from "./ConfirmButton";
-import styles from "./cases/cases.module.css";
 import { caseWorkRequest, fromLocalInputValue } from "./caseWorkClient";
+import { prepFieldView, prepOverviewView, prepQuestionView, prepQuestionsView } from "./sections/PrepViews";
+import { ItemListView, MeetingCreateView, OpenView, provenanceView, rowAddView, useSwapFocus } from "./sections/SectionBits";
+import {
+  PREP_FIELD_KEYS,
+  PREP_TABS,
+  canAddRow,
+  canSavePrepField,
+  confirmTargetOptions,
+  prepFieldText,
+  prepFieldModel,
+  prepOverview,
+  prepRows,
+  prepTabs,
+  prepTitle,
+  provenanceOptions,
+  questionKindOptions,
+  questionRows
+} from "./sections/sectionRows";
+import { notify, useCaseList, useRowOpening, useSectionRun } from "./sections/useSectionData";
 
-/** Sama hulk mis `CaseWorkPrepFieldKey` skeemis ja `PREP_FIELD_KEYS` teenuskihis. */
-const FIELD_KEYS = ["GOAL", "REQUIRED_DOCUMENTS", "LIFE_DOMAINS", "AGENDA", "PLAIN_LANGUAGE_NOTES"];
-const QUESTION_KINDS = ["CLARIFYING_QUESTION", "CLAIM_TO_VERIFY"];
+/* Sakid on neljas veerus: ülevaade, viis välja ja küsimused mahuvad kahte ritta
+   ja iga nimi ühele reale. */
+const PREP_TAB_COLUMNS = 4;
 
 /**
- * Märgised, milleks AI mustandi saab kinnitada.
- *
- * `AI_MUSTAND` ise puudub loendist ja see ei ole väljajätt: tagasitee masina
- * märgise juurde kirjutaks inimese kinnituse ümber ja server annab 400.
+ * `locked`: juhtum ei ole aktiivne (kirjutuskaitse on nähtav, mitte ainult
+ * serveri vastuses). `caseBusy`: juhtumi enda kirjutus käib. `active`: see osa
+ * on laval ees (ainult siis joonistab põhinupp oma helgi).
  */
-const CONFIRM_TARGETS = PROVENANCES.filter((value) => value !== PROVENANCE.AI_MUSTAND);
-const PAGE_SIZE = 25;
-
-export default function MeetingPrepSection({ caseId, writeDisabled, onChanged, onListLoaded }) {
+export default function MeetingPrepSection({ caseId, locked, caseBusy, active, onChanged, onListLoaded }) {
   const { t, locale } = useI18n();
+  const formId = useId();
+  const root = `/cases/${encodeURIComponent(caseId)}/meeting-preps`;
 
-  /* Juhtumi ülevaade näitab selle osa esimest rida: loend teatatakse üles
-     pärast iga täislaadimist. Viide, mitte sõltuvus: muidu laadiks vanema iga
-     uus funktsioon loendi uuesti. */
-  const listLoadedRef = useRef(onListLoaded);
-  useEffect(() => {
-    listLoadedRef.current = onListLoaded;
-  }, [onListLoaded]);
+  const { busy, errorKey, setErrorKey, run } = useSectionRun();
+  /* Pagineerimine on kohustuslik: vanemad ettevalmistused ei tohi kaduda.
+     Loend teatatakse üles pärast iga täislaadimist (juhtumi ülevaade näitab
+     selle osa esimest rida). */
+  const { items: preps, cursor: prepsCursor, status, load: loadPreps, retry } = useCaseList({
+    path: root,
+    locale,
+    onLoaded: onListLoaded,
+    onError: setErrorKey
+  });
 
-  const [preps, setPreps] = useState([]);
-  const [prepsCursor, setPrepsCursor] = useState(null);
   const [openPrep, setOpenPrep] = useState(null);
-
   /* Kaks `loadPrep()` päringut võivad lõppeda VALES JÄRJEKORRAS ja aeglasem
      vastus kirjutaks värskema üle. Vt sama selgitust märkme sektsioonis. */
   const requestedPrepId = useRef(null);
-  const [errorKey, setErrorKey] = useState(null);
-  const [busy, setBusy] = useState(false);
+  /* Loend või uue ettevalmistuse vorm: need vahetuvad kohapeal. */
+  const [mode, setMode] = useState("list");
   const [meetingAt, setMeetingAt] = useState("");
-
-  const run = useCallback(async (task) => {
-    setBusy(true);
-    setErrorKey(null);
-    try {
-      return await task();
-    } catch (error) {
-      setErrorKey(error?.messageKey || "casework.errors.unexpected");
-      return null;
-    } finally {
-      setBusy(false);
-    }
-  }, []);
-
-  /** Pagineerimine on kohustuslik — vanemad ettevalmistused ei tohi kaduda. */
-  const loadPreps = useCallback(
-    async ({ cursor = null, append = false } = {}) => {
-      try {
-        const params = new URLSearchParams({ limit: String(PAGE_SIZE) });
-        if (cursor) params.set("cursor", cursor);
-        const body = await caseWorkRequest(
-          `/cases/${encodeURIComponent(caseId)}/meeting-preps?${params.toString()}`,
-          { locale }
-        );
-        setPreps((previous) => (append ? [...previous, ...(body.items || [])] : body.items || []));
-        setPrepsCursor(body.nextCursor || null);
-        if (!append) listLoadedRef.current?.(body.items || []);
-      } catch (error) {
-        setErrorKey(error?.messageKey || "casework.errors.unexpected");
-      }
-    },
-    [caseId, locale]
-  );
+  /* Äsja alustatud ettevalmistus avaneb esimese välja juures (eesmärk),
+     loendist avatud ettevalmistus ülevaates. */
+  const [landOn, setLandOn] = useState(PREP_TABS[0]);
 
   const loadPrep = useCallback(
     async (prepId) => {
       requestedPrepId.current = prepId;
       try {
-        const body = await caseWorkRequest(
-          `/cases/${encodeURIComponent(caseId)}/meeting-preps/${encodeURIComponent(prepId)}`,
-          { locale }
-        );
+        const body = await caseWorkRequest(`${root}/${encodeURIComponent(prepId)}`, { locale });
         if (requestedPrepId.current !== prepId) return;
         setOpenPrep(body.prep || null);
       } catch (error) {
@@ -112,445 +102,457 @@ export default function MeetingPrepSection({ caseId, writeDisabled, onChanged, o
         setErrorKey(error?.messageKey || "casework.errors.unexpected");
       }
     },
-    [caseId, locale]
+    [locale, root, setErrorKey]
   );
 
-  useEffect(() => {
-    loadPreps();
-  }, [loadPreps]);
-
   const createPrep = useCallback(
-    async (event) => {
+    (event) => {
       event.preventDefault();
-      const created = await run(() =>
-        caseWorkRequest(`/cases/${encodeURIComponent(caseId)}/meeting-preps`, {
+      return run(async () => {
+        const created = await caseWorkRequest(root, {
           method: "POST",
           locale,
           body: { meetingAt: fromLocalInputValue(meetingAt) }
-        })
-      );
-      if (!created?.prep?.id) return;
-      setMeetingAt("");
-      await loadPreps();
-      await loadPrep(created.prep.id);
-      onChanged?.();
+        });
+        if (!created?.prep?.id) return;
+        setMeetingAt("");
+        setLandOn(PREP_FIELD_KEYS[0]);
+        await loadPreps();
+        await loadPrep(created.prep.id);
+        /* Vorm annab koha tagasi alles siis, kui uus ettevalmistus on ees (või
+           selle avamine ebaõnnestus ja ees on loend koos teatega). */
+        setMode("list");
+        notify(onChanged);
+      });
     },
-    [caseId, loadPrep, loadPreps, locale, meetingAt, onChanged, run]
+    [loadPrep, loadPreps, locale, meetingAt, onChanged, root, run]
+  );
+
+  const { openingId, open: openFromList } = useRowOpening(
+    useCallback(
+      (prepId) => {
+        setLandOn(PREP_TABS[0]);
+        return loadPrep(prepId);
+      },
+      [loadPrep]
+    )
+  );
+
+  const closePrep = useCallback(() => {
+    requestedPrepId.current = null;
+    setOpenPrep(null);
+  }, []);
+
+  /**
+   * Kirjutus avatud ettevalmistusse: päring ja kohe selle järel värske seis.
+   * Mõlemad on ühe `run()` sees, et teine vajutus ei jõuaks nende vahele.
+   */
+  const openPrepId = openPrep?.id || null;
+  const write = useCallback(
+    (path, options) => {
+      if (!openPrepId) return Promise.resolve(null);
+      return run(async () => {
+        const body = await caseWorkRequest(`${root}/${encodeURIComponent(openPrepId)}${path}`, { locale, ...options });
+        /* Kui ettevalmistus suleti päringu ajal, ei ava vastus seda uuesti. */
+        if (requestedPrepId.current === openPrepId) await loadPrep(openPrepId);
+        return body;
+      });
+    },
+    [loadPrep, locale, openPrepId, root, run]
   );
 
   const deletePrep = useCallback(
-    async (prepId) => {
-      const done = await run(() =>
-        caseWorkRequest(`/cases/${encodeURIComponent(caseId)}/meeting-preps/${encodeURIComponent(prepId)}`, {
-          method: "DELETE",
-          locale
-        })
-      );
-      if (!done) return;
-      if (openPrep?.id === prepId) setOpenPrep(null);
-      await loadPreps();
-      onChanged?.();
-    },
-    [caseId, loadPreps, locale, onChanged, openPrep, run]
+    () =>
+      run(async () => {
+        await caseWorkRequest(`${root}/${encodeURIComponent(openPrepId)}`, { method: "DELETE", locale });
+        closePrep();
+        await loadPreps();
+        notify(onChanged);
+      }),
+    [closePrep, loadPreps, locale, onChanged, openPrepId, root, run]
   );
 
-  const saveField = useCallback(
-    async (fieldKey, text, provenance) => {
-      const done = await run(() =>
-        caseWorkRequest(`/cases/${encodeURIComponent(caseId)}/meeting-preps/${encodeURIComponent(openPrep.id)}/fields`, {
-          method: "PUT",
-          locale,
-          body: { fieldKey, text, provenance }
-        })
-      );
-      if (done) await loadPrep(openPrep.id);
-    },
-    [caseId, loadPrep, locale, openPrep, run]
+  const actions = useMemo(
+    () => ({
+      saveField: (fieldKey, text, provenance) => write("/fields", { method: "PUT", body: { fieldKey, text, provenance } }),
+      confirmField: (fieldKey, from, to) =>
+        write(`/fields/${encodeURIComponent(fieldKey)}/confirm-provenance`, { method: "POST", body: { from, to } }),
+      addQuestion: (kind, text, provenance) => write("/questions", { method: "POST", body: { kind, text, provenance } }),
+      removeQuestion: (questionId) => write(`/questions/${encodeURIComponent(questionId)}`, { method: "DELETE" }),
+      confirmQuestion: (questionId, from, to) =>
+        write(`/questions/${encodeURIComponent(questionId)}/confirm-provenance`, { method: "POST", body: { from, to } })
+    }),
+    [write]
   );
 
-  const confirmField = useCallback(
-    async (fieldKey, from, to) => {
-      const done = await run(() =>
-        caseWorkRequest(
-          `/cases/${encodeURIComponent(caseId)}/meeting-preps/${encodeURIComponent(openPrep.id)}/fields/${encodeURIComponent(fieldKey)}/confirm-provenance`,
-          { method: "POST", locale, body: { from, to } }
-        )
-      );
-      if (done) await loadPrep(openPrep.id);
-    },
-    [caseId, loadPrep, locale, openPrep, run]
+  const swapRef = useSwapFocus(openPrep ? `open:${openPrep.id}` : mode);
+  const blocked = locked || caseBusy || busy;
+  const errorText = errorKey ? t(errorKey, "") : "";
+  const rows = useMemo(
+    () =>
+      prepRows(preps, { t, locale }).map((row) => ({
+        id: row.id,
+        title: row.title,
+        chips: row.purged ? [{ key: "purged", text: t("casework.prep.purged_chip", "") }] : []
+      })),
+    [locale, preps, t]
   );
 
-  const addQuestion = useCallback(
-    async (kind, text, provenance) => {
-      const done = await run(() =>
-        caseWorkRequest(
-          `/cases/${encodeURIComponent(caseId)}/meeting-preps/${encodeURIComponent(openPrep.id)}/questions`,
-          { method: "POST", locale, body: { kind, text, provenance } }
-        )
-      );
-      if (!done) return false;
-      await loadPrep(openPrep.id);
-      return true;
-    },
-    [caseId, loadPrep, locale, openPrep, run]
-  );
+  if (openPrep) {
+    return (
+      /* `key` sunnib React'i puu maha võtma, kui avatakse teine ettevalmistus.
+         Ilma temata elab väljade ja küsimusevormi kohalik olek üle ning
+         ettevalmistuses A pooleli jäänud teksti saaks salvestada B alla. */
+      <PrepEditor
+        key={openPrep.id}
+        t={t}
+        locale={locale}
+        prep={openPrep}
+        landOn={landOn}
+        locked={locked}
+        busy={caseBusy || busy}
+        glow={active}
+        errorText={errorText}
+        actions={actions}
+        onDelete={deletePrep}
+        onClose={closePrep}
+      />
+    );
+  }
 
-  const removeQuestion = useCallback(
-    async (questionId) => {
-      const done = await run(() =>
-        caseWorkRequest(
-          `/cases/${encodeURIComponent(caseId)}/meeting-preps/${encodeURIComponent(openPrep.id)}/questions/${encodeURIComponent(questionId)}`,
-          { method: "DELETE", locale }
-        )
-      );
-      if (done) await loadPrep(openPrep.id);
-    },
-    [caseId, loadPrep, locale, openPrep, run]
-  );
-
-  const confirmQuestion = useCallback(
-    async (questionId, from, to) => {
-      const done = await run(() =>
-        caseWorkRequest(
-          `/cases/${encodeURIComponent(caseId)}/meeting-preps/${encodeURIComponent(openPrep.id)}/questions/${encodeURIComponent(questionId)}/confirm-provenance`,
-          { method: "POST", locale, body: { from, to } }
-        )
-      );
-      if (done) await loadPrep(openPrep.id);
-    },
-    [caseId, loadPrep, locale, openPrep, run]
-  );
-
-  const disabled = writeDisabled || busy;
+  if (mode === "create") {
+    return (
+      <MeetingCreateView
+        t={t}
+        title={t("casework.prep.create_title", "")}
+        lead={t("casework.prep.create_hint", "")}
+        swapRef={swapRef}
+        formId={formId}
+        label={t("casework.prep.meeting_at", "")}
+        value={meetingAt}
+        onChange={setMeetingAt}
+        submitLabel={t("casework.prep.create", "")}
+        glow={active}
+        busy={blocked}
+        errorText={errorText}
+        onSubmit={createPrep}
+        onCancel={() => setMode("list")}
+      />
+    );
+  }
 
   return (
-    <div className={styles.section}>
-      {errorKey ? (
-        <p className="cw-error" role="alert">
-          {t(errorKey, "")}
-        </p>
-      ) : null}
-
-      <form className="cw-form cw-form--inline" onSubmit={createPrep}>
-        <div className="cw-field">
-          <label className="cw-label" htmlFor="cw-prep-meeting-at">
-            {t("casework.prep.meeting_at", "")}
-          </label>
-          <input
-            id="cw-prep-meeting-at"
-            className="cw-input"
-            type="datetime-local"
-            value={meetingAt}
-            onChange={(event) => setMeetingAt(event.target.value)}
-            disabled={disabled}
-          />
-        </div>
-        <button className="cw-button" type="submit" disabled={disabled}>
+    <ItemListView
+      t={t}
+      title={t("casework.page.parts.prep.title", "")}
+      lead={t("casework.prep.section_hint", "")}
+      swapRef={swapRef}
+      errorText={errorText}
+      status={status}
+      rows={rows}
+      emptyText={t("casework.prep.empty", "")}
+      openText={t("casework.prep.open", "")}
+      openingId={openingId}
+      /* „Näita rohkem" käib `run()` sees ja `busy` taga: nii ei saa sama
+         kursor kaks korda lisanduda. */
+      more={
+        prepsCursor
+          ? { busy, label: t("casework.prep.load_more", ""), onClick: () => run(() => loadPreps({ cursor: prepsCursor, append: true })) }
+          : null
+      }
+      onOpen={openFromList}
+      onRetry={() => {
+        setErrorKey(null);
+        retry();
+      }}
+      actions={
+        <Button type="button" size="sm" variant="primary" glow={active} disabled={blocked} onClick={() => setMode("create")}>
           {t("casework.prep.create", "")}
-        </button>
-      </form>
-
-      {!preps.length ? <p className="cw-empty">{t("casework.prep.empty", "")}</p> : null}
-
-      <ul className="cw-list">
-        {preps.map((prep) => (
-          <li className="cw-case" key={prep.id}>
-            <span className="cw-case-label">
-              {prep.meetingAt
-                ? new Date(prep.meetingAt).toLocaleString(locale || "et", { dateStyle: "short", timeStyle: "short" })
-                : t("casework.prep.no_meeting_time", "")}
-            </span>
-            <button className="cw-button" type="button" onClick={() => loadPrep(prep.id)}>
-              {t("casework.prep.open", "")}
-            </button>
-            {/* Kustutus on pöördumatu ja teda ei auditeerita — küsitakse üle. */}
-            <ConfirmButton
-              label={t("casework.prep.delete", "")}
-              confirmLabel={t("casework.prep.confirm_delete", "")}
-              cancelLabel={t("casework.prep.cancel", "")}
-              disabled={disabled}
-              onConfirm={() => deletePrep(prep.id)}
-            />
-          </li>
-        ))}
-      </ul>
-
-      {prepsCursor ? (
-        <button
-          className="cw-button"
-          type="button"
-          disabled={busy}
-          onClick={() => run(() => loadPreps({ cursor: prepsCursor, append: true }))}
-        >
-          {t("casework.prep.load_more", "")}
-        </button>
-      ) : null}
-
-      {openPrep ? (
-        /* `key` sunnib React'i puu maha võtma, kui avatakse teine ettevalmistus.
-           Ilma temata elab väljade ja küsimusevormi kohalik olek üle ning
-           märkmes A pooleli jäänud teksti saaks salvestada B alla. */
-        <PrepEditor
-          key={openPrep.id}
-          locale={locale}
-          prep={openPrep}
-          disabled={disabled}
-          t={t}
-          onSaveField={saveField}
-          onConfirmField={confirmField}
-          onAddQuestion={addQuestion}
-          onRemoveQuestion={removeQuestion}
-          onConfirmQuestion={confirmQuestion}
-          onClose={() => setOpenPrep(null)}
-        />
-      ) : null}
-    </div>
+        </Button>
+      }
+    />
   );
 }
 
-function PrepEditor({
-  prep,
-  locale,
-  disabled,
-  t,
-  onSaveField,
-  onConfirmField,
-  onAddQuestion,
-  onRemoveQuestion,
-  onConfirmQuestion,
-  onClose
-}) {
-  const byKey = new Map((prep.fields || []).map((row) => [row.fieldKey, row]));
+/** Avatud ettevalmistuse välja salvestatud tekstid võtmete kaupa. */
+function savedTexts(prep) {
+  return Object.fromEntries(PREP_FIELD_KEYS.map((key) => [key, prepFieldText(prep, key)]));
+}
+
+/**
+ * Avatud ettevalmistus: hoiab, milline sakk ja alamvaade on ees, ning pooleli
+ * tekste. Joonistavad vaated failis ./sections/PrepViews.jsx.
+ */
+function PrepEditor({ t, locale, prep, landOn, locked, busy, glow, errorText, actions, onDelete, onClose }) {
+  const formId = useId();
   /* O-JTA-6: purge'itud ettevalmistus on TÜHJAST ERISTATAV ja kirjutuskaitstud.
      Ilma selleta näeks „töötaja arhiveeris töömaterjali" välja täpselt nagu
      „ettevalmistust ei ole veel alustatud" — ja iga uus väli oleks vaikne
      vastuolu markeriga, mis ütleb, et sisu on kustutatud. */
   const purged = Boolean(prep.contentPurgedAt);
-  const writeBlocked = disabled || purged;
+  const writeLocked = locked || purged;
 
-  return (
-    <div className={styles.editor}>
-      {/* Avatud ettevalmistuse identiteet on nähtav — juhtumil on neid mitu. */}
-      <h3 className="cw-section-title">
-        {t("casework.prep.open_prep", "")}:{" "}
-        {prep.meetingAt
-          ? new Date(prep.meetingAt).toLocaleString(locale || "et", { dateStyle: "short", timeStyle: "short" })
-          : t("casework.prep.no_meeting_time", "")}
-      </h3>
+  const [tab, setTab] = useState(landOn);
+  /* Alamvaade saki asemel: uue välja päritolu (`origin`), uus küsimus (`add`),
+     avatud küsimus (`question`) või päritolu kinnitamine (`confirm`).
+     `null` = ees on sakk ise. */
+  const [sub, setSub] = useState(null);
 
-      {purged ? (
-        <p className="cw-notice">
-          {t("casework.prep.content_purged", "").replace(
-            "{date}",
-            new Date(prep.contentPurgedAt).toLocaleDateString(locale || "et", { dateStyle: "medium" })
-          )}
-        </p>
-      ) : null}
+  /* VÄLJADE POOLELI TEKSTID ELAVAD SIIN, mitte välja vaates. Vaade vahetub
+     saki vahetusega, aga pooleli kirjutatud eesmärk ei tohi kaduda, kui töötaja
+     vahepeal päevakorda vaatab. */
+  const [texts, setTexts] = useState(() => savedTexts(prep));
+  /* Uuel real EI OLE vaikimisi päritolu (L4): esimene salvestus küsib seda
+     omaette vaates. Olemasoleval real seda ei küsita: märgist muudab ainult
+     kinnitamine. */
+  const [origins, setOrigins] = useState({});
+  const [question, setQuestion] = useState({ text: "", provenance: "" });
+  /* Kinnitamise siht. Vaikimisi valikut ei ole: märgis, mille inimene ei
+     valinud, ei ole märgis. */
+  const [confirmTo, setConfirmTo] = useState("");
 
-      <button className="cw-button" type="button" onClick={onClose}>
-        {t("casework.prep.close", "")}
-      </button>
-
-      {FIELD_KEYS.map((fieldKey) => (
-        <PrepField
-          key={fieldKey}
-          fieldKey={fieldKey}
-          row={byKey.get(fieldKey) || null}
-          disabled={writeBlocked}
-          t={t}
-          onSave={onSaveField}
-          onConfirm={onConfirmField}
-        />
-      ))}
-
-      <h3 className="cw-section-title">{t("casework.prep.questions_title", "")}</h3>
-      <p className="cw-hint">{t("casework.prep.questions_hint", "")}</p>
-
-      {/* Purge'itud ettevalmistusse ei kirjutata uut sisu — server keeldub 409-ga
-          ja vorm, mis seda ei tea, annaks kasutajale vea tema enda teo eest. */}
-      {purged ? null : <QuestionForm disabled={disabled} t={t} onAdd={onAddQuestion} />}
-
-      {!(prep.questions || []).length ? <p className="cw-empty">{t("casework.prep.questions_empty", "")}</p> : null}
-
-      <ul className="cw-list">
-        {(prep.questions || []).map((question) => (
-          <li className="cw-case" key={question.id}>
-            {/* Tekst on PLAIN TEXT ja renderdub tekstina — HTML-i sisestust siin
-                ei ole ega tule. */}
-            <span className="cw-case-label">{question.text}</span>
-            <span className="cw-case-meta">
-              <span className="cw-badge">{t(`casework.prep.kind_${question.kind}`, "")}</span>
-              <span className="cw-badge">{t(provenanceLabelKey(question.provenance) || "", "")}</span>
-            </span>
-            {question.provenance === PROVENANCE.AI_MUSTAND ? (
-              <ConfirmControl
-                disabled={disabled}
-                t={t}
-                onConfirm={(to) => onConfirmQuestion(question.id, question.provenance, to)}
-              />
-            ) : null}
-            <ConfirmButton
-              label={t("casework.prep.remove", "")}
-              confirmLabel={t("casework.prep.confirm_remove", "")}
-              cancelLabel={t("casework.prep.cancel", "")}
-              disabled={disabled}
-              onConfirm={() => onRemoveQuestion(question.id)}
-            />
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-function PrepField({ fieldKey, row, disabled, t, onSave, onConfirm }) {
-  const [text, setText] = useState(row?.text || "");
-  /* Uuel real EI OLE vaikimisi päritolu (L4). Olemasoleval real ei ole see väli
-     üldse nähtav — märgist muudab ainult kinnitamine. */
-  const [provenance, setProvenance] = useState(row?.provenance || "");
-
+  /* Kui serveris muutus välja tekst (oma salvestus, mille server kärpis, või
+     muudatus teisest aknast), võtab väli selle üle. AINULT see väli: teiste
+     väljade pooleli tekst jääb puutumata, sest iga väli salvestab ainult
+     ennast. */
+  const syncedRef = useRef(null);
   useEffect(() => {
-    setText(row?.text || "");
-    if (row?.provenance) setProvenance(row.provenance);
-  }, [row?.text, row?.provenance]);
+    const server = savedTexts(prep);
+    const previous = syncedRef.current;
+    syncedRef.current = server;
+    if (!previous) return;
+    const changed = PREP_FIELD_KEYS.filter((key) => server[key] !== previous[key]);
+    if (changed.length) {
+      setTexts((current) => ({ ...current, ...Object.fromEntries(changed.map((key) => [key, server[key]])) }));
+    }
+  }, [prep]);
 
-  return (
-    <div className="cw-field">
-      <label className="cw-label" htmlFor={`cw-prep-${fieldKey}`}>
-        {t(`casework.prep.field_${fieldKey}`, "")}
-      </label>
-      <textarea
-        id={`cw-prep-${fieldKey}`}
-        className="cw-input"
-        value={text}
-        onChange={(event) => setText(event.target.value)}
-        disabled={disabled}
-        rows={3}
-        maxLength={4000}
-      />
+  const swapRef = useSwapFocus(sub ? `${sub.view}:${sub.id || sub.kind || ""}:${sub.target || ""}` : "tab", { onMount: true });
+  const context = { t, locale };
+  const questions = questionRows(prep, context);
+  const openQuestion = sub?.id ? questions.find((row) => row.id === sub.id) || null : null;
 
-      {row ? (
-        <span className="cw-case-meta">
-          <span className="cw-badge">{t(provenanceLabelKey(row.provenance) || "", "")}</span>
-          {/* Märgis EI muutu teksti salvestamisega — server eirab saadetud
-              väärtust. Kinnitus on eraldi tegu, sest just tema tähendab „ma
-              vaatasin selle üle ja võtan vastutuse". */}
-          {row.provenance === PROVENANCE.AI_MUSTAND ? (
-            <ConfirmControl disabled={disabled} t={t} onConfirm={(to) => onConfirm(fieldKey, row.provenance, to)} />
-          ) : null}
-        </span>
-      ) : (
-        <select
-          className="cw-input"
-          value={provenance}
-          onChange={(event) => setProvenance(event.target.value)}
-          disabled={disabled}
-          required
-          aria-label={t("casework.prep.provenance_required", "")}
-        >
-          <option value="">{t("casework.prep.provenance_required", "")}</option>
-          {PROVENANCES.map((value) => (
-            <option key={value} value={value}>
-              {t(provenanceLabelKey(value) || "", "")}
-            </option>
-          ))}
-        </select>
-      )}
+  /* Avatud ettevalmistuse identiteet on nähtav igas vaates: juhtumil on neid
+     mitu. Tee tagasi loendisse on sakkidega vaadetes; alamvaatel on oma
+     „Loobu" või „Tagasi" all servas. */
+  const identity = { label: t("casework.prep.open_prep", ""), name: prepTitle(prep, context) };
+  const tabbed = {
+    swapRef,
+    head: { ...identity, back: { label: t("casework.prep.back_to_list", ""), onClick: onClose } },
+    errorText,
+    tabs: {
+      label: t("casework.prep.tabs_label", ""),
+      tabs: prepTabs(prep, context),
+      current: tab,
+      columns: PREP_TAB_COLUMNS,
+      pendingText: t("casework.prep.tab_ai_pending", ""),
+      onSelect: setTab
+    }
+  };
+  /* Alamvaates sakke ei ole: vorm ja avatud rida vajavad kogu ruumi. */
+  const focused = { swapRef, head: identity, errorText, tabs: null };
 
-      <button
-        className="cw-button"
-        type="button"
-        onClick={() => onSave(fieldKey, text, row?.provenance || provenance)}
-        disabled={disabled || !text.trim() || (!row && !provenance)}
-      >
-        {t("casework.prep.save_field", "")}
-      </button>
-    </div>
-  );
-}
+  /* Milline vaade on ees: alamvaade, kui see on avatud, muidu sakk. Vaade on
+     kirjeldus ja selle joonistab alati sama `OpenView` (vt selle selgitust). */
+  const screen = () => {
+    /* Uue välja esimene salvestus: päritolu küsitakse enne, kui tekst serverisse läheb. */
+    if (sub?.view === "origin") {
+      const text = texts[sub.id] ?? "";
+      const origin = origins[sub.id] || "";
+      return {
+        frame: focused,
+        view: provenanceView({
+          t,
+          title: t(`casework.prep.field_${sub.id}`, ""),
+          text,
+          options: provenanceOptions(t),
+          value: origin,
+          onChange: (value) => setOrigins((current) => ({ ...current, [sub.id]: value })),
+          locked: writeLocked,
+          busy,
+          glow,
+          submitLabel: t("casework.prep.save_field", ""),
+          onSubmit: async () => {
+            if (!canSavePrepField({ text, saved: false, provenance: origin })) return;
+            const saved = await actions.saveField(sub.id, text, origin);
+            /* Salvestatud: ees on jälle väli, nüüd oma päritolu märgiga.
+               Tõrke korral jääb valik ette ja tekst alles. */
+            if (saved) setSub(null);
+          },
+          onCancel: () => setSub(null)
+        })
+      };
+    }
 
-function QuestionForm({ disabled, t, onAdd }) {
-  const [kind, setKind] = useState(QUESTION_KINDS[0]);
-  const [text, setText] = useState("");
-  /* PÄRITOLUL EI OLE VAIKEVÄÄRTUST (L4): märgis, mille inimene ei valinud, ei
-     ole märgis. Server keeldub tühjast; vorm ei lase enne saata. */
-  const [provenance, setProvenance] = useState("");
+    if (sub?.view === "confirm") {
+      const field = sub.target === "field" ? prepFieldModel(prep, sub.id, context) : null;
+      const from = field ? field.provenance : openQuestion?.provenance;
+      const back = sub.target === "question" ? { view: "question", id: sub.id } : null;
+      if (field || openQuestion) {
+        return {
+          frame: focused,
+          view: provenanceView({
+            t,
+            title: t("casework.prep.confirm_provenance", ""),
+            /* Kinnitatakse SALVESTATUD teksti, mitte kastis pooleli olevat. */
+            text: field ? field.savedText : openQuestion.text,
+            current: field ? field.provenanceText : openQuestion.provenanceText,
+            options: confirmTargetOptions(t),
+            value: confirmTo,
+            onChange: setConfirmTo,
+            locked,
+            busy,
+            glow,
+            submitLabel: t("casework.prep.confirm_provenance", ""),
+            onSubmit: async () => {
+              if (!confirmTo) return;
+              const done =
+                sub.target === "field"
+                  ? await actions.confirmField(sub.id, from, confirmTo)
+                  : await actions.confirmQuestion(sub.id, from, confirmTo);
+              if (!done) return;
+              setConfirmTo("");
+              setSub(back);
+            },
+            onCancel: () => {
+              setConfirmTo("");
+              setSub(back);
+            }
+          })
+        };
+      }
+    }
 
-  return (
-    <form
-      className="cw-form cw-form--inline"
-      onSubmit={async (event) => {
-        event.preventDefault();
-        const saved = await onAdd(kind, text, provenance);
-        /* Väli tühjendatakse AINULT õnnestumisel — ebaõnnestunud salvestus ei
-           tohi kasutaja teksti ära kustutada. */
-        if (saved) {
-          setText("");
-          setProvenance("");
+    if (sub?.view === "add") {
+      const kind = questionKindOptions(t).find((option) => option.value === sub.kind);
+      return {
+        frame: focused,
+        view: rowAddView({
+          t,
+          formId,
+          /* Liik valiti juba nupuga, millega vorm avati, ja on tekstikasti sildiks. */
+          label: kind?.label || t("casework.prep.question_text", ""),
+          provenanceLabel: t("casework.prep.provenance_required", ""),
+          submitLabel: t("casework.prep.add_question", ""),
+          text: question.text,
+          onText: (text) => setQuestion((current) => ({ ...current, text })),
+          provenance: {
+            options: provenanceOptions(t),
+            value: question.provenance,
+            onChange: (provenance) => setQuestion((current) => ({ ...current, provenance }))
+          },
+          locked: writeLocked,
+          busy,
+          glow,
+          canSubmit: canAddRow(question),
+          onSubmit: async (event) => {
+            event.preventDefault();
+            if (!canAddRow(question)) return;
+            const saved = await actions.addQuestion(sub.kind, question.text, question.provenance);
+            /* Väli tühjendatakse AINULT õnnestumisel — ebaõnnestunud salvestus ei
+               tohi kasutaja teksti ära kustutada. */
+            if (!saved) return;
+            setQuestion({ text: "", provenance: "" });
+            setSub(null);
+          },
+          /* Loobumine jätab pooleli teksti alles: vorm avaneb sellega uuesti. */
+          onCancel: () => setSub(null)
+        })
+      };
+    }
+
+    if (sub?.view === "question" && openQuestion) {
+      return {
+        frame: focused,
+        view: prepQuestionView({
+          t,
+          row: openQuestion,
+          busy,
+          locked,
+          glow,
+          remove: {
+            disabled: locked || busy,
+            onConfirm: async () => {
+              const done = await actions.removeQuestion(openQuestion.id);
+              /* Küsimus on eemaldatud: ees on jälle loend ja fookus selle pealkirjal. */
+              if (done) setSub(null);
+            }
+          },
+          onConfirmOpen: () => {
+            setConfirmTo("");
+            setSub({ view: "confirm", target: "question", id: openQuestion.id });
+          },
+          onBack: () => setSub(null)
+        })
+      };
+    }
+
+    if (tab === "overview") {
+      return {
+        frame: tabbed,
+        view: prepOverviewView({
+          t,
+          overview: prepOverview(prep, context),
+          /* Kustutus on pöördumatu ja teda ei auditeerita — küsitakse üle.
+             Arhiveeritud sisuga ettevalmistust ei kustutata (O-JTA-6). */
+          remove: purged ? null : { disabled: locked || busy, onConfirm: onDelete }
+        })
+      };
+    }
+
+    if (tab === "questions") {
+      return {
+        frame: tabbed,
+        view: prepQuestionsView({
+          t,
+          rows: questions,
+          glow,
+          /* Purge'itud ettevalmistusse ei kirjutata uut sisu — server keeldub
+             409-ga ja vorm, mis seda ei tea, annaks kasutajale vea tema enda teo
+             eest. */
+          add: purged
+            ? null
+            : {
+                disabled: locked || busy,
+                kinds: questionKindOptions(t)
+                  .map((option, index) => ({
+                    value: option.value,
+                    label: t(`casework.prep.add_kind_${option.value}`, ""),
+                    primary: index === 0
+                  }))
+                  /* Põhinupp (küsimus) on jalareas viimane, nagu teistes vaadetes. */
+                  .reverse(),
+                onAdd: (kind) => setSub({ view: "add", kind })
+              },
+          onOpen: (id) => setSub({ view: "question", id })
+        })
+      };
+    }
+
+    const field = prepFieldModel(prep, tab, context);
+    const text = texts[tab] ?? "";
+    return {
+      frame: tabbed,
+      view: prepFieldView({
+        t,
+        field,
+        text,
+        onText: (value) => setTexts((current) => ({ ...current, [tab]: value })),
+        locked: writeLocked,
+        busy,
+        glow,
+        canSave: Boolean(text.trim()),
+        /* Märgis EI muutu teksti salvestamisega — server eirab saadetud
+           väärtust. Olemasoleva rea juures läheb kaasa tema enda märgis; uue
+           rea salvestus küsib enne päritolu. */
+        onSave: () => (field.saved ? actions.saveField(tab, text, field.provenance) : setSub({ view: "origin", id: tab })),
+        onConfirmOpen: () => {
+          setConfirmTo("");
+          setSub({ view: "confirm", target: "field", id: tab });
         }
-      }}
-    >
-      <select className="cw-input" value={kind} onChange={(event) => setKind(event.target.value)} disabled={disabled} aria-label={t("casework.prep.questions_title", "")}>
-        {QUESTION_KINDS.map((value) => (
-          <option key={value} value={value}>
-            {t(`casework.prep.kind_${value}`, "")}
-          </option>
-        ))}
-      </select>
-      <input
-        className="cw-input"
-        type="text"
-        value={text}
-        onChange={(event) => setText(event.target.value)}
-        disabled={disabled}
-        maxLength={4000}
-        aria-label={t("casework.prep.question_text", "")}
-      />
-      <select
-        className="cw-input"
-        value={provenance}
-        onChange={(event) => setProvenance(event.target.value)}
-        disabled={disabled}
-        required
-        aria-label={t("casework.prep.provenance_required", "")}
-      >
-        <option value="">{t("casework.prep.provenance_required", "")}</option>
-        {PROVENANCES.map((value) => (
-          <option key={value} value={value}>
-            {t(provenanceLabelKey(value) || "", "")}
-          </option>
-        ))}
-      </select>
-      <button className="cw-button" type="submit" disabled={disabled || !text.trim() || !provenance}>
-        {t("casework.prep.add_question", "")}
-      </button>
-    </form>
-  );
-}
+      })
+    };
+  };
 
-/** AI mustandi kinnitamine inimese märgiseks. Suund on ühesuunaline (L4). */
-function ConfirmControl({ disabled, t, onConfirm }) {
-  const [target, setTarget] = useState(CONFIRM_TARGETS[0]);
-
-  return (
-    <>
-      <select
-        className="cw-input"
-        value={target}
-        onChange={(event) => setTarget(event.target.value)}
-        disabled={disabled}
-        aria-label={t("casework.prep.confirm_provenance", "")}
-      >
-        {CONFIRM_TARGETS.map((value) => (
-          <option key={value} value={value}>
-            {t(provenanceLabelKey(value) || "", "")}
-          </option>
-        ))}
-      </select>
-      <button className="cw-button" type="button" onClick={() => onConfirm(target)} disabled={disabled}>
-        {t("casework.prep.confirm_provenance", "")}
-      </button>
-    </>
-  );
+  return <OpenView {...screen()} />;
 }

@@ -1,0 +1,291 @@
+/* Juhtumi sektsioonide vaated (kohtumise ettevalmistus, märge, heli, STAR2
+   järjekord, ülekandeajalugu): avatud kirje päis, sakid, kirjete read ja
+   helisalvesti. Loendi read, märgid, väljad ja teated tulevad juhtumi lehe
+   ühisest moodulist (../cases/cases.module.css), vaate kuju StepPanel-ist ja
+   valikud ChoiceRow-st. */
+
+/* Avatud kirje päis: mis on lahti (vasakul) ja tee tagasi loendisse (paremal).
+   See on sisu, mitte pealkiri: tavalise teksti suurune. */
+.openHead {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 0.8rem;
+}
+.openName {
+  min-width: 0;
+  margin: 0;
+  max-width: none;
+  color: var(--text-warm);
+  font-weight: 560;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.openLabel {
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+  font-weight: 400;
+}
+
+/* Sakid: ühelaiused lahtrid, nii laiad kui pikim nimi vajab (mitte paneeli
+   laiused), ja kõik korraga näha. Kui paneel on kitsam, lähevad lahtrid
+   kitsamaks ja nimi murdub. */
+.tabs {
+  min-width: 0;
+  display: inline-grid;
+  justify-self: start;
+  max-width: 100%;
+  grid-template-columns: repeat(var(--tab-cols, 3), minmax(0, 1fr));
+  gap: 0.4rem;
+}
+.tab {
+  composes: cell from "../../stage/cell.module.css";
+  min-height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.75rem;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.2;
+  text-align: center;
+}
+.tab[aria-current] {
+  background: color-mix(in srgb, var(--text-warm) 13%, transparent);
+  border-color: color-mix(in srgb, var(--text-warm) 62%, transparent);
+  color: var(--text-warm);
+  font-weight: 560;
+}
+/* Täitmata välja sakk on tuhmim, nagu ootel samm kiirmenüüs. */
+.tab[data-state="empty"]:not([aria-current]) {
+  color: var(--text-dim);
+}
+.tabLabel {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.tabCount {
+  flex: none;
+  color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
+}
+/* Märk sakil: siin ootab midagi inimese kinnitust. */
+.tabDot {
+  flex: none;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: #e6c27a;
+}
+:global(html.theme-light) .tabDot {
+  background: #7a5a12;
+}
+
+/* Päritolu valik: ümbris, mille sees valikurida on esimene laps. */
+.choice {
+  min-width: 0;
+}
+
+/* Lühike fakt ülevaates. */
+.fact {
+  margin: 0;
+  max-width: none;
+  color: var(--text-warm);
+}
+/* Rida sildi, märgi ja nupuga (päritolu ja selle kinnitamine). */
+.lineRow {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.7rem;
+}
+/* Tekst, mille päritolu kinnitatakse: loetakse enne otsust tervikuna läbi. */
+.quote {
+  margin: 0;
+  max-width: 68ch;
+  padding-inline-start: 0.8rem;
+  border-inline-start: 2px solid color-mix(in srgb, var(--text-warm) 28%, transparent);
+  color: var(--text-warm);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.muted {
+  min-width: 0;
+  color: var(--text-dim);
+}
+.hint {
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.4;
+}
+
+/* Rida, mida ei avata (paranduste ajalugu, ülekandeajalugu): tekst, märgid ja
+   selgitus üksteise all. Ühine lehekiht annaks loendireale alumise vahe ja
+   proosa laiuse. */
+.record {
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  display: grid;
+  gap: 0.3rem;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.9rem;
+  background: var(--glass-cell-bg);
+}
+.recordHead {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.2rem 1rem;
+}
+.recordTitle {
+  min-width: 0;
+  color: var(--text-warm);
+  font-weight: 560;
+  overflow-wrap: anywhere;
+}
+/* Asendatud tekst on plain text: reavahed jäävad alles ja pikk string murdub. */
+.recordText {
+  min-width: 0;
+  color: var(--text-warm);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.recordMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 0.6rem;
+}
+.recordNote {
+  min-width: 0;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  overflow-wrap: anywhere;
+}
+
+/* Mustandi välja võti: töötaja enda antud nimi, numbrid kohakuti. */
+.key {
+  color: var(--text-warm);
+  font-size: var(--fs-small, 0.875rem);
+  font-weight: 560;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+/* Ülekande rea väljade võtmed: iga võti omaette, mitte komadega üks tekst. */
+.keys {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.7rem;
+}
+
+/* Uus väli: lühike võti vasakul, pikk tekst paremal (telefonis üksteise all). */
+.pair {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(10rem, 15rem) minmax(0, 1fr);
+  align-items: start;
+  gap: 0.4rem 1rem;
+}
+/* Sama vahe ülal mis TextAreaField-il, et kaks silti jääksid ühele joonele. */
+.keyField {
+  min-width: 0;
+  display: grid;
+  gap: 0.35rem;
+  padding-block: 0.4rem;
+}
+
+/* Käsitsi kopeerimise plokk: ainult lugemiseks, kogu tekst valitav. */
+.block {
+  width: 100%;
+  min-width: 0;
+  max-width: 44rem;
+  min-height: 3.5rem;
+  resize: vertical;
+}
+
+/* Helisalvesti (components/documents/SessionRecorder.jsx): komponent on
+   muutmata, siit saab ta ainult klassid. */
+.recorder {
+  min-width: 0;
+  display: grid;
+  justify-items: start;
+  gap: 0.55rem;
+}
+.consent {
+  max-width: 62ch;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  color: var(--text-warm);
+  cursor: pointer;
+}
+.recorderActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+/* Salvesti annab olekureale status-rolli; ühine lehekiht värviks selle
+   õnnestumise tooni ja lisaks vahed. Siin on see tavaline rida. */
+.recorderStatus {
+  margin: 0;
+  max-width: none;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--text-warm);
+  font-weight: 560;
+  font-variant-numeric: tabular-nums;
+}
+.recorderHint {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+}
+.recorderError {
+  margin: 0;
+  max-width: none;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--status-error, #eb9a76) 60%, transparent);
+  border-inline-start-width: 3px;
+  border-radius: 0.9rem;
+  background: color-mix(in srgb, var(--status-error, #eb9a76) 10%, transparent);
+  color: var(--text-warm);
+}
+.link {
+  color: var(--text-warm);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+.link:focus-visible {
+  outline: none;
+  border-radius: 0.3rem;
+  box-shadow: var(--focus-ring);
+}
+
+@media (max-width: 640px) {
+  /* Telefonis on sakid kolmes veerus terve laiuse peale: puutesiht on tähtsam. */
+  .tabs {
+    display: grid;
+    justify-self: stretch;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .tab {
+    min-height: var(--hit-target-min, 2.75rem);
+    padding-inline: 0.4rem;
+  }
+  .pair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -1291,7 +1291,6 @@
       "create": "Lisa element",
       "empty": "Elemente ei ole.",
       "open": "Ava",
-      "close": "Sulge",
       "load_more": "Näita rohkem",
       "open_draft": "Avatud element",
       "choose_type": "Vali element",
@@ -1301,7 +1300,6 @@
       "save_field": "Salvesta väli",
       "remove_field": "Eemalda väli",
       "confirm_remove_field": "Kinnita: eemalda väli",
-      "cancel": "Loobu",
       "fields_empty": "Välju ei ole.",
       "transition": "Vii järgmisse seisu",
       "transition_to": "Uus seis",
@@ -1317,7 +1315,23 @@
       "type_VASTUTAJA_JA_TAHTAEG": "Vastutaja ja tähtaeg",
       "type_KOHTUMISE_MARGE": "Kohtumise märge",
       "type_TEENUSE_SUUNAMISE_ALUS": "Teenuse suunamise alus",
-      "purge_due_at": "Selle üleantud mustandi sisu kustub 12 kalendrikuud pärast üleandmist, {date}. Mustandi rida, ülekande fakt ja väljade loend jäävad juhtumi eluea lõpuni alles."
+      "purge_due_at": "Selle üleantud mustandi sisu kustub 12 kalendrikuud pärast üleandmist, {date}. Mustandi rida, ülekande fakt ja väljade loend jäävad juhtumi eluea lõpuni alles.",
+      "create_title": "Uus element",
+      "back_to_list": "Tagasi elementide juurde",
+      "back_to_fields": "Tagasi väljade juurde",
+      "tabs_label": "Elemendi osad",
+      "tabs": {
+        "fields": "Väljad",
+        "state": "Seis",
+        "transfer": "STAR2-sse viimine"
+      },
+      "fields_title": "Elemendi väljad",
+      "state_title": "Elemendi seis",
+      "add_field": "Lisa väli",
+      "field_key_hint": "Ladina suurtähed, numbrid ja alakriips, esimene märk on täht. Näiteks EESMARK.",
+      "provenance_label": "Päritolu",
+      "review_kind_none": "Määramata",
+      "confirm_not_transferred": "Kinnita: ei kanta, sisu enam ei muudeta"
     },
     "star2": {
       "MUSTAND": "Mustand",
@@ -1332,7 +1346,6 @@
     "note": {
       "load_more": "Näita rohkem",
       "provenance_required": "Vali päritolu",
-      "cancel": "Loobu",
       "open_note": "Avatud märge",
       "section_hint": "Kaheksa kihti ei valata kokku: kliendi enda sõnad, faktid ja sinu tõlgendus on eri asjad. Iga rida kannab lisaks päritolu.",
       "meeting_at": "Kohtumise aeg",
@@ -1340,9 +1353,7 @@
       "empty": "Märkmeid ei ole.",
       "no_meeting_time": "Aeg märkimata",
       "open": "Ava",
-      "close": "Sulge",
       "entries_empty": "Selles kihis ei ole kirjeid.",
-      "entry_text": "Kirje tekst",
       "add_entry": "Lisa kirje",
       "linked_prep": "Seotud ettevalmistusega",
       "private_locked_hint": "Selle kihi kirjeid ei saa teise kihti tõsta. See on lubadus, mitte piirang.",
@@ -1365,18 +1376,32 @@
       "revision_kind_CORRECTION": "Parandus",
       "revision_kind_RETRACTION": "Tagasivõtmine",
       "revision_reason": "Põhjus",
-      "audio_title": "Kohtumise heli",
       "audio_hint": "Salvesta näost näkku kohtumine. Salvestis läheb sinu dokumentidesse ja seotakse selle juhtumiga. Märkme ridu see ei kirjuta: transkribeeri dokumentide lehel ja kanna vajalik märkmesse ise.",
       "audio_linked": "Salvestise osa on sinu dokumentides ja juhtumiga seotud.",
       "audio_link_failed": "Salvestis on sinu dokumentides, kuid juhtumiga sidumine ebaõnnestus. Lisa seos seoste alt käsitsi.",
-      "audio_open_documents": "Ava dokumentide leht"
+      "audio_open_documents": "Ava dokumentide leht",
+      "create_title": "Uus märge",
+      "create_hint": "Kohtumise aja võib jätta tühjaks.",
+      "back_to_list": "Tagasi märkmete juurde",
+      "back_to_layer": "Tagasi kihi juurde",
+      "tabs_label": "Märkme kihid",
+      "tabs": {
+        "KLIENDI_VAADE": "Kliendi vaade",
+        "FAKTID": "Faktid",
+        "TOOTAJA_TAHELEPANEK": "Tähelepanek",
+        "KONTROLLIMATA": "Kontrollimata",
+        "KOKKULEPPED": "Kokkulepped",
+        "JARGMISED_SAMMUD": "Järgmised sammud",
+        "STAR2_KANTAV": "STAR2-sse kantav",
+        "PRIVAATNE_REFLEKSIOON": "Refleksioon",
+        "history": "Parandused"
+      }
     },
     "prep": {
       "load_more": "Näita rohkem",
       "provenance_required": "Vali päritolu",
       "confirm_delete": "Kinnita: kustuta ettevalmistus",
       "confirm_remove": "Kinnita: eemalda",
-      "cancel": "Loobu",
       "open_prep": "Avatud ettevalmistus",
       "section_hint": "Iga väli ja iga küsimus kannab oma päritolu. AI koostatud osa märgist ei saa maha võtta teksti parandamisega: kinnitamine on eraldi tegu.",
       "meeting_at": "Kohtumise aeg",
@@ -1384,10 +1409,8 @@
       "empty": "Ettevalmistusi ei ole.",
       "no_meeting_time": "Aeg kokku leppimata",
       "open": "Ava",
-      "close": "Sulge",
-      "delete": "Kustuta",
+      "delete": "Kustuta ettevalmistus",
       "remove": "Eemalda",
-      "editor_title": "Ettevalmistuse sisu",
       "save_field": "Salvesta",
       "confirm_provenance": "Kinnita päritolu",
       "questions_title": "Täpsustavad küsimused ja kontrollitavad väited",
@@ -1402,7 +1425,34 @@
       "field_LIFE_DOMAINS": "Eluvaldkonnad",
       "field_AGENDA": "Päevakord",
       "field_PLAIN_LANGUAGE_NOTES": "Selgitused lihtsas keeles",
-      "content_purged": "Selle ettevalmistuse sisu arhiveeriti {date}. Väljad ja küsimused on kustutatud; uut sisu siia ei kirjutata. Alusta uus ettevalmistus."
+      "content_purged": "Selle ettevalmistuse sisu arhiveeriti {date}. Väljad ja küsimused on kustutatud; uut sisu siia ei kirjutata. Alusta uus ettevalmistus.",
+      "purged_chip": "Sisu arhiveeritud",
+      "create_title": "Uus ettevalmistus",
+      "create_hint": "Aja võib jätta tühjaks, kui kohtumine ei ole veel kokku lepitud.",
+      "back_to_list": "Tagasi ettevalmistuste juurde",
+      "back_to_questions": "Tagasi küsimuste juurde",
+      "tabs_label": "Ettevalmistuse osad",
+      "tab_ai_pending": "AI mustand ootab kinnitamist",
+      "tabs": {
+        "overview": "Ülevaade",
+        "GOAL": "Eesmärk",
+        "REQUIRED_DOCUMENTS": "Dokumendid",
+        "LIFE_DOMAINS": "Eluvaldkonnad",
+        "AGENDA": "Päevakord",
+        "PLAIN_LANGUAGE_NOTES": "Lihtsas keeles",
+        "questions": "Küsimused"
+      },
+      "overview_title": "Ettevalmistuse ülevaade",
+      "overview_fields": "Täidetud välju: {filled}/{total}",
+      "overview_questions": "Küsimusi ja väiteid: {count}",
+      "overview_ai_pending": "Kinnitamata AI mustandeid: {count}",
+      "provenance_label": "Päritolu",
+      "provenance_kept": "Teksti salvestamine päritolu ei muuda.",
+      "provenance_now": "Praegune päritolu",
+      "confirm_as": "Mis on selle teksti päritolu?",
+      "add_kind_CLARIFYING_QUESTION": "Lisa küsimus",
+      "add_kind_CLAIM_TO_VERIFY": "Lisa väide",
+      "choose_provenance": "Vali päritolu ja salvesta"
     },
     "workbench": {
       "title": "Juhtumitöö laud",
@@ -1698,6 +1748,12 @@
           "short": "Kliendiviide",
           "summary": "Viite jäädav kustutamine",
           "account": "Klient on platvormi kasutaja. Tema viidet siin muuta ei saa."
+        },
+        "audio": {
+          "title": "Kohtumise heli",
+          "short": "Kohtumise heli",
+          "summary": "Näost näkku kohtumise salvestamine",
+          "summary_recording": "Salvestus käib"
         }
       }
     },
@@ -1744,7 +1800,6 @@
       "retry_audit": "Salvesta jälg uuesti",
       "mark_transferred": "Märgi üle kantuks",
       "confirm_mark_transferred": "Kinnita: info on STAR-is",
-      "cancel": "Loobu",
       "content_purged": "Selle mustandi sisu on säilitustähtaja järel kustutatud. Ülekande fakt ja väljade loend on alles.",
       "history_hint": "Ajalugu kannab tegu, aega ja väljade nimesid. Kopeeritud teksti siin ei ole.",
       "history_empty": "Ülekandeid ei ole.",
@@ -1752,7 +1807,11 @@
       "load_more": "Näita rohkem",
       "kind_COPIED_FOR_STAR2": "Kopeeritud STAR2 jaoks",
       "kind_MARKED_AS_TRANSFERRED": "Märgitud üle kantuks",
-      "block_warning": "ETTEVALMISTAV MUSTAND. See tekst ei ole ametlik kanne: ametlik kanne sünnib STAR-is."
+      "block_warning": "ETTEVALMISTAV MUSTAND. See tekst ei ole ametlik kanne: ametlik kanne sünnib STAR-is.",
+      "copy_hint": "Kopeerimine viib elemendi väljad lõikelauale ja jätab jälje ülekandeajalukku. Elemendi seisu see ei muuda.",
+      "copy_empty": "Elemendil ei ole välju, mida kopeerida.",
+      "block_label": "Kopeeritav tekst",
+      "audit_pending_chip": "Jälg salvestamata"
     }
   },
   "common": {

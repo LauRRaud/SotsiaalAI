@@ -272,25 +272,6 @@
   color: #9a3d1f;
 }
 
-/* Vana kihiga sektsioon (ettevalmistus, märge, STAR2 järjekord) lava osana:
-   ilma oma kaardi ja pealkirjata, ainult sisu vahedega. */
-.section {
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-/* Sektsiooni sees avatud ettevalmistus, märge või element: loendist eraldab
-   seda joon, mitte teine kaart klaaspaneeli sees. */
-.editor {
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  padding-top: 0.9rem;
-  border-top: 1px solid color-mix(in srgb, var(--text-warm) 12%, transparent);
-}
-
 @media (max-width: 640px) {
   .row {
     grid-template-columns: minmax(0, 1fr) auto;

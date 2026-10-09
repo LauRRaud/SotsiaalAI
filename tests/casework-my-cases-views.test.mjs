@@ -1,7 +1,7 @@
 // „Minu juhtumid": loendi ja juhtumi detaili vaated, nende tekstid ja lubadused.
 //
 // Leht oli üks veerg vanal `cw-*` kihil; nüüd on loendileht kaks vaadet ja
-// juhtumi detail üksteist osa sammulaval (components/casework/cases/). Test
+// juhtumi detail kaksteist osa sammulaval (components/casework/cases/). Test
 // hoiab seda, mida silm kergesti ei märka: puuduv tõlkevõti, nimeta osa, toores
 // enum ekraanil, ühe vajutusega pöördumatu tegu, kaks lahku läinud loendit.
 import test from 'node:test';
@@ -49,11 +49,18 @@ const PAGE_SOURCES = [
   '../components/casework/caseViews.js',
   '../components/casework/caseWorkClient.js'
 ];
+/* Sektsioonid, mis hoiavad oma andmeid ise, ja nende vaated (./sections). Nende
+   enda lubadusi hoiab tests/casework-sections-views.test.mjs. */
 const SECTION_SOURCES = [
   '../components/casework/MeetingPrepSection.jsx',
   '../components/casework/MeetingNoteSection.jsx',
+  '../components/casework/MeetingAudioSection.jsx',
   '../components/casework/DraftSection.jsx',
-  '../components/casework/TransferPanel.jsx'
+  '../components/casework/TransferPanel.jsx',
+  '../components/casework/sections/SectionBits.jsx',
+  '../components/casework/sections/PrepViews.jsx',
+  '../components/casework/sections/NoteViews.jsx',
+  '../components/casework/sections/DraftViews.jsx'
 ];
 const RAW_ENUMS = /\b(ACTIVE|READ_ONLY|ARCHIVED|OPEN|RESOLVED|NOT_APPLICABLE|USER_DOCUMENT|AGENT_ARTIFACT|FIELD_VISIT|MUSTAND|VAJAB_KONTROLLI|COPIED_FOR_STAR2)\b/;
 
@@ -189,6 +196,8 @@ test('juhtumi osad: töö ees, elutsükkel taga; töömaterjali osa ainult aktii
   const index = (key) => active.indexOf(key);
   assert.ok(index('missing') < index('prep') && index('prep') < index('notes') && index('notes') < index('drafts'));
   assert.ok(index('drafts') < index('transfer') && index('retention') < index('material'));
+  /* Heli seisab märkme kõrval: salvestatakse kohtumisel, enne kui midagi registrisse kantakse. */
+  assert.equal(index('audio'), index('notes') + 1);
   assert.equal(active.at(-1), 'client');
 });
 
@@ -216,6 +225,10 @@ test('osa plaat ütleb osa seisu sõnadega ega väida tühjust enne, kui loend o
     assert.equal(byKey[key].summary, undefined, `${key}: laadimata loend ei ole „tühi”`);
     assert.equal(byKey[key].free, true, key);
   }
+  /* Kohtumise heli on oma osa: plaat ütleb, mis seal on, ja salvestuse ajal, et salvestus käib. */
+  assert.deepEqual([byKey.audio.summary, byKey.audio.state, byKey.audio.free], ['Näost näkku kohtumise salvestamine', 'empty', true]);
+  const recording = caseParts({ record, recording: true, ...context }).find((part) => part.key === 'audio');
+  assert.deepEqual([recording.summary, recording.state], ['Salvestus käib', 'done']);
   for (const key of ['basics', 'star', 'retention', 'material', 'client']) assert.equal(byKey[key].free, false, key);
 
   const loaded = caseParts({
@@ -375,14 +388,14 @@ test('leht on sammulaval: osad, mitte vana ühine kiht, ja teated ilma status-ro
     assert.ok(!/>\s*\{[A-Za-z.?]*\.(status|retentionState|targetType|transferState)\}/.test(source), 'vaade ei kuva seisu ega liigi toorest väärtust');
   }
 
-  /* Vana kihi sektsioonid on lava osad: oma kaarti ega suurt pealkirja nad ei joonista. */
-  for (const path of SECTION_SOURCES) {
+  /* Sektsioonid on lava osad: oma kaarti ega suurt pealkirja nad ei joonista
+     ja vana ühist kihti (cw-*) ei kasuta enam ükski fail. */
+  for (const path of [...SECTION_SOURCES, '../components/casework/ConfirmButton.jsx']) {
     const source = read(path);
-    assert.ok(!source.includes('className="cw-section"'), `${path}: raamitud kaarti ei ole`);
+    assert.ok(!/["'`\s]cw-[a-z]/.test(source), `${path}: vana cw-* kihti ei ole`);
     assert.ok(!/<h2\b/.test(source) && !source.includes('section_title'), `${path}: sektsiooni pealkirja ei korrata`);
   }
-  const css = read('../app/styles/casework.css');
-  for (const rule of ['.cw-shell', '.cw-intro', '.cw-title', '.cw-subtitle', '.cw-section {', '.cw-select', '.cw-textarea', '.cw-row']) {
-    assert.ok(!css.includes(rule), `üldfailis ei ole enam reeglit ${rule}`);
-  }
+  /* Vana üldfail on kustutatud koos oma impordiga: kui keegi selle tagasi toob, kukub test. */
+  assert.ok(!fs.existsSync(new URL('../app/styles/casework.css', import.meta.url)), 'app/styles/casework.css on kustutatud');
+  assert.ok(!read('../app/styles/globals.css').includes('casework.css'), 'üldfail ei impordi juhtumi vana kihti');
 });
