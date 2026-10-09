@@ -59,6 +59,8 @@ import {
   listChronologyReleases
 } from '../lib/homeCare/chronology.js';
 import { getCallCounts } from '../lib/homeCare/calls.js';
+import { createActivity, listActivities, seedDefaultActivities, updateActivity } from '../lib/homeCare/activities.js';
+import { CARE_ACTIVITY_GROUPS } from '../lib/homeCare/constants.js';
 import { createHomeCareExport, getHomeCareExportOverview, prepareHomeCareExport } from '../lib/homeCare/export.js';
 import { HOME_CARE_EXPORT_KEYS, checkHomeCareExport } from '../lib/homeCare/exportFormat.js';
 import { applyClientImport, previewClientImport } from '../lib/homeCare/clientImport.js';
@@ -1823,6 +1825,8 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
   );
   await issueDoorTag(lead, client.id, deps());
   const tag = await db.careClientDoorTag.findFirst({ where: { clientId: client.id }, select: { token: true } });
+  /* Toimingute kataloog (K2-a), et väljavõttes oleks ka see kogu. */
+  await seedDefaultActivities(lead, deps());
   /* Seisu ajalugu (K1-j): ära ja tagasi, et väljavõttes oleks ka see kogu. */
   const northVersion = (await db.careClient.findUnique({ where: { id: northClient.id }, select: { version: true } })).version;
   await setClientStatus(lead, northClient.id, { version: northVersion, status: 'AWAY', statusReason: 'HOSPITAL' }, deps());
@@ -1908,6 +1912,7 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
     importedHistoryBlocks: await db.careImportedHistoryBlock.count({ where: ofOrg }),
     doorTags: await db.careClientDoorTag.count({ where: ofOrg }),
     clientStatusChanges: await db.careClientStatusChange.count({ where: ofOrg }),
+    activities: await db.careActivity.count({ where: ofOrg }),
     auditEvents: await db.dataAuditLog.count({
       where: { action: { startsWith: 'org.home_care_' }, meta: { path: ['organizationId'], equals: f.orgA.id }, createdAt: { lt: (await exportRows())[0].createdAt } }
     })
@@ -2093,4 +2098,83 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
   assert.deepEqual(other.doc.clients.map((row) => row.displayName), ['Võõras Klient']);
   assert.equal(other.text.includes('Linda Tamm'), false);
   assert.equal(other.doc.totals.accessLog, await db.careClientAccess.count({ where: { organizationId: f.orgB.id } }));
+});
+
+test('toimingute kataloog: määruse rühmad, asutuse oma sõnastus, õigused ja arhiveerimine', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const clerk = await f.ctx(f.users.clerk, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  /* Anu on hooldaja alles siis, kui ta on mõne kliendi meeskonnas. */
+  const { client } = await createClient(lead, { displayName: 'Linda Tamm' }, deps());
+
+  /* Asutuse töötaja, kes ei ole hooldaja, kataloogi ei näe (404, mitte 403). */
+  await expectError(listActivities(anu, {}, deps()), 404, 'home_care.errors.client_not_found');
+  await expectError(listActivities(clerk, {}, deps()), 404, 'home_care.errors.client_not_found');
+  await addTeamMember(lead, client.id, { membershipId: f.members.anu.id }, deps());
+
+  /* Tühi algus: hooldaja loeb, muuta ei saa. */
+  assert.deepEqual(await listActivities(anu, {}, deps()), { activities: [], canEdit: false });
+  await expectError(createActivity(anu, { group: 'HEATING', name: 'Ahju kütmine' }, deps()), 403, 'org.errors.missing_capability');
+  await expectError(seedDefaultActivities(anu, deps()), 403, 'org.errors.missing_capability');
+
+  /* ALGNE LOEND: üks toiming iga määruse rühma kohta, määruse sõnastuses ja järjekorras. */
+  const seeded = await seedDefaultActivities(lead, deps());
+  assert.equal(seeded.activities.length, 16);
+  assert.deepEqual(seeded.activities.map((item) => item.group), [...CARE_ACTIVITY_GROUPS]);
+  assert.deepEqual(seeded.activities.slice(0, 2).map((item) => [item.domain, item.name]), [
+    ['HOME_HELP', 'Sisseostude tegemine ja koju toomine'],
+    ['HOME_HELP', 'Teenuste kasutamine ja asjaajamine']
+  ]);
+  assert.equal(seeded.activities[15].domain, 'PERSONAL_HELP');
+  /* Teist korda algset loendit peale ei kirjutata. */
+  await expectError(seedDefaultActivities(lead, deps()), 409, 'home_care.errors.activity_catalogue_not_empty');
+
+  /* ASUTUSE OMA TOIMING oma sõnadega, rühma lõppu. */
+  await expectError(createActivity(lead, { group: 'HEATING' }, deps()), 400, 'home_care.errors.activity_name_required');
+  await expectError(createActivity(lead, { name: 'Ahju kütmine' }, deps()), 400, 'home_care.errors.activity_group_required');
+  await expectError(createActivity(lead, { group: 'KÜTE', name: 'Ahju kütmine' }, deps()), 400, 'home_care.errors.activity_group_required');
+  const wood = (await createActivity(lead, { group: 'HEATING', name: '  Puude tuppa toomine ja  tuha väljaviimine ', note: 'Talvel iga käik.' }, deps())).activity;
+  assert.deepEqual([wood.group, wood.domain, wood.name, wood.note, wood.position, wood.version], ['HEATING', 'HOME_HELP', 'Puude tuppa toomine ja tuha väljaviimine', 'Talvel iga käik.', 1, 1]);
+  /* Sama nimi teist korda (suur- ja väiketähte eristamata) on viga, mitte teine rida. */
+  await expectError(createActivity(lead, { group: 'HOUSEKEEPING', name: 'puude tuppa toomine ja tuha väljaviimine' }, deps()), 409, 'home_care.errors.activity_name_taken');
+
+  /* MUUTMINE: versiooniga; vana versioon ei kirjuta üle. */
+  const renamed = (await updateActivity(lead, wood.id, { version: 1, name: 'Puude toomine ja tuha väljaviimine' }, deps())).activity;
+  assert.deepEqual([renamed.name, renamed.note, renamed.version], ['Puude toomine ja tuha väljaviimine', 'Talvel iga käik.', 2]);
+  await expectError(updateActivity(lead, wood.id, { version: 1, name: 'Vana aken' }, deps()), 409, 'home_care.errors.version_conflict');
+  await expectError(updateActivity(anu, wood.id, { version: 2, name: 'Hooldaja' }, deps()), 403, 'org.errors.missing_capability');
+  /* Teise asutuse hooldusjuht ei näe ega muuda. */
+  await expectError(updateActivity(leadB, wood.id, { version: 2, name: 'Võõras' }, deps()), 404, 'home_care.errors.activity_not_found');
+  assert.deepEqual((await listActivities(leadB, { includeArchived: true }, deps())).activities, []);
+
+  /* ARHIVEERIMINE: toiming kaob loendist, nimi vabaneb; muutja näeb arhiivi, hooldaja mitte. */
+  const archived = (await updateActivity(lead, wood.id, { version: 2, archived: true }, deps())).activity;
+  assert.ok(archived.archivedAt);
+  assert.equal((await listActivities(anu, { includeArchived: true }, deps())).activities.length, 16);
+  assert.equal((await listActivities(lead, {}, deps())).activities.length, 16);
+  assert.equal((await listActivities(lead, { includeArchived: true }, deps())).activities.length, 17);
+  const again = (await createActivity(lead, { group: 'HEATING', name: 'Puude toomine ja tuha väljaviimine' }, deps())).activity;
+  /* Taastamine ei tohi tekitada kahte kehtivat sama nimega toimingut. */
+  await expectError(updateActivity(lead, wood.id, { version: 3, archived: false }, deps()), 409, 'home_care.errors.activity_name_taken');
+  await updateActivity(lead, again.id, { version: 1, archived: true }, deps());
+  const restored = (await updateActivity(lead, wood.id, { version: 3, archived: false }, deps())).activity;
+  assert.equal(restored.archivedAt, null);
+
+  /* Andmebaas hoiab vigase rea eemal. */
+  const raw = (data) => db.careActivity.create({ data: { organizationId: f.orgA.id, ...data } });
+  await assert.rejects(raw({ group: 'KÜTE', name: 'Midagi' }), /CareActivity_group_check/);
+  await assert.rejects(raw({ group: 'HEATING', name: '   ' }), /CareActivity_name_check/);
+
+  /* AUDIT: mis muutus ja mis toiming, mitte toimingu nimi. */
+  const audit = await db.dataAuditLog.findMany({
+    where: { action: 'org.home_care_activity_changed', meta: { path: ['organizationId'], equals: f.orgA.id } },
+    orderBy: { createdAt: 'asc' }
+  });
+  assert.deepEqual(audit.map((row) => row.meta.change), ['seeded', 'created', 'updated', 'archived', 'created', 'archived', 'restored']);
+  for (const row of audit) {
+    assert.ok(Object.keys(row.meta).every((key) => ['organizationId', 'activityId', 'change'].includes(key)), JSON.stringify(row.meta));
+    assert.equal(JSON.stringify(row.meta).includes('Puude'), false);
+  }
 });

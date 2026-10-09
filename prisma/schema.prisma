@@ -5604,6 +5604,7 @@ model Organization {
   // KODUTEENUS K1
   careClients            CareClient[]
   careClientEntries      CareClientEntry[]
+  careActivities         CareActivity[]
 
   @@unique([createdByUserId, creationClientActionId], name: "Organization_creation_action_unique")
   @@index([status])
@@ -8228,6 +8229,34 @@ model CareClient {
   @@unique([organizationId, internalCode])
   @@index([organizationId, status, displayName])
   @@index([unitId])
+}
+
+/// Asutuse toiming (kiht 2, K2-a): toimingute kataloogi alumine tase.
+/// Ülemine tase on määruse nr 40 § 2 kuusteist rühma (`CareActivityGroup` failis
+/// `lib/homeCare/constants.js`; CHECK migratsioonis). Toimingut ei kustutata, vaid
+/// arhiveeritakse: varasemad kavad ja kirjed viitavad sellele. Üks kehtiv toiming
+/// ühe nimega asutuse kohta → osaline unikaalindeks migratsioonis.
+model CareActivity {
+  id             String @id @default(cuid())
+  organizationId String
+
+  group String
+  /// Asutuse enda sõnastus.
+  name  String
+  /// Selgitus hooldajale: mida see toiming selles asutuses tähendab.
+  note  String?
+
+  position Int @default(0)
+  version  Int @default(1)
+
+  archivedAt            DateTime?
+  createdByMembershipId String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId, archivedAt, group, position])
 }
 
 /// Kliendi seisu muutuste ajalugu (K1-j): millal teenus peatati, lõpetati või

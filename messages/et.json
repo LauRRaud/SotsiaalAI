@@ -11639,7 +11639,14 @@
       "invalid_export_reason": "Vali, milleks väljavõte tehakse.",
       "export_failed": "Väljavõtte koostamine ei õnnestunud. Proovi uuesti.",
       "export_in_progress": "Selle asutuse väljavõte on juba koostamisel. Oota, kuni see valmis saab.",
-      "status_reason_required": "Vali, mille pärast klient on ära või teenus lõppes."
+      "status_reason_required": "Vali, mille pärast klient on ära või teenus lõppes.",
+      "activity_group_required": "Vali rühm.",
+      "activity_name_required": "Kirjuta toimingu nimi.",
+      "activity_name_taken": "Sellise nimega toiming on juba olemas.",
+      "activity_not_found": "Toimingut ei leitud.",
+      "activity_limit_reached": "Kataloogis on juba väga palju toiminguid. Arhiveeri mõni, enne kui uue lisad.",
+      "activity_catalogue_not_empty": "Kataloogis on juba toiminguid. Algset loendit saab lisada ainult tühja kataloogi.",
+      "activity_position_invalid": "Järjekorranumber ei sobi."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -11937,6 +11944,47 @@
       "size_kb": "{n} kB",
       "size_mb": "{n} MB",
       "decimal_mark": ","
+    },
+    "activities": {
+      "link": "Toimingud",
+      "title": "Toimingud",
+      "intro": "Asutuse toimingud oma sõnadega. Iga toiming kuulub ühte määruse rühma; samu toiminguid hakkavad kasutama hoolduskava, käigu kirje ja aruanne.",
+      "empty": "Toiminguid ei ole veel lisatud.",
+      "empty_editor": "Toiminguid ei ole veel lisatud. Võid alustada määruse 16 rühmast ja nimetada toimingud siis oma sõnadega ümber.",
+      "seed": "Lisa määruse 16 rühma algseks loendiks",
+      "domains": {
+        "HOME_HELP": "Koduabi",
+        "PERSONAL_HELP": "Isikuabi"
+      },
+      "groups": {
+        "SHOPPING": "Sisseostude tegemine ja koju toomine",
+        "SERVICES_AND_ERRANDS": "Teenuste kasutamine ja asjaajamine",
+        "HEATING": "Küttematerjali tellimine, ladustamine ja kütmine",
+        "HOME_SAFETY": "Eluruumi turvalisuse jälgimine ja ohutu elukeskkonna tagamine",
+        "HOUSEKEEPING": "Eluruumi korrastamine, hooviala hooldamine ja heakorraeeskirjade täitmine",
+        "OTHER_HOME_HELP": "Muud koduabi toimingud",
+        "HYGIENE": "Isiklik hügieen, tualeti ja inkontinentsivahendite kasutamine",
+        "NUTRITION": "Toitumine",
+        "DRESSING": "Riietumine ja enese korrastamine",
+        "LAUNDRY": "Voodipesu vahetamine ja pesupesemine",
+        "MEDICATION": "Ravimite manustamine ja terviseseisundi jälgimine tervishoiutöötaja juhiste järgi",
+        "ABILITY_MONITORING": "Tegevusvõime jälgimine teenuse osutamise ajal",
+        "NETWORK": "Lähivõrgustikuga kontakti hoidmine ja kogukonnaelus osalemise soodustamine",
+        "MENTAL_SUPPORT": "Vaimse tervise ja hingelise toe saamine",
+        "ASSISTIVE_TECH": "Abitehnoloogiate kasutamine",
+        "OTHER_PERSONAL_HELP": "Muud isikuabi toimingud"
+      },
+      "group_empty": "Selles rühmas ei ole veel toiminguid.",
+      "add": "Lisa toiming",
+      "edit": "Muuda",
+      "archive": "Arhiveeri",
+      "restore": "Taasta",
+      "save": "Salvesta",
+      "name": "Toimingu nimi",
+      "note": "Selgitus hooldajale (võid jätta tühjaks)",
+      "group": "Rühm",
+      "archived_title": "Arhiveeritud toimingud",
+      "source": "Rühmad on sotsiaalkaitseministri 29.06.2023 määrusest nr 40 „Nõuded koduteenusele” (§ 2)."
     }
   },
   "stage": {
