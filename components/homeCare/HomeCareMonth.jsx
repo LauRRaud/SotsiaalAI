@@ -53,6 +53,16 @@ export default function HomeCareMonth({ context, initial }) {
       row.cancelled ? t("home_care.month.cancelled_count", { count: row.cancelled }) : null,
       row.notDone && row.notDone.REFUSED + row.notDone.NOT_NEEDED + row.notDone.COULD_NOT > 0
         ? t("home_care.month.not_done", { refused: row.notDone.REFUSED, notNeeded: row.notDone.NOT_NEEDED, couldNot: row.notDone.COULD_NOT })
+        : null,
+      /* Ravimitoimingud (K5-i): arvud ümardamata; märkimata ja tegemata on eraldi näha. */
+      row.medication
+        ? t("home_care.month.medication", {
+            reminded: row.medication.reminded,
+            sawTaken: row.medication.sawTaken,
+            gave: row.medication.gave,
+            unmarked: row.medication.unmarked,
+            notDone: row.medication.notDone
+          })
         : null
     ]
       .filter(Boolean)

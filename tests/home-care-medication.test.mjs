@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
 import { CARE_MEDICATION_ACTIONS } from '../lib/homeCare/constants.js';
-import { CareMedicationState, MEDICATION_OPEN_STATES, medicationState } from '../lib/homeCare/medication.js';
+import { CareMedicationState, MEDICATION_OPEN_STATES, medicationMonthCounts, medicationState } from '../lib/homeCare/medication.js';
 import { entryRequestHash, normalizeEntryInput } from '../lib/homeCare/validation.js';
 
 const NOW = new Date('2026-10-09T08:00:00Z');
@@ -60,4 +60,23 @@ test('märked ja seisud on kolmes keeles; migratsiooni loend klapib koodiga', ()
   const sql = readFileSync(new URL('../prisma/migrations/20261011150000_home_care_medication_action/migration.sql', import.meta.url), 'utf8');
   for (const action of CARE_MEDICATION_ACTIONS) assert.ok(sql.includes(`'${action}'`), action);
   assert.match(sql, /^SET lock_timeout = '5s';\r?\nSET statement_timeout = '30s';/m);
+});
+
+test('kuu arvud: märked toimingu kaupa, märkimata ja tegemata eraldi, midagi ei ümardata', () => {
+  assert.deepEqual(medicationMonthCounts([]), { reminded: 0, sawTaken: 0, gave: 0, unmarked: 0, notDone: 0 });
+  assert.deepEqual(
+    medicationMonthCounts([
+      { outcome: 'DONE', medicationAction: 'REMINDED', count: 12 },
+      { outcome: 'DONE', medicationAction: 'SAW_TAKEN', count: 15 },
+      { outcome: 'DONE', medicationAction: 'GAVE', count: 2 },
+      { outcome: 'DONE', medicationAction: null, count: 1 },
+      { outcome: 'REFUSED', medicationAction: null, count: 2 },
+      { outcome: 'COULD_NOT', medicationAction: null, count: 1 }
+    ]),
+    { reminded: 12, sawTaken: 15, gave: 2, unmarked: 1, notDone: 3 }
+  );
+  for (const locale of ['et', 'en', 'ru']) {
+    const messages = JSON.parse(readFileSync(new URL(`../messages/${locale}.json`, import.meta.url), 'utf8'));
+    for (const key of ['reminded', 'sawTaken', 'gave', 'unmarked', 'notDone']) assert.ok(messages.home_care.month.medication.includes(`{${key}}`), `${locale} ${key}`);
+  }
 });

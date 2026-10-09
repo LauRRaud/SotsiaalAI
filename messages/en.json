@@ -13497,7 +13497,8 @@
       "missed_empty": "No missed visits are on record for this month.",
       "how": "The incidents \"did not open the door\" and \"refused help\" are counted as missed visits. When two workers were on a visit, the client's time is counted once and each worker gets it. There are no kilometres here: the home care diary does not measure trips.",
       "not_done": "activities not done: refused {refused}, not needed {notNeeded}, could not be done {couldNot}",
-      "cancelled_count": "{count} planned visits cancelled"
+      "cancelled_count": "{count} planned visits cancelled",
+      "medication": "medication: reminded {reminded}, seen taken {sawTaken}, given {gave}; not marked {unmarked}, not done {notDone}"
     },
     "slots": {
       "title": "Visits in a week",
