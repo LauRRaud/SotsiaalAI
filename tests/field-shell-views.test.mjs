@@ -46,8 +46,10 @@ test('avalehe ja ühenduse seisu tekstid on kataloogis kolmes keeles', () => {
 });
 
 test('ühenduse seis ei kleepu sisu peale ja paneelil ei ole lehe pealkirja', () => {
-  const css = read('../app/styles/field.css');
-  assert.ok(!css.includes('fld-connection'), 'vana kleepuv riba on stiilidest eemaldatud');
+  /* Vana ühine stiilifail (`app/styles/field.css`) on külastuse vaate ümbertegemisega eemaldatud. */
+  for (const file of fs.readdirSync(new URL('../app/styles/', import.meta.url)).filter((name) => name.endsWith('.css'))) {
+    assert.ok(!read(`../app/styles/${file}`).includes('fld-connection'), `${file}: vana kleepuv riba on stiilidest eemaldatud`);
+  }
   for (const file of ['../components/field/fieldConnection.module.css', '../components/field/fieldShell.module.css']) {
     assert.ok(!/position:\s*(sticky|fixed)/.test(read(file)), `${file}: midagi ei kleepu sisu kohale`);
   }

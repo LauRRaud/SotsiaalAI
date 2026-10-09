@@ -716,14 +716,6 @@ html.theme-light:not(:has(.room[data-power="standby"])) :is(.rgf-dock, .cvf-stag
   color: rgba(21, 21, 21, 0.78);
 }
 
-/* ---------- Väljad (field.css) ---------- */
-html.theme-light:not(:has(.room[data-power="standby"])) :is(.fld-warn, .fld-item__error) {
-  color: var(--text-soft);
-}
-html.theme-light:not(:has(.room[data-power="standby"])) .fld-input {
-  background: rgba(255, 255, 255, 0.55);
-}
-
 /* ---------- Teenuspäevik (service-log.css) ---------- */
 html.theme-light:not(:has(.room[data-power="standby"])) .sl-map-pin > span {
   background: rgba(250, 248, 245, 0.94);
