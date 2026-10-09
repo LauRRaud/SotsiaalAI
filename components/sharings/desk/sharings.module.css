@@ -56,21 +56,12 @@
 }
 /* Laadimise viga või laadimata osa: lause ja selle tegevus, mitte kast. */
 .fault {
-  min-width: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem 1rem;
+  composes: fault from "../../stage/rows.module.css";
 }
 /* Ühine paneelikiht annab hoiatuse rolliga elemendile tausta, äärise ja
    polstri; siin on viga tavaline lause. */
 .faultText {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background: none;
-  color: var(--text-warm);
+  composes: faultText from "../../stage/rows.module.css";
 }
 
 /* --- Teated ---------------------------------------------------------------- */
@@ -148,17 +139,11 @@
 
 /* --- Osa loend -------------------------------------------------------------- */
 .rows {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 0.4rem;
+  composes: rows from "../../stage/rows.module.css";
 }
 /* Ühine paneelikiht annab igale loendireale alumise vahe ja proosa laiuse. */
 .rowItem {
-  min-width: 0;
-  max-width: none;
-  margin: 0;
+  composes: rowItem from "../../stage/rows.module.css";
 }
 /* Avatav rida on üks vajutatav lahter: pealkiri ja selle all üks rida, märgid
    ja aeg, tee edasi. */
@@ -195,15 +180,10 @@
   grid-column: 1 / -1;
 }
 .rowMain {
-  min-width: 0;
-  display: grid;
-  gap: 0.1rem;
+  composes: rowMain from "../../stage/rows.module.css";
 }
 .rowTitle {
-  min-width: 0;
-  color: var(--text-warm);
-  font-weight: 560;
-  overflow-wrap: anywhere;
+  composes: rowTitle from "../../stage/rows.module.css";
 }
 /* Rida pealkirja all (kes näeb; ettepaneku põhjus; abipalve algus): üks rida,
    terve tekst on avatud kirjes. */
@@ -218,19 +198,13 @@
   overflow: hidden;
 }
 .rowMeta {
-  min-width: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: flex-end;
-  gap: 0.3rem 0.6rem;
+  composes: rowMeta from "../../stage/rows.module.css";
 }
-.time,
+.time {
+  composes: rowTime from "../../stage/rows.module.css";
+}
 .rowOpen {
-  color: var(--text-dim);
-  font-size: var(--fs-small, 0.875rem);
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
+  composes: rowTime from "../../stage/rows.module.css";
 }
 /* Järgmine lehekülg või märkus, et loend on pikem. */
 .more {
