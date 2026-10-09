@@ -7,6 +7,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import Dropdown from "@/components/ui/Dropdown";
 import {
   CARE_ACTIVITY_SKIP_REASONS,
+  CARE_CHANGE_AREAS,
   CARE_CONTACT_MODES,
   CARE_ENTRY_KINDS,
   CARE_INCIDENT_ACTIONS,
@@ -119,6 +120,7 @@ export default function HomeCareEntryForm({
   timeZone,
   entry = null,
   plan = null,
+  usualState = [],
   onSaved,
   onCancel
 }) {
@@ -166,6 +168,10 @@ export default function HomeCareEntryForm({
       .map((item) => ({ activityId: item.activityId, name: item.name }))
   );
   /* Asutuse kataloog laaditakse alles siis, kui inimene tahab lisada muu toimingu. */
+  /* „Kas midagi oli teisiti?" (K5-a): "" = vastamata, NO või YES; valdkonnad ja suur muutus ainult vastusega YES. */
+  const [different, setDifferent] = useState("");
+  const [diffAreas, setDiffAreas] = useState([]);
+  const [diffMajor, setDiffMajor] = useState(false);
   const [catalogue, setCatalogue] = useState(null);
   const [reason, setReason] = useState("");
   const [saved, setSaved] = useState(false);
@@ -212,7 +218,10 @@ export default function HomeCareEntryForm({
   const reasonMissing = isVisit && planChoices.some((choice) => skipped[choice.activityId] === "");
   /* Tavaline käik märgitud toimingutega ei vaja teksti; muu liigi kirje on tekst. Valimata põhjusega
      märge loeb samuti: muidu küsiks brauser teksti ja inimene ei näeks, et puudu on põhjus. */
-  const textRequired = !(kind === CareEntryKind.NOTE && (doneList.length > 0 || reasonMissing));
+  /* Küsimus käigu lõpus: ainult uuel tavalisel käigu kirjel. Vastus „jah" nõuab ühte lauset. */
+  const askChange = isVisit && !correcting && kind === CareEntryKind.NOTE;
+  const changed = askChange && different === "YES";
+  const textRequired = changed || !(kind === CareEntryKind.NOTE && (doneList.length > 0 || reasonMissing));
   /* Kava toimingud, mille kohta ei ole veel midagi öeldud. */
   const unmarked = planChoices.filter((choice) => !done[choice.activityId] && !(choice.activityId in skipped));
   const otherOptions = (catalogue || [])
@@ -259,7 +268,7 @@ export default function HomeCareEntryForm({
   }, []);
 
   useEffect(() => {
-    latestRef.current = { kind, contactMode, text, occurredLocal, companion, incidentType, assessment, actions, visitMinutes, done, skipped, extra };
+    latestRef.current = { kind, contactMode, text, occurredLocal, companion, incidentType, assessment, actions, visitMinutes, done, skipped, extra, different, diffAreas, diffMajor };
   });
 
   /* Mustandi salvestus: kohe (leht läheb peitu, vorm suletakse) või viitega (kirjutamise ajal). */
@@ -303,6 +312,9 @@ export default function HomeCareEntryForm({
         setDone(restoredDone(state.done));
         setSkipped(restoredSkipped(state.skipped));
         setExtra(restoredExtra(state.extra));
+        setDifferent(state.different === "YES" || state.different === "NO" ? state.different : "");
+        setDiffAreas(Array.isArray(state.diffAreas) ? CARE_CHANGE_AREAS.filter((area) => state.diffAreas.includes(area)) : []);
+        setDiffMajor(state.diffMajor === true);
         const typedTime = typeof state.occurredLocal === "string" ? state.occurredLocal : "";
         const age = Date.now() - Number(draft.savedAtMs);
         setOccurredLocal(typedTime);
@@ -339,7 +351,7 @@ export default function HomeCareEntryForm({
     if (!device || !touchedRef.current) return undefined;
     const timer = setTimeout(saveDraftNow, DRAFT_SAVE_DELAY_MS);
     return () => clearTimeout(timer);
-  }, [device, saveDraftNow, kind, contactMode, text, occurredLocal, companion, incidentType, assessment, actions, visitMinutes, done, skipped, extra]);
+  }, [device, saveDraftNow, kind, contactMode, text, occurredLocal, companion, incidentType, assessment, actions, visitMinutes, done, skipped, extra, different, diffAreas, diffMajor]);
 
   const toggleAction = (code) => {
     touch();
@@ -417,6 +429,9 @@ export default function HomeCareEntryForm({
     setDone({});
     setSkipped({});
     setExtra([]);
+    setDifferent("");
+    setDiffAreas([]);
+    setDiffMajor(false);
     setReason("");
   };
 
@@ -433,7 +448,8 @@ export default function HomeCareEntryForm({
       isIncident ? actionCodes : [],
       reason,
       isVisit ? visitMinutes.trim() : "",
-      doneList
+      doneList,
+      askChange ? [different, diffAreas, diffMajor] : []
     ]);
     if (attemptRef.current?.signature === signature) return attemptRef.current.body;
 
@@ -463,6 +479,9 @@ export default function HomeCareEntryForm({
     } else {
       if (minutes) body.visitMinutes = minutesValue;
       if (doneList.length) body.activities = doneList;
+    }
+    if (askChange && different) {
+      body.change = different === "YES" ? { answer: "YES", areas: diffAreas, major: diffMajor } : { answer: "NO" };
     }
     if (correcting) {
       body.reason = reason;
@@ -518,6 +537,10 @@ export default function HomeCareEntryForm({
     if (sendingRef.current) return;
     if (reasonMissing) {
       setError(t("home_care.visit.reason_missing"));
+      return;
+    }
+    if (changed && !diffAreas.length) {
+      setError(t("home_care.change.area_missing"));
       return;
     }
     sendingRef.current = true;
@@ -724,6 +747,73 @@ export default function HomeCareEntryForm({
               ))}
             </div>
           </div>
+        </fieldset>
+      ) : null}
+
+      {/* „Kas midagi oli teisiti?" (K5-a): „ei" on üks puudutus; „jah" küsib valdkonna ja ühe lause. */}
+      {askChange ? (
+        <fieldset className="hc-fieldset">
+          <legend className="hc-label">{t("home_care.change.question")}</legend>
+          <div className="hc-chips" role="group" aria-label={t("home_care.change.question")}>
+            {["NO", "YES"].map((value) => (
+              <button
+                key={value}
+                type="button"
+                className="hc-chip"
+                aria-pressed={different === value}
+                onClick={() => {
+                  touch();
+                  setDifferent(different === value ? "" : value);
+                }}
+              >
+                {t(`home_care.change.answers.${value}`)}
+              </button>
+            ))}
+          </div>
+          {changed ? (
+            <>
+              <span className="hc-label">{t("home_care.change.area_label")}</span>
+              <div className="hc-chips" role="group" aria-label={t("home_care.change.area_label")}>
+                {CARE_CHANGE_AREAS.map((area) => (
+                  <button
+                    key={area}
+                    type="button"
+                    className="hc-chip"
+                    aria-pressed={diffAreas.includes(area)}
+                    onClick={() => {
+                      touch();
+                      setDiffAreas((current) => (current.includes(area) ? current.filter((item) => item !== area) : [...current, area]));
+                    }}
+                  >
+                    {t(`home_care.change.areas.${area}`)}
+                  </button>
+                ))}
+              </div>
+              {usualState.filter((item) => diffAreas.includes(item.area)).length ? (
+                <ul className="hc-list hc-list--plain">
+                  {usualState
+                    .filter((item) => diffAreas.includes(item.area))
+                    .map((item) => (
+                      <li key={item.area} className="hc-sub">
+                        {t("home_care.change.usually", { area: t(`home_care.change.areas.${item.area}`), text: item.text })}
+                      </li>
+                    ))}
+                </ul>
+              ) : null}
+              <label className="hc-check">
+                <input
+                  type="checkbox"
+                  checked={diffMajor}
+                  onChange={() => {
+                    touch();
+                    setDiffMajor((current) => !current);
+                  }}
+                />
+                <span>{t("home_care.change.major")}</span>
+              </label>
+              <p className="hc-hint">{t("home_care.change.yes_hint")}</p>
+            </>
+          ) : null}
         </fieldset>
       ) : null}
 

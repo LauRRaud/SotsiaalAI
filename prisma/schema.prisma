@@ -8239,6 +8239,8 @@ model CareClient {
   moneyEntries       CareMoneyEntry[]
   supplies           CareClientSupply[]
   doorSteps          CareDoorStep[]
+  usualStates        CareUsualState[]
+  changeSignals      CareChangeSignal[]
 
   @@unique([organizationId, internalCode])
   @@index([organizationId, status, displayName])
@@ -8523,6 +8525,56 @@ model CareDoorStep {
 /// Jälgitav varu kliendi kodus (K4-e, kava II.6.11): mis varu, kes täiendab ja viimane
 /// märgitud seis. Rida ei kustutata (jälgimine lõpetatakse, `endedAt`). Kliendi juures on
 /// iga varu kohta üks kehtiv rida (osaline unikaalindeks migratsioonis).
+/// KODUTEENUS K5-a — kliendi TAVALINE SEIS ühes valdkonnas (kava II.6.2): kuidas tal
+/// tavaliselt läheb. Selle järgi hindab hooldaja, kas täna oli midagi teisiti. Üks kehtiv
+/// rida valdkonna kohta (osaline unikaalne indeks migratsioonis); uus tekst lõpetab eelmise.
+model CareUsualState {
+  id             String @id @default(cuid())
+  organizationId String
+  clientId       String
+  /// MOBILITY | EATING | MOOD | MEMORY | SKIN_PAIN | HOME (CHECK migratsioonis).
+  area           String
+  text           String
+
+  createdByMembershipId String?
+  createdByName         String?
+  createdAt             DateTime  @default(now())
+  endedAt               DateTime?
+  endedByMembershipId   String?
+
+  client CareClient @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@index([clientId, endedAt])
+  @@index([organizationId])
+}
+
+/// KODUTEENUS K5-a — MÄRKAMINE, mis vajab hooldusjuhi vastust: kaks eri hooldajat märkisid
+/// 14 päeva jooksul sama valdkonna (TWO_WORKERS) või üks märkis suure muutuse (MAJOR).
+/// Üks lahtine kliendi ja valdkonna kohta (osaline unikaalne indeks migratsioonis).
+/// Vastatud rida ei muudeta.
+model CareChangeSignal {
+  id             String  @id @default(cuid())
+  organizationId String
+  clientId       String
+  area           String
+  reason         String
+  /// Kirje, mis märkamise avas. Ilma välisvõtmeta: kirjeid ei kustutata.
+  entryId        String?
+
+  openedAt              DateTime  @default(now())
+  handledAt             DateTime?
+  handledByMembershipId String?
+  handledByName         String?
+  /// TALKED_CLIENT | TOLD_RELATIVE | TOLD_DOCTOR | TOLD_SOCIAL_WORKER | WATCHING | NO_ACTION.
+  outcome               String?
+  note                  String?
+
+  client CareClient @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@index([clientId, openedAt])
+  @@index([organizationId, handledAt])
+}
+
 model CareClientSupply {
   id             String  @id @default(cuid())
   organizationId String
@@ -8875,6 +8927,12 @@ model CareClientEntry {
   /// KÄIGU KIRJE (K2-d): käigu kestus minutites. Ainult käigul (kontakti viis
   /// VISIT; selle hoiab rakendus). Tehtud toimingud on `activities`.
   visitMinutes Int?
+
+  /// „KAS MIDAGI OLI TEISITI?" (K5-a): vastus käigu lõpu küsimusele. NULL = ei
+  /// vastatud. Valdkonnad ja „suur muutus" ainult vastusega YES (CHECK migratsioonis).
+  changeAnswer String?
+  changeAreas  String[] @default([])
+  changeMajor  Boolean  @default(false)
 
   /// „Kaasas": teine töötaja samal käigul.
   companionMembershipId String?

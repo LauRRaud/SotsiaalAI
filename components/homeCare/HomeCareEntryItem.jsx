@@ -196,6 +196,19 @@ export default function HomeCareEntryItem({
         </div>
       ) : null}
 
+      {/* „Kas midagi oli teisiti?" (K5-a): ainult vastus „jah" on päevikus rida. */}
+      {entry.change?.answer === "YES" ? (
+        <p className="hc-entry__meta">
+          {t("home_care.change.entry_line", { areas: entry.change.areas.map((area) => t(`home_care.change.areas.${area}`)).join(", ") })}
+          {entry.change.major ? (
+            <>
+              {" "}
+              <span className="hc-badge hc-badge--warn">{t("home_care.change.major_badge")}</span>
+            </>
+          ) : null}
+        </p>
+      ) : null}
+
       {incident && !retracted && incident.assessment ? (
         <p className="hc-entry__meta">
           {t("home_care.incident.assessment_label")}: {incident.assessment}

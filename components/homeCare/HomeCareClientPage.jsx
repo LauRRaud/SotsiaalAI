@@ -10,6 +10,7 @@ import { CARE_CLIENT_STATUSES, CARE_ENTRY_KINDS, CARE_STATUS_REASONS, CareClient
 
 import HomeCareCallNote from "./HomeCareCallNote";
 import HomeCareCard from "./HomeCareCard";
+import HomeCareChangeSignals from "./HomeCareChangeSignals";
 import HomeCareClientForm from "./HomeCareClientForm";
 import HomeCareDecisionView, { minutesLabel } from "./HomeCareDecisionView";
 import HomeCareEntryForm from "./HomeCareEntryForm";
@@ -26,6 +27,7 @@ import HomeCareSlotList from "./HomeCareSlotList";
 import HomeCareSupplies from "./HomeCareSupplies";
 import HomeCareWorkNature from "./HomeCareWorkNature";
 import HomeCareTeam from "./HomeCareTeam";
+import HomeCareUsualState from "./HomeCareUsualState";
 import {
   ACCESS_REASON_REQUIRED,
   HomeCareAccessProvider,
@@ -387,6 +389,18 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
         onSaved={upsertEntry}
       />
 
+      {/* Märkamised, mis ootavad vastust (K5-a): ainult hooldusjuhile, enne muud, sest need on tema teha. */}
+      {access.isCoordinator ? <HomeCareChangeSignals organizationId={organizationId} initial={data.changeSignals} timeZone={timeZone} /> : null}
+
+      {/* Tavaline seis (K5-a): selle järgi hindab hooldaja, kas täna oli midagi teisiti. */}
+      <HomeCareUsualState
+        organizationId={organizationId}
+        clientId={client.id}
+        initial={data.usualState || []}
+        canEdit={canWrite && access.canEditCard}
+        onChanged={(usualState) => setData((current) => ({ ...current, usualState }))}
+      />
+
       {/* Eeltingimus enne teenuse algust (K4-a): kuni see on täitmata, teenust ei alustata. */}
       <HomeCarePreconditions
         organizationId={organizationId}
@@ -515,6 +529,7 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
             clientName={client.displayName}
             timeZone={timeZone}
             plan={data.plan}
+            usualState={data.usualState || []}
             onSaved={upsertEntry}
           />
           {/* Kõne ei ole käik: selle märkimine ei tohi nõuda vormi täitmist. */}

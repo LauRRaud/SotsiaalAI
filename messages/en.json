@@ -6694,7 +6694,8 @@
       "home_care_concern_raised": "There is a new concern for the care coordinator in home care",
       "home_care_incident_assigned": "A home care incident was assigned to you",
       "home_care_visits_changed": "Your home care visits changed",
-      "home_care_obstacle_reported": "A care worker reported an obstacle"
+      "home_care_obstacle_reported": "A care worker reported an obstacle",
+      "home_care_change_noticed": "Care workers noticed a change"
     },
     "center": {
       "title": "Notifications",
@@ -12734,7 +12735,14 @@
       "supply_state_required": "Choose the state of the supply.",
       "door_steps_invalid": "The steps must be a list.",
       "door_steps_too_many": "There can be up to {limit} steps.",
-      "status_source_required": "Write who told you."
+      "status_source_required": "Write who told you.",
+      "change_answer_invalid": "The answer to the question is not understood.",
+      "change_area_invalid": "Unknown area.",
+      "change_area_required": "Choose what was different.",
+      "change_text_required": "Write in one sentence what was different.",
+      "change_outcome_required": "Choose what you did.",
+      "change_signal_not_found": "The noticed change was not found.",
+      "change_signal_handled": "This noticed change has already been answered."
     },
     "incidents": {
       "title": "Incident register",
@@ -13240,7 +13248,9 @@
       "supplies_open_empty": "No followed supply is running low.",
       "away_long_title": "Away for over a month",
       "away_long_empty": "Nobody has been away for over a month.",
-      "away_since": "away since {date} ({days} days)"
+      "away_since": "away since {date} ({days} days)",
+      "changes_open_title": "Noticed changes waiting for an answer",
+      "changes_open_empty": "No noticed change is waiting for an answer."
     },
     "visit": {
       "title": "What you did",
@@ -13682,6 +13692,66 @@
       "preconditions_open": "{count} preconditions are open: mark them as no longer needed.",
       "away_paused": "Visits are paused. The visit pattern stays and the visits continue when you mark the client as on the service again.",
       "away_keys": "The organisation holds {count} of this client's keys. Agree who looks after the home (heating, pet, perishable food, post)."
+    },
+    "usual": {
+      "title": "Usual state",
+      "none": "The usual state has not been described yet. A description helps a covering worker notice when something is different.",
+      "add": "Describe the usual state",
+      "edit": "Change",
+      "edit_hint": "Write briefly how the client usually does. Write what can be seen, not a judgement. An area left empty is not shown.",
+      "save": "Save",
+      "cancel": "Cancel",
+      "examples": {
+        "MOBILITY": "For example: moves indoors with a rollator, does not use stairs alone",
+        "EATING": "For example: eats without help, drinks about a litre a day",
+        "MOOD": "For example: talkative, likes to speak about the grandchildren",
+        "MEMORY": "For example: knows the weekday, takes medicines without help",
+        "SKIN_PAIN": "For example: skin intact, knees ache in the morning",
+        "HOME": "For example: kitchen tidy, bed made"
+      }
+    },
+    "change": {
+      "question": "Was anything different from usual?",
+      "answers": {
+        "NO": "No",
+        "YES": "Yes"
+      },
+      "area_label": "What was different",
+      "areas": {
+        "MOBILITY": "Moving",
+        "EATING": "Eating and drinking",
+        "MOOD": "Mood and contact",
+        "MEMORY": "Memory and clarity",
+        "SKIN_PAIN": "Skin and pain",
+        "HOME": "State of the home"
+      },
+      "usually": "{area}, usually: {text}",
+      "major": "A big change: the coordinator has to know at once",
+      "yes_hint": "Write below in one sentence what you saw. If the person needs help now, call 112 and the coordinator: this mark does not replace calling for help.",
+      "area_missing": "Choose what was different.",
+      "entry_line": "Different from usual: {areas}",
+      "major_badge": "big change",
+      "signals_title": "Noticed changes",
+      "signals_hint": "Care workers have noticed a change. Read their entries in the diary and mark what you did.",
+      "reasons": {
+        "TWO_WORKERS": "two care workers marked the same thing within two weeks",
+        "MAJOR": "a care worker marked a big change"
+      },
+      "waiting_today": "opened today",
+      "waiting_days": "waiting for an answer for {days} days",
+      "answer": "Answer",
+      "outcome_label": "What you did",
+      "outcomes": {
+        "TALKED_CLIENT": "spoke to the client",
+        "TOLD_RELATIVE": "told a relative",
+        "TOLD_DOCTOR": "told the family doctor's practice",
+        "TOLD_SOCIAL_WORKER": "told the social worker",
+        "WATCHING": "we keep watching",
+        "NO_ACTION": "no action needed"
+      },
+      "note_label": "Note (if needed)",
+      "answer_save": "Mark as answered",
+      "answered_by": "{name}, {date}"
     }
   },
   "stage": {

@@ -6694,7 +6694,8 @@
       "home_care_concern_raised": "Koduteenuses on uus mure hooldusjuhile",
       "home_care_incident_assigned": "Sulle määrati koduteenuse erijuhtum",
       "home_care_visits_changed": "Sinu koduteenuse käigud muutusid",
-      "home_care_obstacle_reported": "Hooldaja teatas takistusest"
+      "home_care_obstacle_reported": "Hooldaja teatas takistusest",
+      "home_care_change_noticed": "Hooldajad märkasid muutust"
     },
     "center": {
       "title": "Teavitused",
@@ -12734,7 +12735,14 @@
       "supply_state_required": "Vali varu seis.",
       "door_steps_invalid": "Sammud peavad olema loendina.",
       "door_steps_too_many": "Samme võib olla kuni {limit}.",
-      "status_source_required": "Kirjuta, kellelt teade tuli."
+      "status_source_required": "Kirjuta, kellelt teade tuli.",
+      "change_answer_invalid": "Vastus küsimusele ei ole arusaadav.",
+      "change_area_invalid": "Tundmatu valdkond.",
+      "change_area_required": "Vali, mis oli teisiti.",
+      "change_text_required": "Kirjuta ühe lausega, mis oli teisiti.",
+      "change_outcome_required": "Vali, mida tegid.",
+      "change_signal_not_found": "Märkamist ei leitud.",
+      "change_signal_handled": "Sellele märkamisele on juba vastatud."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -13240,7 +13248,9 @@
       "supplies_open_empty": "Ükski jälgitav varu ei ole lõppemas.",
       "away_long_title": "Ajutiselt ära üle kuu",
       "away_long_empty": "Keegi ei ole olnud ära üle kuu.",
-      "away_since": "ära alates {date} ({days} päeva)"
+      "away_since": "ära alates {date} ({days} päeva)",
+      "changes_open_title": "Märgatud muutused ootavad vastust",
+      "changes_open_empty": "Vastuseta märkamisi ei ole."
     },
     "visit": {
       "title": "Mida tegid",
@@ -13682,6 +13692,66 @@
       "preconditions_open": "Täitmata eeltingimusi on {count}: märgi, et neid ei ole enam vaja.",
       "away_paused": "Käigud on peatatud. Käigumuster jääb alles ja käigud jätkuvad, kui märgid kliendi uuesti teenusele.",
       "away_keys": "Asutuse käes on selle kliendi võtmeid {count}. Lepi kokku, kes kodul silma peal hoiab (küte, lemmikloom, riknev toit, post)."
+    },
+    "usual": {
+      "title": "Tavaline seis",
+      "none": "Tavalist seisu ei ole veel kirjeldatud. Kirjeldus aitab asendajal märgata, kui midagi on teisiti.",
+      "add": "Kirjelda tavalist seisu",
+      "edit": "Muuda",
+      "edit_hint": "Kirjuta lühidalt, kuidas kliendil tavaliselt läheb. Kirjuta seda, mida on näha, mitte hinnangut. Tühjaks jäetud valdkonda ei näidata.",
+      "save": "Salvesta",
+      "cancel": "Loobu",
+      "examples": {
+        "MOBILITY": "Näiteks: liigub toas rulaatoriga, trepist üksi ei käi",
+        "EATING": "Näiteks: sööb ise, joob päevas umbes liitri",
+        "MOOD": "Näiteks: jutukas, räägib meelsasti lastelastest",
+        "MEMORY": "Näiteks: teab nädalapäeva, ravimeid võtab ise",
+        "SKIN_PAIN": "Näiteks: nahk terve, põlved valutavad hommikuti",
+        "HOME": "Näiteks: köök korras, voodi tehtud"
+      }
+    },
+    "change": {
+      "question": "Kas midagi oli teisiti kui tavaliselt?",
+      "answers": {
+        "NO": "Ei",
+        "YES": "Jah"
+      },
+      "area_label": "Mis oli teisiti",
+      "areas": {
+        "MOBILITY": "Liikumine",
+        "EATING": "Söömine ja joomine",
+        "MOOD": "Meeleolu ja suhtlus",
+        "MEMORY": "Mälu ja selgus",
+        "SKIN_PAIN": "Nahk ja valu",
+        "HOME": "Kodu kord"
+      },
+      "usually": "{area}, tavaliselt: {text}",
+      "major": "Suur muutus: hooldusjuht peab sellest kohe teadma",
+      "yes_hint": "Kirjuta allpool ühe lausega, mida nägid. Kui inimene vajab abi kohe, helista 112 ja hooldusjuhile: see märge ei asenda abi kutsumist.",
+      "area_missing": "Vali, mis oli teisiti.",
+      "entry_line": "Teisiti kui tavaliselt: {areas}",
+      "major_badge": "suur muutus",
+      "signals_title": "Märgatud muutused",
+      "signals_hint": "Hooldajad on märganud muutust. Vaata päevikust nende kirjeid ja märgi, mida tegid.",
+      "reasons": {
+        "TWO_WORKERS": "kaks hooldajat märkisid sama asja kahe nädala jooksul",
+        "MAJOR": "hooldaja märkis suure muutuse"
+      },
+      "waiting_today": "tekkis täna",
+      "waiting_days": "ootab vastust {days} päeva",
+      "answer": "Vasta",
+      "outcome_label": "Mida tegid",
+      "outcomes": {
+        "TALKED_CLIENT": "rääkisin kliendiga",
+        "TOLD_RELATIVE": "teatasin lähedasele",
+        "TOLD_DOCTOR": "teatasin perearstikeskusele",
+        "TOLD_SOCIAL_WORKER": "teatasin sotsiaaltöötajale",
+        "WATCHING": "jälgime edasi",
+        "NO_ACTION": "ei vaja tegevust"
+      },
+      "note_label": "Märkus (kui vaja)",
+      "answer_save": "Märgi vastatuks",
+      "answered_by": "{name}, {date}"
     }
   },
   "stage": {
