@@ -5110,3 +5110,38 @@ test('töötaja kaart: taustakontroll ja koolitused, ainult kogu asutuse hooldus
   assert.deepEqual(audit.map((entry) => entry.meta.change).sort(), ['added', 'added', 'added', 'added', 'removed']);
   for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['change', 'membershipId', 'organizationId']);
 });
+
+test('püsivuse näit kliendi lehel ja üle aasta vanad ohuread tähtaegade lehel', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, deps())).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi' }, deps())).client;
+  for (const member of [f.members.anu, f.members.bert]) await addTeamMember(lead, linda.id, { membershipId: member.id }, deps());
+  await addTeamMember(lead, peeter.id, { membershipId: f.members.anu.id }, deps());
+
+  /* NÄIT: käikudeta kliendil seda ei ole. */
+  assert.equal((await openClient(anu, linda.id, deps())).continuity, null);
+  const visit = (who, when) => createEntry(who, linda.id, { kind: 'NOTE', contactMode: 'VISIT', text: 'Käik', visitMinutes: 30, occurredAt: when }, deps(at(when)));
+  for (const day of ['01', '03', '05', '07']) await visit(anu, `2026-10-${day}T09:00:00Z`);
+  await visit(bert, '2026-10-02T09:00:00Z');
+  /* Üle nelja nädala vana käik, telefonikõne ja tühistatud käik näitu ei lähe. */
+  await visit(lead, '2026-09-01T09:00:00Z');
+  await createEntry(lead, linda.id, { kind: 'NOTE', contactMode: 'PHONE', text: 'Helistas', callTopic: 'STATUS', callCaller: 'CLIENT' }, deps());
+  const wrong = await visit(lead, '2026-10-08T09:00:00Z');
+  await retractEntry(lead, linda.id, wrong.entry.id, { reason: 'Vale klient', revision: wrong.entry.revision }, deps());
+  assert.deepEqual((await openClient(anu, linda.id, deps())).continuity, { days: 28, visits: 5, workers: 2, topWorkers: 1, topPercent: 80 });
+
+  /* OHUREAD: üle aasta vana ohurida on nimekirjas; värske ohurida, vana muu liigi rida ja lõpetatud rida ei ole. */
+  const old = at('2025-09-01T08:00:00Z');
+  const line = (clientId, kind, createdAt, endedAt = null) =>
+    db.careClientCardLine.create({ data: { clientId, kind, text: 'Rida', position: 0, addedByMembershipId: f.members.lead.id, createdAt, endedAt } });
+  await line(linda.id, 'RISK', old);
+  await line(linda.id, 'RISK', at('2026-08-01T08:00:00Z'));
+  await line(linda.id, 'ACCESS', old);
+  await line(peeter.id, 'RISK', old, at('2026-01-01T08:00:00Z'));
+  await line(peeter.id, 'RISK', at('2026-06-01T08:00:00Z'));
+  const due = (await getDeadlines(lead, deps())).riskLinesDue;
+  assert.deepEqual(due.map((item) => [item.client.displayName, item.lines, item.oldestOn, item.days]), [['Linda Tamm', 2, '2025-09-01', 403]]);
+});

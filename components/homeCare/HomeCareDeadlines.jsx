@@ -127,6 +127,10 @@ export default function HomeCareDeadlines({ context, deadlines }) {
         )
       )}
 
+      {section("risk_lines_due", deadlines.riskLinesDue || [], (item) =>
+        clientLine(item, t("home_care.deadlines.risk_lines_line", { count: item.lines, date: planDayLabel(item.oldestOn) }))
+      )}
+
       {/* Töötajate kaardid (K5-e): ainult kogu asutuse hooldusjuhile; rida viib töötajate lehele. */}
       {(deadlines.workerRecordsDue || []).length
         ? section("workers_due", deadlines.workerRecordsDue, (item) => (

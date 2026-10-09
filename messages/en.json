@@ -13423,7 +13423,10 @@
       "changes_open_title": "Noticed changes waiting for an answer",
       "changes_open_empty": "No noticed change is waiting for an answer.",
       "workers_due_title": "Workers' trainings and background checks",
-      "workers_due_empty": "Nothing expires."
+      "workers_due_empty": "Nothing expires.",
+      "risk_lines_due_title": "Risk lines due for review",
+      "risk_lines_due_empty": "No risk line is over a year old.",
+      "risk_lines_line": "{count} risk lines, the oldest on the card since {date}: go through them with the team and see whether they still hold"
     },
     "visit": {
       "title": "What you did",
@@ -14034,6 +14037,10 @@
       "done_on": "done {date}",
       "valid_until": "valid until {date} ({when})",
       "expired": "expired"
+    },
+    "continuity": {
+      "one": "In the last four weeks one worker came here ({visits} visits).",
+      "many": "In the last four weeks {workers} different workers came here; {top} of them made {percent}% of the visits ({visits} visits)."
     }
   },
   "stage": {
