@@ -1,6 +1,6 @@
 # ADR-098: abivahendite info uuendamine kord kuus
 
-Kuupäev: 06.10.2026. Seis: skriptid ja seis on paigas, esimene päris käivitus tehtud; ajastatud töö on loodud. Korpuse täiendust selle tee kaudu ei ole veel tehtud (esimesel käivitusel ei olnud midagi rakendada).
+Kuupäev: 06.10.2026. Seis: skriptid ja seis on paigas, esimene päris käivitus tehtud; ajastatud töö on loodud. Korpuse täiendust selle tee kaudu ei ole veel tehtud (esimesel käivitusel ei olnud midagi rakendada). Alates 09.10.2026 loeb sama ajastatud töö abivahendite värskenduse järel ka 330 ametlikku juhislehte ([ADR-116](adr-116-official-pages-monthly-refresh.md)); kuu lagi 0,10 USD on mõlemale ühine.
 
 ## Probleem
 
@@ -82,7 +82,7 @@ Lugemine, võrdlus ja aruanne on tasuta. Raha kulub ainult siis, kui on mida kor
    node scripts/rag-v2-corpus-refresh.mjs package --store "$STORE" --policy "<eelmine policy.json>" --review $D/review.json --out $D/ship
    ```
 
-   **Enne üleslaadimist kaks kontrolli** (07.10.2026, v66 õppetund, ADR-099): (1) korpuse lõigud pluss täienduse lõigud ei tohi ületada indeksi mahupiiri (`lib/rag-v2/search/capacity.js`: 80 000 lõiku ja 10 000 dokumenti põlvkonna kohta, ADR-100), muidu keeldub serveri plaan pärast seda, kui hoidla pea on juba tõstetud; (2) serveri kettal peab olema ruumi umbes 380 KB iga uue lõigu kohta, lisaks pakk ja 1,5 GB järgmise väljalaske jaoks. Dokumendi märksõnad (`tags`) on otsinguabi iga lõigu juures: ühist märksõna kogu partiile ei panda.
+   **Enne üleslaadimist kaks kontrolli** (07.10.2026, v66 õppetund, ADR-099): (1) korpuse lõigud pluss täienduse lõigud ei tohi ületada indeksi mahupiiri (`lib/rag-v2/search/capacity.js`: 100 000 lõiku ja 10 000 dokumenti põlvkonna kohta, ADR-108), muidu keeldub serveri plaan pärast seda, kui hoidla pea on juba tõstetud; (2) serveri kettal peab olema ruumi umbes 380 KB iga uue lõigu kohta, lisaks pakk ja 1,5 GB järgmise väljalaske jaoks. Dokumendi märksõnad (`tags`) on otsinguabi iga lõigu juures: ühist märksõna kogu partiile ei panda.
 
    Serverisse: `ship.json` (väike, tavalise ssh-vooga), `policy.json` ja `ship.tgz` skriptiga `rag-v2-upload-parts.sh` kausta `/home/ubuntu/rag-v2-work/rag-v2-v25/` nimedega `ship-v$N.json`, `policy-v$N.json`, `ship-v$N.tgz`. Päeva hinnafail (`…/prices/price-<kuupäev>.json`, `text-embedding-3-large`, kontrollitud ametlikult lehelt; plaan keeldub üle 24 tunni vanusest). Siis `rag-v2-corpus-run-guarded.sh` serveri töökausta ja käivitus lahti ühendatult: versioon, eelmine versioon, plaanifail, ülempiir (kuu laest järelejäänu), lubatud sisendite arv (lõikude arv pluss kümnendik) ja alus kahes keeles.
 

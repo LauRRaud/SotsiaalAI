@@ -1,6 +1,6 @@
 # ADR-116: ametlike juhislehtede igakuine värskendus
 
-Kuupäev: 09.10.2026. Teostus Claude Opus 5.5. Omanik: „Hoia ametlikud juhislehed igakuiselt värsked“. Seis: **käsk ja testid on tehtud, proovilugemine päris lehtedel tehtud; ajakava ei ole seatud ja midagi ei ole ostetud.** Ajakava ja esimene päris ring ootavad omaniku sõna.
+Kuupäev: 09.10.2026. Teostus Claude Opus 5.5. Omanik: „Hoia ametlikud juhislehed igakuiselt värsked“. Seis: **käsk ja testid on tehtud, proovilugemine päris lehtedel tehtud; ajakava on seatud 09.10.2026 õhtul omaniku sõnal (kuu 1. ja 3. kuupäev); midagi ei ole ostetud.** Esimene päris ring on 1. novembril 2026.
 
 ## Probleem
 
@@ -49,12 +49,27 @@ Käsk luges `--dry-run`-iga kõik 330 lehte (umbes 20 minutit; politsei 42 lehte
 
 Ettepanekuid 0, kättesaamatuid 0. Esimese partii lehed olid salvestatud päev varem, kolmanda omad tund varem. Ühtegi lehte, mis loeks end muutunuks ilma sisulise muutuseta, see lugemine ei näidanud; korjajat ei olnud vaja parandada.
 
-## Ettepanek ajakavaks (seadmata, ootab omaniku sõna)
+## Ajakava (seatud 09.10.2026)
+
+Küsisin omanikult, kas sean värskenduse ajakavasse. Vastus: „Jah, 1. ja 3. kuupäeval“, pakutud tingimustega: lugemine lisatakse olemasolevasse ajastatud töösse abivahendite värskenduse järele, kuu lagi 0,10 USD jääb mõlemale ühiseks ja ost toimub ainult siis, kui mõni leht on muutunud.
+
+Seatud nii:
 
 - **Millal:** samadel päevadel mis abivahendite värskendus, kuu 1. ja 3. kuupäeval, selle järel. Kaks lugemist on vajalikud, sest muudatus rakendub teisel samal lugemisel; 3. kuupäeva ringi järel on asendatud lehed täienduse ootel.
-- **Kulu:** lugemine on tasuta. Täiendus ostab ainult muutunud lõigud; leht annab keskmiselt 6–10 lõiku ja lõik maksab umbes 0,00004 USD, nii et kuu muudatused on eelduslikult alla 0,02 USD. Ettepanek: abivahendite värskenduse kuu lagi 0,10 USD jääb ühiseks mõlemale.
-- **Kes vaatab kinni peetud lehti:** ajastatud töö näitab need aruandes; omanik otsustab või annab ülevaatuse mulle. Seni jääb vana koopia.
+- **Kulu:** lugemine on tasuta. Täiendus ostab ainult muutunud lõigud; leht annab keskmiselt 6–10 lõiku ja lõik maksab umbes 0,00004 USD, nii et kuu muudatused on eelduslikult alla 0,02 USD. Abivahendite värskenduse kuu lagi 0,10 USD on mõlemale ühine.
+- **Kes vaatab kinni peetud lehti:** ajastatud töö näitab need aruandes; omanik otsustab või annab ülevaatuse mulle. Seni jääb vana koopia. Töö ise ühtegi sellist lehte ei luba.
 - **Kus töötab:** nagu abivahendite värskendus, omaniku arvutis Claude'i rakenduses; seis põhikausta `tmp/rag-v2-official-refresh` all.
+
+### Mis ajastatud töös muutus
+
+Sama töö (kell 9.00 kuu 1. ja 3. kuupäeval; nimi nüüd „Abivahendite info ja ametlike juhislehtede uuendamine“) teeb kaks osa järjest, mitte korraga, sest mõlemad loevad Sotsiaalkindlustusameti saiti ja paus päringute vahel kehtib jooksu kaupa:
+
+1. abivahendite värskendus nagu seni ([ADR-098](adr-098-monthly-assistive-refresh.md));
+2. ametlike lehtede lugemine selle käsuga (umbes 25 minutit).
+
+Kui kumbki midagi ei asendanud ega oota, lõpeb töö aruandega ja raha ei kulu. Kui ametlik leht asendati, lähevad asendatud leht ja registri räsid samal käivitusel PR-iga koodihoidlasse, ka siis, kui täiendust ei osteta (seis loeb lehe juba asendatuks). Täiendus tehakse ainult siis, kui see mahub kuu lakke; kui ootavad mõlemad osad, tehakse kaks täiendust järjest (abivahendid versioon N, ametlikud lehed N+1). Kuu kulu peab töö ühes failis mõlema osa kohta (`tmp/rag-v2-assistive-refresh/reports/spending-<aasta-kuu>.json`).
+
+Töö ei tee: kinni peetud lehe lubamist, kättesaamatu lehe lugemist teist teed pidi, loendis oleva, kuid salvestamata lehe lisamist.
 
 ## Kontrollitud
 
@@ -65,6 +80,8 @@ Ettepanekuid 0, kättesaamatuid 0. Esimese partii lehed olid salvestatud päev v
 ## Kontrollimata
 
 - Teine lugemine ja asendamine päris lehel: proovilugemine ainult vaatab. Esimene päris ring teeb ettepanekud, teine asendab.
+- Ajastatud töö uue juhisega ei ole kordagi käivitunud (töö ise ei ole üldse veel käivitunud; esimene kord on 1. novembril 2026). Töö jookseb omaniku arvutis ainult siis, kui Claude'i rakendus on avatud; kinnise rakenduse korral käivitub ta järgmisel avamisel.
+- Ametlike lehtede täiendust ajastatud töö kaudu ei ole tehtud; muutunud veebilehe viimine korpusesse uue versioonina on tehtud üks kord käsitsi (v64).
 - Registri uuendamine ja ootel loend päris asendusega (testitud ainult funktsioonidena).
 - Kas ametid muudavad lehti nii, et sisu räsi muutub ilma sisulise muutuseta (kuupäev jaluses, vahelduv plokk): üks lugemine päev pärast salvestamist seda ei näita.
 
