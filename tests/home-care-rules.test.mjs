@@ -4,6 +4,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { coordinatorScope, isCoordinatorFor, visibleClientsWhere, personName } from '../lib/homeCare/access.js';
+import { chronologyContentHash } from '../lib/homeCare/chronology.js';
+import {
+  CHRONOLOGY_DOCUMENT_CSP,
+  CHRONOLOGY_DOCUMENT_HEADERS,
+  escapeHtml,
+  renderChronologyHtml
+} from '../lib/homeCare/chronologyDocument.js';
 import { HOME_CARE_LIMITS } from '../lib/homeCare/constants.js';
 import { serializeEntry } from '../lib/homeCare/entries.js';
 import { assertHomeCareEnabled, isHomeCareEnabled } from '../lib/homeCare/flags.js';
@@ -313,4 +320,60 @@ test('otsinguabi: sõna, tüvi ja algvorm; morfoloogia puudumine ei takista', as
   await assert.rejects(entrySearchWhere(null, { analyzer }), (error) => error.status === 400);
   /* Kuni kuus otsisõna. */
   assert.equal((await entrySearchWhere('aa bb cc dd ee ff gg hh', { analyzer: null })).length, 6);
+});
+
+test('kronoloogia dokument: kogu tekst on paotatud, skripte ei ole, pealkirjas ei ole nime', () => {
+  const release = {
+    clientName: 'Linda <b>Tamm</b>',
+    periodFromDay: '2026-10-07',
+    periodToDay: '2026-10-09',
+    requester: 'PPA "uurija" & Co',
+    basis: "Päring nr 12-3/45 <img src=x onerror=alert(1)>",
+    registryRef: '2026/1-9/77',
+    summary: 'Esimene rida\nTeine rida </p><script>alert(2)</script>',
+    entryCount: 2,
+    contentSha256: 'a'.repeat(64),
+    createdByName: "Juta O'Juht",
+    createdAt: '2026-10-09T10:00:00.000Z'
+  };
+  const items = [
+    { position: 1, occurredAt: '2026-10-07T07:00:00.000Z', authorName: 'Anu <i>Hooldaja</i>', kind: 'NOTE', contactMode: 'VISIT', incidentType: null, text: '<script>alert(1)</script> Tõin toidu & jõin "teed".', redacted: true },
+    { position: 2, occurredAt: '2026-10-09T04:00:00.000Z', authorName: 'Anu Hooldaja', kind: 'INCIDENT', contactMode: 'PHONE', incidentType: 'FALL', text: 'Leidsin köögi põrandalt.', redacted: false }
+  ];
+  const organization = { displayName: 'Hoolekanne <A>', legalName: null, timezone: 'Europe/Tallinn', defaultLocale: 'et' };
+  const html = renderChronologyHtml({ release, items, organization });
+
+  /* Ühtegi toorest silti kasutaja tekstist lehele ei jõua. */
+  for (const raw of ['<script', '</script', '<img', '<b>', '<i>', 'onerror=alert(1)>']) assert.equal(html.includes(raw), false, raw);
+  assert.ok(html.includes('&lt;script&gt;alert(1)&lt;/script&gt; Tõin toidu &amp; jõin &quot;teed&quot;.'));
+  assert.ok(html.includes('Linda &lt;b&gt;Tamm&lt;/b&gt;'));
+  assert.ok(html.includes('Juta O&#39;Juht'));
+  assert.equal(escapeHtml(`<>&"'`), '&lt;&gt;&amp;&quot;&#39;');
+  /* Pealkirjas ei ole kliendi nime; aeg on asutuse ajavööndis; räsi on kaanelehel. */
+  assert.match(html, /<title>Kliendi kronoloogia<\/title>/);
+  assert.ok(html.includes('07.10.2026 10:00'));
+  assert.ok(html.includes('07.10.2026 – 09.10.2026'));
+  assert.ok(html.includes('a'.repeat(64)));
+  assert.ok(html.includes('Kukkumine või maast leidmine'));
+  assert.ok(html.includes('koostaja on teksti väljastamiseks lühendanud'));
+  assert.ok(html.startsWith('<!doctype html>'));
+  /* Dokument kannab poliitikat ise (rakenduse üldine päis asendab marsruudi
+     oma): silt on päises enne stiili ja skriptidele luba ei ole. */
+  const meta = `<meta http-equiv="Content-Security-Policy" content="${escapeHtml(CHRONOLOGY_DOCUMENT_CSP)}">`;
+  assert.ok(html.includes(meta));
+  assert.ok(html.indexOf(meta) < html.indexOf('<style>'));
+  assert.ok(CHRONOLOGY_DOCUMENT_CSP.includes("default-src 'none'"));
+  assert.equal(CHRONOLOGY_DOCUMENT_CSP.includes('script-src'), false);
+  /* Vastuse päised: sama poliitika teise kihina ja vahemällu ei jäeta. */
+  const csp = CHRONOLOGY_DOCUMENT_HEADERS['Content-Security-Policy'];
+  assert.ok(csp.startsWith(CHRONOLOGY_DOCUMENT_CSP));
+  assert.ok(csp.includes("frame-ancestors 'none'"));
+  assert.ok(CHRONOLOGY_DOCUMENT_HEADERS['Cache-Control'].includes('no-store'));
+
+  /* Räsi: sama sisu annab sama räsi, iga muutus teise. */
+  const input = { clientName: 'Linda', fromDay: '2026-10-07', toDay: '2026-10-09', requester: 'PPA', basis: 'Päring', registryRef: null, summary: null, items };
+  assert.equal(chronologyContentHash(input), chronologyContentHash({ ...input, items: items.map((item) => ({ ...item })) }));
+  assert.notEqual(chronologyContentHash(input), chronologyContentHash({ ...input, requester: 'KOV' }));
+  assert.notEqual(chronologyContentHash(input), chronologyContentHash({ ...input, items: [items[0]] }));
+  assert.notEqual(chronologyContentHash(input), chronologyContentHash({ ...input, items: [{ ...items[0], text: 'muu' }, items[1]] }));
 });

@@ -443,6 +443,19 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
             onChange={(next) => setData((current) => ({ ...current, team: next }))}
           />
 
+          {/* Kronoloogia koostamine on lugemine ja valik, seepärast on link olemas ka
+              siis, kui asutus ei ole kirjutatav; väljastuse loomise keelab sel
+              juhul server. */}
+          <div className="hc-row">
+            <Link
+              className="hc-btn hc-btn--quiet hc-btn--link"
+              href={`/org/${organizationId}/koduteenus/kliendid/${client.id}/kronoloogia`}
+              prefetch={false}
+            >
+              {t("home_care.chronology.link")}
+            </Link>
+          </div>
+
           {canWrite && panel === null ? (
             <div className="hc-row">
               <button className="hc-btn hc-btn--quiet" type="button" onClick={() => setPanel("details")}>

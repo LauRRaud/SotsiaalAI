@@ -8122,6 +8122,7 @@ model CareClient {
   entries   CareClientEntry[]
   accesses  CareClientAccess[]
   incidentUpdates CareIncidentUpdate[]
+  chronologyReleases CareChronologyRelease[]
 
   @@unique([organizationId, internalCode])
   @@index([organizationId, status, displayName])
@@ -8374,4 +8375,77 @@ model CareIncidentUpdate {
   @@index([entryId, createdAt])
   @@index([organizationId, createdAt])
   @@index([clientId])
+}
+
+/// KODUTEENUS K1-d — kliendi kronoloogia väljastus. Tööloend selle kohta, mis
+/// dokument, kellele ja mis alusel koostati; ametlik register on asutuse
+/// dokumendihaldus ja `registryRef` viitab sinna.
+/// MUUTUMATU (BEFORE UPDATE trigger): väljastatud dokument ei tohi hiljem
+/// muutuda, ka siis mitte, kui päeviku kirjet parandatakse. Seepärast kannavad
+/// read sisu hetkekoopiat ja siin ei ole ühtegi SetNull-viidet.
+model CareChronologyRelease {
+  id             String @id @default(cuid())
+  organizationId String
+  clientId       String
+  /// Kliendi nimi dokumendil (hetkekoopia).
+  clientName     String
+
+  /// Ajavahemik asutuse kalendripäevades (AAAA-KK-PP), mõlemad kaasa arvatud.
+  periodFromDay String
+  periodToDay   String
+
+  /// Kes küsis ja mis alusel (kaanelehel).
+  requester   String
+  basis       String
+  /// Viide asutuse dokumendiregistrisse.
+  registryRef String?
+  /// Koostaja kokkuvõte esilehel.
+  summary     String? @db.Text
+
+  entryCount    Int
+  /// Dokumendi sisu räsi: kaanelehel ja tööloendis sama, et väljatrükki saaks
+  /// hiljem tööloendiga võrrelda.
+  contentSha256 String
+
+  createdByMembershipId String
+  createdByName         String
+  /// Kordussaatmise võti (vorm annab ühele koostamiskatsele) ja räsi sellest,
+  /// mida päring ütles: sama võti teise sisuga on viga, mitte teine rida.
+  clientRequestId       String?
+  requestHash           String?
+  createdAt             DateTime @default(now())
+
+  client CareClient                  @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  items  CareChronologyReleaseItem[]
+
+  @@unique([createdByMembershipId, clientRequestId])
+  @@index([organizationId, createdAt])
+  @@index([clientId, createdAt])
+}
+
+/// Väljastatud dokumendi rida: kirje hetkekoopia väljastamise hetkel. MUUTUMATU.
+model CareChronologyReleaseItem {
+  id        String @id @default(cuid())
+  releaseId String
+  position  Int
+
+  /// Päeviku kirje, millest rida tehti, ja selle versioon väljastamise hetkel.
+  /// Tavaline ID ilma võõrvõtmeta: rida on hetkekoopia, mitte viide.
+  entryId       String
+  entryRevision Int
+
+  occurredAt   DateTime
+  authorName   String
+  kind         String
+  contactMode  String
+  incidentType String?
+  /// Väljastatud tekst. Koostaja võib kolmandate isikute info eemaldada.
+  text         String  @db.Text
+  /// TRUE = tekst erineb päeviku kirje tekstist.
+  redacted     Boolean @default(false)
+
+  release CareChronologyRelease @relation(fields: [releaseId], references: [id], onDelete: Cascade)
+
+  @@unique([releaseId, position])
+  @@index([entryId])
 }

@@ -10971,7 +10971,16 @@
       "invalid_request_id": "Vigane päringu võti.",
       "search_too_short": "Kirjuta vähemalt kaks tähte.",
       "client_ended": "Teenus on lõpetatud. Uue kirje saab lisada hooldusjuht.",
-      "incident_retract_coordinator": "Erijuhtumi tühistab hooldusjuht. Vea korral paranda kirjet või räägi hooldusjuhiga."
+      "incident_retract_coordinator": "Erijuhtumi tühistab hooldusjuht. Vea korral paranda kirjet või räägi hooldusjuhiga.",
+      "chronology_period_required": "Vali ajavahemiku algus ja lõpp.",
+      "chronology_too_many": "Ajavahemikus on liiga palju kirjeid (üle 500). Vali lühem ajavahemik.",
+      "chronology_items_required": "Vali vähemalt üks kirje.",
+      "chronology_entry_invalid": "Mõni valitud kirje ei kuulu sellesse ajavahemikku või on vahepeal tühistatud. Laadi kirjed uuesti.",
+      "chronology_entry_changed": "Mõnda valitud kirjet on pärast ülevaatamist parandatud. Vajuta „Näita kirjeid” ja vaata kirjed uuesti üle.",
+      "chronology_text_required": "Väljastatav tekst ei saa olla tühi. Jäta kirje dokumendist välja.",
+      "chronology_requester_required": "Kirjuta, kes dokumenti küsis.",
+      "chronology_basis_required": "Kirjuta, mis alusel dokument väljastatakse.",
+      "release_not_found": "Väljastust ei leitud."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -11004,6 +11013,65 @@
         "STATUS": "Seis",
         "ASSIGNED": "Vastutaja"
       }
+    },
+    "chronology": {
+      "title": "Kliendi kronoloogia",
+      "link": "Koosta kronoloogia",
+      "back": "Tagasi kliendi lehele",
+      "intro": "Vali ajavahemik ja vaata kirjed üle. Dokumenti lähevad ainult need kirjed, mille ise valid, ja tekstist saad eemaldada kolmandate isikute andmed. Päeviku kirjeid see ei muuda.",
+      "period_title": "Ajavahemik",
+      "load": "Näita kirjeid",
+      "entries_title": "Kirjed ({selected}/{total} valitud)",
+      "empty": "Selles ajavahemikus kirjeid ei ole.",
+      "include": "Lisa dokumenti",
+      "restricted": "ainult hooldusjuhile; vaikimisi välja jäetud",
+      "edit_text": "Muuda väljastatavat teksti",
+      "reset_text": "Taasta päeviku tekst",
+      "text_label": "Väljastatav tekst",
+      "edited": "tekst muudetud",
+      "details_title": "Dokumendi andmed",
+      "requester": "Kes küsis",
+      "requester_hint": "Näiteks asutus ja ametniku nimi.",
+      "basis": "Mis alusel",
+      "basis_hint": "Näiteks päringu number ja õiguslik alus.",
+      "registry_ref": "Viide asutuse dokumendiregistris (valikuline)",
+      "summary": "Kokkuvõte esilehele (valikuline)",
+      "create": "Koosta dokument",
+      "created": "Dokument on koostatud ja lisatud väljastuste loendisse.",
+      "open_document": "Ava dokument",
+      "print_hint": "Dokument avaneb uuel vahelehel. PDF-i saamiseks vali brauseris „Prindi” ja sihtkohaks „Salvesta PDF-ina”.",
+      "doc": {
+        "title": "Kliendi kronoloogia",
+        "client": "Klient",
+        "period": "Ajavahemik",
+        "requester": "Kes küsis",
+        "basis": "Alus",
+        "registry_ref": "Dokumendiregistri viide",
+        "compiled_by": "Koostas",
+        "compiled_at": "Koostatud",
+        "entry_count": "Kirjeid",
+        "content_hash": "Sisu räsi",
+        "summary": "Kokkuvõte",
+        "entries_title": "Kirjed ajajärjestuses",
+        "redacted": "koostaja on teksti väljastamiseks lühendanud",
+        "privacy_note": "Dokument sisaldab eriliiki isikuandmeid. Seda tohib kasutada ainult eesmärgil, milleks see väljastati.",
+        "scope_note": "Dokumendis on koostaja valitud kirjed kliendi koduteenuse päevikust nimetatud ajavahemikus; see ei pruugi olla kogu päevik.",
+        "print_hint": "PDF-i saamiseks vali brauseris „Prindi” ja sihtkohaks „Salvesta PDF-ina”. Seda rida trükis ei ole."
+      }
+    },
+    "releases": {
+      "title": "Väljastuste loend",
+      "link": "Väljastused",
+      "back": "Tagasi klientide juurde",
+      "intro": "Kõik koostatud kronoloogiad: kellele, mis alusel ja kes koostas. Ametlik register on asutuse dokumendihaldus; see loend on tööloend.",
+      "empty": "Väljastusi veel ei ole.",
+      "period": "Ajavahemik: {from} – {to}",
+      "entries": "Kirjeid: {count}",
+      "compiled": "Koostas {name}",
+      "requester": "Kes küsis: {value}",
+      "basis": "Alus: {value}",
+      "registry_ref": "Dokumendiregistri viide: {value}",
+      "hash": "Sisu räsi: {value}"
     }
   }
 }

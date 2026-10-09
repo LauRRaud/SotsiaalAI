@@ -49,6 +49,14 @@ import {
   listIncidents,
   locateEntryForViewer
 } from '../lib/homeCare/incidents.js';
+import {
+  chronologyContentHash,
+  createChronologyRelease,
+  draftChronology,
+  getChronologyClient,
+  getChronologyRelease,
+  listChronologyReleases
+} from '../lib/homeCare/chronology.js';
 import { getCoordinatorOverview } from '../lib/homeCare/overview.js';
 import { assertNotificationRecipient, serializeNotificationEvent } from '../lib/notifications.js';
 
@@ -1081,4 +1089,158 @@ test('päeviku otsing: sõnavormid, sõna algus, nähtavus, parandus ja tühistu
   assert.deepEqual(ids(await noMorph('riiul')), [plain.entry.id]);
   const withLemmas = await db.careClientEntry.findUnique({ where: { id: machine.entry.id }, select: { searchVersion: true } });
   assert.equal(withLemmas.searchVersion, 'vm1');
+});
+
+test('kronoloogia: mustand, väljastus hetkekoopiana, tööloend ja ligipääs', async (t) => {
+  const f = await fixture(t);
+  const north = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Põhi ${f.tag}`, type: 'TEAM' } });
+  await db.organizationCapabilityGrant.create({
+    data: { membershipId: f.members.bert.id, capability: 'HOME_CARE_COORDINATOR', scopeType: 'UNIT', scopeUnitId: north.id, validFrom: at('2026-01-01T00:00:00Z') }
+  });
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const clerk = await f.ctx(f.users.clerk, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  const { client } = await createClient(lead, { displayName: 'Linda Tamm' }, deps());
+  const { client: northClient } = await createClient(lead, { displayName: 'Põhja klient', unitId: north.id }, deps());
+  await addTeamMember(lead, client.id, { membershipId: f.members.anu.id }, deps());
+  await addTeamMember(lead, northClient.id, { membershipId: f.members.anu.id }, deps());
+
+  const add = (clientId, body) => createEntry(anu, clientId, body, deps());
+  const e1 = await add(client.id, { text: 'Tõin toidu. Naaber Mati Kask oli külas.', occurredAt: '2026-10-07T07:00:00Z' });
+  const e2 = await add(client.id, { kind: 'HANDOVER', text: 'Pesumasin lekib.', occurredAt: '2026-10-08T06:00:00Z' });
+  const e3 = await add(client.id, { kind: 'CONCERN', text: 'Poeg võtab pensioni ära.', occurredAt: '2026-10-08T09:00:00Z' });
+  const e4 = await add(client.id, { kind: 'INCIDENT', incidentType: 'FALL', text: 'Leidsin köögi põrandalt.', occurredAt: '2026-10-09T04:00:00Z' });
+  const e5 = await add(client.id, { text: 'Vale kliendi kirje.', occurredAt: '2026-10-08T07:00:00Z' });
+  const e6 = await add(client.id, { text: 'Septembri kirje.', occurredAt: '2026-09-01T07:00:00Z' });
+  const foreign = await add(northClient.id, { text: 'Teise kliendi kirje.', occurredAt: '2026-10-08T07:00:00Z' });
+  await retractEntry(lead, client.id, e5.entry.id, { reason: 'Vale klient', revision: 1 }, deps());
+  const period = { from: '2026-10-07', to: '2026-10-09' };
+
+  /* Mustand: ajavahemiku kirjed vanemast uuemani; tühistatud kirjet ei ole,
+     piiratud nähtavusega kirje on kaasas ja märgitud. */
+  const draft = await draftChronology(lead, client.id, period, deps());
+  assert.deepEqual(draft.items.map((row) => row.entryId), [e1.entry.id, e2.entry.id, e3.entry.id, e4.entry.id]);
+  assert.deepEqual(draft.items.map((row) => row.coordinatorOnly), [false, false, true, false]);
+  assert.equal(draft.client.displayName, 'Linda Tamm');
+  await expectError(draftChronology(lead, client.id, { from: '2026-10-07' }, deps()), 400, 'home_care.errors.chronology_period_required');
+  await expectError(draftChronology(lead, client.id, { from: '2026-10-09', to: '2026-10-07' }, deps()), 400, 'home_care.errors.invalid_date');
+  /* Ainult hooldusjuht, kelle skoobis klient on. */
+  await expectError(draftChronology(anu, client.id, period, deps()), 403, 'org.errors.missing_capability');
+  await expectError(draftChronology(bert, client.id, period, deps()), 403, 'home_care.errors.access_reason_required');
+  await expectError(draftChronology(clerk, client.id, period, deps()), 404, 'home_care.errors.client_not_found');
+  await expectError(getChronologyClient(anu, client.id, deps()), 403, 'org.errors.missing_capability');
+  assert.deepEqual(await getChronologyClient(lead, client.id, deps()), { id: client.id, displayName: 'Linda Tamm' });
+
+  /* Väljastus: kohustuslikud väljad ja kirjete kontroll. */
+  const base = { ...period, requester: 'PPA, uurija M. Tamm', basis: 'Päring nr 12-3/45', registryRef: '2026/1-9/77', summary: 'Kolm kirjet kolmest päevast.' };
+  const make = (who, clientId, extra) => createChronologyRelease(who, clientId, { ...base, ...extra }, deps(at('2026-10-09T10:00:00Z')));
+  const pick = (created, extra) => ({ entryId: created.entry.id, revision: 1, ...extra });
+  const one = [pick(e1)];
+  await expectError(make(lead, client.id, { items: one, requester: ' ' }), 400, 'home_care.errors.chronology_requester_required');
+  await expectError(make(lead, client.id, { items: one, basis: '' }), 400, 'home_care.errors.chronology_basis_required');
+  await expectError(make(lead, client.id, { items: [] }), 400, 'home_care.errors.chronology_items_required');
+  await expectError(make(lead, client.id, { items: [pick(e6)] }), 400, 'home_care.errors.chronology_entry_invalid');
+  await expectError(make(lead, client.id, { items: [pick(e5, { revision: 2 })] }), 400, 'home_care.errors.chronology_entry_invalid');
+  await expectError(make(lead, client.id, { items: [pick(foreign)] }), 400, 'home_care.errors.chronology_entry_invalid');
+  await expectError(make(lead, client.id, { items: [pick(e1, { text: '   ' })] }), 400, 'home_care.errors.chronology_text_required');
+  /* Versioon on kohustuslik: ilma selleta ei ole teada, mida koostaja nägi. */
+  await expectError(make(lead, client.id, { items: [{ entryId: e1.entry.id }] }), 400, 'home_care.errors.version_required');
+  await expectError(make(anu, client.id, { items: one }), 403, 'org.errors.missing_capability');
+  assert.equal(await db.careChronologyRelease.count({ where: { clientId: client.id } }), 0);
+
+  /* Valik ei pea olema ajajärjestuses; dokumendis on kirjed ajajärjestuses.
+     Kolmanda isiku nimi on tekstist eemaldatud. */
+  const { release } = await make(lead, client.id, {
+    items: [pick(e4), pick(e1, { text: 'Tõin toidu. Naaber oli külas.' }), pick(e2)]
+  });
+  assert.equal(release.entryCount, 3);
+  assert.match(release.contentSha256, /^[a-f0-9]{64}$/);
+  assert.equal(release.createdByName, 'Juta Juht');
+  assert.equal(release.createdAt, '2026-10-09T10:00:00.000Z');
+
+  const document = await getChronologyRelease(lead, release.id, deps());
+  assert.deepEqual(document.items.map((row) => row.position), [1, 2, 3]);
+  assert.deepEqual(document.items.map((row) => row.text), ['Tõin toidu. Naaber oli külas.', 'Pesumasin lekib.', 'Leidsin köögi põrandalt.']);
+  assert.deepEqual(document.items.map((row) => row.redacted), [true, false, false]);
+  assert.equal(document.items[2].incidentType, 'FALL');
+  assert.equal(document.release.requester, 'PPA, uurija M. Tamm');
+  /* Kaanelehe räsi on dokumendi sisust uuesti arvutatav. */
+  assert.equal(
+    chronologyContentHash({
+      clientName: document.release.clientName,
+      fromDay: document.release.periodFromDay,
+      toDay: document.release.periodToDay,
+      requester: document.release.requester,
+      basis: document.release.basis,
+      registryRef: document.release.registryRef,
+      summary: document.release.summary,
+      items: document.items
+    }),
+    release.contentSha256
+  );
+  /* Teksti lühendamine dokumendis päeviku kirjet ei muuda. */
+  assert.equal((await db.careClientEntry.findUnique({ where: { id: e1.entry.id }, select: { text: true } })).text, 'Tõin toidu. Naaber Mati Kask oli külas.');
+
+  /* HETKEKOOPIA: hilisem parandus ja tühistus väljastatud dokumenti ei muuda. */
+  await correctEntry(anu, client.id, e2.entry.id, { text: 'Pesumasin on korras.', reason: 'Meister käis', revision: 1 }, deps());
+  await retractEntry(lead, client.id, e4.entry.id, { reason: 'Proov', revision: 1 }, deps());
+  const later = await getChronologyRelease(lead, release.id, deps());
+  assert.deepEqual(later.items.map((row) => row.text), document.items.map((row) => row.text));
+  /* Koostaja nägi kirje esimest versiooni, autor parandas vahepeal: dokumenti
+     ei lähe tekst, mida koostaja ei näinud. Uue versiooniga õnnestub. */
+  await expectError(make(lead, client.id, { items: [pick(e2)] }), 409, 'home_care.errors.chronology_entry_changed');
+  assert.equal(await db.careChronologyRelease.count({ where: { clientId: client.id } }), 1);
+  assert.equal((await draftChronology(lead, client.id, period, deps())).items.find((row) => row.entryId === e2.entry.id).revision, 2);
+  /* Muutmatus on andmebaasi oma. */
+  await assert.rejects(db.careChronologyRelease.updateMany({ where: { id: release.id }, data: { requester: 'Keegi teine' } }), /immutable/);
+  await assert.rejects(db.careChronologyReleaseItem.updateMany({ where: { releaseId: release.id }, data: { text: 'võltsitud' } }), /immutable/);
+  await assert.rejects(
+    db.careChronologyRelease.create({ data: { organizationId: f.orgA.id, clientId: client.id, clientName: 'x', periodFromDay: '2026-10-01', periodToDay: '2026-10-02', requester: '  ', basis: 'x', entryCount: 1, contentSha256: 'x', createdByMembershipId: f.members.lead.id, createdByName: 'x' } }),
+    /requester_not_blank/
+  );
+
+  /* Dokumendi avab ainult hooldusjuht, kelle skoobis klient on; teistele on see olematu. */
+  for (const who of [anu, bert, clerk, leadB]) {
+    await expectError(getChronologyRelease(who, release.id, deps()), 404, who === leadB ? 'home_care.errors.release_not_found' : 'home_care.errors.release_not_found');
+  }
+
+  /* KORDUSSAATMINE: sama võti ja sama sisu annab sama väljastuse, mitte teist
+     rida; sama võti teise sisuga on viga. Ka samaaegsed saatmised jätavad ühe. */
+  const key = '11111111-2222-4333-8444-555555555555';
+  const keyed = { items: [pick(e1)], clientRequestId: key };
+  const first = await make(lead, client.id, keyed);
+  assert.equal(first.repeated, undefined);
+  const again = await make(lead, client.id, keyed);
+  assert.equal(again.repeated, true);
+  assert.equal(again.release.id, first.release.id);
+  await expectError(make(lead, client.id, { ...keyed, requester: 'Keegi teine' }), 409, 'home_care.errors.idempotency_conflict');
+  await expectError(make(lead, client.id, { ...keyed, clientRequestId: 'x y' }), 400, 'home_care.errors.invalid_request_id');
+  const racedKey = '11111111-2222-4333-8444-666666666666';
+  const raced = await Promise.all([1, 2, 3].map(() => make(lead, client.id, { ...keyed, clientRequestId: racedKey })));
+  assert.equal(new Set(raced.map((result) => result.release.id)).size, 1);
+  assert.equal(raced.filter((result) => !result.repeated).length, 1);
+  assert.equal(await db.careChronologyRelease.count({ where: { clientId: client.id } }), 3);
+  assert.equal(await db.careChronologyReleaseItem.count({ where: { releaseId: raced[0].release.id } }), 1);
+  /* Proovi read ära, et tööloendi kontroll allpool loeks ainult kaht dokumenti. */
+  await db.careChronologyRelease.deleteMany({ where: { id: { in: [first.release.id, raced[0].release.id] } } });
+
+  /* Tööloend hooldusjuhi skoobis. */
+  const { release: northRelease } = await make(bert, northClient.id, { items: [pick(foreign)] });
+  assert.deepEqual((await listChronologyReleases(bert, {}, deps())).items.map((row) => row.id), [northRelease.id]);
+  assert.equal((await listChronologyReleases(lead, {}, deps())).items.length, 2);
+  assert.deepEqual((await listChronologyReleases(lead, { clientId: client.id }, deps())).items.map((row) => row.id), [release.id]);
+  assert.equal(JSON.stringify(await listChronologyReleases(lead, {}, deps())).includes('Pesumasin'), false, 'tööloend ei kanna dokumendi sisu');
+  await expectError(listChronologyReleases(anu, {}, deps()), 403, 'org.errors.missing_capability');
+  assert.deepEqual((await listChronologyReleases(leadB, {}, deps())).items, []);
+
+  /* Audit: ainult ID-d. */
+  const audit = await db.dataAuditLog.findMany({ where: { resourceId: release.id, action: 'org.home_care_chronology_released' } });
+  assert.equal(audit.length, 1);
+  assert.deepEqual(Object.keys(audit[0].meta).sort(), ['clientId', 'organizationId', 'releaseId']);
+
+  /* Kliendi kustutamisel kustub ka väljastus (kaskaad ei jää muutmatuse taha). */
+  await db.careClient.delete({ where: { id: northClient.id } });
+  assert.equal(await db.careChronologyRelease.count({ where: { id: northRelease.id } }), 0);
 });
