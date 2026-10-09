@@ -8,7 +8,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { isWorkspaceHubRoute, panelHasRoomDock, WORKSPACE_HUB_ROUTES } from '../lib/roomDock.js';
+import { dockLabelRoutes, isWorkspaceHubRoute, panelHasRoomDock, WORKSPACE_HUB_ROUTES } from '../lib/roomDock.js';
 
 test('Töölaua menüü on kolm teed; sisulehed selle all saavad paneeli ja doki', () => {
   assert.deepEqual(WORKSPACE_HUB_ROUTES, ['/toolaud', '/toolaud/tooheaolu', '/toolaud/kovisioon']);
@@ -29,4 +29,34 @@ test('ruum ja raam loevad menüüks samu teid', () => {
   assert.match(stage, /const isWorkspaceRoute = normalized === "\/toolaud" \|\| isWellbeingRoute \|\| isKovisionRoute;/);
   assert.ok(frame.includes('const isWorkspaceHub = isWorkspaceHubRoute(normalized);'));
   assert.ok(!frame.includes('normalized.startsWith("/toolaud/")'), 'raam ei pea iga Töölaua alateed menüüks');
+});
+
+// Dokk kannab lehe nime, sest leht ise pealkirja ei kanna. Alamteel ja sama
+// lehe teise päringuga jäi dokki varem ainult tagasi-nool.
+test('dokk otsib lehe nime täpse tee, aliase, päringuta tee ja vanema tee järgi', () => {
+  assert.deepEqual(dockLabelRoutes('/valitoo'), ['/valitoo']);
+  assert.deepEqual(dockLabelRoutes('/valitoo/abc123'), ['/valitoo/abc123', '/valitoo']);
+  assert.deepEqual(dockLabelRoutes('/supervisioon/valjundid/x1'), ['/supervisioon/valjundid/x1', '/supervisioon']);
+  /* Sama leht teise päringuga: enne täpne (profiili sektsioonid), siis ilma päringuta. */
+  assert.deepEqual(dockLabelRoutes('/juhtumid', 'juhtum=c1'), ['/juhtumid?juhtum=c1', '/juhtumid']);
+  assert.deepEqual(dockLabelRoutes('/juhtumid', '?juhtum=c1'), ['/juhtumid?juhtum=c1', '/juhtumid']);
+  assert.deepEqual(dockLabelRoutes('/profiil', 'sektsioon=konto'), ['/profiil?sektsioon=konto', '/profiil']);
+  /* Alias tuleb enne vanemat: otselingi leht kannab oma kaardi nime. */
+  assert.deepEqual(
+    dockLabelRoutes('/eelpoordumised', '', { '/eelpoordumised': '/vestlus?workspace=pre_inquiries' }),
+    ['/eelpoordumised', '/vestlus?workspace=pre_inquiries']
+  );
+  /* Töölaua sisuleht ja tööheaolu töövorm leiavad oma kaardi täpse tee järgi; vanem on alles viimane. */
+  assert.deepEqual(dockLabelRoutes('/toolaud/juhtumitoo'), ['/toolaud/juhtumitoo', '/toolaud']);
+  assert.deepEqual(dockLabelRoutes('/'), ['/']);
+  assert.deepEqual(dockLabelRoutes(''), ['/']);
+});
+
+test('ruum kasutab doki nime otsimisel sama järjekorda ja oma komplekti kaart on esimene', () => {
+  const stage = fs.readFileSync(new URL('../components/room/RoomStage.jsx', import.meta.url), 'utf8');
+  assert.ok(stage.includes('dockLabelRoutes(normalized, search, DOCK_CARD_ALIASES)'));
+  const own = stage.indexOf('cards.find((item) => item.href === here) ||');
+  const byRoute = stage.indexOf('byRoute ||', own);
+  const cardless = stage.indexOf('(cardless ? {', own);
+  assert.ok(own > 0 && byRoute > own && cardless > byRoute, 'järjekord: oma komplekt, tee järgi, kaardita lehe nimi');
 });

@@ -30,7 +30,7 @@ import { useAccessibility } from "@/components/accessibility/AccessibilityProvid
 import { localizePath } from "@/lib/localizePath";
 import { inertOutside } from "@/lib/inertOutside";
 import { rememberRoomHubPath, readRoomHubPath } from "@/lib/roomHubReturn";
-import { panelHasRoomDock } from "@/lib/roomDock";
+import { dockLabelRoutes, panelHasRoomDock } from "@/lib/roomDock";
 import { ADMIN_SURFACES } from "@/lib/admin/surfaces";
 import { usePanelInfoView } from "@/components/ui/PanelInfoSlot";
 import { useAnnounceDock } from "@/components/stage/DockSteps";
@@ -1471,10 +1471,14 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
        (omanik 29.07). Nime allikas on i18n, mitte tee — dokk räägib lugeja
        keeles. Ikooni siin ei ole: dokk joonistab siis oma märgi. */
     const cardless = CARDLESS_DOCK_LABELS[normalized];
+    /* Alamtee ja sama lehe teine päring kannavad oma lehe nime: järjekord ja
+       põhjus on failis lib/roomDock.js (`dockLabelRoutes`). */
+    const byRoute = dockLabelRoutes(normalized, search, DOCK_CARD_ALIASES)
+      .map((href) => allCardsByHref.get(href))
+      .find(Boolean);
     const current =
       cards.find((item) => item.href === here) ||
-      allCardsByHref.get(here) ||
-      allCardsByHref.get(DOCK_CARD_ALIASES[normalized]) ||
+      byRoute ||
       (cardless ? { key: normalized, label: t(cardless), href: normalized } : null);
     return {
       cards,
