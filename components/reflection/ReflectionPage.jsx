@@ -1,16 +1,45 @@
 "use client";
 
+/**
+ * Meetodipeegel V1 (T21 P3, O-CW-3). Kirje on ALATI ainult omaniku oma:
+ * privaatsusmärgis on püsielement, mitte kohtspikker (sama reegel mis
+ * supervisioonis). Vaatlus- ja tõlgendusväljad kannavad STRUKTUURSET
+ * päritolumärgist (kliendi öeldu ≠ töötaja tähelepanek ≠ tõlgendus): märgis
+ * on välja küljes ja kasutaja ei saa seda ümber valida (doc ptk 3.3).
+ *
+ * Siin EI OLE skoori, võrdlust ega soovitatud „õiget meetodit": AI
+ * meetodisoovitused on blokeeritud kuni kinnitatud kataloogita (O-CW-5) ja
+ * töötajate võrdlemine on arhitektuuriline keeld (doc ptk 3.4/3.6).
+ *
+ * KUJU (09.10). Leht oli klaaspaneeli sees veel üks tume kaart oma pealkirjaga
+ * ning vorm üks pikk veerg, mille salvestamise nupuni tuli kerida. Nüüd on
+ * paneelis kirjete loend ja avatud kirje juures sammulava
+ * (`components/stage/StepFlight.jsx`): loend, vormi vaated (kuni kolm välja
+ * korraga), vajadusel kahe versiooni võrdlus ning kirje andmed. Lehe nime ütleb
+ * alumine kiirmenüü; pealkiri jääb ekraanilugejale. Vaated on failis
+ * ./ReflectionViews.jsx, vormi kirjeldus ja arvutused failis
+ * ./reflectionForm.js. Siin on andmed, päringud ja see, mis vaateid olekuga seob.
+ *
+ * AVATUD KIRJE JÄÄB AVATUKS, kuni töötaja selle sulgeb (kirje andmete vaates)
+ * või teise avab: loendisse minek ei viska pooleli teksti ära. Salvestamine on
+ * iga vormi vaate all servas ja salvestab kogu kirje.
+ *
+ * MIDA EI TEHTA ÜHE VAJUTUSEGA. Kirje kustutamine küsib teist vajutust (ja
+ * selle saab 30 sekundi jooksul tagasi võtta). Sama kehtib salvestamata teksti
+ * kohta: kirje sulgemine, teise kirje avamine, uue alustamine ja serveri
+ * versiooni võtmine küsivad teist vajutust, kui vormis on salvestamata muudatusi.
+ */
+
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
+
 import { useI18n } from "@/components/i18n/I18nProvider";
+import StepFlight from "@/components/stage/StepFlight";
 import Button from "@/components/ui/Button";
-import Dropdown from "@/components/ui/Dropdown";
-import ModalConfirm from "@/components/ui/ModalConfirm";
-import { SubpageHeader } from "@/components/ui/SubpageHeader";
-import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import {
   INTERIM_OUTCOMES,
   REFLECTION_FIELD_PROVENANCE,
+  REFLECTION_TEXT_MAX_LENGTH,
   SUPPORT_NEEDS,
   interimOutcomeLabelKey,
   isReflectionSourceKind,
@@ -19,56 +48,32 @@ import {
 } from "@/lib/reflection/constants";
 import { isLatestReflectionDetailRequest } from "@/lib/reflection/requestSequence";
 import { provenanceLabelKey } from "@/lib/workspaces/provenance";
-import styles from "./ReflectionPage.module.css";
 
-/**
- * Meetodipeegel V1 (T21 P3, O-CW-3). Kirje on ALATI ainult omaniku oma —
- * privaatsusmärgis on püsielement, mitte tooltip (sama reegel mis
- * supervisioonis). Vaatlus- ja tõlgendusväljad kannavad STRUKTURAALSET
- * päritolumärgist (kliendi-öeldud ≠ töötaja-tähelepanek ≠ tõlgendus): märgis
- * on välja küljes ja kasutaja ei saa seda ümber valida (doc ptk 3.3).
- *
- * Siin EI OLE skoori, võrdlust ega soovitatud „õiget meetodit": AI meetodi-
- * soovitused on blokeeritud kuni kinnitatud kataloogita (O-CW-5) ja töötajate
- * võrdlemine on arhitektuuriline keeld (doc ptk 3.4/3.6).
- */
+import {
+  CHOICE_FIELDS,
+  FORM_VIEWS,
+  choiceLabel,
+  conflictRows,
+  emptyForm,
+  formFromReflection,
+  isChoiceField,
+  reflectionBody,
+  reflectionErrorText,
+  reflectionRows,
+  reflectionViewKeys,
+  sameForm,
+  textRows,
+  viewState,
+  viewSummary
+} from "./reflectionForm";
+import { ConflictView, EntryView, FootNote, FormView, ListView } from "./ReflectionViews";
+import styles from "./reflection.module.css";
 
-/* Vormi struktuur (doc ptk 3.3 väljarühmad). Päritolu tuleb jagatud K2
-   sõnastikust välja-tasemel kaardistusega — mitte siit failist. */
-const FIELD_GROUPS = Object.freeze([
-  {
-    key: "choice",
-    fields: ["approach", "method", "action", "supportTechnique", "choiceReason"]
-  },
-  {
-    key: "observation",
-    fields: ["clientGoal", "clientReaction", "workerObservation"]
-  },
-  {
-    key: "interpretation",
-    fields: ["interpretation", "whatWorked", "whatDidNot"]
-  },
-  {
-    key: "conclusion",
-    fields: ["nextStep"]
-  }
-]);
-
-const ALL_TEXT_FIELDS = FIELD_GROUPS.flatMap((group) => group.fields);
-
-function emptyForm() {
-  const form = { supportNeed: "", interimOutcome: "" };
-  for (const field of ALL_TEXT_FIELDS) form[field] = "";
-  return form;
-}
-
-function formFromReflection(reflection) {
-  const form = emptyForm();
-  for (const field of ALL_TEXT_FIELDS) form[field] = reflection?.[field] || "";
-  form.supportNeed = reflection?.supportNeed || "";
-  form.interimOutcome = reflection?.interimOutcome || "";
-  return form;
-}
+const VIEWS_KEY = "reflection.views";
+const FIRST_FORM_VIEW = FORM_VIEWS[0].key;
+const FORM_VIEW_BY_KEY = Object.fromEntries(FORM_VIEWS.map((item) => [item.key, item]));
+/* Teine vajutus (kustutamine, salvestamata tekstist loobumine) peab tulema selle aja sees. */
+const CONFIRM_MS = 8000;
 
 function newIdempotencyKey() {
   if (globalThis.crypto?.randomUUID) return globalThis.crypto.randomUUID();
@@ -90,18 +95,6 @@ async function reflectionRequest(url, { method = "GET", body, signal, idempotenc
   return { ok: response.ok && payload?.ok !== false, status: response.status, payload };
 }
 
-function ProvenanceChip({ field }) {
-  const { t } = useI18n();
-  const provenance = REFLECTION_FIELD_PROVENANCE[field];
-  if (!provenance) return null;
-  const labelKey = provenanceLabelKey(provenance);
-  return (
-    <span className={styles.provenance} data-provenance={provenance}>
-      {t(labelKey)}
-    </span>
-  );
-}
-
 export default function ReflectionPage() {
   const { t, locale } = useI18n();
   const searchParams = useSearchParams();
@@ -113,37 +106,56 @@ export default function ReflectionPage() {
   const [loadError, setLoadError] = useState("");
   const [editingId, setEditingId] = useState(null);
   const [editingUpdatedAt, setEditingUpdatedAt] = useState(null);
+  const [editingCreatedAt, setEditingCreatedAt] = useState(null);
   const [createKey, setCreateKey] = useState(null);
   const [conflictReflection, setConflictReflection] = useState(null);
   const [formOpen, setFormOpen] = useState(false);
   const [form, setForm] = useState(emptyForm);
+  /* Vorm sellisena, nagu see viimati laaditi või salvestati: selle järgi on
+     näha, kas ekraanil on salvestamata muudatusi. */
+  const [baseline, setBaseline] = useState(emptyForm);
   const [sourceRef, setSourceRef] = useState(null);
   const [sourceState, setSourceState] = useState(null);
   const [saving, setSaving] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
   const [statusIsError, setStatusIsError] = useState(false);
-  const [deleteCandidateId, setDeleteCandidateId] = useState(null);
+  const [openingId, setOpeningId] = useState(null);
   const [deleting, setDeleting] = useState(false);
   const [undoDeletion, setUndoDeletion] = useState(null);
   const [restoring, setRestoring] = useState(false);
+  const [view, setView] = useState("list");
+  /* Teist vajutust ootav tegevus: `delete`, `close`, `new`, `use-server` või `open:<id>`. */
+  const [confirming, setConfirming] = useState("");
+  const confirmTimer = useRef(0);
   const detailAbortController = useRef(null);
   const detailRequestSequence = useRef(0);
+  /* Viimane avatud kirje vaade, kus töötaja oli: sinna naaseb ta pärast kahe
+     versiooni lahendamist. Loetakse lehe olekust igal joonistusel, sest lava
+     ei teata vaatest, millel ta avanes (ainult vahetusest). */
+  const lastFormView = useRef(FIRST_FORM_VIEW);
+  if (view !== "list" && view !== "conflict") lastFormView.current = view;
+  const shellRef = useRef(null);
+  /* Kas fookus on lehe sees (vt fookuse hoidmist lava uuesti ehitamisel allpool). */
+  const focusInside = useRef(false);
+
+  const armConfirm = useCallback((key) => {
+    window.clearTimeout(confirmTimer.current);
+    setConfirming(key);
+    confirmTimer.current = window.setTimeout(() => setConfirming(""), CONFIRM_MS);
+  }, []);
+  useEffect(() => () => window.clearTimeout(confirmTimer.current), []);
 
   const formatter = useMemo(
     () => new Intl.DateTimeFormat(locale || "et", { dateStyle: "medium", timeStyle: "short" }),
     [locale]
   );
+  const formatDate = useCallback((value) => {
+    if (!value) return "";
+    const date = new Date(value);
+    return Number.isNaN(date.getTime()) ? "" : formatter.format(date);
+  }, [formatter]);
 
-  const message = useCallback(({ status, payload }) => {
-    if (status === 401) return t("reflection.common.login_required");
-    if (status === 404) return t("reflection.errors.record_missing");
-    const apiKey = typeof payload?.message === "string" ? payload.message.trim() : "";
-    if (apiKey.startsWith("reflection.")) {
-      const translated = t(apiKey);
-      if (translated && translated !== apiKey) return translated;
-    }
-    return resolveApiMessage({ payload, t, fallbackKey: "reflection.errors.load_failed" });
-  }, [t]);
+  const message = useCallback((result) => reflectionErrorText(result, t), [t]);
 
   const load = useCallback(async ({ signal, cursor = null, append = false } = {}) => {
     setLoadError("");
@@ -203,28 +215,38 @@ export default function ReflectionPage() {
     if (isReflectionSourceKind(kind) && id) {
       detailRequestSequence.current += 1;
       detailAbortController.current?.abort();
+      setOpeningId(null);
       setSourceRef({ sourceKind: kind, sourceId: id });
+      setSourceState(null);
       setFormOpen(true);
       setEditingId(null);
       setEditingUpdatedAt(null);
+      setEditingCreatedAt(null);
       setCreateKey(newIdempotencyKey());
       setConflictReflection(null);
       setForm(emptyForm());
+      setBaseline(emptyForm());
+      setView(FIRST_FORM_VIEW);
     }
   }, [searchParams]);
 
   const openNew = useCallback(() => {
     detailRequestSequence.current += 1;
     detailAbortController.current?.abort();
+    setOpeningId(null);
     setEditingId(null);
     setEditingUpdatedAt(null);
+    setEditingCreatedAt(null);
     setCreateKey(newIdempotencyKey());
     setConflictReflection(null);
     setSourceRef(null);
     setSourceState(null);
     setForm(emptyForm());
+    setBaseline(emptyForm());
     setFormOpen(true);
     setStatusMessage("");
+    setConfirming("");
+    setView(FIRST_FORM_VIEW);
   }, []);
 
   const openExisting = useCallback(async (id) => {
@@ -234,6 +256,8 @@ export default function ReflectionPage() {
     const controller = new AbortController();
     detailAbortController.current = controller;
     setStatusMessage("");
+    setConfirming("");
+    setOpeningId(id);
     try {
       const { ok, status, payload } = await reflectionRequest(`/api/reflections/${id}`, {
         signal: controller.signal
@@ -247,6 +271,7 @@ export default function ReflectionPage() {
       const reflection = payload?.reflection || {};
       setEditingId(reflection.id || null);
       setEditingUpdatedAt(reflection.updatedAt || null);
+      setEditingCreatedAt(reflection.createdAt || null);
       setCreateKey(null);
       setConflictReflection(null);
       setSourceRef(reflection.sourceKind
@@ -254,7 +279,9 @@ export default function ReflectionPage() {
         : null);
       setSourceState(reflection.sourceState || null);
       setForm(formFromReflection(reflection));
+      setBaseline(formFromReflection(reflection));
       setFormOpen(true);
+      setView(FIRST_FORM_VIEW);
     } catch (error) {
       if (
         error?.name === "AbortError"
@@ -263,30 +290,36 @@ export default function ReflectionPage() {
       setStatusIsError(true);
       setStatusMessage(t("reflection.errors.load_failed"));
     } finally {
-      if (detailAbortController.current === controller) detailAbortController.current = null;
+      /* Ainult viimane päring tohib rea „laen" märgi maha võtta: katkestatud
+         varasem päring ei tea, et uus on juba teel. */
+      if (detailAbortController.current === controller) {
+        detailAbortController.current = null;
+        setOpeningId(null);
+      }
     }
   }, [message, t]);
 
   const closeForm = useCallback(() => {
     detailRequestSequence.current += 1;
     detailAbortController.current?.abort();
+    setOpeningId(null);
     setFormOpen(false);
     setEditingId(null);
     setEditingUpdatedAt(null);
+    setEditingCreatedAt(null);
     setCreateKey(null);
     setConflictReflection(null);
     setSourceRef(null);
     setSourceState(null);
     setStatusMessage("");
+    setConfirming("");
+    setView("list");
   }, []);
 
   const save = useCallback(async () => {
     setSaving(true);
     setStatusMessage("");
-    const body = {};
-    for (const field of ALL_TEXT_FIELDS) body[field] = form[field] || null;
-    body.supportNeed = form.supportNeed || null;
-    body.interimOutcome = form.interimOutcome || null;
+    const body = reflectionBody(form);
     if (editingId) body.expectedUpdatedAt = editingUpdatedAt;
 
     try {
@@ -299,8 +332,12 @@ export default function ReflectionPage() {
           });
       if (!ok) {
         if (status === 409 && payload?.message === "reflection.errors.stale_update" && payload?.details?.current) {
+          /* Server on uuem. Minu tekst jääb vormi alles; järgmine salvestus
+             kirjutab teadlikult serveri versiooni üle, seepärast võetakse
+             siit serveri ajatempel. Erinevused avanevad omaette vaates. */
           setConflictReflection(payload.details.current);
           setEditingUpdatedAt(payload.details.current.updatedAt || null);
+          setView("conflict");
         }
         setStatusIsError(true);
         setStatusMessage(message({ status, payload }));
@@ -310,8 +347,13 @@ export default function ReflectionPage() {
       setStatusMessage(t("reflection.form.saved"));
       setEditingId(payload?.reflection?.id || editingId);
       setEditingUpdatedAt(payload?.reflection?.updatedAt || editingUpdatedAt);
+      setEditingCreatedAt(payload?.reflection?.createdAt || editingCreatedAt);
       setCreateKey(null);
       setConflictReflection(null);
+      setBaseline(form);
+      setConfirming("");
+      /* Võrdluse vaade kaob koos erinevusega: tagasi sinna, kus töötaja kirjutas. */
+      setView((current) => (current === "conflict" ? lastFormView.current : current));
       await load();
     } catch {
       setStatusIsError(true);
@@ -319,10 +361,12 @@ export default function ReflectionPage() {
     } finally {
       setSaving(false);
     }
-  }, [createKey, editingId, editingUpdatedAt, form, load, message, sourceRef, t]);
+  }, [createKey, editingCreatedAt, editingId, editingUpdatedAt, form, load, message, sourceRef, t]);
 
+  /* Kustutatakse avatud kirje (loendi real on ainult avamine). Õnnestumisel
+     läheb leht loendisse, kus teade ja tagasivõtmine seisavad koos. */
   const remove = useCallback(async () => {
-    const id = deleteCandidateId;
+    const id = editingId;
     if (!id || deleting) return;
     setDeleting(true);
     setStatusMessage("");
@@ -333,19 +377,17 @@ export default function ReflectionPage() {
         setStatusMessage(message({ status, payload }));
         return;
       }
-      setStatusIsError(false);
-      setStatusMessage(t("reflection.deletion.deleted"));
+      closeForm();
       setUndoDeletion({ id, undoUntil: payload?.undoUntil || null });
-      setDeleteCandidateId(null);
-      if (editingId === id) closeForm();
       await load();
     } catch {
       setStatusIsError(true);
       setStatusMessage(t("reflection.errors.delete_failed"));
     } finally {
       setDeleting(false);
+      setConfirming("");
     }
-  }, [closeForm, deleteCandidateId, deleting, editingId, load, message, t]);
+  }, [closeForm, deleting, editingId, load, message, t]);
 
   const undoRemove = useCallback(async () => {
     if (!undoDeletion?.id || restoring) return;
@@ -374,215 +416,337 @@ export default function ReflectionPage() {
     }
   }, [load, message, restoring, t, undoDeletion]);
 
+  /* Uus täht vormis teeb eelmise teate („Salvestatud.", veateade) vanaks. */
   const updateField = useCallback((field, value) => {
     setForm((current) => ({ ...current, [field]: value }));
+    setStatusMessage("");
   }, []);
 
-  return (
-    <main className={styles.page}>
-      <div className={styles.shell} data-glass-back-anchor="">
-        <SubpageHeader title={t("reflection.title")} />
-        <span className={styles.privacy} data-privacy="private">
-          {t("reflection.privacy.only_you")}
-        </span>
-        <p className={styles.lead}>{t("reflection.lead")}</p>
+  const takeServerVersion = useCallback(() => {
+    if (!conflictReflection) return;
+    setForm(formFromReflection(conflictReflection));
+    setBaseline(formFromReflection(conflictReflection));
+    setConflictReflection(null);
+    setStatusMessage("");
+    setConfirming("");
+    setView(lastFormView.current);
+  }, [conflictReflection]);
 
-        {loading ? <p className={styles.loading}>{t("reflection.common.loading")}</p> : null}
+  const dirty = formOpen && !sameForm(form, baseline);
+  /* Salvestamata tekst ei kao ühe vajutusega: esimene vajutus küsib, teine teeb. */
+  const guardDiscard = (key, run) => {
+    if (!dirty || confirming === key) run();
+    else armConfirm(key);
+  };
+  const discardText = t("reflection.views.confirm_discard");
 
-        {loadError ? (
-          <div aria-live="polite" className={styles.loadError} role="status">
-            <p>{loadError}</p>
-            <Button onClick={() => { setLoading(true); void load(); }} variant="secondary">
-              {t("reflection.common.retry")}
+  const privacyText = t("reflection.privacy.only_you");
+  const sourceKindKey = sourceRef ? reflectionSourceKindLabelKey(sourceRef.sourceKind) : null;
+  const sourceKindText = sourceKindKey ? t(sourceKindKey) : "";
+  const sourceChip = !sourceRef
+    ? ""
+    : sourceKindText
+      ? t("reflection.views.source_chip", { kind: sourceKindText })
+      : t("reflection.views.entry.source");
+  const status = statusMessage
+    ? { text: statusMessage, tone: statusIsError ? "risk" : undefined }
+    : dirty
+      ? { text: t("reflection.views.unsaved") }
+      : null;
+  const foot = <FootNote privacy={privacyText} source={sourceChip} status={status} />;
+  /* Võrdluse vaate juhis ütleb juba, et kirjet muudeti mujal ja minu tekst on
+     salvestamata: seal näidatakse all ainult muud viga (nt salvestamine ei õnnestunud). */
+  const staleText = t("reflection.errors.stale_update");
+  const conflictFoot = <FootNote privacy={privacyText} source={sourceChip} status={statusMessage && statusMessage !== staleText ? status : null} />;
+  const savingText = t("reflection.form.saving");
+
+  const rows = reflectionRows(reflections, { t, formatDate, openId: formOpen ? editingId : null, busyId: openingId }).map((row) => ({
+    ...row,
+    openText: row.busy ? t("reflection.common.loading") : confirming === `open:${row.id}` ? discardText : t("reflection.list.open"),
+    onOpen: () => {
+      /* Juba avatud kirje: vii selle juurde, ära lae uuesti (salvestamata tekst jääb alles). */
+      if (row.selected) setView(FIRST_FORM_VIEW);
+      else guardDiscard(`open:${row.id}`, () => { void openExisting(row.id); });
+    }
+  }));
+
+  const choiceOptions = {
+    supportNeed: SUPPORT_NEEDS.map((value) => ({ value, label: t(supportNeedLabelKey(value)) })),
+    interimOutcome: INTERIM_OUTCOMES.map((value) => ({ value, label: t(interimOutcomeLabelKey(value)) }))
+  };
+  const describeField = (key) => {
+    const label = t(`reflection.field.${key}`);
+    if (isChoiceField(key)) {
+      return {
+        key,
+        kind: "choice",
+        label,
+        options: choiceOptions[key],
+        columns: CHOICE_FIELDS[key].columns,
+        value: form[key],
+        clearLabel: t("reflection.views.clear_choice")
+      };
+    }
+    const provenance = REFLECTION_FIELD_PROVENANCE[key];
+    return {
+      key,
+      kind: "text",
+      label,
+      provenance,
+      chip: provenance ? t(provenanceLabelKey(provenance)) : "",
+      rows: textRows(key),
+      maxLength: REFLECTION_TEXT_MAX_LENGTH,
+      value: form[key]
+    };
+  };
+
+  const viewKeys = reflectionViewKeys({ open: formOpen, conflict: Boolean(conflictReflection) });
+  const stageKey = viewKeys.join("|");
+  /* Kui vaadete loend muutub, ehitatakse lava uuesti ja nupp, millel fookus oli
+     (loendi rida, „Tagasi loendisse"), kaob lehelt. Klaviatuuri ja ekraanilugeja
+     kasutaja jääks siis lehe algusesse: fookus läheb ette tulnud vaate
+     pealkirjale, nagu lava teeb sammu vahetusel. Ainult siis, kui fookus oli
+     enne lehe sees (lingilt saabudes fookust ei võeta). */
+  useEffect(() => {
+    const root = shellRef.current;
+    if (!focusInside.current || !root || root.contains(document.activeElement)) return undefined;
+    let frame = 0;
+    const deadline = performance.now() + 1500;
+    const tryFocus = () => {
+      /* Laval on ees olev vaade märgitud (`data-active`); ilma lavata on lehel üks vaade (loend). */
+      const heading = root.querySelector('section[data-active="1"] [data-step-heading]')
+        || (root.querySelector("section[data-active]") ? null : root.querySelector("[data-step-heading]"));
+      /* Lava näitab avanevat vaadet alles järgmisel kaadril: proovime, kuni õnnestub. */
+      heading?.focus({ preventScroll: true });
+      if ((heading && document.activeElement === heading) || performance.now() > deadline) return;
+      frame = requestAnimationFrame(tryFocus);
+    };
+    tryFocus();
+    return () => cancelAnimationFrame(frame);
+  }, [stageKey]);
+  const formViews = FORM_VIEW_BY_KEY;
+  /* Sammu numbri heledus: vormi vaatel täituvus; võrdlus ootab otsust. */
+  const stepState = (key) => (formViews[key] ? viewState(formViews[key], form) : key === "conflict" ? "partial" : "empty");
+  const stepSummary = (key) => {
+    if (formViews[key]) return viewSummary(formViews[key], form, t) || t("reflection.views.summary_empty");
+    if (key === "conflict") return staleText;
+    if (key === "entry") {
+      return editingId && editingCreatedAt
+        ? `${t("reflection.views.entry.created")} ${formatDate(editingCreatedAt)}`
+        : t("reflection.views.entry.new");
+    }
+    return !loading && !loadError && !reflections.length ? t("reflection.list.empty") : undefined;
+  };
+  const steps = viewKeys.map((key) => ({
+    key,
+    label: t(`${VIEWS_KEY}.${key}.title`),
+    short: t(`${VIEWS_KEY}.${key}.short`),
+    state: stepState(key),
+    summary: stepSummary(key),
+    /* Loend ja kahe versiooni võrdlus võivad olla pikad: nende järgi ühist kõrgust ei võeta. */
+    free: key === "list" || key === "conflict"
+  }));
+
+  const renderView = (step) => {
+    if (formViews[step.key]) {
+      return (
+        <FormView
+          title={step.label}
+          lead={t(`${VIEWS_KEY}.${step.key}.lead`)}
+          layout={formViews[step.key].layout.map((row) => row.map(describeField))}
+          onChange={updateField}
+          note={foot}
+          actions={
+            <Button type="button" variant="primary" disabled={saving} onClick={() => { void save(); }}>
+              {saving ? savingText : t("reflection.form.save")}
             </Button>
-          </div>
-        ) : null}
-
-        {!formOpen && statusMessage ? (
-          <div aria-live="polite" className={styles.statusRow} role="status">
-            <span className={statusIsError ? styles.errorText : undefined}>{statusMessage}</span>
-          </div>
-        ) : null}
-
-        {!formOpen && undoDeletion ? (
-          <div className={styles.actions} data-reflection-undo="available">
-            <Button disabled={restoring} onClick={() => { void undoRemove(); }} variant="secondary">
-              {restoring ? t("reflection.deletion.restoring") : t("reflection.deletion.undo")}
-            </Button>
-          </div>
-        ) : null}
-
-        {!loading && !loadError && !formOpen ? (
-          <div className={styles.actions}>
-            <Button onClick={openNew}>{t("reflection.list.new")}</Button>
-          </div>
-        ) : null}
-
-        {!loading && !loadError && !formOpen && !reflections.length ? (
-          <p className={styles.empty}>{t("reflection.list.empty")}</p>
-        ) : null}
-
-        {!loading && !loadError && !formOpen && reflections.length ? (
-          <div className={styles.cards}>
-            {reflections.map((reflection) => (
-              <article key={reflection.id} className={styles.card}>
-                <h2 className={styles.cardTitle}>
-                  {reflection.method || reflection.approach || t("reflection.list.untitled")}
-                </h2>
-                <p className={styles.cardMeta}>
-                  {reflection.createdAt ? formatter.format(new Date(reflection.createdAt)) : ""}
-                </p>
-                {reflection.interimOutcome ? (
-                  <p className={styles.cardMeta}>
-                    {t(interimOutcomeLabelKey(reflection.interimOutcome) || "reflection.list.untitled")}
-                  </p>
-                ) : null}
-                <div className={styles.actions}>
-                  <Button onClick={() => { void openExisting(reflection.id); }} variant="secondary">
-                    {t("reflection.list.open")}
-                  </Button>
-                  <Button onClick={() => { setDeleteCandidateId(reflection.id); }} variant="ghost">
-                    {t("reflection.list.delete")}
-                  </Button>
-                </div>
-              </article>
-            ))}
-            {nextCursor ? (
-              <div className={styles.loadMore}>
-                <Button
-                  disabled={loadingMore}
-                  onClick={() => { void load({ cursor: nextCursor, append: true }); }}
-                  variant="secondary"
-                >
-                  {loadingMore ? t("reflection.common.loading") : t("reflection.list.load_more")}
-                </Button>
-              </div>
-            ) : null}
-          </div>
-        ) : null}
-
-        {formOpen ? (
-          <div className={styles.form}>
-            {sourceRef ? (
-              <p className={styles.sourceRef}>
-                {t("reflection.form.source_label")}{" "}
-                {t(reflectionSourceKindLabelKey(sourceRef.sourceKind) || "reflection.form.source_label")}
-                {sourceState === "deleted" ? (
-                  <span className={styles.sourceDeleted}>
-                    {" "}
-                    {t("reflection.form.source_deleted")}
-                  </span>
-                ) : null}
-              </p>
-            ) : null}
-
-            {FIELD_GROUPS.map((group) => (
-              <div key={group.key}>
-                <h3 className={styles.groupHeading}>{t(`reflection.group.${group.key}`)}</h3>
-                <p className={styles.groupHint}>{t(`reflection.group.${group.key}_hint`)}</p>
-                {group.fields.map((field) => (
-                  <label key={field}>
-                    <span>
-                      {t(`reflection.field.${field}`)} <ProvenanceChip field={field} />
-                    </span>
-                    <textarea
-                      maxLength={4000}
-                      onChange={(event) => updateField(field, event.target.value)}
-                      rows={field === "choiceReason" || field === "interpretation" ? 4 : 2}
-                      value={form[field]}
-                    />
-                  </label>
-                ))}
-              </div>
-            ))}
-
-            <label>
-              <span>{t("reflection.field.supportNeed")}</span>
-              <Dropdown
-                onChange={(next) => updateField("supportNeed", next)}
-                value={form.supportNeed}
-                ariaLabel={t("reflection.field.supportNeed")}
-                options={[
-                  { value: "", label: t("reflection.form.not_set") },
-                  ...SUPPORT_NEEDS.map((value) => ({ value, label: t(supportNeedLabelKey(value)) }))
-                ]}
-              />
-              <span className={styles.fieldHint}>{t("reflection.field.supportNeed_hint")}</span>
-            </label>
-
-            <label>
-              <span>{t("reflection.field.interimOutcome")}</span>
-              <Dropdown
-                onChange={(next) => updateField("interimOutcome", next)}
-                value={form.interimOutcome}
-                ariaLabel={t("reflection.field.interimOutcome")}
-                options={[
-                  { value: "", label: t("reflection.form.not_set") },
-                  ...INTERIM_OUTCOMES.map((value) => ({ value, label: t(interimOutcomeLabelKey(value)) }))
-                ]}
-              />
-              <span className={styles.fieldHint}>{t("reflection.field.interimOutcome_hint")}</span>
-            </label>
-
-            <div aria-live="polite" className={styles.statusRow} role="status">
-              {statusMessage ? (
-                <span className={statusIsError ? styles.errorText : undefined}>{statusMessage}</span>
-              ) : null}
-            </div>
-
-            {conflictReflection ? (
-              <section className={styles.conflict} aria-labelledby="reflection-conflict-title">
-                <h3 id="reflection-conflict-title">{t("reflection.conflict.title")}</h3>
-                <p>{t("reflection.conflict.explanation")}</p>
-                <div className={styles.conflictColumns}>
-                  <div>
-                    <h4>{t("reflection.conflict.your_version")}</h4>
-                    {ALL_TEXT_FIELDS.map((field) => form[field] ? (
-                      <p key={`local-${field}`}><strong>{t(`reflection.field.${field}`)}:</strong> {form[field]}</p>
-                    ) : null)}
-                  </div>
-                  <div>
-                    <h4>{t("reflection.conflict.server_version")}</h4>
-                    {ALL_TEXT_FIELDS.map((field) => conflictReflection[field] ? (
-                      <p key={`server-${field}`}><strong>{t(`reflection.field.${field}`)}:</strong> {conflictReflection[field]}</p>
-                    ) : null)}
-                  </div>
-                </div>
-                <Button
-                  onClick={() => {
-                    setForm(formFromReflection(conflictReflection));
-                    setConflictReflection(null);
-                    setStatusMessage("");
-                  }}
-                  variant="secondary"
-                >
-                  {t("reflection.conflict.use_server")}
-                </Button>
-              </section>
-            ) : null}
-
-            <div className={styles.actions}>
-              <Button disabled={saving} onClick={() => { void save(); }}>
-                {saving ? t("reflection.form.saving") : t("reflection.form.save")}
-              </Button>
-              <Button onClick={closeForm} variant="secondary">
-                {t("reflection.form.back")}
-              </Button>
-            </div>
-          </div>
-        ) : null}
-      </div>
-      {deleteCandidateId ? (
-        <ModalConfirm
-          busy={deleting}
-          busyLabel={t("reflection.deletion.deleting")}
-          cancelLabel={t("reflection.deletion.cancel")}
-          confirmLabel={t("reflection.deletion.confirm_action")}
-          message={t("reflection.deletion.confirm")}
-          onCancel={() => { if (!deleting) setDeleteCandidateId(null); }}
-          onConfirm={() => { void remove(); }}
+          }
         />
-      ) : null}
-    </main>
+      );
+    }
+    switch (step.key) {
+      case "conflict":
+        return (
+          <ConflictView
+            title={step.label}
+            lead={t("reflection.views.conflict.lead")}
+            rows={conflictRows(form, conflictReflection).map((row) => ({
+              key: row.field,
+              label: t(`reflection.field.${row.field}`),
+              mine: row.choice ? choiceLabel(row.field, row.mine, t) : row.mine,
+              theirs: row.choice ? choiceLabel(row.field, row.theirs, t) : row.theirs
+            }))}
+            mineLabel={t("reflection.conflict.your_version")}
+            serverLabel={t("reflection.conflict.server_version")}
+            emptyText={t("reflection.views.conflict.empty")}
+            sameText={t("reflection.views.conflict.same")}
+            note={conflictFoot}
+            actions={
+              <>
+                {/* Serveri versioon asendab minu salvestamata teksti: see küsib teist vajutust. */}
+                <Button
+                  type="button"
+                  variant="secondary"
+                  disabled={saving}
+                  onClick={() => {
+                    if (confirming === "use-server") takeServerVersion();
+                    else armConfirm("use-server");
+                  }}
+                >
+                  {confirming === "use-server" ? discardText : t("reflection.conflict.use_server")}
+                </Button>
+                <Button type="button" variant="primary" disabled={saving} onClick={() => { void save(); }}>
+                  {saving ? savingText : t("reflection.views.conflict.save_mine")}
+                </Button>
+              </>
+            }
+          />
+        );
+      case "entry":
+        return (
+          <EntryView
+            title={step.label}
+            newText={editingId ? "" : t("reflection.views.entry.new")}
+            facts={[
+              sourceRef
+                ? {
+                    key: "source",
+                    label: t("reflection.views.entry.source"),
+                    value: sourceKindText,
+                    /* Allika kustumisel kirje JÄÄB ja seda öeldakse välja (doc ptk 3.3 „Seos"). */
+                    note: sourceState === "deleted" ? t("reflection.views.entry.source_deleted") : ""
+                  }
+                : null,
+              editingId && editingCreatedAt
+                ? { key: "created", label: t("reflection.views.entry.created"), value: formatDate(editingCreatedAt) }
+                : null,
+              editingId && editingUpdatedAt
+                ? { key: "updated", label: t("reflection.views.entry.updated"), value: formatDate(editingUpdatedAt) }
+                : null
+            ].filter(Boolean)}
+            hint={editingId ? t("reflection.views.entry.delete_hint") : ""}
+            note={foot}
+            actions={
+              <>
+                {editingId ? (
+                  <Button
+                    type="button"
+                    variant="secondary"
+                    disabled={deleting}
+                    onClick={() => {
+                      if (confirming === "delete") void remove();
+                      else armConfirm("delete");
+                    }}
+                  >
+                    {deleting
+                      ? t("reflection.deletion.deleting")
+                      : confirming === "delete"
+                        ? t("reflection.views.confirm_delete")
+                        : t("reflection.views.entry.delete")}
+                  </Button>
+                ) : null}
+                <Button type="button" variant="secondary" onClick={() => guardDiscard("close", closeForm)}>
+                  {confirming === "close" ? discardText : t("reflection.form.back")}
+                </Button>
+              </>
+            }
+          />
+        );
+      default:
+        return (
+          <ListView
+            title={step.label}
+            lead={t("reflection.views.list.lead")}
+            privacy={privacyText}
+            loading={loading}
+            loadingText={t("reflection.common.loading")}
+            error={
+              loadError
+                ? {
+                    text: loadError,
+                    retry: {
+                      label: t("reflection.common.retry"),
+                      onClick: () => {
+                        setLoading(true);
+                        void load();
+                      }
+                    }
+                  }
+                : null
+            }
+            create={
+              !loading && !loadError
+                ? { label: confirming === "new" ? discardText : t("reflection.list.new"), onClick: () => guardDiscard("new", openNew) }
+                : null
+            }
+            notice={statusMessage ? { text: statusMessage, tone: statusIsError ? "risk" : undefined } : null}
+            undo={
+              undoDeletion
+                ? {
+                    text: t("reflection.deletion.deleted"),
+                    label: restoring ? t("reflection.deletion.restoring") : t("reflection.deletion.undo"),
+                    busy: restoring,
+                    onClick: () => {
+                      void undoRemove();
+                    }
+                  }
+                : null
+            }
+            rows={rows}
+            emptyText={t("reflection.list.empty")}
+            more={
+              nextCursor
+                ? {
+                    label: loadingMore ? t("reflection.common.loading") : t("reflection.list.load_more"),
+                    busy: loadingMore,
+                    onClick: () => {
+                      void load({ cursor: nextCursor, append: true });
+                    }
+                  }
+                : null
+            }
+          />
+        );
+    }
+  };
+
+  return (
+    <section
+      className={styles.shell}
+      ref={shellRef}
+      onFocusCapture={() => {
+        focusInside.current = true;
+      }}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) focusInside.current = false;
+      }}
+    >
+      {/* Lehe nimi on kiirmenüüs; pealkiri jääb ekraanilugejale. */}
+      <h1 className="sr-only">{t("reflection.title")}</h1>
+      {viewKeys.length > 1 ? (
+        /* Vaadete loend muutub, kui kirje avatakse või suletakse ja kui tekib
+           kahe versiooni võrdlus: siis ehitatakse lava uuesti ja see avaneb
+           vaatel, kuhu töötaja läks. */
+        <StepFlight
+          key={stageKey}
+          label={t("reflection.title")}
+          steps={steps}
+          initialIndex={Math.max(0, viewKeys.indexOf(view))}
+          activeKey={viewKeys.includes(view) ? view : "list"}
+          onStepChange={(index, step) => {
+            if (!step) return;
+            setView(step.key);
+            setConfirming("");
+          }}
+        >
+          {renderView}
+        </StepFlight>
+      ) : (
+        /* Kuni ühtegi kirjet ei ole avatud, on lehel üks vaade (loend). Ühe
+           vaatega lava näitaks kiirmenüüs „1/1" ja avaks välja kerides
+           ülevaate ühe plaadiga: siis on loend otse paneelis. */
+        renderView(steps[0])
+      )}
+    </section>
   );
 }

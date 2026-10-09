@@ -1,0 +1,313 @@
+/* Meetodipeegel: loendiread, märgid, väljade paigutus, kahe versiooni võrdlus
+   ja kirje andmed. Vaate kuju (juhis, tegevusrida) tuleb StepPanel-ist, valikud
+   ChoiceRow-st ja tekstiväljad TextAreaField-ist (components/stage).
+
+   Hinnanguvaba pind: siin ei ole skoori, võrdluse ega edetabeli elemente. See
+   on kujundusreegel, mitte juhus (analüüsidokument ptk 3.4 ja 3.6). */
+
+.shell {
+  min-width: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+.stack {
+  min-width: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+.quiet {
+  margin: 0;
+  color: var(--text-soft);
+}
+
+/* Märk: seis või märgis. Tekst võib kitsal pinnal murduda (pikk seotud tegevuse nimi). */
+.chip {
+  display: inline-block;
+  max-width: 100%;
+  padding: 0.12rem 0.6rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 999px;
+  color: var(--text-soft);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+/* Privaatsusmärgis: püsielement igas vaates, seepärast teistest märkidest selgem. */
+.chip[data-privacy="private"] {
+  border-color: color-mix(in srgb, var(--text-warm) 46%, transparent);
+  background: color-mix(in srgb, var(--text-warm) 9%, transparent);
+  color: var(--text-warm);
+  font-weight: 560;
+}
+
+/* Teade loendi kohal; tegevus (proovi uuesti, võta tagasi) seisab teate kõrval. */
+.notice {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.9rem;
+  background: var(--glass-cell-bg);
+  color: var(--text-soft);
+}
+.notice[data-tone="risk"] {
+  border-color: color-mix(in srgb, var(--status-error, #eb9a76) 60%, transparent);
+  border-inline-start-width: 3px;
+  color: var(--text-warm);
+}
+.noticeText {
+  min-width: 0;
+  flex: 1 1 14rem;
+}
+
+/* Loendi ülaserv: uus kirje vasakul, privaatsusmärgis paremal. */
+.top {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
+
+/* Loend: rida on üks vajutatav lahter (pealkiri, märk ja aeg, tee edasi). */
+.rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+/* Paneeli üldkiht annab igale loendireale alumise vahe ja lugemislaiuse. */
+.item {
+  margin: 0;
+  max-width: none;
+}
+.row {
+  composes: cell from "../stage/cell.module.css";
+  width: 100%;
+  min-height: var(--hit-target-min, 2.75rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 0.3rem 1rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.9rem;
+  text-align: left;
+}
+.row[data-selected="true"] {
+  border-color: color-mix(in srgb, var(--text-warm) 62%, transparent);
+}
+.rowTitle {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-warm);
+  font-weight: 560;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.rowMeta {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 0.3rem 0.6rem;
+}
+.time,
+.rowOpen {
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.more {
+  justify-self: start;
+}
+
+/* Avatud kirje väljad. Väljal on oma püstvahe (TextAreaField, ChoiceRow). */
+.fields {
+  min-width: 0;
+  display: grid;
+}
+/* Kaks lühikest välja kõrvuti. Kui ühe nimi murdub kahele reale, jäävad
+   tekstikastid ikka ühele joonele. */
+.pair {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: end;
+  gap: 0 0.8rem;
+}
+/* Päritolumärgis välja nime küljes: struktuurne, mitte valitav. */
+.provenance {
+  display: inline-block;
+  margin-inline-start: 0.5rem;
+  padding: 0.05rem 0.5rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 999px;
+  color: var(--text-soft);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.choice {
+  min-width: 0;
+  display: grid;
+}
+.clearLine {
+  min-height: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+.textButton {
+  width: auto;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  color: var(--text-soft);
+  font: inherit;
+  font-size: var(--fs-small, 0.875rem);
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  cursor: pointer;
+}
+.textButton:hover {
+  color: var(--text-warm);
+}
+.textButton:focus-visible {
+  outline: none;
+  border-radius: 0.3rem;
+  box-shadow: var(--focus-ring);
+}
+
+/* Paneeli alaserva rida: märgid ja viimase toimingu teade. */
+.footNote {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem 0.6rem;
+}
+.status {
+  color: var(--text-soft);
+}
+.status[data-tone="risk"] {
+  color: var(--status-error, #eb9a76);
+}
+:global(html.theme-light) .status[data-tone="risk"] {
+  color: #9a3d1f;
+}
+
+/* Kaks versiooni: välja nimi ja selle all minu tekst ning serveri tekst kõrvuti. */
+.diffs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+.diff {
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+.diffField {
+  margin: 0;
+  color: var(--text-dim);
+  font-family: inherit;
+  font-size: 0.74rem;
+  font-weight: 560;
+  letter-spacing: 0.12em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+.diffPair {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 0.5rem;
+}
+.diffSide {
+  min-width: 0;
+  display: grid;
+  align-content: start;
+  gap: 0.2rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.9rem;
+  background: var(--glass-cell-bg);
+}
+.diffWho {
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+}
+.diffText {
+  margin: 0;
+  max-width: none;
+  color: var(--text-warm);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.diffText[data-empty="true"] {
+  color: var(--text-dim);
+}
+
+/* Kirje andmed: nimetus vasakul, väärtus paremal. */
+.facts {
+  min-width: 0;
+  max-width: 36rem;
+  margin: 0;
+  display: grid;
+}
+.fact {
+  display: grid;
+  grid-template-columns: minmax(0, 12rem) minmax(0, 1fr);
+  gap: 0.2rem 1rem;
+  padding-block: 0.45rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--text-warm) 10%, transparent);
+}
+.fact:last-child {
+  border-bottom: 0;
+}
+.factLabel {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+}
+.factValue {
+  margin: 0;
+  color: var(--text-warm);
+  overflow-wrap: anywhere;
+}
+.factNote {
+  display: block;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+}
+
+@media (max-width: 640px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .rowMeta {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: flex-start;
+  }
+  .pair,
+  .diffPair,
+  .fact {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
