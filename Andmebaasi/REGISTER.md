@@ -11,14 +11,14 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | organisatsioonid | 1 | 3 | Ühe organisatsiooni (Astangu) käsitsi koostatud pakett: sisu ja allikad. RAG-is seda paketti ei ole. Organisatsioonide enda veebilehed on RAG-is (vt „RAG-i seis“). |
 | oigusaktid | 612 | 626 | XML-aktid, sh eri redaktsioonid ja omavalitsuste teised kehtivad sotsiaalaktid (ADR-058); kehtivus tuleb vastuvõtul kontrollida. Aktide lisadest tuletatud allikad (`lisad/`): kaks tabelit (ADR-050) ja kaksteist omavalitsuse lisa teksti (ADR-053); iga tuletatud allikas nimetab oma akti redaktsiooni. Üks akt on allikas ainult nimetatud paragrahvide ulatuses (registrikirje väli `xml_sections`, ADR-076): `103072026024.xml`, 2026. aasta riigieelarve seaduse § 2; fail ise on Riigi Teataja algfail. |
 | teadmised | 0 | 7 | Allikapõhised teadmiskaardid (tingimused, erandid, mõisted ja nende seosed) valitud allikatele; iga fail on seotud oma allika räsiga (ADR-054). |
-| register | 0 | 8 | Kavandatud allikate register ja korjatavate veebilehtede nimekirjad (`web_pages.json` ametlikud juhislehed, `web_pages_state_help.json` riigi tasandi abi juhislehed (pension, perehüvitised, elatisabi, perelepitus; ADR-111), `web_pages_state_help_2.json` riigi tasandi abi teine partii (ravikindlustus, kohtusse pöördumine, võlad, pärimine, ohvriabi, puue ja hoolekanne, politsei juhised; ADR-112), `web_pages_vendors.json` abivahendite müüjate lehed, `web_pages_organisations.json` puuetega inimeste organisatsioonide lehed koos mustriga, mis pealkirja järgi välja jääb; ADR-095), mitte teadmistekst. Mis müüjate ja organisatsioonide lehtedest RAG-is on, näitab „RAG-i seis“. `newsletter_documents.json` on ajakirja Sotsiaaltöö uudiskirjas viidatud dokumentide loend (ADR-099): pealkiri, väljaandja ametlik aadress ja seis, sh need, mida RAG-is ei ole (ingliskeelsed, tekstikihita, liiga suured, vastuvõtu kinni peetud, arvutabelid). |
-| veebilehed | 324 | 648 | Ametlikud juhislehed, korjatud skriptiga `scripts/rag-v2-web-pages.mjs` (ADR-095): lehe sisuosa ilma saidi menüüde ja isikute kontaktideta, metaandmetes aadress, kontrolli kuupäev ja viidatud dokumendid. |
+| register | 0 | 9 | Kavandatud allikate register ja korjatavate veebilehtede nimekirjad (`web_pages.json` ametlikud juhislehed, `web_pages_state_help.json` riigi tasandi abi juhislehed (pension, perehüvitised, elatisabi, perelepitus; ADR-111), `web_pages_state_help_2.json` riigi tasandi abi teine partii (ravikindlustus, kohtusse pöördumine, võlad, pärimine, ohvriabi, puue ja hoolekanne, politsei juhised; ADR-112), `web_pages_state_help_3.json` kolmas partii (riigi õigusabi, täitemenetlus, perekonna- ja pärimisõigus, kuriteoohvri õigused, toe vajadusega õpilane; ADR-115), `web_pages_vendors.json` abivahendite müüjate lehed, `web_pages_organisations.json` puuetega inimeste organisatsioonide lehed koos mustriga, mis pealkirja järgi välja jääb; ADR-095), mitte teadmistekst. Mis müüjate ja organisatsioonide lehtedest RAG-is on, näitab „RAG-i seis“. `newsletter_documents.json` on ajakirja Sotsiaaltöö uudiskirjas viidatud dokumentide loend (ADR-099): pealkiri, väljaandja ametlik aadress ja seis, sh need, mida RAG-is ei ole (ingliskeelsed, tekstikihita, liiga suured, vastuvõtu kinni peetud, arvutabelid). |
+| veebilehed | 361 | 722 | Ametlikud juhislehed, korjatud skriptiga `scripts/rag-v2-web-pages.mjs` (ADR-095): lehe sisuosa ilma saidi menüüde ja isikute kontaktideta, metaandmetes aadress, kontrolli kuupäev ja viidatud dokumendid. |
 | taastatud_allikad | 0 | 22 | Serveri vanast indeksist taastatud tekst. Enne importi võrrelda põhipakettidega. |
 
 <!-- corpus-state:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
-## RAG-i seis: mis on serveris (korpus v73)
+## RAG-i seis: mis on serveris (korpus v74)
 
-Seis 09.10.2026: serveris töötav RAG (korpus **v73**, indeks `d0aa63f4`) sisaldab **8 659 dokumenti** (75 102 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
+Seis 09.10.2026: serveris töötav RAG (korpus **v74**, indeks `3dff55b3`) sisaldab **8 696 dokumenti** (75 543 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
 
 | Mis on RAG-is | Dokumente | Kus on loend |
 |---|---:|---|
@@ -28,12 +28,12 @@ Seis 09.10.2026: serveris töötav RAG (korpus **v73**, indeks `d0aa63f4`) sisal
 | Ajakirja Sotsiaaltöö artiklid | 892 | jaotis „Sisufailid“ |
 | Õigusaktid | 566 | jaotis „Sisufailid“ |
 | Juhendid, infomaterjalid ja uuringud | 429 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
-| Ametlikud juhislehed (ametite veebilehed) | 323 | jaotis „Sisufailid“ |
+| Ametlikud juhislehed (ametite veebilehed) | 360 | jaotis „Sisufailid“ |
 | Puuetega inimeste organisatsioonide lehed | 521 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Hooldekodude kohamaksumus omavalitsuste kaupa | 79 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müügi- ja üüripunktid | 93 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müüjate lehed | 51 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
-| **Kokku** | **8659** | |
+| **Kokku** | **8696** | |
 
 <details><summary>Tehniline jaotus arendajale: kus allikafailid asuvad</summary>
 
@@ -44,7 +44,7 @@ Dokumentide arvud ei võrdu ülal olevate failide arvudega: üks fail võib anda
 | `KOV` | 4498 | kov_service_info 3195, application_form 845, official_contact 431, web_form 17, pdf_form 6, official_form 4 |
 | `ajakiri_sotsiaaltoo` | 892 | file 849, web 43 |
 | `oigusaktid` | 566 | legal_act 566 |
-| `veebilehed` | 324 | web_page 323, research_report 1 |
+| `veebilehed` | 361 | web_page 360, research_report 1 |
 | `juhendid_ja_uuringud` | 171 | information_material 81, research_report 46, official_guideline 38, policy_analysis 6 |
 
 Koodihoidlas (GitHub) ei ole 2208 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
@@ -1981,6 +1981,43 @@ Koodihoidla allikafailid, mida RAG-is ei ole (61):
 | Maksekäsu kiirmenetlus | [veebilehed/eesti-kohtud/kohus_tsiviilkohtumenetlus_maksekasu_kiirmenetlus.html](<veebilehed/eesti-kohtud/kohus_tsiviilkohtumenetlus_maksekasu_kiirmenetlus.html>) |
 | Veebikeskkondade ja e-teenuste ligipääsetavus | [veebilehed/eesti-puuetega-inimeste-koda/eesti_puuetega_inimeste_koda_epikoda_digiligipaasetavus.html](<veebilehed/eesti-puuetega-inimeste-koda/eesti_puuetega_inimeste_koda_epikoda_digiligipaasetavus.html>) |
 | Kooliväline nõustamismeeskond | [veebilehed/haridus-ja-noorteamet-rajaleidja/rajaleidja_kvm.html](<veebilehed/haridus-ja-noorteamet-rajaleidja/rajaleidja_kvm.html>) |
+| Eesti lasteaedade ja koolide toimimine ja põhimõtted | [veebilehed/haridus-ja-noorteamet/harno_eesti_lasteaedade_ja_koolide_toimimine_ja_pohimotted.html](<veebilehed/haridus-ja-noorteamet/harno_eesti_lasteaedade_ja_koolide_toimimine_ja_pohimotted.html>) |
+| Kaasav haridus | [veebilehed/haridus-ja-noorteamet/harno_kaasav_haridus.html](<veebilehed/haridus-ja-noorteamet/harno_kaasav_haridus.html>) |
+| Lapsevanema tugi lapsele | [veebilehed/haridus-ja-noorteamet/harno_lapsevanema_tugi_lapsele.html](<veebilehed/haridus-ja-noorteamet/harno_lapsevanema_tugi_lapsele.html>) |
+| Alusharidus | [veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_alusharidus.html](<veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_alusharidus.html>) |
+| Õppimiskohustus | [veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_oppimiskohustus.html](<veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_oppimiskohustus.html>) |
+| Põhiharidus | [veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_pohiharidus.html](<veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_pohiharidus.html>) |
+| Toe vajadusega õpilased: õppekorraldus ja tugiteenused | [veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_toe_vajadusega_opilased.html](<veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_toe_vajadusega_opilased.html>) |
+| Advokaat | [veebilehed/justiits-ja-digiministeerium/just_elukutsed_advokaat.html](<veebilehed/justiits-ja-digiministeerium/just_elukutsed_advokaat.html>) |
+| Kohtutäitur | [veebilehed/justiits-ja-digiministeerium/just_elukutsed_kohtutaitur.html](<veebilehed/justiits-ja-digiministeerium/just_elukutsed_kohtutaitur.html>) |
+| Notar | [veebilehed/justiits-ja-digiministeerium/just_elukutsed_notar.html](<veebilehed/justiits-ja-digiministeerium/just_elukutsed_notar.html>) |
+| Pankrotihaldur | [veebilehed/justiits-ja-digiministeerium/just_elukutsed_pankrotihaldur.html](<veebilehed/justiits-ja-digiministeerium/just_elukutsed_pankrotihaldur.html>) |
+| Andmekaitse ja isikuandmete vastutustundliku töötlemise põhimõtted | [veebilehed/justiits-ja-digiministeerium/just_haldusoigus_andmekaitse.html](<veebilehed/justiits-ja-digiministeerium/just_haldusoigus_andmekaitse.html>) |
+| Avalik teave | [veebilehed/justiits-ja-digiministeerium/just_haldusoigus_avalik_teave.html](<veebilehed/justiits-ja-digiministeerium/just_haldusoigus_avalik_teave.html>) |
+| Halduskorraldus- ja menetlus | [veebilehed/justiits-ja-digiministeerium/just_haldusoigus_halduskorraldus_ja_menetlus.html](<veebilehed/justiits-ja-digiministeerium/just_haldusoigus_halduskorraldus_ja_menetlus.html>) |
+| Alternatiivkaristused | [veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_alternatiivkaristused.html](<veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_alternatiivkaristused.html>) |
+| Inimkaubandus | [veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_inimkaubandus.html](<veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_inimkaubandus.html>) |
+| Perevägivald | [veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_perevagivald.html](<veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_perevagivald.html>) |
+| Seksuaalne väärkohtlemine | [veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_seksuaalne_vaarkohtlemine.html](<veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_seksuaalne_vaarkohtlemine.html>) |
+| Vangla ja kriminaalhooldus | [veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_vangla_ja_kriminaalhooldus.html](<veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_vangla_ja_kriminaalhooldus.html>) |
+| Lapsesõbralik menetlus | [veebilehed/justiits-ja-digiministeerium/just_lapsed_ja_noored_lapsesobralik_menetlus.html](<veebilehed/justiits-ja-digiministeerium/just_lapsed_ja_noored_lapsesobralik_menetlus.html>) |
+| Nooresõbralik õigussüsteem | [veebilehed/justiits-ja-digiministeerium/just_lapsed_ja_noored_nooresobralik_oigussusteem.html](<veebilehed/justiits-ja-digiministeerium/just_lapsed_ja_noored_nooresobralik_oigussusteem.html>) |
+| Maksejõuetus | [veebilehed/justiits-ja-digiministeerium/just_maksejouetus.html](<veebilehed/justiits-ja-digiministeerium/just_maksejouetus.html>) |
+| Taastav õigus | [veebilehed/justiits-ja-digiministeerium/just_ohvrite_toetamine_kahjude_heastamine_ja_taastav_oigus.html](<veebilehed/justiits-ja-digiministeerium/just_ohvrite_toetamine_kahjude_heastamine_ja_taastav_oigus.html>) |
+| Kuriteoohvrite õigused | [veebilehed/justiits-ja-digiministeerium/just_ohvrite_toetamine_kuriteoohvrite_oigused.html](<veebilehed/justiits-ja-digiministeerium/just_ohvrite_toetamine_kuriteoohvrite_oigused.html>) |
+| Lähenemiskeeld | [veebilehed/justiits-ja-digiministeerium/just_ohvrite_toetamine_lahenemiskeeld.html](<veebilehed/justiits-ja-digiministeerium/just_ohvrite_toetamine_lahenemiskeeld.html>) |
+| Õigusnõu erivajadustega inimestele | [veebilehed/justiits-ja-digiministeerium/just_oigusabi_oigusnou_erivajadustega_inimestele.html](<veebilehed/justiits-ja-digiministeerium/just_oigusabi_oigusnou_erivajadustega_inimestele.html>) |
+| Õigusabi | [veebilehed/justiits-ja-digiministeerium/just_oigusabi_riigi_toetatud_oigusabi.html](<veebilehed/justiits-ja-digiministeerium/just_oigusabi_riigi_toetatud_oigusabi.html>) |
+| Tasuta õigusnõu eakatele | [veebilehed/justiits-ja-digiministeerium/just_oigusabi_tasuta_oigusnou_eakatele.html](<veebilehed/justiits-ja-digiministeerium/just_oigusabi_tasuta_oigusnou_eakatele.html>) |
+| Pärimisregister | [veebilehed/justiits-ja-digiministeerium/just_registrid_parimisregister.html](<veebilehed/justiits-ja-digiministeerium/just_registrid_parimisregister.html>) |
+| Täitmisregister | [veebilehed/justiits-ja-digiministeerium/just_registrid_taitmisregister.html](<veebilehed/justiits-ja-digiministeerium/just_registrid_taitmisregister.html>) |
+| Täitemenetlus | [veebilehed/justiits-ja-digiministeerium/just_tsiviilmenetlus_taitemenetlus.html](<veebilehed/justiits-ja-digiministeerium/just_tsiviilmenetlus_taitemenetlus.html>) |
+| Tsiviilkohtumenetlus | [veebilehed/justiits-ja-digiministeerium/just_tsiviilmenetlus_tsiviilkohtumenetlus.html](<veebilehed/justiits-ja-digiministeerium/just_tsiviilmenetlus_tsiviilkohtumenetlus.html>) |
+| Miinimumelatis | [veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_miinimumelatise_muutmine.html](<veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_miinimumelatise_muutmine.html>) |
+| Pärimisõigus | [veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_parimisoigus.html](<veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_parimisoigus.html>) |
+| Perekonnaõigus | [veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_perekonnaoigus.html](<veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_perekonnaoigus.html>) |
+| Tsiviilõiguse üldalused | [veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_tsiviiloiguse_uldalused.html](<veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_tsiviiloiguse_uldalused.html>) |
+| Võlaõigus | [veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_volaoigus.html](<veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_volaoigus.html>) |
 | Elatisevõlgnik ja pankrotimenetlus | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_elatisevolgnik_ja_pankrotimenetlus.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_elatisevolgnik_ja_pankrotimenetlus.html>) |
 | Elatisabi taotlemine | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_elatisvolgnevused_elatisabi_taotlemine.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_elatisvolgnevused_elatisabi_taotlemine.html>) |
 | KKK | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_kkk.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_kkk.html>) |
@@ -2291,7 +2328,7 @@ Koodihoidla allikafailid, mida RAG-is ei ole (61):
 <!-- corpus-outside:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
 ## RAG-is olevad lehed ja kontaktid
 
-Serveris töötav RAG, korpus v73, 09.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
+Serveris töötav RAG, korpus v74, 09.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
 
 ### Hooldekodude kohamaksumuse lehed (79)
 

@@ -1,0 +1,59 @@
+{
+  "document_id": "web-just_elukutsed_pankrotihaldur",
+  "title": "Pankrotihaldur",
+  "register_title": "Pankrotihaldur",
+  "source_id": "just_elukutsed_pankrotihaldur",
+  "source_type": "web_page",
+  "publisher": "Justiits- ja Digiministeerium",
+  "language": "et",
+  "url": "https://www.just.ee/kohtud-ja-oigusteenused/elukutsed/pankrotihaldur",
+  "url_final": "https://www.justdigi.ee/kohtud-ja-oigusteenused/elukutsed/pankrotihaldur",
+  "source_path": "just_elukutsed_pankrotihaldur.html",
+  "source_format": "html",
+  "source_sha256": "ce08ac4d9c53e80b1c4435166eab1f0adc600ec4648d6ebe2e2b4e176bdb1a8c",
+  "content_sha256": "4549274f1fc63322cc0591850c7c53136f2c98c47409c221282bd8730f33a207",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:26:55.866Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-09-04",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "5c58f725fd5e9bc2701fa6f80333d3e240f5ba43bb57db4086f9dcb43635b124",
+    "stats": {
+      "words": 158,
+      "blocks": 11,
+      "headings": 1,
+      "tables": 0,
+      "links": 3,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

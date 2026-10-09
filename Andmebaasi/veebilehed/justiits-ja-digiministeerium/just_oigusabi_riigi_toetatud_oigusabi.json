@@ -1,0 +1,84 @@
+{
+  "document_id": "web-just_oigusabi_riigi_toetatud_oigusabi",
+  "title": "Õigusabi",
+  "register_title": "Õigusabi",
+  "source_id": "just_oigusabi_riigi_toetatud_oigusabi",
+  "source_type": "web_page",
+  "publisher": "Justiits- ja Digiministeerium",
+  "language": "et",
+  "url": "https://www.just.ee/kohtud-ja-oigusteenused/oigusabi/riigi-toetatud-oigusabi",
+  "url_final": "https://www.justdigi.ee/kohtud-ja-oigusteenused/oigusabi/riigi-toetatud-oigusabi",
+  "source_path": "just_oigusabi_riigi_toetatud_oigusabi.html",
+  "source_format": "html",
+  "source_sha256": "f2dc900ee56205e4695b45defff1aa97e3e71a8ce68ec2b3158006f6ef8e7fa3",
+  "content_sha256": "30e93050e4985603021d82353bfd4d7c345ede3787567e3d7344958f00e4db99",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:26:40.727Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-06-18",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "1399076636cda8e3cb215107d5dee6a49bfe2d9d786f9327f404308731b74f93",
+    "stats": {
+      "words": 330,
+      "blocks": 21,
+      "headings": 5,
+      "tables": 0,
+      "links": 13,
+      "linksToOtherSites": 7
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2023-01/riigi_oigusabi_taotluse_vorm.rtf",
+      "text": "Riigi õigusabi taotluse näidisvorm | 91.3 KB | rtf",
+      "type": "rtf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2023-01/taotleja_majandusliku_seisundi_teatise_naidisvorm.rtf",
+      "text": "Taotleja majandusliku seisundi teatise näidisvorm | 104.24 KB | rtf",
+      "type": "rtf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2023-01/fuusilise_isiku_menetlusabi_taotlus.rtf",
+      "text": "Füüsilise isiku menetlusabi taotlus | 722.17 KB | rtf",
+      "type": "rtf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2023-01/juriidilise_isiku_menetlusabi_taotlus.rtf",
+      "text": "Juriidilise isiku menetlusabi taotlus | 657.17 KB | rtf",
+      "type": "rtf",
+      "status": "referenced_only"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "document_id": "web-harno_lapsevanema_tugi_lapsele",
+  "title": "Lapsevanema tugi lapsele",
+  "register_title": "Lapsevanema tugi lapsele",
+  "source_id": "harno_lapsevanema_tugi_lapsele",
+  "source_type": "web_page",
+  "publisher": "Haridus- ja Noorteamet",
+  "language": "et",
+  "url": "https://harno.ee/lapsevanema-tugi-lapsele",
+  "source_path": "harno_lapsevanema_tugi_lapsele.html",
+  "source_format": "html",
+  "source_sha256": "2fa295144011b3fe5f947c45726a988be1d48a2f6d4efb4644e24115a6dbc941",
+  "content_sha256": "b5e0bf388eeecf134a39e8f9ac5ac5aa359ec54b797714d96c835a4e49da36c7",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:28:04.840Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-01-02",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Fri, 09 Oct 2026 16:26:06 GMT",
+      "etag": null
+    },
+    "raw_sha256": "6d9fb3f0a8e3d8b454e375cd628499273184830579311e06c7745a014cf91e08",
+    "stats": {
+      "words": 1251,
+      "blocks": 28,
+      "headings": 9,
+      "tables": 0,
+      "links": 12,
+      "linksToOtherSites": 11
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

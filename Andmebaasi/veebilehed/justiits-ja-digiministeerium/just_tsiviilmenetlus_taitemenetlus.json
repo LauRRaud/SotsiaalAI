@@ -1,0 +1,72 @@
+{
+  "document_id": "web-just_tsiviilmenetlus_taitemenetlus",
+  "title": "Täitemenetlus",
+  "register_title": "Täitemenetlus",
+  "source_id": "just_tsiviilmenetlus_taitemenetlus",
+  "source_type": "web_page",
+  "publisher": "Justiits- ja Digiministeerium",
+  "language": "et",
+  "url": "https://www.just.ee/era-ja-avalik-oigus/tsiviilmenetlus/taitemenetlus",
+  "url_final": "https://www.justdigi.ee/era-ja-avalik-oigus/tsiviilmenetlus/taitemenetlus",
+  "source_path": "just_tsiviilmenetlus_taitemenetlus.html",
+  "source_format": "html",
+  "source_sha256": "d0f932554f68e27889ce4cf614a26fae098f758b74d430ce814d3646d2ea84b5",
+  "content_sha256": "339da0355fd0a2470fdacd377b3e96339046186264851ee0794eae50658728cd",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:27:05.730Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-05-12",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "20604a92e6d9f850afc8d08ac302c57ce16be7138605f710b2b57c3ae2ea2909",
+    "stats": {
+      "words": 2174,
+      "blocks": 87,
+      "headings": 6,
+      "tables": 0,
+      "links": 12,
+      "linksToOtherSites": 9
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2026-04/V%C3%B5lgnike%20%C3%B5igustest%20t%C3%A4itemenetluses.pdf%20%282%29.pdf",
+      "text": "Võlgnike õigustest täitemenetluses.pdf | 8.9 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2022-02/volgnike_oigustest_taitemenetluses.pdf",
+      "text": "Võlgnike õigustest täitemenetluses | 18.63 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

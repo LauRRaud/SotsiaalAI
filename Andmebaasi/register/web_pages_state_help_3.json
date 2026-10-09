@@ -1,0 +1,376 @@
+{
+  "version": 1,
+  "note": "Riigi tasandi abi ametlikud juhislehed, kolmas partii (09.10.2026): riigi õigusabi ja tasuta õigusnõu, tsiviilkohtumenetlus, lepitus ja täitemenetlus, perekonna- ja pärimisõigus, maksejõuetus, kuriteoohvri õigused ja lähenemiskeeld, perevägivald; toe vajadusega õpilane, alusharidus ja õppimiskohustus. Lehed on väljaandja enda saidilt, saidikaardi järgi, iga leht oma aadressiga.",
+  "pages": [
+    {
+      "source_id": "just_oigusabi_riigi_toetatud_oigusabi",
+      "url": "https://www.just.ee/kohtud-ja-oigusteenused/oigusabi/riigi-toetatud-oigusabi",
+      "title": "Õigusabi",
+      "publisher": "Justiits- ja Digiministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "just_oigusabi_oigusnou_erivajadustega_inimestele",
+      "url": "https://www.just.ee/kohtud-ja-oigusteenused/oigusabi/oigusnou-erivajadustega-inimestele",
+      "title": "Õigusnõu erivajadustega inimestele",
+      "publisher": "Justiits- ja Digiministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "just_oigusabi_tasuta_oigusnou_eakatele",
+      "url": "https://www.just.ee/kohtud-ja-oigusteenused/oigusabi/tasuta-oigusnou-eakatele",
+      "title": "Tasuta õigusnõu eakatele",
+      "publisher": "Justiits- ja Digiministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "just_elukutsed_advokaat",
+      "url": "https://www.just.ee/kohtud-ja-oigusteenused/elukutsed/advokaat",
+      "title": "Advokaat",
+      "publisher": "Justiits- ja Digiministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "just_elukutsed_notar",
+      "url": "https://www.just.ee/kohtud-ja-oigusteenused/elukutsed/notar",
+      "title": "Notar",
+      "publisher": "Justiits- ja Digiministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "just_elukutsed_kohtutaitur",
+      "url": "https://www.just.ee/kohtud-ja-oigusteenused/elukutsed/kohtutaitur",
+      "title": "Kohtutäitur",
+      "publisher": "Justiits- ja Digiministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "just_elukutsed_pankrotihaldur",
+      "url": "https://www.just.ee/kohtud-ja-oigusteenused/elukutsed/pankrotihaldur",
+      "title": "Pankrotihaldur",
+      "publisher": "Justiits- ja Digiministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "just_registrid_parimisregister",
+      "url": "https://www.just.ee/kohtud-ja-oigusteenused/registrid/parimisregister",
+      "title": "Pärimisregister",
+      "publisher": "Justiits- ja Digiministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "just_registrid_taitmisregister",
+      "url": "https://www.just.ee/kohtud-ja-oigusteenused/registrid/taitmisregister",
+      "title": "Täitmisregister",
+      "publisher": "Justiits- ja Digiministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "just_tsiviilmenetlus_tsiviilkohtumenetlus",
+      "url": "https://www.just.ee/era-ja-avalik-oigus/tsiviilmenetlus/tsiviilkohtumenetlus",
+      "title": "Tsiviilkohtumenetlus",
+      "publisher": "Justiits- ja Digiministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "just_tsiviilmenetlus_taitemenetlus",
+      "url": "https://www.just.ee/era-ja-avalik-oigus/tsiviilmenetlus/taitemenetlus",
+      "title": "Täitemenetlus",
+      "publisher": "Justiits- ja Digiministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "just_tsiviiloigus_perekonnaoigus",
+      "url": "https://www.just.ee/era-ja-avalik-oigus/tsiviiloigus/perekonnaoigus",
+      "title": "Perekonnaõigus",
+      "publisher": "Justiits- ja Digiministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "just_tsiviiloigus_miinimumelatise_muutmine",
+      "url": "https://www.just.ee/era-ja-avalik-oigus/tsiviiloigus/miinimumelatise-muutmine",
+      "title": "Miinimumelatis",
+      "publisher": "Justiits- ja Digiministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "just_tsiviiloigus_parimisoigus",
+      "url": "https://www.just.ee/era-ja-avalik-oigus/tsiviiloigus/parimisoigus",
+      "title": "Pärimisõigus",
+      "publisher": "Justiits- ja Digiministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "just_tsiviiloigus_volaoigus",
+      "url": "https://www.just.ee/era-ja-avalik-oigus/tsiviiloigus/volaoigus",
+      "title": "Võlaõigus",
+      "publisher": "Justiits- ja Digiministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "just_tsiviiloigus_tsiviiloiguse_uldalused",
+      "url": "https://www.just.ee/era-ja-avalik-oigus/tsiviiloigus/tsiviiloiguse-uldalused",
+      "title": "Tsiviilõiguse üldalused",
+      "publisher": "Justiits- ja Digiministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "just_haldusoigus_andmekaitse",
+      "url": "https://www.just.ee/era-ja-avalik-oigus/haldusoigus/andmekaitse",
+      "title": "Andmekaitse ja isikuandmete vastutustundliku töötlemise põhimõtted",
+      "publisher": "Justiits- ja Digiministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "just_haldusoigus_avalik_teave",
+      "url": "https://www.just.ee/era-ja-avalik-oigus/haldusoigus/avalik-teave",
+      "title": "Avalik teave",
+      "publisher": "Justiits- ja Digiministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "just_haldusoigus_halduskorraldus_ja_menetlus",
+      "url": "https://www.just.ee/era-ja-avalik-oigus/haldusoigus/halduskorraldus-ja-menetlus",
+      "title": "Halduskorraldus- ja menetlus",
+      "publisher": "Justiits- ja Digiministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "just_maksejouetus",
+      "url": "https://www.just.ee/maksejouetus",
+      "title": "Maksejõuetus",
+      "publisher": "Justiits- ja Digiministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "just_ohvrite_toetamine_kuriteoohvrite_oigused",
+      "url": "https://www.just.ee/kuritegevus-ja-selle-ennetus/ohvrite-toetamine/kuriteoohvrite-oigused",
+      "title": "Kuriteoohvrite õigused",
+      "publisher": "Justiits- ja Digiministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "just_ohvrite_toetamine_lahenemiskeeld",
+      "url": "https://www.just.ee/kuritegevus-ja-selle-ennetus/ohvrite-toetamine/lahenemiskeeld",
+      "title": "Lähenemiskeeld",
+      "publisher": "Justiits- ja Digiministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "just_ohvrite_toetamine_kahjude_heastamine_ja_taastav_oigus",
+      "url": "https://www.just.ee/kuritegevus-ja-selle-ennetus/ohvrite-toetamine/kahjude-heastamine-ja-taastav-oigus",
+      "title": "Taastav õigus",
+      "publisher": "Justiits- ja Digiministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "just_kuritegevus_ja_selle_ennetus_perevagivald",
+      "url": "https://www.just.ee/kuritegevus-ja-selle-ennetus/perevagivald",
+      "title": "Perevägivald",
+      "publisher": "Justiits- ja Digiministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "just_kuritegevus_ja_selle_ennetus_seksuaalne_vaarkohtlemine",
+      "url": "https://www.just.ee/kuritegevus-ja-selle-ennetus/seksuaalne-vaarkohtlemine",
+      "title": "Seksuaalne väärkohtlemine",
+      "publisher": "Justiits- ja Digiministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "just_kuritegevus_ja_selle_ennetus_inimkaubandus",
+      "url": "https://www.just.ee/kuritegevus-ja-selle-ennetus/inimkaubandus",
+      "title": "Inimkaubandus",
+      "publisher": "Justiits- ja Digiministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "just_kuritegevus_ja_selle_ennetus_vangla_ja_kriminaalhooldus",
+      "url": "https://www.just.ee/kuritegevus-ja-selle-ennetus/vangla-ja-kriminaalhooldus",
+      "title": "Vangla ja kriminaalhooldus",
+      "publisher": "Justiits- ja Digiministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "just_kuritegevus_ja_selle_ennetus_alternatiivkaristused",
+      "url": "https://www.just.ee/kuritegevus-ja-selle-ennetus/alternatiivkaristused",
+      "title": "Alternatiivkaristused",
+      "publisher": "Justiits- ja Digiministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "just_lapsed_ja_noored_lapsesobralik_menetlus",
+      "url": "https://www.just.ee/kuritegevus-ja-selle-ennetus/lapsed-ja-noored/lapsesobralik-menetlus",
+      "title": "Lapsesõbralik menetlus",
+      "publisher": "Justiits- ja Digiministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "just_lapsed_ja_noored_nooresobralik_oigussusteem",
+      "url": "https://www.just.ee/kuritegevus-ja-selle-ennetus/lapsed-ja-noored/nooresobralik-oigussusteem",
+      "title": "Nooresõbralik õigussüsteem",
+      "publisher": "Justiits- ja Digiministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "hm_alus_pohi_ja_keskharidus_toe_vajadusega_opilased",
+      "url": "https://www.hm.ee/uldharidus-ja-noored/alus-pohi-ja-keskharidus/toe-vajadusega-opilased",
+      "title": "Toe vajadusega õpilased: õppekorraldus ja tugiteenused",
+      "publisher": "Haridus- ja Teadusministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "hm_alus_pohi_ja_keskharidus_alusharidus",
+      "url": "https://www.hm.ee/uldharidus-ja-noored/alus-pohi-ja-keskharidus/alusharidus",
+      "title": "Alusharidus",
+      "publisher": "Haridus- ja Teadusministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "hm_alus_pohi_ja_keskharidus_oppimiskohustus",
+      "url": "https://www.hm.ee/uldharidus-ja-noored/alus-pohi-ja-keskharidus/oppimiskohustus",
+      "title": "Õppimiskohustus",
+      "publisher": "Haridus- ja Teadusministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "hm_alus_pohi_ja_keskharidus_pohiharidus",
+      "url": "https://www.hm.ee/uldharidus-ja-noored/alus-pohi-ja-keskharidus/pohiharidus",
+      "title": "Põhiharidus",
+      "publisher": "Haridus- ja Teadusministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "harno_kaasav_haridus",
+      "url": "https://harno.ee/kaasav-haridus",
+      "title": "Kaasav haridus",
+      "publisher": "Haridus- ja Noorteamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "harno_lapsevanema_tugi_lapsele",
+      "url": "https://harno.ee/lapsevanema-tugi-lapsele",
+      "title": "Lapsevanema tugi lapsele",
+      "publisher": "Haridus- ja Noorteamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "harno_eesti_lasteaedade_ja_koolide_toimimine_ja_pohimotted",
+      "url": "https://harno.ee/eesti-lasteaedade-ja-koolide-toimimine-ja-pohimotted",
+      "title": "Eesti lasteaedade ja koolide toimimine ja põhimõtted",
+      "publisher": "Haridus- ja Noorteamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    }
+  ]
+}

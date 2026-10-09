@@ -1,0 +1,59 @@
+{
+  "document_id": "web-just_registrid_parimisregister",
+  "title": "Pärimisregister",
+  "register_title": "Pärimisregister",
+  "source_id": "just_registrid_parimisregister",
+  "source_type": "web_page",
+  "publisher": "Justiits- ja Digiministeerium",
+  "language": "et",
+  "url": "https://www.just.ee/kohtud-ja-oigusteenused/registrid/parimisregister",
+  "url_final": "https://www.justdigi.ee/kohtud-ja-oigusteenused/registrid/parimisregister",
+  "source_path": "just_registrid_parimisregister.html",
+  "source_format": "html",
+  "source_sha256": "e048de011bed5687a0d9f8dd6a3af5fea5b7a3512fa06a105f856b0a0a38adc8",
+  "content_sha256": "edc911318a83336c5db3ab511617c91ab93e0fe4eaee72ef3ad619b3f43c7de0",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:26:58.324Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2024-11-25",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "d5967b7a137885a7ff22c7d116708b2d1958a48d3bebae076628565cd817bf4e",
+    "stats": {
+      "words": 139,
+      "blocks": 7,
+      "headings": 1,
+      "tables": 0,
+      "links": 3,
+      "linksToOtherSites": 3
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

@@ -1,0 +1,72 @@
+{
+  "document_id": "web-just_ohvrite_toetamine_kahjude_heastamine_ja_taastav_oigus",
+  "title": "Taastav õigus",
+  "register_title": "Taastav õigus",
+  "source_id": "just_ohvrite_toetamine_kahjude_heastamine_ja_taastav_oigus",
+  "source_type": "web_page",
+  "publisher": "Justiits- ja Digiministeerium",
+  "language": "et",
+  "url": "https://www.just.ee/kuritegevus-ja-selle-ennetus/ohvrite-toetamine/kahjude-heastamine-ja-taastav-oigus",
+  "url_final": "https://www.justdigi.ee/kuritegevus-ja-selle-ennetus/ohvrite-toetamine/kahjude-heastamine-ja-taastav-oigus",
+  "source_path": "just_ohvrite_toetamine_kahjude_heastamine_ja_taastav_oigus.html",
+  "source_format": "html",
+  "source_sha256": "2ef1c1168cf5b0707bc34b1b9170f46148885947f584173bbb7818f1e887617e",
+  "content_sha256": "ae429478658c771050188313c731d5b7e4a5ddddab1a6ae3d3f12ed6f1967422",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:27:35.848Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2025-10-06",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "072d2bd9d8e909f9d0e755e6507e9f78cb7d4d0a4ae716834c4280ff84893778",
+    "stats": {
+      "words": 920,
+      "blocks": 20,
+      "headings": 5,
+      "tables": 0,
+      "links": 6,
+      "linksToOtherSites": 6
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/to_kontseptsioon_ja_lisa_1.pdf",
+      "text": "Tutvu taastava õiguse kontseptsiooniga siin.",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/taastav_oigus_toos_alaealiste_oigusrikkujatega.pdf",
+      "text": "Kaisa Vetemaa „Taastav õigus töös alaealiste õigusrikkujatega. Magistritöö“",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}
