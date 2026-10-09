@@ -12646,7 +12646,8 @@
         "THANKS": "Thanks",
         "OTHER": "Other",
         "GIFT_OFFERED": "A gift or money was offered",
-        "FEEDBACK": "Feedback"
+        "FEEDBACK": "Feedback",
+        "NEAR_MISS": "Near miss"
       },
       "text_label": "What I saw or heard",
       "assessment_label": "What I think",
@@ -14060,6 +14061,25 @@
         "call_title": "If something is different or the time does not suit, call",
         "valid_from": "valid from {date}"
       }
+    },
+    "near_miss": {
+      "start": "Near miss",
+      "kind_label": "What nearly happened",
+      "kinds": {
+        "SLIP": "I slipped or tripped",
+        "ANIMAL": "an animal attacked or frightened me",
+        "FIRE": "fire risk, gas or fumes",
+        "BEHAVIOUR": "the behaviour of the client or another person",
+        "LIFTING": "while lifting or supporting",
+        "OTHER": "other"
+      },
+      "note_label": "Add one line (if you wish)",
+      "hint": "The mark goes to the incident register and the coordinator is notified. If the danger may repeat, add it afterwards to the standing card. If you were hurt, write a work accident incident.",
+      "save": "Save",
+      "cancel": "Cancel",
+      "recorded": "The mark is saved. If the danger may repeat, add it to the standing card.",
+      "text": "Near miss: {what}.",
+      "text_with_note": "Near miss: {what}. {note}"
     }
   },
   "stage": {

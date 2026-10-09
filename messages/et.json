@@ -12646,7 +12646,8 @@
         "THANKS": "Tänu",
         "OTHER": "Muu",
         "GIFT_OFFERED": "Pakuti kingitust või raha",
-        "FEEDBACK": "Tagasiside"
+        "FEEDBACK": "Tagasiside",
+        "NEAR_MISS": "Peaaegu juhtus"
       },
       "text_label": "Mida nägin või kuulsin",
       "assessment_label": "Mida arvan",
@@ -14060,6 +14061,25 @@
         "call_title": "Kui midagi on teisiti või aeg ei sobi, helistage",
         "valid_from": "kehtib alates {date}"
       }
+    },
+    "near_miss": {
+      "start": "Peaaegu juhtus",
+      "kind_label": "Mis peaaegu juhtus",
+      "kinds": {
+        "SLIP": "libisesin või komistasin",
+        "ANIMAL": "loom ründas või hirmutas",
+        "FIRE": "tuleoht, gaas või ving",
+        "BEHAVIOUR": "kliendi või teise inimese käitumine",
+        "LIFTING": "tõstmisel või toetamisel",
+        "OTHER": "muu"
+      },
+      "note_label": "Lisa üks rida (kui tahad)",
+      "hint": "Märge läheb erijuhtumite registrisse ja hooldusjuht saab teate. Kui oht võib korduda, lisa see pärast püsikaardile „Enne kui lähed”. Kui said viga, kirjuta tööõnnetuse erijuhtum.",
+      "save": "Salvesta",
+      "cancel": "Loobu",
+      "recorded": "Märge on salvestatud. Kui oht võib korduda, lisa see püsikaardile.",
+      "text": "Peaaegu juhtus: {what}.",
+      "text_with_note": "Peaaegu juhtus: {what}. {note}"
     }
   },
   "stage": {

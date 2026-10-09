@@ -22,6 +22,7 @@ import HomeCareOutbox from "./HomeCareOutbox";
 import HomeCarePlanView from "./HomeCarePlanView";
 import HomeCareReasonForm from "./HomeCareReasonForm";
 import HomeCareKeys from "./HomeCareKeys";
+import HomeCareNearMiss from "./HomeCareNearMiss";
 import HomeCareNoAnswer from "./HomeCareNoAnswer";
 import HomeCareMoney from "./HomeCareMoney";
 import HomeCarePreconditions from "./HomeCarePreconditions";
@@ -390,6 +391,17 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
         canRecord={canAddEntry}
         onSaved={upsertEntry}
       />
+
+      {/* „Peaaegu juhtus" (K5-h): kahe puudutusega märge olukorrast, kus midagi oleks võinud juhtuda. */}
+      {canAddEntry ? (
+        <HomeCareNearMiss
+          organizationId={organizationId}
+          clientId={client.id}
+          clientName={client.displayName}
+          viewerMembershipId={access.membershipId}
+          onSaved={upsertEntry}
+        />
+      ) : null}
 
       {/* Märkamised, mis ootavad vastust (K5-a): ainult hooldusjuhile, enne muud, sest need on tema teha. */}
       {access.isCoordinator ? <HomeCareChangeSignals organizationId={organizationId} initial={data.changeSignals} timeZone={timeZone} /> : null}
