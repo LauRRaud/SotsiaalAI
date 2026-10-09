@@ -16,6 +16,8 @@ import { buildServiceMapHandoff } from "@/lib/journey/serviceMapHandoff";
 import { buildAssistiveDevicesHandoff } from "@/lib/journey/assistiveDevices";
 import { buildHelpMediationHandoff } from "@/lib/journey/helpMediationHandoff";
 import { buildHealthContactQuestionsDraft, hasHealthContactSignal } from "@/lib/journey/healthContact";
+import { linkedPreInquiryState } from "@/lib/journey/linkedPreInquiryState";
+import { journeyRoadmap } from "@/lib/journey/roadmap";
 import { reconcileSuggestedActionTitles } from "@/lib/journey/suggestedActions";
 import { pushWithTransition } from "@/lib/routeTransition";
 
@@ -300,15 +302,21 @@ function ContentList({ title, items, emptyText }) {
   );
 }
 
+/** Ülevaate sammust tulles („Salvesta ja …") avaneb leht selle jaotise juures. */
+const START_SECTION_IDS = Object.freeze({
+  SERVICE_MAP: "teekond-teenusekaart",
+  PRE_INQUIRY: "teekond-eelpoordumine"
+});
+
 function JourneyRoadmap({ journey, t }) {
-  const steps = [
-    { title: t("journey.roadmap.situation", "Olukord kirjeldatud"), state: "done" },
-    { title: t("journey.roadmap.saved", "Ülevaade salvestatud"), state: "done" },
-    { title: t("journey.roadmap.contact", "Kontakt või teenus otsitud"), state: journey?.primaryPath === "SERVICE_MAP" ? "next" : "todo" },
-    { title: t("journey.roadmap.pre_inquiry", "Eelpöördumine koostatud"), state: journey?.primaryPath === "PRE_INQUIRY" ? "next" : "todo" },
-    { title: t("journey.roadmap.response", "Vastus või jätkusuhtlus"), state: "todo" },
-    { title: t("journey.roadmap.next", "Järgmine samm"), state: "todo" }
-  ];
+  /* Rajal on ainult read, mille seisu platvorm päriselt teab (vt `lib/journey/roadmap.js`). */
+  const titles = {
+    situation: t("journey.roadmap.situation", "Olukord kirjeldatud"),
+    saved: t("journey.roadmap.saved", "Ülevaade salvestatud"),
+    pre_inquiry: t("journey.roadmap.pre_inquiry", "Eelpöördumine saadetud"),
+    response: t("journey.roadmap.response", "Saaja on pöördumise avanud")
+  };
+  const steps = journeyRoadmap(journey).map((step) => ({ title: titles[step.key], state: step.state }));
 
   const stateLabels = {
     done: t("journey.roadmap.done", "tehtud"),
@@ -362,11 +370,12 @@ function ActivityHistory({ journey, t, locale }) {
   );
 }
 
-function preInquiryStatusLabel(t, status) {
-  const normalized = String(status || "").toUpperCase();
+/** Seis saatja silmade läbi (vt `linkedPreInquiryState`), mitte vastuvõtja töövoo seis. */
+function preInquiryStateLabel(t, item) {
+  const state = item?.state || linkedPreInquiryState(item);
   return t(
-    `journey.related.pre_inquiry_status.${normalized}`,
-    t("journey.related.pre_inquiry_status.DRAFT", "mustand")
+    `journey.related.pre_inquiry_state.${state}`,
+    t("journey.related.pre_inquiry_state.DRAFT", "mustand")
   );
 }
 
@@ -396,7 +405,7 @@ function LinkedPreInquiries({ journey, t, locale, onLoadMore }) {
         return (
           <li key={item.id}>
             <span>{topic}</span>
-            <span>{preInquiryStatusLabel(t, item?.status)}</span>
+            <span>{preInquiryStateLabel(t, item)}</span>
             <Button as="a" href={href} variant="linkBrand">
               {t("journey.related.open", "Ava")}
             </Button>
@@ -436,20 +445,17 @@ function RelatedObjectsPanel({ journey, t, locale, onLoadMorePreInquiries }) {
           <h3>{t("journey.related.pre_inquiries", "Seotud eelpöördumised")}</h3>
           <LinkedPreInquiries journey={journey} t={t} locale={locale} onLoadMore={onLoadMorePreInquiries} />
         </div>
+        {/* Muid seoseid Teekond veel ei loo. Rühm on näha ainult siis, kui selles
+            midagi on: tühi pealkiri lubaks võimalust, mida ei ole. */}
         {groups.map(([key, title]) => {
           const items = normalizeDisplayItems(context[key]);
+          if (!items.length) return null;
           return (
             <div key={key}>
               <h3>{title}</h3>
-              {items.length ? (
-                <div>
-                  {items.map((item) => <span key={item}>{item}</span>)}
-                </div>
-              ) : (
-                <p>
-                  {t("journey.related.empty", "Siia ilmuvad eelpöördumised, dokumendid või kontaktid, mille seod selle teekonnaga.")}
-                </p>
-              )}
+              <div>
+                {items.map((item) => <span key={item}>{item}</span>)}
+              </div>
             </div>
           );
         })}
@@ -718,7 +724,7 @@ function ContinuityChoiceField({ id, label, value, onChange, t }) {
   );
 }
 
-export default function JourneyDetail({ journeyId }) {
+export default function JourneyDetail({ journeyId, startWith: requestedStart = "" }) {
   const { t, locale } = useI18n();
   const router = useRouter();
   const { status } = useSession();
@@ -731,7 +737,25 @@ export default function JourneyDetail({ journeyId }) {
   const [healthDraftOpen, setHealthDraftOpen] = useState(false);
   const [healthQuestionsDraft, setHealthQuestionsDraft] = useState("");
   const [assistivePreInquiryShareOpen, setAssistivePreInquiryShareOpen] = useState(false);
-  const [preInquiryShareOpen, setPreInquiryShareOpen] = useState(false);
+  /* Tuleb lehelt (aadressi `?alusta=`), mitte brauseri aadressiribalt: lehe sees
+     liikudes ei ole aadress esimesel joonistusel veel uus. „Salvesta ja koosta
+     eelpöördumine" avab jagamise valiku kohe. */
+  const startWith = Object.hasOwn(START_SECTION_IDS, requestedStart) ? requestedStart : "";
+  const [preInquiryShareOpen, setPreInquiryShareOpen] = useState(startWith === "PRE_INQUIRY");
+  /* Pärast laadimist viiakse inimene valitud sammu juurde ja märge võetakse
+     aadressilt ära, et lehe uuendamine ei keriks uuesti. */
+  useEffect(() => {
+    if (!startWith || !journey?.id) return undefined;
+    const frame = window.requestAnimationFrame(() => {
+      const section = document.getElementById(START_SECTION_IDS[startWith]);
+      section?.scrollIntoView({ block: "start" });
+      section?.querySelector("h2")?.focus({ preventScroll: true });
+      const url = new URL(window.location.href);
+      url.searchParams.delete("alusta");
+      window.history.replaceState(window.history.state, "", url);
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [startWith, journey?.id]);
   const [helpRequestShareOpen, setHelpRequestShareOpen] = useState(false);
   const [assistiveHelpRequestShareOpen, setAssistiveHelpRequestShareOpen] = useState(false);
   const [helpOfferMatchCount, setHelpOfferMatchCount] = useState(null);
@@ -1274,10 +1298,10 @@ export default function JourneyDetail({ journeyId }) {
 
               <JourneyRoadmap journey={journey} t={t} />
 
-              <section>
+              <section id={START_SECTION_IDS.SERVICE_MAP}>
                 <div>
                   <div>
-                    <h2>
+                    <h2 tabIndex={-1}>
                       {t("journey.service_map.title", "Ava teenusekaart nende teemade põhjal")}
                     </h2>
                     <p>
@@ -1407,10 +1431,10 @@ export default function JourneyDetail({ journeyId }) {
                 </section>
               ) : null}
 
-              <section>
+              <section id={START_SECTION_IDS.PRE_INQUIRY}>
                 <div>
                   <div>
-                    <h2>
+                    <h2 tabIndex={-1}>
                       {t("journey.pre_inquiry.title", "Koosta eelpöördumine selle olukorra põhjal")}
                     </h2>
                     <p>
