@@ -5036,6 +5036,13 @@ test('ravimitoimingu märge: käigu kirjel, ainult ravimitoimingul, parandus ja 
   await assert.rejects(raw({ medicationAction: 'SÜSTISIN' }), /CareEntryActivity_medicationAction_check/);
   await assert.rejects(raw({ medicationAction: 'GAVE', activityGroup: 'HEATING' }), /CareEntryActivity_medicationAction_check/);
   await assert.rejects(raw({ medicationAction: 'GAVE', outcome: 'REFUSED' }), /CareEntryActivity_medicationAction_check/);
+
+  /* KUU KOKKUVÕTE (K5-i): arvud kliendi kaupa; kliendil ilma ravimiridadeta võtit ei ole; tühistatud kirje ei loe. */
+  const month = await getMonthSummary(lead, { month: '2026-10' }, deps(at('2026-10-09T11:00:00Z')));
+  const of = (name) => month.clients.find((row) => row.client.displayName === name);
+  assert.deepEqual(of('Linda Tamm').medication, { reminded: 0, sawTaken: 0, gave: 0, unmarked: 0, notDone: 1 });
+  assert.equal('medication' in of('Peeter Põhi'), false);
+  assert.equal('medication' in of('Mari Mets'), false);
 });
 
 test('töötaja kaart: taustakontroll ja koolitused, ainult kogu asutuse hooldusjuht, tähtaegade nimekiri', async (t) => {

@@ -13497,7 +13497,8 @@
       "missed_empty": "Selles kuus ära jäänud käike kirjas ei ole.",
       "how": "Ära jäänud käiguks loetakse erijuhtumid „ei avanud ust” ja „keeldus abist”. Kui käigul oli kaks töötajat, on kliendi aeg loetud üks kord ja töötajate juures kummalgi. Kilomeetreid siin ei ole: sõite koduteenuse päevik ei mõõda.",
       "not_done": "tegemata toiminguid: keeldus {refused}, polnud vaja {notNeeded}, ei saanud teha {couldNot}",
-      "cancelled_count": "ära jäetud plaanitud käike {count}"
+      "cancelled_count": "ära jäetud plaanitud käike {count}",
+      "medication": "ravimid: tuletati meelde {reminded}, nähti võtmas {sawTaken}, anti {gave}; märkimata {unmarked}, tegemata {notDone}"
     },
     "slots": {
       "title": "Käigud nädalas",
