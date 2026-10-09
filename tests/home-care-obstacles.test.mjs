@@ -17,7 +17,7 @@ test('takistuse teade: andmebaasi CHECK ja koodi sõnastik on samad; vaba teksti
   /* Üks lahtine teade töötaja ja päeva kohta; teade ei ole korraga tagasi võetud ja vaadatud. */
   assert.match(sql, /CREATE UNIQUE INDEX "CareObstacle_open_key" ON "CareObstacle"\("membershipId", "day"\)\s+WHERE "withdrawnAt" IS NULL AND "handledAt" IS NULL;/);
   assert.match(sql, /"CareObstacle_state_check" CHECK \("withdrawnAt" IS NULL OR "handledAt" IS NULL\)/);
-  assert.match(sql, /^SET lock_timeout = '5s';\nSET statement_timeout = '30s';/m);
+  assert.match(sql, /^SET lock_timeout = '5s';\r?\nSET statement_timeout = '30s';/m);
 });
 
 test('takistuse teavitus kannab ainult rea ID-d ja viib suunajalehele', () => {
