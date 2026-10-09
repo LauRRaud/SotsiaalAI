@@ -59,6 +59,13 @@ import {
 } from '../lib/homeCare/chronology.js';
 import { applyClientImport, previewClientImport } from '../lib/homeCare/clientImport.js';
 import { importHistory, readHistory, removeHistory, searchHistory } from '../lib/homeCare/importedHistory.js';
+import {
+  findDoorTagOrganization,
+  getDoorTag,
+  issueDoorTag,
+  locateDoorTagForViewer,
+  revokeDoorTag
+} from '../lib/homeCare/doorTags.js';
 import { getCoordinatorOverview } from '../lib/homeCare/overview.js';
 import { assertNotificationRecipient, serializeNotificationEvent } from '../lib/notifications.js';
 
@@ -1557,4 +1564,86 @@ test('imporditud ajalugu: ületoomine, lugemine lehekülgede kaupa, otsing, eema
     db.careImportedHistory.create({ data: { organizationId: f.orgA.id, clientId: client.id, title: '  ', charCount: 1, blockCount: 1, contentSha256: 'x', importedByMembershipId: f.members.lead.id, importedByName: 'x' } }),
     /title_not_blank/
   );
+});
+
+test('uksesilt: üks kehtiv silt, uus tühistab vana, silt ei anna ligipääsu', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const cover = await f.ctx(f.users.cover, f.orgA);
+  const clerk = await f.ctx(f.users.clerk, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  const { client } = await createClient(lead, { displayName: 'Linda Tamm' }, deps());
+  const { client: otherClient } = await createClient(lead, { displayName: 'Jaan Kask' }, deps());
+  await addTeamMember(lead, client.id, { membershipId: f.members.anu.id }, deps());
+  await addTeamMember(lead, otherClient.id, { membershipId: f.members.cover.id }, deps());
+  const site = { siteUrl: 'https://sotsiaal.pro' };
+
+  /* Alguses silti ei ole; sildi teeb ainult hooldusjuht. */
+  assert.deepEqual(await getDoorTag(lead, client.id, { ...deps(), ...site }), { client: { id: client.id, displayName: 'Linda Tamm' }, tag: null });
+  await expectError(getDoorTag(anu, client.id, deps()), 403, 'org.errors.missing_capability');
+  await expectError(issueDoorTag(anu, client.id, deps()), 403, 'org.errors.missing_capability');
+  await expectError(issueDoorTag(clerk, client.id, deps()), 404, 'home_care.errors.client_not_found');
+  await expectError(issueDoorTag(leadB, client.id, deps()), 404, 'home_care.errors.client_not_found');
+
+  const { tag } = await issueDoorTag(lead, client.id, { ...deps(at('2026-10-09T09:00:00Z')), ...site });
+  assert.match(tag.url, /^https:\/\/sotsiaal\.pro\/org\/koduteenus\/uks\/[A-Za-z0-9_-]{22}$/);
+  assert.equal(tag.createdAt, '2026-10-09T09:00:00.000Z');
+  assert.ok(tag.qr.side >= 37 && tag.qr.d.startsWith('M'));
+  const token = tag.url.split('/').pop();
+  /* Aadressis ei ole asutuse ega kliendi ID-d ega nime. */
+  for (const secret of [f.orgA.id, client.id, 'Linda', 'Tamm']) assert.equal(tag.url.includes(secret), false, secret);
+  assert.equal((await getDoorTag(lead, client.id, { ...deps(), ...site })).tag.url, tag.url);
+
+  /* SILT EI ANNA LIGIPÄÄSU: kes klienti ei näe, saab sama vastuse mis olematu sildi puhul. */
+  assert.equal(await findDoorTagOrganization(token, { db }), f.orgA.id);
+  assert.deepEqual(await locateDoorTagForViewer(anu, token, deps()), { clientId: client.id });
+  assert.deepEqual(await locateDoorTagForViewer(lead, token, deps()), { clientId: client.id });
+  /* Teise kliendi hooldaja jõuab kliendi lehele, kus temalt küsitakse põhjust. */
+  assert.deepEqual(await locateDoorTagForViewer(cover, token, deps()), { clientId: client.id });
+  await expectError(openClient(cover, client.id, deps()), 403, 'home_care.errors.access_reason_required');
+  /* Kõrvaline liige ja teine asutus: 404. */
+  await expectError(locateDoorTagForViewer(clerk, token, deps()), 404, 'home_care.errors.client_not_found');
+  await expectError(locateDoorTagForViewer(leadB, token, deps()), 404, 'home_care.errors.client_not_found');
+  await expectError(locateDoorTagForViewer(anu, 'x'.repeat(22), deps()), 404, 'home_care.errors.client_not_found');
+  await expectError(locateDoorTagForViewer(anu, 'liiga-lühike', deps()), 404, 'home_care.errors.client_not_found');
+  assert.equal(await findDoorTagOrganization('x'.repeat(22), { db }), null);
+  assert.equal(await findDoorTagOrganization("'; DROP TABLE x; --", { db }), null);
+
+  /* UUS SILT tühistab eelmise: vana aadress lakkab töötamast. */
+  const second = await issueDoorTag(lead, client.id, { ...deps(at('2026-10-10T09:00:00Z')), ...site });
+  assert.notEqual(second.tag.url, tag.url);
+  await expectError(locateDoorTagForViewer(anu, token, deps()), 404, 'home_care.errors.client_not_found');
+  assert.equal(await findDoorTagOrganization(token, { db }), null);
+  const newToken = second.tag.url.split('/').pop();
+  assert.deepEqual(await locateDoorTagForViewer(anu, newToken, deps()), { clientId: client.id });
+  assert.equal(await db.careClientDoorTag.count({ where: { clientId: client.id } }), 2);
+  assert.equal(await db.careClientDoorTag.count({ where: { clientId: client.id, revokedAt: null } }), 1);
+  /* Kaks kehtivat silti ühel kliendil ei luba ka andmebaas ise. */
+  await assert.rejects(
+    db.careClientDoorTag.create({ data: { organizationId: f.orgA.id, clientId: client.id, token: 'y'.repeat(22), createdByMembershipId: f.members.lead.id } }),
+    /one_active_per_client|Unique constraint/
+  );
+  /* Samaaegsed „tee uus silt" jätavad ühe kehtiva. */
+  await Promise.all([1, 2, 3].map(() => issueDoorTag(lead, client.id, deps())));
+  assert.equal(await db.careClientDoorTag.count({ where: { clientId: client.id, revokedAt: null } }), 1);
+
+  /* TÜHISTAMINE: ainult hooldusjuht; pärast seda silti ei ole. */
+  await expectError(revokeDoorTag(anu, client.id, deps()), 403, 'org.errors.missing_capability');
+  assert.deepEqual(await revokeDoorTag(lead, client.id, deps()), { revoked: true });
+  assert.deepEqual(await revokeDoorTag(lead, client.id, deps()), { revoked: false });
+  assert.equal((await getDoorTag(lead, client.id, deps())).tag, null);
+  await expectError(locateDoorTagForViewer(anu, newToken, deps()), 404, 'home_care.errors.client_not_found');
+
+  /* Audit: ainult ID-d, tunnust seal ei ole. */
+  const audit = await db.dataAuditLog.findMany({ where: { action: { in: ['org.home_care_door_tag_issued', 'org.home_care_door_tag_revoked'] }, meta: { path: ['clientId'], equals: client.id } } });
+  assert.ok(audit.length >= 3);
+  assert.ok(audit.every((row) => Object.keys(row.meta).sort().join() === 'clientId,organizationId,tagId'));
+  assert.equal(JSON.stringify(audit).includes(token), false);
+  assert.equal(JSON.stringify(audit).includes(newToken), false);
+
+  /* Kliendi kustutamisel kustuvad ka sildid. */
+  await issueDoorTag(lead, otherClient.id, deps());
+  await db.careClient.delete({ where: { id: otherClient.id } });
+  assert.equal(await db.careClientDoorTag.count({ where: { clientId: otherClient.id } }), 0);
 });

@@ -3,6 +3,7 @@
 // tests/home-care.integration.test.mjs (päris andmebaas).
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { coordinatorScope, isCoordinatorFor, visibleClientsWhere, personName } from '../lib/homeCare/access.js';
 import { chronologyContentHash } from '../lib/homeCare/chronology.js';
 import {
@@ -22,6 +23,8 @@ import {
 } from '../lib/homeCare/clientTable.js';
 import { HOME_CARE_LIMITS } from '../lib/homeCare/constants.js';
 import { appendDictatedText } from '../lib/homeCare/dictation.js';
+import { renderDoorTagHtml } from '../lib/homeCare/doorTagDocument.js';
+import { doorTagPath, doorTagUrl, isDoorTagToken, newDoorTagToken } from '../lib/homeCare/doorTags.js';
 import { serializeEntry } from '../lib/homeCare/entries.js';
 import {
   HISTORY_BLOCK_MAX,
@@ -51,6 +54,7 @@ import {
   sortQueue
 } from '../lib/homeCare/outbox.js';
 import { startOfYesterday } from '../lib/homeCare/overview.js';
+import { encodeQr, qrCapacityBytes, qrSvgPath } from '../lib/homeCare/qr.js';
 import { entrySearchText, entrySearchWhere, searchWords } from '../lib/homeCare/search.js';
 import {
   entryRequestHash,
@@ -743,4 +747,86 @@ test('imporditud ajalugu: tekst jagatakse lõikudeks, midagi ei kao ega muutu', 
   assert.equal(historyContentHash(splitHistoryText('a\r\n\r\nb')), historyContentHash(splitHistoryText('a\n\nb  ')));
   assert.notEqual(historyContentHash(splitHistoryText('a\n\nb')), historyContentHash(splitHistoryText('a\n\nc')));
   assert.match(historyContentHash(['a']), /^[a-f0-9]{64}$/);
+});
+
+test('QR-kood: ehitus vastab standardile ja väljund on sama, mille sõltumatu lugeja lahti luges', () => {
+  const rowsOf = (qr) => qr.modules.map((row) => row.map((dark) => (dark ? '1' : '0')).join(''));
+  const hashOf = (text) => createHash('sha256').update(rowsOf(encodeQr(text)).join('\n')).digest('hex');
+
+  /* Versiooni mahutavus baitides (tase M) ja väikseima sobiva versiooni valik. */
+  assert.deepEqual(Array.from({ length: 10 }, (_, index) => qrCapacityBytes(index + 1)), [14, 26, 42, 62, 84, 106, 122, 152, 180, 213]);
+  assert.deepEqual(['x'.repeat(14), 'x'.repeat(15), 'x'.repeat(62), 'x'.repeat(63), 'x'.repeat(213)].map((text) => encodeQr(text).version), [1, 2, 4, 5, 10]);
+  assert.throws(() => encodeQr('x'.repeat(214)), RangeError);
+  /* Täpitähed loetakse baitidena (UTF-8), mitte märkidena. */
+  assert.equal(encodeQr('õ'.repeat(7)).version, 1);
+  assert.equal(encodeQr('õ'.repeat(8)).version, 2);
+
+  const qr = encodeQr('Tere');
+  const rows = rowsOf(qr);
+  assert.equal(qr.size, 21);
+  assert.equal(rows.length, 21);
+  assert.ok(rows.every((row) => row.length === 21));
+  /* Kolm otsimismustrit nurkades: 7×7 raam, sees 3×3. */
+  const finder = ['1111111', '1000001', '1011101', '1011101', '1011101', '1000001', '1111111'];
+  finder.forEach((line, y) => {
+    assert.equal(rows[y].slice(0, 7), line, `ülal vasakul, rida ${y}`);
+    assert.equal(rows[y].slice(14), line, `ülal paremal, rida ${y}`);
+    assert.equal(rows[14 + y].slice(0, 7), line, `all vasakul, rida ${y}`);
+  });
+  /* Eraldaja, ajastusjoon ja alati tume moodul. */
+  assert.equal(rows[7].slice(0, 8), '00000000');
+  assert.equal(rows[6].slice(8, 13), '10101');
+  assert.equal(rows[13][8], '1');
+
+  /* REGRESSIOON. Need räsid on arvutatud koodidest, mille sõltumatu lugeja
+     (OpenCV QRCodeDetector) luges tagasi täpselt samaks tekstiks: 17 proovi
+     versioonidest 1 kuni 10, sealhulgas iga versiooni täpne mahupiir, täpitähed
+     ja uksesildi aadress. Kui kodeerija muutub ja räsi enam ei klapi, tuleb uus
+     väljund enne räsi uuendamist uuesti lugejaga kontrollida. */
+  assert.equal(hashOf('A'), 'bc9009ae87ca68f1d256b69eb26362086d73d9f0b95f1e9f3dccae752626c3b6');
+  assert.equal(hashOf('https://sotsiaal.pro/org/koduteenus/uks/Zk3vQ9xP1sLmN7aB2cD4eF'), '7be49240b5bd6844a578a246e2115c19354529a61e87974a62c7fdedf011657a');
+  assert.equal(hashOf('Õun, Ülle & Äär: täpitähed šž 100%'), '11bf9789c82af183e48c637945940ff41ffe04e867940ef3ba433b516aa5f7c8');
+  assert.equal(hashOf('t'.repeat(122)), 'd6e757be86a0a0f6b515930fdbcd5502bc21db50594a95c6ba2069278c39806f');
+  assert.equal(hashOf('q'.repeat(181)), 'f651b1eae9c3e5113645bdc372a7795b4ade105e207ebf569f40b39578dfda84');
+
+  /* Joonistus: iga tume moodul on ühikruut, vaikne äär neli moodulit. */
+  const path = qrSvgPath(qr.modules);
+  assert.equal(path.side, 29);
+  assert.equal((path.d.match(/M/g) || []).length, rows.join('').split('1').length - 1);
+  assert.ok(path.d.startsWith('M4,4h1v1h-1z'));
+  assert.match(path.d, /^[Mhvz0-9,-]+$/);
+});
+
+test('uksesilt: tunnus on juhuslik ja aadressist ei loe välja asutust, klienti ega nime; dokument on paotatud', () => {
+  const tokens = Array.from({ length: 200 }, () => newDoorTagToken());
+  assert.equal(new Set(tokens).size, 200);
+  assert.ok(tokens.every(isDoorTagToken));
+  assert.ok(tokens.every((token) => token.length === 22));
+  for (const bad of ['', 'abc', 'a'.repeat(21), 'a'.repeat(23), `${'a'.repeat(21)}/`, `${'a'.repeat(21)}.`, null, 42, ' '.repeat(22)]) {
+    assert.equal(isDoorTagToken(bad), false, String(bad));
+  }
+  assert.equal(doorTagPath('Zk3vQ9xP1sLmN7aB2cD4eF'), '/org/koduteenus/uks/Zk3vQ9xP1sLmN7aB2cD4eF');
+  assert.equal(doorTagUrl('Zk3vQ9xP1sLmN7aB2cD4eF', { siteUrl: 'https://sotsiaal.pro/' }), 'https://sotsiaal.pro/org/koduteenus/uks/Zk3vQ9xP1sLmN7aB2cD4eF');
+  /* Aadress mahub väikesesse koodi (versioon 4 või 5), mida telefon loeb ka halvas valguses. */
+  assert.ok(encodeQr(doorTagUrl(tokens[0], { siteUrl: 'https://sotsiaal.pro' })).version <= 5);
+
+  const qr = qrSvgPath(encodeQr('https://sotsiaal.pro/org/koduteenus/uks/Zk3vQ9xP1sLmN7aB2cD4eF').modules);
+  const html = renderDoorTagHtml({
+    tag: { qr: { ...qr, d: `${qr.d}"><script>alert(document.cookie)</script>` } },
+    clientName: 'Linda <b>Tamm</b>',
+    organization: { displayName: 'Hoolekanne <A> & Co', defaultLocale: 'et' }
+  });
+  /* Kasutaja tekst on paotatud ja teekonda ei saa midagi süstida. */
+  for (const raw of ['<script', '<b>', '<A>', 'alert', 'cookie']) assert.equal(html.includes(raw), false, raw);
+  assert.ok(html.includes('Linda &lt;b&gt;Tamm&lt;/b&gt;'));
+  assert.ok(html.includes('Hoolekanne &lt;A&gt; &amp; Co'));
+  assert.ok(html.includes(`<path d="${qr.d}" fill="#000"/>`));
+  assert.ok(html.includes(`viewBox="0 0 ${qr.side} ${qr.side}"`));
+  /* Pealkirjas ei ole nime; nimi on ainult lõikejoonest väljaspool oleval real, mitte sildil. */
+  assert.match(html, /<title>Uksesilt<\/title>/);
+  const tagSection = html.slice(html.indexOf('<section class="tag">'), html.indexOf('</section>'));
+  assert.equal(tagSection.includes('Linda'), false);
+  assert.ok(html.indexOf('Linda') < html.indexOf('<section class="tag">'));
+  assert.ok(html.includes('http-equiv="Content-Security-Policy"'));
+  assert.ok(html.indexOf('http-equiv="Content-Security-Policy"') < html.indexOf('<style>'));
 });

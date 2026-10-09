@@ -8124,6 +8124,7 @@ model CareClient {
   incidentUpdates CareIncidentUpdate[]
   chronologyReleases CareChronologyRelease[]
   importedHistories  CareImportedHistory[]
+  doorTags           CareClientDoorTag[]
 
   @@unique([organizationId, internalCode])
   @@index([organizationId, status, displayName])
@@ -8426,6 +8427,27 @@ model CareChronologyRelease {
   @@unique([createdByMembershipId, clientRequestId])
   @@index([organizationId, createdAt])
   @@index([clientId, createdAt])
+}
+
+/// KODUTEENUS K1-g — uksesilt: juhuslik tunnus aadressis, mis viib sisse logitud
+/// töötaja õige kliendi lehele. Tunnus EI ANNA ligipääsu ja sellest ei saa välja
+/// lugeda asutust, klienti ega nime. Üks kehtiv silt kliendi kohta (osaline
+/// unikaalindeks migratsioonis); uus silt tühistab eelmise.
+model CareClientDoorTag {
+  id             String @id @default(cuid())
+  organizationId String
+  clientId       String
+  /// 16 juhuslikku baiti base64url kujul (22 märki).
+  token          String @unique
+
+  createdByMembershipId String
+  createdAt             DateTime  @default(now())
+  revokedAt             DateTime?
+  revokedByMembershipId String?
+
+  client CareClient @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@index([clientId, revokedAt])
 }
 
 /// KODUTEENUS K1-f — imporditud ajalugu: kliendi senine päevik teisest kohast

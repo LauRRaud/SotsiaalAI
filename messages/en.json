@@ -11066,7 +11066,8 @@
       "history_text_required": "The text is empty.",
       "history_too_large": "The text is too long (over a million characters). Import it in parts.",
       "history_already_imported": "This text has already been imported for this client.",
-      "history_not_found": "This history was not found."
+      "history_not_found": "This history was not found.",
+      "door_tag_missing": "This client has no valid door tag."
     },
     "incidents": {
       "title": "Incident register",
@@ -11240,6 +11241,34 @@
       "hits_title": "Found in the earlier history",
       "hits_hint": "These passages are from imported text; the kind and period filters do not apply to them.",
       "hits_more": "There are more matches. Narrow the search."
+    },
+    "door_tag": {
+      "link": "Door tag",
+      "title": "Door tag",
+      "intro": "The tag goes inside the client's home, next to the door. The worker scans the code with the phone camera and lands on this client's page.",
+      "safe": "The tag does not give access: the address holds a random mark from which no name can be read, and the client's page opens only for a signed-in worker who can see this client.",
+      "qr_label": "QR code of the door tag",
+      "made_at": "The tag was made {time}",
+      "open_print": "Open the printable tag",
+      "print_hint": "The tag opens in a new tab. Print it and cut it out along the dashed line; the client's name is not on the tag.",
+      "url_label": "Address of the tag",
+      "copy": "Copy",
+      "copied": "Copied",
+      "nfc_hint": "The same address can be written to an NFC sticker: then it is enough to hold the phone against the sticker.",
+      "none": "This client has no door tag yet.",
+      "make": "Make a tag",
+      "replace": "Make a new tag",
+      "replace_confirm": "Make a new tag, the current one stops working",
+      "revoke": "Cancel the tag",
+      "revoke_confirm": "Cancel the tag, it stops working",
+      "doc": {
+        "title": "Door tag",
+        "print_hint": "Print this page and cut the tag out along the dashed line. This line is not printed.",
+        "for_client": "Tag for the client:",
+        "qr_label": "QR code",
+        "what": "Home care worker: scan the code with the phone camera.",
+        "safe": "The code opens nobody's data without signing in."
+      }
     }
   },
   "stage": {
