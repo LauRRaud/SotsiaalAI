@@ -1,0 +1,458 @@
+/* Teenuseprofiili vaadete kujundus: väljad loenduriga, loendiread, märgid,
+   avaldamise kontrolli read ja alumise serva olekurida.
+   Vaate kuju (juhis, tegevusrida all servas) tuleb StepPanel-ist, küsimused
+   ChoiceRow-st, valikurühmad ChoiceChips-ist, tekstiväljad TextAreaField-ist
+   ja märkekaardid CheckCard-ist (components/stage). */
+
+/* Leht: teated lava kohal ja lava ise. */
+.surface {
+  min-width: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+.stack {
+  min-width: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+.quiet {
+  margin: 0;
+  max-width: 68ch;
+  color: var(--text-soft);
+}
+.count {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+  font-variant-numeric: tabular-nums;
+}
+.line {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 0.9rem;
+}
+
+/* --- Väljad ---------------------------------------------------------------
+   Väli on nii lai, kui sisu vajab: registrikood ei ole paneeli laiune. Mitu
+   välja seisavad reas ja murduvad, kui ei mahu. */
+.fields {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: 0.9rem 1rem;
+}
+.field {
+  min-width: 0;
+  flex: 1 1 15rem;
+  max-width: 24rem;
+  display: grid;
+  gap: 0.3rem;
+}
+.field[data-size="sm"] {
+  flex: 0 1 11rem;
+  max-width: 13rem;
+}
+.field[data-size="lg"] {
+  flex: 1 1 22rem;
+  max-width: 36rem;
+}
+.fieldLabel {
+  color: var(--text-warm);
+}
+.fieldHint {
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+}
+/* Märkide loendur: vaikne rida kohe oma välja all paremas servas. Väljade
+   vahe (.fields, .stack) on sellest selgelt suurem, nii et loendur ei loe
+   järgmise välja sildi osana (kujundusaudit K08). */
+.counter {
+  justify-self: end;
+  margin-top: -0.05rem;
+  color: var(--text-dim);
+  font-size: 0.74rem;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+/* Tekstiväli (TextAreaField) ja tema loendur. TextAreaField jätab enda alla
+   0.4rem õhku; loendur tuleb selle võrra välja lähemale. */
+.counted {
+  min-width: 0;
+  display: grid;
+}
+.counted .counter {
+  margin-top: -0.2rem;
+}
+/* Kaks tekstivälja kõrvuti; kitsal pinnal üksteise all. */
+.pair {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 0 0.9rem;
+}
+/* Märkekaardid kahes veerus: üksik kaart on poole paneeli laiune, mitte terve. */
+.cards {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 0.5rem;
+}
+
+/* --- Teated ja märgid ------------------------------------------------------ */
+.notice {
+  margin: 0;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.9rem;
+  background: var(--glass-cell-bg);
+  color: var(--text-soft);
+}
+.notice[data-tone="risk"] {
+  border-color: color-mix(in srgb, var(--status-error, #eb9a76) 60%, transparent);
+  border-inline-start-width: 3px;
+  background: color-mix(in srgb, var(--status-error, #eb9a76) 10%, transparent);
+  color: var(--text-warm);
+}
+.chip {
+  flex: none;
+  justify-self: start;
+  padding: 0.12rem 0.6rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 999px;
+  color: var(--text-soft);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+.chip[data-tone="ok"],
+.chip[data-tone="positive"] {
+  border-color: color-mix(in srgb, var(--status-success, #c5cf9b) 55%, transparent);
+  color: var(--status-success, #c5cf9b);
+}
+.chip[data-tone="wait"],
+.chip[data-tone="waiting"] {
+  border-color: color-mix(in srgb, #e6c27a 55%, transparent);
+  color: #e6c27a;
+}
+.chip[data-tone="risk"],
+.chip[data-tone="warning"] {
+  border-color: color-mix(in srgb, var(--status-error, #eb9a76) 60%, transparent);
+  color: var(--status-error, #eb9a76);
+}
+:global(html.theme-light) .chip[data-tone="ok"],
+:global(html.theme-light) .chip[data-tone="positive"] {
+  color: #2f6a3f;
+}
+:global(html.theme-light) .chip[data-tone="wait"],
+:global(html.theme-light) .chip[data-tone="waiting"] {
+  color: #7a5a12;
+}
+:global(html.theme-light) .chip[data-tone="risk"],
+:global(html.theme-light) .chip[data-tone="warning"] {
+  color: #9a3d1f;
+}
+
+/* --- Loend: rida on üks vajutatav lahter (nimi, märgid, tee edasi) ---------- */
+.rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+.item {
+  margin: 0;
+  max-width: none;
+}
+.row {
+  composes: cell from "../../stage/cell.module.css";
+  width: 100%;
+  min-height: var(--hit-target-min, 2.75rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 0.3rem 1rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 0.9rem;
+  text-align: left;
+}
+.rowText {
+  min-width: 0;
+  display: grid;
+  gap: 0.05rem;
+}
+.rowTitle {
+  min-width: 0;
+  color: var(--text-warm);
+  font-weight: 560;
+  overflow-wrap: anywhere;
+}
+.rowMeta {
+  min-width: 0;
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+  overflow-wrap: anywhere;
+}
+.rowChips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 0.3rem 0.5rem;
+}
+.rowOpen {
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+  white-space: nowrap;
+}
+
+/* --- Avaldamise kontroll: seis, lause ja tee vaatesse, kus seda parandada ---- */
+.checks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+}
+.check {
+  margin: 0;
+  max-width: none;
+  min-height: 2.1rem;
+  display: grid;
+  grid-template-columns: 6.2rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.2rem 0.8rem;
+  padding-block: 0.25rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--text-warm) 10%, transparent);
+  color: var(--text-soft);
+}
+.check:last-child {
+  border-bottom: 0;
+}
+.check[data-tone="risk"] {
+  color: var(--text-warm);
+}
+.checkText {
+  min-width: 0;
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.checkDetail {
+  display: block;
+  color: var(--text-dim);
+}
+
+/* --- Tekstinupp: tee teise vaatesse (loendisse tagasi, puuduva välja juurde) -- */
+.textButton {
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  color: var(--text-warm);
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.textButton:focus-visible {
+  outline: none;
+  border-radius: 0.3rem;
+  box-shadow: var(--focus-ring);
+}
+/* Alumise serva olekurida: avatud kirje nimi, salvestamise seis ja tee edasi. */
+.footNote {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.7rem;
+}
+.crumbName {
+  max-width: 16rem;
+  overflow: hidden;
+  color: var(--text-warm);
+  font-weight: 560;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* Avatud teenuse või koha nimi vaate „Kõik sammud" kohal ja tee tagasi loendisse. */
+.itemLead {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.8rem;
+  color: var(--text-soft);
+}
+
+/* --- Aadressivasted: ühelaiused lahtrid välja all --------------------------- */
+.suggestions {
+  min-width: 0;
+  max-width: 44rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+.suggestion {
+  composes: cell from "../../stage/cell.module.css";
+  min-width: 0;
+  min-height: 2.5rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 0.75rem;
+  color: var(--text-warm);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.25;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.selected {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+}
+
+/* --- Tegevusloa seis ---------------------------------------------------------
+   Ploki joonistab components/service-provider/ServiceLicenceStatus.jsx oma
+   klassinimedega; siin on nende kujundus (varem ei olnud neil ühtegi reeglit). */
+.licence {
+  min-width: 0;
+  max-width: 68ch;
+}
+.licence :global(.service-profile-licence) {
+  display: grid;
+  gap: 0.3rem;
+}
+.licence :global(.service-profile-licence__heading) {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 0.74rem;
+  font-weight: 560;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.licence :global(.service-profile-licence__state) {
+  margin: 0;
+  color: var(--text-warm);
+  font-weight: 560;
+}
+.licence :global(.service-profile-licence__reason),
+.licence :global(.service-profile-licence__action),
+.licence :global(.service-profile-licence__public),
+.licence :global(.service-profile-licence__caveat) {
+  margin: 0;
+  color: var(--text-soft);
+}
+.licence :global(.service-profile-licence__meta) {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+}
+
+/* --- Versioonikonflikt: kaks versiooni ja kaks valikut ----------------------- */
+.conflict {
+  min-width: 0;
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--status-error, #eb9a76) 60%, transparent);
+  border-inline-start-width: 3px;
+  border-radius: 0.9rem;
+  background: color-mix(in srgb, var(--status-error, #eb9a76) 8%, transparent);
+  color: var(--text-warm);
+}
+.conflictText {
+  margin: 0;
+  color: var(--text-warm);
+}
+.conflictNames {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  overflow-wrap: anywhere;
+}
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* --- Admini töövaate valik (S, P, T) -----------------------------------------
+   Kujundusaudit K08: valik hõljus paneeli nurgas sisu kohal ja kattis kerides
+   avaldamise kontrolli teksti. Siin on tal oma rida lehe sisu ees, paneeli
+   ülaserva vabas ribas (PanelFrame'i ülapolster). Rida on voos, seega kerib
+   see sisuga kaasa ega saa midagi katta. */
+.roleSlot {
+  display: flex;
+  justify-content: flex-end;
+  min-height: 2.1rem;
+  margin-top: calc(0.3rem - var(--panel-pad, 1.25rem));
+  margin-bottom: 0.4rem;
+}
+/* Ühine reegel (.admin-role-view-cycle failis app/styles/workspace.css) ankurdab
+   valiku paneeli nurka; siin seisab see oma real. */
+.roleInline {
+  position: static;
+  inset: auto;
+  z-index: auto;
+  transform: none;
+}
+
+@container (max-width: 40rem) {
+  .field,
+  .field[data-size] {
+    flex-basis: 100%;
+    max-width: none;
+  }
+  .pair,
+  .cards,
+  .suggestions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .rowChips {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: flex-start;
+  }
+  .check {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .checkText {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+}
+@media (max-width: 640px) {
+  .field,
+  .field[data-size] {
+    flex-basis: 100%;
+    max-width: none;
+  }
+  .pair,
+  .cards,
+  .suggestions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .rowChips {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: flex-start;
+  }
+  .check {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .checkText {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+}

@@ -26,7 +26,10 @@ export default function AdminRoleViewCycleButton({
   /* Lehesiseses vaates tõstetakse lüliti otse PanelFrame'i .panel-i alla.
      Nii jagab ta ⓘ ja × nuppudega sama sisaldusplokki ning püsib igas
      paneelimõõdus täpselt ⓘ-st vasakul. Kaardivaates renderdatakse lüliti
-     kohapeal alumise menüüdoki kõrval. */
+     kohapeal alumise menüüdoki kõrval.
+     `placement="inline"`: lüliti jääb lehe enda reale, kuhu leht ta paneb
+     (koha ja kuju annab `className`). Nii ei hõlju ta keriva sisu kohal
+     (teenuseprofiil, kujundusaudit K08). */
   const [portalHost, setPortalHost] = useState(null);
 
   useEffect(() => {
@@ -104,7 +107,7 @@ export default function AdminRoleViewCycleButton({
     </div>
   );
 
-  if (placement === "cards") return control;
+  if (placement === "cards" || placement === "inline") return control;
   if (!portalHost) return null;
   return createPortal(control, portalHost);
 }

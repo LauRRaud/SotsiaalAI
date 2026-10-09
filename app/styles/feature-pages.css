@@ -529,8 +529,7 @@ html[data-reduce-transparency="1"] .feature-page__surface {
 }
 
 .workspace-feature-panel,
-.pre-inquiry-workflow,
-.service-profile-licence-actions {
+.pre-inquiry-workflow {
   display: grid;
   gap: var(--feature-gap);
 }
@@ -550,8 +549,7 @@ html[data-reduce-transparency="1"] .feature-page__surface {
   background: color-mix(in srgb, var(--surface-deep, #141414) 32%, transparent);
 }
 
-.pre-inquiry-recipient-card__availability,
-.service-profile-availability {
+.pre-inquiry-recipient-card__availability {
   padding: 0.65rem 0.75rem;
   border-radius: 0.7rem;
   background: color-mix(in srgb, var(--dusk-sunset, #c59b77) 9%, transparent);
@@ -565,12 +563,6 @@ html[data-reduce-transparency="1"] .feature-page__surface {
   padding: 0.9rem;
   border-radius: 0.85rem;
   background: color-mix(in srgb, var(--text-warm) 5%, transparent);
-}
-
-.feature-section--profile > div,
-.feature-section--profile > fieldset,
-.feature-section--profile > form {
-  min-width: 0;
 }
 
 /* Abisoovid ja -pakkumised */
