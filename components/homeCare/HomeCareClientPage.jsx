@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import DateField from "@/components/ui/DateField";
@@ -12,6 +12,7 @@ import HomeCareCard from "./HomeCareCard";
 import HomeCareClientForm from "./HomeCareClientForm";
 import HomeCareEntryForm from "./HomeCareEntryForm";
 import HomeCareEntryItem from "./HomeCareEntryItem";
+import HomeCareOutbox from "./HomeCareOutbox";
 import HomeCareReasonForm from "./HomeCareReasonForm";
 import HomeCareTeam from "./HomeCareTeam";
 import {
@@ -21,6 +22,7 @@ import {
   homeCareBase,
   useHomeCareApi
 } from "./homeCareClient";
+import { getOutboxManager } from "./homeCareOutbox";
 
 const NO_FILTER = Object.freeze({ kind: "", from: "", to: "", q: "" });
 
@@ -148,6 +150,21 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
     }));
   };
 
+  /* Seadmes oodanud kirje jõudis serverisse: kui see on selle kliendi oma,
+     näitab päevik seda kohe. Viide, sest `upsertEntry` sõltub kehtivast filtrist. */
+  const ownerId = context.membership?.id || "";
+  const upsertRef = useRef(upsertEntry);
+  useEffect(() => {
+    upsertRef.current = upsertEntry;
+  });
+  useEffect(() => {
+    const manager = getOutboxManager(ownerId);
+    if (!manager) return undefined;
+    return manager.onSent((entry, item) => {
+      if (entry && item.clientId === clientId) upsertRef.current(entry);
+    });
+  }, [ownerId, clientId]);
+
   /* Seisu vorm avaneb alati kliendi PRAEGUSE seisuga. Pooleli jäänud valik ei
      tohi järgmisel avamisel ees olla: „Lõpetatud" jääks muidu märkamatult
      salvestama. */
@@ -251,6 +268,8 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
       {ended ? <p className="hc-notice">{t("home_care.client.ended_notice")}</p> : null}
       {canWrite ? null : <p className="hc-notice">{t("home_care.client.read_only")}</p>}
 
+      <HomeCareOutbox ownerId={ownerId} timeZone={timeZone} />
+
       <HomeCareCard
         organizationId={organizationId}
         clientId={client.id}
@@ -269,6 +288,7 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
             clientId={client.id}
             team={team}
             viewerMembershipId={access.membershipId}
+            clientName={client.displayName}
             timeZone={timeZone}
             onSaved={upsertEntry}
           />

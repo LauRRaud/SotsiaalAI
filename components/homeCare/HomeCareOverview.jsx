@@ -8,6 +8,7 @@ import OrgHeader from "@/components/org/OrgHeader";
 import { CareIncidentStatus } from "@/lib/homeCare/constants";
 
 import HomeCareEntryItem from "./HomeCareEntryItem";
+import HomeCareOutbox from "./HomeCareOutbox";
 
 /**
  * Hooldusjuhi ülevaade: kolm küsimust, millele juht hommikul vastust vajab.
@@ -72,6 +73,8 @@ export default function HomeCareOverview({ context, overview }) {
   return (
     <section className="ow-shell hc-shell">
       <OrgHeader context={context} />
+      {/* Seadmes ootel kirjed saadetakse ka siit lehelt, mitte ainult avalehelt ja kliendi lehelt. */}
+      <HomeCareOutbox ownerId={context.membership?.id || ""} timeZone={timeZone} />
 
       <div className="hc-head">
         <Link className="hc-back" href={`/org/${organizationId}/koduteenus`}>

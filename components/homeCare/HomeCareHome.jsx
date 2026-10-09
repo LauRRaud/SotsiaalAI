@@ -8,6 +8,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import OrgHeader from "@/components/org/OrgHeader";
 
 import HomeCareClientForm from "./HomeCareClientForm";
+import HomeCareOutbox from "./HomeCareOutbox";
 import { clientHref, homeCareBase, useHomeCareApi } from "./homeCareClient";
 
 /**
@@ -65,6 +66,11 @@ export default function HomeCareHome({ context, initial, unitOptions }) {
           {isCoordinator ? t("home_care.home.intro_coordinator") : t("home_care.home.intro_worker")}
         </p>
       </div>
+
+      <HomeCareOutbox
+        ownerId={context.membership?.id || ""}
+        timeZone={context.organization.timezone || "Europe/Tallinn"}
+      />
 
       {isCoordinator ? (
         <div className="hc-row">

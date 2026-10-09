@@ -142,8 +142,17 @@ export default function HomeCareEntryItem({
         {incident ? <span className="hc-badge">{t(`home_care.incident.status.${incident.status}`)}</span> : null}
         {entry.coordinatorOnly ? <span className="hc-badge">{t("home_care.entry.coordinator_only")}</span> : null}
         {entry.writtenLater ? <span className="hc-badge">{t("home_care.entry.written_later")}</span> : null}
+        {entry.sentLater ? <span className="hc-badge">{t("home_care.entry.sent_later")}</span> : null}
         {entry.corrected ? <span className="hc-badge">{t("home_care.entry.corrected")}</span> : null}
       </div>
+
+      {/* Hiljem kohale jõudnud kirjel on alati näha, millal server selle sai:
+          sündmuse aeg ülal on inimese või seadme väide, see aeg on serveri oma. */}
+      {(entry.writtenLater || entry.sentLater) && entry.createdAt ? (
+        <p className="hc-entry__meta">
+          {t("home_care.entry.arrived_at", { time: formatDateTime(entry.createdAt, timeZone) })}
+        </p>
+      ) : null}
 
       {incident ? <p className="hc-entry__meta">{t(`home_care.incident.types.${incident.type}`)}</p> : null}
 

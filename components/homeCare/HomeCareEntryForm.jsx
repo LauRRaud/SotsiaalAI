@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 
 import { newClientActionKey } from "@/components/casework/caseWorkClient";
 import { useI18n } from "@/components/i18n/I18nProvider";
@@ -15,8 +15,25 @@ import {
   CareEntryKind,
   HOME_CARE_LIMITS
 } from "@/lib/homeCare/constants";
+import { OUTBOX_LIMIT, isDraftWorthKeeping, isUnreachable } from "@/lib/homeCare/outbox";
 
-import { fromZonedInputValue, homeCareBase, toZonedInputValue, useHomeCareApi } from "./homeCareClient";
+import {
+  formatDateTime,
+  fromZonedInputValue,
+  homeCareBase,
+  toZonedInputValue,
+  useHomeCareApi
+} from "./homeCareClient";
+import { getOutboxManager } from "./homeCareOutbox";
+
+const DRAFT_SAVE_DELAY_MS = 600;
+/* Salvestamise päringu ajapiir: pärast seda käsitletakse päringut kui võrguviga
+   ja uus kirje läheb seadme järjekorda. */
+const SAVE_TIMEOUT_MS = 25_000;
+/* Enne päringut ootame mustandi salvestust (katse võti) nii kaua; hoidla viga ei tohi salvestamist takistada. */
+const DRAFT_BEFORE_SEND_MS = 400;
+/* Alates sellest vanusest pakub taastatud mustand sündmuse ajaks oma kirjutamise aja. */
+const DRAFT_TIME_HINT_MS = 10 * 60 * 1000;
 
 /**
  * Päevikukirje vorm: uus kirje või olemasoleva parandus.
@@ -35,12 +52,28 @@ import { fromZonedInputValue, homeCareBase, toZonedInputValue, useHomeCareApi } 
  *
  * PARANDUS nõuab põhjust. Erijuhtumit ei saa parandusega tavaliseks kirjeks
  * muuta ega vastupidi, seepärast on liigivalik paranduses kitsam.
+ *
+ * VÕRGUTA (ainult uus kirje). Kui salvestamine serverini ei jõua, läheb SAMA
+ * keha (sama võtmega) seadme krüpteeritud järjekorda ja saadetakse, kui ühendus
+ * taastub; vorm tühjeneb ja ütleb, et kirje on ootel. Kui seade hoidlat ei
+ * toeta, jääb kõik nagu enne: viga on näha ja tekst alles.
+ *
+ * POOLELI KIRJE hoitakse samas hoidlas kliendi kaupa: telefoni lukustumine või
+ * lehe uuesti laadimine teksti ära ei vii. Koos tekstiga hoitakse viimase
+ * salvestuskatse võtit, et pärast taastamist muutmata kujul salvestatud kirje
+ * oleks serverile kordus, mitte teine kirje.
+ *
+ * SALVESTAMISE AJAL ON VORM LUKUS (`inert`). Pärast päringut tühjendatakse
+ * vorm; kui inimene saaks vahepeal edasi kirjutada, kaoks lisatud lause koos
+ * tühjendamisega. Nõrga leviga võib päring kesta kümneid sekundeid, seepärast
+ * on sellel ajapiir.
  */
 export default function HomeCareEntryForm({
   organizationId,
   clientId,
   team = [],
   viewerMembershipId = null,
+  clientName = "",
   timeZone,
   entry = null,
   onSaved,
@@ -67,6 +100,22 @@ export default function HomeCareEntryForm({
   });
   const [reason, setReason] = useState("");
   const [saved, setSaved] = useState(false);
+  const [queued, setQueued] = useState(false);
+  /* `""` = ei ole taastatud; muidu mustandi kirjutamise aeg või `"-"`, kui see ei ole teada. */
+  const [restored, setRestored] = useState("");
+  /* Lukk kogu salvestamise ajaks, ka järjekorda panemise ajal (`busy` katab ainult päringu). */
+  const [sending, setSending] = useState(false);
+  const sendingRef = useRef(false);
+  /* Kuni seadmest ei ole loetud, kas mustand on olemas, ei tohi viitega
+     salvestus seda üle kirjutada ega kustutada. */
+  const loadedRef = useRef(false);
+  /* Seadme hoidla on liikmesuse oma; paranduse vorm seda ei kasuta. */
+  const device = useMemo(
+    () => (correcting ? null : getOutboxManager(viewerMembershipId)),
+    [correcting, viewerMembershipId]
+  );
+  const touchedRef = useRef(false);
+  const latestRef = useRef(null);
 
   const isIncident = kind === CareEntryKind.INCIDENT;
   const coordinatorOnly =
@@ -90,9 +139,90 @@ export default function HomeCareEntryForm({
   }
 
   const touch = () => {
+    touchedRef.current = true;
     setSaved(false);
+    setQueued(false);
     if (error) setError("");
   };
+
+  useEffect(() => {
+    latestRef.current = { kind, contactMode, text, occurredLocal, companion, incidentType, assessment, actions };
+  });
+
+  /* Mustandi salvestus: kohe (leht läheb peitu, vorm suletakse) või viitega (kirjutamise ajal). */
+  const saveDraftNow = useCallback(() => {
+    if (!device || !touchedRef.current || !loadedRef.current) return null;
+    const state = latestRef.current;
+    if (isDraftWorthKeeping(state)) return device.saveDraft(clientId, { ...state, attempt: attemptRef.current });
+    return device.clearDraft(clientId);
+  }, [device, clientId]);
+
+  useEffect(() => {
+    if (!device) return undefined;
+    let alive = true;
+    device.loadDraft(clientId).then((draft) => {
+      if (!alive) return;
+      loadedRef.current = true;
+      const state = draft?.state;
+      if (!isDraftWorthKeeping(state)) return;
+      const savedText = typeof state.text === "string" ? state.text : "";
+      const savedAssessment = typeof state.assessment === "string" ? state.assessment : "";
+      const joined = (now, saved, max) =>
+        [now, saved]
+          .filter((part) => String(part || "").trim())
+          .join("\n\n")
+          .slice(0, max);
+      if (isDraftWorthKeeping(latestRef.current)) {
+        /* Inimene jõudis juba kirjutada, enne kui mustand seadmest kätte saadi:
+           tema tekst jääb ette ja mustandi tekst lisatakse järele. Kumbki ei kao. */
+        setText((now) => joined(now, savedText, HOME_CARE_LIMITS.ENTRY_TEXT_MAX));
+        setAssessment((now) => joined(now, savedAssessment, HOME_CARE_LIMITS.ASSESSMENT_MAX));
+        touchedRef.current = true;
+      } else {
+        setKind(CARE_ENTRY_KINDS.includes(state.kind) ? state.kind : CareEntryKind.NOTE);
+        setContactMode(CARE_CONTACT_MODES.includes(state.contactMode) ? state.contactMode : CareContactMode.VISIT);
+        setText(savedText);
+        setCompanion(typeof state.companion === "string" ? state.companion : "");
+        setIncidentType(CARE_INCIDENT_TYPES.includes(state.incidentType) ? state.incidentType : "");
+        setAssessment(savedAssessment);
+        setActions(state.actions && typeof state.actions === "object" ? state.actions : {});
+        const typedTime = typeof state.occurredLocal === "string" ? state.occurredLocal : "";
+        const age = Date.now() - Number(draft.savedAtMs);
+        setOccurredLocal(typedTime);
+        if (state.attempt?.signature && state.attempt?.body) {
+          /* Salvestamist on juba proovitud: keha peab jääma täpselt samaks, et
+             kohale jõudnud kirje uus salvestus oleks kordus. Aega siin ei pakuta. */
+          attemptRef.current = state.attempt;
+        } else if (!typedTime && Number.isFinite(age) && age >= DRAFT_TIME_HINT_MS) {
+          /* Vana mustand ilma ajata: sündmus oli siis, kui seda kirjutati, mitte
+             nüüd. Pakume selle aja välja; inimene näeb seda ja saab muuta. Ilma
+             selleta saaks tunde hiljem salvestatud kirje ajaks „praegu".
+             Pakkumine ei loe vormi puudutamiseks: mustand jääb seadmesse oma
+             algse kirjutamisajaga, kuni inimene midagi muudab või salvestab. */
+          setOccurredLocal(toZonedInputValue(new Date(draft.savedAtMs).toISOString(), timeZone));
+        }
+      }
+      const savedAt = Number.isFinite(Number(draft.savedAtMs)) ? new Date(draft.savedAtMs).toISOString() : "";
+      setRestored(savedAt || "-");
+    });
+    const onHidden = () => {
+      if (document.visibilityState === "hidden") saveDraftNow();
+    };
+    document.addEventListener("visibilitychange", onHidden);
+    window.addEventListener("pagehide", saveDraftNow);
+    return () => {
+      alive = false;
+      document.removeEventListener("visibilitychange", onHidden);
+      window.removeEventListener("pagehide", saveDraftNow);
+      saveDraftNow();
+    };
+  }, [device, clientId, saveDraftNow, timeZone]);
+
+  useEffect(() => {
+    if (!device || !touchedRef.current) return undefined;
+    const timer = setTimeout(saveDraftNow, DRAFT_SAVE_DELAY_MS);
+    return () => clearTimeout(timer);
+  }, [device, saveDraftNow, kind, contactMode, text, occurredLocal, companion, incidentType, assessment, actions]);
 
   const toggleAction = (code) => {
     touch();
@@ -106,6 +236,9 @@ export default function HomeCareEntryForm({
 
   const reset = () => {
     attemptRef.current = null;
+    touchedRef.current = false;
+    setRestored("");
+    device?.clearDraft(clientId);
     setKind(CareEntryKind.NOTE);
     setContactMode(CareContactMode.VISIT);
     setText("");
@@ -158,15 +291,35 @@ export default function HomeCareEntryForm({
     return body;
   };
 
-  const submit = async (event) => {
-    event.preventDefault();
-    setSaved(false);
+  const send = async () => {
     const body = buildBody();
+    /* Katse võti läheb mustandisse ENNE päringut: kui leht selle ajal uuesti
+       laaditakse ja kirje oli juba kohale jõudnud, on uus salvestus kordus.
+       Ka muutmata kujul salvestatud taastatud mustandi puhul, seepärast loeb
+       salvestamise vajutus vormi puudutamiseks. Ootame salvestuse ära (lühikese
+       piiriga), et võti oleks seadmes enne, kui päring teele läheb. */
+    touchedRef.current = true;
+    const stored = saveDraftNow();
+    if (stored) {
+      await Promise.race([stored.catch(() => {}), new Promise((resolve) => setTimeout(resolve, DRAFT_BEFORE_SEND_MS))]);
+    }
     const base = `${homeCareBase(organizationId)}/kliendid/${clientId}/kirjed`;
+    const options = { body, fallbackKey: "home_care.errors.save_failed", timeoutMs: SAVE_TIMEOUT_MS };
     const result = correcting
-      ? await call(`${base}/${entry.id}`, { method: "PATCH", body, fallbackKey: "home_care.errors.save_failed" })
-      : await call(base, { method: "POST", body, fallbackKey: "home_care.errors.save_failed" });
-    if (!result.ok) return;
+      ? await call(`${base}/${entry.id}`, { ...options, method: "PATCH" })
+      : await call(base, { ...options, method: "POST" });
+    if (!result.ok) {
+      if (!device || !isUnreachable(result.status)) return;
+      const outcome = await device.enqueue({ organizationId, clientId, clientName, body });
+      if (outcome.ok) {
+        setError("");
+        reset();
+        setQueued(true);
+      } else if (outcome.reason === "full") {
+        setError(t("home_care.outbox.full", { limit: OUTBOX_LIMIT }));
+      }
+      return;
+    }
     onSaved?.(result.data.entry);
     if (!correcting) {
       reset();
@@ -174,10 +327,41 @@ export default function HomeCareEntryForm({
     }
   };
 
+  const submit = async (event) => {
+    event.preventDefault();
+    /* Üks salvestamine korraga: teine vajutus järjekorda panemise ajal ei tohi
+       alustada uut katset, mille lõpp tühjendaks vahepeal alustatud kirje. */
+    if (sendingRef.current) return;
+    sendingRef.current = true;
+    setSending(true);
+    setSaved(false);
+    setQueued(false);
+    try {
+      await send();
+    } finally {
+      sendingRef.current = false;
+      setSending(false);
+    }
+  };
+
   const textLabel = isIncident ? t("home_care.incident.text_label") : t("home_care.entry.text_label");
 
   return (
-    <form className="hc-form" onSubmit={submit}>
+    <form className="hc-form" onSubmit={submit} inert={sending} aria-busy={sending}>
+      {restored ? (
+        <div className="hc-notice" role="status">
+          <p>
+            {restored === "-"
+              ? t("home_care.entry.draft_restored")
+              : t("home_care.entry.draft_restored_at", { time: formatDateTime(restored, timeZone) })}
+          </p>
+          <div className="hc-row">
+            <button className="hc-btn hc-btn--quiet" type="button" onClick={reset} disabled={busy}>
+              {t("home_care.entry.draft_clear")}
+            </button>
+          </div>
+        </div>
+      ) : null}
       <div className="hc-field">
         <span className="hc-label" id={`${fieldId}-kind`}>
           {t("home_care.entry.kind_label")}
@@ -368,9 +552,14 @@ export default function HomeCareEntryForm({
           {t("home_care.entry.saved")}
         </p>
       ) : null}
+      {queued ? (
+        <p className="hc-ok" role="status">
+          {t("home_care.entry.queued")}
+        </p>
+      ) : null}
 
       <div className="hc-row">
-        <button className="hc-btn hc-btn--primary" type="submit" disabled={busy}>
+        <button className="hc-btn hc-btn--primary" type="submit" disabled={busy || sending}>
           {correcting ? t("home_care.entry.correct_save") : t("home_care.entry.save")}
         </button>
         {onCancel ? (

@@ -10,6 +10,7 @@ import Dropdown from "@/components/ui/Dropdown";
 import { CARE_INCIDENT_TYPES, CareIncidentFilter } from "@/lib/homeCare/constants";
 
 import HomeCareEntryItem from "./HomeCareEntryItem";
+import HomeCareOutbox from "./HomeCareOutbox";
 import { homeCareBase, useHomeCareApi } from "./homeCareClient";
 
 const EMPTY_PAGE = Object.freeze({ items: [], hasMore: false, nextCursor: null, counts: { OPEN: 0, IN_REVIEW: 0, CLOSED: 0 } });
@@ -103,6 +104,8 @@ export default function HomeCareIncidents({ context, initial, focused: initialFo
   return (
     <section className="ow-shell hc-shell">
       <OrgHeader context={context} />
+      {/* Seadmes ootel kirjed saadetakse ka siit lehelt, mitte ainult avalehelt ja kliendi lehelt. */}
+      <HomeCareOutbox ownerId={context.membership?.id || ""} timeZone={timeZone} />
 
       <div className="hc-head">
         <Link className="hc-back" href={`/org/${organizationId}/koduteenus`}>

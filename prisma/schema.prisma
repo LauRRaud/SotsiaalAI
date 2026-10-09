@@ -8204,6 +8204,10 @@ model CareClientEntry {
   /// aknas). „Hiljem kirjutatud" arvutatakse SERVERI `createdAt` ja
   /// `occurredAt` vahest; seadme aeg on võrguta töö jaoks.
   deviceCreatedAt DateTime?
+  /// Mitu sekundit kirje ootas seadme järjekorras võrku (seadme väide; NULL =
+  /// saadeti kohe). Sündmuse aeg on siis salvestamise vajutus ja kirjel on
+  /// märk „saadetud hiljem".
+  deviceQueuedSec Int?
 
   /// „Kaasas": teine töötaja samal käigul.
   companionMembershipId String?

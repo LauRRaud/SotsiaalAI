@@ -14,6 +14,25 @@ import {
 import { HOME_CARE_LIMITS } from '../lib/homeCare/constants.js';
 import { serializeEntry } from '../lib/homeCare/entries.js';
 import { assertHomeCareEnabled, isHomeCareEnabled } from '../lib/homeCare/flags.js';
+import {
+  DRAFT_MAX_AGE_MS,
+  OUTBOX_LIMIT,
+  OutboxState,
+  SendOutcome,
+  afterAttempt,
+  bodyForSend,
+  canEnqueue,
+  isDraftExpired,
+  isBlocked,
+  isDraftWorthKeeping,
+  isUnreachable,
+  needsPerson,
+  newQueueItem,
+  outboxSummary,
+  previewText,
+  sendOutcome,
+  sortQueue
+} from '../lib/homeCare/outbox.js';
 import { startOfYesterday } from '../lib/homeCare/overview.js';
 import { entrySearchText, entrySearchWhere, searchWords } from '../lib/homeCare/search.js';
 import {
@@ -23,7 +42,8 @@ import {
   normalizeEntryInput,
   normalizeIsoDay,
   normalizeRequestId,
-  normalizeSearchQuery
+  normalizeSearchQuery,
+  normalizeWaitedMs
 } from '../lib/homeCare/validation.js';
 import { CAPABILITY_REQUIRED_MODULES, CAPABILITY_TEMPLATES, ORGANIZATION_MODULE_KEYS } from '../lib/org/constants.js';
 
@@ -376,4 +396,185 @@ test('kronoloogia dokument: kogu tekst on paotatud, skripte ei ole, pealkirjas e
   assert.notEqual(chronologyContentHash(input), chronologyContentHash({ ...input, requester: 'KOV' }));
   assert.notEqual(chronologyContentHash(input), chronologyContentHash({ ...input, items: [items[0]] }));
   assert.notEqual(chronologyContentHash(input), chronologyContentHash({ ...input, items: [{ ...items[0], text: 'muu' }, items[1]] }));
+});
+
+test('võrguta kirje: ooteaeg annab sündmuse aja, kordus jääb korduseks, märk ei kao', () => {
+  const HOUR = 60 * 60 * 1000;
+  /* Kohe saadetud kirje: sündmuse aeg on serveri kell, ooteaega ei ole. */
+  const plain = normalizeEntryInput({ text: 'Tõin toidu.' }, { now: NOW });
+  assert.equal(plain.occurredAt.toISOString(), NOW.toISOString());
+  assert.equal(plain.deviceQueuedSec, null);
+
+  /* Kolm tundi seadmes oodanud kirje: sündmus oli salvestamise vajutusel. */
+  const waited = normalizeEntryInput({ text: 'Tõin toidu.', waitedMs: 3 * HOUR }, { now: NOW });
+  assert.equal(waited.occurredAt.toISOString(), '2026-10-09T05:00:00.000Z');
+  assert.equal(waited.deviceQueuedSec, 3 * 3600);
+
+  /* KORDUS: sama kirje teine saatmine kannab teist ooteaega. Räsi ei tohi
+     sellest muutuda, muidu oleks kaotsi läinud vastuse järel uus katse konflikt. */
+  const again = normalizeEntryInput({ text: 'Tõin toidu.', waitedMs: 5 * HOUR }, { now: new Date(NOW.getTime() + 2 * HOUR) });
+  assert.equal(entryRequestHash('c1', waited), entryRequestHash('c1', plain));
+  assert.equal(entryRequestHash('c1', waited), entryRequestHash('c1', again));
+
+  /* Inimese sisestatud aeg jääb; ooteaeg salvestub ikka. */
+  const typed = normalizeEntryInput({ text: 'x', occurredAt: '2026-10-09T04:00:00Z', waitedMs: HOUR }, { now: NOW });
+  assert.equal(typed.occurredAt.toISOString(), '2026-10-09T04:00:00.000Z');
+  assert.equal(typed.deviceQueuedSec, 3600);
+
+  /* Sisestatud aeg ei tohi olla hilisem salvestamise vajutusest (sama reegel
+     mis võrgus): kirje oodanud kaks tundi, vajutus oli 06:00, sisestatud 07:30. */
+  assert.throws(
+    () => normalizeEntryInput({ text: 'x', occurredAt: '2026-10-09T07:30:00Z', waitedMs: 2 * HOUR }, { now: NOW }),
+    (error) => error.status === 400 && error.messageKey === 'home_care.errors.occurred_at_in_future'
+  );
+
+  /* Erijuhtumi samm ilma kellaajata saab sama nihutatud aja; antud kellaaeg jääb. */
+  const incident = normalizeEntryInput(
+    {
+      kind: 'INCIDENT',
+      incidentType: 'FALL',
+      text: 'Leidsin põrandalt.',
+      waitedMs: HOUR,
+      incidentActions: [{ code: 'CALLED_112' }, { code: 'INFORMED_RELATIVE', at: '2026-10-09T06:30:00Z' }]
+    },
+    { now: NOW }
+  );
+  assert.deepEqual(incident.incidentActions, [
+    { code: 'CALLED_112', at: '2026-10-09T07:00:00.000Z' },
+    { code: 'INFORMED_RELATIVE', at: '2026-10-09T06:30:00.000Z' }
+  ]);
+
+  /* PARANDUS ooteaega ei arvesta: sündmuse aeg jääb kirjelt. */
+  const base = { kind: 'NOTE', contactMode: 'VISIT', occurredAt: new Date('2026-10-08T10:00:00Z'), companionMembershipId: null };
+  const corrected = normalizeEntryInput({ text: 'Parandus', waitedMs: 5000 }, { now: NOW, base });
+  assert.equal(corrected.occurredAt.toISOString(), '2026-10-08T10:00:00.000Z');
+  assert.equal(corrected.deviceQueuedSec, null);
+
+  /* Sisendi kontroll: ainult arv, mitte negatiivne, mitte üle piiri. */
+  assert.equal(normalizeWaitedMs(undefined), null);
+  assert.equal(normalizeWaitedMs(null), null);
+  assert.equal(normalizeWaitedMs(''), null);
+  assert.equal(normalizeWaitedMs(0), 0);
+  assert.equal(normalizeWaitedMs(1500.6), 1501);
+  assert.equal(normalizeWaitedMs(HOME_CARE_LIMITS.QUEUE_WAIT_MAX_MS), HOME_CARE_LIMITS.QUEUE_WAIT_MAX_MS);
+  for (const bad of [-1, '5000', Number.NaN, Infinity, HOME_CARE_LIMITS.QUEUE_WAIT_MAX_MS + 1, {}, true, [1]]) {
+    assert.throws(
+      () => normalizeWaitedMs(bad),
+      (error) => error.status === 400 && error.messageKey === 'home_care.errors.invalid_waited',
+      String(bad)
+    );
+  }
+
+  /* MÄRGID. Seadmes oodatud aeg ei ole kirjutamisega viivitamine, aga hiljem
+     kohale jõudnud kirje ei jää kunagi märgita. */
+  const row = {
+    id: 'e1', clientId: 'c1', kind: 'NOTE', contactMode: 'VISIT', text: 'x', authorName: 'Anu',
+    authorMembershipId: 'mem_1', revision: 1, retractedAt: null, _count: { reads: 0 }
+  };
+  const at = (iso) => new Date(iso);
+  const queued = serializeEntry({ ...row, occurredAt: at('2026-10-09T05:00:00Z'), createdAt: at('2026-10-09T08:00:00Z'), deviceQueuedSec: 3 * 3600 });
+  assert.deepEqual([queued.writtenLater, queued.sentLater], [false, true]);
+  /* Sündmus 04:00, salvestus vajutati 07:00 (kolm tundi hiljem), kohale jõudis 08:00. */
+  const both = serializeEntry({ ...row, occurredAt: at('2026-10-09T04:00:00Z'), createdAt: at('2026-10-09T08:00:00Z'), deviceQueuedSec: 3600 });
+  assert.deepEqual([both.writtenLater, both.sentLater], [true, true]);
+  /* Lühike katkestus ei vääri märki. */
+  const blip = serializeEntry({ ...row, occurredAt: at('2026-10-09T07:59:30Z'), createdAt: at('2026-10-09T08:00:00Z'), deviceQueuedSec: 30 });
+  assert.deepEqual([blip.writtenLater, blip.sentLater], [false, false]);
+  const direct = serializeEntry({ ...row, occurredAt: NOW, createdAt: NOW, deviceQueuedSec: null });
+  assert.deepEqual([direct.writtenLater, direct.sentLater], [false, false]);
+  /* Alla märgi piiri jääv ooteaeg ei nihuta „hiljem kirjutatud" piiri: muidu
+     saaks 2 t 9 min hiljem kohale jõudnud kirje jääda mõlemast märgist ilma. */
+  const nudged = serializeEntry({ ...row, occurredAt: at('2026-10-09T05:51:00Z'), createdAt: at('2026-10-09T08:00:00Z'), deviceQueuedSec: 599 });
+  assert.deepEqual([nudged.writtenLater, nudged.sentLater], [true, false]);
+  /* Vigane väärtus veerus ei tee kirjet varasemaks. */
+  const odd = serializeEntry({ ...row, occurredAt: at('2026-10-09T02:00:00Z'), createdAt: at('2026-10-09T08:00:00Z'), deviceQueuedSec: -500 });
+  assert.deepEqual([odd.writtenLater, odd.sentLater], [true, false]);
+});
+
+test('seadme järjekord: mida uuesti proovida, mida inimesele näidata, mida saata', () => {
+  /* Server ei jõudnud otsuseni või ligipääs võib taastuda: kirje jääb ootele. */
+  for (const status of [0, 401, 403, 404, 408, 425, 429, 500, 502, 503, 504]) {
+    assert.equal(sendOutcome({ ok: false, status }), SendOutcome.RETRY, String(status));
+  }
+  /* Server vaatas sisu ja keeldus: kordamine sama sisuga ei aita. 404 siia ei
+     kuulu: see tähendab „sulle seda praegu ei ole" (ka hetkeks suletud
+     koduteenus) ja kogu järjekorda ei tohi selle pärast tagasi lükatuks märkida. */
+  for (const status of [400, 409, 413, 422]) {
+    assert.equal(sendOutcome({ ok: false, status }), SendOutcome.ATTENTION, String(status));
+  }
+  assert.equal(sendOutcome({ ok: true, status: 201 }), SendOutcome.SENT);
+  assert.equal(sendOutcome({ ok: true, status: 200 }), SendOutcome.SENT);
+  assert.equal(sendOutcome(), SendOutcome.RETRY);
+  /* Wifi sisselogimisleht vastab 200 ja HTML-iga: see ei ole serveri otsus,
+     kirjet ei tohi tagasi lükatuks märkida. */
+  assert.equal(sendOutcome({ ok: false, status: 200 }), SendOutcome.RETRY);
+  assert.equal(sendOutcome({ ok: false, status: 302 }), SendOutcome.RETRY);
+
+  /* Vormilt läheb kirje järjekorda ainult siis, kui serverini ei jõutud. */
+  assert.deepEqual([0, 200, 302, 502, 503, 504].map(isUnreachable), [true, true, true, true, true, true]);
+  assert.deepEqual([400, 401, 403, 404, 409, 500].map(isUnreachable), [false, false, false, false, false, false]);
+
+  const body = { kind: 'NOTE', text: 'Tõin toidu.', clientRequestId: 'key-12345678', deviceCreatedAt: '2026-10-09T08:00:00.000Z' };
+  const item = newQueueItem({ organizationId: 'org1', clientId: 'c1', clientName: 'Linda Tamm', body, nowMs: 1_000_000 });
+  assert.equal(item.clientRequestId, 'key-12345678');
+  assert.equal(item.state, OutboxState.PENDING);
+  assert.deepEqual(item.payload, { clientName: 'Linda Tamm', body });
+  /* Ilma võtmeta kirjet järjekorda ei panda: kordussaatmine tekitaks teise kirje. */
+  assert.equal(newQueueItem({ organizationId: 'org1', clientId: 'c1', clientName: 'x', body: { text: 'x' }, nowMs: 1 }), null);
+  assert.equal(newQueueItem({ organizationId: '', clientId: 'c1', clientName: 'x', body, nowMs: 1 }), null);
+
+  /* Saadetav keha: vormi keha muutmata ja ooteaeg. Tagasi keeratud kell ei anna negatiivset aega. */
+  assert.deepEqual(bodyForSend(item, 1_000_000 + 90_000), { ...body, waitedMs: 90_000 });
+  assert.equal(bodyForSend(item, 500_000).waitedMs, 0);
+  assert.equal(Object.hasOwn(body, 'waitedMs'), false, 'järjekorras olevat keha ei muudeta');
+
+  /* Pärast katset: ajutine viga jätab ootele, keeldumine viib tähelepanu alla. */
+  const retried = afterAttempt(item, { outcome: SendOutcome.RETRY, status: 403, messageKey: 'home_care.errors.access_reason_required', nowMs: 2_000_000 });
+  assert.deepEqual(
+    [retried.state, retried.attempts, retried.lastStatus, retried.lastMessageKey, retried.lastTriedAtMs],
+    [OutboxState.PENDING, 1, 403, 'home_care.errors.access_reason_required', 2_000_000]
+  );
+  const refused = afterAttempt(retried, { outcome: SendOutcome.ATTENTION, status: 400, messageKey: '', nowMs: 3_000_000 });
+  assert.deepEqual([refused.state, refused.attempts, refused.lastStatus, refused.lastMessageKey], [OutboxState.ATTENTION, 2, 400, null]);
+  assert.deepEqual(refused.payload, item.payload, 'sisu jääb alles');
+
+  /* Ülempiir blokeerib uue kirje, sama võtme uuendamine on lubatud. */
+  const full = Array.from({ length: OUTBOX_LIMIT }, (_, index) => ({ clientRequestId: `k${index}`, state: OutboxState.PENDING }));
+  assert.equal(canEnqueue(full, 'new'), false);
+  assert.equal(canEnqueue(full, 'k3'), true);
+  assert.equal(canEnqueue(full.slice(1), 'new'), true);
+  assert.equal(canEnqueue(null, 'new'), true);
+
+  /* Ligipääsuta kirje (403) jääb ootele ja seda proovitakse edasi, aga inimene
+     peab seda nägema: täistekst ja kustutamise võimalus. */
+  assert.equal(needsPerson(item), false);
+  assert.equal(needsPerson(retried), true);
+  assert.equal(needsPerson(refused), true);
+  assert.equal(needsPerson({ unreadable: true, state: OutboxState.PENDING }), true);
+  assert.equal(needsPerson({ state: OutboxState.PENDING, lastStatus: 503 }), false);
+  assert.equal(needsPerson({ state: OutboxState.PENDING, lastStatus: 404 }), true);
+  assert.deepEqual([retried, refused, item, { state: OutboxState.PENDING, lastStatus: 404 }].map(isBlocked), [true, false, false, true]);
+  assert.deepEqual(outboxSummary([item, retried, refused, { clientRequestId: 'u', unreadable: true, state: OutboxState.PENDING }]), {
+    total: 4,
+    attention: 3,
+    pending: 2
+  });
+  /* Vanemad ees: kirjed jõuavad serverisse kirjutamise järjekorras. */
+  assert.deepEqual(
+    sortQueue([{ clientRequestId: 'b', queuedAtMs: 5 }, { clientRequestId: 'a', queuedAtMs: 5 }, { clientRequestId: 'c', queuedAtMs: 1 }]).map((row) => row.clientRequestId),
+    ['c', 'a', 'b']
+  );
+
+  assert.equal(previewText('  Tõin   toidu\nja jõin teed. '), 'Tõin toidu ja jõin teed.');
+  assert.equal(previewText('a'.repeat(200)).length, 90);
+  assert.ok(previewText('a'.repeat(200)).endsWith('…'));
+
+  /* Mustand: tühja vormi ei hoita, vana mustand aegub. */
+  assert.equal(isDraftWorthKeeping({ text: '  ', assessment: '' }), false);
+  assert.equal(isDraftWorthKeeping({ text: 'pooleli' }), true);
+  assert.equal(isDraftWorthKeeping({ text: '', assessment: 'hinnang' }), true);
+  assert.equal(isDraftWorthKeeping(null), false);
+  assert.equal(isDraftExpired({ savedAtMs: 1000 }, 1000 + DRAFT_MAX_AGE_MS), false);
+  assert.equal(isDraftExpired({ savedAtMs: 1000 }, 1001 + DRAFT_MAX_AGE_MS), true);
+  assert.equal(isDraftExpired({}, 5), true);
 });
