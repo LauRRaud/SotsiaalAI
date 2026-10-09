@@ -10714,7 +10714,9 @@
         "saveTime": "Salvesta aeg",
         "cancelMeeting": "Tühista kohtumine",
         "cancelConfirm": "Vajuta uuesti, et tühistada",
-        "cancelConsequence": "Tühistatud kohtumine jääb loendisse märkega „Tühistatud”. Uue aja jaoks plaani uus kohtumine."
+        "cancelConsequence": "Tühistatud kohtumine jääb loendisse märkega „Tühistatud”. Uue aja jaoks plaani uus kohtumine.",
+        "backToMeeting": "Tagasi kohtumise juurde",
+        "noTimeShort": "Määramata"
       },
       "summaries": {
         "leadSupervisor": "Mustandit näed ainult sina. Kinnitamisele saadetud kokkuvõtet näevad liitunud osalejad.",

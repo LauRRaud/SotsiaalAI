@@ -410,7 +410,7 @@ export function MeetingsView({
 }) {
   /* Võtmes on ka kohtumise seis: pärast „märgi toimunuks" kaob vajutatud nupp
      ja fookus peab minema osa pealkirjale, mitte kaduma. */
-  const swapRef = useSwapFocus(mode === "meeting" ? `meeting:${meeting?.id}:${meeting?.status}` : mode);
+  const swapRef = useSwapFocus(mode === "meeting" ? `meeting:${meeting?.id}:${meeting?.statusText || ""}` : mode);
   const press = useTwoPress(`${mode}:${meeting?.id || ""}`);
   const id = useId();
   const title = t("supervision.process.views.kohtumised.title");
@@ -467,7 +467,7 @@ export function MeetingsView({
         actions={
           <>
             <Button type="button" size="sm" variant="secondary" onClick={() => onMode("meeting")}>
-              {t("supervision.process.back")}
+              {t("supervision.process.meetings.backToMeeting")}
             </Button>
             <TwoPress
               press={press}
@@ -585,7 +585,7 @@ export function MeetingsView({
               {
                 key: "planned",
                 label: t("supervision.meetings.plannedAt"),
-                value: meeting.planned || t("supervision.process.meetings.noTime"),
+                value: meeting.planned || t("supervision.process.meetings.noTimeShort"),
                 missing: !meeting.planned
               },
               meeting.held ? { key: "held", label: t("supervision.meetings.held"), value: meeting.held } : null

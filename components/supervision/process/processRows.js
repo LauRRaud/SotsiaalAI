@@ -511,10 +511,11 @@ export function meetingRows(process, { t, locale }) {
         note,
         hasNote: Boolean(note.trim()),
         version: meeting.version,
-        status: String(meeting.status || ""),
         plannedAtInput: plannedAtInput(meeting.plannedAt),
         canEditNote: canPlan,
-        canMarkHeld: canPlan && meeting.status !== "HELD",
+        /* Toimunuks saab märkida ainult kavandatud kohtumist: tühistatud
+           kohtumine ei toimunud (uue aja jaoks plaanitakse uus). */
+        canMarkHeld: canPlan && meeting.status === "PLANNED",
         /* Kavandatud kohtumise aega saab muuta ja kohtumise tühistada (server
            lubab mõlemat sama PATCH-teega); toimunud ja tühistatud kohtumisel
            neid tegusid ei ole. */

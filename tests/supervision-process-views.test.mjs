@@ -48,6 +48,7 @@ import {
   participantsLead,
   participationLabel,
   pendingSummaryRows,
+  plannedAtInput,
   plannedAtValue,
   privateItemRows,
   privateItemView,
@@ -659,6 +660,16 @@ test('kohtumised: read, toimunu on lõplik ja aeg läheb päringusse õigel kuju
   /* Loetamatu aeg öeldakse välja; vana leht andis selle `toISOString()`-ile, mis viskab. */
   assert.deepEqual(plannedAtValue('homme'), { ok: false, value: null });
 
+  /* Kavandatud kohtumise aega saab muuta ja kohtumise tühistada; tühistatud kohtumist toimunuks ei märgita. */
+  assert.deepEqual(rows.map((row) => row.canChange), [false, true, true]);
+  const cancelled = meetingRows({ ...supervisorProcess(), meetings: [{ id: 'm9', seq: 9, status: 'CANCELLED', plannedAt: '2026-11-05T12:30:00.000Z', version: 1 }] }, context)[0];
+  assert.deepEqual([cancelled.canChange, cancelled.canMarkHeld, cancelled.statusText], [false, false, 'Tühistatud']);
+  assert.equal(plannedAtInput(new Date('2026-11-05T14:30').toISOString()), '2026-11-05T14:30');
+  assert.equal(plannedAtInput(null), '');
+  assert.equal(plannedAtInput('homme'), '');
+  assert.equal(meetingsMode({ mode: 'time', canPlan: true, hasMeeting: true, canChange: true }), 'time');
+  assert.equal(meetingsMode({ mode: 'time', canPlan: true, hasMeeting: true, canChange: false }), 'meeting');
+  assert.equal(meetingsMode({ mode: 'time', canPlan: true, hasMeeting: false, canChange: true }), 'list');
   assert.equal(meetingsMode({ mode: 'plan', canPlan: true, hasMeeting: false }), 'plan');
   assert.equal(meetingsMode({ mode: 'plan', canPlan: false, hasMeeting: false }), 'list');
   assert.equal(meetingsMode({ mode: 'meeting', canPlan: false, hasMeeting: true }), 'meeting');

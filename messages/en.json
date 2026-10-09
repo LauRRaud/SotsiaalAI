@@ -10714,7 +10714,9 @@
         "saveTime": "Save the time",
         "cancelMeeting": "Cancel the meeting",
         "cancelConfirm": "Press again to cancel it",
-        "cancelConsequence": "A cancelled meeting stays in the list marked “Cancelled”. For a new time, plan a new meeting."
+        "cancelConsequence": "A cancelled meeting stays in the list marked “Cancelled”. For a new time, plan a new meeting.",
+        "backToMeeting": "Back to the meeting",
+        "noTimeShort": "Not set"
       },
       "summaries": {
         "leadSupervisor": "Only you see a draft. Joined participants see a summary sent for approval.",
