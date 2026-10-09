@@ -193,7 +193,7 @@ function ReviewBlock({ title, children }) {
   );
 }
 
-function DraftReview({ draft, setDraft, onSave, onEditDescription, onDecline, busy, t }) {
+function DraftReview({ draft, setDraft, onSave, onSaveAndStart, onEditDescription, onDecline, busy, t }) {
   const updateField = useCallback((field, value) => {
     setDraft((current) => ({
       ...current,
@@ -265,20 +265,22 @@ function DraftReview({ draft, setDraft, onSave, onEditDescription, onDecline, bu
               {t("journey.messages.empty_suggested_actions", "Järgmised sammud täpsustuvad pärast salvestamist.")}
             </p>
           )}
+          {/* Need nupud SALVESTAVAD Teekonna ja avavad selle valitud sammu juures.
+              Varem muutsid nad ainult nähtamatut valikut ja midagi ei avanenud. */}
+          <p>
+            {t("journey.review.start_hint", "Võid ka kohe alustada: Teekond salvestatakse ja avaneb valitud sammu juures.")}
+          </p>
           <div>
-            <Button type="button" variant="primary" size="sm" onClick={() => updateField("primaryPath", "SERVICE_MAP")}>
-              {t("journey.service_map.open", "Ava teenusekaart")}
+            <Button type="button" variant="primary" size="sm" disabled={busy} onClick={(event) => onSaveAndStart(event, "SERVICE_MAP")}>
+              {t("journey.review.save_and_open_service_map", "Salvesta ja ava teenusekaart")}
             </Button>
-            <Button type="button" variant="primary" size="sm" onClick={() => updateField("primaryPath", "PRE_INQUIRY")}>
-              {t("journey.pre_inquiry.open", "Koosta eelpöördumine")}
-            </Button>
-            <Button type="button" variant="primary" size="sm" onClick={() => updateField("primaryPath", "DOCUMENT")}>
-              {t("journey.review.add_document", "Lisa dokument")}
-            </Button>
-            <Button type="button" variant="primary" size="sm" onClick={() => updateField("primaryPath", "HELP_REQUEST")}>
-              {t("journey.review.create_help_request", "Loo abisoov")}
+            <Button type="button" variant="primary" size="sm" disabled={busy} onClick={(event) => onSaveAndStart(event, "PRE_INQUIRY")}>
+              {t("journey.review.save_and_start_pre_inquiry", "Salvesta ja koosta eelpöördumine")}
             </Button>
           </div>
+          <p>
+            {t("journey.review.later_steps", "Dokumendi lisamist ja abisoovi loomist pakub Teekonna leht pärast salvestamist siis, kui need sinu olukorda sobivad.")}
+          </p>
         </ReviewBlock>
       </div>
 
@@ -603,8 +605,12 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
     }
   }, [situation, t]);
 
-  const handleSaveDraft = useCallback(async (event) => {
-    event.preventDefault();
+  const handleSaveDraft = useCallback(async (event, startWith = "") => {
+    event?.preventDefault?.();
+    /* „Salvesta ja …" on tavaline nupp, mitte vormi saatmine: kohustuslikud väljad
+       kontrollitakse siin, muidu läheks tühi pealkiri serverisse. */
+    const form = event?.currentTarget?.form;
+    if (startWith && form && !form.reportValidity()) return;
     setBusy(true);
     setError("");
     setNotice("");
@@ -617,6 +623,7 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
         },
         body: JSON.stringify({
           ...draft,
+          ...(startWith ? { primaryPath: startWith } : {}),
           clientActionId: draft.clientActionId || createActionIdRef.current,
           status: "ACTIVE",
           sharingStatus: "PRIVATE"
@@ -632,7 +639,8 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
       setMode("list");
       draftStore()?.removeItem(JOURNEY_DRAFT_ROW);
       setJourneyStepInUrl("");
-      pushWithTransition(router, localizePath(`/teekond/${encodeURIComponent(payload.journey.id)}`, locale));
+      const start = startWith ? `?alusta=${encodeURIComponent(startWith)}` : "";
+      pushWithTransition(router, localizePath(`/teekond/${encodeURIComponent(payload.journey.id)}${start}`, locale));
     } catch (saveError) {
       setError(saveError.message || t("journey.messages.save_failed", "Saving the journey failed."));
     } finally {
@@ -898,6 +906,7 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
               draft={draft}
               setDraft={setDraft}
               onSave={handleSaveDraft}
+              onSaveAndStart={handleSaveDraft}
               onEditDescription={handleEditDescription}
               onDecline={handleCancel}
               busy={busy}

@@ -17,7 +17,10 @@ export async function generateMetadata() {
   });
 }
 
-export default async function JourneyDetailPage({ params }) {
+export default async function JourneyDetailPage({ params, searchParams }) {
   const resolvedParams = await params;
-  return <JourneyDetail journeyId={resolvedParams?.id || ""} />;
+  const query = await searchParams;
+  /* Ülevaate sammu „Salvesta ja …" toob siia märke, millise sammu juures leht avada. */
+  const startWith = typeof query?.alusta === "string" ? query.alusta : "";
+  return <JourneyDetail journeyId={resolvedParams?.id || ""} startWith={startWith} />;
 }
