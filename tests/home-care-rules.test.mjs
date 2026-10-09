@@ -12,6 +12,7 @@ import {
   renderChronologyHtml
 } from '../lib/homeCare/chronologyDocument.js';
 import { HOME_CARE_LIMITS } from '../lib/homeCare/constants.js';
+import { appendDictatedText } from '../lib/homeCare/dictation.js';
 import { serializeEntry } from '../lib/homeCare/entries.js';
 import { assertHomeCareEnabled, isHomeCareEnabled } from '../lib/homeCare/flags.js';
 import {
@@ -577,4 +578,23 @@ test('seadme järjekord: mida uuesti proovida, mida inimesele näidata, mida saa
   assert.equal(isDraftExpired({ savedAtMs: 1000 }, 1000 + DRAFT_MAX_AGE_MS), false);
   assert.equal(isDraftExpired({ savedAtMs: 1000 }, 1001 + DRAFT_MAX_AGE_MS), true);
   assert.equal(isDraftExpired({}, 5), true);
+});
+
+test('dikteerimine: tekst lisatakse välja lõppu, piiri ületav lõpp ei kao vaikselt', () => {
+  /* Tühjale väljale: tekst nagu on, tühikud korrastatud. */
+  assert.deepEqual(appendDictatedText('', '  Tõin   toidu\nja ravimid. ', 4000), { text: 'Tõin toidu ja ravimid.', cut: false });
+  /* Kirjutatud tekstile järele, ühe tühikuga; olemasolevat teksti ei muudeta. */
+  assert.deepEqual(appendDictatedText('Käik kell 9.', 'Linda oli rõõmus.', 4000), { text: 'Käik kell 9. Linda oli rõõmus.', cut: false });
+  /* Kui väli lõpeb juba tühiku või reavahetusega, lisatühikut ei tule. */
+  assert.equal(appendDictatedText('Esimene rida.\n', 'Teine rida.', 4000).text, 'Esimene rida.\nTeine rida.');
+  assert.equal(appendDictatedText('Lause ', 'jätkub.', 4000).text, 'Lause jätkub.');
+  /* Tühi tuvastus ei muuda midagi. */
+  assert.deepEqual(appendDictatedText('Olemas', '   ', 4000), { text: 'Olemas', cut: false });
+  assert.deepEqual(appendDictatedText('Olemas', null, 4000), { text: 'Olemas', cut: false });
+  assert.deepEqual(appendDictatedText(undefined, 'Tere', 4000), { text: 'Tere', cut: false });
+  /* Piir: lõpp lõigatakse ja kutsuja saab sellest teada. */
+  assert.deepEqual(appendDictatedText('abc', 'defgh', 6), { text: 'abc de', cut: true });
+  assert.deepEqual(appendDictatedText('abc', 'de', 6), { text: 'abc de', cut: false });
+  assert.equal(appendDictatedText('x'.repeat(10), 'y', 10).cut, true);
+  assert.equal(appendDictatedText('x'.repeat(10), 'y', 10).text, 'x'.repeat(10));
 });
