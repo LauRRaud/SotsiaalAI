@@ -209,12 +209,30 @@ const RECORDER_CLASSES = Object.freeze({
  * teade ilmub ka keset salvestust (osa salvestub iga kümne minuti järel) ja
  * ainult päris lehevahetuse eel küsib salvesti, kas inimene tahab lahkuda.
  */
-export function AudioView({ t, title, disabled, glow, notice, errorText, onPartSaved, onRecording }) {
+export function AudioView({ t, title, disabled, glow, notice, errorText, onPartSaved, onRecording, onAlert }) {
   const wrapRef = useRef(null);
   const reportRef = useRef(onRecording);
+  const alertRef = useRef(onAlert);
   useEffect(() => {
     reportRef.current = onRecording;
-  }, [onRecording]);
+    alertRef.current = onAlert;
+  }, [onAlert, onRecording]);
+
+  /* Salvesti teated (osa jäi salvestamata, mikrofon kadus, osade piir) on
+     tema enda sees. Juhtum näitab teistes osades rida, et siin on teade:
+     selleks ütleme, kas salvestis on praegu hoiatus ees. */
+  useEffect(() => {
+    const wrap = wrapRef.current;
+    if (!wrap || typeof MutationObserver === "undefined") return undefined;
+    const read = () => alertRef.current?.(Boolean(wrap.querySelector('[role="alert"]')));
+    read();
+    const observer = new MutationObserver(read);
+    observer.observe(wrap, { childList: true, subtree: true });
+    return () => {
+      observer.disconnect();
+      alertRef.current?.(false);
+    };
+  }, []);
 
   useEffect(() => {
     const node = wrapRef.current?.querySelector("[data-recorder-phase]");

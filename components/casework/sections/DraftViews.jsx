@@ -75,10 +75,10 @@ export function DraftCreateView({ t, swapRef, options, value, onChange, busy, gl
  * `ULE_KANTUD` ja `EI_KANTA` on lõpp-punktid ja lause all servas ütleb, miks
  * nuppu ei ole.
  */
-export function draftFieldsView({ t, rows, add, terminal, glow, onOpen }) {
+export function draftFieldsView({ t, rows, add, terminal, glow, onOpen, purgedNote = "" }) {
   return {
     title: t("casework.draft.fields_title", ""),
-    note: terminal ? t("casework.draft.terminal_notice", "") : "",
+    note: purgedNote || (terminal ? t("casework.draft.terminal_notice", "") : ""),
     actions: add ? (
       <Button type="button" size="sm" variant="primary" glow={glow} disabled={add.disabled} onClick={add.onClick}>
         {t("casework.draft.add_field", "")}

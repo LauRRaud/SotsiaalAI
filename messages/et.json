@@ -1755,7 +1755,10 @@
           "summary": "Näost näkku kohtumise salvestamine",
           "summary_recording": "Salvestus käib"
         }
-      }
+      },
+      "recording_line": "Helisalvestus käib.",
+      "recorder_alert_line": "Helisalvestuse osas on teade, mis vajab sinu tähelepanu.",
+      "open_audio": "Ava helisalvestus"
     },
     "info": {
       "title": "Minu juhtumid",

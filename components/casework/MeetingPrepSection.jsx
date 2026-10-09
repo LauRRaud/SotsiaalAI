@@ -35,6 +35,7 @@ import Button from "@/components/ui/Button";
 
 import { caseWorkRequest, fromLocalInputValue } from "./caseWorkClient";
 import { prepFieldView, prepOverviewView, prepQuestionView, prepQuestionsView } from "./sections/PrepViews";
+import { Chip } from "./cases/CaseListViews";
 import { ItemListView, MeetingCreateView, OpenView, provenanceView, rowAddView, useSwapFocus } from "./sections/SectionBits";
 import {
   PREP_FIELD_KEYS,
@@ -335,7 +336,15 @@ function PrepEditor({ t, locale, prep, landOn, locked, busy, glow, errorText, ac
   /* Avatud ettevalmistuse identiteet on nähtav igas vaates: juhtumil on neid
      mitu. Tee tagasi loendisse on sakkidega vaadetes; alamvaatel on oma
      „Loobu" või „Tagasi" all servas. */
-  const identity = { label: t("casework.prep.open_prep", ""), name: prepTitle(prep, context) };
+  /* O-JTA-6: arhiveeritud sisu märk on päises, mida joonistab IGA vaade. Ainult
+     ülevaate sakil olles näeks väljade ja küsimuste sakid välja täpselt nagu
+     alustamata ettevalmistus (tühi lukus väli, nuppe ei ole) ilma põhjuseta. */
+  const purgedNote = purged ? t("casework.errors.prep_content_purged", "") : "";
+  const identity = {
+    label: t("casework.prep.open_prep", ""),
+    name: prepTitle(prep, context),
+    chips: purged ? <Chip tone="wait">{t("casework.prep.purged_chip", "")}</Chip> : null
+  };
   const tabbed = {
     swapRef,
     head: { ...identity, back: { label: t("casework.prep.back_to_list", ""), onClick: onClose } },
@@ -507,6 +516,7 @@ function PrepEditor({ t, locale, prep, landOn, locked, busy, glow, errorText, ac
           t,
           rows: questions,
           glow,
+          purgedNote,
           /* Purge'itud ettevalmistusse ei kirjutata uut sisu — server keeldub
              409-ga ja vorm, mis seda ei tea, annaks kasutajale vea tema enda teo
              eest. */
@@ -537,6 +547,7 @@ function PrepEditor({ t, locale, prep, landOn, locked, busy, glow, errorText, ac
         t,
         field,
         text,
+        purgedNote,
         onText: (value) => setTexts((current) => ({ ...current, [tab]: value })),
         locked: writeLocked,
         busy,

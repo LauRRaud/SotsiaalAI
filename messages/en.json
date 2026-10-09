@@ -1755,7 +1755,10 @@
           "summary": "Recording a meeting in person",
           "summary_recording": "Recording in progress"
         }
-      }
+      },
+      "recording_line": "Recording is running.",
+      "recorder_alert_line": "The recording part has a notice that needs your attention.",
+      "open_audio": "Open the recording"
     },
     "info": {
       "title": "My cases",

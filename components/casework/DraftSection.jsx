@@ -360,6 +360,9 @@ function DraftEditor({
           {/* Salvestamata jälg on näha elemendi igal sakil, mitte ainult
               seal, kus kopeeriti (L8: tõendi vaikne kadu on halvem kui nähtav). */}
           {transfer.pendingCount ? <Chip tone="wait">{t("casework.transfer.audit_pending_chip", "")}</Chip> : null}
+          {/* Kustutatud sisu on näha elemendi igal sakil: väljade sakk näeks
+              muidu välja nagu tühi mustand, kuhu saab välju lisada. */}
+          {draft.contentPurgedAt ? <Chip tone="wait">{t("casework.prep.purged_chip", "")}</Chip> : null}
         </>
       ),
       back: { label: t("casework.draft.back_to_list", ""), onClick: onClose }
@@ -483,6 +486,7 @@ function DraftEditor({
         t,
         rows: fields,
         terminal: view.terminal,
+        purgedNote: draft.contentPurgedAt ? t("casework.transfer.content_purged", "") : "",
         add: view.terminal ? null : { disabled: locked || busy, onClick: () => setSub({ view: "add" }) },
         glow,
         onOpen: (key) => setSub({ view: "field", key })

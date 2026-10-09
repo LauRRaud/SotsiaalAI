@@ -81,10 +81,11 @@ export function prepOverviewView({ t, overview, remove }) {
  *
  * `locked`: juhtum on kirjutuskaitstud või ettevalmistuse sisu on arhiveeritud.
  */
-export function prepFieldView({ t, field, text, onText, locked, busy, glow, canSave, onSave, onConfirmOpen }) {
+export function prepFieldView({ t, field, text, onText, locked, busy, glow, canSave, onSave, onConfirmOpen, purgedNote = "" }) {
   return {
     title: field.label,
-    note: field.saved ? t("casework.prep.provenance_kept", "") : "",
+    /* Arhiveeritud sisuga ettevalmistuses ütleb all serv, miks väli on tühi ja lukus. */
+    note: purgedNote || (field.saved ? t("casework.prep.provenance_kept", "") : ""),
     actions: (
       <Button type="button" size="sm" variant="primary" glow={glow} disabled={locked || busy || !canSave} onClick={onSave}>
         {t(field.saved ? "casework.prep.save_field" : "casework.prep.choose_provenance", "")}
@@ -123,11 +124,12 @@ export function prepFieldView({ t, field, text, onText, locked, busy, glow, canS
  * sisu (server keeldub 409-ga) ja vorm, mis seda ei tea, annaks inimesele vea
  * tema enda teo eest.
  */
-export function prepQuestionsView({ t, rows, add, glow, onOpen }) {
+export function prepQuestionsView({ t, rows, add, glow, onOpen, purgedNote = "" }) {
   return {
     title: t("casework.prep.questions_title", ""),
-    /* Selgitus on all servas nuppude kõrval: loend saab kogu ruumi. */
-    note: t("casework.prep.questions_hint", ""),
+    /* Selgitus on all servas nuppude kõrval: loend saab kogu ruumi.
+       Arhiveeritud sisuga ettevalmistuses seisab seal põhjus, miks lisada ei saa. */
+    note: purgedNote || t("casework.prep.questions_hint", ""),
     actions: add
       ? add.kinds.map((kind) => (
           <Button

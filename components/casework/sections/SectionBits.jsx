@@ -77,6 +77,24 @@ export function TwoStep({ t, label, confirmLabel, disabled, onConfirm, plain = f
  * liigub fookus juba esimesel joonistusel. Saki vahetus võtmesse ei kuulu:
  * sakirida jääb paigale (vt `OpenView`) ja fookus jääb vajutatud sakile.
  */
+/* Lühim vahe vaate ilmumise ja saatmise vahel: topeltklõps on alla selle
+   (sama piir mis teise vajutuse nupul, `../ConfirmButton.jsx`). */
+const MIN_GAP_MS = 400;
+
+/**
+ * Lava mõõdab oma kõrguse osa vahetusel, akna suuruse muutusel ja siis, kui
+ * osa tasand kasvab. Osa SEES lühema vaate ette tulles tasand ei kahane (tal on
+ * lava kõrgus alampiiriks), seega jääks lava kõrge vaate mõõtu ja lühikese
+ * vaate nupurida vajuks tühja ruumi taha. Vaate vahetusel palume lava uuesti
+ * mõõta: lava kuulab akna `resize` sündmust.
+ */
+export function useStageRemeasure(key) {
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => window.dispatchEvent(new Event("resize")));
+    return () => window.cancelAnimationFrame(frame);
+  }, [key]);
+}
+
 export function useSwapFocus(key, { onMount = false } = {}) {
   const ref = useRef(null);
   const shown = useRef(onMount ? null : key);
@@ -113,6 +131,7 @@ export function blockRepeatEnter(event) {
  * tagajärg; muidu vajutab inimene uuesti.
  */
 export function ItemListView({ t, title, lead, swapRef, errorText, status, rows, emptyText, openText, openingId = null, more, onOpen, onRetry, actions }) {
+  useStageRemeasure(`list:${rows.length}:${status}`);
   return (
     <StepPanel title={title} lead={lead} actions={actions}>
       <div className={base.stack} ref={swapRef}>
@@ -176,6 +195,22 @@ export function ItemListView({ t, title, lead, swapRef, errorText, status, rows,
  * juurde (`form`): nii alustab ka Enter väljal.
  */
 export function MeetingCreateView({ t, title, lead, swapRef, formId, label, value, onChange, submitLabel, glow, busy, errorText, onSubmit, onCancel }) {
+  useStageRemeasure("create");
+  /* TOPELTKLÕPS EI LOO KIRJET. Loendi nupp („Alusta märget") ja selle vaate
+     saatmisnupp kannavad sama nime ja seisavad samas kohas: topeltklõpsu teine
+     vajutus maanduks saatmisnupule enne, kui töötaja aja välja nägi. Märget ei
+     saa kustutada ega selle aega hiljem muuta, seega ei tohi see nii sündida. */
+  const shownAt = useRef(0);
+  useEffect(() => {
+    shownAt.current = Date.now();
+  }, []);
+  const submit = (event) => {
+    if (Date.now() - shownAt.current < MIN_GAP_MS) {
+      event.preventDefault();
+      return;
+    }
+    onSubmit(event);
+  };
   return (
     <StepPanel
       title={title}
@@ -192,7 +227,7 @@ export function MeetingCreateView({ t, title, lead, swapRef, formId, label, valu
       }
     >
       <div className={base.stack} ref={swapRef}>
-        <form id={formId} className={base.fields} onSubmit={onSubmit} onKeyDown={blockRepeatEnter}>
+        <form id={formId} className={base.fields} onSubmit={submit} onKeyDown={blockRepeatEnter}>
           <label className={base.field} data-size="sm" data-autofocus>
             <span className={base.fieldLabel}>{label}</span>
             <Input type="datetime-local" value={value} onChange={(event) => onChange(event.target.value)} />
@@ -275,6 +310,7 @@ export function ViewTabs({ label, tabs, current, onSelect, columns, pendingText 
  * kogu ruumi.
  */
 export function OpenView({ frame, view }) {
+  useStageRemeasure(`${frame.tabs ? frame.tabs.current : "sub"}:${view.title}`);
   return (
     <StepPanel title={view.title} note={view.note} actions={view.actions}>
       <div className={base.stack} ref={frame.swapRef}>

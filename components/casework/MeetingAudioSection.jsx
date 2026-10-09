@@ -32,7 +32,7 @@ import { AudioView } from "./sections/NoteViews";
  * (juhtum värskendab seoste loendit). `onRecording(käib)`: salvestamise seis
  * osa plaadi jaoks juhtumi ülevaates.
  */
-export default function MeetingAudioSection({ caseId, locked, caseBusy, active, onLinked, onRecording }) {
+export default function MeetingAudioSection({ caseId, locked, caseBusy, active, onLinked, onRecording, onAlert }) {
   const { t, locale } = useI18n();
   const [noticeKey, setNoticeKey] = useState(null);
   const [errorKey, setErrorKey] = useState(null);
@@ -86,6 +86,7 @@ export default function MeetingAudioSection({ caseId, locked, caseBusy, active, 
       errorText={errorKey ? t(errorKey, "") : ""}
       onPartSaved={linkRecordedPart}
       onRecording={onRecording}
+      onAlert={onAlert}
     />
   );
 }

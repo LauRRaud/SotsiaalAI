@@ -135,6 +135,12 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
   /* Kohtumise heli salvesti jääb tööle ka siis, kui ees on juhtumi teine osa:
      tema plaat ülevaates ütleb, kas salvestus käib. */
   const [recording, setRecording] = useState(false);
+  /* Salvesti elab oma osas. Kui töötaja kirjutab samal ajal märget, ei näe ta
+     sealt, et mikrofon on sees või et osa jäi salvestamata: rida lava kohal
+     ütleb seda igas teises osas ja viib helisalvestuse juurde. */
+  const [recorderAlert, setRecorderAlert] = useState(false);
+  const [herePart, setHerePart] = useState("");
+  const [goPart, setGoPart] = useState(null);
   /* Ülekandeajalugu on oma osa, aga teod sünnivad STAR2 järjekorra osas: märk
      ütleb ajaloole, et ta peab end uuesti laadima. */
   const [transferToken, setTransferToken] = useState(0);
@@ -623,6 +629,7 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
             active={active}
             onLinked={refreshLinkedItems}
             onRecording={setRecording}
+            onAlert={setRecorderAlert}
           />
         );
 
@@ -720,6 +727,15 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
         </p>
       ) : null}
 
+      {(recording || recorderAlert) && herePart !== "audio" ? (
+        <p className={styles.recorderLine} role={recorderAlert ? "alert" : undefined}>
+          <span>{t(recorderAlert ? "casework.page.recorder_alert_line" : "casework.page.recording_line", "")}</span>
+          <button type="button" className={styles.recorderOpen} onClick={() => setGoPart("audio")}>
+            {t("casework.page.open_audio", "")}
+          </button>
+        </p>
+      ) : null}
+
       <StepFlight
         /* Osade loend muutub, kui juhtum läheb kirjutuskaitse alla: siis
            ehitatakse lava uuesti. */
@@ -727,6 +743,11 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
         label={t("casework.page.title", "")}
         steps={parts}
         parts
+        activeKey={goPart}
+        onStepChange={(index, step) => {
+          setGoPart(null);
+          setHerePart(step?.key || "");
+        }}
         /* Juhtum avaneb ülevaates: kõik osad korraga, igaühel oma seis. */
         startWide={landIndex < 0}
         initialIndex={Math.max(0, landIndex)}
