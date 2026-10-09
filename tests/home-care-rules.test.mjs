@@ -11,6 +11,15 @@ import {
   escapeHtml,
   renderChronologyHtml
 } from '../lib/homeCare/chronologyDocument.js';
+import {
+  CLIENT_IMPORT_MAX_ROWS,
+  ClientImportStatus,
+  detectDelimiter,
+  parseDelimited,
+  planClientImport,
+  readClientTable,
+  rowsToCreate
+} from '../lib/homeCare/clientTable.js';
 import { HOME_CARE_LIMITS } from '../lib/homeCare/constants.js';
 import { appendDictatedText } from '../lib/homeCare/dictation.js';
 import { serializeEntry } from '../lib/homeCare/entries.js';
@@ -597,4 +606,93 @@ test('dikteerimine: tekst lisatakse välja lõppu, piiri ületav lõpp ei kao va
   assert.deepEqual(appendDictatedText('abc', 'de', 6), { text: 'abc de', cut: false });
   assert.equal(appendDictatedText('x'.repeat(10), 'y', 10).cut, true);
   assert.equal(appendDictatedText('x'.repeat(10), 'y', 10).text, 'x'.repeat(10));
+});
+
+test('klientide tabel: eraldaja, jutumärgid, päised kolmes keeles', () => {
+  /* Arvutustabelist kopeeritud tekst on tabulaatoritega; CSV koma või semikooloniga. */
+  assert.equal(detectDelimiter('Nimi\tTunnus\tAadress'), '\t');
+  assert.equal(detectDelimiter('Nimi;Tunnus;Aadress'), ';');
+  assert.equal(detectDelimiter('Nimi,Tunnus,Aadress'), ',');
+  /* Eraldaja jutumärkide sees ei loe. */
+  assert.equal(detectDelimiter('"Nimi, perekonnanimi";Tunnus'), ';');
+
+  /* Jutumärkides lahter võib sisaldada eraldajat, reavahetust ja jutumärki. */
+  const parsed = parseDelimited('Nimi;Märkus\r\n"Tamm, Linda";"Tütar ""Mari""\nhelistab õhtul"\nKask Jaan;\n', ';');
+  assert.deepEqual(parsed.map((row) => row.cells), [
+    ['Nimi', 'Märkus'],
+    ['Tamm, Linda', 'Tütar "Mari"\nhelistab õhtul'],
+    ['Kask Jaan', '']
+  ]);
+  /* Reanumber on tabeli rida, kust kirje algab (mitmerealise lahtri järel nihkub). */
+  assert.deepEqual(parsed.map((row) => row.line), [1, 2, 4]);
+
+  /* Päised tuntakse ära nime järgi, järjekord ei loe; tundmatu veerg jäetakse kõrvale ja öeldakse. */
+  const table = readClientTable('Telefon\tSünniaeg\tNIMI\tKood\n5551234\t1940\tLinda Tamm\tLT-1\n\n\t\t\t\nJaan Kask\n');
+  assert.equal(table.ok, true);
+  assert.deepEqual(table.columns, { contactPhone: 0, displayName: 2, internalCode: 3 });
+  assert.deepEqual(table.ignoredHeaders, ['Sünniaeg']);
+  /* Tühjad read jäetakse vahele. */
+  assert.equal(table.rows.length, 2);
+  assert.deepEqual(readClientTable('Name,Address\nA,B').columns, { displayName: 0, address: 1 });
+  assert.deepEqual(readClientTable('Имя;Телефон\nА;1').columns, { displayName: 0, contactPhone: 1 });
+  /* Faili alguse BOM ei riku esimest päist. */
+  assert.deepEqual(readClientTable('\uFEFFNimi;Tunnus\nA;1').columns, { displayName: 0, internalCode: 1 });
+
+  /* Mis ei ole tabel, saab selge vea, mitte erindi. */
+  assert.equal(readClientTable('').errorKey, 'home_care.errors.import_empty');
+  assert.equal(readClientTable('   \n  ').errorKey, 'home_care.errors.import_empty');
+  assert.equal(readClientTable(null).errorKey, 'home_care.errors.import_empty');
+  assert.equal(readClientTable('Aadress;Telefon\nKase 3;555').errorKey, 'home_care.errors.import_name_column_missing');
+  assert.equal(readClientTable('Nimi;Tunnus').errorKey, 'home_care.errors.import_no_rows');
+  const many = ['Nimi', ...Array.from({ length: CLIENT_IMPORT_MAX_ROWS + 1 }, (_, index) => `Klient ${index}`)].join('\n');
+  assert.equal(readClientTable(many).errorKey, 'home_care.errors.import_too_many_rows');
+  assert.equal(readClientTable(`Nimi\n${'x'.repeat(400_001)}`).errorKey, 'home_care.errors.import_too_large');
+});
+
+test('klientide tabel: kava ütleb iga rea kohta, mis sellest saab', () => {
+  const table = readClientTable(
+    [
+      'Nimi;Tunnus;Aadress',
+      'Linda Tamm;LT-1;Kase 3',
+      'Jaan Kask;JK-2;',
+      'Mari  Mets;;Tamme 5',
+      ';X-9;',
+      'Uus Inimene;LT-1;',
+      'Teine Jaan;JK-2;',
+      'mari mets;;',
+      'Olemas Olev;;',
+      `${'n'.repeat(250)};;`
+    ].join('\n')
+  );
+  const plan = planClientImport(table, { existingCodes: new Set(['JK-2']), existingNames: new Set(['Olemas  OLEV']) });
+  assert.deepEqual(
+    plan.rows.map((row) => [row.line, row.status]),
+    [
+      [2, ClientImportStatus.NEW],
+      /* Sama tunnus on asutuses olemas: ei tooda teist korda. */
+      [3, ClientImportStatus.EXISTS],
+      [4, ClientImportStatus.NEW],
+      /* Nimi puudub. */
+      [5, ClientImportStatus.ERROR],
+      /* Sama tunnus selles tabelis varem. */
+      [6, ClientImportStatus.REPEATED],
+      [7, ClientImportStatus.EXISTS],
+      /* Tunnust ei ole ja sama nimi oli tabelis juba (tähesuurus ja tühikud ei loe). */
+      [8, ClientImportStatus.SAME_NAME],
+      /* Tunnust ei ole ja sama nimega klient on juba olemas. */
+      [9, ClientImportStatus.SAME_NAME],
+      /* Liiga pikk nimi on viga (sama piir mis vormis), mitte vaikne lõikamine. */
+      [10, ClientImportStatus.ERROR]
+    ]
+  );
+  assert.equal(plan.rows[3].errorKey, 'home_care.errors.name_required');
+  assert.equal(plan.rows[8].errorKey, 'home_care.errors.text_too_long');
+  assert.equal(plan.rows[8].displayName.length, HOME_CARE_LIMITS.DISPLAY_NAME_MAX);
+  assert.deepEqual(plan.rows[0].data, { displayName: 'Linda Tamm', internalCode: 'LT-1', address: 'Kase 3', contactPhone: null, contactNote: null });
+  assert.equal(plan.rows[2].data.displayName, 'Mari Mets');
+  assert.deepEqual(plan.summary, { total: 9, new: 2, exists: 2, repeated: 1, sameName: 2, errors: 2 });
+
+  /* Kliendiks saavad uued read ja need samanimelised, mille hooldusjuht kinnitas. */
+  assert.deepEqual(rowsToCreate(plan).map((row) => row.line), [2, 4]);
+  assert.deepEqual(rowsToCreate(plan, [9, 3, 5, 'x']).map((row) => row.line), [2, 4, 9]);
 });

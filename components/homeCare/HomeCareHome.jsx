@@ -83,6 +83,11 @@ export default function HomeCareHome({ context, initial, unitOptions }) {
           <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/valjastused`}>
             {t("home_care.releases.link")}
           </Link>
+          {context.writable ? (
+            <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/sissetoomine`}>
+              {t("home_care.import.link")}
+            </Link>
+          ) : null}
           {context.writable && !adding ? (
             <button className="hc-btn hc-btn--primary" type="button" onClick={() => setAdding(true)}>
               {t("home_care.home.add_client")}
