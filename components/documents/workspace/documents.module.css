@@ -227,15 +227,19 @@
 /* Otsing vasakul, tüübifilter (kuus lahtrit kahes reas) paremal: nii jääb
    loendi ridadele rohkem ruumi kui siis, kui need oleksid üksteise all. Filter
    on nii lai, kui lahtrid vajavad; otsing saab ülejäänu. */
+/* Otsing ja liigi filter kõrvuti, kui mõlemad mahuvad; muidu läheb filter
+   järgmisele reale. Võrguna (1fr + auto) võttis filter pikemate siltidega
+   keeles kogu rea ja otsinguväli vajus mõnekümne piksli laiuseks. */
 .tools {
   min-width: 0;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: start;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
   gap: 0.5rem 1.4rem;
 }
 .search {
-  min-width: 0;
+  flex: 1 1 16rem;
+  min-width: min(100%, 14rem);
   display: flex;
   align-items: center;
   gap: 0.4rem;
@@ -247,6 +251,7 @@
   max-width: 18rem;
 }
 .filter {
+  flex: 0 1 auto;
   min-width: 0;
 }
 .rows {
@@ -403,9 +408,6 @@
 @container (max-width: 40rem) {
   .about,
   .pick,
-  .tools {
-    grid-template-columns: minmax(0, 1fr);
-  }
   .field,
   .searchInput,
   .renameInput {

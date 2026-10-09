@@ -63,6 +63,7 @@ const LIST_RETURN_MAX_AGE_MS = 30 * 60 * 1000
 const WORKSPACE_WINDOW = 50
 /* Teine vajutus (kustutamine, peatamine) peab tulema selle aja sees. */
 const CONFIRM_MS = 8000
+const CONFIRM_MIN_GAP_MS = 400
 const NO_ANALYSIS = { id: null, content: "", loading: false, error: "" }
 
 /* Jäädav kustutamine pere kaupa: kuhu päring läheb ja mis sõnadega leht
@@ -175,8 +176,10 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
   /* Kustutamine ja peatamine küsivad teist vajutust: `remove:<võti>` või `stop:<võti>`. */
   const [confirming, setConfirming] = useState("")
   const confirmTimer = useRef(0)
+  const armedAt = useRef(0)
   const armConfirm = useCallback((key) => {
     window.clearTimeout(confirmTimer.current)
+    armedAt.current = Date.now()
     setConfirming(key)
     confirmTimer.current = window.setTimeout(() => setConfirming(""), CONFIRM_MS)
   }, [])
@@ -674,7 +677,18 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
      jooksul) teeb töö ära. */
   const confirmAction = (key, label, armedLabel, note, run) => {
     const armed = confirming === key
-    return { label: armed ? armedLabel : label, armed, note: armed ? note : "", onClick: () => (armed ? run() : armConfirm(key)) }
+    return {
+      label: armed ? armedLabel : label,
+      armed,
+      note: armed ? note : "",
+      onClick: () => {
+        if (!armed) return armConfirm(key)
+        /* Topeltklõps on kaks vajutust samal nupul: teine neist ei tohi kohe
+           kustutada. Kinnitus peab tulema vähemalt CONFIRM_MIN_GAP_MS hiljem. */
+        if (Date.now() - armedAt.current < CONFIRM_MIN_GAP_MS) return undefined
+        return run()
+      }
+    }
   }
 
   function renderItem(key) {

@@ -188,7 +188,13 @@ export function AddFileView({ t, notice, form }) {
               tabIndex={-1}
               aria-hidden="true"
               accept={form.accept}
-              onChange={(event) => form.onFile(event.target.files?.[0] || null)}
+              onChange={(event) => {
+                form.onFile(event.target.files?.[0] || null);
+                /* Väli tühjendatakse pärast lugemist: muidu jääks keeldutud
+                   (liiga suur) fail peidetud välja sisse ja sama faili uuesti
+                   valimine ei annaks muutuse sündmust. */
+                event.target.value = "";
+              }}
             />
             <button
               type="button"
@@ -424,8 +430,9 @@ export function ItemView({ t, notice, sheet, rename, share, analysis, actions, d
 export function FrameworkView({ t, notice, text, confirmed, links }) {
   return (
     <StepPanel
+      /* Vaate nime paneelil ei korrata (see on kiirmenüüs): paneel algab
+         lausega, mis ütleb, kas kinnitus on olemas. */
       title={t("documents.views.framework.title")}
-      question={t("documents.views.framework.title")}
       lead={text}
       actions={<ActionButtons actions={links} />}
     >

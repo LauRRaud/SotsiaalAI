@@ -251,7 +251,7 @@ test('kustutamine ja peatamine küsivad teist vajutust; brauseri kinnitusakent e
   const page = read(PAGE);
   assert.ok(!page.includes('window.confirm') && !read(VIEWS).includes('confirm('), 'brauseri kinnitusakent ei kasutata');
   assert.ok(page.includes('confirmAction(removeKey,') && page.includes('confirmAction(stopKey,'), 'kustutamine ja peatamine käivad läbi kahe vajutuse');
-  assert.ok(page.includes('const armed = confirming === key') && page.includes('armed ? run() : armConfirm(key)'), 'esimene vajutus ainult relvastab');
+  assert.ok(page.includes('const armed = confirming === key') && page.includes('if (!armed) return armConfirm(key)'), 'esimene vajutus ainult relvastab');
   /* Teise vajutuse nupp seisab teistest tegevustest eraldi ja selgitus tuleb selle kõrvale:
      tegevusrea nupud ei tohi teise vajutuse ajaks selle kohale nihkuda. */
   const views = read(VIEWS);
@@ -318,6 +318,18 @@ test('leht on sammulaval osadena ja ei kasuta enam vana ühist kihti', () => {
       assert.ok(!/(^|[\s>+~])(p|h[1-6]|ul|li|dl|dt|dd|section|div|span|label|input|button|form|a)(?![\w-])/.test(selector.trim().replace(/:global\([^)]*\)/g, '')), `paljas silt valijas: ${selector.trim()}`);
     }
   }
+});
+
+test('ülevaatuse parandused: raamistiku vaade ei korda oma nime, otsing ei vaju kokku, topeltklõps ei kustuta', () => {
+  const views = read('../components/documents/workspace/DocumentsViews.jsx');
+  const framework = views.slice(views.indexOf('export function FrameworkView'));
+  assert.ok(!/question=\{t\("documents\.views\.framework\.title"\)\}/.test(framework), 'vaate nimi ei ole paneelil nähtav küsimus');
+  const css = read('../components/documents/workspace/documents.module.css');
+  assert.match(css, /\.search\s*\{[^}]*flex:\s*1 1 16rem/);
+  assert.ok(!/\.tools\s*\{[^}]*grid-template-columns/.test(css), 'otsing ja filter ei ole võrgus, kus filter võtab kogu rea');
+  const page = read('../components/documents/DocumentsPage.jsx');
+  assert.ok(page.includes('Date.now() - armedAt.current < CONFIRM_MIN_GAP_MS'));
+  assert.ok(views.includes('event.target.value = "";'), 'failiväli tühjendatakse pärast lugemist');
 });
 
 test('faili lisamise vaade: kukutusala kannab ainult juhist, abitekst ja valitud fail on omal kohal (K07)', () => {
