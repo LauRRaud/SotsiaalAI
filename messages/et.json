@@ -11347,6 +11347,23 @@
       "AWAY": "Ajutiselt ära",
       "ENDED": "Lõpetatud"
     },
+    "status_reason": {
+      "AWAY": {
+        "HOSPITAL": "haiglas või taastusravil",
+        "WITH_FAMILY": "lähedase juures või kodust ära",
+        "SAFETY": "käigud peatatud ohutuse või koostöö pärast",
+        "OTHER": "muu põhjus"
+      },
+      "ENDED": {
+        "NO_LONGER_NEEDED": "ei vaja enam teenust",
+        "MORE_CARE": "vajab rohkem abi, kui kodus anda saab",
+        "DIED": "surm",
+        "MOVED": "kolis teise omavalitsusse",
+        "OWN_WISH": "loobus ise",
+        "COOPERATION": "koostöö ei olnud võimalik või ohutus",
+        "OTHER": "muu põhjus"
+      }
+    },
     "client": {
       "back": "Tagasi klientide juurde",
       "name": "Nimi",
@@ -11375,7 +11392,10 @@
       "read_only": "Organisatsioon ei ole praegu kirjutatav; leht on ainult lugemiseks.",
       "manage": "Hooldusjuhile",
       "unit": "Üksus",
-      "unit_none": "Üksuseta (kogu asutus)"
+      "unit_none": "Üksuseta (kogu asutus)",
+      "status_reason": "Mille pärast",
+      "status_ended_hint": "Lõpetatud kliendi saab hiljem uuesti aktiivseks muuta. Päevik ja seisu ajalugu jäävad alles.",
+      "status_history": "Seisu ajalugu"
     },
     "card": {
       "title": "Enne kui lähed",
@@ -11477,7 +11497,9 @@
         "WORK_ACCIDENT": "Tööõnnetus",
         "COMPLAINT": "Kaebus",
         "THANKS": "Tänu",
-        "OTHER": "Muu"
+        "OTHER": "Muu",
+        "GIFT_OFFERED": "Pakuti kingitust või raha",
+        "FEEDBACK": "Tagasiside"
       },
       "text_label": "Mida nägin või kuulsin",
       "assessment_label": "Mida arvan",
@@ -11616,7 +11638,8 @@
       "export_too_large": "Väljavõte on ühe faili jaoks liiga suur. Võta ühendust platvormi toega, et see osade kaupa kätte saada.",
       "invalid_export_reason": "Vali, milleks väljavõte tehakse.",
       "export_failed": "Väljavõtte koostamine ei õnnestunud. Proovi uuesti.",
-      "export_in_progress": "Selle asutuse väljavõte on juba koostamisel. Oota, kuni see valmis saab."
+      "export_in_progress": "Selle asutuse väljavõte on juba koostamisel. Oota, kuni see valmis saab.",
+      "status_reason_required": "Vali, mille pärast klient on ära või teenus lõppes."
     },
     "incidents": {
       "title": "Erijuhtumite register",

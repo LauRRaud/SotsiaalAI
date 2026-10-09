@@ -6,7 +6,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import DateField from "@/components/ui/DateField";
 import Dropdown from "@/components/ui/Dropdown";
-import { CARE_CLIENT_STATUSES, CARE_ENTRY_KINDS, CareClientStatus } from "@/lib/homeCare/constants";
+import { CARE_CLIENT_STATUSES, CARE_ENTRY_KINDS, CARE_STATUS_REASONS, CareClientStatus } from "@/lib/homeCare/constants";
 
 import HomeCareCallNote from "./HomeCareCallNote";
 import HomeCareCard from "./HomeCareCard";
@@ -67,6 +67,7 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
   const [lapsed, setLapsed] = useState(false);
   const [panel, setPanel] = useState(null);
   const [status, setStatus] = useState(initial?.client?.status || CareClientStatus.ACTIVE);
+  const [statusReason, setStatusReason] = useState(initial?.client?.statusReason || "");
   const [statusNote, setStatusNote] = useState(initial?.client?.statusNote || "");
 
   const base = `${homeCareBase(organizationId)}/kliendid/${clientId}`;
@@ -195,19 +196,35 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
      salvestama. */
   const openStatusPanel = () => {
     setStatus(data.client.status);
+    setStatusReason(data.client.statusReason || "");
     setStatusNote(data.client.statusNote || "");
     setPanel("status");
   };
+
+  /* Alus kuulub seisu juurde: teise seisu valimisel eelmise seisu alus ei jää külge. */
+  const reasonOptions = CARE_STATUS_REASONS[status] || [];
+  const chooseStatus = (value) => {
+    if (value === status) return;
+    setStatus(value);
+    if (!(CARE_STATUS_REASONS[value] || []).includes(statusReason)) setStatusReason("");
+    /* Selgitus kuulub samuti seisu juurde: „haiglas alates 9.10" ei tohi minna kaasa lõpetamisele. */
+    setStatusNote(value === data.client.status ? data.client.statusNote || "" : "");
+  };
+  const reasonMissing = reasonOptions.length > 0 && !reasonOptions.includes(statusReason);
 
   const saveStatus = async (event) => {
     event.preventDefault();
     const result = await page.call(`${base}/seis`, {
       method: "POST",
-      body: { status, statusNote, version: data.client.version },
+      body: { status, statusReason: reasonOptions.length ? statusReason : null, statusNote, version: data.client.version },
       fallbackKey: "home_care.errors.save_failed"
     });
     if (result.ok) {
-      setData((current) => ({ ...current, client: result.data.client }));
+      setData((current) => ({
+        ...current,
+        client: result.data.client,
+        statusHistory: result.data.statusHistory || current.statusHistory
+      }));
       setPanel(null);
     }
   };
@@ -242,6 +259,7 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
   }
 
   const { client, card, team, recentOpeners, access } = data;
+  const statusHistory = Array.isArray(data.statusHistory) ? data.statusHistory : [];
   const ended = client.status === CareClientStatus.ENDED;
   const canWrite = Boolean(access.canWrite);
   const canAddEntry = canWrite && (!ended || access.isCoordinator);
@@ -270,6 +288,9 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
         <div className="hc-row">
           {client.status !== CareClientStatus.ACTIVE ? (
             <span className={`hc-badge${ended ? "" : " hc-badge--warn"}`}>{t(`home_care.status.${client.status}`)}</span>
+          ) : null}
+          {client.status !== CareClientStatus.ACTIVE && client.statusReason ? (
+            <span className="hc-sub">{t(`home_care.status_reason.${client.status}.${client.statusReason}`)}</span>
           ) : null}
           {client.status !== CareClientStatus.ACTIVE && client.statusNote ? (
             <span className="hc-sub">{client.statusNote}</span>
@@ -514,6 +535,29 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
         </section>
       ) : null}
 
+      {statusHistory.length > 0 ? (
+        <section className="hc-section" aria-labelledby={`${fieldId}-status-history`}>
+          <h2 className="hc-section-title" id={`${fieldId}-status-history`}>
+            {t("home_care.client.status_history")}
+          </h2>
+          <ul className="hc-list hc-list--plain">
+            {statusHistory.map((change) => (
+              <li key={change.id} className="hc-entry__meta">
+                {[
+                  formatDateTime(change.changedAt, timeZone),
+                  t(`home_care.status.${change.toStatus}`),
+                  change.reason ? t(`home_care.status_reason.${change.toStatus}.${change.reason}`) : null,
+                  change.note,
+                  change.actorName
+                ]
+                  .filter(Boolean)
+                  .join(" · ")}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
       {access.isCoordinator ? (
         <section className="hc-section" aria-labelledby={`${fieldId}-manage`}>
           <h2 className="hc-section-title" id={`${fieldId}-manage`}>
@@ -585,12 +629,30 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
                     type="button"
                     className="hc-chip"
                     aria-pressed={status === value}
-                    onClick={() => setStatus(value)}
+                    onClick={() => chooseStatus(value)}
                   >
                     {t(`home_care.status.${value}`)}
                   </button>
                 ))}
               </div>
+              {reasonOptions.length > 0 ? (
+                <>
+                  <div className="hc-chips" role="group" aria-label={t("home_care.client.status_reason")}>
+                    {reasonOptions.map((value) => (
+                      <button
+                        key={value}
+                        type="button"
+                        className="hc-chip"
+                        aria-pressed={statusReason === value}
+                        onClick={() => setStatusReason(value)}
+                      >
+                        {t(`home_care.status_reason.${status}.${value}`)}
+                      </button>
+                    ))}
+                  </div>
+                  {status === CareClientStatus.ENDED ? <p className="hc-sub">{t("home_care.client.status_ended_hint")}</p> : null}
+                </>
+              ) : null}
               <div className="hc-field">
                 <label className="hc-label" htmlFor={`${fieldId}-status-note`}>
                   {t("home_care.client.status_note")}
@@ -605,7 +667,7 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
                 />
               </div>
               <div className="hc-row">
-                <button className="hc-btn hc-btn--primary" type="submit" disabled={page.busy}>
+                <button className="hc-btn hc-btn--primary" type="submit" disabled={page.busy || reasonMissing}>
                   {t("home_care.client.status_save")}
                 </button>
                 <button className="hc-btn" type="button" onClick={() => setPanel(null)} disabled={page.busy}>

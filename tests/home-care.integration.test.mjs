@@ -640,15 +640,51 @@ test('kliendi andmed: versioonikontroll ja seis', async (t) => {
   await expectError(updateClient(lead, client.id, { version: 1, address: 'Vana aken' }, deps()), 409, 'home_care.errors.version_conflict');
   await expectError(updateClient(anu, client.id, { version: 2, address: 'Hooldaja' }, deps()), 403, 'org.errors.missing_capability');
 
-  const away = await setClientStatus(lead, client.id, { version: 2, status: 'AWAY', statusNote: 'Haiglas alates 9.10' }, deps());
+  /* Alus on kohustuslik (K1-j): ära oleval ja lõppenud kliendil peab olema kirjas, miks;
+     teise seisu alus ei sobi. Keeldumine ei muuda midagi. */
+  await expectError(setClientStatus(lead, client.id, { version: 2, status: 'AWAY' }, deps()), 400, 'home_care.errors.status_reason_required');
+  await expectError(setClientStatus(lead, client.id, { version: 2, status: 'AWAY', statusReason: 'DIED' }, deps()), 400, 'home_care.errors.status_reason_required');
+  await expectError(setClientStatus(lead, client.id, { version: 2, status: 'ENDED', statusReason: 'HOSPITAL' }, deps()), 400, 'home_care.errors.status_reason_required');
+  assert.equal(await db.careClientStatusChange.count({ where: { clientId: client.id } }), 0);
+
+  const away = await setClientStatus(lead, client.id, { version: 2, status: 'AWAY', statusReason: 'HOSPITAL', statusNote: 'Haiglas alates 9.10' }, deps());
   assert.equal(away.client.status, 'AWAY');
+  assert.equal(away.client.statusReason, 'HOSPITAL');
   assert.equal(away.client.version, 3);
-  const ended = await setClientStatus(lead, client.id, { version: 3, status: 'ENDED' }, deps());
+  const ended = await setClientStatus(lead, client.id, { version: 3, status: 'ENDED', statusReason: 'MOVED' }, deps());
   assert.equal(ended.client.status, 'ENDED');
+  assert.equal(ended.client.statusReason, 'MOVED');
   /* Lõpetatud klient ei ole vaikimisi loendis ega otsingus, aga leht avaneb. */
   assert.deepEqual((await listClients(anu, {}, deps())).clients, []);
   assert.equal((await listClients(lead, { status: 'ENDED' }, deps())).clients.length, 1);
   assert.equal((await openClient(anu, client.id, deps())).client.status, 'ENDED');
+  assert.equal((await listClients(lead, { status: 'ENDED' }, deps())).clients[0].statusReason, 'MOVED');
+
+  /* UUESTI TEENUSELE (SKA juhendi ptk 5: takistuse kadumisel on inimesel taas õigus teenusele).
+     Alus kaob, varasem lõpetamine jääb ajalukku ja seda ei kirjutata üle. */
+  const back = await setClientStatus(lead, client.id, { version: 4, status: 'ACTIVE', statusReason: 'MOVED' }, deps());
+  assert.deepEqual([back.client.status, back.client.statusReason], ['ACTIVE', null]);
+  assert.deepEqual(
+    back.statusHistory.map((row) => [row.fromStatus, row.toStatus, row.reason]),
+    [['ENDED', 'ACTIVE', null], ['AWAY', 'ENDED', 'MOVED'], ['ACTIVE', 'AWAY', 'HOSPITAL']]
+  );
+  assert.equal(back.statusHistory[2].note, 'Haiglas alates 9.10');
+  assert.ok(back.statusHistory.every((row) => row.actorName && row.changedAt));
+
+  /* Hooldaja näeb ajalugu kliendi lehel, aga seisu ei muuda. */
+  assert.equal((await openClient(anu, client.id, deps())).statusHistory.length, 3);
+  await expectError(setClientStatus(anu, client.id, { version: 5, status: 'AWAY', statusReason: 'HOSPITAL' }, deps()), 403, 'org.errors.missing_capability');
+  /* Vana versiooniga muutus ei jäta ajalukku rida. */
+  await expectError(setClientStatus(lead, client.id, { version: 4, status: 'ENDED', statusReason: 'DIED' }, deps()), 409, 'home_care.errors.version_conflict');
+  assert.equal(await db.careClientStatusChange.count({ where: { clientId: client.id } }), 3);
+
+  /* Andmebaas hoiab vigase rea eemal ka siis, kui rakendus eksib. */
+  const raw = (data) => db.careClientStatusChange.create({ data: { organizationId: f.orgA.id, clientId: client.id, fromStatus: 'ACTIVE', ...data } });
+  await assert.rejects(raw({ toStatus: 'ENDED' }), /CareClientStatusChange_reason_check/);
+  await assert.rejects(raw({ toStatus: 'ACTIVE', reason: 'MOVED' }), /CareClientStatusChange_reason_check/);
+  await assert.rejects(raw({ toStatus: 'AWAY', reason: 'DIED' }), /CareClientStatusChange_reason_check/);
+  await assert.rejects(raw({ fromStatus: 'GONE', toStatus: 'ACTIVE' }), /CareClientStatusChange_status_check/);
+  await assert.rejects(db.careClient.update({ where: { id: client.id }, data: { statusReason: 'WHATEVER' } }), /CareClient_statusReason_check/);
 });
 
 test('lõpetatud teenus: päevikusse kirjutab ainult hooldusjuht', async (t) => {
@@ -659,7 +695,7 @@ test('lõpetatud teenus: päevikusse kirjutab ainult hooldusjuht', async (t) => 
   await addTeamMember(lead, client.id, { membershipId: f.members.anu.id }, deps());
   const last = { text: 'Viimane käik.', occurredAt: '2026-10-09T07:30:00Z', clientRequestId: `end-${f.tag}-1` };
   const first = await createEntry(anu, client.id, last, deps());
-  await setClientStatus(lead, client.id, { version: 1, status: 'ENDED' }, deps());
+  await setClientStatus(lead, client.id, { version: 1, status: 'ENDED', statusReason: 'OWN_WISH' }, deps());
 
   await expectError(
     createEntry(anu, client.id, { text: 'Hiline kirje.', clientRequestId: `end-${f.tag}-2` }, deps()),
@@ -1787,6 +1823,10 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
   );
   await issueDoorTag(lead, client.id, deps());
   const tag = await db.careClientDoorTag.findFirst({ where: { clientId: client.id }, select: { token: true } });
+  /* Seisu ajalugu (K1-j): ära ja tagasi, et väljavõttes oleks ka see kogu. */
+  const northVersion = (await db.careClient.findUnique({ where: { id: northClient.id }, select: { version: true } })).version;
+  await setClientStatus(lead, northClient.id, { version: northVersion, status: 'AWAY', statusReason: 'HOSPITAL' }, deps());
+  await setClientStatus(lead, northClient.id, { version: northVersion + 1, status: 'ACTIVE' }, deps());
   /* Lehekülgede kaupa lugemine: üle kahe lehe avamisi, et ükski rida ei jääks vahele ega korduks. */
   await db.careClientAccess.createMany({
     data: Array.from({ length: 1100 }, () => ({
@@ -1867,6 +1907,7 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
     importedHistories: await db.careImportedHistory.count({ where: ofOrg }),
     importedHistoryBlocks: await db.careImportedHistoryBlock.count({ where: ofOrg }),
     doorTags: await db.careClientDoorTag.count({ where: ofOrg }),
+    clientStatusChanges: await db.careClientStatusChange.count({ where: ofOrg }),
     auditEvents: await db.dataAuditLog.count({
       where: { action: { startsWith: 'org.home_care_' }, meta: { path: ['organizationId'], equals: f.orgA.id }, createdAt: { lt: (await exportRows())[0].createdAt } }
     })
