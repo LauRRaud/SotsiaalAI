@@ -90,6 +90,7 @@ import { saveDoorSteps } from '../lib/homeCare/doorSteps.js';
 import { handleChangeSignal, saveUsualState } from '../lib/homeCare/changes.js';
 import { clearCrisisProfile, getCrisisList, setCrisisProfile } from '../lib/homeCare/crisis.js';
 import { getReferralContacts, saveReferralContacts } from '../lib/homeCare/referralContacts.js';
+import { addWorkerRecord, endWorkerRecord, getWorkerCards } from '../lib/homeCare/workerRecords.js';
 import { composeNoAnswerText } from '../lib/homeCare/noAnswerText.js';
 import { assertNotificationRecipient, serializeNotificationEvent } from '../lib/notifications.js';
 
@@ -1869,6 +1870,8 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
   await setCrisisProfile(lead, client.id, { level: 'DAILY', dependencies: ['HEATING'] }, deps());
   /* Loend „kuhu suunata" (K5-c), et väljavõttes oleks ka see kogu. */
   await saveReferralContacts(lead, { contacts: [{ name: 'Valla sotsiaaltöötaja', phone: '5555 1234' }] }, deps());
+  /* Töötaja kaardi rida (K5-e), et väljavõttes oleks ka see kogu. */
+  await addWorkerRecord(lead, { membershipId: f.members.anu.id, kind: 'BACKGROUND_CHECK', doneOn: '2026-01-10' }, deps());
   const obstacleOfAnu = await reportObstacle(anu, { kind: 'LATE_30' }, deps());
   await handleObstacle(lead, obstacleOfAnu.obstacle.id, {}, deps());
   /* Ühe päeva erand (K3-b): järgmise esmaspäeva käik jääb ära. */
@@ -1981,6 +1984,7 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
     changeSignals: await db.careChangeSignal.count({ where: ofOrg }),
     crisisProfiles: await db.careCrisisProfile.count({ where: ofOrg }),
     referralContacts: await db.careReferralContact.count({ where: ofOrg }),
+    workerRecords: await db.careWorkerRecord.count({ where: ofOrg }),
     auditEvents: await db.dataAuditLog.count({
       where: { action: { startsWith: 'org.home_care_' }, meta: { path: ['organizationId'], equals: f.orgA.id }, createdAt: { lt: (await exportRows())[0].createdAt } }
     })
@@ -5031,4 +5035,78 @@ test('ravimitoimingu märge: käigu kirjel, ainult ravimitoimingul, parandus ja 
   await assert.rejects(raw({ medicationAction: 'SÜSTISIN' }), /CareEntryActivity_medicationAction_check/);
   await assert.rejects(raw({ medicationAction: 'GAVE', activityGroup: 'HEATING' }), /CareEntryActivity_medicationAction_check/);
   await assert.rejects(raw({ medicationAction: 'GAVE', outcome: 'REFUSED' }), /CareEntryActivity_medicationAction_check/);
+});
+
+test('töötaja kaart: taustakontroll ja koolitused, ainult kogu asutuse hooldusjuht, tähtaegade nimekiri', async (t) => {
+  const f = await fixture(t);
+  const north = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Põhi ${f.tag}`, type: 'TEAM' } });
+  await db.organizationCapabilityGrant.create({
+    data: { membershipId: f.members.cover.id, capability: 'HOME_CARE_COORDINATOR', scopeType: 'UNIT', scopeUnitId: north.id, validFrom: at('2026-01-01T00:00:00Z') }
+  });
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const unitLead = await f.ctx(f.users.cover, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, deps())).client;
+  for (const member of [f.members.anu, f.members.bert]) await addTeamMember(lead, linda.id, { membershipId: member.id }, deps());
+
+  /* Kaardil on hooldajad (kellegi meeskonnas olevad liikmed); alguses ridu ei ole ja taustakontrolli rida puudub. */
+  const empty = await getWorkerCards(lead, deps());
+  assert.deepEqual(empty.workers.map((worker) => [worker.name, worker.records.length, worker.backgroundMissing]), [
+    ['Anu Hooldaja', 0, true],
+    ['Bert Hooldaja', 0, true]
+  ]);
+  /* Ainult kogu asutuse hooldusjuht: hooldaja, üksuse hooldusjuht ja teine asutus ei näe ega kirjuta. */
+  await expectError(getWorkerCards(anu, deps()), 403, 'org.errors.missing_capability');
+  await expectError(getWorkerCards(unitLead, deps()), 403, 'org.errors.missing_capability');
+  const check = { membershipId: f.members.anu.id, kind: 'BACKGROUND_CHECK', doneOn: '2026-01-10' };
+  await expectError(addWorkerRecord(anu, check, deps()), 403, 'org.errors.missing_capability');
+  await expectError(addWorkerRecord(leadB, check, deps()), 404, 'home_care.errors.worker_not_found');
+  /* Liige, kes ei ole ühegi kliendi meeskonnas, ei ole hooldaja. */
+  await expectError(addWorkerRecord(lead, { ...check, membershipId: f.members.clerk.id }, deps()), 404, 'home_care.errors.worker_not_found');
+
+  await addWorkerRecord(lead, { ...check, title: 'karistusi ei ole' }, deps());
+  await addWorkerRecord(lead, { membershipId: f.members.anu.id, kind: 'TRAINING', title: 'Esmaabi', doneOn: '2023-11-01', validUntil: '2026-11-01' }, deps());
+  await addWorkerRecord(lead, { membershipId: f.members.anu.id, kind: 'TRAINING', title: 'Ergonoomika', doneOn: '2024-05-01', validUntil: '2026-05-01' }, deps());
+  const cards = await addWorkerRecord(lead, { membershipId: f.members.anu.id, kind: 'TRAINING', title: 'Dementsus', doneOn: '2026-02-01' }, deps());
+  const anuCard = cards.workers.find((worker) => worker.membershipId === f.members.anu.id);
+  assert.deepEqual([anuCard.backgroundMissing, anuCard.backgroundChecked], [false, true]);
+  assert.deepEqual(anuCard.records.map((record) => [record.kind, record.title, record.doneOn, record.validUntil, record.daysLeft, record.expired, record.soon]), [
+    ['TRAINING', 'Dementsus', '2026-02-01', null, null, false, false],
+    ['BACKGROUND_CHECK', null, '2026-01-10', null, null, false, false],
+    ['TRAINING', 'Ergonoomika', '2024-05-01', '2026-05-01', -161, true, false],
+    ['TRAINING', 'Esmaabi', '2023-11-01', '2026-11-01', 23, false, true]
+  ]);
+  /* Taustakontrolli juurde saadetud tekst ei jõudnud andmebaasi. */
+  assert.equal(await db.careWorkerRecord.count({ where: { organizationId: f.orgA.id, kind: 'BACKGROUND_CHECK', title: { not: null } } }), 0);
+
+  /* TÄHTAEGADE LEHT: aegunud enne, siis varsti aeguv, puuduva taustakontrolliga töötaja lõpus; üksuse hooldusjuhile tühi. */
+  const due = (await getDeadlines(lead, deps())).workerRecordsDue;
+  assert.deepEqual(due.map((item) => [item.worker.name, item.kind, item.title, item.daysLeft, item.expired]), [
+    ['Anu Hooldaja', 'TRAINING', 'Ergonoomika', -161, true],
+    ['Anu Hooldaja', 'TRAINING', 'Esmaabi', 23, false],
+    ['Bert Hooldaja', 'MISSING_BACKGROUND', null, null, false]
+  ]);
+  assert.deepEqual((await getDeadlines(unitLead, deps())).workerRecordsDue, []);
+
+  /* EEMALDAMINE: rida saab lõpu ja kaob kaardilt; teist korda ei leita. */
+  const stale = anuCard.records.find((record) => record.title === 'Ergonoomika');
+  const after = await endWorkerRecord(lead, stale.id, deps(at('2026-10-09T08:05:00Z')));
+  assert.equal(after.workers.find((worker) => worker.membershipId === f.members.anu.id).records.length, 3);
+  await expectError(endWorkerRecord(lead, stale.id, deps()), 404, 'home_care.errors.worker_record_not_found');
+  await expectError(endWorkerRecord(anu, anuCard.records[0].id, deps()), 403, 'org.errors.missing_capability');
+  assert.equal(await db.careWorkerRecord.count({ where: { membershipId: f.members.anu.id } }), 4);
+
+  /* ANDMEBAAS hoiab reeglid ka ilma teenuseta. */
+  const raw = (data) => db.careWorkerRecord.create({ data: { organizationId: f.orgA.id, membershipId: f.members.bert.id, kind: 'BACKGROUND_CHECK', doneOn: '2026-01-01', ...data } });
+  await assert.rejects(raw({ kind: 'MUU' }), /CareWorkerRecord_kind_check/);
+  await assert.rejects(raw({ title: 'tulemus' }), /CareWorkerRecord_title_check/);
+  await assert.rejects(raw({ kind: 'TRAINING' }), /CareWorkerRecord_title_check/);
+  await assert.rejects(raw({ doneOn: '01.01.2026' }), /CareWorkerRecord_days_check/);
+  await assert.rejects(raw({ validUntil: '2025-12-31' }), /CareWorkerRecord_days_check/);
+
+  /* AUDIT: töötaja liikmesuse ID ja muutuse liik; teemat ega kuupäeva seal ei ole. */
+  const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_worker_record_changed', meta: { path: ['organizationId'], equals: f.orgA.id } } });
+  assert.deepEqual(audit.map((entry) => entry.meta.change).sort(), ['added', 'added', 'added', 'added', 'removed']);
+  for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['change', 'membershipId', 'organizationId']);
 });

@@ -243,6 +243,11 @@ export default function HomeCareHome({ context, initial, unitOptions, myDay = nu
           <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/votmed`}>
             {t("home_care.keys.link")}
           </Link>
+          {referrals?.canEditReferrals ? (
+            <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/tootajad`}>
+              {t("home_care.workers.link")}
+            </Link>
+          ) : null}
           <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/kriis`}>
             {t("home_care.crisis.link")}
           </Link>

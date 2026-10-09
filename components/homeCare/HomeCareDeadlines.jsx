@@ -12,6 +12,7 @@ import HomeCareOutbox from "./HomeCareOutbox";
 import { preconditionLine } from "./HomeCarePreconditions";
 import { changeSignalLine, changeWaitingText } from "./HomeCareChangeSignals";
 import { planDayLabel } from "./HomeCarePlanView";
+import { workerRecordLine } from "./HomeCareWorkers";
 import { clientHref, formatDateTime } from "./homeCareClient";
 
 /**
@@ -125,6 +126,26 @@ export default function HomeCareDeadlines({ context, deadlines }) {
           item.key
         )
       )}
+
+      {/* Töötajate kaardid (K5-e): ainult kogu asutuse hooldusjuhile; rida viib töötajate lehele. */}
+      {(deadlines.workerRecordsDue || []).length
+        ? section("workers_due", deadlines.workerRecordsDue, (item) => (
+            <li key={item.key}>
+              <Link className="hc-client" href={`/org/${organizationId}/koduteenus/tootajad`}>
+                <span className="hc-client__name">
+                  {item.worker.name}
+                  {item.expired ? (
+                    <>
+                      {" "}
+                      <span className="hc-badge hc-badge--danger">{t("home_care.workers.expired")}</span>
+                    </>
+                  ) : null}
+                </span>
+                <span className="hc-client__meta">{workerRecordLine(t, item)}</span>
+              </Link>
+            </li>
+          ))
+        : null}
 
       {section("away_long", deadlines.awayLong || [], (item) =>
         clientLine(

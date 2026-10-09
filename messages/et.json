@@ -12864,7 +12864,15 @@
       "referral_name_required": "Real on telefon või selgitus, aga nimi puudub.",
       "referral_phone_invalid": "Telefoninumbris võivad olla numbrid, tühikud, pluss, sulud ja sidekriips.",
       "medication_action_invalid": "Tundmatu ravimitoimingu märge.",
-      "medication_action_not_allowed": "Ravimitoimingu märke saab panna ainult ravimitoimingule."
+      "medication_action_not_allowed": "Ravimitoimingu märke saab panna ainult ravimitoimingule.",
+      "worker_not_found": "Töötajat ei leitud.",
+      "worker_record_not_found": "Rida ei leitud.",
+      "worker_record_kind_required": "Vali, kas tegu on taustakontrolli või koolitusega.",
+      "worker_record_day_required": "Vali päev.",
+      "worker_record_day_future": "Päev ei saa olla tulevikus.",
+      "worker_record_period_invalid": "Kehtivus ei saa lõppeda enne tegemise päeva.",
+      "worker_record_title_required": "Kirjuta koolituse teema.",
+      "worker_records_too_many": "Töötajal võib olla kuni {limit} rida."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -13372,7 +13380,9 @@
       "away_long_empty": "Keegi ei ole olnud ära üle kuu.",
       "away_since": "ära alates {date} ({days} päeva)",
       "changes_open_title": "Märgatud muutused ootavad vastust",
-      "changes_open_empty": "Vastuseta märkamisi ei ole."
+      "changes_open_empty": "Vastuseta märkamisi ei ole.",
+      "workers_due_title": "Töötajate koolitused ja taustakontrollid",
+      "workers_due_empty": "Midagi ei aegu."
     },
     "visit": {
       "title": "Mida tegid",
@@ -13959,6 +13969,30 @@
         "MISSED": "ravimikäik tegemata"
       },
       "open_count": "Ravimimärge puudub {count} käigul. Küsi hooldajalt järele."
+    },
+    "workers": {
+      "title": "Töötajad",
+      "link": "Töötajad",
+      "intro": "Iga hooldaja taustakontroll ja koolitused. Näeb ainult kogu asutuse hooldusjuht.",
+      "empty": "Hooldajaid ei ole veel: hooldaja ilmub siia, kui ta on mõne kliendi meeskonnas.",
+      "no_records": "Ridu ei ole.",
+      "add": "Lisa rida",
+      "remove": "Eemalda",
+      "save": "Salvesta",
+      "cancel": "Loobu",
+      "kind_label": "Mis",
+      "kinds": {
+        "BACKGROUND_CHECK": "Taustakontroll",
+        "TRAINING": "Koolitus"
+      },
+      "background_hint": "Kirja läheb ainult kontrolli kuupäev ja soovi korral, millal kontrollid uuesti. Tulemust ega sisu siia ei kirjutata.",
+      "background_missing": "taustakontrolli rida puudub",
+      "title_label": "Koolituse teema",
+      "done_label": "Tehtud",
+      "valid_label": "Kehtib kuni või korda hiljemalt (kui on)",
+      "done_on": "tehtud {date}",
+      "valid_until": "kehtib kuni {date} ({when})",
+      "expired": "aegunud"
     }
   },
   "stage": {
