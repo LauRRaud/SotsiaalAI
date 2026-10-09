@@ -1117,7 +1117,7 @@
     },
     "workbench": {
       "title": "Juhtumitöö laud",
-      "subtitle": "Sinu enda töö ühel pinnal: mis on saabunud, mis on täna, mis on puudu ja mis ootab järge. Laud koondab selle, mis mujal juba olemas on — ta ei ole uus register ega koormuse mõõdik.",
+      "subtitle": "Sinu enda töö ühel pinnal. Laud ei ole uus register ega koormuse mõõdik.",
       "loading": "Laen lauda…",
       "load_error": "Lauda ei õnnestunud laadida.",
       "not_allowed": "See pind on sotsiaaltöötaja ja teenuseosutaja töövahend.",
@@ -1176,7 +1176,20 @@
         "description": "Sotsiaaltöötaja ja teenuseosutaja enda juhtumitöö koondvaade."
       },
       "section_draftsAwaitingTransfer": "STAR2-sse kandmist ootavad mustandid",
-      "section_transferHistory": "STAR2 ülekandmise ajalugu"
+      "section_transferHistory": "STAR2 ülekandmise ajalugu",
+      "all_sections": "Kogu laud",
+      "section_position": "Osa {current}/{total}: {label}",
+      "more_rows": "ja teised",
+      "short_receivedPreInquiries": "Pöördumised",
+      "short_todaysContacts": "Täna",
+      "short_activePreparations": "Ettevalmistus",
+      "short_draftsAwaitingTransfer": "Mustandid",
+      "short_openMissingInfo": "Puuduv info",
+      "short_upcomingContacts": "Järgmised",
+      "short_networkPreparation": "Võrgustik",
+      "short_practiceReflection": "Meetodipeegel",
+      "short_covisionPreparation": "Kovisioon",
+      "short_transferHistory": "Ülekanded"
     },
     "errors": {
       "not_found": "Juhtumit ei leitud.",

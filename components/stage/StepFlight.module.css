@@ -91,6 +91,10 @@
 }
 
 /* --- Kõik sammud: lai vaade --------------------------------------------- */
+/* Lehe sissejuhatus laia vaate plaatide kohal (nt laua piirid ja värskendamine). */
+.wideLead {
+  padding: var(--step-bleed) var(--step-bleed) 0;
+}
 .overview {
   list-style: none;
   margin: 0;
@@ -140,6 +144,13 @@
 }
 .tile[data-current="1"] {
   border-color: color-mix(in srgb, var(--text-warm) 62%, transparent);
+}
+/* Laua osad (mitte sammud): numbrit ei ole; osa, kus on midagi, on selgem. */
+.tile[data-parts="1"][data-state="empty"] {
+  color: var(--text-soft);
+}
+.tile[data-parts="1"][data-state="done"] {
+  border-color: color-mix(in srgb, var(--text-warm) 46%, transparent);
 }
 .tileTop {
   min-width: 0;

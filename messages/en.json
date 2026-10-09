@@ -1117,7 +1117,7 @@
     },
     "workbench": {
       "title": "Casework desk",
-      "subtitle": "Your own work on one surface: what has arrived, what is today, what is missing and what is waiting. The desk gathers what already exists elsewhere — it is not a new register and not a workload meter.",
+      "subtitle": "Your own work on one surface. The desk is not a new register and not a workload meter.",
       "loading": "Loading the desk…",
       "load_error": "The desk could not be loaded.",
       "not_allowed": "This surface is a tool for social workers and service providers.",
@@ -1176,7 +1176,20 @@
         "description": "A combined view of a social worker's or service provider's own casework."
       },
       "section_draftsAwaitingTransfer": "Drafts awaiting transfer to STAR2",
-      "section_transferHistory": "STAR2 transfer history"
+      "section_transferHistory": "STAR2 transfer history",
+      "all_sections": "Whole desk",
+      "section_position": "Part {current}/{total}: {label}",
+      "more_rows": "and others",
+      "short_receivedPreInquiries": "Pre-inquiries",
+      "short_todaysContacts": "Today",
+      "short_activePreparations": "Preparation",
+      "short_draftsAwaitingTransfer": "Drafts",
+      "short_openMissingInfo": "Missing info",
+      "short_upcomingContacts": "Upcoming",
+      "short_networkPreparation": "Network",
+      "short_practiceReflection": "Method mirror",
+      "short_covisionPreparation": "Co-vision",
+      "short_transferHistory": "Transfers"
     },
     "errors": {
       "not_found": "Case not found.",

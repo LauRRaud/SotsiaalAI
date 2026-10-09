@@ -1117,7 +1117,7 @@
     },
     "workbench": {
       "title": "Рабочий стол по случаям",
-      "subtitle": "Ваша собственная работа на одной странице: что поступило, что сегодня, чего не хватает и что ждёт очереди. Стол собирает то, что уже существует в других местах, — это не новый реестр и не измеритель нагрузки.",
+      "subtitle": "Ваша собственная работа на одной странице. Стол не новый реестр и не измеритель нагрузки.",
       "loading": "Загружаем стол…",
       "load_error": "Не удалось загрузить стол.",
       "not_allowed": "Эта страница — инструмент социального работника и поставщика услуг.",
@@ -1176,7 +1176,20 @@
         "description": "Сводный обзор собственной работы социального работника или поставщика услуг по случаям."
       },
       "section_draftsAwaitingTransfer": "Черновики, ожидающие переноса в STAR2",
-      "section_transferHistory": "История переноса в STAR2"
+      "section_transferHistory": "История переноса в STAR2",
+      "all_sections": "Весь стол",
+      "section_position": "Часть {current}/{total}: {label}",
+      "more_rows": "и другие",
+      "short_receivedPreInquiries": "Обращения",
+      "short_todaysContacts": "Сегодня",
+      "short_activePreparations": "Подготовка",
+      "short_draftsAwaitingTransfer": "Черновики",
+      "short_openMissingInfo": "Нет данных",
+      "short_upcomingContacts": "Следующие",
+      "short_networkPreparation": "Сеть",
+      "short_practiceReflection": "Зеркало методов",
+      "short_covisionPreparation": "Ковизия",
+      "short_transferHistory": "Переносы"
     },
     "errors": {
       "not_found": "Случай не найден.",

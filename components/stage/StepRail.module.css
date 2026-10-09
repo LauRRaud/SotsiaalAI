@@ -32,6 +32,20 @@
   white-space: nowrap;
 }
 
+/* Laia vaate nimi lühikeses kujus: ikoon ja nimi kõrvuti. */
+.where :global(.gc-shortcut-icon) + :global(.gc-shortcut-text) {
+  opacity: 1;
+}
+
+/* Laua osa nimi (osad ei ole sammud): silt, mitte nupp. */
+.part:global(.gc-shortcut) {
+  cursor: default;
+  padding: 0 0.8rem;
+}
+.part :global(.gc-shortcut-text) {
+  margin-left: 0;
+}
+
 /* --- Pikk kuju: kõik sammud ---------------------------------------------------
    Number ilma rõngata. Ootel samm on tuhm, pooleli samm tavaline, tehtud samm
    hele; aktiivne samm on kiirmenüü tavaline valitud kirje koos nimega. */

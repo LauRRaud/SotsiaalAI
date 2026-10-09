@@ -78,3 +78,20 @@ export function resolveSection(data) {
 
   return { showItems: view.showItems, noticeKey: view.noticeKey, items };
 }
+
+/**
+ * Sektsioon ülevaates („kogu laud"): mida tema plaat ütleb.
+ *
+ * Ridadega sektsioon näitab ESIMEST rida ja ütleb sõnaga, kui neid on veel.
+ * Ridadeta sektsioon ütleb oma oleku (L2: tühjuse põhjus on osa sisust).
+ * ARVU SIIN EI OLE (L3): „ja veel 4" oleks sektsiooni ridade loendur ehk
+ * täpselt see koormuse number, mida laud ei näita.
+ *
+ * @param {{ rows: { title: string }[], noticeText?: string, moreText?: string }} section
+ * @returns {string}
+ */
+export function sectionSummary({ rows, noticeText = "", moreText = "" }) {
+  if (!Array.isArray(rows) || rows.length === 0) return noticeText;
+  const first = String(rows[0]?.title || "");
+  return rows.length > 1 && moreText ? `${first} ${moreText}` : first;
+}
