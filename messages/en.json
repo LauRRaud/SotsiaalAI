@@ -970,7 +970,7 @@
       },
       "conclusion": {
         "title": "Next step and support",
-        "short": "Next step",
+        "short": "Conclusion",
         "lead": "What will you do next, and do you need support? The choice is only a direction: no entry is created in another module."
       },
       "outcome": {
@@ -1002,7 +1002,8 @@
       "confirm_discard": "Press again: unsaved text will be lost",
       "unsaved": "You have unsaved changes.",
       "summary_empty": "Not filled in",
-      "clear_choice": "Clear the choice"
+      "clear_choice": "Clear the choice",
+      "deleted": "The entry was deleted."
     }
   },
   "casework": {

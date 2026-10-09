@@ -254,6 +254,35 @@ test('veateade: serveri võti enne üldist „kirjet ei leitud”', () => {
   assert.equal(reflectionErrorText({ status: 500, payload: {} }, et), 'Laadimine ebaõnnestus.');
 });
 
+test('vaate nimi ei kordu paneelil välja sildina ja lühikesed nimed on kõrvuti', () => {
+  /* Ühe väljaga vaates, kus silt on sama mis vaate nimi, jääb silt ekraanilugejale. */
+  for (const view of FORM_VIEWS) {
+    const fields = view.layout.flat();
+    for (const lang of ['et', 'en', 'ru']) {
+      const messages = JSON.parse(read(`../messages/${lang}.json`)).reflection;
+      const same = fields.length === 1 && messages.field[fields[0]] === messages.views[view.key].title;
+      if (same) assert.equal(view.labelHidden, true, `${lang}: ${view.key}`);
+    }
+  }
+  assert.deepEqual(FORM_VIEWS.find((view) => view.key === 'method').layout, [['approach', 'method']]);
+  /* Vaate lühinimi ei tohi olla sama mis kiirmenüü noole nimi („Järgmine samm"). */
+  for (const lang of ['et', 'en', 'ru']) {
+    const messages = JSON.parse(read(`../messages/${lang}.json`));
+    for (const view of FORM_VIEWS) assert.notEqual(messages.reflection.views[view.key].short, messages.stage.next_step, `${lang}: ${view.key}`);
+  }
+});
+
+test('teated ei kao vaikselt: kustutamise kinnitus ja loendi viga', () => {
+  const page = read('../components/reflection/ReflectionPage.jsx');
+  /* Kui tagasivõtmise aeg on läbi, jääb kinnitus, et kirje kustutati. */
+  assert.ok(page.includes('setStatusMessage(t("reflection.views.deleted"));'));
+  /* Loendi laadimise viga on näha ka avatud kirje vaadetes. */
+  assert.ok(page.includes('? { text: loadError, tone: "risk" }'));
+  /* Põhinupu läige ainult ees oleval vaatel. */
+  assert.ok(page.includes('const glow = flight?.isActive !== false;'));
+  assert.equal(page.split('variant="primary" glow={glow}').length - 1, 2);
+});
+
 test('leht hoiab lubadusi: kahe vajutusega kustutamine, sisenemine tegevuse juurest, ei pesastatud kaarti', () => {
   const page = read(PAGE);
   const views = read(VIEWS);
@@ -302,9 +331,11 @@ test('leht hoiab lubadusi: kahe vajutusega kustutamine, sisenemine tegevuse juur
   /* Privaatsusmärgis on igas vaates: loendis üleval, avatud kirje vaadetes all. */
   assert.ok(views.includes('data-privacy="private"'));
   for (const name of ['FormView', 'ConflictView', 'EntryView']) {
-    assert.ok(new RegExp(`<${name}\\b[\\s\\S]*?note=\\{(foot|conflictFoot)\\}`).test(page), `${name} kannab märki paneeli alaservas`);
+    assert.ok(new RegExp(`<${name}\\b[\\s\\S]*?note=\\{(foot|conflictFoot|entryFoot)\\}`).test(page), `${name} kannab märki paneeli alaservas`);
   }
   assert.ok(/const foot = <FootNote privacy=/.test(page) && /const conflictFoot = <FootNote privacy=/.test(page));
+  /* Kirje andmete vaates on seotud tegevus real näha: all on märk ja teade, mitte allika kordus. */
+  assert.ok(page.includes('const entryFoot = <FootNote privacy={privacyText} status={status} />;'));
   assert.ok(/export function FootNote[\s\S]*?<PrivacyChip/.test(views));
   assert.ok(/export function ListView[\s\S]*?<PrivacyChip/.test(views));
   /* Ühe vaatega lehel (ainult loend) lava ei ole: kiirmenüüs ei seisa „1/1” ega avane ühe plaadiga ülevaade. */

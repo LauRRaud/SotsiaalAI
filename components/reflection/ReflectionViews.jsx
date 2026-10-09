@@ -20,6 +20,8 @@
  * Kujundus: reflection.module.css (siin kõrval).
  */
 
+import { useRef } from "react";
+
 import ChoiceRow from "@/components/stage/ChoiceRow";
 import StepPanel from "@/components/stage/StepPanel";
 import TextAreaField from "@/components/stage/TextAreaField";
@@ -94,7 +96,14 @@ export function ListView({ title, lead, privacy, loading, loadingText, error, cr
             <ul className={styles.rows}>
               {rows.map((row) => (
                 <li key={row.id} className={styles.item}>
-                  <button type="button" className={styles.row} data-selected={row.selected ? "true" : undefined} aria-busy={row.busy || undefined} onClick={row.onOpen}>
+                  <button
+                    type="button"
+                    className={styles.row}
+                    data-selected={row.selected ? "true" : undefined}
+                    data-armed={row.armed ? "true" : undefined}
+                    aria-busy={row.busy || undefined}
+                    onClick={row.onOpen}
+                  >
                     <span className={styles.rowTitle}>{row.title}</span>
                     <span className={styles.rowMeta}>
                       {row.outcome ? <span className={styles.chip}>{row.outcome}</span> : null}
@@ -123,14 +132,31 @@ export function ListView({ title, lead, privacy, loading, loadingText, error, cr
 }
 
 function Field({ field, onChange }) {
+  const choiceRef = useRef(null);
   if (field.kind === "choice") {
     return (
-      <div className={styles.choice}>
-        <ChoiceRow label={field.label} options={field.options} columns={field.columns} value={field.value} onChange={(next) => onChange(field.key, next)} />
+      <div className={styles.choice} ref={choiceRef}>
+        <ChoiceRow
+          label={field.label}
+          labelHidden={field.labelHidden}
+          options={field.options}
+          columns={field.columns}
+          value={field.value}
+          onChange={(next) => onChange(field.key, next)}
+        />
         {/* Valik ei ole kohustuslik. Rida on alati olemas, et vaade valimisel ei hüppaks. */}
         <div className={styles.clearLine}>
           {field.value ? (
-            <button type="button" className={styles.textButton} onClick={() => onChange(field.key, "")}>
+            <button
+              type="button"
+              className={styles.textButton}
+              onClick={() => {
+                onChange(field.key, "");
+                /* Nupp kaob koos valikuga: fookus läheb sama küsimuse esimesele
+                   variandile, mitte lehe algusse. */
+                choiceRef.current?.querySelector('[role="radio"]')?.focus();
+              }}
+            >
               {field.clearLabel}
             </button>
           ) : null}
@@ -150,7 +176,16 @@ function Field({ field, onChange }) {
   ) : (
     field.label
   );
-  return <TextAreaField label={label} value={field.value} rows={field.rows} maxLength={field.maxLength} onChange={(next) => onChange(field.key, next)} />;
+  return (
+    <TextAreaField
+      label={label}
+      labelHidden={field.labelHidden}
+      value={field.value}
+      rows={field.rows}
+      maxLength={field.maxLength}
+      onChange={(next) => onChange(field.key, next)}
+    />
+  );
 }
 
 /** Avatud kirje üks vaade: kuni kolm välja; rida on üks väli või kaks kõrvuti. */

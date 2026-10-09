@@ -970,7 +970,7 @@
       },
       "conclusion": {
         "title": "Järgmine samm ja tugi",
-        "short": "Järgmine samm",
+        "short": "Järeldus",
         "lead": "Mida teed edasi ja kas vajad selleks tuge? Toe valik on suund, mitte automaatne edastus: teise moodulisse ei looda ühtegi kirjet."
       },
       "outcome": {
@@ -1002,7 +1002,8 @@
       "confirm_discard": "Vajuta uuesti: salvestamata tekst kaob",
       "unsaved": "Muudatused on salvestamata.",
       "summary_empty": "Täitmata",
-      "clear_choice": "Võta valik maha"
+      "clear_choice": "Võta valik maha",
+      "deleted": "Kirje kustutati."
     }
   },
   "casework": {

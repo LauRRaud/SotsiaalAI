@@ -195,16 +195,24 @@ export default function ReflectionPage() {
     detailAbortController.current?.abort();
   }, []);
 
+  /* Kui tagasivõtmise aeg lõpeb (või seadme kell on sellest juba möödas),
+     kaob tagasivõtmise nupp, aga kinnitus, et kirje kustutati, jääb: muidu
+     kaoks kirje ekraanilt ilma ühegi sõnata. */
   useEffect(() => {
     if (!undoDeletion?.undoUntil) return undefined;
+    const settle = () => {
+      setUndoDeletion(null);
+      setStatusIsError(false);
+      setStatusMessage(t("reflection.views.deleted"));
+    };
     const remaining = new Date(undoDeletion.undoUntil).getTime() - Date.now();
     if (remaining <= 0) {
-      setUndoDeletion(null);
+      settle();
       return undefined;
     }
-    const timer = window.setTimeout(() => setUndoDeletion(null), remaining);
+    const timer = window.setTimeout(settle, remaining);
     return () => window.clearTimeout(timer);
-  }, [undoDeletion]);
+  }, [t, undoDeletion]);
 
   /* Sisenemispunkt tegevuse juurest (doc ptk 3.1): ?sourceKind=PRE_INQUIRY
      &sourceId=... avab uue kirje vormi, side salvestub loomisel ja on pärast
@@ -448,12 +456,19 @@ export default function ReflectionPage() {
     : sourceKindText
       ? t("reflection.views.source_chip", { kind: sourceKindText })
       : t("reflection.views.entry.source");
+  /* Loendi laadimise viga (aegunud sisselogimine, õiguse puudumine, võrk) on
+     näha ka avatud kirje vaadetes: muidu saaks inimene sellest teada alles
+     salvestamisel, pärast kõigi vaadete täitmist. */
   const status = statusMessage
     ? { text: statusMessage, tone: statusIsError ? "risk" : undefined }
-    : dirty
-      ? { text: t("reflection.views.unsaved") }
-      : null;
+    : loadError
+      ? { text: loadError, tone: "risk" }
+      : dirty
+        ? { text: t("reflection.views.unsaved") }
+        : null;
   const foot = <FootNote privacy={privacyText} source={sourceChip} status={status} />;
+  /* Kirje andmete vaates on seotud tegevus juba real näha: all seda ei korrata. */
+  const entryFoot = <FootNote privacy={privacyText} status={status} />;
   /* Võrdluse vaate juhis ütleb juba, et kirjet muudeti mujal ja minu tekst on
      salvestamata: seal näidatakse all ainult muud viga (nt salvestamine ei õnnestunud). */
   const staleText = t("reflection.errors.stale_update");
@@ -462,6 +477,7 @@ export default function ReflectionPage() {
 
   const rows = reflectionRows(reflections, { t, formatDate, openId: formOpen ? editingId : null, busyId: openingId }).map((row) => ({
     ...row,
+    armed: confirming === `open:${row.id}`,
     openText: row.busy ? t("reflection.common.loading") : confirming === `open:${row.id}` ? discardText : t("reflection.list.open"),
     onOpen: () => {
       /* Juba avatud kirje: vii selle juurde, ära lae uuesti (salvestamata tekst jääb alles). */
@@ -474,13 +490,14 @@ export default function ReflectionPage() {
     supportNeed: SUPPORT_NEEDS.map((value) => ({ value, label: t(supportNeedLabelKey(value)) })),
     interimOutcome: INTERIM_OUTCOMES.map((value) => ({ value, label: t(interimOutcomeLabelKey(value)) }))
   };
-  const describeField = (key) => {
+  const describeField = (key, labelHidden = false) => {
     const label = t(`reflection.field.${key}`);
     if (isChoiceField(key)) {
       return {
         key,
         kind: "choice",
         label,
+        labelHidden,
         options: choiceOptions[key],
         columns: CHOICE_FIELDS[key].columns,
         value: form[key],
@@ -492,6 +509,7 @@ export default function ReflectionPage() {
       key,
       kind: "text",
       label,
+      labelHidden,
       provenance,
       chip: provenance ? t(provenanceLabelKey(provenance)) : "",
       rows: textRows(key),
@@ -547,17 +565,22 @@ export default function ReflectionPage() {
     free: key === "list" || key === "conflict"
   }));
 
-  const renderView = (step) => {
+  const renderView = (step, index, flight) => {
+    /* Lava hoiab kõik vaated lehel, aga põhinupp joonistab oma läike eraldi
+       WebGL-pinnale: läige on ainult ees oleval vaatel, muidu oleks avatud
+       kirjel kaheksa pinda korraga (brauser piirab nende arvu). */
+    const glow = flight?.isActive !== false;
     if (formViews[step.key]) {
+      const view = formViews[step.key];
       return (
         <FormView
           title={step.label}
           lead={t(`${VIEWS_KEY}.${step.key}.lead`)}
-          layout={formViews[step.key].layout.map((row) => row.map(describeField))}
+          layout={view.layout.map((row) => row.map((key) => describeField(key, Boolean(view.labelHidden))))}
           onChange={updateField}
           note={foot}
           actions={
-            <Button type="button" variant="primary" disabled={saving} onClick={() => { void save(); }}>
+            <Button type="button" variant="primary" glow={glow} disabled={saving} onClick={() => { void save(); }}>
               {saving ? savingText : t("reflection.form.save")}
             </Button>
           }
@@ -595,7 +618,7 @@ export default function ReflectionPage() {
                 >
                   {confirming === "use-server" ? discardText : t("reflection.conflict.use_server")}
                 </Button>
-                <Button type="button" variant="primary" disabled={saving} onClick={() => { void save(); }}>
+                <Button type="button" variant="primary" glow={glow} disabled={saving} onClick={() => { void save(); }}>
                   {saving ? savingText : t("reflection.views.conflict.save_mine")}
                 </Button>
               </>
@@ -625,7 +648,7 @@ export default function ReflectionPage() {
                 : null
             ].filter(Boolean)}
             hint={editingId ? t("reflection.views.entry.delete_hint") : ""}
-            note={foot}
+            note={entryFoot}
             actions={
               <>
                 {editingId ? (

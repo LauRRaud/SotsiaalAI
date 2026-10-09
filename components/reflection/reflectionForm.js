@@ -20,15 +20,24 @@
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import { interimOutcomeLabelKey, supportNeedLabelKey } from "@/lib/reflection/constants";
 
-/** Vormi vaated järjekorras. `layout` rida = üks väli või kaks kõrvuti. */
+/**
+ * Vormi vaated järjekorras. `layout` rida = üks väli või kaks kõrvuti.
+ *
+ * `labelHidden`: vaates on üks väli ja selle silt on sama mis vaate nimi
+ * (kiirmenüüs „Valiku põhjus", paneelil uuesti „Valiku põhjus"). Silt jääb siis
+ * ekraanilugejale ja paneel algab vaate küsimusega.
+ *
+ * Lähenemisviis ja meetod on lühikesed nimetused (meetod on loendirea pealkiri),
+ * seepärast kõrvuti, mitte kaks paneelilaiust kasti üksteise all.
+ */
 export const FORM_VIEWS = Object.freeze([
-  { key: "method", layout: [["approach"], ["method"]] },
+  { key: "method", layout: [["approach", "method"]] },
   { key: "action", layout: [["action"], ["supportTechnique"]] },
-  { key: "reason", layout: [["choiceReason"]] },
+  { key: "reason", layout: [["choiceReason"]], labelHidden: true },
   { key: "observation", layout: [["clientGoal", "clientReaction"], ["workerObservation"]] },
   { key: "interpretation", layout: [["interpretation"], ["whatWorked", "whatDidNot"]] },
   { key: "conclusion", layout: [["nextStep"], ["supportNeed"]] },
-  { key: "outcome", layout: [["interimOutcome"]] }
+  { key: "outcome", layout: [["interimOutcome"]], labelHidden: true }
 ]);
 
 /* Valikuväljad: mitu lahtrit reas. Toevajadusel on neli lühikest vastust (üks

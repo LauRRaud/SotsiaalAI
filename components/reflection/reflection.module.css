@@ -125,6 +125,12 @@
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
+/* Teist vajutust ootav rida näitab lauset, mitte ühte sõna: see murdub ja ei
+   suru pealkirja reast välja. */
+.row[data-armed="true"] .rowOpen {
+  white-space: normal;
+  text-align: right;
+}
 .more {
   justify-self: start;
 }
