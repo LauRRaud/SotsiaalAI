@@ -344,7 +344,12 @@ export default function HomeCareHome({ context, initial, unitOptions, myDay = nu
                       <span className="hc-client__name">{client.displayName}</span>
                       <span className="hc-client__meta">
                         {client.status !== "ACTIVE" ? `${t(`home_care.status.${client.status}`)} · ` : ""}
-                        {client.matchedPhone
+                        {client.matchedRelative
+                          ? `${t("home_care.home.matched_relative", {
+                              name: client.matchedRelative.relation ? `${client.matchedRelative.name} (${client.matchedRelative.relation})` : client.matchedRelative.name,
+                              level: t(`home_care.relatives.levels.${client.matchedRelative.level}`)
+                            })}`
+                          : client.matchedPhone
                           ? t("home_care.home.matched_phone")
                           : client.needsReason
                             ? t("home_care.home.needs_reason")
