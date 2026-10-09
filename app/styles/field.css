@@ -59,25 +59,6 @@
   margin: 0.6rem 0;
 }
 
-.fld-connection {
-  position: sticky;
-  top: 0;
-  z-index: 30;
-  border-radius: 0 0 0.75rem 0.75rem;
-  padding: 0.5rem 0.85rem;
-  font-size: 0.9rem;
-  backdrop-filter: blur(8px);
-}
-
-.fld-connection--online {
-  background: rgba(104, 104, 104, 0.35);
-}
-
-.fld-connection--offline {
-  background: rgba(109, 109, 109, 0.5);
-  font-weight: 600;
-}
-
 .fld-section {
   margin: 1.1rem 0;
 }
@@ -261,11 +242,5 @@
 @media (min-width: 700px) {
   .fld-page {
     padding-bottom: 3rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .fld-connection {
-    backdrop-filter: none;
   }
 }

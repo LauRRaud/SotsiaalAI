@@ -1,0 +1,57 @@
+/* FieldConnection: märk kiirmenüüs ja teade lehe sisu alguses. */
+
+/* Märk kiirmenüüs. Tekst jääb näha ka telefonis (doki üldreegel peidab seal
+   ainult `.gc-shortcut-text`-i): välitööd tehakse telefoniga. */
+.chip {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  height: var(--gc-shortcut-size, 2.25rem);
+  padding: 0 0.75rem 0 0.6rem;
+  color: var(--room-text);
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 520;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.dot {
+  flex: none;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--status-success, #c5cf9b);
+}
+.chip[data-state="pending"] .dot {
+  background: #e6c27a;
+}
+.chip[data-state="offline"] .dot,
+.chip[data-state="failed"] .dot {
+  background: var(--status-error, #eb9a76);
+}
+/* Kui dokis ei ole lehe nime, lõpeb doki oma eraldaja kohe märgi ees. */
+:global(.gc-shortcut-divider) + :global(.gc-dock-steps) > .divider {
+  display: none;
+}
+
+/* Teade lehe sisu alguses: tavaline rida, mis kerib koos sisuga (ei kleepu). */
+.notice {
+  margin: 0;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.8rem;
+  background: var(--glass-cell-bg);
+  color: var(--text-warm);
+  font-size: var(--fs-small, 0.875rem);
+}
+.notice[data-state="pending"] {
+  border-color: color-mix(in srgb, #e6c27a 55%, transparent);
+}
+.notice[data-state="offline"],
+.notice[data-state="failed"] {
+  border-color: color-mix(in srgb, var(--status-error, #eb9a76) 60%, transparent);
+  border-inline-start-width: 3px;
+  font-weight: 560;
+}

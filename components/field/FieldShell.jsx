@@ -2,9 +2,20 @@
 
 /**
  * FIELD-V1 shell (doc ptk 7.1 areas 1 + 5): visit list, "Valmista külastus
- * ette" form and the always-visible connection banner. Mobile-first, one
+ * ette" form and the always-visible connection state. Mobile-first, one
  * column, all primary actions inside the thumb zone. Camera/voice/effects are
  * never required — this page is plain text and buttons.
+ *
+ * KUJU (09.10, kujundusaudit K04 ja omaniku reeglid). Leht on lame ja ühes
+ * veerus, nagu välitöö leping nõuab (FIELD-A0 ptk 7.2: loend on põhivorm,
+ * liikumisefekte ei ole), seepärast ei ole siin sammulava. Muutunud on:
+ *  - ühenduse seis ei ole enam sisu kohal kleepuv riba, mis vormi katab, vaid
+ *    märk kiirmenüüs ja vajadusel tavaline teade sisu alguses (FieldConnection);
+ *  - paneelil ei ole lehe pealkirja (nimi on kiirmenüüs);
+ *  - korraga on ees üks asi: kas külastuste loend või uue külastuse vorm;
+ *  - põhitegevus on all servas (pöidla ulatuses) ja nii lai kui tekst vajab.
+ *
+ * Kujundus: fieldShell.module.css (selle faili kõrval).
  */
 
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -12,10 +23,14 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useI18n } from "@/components/i18n/I18nProvider";
+import StepPanel from "@/components/stage/StepPanel";
+import TextAreaField from "@/components/stage/TextAreaField";
 import Button from "@/components/ui/Button";
 import Form from "@/components/ui/Form";
 import Input from "@/components/ui/Input";
 import { FIELD_VISIT_STATUS } from "@/lib/field/constants";
+import FieldConnection from "./FieldConnection";
+import styles from "./fieldShell.module.css";
 import { useFieldSync } from "./useFieldSync";
 
 const OPEN_STATUSES = new Set([
@@ -24,6 +39,25 @@ const OPEN_STATUSES = new Set([
   FIELD_VISIT_STATUS.IN_PROGRESS,
   FIELD_VISIT_STATUS.WRAP_UP
 ]);
+
+function VisitRow({ visit, muted, t }) {
+  const armed = visit.safety?.armedAt && !visit.safety?.cancelledAt;
+  return (
+    <li>
+      <Link className={styles.row} data-muted={muted ? "true" : undefined} href={`/valitoo/${encodeURIComponent(visit.id)}`}>
+        <span className={styles.rowTitle}>{visit.goal || t("field.visit.untitled")}</span>
+        <span className={styles.rowMeta}>
+          <span className={styles.chip}>{t(`field.status.${visit.status}`)}</span>
+          {armed ? (
+            <span className={styles.chip} data-tone="wait">
+              {t("field.safety.armedBadge")}
+            </span>
+          ) : null}
+        </span>
+      </Link>
+    </li>
+  );
+}
 
 export default function FieldShell() {
   const { t } = useI18n();
@@ -74,7 +108,7 @@ export default function FieldShell() {
 
   const createVisit = useCallback(
     async (event) => {
-      event.preventDefault();
+      event?.preventDefault?.();
       if (creating) return;
       setCreating(true);
       try {
@@ -107,194 +141,174 @@ export default function FieldShell() {
     [visits]
   );
 
+  /* Lehe nimi on kiirmenüüs; pealkiri jääb ekraanilugejale. */
+  const heading = <h1 className="sr-only">{t("field.title")}</h1>;
+
   if (sessionStatus === "loading") {
-    return <main className="fld-page"><p className="fld-muted">{t("field.loading")}</p></main>;
+    return <div className={styles.page}><p className={styles.quiet}>{t("field.loading")}</p></div>;
   }
   if (!userId) {
     return (
-      <main className="fld-page">
-        <h1 className="fld-title">{t("field.title")}</h1>
-        <p className="fld-muted">{t("field.loginRequired")}</p>
-      </main>
+      <div className={styles.page}>
+        {heading}
+        <p className={styles.quiet}>{t("field.loginRequired")}</p>
+      </div>
     );
   }
   if (!allowed) {
     return (
-      <main className="fld-page">
-        <h1 className="fld-title">{t("field.title")}</h1>
-        <p className="fld-muted">{t("field.roleRequired")}</p>
-      </main>
+      <div className={styles.page}>
+        {heading}
+        <p className={styles.quiet}>{t("field.roleRequired")}</p>
+      </div>
     );
   }
 
+  const loadFailed = loadError ? (
+    <div className={styles.alert} role="alert">
+      <p>{t("field.errors.loadFailed")}</p>
+      <Button variant="secondary" size="sm" onClick={() => loadVisits()}>{t("field.retry")}</Button>
+    </div>
+  ) : null;
+
   return (
-    <main className="fld-page">
-      <div
-        className={`fld-connection ${sync.online ? "fld-connection--online" : "fld-connection--offline"}`}
-        role="status"
-        aria-live="polite"
-      >
-        {sync.online
-          ? sync.pendingCount
-            ? t("field.sync.onlinePending").replace("{count}", String(sync.pendingCount))
-            : t("field.sync.online")
-          : t("field.sync.offline")}
-        {sync.needsLogin ? ` · ${t("field.sync.needsLogin")}` : ""}
-      </div>
+    <div className={styles.page}>
+      {heading}
+      <FieldConnection t={t} online={sync.online} pendingCount={sync.pendingCount} needsLogin={sync.needsLogin} />
 
-      <h1 className="fld-title">{t("field.title")}</h1>
-      <p className="fld-lead">{t("field.lead")}</p>
-
-      {!sync.supported ? <p className="fld-warn">{t("field.storeUnsupported")}</p> : null}
-
-      {/*
-        SOL-FIELD-01 — SAATMATA SISU EI KAO VAIKSELT.
-
-        Varem kasvatas hoiatuste loendurit taustal jooksev säilituskäik ja mitte
-        ükski komponent ei kuvanud teda: „kolm hoiatust" tähendas päriselt
-        „rakendus avati kolmel eri päeval". Siin on hoiatus NÄHTAV ja tema
-        kinnitus on eraldi tegevus — alles see loeb hoiatuseks.
-      */}
-      {sync.retentionWarnings.length ? (
-        <section className="fld-error" role="alert" aria-label={t("field.retention.warnTitle")}>
-          <h2 className="fld-h2">{t("field.retention.warnTitle")}</h2>
-          <p>{t("field.retention.warnBody")}</p>
-          <ul className="fld-list">
-            {sync.retentionWarnings.map((item) => (
-              <li key={item.clientItemId}>
-                <span className="fld-card__title">
-                  {item.payload?.body?.slice(0, 80) || t("field.retention.unnamedItem")}
-                </span>
-                <span className="fld-card__meta">
-                  {t("field.retention.warnCount")
-                    .replace("{seen}", String(Number(item.warnCount || 0)))
-                    .replace("{needed}", "3")}
-                </span>
-                <Button
-                  variant="secondary"
-                  size="sm"
-                  onClick={() => sync.acknowledgeWarning(item.clientItemId)}
-                >
-                  {t("field.retention.acknowledge")}
+      {showForm ? (
+        /* Uue külastuse vorm on omaette vaade: loend ei ole samal ajal ees. */
+        <Form className={styles.view} onSubmit={createVisit}>
+          <StepPanel
+            title={t("field.prepare.title")}
+            question={t("field.prepare.title")}
+            note={!sync.online ? t("field.prepare.needsOnline") : ""}
+            actions={
+              <>
+                <Button type="submit" disabled={creating || !sync.online}>
+                  {creating ? t("field.saving") : t("field.prepare.create")}
                 </Button>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ) : null}
-
-      {/* Kolm nähtud hoiatust ütlevad „ma tean"; kustutamine vajab eraldi „kustuta". */}
-      {sync.retentionAwaitingConfirmation.length ? (
-        <section className="fld-error" role="alert" aria-label={t("field.retention.confirmTitle")}>
-          <h2 className="fld-h2">{t("field.retention.confirmTitle")}</h2>
-          <p>{t("field.retention.confirmBody")}</p>
-          <ul className="fld-list">
-            {sync.retentionAwaitingConfirmation.map((item) => (
-              <li key={item.clientItemId}>
-                <span className="fld-card__title">
-                  {item.payload?.body?.slice(0, 80) || t("field.retention.unnamedItem")}
-                </span>
-                <Button
-                  variant="secondary"
-                  size="sm"
-                  onClick={() => sync.confirmPurge(item.clientItemId)}
-                >
-                  {t("field.retention.confirmDelete")}
-                </Button>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ) : null}
-
-      {loadError ? (
-        <div className="fld-error" role="alert">
-          <p>{t("field.errors.loadFailed")}</p>
-          <Button variant="secondary" size="sm" onClick={loadVisits}>{t("field.retry")}</Button>
-        </div>
-      ) : null}
-
-      <section className="fld-section" aria-label={t("field.prepare.title")}>
-        {showForm ? (
-          <Form className="fld-form" onSubmit={createVisit}>
-            <h2 className="fld-h2">{t("field.prepare.title")}</h2>
-            <label className="fld-label" htmlFor="fld-goal">{t("field.prepare.goal")}</label>
-            <textarea
-              id="fld-goal"
-              className="fld-input"
-              value={goal}
-              onChange={(event) => setGoal(event.target.value)}
-              rows={2}
-              maxLength={4000}
-            />
-            <label className="fld-label" htmlFor="fld-location">{t("field.prepare.location")}</label>
-            <Input
-              id="fld-location"
-              className="fld-input"
-              value={locationText}
-              onChange={(event) => setLocationText(event.target.value)}
-              maxLength={400}
-              autoComplete="off"
-            />
-            <p className="fld-hint">{t("field.prepare.locationHint")}</p>
-            <div className="fld-actions">
-              <Button type="submit" disabled={creating || !sync.online}>
-                {creating ? t("field.saving") : t("field.prepare.create")}
-              </Button>
-              <Button variant="secondary" onClick={() => setShowForm(false)}>{t("field.cancel")}</Button>
+                <Button variant="secondary" onClick={() => setShowForm(false)}>{t("field.cancel")}</Button>
+              </>
+            }
+          >
+            <div className={styles.stack}>
+              {loadFailed}
+              <TextAreaField label={t("field.prepare.goal")} value={goal} onChange={setGoal} rows={3} maxLength={4000} />
+              <label className={styles.field} htmlFor="fld-location">
+                <span className={styles.fieldLabel}>{t("field.prepare.location")}</span>
+                <span className={styles.fieldHint} id="fld-location-hint">{t("field.prepare.locationHint")}</span>
+                <Input
+                  id="fld-location"
+                  value={locationText}
+                  onChange={(event) => setLocationText(event.target.value)}
+                  maxLength={400}
+                  autoComplete="off"
+                  aria-describedby="fld-location-hint"
+                />
+              </label>
             </div>
-            {!sync.online ? <p className="fld-hint">{t("field.prepare.needsOnline")}</p> : null}
-          </Form>
-        ) : (
-          <Button fullWidth onClick={() => setShowForm(true)}>{t("field.prepare.open")}</Button>
-        )}
-      </section>
+          </StepPanel>
+        </Form>
+      ) : (
+        <div className={styles.view}>
+          <StepPanel
+            title={t("field.title")}
+            actions={<Button onClick={() => setShowForm(true)}>{t("field.prepare.open")}</Button>}
+          >
+            <div className={styles.stack}>
+              {!sync.supported ? <p className={styles.notice}>{t("field.storeUnsupported")}</p> : null}
 
-      <section className="fld-section" aria-label={t("field.list.open")}>
-          <h2 className="fld-h2">{t("field.list.open")} ({counts.open || openVisits.length})</h2>
-        {visits === null ? (
-          <p className="fld-muted">{t("field.loading")}</p>
-        ) : openVisits.length === 0 ? (
-          <p className="fld-muted">{t("field.list.empty")}</p>
-        ) : (
-          <ul className="fld-list">
-            {openVisits.map((visit) => (
-              <li key={visit.id}>
-                <Link className="fld-card" href={`/valitoo/${encodeURIComponent(visit.id)}`}>
-                  <span className="fld-card__title">{visit.goal || t("field.visit.untitled")}</span>
-                  <span className="fld-card__meta">
-                    {t(`field.status.${visit.status}`)}
-                    {visit.safety?.armedAt && !visit.safety?.cancelledAt
-                      ? ` · ${t("field.safety.armedBadge")}`
-                      : ""}
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
-      </section>
+              {/*
+                SOL-FIELD-01 — SAATMATA SISU EI KAO VAIKSELT.
 
-      {closedVisits.length ? (
-        <section className="fld-section" aria-label={t("field.list.closed")}>
-          <h2 className="fld-h2">{t("field.list.closed")} ({counts.closed || closedVisits.length})</h2>
-          <ul className="fld-list">
-            {closedVisits.map((visit) => (
-              <li key={visit.id}>
-                <Link className="fld-card fld-card--muted" href={`/valitoo/${encodeURIComponent(visit.id)}`}>
-                  <span className="fld-card__title">{visit.goal || t("field.visit.untitled")}</span>
-                  <span className="fld-card__meta">{t(`field.status.${visit.status}`)}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ) : null}
-      {nextCursor ? (
-        <Button variant="secondary" fullWidth onClick={() => loadVisits({ append: true })}>
-          {t("field.list.loadMore")}
-        </Button>
-      ) : null}
-    </main>
+                Varem kasvatas hoiatuste loendurit taustal jooksev säilituskäik ja mitte
+                ükski komponent ei kuvanud teda: „kolm hoiatust" tähendas päriselt
+                „rakendus avati kolmel eri päeval". Siin on hoiatus NÄHTAV ja tema
+                kinnitus on eraldi tegevus — alles see loeb hoiatuseks.
+              */}
+              {sync.retentionWarnings.length ? (
+                <section className={styles.alert} role="alert" aria-label={t("field.retention.warnTitle")}>
+                  <h2 className={styles.alertTitle}>{t("field.retention.warnTitle")}</h2>
+                  <p>{t("field.retention.warnBody")}</p>
+                  <ul className={styles.rows}>
+                    {sync.retentionWarnings.map((item) => (
+                      <li key={item.clientItemId} className={styles.item}>
+                        <span className={styles.itemText}>
+                          <span className={styles.rowTitle}>{item.payload?.body?.slice(0, 80) || t("field.retention.unnamedItem")}</span>
+                          <span className={styles.itemMeta}>
+                            {t("field.retention.warnCount")
+                              .replace("{seen}", String(Number(item.warnCount || 0)))
+                              .replace("{needed}", "3")}
+                          </span>
+                        </span>
+                        <Button variant="secondary" size="sm" onClick={() => sync.acknowledgeWarning(item.clientItemId)}>
+                          {t("field.retention.acknowledge")}
+                        </Button>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ) : null}
+
+              {/* Kolm nähtud hoiatust ütlevad „ma tean"; kustutamine vajab eraldi „kustuta". */}
+              {sync.retentionAwaitingConfirmation.length ? (
+                <section className={styles.alert} role="alert" aria-label={t("field.retention.confirmTitle")}>
+                  <h2 className={styles.alertTitle}>{t("field.retention.confirmTitle")}</h2>
+                  <p>{t("field.retention.confirmBody")}</p>
+                  <ul className={styles.rows}>
+                    {sync.retentionAwaitingConfirmation.map((item) => (
+                      <li key={item.clientItemId} className={styles.item}>
+                        <span className={styles.rowTitle}>{item.payload?.body?.slice(0, 80) || t("field.retention.unnamedItem")}</span>
+                        <Button variant="secondary" size="sm" onClick={() => sync.confirmPurge(item.clientItemId)}>
+                          {t("field.retention.confirmDelete")}
+                        </Button>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ) : null}
+
+              {loadFailed}
+
+              <section className={styles.group} aria-label={t("field.list.open")}>
+                <h2 className={styles.groupTitle}>
+                  {t("field.list.open")} <span className={styles.groupCount}>{counts.open || openVisits.length}</span>
+                </h2>
+                {visits === null ? (
+                  <p className={styles.quiet}>{t("field.loading")}</p>
+                ) : openVisits.length === 0 ? (
+                  <p className={styles.quiet}>{t("field.list.empty")}</p>
+                ) : (
+                  <ul className={styles.rows}>
+                    {openVisits.map((visit) => (
+                      <VisitRow key={visit.id} visit={visit} t={t} />
+                    ))}
+                  </ul>
+                )}
+              </section>
+
+              {closedVisits.length ? (
+                <section className={styles.group} aria-label={t("field.list.closed")}>
+                  <h2 className={styles.groupTitle}>
+                    {t("field.list.closed")} <span className={styles.groupCount}>{counts.closed || closedVisits.length}</span>
+                  </h2>
+                  <ul className={styles.rows}>
+                    {closedVisits.map((visit) => (
+                      <VisitRow key={visit.id} visit={visit} muted t={t} />
+                    ))}
+                  </ul>
+                </section>
+              ) : null}
+              {nextCursor ? (
+                <Button variant="secondary" size="sm" className={styles.more} onClick={() => loadVisits({ append: true })}>
+                  {t("field.list.loadMore")}
+                </Button>
+              ) : null}
+            </div>
+          </StepPanel>
+        </div>
+      )}
+    </div>
   );
 }
