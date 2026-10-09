@@ -18,5 +18,9 @@ export async function generateMetadata() {
 
 export default async function Page({ params }) {
   const { relationId } = await params;
-  return <MentoringRelationPage relationId={String(relationId || "")} />;
+  const id = String(relationId || "");
+  /* `key` on garantii, mitte optimeerimine: teavituse link võib viia ühest
+     suhtest otse teise. Ilma selleta jääks leht samaks komponendiks ja suhtes A
+     pooleli jäänud märkme või eesmärgi saaks salvestada suhte B alla. */
+  return <MentoringRelationPage key={id} relationId={id} />;
 }
