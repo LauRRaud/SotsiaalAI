@@ -15,6 +15,11 @@
  * TEINE ASTE NULLITAKSE, kui nupp keelatakse (nt kirjutuskaitse jõustub või
  * eelmine päring käib): muidu jääks „kinnita" ripakile ja järgmine klõps
  * käivitaks teo, mille kasutaja juba unustas.
+ *
+ * KAKS VÄLIMUST, ÜKS LOOGIKA. Vana kihi sektsioonid (ettevalmistus, märge,
+ * STAR2 järjekord) kasutavad vaikimisi `cw-*` nuppe. Sammulava vaated annavad
+ * platvormi nupu (`as`, `buttonProps`) ja oma klassid: teine aste ja selle
+ * nullimine jäävad samaks, muutub ainult see, mis nupp joonistatakse.
  */
 
 import { useEffect, useState } from "react";
@@ -25,7 +30,10 @@ export default function ConfirmButton({
   cancelLabel,
   onConfirm,
   disabled = false,
-  className = "cw-button cw-button--danger"
+  className = "cw-button cw-button--danger",
+  cancelClassName = "cw-button",
+  as: Tag = "button",
+  buttonProps = null
 }) {
   const [armed, setArmed] = useState(false);
 
@@ -33,30 +41,32 @@ export default function ConfirmButton({
     if (disabled) setArmed(false);
   }, [disabled]);
 
-  if (!armed) {
-    return (
-      <button className={className} type="button" disabled={disabled} onClick={() => setArmed(true)}>
-        {label}
-      </button>
-    );
-  }
-
+  /* Esimene ja teine aste on SAMA nupp, mille tekst vahetub. Varem joonistati
+     teise astme jaoks uus nupp ja vajutatud nupp kadus: klaviatuuriga töötaja
+     fookus kukkus lehe algusse täpselt selle teo ees, mis vajab tähelepanu. */
   return (
     <>
-      <button
+      <Tag
+        {...buttonProps}
         className={className}
         type="button"
         disabled={disabled}
         onClick={async () => {
+          if (!armed) {
+            setArmed(true);
+            return;
+          }
           setArmed(false);
           await onConfirm();
         }}
       >
-        {confirmLabel}
-      </button>
-      <button className="cw-button" type="button" disabled={disabled} onClick={() => setArmed(false)}>
-        {cancelLabel}
-      </button>
+        {armed ? confirmLabel : label}
+      </Tag>
+      {armed ? (
+        <Tag {...buttonProps} className={cancelClassName} type="button" disabled={disabled} onClick={() => setArmed(false)}>
+          {cancelLabel}
+        </Tag>
+      ) : null}
     </>
   );
 }

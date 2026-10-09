@@ -14,6 +14,10 @@
  * küsimus kannab oma märgist, ja AI mustandi kõrval seisab kinnitusnupp —
  * see on ainus koht, kust märgis muutub. Teksti parandamine EI muuda teda
  * (server eirab saadetud `provenance`-i) ja seda tõendab teenuskihi test.
+ *
+ * LAVA OSA (09.10). Sektsioon on juhtumi lava üks osa (`CaseWorkDetail.jsx`):
+ * oma raamitud kaarti, pealkirja ega juhist ta enam ei joonista, need annab
+ * osa vaade. Sisu on veel vanal `cw-*` kihil ja ootab oma ümbertegemist.
  */
 
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -22,6 +26,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import { PROVENANCE, PROVENANCES, provenanceLabelKey } from "@/lib/workspaces/provenance";
 
 import ConfirmButton from "./ConfirmButton";
+import styles from "./cases/cases.module.css";
 import { caseWorkRequest, fromLocalInputValue } from "./caseWorkClient";
 
 /** Sama hulk mis `CaseWorkPrepFieldKey` skeemis ja `PREP_FIELD_KEYS` teenuskihis. */
@@ -37,8 +42,16 @@ const QUESTION_KINDS = ["CLARIFYING_QUESTION", "CLAIM_TO_VERIFY"];
 const CONFIRM_TARGETS = PROVENANCES.filter((value) => value !== PROVENANCE.AI_MUSTAND);
 const PAGE_SIZE = 25;
 
-export default function MeetingPrepSection({ caseId, writeDisabled, onChanged }) {
+export default function MeetingPrepSection({ caseId, writeDisabled, onChanged, onListLoaded }) {
   const { t, locale } = useI18n();
+
+  /* Juhtumi ülevaade näitab selle osa esimest rida: loend teatatakse üles
+     pärast iga täislaadimist. Viide, mitte sõltuvus: muidu laadiks vanema iga
+     uus funktsioon loendi uuesti. */
+  const listLoadedRef = useRef(onListLoaded);
+  useEffect(() => {
+    listLoadedRef.current = onListLoaded;
+  }, [onListLoaded]);
 
   const [preps, setPreps] = useState([]);
   const [prepsCursor, setPrepsCursor] = useState(null);
@@ -76,6 +89,7 @@ export default function MeetingPrepSection({ caseId, writeDisabled, onChanged })
         );
         setPreps((previous) => (append ? [...previous, ...(body.items || [])] : body.items || []));
         setPrepsCursor(body.nextCursor || null);
+        if (!append) listLoadedRef.current?.(body.items || []);
       } catch (error) {
         setErrorKey(error?.messageKey || "casework.errors.unexpected");
       }
@@ -211,10 +225,7 @@ export default function MeetingPrepSection({ caseId, writeDisabled, onChanged })
   const disabled = writeDisabled || busy;
 
   return (
-    <section className="cw-section">
-      <h2 className="cw-section-title">{t("casework.prep.section_title", "")}</h2>
-      <p className="cw-hint">{t("casework.prep.section_hint", "")}</p>
-
+    <div className={styles.section}>
       {errorKey ? (
         <p className="cw-error" role="alert">
           {t(errorKey, "")}
@@ -294,7 +305,7 @@ export default function MeetingPrepSection({ caseId, writeDisabled, onChanged })
           onClose={() => setOpenPrep(null)}
         />
       ) : null}
-    </section>
+    </div>
   );
 }
 
@@ -319,7 +330,7 @@ function PrepEditor({
   const writeBlocked = disabled || purged;
 
   return (
-    <div className="cw-section">
+    <div className={styles.editor}>
       {/* Avatud ettevalmistuse identiteet on nähtav — juhtumil on neid mitu. */}
       <h3 className="cw-section-title">
         {t("casework.prep.open_prep", "")}:{" "}

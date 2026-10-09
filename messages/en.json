@@ -1184,7 +1184,6 @@
       "untitled": "Untitled case"
     },
     "draft": {
-      "section_title": "STAR2 transfer queue",
       "section_hint": "Each element moves one way: draft → needs review → reviewed → ready to transfer. “Not transferred” is a conscious end, not a stall. Marking as transferred is a separate act.",
       "create": "Add element",
       "empty": "There are no elements.",
@@ -1232,7 +1231,6 @@
       "provenance_required": "Choose the provenance",
       "cancel": "Cancel",
       "open_note": "Open note",
-      "section_title": "Meeting note",
       "section_hint": "The eight layers are not merged: the client's own words, the facts and your interpretation are different things. Each line also carries its provenance.",
       "meeting_at": "Meeting time",
       "create": "Start a note",
@@ -1277,7 +1275,6 @@
       "confirm_remove": "Confirm: remove",
       "cancel": "Cancel",
       "open_prep": "Open preparation",
-      "section_title": "Meeting preparation",
       "section_hint": "Every field and every question carries its own provenance. An AI-drafted marker cannot be removed by editing the text — confirming is a separate act.",
       "meeting_at": "Meeting time",
       "create": "Start a preparation",
@@ -1458,7 +1455,6 @@
       "title": "My cases",
       "subtitle": "Your own work organisation. This is not a register or an official file — the official record stays in STAR.",
       "empty": "No cases yet.",
-      "create_heading": "New case",
       "create_hint": "A case is always created by a person. The client reference may also stay empty.",
       "client_display_name": "Client reference (e.g. an initial or a role)",
       "client_external_ref": "External client identifier",
@@ -1470,14 +1466,9 @@
       "retention_active": "Active",
       "retention_read_only": "Write-protected",
       "retention_archived": "Archived",
-      "counts_items": "links",
-      "counts_open_missing_info": "open items",
-      "section_basics": "Basics",
-      "section_star": "STAR reference",
       "star_system": "External system",
       "star_reference": "Reference number",
       "save": "Save",
-      "section_items": "Linked material",
       "items_hint": "The case links what already exists. No row is copied.",
       "item_type": "Type",
       "item_target_id": "Object identifier",
@@ -1486,22 +1477,17 @@
       "target_user_document": "Document",
       "target_agent_artifact": "Draft",
       "target_field_visit": "Field visit",
-      "section_missing_info": "Missing and unverified information",
       "missing_info_text": "What is missing",
       "missing_info_provenance": "Information provenance",
       "missing_info_add": "Add item",
       "status_open": "Open",
       "status_resolved": "Resolved",
       "status_not_applicable": "Not applicable",
-      "mark_resolved": "Mark resolved",
-      "reopen": "Reopen",
       "remove": "Delete",
-      "section_retention": "Lifecycle",
       "retention_hint": "Write protection is one-way. There is no way back and the reason is kept in the audit trail.",
       "retention_reason": "Reason",
       "retention_to_read_only": "Close for writing",
       "retention_to_archived": "Archive",
-      "section_client_reference": "Client reference",
       "erase_client_reference": "Erase client reference",
       "erase_hint": "Erasing clears the reference permanently. It is allowed even in a write-protected case.",
       "erased": "The client reference has been erased.",
@@ -1511,7 +1497,6 @@
       "load_error": "The data could not be loaded.",
       "items_empty": "No links yet.",
       "missing_info_empty": "No items yet.",
-      "provenance_placeholder": "Choose the information provenance",
       "read_only_notice": "The case is write-protected. Only reading and erasing the client reference remain.",
       "retention_state": "State",
       "meta": {
@@ -1523,7 +1508,95 @@
       "archive_clock_warning": "Archiving starts a 12-calendar-month deletion clock. At the end of it the whole case is deleted together with its children — preparations, notes, drafts and the transfer history. This state cannot be reversed.",
       "archive_working_material": "Archive working material",
       "confirm_archive_working_material": "Confirm: delete the content of untransferred drafts and preparations",
-      "working_material_hint": "Deletes the content of every draft not transferred to STAR2 and of every meeting preparation. The case stays open; the draft and preparation rows, the transfer history and the notes remain."
+      "working_material_hint": "Deletes the content of every draft not transferred to STAR2 and of every meeting preparation. The case stays open; the draft and preparation rows, the transfer history and the notes remain.",
+      "views": {
+        "list": {
+          "title": "Cases",
+          "short": "Cases"
+        },
+        "create": {
+          "title": "New case",
+          "short": "New case"
+        }
+      },
+      "filter_label": "Which cases to show",
+      "filter_all": "All",
+      "filter_active": "Active",
+      "filter_read_only": "Write-protected",
+      "filter_archived": "Archived",
+      "empty_filtered": "There are no cases in this state.",
+      "retry": "Try again",
+      "row_next_contact": "Contact {time}",
+      "retention_unknown": "Unknown state",
+      "status_unknown": "Unknown state",
+      "target_unknown": "Unknown type",
+      "all_parts": "Whole case",
+      "part_position": "Part {current}/{total}: {label}",
+      "more_rows": "and others",
+      "parts": {
+        "basics": {
+          "title": "Basics",
+          "short": "Basics",
+          "summary_contact": "Next contact {time}",
+          "summary_no_contact": "No next contact set"
+        },
+        "star": {
+          "title": "STAR reference",
+          "short": "STAR reference",
+          "lead": "The system and the reference number always go together.",
+          "none": "None",
+          "summary_empty": "No reference"
+        },
+        "items": {
+          "title": "Linked material",
+          "short": "Linked material",
+          "summary_count": "Links: {count}",
+          "add": "Link material",
+          "linked_on": "Linked {date}",
+          "confirm_unlink": "Confirm: remove the link"
+        },
+        "missing": {
+          "title": "Missing and unverified information",
+          "short": "Missing info",
+          "summary_open": "Open items: {count}",
+          "summary_none": "No open items",
+          "status_label": "State of the item",
+          "back": "Back to the items",
+          "confirm_remove": "Confirm: delete the item"
+        },
+        "prep": {
+          "title": "Meeting preparation",
+          "short": "Preparation"
+        },
+        "notes": {
+          "title": "Meeting notes",
+          "short": "Notes"
+        },
+        "drafts": {
+          "title": "STAR2 transfer queue",
+          "short": "STAR2 queue"
+        },
+        "transfer": {
+          "title": "STAR2 transfer history",
+          "short": "Transfer history"
+        },
+        "retention": {
+          "title": "Lifecycle",
+          "short": "Lifecycle",
+          "confirm_read_only": "Confirm: close for writing"
+        },
+        "material": {
+          "title": "Archiving working material",
+          "short": "Working material",
+          "summary": "Deleting the content of untransferred drafts and preparations"
+        },
+        "client": {
+          "title": "Client reference",
+          "short": "Client reference",
+          "summary": "Erasing the reference for good",
+          "account": "The client is a platform user. Their reference cannot be changed here."
+        }
+      }
     },
     "info": {
       "title": "My cases",
@@ -1570,7 +1643,6 @@
       "confirm_mark_transferred": "Confirm: the information is in STAR",
       "cancel": "Cancel",
       "content_purged": "The content of this draft was deleted after the retention period. The transfer fact and the list of fields remain.",
-      "history_title": "STAR2 transfer history",
       "history_hint": "The history carries the action, the time and the field names — the copied text is not here.",
       "history_empty": "No transfers yet.",
       "fields_label": "Fields",

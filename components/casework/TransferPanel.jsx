@@ -17,9 +17,10 @@
  * L8 järgi on audit tõend, ja vaikne tõendi kadu on halvem kui nähtav.
  */
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import ConfirmButton from "./ConfirmButton";
+import styles from "./cases/cases.module.css";
 import { caseWorkRequest, newClientActionKey } from "./caseWorkClient";
 import { COPY_PHASE, flushPendingAudits, queuePendingAudit, runCopyForStar2 } from "./transferFlow";
 
@@ -195,8 +196,18 @@ export function TransferActions({ caseId, draft, locale, disabled, t, onChanged 
  * Kopeeritud teksti auditis ei ole ja seepärast ei saa teda siit ka lugeda;
  * ajalugu on tõend selle kohta, MIS juhtus, mitte teine koopia sellest, MIDA
  * kopeeriti.
+ *
+ * LAVA OSA (09.10): ajalugu on juhtumi lava oma osa (`CaseWorkDetail.jsx`).
+ * Pealkirja ja juhise annab osa vaade; siin on loend.
  */
-export function TransferHistory({ caseId, locale, t, refreshToken }) {
+export function TransferHistory({ caseId, locale, t, refreshToken, onListLoaded }) {
+  /* Juhtumi ülevaade näitab selle osa esimest rida. Viide, mitte sõltuvus:
+     muidu laadiks vanema iga uus funktsioon ajaloo uuesti. */
+  const listLoadedRef = useRef(onListLoaded);
+  useEffect(() => {
+    listLoadedRef.current = onListLoaded;
+  }, [onListLoaded]);
+
   const [items, setItems] = useState([]);
   const [cursor, setCursor] = useState(null);
   const [errorKey, setErrorKey] = useState(null);
@@ -215,6 +226,7 @@ export function TransferHistory({ caseId, locale, t, refreshToken }) {
         setItems((previous) => (append ? [...previous, ...(body.items || [])] : body.items || []));
         setCursor(body.nextCursor || null);
         setErrorKey(null);
+        if (!append) listLoadedRef.current?.(body.items || []);
       } catch (error) {
         setErrorKey(error?.messageKey || "casework.errors.unexpected");
       } finally {
@@ -229,10 +241,7 @@ export function TransferHistory({ caseId, locale, t, refreshToken }) {
   }, [load, refreshToken]);
 
   return (
-    <div className="cw-transfer-history">
-      <h4 className="cw-section-title">{t("casework.transfer.history_title", "")}</h4>
-      <p className="cw-hint">{t("casework.transfer.history_hint", "")}</p>
-
+    <div className={styles.section}>
       {errorKey ? (
         <p className="cw-error" role="alert">
           {t(errorKey, "")}

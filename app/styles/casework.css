@@ -1,44 +1,18 @@
-/* JUHTUM-V1 (CASEWORK-P7) E6 — pind „Minu juhtumid".
+/* JUHTUM-V1 (CASEWORK-P7) E6 — juhtumi vana ühine kiht (`cw-*`).
  *
- * ÜKS VEERG, MITTE TÖÖLAUD. Juhtum on töötaja enda töökorraldus ja teda
- * vaadatakse sama tihti telefonist kui laua tagant; laiuse kasvades muutub
- * loend kaheveeruliseks, aga sisu järjekord ei muutu.
+ * Leht „Minu juhtumid" ja juhtumi detaili raam on sammulaval ja nende kujundus
+ * on komponendi kõrval (`components/casework/cases/cases.module.css`). Siia on
+ * jäänud ainult see, mida kasutavad kolm veel ümber tegemata sektsiooni
+ * (kohtumise ettevalmistus, kohtumise märge, STAR2 järjekord) ja nende
+ * ülekandepaneel. Uusi reegleid siia ei lisata; kui sektsioon tehakse ümber,
+ * kaob tema osa siit.
  *
  * Kõva värvi siin ei ole — kõik tuleb tokenitest, nagu `service-log.css`-is.
  */
 
-.cw-shell {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-6, 1.5rem);
-  width: 100%;
-}
-
-.cw-intro {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1, 0.25rem);
-}
-
-.cw-title {
-  font-size: 1.125rem;
-  font-weight: 600;
-}
-
-.cw-subtitle,
 .cw-hint {
   font-size: 0.8125rem;
   opacity: 0.7;
-}
-
-.cw-section {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3, 0.75rem);
-  padding: var(--space-4, 1rem);
-  border: 1px solid var(--panel-border, rgb(255 255 255 / 18%));
-  border-radius: var(--radius-lg, 0.75rem);
-  background: var(--panel-bg, rgb(255 255 255 / 4%));
 }
 
 .cw-section-title {
@@ -64,9 +38,7 @@
   opacity: 0.85;
 }
 
-.cw-input,
-.cw-select,
-.cw-textarea {
+.cw-input {
   width: 100%;
   min-height: 2.75rem;
   padding: 0.5rem 0.75rem;
@@ -75,18 +47,6 @@
   background: var(--panel-input-bg, rgb(255 255 255 / 6%));
   color: inherit;
   font: inherit;
-}
-
-.cw-textarea {
-  min-height: 4.5rem;
-  resize: vertical;
-}
-
-.cw-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2, 0.5rem);
-  align-items: center;
 }
 
 .cw-button {

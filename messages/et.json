@@ -1184,8 +1184,7 @@
       "untitled": "Nimetu juhtum"
     },
     "draft": {
-      "section_title": "STAR2-sse kandmise järjekord",
-      "section_hint": "Iga element liigub ühes suunas: mustand → vajab kontrollimist → kontrollitud → valmis kandmiseks. „Ei kanta“ on teadlik lõpp, mitte seisma jäämine. Ülekantuks märkimine on eraldi tegu.",
+      "section_hint": "Iga element liigub ühes suunas: mustand → vajab kontrollimist → kontrollitud → valmis kandmiseks. „Ei kanta” on teadlik lõpp, mitte seisma jäämine. Ülekantuks märkimine on eraldi tegu.",
       "create": "Lisa element",
       "empty": "Elemente ei ole.",
       "open": "Ava",
@@ -1232,7 +1231,6 @@
       "provenance_required": "Vali päritolu",
       "cancel": "Loobu",
       "open_note": "Avatud märge",
-      "section_title": "Kohtumise märge",
       "section_hint": "Kaheksa kihti ei valata kokku: kliendi enda sõnad, faktid ja sinu tõlgendus on eri asjad. Iga rida kannab lisaks päritolu.",
       "meeting_at": "Kohtumise aeg",
       "create": "Alusta märget",
@@ -1277,8 +1275,7 @@
       "confirm_remove": "Kinnita: eemalda",
       "cancel": "Loobu",
       "open_prep": "Avatud ettevalmistus",
-      "section_title": "Kohtumise ettevalmistus",
-      "section_hint": "Iga väli ja iga küsimus kannab oma päritolu. AI koostatud osa märgist ei saa maha võtta teksti parandamisega — kinnitamine on eraldi tegu.",
+      "section_hint": "Iga väli ja iga küsimus kannab oma päritolu. AI koostatud osa märgist ei saa maha võtta teksti parandamisega: kinnitamine on eraldi tegu.",
       "meeting_at": "Kohtumise aeg",
       "create": "Alusta ettevalmistust",
       "empty": "Ettevalmistusi ei ole.",
@@ -1456,9 +1453,8 @@
       "confirm_erase_client_reference": "Kinnita: kustuta kliendiviide jäädavalt",
       "cancel": "Loobu",
       "title": "Minu juhtumid",
-      "subtitle": "Sinu enda töökorraldus. See ei ole register ega ametlik toimik — ametlik kandja jääb STAR-i.",
+      "subtitle": "Sinu enda töökorraldus. See ei ole register ega ametlik toimik: ametlik kandja jääb STAR-i.",
       "empty": "Ühtegi juhtumit ei ole veel.",
-      "create_heading": "Uus juhtum",
       "create_hint": "Juhtumi loob alati inimene. Kliendiviide võib jääda ka tühjaks.",
       "client_display_name": "Kliendi viide (nt initsiaal või roll)",
       "client_external_ref": "Väline kliendi tunnus",
@@ -1470,14 +1466,9 @@
       "retention_active": "Aktiivne",
       "retention_read_only": "Kirjutuskaitstud",
       "retention_archived": "Arhiveeritud",
-      "counts_items": "seost",
-      "counts_open_missing_info": "lahtist punkti",
-      "section_basics": "Põhiandmed",
-      "section_star": "STAR-i viide",
       "star_system": "Väline süsteem",
       "star_reference": "Viitenumber",
       "save": "Salvesta",
-      "section_items": "Seotud materjal",
       "items_hint": "Juhtum seob olemasolevat. Ühtegi rida ei kopeerita.",
       "item_type": "Tüüp",
       "item_target_id": "Objekti tunnus",
@@ -1486,22 +1477,17 @@
       "target_user_document": "Dokument",
       "target_agent_artifact": "Mustand",
       "target_field_visit": "Välitöökäik",
-      "section_missing_info": "Puuduv ja kontrollimist vajav info",
       "missing_info_text": "Mis on puudu",
       "missing_info_provenance": "Info päritolu",
       "missing_info_add": "Lisa punkt",
       "status_open": "Lahtine",
       "status_resolved": "Lahendatud",
       "status_not_applicable": "Ei ole asjakohane",
-      "mark_resolved": "Märgi lahendatuks",
-      "reopen": "Ava uuesti",
       "remove": "Kustuta",
-      "section_retention": "Elutsükkel",
       "retention_hint": "Kirjutuskaitse on ühesuunaline. Tagasiteed ei ole ja põhjus jääb auditisse.",
       "retention_reason": "Põhjus",
       "retention_to_read_only": "Sulge kirjutamiseks",
       "retention_to_archived": "Arhiveeri",
-      "section_client_reference": "Kliendiviide",
       "erase_client_reference": "Kustuta kliendiviide",
       "erase_hint": "Kustutamine tühjendab viite jäädavalt. See on lubatud ka kirjutuskaitstud juhtumis.",
       "erased": "Kliendiviide on kustutatud.",
@@ -1511,19 +1497,106 @@
       "load_error": "Andmeid ei õnnestunud laadida.",
       "items_empty": "Seoseid ei ole.",
       "missing_info_empty": "Punkte ei ole.",
-      "provenance_placeholder": "Vali info päritolu",
       "read_only_notice": "Juhtum on kirjutuskaitstud. Alles on ainult lugemine ja kliendiviite kustutamine.",
       "retention_state": "Seis",
       "meta": {
         "title": "Minu juhtumid — Sotsiaal.pro",
         "description": "Sotsiaaltöötaja enda töökorralduse juhtumid."
       },
-      "retention_countdown": "Arhiveeritud. Juhtum ja kõik selle sisu kustuvad {date} — jäänud on {days} päeva.",
+      "retention_countdown": "Arhiveeritud. Juhtum ja kogu selle sisu kustuvad {date}. Jäänud on {days} päeva.",
       "confirm_retention_to_archived": "Kinnita: arhiveeri ja käivita kustutuskell",
-      "archive_clock_warning": "Arhiveerimine käivitab 12 kalendrikuu kustutuskella. Kella lõpus kustub kogu juhtum koos lastega — ettevalmistused, märkmed, mustandid ja ülekandeajalugu. Seda olekut ei saa tagasi pöörata.",
+      "archive_clock_warning": "Arhiveerimine käivitab 12 kalendrikuu kustutuskella. Kella lõpus kustub kogu juhtum koos kõigega, mis selle all on: ettevalmistused, märkmed, mustandid ja ülekandeajalugu. Seda olekut ei saa tagasi pöörata.",
       "archive_working_material": "Arhiveeri töömaterjal",
       "confirm_archive_working_material": "Kinnita: kustuta kandmata mustandite ja ettevalmistuste sisu",
-      "working_material_hint": "Kustutab kõigi STAR2-sse kandmata mustandite ja kõigi kohtumise ettevalmistuste sisu. Juhtum jääb tööle; mustandite ja ettevalmistuste read, ülekandeajalugu ja märkmed jäävad alles."
+      "working_material_hint": "Kustutab kõigi STAR2-sse kandmata mustandite ja kõigi kohtumise ettevalmistuste sisu. Juhtum jääb tööle; mustandite ja ettevalmistuste read, ülekandeajalugu ja märkmed jäävad alles.",
+      "views": {
+        "list": {
+          "title": "Juhtumid",
+          "short": "Juhtumid"
+        },
+        "create": {
+          "title": "Uus juhtum",
+          "short": "Uus juhtum"
+        }
+      },
+      "filter_label": "Milliseid juhtumeid näidata",
+      "filter_all": "Kõik",
+      "filter_active": "Aktiivsed",
+      "filter_read_only": "Kirjutuskaitstud",
+      "filter_archived": "Arhiveeritud",
+      "empty_filtered": "Selles seisus juhtumeid ei ole.",
+      "retry": "Proovi uuesti",
+      "row_next_contact": "Kontakt {time}",
+      "retention_unknown": "Tundmatu seis",
+      "status_unknown": "Tundmatu seis",
+      "target_unknown": "Tundmatu liik",
+      "all_parts": "Kogu juhtum",
+      "part_position": "Osa {current}/{total}: {label}",
+      "more_rows": "ja teised",
+      "parts": {
+        "basics": {
+          "title": "Põhiandmed",
+          "short": "Põhiandmed",
+          "summary_contact": "Järgmine kontakt {time}",
+          "summary_no_contact": "Järgmist kontakti ei ole määratud"
+        },
+        "star": {
+          "title": "STAR-i viide",
+          "short": "STAR-i viide",
+          "lead": "Süsteem ja viitenumber käivad alati koos.",
+          "none": "Ei ole",
+          "summary_empty": "Viidet ei ole"
+        },
+        "items": {
+          "title": "Seotud materjal",
+          "short": "Seotud materjal",
+          "summary_count": "Seoseid: {count}",
+          "add": "Seo materjal",
+          "linked_on": "Seotud {date}",
+          "confirm_unlink": "Kinnita: eemalda seos"
+        },
+        "missing": {
+          "title": "Puuduv ja kontrollimist vajav info",
+          "short": "Puuduv info",
+          "summary_open": "Lahtisi punkte: {count}",
+          "summary_none": "Lahtisi punkte ei ole",
+          "status_label": "Punkti seis",
+          "back": "Tagasi punktide juurde",
+          "confirm_remove": "Kinnita: kustuta punkt"
+        },
+        "prep": {
+          "title": "Kohtumise ettevalmistus",
+          "short": "Ettevalmistus"
+        },
+        "notes": {
+          "title": "Kohtumise märkmed",
+          "short": "Märkmed"
+        },
+        "drafts": {
+          "title": "STAR2-sse kandmise järjekord",
+          "short": "STAR2 järjekord"
+        },
+        "transfer": {
+          "title": "STAR2 ülekandmise ajalugu",
+          "short": "Ülekandeajalugu"
+        },
+        "retention": {
+          "title": "Elutsükkel",
+          "short": "Elutsükkel",
+          "confirm_read_only": "Kinnita: sulge kirjutamiseks"
+        },
+        "material": {
+          "title": "Töömaterjali arhiveerimine",
+          "short": "Töömaterjal",
+          "summary": "Kandmata mustandite ja ettevalmistuste sisu kustutamine"
+        },
+        "client": {
+          "title": "Kliendiviide",
+          "short": "Kliendiviide",
+          "summary": "Viite jäädav kustutamine",
+          "account": "Klient on platvormi kasutaja. Tema viidet siin muuta ei saa."
+        }
+      }
     },
     "info": {
       "title": "Minu juhtumid",
@@ -1570,8 +1643,7 @@
       "confirm_mark_transferred": "Kinnita: info on STAR-is",
       "cancel": "Loobu",
       "content_purged": "Selle mustandi sisu on säilitustähtaja järel kustutatud. Ülekande fakt ja väljade loend on alles.",
-      "history_title": "STAR2 ülekandmise ajalugu",
-      "history_hint": "Ajalugu kannab tegu, aega ja väljade nimesid — kopeeritud teksti siin ei ole.",
+      "history_hint": "Ajalugu kannab tegu, aega ja väljade nimesid. Kopeeritud teksti siin ei ole.",
       "history_empty": "Ülekandeid ei ole.",
       "fields_label": "Väljad",
       "load_more": "Näita rohkem",
