@@ -34,7 +34,8 @@ import Input from "@/components/ui/Input";
 
 import styles from "./documents.module.css";
 
-function Chip({ tone, children }) {
+/** Märk: tüüp või seis ühe sõnaga. Sama märk on detaililehtedel (../detail). */
+export function Chip({ tone, children }) {
   return (
     <span className={styles.chip} data-tone={tone}>
       {children}
@@ -69,8 +70,8 @@ function Notices({ t, notice }) {
   );
 }
 
-/** Tegevusrea nupud kirjeldusest: `href` teeb lingi (allalaadimine, teine leht), muidu nupp. */
-function ActionButtons({ actions }) {
+/** Tegevusrea nupud kirjeldusest: `href` teeb lingi (allalaadimine, teine leht), muidu nupp. Sama rida on detaililehtedel (../detail). */
+export function ActionButtons({ actions }) {
   return actions.map((action) =>
     action.href ? (
       <Button key={action.key} as="a" href={action.href} size="sm" variant={action.variant || "secondary"} disabled={action.disabled}>

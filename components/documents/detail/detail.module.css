@@ -1,0 +1,103 @@
+/* Dokumendi ja koostatud teksti detaililehed. Lehe kuju, read, märgid, faktid
+   ja teise vajutuse rida tulevad dokumentide lehe failist
+   (../workspace/documents.module.css), vaate kuju StepPanel-ist ja valikud
+   ChoiceRow-st (components/stage). Siin on ainult see, mis on detaililehe oma:
+   teade lava kohal, laadimise viga, mustandi väljad ja allikate read. */
+
+/* Teade lava kohal: jääb ette, kuni inimene selle sulgeb. Kast ise on
+   dokumentide lehe teade (klass „notice”); siin on toon, mida seal ei ole: osaline
+   õnnestumine (jagati, aga kinnitust ei saanud küsida) on hoiatus, mitte viga. */
+.stay[data-tone="wait"] {
+  border-color: color-mix(in srgb, #e6c27a 55%, transparent);
+  border-inline-start-width: 3px;
+  background: color-mix(in srgb, #e6c27a 9%, transparent);
+  color: var(--text-warm);
+}
+
+/* Laadimise viga: lause ja selle all uus katse ning tagasitee. */
+.fault {
+  min-width: 0;
+  display: grid;
+  justify-items: start;
+  gap: 0.6rem;
+}
+.faultActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Vaate jaluse teade: viga on teist värvi kui vaikne seisurida. */
+.footNote[data-tone="risk"] {
+  color: var(--status-error, #eb9a76);
+}
+:global(html.theme-light) .footNote[data-tone="risk"] {
+  color: #9a3d1f;
+}
+.footNote[data-tone="ok"] {
+  color: var(--text-soft);
+}
+
+/* --- Mustandi toimetamine --------------------------------------------------- */
+.editor {
+  min-width: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+/* Pealkirja väli on nii lai, kui pealkiri vajab, mitte paneeli laiune. */
+.field {
+  min-width: 0;
+  max-width: 30rem;
+  display: grid;
+  gap: 0.35rem;
+}
+.fieldLabel {
+  color: var(--text-warm);
+  font-weight: 560;
+}
+/* Teksti väli on pikk tekst: täislaius on siin omal kohal. Kõrguse annab
+   sisu (vt DetailViews.jsx `useGrowingField`), seepärast ei keri väli ise ega
+   saa seda käsitsi venitada; ühine kiht annaks muidu oma miinimumkõrguse ja
+   venitamise nurga. */
+.area {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 12rem;
+  overflow: hidden;
+  resize: none;
+  line-height: 1.55;
+}
+
+/* --- Allikad: rida on link faili oma lehele ---------------------------------- */
+/* Rea kuju on dokumentide lehe rida (klass „row”); link ei ole alla joonitud. */
+.linkRow {
+  text-decoration: none;
+}
+.rowMain {
+  min-width: 0;
+  display: grid;
+  gap: 0.05rem;
+}
+.rowSub {
+  min-width: 0;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+/* Ruumi rippvalik (kui ruume on rohkem, kui lahtritena korraga näidata). */
+.select {
+  min-width: 0;
+  max-width: 24rem;
+}
+
+/* Sama piir mis dokumentide lehel: kitsal pinnal on väli terve laiuse peal. */
+@container (max-width: 40rem) {
+  .field,
+  .select {
+    max-width: none;
+  }
+}

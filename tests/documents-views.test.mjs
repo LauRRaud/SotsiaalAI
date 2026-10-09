@@ -309,7 +309,7 @@ test('leht on sammulaval osadena ja ei kasuta enam vana ühist kihti', () => {
   /* Vanad üldreeglid on eemaldatud; teiste lehtede reegel samas plokis jäi alles. */
   const featureCss = read('../app/styles/feature-pages.css');
   assert.ok(!/\.documents-(entry|upload|list|item|provenance|notice|error|page)/.test(featureCss) && !featureCss.includes('feature-page--documents'));
-  assert.ok(featureCss.includes('.artifact-detail-document {'), 'koostatud teksti detaili reegel jäi alles');
+  assert.ok(featureCss.includes('.feature-page--agent {'), 'koostamise lehe reegel jäi alles');
   assert.ok(!read('../app/styles/workspace.css').includes('.documents-dropzone'));
   /* Kujundus on mooduli klassidega: paljaste siltide peale reegleid ei kirjutata. */
   const css = read(STYLES).replace(/\/\*[\s\S]*?\*\//g, '');

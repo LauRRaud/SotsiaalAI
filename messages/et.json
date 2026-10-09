@@ -4364,25 +4364,28 @@
     "approved_at": "Kinnitatud",
     "artifact_detail_title": "Agendi tulemus",
     "detail_title": "Dokument",
-    "file_label": "Fail",
-    "size_label": "Faili suurus",
     "draft_notice": "See mustand on muudetav. Allalaadimine muutub kättesaadavaks pärast kinnitamist.",
     "template_label": "Valitud mall",
-    "sources_section_title": "Allikdokumendid",
     "sources_label": "Allikaid: {count}",
     "empty_sources": "Allikdokumente pole seotud.",
     "meeting_summary_share": {
-      "title": "Jaga kokkuvõte ühisesse ruumi",
-      "hint": "Pöörduja näeb kinnitatud kokkuvõtet ruumis ja saab vastata.",
       "loading": "Laen ruume…",
       "room_label": "Ruum",
       "select_room": "Vali ühine ruum",
       "share": "Jaga ruumi",
       "sharing": "Jagan…",
-      "success": "Kokkuvõte jagati ruumi.",
+      "success": "Kokkuvõte jagati ruumi „{room}”.",
       "error": "Kokkuvõtte jagamine ebaõnnestus.",
-      "no_rooms": "Sul pole veel ühtegi ruumi.",
-      "request_approval": "Küsi osalejatelt kinnitust"
+      "no_rooms": "Sul ei ole ühtegi avatud ruumi, kus oleks peale sinu veel keegi.",
+      "request_approval": "Küsi ruumi spetsialistidelt kinnitust",
+      "question": "Millisesse ruumi kokkuvõte jagada?",
+      "lead": "Kokkuvõte „{title}” postitatakse ruumi sõnumina. Kõik ruumi liikmed näevad seda ja saavad vastata.",
+      "request_approval_desc": "Ruumi teised spetsialistid saavad teate ja saavad vastata, kas kinnitavad kokkuvõtte või on neil parandus. Pöördujalt kinnitust ei küsita.",
+      "confirm": "Vajuta uuesti, et jagada",
+      "confirm_note": "Kokkuvõte postitatakse ruumi „{room}”. Ruumi liikmed näevad seda kohe.",
+      "rooms_failed": "Ruumide laadimine ebaõnnestus.",
+      "approval_requested": "Ruumi teistelt spetsialistidelt küsiti kinnitust.",
+      "approval_failed": "Kokkuvõte jagati ruumi „{room}”, aga kinnituse küsimine ebaõnnestus."
     },
     "filters": {
       "all": "Kõik"
@@ -4457,7 +4460,6 @@
       "saving": "Salvestan...",
       "save": "Salvesta",
       "save_draft": "Salvesta mustand",
-      "refine_stub": "Palu agendil täiendada",
       "approving": "Kinnitan...",
       "approve": "Kinnita",
       "select_document": "Vali dokument: {title}",
@@ -4471,8 +4473,7 @@
       "deleted": "Dokument kustutati.",
       "artifact_deleted": "Agendi tulemus kustutati.",
       "copied": "Sisu kopeeriti lõikelauale.",
-      "approved": "Kinnitatud. Professionaalsed DOCX- ja PDF-failid on nüüd allalaaditavad.",
-      "refine_stub": "Agendi täiendus lisandub töörežiimi. Seni saad mustandit käsitsi muuta."
+      "approved": "Kinnitatud. Professionaalsed DOCX- ja PDF-failid on nüüd allalaaditavad."
     },
     "confirm": {
       "delete_document": "Kas kustutada see dokument jäädavalt? Toimingut ei saa tagasi võtta.",
@@ -4962,6 +4963,56 @@
         "summary_confirmed": "Kinnitus on olemas",
         "summary_pending": "Kinnitust ei ole veel salvestatud"
       }
+    },
+    "detail": {
+      "views": {
+        "text": {
+          "title": "Tekst",
+          "short": "Tekst"
+        },
+        "approve": {
+          "title": "Kinnitamine",
+          "short": "Kinnitamine"
+        },
+        "sheet": {
+          "title": "Andmed ja tegevused",
+          "short": "Andmed"
+        },
+        "share": {
+          "title": "Jagamine ruumi",
+          "short": "Jagamine"
+        },
+        "sources": {
+          "title": "Allikad",
+          "short": "Allikad"
+        }
+      },
+      "summary": {
+        "words": "Sõnu tekstis: {count}",
+        "empty_text": "Tekst on tühi.",
+        "approve": "Mustand ootab kinnitamist",
+        "share": "Vali ruum ja jaga kinnitatud kokkuvõte",
+        "shared": "Jagatud ruumi „{room}”"
+      },
+      "unsaved": "Salvestamata muudatused",
+      "unsaved_leave": "Tekstis on salvestamata muudatusi. Salvesta need osas „Tekst”, enne kui lehelt lahkud.",
+      "facts": {
+        "created": "Loodud"
+      },
+      "open_drafting": "Ava koostamisruumis",
+      "approve": {
+        "question": "Kas tekst „{title}” on valmis kinnitamiseks?",
+        "lead": "Kinnitamine salvestab pealkirja ja teksti nii, nagu need praegu osas „Tekst” on. Kinnitatud teksti saab alla laadida, aga muuta seda enam ei saa.",
+        "unsaved": "Tekstis on salvestamata muudatusi. Need kinnitatakse koos tekstiga.",
+        "empty": "Tekst on tühi. Tühja teksti kinnitada ei saa.",
+        "confirm": "Vajuta uuesti, et kinnitada",
+        "confirm_note": "Pärast kinnitamist ei saa teksti enam muuta.",
+        "done_no_pdf": "Kinnitatud. Wordi faili saab nüüd alla laadida. PDF-i sellest tekstist teha ei saanud, sest PDF ei toeta kõiki teksti märke."
+      },
+      "sources": {
+        "lead": "Failid, millest see tekst koostati."
+      },
+      "leave_confirm": "Vajuta uuesti, et lahkuda salvestamata"
     }
   },
   "research": {
