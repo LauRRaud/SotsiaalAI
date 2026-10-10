@@ -26,13 +26,17 @@
  * lubadust (see ei ole otsus; andmed ei lahku seadmest) seisavad esimesel
  * vaatel, ENNE kui inimene oma sissetuleku sisestab.
  *
- * LEHE OTSUSED EI OLE SIIN. Mis läheb arvutusse, mis on tulemus, mis seisus on
- * sammud ja mida tulemuse all öeldakse, otsustab `./subsistenceSteps.js`
- * (testitud käitumisena); siin on ainult olek ja joonistus. Kujundus on failis
+ * LEHE OTSUSED EI OLE SIIN. Mis väli mis kohta kirjutab, kuidas olek muutub,
+ * mis läheb arvutusse, mis on tulemus, mis seisus on sammud ja mida iga vaade
+ * joonistada tohib, otsustab `./subsistenceSteps.js` (testitud käitumisena).
+ * Siin on kaks osa: `SubsistenceCalculator` hoiab olekut ja lahkumise väravat,
+ * `SubsistenceViews` joonistab selle, mida `pageView` tagastab. Vaated on eraldi
+ * osa, et test saaks need antud olekuga joonistada ja väljade teateid läbi
+ * vajutada (`tests/subsistence-calculator-render.test.mjs`). Kujundus on failis
  * `./subsistence.module.css`.
  */
 
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { useEffect, useId, useReducer, useRef, useState } from "react";
 import { useSession } from "next-auth/react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
@@ -47,158 +51,98 @@ import { loginHref } from "@/lib/safeNextPath";
 
 import styles from "./subsistence.module.css";
 import {
-  COST_GROUPS,
-  EMPTY_FORM,
-  STEP_KEYS,
-  costFieldId,
-  declaredCostKeys,
-  formTouched,
-  gateQuestions,
-  housingReason,
-  issueRows,
-  pageEstimate,
-  quoted,
-  rateMissing,
-  resultFacts,
-  resultNote,
-  stepStates,
-  stepSummaries,
-  wholeCount
+  ANSWER_CHOICES,
+  EMPTY_STATE,
+  VIEW_FIELDS,
+  answerAction,
+  armLeaveGuard,
+  fieldAction,
+  fieldValue,
+  leaveGuarded,
+  pageReducer,
+  pageScreen,
+  pageView,
+  viewText
 } from "./subsistenceSteps";
 
 /**
- * Arvuväli: nimi välja kohal, väli nii lai kui summa või arv vajab. `hintId`:
- * selgitus, mis seisab väljade all. `whole`: pereliikmete ja tubade arv on
- * täisarv (murdosa ei jää väljale, kuigi arvutus selle nagunii ära lõikaks:
- * plaat ja arvutus peavad näitama sama arvu).
+ * Arvuväli: nimi välja kohal, väli nii lai kui summa või arv vajab. Välja kuju
+ * (täisarv või mitte, samm, laius, suurim väärtus) tuleb väljade tabelist.
  *
  * LOETAMATU SISU. Arvuväli annab lehele tühja väärtuse, kui väljale on
  * kirjutatud midagi, mida brauser arvuks ei loe („500,-", „1 200"), aga tekst
- * jääb väljale seisma. Väli ütleb selle lehele (`onChange` teine argument),
+ * jääb väljale seisma. Väli ütleb lehele oma väärtuse ja loetavuse (`onReport`),
  * leht hoiab välja loetamatuna ja arvutus keeldub välja nimega: muidu arvutataks
  * ilma selle summata ja tulemus ei vastaks sellele, mida inimene väljal näeb.
+ *
+ * MIKS KOLM KUULAJAT. React kutsub `onChange` ainult siis, kui välja VÄÄRTUS
+ * muutus. Tühjalt väljalt loetamatu tekstini („280,-" kleebitud tühjale väljale)
+ * ja loetamatust tekstist tühjaks on väärtus mõlemal pool tühi sõne: `onChange`
+ * ei tule, märk jäi panemata (leht arvutas ilma summata, mis väljal seisis) või
+ * maha võtmata (leht keeldus tühja välja pärast). Brauseri enda `input` sündmus
+ * (`onInput`) tuleb igal sisestusel; fookuse lahkumisel loetakse seis veel kord
+ * üle. Teade on sama, seega mitu teadet järjest ei muuda midagi.
  */
-function NumberField({ label, hintId, value, onChange, step = "0.01", size = "sum", whole = false }) {
+function NumberField({ field, label, describedBy, value, onReport }) {
   const id = useId();
-  const change = (event) => {
-    const typed = event.target.value;
-    const unreadable = event.target.validity?.badInput === true;
-    onChange(whole && typed !== "" ? String(wholeCount(typed)) : typed, unreadable);
-  };
+  const report = (event) => onReport(event.target);
   return (
-    <div className={styles.field} data-size={size}>
+    <div className={styles.field} data-size={field.size}>
       <label className={styles.fieldLabel} htmlFor={id}>
         {label}
       </label>
-      <Input id={id} type="number" min="0" max={whole ? "99" : "1000000"} step={step} inputMode={whole ? "numeric" : "decimal"} value={value} aria-describedby={hintId} onChange={change} />
+      <Input
+        id={id}
+        type="number"
+        min="0"
+        max={field.max}
+        step={field.step}
+        inputMode={field.whole ? "numeric" : "decimal"}
+        value={value}
+        aria-describedby={describedBy}
+        onChange={report}
+        onInput={report}
+        onBlur={report}
+      />
     </div>
   );
 }
 
-export default function SubsistenceCalculator() {
+/**
+ * Vormi vaated: joonistab selle, mida `pageView` antud oleku kohta tagastab, ja
+ * saadab iga sisestuse `dispatch` kaudu lehe olekusse. `day` on testi jaoks;
+ * leht jätab selle andmata ja arvutus võtab tänase kuupäeva.
+ */
+export function SubsistenceViews({ state, dispatch, leaveAsked = false, leaveRef, day }) {
   const { t, locale } = useI18n();
-  const { status } = useSession();
   const hintId = useId();
-  const [form, setForm] = useState(EMPTY_FORM);
-  const [costs, setCosts] = useState({});
-  /* Väljad, kuhu on kirjutatud midagi, mida brauser arvuks ei loe. */
-  const [bad, setBad] = useState([]);
-  const [leaveAsked, setLeaveAsked] = useState(false);
-  const leaveRef = useRef(null);
 
-  const mark = (id, unreadable) =>
-    setBad((current) => (unreadable ? (current.includes(id) ? current : [...current, id]) : current.includes(id) ? current.filter((item) => item !== id) : current));
-  const set = (key, value, unreadable = false) => {
-    setForm((current) => ({ ...current, [key]: value }));
-    mark(key, unreadable);
-  };
-  const setCost = (key, value, unreadable = false) => {
-    setCosts((current) => ({ ...current, [key]: value }));
-    mark(costFieldId(key), unreadable);
-  };
+  /* Kui vaated lähevad ekraanilt (seanss lõppes), kaob koos väljadega ka nendel
+     seisnud loetamatu tekst: märgid võetakse maha, muidu keelduks leht pärast
+     tagasitulekut tühjade väljade pärast. Sisestatud arvud jäävad alles. */
+  useEffect(() => () => dispatch({ type: "fieldsGone" }), [dispatch]);
 
-  const declared = useMemo(() => declaredCostKeys(costs), [costs]);
-  const questions = gateQuestions(declared);
-  const result = useMemo(() => pageEstimate(form, costs, bad), [form, costs, bad]);
-
-  /* Leht ei salvesta midagi (see on lubadus), seega kaoks kogemata lahkumisel
-     kuni kakskümmend sisestatud arvu ilma ühegi sõnata. Kui midagi on sisestatud,
-     peab kiirmenüü tagasinool ja Esc esimese vajutuse kinni ja lava kohal seisab
-     põhjus; teine vajutus lahkub (lib/panelLeaveGuard.js). Akna sulgemise ja uuesti
-     laadimise peab kinni brauseri enda küsimus. Brauseri tagasinuppu ja
-     väljalogimist see ei kata. Värav on olemas ainult siis, kui vorm on ees:
-     lõppenud seansi korral on ees sisselogimise vaade ja teadet ei oleks kus näidata. */
-  const guarded = status === "authenticated" && formTouched(form, costs, bad);
-  useEffect(() => {
-    if (!guarded) return undefined;
-    const leave = twoPressLeaveGuard({
-      onAsk: () => {
-        setLeaveAsked(true);
-        /* Teade on lehe alguses: keritud lehel (telefon) tuuakse see nähtavale. */
-        window.requestAnimationFrame(() => leaveRef.current?.scrollIntoView({ block: "nearest" }));
-      },
-      onClear: () => setLeaveAsked(false)
-    });
-    const release = setPanelLeaveGuard(leave);
-    const warn = (event) => {
-      event.preventDefault();
-      event.returnValue = "";
-    };
-    window.addEventListener("beforeunload", warn);
-    return () => {
-      release();
-      leave.clear();
-      window.removeEventListener("beforeunload", warn);
-    };
-  }, [guarded]);
-
-  if (status === "loading") {
-    return <p className={styles.quiet}>{t("subsistence.loading")}</p>;
-  }
-
-  // Konto on nõutav (omanik 04.08). Arvutus ise jääb sellegipoolest brauserisse:
-  // sisselogimine avab lehe, aga ei tee sisestatud andmeid serverile nähtavaks.
-  // Need kaks on eri asjad ja teine neist ei tohi esimesega kaduda.
-  if (status !== "authenticated") {
-    return (
-      <section className={styles.page}>
-        <h1 className="sr-only">{t("subsistence.title")}</h1>
-        <StepPanel
-          title={t("subsistence.title")}
-          question={t("subsistence.auth_required")}
-          actions={
-            <Button as="a" href={loginHref("/toimetulekutoetus")} size="sm" variant="primary">
-              {t("subsistence.actions.login")}
-            </Button>
-          }
-        />
-      </section>
-    );
-  }
-
-  const members = wholeCount(form.adults) + wholeCount(form.minors);
-  const states = stepStates(form, costs, result.usable);
-  const summaries = stepSummaries(form, costs, result, locale);
-  const steps = STEP_KEYS.map((key) => ({
-    key,
-    label: t(`subsistence.views.${key}.title`),
-    short: t(`subsistence.views.${key}.short`),
-    state: states[key],
-    summary: (key === "family" ? t("subsistence.views.family.summary", summaries.family) : summaries[key]) || undefined,
-    /* Üle nelja täpsustava küsimuse (üür, korterelamu kulud, laen ja maamaks korraga) ei mahu ühte vaatesse:
-       see vaade kerib siis paneeli ega tee teisi vaateid enda kõrguseks. */
-    free: key === "gates" && questions.length > 4
+  const view = pageView(state, locale, day);
+  const steps = view.steps.map((step) => ({
+    key: step.key,
+    label: t(step.titleKey),
+    short: t(step.shortKey),
+    state: step.state,
+    summary: (step.summaryKey ? t(step.summaryKey, step.summaryVars) : step.summary) || undefined,
+    free: step.free
   }));
-  const yesNo = [
-    { value: "yes", label: t("subsistence.answers.yes") },
-    { value: "no", label: t("subsistence.answers.no") }
-  ];
-  const note = resultNote(result);
-  const reason = housingReason(result, locale);
-  const costFields = (group) => (
+  const answers = ANSWER_CHOICES.map((choice) => ({ value: choice.value, label: t(choice.labelKey) }));
+  const numberFields = (viewKey) => (
     <div className={styles.fields}>
-      {COST_GROUPS[group].map((key) => (
-        <NumberField key={key} label={t(`subsistence.costs.${key}`)} value={costs[key] ?? ""} onChange={(value, unreadable) => setCost(key, value, unreadable)} />
+      {VIEW_FIELDS[viewKey].map((field) => (
+        <NumberField
+          key={field.id}
+          field={field}
+          label={t(field.labelKey)}
+          describedBy={field.hint ? `${hintId}-${field.hint}` : undefined}
+          value={fieldValue(state, field)}
+          onReport={(target) => dispatch(fieldAction(field, target))}
+        />
       ))}
     </div>
   );
@@ -211,10 +155,7 @@ export default function SubsistenceCalculator() {
              teeb, ENNE kui ta oma sissetuleku sisestab. */
           <StepPanel title={t("subsistence.views.family.title")} question={t("subsistence.not_a_decision")} lead={t("subsistence.stays_on_device")}>
             <div className={styles.stack}>
-              <div className={styles.fields}>
-                <NumberField label={t("subsistence.fields.adults")} hintId={`${hintId}-family`} value={form.adults} step="1" size="count" whole onChange={(value, unreadable) => set("adults", value, unreadable)} />
-                <NumberField label={t("subsistence.fields.minors")} hintId={`${hintId}-family`} value={form.minors} step="1" size="count" whole onChange={(value, unreadable) => set("minors", value, unreadable)} />
-              </div>
+              {numberFields("family")}
               {/* Kes on pereliige ja kuhu läheb laps, kes saab sel kuul 18: vale lahter annaks vale piiri. */}
               <p className={styles.hint} id={`${hintId}-family`}>
                 {t("subsistence.hints.family")}
@@ -226,12 +167,7 @@ export default function SubsistenceCalculator() {
         return (
           <StepPanel title={t("subsistence.views.income.title")} question={t("subsistence.views.income.question")} note={t("subsistence.stays_on_device")}>
             <div className={styles.stack}>
-              <div className={styles.fields}>
-                <NumberField label={t("subsistence.fields.work_income")} hintId={`${hintId}-income`} value={form.workIncome} onChange={(value, unreadable) => set("workIncome", value, unreadable)} />
-                <NumberField label={t("subsistence.fields.other_income")} hintId={`${hintId}-income`} value={form.otherIncome} onChange={(value, unreadable) => set("otherIncome", value, unreadable)} />
-                <NumberField label={t("subsistence.fields.paid_maintenance")} value={form.paidMaintenance} onChange={(value, unreadable) => set("paidMaintenance", value, unreadable)} />
-                <NumberField label={t("subsistence.fields.enforcement")} value={form.enforcementWithheld} onChange={(value, unreadable) => set("enforcementWithheld", value, unreadable)} />
-              </div>
+              {numberFields("income")}
               {/* Null sissetulek on selle toetuse puhul tavaline: reegel seisab siin, mitte alles viimases vaates. */}
               <p className={styles.hint} id={`${hintId}-income`}>
                 {t("subsistence.hints.zero_income")} {t("subsistence.hints.excluded_income")}
@@ -243,17 +179,14 @@ export default function SubsistenceCalculator() {
         return (
           <StepPanel title={t("subsistence.views.housing.title")} question={t("subsistence.views.housing.question")}>
             <div className={styles.stack}>
-              <div className={styles.fields}>
-                <NumberField label={t("subsistence.fields.area")} value={form.dwellingAreaM2} step="0.1" size="count" onChange={(value, unreadable) => set("dwellingAreaM2", value, unreadable)} />
-                <NumberField label={t("subsistence.fields.rooms")} hintId={`${hintId}-rooms`} value={form.rooms} step="1" size="count" whole onChange={(value, unreadable) => set("rooms", value, unreadable)} />
-              </div>
+              {numberFields("housing")}
               <p className={styles.hint} id={`${hintId}-rooms`}>
                 {t("subsistence.hints.rooms")}
               </p>
               {/* Märge käib üksi elava inimese kohta: mitme pereliikmega arvutus seda ei kasuta, seega seda siis ei pakuta. */}
-              {members === 1 ? (
+              {view.singleOccupant.shown ? (
                 <div className={styles.check}>
-                  <CheckCard title={t("subsistence.fields.single_occupant")} checked={form.singleOccupantExtendedNorm} onChange={(checked) => set("singleOccupantExtendedNorm", checked)} />
+                  <CheckCard title={t("subsistence.fields.single_occupant")} checked={view.singleOccupant.checked} onChange={(checked) => dispatch({ type: "singleOccupant", checked })} />
                 </div>
               ) : null}
             </div>
@@ -262,20 +195,20 @@ export default function SubsistenceCalculator() {
       case "costs":
         return (
           <StepPanel title={t("subsistence.views.costs.title")} question={t("subsistence.views.costs.question")} note={t("subsistence.views.costs.note")}>
-            {costFields("costs")}
+            {numberFields("costs")}
           </StepPanel>
         );
       case "utilities":
         return (
           <StepPanel title={t("subsistence.views.utilities.title")} question={t("subsistence.views.utilities.question")} note={t("subsistence.views.costs.note")}>
-            {costFields("utilities")}
+            {numberFields("utilities")}
           </StepPanel>
         );
       case "gates":
         return (
-          <StepPanel title={t("subsistence.views.gates.title")} question={questions.length ? undefined : t("subsistence.views.gates.none")}>
+          <StepPanel title={t("subsistence.views.gates.title")} question={view.gates.length ? undefined : t("subsistence.views.gates.none")}>
             <div className={styles.gates}>
-              {questions.map((question) => (
+              {view.gates.map((question) => (
                 <div key={question.field} className={styles.gate} role="group" aria-describedby={question.conditions ? `${hintId}-${question.field}` : undefined}>
                   {/* Tingimused seisavad enne vastust: ilma nendeta ei saa küsimusele vastata. */}
                   {question.conditions ? (
@@ -285,13 +218,7 @@ export default function SubsistenceCalculator() {
                       ))}
                     </ol>
                   ) : null}
-                  <ChoiceRow
-                    label={t(question.text)}
-                    layout="scale"
-                    options={yesNo}
-                    value={form[question.field] === true ? "yes" : form[question.field] === false ? "no" : ""}
-                    onChange={(value) => set(question.field, value === "yes")}
-                  />
+                  <ChoiceRow label={t(question.text)} layout="scale" options={answers} value={question.choice} onChange={(choice) => dispatch(answerAction(question, choice))} />
                   {question.hint ? <p className={styles.hint}>{t(question.hint)}</p> : null}
                 </div>
               ))}
@@ -301,31 +228,33 @@ export default function SubsistenceCalculator() {
       default:
         /* Tulemus arvutatakse sisestatust kohe: eraldi nuppu ei ole. Kui summat
            ei saa ohutult anda, seisab siin see, mis puudu on (fail-closed).
-           Summa avab vaate: sammu nime („Eelhinnang") ütleb kiirmenüü. */
-        return result.usable ? (
+           Summa avab vaate: sammu nime („Eelhinnang") ütleb kiirmenüü. Mõlemad
+           vaated joonistavad ainult seda, mis on `view.result` sees. */
+        return view.result.usable ? (
           <StepPanel title={t("subsistence.views.result.title")} note={t("subsistence.not_a_decision")}>
             <div className={styles.stack} aria-live="polite">
-              <p className={styles.amount}>{summaries.result}</p>
+              <p className={styles.amount}>{view.result.amount}</p>
               <dl className={styles.facts}>
-                {resultFacts(result, locale).map((fact) => (
-                  <div key={fact.key} className={styles.fact}>
-                    <dt className={styles.factLabel}>{t(`subsistence.result.${fact.key}`)}</dt>
+                {view.result.facts.map((fact) => (
+                  <div key={fact.id} className={styles.fact}>
+                    <dt className={styles.factLabel}>{viewText(fact, t, locale)}</dt>
                     <dd className={styles.factValue}>{fact.value}</dd>
                   </div>
                 ))}
               </dl>
-              {/* Miks arvesse läks vähem, kui sisestati: arv ilma põhjuseta näeb välja nagu viga. */}
-              {reason ? <p className={styles.quiet}>{t(reason.key, { ...reason.vars, costs: reason.costKeys.map((costKey) => quoted(t(costKey), locale)).join(", ") })}</p> : null}
-              {note === "above_line" ? <p className={styles.quiet}>{t("subsistence.caveat.above_line")}</p> : null}
-              {note === "kov_limits" ? <p className={styles.caveat}>{t("subsistence.caveat.kov_limits")}</p> : null}
+              {view.result.sentences.map((sentence) => (
+                <p key={sentence.id} className={sentence.tone === "caveat" ? styles.caveat : styles.quiet}>
+                  {viewText(sentence, t, locale)}
+                </p>
+              ))}
             </div>
           </StepPanel>
         ) : (
           <StepPanel title={t("subsistence.views.result.title")} question={t("subsistence.result.incomplete")}>
             <ul className={styles.issues} aria-live="polite">
-              {issueRows(result.issues).map((row) => (
-                <li key={`${row.code}:${row.fieldLabelKey}`} className={styles.issue}>
-                  {row.fieldLabelKey ? t(`subsistence.issues_named.${row.code}`, { field: t(row.fieldLabelKey) }) : t(`subsistence.issues.${row.code}`)}
+              {view.result.rows.map((row) => (
+                <li key={row.id} className={styles.issue}>
+                  {viewText(row, t, locale)}
                 </li>
               ))}
             </ul>
@@ -342,11 +271,70 @@ export default function SubsistenceCalculator() {
           {t("subsistence.leave_asked")}
         </p>
       ) : null}
-      {/* Kui selle aasta määra ei ole kinnitatud, ei aita ükski sisestus: seda öeldakse kohe, mitte alles seitsmendas vaates. */}
-      {rateMissing(result) ? <p className={styles.leave}>{t("subsistence.issues.UNSUPPORTED_DATE")}</p> : null}
+      {/* Kuupäeva puudujääk (päeva ei saa lugeda, seadme kell on varasemas aastas või selle aasta määra ei ole):
+          ükski sisestus ei aita, seega öeldakse seda kohe, mitte alles seitsmendas vaates. */}
+      {view.banner ? <p className={styles.leave}>{t(view.banner)}</p> : null}
       <StepFlight label={t("subsistence.title")} steps={steps}>
         {(step) => renderView(step.key)}
       </StepFlight>
     </section>
   );
+}
+
+export default function SubsistenceCalculator() {
+  const { t } = useI18n();
+  const { status } = useSession();
+  /* Vorm, kulud ja loetamatute väljade märgid ühes olekus: tulemus arvutatakse
+     alati kõigist kolmest korraga. */
+  const [state, dispatch] = useReducer(pageReducer, EMPTY_STATE);
+  const [leaveAsked, setLeaveAsked] = useState(false);
+  const leaveRef = useRef(null);
+
+  /* Leht ei salvesta midagi (see on lubadus), seega kaoks kogemata lahkumisel
+     kuni kakskümmend sisestatud arvu ilma ühegi sõnata. Kui midagi on sisestatud,
+     peab kiirmenüü tagasinool ja Esc esimese vajutuse kinni ja lava kohal seisab
+     põhjus; teine vajutus lahkub (lib/panelLeaveGuard.js). Akna sulgemise ja uuesti
+     laadimise peab kinni brauseri enda küsimus. Brauseri tagasinuppu ja
+     väljalogimist see ei kata. Värav on olemas ainult siis, kui vorm on ees:
+     lõppenud seansi korral on ees sisselogimise vaade ja teadet ei oleks kus näidata. */
+  const guarded = leaveGuarded(status, state);
+  useEffect(() => {
+    if (!guarded) return undefined;
+    const leave = twoPressLeaveGuard({
+      onAsk: () => {
+        setLeaveAsked(true);
+        /* Teade on lehe alguses: keritud lehel (telefon) tuuakse see nähtavale. */
+        window.requestAnimationFrame(() => leaveRef.current?.scrollIntoView({ block: "nearest" }));
+      },
+      onClear: () => setLeaveAsked(false)
+    });
+    return armLeaveGuard({ leave, register: setPanelLeaveGuard, target: window });
+  }, [guarded]);
+
+  const screen = pageScreen(status);
+  if (screen === "loading") {
+    return <p className={styles.quiet}>{t("subsistence.loading")}</p>;
+  }
+
+  // Konto on nõutav (omanik 04.08). Arvutus ise jääb sellegipoolest brauserisse:
+  // sisselogimine avab lehe, aga ei tee sisestatud andmeid serverile nähtavaks.
+  // Need kaks on eri asjad ja teine neist ei tohi esimesega kaduda.
+  if (screen === "login") {
+    return (
+      <section className={styles.page}>
+        <h1 className="sr-only">{t("subsistence.title")}</h1>
+        <StepPanel
+          title={t("subsistence.title")}
+          question={t("subsistence.auth_required")}
+          actions={
+            <Button as="a" href={loginHref("/toimetulekutoetus")} size="sm" variant="primary">
+              {t("subsistence.actions.login")}
+            </Button>
+          }
+        />
+      </section>
+    );
+  }
+
+  return <SubsistenceViews state={state} dispatch={dispatch} leaveAsked={leaveAsked} leaveRef={leaveRef} />;
 }

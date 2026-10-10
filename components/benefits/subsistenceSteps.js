@@ -11,9 +11,24 @@
  * puutumata leht näitas summat. Sellist viga ei hoia test, mis loeb lehe
  * lähteteksti. Seepärast ehitab arvutuse sisendi `estimateInput`, kogu lehe
  * tulemuse annab `pageEstimate` ja need on testitud käitumisena.
+ *
+ * TEINE SAMM (10.10 järelkontroll). Ülevaataja murdis lehe failis 21 rida ja 19
+ * neist jättis kõik testid roheliseks: vastus „Jah" läks arvutusse „Ei"-na,
+ * „muu sissetuleku" väli kirjutas töise sissetuleku kohale, keeldumise vaatesse
+ * sai joonistada summa. Seepärast on siin nüüd ka need otsused: väljade tabel
+ * (`VIEW_FIELDS`: mis nimega väli mis kohta kirjutab), lehe olek ja selle
+ * muutmine (`pageReducer`), vastuse ja valiku vastavus (`choiceFromAnswer`,
+ * `answerFromChoice`) ning see, mida iga vaade joonistada tohib (`pageView`,
+ * `resultView`). Leht joonistab ainult seda, mida need tagastavad.
  */
 
-import { estimateSubsistenceBenefit } from "../../lib/benefits/subsistence.js";
+import {
+  MAX_AMOUNT,
+  MAX_DWELLING_AREA_M2,
+  declaredHousingCostKeys,
+  enteredRoomCount,
+  estimateSubsistenceBenefit
+} from "../../lib/benefits/subsistence.js";
 
 /**
  * Eluasemekulud kahes vaates: eluasemega seotud maksed ja kommunaalkulud.
@@ -35,9 +50,13 @@ export const LOAN_CONDITION_KEYS = Object.freeze([
   "subsistence.loan_conditions.residence"
 ]);
 
-/** Kulud, mille kohta on sisestatud nullist suurem summa. */
+/**
+ * Kulud, mille kohta on sisestatud nullist suurem summa. Reegel on arvutuse oma
+ * (`declaredHousingCostKeys`), mitte selle koopia: „0" kulu väljal tähendab
+ * lehele ja arvutusele sama (kulu ei ole, küsimust ei küsita).
+ */
 export function declaredCostKeys(costs = {}) {
-  return Object.keys(costs).filter((key) => Number(costs[key]) > 0);
+  return declaredHousingCostKeys(costs);
 }
 
 /**
@@ -112,8 +131,9 @@ const GATE_FIELDS = Object.freeze([
   "landTaxExempt"
 ]);
 const INCOME_FIELDS = Object.freeze(["workIncome", "otherIncome", "paidMaintenance", "enforcementWithheld"]);
-/* Väljad, mis ei ole summad: nende loetamatu sisu kohta teeb puudujäägi leht ise. */
-const COUNT_FIELDS = Object.freeze(["adults", "minors", "dwellingAreaM2", "rooms"]);
+/* Täisarvuväljad: nende loetamatu sisu kohta teeb puudujäägi leht ise (arvutus loeks tühja välja
+   lihtsalt sisestamata arvuks). Summad ja pind lähevad arvutusse mittearvuna ja arvutus keeldub ise. */
+const COUNT_FIELDS = Object.freeze(["adults", "minors", "rooms"]);
 
 /** Pereliikmete ja tubade arv täisarvuna (0 kuni 99): murdosa ja miinust ei ole. */
 export function wholeCount(value) {
@@ -122,6 +142,143 @@ export function wholeCount(value) {
 
 /** Loetamatu välja tunnus: summa- ja arvuväljal välja nimi, kulul `cost:<kulu>`. */
 export const costFieldId = (key) => `cost:${key}`;
+
+/* --- Väljade tabel -------------------------------------------------------------------- */
+
+const numberField = (id, labelKey, extra = {}) =>
+  Object.freeze({ id, labelKey, formKey: "", costKey: "", whole: false, step: "0.01", size: "sum", max: String(MAX_AMOUNT), hint: "", ...extra });
+const wholeField = (formKey, labelKey, hint) => numberField(formKey, labelKey, { formKey, whole: true, step: "1", size: "count", max: "99", hint });
+const amountField = (formKey, labelKey, hint = "") => numberField(formKey, labelKey, { formKey, hint });
+const costField = (key) => numberField(costFieldId(key), `subsistence.costs.${key}`, { costKey: key });
+
+/**
+ * Arvuväljad vaadete kaupa: mis nimega väli mis kohta kirjutab.
+ *
+ * `labelKey` on välja nimi kataloogis, `formKey` või `costKey` koht lehe olekus,
+ * `whole` ütleb, et väli on täisarv (pereliikmete ja tubade arv: murdosa ei jää
+ * väljale, plaat ja arvutus näitavad sama arvu). `hint` on selle selgituse nimi,
+ * mis välja kirjeldab (`aria-describedby`), `step`, `size` ja `max` on välja kuju.
+ *
+ * Sama tabel annab välja nime ka puudujäägi reale (`issueFieldLabelKey`): rida
+ * nimetab välja täpselt selle nimega, mis välja kohal seisab.
+ */
+export const VIEW_FIELDS = Object.freeze({
+  family: Object.freeze([wholeField("adults", "subsistence.fields.adults", "family"), wholeField("minors", "subsistence.fields.minors", "family")]),
+  income: Object.freeze([
+    amountField("workIncome", "subsistence.fields.work_income", "income"),
+    amountField("otherIncome", "subsistence.fields.other_income", "income"),
+    amountField("paidMaintenance", "subsistence.fields.paid_maintenance"),
+    amountField("enforcementWithheld", "subsistence.fields.enforcement")
+  ]),
+  housing: Object.freeze([
+    numberField("dwellingAreaM2", "subsistence.fields.area", { formKey: "dwellingAreaM2", step: "0.1", size: "count", max: String(MAX_DWELLING_AREA_M2) }),
+    wholeField("rooms", "subsistence.fields.rooms", "rooms")
+  ]),
+  costs: Object.freeze(COST_GROUPS.costs.map(costField)),
+  utilities: Object.freeze(COST_GROUPS.utilities.map(costField))
+});
+
+const ALL_FIELDS = Object.freeze(Object.values(VIEW_FIELDS).flat());
+const FIELD_BY_ID = new Map(ALL_FIELDS.map((field) => [field.id, field]));
+
+/**
+ * Mida arvuväli lehele ütleb: väärtus ja kas väljal seisab midagi, mida brauser
+ * arvuks ei loe.
+ *
+ * LOETAMATU SISU. Arvuväli annab tühja väärtuse nii siis, kui ta on tühi, kui ka
+ * siis, kui sinna on kirjutatud „500,-" või „1 200"; tekst jääb väljale seisma.
+ * Vahet teeb ainult brauseri märge `validity.badInput`.
+ */
+export function readNumberInput(target, whole = false) {
+  const typed = String(target?.value ?? "");
+  return {
+    value: whole && typed !== "" ? String(wholeCount(typed)) : typed,
+    unreadable: target?.validity?.badInput === true
+  };
+}
+
+/**
+ * Loetamatute väljade märgid. `{ id, unreadable }` paneb märgi peale või võtab
+ * maha; `{ clear: true }` võtab kõik maha (väljad läksid ekraanilt ja nendel
+ * seisnud tekst koos nendega). Kui midagi ei muutu, tuleb tagasi SAMA loend:
+ * väli teatab oma seisu igal sisestusel ja fookuse lahkumisel ning leht ei pea
+ * sellepärast uuesti joonistama.
+ */
+export function markReducer(bad = [], action = {}) {
+  if (action.clear) return bad.length ? [] : bad;
+  const id = String(action.id ?? "");
+  if (!id) return bad;
+  const marked = bad.includes(id);
+  if (action.unreadable === true) return marked ? bad : [...bad, id];
+  return marked ? bad.filter((item) => item !== id) : bad;
+}
+
+/* --- Lehe olek ------------------------------------------------------------------------- */
+
+/** Lehe algseis: vorm, kulud ja loetamatute väljade märgid. */
+export const EMPTY_STATE = Object.freeze({ form: EMPTY_FORM, costs: Object.freeze({}), bad: Object.freeze([]) });
+
+/** Väli lehele: mida väli parajasti ütleb (vt `readNumberInput`). */
+export const fieldAction = (field, target) => ({ type: "field", id: field?.id, ...readNumberInput(target, field?.whole === true) });
+
+/** Väärtus, mida väli näitab. */
+export function fieldValue(state, field) {
+  const value = field.costKey ? state.costs[field.costKey] : state.form[field.formKey];
+  return value == null ? "" : String(value);
+}
+
+/** Täpsustava küsimuse valik vastusest: „yes", „no" või tühi (vastamata). */
+export const choiceFromAnswer = (answer) => (answer === true ? "yes" : answer === false ? "no" : "");
+
+/** Vastus valikust. Tundmatu valik on vastamata küsimus, mitte „ei". */
+export const answerFromChoice = (choice) => (choice === "yes" ? true : choice === "no" ? false : null);
+
+/** Vastusevariandid lehe järjekorras: „Jah" enne. */
+export const ANSWER_CHOICES = Object.freeze([
+  Object.freeze({ value: "yes", labelKey: "subsistence.answers.yes" }),
+  Object.freeze({ value: "no", labelKey: "subsistence.answers.no" })
+]);
+
+/**
+ * Lehe oleku muutused. Iga muutus tuleb siit, mitte lehe failist:
+ *   - `field`: arvuväli ütleb oma väärtuse ja loetavuse (`fieldAction`);
+ *   - `answer`: vastus täpsustavale küsimusele (`choice`: „yes" või „no");
+ *   - `singleOccupant`: märge „elan üksi ja olen pensionär …";
+ *   - `fieldsGone`: väljad läksid ekraanilt, loetamatu teksti märgid maha.
+ * Kui midagi ei muutu, tuleb tagasi SAMA olek.
+ */
+export function pageReducer(state = EMPTY_STATE, action = {}) {
+  switch (action?.type) {
+    case "field": {
+      const field = FIELD_BY_ID.get(action.id);
+      if (!field) return state;
+      const value = String(action.value ?? "");
+      const bad = markReducer(state.bad, { id: field.id, unreadable: action.unreadable === true });
+      const key = field.costKey || field.formKey;
+      const group = field.costKey ? "costs" : "form";
+      const same = fieldValue(state, field) === value;
+      if (same && bad === state.bad) return state;
+      return { ...state, [group]: same ? state[group] : { ...state[group], [key]: value }, bad };
+    }
+    case "answer": {
+      if (!GATE_FIELDS.includes(action.field)) return state;
+      const answer = answerFromChoice(action.choice);
+      if (state.form[action.field] === answer) return state;
+      return { ...state, form: { ...state.form, [action.field]: answer } };
+    }
+    case "singleOccupant": {
+      const checked = action.checked === true;
+      if (state.form.singleOccupantExtendedNorm === checked) return state;
+      return { ...state, form: { ...state.form, singleOccupantExtendedNorm: checked } };
+    }
+    case "fieldsGone": {
+      const bad = markReducer(state.bad, { clear: true });
+      return bad === state.bad ? state : { ...state, bad };
+    }
+    default:
+      return state;
+  }
+}
 
 /**
  * Kas inimene on midagi sisestanud. Leht ei salvesta midagi, seega läheks
@@ -141,7 +298,9 @@ export function formTouched(form = {}, costs = {}, bad = []) {
  * („500,-", „1 200"). Arvuväli annab sellise sisu lehele TÜHJANA, kuigi tekst
  * seisab väljal edasi; tühi kulu ei ole viga, seega arvutati ilma selleta ja
  * summa ei vastanud sellele, mida inimene väljal nägi. Loetamatu summa läheb
- * arvutusse mittearvuna ja arvutus keeldub välja nimega.
+ * arvutusse mittearvuna ja arvutus keeldub välja nimega. Sama käib pinna kohta:
+ * muidu ütleks arvutus loetamatu pinna kohta „märgi eluruumi üldpind", nagu
+ * oleks väli tühi.
  */
 export function estimateInput(form = EMPTY_FORM, costs = {}, bad = []) {
   const amount = (key) => (bad.includes(key) ? Number.NaN : form[key]);
@@ -159,7 +318,7 @@ export function estimateInput(form = EMPTY_FORM, costs = {}, bad = []) {
     workIncome: amount("workIncome"),
     paidMaintenance: amount("paidMaintenance"),
     enforcementWithheld: amount("enforcementWithheld"),
-    dwellingAreaM2: form.dwellingAreaM2,
+    dwellingAreaM2: amount("dwellingAreaM2"),
     rooms: filled(form.rooms) ? form.rooms : null,
     singleOccupantExtendedNorm: form.singleOccupantExtendedNorm === true,
     housingCosts,
@@ -169,7 +328,7 @@ export function estimateInput(form = EMPTY_FORM, costs = {}, bad = []) {
 
 /**
  * Lehe tulemus: arvutus pluss need puudujäägid, mida arvutus ise ei näe
- * (loetamatu sisu pereliikmete, pinna või tubade väljal). `effectiveDate` on
+ * (loetamatu sisu pereliikmete või tubade väljal). `effectiveDate` on
  * testi jaoks; leht jätab selle andmata ja arvutus võtab tänase kuupäeva.
  */
 export function pageEstimate(form = EMPTY_FORM, costs = {}, bad = [], effectiveDate) {
@@ -184,7 +343,9 @@ export function pageEstimate(form = EMPTY_FORM, costs = {}, bad = [], effectiveD
  * Sammu numbri heledus kiirmenüüs ja vaates „Kõik sammud". Seis käib sama
  * reegli järgi mis arvutus: sissetuleku samm on valmis siis, kui töine või muu
  * sissetulek on sisestatud (ainult mahaarvamisest ei piisa), pere samm siis,
- * kui on vähemalt üks täisealine. Eelhinnangu samm on valmis, kui summa on olemas.
+ * kui on vähemalt üks täisealine, eluaseme samm siis, kui pind ja vähemalt üks
+ * tuba on sisestatud (null tuba ei ole vastus). Eelhinnangu samm on valmis, kui
+ * summa on olemas.
  */
 export function stepStates(form = {}, costs = {}, usable = false) {
   const declared = declaredCostKeys(costs);
@@ -193,10 +354,11 @@ export function stepStates(form = {}, costs = {}, usable = false) {
   const answered = questions.filter((question) => form[question.field] === true || form[question.field] === false).length;
   const incomeEntered = filled(form.workIncome) || filled(form.otherIncome);
   const members = wholeCount(form.adults) + wholeCount(form.minors);
+  const roomsEntered = enteredRoomCount(form.rooms) != null;
   return {
     family: wholeCount(form.adults) > 0 ? "done" : members > 0 ? "partial" : "empty",
     income: incomeEntered ? "done" : INCOME_FIELDS.some((key) => filled(form[key])) ? "partial" : "empty",
-    housing: filled(form.dwellingAreaM2) && filled(form.rooms) ? "done" : filled(form.dwellingAreaM2) || filled(form.rooms) ? "partial" : "empty",
+    housing: filled(form.dwellingAreaM2) && roomsEntered ? "done" : filled(form.dwellingAreaM2) || filled(form.rooms) ? "partial" : "empty",
     costs: group(COST_GROUPS.costs),
     utilities: group(COST_GROUPS.utilities),
     gates: !questions.length ? "empty" : answered === questions.length ? "done" : answered ? "partial" : "empty",
@@ -206,35 +368,36 @@ export function stepStates(form = {}, costs = {}, usable = false) {
 
 /* Summa viga nimetab välja: kuueteistkümne summavälja seast ei pea inimene viga otsima. */
 const NAMED_ISSUE_CODES = new Set(["NEGATIVE_AMOUNT", "INVALID_AMOUNT"]);
-const FIELD_LABEL_KEYS = Object.freeze({
-  adults: "subsistence.fields.adults",
-  minors: "subsistence.fields.minors",
-  dwellingAreaM2: "subsistence.fields.area",
-  rooms: "subsistence.fields.rooms",
-  otherIncome: "subsistence.fields.other_income",
-  workIncome: "subsistence.fields.work_income",
-  paidMaintenance: "subsistence.fields.paid_maintenance",
-  enforcementWithheld: "subsistence.fields.enforcement"
-});
 
 /** Välja nime võti kataloogis arvutuse välja tee järgi; tundmatu välja kohta tühi sõne. */
 export function issueFieldLabelKey(field = "") {
   const name = String(field || "");
-  if (name.startsWith("housingCosts.")) {
-    const cost = name.slice("housingCosts.".length);
-    return KNOWN_COST_KEYS.includes(cost) ? `subsistence.costs.${cost}` : "";
-  }
-  return FIELD_LABEL_KEYS[name] || "";
+  const id = name.startsWith("housingCosts.") ? costFieldId(name.slice("housingCosts.".length)) : name;
+  return FIELD_BY_ID.get(id)?.labelKey || "";
+}
+
+/* Kuupäeva puudujäägid tähtsuse järjekorras: korraga on neid arvutuses üks. */
+const DATE_ISSUE_CODES = Object.freeze(["DATE_UNREADABLE", "DATE_BEFORE_CURRENT_RATE", "UNSUPPORTED_DATE"]);
+
+/**
+ * Kuupäeva puudujäägi kood või tühi sõne: lehe päeva ei saanud lugeda, seadme
+ * kell näitab varasemat aastat või selle aasta määra ei ole veel kinnitatud.
+ * Igaühel on kataloogis oma lause (`subsistence.issues.<kood>`).
+ */
+export function dateIssueCode(result) {
+  const found = new Set((result?.issues || []).map((issue) => issue?.code));
+  return DATE_ISSUE_CODES.find((code) => found.has(code)) || "";
 }
 
 /**
  * Puudujäägid ridadena: kood ja (summa vea korral) välja nime võti. Sama lause
  * ei kordu; kahe eri välja summa viga annab kaks rida, sest kumbki nimetab oma
- * välja. Kui selle aasta määra ei ole kinnitatud, on see ainus rida: miski, mida
- * inimene sisestab, seda ei muuda, ja teised read kõrval oleksid eksitavad.
+ * välja. Kuupäeva puudujääk on ainus rida: miski, mida inimene lehele sisestab,
+ * seda ei muuda, ja teised read kõrval oleksid eksitavad.
  */
 export function issueRows(issues = []) {
-  if (issues.some((issue) => issue?.code === "UNSUPPORTED_DATE")) return [{ code: "UNSUPPORTED_DATE", fieldLabelKey: "" }];
+  const dateCode = dateIssueCode({ issues });
+  if (dateCode) return [{ code: dateCode, fieldLabelKey: "" }];
   const rows = [];
   const seen = new Set();
   for (const issue of issues) {
@@ -249,10 +412,8 @@ export function issueRows(issues = []) {
   return rows;
 }
 
-/** Kas arvutus keeldub selle pärast, et selle aasta määra ei ole kinnitatud. */
-export function rateMissing(result) {
-  return Boolean(result?.issues?.some((issue) => issue?.code === "UNSUPPORTED_DATE"));
-}
+/** Puudujäägi lause võti: välja nimega rida võtab lause, kuhu nimi sisse käib. */
+export const issueTextKey = (row) => (row?.fieldLabelKey ? `subsistence.issues_named.${row.code}` : `subsistence.issues.${row?.code}`);
 
 /** Välja nimi jutumärkides lehe keele järgi (nagu puudujäägi lausetes). */
 export function quoted(text, locale = "et") {
@@ -314,12 +475,17 @@ export function resultNote(result) {
   return result.caveats?.includes("KOV_HOUSING_LIMITS_UNKNOWN") ? "kov_limits" : "";
 }
 
-/** Faktid tulemuse all. Sisestatud eluasemekulu on real ainult siis, kui arvesse läks vähem. */
+/**
+ * Faktid tulemuse all. Sisestatud eluasemekulu on real ainult siis, kui arvesse
+ * läks vähem. Toimetulekupiiri rida ütleb, MIS AASTA MÄÄRAGA see arvutati
+ * (`vars.year`): leht võtab päeva seadme kellast ja inimene peab nägema, mis
+ * aasta määra ta ees näeb.
+ */
 export function resultFacts(result, locale = "et") {
   if (!result?.usable) return [];
   const housing = result.housing || {};
   return [
-    { key: "limit", value: euro(result.subsistenceLimit?.total, locale) },
+    { key: "limit", value: euro(result.subsistenceLimit?.total, locale), vars: { year: String(result.subsistenceLimit?.rates?.year ?? "") } },
     ...(Number(housing.declaredTotal) > Number(housing.total) ? [{ key: "housing_declared", value: euro(housing.declaredTotal, locale) }] : []),
     { key: "housing", value: euro(housing.total, locale) },
     { key: "income", value: euro(result.income?.total, locale) }
@@ -334,5 +500,153 @@ export function stepSummaries(form = EMPTY_FORM, costs = {}, result = null, loca
     costs: sum("costs") ? euro(sum("costs"), locale) : "",
     utilities: sum("utilities") ? euro(sum("utilities"), locale) : "",
     result: result?.usable ? euro(result.estimate, locale) : ""
+  };
+}
+
+/* --- Mida leht joonistab -------------------------------------------------------------- */
+
+/**
+ * Eelhinnangu vaade: KAS summa koos sellega, millest see tuli, VÕI see, mis on
+ * puudu. Keeldumise korral ei ole siin ühtegi arvu (summa on tühi sõne, fakte ja
+ * lauseid ei ole): leht joonistab ainult seda, mis siit tuleb, seega ei saa
+ * keeldumise vaatesse summat joonistada.
+ *
+ *   usable: true  -> `amount` (suur summa), `facts` (read `labelKey`, `vars`,
+ *                    `value`), `sentences` (põhjus ja märkus; `tone` on „quiet"
+ *                    või „caveat")
+ *   usable: false -> `rows` (puudujäägi read: `key`, `fieldLabelKey`)
+ */
+export function resultView(result, locale = "et") {
+  if (!result?.usable) {
+    return {
+      usable: false,
+      amount: "",
+      facts: [],
+      sentences: [],
+      rows: issueRows(result?.issues).map((row) => ({ id: `${row.code}:${row.fieldLabelKey}`, key: issueTextKey(row), fieldLabelKey: row.fieldLabelKey }))
+    };
+  }
+  const reason = housingReason(result, locale);
+  const note = resultNote(result);
+  return {
+    usable: true,
+    amount: euro(result.estimate, locale),
+    facts: resultFacts(result, locale).map((fact) => ({ id: fact.key, labelKey: `subsistence.result.${fact.key}`, vars: fact.vars || null, value: fact.value })),
+    sentences: [
+      /* Miks arvesse läks vähem, kui sisestati: arv ilma põhjuseta näeb välja nagu viga. */
+      ...(reason ? [{ id: "reason", key: reason.key, vars: reason.vars, costKeys: reason.costKeys, tone: "quiet" }] : []),
+      ...(note === "above_line" ? [{ id: "above_line", key: "subsistence.caveat.above_line", tone: "quiet" }] : []),
+      ...(note === "kov_limits" ? [{ id: "kov_limits", key: "subsistence.caveat.kov_limits", tone: "caveat" }] : [])
+    ],
+    rows: []
+  };
+}
+
+/**
+ * Vaate rea tekst lehe keeles. `item` on fakt, lause või puudujäägi rida:
+ * välja nimi (`fieldLabelKey`) ja kulude nimed (`costKeys`, jutumärkides)
+ * pannakse lausesse siin, mitte lehe failis.
+ */
+export function viewText(item, t, locale = "et") {
+  const key = item?.key || item?.labelKey || "";
+  const vars = { ...(item?.vars || {}) };
+  if (item?.fieldLabelKey) vars.field = t(item.fieldLabelKey);
+  if (item?.costKeys) vars.costs = item.costKeys.map((costKey) => quoted(t(costKey), locale)).join(", ");
+  return Object.keys(vars).length ? t(key, vars) : t(key);
+}
+
+/** Täpsustavad küsimused koos sellega, mis on vastatud: `choice` on „yes", „no" või tühi. */
+export function gateRows(form = EMPTY_FORM, costs = {}) {
+  return gateQuestions(declaredCostKeys(costs)).map((question) => ({ ...question, choice: choiceFromAnswer(form[question.field]) }));
+}
+
+/** Vastus täpsustavale küsimusele lehe oleku muutusena. */
+export const answerAction = (question, choice) => ({ type: "answer", field: question?.field, choice });
+
+/**
+ * Märget „elan üksi ja olen pensionär …" pakutakse ainult ühe pereliikmega:
+ * mitme pereliikmega arvutus seda ei kasuta.
+ */
+export function showSingleOccupant(form = EMPTY_FORM) {
+  return wholeCount(form.adults) + wholeCount(form.minors) === 1;
+}
+
+/**
+ * Mis lehel ees on: laadimine, sisselogimise kutse või vorm. Konto on nõutav
+ * (omanik 04.08); kõik, mis ei ole sisse logitud seanss, on sisselogimise kutse.
+ */
+export function pageScreen(status) {
+  if (status === "loading") return "loading";
+  return status === "authenticated" ? "form" : "login";
+}
+
+/**
+ * Kas lahkumist tuleb kinni pidada: vorm on ees ja inimene on midagi sisestanud.
+ * Lõppenud seansi korral on ees sisselogimise vaade ja teadet ei oleks kus näidata.
+ */
+export function leaveGuarded(status, state = EMPTY_STATE) {
+  return pageScreen(status) === "form" && formTouched(state.form, state.costs, state.bad);
+}
+
+/**
+ * Paneb lahkumise värava peale ja tagastab mahavõtja.
+ *
+ * `leave` on kahe vajutusega värav (`twoPressLeaveGuard`), `register` paneb selle
+ * paneeli väravaks (`setPanelLeaveGuard`: kiirmenüü tagasinool ja Esc), `target`
+ * on aken: akna sulgemise ja uuesti laadimise peab kinni brauseri enda küsimus
+ * (`beforeunload`). Brauseri tagasinuppu ja väljalogimist see ei kata.
+ */
+export function armLeaveGuard({ leave, register, target }) {
+  const release = register(leave);
+  const warn = (event) => {
+    event.preventDefault();
+    event.returnValue = "";
+  };
+  target.addEventListener("beforeunload", warn);
+  return () => {
+    release();
+    leave.clear();
+    target.removeEventListener("beforeunload", warn);
+  };
+}
+
+/**
+ * Kõik, mida vormi vaated joonistavad, ühest kohast.
+ *
+ *   banner          kuupäeva puudujäägi lause võti lava kohal või tühi sõne: kui
+ *                   päeva ei saa lugeda või määra ei ole, ei aita ükski sisestus
+ *                   ja seda öeldakse kohe, mitte alles seitsmendas vaates
+ *   steps           lava sammud: nime võtmed, seis, kokkuvõte, `free`
+ *   gates           täpsustavad küsimused koos valikuga
+ *   singleOccupant  kas märget pakutakse ja kas see on sees
+ *   result          eelhinnangu vaade (`resultView`)
+ *
+ * `effectiveDate` on testi jaoks; leht jätab selle andmata.
+ */
+export function pageView(state = EMPTY_STATE, locale = "et", effectiveDate) {
+  const { form, costs, bad } = state;
+  const estimate = pageEstimate(form, costs, bad, effectiveDate);
+  const states = stepStates(form, costs, estimate.usable);
+  const summaries = stepSummaries(form, costs, estimate, locale);
+  const gates = gateRows(form, costs);
+  const dateCode = dateIssueCode(estimate);
+  return {
+    banner: dateCode ? `subsistence.issues.${dateCode}` : "",
+    steps: STEP_KEYS.map((key) => ({
+      key,
+      titleKey: `subsistence.views.${key}.title`,
+      shortKey: `subsistence.views.${key}.short`,
+      state: states[key],
+      /* Pere plaadil on lause kataloogist, teistel valmis summa (või mitte midagi). */
+      summaryKey: key === "family" ? "subsistence.views.family.summary" : "",
+      summaryVars: key === "family" ? summaries.family : null,
+      summary: key === "family" ? "" : summaries[key] || "",
+      /* Üle nelja täpsustava küsimuse (üür, korterelamu kulud, laen ja maamaks korraga) ei mahu ühte vaatesse:
+         see vaade kerib siis paneeli ega tee teisi vaateid enda kõrguseks. */
+      free: key === "gates" && gates.length > 4
+    })),
+    gates,
+    singleOccupant: { shown: showSingleOccupant(form), checked: form.singleOccupantExtendedNorm === true },
+    result: resultView(estimate, locale)
   };
 }
