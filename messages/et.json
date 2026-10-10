@@ -12515,7 +12515,8 @@
       "current_month": "Kas need on jooksval kuul tasumisele kuuluvad kulud?",
       "landlord_family": "Kas üürileandja on pereliige või tema äriühing?",
       "apartment": "Kas elad korterelamus?",
-      "loan": "Kas eluasemelaen on sinu nimel ja laenatud eluase on sinu rahvastikuregistrijärgne elukoht?"
+      "loan": "Kas eluasemelaen on sinu nimel ja laenatud eluase on sinu rahvastikuregistrijärgne elukoht?",
+      "loan_limit": "Kas eluasemelaenu makset on sel aastal toetuse arvestamisel arvesse võetud juba kuuel kuul?"
     },
     "result": {
       "title": "Eelhinnang",
@@ -12544,18 +12545,20 @@
     },
     "issues": {
       "NO_FAMILY_MEMBERS": "Märgi vähemalt üks pereliige.",
-      "UNSUPPORTED_DATE": "Selle kuupäeva kohta ei ole kinnitatud toimetulekupiiri määra.",
+      "UNSUPPORTED_DATE": "Selle aasta toimetulekupiiri määr ei ole siin veel kinnitatud, seepärast eelhinnangut praegu anda ei saa. Küsi oma valla- või linnavalitsusest.",
       "DWELLING_AREA_REQUIRED": "Märgi eluruumi üldpind: ilma selleta ei saa normpinda arvestada.",
       "ROOM_COUNT_REQUIRED": "Märgi tubade arv: sellest sõltub, kas pinda kärbitakse.",
       "GATE_UNANSWERED": "Vasta kõigile täpsustavatele küsimustele.",
       "UNKNOWN_HOUSING_COST_KIND": "Tundmatu eluasemekulu liik.",
       "NEGATIVE_AMOUNT": "Summa ei saa olla negatiivne.",
       "INVALID_AMOUNT": "Kontrolli sisestatud summasid.",
-      "RENT_FROM_FAMILY_NOT_COUNTED": "Pereliikmelt üüritud eluaseme üüri üldjuhul arvesse ei võeta.",
-      "APARTMENT_BUILDING_COSTS_NOT_APPLICABLE": "Korterelamu kulud ei kohaldu, kui sa korterelamus ei ela.",
-      "HOUSING_LOAN_CONDITIONS_NOT_MET": "Eluasemelaenu tingimused ei ole täidetud.",
-      "HOUSING_LOAN_MONTH_LIMIT_REACHED": "Eluasemelaenu saab arvesse võtta kuni kuus kuud aastas.",
-      "INVALID_WORK_EXEMPTION_MONTH": "Kontrolli töise tulu erandi kuud."
+      "RENT_FROM_FAMILY_NOT_COUNTED": "Pereliikmelt või tema äriühingult üüritud eluaseme üüri üldjuhul arvesse ei võeta. Kustuta üüri summa, kui tahad näha eelhinnangut ilma selleta.",
+      "APARTMENT_BUILDING_COSTS_NOT_APPLICABLE": "Korterelamu haldamise kulu ja renoveerimislaenu saab arvesse võtta ainult korterelamus. Kustuta need summad, kui tahad näha eelhinnangut ilma nendeta.",
+      "HOUSING_LOAN_CONDITIONS_NOT_MET": "Eluasemelaenu makset saab arvesse võtta ainult siis, kui laen on sinu nimel ja eluase on sinu rahvastikuregistrijärgne elukoht. Kustuta see summa, kui tahad näha eelhinnangut ilma selleta.",
+      "HOUSING_LOAN_MONTH_LIMIT_REACHED": "Eluasemelaenu makset saab arvesse võtta kuni kuuel kuul kalendriaastas ja see piir on sul täis. Kustuta see summa, kui tahad näha eelhinnangut ilma selleta.",
+      "INVALID_WORK_EXEMPTION_MONTH": "Kontrolli töise tulu erandi kuud.",
+      "INCOME_REQUIRED": "Sisesta eelmise kuu sissetulek. Kui sissetulekut ei olnud, kirjuta töise või muu sissetuleku väljale 0.",
+      "COSTS_NOT_CURRENT_MONTH": "Arvesse lähevad ainult jooksval kuul tasumisele kuuluvad kulud, varasemat võlga ei arvestata. Sisesta ainult selle kuu kulud ja vasta siis täpsustuste vaates „Jah”."
     },
     "answers": {
       "yes": "Jah",
@@ -12599,7 +12602,15 @@
         "title": "Eelhinnang",
         "short": "Eelhinnang"
       }
-    }
+    },
+    "issues_named": {
+      "NEGATIVE_AMOUNT": "„{field}”: summa ei saa olla negatiivne.",
+      "INVALID_AMOUNT": "„{field}”: kontrolli sisestatud summat."
+    },
+    "reason": {
+      "area_scaled": "Eluruum ({area} m²) on normpinnast ({norm} m²) suurem, seepärast läheb pinnaga seotud kuludest arvesse {percent}%. Sisestasid eluasemekulusid kokku {declared}."
+    },
+    "leave_asked": "Sisestatud arve ei salvestata. Vajuta uuesti, et lahkuda."
   },
   "urgent": {
     "title": "Kiireloomuline abipalve",

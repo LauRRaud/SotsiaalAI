@@ -28,7 +28,7 @@
  * on failis `./subsistenceSteps.js`, kujundus failis `./subsistence.module.css`.
  */
 
-import { useId, useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useState } from "react";
 import { useSession } from "next-auth/react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
@@ -39,46 +39,53 @@ import StepPanel from "@/components/stage/StepPanel";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import { estimateSubsistenceBenefit } from "@/lib/benefits/subsistence";
+import { setPanelLeaveGuard, twoPressLeaveGuard } from "@/lib/panelLeaveGuard";
 import { loginHref } from "@/lib/safeNextPath";
 
 import styles from "./subsistence.module.css";
-import { COST_GROUPS, STEP_KEYS, declaredCostKeys, euro, gateQuestions, stepStates, uniqueIssueCodes } from "./subsistenceSteps";
+import {
+  COST_GROUPS,
+  EMPTY_FORM,
+  STEP_KEYS,
+  declaredCostKeys,
+  euro,
+  formTouched,
+  gateQuestions,
+  housingReason,
+  issueRows,
+  stepStates,
+  wholeCount
+} from "./subsistenceSteps";
 
-const EMPTY = {
-  adults: "1",
-  minors: "0",
-  otherIncome: "",
-  workIncome: "",
-  paidMaintenance: "",
-  enforcementWithheld: "",
-  dwellingAreaM2: "",
-  rooms: "",
-  singleOccupantExtendedNorm: false,
-  costsAreCurrentMonth: null,
-  landlordIsFamilyOrTheirCompany: null,
-  isApartmentBuilding: null,
-  housingLoanConditionsMet: null
-};
-
-/** Arvuväli: nimi välja kohal, väli nii lai kui summa või arv vajab. `hintId`: selgitus, mis seisab väljade all. */
-function NumberField({ label, hintId, value, onChange, step = "0.01", size = "sum" }) {
+/**
+ * Arvuväli: nimi välja kohal, väli nii lai kui summa või arv vajab. `hintId`:
+ * selgitus, mis seisab väljade all. `whole`: pereliikmete arv on täisarv (murdosa
+ * ei jää väljale, kuigi arvutus selle nagunii ära lõikaks: plaat ja arvutus
+ * peavad näitama sama arvu).
+ */
+function NumberField({ label, hintId, value, onChange, step = "0.01", size = "sum", whole = false }) {
   const id = useId();
+  const change = (event) => {
+    const typed = event.target.value;
+    onChange(whole && typed !== "" ? String(wholeCount(typed)) : typed);
+  };
   return (
     <div className={styles.field} data-size={size}>
       <label className={styles.fieldLabel} htmlFor={id}>
         {label}
       </label>
-      <Input id={id} type="number" min="0" step={step} inputMode="decimal" value={value} aria-describedby={hintId} onChange={(event) => onChange(event.target.value)} />
+      <Input id={id} type="number" min="0" max={whole ? "99" : undefined} step={step} inputMode={whole ? "numeric" : "decimal"} value={value} aria-describedby={hintId} onChange={change} />
     </div>
   );
 }
 
 export default function SubsistenceCalculator() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const { status } = useSession();
   const hintId = useId();
-  const [form, setForm] = useState(EMPTY);
+  const [form, setForm] = useState(EMPTY_FORM);
   const [costs, setCosts] = useState({});
+  const [leaveAsked, setLeaveAsked] = useState(false);
 
   const set = (key, value) => setForm((current) => ({ ...current, [key]: value }));
   const setCost = (key, value) => setCosts((current) => ({ ...current, [key]: value }));
@@ -101,9 +108,35 @@ export default function SubsistenceCalculator() {
       costsAreCurrentMonth: form.costsAreCurrentMonth,
       landlordIsFamilyOrTheirCompany: form.landlordIsFamilyOrTheirCompany,
       isApartmentBuilding: form.isApartmentBuilding,
-      housingLoanConditionsMet: form.housingLoanConditionsMet
+      housingLoanConditionsMet: form.housingLoanConditionsMet,
+      housingLoanMonthLimitReached: form.housingLoanMonthLimitReached
     }
   }), [form, costs]);
+
+  /* Leht ei salvesta midagi (see on lubadus), seega kaoks kogemata lahkumisel
+     kuni kakskümmend sisestatud arvu ilma ühegi sõnata. Kui midagi on sisestatud,
+     peab kiirmenüü tagasinool ja Esc esimese vajutuse kinni ja lava kohal seisab
+     põhjus; teine vajutus lahkub (lib/panelLeaveGuard.js). Akna sulgemise ja uuesti
+     laadimise peab kinni brauseri enda küsimus. */
+  const touched = formTouched(form, costs);
+  useEffect(() => {
+    if (!touched) return undefined;
+    const leave = twoPressLeaveGuard({
+      onAsk: () => setLeaveAsked(true),
+      onClear: () => setLeaveAsked(false)
+    });
+    const release = setPanelLeaveGuard(leave);
+    const warn = (event) => {
+      event.preventDefault();
+      event.returnValue = "";
+    };
+    window.addEventListener("beforeunload", warn);
+    return () => {
+      release();
+      leave.clear();
+      window.removeEventListener("beforeunload", warn);
+    };
+  }, [touched]);
 
   if (status === "loading") {
     return <p className={styles.quiet}>{t("subsistence.loading")}</p>;
@@ -129,14 +162,19 @@ export default function SubsistenceCalculator() {
     );
   }
 
-  const states = stepStates(form, costs);
+  const money = (value) => euro(value, locale);
+  const members = wholeCount(form.adults) + wholeCount(form.minors);
+  const states = stepStates(form, costs, result.usable);
   const sum = (group) => COST_GROUPS[group].reduce((total, key) => total + (Number(costs[key]) > 0 ? Number(costs[key]) : 0), 0);
   const summaries = {
-    family: t("subsistence.views.family.summary", { adults: Number(form.adults) || 0, minors: Number(form.minors) || 0 }),
-    costs: sum("costs") ? euro(sum("costs")) : "",
-    utilities: sum("utilities") ? euro(sum("utilities")) : "",
-    result: result.usable ? euro(result.estimate) : ""
+    family: t("subsistence.views.family.summary", { adults: wholeCount(form.adults), minors: wholeCount(form.minors) }),
+    costs: sum("costs") ? money(sum("costs")) : "",
+    utilities: sum("utilities") ? money(sum("utilities")) : "",
+    result: result.usable ? money(result.estimate) : ""
   };
+  /* Kui toetust ei tuleks, ei ole mõtet öelda, et tegelik summa võib olla väiksem. */
+  const noBenefit = result.usable && result.caveats.includes("ABOVE_SUBSISTENCE_LINE");
+  const reason = housingReason(result, locale);
   const steps = STEP_KEYS.map((key) => ({
     key,
     label: t(`subsistence.views.${key}.title`),
@@ -164,8 +202,8 @@ export default function SubsistenceCalculator() {
              teeb, ENNE kui ta oma sissetuleku sisestab. */
           <StepPanel title={t("subsistence.views.family.title")} question={t("subsistence.not_a_decision")} lead={t("subsistence.stays_on_device")}>
             <div className={styles.fields}>
-              <NumberField label={t("subsistence.fields.adults")} value={form.adults} step="1" size="count" onChange={(value) => set("adults", value)} />
-              <NumberField label={t("subsistence.fields.minors")} value={form.minors} step="1" size="count" onChange={(value) => set("minors", value)} />
+              <NumberField label={t("subsistence.fields.adults")} value={form.adults} step="1" size="count" whole onChange={(value) => set("adults", value)} />
+              <NumberField label={t("subsistence.fields.minors")} value={form.minors} step="1" size="count" whole onChange={(value) => set("minors", value)} />
             </div>
           </StepPanel>
         );
@@ -196,9 +234,12 @@ export default function SubsistenceCalculator() {
               <p className={styles.hint} id={`${hintId}-rooms`}>
                 {t("subsistence.hints.rooms")}
               </p>
-              <div className={styles.check}>
-                <CheckCard title={t("subsistence.fields.single_occupant")} checked={form.singleOccupantExtendedNorm} onChange={(checked) => set("singleOccupantExtendedNorm", checked)} />
-              </div>
+              {/* Märge käib üksi elava inimese kohta: mitme pereliikmega arvutus seda ei kasuta, seega seda siis ei pakuta. */}
+              {members === 1 ? (
+                <div className={styles.check}>
+                  <CheckCard title={t("subsistence.fields.single_occupant")} checked={form.singleOccupantExtendedNorm} onChange={(checked) => set("singleOccupantExtendedNorm", checked)} />
+                </div>
+              ) : null}
             </div>
           </StepPanel>
         );
@@ -217,7 +258,7 @@ export default function SubsistenceCalculator() {
       case "gates":
         return (
           <StepPanel title={t("subsistence.views.gates.title")} question={questions.length ? undefined : t("subsistence.views.gates.none")}>
-            <div className={styles.stack}>
+            <div className={styles.gates}>
               {questions.map((question) => (
                 <div key={question.field} className={styles.gate}>
                   <ChoiceRow
@@ -239,7 +280,7 @@ export default function SubsistenceCalculator() {
         return result.usable ? (
           <StepPanel title={t("subsistence.views.result.title")} question={t("subsistence.result.title")} note={t("subsistence.not_a_decision")}>
             <div className={styles.stack} aria-live="polite">
-              <p className={styles.amount}>{euro(result.estimate)}</p>
+              <p className={styles.amount}>{money(result.estimate)}</p>
               <dl className={styles.facts}>
                 {[
                   ["limit", result.subsistenceLimit.total],
@@ -248,20 +289,25 @@ export default function SubsistenceCalculator() {
                 ].map(([name, value]) => (
                   <div key={name} className={styles.fact}>
                     <dt className={styles.factLabel}>{t(`subsistence.result.${name}`)}</dt>
-                    <dd className={styles.factValue}>{euro(value)}</dd>
+                    <dd className={styles.factValue}>{money(value)}</dd>
                   </div>
                 ))}
               </dl>
-              {result.caveats.includes("KOV_HOUSING_LIMITS_UNKNOWN") ? <p className={styles.caveat}>{t("subsistence.caveat.kov_limits")}</p> : null}
-              {result.caveats.includes("ABOVE_SUBSISTENCE_LINE") ? <p className={styles.quiet}>{t("subsistence.caveat.above_line")}</p> : null}
+              {/* Miks arvesse läks vähem, kui sisestati: arv ilma põhjuseta näeb välja nagu viga. */}
+              {reason ? <p className={styles.quiet}>{t(reason.key, reason.vars)}</p> : null}
+              {noBenefit ? (
+                <p className={styles.quiet}>{t("subsistence.caveat.above_line")}</p>
+              ) : result.caveats.includes("KOV_HOUSING_LIMITS_UNKNOWN") ? (
+                <p className={styles.caveat}>{t("subsistence.caveat.kov_limits")}</p>
+              ) : null}
             </div>
           </StepPanel>
         ) : (
           <StepPanel title={t("subsistence.views.result.title")} question={t("subsistence.result.incomplete")}>
             <ul className={styles.issues} aria-live="polite">
-              {uniqueIssueCodes(result.issues).map((code) => (
-                <li key={code} className={styles.issue}>
-                  {t(`subsistence.issues.${code}`)}
+              {issueRows(result.issues).map((row) => (
+                <li key={`${row.code}:${row.fieldLabelKey}`} className={styles.issue}>
+                  {row.fieldLabelKey ? t(`subsistence.issues_named.${row.code}`, { field: t(row.fieldLabelKey) }) : t(`subsistence.issues.${row.code}`)}
                 </li>
               ))}
             </ul>
@@ -273,6 +319,11 @@ export default function SubsistenceCalculator() {
   return (
     <section className={styles.page}>
       <h1 className="sr-only">{t("subsistence.title")}</h1>
+      {leaveAsked ? (
+        <p className={styles.leave} role="alert">
+          {t("subsistence.leave_asked")}
+        </p>
+      ) : null}
       <StepFlight label={t("subsistence.title")} steps={steps}>
         {(step) => renderView(step.key)}
       </StepFlight>

@@ -12515,7 +12515,8 @@
       "current_month": "Are these costs due in the current month?",
       "landlord_family": "Is the landlord a family member or their company?",
       "apartment": "Do you live in an apartment building?",
-      "loan": "Is the housing loan in your name and is the home your registered residence?"
+      "loan": "Is the housing loan in your name and is the home your registered residence?",
+      "loan_limit": "Has the housing loan payment already been counted for the benefit in six months of this year?"
     },
     "result": {
       "title": "Estimate",
@@ -12544,18 +12545,20 @@
     },
     "issues": {
       "NO_FAMILY_MEMBERS": "Add at least one family member.",
-      "UNSUPPORTED_DATE": "There is no confirmed subsistence rate for this date.",
+      "UNSUPPORTED_DATE": "This year's subsistence rate is not confirmed here yet, so no estimate can be given now. Ask your municipality.",
       "DWELLING_AREA_REQUIRED": "Enter the dwelling area: the norm cannot be applied without it.",
       "ROOM_COUNT_REQUIRED": "Enter the number of rooms: it decides whether the area is capped.",
       "GATE_UNANSWERED": "Answer all the clarifying questions.",
       "UNKNOWN_HOUSING_COST_KIND": "Unknown housing cost type.",
       "NEGATIVE_AMOUNT": "An amount cannot be negative.",
       "INVALID_AMOUNT": "Check the amounts you entered.",
-      "RENT_FROM_FAMILY_NOT_COUNTED": "Rent from a family member is generally not counted.",
-      "APARTMENT_BUILDING_COSTS_NOT_APPLICABLE": "Apartment building costs do not apply outside an apartment building.",
-      "HOUSING_LOAN_CONDITIONS_NOT_MET": "The housing loan conditions are not met.",
-      "HOUSING_LOAN_MONTH_LIMIT_REACHED": "A housing loan counts for up to six months per year.",
-      "INVALID_WORK_EXEMPTION_MONTH": "Check the work income exemption month."
+      "RENT_FROM_FAMILY_NOT_COUNTED": "Rent paid to a family member or their company is generally not counted. Clear the rent amount to see the estimate without it.",
+      "APARTMENT_BUILDING_COSTS_NOT_APPLICABLE": "Apartment building management costs and the renovation loan count only in an apartment building. Clear those amounts to see the estimate without them.",
+      "HOUSING_LOAN_CONDITIONS_NOT_MET": "A housing loan payment counts only if the loan is in your name and the home is your registered residence. Clear that amount to see the estimate without it.",
+      "HOUSING_LOAN_MONTH_LIMIT_REACHED": "A housing loan payment counts for up to six months in a calendar year, and you have reached that limit. Clear that amount to see the estimate without it.",
+      "INVALID_WORK_EXEMPTION_MONTH": "Check the work income exemption month.",
+      "INCOME_REQUIRED": "Enter last month's income. If there was none, type 0 in the work income or other income field.",
+      "COSTS_NOT_CURRENT_MONTH": "Only costs due in the current month are counted; earlier debt is not. Enter only this month's costs and then answer “Yes” in the clarifications view."
     },
     "answers": {
       "yes": "Yes",
@@ -12599,7 +12602,15 @@
         "title": "Estimate",
         "short": "Estimate"
       }
-    }
+    },
+    "issues_named": {
+      "NEGATIVE_AMOUNT": "“{field}”: an amount cannot be negative.",
+      "INVALID_AMOUNT": "“{field}”: check the amount you entered."
+    },
+    "reason": {
+      "area_scaled": "The dwelling ({area} m²) is larger than the norm area ({norm} m²), so {percent}% of the area-based costs is counted. You entered {declared} of housing costs in total."
+    },
+    "leave_asked": "The numbers you entered are not saved. Press again to leave."
   },
   "urgent": {
     "title": "Urgent help request",

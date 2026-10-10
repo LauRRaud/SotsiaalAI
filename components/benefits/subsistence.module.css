@@ -47,6 +47,14 @@
   max-width: 34rem;
 }
 
+/* Täpsustuste vaade: kuni viis küsimust üksteise all. Iga küsimuse rida kannab
+   oma polstrit ja eraldusjoont, seepärast on vahe siin väike: suurema vahega ei
+   mahtunud viis küsimust paneeli (mõõdetud 542 px 522 px paneelis). */
+.gates {
+  min-width: 0;
+  display: grid;
+  gap: 0.3rem;
+}
 /* Täpsustav küsimus: küsimus vasakul, „Jah" ja „Ei" paremal; selgitus selle all. */
 .gate {
   min-width: 0;
@@ -114,4 +122,15 @@
   .field[data-size] {
     flex-basis: 100%;
   }
+}
+
+/* Lahkumise küsimus lava kohal: sisestatut ei salvestata, seega esimene lahkumine peatub. */
+.leave {
+  margin: 0 0 0.6rem;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.9rem;
+  background: var(--glass-cell-bg);
+  color: var(--text-warm);
+  font-size: var(--fs-small, 0.875rem);
 }
