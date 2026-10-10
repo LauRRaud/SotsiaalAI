@@ -197,6 +197,11 @@ export default function HomeCareDeadlines({ context, deadlines }) {
           )
         : null}
 
+      {/* Abi rohkem kui kavas (K6-d): käigul märgitud viis on olnud kava reast suurem. */}
+      {(deadlines.helpDriftDue || []).length
+        ? section("help_drift", deadlines.helpDriftDue, (item) => clientLine(item, t("home_care.deadlines.help_drift_line", { more: item.more, total: item.total })))
+        : null}
+
       {/* Osutatud aeg kolm lukustatud kuud järjest üle otsustatu (K5-q): põhjus otsustajale teada anda. */}
       {(deadlines.overVolumeStreak || []).length
         ? section("over_volume", deadlines.overVolumeStreak, (item) =>
