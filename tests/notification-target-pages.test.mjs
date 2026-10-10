@@ -3,8 +3,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+import { ACTION_REGISTRY, buildActionHref } from '../lib/actions/registry.js';
+import { buildRoomChatPath } from '../lib/roomPath.js';
+import { WorkspaceKind } from '../lib/workspaces/registry.js';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const read = (path) => readFileSync(join(root, path), 'utf8').replace(/\r\n/g, '\n');
@@ -65,3 +69,52 @@ test('toeavalduse teate leht suunab ainult saaja ja ainult tema organisatsiooni 
   /* Avalduse sisu see leht ei loe ega ava. */
   assert.equal(/sharedSnapshotJson|openSupportShare|openedAt/.test(page), false);
 });
+
+/** Valmis aadress (näidis-ID-ga `proov`) kaustade jadaks. */
+const builtSegments = (href) => href.split('?')[0].split('/').filter(Boolean).map((part) => (part === 'proov' ? PARAM : part));
+
+test('igal tegevuslingil on leht', () => {
+  const hrefs = [];
+  for (const kind of Object.keys(ACTION_REGISTRY)) {
+    if (kind === 'open_workspace') continue;
+    hrefs.push([kind, buildActionHref(kind, 'proov')]);
+  }
+  /* Tööruumi link sõltub liigist; liik, millel linki ei ole, viskab ja jääb siit välja. */
+  for (const workspace of Object.values(WorkspaceKind)) {
+    try {
+      hrefs.push([`open_workspace:${workspace}`, buildActionHref('open_workspace', `${workspace}:proov`)]);
+    } catch (error) {
+      assert.equal(error.code, 'UNSUPPORTED_WORKSPACE_ACTION', workspace);
+    }
+  }
+  assert.ok(hrefs.length >= 20, `leitud ${hrefs.length} tegevuslinki; otsing on katki`);
+  const missing = hrefs.filter(([, href]) => !resolves(join(root, 'app'), builtSegments(href))).map(([kind, href]) => `${kind} → ${href}`);
+  assert.deepEqual(missing, []);
+});
+
+test('ruumi aadress tuleb ühest kohast ja aadressi /ruum/<id> ei ehita keegi', () => {
+  /* Ruum avaneb vestlusaknas. Võrgustikujagamise nupp „Ava arutelu" viis aadressile
+     `/ruum/<id>`, mida ei ole olemas: saaja avas jagamise ja sai 404. */
+  assert.equal(buildRoomChatPath('proov', 'et'), '/vestlus?roomId=proov');
+  assert.equal(resolves(join(root, 'app'), builtSegments(buildRoomChatPath('proov', 'et'))), true);
+  assert.equal(resolves(join(root, 'app'), ['ruum', PARAM]), false);
+
+  const walk = (dir, out = []) => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      if (entry.name === 'node_modules' || entry.name.startsWith('.')) continue;
+      const full = join(dir, entry.name);
+      if (entry.isDirectory()) walk(full, out);
+      else if (/\.(js|jsx)$/.test(entry.name)) out.push(full);
+    }
+    return out;
+  };
+  const offenders = ['app', 'components', 'lib']
+    .flatMap((dir) => walk(join(root, dir)))
+    .filter((file) => /["'`]\/ruum\/[^"'`\s]/.test(readFileSync(file, 'utf8')))
+    .map((file) => relative(root, file).split(sep).join('/'));
+  assert.deepEqual(offenders, []);
+
+  const inbox = read('components/network/NetworkShareInbox.jsx');
+  assert.match(inbox, /href=\{buildRoomChatPath\(openedShare\.roomId, locale\)\}/);
+});
+
