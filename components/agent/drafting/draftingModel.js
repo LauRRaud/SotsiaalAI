@@ -17,7 +17,8 @@
 import { RAG_AVAILABLE } from "@/lib/rag/retired";
 import { MAX_USER_MESSAGE_CHARS } from "@/lib/chat/messageLimits";
 import { clientTaskInstruction } from "@/lib/documents/agentTasks";
-import { AGENT_ARTIFACT_TYPE_VALUES } from "@/lib/documents/constants";
+import { templateShapesFile } from "@/lib/documents/artifactFiles";
+import { AGENT_ARTIFACT_TYPE_VALUES, DOCX_TEMPLATE_PLACEHOLDERS } from "@/lib/documents/constants";
 import { formatDate, formatFileSize, kindLabel } from "@/lib/documents/presentation";
 
 /** Pöörduja töös on korraga kuni kaks faili. */
@@ -264,6 +265,81 @@ export function activeViewFor(view, keys) {
 export function hasUnsavedText(result, title, content) {
   if (!result) return false;
   return String(title || "").trim() !== String(result.title || "").trim() || String(content || "") !== String(result.content || "");
+}
+
+/**
+ * Kas malli valik erineb sellest, mis on avatud mustandile salvestatud.
+ *
+ * Valik elab lehe olekus ja jõuab mustandile ainult nupuga „Salvesta mustand”
+ * (või kinnitamisega). Varem ei loetud seda salvestamata muudatuseks: ruumist
+ * lahkudes ei küsitud midagi ja valik läks kaotsi. Kinnitatud teksti malli ei
+ * saa muuta (seal kehtib valik järgmise koostamise kohta) ja pöördujal malle
+ * ei ole.
+ */
+export function templateChoiceUnsaved({ result = null, selectedTemplateId = "", client = false } = {}) {
+  if (client || !result || String(result.status || "") !== "DRAFT") return false;
+  return String(selectedTemplateId || "") !== String(result.templateId || "");
+}
+
+/** Malli vaate jalarea lause: kuidas valik avatud tekstini jõuab. Võtmed on välja kirjutatud, et test leiaks iga sõna kolmes keeles. */
+export const TEMPLATE_NOTE_KEYS = Object.freeze({
+  unsaved: "documents.drafting.template.unsaved_note",
+  with_draft: "documents.drafting.template.draft_note",
+  next_only: "documents.drafting.template.final_note"
+});
+
+/**
+ * Milline lause on malli vaate jalareal.
+ * - `unsaved`: avatud mustandil on teine mall kui valitud; valik tuleb salvestada.
+ * - `with_draft`: mustand on avatud ja valik on sama mis salvestatud.
+ * - `next_only`: avatud tekst on kinnitatud, valik kehtib järgmise koostamise kohta.
+ * - tühi: teksti ei ole avatud (või on vaatajaks pöörduja, kellel malle ei ole).
+ */
+export function templateNoteKind({ resultState = "none", unsaved = false, client = false } = {}) {
+  if (client) return "";
+  if (resultState === "draft") return unsaved ? "unsaved" : "with_draft";
+  if (resultState === "final") return "next_only";
+  return "";
+}
+
+/**
+ * Valitud malli seis mallide loendi järgi (loendis on selle inimese kõik
+ * mallid, ka need, mis ei ole töörežiimis lubatud).
+ * - `blocked`: mallilt on luba „Luba töörežiimis” ära võetud. Sellise malli saab
+ *   valituks ainult avatud mustand, mis selle varem sai.
+ * - `shapesFile`: kas mall annab kinnitatud Wordi failile kuju (ainult Wordi
+ *   mall); `null`, kui malli loendis ei ole ja seda ei saa teada.
+ */
+export function templateStatus({ templates = [], selectedTemplateId = "" } = {}) {
+  const id = String(selectedTemplateId || "");
+  const template = id ? (Array.isArray(templates) ? templates : []).find((entry) => entry?.id === id) : null;
+  if (!template) return { blocked: false, shapesFile: null };
+  return { blocked: !template.agentAllowed, shapesFile: templateShapesFile(template) };
+}
+
+/** Wordi malli kohatäitjad sellisel kujul, nagu need malli kirjutatakse: {{TITLE}}, {{CONTENT_BLOCK}} jne. */
+export function templatePlaceholderList() {
+  return DOCX_TEMPLATE_PLACEHOLDERS.map((name) => `{{${name}}}`).join(", ");
+}
+
+/* Salvestamine keeldus valitud malli pärast: lahendus on malli vaates. */
+const TEMPLATE_REFUSAL_KEYS = Object.freeze([
+  "documents.artifacts.errors.template_not_allowed",
+  "documents.artifacts.errors.template_not_found"
+]);
+
+/** Vaade, kus serveri keeldumise saab lahendada (praegu ainult malli vaade), või tühi string. */
+export function errorWayFor(messageKey) {
+  return TEMPLATE_REFUSAL_KEYS.includes(String(messageKey || "")) ? "template" : "";
+}
+
+/**
+ * Versiooni taastamise teade. Kui taastatud tekst on sama, mis on salvestatud,
+ * ei ole midagi salvestada ja teade ei tohi seda soovitada.
+ */
+export function versionRestoredKey(result, version) {
+  const sameAsSaved = Boolean(result?.id) && !hasUnsavedText(result, version?.title, version?.content);
+  return sameAsSaved ? "documents.drafting.feedback.version_restored_same" : "documents.drafting.feedback.version_restored";
 }
 
 /** Kas tööruumi versioon on sama mis toimetis olev tekst. */

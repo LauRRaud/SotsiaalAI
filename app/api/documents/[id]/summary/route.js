@@ -32,7 +32,10 @@ const DOCUMENTS_RATE_LIMIT_WINDOW_MS = readDocumentsRateLimit(process.env.DOCUME
 const SUMMARY_RATE_LIMIT_MAX = readDocumentsRateLimit(process.env.DOCUMENTS_TRANSCRIPT_SUMMARY_RATE_LIMIT_MAX, 8)
 const TRANSCRIPT_KINDS = new Set(["CALL_TRANSCRIPT", "AUDIO_TRANSCRIPT"])
 
+/* `finalSnapshot`: ainult PDF-i suurus, et korduspäringuga tagastatud ja vahepeal
+   kinnitatud kokkuvõte kannaks õigeid allalaadimise linke (vt `artifactHasPdf`). */
 const artifactInclude = {
+  finalSnapshot: { select: { pdfSize: true } },
   template: {
     select: {
       id: true,

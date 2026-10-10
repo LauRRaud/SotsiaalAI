@@ -24,13 +24,17 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
+import { localeHeaders } from "@/lib/documents/clientRequest";
 
 import { ShareView } from "./detail/DetailViews";
 import { useTwoPress } from "./detail/detailHooks";
 import { RequestFailure, failureText, serverMessage, shareOutcome, shareRoomOptions } from "./detail/detailModel";
 
 export default function MeetingSummaryRoomShare({ artifactId, title, glow = true, onShared }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
+  /* Keele vahetus ei pea ruumide loendit uuesti laadima: keel loetakse viitest. */
+  const localeRef = useRef(locale);
+  localeRef.current = locale;
   const [rooms, setRooms] = useState({ status: "loading", list: [] });
   const [attempt, setAttempt] = useState(0);
   const [selectedRoomId, setSelectedRoomId] = useState("");
@@ -48,7 +52,7 @@ export default function MeetingSummaryRoomShare({ artifactId, title, glow = true
     (async () => {
       setRooms({ status: "loading", list: [] });
       try {
-        const res = await fetch("/api/rooms", { cache: "no-store" });
+        const res = await fetch("/api/rooms", { cache: "no-store", headers: localeHeaders(localeRef.current) });
         const data = await res.json().catch(() => ({}));
         if (cancelled) return;
         /* Laadimise viga ei ole „ruume ei ole”: vaade ütleb, et loendit ei saanud kätte. */
@@ -80,7 +84,7 @@ export default function MeetingSummaryRoomShare({ artifactId, title, glow = true
     try {
       const res = await fetch(`/api/rooms/${encodeURIComponent(selected.value)}/messages`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: localeHeaders(locale, { "Content-Type": "application/json" }),
         body: JSON.stringify({
           summaryArtifactId: artifactId,
           /* Teksti kinnitamine ja see jagamise tegevus koos kinnitavad, et
@@ -101,7 +105,7 @@ export default function MeetingSummaryRoomShare({ artifactId, title, glow = true
       busyRef.current = false;
       setSharing(false);
     }
-  }, [artifactId, onShared, requestApproval, selected, t]);
+  }, [artifactId, locale, onShared, requestApproval, selected, t]);
 
   /* Valiku muutus võtab teise vajutuse ootelt maha: selgitus nupu kõrval
      nimetas ruumi, mis oli valitud esimese vajutuse ajal. */

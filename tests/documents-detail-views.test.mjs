@@ -198,10 +198,14 @@ test('allalaadimine: mustandil ei ole faile; PDF-i linki ei näidata, kui PDF-i 
   assert.deepEqual(artifactDownloads(DRAFT), { docx: null, pdf: null, pdfMissing: false });
   assert.deepEqual(artifactDownloads(null), { docx: null, pdf: null, pdfMissing: false });
   assert.deepEqual(artifactDownloads(FINAL), { docx: FINAL.downloadUrls.docx, pdf: FINAL.downloadUrls.pdf, pdfMissing: false });
-  /* Server pakub PDF-i linki alati; kinnitamise kirje ütleb, et PDF-i ei ole (tekstis on
-     märke, mida PDF ei toeta). Link viiks veateateni, seepärast seda ei näidata. */
+  /* Kinnitamise kirje ütleb, et PDF-i ei ole (tekstis on märke, mida PDF ei toeta). Link
+     viiks veateateni, seepärast seda ei näidata, ka siis, kui see vastuses oleks. */
   const noPdf = { ...FINAL, provenance: { rendered: { docx: { sha256: 'x', size: 10 }, pdf: null } } };
   assert.deepEqual(artifactDownloads(noPdf), { docx: FINAL.downloadUrls.docx, pdf: null, pdfMissing: true });
+  /* Server annab PDF-i lingi ainult olemasolevale failile: Wordi link ilma PDF-i lingita
+     tähendab sama, ka siis, kui kinnitamise kirje reaga kaasa ei tulnud (loend). */
+  const docxOnly = { ...FINAL, provenance: null, downloadUrls: { docx: FINAL.downloadUrls.docx } };
+  assert.deepEqual(artifactDownloads(docxOnly), { docx: FINAL.downloadUrls.docx, pdf: null, pdfMissing: true });
   assert.equal(artifactSheet(noPdf, { t: translator('et'), locale: 'et' }).note, catalog('et').api.exports.pdf_content_not_supported);
   /* Vana kinnitatud tekst ilma kirjeta: mõlemad lingid jäävad, nagu server need andis. */
   assert.deepEqual(artifactDownloads({ ...FINAL, provenance: null }), { docx: FINAL.downloadUrls.docx, pdf: FINAL.downloadUrls.pdf, pdfMissing: false });
@@ -415,10 +419,11 @@ test('mustand: salvestamine ja kinnitamine saadavad sama teksti; mis vahepeal ju
 test('lehed hoiavad alles kõik päringud ja teed', () => {
   const artifactPage = read(ARTIFACT_PAGE);
   for (const piece of [
-    'fetch(`/api/documents/artifacts/${encodeURIComponent(artifactId)}`, { cache: "no-store" })',
+    'fetch(`/api/documents/artifacts/${encodeURIComponent(artifactId)}`, {',
+    'cache: "no-store",',
     'method: "PATCH"',
     'fetch(`/api/documents/artifacts/${encodeURIComponent(artifactId)}/approve`, {',
-    'fetch(`/api/documents/artifacts/${encodeURIComponent(artifactId)}`, { method: "DELETE" })',
+    'method: "DELETE",',
     'navigator.clipboard.writeText(',
     'ArtifactDetailPage({ artifactId })',
     'usePanelInfoSlot({ infoId: "documents", title: t("documents.artifact_detail_title") })',
@@ -438,7 +443,7 @@ test('lehed hoiavad alles kõik päringud ja teed', () => {
 
   const share = read(SHARE);
   for (const piece of [
-    'fetch("/api/rooms", { cache: "no-store" })',
+    'fetch("/api/rooms", { cache: "no-store", headers: localeHeaders(localeRef.current) })',
     'fetch(`/api/rooms/${encodeURIComponent(selected.value)}/messages`, {',
     'summaryArtifactId: artifactId',
     'privacyDecision: { action: "send_original" }',
@@ -450,6 +455,69 @@ test('lehed hoiavad alles kõik päringud ja teed', () => {
   assert.ok(read('../app/documents/artifacts/[id]/page.js').includes('<ArtifactDetailPage artifactId={resolvedParams?.id} />'));
   assert.ok(read('../lib/search/personalSearch.js').includes('href: `/documents/${encodeURIComponent(row.id)}`'), 'isiklik otsing viib faili lehele');
   assert.ok(read('../components/documents/workspace/documentRows.js').includes('open: localizePath(`/documents/artifacts/${id}`, locale)'), 'loend viib koostatud teksti lehele');
+});
+
+// --- Brauseris kinnitatud vead (10.10) --------------------------------------------------
+
+// Serveri veateade tuli brauseri keeles, mitte lehe keeles: lehed ei saatnud oma keelt kaasa.
+// Kinnitamisel otsustab sama päis ka kinnitatud failide siltide keele.
+test('iga päring kannab lehe keelt', async () => {
+  const { localeHeaders } = await import('../lib/documents/clientRequest.js');
+  assert.deepEqual(localeHeaders('ru'), { 'x-ui-locale': 'ru' });
+  assert.deepEqual(localeHeaders('en', { 'Content-Type': 'application/json' }), { 'Content-Type': 'application/json', 'x-ui-locale': 'en' });
+  assert.deepEqual(localeHeaders(undefined), { 'x-ui-locale': 'et' });
+  /* Server loeb sama päist (ja alles selle puudumisel brauseri keelt). */
+  const server = read('../lib/documents/server.js');
+  assert.ok(server.indexOf('request?.headers?.get("x-ui-locale")') < server.indexOf('request?.headers?.get("accept-language")'));
+  for (const source of [ARTIFACT_PAGE, DOCUMENT_PAGE, SHARE]) {
+    const text = read(source);
+    const requests = text.split('await fetch(').length - 1;
+    assert.ok(requests >= 2, `${source}: päringuid ${requests}`);
+    assert.equal(text.split('headers: localeHeaders(').length - 1, requests, `${source}: iga päring kannab lehe keelt`);
+  }
+  /* Kinnitamine annab keele failide tegijale edasi. */
+  const approve = read('../app/api/documents/artifacts/[id]/approve/route.js');
+  assert.ok(approve.includes('const locale = localeFromRequest(request)') && /finalizeArtifact\(\s*\{[^}]*\blocale,/s.test(approve));
+});
+
+// Teise vajutuse küsimus jäi ootele, kui inimene käis vahepeal teises osas: tagasi tulles
+// kinnitas üks vajutus teksti, mida oli vahepeal muudetud.
+test('teise vajutuse küsimus ei jää ootele, kui osa vahetub', () => {
+  for (const page of [ARTIFACT_PAGE, DOCUMENT_PAGE]) assert.ok(read(page).includes('onStepChange={confirm.disarm}'), page);
+  const hooks = read(HOOKS);
+  assert.ok(hooks.includes('return { action, disarm };') && /const disarm = useCallback\(\(\) => \{\s*window\.clearTimeout\(timer\.current\);\s*setArmedKey\(""\);/.test(hooks));
+  /* Lava teatab osa vahetusest ainult siis, kui ees olev osa muutub. */
+  assert.ok(read('../components/stage/StepFlight.jsx').includes('onStepChange?.(activeIndex, stepsRef.current[activeIndex]);'));
+});
+
+// Ekraanil olid sisemised sõnad („agendi tulemus”, „artefakt”), kuigi lehed räägivad muidu
+// tekstist ja mustandist.
+test('dokumentide tekstides ei ole sisemisi sõnu üheski keeles', () => {
+  const inner = { et: /agendi|artefakt/i, en: /\bagent\b|artifact|artefact/i, ru: /агент|артефакт/i };
+  const walk = (node, path) => Object.entries(node).flatMap(([key, value]) => (typeof value === 'string' ? [[`${path}.${key}`, value]] : walk(value, `${path}.${key}`)));
+  for (const lang of LANGS) {
+    const texts = walk(catalog(lang).documents, 'documents');
+    assert.ok(texts.length > 400, `${lang}: tekste ${texts.length}`);
+    assert.deepEqual(texts.filter(([, text]) => inner[lang].test(text)).map(([key]) => key), [], lang);
+  }
+  /* Lehe ja kiirmenüü nimi ning kustutamise küsimus räägivad tekstist. */
+  assert.equal(catalog('et').documents.artifact_detail_title, 'Koostatud tekst');
+  assert.ok(catalog('et').documents.confirm.delete_artifact.startsWith('Kas kustutada see tekst jäädavalt?'));
+});
+
+// Kohe pärast kinnitamist näitas allikate rida faili liigi asemel sõna „Muu”: kinnitamise
+// vastus laadis allikfailid ilma liigita.
+test('kinnitamise vastus kannab allikfaili liiki', () => {
+  const finalization = read('../lib/documents/artifactFinalization.js');
+  const include = finalization.slice(finalization.indexOf('const finalizationInclude = {'), finalization.indexOf('function sourceManifest('));
+  const sources = include.slice(include.indexOf('sourceDocuments: {'), include.indexOf('finalSnapshot: true'));
+  assert.ok(/\bkind: true,/.test(sources) && /\btemplateFor: true,/.test(sources), 'liik ja malli otstarve on valikus');
+  assert.ok(read('../lib/documents/artifacts.js').includes('kind: document.kind,'), 'vastus annab liigi edasi');
+  /* Rida kannab liigi sõna, kui liik on kaasas, ja ilma selleta üldist sõna. */
+  const t = translator('et');
+  const row = (kind) => sourceRows({ sources: [{ id: 's1', title: 'Märkmed', kind }] }, { t, locale: 'et' }).sources[0].chip;
+  assert.equal(row('MATERIAL'), catalog('et').documents.kinds.material);
+  assert.equal(row(undefined), catalog('et').documents.kinds.other);
 });
 
 test('vahelehe nimi tuleb kataloogist; marsruudi mustrit ega kõvakodeeritud eestikeelset nime ei ole', () => {

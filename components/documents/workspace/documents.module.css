@@ -128,7 +128,7 @@
 
 /* --- Faili lisamine: faili andmed üleval, faili valik selle all ------------ */
 /* Faili andmed: pealkiri ja liik kõrvuti; malli otstarve (ainult malli puhul)
-   nende all terves laiuses, et kuus lahtrit mahuksid kahte ritta. */
+   nende all terves laiuses, kuus lahtrit kahes reas. */
 .about {
   min-width: 0;
   display: grid;
@@ -137,12 +137,25 @@
   /* Valikureal on oma alumine õhk: ridade vahele ei ole seda topelt vaja. */
   gap: 0.2rem 1.5rem;
 }
-.choice,
-.choiceWide {
+.choice {
   min-width: 0;
 }
-.choiceWide {
+/* Malli otstarve: küsimus vasakul, lahtrid selle kõrval. Küsimus omaette real
+   lahtrite kohal tegi vaate malli puhul paneelist kõrgemaks. Küsimuse veerg on
+   kitsas (küsimus murdub kahele reale), et lahtritele jääks ruumi: kolm lahtrit
+   kõrvuti peavad mahutama pikima ühesõnalise sildi ilma sõna poolitamata. */
+.purpose {
   grid-column: 1 / -1;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 9rem) minmax(0, 1fr);
+  align-items: center;
+  gap: 0.3rem 1.5rem;
+}
+.purposeLabel {
+  min-width: 0;
+  color: var(--text-warm);
+  font-weight: 560;
 }
 /* Väli on nii lai, kui pealkiri vajab, mitte paneeli laiune. */
 .field {
@@ -203,15 +216,16 @@
   font-size: var(--fs-small, 0.875rem);
   line-height: 1.4;
 }
-/* Valitud fail omal real: nimi, suurus ja eemaldamine. */
+/* Valitud fail omal real: nimi, suurus ja eemaldamine. Rida on nii madal kui
+   üks tekstirida: abirida ja see rida koos ei tohi olla kukutusalast kõrgemad,
+   muidu kasvab kogu vaade. */
 .fileRow {
   min-width: 0;
-  min-height: 2.25rem;
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0.2rem 0.8rem;
-  padding-top: 0.5rem;
+  padding-top: 0.35rem;
   border-top: 1px solid color-mix(in srgb, var(--text-warm) 10%, transparent);
   color: var(--text-soft);
   font-size: var(--fs-small, 0.875rem);
@@ -412,6 +426,10 @@
   .searchInput,
   .renameInput {
     max-width: none;
+  }
+  /* Kitsal pinnal on malli otstarbe küsimus lahtrite kohal ja lahtrid terves laiuses. */
+  .purpose {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 @container (max-width: 34rem) {

@@ -4641,8 +4641,8 @@
   "documents": {
     "page_title": "Dokumendid",
     "back_to_documents": "Tagasi dokumentidesse",
-    "outputs_title": "Agendi tulemused",
-    "outputs_description": "Siin näed agendi loodud mustandeid ja kinnitatud tulemusi ning saad need hiljem uuesti avada või alla laadida.",
+    "outputs_title": "Koostatud tekstid",
+    "outputs_description": "Siin näed koostatud mustandeid ja kinnitatud tekste ning saad need hiljem uuesti avada või alla laadida.",
     "framework_acceptance": {
       "title": "Tööalase kasutuse kinnituse kirje",
       "manage_pending": "Kui sul jäi registreerimisel raamleping või DigiDoc-fail võtmata, ava raamistik siit, laadi failid alla ja salvesta kinnitus ilma uuesti registreerimata.",
@@ -4668,14 +4668,14 @@
       "upload_title": "Laadi dokument üles",
       "upload_description": "Lisa siia uus fail ja määra sellele sobiv liik enne salvestamist.",
       "list_title": "Dokumentide nimekiri",
-      "list_description": "Sirvi olemasolevaid dokumente, filtreeri liigi järgi ja vali need vajadusel agendile kaasa."
+      "list_description": "Sirvi olemasolevaid dokumente, filtreeri liigi järgi ja vali need vajadusel koostamisse kaasa."
     },
     "loading": "Laen...",
     "empty_documents": "Siin ei ole veel ühtegi dokumenti.",
-    "empty_artifacts": "Siin ei ole veel ühtegi agendi tulemust.",
+    "empty_artifacts": "Siin ei ole veel ühtegi koostatud teksti.",
     "updated_at": "Uuendatud",
     "approved_at": "Kinnitatud",
-    "artifact_detail_title": "Agendi tulemus",
+    "artifact_detail_title": "Koostatud tekst",
     "detail_title": "Dokument",
     "draft_notice": "See mustand on muudetav. Allalaadimine muutub kättesaadavaks pärast kinnitamist.",
     "template_label": "Valitud mall",
@@ -4755,7 +4755,8 @@
       "title_label": "Pealkiri",
       "content_label": "Sisu",
       "dropzone_idle": "Lohista fail siia või vajuta faili valimiseks",
-      "dropzone_active": "Vabasta fail siia üleslaadimiseks"
+      "dropzone_active": "Vabasta fail siia üleslaadimiseks",
+      "template_help": "Kinnitatud faili kuju annab ainult Wordi mall (DOCX). Kohatäitjad on kirjas koostamisruumi sammus „Mall”."
     },
     "actions": {
       "upload": "Laadi üles",
@@ -4784,13 +4785,13 @@
       "uploaded": "Dokument laaditi üles.",
       "saved": "Muudatused salvestati.",
       "deleted": "Dokument kustutati.",
-      "artifact_deleted": "Agendi tulemus kustutati.",
+      "artifact_deleted": "Tekst kustutati.",
       "copied": "Sisu kopeeriti lõikelauale.",
       "approved": "Kinnitatud. Professionaalsed DOCX- ja PDF-failid on nüüd allalaaditavad."
     },
     "confirm": {
       "delete_document": "Kas kustutada see dokument jäädavalt? Toimingut ei saa tagasi võtta.",
-      "delete_artifact": "Kas kustutada see agendi tulemus jäädavalt? Toimingut ei saa tagasi võtta."
+      "delete_artifact": "Kas kustutada see tekst jäädavalt? Toimingut ei saa tagasi võtta."
     },
     "multi_doc": {
       "enable_agent_allowed": "Lülita esmalt sisse \"Kasuta töörežiimis\", et seda dokumenti valida."
@@ -4813,13 +4814,13 @@
     "errors": {
       "load_documents": "Dokumentide laadimine ebaõnnestus.",
       "read_failed": "Dokumendi avamine ebaõnnestus.",
-      "load_artifacts": "Agendi tulemuste laadimine ebaõnnestus.",
+      "load_artifacts": "Koostatud tekstide laadimine ebaõnnestus.",
       "upload_failed": "Dokumendi üleslaadimine ebaõnnestus.",
       "save_failed": "Dokumendi muudatuste salvestamine ebaõnnestus.",
       "delete_failed": "Dokumendi kustutamine ebaõnnestus.",
-      "delete_artifact_failed": "Agendi tulemuse kustutamine ebaõnnestus.",
+      "delete_artifact_failed": "Teksti kustutamine ebaõnnestus.",
       "copy_failed": "Sisu kopeerimine ebaõnnestus.",
-      "load_artifact": "Agendi tulemuse laadimine ebaõnnestus.",
+      "load_artifact": "Teksti laadimine ebaõnnestus.",
       "create_artifact_failed": "Mustandi loomine ebaõnnestus.",
       "file_required": "Vali üleslaadimiseks fail.",
       "file_too_large": "Fail on liiga suur. Maksimaalne suurus on 25 MB.",
@@ -4853,7 +4854,7 @@
       "download_failed": "Dokumendi allalaadimine ebaõnnestus.",
       "storage_path_invalid": "Dokumendi salvestustee on vigane.",
       "storage_dir_missing": "Dokumentide salvestuskataloog pole seadistatud.",
-      "agent_storage_dir_missing": "Agendi salvestuskataloog pole seadistatud.",
+      "agent_storage_dir_missing": "Koostatud tekstide salvestuskataloog pole seadistatud.",
       "daily_upload_quota_exceeded": "Päevane üleslaadimise limiit on täitunud. Proovi homme uuesti.",
       "storage_quota_exceeded": "Salvestusmaht on täis. Kustuta mõni fail ja proovi uuesti.",
       "transcript_required": "Transkript puudub või ei ole kasutatav.",
@@ -4871,34 +4872,34 @@
       "sort_approved_desc": "Viimati kinnitatud eespool",
       "sort_title_asc": "Pealkiri A-Z",
       "results_count": "Nähtaval {shown}/{total}",
-      "no_matches": "Selle otsingu ja valitud filtritega ei leitud ühtegi agendi tulemust.",
+      "no_matches": "Selle otsingu ja valitud filtritega ei leitud ühtegi koostatud teksti.",
       "source_preview_more": "+{count} veel",
       "errors": {
-        "list_failed": "Agendi tulemuste nimekirja laadimine ebaõnnestus.",
-        "not_found": "Agendi tulemust ei leitud.",
-        "read_failed": "Agendi tulemuse avamine ebaõnnestus.",
-        "update_failed": "Agendi tulemuse uuendamine ebaõnnestus.",
-        "delete_failed": "Agendi tulemuse kustutamine ebaõnnestus.",
-        "create_failed": "Agendi mustandi loomine ebaõnnestus.",
+        "list_failed": "Koostatud tekstide nimekirja laadimine ebaõnnestus.",
+        "not_found": "Teksti ei leitud.",
+        "read_failed": "Teksti avamine ebaõnnestus.",
+        "update_failed": "Teksti uuendamine ebaõnnestus.",
+        "delete_failed": "Teksti kustutamine ebaõnnestus.",
+        "create_failed": "Mustandi salvestamine ebaõnnestus.",
         "instruction_too_long": "Juhis on liiga pikk.",
         "refinement_required": "Täpsustav juhis on kohustuslik.",
         "analysis_unavailable": "Dokumendianalüüsi teenus pole praegu saadaval.",
         "analysis_failed": "Valitud dokumentidest ei õnnestunud piisavalt teksti kätte saada.",
         "ai_unavailable": "AI mustandi loomine pole praegu saadaval.",
         "ai_empty": "AI mustandi loomine tagastas tühja tulemuse.",
-        "approve_failed": "Agendi tulemuse kinnitamine ebaõnnestus.",
+        "approve_failed": "Teksti kinnitamine ebaõnnestus.",
         "format_not_supported": "Praegu on saadaval ainult DOCX allalaadimine.",
-        "download_failed": "Kinnitatud tulemuse allalaadimine ebaõnnestus.",
+        "download_failed": "Kinnitatud teksti allalaadimine ebaõnnestus.",
         "download_requires_approval": "Enne allalaadimist kinnita mustand.",
-        "content_required": "Artefakti sisu ei tohi olla tühi.",
-        "content_too_large": "Artefakti sisu on liiga mahukas.",
+        "content_required": "Tekst ei tohi olla tühi.",
+        "content_too_large": "Tekst on liiga pikk.",
         "sources_required": "Vali vähemalt üks allikdokument.",
         "too_many_sources": "Valitud allikdokumente on liiga palju.",
         "sources_not_found": "Üht või mitut valitud allikdokumenti ei leitud.",
         "source_not_allowed": "Valitud dokumendid peavad olema töörežiimiks lubatud.",
-        "template_not_found": "Valitud malli ei leitud.",
-        "template_not_allowed": "Valitud mall peab olema töörežiimiks lubatud.",
-        "final_read_only": "Kinnitatud artefaktid on ainult lugemiseks.",
+        "template_not_found": "Valitud malli ei leitud. Vali sammus „Mall” teine mall või „Ilma mallita” ja salvesta uuesti.",
+        "template_not_allowed": "Valitud mall ei ole töörežiimis lubatud. Vali sammus „Mall” teine mall või „Ilma mallita” ja salvesta uuesti.",
+        "final_read_only": "Kinnitatud teksti ei saa enam muuta.",
         "refinement_in_progress": "Sama mustandi parandus on veel serveris pooleli. Oota hetk ja korda sama toimingut.",
         "refinement_claim_lost": "Parandustöö võttis üle taastetöö. Korda sama toimingut, et saada püsiv tulemus.",
         "version_conflict": "Dokumenti muudeti vahepeal mujal. Laadi vaade uuesti ja proovi siis."
@@ -5080,7 +5081,8 @@
         "short": "Avatud dokument",
         "open_text": "Ava tekst",
         "share_title": "Luba töörežiimis",
-        "rename_label": "Uus pealkiri"
+        "rename_label": "Uus pealkiri",
+        "share_desc": "Lubatud faili saab võtta koostamisruumi lähtefailiks ja lubatud malli saab seal valida."
       },
       "framework": {
         "title": "Tööalase kasutuse raamistik",
@@ -5265,11 +5267,16 @@
         "fill_form": "Vormi või blanketi täitmine"
       },
       "template": {
-        "lead": "Mall annab tekstile ülesehituse. Malli lisad lehel Dokumendid ja lubad seal töörežiimis.",
+        "lead": "Mall annab kinnitatud Wordi failile kuju. Selleks peab mall olema Wordi fail (DOCX); sinna võid kirjutada kohatäitjad {placeholders}, mille asemele tulevad pealkiri, tekst, allikad, kinnitamise kuupäev ja teksti liik. Malli lisad lehel Dokumendid ja lubad seal töörežiimis.",
         "none": "Ilma mallita",
         "loading": "Laadin malle…",
         "empty": "Selle väljundi jaoks sobivat malli ei ole.",
-        "open_documents": "Ava Dokumendid"
+        "open_documents": "Ava Dokumendid",
+        "unsaved_note": "Malli valik on salvestamata. Salvesta see sammus „Tekst” nupuga „Salvesta mustand”.",
+        "draft_note": "Malli valik salvestub avatud mustandile nupuga „Salvesta mustand” sammus „Tekst”.",
+        "final_note": "Valik kehtib järgmise koostamise kohta. Kinnitatud teksti malli ei saa muuta.",
+        "blocked": "Selle mustandi mallilt on luba „Luba töörežiimis” ära võetud. Mustand hoiab malli edasi; kui sa seda ei soovi, vali teine mall või „Ilma mallita” ja salvesta mustand.",
+        "not_word": "Valitud mall ei ole Wordi fail (DOCX): kinnitatud faili kuju see ei muuda."
       },
       "style": {
         "audience": "Kellele",
@@ -5323,7 +5330,8 @@
         "clear": "Eemalda tööruumist",
         "sources": "Allikad:",
         "final_note": "Seda teksti ei saa enam muuta.",
-        "downloads": "Allalaadimine"
+        "downloads": "Allalaadimine",
+        "unsaved_template": "Malli valik on salvestamata. „Salvesta mustand” salvestab ka selle."
       },
       "refine": {
         "lead": "Kirjuta, mida tekstis muuta. Täiendamine kasutab samu faile ja arvestab muudatusi, mida oled tekstis ise teinud.",
@@ -5335,7 +5343,7 @@
         "needs_text": "Kirjuta, mida muuta, siis saab teksti täiendada."
       },
       "versions": {
-        "lead": "Selle tööruumi viimased versioonid, kuni {count}. Need on alles seni, kuni tööruum on avatud.",
+        "lead": "Selle tööruumi viimased versioonid, kuni {count}. Uus versioon tekib teksti koostamisel ja täiendamisel. Versioone ei salvestata: need kaovad, kui sulged tööruumi või laadid lehe uuesti.",
         "empty": "Versioone ei ole veel.",
         "current": "Praegune",
         "restore": "Taasta",
@@ -5345,10 +5353,11 @@
           "generated": "Koostatud",
           "refined": "Täiendatud",
           "rerun": "Uus koostamine"
-        }
+        },
+        "lead_paused": "Siin on tekst sellisena, nagu see tööruumi jõudis. Uusi versioone praegu juurde ei teki, sest teksti koostamine ja täiendamine on peatatud."
       },
       "approve": {
-        "lead": "Kinnitamine salvestab teksti ja lukustab selle: kinnitatud teksti ei saa enam muuta. Seejärel saad teksti DOCX- ja PDF-failina alla laadida.",
+        "lead": "Kinnitamine salvestab teksti ja lukustab selle: kinnitatud teksti ei saa enam muuta. Seejärel saad teksti Wordi failina alla laadida; PDF tehakse siis, kui PDF toetab kõiki teksti märke.",
         "done": "Tekst on kinnitatud ja seda ei saa enam muuta."
       },
       "finish": {
@@ -5376,7 +5385,8 @@
         "cleared": "Tekst on tööruumist eemaldatud. Salvestatud tekst on lehel Dokumendid alles.",
         "cleared_client": "Tekst on tööruumist eemaldatud. Salvestatud tekst on sinu tulemuste hulgas alles.",
         "version_restored": "Versioon on toimetis. Salvesta, kui tahad selle alles jätta.",
-        "saved_restored": "Salvestatud tekst on taastatud."
+        "saved_restored": "Salvestatud tekst on taastatud.",
+        "version_restored_same": "Versioon on toimetis. See on sama tekst, mis on salvestatud."
       },
       "confirm": {
         "compose": "Vajuta uuesti, et koostada",
@@ -5462,6 +5472,15 @@
         "needs_text": "Transkripti tekst on tühi."
       },
       "paused": "Teksti koostamine ja täiendamine on uue süsteemi arendamise ajaks peatatud. Varasemad tekstid ja failid on alles."
+    },
+    "export": {
+      "type": "Tüüp",
+      "approved": "Kinnitatud",
+      "content": "Sisu",
+      "sources": "Allikad",
+      "no_sources": "Allikfaile ei ole seotud.",
+      "empty_content": "(tekst on tühi)",
+      "untitled_source": "Dokument"
     }
   },
   "research": {

@@ -34,6 +34,7 @@ import StepFlight from "@/components/stage/StepFlight"
 import AdminRoleViewCycleButton from "@/components/workspace/AdminRoleViewCycleButton"
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot"
 import { SubpageHeader } from "@/components/ui/SubpageHeader"
+import { localeHeaders } from "@/lib/documents/clientRequest"
 import { ARTIFACT_LIST_LIMIT_ALL, TEMPLATE_FOR_VALUES } from "@/lib/documents/constants"
 import { formatDate, formatFileSize, kindLabel, templateForLabel } from "@/lib/documents/presentation"
 import { buildWorkspaceItems } from "@/lib/documents/workspace"
@@ -42,6 +43,7 @@ import { WORKER_FRAMEWORK_SIGNED_HREF, WORKER_FRAMEWORK_VERSION } from "@/lib/fr
 import { localizePath } from "@/lib/localizePath"
 import { pushWithTransition } from "@/lib/routeTransition"
 
+import { RequestFailure, failureText, serverMessage } from "./detail/detailModel"
 import { AddFileView, EntryView, FrameworkView, ItemView, ListView } from "./workspace/DocumentsViews"
 import {
   REMOVAL_NOTE_KEYS,
@@ -175,9 +177,9 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
       const params = new URLSearchParams({ limit: String(WORKSPACE_WINDOW), offset: String(offset) })
       if (isClientRole) params.set("kind", "MATERIAL")
       if (searchQuery) params.set("search", searchQuery)
-      const response = await fetch(`/api/documents?${params.toString()}`, { cache: "no-store" })
+      const response = await fetch(`/api/documents?${params.toString()}`, { cache: "no-store", headers: localeHeaders(locale) })
       const payload = await response.json().catch(() => ({}))
-      if (!response.ok) throw new Error(payload?.message || t("documents.errors.load_documents"))
+      if (!response.ok) throw new RequestFailure(serverMessage(payload, t, t("documents.errors.load_documents")))
       setDocsState((current) => mergeOwnerPage(current, {
         items: payload?.documents,
         total: payload?.pagination?.total,
@@ -186,19 +188,19 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
     } catch (error) {
       setDocsState((current) =>
         offset
-          ? { ...current, error: error?.message || t("documents.errors.load_documents") }
-          : emptyFamily({ error: error?.message || t("documents.errors.load_documents") })
+          ? { ...current, error: failureText(error, t("documents.errors.load_documents")) }
+          : emptyFamily({ error: failureText(error, t("documents.errors.load_documents")) })
       )
     }
-  }, [isClientRole, searchQuery, t])
+  }, [isClientRole, locale, searchQuery, t])
 
   const loadArtifacts = useCallback(async (offset = 0) => {
     try {
       const params = new URLSearchParams({ limit: String(ARTIFACT_LIST_LIMIT_ALL), offset: String(offset), sort: "updated_desc" })
       if (searchQuery) params.set("search", searchQuery)
-      const response = await fetch(`/api/documents/artifacts?${params.toString()}`, { cache: "no-store" })
+      const response = await fetch(`/api/documents/artifacts?${params.toString()}`, { cache: "no-store", headers: localeHeaders(locale) })
       const payload = await response.json().catch(() => ({}))
-      if (!response.ok) throw new Error(payload?.message || t("documents.errors.load_artifacts"))
+      if (!response.ok) throw new RequestFailure(serverMessage(payload, t, t("documents.errors.load_artifacts")))
       setArtifactsState((current) => mergeOwnerPage(current, {
         items: payload?.artifacts,
         total: payload?.pagination?.total,
@@ -207,19 +209,19 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
     } catch (error) {
       setArtifactsState((current) =>
         offset
-          ? { ...current, error: error?.message || t("documents.errors.load_artifacts") }
-          : emptyFamily({ error: error?.message || t("documents.errors.load_artifacts") })
+          ? { ...current, error: failureText(error, t("documents.errors.load_artifacts")) }
+          : emptyFamily({ error: failureText(error, t("documents.errors.load_artifacts")) })
       )
     }
-  }, [searchQuery, t])
+  }, [locale, searchQuery, t])
 
   const loadAnalyses = useCallback(async (offset = 0) => {
     try {
       const params = new URLSearchParams({ limit: String(WORKSPACE_WINDOW), offset: String(offset) })
       if (searchQuery) params.set("search", searchQuery)
-      const response = await fetch(`/api/documents/analyses?${params.toString()}`, { cache: "no-store" })
+      const response = await fetch(`/api/documents/analyses?${params.toString()}`, { cache: "no-store", headers: localeHeaders(locale) })
       const payload = await response.json().catch(() => ({}))
-      if (!response.ok) throw new Error(payload?.message || t("documents.analyses.errors.list_failed"))
+      if (!response.ok) throw new RequestFailure(serverMessage(payload, t, t("documents.analyses.errors.list_failed")))
       setAnalysesState((current) => mergeOwnerPage(current, {
         items: payload?.analyses,
         total: payload?.pagination?.total,
@@ -228,19 +230,19 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
     } catch (error) {
       setAnalysesState((current) =>
         offset
-          ? { ...current, error: error?.message || t("documents.analyses.errors.list_failed") }
-          : emptyFamily({ error: error?.message || t("documents.analyses.errors.list_failed") })
+          ? { ...current, error: failureText(error, t("documents.analyses.errors.list_failed")) }
+          : emptyFamily({ error: failureText(error, t("documents.analyses.errors.list_failed")) })
       )
     }
-  }, [searchQuery, t])
+  }, [locale, searchQuery, t])
 
   const loadResearch = useCallback(async (offset = 0) => {
     try {
       const params = new URLSearchParams({ limit: String(WORKSPACE_WINDOW), offset: String(offset) })
       if (searchQuery) params.set("search", searchQuery)
-      const response = await fetch(`/api/research/jobs?${params.toString()}`, { cache: "no-store" })
+      const response = await fetch(`/api/research/jobs?${params.toString()}`, { cache: "no-store", headers: localeHeaders(locale) })
       const payload = await response.json().catch(() => ({}))
-      if (!response.ok) throw new Error(payload?.message || t("documents.workspace.research_load_failed"))
+      if (!response.ok) throw new RequestFailure(serverMessage(payload, t, t("documents.workspace.research_load_failed")))
       setResearchState((current) => mergeOwnerPage(current, {
         items: payload?.jobs,
         total: payload?.pagination?.total,
@@ -250,11 +252,11 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
     } catch (error) {
       setResearchState((current) =>
         offset
-          ? { ...current, error: error?.message || t("documents.workspace.research_load_failed") }
-          : emptyFamily({ enabled: true, error: error?.message || t("documents.workspace.research_load_failed") })
+          ? { ...current, error: failureText(error, t("documents.workspace.research_load_failed")) }
+          : emptyFamily({ enabled: true, error: failureText(error, t("documents.workspace.research_load_failed")) })
       )
     }
-  }, [searchQuery, t])
+  }, [locale, searchQuery, t])
 
   const loadWorkspace = useCallback(async () => {
     setLoading(true)
@@ -315,9 +317,9 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
       }
       setFrameworkStatus((current) => ({ ...current, loading: true }))
       try {
-        const response = await fetch("/api/framework-acceptances/worker", { cache: "no-store" })
+        const response = await fetch("/api/framework-acceptances/worker", { cache: "no-store", headers: localeHeaders(locale) })
         const payload = await response.json().catch(() => ({}))
-        if (!response.ok) throw new Error(payload?.message || t("documents.framework_acceptance.load_failed"))
+        if (!response.ok) throw new RequestFailure(serverMessage(payload, t, t("documents.framework_acceptance.load_failed")))
         if (cancelled) return
         setFrameworkStatus({ loading: false, acceptance: payload?.acceptance || null, failed: false })
       } catch {
@@ -328,7 +330,7 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
     }
     void loadFrameworkStatus()
     return () => { cancelled = true }
-  }, [isClientRole, t])
+  }, [isClientRole, locale, t])
 
   useEffect(() => {
     if (!successNotice) return undefined
@@ -452,14 +454,14 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
     analysisRequest.current = id
     setAnalysisView({ id, content: "", loading: true, error: "" })
     try {
-      const response = await fetch(`/api/documents/analyses/${encodeURIComponent(id)}`, { cache: "no-store" })
+      const response = await fetch(`/api/documents/analyses/${encodeURIComponent(id)}`, { cache: "no-store", headers: localeHeaders(locale) })
       const payload = await response.json().catch(() => ({}))
-      if (!response.ok) throw new Error(payload?.message || t("documents.analyses.errors.read_failed"))
+      if (!response.ok) throw new RequestFailure(serverMessage(payload, t, t("documents.analyses.errors.read_failed")))
       if (analysisRequest.current !== id) return
       setAnalysisView({ id, content: String(payload?.analysis?.content || ""), loading: false, error: "" })
     } catch (error) {
       if (analysisRequest.current !== id) return
-      setAnalysisView({ id, content: "", loading: false, error: error?.message || t("documents.analyses.errors.read_failed") })
+      setAnalysisView({ id, content: "", loading: false, error: failureText(error, t("documents.analyses.errors.read_failed")) })
     }
   }
 
@@ -511,9 +513,9 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
       formData.append("title", uploadTitle)
       formData.append("kind", uploadKind)
       if (uploadKind === "TEMPLATE" && uploadTemplateFor) formData.append("templateFor", uploadTemplateFor)
-      const response = await fetch("/api/documents", { method: "POST", body: formData })
+      const response = await fetch("/api/documents", { method: "POST", headers: localeHeaders(locale), body: formData })
       const payload = await response.json().catch(() => ({}))
-      if (!response.ok) throw new Error(payload?.message || t("documents.errors.upload_failed"))
+      if (!response.ok) throw new RequestFailure(serverMessage(payload, t, t("documents.errors.upload_failed")))
       setUploadTitle("")
       setUploadKind("MATERIAL")
       setUploadTemplateFor("")
@@ -524,7 +526,7 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
       setView("list")
       await loadDocuments()
     } catch (error) {
-      setActionError(error?.message || t("documents.errors.upload_failed"))
+      setActionError(failureText(error, t("documents.errors.upload_failed")))
     } finally {
       setUploading(false)
     }
@@ -535,10 +537,10 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
       beginAction()
       try {
         const currentDocument = docsState.items.find((document) => document.id === id)
-        if (!currentDocument?.updatedAt) throw new Error(t("documents.errors.save_failed"))
+        if (!currentDocument?.updatedAt) throw new RequestFailure(t("documents.errors.save_failed"))
         const response = await fetch(`/api/documents/${encodeURIComponent(id)}`, {
           method: "PATCH",
-          headers: { "Content-Type": "application/json" },
+          headers: localeHeaders(locale, { "Content-Type": "application/json" }),
           body: JSON.stringify({ ...data, expectedUpdatedAt: currentDocument.updatedAt })
         })
         const payload = await response.json().catch(() => ({}))
@@ -551,13 +553,13 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
               )
             }))
           }
-          throw new Error(payload?.message || t("documents.errors.save_failed"))
+          throw new RequestFailure(serverMessage(payload, t, t("documents.errors.save_failed")))
         }
         setSuccessNotice({ message: t(successKey) })
         await loadDocuments()
         return true
       } catch (error) {
-        setActionError(error?.message || t("documents.errors.save_failed"))
+        setActionError(failureText(error, t("documents.errors.save_failed")))
         return false
       }
     })
@@ -575,9 +577,9 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
     return exclusive(async () => {
       beginAction()
       try {
-        const response = await fetch(removal.url(id), { method: "DELETE" })
+        const response = await fetch(removal.url(id), { method: "DELETE", headers: localeHeaders(locale) })
         const payload = await response.json().catch(() => ({}))
-        if (!response.ok) throw new Error(payload?.message || t(removal.failKey))
+        if (!response.ok) throw new RequestFailure(serverMessage(payload, t, t(removal.failKey)))
         closeItem()
         setSuccessNotice({ message: t(removal.doneKey) })
         if (kind === "document") await loadDocuments()
@@ -585,7 +587,7 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
         else if (kind === "analysis") await loadAnalyses()
         else await loadResearch()
       } catch (error) {
-        setActionError(error?.message || t(removal.failKey))
+        setActionError(failureText(error, t(removal.failKey)))
       } finally {
         setConfirming("")
       }
@@ -596,13 +598,13 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
     return exclusive(async () => {
       beginAction()
       try {
-        const response = await fetch(`/api/documents/artifacts/${encodeURIComponent(artifactId)}`, { cache: "no-store" })
+        const response = await fetch(`/api/documents/artifacts/${encodeURIComponent(artifactId)}`, { cache: "no-store", headers: localeHeaders(locale) })
         const payload = await response.json().catch(() => ({}))
-        if (!response.ok) throw new Error(payload?.message || t("documents.errors.copy_failed"))
+        if (!response.ok) throw new RequestFailure(serverMessage(payload, t, t("documents.errors.copy_failed")))
         await navigator.clipboard.writeText(String(payload?.artifact?.content || ""))
         setSuccessNotice({ message: t("documents.feedback.copied") })
       } catch (error) {
-        setActionError(error?.message || t("documents.errors.copy_failed"))
+        setActionError(failureText(error, t("documents.errors.copy_failed")))
       }
     })
   }
@@ -612,13 +614,13 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
     return exclusive(async () => {
       beginAction()
       try {
-        const response = await fetch(`/api/research/jobs/${encodeURIComponent(id)}/stop`, { method: "POST" })
+        const response = await fetch(`/api/research/jobs/${encodeURIComponent(id)}/stop`, { method: "POST", headers: localeHeaders(locale) })
         const payload = await response.json().catch(() => ({}))
-        if (!response.ok) throw new Error(payload?.message || t("documents.workspace.research_stop_failed"))
+        if (!response.ok) throw new RequestFailure(serverMessage(payload, t, t("documents.workspace.research_stop_failed")))
         setSuccessNotice({ message: t("documents.workspace.research_stopped") })
         await loadResearch()
       } catch (error) {
-        setActionError(error?.message || t("documents.workspace.research_stop_failed"))
+        setActionError(failureText(error, t("documents.workspace.research_stop_failed")))
       } finally {
         setConfirming("")
       }
@@ -726,9 +728,11 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
           can.share
             ? {
                 title: t("documents.views.item.share_title"),
+                /* Mida luba praegu annab: faili saab koostamisruumis kasutada.
+                   Otsingust siin enam ei räägita (vana otsing on suletud). */
                 description: can.share.removal
                   ? t(REMOVAL_NOTE_KEYS[can.share.removal])
-                  : t("documents.provenance.rag.in_search_when_shared"),
+                  : t("documents.views.item.share_desc"),
                 checked: can.share.checked,
                 disabled: Boolean(can.share.removal),
                 onChange: (checked) => void patchDocument(item.id, { agentAllowed: checked })
@@ -949,6 +953,10 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
           activeKey={activeView}
           onStepChange={(index, step) => {
             if (!step) return
+            /* Teise vajutuse küsimus (kustuta, peata) käib selle osa kohta, kus
+               see küsiti: teises osas käies ei jää see ootele. */
+            window.clearTimeout(confirmTimer.current)
+            setConfirming("")
             setView(step.key)
             setActionError("")
           }}

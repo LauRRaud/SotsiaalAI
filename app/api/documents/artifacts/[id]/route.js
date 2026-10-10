@@ -7,6 +7,7 @@ import {
   normalizeArtifactTitle,
   serializeArtifact
 } from "@/lib/documents/artifacts"
+import { draftTemplateChange } from "@/lib/documents/artifactFiles"
 import { parseExpectedVersion, updateDraftArtifact } from "@/lib/documents/artifactMutation"
 import { getCachedRetrievalDebugMeta } from "@/lib/documents/retrievalObservability"
 import { prisma } from "@/lib/prisma"
@@ -154,35 +155,36 @@ export async function PATCH(request, { params }) {
       body?.content === undefined ? artifact.content : normalizeArtifactContent(body.content)
     const cachedDebugMeta =
       body?.content === undefined ? null : getCachedRetrievalDebugMeta(auth.userId, nextContent)
-    let nextTemplateId = artifact.templateId || null
+    /* Mall, mis mustandil juba on, jääb alles ilma uue kontrollita; ainult
+       TEISE malli valimine nõuab, et see oleks selle inimese mall ja töörežiimis
+       lubatud (vt `draftTemplateChange`). Varem keeldus salvestus iga kord, kui
+       mustandi mallilt oli luba vahepeal ära võetud, kuigi inimene malli ei
+       muutnud; sama mustand salvestus teksti detaililehelt, mis malli ei saada. */
+    const templateChange = draftTemplateChange(artifact.templateId, body?.templateId)
+    let nextTemplateId = templateChange.templateId
 
-    if (body?.templateId !== undefined) {
-      const candidateTemplateId = String(body.templateId || "").trim()
-      if (!candidateTemplateId) {
-        nextTemplateId = null
-      } else {
-        const template = await prisma.userDocument.findFirst({
-          where: {
-            id: candidateTemplateId,
-            ownerId: auth.userId,
-            kind: "TEMPLATE"
-          },
-          select: {
-            id: true,
-            agentAllowed: true
-          }
-        })
-
-        if (!template) {
-          return errorJson("documents.artifacts.errors.template_not_found", 404, locale)
+    if (templateChange.kind === "choose") {
+      const template = await prisma.userDocument.findFirst({
+        where: {
+          id: templateChange.templateId,
+          ownerId: auth.userId,
+          kind: "TEMPLATE"
+        },
+        select: {
+          id: true,
+          agentAllowed: true
         }
+      })
 
-        if (!template.agentAllowed) {
-          return errorJson("documents.artifacts.errors.template_not_allowed", 400, locale)
-        }
-
-        nextTemplateId = template.id
+      if (!template) {
+        return errorJson("documents.artifacts.errors.template_not_found", 404, locale)
       }
+
+      if (!template.agentAllowed) {
+        return errorJson("documents.artifacts.errors.template_not_allowed", 400, locale)
+      }
+
+      nextTemplateId = template.id
     }
 
     const role = effectiveRoleFromSession(auth.session)

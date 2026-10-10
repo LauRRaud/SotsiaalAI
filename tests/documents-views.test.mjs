@@ -11,8 +11,10 @@ import {
   ENTRY_CARDS, TYPE_FILTERS, UPLOAD_ACCEPT, VIEW_TEXT_KEYS,
   documentRow, entryCards, filterItems, filterOptions, itemActions, itemFacts, itemSheet, removalState, uploadProblem, viewKeysFor,
 } from '../components/documents/workspace/documentRows.js';
-import { MAX_DOCUMENT_SIZE_BYTES } from '../lib/documents/constants.js';
+import { MAX_DOCUMENT_SIZE_BYTES, TEMPLATE_FOR_VALUES } from '../lib/documents/constants.js';
+import { unfinishedRagRemoval } from '../lib/documents/ragRemovalState.js';
 import { buildWorkspaceItems, WORKSPACE_TYPES } from '../lib/documents/workspace.js';
+import { RAG_AVAILABLE } from '../lib/rag/retired.js';
 
 const read = (path) => fs.readFileSync(new URL(path, import.meta.url), 'utf8');
 const catalog = (lang) => JSON.parse(read(`../messages/${lang}.json`));
@@ -152,9 +154,10 @@ test('rea märgid: tüüp alati, seis ainult siis, kui see ütleb midagi juurde'
   assert.deepEqual(chips('d1'), []);
   assert.deepEqual(chips('d2'), ['shared:ok']);
   assert.deepEqual(chips('d3'), ['system:quiet']);
-  /* Pooleli eemaldamine on tähtsam kui see, et fail on töörežiimi lubatud. */
-  assert.deepEqual(chips('d4'), ['removal:risk']);
-  assert.deepEqual(chips('d6'), ['removal:wait']);
+  /* Pooleli eemaldamine on tähtsam kui see, et fail on töörežiimi lubatud. Kuni vana otsing
+     on suletud, eemaldamine ei loe (sealt ei saa midagi eemaldada): rida näitab luba ennast. */
+  assert.deepEqual(chips('d4'), RAG_AVAILABLE ? ['removal:risk'] : ['shared:ok']);
+  assert.deepEqual(chips('d6'), RAG_AVAILABLE ? ['removal:wait'] : []);
   assert.deepEqual(chips('a1'), []);
   assert.deepEqual(chips('r1'), ['status:wait']);
   assert.deepEqual(chips('r2'), ['status:ok']);
@@ -165,9 +168,15 @@ test('rea märgid: tüüp alati, seis ainult siis, kui see ütleb midagi juurde'
   assert.equal(documentRow(byId('a2'), { t, locale: 'et' }).tone, 'ok');
   /* Pealkirjata fail saab sõnad, mitte tühja rea. */
   assert.equal(documentRow({ key: 'x', type: 'analysis', title: '' }, { t, locale: 'et' }).title, catalog('et').documents.workspace.untitled);
-  assert.equal(removalState(byId('d4')), 'failed');
-  assert.equal(removalState(byId('d1')), '');
-  assert.equal(removalState({ raw: { metadata: { ragRemoval: { status: 'done' } } } }), '');
+  /* Mõlemad harud: töötava indeksiga loeb lõpetamata eemaldamine nagu enne, suletud indeksiga
+     ei loe. Vaikimisi otsustab seda `lib/rag/retired.js`. */
+  assert.equal(removalState(byId('d4'), { ragAvailable: true }), 'failed');
+  assert.equal(removalState(byId('d6'), { ragAvailable: true }), 'pending');
+  assert.equal(removalState(byId('d4'), { ragAvailable: false }), '');
+  assert.equal(removalState(byId('d6'), { ragAvailable: false }), '');
+  assert.equal(removalState(byId('d4')), RAG_AVAILABLE ? 'failed' : '');
+  assert.equal(removalState(byId('d1'), { ragAvailable: true }), '');
+  assert.equal(removalState({ raw: { metadata: { ragRemoval: { status: 'done' } } } }, { ragAvailable: true }), '');
 });
 
 test('pöörduja lähtefailide rida on lihtne: märke ega päritolu fakte ei ole', () => {
@@ -191,8 +200,9 @@ test('avatud dokumendi tegevused järgivad liiki ja seisu', () => {
   /* „Koosta sellest” ainult töörežiimi lubatud failist. */
   assert.equal(can('d1').compose, null);
   assert.equal(can('d2').compose, '/dokreziim?documents=d2');
-  /* Pooleli eemaldamise ajal luba ei muudeta: vaade saab seisu kaasa. */
-  assert.deepEqual(can('d4').share, { checked: true, removal: 'failed' });
+  /* Pooleli eemaldamise ajal luba ei muudeta: vaade saab seisu kaasa. Suletud otsingu ajal
+     seisu ei ole ja luba saab muuta mõlemat pidi. */
+  assert.deepEqual(can('d4').share, { checked: true, removal: RAG_AVAILABLE ? 'failed' : '' });
 
   /* Süsteemi loodud kirje: ainult allalaadimine. */
   assert.deepEqual(
@@ -278,7 +288,7 @@ test('leht hoiab alles kõik päringud, pöörduja piirangu ja töölaua sees t�
     '`/api/documents/analyses?${params.toString()}`',
     '`/api/research/jobs?${params.toString()}`',
     '"/api/framework-acceptances/worker"',
-    'fetch("/api/documents", { method: "POST", body: formData })',
+    'fetch("/api/documents", { method: "POST", headers: localeHeaders(locale), body: formData })',
     '`/api/documents/${encodeURIComponent(id)}`',
     '`/api/documents/artifacts/${encodeURIComponent(id)}`',
     '`/api/documents/artifacts/${encodeURIComponent(artifactId)}`',
@@ -349,6 +359,124 @@ test('faili lisamise vaade: kukutusala kannab ainult juhist, abitekst ja valitud
   /* Liik ja malli otstarve on ühelaiused lahtrid; malli otstarve ainult malli puhul. */
   assert.ok(views.includes('{form.templateFor ? (') && /templateFor:\s+uploadKind === "TEMPLATE"/.test(read(PAGE)));
   assert.equal(views.split('<ChoiceRow').length - 1, 3, 'liik, malli otstarve ja loendi filter');
+});
+
+// --- Brauseris kinnitatud vead (10.10) --------------------------------------------------
+
+// Liigi „Mall” korral oli vaade paneelist kõrgem (brauseris 535 px 522 px paneelis).
+test('faili lisamine mahub paneeli ka malli puhul: otstarbe küsimus on lahtrite kõrval ja read hoiavad oma veerge', () => {
+  const views = read(VIEWS);
+  const css = read(STYLES).replace(/\r\n/g, '\n');
+  const add = views.slice(views.indexOf('export function AddFileView('), views.indexOf('export function ListView('));
+  const rows = add.split('<ChoiceRow').slice(1).map((part) => part.slice(0, part.indexOf('/>')));
+  assert.equal(rows.length, 2, 'liik ja malli otstarve');
+  for (const row of rows) assert.ok(/\bkeepColumns\b/.test(row), 'rida hoiab oma veergude arvu 34 kuni 40 rem laiusel pinnal');
+  assert.ok(rows[0].includes('columns={form.kinds.length}') && rows[1].includes('columns={3}'));
+
+  /* LAI PIND (40 rem ja laiem). Otstarbe küsimus seisab lahtrite kõrval: omaette rida
+     lahtrite kohal (üks tekstirida ja 0,45 rem vahe, kokku umbes 2 rem) on läinud. Valikurühma
+     enda silt on ainult ekraanilugejale ja nähtavat küsimust ei loeta teist korda. */
+  assert.ok(rows[1].includes('labelHidden') && !rows[0].includes('labelHidden'), 'ainult otstarbe rühma silt on peidetud');
+  assert.ok(add.includes('<span className={styles.purposeLabel} aria-hidden="true">'), 'nähtav küsimus on lahtrite kõrval');
+  assert.equal(add.split('t("documents.form.template_for_placeholder")').length - 1, 2, 'sama tekst nähtavalt ja valikurühma sildina');
+  assert.match(css, /\.purpose \{[^}]*grid-column: 1 \/ -1;[^}]*grid-template-columns: minmax\(0, 9rem\) minmax\(0, 1fr\);[^}]*align-items: center;/);
+  /* Kitsal pinnal läheb küsimus lahtrite kohale (lahtrid terves laiuses). */
+  assert.match(css, /@container \(max-width: 40rem\) \{[\s\S]*?\.purpose \{\s*grid-template-columns: minmax\(0, 1fr\);/);
+  /* Lahtrite rühm on oma ümbrise esimene laps: valikurea ülemine õhk jääb ära. */
+  assert.match(add, /<div className=\{styles\.choice\}>\s*<ChoiceRow\s+label=\{t\("documents\.form\.template_for_placeholder"\)\}\s+labelHidden/);
+  /* Valitud faili rida ei hoia enam omaette kõrgust: abirida ja see rida mahuvad kukutusala kõrvale. */
+  const fileRow = css.slice(css.indexOf('.fileRow {'), css.indexOf('}', css.indexOf('.fileRow {')));
+  assert.ok(!fileRow.includes('min-height') && fileRow.includes('padding-top: 0.35rem;'));
+  assert.ok(!views.includes('styles.choiceWide') && !css.includes('.choiceWide'), 'vana täislaiuses rea klass on läinud');
+
+  /* KITSAS TÖÖLAUA PANEEL (34 kuni 40 rem). Otstarbe rida on kolmes veerus kaks rida (enne
+     kahes veerus kolm) ja liik üks rida (enne kaks). Lahter on seal 2,75 rem ja ridade vahe
+     0,4 rem: vaade on 2 × (2,75 + 0,4) rem ehk umbes 100 px madalam. */
+  const choice = read('../components/stage/ChoiceRow.module.css');
+  assert.match(choice, /@container \(min-width: 34rem\) and \(max-width: 40rem\) \{\s*\.row\[data-layout="stack"\]\[data-keep="1"\] \.options \{\s*grid-template-columns: repeat\(var\(--choice-cols, 3\), minmax\(0, 1fr\)\);/);
+  assert.equal(Math.ceil(TEMPLATE_FOR_VALUES.length / 3), 2);
+  assert.equal(Math.ceil(TEMPLATE_FOR_VALUES.length / 2), 3);
+  /* Sildid on lühikesed sõnad: kolm kõrvuti mahuvad (pikim alla 25 märgi igas keeles). */
+  for (const lang of LANGS) {
+    const messages = catalog(lang).documents;
+    for (const value of TEMPLATE_FOR_VALUES) assert.ok(messages.template_for[value.toLowerCase()].length <= 24, `${lang}: ${value}`);
+    for (const kind of ['template', 'material', 'other']) assert.ok(messages.kinds[kind].length <= 10, `${lang}: ${kind}`);
+  }
+});
+
+// Üleslaadimine võtab malliks vastu PDF-, DOCX- ja TXT-faili, aga kinnitatud faili kuju annab
+// ainult Wordi mall. Jalarida ütleb seda ja ütleb, kust kohatäitjad teada saab.
+test('malli lisamisel ütleb jalarida, mis on tõsi: kuju annab ainult Wordi mall', () => {
+  const views = read(VIEWS);
+  /* Lause on vaate jalareal nupu kõrval (seal ei tee see vaadet kõrgemaks) ja ainult malli puhul. */
+  assert.ok(views.includes('note={form.templateFor ? t("documents.form.template_help") : undefined}'));
+  assert.ok(views.includes('{t("documents.form.file_help")}'), 'lubatud failitüüpide abirida on kukutusala kõrval alles');
+  for (const lang of LANGS) {
+    const help = catalog(lang).documents.form.template_help;
+    assert.ok(/DOCX/.test(help) && help.split(/[.!?](?:\s|$)/).filter(Boolean).length === 2, `${lang}: kaks lauset, Wordi mall nimetatud`);
+    /* Teine lause viitab koostamisruumi malli vaatele, kus kohatäitjad on kirjas. */
+    assert.ok(help.includes(catalog(lang).documents.drafting.views.template.short), lang);
+    assert.ok(catalog(lang).documents.drafting.template.lead.includes('{placeholders}'), `${lang}: malli vaade loetleb kohatäitjad`);
+  }
+  /* Olemasolevaid üleslaadimisi ei piirata: server võtab malliks endiselt kõik kolm tüüpi. */
+  assert.equal(UPLOAD_ACCEPT.split(',').filter((part) => part.startsWith('.')).join(','), '.pdf,.docx,.txt');
+});
+
+// Luba „Luba töörežiimis” jäi pärast äravõtmist lukku, sest vana otsingukoopia eemaldamine
+// ei saa suletud otsingust õnnestuda. Kaart ja fakt lubasid ka otsingut, mida enam ei ole.
+test('suletud otsingu ajal: luba ei lähe lukku ja tekstid ei luba otsingut', () => {
+  for (const status of ['pending', 'failed']) {
+    assert.equal(unfinishedRagRemoval({ status }, { ragAvailable: true }), status);
+    assert.equal(unfinishedRagRemoval({ status }, { ragAvailable: false }), '');
+  }
+  for (const other of [{ status: 'done' }, { status: 'SOMETHING' }, {}, null, undefined]) assert.equal(unfinishedRagRemoval(other, { ragAvailable: true }), '');
+
+  /* Kaart ütleb, mida luba praegu annab; otsingust ei räägi kumbki leht. */
+  for (const source of [PAGE, '../components/documents/DocumentDetailPage.jsx']) {
+    const text = read(source);
+    assert.ok(text.includes('t("documents.views.item.share_desc")'), source);
+    assert.ok(!text.includes('documents.provenance.rag.in_search_when_shared'), source);
+    assert.ok(text.includes('disabled: Boolean(can.share.removal)'), `${source}: kaart on lukus ainult loetava eemaldamise ajal`);
+  }
+  for (const lang of LANGS) assert.ok(!/otsing|search|поиск/i.test(catalog(lang).documents.views.item.share_desc), lang);
+
+  /* Fakt „Otsing”: lubatud fail ei lähe praegu ühtegi otsingusse. */
+  const allowed = byId('d2');
+  const fact = (item) => itemFacts(item, translator('et')).find((entry) => entry.key === 'rag').value;
+  const words = catalog('et').documents.provenance.rag;
+  assert.equal(allowed.provenance.rag, RAG_AVAILABLE ? 'in_search_when_shared' : 'not_in_search');
+  assert.equal(fact(allowed), RAG_AVAILABLE ? words.in_search_when_shared : words.not_in_search);
+  assert.equal(fact(byId('d4')), RAG_AVAILABLE ? words.removal_failed : words.not_in_search);
+  assert.equal(fact(byId('d1')), words.not_in_search);
+});
+
+// Teise vajutuse küsimus (kustuta, peata) jäi ootele, kui inimene käis vahepeal lehe teises
+// osas: tagasi tulles kustutas üks vajutus.
+test('teise vajutuse küsimus ei jää ootele, kui osa vahetub', () => {
+  const page = read(PAGE);
+  const change = page.slice(page.indexOf('onStepChange={(index, step) => {'), page.indexOf('{renderView}'));
+  assert.ok(change.includes('window.clearTimeout(confirmTimer.current)') && change.includes('setConfirming("")'), 'osa vahetus võtab küsimuse maha');
+  /* Sama teevad dokumendi avamine ja sulgemine. */
+  for (const name of ['openItem', 'closeItem']) {
+    const start = page.indexOf(`function ${name}(`);
+    assert.ok(start > 0 && page.slice(start, start + 160).includes('setConfirming("")'), name);
+  }
+});
+
+// Serveri veateade tuli brauseri keeles ja võrgutõrke korral oli ekraanil brauseri enda
+// ingliskeelne tekst („Failed to fetch”).
+test('iga päring kannab lehe keelt ja brauseri veatekst ei jõua ekraanile', () => {
+  const page = read(PAGE);
+  const requests = page.split('await fetch(').length - 1;
+  assert.equal(requests, 11, 'lehe päringud');
+  assert.equal(page.split('headers: localeHeaders(locale').length - 1, requests, 'iga päring kannab lehe keelt');
+  assert.ok(!/[eE]rror\??\.message/.test(page), 'vea toorest teksti ei kuvata');
+  assert.ok(!/payload\?\.message \|\|/.test(page), 'serveri sõnum käib läbi `serverMessage`');
+  assert.ok(!page.includes('throw new Error('), 'ekraanile mõeldud viga on RequestFailure');
+  assert.ok(page.includes('import { RequestFailure, failureText, serverMessage } from "./detail/detailModel"'));
+  /* Iga päringu keeldumine on serveri lausega viga; püütud viga käib läbi `failureText`. */
+  assert.equal(page.split('throw new RequestFailure(serverMessage(payload, t, ').length - 1, requests);
+  assert.ok(page.split('failureText(error, ').length - 1 >= 10);
 });
 
 // Kinnitatud tekstist ei tehta PDF-i, kui selles on märke, mida PDF-i kirjatüüp ei kanna;
