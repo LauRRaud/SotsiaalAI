@@ -13,6 +13,7 @@ import HomeCareCard from "./HomeCareCard";
 import HomeCareChangeSignals from "./HomeCareChangeSignals";
 import HomeCareCrisis from "./HomeCareCrisis";
 import HomeCareClientForm from "./HomeCareClientForm";
+import HomeCareControlCalls from "./HomeCareControlCalls";
 import HomeCareDecisionNotices from "./HomeCareDecisionNotices";
 import HomeCareTransport from "./HomeCareTransport";
 import HomeCareDecisionView, { minutesLabel } from "./HomeCareDecisionView";
@@ -506,6 +507,11 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
         initial={data.representatives || []}
         canEdit={canWrite && access.isCoordinator}
       />
+
+      {/* Kontrollkõne (K6-l): hooldusjuhi enda kõne kliendile kord kvartalis. Ainult hooldusjuhile. */}
+      {access.isCoordinator && data.controlCalls ? (
+        <HomeCareControlCalls organizationId={organizationId} clientId={client.id} initial={data.controlCalls} canEdit={canWrite} />
+      ) : null}
 
       {/* Kriisivalmidus (K5-b): kui palju tuge klient kriisis vajab ja millest ta sõltub. */}
       <HomeCareCrisis organizationId={organizationId} clientId={client.id} initial={data.crisis || null} canEdit={canWrite && access.isCoordinator} />

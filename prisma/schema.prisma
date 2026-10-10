@@ -8249,6 +8249,7 @@ model CareClient {
   relatives          CareClientRelative[]
   representatives    CareClientRepresentative[]
   talkRequests       CareTalkRequest[]
+  controlCalls       CareControlCall[]
   safetyItems        CareSafetyItem[]
   decisionNotices    CareDecisionNotice[]
   firstVisitNotices  CareFirstVisitNotice[]
@@ -8879,6 +8880,35 @@ model CareClientRelative {
 
   @@index([clientId, endedAt])
   @@index([organizationId, endedAt])
+}
+
+/// KODUTEENUS K6-l — hooldusjuhi kontrollkõne kliendile (kava II.6.9): kord kvartalis küsib
+/// hooldusjuht ise, mitte hooldaja kaudu, kas käigud on toimunud nii, nagu kirjas. Kirjet näeb
+/// ainult hooldusjuht. Ekslik kirje tühistatakse, ei kustutata.
+model CareControlCall {
+  id             String  @id @default(cuid())
+  organizationId String
+  clientId       String
+  /// Helistamise päev kujul AAAA-KK-PP.
+  calledOn       String
+  /// MATCHES | DIFFERS | NOT_REACHED (`CareControlCallOutcome`).
+  outcome        String
+  /// CLIENT | RELATIVE | REPRESENTATIVE; NULL, kui kedagi kätte ei saadud.
+  spokeWith      String?
+  /// Märkus; kohustuslik, kui jutt kirjapanduga ei klapi.
+  note           String?
+
+  createdByMembershipId   String?
+  createdByName           String?
+  createdAt               DateTime  @default(now())
+  retractedAt             DateTime?
+  retractedByMembershipId String?
+  retractedByName         String?
+
+  client CareClient @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId, calledOn])
+  @@index([clientId, calledOn])
 }
 
 /// KODUTEENUS K6-k — „Soovin sellest rääkida" (kava II.6.3): raske erijuhtumi autor annab

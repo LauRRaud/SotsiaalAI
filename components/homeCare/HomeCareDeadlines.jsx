@@ -147,6 +147,16 @@ export default function HomeCareDeadlines({ context, deadlines }) {
         clientLine(item, item.state === "OLD" ? t("home_care.deadlines.safety_old", { date: planDayLabel(item.assessedOn) }) : t("home_care.deadlines.safety_none"))
       )}
 
+      {/* Kvartali kontrollkõne tegemata (K6-l): hooldusjuht helistab kliendile ise. */}
+      {(deadlines.controlCallsDue || []).length
+        ? section("control_calls", deadlines.controlCallsDue, (item) =>
+            clientLine(
+              item,
+              item.lastReachedOn ? t("home_care.deadlines.control_calls_line", { date: planDayLabel(item.lastReachedOn) }) : t("home_care.deadlines.control_calls_never")
+            )
+          )
+        : null}
+
       {/* Esindusõigused, mille tähtaeg on möödas või lõpeb varsti (K6-i). */}
       {(deadlines.representativesDue || []).length
         ? section("representatives_due", deadlines.representativesDue, (item) =>

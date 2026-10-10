@@ -965,6 +965,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
       tripEntries: [{ id: 'te1', membershipId: 'm1', createdByMembershipId: 'm1', retractedByMembershipId: null }],
       clientRepresentatives: [{ id: 'rp1', clientId: 'c1', createdByMembershipId: 'm1', endedByMembershipId: null }],
       talkRequests: [{ id: 'tk1', clientId: 'c1', entryId: 'n1', membershipId: 'm1', handledByMembershipId: null }],
+      controlCalls: [{ id: 'cc1', clientId: 'c1', createdByMembershipId: 'm1', retractedByMembershipId: null }],
       auditEvents: [{ id: 'x1', actorMembershipId: 'm1' }]
     };
     doc.totals = Object.fromEntries(HOME_CARE_EXPORT_KEYS.map((key) => [key, doc[key].length]));
@@ -1029,6 +1030,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
     'tripEntries',
     'clientRepresentatives',
     'talkRequests',
+    'controlCalls',
     'auditEvents',
     'people'
   ]);
@@ -1047,7 +1049,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
      failis on sama kogu puudumine viga. */
   const older = make();
   older.version = 1;
-  for (const key of ['clientStatusChanges', 'activities', 'carePlans', 'carePlanLines', 'decisions', 'entryActivities', 'visitSlots', 'visitChanges', 'absences', 'obstacles', 'workNatures', 'preconditions', 'keys', 'keyHandovers', 'moneyEntries', 'supplies', 'supplyChecks', 'doorSteps', 'usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests']) {
+  for (const key of ['clientStatusChanges', 'activities', 'carePlans', 'carePlanLines', 'decisions', 'entryActivities', 'visitSlots', 'visitChanges', 'absences', 'obstacles', 'workNatures', 'preconditions', 'keys', 'keyHandovers', 'moneyEntries', 'supplies', 'supplyChecks', 'doorSteps', 'usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests', 'controlCalls']) {
     delete older[key];
     delete older.totals[key];
   }
@@ -1055,7 +1057,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 2 tunneb seisu ajalugu, aga mitte veel toimingute kataloogi. */
   const second = make();
   second.version = 2;
-  for (const key of ['activities', 'carePlans', 'carePlanLines', 'decisions', 'entryActivities', 'visitSlots', 'visitChanges', 'absences', 'obstacles', 'workNatures', 'preconditions', 'keys', 'keyHandovers', 'moneyEntries', 'supplies', 'supplyChecks', 'doorSteps', 'usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests']) {
+  for (const key of ['activities', 'carePlans', 'carePlanLines', 'decisions', 'entryActivities', 'visitSlots', 'visitChanges', 'absences', 'obstacles', 'workNatures', 'preconditions', 'keys', 'keyHandovers', 'moneyEntries', 'supplies', 'supplyChecks', 'doorSteps', 'usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests', 'controlCalls']) {
     delete second[key];
     delete second.totals[key];
   }
@@ -1063,7 +1065,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 3 tunneb kataloogi, aga mitte veel hoolduskavasid. */
   const third = make();
   third.version = 3;
-  for (const key of ['carePlans', 'carePlanLines', 'decisions', 'entryActivities', 'visitSlots', 'visitChanges', 'absences', 'obstacles', 'workNatures', 'preconditions', 'keys', 'keyHandovers', 'moneyEntries', 'supplies', 'supplyChecks', 'doorSteps', 'usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests']) {
+  for (const key of ['carePlans', 'carePlanLines', 'decisions', 'entryActivities', 'visitSlots', 'visitChanges', 'absences', 'obstacles', 'workNatures', 'preconditions', 'keys', 'keyHandovers', 'moneyEntries', 'supplies', 'supplyChecks', 'doorSteps', 'usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests', 'controlCalls']) {
     delete third[key];
     delete third.totals[key];
   }
@@ -1071,7 +1073,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 4 tunneb hoolduskavasid, aga mitte veel otsuseid. */
   const fourth = make();
   fourth.version = 4;
-  for (const key of ['decisions', 'entryActivities', 'visitSlots', 'visitChanges', 'absences', 'obstacles', 'workNatures', 'preconditions', 'keys', 'keyHandovers', 'moneyEntries', 'supplies', 'supplyChecks', 'doorSteps', 'usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests']) {
+  for (const key of ['decisions', 'entryActivities', 'visitSlots', 'visitChanges', 'absences', 'obstacles', 'workNatures', 'preconditions', 'keys', 'keyHandovers', 'moneyEntries', 'supplies', 'supplyChecks', 'doorSteps', 'usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests', 'controlCalls']) {
     delete fourth[key];
     delete fourth.totals[key];
   }
@@ -1079,7 +1081,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 5 tunneb otsuseid, aga mitte veel käigul tehtud toiminguid. */
   const fifth = make();
   fifth.version = 5;
-  for (const key of ['entryActivities', 'visitSlots', 'visitChanges', 'absences', 'obstacles', 'workNatures', 'preconditions', 'keys', 'keyHandovers', 'moneyEntries', 'supplies', 'supplyChecks', 'doorSteps', 'usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests']) {
+  for (const key of ['entryActivities', 'visitSlots', 'visitChanges', 'absences', 'obstacles', 'workNatures', 'preconditions', 'keys', 'keyHandovers', 'moneyEntries', 'supplies', 'supplyChecks', 'doorSteps', 'usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests', 'controlCalls']) {
     delete fifth[key];
     delete fifth.totals[key];
   }
@@ -1087,7 +1089,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 6 tunneb tehtud toiminguid, aga mitte veel käigumustrit. */
   const sixth = make();
   sixth.version = 6;
-  for (const key of ['visitSlots', 'visitChanges', 'absences', 'obstacles', 'workNatures', 'preconditions', 'keys', 'keyHandovers', 'moneyEntries', 'supplies', 'supplyChecks', 'doorSteps', 'usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests']) {
+  for (const key of ['visitSlots', 'visitChanges', 'absences', 'obstacles', 'workNatures', 'preconditions', 'keys', 'keyHandovers', 'moneyEntries', 'supplies', 'supplyChecks', 'doorSteps', 'usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests', 'controlCalls']) {
     delete sixth[key];
     delete sixth.totals[key];
   }
@@ -1095,7 +1097,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 7 tunneb käigumustrit, aga mitte veel ühe päeva erandeid. */
   const seventh = make();
   seventh.version = 7;
-  for (const key of ['visitChanges', 'absences', 'obstacles', 'workNatures', 'preconditions', 'keys', 'keyHandovers', 'moneyEntries', 'supplies', 'supplyChecks', 'doorSteps', 'usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests']) {
+  for (const key of ['visitChanges', 'absences', 'obstacles', 'workNatures', 'preconditions', 'keys', 'keyHandovers', 'moneyEntries', 'supplies', 'supplyChecks', 'doorSteps', 'usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests', 'controlCalls']) {
     delete seventh[key];
     delete seventh.totals[key];
   }
@@ -1103,7 +1105,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 8 tunneb ühe päeva erandeid, aga mitte veel puudumisi. */
   const eighth = make();
   eighth.version = 8;
-  for (const key of ['absences', 'obstacles', 'workNatures', 'preconditions', 'keys', 'keyHandovers', 'moneyEntries', 'supplies', 'supplyChecks', 'doorSteps', 'usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests']) {
+  for (const key of ['absences', 'obstacles', 'workNatures', 'preconditions', 'keys', 'keyHandovers', 'moneyEntries', 'supplies', 'supplyChecks', 'doorSteps', 'usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests', 'controlCalls']) {
     delete eighth[key];
     delete eighth.totals[key];
   }
@@ -1111,7 +1113,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 9 tunneb puudumisi, aga mitte veel takistuse teateid. */
   const ninth = make();
   ninth.version = 9;
-  for (const key of ['obstacles', 'workNatures', 'preconditions', 'keys', 'keyHandovers', 'moneyEntries', 'supplies', 'supplyChecks', 'doorSteps', 'usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests']) {
+  for (const key of ['obstacles', 'workNatures', 'preconditions', 'keys', 'keyHandovers', 'moneyEntries', 'supplies', 'supplyChecks', 'doorSteps', 'usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests', 'controlCalls']) {
     delete ninth[key];
     delete ninth.totals[key];
   }
@@ -1119,7 +1121,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 10 tunneb takistuse teateid, aga mitte veel töö iseloomu märkeid. */
   const tenth = make();
   tenth.version = 10;
-  for (const key of ['workNatures', 'preconditions', 'keys', 'keyHandovers', 'moneyEntries', 'supplies', 'supplyChecks', 'doorSteps', 'usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests']) {
+  for (const key of ['workNatures', 'preconditions', 'keys', 'keyHandovers', 'moneyEntries', 'supplies', 'supplyChecks', 'doorSteps', 'usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests', 'controlCalls']) {
     delete tenth[key];
     delete tenth.totals[key];
   }
@@ -1127,7 +1129,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 11 tunneb töö iseloomu märkeid, aga mitte veel eeltingimusi. */
   const eleventh = make();
   eleventh.version = 11;
-  for (const key of ['preconditions', 'keys', 'keyHandovers', 'moneyEntries', 'supplies', 'supplyChecks', 'doorSteps', 'usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests']) {
+  for (const key of ['preconditions', 'keys', 'keyHandovers', 'moneyEntries', 'supplies', 'supplyChecks', 'doorSteps', 'usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests', 'controlCalls']) {
     delete eleventh[key];
     delete eleventh.totals[key];
   }
@@ -1135,7 +1137,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 12 tunneb eeltingimusi, aga mitte veel võtmeraamatut. */
   const twelfth = make();
   twelfth.version = 12;
-  for (const key of ['keys', 'keyHandovers', 'moneyEntries', 'supplies', 'supplyChecks', 'doorSteps', 'usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests']) {
+  for (const key of ['keys', 'keyHandovers', 'moneyEntries', 'supplies', 'supplyChecks', 'doorSteps', 'usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests', 'controlCalls']) {
     delete twelfth[key];
     delete twelfth.totals[key];
   }
@@ -1143,7 +1145,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 13 tunneb võtmeraamatut, aga mitte veel kliendi raha arvestust. */
   const thirteenth = make();
   thirteenth.version = 13;
-  for (const key of ['moneyEntries', 'supplies', 'supplyChecks', 'doorSteps', 'usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests']) {
+  for (const key of ['moneyEntries', 'supplies', 'supplyChecks', 'doorSteps', 'usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests', 'controlCalls']) {
     delete thirteenth[key];
     delete thirteenth.totals[key];
   }
@@ -1151,7 +1153,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 14 tunneb kliendi raha arvestust, aga mitte veel varusid. */
   const fourteenth = make();
   fourteenth.version = 14;
-  for (const key of ['supplies', 'supplyChecks', 'doorSteps', 'usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests']) {
+  for (const key of ['supplies', 'supplyChecks', 'doorSteps', 'usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests', 'controlCalls']) {
     delete fourteenth[key];
     delete fourteenth.totals[key];
   }
@@ -1159,7 +1161,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 15 tunneb varusid, aga mitte veel sammude loendit „kui uks ei avane". */
   const fifteenth = make();
   fifteenth.version = 15;
-  for (const key of ['doorSteps', 'usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests']) {
+  for (const key of ['doorSteps', 'usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests', 'controlCalls']) {
     delete fifteenth[key];
     delete fifteenth.totals[key];
   }
@@ -1167,7 +1169,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 16 tunneb uksesamme, aga mitte veel tavalist seisu ega märkamisi. */
   const sixteenth = make();
   sixteenth.version = 16;
-  for (const key of ['usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests']) {
+  for (const key of ['usualStates', 'changeSignals', 'crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests', 'controlCalls']) {
     delete sixteenth[key];
     delete sixteenth.totals[key];
   }
@@ -1175,7 +1177,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 17 tunneb tavalist seisu ja märkamisi, aga mitte veel kriisivalmidust. */
   const seventeenth = make();
   seventeenth.version = 17;
-  for (const key of ['crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests']) {
+  for (const key of ['crisisProfiles', 'referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests', 'controlCalls']) {
     delete seventeenth[key];
     delete seventeenth.totals[key];
   }
@@ -1183,7 +1185,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 18 tunneb kriisivalmidust, aga mitte veel loendit „kuhu suunata". */
   const eighteenth = make();
   eighteenth.version = 18;
-  for (const key of ['referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests']) {
+  for (const key of ['referralContacts', 'workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests', 'controlCalls']) {
     delete eighteenth[key];
     delete eighteenth.totals[key];
   }
@@ -1191,7 +1193,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 19 tunneb loendit „kuhu suunata", aga mitte veel töötajate kaarte. */
   const nineteenth = make();
   nineteenth.version = 19;
-  for (const key of ['workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests']) {
+  for (const key of ['workerRecords', 'clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests', 'controlCalls']) {
     delete nineteenth[key];
     delete nineteenth.totals[key];
   }
@@ -1199,7 +1201,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 20 tunneb töötajate kaarte, aga mitte veel kliendi lähedasi. */
   const twentieth = make();
   twentieth.version = 20;
-  for (const key of ['clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests']) {
+  for (const key of ['clientRelatives', 'safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests', 'controlCalls']) {
     delete twentieth[key];
     delete twentieth.totals[key];
   }
@@ -1207,7 +1209,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 21 tunneb lähedasi, aga mitte veel ohutuskaarti. */
   const twentyFirst = make();
   twentyFirst.version = 21;
-  for (const key of ['safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests']) {
+  for (const key of ['safetyItems', 'monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests', 'controlCalls']) {
     delete twentyFirst[key];
     delete twentyFirst.totals[key];
   }
@@ -1215,7 +1217,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 22 tunneb ohutuskaarti, aga mitte veel kuu lukke. */
   const twentySecond = make();
   twentySecond.version = 22;
-  for (const key of ['monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests']) {
+  for (const key of ['monthLocks', 'decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests', 'controlCalls']) {
     delete twentySecond[key];
     delete twentySecond.totals[key];
   }
@@ -1223,7 +1225,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 23 tunneb kuu lukke, aga mitte veel teateid otsustajale. */
   const twentyThird = make();
   twentyThird.version = 23;
-  for (const key of ['decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests']) {
+  for (const key of ['decisionNotices', 'firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests', 'controlCalls']) {
     delete twentyThird[key];
     delete twentyThird.totals[key];
   }
@@ -1232,7 +1234,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   for (const version of [24, 25]) {
     const older = make();
     older.version = version;
-    for (const key of ['firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests']) {
+    for (const key of ['firstVisitNotices', 'transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests', 'controlCalls']) {
       delete older[key];
       delete older.totals[key];
     }
@@ -1241,7 +1243,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 26 tunneb esmakäigu teateid, aga mitte veel transpordi soove. */
   const twentySixth = make();
   twentySixth.version = 26;
-  for (const key of ['transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests']) {
+  for (const key of ['transportRequests', 'tripEntries', 'clientRepresentatives', 'talkRequests', 'controlCalls']) {
     delete twentySixth[key];
     delete twentySixth.totals[key];
   }
@@ -1256,6 +1258,8 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
     delete older.totals.clientRepresentatives;
     delete older.talkRequests;
     delete older.totals.talkRequests;
+    delete older.controlCalls;
+    delete older.totals.controlCalls;
     assert.deepEqual([checkHomeCareExport(older).ok, checkHomeCareExport(older).problems], [true, []]);
   }
   /* Versioonid 29 ja 30 tunnevad sõidupäevikut, aga mitte veel esindusõiguse kirjeid. */
@@ -1266,6 +1270,8 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
     delete older.totals.clientRepresentatives;
     delete older.talkRequests;
     delete older.totals.talkRequests;
+    delete older.controlCalls;
+    delete older.totals.controlCalls;
     assert.deepEqual([checkHomeCareExport(older).ok, checkHomeCareExport(older).problems], [true, []]);
   }
   /* Versioon 31 tunneb esindusõiguse kirjeid, aga mitte veel rääkimise soove. */
@@ -1273,7 +1279,16 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   thirtyFirst.version = 31;
   delete thirtyFirst.talkRequests;
   delete thirtyFirst.totals.talkRequests;
+  delete thirtyFirst.controlCalls;
+  delete thirtyFirst.totals.controlCalls;
   assert.deepEqual([checkHomeCareExport(thirtyFirst).ok, checkHomeCareExport(thirtyFirst).problems], [true, []]);
+  /* Versioon 32 tunneb rääkimise soove, aga mitte veel kontrollkõnesid. */
+  const thirtySecond = make();
+  thirtySecond.version = 32;
+  delete thirtySecond.controlCalls;
+  delete thirtySecond.totals.controlCalls;
+  assert.deepEqual([checkHomeCareExport(thirtySecond).ok, checkHomeCareExport(thirtySecond).problems], [true, []]);
+  assert.match(problems((doc) => { delete doc.controlCalls; }).join(' '), /controlCalls/);
   assert.match(problems((doc) => { delete doc.talkRequests; }).join(' '), /talkRequests/);
   assert.match(problems((doc) => { doc.talkRequests[0].entryId = 'olematu'; }).join(' '), /talkRequests/);
   assert.match(problems((doc) => { delete doc.clientRepresentatives; }).join(' '), /clientRepresentatives/);
