@@ -93,6 +93,12 @@
     min-height: var(--hit-target-min, 2.75rem);
   }
 }
+/* Kitsas töölaua paneel (mitte telefon): kutsuja loal jääb veergude arv alles. */
+@container (min-width: 34rem) and (max-width: 40rem) {
+  .options[data-keep="1"] {
+    grid-template-columns: repeat(var(--choice-cols, 3), minmax(0, 1fr));
+  }
+}
 @media (max-width: 640px) {
   .options {
     display: grid;

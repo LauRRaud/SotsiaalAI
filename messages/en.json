@@ -4157,14 +4157,11 @@
       "save": "Save",
       "cancel": "Cancel",
       "delete": "Delete",
-      "deleteConfirm": "Remove this listing? If it has an accepted match, the listing will be closed while the consent record and conversation are preserved.",
       "closeListing": "Close listing",
       "askAi": "Ask AI for guidance",
       "contact": "Contact",
       "offerHelp": "Offer help",
       "startChat": "Open conversation",
-      "selectOwnListing": "Choose your own listing to connect",
-      "selectedListing": "Selected listing",
       "ownListing": "My listing",
       "updateFailed": "Failed to update the listing.",
       "deleteFailed": "Failed to delete the listing.",
@@ -4184,7 +4181,6 @@
       "compensationDetails": "Compensation info",
       "conditions": "Conditions",
       "targetGroups": "Target groups",
-      "emptyOption": "-",
       "voluntaryLabel": "Voluntary help",
       "paidLabel": "Paid help",
       "mixedLabel": "Voluntary or paid",
@@ -4192,12 +4188,76 @@
       "recurringLabel": "Recurring",
       "flexibleLabel": "Flexible",
       "statusClosed": "This listing is closed.",
-      "noOwnOptions": "You do not have a suitable open opposite listing.",
       "targetGroupsHint": "For example young person, older person, adult, or all age groups",
       "aiPromptPrefix": "Help me understand and respond to this listing:",
       "otherRequests": "Other people's requests",
       "otherOffers": "Other people's offers",
-      "openShort": "Open"
+      "openShort": "Open",
+      "connectNotCompatible": "These two listings do not fit together: the category, municipality, help type or time type differs, or one of the listings is no longer open.",
+      "categories": {
+        "TRANSPORT": "Transport",
+        "DAILY_TASKS": "Daily assistance",
+        "HOME_HELP": "Home help",
+        "DIGITAL_HELP": "Digital help",
+        "CARE_SUPPORT": "Care and support",
+        "CHILD_YOUTH_SUPPORT": "Support for children and youth",
+        "LEARNING_GUIDANCE": "Learning and guidance support",
+        "SOCIAL_SUPPORT": "Companionship and social support",
+        "ADMIN_FORM_HELP": "Administrative and forms help",
+        "OTHER": "Other help"
+      },
+      "targetGroupOptions": {
+        "CHILD": "Child",
+        "YOUTH": "Youth",
+        "ADULT": "Adult",
+        "ELDER": "Older person"
+      },
+      "opened": {
+        "views": {
+          "read": {
+            "title": "Opened listing",
+            "short": "Listing"
+          },
+          "connect": {
+            "title": "Making contact",
+            "short": "Contact"
+          },
+          "edit": {
+            "title": "Editing the listing",
+            "short": "Editing"
+          }
+        },
+        "backToList": "Back to the list",
+        "backToListing": "Back to the listing",
+        "kindRequest": "Help request",
+        "kindOffer": "Help offer",
+        "notSet": "Not set",
+        "deleteArmed": "Press again to delete",
+        "deleteNote": "A deleted listing cannot be restored. If a connection made through the listing has already been accepted, the listing is closed and the consent record and the conversation are kept.",
+        "connectRequestQuestion": "Which of your help offers do you want to offer help with?",
+        "connectOfferQuestion": "Which of your help requests do you want to make contact with?",
+        "connectLead": "The other person receives a consent request. The conversation opens after they agree.",
+        "connectNoneRequest": "To offer help you need an open help offer of your own. You can add a new help offer in the chat.",
+        "connectNoneOffer": "To make contact you need an open help request of your own. You can add a new help request in the chat.",
+        "connectBusy": "Sending...",
+        "aboutListing": "Listing",
+        "editParts": {
+          "text": "Text",
+          "category": "Category",
+          "form": "Type and time",
+          "terms": "Terms"
+        },
+        "editPartsLabel": "Parts of the listing",
+        "saveAllNote": "One save covers all four parts.",
+        "saving": "Saving...",
+        "discardArmed": "Press again to discard",
+        "discardNote": "The changes are not saved and will be lost if you discard them.",
+        "leaveAsked": "The changes to the listing are not saved. Press again to leave without saving.",
+        "descriptionRequired": "The description cannot be empty.",
+        "charsUsed": "{count} / {max} characters",
+        "connectOptionsFailed": "Your own listings could not be loaded. Go back to the list and open the listing again."
+      },
+      "updateConflict": "The listing was changed elsewhere in the meantime, so this was not saved. Go back to the list, open the listing again and make the change there."
     },
     "sources": {
       "dialog_label": "Conversation sources",

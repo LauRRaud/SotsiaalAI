@@ -93,6 +93,14 @@
     min-height: var(--hit-target-min, 2.75rem);
   }
 }
+/* Kitsas töölaua paneel ei ole telefon: 34 kuni 40 rem laiusele pinnale mahub
+   neli lühikest lahtrit ühte ritta. Kutsuja lubab seda ise (`keepColumns`),
+   sest pikkade siltidega rida peab seal ikka kahte veergu minema. */
+@container (min-width: 34rem) and (max-width: 40rem) {
+  .row[data-layout="stack"][data-keep="1"] .options {
+    grid-template-columns: repeat(var(--choice-cols, 3), minmax(0, 1fr));
+  }
+}
 @media (max-width: 640px) {
   .row[data-layout="scale"] {
     grid-template-columns: minmax(0, 1fr);

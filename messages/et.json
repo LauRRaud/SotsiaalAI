@@ -4157,14 +4157,11 @@
       "save": "Salvesta",
       "cancel": "Loobu",
       "delete": "Kustuta",
-      "deleteConfirm": "Kas eemaldada see kuulutus? Kui kuulutusega on vastu võetud sobitus, suletakse kuulutus, kuid nõusolekutõend ja vestlus säilivad.",
       "closeListing": "Sulge kuulutus",
       "askAi": "Küsi AI-lt nõu",
       "contact": "Võta ühendust",
       "offerHelp": "Paku abi",
       "startChat": "Ava vestlus",
-      "selectOwnListing": "Vali oma kuulutus ühendamiseks",
-      "selectedListing": "Valitud kuulutus",
       "ownListing": "Minu kuulutus",
       "updateFailed": "Kuulutuse uuendamine ebaõnnestus.",
       "deleteFailed": "Kuulutuse kustutamine ebaõnnestus.",
@@ -4184,7 +4181,6 @@
       "compensationDetails": "Tasu info",
       "conditions": "Tingimused",
       "targetGroups": "Sihtrühm",
-      "emptyOption": "-",
       "voluntaryLabel": "Vabatahtlik abi",
       "paidLabel": "Tasuline abi",
       "mixedLabel": "Vabatahtlik või tasuline",
@@ -4192,12 +4188,76 @@
       "recurringLabel": "Regulaarne",
       "flexibleLabel": "Paindlik",
       "statusClosed": "Kuulutus on suletud.",
-      "noOwnOptions": "Teil ei ole sobivat avatud vastaskirjet.",
       "targetGroupsHint": "Nt noor, eakas, täiskasvanu või kõigile vanusegruppidele",
       "aiPromptPrefix": "Aita mul mõista ja vastata sellele kuulutusele:",
       "otherRequests": "Teiste abisoovid",
       "otherOffers": "Teiste abipakkumised",
-      "openShort": "Ava"
+      "openShort": "Ava",
+      "connectNotCompatible": "Need kaks kuulutust ei sobi kokku: kategooria, omavalitsus, abi liik või ajalisus on erinev või üks kuulutustest ei ole enam avatud.",
+      "categories": {
+        "TRANSPORT": "Transport",
+        "DAILY_TASKS": "Igapäevaabi",
+        "HOME_HELP": "Koduabi",
+        "DIGITAL_HELP": "Digiabi",
+        "CARE_SUPPORT": "Tugi ja hooldus",
+        "CHILD_YOUTH_SUPPORT": "Laste ja noorte tugi",
+        "LEARNING_GUIDANCE": "Õppimise ja juhendamise abi",
+        "SOCIAL_SUPPORT": "Seltskond ja sotsiaalne tugi",
+        "ADMIN_FORM_HELP": "Asjaajamise ja vormide abi",
+        "OTHER": "Muu abi"
+      },
+      "targetGroupOptions": {
+        "CHILD": "Laps",
+        "YOUTH": "Noor",
+        "ADULT": "Täiskasvanu",
+        "ELDER": "Eakas"
+      },
+      "opened": {
+        "views": {
+          "read": {
+            "title": "Avatud kuulutus",
+            "short": "Kuulutus"
+          },
+          "connect": {
+            "title": "Ühenduse võtmine",
+            "short": "Ühendus"
+          },
+          "edit": {
+            "title": "Kuulutuse muutmine",
+            "short": "Muutmine"
+          }
+        },
+        "backToList": "Tagasi loendisse",
+        "backToListing": "Tagasi kuulutuse juurde",
+        "kindRequest": "Abisoov",
+        "kindOffer": "Abipakkumine",
+        "notSet": "Määramata",
+        "deleteArmed": "Vajuta uuesti, et kustutada",
+        "deleteNote": "Kustutatud kuulutust ei saa taastada. Kui kuulutuse kaudu on ühendus juba vastu võetud, siis kuulutus suletakse ning nõusolekutõend ja vestlus jäävad alles.",
+        "connectRequestQuestion": "Millise oma abipakkumisega soovid abi pakkuda?",
+        "connectOfferQuestion": "Millise oma abisooviga soovid ühendust võtta?",
+        "connectLead": "Teine osaline saab nõusolekupäringu. Vestlus avaneb pärast tema nõusolekut.",
+        "connectNoneRequest": "Abi pakkumiseks on vaja sinu enda avatud abipakkumist. Uue abipakkumise saad lisada vestluses.",
+        "connectNoneOffer": "Ühenduse võtmiseks on vaja sinu enda avatud abisoovi. Uue abisoovi saad lisada vestluses.",
+        "connectBusy": "Saadan...",
+        "aboutListing": "Kuulutus",
+        "editParts": {
+          "text": "Tekst",
+          "category": "Kategooria",
+          "form": "Liik ja aeg",
+          "terms": "Tingimused"
+        },
+        "editPartsLabel": "Kuulutuse osad",
+        "saveAllNote": "Üks salvestamine katab kõik neli osa.",
+        "saving": "Salvestan...",
+        "discardArmed": "Vajuta uuesti, et loobuda",
+        "discardNote": "Muudatused on salvestamata ja lähevad loobumisel kaotsi.",
+        "leaveAsked": "Kuulutuse muudatused on salvestamata. Vajuta uuesti, et lahkuda ilma salvestamata.",
+        "descriptionRequired": "Kirjeldus ei tohi olla tühi.",
+        "charsUsed": "{count} / {max} tähemärki",
+        "connectOptionsFailed": "Sinu enda kuulutusi ei saanud laadida. Mine tagasi loendisse ja ava kuulutus uuesti."
+      },
+      "updateConflict": "Kuulutust on vahepeal mujal muudetud, seepärast seda ei salvestatud. Mine tagasi loendisse, ava kuulutus uuesti ja tee muudatus seal."
     },
     "sources": {
       "dialog_label": "Vastuste allikad",
