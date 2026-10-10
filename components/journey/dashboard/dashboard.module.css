@@ -1,0 +1,162 @@
+/* Teekonna avaleht: loend arhiveerimisega, alustamise vaated ja kiire abi rida.
+   Vaate kuju (juhis, sisu, tegevusrida all servas) tuleb StepPanel-ist, sammud
+   StepFlight-ist ja valikud ChoiceRow-st (components/stage). Laused, märk, read
+   ja väljad on Teekonna lehtede ühised (../journey.module.css); vaated võtavad
+   need sealt otse. */
+
+/* --- Loendi kohal: rühma valik vasakul, algus paremal ----------------------------- */
+/* Valikulahtrid on nii laiad, kui kaks sõna vajavad, mitte paneeli laiused. */
+.bar {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem 1rem;
+}
+.filter {
+  flex: 0 1 19rem;
+  min-width: 0;
+}
+
+/* --- Loendi rida koos arhiveerimisega -------------------------------------------- */
+/* Rida avab Teekonna; selle kõrval on väike nupp. Pärast esimest vajutust seisab
+   rea all lause, mis juhtub. */
+.item {
+  composes: rowItem from "../journey.module.css";
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.3rem 0.5rem;
+}
+.itemAside {
+  display: flex;
+  gap: 0.4rem;
+}
+/* Arhiveerimine on rea kõrval vaikne: sõna, mitte teine sama kaaluga nupp.
+   Pärast esimest vajutust on see päris nupp (`armed`). */
+.aside {
+  flex: none;
+  white-space: nowrap;
+  border-color: transparent;
+  background: none;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  color: var(--text-soft);
+  font-weight: 400;
+}
+.aside:hover {
+  background: var(--glass-cell-bg-hover);
+  color: var(--text-warm);
+}
+.itemNote {
+  composes: consequence from "../journey.module.css";
+  grid-column: 1 / -1;
+  padding-inline: 0.9rem;
+}
+/* Järgmine lehekülg: nupp ja lause, kui palju on näha. */
+.more {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 1rem;
+}
+
+/* --- Kiire abi: nimi ja helistatav number ----------------------------------------- */
+.help {
+  margin: 0;
+  max-width: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 1rem;
+  font-size: var(--fs-small, 0.875rem);
+}
+.helpLabel {
+  color: var(--text-soft);
+  font-weight: 560;
+}
+.helpLink {
+  color: var(--text-warm);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  white-space: nowrap;
+}
+
+/* --- Alustamise vaated -------------------------------------------------------------- */
+/* Olukorra kirjeldus on pikk tekst: väli on täislai. Kõrguse annab `rows`;
+   ühine lehekiht annaks muidu igale tekstiväljale oma miinimumi. */
+.field {
+  min-width: 0;
+  display: grid;
+  gap: 0.3rem;
+}
+.area {
+  width: 100%;
+  min-width: 0;
+  min-height: 3.5rem;
+  resize: vertical;
+}
+/* Ettevaatlikud tähelepanekud: äärejoonega lõik, mitte kast. */
+.risk {
+  min-width: 0;
+  display: grid;
+  gap: 0.25rem;
+  padding-inline-start: 0.8rem;
+  border-inline-start: 3px solid color-mix(in srgb, var(--status-error) 60%, transparent);
+}
+.riskTitle {
+  margin: 0;
+  color: var(--text-warm);
+  font-weight: 560;
+}
+.riskText {
+  margin: 0;
+  max-width: 66ch;
+  color: var(--text-warm);
+  line-height: 1.45;
+}
+/* Kaks loetavat loendit kõrvuti; kitsal pinnal üksteise all. */
+.pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem 1.4rem;
+  align-items: start;
+  min-width: 0;
+}
+.group {
+  min-width: 0;
+  display: grid;
+  gap: 0.3rem;
+}
+.groupTitle {
+  margin: 0;
+  color: var(--text-warm);
+  font-weight: 560;
+}
+.lines {
+  composes: rows from "../../stage/rows.module.css";
+  gap: 0.3rem;
+}
+.lineItem {
+  max-width: none;
+  margin: 0;
+  padding-inline-start: 0.7rem;
+  border-inline-start: 2px solid color-mix(in srgb, var(--text-warm) 22%, transparent);
+  color: var(--text-soft);
+  line-height: 1.4;
+}
+
+@container (max-width: 34rem) {
+  /* Kitsal pinnal jääb „Arhiveeri" rea kõrvale (oma rida iga Teekonna all teeks
+     loendi kaks korda pikemaks). Teise vajutuse nupud ei mahu rea kõrvale: need
+     lähevad rea alla. */
+  .item[data-armed="1"] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .pair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

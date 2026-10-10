@@ -479,9 +479,6 @@ html.theme-light:not(:has(.room[data-power="standby"])) .pwa-install-inline-help
   border-color: rgba(0, 0, 0, 0.12);
   background: rgba(250, 248, 245, 0.84);
 }
-html.theme-light:not(:has(.room[data-power="standby"])) .journey-quick-help {
-  background: rgba(250, 248, 245, 0.84);
-}
 
 /* ---------- Admin (rag-admin.css, admin-analytics.css) ---------- */
 html.theme-light:not(:has(.room[data-power="standby"])) :is(.ra-table th, .aa-table th) {
