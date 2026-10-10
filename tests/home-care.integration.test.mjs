@@ -471,11 +471,15 @@ test('kirje: kordussaatmine, nähtavus, teade järgmisele, hiljem kirjutatud', a
   const handover = await createEntry(anu, client.id, { kind: 'HANDOVER', text: 'Homme tuleb õde kell 10' }, deps());
   let overview = await getCoordinatorOverview(lead, deps());
   assert.deepEqual(overview.unreadHandovers.map((row) => row.id), [handover.entry.id]);
-  await openClient(anu, client.id, deps(at('2026-10-09T08:30:00Z')));
+  /* Lehe ülaosa: teade on teistele ees, autorile endale mitte. */
+  assert.deepEqual((await openClient(anu, client.id, deps(at('2026-10-09T08:30:00Z')))).recentHandovers, []);
   await openClient(lead, client.id, deps(at('2026-10-09T08:31:00Z')));
   overview = await getCoordinatorOverview(lead, deps());
   assert.equal(overview.unreadHandovers.length, 1);
-  await openClient(bert, client.id, deps(at('2026-10-09T08:32:00Z')));
+  const forBert = await openClient(bert, client.id, deps(at('2026-10-09T08:32:00Z')));
+  assert.deepEqual(forBert.recentHandovers.map((row) => [row.id, row.text, row.authorName === handover.entry.authorName]), [[handover.entry.id, 'Homme tuleb õde kell 10', true]]);
+  /* Pärast lugemist jääb teade ülaossa alles: sama leht avatakse uuesti ukse taga. */
+  assert.equal((await openClient(bert, client.id, deps(at('2026-10-09T08:32:30Z')))).recentHandovers.length, 1);
   overview = await getCoordinatorOverview(lead, deps());
   assert.equal(overview.unreadHandovers.length, 0);
   const reads = await db.careClientEntryRead.findMany({ where: { entryId: handover.entry.id } });
@@ -4832,6 +4836,9 @@ test('„kas midagi oli teisiti?": tavaline seis, vastus käigu kirjel, märkami
     ['SKIN_PAIN', 'MAJOR', 0]
   ]);
   assert.deepEqual(page.entries.items.find((item) => item.id === big.entry.id).change, { answer: 'YES', areas: ['MOBILITY'], major: true });
+  /* HOOLDUSJUHI ÜLEVAADE: sama vastus on ka seal kirje küljes (11.10.2026 läbimängus see puudus). */
+  const seen = (await getCoordinatorOverview(lead, deps(at('2026-10-09T10:00:00Z')))).recent.find((item) => item.id === big.entry.id);
+  assert.deepEqual(seen.change, { answer: 'YES', areas: ['MOBILITY'], major: true });
   /* TÄHTAEGADE LEHT: kõige kauem oodanu ees. */
   const due = (await getDeadlines(lead, deps())).changesOpen;
   assert.deepEqual(due.map((row) => [row.client.displayName, row.area, row.days]), [
@@ -5985,6 +5992,8 @@ test('võõras ukse taga: esmakäik on päevaplaanis ja töötaja päevas märgi
   /* Töötaja enda päevas: Anul märget ei ole, Bertil on. */
   assert.deepEqual((await getMyDay(anu, deps())).visits.map((visit) => visit.firstVisit), [null]);
   assert.deepEqual((await getMyDay(bert, deps())).visits.map((visit) => visit.firstVisit), [{ outcome: null, byName: null }]);
+  /* Järgmise reede käigu all sama hoiatust ei korrata: esmakäik on ainult esimene ees ootav käik. */
+  assert.deepEqual((await getMyDay(bert, deps())).next.flatMap((day) => day.visits.map((visit) => [day.day, visit.firstVisit])), [['2026-10-16', null]]);
 
   /* Märgib kliendi hooldusjuht; hooldaja ja teine asutus mitte; tundmatu töötaja ja liiga kauge päev lükatakse tagasi. */
   const mark = { day: '2026-10-09', workerMembershipId: f.members.bert.id, outcome: 'NOT_REACHED' };

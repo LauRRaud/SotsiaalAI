@@ -8,6 +8,8 @@ import { CARE_MONEY_KINDS, CareMoneyKind, HOME_CARE_LIMITS } from "@/lib/homeCar
 import { planDayLabel } from "./HomeCarePlanView";
 import { homeCareBase, useHomeCareApi } from "./homeCareClient";
 
+const MONEY_EXCEEDS_BALANCE = "home_care.errors.money_exceeds_balance";
+
 /** Sendid eurodeks keele kombel („12,50 €"). */
 export function euroText(cents, locale) {
   try {
@@ -46,7 +48,13 @@ export default function HomeCareMoney({ organizationId, clientId, initial, canWr
       body: { kind: form.kind, amount: form.amount, note: form.note },
       fallbackKey: "home_care.errors.save_failed"
     });
-    if (!result.ok) return;
+    if (!result.ok) {
+      /* Summa samal kujul nagu jääk vormi kohal („7,60 €"), mitte serveri „7.60 EUR". */
+      if (result.messageKey === MONEY_EXCEEDS_BALANCE && Number.isInteger(result.details?.heldCents)) {
+        setError(t(MONEY_EXCEEDS_BALANCE, { held: euroText(result.details.heldCents, locale) }));
+      }
+      return;
+    }
     setMoney(result.data.money);
     setAdding(false);
   };

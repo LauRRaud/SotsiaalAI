@@ -46,6 +46,30 @@ test('lause serverilt ja tõlgitud messageKey käituvad nagu enne', () => {
   }
 });
 
+test('lause kohatäited täidetakse vastuse details väljalt', () => {
+  /* Rakenduse tõlkija täidab kohatäited teisest argumendist; ilma selleta jääb `{limit}` lausesse. */
+  const tv = (key, vars) => {
+    const text = t(key);
+    return vars ? text.replace(/\{(\w+)\}/g, (whole, name) => (Object.hasOwn(vars, name) && vars[name] != null ? String(vars[name]) : whole)) : text;
+  };
+  const withVars = (payload) => resolveApiMessage({ payload, t: tv, fallbackKey: FALLBACK_KEY });
+  const slots = catalog.home_care.errors.slot_minutes_invalid;
+  assert.match(slots, /\{min\}[\s\S]*\{max\}/);
+  const filled = withVars({ ok: false, messageKey: 'home_care.errors.slot_minutes_invalid', details: { min: 5, max: 720 } });
+  assert.equal(filled, slots.replace('{min}', '5').replace('{max}', '720'));
+  assert.doesNotMatch(filled, /[{}]/);
+  /* Sama ka siis, kui võti tuleb sõnumi väljal. */
+  assert.doesNotMatch(withVars({ ok: false, message: 'home_care.errors.key_too_many', details: { limit: 6 } }), /[{}]/);
+  /* Tekst läheb lausesse; objekt, massiiv, pikk tekst ja looksulgudega tekst ei lähe. */
+  assert.match(withVars({ messageKey: 'home_care.errors.money_exceeds_balance', details: { held: '7.60 EUR', heldCents: 760 } }), /7\.60 EUR/);
+  for (const bad of [{ limit: { a: 1 } }, { limit: [1] }, { limit: 'x'.repeat(81) }, { limit: '{held}' }, { limit: Number.NaN }, 'limit', [5], null]) {
+    assert.equal(withVars({ messageKey: 'home_care.errors.key_too_many', details: bad }), catalog.home_care.errors.key_too_many, JSON.stringify(bad));
+  }
+  /* Kohatäiteta lause ja varutekst jäävad samaks. */
+  assert.equal(withVars({ messageKey: 'api.common.forbidden', details: { limit: 3 } }), catalog.api.common.forbidden);
+  assert.equal(withVars({ messageKey: 'x.missing_key', details: { limit: 3 } }), FALLBACK);
+});
+
 test('varutekstide järjekord: kutsuja võti, kutsuja tekst, üldine lause; toores võti ainult tõlkijata', () => {
   assert.equal(resolve({}), FALLBACK);
   assert.equal(resolve(null), FALLBACK);

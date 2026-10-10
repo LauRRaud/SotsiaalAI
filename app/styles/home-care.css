@@ -483,6 +483,18 @@
   text-underline-offset: 0.2em;
 }
 
+/* Number keset rida („Perearst · 473 0000 · tööpäeviti"): sama puutekõrgus, aga rea kirjaga. */
+.hc-tel--inline {
+  align-self: auto;
+  vertical-align: middle;
+  font-size: inherit;
+}
+
+/* Kliendi lehe kiirteed: telefonis algab kirje vorm neljandalt ekraanitäielt. */
+.hc-jump {
+  margin: 0;
+}
+
 .hc-error {
   margin: 0;
   max-width: none;

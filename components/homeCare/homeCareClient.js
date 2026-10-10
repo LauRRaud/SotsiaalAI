@@ -65,7 +65,8 @@ export function useHomeCareApi() {
           const message = resolveApiMessage({ payload, t, fallbackKey });
           if (!quiet) setError(message);
           if (messageKey === ACCESS_REASON_REQUIRED) onReasonRequired?.();
-          return { ok: false, status: response.status, messageKey, message };
+          const details = payload?.details && typeof payload.details === "object" ? payload.details : null;
+          return { ok: false, status: response.status, messageKey, message, details };
         }
         return { ok: true, status: response.status, data: payload };
       } catch {
