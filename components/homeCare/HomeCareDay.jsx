@@ -14,6 +14,7 @@ import {
   CareVisitChangeKind,
   HOME_CARE_LIMITS
 } from "@/lib/homeCare/constants";
+import { continuityImpact } from "@/lib/homeCare/continuityImpact";
 
 import { minutesLabel } from "./HomeCareDecisionView";
 import { keyWhere } from "./HomeCareKeys";
@@ -247,6 +248,12 @@ export default function HomeCareDay({ context, initial }) {
                 ariaLabel={t("home_care.day.worker_label")}
                 options={optionsFor(visit)}
               />
+              {/* Püsivus (K5-x): valitud töötaja ei ole viimasel neljal nädalal selle kliendi juures käinud. */}
+              {form.workerMembershipId !== (visit.worker?.membershipId || "") && continuityImpact(data.recentWorkers?.[visit.client.id], form.workerMembershipId) ? (
+                <p className="hc-notice">
+                  {t("home_care.day.continuity_impact", { count: continuityImpact(data.recentWorkers?.[visit.client.id], form.workerMembershipId).count })}
+                </p>
+              ) : null}
             </div>
             <div className="hc-field">
               <label className="hc-label" htmlFor={`${fieldId}-time`}>

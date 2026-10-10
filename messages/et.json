@@ -13796,7 +13796,10 @@
       "not_done": "tegemata toiminguid: keeldus {refused}, polnud vaja {notNeeded}, ei saanud teha {couldNot}",
       "cancelled_count": "ära jäetud plaanitud käike {count}",
       "medication": "ravimid: tuletati meelde {reminded}, nähti võtmas {sawTaken}, anti {gave}; märkimata {unmarked}, tegemata {notDone}",
-      "away_days": "ajutiselt ära {count} päeva"
+      "away_days": "ajutiselt ära {count} päeva",
+      "signals_line": "Hooldajate märkamisi sel kuul: {opened}; vastuse sai {handled}, vastust ootab {waiting}.",
+      "signals_median": "Vastus tuli tavaliselt {days} päevaga.",
+      "signals_median_same_day": "Vastus tuli tavaliselt samal päeval."
     },
     "slots": {
       "title": "Käigud nädalas",
@@ -13905,7 +13908,8 @@
       "obstacle_absent": "Märgi selleks päevaks puudumine",
       "obstacle_seen": "{line}. Vaadatud.",
       "obstacle_handled_saved": "Teade on märgitud vaadatuks.",
-      "obstacle_absent_saved": "Puudumine on märgitud. Töötaja tegemata käigud on rühmas „Tegija puudub”."
+      "obstacle_absent_saved": "Puudumine on märgitud. Töötaja tegemata käigud on rühmas „Tegija puudub”.",
+      "continuity_impact": "See töötaja ei ole viimasel neljal nädalal selle kliendi juures käinud: klient saab {count}. eri töötaja nelja nädala jooksul."
     },
     "priority": {
       "label": "Käigu tähtsus",
