@@ -99,6 +99,18 @@ export default function HomeCareDeadlines({ context, deadlines }) {
         )
       )}
 
+      {/* Kehtivad halduslepingud, mille allkiri on märkimata või ebakindel (K6-h). */}
+      {(deadlines.contractsUnsigned || []).length
+        ? section("contracts_unsigned", deadlines.contractsUnsigned, (item) =>
+            clientLine(
+              item,
+              t(item.unsure ? "home_care.deadlines.contracts_unsigned_unsure" : "home_care.deadlines.contracts_unsigned_line", { date: planDayLabel(item.validFrom) }),
+              null,
+              `${item.client.id}:${item.validFrom}`
+            )
+          )
+        : null}
+
       {section("plans_due", deadlines.plansDue, (item) =>
         clientLine(
           item,

@@ -8,6 +8,8 @@ import OrgHeader from "@/components/org/OrgHeader";
 import DateField from "@/components/ui/DateField";
 import {
   CARE_DECISION_KINDS,
+  CARE_SIGNED_STATES,
+  CARE_SIGN_STATES,
   CARE_VOLUME_PERIODS,
   CareDecisionKind,
   CareDecisionState,
@@ -37,7 +39,10 @@ function emptyForm(today) {
     volumeHours: "",
     volumePeriod: CareVolumePeriod.WEEK,
     feeNote: "",
-    note: ""
+    note: "",
+    signState: "",
+    signedOn: "",
+    originalKept: ""
   };
 }
 
@@ -52,7 +57,10 @@ function formFrom(decision) {
     volumeHours: hoursText(decision.volumeMinutes),
     volumePeriod: decision.volumePeriod || CareVolumePeriod.WEEK,
     feeNote: decision.feeNote || "",
-    note: decision.note || ""
+    note: decision.note || "",
+    signState: decision.signState || "",
+    signedOn: decision.signedOn || "",
+    originalKept: decision.originalKept || ""
   };
 }
 
@@ -101,7 +109,15 @@ export default function HomeCareDecisions({ context, initial }) {
 
   const save = async (event) => {
     event.preventDefault();
-    const body = { ...form, validUntil: form.validUntil || null, decidedOn: form.decidedOn || null };
+    /* Allkirja märge käib ainult halduslepinguga ja päev ainult allkirjastatud seisuga: muu jäetakse saatmata. */
+    const signState = form.kind === CareDecisionKind.CONTRACT ? form.signState || null : null;
+    const body = {
+      ...form,
+      validUntil: form.validUntil || null,
+      decidedOn: form.decidedOn || null,
+      signState,
+      signedOn: CARE_SIGNED_STATES.includes(signState) ? form.signedOn || null : null
+    };
     const result =
       editing.mode === "edit"
         ? await call(`${base}/${encodeURIComponent(editing.id)}`, {
@@ -263,6 +279,47 @@ export default function HomeCareDecisions({ context, initial }) {
           onChange={(event) => setField("note", event.target.value)}
           maxLength={HOME_CARE_LIMITS.DECISION_NOTE_MAX}
         />
+      </div>
+
+      {/* Lepingu allkirja märge (K6-h): ainult halduslepingul. Platvorm allkirja ei kogu. */}
+      {form.kind === CareDecisionKind.CONTRACT ? (
+        <div className="hc-field">
+          <span className="hc-label">{t("home_care.decision.sign_label")}</span>
+          <div className="hc-chips" role="group" aria-label={t("home_care.decision.sign_label")}>
+            {CARE_SIGN_STATES.map((value) => (
+              <button
+                key={value}
+                type="button"
+                className="hc-chip"
+                aria-pressed={form.signState === value}
+                onClick={() => setField("signState", form.signState === value ? "" : value)}
+              >
+                {t(`home_care.decision.sign_states.${value}`)}
+              </button>
+            ))}
+          </div>
+          <p className="hc-hint">{t("home_care.decision.sign_hint")}</p>
+        </div>
+      ) : null}
+      {form.kind === CareDecisionKind.CONTRACT && CARE_SIGNED_STATES.includes(form.signState) ? (
+        <div className="hc-field">
+          <span className="hc-label">{t("home_care.decision.signed_on_label")}</span>
+          <DateField name="signedOn" value={form.signedOn} onChange={(value) => setField("signedOn", value || "")} ariaLabel={t("home_care.decision.signed_on_label")} />
+        </div>
+      ) : null}
+      <div className="hc-field">
+        <label className="hc-label" htmlFor={`${fieldId}-original`}>
+          {t("home_care.decision.original_label")}
+        </label>
+        <input
+          id={`${fieldId}-original`}
+          className="hc-input"
+          value={form.originalKept}
+          onChange={(event) => setField("originalKept", event.target.value)}
+          maxLength={HOME_CARE_LIMITS.DECISION_ORIGINAL_MAX}
+          autoComplete="off"
+        />
+        <p className="hc-hint">{t("home_care.decision.original_hint")}</p>
       </div>
 
       {error ? (

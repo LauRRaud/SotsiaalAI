@@ -13203,7 +13203,11 @@
       "month_statement_future": "A month sheet is not made for a future month.",
       "month_statement_empty": "There are no visits or missed visits in this month.",
       "month_statement_part": "There is no such part.",
-      "month_statement_too_large": "There are too many visits for one file. Open the month sheet from each client's page."
+      "month_statement_too_large": "There are too many visits for one file. Open the month sheet from each client's page.",
+      "decision_sign_state_invalid": "Choose how the contract was signed.",
+      "decision_sign_contract_only": "A signature mark goes only with an administrative contract.",
+      "decision_signed_on_state": "A day of signing goes only with a signed contract.",
+      "decision_signed_on_future": "The day of signing cannot be in the future."
     },
     "incidents": {
       "title": "Incident register",
@@ -13662,7 +13666,21 @@
       "retracted_notice": "The decision is retracted. It stays visible here.",
       "decided_on": "decided {date}",
       "created_by": "entered by {name}",
-      "retracted_by": "retracted by {name} {date}"
+      "retracted_by": "retracted by {name} {date}",
+      "sign_label": "The client's signature on the contract",
+      "sign_hint": "Mark what was really done. The platform does not collect signatures or keep the contract. If you are not sure the person understood the contract, do not collect a signature: choose \"not sure\" and turn to the social worker.",
+      "sign_states": {
+        "PAPER": "signed on paper",
+        "DIGITAL": "digital signature",
+        "REPRESENTATIVE": "signed by a representative",
+        "NOT_REQUIRED": "signature not required",
+        "UNSURE": "not sure the person understood"
+      },
+      "sign_missing": "signature not marked",
+      "signed_on_label": "Day of signing",
+      "original_label": "Where the original is kept",
+      "original_hint": "For example a folder in the office or the number in the document register.",
+      "original_line": "original: {place}"
     },
     "deadlines": {
       "link": "Deadlines",
@@ -13749,7 +13767,11 @@
       "help_drift_line": "in the last four weeks {more} of {total} activities with more help than planned",
       "homecomings_title": "Clients who came home and have not been visited since",
       "homecomings_empty": "Every client who came home has been visited.",
-      "homecomings_line": "came home on {date}, away from {from}"
+      "homecomings_line": "came home on {date}, away from {from}",
+      "contracts_unsigned_title": "Contracts with an open signature",
+      "contracts_unsigned_empty": "The signature is marked on every contract in force.",
+      "contracts_unsigned_line": "contract in force from {date}, signature not marked",
+      "contracts_unsigned_unsure": "contract in force from {date}: not sure the person understood; turn to the social worker"
     },
     "visit": {
       "title": "What you did",

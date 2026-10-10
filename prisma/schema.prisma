@@ -8422,6 +8422,13 @@ model CareDecision {
   feeNote       String?
   note          String? @db.Text
 
+  /// Kuidas leping allkirjastati (`CareSignState`); NULL = märkimata. Ainult halduslepingul (K6-h).
+  signState    String?
+  /// Allkirjastamise päev (AAAA-KK-PP); ainult allkirjastatud seisuga.
+  signedOn     String?
+  /// Kus originaal on, vaba tekst.
+  originalKept String?
+
   version Int @default(1)
 
   createdByMembershipId   String?
