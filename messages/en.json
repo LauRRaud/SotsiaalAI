@@ -1881,7 +1881,12 @@
     },
     "close": "Close",
     "dialog": "Dialog",
-    "back": "Back"
+    "back": "Back",
+    "yes": "Yes",
+    "no": "No",
+    "cancel": "Cancel",
+    "saving": "Saving…",
+    "retry": "Try again"
   },
   "routes": {
     "password_reset_path": "/taasta-parool"
@@ -3289,7 +3294,10 @@
         "invalid_cursor": "The result cursor is no longer valid.",
         "target_not_public": "This entry is no longer public or visible to you.",
         "target_load_failed": "The entry could not be opened right now.",
-        "load_more_failed": "More results could not be loaded. Existing results remain visible."
+        "load_more_failed": "More results could not be loaded. Existing results remain visible.",
+        "connect_failed": "Getting in touch failed.",
+        "own_help_listing": "This is your own listing.",
+        "no_counterpart_listing": "To get in touch you need an open matching help request or help offer of your own."
       },
       "popup": {
         "provider": "Service provider",
@@ -3303,7 +3311,18 @@
         "start_pre_inquiry": "Start pre-inquiry",
         "back_to_group": "Back to contacts",
         "services": "Services",
-        "group_title": "{count} contacts"
+        "group_title": "{count} contacts",
+        "help_offer": "Help offer",
+        "help_request": "Help request",
+        "own_listing": "Your listing",
+        "connect": "Get in touch",
+        "help_type": "Kind of help",
+        "time": "Time",
+        "compensation": "Payment or condition",
+        "target_groups": "Target group",
+        "contact_mode": "Contact",
+        "platform_contact": "Within the platform",
+        "no_public_contacts": "Exact contact details are not shown publicly."
       },
       "empty": "Published map entries will appear here as markers."
     },
@@ -10802,7 +10821,8 @@
       "archive": "Archive",
       "archive_confirm": "Archive this practice candidate?",
       "re_review": "Start a new review",
-      "re_review_confirm": "Remove this version from the knowledge base and start a new review?"
+      "re_review_confirm": "Remove this version from the knowledge base and start a new review?",
+      "load_more": "Load more"
     },
     "fields": {
       "title": "Title",

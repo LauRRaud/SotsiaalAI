@@ -99,3 +99,32 @@ test('kohtumise kokkuvõtte dokumendi pealkiri on lehe keeles', () => {
   assert.equal(serverT('et', 'documents.agent_workspace.meeting_summary.document_title', undefined, 'Meeting summary'), 'Kohtumise kokkuvõte');
   assert.equal(serverT('ru', 'documents.agent_workspace.meeting_summary.document_title', undefined, 'Meeting summary'), 'Итог встречи');
 });
+
+test('varutekstiga tõlkekutse võti on kataloogis: muidu näeb iga keele kasutaja koodi kirjutatud teksti', () => {
+  /* Kuju `abi(t, "võti", "varutekst")` ja `t("võti", "varutekst")`. Kui võtit kataloogis ei ole,
+     näidatakse varuteksti igas keeles: teenusekaardi kuulutuse hüpik oli nii inglise ja vene
+     keeles eestikeelne. Kataloogi kontroll (`npm run i18n:check`) neid kutseid ei näe. */
+  const patterns = [
+    /\b[a-zA-Z]+\(\s*t\s*,\s*["'`]([a-z][a-zA-Z0-9_]*(?:\.[a-zA-Z0-9_]+){1,6})["'`]\s*,\s*["'`]/g,
+    /\bt\(\s*["'`]([a-z][a-zA-Z0-9_]*(?:\.[a-zA-Z0-9_]+){1,6})["'`]\s*,\s*["'`]/g
+  ];
+  const missing = new Map();
+  let seen = 0;
+  for (const file of ['app', 'components'].flatMap((dir) => walk(join(root, dir)))) {
+    const text = readFileSync(file, 'utf8');
+    for (const pattern of patterns) {
+      for (const match of text.matchAll(pattern)) {
+        seen += 1;
+        if (typeof lookup(et, match[1]) !== 'string' && !missing.has(match[1])) missing.set(match[1], relative(root, file).split(sep).join('/'));
+      }
+    }
+  }
+  assert.ok(seen > 2000, `leitud ${seen} kutset; otsing on katki`);
+  assert.deepEqual([...missing].map(([key, file]) => `${key} (${file})`), []);
+  for (const locale of ['en', 'ru']) {
+    const messages = catalog(locale);
+    assert.notEqual(lookup(messages, 'workspace_feature_pages.service_map.popup.help_offer'), 'Abipakkumine', locale);
+    assert.ok(lookup(messages, 'common.retry').length > 2, locale);
+  }
+});
+

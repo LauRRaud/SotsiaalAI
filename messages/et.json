@@ -1881,7 +1881,12 @@
     },
     "close": "Sulge",
     "dialog": "Dialoog",
-    "back": "Tagasi"
+    "back": "Tagasi",
+    "yes": "Jah",
+    "no": "Ei",
+    "cancel": "Loobu",
+    "saving": "Salvestan…",
+    "retry": "Proovi uuesti"
   },
   "routes": {
     "password_reset_path": "/taasta-parool"
@@ -3289,7 +3294,10 @@
         "invalid_cursor": "Tulemuste järjeviide ei kehti enam.",
         "target_not_public": "See kirje ei ole enam avalik või sulle nähtav.",
         "target_load_failed": "Kirjet ei saanud praegu avada.",
-        "load_more_failed": "Järgmisi tulemusi ei saanud laadida. Senised tulemused jäävad nähtavaks."
+        "load_more_failed": "Järgmisi tulemusi ei saanud laadida. Senised tulemused jäävad nähtavaks.",
+        "connect_failed": "Ühenduse loomine ebaõnnestus.",
+        "own_help_listing": "See on sinu enda kuulutus.",
+        "no_counterpart_listing": "Ühenduse loomiseks peab sul olema vastav avatud abisoov või abipakkumine."
       },
       "popup": {
         "provider": "Teenuseosutaja",
@@ -3303,7 +3311,18 @@
         "start_pre_inquiry": "Alusta pöördumist",
         "back_to_group": "Tagasi kontaktide juurde",
         "services": "Teenused",
-        "group_title": "{count} kontakti"
+        "group_title": "{count} kontakti",
+        "help_offer": "Abipakkumine",
+        "help_request": "Abisoov",
+        "own_listing": "Sinu kuulutus",
+        "connect": "Võta ühendust",
+        "help_type": "Abi liik",
+        "time": "Aeg",
+        "compensation": "Tasu või tingimus",
+        "target_groups": "Sihtrühm",
+        "contact_mode": "Kontakt",
+        "platform_contact": "Platvormisisene",
+        "no_public_contacts": "Täpseid kontaktandmeid ei kuvata avalikult."
       },
       "empty": "Avaldatud kaardikirjed kuvatakse siin markeritena."
     },
@@ -10802,7 +10821,8 @@
       "archive": "Arhiveeri",
       "archive_confirm": "Kas arhiveerida see praktikakandidaat?",
       "re_review": "Alusta uut ülevaatust",
-      "re_review_confirm": "Kas eemaldada versioon teadmistekogust ja alustada uut ülevaatust?"
+      "re_review_confirm": "Kas eemaldada versioon teadmistekogust ja alustada uut ülevaatust?",
+      "load_more": "Laadi veel"
     },
     "fields": {
       "title": "Pealkiri",
