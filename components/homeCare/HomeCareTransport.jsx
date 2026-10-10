@@ -68,6 +68,26 @@ export default function HomeCareTransport({ organizationId, clientId, initial = 
   };
   const withdraw = async (item) => done(await call(`${base}/${encodeURIComponent(item.id)}`, { method: "DELETE", fallbackKey: "home_care.errors.save_failed" }));
 
+  /* Transpordikaart (K5-y): aken avatakse KOHE vajutuse peale, muidu blokeerib brauser selle hüpikaknana. */
+  const openCard = async () => {
+    const sheet = window.open("", "_blank");
+    const result = await call(`${homeCareBase(organizationId)}/kliendid/${encodeURIComponent(clientId)}/transpordikaart`, {
+      method: "POST",
+      fallbackKey: "home_care.errors.open_failed"
+    });
+    if (!result.ok) {
+      sheet?.close();
+      return;
+    }
+    if (!sheet) {
+      setError(t("home_care.fridge.popup_blocked"));
+      return;
+    }
+    sheet.document.open();
+    sheet.document.write(result.data.html);
+    sheet.document.close();
+  };
+
   const when = (item) => (item.wantedTime ? t("home_care.transport.when_time", { date: planDayLabel(item.wantedOn), time: item.wantedTime }) : planDayLabel(item.wantedOn));
   const stateLine = (item) => {
     if (item.state === "REQUESTED") return t("home_care.transport.state_requested", { name: item.requestedByName || "—" });
@@ -221,8 +241,12 @@ export default function HomeCareTransport({ organizationId, clientId, initial = 
           <button className="hc-btn hc-btn--quiet" type="button" onClick={() => open("new", { wantedOn: "", wantedTime: "", destination: "", needs: "" })} disabled={busy}>
             {t("home_care.transport.request")}
           </button>
+          <button className="hc-btn hc-btn--quiet" type="button" onClick={openCard} disabled={busy}>
+            {t("home_care.transport.card_open")}
+          </button>
         </div>
       ) : null}
+      {canRequest && !mode ? <p className="hc-hint">{t("home_care.transport.card_hint")}</p> : null}
     </section>
   );
 }

@@ -23,6 +23,7 @@ export default function HomeCareCard({ organizationId, clientId, lines, canEdit,
   const [adding, setAdding] = useState(false);
   const [kind, setKind] = useState(CareCardLineKind.ACCESS);
   const [text, setText] = useState("");
+  const [forDriver, setForDriver] = useState(false);
 
   const base = `${homeCareBase(organizationId)}/kliendid/${clientId}/kaart`;
   const kindOptions = CARE_CARD_LINE_KINDS.map((value) => ({ value, label: t(`home_care.card.kinds.${value}`) }));
@@ -33,6 +34,7 @@ export default function HomeCareCard({ organizationId, clientId, lines, canEdit,
     setAdding(false);
     setText("");
     setKind(CareCardLineKind.ACCESS);
+    setForDriver(false);
     setError("");
   };
 
@@ -41,14 +43,15 @@ export default function HomeCareCard({ organizationId, clientId, lines, canEdit,
     setEditingId(line.id);
     setKind(line.kind);
     setText(line.text);
+    setForDriver(Boolean(line.forDriver));
     setError("");
   };
 
   const save = async (event) => {
     event.preventDefault();
     const result = editingId
-      ? await call(`${base}/${editingId}`, { method: "PATCH", body: { kind, text }, fallbackKey: "home_care.errors.save_failed" })
-      : await call(base, { method: "POST", body: { kind, text }, fallbackKey: "home_care.errors.save_failed" });
+      ? await call(`${base}/${editingId}`, { method: "PATCH", body: { kind, text, forDriver }, fallbackKey: "home_care.errors.save_failed" })
+      : await call(base, { method: "POST", body: { kind, text, forDriver }, fallbackKey: "home_care.errors.save_failed" });
     if (result.ok) {
       onChange(result.data.card || []);
       close();
@@ -83,6 +86,11 @@ export default function HomeCareCard({ organizationId, clientId, lines, canEdit,
           autoComplete="off"
         />
       </div>
+      {/* „Nähtav autojuhile" (K5-y): rida läheb transpordikaardile; muud read sinna ei lähe. */}
+      <label className="hc-check">
+        <input type="checkbox" checked={forDriver} onChange={(event) => setForDriver(event.target.checked)} />
+        <span>{t("home_care.card.for_driver_label")}</span>
+      </label>
       <div className="hc-row">
         <button className="hc-btn hc-btn--primary" type="submit" disabled={busy}>
           {t("home_care.card.save")}
@@ -120,6 +128,7 @@ export default function HomeCareCard({ organizationId, clientId, lines, canEdit,
                   {t(`home_care.card.kinds.${line.kind}`)}
                 </span>
                 <span className="hc-cardline__text">{line.text}</span>
+                {line.forDriver ? <span className="hc-badge">{t("home_care.card.for_driver_badge")}</span> : null}
                 {canEdit ? (
                   <button className="hc-btn hc-btn--quiet" type="button" onClick={() => startEdit(line)} disabled={busy}>
                     {t("home_care.card.edit")}

@@ -12795,7 +12795,9 @@
         "RISK": "Oht",
         "ALARM": "Häirenupp",
         "OTHER": "Muu"
-      }
+      },
+      "for_driver_label": "Nähtav autojuhile (läheb transpordikaardile)",
+      "for_driver_badge": "autojuhile"
     },
     "team": {
       "title": "Meeskond",
@@ -13188,7 +13190,8 @@
       "transport_not_found": "Transpordi soovi ei leitud.",
       "transport_closed": "Sellel soovil on juba vastus või see on tagasi võetud.",
       "transport_answer": "Vali, kas sõit on korraldatud või ei saa.",
-      "transport_decline_reason": "Kirjuta, miks sõitu korraldada ei saa."
+      "transport_decline_reason": "Kirjuta, miks sõitu korraldada ei saa.",
+      "card_driver_full": "Autojuhile nähtavaid ridu saab olla kuni {limit}."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -14730,7 +14733,24 @@
       "arrange_note_label": "Märkus hooldajale",
       "decline_reason_label": "Miks ei saa",
       "arrange_save": "Märgi korraldatuks",
-      "decline_save": "Salvesta vastus"
+      "decline_save": "Salvesta vastus",
+      "card_open": "Prindi transpordikaart",
+      "card_hint": "Transpordikaart on leht transpordi korraldajale: nimi, aadress, telefon, eesolevad sõidud ja need püsikaardi read, mille juures on märge „nähtav autojuhile”. Muud kaardi read sinna ei lähe."
+    },
+    "transport_card": {
+      "doc": {
+        "title": "Transpordikaart",
+        "print_hint": "Prindi see leht brauserist (Ctrl+P) või salvesta PDF-ina ja anna transpordi korraldajale.",
+        "phone": "Telefon:",
+        "lines_title": "Mida autojuht peab teadma",
+        "lines_none": "Autojuhile ei ole midagi eraldi märgitud.",
+        "rides_title": "Eesolevad sõidud",
+        "rides_none": "Eesolevaid sõite ei ole kirjas.",
+        "when_time": "{date} kell {time}",
+        "not_arranged": "ootab korraldamist",
+        "issued_on": "välja antud {date}",
+        "foot": "Leht kannab isikuandmeid. Hävita see pärast sõitu."
+      }
     }
   },
   "stage": {

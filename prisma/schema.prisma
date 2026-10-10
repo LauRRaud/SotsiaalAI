@@ -9159,6 +9159,8 @@ model CareClientCardLine {
   kind     String
   text     String
   position Int    @default(0)
+  /// K5-y: rida läheb transpordikaardile (autojuht näeb). Kuni kolm kehtivat rida kliendi kohta.
+  forDriver Boolean @default(false)
 
   addedByMembershipId String?
   createdAt           DateTime  @default(now())
