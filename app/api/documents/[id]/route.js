@@ -32,7 +32,7 @@ import {
   assertServiceLogReportDeletable,
   preserveServiceLogReportKind
 } from "@/lib/serviceLog/reportRetention"
-import { visibleRecordingDocumentWhere } from "@/lib/documents/recordingVisibility"
+import { openableDocumentWhere } from "@/lib/documents/recordingVisibility"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -82,8 +82,7 @@ async function findDocumentWithFrameworkState(id, ownerId) {
       where: {
         id,
         ownerId,
-        ...visibleRecordingDocumentWhere(),
-        fieldVisitAttachments: { none: { storageStatus: { not: "ACTIVE" } } }
+        ...openableDocumentWhere()
       },
       select: {
         id: true,
@@ -126,8 +125,7 @@ async function findDocumentWithFrameworkState(id, ownerId) {
       where: {
         id,
         ownerId,
-        ...visibleRecordingDocumentWhere(),
-        fieldVisitAttachments: { none: { storageStatus: { not: "ACTIVE" } } }
+        ...openableDocumentWhere()
       },
       select: {
         id: true,
