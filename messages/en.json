@@ -12716,7 +12716,8 @@
       "empty_ended": "There are no ended clients.",
       "search_phone_hint": "As a coordinator you can also find a client by phone number (at least five digits).",
       "matched_phone": "by phone number",
-      "matched_relative": "by a relative: {name} · {level}"
+      "matched_relative": "by a relative: {name} · {level}",
+      "matched_relative_doubt": "the client does not remember the permission: say only whether a visit took place"
     },
     "status": {
       "ACTIVE": "Active",
@@ -13708,7 +13709,8 @@
       "notices_waiting_line": "{reason} · sent {date}, days waited: {days}",
       "reassess_overdue_title": "Promised reassessment whose day has passed",
       "reassess_overdue_empty": "No promised reassessment is overdue.",
-      "reassess_overdue_line": "promised by {date}, days overdue: {days}; no new decision recorded"
+      "reassess_overdue_line": "promised by {date}, days overdue: {days}; no new decision recorded",
+      "relatives_doubt_line": "{name}: the client does not remember allowing this (marked by {by})"
     },
     "visit": {
       "title": "What you did",
@@ -14396,7 +14398,11 @@
       "no_tell_label": "What the client does not want told",
       "no_tell_line": "do not tell: {text}",
       "agreed_on": "confirmed {date}",
-      "review_due": "ask the client again"
+      "review_due": "ask the client again",
+      "doubt_flag": "The client does not remember allowing this",
+      "doubt_line": "The client does not remember allowing this (marked by {name}). Until the coordinator has asked again, say only whether a visit took place.",
+      "card_open": "Print the sharing card",
+      "card_hint": "The sharing card is the agreement on paper for the client's home: who may be told what about them."
     },
     "recent": {
       "yesterday": "Yesterday",
@@ -14636,6 +14642,27 @@
         "minutes": "length in minutes",
         "remarks": "Remarks (what was not done and why, what was different):",
         "foot": "This sheet carries personal data. Enter what you did in the diary as soon as you can, then bring the sheet to the office to be destroyed."
+      }
+    },
+    "sharing_card": {
+      "doc": {
+        "title": "Who may be told what about me",
+        "print_hint": "Print this page from the browser (Ctrl+P), go through it with the client without the relative present and leave it in the folder at the client's home.",
+        "lead": "{name}, we agreed this page together. Without your permission we tell nobody anything about you.",
+        "nobody": "At present nothing has been agreed to be told to anyone.",
+        "level_1": "They may be told whether the care worker came.",
+        "level_2": "They may be told whether the care worker came and what we did together.",
+        "level_3": "They may be told whether the care worker came and what we did together. If the care workers notice that something is different, the coordinator contacts them.",
+        "no_tell": "Not to be told: {text}",
+        "agreed_on": "Agreed on {date}",
+        "empty_name": "Name:",
+        "empty_what": "What they may be told:",
+        "review_by": "We will ask you about this again by {date}.",
+        "change": "You can change this at any time: tell the care worker or call us.",
+        "sign_client": "Client:",
+        "sign_date": "Date:",
+        "sign_org": "For the organisation:",
+        "issued_on": "issued on {date}"
       }
     }
   },
