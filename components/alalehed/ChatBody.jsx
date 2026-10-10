@@ -22,6 +22,7 @@ import HelpListingsPanel from "@/components/chat/HelpListingsPanel";
 import SelectedListingContext from "@/components/chat/SelectedListingContext";
 import { getHelpUiText } from "@/components/chat/helpUiText";
 import { panelLeaveAllowed } from "@/lib/panelLeaveGuard";
+import { safeNextPath } from "@/lib/safeNextPath";
 import { editStartState } from "@/components/chat/selectedListingSheet";
 import { pushWithTransition } from "@/lib/routeTransition";
 import { clearStaleScrollLock } from "@/lib/scrollLock";
@@ -654,6 +655,20 @@ export default function ChatBody({
     autoLoginHandledRef.current = true;
     setLoginOpen(true);
   }, [requestLoginOnOpen, status]);
+  /* Leht, mis nõuab kontot, saadab sisselogimata inimese siia aadressiga
+     `?login=1&next=<tee>`. Kui ta on sisse logitud (äsja siin aknas, pärast
+     lisakoodi ringi või juba enne), viime ta sinna tagasi. Varem jäi ta
+     vestlusesse ja pidi lehe (näiteks kiireloomulise abipalve vormi) ise
+     uuesti üles otsima. Tee kontrollib `safeNextPath`: ainult selle saidi oma. */
+  const nextReturnHandledRef = useRef(false);
+  useEffect(() => {
+    if (!requestLoginOnOpen || status !== "authenticated") return;
+    if (nextReturnHandledRef.current || typeof window === "undefined") return;
+    const next = safeNextPath(searchParams?.get("next"), window.location.origin);
+    if (!next) return;
+    nextReturnHandledRef.current = true;
+    router.replace(next);
+  }, [requestLoginOnOpen, router, searchParams, status]);
   useEffect(() => {
     if (!emailVerifiedEntry || status !== "authenticated") return;
     if (verifyEntryUrlClearedRef.current) return;

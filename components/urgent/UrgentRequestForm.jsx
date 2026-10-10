@@ -24,10 +24,12 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSession } from "next-auth/react";
+import { usePathname } from "next/navigation";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
+import { loginHref } from "@/lib/safeNextPath";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import { detectCrisis } from "@/lib/chat/safety";
 
@@ -78,6 +80,7 @@ function DeskCard({ t, desk }) {
 export default function UrgentRequestForm() {
   const { t } = useI18n();
   const { status } = useSession();
+  const pathname = usePathname();
   usePanelInfoSlot({
     infoId: "urgent_request",
     title: txt(t, "urgent.title", "Kiireloomuline abipalve")
@@ -123,7 +126,8 @@ export default function UrgentRequestForm() {
         <h2>{txt(t, "urgent.title", "Kiireloomuline abipalve")}</h2>
         <p><strong>{txt(t, "urgent.not_emergency", "See ei ole hädaabinumber. Vahetu ohu korral helista 112.")}</strong></p>
         <p>{txt(t, "urgent.auth_required", "Abipalve saatmiseks logi sisse.")}</p>
-        <Button as="a" href="/vestlus?login=1">{txt(t, "urgent.actions.login", "Logi sisse")}</Button>
+        {/* Pärast sisselogimist tuleb inimene tagasi siia vormi, mitte ei jää vestlusesse. */}
+        <Button as="a" href={loginHref(pathname || "/kiireloomuline-abi")}>{txt(t, "urgent.actions.login", "Logi sisse")}</Button>
       </section>
     );
   }

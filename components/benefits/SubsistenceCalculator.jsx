@@ -39,6 +39,7 @@ import StepPanel from "@/components/stage/StepPanel";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import { estimateSubsistenceBenefit } from "@/lib/benefits/subsistence";
+import { loginHref } from "@/lib/safeNextPath";
 
 import styles from "./subsistence.module.css";
 import { COST_GROUPS, STEP_KEYS, declaredCostKeys, euro, gateQuestions, stepStates, uniqueIssueCodes } from "./subsistenceSteps";
@@ -119,7 +120,7 @@ export default function SubsistenceCalculator() {
           title={t("subsistence.title")}
           question={t("subsistence.auth_required")}
           actions={
-            <Button as="a" href="/vestlus?login=1" size="sm" variant="primary">
+            <Button as="a" href={loginHref("/toimetulekutoetus")} size="sm" variant="primary">
               {t("subsistence.actions.login")}
             </Button>
           }

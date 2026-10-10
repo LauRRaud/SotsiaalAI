@@ -7,6 +7,7 @@ import { canUseCovisionRole } from "@/lib/covision";
 import { getLocaleFromCookies } from "@/lib/i18n";
 import { localizePath } from "@/lib/localizePath";
 import { buildLocalizedMetadata } from "@/lib/metadata";
+import { loginHref } from "@/lib/safeNextPath";
 
 export async function generateMetadata() {
   const cookieStore = await cookies();
@@ -28,7 +29,7 @@ export default async function KovisioonPage() {
   const admin = role === "ADMIN" || session?.user?.isAdmin === true;
 
   if (!session?.user?.id) {
-    redirect(localizePath("/vestlus?login=1", locale));
+    redirect(localizePath(loginHref("/kovisioon"), locale));
   }
 
   if (!canUseCovisionRole(role, admin)) {

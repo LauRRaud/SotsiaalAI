@@ -7,6 +7,7 @@ import { canUseCovisionRole } from "@/lib/covision";
 import { getLocaleFromCookies } from "@/lib/i18n";
 import { localizePath } from "@/lib/localizePath";
 import { buildLocalizedMetadata } from "@/lib/metadata";
+import { loginHref } from "@/lib/safeNextPath";
 
 export async function generateMetadata() {
   const locale = getLocaleFromCookies(await cookies());
@@ -24,7 +25,7 @@ export default async function CompletedCasesRoute() {
   const session = await getServerSession(authConfig).catch(() => null);
   const role = String(session?.user?.role || "").toUpperCase();
   const admin = role === "ADMIN" || session?.user?.isAdmin === true;
-  if (!session?.user?.id) redirect(localizePath("/vestlus?login=1", locale));
+  if (!session?.user?.id) redirect(localizePath(loginHref("/lopetatud-juhtumid"), locale));
   if (!canUseCovisionRole(role, admin)) redirect(localizePath("/vestlus", locale));
 
   const email = String(session.user.email || "");
