@@ -184,6 +184,8 @@ Seega: uus sisu ei jätnud ühtegi otsustavat sätet tõenditest välja nii, et 
 | „Mida ütleb VÕS § 312 lõige 1?“ | Võlaõigusseadus § 312 lg 1, sisult õige |
 | Lapse andmete jagamine kooliga (spetsialist) | lastekaitseseadus ja abivajavast lapsest teatamise juhend |
 
+**Kordus pärast parandust** (7 pööret, 0,0300 USD; kontroll kokku 85 pööret ja 0,3202 USD): kanepi küsimus neli korda ja „Mu poeg on kanepi sõltlane“ kaks korda ei andnud ühelgi korral Kanepi valda; „Elan Kanepi vallas …“ andis selle, nagu peab.
+
 **Leitud viga.** Kanepi küsimuse ühes vastuses kahest oli lõik „Kui mure on Kanepi vallas, võid võtta ühendust laste heaolu spetsialistiga …“ koos selle valla töötaja kontaktiga: otsinguplaani päringu sõna „kanepi“ loeti Kanepi vallaks. Põhjus ja parandus on [ADR-139](adr-139-a-name-that-is-also-an-everyday-word.md).
 
 **Soovitus kandidaatide kohta.** Jätta praegu nii. Kaks pikka lehte pealkirjaga „Toimetulekutoetus“ võtavad toimetulekutoetuse küsimustes suure osa tõendite kohtadest, aga kuue toimetulekutoetuse küsimuse kõigis 12 pöördes oli otsustav seaduse säte tõendites; viide puudus ühel, kus vastus oli õige sama paragrahvi teise lõike põhjal. Ühe dokumendi kohtade piiramine muudaks otsingut kõigi küsimuste jaoks; seda tasub teha siis, kui mõni mõõdetud vastus läheb selle pärast valeks.

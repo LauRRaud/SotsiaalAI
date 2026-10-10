@@ -28,7 +28,7 @@ test('a person is two capitalised words that are not the name of something else'
   assert.equal(namesPerson('Asume Tartus ja Ootame Viljandisse kõiki', context), false);
   // A name in capitals is known by its given name; other capitals are headings.
   assert.deepEqual(personPair('MARI TAMMSALU', context), { pair: 'MARI TAMMSALU', by: 'given_name' });
-  for (const text of ['KOGUKONNAS ELAMISE TEENUS', 'MIS ON DIABEET', 'MARI KESKUS']) assert.equal(namesPerson(text, context), false, text);
+  for (const text of ['KOGUKONNAS ELAMISE TEENUS', 'MIS ON DIABEET', 'MARI KESKUS', 'KUST LEIDA ABI JA TUGE?']) assert.equal(namesPerson(text, context), false, text);
   // Without a reading every word counts as unseen: the strict side.
   assert.equal(namesPerson('Raamatu autor on Zuzzu Kask.'), true);
   assert.deepEqual([...lowerWords(['<p>Tere <b>tulemast</b> meie Lehele</p>'])].sort(), ['meie', 'tulemast']);
@@ -80,6 +80,10 @@ test('a page is left out whole when it is mostly about persons, by what it is, o
   assert.match(why(page, meta('https://naidisliit.ee/foorum')), /^by what it is/u);
   assert.match(why(page, meta('https://naidisliit.ee/leht', { title: 'Näidisliit: Tegevuskava' })), /^by what it is/u);
   assert.match(why(page, meta('https://naidisliit.ee/leht', { title: 'Näidisliit: Toetused ja soodustused' }), { leaveOut: /Toetused ja soodustused/iu }), /^by what it is/u);
+  // Donors' pages go; a page written to the one who supports somebody stays.
+  assert.match(why(page, meta('https://naidisliit.ee/leht', { title: 'Näidisliit: Meie toetajad' })), /^by what it is/u);
+  assert.equal(why(page, meta('https://naidisliit.ee/soovitused-leinaja-toetajale', { title: 'Näidisliit: Soovitused leinaja toetajale' })), 'kept');
+  assert.equal(why(page, meta('https://naidisliit.ee/leht', { title: 'Näidisliit: Abimaterjal lähedastele ja nende toetajatele' })), 'kept');
   // A page of a list of posts is titled with its number.
   assert.match(why(page, meta('https://naidisliit.ee/leht', { title: 'Näidisliit: 67' })), /^by what it is/u);
   // Dated by title or address; the year at hand is not an earlier one, and a date in the text is not a sign.

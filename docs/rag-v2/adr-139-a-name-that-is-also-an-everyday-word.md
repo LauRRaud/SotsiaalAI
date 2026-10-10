@@ -1,6 +1,6 @@
 # ADR-139: vallanimi, mis on ühtlasi tavasõna vorm, on nimi ainult seal, kus kiri seda näitab
 
-Kuupäev: 11.10.2026. Seis: **kood ja testid valmis, serveri morfoloogiaga tasuta mõõdetud; päris vastuseid selle reegliga ei ole mõõdetud.**
+Kuupäev: 11.10.2026. Seis: **töös alates 11.10.2026 öösel (#651); serveri morfoloogiaga tasuta mõõdetud ja sama küsimus päris vestluses seitsme pöördega üle küsitud.**
 
 ## Mis juhtus
 
@@ -48,6 +48,8 @@ Serveris tasuta, väljalaske `1cb79238` koodiga ja sama koodi peale pandud muude
 | päring „nõo põhjas asuv maja üleujutus“ | Nõo vald | kohta ei ole |
 
 Ülejäänud 35 lauset ja 17 päringut loeti täpselt nagu enne, nende seas „Elan Kanepis.“, „Elan Kanepi vallas.“, „Mu ema elab Kanepis ja vajab hooldust.“, „Mu õde elab Tapal.“, „Elan Tapa vallas.“, „Elan Nõos.“ ning päringud „Kanepi valla lastekaitsetöötaja kontakt“, „Kanepi vald hooldajatoetus“, „hooldajatoetus Kanepi“, „Tapa valla sotsiaaltoetused“, „Nõo valla sünnitoetus“. Serveris jooksev test päris morfoloogiaga (`tests/rag-v2-record-scope.test.mjs`) läbib; kohalikud testid kasutavad serverist salvestatud lugemisi (`tests/fixtures/rag-v2-recorded-terms.mjs`).
+
+**Päris vestluses pärast kasutuselevõttu** (tasuline, sama kontrolli laest; 7 pööret, 0,0300 USD, `w4/check95` serveris): küsimus „Leidsin oma 15-aastase poja toast kanepit …“ neli korda ja „Mu poeg on kanepi sõltlane. Kust ta abi saab?“ kaks korda: kõigil kuuel korral kohta ei loetud, vastuses Kanepi valda ega valla kirjeid ei olnud ning vastus viitas narko.ee lehtedele. „Elan Kanepi vallas ja mu poeg tarvitab kanepit. Kelle poole vallas pöörduda?“: koht Kanepi vald, vastuses valla kontakt, nagu peab.
 
 ## Mis jääb lahti
 
