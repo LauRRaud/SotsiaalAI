@@ -602,18 +602,17 @@ export function HelpPart({ t, kinds, initial, map, mediation, devices, health, r
       </StepPanel>
     );
   } else if (shown === "devices") {
+    /* Teenusekaart on sama osa esimene lahter: eraldi nuppu selle jaoks siin ei ole. */
     body = (
       <StepPanel
         title={title}
-        note={t("journey.assistiveDevices.safetyNote")}
         actions={
           <>
             <LinkButton href={links.documents}>{t("journey.assistiveDevices.addDocument")}</LinkButton>
-            <LinkButton href={links.serviceMap}>{t("journey.service_map.open")}</LinkButton>
-            <Button {...SMALL} onClick={() => setRequestOpen(true)}>
+            <Button {...SMALL} data-device-request="1" onClick={() => setRequestOpen(true)}>
               {t("journey.assistiveDevices.createPracticalHelpRequest")}
             </Button>
-            <Button type="button" size="sm" variant="primary" glow={glow} onClick={onShare}>
+            <Button type="button" size="sm" variant="primary" glow={glow} data-device-share="1" onClick={onShare}>
               {t("journey.pre_inquiry.open")}
             </Button>
           </>
@@ -621,21 +620,21 @@ export function HelpPart({ t, kinds, initial, map, mediation, devices, health, r
       >
         <div className={shared.stack}>
           {cells}
-          <p className={shared.quiet}>{t("journey.assistiveDevices.description")}</p>
-          <ul className={shared.rows}>
+          <ul className={shared.rows} aria-label={t("journey.assistiveDevices.title")}>
             {devices.items.map((item) => (
               <li key={item.id} className={shared.rowItem}>
                 <span className={styles.plainRow}>
                   <span className={styles.rowHead}>
                     <span className={shared.rowTitle}>{item.name}</span>
                     <Chip>{deviceStatusKey(item.status) ? t(deviceStatusKey(item.status)) : ""}</Chip>
+                    {item.relatedNeedTags?.length ? <span className={styles.rowText}>{item.relatedNeedTags.join(", ")}</span> : null}
                   </span>
                   {item.supportNeed ? <span className={styles.rowText}>{item.supportNeed}</span> : null}
-                  {item.relatedNeedTags?.length ? <span className={styles.rowText}>{item.relatedNeedTags.join(", ")}</span> : null}
                 </span>
               </li>
             ))}
           </ul>
+          <p className={shared.small}>{t("journey.assistiveDevices.safetyNote")}</p>
         </div>
       </StepPanel>
     );
@@ -647,7 +646,6 @@ export function HelpPart({ t, kinds, initial, map, mediation, devices, health, r
         actions={
           <>
             <LinkButton href={links.documents}>{t("journey.serviceContinuity.addDocument")}</LinkButton>
-            <LinkButton href={links.serviceMap}>{t("journey.healthContact.openServiceMap")}</LinkButton>
             <LinkButton href={links.preInquiry}>{t("journey.healthContact.createPreInquiry")}</LinkButton>
             {health.draftOpen ? (
               <Button {...SMALL} data-copy-health="1" onClick={health.onCopy}>
@@ -665,7 +663,7 @@ export function HelpPart({ t, kinds, initial, map, mediation, devices, health, r
           {cells}
           {health.draftOpen ? (
             <div data-autofocus="">
-              <TextAreaField label={t("journey.healthContact.questionsDraftTitle")} value={health.draft} onChange={health.onChange} rows={8} />
+              <TextAreaField label={t("journey.healthContact.questionsDraftTitle")} value={health.draft} onChange={health.onChange} rows={6} />
             </div>
           ) : (
             <>
