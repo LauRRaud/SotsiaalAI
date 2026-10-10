@@ -7004,7 +7004,8 @@
       "home_care_incident_assigned": "Тебе назначен особый случай услуги на дому",
       "home_care_visits_changed": "Твои визиты услуги на дому изменились",
       "home_care_obstacle_reported": "Работник по уходу сообщил о препятствии",
-      "home_care_change_noticed": "Работники заметили изменение"
+      "home_care_change_noticed": "Работники заметили изменение",
+      "home_care_transport_requested": "Работник по уходу запросил транспорт для клиента"
     },
     "center": {
       "title": "Уведомления",

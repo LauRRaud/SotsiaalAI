@@ -7004,7 +7004,8 @@
       "home_care_incident_assigned": "Sulle määrati koduteenuse erijuhtum",
       "home_care_visits_changed": "Sinu koduteenuse käigud muutusid",
       "home_care_obstacle_reported": "Hooldaja teatas takistusest",
-      "home_care_change_noticed": "Hooldajad märkasid muutust"
+      "home_care_change_noticed": "Hooldajad märkasid muutust",
+      "home_care_transport_requested": "Hooldaja soovis kliendile transporti"
     },
     "center": {
       "title": "Teavitused",

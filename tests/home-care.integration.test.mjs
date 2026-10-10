@@ -6161,3 +6161,33 @@ test('transpordikaart: autojuhile lähevad ainult märgitud püsikaardi read, ku
   assert.equal(audit.filter((entry) => entry.meta.clientId === linda.id).length, 1);
   assert.equal(JSON.stringify(audit).includes('Kase'), false);
 });
+
+test('transpordi soovi teade: hooldusjuht saab teate ilma sisuta, esitaja ei saa; suunaja viib kliendi lehele', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, deps())).client;
+  await addTeamMember(lead, linda.id, { membershipId: f.members.anu.id }, deps());
+  const TYPE = 'HOME_CARE_TRANSPORT_REQUESTED';
+  const noticed = () => Promise.all([f.users.lead, f.users.anu].map((user) => db.notificationEvent.count({ where: { userId: user.id, type: TYPE } })));
+
+  /* Hooldaja soov: teade hooldusjuhile, mitte esitajale endale. */
+  const made = await requestTransport(anu, linda.id, { wantedOn: '2026-10-16', wantedTime: '9:40', destination: 'Perearsti juurde' }, depsWithNotify());
+  assert.deepEqual(await noticed(), [1, 0]);
+  /* Teavituses ei ole klienti, päeva ega sihtkohta; link viib suunajale. */
+  const event = await db.notificationEvent.findFirst({ where: { userId: f.users.lead.id, type: TYPE } });
+  const stored = JSON.stringify(event);
+  for (const secret of ['Linda', linda.id, 'Perearsti', '2026-10-16']) assert.equal(stored.includes(secret), false, secret);
+  const shown = serializeNotificationEvent(event);
+  assert.deepEqual([shown.href, shown.labelKey], [`/org/koduteenus/transport/${made.requestId}`, 'notifications.events.home_care_transport_requested']);
+  await assertNotificationRecipient(db, { type: TYPE, userId: f.users.lead.id, sourceId: made.requestId, targetId: made.requestId });
+  await assert.rejects(assertNotificationRecipient(db, { type: TYPE, userId: f.users.anu.id, sourceId: made.requestId, targetId: made.requestId }), (error) => error.status === 404);
+
+  /* Hooldusjuhi enda soov talle teadet ei tee; ilma teavitusteta kutsuja ei saada midagi. */
+  await requestTransport(lead, linda.id, { wantedOn: '2026-10-20', destination: 'Apteek' }, depsWithNotify());
+  await requestTransport(anu, linda.id, { wantedOn: '2026-10-21', destination: 'Juuksur' }, deps());
+  assert.deepEqual(await noticed(), [1, 0]);
+  /* Tagasi võetud soovi teavitust enam ei näidata. */
+  await withdrawTransport(anu, linda.id, made.requestId, deps());
+  await assert.rejects(assertNotificationRecipient(db, { type: TYPE, userId: f.users.lead.id, sourceId: made.requestId, targetId: made.requestId }), (error) => error.status === 404);
+});
