@@ -9113,7 +9113,7 @@
       "summary": "olukorra kokkuvõte",
       "domains": "seotud teemad",
       "missing_info": "puuduolev info",
-      "wish": "inimese soov",
+      "wish": "sinu soov",
       "person_context": "kolmanda isiku kontekst",
       "person_context_ack": "Kinnitan, et mul on õigus seda teise isiku teavet jagada.",
       "service_continuity": "teenuse jätkumise info",
@@ -9215,6 +9215,188 @@
         "note": "Kirjutatu kustub ja Teekonda ei salvestata."
       },
       "leave_asked": "Teekond on salvestamata. Lahkumiseks vajuta uuesti. Kirjutatu jääb selles brauseriaknas alles."
+    },
+    "desk": {
+      "all": "Kogu Teekond",
+      "position": "Osa {current}/{total}: {label}",
+      "all_journeys": "Kõik Teekonnad",
+      "private": "Privaatne, kuni sa ise jagad.",
+      "leave_asked": "Sul on salvestamata teksti. Lahkumiseks vajuta uuesti; salvestamata tekst läheb siis kaduma.",
+      "back": "Tagasi",
+      "back_to_list": "Tagasi sammude juurde",
+      "confirm_delete": "Jah, kustuta",
+      "discard_confirm": "Jah, loobu",
+      "discard_note": "Muudatused lähevad kaduma.",
+      "archived_part": "Kõrvale pandud Teekonnal muuta ei saa.",
+      "parts": {
+        "situation": {
+          "title": "Sinu olukord",
+          "short": "Olukord"
+        },
+        "wish": {
+          "title": "Sinu soov",
+          "short": "Soov"
+        },
+        "steps": {
+          "title": "Järgmised sammud",
+          "short": "Sammud"
+        },
+        "feeling": {
+          "title": "Kuidas sul läheb",
+          "short": "Kuidas läheb"
+        },
+        "sent": {
+          "title": "Saadetud ja vastused",
+          "short": "Saadetud"
+        },
+        "share": {
+          "title": "Eelpöördumine",
+          "short": "Eelpöördumine"
+        },
+        "help": {
+          "title": "Abi otsimine",
+          "short": "Abi otsimine"
+        },
+        "continuity": {
+          "title": "Teenuse jätkumine",
+          "short": "Jätkumine"
+        },
+        "road": {
+          "title": "Teekonnarada",
+          "short": "Rada"
+        },
+        "closure": {
+          "title": "Paus ja lõpetamine",
+          "short": "Paus ja lõpp"
+        },
+        "data": {
+          "title": "Paberleht ja andmed",
+          "short": "Paber ja andmed"
+        }
+      },
+      "situation": {
+        "need_title": "Pane Teekonnale pealkiri.",
+        "need_summary": "Kirjelda oma olukorda.",
+        "save_all": "Salvestub kõik neli osa korraga.",
+        "tabs": {
+          "label": "Mida muudad",
+          "text": "Kirjeldus",
+          "direction": "Suund",
+          "topics": "Teemad",
+          "notes": "Märkused"
+        },
+        "read_tabs": {
+          "label": "Mida vaatad",
+          "text": "Kirjeldus",
+          "noticed": "Mida märkasime"
+        }
+      },
+      "wish": {
+        "private": "Seda teksti platvorm ei muuda. Teised näevad seda ainult siis, kui sa selle jagamiseks ise valid."
+      },
+      "steps": {
+        "need_title": "Kirjuta, mida on vaja teha.",
+        "add_question": "Mis on järgmine samm?",
+        "no_details": "Tegijat ega tähtaega ei ole kirjas.",
+        "delete_note": "Samm kustub jäädavalt. Kui seda lihtsalt ei ole enam vaja, jäta see pigem ära: siis jääb näha, mis otsustati.",
+        "private": "Sammud on ainult sinu näha.",
+        "all_closed": "Kõik sammud on lõpetatud.",
+        "tabs": {
+          "label": "Milliseid samme näidata",
+          "open": "Teha",
+          "suggested": "Pakutud",
+          "closed": "Lõpetatud"
+        }
+      },
+      "feeling": {
+        "need_level": "Vali, kuidas sa praegu toime tuled.",
+        "delete_note": "Märget ei saa muuta. Vale märke saad kustutada; kustutatud märget tagasi ei saa.",
+        "private": "See on sinu enda hinnang ja ainult sinu näha.",
+        "first_hint": "Esimene märge on algseis. Hiljem näed, kas on läinud paremaks."
+      },
+      "sent": {
+        "answered": "Saaja on vastanud.",
+        "opened": "Saaja on pöördumise avanud.",
+        "sent": "Saadetud, saaja ei ole veel avanud.",
+        "draft": "Eelpöördumine on pooleli ja saatmata.",
+        "none": "Sellest Teekonnast ei ole veel midagi saadetud.",
+        "note": "Rida avab pöördumise. Vastuse sisu on pöördumise ühises ruumis.",
+        "open_named": "Ava eelpöördumine {title}"
+      },
+      "share": {
+        "tile": "Vali, mida oma Teekonnast kaasa võtad.",
+        "need_choice": "Vali vähemalt üks asi, mida kaasa võtad.",
+        "need_ack": "Teise inimese teabe jagamiseks kinnita, et sul on selleks õigus.",
+        "tabs": {
+          "label": "Valik või eelvaade",
+          "choose": "Mida kaasa võtad"
+        }
+      },
+      "help": {
+        "kinds": {
+          "label": "Kust abi otsid",
+          "map": "Teenusekaart",
+          "mediation": "Abivahendus",
+          "devices": "Abivahendid",
+          "health": "Tervisekontakt"
+        },
+        "request_preview": "Abisoovi läheb",
+        "copy": "Kopeeri tekst",
+        "copied": "Kopeeritud",
+        "copy_failed": "Kopeerimine ei õnnestunud. Märgi tekst käsitsi ja kopeeri.",
+        "device_status": {
+          "NEEDED": "vajab",
+          "EXISTING": "olemas",
+          "NOT_USED": "ei kasuta",
+          "NOT_WORKING": "ei tööta või ei sobi",
+          "UNSURE": "täpsustamisel"
+        }
+      },
+      "continuity": {
+        "tile": "Kui sul on teenus või tugi, mis võib lõppeda.",
+        "save_all": "Salvestub kõik neli osa korraga.",
+        "end_date": "Lõppkuupäev",
+        "tabs": {
+          "label": "Kontrolli osad",
+          "service": "Teenus",
+          "state": "Praegune seis",
+          "goal": "Sinu eesmärk",
+          "time": "Kestus"
+        }
+      },
+      "road": {
+        "note": "Rada näitab ainult seda, mida platvorm päriselt teab.",
+        "event": "Teekonda muudeti",
+        "tabs": {
+          "road": "Rada",
+          "events": "Sündmused"
+        }
+      },
+      "closure": {
+        "tile": "Teekond on käimas. Võid selle pausile panna või lõpetada.",
+        "need_outcome": "Vali, kuidas see Teekond sinu jaoks lõppes.",
+        "history_question": "Varasemad pausid ja lõpetamised",
+        "keeps": "Midagi ei kustu ja saad Teekonna alati uuesti avada.",
+        "pause_note": "Praegu sa sellega ei tegele. Võid lisada, miks, ja päeva, millal plaanid jätkata.",
+        "finish_note": "See on sinu jaoks läbi. Ütled ise, kuidas see lõppes.",
+        "finish_tabs": {
+          "outcome": "Kuidas lõppes",
+          "more": "Lisa soovi korral"
+        }
+      },
+      "data": {
+        "tile": "Prindi, laadi fail alla või kustuta Teekond.",
+        "tabs": {
+          "paper": "Paberleht",
+          "file": "Fail",
+          "delete": "Kustutamine"
+        },
+        "export": "Laadi Teekond failina alla",
+        "exporting": "Laadin alla…",
+        "file_lead": "Fail sisaldab kogu selle Teekonna sisu: kirjeldust, soovi, samme, märkeid ja seotud eelpöördumiste seisu. See on masinloetav fail (JSON), mille saad endale hoiule panna.",
+        "delete_note": "Kustutatud Teekonda ei saa taastada.",
+        "deleting": "Kustutan…"
+      }
     }
   },
   "journeys": {

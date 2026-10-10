@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 
+import ChoiceChips from "@/components/stage/ChoiceChips";
 import Button from "@/components/ui/Button";
-import Checkbox from "@/components/ui/Checkbox";
 import { PAPER_SHEET_PARTS } from "@/lib/journey/paperSheet";
+
+import shared from "./journey.module.css";
 
 /**
  * Paberleht: inimene valib, mis osad tema Teekonnast prinditavale lehele lähevad,
@@ -13,7 +15,9 @@ import { PAPER_SHEET_PARTS } from "@/lib/journey/paperSheet";
  * Valik on aadressis (`?osad=`), mitte serveris: lehte ei salvestata kuhugi ja
  * iga avamine teeb selle Teekonna praegusest seisust uuesti.
  *
- * Märgistus on lihtne nagu ülejäänud Teekonna lehel; kujundus tuleb eraldi.
+ * KUJU (10.10). See on laua osa „Paberleht ja andmed" sisu: lehe osad on
+ * ühelaiused märkelahtrid ja lehe avamine on nende all. Prinditavat lehte ennast
+ * ei ole muudetud.
  */
 export default function JourneyPaperSheet({ journey, locale = "et", t }) {
   const [parts, setParts] = useState(() => [...PAPER_SHEET_PARTS]);
@@ -25,28 +29,29 @@ export default function JourneyPaperSheet({ journey, locale = "et", t }) {
     setParts((current) => (current.includes(part) ? current.filter((item) => item !== part) : PAPER_SHEET_PARTS.filter((item) => item === part || current.includes(item))));
 
   return (
-    <section id="teekond-paberleht">
-      <h2>{t("journey.paper_ui.title", "Paberleht")}</h2>
-      <p>{t("journey.paper_ui.intro", "Prindi oma Teekond ühele lehele, et see kohtumisele kaasa võtta. Vali, mis lehele läheb.")}</p>
+    <div className={shared.stack}>
+      <p className={shared.quiet}>{t("journey.paper_ui.intro", "Prindi oma Teekond ühele lehele, et see kohtumisele kaasa võtta. Vali, mis lehele läheb.")}</p>
+      <ChoiceChips
+        label={t("journey.paper_ui.title", "Paberleht")}
+        labelHidden
+        options={PAPER_SHEET_PARTS.map((part) => ({ value: part, label: t(`journey.paper_ui.parts.${part}`, "") }))}
+        values={parts}
+        onToggle={toggle}
+        columns={3}
+        keepColumns
+      />
+      <p className={shared.small}>{t("journey.paper_ui.never", "Ettevaatlikke tähelepanekuid lehele ei panda. Lehel on alati ruumi käsitsi märkmeteks.")}</p>
       <div>
-        {PAPER_SHEET_PARTS.map((part) => (
-          <Checkbox
-            key={part}
-            id={`journey-paper-${part}`}
-            checked={parts.includes(part)}
-            onChange={() => toggle(part)}
-            label={t(`journey.paper_ui.parts.${part}`, part)}
-          />
-        ))}
+        {parts.length ? (
+          <Button as="a" href={href} target="_blank" rel="noopener noreferrer" size="sm" variant="primary" data-paper-open="1">
+            {t("journey.paper_ui.open", "Ava prinditav leht")}
+          </Button>
+        ) : (
+          <p className={shared.quiet} aria-live="polite">
+            {t("journey.paper_ui.none", "Vali vähemalt üks osa.")}
+          </p>
+        )}
       </div>
-      <p>{t("journey.paper_ui.never", "Ettevaatlikke tähelepanekuid lehele ei panda. Lehel on alati ruumi käsitsi märkmeteks.")}</p>
-      {parts.length ? (
-        <Button as="a" href={href} target="_blank" rel="noopener noreferrer">
-          {t("journey.paper_ui.open", "Ava prinditav leht")}
-        </Button>
-      ) : (
-        <p role="status">{t("journey.paper_ui.none", "Vali vähemalt üks osa.")}</p>
-      )}
-    </section>
+    </div>
   );
 }

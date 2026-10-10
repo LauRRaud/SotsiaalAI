@@ -9113,7 +9113,7 @@
       "summary": "situation summary",
       "domains": "related topics",
       "missing_info": "missing information",
-      "wish": "person's wish",
+      "wish": "your wish",
       "person_context": "third-party context",
       "person_context_ack": "I confirm that I have the right to share this other person's information.",
       "service_continuity": "service-continuity information",
@@ -9215,6 +9215,188 @@
         "note": "What you wrote is deleted and the Journey is not saved."
       },
       "leave_asked": "The Journey is not saved. Press again to leave. What you wrote stays in this browser window."
+    },
+    "desk": {
+      "all": "Whole Journey",
+      "position": "Part {current} of {total}: {label}",
+      "all_journeys": "All Journeys",
+      "private": "Private until you share it yourself.",
+      "leave_asked": "You have unsaved text. Press again to leave; the unsaved text will then be lost.",
+      "back": "Back",
+      "back_to_list": "Back to the steps",
+      "confirm_delete": "Yes, delete",
+      "discard_confirm": "Yes, discard",
+      "discard_note": "The changes will be lost.",
+      "archived_part": "A Journey put aside cannot be changed.",
+      "parts": {
+        "situation": {
+          "title": "Your situation",
+          "short": "Situation"
+        },
+        "wish": {
+          "title": "Your wish",
+          "short": "Wish"
+        },
+        "steps": {
+          "title": "Next steps",
+          "short": "Steps"
+        },
+        "feeling": {
+          "title": "How you are doing",
+          "short": "How it goes"
+        },
+        "sent": {
+          "title": "Sent and answers",
+          "short": "Sent"
+        },
+        "share": {
+          "title": "Pre-inquiry",
+          "short": "Pre-inquiry"
+        },
+        "help": {
+          "title": "Finding help",
+          "short": "Finding help"
+        },
+        "continuity": {
+          "title": "Service continuity",
+          "short": "Continuity"
+        },
+        "road": {
+          "title": "Journey path",
+          "short": "Path"
+        },
+        "closure": {
+          "title": "Pause and finishing",
+          "short": "Pause and end"
+        },
+        "data": {
+          "title": "Paper sheet and data",
+          "short": "Paper and data"
+        }
+      },
+      "situation": {
+        "need_title": "Give the Journey a title.",
+        "need_summary": "Describe your situation.",
+        "save_all": "All four parts are saved at once.",
+        "tabs": {
+          "label": "What you change",
+          "text": "Description",
+          "direction": "Direction",
+          "topics": "Topics",
+          "notes": "Notes"
+        },
+        "read_tabs": {
+          "label": "What you look at",
+          "text": "Description",
+          "noticed": "What we noticed"
+        }
+      },
+      "wish": {
+        "private": "The platform does not change this text. Others see it only if you choose to share it."
+      },
+      "steps": {
+        "need_title": "Write what needs to be done.",
+        "add_question": "What is the next step?",
+        "no_details": "No doer and no due date are written down.",
+        "delete_note": "The step is deleted for good. If it is just no longer needed, drop it instead: then what was decided stays visible.",
+        "private": "Only you see the steps.",
+        "all_closed": "All steps are closed.",
+        "tabs": {
+          "label": "Which steps to show",
+          "open": "To do",
+          "suggested": "Suggested",
+          "closed": "Closed"
+        }
+      },
+      "feeling": {
+        "need_level": "Choose how you are coping right now.",
+        "delete_note": "A mark cannot be changed. You can delete a wrong one; a deleted mark cannot be brought back.",
+        "private": "This is your own assessment and only you see it.",
+        "first_hint": "The first mark is the starting point. Later you see whether things have got better."
+      },
+      "sent": {
+        "answered": "The recipient has answered.",
+        "opened": "The recipient has opened the inquiry.",
+        "sent": "Sent, the recipient has not opened it yet.",
+        "draft": "A pre-inquiry is started but not sent.",
+        "none": "Nothing has been sent from this Journey yet.",
+        "note": "A row opens the inquiry. The answer itself is in the inquiry's shared room.",
+        "open_named": "Open the pre-inquiry {title}"
+      },
+      "share": {
+        "tile": "Choose what to take along from your Journey.",
+        "need_choice": "Choose at least one thing to take along.",
+        "need_ack": "To share another person's information, confirm that you have the right to do so.",
+        "tabs": {
+          "label": "Choice or preview",
+          "choose": "What you take along"
+        }
+      },
+      "help": {
+        "kinds": {
+          "label": "Where you look for help",
+          "map": "Service map",
+          "mediation": "Help mediation",
+          "devices": "Assistive devices",
+          "health": "Health contact"
+        },
+        "request_preview": "Goes into the request",
+        "copy": "Copy the text",
+        "copied": "Copied",
+        "copy_failed": "Copying failed. Select the text by hand and copy it.",
+        "device_status": {
+          "NEEDED": "needed",
+          "EXISTING": "has it",
+          "NOT_USED": "not used",
+          "NOT_WORKING": "not working or not suitable",
+          "UNSURE": "to be clarified"
+        }
+      },
+      "continuity": {
+        "tile": "If you have a service or support that may end.",
+        "save_all": "All four parts are saved at once.",
+        "end_date": "End date",
+        "tabs": {
+          "label": "Parts of the check",
+          "service": "Service",
+          "state": "Current state",
+          "goal": "Your goal",
+          "time": "Duration"
+        }
+      },
+      "road": {
+        "note": "The path shows only what the platform really knows.",
+        "event": "The Journey was changed",
+        "tabs": {
+          "road": "Path",
+          "events": "Events"
+        }
+      },
+      "closure": {
+        "tile": "The Journey is ongoing. You can pause or finish it.",
+        "need_outcome": "Choose how this Journey ended for you.",
+        "history_question": "Earlier pauses and finishes",
+        "keeps": "Nothing is deleted and you can always reopen the Journey.",
+        "pause_note": "You are not working on it for now. You may add why, and the day you plan to continue.",
+        "finish_note": "It is over for you. You say yourself how it ended.",
+        "finish_tabs": {
+          "outcome": "How it ended",
+          "more": "Add if you wish"
+        }
+      },
+      "data": {
+        "tile": "Print, download a file or delete the Journey.",
+        "tabs": {
+          "paper": "Paper sheet",
+          "file": "File",
+          "delete": "Deleting"
+        },
+        "export": "Download the Journey as a file",
+        "exporting": "Downloading…",
+        "file_lead": "The file holds everything in this Journey: the description, the wish, steps, marks and the state of linked pre-inquiries. It is a machine-readable file (JSON) you can keep for yourself.",
+        "delete_note": "A deleted Journey cannot be restored.",
+        "deleting": "Deleting…"
+      }
     }
   },
   "journeys": {

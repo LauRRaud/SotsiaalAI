@@ -1,24 +1,30 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
+import StepPanel from "@/components/stage/StepPanel";
+import TextAreaField from "@/components/stage/TextAreaField";
 import Button from "@/components/ui/Button";
 import Form from "@/components/ui/Form";
-import Input from "@/components/ui/Input";
 import { journeyErrorText } from "@/lib/journey/errorText";
 import { JOURNEY_STEP_LIMITS, JourneyStepState, todayInEstonia } from "@/lib/journey/stepRules";
 
-/** `2026-10-15` → `15.10.2026`. Käsitsi, et server ja brauser annaksid sama kuju. */
-function dayLabel(day) {
-  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(day || ""));
-  return match ? `${match[3]}.${match[2]}.${match[1]}` : "";
-}
+import { Cells, LineField, SMALL, TwoPress, blockRepeatEnter, footNote, ignoreKeyRepeat, useStageRemeasure, useSwapFocus } from "./detail/DeskBits";
+import styles from "./detail/detail.module.css";
+import { plainDayLabel, pressTooSoon, stepGroups, stepMeta, stepSuggestions } from "./detail/journeyDesk";
+import shared from "./journey.module.css";
 
 function newActionId() {
   return globalThis.crypto?.randomUUID?.() || `step-${Date.now()}-${Math.random().toString(36).slice(2, 12)}`;
 }
 
 const EMPTY_FORM = Object.freeze({ title: "", doer: "", dueOn: "" });
+
+/** Lõpetamise hetk Eesti kalendripäevana: sama päev, mille annab server ja paberleht. */
+function doneDay(iso) {
+  const date = new Date(iso);
+  return Number.isNaN(date.getTime()) ? "" : plainDayLabel(todayInEstonia(date));
+}
 
 /**
  * Teekonna järgmised sammud: mida tehakse, kes teeb, mis ajaks ja kas tehtud.
@@ -27,26 +33,36 @@ const EMPTY_FORM = Object.freeze({ title: "", doer: "", dueOn: "" });
  * mis juhtus („helistasin, lubati tagasi helistada"); ära jäetud samm jääb alles,
  * et oleks näha, mis otsustati. Platvormi pakutud tekstirea saab võtta sammuks.
  *
- * Märgistus on lihtne nagu ülejäänud Teekonna lehel; kujundus tuleb eraldi.
+ * KUJU (10.10). See on avatud Teekonna laua üks osa ja selle sees vahetuvad
+ * väikesed vaated kohapeal: loend (tegemata, pakutud, lõpetatud ühelaiuste
+ * lahtrite taga), avatud samm, lõpetamise märkus, muutmine ja uus samm. Rea
+ * kõrval on „Tehtud" (kõige sagedasem tegu); kõik muu on avatud sammus.
+ * Kustutamine küsib teist vajutust.
+ *
+ * `desk`: { glow, setDirty(dirty) } lavalt ja lehelt.
  */
-export default function JourneySteps({ journey, onStepsChange, t }) {
+export default function JourneySteps({ journey, onStepsChange, t, desk = {} }) {
   const journeyId = journey?.id || "";
   const steps = Array.isArray(journey?.steps) ? journey.steps : [];
   const archived = journey?.status === "ARCHIVED";
-  const open = steps.filter((step) => step.state === JourneyStepState.TODO);
-  const closed = steps.filter((step) => step.state !== JourneyStepState.TODO);
+  const { open, closed } = stepGroups(journey);
 
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [adding, setAdding] = useState(false);
   const [form, setForm] = useState(EMPTY_FORM);
-  /* { id, mode: "close" | "edit", state?, title?, doer?, dueOn?, note? } */
+  /* { id, mode: "open" | "close" | "edit", state?, title?, doer?, dueOn?, note? } */
   const [panel, setPanel] = useState(null);
+  const [tab, setTab] = useState("open");
   const actionRef = useRef("");
+  const busyRef = useRef(false);
+  const shownAt = useRef(0);
 
   const base = `/api/journeys/${encodeURIComponent(journeyId)}/steps`;
 
   const send = async (url, method, body) => {
+    if (busyRef.current) return false;
+    busyRef.current = true;
     setBusy(true);
     setError("");
     try {
@@ -67,6 +83,7 @@ export default function JourneySteps({ journey, onStepsChange, t }) {
       setError(t("journey.own_steps.failed", "Sammu salvestamine ei õnnestunud. Proovi uuesti."));
       return false;
     } finally {
+      busyRef.current = false;
       setBusy(false);
     }
   };
@@ -81,6 +98,12 @@ export default function JourneySteps({ journey, onStepsChange, t }) {
 
   const submitNew = async (event) => {
     event.preventDefault();
+    /* Loendi „Lisa samm" ja vormi „Lisa samm" seisavad samas kohas: topeltklõps ei lisa tühja sammu. */
+    if (pressTooSoon(shownAt.current)) return;
+    if (!form.title.trim()) {
+      setError(t("journey.desk.steps.need_title"));
+      return;
+    }
     if (await add({ title: form.title, doer: form.doer, dueOn: form.dueOn || null })) {
       setForm(EMPTY_FORM);
       setAdding(false);
@@ -89,7 +112,11 @@ export default function JourneySteps({ journey, onStepsChange, t }) {
 
   const submitPanel = async (event) => {
     event.preventDefault();
-    if (!panel) return;
+    if (!panel || pressTooSoon(shownAt.current)) return;
+    if (panel.mode === "edit" && !String(panel.title || "").trim()) {
+      setError(t("journey.desk.steps.need_title"));
+      return;
+    }
     const body =
       panel.mode === "close"
         ? { state: panel.state, note: panel.note }
@@ -98,248 +125,282 @@ export default function JourneySteps({ journey, onStepsChange, t }) {
   };
 
   const today = todayInEstonia(new Date());
-  const taken = new Set(steps.map((step) => step.title.trim().toLocaleLowerCase("et")));
-  const suggestions = (Array.isArray(journey?.suggestedActions) ? journey.suggestedActions : [])
-    .map((item) => (typeof item === "string" ? item : item?.title || "").trim())
-    .filter((title) => title && title.length <= JOURNEY_STEP_LIMITS.title && !taken.has(title.toLocaleLowerCase("et")));
+  const suggestions = archived ? [] : stepSuggestions(journey, JOURNEY_STEP_LIMITS.title);
+  const current = panel ? steps.find((step) => step.id === panel.id) || null : null;
+  /* Avatud samm kadus (kustutati teises aknas): tagasi loendisse. */
+  const view = adding ? "add" : panel && current ? panel.mode : "list";
 
-  const meta = (step) =>
-    [
-      step.doer ? t("journey.own_steps.doer_value", { name: step.doer }, "Teeb: {name}") : "",
-      step.dueOn ? t("journey.own_steps.due_value", { date: dayLabel(step.dueOn) }, "Tähtaeg: {date}") : "",
-      step.state === JourneyStepState.TODO && step.dueOn && step.dueOn < today ? t("journey.own_steps.overdue", "tähtaeg on möödas") : ""
-    ]
-      .filter(Boolean)
-      .join(" · ");
+  const tabs = [
+    { value: "open", label: t("journey.desk.steps.tabs.open") },
+    ...(suggestions.length ? [{ value: "suggested", label: t("journey.desk.steps.tabs.suggested") }] : []),
+    ...(closed.length ? [{ value: "closed", label: t("journey.desk.steps.tabs.closed") }] : [])
+  ];
+  const shownTab = tabs.some((item) => item.value === tab) ? tab : "open";
 
-  const fields = (value, change, idPrefix, { withNote = false } = {}) => (
-    <>
-      <div>
-        <label htmlFor={`${idPrefix}-title`}>{t("journey.own_steps.title_label", "Mida on vaja teha")}</label>
-        <Input
-          id={`${idPrefix}-title`}
-          value={value.title}
-          onChange={(event) => change({ ...value, title: event.target.value })}
-          maxLength={JOURNEY_STEP_LIMITS.title}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor={`${idPrefix}-doer`}>{t("journey.own_steps.doer_label", "Kes teeb (võid jätta tühjaks)")}</label>
-        <Input
-          id={`${idPrefix}-doer`}
-          value={value.doer || ""}
-          onChange={(event) => change({ ...value, doer: event.target.value })}
-          maxLength={JOURNEY_STEP_LIMITS.doer}
-        />
-      </div>
-      <div>
-        <label htmlFor={`${idPrefix}-due`}>{t("journey.own_steps.due_label", "Mis ajaks (võid jätta tühjaks)")}</label>
-        <input
-          id={`${idPrefix}-due`}
-          type="date"
-          value={value.dueOn || ""}
-          onChange={(event) => change({ ...value, dueOn: event.target.value })}
-        />
-      </div>
-      {withNote ? (
-        <div>
-          <label htmlFor={`${idPrefix}-note`}>{t("journey.own_steps.note_label", "Märkus (võid jätta tühjaks)")}</label>
-          <textarea
-            id={`${idPrefix}-note`}
-            value={value.note || ""}
-            onChange={(event) => change({ ...value, note: event.target.value })}
-            maxLength={JOURNEY_STEP_LIMITS.note}
-          />
-        </div>
-      ) : null}
-    </>
-  );
+  /* Muudetud tekst hoiab lahkumise kinni: uus samm, muudetav samm või märkus,
+     mis erineb sammust endast. */
+  const dirty =
+    (adding && Boolean(form.title.trim() || form.doer.trim() || form.dueOn)) ||
+    (panel?.mode === "edit" && current
+      ? panel.title !== current.title || (panel.doer || "") !== (current.doer || "") || (panel.dueOn || "") !== (current.dueOn || "") || (panel.note || "") !== (current.note || "")
+      : false) ||
+    (panel?.mode === "close" && current ? (panel.note || "") !== (current.note || "") : false);
+  const setDirty = desk.setDirty;
+  useEffect(() => {
+    setDirty?.(dirty);
+    return () => setDirty?.(false);
+  }, [dirty, setDirty]);
 
-  return (
-    <section id="teekond-sammud" aria-busy={busy}>
-      <h2>{t("journey.own_steps.title", "Järgmised sammud")}</h2>
-      <p>{t("journey.own_steps.intro", "Pane kirja, mida on vaja teha, kes seda teeb ja mis ajaks. Sammud on ainult sinu näha.")}</p>
+  const viewKey = `${view}:${panel?.id || ""}:${shownTab}`;
+  useStageRemeasure(`${viewKey}:${steps.length}:${error}`);
+  const rootRef = useSwapFocus(viewKey);
+  useEffect(() => {
+    shownAt.current = Date.now();
+    setError("");
+  }, [viewKey]);
 
-      {error ? <p role="alert">{error}</p> : null}
+  const toList = () => {
+    setPanel(null);
+    setAdding(false);
+    setForm(EMPTY_FORM);
+  };
+  const note = footNote(error ? { text: error, tone: "risk" } : null);
+  const title = t("journey.own_steps.title", "Järgmised sammud");
+  const glow = desk.glow !== false;
 
-      {open.length === 0 ? (
-        <p>{t("journey.own_steps.empty", "Ühtegi tegemata sammu ei ole kirjas.")}</p>
-      ) : (
-        <ol aria-label={t("journey.own_steps.open_list", "Tegemata sammud")}>
-          {open.map((step) => (
-            <li key={step.id}>
-              <p>
-                <strong>{step.title}</strong>
-              </p>
-              {meta(step) ? <p>{meta(step)}</p> : null}
-              {step.note ? <p>{step.note}</p> : null}
-
-              {panel?.id === step.id && panel.mode === "close" ? (
-                <Form onSubmit={submitPanel}>
-                  <label htmlFor={`step-${step.id}-what`}>
-                    {t("journey.own_steps.what_happened", "Mis juhtus? (võid jätta tühjaks)")}
-                  </label>
-                  <textarea
-                    id={`step-${step.id}-what`}
-                    value={panel.note || ""}
-                    onChange={(event) => setPanel({ ...panel, note: event.target.value })}
-                    maxLength={JOURNEY_STEP_LIMITS.note}
-                  />
-                  <div>
-                    <Button type="submit" disabled={busy}>
-                      {panel.state === JourneyStepState.DONE
-                        ? t("journey.own_steps.confirm_done", "Märgi tehtuks")
-                        : t("journey.own_steps.confirm_dropped", "Jäta samm ära")}
-                    </Button>
-                    <Button type="button" variant="linkBrand" onClick={() => setPanel(null)} disabled={busy}>
-                      {t("journey.actions.decline", "Loobu")}
-                    </Button>
-                  </div>
-                </Form>
-              ) : null}
-
-              {panel?.id === step.id && panel.mode === "edit" ? (
-                <Form onSubmit={submitPanel}>
-                  {fields(panel, setPanel, `step-${step.id}`, { withNote: true })}
-                  <div>
-                    <Button type="submit" disabled={busy}>
-                      {t("journey.own_steps.save", "Salvesta samm")}
-                    </Button>
-                    <Button
-                      type="button"
-                      variant="danger"
-                      disabled={busy}
-                      onClick={async () => {
-                        if (await send(`${base}/${encodeURIComponent(step.id)}`, "DELETE")) setPanel(null);
-                      }}
-                    >
-                      {t("journey.own_steps.delete", "Kustuta samm")}
-                    </Button>
-                    <Button type="button" variant="linkBrand" onClick={() => setPanel(null)} disabled={busy}>
-                      {t("journey.actions.decline", "Loobu")}
-                    </Button>
-                  </div>
-                </Form>
-              ) : null}
-
-              {!archived && panel?.id !== step.id ? (
-                <div>
-                  <Button
-                    type="button"
-                    variant="primary"
-                    disabled={busy}
-                    onClick={() => setPanel({ id: step.id, mode: "close", state: JourneyStepState.DONE, note: step.note || "" })}
-                  >
-                    {t("journey.own_steps.done", "Tehtud")}
-                  </Button>
-                  <Button
-                    type="button"
-                    disabled={busy}
-                    onClick={() => setPanel({ id: step.id, mode: "close", state: JourneyStepState.DROPPED, note: step.note || "" })}
-                  >
-                    {t("journey.own_steps.drop", "Jätan ära")}
-                  </Button>
-                  <Button
-                    type="button"
-                    variant="linkBrand"
-                    disabled={busy}
-                    onClick={() =>
-                      setPanel({ id: step.id, mode: "edit", title: step.title, doer: step.doer || "", dueOn: step.dueOn || "", note: step.note || "" })
-                    }
-                  >
-                    {t("journey.own_steps.edit", "Muuda")}
-                  </Button>
-                </div>
-              ) : null}
-            </li>
-          ))}
-        </ol>
-      )}
-
-      {!archived ? (
-        adding ? (
-          <Form onSubmit={submitNew}>
-            {fields(form, setForm, "step-new")}
-            <div>
-              <Button type="submit" disabled={busy}>
-                {t("journey.own_steps.add", "Lisa samm")}
-              </Button>
-              <Button
-                type="button"
-                variant="linkBrand"
-                disabled={busy}
-                onClick={() => {
-                  setAdding(false);
-                  setForm(EMPTY_FORM);
-                }}
-              >
+  let body;
+  if (view === "add") {
+    body = (
+      <Form className={styles.form} validate={false} onSubmit={submitNew} onKeyDown={blockRepeatEnter}>
+        <StepPanel
+          title={title}
+          question={t("journey.desk.steps.add_question")}
+          note={note}
+          actions={
+            <>
+              <Button {...SMALL} onClick={toList}>
                 {t("journey.actions.decline", "Loobu")}
               </Button>
+              <Button type="submit" size="sm" variant="primary" glow={glow} aria-busy={busy ? "true" : undefined}>
+                {t("journey.own_steps.add", "Lisa samm")}
+              </Button>
+            </>
+          }
+        >
+          <div className={styles.fields}>
+            <LineField t={t} label={t("journey.own_steps.title_label")} size="lg" value={form.title} max={JOURNEY_STEP_LIMITS.title} autoFocus onChange={(value) => setForm({ ...form, title: value })} />
+            <div className={styles.fieldPair}>
+              <LineField t={t} label={t("journey.own_steps.doer_label")} value={form.doer} max={JOURNEY_STEP_LIMITS.doer} onChange={(value) => setForm({ ...form, doer: value })} />
+              <LineField t={t} label={t("journey.own_steps.due_label")} size="sm" type="date" value={form.dueOn} onChange={(value) => setForm({ ...form, dueOn: value })} />
             </div>
-          </Form>
-        ) : (
-          <div>
-            <Button type="button" variant="primary" disabled={busy} onClick={() => setAdding(true)}>
-              {t("journey.own_steps.add", "Lisa samm")}
-            </Button>
           </div>
-        )
-      ) : (
-        <p>{t("journey.own_steps.archived", "Kõrvale pandud Teekonna samme saab vaadata, mitte muuta.")}</p>
-      )}
-
-      {!archived && suggestions.length ? (
-        <div>
-          <h3>{t("journey.own_steps.suggested_title", "Platvormi pakutud sammud")}</h3>
-          <p>{t("journey.own_steps.suggested_hint", "Need on ettepanekud. Sammuks saab ettepanek alles siis, kui sa selle võtad.")}</p>
-          <ul>
-            {suggestions.map((title) => (
-              <li key={title}>
-                <span>{title}</span>{" "}
-                <Button type="button" variant="linkBrand" disabled={busy} onClick={() => add({ title })}>
-                  {t("journey.own_steps.take", "Võta sammuks")}
+        </StepPanel>
+      </Form>
+    );
+  } else if (view === "close") {
+    const done = panel.state === JourneyStepState.DONE;
+    body = (
+      <Form className={styles.form} validate={false} onSubmit={submitPanel} onKeyDown={blockRepeatEnter}>
+        <StepPanel
+          title={title}
+          question={current.title}
+          note={note}
+          actions={
+            <>
+              <Button {...SMALL} onClick={toList}>
+                {t("journey.actions.decline", "Loobu")}
+              </Button>
+              <Button type="submit" size="sm" variant="primary" glow={glow} aria-busy={busy ? "true" : undefined}>
+                {done ? t("journey.own_steps.confirm_done", "Märgi tehtuks") : t("journey.own_steps.confirm_dropped", "Jäta samm ära")}
+              </Button>
+            </>
+          }
+        >
+          <div data-autofocus="">
+            <TextAreaField
+              label={t("journey.own_steps.what_happened", "Mis juhtus? (võid jätta tühjaks)")}
+              value={panel.note || ""}
+              onChange={(value) => setPanel({ ...panel, note: value })}
+              rows={4}
+              maxLength={JOURNEY_STEP_LIMITS.note}
+            />
+          </div>
+        </StepPanel>
+      </Form>
+    );
+  } else if (view === "edit") {
+    body = (
+      <Form className={styles.form} validate={false} onSubmit={submitPanel} onKeyDown={blockRepeatEnter}>
+        <StepPanel
+          title={title}
+          note={note}
+          actions={
+            <>
+              <Button {...SMALL} onClick={() => setPanel({ id: current.id, mode: "open" })}>
+                {t("journey.actions.decline", "Loobu")}
+              </Button>
+              <Button type="submit" size="sm" variant="primary" glow={glow} aria-busy={busy ? "true" : undefined}>
+                {t("journey.own_steps.save", "Salvesta samm")}
+              </Button>
+            </>
+          }
+        >
+          <div className={styles.fields}>
+            <LineField t={t} label={t("journey.own_steps.title_label")} size="lg" value={panel.title || ""} max={JOURNEY_STEP_LIMITS.title} autoFocus onChange={(value) => setPanel({ ...panel, title: value })} />
+            <div className={styles.fieldPair}>
+              <LineField t={t} label={t("journey.own_steps.doer_label")} value={panel.doer || ""} max={JOURNEY_STEP_LIMITS.doer} onChange={(value) => setPanel({ ...panel, doer: value })} />
+              <LineField t={t} label={t("journey.own_steps.due_label")} size="sm" type="date" value={panel.dueOn || ""} onChange={(value) => setPanel({ ...panel, dueOn: value })} />
+            </div>
+            <TextAreaField
+              label={t("journey.own_steps.note_label", "Märkus (võid jätta tühjaks)")}
+              value={panel.note || ""}
+              onChange={(value) => setPanel({ ...panel, note: value })}
+              rows={2}
+              maxLength={JOURNEY_STEP_LIMITS.note}
+            />
+          </div>
+        </StepPanel>
+      </Form>
+    );
+  } else if (view === "open") {
+    const meta = stepMeta(current, { t, today });
+    const isOpen = current.state === JourneyStepState.TODO;
+    body = (
+      <StepPanel
+        title={title}
+        question={current.title}
+        note={note}
+        actions={
+          <>
+            <Button {...SMALL} onClick={toList}>
+              {t("journey.desk.back_to_list")}
+            </Button>
+            {!archived && isOpen ? (
+              <>
+                <Button {...SMALL} onClick={() => setPanel({ id: current.id, mode: "edit", title: current.title, doer: current.doer || "", dueOn: current.dueOn || "", note: current.note || "" })}>
+                  {t("journey.own_steps.edit", "Muuda")}
                 </Button>
-              </li>
-            ))}
-          </ul>
+                <Button {...SMALL} onClick={() => setPanel({ id: current.id, mode: "close", state: JourneyStepState.DROPPED, note: current.note || "" })}>
+                  {t("journey.own_steps.drop", "Jätan ära")}
+                </Button>
+                <Button type="button" size="sm" variant="primary" glow={glow} onClick={() => setPanel({ id: current.id, mode: "close", state: JourneyStepState.DONE, note: current.note || "" })}>
+                  {t("journey.own_steps.done", "Tehtud")}
+                </Button>
+              </>
+            ) : null}
+            {!archived && !isOpen ? (
+              <Button
+                {...SMALL}
+                onKeyDown={ignoreKeyRepeat}
+                onClick={async () => {
+                  if (await send(`${base}/${encodeURIComponent(current.id)}`, "PATCH", { state: JourneyStepState.TODO })) setPanel(null);
+                }}
+              >
+                {t("journey.own_steps.reopen", "Ava uuesti")}
+              </Button>
+            ) : null}
+          </>
+        }
+      >
+        <div className={shared.stack} aria-busy={busy ? "true" : undefined}>
+          <p className={shared.quiet}>
+            {[
+              isOpen ? "" : t(`journey.own_steps.states.${current.state}`),
+              !isOpen && current.doneAt ? doneDay(current.doneAt) : "",
+              meta
+            ]
+              .filter(Boolean)
+              .join(" · ") || t("journey.desk.steps.no_details")}
+          </p>
+          {current.note ? <p className={shared.own}>{current.note}</p> : null}
+          {!archived && isOpen ? (
+            <TwoPress
+              danger
+              label={t("journey.own_steps.delete", "Kustuta samm")}
+              confirmLabel={t("journey.desk.confirm_delete")}
+              cancelLabel={t("journey.actions.decline", "Loobu")}
+              note={t("journey.desk.steps.delete_note")}
+              busy={busy}
+              onConfirm={async () => {
+                if (await send(`${base}/${encodeURIComponent(current.id)}`, "DELETE")) setPanel(null);
+              }}
+            />
+          ) : null}
         </div>
-      ) : null}
+      </StepPanel>
+    );
+  } else {
+    const rows = shownTab === "closed" ? closed : open;
+    body = (
+      <StepPanel title={title} note={footNote(error ? { text: error, tone: "risk" } : null, archived ? t("journey.own_steps.archived") : t("journey.desk.steps.private"))}>
+        <div className={shared.stack} aria-busy={busy ? "true" : undefined}>
+          <div className={styles.bar}>
+            <Cells label={t("journey.desk.steps.tabs.label")} options={tabs} value={shownTab} onChange={setTab} />
+            {!archived ? (
+              <Button type="button" size="sm" variant="primary" glow={glow} data-add-step="1" onClick={() => setAdding(true)}>
+                {t("journey.own_steps.add", "Lisa samm")}
+              </Button>
+            ) : null}
+          </div>
 
-      {closed.length ? (
-        <details>
-          <summary>{t("journey.own_steps.closed_title", { count: closed.length }, "Lõpetatud sammud ({count})")}</summary>
-          <ul>
-            {closed.map((step) => (
-              <li key={step.id}>
-                <p>
-                  <strong>{step.title}</strong>
-                </p>
-                <p>
-                  {[
-                    t(`journey.own_steps.states.${step.state}`, step.state),
-                    step.doneAt ? dayLabel(todayInEstonia(new Date(step.doneAt))) : "",
-                    step.doer ? t("journey.own_steps.doer_value", { name: step.doer }, "Teeb: {name}") : ""
-                  ]
-                    .filter(Boolean)
-                    .join(" · ")}
-                </p>
-                {step.note ? <p>{step.note}</p> : null}
-                {!archived ? (
-                  <Button
-                    type="button"
-                    variant="linkBrand"
-                    disabled={busy}
-                    onClick={() => send(`${base}/${encodeURIComponent(step.id)}`, "PATCH", { state: JourneyStepState.TODO })}
-                  >
-                    {t("journey.own_steps.reopen", "Ava uuesti")}
-                  </Button>
-                ) : null}
-              </li>
-            ))}
-          </ul>
-        </details>
-      ) : null}
-    </section>
+          {shownTab === "suggested" ? (
+            <>
+              <p className={shared.small}>{t("journey.own_steps.suggested_hint")}</p>
+              <ul className={shared.rows}>
+                {suggestions.map((suggestion) => (
+                  <li key={suggestion} className={styles.item}>
+                    <span className={styles.plainRow}>
+                      <span className={shared.rowTitle}>{suggestion}</span>
+                    </span>
+                    <Button {...SMALL} className={styles.aside} onKeyDown={ignoreKeyRepeat} onClick={() => add({ title: suggestion })}>
+                      {t("journey.own_steps.take", "Võta sammuks")}
+                    </Button>
+                  </li>
+                ))}
+              </ul>
+            </>
+          ) : rows.length ? (
+            <ul className={shared.rows} aria-label={shownTab === "closed" ? t("journey.desk.steps.tabs.closed") : t("journey.own_steps.open_list", "Tegemata sammud")}>
+              {rows.map((step) => {
+                const isOpen = step.state === JourneyStepState.TODO;
+                const sub = isOpen
+                  ? [stepMeta(step, { t, today }), step.note].filter(Boolean).join(" · ")
+                  : [t(`journey.own_steps.states.${step.state}`), step.doneAt ? doneDay(step.doneAt) : "", step.note].filter(Boolean).join(" · ");
+                return (
+                  <li key={step.id} className={styles.item}>
+                    <button type="button" className={shared.row} data-step={step.id} onClick={() => setPanel({ id: step.id, mode: "open" })}>
+                      <span className={shared.rowMain}>
+                        <span className={shared.rowTitle}>{step.title}</span>
+                        {sub ? <span className={shared.rowSub}>{sub}</span> : null}
+                      </span>
+                      {isOpen && step.dueOn && step.dueOn < today ? (
+                        <span className={shared.rowMeta}>
+                          <span className={shared.chip} data-tone="wait">
+                            {plainDayLabel(step.dueOn)}
+                          </span>
+                        </span>
+                      ) : null}
+                    </button>
+                    {!archived && isOpen ? (
+                      <Button {...SMALL} className={styles.aside} data-done={step.id} onClick={() => setPanel({ id: step.id, mode: "close", state: JourneyStepState.DONE, note: step.note || "" })}>
+                        {t("journey.own_steps.done", "Tehtud")}
+                      </Button>
+                    ) : null}
+                  </li>
+                );
+              })}
+            </ul>
+          ) : (
+            <p className={shared.quiet}>{t("journey.own_steps.empty", "Ühtegi tegemata sammu ei ole kirjas.")}</p>
+          )}
+        </div>
+      </StepPanel>
+    );
+  }
+
+  return (
+    <div className={styles.swap} ref={rootRef}>
+      {body}
+    </div>
   );
 }

@@ -1,13 +1,22 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
+import ActionCard, { ActionCardGrid } from "@/components/stage/ActionCard";
+import ChoiceRow from "@/components/stage/ChoiceRow";
+import StepPanel from "@/components/stage/StepPanel";
+import TextAreaField from "@/components/stage/TextAreaField";
 import Button from "@/components/ui/Button";
 import Form from "@/components/ui/Form";
 import { JOURNEY_ASSESSMENT_LEVELS } from "@/lib/journey/assessmentRules";
 import { JOURNEY_CLOSURE_LIMITS, JOURNEY_CLOSURE_OUTCOMES, JourneyClosureKind } from "@/lib/journey/closureRules";
 import { journeyErrorText } from "@/lib/journey/errorText";
 import { todayInEstonia } from "@/lib/journey/stepRules";
+
+import { Cells, LineField, SMALL, blockRepeatEnter, footNote, ignoreKeyRepeat, useStageRemeasure, useSwapFocus } from "./detail/DeskBits";
+import styles from "./detail/detail.module.css";
+import { pressTooSoon } from "./detail/journeyDesk";
+import shared from "./journey.module.css";
 
 /** ISO hetk → `15.10.2026` Eesti kalendripäevana. Käsitsi, et server ja brauser annaksid sama kuju. */
 function dayLabel(iso) {
@@ -31,14 +40,18 @@ function plainDayLabel(day) {
  * inimese enda sõnaga, kuidas see lõppes. Mõlemal juhul jääb kõik alles ja Teekonna
  * saab uuesti avada. Uuesti avamise teeb lehe enda käsitleja (`onReopen`).
  *
- * Märgistus on lihtne nagu ülejäänud Teekonna lehel; kujundus tuleb eraldi.
+ * KUJU (10.10). Laua osa, mille sees vahetuvad vaated kohapeal: valik (paus või
+ * lõpetamine kahe kaardina), pausi vorm, lõpetamise vorm kahes osas (kuidas
+ * lõppes; lisa) ja varasemad pausid. Kõrvale pandud Teekonnal on siin selle seis
+ * ja tee tagasi.
+ *
+ * `desk`: { glow, setDirty(dirty) } lavalt ja lehelt.
  */
-export default function JourneyClosure({ journey, busy: pageBusy = false, onClosed, onReopen, t }) {
+export default function JourneyClosure({ journey, busy: pageBusy = false, onClosed, onReopen, t, desk = {} }) {
   const journeyId = journey?.id || "";
   const archived = journey?.status === "ARCHIVED";
   const current = journey?.closure?.current || null;
   const history = Array.isArray(journey?.closure?.history) ? journey.closure.history : [];
-  const fieldId = useId();
 
   const [mode, setMode] = useState("");
   const [note, setNote] = useState("");
@@ -47,9 +60,13 @@ export default function JourneyClosure({ journey, busy: pageBusy = false, onClos
   const [level, setLevel] = useState("");
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
+  const [finishPart, setFinishPart] = useState("outcome");
+  const [showHistory, setShowHistory] = useState(false);
+  const sendingRef = useRef(false);
+  const shownAt = useRef(0);
   const busy = pageBusy || sending;
 
-  const outcomeWord = (value) => t(`journey.closure.outcomes.${value}`, value);
+  const outcomeWord = (value) => t(`journey.closure.outcomes.${value}`, "");
   const failed = () => t("journey.closure.failed", "Salvestamine ei õnnestunud. Proovi uuesti.");
 
   const reset = () => {
@@ -59,11 +76,19 @@ export default function JourneyClosure({ journey, busy: pageBusy = false, onClos
     setOutcome("");
     setLevel("");
     setError("");
+    setFinishPart("outcome");
   };
 
   const submit = async (event) => {
     event.preventDefault();
-    if (!mode || (mode === JourneyClosureKind.FINISHED && !outcome)) return;
+    if (sendingRef.current || pressTooSoon(shownAt.current)) return;
+    if (!mode) return;
+    if (mode === JourneyClosureKind.FINISHED && !outcome) {
+      setError(t("journey.desk.closure.need_outcome"));
+      setFinishPart("outcome");
+      return;
+    }
+    sendingRef.current = true;
     setSending(true);
     setError("");
     try {
@@ -88,173 +113,217 @@ export default function JourneyClosure({ journey, busy: pageBusy = false, onClos
     } catch {
       setError(failed());
     } finally {
+      sendingRef.current = false;
       setSending(false);
     }
   };
 
-  const noteField = (label) => (
-    <div>
-      <label htmlFor={`${fieldId}-note`}>{label}</label>
-      <textarea id={`${fieldId}-note`} value={note} onChange={(event) => setNote(event.target.value)} maxLength={JOURNEY_CLOSURE_LIMITS.note} />
-    </div>
-  );
+  const view = archived ? (showHistory && history.length ? "history" : "closed") : showHistory && history.length ? "history" : mode === JourneyClosureKind.PAUSED ? "pause" : mode === JourneyClosureKind.FINISHED ? "finish" : "choose";
+  const dirty = !archived && Boolean(mode) && Boolean(note.trim() || resumeOn || outcome || level);
+  const setDirty = desk.setDirty;
+  useEffect(() => {
+    setDirty?.(dirty);
+    return () => setDirty?.(false);
+  }, [dirty, setDirty]);
 
-  const cancelButton = (
-    <Button type="button" variant="linkBrand" disabled={busy} onClick={reset}>
-      {t("journey.actions.decline", "Loobu")}
+  useStageRemeasure(`${view}:${finishPart}:${outcome}:${error}`);
+  const rootRef = useSwapFocus(view);
+  useEffect(() => {
+    shownAt.current = Date.now();
+  }, [view]);
+
+  const title = t("journey.closure.title", "Paus ja lõpetamine");
+  const errorNote = error ? { text: error, tone: "risk" } : null;
+  const glow = desk.glow !== false;
+  const historyButton = history.length ? (
+    <Button {...SMALL} onClick={() => setShowHistory(true)}>
+      {t("journey.closure.history_title", { count: history.length }, "Varasemad pausid ja lõpetamised ({count})")}
     </Button>
-  );
+  ) : null;
 
-  return (
-    <section id="teekond-paus" aria-busy={busy}>
-      <h2>{t("journey.closure.title", "Paus ja lõpetamine")}</h2>
-
-      {error ? <p role="alert">{error}</p> : null}
-
-      {archived ? (
-        <>
-          {current?.kind === JourneyClosureKind.PAUSED ? (
-            <>
-              <p>{t("journey.closure.paused_line", { date: dayLabel(current.closedAt) }, "Teekond on pausil alates {date}.")}</p>
-              {current.resumeOn ? (
-                <p>
-                  {t("journey.closure.resume_line", { date: plainDayLabel(current.resumeOn) }, "Plaanisid jätkata {date}.")}
-                  {current.resumeDue ? ` ${t("journey.closure.resume_due", "See päev on käes.")}` : ""}
-                </p>
-              ) : null}
-            </>
-          ) : current?.kind === JourneyClosureKind.FINISHED ? (
-            <p>
-              {t(
-                "journey.closure.finished_line",
-                { date: dayLabel(current.closedAt), outcome: outcomeWord(current.outcome) },
-                "Teekond on lõpetatud {date}: {outcome}."
-              )}
-            </p>
-          ) : (
-            <p>{t("journey.closure.archived_line", "Teekond on arhiveeritud.")}</p>
-          )}
-          {current?.note ? <p>{current.note}</p> : null}
-          <p>{t("journey.closure.closed_hint", "Kõrvale pandud Teekonda saab vaadata, mitte muuta. Uuesti avades jätkad samast kohast.")}</p>
-          <div>
-            <Button type="button" variant="primary" disabled={busy} onClick={onReopen}>
-              {current?.kind === JourneyClosureKind.PAUSED
-                ? t("journey.closure.resume", "Jätka Teekonda")
-                : t("journey.closure.reopen", "Ava Teekond uuesti")}
+  let body;
+  if (view === "history") {
+    body = (
+      <StepPanel
+        title={title}
+        question={t("journey.desk.closure.history_question")}
+        actions={
+          <Button {...SMALL} onClick={() => setShowHistory(false)}>
+            {t("journey.desk.back")}
+          </Button>
+        }
+      >
+        <ul className={shared.rows}>
+          {history.map((item) => (
+            <li key={item.id} className={shared.rowItem}>
+              <span className={styles.plainRow}>
+                <span className={shared.rowTitle}>
+                  {item.kind === JourneyClosureKind.FINISHED
+                    ? t("journey.closure.history_finished", { from: dayLabel(item.closedAt), to: dayLabel(item.reopenedAt), outcome: outcomeWord(item.outcome) }, "{from} kuni {to}: lõpetatud, {outcome}")
+                    : t("journey.closure.history_paused", { from: dayLabel(item.closedAt), to: dayLabel(item.reopenedAt) }, "{from} kuni {to}: pausil")}
+                </span>
+                {item.note ? <span className={styles.rowText}>{item.note}</span> : null}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </StepPanel>
+    );
+  } else if (view === "closed") {
+    body = (
+      <StepPanel
+        title={title}
+        note={t("journey.closure.closed_hint")}
+        actions={
+          <>
+            {historyButton}
+            <Button type="button" size="sm" variant="primary" glow={glow} data-reopen="1" aria-busy={busy ? "true" : undefined} onKeyDown={ignoreKeyRepeat} onClick={onReopen}>
+              {current?.kind === JourneyClosureKind.PAUSED ? t("journey.closure.resume", "Jätka Teekonda") : t("journey.closure.reopen", "Ava Teekond uuesti")}
             </Button>
-          </div>
-        </>
-      ) : mode === JourneyClosureKind.PAUSED ? (
-        <Form onSubmit={submit}>
-          <h3>{t("journey.closure.pause_title", "Teekonna pausile panemine")}</h3>
-          {noteField(t("journey.closure.pause_note_label", "Miks paned pausile? (võid jätta tühjaks)"))}
-          <div>
-            <label htmlFor={`${fieldId}-resume`}>{t("journey.closure.resume_label", "Millal plaanid jätkata? (võid jätta tühjaks)")}</label>
-            <input
-              id={`${fieldId}-resume`}
+          </>
+        }
+      >
+        <div className={shared.stack}>
+          <p className={styles.strong}>
+            {current?.kind === JourneyClosureKind.PAUSED
+              ? t("journey.closure.paused_line", { date: dayLabel(current.closedAt) }, "Teekond on pausil alates {date}.")
+              : current?.kind === JourneyClosureKind.FINISHED
+                ? t("journey.closure.finished_line", { date: dayLabel(current.closedAt), outcome: outcomeWord(current.outcome) }, "Teekond on lõpetatud {date}: {outcome}.")
+                : t("journey.closure.archived_line", "Teekond on arhiveeritud.")}
+          </p>
+          {current?.kind === JourneyClosureKind.PAUSED && current.resumeOn ? (
+            <p className={shared.quiet}>
+              {t("journey.closure.resume_line", { date: plainDayLabel(current.resumeOn) }, "Plaanisid jätkata {date}.")}
+              {current.resumeDue ? ` ${t("journey.closure.resume_due", "See päev on käes.")}` : ""}
+            </p>
+          ) : null}
+          {current?.note ? <p className={shared.own}>{current.note}</p> : null}
+        </div>
+      </StepPanel>
+    );
+  } else if (view === "pause") {
+    body = (
+      <Form className={styles.form} validate={false} onSubmit={submit} onKeyDown={blockRepeatEnter}>
+        <StepPanel
+          title={title}
+          question={t("journey.closure.pause_title", "Teekonna pausile panemine")}
+          note={footNote(errorNote, t("journey.desk.closure.keeps"))}
+          actions={
+            <>
+              <Button {...SMALL} onClick={reset}>
+                {t("journey.actions.decline", "Loobu")}
+              </Button>
+              <Button type="submit" size="sm" variant="primary" glow={glow} aria-busy={busy ? "true" : undefined}>
+                {t("journey.closure.pause", "Pane pausile")}
+              </Button>
+            </>
+          }
+        >
+          <div className={styles.fields}>
+            <div data-autofocus="">
+              <TextAreaField
+                label={t("journey.closure.pause_note_label", "Miks paned pausile? (võid jätta tühjaks)")}
+                value={note}
+                onChange={setNote}
+                rows={3}
+                maxLength={JOURNEY_CLOSURE_LIMITS.note}
+              />
+            </div>
+            <LineField
+              t={t}
+              label={t("journey.closure.resume_label", "Millal plaanid jätkata? (võid jätta tühjaks)")}
+              hint={t("journey.closure.resume_hint", "Kuupäev on sulle endale. Platvorm seda päeva meelde ei tuleta.")}
+              size="sm"
               type="date"
               min={todayInEstonia()}
               value={resumeOn}
-              onChange={(event) => setResumeOn(event.target.value)}
-              aria-describedby={`${fieldId}-resume-hint`}
+              onChange={setResumeOn}
             />
-            <p id={`${fieldId}-resume-hint`}>{t("journey.closure.resume_hint", "Kuupäev on sulle endale. Platvorm seda päeva meelde ei tuleta.")}</p>
           </div>
-          <div>
-            <Button type="submit" variant="primary" disabled={busy}>
-              {t("journey.closure.pause", "Pane pausile")}
-            </Button>
-            {cancelButton}
+        </StepPanel>
+      </Form>
+    );
+  } else if (view === "finish") {
+    body = (
+      <Form className={styles.form} validate={false} onSubmit={submit} onKeyDown={blockRepeatEnter}>
+        <StepPanel
+          title={title}
+          note={footNote(errorNote, t("journey.desk.closure.keeps"))}
+          actions={
+            <>
+              <Button {...SMALL} onClick={reset}>
+                {t("journey.actions.decline", "Loobu")}
+              </Button>
+              <Button type="submit" size="sm" variant="primary" glow={glow} aria-busy={busy ? "true" : undefined}>
+                {t("journey.closure.finish", "Lõpeta Teekond")}
+              </Button>
+            </>
+          }
+        >
+          <div className={shared.stack}>
+            <Cells
+              label={t("journey.closure.finish_title", "Teekonna lõpetamine")}
+              options={[
+                { value: "outcome", label: t("journey.desk.closure.finish_tabs.outcome") },
+                { value: "more", label: t("journey.desk.closure.finish_tabs.more") }
+              ]}
+              value={finishPart}
+              onChange={setFinishPart}
+            />
+            {finishPart === "outcome" ? (
+              <>
+                <ChoiceRow
+                  label={t("journey.closure.outcome_question", "Kuidas see Teekond sinu jaoks lõppes?")}
+                  options={JOURNEY_CLOSURE_OUTCOMES.map((value) => ({ value, label: outcomeWord(value) }))}
+                  value={outcome}
+                  onChange={(value) => {
+                    setOutcome(value);
+                    setError("");
+                  }}
+                  columns={2}
+                />
+                {outcome === "UNRESOLVED" ? <p className={shared.quiet}>{t("journey.closure.unresolved_hint")}</p> : null}
+              </>
+            ) : (
+              <div className={styles.fields}>
+                <ChoiceRow
+                  label={t("journey.closure.level_question", "Kuidas sa praegu oma olukorraga toime tuled? (võid jätta vastamata)")}
+                  options={[
+                    ...JOURNEY_ASSESSMENT_LEVELS.map((value) => ({ value: String(value), label: t(`journey.assessment.levels.${value}`, String(value)) })),
+                    { value: "", label: t("journey.closure.level_none", "ei soovi vastata") }
+                  ]}
+                  value={String(level)}
+                  onChange={(value) => setLevel(String(value))}
+                  columns={3}
+                  keepColumns
+                />
+                <TextAreaField
+                  label={t("journey.closure.finish_note_label", "Soovi korral lisa paar sõna")}
+                  value={note}
+                  onChange={setNote}
+                  rows={2}
+                  maxLength={JOURNEY_CLOSURE_LIMITS.note}
+                />
+              </div>
+            )}
           </div>
-        </Form>
-      ) : mode === JourneyClosureKind.FINISHED ? (
-        <Form onSubmit={submit}>
-          <h3>{t("journey.closure.finish_title", "Teekonna lõpetamine")}</h3>
-          <fieldset>
-            <legend>{t("journey.closure.outcome_question", "Kuidas see Teekond sinu jaoks lõppes?")}</legend>
-            {JOURNEY_CLOSURE_OUTCOMES.map((value) => (
-              <label key={value}>
-                <input
-                  type="radio"
-                  name={`${fieldId}-outcome`}
-                  value={value}
-                  checked={outcome === value}
-                  onChange={() => setOutcome(value)}
-                  required
-                />{" "}
-                {outcomeWord(value)}
-              </label>
-            ))}
-          </fieldset>
-          {outcome === "UNRESOLVED" ? (
-            <p>{t("journey.closure.unresolved_hint", "Kui mure jäi lahenduseta, saad Teekonna hiljem uuesti avada ja koostada uue eelpöördumise.")}</p>
-          ) : null}
-          <fieldset>
-            <legend>{t("journey.closure.level_question", "Kuidas sa praegu oma olukorraga toime tuled? (võid jätta vastamata)")}</legend>
-            {JOURNEY_ASSESSMENT_LEVELS.map((value) => (
-              <label key={value}>
-                <input
-                  type="radio"
-                  name={`${fieldId}-level`}
-                  value={value}
-                  checked={String(level) === String(value)}
-                  onChange={() => setLevel(String(value))}
-                />{" "}
-                {t(`journey.assessment.levels.${value}`, String(value))}
-              </label>
-            ))}
-            <label>
-              <input type="radio" name={`${fieldId}-level`} value="" checked={level === ""} onChange={() => setLevel("")} />{" "}
-              {t("journey.closure.level_none", "ei soovi vastata")}
-            </label>
-          </fieldset>
-          {noteField(t("journey.closure.finish_note_label", "Soovi korral lisa paar sõna"))}
-          <div>
-            <Button type="submit" variant="primary" disabled={busy || !outcome}>
-              {t("journey.closure.finish", "Lõpeta Teekond")}
-            </Button>
-            {cancelButton}
-          </div>
-        </Form>
-      ) : (
-        <>
-          <p>{t("journey.closure.intro", "Teekonna võid igal ajal pausile panna või lõpetada. Midagi ei kustu ja saad selle alati uuesti avada.")}</p>
-          <div>
-            <Button type="button" disabled={busy} onClick={() => setMode(JourneyClosureKind.PAUSED)}>
-              {t("journey.closure.pause", "Pane pausile")}
-            </Button>
-            <Button type="button" disabled={busy} onClick={() => setMode(JourneyClosureKind.FINISHED)}>
-              {t("journey.closure.finish", "Lõpeta Teekond")}
-            </Button>
-          </div>
-        </>
-      )}
+        </StepPanel>
+      </Form>
+    );
+  } else {
+    body = (
+      <StepPanel title={title} lead={t("journey.closure.intro")} note={footNote(errorNote)} actions={historyButton}>
+        <ActionCardGrid label={title}>
+          <ActionCard title={t("journey.closure.pause", "Pane pausile")} description={t("journey.desk.closure.pause_note")} disabled={busy} onClick={() => setMode(JourneyClosureKind.PAUSED)} />
+          <ActionCard title={t("journey.closure.finish", "Lõpeta Teekond")} description={t("journey.desk.closure.finish_note")} disabled={busy} onClick={() => setMode(JourneyClosureKind.FINISHED)} />
+        </ActionCardGrid>
+      </StepPanel>
+    );
+  }
 
-      {history.length ? (
-        <details>
-          <summary>{t("journey.closure.history_title", { count: history.length }, "Varasemad pausid ja lõpetamised ({count})")}</summary>
-          <ul>
-            {history.map((item) => (
-              <li key={item.id}>
-                <p>
-                  {item.kind === JourneyClosureKind.FINISHED
-                    ? t(
-                        "journey.closure.history_finished",
-                        { from: dayLabel(item.closedAt), to: dayLabel(item.reopenedAt), outcome: outcomeWord(item.outcome) },
-                        "{from} kuni {to}: lõpetatud, {outcome}"
-                      )
-                    : t(
-                        "journey.closure.history_paused",
-                        { from: dayLabel(item.closedAt), to: dayLabel(item.reopenedAt) },
-                        "{from} kuni {to}: pausil"
-                      )}
-                </p>
-                {item.note ? <p>{item.note}</p> : null}
-              </li>
-            ))}
-          </ul>
-        </details>
-      ) : null}
-    </section>
+  return (
+    <div className={styles.swap} ref={rootRef}>
+      {body}
+    </div>
   );
 }

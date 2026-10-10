@@ -1,0 +1,223 @@
+/* Avatud Teekond: laua päis, osa sees vahetuvad vaated, sakkide rida, vormide
+   väljad, read ja teist vajutust küsiv tegevus. Lava, plaadid ja kiirmenüü
+   tulevad components/stage-ist; vaate kuju (esimene rida, sisu, tegevusrida all
+   servas) StepPanel-ist. Laused, märk, loendi read ja väljad on Teekonna lehtede
+   ühised (../journey.module.css); loendi rida koos kõrvalnupuga ja loetavad
+   loendid on avalehe omad (../dashboard/dashboard.module.css). */
+
+.page {
+  composes: page from "../journey.module.css";
+}
+
+/* --- Laua päis: Teekonna nimi, seis ja tee tagasi loendisse -------------------- */
+.lead {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.4rem 1rem;
+  padding-bottom: 0.35rem;
+}
+.leadMain {
+  flex: 1 1 18rem;
+  min-width: 0;
+  display: grid;
+  gap: 0.25rem;
+}
+.leadTitle {
+  margin: 0;
+  max-width: none;
+  color: var(--text-warm);
+  font-size: 1.12rem;
+  font-weight: 560;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+.leadMeta {
+  margin: 0;
+  max-width: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.7rem;
+}
+/* Plaat, kus inimest ootab midagi uut: lause on selgem, mitte ainult teist värvi. */
+.tileNews {
+  color: var(--text-warm);
+  font-weight: 560;
+}
+
+/* --- Osa sisu vahetus -------------------------------------------------------------- */
+/* Ümbris, mille sees osa sisu vahetub, ja vorm vaate ümber: vaade peab lava
+   kõrguse ikka täitma, et tegevusrida seisaks all servas. */
+.swap,
+.form {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+}
+.swap > :last-child,
+.form > :last-child {
+  flex: 1 1 auto;
+}
+/* Sakid osa sees: kaks lahtrit ei veni paneeli laiuseks, neli võtavad rea. */
+.cells {
+  min-width: 0;
+}
+.cells[data-count="2"] {
+  max-width: 22rem;
+}
+.cells[data-count="3"] {
+  max-width: 30rem;
+}
+.bar {
+  composes: bar from "../dashboard/dashboard.module.css";
+}
+
+/* --- Vormi väljad ---------------------------------------------------------------------- */
+.fields {
+  min-width: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+/* Kaks lühikest välja kõrvuti; kitsal pinnal üksteise all. */
+.fieldPair {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: 0.6rem 1rem;
+}
+.fieldPair > * {
+  flex: 1 1 13rem;
+}
+/* Kaks loendit või loendivälja kõrvuti. */
+.columns {
+  composes: pair from "../dashboard/dashboard.module.css";
+}
+
+/* --- Read ------------------------------------------------------------------------------- */
+.item {
+  composes: item from "../dashboard/dashboard.module.css";
+}
+.aside {
+  composes: aside from "../dashboard/dashboard.module.css";
+}
+/* Rida, mida ei avata: pealkiri ja selle all tekst. */
+.plainRow {
+  min-width: 0;
+  display: grid;
+  gap: 0.1rem;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.9rem;
+  background: var(--glass-cell-bg);
+}
+.rowHead {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.6rem;
+}
+.rowText {
+  min-width: 0;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+/* Rida kahe otsaga: nimi vasakul, seis või aeg paremal. */
+.factRow {
+  min-width: 0;
+  min-height: 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.3rem 1rem;
+  padding: 0.3rem 0.9rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.9rem;
+  background: var(--glass-cell-bg);
+}
+.factRow[data-state="todo"] {
+  color: var(--text-soft);
+  background: none;
+}
+.strong {
+  margin: 0;
+  max-width: 66ch;
+  color: var(--text-warm);
+  font-weight: 560;
+}
+.group {
+  composes: group from "../dashboard/dashboard.module.css";
+}
+.groupTitle {
+  composes: groupTitle from "../dashboard/dashboard.module.css";
+}
+.lines {
+  composes: lines from "../dashboard/dashboard.module.css";
+}
+.lineItem {
+  composes: lineItem from "../dashboard/dashboard.module.css";
+}
+/* Eelvaade: tekst, mille server valitud osadest kokku paneb. Äärejoonega lõik,
+   reavahetused jäävad alles. */
+.preview {
+  composes: own from "../journey.module.css";
+  padding-inline-start: 0.9rem;
+  border-inline-start: 3px solid color-mix(in srgb, var(--text-warm) 30%, transparent);
+  white-space: pre-wrap;
+}
+
+/* --- Tegevus, mis küsib teist vajutust --------------------------------------------------- */
+/* Nupud vasakul, tagajärg nende kõrval. Rida on joondatud üles, nii et nupust
+   kõrgem lause ei lükka nuppu allapoole. */
+.confirm {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.4rem 0.9rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid color-mix(in srgb, var(--text-warm) 12%, transparent);
+}
+/* Rea kõrval (loendis): ilma joone ja lauseta. */
+.confirmCompact {
+  flex: none;
+  display: flex;
+  align-items: center;
+}
+.confirm[aria-busy="true"],
+.confirmCompact[aria-busy="true"] {
+  opacity: 0.65;
+}
+.buttons {
+  flex: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+/* Pöördumatu tegu ei tohi näha välja nagu tavaline tegevus. */
+.danger {
+  flex: none;
+  white-space: nowrap;
+  border-color: color-mix(in srgb, var(--status-error) 60%, transparent);
+  color: var(--status-error);
+}
+.confirmNote {
+  flex: 1 1 16rem;
+  align-self: center;
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.4;
+}
+.confirmNote[data-armed="1"] {
+  color: var(--text-warm);
+}
