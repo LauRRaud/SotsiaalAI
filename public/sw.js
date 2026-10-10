@@ -7,7 +7,10 @@
  *     stores it in the encrypted per-user IndexedDB partition, never in the
  *     HTTP cache.
  *  2. Only the static application shell is cached: hashed /_next/static
- *     assets, icons and successfully fetched /valitoo navigations.
+ *     assets, the hashed text catalogue (/i18n/<locale>.<hash>.js), icons and
+ *     successfully fetched /valitoo navigations. The catalogue used to be
+ *     written inside every page's HTML; since it became a file of its own a
+ *     cached /valitoo page needs it to show its texts offline.
  *  3. The worker performs no background fetches and sends nothing anywhere —
  *     it is a shell, not a data channel.
  */
@@ -57,9 +60,26 @@ function isApiRequest(url) {
 function isStaticAsset(url) {
   return (
     url.pathname.startsWith("/_next/static/") ||
+    url.pathname.startsWith("/i18n/") ||
     url.pathname.startsWith("/icons/") ||
     url.pathname === "/site.webmanifest"
   );
+}
+
+function isCatalogueAsset(url) {
+  return url.pathname.startsWith("/i18n/");
+}
+
+// The text catalogue changes its file name whenever a text changes. Without
+// this the cache would keep every old catalogue for good (about 0.7 MB each):
+// once a new one is stored, older files of the same language are dropped.
+async function dropOlderCatalogues(cache, url) {
+  const language = url.pathname.slice("/i18n/".length).split(".")[0];
+  const prefix = `/i18n/${language}.`;
+  for (const stored of await cache.keys()) {
+    const storedUrl = new URL(stored.url);
+    if (storedUrl.pathname.startsWith(prefix) && storedUrl.pathname !== url.pathname) await cache.delete(stored);
+  }
 }
 
 function isFieldNavigation(request, url) {
@@ -88,7 +108,13 @@ self.addEventListener("fetch", (event) => {
         const cached = await cache.match(request);
         if (cached) return cached;
         const response = await fetch(request);
-        if (response.ok) cache.put(request, response.clone());
+        // A response the server marked "no-store" (a catalogue asked for under an
+        // outdated name) is passed on but never kept.
+        const keep = response.ok && !/no-store/i.test(response.headers.get("Cache-Control") || "");
+        if (keep) {
+          await cache.put(request, response.clone());
+          if (isCatalogueAsset(url)) await dropOlderCatalogues(cache, url);
+        }
         return response;
       })()
     );
