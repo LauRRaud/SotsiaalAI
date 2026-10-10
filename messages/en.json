@@ -10316,7 +10316,9 @@
       "expires": "Expires {date}",
       "no_expiry": "No expiry date set",
       "accepted": "Confirmed {date}",
-      "closed": "Closed {date}"
+      "closed": "Closed {date}",
+      "viewed_one_day": "The recipient has viewed this on one day: {date}",
+      "viewed_days": "The recipient has viewed this on {days} days, last on {date}"
     },
     "labels": {
       "recipient": "Recipient",

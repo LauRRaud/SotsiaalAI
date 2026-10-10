@@ -10316,7 +10316,9 @@
       "expires": "Aegub {date}",
       "no_expiry": "Aegumistähtaega pole määratud",
       "accepted": "Kinnitatud {date}",
-      "closed": "Suletud {date}"
+      "closed": "Suletud {date}",
+      "viewed_one_day": "Adressaat on seda vaadanud ühel päeval: {date}",
+      "viewed_days": "Adressaat on seda vaadanud {days} päeval, viimati {date}"
     },
     "labels": {
       "recipient": "Adressaat",

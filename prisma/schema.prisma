@@ -914,6 +914,8 @@ model User {
   networkSharesAsWorker    NetworkShare[] @relation("NetworkShareWorker")
   networkSharesAsClient    NetworkShare[] @relation("NetworkShareClient")
   networkSharesAsRecipient NetworkShare[] @relation("NetworkShareRecipient")
+  /// „Kes on vaadanud": päevad, mil see kasutaja saajana jagatut luges.
+  sharingViews             SharingView[]  @relation("SharingViewViewer")
   networkSharesAttested    NetworkShare[] @relation("NetworkShareAttestedBy")
 
   // SK-V1: laud on FUNKTSIONAALNE, mitte nimeline töötaja — aga laual on omanik
@@ -2821,6 +2823,8 @@ model PreInquiry {
   covisionCases              CovisionCase[]
   fieldVisits                FieldVisit[]
   networkShares              NetworkShare[]   @relation("NetworkShareSource")
+  /// „Kes on vaadanud": saaja lugemiste jälg, üks rida vaataja ja päeva kohta.
+  views                      SharingView[]
   /// SK-V1 E5: esiuks → tuba. Kiireloomulisest abipalvest saab teha
   /// eelpöördumise, ilma et inimene peaks midagi uuesti trükkima.
   convertedFromUrgentRequest UrgentRequest?   @relation("UrgentRequestConversion")
@@ -6864,11 +6868,37 @@ model NetworkShare {
   recipient        User       @relation("NetworkShareRecipient", fields: [recipientUserId], references: [id], onDelete: Cascade)
   attestedBy       User?      @relation("NetworkShareAttestedBy", fields: [clientConfirmationAttestedById], references: [id], onDelete: SetNull)
   room             Room?      @relation("NetworkShareRoom", fields: [roomId], references: [id], onDelete: SetNull)
+  /// „Kes on vaadanud": saaja lugemiste jälg, üks rida vaataja ja päeva kohta.
+  views            SharingView[]
 
   @@index([workerId, status])
   @@index([clientUserId, status])
   @@index([recipientUserId, status])
   @@index([sourcePreInquiryId])
+}
+
+/// „KES ON VAADANUD" — jagatu vaatamiste jälg (funktsioonikaart F13). Üks rida vaataja ja
+/// päeva kohta, kui SAAJA jagatut loeb; jagaja enda vaatamist ei logita. Rida viitab jagatule
+/// oma liigi veeruga, et jagatu või vaataja konto kustumisel kustuks jälg koos sellega.
+/// Jagaja näeb ainult kokkuvõtet (mitmel päeval, millal viimati), mitte vaatajat.
+model SharingView {
+  id             String   @id @default(cuid())
+  /// PRE_INQUIRY | NETWORK_SHARE (`SharingViewKind`); CHECK hoiab, et täidetud on just selle liigi viide.
+  kind           String
+  preInquiryId   String?
+  networkShareId String?
+  viewerUserId   String
+  /// Päev kujul AAAA-KK-PP Eesti aja järgi.
+  day            String
+  createdAt      DateTime @default(now())
+
+  preInquiry   PreInquiry?   @relation(fields: [preInquiryId], references: [id], onDelete: Cascade)
+  networkShare NetworkShare? @relation(fields: [networkShareId], references: [id], onDelete: Cascade)
+  viewer       User          @relation("SharingViewViewer", fields: [viewerUserId], references: [id], onDelete: Cascade)
+
+  @@unique([preInquiryId, viewerUserId, day])
+  @@unique([networkShareId, viewerUserId, day])
+  @@index([viewerUserId])
 }
 
 /// AWAITING_CLIENT on eraldi olek, mitte lipp: jagamine, mille klient ei ole
