@@ -1,0 +1,246 @@
+// „Kes on vaadanud" päris andmebaasis: saaja lugemine jätab jälje, jagaja näeb kokkuvõtet,
+// jagaja enda lugemist ei logita ja jälg kustub koos jagatuga.
+//
+// Käivita isoleeritud proovibaasis:
+//   JOURNEY_TEST_DATABASE_URL=postgres://…/…_probe node --import ./scripts/register-node-source-loader.mjs --test tests/sharing-view-trail.integration.test.mjs
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { randomUUID } from 'node:crypto';
+import { PrismaClient } from '../generated/prisma/client.ts';
+import { PrismaPg } from '@prisma/adapter-pg';
+import { collectOwnerSharingHistory, loadMySharings } from '../lib/mySharings.js';
+import { computeShareContentHash, markShareOpened } from '../lib/network/share.js';
+import { resolveOrgAccessContext } from '../lib/org/accessContext.js';
+import { getInboxItem } from '../lib/org/inbox.js';
+import { deleteUserAfterFinalPracticeSweep } from '../lib/privacy/effectivePracticeAccountCleanup.js';
+
+const url = new URL(process.env.JOURNEY_TEST_DATABASE_URL || process.env.HOME_CARE_TEST_DATABASE_URL || 'postgres://invalid/invalid');
+if (!['localhost', '127.0.0.1'].includes(url.hostname) || !url.pathname.endsWith('_probe')) {
+  throw Error('isolated JOURNEY_TEST_DATABASE_URL (localhost, …_probe) required');
+}
+const db = new PrismaClient({ adapter: new PrismaPg({ connectionString: url.href }), log: [] });
+test.after(() => db.$disconnect());
+
+const at = (iso) => new Date(iso);
+/* Reede 09.10.2026 kell 11.00 Eesti aja järgi ja kaks järgmist päeva. */
+const DAY1 = at('2026-10-09T08:00:00Z');
+const DAY1_LATER = at('2026-10-09T15:00:00Z');
+const DAY2 = at('2026-10-10T08:00:00Z');
+const DAY3 = at('2026-10-11T08:00:00Z');
+
+function people(tag) {
+  const ids = [];
+  const user = async (name, role) => {
+    const row = await db.user.create({ data: { email: `sv-${tag}-${name}@example.invalid`, role, profile: { create: { firstName: name, lastName: 'Proov' } } } });
+    ids.push(row.id);
+    return row;
+  };
+  return { ids, user };
+}
+
+test('võrgustikujagamine: saaja iga lugemispäev jätab ühe rea, klient ja töötaja näevad kokkuvõtet', async (t) => {
+  const tag = randomUUID().slice(0, 8);
+  const { ids, user } = people(tag);
+  const client = await user('klient', 'CLIENT');
+  const worker = await user('tootaja', 'SOCIAL_WORKER');
+  const recipient = await user('saaja', 'SERVICE_PROVIDER');
+  const source = await db.preInquiry.create({
+    data: { authorId: client.id, recipientOwnerId: worker.id, recipientType: 'KOV_CONTACT', situation: 'Proov.', status: 'SENT', sentAt: at('2026-10-01T08:00:00Z') }
+  });
+  const fields = { summaryText: 'Klient vajab koduteenust.', purpose: 'Koduteenuse korraldamine.', sharingBoundary: 'Ainult kokkuvõte.', participationEndsOn: at('2027-01-01T00:00:00Z') };
+  const hash = computeShareContentHash(fields);
+  const make = (extra = {}) =>
+    db.networkShare.create({
+      data: {
+        sourcePreInquiryId: source.id,
+        workerId: worker.id,
+        clientUserId: client.id,
+        recipientUserId: recipient.id,
+        ...fields,
+        contentHash: hash,
+        confirmedContentHash: hash,
+        clientConfirmedAt: at('2026-10-02T08:00:00Z'),
+        clientConfirmationMethod: 'IN_APP',
+        status: 'SENT',
+        sentAt: at('2026-10-03T08:00:00Z'),
+        ...extra
+      }
+    });
+  const share = await make();
+  const unread = await make();
+  /* Töötaja adresseeris jagamise iseendale: ta on jagaja, tema lugemist ei logita. */
+  const own = await make({ recipientUserId: worker.id });
+  /* Avatud juba 5. oktoobril, enne kui jälge üldse peeti. */
+  const earlier = await make({ status: 'OPENED', openedAt: at('2026-10-05T08:00:00Z') });
+  t.after(async () => {
+    await db.networkShare.deleteMany({ where: { sourcePreInquiryId: source.id } });
+    await db.preInquiry.deleteMany({ where: { id: source.id } });
+    await db.user.deleteMany({ where: { id: { in: ids } } });
+  });
+  const open = (shareId, userId, now) => markShareOpened({ prisma: db, shareId, recipientUserId: userId, now: () => now });
+  const trail = (shareId) => db.sharingView.findMany({ where: { networkShareId: shareId }, orderBy: { day: 'asc' } });
+  const listed = async (userId, section, shareId = share.id) => (await loadMySharings(userId, { db, sections: [section] }))[section].items.find((item) => item.id === shareId);
+
+  assert.equal((await listed(client.id, 'networkShares')).views, undefined);
+
+  /* Esimene avamine paneb avamise aja ja esimese jäljerea; sama päeva teine lugemine rida ei lisa. */
+  assert.equal((await open(share.id, recipient.id, DAY1)).status, 'OPENED');
+  await open(share.id, recipient.id, DAY1_LATER);
+  assert.deepEqual((await trail(share.id)).map((row) => [row.kind, row.viewerUserId, row.day, row.preInquiryId]), [['NETWORK_SHARE', recipient.id, '2026-10-09', null]]);
+  await open(share.id, recipient.id, DAY2);
+  await open(share.id, recipient.id, DAY3);
+  assert.deepEqual((await trail(share.id)).map((row) => row.day), ['2026-10-09', '2026-10-10', '2026-10-11']);
+  const stored = await db.networkShare.findUnique({ where: { id: share.id } });
+  assert.deepEqual([stored.status, stored.openedAt.toISOString(), stored.updatedAt.toISOString()], ['OPENED', DAY1.toISOString(), DAY1.toISOString()]);
+
+  /* Klient ja töötaja näevad kokkuvõtet; lugemata jagamisel ja saaja enda lehel seda ei ole. */
+  assert.deepEqual((await listed(client.id, 'networkShares')).views, { days: 3, lastDay: '2026-10-11' });
+  assert.deepEqual((await listed(worker.id, 'outgoingNetworkShares')).views, { days: 3, lastDay: '2026-10-11' });
+  assert.equal((await listed(client.id, 'networkShares', unread.id)).views, undefined);
+  /* Enne jälge avatud jagamine: ilma uue lugemiseta lauset ei ole; pärast lugemist loeb avamise päev kaasa. */
+  assert.equal((await listed(client.id, 'networkShares', earlier.id)).views, undefined);
+  await open(earlier.id, recipient.id, DAY2);
+  assert.deepEqual((await trail(earlier.id)).map((row) => row.day), ['2026-10-10']);
+  assert.deepEqual((await listed(client.id, 'networkShares', earlier.id)).views, { days: 2, lastDay: '2026-10-10' });
+  assert.equal((await loadMySharings(recipient.id, { db, sections: ['networkShares', 'outgoingNetworkShares'] })).networkShares.items.length, 0);
+
+  /* Jagaja enda lugemine ei jäta jälge, kuigi avamine ise toimub. */
+  assert.equal((await open(own.id, worker.id, DAY1)).status, 'OPENED');
+  assert.deepEqual(await trail(own.id), []);
+  /* Võõras ei saa avada ega jäta jälge. */
+  await assert.rejects(open(unread.id, client.id, DAY1), (error) => error.code === 'network_share.forbidden');
+  assert.deepEqual(await trail(unread.id), []);
+
+  /* Isikuandmete väljavõte: jagaja ajalookirjel on vaatamiste kokkuvõte ainult seal, kus vaatamisi on. */
+  const history = (await collectOwnerSharingHistory(client.id, { db })).filter((row) => row.type === 'NETWORK_SHARE_CLIENT');
+  const byShare = (rows) => Object.fromEntries(rows.map((row) => [row.origin.id, [row.viewedDays ?? null, row.lastViewedOn ?? null]]));
+  const expected = { [share.id]: [3, '2026-10-11'], [earlier.id]: [2, '2026-10-10'], [unread.id]: [null, null], [own.id]: [null, null] };
+  assert.deepEqual(byShare(history), expected);
+  /* Töötaja väljavõttes on sama kokkuvõte. */
+  assert.deepEqual(byShare((await collectOwnerSharingHistory(worker.id, { db })).filter((row) => row.type === 'NETWORK_SHARE_WORKER')), expected);
+
+  /* Jälje päring ei tohi lehte ega väljavõtet rivist välja viia (näiteks tabel puudub enne migratsiooni). */
+  const broken = new Proxy(db, {
+    get: (target, key) =>
+      key === 'sharingView'
+        ? { groupBy: async () => { throw Object.assign(new Error('The table `public.SharingView` does not exist'), { code: 'P2021' }); } }
+        : target[key]
+  });
+  const silenced = console.error;
+  console.error = () => {};
+  try {
+    const page = await loadMySharings(client.id, { db: broken, sections: ['networkShares'] });
+    assert.equal(page.networkShares.status, 'READY');
+    assert.deepEqual(page.networkShares.items.map((item) => [item.id === share.id || item.id === earlier.id || item.id === unread.id || item.id === own.id, item.views]), [[true, undefined], [true, undefined], [true, undefined], [true, undefined]]);
+    assert.deepEqual(byShare((await collectOwnerSharingHistory(client.id, { db: broken })).filter((row) => row.type === 'NETWORK_SHARE_CLIENT')), Object.fromEntries(Object.keys(expected).map((id) => [id, [null, null]])));
+  } finally {
+    console.error = silenced;
+  }
+
+  /* Andmebaas hoiab piire ka koodist mööda kirjutades. */
+  const raw = { viewerUserId: recipient.id, day: '2026-10-20' };
+  await assert.rejects(db.sharingView.create({ data: { ...raw, kind: 'NETWORK_SHARE', networkShareId: share.id, day: '2026-10-09' } }));
+  await assert.rejects(db.sharingView.create({ data: { ...raw, kind: 'PRE_INQUIRY', networkShareId: share.id } }));
+  await assert.rejects(db.sharingView.create({ data: { ...raw, kind: 'NETWORK_SHARE', networkShareId: share.id, preInquiryId: source.id } }));
+  await assert.rejects(db.sharingView.create({ data: { ...raw, kind: 'NETWORK_SHARE', networkShareId: share.id, day: '20.10.2026' } }));
+  await assert.rejects(db.sharingView.create({ data: { ...raw, kind: 'ROOM', networkShareId: share.id } }));
+
+  /* Jälg kustub koos jagamisega. */
+  await db.networkShare.delete({ where: { id: share.id } });
+  assert.equal(await db.sharingView.count({ where: { networkShareId: share.id } }), 0);
+  /* Teise jagamise jälg jääb alles, kuni see jagamine või vaataja konto kustub. */
+  assert.equal(await db.sharingView.count({ where: { viewerUserId: recipient.id } }), 1);
+  await db.user.delete({ where: { id: recipient.id } });
+  assert.equal(await db.sharingView.count({ where: { viewerUserId: recipient.id } }), 0);
+});
+
+test('asutuse postkasti saadetud eelpöördumine: iga lugeja ja päev jätab rea, autor näeb ainult päevi', async (t) => {
+  const tag = randomUUID().slice(0, 8);
+  const { ids, user } = people(tag);
+  const author = await user('autor', 'CLIENT');
+  const first = await user('koordinaator', 'SOCIAL_WORKER');
+  const second = await user('kolleeg', 'SOCIAL_WORKER');
+  const organization = await db.organization.create({
+    data: { displayName: `Vallavalitsus ${tag}`, legalKind: 'COMPANY', status: 'ACTIVE', activatedAt: at('2026-01-01T00:00:00Z'), verifiedAt: at('2026-01-01T00:00:00Z') }
+  });
+  await db.organizationModule.create({ data: { organizationId: organization.id, moduleKey: 'KOV_INTAKE', status: 'ACTIVE', validFrom: at('2026-01-01T00:00:00Z') } });
+  for (const account of [first, second, author]) {
+    const membership = await db.organizationMembership.create({
+      data: { organizationId: organization.id, userId: account.id, seatRole: 'SOCIAL_WORKER', status: 'ACTIVE', startedAt: at('2026-01-01T00:00:00Z') }
+    });
+    await db.organizationCapabilityGrant.create({
+      data: { membershipId: membership.id, capability: 'INBOX_COORDINATOR', scopeType: 'ORGANIZATION', validFrom: at('2026-01-01T00:00:00Z') }
+    });
+  }
+  const send = async (situation) => {
+    const inquiry = await db.preInquiry.create({
+      data: {
+        authorId: author.id,
+        recipientOrganizationId: organization.id,
+        recipientType: 'ORGANIZATION_INBOX',
+        deliveryChannel: 'INTERNAL',
+        topic: 'Koduteenus',
+        situation,
+        status: 'SENT',
+        sentAt: at('2026-10-08T08:00:00Z')
+      }
+    });
+    const item = await db.organizationInboxItem.create({ data: { organizationId: organization.id, sourceType: 'PRE_INQUIRY', sourceId: inquiry.id } });
+    return { inquiry, item };
+  };
+  const sent = await send('Ema ei saa enam ise poes käia.');
+  const recalled = await send('Tagasi võetud pöördumine.');
+  await db.preInquiry.update({ where: { id: recalled.inquiry.id }, data: { recalledAt: at('2026-10-08T09:00:00Z') } });
+  await db.organizationInboxItem.update({ where: { id: recalled.item.id }, data: { status: 'RECALLED' } });
+  t.after(async () => {
+    await db.organizationInboxItem.deleteMany({ where: { organizationId: organization.id } });
+    await db.preInquiry.deleteMany({ where: { id: { in: [sent.inquiry.id, recalled.inquiry.id] } } });
+    await db.organization.deleteMany({ where: { id: organization.id } });
+    await db.user.deleteMany({ where: { id: { in: ids } } });
+  });
+  const ctx = (account, now) => resolveOrgAccessContext({ userId: account.id, requestedOrganizationId: organization.id }, { db, env: { ORG_WORKSPACE_ENABLED: '1' }, now });
+  const read = async (account, entry, now) => getInboxItem(await ctx(account, now), entry.item.id, { db, now });
+  const trail = (inquiryId) => db.sharingView.findMany({ where: { preInquiryId: inquiryId }, orderBy: [{ day: 'asc' }, { createdAt: 'asc' }] });
+  const listed = async (inquiryId) => (await loadMySharings(author.id, { db, sections: ['preInquiries'] })).preInquiries.items.find((item) => item.id === inquiryId);
+
+  /* Esimene lugeja avab: avamise märge ja esimene jäljerida. */
+  const opened = await read(first, sent, DAY1);
+  assert.equal(opened.source.situation, 'Ema ei saa enam ise poes käia.');
+  const afterOpen = await db.preInquiry.findUnique({ where: { id: sent.inquiry.id } });
+  assert.ok(afterOpen.openedAt);
+  /* Sama päeva teine lugemine ja kolleegi lugemine; järgmisel päeval loeb esimene uuesti. */
+  await read(first, sent, DAY1_LATER);
+  await read(second, sent, DAY1_LATER);
+  await read(first, sent, DAY2);
+  assert.deepEqual((await trail(sent.inquiry.id)).map((row) => [row.kind, row.viewerUserId, row.day, row.networkShareId]), [
+    ['PRE_INQUIRY', first.id, '2026-10-09', null],
+    ['PRE_INQUIRY', second.id, '2026-10-09', null],
+    ['PRE_INQUIRY', first.id, '2026-10-10', null]
+  ]);
+  /* Autor on sama asutuse koordinaator: tema enda lugemist ei logita. */
+  assert.equal((await read(author, sent, DAY3)).source.situation, 'Ema ei saa enam ise poes käia.');
+  assert.equal((await trail(sent.inquiry.id)).length, 3);
+  /* Tagasi võetud pöördumise sisu ei näidata ja jälge ei teki. */
+  assert.equal((await read(first, recalled, DAY1)).source, null);
+  assert.deepEqual(await trail(recalled.inquiry.id), []);
+
+  /* Jälg ei puuduta eelpöördumise rida: `updatedAt` on tagasivõtmise ja paranduse lukk. */
+  assert.equal((await db.preInquiry.findUnique({ where: { id: sent.inquiry.id } })).updatedAt.toISOString(), afterOpen.updatedAt.toISOString());
+
+  /* Autor näeb päevi (kaks vaatajat samal päeval on üks päev), mitte vaatajaid. */
+  const mine = await listed(sent.inquiry.id);
+  assert.deepEqual(mine.views, { days: 2, lastDay: '2026-10-10' });
+  assert.equal(JSON.stringify(mine).includes(first.id) || JSON.stringify(mine).includes(second.id), false);
+  assert.equal((await listed(recalled.inquiry.id)).views, undefined);
+  const history = (await collectOwnerSharingHistory(author.id, { db })).find((row) => row.type === 'PRE_INQUIRY' && row.origin.id === sent.inquiry.id);
+  assert.deepEqual([history.viewedDays, history.lastViewedOn], [2, '2026-10-10']);
+
+  /* Autori konto kustutamine: pöördumine jääb saajale sisuta alles, jälg kustub. */
+  await deleteUserAfterFinalPracticeSweep(author.id, db);
+  const kept = await db.preInquiry.findUnique({ where: { id: sent.inquiry.id } });
+  assert.deepEqual([kept.authorId, kept.situation], [null, '']);
+  assert.deepEqual(await trail(sent.inquiry.id), []);
+  /* Autorita rea lugemine uut jälge ei tee: seda ei oleks kellelgi näha. */
+  await read(first, sent, DAY3);
+  assert.deepEqual(await trail(sent.inquiry.id), []);
+});

@@ -438,7 +438,8 @@ export function sharingRow(section, item, { t, formatDate, formatMonth, formatDa
         chip: word.text,
         tone: word.tone,
         facts: {
-          visibility: t("my_sharings.ownership.shared_with", { name: recipient }),
+          /* See rida ei avane, seega käib saaja lugemiste kokkuvõte siia: kes näeb ja kas ta on vaadanud. */
+          visibility: [t("my_sharings.ownership.shared_with", { name: recipient }), ...viewTrailNote(item, { t, formatDay })].join(". "),
           origin: t("my_sharings.ownership.you_sent"),
           /* Kaasamise lõpp on kuupäev, mitte kellaaeg. */
           validity: item.participationEndsOn
@@ -524,6 +525,22 @@ export function sharingRow(section, item, { t, formatDate, formatMonth, formatDa
   }
 }
 
+/**
+ * „Kes on vaadanud": adressaadi lugemiste kokkuvõte. Server annab välja `views`
+ * (`{ days, lastDay }`) ainult siis, kui vaatamisi on; ilma selleta lauset ei ole. Tekst on
+ * lõpupunktita, sest töötaja real on see fakti osa; avatud kirje märkuses lisatakse punkt.
+ */
+export function viewTrailNote(item, { t, formatDay }) {
+  const days = Number(item?.views?.days);
+  const lastDay = item?.views?.lastDay;
+  if (!Number.isInteger(days) || days < 1 || !lastDay) return [];
+  return [
+    days === 1
+      ? t("my_sharings.ownership.viewed_one_day", { date: formatDay(lastDay) })
+      : t("my_sharings.ownership.viewed_days", { days, date: formatDay(lastDay) })
+  ];
+}
+
 /** Saadetud eelpöördumise kehtivus: tagasi võetud, parandatud, väline kiri, avatud või veel tagasivõetav. */
 export function preInquiryValidity(item, { t, formatDate }) {
   if (item.recalledAt) return t("my_sharings.ownership.recalled", { date: formatDate(item.recalledAt) });
@@ -583,6 +600,7 @@ export function sharingSheet(section, item, context) {
           /* Kaasamise lõpp on kuupäev (andmebaasis ilma kellaajata): kellaaega ei näidata. */
           ...detail("ends", t("my_sharings.labels.share_ends"), formatDay(item.participationEndsOn))
         ],
+        notes: viewTrailNote(item, { t, formatDay }).map((line) => `${line}.`),
         can: { ...NO_ACTIONS, decide: Boolean(item.awaitingDecision) }
       };
 
@@ -602,7 +620,7 @@ export function sharingSheet(section, item, context) {
     case "preInquiries":
       return {
         ...sheet,
-        notes: [t("my_sharings.notice.memory")],
+        notes: [...viewTrailNote(item, { t, formatDay }).map((line) => `${line}.`), t("my_sharings.notice.memory")],
         can: { ...NO_ACTIONS, recall: Boolean(item.canRecall), correct: Boolean(item.canCorrect) }
       };
 

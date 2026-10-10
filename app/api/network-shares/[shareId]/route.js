@@ -10,6 +10,7 @@ import {
 } from "@/lib/network/shareRoutes";
 import { clientProjection, recipientProjection, updateNetworkShareDraft } from "@/lib/network/share";
 import { prisma } from "@/lib/prisma";
+import { SharingViewKind, recordSharingView } from "@/lib/sharings/viewTrail";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -36,6 +37,14 @@ export async function GET(req, { params }) {
   if (share.recipientUserId === auth.userId) {
     const view = recipientProjection(share, { viewerUserId: auth.userId });
     if (!view) return shareError("network_share.not_found", 404);
+    /* „Kes on vaadanud": ka otse loetud sisu on saaja lugemine. Ei viska kunagi. */
+    await recordSharingView({
+      db: prisma,
+      kind: SharingViewKind.NETWORK_SHARE,
+      itemId: share.id,
+      viewerUserId: auth.userId,
+      sharerUserIds: [share.workerId, share.clientUserId]
+    });
     return shareJson({ ok: true, share: view, viewerRole: "recipient" });
   }
   if (share.clientUserId && share.clientUserId === auth.userId) {
