@@ -40,7 +40,10 @@ test('the committed register names § 2 of the State Budget Act, and the file is
   assert.equal(hash(await fs.readFile(path.join('Andmebaasi', entry.path))), entry.sha256);
   // The only other sources that select sections are seven large acts, of which the chapters on help are read
   // (ADR-111: the number of sections chosen of each); every other act is read whole, as before.
-  const CODES = { '103062026067': 45, '103072026006': 2, '109072026028': 41, '111072026066': 28, '130062026001': 42, '130062026132': 60, '131122024048': 82 };
+  // ADR-124 (10.10.2026): the next versions of these acts keep their selection (the refresh path carries it over); the Penal Code's
+  // version from 01.01.2027 (109072026029) no longer has § 143 and § 143², so its selection is 39 sections, not 41.
+  const CODES = { '103062026067': 45, '103072026006': 2, '109072026028': 41, '111072026066': 28, '130062026001': 42, '130062026132': 60, '131122024048': 82,
+    '103072026007': 2, '103072026008': 2, '109072026029': 39, '111072026067': 28, '111072026090': 45, '111072026091': 45, '130062026133': 60 };
   const selected = register.entries.filter(item => item.xml_sections !== undefined && item.path !== entry.path);
   assert.deepEqual(Object.fromEntries(selected.map(item => [item.path.replace(/^oigusaktid\/|\.xml$/gu, ''), item.xml_sections.length])), CODES);
   assert(selected.every(item => item.xml_units === undefined && xmlSections({ source_selector: { xml_sections: item.xml_sections } })));

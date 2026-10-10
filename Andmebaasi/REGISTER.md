@@ -9,16 +9,16 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | KOV | 78 | 234 | 78 KOV-i põhipaketti koos metaandmete ja allikaloenditega. |
 | kontaktid | 0 | 10 | Kontaktide otsingumaterjal; kattuvus KOV-pakettidega vajab ühendamist. |
 | organisatsioonid | 1 | 3 | Ühe organisatsiooni (Astangu) käsitsi koostatud pakett: sisu ja allikad. RAG-is seda paketti ei ole. Organisatsioonide enda veebilehed on RAG-is (vt „RAG-i seis“). |
-| oigusaktid | 612 | 626 | XML-aktid, sh eri redaktsioonid ja omavalitsuste teised kehtivad sotsiaalaktid (ADR-058); kehtivus tuleb vastuvõtul kontrollida. Aktide lisadest tuletatud allikad (`lisad/`): kaks tabelit (ADR-050) ja kaksteist omavalitsuse lisa teksti (ADR-053); iga tuletatud allikas nimetab oma akti redaktsiooni. Üks akt on allikas ainult nimetatud paragrahvide ulatuses (registrikirje väli `xml_sections`, ADR-076): `103072026024.xml`, 2026. aasta riigieelarve seaduse § 2; fail ise on Riigi Teataja algfail. |
+| oigusaktid | 638 | 652 | XML-aktid, sh eri redaktsioonid ja omavalitsuste teised kehtivad sotsiaalaktid (ADR-058); kehtivus tuleb vastuvõtul kontrollida. Aktide lisadest tuletatud allikad (`lisad/`): kaks tabelit (ADR-050) ja kaksteist omavalitsuse lisa teksti (ADR-053); iga tuletatud allikas nimetab oma akti redaktsiooni. Üks akt on allikas ainult nimetatud paragrahvide ulatuses (registrikirje väli `xml_sections`, ADR-076): `103072026024.xml`, 2026. aasta riigieelarve seaduse § 2; fail ise on Riigi Teataja algfail. |
 | teadmised | 0 | 7 | Allikapõhised teadmiskaardid (tingimused, erandid, mõisted ja nende seosed) valitud allikatele; iga fail on seotud oma allika räsiga (ADR-054). |
 | register | 0 | 9 | Kavandatud allikate register ja korjatavate veebilehtede nimekirjad (`web_pages.json` ametlikud juhislehed, `web_pages_state_help.json` riigi tasandi abi juhislehed (pension, perehüvitised, elatisabi, perelepitus; ADR-111), `web_pages_state_help_2.json` riigi tasandi abi teine partii (ravikindlustus, kohtusse pöördumine, võlad, pärimine, ohvriabi, puue ja hoolekanne, politsei juhised; ADR-112), `web_pages_state_help_3.json` kolmas partii (riigi õigusabi, täitemenetlus, perekonna- ja pärimisõigus, kuriteoohvri õigused, toe vajadusega õpilane; ADR-115), `web_pages_vendors.json` abivahendite müüjate lehed, `web_pages_organisations.json` puuetega inimeste organisatsioonide lehed koos mustriga, mis pealkirja järgi välja jääb; ADR-095), mitte teadmistekst. Mis müüjate ja organisatsioonide lehtedest RAG-is on, näitab „RAG-i seis“. `newsletter_documents.json` on ajakirja Sotsiaaltöö uudiskirjas viidatud dokumentide loend (ADR-099): pealkiri, väljaandja ametlik aadress ja seis, sh need, mida RAG-is ei ole (ingliskeelsed, tekstikihita, liiga suured, vastuvõtu kinni peetud, arvutabelid). |
 | veebilehed | 361 | 722 | Ametlikud juhislehed, korjatud skriptiga `scripts/rag-v2-web-pages.mjs` (ADR-095): lehe sisuosa ilma saidi menüüde ja isikute kontaktideta, metaandmetes aadress, kontrolli kuupäev ja viidatud dokumendid. |
 | taastatud_allikad | 0 | 22 | Serveri vanast indeksist taastatud tekst. Enne importi võrrelda põhipakettidega. |
 
 <!-- corpus-state:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
-## RAG-i seis: mis on serveris (korpus v74)
+## RAG-i seis: mis on serveris (korpus v75)
 
-Seis 09.10.2026: serveris töötav RAG (korpus **v74**, indeks `3dff55b3`) sisaldab **8 696 dokumenti** (75 543 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
+Seis 10.10.2026: serveris töötav RAG (korpus **v75**, indeks `331f9dec`) sisaldab **8 722 dokumenti** (80 948 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
 
 | Mis on RAG-is | Dokumente | Kus on loend |
 |---|---:|---|
@@ -26,14 +26,14 @@ Seis 09.10.2026: serveris töötav RAG (korpus **v74**, indeks `3dff55b3`) sisal
 | Taotlusvormid (vastuses antakse lingina) | 872 | jaotis „Sisufailid“ |
 | Omavalitsuste kontaktid | 1638 | faili lõpus arvudena omavalitsuste kaupa (nimesid siia ei kirjutata) |
 | Ajakirja Sotsiaaltöö artiklid | 892 | jaotis „Sisufailid“ |
-| Õigusaktid | 566 | jaotis „Sisufailid“ |
+| Õigusaktid | 592 | jaotis „Sisufailid“ |
 | Juhendid, infomaterjalid ja uuringud | 429 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
 | Ametlikud juhislehed (ametite veebilehed) | 360 | jaotis „Sisufailid“ |
 | Puuetega inimeste organisatsioonide lehed | 521 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Hooldekodude kohamaksumus omavalitsuste kaupa | 79 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müügi- ja üüripunktid | 93 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müüjate lehed | 51 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
-| **Kokku** | **8696** | |
+| **Kokku** | **8722** | |
 
 <details><summary>Tehniline jaotus arendajale: kus allikafailid asuvad</summary>
 
@@ -43,7 +43,7 @@ Dokumentide arvud ei võrdu ülal olevate failide arvudega: üks fail võib anda
 |---|---:|---|
 | `KOV` | 4498 | kov_service_info 3195, application_form 845, official_contact 431, web_form 17, pdf_form 6, official_form 4 |
 | `ajakiri_sotsiaaltoo` | 892 | file 849, web 43 |
-| `oigusaktid` | 566 | legal_act 566 |
+| `oigusaktid` | 592 | legal_act 592 |
 | `veebilehed` | 361 | web_page 360, research_report 1 |
 | `juhendid_ja_uuringud` | 171 | information_material 81, research_report 46, official_guideline 38, policy_analysis 6 |
 
@@ -1917,6 +1917,32 @@ Koodihoidla allikafailid, mida RAG-is ei ole (61):
 | 103062026035.xml | [oigusaktid/103062026035.xml](<oigusaktid/103062026035.xml>) |
 | 109072026055.xml | [oigusaktid/109072026055.xml](<oigusaktid/109072026055.xml>) |
 | 111072026078.xml | [oigusaktid/111072026078.xml](<oigusaktid/111072026078.xml>) |
+| 103072026007.xml | [oigusaktid/103072026007.xml](<oigusaktid/103072026007.xml>) |
+| 103072026008.xml | [oigusaktid/103072026008.xml](<oigusaktid/103072026008.xml>) |
+| 103072026036.xml | [oigusaktid/103072026036.xml](<oigusaktid/103072026036.xml>) |
+| 109072026018.xml | [oigusaktid/109072026018.xml](<oigusaktid/109072026018.xml>) |
+| 109072026029.xml | [oigusaktid/109072026029.xml](<oigusaktid/109072026029.xml>) |
+| 109072026077.xml | [oigusaktid/109072026077.xml](<oigusaktid/109072026077.xml>) |
+| 111072026062.xml | [oigusaktid/111072026062.xml](<oigusaktid/111072026062.xml>) |
+| 111072026067.xml | [oigusaktid/111072026067.xml](<oigusaktid/111072026067.xml>) |
+| 111072026079.xml | [oigusaktid/111072026079.xml](<oigusaktid/111072026079.xml>) |
+| 111072026080.xml | [oigusaktid/111072026080.xml](<oigusaktid/111072026080.xml>) |
+| 111072026090.xml | [oigusaktid/111072026090.xml](<oigusaktid/111072026090.xml>) |
+| 111072026091.xml | [oigusaktid/111072026091.xml](<oigusaktid/111072026091.xml>) |
+| 111072026098.xml | [oigusaktid/111072026098.xml](<oigusaktid/111072026098.xml>) |
+| 111072026099.xml | [oigusaktid/111072026099.xml](<oigusaktid/111072026099.xml>) |
+| 111072026102.xml | [oigusaktid/111072026102.xml](<oigusaktid/111072026102.xml>) |
+| 111072026103.xml | [oigusaktid/111072026103.xml](<oigusaktid/111072026103.xml>) |
+| 111072026145.xml | [oigusaktid/111072026145.xml](<oigusaktid/111072026145.xml>) |
+| 111072026146.xml | [oigusaktid/111072026146.xml](<oigusaktid/111072026146.xml>) |
+| 111072026160.xml | [oigusaktid/111072026160.xml](<oigusaktid/111072026160.xml>) |
+| 130062026010.xml | [oigusaktid/130062026010.xml](<oigusaktid/130062026010.xml>) |
+| 130062026029.xml | [oigusaktid/130062026029.xml](<oigusaktid/130062026029.xml>) |
+| 130062026035.xml | [oigusaktid/130062026035.xml](<oigusaktid/130062026035.xml>) |
+| 130062026039.xml | [oigusaktid/130062026039.xml](<oigusaktid/130062026039.xml>) |
+| 130062026041.xml | [oigusaktid/130062026041.xml](<oigusaktid/130062026041.xml>) |
+| 130062026133.xml | [oigusaktid/130062026133.xml](<oigusaktid/130062026133.xml>) |
+| 408102026010.xml | [oigusaktid/408102026010.xml](<oigusaktid/408102026010.xml>) |
 | 403072026003.xml | [oigusaktid/403072026003.xml](<oigusaktid/403072026003.xml>) |
 | 130062026065.xml | [oigusaktid/130062026065.xml](<oigusaktid/130062026065.xml>) |
 | 106072023031.xml | [oigusaktid/106072023031.xml](<oigusaktid/106072023031.xml>) |
@@ -2328,7 +2354,7 @@ Koodihoidla allikafailid, mida RAG-is ei ole (61):
 <!-- corpus-outside:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
 ## RAG-is olevad lehed ja kontaktid
 
-Serveris töötav RAG, korpus v74, 09.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
+Serveris töötav RAG, korpus v75, 10.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
 
 ### Hooldekodude kohamaksumuse lehed (79)
 
