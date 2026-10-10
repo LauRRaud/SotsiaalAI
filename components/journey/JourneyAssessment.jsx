@@ -1,12 +1,20 @@
 "use client";
 
-import { useId, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
+import ChoiceRow from "@/components/stage/ChoiceRow";
+import StepPanel from "@/components/stage/StepPanel";
+import TextAreaField from "@/components/stage/TextAreaField";
 import Button from "@/components/ui/Button";
 import Form from "@/components/ui/Form";
 import { AssessmentChange, JOURNEY_ASSESSMENT_LEVELS, JOURNEY_ASSESSMENT_LIMITS } from "@/lib/journey/assessmentRules";
 import { journeyErrorText } from "@/lib/journey/errorText";
 import { todayInEstonia } from "@/lib/journey/stepRules";
+
+import { SMALL, TwoPress, blockRepeatEnter, footNote, useStageRemeasure, useSwapFocus } from "./detail/DeskBits";
+import styles from "./detail/detail.module.css";
+import { pressTooSoon } from "./detail/journeyDesk";
+import shared from "./journey.module.css";
 
 /** ISO hetk → `15.10.2026` Eesti kalendripäevana. Käsitsi, et server ja brauser annaksid sama kuju. */
 function dayLabel(iso) {
@@ -28,25 +36,34 @@ function newActionId() {
  * läinud paremaks, samaks või raskemaks. Skaala on sõnades. See on inimese hinnang:
  * spetsialisti oma on teine asi ja siia ei tule.
  *
- * Märgistus on lihtne nagu ülejäänud Teekonna lehel; kujundus tuleb eraldi.
+ * KUJU (10.10). Laua osa, mille sees vahetuvad kolm vaadet: seis (algus, viimane
+ * märge ja muutus), uus märge (viis sõna ühelaiuste lahtritena ja märkus) ning
+ * kõik märked. Märget ei muudeta; vale märge kustutatakse ja see küsib teist
+ * vajutust (vanal lehel kustus märge ühe vajutusega).
+ *
+ * `desk`: { glow, setDirty(dirty) } lavalt ja lehelt.
  */
-export default function JourneyAssessment({ journey, onAssessmentsChange, t }) {
+export default function JourneyAssessment({ journey, onAssessmentsChange, t, desk = {} }) {
   const journeyId = journey?.id || "";
   const picture = journey?.assessments || { baseline: null, latest: null, change: null, items: [] };
+  const items = Array.isArray(picture.items) ? picture.items : [];
   const archived = journey?.status === "ARCHIVED";
-  const groupId = useId();
 
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
-  const [adding, setAdding] = useState(false);
+  const [view, setView] = useState("read");
   const [level, setLevel] = useState("");
   const [note, setNote] = useState("");
   const actionRef = useRef("");
+  const busyRef = useRef(false);
+  const shownAt = useRef(0);
 
   const base = `/api/journeys/${encodeURIComponent(journeyId)}/assessments`;
   const levelWord = (value) => t(`journey.assessment.levels.${value}`, String(value));
 
   const send = async (url, method, body) => {
+    if (busyRef.current) return false;
+    busyRef.current = true;
     setBusy(true);
     setError("");
     try {
@@ -67,20 +84,29 @@ export default function JourneyAssessment({ journey, onAssessmentsChange, t }) {
       setError(t("journey.assessment.failed", "Märke salvestamine ei õnnestunud. Proovi uuesti."));
       return false;
     } finally {
+      busyRef.current = false;
       setBusy(false);
     }
   };
 
+  const toRead = () => {
+    setView("read");
+    setLevel("");
+    setNote("");
+  };
+
   const submit = async (event) => {
     event.preventDefault();
-    if (!level) return;
+    if (pressTooSoon(shownAt.current)) return;
+    if (!level) {
+      setError(t("journey.desk.feeling.need_level"));
+      return;
+    }
     /* Sama katse uuesti saates jääb võti samaks: server ei tee teist märget. */
     if (!actionRef.current) actionRef.current = newActionId();
     if (await send(base, "POST", { level: Number(level), note, clientActionId: actionRef.current })) {
       actionRef.current = "";
-      setLevel("");
-      setNote("");
-      setAdding(false);
+      toRead();
     }
   };
 
@@ -90,130 +116,155 @@ export default function JourneyAssessment({ journey, onAssessmentsChange, t }) {
     [AssessmentChange.HARDER]: t("journey.assessment.summary_harder", "Võrreldes algusega on läinud raskemaks.")
   };
 
-  return (
-    <section id="teekond-hinnang" aria-busy={busy}>
-      <h2>{t("journey.assessment.title", "Kuidas sul läheb")}</h2>
-      <p>
-        {t("journey.assessment.intro", "See on sinu enda hinnang ja ainult sinu näha. Esimene märge on algseis; hiljem näed, kas on läinud paremaks.")}
-      </p>
+  /* Kõrvale pandud Teekonnale märget ei lisata; tühjaks jäänud ajalugu viib tagasi seisu juurde. */
+  const shown = archived && view === "add" ? "read" : view === "history" && !items.length ? "read" : view;
+  const dirty = shown === "add" && Boolean(level || note.trim());
+  const setDirty = desk.setDirty;
+  useEffect(() => {
+    setDirty?.(dirty);
+    return () => setDirty?.(false);
+  }, [dirty, setDirty]);
 
-      {error ? <p role="alert">{error}</p> : null}
+  useStageRemeasure(`${shown}:${items.length}:${error}`);
+  const rootRef = useSwapFocus(shown);
+  useEffect(() => {
+    shownAt.current = Date.now();
+    setError("");
+  }, [shown]);
 
-      {!picture.baseline ? (
-        <p>{t("journey.assessment.empty", "Sa ei ole veel märkinud, kuidas sul läheb.")}</p>
-      ) : (
-        <>
-          <p>
-            {t(
-              "journey.assessment.baseline_line",
-              { date: dayLabel(picture.baseline.createdAt), level: levelWord(picture.baseline.level) },
-              "Algseis {date}: {level}."
-            )}
-          </p>
-          {picture.latest ? (
+  const title = t("journey.assessment.title", "Kuidas sul läheb");
+  const errorNote = error ? { text: error, tone: "risk" } : null;
+  const glow = desk.glow !== false;
+
+  let body;
+  if (shown === "add") {
+    body = (
+      <Form className={styles.form} validate={false} onSubmit={submit} onKeyDown={blockRepeatEnter}>
+        <StepPanel
+          title={title}
+          note={footNote(errorNote)}
+          actions={
             <>
-              <p>
-                {t(
-                  "journey.assessment.latest_line",
-                  { date: dayLabel(picture.latest.createdAt), level: levelWord(picture.latest.level) },
-                  "Viimane märge {date}: {level}."
-                )}
-              </p>
-              <p>
-                <strong>{changeSentence[picture.change]}</strong>
-              </p>
-              {picture.change === AssessmentChange.HARDER ? (
-                <p>
-                  {t("journey.assessment.harder_hint", "Kui on läinud raskemaks, tasub sellest rääkida inimesega, kes sind aitab, või koostada uus eelpöördumine.")}
-                </p>
-              ) : null}
+              <Button {...SMALL} onClick={toRead}>
+                {t("journey.actions.decline", "Loobu")}
+              </Button>
+              <Button type="submit" size="sm" variant="primary" glow={glow} aria-busy={busy ? "true" : undefined}>
+                {t("journey.assessment.save", "Salvesta märge")}
+              </Button>
             </>
-          ) : null}
-        </>
-      )}
-
-      {archived ? (
-        <p>{t("journey.assessment.archived", "Kõrvale pandud Teekonna märkeid saab vaadata, mitte lisada.")}</p>
-      ) : adding ? (
-        <Form onSubmit={submit}>
-          <fieldset>
-            <legend id={`${groupId}-legend`}>{t("journey.assessment.question", "Kuidas sa praegu oma olukorraga toime tuled?")}</legend>
-            {JOURNEY_ASSESSMENT_LEVELS.map((value) => (
-              <label key={value}>
-                <input
-                  type="radio"
-                  name={`${groupId}-level`}
-                  value={value}
-                  checked={String(level) === String(value)}
-                  onChange={() => setLevel(String(value))}
-                  required
-                />{" "}
-                {levelWord(value)}
-              </label>
-            ))}
-          </fieldset>
-          <div>
-            <label htmlFor={`${groupId}-note`}>{t("journey.assessment.note_label", "Mis on muutunud? (võid jätta tühjaks)")}</label>
-            <textarea
-              id={`${groupId}-note`}
+          }
+        >
+          <div className={styles.fields}>
+            <ChoiceRow
+              label={t("journey.assessment.question", "Kuidas sa praegu oma olukorraga toime tuled?")}
+              options={JOURNEY_ASSESSMENT_LEVELS.map((value) => ({ value: String(value), label: levelWord(value) }))}
+              value={String(level)}
+              onChange={(value) => {
+                setLevel(String(value));
+                setError("");
+              }}
+              columns={5}
+              keepColumns
+            />
+            <TextAreaField
+              label={t("journey.assessment.note_label", "Mis on muutunud? (võid jätta tühjaks)")}
               value={note}
-              onChange={(event) => setNote(event.target.value)}
+              onChange={setNote}
+              rows={3}
               maxLength={JOURNEY_ASSESSMENT_LIMITS.note}
             />
           </div>
-          <div>
-            <Button type="submit" disabled={busy || !level}>
-              {t("journey.assessment.save", "Salvesta märge")}
-            </Button>
-            <Button
-              type="button"
-              variant="linkBrand"
-              disabled={busy}
-              onClick={() => {
-                setAdding(false);
-                setLevel("");
-                setNote("");
-              }}
-            >
-              {t("journey.actions.decline", "Loobu")}
-            </Button>
-          </div>
-        </Form>
-      ) : (
-        <div>
-          <Button type="button" variant="primary" disabled={busy} onClick={() => setAdding(true)}>
-            {picture.baseline
-              ? t("journey.assessment.add", "Märgi, kuidas praegu on")
-              : t("journey.assessment.add_first", "Märgi algseis")}
+        </StepPanel>
+      </Form>
+    );
+  } else if (shown === "history") {
+    body = (
+      <StepPanel
+        title={title}
+        note={footNote(errorNote, archived ? t("journey.assessment.archived") : t("journey.desk.feeling.delete_note"))}
+        actions={
+          <Button {...SMALL} onClick={toRead}>
+            {t("journey.desk.back")}
           </Button>
-        </div>
-      )}
-
-      {picture.items.length ? (
-        <details>
-          <summary>{t("journey.assessment.history_title", { count: picture.items.length }, "Kõik märked ({count})")}</summary>
-          <ul>
-            {picture.items.map((item) => (
-              <li key={item.id}>
-                <p>
-                  {[dayLabel(item.createdAt), levelWord(item.level), t(`journey.assessment.change.${item.change}`, item.change)].filter(Boolean).join(" · ")}
+        }
+      >
+        <ul className={shared.rows} aria-busy={busy ? "true" : undefined}>
+          {items.map((item) => (
+            <li key={item.id} className={styles.item}>
+              <span className={styles.plainRow}>
+                <span className={shared.rowTitle}>{[dayLabel(item.createdAt), levelWord(item.level)].filter(Boolean).join(" · ")}</span>
+                <span className={styles.rowText}>{[t(`journey.assessment.change.${item.change}`, ""), item.note].filter(Boolean).join(" · ")}</span>
+              </span>
+              {!archived ? (
+                <TwoPress
+                  compact
+                  danger
+                  label={t("journey.assessment.delete", "Kustuta märge")}
+                  confirmLabel={t("journey.desk.confirm_delete")}
+                  cancelLabel={t("journey.actions.decline", "Loobu")}
+                  busy={busy}
+                  onConfirm={() => send(`${base}/${encodeURIComponent(item.id)}`, "DELETE")}
+                />
+              ) : null}
+            </li>
+          ))}
+        </ul>
+      </StepPanel>
+    );
+  } else {
+    body = (
+      <StepPanel
+        title={title}
+        note={footNote(errorNote, archived ? t("journey.assessment.archived") : t("journey.desk.feeling.private"))}
+        actions={
+          <>
+            {items.length ? (
+              <Button {...SMALL} onClick={() => setView("history")}>
+                {t("journey.assessment.history_title", { count: items.length }, "Kõik märked ({count})")}
+              </Button>
+            ) : null}
+            {!archived ? (
+              <Button type="button" size="sm" variant="primary" glow={glow} data-add-mark="1" onClick={() => setView("add")}>
+                {picture.baseline ? t("journey.assessment.add", "Märgi, kuidas praegu on") : t("journey.assessment.add_first", "Märgi algseis")}
+              </Button>
+            ) : null}
+          </>
+        }
+      >
+        <div className={shared.stack}>
+          {!picture.baseline ? (
+            <>
+              <p className={shared.quiet}>{t("journey.assessment.empty", "Sa ei ole veel märkinud, kuidas sul läheb.")}</p>
+              <p className={shared.small}>{t("journey.desk.feeling.first_hint")}</p>
+            </>
+          ) : (
+            <>
+              {picture.latest ? <p className={styles.strong}>{changeSentence[picture.change]}</p> : null}
+              <div className={shared.facts}>
+                <p className={shared.fact}>
+                  <span className={shared.factValue}>
+                    {t("journey.assessment.baseline_line", { date: dayLabel(picture.baseline.createdAt), level: levelWord(picture.baseline.level) }, "Algseis {date}: {level}.")}
+                  </span>
                 </p>
-                {item.note ? <p>{item.note}</p> : null}
-                {!archived ? (
-                  <Button
-                    type="button"
-                    variant="linkBrand"
-                    disabled={busy}
-                    onClick={() => send(`${base}/${encodeURIComponent(item.id)}`, "DELETE")}
-                  >
-                    {t("journey.assessment.delete", "Kustuta märge")}
-                  </Button>
+                {picture.latest ? (
+                  <p className={shared.fact}>
+                    <span className={shared.factValue}>
+                      {t("journey.assessment.latest_line", { date: dayLabel(picture.latest.createdAt), level: levelWord(picture.latest.level) }, "Viimane märge {date}: {level}.")}
+                    </span>
+                  </p>
                 ) : null}
-              </li>
-            ))}
-          </ul>
-        </details>
-      ) : null}
-    </section>
+              </div>
+              {picture.latest && picture.change === AssessmentChange.HARDER ? <p className={shared.quiet}>{t("journey.assessment.harder_hint")}</p> : null}
+            </>
+          )}
+        </div>
+      </StepPanel>
+    );
+  }
+
+  return (
+    <div className={styles.swap} ref={rootRef}>
+      {body}
+    </div>
   );
 }

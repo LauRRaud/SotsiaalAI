@@ -8621,8 +8621,7 @@
   "journey": {
     "title": "Journey",
     "autosave": {
-      "restored": "We restored unfinished work from this session.",
-      "discard_confirm": "Stop composing and delete this session draft?"
+      "restored": "We restored unfinished work from this session."
     },
     "quick_help": {
       "label": "Quick help",
@@ -8635,17 +8634,11 @@
         "victim": "victim support"
       }
     },
-    "steps": {
-      "label": "Journey steps",
-      "describe": "Describe",
-      "review": "Review"
-    },
     "risk_card": {
       "title": "If you need help now",
       "body": "These observations remain visible only to you and are never sent to the inquiry recipient."
     },
     "delete": {
-      "title": "Permanently delete this Journey?",
       "body": "The Journey's private content is deleted. Related pre-inquiries remain, but their link to this Journey is removed. We recommend exporting first.",
       "confirm": "Yes, delete permanently"
     },
@@ -8702,7 +8695,6 @@
       "DRAFT": "clarifying information"
     },
     "labels": {
-      "private": "Private",
       "updated_at": "Updated {date}",
       "title": "Title",
       "summary": "Situation summary",
@@ -8712,29 +8704,18 @@
       "risk_signals": "Careful notes",
       "suggested_actions": "Suggested next steps",
       "situation": "Situation description",
-      "one_item_per_line": "One item per line",
-      "characters_per_item": "characters per item",
       "character_count": "{current}/{limit}",
       "item_limit_count": "{current}/{limit}, {characters} characters per item"
     },
     "actions": {
-      "previous_step": "← Previous step",
-      "reopen": "Reopen",
-      "export": "Export as JSON",
       "load_more": "Load more",
       "delete": "Delete permanently",
       "archive": "Archive",
       "archive_named": "Archive journey {title}",
       "save_private": "Save journey",
       "save_changes": "Save changes",
-      "back": "Back",
-      "back_to_list": "Back to journey",
       "login": "Log in",
-      "open": "Open journey",
       "edit": "Edit",
-      "close_edit": "Close editing",
-      "cancel": "Cancel",
-      "edit_description": "Edit description",
       "decline": "Discard"
     },
     "messages": {
@@ -8751,8 +8732,6 @@
       "reopened": "Journey reopened.",
       "reopen_failed": "Failed to reopen the Journey.",
       "delete_failed": "Failed to delete the Journey.",
-      "no_active": "No private journey has been saved yet.",
-      "no_archived": "There are no archived journeys.",
       "not_found_title": "Journey was not found",
       "not_found": "This journey is not available or does not belong to your account.",
       "empty_domains": "No related topics have been added.",
@@ -8760,15 +8739,10 @@
       "empty_risk_signals": "No careful notes have been added.",
       "empty_suggested_actions": "No suggested next steps have been added."
     },
-    "privacy": {
-      "title": "Journey is private",
-      "description": "This journey is private. Information is not shared with a specialist, service provider, or another party before you confirm and share it yourself."
-    },
     "info": {
       "label": "Open journey info"
     },
     "service_map": {
-      "title": "Service map opens from this journey",
       "open": "Open service map",
       "filtered_description": "The service map opens with filters based on this journey.",
       "fallback_description": "The region is missing, so the service map opens in the general view.",
@@ -8776,20 +8750,11 @@
       "missing_municipality": "Add a municipality or region to open the service map more precisely."
     },
     "pre_inquiry": {
-      "title": "Prepare a pre-inquiry from this situation",
       "open": "Create pre-inquiry",
-      "description": "Before preparing the pre-inquiry, choose which journey information you want to include. You can review and edit the text before sending.",
       "privacy_note": "The journey is not shared automatically. The receiver sees only the pre-inquiry you confirm and send."
     },
-    "header": {
-      "eyebrow": "Private journey layer"
-    },
     "sections": {
-      "start_description": "Hello. Let us start your journey. Describe the situation in your own words. You do not need to know everything or phrase it perfectly, just write what is happening.",
-      "review_title": "Overview before saving",
-      "review_description": "Review whether Sotsiaal.pro organized the situation correctly. The journey is saved only when you confirm.",
-      "active_title": "Active journey",
-      "archived_title": "Previous journeys"
+      "start_description": "Hello. Let us start your journey. Describe the situation in your own words. You do not need to know everything or phrase it perfectly, just write what is happening."
     },
     "placeholders": {
       "situation": "For example: I care for my mother and cannot manage alone anymore. She needs help washing and preparing food. I do not know whether to contact the municipality or a service provider."
@@ -8844,14 +8809,12 @@
       "existingSummaryEmpty": "The user goal still needs clarification."
     },
     "healthContact": {
-      "title": "Health contact option",
       "description": "Your description may include a health-related question. A possible first step may be a family doctor center, health center, or official health advice contact.",
       "notMedicalAdvice": "Sotsiaal.pro does not provide medical assessment, diagnosis, or treatment advice, but can help phrase questions clearly. If there is immediate danger, use emergency or urgent care channels.",
       "createQuestions": "Create questions for a health contact",
       "questionsDraftTitle": "Questions for a health contact",
       "privateNote": "The questions stay with you. They are not sent automatically to a family doctor center, health center, or any other party.",
       "noAutomaticSharing": "The questions are not sent automatically. Review and edit the text, then decide yourself whether to use it outside the platform.",
-      "openServiceMap": "Open service map",
       "createPreInquiry": "Create pre-inquiry",
       "draftSituationLabel": "Briefly describe my situation:",
       "draftSituationPlaceholder": "[add a short situation description]",
@@ -8863,11 +8826,7 @@
     },
     "workspace": {
       "client": {
-        "title": "Workspace",
-        "description": "Your private Journeys and next steps are collected here. A Journey is not shared before your separate confirmation.",
         "start": "Start Journey",
-        "continue": "Continue latest Journey",
-        "relatedPreInquiries": "Pre-inquiries",
         "relatedRooms": "Rooms"
       },
       "specialist": {
@@ -8876,7 +8835,6 @@
         "sharedInfoOnly": "Private Journeys are not shown. The specialist does not see the user assistant chat or full Journey.",
         "preInquiries": "Pre-inquiries",
         "preInquiriesDescription": "Open user-confirmed pre-inquiries.",
-        "missingInfo": "Information to clarify",
         "documentsDescription": "Use the existing document tools."
       },
       "provider": {
@@ -8888,18 +8846,10 @@
         "serviceProfile": "Service profile",
         "serviceProfileDescription": "Manage service visibility and contact information."
       },
-      "privacyNote": "Journey is private. A specialist, service provider, or room member sees only information you separately confirm and share.",
-      "notAvailableForRole": "The private Journey list is not shown for this role.",
       "privateJourneysNotShared": "Private Journey is not shared automatically."
     },
-    "empty_start": {
-      "label": "Start journey"
-    },
     "review": {
-      "summary_title": "Situation summary",
-      "summary_label": "Adjust the summary if needed",
       "life_domains": "Life domains",
-      "empty_life_domains": "Life domains can be clarified later.",
       "life_domains_note": "This only helps organize the situation. It is not an official assessment.",
       "missing_title": "What may still be missing?",
       "actions_title": "Possible next steps",
@@ -8924,7 +8874,6 @@
     },
     "wish": {
       "title": "Your wish",
-      "review_title": "What do you want?",
       "label": "Write in your own words what you want to happen or change.",
       "hint": "The platform does not change or rephrase this text. Others see it only if you choose to share it.",
       "empty": "You have not written down your wish yet.",
@@ -9077,20 +9026,12 @@
         "FINISHED": "finished"
       }
     },
-    "activity": {
-      "title": "Completed steps",
-      "created": "journey created",
-      "saved": "overview saved"
-    },
     "related": {
-      "title": "Related items",
-      "pre_inquiries": "Related pre-inquiries",
       "documents": "Related documents",
       "service_contacts": "Related service-map contacts",
       "help_requests": "Related help requests",
       "help_offers": "Related help offers",
       "rooms": "Related rooms",
-      "open": "Open",
       "pre_inquiries_empty": "When you start a pre-inquiry from this journey, it will appear here with its topic and status.",
       "pre_inquiry_untitled": "Pre-inquiry",
       "pre_inquiry_state": {
@@ -9109,11 +9050,10 @@
     },
     "share": {
       "title": "Choose which information to use in the pre-inquiry.",
-      "privacy": "The full journey is not shared automatically. You review the text in the next step before sending.",
       "summary": "situation summary",
       "domains": "related topics",
       "missing_info": "missing information",
-      "wish": "person's wish",
+      "wish": "your wish",
       "person_context": "third-party context",
       "person_context_ack": "I confirm that I have the right to share this other person's information.",
       "service_continuity": "service-continuity information",
@@ -9121,20 +9061,17 @@
       "title_field": "Journey title",
       "recipient_preview": "The recipient sees",
       "empty_preview": "No selected Journey content is included.",
-      "service_contact": "selected service-map contact",
       "document": "related document",
       "assistive_devices": "assistive devices and adaptations",
       "continue": "Continue preparing the pre-inquiry"
     },
     "assistiveDevices": {
       "title": "Assistive Devices and Adaptations",
-      "description": "This collects information about assistive devices, home adaptations, or support with using a device.",
       "safetyNote": "Sotsiaal.pro does not officially prescribe an assistive device or decide reimbursement. When needed, clarify suitability with the local government, a specialist, a rehabilitation team, or an assistive-device provider.",
       "addDocument": "Add document",
       "createPracticalHelpRequest": "Create help request for practical support"
     },
     "helpMediation": {
-      "title": "Help mediation",
       "checkingOffers": "Checking suitable help offers...",
       "offersFoundHint": "Your description points to a practical support need. We found possible help offers you can review.",
       "noOffersHint": "Your description points to a practical support need. No suitable help offers were found right now, but you can create a help request.",
@@ -9215,6 +9152,187 @@
         "note": "What you wrote is deleted and the Journey is not saved."
       },
       "leave_asked": "The Journey is not saved. Press again to leave. What you wrote stays in this browser window."
+    },
+    "desk": {
+      "all": "Whole Journey",
+      "position": "Part {current} of {total}: {label}",
+      "all_journeys": "All Journeys",
+      "private": "Private until you share it yourself.",
+      "leave_asked": "You have unsaved text. Press again to leave; the unsaved text will then be lost.",
+      "back": "Back",
+      "back_to_list": "Back to the steps",
+      "confirm_delete": "Yes, delete",
+      "discard_confirm": "Yes, discard",
+      "discard_note": "The changes will be lost.",
+      "parts": {
+        "situation": {
+          "title": "Your situation",
+          "short": "Situation"
+        },
+        "wish": {
+          "title": "Your wish",
+          "short": "Wish"
+        },
+        "steps": {
+          "title": "Next steps",
+          "short": "Steps"
+        },
+        "feeling": {
+          "title": "How you are doing",
+          "short": "How it goes"
+        },
+        "sent": {
+          "title": "Sent and answers",
+          "short": "Sent"
+        },
+        "share": {
+          "title": "Pre-inquiry",
+          "short": "Pre-inquiry"
+        },
+        "help": {
+          "title": "Finding help",
+          "short": "Finding help"
+        },
+        "continuity": {
+          "title": "Service continuity",
+          "short": "Continuity"
+        },
+        "road": {
+          "title": "Journey path",
+          "short": "Path"
+        },
+        "closure": {
+          "title": "Pause and finishing",
+          "short": "Pause and end"
+        },
+        "data": {
+          "title": "Paper sheet and data",
+          "short": "Paper and data"
+        }
+      },
+      "situation": {
+        "need_title": "Give the Journey a title.",
+        "need_summary": "Describe your situation.",
+        "save_all": "All four parts are saved at once.",
+        "tabs": {
+          "label": "What you change",
+          "text": "Description",
+          "direction": "Direction",
+          "topics": "Topics",
+          "notes": "Notes"
+        },
+        "read_tabs": {
+          "label": "What you look at",
+          "text": "Description",
+          "noticed": "What we noticed"
+        }
+      },
+      "wish": {
+        "private": "The platform does not change this text. Others see it only if you choose to share it."
+      },
+      "steps": {
+        "need_title": "Write what needs to be done.",
+        "add_question": "What is the next step?",
+        "no_details": "No doer and no due date are written down.",
+        "delete_note": "The step is deleted for good. If it is just no longer needed, drop it instead: then what was decided stays visible.",
+        "private": "Only you see the steps.",
+        "all_closed": "All steps are closed.",
+        "tabs": {
+          "label": "Which steps to show",
+          "open": "To do",
+          "suggested": "Suggested",
+          "closed": "Closed"
+        }
+      },
+      "feeling": {
+        "need_level": "Choose how you are coping right now.",
+        "delete_note": "A mark cannot be changed. You can delete a wrong one; a deleted mark cannot be brought back.",
+        "private": "This is your own assessment and only you see it.",
+        "first_hint": "The first mark is the starting point. Later you see whether things have got better."
+      },
+      "sent": {
+        "answered": "The recipient has answered.",
+        "opened": "The recipient has opened the inquiry.",
+        "sent": "Sent, the recipient has not opened it yet.",
+        "draft": "A pre-inquiry is started but not sent.",
+        "none": "Nothing has been sent from this Journey yet.",
+        "note": "A row opens the inquiry. The answer itself is in the inquiry's shared room.",
+        "open_named": "Open the pre-inquiry {title}"
+      },
+      "share": {
+        "tile": "Choose what to take along from your Journey.",
+        "need_choice": "Choose at least one thing to take along.",
+        "need_ack": "To share another person's information, confirm that you have the right to do so.",
+        "tabs": {
+          "label": "Choice or preview",
+          "choose": "What you take along"
+        }
+      },
+      "help": {
+        "kinds": {
+          "label": "Where you look for help",
+          "map": "Service map",
+          "mediation": "Help mediation",
+          "devices": "Assistive devices",
+          "health": "Health contact"
+        },
+        "request_preview": "Goes into the request",
+        "copy": "Copy the text",
+        "copied": "Copied",
+        "copy_failed": "Copying failed. Select the text by hand and copy it.",
+        "device_status": {
+          "NEEDED": "needed",
+          "EXISTING": "has it",
+          "NOT_USED": "not used",
+          "NOT_WORKING": "not working or not suitable",
+          "UNSURE": "to be clarified"
+        }
+      },
+      "continuity": {
+        "tile": "If you have a service or support that may end.",
+        "save_all": "All four parts are saved at once.",
+        "end_date": "End date",
+        "tabs": {
+          "label": "Parts of the check",
+          "service": "Service",
+          "state": "Current state",
+          "goal": "Your goal",
+          "time": "Duration"
+        }
+      },
+      "road": {
+        "note": "The path shows only what the platform really knows.",
+        "event": "The Journey was changed",
+        "tabs": {
+          "road": "Path",
+          "events": "Events"
+        }
+      },
+      "closure": {
+        "tile": "The Journey is ongoing. You can pause or finish it.",
+        "need_outcome": "Choose how this Journey ended for you.",
+        "history_question": "Earlier pauses and finishes",
+        "keeps": "Nothing is deleted and you can always reopen the Journey.",
+        "pause_note": "You are not working on it for now. You may add why, and the day you plan to continue.",
+        "finish_note": "It is over for you. You say yourself how it ended.",
+        "finish_tabs": {
+          "outcome": "How it ended",
+          "more": "Add if you wish"
+        }
+      },
+      "data": {
+        "tile": "Print, download a file or delete the Journey.",
+        "tabs": {
+          "paper": "Paper sheet",
+          "file": "File",
+          "delete": "Deleting"
+        },
+        "export": "Download the Journey as a file",
+        "exporting": "Downloading…",
+        "file_lead": "The file holds everything in this Journey: the description, the wish, steps, marks and the state of linked pre-inquiries. It is a machine-readable file (JSON) you can keep for yourself.",
+        "delete_note": "A deleted Journey cannot be restored.",
+        "deleting": "Deleting…"
+      }
     }
   },
   "journeys": {
