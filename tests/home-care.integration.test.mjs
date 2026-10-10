@@ -94,6 +94,7 @@ import { addWorkerRecord, endWorkerRecord, getWorkerCards } from '../lib/homeCar
 import { getFridgeSheet } from '../lib/homeCare/fridgeSheet.js';
 import { getMonthOpenItems } from '../lib/homeCare/monthClose.js';
 import { getMonthPage, lockMonth, reopenMonth } from '../lib/homeCare/monthLock.js';
+import { answerDecisionNotice, createDecisionNotice, withdrawDecisionNotice } from '../lib/homeCare/decisionNotices.js';
 import { endRelative, saveRelative } from '../lib/homeCare/relatives.js';
 import { saveSafetyCard } from '../lib/homeCare/safetyCard.js';
 import { composeNoAnswerText } from '../lib/homeCare/noAnswerText.js';
@@ -1881,6 +1882,8 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
   await saveRelative(lead, client.id, { name: 'Mari Tamm', relation: 'tütar', level: 1 }, deps());
   /* Ohutuskaardi vastus (K5-n), et väljavõttes oleks ka see kogu. */
   await saveSafetyCard(lead, client.id, { items: { ANIMALS: { answer: 'NO' } } }, deps());
+  /* Teade otsustajale (K5-r). */
+  await createDecisionNotice(lead, client.id, { reason: 'NEED_GROWN', text: 'Abivajadus on kasvanud.', channel: 'EMAIL' }, deps());
   /* Kuu lukk (K5-p): eelmise kuu arvud lukku. */
   const september = await getMonthPage(lead, { month: '2026-09' }, deps());
   await lockMonth(lead, { month: '2026-09', seen: { visits: september.totals.visits, minutes: september.totals.minutes, open: september.lock.openItemCount } }, deps());
@@ -2000,6 +2003,7 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
     clientRelatives: await db.careClientRelative.count({ where: ofOrg }),
     safetyItems: await db.careSafetyItem.count({ where: ofOrg }),
     monthLocks: await db.careMonthLock.count({ where: ofOrg }),
+    decisionNotices: await db.careDecisionNotice.count({ where: ofOrg }),
     auditEvents: await db.dataAuditLog.count({
       where: { action: { startsWith: 'org.home_care_' }, meta: { path: ['organizationId'], equals: f.orgA.id }, createdAt: { lt: (await exportRows())[0].createdAt } }
     })
@@ -5675,4 +5679,105 @@ test('kolm lukustatud kuud järjest üle otsustatud mahu: tähtaegade nimekiri',
   const version = (await db.careClient.findUnique({ where: { id: linda.id }, select: { version: true } })).version;
   await setClientStatus(lead, linda.id, { version, status: 'ENDED', statusReason: 'MOVED' }, october);
   assert.deepEqual((await getDeadlines(lead, october)).overVolumeStreak, []);
+});
+
+test('teade otsustajale: hooldusjuht koostab, tekst jääb alles, vastus üks kord, tähtaegade nimekirjad', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const clerk = await f.ctx(f.users.clerk, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  const start = deps(at('2026-09-01T08:00:00Z'));
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, start)).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi' }, start)).client;
+  for (const client of [linda, peeter]) await addTeamMember(lead, client.id, { membershipId: f.members.anu.id }, start);
+  await createDecision(lead, linda.id, { kind: 'ACT', issuerName: 'Haapsalu Linnavalitsus', documentNumber: '1-2/34', validFrom: '2026-09-01', volumeHours: '6,5', volumePeriod: 'WEEK' }, start);
+  const note = (client, text, when) => createEntry(anu, client.id, { kind: 'NOTE', contactMode: 'VISIT', text, visitMinutes: 30, occurredAt: when }, deps(at(when)));
+  const first = (await note(linda, 'Toit oli söömata.', '2026-10-05T06:30:00Z')).entry;
+  const second = (await note(linda, 'Ei jaksanud ise pliidi juurde minna.', '2026-10-07T06:30:00Z')).entry;
+  const gone = (await note(linda, 'Vale kirje', '2026-10-06T06:30:00Z')).entry;
+  await retractEntry(lead, linda.id, gone.id, { reason: 'Vale klient', revision: 1 }, deps());
+  const foreign = (await note(peeter, 'Peetri kirje', '2026-10-07T07:30:00Z')).entry;
+
+  /* Meeskond teateid ei näe ega koosta; kõrvaline ja teine asutus klienti ei leia. */
+  assert.equal((await openClient(anu, linda.id, deps())).decisionNotices, null);
+  assert.deepEqual((await openClient(lead, linda.id, deps())).decisionNotices, []);
+  const input = { reason: 'NEED_GROWN', text: 'Ei jaksa enam ise pliidi juurde. Kaks korda on toit söömata jäänud.', recipient: 'Mari Maasikas, linnavalitsus', channel: 'EMAIL', entryIds: [second.id, first.id] };
+  await expectError(createDecisionNotice(anu, linda.id, input, deps()), 403, 'org.errors.missing_capability');
+  await expectError(createDecisionNotice(clerk, linda.id, input, deps()), 404, 'home_care.errors.client_not_found');
+  await expectError(createDecisionNotice(leadB, linda.id, input, deps()), 404);
+  /* Teise kliendi kirjet ja tühistatud kirjet lisada ei saa. */
+  await expectError(createDecisionNotice(lead, linda.id, { ...input, entryIds: [foreign.id] }, deps()), 400, 'home_care.errors.notice_entries_invalid');
+  await expectError(createDecisionNotice(lead, linda.id, { ...input, entryIds: [gone.id] }, deps()), 400, 'home_care.errors.notice_entries_invalid');
+  assert.equal(await db.careDecisionNotice.count({ where: { organizationId: f.orgA.id } }), 0);
+
+  const sent = await createDecisionNotice(lead, linda.id, { ...input, sentOn: '2026-10-08' }, deps());
+  assert.equal(sent.decisionNotices.length, 1);
+  const notice = sent.decisionNotices[0];
+  assert.deepEqual([notice.id === sent.noticeId, notice.state, notice.waitingDays, notice.reason, notice.channel, notice.sentOn, notice.entryCount], [true, 'WAITING', 1, 'NEED_GROWN', 'EMAIL', '2026-10-08', 2]);
+  /* Tekst: asutus, klient, kehtiv otsus, põhjus, kaks lauset ja kirjed toimumise järjekorras. */
+  const lines = notice.sentText.split('\n');
+  assert.equal(lines[0], `Teade koduteenuse osutajalt: Hoolekanne A ${f.tag}`);
+  assert.deepEqual(lines.slice(1, 6), [
+    'Kuupäev: 08.10.2026',
+    'Kellele: Mari Maasikas, linnavalitsus',
+    'Klient: Linda Tamm',
+    'Kehtiv otsus: nr 1-2/34, Haapsalu Linnavalitsus, maht 6,5 tundi nädalas',
+    'Põhjus: abivajadus on kasvanud'
+  ]);
+  assert.deepEqual(lines.slice(9, 12), ['Päeviku kirjed:', '- 05.10.2026, Anu Hooldaja: Toit oli söömata.', '- 07.10.2026, Anu Hooldaja: Ei jaksanud ise pliidi juurde minna.']);
+  assert.match(lines.at(-2), /^Teate koostas: Juta/);
+  /* Saadetud tekst ei muutu, kui kirjet hiljem parandatakse. */
+  await correctEntry(anu, linda.id, first.id, { text: 'Toit oli pooleldi söömata.', reason: 'Täpsustus', revision: 1 }, deps());
+  assert.equal((await openClient(lead, linda.id, deps())).decisionNotices[0].sentText, notice.sentText);
+
+  /* TÄHTAJAD: vastuseta teade on nimekirjas; hooldaja tähtaegu ei näe. */
+  const waiting = (await getDeadlines(lead, deps())).noticesWaiting;
+  assert.deepEqual(waiting.map((item) => [item.client.displayName, item.reason, item.sentOn, item.days]), [['Linda Tamm', 'NEED_GROWN', '2026-10-08', 1]]);
+  assert.deepEqual((await getDeadlines(lead, deps())).reassessOverdue, []);
+
+  /* TAGASIVÕTMINE: põhjusega; tagasi võetud teade ei oota vastust ja vastust sellele ei märgita. */
+  const second2 = await createDecisionNotice(lead, linda.id, { reason: 'SERVICE_UNFIT', text: 'Ekslik teade.', channel: 'PHONE' }, deps());
+  await expectError(withdrawDecisionNotice(lead, linda.id, second2.noticeId, {}, deps()), 400, 'home_care.errors.notice_withdraw_reason');
+  await expectError(withdrawDecisionNotice(anu, linda.id, second2.noticeId, { reason: 'x' }, deps()), 403, 'org.errors.missing_capability');
+  await expectError(withdrawDecisionNotice(lead, peeter.id, second2.noticeId, { reason: 'x' }, deps()), 404, 'home_care.errors.notice_not_found');
+  const withdrawn = await withdrawDecisionNotice(lead, linda.id, second2.noticeId, { reason: 'Vale klient' }, deps());
+  assert.deepEqual(withdrawn.decisionNotices.map((item) => [item.state, item.withdrawReason]), [['WITHDRAWN', 'Vale klient'], ['WAITING', null]]);
+  await expectError(answerDecisionNotice(lead, linda.id, second2.noticeId, { answer: 'OTHER_SERVICE' }, deps()), 409, 'home_care.errors.notice_closed');
+  assert.equal((await getDeadlines(lead, deps())).noticesWaiting.length, 1);
+
+  /* VASTUS: üks kord; „hindab uuesti" nõuab kuupäeva. */
+  await expectError(answerDecisionNotice(anu, linda.id, notice.id, { answer: 'REASSESS', reassessBy: '2026-10-20' }, deps()), 403, 'org.errors.missing_capability');
+  await expectError(answerDecisionNotice(lead, linda.id, notice.id, { answer: 'REASSESS' }, deps()), 400, 'home_care.errors.notice_reassess_day_required');
+  const answered = await answerDecisionNotice(lead, linda.id, notice.id, { answer: 'REASSESS', reassessBy: '2026-10-20', answerNote: 'Tuleb koju vaatama' }, deps());
+  const row = answered.decisionNotices.find((item) => item.id === notice.id);
+  assert.deepEqual([row.state, row.answer, row.answeredOn, row.reassessBy, row.answerNote, row.reassessOverdue], ['ANSWERED', 'REASSESS', '2026-10-09', '2026-10-20', 'Tuleb koju vaatama', false]);
+  await expectError(answerDecisionNotice(lead, linda.id, notice.id, { answer: 'OTHER_SERVICE' }, deps()), 409, 'home_care.errors.notice_closed');
+  await expectError(withdrawDecisionNotice(lead, linda.id, notice.id, { reason: 'Hilja' }, deps()), 409, 'home_care.errors.notice_closed');
+  assert.deepEqual((await getDeadlines(lead, deps())).noticesWaiting, []);
+
+  /* LUBATUD HINDAMINE: päev pärast lubatud päeva on rida nimekirjas; uus otsus võtab selle ära. */
+  assert.deepEqual((await getDeadlines(lead, deps(at('2026-10-20T08:00:00Z')))).reassessOverdue, []);
+  const late = deps(at('2026-10-25T08:00:00Z'));
+  assert.deepEqual((await getDeadlines(lead, late)).reassessOverdue.map((item) => [item.client.displayName, item.reassessBy, item.days]), [['Linda Tamm', '2026-10-20', 5]]);
+  assert.equal((await openClient(lead, linda.id, late)).decisionNotices.find((item) => item.id === notice.id).reassessOverdue, true);
+  await createDecision(lead, linda.id, { kind: 'ACT', validFrom: '2026-10-26', volumeHours: '10', volumePeriod: 'WEEK' }, late);
+  assert.deepEqual((await getDeadlines(lead, late)).reassessOverdue, []);
+
+  /* ANDMEBAAS: vastuse väljad käivad koos; vastatud teadet tagasi võtta ei saa; kuni viis kirjet. */
+  const raw = { organizationId: f.orgA.id, clientId: linda.id, reason: 'NEED_GROWN', text: 'x', channel: 'EMAIL', sentOn: '2026-10-09', sentText: 'x' };
+  await assert.rejects(db.careDecisionNotice.create({ data: { ...raw, reason: 'MUU' } }));
+  await assert.rejects(db.careDecisionNotice.create({ data: { ...raw, channel: 'FAX' } }));
+  await assert.rejects(db.careDecisionNotice.create({ data: { ...raw, sentOn: '9.10.2026' } }));
+  await assert.rejects(db.careDecisionNotice.create({ data: { ...raw, entryIds: ['a', 'b', 'c', 'd', 'e', 'f'] } }));
+  await assert.rejects(db.careDecisionNotice.create({ data: { ...raw, answer: 'REASSESS', answeredOn: '2026-10-09', answeredAt: NOW } }));
+  await assert.rejects(db.careDecisionNotice.create({ data: { ...raw, answer: 'VOLUME_STAYS', answeredOn: '2026-10-09', answeredAt: NOW, reassessBy: '2026-11-01' } }));
+  await assert.rejects(db.careDecisionNotice.create({ data: { ...raw, answeredOn: '2026-10-09' } }));
+  await assert.rejects(db.careDecisionNotice.create({ data: { ...raw, withdrawnAt: NOW } }));
+  await assert.rejects(db.careDecisionNotice.create({ data: { ...raw, answer: 'OTHER_SERVICE', answeredOn: '2026-10-09', answeredAt: NOW, withdrawnAt: NOW, withdrawReason: 'x' } }));
+
+  const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_decision_notice_changed', meta: { path: ['organizationId'], equals: f.orgA.id } } });
+  assert.deepEqual(audit.map((entry) => entry.meta.change).sort(), ['answered', 'sent', 'sent', 'withdrawn']);
+  for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['change', 'clientId', 'organizationId']);
+  assert.equal(JSON.stringify(audit).includes('pliidi'), false);
 });
