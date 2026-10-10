@@ -55,7 +55,10 @@ import {
   deskLead,
   isUnavailable,
   opensItems,
+  refusalIsGeneric,
+  refusalMeansChanged,
   shareErrorText,
+  urgentErrorText,
   sharingParts,
   sharingRow,
   sharingRows,
@@ -66,6 +69,16 @@ import {
    muu, mis püütakse (võrk katkes, brauseri enda ingliskeelne tekst), saab
    kataloogi üldise lause: brauseri teksti ekraanile ei lasta. */
 class SaidError extends Error {}
+
+/**
+ * Keeldumise lause. Kui leht laaditi keeldumise peale uuesti, ei kutsu lause
+ * enam vaadet värskendama (see on juba värske): serveri üldise „seis on
+ * muutunud, värskenda vaadet” asemel öeldakse, et vaade on nüüd värske.
+ */
+function refusalText({ status, payload, t }) {
+  if (refusalIsGeneric(status, payload?.messageKey || payload?.message)) return t("my_sharings.errors.state_changed");
+  return resolveApiMessage({ payload, t, fallbackKey: "my_sharings.errors.action_failed" });
+}
 const said = (error, fallback) => (error instanceof SaidError && error.message ? error.message : fallback);
 
 const EMPTY_SHARINGS = Object.freeze({
@@ -310,11 +323,13 @@ export default function MySharingsPage() {
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || payload?.ok === false) {
-        throw new SaidError(resolveApiMessage({
-          payload,
-          t,
-          fallbackKey: "my_sharings.errors.action_failed"
-        }));
+        /* Laud jõudis abipalve vahepeal läbi lugeda (või seda ei ole enam): leht
+           laaditakse uuesti, et nupp, mis enam õnnestuda ei saa, ette ei jääks. */
+        if (refusalMeansChanged(response.status)) await loadSharings({ preserveData: true });
+        throw new SaidError(
+          urgentErrorText(payload?.message, t) ||
+            refusalText({ status: response.status, payload, t })
+        );
       }
       await finishAction(t("my_sharings.notice.urgent_recalled"));
     } catch (error) {
@@ -325,7 +340,7 @@ export default function MySharingsPage() {
         setBusyKey("");
       }
     }
-  }, [finishAction, locale, resetMessages, t]);
+  }, [finishAction, loadSharings, locale, resetMessages, t]);
 
   /* COLLAB-P4. Suund on siin teistpidi kui ülejäänud lehel: need ei ole asjad,
      mida inimene on jaganud, vaid ettepanek jagada tema KOHTA. Ühendav mõiste
@@ -351,11 +366,12 @@ export default function MySharingsPage() {
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || payload?.ok === false) {
-        const sentence = shareErrorText(payload?.message, t);
         /* Tekst või seis on vahepeal muutunud: laadime jagamised uuesti, et inimene
            näeks seda, mille üle ta nüüd otsustab. */
-        if (response.status === 409 || response.status === 428) await loadSharings({ preserveData: true });
-        throw new SaidError(sentence || t("my_sharings.errors.action_failed"));
+        if (refusalMeansChanged(response.status)) await loadSharings({ preserveData: true });
+        /* Tundmatu kood (lõppenud seanss, kiirusepiir) saab sama lause mis teistel
+           tegevustel, mitte üldise „toiming ebaõnnestus”. */
+        throw new SaidError(shareErrorText(payload?.message, t) || refusalText({ status: response.status, payload, t }));
       }
       await finishAction(t(decision === "CONFIRMED" ? "my_sharings.notice.share_confirmed" : "my_sharings.notice.share_declined"));
     } catch (error) {
@@ -386,19 +402,11 @@ export default function MySharingsPage() {
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || payload?.ok === false) {
-        const message = resolveApiMessage({
-          payload,
-          t,
-          fallbackKey: "my_sharings.errors.action_failed"
-        });
-        /* Mentor jõudis ettevalmistuse vahepeal avada: osa laaditakse uuesti,
-           et nupp, mida enam ei saa kasutada, ette ei jääks. */
-        if (action.kind === "mentoringRecall" && response.status === 409) {
-          await loadSharings({ preserveData: true, section: "mentoringPreparations" });
-          setActionError(message);
-          return;
-        }
-        throw new SaidError(message);
+        /* Seis muutus vahepeal (mentor avas ettevalmistuse, saaja luges
+           pöördumise, kutse võeti vastu, ruumist on juba lahkutud): leht laaditakse
+           uuesti, et nupp, mida enam ei saa kasutada, ette ei jääks. */
+        if (refusalMeansChanged(response.status)) await loadSharings({ preserveData: true });
+        throw new SaidError(refusalText({ status: response.status, payload, t }));
       }
       await finishAction(t(CONFIRMED_ACTIONS[action.kind].done));
     } catch (error) {

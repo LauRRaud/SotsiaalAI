@@ -10247,7 +10247,9 @@
       "origin": "You handed it over from Work wellbeing",
       "shared_at": "Shared {date}",
       "open_relation": "Open relationship",
-      "action_unavailable": "Recall is unavailable here because the mentoring-relation reference is missing. Open the relationship or contact support."
+      "action_unavailable": "Recall is unavailable here because the mentoring-relation reference is missing. Open the relationship or contact support.",
+      "recalled_at": "Taken back {date}",
+      "not_visible": "The mentor no longer sees it"
     },
     "meta": {
       "title": "My shares",
@@ -10277,7 +10279,7 @@
       "invites": "An invite grants access only after it is accepted.",
       "help": "Each listing shows its actual map visibility: public, hidden, under review, expired, or out of sync.",
       "frameworks": "An informative overview of frameworks you confirmed.",
-      "network_shares": "A social worker would like to share a summary of your situation with one service provider. You decide whether and what is shared.",
+      "network_shares": "A social worker would like to share a summary of your situation with one service provider. You decide whether it is shared.",
       "urgent_requests": "Requests you sent to a municipality's intake desk. You can see here whether anyone has read them and what answer came back.",
       "outgoing_network_shares": "Client-confirmed summaries you sent as a worker and their current status.",
       "wellbeing_support_shares": "Wellbeing support requests you deliberately sent to a selected support contact.",
@@ -10355,7 +10357,8 @@
       "share_incoming": "Proposal about you",
       "urgent_request": "Urgent help request",
       "urgent_decline_reason": "Why it could not be taken on",
-      "private_record": "Private record"
+      "private_record": "Private record",
+      "share_recipient": "Shared with"
     },
     "status": {
       "sent": "Sent",
@@ -10416,7 +10419,8 @@
       "refresh_failed": "The action succeeded, but the updated overview could not be loaded. Try reloading the view.",
       "invalid_section": "Unknown sharing section.",
       "section_unavailable": "This sharing section could not be loaded. Your other data remains visible.",
-      "section_timeout": "This sharing section took too long to load. Your other data remains visible."
+      "section_timeout": "This sharing section took too long to load. Your other data remains visible.",
+      "state_changed": "The state had changed in the meantime and this action could no longer be done. The view is now up to date."
     },
     "share_errors": {
       "content_changed": "The worker has changed the text in the meantime. Read the new text and then decide.",
@@ -10496,6 +10500,14 @@
         "share_decline": "After you decline, this summary will not be sent. You cannot change the decision here later."
       },
       "untitled_room": "Untitled room"
+    },
+    "urgent_errors": {
+      "not_recallable": "This request can no longer be taken back: it has already been read or taken into work.",
+      "not_found": "This request was not found. It may have been removed in the meantime."
+    },
+    "share_decided": {
+      "confirmed": "You confirmed this sharing on {date}.",
+      "declined": "You declined this sharing on {date}."
     }
   },
   "effective_practices": {
