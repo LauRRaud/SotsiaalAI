@@ -37,6 +37,9 @@ export const RECORDED_TERMS = Object.freeze({
   koduvallas: ['kodu', 'koduvald', 'koduvallas', 'vald'], vallavalitsuses: ['valitsus', 'valla', 'vallavalitsus', 'vallavalitsuses'], Annelinn: ['anne', 'annelinn', 'linn'], Supilinnas: ['linn', 'supi', 'supilinn', 'supilinnas'],
   Tammelinnas: ['linn', 'tamme', 'tammelinn', 'tammelinnas'], Karlovas: ['karlova', 'karlovas'], Tähtveres: ['täht', 'tähtvere', 'tähtveres', 'vere'], Ülejõel: ['jõgi', 'üle', 'ülejõe', 'ülejõel', 'ülejõgi'],
   Ihastes: ['ihane', 'ihaste', 'ihastes'], Raadil: ['raad', 'raadi', 'raadil'],
+  // Recorded on 11.10.2026 for ADR-139: the three names that are also a form of an everyday word, and the kind words.
+  kanepi: ['kanep', 'kanepi'], Kanepi: ['kanep', 'kanepi'], kanepit: ['kanep', 'kanepit'], Kanepis: ['kanep', 'kanepi', 'kanepis'], tapa: ['tap', 'tapa', 'tapma', 'tapp'], Tapa: ['tap', 'tapa', 'tapma', 'tapp'],
+  Tapal: ['tapa', 'tapal', 'tapp'], nõo: ['nõbu', 'nõgu', 'nõo'], Nõo: ['nõbu', 'nõgu', 'nõo'], Nõos: ['nõbu', 'nõgu', 'nõo', 'nõos'], vallas: ['vald', 'vallas'], valla: ['vald', 'valla'],
 });
 // A stand-in for EstNLTK with the recorded readings. A word that is not recorded reads as itself only, as in the other
 // stand-ins ("Elan", "on"): no test may depend on such a word's lemma.
