@@ -699,6 +699,7 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
           <DraftSection
             caseId={caseId}
             locked={!isActive}
+            archived={record.retentionState === "ARCHIVED"}
             caseBusy={busy}
             active={active}
             onChanged={refreshCase}

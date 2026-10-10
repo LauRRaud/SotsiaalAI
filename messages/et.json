@@ -1332,7 +1332,8 @@
       "field_key_hint": "Ladina suurtähed, numbrid ja alakriips, esimene märk on täht. Näiteks EESMARK.",
       "provenance_label": "Päritolu",
       "review_kind_none": "Määramata",
-      "confirm_not_transferred": "Kinnita: ei kanta, sisu enam ei muudeta"
+      "confirm_not_transferred": "Kinnita: ei kanta, sisu enam ei muudeta",
+      "purged_chip_retention": "Sisu kustutatud"
     },
     "star2": {
       "MUSTAND": "Mustand",
@@ -1607,7 +1608,8 @@
       "create_action_key_invalid": "Juhtumi loomistunnus on vigase kujuga.",
       "create_action_key_conflict": "Sama loomistunnus on juba kasutusel teise sisuga. Alusta juhtumi loomist uuesti.",
       "working_material_empty": "Kandmata mustandeid, mille sisu kustutada, ei ole.",
-      "prep_content_purged": "Selle ettevalmistuse sisu on arhiveeritud. Uut sisu siia ei lisata."
+      "prep_content_purged": "Selle ettevalmistuse sisu on arhiveeritud. Uut sisu siia ei lisata.",
+      "draft_content_purged": "Selle mustandi sisu on kustutatud. Uusi välju siia ei lisata."
     },
     "page": {
       "confirm_erase_client_reference": "Kinnita: kustuta kliendiviide jäädavalt",
@@ -1822,7 +1824,8 @@
       "copy_hint": "Kopeerimine viib elemendi väljad lõikelauale ja jätab jälje ülekandeajalukku. Elemendi seisu see ei muuda.",
       "copy_empty": "Elemendil ei ole välju, mida kopeerida.",
       "block_label": "Kopeeritav tekst",
-      "audit_pending_chip": "Jälg salvestamata"
+      "audit_pending_chip": "Jälg salvestamata",
+      "content_archived": "Selle mustandi sisu kustus, kui arhiveerisid töömaterjali. Väljad on kustutatud ja uusi siia ei lisata."
     }
   },
   "common": {

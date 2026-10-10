@@ -418,6 +418,19 @@ export function draftRows(drafts, { t, pendingAudits = null }) {
     }));
 }
 
+/**
+ * Kustutatud sisuga mustand: märk ja lause põhjuse järgi. Töötaja enda
+ * arhiveeritud töömaterjali kohta ei kehti lause säilitustähtajast ega alles
+ * jäänud ülekande faktist: ülekannet ei olnud ja väljad on läinud.
+ * Tagastab `null`, kui sisu on alles.
+ */
+export function draftPurge(draft) {
+  if (!draft?.contentPurgedAt) return null;
+  return draft.contentPurgeReason === "WORKER_ARCHIVED_WORKING_MATERIAL"
+    ? { chipKey: "casework.prep.purged_chip", noteKey: "casework.transfer.content_archived" }
+    : { chipKey: "casework.draft.purged_chip_retention", noteKey: "casework.transfer.content_purged" };
+}
+
 /** Avatud elemendi päis: mis element see on ja mis seisus. */
 export function draftHead(draft, { t }) {
   return {

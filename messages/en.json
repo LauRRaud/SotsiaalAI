@@ -1332,7 +1332,8 @@
       "field_key_hint": "Latin capital letters, digits and underscore, starting with a letter. For example GOAL.",
       "provenance_label": "Provenance",
       "review_kind_none": "Not specified",
-      "confirm_not_transferred": "Confirm: not transferred, the content is no longer edited"
+      "confirm_not_transferred": "Confirm: not transferred, the content is no longer edited",
+      "purged_chip_retention": "Content deleted"
     },
     "star2": {
       "MUSTAND": "Draft",
@@ -1607,7 +1608,8 @@
       "create_action_key_invalid": "The case creation identifier has an invalid format.",
       "create_action_key_conflict": "That creation identifier is already in use with different content. Start creating the case again.",
       "working_material_empty": "There are no untransferred drafts whose content could be deleted.",
-      "prep_content_purged": "The content of this preparation has been archived. No new content is added here."
+      "prep_content_purged": "The content of this preparation has been archived. No new content is added here.",
+      "draft_content_purged": "The content of this draft has been deleted. No new fields are added here."
     },
     "page": {
       "confirm_erase_client_reference": "Confirm: erase the client reference permanently",
@@ -1822,7 +1824,8 @@
       "copy_hint": "Copying puts the fields of the element on the clipboard and leaves a trace in the transfer history. It does not change the state of the element.",
       "copy_empty": "The element has no fields to copy.",
       "block_label": "Text to copy",
-      "audit_pending_chip": "Trace not saved"
+      "audit_pending_chip": "Trace not saved",
+      "content_archived": "The content of this draft was deleted when you archived the working material. The fields are deleted and no new ones are added here."
     }
   },
   "common": {

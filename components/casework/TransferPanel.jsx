@@ -52,7 +52,7 @@ async function writeClipboard(text) {
  *
  * @returns vaate mudel (vt `DraftTransferView`)
  */
-export function useTransferActions({ caseId, draft, locale, disabled, pendingAudits, setPendingAudits, onChanged, t }) {
+export function useTransferActions({ caseId, draft, locale, disabled, copyDisabled = disabled, pendingAudits, setPendingAudits, onChanged, t }) {
   const [phase, setPhase] = useState(null);
   const [block, setBlock] = useState(null);
   const [errorKey, setErrorKey] = useState(null);
@@ -150,6 +150,9 @@ export function useTransferActions({ caseId, draft, locale, disabled, pendingAud
   const clipboardFailed = phase === COPY_PHASE.CLIPBOARD_FAILED;
   return {
     working: disabled || busy,
+    /* Kopeerimine on lugemistegu ja server lubab seda ka kirjutuskaitstud
+       juhtumis (lib/casework/caseWorkTransfer.js): selle lukk on eraldi. */
+    copyBlocked: copyDisabled || busy,
     purged: Boolean(draft.contentPurgedAt),
     canMark: draft.transferState === "VALMIS_ULEKANDEKS",
     copied: phase === COPY_PHASE.COPIED && !queue.length,

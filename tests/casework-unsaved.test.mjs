@@ -11,7 +11,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
 import { caseFormUnsaved } from '../components/casework/caseViews.js';
-import { PREP_FIELD_KEYS, canCorrectEntry, draftUnsaved, noteUnsaved, prepUnsaved } from '../components/casework/sections/sectionRows.js';
+import { PREP_FIELD_KEYS, canCorrectEntry, draftPurge, draftUnsaved, noteUnsaved, prepUnsaved } from '../components/casework/sections/sectionRows.js';
 import { panelLeaveAllowed, setPanelLeaveGuard, twoPressLeaveGuard } from '../lib/panelLeaveGuard.js';
 
 const read = (path) => fs.readFileSync(new URL(path, import.meta.url), 'utf8');
@@ -160,6 +160,53 @@ test('salvestatud kirje parandus: uus tekst, mis erineb salvestatust, ja kohustu
     for (const key of ['correct_entry', 'correct_text', 'correct_reason', 'save_correction', 'correct_hint']) {
       assert.ok(typeof note[key] === 'string' && note[key], `${lang}: ${key}`);
     }
+  }
+});
+
+test('kirjutuskaitstud juhtumis saab STAR2 jaoks kopeerida, arhiveeritud juhtumis mitte', () => {
+  /* Server: READ_ONLY on kopeerimisele lubatud, ARCHIVED annab 409. Leht järgib sama piiri. */
+  const server = read('../lib/casework/caseWorkTransfer.js');
+  assert.ok(server.includes('if (caseWork.retentionState === RETENTION_STATE.ARCHIVED) {'));
+  const detail = read('../components/casework/CaseWorkDetail.jsx');
+  assert.ok(detail.includes('archived={record.retentionState === "ARCHIVED"}'));
+  const panel = read('../components/casework/TransferPanel.jsx');
+  assert.ok(panel.includes('copyDisabled = disabled,') && panel.includes('copyBlocked: copyDisabled || busy,'));
+  assert.ok(panel.includes('working: disabled || busy,'), 'ülekantuks märkimine jääb kirjutamise luku taha');
+  const views = read('../components/casework/sections/DraftViews.jsx');
+  assert.ok(views.includes('disabled={model.copyBlocked || model.purged} onClick={model.onCopy}'));
+  assert.ok(views.includes('disabled={model.working}') && views.includes('onConfirm={model.onMark}'));
+});
+
+test('kustutatud sisuga mustand: uut välja ei lisata ja lause ütleb õige põhjuse', () => {
+  assert.equal(draftPurge({ contentPurgedAt: null }), null);
+  assert.equal(draftPurge(null), null);
+  /* Töötaja arhiveeris töömaterjali ise: ei säilitustähtaega ega alles jäänud ülekande fakti. */
+  assert.deepEqual(draftPurge({ contentPurgedAt: '2026-10-01T08:00:00.000Z', contentPurgeReason: 'WORKER_ARCHIVED_WORKING_MATERIAL' }), {
+    chipKey: 'casework.prep.purged_chip', noteKey: 'casework.transfer.content_archived'
+  });
+  /* Säilitustähtaeg pärast ülekannet (ja vana rida, millel põhjust ei ole). */
+  const retention = { chipKey: 'casework.draft.purged_chip_retention', noteKey: 'casework.transfer.content_purged' };
+  assert.deepEqual(draftPurge({ contentPurgedAt: '2026-10-01T08:00:00.000Z', contentPurgeReason: 'RETENTION_AFTER_TRANSFER' }), retention);
+  assert.deepEqual(draftPurge({ contentPurgedAt: '2026-10-01T08:00:00.000Z' }), retention);
+  /* Põhjuste loend on sama mis teenuskihis. */
+  const reasons = /export const PURGE_REASON = Object\.freeze\(\{([^}]*)\}\)/.exec(read('../lib/casework/retention.js'))?.[1] || '';
+  assert.deepEqual([...reasons.matchAll(/"([A-Z_]+)"/g)].map((match) => match[1]).sort(), ['RETENTION_AFTER_TRANSFER', 'WORKER_ARCHIVED_WORKING_MATERIAL']);
+
+  /* Server: põhjus tuleb vastusega ja kustutatud sisuga mustand ei võta uut välja (409 oma võtmega). */
+  const service = read('../lib/casework/caseWorkDraft.js');
+  assert.ok(service.includes('contentPurgeReason: true,'));
+  assert.ok(service.includes('if (draft.contentPurgedAt) throw conflict("casework.errors.draft_content_purged");'));
+  assert.ok(service.includes('select: { id: true, transferState: true, contentPurgedAt: true }'));
+  assert.ok(service.indexOf('assertDraftContentKept(draft);') > service.indexOf('export async function setField'));
+  /* Leht: nuppu „Lisa väli” ei pakuta ja lause tuleb põhjuse järgi mõlemal sakil. */
+  const section = read('../components/casework/DraftSection.jsx');
+  assert.ok(section.includes('add: view.terminal || purge ? null :'));
+  assert.ok(section.includes('draftTransferView({ t, model: transfer, glow, purgedNote })'));
+  assert.ok(!section.includes('t("casework.transfer.content_purged", "")'), 'lause ei ole enam üks ja sama iga põhjuse kohta');
+  for (const lang of LANGS) {
+    const words = JSON.parse(read(`../messages/${lang}.json`)).casework;
+    assert.ok(words.errors.draft_content_purged && words.transfer.content_archived && words.draft.purged_chip_retention, lang);
+    assert.notEqual(words.transfer.content_archived, words.transfer.content_purged, lang);
   }
 });
 
