@@ -36,12 +36,13 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 
 import { caseWorkRequest, fromLocalInputValue } from "./caseWorkClient";
-import { noteEntryView, noteHistoryView, noteLayerView } from "./sections/NoteViews";
+import { noteEntryCorrectView, noteEntryView, noteHistoryView, noteLayerView } from "./sections/NoteViews";
 import { ItemListView, MeetingCreateView, OpenView, rowAddView, useSwapFocus } from "./sections/SectionBits";
 import {
   NOTE_TABS,
   PRIVATE_LAYER,
   canAddRow,
+  canCorrectEntry,
   entryRows,
   noteRows,
   noteTabs,
@@ -155,10 +156,10 @@ export default function MeetingNoteSection({ caseId, locked, caseBusy, active, o
    */
   const openNoteId = openNote?.id || null;
   const write = useCallback(
-    (path, body) => {
+    (path, body, method = "POST") => {
       if (!openNoteId) return Promise.resolve(null);
       return run(async () => {
-        const answer = await caseWorkRequest(`${root}/${encodeURIComponent(openNoteId)}${path}`, { method: "POST", locale, body });
+        const answer = await caseWorkRequest(`${root}/${encodeURIComponent(openNoteId)}${path}`, { method, locale, body });
         /* Kui märge suleti päringu ajal, ei ava vastus seda uuesti. */
         if (requestedNoteId.current === openNoteId) await loadNote(openNoteId);
         return answer;
@@ -177,7 +178,10 @@ export default function MeetingNoteSection({ caseId, locked, caseBusy, active, o
        * ja ilma jäljeta: kõik read sai ükshaaval ära võtta ning alles jäi tühi
        * konteiner, mis näis endiselt kohtumise tõendina.
        */
-      retractEntry: (entryId, reason) => write(`/entries/${encodeURIComponent(entryId)}/retract`, { reason })
+      retractEntry: (entryId, reason) => write(`/entries/${encodeURIComponent(entryId)}/retract`, { reason }),
+      /* PARANDUS: uus tekst ja kohustuslik põhjus; eelmine tekst jääb ajalukku
+         (server). Kihti ega päritolu siit ei muudeta. */
+      correctEntry: (entryId, text, reason) => write(`/entries/${encodeURIComponent(entryId)}`, { text, reason }, "PATCH")
     }),
     [write]
   );
@@ -293,10 +297,13 @@ function NoteEditor({ t, locale, note, revisions, locked, busy, glow, errorText,
   /* Tagasivõtmise põhjus kirje kaupa: teise kirje avamine ei kustuta pooleli
      põhjust ega kanna seda teise kirje alla. */
   const [reasons, setReasons] = useState({});
+  /* Pooleli parandus kirje kaupa: { text, reason }. Tekst on siin ainult siis,
+     kui see erineb salvestatust (sama tekst ei ole pooleli parandus). */
+  const [corrections, setCorrections] = useState({});
 
-  /* Pooleli rida või põhjus teatatakse juhtumi vaatele (lahkumise värav) ja
-     avatud märkme sulgemine küsib enne üle. */
-  const dirty = !locked && noteUnsaved(drafts, reasons);
+  /* Pooleli rida, põhjus või parandus teatatakse juhtumi vaatele (lahkumise
+     värav) ja avatud märkme sulgemine küsib enne üle. */
+  const dirty = !locked && noteUnsaved(drafts, reasons, corrections);
   useEffect(() => {
     onUnsaved?.(dirty);
   }, [dirty, onUnsaved]);
@@ -311,6 +318,7 @@ function NoteEditor({ t, locale, note, revisions, locked, busy, glow, errorText,
   const isLayer = tab !== "history";
   const entries = isLayer ? entryRows(note, tab, context) : [];
   const openEntry = sub?.view === "entry" ? entries.find((row) => row.id === sub.id && !row.retracted) || null : null;
+  const correctEntry = sub?.view === "correct" ? entries.find((row) => row.id === sub.id && !row.retracted) || null : null;
   const layerTitle = isLayer ? t(`casework.note.layer_${tab}`, "") : "";
 
   /* AVATUD MÄRKME IDENTITEET ON NÄHTAV igas vaates. Ilma selleta ei ütle ükski
@@ -373,6 +381,50 @@ function NoteEditor({ t, locale, note, revisions, locked, busy, glow, errorText,
       };
     }
 
+    if (correctEntry) {
+      const pending = corrections[correctEntry.id] || {};
+      const text = pending.text ?? correctEntry.text;
+      const reason = pending.reason || "";
+      const change = (patch) =>
+        setCorrections((current) => {
+          const next = { ...(current[correctEntry.id] || {}), ...patch };
+          /* Salvestatuga sama tekst ei ole pooleli parandus. */
+          if (next.text === correctEntry.text) delete next.text;
+          return { ...current, [correctEntry.id]: next };
+        });
+      const ready = canCorrectEntry({ text, saved: correctEntry.text, reason });
+      return {
+        frame: focused,
+        view: noteEntryCorrectView({
+          t,
+          title: layerTitle,
+          formId,
+          text: { value: text, onChange: (value) => change({ text: value }) },
+          reason: { value: reason, onChange: (value) => change({ reason: value }) },
+          locked,
+          busy,
+          glow,
+          canSubmit: ready,
+          onSubmit: async (event) => {
+            event.preventDefault();
+            if (!ready) return;
+            const done = await actions.correctEntry(correctEntry.id, text.trim(), reason.trim());
+            /* Pooleli parandus tühjendatakse AINULT õnnestumisel. Ees on jälle
+               kirje, nüüd uue tekstiga ja märgiga, et seda on parandatud. */
+            if (!done) return;
+            setCorrections((current) => {
+              const rest = { ...current };
+              delete rest[correctEntry.id];
+              return rest;
+            });
+            setSub({ view: "entry", id: correctEntry.id });
+          },
+          /* Loobumine jätab pooleli paranduse alles: vaade avaneb sellega uuesti. */
+          onCancel: () => setSub({ view: "entry", id: correctEntry.id })
+        })
+      };
+    }
+
     if (openEntry) {
       const reason = reasons[openEntry.id] || "";
       return {
@@ -383,6 +435,7 @@ function NoteEditor({ t, locale, note, revisions, locked, busy, glow, errorText,
           row: openEntry,
           reason: { value: reason, onChange: (value) => setReasons((current) => ({ ...current, [openEntry.id]: value })) },
           locked,
+          correct: { disabled: locked || busy, onOpen: () => setSub({ view: "correct", id: openEntry.id }) },
           retract: {
             disabled: locked || busy || !reason.trim(),
             onConfirm: async () => {

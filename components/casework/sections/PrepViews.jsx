@@ -26,6 +26,7 @@
 
 import TextAreaField from "@/components/stage/TextAreaField";
 import Button from "@/components/ui/Button";
+import Input from "@/components/ui/Input";
 
 import { Chip } from "../cases/CaseListViews";
 import base from "../cases/cases.module.css";
@@ -39,21 +40,42 @@ import styles from "./sections.module.css";
  * `remove` puudub arhiveeritud sisuga ettevalmistusel: see on arhiveerimise
  * marker ja peab alles jääma (O-JTA-6), server keeldub kustutamast.
  */
-export function prepOverviewView({ t, overview, remove }) {
+export function prepOverviewView({ t, overview, remove, time = null }) {
   return {
     title: t("casework.prep.overview_title", ""),
-    actions: remove ? (
-      <TwoStep
-        key="delete"
-        t={t}
-        label={t("casework.prep.delete", "")}
-        confirmLabel={t("casework.prep.confirm_delete", "")}
-        disabled={remove.disabled}
-        onConfirm={remove.onConfirm}
-      />
-    ) : null,
+    actions:
+      remove || time ? (
+        <>
+          {remove ? (
+            <TwoStep
+              key="delete"
+              t={t}
+              label={t("casework.prep.delete", "")}
+              confirmLabel={t("casework.prep.confirm_delete", "")}
+              disabled={remove.disabled}
+              onConfirm={remove.onConfirm}
+            />
+          ) : null}
+          {time ? (
+            <Button type="submit" form={time.formId} size="sm" variant="secondary" disabled={time.disabled || !time.changed}>
+              {t("casework.prep.save_time", "")}
+            </Button>
+          ) : null}
+        </>
+      ) : null,
     body: (
       <>
+        {/* Kohtumise aega saab seada ja muuta ka pärast alustamist: ilma ajata
+            alustatud ettevalmistus ei jää igaveseks „aeg kokku leppimata”. Tühi
+            väli võtab aja ära. */}
+        {time ? (
+          <form id={time.formId} className={base.fields} onSubmit={time.onSubmit}>
+            <label className={base.field} data-size="sm">
+              <span className={base.fieldLabel}>{t("casework.prep.meeting_at", "")}</span>
+              <Input type="datetime-local" value={time.value} disabled={time.disabled} onChange={(event) => time.onChange(event.target.value)} />
+            </label>
+          </form>
+        ) : null}
         {/* O-JTA-6: arhiveeritud sisuga ettevalmistus on TÜHJAST ERISTATAV. Ilma
             selleta näeks „töötaja arhiveeris töömaterjali" välja täpselt nagu
             „ettevalmistust ei ole veel alustatud". */}

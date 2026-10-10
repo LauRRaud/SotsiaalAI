@@ -33,7 +33,7 @@ import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react"
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 
-import { caseWorkRequest, fromLocalInputValue } from "./caseWorkClient";
+import { caseWorkRequest, fromLocalInputValue, toLocalInputValue } from "./caseWorkClient";
 import { prepFieldView, prepOverviewView, prepQuestionView, prepQuestionsView } from "./sections/PrepViews";
 import { Chip } from "./cases/CaseListViews";
 import { ItemListView, MeetingCreateView, OpenView, provenanceView, rowAddView, useSwapFocus } from "./sections/SectionBits";
@@ -176,6 +176,13 @@ export default function MeetingPrepSection({ caseId, locked, caseBusy, active, o
 
   const actions = useMemo(
     () => ({
+      /* Kohtumise aeg: ainus väli, mida ettevalmistuse enda kohta muuta saab.
+         Loend laetakse uuesti, sest rea nimi on see aeg. */
+      saveTime: async (meetingAt) => {
+        const done = await write("", { method: "PATCH", body: { meetingAt } });
+        if (done) await run(() => loadPreps());
+        return done;
+      },
       saveField: (fieldKey, text, provenance) => write("/fields", { method: "PUT", body: { fieldKey, text, provenance } }),
       confirmField: (fieldKey, from, to) =>
         write(`/fields/${encodeURIComponent(fieldKey)}/confirm-provenance`, { method: "POST", body: { from, to } }),
@@ -184,7 +191,7 @@ export default function MeetingPrepSection({ caseId, locked, caseBusy, active, o
       confirmQuestion: (questionId, from, to) =>
         write(`/questions/${encodeURIComponent(questionId)}/confirm-provenance`, { method: "POST", body: { from, to } })
     }),
-    [write]
+    [loadPreps, run, write]
   );
 
   const swapRef = useSwapFocus(openPrep ? `open:${openPrep.id}` : mode);
@@ -314,6 +321,14 @@ function PrepEditor({ t, locale, prep, landOn, locked, busy, glow, errorText, ac
   /* Kinnitamise siht. Vaikimisi valikut ei ole: märgis, mille inimene ei
      valinud, ei ole märgis. */
   const [confirmTo, setConfirmTo] = useState("");
+  /* Kohtumise aeg välja kujul. Kui salvestatud aeg muutub (oma salvestus või
+     teine aken), võtab väli selle üle. */
+  const savedMeetingAt = toLocalInputValue(prep.meetingAt);
+  const [meetingAt, setMeetingAt] = useState(savedMeetingAt);
+  useEffect(() => {
+    setMeetingAt(savedMeetingAt);
+  }, [savedMeetingAt]);
+  const timeChanged = meetingAt !== savedMeetingAt;
 
   /* Kui serveris muutus välja tekst (oma salvestus, mille server kärpis, või
      muudatus teisest aknast), võtab väli selle üle. AINULT see väli: teiste
@@ -334,7 +349,7 @@ function PrepEditor({ t, locale, prep, landOn, locked, busy, glow, errorText, ac
   /* Salvestamata tekst teatatakse juhtumi vaatele (lahkumise värav) ja avatud
      ettevalmistuse sulgemine küsib enne üle. Kirjutuskaitstud ettevalmistusse
      ei saa midagi kirjutada. */
-  const dirty = !writeLocked && prepUnsaved(prep, texts, question);
+  const dirty = !writeLocked && (timeChanged || prepUnsaved(prep, texts, question));
   useEffect(() => {
     onUnsaved?.(dirty);
   }, [dirty, onUnsaved]);
@@ -520,7 +535,21 @@ function PrepEditor({ t, locale, prep, landOn, locked, busy, glow, errorText, ac
           overview: prepOverview(prep, context),
           /* Kustutus on pöördumatu ja teda ei auditeerita — küsitakse üle.
              Arhiveeritud sisuga ettevalmistust ei kustutata (O-JTA-6). */
-          remove: purged ? null : { disabled: locked || busy, onConfirm: onDelete }
+          remove: purged ? null : { disabled: locked || busy, onConfirm: onDelete },
+          /* Arhiveeritud sisuga ja kirjutuskaitstud ettevalmistuse aega ei muudeta. */
+          time: writeLocked
+            ? null
+            : {
+                formId,
+                value: meetingAt,
+                onChange: setMeetingAt,
+                changed: timeChanged,
+                disabled: busy,
+                onSubmit: (event) => {
+                  event.preventDefault();
+                  if (timeChanged) actions.saveTime(fromLocalInputValue(meetingAt));
+                }
+              }
         })
       };
     }

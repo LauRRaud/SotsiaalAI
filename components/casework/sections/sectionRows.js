@@ -312,6 +312,16 @@ export function entryRows(note, layer, { t }) {
 }
 
 /**
+ * Salvestatud kirje parandus läheb teele, kui uus tekst on olemas ja erineb
+ * salvestatust ning põhjus on kirjutatud (server nõuab põhjust: parandus ilma
+ * põhjuseta ei erista eksituse parandamist sisu ümberkirjutamisest).
+ */
+export function canCorrectEntry({ text, saved, reason }) {
+  const next = String(text || "").trim();
+  return Boolean(next) && next !== String(saved || "").trim() && Boolean(String(reason || "").trim());
+}
+
+/**
  * Paranduste ja tühistuste ajalugu (SOL-CW-15). ASENDATUD TEKST ON SIIN NÄHTAV:
  * see ongi tõend. Põhjus on kasutaja enda tekst ja rea mõte.
  */

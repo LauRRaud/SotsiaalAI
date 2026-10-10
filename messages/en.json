@@ -1396,7 +1396,12 @@
         "STAR2_KANTAV": "For STAR2",
         "PRIVAATNE_REFLEKSIOON": "Reflection",
         "history": "Corrections"
-      }
+      },
+      "correct_entry": "Correct",
+      "correct_text": "Corrected text",
+      "correct_reason": "Reason for the correction",
+      "save_correction": "Save the correction",
+      "correct_hint": "The earlier text, the time and the reason stay under corrections. A correction does not change the row's origin."
     },
     "prep": {
       "load_more": "Show more",
@@ -1453,7 +1458,8 @@
       "confirm_as": "What is the provenance of this text?",
       "add_kind_CLARIFYING_QUESTION": "Add a question",
       "add_kind_CLAIM_TO_VERIFY": "Add a claim",
-      "choose_provenance": "Choose the provenance and save"
+      "choose_provenance": "Choose the provenance and save",
+      "save_time": "Save the time"
     },
     "workbench": {
       "title": "Casework desk",

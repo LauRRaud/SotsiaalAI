@@ -1396,7 +1396,12 @@
         "STAR2_KANTAV": "STAR2-sse kantav",
         "PRIVAATNE_REFLEKSIOON": "Refleksioon",
         "history": "Parandused"
-      }
+      },
+      "correct_entry": "Paranda",
+      "correct_text": "Parandatud tekst",
+      "correct_reason": "Paranduse põhjus",
+      "save_correction": "Salvesta parandus",
+      "correct_hint": "Eelmine tekst, aeg ja põhjus jäävad paranduste alla alles. Rea päritolu parandus ei muuda."
     },
     "prep": {
       "load_more": "Näita rohkem",
@@ -1453,7 +1458,8 @@
       "confirm_as": "Mis on selle teksti päritolu?",
       "add_kind_CLARIFYING_QUESTION": "Lisa küsimus",
       "add_kind_CLAIM_TO_VERIFY": "Lisa väide",
-      "choose_provenance": "Vali päritolu ja salvesta"
+      "choose_provenance": "Vali päritolu ja salvesta",
+      "save_time": "Salvesta aeg"
     },
     "workbench": {
       "title": "Juhtumitöö laud",

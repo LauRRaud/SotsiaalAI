@@ -11,7 +11,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
 import { caseFormUnsaved } from '../components/casework/caseViews.js';
-import { PREP_FIELD_KEYS, draftUnsaved, noteUnsaved, prepUnsaved } from '../components/casework/sections/sectionRows.js';
+import { PREP_FIELD_KEYS, canCorrectEntry, draftUnsaved, noteUnsaved, prepUnsaved } from '../components/casework/sections/sectionRows.js';
 import { panelLeaveAllowed, setPanelLeaveGuard, twoPressLeaveGuard } from '../lib/panelLeaveGuard.js';
 
 const read = (path) => fs.readFileSync(new URL(path, import.meta.url), 'utf8');
@@ -127,5 +127,57 @@ test('juhtumi vaade: värav on peal ainult salvestamata tekstiga ja osa tegu ei 
   for (const lang of LANGS) {
     const text = JSON.parse(read(`../messages/${lang}.json`)).casework.page.unsaved_leave;
     assert.ok(typeof text === 'string' && text.length > 20, lang);
+  }
+});
+
+test('salvestatud kirje parandus: uus tekst, mis erineb salvestatust, ja kohustuslik põhjus', () => {
+  const saved = 'Klient elab üksi.';
+  assert.equal(canCorrectEntry({ text: 'Klient elab koos pojaga.', saved, reason: 'Eksisin kirjutades' }), true);
+  assert.equal(canCorrectEntry({ text: 'Klient elab koos pojaga.', saved, reason: '   ' }), false, 'põhjuseta parandust ei saadeta');
+  assert.equal(canCorrectEntry({ text: saved, saved, reason: 'põhjus' }), false, 'sama tekst ei ole parandus');
+  assert.equal(canCorrectEntry({ text: ` ${saved} `, saved, reason: 'põhjus' }), false);
+  assert.equal(canCorrectEntry({ text: '  ', saved, reason: 'põhjus' }), false, 'tühjaks ei parandata: selleks on tagasivõtmine');
+  assert.equal(canCorrectEntry({}), false);
+
+  /* Päring on serveri parandamise tee: PATCH kirjele, kehas ainult tekst ja põhjus (kihti ja päritolu ei saadeta). */
+  const section = read('../components/casework/MeetingNoteSection.jsx');
+  assert.ok(section.includes('correctEntry: (entryId, text, reason) => write(`/entries/${encodeURIComponent(entryId)}`, { text, reason }, "PATCH")'));
+  assert.ok(section.includes('(path, body, method = "POST") => {') && section.includes('{ method, locale, body }'));
+  /* Pooleli parandus loetakse salvestamata tekstiks ja tühjendatakse ainult õnnestumisel. */
+  assert.ok(section.includes('noteUnsaved(drafts, reasons, corrections)'));
+  assert.ok(section.indexOf('if (!done) return;\n            setCorrections') > 0 || section.indexOf('if (!done) return;\r\n            setCorrections') > 0);
+  /* Kirjutuskaitstud juhtumis parandada ei saa; tagasi võetud kirjet ei avata. */
+  assert.ok(section.includes('correct: { disabled: locked || busy, onOpen: () => setSub({ view: "correct", id: openEntry.id }) }'));
+  assert.ok(section.includes('sub?.view === "correct" ? entries.find((row) => row.id === sub.id && !row.retracted) || null : null'));
+  /* Server nõuab põhjust ja hoiab eelmise teksti alles: marsruut on olemas ja seda siin ei muudetud. */
+  const route = read('../app/api/casework/cases/[caseId]/meeting-notes/[noteId]/entries/[entryId]/route.js');
+  assert.ok(route.includes('export async function PATCH') && route.includes('reason: body?.reason') && !route.includes('export async function DELETE'));
+
+  const views = read('../components/casework/sections/NoteViews.jsx');
+  assert.ok(views.includes('export function noteEntryCorrectView') && views.includes('t("casework.note.correct_entry", "")'));
+  for (const lang of LANGS) {
+    const note = JSON.parse(read(`../messages/${lang}.json`)).casework.note;
+    for (const key of ['correct_entry', 'correct_text', 'correct_reason', 'save_correction', 'correct_hint']) {
+      assert.ok(typeof note[key] === 'string' && note[key], `${lang}: ${key}`);
+    }
+  }
+});
+
+test('ettevalmistuse kohtumise aega saab seada ja muuta ka pärast alustamist', () => {
+  const section = read('../components/casework/MeetingPrepSection.jsx');
+  /* Päring on serveri olemasolev tee: PATCH ettevalmistusele, kehas ainult aeg; loend laetakse uuesti. */
+  assert.ok(section.includes('const done = await write("", { method: "PATCH", body: { meetingAt } });'));
+  assert.ok(section.includes('if (done) await run(() => loadPreps());'));
+  /* Välja ei pakuta kirjutuskaitstud juhtumis ega arhiveeritud sisuga ettevalmistuses. */
+  assert.ok(section.includes('time: writeLocked\n            ? null') || section.includes('time: writeLocked\r\n            ? null'));
+  /* Muutmata aega ei salvestata; muudetud, salvestamata aeg on salvestamata tekst. */
+  assert.ok(section.includes('if (timeChanged) actions.saveTime(fromLocalInputValue(meetingAt));'));
+  assert.ok(section.includes('const dirty = !writeLocked && (timeChanged || prepUnsaved(prep, texts, question));'));
+  const views = read('../components/casework/sections/PrepViews.jsx');
+  assert.ok(views.includes('disabled={time.disabled || !time.changed}') && views.includes('type="datetime-local"'));
+  const route = read('../app/api/casework/cases/[caseId]/meeting-preps/[prepId]/route.js');
+  assert.ok(route.includes('export async function PATCH') && route.includes('meetingAt: body?.meetingAt ?? null'));
+  for (const lang of LANGS) {
+    assert.ok(JSON.parse(read(`../messages/${lang}.json`)).casework.prep.save_time, lang);
   }
 });
