@@ -15,6 +15,7 @@ import { euroText } from "./HomeCareMoney";
 import HomeCareObstacle from "./HomeCareObstacle";
 import { minutesLabel } from "./HomeCareDecisionView";
 import HomeCareOutbox from "./HomeCareOutbox";
+import HomeCareOwnName from "./HomeCareOwnName";
 import HomeCareReferrals from "./HomeCareReferrals";
 import { planDayLabel } from "./HomeCarePlanView";
 import { clientHref, homeCareBase, useHomeCareApi } from "./homeCareClient";
@@ -91,7 +92,7 @@ function MyVisit({ organizationId, visit }) {
  * OTSING näitab ainult nime ja seisu. Meeskonnast väljas oleva kliendi leht
  * küsib avamisel põhjust (asendaja tee).
  */
-export default function HomeCareHome({ context, initial, unitOptions, myDay = null, referrals = null, setupHint = null }) {
+export default function HomeCareHome({ context, initial, unitOptions, myDay = null, referrals = null, setupHint = null, ownName = null }) {
   const { t, locale } = useI18n();
   const router = useRouter();
   const organizationId = context.organization.id;
@@ -136,6 +137,9 @@ export default function HomeCareHome({ context, initial, unitOptions, myDay = nu
           {isCoordinator ? t("home_care.home.intro_coordinator") : t("home_care.home.intro_worker")}
         </p>
       </div>
+
+      {/* Nimeta inimene: kolleegid näeksid tema kohal kriipsu, seepärast on vorm kohe ees. */}
+      {ownName && !ownName.complete ? <HomeCareOwnName organizationId={organizationId} initial={ownName} /> : null}
 
       {/* Hooldusjuhti ei ole üldse: ilma temata ei saa keegi kliente lisada. Omanik saab
           õiguse ise anda, seepärast on tal link lehele „Liikmed". */}
@@ -480,6 +484,9 @@ export default function HomeCareHome({ context, initial, unitOptions, myDay = nu
           </ul>
         )}
       </div>
+
+      {/* Nimi on kirjas: vaikne rida lehe lõpus ja tee selle muutmiseks. */}
+      {ownName?.complete ? <HomeCareOwnName organizationId={organizationId} initial={ownName} /> : null}
     </section>
   );
 }
