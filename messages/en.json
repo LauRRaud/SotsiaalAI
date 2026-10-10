@@ -13746,7 +13746,10 @@
       "first_visits_not_reached": "{date} at {time}: {name} goes for the first time, the client could not be told",
       "help_drift_title": "More help has been needed than planned",
       "help_drift_empty": "No client has needed noticeably more help than planned.",
-      "help_drift_line": "in the last four weeks {more} of {total} activities with more help than planned"
+      "help_drift_line": "in the last four weeks {more} of {total} activities with more help than planned",
+      "homecomings_title": "Clients who came home and have not been visited since",
+      "homecomings_empty": "Every client who came home has been visited.",
+      "homecomings_line": "came home on {date}, away from {from}"
     },
     "visit": {
       "title": "What you did",
@@ -14859,6 +14862,13 @@
           "REFUSED_HELP": "we came, but you did not want help"
         }
       }
+    },
+    "homecoming": {
+      "notice": "Came home on {date}, was away from {from}",
+      "first_visit": "No visit has been recorded here since. On the first visit check food, medicines and heating, and ask whether help is now needed differently than before.",
+      "coordinator": "Plan the first visit longer than usual.",
+      "day_line": "Homecoming: first visit after the absence (came home on {date}).",
+      "my_line": "Homecoming: came home on {date}. Check food, medicines and heating; ask whether help is needed differently."
     }
   },
   "stage": {

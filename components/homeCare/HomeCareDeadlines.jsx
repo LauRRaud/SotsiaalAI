@@ -197,6 +197,21 @@ export default function HomeCareDeadlines({ context, deadlines }) {
           )
         : null}
 
+      {/* Koju tulnud kliendid, kelle juures ei ole pärast naasmist käidud (K6-f). */}
+      {(deadlines.homecomingsOpen || []).length
+        ? section("homecomings", deadlines.homecomingsOpen, (item) =>
+            clientLine(
+              item,
+              [
+                item.reason ? t(`home_care.status_reason.AWAY.${item.reason}`) : null,
+                t("home_care.deadlines.homecomings_line", { date: planDayLabel(item.returnedOn), from: planDayLabel(item.awayFrom) })
+              ]
+                .filter(Boolean)
+                .join(" · ")
+            )
+          )
+        : null}
+
       {/* Abi rohkem kui kavas (K6-d): käigul märgitud viis on olnud kava reast suurem. */}
       {(deadlines.helpDriftDue || []).length
         ? section("help_drift", deadlines.helpDriftDue, (item) => clientLine(item, t("home_care.deadlines.help_drift_line", { more: item.more, total: item.total })))

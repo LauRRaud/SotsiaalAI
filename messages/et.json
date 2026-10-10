@@ -13746,7 +13746,10 @@
       "first_visits_not_reached": "{date} kell {time}: {name} läheb esimest korda, kliendile ei jõutud teatada",
       "help_drift_title": "Abi on olnud rohkem kui kavas",
       "help_drift_empty": "Ühelgi kliendil ei ole abi olnud märgatavalt rohkem kui kavas.",
-      "help_drift_line": "viimasel neljal nädalal {more} toimingut {total}-st kavast suurema abiga"
+      "help_drift_line": "viimasel neljal nädalal {more} toimingut {total}-st kavast suurema abiga",
+      "homecomings_title": "Koju tulnud kliendid, kelle juures ei ole pärast seda käidud",
+      "homecomings_empty": "Kõigi koju tulnud klientide juures on käidud.",
+      "homecomings_line": "tuli koju {date}, ära alates {from}"
     },
     "visit": {
       "title": "Mida tegid",
@@ -14859,6 +14862,13 @@
           "REFUSED_HELP": "tulime, aga te ei soovinud abi"
         }
       }
+    },
+    "homecoming": {
+      "notice": "Tuli koju {date}, ära oli alates {from}",
+      "first_visit": "Pärast seda ei ole siin käiku kirjas. Esimesel käigul vaata üle toit, ravimid ja küte ning küsi, kas abi on nüüd vaja teisiti kui enne.",
+      "coordinator": "Plaani esimene käik tavalisest pikem.",
+      "day_line": "Kojutulek: esimene käik pärast äraolekut (tuli koju {date}).",
+      "my_line": "Kojutulek: tuli koju {date}. Vaata üle toit, ravimid ja küte; küsi, kas abi on vaja teisiti."
     }
   },
   "stage": {

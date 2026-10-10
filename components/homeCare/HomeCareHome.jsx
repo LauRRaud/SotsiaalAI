@@ -68,6 +68,8 @@ function MyVisit({ organizationId, visit }) {
             .join(" · ")}
         </span>
       </Link>
+      {/* Kojutulek (K6-f): esimene käik pärast äraolekut. */}
+      {visit.homecoming ? <p className="hc-notice">{t("home_care.homecoming.my_line", { date: planDayLabel(visit.homecoming.returnedOn) })}</p> : null}
       {/* Esmakäik (K5-v): klient ei tunne mind; kas talle on teatatud. */}
       {visit.firstVisit ? (
         <p className="hc-notice">

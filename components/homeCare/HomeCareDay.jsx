@@ -181,6 +181,10 @@ export default function HomeCareDay({ context, initial }) {
             .join(" · ")}
         </span>
 
+        {/* Kojutulek (K6-f): esimene käik pärast äraolekut; hooldusjuht saab selle pikemaks plaanida. */}
+        {visit.homecoming ? (
+          <span className="hc-notice">{t("home_care.homecoming.day_line", { date: planDayLabel(visit.homecoming.returnedOn) })}</span>
+        ) : null}
         {/* Esmakäik (K5-v): tegija ei ole selle kliendi juures varem käinud; hooldusjuht märgib, kuidas kliendile teatati. */}
         {visit.firstVisit ? (
           <span className="hc-notice">
