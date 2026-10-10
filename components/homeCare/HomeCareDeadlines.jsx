@@ -108,9 +108,16 @@ export default function HomeCareDeadlines({ context, deadlines }) {
         ? section("contracts_unsigned", deadlines.contractsUnsigned, (item) =>
             clientLine(
               item,
-              t(item.unsure ? "home_care.deadlines.contracts_unsigned_unsure" : "home_care.deadlines.contracts_unsigned_line", { date: planDayLabel(item.validFrom) }),
+              t(
+                item.noRepresentative
+                  ? "home_care.deadlines.contracts_unsigned_no_representative"
+                  : item.unsure
+                    ? "home_care.deadlines.contracts_unsigned_unsure"
+                    : "home_care.deadlines.contracts_unsigned_line",
+                { date: planDayLabel(item.validFrom) }
+              ),
               null,
-              `${item.client.id}:${item.validFrom}`
+              `${item.client.id}:${item.validFrom}:${item.noRepresentative ? "r" : "s"}`
             )
           )
         : null}

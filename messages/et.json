@@ -13799,7 +13799,8 @@
       "control_calls_title": "Kontrollkõne tegemata",
       "control_calls_empty": "Kõigile klientidele on sel kvartalil helistatud.",
       "control_calls_line": "viimati saadi kätte {date}",
-      "control_calls_never": "ei ole kordagi kätte saadud"
+      "control_calls_never": "ei ole kordagi kätte saadud",
+      "contracts_unsigned_no_representative": "leping kehtib alates {date}: alla kirjutas esindaja, aga esindusõigust ei ole selle päeva kohta kirjas"
     },
     "visit": {
       "title": "Mida tegid",
