@@ -10,7 +10,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {
   AUDIENCE_OPTIONS, AUDIO_SOURCE_LIST_LIMIT, AUDIO_VIEWS, AUDIO_WAYS, CLIENT_AGENT_TASK_OPTIONS, CLIENT_MAX_DOCUMENTS, COMPOSE_VIEWS_CLIENT, COMPOSE_VIEWS_WORKER,
-  CONFIRM_KINDS, FREE_VIEWS, LANGUAGE_OPTIONS, LENGTH_OPTIONS, PRESS_GAP_MS, PRIVACY_ACTIONS, PRIVACY_CHOICE_KEYS, PRIVACY_WORKFLOW, RECENT_RESULTS_LIMIT, TONE_OPTIONS, VERSION_KINDS, VIEW_TEXT_KEYS,
+  COMPOSE_PAUSED, CONFIRM_KINDS, FREE_VIEWS, LANGUAGE_OPTIONS, LENGTH_OPTIONS, PRESS_GAP_MS, PRIVACY_ACTIONS, PRIVACY_CHOICE_KEYS, PRIVACY_WORKFLOW, RECENT_RESULTS_LIMIT, TONE_OPTIONS, VERSION_KINDS, VIEW_TEXT_KEYS,
   activeViewFor, audioFileProblem, audioSourceRows, clientStatusLabel, clientTaskArtifactType, composeBlocker, confirmPress, confirmTexts, formatDuration, hasUnsavedText,
   instructionLimit, isComposableType, isTemplateCompatible, isVersionActive, outputTypeOptions, pressAllowed, privacyChoiceKey, privacyChoices, privacyTextKeys, recentResultRows, recordingPurposeLabel, refineBlocker,
   resultSheet, resultStateOf, serverMessage, snippet, sourceRows, statusLabel, summaryBlocker, templateOptions, textAtRisk, transcribeBlocker, transcriptEdited, typeLabel,
@@ -617,4 +617,22 @@ test('leht ei ole enam vanal ühisel kihil ja kujundus on lehe oma failis', () =
   const used = new Set([...code.matchAll(/styles\.([a-zA-Z0-9]+)/g)].map((match) => match[1]));
   assert.ok(used.size > 30, `klasse leiti ${used.size}`);
   for (const name of used) assert.ok(new RegExp(`\\.${name}\\b`).test(css), `klass ${name}`);
+});
+
+test('kui server koostamist ei tee, on see takistus esimene ja lehel on selle kohta lause', async () => {
+  const { RAG_AVAILABLE } = await import('../lib/rag/retired.js');
+  assert.equal(COMPOSE_PAUSED, !RAG_AVAILABLE, 'leht loeb sama lippu mis server');
+  assert.equal(composeBlocker({ documentCount: 1, type: 'REPORT_DRAFT', instruction: 'tee', paused: true }), 'paused');
+  assert.equal(composeBlocker({ documentCount: 0, paused: true, busy: true }), 'paused', 'peatamine on esimene põhjus');
+  assert.equal(refineBlocker({ resultState: 'draft', documentCount: 1, content: 'x', instruction: 'tee', paused: true }), 'paused');
+  assert.equal(composeBlocker({ documentCount: 1, type: 'REPORT_DRAFT', instruction: 'tee' }), '', 'ilma peatamiseta takistust ei ole');
+  /* Serveri pool: mõlemad funktsioonid keelduvad, kuni lipp on maas. */
+  const generation = fs.readFileSync(new URL('../lib/documents/generation.js', import.meta.url), 'utf8');
+  if (!RAG_AVAILABLE) assert.ok(/export async function generateArtifactDraftContent\(\) \{\s+throw createRagRetiredError\(\);/.test(generation));
+  for (const lang of ['et', 'en', 'ru']) {
+    const messages = JSON.parse(fs.readFileSync(new URL(`../messages/${lang}.json`, import.meta.url), 'utf8'));
+    assert.equal(typeof messages.documents.drafting.paused, 'string', lang);
+  }
+  const page = fs.readFileSync(new URL('../components/agent/AgentModePage.jsx', import.meta.url), 'utf8');
+  assert.equal(page.split('paused: COMPOSE_PAUSED').length - 1, 4, 'kõik neli takistuse arvutust teavad peatamisest');
 });

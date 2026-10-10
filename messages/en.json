@@ -5385,7 +5385,8 @@
         "open": "Open the draft",
         "needs_transcript": "The summary needs a transcript.",
         "needs_text": "The transcript text is empty."
-      }
+      },
+      "paused": "Composing and refining texts is paused while the new system is being built. Earlier texts and files are kept."
     }
   },
   "research": {

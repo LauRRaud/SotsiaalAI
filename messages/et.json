@@ -5385,7 +5385,8 @@
         "open": "Ava mustand",
         "needs_transcript": "Kokkuvõtteks on vaja transkripti.",
         "needs_text": "Transkripti tekst on tühi."
-      }
+      },
+      "paused": "Teksti koostamine ja täiendamine on uue süsteemi arendamise ajaks peatatud. Varasemad tekstid ja failid on alles."
     }
   },
   "research": {
