@@ -14,6 +14,8 @@ import { resolveOrgAccessContext } from '../lib/org/accessContext.js';
 import { getInboxItem } from '../lib/org/inbox.js';
 import { acceptPreInquiry, recordPreInquiryView, updatePreInquiryReceiverWorkflow } from '../lib/preInquiries.js';
 import { deleteUserAfterFinalPracticeSweep } from '../lib/privacy/effectivePracticeAccountCleanup.js';
+import { eraseServiceLogUserReferencesWithinTransaction } from '../lib/serviceLog/privacyLifecycle.js';
+import { confirmShareDelivery, createReportDeliveryToken } from '../lib/serviceLog/reportShare.js';
 
 const url = new URL(process.env.JOURNEY_TEST_DATABASE_URL || process.env.HOME_CARE_TEST_DATABASE_URL || 'postgres://invalid/invalid');
 if (!['localhost', '127.0.0.1'].includes(url.hostname) || !url.pathname.endsWith('_probe')) {
@@ -334,4 +336,118 @@ test('isikule saadetud eelpöördumine: vastuvõtmine ja iga hilisem avamispäev
   /* Jälg kustub koos pöördumisega. */
   await db.preInquiry.delete({ where: { id: sent.id } });
   assert.equal(await db.sharingView.count({ where: { preInquiryId: sent.id } }), 0);
+});
+
+test('teenusaruande jagamine: saaja iga kinnitatud lugemispäev jätab rea, jagaja näeb päevi', async (t) => {
+  const tag = randomUUID().slice(0, 8);
+  const { ids, user } = people(tag);
+  const owner = await user('tootaja', 'SOCIAL_WORKER');
+  const lead = await user('juht', 'SOCIAL_WORKER');
+  const organization = await db.organization.create({
+    data: { displayName: `Hooldekeskus ${tag}`, legalKind: 'COMPANY', status: 'ACTIVE', activatedAt: at('2026-01-01T00:00:00Z'), verifiedAt: at('2026-01-01T00:00:00Z') }
+  });
+  const member = (account) =>
+    db.organizationMembership.create({ data: { organizationId: organization.id, userId: account.id, seatRole: 'SOCIAL_WORKER', status: 'ACTIVE', startedAt: at('2026-01-01T00:00:00Z') } });
+  const ownerMembership = await member(owner);
+  const leadMembership = await member(lead);
+  const shareIds = [];
+  const share = async (extra = {}) => {
+    const row = await db.serviceReportShare.create({
+      data: {
+        documentId: `doc-${tag}-${shareIds.length}`,
+        ownerUserId: owner.id,
+        organizationId: organization.id,
+        recipientMembershipId: leadMembership.id,
+        month: '2026-09',
+        storagePath: `proov/${tag}-${shareIds.length}.csv`,
+        fileName: 'aruanne.csv',
+        mime: 'text/csv',
+        sizeBytes: 10,
+        sha256: 'a'.repeat(64),
+        status: 'SENT',
+        sentAt: at('2026-10-08T08:00:00Z'),
+        retentionEndsAt: at('2027-10-08T08:00:00Z'),
+        ...extra
+      }
+    });
+    shareIds.push(row.id);
+    return row;
+  };
+  const sent = await share();
+  const unread = await share();
+  const recalled = await share({ status: 'RECALLED', recalledAt: at('2026-10-08T09:00:00Z') });
+  const erased = await share();
+  t.after(async () => {
+    await db.dataAuditLog.deleteMany({ where: { resourceId: { in: shareIds } } });
+    await db.serviceReportShare.deleteMany({ where: { id: { in: shareIds } } });
+    await db.organization.deleteMany({ where: { id: organization.id } });
+    await db.user.deleteMany({ where: { id: { in: ids } } });
+  });
+  /* Proovivõti: kinnituse tõend allkirjastatakse ainult selle testi sees. */
+  const env = { REPORT_DELIVERY_SECRET: `vaatamiste-jalje-proov-${tag}` };
+  const confirm = (row, actor, membership, now) =>
+    confirmShareDelivery(
+      createReportDeliveryToken({ id: row.id, recipientMembershipId: membership.id, sha256: row.sha256 }, { actorUserId: actor.id, now, env }),
+      { membershipIds: [membership.id], actorUserId: actor.id, shareId: row.id },
+      { db, now, env }
+    );
+  const trail = (shareId) => db.sharingView.findMany({ where: { serviceReportShareId: shareId }, orderBy: { day: 'asc' } });
+  const listed = async (shareId) => (await loadMySharings(owner.id, { db, sections: ['serviceReportShares'] })).serviceReportShares.items.find((item) => item.id === shareId);
+  const notFound = (error) => error.status === 404;
+
+  assert.equal((await listed(sent.id)).views, undefined);
+
+  /* Esimene kinnitus avab jagamise ja jätab esimese rea; vastuses jagaja ID ei ole. */
+  const first = await confirm(sent, lead, leadMembership, DAY1);
+  assert.deepEqual(first, { id: sent.id, alreadyOpened: false });
+  assert.deepEqual((await trail(sent.id)).map((row) => [row.kind, row.viewerUserId, row.day, row.preInquiryId, row.networkShareId]), [['SERVICE_REPORT_SHARE', lead.id, '2026-10-09', null, null]]);
+  const afterOpen = await db.serviceReportShare.findUnique({ where: { id: sent.id } });
+  assert.deepEqual([afterOpen.status, afterOpen.openedAt.toISOString()], ['OPENED', DAY1.toISOString()]);
+
+  /* Korduv lugemine samal päeval rida ei lisa; järgmistel päevadel tekib päeva kohta üks rida. */
+  assert.deepEqual(await confirm(sent, lead, leadMembership, DAY1_LATER), { id: sent.id, alreadyOpened: true });
+  await confirm(sent, lead, leadMembership, DAY2);
+  await confirm(sent, lead, leadMembership, DAY2);
+  await confirm(sent, lead, leadMembership, DAY3);
+  assert.deepEqual((await trail(sent.id)).map((row) => row.day), ['2026-10-09', '2026-10-10', '2026-10-11']);
+  /* Jälg ei puuduta jagamise rida: `updatedAt` on avamise ja tagasivõtmise lukk. */
+  assert.equal((await db.serviceReportShare.findUnique({ where: { id: sent.id } })).updatedAt.toISOString(), afterOpen.updatedAt.toISOString());
+
+  /* Jagaja ise ei ole saaja: tema tõend ei ava ega jäta jälge. Tagasi võetud jagamist ei saa kinnitada. */
+  await assert.rejects(confirm(unread, owner, ownerMembership, DAY1), notFound);
+  await assert.rejects(confirm(recalled, lead, leadMembership, DAY1), notFound);
+  assert.deepEqual([(await trail(unread.id)).length, (await trail(recalled.id)).length], [0, 0]);
+  assert.equal((await db.serviceReportShare.findUnique({ where: { id: unread.id } })).status, 'SENT');
+
+  /* Jagaja näeb oma lehel päevi ja viimast päeva; väljavõttes on sama kokkuvõte. */
+  assert.deepEqual((await listed(sent.id)).views, { days: 3, lastDay: '2026-10-11' });
+  assert.equal((await listed(unread.id)).views, undefined);
+  const history = (await collectOwnerSharingHistory(owner.id, { db })).filter((row) => row.type === 'SERVICE_REPORT_SHARE');
+  assert.deepEqual(
+    Object.fromEntries(history.map((row) => [row.origin.id, [row.viewedDays ?? null, row.lastViewedOn ?? null]])),
+    { [sent.id]: [3, '2026-10-11'], [unread.id]: [null, null], [recalled.id]: [null, null], [erased.id]: [null, null] }
+  );
+
+  /* Andmebaas hoiab piire ka koodist mööda kirjutades: liik ja veerg käivad koos. */
+  const raw = { viewerUserId: lead.id, day: '2026-10-20' };
+  await assert.rejects(db.sharingView.create({ data: { ...raw, kind: 'NETWORK_SHARE', serviceReportShareId: sent.id } }));
+  await assert.rejects(db.sharingView.create({ data: { ...raw, kind: 'SERVICE_REPORT_SHARE' } }));
+  await assert.rejects(db.sharingView.create({ data: { ...raw, kind: 'SERVICE_REPORT_SHARE', serviceReportShareId: sent.id, day: '2026-10-09' } }));
+
+  /* Jagaja konto kustutamine: jagamine jääb omanikuta alles, selle jälg kustub. */
+  await confirm(erased, lead, leadMembership, DAY1);
+  assert.equal((await trail(erased.id)).length, 1);
+  await eraseServiceLogUserReferencesWithinTransaction(owner.id, { db, now: DAY3 });
+  assert.equal((await db.serviceReportShare.findUnique({ where: { id: erased.id } })).ownerUserId, null);
+  assert.deepEqual([(await trail(erased.id)).length, (await trail(sent.id)).length], [0, 0]);
+  /* Omanikuta jagamise lugemine uut jälge ei tee: seda ei oleks kellelgi näha. */
+  assert.deepEqual(await confirm(erased, lead, leadMembership, DAY3), { id: erased.id, alreadyOpened: true });
+  assert.deepEqual(await trail(erased.id), []);
+
+  /* Jälg kustub koos jagamisega (nii kustutab ka säilitustähtaja puhastus). */
+  const kept = await share({ ownerUserId: lead.id, recipientMembershipId: ownerMembership.id });
+  await confirm(kept, owner, ownerMembership, DAY1);
+  assert.equal((await trail(kept.id)).length, 1);
+  await db.serviceReportShare.delete({ where: { id: kept.id } });
+  assert.equal(await db.sharingView.count({ where: { serviceReportShareId: kept.id } }), 0);
 });
