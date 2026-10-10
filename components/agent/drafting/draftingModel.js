@@ -14,6 +14,7 @@
  * üldise sõna või jääb ära, mitte ei kuva sisemist koodi ega võtit.
  */
 
+import { RAG_AVAILABLE } from "@/lib/rag/retired";
 import { MAX_USER_MESSAGE_CHARS } from "@/lib/chat/messageLimits";
 import { clientTaskInstruction } from "@/lib/documents/agentTasks";
 import { AGENT_ARTIFACT_TYPE_VALUES } from "@/lib/documents/constants";
@@ -292,7 +293,17 @@ export function instructionLimit({ client = false, task = "" } = {}) {
  * Mis takistab uue teksti koostamist. Tühi string tähendab, et saab koostada.
  * `type`: heli raja kokkuvõtte tüüpi siit ei koostata, enne tuleb valida väljund.
  */
-export function composeBlocker({ client = false, documentCount = 0, type = "", instruction = "", limit = MAX_USER_MESSAGE_CHARS, busy = false } = {}) {
+/**
+ * Teksti koostamine ja täiendamine on serveris välja lülitatud, kuni vana
+ * teadmussüsteem on suletud (lib/rag/retired.js; lib/documents/generation.js
+ * keeldub mõlemast alati). Kuni see nii on, ütleb leht seda kohe ja nuppu ei
+ * paku: muidu täidaks inimene viis vaadet ja saaks vastuseks keeldumise.
+ * Transkript ja kokkuvõte helifailist käivad teist teed ja seda ei puuduta.
+ */
+export const COMPOSE_PAUSED = !RAG_AVAILABLE;
+
+export function composeBlocker({ client = false, documentCount = 0, type = "", instruction = "", limit = MAX_USER_MESSAGE_CHARS, busy = false, paused = false } = {}) {
+  if (paused) return "paused";
   if (busy) return "busy";
   if (!documentCount) return "documents";
   if (!client && !isComposableType(type)) return "type";
@@ -303,7 +314,8 @@ export function composeBlocker({ client = false, documentCount = 0, type = "", i
 }
 
 /** Mis takistab mustandi täiendamist. Täiendada saab ainult muudetavat mustandit, millel on tekst ja lähtefailid. */
-export function refineBlocker({ resultState = "none", documentCount = 0, content = "", instruction = "", limit = MAX_USER_MESSAGE_CHARS, busy = false } = {}) {
+export function refineBlocker({ resultState = "none", documentCount = 0, content = "", instruction = "", limit = MAX_USER_MESSAGE_CHARS, busy = false, paused = false } = {}) {
+  if (paused) return "paused";
   if (busy) return "busy";
   if (resultState !== "draft") return "no_draft";
   if (!documentCount) return "documents";

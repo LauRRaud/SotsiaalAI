@@ -75,6 +75,7 @@ import {
   CLIENT_AGENT_TASK_OPTIONS,
   CLIENT_MAX_DOCUMENTS,
   FREE_VIEWS,
+  COMPOSE_PAUSED,
   privacyChoiceKey,
   privacyTextKeys,
   PRIVACY_WORKFLOW,
@@ -925,7 +926,8 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
       type: outputType,
       instruction: text,
       limit: instructionMax,
-      busy: resultBusy || audio.summarizingAudio
+      busy: resultBusy || audio.summarizingAudio,
+      paused: COMPOSE_PAUSED
     })
     if (blocker) {
       /* Isikuandmete küsimuse valik on küsimuse juba sulgenud: kui töö siiski
@@ -964,7 +966,8 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
       content: resultContent,
       instruction: text,
       limit: instructionLimit(),
-      busy: resultBusy
+      busy: resultBusy,
+      paused: COMPOSE_PAUSED
     })
     if (blocker) {
       if (options.confirmed) setRunError(t(blocker === "too_long" ? "documents.artifacts.errors.instruction_too_long" : "documents.drafting.privacy.not_started"))
@@ -1352,7 +1355,7 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
       <SourcesView
         t={t}
         title={viewTitle(key)}
-        lead={rows.length ? t("documents.drafting.sources.lead") : undefined}
+        lead={COMPOSE_PAUSED ? t("documents.drafting.paused") : rows.length ? t("documents.drafting.sources.lead") : undefined}
         notice={noticeFor(key)}
         loading={documentsLoading}
         problems={problems}
@@ -1426,14 +1429,17 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
       type: outputType,
       instruction,
       limit: instructionMax,
-      busy: resultBusy || audio.summarizingAudio
+      busy: resultBusy || audio.summarizingAudio,
+      paused: COMPOSE_PAUSED
     })
     const checking = checkingPrivacy === "compose"
     const blockText = checking
       ? t("documents.drafting.privacy.checking")
       : starting
         ? t("documents.drafting.instruction.working")
-        : blocker === "documents"
+        : blocker === "paused"
+          ? t("documents.drafting.paused")
+          : blocker === "documents"
           ? t(isClientRole ? "documents.drafting.instruction.needs_files_client" : "documents.drafting.instruction.needs_files")
           : blocker === "type"
             ? t("documents.drafting.instruction.needs_type")
@@ -1573,14 +1579,17 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
       content: resultContent,
       instruction: refineInstruction,
       limit: instructionLimit(),
-      busy: resultBusy
+      busy: resultBusy,
+      paused: COMPOSE_PAUSED
     })
     const checking = checkingPrivacy === "refine"
     const blockText = checking
       ? t("documents.drafting.privacy.checking")
       : refiningResult
         ? t("documents.drafting.refine.working")
-        : blocker === "documents"
+        : blocker === "paused"
+          ? t("documents.drafting.paused")
+          : blocker === "documents"
           ? t(isClientRole ? "documents.drafting.refine.needs_files_client" : "documents.drafting.refine.needs_files")
           : blocker === "empty_text"
             ? t("documents.drafting.refine.needs_content")
