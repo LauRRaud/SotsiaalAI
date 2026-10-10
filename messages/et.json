@@ -2243,6 +2243,17 @@
     "deleting": "Kustutan…",
     "delete_account": "Kustuta konto",
     "delete_account_hint": "Kustutab konto ja eemaldab ligipääsu püsivalt – seda ei saa tagasi võtta.",
+    "name": {
+      "hint": "Sinu nimi, nagu seda näevad inimesed, kellega sa platvormil koos töötad.",
+      "first": "Eesnimi",
+      "last": "Perekonnanimi",
+      "save": "Salvesta nimi",
+      "saved": "Nimi on salvestatud.",
+      "incomplete": "Kirjuta nii ees- kui ka perekonnanimi.",
+      "error_first": "Eesnimi ei sobi: kasuta tähti, tühikut, sidekriipsu ja ülakoma, kuni {limit} märki.",
+      "error_last": "Perekonnanimi ei sobi: kasuta tähti, tühikut, sidekriipsu ja ülakoma, kuni {limit} märki.",
+      "save_failed": "Nime salvestamine ebaõnnestus. Proovi uuesti."
+    },
     "load_failed": "Profiili laadimine ebaõnnestus.",
     "update_failed": "Profiili uuendamine ebaõnnestus.",
     "delete_failed": "Konto kustutamine ebaõnnestus.",

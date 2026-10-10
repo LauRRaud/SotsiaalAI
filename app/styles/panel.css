@@ -1001,6 +1001,23 @@ label[data-control-type][data-checked="true"] > span[aria-hidden="true"] svg {
   padding: 0.5em 1.1em;
   font-size: var(--fs-small);
 }
+/* Nime rida: kaks välja kõrvuti, kitsas aknas teineteise all. Väli võtab oma lahtri laiuse
+   ja tekst on vasakul; ülalolev nupu mõõt (`flex: none`) väljale ei kehti. */
+.konto-name__fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 0.6rem;
+}
+.konto-name__fields label {
+  display: grid;
+  gap: 0.2rem;
+  min-width: 0;
+}
+.konto-name__fields input[data-variant] {
+  width: 100%;
+  min-width: 0;
+  text-align: left;
+}
 /* Konto kustutamine on pöördumatu — ta ei tohi seista teiste toimingutega
    ühes hingetõmbes. Eraldi vahe + tugevam joon, VÄRVI appi võtmata
    (kanoonilise nupu ilme on lukus, vt canonical-button-look). */

@@ -2243,6 +2243,17 @@
     "deleting": "Deleting",
     "delete_account": "Delete account",
     "delete_account_hint": "Deletes your account and removes access permanently - this cannot be undone.",
+    "name": {
+      "hint": "Your name as it is shown to the people you work with on the platform.",
+      "first": "First name",
+      "last": "Last name",
+      "save": "Save name",
+      "saved": "The name is saved.",
+      "incomplete": "Enter both the first and the last name.",
+      "error_first": "The first name does not fit: use letters, spaces, hyphens and apostrophes, up to {limit} characters.",
+      "error_last": "The last name does not fit: use letters, spaces, hyphens and apostrophes, up to {limit} characters.",
+      "save_failed": "Saving the name failed. Try again."
+    },
     "load_failed": "Failed to load profile.",
     "update_failed": "Failed to update profile.",
     "delete_failed": "Failed to delete account.",
