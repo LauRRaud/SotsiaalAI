@@ -13155,7 +13155,13 @@
       "relatives_too_many": "Kliendil võib olla kuni {limit} lähedast.",
       "safety_topic_invalid": "Tundmatu ohutuskaardi teema.",
       "safety_answer_invalid": "Vastus saab olla jah või ei.",
-      "safety_answer_required": "Märkus vajab vastust: vali jah või ei."
+      "safety_answer_required": "Märkus vajab vastust: vali jah või ei.",
+      "month_not_over": "Lukustada saab kuu, mis on läbi.",
+      "month_already_locked": "See kuu on juba lukus.",
+      "month_not_locked": "See kuu ei ole lukus.",
+      "month_changed": "Kuu arvud muutusid vahepeal. Vaata need üle ja lukusta siis.",
+      "month_too_large": "Selles kuus on kliente rohkem, kui korraga lukustada saab. Anna sellest platvormi toele teada.",
+      "month_reopen_reason": "Kirjuta, miks kuu uuesti avatakse."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -13675,7 +13681,10 @@
       "safety_due_title": "Ohutuskaardid, mis on täitmata või vajavad ülevaatust",
       "safety_due_empty": "Kõik ohutuskaardid on täidetud ja alla aasta vanad.",
       "safety_none": "ohutuskaart on täitmata",
-      "safety_old": "ohutuskaart on hinnatud {date}: vaata üle"
+      "safety_old": "ohutuskaart on hinnatud {date}: vaata üle",
+      "month_changed_title": "Lukustatud kuud, kuhu on hiljem lisatud või muudetud",
+      "month_changed_empty": "Lukustatud kuudes ei ole hilisemaid muudatusi.",
+      "month_changed_line": "pärast lukustamist muudatusi: {count}"
     },
     "visit": {
       "title": "Mida tegid",
@@ -14412,6 +14421,48 @@
         "PAIR_ONLY": "Ainult kahekesi",
         "NO_SIGNAL": "Levi puudub"
       }
+    },
+    "month_lock": {
+      "title": "Kuu lukustamine",
+      "badge": "lukus",
+      "intro": "Kui kuu on üle vaadatud, lukusta see. Lukustatud arvud enam ei muutu: linnale ja raamatupidamisele lähevad samad numbrid, mida sa lukustades näed. Päevikusse saab kirjutada ka pärast lukustamist; hilisemad kirjed ja parandused on siin eraldi näha.",
+      "not_over": "Lukustada saab kuu, mis on läbi.",
+      "scope_only": "Kuu lukustab kogu asutuse hooldusjuht.",
+      "open_warning": "Lahtisi asju on veel: {count} (vaata lehe algusest). Lukustada saab ka nii; see arv jääb luku juurde kirja.",
+      "lock": "Lukusta kuu",
+      "confirm_hint": "Lukku lähevad käigud: {visits}, aeg: {amount}. Kliendi ja töötaja kaupa arvud on ülal.",
+      "confirm": "Kinnita lukustamine",
+      "cancel": "Loobu",
+      "locked_banner": "Kuu on lukus. Siin on lukustatud arvud; hilisemad muudatused on lehe lõpus.",
+      "locked_banner_unit": "Kuu on lukus. Sa näed oma üksuse praeguseid arve.",
+      "locked_line": "Lukustas {name}, {date}.",
+      "locked_open": "Lukustamise hetkel oli lahtisi asju: {count}.",
+      "unit_hint": "Lukustatud arve näeb kogu asutuse hooldusjuht.",
+      "no_drift": "Praegune seis on sama mis lukustatud arvud.",
+      "drift": "Praegune seis erineb lukustatud arvudest: {list}.",
+      "drift_visits": "käike {delta}",
+      "drift_minutes": "aega {delta}",
+      "drift_without_length": "kestuseta käike {delta}",
+      "drift_missed": "ära jäänud käike {delta}",
+      "drift_cancelled": "ette ära jäetud käike {delta}",
+      "drift_not_done": "tegemata toiminguid {delta}",
+      "after_title": "Pärast lukustamist lisatud ja muudetud",
+      "after_counts": "Lisatud kirjeid: {added} · parandusi: {corrected} · tühistusi: {retracted} · päevaplaani muudatusi: {plan}",
+      "after_kinds": {
+        "ADDED": "lisatud kirje",
+        "CORRECTED": "parandatud kirje",
+        "RETRACTED": "tühistatud kirje"
+      },
+      "after_occurred": "kirje aeg {when}",
+      "after_more": "Näidatud on viimased {shown}; kokku on kirjete muudatusi {count}.",
+      "after_hint": "Kui need peavad arvudesse jõudma, ava kuu uuesti ja lukusta siis uuesti.",
+      "reopen": "Ava kuu uuesti",
+      "reopen_reason": "Miks kuu uuesti avatakse",
+      "reopen_hint": "Põhjus jääb luku ajalukku. Pärast avamist näitab leht jälle jooksvaid arve.",
+      "reopen_confirm": "Ava uuesti",
+      "history_title": "Varasemad lukustamised",
+      "history_line": "Lukustas {lockedBy}, {lockedAt}. Avas uuesti {reopenedBy}, {reopenedAt}: {reason}",
+      "client_gone": "Klienti ei ole enam nimekirjas"
     }
   },
   "stage": {

@@ -13155,7 +13155,13 @@
       "relatives_too_many": "A client can have up to {limit} relatives.",
       "safety_topic_invalid": "Unknown safety card topic.",
       "safety_answer_invalid": "The answer can be yes or no.",
-      "safety_answer_required": "A note needs an answer: choose yes or no."
+      "safety_answer_required": "A note needs an answer: choose yes or no.",
+      "month_not_over": "A month can be locked once it is over.",
+      "month_already_locked": "This month is already locked.",
+      "month_not_locked": "This month is not locked.",
+      "month_changed": "The month's figures changed in the meantime. Review them and then lock.",
+      "month_too_large": "This month has more clients than can be locked at once. Please tell platform support.",
+      "month_reopen_reason": "Write why the month is reopened."
     },
     "incidents": {
       "title": "Incident register",
@@ -13675,7 +13681,10 @@
       "safety_due_title": "Safety cards that are empty or due for review",
       "safety_due_empty": "Every safety card is filled in and under a year old.",
       "safety_none": "the safety card is empty",
-      "safety_old": "the safety card was assessed {date}: review it"
+      "safety_old": "the safety card was assessed {date}: review it",
+      "month_changed_title": "Locked months with later additions or changes",
+      "month_changed_empty": "No later changes in locked months.",
+      "month_changed_line": "changes after locking: {count}"
     },
     "visit": {
       "title": "What you did",
@@ -14412,6 +14421,48 @@
         "PAIR_ONLY": "Only in pairs",
         "NO_SIGNAL": "No signal"
       }
+    },
+    "month_lock": {
+      "title": "Locking the month",
+      "badge": "locked",
+      "intro": "Once the month has been reviewed, lock it. Locked figures no longer change: the municipality and the accountant get the same numbers you see when you lock. The diary can still be written to after locking; later entries and corrections are shown here separately.",
+      "not_over": "A month can be locked once it is over.",
+      "scope_only": "The month is locked by the coordinator of the whole organisation.",
+      "open_warning": "Open items left: {count} (see the top of the page). You can lock anyway; the number is recorded with the lock.",
+      "lock": "Lock the month",
+      "confirm_hint": "To be locked: visits {visits}, time {amount}. The figures by client and by worker are above.",
+      "confirm": "Confirm locking",
+      "cancel": "Cancel",
+      "locked_banner": "The month is locked. These are the locked figures; later changes are at the end of the page.",
+      "locked_banner_unit": "The month is locked. You see the current figures of your unit.",
+      "locked_line": "Locked by {name}, {date}.",
+      "locked_open": "Open items at the time of locking: {count}.",
+      "unit_hint": "The locked figures are shown to the coordinator of the whole organisation.",
+      "no_drift": "The current state matches the locked figures.",
+      "drift": "The current state differs from the locked figures: {list}.",
+      "drift_visits": "visits {delta}",
+      "drift_minutes": "time {delta}",
+      "drift_without_length": "visits without a length {delta}",
+      "drift_missed": "missed visits {delta}",
+      "drift_cancelled": "visits cancelled in advance {delta}",
+      "drift_not_done": "activities not done {delta}",
+      "after_title": "Added and changed after locking",
+      "after_counts": "Entries added: {added} · corrections: {corrected} · retractions: {retracted} · day plan changes: {plan}",
+      "after_kinds": {
+        "ADDED": "entry added",
+        "CORRECTED": "entry corrected",
+        "RETRACTED": "entry retracted"
+      },
+      "after_occurred": "entry time {when}",
+      "after_more": "The latest {shown} are shown; entry changes in total: {count}.",
+      "after_hint": "If these must reach the figures, reopen the month and then lock it again.",
+      "reopen": "Reopen the month",
+      "reopen_reason": "Why the month is reopened",
+      "reopen_hint": "The reason stays in the lock history. After reopening the page shows the running figures again.",
+      "reopen_confirm": "Reopen",
+      "history_title": "Earlier locks",
+      "history_line": "Locked by {lockedBy}, {lockedAt}. Reopened by {reopenedBy}, {reopenedAt}: {reason}",
+      "client_gone": "The client is no longer on the list"
     }
   },
   "stage": {
