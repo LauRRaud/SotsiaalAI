@@ -13121,7 +13121,12 @@
       "search_phone_hint": "Hooldusjuhina leiad kliendi ka telefoninumbri järgi (vähemalt viis numbrit).",
       "matched_phone": "telefoninumbri järgi",
       "matched_relative": "lähedase järgi: {name} · {level}",
-      "matched_relative_doubt": "klient ei mäleta luba: räägi ainult, kas käidi"
+      "matched_relative_doubt": "klient ei mäleta luba: räägi ainult, kas käidi",
+      "no_coordinator": {
+        "OWNER": "Sellel organisatsioonil ei ole veel hooldusjuhti. Hooldusjuht lisab kliendid, koostab hoolduskavad ja jagab käigud; ilma temata jääb koduteenus tühjaks. Õiguse annad lehel „Liikmed”: vajuta liikme real „Anna õigus” ja vali „Hooldusjuht”.",
+        "OTHER": "Sellel organisatsioonil ei ole veel hooldusjuhti. Hooldusjuht lisab kliendid, koostab hoolduskavad ja jagab käigud. Selle õiguse annab organisatsiooni omanik lehel „Liikmed”.",
+        "members_link": "Ava „Liikmed”"
+      }
     },
     "status": {
       "ACTIVE": "Aktiivne",

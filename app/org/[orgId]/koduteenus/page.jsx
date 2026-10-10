@@ -4,6 +4,7 @@ import HomeCareHome from "@/components/homeCare/HomeCareHome";
 import { listClientUnitOptions, listClients } from "@/lib/homeCare/clients";
 import { getMyDay } from "@/lib/homeCare/dayPlan";
 import { getReferralContacts } from "@/lib/homeCare/referralContacts";
+import { coordinatorSetupHint } from "@/lib/homeCare/setupHint";
 
 import { requireHomeCarePage } from "./_serverContext";
 
@@ -31,6 +32,17 @@ export default async function HomeCarePage({ params }) {
   const myDay = await getMyDay(fullContext);
   /* „Kuhu suunata" (K5-c): asutuse enda loend, käepärast igale koduteenuse liikmele. */
   const referrals = await getReferralContacts(fullContext);
+  /* Värske organisatsioon: kui hooldusjuhti ei ole, ütleb leht, kust see õigus antakse. */
+  const setupHint = initial.isCoordinator ? null : await coordinatorSetupHint(fullContext);
 
-  return <HomeCareHome context={auth.context} initial={initial} unitOptions={unitOptions} myDay={myDay} referrals={referrals} />;
+  return (
+    <HomeCareHome
+      context={auth.context}
+      initial={initial}
+      unitOptions={unitOptions}
+      myDay={myDay}
+      referrals={referrals}
+      setupHint={setupHint}
+    />
+  );
 }
