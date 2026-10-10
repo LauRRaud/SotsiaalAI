@@ -7,6 +7,7 @@ import { useId, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import OrgHeader from "@/components/org/OrgHeader";
 
+import HomeCareCallNote from "./HomeCareCallNote";
 import HomeCareClientForm from "./HomeCareClientForm";
 import { keyName, keyWhere } from "./HomeCareKeys";
 import { euroText } from "./HomeCareMoney";
@@ -356,6 +357,17 @@ export default function HomeCareHome({ context, initial, unitOptions, myDay = nu
                             : t("home_care.client.basis.TEAM")}
                       </span>
                     </Link>
+                    {/* Kõne märkimine otse tulemusest (K5-o): helistaja järgi leitud kliendil alati, nime
+                        järgi leitud kliendil siis, kui tulemusi on vähe. Ainult kliendil, kelle päevikusse
+                        vastaja tohib kirjutada. */}
+                    {!client.needsReason && (client.matchedRelative || client.matchedPhone || results.length <= 3) ? (
+                      <HomeCareCallNote
+                        organizationId={organizationId}
+                        clientId={client.id}
+                        clientName={client.displayName}
+                        viewerMembershipId={context.membership?.id || null}
+                      />
+                    ) : null}
                   </li>
                 ))}
               </ul>
