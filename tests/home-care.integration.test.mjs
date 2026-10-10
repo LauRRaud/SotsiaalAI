@@ -6729,3 +6729,49 @@ test('esindusõiguse kirje: hooldusjuht lisab ja lõpetab, meeskond loeb, lõppe
   assert.deepEqual(audit.map((row) => row.meta.change), ['added', 'added', 'added', 'added', 'ended']);
   assert.equal(JSON.stringify(audit).includes('Tamm'), false);
 });
+
+test('kriisiarvud riskianalüüsi jaoks: rühmad, sõltuvused, kriitilised käigud ja väikseim koosseis', async (t) => {
+  const f = await fixture(t);
+  const north = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Põhi ${f.tag}`, type: 'TEAM' } });
+  await db.organizationCapabilityGrant.create({
+    data: { membershipId: f.members.cover.id, capability: 'HOME_CARE_COORDINATOR', scopeType: 'UNIT', scopeUnitId: north.id, validFrom: at('2026-01-01T00:00:00Z') }
+  });
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const unitLead = await f.ctx(f.users.cover, f.orgA);
+  const start = deps(at('2026-09-01T06:00:00Z'));
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, start)).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi', unitId: north.id }, start)).client;
+  const aino = (await createClient(lead, { displayName: 'Aino Saar' }, start)).client;
+  await addTeamMember(lead, linda.id, { membershipId: f.members.anu.id }, start);
+  await addTeamMember(lead, peeter.id, { membershipId: f.members.anu.id }, start);
+  await addTeamMember(lead, peeter.id, { membershipId: f.members.bert.id }, start);
+  await setCrisisProfile(lead, linda.id, { level: 'DAILY', dependencies: ['ELECTRICITY', 'HEATING'] }, deps());
+  await setCrisisProfile(lead, peeter.id, { level: 'WEEKLY', dependencies: ['HEATING'] }, deps());
+  /* Linda käigud iga päev tähtsusega A (7 × 60 min) ja üks B; Peetril kaks A käiku (2 × 45 min); Ainol käike ei ole. */
+  await createSlots(lead, linda.id, { weekdays: [1, 2, 3, 4, 5, 6, 7], startTime: '08:00', plannedMinutes: 60, priority: 'A', validFrom: '2026-09-01' }, start);
+  await createSlots(lead, linda.id, { weekdays: [3], startTime: '14:00', plannedMinutes: 30, validFrom: '2026-09-01' }, start);
+  await createSlots(lead, peeter.id, { weekdays: [2, 5], startTime: '10:00', plannedMinutes: 45, priority: 'A', validFrom: '2026-09-01' }, start);
+  /* Sõidupäevik: Anu sõidab oma autoga, Bert asutuse autoga kahel eri numbrimärgil; vana sõit jääb vaateaknast välja. */
+  await addTrip(anu, { day: '2026-10-08', vehicle: 'OWN', plate: '123 ABC', startOdometer: 100, endOdometer: 120, purpose: 'Käigud' }, deps());
+  await addTrip(bert, { day: '2026-10-08', vehicle: 'ORG', plate: '456 DEF', startOdometer: 500, endOdometer: 530, purpose: 'Käigud' }, deps());
+  await addTrip(bert, { day: '2026-10-09', vehicle: 'ORG', plate: '789 GHI', startOdometer: 900, endOdometer: 910, purpose: 'Käigud' }, deps());
+
+  const figures = (await getCrisisList(lead, deps())).figures;
+  assert.deepEqual(figures, {
+    clients: 3,
+    byLevel: { DAILY: 1, WEEKLY: 1, SELF: 0 },
+    unset: 1,
+    dependencies: { ELECTRICITY: 1, HEATING: 2, WATER: 0, COMMUNICATION: 0, MOBILITY: 0, MEDICINE: 0 },
+    criticalClients: 2,
+    criticalWeeklyMinutes: 510,
+    minStaff: 1,
+    workers: 2,
+    vehicles: { ownDrivers: 1, orgPlates: 2 }
+  });
+  /* Üksuse hooldusjuht: ainult oma üksuse kliendid; töötajate ja sõidukite arvu talle ei anta. */
+  const scoped = (await getCrisisList(unitLead, deps())).figures;
+  assert.deepEqual([scoped.clients, scoped.byLevel.WEEKLY, scoped.criticalClients, scoped.criticalWeeklyMinutes, scoped.workers, scoped.vehicles], [1, 1, 1, 90, null, null]);
+  assert.ok(aino.id);
+});

@@ -77,6 +77,49 @@ export default function HomeCareCrisisList({ context, list }) {
         <p className="hc-hint">{t("home_care.crisis.download_hint")}</p>
       </div>
 
+      {/* Arvud omavalitsuse riskianalüüsi jaoks (K6-j): samad arvud on ka tabelifaili lõpus. */}
+      {list.figures && list.clientCount ? (
+        <section className="hc-section" aria-labelledby={`${fieldId}-figures`}>
+          <h3 className="hc-section-title" id={`${fieldId}-figures`}>
+            {t("home_care.crisis.figures.title")}
+          </h3>
+          <ul className="hc-list hc-list--plain">
+            <li>
+              {t("home_care.crisis.figures.clients_line", {
+                clients: list.figures.clients,
+                daily: list.figures.byLevel.DAILY || 0,
+                weekly: list.figures.byLevel.WEEKLY || 0,
+                self: list.figures.byLevel.SELF || 0,
+                unset: list.figures.unset
+              })}
+            </li>
+            {Object.values(list.figures.dependencies).some(Boolean) ? (
+              <li>
+                {t("home_care.crisis.figures.depends_label")}:{" "}
+                {Object.entries(list.figures.dependencies)
+                  .filter(([, count]) => count)
+                  .map(([code, count]) => `${t(`home_care.crisis.dependencies.${code}`)} ${count}`)
+                  .join(", ")}
+              </li>
+            ) : null}
+            <li>
+              {list.figures.criticalWeeklyMinutes
+                ? t("home_care.crisis.figures.critical_line", {
+                    clients: list.figures.criticalClients,
+                    time: minutesLabel(t, list.figures.criticalWeeklyMinutes),
+                    staff: list.figures.minStaff
+                  })
+                : t("home_care.crisis.figures.critical_none")}
+            </li>
+            {list.figures.workers !== null && list.figures.workers !== undefined ? <li>{t("home_care.crisis.figures.workers_line", { count: list.figures.workers })}</li> : null}
+            {list.figures.vehicles ? (
+              <li>{t("home_care.crisis.figures.vehicles_line", { own: list.figures.vehicles.ownDrivers, org: list.figures.vehicles.orgPlates })}</li>
+            ) : null}
+          </ul>
+          <p className="hc-hint">{t("home_care.crisis.figures.hint")}</p>
+        </section>
+      ) : null}
+
       {list.groups.map((group) => (
         <section className="hc-section" aria-labelledby={`${fieldId}-${group.level}`} key={group.level}>
           <h3 className="hc-section-title" id={`${fieldId}-${group.level}`}>
