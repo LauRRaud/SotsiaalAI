@@ -11839,7 +11839,11 @@
       "decline": "Decline",
       "accepted": "You are now a member.",
       "declined": "The invitation was declined.",
-      "jobTitle": "Job title (optional)"
+      "jobTitle": "Job title (optional)",
+      "firstName": "First name (optional)",
+      "lastName": "Last name (optional)",
+      "nameHint": "The name travels with the invitation. If the person has no name on the platform yet, they get it when they join; if they already have one, their own stays. They can change it later themselves.",
+      "previewName": "The inviter wrote your name as “{name}”. If you have no name on the platform yet, it applies when you join; you can change your name later yourself. If you already have a name, your own stays."
     },
     "audit": {
       "heading": "Organisation audit",
@@ -11988,6 +11992,8 @@
       "invalid_seat_role": "Unknown priced role.",
       "already_member": "This person is already a member.",
       "invite_already_pending": "An invitation is already pending for that address.",
+      "invite_name_incomplete": "Enter both the first and the last name, or leave both empty.",
+      "invite_name_invalid": "The name does not fit: use letters, spaces, hyphens and apostrophes, up to {limit} characters.",
       "invite_not_found": "Invitation not found.",
       "invite_not_pending": "The invitation is not pending.",
       "invite_expired": "The invitation has expired. Ask for a new one.",

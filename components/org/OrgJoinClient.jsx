@@ -107,6 +107,13 @@ export default function OrgJoinClient() {
             </ul>
           )}
 
+          {/* Kutsuja pandud nimi: inimene näeb enne nõustumist, mis nimi talle pakutakse ja millal see kehtima hakkab. */}
+          {preview.name ? (
+            <p className="ow-notice ow-notice--privacy">
+              {t("org.invites.previewName", { name: `${preview.name.firstName} ${preview.name.lastName}` })}
+            </p>
+          ) : null}
+
           <p className="ow-notice ow-notice--privacy">{t("org.personalWorkspaceHint")}</p>
 
           <div className="ow-actions">

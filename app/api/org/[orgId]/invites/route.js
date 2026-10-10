@@ -54,7 +54,9 @@ export async function POST(request, context) {
       seatRole: body?.seatRole,
       capabilityTemplate: body?.capabilityTemplate,
       primaryUnitId: body?.primaryUnitId || null,
-      jobTitle: body?.jobTitle || null
+      jobTitle: body?.jobTitle || null,
+      firstName: body?.firstName || null,
+      lastName: body?.lastName || null
     });
 
     return orgJson(
