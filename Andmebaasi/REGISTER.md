@@ -9,16 +9,16 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | KOV | 78 | 234 | 78 KOV-i põhipaketti koos metaandmete ja allikaloenditega. |
 | kontaktid | 0 | 10 | Kontaktide otsingumaterjal; kattuvus KOV-pakettidega vajab ühendamist. |
 | organisatsioonid | 1 | 3 | Ühe organisatsiooni (Astangu) käsitsi koostatud pakett: sisu ja allikad. RAG-is seda paketti ei ole. Organisatsioonide enda veebilehed on RAG-is (vt „RAG-i seis“). |
-| oigusaktid | 638 | 652 | XML-aktid, sh eri redaktsioonid ja omavalitsuste teised kehtivad sotsiaalaktid (ADR-058); kehtivus tuleb vastuvõtul kontrollida. Aktide lisadest tuletatud allikad (`lisad/`): kaks tabelit (ADR-050) ja kaksteist omavalitsuse lisa teksti (ADR-053); iga tuletatud allikas nimetab oma akti redaktsiooni. Üks akt on allikas ainult nimetatud paragrahvide ulatuses (registrikirje väli `xml_sections`, ADR-076): `103072026024.xml`, 2026. aasta riigieelarve seaduse § 2; fail ise on Riigi Teataja algfail. |
+| oigusaktid | 640 | 654 | XML-aktid, sh eri redaktsioonid ja omavalitsuste teised kehtivad sotsiaalaktid (ADR-058); kehtivus tuleb vastuvõtul kontrollida. Aktide lisadest tuletatud allikad (`lisad/`): kaks tabelit (ADR-050) ja kaksteist omavalitsuse lisa teksti (ADR-053); iga tuletatud allikas nimetab oma akti redaktsiooni. Üks akt on allikas ainult nimetatud paragrahvide ulatuses (registrikirje väli `xml_sections`, ADR-076): `103072026024.xml`, 2026. aasta riigieelarve seaduse § 2; fail ise on Riigi Teataja algfail. |
 | teadmised | 0 | 7 | Allikapõhised teadmiskaardid (tingimused, erandid, mõisted ja nende seosed) valitud allikatele; iga fail on seotud oma allika räsiga (ADR-054). |
 | register | 0 | 9 | Kavandatud allikate register ja korjatavate veebilehtede nimekirjad (`web_pages.json` ametlikud juhislehed, `web_pages_state_help.json` riigi tasandi abi juhislehed (pension, perehüvitised, elatisabi, perelepitus; ADR-111), `web_pages_state_help_2.json` riigi tasandi abi teine partii (ravikindlustus, kohtusse pöördumine, võlad, pärimine, ohvriabi, puue ja hoolekanne, politsei juhised; ADR-112), `web_pages_state_help_3.json` kolmas partii (riigi õigusabi, täitemenetlus, perekonna- ja pärimisõigus, kuriteoohvri õigused, toe vajadusega õpilane; ADR-115), `web_pages_vendors.json` abivahendite müüjate lehed, `web_pages_organisations.json` puuetega inimeste organisatsioonide lehed koos mustriga, mis pealkirja järgi välja jääb; ADR-095), mitte teadmistekst. Mis müüjate ja organisatsioonide lehtedest RAG-is on, näitab „RAG-i seis“. `newsletter_documents.json` on ajakirja Sotsiaaltöö uudiskirjas viidatud dokumentide loend (ADR-099): pealkiri, väljaandja ametlik aadress ja seis, sh need, mida RAG-is ei ole (ingliskeelsed, tekstikihita, liiga suured, vastuvõtu kinni peetud, arvutabelid). |
 | veebilehed | 361 | 722 | Ametlikud juhislehed, korjatud skriptiga `scripts/rag-v2-web-pages.mjs` (ADR-095): lehe sisuosa ilma saidi menüüde ja isikute kontaktideta, metaandmetes aadress, kontrolli kuupäev ja viidatud dokumendid. |
 | taastatud_allikad | 0 | 22 | Serveri vanast indeksist taastatud tekst. Enne importi võrrelda põhipakettidega. |
 
 <!-- corpus-state:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
-## RAG-i seis: mis on serveris (korpus v75)
+## RAG-i seis: mis on serveris (korpus v77)
 
-Seis 10.10.2026: serveris töötav RAG (korpus **v75**, indeks `331f9dec`) sisaldab **8 722 dokumenti** (80 948 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
+Seis 11.10.2026: serveris töötav RAG (korpus **v77**, indeks `60b0ba23`) sisaldab **9 288 dokumenti** (88 181 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
 
 | Mis on RAG-is | Dokumente | Kus on loend |
 |---|---:|---|
@@ -26,14 +26,14 @@ Seis 10.10.2026: serveris töötav RAG (korpus **v75**, indeks `331f9dec`) sisal
 | Taotlusvormid (vastuses antakse lingina) | 872 | jaotis „Sisufailid“ |
 | Omavalitsuste kontaktid | 1638 | faili lõpus arvudena omavalitsuste kaupa (nimesid siia ei kirjutata) |
 | Ajakirja Sotsiaaltöö artiklid | 892 | jaotis „Sisufailid“ |
-| Õigusaktid | 592 | jaotis „Sisufailid“ |
+| Õigusaktid | 594 | jaotis „Sisufailid“ |
 | Juhendid, infomaterjalid ja uuringud | 429 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
-| Ametlikud juhislehed (ametite veebilehed) | 360 | jaotis „Sisufailid“ |
-| Puuetega inimeste organisatsioonide lehed | 521 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
+| Ametlikud juhislehed (ametite veebilehed) | 911 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
+| Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon) | 534 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Hooldekodude kohamaksumus omavalitsuste kaupa | 79 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müügi- ja üüripunktid | 93 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müüjate lehed | 51 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
-| **Kokku** | **8722** | |
+| **Kokku** | **9288** | |
 
 <details><summary>Tehniline jaotus arendajale: kus allikafailid asuvad</summary>
 
@@ -43,11 +43,11 @@ Dokumentide arvud ei võrdu ülal olevate failide arvudega: üks fail võib anda
 |---|---:|---|
 | `KOV` | 4498 | kov_service_info 3195, application_form 845, official_contact 431, web_form 17, pdf_form 6, official_form 4 |
 | `ajakiri_sotsiaaltoo` | 892 | file 849, web 43 |
-| `oigusaktid` | 592 | legal_act 592 |
+| `oigusaktid` | 594 | legal_act 594 |
 | `veebilehed` | 361 | web_page 360, research_report 1 |
 | `juhendid_ja_uuringud` | 171 | information_material 81, research_report 46, official_guideline 38, policy_analysis 6 |
 
-Koodihoidlas (GitHub) ei ole 2208 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
+Koodihoidlas (GitHub) ei ole 2772 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
 
 | Allikas | Dokumente | Millest tehakse | Miks ei ole koodihoidlas |
 |---|---:|---|---|
@@ -55,7 +55,8 @@ Koodihoidlas (GitHub) ei ole 2208 dokumendi allikafaile; need on korpuse hoidlas
 | Hooldekodude kohamaksumuse lehed | 79 | Sotsiaalkindlustusameti hinnaseire tabelist skriptiga `scripts/rag-v2-care-prices.mjs`, iga omavalitsuse kohta üks leht ja üks ülevaade (ADR-104) | hooldekodude telefoninumbrid; leht tehakse tabelist uuesti |
 | Abivahendite müügi- ja üüripunktide lehed | 93 | Sotsiaalkindlustusameti kaarditabelist skriptiga `scripts/rag-v2-assistive-points.mjs`, iga omavalitsuse kohta üks leht (ADR-096) | punktide telefoninumbrid; leht tehakse tabelist uuesti |
 | Abivahendite müüjate lehed | 51 (18 väljaandjat) | nimekiri `register/web_pages_vendors.json`, korjaja `scripts/rag-v2-web-pages.mjs` (ADR-095) | ettevõtete enda tekstid ja telefoninumbrid |
-| Puuetega inimeste organisatsioonide lehed | 521 (43 väljaandjat) | nimekiri `register/web_pages_organisations.json`, korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-095) | organisatsioonide enda tekstid |
+| Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon) | 534 (45 väljaandjat) | nimekiri `register/web_pages_organisations.json` ning nimekirjade `register/web_pages_coverage_1.json` ja `_2.json` organisatsioonid, korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-095, ADR-137) | organisatsioonide enda tekstid |
+| Asutuste juhislehed, valitud reegliga | 551 (10 väljaandjat) | nimekirjad `register/web_pages_coverage_1.json` ja `register/web_pages_coverage_2.json`, korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-137) | valik võtab lehest välja isikut nimetavad lõigud; repos olevate lehtede igakuine uuendus asendaks sellise koopia lugeja omaga |
 | Uuringud ja juhendid väljaandja ametlikult aadressilt | 257 (30 väljaandjat) | asutuste veebilehtede uuringute ja juhendite loenditest ning ajakirja Sotsiaaltöö uudiskirjas viidatud dokumentidest (`register/newsletter_documents.json`); iga fail on alla laaditud väljaandja ametlikult aadressilt | suured failid; allikas on ametlik aadress |
 
 Koodihoidla allikafailid, mida RAG-is ei ole (61):
@@ -1943,6 +1944,8 @@ Koodihoidla allikafailid, mida RAG-is ei ole (61):
 | 130062026041.xml | [oigusaktid/130062026041.xml](<oigusaktid/130062026041.xml>) |
 | 130062026133.xml | [oigusaktid/130062026133.xml](<oigusaktid/130062026133.xml>) |
 | 408102026010.xml | [oigusaktid/408102026010.xml](<oigusaktid/408102026010.xml>) |
+| 111072026158.xml | [oigusaktid/111072026158.xml](<oigusaktid/111072026158.xml>) |
+| 120062026018.xml | [oigusaktid/120062026018.xml](<oigusaktid/120062026018.xml>) |
 | 403072026003.xml | [oigusaktid/403072026003.xml](<oigusaktid/403072026003.xml>) |
 | 130062026065.xml | [oigusaktid/130062026065.xml](<oigusaktid/130062026065.xml>) |
 | 106072023031.xml | [oigusaktid/106072023031.xml](<oigusaktid/106072023031.xml>) |
@@ -2354,7 +2357,7 @@ Koodihoidla allikafailid, mida RAG-is ei ole (61):
 <!-- corpus-outside:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
 ## RAG-is olevad lehed ja kontaktid
 
-Serveris töötav RAG, korpus v75, 10.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
+Serveris töötav RAG, korpus v77, 11.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
 
 ### Hooldekodude kohamaksumuse lehed (79)
 
@@ -2594,7 +2597,7 @@ Serveris töötav RAG, korpus v75, 10.10.2026. Siin on loend sellest, mida jaoti
 | Tervise Abi | Kuulmisabivahendid, häiresüsteemid ja lisad | <https://terviseabi.ee/tootekategooria/kuulmisabivahendid/> |
 | Tervise Abi | Tallinna sotsiaalvalveteenus | <https://terviseabi.ee/teenused/sotsiaalvalveteenus> |
 
-### Puuetega inimeste organisatsioonide lehed (521)
+### Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon) (534)
 
 | Väljaandja | Pealkiri | Aadress |
 |---|---|---|
@@ -2899,6 +2902,19 @@ Serveris töötav RAG, korpus v75, 10.10.2026. Siin on loend sellest, mida jaoti
 | Eesti Sclerosis Multiplexi Ühingute Liit | SA Sclerosis multiplexi register | <https://smk.ee/sa-sclerosis-multiplexi-register> |
 | Eesti Sclerosis Multiplexi Ühingute Liit | Sümptomid | <https://smk.ee/sumptomid> |
 | Eesti Sclerosis Multiplexi Ühingute Liit | Teavitusmaterjalid | <https://smk.ee/teavitusmaterjalid> |
+| Eesti Sotsiaaltöö Assotsiatsioon | Eetikakäsiraamat \| ESTA | <https://www.eswa.ee/eetikakasiraamat/> |
+| Eesti Toidupank | Kellele jagame toiduabi? | <https://www.toidupank.ee/vajad-abi/kellele-jagame-toiduabi> |
+| Eesti Toidupank | Millest toiduabi koosneb? | <https://www.toidupank.ee/vajad-abi/millest-toiduabi-koosneb> |
+| Eesti Toidupank | Taotle abi | <https://www.toidupank.ee/vajad-abi> |
+| Eesti Toidupank | Toiduabi taotlemise info | <https://www.toidupank.ee/vajad-abi/toiduabi-taotlemise-info> |
+| Eesti Toidupank | Vali toidupank | <https://www.toidupank.ee/foodbanks/jogeva> |
+| Eesti Toidupank | Vali toidupank | <https://www.toidupank.ee/foodbanks/rapla> |
+| Eesti Toidupank | Vali toidupank | <https://www.toidupank.ee/foodbanks/tallinn> |
+| Eesti Toidupank | Vali toidupank | <https://www.toidupank.ee/foodbanks/rakvere> |
+| Eesti Toidupank | Vali toidupank | <https://www.toidupank.ee/foodbanks/valga> |
+| Eesti Toidupank | Vali toidupank | <https://www.toidupank.ee/foodbanks/kuressaare> |
+| Eesti Toidupank | Vali toidupank | <https://www.toidupank.ee/foodbanks/tartu> |
+| Eesti Toidupank | Vali toidupank | <https://www.toidupank.ee/foodbanks/parnu> |
 | Eesti Vaegkuuljate Liit | Aparaadi taotlemine | <https://vaegkuuljad.ee/kuulmisabi/aparaadi-taotlemine> |
 | Eesti Vaegkuuljate Liit | Dokumendid | <https://vaegkuuljad.ee/liidust/dokumendid> |
 | Eesti Vaegkuuljate Liit | Kirjutustõlketeenus | <https://vaegkuuljad.ee/teenused/kirjutustolketeenus> |
@@ -3119,6 +3135,562 @@ Serveris töötav RAG, korpus v75, 10.10.2026. Siin on loend sellest, mida jaoti
 | Võrumaa Puuetega Inimeste Koda | Liikmesühingud | <https://www.vorukoda.ee/kojast/liikmesuhingud> |
 | Võrumaa Puuetega Inimeste Koda | PIK ringid | <https://www.vorukoda.ee/tegevused/pik-ringid> |
 | Võrumaa Puuetega Inimeste Koda | TASUTA ÕIGUSABI ERIVAJADUSTEGA INIMESTELE | <https://www.vorukoda.ee/tasuta-oigusabi-erivajadustega-inimestele> |
+
+### Asutuste juhislehed, valitud reegliga (551)
+
+| Väljaandja | Pealkiri | Aadress |
+|---|---|---|
+| Andmekaitse Inspektsioon | Andmekaitsespetsialist | <https://www.aki.ee/isikuandmed/andmetootlejale/andmekaitsespetsialist> |
+| Andmekaitse Inspektsioon | Andmekaitsetingimuste koostamine | <https://www.aki.ee/isikuandmed/andmetootlejale/andmekaitsetingimuste-koostamisest> |
+| Andmekaitse Inspektsioon | Andmetega tutvumine | <https://www.aki.ee/isikuandmed/inimese-oigused/isikuandmetega-tutvumine> |
+| Andmekaitse Inspektsioon | Andmeturve | <https://www.aki.ee/isikuandmed/andmetootlejale/andmeturve> |
+| Andmekaitse Inspektsioon | Andmetöötleja vastutus ja kohustused | <https://www.aki.ee/isikuandmed/andmetootlejale/andmetootleja-vastutus-ja-kohustused> |
+| Andmekaitse Inspektsioon | Andmetöötluse põhimõtted | <https://www.aki.ee/isikuandmed/andmetootlejale/andmetootluse-pohimotted> |
+| Andmekaitse Inspektsioon | Automatiseeritud otsused ja profiilianalüüs | <https://www.aki.ee/isikuandmed/inimese-oigused/automatiseeritud-otsused-ja-profiilianaluus> |
+| Andmekaitse Inspektsioon | Haridus ja lapsed | <https://www.aki.ee/isikuandmed/kkk/haridus-ja-lapsed> |
+| Andmekaitse Inspektsioon | Inimese õiguste tagamine | <https://www.aki.ee/isikuandmed/andmetootlejale/inimese-oiguste-tagamine> |
+| Andmekaitse Inspektsioon | Isikuandmed uuringutes | <https://www.aki.ee/isikuandmed/andmetootlejale/isikuandmed-uuringutes> |
+| Andmekaitse Inspektsioon | Isikuandmete kustutamine | <https://www.aki.ee/isikuandmed/inimese-oigused/isikuandmete-kustutamine> |
+| Andmekaitse Inspektsioon | Isikuandmete parandamine | <https://www.aki.ee/isikuandmed/inimese-oigused/isikuandmete-parandamine> |
+| Andmekaitse Inspektsioon | Isikuandmete töötleja üldjuhend | <https://www.aki.ee/isikuandmed/juhendid-ja-abimaterjalid/isikuandmete-tootleja-uldjuhend> |
+| Andmekaitse Inspektsioon | Isikuandmete töötlemine koolis | <https://www.aki.ee/isikuandmete-tootlemine-koolis> |
+| Andmekaitse Inspektsioon | Isikuandmete töötlemine tervishoius | <https://www.aki.ee/isikuandmete-tootlemine-tervishoius> |
+| Andmekaitse Inspektsioon | Isikuandmete töötlemine töösuhetes | <https://www.aki.ee/isikuandmed/juhendid-ja-abimaterjalid/isikuandmete-tootlemine-toosuhetes> |
+| Andmekaitse Inspektsioon | Isikuandmete töötlemise piiramine | <https://www.aki.ee/isikuandmed/inimese-oigused/isikuandmete-tootlemise-piiramine> |
+| Andmekaitse Inspektsioon | Isikuandmete ülekandmine | <https://www.aki.ee/isikuandmed/inimese-oigused/isikuandmete-ulekandmine> |
+| Andmekaitse Inspektsioon | Kaamerad | <https://www.aki.ee/isikuandmed/kkk/kaamerad> |
+| Andmekaitse Inspektsioon | Maksehäired | <https://www.aki.ee/isikuandmed/kkk/maksehaired> |
+| Andmekaitse Inspektsioon | Mõisted | <https://www.aki.ee/isikuandmed/kkk/moisted> |
+| Andmekaitse Inspektsioon | Riik | <https://www.aki.ee/isikuandmed/kkk/riik> |
+| Andmekaitse Inspektsioon | Teave isikuandmete kasutamise kohta | <https://www.aki.ee/isikuandmed/inimese-oigused/teave-isikuandmete-kasutamise-kohta> |
+| Andmekaitse Inspektsioon | Tervishoid | <https://www.aki.ee/isikuandmed/kkk/tervishoid> |
+| Andmekaitse Inspektsioon | Töösuhted | <https://www.aki.ee/isikuandmed/kkk/toosuhted> |
+| Andmekaitse Inspektsioon | Töötlemise õiguslikud alused | <https://www.aki.ee/isikuandmed/andmetootlejale/tootlemise-oiguslikud-alused> |
+| Andmekaitse Inspektsioon | Vastuväidete esitamine | <https://www.aki.ee/isikuandmed/inimese-oigused/vastuvaidete-esitamine> |
+| Andmekaitse Inspektsioon | Ühisjuhend: Abivajavast lapsest teatamine ja andmekaitse | <https://www.aki.ee/juhendid/isikuandmed/uhisjuhend-abivajavast-lapsest-teatamine-ja-andmekaitse> |
+| Haridus- ja Noorteamet (Teeviit) | 10 nippi turvalise kohtingurakenduse kohtumiseks | <https://www.teeviit.ee/10-nippi-turvalisteks-kohtinguteks/> |
+| Haridus- ja Noorteamet (Teeviit) | 10 nippi, kuidas hoiduda läbipõlemisest | <https://www.teeviit.ee/10-nippi-kuidas-hoiduda-labipolemisest/> |
+| Haridus- ja Noorteamet (Teeviit) | 5 küsimust ja vastust alkoholi kohta | <https://www.teeviit.ee/5-kusimust-ja-vastust-alkoholi-kohta/> |
+| Haridus- ja Noorteamet (Teeviit) | 5 tehnikat ärevuse leevendamiseks iseseisvalt | <https://www.teeviit.ee/viis-tehnikat-arevuse-leevendamiseks-iseseisvalt/> |
+| Haridus- ja Noorteamet (Teeviit) | Alkoholi- või narkojoobes juhtimine | <https://www.teeviit.ee/alkoholi-voi-narkojoobes-juhtimine/> |
+| Haridus- ja Noorteamet (Teeviit) | Asjad, mida pead teadma korgijoogist ja seksuaalvägivallast | <https://www.teeviit.ee/asjad-mida-pead-teadma-korgijoogist-ja-seksuaalvagivallast/> |
+| Haridus- ja Noorteamet (Teeviit) | Depressioon – mis see on ja kuidas seda ära tunda? | <https://www.teeviit.ee/depressioon-mis-see-on-ja-kuidas-seda-ara-tunda/> |
+| Haridus- ja Noorteamet (Teeviit) | Depressiooniga toimetulek – mõned soovitused enda abistamiseks | <https://www.teeviit.ee/depressiooniga-toimetulek-moned-soovitused-enda-abistamiseks/> |
+| Haridus- ja Noorteamet (Teeviit) | Digisõltuvus võib tabada igaüht | <https://www.teeviit.ee/digisoltuvus-voib-tabada-igauht/> |
+| Haridus- ja Noorteamet (Teeviit) | E-sigaretid – kuidas tubakatööstus meid oma sõnumitega mõjutab? | <https://www.teeviit.ee/e-sigaretid-kuidas-tubakatoostus-meid-oma-sonumitega-mojutab/> |
+| Haridus- ja Noorteamet (Teeviit) | Emotsioonid ja nende väljendumine | <https://www.teeviit.ee/vaimne-tervis-emotsioonid-ja-nende-valjendumine/> |
+| Haridus- ja Noorteamet (Teeviit) | Enamlevinud vaimse tervise mured | <https://www.teeviit.ee/enamlevinud-vaimse-tervise-mured/> |
+| Haridus- ja Noorteamet (Teeviit) | Energiajookide mõju tervisele – mida peaksid teadma? | <https://www.teeviit.ee/energiajook-ei-erguta/> |
+| Haridus- ja Noorteamet (Teeviit) | Enesevigastamine – mida see tegelikult tähendab? | <https://www.teeviit.ee/enesevigastamine-mida-see-tegelikult-tahendab/> |
+| Haridus- ja Noorteamet (Teeviit) | Kanepist | <https://www.teeviit.ee/kanepist/> |
+| Haridus- ja Noorteamet (Teeviit) | Kool algab, mis seis on su rahaasjadega? | <https://www.teeviit.ee/kool-algab-mis-seis-on-su-rahaasjadega/> |
+| Haridus- ja Noorteamet (Teeviit) | Kooli lõpetamine eelarvesõbralikult: kogumispäeviklaste seas on moes taaskasutus | <https://www.teeviit.ee/kooli-lopetamine-eelarvesobralikult/> |
+| Haridus- ja Noorteamet (Teeviit) | Korgijoogi hädaabijuhend | <https://www.teeviit.ee/korgijoogi-hadaabijuhend/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuhu pöörduda vaimse tervise probleemide korral? | <https://www.teeviit.ee/kuhu-poorduda-vaimse-tervise-probleemide-korral/> |
+| Haridus- ja Noorteamet (Teeviit) | Kui on tarvis võtta õppelaenu | <https://www.teeviit.ee/kui-on-tarvis-votta-oppelaenu/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuidas aidata abivajavat sõpra | <https://www.teeviit.ee/kuidas-aidata-abivajavat-sopra/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuidas enesekindlalt öelda ei alkoholi joomisele? | <https://www.teeviit.ee/kuidas-enesekindlalt-oelda-ei-alkoholi-joomisele/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuidas ja millal helistada hädaabinumbrile 112? | <https://www.teeviit.ee/kui-on-oht-elule-helista-hadaabi-numbrile-112/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuidas kliimaärevusega toime tulla? | <https://www.teeviit.ee/kriis-kriisis-ehk-kliimaarevus/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuidas küberkiusamist ära tunda? | <https://www.teeviit.ee/kuidas-kuberkiusamist-ara-tunda/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuidas luua terveid ja turvalisi suhteid oma partneriga? | <https://www.teeviit.ee/kuidas-luua-terveid-ja-turvalisi-suhteid-oma-partneriga/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuidas olla rahatark? | <https://www.teeviit.ee/kuidas-olla-rahatark/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuidas oma lähedase või sõbra depressiooni ära tunda? | <https://www.teeviit.ee/kuidas-oma-lahedase-voi-sobra-depressiooni-ara-tunda/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuidas rääkida lähedastega oma vaimse tervise murest? | <https://www.teeviit.ee/kuidas-raakida-lahedastega-oma-vaimse-tervise-murest/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuidas tudengina rahaasjadega paremini toime tulla? | <https://www.teeviit.ee/kuidas-tudengina-rahaasjadega-paremini-toime-tulla/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuidas tulla toime eksamistressiga? | <https://www.teeviit.ee/kuidas-tulla-toime-eksamistressiga/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuidas tulla toime stressiga? | <https://www.teeviit.ee/kuidas-tulla-toime-stressiga/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuidas tunda ära kiusamist? | <https://www.teeviit.ee/kuidas-tunda-ara-kiusamist/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuidas tunda ära seksuaalvägivalda? | <https://www.teeviit.ee/kuidas-tunda-ara-seksuaalvagivalda/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuidas valmistuda rahaliselt ootamatusteks ja mil viisil tekitada säästupuhvrit? | <https://www.teeviit.ee/kuidas-valmistuda-rahaliselt-ootamatuteks-ja-mil-viisil-tekitada-saastupuhvrit/> |
+| Haridus- ja Noorteamet (Teeviit) | Laste ja noorte õigused ning kohustused | <https://www.teeviit.ee/laste-ja-noorte-oigused-ning-kohustused/> |
+| Haridus- ja Noorteamet (Teeviit) | Leinast Lootuseni | <https://www.teeviit.ee/leinast-lootuseni/> |
+| Haridus- ja Noorteamet (Teeviit) | Lähisuhtevägivald: mis see on ja kuhu pöörduda? | <https://www.teeviit.ee/lahisuhtevagivald-mis-see-on-ja-kuhu-poorduda/> |
+| Haridus- ja Noorteamet (Teeviit) | Mida peaks töölepingu sõlmimisel kindlasti meeles pidama? | <https://www.teeviit.ee/mida-peaks-toolepingu-solmimisel-kindlasti-meeles-pidama/> |
+| Haridus- ja Noorteamet (Teeviit) | Mida peaksin teadma laenudest? | <https://www.teeviit.ee/mida-peaksin-teadma-laenudest/> |
+| Haridus- ja Noorteamet (Teeviit) | Mida silmas pidada esimese kodu üürimisel? | <https://www.teeviit.ee/mida-silmas-pidada-esimese-kodu-uurimisel/> |
+| Haridus- ja Noorteamet (Teeviit) | Mida teha, kui oled sattunud küberkiusamise ohvriks? | <https://www.teeviit.ee/mida-teha-kui-oled-sattunud-kuberkiusamise-ohvriks/> |
+| Haridus- ja Noorteamet (Teeviit) | Mida teha, kui su kaaslane või lähedane käitub vägivaldselt? | <https://www.teeviit.ee/mida-teha-kui-su-lahedane-kaitub-vagivaldselt/> |
+| Haridus- ja Noorteamet (Teeviit) | Miks ma peaksin igakuise eelarve koostama? | <https://www.teeviit.ee/miks-ma-peaksin-igakuise-eelarve-koostama/> |
+| Haridus- ja Noorteamet (Teeviit) | Miks on narkootikumid ohtlikud? | <https://www.teeviit.ee/miks-on-narkootikumid-ohtlikud/> |
+| Haridus- ja Noorteamet (Teeviit) | Millega peab arvestama alaealisena töötades? | <https://www.teeviit.ee/millega-peab-arvestama-alaealisena-tootades/> |
+| Haridus- ja Noorteamet (Teeviit) | Millist infot pean jagama pangaga, kui võtan laenu? | <https://www.teeviit.ee/millist-infot-pean-jagama-pangaga-kui-votan-laenu/> |
+| Haridus- ja Noorteamet (Teeviit) | Mis on inimõigused? | <https://www.teeviit.ee/mis-on-inimoigused/> |
+| Haridus- ja Noorteamet (Teeviit) | Mis on rahatarkus? | <https://www.teeviit.ee/mis-on-rahatarkus/> |
+| Haridus- ja Noorteamet (Teeviit) | Mis on seksuaalvägivald ja kust saada abi? | <https://www.teeviit.ee/mis-on-seksuaalvagivald-ja-kust-saada-abi/> |
+| Haridus- ja Noorteamet (Teeviit) | Mis on vaimne tervis ja vaimne häire? | <https://www.teeviit.ee/mis-on-vaimne-tervis/> |
+| Haridus- ja Noorteamet (Teeviit) | Mis on õppimiskohustus ja mida see tähendab pärast 9. klassi? | <https://www.teeviit.ee/mis-on-oppimiskohustus-ja-mida-see-tahendab-parast-9-klassi/> |
+| Haridus- ja Noorteamet (Teeviit) | Murrame müüte: vaimne tervis | <https://www.teeviit.ee/murrame-muute-vaimne-tervis/> |
+| Haridus- ja Noorteamet (Teeviit) | Nikotiini mõju vaimsele tervisele | <https://www.teeviit.ee/nikotiini-moju-vaimsele-tervisele/> |
+| Haridus- ja Noorteamet (Teeviit) | Organiseeritus kui vaimse tervise abivahend – kuidas kasutada Notionit? | <https://www.teeviit.ee/organiseeritus-kui-vaimse-tervise-abivahend/> |
+| Haridus- ja Noorteamet (Teeviit) | Praktilised tööriistad sinu vaimse tervise jaoks | <https://www.teeviit.ee/praktilised-tooriistad-sinu-vaimse-tervise-jaoks/> |
+| Haridus- ja Noorteamet (Teeviit) | Räägime e-sigaretist | <https://www.teeviit.ee/raagime-e-sigaretist/> |
+| Haridus- ja Noorteamet (Teeviit) | Söömishäire – mis, miks ja kuidas? | <https://www.teeviit.ee/soomishaire-mis-miks-ja-kuidas/> |
+| Haridus- ja Noorteamet (Teeviit) | Teeviit soovitab nippe: stressivaba õppimine | <https://www.teeviit.ee/teeviit-soovitab-nippe-stressivaba-oppimine/> |
+| Haridus- ja Noorteamet (Teeviit) | Turvaliselt suhtlusportaalides | <https://www.teeviit.ee/turvaliselt-suhtlusportaalides/> |
+| Haridus- ja Noorteamet (Teeviit) | Vanemlus: töötamine suvepuhkuste perioodil | <https://www.teeviit.ee/vanemlus-tootamine-suvepuhkuste-perioodil/> |
+| Haridus- ja Noorteamet (Teeviit) | Ära lase söömishäirel võtta oma elu üle kontrolli | <https://www.teeviit.ee/ara-lase-soomishairel-votta-oma-elu-ule-kontrolli/> |
+| Haridus- ja Noorteamet (Teeviit) | Ärevus ja ärevushäired – müüdid ja reaalsus | <https://www.teeviit.ee/arevushairete-muudid-ja-reaalsus/> |
+| Haridus- ja Noorteamet (Teeviit) | Ärevuse tunne võib hakata segama igapäevaelu | <https://www.teeviit.ee/arevuse-tunne-voib-hakata-segama-igapaevaelu/> |
+| Põhja-Eesti Regionaalhaigla | Iseseisev statsionaarne õendusabiteenus | <https://www.regionaalhaigla.ee/iseseisev-statsionaarne-oendusabiteenus> |
+| Põhja-Eesti Regionaalhaigla | Lähedasele | <https://www.regionaalhaigla.ee/patsiendile/lahedasele> |
+| Põhja-Eesti Regionaalhaigla | Palliatiivravi | <https://www.regionaalhaigla.ee/palliatiivravi> |
+| Põhja-Eesti Regionaalhaigla | Palliatiivravi keskus | <https://www.regionaalhaigla.ee/palliatiivravi-keskus> |
+| Põhja-Eesti Regionaalhaigla | Patsiendi õigused ja kohustused | <https://www.regionaalhaigla.ee/patsiendile/patsiendile/patsiendi-oigused-ja-kohustused> |
+| Põhja-Eesti Regionaalhaigla | Õendusabi keskus | <https://www.regionaalhaigla.ee/oendusabi-keskus> |
+| Sotsiaalkindlustusamet | 15. juuni on ülemaailmne eakate väärkohtlemise teadvustamise päev | <https://www.palunabi.ee/et/artiklid/15-juuni-ulemaailmne-eakate-vaarkohtlemise-teadvustamise-paev> |
+| Sotsiaalkindlustusamet | Abiks spetsialistile | <https://www.lasteabi.ee/et/abiks-spetsialistile> |
+| Sotsiaalkindlustusamet | Abivahendi tõendi väljastajale | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/teenuseosutajale/abivahendi-toendi-valjastajale> |
+| Sotsiaalkindlustusamet | Abivajav ja hädaohus olev laps | <https://www.lasteabi.ee/et/abivajav-ja-hadaohus-olev-laps> |
+| Sotsiaalkindlustusamet | Armastus ja suhted | <https://www.lasteabi.ee/et/armastus-ja-suhted> |
+| Sotsiaalkindlustusamet | Asendushoolduse ja järelhoolduse korraldamine | <https://sotsiaalkindlustusamet.ee/asendushoolduse-ja-jarelhoolduse-korraldamine> |
+| Sotsiaalkindlustusamet | Asenduskodu teenuse pakkujale | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/teenuseosutajale/asenduskodu-teenuse-pakkujale> |
+| Sotsiaalkindlustusamet | E- kursused ohvri abistajale | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/ohvri-abistajale/e-kursused-ohvri-abistajale> |
+| Sotsiaalkindlustusamet | E-kursused | <https://www.palunabi.ee/et/e-kursused> |
+| Sotsiaalkindlustusamet | Eaka väärkohtlemine jääb pahatihti nähtamatuks | <https://www.palunabi.ee/et/artiklid/eaka-vaarkohtlemine-jaab-pahatihti-nahtamatuks> |
+| Sotsiaalkindlustusamet | Erihoolekandeteenuse osutajale | <https://sotsiaalkindlustusamet.ee/erihoolekandeteenuse-osutajale> |
+| Sotsiaalkindlustusamet | Hoolin ja märkan: kuidas lasteabi töötab? | <https://www.lasteabi.ee/et/artiklid/hoolin-ja-markan-kuidas-lasteabi-tootab> |
+| Sotsiaalkindlustusamet | Hädaohus oleva täiskasvanud perevägivalla ohvri abistamine (MARAC-i mudel) | <https://sotsiaalkindlustusamet.ee/MARAC> |
+| Sotsiaalkindlustusamet | Iga tunne loeb: LGBTQ+ noorte mõistmine ja toetus | <https://www.lasteabi.ee/et/artiklid/iga-tunne-loeb-lgbtq-noorte-moistmine-ja-toetus> |
+| Sotsiaalkindlustusamet | Isikukeskse erihoolekande teenuse mudeli (ISTE) rakendamine kohalikus omavalitsuses | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/kohalike-omavalitsuste-noustamine/isikukeskse-erihoolekande> |
+| Sotsiaalkindlustusamet | Juhendid, vormid ja täienduskoolitused lastekaitsetöötajale | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/laste-ja-peredega-tootavale-spetsialistile/juhendid-vormid-ja> |
+| Sotsiaalkindlustusamet | Juhtumikorraldus | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/laste-ja-peredega-tootavale-spetsialistile/juhtumikorraldus> |
+| Sotsiaalkindlustusamet | Kadunud laste telefon 116 000 | <https://www.lasteabi.ee/et/kadunud-laste-telefon-116-000> |
+| Sotsiaalkindlustusamet | Kas sina tead, millise taustaga inimene on palgatud suveks või pikemaks lastega töötama? | <https://www.lasteabi.ee/et/artiklid/kas-sina-tead-millise-taustaga-inimene-palgatud-suveks-voi-pikemaks-lastega-tootama-0> |
+| Sotsiaalkindlustusamet | Kasuvanemluse eri tahke avavad „Koduteel“ dokkfilmid | <https://www.lasteabi.ee/et/artiklid/kasuvanemluse-eri-tahke-avavad-koduteel-dokkfilmid> |
+| Sotsiaalkindlustusamet | Kelle palkad lastega töötama? | <https://www.lasteabi.ee/et/artiklid/kelle-palkad-lastega-tootama> |
+| Sotsiaalkindlustusamet | Kelmuse ohvriks sattudes saab tuge ka ohvriabist | <https://www.palunabi.ee/et/artiklid/kelmuse-ohvriks-sattudes-saab-tuge-ka-ohvriabist> |
+| Sotsiaalkindlustusamet | Kes on lastekaitsetöötaja ja miks ta on sulle oluline? | <https://www.lasteabi.ee/et/artiklid/kes-lastekaitsetootaja-ja-miks-ta-sulle-oluline> |
+| Sotsiaalkindlustusamet | Kevadväsimus ja viimased koolikuud: kuidas hoida end tasakaalus? | <https://www.lasteabi.ee/et/artiklid/kevadvasimus-ja-viimased-koolikuud-kuidas-hoida-end-tasakaalus> |
+| Sotsiaalkindlustusamet | Kinnise lasteasutuse teenus (KLAT) | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/laste-ja-noortega-tootavale-spetsialistile/klat> |
+| Sotsiaalkindlustusamet | Kiusamine | <https://www.lasteabi.ee/et/kiusamine> |
+| Sotsiaalkindlustusamet | Kiusamine | <https://www.lasteabi.ee/et/kiusamine-lapsevanem> |
+| Sotsiaalkindlustusamet | Kohalike omavalitsuste nõustamine | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/kohalike-omavalitsuste-noustamine> |
+| Sotsiaalkindlustusamet | Koolitused ja töötoad | <https://www.lasteabi.ee/et/koolitused-ja-tootoad> |
+| Sotsiaalkindlustusamet | Kriisihoolduspere ja erihoolduspere | <https://sotsiaalkindlustusamet.ee/kriisihoolduspere> |
+| Sotsiaalkindlustusamet | Kui õppimine on raske... | <https://www.lasteabi.ee/et/artiklid/kui-oppimine-raske> |
+| Sotsiaalkindlustusamet | Kuidas aidata last, kellel on mure? | <https://www.lasteabi.ee/et/artiklid/kuidas-aidata-last-kellel-mure> |
+| Sotsiaalkindlustusamet | Kuidas koguda tõendusmaterjali kogetud lähisuhtevägivalla kohta? | <https://www.palunabi.ee/et/artiklid/kuidas-koguda-toendusmaterjali-kogetud-lahisuhtevagivalla-kohta> |
+| Sotsiaalkindlustusamet | Kuidas olla toeks enesetapumõtetega inimesele? | <https://www.palunabi.ee/et/artiklid/kuidas-olla-toeks-enesetapumotetega-inimesele> |
+| Sotsiaalkindlustusamet | Kuidas rääkida noortega vägivallast? | <https://www.palunabi.ee/et/artiklid/kuidas-raakida-noortega-vagivallast> |
+| Sotsiaalkindlustusamet | Kuidas sõpra toetada? | <https://www.lasteabi.ee/et/artiklid/kuidas-sopra-toetada> |
+| Sotsiaalkindlustusamet | KUULA: vestlused, mis aitavad lähisuhtevägivalla teemast paremini aru saada | <https://www.palunabi.ee/et/artiklid/kuula-vestlused-mis-aitavad-lahisuhtevagivalla-teemast-paremini-aru-saada> |
+| Sotsiaalkindlustusamet | Kõik sõbrad ei ole mõeldud selleks, et jääda. | <https://www.lasteabi.ee/et/artiklid/koik-sobrad-ei-ole-moeldud-selleks-et-jaada> |
+| Sotsiaalkindlustusamet | Laps kannatab ka siis, kui löögid ei taba teda | <https://www.palunabi.ee/et/artiklid/laps-kannatab-ka-siis-kui-loogid-ei-taba-teda> |
+| Sotsiaalkindlustusamet | Lapse arenguetapid | <https://www.lasteabi.ee/et/lapse-arenguetapid> |
+| Sotsiaalkindlustusamet | Lapse heaolu hindamine | <https://www.lasteabi.ee/et/spetsialistile> |
+| Sotsiaalkindlustusamet | Laste ja peredega töötavale spetsialistile | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/laste-ja-peredega-tootavale-spetsialistile> |
+| Sotsiaalkindlustusamet | Laste seksuaalne väärkohtlemine internetis | <https://www.lasteabi.ee/et/laste-seksuaalne-vaarkohtlemine-internetis> |
+| Sotsiaalkindlustusamet | Lasteabi 116111 | <https://www.lasteabi.ee/et/lasteabi-116111> |
+| Sotsiaalkindlustusamet | Lasteabi 116111 | <https://sotsiaalkindlustusamet.ee/lasteabi-116111> |
+| Sotsiaalkindlustusamet | Lasteabi ja Narva lastekaitseosakonna kohtumine | <https://www.lasteabi.ee/et/artiklid/lasteabi-ja-narva-lastekaitseosakonna-kohtumine> |
+| Sotsiaalkindlustusamet | Lasteabi Kohtla-Järve Kesklinna Põhikoolis | <https://www.lasteabi.ee/et/artiklid/lasteabi-kohtla-jarve-kesklinna-pohikoolis> |
+| Sotsiaalkindlustusamet | Lasteabi nõustamine viipekeeles | <https://www.lasteabi.ee/et/artiklid/lasteabi-noustamine-viipekeeles> |
+| Sotsiaalkindlustusamet | Lasteabi nõustamine viipekeeles | <https://www.lasteabi.ee/et/artiklid/lasteabi-noustamine-viipekeeles-0> |
+| Sotsiaalkindlustusamet | Lasteabi pakub veebiterapeudi teenust | <https://www.lasteabi.ee/et/artiklid/lasteabi-pakub-veebiterapeudi-teenust> |
+| Sotsiaalkindlustusamet | Lasteabi podcast: Hooldusperedesse ei jõua vaid väikelapsed, ka teismelised ootavad kodu ja turvalisust | <https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-hooldusperedesse-ei-joua-vaid-vaikelapsed-ka-teismelised-ootavad-kodu-ja> |
+| Sotsiaalkindlustusamet | Lasteabi podcast: Kas sinu laps oskab enda piire kehtestada? Kas sinu teismeline teab, et „ei“ tähendabki päriselt „ei“? | <https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-kas-sinu-laps-oskab-enda-piire-kehtestada-kas-sinu-teismeline-teab-et-ei> |
+| Sotsiaalkindlustusamet | Lasteabi podcast: kuidas hoida laste ja noorte vaimset tervist? | <https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-kuidas-hoida-laste-ja-noorte-vaimset-tervist> |
+| Sotsiaalkindlustusamet | Lasteabi podcast: kuidas kaitsta lapsi sotsiaalmeedia negatiivse mõju eest? | <https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-kuidas-kaitsta-lapsi-sotsiaalmeedia-negatiivse-moju-eest> |
+| Sotsiaalkindlustusamet | Lasteabi podcast: kuidas saab kool laste vaimset tervist toetada? | <https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-kuidas-saab-kool-laste-vaimset-tervist-toetada> |
+| Sotsiaalkindlustusamet | Lasteabi podcast: kuidas veeta lastega üks tore suvi? | <https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-kuidas-veeta-lastega-uks-tore-suvi> |
+| Sotsiaalkindlustusamet | Lasteabi podcast: Kuidas veipimist ennetada? | <https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-kuidas-veipimist-ennetada> |
+| Sotsiaalkindlustusamet | Lasteabi podcast: Kuigi töö perekodus on emotsionaalselt keeruline, pakub see ka suurt rõõmu | <https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-kuigi-too-perekodus-emotsionaalselt-keeruline-pakub-see-ka-suurt-roomu> |
+| Sotsiaalkindlustusamet | Lasteabi podcast: Mis on turvaline huviharidus? | <https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-mis-turvaline-huviharidus> |
+| Sotsiaalkindlustusamet | Lasteabi podcast: perelepitus aitab peredel hakkama saada ka pärast purunemist | <https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-perelepitus-aitab-peredel-hakkama-saada-ka-parast-purunemist> |
+| Sotsiaalkindlustusamet | Lasteabi podcast: Tüdrukud tarvitavad narkootikume üha enam | <https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-tudrukud-tarvitavad-narkootikume-uha-enam> |
+| Sotsiaalkindlustusamet | Lasteabisse pöördumiste arv kasvas aastaga 14,5%. Aina rohkem tuleb teateid õpetajatelt | <https://www.lasteabi.ee/et/artiklid/lasteabisse-poordumiste-arv-kasvas-aastaga-145-aina-rohkem-tuleb-teateid-opetajatelt> |
+| Sotsiaalkindlustusamet | Lastekaitsealane ennetustöö | <https://sotsiaalkindlustusamet.ee/lastekaitsealane-ennetus> |
+| Sotsiaalkindlustusamet | Lastekaitsealane nõustamine | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/laste-ja-noortega-tootavale-spetsialistile/lastekaitse-noustamine> |
+| Sotsiaalkindlustusamet | Lastemaja | <https://www.lasteabi.ee/et/lastemaja> |
+| Sotsiaalkindlustusamet | Menetlustähtajad | <https://sotsiaalkindlustusamet.ee/menetlustahtajad> |
+| Sotsiaalkindlustusamet | Miks peab kiusamist ennetama ja vähendama? | <https://www.lasteabi.ee/et/artiklid/miks-peab-kiusamist-ennetama-ja-vahendama> |
+| Sotsiaalkindlustusamet | Millal lasteabisse pöörduda? | <https://www.lasteabi.ee/et/millal-lasteabisse-poorduda> |
+| Sotsiaalkindlustusamet | Mis ei ole kiusamine? | <https://www.lasteabi.ee/et/artiklid/mis-ei-ole-kiusamine> |
+| Sotsiaalkindlustusamet | Mis on koolikiusamine? | <https://www.lasteabi.ee/et/artiklid/mis-koolikiusamine> |
+| Sotsiaalkindlustusamet | Mis on küberkiusamine? | <https://www.lasteabi.ee/et/artiklid/mis-kuberkiusamine> |
+| Sotsiaalkindlustusamet | Mitmedimensiooniline pereteraapia | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/laste-ja-peredega-tootavale-spetsialistile/mitmedimensiooniline> |
+| Sotsiaalkindlustusamet | Mul on vastutus | <https://www.lasteabi.ee/et/mul-vastutus> |
+| Sotsiaalkindlustusamet | Mul on võimalus | <https://www.lasteabi.ee/et/mul-voimalus> |
+| Sotsiaalkindlustusamet | Mul on õigus | <https://www.lasteabi.ee/et/mul-oigus> |
+| Sotsiaalkindlustusamet | Noorte toetamine | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/laste-ja-peredega-tootavale-spetsialistile/noorte-toetamine> |
+| Sotsiaalkindlustusamet | Noorte toetamine ja järelhooldus | <https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/asendushooldus-ja-kasuvanemlus/noorte-toetamine-ja-jarelhooldus> |
+| Sotsiaalkindlustusamet | Noortegarantii tugisüsteem | <https://www.lasteabi.ee/et/noortegarantii-tugisusteem> |
+| Sotsiaalkindlustusamet | Noortegarantii tugisüsteem | <https://sotsiaalkindlustusamet.ee/ngts> |
+| Sotsiaalkindlustusamet | Ohvri abistajale | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/ohvri-abistajale> |
+| Sotsiaalkindlustusamet | Ohvri andmete edastamine sotsiaalkindlustusametile | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/ohvri-abistajale/ohvri-andmete-edastamine> |
+| Sotsiaalkindlustusamet | Pensioni taotlemine | <https://sotsiaalkindlustusamet.ee/pensioni-taotlemine> |
+| Sotsiaalkindlustusamet | Perekond | <https://www.lasteabi.ee/et/perekond> |
+| Sotsiaalkindlustusamet | Perekond | <https://www.lasteabi.ee/et/perekond-0> |
+| Sotsiaalkindlustusamet | Perepõhise asendushoolduse tugiteenuste osutajale | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/teenuseosutajale/perepohise-asendushoolduse-tugiteenuste> |
+| Sotsiaalkindlustusamet | Psühholoogiline esmaabi on oskus nagu meditsiiniline esmaabi ning seda võiks osata igaüks | <https://www.palunabi.ee/et/artiklid/psuhholoogiline-esmaabi-oskus-nagu-meditsiiniline-esmaabi-ning-seda-voiks-osata-igauks> |
+| Sotsiaalkindlustusamet | Psühholoogilist traumat arvestav praktika | <https://www.palunabi.ee/et/psuhholoogilist-traumat-arvestav-praktika> |
+| Sotsiaalkindlustusamet | Puhkusetasu ja keskmise töötasu hüvitamine riigieelarvest | <https://sotsiaalkindlustusamet.ee/puhkusetasu-ja-keskmise-tootasu-huvitamine> |
+| Sotsiaalkindlustusamet | Puudega tööealise inimese toetus | <https://sotsiaalkindlustusamet.ee/puudega-tooealise-inimese-toetus> |
+| Sotsiaalkindlustusamet | Pühadestress ja selle leevendamine: kuidas toime tulla erinevates eluetappides | <https://www.lasteabi.ee/et/artiklid/puhadestress-ja-selle-leevendamine-kuidas-toime-tulla-erinevates-eluetappides> |
+| Sotsiaalkindlustusamet | Rahvusvahelise ja ajutise kaitse saanute tugiisikuteenus | <https://sotsiaalkindlustusamet.ee/rahvusvahelise-ja-ajutise-kaitse-saanute-tugiisikuteenus> |
+| Sotsiaalkindlustusamet | Rahvusvahelised peresuhted ja lastekaitse: mida peaks lapsevanemad teadma? | <https://www.lasteabi.ee/et/artiklid/rahvusvahelised-peresuhted-ja-lastekaitse-mida-peaks-lapsevanemad-teadma> |
+| Sotsiaalkindlustusamet | Ravikindlustus | <https://sotsiaalkindlustusamet.ee/ravikindlustus> |
+| Sotsiaalkindlustusamet | Rehabilitatsiooniteenuse osutajatele | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/teenuseosutajale/rehabilitatsiooniteenuse-osutajale> |
+| Sotsiaalkindlustusamet | Riigi abikäsi kuriteoohvrile: rahaline hüvitis | <https://www.palunabi.ee/et/artiklid/riigi-abikasi-kuriteoohvrile-rahaline-huvitis> |
+| Sotsiaalkindlustusamet | Saatjata alaealise välismaalase toetamine | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/kohalike-omavalitsuste-noustamine/saatjata-alaealise> |
+| Sotsiaalkindlustusamet | Safe box | <https://www.lasteabi.ee/et/safe-box> |
+| Sotsiaalkindlustusamet | Seksuaalne kägistamine võib ootamatult lõppeda surmaga | <https://www.palunabi.ee/et/artiklid/seksuaalne-kagistamine-voib-ootamatult-loppeda-surmaga> |
+| Sotsiaalkindlustusamet | Seksuaalne väärkohtlemine internetis | <https://www.lasteabi.ee/et/seksuaalne-vaarkohtlemine-internetis> |
+| Sotsiaalkindlustusamet | Seksuaalne ärakasutamine: mis see on ja kuidas end kaitsta? | <https://www.lasteabi.ee/et/artiklid/seksuaalne-arakasutamine-mis-see-ja-kuidas-end-kaitsta> |
+| Sotsiaalkindlustusamet | Seksuaalsus | <https://www.lasteabi.ee/et/seksuaalsus> |
+| Sotsiaalkindlustusamet | Seksuaaltervis | <https://www.lasteabi.ee/et/seksuaaltervis-lapsevanem> |
+| Sotsiaalkindlustusamet | Sotsiaalkindlustus välismaal ja välismaalt tulijatele | <https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/sotsiaalkindlustus-valismaal-ja-valismaalt-tulijatele-0> |
+| Sotsiaalkindlustusamet | Sotsiaalkindlustusameti tasuta e-kursused kõigile | <https://www.lasteabi.ee/et/artiklid/sotsiaalkindlustusameti-tasuta-e-kursused-koigile> |
+| Sotsiaalkindlustusamet | Sotsiaalteenuste kvaliteedijuhised | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/kohalike-omavalitsuste-noustamine/sotsiaalteenuste> |
+| Sotsiaalkindlustusamet | Sotsiaalteenuste toimepidevus | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/kohalike-omavalitsuste-noustamine/sotsiaalteenuste-toimepidevus> |
+| Sotsiaalkindlustusamet | STAR | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/star> |
+| Sotsiaalkindlustusamet | Suhtlus lapsega | <https://www.lasteabi.ee/et/suhtlus-lapsega> |
+| Sotsiaalkindlustusamet | Suure hooldus- ja abivajadusega lapse hoiu teenuse osutajale | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/teenuseosutajale/suure-hooldus-ja-abivajadusega-laste-hoidjale> |
+| Sotsiaalkindlustusamet | Suure hooldus- ja abivajadusega laste hoiu teenus | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/kohalike-omavalitsuste-noustamine/suure-hooldus-ja> |
+| Sotsiaalkindlustusamet | Sõprus | <https://www.lasteabi.ee/et/soprus> |
+| Sotsiaalkindlustusamet | Sõprus | <https://www.lasteabi.ee/et/soprus-0> |
+| Sotsiaalkindlustusamet | Taastav õigus | <https://sotsiaalkindlustusamet.ee/taastavoigus> |
+| Sotsiaalkindlustusamet | Tahad suvel tööd teha? Tea, millised on sinu õigused! | <https://www.lasteabi.ee/et/artiklid/tahad-suvel-tood-teha-tea-millised-sinu-oigused> |
+| Sotsiaalkindlustusamet | Teata abivajavast lapsest | <https://www.lasteabi.ee/et/teata-abivajavast-lapsest> |
+| Sotsiaalkindlustusamet | Teenuseosutajale | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/teenuseosutajale> |
+| Sotsiaalkindlustusamet | Tegevused iseenda toetuseks | <https://www.lasteabi.ee/et/tegevused-iseenda-toetuseks> |
+| Sotsiaalkindlustusamet | Toimetulekutoetus | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/kohalike-omavalitsuste-noustamine/toimetulekutoetus> |
+| Sotsiaalkindlustusamet | Traumast taastumist toetav vaimse tervise abi | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/teenuseosutajale/traumast-taastumist-toetava-vaimse-tervise-abi> |
+| Sotsiaalkindlustusamet | Tugigrupi töö korraldajale | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/teenuseosutajale/tugigrupi-too-korraldajale> |
+| Sotsiaalkindlustusamet | Tunded | <https://www.lasteabi.ee/et/tunded> |
+| Sotsiaalkindlustusamet | Turvalisus sotsiaalmeedias ja ekraanivaba aeg | <https://www.lasteabi.ee/et/artiklid/turvalisus-sotsiaalmeedias-ja-ekraanivaba-aeg> |
+| Sotsiaalkindlustusamet | Turvalisus spordis ja huvihariduses | <https://www.lasteabi.ee/et/artiklid/turvalisus-spordis-ja-huvihariduses> |
+| Sotsiaalkindlustusamet | Tõlketeenus rahvusvahelise kaitse saajale | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/kohalike-omavalitsuste-noustamine/tolketeenus-rahvusvahelise> |
+| Sotsiaalkindlustusamet | Täienda oma teadmisi e-kursusel „Abivajava lapse märkamine ja abistamine“ | <https://www.lasteabi.ee/et/artiklid/taienda-oma-teadmisi-e-kursusel-abivajava-lapse-markamine-ja-abistamine> |
+| Sotsiaalkindlustusamet | Tööealise puude raskusastme tuvastamine | <https://sotsiaalkindlustusamet.ee/tooealise-puude-tuvastamine> |
+| Sotsiaalkindlustusamet | Tööriistakast | <https://www.lasteabi.ee/et/tooriistakast> |
+| Sotsiaalkindlustusamet | Uus ja lihtne viis abivajavast lapsest teatamiseks | <https://www.lasteabi.ee/et/artiklid/uus-ja-lihtne-viis-abivajavast-lapsest-teatamiseks> |
+| Sotsiaalkindlustusamet | Uus vaimse tervise toetamise tööriist: safe box | <https://www.lasteabi.ee/et/artiklid/uus-vaimse-tervise-toetamise-tooriist-safe-box> |
+| Sotsiaalkindlustusamet | Vabatahtlik töö ohvriabis | <https://www.palunabi.ee/et/vabatahtlik-too-ohvriabis> |
+| Sotsiaalkindlustusamet | Vaimne tervis | <https://www.lasteabi.ee/et/vaimne-tervis> |
+| Sotsiaalkindlustusamet | Vaimne tervis | <https://www.lasteabi.ee/et/vaimne-tervis-lapsevanem> |
+| Sotsiaalkindlustusamet | Vaimse tervise veebinõustamine aitab saada oma elu parimaks eksperdiks | <https://www.palunabi.ee/et/artiklid/vaimse-tervise-veebinoustamine-aitab-saada-oma-elu-parimaks-eksperdiks> |
+| Sotsiaalkindlustusamet | Veebimaailm | <https://www.lasteabi.ee/et/veebimaailm> |
+| Sotsiaalkindlustusamet | Vikerraadio Reportertund: Koolistressis noor. Kust saab abi? | <https://www.lasteabi.ee/et/artiklid/vikerraadio-reportertund-koolistressis-noor-kust-saab-abi> |
+| Sotsiaalkindlustusamet | Vägivald | <https://www.lasteabi.ee/et/vagivald> |
+| Sotsiaalkindlustusamet | Vägivald | <https://www.lasteabi.ee/et/vagivald-lapsevanem> |
+| Sotsiaalkindlustusamet | Õppimine | <https://www.lasteabi.ee/et/oppimine> |
+| Sotsiaalkindlustusamet | Ära lase end ära kasutada – hoidu kuritegevusele meelitamisest | <https://www.lasteabi.ee/et/artiklid/ara-lase-end-ara-kasutada-hoidu-kuritegevusele-meelitamisest> |
+| Sotsiaalkindlustusamet | Üheskoos parema interneti nimel: lasteabi toetab noori digimaailmas | <https://www.lasteabi.ee/et/artiklid/uheskoos-parema-interneti-nimel-lasteabi-toetab-noori-digimaailmas> |
+| Sotsiaalministeerium | Abivajav laps | <https://www.sm.ee/lapsed-ja-hoolekanne/lapsed-ja-pered/abivajav-laps> |
+| Sotsiaalministeerium | Alkohol | <https://www.sm.ee/alkohol> |
+| Sotsiaalministeerium | Annetatud toiduabi jagamine | <https://www.sm.ee/annetatud-toiduabi-jagamine> |
+| Sotsiaalministeerium | Asendus- ja järelhooldus | <https://www.sm.ee/lapsed-ja-hoolekanne/lapsed-ja-pered/asendus-ja-jarelhooldus> |
+| Sotsiaalministeerium | Dementsus: riskitegurid ja ennetamine | <https://www.sm.ee/dementsus-riskitegurid-ja-ennetamine> |
+| Sotsiaalministeerium | Erakorraline abi ja kiirabi | <https://www.sm.ee/tervise-edendamine-ravi-ja-ravimid/ravi-ja-tervise-taastamine/erakorraline-abi-ja-kiirabi> |
+| Sotsiaalministeerium | Erivajadusega laste tugisüsteemi reform | <https://www.sm.ee/lapsed-ja-hoolekanne/lapsed-ja-pered/erivajadustega-laste-tugisusteem> |
+| Sotsiaalministeerium | Hooldereform | <https://www.sm.ee/hooldereform> |
+| Sotsiaalministeerium | Hooldereform ja pikaajaline hooldus | <https://www.sm.ee/hooldereform-ja-pikaajaline-hooldus> |
+| Sotsiaalministeerium | Inimkaubandus | <https://www.sm.ee/lapsed-ja-hoolekanne/vagivallaennetus-ja-ohvriabi/inimkaubandus> |
+| Sotsiaalministeerium | Kohaliku omavalitsuse sotsiaalteenused ja toetused | <https://www.sm.ee/lapsed-ja-hoolekanne/hoolekanne/kohaliku-omavalitsuse-sotsiaalteenused-ja-toetused> |
+| Sotsiaalministeerium | Kuidas rääkida dementsusest austavalt ja kaasavalt | <https://www.sm.ee/kuidas-raakida-dementsusest-austavalt-ja-kaasavalt> |
+| Sotsiaalministeerium | Lapse õigused ja heaolu | <https://www.sm.ee/lapsed-ja-hoolekanne/lapsed-ja-pered/lapse-oigused-ja-heaolu> |
+| Sotsiaalministeerium | Laste ja perede toetamise KKK | <https://www.sm.ee/laste-ja-perede-toetamise-kkk> |
+| Sotsiaalministeerium | Lähisuhte- ja naisevastane vägivald | <https://www.sm.ee/lapsed-ja-hoolekanne/vagivallaennetus-ja-ohvriabi/lahisuhte-ja-naisevastane-vagivald> |
+| Sotsiaalministeerium | Naistevastane vägivald | <https://www.sm.ee/naistevastane-vagivald> |
+| Sotsiaalministeerium | Narkootikumid | <https://www.sm.ee/narkootikumid> |
+| Sotsiaalministeerium | Ohvriabi | <https://www.sm.ee/lapsed-ja-hoolekanne/vagivallaennetus-ja-ohvriabi/ohvriabi> |
+| Sotsiaalministeerium | Patsiendi elulõpu tahteavalduse korduma kippuvad küsimused | <https://www.sm.ee/patsiendi-elulopu-tahteavalduse-korduma-kippuvad-kusimused> |
+| Sotsiaalministeerium | Pereõde ja -arst | <https://www.sm.ee/tervise-edendamine-ravi-ja-ravimid/ravi-ja-tervise-taastamine/pereode-ja-arst> |
+| Sotsiaalministeerium | Puudega ja vähenenud töövõimega inimesele | <https://www.sm.ee/puudega-inimesele-1> |
+| Sotsiaalministeerium | Puudega laps | <https://www.sm.ee/lapsed-ja-hoolekanne/lapsed-ja-pered/puudega-laps> |
+| Sotsiaalministeerium | Puuetega inimeste võrdne kohtlemine | <https://www.sm.ee/puuetega-inimeste-vordne-kohtlemine> |
+| Sotsiaalministeerium | Riigi sotsiaalteenused | <https://www.sm.ee/lapsed-ja-hoolekanne/hoolekanne/riigi-sotsiaalteenused> |
+| Sotsiaalministeerium | Seksuaalvägivald | <https://www.sm.ee/lapsed-ja-hoolekanne/vagivallaennetus-ja-ohvriabi/seksuaalvagivald> |
+| Sotsiaalministeerium | Terminid/juhendid | <https://www.sm.ee/terminidjuhendid> |
+| Sotsiaalministeerium | Tervishoid | <https://www.sm.ee/tervise-edendamine-ravi-ja-ravimid/ravi-ja-tervise-taastamine/tervishoid> |
+| Sotsiaalministeerium | Toidu annetamine | <https://www.sm.ee/toiduannetamine> |
+| Sotsiaalministeerium | Toiduabi | <https://www.sm.ee/lapsed-ja-hoolekanne/abivajajale/toiduabi> |
+| Sotsiaalministeerium | Toimetulekutoetus | <https://www.sm.ee/toimetulekutoetus> |
+| Sotsiaalministeerium | Töövahendid ja rakendused patsiendile | <https://www.sm.ee/tervise-edendamine-ravi-ja-ravimid/ravi-ja-tervise-taastamine/toovahendid-ja-rakendused-patsiendile> |
+| Sotsiaalministeerium | Vaimse tervise abi | <https://www.sm.ee/tervise-edendamine-ravi-ja-ravimid/vaimne-tervis/vaimse-tervise-abi> |
+| Sotsiaalministeerium | Vaimse tervise hoidmine | <https://www.sm.ee/tervise-edendamine-ravi-ja-ravimid/vaimne-tervis/vaimse-tervise-hoidmine> |
+| Sotsiaalministeerium | Vaimse tervise ja psühhosotsiaalne tugi kriisides | <https://www.sm.ee/tervise-edendamine-ravi-ja-ravimid/vaimne-tervis/vaimse-tervise-ja-psuhhosotsiaalne-tugi-kriisides> |
+| Sotsiaalministeerium | Vanemlus ja elu lastega | <https://www.sm.ee/lapsed-ja-hoolekanne/lapsed-ja-pered/vanemlus-ja-elu-lastega> |
+| Sotsiaalministeerium | Üldhooldusteenust pakkuvad hoolekandeasutused | <https://www.sm.ee/uldhooldusteenust-pakkuvad-hoolekandeasutused> |
+| Tartu Ülikooli Kliinikum | Alkoholitarvitamise häire | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/alkoholitarvitamise-haire/> |
+| Tartu Ülikooli Kliinikum | Dementsus | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/dementsus/> |
+| Tartu Ülikooli Kliinikum | Depressioon | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/depressioon/> |
+| Tartu Ülikooli Kliinikum | Insuldikoordinaator ja teised toetavad teenused insuldipatsientidele | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/insuldikoordinaator-ja-teised-toetavad-teenused-insuldipatsientidele/> |
+| Tartu Ülikooli Kliinikum | Koduse enteraalse toitmise teenus | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/koduse-enteraalse-toitmise-teenus/> |
+| Tartu Ülikooli Kliinikum | Lamatised | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/lamatised/> |
+| Tartu Ülikooli Kliinikum | Omastehooldus | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/omastehooldus/> |
+| Tartu Ülikooli Kliinikum | Palliatiivravi ja hospiits | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/palliatiivravi-ja-hospiits/> |
+| Tartu Ülikooli Kliinikum | Patsientide külastamine psühhiaatriakliinikus | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/patsientide-kulastamine-psuhhiaatriakliinikus/> |
+| Tartu Ülikooli Kliinikum | Püsiv valu | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/pusiv-valu/> |
+| Tartu Ülikooli Kliinikum | Rahustisõltuvus | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/rahustisoltuvus/> |
+| Tartu Ülikooli Kliinikum | Sotsiaaltöötaja teenus kliinikumis | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/sotsiaaltootaja-teenus-kliinikumis/> |
+| Tartu Ülikooli Kliinikum | Vähktõvega patsiendi hingehoidlik toetamine hematoloogia-onkoloogia kliinikus | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/vahktovega-patsiendi-hingehoidlik-toetamine-hematoloogia-onkoloogia-kliinikus/> |
+| Tartu Ülikooli Kliinikum | Üldistunud ärevushäire | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/uldistunud-arevushaire/> |
+| Tervise Arengu Instituut | Abivõimalused lastele ja noortele | <https://www.narko.ee/abivoimalused-noortele> |
+| Tervise Arengu Instituut | Abivõimalused sõjapõgenikele | <https://www.narko.ee/siit-saad-abi/abivoimalused-sojapogenikele> |
+| Tervise Arengu Instituut | Ainejäägiga esemete testimise tulemused | <https://www.narko.ee/kogukond/testimine-tulemused> |
+| Tervise Arengu Instituut | Ainete segatarvitamisega kaasnevad riskid | <https://www.narko.ee/tarvitajad/kuidas-vahendada-tarvitamisega-kaasnevaid-ohte/ainete-segatarvitamisega-kaasnevad-riskid> |
+| Tervise Arengu Instituut | Alfa-PVP | <https://www.narko.ee/ained/alfa-pvp> |
+| Tervise Arengu Instituut | Alkohol ja energiajoogid | <https://alkoinfo.ee/et/moju/alkoholi-toime/alkohol-ja-energiajoogid> |
+| Tervise Arengu Instituut | Alkohol ja illegaalsed uimastid | <https://alkoinfo.ee/et/moju/alkoholi-toime/alkohol-ja-illegaalsed-uimastid> |
+| Tervise Arengu Instituut | Alkohol ja ravimid | <https://alkoinfo.ee/et/moju/alkoholi-toime/alkohol-ja-ravimid> |
+| Tervise Arengu Instituut | Alkoholi moju tervisele | <https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele> |
+| Tervise Arengu Instituut | Alkoholi toime | <https://alkoinfo.ee/et/moju/alkoholi-toime> |
+| Tervise Arengu Instituut | Alkoholimurgistus ja esmaabi | <https://alkoinfo.ee/et/moju/alkoholi-toime/alkoholimurgistus-ja-esmaabi> |
+| Tervise Arengu Instituut | Alkoholiprobleeme alalhoidvad motted | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine/alkoholiprobleeme-alalhoidvad-motted> |
+| Tervise Arengu Instituut | Alkoholist loobumine | <https://alkoinfo.ee/et/kuidas-vahendada/kas-muutuda-kas-vahendada/eesmargi-seadmine/alkoholist-loobumine> |
+| Tervise Arengu Instituut | Alkoholiuhik | <https://alkoinfo.ee/et/millal-vahendada/moodukuse-piires/alkoholiuhik> |
+| Tervise Arengu Instituut | Alkovabad joogid | <https://alkoinfo.ee/et/kuidas-vahendada/kuidas-juua-vahem/alkovabad-joogid> |
+| Tervise Arengu Instituut | Amfetamiin | <https://www.narko.ee/ained/amfetamiin> |
+| Tervise Arengu Instituut | AUDIT test | <https://alkoinfo.ee/et/millal-vahendada/moodukuse-piires/audit-test> |
+| Tervise Arengu Instituut | Ayahuasca | <https://www.narko.ee/ained/ayahuasca-caapi-hoasca-vegetal-yage-mihi-dapa> |
+| Tervise Arengu Instituut | Bensodiasepiinid (rahustid) | <https://www.narko.ee/ained/bensodiasepiinid> |
+| Tervise Arengu Instituut | Binge drinking ehk purjutamine | <https://alkoinfo.ee/et/millal-vahendada/ule-piiride/binge-drinking-ehk-purjutamine> |
+| Tervise Arengu Instituut | Eakad | <https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/eakad> |
+| Tervise Arengu Instituut | Eesmargi seadmine | <https://alkoinfo.ee/et/kuidas-vahendada/kas-muutuda-kas-vahendada/eesmargi-seadmine> |
+| Tervise Arengu Instituut | Efedriin | <https://www.narko.ee/ained/efedriin> |
+| Tervise Arengu Instituut | Ei utlemine | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine/ei-utlemine> |
+| Tervise Arengu Instituut | Enam levinud uimastid noorte seas | <https://www.narko.ee/noored/noorte-seas-enim-levinud-uimastid> |
+| Tervise Arengu Instituut | Enesekehtestamine | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine/enesekehtestamine> |
+| Tervise Arengu Instituut | Fentanüül | <https://www.narko.ee/ained/fentanuul> |
+| Tervise Arengu Instituut | Fentsüklidiin | <https://www.narko.ee/ained/pcp> |
+| Tervise Arengu Instituut | GHB, GBL | <https://www.narko.ee/ained/ghb> |
+| Tervise Arengu Instituut | Heroiin | <https://www.narko.ee/ained/heroiin> |
+| Tervise Arengu Instituut | Ibogaiin | <https://www.narko.ee/ained/ibogaiin> |
+| Tervise Arengu Instituut | Isotonitaseen | <https://www.narko.ee/ained/isotonitaseen> |
+| Tervise Arengu Instituut | Joomissoovi taltsutamine | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine/joomissoovi-taltsutamine> |
+| Tervise Arengu Instituut | Kaassõltuvus – mis see on? | <https://www.narko.ee/lahedased/kaassoltuvus-mis-see-on> |
+| Tervise Arengu Instituut | Kahjude vähendamise keskused ohutumaks tarvitamiseks | <https://www.narko.ee/siit-saad-abi/kahjude-vahendamise-keskused-ohutumaks-tarvitamiseks> |
+| Tervise Arengu Instituut | Kanep, hašiš | <https://www.narko.ee/ained/kanep_marihuaana_hasis> |
+| Tervise Arengu Instituut | Kanepi ohutum tarvitamine | <https://www.narko.ee/tarvitajad/kuidas-vahendada-tarvitamisega-kaasnevaid-ohte/kuidas-vahendada-kanepitarvitamise-riske/kanepi-ohutum-tarvitamine> |
+| Tervise Arengu Instituut | Kas ma peaksin uimastite tarvitamisest loobuma? | <https://www.narko.ee/tarvitajad/kas-ma-peaksin-uimastite-tarvitamisest-loobuma> |
+| Tervise Arengu Instituut | Kas muutuda kas vahendada | <https://alkoinfo.ee/et/kuidas-vahendada/kas-muutuda-kas-vahendada> |
+| Tervise Arengu Instituut | Kas sul on probleem | <https://alkoinfo.ee/et/millal-vahendada/kas-sul-on-probleem> |
+| Tervise Arengu Instituut | Kas uimastite tarvitajad kujutavad endast ohtu? | <https://www.narko.ee/kogukond/kas-uimastite-tarvitajad-kujutavad-endast-ohtu> |
+| Tervise Arengu Instituut | Ketamiin | <https://www.narko.ee/ained/ketamiin> |
+| Tervise Arengu Instituut | Khat | <https://www.narko.ee/ained/khat> |
+| Tervise Arengu Instituut | Kodeiin | <https://www.narko.ee/ained/kodeiin> |
+| Tervise Arengu Instituut | Kokaiin | <https://www.narko.ee/ained/kokaiin> |
+| Tervise Arengu Instituut | Korduma kippuvad küsimused | <https://www.narko.ee/kogukond/korduma-kippuvad-kusimused> |
+| Tervise Arengu Instituut | Kuhu poorduda | <https://alkoinfo.ee/et/kuidas-vahendada/spetsialisti-abi/kuhu-poorduda> |
+| Tervise Arengu Instituut | Kui lähedane joob | <https://alkoinfo.ee/et/lahedastele> |
+| Tervise Arengu Instituut | Kuidas aidata lahedast | <https://alkoinfo.ee/et/lahedastele/kuidas-aidata-lahedast> |
+| Tervise Arengu Instituut | Kuidas aru saada, et lähedane tarvitab uimasteid? | <https://www.narko.ee/lahedased/kuidas-aru-saada-et-lahedane-tarvitab-uimasteid> |
+| Tervise Arengu Instituut | Kuidas juua vahem | <https://alkoinfo.ee/et/kuidas-vahendada/kuidas-juua-vahem> |
+| Tervise Arengu Instituut | Kuidas juua vahem kodus | <https://alkoinfo.ee/et/kuidas-vahendada/kuidas-juua-vahem/kuidas-juua-vahem-kodus> |
+| Tervise Arengu Instituut | Kuidas juua vahem valjas | <https://alkoinfo.ee/et/kuidas-vahendada/kuidas-juua-vahem/kuidas-juua-vahem-valjas> |
+| Tervise Arengu Instituut | Kuidas kujuneb alkoholi noiaring | <https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/kuidas-kujuneb-alkoholi-noiaring> |
+| Tervise Arengu Instituut | Kuidas käituda, kui sinu lähedane tarvitab uimasteid? | <https://www.narko.ee/lahedased/kuidas-kaituda-kui-sinu-lahedane-tarvitab-uimasteid> |
+| Tervise Arengu Instituut | Kuidas leida motivatsiooni | <https://alkoinfo.ee/et/kuidas-vahendada/kas-muutuda-kas-vahendada/kuidas-leida-motivatsiooni> |
+| Tervise Arengu Instituut | Kuidas mõjutab uimastite tarvitamine lähedasi? | <https://www.narko.ee/lahedased/kuidas-mojutab-uimastite-tarvitamine-lahedasi> |
+| Tervise Arengu Instituut | Kuidas puhade ajal alkoholiga mitte liialdada | <https://alkoinfo.ee/et/kuidas-vahendada/kuidas-juua-vahem/kuidas-puhade-ajal-alkoholiga-mitte-liialdada> |
+| Tervise Arengu Instituut | Kuidas saab aidata ennast alkoholisoltlase lahedane | <https://alkoinfo.ee/et/lahedastele/kuidas-saab-aidata-ennast-alkoholisoltlase-lahedane> |
+| Tervise Arengu Instituut | Kuidas sotsiaalsele survele vastu astuda? | <https://www.narko.ee/noored/kuidas-sotsiaalsele-survele-vastu-astuda> |
+| Tervise Arengu Instituut | Kuidas tagasilangust ennetada ja sellega toime tulla | <https://www.narko.ee/tarvitajad/kuidas-uimastitest-tarvitamisest-vabaneda/kuidas-tagasilangust-ennetada-ja-sellega-toime-tulla> |
+| Tervise Arengu Instituut | Kuidas teha vahema alkoga pidu | <https://alkoinfo.ee/et/kuidas-vahendada/kuidas-juua-vahem/kuidas-teha-vahema-alkoga-pidu> |
+| Tervise Arengu Instituut | Kuidas teistelt toetust saada | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine/kuidas-teistelt-toetust-saada> |
+| Tervise Arengu Instituut | Kuidas tõsta kogukonna turvalisust? | <https://www.narko.ee/kogukond/kuidas-tosta-kogukonna-turvalisust> |
+| Tervise Arengu Instituut | Kuidas uimastite tarvitamisest hoiduda | <https://www.narko.ee/noored/nippe-uimastitest-hoidumiseks> |
+| Tervise Arengu Instituut | Kuidas uimastite tarvitamisest vabaneda | <https://www.narko.ee/tarvitajad/kuidas-uimastitest-tarvitamisest-vabaneda> |
+| Tervise Arengu Instituut | Kuidas vähendada GHB tarvitamise riske | <https://www.narko.ee/tarvitajad/kuidas-vahendada-tarvitamisega-kaasnevaid-ohte/kuidas-vahendada-ghb-tarvitamise-riske> |
+| Tervise Arengu Instituut | Kuidas vähendada hallutsinogeenide tarvitamise riske | <https://www.narko.ee/tarvitajad/kuidas-vahendada-tarvitamisega-kaasnevaid-ohte/kuidas-vahendada-hallutsinogeenide-tarvitamise-riske> |
+| Tervise Arengu Instituut | Kuidas vähendada kanepitarvitamise riske | <https://www.narko.ee/tarvitajad/kuidas-vahendada-tarvitamisega-kaasnevaid-ohte/kuidas-vahendada-kanepitarvitamise-riske> |
+| Tervise Arengu Instituut | Kuidas vähendada tarvitamisega kaasnevaid ohte? | <https://www.narko.ee/tarvitajad/kuidas-vahendada-tarvitamisega-kaasnevaid-ohte> |
+| Tervise Arengu Instituut | Kuidas vähendada? | <https://alkoinfo.ee/et/kuidas-vahendada> |
+| Tervise Arengu Instituut | Kuritarvitamine ja soltuvus | <https://alkoinfo.ee/et/millal-vahendada/ule-piiride/kuritarvitamine-ja-soltuvus> |
+| Tervise Arengu Instituut | Kust tulevad „narkomaanid”? | <https://www.narko.ee/kogukond> |
+| Tervise Arengu Instituut | Kärbseseen | <https://www.narko.ee/ained/karbseseen> |
+| Tervise Arengu Instituut | Liigtarvitamise astmed | <https://alkoinfo.ee/et/millal-vahendada/ule-piiride/liigtarvitamise-astmed> |
+| Tervise Arengu Instituut | Loogastumine | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-sailitamine/loogastumine> |
+| Tervise Arengu Instituut | LSD | <https://www.narko.ee/ained/lsd> |
+| Tervise Arengu Instituut | Luulusalvei, salvia | <https://www.narko.ee/ained/luulusalvei-salvia> |
+| Tervise Arengu Instituut | Lähedane tarvitab uimasteid | <https://www.narko.ee/lahedased/lahedane-tarvitab-uimasteid> |
+| Tervise Arengu Instituut | Maksahaigused | <https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/maksahaigused> |
+| Tervise Arengu Instituut | MDMA, ecstasy | <https://www.narko.ee/ained/mdma-ehk-ecstasy> |
+| Tervise Arengu Instituut | Meeldivad tegevused | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine/meeldivad-tegevused> |
+| Tervise Arengu Instituut | Mehed | <https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/mehed> |
+| Tervise Arengu Instituut | Meskaliin | <https://www.narko.ee/ained/meskaliin> |
+| Tervise Arengu Instituut | Metamfetamiin | <https://www.narko.ee/ained/metaamfetamiin> |
+| Tervise Arengu Instituut | Metüülfenidaat | <https://www.narko.ee/ained/metuulfenidaat> |
+| Tervise Arengu Instituut | Mida teha uimastamis- ja mürgistamiskahtluse korral | <https://www.narko.ee/siit-saad-abi/mida-teha-uimastamis-ja-murgistamiskahtluse-korral> |
+| Tervise Arengu Instituut | Mida teha, kui kahtlustad, et sind on uimastatud ja oled langenud seksuaalvägivalla ohvriks | <https://www.narko.ee/siit-saad-abi/mida-teha-kui-kahtlustad-et-sind-on-uimastatud-ja-oled-langenud-seksuaalkuriteo-ohvriks> |
+| Tervise Arengu Instituut | Mida teha, kui sõber tarvitab uimasteid? | <https://www.narko.ee/noored/mida-teha-kui-sober-tarvitab-uimasteid> |
+| Tervise Arengu Instituut | Miks ja kuidas tekib sõltuvus ning miks on raske sellest vabaneda? | <https://www.narko.ee/narkootikumide-moju-kehale/miks-ja-kuidas-tekib-soltuvus-ning-miks-on-raske-sellest-vabaneda> |
+| Tervise Arengu Instituut | Miks on uimastid ohtlikud? | <https://www.narko.ee/noored/miks-on-uimastid-ohtlikud> |
+| Tervise Arengu Instituut | Miks uimasteid proovitakse | <https://www.narko.ee/noored/uimastite-proovimise-pohjused> |
+| Tervise Arengu Instituut | Millal poorduda spetsialisti poole | <https://alkoinfo.ee/et/kuidas-vahendada/spetsialisti-abi/millal-poorduda-spetsialisti-poole> |
+| Tervise Arengu Instituut | Millal vähendada? | <https://alkoinfo.ee/et/millal-vahendada> |
+| Tervise Arengu Instituut | Milles seisneb alkoholitarvitamise haire ravi | <https://alkoinfo.ee/et/kuidas-vahendada/spetsialisti-abi/milles-seisneb-alkoholitarvitamise-haire-ravi> |
+| Tervise Arengu Instituut | Mis on uimastid ja kuidas neid liigitatakse? | <https://www.narko.ee/mis-on-uimastid-ja-kuidas-neid-liigitatakse> |
+| Tervise Arengu Instituut | Moju elukvaliteedile | <https://alkoinfo.ee/et/moju/moju-elukvaliteedile> |
+| Tervise Arengu Instituut | Moju suhtele | <https://alkoinfo.ee/et/moju/moju-elukvaliteedile/moju-suhtele> |
+| Tervise Arengu Instituut | Moodukas alkoholi tarvitamine | <https://alkoinfo.ee/et/millal-vahendada/moodukuse-piires/moodukas-alkoholi-tarvitamine> |
+| Tervise Arengu Instituut | Moodukuse piires | <https://alkoinfo.ee/et/millal-vahendada/moodukuse-piires> |
+| Tervise Arengu Instituut | Morfiin | <https://www.narko.ee/ained/morfiin> |
+| Tervise Arengu Instituut | Motivatsiooni sailitamine rajal pusimine | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-sailitamine/motivatsiooni-sailitamine-rajal-pusimine> |
+| Tervise Arengu Instituut | Muskaatpähkel | <https://www.narko.ee/ained/muskaatpahkel> |
+| Tervise Arengu Instituut | Muutused mida markad kiiresti | <https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/muutused-mida-markad-kiiresti> |
+| Tervise Arengu Instituut | Muutuste elluviimine | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine> |
+| Tervise Arengu Instituut | Muutuste sailitamine | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-sailitamine> |
+| Tervise Arengu Instituut | Mõju | <https://alkoinfo.ee/et/moju> |
+| Tervise Arengu Instituut | Müüdid | <https://www.narko.ee/muudid> |
+| Tervise Arengu Instituut | Naised | <https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/naised> |
+| Tervise Arengu Instituut | Narkootikumide mõju ajule | <https://www.narko.ee/narkootikumide-moju-kehale/kuidas-narkootikumid-mojutavad-aju> |
+| Tervise Arengu Instituut | Narkootikumide mõju organismile | <https://www.narko.ee/narkootikumide-moju-kehale> |
+| Tervise Arengu Instituut | Narkootikumide tarvitamise ennetamine | <https://www.tai.ee/et/tervis-ja-heaolu/narkootikumide-tarvitamise-ennetamine> |
+| Tervise Arengu Instituut | Narkootikumidega seotud seadusandlusest Eestis | <https://www.narko.ee/olukord-eestis/eesti-seadusandlus> |
+| Tervise Arengu Instituut | Narkootiliste ja psühhotroopsete ainete andmebaas | <https://www.narko.ee/mis-on-uimastid-ja-kuidas-neid-liigitatakse/narkootiliste-ja-psuhhotroopsete-ainete-andmebaas> |
+| Tervise Arengu Instituut | Narkosüütegude märkamine ja neist teavitamine | <https://www.narko.ee/kogukond/narkosuutegude-markamine-ja-neist-teavitamine> |
+| Tervise Arengu Instituut | Nitaseenid | <https://www.narko.ee/ained/nitaseenid> |
+| Tervise Arengu Instituut | Noored | <https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/noored> |
+| Tervise Arengu Instituut | Nõuanded festivalikülastajatele | <https://www.narko.ee/tarvitajad/nouanded-festivalikulastajale> |
+| Tervise Arengu Instituut | Nõustamisprogramm kanepitarvitajatele (VALIK programm) | <https://www.narko.ee/siit-saad-abi/noustamisprogramm-kanepitarvitajatele> |
+| Tervise Arengu Instituut | Ohutum süstimine | <https://www.narko.ee/tarvitajad/kuidas-vahendada-tarvitamisega-kaasnevaid-ohte/ohutum-sustimine> |
+| Tervise Arengu Instituut | Olukord Eestis | <https://www.narko.ee/olukord-eestis> |
+| Tervise Arengu Instituut | Oma mustrite teadvustamine | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine/oma-mustrite-teadvustamine> |
+| Tervise Arengu Instituut | Oopium | <https://www.narko.ee/ained/oopium> |
+| Tervise Arengu Instituut | Pankreatiit | <https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/pankreatiit> |
+| Tervise Arengu Instituut | Plussid miinused | <https://alkoinfo.ee/et/kuidas-vahendada/kas-muutuda-kas-vahendada/plussid-miinused> |
+| Tervise Arengu Instituut | Pohmell | <https://alkoinfo.ee/et/moju/alkoholi-toime/pohmell> |
+| Tervise Arengu Instituut | Positiivsed muutused | <https://alkoinfo.ee/et/kuidas-vahendada/kas-muutuda-kas-vahendada/plussid-miinused/positiivsed-muutused> |
+| Tervise Arengu Instituut | Probleemi tunnused | <https://alkoinfo.ee/et/millal-vahendada/kas-sul-on-probleem/probleemi-tunnused> |
+| Tervise Arengu Instituut | Probleemide lahendamine | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine/probleemide-lahendamine> |
+| Tervise Arengu Instituut | Programm selge | <https://alkoinfo.ee/et/kuidas-vahendada/programm-selge> |
+| Tervise Arengu Instituut | Psilotsübiin (maagilised seened) | <https://www.narko.ee/ained/psilotsubiini-ja-psilotsiini-sisaldavad-seened> |
+| Tervise Arengu Instituut | Purjusolek ja joobeastmed | <https://alkoinfo.ee/et/moju/alkoholi-toime/purjusolek-ja-joobeastmed> |
+| Tervise Arengu Instituut | Raha | <https://alkoinfo.ee/et/moju/moju-elukvaliteedile/raha> |
+| Tervise Arengu Instituut | Rasedus ja imetamine | <https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/naised/rasedus-ja-imetamine> |
+| Tervise Arengu Instituut | Riskantsed situatsioonid | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine/riskantsed-situatsioonid> |
+| Tervise Arengu Instituut | Sekkumised | <https://www.tai.ee/et/valdkonnad/vaimne-tervis/vaimse-tervise-valdkonna-tegevused/sekkumised> |
+| Tervise Arengu Instituut | Seks | <https://alkoinfo.ee/et/moju/moju-elukvaliteedile/seks> |
+| Tervise Arengu Instituut | Septembris ei joo | <https://alkoinfo.ee/et/kuidas-vahendada/kuidas-juua-vahem/septembris-ei-joo> |
+| Tervise Arengu Instituut | Siit saad abi | <https://www.narko.ee/siit-saad-abi> |
+| Tervise Arengu Instituut | Spetsialisti abi | <https://alkoinfo.ee/et/kuidas-vahendada/spetsialisti-abi> |
+| Tervise Arengu Instituut | Sport | <https://alkoinfo.ee/et/moju/moju-elukvaliteedile/sport> |
+| Tervise Arengu Instituut | Sudame ja veresoonkond | <https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/sudame-ja-veresoonkond> |
+| Tervise Arengu Instituut | Sõltuvusravi, sh opioidisõltuvuse asendusravi | <https://www.narko.ee/siit-saad-abi/soltuvusravi-sh-opoiodisoltuvuse-asendusravi> |
+| Tervise Arengu Instituut | Sünteetilised opioidid – fentanüülid, nitaseenid, orfiinid | <https://www.narko.ee/ained/sunteetilised-opioidid> |
+| Tervise Arengu Instituut | Tagasilangused | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-sailitamine/tagasilangused> |
+| Tervise Arengu Instituut | Tasuta sotsiaal- ja õigusabi ning tervishoiuteenused ravikindlustamata inimestele | <https://www.narko.ee/siit-saad-abi/tasuta-sotsiaal-ja-oigusabi> |
+| Tervise Arengu Instituut | Tolerants | <https://alkoinfo.ee/et/millal-vahendada/ule-piiride/kuritarvitamine-ja-soltuvus/tolerants> |
+| Tervise Arengu Instituut | Top 8 põhjust, miks noored narkootikume tarvitavad | <https://www.narko.ee/noored/top-8-pohjust-miks-noored-narkootikume-tarvitavad-2> |
+| Tervise Arengu Instituut | Tsüklorfiin, spirokolrfiin | <https://www.narko.ee/ained/tsuklorfiin> |
+| Tervise Arengu Instituut | Uimasteid tarvitajate inimeste häbimärgistamine | <https://www.narko.ee/kogukond/stigmatiseerimine-ja-selle-moju> |
+| Tervise Arengu Instituut | Uimastiga kokku puutunud esemete testimine | <https://www.narko.ee/kogukond/testimine> |
+| Tervise Arengu Instituut | Uimastite tarvitamise faasid | <https://www.narko.ee/tarvitajad/uimastite-tarvitamise-faasid> |
+| Tervise Arengu Instituut | Uimastite tootmisest ja “puhtusest” | <https://www.narko.ee/uimastite-tootmine-nende-puhtus> |
+| Tervise Arengu Instituut | Ule piiride | <https://alkoinfo.ee/et/millal-vahendada/ule-piiride> |
+| Tervise Arengu Instituut | Ulevaade statistikast | <https://alkoinfo.ee/et/moju/ulevaade-statistikast> |
+| Tervise Arengu Instituut | Unehugieen | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-sailitamine/unehugieen> |
+| Tervise Arengu Instituut | Uued psühhoaktiivsed ained | <https://www.narko.ee/ained/uued-psuhhoaktiivsed-ained> |
+| Tervise Arengu Instituut | Vahkkasvajad | <https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/vahkkasvajad> |
+| Tervise Arengu Instituut | Vaimne tervis | <https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/vaimne-tervis> |
+| Tervise Arengu Instituut | Vaimse tervise nõustamine | <https://www.narko.ee/siit-saad-abi/vaimse-tervise-noustamine> |
+| Tervise Arengu Instituut | Vannisoolad | <https://www.narko.ee/ained/vannisoolad> |
+| Tervise Arengu Instituut | Voorutusnahud | <https://alkoinfo.ee/et/millal-vahendada/ule-piiride/kuritarvitamine-ja-soltuvus/voorutusnahud> |
+| Tervise Arengu Instituut | Vota alkoholist puhkust | <https://alkoinfo.ee/et/kuidas-vahendada/kuidas-juua-vahem/vota-alkoholist-puhkust> |
+| Tervise Arengu Instituut | Üledoosi tunnused ja kuidas aidata | <https://www.narko.ee/tarvitajad/kuidas-vahendada-tarvitamisega-kaasnevaid-ohte/uledoosi-tunnused-ja-kuidas-aidata> |
+| Tervisekassa | Alkoholi liigtarvitamine – mis see on ja kust saab abi | <https://www.tervisekassa.ee/infomaterjalid/alkoholi-liigtarvitamine-mis-see-ja-kust-saab-abi> |
+| Tervisekassa | Taastusravi | <https://www.tervisekassa.ee/taastusravi> |
+| Tervisekassa | Õendusabi | <https://www.tervisekassa.ee/oendusabi> |
+| Tervisekassa | Õendusabi hoolekandes | <https://www.tervisekassa.ee/oendusabi-hoolekandes> |
+| Tervisekassa | Õendusabi hoolekandes | <https://www.tervisekassa.ee/kkk/oendusabi-hoolekandes> |
+| Terviseportaal | Arstiabi | <https://www.terviseportaal.ee/arstiabi> |
+| Terviseportaal | Arstiabi ooteajad | <https://www.terviseportaal.ee/arstiabi/arstiabi-ooteajad> |
+| Terviseportaal | Eriarstiabi | <https://www.terviseportaal.ee/arstiabi/eriarstiabi> |
+| Terviseportaal | Haigushüvitis | <https://www.terviseportaal.ee/huvitised/haigushuvitis> |
+| Terviseportaal | Hooldushüvitis | <https://www.terviseportaal.ee/huvitised/hooldushuvitis> |
+| Terviseportaal | Hooldusteenus ja hooldekodud | <https://www.terviseportaal.ee/arstiabi/oendusabi/hooldusteenus> |
+| Terviseportaal | Hüvitiste võrdlus | <https://www.terviseportaal.ee/huvitised/huvitiste-vordlus> |
+| Terviseportaal | Inimene, kelle eest ei maksta sotsiaalmaksu | <https://www.terviseportaal.ee/ravikindlustus/inimene-kelle-eest-ei-maksta-sotsiaalmaksu> |
+| Terviseportaal | Inimene, kelle eest makstakse sotsiaalmaksu | <https://www.terviseportaal.ee/ravikindlustus/inimesed-kelle-eest-makstakse-sotsmaksu> |
+| Terviseportaal | Kaugteenused eriarstiabis | <https://www.terviseportaal.ee/arstiabi/eriarstiabi/kaugteenused-eriarstiabis> |
+| Terviseportaal | Kuhu oma tervisemurega pöörduda | <https://www.terviseportaal.ee/arstiabi/tervisemure> |
+| Terviseportaal | Meeleoluhäired ja depressioon | <https://www.terviseportaal.ee/arstiabi/vaimne-tervis/depressioon> |
+| Terviseportaal | Perearstiabi | <https://www.terviseportaal.ee/arstiabi/perearstiabi> |
+| Terviseportaal | Ravijärjekorrad | <https://www.terviseportaal.ee/arstiabi/arstiabi-ooteajad/ravijarjekorrad> |
+| Terviseportaal | Ravikindlustus | <https://www.terviseportaal.ee/ravikindlustus> |
+| Terviseportaal | Sinu ohutus on tähtis | <https://www.terviseportaal.ee/arstiabi/sinu-ohutus-on-tahtis> |
+| Terviseportaal | Spetsialistid ja abivõimalused | <https://www.terviseportaal.ee/arstiabi/vaimne-tervis/spetsialistid-ja-abivimalused> |
+| Terviseportaal | Sõltuvushäired | <https://www.terviseportaal.ee/arstiabi/vaimne-tervis/soltuvushaired> |
+| Terviseportaal | Söömishäired | <https://www.terviseportaal.ee/arstiabi/vaimne-tervis/soomishaired> |
+| Terviseportaal | Taastusravi | <https://www.terviseportaal.ee/arstiabi/eriarstiabi/taastusravi> |
+| Terviseportaal | Teenustasud ja omaosalus | <https://www.terviseportaal.ee/arstiabi/teenustasud-ja-omaosalus> |
+| Terviseportaal | Tervishoiuspetsialist | <https://www.terviseportaal.ee/arstiabi/tervishoiuspetsialist> |
+| Terviseportaal | Tunnetushäired | <https://www.terviseportaal.ee/arstiabi/vaimne-tervis/tunnetushired> |
+| Terviseportaal | Töötamine pika haiguslehe ajal | <https://www.terviseportaal.ee/pikkhaigusleht> |
+| Terviseportaal | Töötav inimene | <https://www.terviseportaal.ee/ravikindlustus/ttav-inimene> |
+| Terviseportaal | Vabatahtlik kindlustus | <https://www.terviseportaal.ee/ravikindlustus/vabatahtlik-kindlustus> |
+| Terviseportaal | Vaimne tervis | <https://www.terviseportaal.ee/arstiabi/vaimne-tervis> |
+| Terviseportaal | Õendusabi | <https://www.terviseportaal.ee/arstiabi/oendusabi> |
+| Terviseportaal | Ärevushäired | <https://www.terviseportaal.ee/arstiabi/vaimne-tervis/arevushaire> |
+| Tööinspektsioon | Ajateenija ja reservväelane | <https://www.tooelu.ee/et/53/ajateenija-ja-reservvaelane> |
+| Tööinspektsioon | Alaealise töö- ja puhkeaeg | <https://www.tooelu.ee/et/56/alaealise-too-ja-puhkeaeg> |
+| Tööinspektsioon | Alaealise töölevõtmine | <https://www.tooelu.ee/et/54/alaealise-toolevotmine> |
+| Tööinspektsioon | Alaealistele sobivad ja mittesobivad tööd | <https://www.tooelu.ee/et/55/alaealistele-sobivad-ja-mittesobivad-tood> |
+| Tööinspektsioon | Alla 7-aastaste laste töötamine | <https://www.tooelu.ee/et/1773/alla-7-aastaste-laste-tootamine> |
+| Tööinspektsioon | Ametiühingud | <https://www.tooelu.ee/et/49/ametiuhingud> |
+| Tööinspektsioon | Euroopa Liidust Eestisse | <https://www.tooelu.ee/et/41/euroopa-liidust-eestisse> |
+| Tööinspektsioon | Head töösuhted | <https://www.tooelu.ee/et/65/head-toosuhted> |
+| Tööinspektsioon | Hoiatus | <https://www.tooelu.ee/et/32/hoiatus> |
+| Tööinspektsioon | Iseenda toetamiseks | <https://www.tooelu.ee/et/314/iseenda-toetamiseks> |
+| Tööinspektsioon | Iseseisva otsustuspädevusega töötaja | <https://www.tooelu.ee/et/842/iseseisva-otsustuspadevusega-tootaja> |
+| Tööinspektsioon | Kahju hüvitamine | <https://www.tooelu.ee/et/61/kahju-huvitamine> |
+| Tööinspektsioon | Kahju hüvitamine tööõnnetuse korral | <https://www.tooelu.ee/et/118/kahju-huvitamine-tooonnetuse-korral> |
+| Tööinspektsioon | Katseaeg | <https://www.tooelu.ee/et/13/katseaeg> |
+| Tööinspektsioon | Keskmise töötasu arvutamine | <https://www.tooelu.ee/et/176/keskmise-tootasu-arvutamine> |
+| Tööinspektsioon | Koolituskulude hüvitamise kokkulepe | <https://www.tooelu.ee/et/799/koolituskulude-huvitamise-kokkulepe> |
+| Tööinspektsioon | Kui tööl juhtus õnnetus | <https://www.tooelu.ee/et/116/kui-tool-juhtus-onnetus> |
+| Tööinspektsioon | Kutsehaigused ja tööst põhjustatud haigestumised | <https://www.tooelu.ee/et/901/kutsehaigused-ja-toost-pohjustatud-haigestumised> |
+| Tööinspektsioon | Käsundusleping | <https://www.tooelu.ee/et/1443/kasundusleping> |
+| Tööinspektsioon | Käsunduslepingu sõlmimine alaealisega | <https://www.tooelu.ee/et/1772/kasunduslepingu-solmimine-alaealisega> |
+| Tööinspektsioon | Lepingueelsed läbirääkimised | <https://www.tooelu.ee/et/11/lepingueelsed-labiraakimised> |
+| Tööinspektsioon | Lõpparve | <https://www.tooelu.ee/et/33/lopparve> |
+| Tööinspektsioon | Meeskonna toetamiseks | <https://www.tooelu.ee/et/315/meeskonna-toetamiseks> |
+| Tööinspektsioon | Mis on kaugtöö? Millal võib kaugtööd teha? | <https://www.tooelu.ee/et/34/mis-kaugtoo-millal-voib-kaugtood-teha> |
+| Tööinspektsioon | Mis on tööõnnetus? | <https://www.tooelu.ee/et/115/mis-tooonnetus> |
+| Tööinspektsioon | Muud tasud ja hüved | <https://www.tooelu.ee/et/174/muud-tasud-ja-huved> |
+| Tööinspektsioon | Paindliku tööaja kokkulepe | <https://www.tooelu.ee/et/1642/paindliku-tooaja-kokkulepe> |
+| Tööinspektsioon | Praktika | <https://www.tooelu.ee/et/39/praktika> |
+| Tööinspektsioon | Proovipäev | <https://www.tooelu.ee/et/10/proovipaev> |
+| Tööinspektsioon | Psühhosotsiaalsed ohutegurid | <https://www.tooelu.ee/et/67/psuhhosotsiaalsed-ohutegurid> |
+| Tööinspektsioon | Puhkeaeg | <https://www.tooelu.ee/et/25/puhkeaeg> |
+| Tööinspektsioon | Puhkuse ajakava | <https://www.tooelu.ee/et/27/puhkuse-ajakava> |
+| Tööinspektsioon | Puhkuse liigid | <https://www.tooelu.ee/et/26/puhkuse-liigid> |
+| Tööinspektsioon | Puhkused lapsevanematele | <https://www.tooelu.ee/et/63/puhkused-lapsevanematele> |
+| Tööinspektsioon | Puhkusetasu | <https://www.tooelu.ee/et/28/puhkusetasu> |
+| Tööinspektsioon | Renditöö ja töövahendus | <https://www.tooelu.ee/et/40/renditoo-ja-toovahendus> |
+| Tööinspektsioon | Saladus ja konkurents | <https://www.tooelu.ee/et/52/saladus-ja-konkurents> |
+| Tööinspektsioon | Tööaeg | <https://www.tooelu.ee/et/24/tooaeg> |
+| Tööinspektsioon | Tööalane kiusamine | <https://www.tooelu.ee/et/66/tooalane-kiusamine> |
+| Tööinspektsioon | Tööalane ärakasutamine | <https://www.tooelu.ee/et/292/tooalane-arakasutamine> |
+| Tööinspektsioon | Töökorraldus | <https://www.tooelu.ee/et/8/tookorraldus> |
+| Tööinspektsioon | Töölepingu lõppemine | <https://www.tooelu.ee/et/29/toolepingu-loppemine> |
+| Tööinspektsioon | Töölepingu lõppemine poolte kokkuleppel | <https://www.tooelu.ee/et/30/toolepingu-loppemine-poolte-kokkuleppel> |
+| Tööinspektsioon | Töölepingu muutmine | <https://www.tooelu.ee/et/14/toolepingu-muutmine> |
+| Tööinspektsioon | Töölepingu sõlmimine | <https://www.tooelu.ee/et/7/toolepingu-solmimine> |
+| Tööinspektsioon | Töölepingu ühepoolne lõpetamine | <https://www.tooelu.ee/et/31/toolepingu-uhepoolne-lopetamine> |
+| Tööinspektsioon | Tööstress ja läbipõlemine | <https://www.tooelu.ee/et/68/toostress-ja-labipolemine> |
+| Tööinspektsioon | Töötaja privaatsus | <https://www.tooelu.ee/et/69/tootaja-privaatsus> |
+| Tööinspektsioon | Töötamine haiguslehe alusel | <https://www.tooelu.ee/et/1229/tootamine-haiguslehe-alusel> |
+| Tööinspektsioon | Töötamine pere heaks | <https://www.tooelu.ee/et/37/tootamine-pere-heaks> |
+| Tööinspektsioon | Töötamine raseduse ajal | <https://www.tooelu.ee/et/62/tootamine-raseduse-ajal> |
+| Tööinspektsioon | Töötamise registreerimine | <https://www.tooelu.ee/et/12/tootamise-registreerimine> |
+| Tööinspektsioon | Töötasu | <https://www.tooelu.ee/et/175/tootasu> |
+| Tööinspektsioon | Töötukassa teenused | <https://www.tooelu.ee/et/171/tootukassa-teenused> |
+| Tööinspektsioon | Töövaidlused | <https://www.tooelu.ee/et/58/toovaidlused> |
+| Tööinspektsioon | Töövõtuleping | <https://www.tooelu.ee/et/1442/toovotuleping> |
+| Tööinspektsioon | Tüüptingimustega tööleping | <https://www.tooelu.ee/et/9/tuuptingimustega-tooleping> |
+| Tööinspektsioon | Ukraina sõjapõgenikud ja töösuhted | <https://www.tooelu.ee/et/392/ukraina-sojapogenikud-ja-toosuhted> |
+| Tööinspektsioon | Usaldusisik | <https://www.tooelu.ee/et/48/usaldusisik> |
+| Tööinspektsioon | Vabatahtlik töö | <https://www.tooelu.ee/et/38/vabatahtlik-too> |
+| Tööinspektsioon | Vaimse tervise esmaabikapp | <https://www.tooelu.ee/et/307/vaimse-tervise-esmaabikapp> |
+| Tööinspektsioon | Võrdne kohtlemine | <https://www.tooelu.ee/et/36/vordne-kohtlemine> |
+| Tööinspektsioon | Välismaise tööandja juurde tööle minek | <https://www.tooelu.ee/et/47/valismaise-tooandja-juurde-toole-minek> |
+| Tööinspektsioon | Väljaspoolt Euroopa Liitu Eestisse | <https://www.tooelu.ee/et/42/valjaspoolt-euroopa-liitu-eestisse> |
+| Tööinspektsioon | Ümbrikupalk | <https://www.tooelu.ee/et/20/umbrikupalk> |
 
 ### Uuringud ja juhendid väljaandja ametlikult aadressilt (257)
 
