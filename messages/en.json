@@ -13755,7 +13755,9 @@
       "control_call_retracted": "This record has already been retracted.",
       "device_store_unavailable": "This device cannot keep work offline. Use another browser or stay online.",
       "device_store_failed": "Saving to the device failed. Try again.",
-      "device_store_owner_required": "Sign in to save on this device."
+      "device_store_owner_required": "Sign in to save on this device.",
+      "own_name_first": "Write your first name (letters only, up to 60 characters).",
+      "own_name_last": "Write your last name (letters only, up to 60 characters)."
     },
     "incidents": {
       "title": "Incident register",
@@ -15543,6 +15545,16 @@
       "save": "Save",
       "cancel": "Cancel",
       "retract": "Retract (entered by mistake)"
+    },
+    "own_name": {
+      "missing": "Write down your name. Colleagues see you by name in the day plan, the key register and messages, and your first name is on the client's fridge sheet. Right now there is a dash.",
+      "edit_hint": "The new name applies from now on. Earlier rows keep the name they had when they were written.",
+      "first": "First name",
+      "last": "Last name",
+      "save": "Save name",
+      "cancel": "Cancel",
+      "line": "Colleagues see you as {name}.",
+      "change": "Change name"
     }
   },
   "stage": {

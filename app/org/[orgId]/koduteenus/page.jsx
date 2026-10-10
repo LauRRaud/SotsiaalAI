@@ -3,6 +3,7 @@ import { unstable_noStore as noStore } from "next/cache";
 import HomeCareHome from "@/components/homeCare/HomeCareHome";
 import { listClientUnitOptions, listClients } from "@/lib/homeCare/clients";
 import { getMyDay } from "@/lib/homeCare/dayPlan";
+import { getOwnName } from "@/lib/homeCare/ownName";
 import { getReferralContacts } from "@/lib/homeCare/referralContacts";
 import { coordinatorSetupHint } from "@/lib/homeCare/setupHint";
 
@@ -34,6 +35,8 @@ export default async function HomeCarePage({ params }) {
   const referrals = await getReferralContacts(fullContext);
   /* Värske organisatsioon: kui hooldusjuhti ei ole, ütleb leht, kust see õigus antakse. */
   const setupHint = initial.isCoordinator ? null : await coordinatorSetupHint(fullContext);
+  /* Oma nimi kolleegidele: kuni see on kirja panemata, on vorm avalehel lahti. */
+  const ownName = await getOwnName(fullContext);
 
   return (
     <HomeCareHome
@@ -43,6 +46,7 @@ export default async function HomeCarePage({ params }) {
       myDay={myDay}
       referrals={referrals}
       setupHint={setupHint}
+      ownName={ownName}
     />
   );
 }

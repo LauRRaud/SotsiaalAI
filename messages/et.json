@@ -13755,7 +13755,9 @@
       "control_call_retracted": "See kirje on juba tühistatud.",
       "device_store_unavailable": "Selles seadmes ei saa tööd ilma võrguta hoida. Kasuta teist veebilehitsejat või jää võrku.",
       "device_store_failed": "Seadmesse salvestamine ebaõnnestus. Proovi uuesti.",
-      "device_store_owner_required": "Seadmesse salvestamiseks logi sisse."
+      "device_store_owner_required": "Seadmesse salvestamiseks logi sisse.",
+      "own_name_first": "Kirjuta oma eesnimi (ainult tähed, kuni 60 märki).",
+      "own_name_last": "Kirjuta oma perekonnanimi (ainult tähed, kuni 60 märki)."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -15543,6 +15545,16 @@
       "save": "Salvesta",
       "cancel": "Loobu",
       "retract": "Tühista (ekslik kirje)"
+    },
+    "own_name": {
+      "missing": "Pane kirja oma nimi. Kolleegid näevad sind nime järgi päevaplaanis, võtmeraamatus ja teadetes ning sinu eesnimi on kliendi külmkapilehel. Praegu seisab seal kriips.",
+      "edit_hint": "Uus nimi hakkab kehtima edaspidi. Varasemad read jäävad selle nimega, mis neil kirjutamise ajal oli.",
+      "first": "Eesnimi",
+      "last": "Perekonnanimi",
+      "save": "Salvesta nimi",
+      "cancel": "Loobu",
+      "line": "Kolleegid näevad sind nimega {name}.",
+      "change": "Muuda nime"
     }
   },
   "stage": {
