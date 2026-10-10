@@ -5,6 +5,7 @@ import { useId, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import OrgHeader from "@/components/org/OrgHeader";
+import { composeMonthSheet, monthSheetState } from "@/lib/homeCare/monthSheet";
 
 import { decisionVolumeLabel, minutesLabel } from "./HomeCareDecisionView";
 import HomeCareMonthLock from "./HomeCareMonthLock";
@@ -46,6 +47,21 @@ export default function HomeCareMonth({ context, initial }) {
   };
 
   const locked = data.lock?.state === "LOCKED";
+  const sheetState = monthSheetState(data);
+
+  /* Kuu tabel failina (K5-q): sellest, mida leht näitab; faili teisel real on kirjas, kas arvud on lukus. */
+  const download = () => {
+    const text = composeMonthSheet(t, data, { dateTime: (value) => formatDateTime(value, timeZone), day: planDayLabel });
+    const blob = new Blob([text], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `koduteenus-kuu-${data.month}${sheetState === "LOCKED" ? "-lukus" : ""}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+  };
   /* Rida kliendi kohta, kes võib hetktõmmises olla, aga nimekirjast kadunud. */
   const clientRow = (client, key, name, meta) =>
     client.displayName === null ? (
@@ -143,6 +159,16 @@ export default function HomeCareMonth({ context, initial }) {
           <p className="hc-hint">{t("home_care.month.until_today", { date: planDayLabel(data.untilDay) })}</p>
         ) : null}
         {data.truncated ? <p className="hc-notice">{t("home_care.deadlines.truncated", { count: data.clients.length })}</p> : null}
+        {data.untilDay ? (
+          <>
+            <div className="hc-row">
+              <button className="hc-btn hc-btn--quiet" type="button" onClick={download}>
+                {t("home_care.month_sheet.download")}
+              </button>
+            </div>
+            <p className="hc-hint">{t(sheetState === "LOCKED" ? "home_care.month_sheet.hint_locked" : "home_care.month_sheet.hint_running")}</p>
+          </>
+        ) : null}
       </section>
 
       {/* Kuu lahtised asjad (K5-j): mida enne kuu numbrite saatmist üle vaadata. Lukustamine on lehe lõpus. */}

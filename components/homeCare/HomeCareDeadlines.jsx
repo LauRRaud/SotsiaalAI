@@ -6,7 +6,7 @@ import { useId } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import OrgHeader from "@/components/org/OrgHeader";
 
-import { daysLabel } from "./HomeCareDecisionView";
+import { daysLabel, minutesLabel } from "./HomeCareDecisionView";
 import { euroText } from "./HomeCareMoney";
 import HomeCareOutbox from "./HomeCareOutbox";
 import { preconditionLine } from "./HomeCarePreconditions";
@@ -143,6 +143,20 @@ export default function HomeCareDeadlines({ context, deadlines }) {
       {section("risk_lines_due", deadlines.riskLinesDue || [], (item) =>
         clientLine(item, t("home_care.deadlines.risk_lines_line", { count: item.lines, date: planDayLabel(item.oldestOn) }))
       )}
+
+      {/* Osutatud aeg kolm lukustatud kuud järjest üle otsustatu (K5-q): põhjus otsustajale teada anda. */}
+      {(deadlines.overVolumeStreak || []).length
+        ? section("over_volume", deadlines.overVolumeStreak, (item) =>
+            clientLine(
+              item,
+              t("home_care.deadlines.over_volume_line", {
+                list: item.months
+                  .map((month) => `${month.month.split("-").reverse().join(".")} +${minutesLabel(t, month.minutes - month.expectedMinutes)}`)
+                  .join(" · ")
+              })
+            )
+          )
+        : null}
 
       {/* Lukustatud kuud, kuhu on hiljem lisatud või muudetud (K5-p); rida viib selle kuu kokkuvõttesse. */}
       {(deadlines.monthLocksChanged || []).length

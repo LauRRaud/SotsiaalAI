@@ -13684,7 +13684,10 @@
       "safety_old": "ohutuskaart on hinnatud {date}: vaata üle",
       "month_changed_title": "Lukustatud kuud, kuhu on hiljem lisatud või muudetud",
       "month_changed_empty": "Lukustatud kuudes ei ole hilisemaid muudatusi.",
-      "month_changed_line": "pärast lukustamist muudatusi: {count}"
+      "month_changed_line": "pärast lukustamist muudatusi: {count}",
+      "over_volume_title": "Osutatud aeg on kolm lukustatud kuud järjest üle otsustatu: anna otsustajale teada",
+      "over_volume_empty": "Ühelgi kliendil ei ole osutatud aeg kolm kuud järjest üle otsustatu.",
+      "over_volume_line": "üle otsustatu: {list}"
     },
     "visit": {
       "title": "Mida tegid",
@@ -14463,6 +14466,40 @@
       "history_title": "Varasemad lukustamised",
       "history_line": "Lukustas {lockedBy}, {lockedAt}. Avas uuesti {reopenedBy}, {reopenedAt}: {reason}",
       "client_gone": "Klienti ei ole enam nimekirjas"
+    },
+    "month_sheet": {
+      "title": "Koduteenuse kuu kokkuvõte",
+      "state": "Seis",
+      "state_locked": "Lukustatud arvud. Lukustas {name}, {date}.",
+      "state_running": "Kuu ei ole lukus: jooksvad arvud seisuga {date}.",
+      "state_unit": "Kuu on lukus. Siin on üksuse jooksvad arvud seisuga {date}.",
+      "clients_title": "Kliendi kaupa",
+      "col_client": "Klient",
+      "col_status": "Seis",
+      "col_visits": "Käike",
+      "col_hours": "Osutatud tunde",
+      "col_expected": "Otsustatud tunde",
+      "col_difference": "Vahe (tunde)",
+      "col_without_length": "Kestuseta käike",
+      "col_missed": "Ära jäänud käike",
+      "col_cancelled": "Ette ära jäetud käike",
+      "col_away_days": "Ajutiselt ära (päevi)",
+      "col_refused": "Tegemata: keeldus",
+      "col_not_needed": "Tegemata: ei olnud vaja",
+      "col_could_not": "Tegemata: ei saanud",
+      "total": "Kokku",
+      "workers_title": "Töötaja kaupa",
+      "col_worker": "Töötaja",
+      "col_worker_hours": "Tunde",
+      "col_heavy": "Raske töö märgiga kliendi käike",
+      "col_companion_visits": "Kaasas käike",
+      "col_companion_hours": "Kaasas tunde",
+      "missed_title": "Ära jäänud käigud",
+      "col_time": "Aeg",
+      "col_reason": "Põhjus",
+      "download": "Laadi kuu tabel alla",
+      "hint_locked": "Tabelifail (CSV) lukustatud arvudega; avaneb tabelarvutuses.",
+      "hint_running": "Tabelifail (CSV) jooksvate arvudega; failis on kirjas, et kuu ei ole lukus. Enne linnale saatmist lukusta kuu."
     }
   },
   "stage": {
