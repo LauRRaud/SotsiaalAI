@@ -14343,6 +14343,23 @@
         "note": "Märkus",
         "weekly_hours": "Käike nädalas (tundi)",
         "unset": "Hindamata"
+      },
+      "figures": {
+        "title": "Arvud riskianalüüsi jaoks",
+        "hint": "Väikseim koosseis on kriitiliste käikude nädalaaeg jagatud täistööaja nädalaga (40 tundi), ilma sõiduajata: see on alumine piir, mitte plaan. Kriitiline on käik, mille tähtsus käigumustris on A. Sõidukite arv tuleb sõidupäevikust.",
+        "clients_line": "Kliente teenusel: {clients}. Iga päev vajab abi {daily}, kord või kaks nädalas {weekly}, saab ise hakkama {self}, hindamata {unset}.",
+        "depends_label": "Sõltub",
+        "critical_line": "Kriitilised käigud: {clients} kliendil, {time} nädalas. Väikseim koosseis ilma sõiduajata: {staff} täistööajaga töötajat.",
+        "critical_none": "Ühegi käigu tähtsus ei ole A: kriitilisi käike ei ole märgitud.",
+        "workers_line": "Hooldajaid klientide meeskondades: {count}.",
+        "vehicles_line": "Sõidupäeviku järgi viimase 90 päeva jooksul: oma autoga sõitis {own} töötajat, asutuse sõidukeid numbrimärgi järgi {org}.",
+        "clients_label": "Kliente teenusel",
+        "critical_clients_label": "Kriitiliste käikudega kliente",
+        "critical_hours_label": "Kriitiliste käikude tunnid nädalas",
+        "min_staff_label": "Väikseim koosseis ilma sõiduajata (täistööajaga töötajat)",
+        "workers_label": "Hooldajaid klientide meeskondades",
+        "own_drivers_label": "Oma autoga sõitnud töötajaid (90 päeva)",
+        "org_plates_label": "Asutuse sõidukeid numbrimärgi järgi (90 päeva)"
       }
     },
     "referrals": {

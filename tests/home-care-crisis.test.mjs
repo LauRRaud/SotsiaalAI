@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
 import { CARE_CRISIS_DEPENDENCIES, CARE_CRISIS_LEVELS } from '../lib/homeCare/constants.js';
-import { normalizeCrisisInput, weeklyMinutesByClient } from '../lib/homeCare/crisis.js';
+import { crisisFigures, normalizeCrisisInput, weeklyMinutesByClient } from '../lib/homeCare/crisis.js';
 import { composeCrisisSheet, csvCell, hoursCell } from '../lib/homeCare/crisisSheet.js';
 
 const refused = (fn, key) => assert.throws(fn, (error) => error.status === 400 && error.messageKey === key, key);
@@ -75,4 +75,54 @@ test('astmed ja sõltuvused on kolmes keeles; migratsiooni loendid klapivad kood
   const sql = readFileSync(new URL('../prisma/migrations/20261011110000_home_care_crisis_profile/migration.sql', import.meta.url), 'utf8');
   for (const value of [...CARE_CRISIS_LEVELS, ...CARE_CRISIS_DEPENDENCIES]) assert.ok(sql.includes(`'${value}'`), value);
   assert.match(sql, /^SET lock_timeout = '5s';\r?\nSET statement_timeout = '30s';/m);
+});
+
+test('kriisiarvud: rühmad, sõltuvused, kriitiliste käikude aeg ja väikseim koosseis', () => {
+  const items = [
+    { crisis: { level: 'DAILY', dependencies: ['ELECTRICITY', 'HEATING'] } },
+    { crisis: { level: 'DAILY', dependencies: ['HEATING', 'TUNDMATU'] } },
+    { crisis: { level: 'SELF', dependencies: [] } },
+    { crisis: null }
+  ];
+  const slots = [
+    { clientId: 'a', plannedMinutes: 60, priority: 'A' },
+    { clientId: 'a', plannedMinutes: 60, priority: 'A' },
+    { clientId: 'b', plannedMinutes: 45, priority: 'B' },
+    { clientId: 'c', plannedMinutes: 2300, priority: 'A' }
+  ];
+  const figures = crisisFigures(items, slots);
+  assert.deepEqual([figures.clients, figures.unset, figures.byLevel], [4, 1, { DAILY: 2, WEEKLY: 0, SELF: 1 }]);
+  assert.deepEqual([figures.dependencies.ELECTRICITY, figures.dependencies.HEATING, figures.dependencies.WATER], [1, 2, 0]);
+  /* 2420 minutit on üle ühe täistööaja nädala (2400): vaja on kahte töötajat. */
+  assert.deepEqual([figures.criticalClients, figures.criticalWeeklyMinutes, figures.minStaff], [2, 2420, 2]);
+  assert.deepEqual([crisisFigures([], []).minStaff, crisisFigures([], [{ clientId: 'a', plannedMinutes: 2400, priority: 'A' }]).minStaff], [0, 1]);
+});
+
+test('kriisiarvud: tabelifaili lõpus on arvud sildiga', () => {
+  const translate = (key) => key.replace('home_care.crisis.', '');
+  const sheet = composeCrisisSheet(translate, {
+    groups: [],
+    unset: [],
+    figures: {
+      clients: 3,
+      byLevel: { DAILY: 1, WEEKLY: 1, SELF: 0 },
+      unset: 1,
+      dependencies: { ELECTRICITY: 1, HEATING: 0 },
+      criticalClients: 2,
+      criticalWeeklyMinutes: 510,
+      minStaff: 1,
+      workers: 2,
+      vehicles: { ownDrivers: 1, orgPlates: 2 }
+    }
+  });
+  const lines = sheet.replace('﻿', '').split('\r\n');
+  for (const line of ['figures.title', 'figures.clients_label;3', 'levels.DAILY;1', 'levels.SELF;0', 'sheet.unset;1', 'figures.depends_label: dependencies.ELECTRICITY;1', 'figures.critical_clients_label;2', 'figures.critical_hours_label;8,5', 'figures.min_staff_label;1', 'figures.workers_label;2', 'figures.own_drivers_label;1', 'figures.org_plates_label;2']) {
+    assert.ok(lines.includes(line), line);
+  }
+  /* Nullise sõltuvuse rida ei ole; üksuse hooldusjuhi failis ei ole töötajaid ega sõidukeid. */
+  assert.equal(sheet.includes('dependencies.HEATING'), false);
+  const scoped = composeCrisisSheet(translate, { groups: [], unset: [], figures: { clients: 1, byLevel: {}, unset: 0, dependencies: {}, criticalClients: 0, criticalWeeklyMinutes: 0, minStaff: 0, workers: null, vehicles: null } });
+  assert.equal(scoped.includes('workers_label') || scoped.includes('own_drivers_label'), false);
+  /* Ilma arvudeta nimekiri (vanem vastus) annab faili nagu enne. */
+  assert.equal(composeCrisisSheet(translate, { groups: [], unset: [] }).includes('figures.title'), false);
 });

@@ -14343,6 +14343,23 @@
         "note": "Note",
         "weekly_hours": "Visits a week (hours)",
         "unset": "Not assessed"
+      },
+      "figures": {
+        "title": "Figures for the risk analysis",
+        "hint": "The smallest staff is the weekly time of critical visits divided by a full-time week (40 hours), without travel time: it is a lower limit, not a plan. A visit is critical when its priority in the visit pattern is A. The number of vehicles comes from the trip log.",
+        "clients_line": "Clients on service: {clients}. Need help every day {daily}, once or twice a week {weekly}, manage on their own {self}, not assessed {unset}.",
+        "depends_label": "Depends on",
+        "critical_line": "Critical visits: {clients} clients, {time} a week. Smallest staff without travel time: {staff} full-time workers.",
+        "critical_none": "No visit has priority A: no critical visits are marked.",
+        "workers_line": "Carers on client teams: {count}.",
+        "vehicles_line": "By the trip log in the last 90 days: {own} workers drove their own car, {org} vehicles of the organisation by number plate.",
+        "clients_label": "Clients on service",
+        "critical_clients_label": "Clients with critical visits",
+        "critical_hours_label": "Hours of critical visits a week",
+        "min_staff_label": "Smallest staff without travel time (full-time workers)",
+        "workers_label": "Carers on client teams",
+        "own_drivers_label": "Workers who drove their own car (90 days)",
+        "org_plates_label": "Vehicles of the organisation by number plate (90 days)"
       }
     },
     "referrals": {
