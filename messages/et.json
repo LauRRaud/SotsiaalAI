@@ -12501,19 +12501,21 @@
       "single_occupant": "Elan üksi ja olen pensionär või osalise/puuduva töövõimega"
     },
     "hints": {
-      "excluded_income": "Ära arvesta siia ühekordseid toetusi, puudetoetusi, õppelaenu ega õppetoetusi: neid seadus sissetulekuks ei loe.",
+      "excluded_income": "Ära arvesta siia ühekordseid toetusi, puudetoetusi (välja arvatud puudega vanema toetus), õppelaenu ega õppetoetusi: neid seadus sissetulekuks ei loe.",
       "rooms": "Kui tube on sama palju kui elanikke, võetakse arvesse kogu pind.",
       "current_month": "Varasemat eluasemevõlga arvesse ei võeta.",
-      "loan": "Laenu võtsid sina või sinuga koos elav pereliige; eluase on sinu rahvastikuregistrijärgne elukoht; oled kasutanud maksepuhkust või pank on sellest keeldunud; sul ei ole kindlustust, mis kataks kogu laenumakse.",
-      "zero_income": "Kui sissetulekut ei olnud, kirjuta 0."
+      "zero_income": "Kui sissetulekut ei olnud, kirjuta 0.",
+      "land_tax": "Arvesse läheb ainult maamaks kolmekordse elamualuse pinna eest: sisesta maamaksu väljale ainult see osa.",
+      "family": "Pereliikmed on samas eluruumis elavad ühise majapidamisega inimesed. Laps, kes saab taotlemise kuul 18, läheb veel alaealiste hulka."
     },
     "gates": {
       "current_month": "Kas need on jooksval kuul tasumisele kuuluvad kulud?",
-      "landlord_family": "Kas üürileandja on sinu abikaasa või elukaaslane, vanem, vanavanem, laps või lapselaps, või äriühing, mille osanik, aktsionär või juhatuse liige on sina ise või keegi neist?",
       "apartment": "Kas elad korterelamus?",
-      "loan": "Kas eluasemelaenu tagasimakse vastab kõigile neljale seaduse tingimusele?",
+      "loan": "Kas eluasemelaenu kohta kehtivad kõik need neli tingimust?",
       "loan_limit": "Kas eluasemelaenu tagasimakset on sel kalendriaastal toetuse arvestamisel arvesse võetud juba kuuel kuul?",
-      "land_tax": "Kas oled maamaksust täielikult või osaliselt vabastatud (näiteks kodualuse maa maksuvabastus)?"
+      "land_tax": "Kas oled maamaksust täielikult või osaliselt vabastatud (näiteks kodualuse maa maksuvabastus)?",
+      "landlord_relative": "Kas üürileandja on üürniku (sinu või selle pereliikme, kelle nimel üürileping on) abikaasa või elukaaslane, vanem, vanavanem, laps või lapselaps?",
+      "landlord_company": "Kas üürileandja on äriühing, mille osanik, aktsionär või juhatuse või nõukogu liige oled sina, sinu abikaasa või elukaaslane või sinu vanem, vanavanem, laps või lapselaps?"
     },
     "result": {
       "incomplete": "Eelhinnangut ei saa veel anda",
@@ -12549,7 +12551,7 @@
       "UNKNOWN_HOUSING_COST_KIND": "Tundmatu eluasemekulu liik.",
       "NEGATIVE_AMOUNT": "Summa ei saa olla negatiivne.",
       "INVALID_AMOUNT": "Kontrolli sisestatud summasid.",
-      "RENT_FROM_FAMILY_NOT_COUNTED": "Sellist üüri seaduse järgi arvesse ei võeta. Kustuta väljalt „Üür” summa, kui tahad näha eelhinnangut ilma selleta. Kui sa ei ole kindel, kas üürileandja kuulub sellesse ringi, küsi oma valla- või linnavalitsusest.",
+      "RENT_FROM_FAMILY_NOT_COUNTED": "Sellist üüri seaduse järgi arvesse ei võeta. Kustuta väljalt „Üür” summa, kui tahad näha eelhinnangut ilma selleta. Kui sa ei ole vastuses kindel, küsi oma valla- või linnavalitsusest.",
       "APARTMENT_BUILDING_COSTS_NOT_APPLICABLE": "Korterelamu haldamise kulu ja renoveerimislaenu tagasimakset saab arvesse võtta ainult korterelamus. Kustuta need summad, kui tahad näha eelhinnangut ilma nendeta.",
       "HOUSING_LOAN_CONDITIONS_NOT_MET": "Eluasemelaenu tagasimakset võetakse arvesse ainult siis, kui kõik neli täpsustuste vaates loetletud tingimust on täidetud. Kustuta väljalt „Eluasemelaenu tagasimakse” summa, kui tahad näha eelhinnangut ilma selleta.",
       "HOUSING_LOAN_MONTH_LIMIT_REACHED": "Eluasemelaenu tagasimakset võetakse arvesse kuni kuuel kuul kalendriaastas ja see piir on sul täis. Kustuta väljalt „Eluasemelaenu tagasimakse” summa, kui tahad näha eelhinnangut ilma selleta.",
@@ -12557,7 +12559,7 @@
       "INCOME_REQUIRED": "Sisesta eelmise kuu sissetulek. Kui arvesse minevat sissetulekut ei olnud, kirjuta töise või muu sissetuleku väljale 0.",
       "COSTS_NOT_CURRENT_MONTH": "Arvesse lähevad ainult need kulud, mis tuleb tasuda sel kuul (tavaliselt eelmise kuu arved); varasemat võlga ei arvestata. Sisesta ainult need summad ja vasta siis täpsustuste vaates „Jah”.",
       "LAND_TAX_EXEMPT_NOT_COUNTED": "Maamaksu ei võeta arvesse, kui oled maamaksust täielikult või osaliselt vabastatud. Kustuta väljalt „Maamaks” summa, kui tahad näha eelhinnangut ilma selleta.",
-      "ADULT_REQUIRED": "Märgi täisealiste pereliikmete arv (vähemalt üks). Kui peres ei ole ühtegi täisealist, küsi oma valla- või linnavalitsusest."
+      "ADULT_REQUIRED": "See eelhinnang ei arvuta peret, kus ei ole ühtegi täisealist: küsi oma valla- või linnavalitsusest. Kui peres on täisealine, märgi täisealiste arv."
     },
     "answers": {
       "yes": "Jah",
@@ -12585,7 +12587,7 @@
         "title": "Eluaseme kulud",
         "short": "Kulud",
         "question": "Millised eluaseme kulud tuleb sel kuul tasuda?",
-        "note": "Jäta tühjaks kulu, mida sul ei ole."
+        "note": "Sisesta selle eluaseme kulud, kus sa alaliselt elad. Jäta tühjaks kulu, mida sul ei ole."
       },
       "utilities": {
         "title": "Kommunaalkulud",
@@ -12604,12 +12606,18 @@
     },
     "issues_named": {
       "NEGATIVE_AMOUNT": "„{field}”: summa ei saa olla negatiivne.",
-      "INVALID_AMOUNT": "„{field}”: kontrolli sisestatud summat."
+      "INVALID_AMOUNT": "„{field}”: kontrolli sisestatut."
     },
     "reason": {
-      "area_scaled": "Eluruum ({area} m²) on normpinnast ({norm} m²) suurem. Selles eelhinnangus läks arvesse {percent}% nendest kuludest: {costs}."
+      "area_scaled": "Eluruum ({area} m²) on normpinnast ({norm} m²) suurem. Selles eelhinnangus läks arvesse umbes {percent}% nendest kuludest: {costs}."
     },
-    "leave_asked": "Sisestatud arve ei salvestata. Vajuta uuesti, et lahkuda."
+    "leave_asked": "Sisestatud andmeid ei salvestata. Vajuta uuesti, et lehelt lahkuda.",
+    "loan_conditions": {
+      "borrower": "Laenu võtsid sina või sinuga koos elav pereliige.",
+      "holiday": "Oled kasutanud maksepuhkust või sul on laenuandja kirjalik keeldumine.",
+      "insurance": "Sul ei ole makseraskuste kindlustust (laenumaksekindlustust), mis kataks kogu laenumakse.",
+      "residence": "Laenuga soetatud eluase on sinu rahvastikuregistrijärgne elukoht."
+    }
   },
   "urgent": {
     "title": "Kiireloomuline abipalve",

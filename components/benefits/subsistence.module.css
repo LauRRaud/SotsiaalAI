@@ -69,6 +69,22 @@
   padding-bottom: 0;
   border-bottom: 0;
 }
+/* Tingimuste loend küsimuse ees (eluasemelaen): nummerdatud, väikeses kirjas. Ühine
+   paneelikiht annab igale loendireale alumise vahe: siin on vahe loendi enda oma. */
+.conditions {
+  margin: 0;
+  padding-inline-start: 1.3rem;
+  display: grid;
+  gap: 0.1rem;
+  max-width: 62ch;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.35;
+}
+.conditions > li {
+  margin: 0;
+  max-width: none;
+}
 /* Küsimus on pikk lause ja vastus üks sõna: vastuse veerg on nii lai kui kaks
    lahtrit vajavad, ülejäänu jääb küsimusele (ühise klotsi vaikimisi jaotus annab
    vastusele 58% laiusest). Rea enda eraldusjoont ei ole: see on plokil. */

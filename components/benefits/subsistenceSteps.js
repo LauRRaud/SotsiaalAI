@@ -27,6 +27,14 @@ export const COST_GROUPS = Object.freeze({
 
 const KNOWN_COST_KEYS = Object.freeze([...COST_GROUPS.costs, ...COST_GROUPS.utilities]);
 
+/** Eluasemelaenu neli tingimust (SHS § 133 lg 9¹ p 1 kuni 4) kataloogi võtmetena, seaduse järjekorras. */
+export const LOAN_CONDITION_KEYS = Object.freeze([
+  "subsistence.loan_conditions.borrower",
+  "subsistence.loan_conditions.holiday",
+  "subsistence.loan_conditions.insurance",
+  "subsistence.loan_conditions.residence"
+]);
+
 /** Kulud, mille kohta on sisestatud nullist suurem summa. */
 export function declaredCostKeys(costs = {}) {
   return Object.keys(costs).filter((key) => Number(costs[key]) > 0);
@@ -44,15 +52,23 @@ export function gateQuestions(declared = []) {
   const has = (key) => declared.includes(key);
   return [
     { field: "costsAreCurrentMonth", text: "subsistence.gates.current_month", hint: "subsistence.hints.current_month" },
-    ...(has("rent") ? [{ field: "landlordIsFamilyOrTheirCompany", text: "subsistence.gates.landlord_family" }] : []),
+    /* Üür (§ 133 lg 8) kahe küsimusena: üürniku ja üürileandja suhe (üürnik võib olla teine
+       pereliige) ning äriühing, mis on seotud taotleja või tema lähedasega. */
+    ...(has("rent")
+      ? [
+          { field: "landlordIsTenantsRelative", text: "subsistence.gates.landlord_relative" },
+          { field: "landlordIsRelatedCompany", text: "subsistence.gates.landlord_company" }
+        ]
+      : []),
     ...(has("buildingManagement") || has("buildingRenovationLoan") ? [{ field: "isApartmentBuilding", text: "subsistence.gates.apartment" }] : []),
     ...(has("housingLoan")
       ? [
-          { field: "housingLoanConditionsMet", text: "subsistence.gates.loan", hint: "subsistence.hints.loan" },
+          /* Neli tingimust (§ 133 lg 9¹) seisavad loendina KÜSIMUSE EES: ilma nendeta ei saa küsimusele vastata. */
+          { field: "housingLoanConditionsMet", text: "subsistence.gates.loan", conditions: LOAN_CONDITION_KEYS },
           { field: "housingLoanMonthLimitReached", text: "subsistence.gates.loan_limit" }
         ]
       : []),
-    ...(has("landTax") ? [{ field: "landTaxExempt", text: "subsistence.gates.land_tax" }] : [])
+    ...(has("landTax") ? [{ field: "landTaxExempt", text: "subsistence.gates.land_tax", hint: "subsistence.hints.land_tax" }] : [])
   ];
 }
 
@@ -78,7 +94,8 @@ export const EMPTY_FORM = Object.freeze({
   rooms: "",
   singleOccupantExtendedNorm: false,
   costsAreCurrentMonth: null,
-  landlordIsFamilyOrTheirCompany: null,
+  landlordIsTenantsRelative: null,
+  landlordIsRelatedCompany: null,
   isApartmentBuilding: null,
   housingLoanConditionsMet: null,
   housingLoanMonthLimitReached: null,
@@ -87,7 +104,8 @@ export const EMPTY_FORM = Object.freeze({
 
 const GATE_FIELDS = Object.freeze([
   "costsAreCurrentMonth",
-  "landlordIsFamilyOrTheirCompany",
+  "landlordIsTenantsRelative",
+  "landlordIsRelatedCompany",
   "isApartmentBuilding",
   "housingLoanConditionsMet",
   "housingLoanMonthLimitReached",
@@ -234,6 +252,14 @@ export function issueRows(issues = []) {
 /** Kas arvutus keeldub selle pärast, et selle aasta määra ei ole kinnitatud. */
 export function rateMissing(result) {
   return Boolean(result?.issues?.some((issue) => issue?.code === "UNSUPPORTED_DATE"));
+}
+
+/** Välja nimi jutumärkides lehe keele järgi (nagu puudujäägi lausetes). */
+export function quoted(text, locale = "et") {
+  const lang = String(locale || "et").toLowerCase();
+  if (lang.startsWith("en")) return `“${text}”`;
+  if (lang.startsWith("ru")) return `«${text}»`;
+  return `„${text}”`;
 }
 
 /* Eesti ja vene keeles on kümnendmärk koma. */

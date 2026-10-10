@@ -57,6 +57,7 @@ import {
   housingReason,
   issueRows,
   pageEstimate,
+  quoted,
   rateMissing,
   resultFacts,
   resultNote,
@@ -209,9 +210,15 @@ export default function SubsistenceCalculator() {
           /* Kaks lubadust ette, mitte tulemuse juurde. Inimene peab teadma, mida ta
              teeb, ENNE kui ta oma sissetuleku sisestab. */
           <StepPanel title={t("subsistence.views.family.title")} question={t("subsistence.not_a_decision")} lead={t("subsistence.stays_on_device")}>
-            <div className={styles.fields}>
-              <NumberField label={t("subsistence.fields.adults")} value={form.adults} step="1" size="count" whole onChange={(value, unreadable) => set("adults", value, unreadable)} />
-              <NumberField label={t("subsistence.fields.minors")} value={form.minors} step="1" size="count" whole onChange={(value, unreadable) => set("minors", value, unreadable)} />
+            <div className={styles.stack}>
+              <div className={styles.fields}>
+                <NumberField label={t("subsistence.fields.adults")} hintId={`${hintId}-family`} value={form.adults} step="1" size="count" whole onChange={(value, unreadable) => set("adults", value, unreadable)} />
+                <NumberField label={t("subsistence.fields.minors")} hintId={`${hintId}-family`} value={form.minors} step="1" size="count" whole onChange={(value, unreadable) => set("minors", value, unreadable)} />
+              </div>
+              {/* Kes on pereliige ja kuhu läheb laps, kes saab sel kuul 18: vale lahter annaks vale piiri. */}
+              <p className={styles.hint} id={`${hintId}-family`}>
+                {t("subsistence.hints.family")}
+              </p>
             </div>
           </StepPanel>
         );
@@ -269,7 +276,15 @@ export default function SubsistenceCalculator() {
           <StepPanel title={t("subsistence.views.gates.title")} question={questions.length ? undefined : t("subsistence.views.gates.none")}>
             <div className={styles.gates}>
               {questions.map((question) => (
-                <div key={question.field} className={styles.gate}>
+                <div key={question.field} className={styles.gate} role="group" aria-describedby={question.conditions ? `${hintId}-${question.field}` : undefined}>
+                  {/* Tingimused seisavad enne vastust: ilma nendeta ei saa küsimusele vastata. */}
+                  {question.conditions ? (
+                    <ol className={styles.conditions} id={`${hintId}-${question.field}`}>
+                      {question.conditions.map((conditionKey) => (
+                        <li key={conditionKey}>{t(conditionKey)}</li>
+                      ))}
+                    </ol>
+                  ) : null}
                   <ChoiceRow
                     label={t(question.text)}
                     layout="scale"
@@ -300,7 +315,7 @@ export default function SubsistenceCalculator() {
                 ))}
               </dl>
               {/* Miks arvesse läks vähem, kui sisestati: arv ilma põhjuseta näeb välja nagu viga. */}
-              {reason ? <p className={styles.quiet}>{t(reason.key, { ...reason.vars, costs: reason.costKeys.map((costKey) => t(costKey)).join(", ") })}</p> : null}
+              {reason ? <p className={styles.quiet}>{t(reason.key, { ...reason.vars, costs: reason.costKeys.map((costKey) => quoted(t(costKey), locale)).join(", ") })}</p> : null}
               {note === "above_line" ? <p className={styles.quiet}>{t("subsistence.caveat.above_line")}</p> : null}
               {note === "kov_limits" ? <p className={styles.caveat}>{t("subsistence.caveat.kov_limits")}</p> : null}
             </div>

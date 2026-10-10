@@ -17,6 +17,7 @@ import { fileURLToPath } from 'node:url';
 import {
   COST_GROUPS,
   EMPTY_FORM,
+  LOAN_CONDITION_KEYS,
   STEP_KEYS,
   costFieldId,
   declaredCostKeys,
@@ -29,6 +30,7 @@ import {
   issueRows,
   pageEstimate,
   plainNumber,
+  quoted,
   rateMissing,
   resultFacts,
   resultNote,
@@ -48,7 +50,7 @@ const codes = (result) => result.issues.map((issue) => issue.code);
 const DAY = '2026-10-10';
 
 /* Üks inimene, üürikorter 40 m² ja kaks tuba: normpind 33 m², üür ja küte lähevad arvesse suhtega 33/40. */
-const SINGLE_FORM = { ...EMPTY_FORM, workIncome: '120.50', otherIncome: '210.45', dwellingAreaM2: '40', rooms: '2', costsAreCurrentMonth: true, landlordIsFamilyOrTheirCompany: false };
+const SINGLE_FORM = { ...EMPTY_FORM, workIncome: '120.50', otherIncome: '210.45', dwellingAreaM2: '40', rooms: '2', costsAreCurrentMonth: true, landlordIsTenantsRelative: false, landlordIsRelatedCompany: false };
 const SINGLE_COSTS = { rent: '280', water: '14.20', heating: '60', electricity: '31.75', wasteRemoval: '5.90' };
 /* Kaks täisealist ja kaks last, oma korter 68,5 m² ja kolm tuba, eluasemelaen. */
 const FAMILY_FORM = {
@@ -81,17 +83,20 @@ test('täpsustavad küsimused tulevad sisestatud kuludest ja katavad arvutuse v�
   assert.deepEqual(gateQuestions(['water']).map((question) => question.field), ['costsAreCurrentMonth']);
   assert.deepEqual(
     gateQuestions(['rent', 'buildingRenovationLoan', 'housingLoan', 'landTax']).map((question) => question.field),
-    ['costsAreCurrentMonth', 'landlordIsFamilyOrTheirCompany', 'isApartmentBuilding', 'housingLoanConditionsMet', 'housingLoanMonthLimitReached', 'landTaxExempt']
+    ['costsAreCurrentMonth', 'landlordIsTenantsRelative', 'landlordIsRelatedCompany', 'isApartmentBuilding', 'housingLoanConditionsMet', 'housingLoanMonthLimitReached', 'landTaxExempt']
   );
-  /* Iga kulu, millel on arvutuses värav, toob oma küsimuse; eluasemelaen kaks (tingimused ja kuue kuu piir). */
+  /* Iga kulu, millel on arvutuses värav, toob oma küsimuse; üür ja eluasemelaen kaks. */
   const gated = HOUSING_COST_KINDS.filter((item) => item.gate).map((item) => item.key);
   assert.deepEqual(gated.sort(), ['buildingManagement', 'buildingRenovationLoan', 'housingLoan', 'landTax', 'rent']);
-  for (const key of gated) assert.equal(gateQuestions([key]).length, key === 'housingLoan' ? 3 : 2, key);
+  for (const key of gated) assert.equal(gateQuestions([key]).length, key === 'housingLoan' || key === 'rent' ? 3 : 2, key);
+  /* Eluasemelaenu neli tingimust seisavad loendina küsimuse juures, seaduse järjekorras. */
+  assert.deepEqual(gateQuestions(['housingLoan'])[1].conditions, LOAN_CONDITION_KEYS);
+  assert.equal(LOAN_CONDITION_KEYS.length, 4);
   /* Iga väli, mille kohta arvutus ütleb „vastamata", on küsimusena olemas ja läheb lehelt arvutusse. */
   const core = read('lib/benefits/subsistence.js');
   const gateFields = [...new Set([...core.matchAll(/field: "gates\.([A-Za-z]+)"/g)].map((match) => match[1]))];
   const asked = gateQuestions(HOUSING_COST_KEYS).map((question) => question.field);
-  assert.equal(gateFields.length, 6);
+  assert.equal(gateFields.length, 7);
   for (const field of gateFields) {
     assert.ok(asked.includes(field), field);
     assert.ok(field in estimateInput(EMPTY_FORM, {}).gates, `leht annab arvutusele: ${field}`);
@@ -113,7 +118,8 @@ test('vaadete loend on alati sama ja seis käib sama reegli järgi mis arvutus',
   assert.equal(partial.costs, 'done');
   assert.equal(partial.utilities, 'done');
   assert.equal(partial.gates, 'partial', 'üürileandja küsimus on vastamata');
-  assert.equal(stepStates({ costsAreCurrentMonth: false, landlordIsFamilyOrTheirCompany: false }, { rent: '300' }).gates, 'done');
+  assert.equal(stepStates({ costsAreCurrentMonth: false, landlordIsTenantsRelative: false, landlordIsRelatedCompany: false }, { rent: '300' }).gates, 'done');
+  assert.equal(stepStates({ costsAreCurrentMonth: true, landlordIsTenantsRelative: false }, { rent: '300' }).gates, 'partial');
   /* Ainult mahaarvamine ei ole sissetulek: samm ei ole valmis, sest arvutus keeldub. */
   assert.equal(stepStates({ adults: '1', paidMaintenance: '50' }, {}).income, 'partial');
   assert.equal(stepStates({ adults: '1', enforcementWithheld: '0' }, {}).income, 'partial');
@@ -201,9 +207,13 @@ test('arvutus: „ei" jooksva kuu küsimusele on vastus, mitte vastamata küsimu
 });
 
 test('arvutus: üür, korterelamu kulud, eluasemelaen ja maamaks käivad seaduse väravate kaudu', () => {
-  /* Üür (SHS § 133 lg 8). */
-  assert.deepEqual(codes(page({ ...SINGLE_FORM, landlordIsFamilyOrTheirCompany: true }, SINGLE_COSTS)), ['RENT_FROM_FAMILY_NOT_COUNTED']);
-  assert.deepEqual(codes(page({ ...SINGLE_FORM, landlordIsFamilyOrTheirCompany: null }, SINGLE_COSTS)), ['GATE_UNANSWERED']);
+  /* Üür (SHS § 133 lg 8): üürniku lähedane VÕI taotlejaga seotud äriühing; mõlemale peab olema vastatud. */
+  assert.deepEqual(codes(page({ ...SINGLE_FORM, landlordIsTenantsRelative: true }, SINGLE_COSTS)), ['RENT_FROM_FAMILY_NOT_COUNTED']);
+  assert.deepEqual(codes(page({ ...SINGLE_FORM, landlordIsRelatedCompany: true }, SINGLE_COSTS)), ['RENT_FROM_FAMILY_NOT_COUNTED']);
+  assert.deepEqual(codes(page({ ...SINGLE_FORM, landlordIsTenantsRelative: true, landlordIsRelatedCompany: null }, SINGLE_COSTS)), ['RENT_FROM_FAMILY_NOT_COUNTED']);
+  assert.deepEqual(codes(page({ ...SINGLE_FORM, landlordIsTenantsRelative: null }, SINGLE_COSTS)), ['GATE_UNANSWERED']);
+  assert.deepEqual(codes(page({ ...SINGLE_FORM, landlordIsRelatedCompany: null }, SINGLE_COSTS)), ['GATE_UNANSWERED']);
+  assert.deepEqual(codes(page({ ...SINGLE_FORM, landlordIsTenantsRelative: null, landlordIsRelatedCompany: null }, SINGLE_COSTS)), ['GATE_UNANSWERED', 'GATE_UNANSWERED']);
   /* Korterelamu kulud. */
   assert.deepEqual(codes(page({ ...FAMILY_FORM, isApartmentBuilding: false }, FAMILY_COSTS)), ['APARTMENT_BUILDING_COSTS_NOT_APPLICABLE']);
   /* Eluasemelaen: tingimused (§ 133 lg 9¹) ja kuue kuu piir (lg 9²). */
@@ -219,6 +229,11 @@ test('arvutus: üür, korterelamu kulud, eluasemelaen ja maamaks käivad seaduse
   assert.deepEqual(codes(page(house, { landTax: '60' })), ['GATE_UNANSWERED']);
   assert.deepEqual(codes(page({ ...house, landTaxExempt: true }, { landTax: '60' })), ['LAND_TAX_EXEMPT_NOT_COUNTED']);
   assert.equal(page({ ...house, landTaxExempt: false }, { landTax: '60' }).estimate, 280);
+  /* Maamaksu alus on kolmekordne elamualune pind, mitte eluruumi normpind: suure eluruumi korral seda ei kärbita. */
+  const bigHouse = page({ ...house, dwellingAreaM2: '100', rooms: '4', landTaxExempt: false }, { landTax: '30', heating: '100' });
+  assert.equal(bigHouse.housing.lines.find((line) => line.key === 'landTax').counted, 30);
+  assert.ok(bigHouse.housing.lines.find((line) => line.key === 'heating').counted < 100);
+  assert.deepEqual(housingReason(bigHouse, 'et').costKeys, ['subsistence.costs.heating']);
 });
 
 test('arvutus: teine kutsuja ei saa väravast lõdva väärtusega mööda', () => {
@@ -235,7 +250,7 @@ test('arvutus: teine kutsuja ei saa väravast lõdva väärtusega mööda', () =
   assert.deepEqual(run({ housingLoanMonthsUsedThisYear: '' }), ['GATE_UNANSWERED']);
   assert.deepEqual(run({ housingLoanMonthLimitReached: false, isApartmentBuilding: 'jah' }), ['GATE_UNANSWERED']);
   /* Tubade arv tühja sõnena on sisestamata, mitte null tuba. */
-  const big = { adults: 1, workIncome: 0, dwellingAreaM2: 40, housingCosts: { rent: 300 }, gates: { costsAreCurrentMonth: true, landlordIsFamilyOrTheirCompany: false }, effectiveDate: DAY };
+  const big = { adults: 1, workIncome: 0, dwellingAreaM2: 40, housingCosts: { rent: 300 }, gates: { costsAreCurrentMonth: true, landlordIsTenantsRelative: false, landlordIsRelatedCompany: false }, effectiveDate: DAY };
   assert.deepEqual(codes(estimateSubsistenceBenefit({ ...big, rooms: '' })), ['ROOM_COUNT_REQUIRED']);
   assert.deepEqual(codes(estimateSubsistenceBenefit({ ...big, rooms: null })), ['ROOM_COUNT_REQUIRED']);
 });
@@ -300,7 +315,8 @@ test('leht: vastused lähevad arvutusse sellisena, nagu inimene need andis', () 
   assert.equal(input.gates.costsAreCurrentMonth, false);
   assert.equal(input.gates.housingLoanMonthLimitReached, false);
   assert.equal(input.gates.landTaxExempt, true);
-  assert.equal(input.gates.landlordIsFamilyOrTheirCompany, null);
+  assert.equal(input.gates.landlordIsTenantsRelative, null);
+  assert.equal(input.gates.landlordIsRelatedCompany, null);
   assert.equal(input.workIncome, '1180.40');
   assert.equal(input.rooms, '3');
   assert.equal(estimateInput({ ...EMPTY_FORM, rooms: '' }).rooms, null);
@@ -339,6 +355,12 @@ test('leht: kärbitud eluasemekulu kohta öeldakse, mis kulud ja kui suur osa', 
     const sentence = word(lang, 'subsistence.reason.area_scaled');
     for (const name of ['{area}', '{norm}', '{percent}', '{costs}']) assert.ok(sentence.includes(name), `${lang}: ${name}`);
   }
+  /* Protsent on allapoole ümardatud, seega „umbes"; kulude nimed on jutumärkides nagu puudujäägi lausetes. */
+  assert.ok(/umbes \{percent\}%/.test(word('et', 'subsistence.reason.area_scaled')));
+  assert.equal(quoted('Üür', 'et'), '„Üür”');
+  assert.equal(quoted('Rent', 'en'), '“Rent”');
+  assert.equal(quoted('Аренда', 'ru'), '«Аренда»');
+  assert.ok(read('components/benefits/SubsistenceCalculator.jsx').includes('quoted(t(costKey), locale)'));
 });
 
 test('leht: lause tulemuse all ja plaatide kokkuvõtted', () => {
@@ -407,7 +429,7 @@ test('iga lehe tekst on kataloogis kolmes keeles', () => {
     'subsistence.result.housing',
     'subsistence.result.housing_declared',
     'subsistence.result.income',
-    ...gateQuestions(HOUSING_COST_KEYS).flatMap((question) => [question.text, question.hint].filter(Boolean))
+    ...gateQuestions(HOUSING_COST_KEYS).flatMap((question) => [question.text, question.hint, ...(question.conditions || [])].filter(Boolean))
   ];
   for (const lang of LANGS) {
     for (const key of [...literal, ...built]) assert.equal(typeof word(lang, key), 'string', `${lang}: ${key}`);
@@ -419,11 +441,23 @@ test('iga lehe tekst on kataloogis kolmes keeles', () => {
   for (const [code, field] of [['RENT_FROM_FAMILY_NOT_COUNTED', 'rent'], ['HOUSING_LOAN_CONDITIONS_NOT_MET', 'housingLoan'], ['HOUSING_LOAN_MONTH_LIMIT_REACHED', 'housingLoan'], ['LAND_TAX_EXEMPT_NOT_COUNTED', 'landTax']]) {
     for (const lang of LANGS) assert.ok(word(lang, `subsistence.issues.${code}`).includes(word(lang, `subsistence.costs.${field}`)), `${lang}: ${code} nimetab välja`);
   }
-  /* Seaduse ring, mitte lihtsustus: laenu võib olla võtnud ka pereliige; üüri küsimus nimetab sugulased ja äriühingu. */
-  assert.ok(/pereliige/.test(word('et', 'subsistence.hints.loan')) && /maksepuhkus/.test(word('et', 'subsistence.hints.loan')) && /kindlustus/.test(word('et', 'subsistence.hints.loan')) && /rahvastikuregistri/.test(word('et', 'subsistence.hints.loan')));
+  /* Seaduse ring, mitte lihtsustus (SHS § 133 lg 8 ja 9¹). Laenu võib olla võtnud ka pereliige; maksepuhkusest
+     keeldumine on kirjalik; kindlustus on makseraskuste kindlustus. */
+  const [borrower, holiday, insurance, residence] = LOAN_CONDITION_KEYS.map((key) => word('et', key));
+  assert.ok(/pereliige/.test(borrower) && /maksepuhkus/.test(holiday) && /kirjalik/.test(holiday) && /makseraskuste kindlustus/.test(insurance) && /rahvastikuregistri/.test(residence));
   assert.ok(!/sinu nimel/.test(word('et', 'subsistence.gates.loan')));
-  assert.ok(/vanavanem/.test(word('et', 'subsistence.gates.landlord_family')) && /äriühing/.test(word('et', 'subsistence.gates.landlord_family')));
+  /* Üür: küsitakse ÜÜRNIKU lähedase kohta (leping võib olla teise pereliikme nimel) ja eraldi äriühingu kohta. */
+  assert.ok(/üürniku/.test(word('et', 'subsistence.gates.landlord_relative')) && /vanavanem/.test(word('et', 'subsistence.gates.landlord_relative')));
+  assert.ok(/äriühing/.test(word('et', 'subsistence.gates.landlord_company')) && /nõukogu/.test(word('et', 'subsistence.gates.landlord_company')));
   assert.ok(!/üldjuhul/.test(word('et', 'subsistence.issues.RENT_FROM_FAMILY_NOT_COUNTED')));
+  /* Arvuvälja (tubade arv, pind) loetamatu sisu kohta ei öelda „summa". */
+  for (const lang of LANGS) assert.ok(!/summa|amount|сумм/i.test(word(lang, 'subsistence.issues_named.INVALID_AMOUNT')), lang);
+  /* Eesti tekstides ei ole mõttekriipsu ja jutumärgid on „ ”. */
+  const flatten = (node) => (typeof node === 'string' ? [node] : Object.values(node || {}).flatMap(flatten));
+  for (const sentence of flatten(catalogs.et.subsistence)) {
+    assert.ok(!/[—–]/.test(sentence), sentence);
+    assert.ok(!/"/.test(sentence), sentence);
+  }
   /* Kasutamata võtmeid ei ole jäänud. */
   for (const lang of LANGS) assert.equal(word(lang, 'subsistence.section'), undefined, lang);
 });
