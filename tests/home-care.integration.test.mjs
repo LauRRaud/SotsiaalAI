@@ -95,6 +95,7 @@ import { getFridgeSheet } from '../lib/homeCare/fridgeSheet.js';
 import { getMonthOpenItems } from '../lib/homeCare/monthClose.js';
 import { getMonthPage, lockMonth, reopenMonth } from '../lib/homeCare/monthLock.js';
 import { answerDecisionNotice, createDecisionNotice, withdrawDecisionNotice } from '../lib/homeCare/decisionNotices.js';
+import { getDaySheet } from '../lib/homeCare/daySheet.js';
 import { endRelative, saveRelative } from '../lib/homeCare/relatives.js';
 import { saveSafetyCard } from '../lib/homeCare/safetyCard.js';
 import { composeNoAnswerText } from '../lib/homeCare/noAnswerText.js';
@@ -5822,4 +5823,59 @@ test('teade otsustajale arvudega: kuude read, ära jäänud ja ette ära jäetud
   assert.equal(sent.decisionNotices[0].reason, 'REVIEW');
   const plain = await createDecisionNotice(lead, linda.id, { reason: 'NEED_GROWN', text: 'Ilma arvudeta.', channel: 'PHONE' }, deps());
   assert.equal(plain.decisionNotices.find((item) => item.id === plain.noticeId).sentText.includes('Arvud kuude kaupa'), false);
+});
+
+test('päevaleht paberil: hooldusjuht prindib oma skoobi käigud, väljaandmisest jääb jälg', async (t) => {
+  const f = await fixture(t);
+  const north = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Põhi ${f.tag}`, type: 'TEAM' } });
+  await db.organizationCapabilityGrant.create({
+    data: { membershipId: f.members.cover.id, capability: 'HOME_CARE_COORDINATOR', scopeType: 'UNIT', scopeUnitId: north.id, validFrom: at('2026-01-01T00:00:00Z') }
+  });
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const unitLead = await f.ctx(f.users.cover, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  const start = deps(at('2026-09-01T08:00:00Z'));
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm', address: 'Kase 3-12, Haapsalu', contactPhone: '+372 5555 1234' }, start)).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi', unitId: north.id, address: 'Männi 7, Haapsalu' }, start)).client;
+  for (const client of [linda, peeter]) {
+    await addTeamMember(lead, client.id, { membershipId: f.members.anu.id }, start);
+    await addTeamMember(lead, client.id, { membershipId: f.members.bert.id }, start);
+  }
+  await addCardLine(lead, linda.id, { kind: 'ACCESS', text: 'Uksekood 12#34' }, deps());
+  /* Reede 09.10: Anu käib Linda juures kell 9, Bert Peetri juures kell 10; Linda teine käik (kell 14) on tegijata. */
+  await createSlots(lead, linda.id, { weekdays: [5], startTime: '09:00', plannedMinutes: 45, workerMembershipId: f.members.anu.id, validFrom: '2026-09-28' }, start);
+  await createSlots(lead, peeter.id, { weekdays: [5], startTime: '10:00', plannedMinutes: 30, workerMembershipId: f.members.bert.id, validFrom: '2026-09-28' }, start);
+  await createSlots(lead, linda.id, { weekdays: [5], startTime: '14:00', plannedMinutes: 30, validFrom: '2026-09-28' }, start);
+
+  /* Hooldaja ja teine asutus lehte ei saa. */
+  await expectError(getDaySheet(anu, { day: '2026-10-09' }, deps()), 403, 'org.errors.missing_capability');
+  const all = await getDaySheet(lead, { day: '2026-10-09' }, deps());
+  assert.deepEqual([all.day, all.sheetCount, all.visitCount], ['2026-10-09', 3, 3]);
+  for (const text of ['<h1>Anu Hooldaja</h1>', '<h1>Bert Hooldaja</h1>', '<h1>Tegijata käigud</h1>', 'Linda Tamm', 'Kase 3-12, Haapsalu', '+372 5555 1234', 'Uksekood 12#34', '9.00–9.45', 'Peeter Põhi', 'Männi 7, Haapsalu', '14.00–14.30']) {
+    assert.ok(all.html.includes(text), text);
+  }
+  /* Ühe töötaja leht: ainult tema käigud. */
+  const one = await getDaySheet(lead, { day: '2026-10-09', membershipId: f.members.anu.id }, deps());
+  assert.deepEqual([one.sheetCount, one.visitCount, one.html.includes('Peeter Põhi'), one.html.includes('Tegijata käigud')], [1, 1, false, false]);
+  /* Üksuse hooldusjuht näeb ainult oma üksuse klienti; Linda käike tema lehel ei ole. */
+  const unit = await getDaySheet(unitLead, { day: '2026-10-09' }, deps());
+  assert.deepEqual([unit.sheetCount, unit.html.includes('Peeter Põhi'), unit.html.includes('Linda Tamm')], [1, true, false]);
+  /* Ära jäetud käik lehele ei lähe; tühja päeva ja käikudeta töötaja kohta lehte ei tehta. */
+  const peeterSlot = (await getClientSlots(lead, peeter.id, deps())).slots[0];
+  await cancelVisit(lead, peeter.id, peeterSlot.id, { day: '2026-10-09', reason: 'CLIENT_AWAY' }, deps());
+  await expectError(getDaySheet(lead, { day: '2026-10-09', membershipId: f.members.bert.id }, deps()), 400, 'home_care.errors.day_sheet_empty');
+  await expectError(getDaySheet(lead, { day: '2026-10-10' }, deps()), 400, 'home_care.errors.day_sheet_empty');
+  await expectError(getDaySheet(leadB, { day: '2026-10-09' }, deps()), 400, 'home_care.errors.day_sheet_empty');
+  await expectError(getDaySheet(lead, { day: '2026-10-09', membershipId: '../x' }, deps()), 400, 'home_care.errors.day_sheet_worker');
+
+  /* Jälg: kolm väljaantud lehte, päev ja arvud; nimesid ega aadresse auditis ei ole. */
+  const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_day_sheet_issued', meta: { path: ['organizationId'], equals: f.orgA.id } }, orderBy: { createdAt: 'asc' } });
+  assert.deepEqual(audit.map((row) => [row.meta.day, row.meta.rowCount, row.meta.clientCount, row.meta.membershipId || null]), [
+    ['2026-10-09', 3, 2, null],
+    ['2026-10-09', 1, 1, f.members.anu.id],
+    ['2026-10-09', 1, 1, null]
+  ]);
+  assert.equal(JSON.stringify(audit).includes('Kase'), false);
+  assert.equal(JSON.stringify(audit).includes('Linda'), false);
 });
