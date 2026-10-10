@@ -105,3 +105,25 @@ test('päevalehe tekstid on kolmes keeles', () => {
     for (const key of ['day_sheet_empty', 'day_sheet_worker']) assert.ok(catalogue.errors[key], `${locale} ${key}`);
   }
 });
+
+test('päevaleht: kojutulek, esmakäik ja sõit on lehel samade sõnadega mis hooldaja päevas', () => {
+  const visit = (extra) => ({ startMinute: 540, plannedMinutes: 30, clientName: 'Linda Tamm', cardLines: [], activities: [], ...extra });
+  const render = (visits) => renderDaySheetHtml({ organizationName: 'Hoolekanne', day: '2026-10-09', weekday: 5, locale: 'et', sheets: [{ workerName: 'Anu', visits }] });
+  const html = render([
+    visit({ homecoming: { returnedOn: '2026-10-08' }, firstVisit: { outcome: 'CALLED' }, ride: { time: '9.40', destination: 'Perearst <keskus>' } }),
+    visit({ clientName: 'Peeter Põhi', firstVisit: { outcome: null }, ride: { time: null, destination: 'Apteek' } })
+  ]);
+  for (const text of [
+    'Kojutulek: tuli koju 08.10.2026. Vaata üle toit, ravimid ja küte; küsi, kas abi on vaja teisiti.',
+    'Klient ei tunne sind: lähed siia esimest korda. Talle on helistatud ja ta teab, et tuled.',
+    'Klient ei tunne sind: lähed siia esimest korda. Talle ei ole veel teatatud',
+    'Perearst &lt;keskus&gt;',
+    'Apteek'
+  ]) {
+    assert.ok(html.includes(text), text);
+  }
+  assert.ok(html.includes('9.40'));
+  /* Ilma nende märkideta käigul neid ridu ei ole. */
+  const plain = render([visit({})]);
+  for (const text of ['Kojutulek', 'Klient ei tunne sind']) assert.equal(plain.includes(text), false, text);
+});
