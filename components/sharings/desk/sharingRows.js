@@ -476,7 +476,8 @@ export function sharingRow(section, item, { t, formatDate, formatMonth, formatDa
         /* Aruande kuu sõnaga („september 2026"), mitte kujul 2026-09. */
         time: formatMonth(item.month),
         facts: {
-          visibility: t("my_sharings.ownership.shared_with", { name: recipient }),
+          /* See rida ei avane, seega käib saaja lugemiste kokkuvõte siia, nagu töötaja saadetud jagamisel. */
+          visibility: [t("my_sharings.ownership.shared_with", { name: recipient }), ...viewTrailNote(item, { t, formatDay })].join(". "),
           origin: t("my_sharings.ownership.you_sent"),
           validity: item.recalledAt ? t("my_sharings.ownership.recalled", { date: formatDate(item.recalledAt) }) : t("my_sharings.ownership.active")
         }

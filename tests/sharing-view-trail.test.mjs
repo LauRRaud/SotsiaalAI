@@ -412,3 +412,49 @@ test('isikule saadetud eelpöördumine: jälg kirjutatakse pärast lukku, teatel
   assert.match(signal, /fetch\(`\/api\/pre-inquiries\/\$\{encodeURIComponent\(viewedInquiryId\)\}\/viewed`, \{ method: "POST" \}\)\.catch\(\(\) => \{\}\);/);
   assert.equal([...page.matchAll(/\/viewed`/g)].length, 1);
 });
+
+test('teenusaruande jagamine: jälg kirjutatakse pärast kinnituse tehingut ja jagaja rida näitab kokkuvõtet', async () => {
+  /* Liik viitab oma veeruga. */
+  const writes = [];
+  const db = { sharingView: { createMany: async ({ data }) => (writes.push({ ...data[0] }), { count: 1 }) } };
+  const now = new Date('2026-10-09T08:00:00Z');
+  assert.equal(await recordSharingView({ db, kind: SharingViewKind.SERVICE_REPORT_SHARE, itemId: 'r1', viewerUserId: 'juht', sharerUserIds: ['tootaja'], now }), true);
+  assert.equal(await recordSharingView({ db, kind: SharingViewKind.SERVICE_REPORT_SHARE, itemId: 'r1', viewerUserId: 'tootaja', sharerUserIds: ['tootaja'], now }), false);
+  assert.equal(await recordSharingView({ db, kind: SharingViewKind.SERVICE_REPORT_SHARE, itemId: 'r1', viewerUserId: 'juht', sharerUserIds: [null], now }), false);
+  assert.deepEqual(writes, [{ kind: 'SERVICE_REPORT_SHARE', serviceReportShareId: 'r1', viewerUserId: 'juht', day: '2026-10-09' }]);
+
+  /* Kinnitus: jagaja ID jääb funktsiooni sisse, kirjutus on pärast tehingut ja katab ka korduva lugemise. */
+  const source = readFileSync(new URL('../lib/serviceLog/reportShare.js', import.meta.url), 'utf8').replace(/\r\n/g, '\n');
+  const start = source.indexOf('export async function confirmShareDelivery(');
+  const confirm = source.slice(start, source.indexOf('\nexport ', start + 10));
+  const transaction = confirm.indexOf('const result = await db.$transaction(async (tx) => {');
+  const sharer = confirm.indexOf('sharerUserId = share.ownerUserId;');
+  const repeat = confirm.indexOf('if (share.status === ShareStatus.OPENED) return { id: share.id, alreadyOpened: true };');
+  const first = confirm.indexOf('return { id: share.id, alreadyOpened: false };\n  });');
+  const record = confirm.indexOf('await recordSharingView({');
+  assert.ok(transaction > 0 && sharer > transaction && repeat > sharer && first > repeat && record > first, 'jagaja loetakse enne korduva lugemise väljumist ja jälg kirjutatakse pärast tehingut');
+  assert.equal([...confirm.matchAll(/recordSharingView\(/g)].length, 1);
+  assert.match(confirm.slice(record), /db,\n    kind: SharingViewKind\.SERVICE_REPORT_SHARE,\n    itemId: result\.id,\n    viewerUserId: actorUserId,\n    sharerUserIds: \[sharerUserId\],\n    now\n  \}\);\n  return result;\n\}/);
+  /* Vastus läheb saaja brauserisse: jagaja ID seal ei ole. */
+  assert.equal(/return \{[^}]*owner/i.test(confirm), false);
+
+  /* Jagaja rida ei avane: kokkuvõte on rea faktis; ilma vaatamisteta jääb rida endiseks. */
+  const share = { id: 's1', status: 'OPENED', month: '2026-09', recipientLabel: 'Osakonna juht' };
+  assert.equal(sharingRow('serviceReportShares', share, context).facts.visibility, 'Jagatud: Osakonna juht');
+  assert.equal(
+    sharingRow('serviceReportShares', { ...share, views: { days: 2, lastDay: '2026-10-09' } }, context).facts.visibility,
+    'Jagatud: Osakonna juht. Adressaat on seda vaadanud 2 päeval, viimati kp:2026-10-09'
+  );
+  assert.equal(
+    sharingRow('serviceReportShares', { ...share, views: { days: 1, lastDay: '2026-10-09' } }, context).facts.visibility,
+    'Jagatud: Osakonna juht. Adressaat on seda vaadanud ühel päeval: kp:2026-10-09'
+  );
+
+  /* Migratsioon: iga liik nõuab oma veergu ja keelab teised; jälg kustub koos jagamisega. */
+  const migration = readFileSync(new URL('../prisma/migrations/20261013170000_sharing_view_service_report/migration.sql', import.meta.url), 'utf8').replace(/\r\n/g, '\n');
+  assert.match(migration, /^SET lock_timeout = '5s';\nSET statement_timeout = '30s';/m);
+  assert.match(migration, /REFERENCES "ServiceReportShare"\("id"\) ON DELETE CASCADE ON UPDATE CASCADE;/);
+  assert.match(migration, /\("kind" = 'SERVICE_REPORT_SHARE' AND "serviceReportShareId" IS NOT NULL AND "preInquiryId" IS NULL AND "networkShareId" IS NULL\)/);
+  assert.match(migration, /\("kind" = 'PRE_INQUIRY' AND "preInquiryId" IS NOT NULL AND "networkShareId" IS NULL AND "serviceReportShareId" IS NULL\)/);
+  assert.match(migration, /\("kind" = 'NETWORK_SHARE' AND "networkShareId" IS NOT NULL AND "preInquiryId" IS NULL AND "serviceReportShareId" IS NULL\)/);
+});

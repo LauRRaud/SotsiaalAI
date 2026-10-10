@@ -6578,6 +6578,8 @@ model ServiceReportShare {
   owner        User?                   @relation("ServiceReportShareOwner", fields: [ownerUserId], references: [id], onDelete: SetNull)
   organization Organization?           @relation(fields: [organizationId], references: [id], onDelete: SetNull)
   recipient    OrganizationMembership? @relation("ServiceReportShareRecipient", fields: [recipientMembershipId], references: [id], onDelete: SetNull)
+  /// „Kes on vaadanud": saaja kinnitatud lugemised, üks rida vaataja ja päeva kohta.
+  views        SharingView[]
 
   @@index([ownerUserId, sentAt])
   @@index([recipientMembershipId, status, sentAt])
@@ -6883,21 +6885,24 @@ model NetworkShare {
 /// Jagaja näeb ainult kokkuvõtet (mitmel päeval, millal viimati), mitte vaatajat.
 model SharingView {
   id             String   @id @default(cuid())
-  /// PRE_INQUIRY | NETWORK_SHARE (`SharingViewKind`); CHECK hoiab, et täidetud on just selle liigi viide.
-  kind           String
-  preInquiryId   String?
-  networkShareId String?
-  viewerUserId   String
+  /// PRE_INQUIRY | NETWORK_SHARE | SERVICE_REPORT_SHARE (`SharingViewKind`); CHECK hoiab, et täidetud on just selle liigi viide.
+  kind                 String
+  preInquiryId         String?
+  networkShareId       String?
+  serviceReportShareId String?
+  viewerUserId         String
   /// Päev kujul AAAA-KK-PP Eesti aja järgi.
-  day            String
-  createdAt      DateTime @default(now())
+  day                  String
+  createdAt            DateTime @default(now())
 
-  preInquiry   PreInquiry?   @relation(fields: [preInquiryId], references: [id], onDelete: Cascade)
-  networkShare NetworkShare? @relation(fields: [networkShareId], references: [id], onDelete: Cascade)
-  viewer       User          @relation("SharingViewViewer", fields: [viewerUserId], references: [id], onDelete: Cascade)
+  preInquiry         PreInquiry?         @relation(fields: [preInquiryId], references: [id], onDelete: Cascade)
+  networkShare       NetworkShare?       @relation(fields: [networkShareId], references: [id], onDelete: Cascade)
+  serviceReportShare ServiceReportShare? @relation(fields: [serviceReportShareId], references: [id], onDelete: Cascade)
+  viewer             User                @relation("SharingViewViewer", fields: [viewerUserId], references: [id], onDelete: Cascade)
 
   @@unique([preInquiryId, viewerUserId, day])
   @@unique([networkShareId, viewerUserId, day])
+  @@unique([serviceReportShareId, viewerUserId, day])
   @@index([viewerUserId])
 }
 
