@@ -1,0 +1,50 @@
+[Unit]
+# A4 E6 — tegevusloa kontrolli ajastatud korje.
+#
+# MIKS SEE FAIL ON REPOSITOORIUMIS. Korje oli 05.08 saadik ainult käsk
+# (`npm run mtr:refresh`) ja cron-rida dokumendis. Serverisse seda ei paigaldatud ja rida
+# viitas esimesele checkout'ile, kust rakendus alates 04.10 enam ei käi. Ajastus, mis elab
+# ainult dokumendis, ei ole platvormi oma: tegevusloa märgis oleks vananenud ilma ühegi
+# märgita. Nüüd on töö samas kohas kus teised ja avaldamine kirjutab ta väljalaske kausta.
+Description=SotsiaalAI tegevusloa kontrolli korje (A4, MTR)
+After=network-online.target postgresql.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ubuntu
+WorkingDirectory=/home/ubuntu/apps/sotsiaalai
+
+# Sama env, mis frontendil: `DATABASE_URL` tuleb siit.
+EnvironmentFile=/etc/sotsiaalai/frontend.env
+
+# Üks kontroll on kolm järjestikust päringut avalikku registrisse (mõõdetud umbes 30 s).
+# Partii hoiab ühe jooksu lühikese ega koorma võõrast registrit.
+Environment=MTR_REFRESH_BATCH=10
+
+# LUKK. Pika registritõrke korral võib tunnine käivitus eelmisele otsa joosta. `-n` = ära
+# oota: kui eelmine jooks veel käib, on õige vastus mitte käivituda. Lukk on failil, mitte
+# ainult systemd'i „üks instants" käitumisel: käsitsi käivitatud `npm run mtr:refresh` ei
+# tea systemd'ist midagi.
+ExecStart=/usr/bin/flock -n /var/lock/sotsiaalai-mtr-refresh.lock \
+  /bin/bash -lc 'cd /home/ubuntu/apps/sotsiaalai && npm run mtr:refresh'
+
+# Ühe jooksu ülempiir: kümme profiili, igaühel halvimal juhul kuus 20-sekundilist päringut.
+TimeoutStartSec=1800
+
+# RETRY tuleb TAIMERILT: `oneshot` ei tohi `Restart`-i kanda. Korje ise austab iga profiili
+# `nextCheckAt`-i (edukas kontroll 14 päeva, tõrke järel 1 h, 6 h, 24 h), seega tunnine
+# käivitus ei kontrolli kedagi tihedamini kui ette nähtud.
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=mtr-refresh
+
+# Vähim vajalik: töö loeb avalikku registrit ja kirjutab andmebaasi, mitte failisüsteemi.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=-/home/ubuntu/apps/sotsiaalai/.next/cache /var/lock
+
+[Install]
+WantedBy=multi-user.target

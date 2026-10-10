@@ -1,0 +1,21 @@
+[Unit]
+# A4 E6 — tegevusloa kontrolli korje ajastus.
+Description=SotsiaalAI tegevusloa kontrolli korje ajastus (A4, MTR)
+
+[Timer]
+# IGA TUND, mitte kord ööpäevas. Korje ei kontrolli tunnis kõiki: ta vaatab, kelle
+# `nextCheckAt` on käes. Tunnine rütm on vajalik selleks, et tõrkejärgsed 1 h ja 6 h
+# korduskatsed päriselt toimuksid. Kahekümnes minut, et töö ei satuks täistunnil käivate
+# tööde peale.
+OnCalendar=*-*-* *:20:00
+
+# Vahelejäänud jooks tehakse järele (taaskäivitus, hoolduspaus).
+Persistent=true
+
+RandomizedDelaySec=300
+AccuracySec=1min
+
+Unit=sotsiaalai-mtr-refresh.service
+
+[Install]
+WantedBy=timers.target
