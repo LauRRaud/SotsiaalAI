@@ -143,6 +143,15 @@ test('pakkimise valik: brotli enne gzipi, keeld (q=0) loeb, tundmatu päis jäta
   const second = await packedCatalogAsset(asset, 'gzip');
   assert.equal(first.bytes, second.bytes);
   assert.equal(first.encoding, 'gzip');
+  /* Lehe paigutus ja faili marsruut saavad serveris kumbki oma koopia sellest moodulist. Paigutus paneb
+     pakkimise käima (aadressi küsides), marsruut peab saama sama tulemuse, mitte pakkima uuesti. */
+  const copy = await import('../lib/i18n/catalogAsset.js?teine-koopia');
+  assert.notEqual(copy.packedCatalogAsset, packedCatalogAsset, 'see on tõesti teine koopia');
+  copy.catalogScriptPath('ru');
+  const warmed = await packedCatalogAsset(catalogAsset('ru'), 'br');
+  const again = await copy.packedCatalogAsset(copy.catalogAsset('ru'), 'gzip, br');
+  assert.equal(warmed.bytes, again.bytes, 'mõlemad koopiad jagavad pakitud baite');
+  assert.equal(zlib.brotliDecompressSync(warmed.bytes).toString('utf8'), catalogAsset('ru').body);
 });
 
 test('laadija: üks lubadus keele kohta, üks kordus, ja tõrke järel ei jää keegi ootama', async () => {
