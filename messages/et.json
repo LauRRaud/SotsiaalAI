@@ -12489,12 +12489,6 @@
     "actions": {
       "login": "Logi sisse"
     },
-    "section": {
-      "family": "Pere",
-      "income": "Eelmise kuu sissetulek",
-      "housing": "Eluase",
-      "gates": "Täpsustused"
-    },
     "fields": {
       "adults": "Täisealisi pereliikmeid",
       "minors": "Alaealisi pereliikmeid",
@@ -12509,21 +12503,24 @@
     "hints": {
       "excluded_income": "Ära arvesta siia ühekordseid toetusi, puudetoetusi, õppelaenu ega õppetoetusi: neid seadus sissetulekuks ei loe.",
       "rooms": "Kui tube on sama palju kui elanikke, võetakse arvesse kogu pind.",
-      "current_month": "Varasemat eluasemevõlga arvesse ei võeta."
+      "current_month": "Varasemat eluasemevõlga arvesse ei võeta.",
+      "loan": "Laenu võtsid sina või sinuga koos elav pereliige; eluase on sinu rahvastikuregistrijärgne elukoht; oled kasutanud maksepuhkust või pank on sellest keeldunud; sul ei ole kindlustust, mis kataks kogu laenumakse.",
+      "zero_income": "Kui sissetulekut ei olnud, kirjuta 0."
     },
     "gates": {
       "current_month": "Kas need on jooksval kuul tasumisele kuuluvad kulud?",
-      "landlord_family": "Kas üürileandja on pereliige või tema äriühing?",
+      "landlord_family": "Kas üürileandja on sinu abikaasa või elukaaslane, vanem, vanavanem, laps või lapselaps, või äriühing, mille osanik, aktsionär või juhatuse liige on sina ise või keegi neist?",
       "apartment": "Kas elad korterelamus?",
-      "loan": "Kas eluasemelaen on sinu nimel ja laenatud eluase on sinu rahvastikuregistrijärgne elukoht?",
-      "loan_limit": "Kas eluasemelaenu makset on sel aastal toetuse arvestamisel arvesse võetud juba kuuel kuul?"
+      "loan": "Kas eluasemelaenu tagasimakse vastab kõigile neljale seaduse tingimusele?",
+      "loan_limit": "Kas eluasemelaenu tagasimakset on sel kalendriaastal toetuse arvestamisel arvesse võetud juba kuuel kuul?",
+      "land_tax": "Kas oled maamaksust täielikult või osaliselt vabastatud (näiteks kodualuse maa maksuvabastus)?"
     },
     "result": {
-      "title": "Eelhinnang",
       "incomplete": "Eelhinnangut ei saa veel anda",
       "limit": "Pere toimetulekupiir",
       "housing": "Arvesse minev eluasemekulu",
-      "income": "Arvesse minev sissetulek"
+      "income": "Arvesse minev sissetulek",
+      "housing_declared": "Sisestatud eluasemekulu"
     },
     "caveat": {
       "kov_limits": "Sinu omavalitsus kehtestab eluasemekuludele oma piirmäärad, mida see arvutus ei tea. Tegelik summa võib olla väiksem.",
@@ -12552,13 +12549,15 @@
       "UNKNOWN_HOUSING_COST_KIND": "Tundmatu eluasemekulu liik.",
       "NEGATIVE_AMOUNT": "Summa ei saa olla negatiivne.",
       "INVALID_AMOUNT": "Kontrolli sisestatud summasid.",
-      "RENT_FROM_FAMILY_NOT_COUNTED": "Pereliikmelt või tema äriühingult üüritud eluaseme üüri üldjuhul arvesse ei võeta. Kustuta üüri summa, kui tahad näha eelhinnangut ilma selleta.",
-      "APARTMENT_BUILDING_COSTS_NOT_APPLICABLE": "Korterelamu haldamise kulu ja renoveerimislaenu saab arvesse võtta ainult korterelamus. Kustuta need summad, kui tahad näha eelhinnangut ilma nendeta.",
-      "HOUSING_LOAN_CONDITIONS_NOT_MET": "Eluasemelaenu makset saab arvesse võtta ainult siis, kui laen on sinu nimel ja eluase on sinu rahvastikuregistrijärgne elukoht. Kustuta see summa, kui tahad näha eelhinnangut ilma selleta.",
-      "HOUSING_LOAN_MONTH_LIMIT_REACHED": "Eluasemelaenu makset saab arvesse võtta kuni kuuel kuul kalendriaastas ja see piir on sul täis. Kustuta see summa, kui tahad näha eelhinnangut ilma selleta.",
+      "RENT_FROM_FAMILY_NOT_COUNTED": "Sellist üüri seaduse järgi arvesse ei võeta. Kustuta väljalt „Üür” summa, kui tahad näha eelhinnangut ilma selleta. Kui sa ei ole kindel, kas üürileandja kuulub sellesse ringi, küsi oma valla- või linnavalitsusest.",
+      "APARTMENT_BUILDING_COSTS_NOT_APPLICABLE": "Korterelamu haldamise kulu ja renoveerimislaenu tagasimakset saab arvesse võtta ainult korterelamus. Kustuta need summad, kui tahad näha eelhinnangut ilma nendeta.",
+      "HOUSING_LOAN_CONDITIONS_NOT_MET": "Eluasemelaenu tagasimakset võetakse arvesse ainult siis, kui kõik neli täpsustuste vaates loetletud tingimust on täidetud. Kustuta väljalt „Eluasemelaenu tagasimakse” summa, kui tahad näha eelhinnangut ilma selleta.",
+      "HOUSING_LOAN_MONTH_LIMIT_REACHED": "Eluasemelaenu tagasimakset võetakse arvesse kuni kuuel kuul kalendriaastas ja see piir on sul täis. Kustuta väljalt „Eluasemelaenu tagasimakse” summa, kui tahad näha eelhinnangut ilma selleta.",
       "INVALID_WORK_EXEMPTION_MONTH": "Kontrolli töise tulu erandi kuud.",
-      "INCOME_REQUIRED": "Sisesta eelmise kuu sissetulek. Kui sissetulekut ei olnud, kirjuta töise või muu sissetuleku väljale 0.",
-      "COSTS_NOT_CURRENT_MONTH": "Arvesse lähevad ainult jooksval kuul tasumisele kuuluvad kulud, varasemat võlga ei arvestata. Sisesta ainult selle kuu kulud ja vasta siis täpsustuste vaates „Jah”."
+      "INCOME_REQUIRED": "Sisesta eelmise kuu sissetulek. Kui arvesse minevat sissetulekut ei olnud, kirjuta töise või muu sissetuleku väljale 0.",
+      "COSTS_NOT_CURRENT_MONTH": "Arvesse lähevad ainult need kulud, mis tuleb tasuda sel kuul (tavaliselt eelmise kuu arved); varasemat võlga ei arvestata. Sisesta ainult need summad ja vasta siis täpsustuste vaates „Jah”.",
+      "LAND_TAX_EXEMPT_NOT_COUNTED": "Maamaksu ei võeta arvesse, kui oled maamaksust täielikult või osaliselt vabastatud. Kustuta väljalt „Maamaks” summa, kui tahad näha eelhinnangut ilma selleta.",
+      "ADULT_REQUIRED": "Märgi täisealiste pereliikmete arv (vähemalt üks). Kui peres ei ole ühtegi täisealist, küsi oma valla- või linnavalitsusest."
     },
     "answers": {
       "yes": "Jah",
@@ -12608,7 +12607,7 @@
       "INVALID_AMOUNT": "„{field}”: kontrolli sisestatud summat."
     },
     "reason": {
-      "area_scaled": "Eluruum ({area} m²) on normpinnast ({norm} m²) suurem, seepärast läheb pinnaga seotud kuludest arvesse {percent}%. Sisestasid eluasemekulusid kokku {declared}."
+      "area_scaled": "Eluruum ({area} m²) on normpinnast ({norm} m²) suurem. Selles eelhinnangus läks arvesse {percent}% nendest kuludest: {costs}."
     },
     "leave_asked": "Sisestatud arve ei salvestata. Vajuta uuesti, et lahkuda."
   },

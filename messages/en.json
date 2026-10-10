@@ -12489,12 +12489,6 @@
     "actions": {
       "login": "Log in"
     },
-    "section": {
-      "family": "Family",
-      "income": "Income last month",
-      "housing": "Housing",
-      "gates": "Clarifications"
-    },
     "fields": {
       "adults": "Adult family members",
       "minors": "Minor family members",
@@ -12509,21 +12503,24 @@
     "hints": {
       "excluded_income": "Do not include one-off benefits, disability benefits, student loans or study allowances: the law does not count them as income.",
       "rooms": "If there are as many rooms as residents, the whole area is counted.",
-      "current_month": "Earlier housing debt is not counted."
+      "current_month": "Earlier housing debt is not counted.",
+      "loan": "The loan was taken by you or a family member living with you; the home is your registered residence; you have used a payment holiday or the bank refused one; you have no insurance that covers the whole repayment.",
+      "zero_income": "If there was no income, type 0."
     },
     "gates": {
       "current_month": "Are these costs due in the current month?",
-      "landlord_family": "Is the landlord a family member or their company?",
+      "landlord_family": "Is the landlord your spouse or partner, parent, grandparent, child or grandchild, or a company whose partner, shareholder or board member is you or one of them?",
       "apartment": "Do you live in an apartment building?",
-      "loan": "Is the housing loan in your name and is the home your registered residence?",
-      "loan_limit": "Has the housing loan payment already been counted for the benefit in six months of this year?"
+      "loan": "Does the housing loan repayment meet all four conditions of the law?",
+      "loan_limit": "Has the housing loan repayment already been counted for the benefit in six months of this calendar year?",
+      "land_tax": "Are you fully or partly exempt from land tax (for example the home land exemption)?"
     },
     "result": {
-      "title": "Estimate",
       "incomplete": "An estimate cannot be given yet",
       "limit": "Family subsistence limit",
       "housing": "Housing costs counted",
-      "income": "Income counted"
+      "income": "Income counted",
+      "housing_declared": "Housing costs entered"
     },
     "caveat": {
       "kov_limits": "Your municipality sets its own caps on housing costs, which this calculation does not know. The real amount may be lower.",
@@ -12552,13 +12549,15 @@
       "UNKNOWN_HOUSING_COST_KIND": "Unknown housing cost type.",
       "NEGATIVE_AMOUNT": "An amount cannot be negative.",
       "INVALID_AMOUNT": "Check the amounts you entered.",
-      "RENT_FROM_FAMILY_NOT_COUNTED": "Rent paid to a family member or their company is generally not counted. Clear the rent amount to see the estimate without it.",
-      "APARTMENT_BUILDING_COSTS_NOT_APPLICABLE": "Apartment building management costs and the renovation loan count only in an apartment building. Clear those amounts to see the estimate without them.",
-      "HOUSING_LOAN_CONDITIONS_NOT_MET": "A housing loan payment counts only if the loan is in your name and the home is your registered residence. Clear that amount to see the estimate without it.",
-      "HOUSING_LOAN_MONTH_LIMIT_REACHED": "A housing loan payment counts for up to six months in a calendar year, and you have reached that limit. Clear that amount to see the estimate without it.",
+      "RENT_FROM_FAMILY_NOT_COUNTED": "By law such rent is not counted. Clear the “Rent” amount to see the estimate without it. If you are not sure whether the landlord belongs to that circle, ask your municipality.",
+      "APARTMENT_BUILDING_COSTS_NOT_APPLICABLE": "The building management cost and the renovation loan repayment count only in an apartment building. Clear those amounts to see the estimate without them.",
+      "HOUSING_LOAN_CONDITIONS_NOT_MET": "A housing loan repayment is counted only when all four conditions listed in the Details view are met. Clear the “Housing loan repayment” amount to see the estimate without it.",
+      "HOUSING_LOAN_MONTH_LIMIT_REACHED": "A housing loan repayment is counted for up to six months in a calendar year, and you have reached that limit. Clear the “Housing loan repayment” amount to see the estimate without it.",
       "INVALID_WORK_EXEMPTION_MONTH": "Check the work income exemption month.",
-      "INCOME_REQUIRED": "Enter last month's income. If there was none, type 0 in the work income or other income field.",
-      "COSTS_NOT_CURRENT_MONTH": "Only costs due in the current month are counted; earlier debt is not. Enter only this month's costs and then answer “Yes” in the clarifications view."
+      "INCOME_REQUIRED": "Enter last month's income. If there was no income that counts, type 0 in the work income or other income field.",
+      "COSTS_NOT_CURRENT_MONTH": "Only costs that are due this month count (usually last month's bills); earlier debt does not. Enter only those amounts and then answer “Yes” in the Details view.",
+      "LAND_TAX_EXEMPT_NOT_COUNTED": "Land tax is not counted if you are fully or partly exempt from it. Clear the “Land tax” amount to see the estimate without it.",
+      "ADULT_REQUIRED": "Enter the number of adult family members (at least one). If there is no adult in the family, ask your municipality."
     },
     "answers": {
       "yes": "Yes",
@@ -12608,7 +12607,7 @@
       "INVALID_AMOUNT": "“{field}”: check the amount you entered."
     },
     "reason": {
-      "area_scaled": "The dwelling ({area} m²) is larger than the norm area ({norm} m²), so {percent}% of the area-based costs is counted. You entered {declared} of housing costs in total."
+      "area_scaled": "The dwelling ({area} m²) is larger than the norm area ({norm} m²). This estimate counts {percent}% of these costs: {costs}."
     },
     "leave_asked": "The numbers you entered are not saved. Press again to leave."
   },

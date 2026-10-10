@@ -55,11 +55,31 @@
   display: grid;
   gap: 0.3rem;
 }
-/* Täpsustav küsimus: küsimus vasakul, „Jah" ja „Ei" paremal; selgitus selle all. */
+/* Täpsustav küsimus: küsimus vasakul, „Jah" ja „Ei" paremal; selgitus selle all.
+   Eraldusjoon on küsimuse ploki all (koos selgitusega), mitte küsimuse ja selle
+   oma selgituse vahel. */
 .gate {
   min-width: 0;
   display: grid;
   gap: 0.25rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--text-warm) 10%, transparent);
+}
+.gate:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+/* Küsimus on pikk lause ja vastus üks sõna: vastuse veerg on nii lai kui kaks
+   lahtrit vajavad, ülejäänu jääb küsimusele (ühise klotsi vaikimisi jaotus annab
+   vastusele 58% laiusest). Rea enda eraldusjoont ei ole: see on plokil. */
+.gate.gate > [role="radiogroup"] {
+  grid-template-columns: minmax(0, 1fr) 10rem;
+  border-bottom: 0;
+}
+@container (max-width: 40rem) {
+  .gate.gate > [role="radiogroup"] {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 /* Tulemus: summa suurelt, selle all, millest see tuli. */
@@ -126,6 +146,9 @@
 
 /* Lahkumise küsimus lava kohal: sisestatut ei salvestata, seega esimene lahkumine peatub. */
 .leave {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   margin: 0 0 0.6rem;
   padding: 0.5rem 0.85rem;
   border: 1px solid var(--glass-cell-border);
