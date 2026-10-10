@@ -22,12 +22,16 @@ import {
   mentoringState,
   opensItems,
   preInquiryState,
+  refusalIsGeneric,
+  refusalMeansChanged,
   shareErrorText,
   sharingParts,
   sharingRows,
   sharingSheet,
-  stateWord
+  stateWord,
+  urgentErrorText
 } from '../components/sharings/desk/sharingRows.js';
+import { displayRoomTitle, preInquiryRoomTitle } from '../lib/rooms/roomTitle.js';
 import { SHARING_SECTION_KEYS } from '../lib/sharings/registry.js';
 
 const read = (path) => fs.readFileSync(new URL(path, import.meta.url), 'utf8');
@@ -502,9 +506,6 @@ test('päringud on samad mis enne: aadress, keha, päised ja lukk', () => {
     'userEditedDraft: correction.text,',
     'privacyDecision',
     'headers: { "Content-Type": "application/json", "x-ui-locale": locale || "et" }',
-    'if (response.status === 409 || response.status === 428) await loadSharings({ preserveData: true });',
-    'if (action.kind === "mentoringRecall" && response.status === 409) {',
-    'await loadSharings({ preserveData: true, section: "mentoringPreparations" });',
     'void sendCorrection({ action: "use_redacted" })',
     'privacyPrompt.allowOriginal ? () => void sendCorrection({ action: "send_original" }) : null',
     'reloadSection(section, { cursor: paging.nextCursor, append: true })',
@@ -512,6 +513,9 @@ test('päringud on samad mis enne: aadress, keha, päised ja lukk', () => {
   ]) {
     assert.ok(page.includes(piece), piece);
   }
+  /* Keeldumine, mis tähendab muutunud seisu, laadib jagamised uuesti kõigil kolmel rajal
+     (abipalve tagasivõtt, ettepaneku otsus, ülejäänud tegevused): nupp, mis enam õnnestuda ei saa, ette ei jää. */
+  assert.equal(page.split('if (refusalMeansChanged(response.status)) await loadSharings({ preserveData: true });').length - 1, 3);
   /* Iga muutev rada lukustab end: teist päringut samal ajal teele ei lähe. */
   assert.equal([...page.matchAll(/mutationInFlightRef\.current\) return;/g)].length, 4);
   assert.equal([...page.matchAll(/method: "POST"/g)].length, 4);
@@ -578,4 +582,116 @@ test('kujundus on komponendi kõrval, klassinimedega ja platvormi värvimuutujat
     assert.equal(/sharings|ownershipBar/i.test(read(`../app/styles/${file}`)), false, file);
   }
   assert.ok(read(FACTS).includes('./desk/sharings.module.css'));
+});
+
+test('keeldumine ei jäta tupikut: muutunud seis laaditakse uuesti ja lause on tõsi', () => {
+  /* Kirjet ei ole enam, seda ei saa enam selles seisus teha või eeltingimus ei kehti. */
+  for (const status of [404, 409, 410, 428]) assert.equal(refusalMeansChanged(status), true, String(status));
+  for (const status of [400, 401, 403, 429, 500, 0, undefined]) assert.equal(refusalMeansChanged(status), false, String(status));
+  /* Üldise „seis on muutunud” koodi ja koodita keeldumise asemel ütleb leht oma lause (vaade on juba värske). */
+  assert.equal(refusalIsGeneric(409, 'mentoring.errors.conflict'), true);
+  assert.equal(refusalIsGeneric(409, ''), true);
+  assert.equal(refusalIsGeneric(404, undefined), true);
+  /* Kindla põhjusega keeldumine jätab serveri lause alles; muu viga ei ole „seis muutus”. */
+  assert.equal(refusalIsGeneric(409, 'mentoring.errors.preparation_already_opened'), false);
+  assert.equal(refusalIsGeneric(404, 'api.rooms.not_member'), false);
+  assert.equal(refusalIsGeneric(429, ''), false);
+  assert.equal(refusalIsGeneric(500, 'mentoring.errors.conflict'), false);
+
+  /* Kiireloomulise abipalve koodid saavad oma lause (kataloogis ei olnud neil ühtegi). */
+  assert.equal(urgentErrorText('urgent_request.not_recallable', tEt), et.my_sharings.urgent_errors.not_recallable);
+  assert.equal(urgentErrorText('urgent_request.not_found', tEt), et.my_sharings.urgent_errors.not_found);
+  assert.equal(urgentErrorText('urgent_request.emergency_route', tEt), '');
+  assert.equal(urgentErrorText('network_share.not_recallable', tEt), '');
+  assert.equal(urgentErrorText(null, tEt), '');
+  const server = read('../lib/urgent/routes.js');
+  assert.ok(server.includes('["urgent_request.not_recallable", 409]') && server.includes('["urgent_request.not_found", 404]'));
+
+  const page = read(PAGE);
+  /* Ettepaneku otsuse tundmatu kood (lõppenud seanss, kiirusepiir) saab sama lause mis teistel tegevustel. */
+  assert.ok(page.includes('shareErrorText(payload?.message, t) || refusalText({ status: response.status, payload, t })'));
+  assert.ok(page.includes('urgentErrorText(payload?.message, t) ||'));
+  assert.ok(page.includes('if (refusalIsGeneric(status, payload?.messageKey || payload?.message)) return t("my_sharings.errors.state_changed");'));
+  for (const lang of LANGS) {
+    const words = catalog(lang).my_sharings;
+    assert.ok(words.errors.state_changed && words.urgent_errors.not_recallable && words.urgent_errors.not_found, lang);
+    assert.ok(!/Värskenda vaadet|refresh the view|обновите вид/i.test(words.errors.state_changed), `${lang}: lause ei kutsu värskendama juba värsket vaadet`);
+  }
+  assert.equal(et.api.rooms.leave_failed, 'Ruumist lahkumine ebaõnnestus.');
+});
+
+test('ruumi nimi: täpitähtedega ja ilma e-posti aadressita', () => {
+  assert.equal(preInquiryRoomTitle('Koduteenus'), 'Eelpöördumine: Koduteenus');
+  assert.equal(preInquiryRoomTitle('  '), 'Eelpöördumine');
+  assert.equal(preInquiryRoomTitle(null), 'Eelpöördumine');
+  assert.equal(preInquiryRoomTitle('a'.repeat(100)).length, 'Eelpöördumine: '.length + 72);
+  /* Varem kirjutatud nimed parandatakse näitamisel; aadress nimesse ei jää. */
+  assert.equal(displayRoomTitle('Eelpoordumine: Koduteenus'), 'Eelpöördumine: Koduteenus');
+  assert.equal(displayRoomTitle('Eelpoordumine: klient@example.test'), 'Eelpöördumine');
+  assert.equal(displayRoomTitle('Eelpoordumine'), 'Eelpöördumine');
+  assert.equal(displayRoomTitle('Eelpoordumine: Toetus (küsis klient@example.test)'), 'Eelpöördumine');
+  /* Muu nimi jääb muutmata, ka siis, kui inimene pani aadressi ise nimesse või nimi algab sarnaselt. */
+  assert.equal(displayRoomTitle('Pere tugiring'), 'Pere tugiring');
+  assert.equal(displayRoomTitle('Eelpoordumised kokku'), 'Eelpoordumised kokku');
+  assert.equal(displayRoomTitle('Kontakt: klient@example.test'), 'Kontakt: klient@example.test');
+  assert.equal(displayRoomTitle(''), '');
+  assert.equal(displayRoomTitle(null), '');
+
+  /* Ruumi loomine ei loe enam autori aadressi; laadija parandab nime enne brauserisse saatmist. */
+  const builder = read('../lib/rooms/preInquiryRoom.js');
+  assert.ok(builder.includes('return preInquiryRoomTitle(inquiry?.topic);') && !builder.includes('authorEmail') && !builder.includes('Eelpoordumine'));
+  const loader = read('../lib/mySharings.js');
+  assert.equal(loader.split('displayRoomTitle(').length - 1, 3, 'liikmesus, ruumi kokkuvõte ja kutse');
+  /* Lõpetatud ruum ei ole aktiivsete ruumide all. */
+  assert.ok(loader.includes('where: { userId: ownerId, leftAt: null, room: { archivedAt: null } },'));
+  /* Ettepanek jagada inimese kohta: saaja nimi, mitte aadress. */
+  assert.ok(loader.includes('recipientLabel: direction === "INCOMING_REQUEST" ? personName(share.recipient) : personLabel(share.recipient)'));
+});
+
+test('mentorluse ettevalmistus: read on eristatavad ja tagasi võetud kirje ei väida, et see on jagatud', () => {
+  const shared = { id: 'm1', relationId: 'rel-1', excerpt: 'Tahan rääkida koormusest ja ühest raskest juhtumist.', sharedAt: '2026-10-01T10:00:00.000Z', createdAt: '2026-09-30T10:00:00.000Z', canRecall: true };
+  const recalled = { ...shared, id: 'm2', excerpt: 'Teine teema: supervisiooni vajadus.', recalledAt: '2026-10-03T10:00:00.000Z', canRecall: false };
+  const [first, second] = sharingRows('mentoringPreparations', [shared, recalled], contextEt);
+  /* Rea all on inimese enda teksti algus, mitte igal real sama lause. */
+  assert.equal(first.sub, 'Tahan rääkida koormusest ja ühest raskest juhtumist.');
+  assert.notEqual(first.sub, second.sub);
+  assert.equal(first.facts.visibility, et.my_sharings.mentoring.visible_to_mentor);
+  assert.match(first.facts.validity, /^Jagatud kp:2026-10-01/);
+  /* Tagasi võetud: mentor ei näe ja kehtivus ütleb tagasivõtmise aja. */
+  assert.equal(second.facts.visibility, et.my_sharings.mentoring.not_visible);
+  assert.match(second.facts.validity, /^Tagasi võetud kp:2026-10-03/);
+  assert.ok(!/kinnitus/i.test(second.facts.visibility));
+  /* Avatud kirjes on tekst näha: tagasivõtt ei käi pimesi. */
+  assert.equal(sharingSheet('mentoringPreparations', shared, contextEt).text, shared.excerpt);
+  /* Tekstita kirje (vana rida) näitab endiselt, kes näeb. */
+  assert.equal(sharingRows('mentoringPreparations', [{ ...shared, excerpt: '' }], contextEt)[0].sub, et.my_sharings.mentoring.visible_to_mentor);
+  /* Laadija saadab inimese enda jagatud teksti alguse, mitte kogu teksti. */
+  const loader = read('../lib/mySharings.js');
+  assert.ok(loader.includes('excerpt: firstLine(note.sharedContent || note.content),'));
+  for (const lang of LANGS) {
+    const words = catalog(lang).my_sharings.mentoring;
+    assert.ok(words.recalled_at.includes('{date}') && words.not_visible, lang);
+  }
+});
+
+test('ettepanek jagada: otsuse lause ainult seal, kus on midagi otsustada; saaja on nimetatud', () => {
+  const waiting = { id: 'n1', status: 'AWAITING_CLIENT', awaitingDecision: true, summaryText: 'Kokkuvõte', purpose: 'Koduteenus', sharingBoundary: 'Ainult liikumine', recipientLabel: 'Mari Maasikas' };
+  const open = sharingSheet('networkShares', waiting, contextEt);
+  assert.equal(open.lead, et.my_sharings.section_help.network_shares);
+  assert.ok(!/kas ja mida/.test(open.lead), 'inimene saab öelda jah või ei, mitte valida, mida jagatakse');
+  assert.deepEqual(open.details[0], { key: 'recipient', label: et.my_sharings.labels.share_recipient, value: 'Mari Maasikas' });
+  /* Otsustatud ettepanek ütleb, mida ja millal otsustati. */
+  const confirmed = sharingSheet('networkShares', { ...waiting, status: 'CONFIRMED', awaitingDecision: false, confirmedAt: '2026-10-05T09:00:00.000Z' }, contextEt);
+  assert.equal(confirmed.lead, 'Kinnitasid selle jagamise kp:2026-10-05.');
+  assert.equal(confirmed.can.decide, false);
+  const declined = sharingSheet('networkShares', { ...waiting, status: 'DECLINED', awaitingDecision: false, declinedAt: '2026-10-06T09:00:00.000Z' }, contextEt);
+  assert.equal(declined.lead, 'Keeldusid sellest jagamisest kp:2026-10-06.');
+  /* Vana rida ilma otsuse ajata: lauset ei ole, mitte vale lause. */
+  assert.equal(sharingSheet('networkShares', { ...waiting, status: 'SENT', awaitingDecision: false }, contextEt).lead, '');
+  /* Saaja nimeta jääb rida ära (aadressi ei näidata). */
+  assert.ok(!sharingSheet('networkShares', { ...waiting, recipientLabel: '' }, contextEt).details.some((row) => row.key === 'recipient'));
+  for (const lang of LANGS) {
+    const words = catalog(lang).my_sharings;
+    assert.ok(words.share_decided.confirmed.includes('{date}') && words.share_decided.declined.includes('{date}') && words.labels.share_recipient, lang);
+  }
 });

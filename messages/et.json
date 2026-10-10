@@ -7210,7 +7210,7 @@
       "join_unavailable": "Liitumine ei ole praegu saadaval.",
       "send_failed": "Sonumi saatmine ebaonnestus.",
       "read_update_failed": "Lugemisoleku uuendamine ebaonnestus.",
-      "leave_failed": "Ruumist lahkumine ebaonnestus.",
+      "leave_failed": "Ruumist lahkumine ebaõnnestus.",
       "delete_failed": "Ruumi kustutamine ebaonnestus.",
       "delete_message_failed": "Sonumi kustutamine ebaonnestus.",
       "message_too_long": "Sõnum on liiga pikk.",
@@ -10247,7 +10247,9 @@
       "origin": "Sina andsid üle Tööheaolust",
       "shared_at": "Jagatud {date}",
       "open_relation": "Ava suhteruum",
-      "action_unavailable": "Tagasivõtmine ei ole siin saadaval, sest mentorlussuhte viide puudub. Ava suhteruum või võta ühendust toega."
+      "action_unavailable": "Tagasivõtmine ei ole siin saadaval, sest mentorlussuhte viide puudub. Ava suhteruum või võta ühendust toega.",
+      "recalled_at": "Tagasi võetud {date}",
+      "not_visible": "Mentor seda enam ei näe"
     },
     "meta": {
       "title": "Minu jagamised",
@@ -10277,7 +10279,7 @@
       "invites": "Kutse annab ligipääsu alles pärast vastuvõtmist.",
       "help": "Siin on iga kirje tegelik kaardinähtavus: avalik, peidetud, ülevaatusel, aegunud või sünkroonist väljas.",
       "frameworks": "Informatiivne ülevaade sinu kinnitatud raamistikest.",
-      "network_shares": "Sotsiaaltöötaja soovib sinu olukorra kokkuvõtet jagada ühe teenuseosutajaga. Sina otsustad, kas ja mida jagatakse.",
+      "network_shares": "Sotsiaaltöötaja soovib sinu olukorra kokkuvõtet jagada ühe teenuseosutajaga. Sina otsustad, kas seda jagatakse.",
       "urgent_requests": "Abipalved, mille sa saatsid kohaliku omavalitsuse vastuvõtulauale. Siin on näha, kas keegi on need läbi lugenud ja mis vastus tuli.",
       "outgoing_network_shares": "Kellele oled töötajana kliendi kinnitatud kokkuvõtte saatnud ja mis seisus jagamine on.",
       "wellbeing_support_shares": "Tööheaolu toe avaldused, mille oled teadlikult valitud tugikontaktile saatnud.",
@@ -10355,7 +10357,8 @@
       "share_incoming": "Ettepanek sinu kohta",
       "urgent_request": "Kiireloomuline abipalve",
       "urgent_decline_reason": "Miks ei jõutud",
-      "private_record": "Privaatne kirje"
+      "private_record": "Privaatne kirje",
+      "share_recipient": "Kellega jagatakse"
     },
     "status": {
       "sent": "Saadetud",
@@ -10416,7 +10419,8 @@
       "refresh_failed": "Toiming õnnestus, kuid uuendatud ülevaadet ei saanud laadida. Proovi vaadet uuesti laadida.",
       "invalid_section": "Tundmatu jagamiste osa.",
       "section_unavailable": "Seda jagamiste osa ei saanud praegu laadida. Ülejäänud andmed on endiselt nähtavad.",
-      "section_timeout": "Selle jagamiste osa laadimine võttis liiga kaua. Ülejäänud andmed on endiselt nähtavad."
+      "section_timeout": "Selle jagamiste osa laadimine võttis liiga kaua. Ülejäänud andmed on endiselt nähtavad.",
+      "state_changed": "Seis oli vahepeal muutunud ja seda tegevust ei saanud enam teha. Vaade on nüüd värske."
     },
     "share_errors": {
       "content_changed": "Töötaja on teksti vahepeal muutnud. Loe uus tekst läbi ja otsusta siis.",
@@ -10496,6 +10500,14 @@
         "share_decline": "Pärast keeldumist seda kokkuvõtet ei saadeta. Otsust ei saa siin hiljem muuta."
       },
       "untitled_room": "Nimeta ruum"
+    },
+    "urgent_errors": {
+      "not_recallable": "Seda abipalvet ei saa enam tagasi võtta: see on juba läbi loetud või töösse võetud.",
+      "not_found": "Seda abipalvet ei leitud. See võib olla vahepeal eemaldatud."
+    },
+    "share_decided": {
+      "confirmed": "Kinnitasid selle jagamise {date}.",
+      "declined": "Keeldusid sellest jagamisest {date}."
     }
   },
   "effective_practices": {

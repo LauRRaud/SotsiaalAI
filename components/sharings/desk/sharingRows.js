@@ -413,19 +413,30 @@ export function sharingRow(section, item, { t, formatDate, formatMonth, formatDa
 
     case "mentoringPreparations": {
       const word = stateWord("mentoring", mentoringState(item), t);
-      const visibility = t(item.sharedAt && !item.recalledAt ? "my_sharings.mentoring.visible_to_mentor" : "my_sharings.ownership.private_record");
+      /* Tagasi võetud ettevalmistust mentor enam ei näe: seda öeldakse otse, mitte
+         kinnituse kohta käiva lausega. */
+      const visibility = t(
+        item.recalledAt
+          ? "my_sharings.mentoring.not_visible"
+          : item.sharedAt
+            ? "my_sharings.mentoring.visible_to_mentor"
+            : "my_sharings.ownership.private_record"
+      );
+      /* Kehtivus järgib seisu: tagasi võetud kirje ei ole enam „jagatud”. */
+      const validity = item.recalledAt
+        ? t("my_sharings.mentoring.recalled_at", { date: formatDate(item.recalledAt) })
+        : item.sharedAt
+          ? t("my_sharings.mentoring.shared_at", { date: formatDate(item.sharedAt) })
+          : t("my_sharings.ownership.active");
       return {
         ...base,
         title: t("my_sharings.mentoring.item_title"),
-        sub: visibility,
+        /* Rea all on inimese enda teksti algus: selle järgi eristab ta ettevalmistusi. */
+        sub: excerpt(item.excerpt) || visibility,
         chip: word.text,
         tone: word.tone,
         time: formatDate(item.createdAt),
-        facts: {
-          visibility,
-          origin: t("my_sharings.mentoring.origin"),
-          validity: item.sharedAt ? t("my_sharings.mentoring.shared_at", { date: formatDate(item.sharedAt) }) : t("my_sharings.ownership.active")
-        }
+        facts: { visibility, origin: t("my_sharings.mentoring.origin"), validity }
       };
     }
 
@@ -591,10 +602,14 @@ export function sharingSheet(section, item, context) {
       return {
         ...sheet,
         /* Otsuse juures peab olema näha, kes mida küsib ja et otsus on inimese
-           enda oma: sama lause, mis seisab osa loendi kohal. */
-        lead: t("my_sharings.section_help.network_shares"),
+           enda oma: sama lause, mis seisab osa loendi kohal. Juba otsustatud
+           ettepaneku juures ei ole enam midagi otsustada: seal seisab, mida ja
+           millal inimene otsustas. */
+        lead: item.awaitingDecision ? t("my_sharings.section_help.network_shares") : shareDecidedText(item, { t, formatDate }),
         text: text(item.summaryText),
         details: [
+          /* Kellega jagatakse: nimi, kui saajal on see profiilis. */
+          ...detail("recipient", t("my_sharings.labels.share_recipient"), item.recipientLabel),
           ...detail("purpose", t("my_sharings.labels.share_purpose"), item.purpose),
           /* Jagamispiir eristab nõusolekut blankokäest: see on alati näha. */
           ...detail("boundary", t("my_sharings.labels.share_boundary"), item.sharingBoundary),
@@ -639,6 +654,8 @@ export function sharingSheet(section, item, context) {
       const stranded = !relationId && item.sharedAt && !item.recalledAt && !item.openedAt;
       return {
         ...sheet,
+        /* Jagatud teksti algus: inimene näeb, MILLISE ettevalmistuse ta tagasi võtab. */
+        text: text(item.excerpt),
         notes: stranded ? [t("my_sharings.mentoring.action_unavailable")] : [],
         can: { ...NO_ACTIONS, mentoringRecall: Boolean(relationId && item.canRecall), relationId }
       };
@@ -776,6 +793,53 @@ export const SHARE_ERROR_KEYS = Object.freeze({
   not_found: "my_sharings.share_errors.not_found",
   invalid_decision: "my_sharings.share_errors.invalid_decision"
 });
+
+/* Mida inimene juba otsustatud ettepaneku kohta teab: otsus ja selle aeg. */
+function shareDecidedText(item, { t, formatDate }) {
+  if (item?.declinedAt) return t("my_sharings.share_decided.declined", { date: formatDate(item.declinedAt) });
+  if (item?.confirmedAt) return t("my_sharings.share_decided.confirmed", { date: formatDate(item.confirmedAt) });
+  return "";
+}
+
+/**
+ * Kas keeldumine tähendab, et kirje seis on vahepeal muutunud (kirjet ei ole
+ * enam, seda ei saa enam selles seisus teha, eeltingimus ei kehti). Siis laadib
+ * leht jagamised uuesti: muidu jääb ette nupp, mis ei saa enam kunagi õnnestuda.
+ */
+export function refusalMeansChanged(status) {
+  return [404, 409, 410, 428].includes(Number(status));
+}
+
+/* Serveri üldised „seis on muutunud, värskenda vaadet” koodid. Kui leht on keeldumise
+   peale juba uuesti laaditud, ei ole see lause enam tõsi: siis ütleb leht oma lause. */
+const GENERIC_CONFLICT_CODES = new Set(["mentoring.errors.conflict", "api.common.conflict"]);
+
+/**
+ * Kas keeldumise kohta on serveril ainult üldine lause (või üldse mitte midagi)
+ * ja seis on muutunud: siis ütleb leht „seis oli muutunud, vaade on nüüd värske”.
+ * Kindla põhjusega keeldumine (ei ole ruumi liige, pöördumine on juba loetud)
+ * jätab serveri lause alles.
+ */
+export function refusalIsGeneric(status, code) {
+  if (!refusalMeansChanged(status)) return false;
+  const raw = typeof code === "string" ? code.trim() : "";
+  return !raw || GENERIC_CONFLICT_CODES.has(raw);
+}
+
+const URGENT_ERROR_KEYS = Object.freeze({
+  not_recallable: "my_sharings.urgent_errors.not_recallable",
+  not_found: "my_sharings.urgent_errors.not_found"
+});
+
+/** Kiireloomulise abipalve serveri kood lauseks; tundmatu kood annab tühja stringi. */
+export function urgentErrorText(code, t) {
+  const raw = typeof code === "string" ? code.trim() : "";
+  if (!raw.startsWith("urgent_request.")) return "";
+  const key = URGENT_ERROR_KEYS[raw.slice("urgent_request.".length)];
+  if (!key) return "";
+  const sentence = t(key);
+  return typeof sentence === "string" && sentence !== key ? sentence : "";
+}
 
 export function shareErrorText(code, t) {
   const raw = typeof code === "string" ? code.trim() : "";
