@@ -219,6 +219,9 @@ test('a short reply goes on with the place before it; a short question does not 
   assert.equal(shortReply(['aga', 'hind'], 'Aga hind?', 3), false);
   assert.equal(shortReply(['see', 'on', 'minu', 'ema'], 'See on minu ema', 3), false);
   assert.equal(shortReply([], '', 3), false);
+  // ADR-128: the words of a request for information ("soovin", "palun", "vaja", "infot") are lists of their own and not
+  // question words: a short reply that holds one stays a short reply and goes on with the place before it.
+  for (const text of ['jah, soovin', 'jah palun', 'Soovin rohkem infot', 'On vaja infot']) assert.equal(shortReply(text.toLowerCase().match(/[\p{L}']+/gu), text, 3), true, text);
 });
 
 test('the pure parts: admitted names of a directory, the limits, and what the scope carries', async () => {
@@ -264,6 +267,14 @@ test('the adapter builds the rows once for a set of municipalities; the instruct
   const { loadSettlements, loadRegions } = municipalDirectoryAdapter(db), built = await loadSettlements();
   assert.equal(await loadSettlements(), built);
   assert.equal((await loadRegions()).length, directory.length);
+  // ADR-127 (10.10.2026): the directory the chat loads holds the register's two names of each municipality and, for the two
+  // islands that are their municipality, the island's name as a land ("Muhumaal" reads as muhu + maa, and a part of a
+  // compound is no name). It is a name of the municipality itself: no place name stands for it, and the settlement rows
+  // are built for the same municipalities as before.
+  const loaded = await loadRegions();
+  assert.deepEqual(loaded.map(row => [row.region, row.names.slice(0, 2)]), directory.map(row => [row.region, row.names]));
+  assert.deepEqual(loaded.filter(row => row.names.length > 2).map(row => row.names).sort(), [['Kihnu vald', 'Kihnu', 'Kihnumaa'], ['Muhu vald', 'Muhu', 'Muhumaa']]);
+  assert.deepEqual(LOCATION_ALIAS_ENTRIES.filter(alias => ['Muhumaa', 'Kihnumaa'].includes(alias.place)), []);
   assert.deepEqual([built.length, built.filter(row => row.preferred).length], [rows.length, LOCATION_ALIAS_ENTRIES.length]);
   assert.ok(built.some(row => row.name === 'Tabasalu' && row.region === 'harku_vald' && row.preferred && row.kind === 'a'));
   // search-assist-9: the plan's line on settlements (its last one until search-assist-10, -11 and -13 added theirs after it).
