@@ -13174,7 +13174,9 @@
       "notice_answer_day": "The day of the answer cannot be before the notice was sent or in the future.",
       "notice_reassess_day_required": "Write the date by which the decision maker promised a new assessment.",
       "notice_answer_note_required": "Write an explanation: why the volume stays or what was answered.",
-      "notice_withdraw_reason": "Write why the notice is withdrawn."
+      "notice_withdraw_reason": "Write why the notice is withdrawn.",
+      "day_sheet_empty": "There are no visits on this day to put on a sheet.",
+      "day_sheet_worker": "The worker was not found."
     },
     "incidents": {
       "title": "Incident register",
@@ -14611,6 +14613,30 @@
       },
       "figures_label": "Add the figures of the last months",
       "figures_hint": "Visits, time provided and decided, missed visits, the number of incidents and of noticed changes. The figures carry no diary text."
+    },
+    "day_sheet": {
+      "print_one": "Print the day sheet",
+      "print_all": "Print everyone's day sheets",
+      "hint": "A paper sheet for when the phone or the network does not work: visits, addresses, the \"before you go\" lines and the planned activities. Issuing a sheet leaves a trace.",
+      "doc": {
+        "title": "Home care day sheet",
+        "print_hint": "Print this page from the browser (Ctrl+P). Each worker's sheet starts on a new page.",
+        "unassigned": "Visits without a worker",
+        "visits": "visits {count}",
+        "time": "{from}–{to}",
+        "priority": "priority {priority}",
+        "phone": "Phone:",
+        "note": "Note:",
+        "medication": "The plan includes a medication activity: mark what you did.",
+        "key_with_you": "You hold the key.",
+        "key_elsewhere": "Key: {where}.",
+        "card_title": "Before you go:",
+        "activities_title": "Planned:",
+        "arrived": "I arrived at",
+        "minutes": "length in minutes",
+        "remarks": "Remarks (what was not done and why, what was different):",
+        "foot": "This sheet carries personal data. Enter what you did in the diary as soon as you can, then bring the sheet to the office to be destroyed."
+      }
     }
   },
   "stage": {

@@ -13174,7 +13174,9 @@
       "notice_answer_day": "Vastuse päev ei saa olla enne teate saatmist ega tulevikus.",
       "notice_reassess_day_required": "Kirjuta, mis kuupäevaks otsustaja uue hindamise lubas.",
       "notice_answer_note_required": "Kirjuta selgitus: miks maht jääb või mida vastati.",
-      "notice_withdraw_reason": "Kirjuta, miks teade tagasi võetakse."
+      "notice_withdraw_reason": "Kirjuta, miks teade tagasi võetakse.",
+      "day_sheet_empty": "Sellel päeval ei ole käike, mida lehele panna.",
+      "day_sheet_worker": "Töötajat ei leitud."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -14611,6 +14613,30 @@
       },
       "figures_label": "Lisa viimaste kuude arvud",
       "figures_hint": "Käigud, osutatud ja otsustatud aeg, ära jäänud käigud, erijuhtumite ja märkamiste arv. Kirjete teksti arvude hulgas ei ole."
+    },
+    "day_sheet": {
+      "print_one": "Prindi päevaleht",
+      "print_all": "Prindi kõigi päevalehed",
+      "hint": "Paberleht juhuks, kui telefon või võrk ei tööta: käigud, aadressid, „enne kui lähed” read ja kava toimingud. Lehe väljaandmisest jääb jälg.",
+      "doc": {
+        "title": "Koduteenuse päevaleht",
+        "print_hint": "Prindi see leht brauserist (Ctrl+P). Iga töötaja leht algab uuelt lehelt.",
+        "unassigned": "Tegijata käigud",
+        "visits": "käike {count}",
+        "time": "{from}–{to}",
+        "priority": "tähtsus {priority}",
+        "phone": "Telefon:",
+        "note": "Märkus:",
+        "medication": "Kavas on ravimitoiming: märgi, mida tegid.",
+        "key_with_you": "Võti on sinu käes.",
+        "key_elsewhere": "Võti: {where}.",
+        "card_title": "Enne kui lähed:",
+        "activities_title": "Kavas:",
+        "arrived": "Jõudsin kell",
+        "minutes": "kestus minutites",
+        "remarks": "Märkused (mis jäi tegemata ja miks, mis oli teisiti):",
+        "foot": "Leht kannab isikuandmeid. Kanna tehtu päevikusse niipea, kui saad, ja too leht seejärel kontorisse hävitamiseks."
+      }
     }
   },
   "stage": {

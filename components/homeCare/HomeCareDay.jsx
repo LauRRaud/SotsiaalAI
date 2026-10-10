@@ -31,7 +31,7 @@ const STATE_BADGE = {
  */
 export default function HomeCareDay({ context, initial }) {
   const { t } = useI18n();
-  const { call, busy, error } = useHomeCareApi();
+  const { call, busy, error, setError } = useHomeCareApi();
   const fieldId = useId();
   const organizationId = context.organization.id;
   const timeZone = context.organization.timezone || "Europe/Tallinn";
@@ -304,7 +304,28 @@ export default function HomeCareDay({ context, initial }) {
     );
   };
 
-  const group = (key, title, visits, hint) => (
+  /* Päevaleht paberil (K5-t): aken avatakse KOHE vajutuse peale, muidu blokeerib brauser selle hüpikaknana. */
+  const printSheet = async (membershipId = null) => {
+    const sheet = window.open("", "_blank");
+    const result = await call(`${homeCareBase(organizationId)}/paev/leht`, {
+      method: "POST",
+      body: { day: data.day, membershipId },
+      fallbackKey: "home_care.errors.list_failed"
+    });
+    if (!result.ok) {
+      sheet?.close();
+      return;
+    }
+    if (!sheet) {
+      setError(t("home_care.fridge.popup_blocked"));
+      return;
+    }
+    sheet.document.open();
+    sheet.document.write(result.data.html);
+    sheet.document.close();
+  };
+
+  const group = (key, title, visits, hint, sheetOf = null) => (
     <section className="hc-section" key={key} aria-labelledby={`${fieldId}-${key}`}>
       <h3 className="hc-section-title" id={`${fieldId}-${key}`}>
         {title}
@@ -312,6 +333,13 @@ export default function HomeCareDay({ context, initial }) {
       </h3>
       {hint ? <p className="hc-hint">{hint}</p> : null}
       <ul className="hc-list hc-list--plain">{visits.map(visitRow)}</ul>
+      {sheetOf && visits.some((visit) => visit.state !== CarePlannedState.CANCELLED) ? (
+        <div className="hc-row">
+          <button className="hc-btn hc-btn--quiet" type="button" onClick={() => printSheet(sheetOf)} disabled={busy}>
+            {t("home_care.day_sheet.print_one")}
+          </button>
+        </div>
+      ) : null}
     </section>
   );
 
@@ -390,6 +418,17 @@ export default function HomeCareDay({ context, initial }) {
             uncovered: data.totals.uncovered || 0
           })}
         </p>
+        {/* Päevalehed paberil (K5-t): kõigi töötajate lehed korraga; ühe töötaja leht on tema rühma all. */}
+        {data.totals.planned > 0 ? (
+          <>
+            <div className="hc-row">
+              <button className="hc-btn hc-btn--quiet" type="button" onClick={() => printSheet(null)} disabled={busy}>
+                {t("home_care.day_sheet.print_all")}
+              </button>
+            </div>
+            <p className="hc-hint">{t("home_care.day_sheet.hint")}</p>
+          </>
+        ) : null}
         {data.medicationOpen ? <p className="hc-notice hc-notice--warn">{t("home_care.medication.open_count", { count: data.medicationOpen })}</p> : null}
         <div className="hc-row">
           <Link className="hc-btn hc-btn--quiet hc-btn--link" href={`/org/${organizationId}/koduteenus/nadal`}>
@@ -449,7 +488,8 @@ export default function HomeCareDay({ context, initial }) {
           `w-${worker.membershipId}`,
           worker.name || "—",
           worker.visits,
-          worker.obstacle ? t("home_care.day.obstacle_seen", { line: obstacleLine(worker.obstacle, worker.name) }) : null
+          worker.obstacle ? t("home_care.day.obstacle_seen", { line: obstacleLine(worker.obstacle, worker.name) }) : null,
+          worker.membershipId
         )
       )}
       {data.away.length ? group("away", t("home_care.day.away_title"), data.away, t("home_care.day.away_hint")) : null}
