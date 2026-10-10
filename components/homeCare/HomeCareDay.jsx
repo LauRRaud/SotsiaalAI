@@ -17,6 +17,7 @@ import {
 
 import { minutesLabel } from "./HomeCareDecisionView";
 import { keyWhere } from "./HomeCareKeys";
+import { rideText } from "./HomeCareTransport";
 import HomeCareOutbox from "./HomeCareOutbox";
 import { planDayLabel } from "./HomeCarePlanView";
 import { clientHref, formatTime, homeCareBase, useHomeCareApi } from "./homeCareClient";
@@ -171,7 +172,9 @@ export default function HomeCareDay({ context, initial }) {
             cancelled && visit.change?.reason ? t(`home_care.day.cancel_reasons.${visit.change.reason}`) : null,
             visit.change?.note,
             /* Võti (K4-b): tegemata käigul, mille tegijal selle kliendi võtit ei ole. */
-            visit.key && !visit.key.held && !cancelled && !done ? keyWhere(t, visit.key) : null
+            visit.key && !visit.key.held && !cancelled && !done ? keyWhere(t, visit.key) : null,
+            /* Sõit (K5-w): kliendil on sel päeval korraldatud sõit. */
+            visit.ride ? rideText(t, visit.ride) : null
           ]
             .filter(Boolean)
             .join(" · ")}

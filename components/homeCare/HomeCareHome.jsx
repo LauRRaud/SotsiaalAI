@@ -10,6 +10,7 @@ import OrgHeader from "@/components/org/OrgHeader";
 import HomeCareCallNote from "./HomeCareCallNote";
 import HomeCareClientForm from "./HomeCareClientForm";
 import { keyName, keyWhere } from "./HomeCareKeys";
+import { rideText } from "./HomeCareTransport";
 import { euroText } from "./HomeCareMoney";
 import HomeCareObstacle from "./HomeCareObstacle";
 import { minutesLabel } from "./HomeCareDecisionView";
@@ -59,7 +60,9 @@ function MyVisit({ organizationId, visit }) {
             visit.state === "CANCELLED" && visit.change?.reason ? t(`home_care.day.cancel_reasons.${visit.change.reason}`) : null,
             visit.change?.note,
             /* Võti (K4-b): kui selle kliendi võti ei ole minu käes, siis kelle käes see on. */
-            visit.key && !visit.key.held && visit.state !== "CANCELLED" ? keyWhere(t, visit.key) : null
+            visit.key && !visit.key.held && visit.state !== "CANCELLED" ? keyWhere(t, visit.key) : null,
+            /* Sõit (K5-w): kliendil on sel päeval korraldatud sõit, pane ta valmis. */
+            visit.ride ? rideText(t, visit.ride) : null
           ]
             .filter(Boolean)
             .join(" · ")}

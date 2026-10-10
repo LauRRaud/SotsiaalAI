@@ -97,6 +97,7 @@ import { getMonthPage, lockMonth, reopenMonth } from '../lib/homeCare/monthLock.
 import { answerDecisionNotice, createDecisionNotice, withdrawDecisionNotice } from '../lib/homeCare/decisionNotices.js';
 import { getDaySheet } from '../lib/homeCare/daySheet.js';
 import { markFirstVisit } from '../lib/homeCare/firstVisits.js';
+import { answerTransport, requestTransport, withdrawTransport } from '../lib/homeCare/transport.js';
 import { endRelative, flagRelativeDoubt, getSharingCard, saveRelative } from '../lib/homeCare/relatives.js';
 import { saveSafetyCard } from '../lib/homeCare/safetyCard.js';
 import { composeNoAnswerText } from '../lib/homeCare/noAnswerText.js';
@@ -1884,6 +1885,8 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
   await saveRelative(lead, client.id, { name: 'Mari Tamm', relation: 'tütar', level: 1 }, deps());
   /* Ohutuskaardi vastus (K5-n), et väljavõttes oleks ka see kogu. */
   await saveSafetyCard(lead, client.id, { items: { ANIMALS: { answer: 'NO' } } }, deps());
+  /* Transpordi soov (K5-w). */
+  await requestTransport(lead, client.id, { wantedOn: '2026-10-20', destination: 'Perearsti juurde' }, deps());
   /* Esmakäigu teade (K5-v). */
   await markFirstVisit(lead, client.id, { day: '2026-10-09', workerMembershipId: f.members.anu.id, outcome: 'CALLED' }, deps());
   /* Teade otsustajale (K5-r). */
@@ -2009,6 +2012,7 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
     monthLocks: await db.careMonthLock.count({ where: ofOrg }),
     decisionNotices: await db.careDecisionNotice.count({ where: ofOrg }),
     firstVisitNotices: await db.careFirstVisitNotice.count({ where: ofOrg }),
+    transportRequests: await db.careTransportRequest.count({ where: ofOrg }),
     auditEvents: await db.dataAuditLog.count({
       where: { action: { startsWith: 'org.home_care_' }, meta: { path: ['organizationId'], equals: f.orgA.id }, createdAt: { lt: (await exportRows())[0].createdAt } }
     })
@@ -5997,4 +6001,83 @@ test('võõras ukse taga: esmakäik on päevaplaanis ja töötaja päevas märgi
     ['NOT_REACHED', '2026-10-09', f.members.bert.id],
     ['CALLED', '2026-10-09', f.members.bert.id]
   ]);
+});
+
+test('transpordi soov: meeskond soovib, hooldusjuht vastab, korraldatud sõit on kliendi lehel ja päeva käigu juures', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const clerk = await f.ctx(f.users.clerk, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  const start = deps(at('2026-09-01T08:00:00Z'));
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, start)).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi' }, start)).client;
+  await addTeamMember(lead, linda.id, { membershipId: f.members.anu.id }, start);
+  await addTeamMember(lead, peeter.id, { membershipId: f.members.bert.id }, start);
+  /* Linda käik reedeti kell 9 (Anu). */
+  await createSlots(lead, linda.id, { weekdays: [5], startTime: '09:00', plannedMinutes: 30, workerMembershipId: f.members.anu.id, validFrom: '2026-09-28' }, start);
+
+  assert.deepEqual((await openClient(anu, linda.id, deps())).transport, { requests: [], next: null });
+  /* Soovib meeskonna liige või hooldusjuht; kõrvaline, põhjuseta töötaja ja teine asutus mitte. */
+  const input = { wantedOn: '2026-10-16', wantedTime: '9.40', destination: 'Perearsti juurde', needs: 'ratastool' };
+  await expectError(requestTransport(clerk, linda.id, input, deps()), 404, 'home_care.errors.client_not_found');
+  await expectError(requestTransport(bert, linda.id, input, deps()), 403, 'home_care.errors.access_reason_required');
+  await expectError(requestTransport(leadB, linda.id, input, deps()), 404);
+  await expectError(requestTransport(anu, linda.id, { ...input, wantedOn: '2026-10-08' }, deps()), 400, 'home_care.errors.transport_day');
+  const made = await requestTransport(anu, linda.id, input, deps());
+  assert.deepEqual(made.transport.requests.map((row) => [row.wantedOn, row.wantedTime, row.destination, row.needs, row.state, row.isMine]), [['2026-10-16', '09:40', 'Perearsti juurde', 'ratastool', 'REQUESTED', true]]);
+  assert.equal(made.transport.next, null);
+  assert.match(made.transport.requests[0].requestedByName, /Anu/);
+
+  /* Tähtaegade vaade: soov ootab korraldamist; päeva käigu juures sõitu veel ei ole. */
+  const waiting = (await getDeadlines(lead, deps())).transportOpen;
+  assert.deepEqual(waiting.map((item) => [item.client.displayName, item.wantedOn, item.wantedTime, item.destination, item.daysLeft]), [['Linda Tamm', '2026-10-16', '09:40', 'Perearsti juurde', 7]]);
+  const rideOf = async (context) => (await getDayPlan(context, { day: '2026-10-16' }, deps())).workers[0].visits[0].ride;
+  assert.equal(await rideOf(lead), null);
+
+  /* Vastab ainult hooldusjuht; „ei saa" nõuab põhjust; vastus pannakse üks kord. */
+  await expectError(answerTransport(anu, linda.id, made.requestId, { state: 'ARRANGED' }, deps()), 403, 'org.errors.missing_capability');
+  await expectError(answerTransport(lead, linda.id, made.requestId, { state: 'DECLINED' }, deps()), 400, 'home_care.errors.transport_decline_reason');
+  await expectError(answerTransport(lead, peeter.id, made.requestId, { state: 'ARRANGED' }, deps()), 404, 'home_care.errors.transport_not_found');
+  const arranged = await answerTransport(lead, linda.id, made.requestId, { state: 'ARRANGED', pickupTime: '9:20', answerNote: 'Juht helistab ette' }, deps());
+  assert.deepEqual(arranged.transport.requests.map((row) => [row.state, row.pickupTime, row.answerNote, row.isMine]), [['ARRANGED', '09:20', 'Juht helistab ette', false]]);
+  assert.deepEqual(arranged.transport.next, { id: made.requestId, wantedOn: '2026-10-16', time: '09:20', destination: 'Perearsti juurde' });
+  await expectError(answerTransport(lead, linda.id, made.requestId, { state: 'DECLINED', answerNote: 'Hilja' }, deps()), 409, 'home_care.errors.transport_closed');
+  assert.deepEqual((await getDeadlines(lead, deps())).transportOpen, []);
+
+  /* Korraldatud sõit on kliendi lehel kõigile ja selle päeva käigu juures (hooldusjuhi plaanis ja töötaja päevas). */
+  assert.deepEqual((await openClient(anu, linda.id, deps())).transport.next.time, '09:20');
+  assert.deepEqual(await rideOf(lead), { time: '09:20', destination: 'Perearsti juurde' });
+  const friday = deps(at('2026-10-16T05:00:00Z'));
+  assert.deepEqual((await getMyDay(anu, friday)).visits.map((visit) => visit.ride), [{ time: '09:20', destination: 'Perearsti juurde' }]);
+  /* Teisel päeval sõitu käigu juures ei ole. */
+  assert.equal((await getDayPlan(lead, { day: '2026-10-09' }, deps())).workers[0].visits[0].ride, null);
+
+  /* TAGASIVÕTMINE: ootel soovi võtab tagasi selle esitaja; korraldatud sõidu ainult hooldusjuht. */
+  const second = await requestTransport(anu, linda.id, { wantedOn: '2026-10-20', destination: 'Apteek' }, deps());
+  await expectError(withdrawTransport(anu, linda.id, made.requestId, deps()), 403, 'org.errors.missing_capability');
+  const afterMine = await withdrawTransport(anu, linda.id, second.requestId, deps());
+  assert.deepEqual(afterMine.transport.requests.map((row) => row.state), ['ARRANGED']);
+  await expectError(withdrawTransport(lead, linda.id, second.requestId, deps()), 409, 'home_care.errors.transport_closed');
+  const afterLead = await withdrawTransport(lead, linda.id, made.requestId, deps());
+  assert.deepEqual(afterLead.transport, { requests: [], next: null });
+  assert.equal(await rideOf(lead), null);
+  /* „Ei saa" jääb kliendi lehele näha, kuni päev on möödas. */
+  const third = await requestTransport(lead, linda.id, { wantedOn: '2026-10-12', destination: 'Haigla' }, deps());
+  const declined = await answerTransport(lead, linda.id, third.requestId, { state: 'DECLINED', answerNote: 'Auto on hoolduses' }, deps());
+  assert.deepEqual(declined.transport.requests.map((row) => [row.state, row.answerNote]), [['DECLINED', 'Auto on hoolduses']]);
+  assert.equal(declined.transport.next, null);
+
+  /* ANDMEBAAS: seisu ja vastuse väljad käivad koos. */
+  const raw = { organizationId: f.orgA.id, clientId: linda.id, wantedOn: '2026-10-20', destination: 'x' };
+  await assert.rejects(db.careTransportRequest.create({ data: { ...raw, state: 'ARRANGED' } }));
+  await assert.rejects(db.careTransportRequest.create({ data: { ...raw, state: 'DECLINED', answeredAt: NOW } }));
+  await assert.rejects(db.careTransportRequest.create({ data: { ...raw, pickupTime: '09:20' } }));
+  await assert.rejects(db.careTransportRequest.create({ data: { ...raw, wantedTime: '9:20' } }));
+  await assert.rejects(db.careTransportRequest.create({ data: { ...raw, state: 'WITHDRAWN' } }));
+  await assert.rejects(db.careTransportRequest.create({ data: { ...raw, state: 'MUU' } }));
+  const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_transport_changed', meta: { path: ['organizationId'], equals: f.orgA.id } } });
+  assert.deepEqual(audit.map((entry) => entry.meta.change).sort(), ['arranged', 'declined', 'requested', 'requested', 'requested', 'withdrawn', 'withdrawn']);
+  assert.equal(JSON.stringify(audit).includes('Perearsti'), false);
 });

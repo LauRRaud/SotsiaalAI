@@ -13180,7 +13180,15 @@
       "day_sheet_worker": "The worker was not found.",
       "first_visit_day": "The day does not fit: a week back to a month ahead can be marked.",
       "first_visit_worker": "The worker was not found.",
-      "first_visit_outcome": "Choose how the client was told."
+      "first_visit_outcome": "Choose how the client was told.",
+      "transport_day": "The day of the ride must be today or later, up to half a year ahead.",
+      "transport_time": "The time is not in the right form.",
+      "transport_destination": "Write where the ride is to and what for.",
+      "transport_too_many": "This client already has {limit} requests waiting.",
+      "transport_not_found": "The transport request was not found.",
+      "transport_closed": "This request already has an answer or has been withdrawn.",
+      "transport_answer": "Choose whether the ride is arranged or not possible.",
+      "transport_decline_reason": "Write why the ride cannot be arranged."
     },
     "incidents": {
       "title": "Incident register",
@@ -13713,7 +13721,10 @@
       "reassess_overdue_title": "Promised reassessment whose day has passed",
       "reassess_overdue_empty": "No promised reassessment is overdue.",
       "reassess_overdue_line": "promised by {date}, days overdue: {days}; no new decision recorded",
-      "relatives_doubt_line": "{name}: the client does not remember allowing this (marked by {by})"
+      "relatives_doubt_line": "{name}: the client does not remember allowing this (marked by {by})",
+      "transport_open_title": "Transport requests waiting to be arranged",
+      "transport_open_empty": "Every transport request has been answered.",
+      "transport_open_line": "{date} · {destination} · requested by {name}"
     },
     "visit": {
       "title": "What you did",
@@ -14688,6 +14699,34 @@
         "TOLD_BY_REGULAR": "The regular care worker told them at the last visit that you are coming.",
         "NOT_REACHED": "They could not be told: say your name and where you come from at the door."
       }
+    },
+    "transport": {
+      "title": "Transport",
+      "none": "No rides or requests ahead.",
+      "next": "Next ride {date}:",
+      "ride_today": "ride at {time}: {destination}",
+      "ride_today_no_time": "ride: {destination}",
+      "when_time": "{date} at {time}",
+      "state_requested": "waiting to be arranged (requested by {name})",
+      "state_arranged": "arranged",
+      "state_arranged_time": "arranged: the car comes at {time}",
+      "state_declined": "cannot be arranged: {reason}",
+      "request": "Request transport",
+      "day_label": "Day of the ride",
+      "time_label": "By what time they must be there",
+      "destination_label": "Where to and what for",
+      "needs_label": "What is needed (wheelchair, escort, return ride)",
+      "request_hint": "The request goes to the coordinator's list. A ride often has to be ordered several days ahead: ask in good time.",
+      "request_save": "Send the request",
+      "cancel": "Cancel",
+      "arrange": "Arranged",
+      "decline": "Not possible",
+      "withdraw": "Withdraw",
+      "pickup_label": "What time the car comes",
+      "arrange_note_label": "Note for the care worker",
+      "decline_reason_label": "Why it is not possible",
+      "arrange_save": "Mark as arranged",
+      "decline_save": "Save the answer"
     }
   },
   "stage": {

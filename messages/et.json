@@ -13180,7 +13180,15 @@
       "day_sheet_worker": "Töötajat ei leitud.",
       "first_visit_day": "Päev ei sobi: märkida saab nädal tagasi kuni kuu ette.",
       "first_visit_worker": "Töötajat ei leitud.",
-      "first_visit_outcome": "Vali, kuidas kliendile teatati."
+      "first_visit_outcome": "Vali, kuidas kliendile teatati.",
+      "transport_day": "Sõidu päev peab olema täna või hiljem, kuni pool aastat ette.",
+      "transport_time": "Kellaaeg ei ole õigel kujul.",
+      "transport_destination": "Kirjuta, kuhu ja milleks on vaja sõita.",
+      "transport_too_many": "Sellel kliendil on juba {limit} ootel soovi.",
+      "transport_not_found": "Transpordi soovi ei leitud.",
+      "transport_closed": "Sellel soovil on juba vastus või see on tagasi võetud.",
+      "transport_answer": "Vali, kas sõit on korraldatud või ei saa.",
+      "transport_decline_reason": "Kirjuta, miks sõitu korraldada ei saa."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -13713,7 +13721,10 @@
       "reassess_overdue_title": "Lubatud uus hindamine, mille päev on möödas",
       "reassess_overdue_empty": "Ühegi lubatud hindamise päev ei ole möödas.",
       "reassess_overdue_line": "lubatud {date}, möödas päevi: {days}; uut otsust ei ole kirjas",
-      "relatives_doubt_line": "{name}: klient ei mäleta, et lubas (märkis {by})"
+      "relatives_doubt_line": "{name}: klient ei mäleta, et lubas (märkis {by})",
+      "transport_open_title": "Transpordi soovid, mis ootavad korraldamist",
+      "transport_open_empty": "Kõik transpordi soovid on vastatud.",
+      "transport_open_line": "{date} · {destination} · soovis {name}"
     },
     "visit": {
       "title": "Mida tegid",
@@ -14688,6 +14699,34 @@
         "TOLD_BY_REGULAR": "Püsihooldaja ütles talle eelmisel käigul, et tuled.",
         "NOT_REACHED": "Talle ei jõutud teatada: ütle uksel oma nimi ja kust sa tuled."
       }
+    },
+    "transport": {
+      "title": "Transport",
+      "none": "Eesolevaid sõite ega soove ei ole.",
+      "next": "Järgmine sõit {date}:",
+      "ride_today": "sõit kell {time}: {destination}",
+      "ride_today_no_time": "sõit: {destination}",
+      "when_time": "{date} kell {time}",
+      "state_requested": "ootab korraldamist (soovis {name})",
+      "state_arranged": "korraldatud",
+      "state_arranged_time": "korraldatud: auto tuleb kell {time}",
+      "state_declined": "ei saa korraldada: {reason}",
+      "request": "Telli transport",
+      "day_label": "Sõidu päev",
+      "time_label": "Mis kellaks peab kohal olema",
+      "destination_label": "Kuhu ja milleks",
+      "needs_label": "Mida on vaja (ratastool, saatja, tagasisõit)",
+      "request_hint": "Soov läheb hooldusjuhi nimekirja. Sõit tuleb sageli tellida mitu päeva ette: küsi aegsasti.",
+      "request_save": "Saada soov",
+      "cancel": "Loobu",
+      "arrange": "Korraldatud",
+      "decline": "Ei saa",
+      "withdraw": "Võta tagasi",
+      "pickup_label": "Mis kell auto tuleb",
+      "arrange_note_label": "Märkus hooldajale",
+      "decline_reason_label": "Miks ei saa",
+      "arrange_save": "Märgi korraldatuks",
+      "decline_save": "Salvesta vastus"
     }
   },
   "stage": {
