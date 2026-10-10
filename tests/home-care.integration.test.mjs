@@ -94,6 +94,7 @@ import { addWorkerRecord, endWorkerRecord, getWorkerCards } from '../lib/homeCar
 import { getFridgeSheet } from '../lib/homeCare/fridgeSheet.js';
 import { getMonthOpenItems } from '../lib/homeCare/monthClose.js';
 import { getMonthPage, lockMonth, reopenMonth } from '../lib/homeCare/monthLock.js';
+import { getMonthStatements } from '../lib/homeCare/monthStatement.js';
 import { answerDecisionNotice, createDecisionNotice, withdrawDecisionNotice } from '../lib/homeCare/decisionNotices.js';
 import { getDaySheet } from '../lib/homeCare/daySheet.js';
 import { markFirstVisit } from '../lib/homeCare/firstVisits.js';
@@ -6398,4 +6399,89 @@ test('abi rohkem kui kavas: käigul märgitud viis võrreldes kava reaga, märgu
   await retractEntry(anu, linda.id, last.id, { reason: 'Vale klient', revision: 1 }, deps());
   assert.deepEqual((await openClient(anu, linda.id, deps())).helpDrift, { days: 28, total: 8, more: 3, less: 1, due: false });
   assert.deepEqual((await getDeadlines(lead, deps())).helpDriftDue, []);
+});
+
+test('kliendi kuuleht: käigud ja ära jäänud käigud kliendi keeles, üksuse piir, üks klient, jälg', async (t) => {
+  const f = await fixture(t);
+  const north = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Põhi ${f.tag}`, type: 'TEAM' } });
+  await db.organizationCapabilityGrant.create({
+    data: { membershipId: f.members.cover.id, capability: 'HOME_CARE_COORDINATOR', scopeType: 'UNIT', scopeUnitId: north.id, validFrom: at('2026-01-01T00:00:00Z') }
+  });
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const unitLead = await f.ctx(f.users.cover, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  const start = deps(at('2026-09-01T06:00:00Z'));
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, start)).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi', unitId: north.id }, start)).client;
+  for (const client of [linda, peeter]) await addTeamMember(lead, client.id, { membershipId: f.members.anu.id }, start);
+  const visit = (client, when, minutes) =>
+    createEntry(anu, client.id, { kind: 'NOTE', contactMode: 'VISIT', text: 'Pesime koos', visitMinutes: minutes, occurredAt: when }, deps(new Date(at(when).getTime() + 5 * 60 * 1000)));
+  /* September: Lindal kaks käiku (45 + 30 min), üks „uks ei avanenud" ja üks ette ära jäetud käik; Peetril üks käik.
+     Telefonikõne ja tühistatud käik lehele ei lähe. Oktoobris (jooksev kuu) on Lindal üks käik. */
+  await visit(linda, '2026-09-02T07:00:00Z', 45);
+  await visit(linda, '2026-09-16T07:00:00Z', 30);
+  const wrong = (await visit(linda, '2026-09-17T07:00:00Z', 60)).entry;
+  await retractEntry(anu, linda.id, wrong.id, { reason: 'Vale klient', revision: 1 }, deps(at('2026-09-17T08:00:00Z')));
+  await createEntry(anu, linda.id, { contactMode: 'PHONE', text: 'Helistas tütar.' }, deps(at('2026-09-18T08:00:00Z')));
+  await createEntry(anu, linda.id, { kind: 'INCIDENT', incidentType: 'DOOR_NOT_OPENED', text: 'Uks jäi kinni', occurredAt: '2026-09-23T07:00:00Z' }, deps(at('2026-09-23T07:05:00Z')));
+  await createSlots(lead, linda.id, { weekdays: [1], startTime: '09:00', plannedMinutes: 30, workerMembershipId: f.members.anu.id, validFrom: '2026-09-01' }, start);
+  const slot = (await getClientSlots(lead, linda.id, deps())).slots[0];
+  await cancelVisit(lead, linda.id, slot.id, { day: '2026-09-28', reason: 'CLIENT_AWAY' }, deps(at('2026-09-27T08:00:00Z')));
+  await visit(peeter, '2026-09-10T08:00:00Z', 30);
+  await visit(linda, '2026-10-02T07:00:00Z', 20);
+
+  const sept = await getMonthStatements(lead, { month: '2026-09', phone: '473 0000' }, deps());
+  assert.deepEqual([sept.month, sept.clientCount, sept.part, sept.parts], ['2026-09', 2, 1, 1]);
+  for (const text of [
+    'Koduteenus: september 2026',
+    'Linda Tamm',
+    'Käisime teie juures 2 korral, kokku 1 t 15 min.',
+    'Kolmapäev, 02.09</span> · 45 min · Anu',
+    'Kolmapäev, 16.09</span> · 30 min · Anu',
+    'Kolmapäev, 23.09</span> · tulime, aga uks ei avanenud',
+    'Esmaspäev, 28.09</span> · te ei olnud kodus',
+    'Peeter Põhi',
+    'Käisime teie juures 1 korral, kokku 30 min.',
+    '473 0000',
+    'allkirja ei ole vaja'
+  ]) {
+    assert.ok(sept.html.includes(text), text);
+  }
+  /* Tühistatud käik, telefonikõne, päeviku tekst ja juhtumi sisu lehel ei ole; Linda on enne Peetrit. */
+  for (const text of ['17.09', '18.09', 'Helistas', 'Uks jäi kinni', 'Pesime']) assert.equal(sept.html.includes(text), false, text);
+  assert.ok(sept.html.indexOf('Linda Tamm') < sept.html.indexOf('Peeter Põhi'));
+  assert.equal(sept.html.split('<section class="sheet">').length - 1, 2);
+
+  /* Üksuse hooldusjuht saab ainult oma üksuse kliendi lehe; teise üksuse klienti ei leita. */
+  const unit = await getMonthStatements(unitLead, { month: '2026-09' }, deps());
+  assert.deepEqual([unit.clientCount, unit.html.includes('Peeter Põhi'), unit.html.includes('Linda Tamm')], [1, true, false]);
+  await expectError(getMonthStatements(unitLead, { month: '2026-09', clientId: linda.id }, deps()), 404, 'home_care.errors.client_not_found');
+
+  /* Üks klient: „eelmine kuu" ja „see kuu"; kuu ilma käikudeta annab ühe kliendi lehe ikkagi. */
+  const one = await getMonthStatements(lead, { month: 'previous', clientId: linda.id }, deps());
+  assert.deepEqual([one.month, one.clientCount, one.html.includes('Peeter Põhi')], ['2026-09', 1, false]);
+  const current = await getMonthStatements(lead, { month: 'current', clientId: linda.id }, deps());
+  assert.deepEqual([current.month, current.html.includes('Käisime teie juures 1 korral, kokku 20 min.')], ['2026-10', true]);
+  const empty = await getMonthStatements(lead, { month: '2026-08', clientId: linda.id }, deps());
+  assert.ok(empty.html.includes('Sel kuul me teie juures ei käinud.'));
+
+  /* Keeldumised: tühi kuu, tuleviku kuu, olematu osa, vigane number, mitte hooldusjuht, teine asutus. */
+  await expectError(getMonthStatements(lead, { month: '2026-08' }, deps()), 400, 'home_care.errors.month_statement_empty');
+  await expectError(getMonthStatements(lead, { month: '2026-11' }, deps()), 400, 'home_care.errors.month_statement_future');
+  await expectError(getMonthStatements(lead, { month: '2026-09', part: 2 }, deps()), 400, 'home_care.errors.month_statement_part');
+  await expectError(getMonthStatements(lead, { month: '2026-09', phone: 'helista mulle' }, deps()), 400, 'home_care.errors.referral_phone_invalid');
+  await expectError(getMonthStatements(anu, { month: '2026-09' }, deps()), 403, 'org.errors.missing_capability');
+  await expectError(getMonthStatements(leadB, { month: '2026-09' }, deps()), 400, 'home_care.errors.month_statement_empty');
+
+  /* Jälg: kuu ja arvud; nimesid auditis ei ole. */
+  const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_month_statement_issued', meta: { path: ['organizationId'], equals: f.orgA.id } }, orderBy: { createdAt: 'asc' } });
+  assert.deepEqual(audit.map((row) => [row.meta.month, row.meta.clientCount, row.meta.rowCount, row.meta.clientId || null]), [
+    ['2026-09', 2, 3, null],
+    ['2026-09', 1, 1, null],
+    ['2026-09', 1, 2, linda.id],
+    ['2026-10', 1, 1, linda.id],
+    ['2026-08', 1, 0, linda.id]
+  ]);
+  assert.equal(JSON.stringify(audit).includes('Linda'), false);
 });

@@ -13199,7 +13199,11 @@
       "trip_purpose": "Write the trip's destination and purpose.",
       "trip_not_found": "The trip was not found.",
       "trip_retracted": "This trip has already been retracted.",
-      "trip_retract_reason": "Write why the trip is retracted."
+      "trip_retract_reason": "Write why the trip is retracted.",
+      "month_statement_future": "A month sheet is not made for a future month.",
+      "month_statement_empty": "There are no visits or missed visits in this month.",
+      "month_statement_part": "There is no such part.",
+      "month_statement_too_large": "There are too many visits for one file. Open the month sheet from each client's page."
     },
     "incidents": {
       "title": "Incident register",
@@ -14366,7 +14370,7 @@
       "many": "In the last four weeks {workers} different workers came here; {top} of them made {percent}% of the visits ({visits} visits)."
     },
     "fridge": {
-      "phone_label": "The organisation's phone for the fridge sheet",
+      "phone_label": "The organisation's phone for the printed sheet",
       "hint": "The fridge sheet is a large-print page for the client's home: who comes on which day, what we do together and where to call. The number is remembered on this device.",
       "open": "Open the fridge sheet",
       "popup_blocked": "The browser did not allow a new window. Allow pop-ups for this page and try again.",
@@ -14821,6 +14825,40 @@
       "line": "In the last four weeks, of {total} planned activities {more} were done with more help than planned and {less} with less.",
       "due_coordinator": "Review the plan or tell the decision maker.",
       "due_team": "Talk to the coordinator about it."
+    },
+    "statement": {
+      "phone_label": "The organisation's phone for the month sheet",
+      "hint": "A month sheet is a large-print page for the client's home: on which days we came, for how long and which visits did not happen. It is for the client's information, not for signing: if something does not match, the client calls the organisation. Each client is on a separate page.",
+      "hint_client": "The month sheet tells the client on which days we came this month and which visits did not happen. It is for information, not for signing.",
+      "open": "Open month sheets",
+      "open_part": "Open month sheets, part {part}/{parts}",
+      "parts_hint": "There are many clients: the sheets come in {parts} parts, each in its own window.",
+      "open_previous": "Month sheet: last month",
+      "open_current": "Month sheet: this month",
+      "doc": {
+        "title": "Home care: {month}",
+        "print_hint": "Print this page (Ctrl+P). Each client is on a separate page.",
+        "summary": "Visits to you: {count}, {duration} in total.",
+        "summary_count": "Visits to you: {count}.",
+        "summary_none": "We did not visit you this month.",
+        "without_length": "Visits with no length recorded: {count}.",
+        "visits_title": "Visits",
+        "not_happened_title": "Visits that did not happen",
+        "duration_hm": "{hours} h {minutes} min",
+        "duration_h": "{hours} h",
+        "duration_m": "{minutes} min",
+        "no_length": "length not recorded",
+        "call_title": "If this does not match what you remember, please call",
+        "foot": "Prepared on {date}. This page is for your information, no signature is needed.",
+        "reasons": {
+          "CLIENT_AWAY": "you were not at home",
+          "CLIENT_CANCELLED": "you or your relative cancelled the visit",
+          "WORKER_ABSENT": "the worker was absent and no replacement was found",
+          "OTHER": "the visit did not happen",
+          "DOOR_NOT_OPENED": "we came, but the door was not opened",
+          "REFUSED_HELP": "we came, but you did not want help"
+        }
+      }
     }
   },
   "stage": {
