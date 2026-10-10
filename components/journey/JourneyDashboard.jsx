@@ -7,8 +7,7 @@
  * paneelis). Nüüd on korraga ees üks asi ja vaated vahetuvad kohapeal:
  *  - loend: Teekonnad madalate ridadena, käimasolevad ees;
  *  - alustamine: viis väikest vaadet sammulaval (`components/stage/StepFlight`),
- *    sammud all kiirmenüüs (lehel /teekond, kus kiirmenüüd ei ole, omaette
- *    pillina ekraani all).
+ *    sammud all kiirmenüüs.
  * Loend ja alustamine ei ole järjestikused sammud: need vahetuvad lehe sees,
  * ilma lavata.
  *
@@ -155,7 +154,7 @@ export default function JourneyDashboard({ embedded = false, roleOverride = "" }
   );
   const dirty = mode === "start" && startDirty({ situation, draft });
 
-  /* ⓘ elab paneeli nurgas × kõrval (PanelFrame); siin ainult sisu.
+  /* ⓘ elab kiirmenüüs lehe nime kõrval (PanelFrame); siin ainult sisu.
      Manustatuna registreerib Töölaud (WorkspacePanel) — sama reegel mis
      kõigil teistel moodulitel. Ilma `active`-väravata registreeriksid MÕLEMAD
      samasse pesasse ja võidaks see, kelle effect juhtub viimasena jooksma. */
@@ -593,12 +592,13 @@ export default function JourneyDashboard({ embedded = false, roleOverride = "" }
       </div>
     );
     if (embedded) return content;
-    /* Lehel /teekond ei ole kiirmenüüd; pealkiri jääb ekraanilugejale. */
+    /* Lehe nimi on kiirmenüüs; pealkiri jääb ekraanilugejale (töölaua sees
+       annab selle töölaud ise). */
     return (
-      <div className={shared.frame}>
+      <>
         <h1 className="sr-only">{t("journey.title", "Teekond")}</h1>
         {content}
-      </div>
+      </>
     );
   };
 

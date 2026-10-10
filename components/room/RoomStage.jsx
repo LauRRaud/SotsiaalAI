@@ -193,6 +193,10 @@ const DOCK_CARD_ALIASES = {
      /dokreziim) ja jäid seal dokis nimeta. */
   "/dokreziim": "/vestlus?workspace=document_drafting",
   "/materjalid": "/vestlus?workspace=materials",
+  /* Kaart „Teekond" avab vestluse töölaua tee; Teekondade loend ja avatud
+     Teekond elavad ka oma teel (/teekond, /teekond/<id>) ja kannavad seal sama
+     kaardi nime. */
+  "/teekond": "/vestlus?workspace=journey",
 };
 
 /* Tellija otsus: saabumiskõnd toimub IGAL platvormi laadimisel —

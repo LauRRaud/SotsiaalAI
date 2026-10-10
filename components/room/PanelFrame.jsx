@@ -224,7 +224,9 @@ export default function PanelFrame({ children }) {
   const workspaceParam = String(searchParams?.get("workspace") || "").trim();
   const isWorkspaceView = isConversation && Boolean(workspaceParam);
   const isConversationSurface = isConversation && !isWorkspaceView;
-  const isChat = isConversation || normalized.startsWith("/teekond");
+  /* Teekond ei ole enam vestluse raamis: ta on tavaline dokiga leht (omanik
+     10.10), mille sulgemine ja info on kiirmenüüs. */
+  const isChat = isConversation;
   const isCovision = normalized === "/kovisioon";
   /* Suured tööpinnad vajavad laia ja kõrget akent (tellija 06.07 öö):
      teenusekaart = suur kaart.
