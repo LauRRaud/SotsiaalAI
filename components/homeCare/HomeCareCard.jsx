@@ -114,7 +114,7 @@ export default function HomeCareCard({ organizationId, clientId, lines, canEdit,
       </h2>
 
       {lines.length === 0 ? (
-        <p className="hc-sub">{t("home_care.card.empty")}</p>
+        <p className="hc-sub">{t(canEdit ? "home_care.card.empty" : "home_care.card.empty_readonly")}</p>
       ) : (
         <ul className="hc-list hc-list--plain">
           {lines.map((line) =>

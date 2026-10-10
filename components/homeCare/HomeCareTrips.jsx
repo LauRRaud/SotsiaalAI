@@ -94,6 +94,7 @@ export default function HomeCareTrips({ context, initial }) {
 
   const km = Number(form.endOdometer) - Number(form.startOdometer);
   const kmShown = form.startOdometer !== "" && form.endOdometer !== "" && Number.isFinite(km) && km >= 0;
+  const oddReadings = !kmShown && Boolean(form.startOdometer) && String(form.endOdometer || "").length >= String(form.startOdometer).length;
   const tripLine = (trip, withWorker) =>
     [
       withWorker ? trip.workerName || "—" : null,
@@ -211,6 +212,13 @@ export default function HomeCareTrips({ context, initial }) {
             </label>
             <input className="hc-input" id={`${fieldId}-end`} inputMode="numeric" pattern="[0-9]*" value={form.endOdometer || ""} onChange={(event) => setField("endOdometer", event.target.value)} maxLength={7} autoComplete="off" required />
             {kmShown ? <p className="hc-sub">{t("home_care.trips.km", { km })}</p> : null}
+            {/* Salvestamise nupp on sel juhul kinni; ilma selle reata ei saa inimene aru, miks.
+                Näidatakse alles siis, kui lõppnäit on sama pikk kui algnäit, et see trükkimise ajal ei vilguks. */}
+            {oddReadings ? (
+              <p className="hc-error" role="status">
+                {t("home_care.errors.trip_odometer", { limit: HOME_CARE_LIMITS.TRIP_KM_MAX })}
+              </p>
+            ) : null}
             <label className="hc-label" htmlFor={`${fieldId}-purpose`}>
               {t("home_care.trips.purpose_label")}
             </label>

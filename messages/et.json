@@ -13292,6 +13292,10 @@
         "REASON": "põhjusega"
       },
       "talk_to_coordinator": "Enne käiku räägi hooldusjuhiga.",
+      "jump_label": "Kiirteed sellel lehel",
+      "jump_entry": "Kirjuta kirje",
+      "jump_diary": "Päevik",
+      "handovers_title": "Viimased teated järgmisele",
       "away_notice": "Klient on ajutiselt ära.",
       "ended_notice": "Teenus on lõpetatud. Leht on loetav.",
       "read_only": "Organisatsioon ei ole praegu kirjutatav; leht on ainult lugemiseks.",
@@ -13309,6 +13313,7 @@
     "card": {
       "title": "Enne kui lähed",
       "empty": "Kaardil ei ole veel midagi. Lisa siia see, mida asendaja peab enne ukse taha jõudmist teadma.",
+      "empty_readonly": "Kaardil ei ole veel midagi.",
       "add": "Lisa rida",
       "kind_label": "Liik",
       "text_label": "Tekst",
@@ -13641,7 +13646,7 @@
       "money_amount_invalid": "Kirjuta summa eurodes, näiteks 12,50.",
       "money_note_required": "Kirjuta, mille peale raha läks.",
       "money_day_invalid": "Päev ei saa olla tulevikus ega rohkem kui kuu aega tagasi.",
-      "money_exceeds_balance": "Sinu käes on selle kliendi raha {held} eurot; rohkem kulutada ega tagastada ei saa.",
+      "money_exceeds_balance": "Sinu käes on selle kliendi raha {held}; rohkem kulutada ega tagastada ei saa.",
       "money_holder_required": "Raha saab kirja panna asutuse liige.",
       "money_not_found": "Seda rida ei leitud.",
       "money_retracted": "See rida on juba tühistatud.",
@@ -14750,6 +14755,7 @@
     "no_answer": {
       "title": "Kui uks ei avane",
       "none": "Samme ei ole kokku lepitud. Pane kirja, mida kliendiga kokku leppisite: mida teha ja mis järjekorras, kui uks ei avane.",
+      "none_readonly": "Samme ei ole kokku lepitud.",
       "add": "Lisa sammud",
       "edit": "Muuda samme",
       "steps_label": "Sammud, iga samm eraldi real",

@@ -116,7 +116,9 @@ export default function HomeCareReferrals({ organizationId, initial = [], canEdi
                   {item.phone ? (
                     <>
                       {" · "}
-                      <a href={phoneHref(item.phone) || undefined}>{item.phone}</a>
+                      <a className="hc-tel hc-tel--inline" href={phoneHref(item.phone) || undefined}>
+                        {item.phone}
+                      </a>
                     </>
                   ) : null}
                   {item.note ? <span className="hc-sub"> · {item.note}</span> : null}

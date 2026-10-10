@@ -148,7 +148,9 @@ export default function HomeCareRelatives({ organizationId, clientId, initial = 
                   {item.phone ? (
                     <>
                       {" · "}
-                      <a href={phoneHref(item.phone) || undefined}>{item.phone}</a>
+                      <a className="hc-tel hc-tel--inline" href={phoneHref(item.phone) || undefined}>
+                        {item.phone}
+                      </a>
                     </>
                   ) : null}
                   {" · "}

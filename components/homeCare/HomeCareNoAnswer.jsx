@@ -170,7 +170,7 @@ export default function HomeCareNoAnswer({
               ))}
             </ol>
           ) : (
-            <p className="hc-hint">{t("home_care.no_answer.none")}</p>
+            <p className="hc-hint">{t(canEdit ? "home_care.no_answer.none" : "home_care.no_answer.none_readonly")}</p>
           )}
           {done ? (
             <p className="hc-ok" role="status">

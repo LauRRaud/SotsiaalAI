@@ -95,6 +95,16 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
   const base = `${homeCareBase(organizationId)}/kliendid/${clientId}`;
   const backHref = `/org/${organizationId}/koduteenus`;
 
+  /* Kiirtee jaotise juurde. Leht keritakse paneeli sees, seega aadressi `#` ei aita: jaotis
+     tuuakse nähtavale ja fookus läheb selle pealkirjale, et ekraanilugeja ja klaviatuur jõuaksid
+     kaasa. Hüpe on kohene: nelja ekraanitäie sujuv kerimine võtab kaua ja katkeb puudutusest. */
+  const jumpTo = (id) => {
+    const heading = typeof document === "undefined" ? null : document.getElementById(id);
+    if (!heading) return;
+    heading.scrollIntoView({ block: "start", behavior: "auto" });
+    heading.focus({ preventScroll: true });
+  };
+
   const reload = async () => {
     const result = await page.call(base, { fallbackKey: "home_care.errors.open_failed" });
     if (result.ok) {
@@ -372,6 +382,38 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
       {canWrite ? null : <p className="hc-notice">{t("home_care.client.read_only")}</p>}
 
       <HomeCareOutbox ownerId={ownerId} timeZone={timeZone} />
+
+      {/* Kiirteed: telefonis on leht seitse ekraanitäit pikk, kirje vorm algab neljandalt ja päevik kuuendalt. */}
+      <nav className="hc-row hc-jump" aria-label={t("home_care.client.jump_label")}>
+        {canAddEntry ? (
+          <button className="hc-btn hc-btn--primary" type="button" onClick={() => jumpTo(`${fieldId}-new`)}>
+            {t("home_care.client.jump_entry")}
+          </button>
+        ) : null}
+        <button className="hc-btn hc-btn--quiet" type="button" onClick={() => jumpTo(`${fieldId}-diary`)}>
+          {t("home_care.client.jump_diary")}
+        </button>
+      </nav>
+
+      {/* Viimased teated järgmisele: eelmise hooldaja sõnum peab olema näha enne käiku, mitte päeviku põhjas. */}
+      {data.recentHandovers?.length ? (
+        <section className="hc-section" aria-labelledby={`${fieldId}-handovers`}>
+          <h2 className="hc-section-title" id={`${fieldId}-handovers`}>
+            {t("home_care.client.handovers_title")}
+          </h2>
+          <ul className="hc-list hc-list--plain">
+            {data.recentHandovers.map((item) => (
+              <li key={item.id}>
+                <span className="hc-sub--pre">{item.text}</span>
+                <span className="hc-entry__meta">
+                  {" "}
+                  {[item.authorName, formatDateTime(item.occurredAt, timeZone)].filter(Boolean).join(" · ")}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
 
       <HomeCareCard
         organizationId={organizationId}
@@ -651,7 +693,7 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
 
       {canAddEntry ? (
         <section className="hc-section" aria-labelledby={`${fieldId}-new`}>
-          <h2 className="hc-section-title" id={`${fieldId}-new`}>
+          <h2 className="hc-section-title" id={`${fieldId}-new`} tabIndex={-1}>
             {t("home_care.entry.new_title")}
           </h2>
           <HomeCareEntryForm
@@ -677,7 +719,7 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
       ) : null}
 
       <section className="hc-section" aria-labelledby={`${fieldId}-diary`}>
-        <h2 className="hc-section-title" id={`${fieldId}-diary`}>
+        <h2 className="hc-section-title" id={`${fieldId}-diary`} tabIndex={-1}>
           {t("home_care.filter.title")}
         </h2>
         <form

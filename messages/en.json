@@ -13292,6 +13292,10 @@
         "REASON": "with a reason"
       },
       "talk_to_coordinator": "Talk to the care coordinator before the visit.",
+      "jump_label": "Shortcuts on this page",
+      "jump_entry": "Write an entry",
+      "jump_diary": "Diary",
+      "handovers_title": "Latest notes for the next carer",
       "away_notice": "The client is temporarily away.",
       "ended_notice": "The service has ended. The page can still be read.",
       "read_only": "The organisation is not writable at the moment; the page is read-only.",
@@ -13309,6 +13313,7 @@
     "card": {
       "title": "Before you go",
       "empty": "The card is empty. Add what a substitute needs to know before reaching the door.",
+      "empty_readonly": "The card is still empty.",
       "add": "Add line",
       "kind_label": "Kind",
       "text_label": "Text",
@@ -13641,7 +13646,7 @@
       "money_amount_invalid": "Write the amount in euros, for example 12.50.",
       "money_note_required": "Write what the money went on.",
       "money_day_invalid": "The day cannot be in the future or more than a month back.",
-      "money_exceeds_balance": "You hold {held} euros of this client's money; you cannot spend or return more.",
+      "money_exceeds_balance": "You hold {held} of this client's money; you cannot spend or return more.",
       "money_holder_required": "Money can be recorded by a member of the organisation.",
       "money_not_found": "This line was not found.",
       "money_retracted": "This line is already cancelled.",
@@ -14750,6 +14755,7 @@
     "no_answer": {
       "title": "If the door does not open",
       "none": "No steps are agreed. Write down what you agreed with the client: what to do, and in which order, when the door does not open.",
+      "none_readonly": "No steps have been agreed.",
       "add": "Add steps",
       "edit": "Change the steps",
       "steps_label": "Steps, one per line",
