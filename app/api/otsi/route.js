@@ -88,7 +88,8 @@ export async function POST(request, deps = {}) {
     if (status === 401 || status === 403) {
       return json({ ok: false, messageKey: "api.common.forbidden" }, status);
     }
-    console.error("[personal-search] failed", safeError(error));
+    /* Kui ükski allikas ei vastanud, on päris põhjus vea `cause` sees. */
+    console.error("[personal-search] failed", safeError(error, { includeCause: true }));
     return json({ ok: false, messageKey: "api.search.unavailable" }, 500);
   }
 }

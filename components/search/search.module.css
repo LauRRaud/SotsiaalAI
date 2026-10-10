@@ -25,7 +25,10 @@
   flex: 0 1 24rem;
   min-width: min(100%, 12rem);
 }
-/* Seisu rida on alati olemas (ekraanilugeja jaoks), tühjana ei võta see ruumi. */
+/* Seisu rida on alati lehel. Seda klassi kannab see ainult siis, kui tekst on
+   silmale (otsin, vasteid ei leitud); muul ajal on rida ühise klassiga `sr-only`
+   ega võta ruumi. `display: none` siia ei sobi: peidetud reale hiljem ilmuvat
+   teksti ei pruugi ekraanilugeja ette lugeda. */
 .status {
   margin: 0;
   max-width: none;
@@ -33,9 +36,6 @@
   border: 0;
   background: none;
   color: var(--text-soft);
-}
-.status:empty {
-  display: none;
 }
 .fault {
   composes: fault from "../stage/rows.module.css";
@@ -45,6 +45,11 @@
 }
 .rows {
   composes: rows from "../stage/rows.module.css";
+}
+/* Loend saab fookuse ainult koodist (juurde laaditi, aga uusi ridu ei tulnud):
+   see on lugemise koht, mitte vajutatav asi, raami ümber ei joonistata. */
+.rows:focus {
+  outline: none;
 }
 .rowItem {
   composes: rowItem from "../stage/rows.module.css";

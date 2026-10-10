@@ -10700,7 +10700,7 @@
   "personal_search": {
     "title": "Minu otsing",
     "card_meta": "Minu tööobjektid",
-    "intro": "Otsi oma vestlusi, Teekondi ja dokumente pealkirja järgi.",
+    "intro": "Otsi oma Teekondi ja dokumente pealkirja järgi.",
     "label": "Otsing",
     "submit": "Otsi",
     "loading": "Otsin sinu objekte…",
@@ -10733,8 +10733,20 @@
       "audio_transcript": "Heli üleskirjutus",
       "transcript_summary": "Üleskirjutuse kokkuvõte",
       "uploaded_audio_source": "Üleslaaditud helifail",
-      "other": "Muu"
-    }
+      "other": "Muu",
+      "field_photo": "Välitöö foto",
+      "service_log_report": "Teenuspäeviku aruanne"
+    },
+    "scope": "Vestlusi siit enamasti ei leia, sest vestlustel pealkirja ei ole. Otsi neid vestluste loendist: seal loeb otsing ka sõnumeid.",
+    "partial_empty": "Osa otsingust jäi tegemata: {kinds}. Mujalt vasteid ei leitud.",
+    "more_error": "Rohkem tulemusi ei saanud praegu laadida. Juba leitud read on alles.",
+    "rate_limited_wait": "Otsinguid tuli liiga kiiresti järjest. Proovi uuesti {seconds} sekundi pärast.",
+    "rate_limited": "Otsinguid tuli liiga kiiresti järjest. Oota veidi ja proovi uuesti.",
+    "sign_in": "Logi sisse",
+    "found": "Vasteid: {count}.",
+    "added": "Lisandus {added}, kokku on vasteid {count}.",
+    "more_available": "Loendi lõpus saab juurde laadida.",
+    "no_more": "Rohkem vasteid ei ole."
   },
   "supervision": {
     "errors": {

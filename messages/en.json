@@ -10700,7 +10700,7 @@
   "personal_search": {
     "title": "My search",
     "card_meta": "My work items",
-    "intro": "Search your conversations, Journeys and documents by title.",
+    "intro": "Search your Journeys and documents by title.",
     "label": "Search",
     "submit": "Search",
     "loading": "Searching your items…",
@@ -10733,8 +10733,20 @@
       "audio_transcript": "Audio transcript",
       "transcript_summary": "Transcript summary",
       "uploaded_audio_source": "Uploaded audio",
-      "other": "Other"
-    }
+      "other": "Other",
+      "field_photo": "Field work photo",
+      "service_log_report": "Service log report"
+    },
+    "scope": "You will mostly not find conversations here, because conversations have no title. Search for them in the conversation list: that search reads the messages too.",
+    "partial_empty": "Part of the search could not be done: {kinds}. No matches were found elsewhere.",
+    "more_error": "More results could not be loaded right now. The rows already found are still here.",
+    "rate_limited_wait": "Too many searches in a row. Try again in {seconds} s.",
+    "rate_limited": "Too many searches in a row. Wait a moment and try again.",
+    "sign_in": "Log in",
+    "found": "Matches: {count}.",
+    "added": "{added} more loaded, {count} matches in total.",
+    "more_available": "More can be loaded at the end of the list.",
+    "no_more": "There are no more matches."
   },
   "supervision": {
     "errors": {

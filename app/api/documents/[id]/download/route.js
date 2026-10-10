@@ -9,7 +9,7 @@ import {
   requireDocumentUser
 } from "@/lib/documents/server"
 import { safeError } from "@/lib/privacy/safeError"
-import { visibleRecordingDocumentWhere } from "@/lib/documents/recordingVisibility"
+import { openableDocumentWhere } from "@/lib/documents/recordingVisibility"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -51,8 +51,7 @@ export async function GET(request, { params }) {
       where: {
         id,
         ownerId: auth.userId,
-        ...visibleRecordingDocumentWhere(),
-        fieldVisitAttachments: { none: { storageStatus: { not: "ACTIVE" } } }
+        ...openableDocumentWhere()
       },
       select: {
         id: true,
