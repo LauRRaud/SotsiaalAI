@@ -17,13 +17,24 @@ export function resultKey(item) {
  * lisandunud rea koht: sinna läheb fookus, et inimene jätkaks sealt, kus loend
  * enne lõppes (-1, kui ühtegi uut rida ei tulnud).
  */
-export function mergeResults(current, incoming) {
+export function mergeResults(current, incoming, { resort = false } = {}) {
   const before = Array.isArray(current) ? current : [];
+  const seen = new Set(before.map(resultKey));
   const byTarget = new Map(before.map((item) => [resultKey(item), item]));
   for (const item of Array.isArray(incoming) ? incoming : []) byTarget.set(resultKey(item), item);
-  const rows = Array.from(byTarget.values());
+  let rows = Array.from(byTarget.values());
   const added = rows.length - before.length;
-  return { rows, added, firstNewIndex: added > 0 ? before.length : -1 };
+  /* Kui eelmine vastus jättis mõne allika lugemata, võivad selle allika read nüüd
+     tulla hiljem, kuigi nad on uuemad kui juba näidatud read: siis pannakse kogu
+     loend uuesti kuupäeva järgi ritta (võrdse aja korral jääb senine järjekord). */
+  if (resort) {
+    rows = rows
+      .map((item, index) => ({ item, index }))
+      .sort((left, right) => String(right.item.updatedAt || "").localeCompare(String(left.item.updatedAt || "")) || left.index - right.index)
+      .map((entry) => entry.item);
+  }
+  const firstNewIndex = added > 0 ? rows.findIndex((item) => !seen.has(resultKey(item))) : -1;
+  return { rows, added, firstNewIndex };
 }
 
 /**
@@ -102,8 +113,11 @@ export const IDLE_VIEW = Object.freeze({
   appended: null
 });
 
-/* Mille kohta ekraanil olev loend käib: otsisõna, read ja järgmise lehe kursor. */
-const NOTHING_SHOWN = Object.freeze({ query: "", rows: [], cursor: null });
+/* Mille kohta ekraanil olev loend käib: otsisõna, read ja järgmise lehe kursor.
+   `mixed`: mõni selle loendi vastus jättis allika lugemata. Sellest peale ei tule
+   allikate read enam ühes sammus ja iga juurde laetud leht pannakse kogu loendiga
+   uuesti kuupäeva järgi ritta. */
+const NOTHING_SHOWN = Object.freeze({ query: "", rows: [], cursor: null, mixed: false });
 
 /**
  * Ühe lehe otsingu käik.
@@ -161,7 +175,7 @@ export function createSearchSession({ request = requestSearchPage, onChange = ()
       show({ ...IDLE_VIEW, state: "error", fault: answer.fault });
       return;
     }
-    shown = { query, rows: answer.rows, cursor: answer.nextCursor };
+    shown = { query, rows: answer.rows, cursor: answer.nextCursor, mixed: answer.unavailable.length > 0 };
     show({
       ...IDLE_VIEW,
       state: viewAfterFirstPage({ rows: answer.rows, unavailableKinds: answer.unavailable }),
@@ -188,8 +202,8 @@ export function createSearchSession({ request = requestSearchPage, onChange = ()
       show({ ...view, loadingMore: false, moreFault: answer.fault });
       return;
     }
-    const merged = mergeResults(list.rows, answer.rows);
-    shown = { query: list.query, rows: merged.rows, cursor: answer.nextCursor };
+    const merged = mergeResults(list.rows, answer.rows, { resort: list.mixed });
+    shown = { query: list.query, rows: merged.rows, cursor: answer.nextCursor, mixed: list.mixed || answer.unavailable.length > 0 };
     show({
       ...view,
       loadingMore: false,
