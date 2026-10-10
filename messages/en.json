@@ -11838,7 +11838,8 @@
       "accept": "Agree and join",
       "decline": "Decline",
       "accepted": "You are now a member.",
-      "declined": "The invitation was declined."
+      "declined": "The invitation was declined.",
+      "jobTitle": "Job title (optional)"
     },
     "audit": {
       "heading": "Organisation audit",
