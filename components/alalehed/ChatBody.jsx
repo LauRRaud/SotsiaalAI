@@ -35,6 +35,7 @@ import VoiceModeSurface from "./chat/VoiceModeSurface";
 import RoomCallBar from "@/components/rooms/RoomCallBar";
 import RoomSummaryApprovalCard from "@/components/rooms/RoomSummaryApprovalCard";
 import { useRoomCall } from "@/components/rooms/useRoomCall";
+import { callErrorText } from "@/lib/calls/errorText";
 import { localizePath, stripLocaleFromPath } from "@/lib/localizePath";
 import { buildRoomChatPath } from "@/lib/roomPath";
 import { isActiveDocumentWorkflowState } from "@/lib/chat/documentWorkflowState";
@@ -54,6 +55,15 @@ import {
   resolveWorkspaceRestoreTransition
 } from "@/lib/workspacePanelMorph";
 import { requestPrivacyCheck } from "@/lib/privacy/privacyCheckClient";
+
+/* Kõne tõrked, mida vestluse veareale ei tooda (vt roomCallError allpool). */
+const ROOM_CALL_QUIET_ERRORS = new Set([
+  "call.load_failed",
+  "call.mic_not_controlled_here",
+  "api.rooms.access_denied",
+  "api.rooms.not_found",
+  "api.common.unauthorized"
+]);
 const useIsomorphicLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect;
 const MOBILE_KEYBOARD_OPEN_THRESHOLD = 88;
@@ -585,6 +595,25 @@ export default function ChatBody({
     isRoomMode && sessionUserId && !roomBlocked && !roomAuthRequired ? effectiveRoomId : "",
     sessionUserId
   );
+  /* Kõne tõrge väljaspool kõnet. Kõneriba näitab tõrget ainult avatud kõne detailides, nii et
+     alustamise või liitumise tõrge (ka „vajalik on tellimus") ei jõudnud ekraanile üldse:
+     nupp ei teinud nähtavalt midagi. Lause läheb vestluse veareale, üks kord tõrke kohta.
+     Taustal käiva seisupäringu ja ligipääsu kadumise tõrkeid siin ei näidata: esimest ei
+     algatanud inimene ja teise jaoks on ruumil oma vaade. */
+  const roomCallError = roomCallSession?.error || "";
+  const roomCallJoined = Boolean(roomCallSession?.joined);
+  const shownRoomCallErrorRef = useRef("");
+  useEffect(() => {
+    if (!roomCallError) {
+      shownRoomCallErrorRef.current = "";
+      return;
+    }
+    if (roomCallJoined || shownRoomCallErrorRef.current === roomCallError) return;
+    shownRoomCallErrorRef.current = roomCallError;
+    if (ROOM_CALL_QUIET_ERRORS.has(roomCallError)) return;
+    const message = callErrorText(roomCallError, t);
+    if (message) setErrorBanner(message);
+  }, [roomCallError, roomCallJoined, t]);
   useIsomorphicLayoutEffect(() => {
     if (typeof window === "undefined") return;
     let shouldRestore = false;
