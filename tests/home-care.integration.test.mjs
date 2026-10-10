@@ -5781,3 +5781,45 @@ test('teade otsustajale: hooldusjuht koostab, tekst jääb alles, vastus üks ko
   for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['change', 'clientId', 'organizationId']);
   assert.equal(JSON.stringify(audit).includes('pliidi'), false);
 });
+
+test('teade otsustajale arvudega: kuude read, ära jäänud ja ette ära jäetud käigud, erijuhtumid, märkamised', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const start = deps(at('2026-08-20T08:00:00Z'));
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, start)).client;
+  await addTeamMember(lead, linda.id, { membershipId: f.members.anu.id }, start);
+  /* Otsus alates 01.09: 8 tundi kuus. Augustis käike ei olnud: see kuu jääb arvudest välja. */
+  await createDecision(lead, linda.id, { kind: 'ACT', validFrom: '2026-09-01', volumeHours: '8', volumePeriod: 'MONTH' }, start);
+  await createSlots(lead, linda.id, { weekdays: [3], startTime: '10:00', plannedMinutes: 60, workerMembershipId: f.members.anu.id, validFrom: '2026-09-01' }, start);
+  const visit = (when, minutes) => createEntry(anu, linda.id, { kind: 'NOTE', contactMode: 'VISIT', text: 'Käik', visitMinutes: minutes, occurredAt: when }, deps(at(when)));
+  await visit('2026-09-02T07:00:00Z', 120);
+  await visit('2026-09-09T07:00:00Z', 120);
+  await visit('2026-09-16T07:00:00Z', 60);
+  await createEntry(anu, linda.id, { kind: 'INCIDENT', incidentType: 'DOOR_NOT_OPENED', text: 'Uks jäi kinni', occurredAt: '2026-09-23T07:00:00Z' }, deps(at('2026-09-23T07:05:00Z')));
+  await createEntry(anu, linda.id, { kind: 'INCIDENT', incidentType: 'FALL', text: 'Kukkus köögis', occurredAt: '2026-09-16T07:30:00Z' }, deps(at('2026-09-16T07:35:00Z')));
+  /* „Peaaegu juhtus" on asutuse enda tööohutuse kirje: otsustajale minevates arvudes seda ei ole. */
+  await createEntry(anu, linda.id, { kind: 'INCIDENT', incidentType: 'NEAR_MISS', text: 'Trepp oli jääs', occurredAt: '2026-09-16T07:40:00Z' }, deps(at('2026-09-16T07:45:00Z')));
+  /* Oktoober: üks käik märkamisega, 07.10 käik jäeti ette ära. */
+  await createEntry(anu, linda.id, { kind: 'NOTE', contactMode: 'VISIT', text: 'Ei saanud voodist üles', visitMinutes: 90, change: { answer: 'YES', areas: ['MOBILITY'], major: true }, occurredAt: '2026-10-01T07:00:00Z' }, deps(at('2026-10-01T07:05:00Z')));
+  const slot = (await getClientSlots(lead, linda.id, deps())).slots[0];
+  await cancelVisit(lead, linda.id, slot.id, { day: '2026-10-07', reason: 'CLIENT_AWAY' }, deps(at('2026-10-06T08:00:00Z')));
+
+  const sent = await createDecisionNotice(lead, linda.id, { reason: 'REVIEW', text: 'Ülevaade enne ülevaatust.', channel: 'STAR', withFigures: true }, deps());
+  const lines = sent.decisionNotices[0].sentText.split('\n');
+  const from = lines.indexOf('Arvud kuude kaupa:');
+  assert.equal(lines[from - 2], 'Ülevaade enne ülevaatust.');
+  assert.deepEqual(lines.slice(from, from + 6), [
+    'Arvud kuude kaupa:',
+    '- 09.2026: käike 3, osutatud 5 t, otsustatud 8 t, ära jäänud käike 1',
+    '- 10.2026 (kuni 09.10.2026): käike 1, osutatud 1,5 t, otsustatud 2,3 t, ette ära jäetud käike 1',
+    'Erijuhtumeid samal ajal: 2 (Uks ei avanenud 1, Kukkumine või maast leidmine 1).',
+    'Hooldajate märkamisi, et midagi on tavalisest teisiti: 1.',
+    'Viimase nelja nädala käigud (2) tegi eri töötajaid: 1.'
+  ]);
+  /* Arvude hulgas ei ole kirjete teksti; ilma märketa teates arve ei ole. */
+  assert.equal(sent.decisionNotices[0].sentText.includes('voodist'), false);
+  assert.equal(sent.decisionNotices[0].reason, 'REVIEW');
+  const plain = await createDecisionNotice(lead, linda.id, { reason: 'NEED_GROWN', text: 'Ilma arvudeta.', channel: 'PHONE' }, deps());
+  assert.equal(plain.decisionNotices.find((item) => item.id === plain.noticeId).sentText.includes('Arvud kuude kaupa'), false);
+});

@@ -55,7 +55,15 @@ export default function HomeCareDecisionNotices({ organizationId, clientId, init
     event.preventDefault();
     const result = await call(base, {
       method: "POST",
-      body: { reason: form.reason, text: form.text, recipient: form.recipient, channel: form.channel, sentOn: form.sentOn, entryIds: form.entryIds || [] },
+      body: {
+        reason: form.reason,
+        text: form.text,
+        recipient: form.recipient,
+        channel: form.channel,
+        sentOn: form.sentOn,
+        entryIds: form.entryIds || [],
+        withFigures: Boolean(form.withFigures)
+      },
       fallbackKey: "home_care.errors.save_failed"
     });
     if (!result.ok) return;
@@ -268,7 +276,14 @@ export default function HomeCareDecisionNotices({ organizationId, clientId, init
             <legend className="hc-label">{t("home_care.notice.reason_label")}</legend>
             <div className="hc-chips" role="group" aria-label={t("home_care.notice.reason_label")}>
               {CARE_NOTICE_REASONS.map((value) => (
-                <button key={value} type="button" className="hc-chip" aria-pressed={form.reason === value} onClick={() => setField("reason", value)}>
+                <button
+                  key={value}
+                  type="button"
+                  className="hc-chip"
+                  aria-pressed={form.reason === value}
+                  /* Ülevaate juurde käivad arvud: märge pannakse ette, hooldusjuht saab selle maha võtta. */
+                  onClick={() => setForm((previous) => ({ ...previous, reason: value, withFigures: value === "REVIEW" ? true : previous.withFigures }))}
+                >
                   {t(`home_care.notice.reasons.${value}`)}
                 </button>
               ))}
@@ -287,6 +302,12 @@ export default function HomeCareDecisionNotices({ organizationId, clientId, init
             required
           />
           <p className="hc-hint">{t("home_care.notice.text_hint")}</p>
+
+          <label className="hc-check">
+            <input type="checkbox" checked={Boolean(form.withFigures)} onChange={(event) => setField("withFigures", event.target.checked)} />
+            <span>{t("home_care.notice.figures_label")}</span>
+          </label>
+          <p className="hc-hint">{t("home_care.notice.figures_hint")}</p>
 
           <fieldset className="hc-fieldset">
             <legend className="hc-label">{t("home_care.notice.entries_label", { limit: HOME_CARE_LIMITS.NOTICE_ENTRIES_MAX })}</legend>
@@ -360,7 +381,7 @@ export default function HomeCareDecisionNotices({ organizationId, clientId, init
           <button
             className="hc-btn hc-btn--quiet"
             type="button"
-            onClick={() => open("new", { reason: "", text: "", recipient: "", channel: "", sentOn: today, entryIds: [] })}
+            onClick={() => open("new", { reason: "", text: "", recipient: "", channel: "", sentOn: today, entryIds: [], withFigures: false })}
             disabled={busy}
           >
             {t("home_care.notice.add")}
