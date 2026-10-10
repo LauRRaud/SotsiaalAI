@@ -5784,6 +5784,11 @@ model OrganizationInvite {
   primaryUnitId      String?
   capabilityTemplate String?
   jobTitle           String?
+  /// Kutsuja kirjutatud nimi kutsutavale. Täidab liitumisel inimese profiili AINULT siis,
+  /// kui tal endal nime ei ole. Mõlemad osad koos või mitte kumbki (CHECK); kutse
+  /// sulgemisel (vastu võetud, keeldutud, tühistatud) nimi kutselt kustutatakse.
+  firstName          String?
+  lastName           String?
   invitedByUserId    String?
   expiresAt          DateTime
   acceptedAt         DateTime?

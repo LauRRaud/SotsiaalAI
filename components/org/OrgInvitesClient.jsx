@@ -14,6 +14,7 @@ import {
   OWNER_ONLY_INVITE_TEMPLATES,
   isTemplateOffered
 } from "@/lib/org/constants";
+import { PERSON_NAME_MAX } from "@/lib/org/personName";
 
 import OrgHeader from "./OrgHeader";
 import { useOrgApi } from "./useOrgApi";
@@ -34,6 +35,9 @@ export default function OrgInvitesClient({ context, initialPage, units }) {
   /* Ametinimetus (nt „hooldaja") läheb liikmesusele kaasa: liikmete loend ja töölauad
      näitavad seda nime kõrval ja nimeta liikme puhul nime asemel. */
   const [jobTitle, setJobTitle] = useState("");
+  /* Nimi kutsega: täidab liitumisel inimese profiili ainult siis, kui tal endal nime ei ole. */
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [seatRole, setSeatRole] = useState("SOCIAL_WORKER");
   const [templateKey, setTemplateKey] = useState("MEMBER");
   const [primaryUnitId, setPrimaryUnitId] = useState("");
@@ -42,6 +46,8 @@ export default function OrgInvitesClient({ context, initialPage, units }) {
   const organizationId = context.organization.id;
   const writable = context?.writable !== false;
   const templateNeedsUnit = CAPABILITY_TEMPLATES[templateKey]?.scope === "UNIT";
+  /* Nimi läheb kaasa tervikuna: ainult ees- või ainult perekonnanimega kutset server vastu ei võta. */
+  const nameHalf = Boolean(firstName.trim()) !== Boolean(lastName.trim());
   /* Vorm pakub ainult malle, mida see kutsuja tohib anda ja mille moodul on
      aktiivne. Server kontrollib omaniku nõuet ise uuesti. */
   const isOwner = (context.capabilities || []).some((grant) => grant.capability === "ORG_OWNER");
@@ -80,7 +86,9 @@ export default function OrgInvitesClient({ context, initialPage, units }) {
           seatRole,
           capabilityTemplate: templateKey,
           primaryUnitId: primaryUnitId || null,
-          jobTitle: jobTitle.trim() || null
+          jobTitle: jobTitle.trim() || null,
+          firstName: firstName.trim() || null,
+          lastName: lastName.trim() || null
         },
         fallbackKey: "org.errors.invite_create_failed"
       });
@@ -88,10 +96,12 @@ export default function OrgInvitesClient({ context, initialPage, units }) {
         setIssuedLink(`${window.location.origin}/org/liitu?token=${encodeURIComponent(payload.inviteToken)}`);
         setEmail("");
         setJobTitle("");
+        setFirstName("");
+        setLastName("");
         await reload();
       }
     },
-    [call, email, jobTitle, organizationId, primaryUnitId, reload, seatRole, templateKey]
+    [call, email, firstName, jobTitle, lastName, organizationId, primaryUnitId, reload, seatRole, templateKey]
   );
 
   const revoke = useCallback(
@@ -126,6 +136,28 @@ export default function OrgInvitesClient({ context, initialPage, units }) {
                 type="email"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
+                style={{ width: "100%" }}
+              />
+            </label>
+            <label>
+              <span className="ow-meta__term">{t("org.invites.firstName")}</span>
+              <Input
+                type="text"
+                value={firstName}
+                maxLength={PERSON_NAME_MAX}
+                autoComplete="off"
+                onChange={(event) => setFirstName(event.target.value)}
+                style={{ width: "100%" }}
+              />
+            </label>
+            <label>
+              <span className="ow-meta__term">{t("org.invites.lastName")}</span>
+              <Input
+                type="text"
+                value={lastName}
+                maxLength={PERSON_NAME_MAX}
+                autoComplete="off"
+                onChange={(event) => setLastName(event.target.value)}
                 style={{ width: "100%" }}
               />
             </label>
@@ -178,12 +210,19 @@ export default function OrgInvitesClient({ context, initialPage, units }) {
               />
             </label>
           </div>
+          <p className="ow-subtitle">{t("org.invites.nameHint")}</p>
+          {/* Saatmise nupp on sel juhul kinni; ilma selle reata ei saa kutsuja aru, miks. */}
+          {nameHalf ? (
+            <p className="ow-notice ow-notice--warning" role="status">
+              {t("org.errors.invite_name_incomplete")}
+            </p>
+          ) : null}
           <div className="ow-actions">
             {/* Üksuse VÄRAV. Varem hoidis seda kinni natiivne `required`
                 <select>'il; oma valikmenüü juures tuleb värav siia, muidu
                 saaks üksusepõhise malli kutse välja saata ilma üksuseta.
                 Põhjust ütleb välja all seisev vihje (.dd-required). */}
-            <Button type="submit" disabled={busy || (templateNeedsUnit && !primaryUnitId)}>
+            <Button type="submit" disabled={busy || (templateNeedsUnit && !primaryUnitId) || nameHalf}>
               {t("org.invites.create")}
             </Button>
           </div>
@@ -219,7 +258,14 @@ export default function OrgInvitesClient({ context, initialPage, units }) {
             <tbody>
               {invites.map((invite) => (
                 <tr key={invite.id}>
-                  <td data-label={t("org.invites.email")}>{invite.email}</td>
+                  <td data-label={t("org.invites.email")}>
+                    {invite.email}
+                    {invite.firstName && invite.lastName ? (
+                      <span className="ow-subtitle" style={{ display: "block" }}>
+                        {invite.firstName} {invite.lastName}
+                      </span>
+                    ) : null}
+                  </td>
                   <td data-label={t("org.invites.seatRole")}>{t(`org.seatRole.${invite.seatRole}`)}</td>
                   <td data-label={t("org.invites.template")}>
                     {CAPABILITY_TEMPLATES[invite.capabilityTemplate]

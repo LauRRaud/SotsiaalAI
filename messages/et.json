@@ -11839,7 +11839,11 @@
       "decline": "Keeldun",
       "accepted": "Oled nüüd liige.",
       "declined": "Kutse on tagasi lükatud.",
-      "jobTitle": "Ametinimetus (võid jätta tühjaks)"
+      "jobTitle": "Ametinimetus (võid jätta tühjaks)",
+      "firstName": "Eesnimi (võid jätta tühjaks)",
+      "lastName": "Perekonnanimi (võid jätta tühjaks)",
+      "nameHint": "Nimi läheb kutsega kaasa. Kui inimesel ei ole platvormil veel nime, saab ta selle liitumisel; kui tal on nimi juba kirjas, jääb tema enda oma. Hiljem muudab ta nime ise.",
+      "previewName": "Kutsuja pani sulle nimeks „{name}”. Kui sul platvormil veel nime ei ole, hakkab see kehtima liitumisel; oma nime saad hiljem ise muuta. Kui sul on nimi juba kirjas, jääb sinu enda oma."
     },
     "audit": {
       "heading": "Organisatsiooni audit",
@@ -11988,6 +11992,8 @@
       "invalid_seat_role": "Tundmatu hinnastatav roll.",
       "already_member": "See inimene on juba liige.",
       "invite_already_pending": "Sellele aadressile on juba ootel kutse.",
+      "invite_name_incomplete": "Kirjuta nii ees- kui ka perekonnanimi või jäta mõlemad tühjaks.",
+      "invite_name_invalid": "Nimi ei sobi: kasuta tähti, tühikut, sidekriipsu ja ülakoma, kuni {limit} märki.",
       "invite_not_found": "Kutset ei leitud.",
       "invite_not_pending": "Kutse ei ole ootel.",
       "invite_expired": "Kutse on aegunud. Palu uus kutse.",
