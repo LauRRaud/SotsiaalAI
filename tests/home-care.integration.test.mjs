@@ -5260,6 +5260,11 @@ test('kuu lahtised asjad: tegemata käigud ainult teenusel oldud päevadel, laht
   /* Üksuse hooldusjuht näeb ainult oma üksuse kliente; tuleviku kuu on tühi; hooldaja ei näe. */
   assert.deepEqual((await getMonthOpenItems(unitLead, { month: '2026-09' }, deps())).missing.map((item) => item.client.displayName), ['Peeter Põhi']);
   assert.deepEqual(await getMonthOpenItems(lead, { month: '2026-11' }, deps()), { month: '2026-11', missing: [], missingCount: 0, openIncidents: 0, openSignals: 0, medicationUnmarked: 0, clear: true });
+  /* KUU KOKKUVÕTE (K5-o): Linda oli sel kuul kaks päeva ära (04.10 ja 05.10; 06.10 oli ta tagasi); Peetril seda võtit ei ole. */
+  const summary = await getMonthSummary(lead, { month: '2026-10' }, deps());
+  const rowOf = (name) => summary.clients.find((row) => row.client.displayName === name);
+  assert.equal(rowOf('Linda Tamm').awayDays, 2);
+  assert.equal('awayDays' in rowOf('Peeter Põhi'), false);
   await expectError(getMonthOpenItems(anu, { month: '2026-10' }, deps()), 403, 'org.errors.missing_capability');
 
   /* LAHTISED ASJAD: erijuhtum (lahtine), märkamine (vastuseta), ravimitoiming ilma märketa. */
