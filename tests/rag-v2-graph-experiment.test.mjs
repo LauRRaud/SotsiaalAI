@@ -196,6 +196,18 @@ test('ADR-135: a provision the question names is fetched by its place, under the
     assert.deepEqual([picture(packet).find(row => row[0] === 'shs'), packet.measurements.question_references], [held, { candidates: 1, additions: 1, acts: ['shs:25'] }], text);
     assert.deepEqual(packet.evidence.find(entry => entry.document_id === 'shs').selection.reason, { type: 'question_reference', section: '25', named_act: 'shs' }, text);
   }
+  // An ordinary person does not write the mark (the owner, 10.10.2026): the number directly after the act's name, the
+  // word shortened, an ordinal, the abbreviation in small letters.
+  for (const text of ['Mida ütleb SHS 25 lg 2?', 'mida ütleb shs 25 lõige 2', 'Mida ütleb sotsiaalhoolekande seaduse 25 lõige 2?', 'SHS par 25 lg 2', 'SHS par. 25 lõige 2',
+    'sotsiaalhoolekande seaduse 25. paragrahvi 2. lõige', 'Mis on SHS 25 lõikes 2 kirjas?', 'mida ütleb shs § 25 lg 2']) {
+    const packet = await asked(text);
+    assert.deepEqual([picture(packet).find(row => row[0] === 'shs'), packet.measurements.question_references], [held, { candidates: 1, additions: 1, acts: ['shs:25'] }], text);
+  }
+  // A number after the act's name that is no section: a year, a count, a sum, a chapter.
+  for (const text of ['Mida ütleb SHS 2026. aasta muudatus?', 'Sotsiaalhoolekande seaduse 25 aastat', 'SHS 25 eurot kuus', 'Loen sotsiaalhoolekande seaduse 2 peatükki', 'Mul on 3 last, mida SHS ütleb?']) {
+    const packet = await asked(text);
+    assert.deepEqual([picture(packet).some(row => row[1] === 'question_reference'), packet.measurements.question_references?.additions ?? 0], [false, 0], text);
+  }
   // The section alone: its first passage. Two provisions: both, in the two places named acts have.
   const section = await asked('Mida ütleb SHS § 25?');
   assert.deepEqual([picture(section).find(row => row[0] === 'shs'), section.measurements.question_references.additions], [start, 1]);
