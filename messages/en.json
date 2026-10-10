@@ -9164,7 +9164,6 @@
       "confirm_delete": "Yes, delete",
       "discard_confirm": "Yes, discard",
       "discard_note": "The changes will be lost.",
-      "archived_part": "A Journey put aside cannot be changed.",
       "parts": {
         "situation": {
           "title": "Your situation",

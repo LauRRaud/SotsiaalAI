@@ -44,6 +44,7 @@ import {
   deviceStatusKey,
   formDirty,
   hasContinuity,
+  rebaseForm,
   journeyWish,
   linkedState,
   listItems,
@@ -165,6 +166,17 @@ export function SituationPart({ t, journey, archived, lifeDomains, busy, error, 
   const dirty = editing && !archived && formDirty(form, base);
   useReportDirty(desk, dirty);
   useCloseWhenArchived(archived, () => setEditing(false));
+  /* Teine osa salvestas Teekonna ajal, mil see vorm oli lahti: puutumata väljad
+     võtavad uue väärtuse (vt `rebaseForm`). */
+  const openedFrom = useRef(base);
+  const stamp = journey?.updatedAt || "";
+  useEffect(() => {
+    const fresh = situationForm(journey);
+    setForm((current) => rebaseForm(current, openedFrom.current, fresh));
+    openedFrom.current = fresh;
+    /* Ainult Teekonna muutumisel: `journey` ise on igal joonistusel uus objekt. */
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stamp]);
   const view = editing && !archived ? `edit:${tab}` : `read:${readTab}`;
   useStageRemeasure(`${view}:${problem}:${error}`);
   const rootRef = useSwapFocus(editing && !archived ? "edit" : "read");
@@ -268,7 +280,9 @@ export function SituationPart({ t, journey, archived, lifeDomains, busy, error, 
               glow={desk?.glow !== false}
               data-edit-situation="1"
               onClick={() => {
-                setForm(situationForm(journey));
+                const fresh = situationForm(journey);
+                openedFrom.current = fresh;
+                setForm(fresh);
                 setTab("text");
                 setEditing(true);
               }}
@@ -560,7 +574,10 @@ export function HelpPart({ t, kinds, initial, map, mediation, devices, health, r
     onRequestView?.(requestOpen);
   }, [onRequestView, requestOpen]);
   useStageRemeasure(`${view}:${requestTab}:${health.draftOpen}:${mediation.loading}:${requestShare.previewText?.length || 0}`);
-  const rootRef = useSwapFocus(view);
+  /* Lahtri vahetus fookust ei liiguta (lahtririda on raadiorühm ja nooleklahv
+     peab selles edasi liikuma): fookus liigub, kui abisoovi vaade avaneb või
+     sulgub ja kui küsimuste mustand ilmub või kaob. */
+  const rootRef = useSwapFocus(requestOpen ? "request" : `kinds:${shown === "health" && health.draftOpen}`);
   const glow = desk?.glow !== false;
   const title = t("journey.desk.parts.help.title");
   const cells = (
@@ -666,9 +683,14 @@ export function HelpPart({ t, kinds, initial, map, mediation, devices, health, r
             <LinkButton href={links.documents}>{t("journey.serviceContinuity.addDocument")}</LinkButton>
             <LinkButton href={links.preInquiry}>{t("journey.healthContact.createPreInquiry")}</LinkButton>
             {health.draftOpen ? (
-              <Button {...SMALL} data-copy-health="1" onClick={health.onCopy}>
-                {health.copied ? t("journey.desk.help.copied") : t("journey.desk.help.copy")}
-              </Button>
+              <>
+                <Button {...SMALL} onClick={health.onClose}>
+                  {t("journey.desk.back")}
+                </Button>
+                <Button {...SMALL} data-copy-health="1" onClick={health.onCopy}>
+                  {health.copied ? t("journey.desk.help.copied") : t("journey.desk.help.copy")}
+                </Button>
+              </>
             ) : (
               <Button type="button" size="sm" variant="primary" glow={glow} data-health-questions="1" onClick={health.onCreate}>
                 {t("journey.healthContact.createQuestions")}
@@ -680,9 +702,13 @@ export function HelpPart({ t, kinds, initial, map, mediation, devices, health, r
         <div className={shared.stack}>
           {cells}
           {health.draftOpen ? (
-            <div data-autofocus="">
-              <TextAreaField label={t("journey.healthContact.questionsDraftTitle")} value={health.draft} onChange={health.onChange} rows={6} />
-            </div>
+            <>
+              <div data-autofocus="">
+                <TextAreaField label={t("journey.healthContact.questionsDraftTitle")} value={health.draft} onChange={health.onChange} rows={3} />
+              </div>
+              {/* Hädaabi lause jääb näha ka siis, kui mustand on ees. */}
+              <p className={shared.small}>{t("journey.healthContact.notMedicalAdvice")}</p>
+            </>
           ) : (
             <>
               <p className={shared.quiet}>{t("journey.healthContact.description")}</p>

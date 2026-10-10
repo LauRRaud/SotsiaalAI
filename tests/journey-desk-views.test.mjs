@@ -39,6 +39,7 @@ import {
   preInquiryShareOptions,
   pressTooSoon,
   relatedCounts,
+  rebaseForm,
   reviewedShareHref,
   roadFocus,
   sentSummaryKey,
@@ -144,8 +145,13 @@ test('sammud: tegemata ja lõpetatud eraldi; pakutud read ilma juba võetute ja 
   });
   assert.deepEqual(stepGroups(j).open.map((item) => item.id), ['a']);
   assert.deepEqual(stepGroups(j).closed.map((item) => item.id), ['b', 'c']);
-  /* Sama pealkirjaga samm on juba olemas (suurtähti ei loeta), kordus ja liiga pikk rida jäävad välja. */
-  assert.deepEqual(stepSuggestions(j), ['Koosta eelpöördumine']);
+  /* Sama pealkirjaga samm on juba olemas (suurtähti ei loeta) ja kordus jäävad välja.
+     Liiga pikk rida jääb loetavaks, aga sammuks seda võtta ei saa. */
+  assert.deepEqual(stepSuggestions(j), [
+    { title: 'Koosta eelpöördumine', takeable: true },
+    { title: 'x'.repeat(201), takeable: false }
+  ]);
+  assert.equal(stepSuggestions(journey({ suggestedActions: ['x'.repeat(200)] }))[0].takeable, true);
   assert.deepEqual(stepSuggestions(journey({ suggestedActions: null })), []);
 });
 
@@ -230,6 +236,26 @@ test('olukorra vorm: read on tekstina, muudetud vorm on teada ja tühi pealkiri 
   assert.equal(situationForm(null).primaryPath, 'UNKNOWN');
 });
 
+test('lahti olev vorm ja teise osa salvestus: puutumata väli võtab uue väärtuse, puututud jääb', () => {
+  const before = journey();
+  const openedFrom = situationForm(before);
+  /* Inimene muutis pealkirja; teine osa (jätkumise kontroll) lisas vahepeal puuduoleva info rea ja sammu. */
+  const typed = { ...openedFrom, title: 'Minu uus pealkiri' };
+  const after = journey({ missingInfo: [...before.missingInfo, 'teadaolev lõppkuupäev'], suggestedActions: [...before.suggestedActions, { title: 'Täpsusta KOV-iga' }], riskSignals: ['Teenus võib katkeda.'] });
+  const fresh = situationForm(after);
+  const rebased = rebaseForm(typed, openedFrom, fresh);
+  assert.equal(rebased.title, 'Minu uus pealkiri');
+  assert.equal(rebased.missingInfo, fresh.missingInfo);
+  assert.equal(rebased.suggestedActions, fresh.suggestedActions);
+  assert.equal(rebased.riskSignals, 'Teenus võib katkeda.');
+  /* Midagi puutumata: vorm on jälle sama mis Teekond ega ole muudetud. */
+  assert.equal(formDirty(rebaseForm(openedFrom, openedFrom, fresh), fresh), false);
+  /* Inimese enda muudetud loend ei lähe kaotsi, kui Teekond vahepeal muutub. */
+  const ownList = { ...openedFrom, missingInfo: 'Minu enda rida' };
+  assert.equal(rebaseForm(ownList, openedFrom, fresh).missingInfo, 'Minu enda rida');
+  assert.equal(rebaseForm(typed, null, fresh), typed);
+});
+
 test('teenuse jätkumine: salvestatud vastused tulevad vormi tagasi samade valikutena', () => {
   assert.equal(hasContinuity(journey()), false);
   const saved = journey({ context: { serviceContinuity: { serviceName: 'Koduteenus', hasExistingService: true, knownEndDate: false, kovAlreadyInvolved: null, endDate: '', userGoal: 'Jätkuks' } } });
@@ -306,7 +332,8 @@ test('plaadid: kõrvale pandud Teekond ütleb, miks, ja käes olev jätkamise p�
   assert.match(tileOf(tiles, 'closure').summaryText, /^Teekond on pausil alates \d{2}\.10\.2026\. Plaanisid jätkata 09\.10\.2026\.$/);
   assert.equal(tileOf(tiles, 'closure').attention, true);
   assert.equal(tileOf(tiles, 'closure').state, 'done');
-  assert.equal(tileOf(tiles, 'share').summaryText, 'Kõrvale pandud Teekonnal muuta ei saa.');
+  /* Jagada saab ka kõrvale pandud Teekonnast: plaat ei väida vastupidist. */
+  assert.equal(tileOf(tiles, 'share').summaryText, 'Vali, mida oma Teekonnast kaasa võtad.');
   for (const outcome of JOURNEY_CLOSURE_OUTCOMES) {
     const finished = journey({ status: 'ARCHIVED', closure: { current: { kind: 'FINISHED', closedAt: '2026-10-05T08:00:00Z', outcome }, history: [] } });
     const text = tileOf(deskTiles(finished, { t }), 'closure').summaryText;

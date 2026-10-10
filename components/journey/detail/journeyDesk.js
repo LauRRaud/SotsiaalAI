@@ -141,17 +141,23 @@ export function stepGroups(journey) {
   };
 }
 
-/** Platvormi pakutud read, mida ei ole veel sammuks võetud ja mis sammu pealkirjaks mahuvad. */
+/**
+ * Platvormi pakutud read, mida ei ole veel sammuks võetud. Rida, mis on sammu
+ * pealkirjaks liiga pikk, jääb loetavaks, aga sammuks seda võtta ei saa
+ * (`takeable: false`): muidu ei oleks see enam kusagil näha.
+ */
 export function stepSuggestions(journey, titleLimit = 200) {
   const steps = Array.isArray(journey?.steps) ? journey.steps : [];
   const taken = new Set(steps.map((step) => text(step.title).trim().toLocaleLowerCase("et")));
   const seen = new Set();
-  return listItems(journey?.suggestedActions).filter((title) => {
-    const key = title.toLocaleLowerCase("et");
-    if (title.length > titleLimit || taken.has(key) || seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
+  return listItems(journey?.suggestedActions)
+    .filter((title) => {
+      const key = title.toLocaleLowerCase("et");
+      if (taken.has(key) || seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .map((title) => ({ title, takeable: title.length <= titleLimit }));
 }
 
 /** Sammu rida pealkirja all: kes teeb, mis ajaks ja kas tähtaeg on möödas. */
@@ -274,6 +280,21 @@ export function situationForm(journey) {
   };
 }
 
+/**
+ * Teekond muutus ajal, mil vorm oli lahti (teine osa salvestas: jätkumise
+ * kontroll lisab puuduoleva info ridu ja pakutud samme). Väli, mida inimene ei
+ * ole puutunud, võtab uue väärtuse; puututud väli jääb, nagu ta selle kirjutas.
+ * Muidu kirjutaks vana koopia teise osa salvestuse üle.
+ */
+export function rebaseForm(form, openedFrom, fresh) {
+  if (!form || !openedFrom || !fresh) return form;
+  const next = { ...form };
+  for (const key of Object.keys(fresh)) {
+    if (String(form[key] ?? "") === String(openedFrom[key] ?? "")) next[key] = fresh[key];
+  }
+  return next;
+}
+
 /** Kas vorm erineb Teekonnast endast (mitte avamisel võetud koopiast). */
 export function formDirty(form, base) {
   if (!form || !base) return false;
@@ -383,7 +404,8 @@ export function deskTiles(journey, { t, today = "", helpKinds = [], levelWord = 
       attention: Number(facts.answered) > 0,
       summary: t(sentSummaryKey(journey))
     },
-    share: { state: "empty", summary: archived ? t("journey.desk.archived_part") : t("journey.desk.share.tile") },
+    /* Jagada saab ka kõrvale pandud Teekonnast: plaat ei väida vastupidist. */
+    share: { state: "empty", summary: t("journey.desk.share.tile") },
     help: {
       state: helpKinds.length > 1 ? "done" : "empty",
       summary: helpKinds.map((kind) => t(`journey.desk.help.kinds.${kind}`)).join(", ")

@@ -161,13 +161,15 @@ export default function JourneySteps({ journey, onStepsChange, t, desk = {} }) {
     setPanel((current) => (current && current.mode !== "open" ? { id: current.id, mode: "open" } : current));
   }, [archived]);
 
-  const viewKey = `${view}:${panel?.id || ""}:${shownTab}`;
-  useStageRemeasure(`${viewKey}:${steps.length}:${error}`);
+  /* Saki vahetus fookust ei liiguta: sakirida on raadiorühm ja nooleklahv peab
+     selles edasi liikuma. Fookus liigub ainult siis, kui vaade ise vahetub. */
+  const viewKey = `${view}:${panel?.id || ""}`;
+  useStageRemeasure(`${viewKey}:${shownTab}:${steps.length}:${error}`);
   const rootRef = useSwapFocus(viewKey);
   useEffect(() => {
     shownAt.current = Date.now();
     setError("");
-  }, [viewKey]);
+  }, [viewKey, shownTab]);
 
   const toList = () => {
     setPanel(null);
@@ -358,12 +360,12 @@ export default function JourneySteps({ journey, onStepsChange, t, desk = {} }) {
               <p className={shared.small}>{t("journey.own_steps.suggested_hint")}</p>
               <ul className={shared.rows}>
                 {suggestions.map((suggestion) => (
-                  <li key={suggestion} className={styles.item}>
+                  <li key={suggestion.title} className={styles.item}>
                     <span className={styles.plainRow}>
-                      <span className={shared.rowTitle}>{suggestion}</span>
+                      <span className={shared.rowTitle}>{suggestion.title}</span>
                     </span>
-                    {archived ? null : (
-                      <Button {...SMALL} className={styles.aside} onKeyDown={ignoreKeyRepeat} onClick={() => add({ title: suggestion })}>
+                    {archived || !suggestion.takeable ? null : (
+                      <Button {...SMALL} className={styles.aside} onKeyDown={ignoreKeyRepeat} onClick={() => add({ title: suggestion.title })}>
                         {t("journey.own_steps.take", "Võta sammuks")}
                       </Button>
                     )}

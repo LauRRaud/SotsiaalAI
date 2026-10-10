@@ -47,7 +47,7 @@ import { buildHelpMediationHandoff } from "@/lib/journey/helpMediationHandoff";
 import { buildHealthContactQuestionsDraft, hasHealthContactSignal } from "@/lib/journey/healthContact";
 import { todayInEstonia } from "@/lib/journey/stepRules";
 import { reconcileSuggestedActionTitles } from "@/lib/journey/suggestedActions";
-import { setPanelLeaveGuard, twoPressLeaveGuard } from "@/lib/panelLeaveGuard";
+import { panelLeaveAllowed, setPanelLeaveGuard, twoPressLeaveGuard } from "@/lib/panelLeaveGuard";
 import { pushWithTransition } from "@/lib/routeTransition";
 import { loginHref } from "@/lib/safeNextPath";
 
@@ -732,6 +732,9 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
   const openInApp = useCallback((event, href) => {
     if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
+    /* Lehesisest liikumist brauseri lahkumisküsimus ei näe: salvestamata teksti
+       korral küsib sama värav, mis kiirmenüü tagasinoolel. */
+    if (!panelLeaveAllowed("navigate")) return;
     pushWithTransition(router, href);
   }, [router]);
 
@@ -927,7 +930,9 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
                       setHealthQuestionsDraft(value);
                       setHealthCopied(false);
                     },
-                    onCopy: handleCopyHealthQuestions
+                    onCopy: handleCopyHealthQuestions,
+                    /* Mustand jääb alles; uuesti koostamine teeb selle Teekonna praegusest seisust uue. */
+                    onClose: () => setHealthDraftOpen(false)
                   }}
                   requestShare={{
                     options: helpRequestOptions.map((option) => ({ value: option.value, label: t(option.labelKey) })),
@@ -960,7 +965,7 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
             case "road":
               return <RoadPart t={t} journey={journey} stateWord={(state) => t(ROAD_STATE_KEYS[state] || ROAD_STATE_KEYS.todo)} />;
             case "closure":
-              return <JourneyClosure journey={journey} busy={Boolean(busy)} onClosed={handleClosed} onReopen={handleReopen} t={t} desk={desk} />;
+              return <JourneyClosure journey={journey} busy={Boolean(busy)} reopenError={faultOf("closure")} onClosed={handleClosed} onReopen={handleReopen} t={t} desk={desk} />;
             default:
               return <DataPart t={t} locale={locale} journey={journey} busy={busy} error={faultOf("data")} onExport={handleExport} onDelete={handleDelete} />;
           }

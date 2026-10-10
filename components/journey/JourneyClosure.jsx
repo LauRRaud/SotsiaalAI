@@ -45,9 +45,9 @@ function plainDayLabel(day) {
  * lõppes; lisa) ja varasemad pausid. Kõrvale pandud Teekonnal on siin selle seis
  * ja tee tagasi.
  *
- * `desk`: { glow, setDirty(dirty) } lavalt ja lehelt.
+ * `desk`: { glow, setDirty(dirty) } lavalt ja lehelt. `reopenError`: lehe päringu viga.
  */
-export default function JourneyClosure({ journey, busy: pageBusy = false, onClosed, onReopen, t, desk = {} }) {
+export default function JourneyClosure({ journey, busy: pageBusy = false, reopenError = "", onClosed, onReopen, t, desk = {} }) {
   const journeyId = journey?.id || "";
   const archived = journey?.status === "ARCHIVED";
   const current = journey?.closure?.current || null;
@@ -126,7 +126,7 @@ export default function JourneyClosure({ journey, busy: pageBusy = false, onClos
     return () => setDirty?.(false);
   }, [dirty, setDirty]);
 
-  useStageRemeasure(`${view}:${finishPart}:${outcome}:${error}`);
+  useStageRemeasure(`${view}:${finishPart}:${outcome}:${error}:${reopenError}`);
   const rootRef = useSwapFocus(view);
   useEffect(() => {
     shownAt.current = Date.now();
@@ -173,7 +173,8 @@ export default function JourneyClosure({ journey, busy: pageBusy = false, onClos
     body = (
       <StepPanel
         title={title}
-        note={t("journey.closure.closed_hint")}
+        /* Uuesti avamise teeb leht: selle viga seisab siin, nupu juures. */
+        note={footNote(reopenError ? { text: reopenError, tone: "risk" } : null, t("journey.closure.closed_hint"))}
         actions={
           <>
             {historyButton}
