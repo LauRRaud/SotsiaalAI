@@ -1,45 +1,76 @@
 "use client";
 
+/**
+ * Teekonna avaleht: inimese Teekonnad ja uue alustamine.
+ *
+ * KUJU (10.10). Leht oli üks pikk veerg vanal ühisel kihil (1839 px sisu 496 px
+ * paneelis). Nüüd on korraga ees üks asi ja vaated vahetuvad kohapeal:
+ *  - loend: Teekonnad madalate ridadena, käimasolevad ees;
+ *  - alustamine: viis väikest vaadet sammulaval (`components/stage/StepFlight`),
+ *    sammud all kiirmenüüs (lehel /teekond, kus kiirmenüüd ei ole, omaette
+ *    pillina ekraani all).
+ * Loend ja alustamine ei ole järjestikused sammud: need vahetuvad lehe sees,
+ * ilma lavata.
+ *
+ * SEE FAIL hoiab olekut ja teeb päringud. Vaated on failis
+ * ./dashboard/DashboardViews.jsx, lehe reeglid (rühmad, read, mustandi värskus,
+ * taastamine) failis ./dashboard/journeyBoard.js.
+ *
+ * ÜLEVAADE KOOSTATAKSE ISE. Ülevaate teeb server kirjelduse põhjal reeglitega
+ * (mudelit ei kutsuta). See koostatakse, kui inimene liigub kirjelduselt edasi
+ * (nupp, kiirmenüü või kerimine) ja kirjeldus on pärast eelmist koostamist
+ * muutunud. Sammude loend on kindel: kuni ülevaadet ei ole, ütleb vaade seda ise.
+ *
+ * KIRJUTATU EI KAO. Pooleli töö hoitakse selle vahekaardi mälus omaniku kaupa
+ * (SOL-JOUR-02: rida kannab kasutaja ID-d, konto vahetus tühjendab ekraani).
+ * Lahkumise teed, mida leht ise ei joonista (kiirmenüü tagasinool, Esc, akna
+ * sulgemine), peab kinni värav `lib/panelLeaveGuard.js`; töölaua sees hoiab leht
+ * Esc-i ise kinni, sest töölaua oma kuulaja väravat ei küsi.
+ */
+
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
 import { useI18n } from "@/components/i18n/I18nProvider";
-import Button from "@/components/ui/Button";
+import StepFlight from "@/components/stage/StepFlight";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
-import { SubpageHeader } from "@/components/ui/SubpageHeader";
-import Form from "@/components/ui/Form";
-import Input from "@/components/ui/Input";
+import { openOwnerScopedStore, purgeUnscopedRows } from "@/lib/device/ownerScopedStorage";
 import { JOURNEY_TEXT_LIMITS } from "@/lib/journey/constants";
 import { journeyErrorText } from "@/lib/journey/errorText";
 import { localizePath } from "@/lib/localizePath";
-import { openOwnerScopedStore, purgeUnscopedRows } from "@/lib/device/ownerScopedStorage";
+import { setPanelLeaveGuard, twoPressLeaveGuard } from "@/lib/panelLeaveGuard";
 import { pushWithTransition } from "@/lib/routeTransition";
+import { loginHref } from "@/lib/safeNextPath";
 
-const DEFAULT_DRAFT = Object.freeze({
-  title: "",
-  summary: "",
-  primaryPath: "UNKNOWN",
-  domains: [],
-  missingInfo: [],
-  riskSignals: [],
-  suggestedActions: [],
-  context: {}
-});
+import { AheadView, BoardView, DescribeView, OverviewView, RoleView, SaveView, SignedOutView, WaitingView, WishView } from "./dashboard/DashboardViews";
+import {
+  CONFIRM_MS,
+  EMPTY_DRAFT,
+  START_STEPS,
+  boardGroups,
+  boardMore,
+  boardShown,
+  createdJourneyPath,
+  draftNoticed,
+  draftReady,
+  draftStale,
+  draftWish,
+  journeyRow,
+  mergeBuiltDraft,
+  pressTooSoon,
+  restoreStart,
+  roleWorkspace,
+  saveProblem,
+  startDirty,
+  startStepStates,
+  startStorageRow,
+  startUrlStep,
+  withWish
+} from "./dashboard/journeyBoard";
+import shared from "./journey.module.css";
 
-const DEFAULT_LIFE_DOMAINS = Object.freeze([
-  "suhtlemine",
-  "vaimne tervis",
-  "füüsiline tervis",
-  "elukeskkond",
-  "hõivatus",
-  "vaba aeg ja huvitegevus",
-  "igapäevaelu toimingud",
-  "võrgustik ja kõrvalabi",
-  "kriis ja turvalisus"
-]);
-
-const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAAL.PRO_CHAT_WORKSPACE_RESTORE__";
 /**
  * TEEKONNA MUSTANDI RIDA (SOL-JOUR-02, P0).
  *
@@ -68,384 +99,7 @@ function setJourneyStepInUrl(step = "") {
   window.history.replaceState(window.history.state, "", `${url.pathname}${url.search}${url.hash}`);
 }
 
-function normalizeListItems(value) {
-  if (!Array.isArray(value)) return [];
-  return value
-    .map((item) => (typeof item === "string" ? item : item?.title || item?.description || ""))
-    .map((item) => String(item || "").trim())
-    .filter(Boolean);
-}
-
-function readDraftLifeDomains(draft) {
-  const context = draft?.context && typeof draft.context === "object" && !Array.isArray(draft.context)
-    ? draft.context
-    : {};
-  const lifeDomains = normalizeListItems(context.lifeDomains);
-  return lifeDomains.length ? lifeDomains : DEFAULT_LIFE_DOMAINS.slice(0, 4);
-}
-
-function formatDate(value, locale = "et") {
-  if (!value) return "";
-  try {
-    return new Intl.DateTimeFormat(locale, {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit"
-    }).format(new Date(value));
-  } catch {
-    return "";
-  }
-}
-
-function statusLabel(t, status, closure = null) {
-  /* Kõrvale pandud Teekond ütleb, kas see on paus või lõpetamine (K1-f). */
-  if (status === "ARCHIVED" && closure?.kind) {
-    return t(`journey.closure.status.${closure.kind}`, t("journey.status.ARCHIVED", "Archived"));
-  }
-  return t(`journey.status.${status || "ACTIVE"}`, t("journey.status.ACTIVE", "Active"));
-}
-
-/** Kalendripäev `2026-10-15` → `15.10.2026`. */
-function plainDayLabel(day) {
-  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(day || ""));
-  return match ? `${match[3]}.${match[2]}.${match[1]}` : "";
-}
-
-function primaryPathLabel(t, value) {
-  return t(`journey.primary_paths.${value || "UNKNOWN"}`, t("journey.primary_paths.UNKNOWN", "Not clear yet"));
-}
-
-function JourneyCard({ journey, onArchive, busy, t, locale }) {
-  const archived = journey.status === "ARCHIVED";
-  const updatedAt = formatDate(journey.updatedAt, locale);
-  const detailHref = localizePath(`/teekond/${encodeURIComponent(journey.id)}`, locale);
-
-  return (
-    <article>
-      <div>
-        <div>
-          <h2>
-            {journey.title}
-          </h2>
-          <div>
-            <span>
-              {t("journey.labels.private", "Private")}
-            </span>
-            <span>
-              {statusLabel(t, journey.status, journey.closure)}
-            </span>
-            <span>
-              {primaryPathLabel(t, journey.primaryPath)}
-            </span>
-          </div>
-        </div>
-
-        <div>
-          <Button as="a" href={detailHref} size="sm">
-            {t("journey.actions.open", "Open journey")}
-          </Button>
-          {!archived ? (
-            <Button
-              size="sm"
-              onClick={() => onArchive(journey)}
-              disabled={busy}
-              aria-label={t("journey.actions.archive_named", { title: journey.title }, "Archive journey {title}")}
-            >
-              {t("journey.actions.archive", "Archive")}
-            </Button>
-          ) : null}
-        </div>
-      </div>
-
-      <p>
-        {journey.summary}
-      </p>
-
-      {archived && journey.closure?.kind === "PAUSED" && journey.closure.resumeOn ? (
-        <p>
-          {t("journey.closure.resume_line", { date: plainDayLabel(journey.closure.resumeOn) }, "Plaanisid jätkata {date}.")}
-          {journey.closure.resumeDue ? ` ${t("journey.closure.resume_due", "See päev on käes.")}` : ""}
-        </p>
-      ) : null}
-
-      {journey.domains?.length ? (
-        <div>
-          {journey.domains.map((domain) => (
-            <span key={domain}>
-              {domain}
-            </span>
-          ))}
-        </div>
-      ) : null}
-
-      <p>
-        {t("journey.labels.updated_at", { date: updatedAt }, "Updated {date}")}
-      </p>
-    </article>
-  );
-}
-
-function DraftChipList({ items, emptyText }) {
-  const normalized = normalizeListItems(items);
-  if (!normalized.length) {
-    return <p>{emptyText}</p>;
-  }
-  return (
-    <div>
-      {normalized.map((item) => (
-        <span key={item}>
-          {item}
-        </span>
-      ))}
-    </div>
-  );
-}
-
-function ReviewBlock({ title, children }) {
-  return (
-    <section>
-      <h3>{title}</h3>
-      {children}
-    </section>
-  );
-}
-
-function DraftReview({ draft, setDraft, onSave, onSaveAndStart, onEditDescription, onDecline, busy, t }) {
-  const updateField = useCallback((field, value) => {
-    setDraft((current) => ({
-      ...current,
-      [field]: value
-    }));
-  }, [setDraft]);
-
-  const lifeDomains = useMemo(() => readDraftLifeDomains(draft), [draft]);
-  const wish = typeof draft?.context?.personWish === "string" ? draft.context.personWish : "";
-  const updateWish = useCallback((value) => {
-    setDraft((current) => ({
-      ...current,
-      context: { ...(current?.context || {}), personWish: value }
-    }));
-  }, [setDraft]);
-  const suggestedActions = useMemo(() => normalizeListItems(draft.suggestedActions), [draft.suggestedActions]);
-
-  return (
-    <Form onSubmit={onSave}>
-      <div>
-        <label htmlFor="journey-title">
-          {t("journey.labels.title", "Teekonna pealkiri")}
-        </label>
-        <Input
-          id="journey-title"
-          value={draft.title}
-          onChange={(event) => updateField("title", event.target.value)}
-          maxLength={160}
-          required
-        />
-        <small>{t("journey.labels.character_count", { current: draft.title.length, limit: 160 }, "{current}/{limit}")}</small>
-      </div>
-
-      <ReviewBlock title={t("journey.review.summary_title", "Olukorra kokkuvõte")}>
-        <label htmlFor="journey-summary">
-          {t("journey.review.summary_label", "Täpsusta kokkuvõtet, kui soovid")}
-        </label>
-        <textarea
-          id="journey-summary"
-          value={draft.summary}
-          onChange={(event) => updateField("summary", event.target.value)}
-          required
-          maxLength={12000}
-        />
-        <small>{t("journey.labels.character_count", { current: draft.summary.length, limit: 12000 }, "{current}/{limit}")}</small>
-      </ReviewBlock>
-
-      {/* Soov on omaette väli: kokkuvõtte korrastab platvorm, soovi ei puuduta keegi
-          peale inimese enda. */}
-      <ReviewBlock title={t("journey.wish.review_title", "Mida sina soovid?")}>
-        <label htmlFor="journey-wish">
-          {t("journey.wish.label", "Kirjuta oma sõnadega, mida sa tahad, et juhtuks või muutuks.")}
-        </label>
-        <textarea
-          id="journey-wish"
-          value={wish}
-          onChange={(event) => updateWish(event.target.value)}
-          maxLength={JOURNEY_TEXT_LIMITS.personWish}
-        />
-        <small>{t("journey.labels.character_count", { current: wish.length, limit: JOURNEY_TEXT_LIMITS.personWish }, "{current}/{limit}")}</small>
-        <p>
-          {t("journey.wish.hint", "Seda teksti platvorm ei muuda ega sõnasta ümber. Teised näevad seda ainult siis, kui sa selle jagamiseks ise valid.")}
-        </p>
-      </ReviewBlock>
-
-      <div>
-        <ReviewBlock title={t("journey.labels.domains", "Seotud teemad")}>
-          <DraftChipList
-            items={draft.domains}
-            emptyText={t("journey.messages.empty_domains", "Seotud teemasid ei ole veel lisatud.")}
-          />
-        </ReviewBlock>
-        <ReviewBlock title={t("journey.review.life_domains", "Eluvaldkonnad")}>
-          <DraftChipList items={lifeDomains} emptyText={t("journey.review.empty_life_domains", "Eluvaldkonnad täpsustuvad hiljem.")} />
-          <p>
-            {t("journey.review.life_domains_note", "See on ainult olukorra korrastamise abikiht, mitte ametlik hinnang.")}
-          </p>
-        </ReviewBlock>
-        <ReviewBlock title={t("journey.review.missing_title", "Mis võib veel puudu olla?")}>
-          <DraftChipList
-            items={draft.missingInfo}
-            emptyText={t("journey.messages.empty_missing_info", "Puuduolevat infot ei ole veel lisatud.")}
-          />
-        </ReviewBlock>
-        <ReviewBlock title={t("journey.review.actions_title", "Võimalikud järgmised sammud")}>
-          {suggestedActions.length ? (
-            <div>
-              {suggestedActions.map((action) => (
-                <p key={action}>{action}</p>
-              ))}
-            </div>
-          ) : (
-            <p>
-              {t("journey.messages.empty_suggested_actions", "Järgmised sammud täpsustuvad pärast salvestamist.")}
-            </p>
-          )}
-          {/* Need nupud SALVESTAVAD Teekonna ja avavad selle valitud sammu juures.
-              Varem muutsid nad ainult nähtamatut valikut ja midagi ei avanenud. */}
-          <p>
-            {t("journey.review.start_hint", "Võid ka kohe alustada: Teekond salvestatakse ja avaneb valitud sammu juures.")}
-          </p>
-          <div>
-            <Button type="button" variant="primary" size="sm" disabled={busy} onClick={(event) => onSaveAndStart(event, "SERVICE_MAP")}>
-              {t("journey.review.save_and_open_service_map", "Salvesta ja ava teenusekaart")}
-            </Button>
-            <Button type="button" variant="primary" size="sm" disabled={busy} onClick={(event) => onSaveAndStart(event, "PRE_INQUIRY")}>
-              {t("journey.review.save_and_start_pre_inquiry", "Salvesta ja koosta eelpöördumine")}
-            </Button>
-          </div>
-          <p>
-            {t("journey.review.later_steps", "Dokumendi lisamist ja abisoovi loomist pakub Teekonna leht pärast salvestamist siis, kui need sinu olukorda sobivad.")}
-          </p>
-        </ReviewBlock>
-      </div>
-
-      <p>
-        {t("journey.review.privacy_note", "Teekond on privaatne. Teised näevad ainult seda infot, mille sa hiljem eraldi kinnitad ja jagad.")}
-      </p>
-
-      <div>
-        <Button type="submit" disabled={busy}>
-          {t("journey.actions.save_private", "Salvesta teekond")}
-        </Button>
-        <Button type="button" variant="primary" onClick={onEditDescription} disabled={busy}>
-          {t("journey.actions.edit_description", "Muuda kirjeldust")}
-        </Button>
-        <Button type="button" variant="linkBrand" onClick={onDecline} disabled={busy}>
-          {t("journey.actions.decline", "Loobu")}
-        </Button>
-      </div>
-    </Form>
-  );
-}
-
-function RoleWorkspaceAction({ href, title, description }) {
-  return (
-    <Button as="a" href={href} variant="linkBrand" className="wellbeing-choice-btn">
-      <span>{title}</span>
-      {description ? (
-        <span>{description}</span>
-      ) : null}
-    </Button>
-  );
-}
-
-function RoleScopedWorkspace({ role, t, locale }) {
-  const isProvider = role === "SERVICE_PROVIDER";
-  const titleKey = isProvider ? "journey.workspace.provider.title" : "journey.workspace.specialist.title";
-  const descriptionKey = isProvider ? "journey.workspace.provider.description" : "journey.workspace.specialist.description";
-  const sharedInfoKey = isProvider ? "journey.workspace.provider.sharedInfoOnly" : "journey.workspace.specialist.sharedInfoOnly";
-  const titleFallback = isProvider ? "Teenusega seotud eelinfo" : "Kinnitatud eelinfo";
-  const descriptionFallback = isProvider
-    ? "Teenuseosutaja näeb ainult konkreetse teenuse või pöördumisega seotud kinnitatud infot."
-    : "Spetsialist näeb Teekonnaga seotud infot ainult eelpöördumiste ja muude kinnitatud töövoogude kaudu.";
-  const sharedInfoFallback = isProvider
-    ? "Privaatseid Teekondi ei kuvata. Teenuseosutaja ei näe kasutaja assistendivestlust ega kogu Teekonda."
-    : "Privaatseid Teekondi ei kuvata. Spetsialist ei näe kasutaja assistendivestlust ega kogu Teekonda.";
-  const preInquiryHref = localizePath("/eelpoordumised", locale);
-  const roomsHref = localizePath("/vestlus?rooms=1", locale);
-  const serviceProfileHref = localizePath("/teenuseprofiil", locale);
-  const documentsHref = localizePath("/documents", locale);
-
-  return (
-    <section>
-      <div>
-        <h1>
-          {t(titleKey, titleFallback)}
-        </h1>
-        <p>
-          {t(descriptionKey, descriptionFallback)}
-        </p>
-        <p>
-          {t(sharedInfoKey, sharedInfoFallback)}
-        </p>
-      </div>
-
-      <div>
-        <RoleWorkspaceAction
-          href={preInquiryHref}
-          title={isProvider
-            ? t("journey.workspace.provider.serviceInquiries", "Saabunud pöördumised")
-            : t("journey.workspace.specialist.preInquiries", "Eelpöördumised")}
-          description={isProvider
-            ? t("journey.workspace.provider.serviceInquiriesDescription", "Ava teenusega seotud kinnitatud pöördumised.")
-            : t("journey.workspace.specialist.preInquiriesDescription", "Ava kasutaja kinnitatud eelpöördumised.")}
-        />
-        <RoleWorkspaceAction
-          href={roomsHref}
-          title={t("journey.workspace.client.relatedRooms", "Vestlusruumid")}
-          description={t("journey.workspace.privateJourneysNotShared", "Privaatset Teekonda ei jagata automaatselt.")}
-        />
-        {isProvider ? (
-          <RoleWorkspaceAction
-            href={serviceProfileHref}
-            title={t("journey.workspace.provider.serviceProfile", "Teenuseprofiil")}
-            description={t("journey.workspace.provider.serviceProfileDescription", "Halda teenuse nähtavust ja kontaktinfot.")}
-          />
-        ) : (
-          <RoleWorkspaceAction
-            href={documentsHref}
-            title={t("chat.workspace.cards.document_drafting.title", "Koosta dokument")}
-            description={t("journey.workspace.specialist.documentsDescription", "Kasuta olemasolevaid dokumendi töövahendeid.")}
-          />
-        )}
-        <RoleWorkspaceAction
-          href={preInquiryHref}
-          title={isProvider
-            ? t("journey.workspace.provider.sharedInfoOnly", "Teenusega seotud kinnitatud eelinfo")
-            : t("journey.workspace.specialist.missingInfo", "Täpsustamist vajav info")}
-          description={t("journey.workspace.notAvailableForRole", "Privaatsete Teekondade nimekirja selles rollis ei kuvata.")}
-        />
-      </div>
-    </section>
-  );
-}
-
-function EmptyJourneyStart({ onStart, disabled, t }) {
-  const label = t("journey.empty_start.label", "Alusta teekonda");
-
-  return (
-    <section>
-      <Button
-        type="button"
-        onClick={onStart}
-        disabled={disabled}
-      >
-        {label}
-      </Button>
-    </section>
-  );
-}
-
-export default function JourneyDashboard({ embedded = false, onBack = null, hideHeader = false, roleOverride = "" } = {}) {
+export default function JourneyDashboard({ embedded = false, roleOverride = "" } = {}) {
   const { t, locale } = useI18n();
   const router = useRouter();
   const { data: session, status } = useSession();
@@ -462,26 +116,45 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
   const { effectiveRole, isRoleResolved } = useEffectiveRole();
   const [journeys, setJourneys] = useState([]);
   const [journeyPage, setJourneyPage] = useState({ totalCount: 0, hasMore: false, nextCursor: null });
+  const [listLoaded, setListLoaded] = useState(false);
+  const [listFault, setListFault] = useState("");
+  const [wantedGroup, setWantedGroup] = useState("active");
   const [mode, setMode] = useState("list");
+  const [stepKey, setStepKey] = useState("describe");
   const [situation, setSituation] = useState("");
-  const [draft, setDraft] = useState(DEFAULT_DRAFT);
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState("");
-  const [notice, setNotice] = useState("");
+  const [draft, setDraft] = useState(EMPTY_DRAFT);
+  const [builtFor, setBuiltFor] = useState("");
+  /* Mis päring käib: "" | "build" | "save" | "more" | "archive:<id>". */
+  const [busy, setBusy] = useState("");
+  /* Teade kuulub vaate juurde, kus tegevus tehti: { view, text, tone }. */
+  const [notice, setNotice] = useState(null);
+  const [restored, setRestored] = useState(false);
+  const [archiveArmedId, setArchiveArmedId] = useState("");
+  const [declineArmed, setDeclineArmed] = useState(false);
+  const [leaveAsked, setLeaveAsked] = useState(false);
+
+  const rootRef = useRef(null);
   const situationInputRef = useRef(null);
   const createActionIdRef = useRef("");
+  const titleEditedRef = useRef(false);
+  const busyRef = useRef("");
+  const armedAt = useRef(0);
+  const shownAt = useRef(0);
+  /* Värskeim seis päringu vastuse jaoks: vastus rakendub ainult sellele
+     kirjeldusele, mille kohta see küsiti. */
+  const live = useRef({ situation: "", draft: EMPTY_DRAFT, builtFor: "" });
+  live.current = { situation, draft, builtFor };
 
-  const activeJourneys = useMemo(
-    () => journeys.filter((journey) => journey.status !== "ARCHIVED"),
-    [journeys]
-  );
-  const archivedJourneys = useMemo(
-    () => journeys.filter((journey) => journey.status === "ARCHIVED"),
-    [journeys]
-  );
   const normalizedRole = String(roleOverride || effectiveRole || "CLIENT").toUpperCase();
   const isClientRole = normalizedRole === "CLIENT";
-  const latestJourney = activeJourneys[0] || journeys[0] || null;
+  const groups = useMemo(() => boardGroups(journeys), [journeys]);
+  const filter = boardShown(groups, wantedGroup);
+  const rows = useMemo(
+    () => (filter.shown === "earlier" ? groups.earlier : groups.active).map((journey) => journeyRow(journey, { t })),
+    [filter.shown, groups, t]
+  );
+  const dirty = mode === "start" && startDirty({ situation, draft });
+
   /* ⓘ elab paneeli nurgas × kõrval (PanelFrame); siin ainult sisu.
      Manustatuna registreerib Töölaud (WorkspacePanel) — sama reegel mis
      kõigil teistel moodulitel. Ilma `active`-väravata registreeriksid MÕLEMAD
@@ -493,34 +166,13 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
     active: !embedded
   });
 
-  const handleBack = useCallback(() => {
-    if (typeof onBack === "function") {
-      onBack();
-      return;
-    }
-
-    const navigateBack = () => {
-      if (typeof window !== "undefined") {
-        try {
-          window.sessionStorage.setItem(
-            CHAT_WORKSPACE_RESTORE_STORAGE_KEY,
-            JSON.stringify({ ts: Date.now() })
-          );
-        } catch {}
-      }
-      pushWithTransition(router, localizePath("/vestlus", locale));
-    };
-
-    if (typeof window === "undefined") {
-      navigateBack();
-      return;
-    }
-    window.requestAnimationFrame(navigateBack);
-  }, [locale, onBack, router]);
+  const lock = useCallback((value) => {
+    busyRef.current = value;
+    setBusy(value);
+  }, []);
 
   const loadJourneys = useCallback(async ({ cursor = "", append = false } = {}) => {
     if (status !== "authenticated" || !isRoleResolved || !isClientRole) return;
-    setError("");
     const query = new URLSearchParams({ limit: "25" });
     if (cursor) query.set("cursor", cursor);
     const response = await fetch(`/api/journeys?${query.toString()}`, {
@@ -535,12 +187,23 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
     setJourneyPage(payload.page || { totalCount: items.length, hasMore: false, nextCursor: null });
   }, [isClientRole, isRoleResolved, status, t]);
 
+  /* Esimene laadimine ja uus katse. Brauseri enda veateksti (võrgutõrge) ei
+     näidata: lause tuleb kataloogist. */
+  const loadFirst = useCallback(() => {
+    setListFault("");
+    return loadJourneys()
+      .then(() => setListLoaded(true))
+      .catch((loadError) => {
+        const known = loadError instanceof Error && !(loadError instanceof TypeError) ? loadError.message : "";
+        setListFault(known || t("journey.messages.load_failed", "Loading the journey failed."));
+        setListLoaded(true);
+      });
+  }, [loadJourneys, t]);
+
   useEffect(() => {
     if (status !== "authenticated" || !isRoleResolved || !isClientRole) return;
-    loadJourneys().catch((loadError) => {
-      setError(loadError.message || t("journey.messages.load_failed", "Loading the journey failed."));
-    });
-  }, [isClientRole, isRoleResolved, loadJourneys, status, t]);
+    void loadFirst();
+  }, [isClientRole, isRoleResolved, loadFirst, status]);
 
   /* Eelmise renderduse omanik: `null` = esimene kord, tühi string = välja
      logitud. Ainult PÄRIS vahetus (A → B) tühjendab ekraani. */
@@ -560,10 +223,12 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
          EI puutu — see läheks juba uue omaniku reale. */
       draftReadyRef.current = false;
       setSituation("");
-      /* `DEFAULT_DRAFT`, mitte `null`: mustandi välju loetakse mujal otse
-         (`draft.summary`) ja `null` annaks siin lehe krahhi, mitte tühja vormi. */
-      setDraft(DEFAULT_DRAFT);
-      setNotice("");
+      setDraft(EMPTY_DRAFT);
+      setBuiltFor("");
+      setNotice(null);
+      setRestored(false);
+      setMode("list");
+      setStepKey("describe");
     }
     if (!draftOwnerId) {
       draftReadyRef.current = false;
@@ -575,51 +240,118 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
     try {
       saved = JSON.parse(draftStore()?.getItem(JOURNEY_DRAFT_ROW) || "null");
     } catch {}
-    if (saved?.situation) setSituation(String(saved.situation));
-    if (saved?.draft && typeof saved.draft === "object") {
-      const clientActionId = saved.draft.clientActionId || createJourneyActionId();
+    const back = restoreStart(saved, step || "");
+    if (back.situation) setSituation(back.situation);
+    if (back.draft) {
+      const clientActionId = back.draft.clientActionId || createJourneyActionId();
       createActionIdRef.current = clientActionId;
-      setDraft({ ...saved.draft, clientActionId });
+      setDraft({ ...back.draft, clientActionId });
+      setBuiltFor(back.builtFor);
     }
-    if (step === "kirjelda" || step === "ulevaade") {
-      setMode(step === "ulevaade" && saved?.draft ? "review" : "start");
-      if (saved) setNotice(t("journey.autosave.restored", "Taastasime selle sessiooni pooleli jäänud töö."));
+    if (back.mode === "start") {
+      setMode("start");
+      setStepKey(back.stepKey);
+      setRestored(back.restored);
     }
     draftReadyRef.current = true;
-  }, [draftOwnerId, draftStore, t]);
+  }, [draftOwnerId, draftStore]);
 
   useEffect(() => {
     /* Ilma omanikuta ega enne taastamist ei kirjutata midagi: muidu kirjutaks
        tühi vorm üle rea, mida keegi ei puutunud. */
     if (typeof window === "undefined" || !draftOwnerId || !draftReadyRef.current) return;
-    if (!["start", "review"].includes(mode)) return;
-    draftStore()?.setItem(JOURNEY_DRAFT_ROW, JSON.stringify({ mode, situation, draft }));
-  }, [draft, draftOwnerId, draftStore, mode, situation]);
+    if (mode !== "start") return;
+    draftStore()?.setItem(JOURNEY_DRAFT_ROW, JSON.stringify(startStorageRow({ stepKey, situation, draft, builtFor })));
+  }, [builtFor, draft, draftOwnerId, draftStore, mode, situation, stepKey]);
 
+  /* Aadress ütleb, kus inimene on: lehe uuesti laadimine toob ta samasse kohta. */
   useEffect(() => {
-    if (typeof window === "undefined") return undefined;
-    const guard = (event) => {
-      if (!["start", "review"].includes(mode) || (!situation.trim() && !draft.summary)) return;
+    if (mode === "start") setJourneyStepInUrl(startUrlStep(stepKey));
+  }, [mode, stepKey]);
+
+  /* Salvestamata kirjutatu ja lahkumise teed, mida leht ise ei joonista.
+     Esimene lahkumine jääb kinni ja lava kohal seisab põhjus, teine lahkub.
+     Töölaua oma Esc-kuulaja väravat ei küsi: Esc peetakse kinni siin, enne teisi
+     (püüdmise faasis). Sama vajutuse jooksul võib väravat küsida veel paneeli
+     raam: `passing` vastab talle sama, mis siin juba otsustati. */
+  useEffect(() => {
+    if (!dirty) return undefined;
+    const leave = twoPressLeaveGuard({
+      onAsk: () => setLeaveAsked(true),
+      onClear: () => setLeaveAsked(false)
+    });
+    let passing = false;
+    const gate = (reason) => passing || leave(reason);
+    const release = setPanelLeaveGuard(gate);
+    const holdEscape = (event) => {
+      if (event.key !== "Escape") return;
+      /* Kiirmenüü avatud sammurida sulgeb Esc-i ise. */
+      if (event.target?.closest?.("[data-esc-scope]")) return;
+      if (gate("escape")) {
+        passing = true;
+        window.setTimeout(() => {
+          passing = false;
+        }, 0);
+        return;
+      }
+      event.preventDefault();
+      event.stopPropagation();
+    };
+    const warn = (event) => {
       event.preventDefault();
       event.returnValue = "";
     };
-    window.addEventListener("beforeunload", guard);
-    return () => window.removeEventListener("beforeunload", guard);
-  }, [draft.summary, mode, situation]);
+    window.addEventListener("keydown", holdEscape, true);
+    window.addEventListener("beforeunload", warn);
+    return () => {
+      release();
+      leave.clear();
+      window.removeEventListener("keydown", holdEscape, true);
+      window.removeEventListener("beforeunload", warn);
+    };
+  }, [dirty]);
 
+  /* Vaate vahetusel (loend ↔ alustamine) kaob vajutatud nupp: fookus läheb
+     kirjelduse väljale või loendi pealkirjale. Esimesel joonistusel fookust ei
+     võeta. */
+  const shownMode = useRef("");
   useEffect(() => {
-    if (mode !== "start") return;
+    const first = shownMode.current === "";
+    if (shownMode.current === mode) return undefined;
+    shownMode.current = mode;
+    shownAt.current = Date.now();
+    if (first) return undefined;
     const frame = window.requestAnimationFrame(() => {
-      situationInputRef.current?.focus?.();
+      if (mode === "start") situationInputRef.current?.focus?.({ preventScroll: true });
+      else rootRef.current?.querySelector("[data-step-heading]")?.focus({ preventScroll: true });
     });
     return () => window.cancelAnimationFrame(frame);
   }, [mode]);
 
-  const handleDraftSubmit = useCallback(async (event) => {
-    event.preventDefault();
-    setBusy(true);
-    setError("");
-    setNotice("");
+  /* Teist vajutust küsiv nupp ei jää ootama: küsimus aegub. */
+  useEffect(() => {
+    if (!archiveArmedId) return undefined;
+    const timer = window.setTimeout(() => setArchiveArmedId(""), CONFIRM_MS);
+    return () => window.clearTimeout(timer);
+  }, [archiveArmedId]);
+  useEffect(() => {
+    if (!declineArmed) return undefined;
+    const timer = window.setTimeout(() => setDeclineArmed(false), CONFIRM_MS);
+    return () => window.clearTimeout(timer);
+  }, [declineArmed]);
+
+  /**
+   * Koostab ülevaate, kui seda ei ole või kirjeldus on muutunud. Vastus rakendub
+   * ainult siis, kui kirjeldus on ikka see, mille kohta küsiti. Tagastab, kas
+   * ülevaade on praeguse kirjelduse kohta olemas.
+   */
+  const buildDraft = useCallback(async () => {
+    const situation = live.current.situation;
+    if (!situation.trim()) return false;
+    if (!draftStale(live.current)) return true;
+    if (busyRef.current) return false;
+    lock("build");
+    setNotice(null);
 
     try {
       const response = await fetch("/api/journeys/draft", {
@@ -631,33 +363,35 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload.ok) {
-        throw new Error(journeyErrorText(t, payload.message, t("journey.messages.draft_failed", "Teekonna ülevaate koostamine ebaõnnestus.")));
+        setNotice({ view: "build", tone: "risk", text: journeyErrorText(t, payload.message, t("journey.messages.draft_failed", "Teekonna ülevaate koostamine ebaõnnestus.")) });
+        return false;
       }
+      if (live.current.situation !== situation) return false;
       const clientActionId = createJourneyActionId();
       createActionIdRef.current = clientActionId;
-      setDraft({
-        ...DEFAULT_DRAFT,
-        ...payload.draft,
-        clientActionId
-      });
-      setMode("review");
-      setJourneyStepInUrl("ulevaade");
-    } catch (draftError) {
-      setError(draftError.message || t("journey.messages.draft_failed", "Teekonna ülevaate koostamine ebaõnnestus."));
+      setDraft(mergeBuiltDraft({ previous: live.current.draft, built: payload.draft, clientActionId, titleEdited: titleEditedRef.current }));
+      setBuiltFor(situation);
+      return true;
+    } catch {
+      setNotice({ view: "build", tone: "risk", text: t("journey.messages.draft_failed", "Teekonna ülevaate koostamine ebaõnnestus.") });
+      return false;
     } finally {
-      setBusy(false);
+      lock("");
     }
-  }, [situation, t]);
+  }, [lock, t]);
 
-  const handleSaveDraft = useCallback(async (event, startWith = "") => {
-    event?.preventDefault?.();
-    /* „Salvesta ja …" on tavaline nupp, mitte vormi saatmine: kohustuslikud väljad
-       kontrollitakse siin, muidu läheks tühi pealkiri serverisse. */
-    const form = event?.currentTarget?.form;
-    if (startWith && form && !form.reportValidity()) return;
-    setBusy(true);
-    setError("");
-    setNotice("");
+  const handleSaveDraft = useCallback(async (startWith = "") => {
+    if (busyRef.current) return;
+    const draft = live.current.draft;
+    const problem = draftStale(live.current) ? { key: "journey.start.need_situation", step: "describe" } : saveProblem(draft);
+    if (problem) {
+      setNotice({ view: problem.step, tone: "risk", text: t(problem.key) });
+      setStepKey(problem.step);
+      return;
+    }
+    lock("save");
+    setNotice(null);
+    setDeclineArmed(false);
 
     try {
       const response = await fetch("/api/journeys", {
@@ -675,27 +409,30 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload.ok) {
-        throw new Error(journeyErrorText(t, payload.message, t("journey.messages.save_failed", "Saving the journey failed.")));
+        setNotice({ view: "save", tone: "risk", text: journeyErrorText(t, payload.message, t("journey.messages.save_failed", "Saving the journey failed.")) });
+        return;
       }
       setSituation("");
-      setDraft(DEFAULT_DRAFT);
+      setDraft(EMPTY_DRAFT);
+      setBuiltFor("");
       createActionIdRef.current = "";
+      titleEditedRef.current = false;
       setMode("list");
+      setStepKey("describe");
       draftStore()?.removeItem(JOURNEY_DRAFT_ROW);
       setJourneyStepInUrl("");
-      const start = startWith ? `?alusta=${encodeURIComponent(startWith)}` : "";
-      pushWithTransition(router, localizePath(`/teekond/${encodeURIComponent(payload.journey.id)}${start}`, locale));
-    } catch (saveError) {
-      setError(saveError.message || t("journey.messages.save_failed", "Saving the journey failed."));
+      pushWithTransition(router, localizePath(createdJourneyPath(payload.journey.id, startWith), locale));
+    } catch {
+      setNotice({ view: "save", tone: "risk", text: t("journey.messages.save_failed", "Saving the journey failed.") });
     } finally {
-      setBusy(false);
+      lock("");
     }
-  }, [draft, draftStore, locale, router, t]);
+  }, [draftStore, locale, lock, router, t]);
 
   const handleArchive = useCallback(async (journey) => {
-    setBusy(true);
-    setError("");
-    setNotice("");
+    if (busyRef.current || !journey) return;
+    lock(`archive:${journey.id}`);
+    setNotice(null);
 
     try {
       const response = await fetch(`/api/journeys/${encodeURIComponent(journey.id)}`, {
@@ -707,321 +444,286 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload.ok) {
-        throw new Error(journeyErrorText(t, payload.message, t("journey.messages.archive_failed", "Archiving the journey failed.")));
+        setNotice({ view: "list", tone: "risk", text: journeyErrorText(t, payload.message, t("journey.messages.archive_failed", "Archiving the journey failed.")) });
+        return;
       }
-      setNotice(t("journey.messages.archived", "Journey archived."));
-      await loadJourneys();
-    } catch (archiveError) {
-      setError(archiveError.message || t("journey.messages.archive_failed", "Archiving the journey failed."));
+      /* Arhiveerimine õnnestus: rida läheb kohe varasemate hulka. Loendi uus
+         laadimine tuleb pärast; kui see ei õnnestu, on seis ikka õige. */
+      setJourneys((current) => current.map((item) => (item.id === journey.id
+        ? { ...item, status: "ARCHIVED", updatedAt: payload.journey?.updatedAt || item.updatedAt, closure: null }
+        : item)));
+      setNotice({ view: "list", text: t("journey.messages.archived", "Journey archived.") });
+      /* Vajutatud nupp kadus koos reaga: fookus läheb loendi pealkirjale. */
+      rootRef.current?.querySelector("[data-step-heading]")?.focus({ preventScroll: true });
+      await loadJourneys().catch(() => {});
+    } catch {
+      setNotice({ view: "list", tone: "risk", text: t("journey.messages.archive_failed", "Archiving the journey failed.") });
     } finally {
-      setBusy(false);
+      setArchiveArmedId("");
+      lock("");
     }
-  }, [loadJourneys, t]);
+  }, [loadJourneys, lock, t]);
 
+  /* Arhiveerimine küsib teist vajutust samal nupul; topeltklõps ei arhiveeri. */
+  const pressArchive = useCallback((row) => {
+    if (busyRef.current) return;
+    if (archiveArmedId !== row.id) {
+      armedAt.current = Date.now();
+      setArchiveArmedId(row.id);
+      return;
+    }
+    if (pressTooSoon(armedAt.current)) return;
+    void handleArchive(journeys.find((journey) => journey.id === row.id));
+  }, [archiveArmedId, handleArchive, journeys]);
+
+  /* „Loobu" arhiveerimise küsimuse kõrval kaob koos küsimusega: fookus läheb
+     tagasi sama rea arhiveerimise nupule. */
+  const cancelArchive = useCallback(() => {
+    const id = archiveArmedId;
+    setArchiveArmedId("");
+    window.requestAnimationFrame(() => {
+      rootRef.current?.querySelector(`[data-archive="${CSS.escape(id)}"]`)?.focus({ preventScroll: true });
+    });
+  }, [archiveArmedId]);
+
+  const handleLoadMore = useCallback(() => {
+    if (busyRef.current || !journeyPage.nextCursor) return;
+    lock("more");
+    setNotice(null);
+    loadJourneys({ cursor: journeyPage.nextCursor, append: true })
+      .catch(() => setNotice({ view: "list", tone: "risk", text: t("journey.messages.load_failed", "Loading the journey failed.") }))
+      .finally(() => lock(""));
+  }, [journeyPage.nextCursor, loadJourneys, lock, t]);
+
+  /* Varem kirjutatu jääb alles: alustamine avaneb sellega, mis siin vahekaardis
+     pooleli jäi (vana leht viskas koostatud ülevaate ja soovi siin ära). */
   const handleStartNew = useCallback(() => {
+    if (busyRef.current) return;
     setMode("start");
-    setError("");
-    setNotice("");
-    setDraft(DEFAULT_DRAFT);
-    createActionIdRef.current = "";
-    setJourneyStepInUrl("kirjelda");
+    setStepKey("describe");
+    setNotice(null);
+    setArchiveArmedId("");
+    setRestored(startDirty(live.current));
   }, []);
 
-  const handleCancel = useCallback(() => {
-    if (typeof window !== "undefined" && (situation.trim() || draft.summary)) {
-      const confirmed = window.confirm(t("journey.autosave.discard_confirm", "Kas lõpetad koostamise ja kustutad selle sessiooni mustandi?"));
-      if (!confirmed) return;
-      draftStore()?.removeItem(JOURNEY_DRAFT_ROW);
-    }
+  const leaveStart = useCallback(() => {
+    draftStore()?.removeItem(JOURNEY_DRAFT_ROW);
     setMode("list");
+    setStepKey("describe");
     setSituation("");
-    setDraft(DEFAULT_DRAFT);
-    setError("");
+    setDraft(EMPTY_DRAFT);
+    setBuiltFor("");
+    createActionIdRef.current = "";
+    titleEditedRef.current = false;
+    setNotice(null);
+    setRestored(false);
+    setDeclineArmed(false);
     setJourneyStepInUrl("");
-  }, [draft.summary, draftStore, situation, t]);
+  }, [draftStore]);
 
-  const handleEditDescription = useCallback(() => {
-    setMode("start");
-    setJourneyStepInUrl("kirjelda");
-    setError("");
-    setNotice("");
+  /* Loobumine viskab kirjutatu ära: kui midagi on kirjas, küsib see teist
+     vajutust samal nupul ja tagajärg seisab vaate all servas. */
+  const pressDecline = useCallback(() => {
+    if (busyRef.current) return;
+    if (!startDirty(live.current)) {
+      leaveStart();
+      return;
+    }
+    if (!declineArmed) {
+      armedAt.current = Date.now();
+      setDeclineArmed(true);
+      return;
+    }
+    if (pressTooSoon(armedAt.current)) return;
+    leaveStart();
+  }, [declineArmed, leaveStart]);
+
+  /* Kirjelduselt edasi liikudes koostatakse ülevaade (kui vaja). Samm ise ei
+     hüppa tagasi: kui ülevaadet ei saa, ütleb vaade seda. */
+  const handleStepChange = useCallback((_index, step) => {
+    const key = step?.key || "describe";
+    setStepKey(key);
+    setDeclineArmed(false);
+    if (key !== "describe") void buildDraft();
+  }, [buildDraft]);
+
+  /* Nupp „Koosta ülevaade": sama mis edasi liikumine, aga tühja kirjelduse
+     korral ütleb vaade, mis puudu on. Loendi nupp „Alusta Teekonda" seisab samas
+     kohas: topeltklõpsu teine vajutus ei koosta midagi. */
+  const pressBuild = useCallback(async () => {
+    if (busyRef.current || pressTooSoon(shownAt.current)) return;
+    if (!live.current.situation.trim()) {
+      setNotice({ view: "describe", tone: "risk", text: t("journey.start.need_situation") });
+      situationInputRef.current?.focus?.({ preventScroll: true });
+      return;
+    }
+    if (await buildDraft()) setStepKey("overview");
+  }, [buildDraft, t]);
+
+  const changeSituation = useCallback((value) => {
+    setSituation(value);
+    setRestored(false);
+    setDeclineArmed(false);
+    setNotice((current) => (current?.view === "describe" || current?.view === "build" ? null : current));
   }, []);
 
-  const renderPage = (children, options = {}) => {
-    const minimal = options.minimal === true;
+  const changeTitle = useCallback((value) => {
+    titleEditedRef.current = true;
+    setDraft((current) => ({ ...current, title: value }));
+    setNotice((current) => (current?.view === "overview" ? null : current));
+  }, []);
+
+  const changeWish = useCallback((value) => {
+    setDraft((current) => withWish(current, value));
+    setRestored(false);
+  }, []);
+
+  const hrefOfJourney = useCallback((row) => localizePath(`/teekond/${encodeURIComponent(row.id)}`, locale), [locale]);
+  /* Tavaline vajutus avab Teekonna lehe sees; uue vahekaardi vajutus jääb brauserile. */
+  const openJourney = useCallback((event, row) => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    pushWithTransition(router, hrefOfJourney(row));
+  }, [hrefOfJourney, router]);
+
+  const frame = (children) => {
     const content = (
-      <div className="journey-content">
-        {!hideHeader && !minimal ? (
-          <SubpageHeader
-            onBack={handleBack}
-            backAriaLabel={t("workspace_feature_pages.back_to_workspace", "Back to workspace")}
-            holdPressedVisualDisabled
-          >
-            {t("journey.title", "Teekond")}
-          </SubpageHeader>
-        ) : null}
-        {["start", "review"].includes(mode) ? (
-          <>
-            <aside className="journey-quick-help" aria-label={t("journey.quick_help.label", "Kiire abi")}>
-              <strong>{t("journey.quick_help.label", "Kiire abi")}</strong>
-              <span>{t("journey.quick_help.emergency", "112")}</span>
-              <span>{t("journey.quick_help.child", "116 111")}</span>
-              <span>{t("journey.quick_help.victim", "116 006")}</span>
-            </aside>
-            <nav aria-label={t("journey.steps.label", "Teekonna sammud")}>
-              <ol className="journey-stepper">
-                <li aria-current={mode === "start" ? "step" : undefined}>{t("journey.steps.describe", "Kirjelda")}</li>
-                <li aria-current={mode === "review" ? "step" : undefined}>{t("journey.steps.review", "Vaata üle")}</li>
-              </ol>
-            </nav>
-          </>
-        ) : null}
+      <div className={shared.page} ref={rootRef}>
         {children}
       </div>
     );
-
-    if (embedded) {
-      return (
-        <div className="journey-content">
-          {content}
-        </div>
-      );
-    }
-
+    if (embedded) return content;
+    /* Lehel /teekond ei ole kiirmenüüd; pealkiri jääb ekraanilugejale. */
     return (
-      <main className="journey-page">
-        <div className="journey-shell">
-          {content}
-        </div>
-      </main>
+      <div className={shared.frame}>
+        <h1 className="sr-only">{t("journey.title", "Teekond")}</h1>
+        {content}
+      </div>
     );
   };
 
-  if (status === "loading" || !isRoleResolved) {
-    return renderPage(
-      <div>
-        <p>
-          {t("journey.messages.loading", "Laen teekonda...")}
-        </p>
-      </div>
-    );
-  }
+  if (status === "loading" || !isRoleResolved) return frame(<WaitingView t={t} />);
 
   if (status !== "authenticated") {
-    return renderPage(
-      <section>
-            <div>
-              <h1>{t("journey.title", "Teekond")}</h1>
-            </div>
-            <p>
-              {t("journey.messages.auth_required", "The journey is private. Log in to continue.")}
-            </p>
-            <Button as="a" href="/vestlus?login=1">
-              {t("journey.actions.login", "Log in")}
-            </Button>
-          </section>
+    /* Pärast sisselogimist tuleb inimene samale lehele tagasi. */
+    return frame(<SignedOutView t={t} loginHref={loginHref(embedded ? "/vestlus?workspace=journey" : "/teekond")} />);
+  }
+
+  if (!isClientRole) {
+    return frame(<RoleView t={t} sheet={roleWorkspace(normalizedRole)} hrefOf={(href) => localizePath(href, locale)} />);
+  }
+
+  if (mode === "list") {
+    if (!listLoaded) return frame(<WaitingView t={t} />);
+    const more = boardMore(journeyPage, journeys.length);
+    return frame(
+      <BoardView
+        t={t}
+        rows={rows}
+        filter={filter}
+        onFilter={(value) => {
+          setWantedGroup(value);
+          setArchiveArmedId("");
+        }}
+        empty={filter.empty && !listFault}
+        fault={listFault}
+        onRetry={loadFirst}
+        notice={notice?.view === "list" ? notice : null}
+        archive={{
+          armedId: archiveArmedId,
+          busyId: busy.startsWith("archive:") ? busy.slice(8) : "",
+          onPress: pressArchive,
+          onCancel: cancelArchive
+        }}
+        more={more ? { ...more, busy: busy === "more", onMore: handleLoadMore } : null}
+        hrefOf={hrefOfJourney}
+        onOpen={openJourney}
+        onStart={handleStartNew}
+      />
     );
   }
 
-  if (isClientRole && mode === "list" && !activeJourneys.length && !archivedJourneys.length) {
-    return renderPage(
-      <>
-        {error ? (
-          <p role="alert">
-            {error}
-          </p>
-        ) : null}
-        <EmptyJourneyStart onStart={handleStartNew} disabled={busy} t={t} />
-      </>,
-      { minimal: true }
-    );
-  }
+  const states = startStepStates({ situation, draft, builtFor });
+  const steps = START_STEPS.map((key) => ({
+    key,
+    label: t(`journey.start.steps.${key}.title`),
+    short: t(`journey.start.steps.${key}.short`),
+    state: states[key]
+  }));
+  const noticed = draftNoticed(draft);
+  /* Ülevaate vaated ütlevad ise, kui ülevaadet ei ole: seda koostatakse, kirjeldus
+     on tühi või koostamine ei õnnestunud. */
+  const stale = draftStale({ situation, draft, builtFor });
+  const pending = !stale
+    ? null
+    : busy === "build"
+      ? { state: "building" }
+      : notice?.view === "build"
+        ? { state: "failed", text: notice.text }
+        : { state: situation.trim() ? "waiting" : "empty" };
+  const toDescribe = () => setStepKey("describe");
+  const decline = { armed: declineArmed, onPress: pressDecline };
+  const noticeOf = (view) => (notice?.view === view ? notice : null);
 
-  return renderPage(
+  return frame(
     <>
-        {!isClientRole ? (
-          <RoleScopedWorkspace role={normalizedRole} t={t} locale={locale} />
-        ) : (
-          <>
-        {mode === "list" ? (
-          <section>
-            <div>
-              <div>
-                <h2>
-                  {t("journey.workspace.client.title", "Teekonna tööpind")}
-                </h2>
-                <p>
-                  {t("journey.workspace.client.description", "Siin on sinu privaatsed Teekonnad ja järgmised sammud. Teekonda ei jagata enne sinu eraldi kinnitust.")}
-                </p>
-              </div>
-              {latestJourney ? (
-                <Button as="a" href={localizePath(`/teekond/${encodeURIComponent(latestJourney.id)}`, locale)}>
-                  {t("journey.workspace.client.continue", "Jätka viimast Teekonda")}
-                </Button>
-              ) : null}
-            </div>
-            <div>
-              <Button onClick={handleStartNew} disabled={busy}>
-                {t("journey.workspace.client.start", "Alusta Teekonda")}
-              </Button>
-              <Button as="a" href={localizePath("/eelpoordumised", locale)}>
-                {t("journey.workspace.client.relatedPreInquiries", "Eelpöördumised")}
-              </Button>
-              <Button as="a" href={localizePath("/teenusekaart", locale)}>
-                {t("chat.workspace.cards.service_map.title", "Teenusekaart")}
-              </Button>
-              <Button as="a" href={localizePath("/documents", locale)}>
-                {t("chat.workspace.cards.documents.title", "Dokumendid")}
-              </Button>
-            </div>
-            <p>
-              {t("journey.workspace.privacyNote", "Teekond on privaatne. Spetsialist, teenuseosutaja või ruumi liige näeb ainult seda infot, mille sa eraldi kinnitad ja jagad.")}
-            </p>
-          </section>
-        ) : null}
-
-        {error ? (
-          <p role="alert">
-            {error}
+      <div className={shared.live} aria-live="polite">
+        {leaveAsked ? (
+          <p className={shared.notice} role="alert">
+            {t("journey.start.leave_asked")}
           </p>
+        ) : restored ? (
+          <p className={shared.notice}>{t("journey.autosave.restored")}</p>
         ) : null}
-
-        {notice ? (
-          <p role="status">
-            {notice}
-          </p>
-        ) : null}
-
-        {mode === "start" ? (
-          <section>
-            <p>
-              {t("journey.sections.start_description", "Tere. Alustame sinu teekonda. Kirjelda oma olukorda oma sõnadega. Sa ei pea kõike teadma ega õigesti sõnastama — kirjuta lihtsalt, mis toimub.")}
-            </p>
-
-            <Form onSubmit={handleDraftSubmit}>
-              <label htmlFor="journey-situation">
-                {t("journey.labels.situation", "Olukorra kirjeldus")}
-                <textarea
-                  id="journey-situation"
-                  ref={situationInputRef}
-                  value={situation}
-                  onChange={(event) => setSituation(event.target.value)}
-                  placeholder={t("journey.placeholders.situation", "Näiteks: hooldan ema ja ei jaksa enam üksi. Ta vajab abi pesemisel ja söögi tegemisel. Ma ei tea, kas peaksin pöörduma KOV-i või teenuseosutaja poole.")}
-                  required
-                  maxLength={12000}
-                />
-                <small>{t("journey.labels.character_count", { current: situation.length, limit: 12000 }, "{current}/{limit}")}</small>
-              </label>
-
-              <div>
-                <Button type="submit" disabled={busy || !situation.trim()}>
-                  {t("journey.empty_start.label", "Alusta teekonda")}
-                </Button>
-              </div>
-            </Form>
-          </section>
-        ) : null}
-
-        {mode === "review" ? (
-          <section>
-            <div>
-              <div>
-                <h2>
-                  {t("journey.sections.review_title", "Ülevaade enne salvestamist")}
-                </h2>
-                <p>
-                  {t("journey.sections.review_description", "Vaata üle, kas Sotsiaal.pro korrastas olukorra õigesti. Teekond salvestatakse alles siis, kui kinnitad.")}
-                </p>
-              </div>
-            </div>
-
-            <Button variant="linkBrand" onClick={handleEditDescription} disabled={busy}>
-              {t("journey.actions.previous_step", "← Eelmine samm")}
-            </Button>
-
-            {Array.isArray(draft.riskSignals) && draft.riskSignals.length ? (
-              <aside className="journey-risk-card" role="alert">
-                <strong>{t("journey.risk_card.title", "Kui vajad kohe abi")}</strong>
-                <p>{t("journey.risk_card.body", "Need tähelepanekud jäävad ainult sulle nähtavaks ega liigu eelpöördumise adressaadile.")}</p>
-              </aside>
-            ) : null}
-
-            <DraftReview
-              draft={draft}
-              setDraft={setDraft}
-              onSave={handleSaveDraft}
-              onSaveAndStart={handleSaveDraft}
-              onEditDescription={handleEditDescription}
-              onDecline={handleCancel}
-              busy={busy}
+      </div>
+      <StepFlight label={t("journey.start.label")} steps={steps} activeKey={stepKey} onStepChange={handleStepChange}>
+        {(step, _index, flight) => {
+          const glow = flight?.isActive !== false;
+          if (step.key === "describe") {
+            return (
+              <DescribeView
+                t={t}
+                value={situation}
+                onChange={changeSituation}
+                fieldRef={situationInputRef}
+                notice={noticeOf("describe") || noticeOf("build")}
+                busy={busy === "build"}
+                decline={decline}
+                onBuild={pressBuild}
+                glow={glow}
+              />
+            );
+          }
+          if (step.key === "overview") {
+            return (
+              <OverviewView
+                t={t}
+                pending={pending}
+                onDescribe={toDescribe}
+                onBuild={buildDraft}
+                title={draft.title}
+                onTitle={changeTitle}
+                noticed={noticed}
+                notice={noticeOf("overview")}
+              />
+            );
+          }
+          if (step.key === "ahead") return <AheadView t={t} pending={pending} onDescribe={toDescribe} onBuild={buildDraft} noticed={noticed} />;
+          if (step.key === "wish") return <WishView t={t} value={draftWish(draft)} limit={JOURNEY_TEXT_LIMITS.personWish} onChange={changeWish} />;
+          return (
+            <SaveView
               t={t}
+              pending={pending || (draftReady(draft) ? null : { state: "empty" })}
+              onDescribe={toDescribe}
+              onBuild={buildDraft}
+              notice={noticeOf("save")}
+              decline={decline}
+              save={{ busy: busy === "save", onSave: handleSaveDraft }}
+              glow={glow}
             />
-          </section>
-        ) : null}
-
-        {mode === "list" ? (
-          <div>
-            <section>
-              <div>
-                <h2>
-                  {t("journey.sections.active_title", "Active journey")}
-                </h2>
-                <span>
-                  {activeJourneys.length}
-                </span>
-              </div>
-
-              <div>
-                {activeJourneys.length ? activeJourneys.map((journey) => (
-                  <JourneyCard
-                    key={journey.id}
-                    journey={journey}
-                    onArchive={handleArchive}
-                    busy={busy}
-                    t={t}
-                    locale={locale}
-                  />
-                )) : (
-                  <p>
-                    {t("journey.messages.no_active", "No private journey has been saved yet.")}
-                  </p>
-                )}
-              </div>
-            </section>
-
-            <aside>
-              <h2>
-                {t("journey.sections.archived_title", "Previous journeys")}
-              </h2>
-
-              {archivedJourneys.length ? archivedJourneys.map((journey) => (
-                <JourneyCard
-                  key={journey.id}
-                  journey={journey}
-                  onArchive={handleArchive}
-                  busy={busy}
-                  t={t}
-                  locale={locale}
-                />
-              )) : (
-                <p>
-                  {t("journey.messages.no_archived", "There are no archived journeys.")}
-                </p>
-              )}
-            </aside>
-            {journeyPage.hasMore ? (
-              <Button
-                onClick={() => loadJourneys({ cursor: journeyPage.nextCursor, append: true }).catch((loadError) => setError(loadError.message))}
-                disabled={busy}
-              >
-                {t("journey.actions.load_more", "Laadi rohkem")}
-              </Button>
-            ) : null}
-            <p>{journeys.length}/{journeyPage.totalCount}</p>
-          </div>
-        ) : null}
-          </>
-        )}
-      </>
+          );
+        }}
+      </StepFlight>
+    </>
   );
 }

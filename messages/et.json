@@ -8614,7 +8614,12 @@
       "label": "Kiire abi",
       "emergency": "112",
       "child": "116 111",
-      "victim": "116 006"
+      "victim": "116 006",
+      "names": {
+        "emergency": "hädaabi",
+        "child": "lasteabi",
+        "victim": "ohvriabi"
+      }
     },
     "steps": {
       "label": "Teekonna sammud",
@@ -9137,6 +9142,65 @@
         "ownWords": "kasutaja enda sõnastatud vajadus",
         "continue": "Alusta abisoovi"
       }
+    },
+    "board": {
+      "title": "Sinu Teekonnad",
+      "empty": "Teekond on sinu privaatne koht, kuhu saad oma olukorra oma sõnadega kirja panna ja samm-sammult edasi liikuda.",
+      "retry": "Proovi uuesti",
+      "filter": {
+        "label": "Milliseid Teekondi näidata",
+        "active": "Käimas",
+        "earlier": "Varasemad"
+      },
+      "open_named": "Ava Teekond {title}",
+      "archive": {
+        "confirm": "Jah, arhiveeri",
+        "busy": "Arhiveerin…",
+        "note": "Teekond läheb varasemate hulka ja seda ei saa muuta, kuni selle uuesti avad. Midagi ei kustu."
+      },
+      "more": "Näha on {loaded} Teekonda, kokku on neid {total}."
+    },
+    "start": {
+      "label": "Uus Teekond",
+      "steps": {
+        "describe": {
+          "title": "Sinu olukord",
+          "short": "Olukord"
+        },
+        "overview": {
+          "title": "Ülevaade",
+          "short": "Ülevaade"
+        },
+        "ahead": {
+          "title": "Mis edasi",
+          "short": "Mis edasi"
+        },
+        "wish": {
+          "title": "Sinu soov",
+          "short": "Soov"
+        },
+        "save": {
+          "title": "Salvestamine",
+          "short": "Salvesta"
+        }
+      },
+      "build": "Koosta ülevaade",
+      "building": "Koostan ülevaadet…",
+      "pending": "Ülevaade tekib, kui oled oma olukorda kirjeldanud.",
+      "waiting": "Kirjeldus on muutunud ja ülevaade tuleb uuesti koostada.",
+      "to_describe": "Mine kirjelduse juurde",
+      "need_situation": "Kirjelda kõigepealt oma olukorda.",
+      "need_title": "Pane Teekonnale pealkiri.",
+      "overview_lead": "Selle panime sinu kirjelduse põhjal kokku. Pealkirja saad muuta.",
+      "wish_later": "Soovi võid lisada ka hiljem.",
+      "save_service_map_note": "Teekond avaneb teenusekaardi juures, kust leiad, kelle poole pöörduda.",
+      "save_pre_inquiry_note": "Teekond avaneb eelpöördumise juures, kus valid, mida oma loost kaasa võtad.",
+      "saving": "Salvestan…",
+      "decline": {
+        "confirm": "Jah, loobu",
+        "note": "Kirjutatu kustub ja Teekonda ei salvestata."
+      },
+      "leave_asked": "Teekond on salvestamata. Lahkumiseks vajuta uuesti. Kirjutatu jääb selles brauseriaknas alles."
     }
   },
   "journeys": {

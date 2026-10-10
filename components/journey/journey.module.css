@@ -1,0 +1,267 @@
+/* Teekonna lehtede ühised osad: omaette lehe raam, lehe kest, laused, märk,
+   sõnade read, teade ja teist vajutust küsiv tegevus. Avaleht (./dashboard) ja avatud Teekond võtavad
+   need siit (`composes`), et sama asi ei oleks kahes failis kaks korda.
+   Lehed ei kasuta vana ühist kihti: iga osa ütleb oma laiuse, veerised ja värvi
+   ise. Värvid tulevad platvormi muutujatest (app/styles/tokens.css), nii et hele
+   ja tume teema töötavad ilma lisareegliteta. */
+
+/* --- Omaette leht (/teekond ja avatud Teekond) ----------------------------------- */
+/* Nendel teedel ei ole kiirmenüüd (lib/roomDock.js): akna nurgas on ⓘ ja
+   sulgemine ning sammud seisavad omaette pillina ekraani all, seal kus dokk
+   muidu on. KERIB KOGU PANEELI PIND, servast servani (omanik 09.10: klaasi sees
+   ei tohi olla kerivat kasti, mille kohal ja all on paksud servad): paneeli kehal
+   polstrit ei ole, see on kerija sees. Ülal jääb ruum akna nurganuppudele ja
+   keritav sisu hajub enne nende alla jõudmist. */
+:global(.panel-scrim[data-chat="1"]) :global(.panel-body):has(> .frame) {
+  padding: 0;
+  overflow: hidden;
+}
+.frame {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  padding: clamp(3.8rem, 7lvh, 4.6rem) clamp(1rem, 2.4vw, 2rem) clamp(1rem, 2vw, 1.6rem);
+  -webkit-mask-image: linear-gradient(transparent 0.4rem, #000 3.2rem);
+  mask-image: linear-gradient(transparent 0.4rem, #000 3.2rem);
+}
+/* Aken jätab ekraani alla sama ruumi, mille dokiga lehed jätavad dokile: muidu
+   ulatuks akna alumine serv sammupilli peale. Arvud on samad mis dokiga lehel
+   (app/styles/panel.css, `--room-dock-rest-reserve` ja `--panel-max-h`). */
+:global(.panel-scrim[data-chat="1"]):has(.frame) {
+  --journey-pill-reserve: clamp(4.9rem, 5.2lvh + 2.7rem, 6.9rem);
+  padding-bottom: var(--journey-pill-reserve);
+}
+:global(.panel-scrim[data-chat="1"]):has(.frame) :global(.panel) {
+  max-height: calc(100lvh - var(--journey-pill-reserve) - clamp(2.5rem, 5lvh, 4rem));
+}
+@media (max-width: 768px) {
+  /* Telefonis on aken servast servani ja pill seisab selle peal: sisu lõpeb
+     pilli kohal. */
+  :global(.panel-scrim[data-chat="1"]):has(.frame) {
+    padding-bottom: 0;
+  }
+  :global(.panel-scrim[data-chat="1"]):has(.frame) :global(.panel) {
+    max-height: none;
+  }
+  .frame {
+    padding: 3.6rem 0.9rem calc(var(--dock-bottom, 1.5rem) + 4.4rem);
+  }
+}
+
+/* Leht on konteiner: kitsal pinnal (telefon, töölaua paneel) lähevad rea osad
+   üksteise alla. Klaaspaneel ise on lehe pind: siin ei ole kasti, mis kogu sisu
+   veel kord ümbritseks. */
+.page {
+  min-width: 0;
+  display: grid;
+  gap: 0.6rem;
+  color: var(--text-warm);
+  /* Töölaua paneel joondab oma sisu keskele; lehe tekst algab vasakult. */
+  text-align: start;
+  container-type: inline-size;
+}
+.stack {
+  min-width: 0;
+  display: grid;
+  gap: 0.65rem;
+}
+/* Päring on teel: sisu on tuhmim. Välju ega nuppe välja ei lülitata (see viiks
+   klaviatuuri fookuse ära); topeltsaatmist hoiab lehe enda lukk. */
+.stack[aria-busy="true"],
+.item[aria-busy="true"] {
+  opacity: 0.65;
+}
+
+/* --- Laused ------------------------------------------------------------------ */
+.quiet {
+  margin: 0;
+  max-width: 64ch;
+  color: var(--text-soft);
+}
+.small {
+  margin: 0;
+  max-width: 64ch;
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.45;
+}
+/* Inimese enda kirjutatud tekst: lõigud jäävad lõikudeks. */
+.own {
+  margin: 0;
+  max-width: 66ch;
+  color: var(--text-warm);
+  line-height: 1.55;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+/* --- Teade lava kohal --------------------------------------------------------- */
+/* Ala on alati olemas (ekraanilugeja jaoks), tühjana ei võta see ruumi. */
+.live {
+  min-width: 0;
+}
+.notice {
+  margin: 0;
+  max-width: none;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.9rem;
+  background: var(--glass-cell-bg);
+  color: var(--text-warm);
+  overflow-wrap: anywhere;
+}
+.notice[data-tone="risk"] {
+  border-color: color-mix(in srgb, var(--status-error) 60%, transparent);
+  border-inline-start-width: 3px;
+  background: color-mix(in srgb, var(--status-error) 10%, transparent);
+}
+/* Vaate tõrge paneeli all servas. */
+.footError {
+  color: var(--status-error);
+}
+
+/* --- Märk: seis ühe sõnaga ----------------------------------------------------- */
+.chip {
+  flex: none;
+  padding: 0.1rem 0.6rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.8rem;
+  color: var(--text-soft);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.chip::first-letter {
+  text-transform: uppercase;
+}
+/* Tähelepanu vajav seis: tugevam raam ja kaal, mitte ainult värv. */
+.chip[data-tone="wait"] {
+  border-color: color-mix(in srgb, var(--text-warm) 62%, transparent);
+  color: var(--text-warm);
+  font-weight: 560;
+}
+.chip[data-tone="ok"] {
+  border-color: color-mix(in srgb, var(--status-success) 55%, transparent);
+  color: var(--text-warm);
+}
+
+/* --- Loendi read (ühised osad tulevad components/stage/rows.module.css-ist) ---- */
+.rows {
+  composes: rows from "../stage/rows.module.css";
+}
+.rowItem {
+  composes: rowItem from "../stage/rows.module.css";
+}
+.row {
+  composes: row from "../stage/rows.module.css";
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+.rowMain {
+  composes: rowMain from "../stage/rows.module.css";
+}
+.rowTitle {
+  composes: rowTitle from "../stage/rows.module.css";
+}
+/* Rida pealkirja all: üks rida, terve tekst on avatud vaates. */
+.rowSub {
+  min-width: 0;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.35;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.rowMeta {
+  composes: rowMeta from "../stage/rows.module.css";
+}
+.time {
+  composes: rowTime from "../stage/rows.module.css";
+}
+.fault {
+  composes: fault from "../stage/rows.module.css";
+}
+.faultText {
+  composes: faultText from "../stage/rows.module.css";
+}
+
+/* --- Sõnade read: nimetus ja väärtus ------------------------------------------- */
+.facts {
+  min-width: 0;
+  display: grid;
+  gap: 0.15rem;
+}
+.fact {
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.5rem;
+  line-height: 1.5;
+}
+.factLabel {
+  flex: none;
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+}
+.factValue {
+  min-width: 0;
+  color: var(--text-warm);
+  overflow-wrap: anywhere;
+}
+
+/* --- Tegevus, mis küsib teist vajutust ------------------------------------------ */
+/* Pärast esimest vajutust: tugevam raam ja kaal. Sõnad nupul on juba teised. */
+.armed {
+  flex: none;
+  white-space: nowrap;
+  font-weight: 620;
+  border-color: color-mix(in srgb, var(--text-warm) 72%, transparent);
+}
+/* Tagajärg nupu juures: enne vajutust vaikne, pärast selge. */
+.consequence {
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  color: var(--text-warm);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.4;
+}
+
+/* --- Väljad ---------------------------------------------------------------------- */
+/* Väli on nii lai, kui sinna kirjutatav sisu vajab; täislai on ainult pikk tekst. */
+.line {
+  min-width: 0;
+  max-width: 30rem;
+  display: grid;
+  gap: 0.3rem;
+}
+.line[data-size="sm"] {
+  max-width: 14rem;
+}
+.fieldLabel {
+  color: var(--text-warm);
+}
+.input {
+  width: 100%;
+  min-width: 0;
+}
+.counter {
+  color: var(--text-dim);
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Kitsal pinnal lähevad rea märgid pealkirja alla. */
+@container (max-width: 34rem) {
+  .row .rowMeta {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: flex-start;
+  }
+}

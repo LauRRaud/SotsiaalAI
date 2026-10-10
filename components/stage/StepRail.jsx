@@ -32,7 +32,8 @@
  * teksti); sammu nime ütleb siis rida paneeli ülaservas (StepFlight).
  *
  * Joonistatakse alumisse kiirmenüüsse lehe nime kõrvale (`DockSteps`); lehel,
- * kus kiirmenüüd ei ole, seisab omaette pillina samas kohas ekraani all.
+ * kus kiirmenüüd ei ole, seisab omaette pillina samas kohas ekraani all
+ * (lehe kehas, et akna teisendus või mask seda kinni ei hoiaks).
  * Kannab kiirmenüü klasse (`gc-shortcut-*`, carousel.css).
  *
  * `steps`: [{ key, label, short?, state?: "empty" | "partial" | "done" }]
@@ -73,6 +74,11 @@ export default function StepRail({ steps, activeIndex, wide = false, parts = fal
      paneelis) on kiirmenüü lühike: seal seisab laia vaate nimi. */
   const open = opened;
   useQuickMenuMotion(trackRef, open ? `open:${activeIndex}` : activeIndex);
+  /* Dokita lehe pilli siht: lehe keha on olemas alles brauseris. */
+  const [body, setBody] = useState(null);
+  useEffect(() => {
+    setBody(document.body);
+  }, []);
 
   /* Pikas kujus keritakse aktiivne samm nähtavale (kitsal ekraanil ei mahu kõik). */
   useEffect(() => {
@@ -244,10 +250,16 @@ export default function StepRail({ steps, activeIndex, wide = false, parts = fal
   /* Dokiga lehel elab riba dokis; kuni dokk on peidus (modaal lahti), ei joonista midagi. */
   if (hasDock) return slot ? createPortal(rail, slot) : null;
 
-  /* Dokita lehel: omaette pill samas kohas, kus dokk muidu seisab. */
-  return (
+  /* Dokita lehel: omaette pill samas kohas, kus dokk muidu seisab. Pill
+     joonistatakse lehe kehasse, mitte lehe enda sisse: akna sees hoiaks seda
+     kinni iga eellane, mis on teisendatud (telefonis on aken skaleeritud),
+     maskitud või konteiner, ja pill jääks akna taha või sisu peale (Teekonna
+     lehel oli sellest näha ainult serv). */
+  if (!body) return null;
+  return createPortal(
     <div className={styles.own}>
       <div className={`${styles.ownMenu} gc-shortcut-menu`}>{rail}</div>
-    </div>
+    </div>,
+    body
   );
 }

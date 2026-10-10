@@ -8614,7 +8614,12 @@
       "label": "Quick help",
       "emergency": "112",
       "child": "116 111",
-      "victim": "116 006"
+      "victim": "116 006",
+      "names": {
+        "emergency": "emergency",
+        "child": "child helpline",
+        "victim": "victim support"
+      }
     },
     "steps": {
       "label": "Journey steps",
@@ -9137,6 +9142,65 @@
         "ownWords": "the user's own wording of the need",
         "continue": "Start help request"
       }
+    },
+    "board": {
+      "title": "Your Journeys",
+      "empty": "A Journey is your private place to write down your situation in your own words and move on step by step.",
+      "retry": "Try again",
+      "filter": {
+        "label": "Which Journeys to show",
+        "active": "Ongoing",
+        "earlier": "Earlier"
+      },
+      "open_named": "Open the Journey {title}",
+      "archive": {
+        "confirm": "Yes, archive",
+        "busy": "Archiving…",
+        "note": "The Journey moves to the earlier ones and cannot be changed until you reopen it. Nothing is deleted."
+      },
+      "more": "Showing {loaded} Journeys of {total}."
+    },
+    "start": {
+      "label": "New Journey",
+      "steps": {
+        "describe": {
+          "title": "Your situation",
+          "short": "Situation"
+        },
+        "overview": {
+          "title": "Overview",
+          "short": "Overview"
+        },
+        "ahead": {
+          "title": "What next",
+          "short": "What next"
+        },
+        "wish": {
+          "title": "Your wish",
+          "short": "Wish"
+        },
+        "save": {
+          "title": "Saving",
+          "short": "Save"
+        }
+      },
+      "build": "Build the overview",
+      "building": "Building the overview…",
+      "pending": "The overview appears once you have described your situation.",
+      "waiting": "The description has changed and the overview needs to be built again.",
+      "to_describe": "Go to the description",
+      "need_situation": "Describe your situation first.",
+      "need_title": "Give the Journey a title.",
+      "overview_lead": "We put this together from your description. You can change the title.",
+      "wish_later": "You can also add your wish later.",
+      "save_service_map_note": "The Journey opens at the service map, where you can find whom to contact.",
+      "save_pre_inquiry_note": "The Journey opens at the pre-inquiry, where you choose what to take along from your story.",
+      "saving": "Saving…",
+      "decline": {
+        "confirm": "Yes, discard",
+        "note": "What you wrote is deleted and the Journey is not saved."
+      },
+      "leave_asked": "The Journey is not saved. Press again to leave. What you wrote stays in this browser window."
     }
   },
   "journeys": {
