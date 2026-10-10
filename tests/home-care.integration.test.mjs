@@ -97,7 +97,7 @@ import { getMonthPage, lockMonth, reopenMonth } from '../lib/homeCare/monthLock.
 import { answerDecisionNotice, createDecisionNotice, withdrawDecisionNotice } from '../lib/homeCare/decisionNotices.js';
 import { getDaySheet } from '../lib/homeCare/daySheet.js';
 import { markFirstVisit } from '../lib/homeCare/firstVisits.js';
-import { answerTransport, requestTransport, withdrawTransport } from '../lib/homeCare/transport.js';
+import { answerTransport, getTransportCard, requestTransport, withdrawTransport } from '../lib/homeCare/transport.js';
 import { endRelative, flagRelativeDoubt, getSharingCard, saveRelative } from '../lib/homeCare/relatives.js';
 import { saveSafetyCard } from '../lib/homeCare/safetyCard.js';
 import { composeNoAnswerText } from '../lib/homeCare/noAnswerText.js';
@@ -6111,4 +6111,53 @@ test('püsivuse mõju ja märkamiste näit: kes on kliendi juures käinud ning m
   /* Septembris märkamisi ei olnud; tuleviku kuu kohta näitu ei arvutata. */
   assert.deepEqual((await getMonthPage(lead, { month: '2026-09' }, deps())).signalStats, { opened: 0, handled: 0, waiting: 0, medianDays: null });
   assert.equal((await getMonthPage(lead, { month: '2026-11' }, deps())).signalStats, null);
+});
+
+test('transpordikaart: autojuhile lähevad ainult märgitud püsikaardi read, kuni kolm; väljaandmisest jääb jälg', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const clerk = await f.ctx(f.users.clerk, f.orgA);
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm', address: 'Kase 3-12, Haapsalu', contactPhone: '+372 5555 1234' }, deps())).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi' }, deps())).client;
+  await addTeamMember(lead, linda.id, { membershipId: f.members.anu.id }, deps());
+  await addTeamMember(lead, peeter.id, { membershipId: f.members.bert.id }, deps());
+
+  /* Püsikaart: üks tavaline rida ja kolm autojuhile nähtavat; neljas autojuhi rida ei mahu. */
+  await addCardLine(anu, linda.id, { kind: 'ACCESS', text: 'Uksekood 12#34' }, deps());
+  await addCardLine(anu, linda.id, { kind: 'OTHER', text: 'Liigub rulaatoriga, aita trepist', forDriver: true }, deps());
+  await addCardLine(anu, linda.id, { kind: 'ACCESS', text: 'Naaber Aino avab ukse', forDriver: true }, deps());
+  let card = (await addCardLine(anu, linda.id, { kind: 'OTHER', text: 'Helista tütrele, kui ei tule', forDriver: true }, deps())).card;
+  assert.deepEqual(card.map((line) => [line.text.split(' ')[0], line.forDriver || false]), [['Uksekood', false], ['Liigub', true], ['Naaber', true], ['Helista', true]]);
+  /* Märgita real võtit ei ole. */
+  assert.equal('forDriver' in card[0], false);
+  await expectError(addCardLine(anu, linda.id, { kind: 'RISK', text: 'Koer on õues lahti', forDriver: true }, deps()), 409, 'home_care.errors.card_driver_full');
+  card = (await addCardLine(anu, linda.id, { kind: 'RISK', text: 'Koer on õues lahti' }, deps())).card;
+  /* Muutmine: märgita rida ei saa neljandaks autojuhi reaks; märgitud rea muutmine piiri vastu ei lähe; märke saab maha võtta. */
+  await expectError(replaceCardLine(anu, linda.id, card[0].id, { kind: 'ACCESS', text: 'Uksekood 12#34', forDriver: true }, deps()), 409, 'home_care.errors.card_driver_full');
+  card = (await replaceCardLine(anu, linda.id, card[1].id, { kind: 'OTHER', text: 'Liigub rulaatoriga, aita trepist alla', forDriver: true }, deps())).card;
+  assert.equal(card.filter((line) => line.forDriver).length, 3);
+  card = (await replaceCardLine(anu, linda.id, card[3].id, { kind: 'OTHER', text: 'Helista tütrele, kui ei tule' }, deps())).card;
+  assert.deepEqual(card.filter((line) => line.forDriver).map((line) => line.text), ['Liigub rulaatoriga, aita trepist alla', 'Naaber Aino avab ukse']);
+
+  /* Sõidud: üks korraldatud, üks ootel, üks tagasi võetud. */
+  const first = await requestTransport(anu, linda.id, { wantedOn: '2026-10-16', wantedTime: '9:40', destination: 'Perearsti juurde', needs: 'ratastool' }, deps());
+  await answerTransport(lead, linda.id, first.requestId, { state: 'ARRANGED', pickupTime: '9:20' }, deps());
+  await requestTransport(anu, linda.id, { wantedOn: '2026-10-20', destination: 'Apteek' }, deps());
+  const gone = await requestTransport(anu, linda.id, { wantedOn: '2026-10-22', destination: 'Juuksur' }, deps());
+  await withdrawTransport(anu, linda.id, gone.requestId, deps());
+
+  /* Kaardi saab hooldusjuht ja meeskond; kõrvaline ja põhjuseta töötaja mitte. */
+  await expectError(getTransportCard(clerk, linda.id, deps()), 404, 'home_care.errors.client_not_found');
+  await expectError(getTransportCard(bert, linda.id, deps()), 403, 'home_care.errors.access_reason_required');
+  const html = (await getTransportCard(anu, linda.id, deps())).html;
+  for (const text of ['Linda Tamm', 'Kase 3-12, Haapsalu', '+372 5555 1234', 'Liigub rulaatoriga, aita trepist alla', 'Naaber Aino avab ukse', '16.10.2026 kell 09:20', 'Perearsti juurde', 'ratastool', '20.10.2026', 'Apteek', 'ootab korraldamist', 'välja antud 09.10.2026']) {
+    assert.ok(html.includes(text), text);
+  }
+  /* Muud kaardi read ja tagasi võetud sõit lehele ei lähe. */
+  for (const text of ['Uksekood', 'Koer', 'Helista tütrele', 'Juuksur']) assert.equal(html.includes(text), false, text);
+  const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_transport_changed', meta: { path: ['change'], equals: 'card_issued' } } });
+  assert.equal(audit.filter((entry) => entry.meta.clientId === linda.id).length, 1);
+  assert.equal(JSON.stringify(audit).includes('Kase'), false);
 });

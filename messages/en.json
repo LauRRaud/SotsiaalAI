@@ -12795,7 +12795,9 @@
         "RISK": "Risk",
         "ALARM": "Alarm button",
         "OTHER": "Other"
-      }
+      },
+      "for_driver_label": "Visible to the driver (goes on the transport card)",
+      "for_driver_badge": "for the driver"
     },
     "team": {
       "title": "Team",
@@ -13188,7 +13190,8 @@
       "transport_not_found": "The transport request was not found.",
       "transport_closed": "This request already has an answer or has been withdrawn.",
       "transport_answer": "Choose whether the ride is arranged or not possible.",
-      "transport_decline_reason": "Write why the ride cannot be arranged."
+      "transport_decline_reason": "Write why the ride cannot be arranged.",
+      "card_driver_full": "Up to {limit} lines can be visible to the driver."
     },
     "incidents": {
       "title": "Incident register",
@@ -14730,7 +14733,24 @@
       "arrange_note_label": "Note for the care worker",
       "decline_reason_label": "Why it is not possible",
       "arrange_save": "Mark as arranged",
-      "decline_save": "Save the answer"
+      "decline_save": "Save the answer",
+      "card_open": "Print the transport card",
+      "card_hint": "The transport card is a page for the transport organiser: name, address, phone, the rides ahead and the standing card lines marked \"visible to the driver\". Other card lines do not go there."
+    },
+    "transport_card": {
+      "doc": {
+        "title": "Transport card",
+        "print_hint": "Print this page from the browser (Ctrl+P) or save it as a PDF and give it to the transport organiser.",
+        "phone": "Phone:",
+        "lines_title": "What the driver needs to know",
+        "lines_none": "Nothing has been marked for the driver.",
+        "rides_title": "Rides ahead",
+        "rides_none": "No rides ahead are recorded.",
+        "when_time": "{date} at {time}",
+        "not_arranged": "waiting to be arranged",
+        "issued_on": "issued on {date}",
+        "foot": "This page carries personal data. Destroy it after the ride."
+      }
     }
   },
   "stage": {
