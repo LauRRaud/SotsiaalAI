@@ -10,6 +10,7 @@ import { sharingRow, sharingSheet, viewTrailNote } from '../components/sharings/
 import { markShareOpened } from '../lib/network/share.js';
 import { WorkspaceContextKind } from '../lib/org/accessContext.js';
 import { getInboxItem } from '../lib/org/inbox.js';
+import { recordPreInquiryView } from '../lib/preInquiries.js';
 import {
   SharingViewKind,
   attachSharingViews,
@@ -320,4 +321,94 @@ test('vaatamiste laused on kolmes keeles samade kohatäitjatega ega nimeta vaata
     assert.equal(/[\u2014\u2013"]/.test(base), false, key);
     assert.match(base, /^Adressaat /, key);
   }
+});
+
+test('isikule saadetud eelpöördumine: avamise teade jätab jälje alles pärast vastuvõtmist ja ainult saajale', async () => {
+  const makeDb = (row) => {
+    const state = { queries: [], writes: [] };
+    return {
+      state,
+      preInquiry: {
+        findFirst: async (args) => {
+          state.queries.push(args);
+          return row ? { ...row } : null;
+        }
+      },
+      sharingView: {
+        createMany: async ({ data }) => {
+          state.writes.push({ ...data[0] });
+          return { count: 1 };
+        }
+      }
+    };
+  };
+  const now = new Date('2026-10-09T08:00:00Z');
+  const notFound = (error) => error.status === 404 && error.message === 'api.common.not_found';
+
+  const accepted = makeDb({ id: 'p1', authorId: 'autor', openedAt: new Date('2026-10-08T09:00:00Z') });
+  assert.equal(await recordPreInquiryView('saaja', 'p1', { db: accepted, now }), true);
+  assert.deepEqual(accepted.state.writes, [{ kind: 'PRE_INQUIRY', preInquiryId: 'p1', viewerUserId: 'saaja', day: '2026-10-09' }]);
+  /* Päring küsib ainult rida, mis on saajale nähtav: tema oma, saadetud ja tagasi võtmata. */
+  assert.deepEqual(accepted.state.queries[0].where, { id: 'p1', recipientOwnerId: 'saaja', recalledAt: null, OR: [{ sentAt: { not: null } }, { status: 'SENT' }] });
+  assert.deepEqual(accepted.state.queries[0].select, { id: true, authorId: true, openedAt: true });
+
+  /* Vastu võtmata pöördumine: pöörduja lehel ei tohi „vaadatud" olla varasem kui „avatud". */
+  const unopened = makeDb({ id: 'p1', authorId: 'autor', openedAt: null });
+  assert.equal(await recordPreInquiryView('saaja', 'p1', { db: unopened, now }), false);
+  assert.deepEqual(unopened.state.writes, []);
+
+  /* Võõras, tagasi võetud või olematu rida: 404 ja jälge ei teki. */
+  const hidden = makeDb(null);
+  await assert.rejects(recordPreInquiryView('vooras', 'p1', { db: hidden, now }), notFound);
+  assert.deepEqual(hidden.state.writes, []);
+
+  /* Tühi kasutaja või tühi pöördumise ID ei jõua päringusse (Prisma jätaks tingimuse vahele). */
+  const empty = makeDb({ id: 'p1', authorId: 'autor', openedAt: now });
+  await assert.rejects(recordPreInquiryView('', 'p1', { db: empty, now }), notFound);
+  await assert.rejects(recordPreInquiryView('saaja', undefined, { db: empty, now }), notFound);
+  assert.deepEqual([empty.state.queries.length, empty.state.writes.length], [0, 0]);
+
+  /* Iseendale saadetud pöördumine ja autorita rida: kirjutust ei tehta. */
+  const own = makeDb({ id: 'p1', authorId: 'saaja', openedAt: now });
+  assert.equal(await recordPreInquiryView('saaja', 'p1', { db: own, now }), false);
+  const orphan = makeDb({ id: 'p1', authorId: null, openedAt: now });
+  assert.equal(await recordPreInquiryView('saaja', 'p1', { db: orphan, now }), false);
+  assert.deepEqual([own.state.writes.length, orphan.state.writes.length], [0, 0]);
+});
+
+test('isikule saadetud eelpöördumine: jälg kirjutatakse pärast lukku, teatel on oma piirang ja leht teatab ainult vastuvõetud pöördumisest', () => {
+  const source = (path) => readFileSync(new URL(path, import.meta.url), 'utf8').replace(/\r\n/g, '\n');
+  const lib = source('../lib/preInquiries.js');
+
+  /* Vastuvõtmine: kirjutus on pärast luku (tehingu) lõppu ja tavalise ühendusega. */
+  const acceptStart = lib.indexOf('export async function acceptPreInquiry(');
+  const accept = lib.slice(acceptStart, lib.indexOf('\nexport async function ', acceptStart + 10));
+  assert.match(accept, /const accepted = await withPreInquiryRoomLock\([\s\S]+\n  \}, \{ db \}\);\n  await recordRecipientView\(db, accepted, userId, now\);\n  return accepted;\n\}/);
+  assert.equal([...accept.matchAll(/recordRecipientView\(/g)].length, 1);
+
+  /* Töömärkmed: välitöö üleandmine (lukk juba käes, võõras tehing) jälge ei kirjuta. */
+  const workflowStart = lib.indexOf('export async function updatePreInquiryReceiverWorkflow(');
+  const workflow = lib.slice(workflowStart, lib.indexOf('\nexport async function ', workflowStart + 10));
+  const held = workflow.indexOf('if (roomLockAlreadyHeld) return mutate(db);');
+  const locked = workflow.indexOf('const updated = await withPreInquiryRoomLock(existing.id, mutate, { db });');
+  const record = workflow.indexOf('await recordRecipientView(db, updated, userId);');
+  assert.ok(held > 0 && locked > held && record > locked, 'jälg on pärast lukku ja pärast üleandmise varajast väljumist');
+  assert.equal([...workflow.matchAll(/recordRecipientView\(/g)].length, 1);
+
+  /* Marsruut: oma piirang, vastus ei ütle, kas rida tekkis. */
+  const route = source('../app/api/pre-inquiries/[id]/viewed/route.js');
+  assert.match(route, /enforcePreInquiryRateLimit\(request, \{ action: "view", userId: auth\.userId \}\)/);
+  assert.match(route, /await recordPreInquiryView\(auth\.userId, await readId\(context\)\);\n    return json\(\{ ok: true \}\);/);
+  assert.equal(/export async function (GET|PATCH|PUT|DELETE)/.test(route), false);
+  const boundary = source('../lib/preInquiryApiBoundary.js');
+  assert.match(boundary, /mutate: Object\.freeze\(\{ limit: 60, windowMs: 10 \* 60_000 \}\),[\s\S]+?\n  view: Object\.freeze\(\{ limit: 120, windowMs: 10 \* 60_000 \}\)\n\}\);/);
+
+  /* Leht: teade läheb ainult saaja enda vastuvõetud pöördumise kohta, kui see on avatud vaates. */
+  const page = source('../components/workspace/WorkspaceFeaturePage.jsx');
+  const signalStart = page.indexOf('const viewSignalsRef = useRef(new Set());');
+  const signal = page.slice(signalStart, page.indexOf('const activeReceivedJourneySharedInfo = useMemo('));
+  assert.ok(signalStart > 0 && signal.length > 0);
+  assert.match(signal, /isRecipientRole &&\n\s+receiverStep !== "queue" &&\n\s+activeReceivedInquiry\?\.openedAt &&\n\s+activeReceivedInquiry\.recipientOwnerId === currentUserId/);
+  assert.match(signal, /fetch\(`\/api\/pre-inquiries\/\$\{encodeURIComponent\(viewedInquiryId\)\}\/viewed`, \{ method: "POST" \}\)\.catch\(\(\) => \{\}\);/);
+  assert.equal([...page.matchAll(/\/viewed`/g)].length, 1);
 });
