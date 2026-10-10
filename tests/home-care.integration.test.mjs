@@ -6607,3 +6607,49 @@ test('käigud ilma ühegi erandita: märge hooldusjuhile, kui viimased käigud o
   assert.equal((await openClient(lead, client.id, deps())).exceptionStreak, null);
   assert.equal((await openClient(anu, client.id, deps())).exceptionStreak, null);
 });
+
+test('lepingu allkirja märge: ainult halduslepingul, päev ainult allkirjastatud seisuga, lahtised hooldusjuhi nimekirjas', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const start = deps(at('2026-09-01T06:00:00Z'));
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, start)).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi' }, start)).client;
+  const aino = (await createClient(lead, { displayName: 'Aino Saar' }, start)).client;
+  const contract = { kind: 'CONTRACT', issuerName: 'Haapsalu Linnavalitsus', validFrom: '2026-09-01', volumeHours: '6', volumePeriod: 'WEEK' };
+
+  /* Märketa leping, „ei ole kindel" leping ja haldusakt (allkirja ei käi, originaali koht käib). */
+  const made = await createDecision(lead, linda.id, contract, deps());
+  assert.deepEqual([made.current.signState, made.current.signedOn, made.current.originalKept], [null, null, null]);
+  await createDecision(lead, peeter.id, { ...contract, signState: 'UNSURE' }, deps());
+  const act = await createDecision(lead, aino.id, { kind: 'ACT', validFrom: '2026-09-01', originalKept: 'Linna dokumendiregister 5-2/117' }, deps());
+  assert.deepEqual([act.current.signState, act.current.originalKept], [null, 'Linna dokumendiregister 5-2/117']);
+  const open = async () => (await getDeadlines(lead, deps())).contractsUnsigned.map((item) => [item.client.displayName, item.validFrom, item.unsure]);
+  assert.deepEqual(await open(), [['Peeter Põhi', '2026-09-01', true], ['Linda Tamm', '2026-09-01', false]]);
+
+  /* Keeldumised: tundmatu seis, märge haldusaktil, päev ilma allkirjastatud seisuta, päev tulevikus. */
+  const bad = (clientId, body, key) => expectError(createDecision(lead, clientId, body, deps()), 400, key);
+  await bad(linda.id, { ...contract, signState: 'SIGNED' }, 'home_care.errors.decision_sign_state_invalid');
+  await bad(aino.id, { kind: 'ACT', validFrom: '2026-10-01', signState: 'PAPER' }, 'home_care.errors.decision_sign_contract_only');
+  await bad(linda.id, { ...contract, signedOn: '2026-09-02' }, 'home_care.errors.decision_signed_on_state');
+  await bad(linda.id, { ...contract, signState: 'NOT_REQUIRED', signedOn: '2026-09-02' }, 'home_care.errors.decision_signed_on_state');
+  await bad(linda.id, { ...contract, signState: 'PAPER', signedOn: '2026-10-10' }, 'home_care.errors.decision_signed_on_future');
+  /* Andmebaas hoiab sama piiri ka siis, kui koodist mööda kirjutatakse. */
+  await assert.rejects(db.careDecision.update({ where: { id: made.current.id }, data: { signedOn: '2026-09-02' } }));
+  await assert.rejects(db.careDecision.update({ where: { id: act.current.id }, data: { signState: 'PAPER' } }));
+
+  /* Allkiri paberil päevaga ja originaali koht: leping kaob nimekirjast ja on kliendi lehel näha. */
+  const signed = await updateDecision(
+    lead,
+    linda.id,
+    made.current.id,
+    { ...contract, version: made.current.version, signState: 'PAPER', signedOn: '2026-09-02', originalKept: 'Kaust 3, kontor' },
+    deps()
+  );
+  assert.deepEqual([signed.current.signState, signed.current.signedOn, signed.current.originalKept], ['PAPER', '2026-09-02', 'Kaust 3, kontor']);
+  assert.deepEqual((await openClient(lead, linda.id, deps())).decision.signState, 'PAPER');
+  assert.deepEqual(await open(), [['Peeter Põhi', '2026-09-01', true]]);
+  /* Tühistatud ja lõppenud lepingud nimekirja ei kuulu. */
+  const peeterDecision = (await getDecisions(lead, peeter.id, deps())).current;
+  await retractDecision(lead, peeter.id, peeterDecision.id, { version: peeterDecision.version }, deps());
+  assert.deepEqual(await open(), []);
+});

@@ -13203,7 +13203,11 @@
       "month_statement_future": "Tulevase kuu kohta kuulehte ei tehta.",
       "month_statement_empty": "Selles kuus ei ole ühtegi käiku ega ära jäänud käiku.",
       "month_statement_part": "Sellist osa ei ole.",
-      "month_statement_too_large": "Käike on ühe faili jaoks liiga palju. Ava kuuleht kliendi lehelt ükshaaval."
+      "month_statement_too_large": "Käike on ühe faili jaoks liiga palju. Ava kuuleht kliendi lehelt ükshaaval.",
+      "decision_sign_state_invalid": "Vali, kuidas leping allkirjastati.",
+      "decision_sign_contract_only": "Allkirja märge käib ainult halduslepinguga.",
+      "decision_signed_on_state": "Allkirjastamise päev käib ainult allkirjastatud lepinguga.",
+      "decision_signed_on_future": "Allkirjastamise päev ei saa olla tulevikus."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -13662,7 +13666,21 @@
       "retracted_notice": "Otsus on tühistatud. See jääb siia nähtavaks.",
       "decided_on": "otsustatud {date}",
       "created_by": "sisestas {name}",
-      "retracted_by": "tühistas {name} {date}"
+      "retracted_by": "tühistas {name} {date}",
+      "sign_label": "Kliendi allkiri lepingul",
+      "sign_hint": "Märgi, mis päriselt tehti. Platvorm allkirja ei kogu ega hoia lepingut. Kui sa ei ole kindel, et inimene sai lepingust aru, ära allkirja kogu: vali „ei ole kindel” ja pöördu sotsiaaltöötaja poole.",
+      "sign_states": {
+        "PAPER": "allkirjastatud paberil",
+        "DIGITAL": "digiallkiri",
+        "REPRESENTATIVE": "alla kirjutas esindaja",
+        "NOT_REQUIRED": "allkirja ei nõuta",
+        "UNSURE": "ei ole kindel, et inimene sai aru"
+      },
+      "sign_missing": "allkiri märkimata",
+      "signed_on_label": "Allkirjastamise päev",
+      "original_label": "Kus originaal on",
+      "original_hint": "Näiteks kaust kontoris või dokumendiregistri number.",
+      "original_line": "originaal: {place}"
     },
     "deadlines": {
       "link": "Tähtajad",
@@ -13749,7 +13767,11 @@
       "help_drift_line": "viimasel neljal nädalal {more} toimingut {total}-st kavast suurema abiga",
       "homecomings_title": "Koju tulnud kliendid, kelle juures ei ole pärast seda käidud",
       "homecomings_empty": "Kõigi koju tulnud klientide juures on käidud.",
-      "homecomings_line": "tuli koju {date}, ära alates {from}"
+      "homecomings_line": "tuli koju {date}, ära alates {from}",
+      "contracts_unsigned_title": "Lepingud, mille allkiri on lahtine",
+      "contracts_unsigned_empty": "Kõigi kehtivate lepingute allkiri on märgitud.",
+      "contracts_unsigned_line": "leping kehtib alates {date}, allkiri märkimata",
+      "contracts_unsigned_unsure": "leping kehtib alates {date}: ei ole kindel, et inimene sai aru; pöördu sotsiaaltöötaja poole"
     },
     "visit": {
       "title": "Mida tegid",

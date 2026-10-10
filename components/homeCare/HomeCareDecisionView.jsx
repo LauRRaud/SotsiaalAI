@@ -1,7 +1,7 @@
 "use client";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import { CareDecisionState, HOME_CARE_LIMITS } from "@/lib/homeCare/constants";
+import { CareDecisionKind, CareDecisionState, HOME_CARE_LIMITS } from "@/lib/homeCare/constants";
 
 import { planDayLabel } from "./HomeCarePlanView";
 
@@ -49,6 +49,17 @@ export default function HomeCareDecisionView({ decision }) {
     decision.issuerName
   ].filter(Boolean);
   const volume = decisionVolumeLabel(t, decision);
+  /* Lepingu allkirja märge ja originaali hoiukoht (K6-h). Märkimata allkiri on näha ainult
+     halduslepingul, mis ei ole tühistatud. */
+  const signMark =
+    decision.kind !== CareDecisionKind.CONTRACT
+      ? null
+      : decision.signState
+        ? `${t(`home_care.decision.sign_states.${decision.signState}`)}${decision.signedOn ? ` ${planDayLabel(decision.signedOn)}` : ""}`
+        : decision.state === CareDecisionState.RETRACTED
+          ? null
+          : t("home_care.decision.sign_missing");
+  const signLine = [signMark, decision.originalKept ? t("home_care.decision.original_line", { place: decision.originalKept }) : null].filter(Boolean).join(" · ");
   const endsSoon =
     decision.state === CareDecisionState.IN_FORCE &&
     decision.daysLeft !== null &&
@@ -82,6 +93,7 @@ export default function HomeCareDecisionView({ decision }) {
           .filter(Boolean)
           .join(" · ")}
       </p>
+      {signLine ? <p className="hc-entry__meta">{signLine}</p> : null}
       {decision.note ? <p className="hc-sub hc-sub--pre">{decision.note}</p> : null}
     </>
   );
