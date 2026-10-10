@@ -14531,7 +14531,8 @@
         "NEED_REDUCED": "the need for help has decreased",
         "SERVICE_UNFIT": "the service does not fit",
         "OTHER_SERVICE": "another service is needed",
-        "RELATIVE_CHANGED": "a relative's situation has changed"
+        "RELATIVE_CHANGED": "a relative's situation has changed",
+        "REVIEW": "the decision maker asked for an overview"
       },
       "text_label": "Describe in two sentences what the care workers have seen",
       "text_hint": "Write facts, not a judgement of the person. Do not write diagnoses.",
@@ -14592,8 +14593,24 @@
         "reason": "Reason: {reason}",
         "entries": "Diary entries:",
         "author": "Notice composed by: {name}",
-        "footer": "This is the service provider's observation for the decision maker. The official procedure takes place in STAR."
-      }
+        "footer": "This is the service provider's observation for the decision maker. The official procedure takes place in STAR.",
+        "figures_title": "Figures by month:",
+        "figures_none": "No visits or decided volume are recorded for the last months.",
+        "figures_partial": "{month} (until {date})",
+        "figures_visits": "visits {count}",
+        "figures_hours": "provided {hours} h",
+        "figures_expected": "decided {hours} h",
+        "figures_no_decision": "no decided volume",
+        "figures_missed": "missed visits {count}",
+        "figures_cancelled": "visits cancelled in advance {count}",
+        "figures_away": "days temporarily away {count}",
+        "figures_incidents": "Incidents in the same period: {count} ({list}).",
+        "figures_incidents_none": "No incidents in the same period.",
+        "figures_signals": "Times care workers noticed something different from usual: {count}.",
+        "figures_workers": "The visits of the last four weeks ({visits}) were made by this many different workers: {workers}."
+      },
+      "figures_label": "Add the figures of the last months",
+      "figures_hint": "Visits, time provided and decided, missed visits, the number of incidents and of noticed changes. The figures carry no diary text."
     }
   },
   "stage": {

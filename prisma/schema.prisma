@@ -8647,7 +8647,7 @@ model CareDecisionNotice {
   id             String   @id @default(cuid())
   organizationId String
   clientId       String
-  /// NEED_GROWN | NEED_REDUCED | SERVICE_UNFIT | OTHER_SERVICE | RELATIVE_CHANGED (`CareNoticeReason`).
+  /// NEED_GROWN | NEED_REDUCED | SERVICE_UNFIT | OTHER_SERVICE | RELATIVE_CHANGED | REVIEW (`CareNoticeReason`).
   reason         String
   /// Hooldusjuhi kaks lauset.
   text           String

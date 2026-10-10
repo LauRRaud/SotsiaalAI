@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
 import { CARE_NOTICE_ANSWERS, CARE_NOTICE_CHANNELS, CARE_NOTICE_REASONS } from '../lib/homeCare/constants.js';
+import { figureLines, trimLeadingEmptyMonths } from '../lib/homeCare/clientFigures.js';
 import { composeNoticeText, noticeState, normalizeNotice, normalizeNoticeAnswer } from '../lib/homeCare/decisionNotices.js';
 
 const TODAY = '2026-10-09';
@@ -17,7 +18,8 @@ test('teade otsustajale: sisendi reeglid', () => {
     recipient: null,
     channel: 'EMAIL',
     sentOn: TODAY,
-    entryIds: []
+    entryIds: [],
+    withFigures: false
   });
   const full = normalizeNotice({ ...base, recipient: ' Mari Maasikas, linnavalitsus ', sentOn: '2026-10-07', entryIds: [ID(1), ID(2), ID(1)] }, TODAY);
   assert.deepEqual([full.recipient, full.sentOn, full.entryIds], ['Mari Maasikas, linnavalitsus', '2026-10-07', [ID(1), ID(2)]]);
@@ -121,4 +123,45 @@ test('teate tekstid on kolmes keeles', () => {
     }
     for (const key of Object.keys(et.errors).filter((name) => name.startsWith('notice_'))) assert.ok(catalogue.errors[key], `${locale} ${key}`);
   }
+});
+
+test('teate arvud: read kuude kaupa, tühjad kuud algusest välja, erijuhtumid liigi kaupa', () => {
+  const month = (name, values = {}) => ({ month: name, untilDay: `${name}-30`, partial: false, visits: 0, minutes: 0, expectedMinutes: null, missed: 0, cancelled: 0, awayDays: 0, ...values });
+  /* Algusest jäävad välja kuud, mille kohta ei ole midagi kirjas; vahepealne tühi kuu jääb. */
+  assert.deepEqual(trimLeadingEmptyMonths([month('2026-07'), month('2026-08', { visits: 2 }), month('2026-09'), month('2026-10', { partial: true })]).map((row) => row.month), ['2026-08', '2026-09', '2026-10']);
+  assert.deepEqual(trimLeadingEmptyMonths([month('2026-07'), month('2026-08')]), []);
+  assert.equal(trimLeadingEmptyMonths([month('2026-07', { expectedMinutes: 0 })]).length, 1);
+
+  const figures = {
+    months: [
+      month('2026-08', { visits: 8, minutes: 360, expectedMinutes: 480, missed: 1, cancelled: 2, awayDays: 3 }),
+      month('2026-09', { visits: 9, minutes: 495 }),
+      month('2026-10', { untilDay: '2026-10-09', partial: true, visits: 2, minutes: 90, expectedMinutes: 139 })
+    ],
+    incidents: { total: 3, byType: { FALL: 2, DOOR_NOT_OPENED: 1 } },
+    signals: 4,
+    continuity: { workers: 2, visits: 6 }
+  };
+  assert.deepEqual(figureLines('et', figures), [
+    'Arvud kuude kaupa:',
+    '- 08.2026: käike 8, osutatud 6 t, otsustatud 8 t, ära jäänud käike 1, ette ära jäetud käike 2, ajutiselt ära päevi 3',
+    '- 09.2026: käike 9, osutatud 8,3 t, otsustatud mahtu ei olnud',
+    '- 10.2026 (kuni 09.10.2026): käike 2, osutatud 1,5 t, otsustatud 2,3 t',
+    'Erijuhtumeid samal ajal: 3 (Uks ei avanenud 1, Kukkumine või maast leidmine 2).',
+    'Hooldajate märkamisi, et midagi on tavalisest teisiti: 4.',
+    'Viimase nelja nädala käigud (6) tegi eri töötajaid: 2.'
+  ]);
+  assert.deepEqual(figureLines('et', { months: [], incidents: { total: 0, byType: {} }, signals: 0, continuity: null }), [
+    'Arvud kuude kaupa:',
+    'Viimastel kuudel ei ole käike ega otsustatud mahtu kirjas.',
+    'Erijuhtumeid samal ajal ei olnud.'
+  ]);
+  /* Teate tekstis on arvud lausete ja kirjete vahel; ilma arvudeta seda plokki ei ole. */
+  const notice = { reason: 'REVIEW', text: 'Ülevaade enne ülevaatust.', recipient: null, sentOn: '2026-10-09' };
+  const lines = composeNoticeText('et', { organizationName: 'A', clientName: 'B', authorName: 'C', notice, figures, entries: [{ day: '2026-10-05', authorName: 'Anu', text: 'Kirje' }] }).split('\n');
+  assert.deepEqual(lines.slice(3, 8), ['Põhjus: otsustaja küsis ülevaadet', '', 'Ülevaade enne ülevaatust.', '', 'Arvud kuude kaupa:']);
+  assert.equal(lines.indexOf('Päeviku kirjed:') > lines.indexOf('Arvud kuude kaupa:'), true);
+  assert.equal(composeNoticeText('et', { organizationName: 'A', clientName: 'B', authorName: 'C', notice }).includes('Arvud kuude kaupa'), false);
+  assert.equal(normalizeNotice({ reason: 'REVIEW', text: 'x', channel: 'STAR', withFigures: true }, TODAY).withFigures, true);
+  assert.equal(normalizeNotice({ reason: 'REVIEW', text: 'x', channel: 'STAR', withFigures: 'jah' }, TODAY).withFigures, false);
 });
