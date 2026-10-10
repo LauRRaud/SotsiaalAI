@@ -28,7 +28,7 @@ Näeb muutust ulatuses (kehtivus, omavalitsus), sõna- ja vektorikanalis, liitmi
 ## Esimene käivitus päris indeksil (10.10.2026)
 
 - Lähteseis töötaval väljalaskel: neli kataloogi, **33 küsimust, kõik läbi käidud**, 0 vahele jäetud, 0 viga; iga küsimus umbes 25 sekundit. Salvestatud vektorid 30.09–02.10 olid serveris alles.
-- **Esimene võrdlus:** seadusesätte sildi kood (ADR-123, eraldi muudatus) kattekaustas lähteseisu vastu: **33 küsimust 33-st „sama“**, ükski otsustav lõik ei kadunud ega nihkunud, väljumiskood 0. Päis näitas, et otsingu moodulid laaditi kattekaustast, mitte väljalaskest. Silt on vastuse mudelile mõeldud märkus, mis otsingut muuta ei tohigi; kontroll kinnitas seda. Küsimus võttis teisel jooksul umbes 5 sekundit (esimesel 25: esimene jooks kontrollis allikad üle).
+- **Esimene võrdlus:** seadusesätte sildi kood ([ADR-123](adr-123-provision-label-for-legal-passages.md); seda muudatust kasutusele ei võetud) kattekaustas lähteseisu vastu: **33 küsimust 33-st „sama“**, ükski otsustav lõik ei kadunud ega nihkunud, väljumiskood 0. Päis näitas, et otsingu moodulid laaditi kattekaustast, mitte väljalaskest. Silt on vastuse mudelile mõeldud märkus, mis otsingut muuta ei tohigi; kontroll kinnitas seda. Küsimus võttis teisel jooksul umbes 5 sekundit (esimesel 25: esimene jooks kontrollis allikad üle).
 - Kattekausta reegel sai kinnitust juba varem samal ööl (ADR-121): muudetud moodul peab kattekaustas olema koos kõigi moodulitega, mis seda suhtelise teega impordivad, muidu laeb Node väljalaske oma faili. Käsk kirjutab nüüd jooksu päisesse, kust otsingu moodulid tegelikult laaditi (`search_roots`).
 
 ## Kontrollitud
@@ -38,6 +38,6 @@ Näeb muutust ulatuses (kehtivus, omavalitsus), sõna- ja vektorikanalis, liitmi
 
 ## Kontrollimata ja lahti
 
-- **Müratase** sama koodi kahe jooksu vahel on eraldi mõõtmata; esimene võrdlus (muudetud kood, mis otsingut ei puuduta) andis 33/33 sama, mis näitab, et kordus on stabiilne.
+- **Müratase mõõdetud samal ööl:** töötava väljalaske enda kood (`d7d393fa`) lähteseisu vastu: 33/33 sama, väljumiskood 0. Sama kood annab seega sama tulemuse; erinevus võrdluses tuleb muudatusest.
 - Viies kataloog (`maintenance-duty-1`) on komplektist väljas: selle vektorite asukoht serveris ei ole kirjas.
 - Salvestatud testpöörete kirjete raja kordus (ADR-121 tööriist) ei ole veel selle käsu osa.

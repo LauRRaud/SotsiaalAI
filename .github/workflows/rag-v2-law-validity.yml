@@ -2,6 +2,8 @@ name: rag-v2-law-validity
 
 # ADR-038: aktiivse korpuse õigusaktide kehtivus Riigi Teataja vastu kord kuus, 25. kuupäeval (enne kuuvahetuse
 # jõustumisi, nt RLS-i 31.10.2026). ADR-058: samas töös omavalitsuste kehtivad sotsiaalaktid, mida indeksis pole.
+# ADR-124: samas töös loend indeksi aktidest, mille redaktsioon lõpeb 90 päeva jooksul (loetakse ainult korpuse aktide
+# loendist): päev pärast viimast päeva kaob akt vastustest, kui järgmist redaktsiooni ei ole korpusesse võetud.
 # Muudatus, ülevaatust vajav koht või uus omavalitsuse akt avab või täiendab ühe issue; puhas kontroll sulgeb selle. Päringu tõrge (exit 20) või käivitusviga teeb töö punaseks. Midagi ei avaldata: allikad lähevad
 # korpusesse tavalise vastuvõtu- ja indeksiraja kaudu.
 on:
@@ -43,6 +45,15 @@ jobs:
           node scripts/rag-v2-municipal-acts.mjs scan --manifest docs/rag-v2/legal-acts-in-index.json --out law-validity
           echo "exit=$?" >> "$GITHUB_OUTPUT"
 
+      - name: List the indexed acts whose versions stop within 90 days
+        id: ending
+        run: |
+          set +e
+          mkdir -p law-validity
+          node scripts/rag-v2-law-validity.mjs ending --manifest docs/rag-v2/legal-acts-in-index.json --horizon-days 90 \
+            --out law-validity/acts-ending.json > law-validity/acts-ending.txt
+          echo "exit=$?" >> "$GITHUB_OUTPUT"
+
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         if: always()
         with:
@@ -57,6 +68,7 @@ jobs:
           GH_REPO: ${{ github.repository }}
           EXIT: ${{ steps.check.outputs.exit }}
           MUNICIPAL: ${{ steps.municipal.outputs.exit }}
+          ENDING: ${{ steps.ending.outputs.exit }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           OWNER: ${{ github.repository_owner }}
         run: |
@@ -70,6 +82,12 @@ jobs:
             0) ;;
             10) if [ "$EXIT" = 0 ]; then EXIT=10; fi ;;
             *) if [ "$EXIT" = 0 ] || [ "$EXIT" = 10 ]; then EXIT="$MUNICIPAL"; fi ;;
+          esac
+          # Acts that end within the horizon are findings too; a list that could not be made is a failure.
+          case "$ENDING" in
+            0) ;;
+            10) if [ "$EXIT" = 0 ]; then EXIT=10; fi ;;
+            *) if [ "$EXIT" = 0 ] || [ "$EXIT" = 10 ]; then EXIT="${ENDING:-1}"; fi ;;
           esac
           if [ "$EXIT" = 0 ]; then
             if [ -n "$number" ]; then gh issue close "$number" --comment "Kontroll $(date -u +%F): muutusi ega ülevaatust vajavaid kohti pole. $RUN_URL"; fi
@@ -85,7 +103,17 @@ jobs:
             echo
             echo "Töö ja aruanne (JSON): $RUN_URL"
             echo
-            if [ -n "$report" ]; then head -c 40000 "$report"; fi
+            if [ "$ENDING" = 10 ]; then
+              echo "### Indeksis olevad redaktsioonid, mis lõpevad 90 päeva jooksul"
+              echo
+              echo "Päev pärast viimast päeva kaob akt vastustest, kui järgmine redaktsioon ei ole korpuses. Täielik loend: töö failis \`acts-ending.json\`."
+              echo
+              echo '```'
+              grep -v '^{' law-validity/acts-ending.txt | head -n 31
+              echo '```'
+              echo
+            fi
+            if [ -n "$report" ]; then head -c 36000 "$report"; fi
             if [ -n "$municipal" ] && [ "$MUNICIPAL" = 10 ]; then echo; head -c 20000 "$municipal"; fi
           } > issue-body.md
           if [ -n "$number" ]; then gh issue comment "$number" --body-file issue-body.md

@@ -1,0 +1,51 @@
+# The 30 hard-condition questions through the live chat path on the server, 10.10.2026 (corpus v74, prompt 41,
+# search-assist-13, quick reasoning), each asked twice: 60 paid turns. Per question: runs in which the evidence held the
+# deciding phrase (found) and the answer cited a passage holding it (cited); answer kinds (g grounded, p partial); place
+# (R no municipality given, m municipality known); how the passage entered (ranked_seed: chosen from the ranked
+# candidates; graph_addition: added after the selection by a search step (a pointer, a named act, a card, a structural neighbour or a
+# version counterpart); the run stored no finer kind).
+# The answers' wording was not read: the measure is automatic.
+{"turns":60,"errors":0,"usd":0.2319,"kinds":{"partial":39,"grounded":21},"in_evidence":60,"cited":60,"reasons":{"ranked_seed":53,"graph_addition":8},"median_ms":18967}
+{"questions":30,"found_every_run":30,"found_some_runs":0,"found_never":0,"cited_every_run":30,"cited_some_runs":0,"cited_never":0}
+  day-support-dementia-retirement    found 2/2 cited 2/2 kinds pp place RR via ranked_seed
+  supported-living-alcohol           found 2/2 cited 2/2 kinds pp place RR via graph_addition
+  community-living-dementia          found 2/2 cited 2/2 kinds pp place RR via ranked_seed,graph_addition
+  subsistence-care-home              found 2/2 cited 2/2 kinds pp place RR via ranked_seed,graph_addition
+  subsistence-prison                 found 2/2 cited 2/2 kinds pg place RR via ranked_seed
+  involuntary-placement              found 2/2 cited 2/2 kinds pp place RR via ranked_seed
+  own-share-shortfall                found 2/2 cited 2/2 kinds gg place RR via ranked_seed
+  rehabilitation-student             found 2/2 cited 2/2 kinds pp place RR via graph_addition,ranked_seed
+  day-care-retirement-age            found 2/2 cited 2/2 kinds pp place RR via graph_addition,ranked_seed
+  reclaim-limitation                 found 2/2 cited 2/2 kinds pp place RR via ranked_seed
+  reclaim-enforcement                found 2/2 cited 2/2 kinds pp place RR via ranked_seed
+  coach-reports-child                found 2/2 cited 2/2 kinds pg place RR via ranked_seed
+  student-subsistence-own            found 2/2 cited 2/2 kinds pp place RR via ranked_seed
+  subsistence-new-job                found 2/2 cited 2/2 kinds pp place RR via ranked_seed
+  subsistence-deadline               found 2/2 cited 2/2 kinds gg place RR via ranked_seed
+  subsistence-home-loan              found 2/2 cited 2/2 kinds gg place RR via ranked_seed
+  referral-deadline-emergency        found 2/2 cited 2/2 kinds gp place RR via ranked_seed
+  student-turns-25                   found 2/2 cited 2/2 kinds pp place RR via ranked_seed
+  refusal-only-home                  found 2/2 cited 2/2 kinds pp place RR via ranked_seed
+  service-ended-martial-law          found 2/2 cited 2/2 kinds gg place RR via ranked_seed
+  rent-from-mother                   found 2/2 cited 2/2 kinds pp place RR via ranked_seed
+  pensioner-with-student-child       found 2/2 cited 2/2 kinds pp place RR via graph_addition
+  child-rehabilitation-need          found 2/2 cited 2/2 kinds gg place RR via ranked_seed
+  harku-support-person-relative      found 2/2 cited 2/2 kinds gg place mm via ranked_seed
+  guardian-ward-family               found 2/2 cited 2/2 kinds pp place RR via ranked_seed
+  rent-debt-not-counted              found 2/2 cited 2/2 kinds gg place RR via ranked_seed
+  household-definition               found 2/2 cited 2/2 kinds pp place RR via ranked_seed
+  kuusalu-limits-since               found 2/2 cited 2/2 kinds gg place mm via ranked_seed
+  special-care-decision-time         found 2/2 cited 2/2 kinds gg place RR via ranked_seed
+  pensioner-day-centre               found 2/2 cited 2/2 kinds pp place RR via ranked_seed
+
+# A short repeat the same night: the six questions whose deciding passage a search step added, each twice more (12
+# paid turns), with the tool storing which step it was (cross_reference: the act's own pointer; cross_reference/named_act:
+# a pointer to another act; a card would read semantic_dependency/card).
+{"turns":12,"errors":0,"usd":0.0416,"kinds":{"partial":10,"grounded":2},"in_evidence":11,"cited":11,"reasons":{"cross_reference":4,"ranked_seed":7,"cross_reference/named_act":1},"median_ms":29182}
+{"questions":6,"found_every_run":5,"found_some_runs":1,"found_never":0,"cited_every_run":5,"cited_some_runs":1,"cited_never":0}
+  supported-living-alcohol           found 1/2 cited 1/2 kinds pp place RR via cross_reference
+  community-living-dementia          found 2/2 cited 2/2 kinds pp place RR via ranked_seed,cross_reference
+  subsistence-care-home              found 2/2 cited 2/2 kinds pp place RR via ranked_seed
+  rehabilitation-student             found 2/2 cited 2/2 kinds gg place RR via ranked_seed
+  day-care-retirement-age            found 2/2 cited 2/2 kinds pp place RR via cross_reference
+  pensioner-with-student-child       found 2/2 cited 2/2 kinds pp place RR via cross_reference/named_act,ranked_seed

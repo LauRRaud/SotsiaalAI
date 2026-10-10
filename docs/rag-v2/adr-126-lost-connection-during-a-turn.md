@@ -1,6 +1,6 @@
 # ADR-126: katkenud ühendus pöörde ajal ei jäta inimest vastuseta
 
-Kuupäev: 10.10.2026. Teostus Claude Opus 5.5. Omanik 09.10.2026 õhtul: kuue tunni töö RAG-i valmisoleku nimel. Viga leidsid agendid valmisoleku kaardistuses (kaks sõltumatut lugejat, kontrollija kinnitas); parandus, testid ja mõõtmine päris vestlusaknas minult.
+Kuupäev: 10.10.2026. Teostus Claude Opus 5.5. Omanik 09.10.2026 õhtul: kuue tunni töö RAG-i valmisoleku nimel. Viga leidsid agendid valmisoleku kaardistuses (kaks sõltumatut lugejat, kontrollija kinnitas); parandus, testid ja mõõtmine päris vestlusaknas minult. Seis: **serveris alates 10.10.2026 kell 02.21 (väljalase `e4c36ec8`), mõõdetud päris vestlusaknas.**
 
 ## Probleem
 
@@ -31,4 +31,14 @@ Uut mudelikutset ega otsingut ei lisandu: sama võti loeb ainult salvestatud pö
 
 ## Mõõtmine päris vestlusaknas
 
-Täidetakse pärast väljalaset: sama katse (voog katkestatakse brauseris neli sekundit pärast päiseid), enne ja pärast.
+Sama katse enne ja pärast väljalaset `e4c36ec8` (10.10.2026 kell 02.21), omaniku sisselogitud aknas: brauseris katkestati vastuse voog, server jätkas.
+
+| | Enne | Pärast |
+|---|---|---|
+| Päised jõudsid brauserisse pärast saatmist | 17,4 s | 1,5 s |
+| Voog katkestati | kohe päiste järel | 4 s pärast päiseid |
+| Uuesti küsimise vastus | kohe 409 „Pooleliolev katse“, pööre seisundis `rerank_sent` | 20,7 s ootamise järel valmis vastus (533 märki, 2 allikat) |
+| Mida inimene nägi | „Pooleliolev katse“, kuigi pööre lõppes serveris 23,7 sekundiga | vastus |
+| Pöördeid serveris selle sõnumi kohta | 1 | 1 |
+
+Mõlemad pöörded olid tavalisest aeglasemad (23,7 ja 25,5 s), sest serveris jooksis samal ajal tasuta mõõtmine. Kolme pöörde hind plaani loenduris kokku 0,0122 USD.
