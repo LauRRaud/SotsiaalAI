@@ -16,6 +16,7 @@ import { prisma } from "@/lib/prisma";
 import { deleteUserWithPrivacyCleanup } from "@/lib/privacy/userDeletion";
 import { safeError } from "@/lib/privacy/safeError";
 import { deleteProfileForUser, updateProfileForUser } from "@/lib/profile/accountLifecycle";
+import { profileNameView } from "@/lib/profile/ownName";
 
 const NO_STORE_HEADERS = {
   "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
@@ -156,6 +157,8 @@ export async function GET(request) {
         role: true,
         isAdmin: true,
         passwordHash: true,
+        /* Inimese enda nimi konto seadete vormi jaoks (salvestab `PUT /api/profile/name`). */
+        profile: { select: { firstName: true, lastName: true } },
         trustedDevices: {
           where: {
             expiresAt: {
@@ -200,10 +203,14 @@ export async function GET(request) {
         ? { email: pending.newEmail, expiresAt: pending.expiresAt.toISOString() }
         : null;
 
+    const name = profileNameView(user.profile);
+
     return json({
       ok: true,
       user: {
         email: user.email,
+        firstName: name.firstName,
+        lastName: name.lastName,
         role: user.role,
         effectiveRole: roleState.effectiveRole,
         adminViewRole: roleState.adminViewRole,
