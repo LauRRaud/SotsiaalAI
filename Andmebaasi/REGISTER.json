@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "created_at": "2026-09-07T20:16:49.778Z",
-  "updated_at": "2026-10-10",
+  "updated_at": "2026-10-11",
   "path_base": "Andmebaasi",
   "archive": "../Arhiiv/Andmebaasi_2026-09-07",
   "import_rule": "Use source entries with their metadata. reference_lookup and review_source require reconciliation; metadata, source_register and source_planning_register are not independent knowledge documents. Folder organisation does not assert ingest acceptance.",
@@ -27,8 +27,8 @@
       "sources": 1
     },
     "oigusaktid": {
-      "files": 652,
-      "sources": 638
+      "files": 654,
+      "sources": 640
     },
     "register": {
       "files": 9,
@@ -49,11 +49,11 @@
   },
   "corpus": {
     "written_by": "rag-v2/register-corpus-1",
-    "version": "v75",
-    "index_generation": "331f9dec",
-    "read_at": "2026-10-10",
-    "documents": 8722,
-    "units": 80948,
+    "version": "v77",
+    "index_generation": "60b0ba23",
+    "read_at": "2026-10-11",
+    "documents": 9288,
+    "units": 88181,
     "note": "What the RAG on the server holds: the documents of the corpus policy by what they are (by_content), and by where the source file is kept (from_repository, outside_repository). One file of the repository may give many documents (a municipality package gives its services, forms and contacts). On a source entry, corpus_documents is the number of corpus documents the file gives; 0 means the file is not in the corpus.",
     "by_content": [
       {
@@ -97,9 +97,9 @@
       {
         "content": "acts",
         "name": "legal acts",
-        "documents": 592,
+        "documents": 594,
         "by_source_type": {
-          "legal_act": 592
+          "legal_act": 594
         }
       },
       {
@@ -116,17 +116,17 @@
       {
         "content": "official_pages",
         "name": "official guidance pages",
-        "documents": 360,
+        "documents": 911,
         "by_source_type": {
-          "web_page": 360
+          "web_page": 911
         }
       },
       {
         "content": "organisation_pages",
-        "name": "disability organisations' own pages",
-        "documents": 521,
+        "name": "organisations' own pages (disability organisations, the food bank, the social workers' association)",
+        "documents": 534,
         "by_source_type": {
-          "organization_page": 521
+          "organization_page": 534
         }
       },
       {
@@ -174,9 +174,9 @@
         }
       },
       "oigusaktid": {
-        "documents": 592,
+        "documents": 594,
         "by_source_type": {
-          "legal_act": 592
+          "legal_act": 594
         }
       },
       "veebilehed": {
@@ -197,10 +197,10 @@
       }
     },
     "source_files_not_in_corpus": 61,
-    "outside_repository_documents": 2208
+    "outside_repository_documents": 2772
   },
   "outside_repository": {
-    "documents": 2208,
+    "documents": 2772,
     "note": "Sources of the corpus that are not files of the repository. Copies are in the corpus store (the main checkout's git-ignored tmp/ and the server). Of contacts only counts are given: a contact's title is a person's name.",
     "kinds": [
       {
@@ -1335,14 +1335,14 @@
       },
       {
         "kind": "organisation_pages",
-        "name": "disability organisations' own pages",
-        "documents": 521,
+        "name": "organisations' own pages (disability organisations, the food bank, the social workers' association)",
+        "documents": 534,
         "by_source_type": {
-          "organization_page": 521
+          "organization_page": 534
         },
-        "made_from": "the list register/web_pages_organisations.json, collected with scripts/rag-v2-web-pages.mjs and chosen with scripts/rag-v2-web-select.mjs (ADR-095)",
+        "made_from": "the list register/web_pages_organisations.json and the organisations of register/web_pages_coverage_1.json and _2.json, collected with scripts/rag-v2-web-pages.mjs and chosen with scripts/rag-v2-web-select.mjs (ADR-095, ADR-137)",
         "reason": "the organisations' own texts",
-        "publishers": 43,
+        "publishers": 45,
         "sources": [
           {
             "title": "Dementsuse Kompetentsikeskus",
@@ -2850,6 +2850,71 @@
             "publisher": "Eesti Sclerosis Multiplexi Ühingute Liit"
           },
           {
+            "title": "Eesti Sotsiaaltöö Assotsiatsioon: Eetikakäsiraamat | ESTA",
+            "url": "https://www.eswa.ee/eetikakasiraamat/",
+            "publisher": "Eesti Sotsiaaltöö Assotsiatsioon"
+          },
+          {
+            "title": "Eesti Toidupank: Kellele jagame toiduabi?",
+            "url": "https://www.toidupank.ee/vajad-abi/kellele-jagame-toiduabi",
+            "publisher": "Eesti Toidupank"
+          },
+          {
+            "title": "Eesti Toidupank: Millest toiduabi koosneb?",
+            "url": "https://www.toidupank.ee/vajad-abi/millest-toiduabi-koosneb",
+            "publisher": "Eesti Toidupank"
+          },
+          {
+            "title": "Eesti Toidupank: Taotle abi",
+            "url": "https://www.toidupank.ee/vajad-abi",
+            "publisher": "Eesti Toidupank"
+          },
+          {
+            "title": "Eesti Toidupank: Toiduabi taotlemise info",
+            "url": "https://www.toidupank.ee/vajad-abi/toiduabi-taotlemise-info",
+            "publisher": "Eesti Toidupank"
+          },
+          {
+            "title": "Eesti Toidupank: Vali toidupank",
+            "url": "https://www.toidupank.ee/foodbanks/jogeva",
+            "publisher": "Eesti Toidupank"
+          },
+          {
+            "title": "Eesti Toidupank: Vali toidupank",
+            "url": "https://www.toidupank.ee/foodbanks/rapla",
+            "publisher": "Eesti Toidupank"
+          },
+          {
+            "title": "Eesti Toidupank: Vali toidupank",
+            "url": "https://www.toidupank.ee/foodbanks/tallinn",
+            "publisher": "Eesti Toidupank"
+          },
+          {
+            "title": "Eesti Toidupank: Vali toidupank",
+            "url": "https://www.toidupank.ee/foodbanks/rakvere",
+            "publisher": "Eesti Toidupank"
+          },
+          {
+            "title": "Eesti Toidupank: Vali toidupank",
+            "url": "https://www.toidupank.ee/foodbanks/valga",
+            "publisher": "Eesti Toidupank"
+          },
+          {
+            "title": "Eesti Toidupank: Vali toidupank",
+            "url": "https://www.toidupank.ee/foodbanks/kuressaare",
+            "publisher": "Eesti Toidupank"
+          },
+          {
+            "title": "Eesti Toidupank: Vali toidupank",
+            "url": "https://www.toidupank.ee/foodbanks/tartu",
+            "publisher": "Eesti Toidupank"
+          },
+          {
+            "title": "Eesti Toidupank: Vali toidupank",
+            "url": "https://www.toidupank.ee/foodbanks/parnu",
+            "publisher": "Eesti Toidupank"
+          },
+          {
             "title": "Eesti Vaegkuuljate Liit: Aparaadi taotlemine",
             "url": "https://vaegkuuljad.ee/kuulmisabi/aparaadi-taotlemine",
             "publisher": "Eesti Vaegkuuljate Liit"
@@ -3948,6 +4013,2774 @@
             "title": "Võrumaa Puuetega Inimeste Koda: TASUTA ÕIGUSABI ERIVAJADUSTEGA INIMESTELE",
             "url": "https://www.vorukoda.ee/tasuta-oigusabi-erivajadustega-inimestele",
             "publisher": "Võrumaa Puuetega Inimeste Koda"
+          }
+        ]
+      },
+      {
+        "kind": "guidance_pages",
+        "name": "institutions' guidance pages chosen by rule",
+        "documents": 551,
+        "by_source_type": {
+          "web_page": 551
+        },
+        "made_from": "the lists register/web_pages_coverage_1.json and register/web_pages_coverage_2.json, collected with scripts/rag-v2-web-pages.mjs and chosen with scripts/rag-v2-web-select.mjs (ADR-137)",
+        "reason": "the choice takes the paragraphs that name a person out of a page; the monthly refresh of the repository's pages would put the collector's own reading in its place",
+        "publishers": 10,
+        "sources": [
+          {
+            "title": "Andmekaitsespetsialist",
+            "url": "https://www.aki.ee/isikuandmed/andmetootlejale/andmekaitsespetsialist",
+            "publisher": "Andmekaitse Inspektsioon"
+          },
+          {
+            "title": "Andmekaitsetingimuste koostamine",
+            "url": "https://www.aki.ee/isikuandmed/andmetootlejale/andmekaitsetingimuste-koostamisest",
+            "publisher": "Andmekaitse Inspektsioon"
+          },
+          {
+            "title": "Andmetega tutvumine",
+            "url": "https://www.aki.ee/isikuandmed/inimese-oigused/isikuandmetega-tutvumine",
+            "publisher": "Andmekaitse Inspektsioon"
+          },
+          {
+            "title": "Andmeturve",
+            "url": "https://www.aki.ee/isikuandmed/andmetootlejale/andmeturve",
+            "publisher": "Andmekaitse Inspektsioon"
+          },
+          {
+            "title": "Andmetöötleja vastutus ja kohustused",
+            "url": "https://www.aki.ee/isikuandmed/andmetootlejale/andmetootleja-vastutus-ja-kohustused",
+            "publisher": "Andmekaitse Inspektsioon"
+          },
+          {
+            "title": "Andmetöötluse põhimõtted",
+            "url": "https://www.aki.ee/isikuandmed/andmetootlejale/andmetootluse-pohimotted",
+            "publisher": "Andmekaitse Inspektsioon"
+          },
+          {
+            "title": "Automatiseeritud otsused ja profiilianalüüs",
+            "url": "https://www.aki.ee/isikuandmed/inimese-oigused/automatiseeritud-otsused-ja-profiilianaluus",
+            "publisher": "Andmekaitse Inspektsioon"
+          },
+          {
+            "title": "Haridus ja lapsed",
+            "url": "https://www.aki.ee/isikuandmed/kkk/haridus-ja-lapsed",
+            "publisher": "Andmekaitse Inspektsioon"
+          },
+          {
+            "title": "Inimese õiguste tagamine",
+            "url": "https://www.aki.ee/isikuandmed/andmetootlejale/inimese-oiguste-tagamine",
+            "publisher": "Andmekaitse Inspektsioon"
+          },
+          {
+            "title": "Isikuandmed uuringutes",
+            "url": "https://www.aki.ee/isikuandmed/andmetootlejale/isikuandmed-uuringutes",
+            "publisher": "Andmekaitse Inspektsioon"
+          },
+          {
+            "title": "Isikuandmete kustutamine",
+            "url": "https://www.aki.ee/isikuandmed/inimese-oigused/isikuandmete-kustutamine",
+            "publisher": "Andmekaitse Inspektsioon"
+          },
+          {
+            "title": "Isikuandmete parandamine",
+            "url": "https://www.aki.ee/isikuandmed/inimese-oigused/isikuandmete-parandamine",
+            "publisher": "Andmekaitse Inspektsioon"
+          },
+          {
+            "title": "Isikuandmete töötleja üldjuhend",
+            "url": "https://www.aki.ee/isikuandmed/juhendid-ja-abimaterjalid/isikuandmete-tootleja-uldjuhend",
+            "publisher": "Andmekaitse Inspektsioon"
+          },
+          {
+            "title": "Isikuandmete töötlemine koolis",
+            "url": "https://www.aki.ee/isikuandmete-tootlemine-koolis",
+            "publisher": "Andmekaitse Inspektsioon"
+          },
+          {
+            "title": "Isikuandmete töötlemine tervishoius",
+            "url": "https://www.aki.ee/isikuandmete-tootlemine-tervishoius",
+            "publisher": "Andmekaitse Inspektsioon"
+          },
+          {
+            "title": "Isikuandmete töötlemine töösuhetes",
+            "url": "https://www.aki.ee/isikuandmed/juhendid-ja-abimaterjalid/isikuandmete-tootlemine-toosuhetes",
+            "publisher": "Andmekaitse Inspektsioon"
+          },
+          {
+            "title": "Isikuandmete töötlemise piiramine",
+            "url": "https://www.aki.ee/isikuandmed/inimese-oigused/isikuandmete-tootlemise-piiramine",
+            "publisher": "Andmekaitse Inspektsioon"
+          },
+          {
+            "title": "Isikuandmete ülekandmine",
+            "url": "https://www.aki.ee/isikuandmed/inimese-oigused/isikuandmete-ulekandmine",
+            "publisher": "Andmekaitse Inspektsioon"
+          },
+          {
+            "title": "Kaamerad",
+            "url": "https://www.aki.ee/isikuandmed/kkk/kaamerad",
+            "publisher": "Andmekaitse Inspektsioon"
+          },
+          {
+            "title": "Maksehäired",
+            "url": "https://www.aki.ee/isikuandmed/kkk/maksehaired",
+            "publisher": "Andmekaitse Inspektsioon"
+          },
+          {
+            "title": "Mõisted",
+            "url": "https://www.aki.ee/isikuandmed/kkk/moisted",
+            "publisher": "Andmekaitse Inspektsioon"
+          },
+          {
+            "title": "Riik",
+            "url": "https://www.aki.ee/isikuandmed/kkk/riik",
+            "publisher": "Andmekaitse Inspektsioon"
+          },
+          {
+            "title": "Teave isikuandmete kasutamise kohta",
+            "url": "https://www.aki.ee/isikuandmed/inimese-oigused/teave-isikuandmete-kasutamise-kohta",
+            "publisher": "Andmekaitse Inspektsioon"
+          },
+          {
+            "title": "Tervishoid",
+            "url": "https://www.aki.ee/isikuandmed/kkk/tervishoid",
+            "publisher": "Andmekaitse Inspektsioon"
+          },
+          {
+            "title": "Töösuhted",
+            "url": "https://www.aki.ee/isikuandmed/kkk/toosuhted",
+            "publisher": "Andmekaitse Inspektsioon"
+          },
+          {
+            "title": "Töötlemise õiguslikud alused",
+            "url": "https://www.aki.ee/isikuandmed/andmetootlejale/tootlemise-oiguslikud-alused",
+            "publisher": "Andmekaitse Inspektsioon"
+          },
+          {
+            "title": "Vastuväidete esitamine",
+            "url": "https://www.aki.ee/isikuandmed/inimese-oigused/vastuvaidete-esitamine",
+            "publisher": "Andmekaitse Inspektsioon"
+          },
+          {
+            "title": "Ühisjuhend: Abivajavast lapsest teatamine ja andmekaitse",
+            "url": "https://www.aki.ee/juhendid/isikuandmed/uhisjuhend-abivajavast-lapsest-teatamine-ja-andmekaitse",
+            "publisher": "Andmekaitse Inspektsioon"
+          },
+          {
+            "title": "10 nippi turvalise kohtingurakenduse kohtumiseks",
+            "url": "https://www.teeviit.ee/10-nippi-turvalisteks-kohtinguteks/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "10 nippi, kuidas hoiduda läbipõlemisest",
+            "url": "https://www.teeviit.ee/10-nippi-kuidas-hoiduda-labipolemisest/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "5 küsimust ja vastust alkoholi kohta",
+            "url": "https://www.teeviit.ee/5-kusimust-ja-vastust-alkoholi-kohta/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "5 tehnikat ärevuse leevendamiseks iseseisvalt",
+            "url": "https://www.teeviit.ee/viis-tehnikat-arevuse-leevendamiseks-iseseisvalt/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Alkoholi- või narkojoobes juhtimine",
+            "url": "https://www.teeviit.ee/alkoholi-voi-narkojoobes-juhtimine/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Asjad, mida pead teadma korgijoogist ja seksuaalvägivallast",
+            "url": "https://www.teeviit.ee/asjad-mida-pead-teadma-korgijoogist-ja-seksuaalvagivallast/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Depressioon – mis see on ja kuidas seda ära tunda?",
+            "url": "https://www.teeviit.ee/depressioon-mis-see-on-ja-kuidas-seda-ara-tunda/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Depressiooniga toimetulek – mõned soovitused enda abistamiseks",
+            "url": "https://www.teeviit.ee/depressiooniga-toimetulek-moned-soovitused-enda-abistamiseks/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Digisõltuvus võib tabada igaüht",
+            "url": "https://www.teeviit.ee/digisoltuvus-voib-tabada-igauht/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "E-sigaretid – kuidas tubakatööstus meid oma sõnumitega mõjutab?",
+            "url": "https://www.teeviit.ee/e-sigaretid-kuidas-tubakatoostus-meid-oma-sonumitega-mojutab/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Emotsioonid ja nende väljendumine",
+            "url": "https://www.teeviit.ee/vaimne-tervis-emotsioonid-ja-nende-valjendumine/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Enamlevinud vaimse tervise mured",
+            "url": "https://www.teeviit.ee/enamlevinud-vaimse-tervise-mured/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Energiajookide mõju tervisele – mida peaksid teadma?",
+            "url": "https://www.teeviit.ee/energiajook-ei-erguta/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Enesevigastamine – mida see tegelikult tähendab?",
+            "url": "https://www.teeviit.ee/enesevigastamine-mida-see-tegelikult-tahendab/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Kanepist",
+            "url": "https://www.teeviit.ee/kanepist/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Kool algab, mis seis on su rahaasjadega?",
+            "url": "https://www.teeviit.ee/kool-algab-mis-seis-on-su-rahaasjadega/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Kooli lõpetamine eelarvesõbralikult: kogumispäeviklaste seas on moes taaskasutus",
+            "url": "https://www.teeviit.ee/kooli-lopetamine-eelarvesobralikult/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Korgijoogi hädaabijuhend",
+            "url": "https://www.teeviit.ee/korgijoogi-hadaabijuhend/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Kuhu pöörduda vaimse tervise probleemide korral?",
+            "url": "https://www.teeviit.ee/kuhu-poorduda-vaimse-tervise-probleemide-korral/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Kui on tarvis võtta õppelaenu",
+            "url": "https://www.teeviit.ee/kui-on-tarvis-votta-oppelaenu/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Kuidas aidata abivajavat sõpra",
+            "url": "https://www.teeviit.ee/kuidas-aidata-abivajavat-sopra/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Kuidas enesekindlalt öelda ei alkoholi joomisele?",
+            "url": "https://www.teeviit.ee/kuidas-enesekindlalt-oelda-ei-alkoholi-joomisele/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Kuidas ja millal helistada hädaabinumbrile 112?",
+            "url": "https://www.teeviit.ee/kui-on-oht-elule-helista-hadaabi-numbrile-112/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Kuidas kliimaärevusega toime tulla?",
+            "url": "https://www.teeviit.ee/kriis-kriisis-ehk-kliimaarevus/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Kuidas küberkiusamist ära tunda?",
+            "url": "https://www.teeviit.ee/kuidas-kuberkiusamist-ara-tunda/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Kuidas luua terveid ja turvalisi suhteid oma partneriga?",
+            "url": "https://www.teeviit.ee/kuidas-luua-terveid-ja-turvalisi-suhteid-oma-partneriga/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Kuidas olla rahatark?",
+            "url": "https://www.teeviit.ee/kuidas-olla-rahatark/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Kuidas oma lähedase või sõbra depressiooni ära tunda?",
+            "url": "https://www.teeviit.ee/kuidas-oma-lahedase-voi-sobra-depressiooni-ara-tunda/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Kuidas rääkida lähedastega oma vaimse tervise murest?",
+            "url": "https://www.teeviit.ee/kuidas-raakida-lahedastega-oma-vaimse-tervise-murest/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Kuidas tudengina rahaasjadega paremini toime tulla?",
+            "url": "https://www.teeviit.ee/kuidas-tudengina-rahaasjadega-paremini-toime-tulla/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Kuidas tulla toime eksamistressiga?",
+            "url": "https://www.teeviit.ee/kuidas-tulla-toime-eksamistressiga/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Kuidas tulla toime stressiga?",
+            "url": "https://www.teeviit.ee/kuidas-tulla-toime-stressiga/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Kuidas tunda ära kiusamist?",
+            "url": "https://www.teeviit.ee/kuidas-tunda-ara-kiusamist/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Kuidas tunda ära seksuaalvägivalda?",
+            "url": "https://www.teeviit.ee/kuidas-tunda-ara-seksuaalvagivalda/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Kuidas valmistuda rahaliselt ootamatusteks ja mil viisil tekitada säästupuhvrit?",
+            "url": "https://www.teeviit.ee/kuidas-valmistuda-rahaliselt-ootamatuteks-ja-mil-viisil-tekitada-saastupuhvrit/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Laste ja noorte õigused ning kohustused",
+            "url": "https://www.teeviit.ee/laste-ja-noorte-oigused-ning-kohustused/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Leinast Lootuseni",
+            "url": "https://www.teeviit.ee/leinast-lootuseni/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Lähisuhtevägivald: mis see on ja kuhu pöörduda?",
+            "url": "https://www.teeviit.ee/lahisuhtevagivald-mis-see-on-ja-kuhu-poorduda/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Mida peaks töölepingu sõlmimisel kindlasti meeles pidama?",
+            "url": "https://www.teeviit.ee/mida-peaks-toolepingu-solmimisel-kindlasti-meeles-pidama/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Mida peaksin teadma laenudest?",
+            "url": "https://www.teeviit.ee/mida-peaksin-teadma-laenudest/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Mida silmas pidada esimese kodu üürimisel?",
+            "url": "https://www.teeviit.ee/mida-silmas-pidada-esimese-kodu-uurimisel/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Mida teha, kui oled sattunud küberkiusamise ohvriks?",
+            "url": "https://www.teeviit.ee/mida-teha-kui-oled-sattunud-kuberkiusamise-ohvriks/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Mida teha, kui su kaaslane või lähedane käitub vägivaldselt?",
+            "url": "https://www.teeviit.ee/mida-teha-kui-su-lahedane-kaitub-vagivaldselt/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Miks ma peaksin igakuise eelarve koostama?",
+            "url": "https://www.teeviit.ee/miks-ma-peaksin-igakuise-eelarve-koostama/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Miks on narkootikumid ohtlikud?",
+            "url": "https://www.teeviit.ee/miks-on-narkootikumid-ohtlikud/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Millega peab arvestama alaealisena töötades?",
+            "url": "https://www.teeviit.ee/millega-peab-arvestama-alaealisena-tootades/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Millist infot pean jagama pangaga, kui võtan laenu?",
+            "url": "https://www.teeviit.ee/millist-infot-pean-jagama-pangaga-kui-votan-laenu/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Mis on inimõigused?",
+            "url": "https://www.teeviit.ee/mis-on-inimoigused/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Mis on rahatarkus?",
+            "url": "https://www.teeviit.ee/mis-on-rahatarkus/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Mis on seksuaalvägivald ja kust saada abi?",
+            "url": "https://www.teeviit.ee/mis-on-seksuaalvagivald-ja-kust-saada-abi/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Mis on vaimne tervis ja vaimne häire?",
+            "url": "https://www.teeviit.ee/mis-on-vaimne-tervis/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Mis on õppimiskohustus ja mida see tähendab pärast 9. klassi?",
+            "url": "https://www.teeviit.ee/mis-on-oppimiskohustus-ja-mida-see-tahendab-parast-9-klassi/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Murrame müüte: vaimne tervis",
+            "url": "https://www.teeviit.ee/murrame-muute-vaimne-tervis/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Nikotiini mõju vaimsele tervisele",
+            "url": "https://www.teeviit.ee/nikotiini-moju-vaimsele-tervisele/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Organiseeritus kui vaimse tervise abivahend – kuidas kasutada Notionit?",
+            "url": "https://www.teeviit.ee/organiseeritus-kui-vaimse-tervise-abivahend/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Praktilised tööriistad sinu vaimse tervise jaoks",
+            "url": "https://www.teeviit.ee/praktilised-tooriistad-sinu-vaimse-tervise-jaoks/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Räägime e-sigaretist",
+            "url": "https://www.teeviit.ee/raagime-e-sigaretist/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Söömishäire – mis, miks ja kuidas?",
+            "url": "https://www.teeviit.ee/soomishaire-mis-miks-ja-kuidas/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Teeviit soovitab nippe: stressivaba õppimine",
+            "url": "https://www.teeviit.ee/teeviit-soovitab-nippe-stressivaba-oppimine/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Turvaliselt suhtlusportaalides",
+            "url": "https://www.teeviit.ee/turvaliselt-suhtlusportaalides/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Vanemlus: töötamine suvepuhkuste perioodil",
+            "url": "https://www.teeviit.ee/vanemlus-tootamine-suvepuhkuste-perioodil/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Ära lase söömishäirel võtta oma elu üle kontrolli",
+            "url": "https://www.teeviit.ee/ara-lase-soomishairel-votta-oma-elu-ule-kontrolli/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Ärevus ja ärevushäired – müüdid ja reaalsus",
+            "url": "https://www.teeviit.ee/arevushairete-muudid-ja-reaalsus/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Ärevuse tunne võib hakata segama igapäevaelu",
+            "url": "https://www.teeviit.ee/arevuse-tunne-voib-hakata-segama-igapaevaelu/",
+            "publisher": "Haridus- ja Noorteamet (Teeviit)"
+          },
+          {
+            "title": "Iseseisev statsionaarne õendusabiteenus",
+            "url": "https://www.regionaalhaigla.ee/iseseisev-statsionaarne-oendusabiteenus",
+            "publisher": "Põhja-Eesti Regionaalhaigla"
+          },
+          {
+            "title": "Lähedasele",
+            "url": "https://www.regionaalhaigla.ee/patsiendile/lahedasele",
+            "publisher": "Põhja-Eesti Regionaalhaigla"
+          },
+          {
+            "title": "Palliatiivravi",
+            "url": "https://www.regionaalhaigla.ee/palliatiivravi",
+            "publisher": "Põhja-Eesti Regionaalhaigla"
+          },
+          {
+            "title": "Palliatiivravi keskus",
+            "url": "https://www.regionaalhaigla.ee/palliatiivravi-keskus",
+            "publisher": "Põhja-Eesti Regionaalhaigla"
+          },
+          {
+            "title": "Patsiendi õigused ja kohustused",
+            "url": "https://www.regionaalhaigla.ee/patsiendile/patsiendile/patsiendi-oigused-ja-kohustused",
+            "publisher": "Põhja-Eesti Regionaalhaigla"
+          },
+          {
+            "title": "Õendusabi keskus",
+            "url": "https://www.regionaalhaigla.ee/oendusabi-keskus",
+            "publisher": "Põhja-Eesti Regionaalhaigla"
+          },
+          {
+            "title": "15. juuni on ülemaailmne eakate väärkohtlemise teadvustamise päev",
+            "url": "https://www.palunabi.ee/et/artiklid/15-juuni-ulemaailmne-eakate-vaarkohtlemise-teadvustamise-paev",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Abiks spetsialistile",
+            "url": "https://www.lasteabi.ee/et/abiks-spetsialistile",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Abivahendi tõendi väljastajale",
+            "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/teenuseosutajale/abivahendi-toendi-valjastajale",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Abivajav ja hädaohus olev laps",
+            "url": "https://www.lasteabi.ee/et/abivajav-ja-hadaohus-olev-laps",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Armastus ja suhted",
+            "url": "https://www.lasteabi.ee/et/armastus-ja-suhted",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Asendushoolduse ja järelhoolduse korraldamine",
+            "url": "https://sotsiaalkindlustusamet.ee/asendushoolduse-ja-jarelhoolduse-korraldamine",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Asenduskodu teenuse pakkujale",
+            "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/teenuseosutajale/asenduskodu-teenuse-pakkujale",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "E- kursused ohvri abistajale",
+            "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/ohvri-abistajale/e-kursused-ohvri-abistajale",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "E-kursused",
+            "url": "https://www.palunabi.ee/et/e-kursused",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Eaka väärkohtlemine jääb pahatihti nähtamatuks",
+            "url": "https://www.palunabi.ee/et/artiklid/eaka-vaarkohtlemine-jaab-pahatihti-nahtamatuks",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Erihoolekandeteenuse osutajale",
+            "url": "https://sotsiaalkindlustusamet.ee/erihoolekandeteenuse-osutajale",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Hoolin ja märkan: kuidas lasteabi töötab?",
+            "url": "https://www.lasteabi.ee/et/artiklid/hoolin-ja-markan-kuidas-lasteabi-tootab",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Hädaohus oleva täiskasvanud perevägivalla ohvri abistamine (MARAC-i mudel)",
+            "url": "https://sotsiaalkindlustusamet.ee/MARAC",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Iga tunne loeb: LGBTQ+ noorte mõistmine ja toetus",
+            "url": "https://www.lasteabi.ee/et/artiklid/iga-tunne-loeb-lgbtq-noorte-moistmine-ja-toetus",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Isikukeskse erihoolekande teenuse mudeli (ISTE) rakendamine kohalikus omavalitsuses",
+            "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/kohalike-omavalitsuste-noustamine/isikukeskse-erihoolekande",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Juhendid, vormid ja täienduskoolitused lastekaitsetöötajale",
+            "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/laste-ja-peredega-tootavale-spetsialistile/juhendid-vormid-ja",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Juhtumikorraldus",
+            "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/laste-ja-peredega-tootavale-spetsialistile/juhtumikorraldus",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Kadunud laste telefon 116 000",
+            "url": "https://www.lasteabi.ee/et/kadunud-laste-telefon-116-000",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Kas sina tead, millise taustaga inimene on palgatud suveks või pikemaks lastega töötama?",
+            "url": "https://www.lasteabi.ee/et/artiklid/kas-sina-tead-millise-taustaga-inimene-palgatud-suveks-voi-pikemaks-lastega-tootama-0",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Kasuvanemluse eri tahke avavad „Koduteel“ dokkfilmid",
+            "url": "https://www.lasteabi.ee/et/artiklid/kasuvanemluse-eri-tahke-avavad-koduteel-dokkfilmid",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Kelle palkad lastega töötama?",
+            "url": "https://www.lasteabi.ee/et/artiklid/kelle-palkad-lastega-tootama",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Kelmuse ohvriks sattudes saab tuge ka ohvriabist",
+            "url": "https://www.palunabi.ee/et/artiklid/kelmuse-ohvriks-sattudes-saab-tuge-ka-ohvriabist",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Kes on lastekaitsetöötaja ja miks ta on sulle oluline?",
+            "url": "https://www.lasteabi.ee/et/artiklid/kes-lastekaitsetootaja-ja-miks-ta-sulle-oluline",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Kevadväsimus ja viimased koolikuud: kuidas hoida end tasakaalus?",
+            "url": "https://www.lasteabi.ee/et/artiklid/kevadvasimus-ja-viimased-koolikuud-kuidas-hoida-end-tasakaalus",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Kinnise lasteasutuse teenus (KLAT)",
+            "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/laste-ja-noortega-tootavale-spetsialistile/klat",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Kiusamine",
+            "url": "https://www.lasteabi.ee/et/kiusamine",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Kiusamine",
+            "url": "https://www.lasteabi.ee/et/kiusamine-lapsevanem",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Kohalike omavalitsuste nõustamine",
+            "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/kohalike-omavalitsuste-noustamine",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Koolitused ja töötoad",
+            "url": "https://www.lasteabi.ee/et/koolitused-ja-tootoad",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Kriisihoolduspere ja erihoolduspere",
+            "url": "https://sotsiaalkindlustusamet.ee/kriisihoolduspere",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Kui õppimine on raske...",
+            "url": "https://www.lasteabi.ee/et/artiklid/kui-oppimine-raske",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Kuidas aidata last, kellel on mure?",
+            "url": "https://www.lasteabi.ee/et/artiklid/kuidas-aidata-last-kellel-mure",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Kuidas koguda tõendusmaterjali kogetud lähisuhtevägivalla kohta?",
+            "url": "https://www.palunabi.ee/et/artiklid/kuidas-koguda-toendusmaterjali-kogetud-lahisuhtevagivalla-kohta",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Kuidas olla toeks enesetapumõtetega inimesele?",
+            "url": "https://www.palunabi.ee/et/artiklid/kuidas-olla-toeks-enesetapumotetega-inimesele",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Kuidas rääkida noortega vägivallast?",
+            "url": "https://www.palunabi.ee/et/artiklid/kuidas-raakida-noortega-vagivallast",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Kuidas sõpra toetada?",
+            "url": "https://www.lasteabi.ee/et/artiklid/kuidas-sopra-toetada",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "KUULA: vestlused, mis aitavad lähisuhtevägivalla teemast paremini aru saada",
+            "url": "https://www.palunabi.ee/et/artiklid/kuula-vestlused-mis-aitavad-lahisuhtevagivalla-teemast-paremini-aru-saada",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Kõik sõbrad ei ole mõeldud selleks, et jääda.",
+            "url": "https://www.lasteabi.ee/et/artiklid/koik-sobrad-ei-ole-moeldud-selleks-et-jaada",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Laps kannatab ka siis, kui löögid ei taba teda",
+            "url": "https://www.palunabi.ee/et/artiklid/laps-kannatab-ka-siis-kui-loogid-ei-taba-teda",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Lapse arenguetapid",
+            "url": "https://www.lasteabi.ee/et/lapse-arenguetapid",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Lapse heaolu hindamine",
+            "url": "https://www.lasteabi.ee/et/spetsialistile",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Laste ja peredega töötavale spetsialistile",
+            "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/laste-ja-peredega-tootavale-spetsialistile",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Laste seksuaalne väärkohtlemine internetis",
+            "url": "https://www.lasteabi.ee/et/laste-seksuaalne-vaarkohtlemine-internetis",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Lasteabi 116111",
+            "url": "https://www.lasteabi.ee/et/lasteabi-116111",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Lasteabi 116111",
+            "url": "https://sotsiaalkindlustusamet.ee/lasteabi-116111",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Lasteabi ja Narva lastekaitseosakonna kohtumine",
+            "url": "https://www.lasteabi.ee/et/artiklid/lasteabi-ja-narva-lastekaitseosakonna-kohtumine",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Lasteabi Kohtla-Järve Kesklinna Põhikoolis",
+            "url": "https://www.lasteabi.ee/et/artiklid/lasteabi-kohtla-jarve-kesklinna-pohikoolis",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Lasteabi nõustamine viipekeeles",
+            "url": "https://www.lasteabi.ee/et/artiklid/lasteabi-noustamine-viipekeeles",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Lasteabi nõustamine viipekeeles",
+            "url": "https://www.lasteabi.ee/et/artiklid/lasteabi-noustamine-viipekeeles-0",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Lasteabi pakub veebiterapeudi teenust",
+            "url": "https://www.lasteabi.ee/et/artiklid/lasteabi-pakub-veebiterapeudi-teenust",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Lasteabi podcast: Hooldusperedesse ei jõua vaid väikelapsed, ka teismelised ootavad kodu ja turvalisust",
+            "url": "https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-hooldusperedesse-ei-joua-vaid-vaikelapsed-ka-teismelised-ootavad-kodu-ja",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Lasteabi podcast: Kas sinu laps oskab enda piire kehtestada? Kas sinu teismeline teab, et „ei“ tähendabki päriselt „ei“?",
+            "url": "https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-kas-sinu-laps-oskab-enda-piire-kehtestada-kas-sinu-teismeline-teab-et-ei",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Lasteabi podcast: kuidas hoida laste ja noorte vaimset tervist?",
+            "url": "https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-kuidas-hoida-laste-ja-noorte-vaimset-tervist",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Lasteabi podcast: kuidas kaitsta lapsi sotsiaalmeedia negatiivse mõju eest?",
+            "url": "https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-kuidas-kaitsta-lapsi-sotsiaalmeedia-negatiivse-moju-eest",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Lasteabi podcast: kuidas saab kool laste vaimset tervist toetada?",
+            "url": "https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-kuidas-saab-kool-laste-vaimset-tervist-toetada",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Lasteabi podcast: kuidas veeta lastega üks tore suvi?",
+            "url": "https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-kuidas-veeta-lastega-uks-tore-suvi",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Lasteabi podcast: Kuidas veipimist ennetada?",
+            "url": "https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-kuidas-veipimist-ennetada",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Lasteabi podcast: Kuigi töö perekodus on emotsionaalselt keeruline, pakub see ka suurt rõõmu",
+            "url": "https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-kuigi-too-perekodus-emotsionaalselt-keeruline-pakub-see-ka-suurt-roomu",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Lasteabi podcast: Mis on turvaline huviharidus?",
+            "url": "https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-mis-turvaline-huviharidus",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Lasteabi podcast: perelepitus aitab peredel hakkama saada ka pärast purunemist",
+            "url": "https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-perelepitus-aitab-peredel-hakkama-saada-ka-parast-purunemist",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Lasteabi podcast: Tüdrukud tarvitavad narkootikume üha enam",
+            "url": "https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-tudrukud-tarvitavad-narkootikume-uha-enam",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Lasteabisse pöördumiste arv kasvas aastaga 14,5%. Aina rohkem tuleb teateid õpetajatelt",
+            "url": "https://www.lasteabi.ee/et/artiklid/lasteabisse-poordumiste-arv-kasvas-aastaga-145-aina-rohkem-tuleb-teateid-opetajatelt",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Lastekaitsealane ennetustöö",
+            "url": "https://sotsiaalkindlustusamet.ee/lastekaitsealane-ennetus",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Lastekaitsealane nõustamine",
+            "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/laste-ja-noortega-tootavale-spetsialistile/lastekaitse-noustamine",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Lastemaja",
+            "url": "https://www.lasteabi.ee/et/lastemaja",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Menetlustähtajad",
+            "url": "https://sotsiaalkindlustusamet.ee/menetlustahtajad",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Miks peab kiusamist ennetama ja vähendama?",
+            "url": "https://www.lasteabi.ee/et/artiklid/miks-peab-kiusamist-ennetama-ja-vahendama",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Millal lasteabisse pöörduda?",
+            "url": "https://www.lasteabi.ee/et/millal-lasteabisse-poorduda",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Mis ei ole kiusamine?",
+            "url": "https://www.lasteabi.ee/et/artiklid/mis-ei-ole-kiusamine",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Mis on koolikiusamine?",
+            "url": "https://www.lasteabi.ee/et/artiklid/mis-koolikiusamine",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Mis on küberkiusamine?",
+            "url": "https://www.lasteabi.ee/et/artiklid/mis-kuberkiusamine",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Mitmedimensiooniline pereteraapia",
+            "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/laste-ja-peredega-tootavale-spetsialistile/mitmedimensiooniline",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Mul on vastutus",
+            "url": "https://www.lasteabi.ee/et/mul-vastutus",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Mul on võimalus",
+            "url": "https://www.lasteabi.ee/et/mul-voimalus",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Mul on õigus",
+            "url": "https://www.lasteabi.ee/et/mul-oigus",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Noorte toetamine",
+            "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/laste-ja-peredega-tootavale-spetsialistile/noorte-toetamine",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Noorte toetamine ja järelhooldus",
+            "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/asendushooldus-ja-kasuvanemlus/noorte-toetamine-ja-jarelhooldus",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Noortegarantii tugisüsteem",
+            "url": "https://www.lasteabi.ee/et/noortegarantii-tugisusteem",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Noortegarantii tugisüsteem",
+            "url": "https://sotsiaalkindlustusamet.ee/ngts",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Ohvri abistajale",
+            "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/ohvri-abistajale",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Ohvri andmete edastamine sotsiaalkindlustusametile",
+            "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/ohvri-abistajale/ohvri-andmete-edastamine",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Pensioni taotlemine",
+            "url": "https://sotsiaalkindlustusamet.ee/pensioni-taotlemine",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Perekond",
+            "url": "https://www.lasteabi.ee/et/perekond",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Perekond",
+            "url": "https://www.lasteabi.ee/et/perekond-0",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Perepõhise asendushoolduse tugiteenuste osutajale",
+            "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/teenuseosutajale/perepohise-asendushoolduse-tugiteenuste",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Psühholoogiline esmaabi on oskus nagu meditsiiniline esmaabi ning seda võiks osata igaüks",
+            "url": "https://www.palunabi.ee/et/artiklid/psuhholoogiline-esmaabi-oskus-nagu-meditsiiniline-esmaabi-ning-seda-voiks-osata-igauks",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Psühholoogilist traumat arvestav praktika",
+            "url": "https://www.palunabi.ee/et/psuhholoogilist-traumat-arvestav-praktika",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Puhkusetasu ja keskmise töötasu hüvitamine riigieelarvest",
+            "url": "https://sotsiaalkindlustusamet.ee/puhkusetasu-ja-keskmise-tootasu-huvitamine",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Puudega tööealise inimese toetus",
+            "url": "https://sotsiaalkindlustusamet.ee/puudega-tooealise-inimese-toetus",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Pühadestress ja selle leevendamine: kuidas toime tulla erinevates eluetappides",
+            "url": "https://www.lasteabi.ee/et/artiklid/puhadestress-ja-selle-leevendamine-kuidas-toime-tulla-erinevates-eluetappides",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Rahvusvahelise ja ajutise kaitse saanute tugiisikuteenus",
+            "url": "https://sotsiaalkindlustusamet.ee/rahvusvahelise-ja-ajutise-kaitse-saanute-tugiisikuteenus",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Rahvusvahelised peresuhted ja lastekaitse: mida peaks lapsevanemad teadma?",
+            "url": "https://www.lasteabi.ee/et/artiklid/rahvusvahelised-peresuhted-ja-lastekaitse-mida-peaks-lapsevanemad-teadma",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Ravikindlustus",
+            "url": "https://sotsiaalkindlustusamet.ee/ravikindlustus",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Rehabilitatsiooniteenuse osutajatele",
+            "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/teenuseosutajale/rehabilitatsiooniteenuse-osutajale",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Riigi abikäsi kuriteoohvrile: rahaline hüvitis",
+            "url": "https://www.palunabi.ee/et/artiklid/riigi-abikasi-kuriteoohvrile-rahaline-huvitis",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Saatjata alaealise välismaalase toetamine",
+            "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/kohalike-omavalitsuste-noustamine/saatjata-alaealise",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Safe box",
+            "url": "https://www.lasteabi.ee/et/safe-box",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Seksuaalne kägistamine võib ootamatult lõppeda surmaga",
+            "url": "https://www.palunabi.ee/et/artiklid/seksuaalne-kagistamine-voib-ootamatult-loppeda-surmaga",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Seksuaalne väärkohtlemine internetis",
+            "url": "https://www.lasteabi.ee/et/seksuaalne-vaarkohtlemine-internetis",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Seksuaalne ärakasutamine: mis see on ja kuidas end kaitsta?",
+            "url": "https://www.lasteabi.ee/et/artiklid/seksuaalne-arakasutamine-mis-see-ja-kuidas-end-kaitsta",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Seksuaalsus",
+            "url": "https://www.lasteabi.ee/et/seksuaalsus",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Seksuaaltervis",
+            "url": "https://www.lasteabi.ee/et/seksuaaltervis-lapsevanem",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Sotsiaalkindlustus välismaal ja välismaalt tulijatele",
+            "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/sotsiaalkindlustus-valismaal-ja-valismaalt-tulijatele-0",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Sotsiaalkindlustusameti tasuta e-kursused kõigile",
+            "url": "https://www.lasteabi.ee/et/artiklid/sotsiaalkindlustusameti-tasuta-e-kursused-koigile",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Sotsiaalteenuste kvaliteedijuhised",
+            "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/kohalike-omavalitsuste-noustamine/sotsiaalteenuste",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Sotsiaalteenuste toimepidevus",
+            "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/kohalike-omavalitsuste-noustamine/sotsiaalteenuste-toimepidevus",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "STAR",
+            "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/star",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Suhtlus lapsega",
+            "url": "https://www.lasteabi.ee/et/suhtlus-lapsega",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Suure hooldus- ja abivajadusega lapse hoiu teenuse osutajale",
+            "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/teenuseosutajale/suure-hooldus-ja-abivajadusega-laste-hoidjale",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Suure hooldus- ja abivajadusega laste hoiu teenus",
+            "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/kohalike-omavalitsuste-noustamine/suure-hooldus-ja",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Sõprus",
+            "url": "https://www.lasteabi.ee/et/soprus",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Sõprus",
+            "url": "https://www.lasteabi.ee/et/soprus-0",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Taastav õigus",
+            "url": "https://sotsiaalkindlustusamet.ee/taastavoigus",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Tahad suvel tööd teha? Tea, millised on sinu õigused!",
+            "url": "https://www.lasteabi.ee/et/artiklid/tahad-suvel-tood-teha-tea-millised-sinu-oigused",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Teata abivajavast lapsest",
+            "url": "https://www.lasteabi.ee/et/teata-abivajavast-lapsest",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Teenuseosutajale",
+            "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/teenuseosutajale",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Tegevused iseenda toetuseks",
+            "url": "https://www.lasteabi.ee/et/tegevused-iseenda-toetuseks",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Toimetulekutoetus",
+            "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/kohalike-omavalitsuste-noustamine/toimetulekutoetus",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Traumast taastumist toetav vaimse tervise abi",
+            "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/teenuseosutajale/traumast-taastumist-toetava-vaimse-tervise-abi",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Tugigrupi töö korraldajale",
+            "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/teenuseosutajale/tugigrupi-too-korraldajale",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Tunded",
+            "url": "https://www.lasteabi.ee/et/tunded",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Turvalisus sotsiaalmeedias ja ekraanivaba aeg",
+            "url": "https://www.lasteabi.ee/et/artiklid/turvalisus-sotsiaalmeedias-ja-ekraanivaba-aeg",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Turvalisus spordis ja huvihariduses",
+            "url": "https://www.lasteabi.ee/et/artiklid/turvalisus-spordis-ja-huvihariduses",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Tõlketeenus rahvusvahelise kaitse saajale",
+            "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/kohalike-omavalitsuste-noustamine/tolketeenus-rahvusvahelise",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Täienda oma teadmisi e-kursusel „Abivajava lapse märkamine ja abistamine“",
+            "url": "https://www.lasteabi.ee/et/artiklid/taienda-oma-teadmisi-e-kursusel-abivajava-lapse-markamine-ja-abistamine",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Tööealise puude raskusastme tuvastamine",
+            "url": "https://sotsiaalkindlustusamet.ee/tooealise-puude-tuvastamine",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Tööriistakast",
+            "url": "https://www.lasteabi.ee/et/tooriistakast",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Uus ja lihtne viis abivajavast lapsest teatamiseks",
+            "url": "https://www.lasteabi.ee/et/artiklid/uus-ja-lihtne-viis-abivajavast-lapsest-teatamiseks",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Uus vaimse tervise toetamise tööriist: safe box",
+            "url": "https://www.lasteabi.ee/et/artiklid/uus-vaimse-tervise-toetamise-tooriist-safe-box",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Vabatahtlik töö ohvriabis",
+            "url": "https://www.palunabi.ee/et/vabatahtlik-too-ohvriabis",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Vaimne tervis",
+            "url": "https://www.lasteabi.ee/et/vaimne-tervis",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Vaimne tervis",
+            "url": "https://www.lasteabi.ee/et/vaimne-tervis-lapsevanem",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Vaimse tervise veebinõustamine aitab saada oma elu parimaks eksperdiks",
+            "url": "https://www.palunabi.ee/et/artiklid/vaimse-tervise-veebinoustamine-aitab-saada-oma-elu-parimaks-eksperdiks",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Veebimaailm",
+            "url": "https://www.lasteabi.ee/et/veebimaailm",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Vikerraadio Reportertund: Koolistressis noor. Kust saab abi?",
+            "url": "https://www.lasteabi.ee/et/artiklid/vikerraadio-reportertund-koolistressis-noor-kust-saab-abi",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Vägivald",
+            "url": "https://www.lasteabi.ee/et/vagivald",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Vägivald",
+            "url": "https://www.lasteabi.ee/et/vagivald-lapsevanem",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Õppimine",
+            "url": "https://www.lasteabi.ee/et/oppimine",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Ära lase end ära kasutada – hoidu kuritegevusele meelitamisest",
+            "url": "https://www.lasteabi.ee/et/artiklid/ara-lase-end-ara-kasutada-hoidu-kuritegevusele-meelitamisest",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Üheskoos parema interneti nimel: lasteabi toetab noori digimaailmas",
+            "url": "https://www.lasteabi.ee/et/artiklid/uheskoos-parema-interneti-nimel-lasteabi-toetab-noori-digimaailmas",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Abivajav laps",
+            "url": "https://www.sm.ee/lapsed-ja-hoolekanne/lapsed-ja-pered/abivajav-laps",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Alkohol",
+            "url": "https://www.sm.ee/alkohol",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Annetatud toiduabi jagamine",
+            "url": "https://www.sm.ee/annetatud-toiduabi-jagamine",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Asendus- ja järelhooldus",
+            "url": "https://www.sm.ee/lapsed-ja-hoolekanne/lapsed-ja-pered/asendus-ja-jarelhooldus",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Dementsus: riskitegurid ja ennetamine",
+            "url": "https://www.sm.ee/dementsus-riskitegurid-ja-ennetamine",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Erakorraline abi ja kiirabi",
+            "url": "https://www.sm.ee/tervise-edendamine-ravi-ja-ravimid/ravi-ja-tervise-taastamine/erakorraline-abi-ja-kiirabi",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Erivajadusega laste tugisüsteemi reform",
+            "url": "https://www.sm.ee/lapsed-ja-hoolekanne/lapsed-ja-pered/erivajadustega-laste-tugisusteem",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Hooldereform",
+            "url": "https://www.sm.ee/hooldereform",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Hooldereform ja pikaajaline hooldus",
+            "url": "https://www.sm.ee/hooldereform-ja-pikaajaline-hooldus",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Inimkaubandus",
+            "url": "https://www.sm.ee/lapsed-ja-hoolekanne/vagivallaennetus-ja-ohvriabi/inimkaubandus",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Kohaliku omavalitsuse sotsiaalteenused ja toetused",
+            "url": "https://www.sm.ee/lapsed-ja-hoolekanne/hoolekanne/kohaliku-omavalitsuse-sotsiaalteenused-ja-toetused",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Kuidas rääkida dementsusest austavalt ja kaasavalt",
+            "url": "https://www.sm.ee/kuidas-raakida-dementsusest-austavalt-ja-kaasavalt",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Lapse õigused ja heaolu",
+            "url": "https://www.sm.ee/lapsed-ja-hoolekanne/lapsed-ja-pered/lapse-oigused-ja-heaolu",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Laste ja perede toetamise KKK",
+            "url": "https://www.sm.ee/laste-ja-perede-toetamise-kkk",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Lähisuhte- ja naisevastane vägivald",
+            "url": "https://www.sm.ee/lapsed-ja-hoolekanne/vagivallaennetus-ja-ohvriabi/lahisuhte-ja-naisevastane-vagivald",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Naistevastane vägivald",
+            "url": "https://www.sm.ee/naistevastane-vagivald",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Narkootikumid",
+            "url": "https://www.sm.ee/narkootikumid",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Ohvriabi",
+            "url": "https://www.sm.ee/lapsed-ja-hoolekanne/vagivallaennetus-ja-ohvriabi/ohvriabi",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Patsiendi elulõpu tahteavalduse korduma kippuvad küsimused",
+            "url": "https://www.sm.ee/patsiendi-elulopu-tahteavalduse-korduma-kippuvad-kusimused",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Pereõde ja -arst",
+            "url": "https://www.sm.ee/tervise-edendamine-ravi-ja-ravimid/ravi-ja-tervise-taastamine/pereode-ja-arst",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Puudega ja vähenenud töövõimega inimesele",
+            "url": "https://www.sm.ee/puudega-inimesele-1",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Puudega laps",
+            "url": "https://www.sm.ee/lapsed-ja-hoolekanne/lapsed-ja-pered/puudega-laps",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Puuetega inimeste võrdne kohtlemine",
+            "url": "https://www.sm.ee/puuetega-inimeste-vordne-kohtlemine",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Riigi sotsiaalteenused",
+            "url": "https://www.sm.ee/lapsed-ja-hoolekanne/hoolekanne/riigi-sotsiaalteenused",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Seksuaalvägivald",
+            "url": "https://www.sm.ee/lapsed-ja-hoolekanne/vagivallaennetus-ja-ohvriabi/seksuaalvagivald",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Terminid/juhendid",
+            "url": "https://www.sm.ee/terminidjuhendid",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Tervishoid",
+            "url": "https://www.sm.ee/tervise-edendamine-ravi-ja-ravimid/ravi-ja-tervise-taastamine/tervishoid",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Toidu annetamine",
+            "url": "https://www.sm.ee/toiduannetamine",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Toiduabi",
+            "url": "https://www.sm.ee/lapsed-ja-hoolekanne/abivajajale/toiduabi",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Toimetulekutoetus",
+            "url": "https://www.sm.ee/toimetulekutoetus",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Töövahendid ja rakendused patsiendile",
+            "url": "https://www.sm.ee/tervise-edendamine-ravi-ja-ravimid/ravi-ja-tervise-taastamine/toovahendid-ja-rakendused-patsiendile",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Vaimse tervise abi",
+            "url": "https://www.sm.ee/tervise-edendamine-ravi-ja-ravimid/vaimne-tervis/vaimse-tervise-abi",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Vaimse tervise hoidmine",
+            "url": "https://www.sm.ee/tervise-edendamine-ravi-ja-ravimid/vaimne-tervis/vaimse-tervise-hoidmine",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Vaimse tervise ja psühhosotsiaalne tugi kriisides",
+            "url": "https://www.sm.ee/tervise-edendamine-ravi-ja-ravimid/vaimne-tervis/vaimse-tervise-ja-psuhhosotsiaalne-tugi-kriisides",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Vanemlus ja elu lastega",
+            "url": "https://www.sm.ee/lapsed-ja-hoolekanne/lapsed-ja-pered/vanemlus-ja-elu-lastega",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Üldhooldusteenust pakkuvad hoolekandeasutused",
+            "url": "https://www.sm.ee/uldhooldusteenust-pakkuvad-hoolekandeasutused",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Alkoholitarvitamise häire",
+            "url": "https://www.kliinikum.ee/patsiendiinfo-andmebaas/alkoholitarvitamise-haire/",
+            "publisher": "Tartu Ülikooli Kliinikum"
+          },
+          {
+            "title": "Dementsus",
+            "url": "https://www.kliinikum.ee/patsiendiinfo-andmebaas/dementsus/",
+            "publisher": "Tartu Ülikooli Kliinikum"
+          },
+          {
+            "title": "Depressioon",
+            "url": "https://www.kliinikum.ee/patsiendiinfo-andmebaas/depressioon/",
+            "publisher": "Tartu Ülikooli Kliinikum"
+          },
+          {
+            "title": "Insuldikoordinaator ja teised toetavad teenused insuldipatsientidele",
+            "url": "https://www.kliinikum.ee/patsiendiinfo-andmebaas/insuldikoordinaator-ja-teised-toetavad-teenused-insuldipatsientidele/",
+            "publisher": "Tartu Ülikooli Kliinikum"
+          },
+          {
+            "title": "Koduse enteraalse toitmise teenus",
+            "url": "https://www.kliinikum.ee/patsiendiinfo-andmebaas/koduse-enteraalse-toitmise-teenus/",
+            "publisher": "Tartu Ülikooli Kliinikum"
+          },
+          {
+            "title": "Lamatised",
+            "url": "https://www.kliinikum.ee/patsiendiinfo-andmebaas/lamatised/",
+            "publisher": "Tartu Ülikooli Kliinikum"
+          },
+          {
+            "title": "Omastehooldus",
+            "url": "https://www.kliinikum.ee/patsiendiinfo-andmebaas/omastehooldus/",
+            "publisher": "Tartu Ülikooli Kliinikum"
+          },
+          {
+            "title": "Palliatiivravi ja hospiits",
+            "url": "https://www.kliinikum.ee/patsiendiinfo-andmebaas/palliatiivravi-ja-hospiits/",
+            "publisher": "Tartu Ülikooli Kliinikum"
+          },
+          {
+            "title": "Patsientide külastamine psühhiaatriakliinikus",
+            "url": "https://www.kliinikum.ee/patsiendiinfo-andmebaas/patsientide-kulastamine-psuhhiaatriakliinikus/",
+            "publisher": "Tartu Ülikooli Kliinikum"
+          },
+          {
+            "title": "Püsiv valu",
+            "url": "https://www.kliinikum.ee/patsiendiinfo-andmebaas/pusiv-valu/",
+            "publisher": "Tartu Ülikooli Kliinikum"
+          },
+          {
+            "title": "Rahustisõltuvus",
+            "url": "https://www.kliinikum.ee/patsiendiinfo-andmebaas/rahustisoltuvus/",
+            "publisher": "Tartu Ülikooli Kliinikum"
+          },
+          {
+            "title": "Sotsiaaltöötaja teenus kliinikumis",
+            "url": "https://www.kliinikum.ee/patsiendiinfo-andmebaas/sotsiaaltootaja-teenus-kliinikumis/",
+            "publisher": "Tartu Ülikooli Kliinikum"
+          },
+          {
+            "title": "Vähktõvega patsiendi hingehoidlik toetamine hematoloogia-onkoloogia kliinikus",
+            "url": "https://www.kliinikum.ee/patsiendiinfo-andmebaas/vahktovega-patsiendi-hingehoidlik-toetamine-hematoloogia-onkoloogia-kliinikus/",
+            "publisher": "Tartu Ülikooli Kliinikum"
+          },
+          {
+            "title": "Üldistunud ärevushäire",
+            "url": "https://www.kliinikum.ee/patsiendiinfo-andmebaas/uldistunud-arevushaire/",
+            "publisher": "Tartu Ülikooli Kliinikum"
+          },
+          {
+            "title": "Abivõimalused lastele ja noortele",
+            "url": "https://www.narko.ee/abivoimalused-noortele",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Abivõimalused sõjapõgenikele",
+            "url": "https://www.narko.ee/siit-saad-abi/abivoimalused-sojapogenikele",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Ainejäägiga esemete testimise tulemused",
+            "url": "https://www.narko.ee/kogukond/testimine-tulemused",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Ainete segatarvitamisega kaasnevad riskid",
+            "url": "https://www.narko.ee/tarvitajad/kuidas-vahendada-tarvitamisega-kaasnevaid-ohte/ainete-segatarvitamisega-kaasnevad-riskid",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Alfa-PVP",
+            "url": "https://www.narko.ee/ained/alfa-pvp",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Alkohol ja energiajoogid",
+            "url": "https://alkoinfo.ee/et/moju/alkoholi-toime/alkohol-ja-energiajoogid",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Alkohol ja illegaalsed uimastid",
+            "url": "https://alkoinfo.ee/et/moju/alkoholi-toime/alkohol-ja-illegaalsed-uimastid",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Alkohol ja ravimid",
+            "url": "https://alkoinfo.ee/et/moju/alkoholi-toime/alkohol-ja-ravimid",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Alkoholi moju tervisele",
+            "url": "https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Alkoholi toime",
+            "url": "https://alkoinfo.ee/et/moju/alkoholi-toime",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Alkoholimurgistus ja esmaabi",
+            "url": "https://alkoinfo.ee/et/moju/alkoholi-toime/alkoholimurgistus-ja-esmaabi",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Alkoholiprobleeme alalhoidvad motted",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine/alkoholiprobleeme-alalhoidvad-motted",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Alkoholist loobumine",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/kas-muutuda-kas-vahendada/eesmargi-seadmine/alkoholist-loobumine",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Alkoholiuhik",
+            "url": "https://alkoinfo.ee/et/millal-vahendada/moodukuse-piires/alkoholiuhik",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Alkovabad joogid",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/kuidas-juua-vahem/alkovabad-joogid",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Amfetamiin",
+            "url": "https://www.narko.ee/ained/amfetamiin",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "AUDIT test",
+            "url": "https://alkoinfo.ee/et/millal-vahendada/moodukuse-piires/audit-test",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Ayahuasca",
+            "url": "https://www.narko.ee/ained/ayahuasca-caapi-hoasca-vegetal-yage-mihi-dapa",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Bensodiasepiinid (rahustid)",
+            "url": "https://www.narko.ee/ained/bensodiasepiinid",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Binge drinking ehk purjutamine",
+            "url": "https://alkoinfo.ee/et/millal-vahendada/ule-piiride/binge-drinking-ehk-purjutamine",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Eakad",
+            "url": "https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/eakad",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Eesmargi seadmine",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/kas-muutuda-kas-vahendada/eesmargi-seadmine",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Efedriin",
+            "url": "https://www.narko.ee/ained/efedriin",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Ei utlemine",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine/ei-utlemine",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Enam levinud uimastid noorte seas",
+            "url": "https://www.narko.ee/noored/noorte-seas-enim-levinud-uimastid",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Enesekehtestamine",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine/enesekehtestamine",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Fentanüül",
+            "url": "https://www.narko.ee/ained/fentanuul",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Fentsüklidiin",
+            "url": "https://www.narko.ee/ained/pcp",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "GHB, GBL",
+            "url": "https://www.narko.ee/ained/ghb",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Heroiin",
+            "url": "https://www.narko.ee/ained/heroiin",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Ibogaiin",
+            "url": "https://www.narko.ee/ained/ibogaiin",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Isotonitaseen",
+            "url": "https://www.narko.ee/ained/isotonitaseen",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Joomissoovi taltsutamine",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine/joomissoovi-taltsutamine",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kaassõltuvus – mis see on?",
+            "url": "https://www.narko.ee/lahedased/kaassoltuvus-mis-see-on",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kahjude vähendamise keskused ohutumaks tarvitamiseks",
+            "url": "https://www.narko.ee/siit-saad-abi/kahjude-vahendamise-keskused-ohutumaks-tarvitamiseks",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kanep, hašiš",
+            "url": "https://www.narko.ee/ained/kanep_marihuaana_hasis",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kanepi ohutum tarvitamine",
+            "url": "https://www.narko.ee/tarvitajad/kuidas-vahendada-tarvitamisega-kaasnevaid-ohte/kuidas-vahendada-kanepitarvitamise-riske/kanepi-ohutum-tarvitamine",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kas ma peaksin uimastite tarvitamisest loobuma?",
+            "url": "https://www.narko.ee/tarvitajad/kas-ma-peaksin-uimastite-tarvitamisest-loobuma",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kas muutuda kas vahendada",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/kas-muutuda-kas-vahendada",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kas sul on probleem",
+            "url": "https://alkoinfo.ee/et/millal-vahendada/kas-sul-on-probleem",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kas uimastite tarvitajad kujutavad endast ohtu?",
+            "url": "https://www.narko.ee/kogukond/kas-uimastite-tarvitajad-kujutavad-endast-ohtu",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Ketamiin",
+            "url": "https://www.narko.ee/ained/ketamiin",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Khat",
+            "url": "https://www.narko.ee/ained/khat",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kodeiin",
+            "url": "https://www.narko.ee/ained/kodeiin",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kokaiin",
+            "url": "https://www.narko.ee/ained/kokaiin",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Korduma kippuvad küsimused",
+            "url": "https://www.narko.ee/kogukond/korduma-kippuvad-kusimused",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kuhu poorduda",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/spetsialisti-abi/kuhu-poorduda",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kui lähedane joob",
+            "url": "https://alkoinfo.ee/et/lahedastele",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kuidas aidata lahedast",
+            "url": "https://alkoinfo.ee/et/lahedastele/kuidas-aidata-lahedast",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kuidas aru saada, et lähedane tarvitab uimasteid?",
+            "url": "https://www.narko.ee/lahedased/kuidas-aru-saada-et-lahedane-tarvitab-uimasteid",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kuidas juua vahem",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/kuidas-juua-vahem",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kuidas juua vahem kodus",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/kuidas-juua-vahem/kuidas-juua-vahem-kodus",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kuidas juua vahem valjas",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/kuidas-juua-vahem/kuidas-juua-vahem-valjas",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kuidas kujuneb alkoholi noiaring",
+            "url": "https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/kuidas-kujuneb-alkoholi-noiaring",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kuidas käituda, kui sinu lähedane tarvitab uimasteid?",
+            "url": "https://www.narko.ee/lahedased/kuidas-kaituda-kui-sinu-lahedane-tarvitab-uimasteid",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kuidas leida motivatsiooni",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/kas-muutuda-kas-vahendada/kuidas-leida-motivatsiooni",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kuidas mõjutab uimastite tarvitamine lähedasi?",
+            "url": "https://www.narko.ee/lahedased/kuidas-mojutab-uimastite-tarvitamine-lahedasi",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kuidas puhade ajal alkoholiga mitte liialdada",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/kuidas-juua-vahem/kuidas-puhade-ajal-alkoholiga-mitte-liialdada",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kuidas saab aidata ennast alkoholisoltlase lahedane",
+            "url": "https://alkoinfo.ee/et/lahedastele/kuidas-saab-aidata-ennast-alkoholisoltlase-lahedane",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kuidas sotsiaalsele survele vastu astuda?",
+            "url": "https://www.narko.ee/noored/kuidas-sotsiaalsele-survele-vastu-astuda",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kuidas tagasilangust ennetada ja sellega toime tulla",
+            "url": "https://www.narko.ee/tarvitajad/kuidas-uimastitest-tarvitamisest-vabaneda/kuidas-tagasilangust-ennetada-ja-sellega-toime-tulla",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kuidas teha vahema alkoga pidu",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/kuidas-juua-vahem/kuidas-teha-vahema-alkoga-pidu",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kuidas teistelt toetust saada",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine/kuidas-teistelt-toetust-saada",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kuidas tõsta kogukonna turvalisust?",
+            "url": "https://www.narko.ee/kogukond/kuidas-tosta-kogukonna-turvalisust",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kuidas uimastite tarvitamisest hoiduda",
+            "url": "https://www.narko.ee/noored/nippe-uimastitest-hoidumiseks",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kuidas uimastite tarvitamisest vabaneda",
+            "url": "https://www.narko.ee/tarvitajad/kuidas-uimastitest-tarvitamisest-vabaneda",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kuidas vähendada GHB tarvitamise riske",
+            "url": "https://www.narko.ee/tarvitajad/kuidas-vahendada-tarvitamisega-kaasnevaid-ohte/kuidas-vahendada-ghb-tarvitamise-riske",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kuidas vähendada hallutsinogeenide tarvitamise riske",
+            "url": "https://www.narko.ee/tarvitajad/kuidas-vahendada-tarvitamisega-kaasnevaid-ohte/kuidas-vahendada-hallutsinogeenide-tarvitamise-riske",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kuidas vähendada kanepitarvitamise riske",
+            "url": "https://www.narko.ee/tarvitajad/kuidas-vahendada-tarvitamisega-kaasnevaid-ohte/kuidas-vahendada-kanepitarvitamise-riske",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kuidas vähendada tarvitamisega kaasnevaid ohte?",
+            "url": "https://www.narko.ee/tarvitajad/kuidas-vahendada-tarvitamisega-kaasnevaid-ohte",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kuidas vähendada?",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kuritarvitamine ja soltuvus",
+            "url": "https://alkoinfo.ee/et/millal-vahendada/ule-piiride/kuritarvitamine-ja-soltuvus",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kust tulevad „narkomaanid”?",
+            "url": "https://www.narko.ee/kogukond",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kärbseseen",
+            "url": "https://www.narko.ee/ained/karbseseen",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Liigtarvitamise astmed",
+            "url": "https://alkoinfo.ee/et/millal-vahendada/ule-piiride/liigtarvitamise-astmed",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Loogastumine",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/muutuste-sailitamine/loogastumine",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "LSD",
+            "url": "https://www.narko.ee/ained/lsd",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Luulusalvei, salvia",
+            "url": "https://www.narko.ee/ained/luulusalvei-salvia",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Lähedane tarvitab uimasteid",
+            "url": "https://www.narko.ee/lahedased/lahedane-tarvitab-uimasteid",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Maksahaigused",
+            "url": "https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/maksahaigused",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "MDMA, ecstasy",
+            "url": "https://www.narko.ee/ained/mdma-ehk-ecstasy",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Meeldivad tegevused",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine/meeldivad-tegevused",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Mehed",
+            "url": "https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/mehed",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Meskaliin",
+            "url": "https://www.narko.ee/ained/meskaliin",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Metamfetamiin",
+            "url": "https://www.narko.ee/ained/metaamfetamiin",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Metüülfenidaat",
+            "url": "https://www.narko.ee/ained/metuulfenidaat",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Mida teha uimastamis- ja mürgistamiskahtluse korral",
+            "url": "https://www.narko.ee/siit-saad-abi/mida-teha-uimastamis-ja-murgistamiskahtluse-korral",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Mida teha, kui kahtlustad, et sind on uimastatud ja oled langenud seksuaalvägivalla ohvriks",
+            "url": "https://www.narko.ee/siit-saad-abi/mida-teha-kui-kahtlustad-et-sind-on-uimastatud-ja-oled-langenud-seksuaalkuriteo-ohvriks",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Mida teha, kui sõber tarvitab uimasteid?",
+            "url": "https://www.narko.ee/noored/mida-teha-kui-sober-tarvitab-uimasteid",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Miks ja kuidas tekib sõltuvus ning miks on raske sellest vabaneda?",
+            "url": "https://www.narko.ee/narkootikumide-moju-kehale/miks-ja-kuidas-tekib-soltuvus-ning-miks-on-raske-sellest-vabaneda",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Miks on uimastid ohtlikud?",
+            "url": "https://www.narko.ee/noored/miks-on-uimastid-ohtlikud",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Miks uimasteid proovitakse",
+            "url": "https://www.narko.ee/noored/uimastite-proovimise-pohjused",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Millal poorduda spetsialisti poole",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/spetsialisti-abi/millal-poorduda-spetsialisti-poole",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Millal vähendada?",
+            "url": "https://alkoinfo.ee/et/millal-vahendada",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Milles seisneb alkoholitarvitamise haire ravi",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/spetsialisti-abi/milles-seisneb-alkoholitarvitamise-haire-ravi",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Mis on uimastid ja kuidas neid liigitatakse?",
+            "url": "https://www.narko.ee/mis-on-uimastid-ja-kuidas-neid-liigitatakse",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Moju elukvaliteedile",
+            "url": "https://alkoinfo.ee/et/moju/moju-elukvaliteedile",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Moju suhtele",
+            "url": "https://alkoinfo.ee/et/moju/moju-elukvaliteedile/moju-suhtele",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Moodukas alkoholi tarvitamine",
+            "url": "https://alkoinfo.ee/et/millal-vahendada/moodukuse-piires/moodukas-alkoholi-tarvitamine",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Moodukuse piires",
+            "url": "https://alkoinfo.ee/et/millal-vahendada/moodukuse-piires",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Morfiin",
+            "url": "https://www.narko.ee/ained/morfiin",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Motivatsiooni sailitamine rajal pusimine",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/muutuste-sailitamine/motivatsiooni-sailitamine-rajal-pusimine",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Muskaatpähkel",
+            "url": "https://www.narko.ee/ained/muskaatpahkel",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Muutused mida markad kiiresti",
+            "url": "https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/muutused-mida-markad-kiiresti",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Muutuste elluviimine",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Muutuste sailitamine",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/muutuste-sailitamine",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Mõju",
+            "url": "https://alkoinfo.ee/et/moju",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Müüdid",
+            "url": "https://www.narko.ee/muudid",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Naised",
+            "url": "https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/naised",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Narkootikumide mõju ajule",
+            "url": "https://www.narko.ee/narkootikumide-moju-kehale/kuidas-narkootikumid-mojutavad-aju",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Narkootikumide mõju organismile",
+            "url": "https://www.narko.ee/narkootikumide-moju-kehale",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Narkootikumide tarvitamise ennetamine",
+            "url": "https://www.tai.ee/et/tervis-ja-heaolu/narkootikumide-tarvitamise-ennetamine",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Narkootikumidega seotud seadusandlusest Eestis",
+            "url": "https://www.narko.ee/olukord-eestis/eesti-seadusandlus",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Narkootiliste ja psühhotroopsete ainete andmebaas",
+            "url": "https://www.narko.ee/mis-on-uimastid-ja-kuidas-neid-liigitatakse/narkootiliste-ja-psuhhotroopsete-ainete-andmebaas",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Narkosüütegude märkamine ja neist teavitamine",
+            "url": "https://www.narko.ee/kogukond/narkosuutegude-markamine-ja-neist-teavitamine",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Nitaseenid",
+            "url": "https://www.narko.ee/ained/nitaseenid",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Noored",
+            "url": "https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/noored",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Nõuanded festivalikülastajatele",
+            "url": "https://www.narko.ee/tarvitajad/nouanded-festivalikulastajale",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Nõustamisprogramm kanepitarvitajatele (VALIK programm)",
+            "url": "https://www.narko.ee/siit-saad-abi/noustamisprogramm-kanepitarvitajatele",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Ohutum süstimine",
+            "url": "https://www.narko.ee/tarvitajad/kuidas-vahendada-tarvitamisega-kaasnevaid-ohte/ohutum-sustimine",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Olukord Eestis",
+            "url": "https://www.narko.ee/olukord-eestis",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Oma mustrite teadvustamine",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine/oma-mustrite-teadvustamine",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Oopium",
+            "url": "https://www.narko.ee/ained/oopium",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Pankreatiit",
+            "url": "https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/pankreatiit",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Plussid miinused",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/kas-muutuda-kas-vahendada/plussid-miinused",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Pohmell",
+            "url": "https://alkoinfo.ee/et/moju/alkoholi-toime/pohmell",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Positiivsed muutused",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/kas-muutuda-kas-vahendada/plussid-miinused/positiivsed-muutused",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Probleemi tunnused",
+            "url": "https://alkoinfo.ee/et/millal-vahendada/kas-sul-on-probleem/probleemi-tunnused",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Probleemide lahendamine",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine/probleemide-lahendamine",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Programm selge",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/programm-selge",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Psilotsübiin (maagilised seened)",
+            "url": "https://www.narko.ee/ained/psilotsubiini-ja-psilotsiini-sisaldavad-seened",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Purjusolek ja joobeastmed",
+            "url": "https://alkoinfo.ee/et/moju/alkoholi-toime/purjusolek-ja-joobeastmed",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Raha",
+            "url": "https://alkoinfo.ee/et/moju/moju-elukvaliteedile/raha",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Rasedus ja imetamine",
+            "url": "https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/naised/rasedus-ja-imetamine",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Riskantsed situatsioonid",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine/riskantsed-situatsioonid",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Sekkumised",
+            "url": "https://www.tai.ee/et/valdkonnad/vaimne-tervis/vaimse-tervise-valdkonna-tegevused/sekkumised",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Seks",
+            "url": "https://alkoinfo.ee/et/moju/moju-elukvaliteedile/seks",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Septembris ei joo",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/kuidas-juua-vahem/septembris-ei-joo",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Siit saad abi",
+            "url": "https://www.narko.ee/siit-saad-abi",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Spetsialisti abi",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/spetsialisti-abi",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Sport",
+            "url": "https://alkoinfo.ee/et/moju/moju-elukvaliteedile/sport",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Sudame ja veresoonkond",
+            "url": "https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/sudame-ja-veresoonkond",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Sõltuvusravi, sh opioidisõltuvuse asendusravi",
+            "url": "https://www.narko.ee/siit-saad-abi/soltuvusravi-sh-opoiodisoltuvuse-asendusravi",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Sünteetilised opioidid – fentanüülid, nitaseenid, orfiinid",
+            "url": "https://www.narko.ee/ained/sunteetilised-opioidid",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Tagasilangused",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/muutuste-sailitamine/tagasilangused",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Tasuta sotsiaal- ja õigusabi ning tervishoiuteenused ravikindlustamata inimestele",
+            "url": "https://www.narko.ee/siit-saad-abi/tasuta-sotsiaal-ja-oigusabi",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Tolerants",
+            "url": "https://alkoinfo.ee/et/millal-vahendada/ule-piiride/kuritarvitamine-ja-soltuvus/tolerants",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Top 8 põhjust, miks noored narkootikume tarvitavad",
+            "url": "https://www.narko.ee/noored/top-8-pohjust-miks-noored-narkootikume-tarvitavad-2",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Tsüklorfiin, spirokolrfiin",
+            "url": "https://www.narko.ee/ained/tsuklorfiin",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Uimasteid tarvitajate inimeste häbimärgistamine",
+            "url": "https://www.narko.ee/kogukond/stigmatiseerimine-ja-selle-moju",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Uimastiga kokku puutunud esemete testimine",
+            "url": "https://www.narko.ee/kogukond/testimine",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Uimastite tarvitamise faasid",
+            "url": "https://www.narko.ee/tarvitajad/uimastite-tarvitamise-faasid",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Uimastite tootmisest ja “puhtusest”",
+            "url": "https://www.narko.ee/uimastite-tootmine-nende-puhtus",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Ule piiride",
+            "url": "https://alkoinfo.ee/et/millal-vahendada/ule-piiride",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Ulevaade statistikast",
+            "url": "https://alkoinfo.ee/et/moju/ulevaade-statistikast",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Unehugieen",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/muutuste-sailitamine/unehugieen",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Uued psühhoaktiivsed ained",
+            "url": "https://www.narko.ee/ained/uued-psuhhoaktiivsed-ained",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Vahkkasvajad",
+            "url": "https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/vahkkasvajad",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Vaimne tervis",
+            "url": "https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/vaimne-tervis",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Vaimse tervise nõustamine",
+            "url": "https://www.narko.ee/siit-saad-abi/vaimse-tervise-noustamine",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Vannisoolad",
+            "url": "https://www.narko.ee/ained/vannisoolad",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Voorutusnahud",
+            "url": "https://alkoinfo.ee/et/millal-vahendada/ule-piiride/kuritarvitamine-ja-soltuvus/voorutusnahud",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Vota alkoholist puhkust",
+            "url": "https://alkoinfo.ee/et/kuidas-vahendada/kuidas-juua-vahem/vota-alkoholist-puhkust",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Üledoosi tunnused ja kuidas aidata",
+            "url": "https://www.narko.ee/tarvitajad/kuidas-vahendada-tarvitamisega-kaasnevaid-ohte/uledoosi-tunnused-ja-kuidas-aidata",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Alkoholi liigtarvitamine – mis see on ja kust saab abi",
+            "url": "https://www.tervisekassa.ee/infomaterjalid/alkoholi-liigtarvitamine-mis-see-ja-kust-saab-abi",
+            "publisher": "Tervisekassa"
+          },
+          {
+            "title": "Taastusravi",
+            "url": "https://www.tervisekassa.ee/taastusravi",
+            "publisher": "Tervisekassa"
+          },
+          {
+            "title": "Õendusabi",
+            "url": "https://www.tervisekassa.ee/oendusabi",
+            "publisher": "Tervisekassa"
+          },
+          {
+            "title": "Õendusabi hoolekandes",
+            "url": "https://www.tervisekassa.ee/oendusabi-hoolekandes",
+            "publisher": "Tervisekassa"
+          },
+          {
+            "title": "Õendusabi hoolekandes",
+            "url": "https://www.tervisekassa.ee/kkk/oendusabi-hoolekandes",
+            "publisher": "Tervisekassa"
+          },
+          {
+            "title": "Arstiabi",
+            "url": "https://www.terviseportaal.ee/arstiabi",
+            "publisher": "Terviseportaal"
+          },
+          {
+            "title": "Arstiabi ooteajad",
+            "url": "https://www.terviseportaal.ee/arstiabi/arstiabi-ooteajad",
+            "publisher": "Terviseportaal"
+          },
+          {
+            "title": "Eriarstiabi",
+            "url": "https://www.terviseportaal.ee/arstiabi/eriarstiabi",
+            "publisher": "Terviseportaal"
+          },
+          {
+            "title": "Haigushüvitis",
+            "url": "https://www.terviseportaal.ee/huvitised/haigushuvitis",
+            "publisher": "Terviseportaal"
+          },
+          {
+            "title": "Hooldushüvitis",
+            "url": "https://www.terviseportaal.ee/huvitised/hooldushuvitis",
+            "publisher": "Terviseportaal"
+          },
+          {
+            "title": "Hooldusteenus ja hooldekodud",
+            "url": "https://www.terviseportaal.ee/arstiabi/oendusabi/hooldusteenus",
+            "publisher": "Terviseportaal"
+          },
+          {
+            "title": "Hüvitiste võrdlus",
+            "url": "https://www.terviseportaal.ee/huvitised/huvitiste-vordlus",
+            "publisher": "Terviseportaal"
+          },
+          {
+            "title": "Inimene, kelle eest ei maksta sotsiaalmaksu",
+            "url": "https://www.terviseportaal.ee/ravikindlustus/inimene-kelle-eest-ei-maksta-sotsiaalmaksu",
+            "publisher": "Terviseportaal"
+          },
+          {
+            "title": "Inimene, kelle eest makstakse sotsiaalmaksu",
+            "url": "https://www.terviseportaal.ee/ravikindlustus/inimesed-kelle-eest-makstakse-sotsmaksu",
+            "publisher": "Terviseportaal"
+          },
+          {
+            "title": "Kaugteenused eriarstiabis",
+            "url": "https://www.terviseportaal.ee/arstiabi/eriarstiabi/kaugteenused-eriarstiabis",
+            "publisher": "Terviseportaal"
+          },
+          {
+            "title": "Kuhu oma tervisemurega pöörduda",
+            "url": "https://www.terviseportaal.ee/arstiabi/tervisemure",
+            "publisher": "Terviseportaal"
+          },
+          {
+            "title": "Meeleoluhäired ja depressioon",
+            "url": "https://www.terviseportaal.ee/arstiabi/vaimne-tervis/depressioon",
+            "publisher": "Terviseportaal"
+          },
+          {
+            "title": "Perearstiabi",
+            "url": "https://www.terviseportaal.ee/arstiabi/perearstiabi",
+            "publisher": "Terviseportaal"
+          },
+          {
+            "title": "Ravijärjekorrad",
+            "url": "https://www.terviseportaal.ee/arstiabi/arstiabi-ooteajad/ravijarjekorrad",
+            "publisher": "Terviseportaal"
+          },
+          {
+            "title": "Ravikindlustus",
+            "url": "https://www.terviseportaal.ee/ravikindlustus",
+            "publisher": "Terviseportaal"
+          },
+          {
+            "title": "Sinu ohutus on tähtis",
+            "url": "https://www.terviseportaal.ee/arstiabi/sinu-ohutus-on-tahtis",
+            "publisher": "Terviseportaal"
+          },
+          {
+            "title": "Spetsialistid ja abivõimalused",
+            "url": "https://www.terviseportaal.ee/arstiabi/vaimne-tervis/spetsialistid-ja-abivimalused",
+            "publisher": "Terviseportaal"
+          },
+          {
+            "title": "Sõltuvushäired",
+            "url": "https://www.terviseportaal.ee/arstiabi/vaimne-tervis/soltuvushaired",
+            "publisher": "Terviseportaal"
+          },
+          {
+            "title": "Söömishäired",
+            "url": "https://www.terviseportaal.ee/arstiabi/vaimne-tervis/soomishaired",
+            "publisher": "Terviseportaal"
+          },
+          {
+            "title": "Taastusravi",
+            "url": "https://www.terviseportaal.ee/arstiabi/eriarstiabi/taastusravi",
+            "publisher": "Terviseportaal"
+          },
+          {
+            "title": "Teenustasud ja omaosalus",
+            "url": "https://www.terviseportaal.ee/arstiabi/teenustasud-ja-omaosalus",
+            "publisher": "Terviseportaal"
+          },
+          {
+            "title": "Tervishoiuspetsialist",
+            "url": "https://www.terviseportaal.ee/arstiabi/tervishoiuspetsialist",
+            "publisher": "Terviseportaal"
+          },
+          {
+            "title": "Tunnetushäired",
+            "url": "https://www.terviseportaal.ee/arstiabi/vaimne-tervis/tunnetushired",
+            "publisher": "Terviseportaal"
+          },
+          {
+            "title": "Töötamine pika haiguslehe ajal",
+            "url": "https://www.terviseportaal.ee/pikkhaigusleht",
+            "publisher": "Terviseportaal"
+          },
+          {
+            "title": "Töötav inimene",
+            "url": "https://www.terviseportaal.ee/ravikindlustus/ttav-inimene",
+            "publisher": "Terviseportaal"
+          },
+          {
+            "title": "Vabatahtlik kindlustus",
+            "url": "https://www.terviseportaal.ee/ravikindlustus/vabatahtlik-kindlustus",
+            "publisher": "Terviseportaal"
+          },
+          {
+            "title": "Vaimne tervis",
+            "url": "https://www.terviseportaal.ee/arstiabi/vaimne-tervis",
+            "publisher": "Terviseportaal"
+          },
+          {
+            "title": "Õendusabi",
+            "url": "https://www.terviseportaal.ee/arstiabi/oendusabi",
+            "publisher": "Terviseportaal"
+          },
+          {
+            "title": "Ärevushäired",
+            "url": "https://www.terviseportaal.ee/arstiabi/vaimne-tervis/arevushaire",
+            "publisher": "Terviseportaal"
+          },
+          {
+            "title": "Ajateenija ja reservväelane",
+            "url": "https://www.tooelu.ee/et/53/ajateenija-ja-reservvaelane",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Alaealise töö- ja puhkeaeg",
+            "url": "https://www.tooelu.ee/et/56/alaealise-too-ja-puhkeaeg",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Alaealise töölevõtmine",
+            "url": "https://www.tooelu.ee/et/54/alaealise-toolevotmine",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Alaealistele sobivad ja mittesobivad tööd",
+            "url": "https://www.tooelu.ee/et/55/alaealistele-sobivad-ja-mittesobivad-tood",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Alla 7-aastaste laste töötamine",
+            "url": "https://www.tooelu.ee/et/1773/alla-7-aastaste-laste-tootamine",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Ametiühingud",
+            "url": "https://www.tooelu.ee/et/49/ametiuhingud",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Euroopa Liidust Eestisse",
+            "url": "https://www.tooelu.ee/et/41/euroopa-liidust-eestisse",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Head töösuhted",
+            "url": "https://www.tooelu.ee/et/65/head-toosuhted",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Hoiatus",
+            "url": "https://www.tooelu.ee/et/32/hoiatus",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Iseenda toetamiseks",
+            "url": "https://www.tooelu.ee/et/314/iseenda-toetamiseks",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Iseseisva otsustuspädevusega töötaja",
+            "url": "https://www.tooelu.ee/et/842/iseseisva-otsustuspadevusega-tootaja",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Kahju hüvitamine",
+            "url": "https://www.tooelu.ee/et/61/kahju-huvitamine",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Kahju hüvitamine tööõnnetuse korral",
+            "url": "https://www.tooelu.ee/et/118/kahju-huvitamine-tooonnetuse-korral",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Katseaeg",
+            "url": "https://www.tooelu.ee/et/13/katseaeg",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Keskmise töötasu arvutamine",
+            "url": "https://www.tooelu.ee/et/176/keskmise-tootasu-arvutamine",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Koolituskulude hüvitamise kokkulepe",
+            "url": "https://www.tooelu.ee/et/799/koolituskulude-huvitamise-kokkulepe",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Kui tööl juhtus õnnetus",
+            "url": "https://www.tooelu.ee/et/116/kui-tool-juhtus-onnetus",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Kutsehaigused ja tööst põhjustatud haigestumised",
+            "url": "https://www.tooelu.ee/et/901/kutsehaigused-ja-toost-pohjustatud-haigestumised",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Käsundusleping",
+            "url": "https://www.tooelu.ee/et/1443/kasundusleping",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Käsunduslepingu sõlmimine alaealisega",
+            "url": "https://www.tooelu.ee/et/1772/kasunduslepingu-solmimine-alaealisega",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Lepingueelsed läbirääkimised",
+            "url": "https://www.tooelu.ee/et/11/lepingueelsed-labiraakimised",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Lõpparve",
+            "url": "https://www.tooelu.ee/et/33/lopparve",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Meeskonna toetamiseks",
+            "url": "https://www.tooelu.ee/et/315/meeskonna-toetamiseks",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Mis on kaugtöö? Millal võib kaugtööd teha?",
+            "url": "https://www.tooelu.ee/et/34/mis-kaugtoo-millal-voib-kaugtood-teha",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Mis on tööõnnetus?",
+            "url": "https://www.tooelu.ee/et/115/mis-tooonnetus",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Muud tasud ja hüved",
+            "url": "https://www.tooelu.ee/et/174/muud-tasud-ja-huved",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Paindliku tööaja kokkulepe",
+            "url": "https://www.tooelu.ee/et/1642/paindliku-tooaja-kokkulepe",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Praktika",
+            "url": "https://www.tooelu.ee/et/39/praktika",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Proovipäev",
+            "url": "https://www.tooelu.ee/et/10/proovipaev",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Psühhosotsiaalsed ohutegurid",
+            "url": "https://www.tooelu.ee/et/67/psuhhosotsiaalsed-ohutegurid",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Puhkeaeg",
+            "url": "https://www.tooelu.ee/et/25/puhkeaeg",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Puhkuse ajakava",
+            "url": "https://www.tooelu.ee/et/27/puhkuse-ajakava",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Puhkuse liigid",
+            "url": "https://www.tooelu.ee/et/26/puhkuse-liigid",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Puhkused lapsevanematele",
+            "url": "https://www.tooelu.ee/et/63/puhkused-lapsevanematele",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Puhkusetasu",
+            "url": "https://www.tooelu.ee/et/28/puhkusetasu",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Renditöö ja töövahendus",
+            "url": "https://www.tooelu.ee/et/40/renditoo-ja-toovahendus",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Saladus ja konkurents",
+            "url": "https://www.tooelu.ee/et/52/saladus-ja-konkurents",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Tööaeg",
+            "url": "https://www.tooelu.ee/et/24/tooaeg",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Tööalane kiusamine",
+            "url": "https://www.tooelu.ee/et/66/tooalane-kiusamine",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Tööalane ärakasutamine",
+            "url": "https://www.tooelu.ee/et/292/tooalane-arakasutamine",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Töökorraldus",
+            "url": "https://www.tooelu.ee/et/8/tookorraldus",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Töölepingu lõppemine",
+            "url": "https://www.tooelu.ee/et/29/toolepingu-loppemine",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Töölepingu lõppemine poolte kokkuleppel",
+            "url": "https://www.tooelu.ee/et/30/toolepingu-loppemine-poolte-kokkuleppel",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Töölepingu muutmine",
+            "url": "https://www.tooelu.ee/et/14/toolepingu-muutmine",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Töölepingu sõlmimine",
+            "url": "https://www.tooelu.ee/et/7/toolepingu-solmimine",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Töölepingu ühepoolne lõpetamine",
+            "url": "https://www.tooelu.ee/et/31/toolepingu-uhepoolne-lopetamine",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Tööstress ja läbipõlemine",
+            "url": "https://www.tooelu.ee/et/68/toostress-ja-labipolemine",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Töötaja privaatsus",
+            "url": "https://www.tooelu.ee/et/69/tootaja-privaatsus",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Töötamine haiguslehe alusel",
+            "url": "https://www.tooelu.ee/et/1229/tootamine-haiguslehe-alusel",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Töötamine pere heaks",
+            "url": "https://www.tooelu.ee/et/37/tootamine-pere-heaks",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Töötamine raseduse ajal",
+            "url": "https://www.tooelu.ee/et/62/tootamine-raseduse-ajal",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Töötamise registreerimine",
+            "url": "https://www.tooelu.ee/et/12/tootamise-registreerimine",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Töötasu",
+            "url": "https://www.tooelu.ee/et/175/tootasu",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Töötukassa teenused",
+            "url": "https://www.tooelu.ee/et/171/tootukassa-teenused",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Töövaidlused",
+            "url": "https://www.tooelu.ee/et/58/toovaidlused",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Töövõtuleping",
+            "url": "https://www.tooelu.ee/et/1442/toovotuleping",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Tüüptingimustega tööleping",
+            "url": "https://www.tooelu.ee/et/9/tuuptingimustega-tooleping",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Ukraina sõjapõgenikud ja töösuhted",
+            "url": "https://www.tooelu.ee/et/392/ukraina-sojapogenikud-ja-toosuhted",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Usaldusisik",
+            "url": "https://www.tooelu.ee/et/48/usaldusisik",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Vabatahtlik töö",
+            "url": "https://www.tooelu.ee/et/38/vabatahtlik-too",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Vaimse tervise esmaabikapp",
+            "url": "https://www.tooelu.ee/et/307/vaimse-tervise-esmaabikapp",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Võrdne kohtlemine",
+            "url": "https://www.tooelu.ee/et/36/vordne-kohtlemine",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Välismaise tööandja juurde tööle minek",
+            "url": "https://www.tooelu.ee/et/47/valismaise-tooandja-juurde-toole-minek",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Väljaspoolt Euroopa Liitu Eestisse",
+            "url": "https://www.tooelu.ee/et/42/valjaspoolt-euroopa-liitu-eestisse",
+            "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Ümbrikupalk",
+            "url": "https://www.tooelu.ee/et/20/umbrikupalk",
+            "publisher": "Tööinspektsioon"
           }
         ]
       },
@@ -34314,6 +37147,24 @@
       "role": "source",
       "sha256": "47aa926afa5bbad8d822b61944c4718f0cf69905bc3d80c0ba244907b4fe4323",
       "original_path": "riigiteataja.ee/et/akt/408102026010.xml",
+      "review_status": "version_and_jurisdiction_validation_pending",
+      "corpus_documents": 1
+    },
+    {
+      "path": "oigusaktid/111072026158.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "5f5f8c621c7af05a7188345bb0440f81cc44788ebf281b1c8e770d81fd1e7820",
+      "original_path": "riigiteataja.ee/et/akt/111072026158.xml",
+      "review_status": "version_and_jurisdiction_validation_pending",
+      "corpus_documents": 1
+    },
+    {
+      "path": "oigusaktid/120062026018.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "9564213307e9778ac678e687e2c626ef2037e5be975552350cb0f07d08735d76",
+      "original_path": "riigiteataja.ee/et/akt/120062026018.xml",
       "review_status": "version_and_jurisdiction_validation_pending",
       "corpus_documents": 1
     },

@@ -213,16 +213,16 @@
     },
     {
       "id": "specialist-named-act-outside-corpus",
-      "title": "Nimetatud seadust ei ole kogus: võlaõigusseadus",
-      "source": "võlaõigusseadus ei ole korpuses",
+      "title": "Nimetatud seadust ei ole kogus: asjaõigusseadus",
+      "source": "asjaõigusseadus ei ole korpuses (võlaõigusseadus on alates v76)",
       "role": "specialist",
       "turns": [
         {
           "mode": "new",
-          "text": "Mida ütleb võlaõigusseaduse § 208 lõige 1?",
+          "text": "Mida ütleb asjaõigusseaduse § 68 lõige 1?",
           "note": "The act is not in the collection. The right answer says so plainly and states nothing under that number; a block that does is kind d: the answer is published, and the turn fails provisions_supported and its must_not pattern.",
           "expect": {
-            "must_not": ["§ 208 (?:lg|lõike) 1 (?:järgi|kohaselt)"]
+            "must_not": ["§ 68 (?:lg|lõike) 1 (?:järgi|kohaselt)"]
           }
         }
       ]

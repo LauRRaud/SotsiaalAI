@@ -81,6 +81,8 @@ Kohtute lehe uus koopia vaadati rida-realt üle: iga kohtumaja real on maja aadr
 
 Neljal muutuseta lehel on aadressid kujul `sõna.sõna@`, kus reegel ei tunne kumbagi sõna. Need jäävad välja nagu enne.
 
+**Täiendus samal õhtul: kõik 361 ametlikku lehte päris lehelt.** Iga `Andmebaasi/veebilehed` leht loeti üks kord uuesti (tasuta, midagi ei salvestatud; 360 loetud, üks ei vastanud) ja sama toorleht loeti endise ja uue reegliga. Reegel muudab täpselt neid nelja lehte, mis ülal tabelis; 356 lehte on mõlema reegliga samad. Üks leht oli saidil vahepeal ise muutunud. Igakuine uuendus teeb seega reegli pärast neli muudatusettepanekut, mitte rohkem.
+
 Testid: `tests/rag-v2-web-page.test.mjs` 14 → 27 testi.
 
 ## Piirid

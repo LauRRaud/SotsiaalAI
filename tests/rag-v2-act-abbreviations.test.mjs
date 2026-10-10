@@ -14,12 +14,12 @@ test('the committed table of law abbreviations is what the registered XML files 
   assert.deepEqual(committed, currentActAbbreviations());
   assert.equal(committed.schema_version, TABLE_VERSION);
   const titles = Object.keys(committed.abbreviations), short = Object.values(committed.abbreviations);
-  // On 10.10.2026: 37 law titles, 36 with an abbreviation; the State Budget Act has none. Every title is listed, so the
+  // With corpus v76 (10.10.2026, the Law of Obligations Act added): 38 law titles, 37 with an abbreviation; the State Budget Act has none. Every title is listed, so the
   // provision check knows which laws the corpus holds.
-  assert.deepEqual([titles.length, short.filter(Boolean).length, titles.filter(title => committed.abbreviations[title] === null)], [37, 36, ['2026. aasta riigieelarve seadus']]);
+  assert.deepEqual([titles.length, short.filter(Boolean).length, titles.filter(title => committed.abbreviations[title] === null)], [38, 37, ['2026. aasta riigieelarve seadus']]);
   assert.deepEqual(['Sotsiaalhoolekande seadus', 'Lastekaitseseadus', 'Sotsiaalseadustiku üldosa seadus', 'Tsiviilkohtumenetluse seadustik'].map(title => committed.abbreviations[title]), ['SHS', 'LasteKS', 'SÜS', 'TsMS']);
   // No abbreviation twice, each as the check reads one: letters only, at least two capitals, the last an S.
-  assert.equal(new Set(short.filter(Boolean)).size, 36);
+  assert.equal(new Set(short.filter(Boolean)).size, 37);
   for (const value of short.filter(Boolean)) assert.match(value, /^(?=\p{L}*\p{Lu}\p{L}*S$)\p{L}{2,8}$/u, value);
   assert.deepEqual(titles, [...titles].sort((a, b) => (a < b ? -1 : 1)));
 });

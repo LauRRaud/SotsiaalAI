@@ -42,6 +42,16 @@ test('the state says what the RAG holds, counts a registered file\'s documents a
   assert.deepEqual(state.outside[3].sources.map(source => source.title), ['Näidisliit: Kontakt', 'Näidisliit: Mis on | haigus']);
 });
 
+test('ADR-137: an institution\'s page chosen by rule and kept elsewhere is listed with its address; one that is a repository file is counted for its file', () => {
+  const withPage = { ...register, entries: [...register.entries, { path: 'veebilehed/naidisamet/amet--abi.html', role: 'source' }] };
+  const state = corpusState(withPage, [{ source_type: 'web_page', title: 'Abi taotlemine', url: 'https://amet.example/abi', publisher: 'Näidisamet', registry_path: 'veebilehed/naidisamet/amet--abi.html' },
+    { source_type: 'web_page', title: 'Töölepingu lõppemine', url: 'https://amet.example/tooleping', publisher: 'Näidisamet', registry_path: 'veebilehed/naidisamet/amet--tooleping.html' }], about);
+  assert.deepEqual(state.perPath, { 'veebilehed/naidisamet/amet--abi.html': 1 });
+  assert.deepEqual(state.outside.map(found => [found.kind.key, found.documents, found.sources]), [['guidance_pages', 1, [{ title: 'Töölepingu lõppemine', url: 'https://amet.example/tooleping', publisher: 'Näidisamet' }]]]);
+  assert.deepEqual(state.content.map(row => [row.key, row.documents, row.where]), [['official_pages', 2, 'files_and_end']]);
+  assert.match(markdownWithCorpus('# Register\n\n## Kasutamine\n\nTekst.\n', state), /### Asutuste juhislehed, valitud reegliga \(1\)\n\n\| Väljaandja \| Pealkiri \| Aadress \|\n\|---\|---\|---\|\n\| Näidisamet \| Töölepingu lõppemine \| <https:\/\/amet\.example\/tooleping> \|/u);
+});
+
 test('the register and its page carry the state, without a contact\'s name, and writing twice changes nothing', () => {
   const state = corpusState(register, documents, about), next = registerWithCorpus(register, state);
   assert.deepEqual(Object.keys(next), ['schema_version', 'created_at', 'updated_at', 'path_base', 'archive', 'import_rule', 'counts', 'corpus', 'outside_repository', 'entries', 'original_path_base']);

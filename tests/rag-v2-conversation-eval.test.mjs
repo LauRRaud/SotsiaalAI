@@ -652,7 +652,7 @@ test('ADR-129: the provisions catalogue: its roles and turns, the turns where th
   // under that number; "sätestab, et ..." is one.
   assert.deepEqual([verdict(missing, 'Ma ei saa siin oleva teabe põhjal öelda, mida sotsiaalhoolekande seaduse § 133 lg 99 sätestab: selle sätte teksti ei ole siin kasutada.'),
     verdict(missing, 'Sotsiaalhoolekande seaduse § 133 lg 99 sätestab, et toetust makstakse.')], ['passed', 'answer']);
-  assert.deepEqual([verdict(outside, 'Võlaõigusseadust minu kogus ei ole, seega ma ei saa öelda, mida § 208 lõige 1 ütleb.'), verdict(outside, 'Võlaõigusseaduse § 208 lõike 1 kohaselt võib ostja lepingust taganeda.')], ['passed', 'answer']);
+  assert.deepEqual([verdict(outside, 'Asjaõigusseadust minu kogus ei ole, seega ma ei saa öelda, mida § 68 lõige 1 ütleb.'), verdict(outside, 'Asjaõigusseaduse § 68 lõike 1 kohaselt on omand isiku täielik õiguslik võim asja üle.')], ['passed', 'answer']);
 });
 
 test('ADR-129: the run\'s provision totals for each role and in all: answers that name one, the kinds, kind b from a source that is no act, the cost a turn', async () => {
