@@ -6,7 +6,14 @@ import { useId, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import OrgHeader from "@/components/org/OrgHeader";
 import Dropdown from "@/components/ui/Dropdown";
-import { CARE_VISIT_CANCEL_REASONS, CareObstacleKind, CarePlannedState, CareVisitChangeKind, HOME_CARE_LIMITS } from "@/lib/homeCare/constants";
+import {
+  CARE_FIRST_VISIT_OUTCOMES,
+  CARE_VISIT_CANCEL_REASONS,
+  CareObstacleKind,
+  CarePlannedState,
+  CareVisitChangeKind,
+  HOME_CARE_LIMITS
+} from "@/lib/homeCare/constants";
 
 import { minutesLabel } from "./HomeCareDecisionView";
 import { keyWhere } from "./HomeCareKeys";
@@ -93,6 +100,16 @@ export default function HomeCareDay({ context, initial }) {
     ];
   };
 
+  /* Esmakäik (K5-v): kuidas kliendile teatati; pärast märkimist loetakse päev uuesti. */
+  const markFirstVisit = async (visit, outcome) => {
+    const result = await call(`${homeCareBase(organizationId)}/kliendid/${encodeURIComponent(visit.client.id)}/esmakaik`, {
+      method: "POST",
+      body: { day: data.day, workerMembershipId: visit.worker?.membershipId, outcome },
+      fallbackKey: "home_care.errors.save_failed"
+    });
+    if (result.ok) await load(data.day);
+  };
+
   const visitRow = (visit) => {
     const isOpen = open?.slotId === visit.slotId;
     const cancelled = visit.state === CarePlannedState.CANCELLED;
@@ -159,6 +176,30 @@ export default function HomeCareDay({ context, initial }) {
             .filter(Boolean)
             .join(" · ")}
         </span>
+
+        {/* Esmakäik (K5-v): tegija ei ole selle kliendi juures varem käinud; hooldusjuht märgib, kuidas kliendile teatati. */}
+        {visit.firstVisit ? (
+          <span className="hc-notice">
+            {t("home_care.first_visit.day_line", { name: visit.worker?.name || "—" })}{" "}
+            {visit.firstVisit.outcome ? t(`home_care.first_visit.outcomes.${visit.firstVisit.outcome}`) : t("home_care.first_visit.not_marked")}
+          </span>
+        ) : null}
+        {visit.firstVisit && canEdit && !open ? (
+          <span className="hc-row">
+            {CARE_FIRST_VISIT_OUTCOMES.map((outcome) => (
+              <button
+                key={outcome}
+                className="hc-btn hc-btn--quiet"
+                type="button"
+                aria-pressed={visit.firstVisit.outcome === outcome}
+                onClick={() => markFirstVisit(visit, outcome)}
+                disabled={busy}
+              >
+                {t(`home_care.first_visit.mark.${outcome}`)}
+              </button>
+            ))}
+          </span>
+        ) : null}
 
         {canEdit && !open ? (
           <span className="hc-row">

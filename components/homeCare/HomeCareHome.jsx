@@ -65,6 +65,13 @@ function MyVisit({ organizationId, visit }) {
             .join(" · ")}
         </span>
       </Link>
+      {/* Esmakäik (K5-v): klient ei tunne mind; kas talle on teatatud. */}
+      {visit.firstVisit ? (
+        <p className="hc-notice">
+          {t("home_care.first_visit.my_line")}{" "}
+          {visit.firstVisit.outcome ? t(`home_care.first_visit.my_outcomes.${visit.firstVisit.outcome}`) : t("home_care.first_visit.my_not_marked")}
+        </p>
+      ) : null}
     </li>
   );
 }
