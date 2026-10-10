@@ -120,11 +120,11 @@
 }
 /* Kaks loetavat loendit kõrvuti; kitsal pinnal üksteise all. */
 .pair {
-  min-width: 0;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: start;
   gap: 0.8rem 1.4rem;
+  align-items: start;
+  min-width: 0;
 }
 .group {
   min-width: 0;
@@ -137,10 +137,7 @@
   font-weight: 560;
 }
 .lines {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
+  composes: rows from "../../stage/rows.module.css";
   gap: 0.3rem;
 }
 .lineItem {
@@ -153,7 +150,10 @@
 }
 
 @container (max-width: 34rem) {
-  .item {
+  /* Kitsal pinnal jääb „Arhiveeri" rea kõrvale (oma rida iga Teekonna all teeks
+     loendi kaks korda pikemaks). Teise vajutuse nupud ei mahu rea kõrvale: need
+     lähevad rea alla. */
+  .item[data-armed="1"] {
     grid-template-columns: minmax(0, 1fr);
   }
   .pair {

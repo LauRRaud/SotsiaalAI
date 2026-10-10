@@ -270,9 +270,11 @@ export default function JourneyDashboard({ embedded = false, roleOverride = "" }
 
   /* Salvestamata kirjutatu ja lahkumise teed, mida leht ise ei joonista.
      Esimene lahkumine jääb kinni ja lava kohal seisab põhjus, teine lahkub.
-     Töölaua oma Esc-kuulaja väravat ei küsi: Esc peetakse kinni siin, enne teisi
-     (püüdmise faasis). Sama vajutuse jooksul võib väravat küsida veel paneeli
-     raam: `passing` vastab talle sama, mis siin juba otsustati. */
+     Omaette lehel küsib paneeli raam väravat ise (kiirmenüü tagasinool ja Esc).
+     Töölaua oma Esc-kuulaja väravat ei küsi ja sulgeb töölaua ka siis, kui
+     fookus on tekstiväljal: seal peetakse Esc kinni siin, enne teisi (püüdmise
+     faasis). Sama vajutuse jooksul võib väravat küsida veel paneeli raam:
+     `passing` vastab talle sama, mis siin juba otsustati. */
   useEffect(() => {
     if (!dirty) return undefined;
     const leave = twoPressLeaveGuard({
@@ -294,13 +296,13 @@ export default function JourneyDashboard({ embedded = false, roleOverride = "" }
         return;
       }
       event.preventDefault();
-      event.stopPropagation();
+      event.stopImmediatePropagation();
     };
     const warn = (event) => {
       event.preventDefault();
       event.returnValue = "";
     };
-    window.addEventListener("keydown", holdEscape, true);
+    if (embedded) window.addEventListener("keydown", holdEscape, true);
     window.addEventListener("beforeunload", warn);
     return () => {
       release();
@@ -308,7 +310,7 @@ export default function JourneyDashboard({ embedded = false, roleOverride = "" }
       window.removeEventListener("keydown", holdEscape, true);
       window.removeEventListener("beforeunload", warn);
     };
-  }, [dirty]);
+  }, [dirty, embedded]);
 
   /* Vaate vahetusel (loend ↔ alustamine) kaob vajutatud nupp: fookus läheb
      kirjelduse väljale või loendi pealkirjale. Esimesel joonistusel fookust ei

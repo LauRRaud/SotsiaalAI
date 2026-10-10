@@ -48,6 +48,9 @@
   gap: 0.6rem 1rem;
   padding-top: 0.7rem;
   border-top: 1px solid color-mix(in srgb, var(--text-warm) 12%, transparent);
+  /* Töölaua paneeli sees joondab vestluse üldreegel iga `footer`-i teksti
+     keskele (app/styles/chat.css): vaate teade algab vasakult nagu mujal. */
+  text-align: start;
 }
 .note {
   flex: 1 1 14rem;

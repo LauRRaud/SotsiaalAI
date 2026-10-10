@@ -57,20 +57,21 @@
 .live {
   min-width: 0;
 }
+/* Teade on äärejoonega lause, mitte kast: ühine paneelikiht annaks hoiatuse
+   rolliga elemendile tausta, äärise ja polstri. */
 .notice {
   margin: 0;
   max-width: none;
-  padding: 0.5rem 0.9rem;
-  border: 1px solid var(--glass-cell-border);
-  border-radius: 0.9rem;
-  background: var(--glass-cell-bg);
+  padding: 0.1rem 0 0.1rem 0.8rem;
+  border: 0;
+  border-inline-start: 3px solid color-mix(in srgb, var(--text-warm) 46%, transparent);
+  border-radius: 0;
+  background: none;
   color: var(--text-warm);
   overflow-wrap: anywhere;
 }
 .notice[data-tone="risk"] {
-  border-color: color-mix(in srgb, var(--status-error) 60%, transparent);
-  border-inline-start-width: 3px;
-  background: color-mix(in srgb, var(--status-error) 10%, transparent);
+  border-inline-start-color: color-mix(in srgb, var(--status-error) 70%, transparent);
 }
 /* Vaate tõrge paneeli all servas. */
 .footError {
@@ -93,9 +94,9 @@
 }
 /* Tähelepanu vajav seis: tugevam raam ja kaal, mitte ainult värv. */
 .chip[data-tone="wait"] {
-  border-color: color-mix(in srgb, var(--text-warm) 62%, transparent);
   color: var(--text-warm);
   font-weight: 560;
+  border-color: color-mix(in srgb, var(--text-warm) 62%, transparent);
 }
 .chip[data-tone="ok"] {
   border-color: color-mix(in srgb, var(--status-success) 55%, transparent);
@@ -149,19 +150,19 @@
   gap: 0.15rem;
 }
 .fact {
-  min-width: 0;
-  max-width: none;
   margin: 0;
+  max-width: none;
+  min-width: 0;
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
   gap: 0 0.5rem;
+  align-items: baseline;
   line-height: 1.5;
 }
 .factLabel {
   flex: none;
-  color: var(--text-dim);
   font-size: var(--fs-small, 0.875rem);
+  color: var(--text-dim);
 }
 .factValue {
   min-width: 0;
