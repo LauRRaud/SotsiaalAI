@@ -62,6 +62,17 @@ function useReportDirty(desk, dirty) {
   }, [dirty, setDirty]);
 }
 
+/* Teekond pandi kõrvale (paus või lõpetamine teises osas) ajal, mil siin oli vorm
+   lahti: vorm sulgub, muidu jääks see pärast uuesti avamist vana tekstiga ette
+   ja salvestamata teksti märk hoiaks lahkumist kinni. */
+function useCloseWhenArchived(archived, close) {
+  const closeRef = useRef(close);
+  closeRef.current = close;
+  useEffect(() => {
+    if (archived) closeRef.current();
+  }, [archived]);
+}
+
 /* Vaate ilmumise hetk: topeltklõpsu teine vajutus ei saada äsja ilmunud vormi. */
 function useShownAt(key) {
   const at = useRef(0);
@@ -151,8 +162,9 @@ export function SituationPart({ t, journey, archived, lifeDomains, busy, error, 
   const [readTab, setReadTab] = useState("text");
   const [problem, setProblem] = useState("");
   /* Muudetud või mitte: võrdlus Teekonna endaga, mitte avamisel võetud koopiaga. */
-  const dirty = editing && formDirty(form, base);
+  const dirty = editing && !archived && formDirty(form, base);
   useReportDirty(desk, dirty);
+  useCloseWhenArchived(archived, () => setEditing(false));
   const view = editing && !archived ? `edit:${tab}` : `read:${readTab}`;
   useStageRemeasure(`${view}:${problem}:${error}`);
   const rootRef = useSwapFocus(editing && !archived ? "edit" : "read");
@@ -310,8 +322,9 @@ export function WishPart({ t, journey, archived, busy, error, onSave, desk }) {
   const limit = JOURNEY_TEXT_LIMITS.personWish;
   const [editing, setEditing] = useState(false);
   const [text, setText] = useState(wish);
-  const dirty = editing && text !== wish;
+  const dirty = editing && !archived && text !== wish;
   useReportDirty(desk, dirty);
+  useCloseWhenArchived(archived, () => setEditing(false));
   const shown = editing && !archived ? "edit" : "read";
   useStageRemeasure(`${shown}:${error}`);
   const rootRef = useSwapFocus(shown);
@@ -725,8 +738,9 @@ export function ContinuityPart({ t, journey, archived, busy, error, rules, onSav
   const [editing, setEditing] = useState(false);
   const [form, setForm] = useState(base);
   const [tab, setTab] = useState("service");
-  const dirty = editing && formDirty(form, base);
+  const dirty = editing && !archived && formDirty(form, base);
   useReportDirty(desk, dirty);
+  useCloseWhenArchived(archived, () => setEditing(false));
   const shown = editing && !archived ? "edit" : "read";
   useStageRemeasure(`${shown}:${tab}:${form.knownEndDate}:${error}`);
   const rootRef = useSwapFocus(shown);

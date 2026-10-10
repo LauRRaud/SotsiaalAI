@@ -152,6 +152,15 @@ export default function JourneySteps({ journey, onStepsChange, t, desk = {} }) {
     return () => setDirty?.(false);
   }, [dirty, setDirty]);
 
+  /* Teekond pandi kõrvale ajal, mil siin oli vorm lahti: vorm sulgub (avatud
+     samm jääb lugemiseks ette). */
+  useEffect(() => {
+    if (!archived) return;
+    setAdding(false);
+    setForm(EMPTY_FORM);
+    setPanel((current) => (current && current.mode !== "open" ? { id: current.id, mode: "open" } : current));
+  }, [archived]);
+
   const viewKey = `${view}:${panel?.id || ""}:${shownTab}`;
   useStageRemeasure(`${viewKey}:${steps.length}:${error}`);
   const rootRef = useSwapFocus(viewKey);
