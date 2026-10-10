@@ -149,6 +149,12 @@
   .step:global(.gc-shortcut)[data-on="1"] {
     padding: 0;
   }
+  /* Laua osa nimi: telefonis peidab doki üldreegel sildi teksti ja alles jääks
+     tühi tume ring, mis näeb välja nagu nupp. Osa nime ütleb seal rida paneeli
+     ülaservas (StepFlight). */
+  .part:global(.gc-shortcut) {
+    display: none;
+  }
 }
 
 /* --- Dokita leht: riba seisab omaette pillina seal, kus dokk muidu on -------- */
