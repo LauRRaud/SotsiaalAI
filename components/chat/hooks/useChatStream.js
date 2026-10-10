@@ -1245,6 +1245,11 @@ export function useChatStream(config) {
         if (res.status === 401) {
           return false;
         }
+        /* Tellimuseta liige saab ruumi lugeda, aga mitte kirjutada: ütleme põhjuse, mitte üldise vea. */
+        if (res.status === 402) {
+          cfg.setErrorBanner?.(tr("chat.error.subscription_required_profile"));
+          return false;
+        }
         if (!res.ok || data?.ok === false) {
           throw createLocalizedError("chat.room.send_error");
         }

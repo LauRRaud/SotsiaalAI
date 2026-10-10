@@ -266,6 +266,15 @@ export default function RoomsPage() {
                 </h1>
               </div>
 
+              {/* Tellimuseta jäävad ruumid loetavaks; lause ütleb, miks kirjutada ja kutsuda ei saa.
+                  Lehe enda voos pealkirja all, mitte ujuva ribana: paneel on kitsas ja riba jääks pealkirja peale. */}
+              {effectiveRooms.some((room) => room.subscriptionReadOnly) ? (
+                <p role="status">
+                  {t("rooms.subscription_readonly")}{" "}
+                  <Link href="/tellimus">{t("subscriptionGate.readonly_cta")}</Link>
+                </p>
+              ) : null}
+
               {loading && effectiveRooms.length === 0 ? (
                 <div className="rooms-step">
                   <Panel variant="subpage" padding="sm" aria-busy="true">
