@@ -1052,7 +1052,12 @@
       "mentoring_process": "Mentorlussuhe",
       "practice_reflection": "Minu meetodipeegel",
       "wellbeing_space": "Minu tööheaolu ruum",
-      "pre_inquiry": "Eelpöördumine"
+      "pre_inquiry": "Eelpöördumine",
+      "room": "Ruum",
+      "journey": "Teekond",
+      "covision_case": "Kovisioon",
+      "field_visit": "Välitöö käik",
+      "org_space": "Organisatsiooni tööruum"
     }
   },
   "reflection": {
@@ -2329,7 +2334,15 @@
       "daily_upload_quota_exceeded": "Päevane üleslaadimise limiit on täitunud. Proovi homme uuesti.",
       "storage_quota_exceeded": "Salvestusmaht on täis. Kustuta mõni fail ja proovi uuesti.",
       "withdraw_not_allowed": "Selles seisus materjali ei saa tagasi võtta.",
-      "delete_pending": "Materjali eemaldamine jäi pooleli. Proovi mõne aja pärast uuesti."
+      "delete_pending": "Materjali eemaldamine jäi pooleli. Proovi mõne aja pärast uuesti.",
+      "file_pending": "Failide töötlemine on veel pooleli. Proovi mõne aja pärast uuesti.",
+      "idempotency_conflict": "Sama saatmist kasutati juba teistsuguste failidega. Laadi leht uuesti ja saada uuesti.",
+      "idempotency_in_progress": "See saatmine on juba töös. Oota hetk ja laadi leht uuesti.",
+      "idempotency_key_invalid": "Saatmise tunnus puudub või on vigane. Laadi leht uuesti ja proovi veel kord.",
+      "security_gate_failed": "Seda materjali ei saa üle vaadata, sest fail ei ole turvakontrolli läbinud.",
+      "security_receipt_required": "Faili turvakontroll on tegemata. Lae fail uuesti üles.",
+      "security_receipt_invalid": "Faili turvakontrolli tulemus ei kehti enam. Lae fail uuesti üles.",
+      "status_invalid": "Materjali seisund ei sobi."
     },
     "admin": {
       "title": "Laekunud materjalid",
@@ -2566,6 +2579,17 @@
     "privacy_filter": {
       "heading": "4.10 Privaatsuse eelkontroll ja Privacy Filter",
       "body": "<p>Platvorm võib tundlikes töövoogudes kasutada privaatsuse eelkontrolli, mis tuvastab ja maskeerib tekstis võimalikke isikuandmeid enne AI-töötlust, RAG-indekseerimist, dokumendi koostamist, logimist või avaliku abikirje salvestamist. Kontroll võib põhineda Sotsiaal.pro lokaalsel mustripõhisel filtril ning serveris lokaalselt töötaval OpenAI Privacy Filteri mudelil, kui see on kasutusele võetud.</p><p>Kui kasutaja sisendis leitakse võimalikud isikuandmed, võib süsteem pakkuda valikuid: kasutaja muudab teksti, süsteem saadab edasi maskeeritud versiooni või privaatses tööalases töövoos saadetakse algne tekst edasi kasutaja selge valiku alusel. Avalikes abisoovides ja abipakkumistes kasutatakse rangemat andmete minimeerimist ning algse tundliku tekstiga jätkamine võib olla piiratud.</p><p>Privaatsuse eelkontroll ei taga, et kõik isikuandmed või tundlikud detailid alati leitakse. See on lisakaitse, mis aitab vähendada juhuslikku ülemäärast andmetöötlust; kasutaja ja vajaduse korral organisatsioon peavad endiselt hindama õiguslikku alust, andmete vajalikkust ja sobivat töövoogu.</p>"
+    },
+    "check_failed": "Isikuandmete kontroll ebaõnnestus. Proovi uuesti.",
+    "confirmation_required": "Tekst sisaldab isikuandmeid. Vali enne jätkamist, kuidas neid töödelda.",
+    "confirmation": {
+      "warning": "Tekst sisaldab isikuandmeid. Vali enne jätkamist, kuidas neid töödelda.",
+      "detected": "Leitud:",
+      "actions": {
+        "edit": "Muudan teksti",
+        "send_redacted": "Saada maskeeritult",
+        "send_original": "Saada siiski"
+      }
     }
   },
   "legal": {
@@ -2660,7 +2684,8 @@
       "load_failed": "Teenuseprofiili ei saanud laadida.",
       "too_many_list_items": "Ühes loendis on liiga palju valikuid.",
       "too_many_locations": "Teeninduskohtade ülempiir on täis. Eemalda enne uue koha lisamist mõni olemasolev.",
-      "too_many_services": "Teenuste ülempiir on täis. Eemalda enne uue teenuse lisamist mõni olemasolev."
+      "too_many_services": "Teenuste ülempiir on täis. Eemalda enne uue teenuse lisamist mõni olemasolev.",
+      "address_suggestions_failed": "Aadressisoovitusi ei saanud laadida."
     },
     "licence": {
       "public": {
@@ -4860,7 +4885,8 @@
       "transcript_required": "Transkript puudub või ei ole kasutatav.",
       "summary_failed": "Kokkuvõtte koostamine ebaõnnestus.",
       "recording_consent_required": "Salvestist ei saa hoiule võtta ilma kinnituseta, et kohalolijad on nõus.",
-      "recording_invalid": "Salvestise andmed on vigased. Alusta salvestamist uuesti."
+      "recording_invalid": "Salvestise andmed on vigased. Alusta salvestamist uuesti.",
+      "transcription_abandoned": "Transkribeerimine katkes. Käivita see uuesti."
     },
     "artifacts": {
       "search_placeholder": "Otsi pealkirja, sisu, liigi või allikdokumendi järgi",
@@ -5481,6 +5507,14 @@
       "no_sources": "Allikfaile ei ole seotud.",
       "empty_content": "(tekst on tühi)",
       "untitled_source": "Dokument"
+    },
+    "agent_workspace": {
+      "meeting_summary": {
+        "busy": "Üks kokkuvõte on juba koostamisel. Oota, kuni see valmis saab.",
+        "error": "Kokkuvõtte koostamine ebaõnnestus. Proovi uuesti.",
+        "not_found": "Kokkuvõtte tööd ei leitud.",
+        "document_title": "Kohtumise kokkuvõte"
+      }
     }
   },
   "research": {
@@ -5496,7 +5530,10 @@
       "retrieval_unavailable": "Süvauuringu otsinguteenusega ei saanud ühendust. Palun proovi hiljem uuesti.",
       "room_not_supported": "Süvauuring on saadaval ainult 1:1 vestluses.",
       "timeout": "Süvauuring võttis liiga kaua aega. Täpsusta küsimust ja proovi uuesti.",
-      "disabled": "Süvauuring ei ole kasutajaliideses saadaval."
+      "disabled": "Süvauuring ei ole kasutajaliideses saadaval.",
+      "active_job_limit": "Üks süvauuring on juba töös. Oota, kuni see lõpeb, või peata see.",
+      "invalid_user": "Süvauuringu alustamiseks logi sisse.",
+      "lease_lost": "Süvauuring katkes. Palun käivita see uuesti."
     }
   },
   "about": {
@@ -6325,7 +6362,15 @@
       "load_failed": "Kovisiooni tööruumi laadimine ebaõnnestus.",
       "save_failed": "Kovisiooni salvestamine ebaõnnestus.",
       "case_read_only": "Lõpetatud või arhiveeritud Kovisioon on ainult vaatamiseks.",
-      "schema_missing": "Kovisiooni andmetabelid puuduvad või server kasutab vale andmebaasi. Käivita Prisma migratsioonid ja laadi leht uuesti."
+      "schema_missing": "Kovisiooni andmetabelid puuduvad või server kasutab vale andmebaasi. Käivita Prisma migratsioonid ja laadi leht uuesti.",
+      "anonymityConfirmed_required": "Kinnita enne salvestamist, et juhtumist on isikut tuvastavad andmed eemaldatud.",
+      "title_required": "Lisa juhtumile pealkiri.",
+      "message_required": "Kirjuta sõnum enne saatmist.",
+      "role_forbidden": "Kovisioon ei ole selle rolliga kättesaadav.",
+      "assist_failed": "Assistent ei saanud juhtumit ette valmistada.",
+      "message_failed": "Sõnumit ei saanud salvestada.",
+      "summary_failed": "Kokkuvõtet ei saanud salvestada.",
+      "pre_inquiry_draft_failed": "Eelpöördumisest ei saanud Kovisiooni mustandit teha."
     },
     "workspace": {
       "kicker": "Kinnine professionaalne tööruum",
@@ -7032,6 +7077,11 @@
       "save_summary": "Salvesta kokkuvõte",
       "speaking_requests_help": "Sõnasoovide järjekord on heliriba detailides nähtav. Moderaator saab sõnasoovi lahendada ja osaleja saab selle tühistada.",
       "summary_intro": "Kokkuvõte põhineb juhtumilõuendil ja tekstiliselt sisestatud arutelul. Kovisiooni heli ei salvestata, ei transkribeerita ja seda ei kasutata kokkuvõtte koostamiseks."
+    },
+    "next_action": {
+      "follow_up": "Jätkutegevus on kokku lepitud",
+      "decision_required": "Vaja on otsust, kuidas edasi",
+      "continuation_required": "Vaja on jätkukohtumist"
     }
   },
   "notifications": {
@@ -7174,7 +7224,15 @@
       "subscription_required": "Vajalik on aktiivne tellimus.",
       "monthly_budget_exceeded": "Kuu kasutuseelarve on täis. Jätka järgmisel kuul või uuenda paketti.",
       "usage_load_failed": "Kasutusandmeid ei saanud laadida.",
-      "server_error": "Serveri viga. Proovi hiljem uuesti."
+      "server_error": "Serveri viga. Proovi hiljem uuesti.",
+      "too_many_requests": "Liiga palju päringuid. Proovi hiljem uuesti.",
+      "bad_request": "Vigane päring.",
+      "conflict": "Andmed muutusid vahepeal. Laadi leht uuesti ja proovi veel kord.",
+      "error": "Midagi läks valesti. Proovi hiljem uuesti.",
+      "invalid_payload": "Päringu sisu on vigane.",
+      "method_not_allowed": "Seda toimingut ei saa sel aadressil teha.",
+      "missing_id": "Kirje tunnus puudub.",
+      "service_unavailable": "Teenus ei ole praegu saadaval. Proovi mõne aja pärast uuesti."
     },
     "exports": {
       "pdf_content_not_supported": "PDF ei toeta selle sisu märke. Kasuta Wordi/DOCX-i."
@@ -7186,7 +7244,8 @@
       "preference_conflict": "Teavituseelistus muutus vahepeal. Värskenda ja proovi uuesti.",
       "invalid_preference": "Teavituseelistus ei ole sobiv.",
       "preference_update_failed": "Teavituseelistust ei saanud salvestada.",
-      "continuity_failed": "Pooleliolevate tegevuste koondit ei saanud laadida."
+      "continuity_failed": "Pooleliolevate tegevuste koondit ei saanud laadida.",
+      "operation_invalid": "Seda teavituse toimingut ei saa teha."
     },
     "chat": {
       "invalid_conv_id": "Vigane vestluse ID.",
@@ -7217,7 +7276,8 @@
         "rag_service_failed": "Analyysi teenuse paring ebaonnestus.",
         "service_unavailable": "Analyysi teenus ei ole praegu saadaval.",
         "privacy_ephemeral": "Faili toodeldakse ajutiselt ja seda ei salvestata."
-      }
+      },
+      "too_many_conversations": "Korraga saab kustutada piiratud arvu vestlusi. Vali vähem ja proovi uuesti."
     },
     "rooms": {
       "not_found": "Ruumi ei leitud.",
@@ -7247,7 +7307,12 @@
       "summary_ring_not_open": "Selle kokkuvõtte kohta ei ole kinnitusringi avatud.",
       "summary_response_invalid": "Vastus peab olema kinnitus või parandus.",
       "summary_response_failed": "Vastuse salvestamine ebaõnnestus.",
-      "summary_share_withdrawn": "Jagamine on tagasi võetud."
+      "summary_share_withdrawn": "Jagamine on tagasi võetud.",
+      "network_share_not_opened": "Ava enne jagamine. Arutelu avaneb pärast seda.",
+      "summary_wrong_type": "Ruumis saab jagada ainult kohtumise kokkuvõtet.",
+      "summary_not_confirmed": "Kokkuvõtet saab jagada pärast seda, kui oled teksti kinnitanud.",
+      "summary_empty": "Kokkuvõte on tühi, jagada ei ole midagi.",
+      "summary_share_failed": "Kokkuvõtte jagamine ebaõnnestus."
     },
     "stt": {
       "not_configured": "Kõnest tekstiks teenus ei ole seadistatud.",
@@ -7342,7 +7407,8 @@
       "checkout_intent_required": "Makse algatamise võti puudub. Värskenda leht ja proovi uuesti.",
       "checkout_in_progress": "Makse algatamine on juba pooleli. Lõpeta või sulge eelmine makseaken ja proovi hetke pärast uuesti.",
       "checkout_intent_used": "See maksekatse on juba lõppenud. Alusta uut makset.",
-      "cancel_not_self_paid": "Selle tellimuse eest maksab keegi teine, seega sina seda lõpetada ei saa. Pöördu sponsori või oma organisatsiooni poole."
+      "cancel_not_self_paid": "Selle tellimuse eest maksab keegi teine, seega sina seda lõpetada ei saa. Pöördu sponsori või oma organisatsiooni poole.",
+      "invite_delivery_unavailable": "Kutset ei saanud praegu saata. Proovi hiljem uuesti."
     },
     "invites": {
       "email_from_missing": "Saatja e-posti aadress ei ole seadistatud.",
@@ -7411,6 +7477,21 @@
         "users_email_no_recipients": "Valitud sihtgrupis ei leitud saajaid.",
         "users_email_send_failed": "Hulgie-kirja saatmine ebaõnnestus.",
         "email_from_missing": "Saatja e-posti aadress ei ole seadistatud."
+      },
+      "kov": {
+        "list_failed": "Omavalitsuste loendit ei saanud laadida.",
+        "detail_failed": "Omavalitsuse andmeid ei saanud laadida.",
+        "update_failed": "Omavalitsuse andmeid ei saanud uuendada.",
+        "file_upload_failed": "Faili üleslaadimine ebaõnnestus.",
+        "file_download_failed": "Faili allalaadimine ebaõnnestus.",
+        "file_delete_failed": "Faili kustutamine ebaõnnestus."
+      },
+      "notifications": {
+        "load_failed": "Teavituste järjekorda ei saanud laadida.",
+        "requeue_failed": "Teavitust ei saanud uuesti järjekorda panna."
+      },
+      "organizations": {
+        "ingest_failed": "Organisatsiooni andmete importi ei saanud käivitada."
       }
     },
     "rag": {
@@ -7434,6 +7515,13 @@
         "unknown_error": "Tundmatu viga."
       },
       "retired": "Teadmuspõhine vastamine ja dokumentide analüüs on uue süsteemi arendamise ajaks peatatud. Varasemad vestlused ja failid on alles."
+    },
+    "errors": {
+      "rate_limited": "Liiga palju päringuid. Proovi hiljem uuesti."
+    },
+    "search": {
+      "query_too_long": "Otsingusõna on liiga pikk. Lühenda seda ja proovi uuesti.",
+      "unavailable": "Otsing ei ole praegu saadaval. Proovi hiljem uuesti."
     }
   },
   "admin": {
@@ -9612,6 +9700,25 @@
         "lead": "Sinu vastuste põhjal. Ükski samm ei ole kohustuslik.",
         "none": "Praegu eraldi soovitusi ei ole."
       }
+    },
+    "pilot": {
+      "forbidden": "Sul ei ole selle piloodi koondvaate õigust.",
+      "role_group_missing": "Sinu kontole ei ole piloodi rollirühma määratud.",
+      "role_group_forbidden": "Selle rollirühma andmeid sa vaadata ei saa.",
+      "scope_forbidden": "Selle üksuse andmeid sa vaadata ei saa.",
+      "scope_incomplete": "Piloodi ulatus on puudulikult seadistatud.",
+      "scope_missing": "Piloodi ulatus on valimata.",
+      "scope_not_found": "Piloodi ulatust ei leitud.",
+      "actor_required": "Selle toimingu jaoks logi sisse.",
+      "name_required": "Sisesta nimi.",
+      "nothing_to_update": "Muuta ei ole midagi.",
+      "period_invalid": "Periood ei sobi. Vali periood loendist.",
+      "period_free_form_forbidden": "Vaba kuupäevavahemikku ei saa kasutada. Vali periood loendist.",
+      "viewer_email_required": "Sisesta vaataja e-posti aadress.",
+      "viewer_not_found": "Selle e-posti aadressiga kasutajat ei leitud."
+    },
+    "aggregate": {
+      "analysis_unit_invalid": "Analüüsi ühik ei sobi."
     }
   },
   "voimalused": {
@@ -10250,7 +10357,27 @@
       "active_limit_reached": "Sul on juba 250 aktiivset eelpöördumise mustandit. Arhiveeri mõni enne uue loomist.",
       "invalid_action_key": "Salvestustoimingu võti ei kehti. Värskenda vaadet ja proovi uuesti.",
       "action_key_conflict": "Sama salvestustoimingu võtit kasutati teise sisuga. Värskenda vaadet.",
-      "invalid_cursor": "Lehekülje jätkuvõti ei kehti. Alusta loendi laadimist uuesti."
+      "invalid_cursor": "Lehekülje jätkuvõti ei kehti. Alusta loendi laadimist uuesti.",
+      "load_failed": "Eelpöördumisi ei saanud laadida.",
+      "save_failed": "Eelpöördumist ei saanud salvestada.",
+      "assist_failed": "Assistent ei saanud eelpöördumist ette valmistada.",
+      "accept_failed": "Eelpöördumist ei saanud vastu võtta.",
+      "room_failed": "Vestlusruumi ei saanud avada.",
+      "recipient_locked_by_room": "Adressaati ei saa enam muuta, sest sellel eelpöördumisel on juba ühine vestlusruum.",
+      "room_requires_platform_recipient": "Ühise ruumi loomiseks peab eelpöördumisel olema platvormil vastuvõttev adressaat.",
+      "reopen_failed": "Eelpöördumist ei saanud taasavada.",
+      "send_failed": "Saatmise kinnitust ei saanud salvestada.",
+      "download_conflict": "Eelpöördumine muutus vahepeal. Värskenda ja proovi uuesti.",
+      "internal_recipient_required": "Platvormis saatmiseks vali kontakt, kelle konto võtab eelpöördumisi vastu.",
+      "workflow_save_failed": "Vastuvõtja tööplaani ei saanud salvestada.",
+      "preferences_load_failed": "Vastuvõtu seadeid ei saanud laadida.",
+      "preferences_save_failed": "Vastuvõtu seadeid ei saanud salvestada.",
+      "internal_cannot_email": "Platvormil saadetavat pöördumist ei saa e-kirjaga saadetuks märkida.",
+      "invalid_service_selection": "Valitud teenus või teeninduskoht ei kuulu sellele teenuseosutajale. Vali uuesti.",
+      "service_selection_required": "Vali teenuseosutaja teenus ja teeninduskoht.",
+      "recipient_channel_changed": "Adressaadi pöördumisviis muutus vahepeal. Vali adressaat uuesti.",
+      "recipient_email_required": "E-kirjaga saatmiseks on vaja adressaadi e-posti aadressi.",
+      "sent_cannot_be_edited": "Saadetud pöördumist ei saa enam muuta."
     }
   },
   "my_sharings": {
@@ -13369,7 +13496,10 @@
       "control_call_spoke_required": "Vali, kellega rääkisid.",
       "control_call_note_required": "Kirjuta, mis ei klappinud.",
       "control_call_not_found": "Kontrollkõne kirjet ei leitud.",
-      "control_call_retracted": "See kirje on juba tühistatud."
+      "control_call_retracted": "See kirje on juba tühistatud.",
+      "device_store_unavailable": "Selles seadmes ei saa tööd ilma võrguta hoida. Kasuta teist veebilehitsejat või jää võrku.",
+      "device_store_failed": "Seadmesse salvestamine ebaõnnestus. Proovi uuesti.",
+      "device_store_owner_required": "Seadmesse salvestamiseks logi sisse."
     },
     "incidents": {
       "title": "Erijuhtumite register",

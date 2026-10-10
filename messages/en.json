@@ -1052,7 +1052,12 @@
       "mentoring_process": "Mentoring relationship",
       "practice_reflection": "My method mirror",
       "wellbeing_space": "My wellbeing space",
-      "pre_inquiry": "Pre-inquiry"
+      "pre_inquiry": "Pre-inquiry",
+      "room": "Room",
+      "journey": "Journey",
+      "covision_case": "Co-vision",
+      "field_visit": "Field visit",
+      "org_space": "Organisation workspace"
     }
   },
   "reflection": {
@@ -2329,7 +2334,15 @@
       "daily_upload_quota_exceeded": "Daily upload limit reached. Please try again tomorrow.",
       "storage_quota_exceeded": "Storage quota reached. Delete some files and try again.",
       "withdraw_not_allowed": "A material in this status cannot be withdrawn.",
-      "delete_pending": "Removing the material was not completed. Try again in a while."
+      "delete_pending": "Removing the material was not completed. Try again in a while.",
+      "file_pending": "The files are still being processed. Try again in a while.",
+      "idempotency_conflict": "The same submission was already used with different files. Reload the page and send again.",
+      "idempotency_in_progress": "This submission is already in progress. Wait a moment and reload the page.",
+      "idempotency_key_invalid": "The submission key is missing or invalid. Reload the page and try again.",
+      "security_gate_failed": "This material cannot be reviewed because the file has not passed the security check.",
+      "security_receipt_required": "The file has not been through the security check. Upload the file again.",
+      "security_receipt_invalid": "The file's security check result is no longer valid. Upload the file again.",
+      "status_invalid": "The material status is not valid."
     },
     "admin": {
       "title": "Submitted materials",
@@ -2566,6 +2579,17 @@
     "privacy_filter": {
       "heading": "4.10 Privacy pre-check and Privacy Filter",
       "body": "<p>In sensitive workflows, the platform may use a privacy pre-check to detect and mask possible personal data before AI processing, RAG indexing, document drafting, logging, or saving a public help listing. The check may rely on Sotsiaal.pro's local pattern-based filter and, where deployed, the locally running OpenAI Privacy Filter model.</p><p>If possible personal data is detected in the user input, the system may offer choices: the user can edit the text, the system can send a masked version, or in a private professional workflow the original text can be sent after the user's explicit choice. Public help requests and help offers use stricter data minimisation, and continuing with the original sensitive text may be restricted.</p><p>The privacy pre-check does not guarantee that every personal-data item or sensitive detail will always be detected. It is an additional safeguard that helps reduce accidental excessive processing; the user and, where relevant, the organisation must still assess the legal basis, necessity of the data, and appropriate workflow.</p>"
+    },
+    "check_failed": "The personal data check failed. Try again.",
+    "confirmation_required": "The text contains personal data. Choose how to handle it before continuing.",
+    "confirmation": {
+      "warning": "The text contains personal data. Choose how to handle it before continuing.",
+      "detected": "Found:",
+      "actions": {
+        "edit": "Edit the text",
+        "send_redacted": "Send redacted",
+        "send_original": "Send anyway"
+      }
     }
   },
   "legal": {
@@ -2660,7 +2684,8 @@
       "load_failed": "The service profile could not be loaded.",
       "too_many_list_items": "One list contains too many choices.",
       "too_many_locations": "The service-location limit has been reached. Remove one before adding another.",
-      "too_many_services": "The service limit has been reached. Remove one before adding another."
+      "too_many_services": "The service limit has been reached. Remove one before adding another.",
+      "address_suggestions_failed": "Address suggestions could not be loaded."
     },
     "licence": {
       "public": {
@@ -4860,7 +4885,8 @@
       "transcript_required": "Transcript is missing or cannot be used.",
       "summary_failed": "Summary creation failed.",
       "recording_consent_required": "A recording cannot be stored without the confirmation that those present agree.",
-      "recording_invalid": "The recording's data is invalid. Start the recording again."
+      "recording_invalid": "The recording's data is invalid. Start the recording again.",
+      "transcription_abandoned": "The transcription was interrupted. Start it again."
     },
     "artifacts": {
       "search_placeholder": "Search by title, text, type, or source document",
@@ -5481,6 +5507,14 @@
       "no_sources": "No source documents linked.",
       "empty_content": "(empty)",
       "untitled_source": "Document"
+    },
+    "agent_workspace": {
+      "meeting_summary": {
+        "busy": "A summary is already being prepared. Wait until it is done.",
+        "error": "Preparing the summary failed. Try again.",
+        "not_found": "The summary job was not found.",
+        "document_title": "Meeting summary"
+      }
     }
   },
   "research": {
@@ -5496,7 +5530,10 @@
       "retrieval_unavailable": "Deep research could not connect to the retrieval service. Please try again later.",
       "room_not_supported": "Deep research is available only in 1:1 chat.",
       "timeout": "Deep research took too long. Narrow the question and try again.",
-      "disabled": "Deep research is not available in the user interface."
+      "disabled": "Deep research is not available in the user interface.",
+      "active_job_limit": "One deep research job is already running. Wait until it ends, or stop it.",
+      "invalid_user": "Sign in to start deep research.",
+      "lease_lost": "Deep research was interrupted. Please start it again."
     }
   },
   "about": {
@@ -6325,7 +6362,15 @@
       "load_failed": "Could not load the covision workspace.",
       "save_failed": "Could not save the covision workspace.",
       "case_read_only": "A completed or archived Covision is read-only.",
-      "schema_missing": "Covision database tables are missing or the server is using the wrong database. Run Prisma migrations and reload the page."
+      "schema_missing": "Covision database tables are missing or the server is using the wrong database. Run Prisma migrations and reload the page.",
+      "anonymityConfirmed_required": "Before saving, confirm that identifying details have been removed from the case.",
+      "title_required": "Add a title to the case.",
+      "message_required": "Write a message before sending.",
+      "role_forbidden": "Covision is not available for this role.",
+      "assist_failed": "The assistant could not prepare the case.",
+      "message_failed": "The message could not be saved.",
+      "summary_failed": "The summary could not be saved.",
+      "pre_inquiry_draft_failed": "A covision draft could not be made from the pre-inquiry."
     },
     "workspace": {
       "kicker": "Private professional workspace",
@@ -7032,6 +7077,11 @@
       "speaking_requests_help": "The order of speaking requests is visible in the audio bar details. The moderator can resolve a speaking request and the participant can cancel it.",
       "summary_intro": "The summary is based on the case canvas and textually entered discussion. Covision audio is not recorded, transcribed, or used to prepare the summary.",
       "written_discussion": "Written discussion"
+    },
+    "next_action": {
+      "follow_up": "A follow-up is agreed",
+      "decision_required": "A decision on how to go on is needed",
+      "continuation_required": "A further meeting is needed"
     }
   },
   "notifications": {
@@ -7174,7 +7224,15 @@
       "subscription_required": "An active subscription is required.",
       "monthly_budget_exceeded": "Monthly usage budget is reached. Please continue next month or upgrade your plan.",
       "usage_load_failed": "Usage data could not be loaded.",
-      "server_error": "Server error. Please try again later."
+      "server_error": "Server error. Please try again later.",
+      "too_many_requests": "Too many requests. Please try again later.",
+      "bad_request": "Invalid request.",
+      "conflict": "The data changed in the meantime. Reload the page and try again.",
+      "error": "Something went wrong. Please try again later.",
+      "invalid_payload": "The request content is invalid.",
+      "method_not_allowed": "This action is not available at this address.",
+      "missing_id": "The record identifier is missing.",
+      "service_unavailable": "The service is not available right now. Please try again in a while."
     },
     "exports": {
       "pdf_content_not_supported": "PDF does not support the characters in this content. Use Word/DOCX instead."
@@ -7186,7 +7244,8 @@
       "preference_conflict": "The notification preference changed. Refresh and try again.",
       "invalid_preference": "The notification preference is invalid.",
       "preference_update_failed": "The notification preference could not be saved.",
-      "continuity_failed": "Unfinished activities could not be loaded."
+      "continuity_failed": "Unfinished activities could not be loaded.",
+      "operation_invalid": "This notification action cannot be done."
     },
     "chat": {
       "invalid_conv_id": "Invalid conversation ID.",
@@ -7217,7 +7276,8 @@
         "rag_service_failed": "Analysis service request failed.",
         "service_unavailable": "Analysis service is currently unavailable.",
         "privacy_ephemeral": "File is processed ephemerally and not stored."
-      }
+      },
+      "too_many_conversations": "Only a limited number of conversations can be deleted at once. Select fewer and try again."
     },
     "rooms": {
       "not_found": "Room not found.",
@@ -7247,7 +7307,12 @@
       "summary_ring_not_open": "No confirmation round is open for this summary.",
       "summary_response_invalid": "The response must be a confirmation or a correction.",
       "summary_response_failed": "Saving the response failed.",
-      "summary_share_withdrawn": "The share has been withdrawn."
+      "summary_share_withdrawn": "The share has been withdrawn.",
+      "network_share_not_opened": "Open the share first. The discussion opens after that.",
+      "summary_wrong_type": "Only a meeting summary can be shared in a room.",
+      "summary_not_confirmed": "The summary can be shared after you have confirmed the text.",
+      "summary_empty": "The summary is empty; there is nothing to share.",
+      "summary_share_failed": "Sharing the summary failed."
     },
     "stt": {
       "not_configured": "Speech-to-text service is not configured.",
@@ -7342,7 +7407,8 @@
       "checkout_intent_required": "The payment request key is missing. Refresh the page and try again.",
       "checkout_in_progress": "A payment is already being started. Finish or close the previous payment window and try again in a moment.",
       "checkout_intent_used": "This payment attempt has already ended. Start a new payment.",
-      "cancel_not_self_paid": "Someone else pays for this subscription, so you cannot end it. Please contact the sponsor or your organisation."
+      "cancel_not_self_paid": "Someone else pays for this subscription, so you cannot end it. Please contact the sponsor or your organisation.",
+      "invite_delivery_unavailable": "The invitation could not be sent right now. Please try again later."
     },
     "invites": {
       "email_from_missing": "Sender email is not configured.",
@@ -7411,6 +7477,21 @@
         "users_email_no_recipients": "No recipients found for the selected target.",
         "users_email_send_failed": "Failed to send bulk email.",
         "email_from_missing": "Email sender is not configured."
+      },
+      "kov": {
+        "list_failed": "The list of municipalities could not be loaded.",
+        "detail_failed": "The municipality data could not be loaded.",
+        "update_failed": "The municipality data could not be updated.",
+        "file_upload_failed": "Uploading the file failed.",
+        "file_download_failed": "Downloading the file failed.",
+        "file_delete_failed": "Deleting the file failed."
+      },
+      "notifications": {
+        "load_failed": "The notification queue could not be loaded.",
+        "requeue_failed": "The notification could not be queued again."
+      },
+      "organizations": {
+        "ingest_failed": "The import of the organisation's data could not be started."
       }
     },
     "rag": {
@@ -7434,6 +7515,13 @@
         "unknown_error": "Unknown error."
       },
       "retired": "Knowledge-based replies and document analysis are paused while the new system is built. Previous conversations and files remain available."
+    },
+    "errors": {
+      "rate_limited": "Too many requests. Please try again later."
+    },
+    "search": {
+      "query_too_long": "The search term is too long. Shorten it and try again.",
+      "unavailable": "Search is not available right now. Please try again later."
     }
   },
   "admin": {
@@ -9612,6 +9700,25 @@
         "lead": "Based on your answers. None of these steps is required.",
         "none": "There are no separate suggestions right now."
       }
+    },
+    "pilot": {
+      "forbidden": "You do not have access to this pilot overview.",
+      "role_group_missing": "Your account has no pilot role group.",
+      "role_group_forbidden": "You cannot view the data of this role group.",
+      "scope_forbidden": "You cannot view the data of this unit.",
+      "scope_incomplete": "The pilot scope is not fully set up.",
+      "scope_missing": "The pilot scope is not chosen.",
+      "scope_not_found": "The pilot scope was not found.",
+      "actor_required": "Sign in for this action.",
+      "name_required": "Enter a name.",
+      "nothing_to_update": "There is nothing to change.",
+      "period_invalid": "The period is not valid. Choose a period from the list.",
+      "period_free_form_forbidden": "A free date range cannot be used. Choose a period from the list.",
+      "viewer_email_required": "Enter the viewer's e-mail address.",
+      "viewer_not_found": "No user was found with this e-mail address."
+    },
+    "aggregate": {
+      "analysis_unit_invalid": "The analysis unit is not valid."
     }
   },
   "voimalused": {
@@ -10250,7 +10357,27 @@
       "active_limit_reached": "You already have 250 active pre-inquiry drafts. Archive one before creating another.",
       "invalid_action_key": "The save action key is invalid. Refresh the view and try again.",
       "action_key_conflict": "The same save action key was used with different content. Refresh the view.",
-      "invalid_cursor": "The page cursor is invalid. Start loading the list again."
+      "invalid_cursor": "The page cursor is invalid. Start loading the list again.",
+      "load_failed": "Pre-inquiries could not be loaded.",
+      "save_failed": "Pre-inquiry could not be saved.",
+      "assist_failed": "The assistant could not prepare the pre-inquiry.",
+      "accept_failed": "Pre-inquiry could not be accepted.",
+      "room_failed": "Conversation room could not be opened.",
+      "recipient_locked_by_room": "The recipient can no longer be changed because this pre-inquiry already has a shared conversation room.",
+      "room_requires_platform_recipient": "A shared room needs the pre-inquiry to have a recipient who receives it on the platform.",
+      "reopen_failed": "The pre-inquiry could not be reopened.",
+      "send_failed": "The sending confirmation could not be saved.",
+      "download_conflict": "The pre-inquiry changed in the meantime. Refresh and try again.",
+      "internal_recipient_required": "To send in the platform, choose a contact whose account receives pre-inquiries.",
+      "workflow_save_failed": "Receiver workflow could not be saved.",
+      "preferences_load_failed": "Receiving settings could not be loaded.",
+      "preferences_save_failed": "Receiving settings could not be saved.",
+      "internal_cannot_email": "A pre-inquiry sent on the platform cannot be marked as sent by e-mail.",
+      "invalid_service_selection": "The chosen service or location does not belong to this provider. Choose again.",
+      "service_selection_required": "Choose the provider's service and location.",
+      "recipient_channel_changed": "The recipient's contact channel changed in the meantime. Choose the recipient again.",
+      "recipient_email_required": "Sending by e-mail needs the recipient's e-mail address.",
+      "sent_cannot_be_edited": "A sent pre-inquiry can no longer be edited."
     }
   },
   "my_sharings": {
@@ -13369,7 +13496,10 @@
       "control_call_spoke_required": "Choose who you spoke with.",
       "control_call_note_required": "Write what did not match.",
       "control_call_not_found": "The control call record was not found.",
-      "control_call_retracted": "This record has already been retracted."
+      "control_call_retracted": "This record has already been retracted.",
+      "device_store_unavailable": "This device cannot keep work offline. Use another browser or stay online.",
+      "device_store_failed": "Saving to the device failed. Try again.",
+      "device_store_owner_required": "Sign in to save on this device."
     },
     "incidents": {
       "title": "Incident register",

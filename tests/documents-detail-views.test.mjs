@@ -318,8 +318,10 @@ test('serveri veateade: võti tõlgitakse, sõnata võti ega brauseri veatekst e
   /* Ruumide marsruut saadab võtme ka väljal `message`. */
   assert.equal(serverMessage({ messageKey: 'api.rooms.summary_too_long', message: 'api.rooms.summary_too_long' }, t, fallback), catalog('et').api.rooms.summary_too_long);
   assert.equal(serverMessage({ message: 'api.rooms.archived_readonly' }, t, fallback), catalog('et').api.rooms.archived_readonly);
-  /* Võti, millel kataloogis sõna ei ole, annab lehe enda lause. */
-  assert.equal(serverMessage({ messageKey: 'api.rooms.summary_not_confirmed', message: 'api.rooms.summary_not_confirmed' }, t, fallback), fallback);
+  /* Võti, millel kataloogis sõna ei ole, annab lehe enda lause. (Näide on väljamõeldud võti:
+     `api.rooms.summary_not_confirmed` sai 10.10 kataloogi päris lause.) */
+  assert.equal(serverMessage({ messageKey: 'api.rooms.sellist_votit_ei_ole', message: 'api.rooms.sellist_votit_ei_ole' }, t, fallback), fallback);
+  assert.equal(serverMessage({ messageKey: 'api.rooms.summary_not_confirmed', message: 'api.rooms.summary_not_confirmed' }, t, fallback), catalog('et').api.rooms.summary_not_confirmed);
   /* Dokumentide marsruudid saadavad tõlgitud lause. */
   assert.equal(serverMessage({ messageKey: 'documents.artifacts.errors.version_conflict', message: 'Tõlgitud lause.' }, t, fallback), catalog('et').documents.artifacts.errors.version_conflict);
   assert.equal(serverMessage({ messageKey: 'tundmatu.voti', message: 'Serveri lause.' }, t, fallback), 'Serveri lause.');
