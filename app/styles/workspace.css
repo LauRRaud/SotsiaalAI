@@ -129,6 +129,15 @@ html[data-dock-recessed="1"] .admin-role-view-cycle--corner:not(.admin-role-view
   .admin-role-view-cycle--corner {
     bottom: max(13%, env(safe-area-inset-bottom, 0px) + 10.5%);
   }
+  /* Doki kohal seisev valik kattis lõpuni keritud lehe viimase rea parema
+     poole (mõõdetud 390 × 844: valik 683–734, sisu lõpp 757). Kuni valik on
+     ekraanil, lõpeb lehe sisu tema kohal: reserv on valiku enda kaugus alt
+     servast, tema kõrgus (3.2rem) ja väike vahe. Valikut näeb ainult admin,
+     seega tavakasutaja lehe pikkus ei muutu. Kaardilehe valik istub kaardi
+     sees ega ole <body> otsene laps, teda see ei puuduta. */
+  html:not([data-dock-recessed="1"]) body:has(> .admin-role-view-cycle--corner) .panel-scrim[data-dock="1"] .panel-body {
+    padding-bottom: calc(max(13dvh, env(safe-area-inset-bottom, 0px) + 10.5dvh) + 3.6rem);
+  }
   /* PÄRIS VESTLUSES (dokita) ei ole alumine parem nurk vaba: seal hõljub
      komposer ja S/P/T maandus otse tema peale, sisestusvälja ja saatmisnoole
      vahele (omanik 25.07: „rolli nupud peaks mobiilis olema nt sulge nupu
@@ -1874,6 +1883,32 @@ html[data-dock-recessed="1"] .admin-role-view-cycle--corner:not(.admin-role-view
   flex: none;
   margin-bottom: 0.6rem;
 }
+/* Modaali päis on üks rida: tagasi vasakul, pealkiri, ⓘ paremal.
+   SubpageHeader annab ⓘ-nupu päise ette eraldi elemendina (paneelis hoiab
+   teda nurgas paneeli raam); modaalis seisis ta seetõttu tagasinupu all ja
+   kaks nuppu võtsid pealkirja kohal ligi 100 px (mõõdetud /ruum lehel). */
+.invite-modal-card > .invite-modal-back,
+.invite-modal-card > .dashboard-info-trigger {
+  position: absolute;
+  top: clamp(1.3rem, 3.4vw, 2rem);
+  margin: 0;
+}
+.invite-modal-card > .invite-modal-back {
+  inset-inline-start: clamp(1.3rem, 3.4vw, 2rem);
+}
+.invite-modal-card > .dashboard-info-trigger {
+  inset-inline-end: clamp(1.3rem, 3.4vw, 2rem);
+}
+.invite-modal-card > .glass-subpage-header {
+  min-height: 2.75rem;
+  margin: 0 0 0.8rem;
+  padding-inline: 3.4rem;
+  display: flex;
+  align-items: center;
+}
+.invite-modal-card > .glass-subpage-header h2 {
+  margin: 0;
+}
 
 /* Kutse-modali overlay + kaart (portaal body's). Varem oli see pind stiilitu
    (position: static, läbipaistev) → sponsormakse-tagasitulek maandus vestluse
@@ -1893,6 +1928,7 @@ html[data-dock-recessed="1"] .admin-role-view-cycle--corner:not(.admin-role-view
   overflow-y: auto;
 }
 .invite-modal-card {
+  position: relative;
   width: min(100%, 40rem);
   max-height: min(var(--overlay-available-block-size), 47.5rem);
   display: flex;
