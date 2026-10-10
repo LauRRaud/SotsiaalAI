@@ -146,6 +146,22 @@ export default function HomeCareDeadlines({ context, deadlines }) {
         clientLine(item, t("home_care.deadlines.risk_lines_line", { count: item.lines, date: planDayLabel(item.oldestOn) }))
       )}
 
+      {/* Transpordi soovid, mis ootavad korraldamist (K5-w). */}
+      {(deadlines.transportOpen || []).length
+        ? section("transport_open", deadlines.transportOpen, (item) =>
+            clientLine(
+              item,
+              t("home_care.deadlines.transport_open_line", {
+                date: item.wantedTime ? t("home_care.transport.when_time", { date: planDayLabel(item.wantedOn), time: item.wantedTime }) : planDayLabel(item.wantedOn),
+                destination: item.destination,
+                name: item.requestedByName || "—"
+              }),
+              null,
+              item.key
+            )
+          )
+        : null}
+
       {/* Teated otsustajale (K5-r): vastuseta teated ja lubatud uus hindamine, mille päev on möödas. */}
       {(deadlines.noticesWaiting || []).length
         ? section("notices_waiting", deadlines.noticesWaiting, (item) =>

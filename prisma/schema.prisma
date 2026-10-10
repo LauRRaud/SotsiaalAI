@@ -8249,6 +8249,7 @@ model CareClient {
   safetyItems        CareSafetyItem[]
   decisionNotices    CareDecisionNotice[]
   firstVisitNotices  CareFirstVisitNotice[]
+  transportRequests  CareTransportRequest[]
 
   @@unique([organizationId, internalCode])
   @@index([organizationId, status, displayName])
@@ -8638,6 +8639,42 @@ model CareReferralContact {
   organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 
   @@index([organizationId, endedAt, position])
+}
+
+/// KODUTEENUS K5-w — TRANSPORDI SOOV (kava II.6.14, variant A): „Telli transport" kliendi
+/// meeskonnalt hooldusjuhi nimekirja ja hooldusjuhi vastus (korraldatud või ei saa). Sõitu
+/// ennast platvorm ei telli. Ridu ei kustutata: soov saab vastuse või võetakse tagasi.
+model CareTransportRequest {
+  id             String  @id @default(cuid())
+  organizationId String
+  clientId       String
+  /// Sõidu päev kujul AAAA-KK-PP ja soovitud kellaaeg kujul TT:MM.
+  wantedOn       String
+  wantedTime     String?
+  destination    String
+  /// Mida on vaja (ratastool, saatja).
+  needs          String?
+
+  requestedByMembershipId String?
+  requestedByName         String?
+  createdAt               DateTime @default(now())
+
+  /// REQUESTED | ARRANGED | DECLINED | WITHDRAWN (`CareTransportState`).
+  state                  String    @default("REQUESTED")
+  /// Mis kell auto tuleb (TT:MM), kui see on teada.
+  pickupTime             String?
+  /// Korralduse märkus või keeldumise põhjus.
+  answerNote             String?
+  answeredAt             DateTime?
+  answeredByMembershipId String?
+  answeredByName         String?
+  withdrawnAt             DateTime?
+  withdrawnByMembershipId String?
+
+  client CareClient @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@index([clientId, wantedOn])
+  @@index([organizationId, state, wantedOn])
 }
 
 /// KODUTEENUS K5-v — ESMAKÄIGU TEADE (kava II.6.8 „võõras ukse taga"): kuidas kliendile teatati,

@@ -14,6 +14,7 @@ import HomeCareChangeSignals from "./HomeCareChangeSignals";
 import HomeCareCrisis from "./HomeCareCrisis";
 import HomeCareClientForm from "./HomeCareClientForm";
 import HomeCareDecisionNotices from "./HomeCareDecisionNotices";
+import HomeCareTransport from "./HomeCareTransport";
 import HomeCareDecisionView, { minutesLabel } from "./HomeCareDecisionView";
 import HomeCareEntryForm from "./HomeCareEntryForm";
 import HomeCareEntryItem from "./HomeCareEntryItem";
@@ -435,6 +436,17 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
         clientId={client.id}
         initial={data.workNature || null}
         canEdit={canWrite && access.isCoordinator}
+      />
+
+      {/* Transport (K5-w): eesolevad sõidud ja soovid; „Telli transport" meeskonnale ja hooldusjuhile. */}
+      <HomeCareTransport
+        organizationId={organizationId}
+        clientId={client.id}
+        initial={data.transport || null}
+        canRequest={canWrite && access.canEditCard && !ended}
+        isCoordinator={access.isCoordinator}
+        canWrite={canWrite}
+        today={data.today || ""}
       />
 
       {/* Võtmed (K4-b): mis võtmed asutuse käes on ja kelle käes iga võti praegu on. */}
