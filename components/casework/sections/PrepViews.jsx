@@ -104,12 +104,17 @@ export function prepOverviewView({ t, overview, remove, time = null }) {
  * `locked`: juhtum on kirjutuskaitstud või ettevalmistuse sisu on arhiveeritud.
  */
 export function prepFieldView({ t, field, text, onText, locked, busy, glow, canSave, onSave, onConfirmOpen, purgedNote = "" }) {
+  /* Salvestatud välja ei saa tühjaks salvestada (server nõuab teksti): kinnine
+     nupp ilma põhjuseta jätaks inimese arvama, et midagi on katki. */
+  const emptied = field.saved && !String(text || "").trim();
   return {
     title: field.label,
-    /* Arhiveeritud sisuga ettevalmistuses ütleb all serv, miks väli on tühi ja lukus. */
-    note: purgedNote || (field.saved ? t("casework.prep.provenance_kept", "") : ""),
-    actions: (
-      <Button type="button" size="sm" variant="primary" glow={glow} disabled={locked || busy || !canSave} onClick={onSave}>
+    /* Arhiveeritud sisuga ettevalmistuses ütleb all serv, miks väli on tühi ja
+       lukus. Lukus väljal (juhtum ei ole aktiivne) salvestamisest ei räägita ja
+       nuppu ei ole: põhjus on juhtumi päises. */
+    note: purgedNote || (locked ? "" : emptied ? t("casework.prep.cannot_empty", "") : field.saved ? t("casework.prep.provenance_kept", "") : ""),
+    actions: locked ? null : (
+      <Button type="button" size="sm" variant="primary" glow={glow} disabled={busy || !canSave} onClick={onSave}>
         {t(field.saved ? "casework.prep.save_field" : "casework.prep.choose_provenance", "")}
       </Button>
     ),

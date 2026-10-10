@@ -10,8 +10,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
-import { caseFormUnsaved } from '../components/casework/caseViews.js';
-import { PREP_FIELD_KEYS, canCorrectEntry, draftPurge, draftUnsaved, noteUnsaved, prepUnsaved } from '../components/casework/sections/sectionRows.js';
+import { caseFormUnsaved, caseParts, lockedNote } from '../components/casework/caseViews.js';
+import { PREP_FIELD_KEYS, canCorrectEntry, draftPurge, draftRows, draftUnsaved, noteUnsaved, prepUnsaved, quoteIsLong } from '../components/casework/sections/sectionRows.js';
 import { panelLeaveAllowed, setPanelLeaveGuard, twoPressLeaveGuard } from '../lib/panelLeaveGuard.js';
 
 const read = (path) => fs.readFileSync(new URL(path, import.meta.url), 'utf8');
@@ -207,6 +207,67 @@ test('kustutatud sisuga mustand: uut välja ei lisata ja lause ütleb õige põh
     const words = JSON.parse(read(`../messages/${lang}.json`)).casework;
     assert.ok(words.errors.draft_content_purged && words.transfer.content_archived && words.draft.purged_chip_retention, lang);
     assert.notEqual(words.transfer.content_archived, words.transfer.content_purged, lang);
+  }
+});
+
+test('juhtum, mis ei ole aktiivne, ütleb oma seisu kohta tõtt', () => {
+  const words = JSON.parse(read('../messages/et.json'));
+  const t = (key) => key.split('.').reduce((node, part) => (node && typeof node === 'object' ? node[part] : undefined), words) ?? '';
+  /* Lause on seisu järgi: kirjutuskaitstud juhtumis saab veel kopeerida, arhiveeritud juhtumis mitte. */
+  assert.equal(lockedNote('ACTIVE', t), '');
+  assert.match(lockedNote('READ_ONLY', t), /^Kirjutuskaitstud: .*kopeerida/);
+  assert.match(lockedNote('ARCHIVED', t), /^Arhiveeritud: /);
+  assert.ok(!/kopeeri/.test(lockedNote('ARCHIVED', t)));
+  for (const lang of LANGS) {
+    const page = JSON.parse(read(`../messages/${lang}.json`)).casework.page;
+    assert.ok(page.read_only_notice && page.archived_notice && page.read_only_notice !== page.archived_notice, lang);
+  }
+  /* Lause on päises (igas osas näha), mitte eraldi real lava kohal. */
+  const detail = read('../components/casework/CaseWorkDetail.jsx');
+  assert.ok(detail.includes('note={lockedNote(record.retentionState, t)}') && !detail.includes('t("casework.page.read_only_notice", "")'));
+
+  /* Esimene plaat ei näita lõppenud töö järgmist kontakti (sama reegel mis loendi real). */
+  const context = { t, locale: 'et' };
+  const base = { clientDisplayName: 'M. K.', nextContactAt: '2026-09-28T06:30:00.000Z' };
+  const tile = (retentionState) => caseParts({ record: { ...base, retentionState }, counts: { items: 0, openMissingInfo: 0 }, ...context }).find((part) => part.key === 'basics');
+  assert.match(tile('ACTIVE').summary, /28\.09/);
+  for (const state of ['READ_ONLY', 'ARCHIVED']) assert.equal(tile(state).summary, undefined, `${state}: plaat ei näita kontakti ega ütle, et see on määramata`);
+
+  /* Lukus välja all ei ole kinnist salvestamise nuppu ega lauset salvestamisest. */
+  const prepViews = read('../components/casework/sections/PrepViews.jsx');
+  assert.ok(prepViews.includes('actions: locked ? null : ('));
+  assert.ok(prepViews.includes('note: purgedNote || (locked ? "" : emptied ? t("casework.prep.cannot_empty", "")'));
+  /* Kustutatud sisuga ettevalmistuse lause ei kutsu alustama uut seal, kus seda teha ei saa. */
+  for (const lang of LANGS) {
+    const prep = JSON.parse(read(`../messages/${lang}.json`)).casework.prep;
+    assert.ok(!/Alusta uus|start a new|начните нов/i.test(prep.content_purged), lang);
+    assert.ok(prep.cannot_empty, lang);
+  }
+  /* Privaatse kihi lause ei luba kirjete tõstmist, mida lehel ei ole. */
+  assert.ok(!/tõsta/.test(words.casework.note.private_locked_hint) && /STAR2/.test(words.casework.note.private_locked_hint));
+  assert.equal(words.api.common.rate_limited, 'Liiga palju päringuid. Proovi hiljem uuesti.');
+});
+
+test('vaated mahuvad: pikk tsiteeritud tekst avaneb kohapeal ja ajalugu on kahe kirje kaupa', () => {
+  assert.equal(quoteIsLong('Lühike tekst.'), false);
+  assert.equal(quoteIsLong('a'.repeat(141)), true);
+  assert.equal(quoteIsLong('üks\nkaks\nkolm'), true, 'mitmerealine tekst');
+  assert.equal(quoteIsLong(null), false);
+  const bits = read('../components/casework/sections/SectionBits.jsx');
+  assert.ok(bits.includes('data-clamped={long && !open ? "1" : undefined}') && bits.includes('aria-expanded={open}'));
+  assert.ok(read('../components/casework/sections/sections.module.css').includes('.quote[data-clamped="1"]'));
+  /* Ajalugu: kaks kirjet korraga, ülejäänud nupuga; selgitus ainult tühja ajaloo juures. */
+  const section = read('../components/casework/MeetingNoteSection.jsx');
+  assert.ok(section.includes('const HISTORY_STEP = 2;') && section.includes('onMore: () => setHistoryShown((count) => count + HISTORY_STEP)'));
+  const noteViews = read('../components/casework/sections/NoteViews.jsx');
+  assert.ok(noteViews.includes('const visible = rows.slice(0, shown);') && noteViews.includes('rows.length > visible.length ? ('));
+  assert.ok(noteViews.includes('note: rows.length ? "" : t("casework.note.history_hint", "")'));
+  /* Kustutatud sisuga element on loendis tühjast eristatav. */
+  const rows = draftRows([{ id: 'd1', draftType: 'TEGEVUS', transferState: 'MUSTAND', contentPurgedAt: '2026-10-01T08:00:00.000Z', contentPurgeReason: 'WORKER_ARCHIVED_WORKING_MATERIAL' }, { id: 'd2', draftType: 'TEGEVUS', transferState: 'MUSTAND' }], { t: (key) => key });
+  assert.deepEqual(rows.map((row) => row.purgedText), ['casework.prep.purged_chip', '']);
+  for (const lang of LANGS) {
+    const page = JSON.parse(read(`../messages/${lang}.json`)).casework.page;
+    assert.ok(page.show_all_text && page.show_less_text, lang);
   }
 });
 

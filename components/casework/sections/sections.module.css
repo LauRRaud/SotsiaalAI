@@ -113,6 +113,15 @@
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
+/* Pikk tekst kahe reaga; nupp selle all avab terve teksti. Kaks rida, sest selle
+   all peavad paneeli mahtuma veel praegune päritolu, kaheksa valikut ja nupud. */
+.quote[data-clamped="1"] {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
 .muted {
   min-width: 0;
   color: var(--text-dim);

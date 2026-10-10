@@ -56,6 +56,8 @@ import { notify, useCaseList, useRowOpening, useSectionRun } from "./sections/us
 const EMPTY_DRAFT = Object.freeze({ text: "", provenance: "" });
 /* Sakid on viies veerus: kaheksa kihti ja ajalugu mahuvad kahte ritta. */
 const NOTE_TAB_COLUMNS = 5;
+/* Paranduste ajaloos on korraga ees kaks kirjet. */
+const HISTORY_STEP = 2;
 
 /**
  * `locked`: juhtum ei ole aktiivne. `caseBusy`: juhtumi enda kirjutus käib.
@@ -300,6 +302,8 @@ function NoteEditor({ t, locale, note, revisions, locked, busy, glow, errorText,
   /* Pooleli parandus kirje kaupa: { text, reason }. Tekst on siin ainult siis,
      kui see erineb salvestatust (sama tekst ei ole pooleli parandus). */
   const [corrections, setCorrections] = useState({});
+  /* Mitu ajaloo kirjet on ees: kaks mahub paneeli, „Näita rohkem” lisab kaks. */
+  const [historyShown, setHistoryShown] = useState(HISTORY_STEP);
 
   /* Pooleli rida, põhjus või parandus teatatakse juhtumi vaatele (lahkumise
      värav) ja avatud märkme sulgemine küsib enne üle. */
@@ -453,7 +457,17 @@ function NoteEditor({ t, locale, note, revisions, locked, busy, glow, errorText,
       };
     }
 
-    if (!isLayer) return { frame: tabbed, view: noteHistoryView({ t, rows: revisionRows(revisions, context) }) };
+    if (!isLayer) {
+      return {
+        frame: tabbed,
+        view: noteHistoryView({
+          t,
+          rows: revisionRows(revisions, context),
+          shown: historyShown,
+          onMore: () => setHistoryShown((count) => count + HISTORY_STEP)
+        })
+      };
+    }
 
     return {
       frame: tabbed,

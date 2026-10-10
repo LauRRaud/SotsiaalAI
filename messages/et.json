@@ -1358,7 +1358,7 @@
       "entries_empty": "Selles kihis ei ole kirjeid.",
       "add_entry": "Lisa kirje",
       "linked_prep": "Seotud ettevalmistusega",
-      "private_locked_hint": "Selle kihi kirjeid ei saa teise kihti tõsta. See on lubadus, mitte piirang.",
+      "private_locked_hint": "Selle kihi kirjeid ei kanta kunagi STAR2-sse. See on lubadus, mitte piirang.",
       "layer_KLIENDI_VAADE": "Kliendi enda vaade",
       "layer_FAKTID": "Faktilised asjaolud",
       "layer_TOOTAJA_TAHELEPANEK": "Töötaja tähelepanek",
@@ -1432,7 +1432,7 @@
       "field_LIFE_DOMAINS": "Eluvaldkonnad",
       "field_AGENDA": "Päevakord",
       "field_PLAIN_LANGUAGE_NOTES": "Selgitused lihtsas keeles",
-      "content_purged": "Selle ettevalmistuse sisu arhiveeriti {date}. Väljad ja küsimused on kustutatud; uut sisu siia ei kirjutata. Alusta uus ettevalmistus.",
+      "content_purged": "Selle ettevalmistuse sisu arhiveeriti {date}. Väljad ja küsimused on kustutatud ja uut sisu siia ei kirjutata.",
       "purged_chip": "Sisu arhiveeritud",
       "create_title": "Uus ettevalmistus",
       "create_hint": "Aja võib jätta tühjaks, kui kohtumine ei ole veel kokku lepitud.",
@@ -1460,7 +1460,8 @@
       "add_kind_CLARIFYING_QUESTION": "Lisa küsimus",
       "add_kind_CLAIM_TO_VERIFY": "Lisa väide",
       "choose_provenance": "Vali päritolu ja salvesta",
-      "save_time": "Salvesta aeg"
+      "save_time": "Salvesta aeg",
+      "cannot_empty": "Salvestatud välja ei saa tühjaks jätta. Kirjuta uus tekst või jäta vana alles."
     },
     "workbench": {
       "title": "Juhtumitöö laud",
@@ -1539,7 +1540,7 @@
       "short_transferHistory": "Ülekanded"
     },
     "errors": {
-      "not_found": "Juhtumit ei leitud.",
+      "not_found": "Seda juhtumit või selle kirjet ei leitud. See võib olla vahepeal eemaldatud.",
       "invalid_input": "Sisestus ei ole kehtiv.",
       "conflict": "Toiming ei ole selles seisus lubatud.",
       "too_many_requests": "Laud on juba avanemas. Oota hetk ja proovi uuesti.",
@@ -1659,13 +1660,13 @@
       "load_error": "Andmeid ei õnnestunud laadida.",
       "items_empty": "Seoseid ei ole.",
       "missing_info_empty": "Punkte ei ole.",
-      "read_only_notice": "Juhtum on kirjutuskaitstud. Alles on ainult lugemine ja kliendiviite kustutamine.",
+      "read_only_notice": "Kirjutuskaitstud: saab lugeda, STAR2 jaoks kopeerida ja kliendiviite kustutada.",
       "retention_state": "Seis",
       "meta": {
         "title": "Minu juhtumid — Sotsiaal.pro",
         "description": "Sotsiaaltöötaja enda töökorralduse juhtumid."
       },
-      "retention_countdown": "Arhiveeritud. Juhtum ja kogu selle sisu kustuvad {date}. Jäänud on {days} päeva.",
+      "retention_countdown": "Arhiveeritud. Juhtum ja kogu selle sisu kustuvad {date}. Päevi on jäänud: {days}.",
       "confirm_retention_to_archived": "Kinnita: arhiveeri ja käivita kustutuskell",
       "archive_clock_warning": "Arhiveerimine käivitab 12 kalendrikuu kustutuskella. Kella lõpus kustub kogu juhtum koos kõigega, mis selle all on: ettevalmistused, märkmed, mustandid ja ülekandeajalugu. Seda olekut ei saa tagasi pöörata.",
       "archive_working_material": "Arhiveeri töömaterjal",
@@ -1768,7 +1769,10 @@
       "recording_line": "Helisalvestus käib.",
       "recorder_alert_line": "Helisalvestuse osas on teade, mis vajab sinu tähelepanu.",
       "open_audio": "Ava helisalvestus",
-      "unsaved_leave": "Kirjutatud tekst on salvestamata. Vajuta uuesti, kui tahad selle salvestamata jätta."
+      "unsaved_leave": "Kirjutatud tekst on salvestamata. Vajuta uuesti, kui tahad selle salvestamata jätta.",
+      "show_all_text": "Näita kogu teksti",
+      "show_less_text": "Näita vähem",
+      "archived_notice": "Arhiveeritud: saab lugeda ja kliendiviite kustutada."
     },
     "info": {
       "title": "Minu juhtumid",
@@ -7146,7 +7150,7 @@
       "invalid_request": "Vigane paring.",
       "invalid_json": "Vigane JSON payload.",
       "missing_room_id": "Ruumi ID puudub.",
-      "rate_limited": "Liiga palju paringuid. Proovi hiljem uuesti.",
+      "rate_limited": "Liiga palju päringuid. Proovi hiljem uuesti.",
       "subscription_required": "Vajalik on aktiivne tellimus.",
       "monthly_budget_exceeded": "Kuu kasutuseelarve on täis. Jätka järgmisel kuul või uuenda paketti.",
       "usage_load_failed": "Kasutusandmeid ei saanud laadida.",

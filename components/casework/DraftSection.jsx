@@ -213,7 +213,8 @@ export default function DraftSection({ caseId, locked, archived = false, caseBus
         chips: [
           { key: "state", text: row.state, tone: row.tone },
           ...(row.review ? [{ key: "review", text: row.review }] : []),
-          ...(row.pending ? [{ key: "pending", text: t("casework.transfer.audit_pending_chip", ""), tone: "wait" }] : [])
+          ...(row.pending ? [{ key: "pending", text: t("casework.transfer.audit_pending_chip", ""), tone: "wait" }] : []),
+          ...(row.purgedText ? [{ key: "purged", text: row.purgedText, tone: "wait" }] : [])
         ]
       })),
     [drafts, pendingAudits, t]

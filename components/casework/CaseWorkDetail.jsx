@@ -64,7 +64,7 @@ import {
 } from "./cases/CaseDetailViews";
 import { Notice } from "./cases/CaseListViews";
 import styles from "./cases/cases.module.css";
-import { caseFormUnsaved, caseParts, itemRows, missingRows, missingStatusOptions, retentionTone, retentionView } from "./caseViews";
+import { caseFormUnsaved, caseParts, itemRows, lockedNote, missingRows, missingStatusOptions, retentionTone, retentionView } from "./caseViews";
 import {
   caseLabelText,
   caseWorkRequest,
@@ -776,14 +776,16 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
         name={caseLabelText(record.label, t)}
         state={t(retentionLabelKey(record.retentionState), "")}
         tone={retentionTone(record.retentionState)}
+        /* Kirjutuskaitse lause on päises ja seega näha igas osas: nupud on kinni
+           igal pool ja põhjus peab olema sealsamas. Lause on seisu järgi:
+           kirjutuskaitstud juhtumis saab veel STAR2 jaoks kopeerida, arhiveeritud
+           juhtumis mitte. */
+        note={lockedNote(record.retentionState, t)}
         onBack={() => {
           if (leaveGate("back")) onBack?.();
         }}
       />
 
-      {/* Kirjutuskaitse lause seisab lava KOHAL, mitte ühe osa sees: nupud on
-          väljas igas osas ja põhjus peab olema näha sealsamas. */}
-      {!isActive ? <p className={styles.quiet}>{t("casework.page.read_only_notice", "")}</p> : null}
       {errorKey ? (
         <p className={styles.notice} data-tone="risk" role="alert" ref={alertRef}>
           {t(errorKey, "")}

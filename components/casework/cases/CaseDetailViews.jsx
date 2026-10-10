@@ -81,7 +81,7 @@ function useSwapFocus(mode) {
 }
 
 /** Avatud juhtumi päis: milline juhtum on lahti, mis seisus ta on ja tee tagasi loendisse. */
-export function CaseHead({ t, name, state, tone, onBack }) {
+export function CaseHead({ t, name, state, tone, note = "", onBack }) {
   return (
     <header className={styles.head}>
       <h1 className={styles.caseName}>{name}</h1>
@@ -89,6 +89,8 @@ export function CaseHead({ t, name, state, tone, onBack }) {
       <button type="button" className={styles.back} onClick={onBack}>
         {t("casework.page.back_to_list", "")}
       </button>
+      {/* Mida selles seisus veel teha saab: päise oma rida, igas osas näha. */}
+      {note ? <p className={styles.headNote}>{note}</p> : null}
     </header>
   );
 }

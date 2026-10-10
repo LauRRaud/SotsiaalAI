@@ -68,6 +68,18 @@ export function isAiDraft(value) {
   return value === PROVENANCE.AI_MUSTAND;
 }
 
+/* Tsiteeritud tekst, mis on sellest pikem või millel on rohkem ridu, näidatakse
+   esialgu kahe reaga (avaneb kohapeal): muidu lükkab pikk väli valiku ja nupud
+   paneelist välja. */
+const QUOTE_SHORT_CHARS = 140;
+const QUOTE_SHORT_LINES = 2;
+
+/** Kas tsiteeritud tekst vajab lühendamist (pikk või mitmerealine). */
+export function quoteIsLong(text) {
+  const value = String(text || "");
+  return value.length > QUOTE_SHORT_CHARS || value.split("\n").length > QUOTE_SHORT_LINES;
+}
+
 /**
  * Uue rea (küsimus, märkme kirje, mustandi väli) saab saata alles siis, kui
  * tekst on kirjutatud JA päritolu valitud (L4: märgis, mille inimene ei
@@ -414,7 +426,9 @@ export function draftRows(drafts, { t, pendingAudits = null }) {
       state: transferStateText(row.transferState, t),
       tone: DRAFT_STATE_TONES[row.transferState] || "quiet",
       review: reviewKindText(row.reviewKind, t),
-      pending: list(pendingAudits?.[row.id]).length > 0
+      pending: list(pendingAudits?.[row.id]).length > 0,
+      /* Kustutatud sisuga element on loendis TÜHJAST ERISTATAV, nagu ettevalmistus. */
+      purgedText: draftPurge(row) ? t(draftPurge(row).chipKey, "") : ""
     }));
 }
 

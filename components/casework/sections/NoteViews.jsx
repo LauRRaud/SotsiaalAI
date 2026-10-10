@@ -193,15 +193,26 @@ export function noteEntryCorrectView({ t, title, formId, text, reason, locked, b
  * tähendaks, et lugeja ei tea, kas parandusi ei olnud või ei oska pind neid
  * näidata.
  */
-export function noteHistoryView({ t, rows }) {
+export function noteHistoryView({ t, rows, shown = rows.length, onMore }) {
+  /* KAKS KIRJET KORRAGA: iga kirje on kolm rida (asendatud tekst, märgid, põhjus)
+     ja pikem loend lükkas sakid paneelist välja. Ülejäänud avab „Näita rohkem”. */
+  const visible = rows.slice(0, shown);
   return {
     title: t("casework.note.history_title", ""),
+    /* Selgitus seisab ainult tühja ajaloo juures: kirjed ise näitavad eelmist
+       sisu, aega ja põhjust, ja koos nendega ei mahtunud vaade paneeli. */
+    note: rows.length ? "" : t("casework.note.history_hint", ""),
+    actions:
+      rows.length > visible.length ? (
+        <Button type="button" size="sm" variant="secondary" onClick={onMore}>
+          {t("casework.note.load_more", "")}
+        </Button>
+      ) : null,
     body: (
       <>
-        <p className={base.quiet}>{t("casework.note.history_hint", "")}</p>
-        {rows.length ? (
+        {visible.length ? (
           <ul className={base.rows}>
-            {rows.map((row) => (
+            {visible.map((row) => (
               <li className={styles.record} key={row.id}>
                 {/* Asendatud tekst on TEKST, sama reegel mis kehtival real. */}
                 <span className={styles.recordText}>{row.text}</span>
