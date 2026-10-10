@@ -23,7 +23,7 @@
  * (`../cases/cases.module.css`).
  */
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import ChoiceRow from "@/components/stage/ChoiceRow";
 import StepPanel from "@/components/stage/StepPanel";
@@ -34,6 +34,7 @@ import Input from "@/components/ui/Input";
 import ConfirmButton from "../ConfirmButton";
 import { Chip, Notice } from "../cases/CaseListViews";
 import base from "../cases/cases.module.css";
+import { quoteIsLong } from "./sectionRows";
 import styles from "./sections.module.css";
 
 const SMALL_BUTTON = Object.freeze({ size: "sm", variant: "secondary" });
@@ -324,6 +325,33 @@ export function OpenView({ frame, view }) {
 }
 
 /**
+ * Tsiteeritud tekst, mille kohta midagi otsustatakse (päritolu, kinnitamine).
+ *
+ * PIKK TEKST ON EES KAHE REAGA ja avaneb kohapeal: muidu lükkas 4000 märgi
+ * pikkune väli valiku ja nupud paneelist välja ning inimene pidi otsuse tegema
+ * neid nägemata. Terve tekst on ühe vajutuse kaugusel; avatuna võib vaade olla
+ * paneelist pikem (see on lugemine).
+ */
+function LongQuote({ t, text }) {
+  const long = quoteIsLong(text);
+  const [open, setOpen] = useState(false);
+  useStageRemeasure(`quote:${open}`);
+  return (
+    <>
+      {/* Tekst on TEKST: sisu tuleb React'i lapsena, mitte HTML-ina. */}
+      <p className={styles.quote} data-clamped={long && !open ? "1" : undefined}>
+        {text}
+      </p>
+      {long ? (
+        <button type="button" className={base.back} aria-expanded={open} onClick={() => setOpen((value) => !value)}>
+          {t(open ? "casework.page.show_less_text" : "casework.page.show_all_text", "")}
+        </button>
+      ) : null}
+    </>
+  );
+}
+
+/**
  * PÄRITOLU VALIK. Vaikimisi valikut ei ole ja see on L4 otsene nõue: märgis,
  * mille inimene ei valinud, ei ole märgis. Kaheksa päritolu on neljas veerus,
  * kõik kohe näha. Valik seisab omaette ümbrises: vahe eelmise väljaga tuleb
@@ -363,7 +391,8 @@ export function rowAddView({ t, formId, label, text, onText, provenance, provena
     body: (
       <form id={formId} className={base.stack} onSubmit={onSubmit}>
         <div data-autofocus>
-          <TextAreaField label={label} value={text} onChange={onText} rows={3} maxLength={4000} disabled={locked} />
+          {/* Kaks rida: koos kaheksa päritoluga mahub vorm paneeli; pikem tekst kasvatab välja ise. */}
+          <TextAreaField label={label} value={text} onChange={onText} rows={2} maxLength={4000} disabled={locked} />
         </div>
         <ProvenanceChoice label={provenanceLabel} options={provenance.options} value={provenance.value} onChange={provenance.onChange} disabled={locked} />
       </form>
@@ -401,8 +430,7 @@ export function provenanceView({ t, title, text, current = "", options, value, o
     ),
     body: (
       <>
-        {/* Tekst on TEKST: sisu tuleb React'i lapsena, mitte HTML-ina. */}
-        <p className={styles.quote}>{text}</p>
+        <LongQuote t={t} text={text} />
         {current ? (
           <p className={base.line}>
             <span className={base.lineLabel}>{t("casework.prep.provenance_now", "")}</span>

@@ -247,7 +247,8 @@ test('osa plaat ütleb osa seisu sõnadega ega väida tühjust enne, kui loend o
   });
   const done = Object.fromEntries(loaded.map((part) => [part.key, part]));
   assert.ok(!('material' in done), 'kirjutuskaitstud juhtumil töömaterjali osa ei ole');
-  assert.equal(done.basics.summary, 'Järgmist kontakti ei ole määratud');
+  /* Kirjutuskaitstud juhtumi plaat ei räägi järgmisest kontaktist: sinna ei saa enam midagi määrata. */
+  assert.equal(done.basics.summary, undefined);
   assert.equal(done.star.summary, 'Viidet ei ole');
   assert.equal(done.items.summary, 'Seoseid ei ole.');
   assert.equal(done.missing.summary, 'Lahtisi punkte ei ole');
@@ -314,7 +315,9 @@ test('elutsükkel on ühesuunaline; kell öeldakse välja enne arhiveerimist ja 
   assert.equal(archived.next, null);
   assert.equal(archived.warnClock, false);
   assert.match(archived.countdown, /2027/);
-  assert.match(archived.countdown, /12 päeva/);
+  /* Lause kehtib iga arvu kohta (ka „1”): päevade arv seisab omaette, mitte sõna „päeva” ees. */
+  assert.match(archived.countdown, /Päevi on jäänud: 12\./);
+  assert.match(retentionView({ record: { retentionState: 'ARCHIVED' }, retentionClock: { deletionAt: '2027-10-09T00:00:00Z', daysLeft: 1 }, ...context }).countdown, /Päevi on jäänud: 1\./);
   assert.ok(!archived.countdown.includes('{'));
   /* Arhiveeritud juhtum ilma kellata ei näita väljamõeldud kuupäeva; tundmatust seisust edasi ei saa. */
   assert.equal(retentionView({ record: { retentionState: 'ARCHIVED' }, retentionClock: null, ...context }).countdown, '');

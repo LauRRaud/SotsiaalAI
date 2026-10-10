@@ -29,7 +29,7 @@
  * failis ./sections/sectionRows.js, ülekandeteod failis ./TransferPanel.jsx.
  */
 
-import { useCallback, useId, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
@@ -51,10 +51,12 @@ import {
   canAddDraftField,
   draftFieldRows,
   draftHead,
+  draftPurge,
   draftRows,
   draftStateModel,
   draftTabs,
   draftTypeOptions,
+  draftUnsaved,
   provenanceOptions,
   reviewKindOptions,
   transitionNeedsConfirm
@@ -68,7 +70,7 @@ const EMPTY_FIELD = Object.freeze({ fieldKey: "", text: "", provenance: "" });
  * `locked`: juhtum ei ole aktiivne. `caseBusy`: juhtumi enda kirjutus käib.
  * `active`: see osa on laval ees (ainult siis joonistab põhinupp oma helgi).
  */
-export default function DraftSection({ caseId, locked, caseBusy, active, onChanged, onListLoaded, onTransferRecorded }) {
+export default function DraftSection({ caseId, locked, archived = false, caseBusy, active, onChanged, onListLoaded, onTransferRecorded, onUnsaved, leaveGate }) {
   const { t, locale } = useI18n();
   const root = `/cases/${encodeURIComponent(caseId)}/drafts`;
 
@@ -211,7 +213,8 @@ export default function DraftSection({ caseId, locked, caseBusy, active, onChang
         chips: [
           { key: "state", text: row.state, tone: row.tone },
           ...(row.review ? [{ key: "review", text: row.review }] : []),
-          ...(row.pending ? [{ key: "pending", text: t("casework.transfer.audit_pending_chip", ""), tone: "wait" }] : [])
+          ...(row.pending ? [{ key: "pending", text: t("casework.transfer.audit_pending_chip", ""), tone: "wait" }] : []),
+          ...(row.purgedText ? [{ key: "purged", text: row.purgedText, tone: "wait" }] : [])
         ]
       })),
     [drafts, pendingAudits, t]
@@ -234,6 +237,9 @@ export default function DraftSection({ caseId, locked, caseBusy, active, onChang
         setPendingAudits={setOpenPending}
         onTransferChanged={onTransferChanged}
         onClose={closeDraft}
+        onUnsaved={onUnsaved}
+        leaveGate={leaveGate}
+        archived={archived}
       />
     );
   }
@@ -305,7 +311,10 @@ function DraftEditor({
   pendingAudits,
   setPendingAudits,
   onTransferChanged,
-  onClose
+  onClose,
+  onUnsaved,
+  leaveGate,
+  archived
 }) {
   const formId = useId();
   const [tab, setTab] = useState(DRAFT_TABS[0]);
@@ -320,12 +329,15 @@ function DraftEditor({
   /* Kopeerimine on lubatud KA terminaalses seisus: `ULE_KANTUD` mustandi sisu
      võib olla vaja teist korda STAR-i viia ja kopeerimine ei muuda midagi (L9).
      Ülekantuks märkimise nupu näitab vaade ainult sealt, kust olekumasin edasi
-     lubab. */
+     lubab. KIRJUTUSKAITSTUD JUHTUMIS SAAB KOPEERIDA: see on see, mida töötaja
+     enne arhiveerimist teeb, ja server lubab seda teadlikult; arhiveeritud
+     juhtumis server keeldub ja nupp on kinni. */
   const transfer = useTransferActions({
     caseId,
     draft,
     locale,
     disabled: locked || busy,
+    copyDisabled: archived || busy,
     pendingAudits,
     setPendingAudits,
     onChanged: onTransferChanged,
@@ -344,6 +356,21 @@ function DraftEditor({
      valik jääda nupu taha ootama. */
   const chosen = view.targets.some((option) => option.value === to) ? to : "";
   const headModel = draftHead(draft, context);
+  /* Kustutatud sisu: märk ja lause põhjuse järgi (töötaja ise või säilitustähtaeg). */
+  const purge = draftPurge(draft);
+  const purgedNote = purge ? t(purge.noteKey, "") : "";
+
+  /* Pooleli uus väli või parandus teatatakse juhtumi vaatele (lahkumise värav)
+     ja avatud mustandi sulgemine küsib enne üle. */
+  const dirty = !(locked || view.terminal) && draftUnsaved(draft, newField, edits);
+  useEffect(() => {
+    onUnsaved?.(dirty);
+  }, [dirty, onUnsaved]);
+  useEffect(() => () => onUnsaved?.(false), [onUnsaved]);
+  const close = () => {
+    if (dirty && leaveGate && !leaveGate("close")) return;
+    onClose();
+  };
 
   /* Avatud elemendi identiteet on nähtav igas vaates; seis ja tee tagasi
      loendisse on sakkidega vaadetes. Alamvaatel on oma „Loobu" või „Tagasi" all
@@ -362,10 +389,10 @@ function DraftEditor({
           {transfer.pendingCount ? <Chip tone="wait">{t("casework.transfer.audit_pending_chip", "")}</Chip> : null}
           {/* Kustutatud sisu on näha elemendi igal sakil: väljade sakk näeks
               muidu välja nagu tühi mustand, kuhu saab välju lisada. */}
-          {draft.contentPurgedAt ? <Chip tone="wait">{t("casework.prep.purged_chip", "")}</Chip> : null}
+          {purge ? <Chip tone="wait">{t(purge.chipKey, "")}</Chip> : null}
         </>
       ),
-      back: { label: t("casework.draft.back_to_list", ""), onClick: onClose }
+      back: { label: t("casework.draft.back_to_list", ""), onClick: close }
     },
     errorText,
     tabs: {
@@ -478,7 +505,7 @@ function DraftEditor({
       };
     }
 
-    if (tab === "transfer") return { frame: tabbed, view: draftTransferView({ t, model: transfer, glow }) };
+    if (tab === "transfer") return { frame: tabbed, view: draftTransferView({ t, model: transfer, glow, purgedNote }) };
 
     return {
       frame: tabbed,
@@ -486,8 +513,10 @@ function DraftEditor({
         t,
         rows: fields,
         terminal: view.terminal,
-        purgedNote: draft.contentPurgedAt ? t("casework.transfer.content_purged", "") : "",
-        add: view.terminal ? null : { disabled: locked || busy, onClick: () => setSub({ view: "add" }) },
+        purgedNote,
+        /* Kustutatud sisuga mustandisse uut välja ei lisata: server keeldub (409)
+           ja nuppu ei pakuta. */
+        add: view.terminal || purge ? null : { disabled: locked || busy, onClick: () => setSub({ view: "add" }) },
         glow,
         onOpen: (key) => setSub({ view: "field", key })
       })

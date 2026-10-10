@@ -298,7 +298,7 @@ export function draftStateView({ t, view, to, onTo, review, locked, busy, glow, 
  *
  * `model` tuleb failist ../TransferPanel.jsx (`useTransferActions`).
  */
-export function draftTransferView({ t, model, glow }) {
+export function draftTransferView({ t, model, glow, purgedNote = "" }) {
   return {
     title: t("casework.transfer.actions_title", ""),
     actions: (
@@ -318,14 +318,14 @@ export function draftTransferView({ t, model, glow }) {
             onConfirm={model.onMark}
           />
         ) : null}
-        <Button type="button" size="sm" variant="primary" glow={glow} disabled={model.working || model.purged} onClick={model.onCopy}>
+        <Button type="button" size="sm" variant="primary" glow={glow} disabled={model.copyBlocked || model.purged} onClick={model.onCopy}>
           {t("casework.transfer.copy", "")}
         </Button>
       </>
     ),
     body: (
       <>
-        {model.purged ? <p className={base.notice}>{t("casework.transfer.content_purged", "")}</p> : null}
+        {model.purged ? <p className={base.notice}>{purgedNote || t("casework.transfer.content_purged", "")}</p> : null}
 
         {/* Käsitsi kopeerimise plokk vajab ruumi: selgitus annab talle koha. */}
         {model.clipboardFailed ? null : <p className={base.quiet}>{t("casework.transfer.copy_hint", "")}</p>}

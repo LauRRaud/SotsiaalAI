@@ -32,6 +32,7 @@ import { useEffect, useRef } from "react";
 
 import SessionRecorder from "@/components/documents/SessionRecorder";
 import StepPanel from "@/components/stage/StepPanel";
+import TextAreaField from "@/components/stage/TextAreaField";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 
@@ -106,13 +107,17 @@ export function noteLayerView({ t, title, isPrivate, rows, add, glow, onOpen }) 
  * otsust. Nupp on kinni, kuni põhjus on kirjutatud, ja küsib siis teist
  * vajutust.
  */
-export function noteEntryView({ t, title, row, reason, locked, retract, onBack }) {
+export function noteEntryView({ t, title, row, reason, locked, retract, correct, onBack }) {
   return {
     title,
     actions: (
       <>
         <Button type="button" size="sm" variant="secondary" onClick={onBack}>
           {t("casework.note.back_to_layer", "")}
+        </Button>
+        {/* Parandus on omaette vaade: uus tekst ja põhjus. Eelmine tekst jääb paranduste alla. */}
+        <Button type="button" size="sm" variant="secondary" disabled={correct.disabled} onClick={correct.onOpen}>
+          {t("casework.note.correct_entry", "")}
         </Button>
         {/* Võti seob kinnituse SELLE kirjega: poolik kinnitus ei kandu teise rea nupule. */}
         <TwoStep
@@ -143,6 +148,41 @@ export function noteEntryView({ t, title, row, reason, locked, retract, onBack }
 }
 
 /**
+ * Salvestatud kirje parandamine: uus tekst ja kohustuslik põhjus.
+ *
+ * PARANDUS, MITTE ÜMBERKIRJUTUS (SOL-CW-15). Server hoiab eelmise teksti, aja ja
+ * põhjuse alles ning need on näha paranduste sakil; rea päritolu parandus ei
+ * muuda. Nupp on kinni, kuni tekst erineb salvestatust ja põhjus on kirjutatud.
+ */
+export function noteEntryCorrectView({ t, title, formId, text, reason, locked, busy, glow, canSubmit, onSubmit, onCancel }) {
+  return {
+    title,
+    note: t("casework.note.correct_hint", ""),
+    actions: (
+      <>
+        <Button type="button" size="sm" variant="secondary" onClick={onCancel}>
+          {t("casework.page.cancel", "")}
+        </Button>
+        <Button type="submit" form={formId} size="sm" variant="primary" glow={glow} disabled={locked || busy || !canSubmit}>
+          {t("casework.note.save_correction", "")}
+        </Button>
+      </>
+    ),
+    body: (
+      <form id={formId} className={base.stack} onSubmit={onSubmit}>
+        <div data-autofocus>
+          <TextAreaField label={t("casework.note.correct_text", "")} value={text.value} onChange={text.onChange} rows={3} maxLength={4000} disabled={locked} />
+        </div>
+        <label className={base.field} data-size="lg">
+          <span className={base.fieldLabel}>{t("casework.note.correct_reason", "")}</span>
+          <Input type="text" value={reason.value} maxLength={1000} disabled={locked} onChange={(event) => reason.onChange(event.target.value)} />
+        </label>
+      </form>
+    )
+  };
+}
+
+/**
  * Paranduste ja tühistuste ajalugu (SOL-CW-15).
  *
  * SIIN ON ASENDATUD TEKST NÄHTAV — see ongi tõend. Ilma temata oleks „eelmine
@@ -153,15 +193,26 @@ export function noteEntryView({ t, title, row, reason, locked, retract, onBack }
  * tähendaks, et lugeja ei tea, kas parandusi ei olnud või ei oska pind neid
  * näidata.
  */
-export function noteHistoryView({ t, rows }) {
+export function noteHistoryView({ t, rows, shown = rows.length, onMore }) {
+  /* KAKS KIRJET KORRAGA: iga kirje on kolm rida (asendatud tekst, märgid, põhjus)
+     ja pikem loend lükkas sakid paneelist välja. Ülejäänud avab „Näita rohkem”. */
+  const visible = rows.slice(0, shown);
   return {
     title: t("casework.note.history_title", ""),
+    /* Selgitus seisab ainult tühja ajaloo juures: kirjed ise näitavad eelmist
+       sisu, aega ja põhjust, ja koos nendega ei mahtunud vaade paneeli. */
+    note: rows.length ? "" : t("casework.note.history_hint", ""),
+    actions:
+      rows.length > visible.length ? (
+        <Button type="button" size="sm" variant="secondary" onClick={onMore}>
+          {t("casework.note.load_more", "")}
+        </Button>
+      ) : null,
     body: (
       <>
-        <p className={base.quiet}>{t("casework.note.history_hint", "")}</p>
-        {rows.length ? (
+        {visible.length ? (
           <ul className={base.rows}>
-            {rows.map((row) => (
+            {visible.map((row) => (
               <li className={styles.record} key={row.id}>
                 {/* Asendatud tekst on TEKST, sama reegel mis kehtival real. */}
                 <span className={styles.recordText}>{row.text}</span>

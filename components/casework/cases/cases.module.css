@@ -197,6 +197,14 @@
 .back:hover {
   color: var(--text-warm);
 }
+/* Päise teine rida: mida kirjutuskaitstud või arhiveeritud juhtumis teha saab. */
+.headNote {
+  flex: 1 0 100%;
+  margin: 0;
+  max-width: none;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+}
 .back:focus-visible {
   outline: none;
   border-radius: 0.3rem;

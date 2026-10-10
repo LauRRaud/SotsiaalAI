@@ -68,6 +68,18 @@ export function isAiDraft(value) {
   return value === PROVENANCE.AI_MUSTAND;
 }
 
+/* Tsiteeritud tekst, mis on sellest pikem või millel on rohkem ridu, näidatakse
+   esialgu kahe reaga (avaneb kohapeal): muidu lükkab pikk väli valiku ja nupud
+   paneelist välja. */
+const QUOTE_SHORT_CHARS = 140;
+const QUOTE_SHORT_LINES = 2;
+
+/** Kas tsiteeritud tekst vajab lühendamist (pikk või mitmerealine). */
+export function quoteIsLong(text) {
+  const value = String(text || "");
+  return value.length > QUOTE_SHORT_CHARS || value.split("\n").length > QUOTE_SHORT_LINES;
+}
+
 /**
  * Uue rea (küsimus, märkme kirje, mustandi väli) saab saata alles siis, kui
  * tekst on kirjutatud JA päritolu valitud (L4: märgis, mille inimene ei
@@ -312,6 +324,16 @@ export function entryRows(note, layer, { t }) {
 }
 
 /**
+ * Salvestatud kirje parandus läheb teele, kui uus tekst on olemas ja erineb
+ * salvestatust ning põhjus on kirjutatud (server nõuab põhjust: parandus ilma
+ * põhjuseta ei erista eksituse parandamist sisu ümberkirjutamisest).
+ */
+export function canCorrectEntry({ text, saved, reason }) {
+  const next = String(text || "").trim();
+  return Boolean(next) && next !== String(saved || "").trim() && Boolean(String(reason || "").trim());
+}
+
+/**
  * Paranduste ja tühistuste ajalugu (SOL-CW-15). ASENDATUD TEKST ON SIIN NÄHTAV:
  * see ongi tõend. Põhjus on kasutaja enda tekst ja rea mõte.
  */
@@ -404,8 +426,23 @@ export function draftRows(drafts, { t, pendingAudits = null }) {
       state: transferStateText(row.transferState, t),
       tone: DRAFT_STATE_TONES[row.transferState] || "quiet",
       review: reviewKindText(row.reviewKind, t),
-      pending: list(pendingAudits?.[row.id]).length > 0
+      pending: list(pendingAudits?.[row.id]).length > 0,
+      /* Kustutatud sisuga element on loendis TÜHJAST ERISTATAV, nagu ettevalmistus. */
+      purgedText: draftPurge(row) ? t(draftPurge(row).chipKey, "") : ""
     }));
+}
+
+/**
+ * Kustutatud sisuga mustand: märk ja lause põhjuse järgi. Töötaja enda
+ * arhiveeritud töömaterjali kohta ei kehti lause säilitustähtajast ega alles
+ * jäänud ülekande faktist: ülekannet ei olnud ja väljad on läinud.
+ * Tagastab `null`, kui sisu on alles.
+ */
+export function draftPurge(draft) {
+  if (!draft?.contentPurgedAt) return null;
+  return draft.contentPurgeReason === "WORKER_ARCHIVED_WORKING_MATERIAL"
+    ? { chipKey: "casework.prep.purged_chip", noteKey: "casework.transfer.content_archived" }
+    : { chipKey: "casework.draft.purged_chip_retention", noteKey: "casework.transfer.content_purged" };
 }
 
 /** Avatud elemendi päis: mis element see on ja mis seisus. */
@@ -533,4 +570,36 @@ export function transferRows(events, { t, locale }) {
       time: timeText(event.createdAt, locale),
       keys: list(event.fieldKeys).map((key) => String(key))
     }));
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   SALVESTAMATA TEKST
+   Avatud kirje sulgemine, juhtumist lahkumine ja Esc küsivad enne üle, kui
+   ekraanil on teksti, mida serveris ei ole. „Salvestamata” otsustatakse
+   võrreldes sellega, mis on salvestatud, mitte selle järgi, kas välja puudutati:
+   tagasi kirjutatud tekst ei ole enam muudatus.
+   ──────────────────────────────────────────────────────────────────────────── */
+
+function typed(value) {
+  return Boolean(String(value ?? "").trim());
+}
+
+/** Avatud ettevalmistus: mõne välja tekst erineb salvestatust või küsimus on pooleli. */
+export function prepUnsaved(prep, texts, question) {
+  if (typed(question?.text)) return true;
+  return PREP_FIELD_KEYS.some((key) => String(texts?.[key] ?? "").trim() !== prepFieldText(prep, key).trim());
+}
+
+/** Avatud märge: mõne kihi pooleli rida, tagasivõtmise põhjus või pooleli parandus. */
+export function noteUnsaved(drafts, reasons, corrections) {
+  if (Object.values(drafts || {}).some((draft) => typed(draft?.text))) return true;
+  if (Object.values(reasons || {}).some(typed)) return true;
+  return Object.values(corrections || {}).some((item) => typed(item?.text) || typed(item?.reason));
+}
+
+/** Avatud mustand: pooleli uus väli või avatud välja parandus, mis erineb salvestatust. */
+export function draftUnsaved(draft, newField, edits) {
+  if (typed(newField?.text) || typed(newField?.fieldKey)) return true;
+  const saved = new Map(list(draft?.fields).map((field) => [String(field?.fieldKey || ""), String(field?.text || "")]));
+  return Object.entries(edits || {}).some(([key, text]) => saved.has(key) && String(text ?? "").trim() !== saved.get(key).trim());
 }

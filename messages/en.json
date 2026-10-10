@@ -1332,7 +1332,8 @@
       "field_key_hint": "Latin capital letters, digits and underscore, starting with a letter. For example GOAL.",
       "provenance_label": "Provenance",
       "review_kind_none": "Not specified",
-      "confirm_not_transferred": "Confirm: not transferred, the content is no longer edited"
+      "confirm_not_transferred": "Confirm: not transferred, the content is no longer edited",
+      "purged_chip_retention": "Content deleted"
     },
     "star2": {
       "MUSTAND": "Draft",
@@ -1357,7 +1358,7 @@
       "entries_empty": "This layer has no entries.",
       "add_entry": "Add entry",
       "linked_prep": "Linked to a preparation",
-      "private_locked_hint": "Entries in this layer cannot be moved to another layer — that is a promise, not a restriction.",
+      "private_locked_hint": "Entries in this layer are never transferred to STAR2. That is a promise, not a restriction.",
       "layer_KLIENDI_VAADE": "The client's own view",
       "layer_FAKTID": "Factual circumstances",
       "layer_TOOTAJA_TAHELEPANEK": "Worker's observation",
@@ -1396,7 +1397,12 @@
         "STAR2_KANTAV": "For STAR2",
         "PRIVAATNE_REFLEKSIOON": "Reflection",
         "history": "Corrections"
-      }
+      },
+      "correct_entry": "Correct",
+      "correct_text": "Corrected text",
+      "correct_reason": "Reason for the correction",
+      "save_correction": "Save the correction",
+      "correct_hint": "The earlier text, the time and the reason stay under corrections. A correction does not change the row's origin."
     },
     "prep": {
       "load_more": "Show more",
@@ -1426,7 +1432,7 @@
       "field_LIFE_DOMAINS": "Life domains",
       "field_AGENDA": "Agenda",
       "field_PLAIN_LANGUAGE_NOTES": "Plain-language explanations",
-      "content_purged": "The content of this preparation was archived on {date}. The fields and questions are deleted; no new content is written here — start a new preparation.",
+      "content_purged": "The content of this preparation was archived on {date}. The fields and questions are deleted and no new content is written here.",
       "purged_chip": "Content archived",
       "create_title": "New preparation",
       "create_hint": "You can leave the time empty if the meeting has not been agreed yet.",
@@ -1453,7 +1459,9 @@
       "confirm_as": "What is the provenance of this text?",
       "add_kind_CLARIFYING_QUESTION": "Add a question",
       "add_kind_CLAIM_TO_VERIFY": "Add a claim",
-      "choose_provenance": "Choose the provenance and save"
+      "choose_provenance": "Choose the provenance and save",
+      "save_time": "Save the time",
+      "cannot_empty": "A saved field cannot be left empty. Write a new text or keep the old one."
     },
     "workbench": {
       "title": "Casework desk",
@@ -1532,7 +1540,7 @@
       "short_transferHistory": "Transfers"
     },
     "errors": {
-      "not_found": "Case not found.",
+      "not_found": "This case or its record was not found. It may have been removed in the meantime.",
       "invalid_input": "The input is not valid.",
       "conflict": "This action is not allowed in the current state.",
       "too_many_requests": "The workbench is already loading. Wait a moment and try again.",
@@ -1601,7 +1609,8 @@
       "create_action_key_invalid": "The case creation identifier has an invalid format.",
       "create_action_key_conflict": "That creation identifier is already in use with different content. Start creating the case again.",
       "working_material_empty": "There are no untransferred drafts whose content could be deleted.",
-      "prep_content_purged": "The content of this preparation has been archived. No new content is added here."
+      "prep_content_purged": "The content of this preparation has been archived. No new content is added here.",
+      "draft_content_purged": "The content of this draft has been deleted. No new fields are added here."
     },
     "page": {
       "confirm_erase_client_reference": "Confirm: erase the client reference permanently",
@@ -1651,13 +1660,13 @@
       "load_error": "The data could not be loaded.",
       "items_empty": "No links yet.",
       "missing_info_empty": "No items yet.",
-      "read_only_notice": "The case is write-protected. Only reading and erasing the client reference remain.",
+      "read_only_notice": "Read-only: you can read, copy for STAR2 and erase the client reference.",
       "retention_state": "State",
       "meta": {
         "title": "My cases — Sotsiaal.pro",
         "description": "A social worker's own case work organisation."
       },
-      "retention_countdown": "Archived. The case and all of its content are deleted on {date} — {days} days left.",
+      "retention_countdown": "Archived. The case and all of its content are deleted on {date}. Days left: {days}.",
       "confirm_retention_to_archived": "Confirm: archive and start the deletion clock",
       "archive_clock_warning": "Archiving starts a 12-calendar-month deletion clock. At the end of it the whole case is deleted together with its children — preparations, notes, drafts and the transfer history. This state cannot be reversed.",
       "archive_working_material": "Archive working material",
@@ -1759,7 +1768,11 @@
       },
       "recording_line": "Recording is running.",
       "recorder_alert_line": "The recording part has a notice that needs your attention.",
-      "open_audio": "Open the recording"
+      "open_audio": "Open the recording",
+      "unsaved_leave": "The text you wrote is not saved. Press again if you want to leave it unsaved.",
+      "show_all_text": "Show the whole text",
+      "show_less_text": "Show less",
+      "archived_notice": "Archived: you can read and erase the client reference."
     },
     "info": {
       "title": "My cases",
@@ -1815,7 +1828,8 @@
       "copy_hint": "Copying puts the fields of the element on the clipboard and leaves a trace in the transfer history. It does not change the state of the element.",
       "copy_empty": "The element has no fields to copy.",
       "block_label": "Text to copy",
-      "audit_pending_chip": "Trace not saved"
+      "audit_pending_chip": "Trace not saved",
+      "content_archived": "The content of this draft was deleted when you archived the working material. The fields are deleted and no new ones are added here."
     }
   },
   "common": {

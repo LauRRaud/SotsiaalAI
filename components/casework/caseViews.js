@@ -148,8 +148,23 @@ function listSummary(list, { t, emptyKey, title }) {
   };
 }
 
+/**
+ * Lause juhtumi päises, kui juhtum ei ole aktiivne: mida selles seisus veel teha
+ * saab. Kirjutuskaitstud juhtumis saab lugeda, STAR2 jaoks kopeerida ja
+ * kliendiviite kustutada; arhiveeritud juhtumis kopeerida enam ei saa (server
+ * keeldub). Aktiivsel juhtumil lauset ei ole.
+ */
+export function lockedNote(retentionState, t) {
+  if (retentionState === "ACTIVE") return "";
+  return t(retentionState === "ARCHIVED" ? "casework.page.archived_notice" : "casework.page.read_only_notice", "");
+}
+
 const PART_SUMMARIES = {
   basics({ record, t, locale }) {
+    /* Järgmist kontakti näitab ainult aktiivne juhtum, nagu loendi rida: lõppenud
+       töö kuupäev oleks ülesanne, mida keegi teha ei saa. Lõppenud töö plaat ei
+       ütle ka, et kontakt on määramata: sinna ei saa enam midagi määrata. */
+    if (record?.retentionState !== "ACTIVE") return { state: "done", summary: "" };
     const time = timeText(record?.nextContactAt, locale);
     return time
       ? { state: "done", summary: t("casework.page.parts.basics.summary_contact", "").replace("{time}", time) }
@@ -314,4 +329,21 @@ export function retentionView({ record, retentionClock = null, t, locale }) {
           .replace("{date}", deletion)
       : ""
   };
+}
+
+/**
+ * Kas juhtumi enda vormides on kirjutatud midagi, mida serveris ei ole:
+ * põhiandmed, STAR-i viide, pooleli puuduva info punkt, seose tunnus või
+ * elutsükli põhjus. `savedNextContact` on salvestatud aeg samal kujul, nagu
+ * väli seda näitab. Juhtumis, mis ei ole aktiivne, välju muuta ei saa.
+ */
+export function caseFormUnsaved(record, form = {}) {
+  if (!record || record.retentionState !== "ACTIVE") return false;
+  const same = (value, saved) => String(value ?? "").trim() === String(saved ?? "").trim();
+  if (!same(form.displayName, record.clientDisplayName)) return true;
+  if (!same(form.externalRef, record.clientExternalRef)) return true;
+  if (!same(form.nextContact, form.savedNextContact)) return true;
+  if (!same(form.externalSystem, record.externalSystem)) return true;
+  if (!same(form.externalReference, record.externalReference)) return true;
+  return [form.missingText, form.linkTargetId, form.retentionReason].some((value) => String(value ?? "").trim());
 }

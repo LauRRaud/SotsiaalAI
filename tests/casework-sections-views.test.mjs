@@ -633,8 +633,10 @@ test('vaated hoiavad oma lubadusi: sakirida jääb paigale, väli ei lähe salve
   /* Kinnitamise siht ei ole ette valitud ja kinnitada ei saa enne valikut (L4). */
   assert.ok(sections[0].includes('const [confirmTo, setConfirmTo] = useState("");'));
   assert.ok(bits.includes('disabled={locked || busy || !value}'));
-  /* Kirjutuskaitstud juhtumis on kopeerimine ja ülekantuks märkimine väljas. */
+  /* Kirjutuskaitstud juhtumis on ülekantuks märkimine väljas. Kopeerida saab (server lubab seda
+     teadlikult: seda teeb töötaja enne arhiveerimist); arhiveeritud juhtumis on ka kopeerimine väljas. */
   assert.ok(sections[3].includes('disabled: locked || busy,'));
+  assert.ok(sections[3].includes('copyDisabled: archived || busy,'));
   /* Kopeerimise ootel jäljed elavad sektsioonis, mitte avatud elemendi juures. */
   assert.ok(sections[3].includes('const [pendingAudits, setPendingAudits] = useState({});'));
   assert.ok(sections[3].includes('transfer.pendingCount ? <Chip tone="wait">'), 'salvestamata jälg on näha elemendi päises');
