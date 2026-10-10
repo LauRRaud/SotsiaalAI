@@ -213,7 +213,15 @@ test('a residence the plan left out: the user\'s own first-person home is read, 
   assert.deepEqual(await after('Olen Harku vallas.', [], only), { user: ['harku_vald', 'reported'] });
   assert.deepEqual(await after('Elan nüüd Harku vallas ja mul on raske.', [], only), { user: ['harku_vald', 'reported'] });
   assert.deepEqual(await after('Я живу в Харку.', [], only), { user: ['harku_vald', 'reported'] });
-  assert.deepEqual(await after('Olen Harku vallas tööl.', [], only), { user: [null, 'unresolved'] });
+  // ADR-138 (10.10.2026): a first-person clause that speaks of working names where the user works. The home stays as it
+  // was (before: unresolved, and the same sentence without "ma" or "olen" changed nothing), in any tense and language.
+  for (const text of ['Olen Harku vallas tööl.', 'Ma töötan Harku vallas.', 'Ma töötasin varem Harku vallas.', 'Mina töötan Harku vallas lastekaitsespetsialistina.', 'I work in Harku vald.', 'Я работаю в Харку.', 'Olen Harku vallas sotsiaaltöötaja.', 'Olen Harku vallas lastekaitsespetsialistina tööl.']) {
+    assert.deepEqual(await after(text, [], only), { user: ['kose_vald', 'reported'] }, text);
+  }
+  const work = await checkedTurnPlaces([], read(['Tere.', 'Ma töötan Harku vallas.'], 1), directory, analyzer, { target: 'user', previousPeople: only });
+  assert.deepEqual(work.map(item => [item.person, item.region, item.relation, item.reason, item.asking]), [['user', 'harku_vald', 'other', 'unattributed_work_mention', false]]);
+  // A limit that stays: a first-person clause about a visit says nothing of working.
+  assert.deepEqual(await after('Ma käisin eile Harku vallas arsti juures.', [], only), { user: [null, 'unresolved'] });
   // ADR-074 (04.10): a mention that says nothing of living there and names nobody leaves the home as it is (before:
   // unresolved; measured 04.10, a question about another municipality erased the user's own).
   assert.deepEqual(await after('Käin Harku vallas arsti juures.', [], only), { user: ['kose_vald', 'reported'] });

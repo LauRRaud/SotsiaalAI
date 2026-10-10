@@ -276,10 +276,9 @@ test('Codex F2: a place of work is a circumstance; the search keeps the residenc
   const later = [['Töötan Maardus. Millist koduteenust ma saan?', 'Töötan Maardus'], ['töötan maardus millist koduteenust ma saan', 'töötan maardus'],
     ['Käin Maardus tööl, kas ma saan koduteenust?', 'Käin Maardus tööl'], ['Kas ma saan koduteenust, kui töötan Maardus?', 'kui töötan Maardus']];
   for (const [message, quote] of later) {
-    // Unchanged for a message without punctuation: its one clause is in the first person ("ma"), and a first-person
-    // clause the plan left unattributed still leaves the residence unresolved; no municipality is searched then.
-    const unattributed = message === later[1][0] ? [] : [[]];
-    for (const planned of [[place(2, quote, 'Maardu linn', 'user', 'other')], ...unattributed]) {
+    // ADR-138 (10.10.2026): also for the message without punctuation. Its one clause is in the first person ("ma") and
+    // speaks of working, so the plan's silence about the place no longer leaves the residence unresolved.
+    for (const planned of [[place(2, quote, 'Maardu linn', 'user', 'other')], []]) {
       for (const list of queries) {
         const result = await turn({ before: nooState, texts: ['Elan Nõo vallas.', message], plan: { person: 'user', places: planned, queries: list } });
         assert.deepEqual([result.source, result.people], [home('noo_vald'), { user: ['noo_vald', 'reported'] }], `${message} | ${planned.length} | ${list[0]}`);
@@ -287,7 +286,7 @@ test('Codex F2: a place of work is a circumstance; the search keeps the residenc
     }
   }
   const firstPerson = await turn({ before: nooState, texts: ['Elan Nõo vallas.', later[1][0]], plan: { person: 'user', places: [], queries: queries[3] } });
-  assert.deepEqual([firstPerson.source.region, firstPerson.people.user], [null, [null, 'unresolved']]);
+  assert.deepEqual([firstPerson.source, firstPerson.people.user], [home('noo_vald'), ['noo_vald', 'reported']]);
   // Asking about that municipality's service is still a question about it, beside the work place and without it.
   // ADR-128 (10.10.2026): so is a request for information that is no question, the last five here. Until then "Soovin
   // infot Maardu isikliku abistaja teenuse kohta." stood in the limit below and stayed with the residence.
