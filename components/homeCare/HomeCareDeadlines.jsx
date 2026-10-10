@@ -9,6 +9,7 @@ import OrgHeader from "@/components/org/OrgHeader";
 import { daysLabel, minutesLabel } from "./HomeCareDecisionView";
 import { euroText } from "./HomeCareMoney";
 import HomeCareOutbox from "./HomeCareOutbox";
+import HomeCareTalkRequests from "./HomeCareTalkRequests";
 import { preconditionLine } from "./HomeCarePreconditions";
 import { changeSignalLine, changeWaitingText } from "./HomeCareChangeSignals";
 import { planDayLabel } from "./HomeCarePlanView";
@@ -76,6 +77,9 @@ export default function HomeCareDeadlines({ context, deadlines }) {
         <p className="hc-sub">{t("home_care.deadlines.intro", { count: deadlines.clientCount })}</p>
         {deadlines.truncated ? <p className="hc-notice">{t("home_care.deadlines.truncated", { count: deadlines.clientCount })}</p> : null}
       </div>
+
+      {/* Töötajad, kes soovivad pärast rasket erijuhtumit rääkida (K6-k): kõige ees, sest inimene ootab. */}
+      <HomeCareTalkRequests organizationId={organizationId} initial={deadlines.talkRequestsOpen || []} canEdit={context.writable !== false} timeZone={timeZone} />
 
       {section("changes_open", deadlines.changesOpen || [], (item) => clientLine(item, `${changeSignalLine(t, item)} · ${changeWaitingText(t, item)}`, null, item.id))}
 

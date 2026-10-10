@@ -8248,6 +8248,7 @@ model CareClient {
   crisisProfiles     CareCrisisProfile[]
   relatives          CareClientRelative[]
   representatives    CareClientRepresentative[]
+  talkRequests       CareTalkRequest[]
   safetyItems        CareSafetyItem[]
   decisionNotices    CareDecisionNotice[]
   firstVisitNotices  CareFirstVisitNotice[]
@@ -8880,6 +8881,31 @@ model CareClientRelative {
   @@index([organizationId, endedAt])
 }
 
+/// KODUTEENUS K6-k — „Soovin sellest rääkida" (kava II.6.3): raske erijuhtumi autor annab
+/// hooldusjuhile teada, et soovib juhtumist rääkida. Teksti ei ole. Rida näevad esitaja ja
+/// hooldusjuht; soov kas võetakse tagasi või märgitakse räägituks, ei kustutata.
+model CareTalkRequest {
+  id             String  @id @default(cuid())
+  organizationId String
+  clientId       String
+  entryId        String
+  /// Soovi esitaja liikmesus ja nimi esitamise hetkel.
+  membershipId   String
+  requesterName  String?
+
+  createdAt             DateTime  @default(now())
+  withdrawnAt           DateTime?
+  handledAt             DateTime?
+  handledByMembershipId String?
+  handledByName         String?
+
+  client CareClient      @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  entry  CareClientEntry @relation(fields: [entryId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId, handledAt])
+  @@index([entryId])
+}
+
 /// KODUTEENUS K6-i — esindusõiguse kirje (kava II.6.9): kes tohib kliendi eest otsustada ja
 /// alla kirjutada. Platvorm dokumenti ei hoia; rida ütleb, mida hooldusjuht nägi. Rida ei
 /// kustutata ega muudeta: muutunud või lõppenud õigus lõpetatakse (`endedAt`).
@@ -9346,6 +9372,7 @@ model CareClientEntry {
   reads           CareClientEntryRead[]
   incidentUpdates CareIncidentUpdate[]
   activities      CareEntryActivity[]
+  talkRequests    CareTalkRequest[]
 
   @@unique([authorMembershipId, clientRequestId])
   @@index([clientId, occurredAt])
