@@ -6304,3 +6304,44 @@ test('kuu kokkuvõte: sõidupäeviku kilomeetrid töötaja real, ka kuu lukus; �
     [['Anu', 60, 42], ['Bert', 25, 25]]
   ]);
 });
+
+test('teatamata esmakäigud lähipäevil on tähtaegade vaates, kuni kliendile on teatatud', async (t) => {
+  const f = await fixture(t);
+  const north = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Põhi ${f.tag}`, type: 'TEAM' } });
+  await db.organizationCapabilityGrant.create({
+    data: { membershipId: f.members.cover.id, capability: 'HOME_CARE_COORDINATOR', scopeType: 'UNIT', scopeUnitId: north.id, validFrom: at('2026-01-01T00:00:00Z') }
+  });
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const unitLead = await f.ctx(f.users.cover, f.orgA);
+  const start = deps(at('2026-09-01T08:00:00Z'));
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, start)).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi', unitId: north.id }, start)).client;
+  for (const client of [linda, peeter]) {
+    for (const key of ['anu', 'bert']) await addTeamMember(lead, client.id, { membershipId: f.members[key].id }, start);
+  }
+  /* Anu on Linda juures käinud. Esmaspäeval 12.10 läheb Bert esimest korda Linda juurde (kell 9) ja Peetri juurde (kell 11);
+     Anu läheb Linda juurde laupäeval. Neljapäevane käik (15.10) jääb vaateaknast välja. */
+  await createEntry(anu, linda.id, { kind: 'NOTE', contactMode: 'VISIT', text: 'Käik', visitMinutes: 30, occurredAt: '2026-10-02T06:00:00Z' }, deps(at('2026-10-02T06:30:00Z')));
+  await createSlots(lead, linda.id, { weekdays: [6], startTime: '09:00', plannedMinutes: 30, workerMembershipId: f.members.anu.id, validFrom: '2026-10-05' }, start);
+  await createSlots(lead, linda.id, { weekdays: [1], startTime: '09:00', plannedMinutes: 30, workerMembershipId: f.members.bert.id, validFrom: '2026-10-05' }, start);
+  await createSlots(lead, peeter.id, { weekdays: [1], startTime: '11:00', plannedMinutes: 30, workerMembershipId: f.members.bert.id, validFrom: '2026-10-05' }, start);
+  await createSlots(lead, peeter.id, { weekdays: [4], startTime: '11:00', plannedMinutes: 30, workerMembershipId: f.members.bert.id, validFrom: '2026-10-05' }, start);
+
+  const rows = async (context) => (await getDeadlines(context, deps())).firstVisitsAhead.map((item) => [item.client.displayName, item.day, item.startTime, item.workerName.split(' ')[0], item.notReached]);
+  assert.deepEqual(await rows(lead), [
+    ['Linda Tamm', '2026-10-12', '09:00', 'Bert', false],
+    ['Peeter Põhi', '2026-10-12', '11:00', 'Bert', false]
+  ]);
+  /* Üksuse hooldusjuht näeb ainult oma üksuse klienti. */
+  assert.deepEqual(await rows(unitLead), [['Peeter Põhi', '2026-10-12', '11:00', 'Bert', false]]);
+
+  /* „Helistati" võtab rea ära; „ei jõutud" jätab selle nimekirja teise sõnastusega. */
+  await markFirstVisit(lead, linda.id, { day: '2026-10-12', workerMembershipId: f.members.bert.id, outcome: 'CALLED' }, deps());
+  await markFirstVisit(lead, peeter.id, { day: '2026-10-12', workerMembershipId: f.members.bert.id, outcome: 'NOT_REACHED' }, deps());
+  assert.deepEqual(await rows(lead), [['Peeter Põhi', '2026-10-12', '11:00', 'Bert', true]]);
+  /* Ära jäetud käik ja puuduva töötaja käik nimekirja ei kuulu. */
+  const slot = (await getClientSlots(lead, peeter.id, deps())).slots.find((item) => item.weekday === 1);
+  await cancelVisit(lead, peeter.id, slot.id, { day: '2026-10-12', reason: 'CLIENT_AWAY' }, deps());
+  assert.deepEqual(await rows(lead), []);
+});

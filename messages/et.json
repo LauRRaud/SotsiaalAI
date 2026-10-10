@@ -13735,7 +13735,11 @@
       "relatives_doubt_line": "{name}: klient ei mäleta, et lubas (märkis {by})",
       "transport_open_title": "Transpordi soovid, mis ootavad korraldamist",
       "transport_open_empty": "Kõik transpordi soovid on vastatud.",
-      "transport_open_line": "{date} · {destination} · soovis {name}"
+      "transport_open_line": "{date} · {destination} · soovis {name}",
+      "first_visits_title": "Esmakäigud lähipäevil, millest kliendile ei ole teatatud",
+      "first_visits_empty": "Lähipäevil ei lähe ükski töötaja kliendi juurde esimest korda ette teatamata.",
+      "first_visits_line": "{date} kell {time}: {name} läheb esimest korda, kliendile ei ole teatatud",
+      "first_visits_not_reached": "{date} kell {time}: {name} läheb esimest korda, kliendile ei jõutud teatada"
     },
     "visit": {
       "title": "Mida tegid",
