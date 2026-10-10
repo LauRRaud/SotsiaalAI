@@ -3,11 +3,11 @@
 Description=SotsiaalAI tegevusloa kontrolli korje ajastus (A4, MTR)
 
 [Timer]
-# IGA TUND, mitte kord ööpäevas. Korje ei kontrolli tunnis kõiki: ta vaatab, kelle
-# `nextCheckAt` on käes. Tunnine rütm on vajalik selleks, et tõrkejärgsed 1 h ja 6 h
-# korduskatsed päriselt toimuksid. Kahekümnes minut, et töö ei satuks täistunnil käivate
-# tööde peale.
-OnCalendar=*-*-* *:20:00
+# KORD ÖÖPÄEVAS (omanik 10.10.2026: tunnine rütm ei õigusta end). Korje ei kontrolli iga
+# päev kõiki: ta vaatab, kelle `nextCheckAt` on käes. Iga teenuseosutajat kontrollitakse
+# kord kuus; tõrke järel ja luba esimest korda leidmata proovitakse uuesti järgmisel ööl.
+# Esimene kontroll ei oota korjet: ta käivitub kohe, kui inimene teenuse liigi kinnitab.
+OnCalendar=*-*-* 03:20:00
 
 # Vahelejäänud jooks tehakse järele (taaskäivitus, hoolduspaus).
 Persistent=true

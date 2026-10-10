@@ -166,7 +166,7 @@ test("õnnestunud kontroll kirjutab kirje, load, kohad ja hinnangu ühe tehingug
   assert.equal(check.checksumValid, true);
   assert.equal(check.consecutiveFailureCount, 0);
   assert.equal(check.verifiedAt.toISOString(), FRESH);
-  assert.equal(check.nextCheckAt.toISOString(), "2026-08-19T12:00:00.000Z", "edukas kontroll -> 14 paeva");
+  assert.equal(check.nextCheckAt.toISOString(), "2026-09-04T12:00:00.000Z", "edukas kontroll -> 30 paeva");
   const record = check.licences.create[0];
   assert.equal(record.activityType, "Toetatud elamise teenus");
   assert.equal(record.locations.create[0].address, "Riia 5, Tartu");
@@ -247,9 +247,27 @@ test("korduskatsete astmestik kasvab, mitte ei jää esimesele astmele", async (
 
   const check = prisma.state.checks[0].data;
   assert.equal(check.consecutiveFailureCount, 2, "teine järjestikune tõrge");
-  /* Teine tõrge → 6 h, mitte uuesti 1 h. */
-  assert.equal(check.nextCheckAt.toISOString(), "2026-08-05T18:00:00.000Z");
+  /* Tõrke järel proovib korje uuesti järgmisel ööl (korje ärkab kord ööpäevas). */
+  assert.equal(check.nextCheckAt.toISOString(), "2026-08-06T12:00:00.000Z");
   assert.equal(check.checksumValid, null, "puuduv teadmine ei ole false");
+});
+
+test("luba esimest korda leidmata tuleb järelkontroll päeva, mitte kuu pärast", async () => {
+  /* Register vastas, aga sellele teenusele luba ei ole: avalik „ei leitud" nõuab teist
+     kinnitavat kontrolli. Seda ei tohi oodata 30 päeva. */
+  const prisma = fakePrisma({ profile: profileWith([{ id: "s1", serviceKey: "KOGUKONNAS_ELAMINE" }]) });
+  const result = await runLicenceCheck({
+    providerProfileId: "p1",
+    prisma,
+    now: NOW,
+    fetchLicences: okLicences(),
+    resolveEntity: okEntity
+  });
+  assert.equal(result.succeeded, true);
+  const check = prisma.state.checks[0].data;
+  assert.equal(check.result, "OK");
+  assert.equal(check.nextCheckAt.toISOString(), "2026-08-06T12:00:00.000Z");
+  assert.equal(prisma.state.upserts[0].create.assessmentReason, "PENDING_SECOND_CHECK");
 });
 
 test("vahepeal tekkinud uuem kontroll ei lase vana tulemust peale kirjutada", async () => {
