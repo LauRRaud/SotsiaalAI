@@ -42,6 +42,28 @@ test("küps on kontrollimata profiil ja see, mille tähtaeg on möödas", async 
   assert.deepEqual(due.map((row) => row.id), ["a", "b"], "tuleviku tähtajaga profiili ei puututa");
 });
 
+test("seotud teenus, mida pole kordagi kontrollitud, ei oota profiili korralist kontrolli", async () => {
+  /* Kuu pikkuse rütmiga jääks selline teenus muidu kuni 30 päevaks märgiseta: kohene
+     kontroll liigi kinnitamisel ebaõnnestus või profiili salvestamine kustutas hinnangu. */
+  const future = new Date("2026-09-01T06:00:00.000Z");
+  const withServices = (id, serviceItems, registryCode = "12345678") => ({ ...profile(id, future), registryCode, serviceItems });
+  const prisma = fakePrisma({
+    profiles: [
+      withServices("a-hinnanguta", [{ serviceKey: "TOETATUD_ELAMINE", licenceAssessment: null }]),
+      withServices("b-proovimata", [{ serviceKey: "TOETATUD_ELAMINE", licenceAssessment: { lastAttemptCheckId: null } }]),
+      withServices("c-kontrollitud", [{ serviceKey: "TOETATUD_ELAMINE", licenceAssessment: { lastAttemptCheckId: "k1" } }]),
+      /* Liik, mis luba ei vaja, ei saa kunagi kontrollikirjet: teda ei tohi igal ööl uuesti ette võtta. */
+      withServices("d-loata-liik", [{ serviceKey: "TUGIISIK", licenceAssessment: { lastAttemptCheckId: null } }]),
+      /* Registrikoodita profiil kontrollikirjet ei saa: muidu oleks ta igal ööl küps. */
+      withServices("e-koodita", [{ serviceKey: "TOETATUD_ELAMINE", licenceAssessment: null }], " ")
+    ]
+  });
+
+  const due = await dueProfiles({ prisma, now: NOW });
+
+  assert.deepEqual(due.map((row) => row.id), ["a-hinnanguta", "b-proovimata"]);
+});
+
 test("küps profiil ei jää kandidaadi eelpiirangu taha kinni", async () => {
   /* Nälgimise juhtum: esimesed 60 profiili ei ole küpsed, küps on alles 61. */
   const future = new Date("2026-08-09T06:00:00.000Z");

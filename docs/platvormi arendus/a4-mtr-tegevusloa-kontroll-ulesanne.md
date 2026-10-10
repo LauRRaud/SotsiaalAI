@@ -555,6 +555,34 @@ Ajalugu: 05.08 rütm oli 14 päeva, värskus 16 päeva, tõrke järel 1 h, 6 h j
 kord tunnis. Seda ajastust serverisse kunagi ei paigaldatud. Astmestik on endiselt
 seadistatav (`MTR_RETRY_HOURS`), kui ajastus kunagi tihedamaks tehakse.
 
+### Teenuseosutaja kinnitab liigi ise (omanik 10.10.2026)
+
+Kuni 10.10.2026 sai teenust loakataloogiga siduda ainult haldur ja ainult API kaudu; ühtegi
+vaadet selleks ei olnud, seega ei jõudnud ükski teenus kontrollini. Nüüd valib osutaja
+teenuseprofiili vaates „Tegevusluba” oma teenuse liigi ja vajutab „Kinnita liik ja
+kontrolli” (`POST /api/service-provider/profile/licence-binding`). Kinnitus käivitab kohe
+esimese kontrolli; edasi kordab seda öine korje.
+
+- **Valida saab ainult loakohustuslike liikide seast.** Selle väite kontrollib register.
+  Liiki, mis luba ei vaja, ei kontrolli keegi; see avalik rahustus jääb halduri siduda.
+- **Kinnitus ei ole tõend.** Osutaja ütleb ainult, mida kontrollida; märgise annab registri
+  vastus ja identiteedivärav (registri nimi peab võrduma profiili asutuse nimega).
+- **Jälg** (`DataAuditLog`) ütleb, kes sidus ja kas see oli osutaja või haldur (`actorKind`).
+- **Piir:** kaksteist muudatust tunnis kasutaja kohta, sest iga muudatus küsib registrist.
+- **Tuvastaja pakub, inimene valib:** vaade nimetab liigi, mis teenuse nime järgi võib
+  sobida, aga ei vali seda ette.
+- Seotud teenus, mida pole veel kordagi kontrollitud (kohene kontroll ebaõnnestus või
+  profiili salvestamine kustutas hinnangu), võetakse ette järgmisel ööl, mitte kuu pärast.
+
+**Lahtine (omaniku otsus):** kuidas tõendada, et profiili tegija esindab seda asutust.
+Praegu võib igaüks, kellel on teenuseosutaja konto, kirjutada profiili võõra asutuse nime
+ja registrikoodi; koos liigi kinnitamisega saaks ta ka kontrollitud loa märgise.
+
+**Ajapiir (mõõdetud 10.10.2026):** neljakümne loaga asutuse loapäring võttis registril 54 s
+ja terve kontroll 79 kuni 114 s. Senine 20 s piir sammu kohta jättis suurimad osutajad
+alatiseks seisu „register oli kättesaamatu”. Piir on nüüd 60 s sammu kohta
+(`MTR_TIMEOUT_MS`); vaade ütleb ootamise ajal, et vastus võib võtta paar minutit.
+
 Kõik väärtused on env-ist muudetavad (`lib/mtr/policy.js`). Positiivne seis kehtib **lühima
 ankru järgi** — kas kontroll vananeb või luba lõpeb, kumb enne tuleb.
 

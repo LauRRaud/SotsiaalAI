@@ -166,6 +166,8 @@ test("osutaja vaade ütleb põhjuse ja parandustee", () => {
   const expired = internalLicenceStatus(assessment({ publicStatusValidUntil: new Date("2026-08-04T09:00:00.000Z") }), { now: NOW });
   assert.equal(expired.key, "service_provider_profile.licence.internal.expired");
   assert.equal(expired.actionKey, "service_provider_profile.licence.internal.action_recheck");
+  /* Aegunud märgise põhjus on sama lause, mille annab `CHECK_STALE`; omaette võtit ei ole. */
+  assert.equal(expired.reasonKey, "service_provider_profile.licence.internal.reason.stale");
 
   assert.equal(internalLicenceStatus(null).key, "service_provider_profile.licence.internal.not_checked");
 });
@@ -184,6 +186,9 @@ test("iga viidatud tõlkevõti on olemas kõigis kolmes keeles", () => {
     collect(publicLicenceBadge(assessment({ publicStatus: status }), { now: NOW }));
     collect(internalLicenceStatus(assessment({ publicStatus: status }), { now: NOW }));
   }
+  /* Aegunud positiivne märgis käib oma haru kaudu; kuni 10.10.2026 viitas see
+     võtmele, mida üheski keeles ei olnud, ja see test seda haru ei näinud. */
+  collect(internalLicenceStatus(assessment({ publicStatusValidUntil: new Date("2026-08-04T09:00:00.000Z") }), { now: NOW }));
   for (const reason of ["IDENTITY_UNRESOLVED", "CHECK_STALE", "PENDING_SECOND_CHECK", "INVALID_REGISTRY_CODE", "TIMEOUT"]) {
     collect(
       internalLicenceStatus(

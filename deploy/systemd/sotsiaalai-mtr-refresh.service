@@ -29,8 +29,9 @@ Environment=MTR_REFRESH_BATCH=10
 ExecStart=/usr/bin/flock -n /var/lock/sotsiaalai-mtr-refresh.lock \
   /bin/bash -lc 'cd /home/ubuntu/apps/sotsiaalai && npm run mtr:refresh'
 
-# Ühe jooksu ülempiir: kümme profiili, igaühel halvimal juhul kuus 20-sekundilist päringut.
-TimeoutStartSec=1800
+# Ühe jooksu ülempiir: kümme profiili, igaühel halvimal juhul kuus 60-sekundilist päringut
+# (suure asutuse loapäring võttis 10.10.2026 mõõtes 54 s). Tavaline jooks on palju lühem.
+TimeoutStartSec=3900
 
 # RETRY tuleb TAIMERILT: `oneshot` ei tohi `Restart`-i kanda. Korje ise austab iga profiili
 # `nextCheckAt`-i (edukas kontroll 30 päeva pärast, tõrke järel järgmisel ööl), seega

@@ -27,33 +27,120 @@ function readTextWithVars(t, key, vars, fallback = "") {
 }
 
 const ENDPOINT = "/api/service-provider/profile/licence-check";
+const BINDING_ENDPOINT = "/api/service-provider/profile/licence-binding";
 
-/** Loaseisude laadimine, käsitsi kontroll ja jahtumisaeg ühes kohas. */
+/** Loaseisude laadimine, teenuse liigi kinnitamine, käsitsi kontroll ja jahtumisaeg ühes kohas. */
 export function useServiceLicenceStatuses({ t, locale = "et" }) {
   const [statuses, setStatuses] = useState(() => new Map());
   const [checking, setChecking] = useState(false);
   const [notice, setNotice] = useState("");
+  /* Teenuse liik: mida saab valida, mis on kinnitatud ja mis on valitud, aga veel kinnitamata. */
+  const [kinds, setKinds] = useState([]);
+  const [bindings, setBindings] = useState(() => new Map());
+  const [hasRegistryCode, setHasRegistryCode] = useState(true);
+  const [choices, setChoices] = useState(() => new Map());
+  const [editingIds, setEditingIds] = useState(() => new Set());
+  const [confirmingId, setConfirmingId] = useState("");
 
   const applyRows = useCallback((payload) => {
     const rows = Array.isArray(payload?.services) ? payload.services : [];
     setStatuses(new Map(rows.map((row) => [row.serviceId, row])));
   }, []);
 
+  const applyBindings = useCallback((payload) => {
+    setKinds(Array.isArray(payload?.kinds) ? payload.kinds : []);
+    const rows = Array.isArray(payload?.bindings) ? payload.bindings : [];
+    setBindings(new Map(rows.map((row) => [row.serviceId, row])));
+    setHasRegistryCode(payload?.hasRegistryCode !== false);
+  }, []);
+
   const load = useCallback(async () => {
     try {
-      const response = await fetch(ENDPOINT, { cache: "no-store" });
-      if (!response.ok) {
-        /* 404 = profiili veel ei ole; see ei ole tõrge, mida osutajale näidata. */
-        if (response.status !== 404) {
-          setNotice(readText(t, "service_provider_profile.licence.internal.load_failed", "Tegevusloa seise ei saanud laadida."));
-        }
-        return;
+      const [response, bindingResponse] = await Promise.all([
+        fetch(ENDPOINT, { cache: "no-store" }),
+        fetch(BINDING_ENDPOINT, { cache: "no-store" })
+      ]);
+      /* 404 = profiili veel ei ole; see ei ole tõrge, mida osutajale näidata. */
+      if ([response, bindingResponse].some((entry) => !entry.ok && entry.status !== 404)) {
+        setNotice(readText(t, "service_provider_profile.licence.internal.load_failed", "Tegevusloa seise ei saanud laadida."));
       }
-      applyRows(await response.json().catch(() => ({})));
+      if (response.ok) applyRows(await response.json().catch(() => ({})));
+      if (bindingResponse.ok) applyBindings(await bindingResponse.json().catch(() => ({})));
     } catch {
       setNotice(readText(t, "service_provider_profile.licence.internal.load_failed", "Tegevusloa seise ei saanud laadida."));
     }
-  }, [applyRows, t]);
+  }, [applyBindings, applyRows, t]);
+
+  const choose = useCallback((serviceId, serviceKey) => {
+    setChoices((current) => new Map(current).set(serviceId, serviceKey || ""));
+  }, []);
+
+  const forget = useCallback((serviceId) => {
+    setChoices((current) => {
+      const next = new Map(current);
+      next.delete(serviceId);
+      return next;
+    });
+    setEditingIds((current) => {
+      const next = new Set(current);
+      next.delete(serviceId);
+      return next;
+    });
+  }, []);
+
+  /* Kinnitatud liigiga teenusel on valik peidus, kuni inimene tahab seda muuta. */
+  const editKind = useCallback(
+    (serviceId, on) => {
+      if (!on) return forget(serviceId);
+      /* Eelmise kontrolli teade (nt jahtumisaeg) käib seisu, mitte liigi valiku kohta. */
+      setNotice("");
+      setEditingIds((current) => new Set(current).add(serviceId));
+    },
+    [forget]
+  );
+
+  /* Kinnitamine seob liigi ja käivitab kohe esimese kontrolli. Kontroll ootab
+     registri taga (umbes pool minutit), seepärast on nupul oma ooteseis. */
+  const confirm = useCallback(
+    async (serviceId) => {
+      if (confirmingId || !serviceId) return;
+      const chosen = choices.get(serviceId);
+      if (chosen === undefined) return;
+      setConfirmingId(serviceId);
+      setNotice("");
+      const failed = readText(t, "service_provider_profile.licence.internal.bind_failed", "Teenuse liiki ei saanud kinnitada.");
+      try {
+        const response = await fetch(BINDING_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ providerServiceId: serviceId, serviceKey: chosen || null })
+        });
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          /* Server ütleb piirangu ja keeldumise oma lausega; muu tõrge saab üldise. */
+          setNotice(payload?.message && payload.message !== payload.messageKey ? payload.message : failed);
+          return;
+        }
+        applyRows(payload);
+        applyBindings(payload);
+        forget(serviceId);
+        if (payload.checkError) {
+          setNotice(
+            readText(
+              t,
+              "service_provider_profile.licence.internal.bind_check_pending",
+              "Liik on kinnitatud, aga kontrolli ei saanud kohe teha. Vajuta „Kontrolli uuesti”."
+            )
+          );
+        }
+      } catch {
+        setNotice(failed);
+      } finally {
+        setConfirmingId("");
+      }
+    },
+    [applyBindings, applyRows, choices, confirmingId, forget, t]
+  );
 
   const recheck = useCallback(async () => {
     if (checking) return;
@@ -96,11 +183,47 @@ export function useServiceLicenceStatuses({ t, locale = "et" }) {
     }
   }, [applyRows, checking, locale, t]);
 
-  /* Profiili salvestamine teeb teenustele delete + create, seega hinnangud
-     kaovad kaskaadis. Vana märgis ei tohi ekraanile jääda. */
+  /* Profiili salvestamine võib hinnangu kustutada (registrikood, asutuse nimi
+     või teenuse sisu muutus). Vana märgis ei tohi ekraanile jääda. */
   const reset = useCallback(() => setStatuses(new Map()), []);
 
-  return { statuses, checking, notice, load, recheck, reset };
+  /** Ühe teenuse liigi valiku seis vaate jaoks. */
+  const kindState = useCallback(
+    (serviceId) => {
+      const binding = serviceId ? bindings.get(serviceId) || null : null;
+      const saved = binding?.serviceKey || "";
+      const chosen = serviceId && choices.has(serviceId) ? choices.get(serviceId) : binding?.currentSelectable === false ? "" : saved;
+      return {
+        known: Boolean(binding),
+        saved,
+        chosen,
+        editing: !saved || editingIds.has(serviceId),
+        currentLabel: binding?.currentLabel || "",
+        /* Admini seotud liik, mida osutaja ise valida ei saa (nt teenus, mis luba ei vaja). */
+        otherLabel: binding && binding.currentSelectable === false ? binding.currentLabel || "" : "",
+        suggestions: binding?.suggestions || [],
+        changed: Boolean(serviceId) && choices.has(serviceId) && choices.get(serviceId) !== saved,
+        confirming: Boolean(serviceId) && confirmingId === serviceId
+      };
+    },
+    [bindings, choices, confirmingId, editingIds]
+  );
+
+  return {
+    statuses,
+    checking,
+    notice,
+    load,
+    recheck,
+    reset,
+    kinds,
+    hasRegistryCode,
+    kindState,
+    choose,
+    editKind,
+    confirm,
+    confirmingAny: Boolean(confirmingId)
+  };
 }
 
 export default function ServiceLicenceStatus({ t, locale = "et", row }) {

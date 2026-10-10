@@ -2755,7 +2755,7 @@
         "checked_against": "Activity checked against: {activity}",
         "action_recheck": "Check again",
         "action_fix_registry_code": "Review the registry code on the profile",
-        "action_map_service": "Link the service to a catalogue entry",
+        "action_map_service": "Confirm the kind of service, then the check starts",
         "action_report": "Report an incorrect mapping",
         "cooldown": "The next check can be started {time}",
         "reason": {
@@ -2767,7 +2767,10 @@
         },
         "action_investigate": "Review the registry code and the service mapping; if both are correct, compare the result with the register",
         "check_failed": "The licence check could not be run. Previous states were kept.",
-        "load_failed": "Licence states could not be loaded."
+        "load_failed": "Licence states could not be loaded.",
+        "bind_failed": "The kind of service could not be confirmed.",
+        "bind_rate_limited": "The kind of service has been changed too many times within the last hour. Try again later.",
+        "bind_check_pending": "The kind is confirmed, but the check could not be run right away. Press “Check again”."
       }
     }
   },
@@ -3805,8 +3808,19 @@
         "licence": {
           "title": "Activity licence",
           "short": "Licence",
-          "lead": "The check covers all services at once.",
-          "empty": "The licence status appears here after the service has been saved."
+          "lead": "The check covers all services at once and is repeated about once a month.",
+          "empty": "The licence status appears here after the service has been saved.",
+          "kind_lead": "If the service needs an activity licence, choose its kind. We then check the licence in the register of economic activities, and again about once a month.",
+          "kind_label": "Kind of service for the activity licence check",
+          "kind_none": "None of these",
+          "kind_confirm": "Confirm kind and check",
+          "kind_confirming": "Checking the register...",
+          "kind_cancel": "Leave the kind unchanged",
+          "kind_change": "Change kind",
+          "kind_suggestion": "By the service name this may fit: {kinds}.",
+          "kind_current": "Confirmed kind: {kind}.",
+          "registry_code_needed": "The check needs your organisation's registry code. Add it to the organisation details and save, then you can confirm the kind.",
+          "waiting": "Asking the register. The answer usually comes in half a minute, for a large organisation in up to a couple of minutes."
         },
         "place": {
           "title": "Service location",
