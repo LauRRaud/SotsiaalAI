@@ -106,6 +106,13 @@
   /* Kaamera tõmbub tagasi: sisu tuleb suuremast väiksemaks. */
   animation: step-pull-back 320ms var(--ease-soft) both;
 }
+/* Ühine paneelikiht annab igale loendireale alumise vahe (panel.css
+   `.panel-body li`). Plaatide vahe on ruudustiku oma: muidu on ridade vahe
+   veergude vahest kaks korda suurem ja kaksteist plaati ei mahu paneeli. */
+.overview > li {
+  min-width: 0;
+  margin: 0;
+}
 @keyframes step-pull-back {
   from {
     opacity: 0;
