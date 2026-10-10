@@ -109,7 +109,7 @@ test('graph experiment arms share one extra room; the chat profiles are unchange
 // other section numbers (Codex review of #301: a number is read as exactly as the pointing text keeps it).
 // own: the passages of the pointing document's own § 2; more: its further sections (ADR-068).
 function namedActFixture({ twin = false, sameAct = false, directory = false, titles = null, source = {}, pointer: named = null, sections: numbers = null,
-  own = ['Teenuse osutamise otsustab osakond.'], more = [] } = {}) {
+  own = ['Teenuse osutamise otsustab osakond.'], more = [], text = 'tugiisik' } = {}) {
   const tenant = 'named-acts', embedding = new MockEmbedding(), config = searchConfig(embedding.config);
   const act = (doc, title, fields, sections, versionFields = {}) => {
     const version = `${doc}-v1`, spans = [], chunks = [], source_units = [];
@@ -150,7 +150,7 @@ function namedActFixture({ twin = false, sameAct = false, directory = false, tit
       documentTitles: async (_t, _g, docs) => new Map(docs.map(doc => [doc, titles?.[doc] ?? byDoc.get(doc).document.fields.title.value])) } : {}) };
   const policy = new LocalPolicy({ tenants: { [tenant]: { operator: [...byDoc.keys()] } } });
   return profileId => retrieve({ postgres, qdrant: { query: async () => rows }, embedding, policy, context: { tenant, subject: 'operator', usage: 'development_only' },
-    query: queryForProfile(retrievalProfile(profileId), { text: 'tugiisik', language: 'et' }), allowLexicalFallback: false });
+    query: queryForProfile(retrievalProfile(profileId), { text, language: 'et' }), allowLexicalFallback: false });
 }
 
 test('chat profile v4 adds the passage that holds the subsection a selected passage names in another act; v3 adds nothing', async () => {
@@ -178,6 +178,47 @@ test('chat profile v4 adds the passage that holds the subsection a selected pass
   const own = profileId => namedActFixture({ sameAct: true })(profileId).then(packet => [picture(packet), packet.measurements.cross_references]);
   assert.deepEqual((await own(CHAT_NAMED_ACTS_PROFILE)), await own(CHAT_REFERENCES_PROFILE));
   assert.deepEqual((await own(CHAT_NAMED_ACTS_PROFILE))[1], { candidates: 1, additions: 1, sections: ['2'] });
+});
+
+// ADR-135 (10.10.2026): "Mida ütleb SHS § 133 lg 5?" got the honest "I have no such text" in the live chat, because the
+// search found the passage only by chance. A provision the question itself names is now fetched by its place in the act.
+test('ADR-135: a provision the question names is fetched by its place, under the act\'s title or abbreviation; an act the scope does not hold, a name two acts share and a question without a mark add nothing', async () => {
+  const picture = packet => packet.evidence.map(entry => [entry.document_id, entry.selection.reason?.type ?? entry.selection.reason, entry.source_text.slice(0, 22)]);
+  // The ranked passage points at its own act only, so nothing but the question names the Social Welfare Act.
+  const asked = (text, options = {}) => namedActFixture({ sameAct: true, text, ...options })(CHAT_NAMED_ACTS_PROFILE);
+  const held = ['shs', 'question_reference', 'Tugiisikuteenust ei võ'], start = ['shs', 'question_reference', '(1)\nKohaliku omavalits'];
+  // Every way a person writes it: the abbreviation, with its case ending, the title in the genitive or as it stands,
+  // the mark written out. Lõige 2 lies in § 25's second passage: that one is added, not the section's start.
+  for (const text of ['Mida ütleb SHS § 25 lg 2?', 'Mida ütleb SHS-i § 25 lõige 2?', 'Mida ütleb sotsiaalhoolekande seaduse § 25 lg 2?', 'Mida ütleb Sotsiaalhoolekande seadus § 25 lg 2?',
+    'Mida ütleb SHS §25 lg 2', 'Mida ütleb SHS paragrahv 25 lõige 2?', 'Kas SHS § 25 lg 2 p 2 keelab vanaemal olla tugiisik?']) {
+    const packet = await asked(text);
+    assert.equal(packet.state, 'ok', text);
+    assert.deepEqual([picture(packet).find(row => row[0] === 'shs'), packet.measurements.question_references], [held, { candidates: 1, additions: 1, acts: ['shs:25'] }], text);
+    assert.deepEqual(packet.evidence.find(entry => entry.document_id === 'shs').selection.reason, { type: 'question_reference', section: '25', named_act: 'shs' }, text);
+  }
+  // The section alone: its first passage. Two provisions: both, in the two places named acts have.
+  const section = await asked('Mida ütleb SHS § 25?');
+  assert.deepEqual([picture(section).find(row => row[0] === 'shs'), section.measurements.question_references.additions], [start, 1]);
+  const two = await asked('Mille poolest erinevad SHS § 24 ja SHS § 25 lg 2?');
+  assert.deepEqual([picture(two).filter(row => row[0] === 'shs').map(row => row[2]), two.measurements.question_references.acts], [['Tugiisikuteenuse eesmä', 'Tugiisikuteenust ei võ'], ['shs:24', 'shs:25']]);
+  // The chat's route, from the retrieval directory: the same addition.
+  const viaDirectory = await asked('Mida ütleb SHS § 25 lg 2?', { directory: true });
+  assert.deepEqual([picture(viaDirectory).find(row => row[0] === 'shs'), viaDirectory.measurements.question_references], [held, { candidates: 1, additions: 1, acts: ['shs:25'] }]);
+  // Nothing is added: no act named, an act the scope does not hold, a section the act does not have, no mark at all,
+  // and a title two documents of the scope share. The search goes on as it did.
+  for (const [text, options] of [['Mida ütleb § 25 lg 2?', {}], ['Mida ütleb võlaõigusseaduse § 25 lg 2?', {}], ['Mida ütleb VÕS § 25 lg 2?', {}], ['Mida ütleb SHS § 999 lg 2?', {}],
+    ['Mida ütleb SHS § 25 lg 2?', { twin: true }]]) {
+    const packet = await asked(text, options);
+    assert.deepEqual([packet.state, picture(packet).some(row => row[1] === 'question_reference'), packet.measurements.question_references?.additions ?? 0], ['ok', false, 0], `${text} ${JSON.stringify(options)}`);
+  }
+  const plain = await asked('tugiisik');
+  assert.deepEqual([picture(plain).some(row => row[0] === 'shs'), plain.measurements.question_references], [false, undefined]);
+  // A profile without the named acts' places does not read the question either.
+  const v3 = await namedActFixture({ sameAct: true, text: 'Mida ütleb SHS § 25 lg 2?' })(CHAT_REFERENCES_PROFILE);
+  assert.deepEqual([picture(v3).some(row => row[0] === 'shs'), v3.measurements.question_references], [false, undefined]);
+  // The passage's own pointer to another act still adds its passage when the question names none (ADR-063 as it was).
+  const pointer = await namedActFixture()(CHAT_NAMED_ACTS_PROFILE);
+  assert.deepEqual(picture(pointer), [['kord', 'ranked_seed', 'Tugiisikuteenust ei os'], ['shs', 'cross_reference', 'Tugiisikuteenust ei võ']]);
 });
 
 test('chat profile v4 is v3 with two more places for a named other act, in the cross-references\' room', () => {
