@@ -582,8 +582,16 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
             {t("home_care.slots.edit_link")}
           </Link>
         ) : null}
-        {/* Külmkapileht (K5-g): prinditav leht kliendi koju. Meeskond ja hooldusjuht. */}
-        {access.canEditCard && data.slots?.length ? <HomeCareFridgeSheet organizationId={organizationId} clientId={client.id} /> : null}
+        {/* Külmkapileht (K5-g): prinditav leht kliendi koju. Meeskond ja hooldusjuht.
+            Kliendi kuuleht (K6-e) samalt väljalt: ainult hooldusjuht, ka ilma käigumustrita. */}
+        {(access.canEditCard && data.slots?.length) || access.isCoordinator ? (
+          <HomeCareFridgeSheet
+            organizationId={organizationId}
+            clientId={client.id}
+            showFridge={Boolean(access.canEditCard && data.slots?.length)}
+            canStatement={access.isCoordinator}
+          />
+        ) : null}
       </section>
 
       {/* Kehtiv hoolduskava (K2-b): mida siin tehakse, kui sageli ja kuidas. Kogu meeskonnale lugemiseks. */}

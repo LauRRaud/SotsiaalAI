@@ -13199,7 +13199,11 @@
       "trip_purpose": "Kirjuta sõidu siht ja eesmärk.",
       "trip_not_found": "Sõitu ei leitud.",
       "trip_retracted": "See sõit on juba tühistatud.",
-      "trip_retract_reason": "Kirjuta, miks sõit tühistatakse."
+      "trip_retract_reason": "Kirjuta, miks sõit tühistatakse.",
+      "month_statement_future": "Tulevase kuu kohta kuulehte ei tehta.",
+      "month_statement_empty": "Selles kuus ei ole ühtegi käiku ega ära jäänud käiku.",
+      "month_statement_part": "Sellist osa ei ole.",
+      "month_statement_too_large": "Käike on ühe faili jaoks liiga palju. Ava kuuleht kliendi lehelt ükshaaval."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -14366,7 +14370,7 @@
       "many": "Viimasel neljal nädalal käis siin {workers} eri töötajat; {top} neist tegid {percent}% käikudest (käike {visits})."
     },
     "fridge": {
-      "phone_label": "Asutuse telefon külmkapilehele",
+      "phone_label": "Asutuse telefon prinditavale lehele",
       "hint": "Külmkapileht on suure kirjaga leht kliendi koju: kes ja mis päeval tuleb, mida koos teeme ja kuhu helistada. Number jääb sellesse seadmesse meelde.",
       "open": "Ava külmkapileht",
       "popup_blocked": "Brauser ei lubanud uut akent avada. Luba selle lehe hüpikaknad ja proovi uuesti.",
@@ -14821,6 +14825,40 @@
       "line": "Viimasel neljal nädalal tehti {total} kava toimingust {more} kavast suurema ja {less} väiksema abiga.",
       "due_coordinator": "Vaata kava üle või anna otsustajale teada.",
       "due_team": "Räägi sellest hooldusjuhiga."
+    },
+    "statement": {
+      "phone_label": "Asutuse telefon kuulehele",
+      "hint": "Kuuleht on suure kirjaga leht kliendi koju: mis päevadel käisime, kui kaua ja mis käigud jäid ära. See on kliendile teadmiseks, mitte allkirjastamiseks: kui midagi ei klapi, helistab ta asutusse. Iga klient on eraldi lehel.",
+      "hint_client": "Kuuleht ütleb kliendile, mis päevadel sel kuul käisime ja mis käigud jäid ära. See on teadmiseks, mitte allkirjastamiseks.",
+      "open": "Ava kuulehed",
+      "open_part": "Ava kuulehed, osa {part}/{parts}",
+      "parts_hint": "Kliente on palju: lehed tulevad {parts} osas, igaüks eraldi aknas.",
+      "open_previous": "Kuuleht: eelmine kuu",
+      "open_current": "Kuuleht: see kuu",
+      "doc": {
+        "title": "Koduteenus: {month}",
+        "print_hint": "Prindi see leht (Ctrl+P). Iga klient on eraldi lehel.",
+        "summary": "Käisime teie juures {count} korral, kokku {duration}.",
+        "summary_count": "Käisime teie juures {count} korral.",
+        "summary_none": "Sel kuul me teie juures ei käinud.",
+        "without_length": "Käike, mille kestus on kirja panemata: {count}.",
+        "visits_title": "Käigud",
+        "not_happened_title": "Käigud, mis jäid ära",
+        "duration_hm": "{hours} t {minutes} min",
+        "duration_h": "{hours} t",
+        "duration_m": "{minutes} min",
+        "no_length": "kestus kirja panemata",
+        "call_title": "Kui see ei klapi sellega, mida teie mäletate, helistage",
+        "foot": "Koostatud {date}. See leht on teile teadmiseks, allkirja ei ole vaja.",
+        "reasons": {
+          "CLIENT_AWAY": "te ei olnud kodus",
+          "CLIENT_CANCELLED": "teie või teie lähedane ütles käigu ära",
+          "WORKER_ABSENT": "töötaja puudus ja asendajat ei leitud",
+          "OTHER": "käik jäi ära",
+          "DOOR_NOT_OPENED": "tulime, aga uks ei avanenud",
+          "REFUSED_HELP": "tulime, aga te ei soovinud abi"
+        }
+      }
     }
   },
   "stage": {

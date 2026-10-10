@@ -8,18 +8,17 @@ import { HOME_CARE_LIMITS } from "@/lib/homeCare/constants";
 import { homeCareBase, useHomeCareApi } from "./homeCareClient";
 
 /**
- * Külmkapileht (K5-g): prinditav suure kirjaga leht kliendi koju. Leht avaneb uues aknas
- * ja prinditakse brauserist. Asutuse telefoninumber jääb sellesse seadmesse meelde, et
- * seda ei peaks iga kliendi juures uuesti kirjutama; serverisse seda ei salvestata.
- *
- * Sama telefoniväljaga käib kliendi kuuleht (K6-e): hooldusjuht avab siit ühe kliendi lehe
- * eelmise või jooksva kuu kohta. `showFridge` on väär, kui kliendil ei ole käigumustrit.
+ * Kliendi kuulehed (K6-e): suure kirjaga leht iga kliendi koju selle kohta, mis päevadel
+ * käidi ja mis jäi ära. Lehed avanevad uues aknas ja prinditakse brauserist. Asutuse
+ * telefoninumber on sama, mis külmkapilehel, ja jääb sellesse seadmesse meelde.
+ * Kui kliente on palju, tulevad lehed mitmes osas.
  */
-export default function HomeCareFridgeSheet({ organizationId, clientId, showFridge = true, canStatement = false }) {
+export default function HomeCareMonthStatements({ organizationId, month }) {
   const { t } = useI18n();
   const { call, busy, error, setError } = useHomeCareApi();
   const fieldId = useId();
   const [phone, setPhone] = useState("");
+  const [parts, setParts] = useState(1);
   const storageKey = `hc-fridge-phone:${organizationId}`;
 
   useEffect(() => {
@@ -30,18 +29,24 @@ export default function HomeCareFridgeSheet({ organizationId, clientId, showFrid
     }
   }, [storageKey]);
 
-  const openDocument = async (path, body) => {
+  /* Teise kuu lehtede osade arv selgub alles esimese avamisega. */
+  useEffect(() => {
+    setParts(1);
+  }, [month]);
+
+  const open = async (part) => {
     /* Aken avatakse KOHE vajutuse peale: pärast päringut avatud akna blokeeriks brauser hüpikaknana. */
     const sheet = window.open("", "_blank");
-    const result = await call(`${homeCareBase(organizationId)}${path}`, {
+    const result = await call(`${homeCareBase(organizationId)}/kuu/kuuleht`, {
       method: "POST",
-      body,
+      body: { month, part, phone },
       fallbackKey: "home_care.errors.open_failed"
     });
     if (!result.ok) {
       sheet?.close();
       return;
     }
+    setParts(result.data.parts || 1);
     try {
       window.localStorage.setItem(storageKey, phone.trim());
     } catch {
@@ -55,13 +60,11 @@ export default function HomeCareFridgeSheet({ organizationId, clientId, showFrid
     sheet.document.write(result.data.html);
     sheet.document.close();
   };
-  const open = () => openDocument(`/kliendid/${encodeURIComponent(clientId)}/kulmkapileht`, { phone });
-  const openStatement = (month) => openDocument("/kuu/kuuleht", { month, clientId, phone });
 
   return (
     <div className="hc-field">
       <label className="hc-label" htmlFor={`${fieldId}-phone`}>
-        {t("home_care.fridge.phone_label")}
+        {t("home_care.statement.phone_label")}
       </label>
       <input
         id={`${fieldId}-phone`}
@@ -72,30 +75,23 @@ export default function HomeCareFridgeSheet({ organizationId, clientId, showFrid
         maxLength={HOME_CARE_LIMITS.REFERRAL_PHONE_MAX}
         autoComplete="off"
       />
-      {showFridge ? <p className="hc-hint">{t("home_care.fridge.hint")}</p> : null}
-      {canStatement ? <p className="hc-hint">{t("home_care.statement.hint_client")}</p> : null}
+      <p className="hc-hint">{t("home_care.statement.hint")}</p>
       {error ? (
         <p className="hc-error" role="alert">
           {error}
         </p>
       ) : null}
       <div className="hc-row">
-        {showFridge ? (
-          <button className="hc-btn hc-btn--quiet" type="button" onClick={open} disabled={busy}>
-            {t("home_care.fridge.open")}
+        <button className="hc-btn hc-btn--quiet" type="button" onClick={() => open(1)} disabled={busy}>
+          {t(parts > 1 ? "home_care.statement.open_part" : "home_care.statement.open", { part: 1, parts })}
+        </button>
+        {Array.from({ length: Math.max(0, parts - 1) }, (_, index) => index + 2).map((part) => (
+          <button key={part} className="hc-btn hc-btn--quiet" type="button" onClick={() => open(part)} disabled={busy}>
+            {t("home_care.statement.open_part", { part, parts })}
           </button>
-        ) : null}
-        {canStatement ? (
-          <>
-            <button className="hc-btn hc-btn--quiet" type="button" onClick={() => openStatement("previous")} disabled={busy}>
-              {t("home_care.statement.open_previous")}
-            </button>
-            <button className="hc-btn hc-btn--quiet" type="button" onClick={() => openStatement("current")} disabled={busy}>
-              {t("home_care.statement.open_current")}
-            </button>
-          </>
-        ) : null}
+        ))}
       </div>
+      {parts > 1 ? <p className="hc-hint">{t("home_care.statement.parts_hint", { parts })}</p> : null}
     </div>
   );
 }

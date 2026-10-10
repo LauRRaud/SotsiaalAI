@@ -9,6 +9,7 @@ import { composeMonthSheet, monthSheetState } from "@/lib/homeCare/monthSheet";
 
 import { decisionVolumeLabel, minutesLabel } from "./HomeCareDecisionView";
 import HomeCareMonthLock from "./HomeCareMonthLock";
+import HomeCareMonthStatements from "./HomeCareMonthStatements";
 import HomeCareOutbox from "./HomeCareOutbox";
 import { planDayLabel } from "./HomeCarePlanView";
 import { clientHref, formatDateTime, homeCareBase, useHomeCareApi } from "./homeCareClient";
@@ -176,6 +177,8 @@ export default function HomeCareMonth({ context, initial }) {
               </button>
             </div>
             <p className="hc-hint">{t(sheetState === "LOCKED" ? "home_care.month_sheet.hint_locked" : "home_care.month_sheet.hint_running")}</p>
+            {/* Kliendi kuulehed (K6-e): teatavaks tegemine kliendile, mitte aruanne linnale. */}
+            <HomeCareMonthStatements organizationId={organizationId} month={data.month} />
           </>
         ) : null}
       </section>
