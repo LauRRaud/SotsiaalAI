@@ -12716,7 +12716,8 @@
       "empty_ended": "Lõpetatud kliente ei ole.",
       "search_phone_hint": "Hooldusjuhina leiad kliendi ka telefoninumbri järgi (vähemalt viis numbrit).",
       "matched_phone": "telefoninumbri järgi",
-      "matched_relative": "lähedase järgi: {name} · {level}"
+      "matched_relative": "lähedase järgi: {name} · {level}",
+      "matched_relative_doubt": "klient ei mäleta luba: räägi ainult, kas käidi"
     },
     "status": {
       "ACTIVE": "Aktiivne",
@@ -13708,7 +13709,8 @@
       "notices_waiting_line": "{reason} · saadetud {date}, oodatud päevi: {days}",
       "reassess_overdue_title": "Lubatud uus hindamine, mille päev on möödas",
       "reassess_overdue_empty": "Ühegi lubatud hindamise päev ei ole möödas.",
-      "reassess_overdue_line": "lubatud {date}, möödas päevi: {days}; uut otsust ei ole kirjas"
+      "reassess_overdue_line": "lubatud {date}, möödas päevi: {days}; uut otsust ei ole kirjas",
+      "relatives_doubt_line": "{name}: klient ei mäleta, et lubas (märkis {by})"
     },
     "visit": {
       "title": "Mida tegid",
@@ -14396,7 +14398,11 @@
       "no_tell_label": "Sellest klient ei taha, et räägitaks",
       "no_tell_line": "mitte rääkida: {text}",
       "agreed_on": "kinnitatud {date}",
-      "review_due": "küsi kliendilt üle"
+      "review_due": "küsi kliendilt üle",
+      "doubt_flag": "Klient ei mäleta, et lubas",
+      "doubt_line": "Klient ei mäleta, et lubas (märkis {name}). Kuni hooldusjuht ei ole üle küsinud, räägi ainult seda, kas käidi.",
+      "card_open": "Prindi jagamiskaart",
+      "card_hint": "Jagamiskaart on kokkulepe paberil kliendi koju: kellele ja mida võib tema kohta rääkida."
     },
     "recent": {
       "yesterday": "Eile",
@@ -14636,6 +14642,27 @@
         "minutes": "kestus minutites",
         "remarks": "Märkused (mis jäi tegemata ja miks, mis oli teisiti):",
         "foot": "Leht kannab isikuandmeid. Kanna tehtu päevikusse niipea, kui saad, ja too leht seejärel kontorisse hävitamiseks."
+      }
+    },
+    "sharing_card": {
+      "doc": {
+        "title": "Kellele ja mida võib minu kohta rääkida",
+        "print_hint": "Prindi see leht brauserist (Ctrl+P), käi see kliendiga läbi ilma lähedaseta ja jäta kliendi koju kausta.",
+        "lead": "{name}, selle lehe leppisime kokku koos. Ilma teie loata ei räägi me teie kohta kellelegi.",
+        "nobody": "Praegu ei ole kokku lepitud, et kellelegi midagi räägitakse.",
+        "level_1": "Talle võib öelda, kas hooldaja käis.",
+        "level_2": "Talle võib öelda, kas hooldaja käis ja mida koos tegime.",
+        "level_3": "Talle võib öelda, kas hooldaja käis ja mida koos tegime. Kui hooldajad märkavad, et midagi on teisiti, võtab hooldusjuht temaga ühendust.",
+        "no_tell": "Sellest ei räägi: {text}",
+        "agreed_on": "Kokku lepitud {date}",
+        "empty_name": "Nimi:",
+        "empty_what": "Mida talle võib rääkida:",
+        "review_by": "Küsime selle teilt üle hiljemalt {date}.",
+        "change": "Võite seda igal ajal muuta: öelge hooldajale või helistage meile.",
+        "sign_client": "Klient:",
+        "sign_date": "Kuupäev:",
+        "sign_org": "Asutuse nimel:",
+        "issued_on": "välja antud {date}"
       }
     }
   },

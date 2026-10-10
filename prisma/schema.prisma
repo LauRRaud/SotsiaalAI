@@ -8763,6 +8763,11 @@ model CareClientRelative {
   createdAt             DateTime  @default(now())
   endedAt               DateTime?
   endedByMembershipId   String?
+  /// K5-u: hooldaja märkis, et klient ei mäleta, et lubas. Kuni kokkulepe on üle küsimata
+  /// (uus rida), räägitakse lähedasele ainult seda, kas käidi.
+  doubtAt               DateTime?
+  doubtByMembershipId   String?
+  doubtByName           String?
 
   client CareClient @relation(fields: [clientId], references: [id], onDelete: Cascade)
 

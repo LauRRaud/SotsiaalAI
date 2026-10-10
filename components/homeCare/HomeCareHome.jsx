@@ -349,7 +349,7 @@ export default function HomeCareHome({ context, initial, unitOptions, myDay = nu
                           ? `${t("home_care.home.matched_relative", {
                               name: client.matchedRelative.relation ? `${client.matchedRelative.name} (${client.matchedRelative.relation})` : client.matchedRelative.name,
                               level: t(`home_care.relatives.levels.${client.matchedRelative.level}`)
-                            })}`
+                            })}${client.matchedRelative.doubt ? ` · ${t("home_care.home.matched_relative_doubt")}` : ""}`
                           : client.matchedPhone
                           ? t("home_care.home.matched_phone")
                           : client.needsReason

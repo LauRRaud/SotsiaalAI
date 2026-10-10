@@ -468,7 +468,13 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
       />
 
       {/* Lähedased ja jagamisaste (K5-k): kellele ja mida klient on lubanud rääkida. */}
-      <HomeCareRelatives organizationId={organizationId} clientId={client.id} initial={data.relatives || []} canEdit={canWrite && access.isCoordinator} />
+      <HomeCareRelatives
+        organizationId={organizationId}
+        clientId={client.id}
+        initial={data.relatives || []}
+        canEdit={canWrite && access.isCoordinator}
+        canFlag={canWrite && access.canEditCard}
+      />
 
       {/* Kriisivalmidus (K5-b): kui palju tuge klient kriisis vajab ja millest ta sõltub. */}
       <HomeCareCrisis organizationId={organizationId} clientId={client.id} initial={data.crisis || null} canEdit={canWrite && access.isCoordinator} />

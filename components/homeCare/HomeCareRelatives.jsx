@@ -17,7 +17,7 @@ const EMPTY = Object.freeze({ relativeId: "", name: "", relation: "", phone: "",
  * lähedaseta; siin on selle tulemus. Ilma lähedasteta näeb jaotist ainult see, kes saab
  * neid lisada.
  */
-export default function HomeCareRelatives({ organizationId, clientId, initial = [], canEdit = false }) {
+export default function HomeCareRelatives({ organizationId, clientId, initial = [], canEdit = false, canFlag = false }) {
   const { t } = useI18n();
   const { call, busy, error, setError } = useHomeCareApi();
   const fieldId = useId();
@@ -47,12 +47,38 @@ export default function HomeCareRelatives({ organizationId, clientId, initial = 
     setEditing(false);
   };
 
+  /* „Klient ei mäleta, et lubas" (K5-u): kuni hooldusjuht üle küsib, kehtib kõige kitsam aste. */
+  const flagDoubt = async (item) => {
+    const result = await call(`${base}/${encodeURIComponent(item.id)}/kahtlus`, { method: "POST", fallbackKey: "home_care.errors.save_failed" });
+    if (result.ok) setItems(result.data.relatives || []);
+  };
+
+  /* Jagamiskaart paberil (K5-u): aken avatakse KOHE vajutuse peale, muidu blokeerib brauser selle hüpikaknana. */
+  const openCard = async () => {
+    const sheet = window.open("", "_blank");
+    const result = await call(`${homeCareBase(organizationId)}/kliendid/${encodeURIComponent(clientId)}/jagamiskaart`, {
+      method: "POST",
+      fallbackKey: "home_care.errors.open_failed"
+    });
+    if (!result.ok) {
+      sheet?.close();
+      return;
+    }
+    if (!sheet) {
+      setError(t("home_care.fridge.popup_blocked"));
+      return;
+    }
+    sheet.document.open();
+    sheet.document.write(result.data.html);
+    sheet.document.close();
+  };
+
   const remove = async (item) => {
     const result = await call(`${base}/${encodeURIComponent(item.id)}`, { method: "DELETE", fallbackKey: "home_care.errors.save_failed" });
     if (result.ok) setItems(result.data.relatives || []);
   };
 
-  if (!items.length && !canEdit) return null;
+  if (!items.length && !canEdit && !canFlag) return null;
 
   return (
     <section className="hc-section" aria-labelledby={`${fieldId}-title`}>
@@ -135,6 +161,14 @@ export default function HomeCareRelatives({ organizationId, clientId, initial = 
                       <span className="hc-badge hc-badge--warn">{t("home_care.relatives.review_due")}</span>
                     </>
                   ) : null}
+                  {item.doubt ? <span className="hc-notice">{t("home_care.relatives.doubt_line", { name: item.doubt.byName || "—" })}</span> : null}
+                  {canFlag && !item.doubt ? (
+                    <span className="hc-row">
+                      <button className="hc-btn hc-btn--quiet" type="button" onClick={() => flagDoubt(item)} disabled={busy}>
+                        {t("home_care.relatives.doubt_flag")}
+                      </button>
+                    </span>
+                  ) : null}
                   {canEdit ? (
                     <span className="hc-row">
                       <button className="hc-btn hc-btn--quiet" type="button" onClick={() => start(item)} disabled={busy}>
@@ -152,13 +186,21 @@ export default function HomeCareRelatives({ organizationId, clientId, initial = 
             <p className="hc-hint">{t("home_care.relatives.none")}</p>
           )}
           {items.length ? <p className="hc-hint">{t("home_care.relatives.rule")}</p> : null}
-          {canEdit ? (
+          {canEdit || canFlag ? (
             <div className="hc-row">
-              <button className="hc-btn hc-btn--quiet" type="button" onClick={() => start()} disabled={busy}>
-                {t("home_care.relatives.add")}
-              </button>
+              {canEdit ? (
+                <button className="hc-btn hc-btn--quiet" type="button" onClick={() => start()} disabled={busy}>
+                  {t("home_care.relatives.add")}
+                </button>
+              ) : null}
+              {canFlag ? (
+                <button className="hc-btn hc-btn--quiet" type="button" onClick={openCard} disabled={busy}>
+                  {t("home_care.relatives.card_open")}
+                </button>
+              ) : null}
             </div>
           ) : null}
+          {canFlag ? <p className="hc-hint">{t("home_care.relatives.card_hint")}</p> : null}
           {error ? (
             <p className="hc-error" role="alert">
               {error}

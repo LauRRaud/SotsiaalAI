@@ -96,7 +96,7 @@ import { getMonthOpenItems } from '../lib/homeCare/monthClose.js';
 import { getMonthPage, lockMonth, reopenMonth } from '../lib/homeCare/monthLock.js';
 import { answerDecisionNotice, createDecisionNotice, withdrawDecisionNotice } from '../lib/homeCare/decisionNotices.js';
 import { getDaySheet } from '../lib/homeCare/daySheet.js';
-import { endRelative, saveRelative } from '../lib/homeCare/relatives.js';
+import { endRelative, flagRelativeDoubt, getSharingCard, saveRelative } from '../lib/homeCare/relatives.js';
 import { saveSafetyCard } from '../lib/homeCare/safetyCard.js';
 import { composeNoAnswerText } from '../lib/homeCare/noAnswerText.js';
 import { assertNotificationRecipient, serializeNotificationEvent } from '../lib/notifications.js';
@@ -5878,4 +5878,63 @@ test('päevaleht paberil: hooldusjuht prindib oma skoobi käigud, väljaandmises
   ]);
   assert.equal(JSON.stringify(audit).includes('Kase'), false);
   assert.equal(JSON.stringify(audit).includes('Linda'), false);
+});
+
+test('klient ei mäleta, et lubas: meeskond märgib, kehtib kitsaim aste, hooldusjuht küsib üle; jagamiskaart', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const clerk = await f.ctx(f.users.clerk, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, deps())).client;
+  await addTeamMember(lead, linda.id, { membershipId: f.members.anu.id }, deps());
+  /* Bert on teise kliendi meeskonnas: Linda lehe saaks ta avada ainult põhjusega. */
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi' }, deps())).client;
+  await addTeamMember(lead, peeter.id, { membershipId: f.members.bert.id }, deps());
+  const mari = (await saveRelative(lead, linda.id, { name: 'Mari Tamm', relation: 'tütar', phone: '+372 5555 1234', level: 3, noTell: 'rahaasjad' }, deps())).relatives[0];
+  assert.deepEqual([mari.doubt, mari.reviewDue], [null, false]);
+
+  /* Märgib meeskonna liige (klient ütleb seda sellele, kes tema juures käib); kõrvaline, põhjuseta asendaja ja teine asutus mitte. */
+  await expectError(flagRelativeDoubt(clerk, linda.id, mari.id, deps()), 404, 'home_care.errors.client_not_found');
+  await expectError(flagRelativeDoubt(bert, linda.id, mari.id, deps()), 403, 'home_care.errors.access_reason_required');
+  await expectError(flagRelativeDoubt(leadB, linda.id, mari.id, deps()), 404);
+  await expectError(flagRelativeDoubt(anu, linda.id, 'cmv0000000000000000000zz', deps()), 404, 'home_care.errors.relative_not_found');
+  const flagged = (await flagRelativeDoubt(anu, linda.id, mari.id, deps(at('2026-10-09T09:00:00Z')))).relatives[0];
+  assert.deepEqual([flagged.level, flagged.reviewDue, flagged.doubt.at], [3, true, '2026-10-09T09:00:00.000Z']);
+  assert.match(flagged.doubt.byName, /Anu/);
+  /* Teine märkimine ei muuda midagi: esimene märkija ja aeg jäävad. */
+  const again = (await flagRelativeDoubt(lead, linda.id, mari.id, deps(at('2026-10-09T10:00:00Z')))).relatives[0];
+  assert.deepEqual([again.doubt.at, again.doubt.byName], [flagged.doubt.at, flagged.doubt.byName]);
+
+  /* Kõnele vastaja näeb kitsaimat astet; tähtaegade vaates on rida ees, kuigi kinnitus on värske. */
+  const found = (await searchClients(lead, { q: '5555 1234' }, deps())).clients[0];
+  assert.deepEqual([found.matchedRelative.level, found.matchedRelative.doubt], [1, true]);
+  const due = (await getDeadlines(lead, deps())).relativesDue;
+  assert.deepEqual(due.map((item) => [item.client.displayName, item.name, item.doubt]), [['Linda Tamm', 'Mari Tamm', true]]);
+  assert.match(due[0].doubtByName, /Anu/);
+
+  /* JAGAMISKAART: meeskond ja hooldusjuht; kaardil on kokku lepitud aste lausena, mitte kahtluse märge. */
+  await expectError(getSharingCard(clerk, linda.id, deps()), 404, 'home_care.errors.client_not_found');
+  await expectError(getSharingCard(bert, linda.id, deps()), 403, 'home_care.errors.access_reason_required');
+  const card = (await getSharingCard(anu, linda.id, deps())).html;
+  for (const text of ['Linda Tamm, selle lehe leppisime kokku koos.', 'Mari Tamm (tütar)', 'võtab hooldusjuht temaga ühendust', 'Sellest ei räägi: rahaasjad', 'Kokku lepitud 09.10.2026', 'hiljemalt 10.04.2027']) {
+    assert.ok(card.includes(text), text);
+  }
+  assert.equal(card.includes('5555'), false);
+
+  /* Hooldusjuht küsib üle ja kinnitab uuesti: uus rida on kahtluseta, vana jääb ajalukku märkega. */
+  const confirmed = (await saveRelative(lead, linda.id, { relativeId: mari.id, name: 'Mari Tamm', relation: 'tütar', phone: '+372 5555 1234', level: 2 }, deps(at('2026-10-09T11:00:00Z')))).relatives[0];
+  assert.deepEqual([confirmed.level, confirmed.doubt, confirmed.reviewDue], [2, null, false]);
+  assert.deepEqual((await getDeadlines(lead, deps())).relativesDue, []);
+  assert.deepEqual((await searchClients(lead, { q: '5555 1234' }, deps())).clients[0].matchedRelative.level, 2);
+  await expectError(flagRelativeDoubt(anu, linda.id, mari.id, deps()), 404, 'home_care.errors.relative_not_found');
+  const old = await db.careClientRelative.findUnique({ where: { id: mari.id } });
+  assert.equal(Boolean(old.doubtAt && old.endedAt), true);
+
+  /* ANDMEBAAS: kahtluse väljad käivad koos. */
+  await assert.rejects(db.careClientRelative.update({ where: { id: confirmed.id }, data: { doubtByName: 'Nimi ilma ajata' } }));
+  await assert.rejects(db.careClientRelative.update({ where: { id: confirmed.id }, data: { doubtAt: NOW } }));
+  const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_relative_changed', meta: { path: ['organizationId'], equals: f.orgA.id } } });
+  assert.deepEqual(audit.map((entry) => entry.meta.change).sort(), ['added', 'changed', 'doubt']);
 });
