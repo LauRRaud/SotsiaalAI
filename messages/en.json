@@ -4641,8 +4641,8 @@
   "documents": {
     "page_title": "Documents",
     "back_to_documents": "Back to documents",
-    "outputs_title": "Agent results",
-    "outputs_description": "Recent draft and approved text results created by the agent workflow.",
+    "outputs_title": "Drafted texts",
+    "outputs_description": "Here you see drafts and approved texts and can open or download them again later.",
     "framework_acceptance": {
       "title": "Professional-use acceptance record",
       "manage_pending": "If you skipped the framework agreement or DigiDoc file during registration, open it here, download the files, and save the confirmation without registering again.",
@@ -4668,14 +4668,14 @@
       "upload_title": "Upload document",
       "upload_description": "Add a new file here and set the right type before saving it.",
       "list_title": "Document list",
-      "list_description": "Browse existing documents, filter by type, and mark the ones you want to bring to the agent."
+      "list_description": "Browse existing documents, filter by type, and mark the ones you want to use in drafting."
     },
     "loading": "Loading...",
     "empty_documents": "No documents yet.",
-    "empty_artifacts": "No agent results yet.",
+    "empty_artifacts": "No drafted texts yet.",
     "updated_at": "Updated",
     "approved_at": "Approved",
-    "artifact_detail_title": "Agent result",
+    "artifact_detail_title": "Drafted text",
     "detail_title": "Document",
     "draft_notice": "This draft is editable. Download becomes available after approval.",
     "template_label": "Selected template",
@@ -4755,7 +4755,8 @@
       "title_label": "Title",
       "content_label": "Content",
       "dropzone_idle": "Drag a file here or click to choose a file",
-      "dropzone_active": "Drop the file here to upload it"
+      "dropzone_active": "Drop the file here to upload it",
+      "template_help": "Only a Word template (DOCX) shapes the approved file. The placeholders are listed in the drafting workspace, in the “Template” step."
     },
     "actions": {
       "upload": "Upload",
@@ -4784,13 +4785,13 @@
       "uploaded": "Document uploaded.",
       "saved": "Changes saved.",
       "deleted": "Document deleted.",
-      "artifact_deleted": "Agent result deleted.",
+      "artifact_deleted": "Text deleted.",
       "copied": "Copied to clipboard.",
       "approved": "Approved. Your professional DOCX and PDF files are ready to download."
     },
     "confirm": {
       "delete_document": "Delete this document permanently? This cannot be undone.",
-      "delete_artifact": "Delete this agent result permanently? This cannot be undone."
+      "delete_artifact": "Delete this text permanently? This cannot be undone."
     },
     "multi_doc": {
       "enable_agent_allowed": "Enable \"Use in work mode\" before selecting this document."
@@ -4813,14 +4814,14 @@
     "errors": {
       "load_documents": "Failed to load documents.",
       "read_failed": "Failed to open document.",
-      "load_artifacts": "Failed to load agent results.",
+      "load_artifacts": "Failed to load drafted texts.",
       "upload_failed": "Failed to upload document.",
       "save_failed": "Failed to save document changes.",
       "delete_failed": "Failed to delete document.",
-      "delete_artifact_failed": "Failed to delete agent result.",
+      "delete_artifact_failed": "Failed to delete the text.",
       "copy_failed": "Failed to copy content.",
-      "load_artifact": "Failed to load agent result.",
-      "create_artifact_failed": "Failed to create draft artifact.",
+      "load_artifact": "Failed to load the text.",
+      "create_artifact_failed": "Failed to create the draft.",
       "file_required": "Select a file to upload.",
       "file_too_large": "File is too large. Maximum size is 25 MB.",
       "mime_not_allowed": "Only PDF, DOCX, and TXT files are allowed.",
@@ -4853,7 +4854,7 @@
       "download_failed": "Failed to download document.",
       "storage_path_invalid": "Invalid document storage path.",
       "storage_dir_missing": "Document storage directory is not configured.",
-      "agent_storage_dir_missing": "Agent storage directory is not configured.",
+      "agent_storage_dir_missing": "The storage directory for drafted texts is not configured.",
       "daily_upload_quota_exceeded": "Daily upload limit reached. Please try again tomorrow.",
       "storage_quota_exceeded": "Storage quota reached. Delete some files and try again.",
       "transcript_required": "Transcript is missing or cannot be used.",
@@ -4871,34 +4872,34 @@
       "sort_approved_desc": "Newest approved first",
       "sort_title_asc": "Title A-Z",
       "results_count": "Showing {shown} of {total}",
-      "no_matches": "No agent results match the current search and filters.",
+      "no_matches": "No drafted texts match the current search and filters.",
       "source_preview_more": "+{count} more",
       "errors": {
-        "list_failed": "Failed to list agent results.",
-        "not_found": "Agent result not found.",
-        "read_failed": "Failed to read agent result.",
-        "update_failed": "Failed to update agent result.",
-        "delete_failed": "Failed to delete agent result.",
-        "create_failed": "Failed to create draft artifact.",
+        "list_failed": "Failed to list drafted texts.",
+        "not_found": "Text not found.",
+        "read_failed": "Failed to open the text.",
+        "update_failed": "Failed to update the text.",
+        "delete_failed": "Failed to delete the text.",
+        "create_failed": "Failed to save the draft.",
         "instruction_too_long": "Instruction is too long.",
         "refinement_required": "Refinement instruction is required.",
         "analysis_unavailable": "Document analysis service is currently unavailable.",
         "analysis_failed": "Failed to extract enough text from the selected documents.",
         "ai_unavailable": "AI draft generation is currently unavailable.",
         "ai_empty": "AI draft generation returned an empty result.",
-        "approve_failed": "Failed to approve artifact.",
+        "approve_failed": "Failed to approve the text.",
         "format_not_supported": "Only DOCX download is available right now.",
-        "download_failed": "Failed to download approved artifact.",
+        "download_failed": "Failed to download the approved text.",
         "download_requires_approval": "Approve the draft before downloading.",
-        "content_required": "Artifact content cannot be empty.",
-        "content_too_large": "Artifact content is too large.",
+        "content_required": "The text cannot be empty.",
+        "content_too_large": "The text is too long.",
         "sources_required": "Select at least one source document.",
         "too_many_sources": "Too many source documents selected.",
         "sources_not_found": "One or more selected source documents were not found.",
         "source_not_allowed": "Selected documents must be allowed for work mode.",
-        "template_not_found": "Selected template was not found.",
-        "template_not_allowed": "Selected template must be allowed for work mode.",
-        "final_read_only": "Approved artifacts are read-only.",
+        "template_not_found": "The chosen template was not found. Choose another template or “No template” in the “Template” step and save again.",
+        "template_not_allowed": "The chosen template is not allowed in work mode. Choose another template or “No template” in the “Template” step and save again.",
+        "final_read_only": "An approved text can no longer be changed.",
         "refinement_in_progress": "The same draft refinement is still running on the server. Wait a moment and repeat the same action.",
         "refinement_claim_lost": "The refinement was taken over by recovery. Repeat the same action to retrieve the durable result.",
         "version_conflict": "The document changed elsewhere in the meantime. Reload the view and try again."
@@ -5080,7 +5081,8 @@
         "short": "Opened document",
         "open_text": "Open the text",
         "share_title": "Allow in work mode",
-        "rename_label": "New title"
+        "rename_label": "New title",
+        "share_desc": "An allowed file can be taken into the drafting workspace as a source file, and an allowed template can be chosen there."
       },
       "framework": {
         "title": "Professional-use framework",
@@ -5265,11 +5267,16 @@
         "fill_form": "Filling in a form"
       },
       "template": {
-        "lead": "A template gives the text its structure. Add a template on the Documents page and allow it in work mode there.",
+        "lead": "A template shapes the approved Word file. For that the template must be a Word file (DOCX); in it you can write the placeholders {placeholders}, which are replaced by the title, the text, the sources, the approval date and the kind of text. Add a template on the Documents page and allow it in work mode there.",
         "none": "No template",
         "loading": "Loading templates…",
         "empty": "There is no template that fits this output.",
-        "open_documents": "Open Documents"
+        "open_documents": "Open Documents",
+        "unsaved_note": "The template choice is not saved. Save it in the “Text” step with “Save draft”.",
+        "draft_note": "The template choice is saved to the open draft with “Save draft” in the “Text” step.",
+        "final_note": "The choice applies to the next draft. The template of an approved text cannot be changed.",
+        "blocked": "The permission “Allow in work mode” has been taken off this draft's template. The draft keeps the template; if you do not want that, choose another template or “No template” and save the draft.",
+        "not_word": "The chosen template is not a Word file (DOCX): it does not change the shape of the approved file."
       },
       "style": {
         "audience": "For whom",
@@ -5323,7 +5330,8 @@
         "clear": "Remove from the room",
         "sources": "Sources:",
         "final_note": "This text can no longer be changed.",
-        "downloads": "Downloads"
+        "downloads": "Downloads",
+        "unsaved_template": "The template choice is not saved. “Save draft” saves it too."
       },
       "refine": {
         "lead": "Write what to change in the text. Refining uses the same files and takes into account the changes you have made in the text yourself.",
@@ -5335,7 +5343,7 @@
         "needs_text": "Write what to change, then the text can be refined."
       },
       "versions": {
-        "lead": "The latest versions in this room, up to {count}. They are kept only while the room is open.",
+        "lead": "The latest versions in this room, up to {count}. A new version is made when the text is composed or refined. Versions are not saved: they are gone when you close the room or reload the page.",
         "empty": "No versions yet.",
         "current": "Current",
         "restore": "Restore",
@@ -5345,10 +5353,11 @@
           "generated": "Drafted",
           "refined": "Refined",
           "rerun": "New draft"
-        }
+        },
+        "lead_paused": "Here is the text as it came into this room. No new versions are added for now, because composing and refining texts is paused."
       },
       "approve": {
-        "lead": "Approving saves the text and locks it: an approved text can no longer be changed. After that you can download the text as a DOCX and a PDF file.",
+        "lead": "Approving saves the text and locks it: an approved text can no longer be changed. After that you can download the text as a Word file; a PDF is made when PDF supports all the characters of the text.",
         "done": "The text is approved and can no longer be changed."
       },
       "finish": {
@@ -5376,7 +5385,8 @@
         "cleared": "The text was removed from the room. The saved text is still on the Documents page.",
         "cleared_client": "The text was removed from the room. The saved text is still among your results.",
         "version_restored": "The version is in the editor. Save it if you want to keep it.",
-        "saved_restored": "The saved text was restored."
+        "saved_restored": "The saved text was restored.",
+        "version_restored_same": "The version is in the editor. It is the same text that is saved."
       },
       "confirm": {
         "compose": "Press again to draft",
@@ -5462,6 +5472,15 @@
         "needs_text": "The transcript text is empty."
       },
       "paused": "Composing and refining texts is paused while the new system is being built. Earlier texts and files are kept."
+    },
+    "export": {
+      "type": "Type",
+      "approved": "Approved",
+      "content": "Content",
+      "sources": "Sources",
+      "no_sources": "No source documents linked.",
+      "empty_content": "(empty)",
+      "untitled_source": "Document"
     }
   },
   "research": {

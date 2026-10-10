@@ -15,6 +15,7 @@
 
 import { ALLOWED_DOCUMENT_TYPES, MAX_DOCUMENT_SIZE_BYTES } from "@/lib/documents/constants";
 import { describeProvenance, formatDate, formatFileSize, researchStatusLabel, workspaceTypeLabel } from "@/lib/documents/presentation";
+import { unfinishedRagRemoval } from "@/lib/documents/ragRemovalState";
 import { localizePath } from "@/lib/localizePath";
 
 /** Vaated, millel on kataloogis nimi ja lühinimi (`documents.views.<võti>`). */
@@ -108,10 +109,14 @@ const FACT_LABEL_KEYS = Object.freeze({
   rag: "documents.provenance.labels.rag"
 });
 
-/** Kas vana otsingukoopia eemaldamine on pooleli (`pending`) või ootab uut katset (`failed`). */
-export function removalState(item) {
-  const status = String(item?.raw?.metadata?.ragRemoval?.status || "");
-  return status === "pending" || status === "failed" ? status : "";
+/**
+ * Kas vana otsingukoopia eemaldamine on pooleli (`pending`) või ootab uut katset
+ * (`failed`). Kuni vana otsing on suletud, ei ole kumbki: sealt ei saa midagi
+ * eemaldada ja luba ei tohi selle taha lukku jääda (vt
+ * `lib/documents/ragRemovalState.js`). `options.ragAvailable` on testi jaoks.
+ */
+export function removalState(item, options) {
+  return unfinishedRagRemoval(item?.raw?.metadata?.ragRemoval, options);
 }
 
 /**
@@ -228,8 +233,11 @@ export function itemActions(item, { locale, client = false } = {}) {
         open: localizePath(`/documents/artifacts/${id}`, locale),
         docx: raw.downloadUrls?.docx || null,
         /* PDF-i ei tehta, kui tekstis on märke, mida PDF-i kirjatüüp ei kanna
-           (kirillitsa, emotikonid): link vastaks siis veaga. Sama reegel mis
-           detaililehel (`artifactDownloads`, ../detail/detailModel.js). */
+           (kirillitsa, emotikonid): link vastaks siis veaga. Server annab PDF-i
+           lingi ainult siis, kui PDF on olemas (`artifactHasPdf`,
+           lib/documents/artifactFiles.js); kinnitamise kirje (`provenance`) on teine
+           kaitse, kui see reaga kaasa tuli. Sama reegel mis detaililehel
+           (`artifactDownloads`, ../detail/detailModel.js). */
         pdf: pdfWasRendered(raw) ? raw.downloadUrls?.pdf || null : null,
         copy: true,
         remove: "artifact"

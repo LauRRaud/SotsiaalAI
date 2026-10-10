@@ -1,7 +1,6 @@
 import { logDocumentsAudit } from "@/lib/documents/audit"
 import { effectiveRoleFromSession } from "@/lib/authz"
 import {
-  buildArtifactDownloadUrl,
   normalizeArtifactContent,
   normalizeArtifactTitle,
   serializeArtifact
@@ -84,6 +83,8 @@ export async function POST(request, { params }) {
           expectedUpdatedAt,
           title: nextTitle,
           content: nextContent,
+          /* Failide sildid on kinnitaja lehe keeles (päis `x-ui-locale`). */
+          locale,
           maxSnapshotBytes: quota.limit - quota.projected
         },
         { db: tx }
@@ -99,17 +100,17 @@ export async function POST(request, { params }) {
       approvedAt: artifact.approvedAt
     })
 
+    /* Lingid tulevad samast kohast kust teksti enda omad: PDF-i linki ei ole,
+       kui PDF-i ei tehtud (tekstis on märke, mida PDF ei toeta). */
+    const serialized = serializeArtifact(artifact, { includeContent: true })
     return json({
       ok: true,
       artifactId: artifact.id,
       status: artifact.status,
       approvedAt: artifact.approvedAt,
-      downloadUrl: buildArtifactDownloadUrl(artifact.id, "docx"),
-      downloadUrls: {
-        docx: buildArtifactDownloadUrl(artifact.id, "docx"),
-        pdf: buildArtifactDownloadUrl(artifact.id, "pdf")
-      },
-      artifact: serializeArtifact(artifact, { includeContent: true })
+      downloadUrl: serialized.downloadUrl,
+      downloadUrls: serialized.downloadUrls,
+      artifact: serialized
     })
   } catch (error) {
     if (error?.status === 403) {

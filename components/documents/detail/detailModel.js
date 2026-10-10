@@ -80,16 +80,19 @@ export function documentItem(document) {
 }
 
 /**
- * Mida kinnitatud tekstist alla laadida saab. Server pakub PDF-i linki iga
- * kinnitatud teksti juures, aga PDF-i ei tehta, kui tekstis on märke, mida PDF
- * ei toeta. Kinnitamisel salvestatud kirje (`provenance.rendered`) ütleb, kas
- * PDF on olemas: kui ei ole, siis linki ei näidata, sest see viiks veateateni.
+ * Mida kinnitatud tekstist alla laadida saab. PDF-i ei tehta, kui tekstis on
+ * märke, mida PDF ei toeta: siis on olemas ainult Wordi fail (`pdfMissing`).
+ * Seda ütleb kaks asja ja kumbki üksi on piisav: kinnitamisel salvestatud
+ * kirje (`provenance.rendered`) ja see, et server andis Wordi faili lingi, aga
+ * PDF-i oma mitte (server pakub PDF-i linki ainult olemasolevale failile).
+ * Sama reeglit kasutab koostamisruum (`components/agent/AgentModePage.jsx`).
  */
 export function artifactDownloads(artifact) {
   if (!artifact || isDraft(artifact)) return { docx: null, pdf: null, pdfMissing: false };
   const urls = artifact.downloadUrls || {};
   const rendered = artifact.provenance?.rendered;
-  const pdfMissing = Boolean(rendered) && typeof rendered === "object" && !rendered.pdf;
+  const notRendered = Boolean(rendered) && typeof rendered === "object" && !rendered.pdf;
+  const pdfMissing = notRendered || (Boolean(urls.docx) && !urls.pdf);
   return { docx: urls.docx || null, pdf: pdfMissing ? null : urls.pdf || null, pdfMissing };
 }
 
@@ -243,17 +246,9 @@ export function shareOutcome(payload, { asked = false } = {}) {
   };
 }
 
-/** Viga, mille sõnum tuli serveri vastusest ja mida võib inimesele näidata. */
-export class RequestFailure extends Error {}
-
-/**
- * Vea lause inimesele. Serveri vastusest tulnud sõnum sobib ekraanile; võrgu-
- * ja muu viga kannab brauseri ingliskeelset teksti („Failed to fetch”) ja selle
- * asemel on lehe oma lause.
- */
-export function failureText(error, fallback) {
-  return error instanceof RequestFailure && error.message ? error.message : fallback;
-}
+/* Serveri sõnumiga viga ja selle lause inimesele: sama reegel on dokumentide
+   lehel ja koostamisruumis (lib/documents/clientRequest.js). */
+export { RequestFailure, failureText } from "@/lib/documents/clientRequest";
 
 const KEY_SHAPE = /^[a-z][a-z0-9_]*(\.[a-z0-9_]+)+$/i;
 

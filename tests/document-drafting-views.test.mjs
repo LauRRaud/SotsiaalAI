@@ -10,14 +10,14 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {
   AUDIENCE_OPTIONS, AUDIO_SOURCE_LIST_LIMIT, AUDIO_VIEWS, AUDIO_WAYS, CLIENT_AGENT_TASK_OPTIONS, CLIENT_MAX_DOCUMENTS, COMPOSE_VIEWS_CLIENT, COMPOSE_VIEWS_WORKER,
-  COMPOSE_PAUSED, CONFIRM_KINDS, FREE_VIEWS, LANGUAGE_OPTIONS, LENGTH_OPTIONS, PRESS_GAP_MS, PRIVACY_ACTIONS, PRIVACY_CHOICE_KEYS, PRIVACY_WORKFLOW, RECENT_RESULTS_LIMIT, TONE_OPTIONS, VERSION_KINDS, VIEW_TEXT_KEYS,
-  activeViewFor, audioFileProblem, audioSourceRows, clientStatusLabel, clientTaskArtifactType, composeBlocker, confirmPress, confirmTexts, formatDuration, hasUnsavedText,
+  COMPOSE_PAUSED, CONFIRM_KINDS, FREE_VIEWS, LANGUAGE_OPTIONS, LENGTH_OPTIONS, PRESS_GAP_MS, PRIVACY_ACTIONS, PRIVACY_CHOICE_KEYS, PRIVACY_WORKFLOW, RECENT_RESULTS_LIMIT, TEMPLATE_NOTE_KEYS, TONE_OPTIONS, VERSION_KINDS, VIEW_TEXT_KEYS,
+  activeViewFor, audioFileProblem, audioSourceRows, clientStatusLabel, clientTaskArtifactType, composeBlocker, confirmPress, confirmTexts, errorWayFor, formatDuration, hasUnsavedText,
   instructionLimit, isComposableType, isTemplateCompatible, isVersionActive, outputTypeOptions, pressAllowed, privacyChoiceKey, privacyChoices, privacyTextKeys, recentResultRows, recordingPurposeLabel, refineBlocker,
-  resultSheet, resultStateOf, serverMessage, snippet, sourceRows, statusLabel, summaryBlocker, templateOptions, textAtRisk, transcribeBlocker, transcriptEdited, typeLabel,
-  versionRows, viewKeysFor, viewStates,
+  resultSheet, resultStateOf, serverMessage, snippet, sourceRows, statusLabel, summaryBlocker, templateChoiceUnsaved, templateNoteKind, templateOptions, templatePlaceholderList, templateStatus,
+  textAtRisk, transcribeBlocker, transcriptEdited, typeLabel, versionRestoredKey, versionRows, viewKeysFor, viewStates,
 } from '../components/agent/drafting/draftingModel.js';
 import { clientTaskInstruction } from '../lib/documents/agentTasks.js';
-import { AGENT_ARTIFACT_STATUS_VALUES, AGENT_ARTIFACT_TYPE_VALUES, DOCUMENT_KIND_VALUES, TEMPLATE_FOR_VALUES } from '../lib/documents/constants.js';
+import { AGENT_ARTIFACT_STATUS_VALUES, AGENT_ARTIFACT_TYPE_VALUES, DOCUMENT_KIND_VALUES, DOCX_MIME_TYPE, DOCX_TEMPLATE_PLACEHOLDERS, TEMPLATE_FOR_VALUES } from '../lib/documents/constants.js';
 
 /* Reavahetused ühtlustatakse: Windowsi tööpuus on failid CRLF-iga, mujal LF-iga. */
 const read = (path) => fs.readFileSync(new URL(path, import.meta.url), 'utf8').replace(/\r\n/g, '\n');
@@ -323,11 +323,11 @@ test('teine vajutus: topeltklõps ei läbi mõlemat astet ja tasuline töö ei k
   /* Leht küsib teist vajutust kõige eest, mis viiks teksti kaasa või on pöördumatu. */
   const page = read(PAGE);
   for (const call of [
-    'guarded("compose", hasDraftEdits && !options.confirmed',
-    'guarded("clear", hasDraftEdits, handleClearWorkspaceResult)',
+    'guarded("compose", hasTextEdits && !options.confirmed',
+    'guarded("clear", hasTextEdits, handleClearWorkspaceResult)',
     'guarded(`version:${row.key}`, versionTextAtRisk',
     'guarded("saved", versionTextAtRisk, handleRestoreSavedVersion)',
-    'guarded(`open:${row.key}`, hasDraftEdits',
+    'guarded(`open:${row.key}`, hasTextEdits',
     'guarded("delete", true',
     'guarded(key, true, () => void handleApprove())',
     'guarded(`leave:${href}`, unsavedAnywhere',
@@ -345,6 +345,206 @@ test('teine vajutus: topeltklõps ei läbi mõlemat astet ja tasuline töö ei k
   /* Akna sulgemisel küsib brauser; Esc küsib teist vajutust; klahvikordus ei vajuta nuppe. */
   assert.ok(page.includes('addEventListener("beforeunload"') && page.includes('pressConfirm("esc")'));
   assert.ok(page.includes('event.repeat && (event.key === "Enter" || event.key === " ")'));
+});
+
+// --- Brauseris kinnitatud vead (10.10) --------------------------------------------------
+
+/* Lehe funktsiooni keha lähtetekstist: nimest kuni funktsiooni lõpuni (sama taandega sulg). */
+function functionBody(source, name) {
+  const start = source.indexOf(`function ${name}(`);
+  assert.ok(start > 0, `funktsioon ${name} on lehel`);
+  return source.slice(start, source.indexOf('\n  }\n', start));
+}
+
+// Malli valik elas ainult lehe olekus: seda ei loetud salvestamata muudatuseks, ükski vaade
+// ei öelnud, millega see salvestub, ja versiooni taastamine vahetas valiku vaikselt ära.
+test('mall: valik on salvestamata muudatus ja teksti taastamine seda ei puuduta', () => {
+  const draft = { id: 'a1', status: 'DRAFT', templateId: 't1' };
+  assert.equal(templateChoiceUnsaved({ result: draft, selectedTemplateId: 't1' }), false);
+  assert.equal(templateChoiceUnsaved({ result: draft, selectedTemplateId: 't2' }), true);
+  /* „Ilma mallita” mustandil, millel on mall, on samuti muudatus; ja vastupidi. */
+  assert.equal(templateChoiceUnsaved({ result: draft, selectedTemplateId: '' }), true);
+  assert.equal(templateChoiceUnsaved({ result: { ...draft, templateId: null }, selectedTemplateId: '' }), false);
+  assert.equal(templateChoiceUnsaved({ result: { ...draft, templateId: null }, selectedTemplateId: 't2' }), true);
+  /* Kinnitatud teksti malli ei saa muuta: seal kehtib valik järgmise koostamise kohta. */
+  assert.equal(templateChoiceUnsaved({ result: { ...draft, status: 'FINAL' }, selectedTemplateId: 't2' }), false);
+  assert.equal(templateChoiceUnsaved({ result: null, selectedTemplateId: 't2' }), false);
+  /* Pöördujal malle ei ole. */
+  assert.equal(templateChoiceUnsaved({ result: draft, selectedTemplateId: '', client: true }), false);
+
+  /* Malli vaate jalarida ütleb, kuidas valik avatud tekstini jõuab. */
+  assert.equal(templateNoteKind({ resultState: 'draft', unsaved: true }), 'unsaved');
+  assert.equal(templateNoteKind({ resultState: 'draft', unsaved: false }), 'with_draft');
+  assert.equal(templateNoteKind({ resultState: 'final', unsaved: false }), 'next_only');
+  for (const resultState of ['none', 'loading', 'failed']) assert.equal(templateNoteKind({ resultState }), '');
+  assert.equal(templateNoteKind({ resultState: 'draft', unsaved: true, client: true }), '');
+  for (const lang of LANGS) {
+    const messages = catalog(lang);
+    for (const key of Object.values(TEMPLATE_NOTE_KEYS)) assert.equal(typeof at(messages, key), 'string', `${lang}: ${key}`);
+    /* Mustandi laused nimetavad nuppu ja vaadet, kus valik salvestub. */
+    for (const kind of ['unsaved', 'with_draft']) {
+      const text = at(messages, TEMPLATE_NOTE_KEYS[kind]);
+      assert.ok(text.includes(messages.documents.actions.save_draft) && text.includes(messages.documents.drafting.views.text.short), `${lang}: ${kind}`);
+    }
+    assert.ok(messages.documents.drafting.text.unsaved_template.includes(messages.documents.actions.save_draft), lang);
+  }
+
+  const page = read(PAGE);
+  /* Salvestamata on nii tekst kui ka malli valik: lahkumine, akna sulgemine ja Esc küsivad üle. */
+  assert.ok(page.includes('const templateUnsaved = templateChoiceUnsaved({ result: workspaceResult, selectedTemplateId, client: isClientRole })'));
+  assert.ok(page.includes('const hasDraftEdits = hasTextEdits || templateUnsaved'));
+  assert.ok(page.includes('const unsavedAnywhere = hasDraftEdits || audio.canSaveAudioTranscript'));
+  assert.ok(page.includes('unsaved: hasDraftEdits,'), 'sammu seis näitab salvestamata muudatust');
+  assert.ok(page.includes('? t("documents.drafting.text.unsaved_template")'), 'teksti vaade ütleb, et malli valik on salvestamata');
+  assert.ok(page.includes('noteKind ? t(TEMPLATE_NOTE_KEYS[noteKind]) : ""') && page.includes('noteKind === "unsaved" ? { label: viewShort("text"), onClick: () => openView("text") } : null'), 'malli vaate jalarida ja tee teksti vaatesse');
+  /* Salvestus saadab valitud malli endiselt kaasa (päring on sama mis enne). */
+  assert.ok(page.includes('templateId: selectedTemplateId || null,'));
+
+  /* Taastamine puudutab ainult teksti: malli valik ja väljundi tüüp jäävad paika. */
+  for (const name of ['handleRestoreWorkspaceVersion', 'handleRestoreSavedVersion']) {
+    const body = functionBody(page, name);
+    assert.ok(body.includes('setResultTitle(') && body.includes('setResultContent('), `${name} taastab teksti`);
+    assert.ok(!body.includes('setSelectedTemplateId(') && !body.includes('setOutputType('), `${name} ei muuda malli ega väljundi tüüpi`);
+  }
+});
+
+// Mustand, mille mallilt oli luba vahepeal ära võetud, ei salvestunud ega kinnitunud ruumis
+// ja veateade ei öelnud, mida teha.
+test('mall: lubamata malliga mustand salvestub ja keeldumine viib malli vaatesse', async () => {
+  const { draftTemplateChange, templateShapesFile } = await import('../lib/documents/artifactFiles.js');
+  /* Olemasoleva malli hoidmine ei ole uus valik: seda ei kontrollita uuesti. */
+  assert.deepEqual(draftTemplateChange('t1', 't1'), { kind: 'keep', templateId: 't1' });
+  assert.deepEqual(draftTemplateChange('t1', ' t1 '), { kind: 'keep', templateId: 't1' });
+  /* Päring, mis malli ei nimeta (teksti detailileht), hoiab selle samuti. */
+  assert.deepEqual(draftTemplateChange('t1', undefined), { kind: 'keep', templateId: 't1' });
+  assert.deepEqual(draftTemplateChange(null, undefined), { kind: 'keep', templateId: null });
+  /* Tühi väärtus võtab malli ära; teine mall on valik, mida kontrollitakse. */
+  assert.deepEqual(draftTemplateChange('t1', null), { kind: 'clear', templateId: null });
+  assert.deepEqual(draftTemplateChange('t1', ''), { kind: 'clear', templateId: null });
+  assert.deepEqual(draftTemplateChange('t1', 't2'), { kind: 'choose', templateId: 't2' });
+  assert.deepEqual(draftTemplateChange(null, 't2'), { kind: 'choose', templateId: 't2' });
+  const route = read('../app/api/documents/artifacts/[id]/route.js');
+  assert.ok(route.includes('const templateChange = draftTemplateChange(artifact.templateId, body?.templateId)'));
+  const check = route.slice(route.indexOf('if (templateChange.kind === "choose") {'), route.indexOf('const role = effectiveRoleFromSession(auth.session)'));
+  assert.ok(check.includes('ownerId: auth.userId,') && check.includes('if (!template.agentAllowed) {'), 'uut malli kontrollitakse nagu enne');
+
+  /* Valitud malli seis mallide loendi järgi. */
+  const templates = [
+    { id: 't1', agentAllowed: true, mime: DOCX_MIME_TYPE },
+    { id: 't2', agentAllowed: false, mime: DOCX_MIME_TYPE },
+    { id: 't3', agentAllowed: true, mime: 'text/plain' },
+  ];
+  assert.deepEqual(templateStatus({ templates, selectedTemplateId: 't1' }), { blocked: false, shapesFile: true });
+  assert.deepEqual(templateStatus({ templates, selectedTemplateId: 't2' }), { blocked: true, shapesFile: true });
+  assert.deepEqual(templateStatus({ templates, selectedTemplateId: 't3' }), { blocked: false, shapesFile: false });
+  /* Malli, mida loendis ei ole, ei nimetata lubamatuks: seda ei saa teada. */
+  assert.deepEqual(templateStatus({ templates, selectedTemplateId: 'tx' }), { blocked: false, shapesFile: null });
+  assert.deepEqual(templateStatus({ templates, selectedTemplateId: '' }), { blocked: false, shapesFile: null });
+  assert.equal(templateShapesFile({ mime: DOCX_MIME_TYPE }), true);
+  for (const mime of ['application/pdf', 'text/plain', '', undefined]) assert.equal(templateShapesFile({ mime }), false, String(mime));
+
+  /* Serveri keeldumine valitud malli pärast: lause ütleb, mida teha, ja jalareal on tee malli vaatesse. */
+  assert.equal(errorWayFor('documents.artifacts.errors.template_not_allowed'), 'template');
+  assert.equal(errorWayFor('documents.artifacts.errors.template_not_found'), 'template');
+  assert.equal(errorWayFor('documents.artifacts.errors.version_conflict'), '');
+  assert.equal(errorWayFor(undefined), '');
+  for (const lang of LANGS) {
+    const messages = catalog(lang).documents;
+    for (const key of ['template_not_allowed', 'template_not_found']) {
+      const text = messages.artifacts.errors[key];
+      assert.ok(text.includes(messages.drafting.views.template.short) && text.includes(messages.drafting.template.none), `${lang}: ${key} ütleb, mida teha`);
+    }
+    assert.ok(messages.drafting.template.blocked.includes(messages.drafting.template.none), `${lang}: lubamata malli lause ütleb, mida teha`);
+    assert.ok(/DOCX/.test(messages.drafting.template.not_word), lang);
+  }
+  const page = read(PAGE);
+  assert.ok(page.includes('failure.way = errorWayFor(resultPayload?.messageKey)') && page.split('setErrorWay(String(error?.way || ""))').length - 1 === 2, 'salvestamine ja kinnitamine');
+  assert.ok(page.includes('const way = active && errorWay && errorWay !== key ? { label: viewShort(errorWay), onClick: () => openView(errorWay) } : null'));
+  assert.ok(page.includes('if (errorWay) setErrorWay("")'), 'tee kustub koos veaga');
+  assert.ok(page.includes('chosen.blocked && resultState === "draft" ? t("documents.drafting.template.blocked") : ""'));
+  assert.ok(page.includes('chosen.shapesFile === false ? t("documents.drafting.template.not_word") : ""'));
+});
+
+// Malli vaade ütles, et mall annab tekstile ülesehituse. Kuni koostamine on peatatud, on
+// malli ainus mõju kinnitatud Wordi faili kuju, ja ainult Wordi mallil.
+test('mall: vaade ütleb, mis on tõsi, ja loetleb kohatäitjad, mida kinnitamine asendab', () => {
+  const list = templatePlaceholderList();
+  assert.equal(DOCX_TEMPLATE_PLACEHOLDERS.length, 5);
+  for (const name of DOCX_TEMPLATE_PLACEHOLDERS) assert.ok(list.includes(`{{${name}}}`), name);
+  /* Sama loend, mida Wordi faili tegija asendab: iga nime jaoks on asendus olemas. */
+  const exporter = read('../lib/documents/docxExport.js');
+  assert.ok(exporter.includes('for (const name of DOCX_TEMPLATE_PLACEHOLDERS) {'));
+  for (const name of DOCX_TEMPLATE_PLACEHOLDERS) assert.ok(exporter.includes(`\\{\\{${name}\\}\\}`), `${name} asendatakse`);
+  assert.ok(read(PAGE).includes('lead={t("documents.drafting.template.lead", { placeholders: templatePlaceholderList() })}'));
+  for (const lang of LANGS) {
+    const t = translator(lang);
+    const lead = t('documents.drafting.template.lead', { placeholders: list });
+    assert.ok(lead.includes('{{TITLE}}') && lead.includes('{{ARTIFACT_TYPE}}') && !lead.includes('{placeholders}'), lang);
+    assert.ok(/DOCX/.test(lead), `${lang}: lause nimetab Wordi faili`);
+  }
+  assert.ok(!/ülesehitus/i.test(catalog('et').documents.drafting.template.lead), 'vana lubadus on läinud');
+});
+
+// Ruum pakkus PDF-i linki ja lubas PDF-i iga kinnitatud teksti juures, ka siis, kui PDF-i ei
+// tehtud (tekstis on märke, mida PDF ei toeta): link vastas veaga.
+test('kinnitatud tekst: PDF-i pakutakse ainult siis, kui see on olemas', () => {
+  const page = read(PAGE);
+  assert.ok(page.includes('import { artifactDownloads } from "@/components/documents/detail/detailModel"'), 'sama reegel mis teksti detaililehel');
+  assert.ok(page.includes('const files = artifactDownloads(workspaceResult)') && page.includes('downloads={downloadLinks(files)}'), 'kinnitamise vaate lingid tulevad reeglist');
+  assert.ok(!page.includes('downloadLinks(workspaceResult?.downloadUrls)') && !page.includes('payload?.downloadUrls ||'), 'serveri linke ei võeta enam otse');
+  /* Teade ja jalarida ütlevad, kui valmis on ainult Wordi fail (samad laused mis detaililehel). */
+  assert.ok(/: files\.pdfMissing\s+\? "documents\.detail\.approve\.done_no_pdf"\s+: "documents\.feedback\.approved"/.test(page));
+  assert.ok(/final\s+\? files\.pdfMissing\s+\? t\("api\.exports\.pdf_content_not_supported"\)/.test(page));
+  for (const lang of LANGS) {
+    const messages = catalog(lang);
+    assert.equal(typeof messages.documents.detail.approve.done_no_pdf, 'string', lang);
+    assert.equal(typeof messages.api.exports.pdf_content_not_supported, 'string', lang);
+  }
+  /* Kinnitamise juhis ei luba PDF-i enne, kui see on tehtud. */
+  assert.ok(!/DOCX- ja PDF-failina/.test(catalog('et').documents.drafting.approve.lead));
+});
+
+// Versioonide lause lubas kuni kaheksat versiooni ka siis, kui uusi ei saa tekkida, ja
+// taastamise teade soovitas salvestada, kui taastatud tekst oli sama mis salvestatud.
+test('versioonid: lause ei luba rohkem, kui on, ja taastamise teade ei soovita asjatut salvestamist', () => {
+  const saved = { id: 'a1', title: 'Aruanne', content: 'Tekst' };
+  assert.equal(versionRestoredKey(saved, { title: 'Aruanne', content: 'Tekst' }), 'documents.drafting.feedback.version_restored_same');
+  assert.equal(versionRestoredKey(saved, { title: 'Aruanne ', content: 'Tekst' }), 'documents.drafting.feedback.version_restored_same');
+  assert.equal(versionRestoredKey(saved, { title: 'Aruanne', content: 'Täiendatud' }), 'documents.drafting.feedback.version_restored');
+  /* Tekst, mida ei ole veel salvestatud, tuleb salvestada. */
+  assert.equal(versionRestoredKey({ title: 'Aruanne', content: 'Tekst' }, { title: 'Aruanne', content: 'Tekst' }), 'documents.drafting.feedback.version_restored');
+  assert.equal(versionRestoredKey(null, { title: 'x', content: 'y' }), 'documents.drafting.feedback.version_restored');
+  const page = read(PAGE);
+  assert.ok(page.includes('setRunFeedback({ message: t(versionRestoredKey(workspaceResult, version)) })'));
+  assert.ok(page.includes('lead={t(COMPOSE_PAUSED ? "documents.drafting.versions.lead_paused" : "documents.drafting.versions.lead", { count: WORKSPACE_VERSION_LIMIT })}'));
+  /* Uus versioon tekib ainult koostamisel, täiendamisel ja heli raja kokkuvõttest: kuni
+     koostamine on peatatud, ei saa neid olla üle ühe. */
+  assert.equal(count(page, 'appendWorkspaceVersion({'), 2, 'appendWorkspaceVersion: kirjeldus ja üks kutse');
+  assert.ok(functionBody(page, 'handleRefine').includes('appendWorkspaceVersion({'), 'lisaja on täiendamine');
+  for (const lang of LANGS) {
+    const versions = catalog(lang).documents.drafting.versions;
+    assert.ok(!versions.lead_paused.includes('{count}'), `${lang}: peatatud ajal arvu ei lubata`);
+    assert.equal(typeof catalog(lang).documents.drafting.feedback.version_restored_same, 'string', lang);
+  }
+});
+
+// Serveri veateade tuli brauseri keeles ja võrgutõrke korral oli ekraanil brauseri enda
+// ingliskeelne tekst („Failed to fetch”).
+test('iga päring kannab lehe keelt ja brauseri veatekst ei jõua ekraanile', () => {
+  for (const path of [PAGE, AUDIO_HOOK, FILES_HOOK]) {
+    const source = read(path);
+    const requests = source.split('fetch(').slice(1);
+    assert.ok(requests.length >= 3, `${path}: päringuid ${requests.length}`);
+    for (const request of requests) {
+      const head = request.slice(0, 420);
+      assert.ok(/headers: localeHeaders\(locale\)|"x-ui-locale": locale|headers: requestHeaders/.test(head), `${path}: ${request.slice(0, 60)}`);
+    }
+    assert.ok(!/[eE]rror\??\.message/.test(source), `${path}: vea toorest teksti ei kuvata`);
+    assert.ok(!/payload\?\.message \|\|/i.test(source), `${path}: serveri sõnum käib läbi serverMessage`);
+    assert.ok(!/throw new Error\((?:serverMessage|payload|t\()/.test(source), `${path}: ekraanile mõeldud viga on RequestFailure`);
+    assert.ok(source.includes('failureText(error, t('), path);
+  }
+  assert.ok(read(PAGE).includes('const requestHeaders = {\n      "Content-Type": "application/json",\n      "x-ui-locale": locale\n    }'));
 });
 
 test('serveri veateade: võti ei jõua ekraanile', () => {

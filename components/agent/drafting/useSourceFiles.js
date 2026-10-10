@@ -17,7 +17,9 @@
 
 import { useEffect, useMemo, useState } from "react"
 
-import { CLIENT_MAX_DOCUMENTS } from "./draftingModel"
+import { RequestFailure, failureText, localeHeaders } from "@/lib/documents/clientRequest"
+
+import { CLIENT_MAX_DOCUMENTS, serverMessage } from "./draftingModel"
 
 export default function useSourceFiles({ initialDocumentIds = [], isClientRole = false, locale, t }) {
   const initialDocumentIdsSignature = Array.isArray(initialDocumentIds)
@@ -71,13 +73,14 @@ export default function useSourceFiles({ initialDocumentIds = [], isClientRole =
           try {
             const response = await fetch(`/api/documents/${encodeURIComponent(id)}`, {
               cache: "no-store",
+              headers: localeHeaders(locale),
               signal: controller.signal
             })
             const payload = await response.json().catch(() => ({}))
             if (!response.ok) {
               return {
                 id,
-                error: payload?.message || t("documents.errors.load_documents"),
+                error: serverMessage(payload, t, "documents.errors.load_documents"),
                 status: response.status
               }
             }
@@ -86,7 +89,7 @@ export default function useSourceFiles({ initialDocumentIds = [], isClientRole =
             if (controller.signal.aborted) return { id, aborted: true }
             return {
               id,
-              error: error?.message || t("documents.errors.load_documents")
+              error: failureText(error, t("documents.errors.load_documents"))
             }
           }
         }))
@@ -123,7 +126,7 @@ export default function useSourceFiles({ initialDocumentIds = [], isClientRole =
       cancelled = true
       controller.abort()
     }
-  }, [selectedDocumentIds, t])
+  }, [locale, selectedDocumentIds, t])
 
   useEffect(() => {
     let cancelled = false
@@ -147,16 +150,17 @@ export default function useSourceFiles({ initialDocumentIds = [], isClientRole =
         })
         const response = await fetch(`/api/documents?${params.toString()}`, {
           cache: "no-store",
+          headers: localeHeaders(locale),
           signal: controller.signal
         })
         const payload = await response.json().catch(() => ({}))
-        if (!response.ok) throw new Error(payload?.message || t("documents.errors.load_documents"))
+        if (!response.ok) throw new RequestFailure(serverMessage(payload, t, "documents.errors.load_documents"))
         if (cancelled) return
         setTemplates(Array.isArray(payload?.documents) ? payload.documents : [])
       } catch (error) {
         if (controller.signal.aborted || cancelled) return
         setTemplates([])
-        setTemplatesError(error?.message || t("documents.errors.load_documents"))
+        setTemplatesError(failureText(error, t("documents.errors.load_documents")))
       } finally {
         if (!cancelled) setTemplatesLoading(false)
       }
@@ -168,7 +172,7 @@ export default function useSourceFiles({ initialDocumentIds = [], isClientRole =
       cancelled = true
       controller.abort()
     }
-  }, [isClientRole, t])
+  }, [isClientRole, locale, t])
 
   /**
    * Pöörduja lisab faili: fail laaditakse üles materjalina ja lubatakse kohe
@@ -200,17 +204,17 @@ export default function useSourceFiles({ initialDocumentIds = [], isClientRole =
         body: formData
       })
       const uploadPayload = await uploadResponse.json().catch(() => ({}))
-      if (!uploadResponse.ok) throw new Error(uploadPayload?.message || t("documents.errors.upload_failed"))
+      if (!uploadResponse.ok) throw new RequestFailure(serverMessage(uploadPayload, t, "documents.errors.upload_failed"))
 
       const nextDocument = uploadPayload?.document || null
-      if (!nextDocument?.id || !nextDocument.agentAllowed) throw new Error(t("documents.errors.upload_failed"))
+      if (!nextDocument?.id || !nextDocument.agentAllowed) throw new RequestFailure(t("documents.errors.upload_failed"))
       const nextIds = Array.from(new Set([...selectedDocumentIds, nextDocument.id])).slice(0, CLIENT_MAX_DOCUMENTS)
       setDocuments((current) => [...current, nextDocument].slice(0, CLIENT_MAX_DOCUMENTS))
       setSelectedDocumentIds(nextIds)
       setMissingDocumentIds((current) => current.filter((id) => id !== nextDocument.id))
       return { ids: nextIds, document: nextDocument }
     } catch (error) {
-      setClientUploadError(error?.message || t("documents.errors.upload_failed"))
+      setClientUploadError(failureText(error, t("documents.errors.upload_failed")))
       return null
     } finally {
       setClientUploading(false)

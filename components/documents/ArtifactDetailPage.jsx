@@ -38,6 +38,7 @@ import { useI18n } from "@/components/i18n/I18nProvider"
 import StepFlight from "@/components/stage/StepFlight"
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot"
 import { SubpageHeader } from "@/components/ui/SubpageHeader"
+import { localeHeaders } from "@/lib/documents/clientRequest"
 import { setPanelLeaveGuard, twoPressLeaveGuard } from "@/lib/panelLeaveGuard"
 import { pushWithTransition } from "@/lib/routeTransition"
 
@@ -96,10 +97,12 @@ export default function ArtifactDetailPage({ artifactId }) {
   const focusHeading = useHeadingFocus(pageRef)
   const confirm = useTwoPress()
 
-  /* Keele vahetus annab uue `t`: laadimine ei tohi sellest uuesti käivituda,
-     muidu kirjutaks see väljadel oleva salvestamata teksti üle. */
+  /* Keele vahetus annab uue `t` ja `locale`: laadimine ei tohi sellest uuesti
+     käivituda, muidu kirjutaks see väljadel oleva salvestamata teksti üle. */
   const tRef = useRef(t)
   tRef.current = t
+  const localeRef = useRef(locale)
+  localeRef.current = locale
 
   const applyArtifact = useCallback((next) => {
     setArtifact(next)
@@ -111,7 +114,10 @@ export default function ArtifactDetailPage({ artifactId }) {
     const say = tRef.current
     setLoad({ status: "loading", error: "" })
     try {
-      const response = await fetch(`/api/documents/artifacts/${encodeURIComponent(artifactId)}`, { cache: "no-store" })
+      const response = await fetch(`/api/documents/artifacts/${encodeURIComponent(artifactId)}`, {
+        cache: "no-store",
+        headers: localeHeaders(localeRef.current)
+      })
       const payload = await response.json().catch(() => ({}))
       if (!response.ok || !payload?.artifact?.id) {
         throw new RequestFailure(serverMessage(payload, say, say("documents.errors.load_artifact")))
@@ -224,7 +230,7 @@ export default function ArtifactDetailPage({ artifactId }) {
       try {
         const response = await fetch(`/api/documents/artifacts/${encodeURIComponent(artifactId)}`, {
           method: "PATCH",
-          headers: { "Content-Type": "application/json" },
+          headers: localeHeaders(locale, { "Content-Type": "application/json" }),
           // Versioonitunnus on see, mida SEE vaade nägi: kui teine vahekaart jõudis ette,
           // saab siit 409 ja kasutaja teab, mitte ei kirjuta vaikselt üle.
           body: JSON.stringify({ ...sent, expectedUpdatedAt: artifact.updatedAt })
@@ -258,9 +264,10 @@ export default function ArtifactDetailPage({ artifactId }) {
         // ÜKS päring: salvestus ja kinnitus olid varem kaks eraldi HTTP-toimingut ja nende
         // vahele mahtus terve võistlus. Nüüd kinnitatakse täpselt see versioon ja see sisu,
         // mida kasutaja siin nägi, või ei kinnitata midagi.
+        // Lehe keel läheb kaasa: kinnitatud failide sildid ja teksti liigi nimi on selles keeles.
         const response = await fetch(`/api/documents/artifacts/${encodeURIComponent(artifactId)}/approve`, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: localeHeaders(locale, { "Content-Type": "application/json" }),
           body: JSON.stringify({ title, content, expectedUpdatedAt: artifact.updatedAt })
         })
         const payload = await response.json().catch(() => ({}))
@@ -301,7 +308,10 @@ export default function ArtifactDetailPage({ artifactId }) {
     return exclusive("delete", async () => {
       setNotice(NO_NOTICE)
       try {
-        const response = await fetch(`/api/documents/artifacts/${encodeURIComponent(artifactId)}`, { method: "DELETE" })
+        const response = await fetch(`/api/documents/artifacts/${encodeURIComponent(artifactId)}`, {
+          method: "DELETE",
+          headers: localeHeaders(locale)
+        })
         const payload = await response.json().catch(() => ({}))
         if (!response.ok) {
           throw new RequestFailure(serverMessage(payload, t, t("documents.errors.delete_artifact_failed")))
@@ -490,6 +500,11 @@ export default function ArtifactDetailPage({ artifactId }) {
             position: (current, total, label) => t("documents.views.position", { current, total, label })
           }}
           initialIndex={Math.max(0, landIndex)}
+          /* Teise vajutuse küsimus (kinnita, kustuta, lahku) käib selle osa
+             kohta, kus see küsiti. Teises osas käies võis tekst muutuda: tagasi
+             tulles algab küsimus otsast, mitte üks vajutus ei kinnita muudetud
+             teksti. */
+          onStepChange={confirm.disarm}
         >
           {renderPart}
         </StepFlight>

@@ -59,8 +59,10 @@ import { useI18n } from "@/components/i18n/I18nProvider"
 import StepFlight from "@/components/stage/StepFlight"
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot"
 import { SubpageHeader } from "@/components/ui/SubpageHeader"
+import { artifactDownloads } from "@/components/documents/detail/detailModel"
 import AdminRoleViewCycleButton from "@/components/workspace/AdminRoleViewCycleButton"
 import { clientTaskInstruction } from "@/lib/documents/agentTasks"
+import { RequestFailure, failureText, localeHeaders } from "@/lib/documents/clientRequest"
 import { localizePath } from "@/lib/localizePath"
 import { requestPrivacyCheck } from "@/lib/privacy/privacyCheckClient"
 import { pushWithTransition } from "@/lib/routeTransition"
@@ -80,6 +82,7 @@ import {
   privacyTextKeys,
   PRIVACY_WORKFLOW,
   RECENT_RESULTS_LIMIT,
+  TEMPLATE_NOTE_KEYS,
   WORKSPACE_VERSION_LIMIT,
   activeViewFor,
   audienceOptions,
@@ -87,6 +90,7 @@ import {
   clientTaskOptions,
   composeBlocker,
   confirmTexts,
+  errorWayFor,
   hasUnsavedText,
   instructionLimit,
   isComposableType,
@@ -103,10 +107,15 @@ import {
   snippet,
   sourceRows,
   statusLabel,
+  templateChoiceUnsaved,
+  templateNoteKind,
   templateOptions,
+  templatePlaceholderList,
+  templateStatus,
   textAtRisk,
   toneOptions,
   typeLabel,
+  versionRestoredKey,
   versionRows,
   viewKeysFor,
   viewStates
@@ -184,6 +193,9 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
   const [savingResult, setSavingResult] = useState(false)
   const [approvingResult, setApprovingResult] = useState(false)
   const [runError, setRunError] = useState("")
+  /* Vaade, kus viimase vea saab lahendada (nt salvestamine keeldus valitud malli
+     pärast): jalareal on siis tee sinna. Kustub koos veaga. */
+  const [errorWay, setErrorWay] = useState("")
   const [runFeedback, setRunFeedback] = useState(null)
   const [approvalNotice, setApprovalNotice] = useState(null)
   const [workspaceVersions, setWorkspaceVersions] = useState([])
@@ -321,10 +333,11 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
 
   const clearResultMessages = useCallback(() => {
     if (runError) setRunError("")
+    if (errorWay) setErrorWay("")
     if (runFeedback) setRunFeedback(null)
     if (artifactError) setArtifactError("")
     if (approvalNotice) setApprovalNotice(null)
-  }, [approvalNotice, artifactError, runError, runFeedback])
+  }, [approvalNotice, artifactError, errorWay, runError, runFeedback])
 
   useEffect(() => {
     if (!approvalNotice) return undefined
@@ -360,16 +373,17 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
       try {
         const response = await fetch("/api/documents/artifacts?limit=10", {
           cache: "no-store",
+          headers: localeHeaders(locale),
           signal: controller.signal
         })
         const payload = await response.json().catch(() => ({}))
-        if (!response.ok) throw new Error(payload?.message || t("documents.artifacts.errors.list_failed"))
+        if (!response.ok) throw new RequestFailure(serverMessage(payload, t, "documents.artifacts.errors.list_failed"))
         if (cancelled) return
         setRecentArtifacts(Array.isArray(payload?.artifacts) ? payload.artifacts : [])
       } catch (error) {
         if (controller.signal.aborted || cancelled) return
         setRecentArtifacts([])
-        setRecentArtifactsError(error?.message || t("documents.artifacts.errors.list_failed"))
+        setRecentArtifactsError(failureText(error, t("documents.artifacts.errors.list_failed")))
       } finally {
         if (!cancelled) setRecentArtifactsLoading(false)
       }
@@ -381,7 +395,7 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
       cancelled = true
       controller.abort()
     }
-  }, [isClientRole, t])
+  }, [isClientRole, locale, t])
 
   useEffect(() => {
     setPersistedArtifactId(String(initialArtifactId || "").trim())
@@ -410,10 +424,11 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
       try {
         const response = await fetch(`/api/documents/artifacts/${encodeURIComponent(persistedArtifactId)}`, {
           cache: "no-store",
+          headers: localeHeaders(locale),
           signal: controller.signal
         })
         const payload = await response.json().catch(() => ({}))
-        if (!response.ok) throw new Error(payload?.message || t("documents.errors.load_artifact"))
+        if (!response.ok) throw new RequestFailure(serverMessage(payload, t, "documents.errors.load_artifact"))
         if (cancelled) return
         const nextArtifact = payload?.artifact || null
         applyWorkspaceResult(nextArtifact)
@@ -437,7 +452,7 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
         if (controller.signal.aborted || cancelled) return
         applyWorkspaceResult(null)
         setWorkspaceVersions([])
-        setArtifactError(error?.message || t("documents.errors.load_artifact"))
+        setArtifactError(failureText(error, t("documents.errors.load_artifact")))
       } finally {
         if (!cancelled) setArtifactLoading(false)
       }
@@ -449,7 +464,7 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
       cancelled = true
       controller.abort()
     }
-  }, [persistedArtifactId, t, workspaceResult?.id])
+  }, [locale, persistedArtifactId, t, workspaceResult?.id])
 
   const selectedCount = documents.length
   const selectedCountLimitReached = isClientRole && selectedCount >= CLIENT_MAX_DOCUMENTS
@@ -473,11 +488,16 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
   const isWorkspaceResultSaved = Boolean(workspaceResult?.id)
   const canPersistResult = hasWorkspaceResult && resultContent.trim().length > 0
   const canClearWorkspaceResult = hasWorkspaceResult && !starting && !refiningResult && !savingResult && !approvingResult
-  const hasDraftEdits = hasUnsavedText(workspaceResult, resultTitle, resultContent)
+  const hasTextEdits = hasUnsavedText(workspaceResult, resultTitle, resultContent)
+  /* Malli valik, mida avatud mustandil veel ei ole: see jõuab mustandile ainult
+     salvestamisega, seega on see salvestamata muudatus nagu tekstki. Ilma
+     selleta lahkuti ruumist küsimata ja valik läks kaotsi. */
+  const templateUnsaved = templateChoiceUnsaved({ result: workspaceResult, selectedTemplateId, client: isClientRole })
+  const hasDraftEdits = hasTextEdits || templateUnsaved
   const canRestoreSavedVersion =
     isWorkspaceResultSaved &&
     workspaceResult?.status === "DRAFT" &&
-    hasDraftEdits &&
+    hasTextEdits &&
     !refiningResult &&
     !savingResult &&
     !approvingResult
@@ -612,11 +632,11 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
         headers: { "x-ui-locale": locale }
       })
       const payload = await response.json().catch(() => ({}))
-      if (!response.ok) throw new Error(payload?.message || t("documents.artifacts.errors.list_failed"))
+      if (!response.ok) throw new RequestFailure(serverMessage(payload, t, "documents.artifacts.errors.list_failed"))
       setRecentArtifacts(Array.isArray(payload?.artifacts) ? payload.artifacts : [])
       setRecentArtifactsError("")
     } catch (error) {
-      setRecentArtifactsError(error?.message || t("documents.artifacts.errors.list_failed"))
+      setRecentArtifactsError(failureText(error, t("documents.artifacts.errors.list_failed")))
     }
   }
 
@@ -674,7 +694,7 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
         headers: { "x-ui-locale": locale }
       })
       const payload = await response.json().catch(() => ({}))
-      if (!response.ok) throw new Error(payload?.message || t("documents.artifacts.errors.delete_failed"))
+      if (!response.ok) throw new RequestFailure(serverMessage(payload, t, "documents.artifacts.errors.delete_failed"))
 
       setRecentArtifacts((current) => current.filter((artifact) => artifact.id !== nextArtifactId))
       if (workspaceResult?.id === nextArtifactId) {
@@ -683,7 +703,7 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
       }
       setRunFeedback({ message: t("documents.drafting.feedback.deleted") })
     } catch (error) {
-      setRunError(error?.message || t("documents.artifacts.errors.delete_failed"))
+      setRunError(failureText(error, t("documents.artifacts.errors.delete_failed")))
     }
   }
 
@@ -742,7 +762,7 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
         })
       })
       const payload = await response.json().catch(() => ({}))
-      if (!response.ok) throw new Error(serverMessage(payload, t, "documents.errors.create_artifact_failed"))
+      if (!response.ok) throw new RequestFailure(serverMessage(payload, t, "documents.errors.create_artifact_failed"))
       // Server andis kindla vastuse: kavatsus on lahendatud ja järgmine jooks on uus töö.
       generateIntentRef.current = null
 
@@ -762,7 +782,7 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
         setRunFeedback({ message: t("documents.drafting.feedback.compose_stopped") })
         return null
       }
-      setRunError(error?.message || t("documents.errors.create_artifact_failed"))
+      setRunError(failureText(error, t("documents.errors.create_artifact_failed")))
       return null
     } finally {
       if (activeRequestAbortRef.current === controller) {
@@ -828,7 +848,7 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
         })
       })
       const payload = await response.json().catch(() => ({}))
-      if (!response.ok) throw new Error(serverMessage(payload, t, "documents.artifacts.errors.update_failed"))
+      if (!response.ok) throw new RequestFailure(serverMessage(payload, t, "documents.artifacts.errors.update_failed"))
       refineIntentRef.current = null
 
       const nextContent = String(payload?.content || "")
@@ -867,7 +887,7 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
         setRunFeedback({ message: t("documents.drafting.feedback.refine_stopped") })
         return null
       }
-      setRunError(error?.message || t("documents.artifacts.errors.update_failed"))
+      setRunError(failureText(error, t("documents.artifacts.errors.update_failed")))
       return null
     } finally {
       if (activeRequestAbortRef.current === controller) {
@@ -936,7 +956,7 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
       if (options.confirmed) setRunError(t(blocker === "too_long" ? "documents.artifacts.errors.instruction_too_long" : "documents.drafting.privacy.not_started"))
       return undefined
     }
-    return guarded("compose", hasDraftEdits && !options.confirmed, () =>
+    return guarded("compose", hasTextEdits && !options.confirmed, () =>
       runPaid(async () => {
         const privacy = options.skipPrivacy
           ? { text, privacyDecision: options.privacyDecision }
@@ -1007,10 +1027,11 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
   function handleRestoreSavedVersion() {
     if (!canRestoreSavedVersion) return
     clearResultMessages()
+    /* Taastatakse tekst. Malli valik jääb nii, nagu inimene selle jättis (kui
+       see on salvestamata, ütleb seda teksti vaate rida). */
     setResultTitle(String(workspaceResult?.title || ""))
     setResultContent(String(workspaceResult?.content || ""))
     setRefineInstruction("")
-    setSelectedTemplateId(String(workspaceResult?.templateId || ""))
     setRunFeedback({ message: t("documents.drafting.feedback.saved_restored") })
     focusActive()
   }
@@ -1019,12 +1040,14 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
     const version = workspaceVersions.find((entry) => entry.id === versionId)
     if (!version) return
     clearResultMessages()
-    setOutputType(String(version.type || outputType))
+    /* Versioon on TEKSTI versioon: taastatakse pealkiri ja sisu. Varem pani
+       taastamine tagasi ka versiooni aegse malli ja väljundi tüübi: valitud mall
+       kadus vaikselt ja järgmine salvestus võttis mustandilt salvestatud malli
+       ära, ilma et inimene oleks seda valinud. */
     setResultTitle(String(version.title || ""))
     setResultContent(String(version.content || ""))
     setRefineInstruction("")
-    setSelectedTemplateId(String(version.templateId || ""))
-    setRunFeedback({ message: t("documents.drafting.feedback.version_restored") })
+    setRunFeedback({ message: t(versionRestoredKey(workspaceResult, version)) })
     /* Vajutatud „Taasta" kadus: see rida on nüüd praegune. */
     focusActive()
   }
@@ -1074,13 +1097,16 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
 
     const resultPayload = await response.json().catch(() => ({}))
     if (!response.ok) {
-      throw new Error(
+      const failure = new RequestFailure(
         serverMessage(
           resultPayload,
           t,
           workspaceResult.id ? "documents.artifacts.errors.update_failed" : "documents.artifacts.errors.create_failed"
         )
       )
+      /* Kui keeldumise saab lahendada teises vaates (valitud mall), viib jalarida sinna. */
+      failure.way = errorWayFor(resultPayload?.messageKey)
+      throw failure
     }
 
     const nextArtifact = resultPayload?.artifact || null
@@ -1109,7 +1135,8 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
     try {
       await persistCurrentDraft()
     } catch (error) {
-      setRunError(error?.message || t("documents.artifacts.errors.create_failed"))
+      setRunError(failureText(error, t("documents.artifacts.errors.create_failed")))
+      setErrorWay(String(error?.way || ""))
     } finally {
       setSavingResult(false)
     }
@@ -1123,7 +1150,7 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
     try {
       const artifact = await persistCurrentDraft({ suppressFeedback: true })
       const artifactId = String(artifact?.id || "").trim()
-      if (!artifactId) throw new Error(t("documents.artifacts.errors.create_failed"))
+      if (!artifactId) throw new RequestFailure(t("documents.artifacts.errors.create_failed"))
 
       const response = await fetch(`/api/documents/artifacts/${encodeURIComponent(artifactId)}/approve`, {
         method: "POST",
@@ -1133,18 +1160,29 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
         body: JSON.stringify({ expectedUpdatedAt: artifact?.updatedAt })
       })
       const payload = await response.json().catch(() => ({}))
-      if (!response.ok) throw new Error(payload?.message || t("documents.artifacts.errors.approve_failed"))
+      if (!response.ok) throw new RequestFailure(serverMessage(payload, t, "documents.artifacts.errors.approve_failed"))
 
       applyWorkspaceResult(payload?.artifact || artifact, { keepChoices: true })
       setPersistedArtifactId(artifactId)
+      /* Teade lubab ainult neid faile, mis on olemas: PDF-i ei tehta, kui tekstis
+         on märke, mida PDF ei toeta (sama reegel ja sama lause mis teksti
+         detaililehel). */
+      const files = artifactDownloads(payload?.artifact)
       setApprovalNotice({
-        message: t(isClientRole ? "documents.drafting.feedback.finished" : "documents.feedback.approved"),
-        downloadUrls: payload?.downloadUrls || payload?.artifact?.downloadUrls || {}
+        message: t(
+          isClientRole
+            ? "documents.drafting.feedback.finished"
+            : files.pdfMissing
+              ? "documents.detail.approve.done_no_pdf"
+              : "documents.feedback.approved"
+        ),
+        downloadUrls: files
       })
       syncWorkspaceUrl(artifactId)
       if (isClientRole) await refreshRecentArtifacts()
     } catch (error) {
-      setRunError(error?.message || t("documents.artifacts.errors.approve_failed"))
+      setRunError(failureText(error, t("documents.artifacts.errors.approve_failed")))
+      setErrorWay(String(error?.way || ""))
     } finally {
       setApprovingResult(false)
     }
@@ -1191,6 +1229,13 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
 
   /* ---- Sõnad ja read vaadetele ------------------------------------------ */
 
+  /* Mis on salvestamata: tekst (salvestamine viib kaasa ka malli valiku) või
+     ainult malli valik. */
+  const unsavedLine = hasTextEdits
+    ? t("documents.drafting.text.unsaved")
+    : templateUnsaved
+      ? t("documents.drafting.text.unsaved_template")
+      : ""
   const armed = confirmTexts(confirming)
   /* Teise vajutuse ajal kannab nupp teise vajutuse sõnu. */
   const labelFor = (key, label) => (confirming === key && armed?.labelKey ? t(armed.labelKey) : label)
@@ -1212,12 +1257,15 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
       : { ok: "", error: runError }
   /* Teade on selles vaates, mis on parajasti ees. */
   const noticeFor = (key) => (key === activeView ? composeNotice : null)
-  const noteFor = (key, text = "", go = null) => {
-    const active = key === activeView
-    return footNote({ text: (active && armedNote) || text, go: active && armedNote ? null : go })
-  }
   const viewTitle = (key) => t(`documents.drafting.views.${key}.title`)
   const viewShort = (key) => t(`documents.drafting.views.${key}.short`)
+  const noteFor = (key, text = "", go = null) => {
+    const active = key === activeView
+    /* Viga, mille lahendus on teises vaates (salvestamine keeldus malli pärast):
+       ees oleva vaate jalareal on tee sinna, kui seal ei ole juba teist teed. */
+    const way = active && errorWay && errorWay !== key ? { label: viewShort(errorWay), onClick: () => openView(errorWay) } : null
+    return footNote({ text: (active && armedNote) || text, go: active && armedNote ? null : go || way })
+  }
   const filesViewKey = isClientRole ? "files" : "sources"
   const toFiles = { label: viewShort(filesViewKey), onClick: () => openView(filesViewKey) }
 
@@ -1264,8 +1312,8 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
         ? t("documents.loading")
         : resultState === "failed"
           ? t("documents.drafting.summary.text_failed")
-          : hasDraftEdits
-            ? t("documents.drafting.text.unsaved")
+          : unsavedLine
+            ? unsavedLine
             : snippet(resultTitle) || (isClientRole ? clientStatusLabel(workspaceResult?.status, t) : typeLabel(workspaceResult?.type, t)),
     refine: snippet(refineInstruction) || t("documents.drafting.summary.no_refine"),
     versions: t("documents.drafting.summary.versions", { count: workspaceVersions.length }),
@@ -1505,7 +1553,7 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
         key: "clear",
         label: labelFor("clear", t("documents.drafting.text.clear")),
         disabled: !canClearWorkspaceResult,
-        onClick: () => guarded("clear", hasDraftEdits, handleClearWorkspaceResult)
+        onClick: () => guarded("clear", hasTextEdits, handleClearWorkspaceResult)
       })
       if (activeArtifactDetailHref) {
         actions.push({
@@ -1531,9 +1579,7 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
       ? ""
       : !isWorkspaceResultSaved
         ? t("documents.drafting.text.only_here")
-        : hasDraftEdits
-          ? t("documents.drafting.text.unsaved")
-          : ""
+        : unsavedLine
     return (
       <TextView
         t={t}
@@ -1629,6 +1675,9 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
   function renderApprove(key, glow) {
     const final = resultState === "final"
     const disabled = !canPersistResult || refiningResult || savingResult || approvingResult
+    /* Allalaadimiseks pakutakse ainult faile, mis on olemas; kui PDF-i ei
+       tehtud, ütleb jalarida, miks seda ei ole. */
+    const files = artifactDownloads(workspaceResult)
     return (
       <ApproveView
         t={t}
@@ -1652,8 +1701,17 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
                 onClick: () => guarded(key, true, () => void handleApprove())
               }
         }
-        downloads={downloadLinks(workspaceResult?.downloadUrls)}
-        note={noteFor(key, !final && !canPersistResult ? t("documents.drafting.refine.needs_content") : "")}
+        downloads={downloadLinks(files)}
+        note={noteFor(
+          key,
+          final
+            ? files.pdfMissing
+              ? t("api.exports.pdf_content_not_supported")
+              : ""
+            : !canPersistResult
+              ? t("documents.drafting.refine.needs_content")
+              : ""
+        )}
         glow={glow}
       />
     )
@@ -1677,7 +1735,7 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
           summaryOpen={summaryOpen}
           press={{ guarded, runPaid, labelFor, armedNote }}
           language={{ options: languageChoices, value: language, onChange: setLanguage }}
-          unsavedText={hasDraftEdits}
+          unsavedText={hasTextEdits}
           recorderBusy={recorderBusy}
           viewTitle={viewTitle}
           viewShort={viewShort}
@@ -1728,11 +1786,15 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
 
       case "template": {
         const leaveKey = `leave:${documentsHref}`
+        const chosen = templateStatus({ templates, selectedTemplateId })
+        /* Kuidas valik avatud tekstini jõuab: mustandile salvestub see nupuga
+           „Salvesta mustand”, kinnitatud tekstil kehtib järgmise koostamise kohta. */
+        const noteKind = templateNoteKind({ resultState, unsaved: templateUnsaved, client: isClientRole })
         return (
           <TemplateView
             t={t}
             title={viewTitle(key)}
-            lead={t("documents.drafting.template.lead")}
+            lead={t("documents.drafting.template.lead", { placeholders: templatePlaceholderList() })}
             notice={noticeFor(key)}
             loading={templatesLoading}
             error={templatesError}
@@ -1742,9 +1804,19 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
               setSelectedTemplateId(nextValue)
               clearResultMessages()
             }}
-            status={templatesLoading || templatesError || compatibleTemplates.length ? "" : t("documents.drafting.template.empty")}
+            statuses={[
+              templatesLoading || templatesError || compatibleTemplates.length ? "" : t("documents.drafting.template.empty"),
+              /* Mustandi mallilt on luba ära võetud: mustand hoiab seda edasi ja
+                 salvestub; lause ütleb, mida teha, kui inimene seda ei soovi. */
+              chosen.blocked && resultState === "draft" ? t("documents.drafting.template.blocked") : "",
+              chosen.shapesFile === false ? t("documents.drafting.template.not_word") : ""
+            ].filter(Boolean)}
             link={{ label: labelFor(leaveKey, t("documents.drafting.template.open_documents")), onClick: () => leaveTo(documentsHref) }}
-            note={noteFor(key)}
+            note={noteFor(
+              key,
+              noteKind ? t(TEMPLATE_NOTE_KEYS[noteKind]) : "",
+              noteKind === "unsaved" ? { label: viewShort("text"), onClick: () => openView("text") } : null
+            )}
           />
         )
       }
@@ -1766,7 +1838,9 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
           <VersionsView
             t={t}
             title={viewTitle(key)}
-            lead={t("documents.drafting.versions.lead", { count: WORKSPACE_VERSION_LIMIT })}
+            /* Uus versioon tekib ainult koostamisel ja täiendamisel. Kuni need
+               on peatatud, on siin üks versioon ja lause ei luba rohkem. */
+            lead={t(COMPOSE_PAUSED ? "documents.drafting.versions.lead_paused" : "documents.drafting.versions.lead", { count: WORKSPACE_VERSION_LIMIT })}
             notice={noticeFor(key)}
             rows={versionRows(workspaceVersions, { title: resultTitle, content: resultContent, t, locale }).map((row) => ({
               ...row,
@@ -1804,7 +1878,7 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
               ...row,
               openLabel: labelFor(`open:${row.key}`, t("documents.actions.open")),
               /* Teise tulemuse avamine asendab toimetis oleva teksti. */
-              onOpen: () => (row.current ? openView("text") : guarded(`open:${row.key}`, hasDraftEdits, () => void handleOpenClientArtifact(row.key)))
+              onOpen: () => (row.current ? openView("text") : guarded(`open:${row.key}`, hasTextEdits, () => void handleOpenClientArtifact(row.key)))
             }))}
             emptyText={t("documents.drafting.results.empty")}
             note={noteFor(key)}

@@ -27,6 +27,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import StepFlight from "@/components/stage/StepFlight";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
+import { localeHeaders } from "@/lib/documents/clientRequest";
 import { pushWithTransition } from "@/lib/routeTransition";
 
 import { LoadState, ReadView } from "./detail/DetailViews";
@@ -70,16 +71,19 @@ export default function DocumentDetailPage({ documentId }) {
   const focusHeading = useHeadingFocus(pageRef);
   const confirm = useTwoPress();
 
-  /* Keele vahetus annab uue `t`: faili ei ole selle pärast vaja uuesti laadida. */
+  /* Keele vahetus annab uue `t` ja `locale`: faili ei ole selle pärast vaja uuesti laadida. */
   const tRef = useRef(t);
   tRef.current = t;
+  const localeRef = useRef(locale);
+  localeRef.current = locale;
 
   const loadDocument = useCallback(async () => {
     const say = tRef.current;
     setLoad({ status: "loading", error: "" });
     try {
       const response = await fetch(`/api/documents/${encodeURIComponent(documentId)}`, {
-        cache: "no-store"
+        cache: "no-store",
+        headers: localeHeaders(localeRef.current)
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload?.document?.id) {
@@ -127,7 +131,7 @@ export default function DocumentDetailPage({ documentId }) {
         if (!record?.updatedAt) throw new RequestFailure(t("documents.errors.save_failed"));
         const response = await fetch(`/api/documents/${encodeURIComponent(documentId)}`, {
           method: "PATCH",
-          headers: { "Content-Type": "application/json" },
+          headers: localeHeaders(locale, { "Content-Type": "application/json" }),
           body: JSON.stringify({ ...data, expectedUpdatedAt: record.updatedAt })
         });
         const payload = await response.json().catch(() => ({}));
@@ -163,7 +167,10 @@ export default function DocumentDetailPage({ documentId }) {
     return exclusive(async () => {
       setNotice(NO_NOTICE);
       try {
-        const response = await fetch(`/api/documents/${encodeURIComponent(documentId)}`, { method: "DELETE" });
+        const response = await fetch(`/api/documents/${encodeURIComponent(documentId)}`, {
+          method: "DELETE",
+          headers: localeHeaders(locale)
+        });
         const payload = await response.json().catch(() => ({}));
         if (!response.ok) throw new RequestFailure(serverMessage(payload, t, t("documents.errors.delete_failed")));
         /* Faili enam ei ole: tagasi dokumentide lehele. */
@@ -202,7 +209,9 @@ export default function DocumentDetailPage({ documentId }) {
           can.share
             ? {
                 title: t("documents.views.item.share_title"),
-                description: can.share.removal ? t(REMOVAL_NOTE_KEYS[can.share.removal]) : t("documents.provenance.rag.in_search_when_shared"),
+                /* Mida luba praegu annab: faili saab koostamisruumis kasutada.
+                   Otsingust siin enam ei räägita (vana otsing on suletud). */
+                description: can.share.removal ? t(REMOVAL_NOTE_KEYS[can.share.removal]) : t("documents.views.item.share_desc"),
                 checked: can.share.checked,
                 disabled: Boolean(can.share.removal),
                 onChange: (checked) => void patchDocument({ agentAllowed: checked })
@@ -255,6 +264,8 @@ export default function DocumentDetailPage({ documentId }) {
           all: t("documents.views.all"),
           position: (current, total, label) => t("documents.views.position", { current, total, label })
         }}
+        /* Kustutamise teine vajutus ei jää ootele, kui inimene käib vahepeal teises osas. */
+        onStepChange={confirm.disarm}
       >
         {(step, _index, flight) => (step.key === "text" ? <ReadView t={t} title={sheet.title} text={text} /> : renderSheet(flight?.isActive !== false))}
       </StepFlight>

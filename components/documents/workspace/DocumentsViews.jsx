@@ -106,6 +106,20 @@ export function EntryView({ t, notice, cards }) {
  * liik ja malli puhul selle otstarve) ning faili valik. Kukutusala kannab
  * ainult juhist; lubatud failitüübid on vaikne abirida selle kõrval ja valitud
  * fail (nimi ja suurus) on omal real (kujundusaudit K07).
+ *
+ * MAHUB PANEELI KA MALLI PUHUL. Liigi „Mall” korral tuleb juurde otstarbe rida
+ * (kuus lahtrit kahes reas) ja vaade oli paneelist kõrgem (brauseris mõõdetud
+ * 535 px 522 px paneelis). Kolm asja teevad selle madalamaks:
+ *  - otstarbe küsimus seisab laial pinnal lahtrite KÕRVAL vasakul, mitte nende
+ *    kohal omaette real (`.purpose`; kitsal pinnal läheb küsimus lahtrite kohale);
+ *  - kitsas töölaua paneelis (34 kuni 40 rem) hoiavad liik ja otstarve oma
+ *    veergude arvu (`keepColumns`): liik on ühel ja otstarve kahel real, mitte
+ *    kahel ja kolmel. Telefonis jääb kaks veergu;
+ *  - valitud faili rida on madalam (kujundusfailis).
+ *
+ * MALLI JALARIDA ütleb, mis on tõsi: kinnitatud faili kuju annab ainult Wordi
+ * mall, ja kust kohatäitjad teada saab. PDF- ja TXT-faili saab endiselt malliks
+ * lisada. Lause on jalareal nupu kõrval: seal ei tee see vaadet kõrgemaks.
  */
 export function AddFileView({ t, notice, form }) {
   const inputRef = useRef(null);
@@ -126,6 +140,7 @@ export function AddFileView({ t, notice, form }) {
     <Form className={styles.form} onSubmit={form.onSubmit}>
       <StepPanel
         title={t("documents.views.add.title")}
+        note={form.templateFor ? t("documents.form.template_help") : undefined}
         actions={
           <Button type="submit" disabled={!form.file || form.busy}>
             {form.busy ? t("documents.form.uploading") : t("documents.actions.upload")}
@@ -143,20 +158,30 @@ export function AddFileView({ t, notice, form }) {
               <ChoiceRow
                 label={t("documents.form.kind_label")}
                 columns={form.kinds.length}
+                keepColumns
                 options={form.kinds}
                 value={form.kind}
                 onChange={form.onKind}
               />
             </div>
             {form.templateFor ? (
-              <div className={styles.choiceWide}>
-                <ChoiceRow
-                  label={t("documents.form.template_for_placeholder")}
-                  columns={3}
-                  options={form.templateFor.options}
-                  value={form.templateFor.value}
-                  onChange={form.templateFor.onChange}
-                />
+              <div className={styles.purpose}>
+                {/* Nähtav küsimus on lahtrite kõrval; valikurühma enda silt on
+                    sama tekst ekraanilugejale, seepärast ei loeta nähtavat teist korda. */}
+                <span className={styles.purposeLabel} aria-hidden="true">
+                  {t("documents.form.template_for_placeholder")}
+                </span>
+                <div className={styles.choice}>
+                  <ChoiceRow
+                    label={t("documents.form.template_for_placeholder")}
+                    labelHidden
+                    columns={3}
+                    keepColumns
+                    options={form.templateFor.options}
+                    value={form.templateFor.value}
+                    onChange={form.templateFor.onChange}
+                  />
+                </div>
               </div>
             ) : null}
           </div>

@@ -25,6 +25,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 
+import { RequestFailure, failureText } from "@/lib/documents/clientRequest"
 import { buildIntentSignature, resolveIntentKey } from "@/lib/usage/intentKey"
 
 import { audioFileProblem, serverMessage, transcriptEdited } from "./draftingModel"
@@ -72,14 +73,14 @@ export default function useAudioPath({ isClientRole = false, locale, t, language
         signal
       })
       const payload = await response.json().catch(() => ({}))
-      if (!response.ok) throw new Error(payload?.message || t("documents.errors.audio_sources_load_failed"))
+      if (!response.ok) throw new RequestFailure(serverMessage(payload, t, "documents.errors.audio_sources_load_failed"))
       const nextSources = Array.isArray(payload?.audioSources) ? payload.audioSources : []
       setAudioSources(nextSources)
       return nextSources
     } catch (error) {
       if (signal?.aborted) return []
       setAudioSources([])
-      setAudioSourcesError(error?.message || t("documents.errors.audio_sources_load_failed"))
+      setAudioSourcesError(failureText(error, t("documents.errors.audio_sources_load_failed")))
       return []
     } finally {
       if (!signal?.aborted) setAudioSourcesLoading(false)
@@ -140,13 +141,13 @@ export default function useAudioPath({ isClientRole = false, locale, t, language
         headers: { "x-ui-locale": locale }
       })
       const payload = await response.json().catch(() => ({}))
-      if (!response.ok || !payload?.document?.id) throw new Error(serverMessage(payload, t, "documents.errors.read_failed"))
+      if (!response.ok || !payload?.document?.id) throw new RequestFailure(serverMessage(payload, t, "documents.errors.read_failed"))
       if (token !== transcriptLoadRef.current) return
       setAudioTranscriptDocument(payload.document)
       setAudioTranscriptDraft(String(payload.document.content || "").trim())
     } catch (error) {
       if (token !== transcriptLoadRef.current) return
-      setAudioWorkflowError(error?.message || t("documents.errors.read_failed"))
+      setAudioWorkflowError(failureText(error, t("documents.errors.read_failed")))
     } finally {
       if (token === transcriptLoadRef.current) setAudioTranscriptLoading(false)
     }
@@ -195,7 +196,7 @@ export default function useAudioPath({ isClientRole = false, locale, t, language
         body: formData
       })
       const payload = await response.json().catch(() => ({}))
-      if (!response.ok) throw new Error(payload?.message || t("documents.errors.audio_upload_failed"))
+      if (!response.ok) throw new RequestFailure(serverMessage(payload, t, "documents.errors.audio_upload_failed"))
       const audioSource = payload?.audioSource || null
       const nextSources = audioSource
         ? [audioSource, ...audioSources.filter((source) => source.id !== audioSource.id)]
@@ -208,7 +209,7 @@ export default function useAudioPath({ isClientRole = false, locale, t, language
       setAudioWorkflowFeedback(t("documents.drafting.audio.upload_done"))
     } catch (error) {
       setAudioWorkflowFeedback("")
-      setAudioWorkflowError(error?.message || t("documents.errors.audio_upload_failed"))
+      setAudioWorkflowError(failureText(error, t("documents.errors.audio_upload_failed")))
     } finally {
       setAudioUploading(false)
     }
@@ -253,9 +254,9 @@ export default function useAudioPath({ isClientRole = false, locale, t, language
         body: JSON.stringify({ language, idempotencyKey: selectedAudioSource.id })
       })
       const payload = await response.json().catch(() => ({}))
-      if (!response.ok) throw new Error(payload?.message || t("documents.errors.transcription_failed"))
+      if (!response.ok) throw new RequestFailure(serverMessage(payload, t, "documents.errors.transcription_failed"))
       const transcript = payload?.transcriptDocument || null
-      if (!transcript?.id) throw new Error(t("documents.errors.transcription_failed"))
+      if (!transcript?.id) throw new RequestFailure(t("documents.errors.transcription_failed"))
       /* Loendi rida saab transkripti alati; toimetis ainult siis, kui see fail on veel valitud. */
       setAudioSources((current) =>
         current.map((source) =>
@@ -275,7 +276,7 @@ export default function useAudioPath({ isClientRole = false, locale, t, language
       setAudioWorkflowFeedback(t("documents.drafting.transcribe.done"))
     } catch (error) {
       setAudioWorkflowFeedback("")
-      setAudioWorkflowError(error?.message || t("documents.errors.transcription_failed"))
+      setAudioWorkflowError(failureText(error, t("documents.errors.transcription_failed")))
     } finally {
       setTranscribingAudio(false)
     }
@@ -303,7 +304,7 @@ export default function useAudioPath({ isClientRole = false, locale, t, language
         if (response.status === 409 && payload?.document?.id) {
           setAudioTranscriptDocument(payload.document)
         }
-        throw new Error(payload?.message || t("documents.errors.update_failed"))
+        throw new RequestFailure(serverMessage(payload, t, "documents.errors.update_failed"))
       }
       const updated = payload?.document || transcript
       setAudioTranscriptDocument(updated)
@@ -322,7 +323,7 @@ export default function useAudioPath({ isClientRole = false, locale, t, language
     try {
       await saveAudioTranscriptIfNeeded()
     } catch (error) {
-      setAudioWorkflowError(error?.message || t("documents.errors.update_failed"))
+      setAudioWorkflowError(failureText(error, t("documents.errors.update_failed")))
     }
   }
 
@@ -370,10 +371,10 @@ export default function useAudioPath({ isClientRole = false, locale, t, language
         })
       })
       const payload = await response.json().catch(() => ({}))
-      if (!response.ok) throw new Error(payload?.message || t("documents.errors.summary_failed"))
+      if (!response.ok) throw new RequestFailure(serverMessage(payload, t, "documents.errors.summary_failed"))
       summaryIntentRef.current = null
       const summary = payload?.summaryArtifact || null
-      if (!summary?.id) throw new Error(t("documents.errors.summary_failed"))
+      if (!summary?.id) throw new RequestFailure(t("documents.errors.summary_failed"))
       /* Kokkuvõte saab tööruumi tulemuseks ja transkript selle lähtefailiks: seda teeb leht. */
       onSummary?.({ summary, transcriptDocument })
       /* Heli raja „kokkuvõte on valmis" käib valitud faili kohta: kui vahepeal
@@ -383,7 +384,7 @@ export default function useAudioPath({ isClientRole = false, locale, t, language
       setAudioWorkflowFeedback(t("documents.drafting.summary_view.ready"))
       return true
     } catch (error) {
-      setAudioWorkflowError(error?.message || t("documents.errors.summary_failed"))
+      setAudioWorkflowError(failureText(error, t("documents.errors.summary_failed")))
       return false
     } finally {
       setSummarizingAudio(false)

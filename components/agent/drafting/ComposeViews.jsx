@@ -130,10 +130,10 @@ export function ChoiceView({ t, title, question, notice, options, value, onChang
 
 /**
  * Mall. Valik on „ilma mallita” ja valitud väljundile sobivad mallid; kui malle
- * ei ole, ütleb vaade, kuhu need lisatakse. Malle võib olla palju: siis kerib
- * kogu paneel, mitte kast paneeli sees.
+ * ei ole, ütleb vaade, kuhu need lisatakse. `statuses` on laused valitud malli
+ * kohta. Malle võib olla palju: siis kerib kogu paneel, mitte kast paneeli sees.
  */
-export function TemplateView({ t, title, lead, notice, loading, error, options, value, onChange, status, link, note }) {
+export function TemplateView({ t, title, lead, notice, loading, error, options, value, onChange, statuses = [], link, note }) {
   return (
     <StepPanel
       title={title}
@@ -159,7 +159,13 @@ export function TemplateView({ t, title, lead, notice, loading, error, options, 
         ) : (
           <ChoiceRow label={title} labelHidden columns={2} options={options} value={value} onChange={onChange} />
         )}
-        {status ? <p className={styles.quiet}>{status}</p> : null}
+        {/* Laused valitud malli kohta: malle ei ole, mallilt on luba ära võetud,
+            mall ei ole Wordi fail. */}
+        {statuses.map((status) => (
+          <p key={status} className={styles.quiet}>
+            {status}
+          </p>
+        ))}
       </div>
     </StepPanel>
   );
