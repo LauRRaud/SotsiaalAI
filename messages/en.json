@@ -13207,7 +13207,15 @@
       "decision_sign_state_invalid": "Choose how the contract was signed.",
       "decision_sign_contract_only": "A signature mark goes only with an administrative contract.",
       "decision_signed_on_state": "A day of signing goes only with a signed contract.",
-      "decision_signed_on_future": "The day of signing cannot be in the future."
+      "decision_signed_on_future": "The day of signing cannot be in the future.",
+      "representative_name_required": "Write the representative's name.",
+      "representative_basis_required": "Choose on what basis the representative decides.",
+      "representative_scope_required": "Write what the representative may decide for the client.",
+      "representative_period_invalid": "The end of validity cannot be before its start.",
+      "representative_checked_future": "The day the document was seen cannot be in the future.",
+      "representative_too_many": "The client already has {limit} representative records in force. End one of them first.",
+      "representative_not_found": "The representative record was not found.",
+      "representative_ended": "This record has already been ended."
     },
     "incidents": {
       "title": "Incident register",
@@ -13771,7 +13779,11 @@
       "contracts_unsigned_title": "Contracts with an open signature",
       "contracts_unsigned_empty": "The signature is marked on every contract in force.",
       "contracts_unsigned_line": "contract in force from {date}, signature not marked",
-      "contracts_unsigned_unsure": "contract in force from {date}: not sure the person understood; turn to the social worker"
+      "contracts_unsigned_unsure": "contract in force from {date}: not sure the person understood; turn to the social worker",
+      "representatives_due_title": "Rights of representation that end or have ended",
+      "representatives_due_empty": "No right of representation is close to its end.",
+      "representatives_due_line": "representative {name}: the right ends on {date}",
+      "representatives_due_expired": "representative {name}: the right ended on {date}"
     },
     "visit": {
       "title": "What you did",
@@ -14894,6 +14906,41 @@
     },
     "exception_streak": {
       "line": "In the last {count} visits (since {date}) every planned activity has been marked done as planned, with no exception at all. Check whether the plan matches what really happens at the client's home."
+    },
+    "representative": {
+      "title": "Right of representation",
+      "none": "No representative is on record. A relative cannot decide or sign for an adult without a power of attorney or guardianship.",
+      "add": "Add a representative",
+      "form_hint": "Record only what you have seen a document for. The platform does not keep the document.",
+      "name_label": "Representative's name",
+      "basis_label": "On what basis",
+      "bases": {
+        "POWER_OF_ATTORNEY": "power of attorney",
+        "GUARDIANSHIP": "guardianship",
+        "OTHER": "other basis"
+      },
+      "scope_label": "What the representative may decide for the client",
+      "scope_hint": "For example: making and changing the home care contract.",
+      "from_label": "Valid from",
+      "until_label": "Valid until",
+      "phone_label": "Phone",
+      "copy_label": "Where the copy of the document is kept",
+      "checked_label": "The day you saw the document",
+      "checked_hint": "An empty field means today.",
+      "save": "Save",
+      "cancel": "Cancel",
+      "end": "End the right of representation",
+      "end_confirm": "Confirm ending",
+      "states": {
+        "UPCOMING": "not yet valid",
+        "EXPIRED": "term has passed"
+      },
+      "period_both": "valid from {from} until {until}",
+      "period_until": "valid until {until}",
+      "period_from": "valid from {from}",
+      "period_open": "no end date",
+      "copy_line": "copy: {place}",
+      "checked_line": "document seen on {date} by {name}"
     }
   },
   "stage": {
