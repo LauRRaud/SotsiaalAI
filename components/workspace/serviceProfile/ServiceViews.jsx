@@ -415,32 +415,97 @@ function ServiceContactView({ tp, service, options, onField, onContactStrategy, 
 }
 
 /**
- * Tegevusloa seis. Seisu teksti ja tooni annab server ning joonistab
- * `ServiceLicenceStatus` (`children`); siin on selle raam ja uue kontrolli nupp.
- * Kontroll käib kõigi teenuste kohta korraga.
+ * Tegevusluba: kaks asja, korraga on ees üks. Kuni teenuse liik on kinnitamata
+ * (või inimene tahab seda muuta), on ees liigi valik; kinnitamine käivitab kohe
+ * esimese kontrolli. Kinnitatud liigiga teenusel on ees registri vastus: seisu
+ * teksti ja tooni annab server ning joonistab `ServiceLicenceStatus` (`children`),
+ * siin on selle raam ja nupud. Kontroll käib kõigi teenuste kohta korraga.
  */
 function LicenceView({ tp, service, licence, note, save }) {
+  const kind = licence.kind;
+  const choosing = Boolean(service.id) && kind.ready && kind.editing;
+  /* Kontroll ootab võõra registri taga. Ootamise ajal ütleb seda juhise rida:
+     ilma selleta paistab pikk ootamine tõrkena, eraldi teatekast aga kasvataks paneeli. */
+  const waiting = kind.confirming || licence.checking;
   return (
     <StepPanel
       title={tp("views.licence.title", "Tegevusluba")}
-      lead={tp("views.licence.lead", "Kontroll käib kõigi teenuste kohta korraga.")}
+      lead={
+        waiting
+          ? tp("views.licence.waiting", "Küsime registrist. Vastus tuleb tavaliselt poole minutiga, suure asutuse puhul kuni paari minutiga.")
+          : choosing
+          ? tp(
+              "views.licence.kind_lead",
+              "Kui teenus vajab tegevusluba, vali selle liik. Kinnitamisel kontrollime luba majandustegevuse registrist ja kordame kontrolli umbes kord kuus."
+            )
+          : tp("views.licence.lead", "Kontroll käib kõigi teenuste kohta korraga ja kordub umbes kord kuus.")
+      }
       note={note}
       actions={
         <>
-          <Button type="button" variant="secondary" disabled={licence.checking} onClick={licence.onRecheck}>
-            {licence.recheckLabel}
-          </Button>
+          {/* Jalareas on vaate üks tegevus ja salvestamine. Liigi muutmine ja sellest
+              loobumine on sisu sees tekstinupud: kolm nuppu murraksid jalarea kahte ritta. */}
+          {choosing ? (
+            <Button type="button" variant="secondary" disabled={!kind.canConfirm} onClick={kind.onConfirm}>
+              {kind.confirming
+                ? tp("views.licence.kind_confirming", "Kontrollin registrist...")
+                : tp("views.licence.kind_confirm", "Kinnita liik ja kontrolli")}
+            </Button>
+          ) : (
+            <Button type="button" variant="secondary" disabled={licence.checking} onClick={licence.onRecheck}>
+              {licence.recheckLabel}
+            </Button>
+          )}
           {save}
         </>
       }
     >
       <div className={styles.stack}>
         {licence.notice ? <Notice>{licence.notice}</Notice> : null}
-        {/* „Ilmub pärast salvestamist" on tõsi ainult salvestamata teenuse kohta;
-            salvestatud teenusel ilma reata (laadimine ebaõnnestus või käib) seda ei öelda. */}
-        {licence.hasRow ? (
-          <div className={styles.licence}>{licence.children}</div>
+        {choosing && kind.needsRegistryCode ? (
+          /* Ilma registrikoodita ei ole, mille järgi registrist küsida: valikut ei näidata,
+             sest kinnitada seda ei saaks. */
+          <Notice tone="wait">
+            {tp("views.licence.registry_code_needed", "Kontroll vajab asutuse registrikoodi. Lisa see asutuse andmetesse ja salvesta, siis saad liigi kinnitada.")}
+          </Notice>
+        ) : choosing ? (
+          <>
+            <ChoiceRow
+              label={tp("views.licence.kind_label", "Teenuse liik tegevusloa kontrolli jaoks")}
+              labelHidden
+              /* Kolm veergu: kaheteistkümne variandiga jääb valik koos juhise ja nuppudega paneeli sisse. */
+              columns={3}
+              options={kind.options}
+              value={kind.value}
+              disabled={kind.confirming}
+              onChange={kind.onChange}
+            />
+            {/* Üks rida valiku all: kinnitatud liigiga teenusel tee tagasi, muidu tuvastaja pakkumine. */}
+            {kind.canCancel ? (
+              <p className={styles.line}>
+                <button type="button" className={styles.textButton} disabled={kind.confirming} onClick={kind.onCancel}>
+                  {tp("views.licence.kind_cancel", "Jäta liik muutmata")}
+                </button>
+              </p>
+            ) : kind.suggestion ? (
+              <p className={styles.quiet}>{kind.suggestion}</p>
+            ) : null}
+          </>
+        ) : licence.hasRow ? (
+          <>
+            {kind.ready ? (
+              <p className={styles.line}>
+                {kind.current ? <span className={styles.quiet}>{kind.current}</span> : null}
+                <button type="button" className={styles.textButton} disabled={licence.checking} onClick={kind.onEdit}>
+                  {tp("views.licence.kind_change", "Muuda liiki")}
+                </button>
+              </p>
+            ) : null}
+            <div className={styles.licence}>{licence.children}</div>
+          </>
         ) : service.id ? null : (
+          /* „Ilmub pärast salvestamist" on tõsi ainult salvestamata teenuse kohta;
+             salvestatud teenusel ilma reata (laadimine ebaõnnestus või käib) seda ei öelda. */
           <p className={styles.quiet}>{tp("views.licence.empty", "Tegevusloa seis ilmub siia pärast teenuse salvestamist.")}</p>
         )}
       </div>

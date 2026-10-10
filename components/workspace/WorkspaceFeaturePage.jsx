@@ -4148,6 +4148,9 @@ function ServiceProfileSurface({ t, locale }) {
   const servicePlaces = realServiceLocations(form);
   const savedService = openedService ? (profile?.serviceItems || []).find((item) => item.id === openedService.id) || null : null;
   const licenceRow = openedService?.id ? licence.statuses.get(openedService.id) || null : null;
+  /* Teenuse liik tegevusloa kontrolli jaoks: osutaja kinnitab selle ise ja kinnitus käivitab esimese kontrolli. */
+  const licenceKind = licence.kindState(openedService?.id || "");
+  const licenceKindLabel = (key) => licence.kinds.find((kind) => kind.serviceKey === key)?.label || "";
 
   const steps = serviceProfileSteps(viewKeys, {
     tp,
@@ -4286,7 +4289,32 @@ function ServiceProfileSurface({ t, locale }) {
             notice: licence.notice,
             checking: licence.checking,
             recheckLabel: readText(t, "service_provider_profile.licence.internal.action_recheck", "Kontrolli uuesti"),
-            onRecheck: () => void licence.recheck()
+            onRecheck: () => void licence.recheck(),
+            kind: {
+              ready: licenceKind.known,
+              editing: licenceKind.editing,
+              options: [
+                ...licence.kinds.map((kind) => ({ value: kind.serviceKey, label: kind.label })),
+                { value: "", label: tp("views.licence.kind_none", "Ükski neist") }
+              ],
+              value: licenceKind.chosen,
+              needsRegistryCode: !licence.hasRegistryCode,
+              confirming: licenceKind.confirming,
+              canConfirm: licenceKind.changed && licence.hasRegistryCode && !licence.confirmingAny,
+              canCancel: Boolean(licenceKind.saved),
+              suggestion: licenceKind.suggestions.length
+                ? tp("views.licence.kind_suggestion", "Teenuse nime järgi võib sobida: {kinds}.", {
+                    kinds: licenceKind.suggestions.map(licenceKindLabel).filter(Boolean).join("; ")
+                  })
+                : "",
+              current: licenceKind.currentLabel
+                ? tp("views.licence.kind_current", "Kinnitatud liik: {kind}.", { kind: licenceKind.currentLabel })
+                : "",
+              onChange: (value) => licence.choose(openedService.id, value),
+              onConfirm: () => void licence.confirm(openedService.id),
+              onCancel: () => licence.editKind(openedService.id, false),
+              onEdit: () => licence.editKind(openedService.id, true)
+            }
           }}
         />
       );

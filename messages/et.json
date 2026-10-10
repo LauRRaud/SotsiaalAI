@@ -2755,7 +2755,7 @@
         "checked_against": "Tegevusala, mille vastu kontrolliti: {activity}",
         "action_recheck": "Kontrolli uuesti",
         "action_fix_registry_code": "Kontrolli profiili registrikoodi",
-        "action_map_service": "Seo teenus kataloogi kirjega",
+        "action_map_service": "Kinnita teenuse liik, siis käivitub kontroll",
         "action_report": "Teata valest vastavusest",
         "cooldown": "Järgmise kontrolli saab käivitada {time}",
         "reason": {
@@ -2767,7 +2767,10 @@
         },
         "action_investigate": "Kontrolli registrikoodi ja teenuse seost; kui need on õiged, võrdle tulemust MTR-i andmetega",
         "check_failed": "Tegevusloa kontrolli ei saanud teha. Varasemad seisud jäid alles.",
-        "load_failed": "Tegevusloa seise ei saanud laadida."
+        "load_failed": "Tegevusloa seise ei saanud laadida.",
+        "bind_failed": "Teenuse liiki ei saanud kinnitada.",
+        "bind_rate_limited": "Teenuse liiki on viimase tunni jooksul liiga palju kordi muudetud. Proovi hiljem uuesti.",
+        "bind_check_pending": "Liik on kinnitatud, aga kontrolli ei saanud kohe teha. Vajuta „Kontrolli uuesti”."
       }
     }
   },
@@ -3805,8 +3808,19 @@
         "licence": {
           "title": "Tegevusluba",
           "short": "Tegevusluba",
-          "lead": "Kontroll käib kõigi teenuste kohta korraga.",
-          "empty": "Tegevusloa seis ilmub siia pärast teenuse salvestamist."
+          "lead": "Kontroll käib kõigi teenuste kohta korraga ja kordub umbes kord kuus.",
+          "empty": "Tegevusloa seis ilmub siia pärast teenuse salvestamist.",
+          "kind_lead": "Kui teenus vajab tegevusluba, vali selle liik. Kinnitamisel kontrollime luba majandustegevuse registrist ja kordame kontrolli umbes kord kuus.",
+          "kind_label": "Teenuse liik tegevusloa kontrolli jaoks",
+          "kind_none": "Ükski neist",
+          "kind_confirm": "Kinnita liik ja kontrolli",
+          "kind_confirming": "Kontrollin registrist...",
+          "kind_cancel": "Jäta liik muutmata",
+          "kind_change": "Muuda liiki",
+          "kind_suggestion": "Teenuse nime järgi võib sobida: {kinds}.",
+          "kind_current": "Kinnitatud liik: {kind}.",
+          "registry_code_needed": "Kontroll vajab asutuse registrikoodi. Lisa see asutuse andmetesse ja salvesta, siis saad liigi kinnitada.",
+          "waiting": "Küsime registrist. Vastus tuleb tavaliselt poole minutiga, suure asutuse puhul kuni paari minutiga."
         },
         "place": {
           "title": "Teeninduskoht",

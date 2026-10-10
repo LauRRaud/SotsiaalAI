@@ -2,7 +2,16 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import { LICENCE_PUBLIC_STATUS } from "../lib/mtr/assessment.js";
-import { BINDING_AUDIT_ACTION, BINDING_ERROR, bindServiceKey, bindingCandidates } from "../lib/mtr/serviceBinding.js";
+import {
+  BINDING_AUDIT_ACTION,
+  BINDING_ERROR,
+  bindOwnServiceKey,
+  bindServiceKey,
+  bindingCandidates,
+  ownBindingOverview,
+  providerSelectableKinds
+} from "../lib/mtr/serviceBinding.js";
+import { LICENSED_SERVICES, NON_LICENSED_SERVICES } from "../lib/mtr/licensedServices.js";
 
 const NOW = new Date("2026-08-05T12:00:00.000Z");
 
@@ -39,7 +48,16 @@ function fakePrisma({ service }) {
       state.transactions += 1;
       return fn(tx);
     },
-    serviceProviderService: { findUnique: async () => service }
+    serviceProviderService: {
+      findUnique: async () => service,
+      /* Omandi kontroll: teenus leitakse ainult oma profiili alt. */
+      findFirst: async ({ where }) => {
+        state.ownLookups = [...(state.ownLookups || []), where];
+        return service && where.id === service.id && where.providerProfileId === service.providerProfileId
+          ? { id: service.id }
+          : null;
+      }
+    }
   };
 }
 
@@ -205,4 +223,120 @@ test("kandidaadid on ettepanek koos kindlusastmega, mitte valik", async () => {
   const lapsehoid = result.candidates.find((row) => row.serviceKey === "LAPSEHOID_SUURE_VAJADUSEGA");
   assert.equal(lapsehoid.confidence, "LOW");
   assert.ok(lapsehoid.note);
+});
+
+/* --- Osutaja kinnitab oma teenuse liigi ise (omanik 10.10.2026) --- */
+
+test("osutaja saab valida ainult loakohustuslike liikide seast", () => {
+  const keys = providerSelectableKinds().map((row) => row.serviceKey);
+  assert.deepEqual(keys, LICENSED_SERVICES.map((row) => row.key), "kõik loakohustuslikud liigid, kataloogi järjekorras");
+  for (const row of NON_LICENSED_SERVICES) {
+    assert.equal(keys.includes(row.key), false, `${row.key}: liiki, mis luba ei vaja, ei kontrolli keegi`);
+  }
+});
+
+test("osutaja kinnitus seob liigi, käivitab kontrolli ja jätab jälje osutaja nimel", async () => {
+  const prisma = fakePrisma({ service });
+  let checked = null;
+
+  const result = await bindOwnServiceKey({
+    providerProfileId: "p1",
+    providerServiceId: "s1",
+    serviceKey: "TOETATUD_ELAMINE",
+    actorUserId: "osutaja-1",
+    prisma,
+    now: NOW,
+    runCheck: async (args) => {
+      checked = args;
+      return { completed: true, succeeded: true };
+    }
+  });
+
+  assert.equal(result.ok, true);
+  assert.equal(result.serviceKey, "TOETATUD_ELAMINE");
+  assert.deepEqual(prisma.state.ownLookups, [{ id: "s1", providerProfileId: "p1" }]);
+  assert.equal(checked.providerProfileId, "p1", "kinnitus käivitab esimese kontrolli kohe");
+  assert.equal(prisma.state.audits[0].actorUserId, "osutaja-1");
+  assert.equal(prisma.state.audits[0].meta.actorKind, "PROVIDER");
+});
+
+test("admini sidumise jälg ütleb, et sidus admin", async () => {
+  const prisma = fakePrisma({ service });
+  await bindServiceKey({ providerServiceId: "s1", serviceKey: "TOETATUD_ELAMINE", actorUserId: "admin-1", prisma, now: NOW, checkNow: false });
+  assert.equal(prisma.state.audits[0].meta.actorKind, "ADMIN");
+});
+
+test("võõra profiili teenust osutaja siduda ei saa ja vastus on sama mis olematul teenusel", async () => {
+  const prisma = fakePrisma({ service });
+  const foreign = await bindOwnServiceKey({
+    providerProfileId: "teine-profiil",
+    providerServiceId: "s1",
+    serviceKey: "TOETATUD_ELAMINE",
+    prisma,
+    now: NOW
+  });
+  const missing = await bindOwnServiceKey({
+    providerProfileId: "p1",
+    providerServiceId: "puudub",
+    serviceKey: "TOETATUD_ELAMINE",
+    prisma,
+    now: NOW
+  });
+
+  assert.deepEqual(foreign, { ok: false, error: BINDING_ERROR.SERVICE_NOT_FOUND });
+  assert.deepEqual(missing, foreign, "teenuse ID olemasolu ei tohi lekkida");
+  assert.equal(prisma.state.transactions, 0);
+});
+
+test("liiki, mis luba ei vaja, osutaja ise kinnitada ei saa", async () => {
+  const prisma = fakePrisma({ service });
+  const result = await bindOwnServiceKey({ providerProfileId: "p1", providerServiceId: "s1", serviceKey: "TUGIISIK", prisma, now: NOW });
+
+  assert.deepEqual(result, { ok: false, error: BINDING_ERROR.KEY_NOT_SELECTABLE });
+  assert.equal(prisma.state.transactions, 0, "keeldumine ei jõua andmebaasi");
+  assert.equal((prisma.state.ownLookups || []).length, 0);
+});
+
+test("osutaja saab kinnituse tagasi võtta", async () => {
+  const prisma = fakePrisma({ service: { ...service, serviceKey: "TOETATUD_ELAMINE" } });
+  const result = await bindOwnServiceKey({ providerProfileId: "p1", providerServiceId: "s1", serviceKey: null, prisma, now: NOW });
+
+  assert.equal(result.ok, true);
+  assert.equal(result.serviceKey, null);
+  assert.equal(prisma.state.deletes.length, 1);
+});
+
+test("osutaja ülevaade pakub liiki nime järgi, aga ei vali seda", async () => {
+  const prisma = {
+    serviceProviderProfile: {
+      findUnique: async () => ({
+        registryCode: "12345678",
+        serviceItems: [
+          { id: "s1", name: "Toetatud elamise teenus", description: "", category: "", categories: [], serviceKey: null },
+          { id: "s2", name: "Tugiisik", description: "", category: "", categories: [], serviceKey: "TUGIISIK" },
+          { id: "s3", name: "Kodu", description: "", category: "", categories: [], serviceKey: "KOGUKONNAS_ELAMINE" }
+        ]
+      })
+    }
+  };
+
+  const view = await ownBindingOverview({ providerProfileId: "p1", prisma });
+
+  assert.equal(view.ok, true);
+  assert.equal(view.hasRegistryCode, true);
+  const [unbound, adminBound, own] = view.services;
+  assert.equal(unbound.serviceKey, null, "pakkumine ei ole sidumine");
+  assert.deepEqual(unbound.suggestions, ["TOETATUD_ELAMINE"]);
+  /* Admini seotud liik, mis luba ei vaja: nimetatakse, aga osutaja valikutes seda ei ole. */
+  assert.equal(adminBound.currentLabel, "Tugiisikuteenus");
+  assert.equal(adminBound.currentSelectable, false);
+  assert.deepEqual(adminBound.suggestions, [], "liiki, mis luba ei vaja, osutajale ei pakuta");
+  assert.equal(own.currentSelectable, true);
+  assert.equal(own.currentLabel, "Kogukonnas elamise teenus");
+});
+
+test("registrikoodita profiili ülevaade ütleb, et kontrollida ei saa", async () => {
+  const prisma = { serviceProviderProfile: { findUnique: async () => ({ registryCode: "  ", serviceItems: [] }) } };
+  const view = await ownBindingOverview({ providerProfileId: "p1", prisma });
+  assert.equal(view.hasRegistryCode, false);
 });
