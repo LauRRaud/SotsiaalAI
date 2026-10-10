@@ -31,9 +31,14 @@ test('a municipality is selected by its own canonical name, not by other reading
 test('ordinary words that share a reading or compound part with a municipality do not select it', async () => {
   for (const text of ['Tahan end tappa', 'Mulk on mu vanaisa', 'Mul on põlve valu', 'Elan üksi, raske on toimetulek'])
     assert.equal((await scope(text)).region, null, text);
-  // Known limit: an identical surface form ("kanepi" = genitive of hemp and the
-  // municipality name) still matches. The answer model must treat it as tentative.
-  assert.equal((await scope('Kas kanepi tarvitamine on ohtlik?')).region, 'kanepi_vald');
+  // ADR-139 (11.10.2026): an identical surface form ("kanepi" = genitive of hemp and the municipality's name; "tapa",
+  // "nõo") is the name only where the writing says so: a capital inside a sentence, "vald" or "linn" after it, or the
+  // word alone as the whole message. Until then this was a known limit and the sentence selected Kanepi vald.
+  for (const text of ['Kas kanepi tarvitamine on ohtlik?', 'Mu poeg on kanepi sõltlane', 'Kanepi tarvitamine on mu poja mure', '15-aastase kanepi tarvitamine vanema nõustamine',
+    'Ära tapa mind, ütlesin talle', 'Tapa ähvardus lähisuhtes', 'Elan nõo juures', 'Maja on nõo põhjas']) assert.equal((await scope(text)).region, null, text);
+  for (const [text, region] of [['Elan Kanepi vallas', 'kanepi_vald'], ['elan kanepi vallas', 'kanepi_vald'], ['Kanepi valla lastekaitsetöötaja kontakt', 'kanepi_vald'], ['hooldajatoetus Kanepi', 'kanepi_vald'],
+    ['Elan Kanepis', 'kanepi_vald'], ['kanepi', 'kanepi_vald'], ['Tapa valla sotsiaaltoetused', 'tapa_vald'], ['Mu õde elab Tapal', 'tapa_vald'], ['tapa linn', 'tapa_vald'], ['Tapa', 'tapa_vald'],
+    ['Elan Nõos', 'noo_vald'], ['Nõo valla sünnitoetus', 'noo_vald'], ['Mu ema elab Nõo alevikus', 'noo_vald'], ['nõo', 'noo_vald']]) assert.equal((await scope(text)).region, region, text);
 });
 
 test('with real morphology a negated place is left out: Tartu vald, not Tartu linn (acceptance G8)', async () => {

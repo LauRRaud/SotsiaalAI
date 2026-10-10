@@ -149,6 +149,45 @@ Kasv on joonelähedane. Omanik lubas 10.10 vajadusel tõsta dokumentide piiri 15
 
 **Otsingu aeg** samade küsimuste peal: mediaan 4778 ms → 5249 ms (10% rohkem; lõike on 9% rohkem). **Planeerija** ootab uuele põlvkonnale 9616 dokumenti, nii et aktiveerimise ANALYZE töötas. Uus võrdlusalus tänase koodi ja korpusega: serveris `gate-files/gate-baseline-v77.json`.
 
+## Tasuline vastuste kontroll (11.10.2026 öösel)
+
+Omanik 11.10: „Do this task here: Tasuline vastuste kontroll pärast korpust v77“ (lagi 0,45 USD). Kontroll käis päris vestluse rajal, töötaval väljalaskel `1cb79238` ja korpusel v77, kahes osas üksteise järel (`w4/check94` serveris). Kokku 78 pööret, vigu 0, **0,2902 USD**.
+
+**1. osa: rasked tingimused, samad 30 küsimust kaks korda (60 pööret, 0,2287 USD).** Samad küsimused, sama tööriist ja sama lugeja mis võrdlusel korpusega v74 10.10 (`w4/check83`, 60 pööret).
+
+| | v74 (10.10) | v77 (11.10) |
+|---|---:|---:|
+| Otsustav säte oli mudelile antud lõikude seas | 60 / 60 | 59 / 60 |
+| Vastus viitas lõigule, kus otsustav säte on | 60 / 60 | 57 / 60 |
+| Vastuse liik: osaline / põhjendatud | 39 / 21 | 39 / 21 |
+| Pöörde aja mediaan | 19,0 s | 19,4 s |
+
+Kolm pööret, mis erinevad, loetud pöörde kirjest ja vastuse tekstist:
+
+- **Laenumakse toimetulekutoetuse eluasemekuluna** (viide puudus ühel korral kahest). Vastus on õige ja täpsem kui võrdluses: tingimused ja kuue kuu piir kalendriaastas, viitega sotsiaalhoolekande seaduse § 133 lg 9¹ ja 9². Mõõdik otsis sõnastust sama paragrahvi teisest lõikest. Mudelile antud seitsmest lõigust viis olid uutelt lehtedelt pealkirjaga „Toimetulekutoetus“ (ministeeriumi ja ameti leht; teisel korral kuuest kolm): sama, mida tasuta värav näitas kandidaatide seas, on nüüd näha ka vastuse tõendites.
+- **Käitumisraskustega lapse abivajaduse hindaja** (otsustav säte puudus ühel korral kahest). Vastus on õige („abivajadust hindab elukohajärgse omavalitsuse lastekaitsespetsialist“), ameti lehe ja sotsiaalhoolekande seaduse § 59 ja § 62 põhjal. Puudu jäi lastekaitseseaduse § 28 lõik, mille sõnastust mõõdik otsis. Tõendites oli üks uus leht („Abivajav laps“); kohad võtsid peamiselt sotsiaalhoolekande seaduse lõigud.
+- **68-aastase psüühikahäirega ema päeva- ja nädalahoid** (viide puudus ühel korral kahest). Vastus jättis nimetamata erandi vanaduspensioniikka jõudnud dementsuse diagnoosiga inimese kohta, kuigi lõik oli mudelile antud. Tõendites ei olnud ühtegi uut lehte; teisel korral viitas vastus erandile. See on mudeli vastuste kõikumine, mitte uue sisu mõju.
+
+Seega: uus sisu ei jätnud ühtegi otsustavat sätet tõenditest välja nii, et vastus oleks valeks läinud. Üks vastus kuuekümnest jättis erandi nimetamata, ja see ei ole seotud uue sisuga.
+
+**2. osa: üheksa küsimust uue sisu teemadel, igaüks kaks korda (18 pööret, 0,0615 USD).** Kaheksa küsimuse vastused (16 pööret) viitasid sisule, mis läks sisse v76 ja v77-ga; spetsialisti küsimuse kaks vastust tuginesid varasemale sisule (andmekaitse lehti tõendites ei olnud).
+
+| Küsimus | Millele vastus viitas |
+|---|---|
+| Vend joob iga päev | alkoinfo.ee lehed „Kui lähedane joob“, „Kuidas aidata lähedast“, „Kuhu pöörduda“, „Spetsialisti abi“ |
+| Poja toast leitud kanep | narko.ee lehed „Kuidas käituda, kui sinu lähedane tarvitab uimasteid“, „Siit saad abi“ (tugiliin), „Abivõimalused lastele ja noortele“ |
+| Koondamine pärast kaheksat aastat | tooelu.ee „Töölepingu ühepoolne lõpetamine“ ja „Lõpparve“, töölepingu seadus, töötuskindlustuse seadus (tööandjalt ja Töötukassalt kummaltki ühe kuu keskmine töötasu, etteteatamine 60 päeva) |
+| Toiduabi | Toidupanga lehed „Taotle abi“ ja „Toiduabi taotlemise info“, ministeeriumi „Toiduabi“ |
+| Ema elu lõpp kodus | Kliinikumi „Palliatiivravi ja hospiits“, Tervisekassa „Õendusabi“ |
+| 16-aastase ärevus | „Vaimne tervis“, terviseportaali „Spetsialistid ja abivõimalused“ |
+| Tähtajatu üürilepingu ülesütlemine | Võlaõigusseadus § 312, § 311, § 325, § 329 (kolm kuud, mitte üks) |
+| „Mida ütleb VÕS § 312 lõige 1?“ | Võlaõigusseadus § 312 lg 1, sisult õige |
+| Lapse andmete jagamine kooliga (spetsialist) | lastekaitseseadus ja abivajavast lapsest teatamise juhend |
+
+**Leitud viga.** Kanepi küsimuse ühes vastuses kahest oli lõik „Kui mure on Kanepi vallas, võid võtta ühendust laste heaolu spetsialistiga …“ koos selle valla töötaja kontaktiga: otsinguplaani päringu sõna „kanepi“ loeti Kanepi vallaks. Põhjus ja parandus on [ADR-139](adr-139-a-name-that-is-also-an-everyday-word.md).
+
+**Soovitus kandidaatide kohta.** Jätta praegu nii. Kaks pikka lehte pealkirjaga „Toimetulekutoetus“ võtavad toimetulekutoetuse küsimustes suure osa tõendite kohtadest, aga kuue toimetulekutoetuse küsimuse kõigis 12 pöördes oli otsustav seaduse säte tõendites; viide puudus ühel, kus vastus oli õige sama paragrahvi teise lõike põhjal. Ühe dokumendi kohtade piiramine muudaks otsingut kõigi küsimuste jaoks; seda tasub teha siis, kui mõni mõõdetud vastus läheb selle pärast valeks.
+
 ## Kus lehed on
 
 Lehtede tekstid ei ole repos: valikureegel võtab neist lõike välja, aga igakuine ametlike lehtede uuendus ([ADR-116](adr-116-official-pages-monthly-refresh.md)) seda reeglit ei tunne ja asendaks koopia lugeja omaga. Tekstid on põhikausta `tmp/rag-v2-v76/sources/veebilehed` all ja registrid loetlevad need pealkirja ja aadressiga. Võlaõigusseaduse failid on repos (`Andmebaasi/oigusaktid`).
@@ -159,4 +198,4 @@ Lehtede tekstid ei ole repos: valikureegel võtab neist lõike välja, aga igaku
 - PDF-id, millele kestlehed viitavad (Tervisekassa infomaterjalid, eetika käsiraamat, lasteabi käsiraamat).
 - Vanglast vabanemine ja Töötukassa (omaniku otsus: kas küsida neilt luba või andmeid).
 - Omaniku otsustamata küsimused nimekirjafailist: tubakainfo.ee ja venekeelsed koopiad jäid välja.
-- Mudeliga mõõtmata: kas vastused uusi lehti kasutavad.
+- ~~Mudeliga mõõtmata: kas vastused uusi lehti kasutavad.~~ Mõõdetud 11.10 (osa „Tasuline vastuste kontroll“).

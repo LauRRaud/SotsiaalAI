@@ -91,8 +91,8 @@ test('a municipality is still selected by its own forms, also where its name is 
     ['Elan Haapsalus.', 'haapsalu_linn'], ['Elan Kuusalus.', 'kuusalu_vald'], ['Elan Jõelähtmel.', 'joelahtme_vald'], ['Elan Häädemeestel.', 'haademeeste_vald'], ['Elan Alutagusel.', 'alutaguse_vald'],
     ['Elan Peipsiääres.', 'peipsiaare_vald'], ['Elan Põhja-Pärnumaal.', 'pohja_parnumaa_vald'], ['Ta elab Narva-Jõesuus.', 'narva_joesuu_linn'], ['Elan Tõrvas.', 'torva_vald'], ['Elan Kosel.', 'kose_vald'],
     ['Elan Kanepis.', 'kanepi_vald'], ['Elan Järvas.', 'jarva_vald'], ['Elan Pärnus.', 'parnu_linn'], ['Kolisin Tapale.', 'tapa_vald'], ['Elan Tallinnas.', 'tallinn'], ['Elan Muhus.', 'muhu_vald'],
-    // The known limit of ADR-020 stays: the word as written is the name ("kanepi", the genitive of hemp).
-    ['Kas kanepi tarvitamine on ohtlik?', 'kanepi_vald'],
+    // The word as written is the name ("kanepi", also the genitive of hemp): where the writing shows it (ADR-139, below).
+    ['Elan Kanepi vallas.', 'kanepi_vald'],
     // A limit ADR-127 does not change: a county written in two words still selects its namesake municipality, because the
     // name stands as a word of its own. Only the county written as one word ("Järvamaal") selects none.
     ['Elan Järva maakonnas.', 'jarva_vald'],
@@ -108,6 +108,26 @@ test('a municipality is still selected by its own forms, also where its name is 
   // "-ki": the morphology gives the name as their lemma, and no part.
   for (const form of ['Tartuni', 'Tartuna', 'Tartuks', 'Tartuta', 'Tartuski']) assert.deepEqual(await read(form), ['tartu_linn', 'tartu_vald'], form);
   assert.equal(await read('Tahan end tappa.'), 'region_required');
+});
+
+test('a name that is also an everyday word is the name only where the writing says so (ADR-139)', async () => {
+  // Measured in a paid check on 11.10.2026: "Leidsin oma 15-aastase poja toast kanepit" named no place, the search
+  // plan wrote the query "15-aastase kanepi tarvitamine vanema nõustamine", and the answer offered Kanepi vald's child
+  // protection worker. The same reading took the user's own words ("Mu poeg on kanepi sõltlane").
+  for (const text of ['Kas kanepi tarvitamine on ohtlik?', 'Mu poeg on kanepi sõltlane.', 'Kuidas rääkida lapsega kanepi tarvitamisest?', '15-aastase kanepi tarvitamine vanema nõustamine',
+    'kanepi mõju teismelisele', 'Ära tapa mind, ütlesin talle.', 'tapa ähvardus ja lähenemiskeeld', 'Elan nõo juures.', 'Maja on nõo põhjas.',
+    // The first word of a sentence has its capital by its place, not by being a name.
+    'Kanepi tarvitamine on mu poja mure.', 'Tapa ähvardus lähisuhtes']) assert.equal(await read(text), 'region_required', text);
+  // The name: a capital inside a sentence, the kind word after it (also written in lower case), the word alone as the
+  // whole message, and every case form of the name, which is not the everyday word.
+  for (const [text, region] of [['hooldajatoetus Kanepi', 'kanepi_vald'], ['Mu ema elab Kanepi lähedal.', 'kanepi_vald'], ['Kanepi valla lastekaitsetöötaja kontakt', 'kanepi_vald'], ['elan kanepi vallas', 'kanepi_vald'],
+    ['Kanepi vald hooldajatoetus', 'kanepi_vald'], ['kanepi', 'kanepi_vald'], ['Kanepi', 'kanepi_vald'], ['Elan Kanepis.', 'kanepi_vald'], ['Tapa valla sotsiaaltoetused', 'tapa_vald'], ['tapa linn', 'tapa_vald'],
+    ['Mu õde elab Tapal.', 'tapa_vald'], ['Tapa', 'tapa_vald'], ['Nõo valla sünnitoetus', 'noo_vald'], ['Elan Nõos.', 'noo_vald'], ['Töötan Nõo koolis.', 'noo_vald'], ['nõo', 'noo_vald']]) assert.equal(await read(text), region, text);
+  // The same test in the reading of every mention (the state of the persons' places): no mention, so no residence.
+  assert.deepEqual(await placeOccurrences('Mu poeg on kanepi sõltlane ja ma elan nõo juures.', directory, analyzer), []);
+  assert.deepEqual((await placeOccurrences('Elan Kanepi vallas, poeg tarvitab kanepit.', directory, analyzer)).map(item => item.region), ['kanepi_vald']);
+  // The other names stay as they were, in lower case too.
+  assert.equal(await read('kose lasteaed'), 'kose_vald');
 });
 
 test('the other names and the negation of a message are read without the compound', async () => {
