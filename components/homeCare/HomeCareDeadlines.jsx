@@ -144,6 +144,23 @@ export default function HomeCareDeadlines({ context, deadlines }) {
         clientLine(item, t("home_care.deadlines.risk_lines_line", { count: item.lines, date: planDayLabel(item.oldestOn) }))
       )}
 
+      {/* Teated otsustajale (K5-r): vastuseta teated ja lubatud uus hindamine, mille päev on möödas. */}
+      {(deadlines.noticesWaiting || []).length
+        ? section("notices_waiting", deadlines.noticesWaiting, (item) =>
+            clientLine(
+              item,
+              t("home_care.deadlines.notices_waiting_line", { reason: t(`home_care.notice.reasons.${item.reason}`), date: planDayLabel(item.sentOn), days: item.days }),
+              null,
+              item.key
+            )
+          )
+        : null}
+      {(deadlines.reassessOverdue || []).length
+        ? section("reassess_overdue", deadlines.reassessOverdue, (item) =>
+            clientLine(item, t("home_care.deadlines.reassess_overdue_line", { date: planDayLabel(item.reassessBy), days: item.days }), null, item.key)
+          )
+        : null}
+
       {/* Osutatud aeg kolm lukustatud kuud järjest üle otsustatu (K5-q): põhjus otsustajale teada anda. */}
       {(deadlines.overVolumeStreak || []).length
         ? section("over_volume", deadlines.overVolumeStreak, (item) =>

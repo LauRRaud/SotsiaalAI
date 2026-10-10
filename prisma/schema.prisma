@@ -8247,6 +8247,7 @@ model CareClient {
   crisisProfiles     CareCrisisProfile[]
   relatives          CareClientRelative[]
   safetyItems        CareSafetyItem[]
+  decisionNotices    CareDecisionNotice[]
 
   @@unique([organizationId, internalCode])
   @@index([organizationId, status, displayName])
@@ -8636,6 +8637,53 @@ model CareReferralContact {
   organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 
   @@index([organizationId, endedAt, position])
+}
+
+/// KODUTEENUS K5-r — TEADE OTSUSTAJALE (kava II.6.13): hooldusjuhi teade omavalitsuse
+/// sotsiaaltöötajale, kes mahu otsustab. Hoitakse, mis saadeti (`sentText` täpselt sellisena,
+/// nagu see koostati), mis kanalit pidi ja mis päeval, ning käsitsi märgitud vastus. Platvorm
+/// ise teadet ei saada. Ridu ei kustutata: ekslik teade võetakse tagasi põhjusega.
+model CareDecisionNotice {
+  id             String   @id @default(cuid())
+  organizationId String
+  clientId       String
+  /// NEED_GROWN | NEED_REDUCED | SERVICE_UNFIT | OTHER_SERVICE | RELATIVE_CHANGED (`CareNoticeReason`).
+  reason         String
+  /// Hooldusjuhi kaks lauset.
+  text           String
+  /// Kellele (nimi ja asutus), vaba tekst.
+  recipient      String?
+  /// EMAIL | STAR | PHONE | MEETING | OTHER.
+  channel        String
+  /// Saatmise päev kujul AAAA-KK-PP.
+  sentOn         String
+  /// Kuni viis lisatud päeviku kirjet (ID-d); tekst on `sentText` sees.
+  entryIds       String[] @default([])
+  /// Teate tekst täpselt sellisena, nagu see koostati.
+  sentText       String
+
+  createdByMembershipId String?
+  createdByName         String?
+  createdAt             DateTime @default(now())
+
+  /// REASSESS | VOLUME_STAYS | OTHER_SERVICE | OTHER (`CareNoticeAnswer`) või NULL, kui vastust ei ole.
+  answer                 String?
+  answeredOn             String?
+  /// Ainult vastusega REASSESS: mis päevaks uus hindamine lubati.
+  reassessBy             String?
+  answerNote             String?
+  answeredAt             DateTime?
+  answeredByMembershipId String?
+  answeredByName         String?
+
+  withdrawnAt             DateTime?
+  withdrawnByMembershipId String?
+  withdrawReason          String?
+
+  client CareClient @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@index([clientId, sentOn])
+  @@index([organizationId, answer, withdrawnAt])
 }
 
 /// KODUTEENUS K5-p — KUU LUKK (kava II.6.10): kuu arvude hetktõmmis hetkel, mil hooldusjuht

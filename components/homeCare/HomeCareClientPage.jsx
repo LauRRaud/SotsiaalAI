@@ -13,6 +13,7 @@ import HomeCareCard from "./HomeCareCard";
 import HomeCareChangeSignals from "./HomeCareChangeSignals";
 import HomeCareCrisis from "./HomeCareCrisis";
 import HomeCareClientForm from "./HomeCareClientForm";
+import HomeCareDecisionNotices from "./HomeCareDecisionNotices";
 import HomeCareDecisionView, { minutesLabel } from "./HomeCareDecisionView";
 import HomeCareEntryForm from "./HomeCareEntryForm";
 import HomeCareEntryItem from "./HomeCareEntryItem";
@@ -471,6 +472,19 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
 
       {/* Kriisivalmidus (K5-b): kui palju tuge klient kriisis vajab ja millest ta sõltub. */}
       <HomeCareCrisis organizationId={organizationId} clientId={client.id} initial={data.crisis || null} canEdit={canWrite && access.isCoordinator} />
+
+      {/* Teated otsustajale (K5-r): ainult hooldusjuhile. Valikuks on päeviku esimese lehe kirjed. */}
+      {access.isCoordinator ? (
+        <HomeCareDecisionNotices
+          organizationId={organizationId}
+          clientId={client.id}
+          initial={data.decisionNotices || []}
+          entries={entries.items}
+          canEdit={canWrite}
+          today={data.today || ""}
+          timeZone={timeZone}
+        />
+      ) : null}
 
       {/* Täna kehtiv otsus ja otsustatud maht (K2-c). Kogu meeskonnale lugemiseks. */}
       <section className="hc-section" aria-labelledby={`${fieldId}-decision`}>
