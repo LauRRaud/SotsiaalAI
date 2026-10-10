@@ -6261,3 +6261,46 @@ test('sõidupäevik: töötaja paneb sõidu kirja kahe näiduga, hooldusjuht nä
   assert.deepEqual(audit.map((entry) => entry.meta.change).sort(), ['added', 'added', 'added', 'added', 'retracted', 'retracted']);
   assert.equal(JSON.stringify(audit).includes('Haapsalus'), false);
 });
+
+test('kuu kokkuvõte: sõidupäeviku kilomeetrid töötaja real, ka kuu lukus; üksuse hooldusjuhile mitte', async (t) => {
+  const f = await fixture(t);
+  const north = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Põhi ${f.tag}`, type: 'TEAM' } });
+  await db.organizationCapabilityGrant.create({
+    data: { membershipId: f.members.cover.id, capability: 'HOME_CARE_COORDINATOR', scopeType: 'UNIT', scopeUnitId: north.id, validFrom: at('2026-01-01T00:00:00Z') }
+  });
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const unitLead = await f.ctx(f.users.cover, f.orgA);
+  const start = deps(at('2026-09-01T08:00:00Z'));
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi', unitId: north.id }, start)).client;
+  for (const key of ['anu', 'bert']) await addTeamMember(lead, peeter.id, { membershipId: f.members[key].id }, start);
+  /* Septembris: Anul käik ja kaks sõitu (üks isikliku, üks asutuse autoga); Bertil ainult sõit, mis tühistatakse, ja üks kehtiv. */
+  await createEntry(anu, peeter.id, { kind: 'NOTE', contactMode: 'VISIT', text: 'Käik', visitMinutes: 60, occurredAt: '2026-09-15T07:00:00Z' }, deps(at('2026-09-15T07:00:00Z')));
+  const sept = deps(at('2026-09-20T08:00:00Z'));
+  await addTrip(anu, { day: '2026-09-15', vehicle: 'OWN', startOdometer: 1000, endOdometer: 1042, purpose: 'Käigud linnas' }, sept);
+  await addTrip(anu, { day: '2026-09-16', vehicle: 'ORG', startOdometer: 500, endOdometer: 518, purpose: 'Käigud linnas' }, sept);
+  const wrong = await addTrip(bert, { day: '2026-09-16', vehicle: 'OWN', startOdometer: 10, endOdometer: 900, purpose: 'Vale näit' }, sept);
+  await retractTrip(bert, wrong.mine.trips[0].id, { reason: 'Vale näit' }, sept);
+  await addTrip(bert, { day: '2026-09-17', vehicle: 'OWN', startOdometer: 10, endOdometer: 35, purpose: 'Käigud linnas' }, sept);
+
+  const october = deps(at('2026-10-05T08:00:00Z'));
+  const summary = await getMonthSummary(lead, { month: '2026-09' }, october);
+  /* Bertil käike ei olnud, aga sõit oli: ta on töötajate tabelis oma reaga. Tühistatud sõitu ei loeta. */
+  assert.deepEqual(summary.workers.map((row) => [row.name.split(' ')[0], row.visits, row.km, row.ownKm]), [['Anu', 1, 60, 42], ['Bert', 0, 25, 25]]);
+  /* Üksuse hooldusjuhi kokkuvõttes kilomeetreid ei ole: sõidupäevik on kogu asutuse oma. */
+  const scoped = await getMonthSummary(unitLead, { month: '2026-09' }, october);
+  assert.deepEqual(scoped.workers.map((row) => [row.name.split(' ')[0], 'km' in row]), [['Anu', false]]);
+  /* Kuus, kus sõite ei olnud, võtit ei ole. */
+  assert.deepEqual((await getMonthSummary(lead, { month: '2026-08' }, october)).workers, []);
+
+  /* Kuu lukk kannab kilomeetrid kaasa: hilisem sõit lukustatud arve ei muuda. */
+  const page = await getMonthPage(lead, { month: '2026-09' }, october);
+  const locked = await lockMonth(lead, { month: '2026-09', seen: { visits: page.totals.visits, minutes: page.totals.minutes, open: page.lock.openItemCount } }, october);
+  await addTrip(anu, { day: '2026-09-30', vehicle: 'OWN', startOdometer: 1042, endOdometer: 1100, purpose: 'Hiljem kirja pandud' }, october);
+  const after = await getMonthPage(lead, { month: '2026-09' }, october);
+  assert.deepEqual([locked, after].map((view) => view.workers.map((row) => [row.name.split(' ')[0], row.km, row.ownKm])), [
+    [['Anu', 60, 42], ['Bert', 25, 25]],
+    [['Anu', 60, 42], ['Bert', 25, 25]]
+  ]);
+});

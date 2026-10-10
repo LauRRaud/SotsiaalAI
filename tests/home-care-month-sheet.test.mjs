@@ -32,7 +32,11 @@ const page = (lock) => ({
     { client: { id: 'c2', displayName: '=SUM(A1)', status: 'AWAY' }, expectedMinutes: null, visits: 1, minutes: 45, withoutLength: 1, missed: 0, cancelled: 0, notDone: { REFUSED: 0, NOT_NEEDED: 0, COULD_NOT: 0 } },
     { client: { id: 'c3', displayName: null, status: null }, expectedMinutes: 30, visits: 1, minutes: 90, withoutLength: 0, missed: 0, cancelled: 0, notDone: { REFUSED: 0, NOT_NEEDED: 0, COULD_NOT: 0 } }
   ],
-  workers: [{ membershipId: 'm1', name: 'Anu Hooldaja', visits: 4, minutes: 195, heavy: 1, companionVisits: 1, companionMinutes: 30 }],
+  workers: [
+    { membershipId: 'm1', name: 'Anu Hooldaja', visits: 4, minutes: 195, heavy: 1, companionVisits: 1, companionMinutes: 30, km: 42, ownKm: 30 },
+    /* Sõitudeta töötaja (või varasem lukk, mis kilomeetreid ei kandnud): lahtrid jäävad tühjaks. */
+    { membershipId: 'm2', name: 'Bert Hooldaja', visits: 1, minutes: 30, heavy: 0, companionVisits: 0, companionMinutes: 0 }
+  ],
   missed: [{ entryId: 'e9', client: { id: 'c1', displayName: 'Linda Tamm' }, occurredAt: '2026-09-12T06:00:00.000Z', type: 'DOOR_NOT_OPENED' }],
   lock
 });
@@ -59,9 +63,11 @@ test('kuu tabel: lukustatud kuu fail ütleb, et arvud on lukus, ja kannab kolme 
   assert.deepEqual(rows[8], ['Kokku', '', '4', '3,3', '2,5', '', '1', '1', '2', '3', '2', '0', '1']);
   assert.deepEqual(rows[9], ['']);
   assert.deepEqual(rows[10], ['Töötaja kaupa']);
-  assert.deepEqual(rows[12], ['Anu Hooldaja', '4', '3,3', '1', '1', '0,5']);
-  assert.deepEqual(rows[14], ['Ära jäänud käigud']);
-  assert.deepEqual(rows[16], ['Linda Tamm', '[2026-09-12T06:00:00.000Z]', 'Uks ei avanenud']);
+  assert.deepEqual(rows[11].slice(-2), ['Kilomeetreid', 'Sellest isikliku autoga']);
+  assert.deepEqual(rows[12], ['Anu Hooldaja', '4', '3,3', '1', '1', '0,5', '42', '30']);
+  assert.deepEqual(rows[13], ['Bert Hooldaja', '1', '0,5', '0', '0', '0', '', '']);
+  assert.deepEqual(rows[15], ['Ära jäänud käigud']);
+  assert.deepEqual(rows[17], ['Linda Tamm', '[2026-09-12T06:00:00.000Z]', 'Uks ei avanenud']);
 });
 
 test('kuu tabel: lukustamata kuu ja üksuse vaade on failis kirjas', () => {
