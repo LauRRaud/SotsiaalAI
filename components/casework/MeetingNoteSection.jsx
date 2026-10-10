@@ -30,7 +30,7 @@
  * failis ./sections/sectionRows.js.
  */
 
-import { useCallback, useId, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
@@ -46,6 +46,7 @@ import {
   noteRows,
   noteTabs,
   noteTitle,
+  noteUnsaved,
   provenanceOptions,
   revisionRows
 } from "./sections/sectionRows";
@@ -59,7 +60,7 @@ const NOTE_TAB_COLUMNS = 5;
  * `locked`: juhtum ei ole aktiivne. `caseBusy`: juhtumi enda kirjutus käib.
  * `active`: see osa on laval ees (ainult siis joonistab põhinupp oma helgi).
  */
-export default function MeetingNoteSection({ caseId, locked, caseBusy, active, onChanged, onListLoaded }) {
+export default function MeetingNoteSection({ caseId, locked, caseBusy, active, onChanged, onListLoaded, onUnsaved, leaveGate }) {
   const { t, locale } = useI18n();
   const formId = useId();
   const root = `/cases/${encodeURIComponent(caseId)}/meeting-notes`;
@@ -212,6 +213,8 @@ export default function MeetingNoteSection({ caseId, locked, caseBusy, active, o
         errorText={errorText}
         actions={actions}
         onClose={closeNote}
+        onUnsaved={onUnsaved}
+        leaveGate={leaveGate}
       />
     );
   }
@@ -274,7 +277,7 @@ export default function MeetingNoteSection({ caseId, locked, caseBusy, active, o
  * Avatud märge: hoiab, milline kiht ja alamvaade on ees, ning pooleli ridu.
  * Joonistavad vaated failis ./sections/NoteViews.jsx.
  */
-function NoteEditor({ t, locale, note, revisions, locked, busy, glow, errorText, actions, onClose }) {
+function NoteEditor({ t, locale, note, revisions, locked, busy, glow, errorText, actions, onClose, onUnsaved, leaveGate }) {
   const formId = useId();
   const [tab, setTab] = useState(NOTE_TABS[0]);
   /* Alamvaade saki asemel: uus kirje (`add`) või avatud kirje (`entry`). */
@@ -291,6 +294,18 @@ function NoteEditor({ t, locale, note, revisions, locked, busy, glow, errorText,
      põhjust ega kanna seda teise kirje alla. */
   const [reasons, setReasons] = useState({});
 
+  /* Pooleli rida või põhjus teatatakse juhtumi vaatele (lahkumise värav) ja
+     avatud märkme sulgemine küsib enne üle. */
+  const dirty = !locked && noteUnsaved(drafts, reasons);
+  useEffect(() => {
+    onUnsaved?.(dirty);
+  }, [dirty, onUnsaved]);
+  useEffect(() => () => onUnsaved?.(false), [onUnsaved]);
+  const close = () => {
+    if (dirty && leaveGate && !leaveGate("close")) return;
+    onClose();
+  };
+
   const swapRef = useSwapFocus(sub ? `${sub.view}:${sub.id || ""}` : "tab", { onMount: true });
   const context = { t, locale };
   const isLayer = tab !== "history";
@@ -305,7 +320,7 @@ function NoteEditor({ t, locale, note, revisions, locked, busy, glow, errorText,
   const identity = { label: t("casework.note.open_note", ""), name: noteTitle(note, context) };
   const tabbed = {
     swapRef,
-    head: { ...identity, back: { label: t("casework.note.back_to_list", ""), onClick: onClose } },
+    head: { ...identity, back: { label: t("casework.note.back_to_list", ""), onClick: close } },
     errorText,
     tabs: {
       label: t("casework.note.tabs_label", ""),

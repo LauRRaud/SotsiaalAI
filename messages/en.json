@@ -1759,7 +1759,8 @@
       },
       "recording_line": "Recording is running.",
       "recorder_alert_line": "The recording part has a notice that needs your attention.",
-      "open_audio": "Open the recording"
+      "open_audio": "Open the recording",
+      "unsaved_leave": "The text you wrote is not saved. Press again if you want to leave it unsaved."
     },
     "info": {
       "title": "My cases",

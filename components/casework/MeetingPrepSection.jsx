@@ -49,6 +49,7 @@ import {
   prepRows,
   prepTabs,
   prepTitle,
+  prepUnsaved,
   provenanceOptions,
   questionKindOptions,
   questionRows
@@ -64,7 +65,7 @@ const PREP_TAB_COLUMNS = 4;
  * serveri vastuses). `caseBusy`: juhtumi enda kirjutus käib. `active`: see osa
  * on laval ees (ainult siis joonistab põhinupp oma helgi).
  */
-export default function MeetingPrepSection({ caseId, locked, caseBusy, active, onChanged, onListLoaded }) {
+export default function MeetingPrepSection({ caseId, locked, caseBusy, active, onChanged, onListLoaded, onUnsaved, leaveGate }) {
   const { t, locale } = useI18n();
   const formId = useId();
   const root = `/cases/${encodeURIComponent(caseId)}/meeting-preps`;
@@ -217,6 +218,8 @@ export default function MeetingPrepSection({ caseId, locked, caseBusy, active, o
         actions={actions}
         onDelete={deletePrep}
         onClose={closePrep}
+        onUnsaved={onUnsaved}
+        leaveGate={leaveGate}
       />
     );
   }
@@ -284,7 +287,7 @@ function savedTexts(prep) {
  * Avatud ettevalmistus: hoiab, milline sakk ja alamvaade on ees, ning pooleli
  * tekste. Joonistavad vaated failis ./sections/PrepViews.jsx.
  */
-function PrepEditor({ t, locale, prep, landOn, locked, busy, glow, errorText, actions, onDelete, onClose }) {
+function PrepEditor({ t, locale, prep, landOn, locked, busy, glow, errorText, actions, onDelete, onClose, onUnsaved, leaveGate }) {
   const formId = useId();
   /* O-JTA-6: purge'itud ettevalmistus on TÜHJAST ERISTATAV ja kirjutuskaitstud.
      Ilma selleta näeks „töötaja arhiveeris töömaterjali" välja täpselt nagu
@@ -328,6 +331,19 @@ function PrepEditor({ t, locale, prep, landOn, locked, busy, glow, errorText, ac
     }
   }, [prep]);
 
+  /* Salvestamata tekst teatatakse juhtumi vaatele (lahkumise värav) ja avatud
+     ettevalmistuse sulgemine küsib enne üle. Kirjutuskaitstud ettevalmistusse
+     ei saa midagi kirjutada. */
+  const dirty = !writeLocked && prepUnsaved(prep, texts, question);
+  useEffect(() => {
+    onUnsaved?.(dirty);
+  }, [dirty, onUnsaved]);
+  useEffect(() => () => onUnsaved?.(false), [onUnsaved]);
+  const close = () => {
+    if (dirty && leaveGate && !leaveGate("close")) return;
+    onClose();
+  };
+
   const swapRef = useSwapFocus(sub ? `${sub.view}:${sub.id || sub.kind || ""}:${sub.target || ""}` : "tab", { onMount: true });
   const context = { t, locale };
   const questions = questionRows(prep, context);
@@ -347,7 +363,7 @@ function PrepEditor({ t, locale, prep, landOn, locked, busy, glow, errorText, ac
   };
   const tabbed = {
     swapRef,
-    head: { ...identity, back: { label: t("casework.prep.back_to_list", ""), onClick: onClose } },
+    head: { ...identity, back: { label: t("casework.prep.back_to_list", ""), onClick: close } },
     errorText,
     tabs: {
       label: t("casework.prep.tabs_label", ""),
@@ -552,7 +568,8 @@ function PrepEditor({ t, locale, prep, landOn, locked, busy, glow, errorText, ac
         locked: writeLocked,
         busy,
         glow,
-        canSave: Boolean(text.trim()),
+        /* Salvestatud välja sama tekst ei ole muudatus: nuppu ei pakuta. */
+        canSave: Boolean(text.trim()) && (!field.saved || text.trim() !== String(field.savedText || "").trim()),
         /* Märgis EI muutu teksti salvestamisega — server eirab saadetud
            väärtust. Olemasoleva rea juures läheb kaasa tema enda märgis; uue
            rea salvestus küsib enne päritolu. */

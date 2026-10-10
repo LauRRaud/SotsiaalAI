@@ -44,6 +44,7 @@ import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react"
 import { useI18n } from "@/components/i18n/I18nProvider";
 import StepFlight from "@/components/stage/StepFlight";
 import Button from "@/components/ui/Button";
+import { setPanelLeaveGuard, twoPressLeaveGuard } from "@/lib/panelLeaveGuard";
 import { PROVENANCES, provenanceLabelKey } from "@/lib/workspaces/provenance";
 
 import DraftSection from "./DraftSection";
@@ -63,7 +64,7 @@ import {
 } from "./cases/CaseDetailViews";
 import { Notice } from "./cases/CaseListViews";
 import styles from "./cases/cases.module.css";
-import { caseParts, itemRows, missingRows, missingStatusOptions, retentionTone, retentionView } from "./caseViews";
+import { caseFormUnsaved, caseParts, itemRows, missingRows, missingStatusOptions, retentionTone, retentionView } from "./caseViews";
 import {
   caseLabelText,
   caseWorkRequest,
@@ -162,18 +163,24 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
        kustutatud kliendiviide peab tühjendama ka välja, mille sisse töötaja
        parasjagu vaatab.
        ERAND: põhiandmete ja STAR-i viite salvestamine värskendab ainult oma
-       osa välju (`form`). Teise, parasjagu peidetud osa pooleli muudatus ei
-       tohi ühe osa salvestamisega vaikselt kaduda. */
-    if (form !== "star") {
+       osa välju (`form`) ja teise osa tegu (seos, puuduva info punkt,
+       ettevalmistus, märge, mustand) ei värskenda kumbagi (`form: "none"`).
+       Parasjagu peidetud osa pooleli muudatus ei tohi teise osa teoga
+       vaikselt kaduda. */
+    if (form === "all" || form === "basics") {
       setDisplayName(body.case?.clientDisplayName || "");
       setExternalRef(body.case?.clientExternalRef || "");
       setNextContact(toLocalInputValue(body.case?.nextContactAt));
     }
-    if (form !== "basics") {
+    if (form === "all" || form === "star") {
       setExternalSystem(body.case?.externalSystem || "");
       setExternalReference(body.case?.externalReference || "");
     }
   }, [caseId, locale]);
+
+  /* Juhtumi seis ja loendurid ilma vormiväljadeta: seda kutsuvad osad, mille
+     tegu juhtumi vormi ei puuduta. */
+  const refreshCase = useCallback(() => loadCase({ form: "none" }), [loadCase]);
 
   const loadItems = useCallback(
     async ({ cursor = null, append = false } = {}) => {
@@ -316,10 +323,10 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
         /* Seos on tehtud: vorm annab koha loendile tagasi. Tõrke korral jääb
            vorm ette ja sisestatud tunnus alles. */
         setLinking(false);
-        await Promise.all([loadItems(), loadCase()]);
+        await Promise.all([loadItems(), refreshCase()]);
       });
     },
-    [caseId, linkTargetId, linkType, loadCase, loadItems, locale, run]
+    [caseId, linkTargetId, linkType, loadItems, locale, refreshCase, run]
   );
 
   const unlinkItem = useCallback(
@@ -329,9 +336,9 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
           method: "DELETE",
           locale
         });
-        await Promise.all([loadItems(), loadCase()]);
+        await Promise.all([loadItems(), refreshCase()]);
       }),
-    [caseId, loadCase, loadItems, locale, run]
+    [caseId, loadItems, locale, refreshCase, run]
   );
 
   const addMissingInfo = useCallback(
@@ -346,10 +353,10 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
         setMissingText("");
         setMissingProvenance("");
         setAddingPoint(false);
-        await Promise.all([loadMissingInfo(), loadCase()]);
+        await Promise.all([loadMissingInfo(), refreshCase()]);
       });
     },
-    [caseId, loadCase, loadMissingInfo, locale, missingProvenance, missingText, run]
+    [caseId, loadMissingInfo, locale, missingProvenance, missingText, refreshCase, run]
   );
 
   const setMissingStatus = useCallback(
@@ -361,9 +368,9 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
         );
         /* Seis on salvestatud: punkt sulgub ja ees on jälle loend. */
         closePoint();
-        await Promise.all([loadMissingInfo(), loadCase()]);
+        await Promise.all([loadMissingInfo(), refreshCase()]);
       }),
-    [caseId, closePoint, loadCase, loadMissingInfo, locale, run]
+    [caseId, closePoint, loadMissingInfo, locale, refreshCase, run]
   );
 
   const removeMissingInfo = useCallback(
@@ -374,9 +381,9 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
           { method: "DELETE", locale }
         );
         closePoint();
-        await Promise.all([loadMissingInfo(), loadCase()]);
+        await Promise.all([loadMissingInfo(), refreshCase()]);
       }),
-    [caseId, closePoint, loadCase, loadMissingInfo, locale, run]
+    [caseId, closePoint, loadMissingInfo, locale, refreshCase, run]
   );
 
   const transitionRetention = useCallback(
@@ -410,9 +417,10 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
           locale,
           body: {}
         });
-        await loadCase();
+        /* Juhtum jääb aktiivseks: vormi pooleli välju see tegu ei puuduta. */
+        await refreshCase();
       }),
-    [caseId, loadCase, locale, run]
+    [caseId, locale, refreshCase, run]
   );
 
   const eraseClientReference = useCallback(
@@ -435,6 +443,52 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
     return { prep: report("prep"), notes: report("notes"), drafts: report("drafts"), transfer: report("transfer") };
   }, []);
   const noteTransfer = useCallback(() => setTransferToken((value) => value + 1), []);
+
+  /* SALVESTAMATA TEKST EI KAO KÜSIMATA. Juhtumi enda vormid ja avatud
+     ettevalmistus, märge ning mustand (need teatavad oma seisu ise) loetakse
+     kokku; kuni midagi on salvestamata, peab lehelt lahkumine (tagasi loendisse,
+     kiirmenüü nool, paneeli sulgemine, Esc) esimese korra kinni ja lava kohal
+     seisab põhjus. Teine vajutus lahkub. Sama värava kaudu küsib üle ka avatud
+     kirje sulgemine osa sees (`leaveGate`). */
+  const [sectionUnsaved, setSectionUnsaved] = useState({});
+  const reportUnsaved = useMemo(() => {
+    const set = (key) => (value) =>
+      setSectionUnsaved((current) => (Boolean(current[key]) === Boolean(value) ? current : { ...current, [key]: Boolean(value) }));
+    return { prep: set("prep"), notes: set("notes"), drafts: set("drafts") };
+  }, []);
+  const unsaved =
+    Object.values(sectionUnsaved).some(Boolean) ||
+    caseFormUnsaved(record, {
+      displayName,
+      externalRef,
+      nextContact,
+      savedNextContact: toLocalInputValue(record?.nextContactAt),
+      externalSystem,
+      externalReference,
+      missingText,
+      linkTargetId,
+      retentionReason
+    });
+  const [leaveAsked, setLeaveAsked] = useState(false);
+  const gateRef = useRef(null);
+  useEffect(() => {
+    if (!unsaved) return undefined;
+    const gate = twoPressLeaveGuard({ onAsk: () => setLeaveAsked(true), onClear: () => setLeaveAsked(false) });
+    gateRef.current = gate;
+    const release = setPanelLeaveGuard(gate);
+    const beforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = "";
+    };
+    window.addEventListener("beforeunload", beforeUnload);
+    return () => {
+      gate.clear();
+      gateRef.current = null;
+      release();
+      window.removeEventListener("beforeunload", beforeUnload);
+    };
+  }, [unsaved]);
+  const leaveGate = useCallback((reason) => (gateRef.current ? gateRef.current(reason) : true), []);
 
   const parts = useMemo(
     () => (record ? caseParts({ record, counts, lists: sectionLists, recording, t, locale }) : []),
@@ -596,8 +650,10 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
             locked={!isActive}
             caseBusy={busy}
             active={active}
-            onChanged={loadCase}
+            onChanged={refreshCase}
             onListLoaded={reportList.prep}
+            onUnsaved={reportUnsaved.prep}
+            leaveGate={leaveGate}
           />
         );
 
@@ -611,8 +667,10 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
             locked={!isActive}
             caseBusy={busy}
             active={active}
-            onChanged={loadCase}
+            onChanged={refreshCase}
             onListLoaded={reportList.notes}
+            onUnsaved={reportUnsaved.notes}
+            leaveGate={leaveGate}
           />
         );
 
@@ -643,9 +701,11 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
             locked={!isActive}
             caseBusy={busy}
             active={active}
-            onChanged={loadCase}
+            onChanged={refreshCase}
             onListLoaded={reportList.drafts}
             onTransferRecorded={noteTransfer}
+            onUnsaved={reportUnsaved.drafts}
+            leaveGate={leaveGate}
           />
         );
 
@@ -715,7 +775,9 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
         name={caseLabelText(record.label, t)}
         state={t(retentionLabelKey(record.retentionState), "")}
         tone={retentionTone(record.retentionState)}
-        onBack={onBack}
+        onBack={() => {
+          if (leaveGate("back")) onBack?.();
+        }}
       />
 
       {/* Kirjutuskaitse lause seisab lava KOHAL, mitte ühe osa sees: nupud on
@@ -724,6 +786,11 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
       {errorKey ? (
         <p className={styles.notice} data-tone="risk" role="alert" ref={alertRef}>
           {t(errorKey, "")}
+        </p>
+      ) : null}
+      {leaveAsked ? (
+        <p className={styles.notice} role="alert">
+          {t("casework.page.unsaved_leave", "")}
         </p>
       ) : null}
 

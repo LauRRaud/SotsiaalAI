@@ -534,3 +534,35 @@ export function transferRows(events, { t, locale }) {
       keys: list(event.fieldKeys).map((key) => String(key))
     }));
 }
+
+/* ────────────────────────────────────────────────────────────────────────────
+   SALVESTAMATA TEKST
+   Avatud kirje sulgemine, juhtumist lahkumine ja Esc küsivad enne üle, kui
+   ekraanil on teksti, mida serveris ei ole. „Salvestamata” otsustatakse
+   võrreldes sellega, mis on salvestatud, mitte selle järgi, kas välja puudutati:
+   tagasi kirjutatud tekst ei ole enam muudatus.
+   ──────────────────────────────────────────────────────────────────────────── */
+
+function typed(value) {
+  return Boolean(String(value ?? "").trim());
+}
+
+/** Avatud ettevalmistus: mõne välja tekst erineb salvestatust või küsimus on pooleli. */
+export function prepUnsaved(prep, texts, question) {
+  if (typed(question?.text)) return true;
+  return PREP_FIELD_KEYS.some((key) => String(texts?.[key] ?? "").trim() !== prepFieldText(prep, key).trim());
+}
+
+/** Avatud märge: mõne kihi pooleli rida, tagasivõtmise põhjus või pooleli parandus. */
+export function noteUnsaved(drafts, reasons, corrections) {
+  if (Object.values(drafts || {}).some((draft) => typed(draft?.text))) return true;
+  if (Object.values(reasons || {}).some(typed)) return true;
+  return Object.values(corrections || {}).some((item) => typed(item?.text) || typed(item?.reason));
+}
+
+/** Avatud mustand: pooleli uus väli või avatud välja parandus, mis erineb salvestatust. */
+export function draftUnsaved(draft, newField, edits) {
+  if (typed(newField?.text) || typed(newField?.fieldKey)) return true;
+  const saved = new Map(list(draft?.fields).map((field) => [String(field?.fieldKey || ""), String(field?.text || "")]));
+  return Object.entries(edits || {}).some(([key, text]) => saved.has(key) && String(text ?? "").trim() !== saved.get(key).trim());
+}

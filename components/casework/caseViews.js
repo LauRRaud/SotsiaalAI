@@ -315,3 +315,20 @@ export function retentionView({ record, retentionClock = null, t, locale }) {
       : ""
   };
 }
+
+/**
+ * Kas juhtumi enda vormides on kirjutatud midagi, mida serveris ei ole:
+ * põhiandmed, STAR-i viide, pooleli puuduva info punkt, seose tunnus või
+ * elutsükli põhjus. `savedNextContact` on salvestatud aeg samal kujul, nagu
+ * väli seda näitab. Juhtumis, mis ei ole aktiivne, välju muuta ei saa.
+ */
+export function caseFormUnsaved(record, form = {}) {
+  if (!record || record.retentionState !== "ACTIVE") return false;
+  const same = (value, saved) => String(value ?? "").trim() === String(saved ?? "").trim();
+  if (!same(form.displayName, record.clientDisplayName)) return true;
+  if (!same(form.externalRef, record.clientExternalRef)) return true;
+  if (!same(form.nextContact, form.savedNextContact)) return true;
+  if (!same(form.externalSystem, record.externalSystem)) return true;
+  if (!same(form.externalReference, record.externalReference)) return true;
+  return [form.missingText, form.linkTargetId, form.retentionReason].some((value) => String(value ?? "").trim());
+}

@@ -29,7 +29,7 @@
  * failis ./sections/sectionRows.js, ülekandeteod failis ./TransferPanel.jsx.
  */
 
-import { useCallback, useId, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
@@ -55,6 +55,7 @@ import {
   draftStateModel,
   draftTabs,
   draftTypeOptions,
+  draftUnsaved,
   provenanceOptions,
   reviewKindOptions,
   transitionNeedsConfirm
@@ -68,7 +69,7 @@ const EMPTY_FIELD = Object.freeze({ fieldKey: "", text: "", provenance: "" });
  * `locked`: juhtum ei ole aktiivne. `caseBusy`: juhtumi enda kirjutus käib.
  * `active`: see osa on laval ees (ainult siis joonistab põhinupp oma helgi).
  */
-export default function DraftSection({ caseId, locked, caseBusy, active, onChanged, onListLoaded, onTransferRecorded }) {
+export default function DraftSection({ caseId, locked, caseBusy, active, onChanged, onListLoaded, onTransferRecorded, onUnsaved, leaveGate }) {
   const { t, locale } = useI18n();
   const root = `/cases/${encodeURIComponent(caseId)}/drafts`;
 
@@ -234,6 +235,8 @@ export default function DraftSection({ caseId, locked, caseBusy, active, onChang
         setPendingAudits={setOpenPending}
         onTransferChanged={onTransferChanged}
         onClose={closeDraft}
+        onUnsaved={onUnsaved}
+        leaveGate={leaveGate}
       />
     );
   }
@@ -305,7 +308,9 @@ function DraftEditor({
   pendingAudits,
   setPendingAudits,
   onTransferChanged,
-  onClose
+  onClose,
+  onUnsaved,
+  leaveGate
 }) {
   const formId = useId();
   const [tab, setTab] = useState(DRAFT_TABS[0]);
@@ -345,6 +350,18 @@ function DraftEditor({
   const chosen = view.targets.some((option) => option.value === to) ? to : "";
   const headModel = draftHead(draft, context);
 
+  /* Pooleli uus väli või parandus teatatakse juhtumi vaatele (lahkumise värav)
+     ja avatud mustandi sulgemine küsib enne üle. */
+  const dirty = !(locked || view.terminal) && draftUnsaved(draft, newField, edits);
+  useEffect(() => {
+    onUnsaved?.(dirty);
+  }, [dirty, onUnsaved]);
+  useEffect(() => () => onUnsaved?.(false), [onUnsaved]);
+  const close = () => {
+    if (dirty && leaveGate && !leaveGate("close")) return;
+    onClose();
+  };
+
   /* Avatud elemendi identiteet on nähtav igas vaates; seis ja tee tagasi
      loendisse on sakkidega vaadetes. Alamvaatel on oma „Loobu" või „Tagasi" all
      servas. */
@@ -365,7 +382,7 @@ function DraftEditor({
           {draft.contentPurgedAt ? <Chip tone="wait">{t("casework.prep.purged_chip", "")}</Chip> : null}
         </>
       ),
-      back: { label: t("casework.draft.back_to_list", ""), onClick: onClose }
+      back: { label: t("casework.draft.back_to_list", ""), onClick: close }
     },
     errorText,
     tabs: {

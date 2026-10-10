@@ -1759,7 +1759,8 @@
       },
       "recording_line": "Helisalvestus käib.",
       "recorder_alert_line": "Helisalvestuse osas on teade, mis vajab sinu tähelepanu.",
-      "open_audio": "Ava helisalvestus"
+      "open_audio": "Ava helisalvestus",
+      "unsaved_leave": "Kirjutatud tekst on salvestamata. Vajuta uuesti, kui tahad selle salvestamata jätta."
     },
     "info": {
       "title": "Minu juhtumid",
