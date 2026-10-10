@@ -592,6 +592,13 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
           {t("home_care.plan.title")}
         </h2>
         {data.plan ? <HomeCarePlanView plan={data.plan} /> : <p className="hc-hint">{t("home_care.plan.none")}</p>}
+        {/* Abi rohkem või vähem kui kavas (K6-d): käigul märgitud viis võrreldes kava reaga. */}
+        {data.helpDrift && data.helpDrift.more + data.helpDrift.less > 0 ? (
+          <p className={data.helpDrift.due ? "hc-notice hc-notice--warn" : "hc-sub"}>
+            {t("home_care.help_drift.line", { more: data.helpDrift.more, less: data.helpDrift.less, total: data.helpDrift.total })}
+            {data.helpDrift.due ? ` ${t(access.isCoordinator ? "home_care.help_drift.due_coordinator" : "home_care.help_drift.due_team")}` : ""}
+          </p>
+        ) : null}
         {access.isCoordinator ? (
           <Link
             className="hc-btn hc-btn--quiet hc-btn--link"

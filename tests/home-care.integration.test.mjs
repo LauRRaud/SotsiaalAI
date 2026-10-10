@@ -6345,3 +6345,57 @@ test('teatamata esmakäigud lähipäevil on tähtaegade vaates, kuni kliendile o
   await cancelVisit(lead, peeter.id, slot.id, { day: '2026-10-12', reason: 'CLIENT_AWAY' }, deps());
   assert.deepEqual(await rows(lead), []);
 });
+
+test('abi rohkem kui kavas: käigul märgitud viis võrreldes kava reaga, märguanne üle piiri', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const start = deps(at('2026-09-01T08:00:00Z'));
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, start)).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi' }, start)).client;
+  for (const client of [linda, peeter]) await addTeamMember(lead, client.id, { membershipId: f.members.anu.id }, start);
+  const catalogue = (await seedDefaultActivities(lead, start)).activities;
+  const wash = catalogue.find((item) => item.group === 'HYGIENE');
+  const food = catalogue.find((item) => item.group === 'HEATING');
+  for (const client of [linda, peeter]) {
+    const draft = (
+      await saveCarePlanDraft(
+        lead,
+        client.id,
+        { lines: [{ activityId: wash.id, frequencyKind: 'WEEKLY', frequencyCount: 2, mode: 'TOGETHER' }, { activityId: food.id, frequencyKind: 'WEEKLY', frequencyCount: 2, mode: 'ASSIST' }] },
+        start
+      )
+    ).draft;
+    await activateCarePlan(lead, client.id, { version: draft.version }, start);
+  }
+  const visit = (client, when, washMode, foodMode) =>
+    createEntry(
+      anu,
+      client.id,
+      { visitMinutes: 30, activities: [{ activityId: wash.id, mode: washMode }, { activityId: food.id, mode: foodMode }], occurredAt: when },
+      deps(new Date(at(when).getTime() + 5 * 60 * 1000))
+    );
+
+  assert.equal((await openClient(anu, linda.id, deps())).helpDrift, null);
+  /* Linda: neljal käigul viiest pestakse tema eest (kavas „koos"); kütmine ühel korral väiksema abiga.
+     Peeter: kõik nagu kavas. Linda vana käik (üle nelja nädala tagasi) ei loe. */
+  await visit(linda, '2026-09-05T07:00:00Z', 'FOR', 'ASSIST');
+  await visit(linda, '2026-09-18T07:00:00Z', 'TOGETHER', 'ASSIST');
+  await visit(linda, '2026-09-22T07:00:00Z', 'FOR', 'ASSIST');
+  await visit(linda, '2026-09-25T07:00:00Z', 'FOR', 'GUIDE');
+  await visit(linda, '2026-10-02T07:00:00Z', 'FOR', 'ASSIST');
+  const last = (await visit(linda, '2026-10-06T07:00:00Z', 'FOR', 'ASSIST')).entry;
+  await visit(peeter, '2026-10-02T08:00:00Z', 'TOGETHER', 'ASSIST');
+
+  const drift = (await openClient(anu, linda.id, deps())).helpDrift;
+  assert.deepEqual(drift, { days: 28, total: 10, more: 4, less: 1, due: true });
+  assert.deepEqual((await openClient(anu, peeter.id, deps())).helpDrift, { days: 28, total: 2, more: 0, less: 0, due: false });
+  assert.deepEqual((await getDeadlines(lead, deps())).helpDriftDue.map((item) => [item.client.displayName, item.more, item.total]), [['Linda Tamm', 4, 10]]);
+
+  /* Teate arvudes on sama rida; tühistatud käiku ei loeta ja alla piiri märguannet ei ole. */
+  const sent = await createDecisionNotice(lead, linda.id, { reason: 'NEED_GROWN', text: 'Pesemisel vajab täielikku abi.', channel: 'STAR', withFigures: true }, deps());
+  assert.ok(sent.decisionNotices[0].sentText.includes('Viimasel neljal nädalal tehti 10 kava toimingust 4 kavast suurema ja 1 väiksema abiga.'));
+  await retractEntry(anu, linda.id, last.id, { reason: 'Vale klient', revision: 1 }, deps());
+  assert.deepEqual((await openClient(anu, linda.id, deps())).helpDrift, { days: 28, total: 8, more: 3, less: 1, due: false });
+  assert.deepEqual((await getDeadlines(lead, deps())).helpDriftDue, []);
+});

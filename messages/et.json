@@ -13739,7 +13739,10 @@
       "first_visits_title": "Esmakäigud lähipäevil, millest kliendile ei ole teatatud",
       "first_visits_empty": "Lähipäevil ei lähe ükski töötaja kliendi juurde esimest korda ette teatamata.",
       "first_visits_line": "{date} kell {time}: {name} läheb esimest korda, kliendile ei ole teatatud",
-      "first_visits_not_reached": "{date} kell {time}: {name} läheb esimest korda, kliendile ei jõutud teatada"
+      "first_visits_not_reached": "{date} kell {time}: {name} läheb esimest korda, kliendile ei jõutud teatada",
+      "help_drift_title": "Abi on olnud rohkem kui kavas",
+      "help_drift_empty": "Ühelgi kliendil ei ole abi olnud märgatavalt rohkem kui kavas.",
+      "help_drift_line": "viimasel neljal nädalal {more} toimingut {total}-st kavast suurema abiga"
     },
     "visit": {
       "title": "Mida tegid",
@@ -14651,7 +14654,8 @@
         "figures_incidents": "Erijuhtumeid samal ajal: {count} ({list}).",
         "figures_incidents_none": "Erijuhtumeid samal ajal ei olnud.",
         "figures_signals": "Hooldajate märkamisi, et midagi on tavalisest teisiti: {count}.",
-        "figures_workers": "Viimase nelja nädala käigud ({visits}) tegi eri töötajaid: {workers}."
+        "figures_workers": "Viimase nelja nädala käigud ({visits}) tegi eri töötajaid: {workers}.",
+        "figures_help_drift": "Viimasel neljal nädalal tehti {total} kava toimingust {more} kavast suurema ja {less} väiksema abiga."
       },
       "figures_label": "Lisa viimaste kuude arvud",
       "figures_hint": "Käigud, osutatud ja otsustatud aeg, ära jäänud käigud, erijuhtumite ja märkamiste arv. Kirjete teksti arvude hulgas ei ole."
@@ -14812,6 +14816,11 @@
       "workers_title": "Kokku töötaja kaupa",
       "col_trips": "Sõite",
       "col_own_km": "Sellest isikliku autoga"
+    },
+    "help_drift": {
+      "line": "Viimasel neljal nädalal tehti {total} kava toimingust {more} kavast suurema ja {less} väiksema abiga.",
+      "due_coordinator": "Vaata kava üle või anna otsustajale teada.",
+      "due_team": "Räägi sellest hooldusjuhiga."
     }
   },
   "stage": {
