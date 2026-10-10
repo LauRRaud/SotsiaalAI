@@ -26,6 +26,7 @@ import {
 } from '../lib/i18n/catalogAsset.js';
 import { CATALOG_LOCALES, createCatalogLoader, hasTexts, normalizeCatalogLocale } from '../lib/i18n/catalogLoader.js';
 import { GET } from '../app/i18n/[asset]/route.js';
+import { readCatalog, refreshCatalog } from '../components/i18n/catalogs.js';
 
 const read = (path) => fs.readFileSync(new URL(path, import.meta.url), 'utf8');
 const catalog = (lang) => JSON.parse(read(`../messages/${lang}.json`));
@@ -235,17 +236,21 @@ test('välitöö võrguta kest hoiab kataloogi faili', () => {
   /* API vastuseid ei hoita endiselt kunagi ja vahemälu nimed ei muutunud (vana kest jääb alles). */
   assert.ok(worker.includes('if (isApiRequest(url)) return;'));
   assert.ok(worker.includes('const SW_VERSION = "field-v1-1";'));
-  /* Vana nimega (vahemäluta märgitud) vastust ei hoita ja uue kataloogi järel visatakse sama keele vanad ära. */
+  /* Vana nimega (vahemäluta märgitud) vastust ei hoita. */
   assert.ok(worker.includes('!/no-store/i.test(response.headers.get("Cache-Control") || "")'));
-  assert.ok(worker.includes('if (isCatalogueAsset(url)) await dropOlderCatalogues(cache, url);'));
+  /* Hoiule panekut ei oodata vastuse teel: täis seade ei tohi faili päringut nurjata. */
+  assert.ok(!/await cache\.put\(/.test(worker), 'hoiule panekut ei oodata');
 });
 
-test('võrguta kesta puhastus: uue kataloogi järel jääb keele kohta alles üks fail', async () => {
-  /* Käivitame teenusetöötaja faili võltsitud keskkonnas ja laseme sellel päringuid teenindada. */
+/* Käivitab teenusetöötaja faili võltsitud keskkonnas ja laseb sellel päringuid teenindada. */
+function runWorker({ putFails = () => false } = {}) {
   const store = new Map();
   const cache = {
     match: async (request) => store.get(request.url) || undefined,
-    put: async (request, response) => { store.set(request.url, response); },
+    put: async (request, response) => {
+      if (putFails()) throw new Error('QuotaExceededError');
+      store.set(request.url, response);
+    },
     keys: async () => [...store.keys()].map((url) => ({ url })),
     delete: async (request) => store.delete(request.url)
   };
@@ -262,26 +267,80 @@ test('võrguta kesta puhastus: uue kataloogi järel jääb keele kohta alles ük
     self: { location: { origin: 'https://example.test' }, addEventListener: (name, handler) => { handlers[name] = handler; }, clients: { claim: async () => {} }, skipWaiting: () => {} }
   };
   sandbox.self.caches = sandbox.caches;
-  const vmContext = (await import('node:vm')).default.createContext(sandbox);
-  (await import('node:vm')).default.runInContext(read('../public/sw.js'), vmContext);
+  vm.runInContext(read('../public/sw.js'), vm.createContext(sandbox));
   const ask = async (path) => {
     let answer = null;
     handlers.fetch({ request: { method: 'GET', url: 'https://example.test' + path, mode: 'no-cors' }, respondWith: (promise) => { answer = promise; } });
     return answer ? (await answer).text() : null;
   };
-  await ask('/i18n/et.aaaaaaaaaaaaaaaa.js');
-  await ask('/i18n/ru.cccccccccccccccc.js');
-  assert.deepEqual([...store.keys()].sort(), ['https://example.test/i18n/et.aaaaaaaaaaaaaaaa.js', 'https://example.test/i18n/ru.cccccccccccccccc.js']);
-  /* Tekstid muutusid: eesti keele uus fail asendab vana, vene keele oma jääb. */
-  await ask('/i18n/et.bbbbbbbbbbbbbbbb.js');
-  assert.deepEqual([...store.keys()].sort(), ['https://example.test/i18n/et.bbbbbbbbbbbbbbbb.js', 'https://example.test/i18n/ru.cccccccccccccccc.js']);
+  return { ask, served, stored: () => [...store.keys()].map((url) => url.replace('https://example.test', '')).sort() };
+}
+
+test('võrguta kest: varasema ehituse leht leiab oma kataloogi, vana nimega vastust ei hoita', async () => {
+  const worker = runWorker();
+  await worker.ask('/i18n/et.aaaaaaaaaaaaaaaa.js');
+  await worker.ask('/i18n/ru.cccccccccccccccc.js');
+  assert.deepEqual(worker.stored(), ['/i18n/et.aaaaaaaaaaaaaaaa.js', '/i18n/ru.cccccccccccccccc.js']);
+  /* Tekstid muutusid ja teine leht tõi uue faili. Varem hoitud välitöö leht viitab endiselt vanale
+     failile: see peab alles jääma, muidu näitaks leht võrguta võtmeid. */
+  await worker.ask('/i18n/et.bbbbbbbbbbbbbbbb.js');
+  assert.deepEqual(worker.stored(), ['/i18n/et.aaaaaaaaaaaaaaaa.js', '/i18n/et.bbbbbbbbbbbbbbbb.js', '/i18n/ru.cccccccccccccccc.js']);
   /* Juba hoitud fail tuleb vahemälust: serverit teist korda ei küsita. */
-  const before = served.length;
-  assert.equal(await ask('/i18n/et.bbbbbbbbbbbbbbbb.js'), 'body of https://example.test/i18n/et.bbbbbbbbbbbbbbbb.js');
-  assert.equal(served.length, before);
-  /* Vana nimega vastust (vahemäluta) ei hoita ega visata selle pärast midagi ära. */
-  await ask('/i18n/et.0000000000000000.js');
-  assert.deepEqual([...store.keys()].sort(), ['https://example.test/i18n/et.bbbbbbbbbbbbbbbb.js', 'https://example.test/i18n/ru.cccccccccccccccc.js']);
+  const before = worker.served.length;
+  assert.equal(await worker.ask('/i18n/et.aaaaaaaaaaaaaaaa.js'), 'body of https://example.test/i18n/et.aaaaaaaaaaaaaaaa.js');
+  assert.equal(worker.served.length, before);
+  /* Vana nimega vastust (vahemäluta) ei hoita. */
+  assert.equal(await worker.ask('/i18n/et.0000000000000000.js'), 'body of https://example.test/i18n/et.0000000000000000.js');
+  assert.equal(worker.stored().length, 3);
   /* API päringut töötaja ei puuduta (ei vasta ise ega hoia). */
-  assert.equal(await ask('/api/health'), null);
+  assert.equal(await worker.ask('/api/health'), null);
+});
+
+test('võrguta kest: täis seade ei nurja faili päringut', async () => {
+  let full = true;
+  const worker = runWorker({ putFails: () => full });
+  /* Hoiule panek ebaõnnestub, vastus jõuab ikka kohale (nii kataloog kui ehitaja fail). */
+  assert.equal(await worker.ask('/i18n/et.aaaaaaaaaaaaaaaa.js'), 'body of https://example.test/i18n/et.aaaaaaaaaaaaaaaa.js');
+  assert.equal(await worker.ask('/_next/static/chunks/a.js'), 'body of https://example.test/_next/static/chunks/a.js');
+  assert.deepEqual(worker.stored(), []);
+  /* Kui ruumi on jälle, pannakse järgmine vastus hoiule. */
+  full = false;
+  await worker.ask('/i18n/et.aaaaaaaaaaaaaaaa.js');
+  assert.deepEqual(worker.stored(), ['/i18n/et.aaaaaaaaaaaaaaaa.js']);
+});
+
+test('serveri joonistus ja brauser loevad kataloogi kumbki oma kohast', async () => {
+  /* Server: faili lib/i18n/catalogAsset.js laadimine paneb kataloogid serveri mällu ja pakkuja loeb
+     sealt. Kui see rida kaoks, joonistaks server lehe võtmetega. */
+  for (const lang of LANGS) {
+    assert.equal(JSON.stringify(globalThis[CATALOG_SERVER_GLOBAL][lang]), JSON.stringify(catalog(lang)), lang);
+    assert.equal(readCatalog(lang), globalThis[CATALOG_SERVER_GLOBAL][lang], lang);
+    /* Käesolevat kataloogi uuesti ei laadita. */
+    assert.equal(await refreshCatalog(lang), globalThis[CATALOG_SERVER_GLOBAL][lang], lang);
+  }
+  assert.equal(readCatalog('xx'), globalThis[CATALOG_SERVER_GLOBAL].et, 'tundmatu keel on eesti keel');
+
+  /* Brauser: loetakse lehe skripti pandud kohta, mitte serveri oma. */
+  globalThis.window = { [CATALOG_GLOBAL]: { en: { hello: 'hello' } } };
+  try {
+    assert.deepEqual(readCatalog('en'), { hello: 'hello' });
+    assert.deepEqual(await refreshCatalog('en'), { hello: 'hello' });
+    /* Keelt, mida lehe skript ei toonud, serveri mälust ei võeta: vastus on „ei ole käes". */
+    assert.equal(readCatalog('ru'), null);
+    /* Tühi kataloog ei loe käesolevaks. */
+    globalThis.window = { [CATALOG_GLOBAL]: { en: {} } };
+    assert.equal(readCatalog('en'), null);
+  } finally {
+    delete globalThis.window;
+  }
+
+  /* Pakkuja näitab hiljem vahetatud kataloogi (keelevahetus), muidu seda, millega leht avati. */
+  const provider = read('../components/i18n/I18nProvider.jsx');
+  assert.ok(provider.includes('const dict = replaced || loaded;'));
+  assert.ok(provider.includes('const val = get(dict, key, undefined);'));
+  /* Salvestatud keel jääb: akna sulgemine ei pane tagasi keelt, millega aken avati. */
+  const modal = read('../components/accessibility/AccessibilityModal.jsx');
+  const save = modal.slice(modal.indexOf('const save = async () => {'));
+  const cleared = save.indexOf('previewedLangRef.current = null;');
+  assert.ok(cleared > 0 && cleared < save.indexOf('onClose?.();'), 'eelvaate märk võetakse maha enne akna sulgemist');
 });

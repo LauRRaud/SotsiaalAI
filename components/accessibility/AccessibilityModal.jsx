@@ -454,6 +454,9 @@ export default function AccessibilityModal({
         router.refresh();
       } catch {}
     }
+    /* Salvestatud keel jääb: akna sulgemine ei pane enam hetkeks tagasi keelt,
+       millega aken avati. */
+    previewedLangRef.current = null;
     onPreviewEnd?.();
     onClose?.();
   };

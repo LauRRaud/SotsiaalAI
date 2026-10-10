@@ -28,8 +28,14 @@ const catalogs = createCatalogLoader({
 
 /** Püsiv lubadus keele kataloogile (joonistamise ajaks; ei lükka kunagi tagasi). */
 export const loadCatalog = catalogs.load;
-/** Sama, aga ebaõnnestunud katse järel proovib uuesti (efektist või nupust). */
-export const refreshCatalog = catalogs.refresh;
+/**
+ * Sama, aga ebaõnnestunud katse järel proovib uuesti (efektist või nupust).
+ * Kataloogi, mis on juba käes (lehe enda keel), uuesti ei laadita.
+ */
+export function refreshCatalog(locale) {
+  const ready = readCatalog(locale);
+  return ready ? Promise.resolve(ready) : catalogs.refresh(locale);
+}
 
 /**
  * Kataloog, mis on juba käes (lehe skriptist, serveris serveri mälust või varem

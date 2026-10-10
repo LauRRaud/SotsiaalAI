@@ -66,22 +66,6 @@ function isStaticAsset(url) {
   );
 }
 
-function isCatalogueAsset(url) {
-  return url.pathname.startsWith("/i18n/");
-}
-
-// The text catalogue changes its file name whenever a text changes. Without
-// this the cache would keep every old catalogue for good (about 0.7 MB each):
-// once a new one is stored, older files of the same language are dropped.
-async function dropOlderCatalogues(cache, url) {
-  const language = url.pathname.slice("/i18n/".length).split(".")[0];
-  const prefix = `/i18n/${language}.`;
-  for (const stored of await cache.keys()) {
-    const storedUrl = new URL(stored.url);
-    if (storedUrl.pathname.startsWith(prefix) && storedUrl.pathname !== url.pathname) await cache.delete(stored);
-  }
-}
-
 function isFieldNavigation(request, url) {
   return request.mode === "navigate" && (url.pathname === "/valitoo" || url.pathname.startsWith("/valitoo/"));
 }
@@ -109,12 +93,12 @@ self.addEventListener("fetch", (event) => {
         if (cached) return cached;
         const response = await fetch(request);
         // A response the server marked "no-store" (a catalogue asked for under an
-        // outdated name) is passed on but never kept.
+        // outdated name) is passed on but never kept. Storing is not awaited and
+        // its failure (a full device) never fails the request itself. Older
+        // catalogues are not dropped: a cached /valitoo page of an earlier build
+        // still points to its own catalogue file, like to its own build files.
         const keep = response.ok && !/no-store/i.test(response.headers.get("Cache-Control") || "");
-        if (keep) {
-          await cache.put(request, response.clone());
-          if (isCatalogueAsset(url)) await dropOlderCatalogues(cache, url);
-        }
+        if (keep) cache.put(request, response.clone()).catch(() => {});
         return response;
       })()
     );
