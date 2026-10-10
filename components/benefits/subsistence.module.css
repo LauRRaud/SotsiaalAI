@@ -47,11 +47,55 @@
   max-width: 34rem;
 }
 
-/* Täpsustav küsimus: küsimus vasakul, „Jah" ja „Ei" paremal; selgitus selle all. */
+/* Täpsustuste vaade: kuni viis küsimust üksteise all. Iga küsimuse rida kannab
+   oma polstrit ja eraldusjoont, seepärast on vahe siin väike: suurema vahega ei
+   mahtunud viis küsimust paneeli (mõõdetud 542 px 522 px paneelis). */
+.gates {
+  min-width: 0;
+  display: grid;
+  gap: 0.3rem;
+}
+/* Täpsustav küsimus: küsimus vasakul, „Jah" ja „Ei" paremal; selgitus selle all.
+   Eraldusjoon on küsimuse ploki all (koos selgitusega), mitte küsimuse ja selle
+   oma selgituse vahel. */
 .gate {
   min-width: 0;
   display: grid;
   gap: 0.25rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--text-warm) 10%, transparent);
+}
+.gate:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+/* Tingimuste loend küsimuse ees (eluasemelaen): nummerdatud, väikeses kirjas. Ühine
+   paneelikiht annab igale loendireale alumise vahe: siin on vahe loendi enda oma. */
+.conditions {
+  margin: 0;
+  padding-inline-start: 1.3rem;
+  display: grid;
+  gap: 0.1rem;
+  max-width: 62ch;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.35;
+}
+.conditions > li {
+  margin: 0;
+  max-width: none;
+}
+/* Küsimus on pikk lause ja vastus üks sõna: vastuse veerg on nii lai kui kaks
+   lahtrit vajavad, ülejäänu jääb küsimusele (ühise klotsi vaikimisi jaotus annab
+   vastusele 58% laiusest). Rea enda eraldusjoont ei ole: see on plokil. */
+.gate.gate > [role="radiogroup"] {
+  grid-template-columns: minmax(0, 1fr) 10rem;
+  border-bottom: 0;
+}
+@container (max-width: 40rem) {
+  .gate.gate > [role="radiogroup"] {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 /* Tulemus: summa suurelt, selle all, millest see tuli. */
@@ -114,4 +158,18 @@
   .field[data-size] {
     flex-basis: 100%;
   }
+}
+
+/* Lahkumise küsimus lava kohal: sisestatut ei salvestata, seega esimene lahkumine peatub. */
+.leave {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  margin: 0 0 0.6rem;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.9rem;
+  background: var(--glass-cell-bg);
+  color: var(--text-warm);
+  font-size: var(--fs-small, 0.875rem);
 }
