@@ -14869,6 +14869,9 @@
       "coordinator": "Plan the first visit longer than usual.",
       "day_line": "Homecoming: first visit after the absence (came home on {date}).",
       "my_line": "Homecoming: came home on {date}. Check food, medicines and heating; ask whether help is needed differently."
+    },
+    "exception_streak": {
+      "line": "In the last {count} visits (since {date}) every planned activity has been marked done as planned, with no exception at all. Check whether the plan matches what really happens at the client's home."
     }
   },
   "stage": {

@@ -14869,6 +14869,9 @@
       "coordinator": "Plaani esimene käik tavalisest pikem.",
       "day_line": "Kojutulek: esimene käik pärast äraolekut (tuli koju {date}).",
       "my_line": "Kojutulek: tuli koju {date}. Vaata üle toit, ravimid ja küte; küsi, kas abi on vaja teisiti."
+    },
+    "exception_streak": {
+      "line": "Viimasel {count} käigul (alates {date}) on kõik kava toimingud märgitud tehtuks nii, nagu kavas, ilma ühegi erandita. Vaata üle, kas kava vastab sellele, mis kohapeal päriselt toimub."
     }
   },
   "stage": {

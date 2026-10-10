@@ -610,6 +610,12 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
           {t("home_care.plan.title")}
         </h2>
         {data.plan ? <HomeCarePlanView plan={data.plan} /> : <p className="hc-hint">{t("home_care.plan.none")}</p>}
+        {/* Käigud ilma ühegi erandita (K6-g): märge kliendi, mitte töötaja kohta. Ainult hooldusjuhile. */}
+        {data.exceptionStreak ? (
+          <p className="hc-notice">
+            {t("home_care.exception_streak.line", { count: data.exceptionStreak.visits, date: formatDateTime(data.exceptionStreak.since, timeZone) })}
+          </p>
+        ) : null}
         {/* Abi rohkem või vähem kui kavas (K6-d): käigul märgitud viis võrreldes kava reaga. */}
         {data.helpDrift && data.helpDrift.more + data.helpDrift.less > 0 ? (
           <p className={data.helpDrift.due ? "hc-notice hc-notice--warn" : "hc-sub"}>
