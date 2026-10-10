@@ -146,6 +146,24 @@ export default function HomeCareDeadlines({ context, deadlines }) {
         clientLine(item, t("home_care.deadlines.risk_lines_line", { count: item.lines, date: planDayLabel(item.oldestOn) }))
       )}
 
+      {/* Esmakäigud lähipäevil, mille kohta kliendile ei ole teatatud (K6-c); rida viib selle päeva plaani, kus teatamine märgitakse. */}
+      {(deadlines.firstVisitsAhead || []).length
+        ? section("first_visits", deadlines.firstVisitsAhead, (item) => (
+            <li key={item.key}>
+              <Link className="hc-client" href={`/org/${organizationId}/koduteenus/paev?paev=${item.day}`}>
+                <span className="hc-client__name">{item.client.displayName}</span>
+                <span className="hc-client__meta">
+                  {t(item.notReached ? "home_care.deadlines.first_visits_not_reached" : "home_care.deadlines.first_visits_line", {
+                    date: planDayLabel(item.day),
+                    time: item.startTime,
+                    name: item.workerName || "—"
+                  })}
+                </span>
+              </Link>
+            </li>
+          ))
+        : null}
+
       {/* Transpordi soovid, mis ootavad korraldamist (K5-w). */}
       {(deadlines.transportOpen || []).length
         ? section("transport_open", deadlines.transportOpen, (item) =>

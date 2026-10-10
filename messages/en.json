@@ -13735,7 +13735,11 @@
       "relatives_doubt_line": "{name}: the client does not remember allowing this (marked by {by})",
       "transport_open_title": "Transport requests waiting to be arranged",
       "transport_open_empty": "Every transport request has been answered.",
-      "transport_open_line": "{date} · {destination} · requested by {name}"
+      "transport_open_line": "{date} · {destination} · requested by {name}",
+      "first_visits_title": "First visits in the coming days the client has not been told about",
+      "first_visits_empty": "No worker goes to a client for the first time in the coming days without the client being told.",
+      "first_visits_line": "{date} at {time}: {name} goes for the first time, the client has not been told",
+      "first_visits_not_reached": "{date} at {time}: {name} goes for the first time, the client could not be told"
     },
     "visit": {
       "title": "What you did",
