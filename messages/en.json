@@ -13121,7 +13121,12 @@
       "search_phone_hint": "As a coordinator you can also find a client by phone number (at least five digits).",
       "matched_phone": "by phone number",
       "matched_relative": "by a relative: {name} · {level}",
-      "matched_relative_doubt": "the client does not remember the permission: say only whether a visit took place"
+      "matched_relative_doubt": "the client does not remember the permission: say only whether a visit took place",
+      "no_coordinator": {
+        "OWNER": "This organisation has no care coordinator yet. The care coordinator adds clients, writes care plans and assigns visits; without one, home care stays empty. You give the right on the page “Members”: press “Grant right” on a member's row and choose “Care coordinator”.",
+        "OTHER": "This organisation has no care coordinator yet. The care coordinator adds clients, writes care plans and assigns visits. The organisation's owner gives this right on the page “Members”.",
+        "members_link": "Open “Members”"
+      }
     },
     "status": {
       "ACTIVE": "Active",

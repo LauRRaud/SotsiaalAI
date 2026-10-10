@@ -91,7 +91,7 @@ function MyVisit({ organizationId, visit }) {
  * OTSING näitab ainult nime ja seisu. Meeskonnast väljas oleva kliendi leht
  * küsib avamisel põhjust (asendaja tee).
  */
-export default function HomeCareHome({ context, initial, unitOptions, myDay = null, referrals = null }) {
+export default function HomeCareHome({ context, initial, unitOptions, myDay = null, referrals = null, setupHint = null }) {
   const { t, locale } = useI18n();
   const router = useRouter();
   const organizationId = context.organization.id;
@@ -136,6 +136,20 @@ export default function HomeCareHome({ context, initial, unitOptions, myDay = nu
           {isCoordinator ? t("home_care.home.intro_coordinator") : t("home_care.home.intro_worker")}
         </p>
       </div>
+
+      {/* Hooldusjuhti ei ole üldse: ilma temata ei saa keegi kliente lisada. Omanik saab
+          õiguse ise anda, seepärast on tal link lehele „Liikmed". */}
+      {setupHint ? (
+        <p className="hc-notice">
+          {t(`home_care.home.no_coordinator.${setupHint.viewer}`)}
+          {setupHint.viewer === "OWNER" ? (
+            <>
+              {" "}
+              <Link href={`/org/${organizationId}/liikmed`}>{t("home_care.home.no_coordinator.members_link")}</Link>
+            </>
+          ) : null}
+        </p>
+      ) : null}
 
       <HomeCareOutbox
         ownerId={context.membership?.id || ""}
