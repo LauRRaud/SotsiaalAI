@@ -125,7 +125,8 @@ export default function JourneySteps({ journey, onStepsChange, t, desk = {} }) {
   };
 
   const today = todayInEstonia(new Date());
-  const suggestions = archived ? [] : stepSuggestions(journey, JOURNEY_STEP_LIMITS.title);
+  /* Kõrvale pandud Teekonnal on pakutud read näha, aga sammuks neid võtta ei saa. */
+  const suggestions = stepSuggestions(journey, JOURNEY_STEP_LIMITS.title);
   const current = panel ? steps.find((step) => step.id === panel.id) || null : null;
   /* Avatud samm kadus (kustutati teises aknas): tagasi loendisse. */
   const view = adding ? "add" : panel && current ? panel.mode : "list";
@@ -352,9 +353,11 @@ export default function JourneySteps({ journey, onStepsChange, t, desk = {} }) {
                     <span className={styles.plainRow}>
                       <span className={shared.rowTitle}>{suggestion}</span>
                     </span>
-                    <Button {...SMALL} className={styles.aside} onKeyDown={ignoreKeyRepeat} onClick={() => add({ title: suggestion })}>
-                      {t("journey.own_steps.take", "Võta sammuks")}
-                    </Button>
+                    {archived ? null : (
+                      <Button {...SMALL} className={styles.aside} onKeyDown={ignoreKeyRepeat} onClick={() => add({ title: suggestion })}>
+                        {t("journey.own_steps.take", "Võta sammuks")}
+                      </Button>
+                    )}
                   </li>
                 ))}
               </ul>

@@ -399,7 +399,7 @@ export function WishPart({ t, journey, archived, busy, error, onSave, desk }) {
  *
  * `more`: { busy, onMore } või null. `related`: muud seotud asjad sõnade ridadena.
  */
-export function SentPart({ t, journey, hrefOf, onOpen, more, error, related, onShare }) {
+export function SentPart({ t, journey, hrefOf, more, error, related, onShare }) {
   const items = Array.isArray(journey?.linkedPreInquiries) ? journey.linkedPreInquiries : [];
   useStageRemeasure(`${items.length}:${error}`);
   return (
@@ -424,7 +424,9 @@ export function SentPart({ t, journey, hrefOf, onOpen, more, error, related, onS
               const href = hrefOf(item);
               return (
                 <li key={item.id} className={shared.rowItem}>
-                  <a className={shared.row} href={href} aria-label={t("journey.desk.sent.open_named", { title: topic })} onClick={(event) => onOpen(event, href)}>
+                  {/* Tavaline link (terve lehe laadimine), nagu vanal lehel: pöördumiste
+                      leht loeb avatava pöördumise aadressilt oma esimesel joonistusel. */}
+                  <a className={shared.row} href={href} aria-label={t("journey.desk.sent.open_named", { title: topic })}>
                     <span className={shared.rowMain}>
                       <span className={shared.rowTitle}>{topic}</span>
                       {item?.lastReplyAt ? <span className={shared.rowSub}>{t("journey.related.last_reply", { date: dayOf(item.lastReplyAt) })}</span> : null}
@@ -492,7 +494,7 @@ function ShareBody({ t, share, tab, onTab, labels, children }) {
  * `share`: valikud ja eelvaade; `ack`: { needed, checked, onChange } teise inimese
  * teabe jagamise kinnitus; `blockKey`: miks edasi minna ei saa (kataloogi võti).
  */
-export function SharePart({ t, share, ack, blockKey, href, onContinue, desk }) {
+export function SharePart({ t, share, ack, blockKey, href, desk }) {
   const [tab, setTab] = useState("choose");
   useStageRemeasure(`${tab}:${share.options.length}:${ack.needed}:${share.previewText?.length || 0}`);
   return (
@@ -500,7 +502,10 @@ export function SharePart({ t, share, ack, blockKey, href, onContinue, desk }) {
       title={t("journey.desk.parts.share.title")}
       note={blockKey ? t(blockKey) : t("journey.pre_inquiry.privacy_note")}
       actions={
-        <Button as="a" href={href} size="sm" variant="primary" glow={desk?.glow !== false} disabled={Boolean(blockKey)} data-share-continue="1" onClick={(event) => onContinue(event, href)}>
+        /* Tavaline link (terve lehe laadimine): pöördumiste leht loeb Teekonna ja
+           valitud osad aadressilt oma esimesel joonistusel. Lehe sees liikudes
+           ei oleks aadress siis veel uus ja Teekonna sisu ei tuleks kaasa. */
+        <Button as="a" href={href} size="sm" variant="primary" glow={desk?.glow !== false} disabled={Boolean(blockKey)} data-share-continue="1">
           {t("journey.share.continue")}
         </Button>
       }
@@ -861,6 +866,7 @@ export function ContinuityPart({ t, journey, archived, busy, error, rules, onSav
               ]}
             />
             <p className={shared.own}>{saved.userGoal || t("journey.serviceContinuity.existingSummaryEmpty")}</p>
+            <p className={shared.small}>{t("journey.serviceContinuity.notOfficialAssessment")}</p>
           </div>
         ) : null}
       </StepPanel>

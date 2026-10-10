@@ -8621,8 +8621,7 @@
   "journey": {
     "title": "Teekond",
     "autosave": {
-      "restored": "Taastasime selle sessiooni pooleli jäänud töö.",
-      "discard_confirm": "Kas lõpetad koostamise ja kustutad selle sessiooni mustandi?"
+      "restored": "Taastasime selle sessiooni pooleli jäänud töö."
     },
     "quick_help": {
       "label": "Kiire abi",
@@ -8635,17 +8634,11 @@
         "victim": "ohvriabi"
       }
     },
-    "steps": {
-      "label": "Teekonna sammud",
-      "describe": "Kirjelda",
-      "review": "Vaata üle"
-    },
     "risk_card": {
       "title": "Kui vajad kohe abi",
       "body": "Need tähelepanekud jäävad ainult sulle nähtavaks ega liigu eelpöördumise adressaadile."
     },
     "delete": {
-      "title": "Kustuta Teekond jäädavalt?",
       "body": "Teekonna privaatne sisu kustub. Seotud eelpöördumised jäävad alles, kuid side Teekonnaga katkeb. Soovitame enne eksportida.",
       "confirm": "Jah, kustuta jäädavalt"
     },
@@ -8702,7 +8695,6 @@
       "DRAFT": "info täpsustamisel"
     },
     "labels": {
-      "private": "Privaatne",
       "updated_at": "Uuendatud {date}",
       "title": "Teekonna pealkiri",
       "summary": "Olukorra kokkuvõte",
@@ -8712,29 +8704,18 @@
       "risk_signals": "Ettevaatlikud tähelepanekud",
       "suggested_actions": "Võimalikud järgmised sammud",
       "situation": "Olukorra kirjeldus",
-      "one_item_per_line": "Üks kirje reale",
-      "characters_per_item": "tähemärki kirje kohta",
       "character_count": "{current}/{limit}",
       "item_limit_count": "{current}/{limit}, {characters} tähemärki kirje kohta"
     },
     "actions": {
-      "previous_step": "← Eelmine samm",
-      "reopen": "Taasava",
-      "export": "Ekspordi JSON-failina",
       "load_more": "Laadi rohkem",
       "delete": "Kustuta jäädavalt",
       "archive": "Arhiveeri",
       "archive_named": "Arhiveeri teekond {title}",
       "save_private": "Salvesta teekond",
       "save_changes": "Salvesta muudatused",
-      "back": "Tagasi",
-      "back_to_list": "Tagasi teekonda",
       "login": "Logi sisse",
-      "open": "Ava teekond",
       "edit": "Muuda",
-      "close_edit": "Sulge muutmine",
-      "cancel": "Tühista",
-      "edit_description": "Muuda kirjeldust",
       "decline": "Loobu"
     },
     "messages": {
@@ -8751,8 +8732,6 @@
       "reopened": "Teekond taasavati.",
       "reopen_failed": "Teekonna taasavamine ebaõnnestus.",
       "delete_failed": "Teekonna kustutamine ebaõnnestus.",
-      "no_active": "Ühtegi privaatset teekonda ei ole veel salvestatud.",
-      "no_archived": "Arhiveeritud teekondi ei ole.",
       "not_found_title": "Teekonda ei leitud",
       "not_found": "See teekond ei ole kättesaadav või ei kuulu sinu kontole.",
       "empty_domains": "Seotud teemasid ei ole lisatud.",
@@ -8760,15 +8739,10 @@
       "empty_risk_signals": "Ettevaatlikke tähelepanekuid ei ole lisatud.",
       "empty_suggested_actions": "Järgmised sammud täpsustuvad hiljem."
     },
-    "privacy": {
-      "title": "Teekond on privaatne",
-      "description": "Midagi ei jagata enne sinu kinnitust. Teised näevad ainult seda infot, mille sa hiljem eraldi kinnitad ja jagad."
-    },
     "info": {
       "label": "Ava teekonna info"
     },
     "service_map": {
-      "title": "Ava teenusekaart nende teemade põhjal",
       "open": "Ava teenusekaart",
       "filtered_description": "Teenusekaart avaneb teekonna teemade ja piirkonna signaalidega.",
       "fallback_description": "Teenusekaart avaneb üldvaates. Täpsemaks avamiseks lisa KOV või piirkond.",
@@ -8776,20 +8750,11 @@
       "missing_municipality": "Teenusekaardi täpsemaks avamiseks lisa KOV või piirkond."
     },
     "pre_inquiry": {
-      "title": "Koosta eelpöördumine selle olukorra põhjal",
       "open": "Koosta eelpöördumine",
-      "description": "Enne eelpöördumise koostamist valid, millist teekonna infot soovid kaasa võtta. Saad teksti enne saatmist üle vaadata ja muuta.",
       "privacy_note": "Teekonda ei jagata automaatselt. Vastuvõtja näeb ainult sinu kinnitatud eelpöördumist."
     },
-    "header": {
-      "eyebrow": "Privaatne teekonnakiht"
-    },
     "sections": {
-      "start_description": "Tere. Alustame sinu teekonda. Kirjelda olukorda oma sõnadega. Sa ei pea kõike teadma ega õigesti sõnastama, kirjuta lihtsalt, mis toimub.",
-      "review_title": "Ülevaade enne salvestamist",
-      "review_description": "Vaata üle, kas Sotsiaal.pro korrastas olukorra õigesti. Teekond salvestatakse alles siis, kui kinnitad.",
-      "active_title": "Aktiivne teekond",
-      "archived_title": "Varasemad teekonnad"
+      "start_description": "Tere. Alustame sinu teekonda. Kirjelda olukorda oma sõnadega. Sa ei pea kõike teadma ega õigesti sõnastama, kirjuta lihtsalt, mis toimub."
     },
     "placeholders": {
       "situation": "Näiteks: hooldan ema ja ei jaksa enam üksi. Ta vajab abi pesemisel ja söögi tegemisel. Ma ei tea, kas peaksin pöörduma KOV-i või teenuseosutaja poole."
@@ -8844,14 +8809,12 @@
       "existingSummaryEmpty": "Kasutaja eesmärk vajab veel täpsustamist."
     },
     "healthContact": {
-      "title": "Tervisekontakti võimalus",
       "description": "Sinu kirjelduses võib olla tervisega seotud küsimus. Esmane järgmine samm võib olla perearstikeskus, tervisekeskus või ametlik tervisenõu kontakt.",
       "notMedicalAdvice": "Sotsiaal.pro ei anna meditsiinilist hinnangut, diagnoosi ega ravisoovitust, kuid saab aidata küsimused selgelt sõnastada. Kui on vahetu oht, tuleb pöörduda hädaabinumbrile või erakorralise abi poole.",
       "createQuestions": "Koosta küsimused tervisekontaktile",
       "questionsDraftTitle": "Küsimused tervisekontaktile",
       "privateNote": "Küsimused jäävad sinu kätte. Neid ei saadeta automaatselt perearstikeskusele, tervisekeskusele ega muule osapoolele.",
       "noAutomaticSharing": "Küsimusi ei saadeta automaatselt. Vaata tekst üle, muuda seda vajadusel ja otsusta ise, kas kasutad seda väljaspool platvormi.",
-      "openServiceMap": "Ava teenusekaart",
       "createPreInquiry": "Koosta eelpöördumine",
       "draftSituationLabel": "Kirjeldan lühidalt oma olukorda:",
       "draftSituationPlaceholder": "[lisa lühike olukorra kirjeldus]",
@@ -8863,11 +8826,7 @@
     },
     "workspace": {
       "client": {
-        "title": "Töölaud",
-        "description": "Siin on sinu privaatsed Teekonnad ja järgmised sammud. Teekonda ei jagata enne sinu eraldi kinnitust.",
         "start": "Alusta Teekonda",
-        "continue": "Jätka viimast Teekonda",
-        "relatedPreInquiries": "Eelpöördumised",
         "relatedRooms": "Vestlusruumid"
       },
       "specialist": {
@@ -8876,7 +8835,6 @@
         "sharedInfoOnly": "Privaatseid Teekondi ei kuvata. Spetsialist ei näe kasutaja assistendivestlust ega kogu Teekonda.",
         "preInquiries": "Eelpöördumised",
         "preInquiriesDescription": "Ava kasutaja kinnitatud eelpöördumised.",
-        "missingInfo": "Täpsustamist vajav info",
         "documentsDescription": "Kasuta olemasolevaid dokumendi töövahendeid."
       },
       "provider": {
@@ -8888,18 +8846,10 @@
         "serviceProfile": "Teenuseprofiil",
         "serviceProfileDescription": "Halda teenuse nähtavust ja kontaktinfot."
       },
-      "privacyNote": "Teekond on privaatne. Spetsialist, teenuseosutaja või ruumi liige näeb ainult seda infot, mille sa eraldi kinnitad ja jagad.",
-      "notAvailableForRole": "Privaatsete Teekondade nimekirja selles rollis ei kuvata.",
       "privateJourneysNotShared": "Privaatset Teekonda ei jagata automaatselt."
     },
-    "empty_start": {
-      "label": "Alusta teekonda"
-    },
     "review": {
-      "summary_title": "Olukorra kokkuvõte",
-      "summary_label": "Täpsusta kokkuvõtet, kui soovid",
       "life_domains": "Eluvaldkonnad",
-      "empty_life_domains": "Eluvaldkonnad täpsustuvad hiljem.",
       "life_domains_note": "See on ainult olukorra korrastamise abikiht, mitte ametlik hinnang.",
       "missing_title": "Mis võib veel puudu olla?",
       "actions_title": "Võimalikud järgmised sammud",
@@ -8924,7 +8874,6 @@
     },
     "wish": {
       "title": "Sinu soov",
-      "review_title": "Mida sina soovid?",
       "label": "Kirjuta oma sõnadega, mida sa tahad, et juhtuks või muutuks.",
       "hint": "Seda teksti platvorm ei muuda ega sõnasta ümber. Teised näevad seda ainult siis, kui sa selle jagamiseks ise valid.",
       "empty": "Sa ei ole oma soovi veel kirja pannud.",
@@ -9077,20 +9026,12 @@
         "FINISHED": "lõpetatud"
       }
     },
-    "activity": {
-      "title": "Tehtud sammud",
-      "created": "teekond loodud",
-      "saved": "Ülevaade salvestatud"
-    },
     "related": {
-      "title": "Seotud asjad",
-      "pre_inquiries": "Seotud eelpöördumised",
       "documents": "Seotud dokumendid",
       "service_contacts": "Seotud teenusekaardi kontaktid",
       "help_requests": "Seotud abisoovid",
       "help_offers": "Seotud abipakkumised",
       "rooms": "Seotud ruumid",
-      "open": "Ava",
       "pre_inquiries_empty": "Kui alustad sellest teekonnast eelpöördumise, ilmub see siia koos teema ja staatusega.",
       "pre_inquiry_untitled": "Eelpöördumine",
       "pre_inquiry_state": {
@@ -9109,7 +9050,6 @@
     },
     "share": {
       "title": "Vali, millist infot soovid eelpöördumises kasutada.",
-      "privacy": "Teekonnast ei jagata automaatselt kogu infot. Vaatad järgmises sammus teksti üle enne saatmist.",
       "summary": "olukorra kokkuvõte",
       "domains": "seotud teemad",
       "missing_info": "puuduolev info",
@@ -9121,20 +9061,17 @@
       "title_field": "Teekonna pealkiri",
       "recipient_preview": "Adressaat näeb",
       "empty_preview": "Valitud Teekonna sisu ei lisata.",
-      "service_contact": "valitud teenusekaardi kontakt",
       "document": "seotud dokument",
       "assistive_devices": "abivahendid ja kohandused",
       "continue": "Jätka eelpöördumise koostamisega"
     },
     "assistiveDevices": {
       "title": "Abivahendid ja kohandused",
-      "description": "Siia saab koondada info abivahendite, kodukohanduse või abivahendi kasutamise toe kohta.",
       "safetyNote": "Sotsiaal.pro ei määra ametlikult abivahendit ega otsusta hüvitamist. Vajadusel täpsusta sobivust KOV-i, spetsialisti, rehabilitatsioonimeeskonna või abivahendi teenuseosutajaga.",
       "addDocument": "Lisa dokument",
       "createPracticalHelpRequest": "Loo abisoov praktiliseks abiks"
     },
     "helpMediation": {
-      "title": "Abivahendus",
       "checkingOffers": "Kontrollin sobivaid abipakkumisi...",
       "offersFoundHint": "Sinu kirjeldus viitab praktilisele abivajadusele. Leidsime võimalikke abipakkumisi, mida saad vaadata.",
       "noOffersHint": "Sinu kirjeldus viitab praktilisele abivajadusele. Praegu sobivaid abipakkumisi ei leitud, kuid saad luua abisoovi.",

@@ -726,10 +726,11 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
     };
   }, [dirty]);
 
-  /* Tavaline vajutus avab lehe sees; uue vahekaardi vajutus jääb brauserile. */
+  /* Tagasi Teekondade loendisse lehe sees (uue vahekaardi vajutus jääb
+     brauserile). Teistele lehtedele viivad lingid on tavalised lingid: need lehed
+     loevad oma aadressi esimesel joonistusel. */
   const openInApp = useCallback((event, href) => {
     if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-    if (event.currentTarget?.getAttribute?.("aria-disabled") === "true") return;
     event.preventDefault();
     pushWithTransition(router, href);
   }, [router]);
@@ -881,7 +882,6 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
                   t={t}
                   journey={journey}
                   hrefOf={(item) => localizePath(`/eelpoordumised?openInquiry=${encodeURIComponent(item.id)}&workspaceRole=CLIENT`, locale)}
-                  onOpen={openInApp}
                   more={journey.linkedPreInquiriesPage?.hasMore ? { busy: busy === "more", onMore: handleLoadMorePreInquiries } : null}
                   error={faultOf("sent")}
                   related={relatedCounts(journey).map((group) => ({ key: group.key, label: t(group.labelKey), value: String(group.count) }))}
@@ -901,7 +901,6 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
                   ack={{ needed: preInquiryShareKeys.includes("personContext"), checked: thirdPartyAcknowledged, onChange: setThirdPartyAcknowledged }}
                   blockKey={blockKey}
                   href={reviewedPreInquiryHref}
-                  onContinue={openInApp}
                   desk={desk}
                 />
               );
