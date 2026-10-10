@@ -5607,6 +5607,7 @@ model Organization {
   careActivities         CareActivity[]
   careReferralContacts   CareReferralContact[]
   careMonthLocks         CareMonthLock[]
+  careTripEntries        CareTripEntry[]
 
   @@unique([createdByUserId, creationClientActionId], name: "Organization_creation_action_unique")
   @@index([status])
@@ -8639,6 +8640,38 @@ model CareReferralContact {
   organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 
   @@index([organizationId, endedAt, position])
+}
+
+/// KODUTEENUS K6-a — SÕIDUPÄEVIKU rida (kava II.6.15): töötaja töösõit läbisõidumõõdiku alg- ja
+/// lõppnäiduga. Kilomeetrid on näitude vahe. Eesmärgi real ei ole kliendi nime (päevik läheb
+/// raamatupidamisse). Ridu ei muudeta ega kustutata: ekslik rida tühistatakse põhjusega.
+model CareTripEntry {
+  id             String @id @default(cuid())
+  organizationId String
+  /// FK-ta: sõitnud töötaja liikmesus ja nime hetkekoopia.
+  membershipId   String
+  workerName     String
+  /// Sõidu päev kujul AAAA-KK-PP.
+  day            String
+  /// OWN | ORG (`CARE_TRIP_VEHICLES`): isiklik või asutuse auto.
+  vehicle        String
+  /// Sõiduki registreerimisnumber, kui see on kirja pandud.
+  plate          String?
+  startOdometer  Int
+  endOdometer    Int
+  /// Siht ja eesmärk, ilma kliendi nimeta.
+  purpose        String
+
+  createdByMembershipId   String?
+  createdAt               DateTime  @default(now())
+  retractedAt             DateTime?
+  retractedByMembershipId String?
+  retractReason           String?
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId, day])
+  @@index([organizationId, membershipId, day])
 }
 
 /// KODUTEENUS K5-w — TRANSPORDI SOOV (kava II.6.14, variant A): „Telli transport" kliendi
