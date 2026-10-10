@@ -12,6 +12,7 @@ import { collectOwnerSharingHistory, loadMySharings } from '../lib/mySharings.js
 import { computeShareContentHash, markShareOpened } from '../lib/network/share.js';
 import { resolveOrgAccessContext } from '../lib/org/accessContext.js';
 import { getInboxItem } from '../lib/org/inbox.js';
+import { acceptPreInquiry, recordPreInquiryView, updatePreInquiryReceiverWorkflow } from '../lib/preInquiries.js';
 import { deleteUserAfterFinalPracticeSweep } from '../lib/privacy/effectivePracticeAccountCleanup.js';
 
 const url = new URL(process.env.JOURNEY_TEST_DATABASE_URL || process.env.HOME_CARE_TEST_DATABASE_URL || 'postgres://invalid/invalid');
@@ -243,4 +244,94 @@ test('asutuse postkasti saadetud eelpöördumine: iga lugeja ja päev jätab rea
   /* Autorita rea lugemine uut jälge ei tee: seda ei oleks kellelgi näha. */
   await read(first, sent, DAY3);
   assert.deepEqual(await trail(sent.inquiry.id), []);
+});
+
+test('isikule saadetud eelpöördumine: vastuvõtmine ja iga hilisem avamispäev jätab rea, autor näeb päevi', async (t) => {
+  const tag = randomUUID().slice(0, 8);
+  const { ids, user } = people(tag);
+  const author = await user('autor', 'CLIENT');
+  const recipient = await user('saaja', 'SOCIAL_WORKER');
+  const stranger = await user('vooras', 'SOCIAL_WORKER');
+  const inquiryIds = [];
+  const send = async (extra = {}) => {
+    const row = await db.preInquiry.create({
+      data: {
+        authorId: author.id,
+        recipientOwnerId: recipient.id,
+        recipientType: 'KOV_CONTACT',
+        deliveryChannel: 'INTERNAL',
+        topic: 'Koduteenus',
+        situation: 'Ema ei saa enam ise poes käia.',
+        status: 'SENT',
+        sentAt: at('2026-10-08T08:00:00Z'),
+        ...extra
+      }
+    });
+    inquiryIds.push(row.id);
+    return row;
+  };
+  const sent = await send();
+  const worked = await send();
+  const recalled = await send({ recalledAt: at('2026-10-08T09:00:00Z') });
+  /* Saaja kirjutas pöördumise iseendale: ta on ise pöörduja, tema lugemist ei logita. */
+  const own = await send({ authorId: recipient.id });
+  t.after(async () => {
+    await db.preInquiry.deleteMany({ where: { id: { in: inquiryIds } } });
+    await db.user.deleteMany({ where: { id: { in: ids } } });
+  });
+  const trail = (inquiryId) => db.sharingView.findMany({ where: { preInquiryId: inquiryId }, orderBy: { day: 'asc' } });
+  const listed = async (inquiryId) => (await loadMySharings(author.id, { db, sections: ['preInquiries'] })).preInquiries.items.find((item) => item.id === inquiryId);
+  const notFound = (error) => error.status === 404 && error.message === 'api.common.not_found';
+
+  /* Enne vastuvõtmist ei jäta avamise teade jälge: pöörduja saab pöördumise veel tagasi võtta. */
+  assert.equal(await recordPreInquiryView(recipient.id, sent.id, { db, now: DAY1 }), false);
+  assert.deepEqual(await trail(sent.id), []);
+  assert.equal((await listed(sent.id)).views, undefined);
+
+  /* Vastuvõtmine paneb avamise aja ja esimese jäljerea. */
+  const accepted = await acceptPreInquiry(recipient.id, sent.id, { db, now: DAY1 });
+  assert.deepEqual([accepted.status, new Date(accepted.openedAt).toISOString()], ['READY', DAY1.toISOString()]);
+  assert.deepEqual((await trail(sent.id)).map((row) => [row.kind, row.viewerUserId, row.day, row.networkShareId]), [['PRE_INQUIRY', recipient.id, '2026-10-09', null]]);
+  const afterAccept = await db.preInquiry.findUnique({ where: { id: sent.id } });
+
+  /* Sama päeva uus avamine rida ei lisa; järgmistel päevadel tekib päeva kohta üks rida. */
+  assert.equal(await recordPreInquiryView(recipient.id, sent.id, { db, now: DAY1_LATER }), false);
+  assert.equal(await recordPreInquiryView(recipient.id, sent.id, { db, now: DAY2 }), true);
+  assert.equal(await recordPreInquiryView(recipient.id, sent.id, { db, now: DAY2 }), false);
+  assert.equal(await recordPreInquiryView(recipient.id, sent.id, { db, now: DAY3 }), true);
+  assert.deepEqual((await trail(sent.id)).map((row) => row.day), ['2026-10-09', '2026-10-10', '2026-10-11']);
+  /* Korduv vastuvõtmine (topeltvajutus) ei lisa rida ega muuda pöördumist. */
+  await acceptPreInquiry(recipient.id, sent.id, { db, now: DAY3 });
+  assert.equal((await trail(sent.id)).length, 3);
+
+  /* Jälg ei puuduta eelpöördumise rida: `updatedAt` on tagasivõtmise ja paranduse lukk. */
+  const afterViews = await db.preInquiry.findUnique({ where: { id: sent.id } });
+  assert.deepEqual([afterViews.updatedAt.toISOString(), afterViews.openedAt.toISOString(), afterViews.status], [afterAccept.updatedAt.toISOString(), DAY1.toISOString(), 'READY']);
+
+  /* Pöörduja ise, võõras ja tagasi võetud pöördumine: 404, jälge ei teki. */
+  await assert.rejects(recordPreInquiryView(author.id, sent.id, { db, now: DAY3 }), notFound);
+  await assert.rejects(recordPreInquiryView(stranger.id, sent.id, { db, now: DAY3 }), notFound);
+  await assert.rejects(recordPreInquiryView(recipient.id, recalled.id, { db, now: DAY1 }), notFound);
+  assert.equal((await trail(sent.id)).length, 3);
+  assert.deepEqual(await trail(recalled.id), []);
+
+  /* Iseendale saadetud pöördumine: vastuvõtmine toimub, jälge ei teki. */
+  assert.equal((await acceptPreInquiry(recipient.id, own.id, { db, now: DAY1 })).status, 'READY');
+  assert.equal(await recordPreInquiryView(recipient.id, own.id, { db, now: DAY2 }), false);
+  assert.deepEqual(await trail(own.id), []);
+
+  /* Töömärkme salvestamine on samuti lugemine: see avab pöördumise ja jätab tänase rea. */
+  const saved = await updatePreInquiryReceiverWorkflow(recipient.id, worked.id, { receiverNote: 'Helistan homme.', expectedUpdatedAt: worked.updatedAt }, { db });
+  assert.ok(saved.openedAt);
+  assert.deepEqual((await trail(worked.id)).map((row) => [row.kind, row.viewerUserId]), [['PRE_INQUIRY', recipient.id]]);
+
+  /* Pöörduja näeb oma lehel päevi ja viimast päeva; väljavõttes on sama kokkuvõte. */
+  assert.deepEqual((await listed(sent.id)).views, { days: 3, lastDay: '2026-10-11' });
+  assert.equal((await listed(recalled.id)).views, undefined);
+  const history = (await collectOwnerSharingHistory(author.id, { db })).find((row) => row.type === 'PRE_INQUIRY' && row.origin.id === sent.id);
+  assert.deepEqual([history.viewedDays, history.lastViewedOn], [3, '2026-10-11']);
+
+  /* Jälg kustub koos pöördumisega. */
+  await db.preInquiry.delete({ where: { id: sent.id } });
+  assert.equal(await db.sharingView.count({ where: { preInquiryId: sent.id } }), 0);
 });

@@ -1172,6 +1172,24 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     ? receiverInquiries.find((inquiry) => inquiry.id === activeInquiryId) || null
     : null;
   const receiverQueue = useMemo(() => preInquiryReceiverQueue(receiverInquiries), [receiverInquiries]);
+  /* „Kes on vaadanud": saaja avas juba vastuvõetud pöördumise. Tekst tuli loendiga kaasa,
+     nii et server avamist ise ei näe: läheb taustateade, üks kord pöördumise ja päeva kohta.
+     Vastust ei oodata ja viga ei näidata: jälje puudumine ei tohi tööd segada. */
+  const viewSignalsRef = useRef(new Set());
+  const viewedInquiryId =
+    isRecipientRole &&
+    receiverStep !== "queue" &&
+    activeReceivedInquiry?.openedAt &&
+    activeReceivedInquiry.recipientOwnerId === currentUserId
+      ? activeReceivedInquiry.id
+      : "";
+  useEffect(() => {
+    if (!viewedInquiryId) return;
+    const signal = `${viewedInquiryId}:${new Date().toDateString()}`;
+    if (viewSignalsRef.current.has(signal)) return;
+    viewSignalsRef.current.add(signal);
+    fetch(`/api/pre-inquiries/${encodeURIComponent(viewedInquiryId)}/viewed`, { method: "POST" }).catch(() => {});
+  }, [viewedInquiryId]);
   const activeReceivedJourneySharedInfo = useMemo(
     () => getInquiryJourneySharedInfo(activeReceivedInquiry),
     [activeReceivedInquiry]
