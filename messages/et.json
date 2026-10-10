@@ -6071,7 +6071,8 @@
       "note_placeholder": "Kirjelda, mida tuleks parandada",
       "send_correction": "Saada parandus",
       "failed": "Vastuse saatmine ebaõnnestus"
-    }
+    },
+    "subscription_readonly": "Tellimus ei ole aktiivne. Oma ruume saad lugeda ja neist lahkuda; kirjutamiseks, kõneks ja kutsumiseks aktiveeri tellimus."
   },
   "invite": {
     "success": "Kutsed saadetud",

@@ -6071,7 +6071,8 @@
       "note_placeholder": "Describe what should be corrected",
       "send_correction": "Send correction",
       "failed": "Sending the response failed"
-    }
+    },
+    "subscription_readonly": "Your subscription is not active. You can read your rooms and leave them; to write, call or invite, activate a subscription."
   },
   "invite": {
     "success": "Invites sent",
