@@ -62,6 +62,8 @@ test('ADR-125: every count of the turns, in total and per day of Estonia\'s cale
     selection: { failed: 1, nothing: 1, '1-2': 1, '3-5': 2, '6-9': 2, not_run: 1, not_recorded: 3 },
     search_assist_failures: { plan: { 23: 1 }, rerank: { provider_http_error: 1 } },
     largest_reservation: { tokens: 90000, nanoUsd: 20000000 },
+    // No turn here carries the provision check's audit (ADR-129): its own test is below.
+    provisions: { checked: 0, check_failed: 0, answers_naming: 0, mentions: 0, a: 0, b: 0, c: 0, v: 0, s: 0, p: 0, q: 0, d: 0, from_other_sources: 0, collisions: 0, after_other_act: 0, bare_subsections: 0 },
     since_start_ms: { phases: { planned: { n: 2, median: 1500, p95: 2000 }, embedded: { n: 2, median: 2050, p95: 2600 }, searched: { n: 2, median: 5500, p95: 6000 },
       first_text: { n: 1, median: 7000, p95: 7000 }, answered: { n: 2, median: 13000, p95: 14000 } }, whole_turn: { n: 2, median: 13450, p95: 14500 } } });
   // The plan and the selection are counted for the turns that searched: all but the greeting and the thank-you.
@@ -149,6 +151,40 @@ test('ADR-125: the provider calls\' receipts per day: what was billed and what i
   // left of the money and a call that reserved 21 000 000, the ledger part names the money as refusing.
   const budget = { attempts: 4000, answerAttempts: 2000, nanoUsd: 3000000000 }, ledger = { totals: { attempts: 900, answerAttempts: 300, planAttempts: 300, rerankAttempts: 300, nanoUsd: 2985000000 } };
   assert.deepEqual([report([], { receipts, budget, ledger }).ledger.refusing, report([], { budget, ledger }).ledger.refusing], [['nanoUsd'], []]);
+});
+
+// ADR-129 (10.10.2026): the standing figure for "answers that name a provision" (it was 1 of 234 stored answers).
+test('ADR-129: the provision check\'s counts: answers that name a provision, the mentions by kind, a refused turn, a check that failed', async () => {
+  const { PROVISION_KINDS, PROVISION_CHECK_VERSION } = await import('../lib/rag-v2/pilot/provision-check.js');
+  const kinds = counts => ({ a: 0, b: 0, c: 0, v: 0, s: 0, p: 0, q: 0, d: 0, ...counts });
+  const audit = (mentions, naming, counts, extra = {}) => ({ version: PROVISION_CHECK_VERSION, labelled: 3, mentions, blocks_naming: naming, kinds: kinds(counts), outside_blocks: 0, act_named: mentions, act_not_shown: 0,
+    from_other_sources: 0, collisions: 0, after_other_act: 0, word_forms: 0, bare_subsections: 0, items: [{ at: '$.blocks[0].text', provision: '§ 133 lg 5', kind: 'c', act: 'named' }], ...extra });
+  const checked = [
+    turn(DAY_ONE, 'completed', answered('grounded'), { provisionAudit: audit(3, 2, { a: 2, b: 1 }, { from_other_sources: 1 }) }),
+    turn(DAY_ONE, 'completed', answered('grounded'), { provisionAudit: audit(2, 1, { a: 1, c: 1 }, { collisions: 1, after_other_act: 1, bare_subsections: 2 }) }),
+    // Labelled passages in the evidence, nothing named: checked, not naming.
+    turn(DAY_ONE, 'completed', answered('partial'), { provisionAudit: audit(0, 0, {}) }),
+    // A provision in a limitation only (the user's own): a mention, but no block names one.
+    turn(DAY_ONE, 'completed', answered('partial'), { provisionAudit: audit(1, 0, { q: 1 }) }),
+    // Refused: the audit stands in the turn's validation record.
+    turn(DAY_TWO, 'answer_rejected', { error: 'unsupported_provision', responseAudit: { draft: { text: ANSWER }, validation: { valid: false, code: 'unsupported_provision', path: '$.blocks[0].text',
+      received: { text: ANSWER }, provision: '§ 999 lg 1', provisions: audit(2, 1, { a: 1, d: 1 }) } } }),
+    // The check failed by itself; the answer was published unchecked.
+    turn(DAY_TWO, 'completed', answered('grounded'), { provisionAudit: { version: PROVISION_CHECK_VERSION, failed: true } }),
+    // No audit at all: a turn before the check, or one with nothing labelled and nothing named.
+    turn(DAY_TWO, 'completed', answered('grounded')),
+    // An audit that is no audit adds no numbers of its own.
+    turn(DAY_TWO, 'completed', answered('grounded'), { provisionAudit: { mentions: 'palju', blocks_naming: -3, kinds: { a: 1.5, d: QUESTION, x: 7 }, from_other_sources: null } }),
+  ];
+  const { turns } = report(checked);
+  assert.deepEqual(turns.total.provisions, { checked: 7, check_failed: 1, answers_naming: 3, mentions: 8, a: 4, b: 1, c: 1, v: 0, s: 0, p: 0, q: 1, d: 1, from_other_sources: 1, collisions: 1, after_other_act: 1, bare_subsections: 2 });
+  assert.deepEqual([turns.total.validation_failures_by_code, turns.total.failed_by_code], [{ unsupported_provision: 1 }, { unsupported_provision: 1 }]);
+  assert.deepEqual([turns.by_day['2026-10-08'].provisions.mentions, turns.by_day['2026-10-09'].provisions.d, turns.by_day['2026-10-09'].provisions.check_failed], [6, 1, 1]);
+  // What is kept of a row: numbers and flags, not the audit's items (a provision's label is text).
+  assert.deepEqual(turnFacts(checked[0]).provisions, { failed: false, mentions: 3, naming: true, kinds: kinds({ a: 2, b: 1 }), from_other_sources: 1, collisions: 0, after_other_act: 0, bare_subsections: 0 });
+  assert.deepEqual([turnFacts(checked[6]).provisions, JSON.stringify(checked.map(turnFacts)).includes('§')], [null, false]);
+  // The report names the kinds the check gives, in its order.
+  assert.deepEqual(Object.keys(turns.total.provisions).filter(key => key.length === 1), [...PROVISION_KINDS]);
 });
 
 test('ADR-125: no text of a question, an answer, a passage, a title or a user reaches the report', () => {

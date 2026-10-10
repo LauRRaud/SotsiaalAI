@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { ANSWER_SCHEMA, PROMPT_VERSION, READABLE_PROMPT_VERSIONS, answerInstructions, answerRequest, validateAnswer } from '../lib/rag-v2/pilot/contracts.js';
 import { REGION_STATE_VERSION, dialogueStateContract } from '../lib/rag-v2/pilot/dialogue-state.js';
-import { FEE_QUALIFICATION_INSTRUCTIONS, WEB_ADDRESS_INSTRUCTIONS, TIME_INSTRUCTIONS, ASKING_INSTRUCTIONS, ROLE_INSTRUCTIONS, roleWorkInstructions, dialogueInput, KNOWN_PLACES_INSTRUCTIONS, NAMED_PLACE_INSTRUCTIONS, DIALOGUE_PROMPT_VERSION, READABLE_DIALOGUE_PROMPT_VERSIONS, COMPLETENESS_INSTRUCTIONS, BARE_CORRECTION_INSTRUCTIONS, PRIOR_CLAIM_INSTRUCTIONS, CONTACT_ENTRY_INSTRUCTIONS, CONTACT_DIRECTORY_INSTRUCTIONS, VERSION_CHANGES_INSTRUCTIONS, dialogueRequest } from '../lib/rag-v2/pilot/dialogue.js';
+import { FEE_QUALIFICATION_INSTRUCTIONS, WEB_ADDRESS_INSTRUCTIONS, TIME_INSTRUCTIONS, ASKING_INSTRUCTIONS, ROLE_INSTRUCTIONS, ROLE_PROVISION_INSTRUCTIONS, roleWorkInstructions, dialogueInput, KNOWN_PLACES_INSTRUCTIONS, NAMED_PLACE_INSTRUCTIONS, DIALOGUE_PROMPT_VERSION, READABLE_DIALOGUE_PROMPT_VERSIONS, COMPLETENESS_INSTRUCTIONS, BARE_CORRECTION_INSTRUCTIONS, PRIOR_CLAIM_INSTRUCTIONS, CONTACT_ENTRY_INSTRUCTIONS, CONTACT_DIRECTORY_INSTRUCTIONS, VERSION_CHANGES_INSTRUCTIONS, dialogueRequest } from '../lib/rag-v2/pilot/dialogue.js';
 import { UNIFIED_RETRIEVAL_INSTRUCTIONS, UNIFIED_RETRIEVAL_VERSION } from '../lib/rag-v2/pilot/retrieval-plan.js';
 import { SEARCH_ASSIST_VERSION, PLAN_ELIGIBILITY_INSTRUCTIONS, RERANK_SAFEGUARD_INSTRUCTIONS, PLAN_CORRECTION_INSTRUCTIONS, PLAN_ANSWERED_INSTRUCTIONS, PLAN_DUTY_INSTRUCTIONS, PLAN_SETTLEMENT_INSTRUCTIONS, PLAN_WORRY_INSTRUCTIONS, PLAN_ROLE_INSTRUCTIONS, PLAN_ASKED_INSTRUCTIONS, RERANK_ANSWERED_INSTRUCTIONS, RERANK_WORRY_INSTRUCTIONS, RERANK_ASKED_INSTRUCTIONS, RERANK_CHANGE_INSTRUCTIONS, queryPlanRequest, rerankRequest } from '../lib/rag-v2/pilot/search-assist.js';
 import { tokenCount } from '../lib/rag-v2/search/embedding.js';
@@ -74,11 +74,13 @@ test('prompt 37 selects the authenticated recipient instructions while preservin
 });
 
 test('prompt v10 keeps every v9 guardrail in each answer language, and v9 plans stay readable only', () => {
-  assert.equal(PROMPT_VERSION, 'm4-grounded-answer-12');
+  assert.equal(PROMPT_VERSION, 'm4-grounded-answer-13');
+  assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-12'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-11'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-10'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-9'));
-  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-41');
+  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-42');
+  assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-41'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-40'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-39'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-38'));
@@ -134,7 +136,7 @@ test('prompt v10 states the voice for the answer language, a good answer, and th
     assert.match(prompt, /the application separately shows verified emergency contacts/);
     assert.match(prompt, /do not repeat the same sympathy formula in every turn/);
   }
-  const sections = ['ROLE.', 'LANGUAGE AND VOICE.', 'ANSWER VOICE.', 'INPUT SAFETY.', 'A GOOD ANSWER.', 'CLARIFYING.', 'EVIDENCE.', 'SOURCE TYPES AND TIME.', 'LIMITS OF THE EVIDENCE.', 'OUTPUT.'];
+  const sections = ['ROLE.', 'LANGUAGE AND VOICE.', 'ANSWER VOICE.', 'INPUT SAFETY.', 'A GOOD ANSWER.', 'CLARIFYING.', 'EVIDENCE.', 'SOURCE TYPES AND TIME.', 'LEGAL PROVISIONS.', 'LIMITS OF THE EVIDENCE.', 'OUTPUT.'];
   const lines = answerInstructions('et').split('\n');
   assert.deepEqual(lines.slice(1).map(line => sections.find(section => line.startsWith(section))), sections);
 });
@@ -192,7 +194,7 @@ test('answer-12: a person or author question is answered from what the evidence 
     const prompt = answerInstructions(language);
     // The voice rule stays, with one exception (the owner's chat, 30.09: "kes on Laur Raudsoo" got no answer).
     for (const phrase of ['no author names or document titles in the text', 'The exception is a question about a person, an author or a publication',
-      'do not refuse when the evidence names them', 'never as the only one', 'except as ANSWER VOICE allows',
+      'do not refuse when the evidence names them', 'never as the only one', 'except as ANSWER VOICE and LEGAL PROVISIONS allow',
       'start with the conditional conclusion', 'ask only for the fact that would change it', 'not a question alone']) assert.ok(prompt.includes(phrase), `${language}: ${phrase}`);
     // The guardrail against deciding eligibility from an ambiguous description is kept.
     assert.ok(prompt.includes('Do not turn an ambiguous description into a diagnosis, eligibility decision or confirmed personal fact'));
@@ -231,9 +233,10 @@ test('dialogue prompt 22 (ADR-062): valid_from chooses the version and never dat
   assert.equal(hash(UNIFIED_RETRIEVAL_INSTRUCTIONS.replace(A, '').replace(B, '')), '68e3d455eade9e69f417a745268b100c53866462f0d12d3775e0c0d22f6459dd');
   assert.equal(hash(COMPLETENESS_INSTRUCTIONS.replace(C, '')), '7ae786af60d384ae80f55632ed16c0dcb432a98a5739cf73062c0c86ba7c10be');
   assert.ok(COMPLETENESS_INSTRUCTIONS.includes('keep with it, in the same block, what it is calculated from, any cap or maximum (such as a price cap), what the person pays themselves, the period or date it applies to, who decides'));
-  assert.equal(PROMPT_VERSION, 'm4-grounded-answer-12');
-  assert.deepEqual(Object.fromEntries(['et', 'en', 'ru'].map(language => [language, hash(answerInstructions(language))])), { et: 'a6b0c4f78016b90198b9ce8026e8f35524cf61f005a03212dc67db3e9748a0f1',
-    en: '012bb27ea0bf8c8eba7db32d2c9ae123ea2edac255695f0eca0b21c5cda27ba3', ru: 'd21da15b0fcb98b0a5c7e98ff2e39ca5dc4a7c6dd574710ab8dbb2901e67c989' });
+  // The base answer instructions are those of answer-13 since ADR-129 (the test of answer-13 below pins what it added).
+  assert.equal(PROMPT_VERSION, 'm4-grounded-answer-13');
+  assert.deepEqual(Object.fromEntries(['et', 'en', 'ru'].map(language => [language, hash(answerInstructions(language))])), { et: '4cf17405fa54f06085cba03beb6abc873ffb92772647132b7a52c8000429d923',
+    en: 'ac1b98cc3c08080ff921ed5b8a048bf6d7fcc9e1249bef93d3b3295b5e21aef0', ru: 'b030b9e84d614eede3109c4a2c4c733f7c94787d18b7f85320957115f6cb93bc' });
   const assist = { model: 'gpt-6-luna', searchAssist: SEARCH_ASSIST_VERSION };
   // search-assist-6 (ADR-072) adds one line to the plan's instructions and search-assist-7 (ADR-077) one to the plan's and
   // two to the selection's, search-assist-8 (ADR-079) one more to the plan's, search-assist-9 (ADR-103) another and
@@ -396,7 +399,7 @@ test('dialogue prompt 29 to 32 (ADR-102): a finding carries its year, an older s
 test('dialogue prompt 41 (ADR-120): a turn that is only a thank-you is told how to reply; every other turn reads what it read', async () => {
   const { THANKS_INSTRUCTIONS, dialogueRequest: request } = await import('../lib/rag-v2/pilot/dialogue.js');
   const model = { model: 'gpt-6-luna', maxOutputTokens: 4096, reasoning: 'low' }, evidence = { evidence: [] };
-  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-41');
+  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-42');
   const plain = request(model, 'Kas saab toetust?', evidence, 'et', {}).instructions, thanks = request(model, 'Aitäh!', evidence, 'et', { messageKind: 'thanks' }).instructions;
   // One more line, right after the rules on asking; without the mark, and with any other value of it, nothing.
   assert.deepEqual([thanks.split(THANKS_INSTRUCTIONS).length, plain.includes(THANKS_INSTRUCTIONS), thanks.replace(THANKS_INSTRUCTIONS, '') === plain], [2, false, true]);
@@ -413,4 +416,98 @@ test('dialogue prompt 41 (ADR-120): a turn that is only a thank-you is told how 
   const accepted = { context: { scopeId: 's' }, userTurns: [{ turnId: 't1', text: 'Aitäh!', mode: 'new', correctionOf: null }], selection: { replyToBlock: null } };
   assert.equal(dialogueInput(accepted, null, null, null, 'thanks').value.messageKind, 'thanks');
   assert.equal('messageKind' in dialogueInput(accepted, null, null, 'specialist').value, false);
+});
+
+// ADR-129 (owner 10.10.2026): users want to know the paragraphs, and the platform will be tested on whether the
+// assistant names exactly the act and the provision. Of 234 stored answers one named a section: answer-11 keeps
+// sources out of the text. answer-13 turns the rule round for a legal act, in one new section.
+test('answer-13 (ADR-129): the section LEGAL PROVISIONS says when and how an act and its provision are named; everything else is answer-12', async () => {
+  const { legalProvisionInstructions, PROVISION_FORM, PROVISION_VOICE_INSTRUCTIONS } = await import('../lib/rag-v2/pilot/contracts.js');
+  const twelve = { et: 'a6b0c4f78016b90198b9ce8026e8f35524cf61f005a03212dc67db3e9748a0f1', en: '012bb27ea0bf8c8eba7db32d2c9ae123ea2edac255695f0eca0b21c5cda27ba3', ru: 'd21da15b0fcb98b0a5c7e98ff2e39ca5dc4a7c6dd574710ab8dbb2901e67c989' };
+  for (const language of ['et', 'en', 'ru']) {
+    const prompt = answerInstructions(language), section = legalProvisionInstructions(language), lines = prompt.split('\n');
+    // Once, as a section of its own between the source types and the limits of the evidence, with that language's form.
+    assert.deepEqual([prompt.split(section).length, lines.indexOf(section), lines[lines.indexOf(section) - 1].startsWith('SOURCE TYPES AND TIME.'), lines[lines.indexOf(section) + 1].startsWith('LIMITS OF THE EVIDENCE.')], [2, 9, true, true], language);
+    assert.ok(section.startsWith('LEGAL PROVISIONS. ') && section.includes(` ${PROVISION_FORM[language]} `), language);
+    for (const other of ['et', 'en', 'ru']) if (other !== language) assert.equal(section.includes(PROVISION_FORM[other]), false, `${language} ${other}`);
+    // ANSWER VOICE and OUTPUT point at it; without the three additions and the label the text is answer-12 byte for byte.
+    // The voice sentence stands after the exception for a person or a publication, as a second exception (second review).
+    assert.ok(prompt.includes(`has written about this").${PROVISION_VOICE_INSTRUCTIONS} `) && PROVISION_VOICE_INSTRUCTIONS.includes('A legal act is a second exception'), language);
+    const restored = prompt.replace(`${section}\n`, '').replace(PROVISION_VOICE_INSTRUCTIONS, '').replace('except as ANSWER VOICE and LEGAL PROVISIONS allow', 'except as ANSWER VOICE allows').replace(PROMPT_VERSION, 'm4-grounded-answer-12');
+    assert.equal(hash(restored), twelve[language], language);
+    // About 1070 to 1100 tokens more in every answer request (1081, 1066 and 1085 on 10.10.2026, after the second review's
+    // additions; the first round's text was about 900).
+    assert.ok(tokenCount(section) > 1000 && tokenCount(section) < 1150, `${language} ${tokenCount(section)}`);
+  }
+  const section = legalProvisionInstructions('et');
+  // When: a block that takes a rule from a labelled excerpt names act and provision; a guide's paragraph is not passed on.
+  for (const phrase of ['An excerpt with a provision field is a passage of a legal act', 'When a block takes a right, a duty, a condition, an amount, a deadline or a procedure from such an excerpt, name the act and the provision in that block, so that the reader can find it',
+    'The instructions on the answer\'s recipient say for how many of an answer\'s claims; without them, for each rule the answer rests on.',
+    'A section or subsection number that a guide, an article, a web page or a record mentions is that source\'s own reference and may be out of date: it is not the provision of your claim',
+    'one provision for one rule, none for general explanation', 'Begin a sentence with them only when the user asks which provision says something or asks for the legal basis']) assert.ok(section.includes(phrase), phrase);
+  // Which: only what the block's own refs give. What the instruction allows is what the server's check accepts.
+  for (const phrase of ['Name only a provision that is given to you here: the provision field of an excerpt in the block\'s refs',
+    'its own heading line, a subsection\'s number in brackets at the start of a line, or a pointer to another provision, passed on as a pointer and under the act the text names for it',
+    'the provision that the act_dates or amendments of an excerpt in its refs give for a date; or a provision that version_changes lists',
+    'A pointer inside the excerpt\'s own section ("käesoleva paragrahvi lõikes <M>", or a subsection named alone) is written with that section\'s number before the subsection\'s.', 'Never take a section or subsection number from memory, the user\'s message, an earlier answer, source_locations or an excerpt the block does not cite, never count one out, and never complete or correct one',
+    'Copy the numbers as given: a raised digit stays raised', 'A legal excerpt without the field, or with provision_omitted, has no label', 'say in limitations that you cannot name it from what you have here; do not guess',
+    'In limitations and clarification name only a provision the user named, to say that you do not have its text or to ask which one is meant, or one that version_changes lists under not_in_evidence.',
+    // The last sentence says what the server really does: it records, it withholds nothing (REFUSED_KINDS is empty).
+    'The server checks every provision the answer names against what this turn holds and records each one that nothing here gives: such a number is an error of the answer.']) assert.ok(section.includes(phrase), phrase);
+  // The review's corrections: one exception among others, a section alone names the section, a block never repeats
+  // the provision the user asked about, a subsection is never named without its section.
+  for (const phrase of ['This is an exception to ANSWER VOICE\'s rule against naming a source, for legal acts only.', '"§ <N>" alone names the section only',
+    'Inside a block never write any other provision, not even to repeat the one the user asked about: that belongs in limitations.',
+    'Never name a subsection without its section: write the section with it again, also in a follow-up answer.',
+    // Two acts in one sentence: a comma or "ja" between them let a year at the start of the second title read as a subsection.
+    'When one sentence rests on two acts, name each with its own provision and put a semicolon between them.']) assert.ok(section.includes(phrase), phrase);
+  for (const phrase of ['the one exception', 'has no subsection to name', 'a regulation by who gave it', 'does not publish an answer', 'Write the act\'s name in full.', 'A paragraph that a guide'])
+    assert.equal((section + PROVISION_VOICE_INSTRUCTIONS).includes(phrase), false, phrase);
+  // How the act is named: a law by its title, a municipality's regulation by the municipality, a minister's by issuer
+  // and title; an abbreviation only where the recipient's instructions allow one and the card gives it.
+  for (const phrase of ['Name a law by the title on its source card', 'a municipality\'s regulation by the municipality (municipality_name)', 'a regulation of the Government or a minister by its issuer (authority) and its title in quotation marks',
+    'after that the provision alone is enough until another act has been named in between', 'A law\'s title is written out, not shortened.',
+    'An abbreviation is written only where the instructions on the answer\'s recipient allow one, only the act_abbreviation of the act\'s card, and only after the act was named once in full with the abbreviation in brackets']) assert.ok(section.includes(phrase), phrase);
+  // The forms the server reads: Estonian "lg", English brackets, Russian "ч.".
+  assert.ok(PROVISION_FORM.et.includes('"(<akti nimi omastavas> § <N> lg <M>)"') && PROVISION_FORM.et.includes('"<valla või linna nimi omastavas> määruse § <N> lg <M>"') && PROVISION_FORM.et.includes('"<lühend> § <N> lg <M>"'));
+  assert.ok(PROVISION_FORM.en.includes('"(<English name> (<Estonian title>) § <N>(<M>))"') && PROVISION_FORM.en.includes('never "section" or "subsection" in words'));
+  assert.ok(PROVISION_FORM.ru.includes('"(<название акта> (<Estonian title>) § <N> ч. <M>)"') && PROVISION_FORM.ru.includes('never "статья" or "часть" in words'));
+  // Placeholders only: a real number, act or place in an instruction is one an answer may copy.
+  const added = ['et', 'en', 'ru'].map(legalProvisionInstructions).join(' ') + PROVISION_VOICE_INSTRUCTIONS + Object.values(ROLE_PROVISION_INSTRUCTIONS).join(' ');
+  assert.doesNotMatch(added, /\d|§\s*\d|sotsiaalhoolekande|SHS|perekonna|lastekaitse|Kuusalu|Tallinn|Harku|\bvald\b|\blinn\b|euro/iu);
+  // Every request builder carries the section: the plain answer request and the dialogue request.
+  const config = { model: 'gpt-6-luna', maxOutputTokens: 4096, reasoning: 'low' };
+  assert.ok(answerRequest(config, 'k', { evidence: [] }, 'et').instructions.includes(section) && dialogueRequest(config, 'k', { evidence: [] }, 'et', {}).instructions.includes(section));
+});
+
+test('dialogue prompt 42 (ADR-129): each role\'s work text says how many provisions that reader gets; the extension itself is that of 41', () => {
+  const model = { model: 'gpt-6-luna', maxOutputTokens: 4096, reasoning: 'low' }, evidence = { evidence: [] };
+  const extension = dialogue => dialogueRequest(model, 'Aitäh!', evidence, 'et', dialogue).instructions.slice(answerInstructions('et').length).replace(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-41');
+  // The dialogue extension (everything after the base) reads as in 41 for a turn without a role, a thank-you turn and a
+  // turn with a role: 42 changed the base it extends and the role's developer message, nothing here.
+  assert.deepEqual([{}, { messageKind: 'thanks' }, { userRole: 'specialist' }].map(dialogue => hash(extension(dialogue))), ['2ae810c1b6ece912aa5ef3e47b11dc34c8dac48eee9f21a323e84af251162d66',
+    '96ca88a9784c3932de24f1ab2275c6c291793cc1803bf099e0daaabb00c76a2e', 'bc48d14516e09ac61b45bef87c574f9c04eb5e9d9ef3f3334afabe1ead5e47c9']);
+  // A role's line stands in its work text, which is sent after the evidence; without it the text is that of 41.
+  const before = { specialist: '9a05da218a07aba5edb5c93a49799444130125739b6053c9a41b7ba47f220a6b', service_provider: 'daabbac7738ee3995a6ba41c9e7e36b8af0357c23f003e701286199fe0cb2064', help_seeker: '03fd31281799d0af3f0c0499776683ad742fe4b1ddaa50b33cf0736f4f875aab' };
+  for (const role of ['specialist', 'service_provider', 'help_seeker']) {
+    const body = dialogueRequest(model, 'Mis tähtaja jooksul?', evidence, 'et', { userRole: role }), work = roleWorkInstructions(role), line = ROLE_PROVISION_INSTRUCTIONS[role];
+    assert.deepEqual(body.input.at(-1), { role: 'developer', content: work });
+    assert.deepEqual([work.split(line).length, work.includes(`${line} Follow an explicitly stated different capacity`), body.instructions.includes(line), hash(work.replace(line, ''))], [2, true, false, before[role]], role);
+    // Each line points at the base section (110, 77 and 98 tokens on 10.10.2026: the bounds the second review asked for).
+    assert.ok(line.includes('LEGAL PROVISIONS') && tokenCount(line) < 130, `${role} ${tokenCount(line)}`);
+  }
+  // The owner's defaults. A specialist and a service provider: one for every rule taken from an act, and the law's
+  // official abbreviation once it was introduced.
+  for (const phrase of ['for every rule, condition, duty, deadline and amount you take from an excerpt of a legal act, as LEGAL PROVISIONS gives it: down to the subsection where the excerpt shows one, the section alone where it does not, and none where the excerpt gives no provision',
+    'The provision may stand in the sentence or in brackets after it', 'After a law was named once in full with its act_abbreviation in brackets, the abbreviation may stand for it']) assert.ok(ROLE_PROVISION_INSTRUCTIONS.specialist.includes(phrase), phrase);
+  for (const phrase of ['for every rule, requirement or duty of the service that you take from an excerpt of a legal act, as LEGAL PROVISIONS gives it: the section alone where the excerpt shows no subsection, and none where it gives no provision',
+    'After a law was named once in full with its act_abbreviation in brackets, the abbreviation may stand for it']) assert.ok(ROLE_PROVISION_INSTRUCTIONS.service_provider.includes(phrase), phrase);
+  // A person seeking help: the act's full name, and a provision only for what they can rely on or must meet.
+  for (const phrase of ['The answer is plain help in everyday words.', 'only for what the person can rely on or must meet (a right, a duty of the municipality or the state, a condition, a deadline, an amount)', 'in brackets after the sentence',
+    'usually one to three in an answer', 'Write a law\'s title in full, never an abbreviation']) assert.ok(ROLE_PROVISION_INSTRUCTIONS.help_seeker.includes(phrase), phrase);
+  assert.equal(ROLE_PROVISION_INSTRUCTIONS.help_seeker.includes('may stand for it'), false);
+  // A turn without a role has no such line and no developer message: the base section's own default holds.
+  const none = dialogueRequest(model, 'Mis tähtaja jooksul?', evidence, 'et', {});
+  assert.equal(none.input.length, 1);
+  for (const line of Object.values(ROLE_PROVISION_INSTRUCTIONS)) assert.equal(none.instructions.includes(line), false);
 });

@@ -16,7 +16,7 @@ export default async function ChatSourcePage({ searchParams }) {
   if (!response.ok) return <section><h1>{t('source')}</h1><p>{t('denied')}</p></section>;
   const location = source.pages.length ? t('pages', { pages: source.pages.join(', ') })
     : [...new Set((source.source_locations || []).map(item => item.kind.toUpperCase()))].join(', ');
-  return <section style={{ padding: 24, maxWidth: 900, margin: 'auto' }}><h1>{source.title}</h1><p>{[location, source.ref].filter(Boolean).join(' · ')}</p>
+  return <section style={{ padding: 24, maxWidth: 900, margin: 'auto' }}><h1>{source.title}</h1><p>{[source.provision, location, source.ref].filter(Boolean).join(' · ')}</p>
     {source.links?.length ? <p>{t('original')}: {source.links.map((url, index) => <span key={url}>{index ? ', ' : ''}<a href={url} target="_blank" rel="noopener noreferrer" title={url} style={{ overflowWrap: 'anywhere' }}>{new URL(url).hostname}</a></span>)}</p> : null}
     <a href={`/vestlus?conversation=${encodeURIComponent(params.convId)}`}>{t('closeSource')}</a>
     <details><summary>{t('version')}</summary><p style={{ overflowWrap: 'anywhere' }}>{source.version}</p>

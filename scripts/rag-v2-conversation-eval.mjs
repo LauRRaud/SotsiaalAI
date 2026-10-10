@@ -23,7 +23,7 @@ import path from 'node:path';
 import { parseArgs } from 'node:util';
 import { randomUUID } from 'node:crypto';
 import { performance } from 'node:perf_hooks';
-import { checkTurn, turnPassages, validateCatalogue } from '../lib/rag-v2/pilot/conversation-eval.js';
+import { checkTurn, turnPassages, validateCatalogue, provisionTotals } from '../lib/rag-v2/pilot/conversation-eval.js';
 
 const { values } = parseArgs({ options: { scenarios: { type: 'string', default: 'tests/evaluation/dialogue/scenarios-corpus-4.json' }, out: { type: 'string' },
   only: { type: 'string' }, 'max-usd': { type: 'string', default: '1.5' }, 'dry-run': { type: 'boolean', default: false },
@@ -173,10 +173,14 @@ function observe(row, error) {
     // The greeting route: no search plan and no search were made for this turn.
     greeting: payload.searchAssist?.greeting === true,
     rerank: rerankOf(payload.searchAssist?.rerank),
+    // ADR-129: what the provision check counted of the answer: with a published turn, or in the validation record of a
+    // turn it refused. Numbers and provision labels only.
+    provisions: payload.provisionAudit ?? payload.responseAudit?.validation?.provisions ?? null,
     // A rejected answer's check (code, path, the value it refused) and the references it was allowed, read before the
     // run's conversations are deleted.
     validation: payload.responseAudit?.validation?.valid === false ? { code: payload.responseAudit.validation.code, path: payload.responseAudit.validation.path,
       received: typeof payload.responseAudit.validation.received === 'string' ? payload.responseAudit.validation.received.slice(0, 300) : payload.responseAudit.validation.received ?? null,
+      ...(payload.responseAudit.validation.provision ? { provision: payload.responseAudit.validation.provision } : {}),
       allowed: (payload.responseAudit.validation.allowedReferences || []).length } : null,
   };
 }
@@ -231,11 +235,13 @@ try {
   // Rejected model states are counted on every run, expected or not: a lost state hides behind a right catalogue.
   report.states = { continuing: all.filter(turn => turn.observed?.previousStateCleared === false).length,
     rejected: all.filter(turn => turn.observed?.stateFallback).length };
+  // ADR-129: the named provisions of the run, per role and in total (conversation-eval.js, provisionTotals).
+  report.provisions = provisionTotals(report.scenarios);
   await fs.writeFile(path.join(values.out, 'conversation-eval.json'), `${JSON.stringify(report, null, 2)}\n`);
   await fs.writeFile(path.join(values.out, 'conversation-eval.md'), `${markdown(report)}\n`);
   await prisma.$disconnect();
 }
-console.log(JSON.stringify({ summary: report.summary, states: report.states, estimated_usd: report.estimated_usd, stopped: report.stopped || null }));
+console.log(JSON.stringify({ summary: report.summary, states: report.states, provisions: report.provisions?.all ?? null, estimated_usd: report.estimated_usd, stopped: report.stopped || null }));
 process.exit(0);
 
 function markdown(r) {
@@ -243,6 +249,17 @@ function markdown(r) {
     + `Kulu plaani hinnatabeli järgi (hinnang) ${r.estimated_usd} USD.${r.stopped ? ` Peatatud: ${r.stopped}.` : ''}`, '',
   `Jätkupöördeid ${r.states?.continuing ?? '-'}, neist mudeli uus olek tagasi lükatud ${r.states?.rejected ?? '-'}.`, '',
   '| Tulemus | Pöördeid |', '|---|---:|', ...Object.entries(r.summary).map(([verdict, n]) => `| ${verdict} | ${n} |`), ''];
+  // ADR-129: the named provisions per role. "allikast, mis pole akt": kind b that only a guide, an article, a page or
+  // a record gives; "akti nimetamata teise akti järel": a provision without an act that the act named last does not
+  // give; "lõige ilma paragrahvita": a subsection named without its section, which the check does not read. The server
+  // refuses nothing for a provision (10.10.2026): a kind d is a published answer, and every one is read by hand.
+  const named = Object.entries(r.provisions || {}).filter(([, line]) => line.mentions || line.refused || line.bare_subsections);
+  if (named.length) lines.push('Nimetatud sätted (serveri kontroll, ADR-129): a = viidatud lõigu silt, b = viidatud lõigu tekstis, c = pöörde muus lõigus, v = versioonivõrdluses, s = mujal mudeli sisendis, '
+    + 'p = eelmises avaldatud vastuses (seal kontrollimata), q = kasutaja nimetatud (ainult piirangus), d = mitte kusagil. Kontroll ei keeldu ühestki vastusest: iga d on avaldatud vastus ja loetakse käsitsi üle.', '',
+  '| Roll | Pöördeid | Keeldutud | Sätet nimetavaid vastuseid | Nimetusi | a | b | c | v | s | p | q | d | b allikast, mis pole akt | c kokkulangevusega | Akti nimetamata teise akti järel | Lõige ilma paragrahvita | Mediaan / suurim vastuses | USD pöörde kohta |',
+  '|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|---:|',
+  ...named.map(([role, line]) => `| ${role} | ${line.turns} | ${line.refused} | ${line.answers_naming}/${line.completed} | ${line.mentions} | ${['a', 'b', 'c', 'v', 's', 'p', 'q', 'd'].map(kind => line.kinds[kind]).join(' | ')} | `
+    + `${line.from_other_sources} | ${line.collisions} | ${line.after_other_act} | ${line.bare_subsections} | ${line.median_mentions ?? '-'} / ${line.largest_mentions ?? '-'} | ${line.usd_per_turn ?? '-'} |`), '');
   for (const scenario of r.scenarios) {
     lines.push(`## ${scenario.title} (\`${scenario.id}\`)`, '', `Allikas: ${scenario.source}. Vestlus: \`${scenario.conversation}\`.`, '');
     for (const [index, turn] of scenario.turns.entries()) {

@@ -40,6 +40,10 @@ export interface Evidence {
   limitations: unknown[];
   /** Only for a Riigi Teataja act read with its notes (source-structure-v30); outside every budget measure. */
   legal_dates?: { act?: ActDates; amendments?: AmendmentEntry[] };
+  /** Which provision of its act a legal passage is (ADR-123, legal-place.js): the section and the numbered subsections
+   * whose text the passage holds, as the act shows its numbers ("133", "15¹"; "5", "2¹"). Outside every budget measure.
+   * The sources panel shows it and the provision check reads it (ADR-129), so a lean packet keeps it. */
+  legal_place?: { section: string; subsections: string[] };
 }
 export interface EvidenceBundle {
   schema_version: 'rag-v2/evidence-1'; query_id: Id; tenant: string; generation_id: Id | null;
@@ -57,11 +61,13 @@ export interface EvidenceBundle {
     graph_steps?: number; graph_additions?: number; dependency_steps?: number; dependency_additions?: number };
 }
 export interface ModelContext {
-  /** A legal act's source card may carry act_dates (ActDates) or act_dates_omitted: true (json-3, ADR-062). */
-  schema_version: 'rag-v2/model-context-json-3'; sources: Record<string, Record<string, unknown>>;
+  /** A legal act's source card may carry act_dates (ActDates) or act_dates_omitted: true (json-3, ADR-062), and a law's
+   * card act_abbreviation, the abbreviation Riigi Teataja gives the law (json-5, ADR-129). An excerpt of a legal act
+   * carries provision ("§ 133 lg 5–7") or provision_omitted: true (json-5, ADR-123). */
+  schema_version: 'rag-v2/model-context-json-5'; sources: Record<string, Record<string, unknown> & { act_abbreviation?: string }>;
   evidence: { ref: string; source: string; pdf_pages: number[]; text: string;
     source_locations?: { kind: 'html' | 'xml' | 'json'; path: string; act_reference?: string; record_id?: string }[];
-    amendments?: AmendmentEntry[]; amendments_omitted?: true }[];
+    provision?: string; provision_omitted?: true; amendments?: AmendmentEntry[]; amendments_omitted?: true }[];
   dependencies?: { schema_version: 'rag-v2/dependency-context-1'; known_context: 'included' | 'incomplete';
     corpus_completeness: 'not_assessed'; verification_state: 'source_anchored_unreviewed';
     claims: Record<string, unknown>[]; relations: Record<string, unknown>[]; unresolved: Record<string, unknown>[] };

@@ -1,0 +1,364 @@
+{
+  "schema_version": "rag-v2/dialogue-eval-2",
+  "purpose": "ADR-129 (owner 10.10.2026: users want to know the paragraphs, and the platform will be tested on whether the assistant names exactly the act and the provision). Written 10.10.2026 before any run. Twenty scenarios, 22 turns, a role on each: eight as a person seeking help, eleven as a specialist, one as a service provider. It measures whether answers name provisions at all (1 of 234 stored answers did), whether each named provision is supported by the turn's evidence (the server's provision check, provisionAudit), whether a help seeker's answer stays readable, and what happens when the user names a provision that the evidence does not hold. PAID: about 0.09 USD for 22 turns at the 0.0041 USD a turn of ADR-123's run; run it ONCE with --max-usd 0.15, with the owner's explicit yes for that one run. A repeat (after an instruction change, or for any other reason) needs a new yes with its cost said first: an announced or needed measurement is not permission (owner 03.10.2026). No standing run includes this catalogue. Run on the server through a temporary copy of the running release with the change overlaid and its own plan, at the plan's default reasoning, with --auto-modes. One model run a question says whether the mechanism works, not how often it fails. After the run read by hand every mention of kind c, d and q, every kind b marked 'not an act', every collision and every subsection named without its section (the report lists them under provisions_supported).",
+  "expectation_help": {
+    "names_provision": "true: at least one block of the answer names a provision (the server's count); false: the answer names none anywhere",
+    "provisions_at_most": "the answer names no more provisions than this",
+    "provisions_supported": "checked on every turn that has the audit, without being listed: no named provision of kind d. The server publishes such an answer and records the mention (REFUSED_KINDS is empty since 10.10.2026); a refused turn, which would fail 'completed' as well, occurs only once a kind is entered in that list",
+    "cited / cited_provision": "the answer cites a source of that title / a passage of that act and section",
+    "evidence_provision": "a passage of that act and section holding the phrase is in the evidence, so a miss of the search reads as 'search' and not as an answer fault",
+    "region": "the municipality the conversation is about"
+  },
+  "scenarios": [
+    {
+      "id": "subsistence-deadline",
+      "title": "Raha otsas → toimetulekutoetus ja otsuse tähtaeg → „Mis paragrahv seda ütleb?“",
+      "source": "SHS § 131, § 132, § 134",
+      "role": "help_seeker",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Mul on raha otsas ja üür on maksmata. Kas ma saan toimetulekutoetust ja kui kiiresti peab vald otsustama?",
+          "note": "A help seeker: the act's full name, provisions in brackets for what the person can rely on, usually one to three.",
+          "expect": {
+            "names_provision": true,
+            "provisions_at_most": 4,
+            "cited": ["Sotsiaalhoolekande seadus"],
+            "must_not": ["\\bSHS\\b"]
+          }
+        },
+        {
+          "mode": "same",
+          "text": "Mis paragrahv seda ütleb?",
+          "note": "The first sentence names the provision, with its section (never a subsection alone), or the answer says plainly that it cannot name it.",
+          "expect": {
+            "names_provision": true,
+            "must_not": ["\\bSHS\\b"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "housing-costs-municipal",
+      "title": "Kuusalu valla eluasemekulude piirmäärad: valla määrus ja seadus ühes vastuses",
+      "source": "Kuusalu Vallavalitsuse määrus § 3; SHS § 133 lg 5 ja 6",
+      "role": "help_seeker",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Elan Kuusalu vallas. Milliseid eluasemekulusid ja mis piirini toimetulekutoetuse arvestamisel arvesse võetakse?",
+          "note": "A municipality's regulation is named by the municipality (Kuusalu valla määruse § …), the law by its full name.",
+          "expect": {
+            "region": "kuusalu_vald",
+            "names_provision": true,
+            "provisions_at_most": 4
+          }
+        }
+      ]
+    },
+    {
+      "id": "elderly-mother-home-help",
+      "title": "Eakas ema ei saa kodus hakkama: valla kohustus",
+      "source": "SHS § 15, § 17",
+      "role": "help_seeker",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Mu ema on 84 ega saa enam üksi kodus hakkama. Mida vald peab tema heaks tegema?",
+          "note": "Readability: everyday words, at most a few provisions in brackets.",
+          "expect": {
+            "provisions_at_most": 3,
+            "must_not": ["\\bSHS\\b"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "disabled-child-benefit",
+      "title": "Puudega lapse toetus: seadus juhendilehtede kõrval",
+      "source": "PISTS; Sotsiaalkindlustusameti lehed",
+      "role": "help_seeker",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Kuidas ma saan oma puudega lapsele toetust taotleda?",
+          "note": "Counted only: a paragraph that a guide page mentions must not be passed on as the claim's provision (kind b, 'not an act').",
+          "expect": {
+            "provisions_at_most": 4
+          }
+        }
+      ]
+    },
+    {
+      "id": "no-act-question",
+      "title": "Küsimus, millele ükski õigusakt ei vasta",
+      "source": "nõustamismaterjalid",
+      "role": "help_seeker",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Kuidas rääkida lapsega vanemate lahutusest?",
+          "expect": {
+            "names_provision": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "care-home-fee-en",
+      "title": "Hooldekodu kohatasu, inglise keeles",
+      "source": "SHS (üldhooldusteenuse eest tasumine); valla kord",
+      "role": "help_seeker",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "My father needs a place in a care home, but his pension does not cover the fee. Who has to pay the difference?",
+          "note": "The English form is read by hand: (<English name> (<Estonian title>) § N(M)); never 'section' in words (the report counts word forms).",
+          "expect": {
+            "provisions_at_most": 4
+          }
+        }
+      ]
+    },
+    {
+      "id": "carer-benefit-ru",
+      "title": "Hooldajatoetus, vene keeles",
+      "source": "valla kord; SHS",
+      "role": "help_seeker",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Я ухаживаю за мамой, у неё тяжёлая инвалидность. Положено ли мне пособие от волости?",
+          "note": "The Russian form is read by hand: (<название> (<Estonian title>) § N ч. M); never 'статья' or 'часть' in words.",
+          "expect": {
+            "provisions_at_most": 4
+          }
+        }
+      ]
+    },
+    {
+      "id": "false-premise-flat",
+      "title": "Vale eeldus: „mis paragrahv ütleb, et vald peab mulle korteri andma?“",
+      "source": "SHS § 41 (eluruumi tagamine)",
+      "role": "help_seeker",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Mis paragrahv ütleb, et vald peab mulle korteri andma?",
+          "note": "The premise is too strong. The answer names only a provision its evidence gives and says what that provision does and does not promise; it does not invent a paragraph to fit the question.",
+          "expect": {
+            "provisions_at_most": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": "specialist-home-loan",
+      "title": "Spetsialist: eluasemelaenu tagasimakse eluasemekuluna → „Mis lõige seda täpselt ütleb?“",
+      "source": "SHS § 133 lg 5 p 1¹",
+      "role": "specialist",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Töötan Põlva vallas. Kas toimetulekutoetuse arvestamisel võib eluasemelaenu tagasimakse lugeda eluasemekulude hulka? Viita palun sättele.",
+          "expect": {
+            "names_provision": true,
+            "cited_provision": [{ "title": "^Sotsiaalhoolekande seadus$", "section": "133" }],
+            "evidence_provision": [{ "title": "^Sotsiaalhoolekande seadus$", "section": "133", "text": "eluaseme soetamiseks võetud laenu tagasimakse, mis sisaldab ka laenu intressi" }]
+          }
+        },
+        {
+          "mode": "same",
+          "text": "Mis lõige seda täpselt ütleb?",
+          "note": "The answer writes the section again with the subsection (§ 133 lg 5), not a subsection alone: a bare 'lõige 5' is counted but cannot be checked, and then this expectation fails.",
+          "expect": {
+            "names_provision": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "specialist-named-provision",
+      "title": "Spetsialist nimetab sätte ise: „Mida ütleb SHS § 133 lg 5?“",
+      "source": "SHS § 133 lg 5",
+      "role": "specialist",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Mida ütleb SHS § 133 lg 5?",
+          "note": "The tester's own form. If the search does not bring the passage that holds subsection 5, the turn reads as 'search' (evidence_provision), not as an answer fault; an answer that still states something under that number inside a block is kind d: it is published, and the turn fails provisions_supported.",
+          "expect": {
+            "names_provision": true,
+            "evidence_provision": [{ "title": "^Sotsiaalhoolekande seadus$", "section": "133", "text": "võetakse toimetulekutoetuse arvestamisel arvesse järgmised jooksval kuul tasumisele kuuluvad eluasemekulud" }],
+            "cited_provision": [{ "title": "^Sotsiaalhoolekande seadus$", "section": "133" }]
+          }
+        }
+      ]
+    },
+    {
+      "id": "specialist-named-missing-subsection",
+      "title": "Nimetatud lõiget ei ole olemas: „Mida ütleb sotsiaalhoolekande seaduse § 133 lg 99?“",
+      "source": "SHS § 133 (lõiget 99 ei ole)",
+      "role": "specialist",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Mida ütleb sotsiaalhoolekande seaduse § 133 lg 99?",
+          "note": "The right answer says in a limitation that it has no such text (kind q) and may tell what § 133 holds, citing it. A block that states anything under lg 99 is kind d: the answer is published, and the turn fails provisions_supported and its must_not pattern, which here means the model failed and the check saw it.",
+          "expect": {
+            "must_not": ["lg 99 (?:järgi|kohaselt|sätestab, et|ütleb, et)", "lõike 99 (?:järgi|kohaselt)"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "specialist-named-act-outside-corpus",
+      "title": "Nimetatud seadust ei ole kogus: võlaõigusseadus",
+      "source": "võlaõigusseadus ei ole korpuses",
+      "role": "specialist",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Mida ütleb võlaõigusseaduse § 208 lõige 1?",
+          "note": "The act is not in the collection. The right answer says so plainly and states nothing under that number; a block that does is kind d: the answer is published, and the turn fails provisions_supported and its must_not pattern.",
+          "expect": {
+            "must_not": ["§ 208 (?:lg|lõike) 1 (?:järgi|kohaselt)"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "specialist-support-person-relative",
+      "title": "Määrus viitab seadusele: lapse vanaema tugiisikuna (ADR-064)",
+      "source": "Harku valla kord → SHS § 25 lg 2",
+      "role": "specialist",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Töötan Harku vallas. Kas lapse vanaema võib olla lapse tugiisik? Mis sättest see tuleb?",
+          "note": "The regulation points at the law. The law's provision is named from the law's own passage (kind a) or passed on as the regulation's pointer (kind b); never the regulation's number under the law's name.",
+          "expect": {
+            "names_provision": true,
+            "evidence_provision": [{ "title": "^Sotsiaalhoolekande seadus$", "section": "25", "text": "kes on teenuse saaja esimese või teise astme üleneja või alaneja sugulane" }]
+          }
+        }
+      ]
+    },
+    {
+      "id": "specialist-decision-deadline",
+      "title": "Abi andmise otsuse tähtaeg pärast abivajaduse hindamist",
+      "source": "SHS § 15; SÜS; HMS",
+      "role": "specialist",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Mis tähtaja jooksul peab kohalik omavalitsus pärast abivajaduse hindamist abi andmise otsustama? Viita sättele.",
+          "note": "A deadline beside a provision: '… lg 7 ja 10 tööpäeva jooksul' must not be read as subsection 10 (the reader leaves a number before a measure word out).",
+          "expect": {
+            "names_provision": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "specialist-raised-digit",
+      "title": "Ülaindeksiga paragrahv: suunamisotsuse tähtaeg eriolukorra ajal",
+      "source": "SHS § 13² lg 4, § 71 lg 6",
+      "role": "specialist",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Riigis kehtib eriolukord ja klient sai suunamisotsuse kogukonnas elamise teenusele. Mitme päeva jooksul peab ta teenuseosutaja poole pöörduma? Viita sättele.",
+          "note": "A raised digit stays raised (§ 13² lg 4): '§ 132' or '§ 13-2' is another number and is not supported.",
+          "expect": {
+            "names_provision": true,
+            "must": ["14 päeva"],
+            "evidence_provision": [{ "title": "^Sotsiaalhoolekande seadus$", "section": "13^2", "text": "sätestatud tähtajad 14 päevani" }]
+          }
+        }
+      ]
+    },
+    {
+      "id": "specialist-two-municipalities",
+      "title": "Kahe valla sama pealkirjaga määrus: Saku ja Kohila eluasemekulude piirmäärad",
+      "source": "„Toimetulekutoetuse määramiseks eluasemekulude piirmäärade kehtestamine“ (Saku vald, Kohila vald)",
+      "role": "specialist",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Võrdle Saku valla ja Kohila valla eluasemekulude piirmäärasid toimetulekutoetuse määramisel: kui suur on üüri piirmäär kummaski ja mis sättest see tuleb?",
+          "note": "Two regulations share one title. Each provision is named under its own municipality and cited from that municipality's passage; a number of one municipality's passage under the other's name is counted as a collision (kind c) and read by hand.",
+          "expect": {
+            "names_provision": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "specialist-version-change",
+      "title": "Mis muutub lastekaitseseaduses 1. jaanuaril 2027",
+      "source": "lastekaitseseaduse redaktsioonid 01.10.2026 ja 01.01.2027 (ADR-088, ADR-091)",
+      "role": "specialist",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Mis muutub lastekaitseseaduses 1. jaanuaril 2027?",
+          "note": "A provision the server's version comparison names is kind v; none may be kind d.",
+          "expect": {
+            "names_provision": true,
+            "cited": ["Lastekaitseseadus"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "specialist-subsistence-level",
+      "title": "Toimetulekupiir 2026: ainus lühendita seadus",
+      "source": "2026. aasta riigieelarve seadus § 2",
+      "role": "specialist",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Kui suur on 2026. aastal toimetulekupiir ja mis õigusaktist see tuleb?",
+          "note": "The State Budget Act has no abbreviation in Riigi Teataja: it is named in full, also to a specialist.",
+          "expect": {
+            "names_provision": true,
+            "cited": ["riigieelarve seadus"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "specialist-guide-only",
+      "title": "Toeks ainult juhend, mis ise paragrahve nimetab: MARAC",
+      "source": "MARAC-i juhend (viitab LasteKS §-dele)",
+      "role": "specialist",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Mis on MARAC ja kes võib juhtumi MARAC-i suunata?",
+          "note": "The answer rests on a guide. A paragraph the guide mentions is the guide's own reference and is not passed on as the claim's provision; if one is, it is kind b marked 'not an act' and counted apart.",
+          "expect": {
+            "provisions_at_most": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "provider-staff-requirements",
+      "title": "Teenuseosutaja: nõuded teenust vahetult osutavale isikule",
+      "source": "SHS § 25",
+      "role": "service_provider",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Osutan koduteenust. Mis nõuded on seaduses teenust vahetult osutavale isikule?",
+          "expect": {
+            "names_provision": true,
+            "cited_provision": [{ "title": "^Sotsiaalhoolekande seadus$", "section": "25" }]
+          }
+        }
+      ]
+    }
+  ]
+}

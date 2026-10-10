@@ -112,6 +112,9 @@ const withoutData = bundle => {
   delete copy.document.fields.legal_text;
   return copy;
 };
+// ADR-123: in the context a turn sends, an excerpt of an act names its provision, with the legal dates or without them
+// (rag-v2-legal-place.test.mjs). These tests are about the dates: `unplaced` is a context without that name.
+const unplaced = context => ({ ...context, evidence: context.evidence.map(({ provision: _place, ...excerpt }) => excerpt) });
 
 test('text, retrieval text and embedding inputs are the v29 reader\'s; without the legal dates the model context is the v29 one under its new label', () => {
   assert.equal(v29.reader, 'source-structure-v29');
@@ -123,19 +126,20 @@ test('text, retrieval text and embedding inputs are the v29 reader\'s; without t
     // Every chunk as evidence. What a budget, a selection step or a reference check reads is the v29 bundle's context
     // (model-context-json-2) with the label alone changed: the source card and each excerpt are byte for byte the same.
     assert.equal(before.model_context.schema_version, 'rag-v2/model-context-json-2');
-    const expected = { ...before.model_context, schema_version: 'rag-v2/model-context-json-4' }, evidence = entriesOf(bundle);
+    const expected = { ...before.model_context, schema_version: 'rag-v2/model-context-json-5' }, evidence = entriesOf(bundle);
     for (const options of [{ annotations: false }, { measure: 'budget' }, { measure: 'none' }]) assert.deepEqual(modelProjection(evidence, scope, options).context, expected, `${act} ${JSON.stringify(options)}`);
-    // A bundle without the data projects so in the context a turn sends too, and its entries carry nothing new.
+    // A bundle without the data projects so in the context a turn sends too, apart from each excerpt's provision, and
+    // its entries carry nothing new.
     const earlier = entriesOf(withoutData(bundle)), plain = modelProjection(earlier, scope);
     assert.deepEqual(earlier, evidence.map(({ legal_dates: _dates, ...entry }) => entry));
-    assert.deepEqual(plain.context, expected, act);
-    assert.equal(plain.measurements.budget_context_tokens, plain.measurements.model_context_tokens);
+    assert.deepEqual(unplaced(plain.context), expected, act);
+    assert.equal(plain.measurements.budget_context_tokens, tokenCount(JSON.stringify(expected)));
     assert.equal(plain.measurements.legal_dates, undefined);
     // With the data the context a turn sends is the same apart from the dates, and the reference map is the same map.
     const sent = modelProjection(evidence, scope);
     assert.deepEqual(withoutLegalDates(sent.context), withoutLegalDates(expected), act);
     assert.notDeepEqual(sent.context, expected);
-    assert.equal(sent.measurements.budget_context_tokens, plain.measurements.model_context_tokens);
+    assert.equal(sent.measurements.budget_context_tokens, plain.measurements.budget_context_tokens);
     assert.deepEqual(sent.references, plain.references);
     assert.deepEqual(Object.keys(sent.references.S1), ['tenant', 'query_id', 'generation_id', 'evidence_id', 'document_id', 'document_version_id', 'unit_id', 'chunk_id', 'span_ids', 'pdf_pages', 'source_locations', 'source_text_sha256']);
     // The amending act's reference, its Riigi Teataja citation and the notes' places stay in the bundle.
@@ -157,7 +161,7 @@ test('what the model reads of the two acts: the card\'s act_dates and the excerp
     + '"valid_from":"2026-09-04","municipality_id":"marjamaa_vald","municipality_name":"Märjamaa vald","country":"EE","regions":["marjamaa_vald"],"jurisdiction_level":"municipal",'
     + '"act_dates":{"act_in_force_from":"2018-07-01","changed_on_valid_from":["preambul"],"entry_into_force":[{"provision":"§ 4","text":"Määrus jõustub 1. juulil 2018."}]}}');
   const { text, ...head } = marjamaa.excerpt;
-  assert.equal(JSON.stringify(head), '{"ref":"S1","source":"D1","pdf_pages":[],"source_locations":[{"kind":"xml","path":"/oigusakt[1]/sisu[1]/paragrahv[1]","act_reference":"401092026014"}],'
+  assert.equal(JSON.stringify(head), '{"ref":"S1","source":"D1","pdf_pages":[],"source_locations":[{"kind":"xml","path":"/oigusakt[1]/sisu[1]/paragrahv[1]","act_reference":"401092026014"}],"provision":"§ 1",'
     + '"amendments":[{"provisions":["§ 1 p 1","§ 1 p 2"],"in_force":"2026-03-24","applies_from":"2026-01-01","note":"rakendatakse alates 01.01.2026"},{"provisions":["§ 1 p 3"],"in_force":"2025-01-01"}]}');
   assert.equal(text, marjamaa.chunk.source_text); assert.equal(Object.keys(marjamaa.excerpt).at(-1), 'text');
   assert.deepEqual(marjamaa.dates, { act: marjamaa.card.act_dates, amendments: marjamaa.excerpt.amendments });
@@ -168,8 +172,8 @@ test('what the model reads of the two acts: the card\'s act_dates and the excerp
   assert.equal(JSON.stringify(kuusalu.card), '{"title":"Eluasemekulude piirmäärade kehtestamine toimetulekutoetuse määramisel","publication_date":"2026-09-12","source_type":"legal_act","authority":"Kuusalu Vallavalitsus","language":"et",'
     + '"valid_from":"2026-09-15","municipality_id":"kuusalu_vald","municipality_name":"Kuusalu vald","country":"EE","regions":["kuusalu_vald"],"jurisdiction_level":"municipal",'
     + '"act_dates":{"act_in_force_from":"2026-05-01","changed_on_valid_from":["preambul"],"entry_into_force":[{"provision":"§ 5 lg 1","text":"Määrust rakendatakse alates 01.05.2026."}]}}');
-  assert.deepEqual(kuusalu.excerpt, kuusalu.plain.context.evidence[0]);
-  assert.deepEqual(Object.keys(kuusalu.excerpt), ['ref', 'source', 'pdf_pages', 'source_locations', 'text']);
+  assert.deepEqual(kuusalu.excerpt, { ...kuusalu.plain.context.evidence[0], provision: '§ 3 lg 1–2' });
+  assert.deepEqual(Object.keys(kuusalu.excerpt), ['ref', 'source', 'pdf_pages', 'source_locations', 'provision', 'text']);
   assert.deepEqual(kuusalu.dates, { act: kuusalu.card.act_dates });
   assert.deepEqual([tokenCount(JSON.stringify(kuusalu.plain.context.sources.D1)), tokenCount(JSON.stringify(kuusalu.card))], [115, 175]);
   assert.deepEqual(kuusalu.sent.measurements.legal_dates, { tokens: 61, limit: LEGAL_DATES_TOKENS, shown: 1, omitted: 0 });
@@ -216,7 +220,7 @@ test('retrieve() selects the same evidence with and without the legal dates in t
   assert.equal(roomy.without.state, 'ok'); assert(roomy.without.evidence.length >= 8);
   assert(roomy.withDates.evidence.some(entry => entry.legal_dates?.amendments) && roomy.withDates.model_context.sources.D1.act_dates);
   const exact = modelProjection(roomy.without.evidence, {}, { measure: 'budget' }).measurements.model_context_tokens;
-  assert.equal(roomy.without.measurements.model_context_tokens, exact);
+  assert.equal(roomy.without.measurements.budget_context_tokens, exact);
   // A budget of exactly the context without the dates: everything still fits, though the context sent is larger.
   const tight = await same(exact);
   assert.equal(tight.withDates.evidence.length, roomy.without.evidence.length);
@@ -229,9 +233,11 @@ test('retrieve() selects the same evidence with and without the legal dates in t
   // carries its act's card and its notes), and what the limit reads is what it reads of the bundles without the data.
   const stored = packet => { const { tenant, query_id, generation_id, model_context, reference_map, evidence } = JSON.parse(JSON.stringify(packet).replaceAll(packet.query_id, 'query')); return { tenant, query_id, generation_id, model_context, reference_map, evidence }; };
   const [withDates, without] = [stored(roomy.withDates), stored(roomy.without)], bytes = value => Buffer.byteLength(JSON.stringify(value), 'utf8');
+  // An entry's place in its act and the excerpt's provision (ADR-123) are left out the same way.
+  const bare = { ...without, model_context: unplaced(without.model_context), evidence: without.evidence.map(({ legal_place: _place, ...entry }) => entry) };
   // 06.10.2026: 512000 stopped a Tallinn turn (records 461 055 bytes, with five knowledge passages 519 264).
   assert.equal(AUDIT_PACKET_BYTES, 1000000);
-  assert.deepEqual([auditPacketBytes(withDates), auditPacketBytes(without)], [bytes(without), bytes(without)]);
+  assert.deepEqual([auditPacketBytes(withDates), auditPacketBytes(without)], [bytes(bare), bytes(bare)]);
   assert(bytes(withDates) > bytes(without) + 1000, `${bytes(withDates)} > ${bytes(without)}`);
   assert.equal(auditPacketBytes({ tenant, model_context: null, evidence: [] }), bytes({ tenant, model_context: null, evidence: [] }));
   // One token less: the same last excerpt is left out of both.
@@ -244,8 +250,8 @@ test('retrieve() selects the same evidence with and without the legal dates in t
   assert.deepEqual([graph.withDates.state, graph.withDates.dependency_context.known_context, graph.withDates.evidence.length], ['ok', 'included', roomy.without.evidence.length]);
   assert(graph.withDates.measurements.budget_context_tokens <= exact + 256 && graph.withDates.measurements.model_context_tokens > exact + 256,
     `${graph.withDates.measurements.budget_context_tokens} <= ${exact + 256} < ${graph.withDates.measurements.model_context_tokens}`);
-  // The audit measure counts whole entries: never their legal dates.
-  const audit = roomy.without.evidence.reduce((sum, entry) => sum + tokenCount(JSON.stringify(entry)), 0);
+  // The audit measure counts whole entries: never their legal dates, nor their place in the act (ADR-123).
+  const audit = roomy.without.evidence.reduce((sum, { legal_place: _place, ...entry }) => sum + tokenCount(JSON.stringify(entry)), 0);
   const whole = await same(audit, { contextMode: 'audit' }), less = await same(audit - 1, { contextMode: 'audit' });
   assert.deepEqual([whole.withDates.evidence.length, less.withDates.evidence.length], [roomy.without.evidence.length, roomy.without.evidence.length - 1]);
   assert.deepEqual([whole.withDates.measurements.context_tokens, whole.without.measurements.context_tokens], [audit, audit]);
@@ -307,10 +313,11 @@ test('context replay: a turn stored before the re-ingest gets its context back w
   assert.equal(replay.tokens.without_legal_dates, stored.measurements.model_context_tokens);
   assert(replay.tokens.context > replay.tokens.without_legal_dates && Math.abs(replay.tokens.stored_context - replay.tokens.without_legal_dates) <= 1);
   // The audit packet's bytes: as stored, as the turn would store it now with the dates, and as the size limit counts it (without them).
-  // The same versions without the data give the bytes the limit counts, as their whole packet.
+  // The same versions without the data give the bytes the limit counts. Their whole packet is larger only by the three
+  // passages' places in their acts (ADR-123), which the limit leaves out too.
   const plainBytes = replayContext(packet, new Map(Object.values(bundles).map(bundle => [bundle.document.id, withoutData(bundle)])), embeddingConfig()).packet_bytes;
-  assert.deepEqual(replay.packet_bytes, { stored: Buffer.byteLength(JSON.stringify(packet), 'utf8'), now: replay.packet_bytes.now, counted: plainBytes.now, limit: AUDIT_PACKET_BYTES });
-  assert.equal(plainBytes.counted, plainBytes.now);
+  assert.deepEqual(replay.packet_bytes, { stored: Buffer.byteLength(JSON.stringify(packet), 'utf8'), now: replay.packet_bytes.now, counted: plainBytes.counted, limit: AUDIT_PACKET_BYTES });
+  assert(plainBytes.now > plainBytes.counted && plainBytes.now - plainBytes.counted < 100 * evidence.length, JSON.stringify(plainBytes));
   assert(replay.packet_bytes.now > replay.packet_bytes.counted + 500 && replay.packet_bytes.counted < AUDIT_PACKET_BYTES, JSON.stringify(replay.packet_bytes));
   // A turn stored on the present version is read by its chunk; a source the index no longer holds stays as stored.
   const present = entriesOf(bundles[KUUSALU]).slice(0, 2), presentPacket = { ...scope, evidence: present, model_context: modelProjection(present, scope).context };
@@ -333,6 +340,20 @@ test('context replay: a turn stored before the re-ingest gets its context back w
     packet_bytes: replay.packet_bytes, tokens: replay.tokens, sources: replay.sources, evidence: replay.evidence });
   const bad = run('--packet', path.join(root, 'packet.json'), '--packet', path.join(root, 'edited.json'), '--store', path.join(root, 'store')), report = JSON.parse(bad.stdout);
   assert.equal(bad.status, 1); assert.deepEqual([report.ok, report.turns.map(item => item.equal_without_legal_dates)], [false, [true, false]]);
+  // --provisions (ADR-129): the labels of the rebuilt excerpts, and the provision check over the turn's stored answer
+  // against the rebuilt packet: a label of the cited passage (a), a provision its act's dates name (b), one nothing gives (d).
+  const answer = { kind: 'grounded', limitations: [], clarification: null, blocks: [{ text: 'Üüri piirmäär on 12 eurot ruutmeetri kohta (Kuusalu valla määruse § 3 lg 1).', factual: true, refs: ['S2'] },
+    { text: 'Määrust rakendatakse alates 01.05.2026 (§ 5 lg 1).', factual: true, refs: ['S2'] }, { text: 'Sünnitoetus on 500 eurot (§ 2 lg 7).', factual: true, refs: ['S1'] }] };
+  await fs.writeFile(path.join(root, 'turn.json'), JSON.stringify({ payload: { packet, answer, question: 'Kui suur on üüri piirmäär?' } }));
+  const checked = run('--packet', path.join(root, 'turn.json'), '--store', path.join(root, 'store'), '--provisions');
+  assert.equal(checked.status, 0, checked.stderr);
+  const { provisions, tokens } = JSON.parse(checked.stdout).turns[0];
+  assert.deepEqual([provisions.labelled, provisions.omitted, provisions.legal_without_label, provisions.cards_with_abbreviation, tokens.legal_place.shown], [3, 0, 0, 0, 3]);
+  assert.deepEqual([provisions.check.kinds, provisions.check.mentions, provisions.check.act_named, provisions.check.items.map(item => [item.at, item.provision, item.kind])],
+    [{ a: 1, b: 1, c: 0, v: 0, s: 0, p: 0, q: 0, d: 1 }, 3, 1, [['$.blocks[1].text', '§ 5 lg 1', 'b'], ['$.blocks[2].text', '§ 2 lg 7', 'd']]]);
+  assert.equal(checked.stdout.includes('Üüri piirmäär'), false);
+  // Without an answer the excerpts are counted and nothing is checked; without the switch the report is as before.
+  assert.deepEqual([JSON.parse(run('--packet', path.join(root, 'packet.json'), '--store', path.join(root, 'store'), '--provisions').stdout).turns[0].provisions.check, 'provisions' in turn], [null, false]);
   for (const args of [[], ['--packet', path.join(root, 'packet.json')], ['--turn', 'a-turn', '--packet', path.join(root, 'packet.json'), '--store', path.join(root, 'store')]]) {
     const usage = run(...args);
     assert.equal(usage.status, 1); assert.deepEqual(JSON.parse(usage.stderr), { ok: false, code: 'context_replay_usage' });
