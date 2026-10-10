@@ -1,7 +1,9 @@
 /* Abisoovide ja abipakkumiste loend: rühma pealkiri, madalad read ja märgid.
    Vaate kuju (juhis, sisu) tuleb StepPanel-ist. Loend ei kasuta vana ühist
    kihti: iga osa ütleb oma laiuse, veerised ja värvi ise. Avatud kuulutus
-   (`SelectedListingContext`) on veel vanal kihil ja saab oma ümbrise paneelilt. */
+   (`SelectedListingContext`) tuleb loendi asemele samasse ümbrisesse ja kasutab
+   siit märki, vaikset lauset, teadet ja sisu vahet; tema enda osad on failis
+   ./selectedListing.module.css. */
 
 /* Töölaua sees: leht on konteiner, et kitsal pinnal läheksid rea osad üksteise alla. */
 .page,

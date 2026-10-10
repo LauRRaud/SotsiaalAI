@@ -21,7 +21,7 @@ import { useChatAnalysisController } from "@/components/chat/hooks/useChatAnalys
 import HelpListingsPanel from "@/components/chat/HelpListingsPanel";
 import SelectedListingContext from "@/components/chat/SelectedListingContext";
 import { getHelpUiText } from "@/components/chat/helpUiText";
-import ModalConfirm from "@/components/ui/ModalConfirm";
+import { panelLeaveAllowed } from "@/lib/panelLeaveGuard";
 import { pushWithTransition } from "@/lib/routeTransition";
 import { clearStaleScrollLock } from "@/lib/scrollLock";
 import { resolveChatLayoutVars } from "./chat/chatLayoutVars";
@@ -137,11 +137,22 @@ function createEmptySelectedListingState() {
     isOwn: false,
     canDelete: false,
     connectOptions: [],
+    connectOptionsFailed: false,
     selectedConnectListingId: "",
     edit: null,
     busyAction: "",
-    deleteConfirmOpen: false
+    deleteConfirmOpen: false,
+    /* Millise kuulutuse avamine on pooleli (`liik:id`). Hilinenud vastus
+       rakendub ainult siis, kui sama avamine on veel käimas. */
+    openingKey: ""
   };
+}
+
+/* Pika päringu tulemus kehtib selle kuulutuse kohta, mille jaoks päring tehti:
+   vahepeal võib ees olla teine kuulutus või mitte ühtegi (inimene läks tagasi
+   loendisse või sulges paneeli). */
+function isSelectedListing(state, listing) {
+  return Boolean(state?.listing && listing && state.listing.id === listing.id && state.listing.kind === listing.kind);
 }
 
 function normalizeActiveWorkflow(value) {
@@ -1778,6 +1789,10 @@ export default function ChatBody({
     } catch {}
   }, [setShowSourcesPanel]);
   const backToWorkspaceFromListingsPanel = useCallback(() => {
+    /* Töölaua tagasinool ei ole avatud kuulutuse nupp: kui muutmise vormil on
+       salvestamata muudatusi, peab värav esimese vajutuse kinni ja kuulutus
+       ütleb ise, miks (lib/panelLeaveGuard.js). */
+    if (!panelLeaveAllowed("back")) return;
     closeListingsPanel({
       afterClose: () => {
         restoreWorkspaceFromSharedPanel();
@@ -1788,6 +1803,10 @@ export default function ChatBody({
     const kind = String(item?.kind || "").trim().toLowerCase();
     const id = String(item?.id || "").trim();
     if (!kind || !id) return;
+    /* Vastus võib tulla pärast seda, kui inimene läks tagasi loendisse, avas
+       teise kuulutuse või sulges paneeli: siis seda enam ei rakendata (muidu
+       ilmuks vale kuulutus või, suletud paneeli korral, kuulutus modaalina). */
+    const openingKey = `${kind}:${id}`;
     setSelectedListingState((prev) => ({
       ...prev,
       loading: true,
@@ -1795,7 +1814,8 @@ export default function ChatBody({
       edit: null,
       busyAction: "",
       selectedConnectListingId: "",
-      connectOptions: []
+      connectOptions: [],
+      openingKey
     }));
     try {
       const response = await fetch(`/api/help/listings/${encodeURIComponent(kind)}/${encodeURIComponent(id)}?locale=${encodeURIComponent(locale)}`, {
@@ -1807,6 +1827,9 @@ export default function ChatBody({
       }
 
       let connectOptions = [];
+      /* Minu kuulutuste loend võis jääda laadimata: siis ei tohi ühendamise
+         vaade öelda, et mul sobivat kuulutust ei ole. */
+      let connectOptionsFailed = false;
       if (!payload.isOwn) {
         const oppositeKind = kind === "request" ? "offer" : "request";
         const optionsResponse = await fetch(`/api/help/listings?kind=${encodeURIComponent(oppositeKind)}&scope=mine&status=OPEN&locale=${encodeURIComponent(locale)}&limit=20`, {
@@ -1815,29 +1838,35 @@ export default function ChatBody({
         const optionsPayload = await optionsResponse.json().catch(() => ({}));
         if (optionsResponse.ok && optionsPayload?.ok !== false) {
           connectOptions = Array.isArray(optionsPayload?.items) ? optionsPayload.items : [];
+        } else {
+          connectOptionsFailed = true;
         }
       }
       const initialConnectListingId = connectOptions[0]?.id
         ? String(connectOptions[0].id).trim()
         : "";
 
-      setSelectedListingState({
+      setSelectedListingState((prev) => prev.openingKey !== openingKey ? prev : {
         loading: false,
         error: "",
         listing: payload.listing,
         isOwn: Boolean(payload.isOwn),
         canDelete: Boolean(payload.canDelete),
         connectOptions,
+        connectOptionsFailed,
         selectedConnectListingId: initialConnectListingId,
         edit: null,
         busyAction: "",
-        deleteConfirmOpen: false
+        deleteConfirmOpen: false,
+        openingKey: ""
       });
-    } catch (error) {
-      setSelectedListingState({
+    } catch {
+      /* Tõrke lause tuleb kataloogist: võrgutõrke puhul oleks vea enda tekst
+         brauseri ingliskeelne „Failed to fetch". */
+      setSelectedListingState((prev) => prev.openingKey !== openingKey ? prev : {
         ...createEmptySelectedListingState(),
         loading: false,
-        error: error?.message || helpUi.detailLoadFailed
+        error: helpUi.detailLoadFailed
       });
     }
   }, [helpUi.detailLoadFailed, locale]);
@@ -1909,19 +1938,19 @@ export default function ChatBody({
         throw new Error(helpUi.updateFailed);
       }
       patchListingCollections(listing.kind, payload.listing);
-      setSelectedListingState((prev) => ({
+      setSelectedListingState((prev) => isSelectedListing(prev, listing) ? {
         ...prev,
         listing: payload.listing,
         edit: null,
         busyAction: "",
         error: ""
-      }));
-    } catch (error) {
-      setSelectedListingState((prev) => ({
+      } : prev);
+    } catch {
+      setSelectedListingState((prev) => isSelectedListing(prev, listing) ? {
         ...prev,
         busyAction: "",
-        error: error?.message || helpUi.updateFailed
-      }));
+        error: helpUi.updateFailed
+      } : prev);
     }
   }, [helpUi.updateFailed, locale, patchListingCollections, selectedListingState.listing]);
   const requestDeleteOwnedListing = useCallback(() => {
@@ -1954,16 +1983,19 @@ export default function ChatBody({
       if (!response.ok || payload?.ok === false) {
         throw new Error(helpUi.deleteFailed);
       }
+      /* Eemaldab kuulutuse loendist ja sulgeb avatud kuulutuse, kui ees on
+         ikka seesama (`patchListingCollections`). Tingimusteta sulgemist siin
+         enam ei ole: see paneks kinni ka teise kuulutuse, mille inimene
+         kustutamise päringu ajal jõudis avada. */
       patchListingCollections(listing.kind, listing, "delete");
-      dismissSelectedListing();
-    } catch (error) {
-      setSelectedListingState((prev) => ({
+    } catch {
+      setSelectedListingState((prev) => isSelectedListing(prev, listing) ? {
         ...prev,
         busyAction: "",
-        error: error?.message || helpUi.deleteFailed
-      }));
+        error: helpUi.deleteFailed
+      } : prev);
     }
-  }, [dismissSelectedListing, helpUi.deleteFailed, patchListingCollections, selectedListingState.listing]);
+  }, [helpUi.deleteFailed, patchListingCollections, selectedListingState.listing]);
   const connectSelectedListing = useCallback(async () => {
     const listing = selectedListingState.listing;
     const selectedConnectListingId = String(selectedListingState.selectedConnectListingId || "").trim();
@@ -1973,6 +2005,8 @@ export default function ChatBody({
       busyAction: "connect",
       error: ""
     }));
+    /* Mida inimesele öeldakse, kui ühendust ei tekkinud: alati kataloogi lause. */
+    let failureText = helpUi.connectFailed;
     try {
       const payload = listing.kind === "request"
         ? { requestId: listing.id, offerId: selectedConnectListingId }
@@ -1986,14 +2020,18 @@ export default function ChatBody({
       });
       const body = await response.json().catch(() => ({}));
       if (!response.ok || body?.ok === false || !body?.match) {
-        throw new Error(helpUi.connectFailed);
+        /* Server ütleb eraldi, kui kaks kuulutust kokku ei sobi (kategooria,
+           omavalitsus, abi liik, ajalisus või üks ei ole enam avatud): see ei
+           ole tõrge ja uuesti proovimine ei aita. */
+        if (body?.message === "HELP_MATCH_NOT_COMPATIBLE") failureText = helpUi.connectNotCompatible;
+        throw new Error(failureText);
       }
       const roomTarget = body?.match?.roomId ? buildRoomChatPath(body.match.roomId, locale) : null;
-      setSelectedListingState((prev) => ({
+      setSelectedListingState((prev) => isSelectedListing(prev, listing) ? {
         ...prev,
         busyAction: "",
         error: roomTarget ? "" : helpUi.connectPending
-      }));
+      } : prev);
       if (roomTarget) {
         if (activeListingsPanel) {
           closeListingsPanel({
@@ -2009,14 +2047,14 @@ export default function ChatBody({
           pushWithTransition(router, roomTarget);
         });
       }
-    } catch (error) {
-      setSelectedListingState((prev) => ({
+    } catch {
+      setSelectedListingState((prev) => isSelectedListing(prev, listing) ? {
         ...prev,
         busyAction: "",
-        error: error?.message || helpUi.connectFailed
-      }));
+        error: failureText
+      } : prev);
     }
-  }, [activeListingsPanel, closeListingsPanel, dismissSelectedListing, helpUi.connectFailed, helpUi.connectPending, locale, router, selectedListingState.listing, selectedListingState.selectedConnectListingId]);
+  }, [activeListingsPanel, closeListingsPanel, dismissSelectedListing, helpUi.connectFailed, helpUi.connectNotCompatible, helpUi.connectPending, locale, router, selectedListingState.listing, selectedListingState.selectedConnectListingId]);
   const openGlobalRequestsPanel = useCallback((source = "chat") => {
     const returnTarget = getHelpListingsReturnTarget(source);
     openListingsPanel({
@@ -2661,6 +2699,7 @@ export default function ChatBody({
     canDelete: selectedListingState.canDelete,
     editState: selectedListingState.edit,
     connectOptions: selectedListingState.connectOptions,
+    connectOptionsFailed: selectedListingState.connectOptionsFailed,
     selectedConnectListingId: selectedListingState.selectedConnectListingId,
     busyAction: selectedListingState.busyAction,
     onDismiss: dismissSelectedListing,
@@ -2668,7 +2707,13 @@ export default function ChatBody({
     onChangeEditField: changeListingEditField,
     onCancelEdit: () => setSelectedListingState((prev) => ({ ...prev, edit: null, busyAction: "" })),
     onSaveEdit: saveListingEdit,
+    /* Kustutamine on kaks vajutust samal nupul avatud kuulutuse vaates:
+       esimene küsib (`deleteConfirmOpen`), teine kustutab, „Loobu" võtab
+       küsimuse tagasi. Eraldi kinnitusakent enam ei ole. */
+    deleteArmed: selectedListingState.deleteConfirmOpen,
     onDeleteListing: requestDeleteOwnedListing,
+    onConfirmDelete: deleteOwnedListing,
+    onCancelDelete: cancelDeleteOwnedListing,
     onSelectConnectListing: (value) => setSelectedListingState((prev) => ({ ...prev, selectedConnectListingId: value })),
     onConnect: connectSelectedListing
   } : null;
@@ -2709,20 +2754,6 @@ export default function ChatBody({
   const selectedListingContextNode = !activeListingsPanel && selectedListingContextProps ? (
     <SelectedListingContext
       {...selectedListingContextProps}
-    />
-  ) : null;
-  const deleteListingConfirmNode = selectedListingState.deleteConfirmOpen ? (
-    <ModalConfirm
-      message={helpUi.deleteConfirm}
-      confirmLabel={t("buttons.delete")}
-      cancelLabel={t("buttons.cancel")}
-      confirmVariant="danger"
-      cancelVariant="primary"
-      onConfirm={deleteOwnedListing}
-      onCancel={cancelDeleteOwnedListing}
-      disabled={selectedListingState.busyAction === "delete"}
-      overlayClassName="!z-[146] !bg-transparent !backdrop-blur-0 !backdrop-saturate-100"
-      contentClassName="chat-analysis-upload-modal-card !w-[min(100%,20.5rem)] !max-w-[20.5rem]"
     />
   ) : null;
   const isStreamingAny = useMemo(() => isGenerating || visibleMessages.some(m => m.role === "ai" && m.isStreaming), [isGenerating, visibleMessages]);
@@ -3115,7 +3146,6 @@ export default function ChatBody({
       closeSourcesPanel={closeSourcesPanel}
       analysisPanelWidth={analysisPanelWidth}
     />
-    {deleteListingConfirmNode}
     <LoginModal
       open={loginOpen}
       onClose={() => {

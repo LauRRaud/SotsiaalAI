@@ -18,11 +18,17 @@
  *    pealkirja paneelil ei ole.
  *  - Modaalina vestluse kohal (ilma `embedded`-ita): pealkiri ja tagasitee on
  *    modaali päises.
- *  - Avatud kuulutus (`detailNode`) tuleb loendi asemele. See on veel vanal
- *    ühisel kihil, seepärast saab ta siin oma senise ümbrise.
+ *  - Avatud kuulutus (`detailNode`, `./SelectedListingContext.jsx`) tuleb
+ *    loendi asemele samasse ümbrisesse: selle vaated on samadel klotsidel mis
+ *    loend ja vahetuvad kohapeal. Kui avatud kuulutus sulgub, läheb fookus
+ *    loendi pealkirjale (vajutatud nupp kadus koos vaatega).
+ *
+ * LAHKUMINE. Avatud kuulutuse muutmise vormil võib olla salvestamata teksti.
+ * Modaali sulgemine (tagasinool, Esc, vajutus kihile) küsib enne luba ühiselt
+ * väravalt (`lib/panelLeaveGuard.js`), nagu kiirmenüü tagasinool.
  */
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
@@ -31,6 +37,7 @@ import Button from "@/components/ui/Button";
 import { DashboardInfoTrigger, dashboardInfoTriggerCornerClassName } from "@/components/ui/DashboardInfoOverlay";
 import Modal from "@/components/ui/Modal";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
+import { panelLeaveAllowed } from "@/lib/panelLeaveGuard";
 
 import { listingCountText, listingGroups, listingKind, listingRows } from "./helpListingRows";
 import styles from "./helpListings.module.css";
@@ -59,11 +66,12 @@ export default function HelpListingsPanel({
   const { t } = useI18n();
   const ui = getHelpUiText(t);
   const [isMounted, setIsMounted] = useState(false);
+  const bodyRef = useRef(null);
   const hasDetail = Boolean(detailNode);
   const isWorkspaceReturn = embedded || Boolean(onBackToWorkspace);
   const isWorkspaceSubpageReturn = isWorkspaceReturn && !embedded;
-  /* Avatud kuulutuse (ja modaali) ümbris: vana ühise kihi klassid, millest
-     `SelectedListingContext` oma välimuse saab. */
+  /* Modaali ümbris: vana ühise kihi klassid annavad modaalile pinna ja laiuse.
+     Töölaua sees neid ei ole; loend ja avatud kuulutus ütlevad oma kuju ise. */
   const legacyContentClassName = [
     "feature-page",
     "feature-page__surface",
@@ -94,8 +102,26 @@ export default function HelpListingsPanel({
     };
   }, [embedded, isMounted]);
 
+  /* Avatud kuulutus sulgus (tagasi loendisse, kustutati): nupp, millel fookus
+     oli, kadus koos vaatega. Fookus läheb loendi pealkirjale, mitte ühelegi
+     nupule. Avanev kuulutus viib fookuse oma pealkirjale ise. */
+  const hadDetail = useRef(hasDetail);
+  useEffect(() => {
+    if (hadDetail.current === hasDetail) return;
+    hadDetail.current = hasDetail;
+    if (hasDetail) return;
+    bodyRef.current?.querySelector("[data-step-heading]")?.focus({ preventScroll: true });
+  }, [hasDetail]);
+
+  /* Sulgemine küsib luba väravalt: salvestamata muudatustega kuulutus peab
+     esimese vajutuse kinni ja ütleb ise, miks. */
+  const leave = (go) => {
+    if (!panelLeaveAllowed("close")) return;
+    go?.();
+  };
+
   const handleBackClick = () => {
-    (onBackToProfile || onBackToWorkspace || onClose)?.();
+    leave(onBackToProfile || onBackToWorkspace || onClose);
   };
 
   const backAriaLabel = onBackToProfile
@@ -203,15 +229,14 @@ export default function HelpListingsPanel({
     </StepPanel>
   );
 
+  /* Avatud kuulutus tuleb loendi asemele samasse ümbrisesse. */
+  const body = hasDetail ? detailNode : list;
+
   if (embedded) {
-    return hasDetail ? (
-      <div className="workspace-feature-embedded">
-        <div className={legacyContentClassName}>{detailNode}</div>
-      </div>
-    ) : (
-      <div className={styles.page}>
+    return (
+      <div className={styles.page} ref={bodyRef}>
         {header}
-        {list}
+        {body}
       </div>
     );
   }
@@ -224,22 +249,18 @@ export default function HelpListingsPanel({
     <Modal
       open
       variant="glass"
-      onClose={onClose}
+      onClose={() => leave(onClose)}
       closeOnOverlayClick={!isClosing}
       aria-label={title || ui.listingPlural}
       className={`help-listings-modal-overlay overflow-y-auto ${isWorkspaceReturn ? "help-listings-modal-overlay--workspace" : ""}`}
       contentClassName={legacyContentClassName}
     >
-      {hasDetail ? (
-        detailNode
-      ) : (
-        <>
-          {/* Päis jääb modaali sisu otseseks lapseks nagu enne: loendi ümbris on
-              konteiner ja võtaks päise tagasi-nupu paigutuse enda külge. */}
-          {header}
-          <div className={styles.dialog}>{list}</div>
-        </>
-      )}
+      {/* Päis jääb modaali sisu otseseks lapseks nagu enne: loendi ümbris on
+          konteiner ja võtaks päise tagasi-nupu paigutuse enda külge. */}
+      {header}
+      <div className={styles.dialog} ref={bodyRef}>
+        {body}
+      </div>
     </Modal>,
     document.body
   );

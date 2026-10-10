@@ -1,193 +1,75 @@
 "use client";
 
-import { createPortal } from "react-dom";
-import { useEffect, useState } from "react";
-import Button from "@/components/ui/Button";
-import DocumentsDropdown from "@/components/documents/DocumentsDropdown";
-import { SubpageHeader } from "@/components/ui/SubpageHeader";
-import Modal from "@/components/ui/Modal";
-import Panel from "@/components/ui/Panel";
-import Input from "@/components/ui/Input";
+/**
+ * Avatud abikuulutus: väikesed vaated, mis vahetuvad kohapeal.
+ *
+ * KUJU (10.10). Loendi rida avas vana lehe: oma päis tagasinoole ja nähtava
+ * pealkirjaga, kast kasti sees, faktid, muutmise vorm ja ühendamise rippvalik
+ * korraga ühes veerus ning kustutamise kinnitus eraldi aknas. Nüüd on korraga
+ * ees üks vaade: kuulutus ise, ühendamise valik või muutmise vorm. Lehe nime
+ * ütleb kiirmenüü; vaate esimene rida on kuulutuse enda pealkiri.
+ *
+ * SEE KOMPONENT EI LAE EGA SALVESTA MIDAGI. Kuulutus, laadimise seis, muutmise
+ * olek ja kõik päringud on kasutajal (`components/alalehed/ChatBody.jsx`). Siin
+ * on see, mis vaateid olekuga seob:
+ *  - milline vaade on ees (ühendamise valik on selle komponendi oma olek);
+ *  - vajutuste reeglid: kustutamise ja loobumise teine vajutus ei tule
+ *    topeltklõpsust ega all hoitud klahvist, vaate ilmumise järel kohe tulev
+ *    saatmine jäetakse vahele (lugemise vaate „Muuda" ja vormi „Salvesta"
+ *    seisavad samas kohas) ja käimasoleva päringu ajal uut ei alustata;
+ *  - salvestamata muudatuste hoidmine: kiirmenüü tagasinool, Esc ja akna
+ *    sulgemine ei ole selle komponendi nupud, seepärast registreerib ta värava
+ *    (`lib/panelLeaveGuard.js`) ja ütleb vaate kohal, miks lahkumine peatus;
+ *  - fookus: vaate vahetusel kaob vajutatud nupp, fookus läheb uue vaate
+ *    pealkirjale (mitte kunagi nupule).
+ *
+ * KUSTUTAMINE on kaks vajutust samal nupul. Aste on lehe olekus: esimene
+ * vajutus on `onDeleteListing` (leht jätab küsimuse meelde, `deleteArmed`),
+ * teine `onConfirmDelete`, tagasivõtmine `onCancelDelete`. Eraldi kinnitusakent
+ * enam ei ole.
+ *
+ * KAKS KASUTUST.
+ *  - `inline`: loendi paneeli sees, loendi asemel (tavaline tee).
+ *  - ilma `inline`-ita: modaalina vestluse kohal, kui kuulutus on valitud
+ *    väljaspool loendit. Kiirmenüü on modaali taga kättesaamatu, seega
+ *    vahetuvad vaated ka seal kohapeal.
+ *
+ * Vaated: ./SelectedListingViews.jsx. Read ja reeglid: ./selectedListingSheet.js.
+ * Kujundus: ./selectedListing.module.css.
+ */
+
+import { useEffect, useRef, useState } from "react";
+
 import { useI18n } from "@/components/i18n/I18nProvider";
-import { HELP_LISTING_TEXT_LIMITS } from "@/lib/help/listingLimits";
+import Modal from "@/components/ui/Modal";
+import { panelLeaveAllowed, setPanelLeaveGuard, twoPressLeaveGuard } from "@/lib/panelLeaveGuard";
+
+import list from "./helpListings.module.css";
 import { getHelpUiText } from "./helpUiText";
+import styles from "./selectedListing.module.css";
+import {
+  CONFIRM_MS,
+  connectChoice,
+  editProblem,
+  editSnapshot,
+  editValues,
+  listingNotice,
+  listingSheet,
+  listingViewKey,
+  pressTooSoon,
+  saveEditPayload
+} from "./selectedListingSheet";
+import { ConnectView, EditView, LoadingView, MissingView, ReadView } from "./SelectedListingViews";
 
-const HELP_CATEGORY_OPTIONS = [
-  { value: "TRANSPORT", label: "Transport" },
-  { value: "DAILY_TASKS", label: "Igapäevaabi" },
-  { value: "HOME_HELP", label: "Koduabi" },
-  { value: "DIGITAL_HELP", label: "Digiabi" },
-  { value: "CARE_SUPPORT", label: "Tugi ja hooldus" },
-  { value: "CHILD_YOUTH_SUPPORT", label: "Laste ja noorte tugi" },
-  { value: "LEARNING_GUIDANCE", label: "Õppimise ja juhendamise abi" },
-  { value: "SOCIAL_SUPPORT", label: "Seltskond ja sotsiaalne tugi" },
-  { value: "ADMIN_FORM_HELP", label: "Asjaajamise ja vormide abi" },
-  { value: "OTHER", label: "Muu abi" }
-];
-
-const TARGET_GROUP_OPTIONS = [
-  { value: "CHILD", label: "Laps" },
-  { value: "YOUTH", label: "Noor" },
-  { value: "ADULT", label: "Täiskasvanu" },
-  { value: "ELDER", label: "Eakas" }
-];
-
-const TARGET_GROUP_OPTION_VALUES = new Set(TARGET_GROUP_OPTIONS.map((option) => option.value));
-
-function normalizeComparableText(value = "") {
-  return String(value || "")
-    .toLowerCase()
-    .replace(/\s+/g, " ")
-    .replace(/[|·•]+/g, " ")
-    .trim();
-}
-
-function includesComparable(haystack = "", needle = "") {
-  const left = normalizeComparableText(haystack);
-  const right = normalizeComparableText(needle);
-  if (!left || !right) return false;
-  return left.includes(right);
-}
-
-function buildCleanDescription(listing = {}) {
-  const text = String(listing?.description || "").trim();
-  if (!text) return "";
-  const match = text.match(/\b(?:Põhikategooria|Omavalitsus|Täpsem asukoht|Sihtrühm|Abi vorm|Tasu info|Ajalisus|Saadavus\s*\/\s*algus|Lisatingimused|Tingimused|Oskused või taust):/iu);
-  const cleaned = match?.index > 0 ? text.slice(0, match.index) : text;
-  return cleaned.trim();
-}
-
-function buildInfoItems(listing = {}, ui = {}) {
-  const summary = String(listing.summary || "").trim();
-  const items = [];
-
-  if (listing.categoryLabel) {
-    items.push({ label: ui.category || "Category", value: listing.categoryLabel });
+/* Lähim kerija (klaaspaneeli sisu): uus vaade algab ülevalt. */
+function scrollerOf(start) {
+  let node = start?.parentElement || null;
+  while (node && node !== document.documentElement) {
+    const overflowY = window.getComputedStyle(node).overflowY;
+    if (overflowY === "auto" || overflowY === "scroll") return node;
+    node = node.parentElement;
   }
-
-  if (listing.municipalityLabel && !includesComparable(summary, listing.municipalityLabel)) {
-    items.push({ label: ui.municipality || "Municipality", value: listing.municipalityLabel });
-  }
-
-  if (listing.helpTypeLabel && !includesComparable(summary, listing.helpTypeLabel)) {
-    items.push({ label: ui.helpType, value: listing.helpTypeLabel });
-  }
-
-  if (listing.timeTypeLabel && !includesComparable(summary, listing.timeTypeLabel)) {
-    items.push({ label: ui.timeType, value: listing.timeTypeLabel });
-  }
-
-  if (Array.isArray(listing.targetGroupLabels) && listing.targetGroupLabels.length) {
-    items.push({ label: ui.targetGroups, value: listing.targetGroupLabels.join(", ") });
-  }
-
-  if (
-    listing.rawPlace &&
-    !includesComparable(summary, listing.rawPlace) &&
-    !includesComparable(listing.municipalityLabel, listing.rawPlace)
-  ) {
-    items.push({ label: ui.location || "Location", value: listing.rawPlace });
-  }
-
-  if (listing.availabilityOrStart) {
-    items.push({ label: ui.availabilityOrStart || "Availability", value: listing.availabilityOrStart });
-  }
-
-  if (listing.compensationDetails) {
-    items.push({ label: ui.compensationDetails || "Compensation", value: listing.compensationDetails });
-  }
-
-  if (listing.conditions) {
-    items.push({ label: ui.conditions || "Conditions", value: listing.conditions });
-  }
-
-  return items;
-}
-
-function FieldLabel({ children }) {
-  return <span>{children}</span>;
-}
-
-function DropdownField({ label, value, onChange, options = [] }) {
-  return (
-    <label>
-      <FieldLabel>{label}</FieldLabel>
-      <DocumentsDropdown
-        value={value}
-        onChange={onChange}
-        options={options}
-        placeholder="-"
-        ariaLabel={label}
-      />
-    </label>
-  );
-}
-
-function CharacterLimit({ value, maxLength }) {
-  if (!maxLength) return null;
-  return <small aria-live="polite">{String(value || "").length}/{maxLength}</small>;
-}
-
-function TextField({ label, value, onChange, placeholder = "", maxLength }) {
-  return (
-    <label>
-      <FieldLabel>{label}</FieldLabel>
-      <Input
-        value={value}
-        onChange={(event) => onChange?.(event.target.value)}
-        placeholder={placeholder}
-        maxLength={maxLength}
-      />
-      <CharacterLimit value={value} maxLength={maxLength} />
-    </label>
-  );
-}
-
-function TextAreaField({ label, value, onChange, rows = 3, maxLength }) {
-  return (
-    <label>
-      <FieldLabel>{label}</FieldLabel>
-      <textarea
-        value={value}
-        onChange={(event) => onChange?.(event.target.value)}
-        rows={rows}
-        maxLength={maxLength}
-      />
-      <CharacterLimit value={value} maxLength={maxLength} />
-    </label>
-  );
-}
-
-function TargetGroupsField({ label, value = [], onChange }) {
-  const selectedValues = Array.isArray(value) ? value : [];
-  const toggleValue = (nextValue) => {
-    const exists = selectedValues.includes(nextValue);
-    const nextValues = exists
-      ? selectedValues.filter((item) => item !== nextValue)
-      : [...selectedValues, nextValue];
-    onChange?.(nextValues);
-  };
-
-  return (
-    <fieldset>
-      <legend>{label}</legend>
-      <div>
-        {TARGET_GROUP_OPTIONS.map((option) => {
-          const selected = selectedValues.includes(option.value);
-          return (
-            <button
-              key={option.value}
-              type="button"
-              onClick={() => toggleValue(option.value)}
-              aria-pressed={selected ? "true" : "false"}
-            >
-              {option.label}
-            </button>
-          );
-        })}
-      </div>
-    </fieldset>
-  );
+  return null;
 }
 
 export default function SelectedListingContext({
@@ -200,8 +82,10 @@ export default function SelectedListingContext({
   canDelete = false,
   editState = null,
   connectOptions = [],
+  connectOptionsFailed = false,
   selectedConnectListingId = "",
   busyAction = "",
+  deleteArmed = false,
   onSelectConnectListing,
   onConnect,
   onStartEdit,
@@ -209,272 +93,281 @@ export default function SelectedListingContext({
   onCancelEdit,
   onSaveEdit,
   onDeleteListing,
+  onConfirmDelete,
+  onCancelDelete,
   onDismiss
 }) {
   const { t } = useI18n();
   const ui = getHelpUiText(t);
-  const [isMounted, setIsMounted] = useState(false);
+  const rootRef = useRef(null);
+  /* Ühendamise valik on ees ainult siis, kui inimene selle avas. */
+  const [connectOpen, setConnectOpen] = useState(false);
+  const [editPart, setEditPart] = useState("text");
+  /* Vormi sisu sel hetkel, kui muutmine algas: selle järgi on teada, kas midagi on muudetud. */
+  const [baseline, setBaseline] = useState("");
+  const [discardArmed, setDiscardArmed] = useState(false);
+  const [problemKey, setProblemKey] = useState("");
+  const [leaveAsked, setLeaveAsked] = useState(false);
+
+  const view = listingViewKey({ loading, listing, error, editState, isOwn, connectOpen });
+  const editing = Boolean(editState);
+  const values = editValues(listing, editState);
+  const snapshot = editing ? editSnapshot(values) : "";
+  const dirty = editing && baseline !== "" && snapshot !== baseline;
+  const listingKey = listing ? `${listing.kind}:${listing.id}` : "";
+
+  const viewRef = useRef(view);
+  viewRef.current = view;
+  const snapshotRef = useRef(snapshot);
+  snapshotRef.current = snapshot;
+  /* Millal ees olev vaade ilmus ja millal kustutamine või loobumine teist vajutust küsima hakkas. */
+  const shownAt = useRef(0);
+  const deleteAskedAt = useRef(0);
+  const discardAskedAt = useRef(0);
+  /* Teade kuulub selle vaate juurde, kus tegevus tehti: kustutamise tõrge ei
+     käi kaasa muutmise vormi ja salvestamise tõrge ei jää lugemise vaatesse. */
+  const [errorView, setErrorView] = useState(view);
+  useEffect(() => {
+    setErrorView(viewRef.current);
+  }, [error]);
+
+  /* Teine kuulutus: ühendamise valik ei jää eelmisest lahti. */
+  useEffect(() => {
+    setConnectOpen(false);
+  }, [listingKey]);
+
+  /* Muutmine algas või lõppes: vorm algab esimesest osast ja võrdlus algseisuga algab uuesti. */
+  useEffect(() => {
+    setEditPart("text");
+    setDiscardArmed(false);
+    setProblemKey("");
+    setBaseline(editing ? snapshotRef.current : "");
+  }, [editing]);
+
+  /* Vaate vahetusel kaob nupp, mida vajutati (loendi rida, „Muuda", „Loobu"),
+     ja klaviatuuri fookus koos sellega: fookus läheb uue vaate pealkirjale.
+     Nupule fookust ei viida: all hoitud Enter vajutaks seda kohe. Uus vaade
+     algab ülevalt; paneeli keritakse ainult tagasi, mitte kunagi edasi. */
+  const shownView = useRef("");
+  useEffect(() => {
+    if (!view || shownView.current === view) return;
+    shownView.current = view;
+    shownAt.current = Date.now();
+    const node = rootRef.current;
+    if (!node) return;
+    node.querySelector("[data-step-heading]")?.focus({ preventScroll: true });
+    const scroller = scrollerOf(node);
+    if (!scroller) return;
+    const top = node.getBoundingClientRect().top - scroller.getBoundingClientRect().top + scroller.scrollTop;
+    if (scroller.scrollTop > top) scroller.scrollTop = Math.max(0, top);
+  }, [view]);
+
+  /* Kustutamise küsimus aegub ja kaob, kui lugemise vaade ei ole enam ees:
+     hiljem tagasi tulles ei tohi üks vajutus kuulutust kustutada. */
+  useEffect(() => {
+    if (!deleteArmed) return undefined;
+    if (view !== "read") {
+      onCancelDelete?.();
+      return undefined;
+    }
+    const timer = window.setTimeout(() => onCancelDelete?.(), CONFIRM_MS);
+    return () => window.clearTimeout(timer);
+  }, [deleteArmed, onCancelDelete, view]);
 
   useEffect(() => {
-    setIsMounted(true);
-  }, []);
+    if (!discardArmed) return undefined;
+    const timer = window.setTimeout(() => setDiscardArmed(false), CONFIRM_MS);
+    return () => window.clearTimeout(timer);
+  }, [discardArmed]);
 
+  /* Salvestamata muudatused. Kiirmenüü tagasinool, Esc ja paneeli sulgemine ei
+     ole selle komponendi nupud: esimene lahkumine jääb kinni ja vaate kohal
+     seisab põhjus, teine lahkub. Akna sulgemise ja uuesti laadimise peab kinni
+     brauseri enda küsimus. */
   useEffect(() => {
-    if (inline || !isMounted || (!listing && !loading && !error)) return undefined;
+    if (!dirty) return undefined;
+    const leave = twoPressLeaveGuard({
+      onAsk: () => setLeaveAsked(true),
+      onClear: () => setLeaveAsked(false)
+    });
+    const release = setPanelLeaveGuard(leave);
+    const warn = (event) => {
+      event.preventDefault();
+      event.returnValue = "";
+    };
+    window.addEventListener("beforeunload", warn);
+    return () => {
+      release();
+      leave.clear();
+      window.removeEventListener("beforeunload", warn);
+    };
+  }, [dirty]);
+
+  /* Modaalina: teised lehed loevad märki `modal-open` (nt koostamisruumi Esc). */
+  const modalShown = !inline && Boolean(view);
+  useEffect(() => {
+    if (!modalShown) return undefined;
     const root = document.documentElement;
-    document.body.classList.toggle("modal-open", true);
-    root.classList.toggle("modal-open", true);
-    document.body.classList.toggle("selected-listing-modal-open", true);
-    root.classList.toggle("selected-listing-modal-open", true);
+    document.body.classList.add("modal-open");
+    root.classList.add("modal-open");
     return () => {
       document.body.classList.remove("modal-open");
       root.classList.remove("modal-open");
-      document.body.classList.remove("selected-listing-modal-open");
-      root.classList.remove("selected-listing-modal-open");
     };
-  }, [error, inline, isMounted, listing, loading]);
+  }, [modalShown]);
 
-  if (!inline && (!isMounted || typeof document === "undefined")) {
-    return null;
+  if (!view) return null;
+
+  const notice = listingNotice(errorView === view || error === ui.connectPending ? error : "", ui);
+
+  /* Modaali sulgevad ka Esc ja vajutus kihile: need küsivad sama väravat. */
+  const closeModal = () => {
+    if (!panelLeaveAllowed("close")) return;
+    onDismiss?.();
+  };
+  /* Loendi rea topeltklõpsu teine vajutus võib maanduda äsja ilmunud vaate
+     tagasiteele: kohe pärast vaate ilmumist tulev vajutus jäetakse vahele. */
+  const leaveView = () => {
+    if (pressTooSoon(shownAt.current)) return;
+    if (inline) onDismiss?.();
+    else closeModal();
+  };
+  const back = { label: inline ? t("chat.help.opened.backToList") : ui.close, onClick: leaveView };
+
+  const pressDelete = () => {
+    if (busyAction) return;
+    if (!deleteArmed) {
+      deleteAskedAt.current = Date.now();
+      onDeleteListing?.();
+      return;
+    }
+    /* Topeltklõpsu teine vajutus ei kustuta. */
+    if (pressTooSoon(deleteAskedAt.current)) return;
+    onConfirmDelete?.();
+  };
+
+  const submitConnect = () => {
+    /* Lugemise vaate nupp ja see nupp kannavad sama nime ja seisavad samas
+       kohas: topeltklõps ei saada päringut teisele inimesele. */
+    if (busyAction || pressTooSoon(shownAt.current)) return;
+    onConnect?.();
+  };
+
+  const changeField = (field, value) => {
+    if (problemKey) setProblemKey("");
+    if (discardArmed) setDiscardArmed(false);
+    onChangeEditField?.(field, value);
+  };
+
+  const submitEdit = (event) => {
+    event?.preventDefault?.();
+    if (busyAction || pressTooSoon(shownAt.current)) return;
+    const problem = editProblem(values);
+    setProblemKey(problem);
+    if (problem) {
+      /* Puudu on kirjeldus: see väli on esimeses osas, lause üksi teises osas ei aitaks. */
+      setEditPart("text");
+      return;
+    }
+    setDiscardArmed(false);
+    onSaveEdit?.(saveEditPayload(editState, values));
+  };
+
+  /* Loobumine viskab muudatused ära: muudetud vormil küsib see teist vajutust. */
+  const cancelEdit = () => {
+    if (dirty && !discardArmed) {
+      discardAskedAt.current = Date.now();
+      setDiscardArmed(true);
+      return;
+    }
+    if (dirty && pressTooSoon(discardAskedAt.current)) return;
+    setDiscardArmed(false);
+    onCancelEdit?.();
+  };
+
+  let body;
+  if (view === "loading") {
+    body = <LoadingView t={t} ui={ui} back={back} />;
+  } else if (view === "missing") {
+    body = <MissingView t={t} error={error} back={back} />;
+  } else {
+    const sheet = listingSheet(listing, { t, ui, isOwn });
+    if (view === "edit") {
+      body = (
+        <EditView
+          t={t}
+          ui={ui}
+          form={{
+            part: editPart,
+            onPart: setEditPart,
+            values,
+            onField: changeField,
+            notice: problemKey ? { text: t(problemKey), tone: "risk" } : notice,
+            busy: busyAction === "save",
+            discardArmed,
+            onCancel: cancelEdit,
+            onSubmit: submitEdit
+          }}
+        />
+      );
+    } else if (view === "connect") {
+      body = (
+        <ConnectView
+          t={t}
+          ui={ui}
+          sheet={sheet}
+          choice={connectChoice({ listing, options: connectOptions, selectedId: selectedConnectListingId, failed: connectOptionsFailed, t })}
+          notice={notice}
+          busy={busyAction === "connect"}
+          back={{ label: t("chat.help.opened.backToListing"), onClick: () => setConnectOpen(false) }}
+          onSelect={(value) => onSelectConnectListing?.(value)}
+          onSubmit={submitConnect}
+        />
+      );
+    } else {
+      body = (
+        <ReadView
+          t={t}
+          ui={ui}
+          sheet={sheet}
+          notice={notice}
+          back={back}
+          onEdit={isOwn ? () => onStartEdit?.() : null}
+          onConnect={isOwn ? null : () => setConnectOpen(true)}
+          /* Kustutada saab oma kuulutust; administraator ka võõrast (`canDelete`). */
+          remove={
+            isOwn || canDelete
+              ? { armed: deleteArmed, busy: busyAction === "delete", onPress: pressDelete, onCancel: () => onCancelDelete?.() }
+              : null
+          }
+        />
+      );
+    }
   }
 
-  if (!listing && !loading && !error) {
-    return null;
-  }
-
-  const kindActionLabel = listing?.kind === "request" ? ui.offerHelp : ui.contact;
-  const connectDisabled = !selectedConnectListingId || busyAction === "connect";
-  const descriptionValue = editState?.description ?? listing?.editableDescription ?? listing?.description ?? "";
-  const categoryCodeValue = editState?.primaryCategoryCode ?? listing?.primaryCategoryCode ?? "";
-  const helpTypeValue = editState?.helpType ?? listing?.helpType ?? "";
-  const timeTypeValue = editState?.timeType ?? listing?.timeType ?? "";
-  const targetGroupCodesValue = (Array.isArray(editState?.targetGroupCodes)
-    ? editState.targetGroupCodes
-    : (Array.isArray(listing?.targetGroupCodes) ? listing.targetGroupCodes : []))
-    .filter((code) => TARGET_GROUP_OPTION_VALUES.has(code));
-  const rawPlaceValue = editState?.rawPlace ?? listing?.editableRawPlace ?? listing?.rawPlace ?? "";
-  const availabilityOrStartValue = editState?.availabilityOrStart ?? listing?.editableAvailabilityOrStart ?? listing?.availabilityOrStart ?? "";
-  const compensationDetailsValue = editState?.compensationDetails ?? listing?.editableCompensationDetails ?? listing?.compensationDetails ?? "";
-  const conditionsValue = editState?.conditions ?? listing?.editableConditions ?? listing?.conditions ?? "";
-  const infoItems = listing ? buildInfoItems(listing, ui) : [];
-  const cleanDescription = listing ? buildCleanDescription(listing) : "";
-  const selectedListingContentClassName = "selected-listing-modal-content";
-  const selectedListingBodyClassName = inline
-    ? "selected-listing-body selected-listing-body--inline"
-    : "selected-listing-body";
-  const selectedListingPanelClassName = inline
-    ? "selected-listing-panel--inline"
-    : undefined;
-  const statusRowVisible = Boolean(listing?.statusLabel || (isOwn && listing));
-
-  const selectedListingContent = (
-    <>
-      <SubpageHeader
-        onBack={onDismiss}
-        backAriaLabel={ui.close}
-        titleAs="h2"
-      >
-        {loading ? ui.loading : listing?.title || ui.selectedListing}
-      </SubpageHeader>
-
-      {statusRowVisible ? (
-        <div>
-          <p>
-            {listing?.statusLabel ? <span>{listing.statusLabel}</span> : null}
-            {listing?.statusLabel && isOwn ? (
-              <span aria-hidden="true">|</span>
-            ) : null}
-            {isOwn ? <span>{ui.ownListing}</span> : null}
-          </p>
-        </div>
+  const content = (
+    <div className={styles.swap} ref={rootRef}>
+      {leaveAsked ? (
+        <p className={list.notice} role="alert">
+          {t("chat.help.opened.leaveAsked")}
+        </p>
       ) : null}
-
-      <div className={selectedListingBodyClassName}>
-        <Panel
-          variant="subpage"
-          padding="sm"
-          className={selectedListingPanelClassName}
-        >
-          {loading ? <div>{ui.loading}</div> : null}
-          {!loading && error ? <div>{error}</div> : null}
-          {!loading && listing ? (
-            <div className="selected-listing-detail-grid">
-              {listing.summary ? (
-                <p>
-                  {listing.summary}
-                </p>
-              ) : null}
-              {cleanDescription ? <div>{cleanDescription}</div> : null}
-              {infoItems.length ? (
-                <dl className="selected-listing-info-list">
-                  {infoItems.map((item) => (
-                    <div key={`${item.label}-${item.value}`}>
-                      <dt>{item.label}</dt>
-                      <dd>{item.value}</dd>
-                    </div>
-                  ))}
-                </dl>
-              ) : null}
-
-              {editState ? (
-                <div className="documents-workspace">
-                  <TextField
-                    label={ui.title}
-                    value={editState.title}
-                    onChange={(value) => onChangeEditField?.("title", value)}
-                    placeholder={ui.title}
-                    maxLength={HELP_LISTING_TEXT_LIMITS.title}
-                  />
-                  <TextAreaField
-                    label={ui.description}
-                    value={descriptionValue}
-                    onChange={(value) => onChangeEditField?.("description", value)}
-                    rows={5}
-                    maxLength={HELP_LISTING_TEXT_LIMITS.description}
-                  />
-                  <div>
-                    <DropdownField
-                      label={ui.category}
-                      value={categoryCodeValue}
-                      onChange={(value) => onChangeEditField?.("primaryCategoryCode", value)}
-                      options={HELP_CATEGORY_OPTIONS}
-                    />
-                    <TextField
-                      label={ui.location}
-                      value={rawPlaceValue}
-                      onChange={(value) => onChangeEditField?.("rawPlace", value)}
-                      placeholder={ui.location}
-                      maxLength={HELP_LISTING_TEXT_LIMITS.rawPlace}
-                    />
-                    <DropdownField
-                      label={ui.helpType}
-                      value={helpTypeValue}
-                      onChange={(value) => onChangeEditField?.("helpType", value)}
-                      options={[
-                        { value: "", label: ui.emptyOption },
-                        { value: "VOLUNTARY", label: ui.voluntaryLabel },
-                        { value: "PAID", label: ui.paidLabel },
-                        { value: "MIXED", label: ui.mixedLabel }
-                      ]}
-                    />
-                    <DropdownField
-                      label={ui.timeType}
-                      value={timeTypeValue}
-                      onChange={(value) => onChangeEditField?.("timeType", value)}
-                      options={[
-                        { value: "", label: ui.emptyOption },
-                        { value: "ONE_TIME", label: ui.oneTimeLabel },
-                        { value: "RECURRING", label: ui.recurringLabel },
-                        { value: "FLEXIBLE", label: ui.flexibleLabel }
-                      ]}
-                    />
-                  </div>
-                  <TargetGroupsField
-                    label={ui.targetGroups}
-                    value={targetGroupCodesValue}
-                    onChange={(value) => onChangeEditField?.("targetGroupCodes", value)}
-                  />
-                  <TextAreaField
-                    label={ui.availabilityOrStart}
-                    value={availabilityOrStartValue}
-                    onChange={(value) => onChangeEditField?.("availabilityOrStart", value)}
-                    rows={2}
-                    maxLength={HELP_LISTING_TEXT_LIMITS.availabilityOrStart}
-                  />
-                  <div>
-                    <TextField
-                      label={ui.compensationDetails}
-                      value={compensationDetailsValue}
-                      onChange={(value) => onChangeEditField?.("compensationDetails", value)}
-                      placeholder={ui.compensationDetails}
-                      maxLength={HELP_LISTING_TEXT_LIMITS.compensationDetails}
-                    />
-                    <TextField
-                      label={ui.conditions}
-                      value={conditionsValue}
-                      onChange={(value) => onChangeEditField?.("conditions", value)}
-                      placeholder={ui.conditions}
-                      maxLength={HELP_LISTING_TEXT_LIMITS.conditions}
-                    />
-                  </div>
-                  <div>
-                    <Button type="button" variant="primary" size="md" onClick={() => onSaveEdit?.({ ...editState, targetGroupCodes: targetGroupCodesValue })}>
-                      {ui.save}
-                    </Button>
-                    <Button type="button" variant="primary" size="md" onClick={onCancelEdit}>
-                      {ui.cancel}
-                    </Button>
-                  </div>
-                </div>
-              ) : null}
-
-              {!editState && isOwn ? (
-                <div>
-                  <Button type="button" variant="primary" size="md" onClick={onStartEdit}>
-                    {ui.edit}
-                  </Button>
-                  <Button type="button" variant="danger" size="md" onClick={onDeleteListing} disabled={busyAction === "delete"}>
-                    {ui.delete}
-                  </Button>
-                </div>
-              ) : null}
-
-              {!editState && !isOwn ? (
-                <div className="documents-workspace">
-                  {listing.status === "CLOSED" ? <div>{ui.statusClosed}</div> : null}
-                  <DropdownField
-                    label={ui.selectOwnListing}
-                    value={selectedConnectListingId}
-                    onChange={(value) => onSelectConnectListing?.(value)}
-                    options={connectOptions.length
-                      ? connectOptions.map((item) => ({
-                          value: item.id,
-                          label: item.title
-                        }))
-                      : [{
-                          value: "",
-                          label: ui.noOwnOptions
-                        }]}
-                  />
-                  <div>
-                    <Button type="button" variant="primary" size="md" onClick={onConnect} disabled={connectDisabled}>
-                      {busyAction === "connect" ? `${kindActionLabel}...` : kindActionLabel}
-                    </Button>
-                    {canDelete ? (
-                      <Button type="button" variant="danger" size="md" onClick={onDeleteListing} disabled={busyAction === "delete"}>
-                        {ui.delete}
-                      </Button>
-                    ) : null}
-                  </div>
-                </div>
-              ) : null}
-            </div>
-          ) : null}
-        </Panel>
-      </div>
-    </>
+      {body}
+    </div>
   );
 
-  if (inline) {
-    return (
-      <div className="selected-listing-inline">
-        {selectedListingContent}
-      </div>
-    );
-  }
+  if (inline) return content;
 
-  return createPortal(
+  return (
     <Modal
       open
-      variant="glass"
-      onClose={onDismiss}
+      onClose={closeModal}
       closeOnOverlayClick
-      aria-label={listing?.title || ui.selectedListing}
-      className="selected-listing-modal-overlay"
-      contentClassName={selectedListingContentClassName}
+      aria-label={listing?.title || t("chat.help.opened.views.read.title")}
+      className={styles.overlay}
+      contentClassName={styles.card}
     >
-      {selectedListingContent}
-    </Modal>,
-    document.body
+      {content}
+    </Modal>
   );
 }

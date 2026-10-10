@@ -761,12 +761,14 @@ test('kuulutuste paneel: kõik kasutusviisid on alles ja rida on üks tegevus', 
   for (const prop of ['title = ""', 'items = []', 'loading = false', 'error = ""', 'emptyText = ""', 'nextOffset = null', 'isClosing = false', 'onLoadMore', 'onSelectItem', 'detailNode = null', 'infoId', 'embedded = false', 'hideHeader = false', 'onClose', 'onBackToProfile', 'onBackToWorkspace']) {
     assert.ok(panel.includes(`  ${prop}`), `omadus on alles: ${prop}`);
   }
-  /* Avatud kuulutus tuleb loendi asemele oma senise ümbrisega (see on veel vanal kihil). */
-  assert.ok(panel.includes('<div className={legacyContentClassName}>{detailNode}</div>') && panel.includes('"feature-page--help-listings",'));
-  assert.equal(panel.split('feature-page').length - 1, 3, 'vana kihi klassid on ainult avatud kuulutuse ja modaali ümbrisel');
-  /* Modaal ja selle tagasitee. */
+  /* Avatud kuulutus tuleb loendi asemele samasse ümbrisesse (vt tests/chat-help-listing-views.test.mjs);
+     vana kihi klassid on ainult modaali ümbrisel. */
+  assert.ok(panel.includes('const body = hasDetail ? detailNode : list;') && panel.includes('"feature-page--help-listings",'));
+  assert.ok(!panel.includes('workspace-feature-embedded'), 'avatud kuulutusel ei ole enam vana ümbrist');
+  assert.equal(panel.split('feature-page').length - 1, 3, 'vana kihi klassid on ainult modaali ümbrisel');
+  /* Modaal ja selle tagasitee. Sulgemine küsib luba väravalt (salvestamata muudatustega kuulutus). */
   assert.ok(panel.includes('createPortal(') && panel.includes('contentClassName={legacyContentClassName}') && panel.includes('closeOnOverlayClick={!isClosing}'));
-  assert.ok(panel.includes('(onBackToProfile || onBackToWorkspace || onClose)?.();') && panel.includes('showBack={!isWorkspaceReturn}'));
+  assert.ok(panel.includes('leave(onBackToProfile || onBackToWorkspace || onClose);') && panel.includes('onClose={() => leave(onClose)}') && panel.includes('showBack={!isWorkspaceReturn}'));
   assert.ok(panel.includes('document.body.classList.toggle("help-listings-modal-open", true);'));
   /* Töölaua sees pealkirja paneelil ei ole. */
   assert.ok(panel.includes('headerClassName={embedded ? "sr-only" : undefined}'));
