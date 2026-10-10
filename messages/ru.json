@@ -13799,7 +13799,8 @@
       "control_calls_title": "Контрольный звонок не сделан",
       "control_calls_empty": "Всем клиентам в этом квартале позвонили.",
       "control_calls_line": "последний раз дозвонились {date}",
-      "control_calls_never": "ни разу не дозвонились"
+      "control_calls_never": "ни разу не дозвонились",
+      "contracts_unsigned_no_representative": "договор действует с {date}: подписал представитель, но право представительства на этот день не записано"
     },
     "visit": {
       "title": "Что вы сделали",

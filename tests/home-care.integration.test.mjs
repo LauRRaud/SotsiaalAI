@@ -6949,3 +6949,23 @@ test('kontrollkõne: hooldusjuht paneb kirja, meeskond ei näe, tegemata kõned 
   assert.deepEqual(audit.map((row) => row.meta.change), ['added', 'added', 'retracted']);
   assert.equal(JSON.stringify(audit).includes('Tütre'), false);
 });
+
+test('esindaja allkirjaga leping ilma esindusõiguse kirjeta on hooldusjuhi nimekirjas', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, deps())).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi' }, deps())).client;
+  const contract = { kind: 'CONTRACT', validFrom: '2026-09-01', signState: 'REPRESENTATIVE', signedOn: '2026-09-02' };
+  await createDecision(lead, linda.id, contract, deps());
+  await createDecision(lead, peeter.id, contract, deps());
+  const open = async () => (await getDeadlines(lead, deps())).contractsUnsigned.map((item) => [item.client.displayName, item.unsure, item.noRepresentative]);
+  assert.deepEqual(await open(), [['Linda Tamm', false, true], ['Peeter Põhi', false, true]]);
+
+  /* Linda esindaja õigus katab allkirjastamise päeva; Peetri esindaja õigus algas alles pärast seda. */
+  const mari = await addRepresentative(lead, linda.id, { name: 'Mari Tamm', basis: 'POWER_OF_ATTORNEY', scope: 'Lepingu sõlmimine', validFrom: '2026-08-01' }, deps());
+  await addRepresentative(lead, peeter.id, { name: 'Jaan Põhi', basis: 'GUARDIANSHIP', scope: 'Kõik toimingud', validFrom: '2026-09-10' }, deps());
+  assert.deepEqual(await open(), [['Peeter Põhi', false, true]]);
+  /* Hiljem lõpetatud õigus kattis allkirjastamise päeva ikkagi: leping nimekirja tagasi ei tule. */
+  await endRepresentative(lead, linda.id, mari.representativeId, deps());
+  assert.deepEqual(await open(), [['Peeter Põhi', false, true]]);
+});

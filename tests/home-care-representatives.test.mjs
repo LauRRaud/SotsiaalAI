@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 
 import { CARE_REPRESENTATIVE_BASES } from '../lib/homeCare/constants.js';
 import { HOME_CARE_EXPORT_KEYS, HOME_CARE_EXPORT_VERSION } from '../lib/homeCare/exportFormat.js';
-import { normalizeRepresentative, representativeState, serializeRepresentative } from '../lib/homeCare/representatives.js';
+import { normalizeRepresentative, representativeCovers, representativeState, serializeRepresentative } from '../lib/homeCare/representatives.js';
 
 const today = '2026-10-09';
 const refused = (input, key) => assert.throws(() => normalizeRepresentative(input, today), (error) => error.status === 400 && error.messageKey === `home_care.errors.${key}`);
@@ -55,4 +55,19 @@ test('esindusõigus: väljavõtte vorming alates 31 ja tekstid kolmes keeles', (
     for (const state of ['UPCOMING', 'EXPIRED']) assert.ok(catalogue.representative.states[state], `${locale} ${state}`);
     for (const key of ['representatives_due_title', 'representatives_due_empty', 'representatives_due_line', 'representatives_due_expired']) assert.ok(catalogue.deadlines[key], `${locale} ${key}`);
   }
+});
+
+test('esindusõigus: kas õigus kattis antud päeva', () => {
+  const day = '2026-09-02';
+  assert.equal(representativeCovers([], day), false);
+  assert.equal(representativeCovers(null, day), false);
+  assert.equal(representativeCovers([{ validFrom: null, validUntil: null, endedOn: null }], day), true);
+  assert.equal(representativeCovers([{ validFrom: '2026-09-02', validUntil: '2026-09-02', endedOn: null }], day), true);
+  assert.equal(representativeCovers([{ validFrom: '2026-09-03', validUntil: null, endedOn: null }], day), false);
+  assert.equal(representativeCovers([{ validFrom: null, validUntil: '2026-09-01', endedOn: null }], day), false);
+  /* Lõpetatud enne seda päeva ei kata; lõpetatud samal päeval või hiljem katab. */
+  assert.equal(representativeCovers([{ validFrom: null, validUntil: null, endedOn: '2026-09-01' }], day), false);
+  assert.equal(representativeCovers([{ validFrom: null, validUntil: null, endedOn: '2026-09-02' }], day), true);
+  /* Piisab ühest katvast reast. */
+  assert.equal(representativeCovers([{ validFrom: '2026-10-01', validUntil: null, endedOn: null }, { validFrom: '2026-01-01', validUntil: '2026-12-31', endedOn: null }], day), true);
 });
