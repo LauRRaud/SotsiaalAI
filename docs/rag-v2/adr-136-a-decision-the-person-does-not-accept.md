@@ -40,3 +40,22 @@ Mõõdetud kolmes kontrollis: abiotsija vastus nimetab 4–10 sätet, kuigi roll
 - Põhjalik režiim selle reaga (mõõdetud ainult vaikimisi režiim).
 - Kas plaan lisab vaidlustamise päringu ka seal, kus inimene otsusega nõus on, aga mainib seda möödaminnes (kahes kontrollküsimuses ei lisanud).
 - Halduskohtusse pöördumise tähtaeg: vastustes on see kord olemas, kord mitte.
+
+## Täiendus samal õhtul: põhjalik režiim, päris vestlus ja halduskohtu tähtaeg
+
+Omanik 10.10.2026 hilisõhtul: „tegutse“ kolme lahtise punkti kohta (lagi minult 0,10 USD, kulus 0,099 USD).
+
+**Põhjalik režiim serveris oleva versiooniga (`search-assist-14`, 0,0153 USD):** kolm küsimust (keeldumine kaks korda, tagasinõue). Kõigil kolmel kirjutas plaan vaidlustamise päringu, haldusmenetluse seaduse § 75 jäi alles ja vastus ütles vaide esitamise tähtaja (30 päeva). Halduskohtu tähtaega ei öelnud ükski.
+
+**Päris vestlus (omaniku konto, spetsialisti roll, kiire režiim):** „Mis õigused mul on, kui vald keeldus mulle toimetulekutoetust maksmast?“ → „Üldjuhul tuleb vaie esitada 30 päeva jooksul päevast, mil inimene otsusest teada sai või oleks pidanud teada saama (Haldusmenetluse seaduse § 75)“, lisaks vaide sisu (§ 76), lahendamise tähtaeg ja halduskohus (§ 87).
+
+**Halduskohtu tähtaeg: kaks proovitud muudatust jäid saatmata.**
+
+| Proovitud | Tulemus | Miks ei saadetud |
+|---|---|---|
+| Plaan kirjutab kolmanda päringu kohtusse pöördumise kohta (`search-assist-15`) | Halduskohtumenetluse seadustiku § 46 jäi alles 10 korral 14-st (serveris oleva versiooniga 1 korral 10-st) | Vaide tähtaeg (§ 75), mis on inimesele tähtsam, jäi alles ainult 9 korral 14-st; serveris oleva versiooniga 10 korral 10-st. Kolm päringut jagavad samu kandidaadikohti. |
+| Vastuse juhisesse lause „samm, millel on tähtaeg, öeldakse koos tähtajaga“ (vestluse juhis 43) | Kohtu tähtaeg öeldi 4 vastuses 6-st vaidlustamise küsimusest | Üks vastus kaheksast lükati tagasi (`inline_answer_reference`: mudel kirjutas allikaviite sulgudesse sätte kõrvale). Samal päeval ei lükatud varem umbes sajast pöördest tagasi ühtegi. Tagasi lükatud vastus on halvem kui puuduv kohtu tähtaeg. |
+
+Mõlema muudatuse kood on seansi tööfailides (`assist15-prompt43-not-shipped.patch`), mitte repos.
+
+**Jääb lahti:** halduskohtusse pöördumise tähtaeg on vastuses kord olemas, kord mitte. Õigem tee on struktuurne: haldusmenetluse seaduse § 87 viitab halduskohtumenetluse seadustikule ilma paragrahvi numbrita, ja nimetatud aktide rada järgib praegu ainult numbriga viiteid. Kui valitud lõik nimetab teist seadust ilma numbrita, võiks rada tuua sellest seadusest lõigu, mis küsimusega kõige paremini sobib. See vajab eraldi kavandit ja mõõtmist.
