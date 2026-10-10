@@ -30,6 +30,7 @@ import HomeCareNearMiss from "./HomeCareNearMiss";
 import HomeCareNoAnswer from "./HomeCareNoAnswer";
 import HomeCareMoney from "./HomeCareMoney";
 import HomeCarePreconditions from "./HomeCarePreconditions";
+import HomeCareRepresentatives from "./HomeCareRepresentatives";
 import HomeCareSlotList from "./HomeCareSlotList";
 import HomeCareSupplies from "./HomeCareSupplies";
 import HomeCareWorkNature from "./HomeCareWorkNature";
@@ -496,6 +497,14 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
         initial={data.relatives || []}
         canEdit={canWrite && access.isCoordinator}
         canFlag={canWrite && access.canEditCard}
+      />
+
+      {/* Esindusõigus (K6-i): kes tohib kliendi eest otsustada ja alla kirjutada. */}
+      <HomeCareRepresentatives
+        organizationId={organizationId}
+        clientId={client.id}
+        initial={data.representatives || []}
+        canEdit={canWrite && access.isCoordinator}
       />
 
       {/* Kriisivalmidus (K5-b): kui palju tuge klient kriisis vajab ja millest ta sõltub. */}

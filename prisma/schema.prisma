@@ -8247,6 +8247,7 @@ model CareClient {
   changeSignals      CareChangeSignal[]
   crisisProfiles     CareCrisisProfile[]
   relatives          CareClientRelative[]
+  representatives    CareClientRepresentative[]
   safetyItems        CareSafetyItem[]
   decisionNotices    CareDecisionNotice[]
   firstVisitNotices  CareFirstVisitNotice[]
@@ -8877,6 +8878,40 @@ model CareClientRelative {
 
   @@index([clientId, endedAt])
   @@index([organizationId, endedAt])
+}
+
+/// KODUTEENUS K6-i — esindusõiguse kirje (kava II.6.9): kes tohib kliendi eest otsustada ja
+/// alla kirjutada. Platvorm dokumenti ei hoia; rida ütleb, mida hooldusjuht nägi. Rida ei
+/// kustutata ega muudeta: muutunud või lõppenud õigus lõpetatakse (`endedAt`).
+model CareClientRepresentative {
+  id             String  @id @default(cuid())
+  organizationId String
+  clientId       String
+  name           String
+  phone          String?
+  /// POWER_OF_ATTORNEY | GUARDIANSHIP | OTHER (`CareRepresentativeBasis`).
+  basis          String
+  /// Mis ulatuses esindaja kliendi eest otsustab, oma sõnadega.
+  scope          String
+  /// Päevad kujul AAAA-KK-PP; `validUntil` NULL = tähtajatu.
+  validFrom      String?
+  validUntil     String?
+  /// Kus on dokumendi koopia, vaba tekst.
+  copyKept       String?
+  /// Mis päeval hooldusjuht dokumenti nägi; kontrollija on rea looja.
+  checkedOn      String
+
+  createdByMembershipId String?
+  createdByName         String?
+  createdAt             DateTime  @default(now())
+  endedAt               DateTime?
+  endedByMembershipId   String?
+  endedByName           String?
+
+  client CareClient @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId, endedAt])
+  @@index([clientId, endedAt])
 }
 
 /// KODUTEENUS K5-n — OHUTUSKAARDI rida (kava II.6.4): üks teema kümnest kodu kui töökoha

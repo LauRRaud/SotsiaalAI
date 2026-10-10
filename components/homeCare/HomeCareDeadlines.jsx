@@ -143,6 +143,21 @@ export default function HomeCareDeadlines({ context, deadlines }) {
         clientLine(item, item.state === "OLD" ? t("home_care.deadlines.safety_old", { date: planDayLabel(item.assessedOn) }) : t("home_care.deadlines.safety_none"))
       )}
 
+      {/* Esindusõigused, mille tähtaeg on möödas või lõpeb varsti (K6-i). */}
+      {(deadlines.representativesDue || []).length
+        ? section("representatives_due", deadlines.representativesDue, (item) =>
+            clientLine(
+              item,
+              t(item.expired ? "home_care.deadlines.representatives_due_expired" : "home_care.deadlines.representatives_due_line", {
+                name: item.name,
+                date: planDayLabel(item.validUntil)
+              }),
+              item.expired ? <span className="hc-badge hc-badge--danger">{t("home_care.deadlines.overdue_badge")}</span> : null,
+              item.id
+            )
+          )
+        : null}
+
       {section("relatives_due", deadlines.relativesDue || [], (item) =>
         clientLine(
           item,

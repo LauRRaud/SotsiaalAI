@@ -13207,7 +13207,15 @@
       "decision_sign_state_invalid": "Vali, kuidas leping allkirjastati.",
       "decision_sign_contract_only": "Allkirja märge käib ainult halduslepinguga.",
       "decision_signed_on_state": "Allkirjastamise päev käib ainult allkirjastatud lepinguga.",
-      "decision_signed_on_future": "Allkirjastamise päev ei saa olla tulevikus."
+      "decision_signed_on_future": "Allkirjastamise päev ei saa olla tulevikus.",
+      "representative_name_required": "Kirjuta esindaja nimi.",
+      "representative_basis_required": "Vali, mille alusel esindaja otsustab.",
+      "representative_scope_required": "Kirjuta, mida esindaja tohib kliendi eest otsustada.",
+      "representative_period_invalid": "Kehtivuse lõpp ei saa olla enne algust.",
+      "representative_checked_future": "Dokumendi nägemise päev ei saa olla tulevikus.",
+      "representative_too_many": "Kliendil on juba {limit} kehtivat esindaja kirjet. Lõpeta enne mõni neist.",
+      "representative_not_found": "Esindaja kirjet ei leitud.",
+      "representative_ended": "See esindusõiguse kirje on juba lõpetatud."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -13771,7 +13779,11 @@
       "contracts_unsigned_title": "Lepingud, mille allkiri on lahtine",
       "contracts_unsigned_empty": "Kõigi kehtivate lepingute allkiri on märgitud.",
       "contracts_unsigned_line": "leping kehtib alates {date}, allkiri märkimata",
-      "contracts_unsigned_unsure": "leping kehtib alates {date}: ei ole kindel, et inimene sai aru; pöördu sotsiaaltöötaja poole"
+      "contracts_unsigned_unsure": "leping kehtib alates {date}: ei ole kindel, et inimene sai aru; pöördu sotsiaaltöötaja poole",
+      "representatives_due_title": "Esindusõigused, mis lõpevad või on lõppenud",
+      "representatives_due_empty": "Ühegi esindusõiguse tähtaeg ei ole lähedal.",
+      "representatives_due_line": "esindaja {name}: õigus lõpeb {date}",
+      "representatives_due_expired": "esindaja {name}: õigus lõppes {date}"
     },
     "visit": {
       "title": "Mida tegid",
@@ -14894,6 +14906,41 @@
     },
     "exception_streak": {
       "line": "Viimasel {count} käigul (alates {date}) on kõik kava toimingud märgitud tehtuks nii, nagu kavas, ilma ühegi erandita. Vaata üle, kas kava vastab sellele, mis kohapeal päriselt toimub."
+    },
+    "representative": {
+      "title": "Esindusõigus",
+      "none": "Esindajat ei ole kirjas. Lähedane ei saa täisealise eest otsustada ega alla kirjutada ilma volituse või eestkosteta.",
+      "add": "Lisa esindaja",
+      "form_hint": "Pane kirja ainult see, mille kohta oled dokumenti näinud. Platvorm dokumenti ei hoia.",
+      "name_label": "Esindaja nimi",
+      "basis_label": "Mille alusel",
+      "bases": {
+        "POWER_OF_ATTORNEY": "volikiri",
+        "GUARDIANSHIP": "eestkoste",
+        "OTHER": "muu alus"
+      },
+      "scope_label": "Mida esindaja tohib kliendi eest otsustada",
+      "scope_hint": "Näiteks: koduteenuse lepingu sõlmimine ja muutmine.",
+      "from_label": "Kehtib alates",
+      "until_label": "Kehtib kuni",
+      "phone_label": "Telefon",
+      "copy_label": "Kus on dokumendi koopia",
+      "checked_label": "Mis päeval dokumenti nägid",
+      "checked_hint": "Tühjaks jäetud väli tähendab tänast päeva.",
+      "save": "Salvesta",
+      "cancel": "Loobu",
+      "end": "Lõpeta esindusõigus",
+      "end_confirm": "Kinnita lõpetamine",
+      "states": {
+        "UPCOMING": "ei kehti veel",
+        "EXPIRED": "tähtaeg on möödas"
+      },
+      "period_both": "kehtib {from} kuni {until}",
+      "period_until": "kehtib kuni {until}",
+      "period_from": "kehtib alates {from}",
+      "period_open": "tähtajatu",
+      "copy_line": "koopia: {place}",
+      "checked_line": "dokumenti nägi {date} {name}"
     }
   },
   "stage": {

@@ -37,8 +37,9 @@ test('lepingu allkirja märge: mis on hooldusjuhi nimekirjas', () => {
   assert.equal(signatureOpen({ kind: 'ACT', signState: null }), null);
 });
 
-test('lepingu allkirja märge: väljavõtte vorming 30 ja tekstid kolmes keeles', () => {
-  assert.equal(HOME_CARE_EXPORT_VERSION, 30);
+test('lepingu allkirja märge: väljavõtte vorming alates 30 ja tekstid kolmes keeles', () => {
+  /* Vorming kasvab iga uue koguga: siin loeb ainult see, et 30 on olemas ja loetav. */
+  assert.ok(HOME_CARE_EXPORT_VERSION >= 30);
   assert.ok(HOME_CARE_EXPORT_READABLE_VERSIONS.includes(29) && HOME_CARE_EXPORT_READABLE_VERSIONS.includes(30));
   for (const locale of ['et', 'en', 'ru']) {
     const catalogue = JSON.parse(readFileSync(new URL(`../messages/${locale}.json`, import.meta.url), 'utf8')).home_care;

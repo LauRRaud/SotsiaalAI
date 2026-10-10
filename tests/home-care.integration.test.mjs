@@ -102,6 +102,7 @@ import { markFirstVisit } from '../lib/homeCare/firstVisits.js';
 import { answerTransport, getTransportCard, requestTransport, withdrawTransport } from '../lib/homeCare/transport.js';
 import { addTrip, getTripLog, retractTrip } from '../lib/homeCare/trips.js';
 import { endRelative, flagRelativeDoubt, getSharingCard, saveRelative } from '../lib/homeCare/relatives.js';
+import { addRepresentative, endRepresentative } from '../lib/homeCare/representatives.js';
 import { saveSafetyCard } from '../lib/homeCare/safetyCard.js';
 import { composeNoAnswerText } from '../lib/homeCare/noAnswerText.js';
 import { assertNotificationRecipient, serializeNotificationEvent } from '../lib/notifications.js';
@@ -1888,6 +1889,8 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
   await saveRelative(lead, client.id, { name: 'Mari Tamm', relation: 'tütar', level: 1 }, deps());
   /* Ohutuskaardi vastus (K5-n), et väljavõttes oleks ka see kogu. */
   await saveSafetyCard(lead, client.id, { items: { ANIMALS: { answer: 'NO' } } }, deps());
+  /* Esindusõiguse kirje (K6-i), et väljavõttes oleks ka see kogu. */
+  await addRepresentative(lead, client.id, { name: 'Mari Tamm', basis: 'POWER_OF_ATTORNEY', scope: 'Lepingu sõlmimine' }, deps());
   /* Sõidupäeviku rida (K6-a). */
   await addTrip(lead, { vehicle: 'ORG', startOdometer: 100, endOdometer: 120, purpose: 'Käigud linnas' }, deps());
   /* Transpordi soov (K5-w). */
@@ -2019,6 +2022,7 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
     firstVisitNotices: await db.careFirstVisitNotice.count({ where: ofOrg }),
     transportRequests: await db.careTransportRequest.count({ where: ofOrg }),
     tripEntries: await db.careTripEntry.count({ where: ofOrg }),
+    clientRepresentatives: await db.careClientRepresentative.count({ where: ofOrg }),
     auditEvents: await db.dataAuditLog.count({
       where: { action: { startsWith: 'org.home_care_' }, meta: { path: ['organizationId'], equals: f.orgA.id }, createdAt: { lt: (await exportRows())[0].createdAt } }
     })
@@ -6652,4 +6656,76 @@ test('lepingu allkirja märge: ainult halduslepingul, päev ainult allkirjastatu
   const peeterDecision = (await getDecisions(lead, peeter.id, deps())).current;
   await retractDecision(lead, peeter.id, peeterDecision.id, { version: peeterDecision.version }, deps());
   assert.deepEqual(await open(), []);
+});
+
+test('esindusõiguse kirje: hooldusjuht lisab ja lõpetab, meeskond loeb, lõppev õigus on tähtaegade lehel', async (t) => {
+  const f = await fixture(t);
+  const north = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Põhi ${f.tag}`, type: 'TEAM' } });
+  await db.organizationCapabilityGrant.create({
+    data: { membershipId: f.members.cover.id, capability: 'HOME_CARE_COORDINATOR', scopeType: 'UNIT', scopeUnitId: north.id, validFrom: at('2026-01-01T00:00:00Z') }
+  });
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const unitLead = await f.ctx(f.users.cover, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, deps())).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi', unitId: north.id }, deps())).client;
+  await addTeamMember(lead, linda.id, { membershipId: f.members.anu.id }, deps());
+  const mari = { name: '  Mari  Tamm ', phone: '5555 1234', basis: 'POWER_OF_ATTORNEY', scope: 'Koduteenuse lepingu sõlmimine ja muutmine', validUntil: '2026-11-01', copyKept: 'Kaust 3' };
+
+  /* Vigane sisend ei salvestu. */
+  const bad = (body, key) => expectError(addRepresentative(lead, linda.id, { ...mari, ...body }, deps()), 400, key);
+  await bad({ name: ' ' }, 'home_care.errors.representative_name_required');
+  await bad({ basis: 'RELATIVE' }, 'home_care.errors.representative_basis_required');
+  await bad({ scope: '' }, 'home_care.errors.representative_scope_required');
+  await bad({ validFrom: '2026-12-01' }, 'home_care.errors.representative_period_invalid');
+  await bad({ checkedOn: '2026-10-10' }, 'home_care.errors.representative_checked_future');
+  await bad({ phone: 'helista õhtul' }, 'home_care.errors.referral_phone_invalid');
+  assert.equal(await db.careClientRepresentative.count({ where: { organizationId: f.orgA.id } }), 0);
+
+  /* Hooldusjuht lisab; töötaja ja teise asutuse hooldusjuht ei saa. */
+  const added = await addRepresentative(lead, linda.id, mari, deps());
+  assert.deepEqual(
+    added.representatives.map((item) => [item.name, item.basis, item.scope, item.validFrom, item.validUntil, item.copyKept, item.checkedOn, item.state, item.daysLeft]),
+    [['Mari Tamm', 'POWER_OF_ATTORNEY', 'Koduteenuse lepingu sõlmimine ja muutmine', null, '2026-11-01', 'Kaust 3', '2026-10-09', 'VALID', 23]]
+  );
+  assert.ok(added.representatives[0].checkedByName);
+  await expectError(addRepresentative(anu, linda.id, mari, deps()), 403, 'org.errors.missing_capability');
+  await expectError(addRepresentative(leadB, linda.id, mari, deps()), 404, 'home_care.errors.client_not_found');
+  /* Teise üksuse hooldusjuht on selle kliendi juures tavaline töötaja: lehe saaks ta avada põhjusega, kirjet lisada mitte. */
+  await expectError(addRepresentative(unitLead, linda.id, mari, deps()), 403, 'home_care.errors.access_reason_required');
+  /* Meeskonna liige näeb kirjet kliendi lehel. */
+  assert.deepEqual((await openClient(anu, linda.id, deps())).representatives.map((item) => [item.name, item.state]), [['Mari Tamm', 'VALID']]);
+
+  /* Üksuse kliendil eestkostja, kelle õigus on juba möödas, ja tähtajatu volitus; neljandat kehtivat kirjet ei lisata. */
+  await addRepresentative(unitLead, peeter.id, { name: 'Jaan Põhi', basis: 'GUARDIANSHIP', scope: 'Kõik toimingud', validFrom: '2025-10-01', validUntil: '2026-10-01', checkedOn: '2025-10-02' }, deps());
+  await addRepresentative(lead, peeter.id, { name: 'Tiina Põhi', basis: 'OTHER', scope: 'Ainult arved' }, deps());
+  const third = await addRepresentative(lead, peeter.id, { name: 'Kolmas', basis: 'OTHER', scope: 'x', validFrom: '2026-12-01' }, deps());
+  assert.deepEqual(third.representatives.map((item) => [item.name, item.state]), [['Jaan Põhi', 'EXPIRED'], ['Tiina Põhi', 'VALID'], ['Kolmas', 'UPCOMING']]);
+  await expectError(addRepresentative(lead, peeter.id, { name: 'Neljas', basis: 'OTHER', scope: 'x' }, deps()), 400, 'home_care.errors.representative_too_many');
+
+  /* Tähtaegade leht: möödunud ees, siis 30 päeva jooksul lõppev; tähtajatu ja kaugem ei ole nimekirjas. */
+  const due = async (context) => (await getDeadlines(context, deps())).representativesDue.map((item) => [item.client.displayName, item.name, item.validUntil, item.daysLeft, item.expired]);
+  assert.deepEqual(await due(lead), [['Peeter Põhi', 'Jaan Põhi', '2026-10-01', -8, true], ['Linda Tamm', 'Mari Tamm', '2026-11-01', 23, false]]);
+  assert.deepEqual(await due(unitLead), [['Peeter Põhi', 'Jaan Põhi', '2026-10-01', -8, true]]);
+
+  /* Lõpetamine: rida jääb alles, kaob lehelt ja nimekirjast; teist korda lõpetada ei saa. */
+  const jaan = third.representatives[0];
+  await expectError(endRepresentative(anu, peeter.id, jaan.id, deps()), 403, 'home_care.errors.access_reason_required');
+  const ended = await endRepresentative(unitLead, peeter.id, jaan.id, deps());
+  assert.deepEqual(ended.representatives.map((item) => item.name), ['Tiina Põhi', 'Kolmas']);
+  await expectError(endRepresentative(lead, peeter.id, jaan.id, deps()), 409, 'home_care.errors.representative_ended');
+  await expectError(endRepresentative(lead, linda.id, jaan.id, deps()), 404, 'home_care.errors.representative_not_found');
+  assert.deepEqual(await due(lead), [['Linda Tamm', 'Mari Tamm', '2026-11-01', 23, false]]);
+  const kept = await db.careClientRepresentative.findUnique({ where: { id: jaan.id } });
+  assert.ok(kept.endedAt && kept.endedByName);
+
+  /* Andmebaas hoiab piire ka koodist mööda kirjutades; jälg ei kanna nime ega ulatust. */
+  const raw = { organizationId: f.orgA.id, clientId: linda.id, name: 'X', basis: 'OTHER', scope: 'x', checkedOn: '2026-10-09' };
+  await assert.rejects(db.careClientRepresentative.create({ data: { ...raw, basis: 'RELATIVE' } }));
+  await assert.rejects(db.careClientRepresentative.create({ data: { ...raw, validFrom: '2026-12-01', validUntil: '2026-11-01' } }));
+  await assert.rejects(db.careClientRepresentative.create({ data: { ...raw, checkedOn: '9.10.2026' } }));
+  const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_representative_changed', meta: { path: ['organizationId'], equals: f.orgA.id } }, orderBy: { createdAt: 'asc' } });
+  assert.deepEqual(audit.map((row) => row.meta.change), ['added', 'added', 'added', 'added', 'ended']);
+  assert.equal(JSON.stringify(audit).includes('Tamm'), false);
 });
