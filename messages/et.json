@@ -13177,7 +13177,10 @@
       "notice_answer_note_required": "Kirjuta selgitus: miks maht jääb või mida vastati.",
       "notice_withdraw_reason": "Kirjuta, miks teade tagasi võetakse.",
       "day_sheet_empty": "Sellel päeval ei ole käike, mida lehele panna.",
-      "day_sheet_worker": "Töötajat ei leitud."
+      "day_sheet_worker": "Töötajat ei leitud.",
+      "first_visit_day": "Päev ei sobi: märkida saab nädal tagasi kuni kuu ette.",
+      "first_visit_worker": "Töötajat ei leitud.",
+      "first_visit_outcome": "Vali, kuidas kliendile teatati."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -14663,6 +14666,27 @@
         "sign_date": "Kuupäev:",
         "sign_org": "Asutuse nimel:",
         "issued_on": "välja antud {date}"
+      }
+    },
+    "first_visit": {
+      "day_line": "{name} läheb selle kliendi juurde esimest korda.",
+      "not_marked": "Kliendile ei ole veel teatatud.",
+      "outcomes": {
+        "CALLED": "Kliendile helistati.",
+        "TOLD_BY_REGULAR": "Püsihooldaja ütles eelmisel käigul.",
+        "NOT_REACHED": "Kliendile ei jõutud teatada."
+      },
+      "mark": {
+        "CALLED": "Helistasin kliendile",
+        "TOLD_BY_REGULAR": "Püsihooldaja ütles",
+        "NOT_REACHED": "Ei jõudnud teatada"
+      },
+      "my_line": "Klient ei tunne sind: lähed siia esimest korda.",
+      "my_not_marked": "Talle ei ole veel teatatud: küsi hooldusjuhilt või ütle uksel oma nimi ja kust sa tuled.",
+      "my_outcomes": {
+        "CALLED": "Talle on helistatud ja ta teab, et tuled.",
+        "TOLD_BY_REGULAR": "Püsihooldaja ütles talle eelmisel käigul, et tuled.",
+        "NOT_REACHED": "Talle ei jõutud teatada: ütle uksel oma nimi ja kust sa tuled."
       }
     }
   },

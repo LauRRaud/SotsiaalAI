@@ -8248,6 +8248,7 @@ model CareClient {
   relatives          CareClientRelative[]
   safetyItems        CareSafetyItem[]
   decisionNotices    CareDecisionNotice[]
+  firstVisitNotices  CareFirstVisitNotice[]
 
   @@unique([organizationId, internalCode])
   @@index([organizationId, status, displayName])
@@ -8637,6 +8638,32 @@ model CareReferralContact {
   organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 
   @@index([organizationId, endedAt, position])
+}
+
+/// KODUTEENUS K5-v — ESMAKÄIGU TEADE (kava II.6.8 „võõras ukse taga"): kuidas kliendile teatati,
+/// et tema juurde tuleb töötaja, kes ei ole seal varem käinud. Üks kehtiv märge kliendi,
+/// töötaja ja päeva kohta (osaline unikaalne indeks migratsioonis); uus märge lõpetab eelmise.
+model CareFirstVisitNotice {
+  id                 String @id @default(cuid())
+  organizationId     String
+  clientId           String
+  /// FK-ta: töötaja liikmesus, kelle käigust jutt on.
+  workerMembershipId String
+  /// Käigu päev kujul AAAA-KK-PP.
+  day                String
+  /// CALLED | TOLD_BY_REGULAR | NOT_REACHED.
+  outcome            String
+
+  createdByMembershipId String?
+  createdByName         String?
+  createdAt             DateTime  @default(now())
+  endedAt               DateTime?
+  endedByMembershipId   String?
+
+  client CareClient @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@index([clientId, day])
+  @@index([organizationId, day, endedAt])
 }
 
 /// KODUTEENUS K5-r — TEADE OTSUSTAJALE (kava II.6.13): hooldusjuhi teade omavalitsuse

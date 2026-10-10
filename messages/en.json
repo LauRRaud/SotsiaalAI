@@ -13177,7 +13177,10 @@
       "notice_answer_note_required": "Write an explanation: why the volume stays or what was answered.",
       "notice_withdraw_reason": "Write why the notice is withdrawn.",
       "day_sheet_empty": "There are no visits on this day to put on a sheet.",
-      "day_sheet_worker": "The worker was not found."
+      "day_sheet_worker": "The worker was not found.",
+      "first_visit_day": "The day does not fit: a week back to a month ahead can be marked.",
+      "first_visit_worker": "The worker was not found.",
+      "first_visit_outcome": "Choose how the client was told."
     },
     "incidents": {
       "title": "Incident register",
@@ -14663,6 +14666,27 @@
         "sign_date": "Date:",
         "sign_org": "For the organisation:",
         "issued_on": "issued on {date}"
+      }
+    },
+    "first_visit": {
+      "day_line": "{name} is going to this client for the first time.",
+      "not_marked": "The client has not been told yet.",
+      "outcomes": {
+        "CALLED": "The client was called.",
+        "TOLD_BY_REGULAR": "The regular care worker told them at the last visit.",
+        "NOT_REACHED": "The client could not be told."
+      },
+      "mark": {
+        "CALLED": "I called the client",
+        "TOLD_BY_REGULAR": "The regular worker told them",
+        "NOT_REACHED": "Could not tell them"
+      },
+      "my_line": "The client does not know you: this is your first visit here.",
+      "my_not_marked": "They have not been told yet: ask the coordinator, or say your name and where you come from at the door.",
+      "my_outcomes": {
+        "CALLED": "They have been called and know you are coming.",
+        "TOLD_BY_REGULAR": "The regular care worker told them at the last visit that you are coming.",
+        "NOT_REACHED": "They could not be told: say your name and where you come from at the door."
       }
     }
   },

@@ -96,6 +96,7 @@ import { getMonthOpenItems } from '../lib/homeCare/monthClose.js';
 import { getMonthPage, lockMonth, reopenMonth } from '../lib/homeCare/monthLock.js';
 import { answerDecisionNotice, createDecisionNotice, withdrawDecisionNotice } from '../lib/homeCare/decisionNotices.js';
 import { getDaySheet } from '../lib/homeCare/daySheet.js';
+import { markFirstVisit } from '../lib/homeCare/firstVisits.js';
 import { endRelative, flagRelativeDoubt, getSharingCard, saveRelative } from '../lib/homeCare/relatives.js';
 import { saveSafetyCard } from '../lib/homeCare/safetyCard.js';
 import { composeNoAnswerText } from '../lib/homeCare/noAnswerText.js';
@@ -1883,6 +1884,8 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
   await saveRelative(lead, client.id, { name: 'Mari Tamm', relation: 'tütar', level: 1 }, deps());
   /* Ohutuskaardi vastus (K5-n), et väljavõttes oleks ka see kogu. */
   await saveSafetyCard(lead, client.id, { items: { ANIMALS: { answer: 'NO' } } }, deps());
+  /* Esmakäigu teade (K5-v). */
+  await markFirstVisit(lead, client.id, { day: '2026-10-09', workerMembershipId: f.members.anu.id, outcome: 'CALLED' }, deps());
   /* Teade otsustajale (K5-r). */
   await createDecisionNotice(lead, client.id, { reason: 'NEED_GROWN', text: 'Abivajadus on kasvanud.', channel: 'EMAIL' }, deps());
   /* Kuu lukk (K5-p): eelmise kuu arvud lukku. */
@@ -2005,6 +2008,7 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
     safetyItems: await db.careSafetyItem.count({ where: ofOrg }),
     monthLocks: await db.careMonthLock.count({ where: ofOrg }),
     decisionNotices: await db.careDecisionNotice.count({ where: ofOrg }),
+    firstVisitNotices: await db.careFirstVisitNotice.count({ where: ofOrg }),
     auditEvents: await db.dataAuditLog.count({
       where: { action: { startsWith: 'org.home_care_' }, meta: { path: ['organizationId'], equals: f.orgA.id }, createdAt: { lt: (await exportRows())[0].createdAt } }
     })
@@ -5937,4 +5941,60 @@ test('klient ei mäleta, et lubas: meeskond märgib, kehtib kitsaim aste, hooldu
   await assert.rejects(db.careClientRelative.update({ where: { id: confirmed.id }, data: { doubtAt: NOW } }));
   const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_relative_changed', meta: { path: ['organizationId'], equals: f.orgA.id } } });
   assert.deepEqual(audit.map((entry) => entry.meta.change).sort(), ['added', 'changed', 'doubt']);
+});
+
+test('võõras ukse taga: esmakäik on päevaplaanis ja töötaja päevas märgitud, hooldusjuht paneb kirja, kuidas kliendile teatati', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  const start = deps(at('2026-09-01T08:00:00Z'));
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, start)).client;
+  for (const key of ['anu', 'bert']) await addTeamMember(lead, linda.id, { membershipId: f.members[key].id }, start);
+  /* Reedeti: Anu kell 9, Bert kell 14. Anu on Linda juures käinud, Bert ei ole. */
+  await createSlots(lead, linda.id, { weekdays: [5], startTime: '09:00', plannedMinutes: 30, workerMembershipId: f.members.anu.id, validFrom: '2026-09-28' }, start);
+  await createSlots(lead, linda.id, { weekdays: [5], startTime: '14:00', plannedMinutes: 30, workerMembershipId: f.members.bert.id, validFrom: '2026-09-28' }, start);
+  await createEntry(anu, linda.id, { kind: 'NOTE', contactMode: 'VISIT', text: 'Käik', visitMinutes: 30, occurredAt: '2026-10-02T06:00:00Z' }, deps(at('2026-10-02T06:30:00Z')));
+
+  const visitsOf = (plan) => plan.workers.flatMap((worker) => worker.visits.map((visit) => [worker.name.split(' ')[0], visit.startTime, visit.firstVisit]));
+  const plan = await getDayPlan(lead, { day: '2026-10-09' }, deps());
+  assert.deepEqual(visitsOf(plan), [['Anu', '09:00', null], ['Bert', '14:00', { outcome: null, byName: null }]]);
+  /* Töötaja enda päevas: Anul märget ei ole, Bertil on. */
+  assert.deepEqual((await getMyDay(anu, deps())).visits.map((visit) => visit.firstVisit), [null]);
+  assert.deepEqual((await getMyDay(bert, deps())).visits.map((visit) => visit.firstVisit), [{ outcome: null, byName: null }]);
+
+  /* Märgib kliendi hooldusjuht; hooldaja ja teine asutus mitte; tundmatu töötaja ja liiga kauge päev lükatakse tagasi. */
+  const mark = { day: '2026-10-09', workerMembershipId: f.members.bert.id, outcome: 'NOT_REACHED' };
+  await expectError(markFirstVisit(anu, linda.id, mark, deps()), 403, 'org.errors.missing_capability');
+  await expectError(markFirstVisit(leadB, linda.id, mark, deps()), 404);
+  await expectError(markFirstVisit(lead, linda.id, { ...mark, workerMembershipId: f.members.leadB.id }, deps()), 400, 'home_care.errors.first_visit_worker');
+  await expectError(markFirstVisit(lead, linda.id, { ...mark, day: '2026-12-01' }, deps()), 400, 'home_care.errors.first_visit_day');
+  await expectError(markFirstVisit(lead, linda.id, { ...mark, outcome: 'SMS' }, deps()), 400, 'home_care.errors.first_visit_outcome');
+  const first = await markFirstVisit(lead, linda.id, mark, deps());
+  assert.equal(first.firstVisit.outcome, 'NOT_REACHED');
+  /* Uus märge lõpetab eelmise: kehtib üks, mõlemad jäävad alles. */
+  await markFirstVisit(lead, linda.id, { ...mark, outcome: 'CALLED' }, deps(at('2026-10-09T09:00:00Z')));
+  assert.deepEqual([await db.careFirstVisitNotice.count({ where: { clientId: linda.id } }), await db.careFirstVisitNotice.count({ where: { clientId: linda.id, endedAt: null } })], [2, 1]);
+  const marked = visitsOf(await getDayPlan(lead, { day: '2026-10-09' }, deps()))[1][2];
+  assert.equal(marked.outcome, 'CALLED');
+  assert.match(marked.byName, /Juta/);
+  assert.equal((await getMyDay(bert, deps())).visits[0].firstVisit.outcome, 'CALLED');
+  /* Teise päeva käigul sama töötajaga seda märget ei ole: märge käib päeva kohta. */
+  assert.deepEqual(visitsOf(await getDayPlan(lead, { day: '2026-10-16' }, deps()))[1][2], { outcome: null, byName: null });
+
+  /* Kui Bert on käigu teinud, on ta „käinud": märget enam ei näidata. */
+  await createEntry(bert, linda.id, { kind: 'NOTE', contactMode: 'VISIT', text: 'Esimene käik', visitMinutes: 30, occurredAt: '2026-10-09T07:30:00Z' }, deps(at('2026-10-09T07:45:00Z')));
+  assert.deepEqual(visitsOf(await getDayPlan(lead, { day: '2026-10-16' }, deps())).map((row) => row[2]), [null, null]);
+
+  /* ANDMEBAAS: üks kehtiv märge kliendi, töötaja ja päeva kohta; tulemus ja päeva kuju on kontrollitud. */
+  const raw = { organizationId: f.orgA.id, clientId: linda.id, workerMembershipId: f.members.bert.id, day: '2026-10-09', outcome: 'CALLED' };
+  await assert.rejects(db.careFirstVisitNotice.create({ data: raw }));
+  await assert.rejects(db.careFirstVisitNotice.create({ data: { ...raw, day: '2026-10-10', outcome: 'SMS' } }));
+  await assert.rejects(db.careFirstVisitNotice.create({ data: { ...raw, day: '10.10.2026' } }));
+  const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_first_visit_marked', meta: { path: ['organizationId'], equals: f.orgA.id } }, orderBy: { createdAt: 'asc' } });
+  assert.deepEqual(audit.map((entry) => [entry.meta.change, entry.meta.day, entry.meta.membershipId]), [
+    ['NOT_REACHED', '2026-10-09', f.members.bert.id],
+    ['CALLED', '2026-10-09', f.members.bert.id]
+  ]);
 });
