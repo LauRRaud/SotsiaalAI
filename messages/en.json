@@ -12560,7 +12560,7 @@
     },
     "result": {
       "incomplete": "An estimate cannot be given yet",
-      "limit": "Family subsistence limit",
+      "limit": "Family subsistence limit ({year} rate)",
       "housing": "Housing costs counted",
       "income": "Income counted",
       "housing_declared": "Housing costs entered"
@@ -12600,7 +12600,9 @@
       "INCOME_REQUIRED": "Enter last month's income. If there was no income that counts, type 0 in the work income or other income field.",
       "COSTS_NOT_CURRENT_MONTH": "Only costs that are due this month count (usually last month's bills); earlier debt does not. Enter only those amounts and then answer “Yes” in the Details view.",
       "LAND_TAX_EXEMPT_NOT_COUNTED": "Land tax is not counted if you are fully or partly exempt from it. Clear the “Land tax” amount to see the estimate without it.",
-      "ADULT_REQUIRED": "This estimate does not calculate a family with no adult: ask your municipality. If there is an adult in the family, enter the number of adults."
+      "ADULT_REQUIRED": "This estimate does not calculate a family with no adult: ask your municipality. If there is an adult in the family, enter the number of adults.",
+      "DATE_UNREADABLE": "The page could not read today's date from your device, so no estimate can be given. Try another browser or device, or ask your municipality.",
+      "DATE_BEFORE_CURRENT_RATE": "Your device's clock shows an earlier year. No estimate is given for that date, because the subsistence rate would be wrong. Check the date on your device."
     },
     "answers": {
       "yes": "Yes",

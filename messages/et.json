@@ -12560,7 +12560,7 @@
     },
     "result": {
       "incomplete": "Eelhinnangut ei saa veel anda",
-      "limit": "Pere toimetulekupiir",
+      "limit": "Pere toimetulekupiir ({year}. aasta määr)",
       "housing": "Arvesse minev eluasemekulu",
       "income": "Arvesse minev sissetulek",
       "housing_declared": "Sisestatud eluasemekulu"
@@ -12600,7 +12600,9 @@
       "INCOME_REQUIRED": "Sisesta eelmise kuu sissetulek. Kui arvesse minevat sissetulekut ei olnud, kirjuta töise või muu sissetuleku väljale 0.",
       "COSTS_NOT_CURRENT_MONTH": "Arvesse lähevad ainult need kulud, mis tuleb tasuda sel kuul (tavaliselt eelmise kuu arved); varasemat võlga ei arvestata. Sisesta ainult need summad ja vasta siis täpsustuste vaates „Jah”.",
       "LAND_TAX_EXEMPT_NOT_COUNTED": "Maamaksu ei võeta arvesse, kui oled maamaksust täielikult või osaliselt vabastatud. Kustuta väljalt „Maamaks” summa, kui tahad näha eelhinnangut ilma selleta.",
-      "ADULT_REQUIRED": "See eelhinnang ei arvuta peret, kus ei ole ühtegi täisealist: küsi oma valla- või linnavalitsusest. Kui peres on täisealine, märgi täisealiste arv."
+      "ADULT_REQUIRED": "See eelhinnang ei arvuta peret, kus ei ole ühtegi täisealist: küsi oma valla- või linnavalitsusest. Kui peres on täisealine, märgi täisealiste arv.",
+      "DATE_UNREADABLE": "Leht ei saanud sinu seadmest tänast kuupäeva lugeda, seepärast eelhinnangut anda ei saa. Proovi teise brauseri või seadmega või küsi oma valla- või linnavalitsusest.",
+      "DATE_BEFORE_CURRENT_RATE": "Sinu seadme kell näitab varasemat aastat. Selle kuupäevaga eelhinnangut ei anta, sest toimetulekupiiri määr oleks vale. Kontrolli seadme kuupäeva."
     },
     "answers": {
       "yes": "Jah",
