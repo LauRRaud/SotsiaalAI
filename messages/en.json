@@ -23,6 +23,7 @@
     "contextFailed": "Your message was accepted, but no answer was published because the selected context could not be used. The topic, person or correction selection was retained. Start a new topic if necessary.",
     "reloadContext": "Reload context",
     "referenceFailed": "The answer was not published because source reference validation failed. No new answer attempt was made.",
+    "provisionFailed": "The answer was not published because it named a provision of a legal act that its sources do not contain. No new answer attempt was made. Please ask again.",
     "answerFailed": "The answer was not published because validation or preparation failed. No new answer attempt was made.",
     "unknown": "The service attempt outcome is unknown. No new answer attempt was made.",
     "title": "From question to source",

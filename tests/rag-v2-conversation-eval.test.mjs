@@ -573,3 +573,108 @@ test('a scenario may name the role of its user: one of the roles of the chat ser
   for (const role of [undefined, ...USER_ROLES]) assert.deepEqual(validateCatalogue(scenario(role)), [], String(role));
   for (const role of ['admin', 'SPECIALIST', '', null, 7]) assert.deepEqual(validateCatalogue(scenario(role)), [`x: role ${role}`], String(role));
 });
+
+// ADR-129 (10.10.2026): an answer names the provision a claim rests on, and the server counts and checks every one it
+// names (provision-check.js, the turn's provisionAudit). The evaluation judges a turn by that count, not by a pattern
+// over the answer's text.
+const zeroKinds = { a: 0, b: 0, c: 0, v: 0, s: 0, p: 0, q: 0, d: 0 };
+const provisionAudit = (mentions, naming, kinds = {}, extra = {}) => ({ version: 'rag-v2/provision-check-1', labelled: 3, mentions, blocks_naming: naming, kinds: { ...zeroKinds, ...kinds }, outside_blocks: 0, act_named: 0, act_not_shown: 0,
+  from_other_sources: 0, collisions: 0, word_forms: 0, bare_subsections: 0, items: [], ...extra });
+
+test('ADR-129: names_provision and provisions_at_most read the server\'s count; every turn with the audit is checked for an unsupported provision', () => {
+  const failedOf = (expect, provisions, extra = {}) => checkTurn(expect, observed({ provisions, ...extra }), { today: '2026-10-10' }).checks.filter(check => !check.ok).map(check => check.key);
+  // The catalogue's shape: true or false, a whole number.
+  const catalogue = expect => ({ scenarios: [{ id: 'x', turns: [{ mode: 'new', text: 'a', expect }] }] });
+  assert.deepEqual(validateCatalogue(catalogue({ names_provision: true, provisions_at_most: 3 })), []);
+  assert.deepEqual(validateCatalogue(catalogue({ names_provision: false, provisions_at_most: 0 })), []);
+  assert.deepEqual(validateCatalogue(catalogue({ names_provision: 'yes', provisions_at_most: 2.5 })), ['x turn 1: names_provision is true or false', 'x turn 1: provisions_at_most needs a whole number']);
+  assert.deepEqual(validateCatalogue(catalogue({ provisions_at_most: -1 })), ['x turn 1: provisions_at_most needs a whole number']);
+  // names_provision true: a block names one. A provision in a limitation alone, or a subsection without its section, is none.
+  assert.deepEqual(failedOf({ names_provision: true }, provisionAudit(2, 1, { a: 2 })), []);
+  assert.deepEqual(failedOf({ names_provision: true }, provisionAudit(1, 0, { q: 1 })), ['names_provision']);
+  assert.deepEqual(failedOf({ names_provision: true }, provisionAudit(0, 0, {}, { bare_subsections: 1 })), ['names_provision']);
+  assert.deepEqual(failedOf({ names_provision: true }, null), ['names_provision'], 'no audit: nothing labelled and nothing named');
+  // names_provision false: none anywhere, also none the reader does not read.
+  assert.deepEqual(failedOf({ names_provision: false }, null), []);
+  assert.deepEqual(failedOf({ names_provision: false }, provisionAudit(0, 0)), []);
+  assert.deepEqual(failedOf({ names_provision: false }, provisionAudit(1, 1, { a: 1 })), ['names_provision']);
+  assert.deepEqual(failedOf({ names_provision: false }, provisionAudit(0, 0, {}, { bare_subsections: 1 })), ['names_provision']);
+  // provisions_at_most: the mentions of the whole answer.
+  assert.deepEqual([failedOf({ provisions_at_most: 3 }, provisionAudit(3, 2, { a: 3 })), failedOf({ provisions_at_most: 3 }, provisionAudit(4, 2, { a: 4 })), failedOf({ provisions_at_most: 0 }, null)], [[], ['provisions_at_most'], []]);
+  // Always, when the turn has the audit: no provision that nothing gives, whatever the policy did with it; a check that
+  // failed by itself is a failure too. It is an answer fault, and its detail lists what to read by hand.
+  assert.deepEqual(failedOf({}, provisionAudit(2, 1, { a: 1, c: 1 })), []);
+  const refused = checkTurn({ names_provision: true }, observed({ state: 'answer_rejected', error: 'unsupported_provision', text: '',
+    provisions: provisionAudit(2, 1, { a: 1, d: 1 }, { items: [{ at: '$.blocks[0].text', provision: '§ 999 lg 1', kind: 'd', act: 'not_shown' }, { at: '$.blocks[1].text', provision: '§ 200', kind: 'b', act: 'unnamed', source: 'not_an_act' },
+      { at: '$.blocks[2].text', provision: '§ 6 lg 2', kind: 'a', act: 'unnamed', after_other_act: true }] }) }), { today: '2026-10-10' });
+  assert.deepEqual([refused.verdict, refused.checks.filter(check => !check.ok).map(check => [check.key, check.kind])], ['answer', [['completed', 'answer'], ['provisions_supported', 'answer']]]);
+  assert.equal(refused.checks.find(check => check.key === 'provisions_supported').detail, 'kinds a 1, d 1; to read by hand: § 999 lg 1 (d, $.blocks[0].text); § 200 (b, not an act, $.blocks[1].text); § 6 lg 2 (a, no act named after another act, $.blocks[2].text)');
+  assert.deepEqual(failedOf({}, { version: 'rag-v2/provision-check-1', failed: true }), ['provisions_supported']);
+  // A turn without the audit gets no such check: the catalogues written before ADR-129 read as they did.
+  assert.equal(checkTurn({}, observed(), { today: '2026-10-10' }).checks.some(check => check.key === 'provisions_supported'), false);
+});
+
+test('ADR-129: the provisions catalogue: its roles and turns, the turns where the user names a provision, and its patterns against written answers', async () => {
+  const catalogue = JSON.parse(await fs.readFile('tests/evaluation/dialogue/scenarios-provisions-1.json', 'utf8')), turns = catalogue.scenarios.flatMap(scenario => scenario.turns.map(turn => ({ ...turn, id: scenario.id, role: scenario.role })));
+  assert.deepEqual(validateCatalogue(catalogue), []);
+  assert.deepEqual([catalogue.scenarios.length, turns.length], [20, 22]);
+  const byRole = role => catalogue.scenarios.filter(scenario => scenario.role === role).length;
+  assert.deepEqual([byRole('help_seeker'), byRole('specialist'), byRole('service_provider'), catalogue.scenarios.every(scenario => SCENARIO_ROLES.includes(scenario.role))], [8, 11, 1, true]);
+  // The run is paid and no standing run includes it: the catalogue itself says how it may be run.
+  for (const phrase of ['PAID', '--max-usd 0.15', 'run it ONCE', 'A repeat', 'needs a new yes']) assert.ok(catalogue.purpose.includes(phrase), phrase);
+  // The questions the owner named: what a named section and subsection says, a help seeker's follow-up, specialist questions.
+  const text = id => catalogue.scenarios.find(scenario => scenario.id === id).turns.map(turn => turn.text);
+  assert.deepEqual(text('specialist-named-provision'), ['Mida ütleb SHS § 133 lg 5?']);
+  assert.deepEqual(text('subsistence-deadline')[1], 'Mis paragrahv seda ütleb?');
+  assert.deepEqual(text('specialist-home-loan')[1], 'Mis lõige seda täpselt ütleb?');
+  // The review's additions: a subsection that does not exist, an act outside the corpus, a false premise, a raised
+  // digit, two municipalities' regulations of one title, a question a guide alone supports.
+  for (const id of ['specialist-named-missing-subsection', 'specialist-named-act-outside-corpus', 'false-premise-flat', 'specialist-raised-digit', 'specialist-two-municipalities', 'specialist-guide-only']) assert.equal(text(id).length, 1, id);
+  // The named-provision turn tells a miss of the search from an answer fault: the passage that holds the subsection.
+  const named = turns.find(turn => turn.id === 'specialist-named-provision').expect;
+  assert.deepEqual([named.evidence_provision[0].section, named.cited_provision[0].section, named.names_provision], ['133', '133', true]);
+  assert.equal(checkTurn(named, observed({ provisions: provisionAudit(1, 1, { a: 1 }), evidencePassages: [], citedPassages: [] }), { today: '2026-10-10' }).verdict, 'search');
+  const passage = { title: 'Sotsiaalhoolekande seadus', section: '133', text: '(5)\nArvestades piirmäärasid, võetakse toimetulekutoetuse arvestamisel arvesse järgmised jooksval kuul tasumisele kuuluvad eluasemekulud:' };
+  assert.equal(checkTurn(named, observed({ provisions: provisionAudit(1, 1, { a: 1 }), evidencePassages: [passage], citedPassages: [passage] }), { today: '2026-10-10' }).verdict, 'passed');
+  // A help seeker is never given an abbreviation: the pattern against a written right answer and a written wrong one.
+  const helpSeeker = turns.filter(turn => turn.role === 'help_seeker' && turn.expect.must_not);
+  assert.equal(helpSeeker.length, 3);
+  for (const turn of helpSeeker) {
+    const failed = answer => checkTurn({ must_not: turn.expect.must_not }, observed({ text: answer }), { today: '2026-10-10' }).verdict;
+    assert.deepEqual([failed('Vald peab otsustama viie tööpäeva jooksul (sotsiaalhoolekande seaduse § 134 lg 1).'), failed('Vald peab otsustama viie tööpäeva jooksul (SHS § 134 lg 1).')], ['passed', 'answer'], turn.id);
+  }
+  // A provision the user named and nothing gives: saying that its text is not at hand passes, stating something under it does not.
+  const missing = turns.find(turn => turn.id === 'specialist-named-missing-subsection').expect, outside = turns.find(turn => turn.id === 'specialist-named-act-outside-corpus').expect;
+  const verdict = (expect, answer) => checkTurn(expect, observed({ text: answer }), { today: '2026-10-10' }).verdict;
+  assert.deepEqual([verdict(missing, 'Mul ei ole sotsiaalhoolekande seaduse § 133 lg 99 teksti; sellist lõiget ma siin ei näe.'), verdict(missing, 'Sotsiaalhoolekande seaduse § 133 lg 99 järgi makstakse toetust.'),
+    verdict(missing, 'Paragrahvi 133 lõike 99 kohaselt makstakse toetust.')], ['passed', 'answer', 'answer']);
+  // The honest limitation as the paid check of 10.10.2026 got it ("... mida § 133 lg 99 sätestab: ...") is no statement
+  // under that number; "sätestab, et ..." is one.
+  assert.deepEqual([verdict(missing, 'Ma ei saa siin oleva teabe põhjal öelda, mida sotsiaalhoolekande seaduse § 133 lg 99 sätestab: selle sätte teksti ei ole siin kasutada.'),
+    verdict(missing, 'Sotsiaalhoolekande seaduse § 133 lg 99 sätestab, et toetust makstakse.')], ['passed', 'answer']);
+  assert.deepEqual([verdict(outside, 'Võlaõigusseadust minu kogus ei ole, seega ma ei saa öelda, mida § 208 lõige 1 ütleb.'), verdict(outside, 'Võlaõigusseaduse § 208 lõike 1 kohaselt võib ostja lepingust taganeda.')], ['passed', 'answer']);
+});
+
+test('ADR-129: the run\'s provision totals for each role and in all: answers that name one, the kinds, kind b from a source that is no act, the cost a turn', async () => {
+  const { provisionTotals } = await import('../lib/rag-v2/pilot/conversation-eval.js');
+  const { PROVISION_KINDS } = await import('../lib/rag-v2/pilot/provision-check.js');
+  const turn = (state, usd, provisions, error = null) => ({ observed: { state, error, usd, provisions } });
+  const totals = provisionTotals([
+    { id: 'a', role: 'help_seeker', turns: [turn('completed', 0.004, provisionAudit(2, 2, { a: 2 }, { act_named: 2 })), turn('completed', 0.004, provisionAudit(1, 0, { q: 1 }, { outside_blocks: 1 }))] },
+    { id: 'b', role: 'help_seeker', turns: [turn('completed', 0.004, null)] },
+    { id: 'c', role: 'specialist', turns: [turn('completed', 0.005, provisionAudit(6, 3, { a: 4, b: 1, c: 1 }, { from_other_sources: 1, collisions: 1, after_other_act: 2, act_named: 5, bare_subsections: 1 })),
+      turn('answer_rejected', 0.005, provisionAudit(2, 1, { a: 1, d: 1 }, { act_not_shown: 1 }), 'unsupported_provision'), turn('completed', 0.005, { version: 'rag-v2/provision-check-1', failed: true })] },
+    { id: 'd', turns: [turn('stopped', 0, null, 'pilot_budget_exhausted')] }]);
+  assert.deepEqual(Object.keys(totals), ['all', 'help_seeker', 'specialist', 'no_role']);
+  assert.deepEqual(totals.help_seeker, { turns: 3, completed: 3, refused: 0, check_failed: 0, answers_naming: 1, mentions: 3, kinds: { ...zeroKinds, a: 2, q: 1 }, from_other_sources: 0, collisions: 0, after_other_act: 0, outside_blocks: 1, act_named: 2, act_not_shown: 0,
+    word_forms: 0, bare_subsections: 0, median_mentions: 1, largest_mentions: 2, usd: 0.012, usd_per_turn: 0.004 });
+  // A refused turn's mentions are counted by kind, but it is no completed answer; a failed check adds no numbers.
+  assert.deepEqual(totals.specialist, { turns: 3, completed: 2, refused: 1, check_failed: 1, answers_naming: 1, mentions: 8, kinds: { ...zeroKinds, a: 5, b: 1, c: 1, d: 1 }, from_other_sources: 1, collisions: 1, after_other_act: 2, outside_blocks: 0, act_named: 5,
+    act_not_shown: 1, word_forms: 0, bare_subsections: 1, median_mentions: 3, largest_mentions: 6, usd: 0.015, usd_per_turn: 0.005 });
+  assert.deepEqual([totals.all.turns, totals.all.completed, totals.all.refused, totals.all.answers_naming, totals.all.mentions, totals.all.kinds.d, totals.all.median_mentions, totals.all.largest_mentions, totals.all.usd],
+    [7, 5, 1, 2, 11, 1, 1, 6, 0.027]);
+  assert.deepEqual([totals.no_role.turns, totals.no_role.median_mentions, totals.no_role.usd_per_turn], [1, null, 0]);
+  assert.deepEqual(provisionTotals([]), {});
+  // The kinds are the check's own, in its order.
+  assert.deepEqual(Object.keys(totals.all.kinds), [...PROVISION_KINDS]);
+});

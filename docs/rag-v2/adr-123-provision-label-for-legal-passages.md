@@ -1,6 +1,6 @@
 # ADR-123: seadusesätte silt õiguslõigu juures — ehitatud, mõõdetud, kasutusele ei võetud
 
-Kuupäev: 10.10.2026. Teostus Claude Opus 5.5 (ehitas agent, üle vaatas teine agent, mõõtmised ja otsus minult). Omanik 09.10.2026 õhtul: kuue tunni töö RAG-i valmisoleku nimel, luba testimiseks raha kulutada. Seis: **serveris ei ole; kood on valmis ja testitud, kuid mõõtmine ei näidanud kasu.**
+Kuupäev: 10.10.2026. Teostus Claude Opus 5.5 (ehitas agent, üle vaatas teine agent, mõõtmised ja otsus minult). Omanik 09.10.2026 õhtul: kuue tunni töö RAG-i valmisoleku nimel, luba testimiseks raha kulutada. Seis: **kasutusel alates [ADR-129](adr-129-luna-names-the-provision.md) (10.10.2026): omanik ütles, et paragrahvide nimetamine on vajalik, ja silt on nüüd selle alus.** Varasem seis: serveris ei olnud; kood oli valmis ja testitud, kuid mõõtmine ei näidanud kasu, sest juhis keelas sätet nimetada.
 
 ## Probleem, nagu see kaardistuses paistis
 

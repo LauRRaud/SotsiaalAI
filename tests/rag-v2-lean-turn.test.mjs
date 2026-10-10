@@ -6,7 +6,7 @@ import path from 'node:path';
 import { leanPayload, leanPacket, checkLeanTurn, isLeanTurn, LEAN_TURN } from '../lib/rag-v2/pilot/lean-turn.js';
 import { isLeanPacket, packetReferences, resolveModelReference, resolveModelReferences, LEAN_PACKET } from '../lib/rag-v2/search/model-context.js';
 import { PilotStore } from '../lib/rag-v2/pilot/store.js';
-import { PilotService } from '../lib/rag-v2/pilot/service.js';
+import { PilotService, completedView } from '../lib/rag-v2/pilot/service.js';
 import { isPackedJson, unpackJson } from '../lib/rag-v2/pilot/packed-json.js';
 import { readPilotConfig, validAuditDays } from '../lib/rag-v2/pilot/config.js';
 import { approvedChatPlan, approvedScope, newChatPlan, renewChatPlan } from '../lib/rag-v2/pilot/chat-plan.js';
@@ -92,6 +92,22 @@ test('everything the chat reads from a turn is the same from its lean form', () 
     const find = payload => payload.packet.evidence.find(entry => entry.evidence_id === value.evidence_id);
     assert.deepEqual([find(lean).bibliography, find(lean).source_text, find(lean).source_metadata], [find(full).bibliography, find(full).source_text, find(full).source_metadata], ref);
   }
+});
+
+// ADR-129 (10.10.2026): the sources panel shows a legal source's provision beside the act's title, and production keeps
+// its turns lean. The parked patch of ADR-123 took the passage's place out of a lean entry; it stays.
+test('a cited legal passage keeps its place in the act in the lean form: the lean turn shows the same provision, and keeps the provision audit', () => {
+  const full = fullPayload(), place = { section: '133', subsections: ['5', '6', '7'] };
+  Object.assign(full.packet.evidence[0], { legal_place: place, legal_dates: { act: { act_in_force_from: '2016-01-01' } } });
+  full.provisionAudit = { version: 'rag-v2/provision-check-1', labelled: 1, mentions: 1, blocks_naming: 1, kinds: { a: 1, b: 0, c: 0, v: 0, s: 0, p: 0, q: 0, d: 0 }, items: [] };
+  const lean = leanPayload(full), kept = lean.packet.evidence[0];
+  assert.deepEqual([kept.legal_place, 'legal_dates' in kept, lean.packet.evidence.slice(1).some(entry => 'legal_place' in entry)], [place, false, false]);
+  assert.deepEqual(lean.provisionAudit, full.provisionAudit);
+  const shown = payload => completedView({ id: 'turn', state: 'completed', payload }, 'real').sources.filter(source => source.used).map(source => [source.ref, source.provision ?? null]);
+  assert.deepEqual([shown(lean), shown(full)], [[['S1', '§ 133 lg 5–7'], ['S7', null], ['S12', null]], [['S1', '§ 133 lg 5–7'], ['S7', null], ['S12', null]]]);
+  // A place that is no place (stored data) shows nothing.
+  full.packet.evidence[0].legal_place = { section: '133; DROP', subsections: [] };
+  assert.deepEqual(shown(leanPayload(full))[0], ['S1', null]);
 });
 
 test('a lean packet\'s references are still checked: each against its own entry and against the corpus', async () => {

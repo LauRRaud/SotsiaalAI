@@ -13,6 +13,13 @@
 //   offline, a packet file and a local store:
 //     node --import ./scripts/register-node-source-loader.mjs scripts/rag-v2-context-replay.mjs --packet packet.json --store tmp/rag-v2-corpus-store-v25
 // Exit 1 when a context differs apart from the legal dates, or an entry's text is no longer in its document.
+// --provisions (ADR-129, 10.10.2026): the free check of the provision label and the provision check over stored turns.
+//   For each turn it adds: the legal excerpts with a label, with the mark that it was left out, and without one; the
+//   cards that carry a law's abbreviation; and what the provision check (lib/rag-v2/pilot/provision-check.js) says of
+//   the turn's stored answer against the rebuilt packet: the mentions by kind, and for each mention that is not the
+//   label of a cited passage its place, its number and its kind. No text of a question, an answer or a passage. The
+//   check refuses nothing (REFUSED_KINDS is empty): every kind d here is read by hand, is it the model's fault or the
+//   reader's, and no kind is entered in that list while a d of the reader's own making is found.
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
@@ -21,17 +28,30 @@ import { readActive } from '../lib/rag-v2/catalog.js';
 import { loadSnapshot } from '../lib/rag-v2/search/snapshot.js';
 import { embeddingConfig } from '../lib/rag-v2/search/embedding.js';
 import { replayContext } from '../lib/rag-v2/search/context-replay.js';
+import { isLeanPacket } from '../lib/rag-v2/search/model-context.js';
 import { unpackJson, openTurn } from '../lib/rag-v2/pilot/packed-json.js';
 
-const { values } = parseArgs({ options: { turn: { type: 'string', multiple: true }, packet: { type: 'string', multiple: true }, store: { type: 'string' } } });
+const { values } = parseArgs({ options: { turn: { type: 'string', multiple: true }, packet: { type: 'string', multiple: true }, store: { type: 'string' }, provisions: { type: 'boolean', default: false } } });
 const failed = code => { console.error(JSON.stringify({ ok: false, code })); process.exit(1); };
 if (!values.turn?.length === !values.packet?.length || Boolean(values.packet?.length) !== Boolean(values.store)) failed('context_replay_usage');
+const { checkProvisions } = values.provisions ? await import('../lib/rag-v2/pilot/provision-check.js') : {};
 
+// payload: the turn's payload when the packet came with one (its answer, and what the conversation held then).
+function provisionsOf(context, now, payload) {
+  const excerpts = context?.evidence || [], legal = excerpt => context.sources?.[excerpt.source]?.source_type === 'legal_act';
+  const counted = { labelled: excerpts.filter(excerpt => excerpt.provision).length, omitted: excerpts.filter(excerpt => excerpt.provision_omitted).length,
+    legal_without_label: excerpts.filter(excerpt => legal(excerpt) && !excerpt.provision && !excerpt.provision_omitted).length,
+    cards_with_abbreviation: Object.values(context?.sources || {}).filter(card => card.act_abbreviation).length };
+  if (!payload?.answer) return { ...counted, check: null };
+  const dialogue = payload.dialogue, said = (dialogue?.userTurns || payload.contextAudit?.userTurns || [{ text: payload.question }]).map(turn => turn?.text).filter(text => typeof text === 'string');
+  return { ...counted, check: checkProvisions(payload.answer, now, said, (dialogue?.publishedAssistant?.blocks || []).map(block => block.text)).audit };
+}
 const reports = [];
-const report = (name, packet, generation, bundles, embedding) => {
+const report = (name, packet, generation, bundles, embedding, payload = null) => {
   try {
-    const { context: _context, ...result } = replayContext(packet, new Map(bundles.map(bundle => [bundle.document.id, bundle])), embedding);
-    reports.push({ turn: name, stored_generation: packet.generation_id ?? null, read_from: generation, ...result });
+    const { context, packet: now, ...result } = replayContext(packet, new Map(bundles.map(bundle => [bundle.document.id, bundle])), embedding);
+    // A lean packet (ADR-093) holds only the cited evidence under its own refs: its answer is read against it as stored.
+    reports.push({ turn: name, stored_generation: packet.generation_id ?? null, read_from: generation, ...result, ...(values.provisions ? { provisions: provisionsOf(context, isLeanPacket(packet) ? packet : now, payload) } : {}) });
   } catch (error) { reports.push({ turn: name, stored_generation: packet.generation_id ?? null, read_from: generation, error: error.code || 'replay_failed', ...(error.ref ? { ref: error.ref } : {}) }); }
 };
 const documentsOf = packet => [...new Set(packet.evidence.map(entry => entry.document_id))];
@@ -44,7 +64,7 @@ if (values.packet) {
     if (!packet?.tenant || !Array.isArray(packet.evidence)) failed('context_replay_packet_required');
     const active = await readActive(path.resolve(values.store, id('tenant', packet.tenant)));
     const snapshot = await loadSnapshot(values.store, packet.tenant, documentsOf(packet).filter(doc => active.documents[doc]));
-    report(file, packet, `store ${active.generation}`, snapshot.bundles, embeddingConfig());
+    report(file, packet, `store ${active.generation}`, snapshot.bundles, embeddingConfig(), read.payload ?? (read.answer ? read : null));
   }
 } else {
   const { default: prisma } = await import('../lib/prisma.js');
@@ -56,7 +76,7 @@ if (values.packet) {
       if (!packet) { reports.push({ turn, error: 'turn_without_packet' }); continue; }
       const generation = await postgres.active(packet.tenant);
       const bundles = await postgres.bundles(packet.tenant, generation.id, documentsOf(packet).filter(doc => generation.snapshot.documents[doc]));
-      report(turn, packet, generation.id, bundles, generation.config.embedding);
+      report(turn, packet, generation.id, bundles, generation.config.embedding, row.payload);
     }
   } finally { await postgres.close(); await prisma.$disconnect(); }
 }

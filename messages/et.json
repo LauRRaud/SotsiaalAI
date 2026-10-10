@@ -23,6 +23,7 @@
     "contextFailed": "Sõnum võeti vastu, kuid vastust ei avaldatud, sest valitud konteksti ei saanud kasutada. Teema-, isiku- või parandusvalik säilis. Vajadusel alusta uut teemat.",
     "reloadContext": "Laadi kontekst uuesti",
     "referenceFailed": "Vastust ei avaldatud, sest allikaviidete kontroll ebaõnnestus. Uut vastamiskatset ei tehtud.",
+    "provisionFailed": "Vastust ei avaldatud, sest selles nimetati õigusakti sätet, mida selle vastuse allikates ei ole. Uut vastamiskatset ei tehtud. Palun küsi uuesti.",
     "answerFailed": "Vastust ei avaldatud, sest vastuse kontroll või ettevalmistus ebaõnnestus. Uut vastamiskatset ei tehtud.",
     "unknown": "Teenusekatse tulemus on teadmata. Uut vastamiskatset ei tehtud.",
     "title": "Küsimusest allikani",

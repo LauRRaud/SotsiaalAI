@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { actGenitive, actSections, chunkSection, internalReferences, keepsSuperscripts, namedActReferences, provisionChunks, readReferences, resolveSection, sectionKey, sectionReferences,
+import { actGenitive, actSections, chunkSection, designation, internalReferences, keepsSuperscripts, namedActReferences, provisionChunks, provisionMentions, readReferences, resolveSection, sectionKey, sectionReferences, wordsBefore,
   REFERENCE_LIMITS, SUPERSCRIPT_NORMALIZATIONS } from '../lib/rag-v2/search/legal-references.js';
 import { DEFAULT_CONFIG } from '../lib/rag-v2/contracts.js';
 
@@ -186,4 +186,32 @@ test('own references with their subsections: each section once, its named subsec
   // The sections are the ones internalReferences gives, in its order; another act's are none.
   for (const text of ['käesoleva seaduse §-s 9 sätestatud korras ja § 46 lõikes 1', 'lastekaitseseaduse § 9 lõikes 2 ja § 16', '§ 999 lõikes 1 ja § 72 lõikes 1'])
     assert.deepEqual(read(text).map(([key]) => key), internalReferences(text, sections), text);
+});
+
+// ADR-129 (10.10.2026): the server checks every provision an answer names (pilot/provision-check.js). That reader takes
+// a text as written, against no act's list of sections.
+test('provisionMentions: every section a text names with its subsections, as written; the readers above are unchanged', () => {
+  const read = (text, options) => provisionMentions(text, options).map(({ section, to, subsections, through }) => [section, to, subsections, through]);
+  // A list, a range of sections, a range of subsections (its two ends, and the range for a reader that wants what lies between).
+  assert.deepEqual(read('sotsiaalhoolekande seaduse § 133 lõigete 5 ja 6 järgi ning §-des 105–107'), [['133', null, ['5', '6'], []], ['105', '107', [], []]]);
+  assert.deepEqual(read('§ 133 lg 5–7, § 13¹ lg 2¹'), [['133', null, ['5', '7'], [['5', '7']]], ['13^1', null, ['2^1'], []]]);
+  // A number as written: nothing is resolved against an act, so a section no act has is read too.
+  assert.deepEqual(read('§ 999 lõikes 1'), [['999', null, ['1'], []]]);
+  // The word written again names another subsection; the cross-reference readers still take the first group only.
+  assert.deepEqual(read('käesoleva seaduse § 46 lg 1 ja lg 2'), [['46', null, ['1', '2'], []]]);
+  assert.deepEqual(sectionReferences('käesoleva seaduse § 46 lg 1 ja lg 2', ['46']).map(({ key, subsections }) => [key, subsections]), [['46', ['1']]]);
+  // A point or a sentence names no subsection.
+  assert.deepEqual(read('§ 16 punktis 3 ja § 9 lõike 2 teises lauses'), [['16', null, [], []], ['9', null, ['2'], []]]);
+  // A section's own heading at the start of a line is a mention unless the caller leaves headings out.
+  assert.deepEqual(read('§ 12. Teenuse kulud\nvt § 14 lõiget 2'), [['12', null, [], []], ['14', null, ['2'], []]]);
+  assert.deepEqual(read('§ 12. Teenuse kulud\nvt § 14 lõiget 2', { headings: false }), [['14', null, ['2'], []]]);
+  // start: the list's first mark, for every item of the list (the act named before it is the whole list's); end:
+  // where each item's reading stops.
+  const text = 'Vt lastekaitseseaduse § 3 lõiget 1 ja § 5 ning perekonnaseaduse § 97.', found = provisionMentions(text), first = text.indexOf('§'), last = text.lastIndexOf('§');
+  assert.deepEqual(found.map(item => [item.section, item.start, text.slice(item.start, item.end)]), [['3', first, '§ 3 lõiget 1'], ['5', first, '§ 3 lõiget 1 ja § 5'], ['97', last, '§ 97']]);
+  // The words before a list and whose sections it is, as the readers above use them.
+  const titled = 'määruse nr 5 „Abi andmise kord“ § 3';
+  assert.deepEqual([wordsBefore(text, first), wordsBefore(text, last), wordsBefore(titled, titled.indexOf('§'))], ['Vt lastekaitseseaduse', 'Vt lastekaitseseaduse § 3 lõiget 1 ja § 5 ning perekonnaseaduse', 'määruse nr 5']);
+  assert.deepEqual(['käesoleva seaduse § 9', 'sama seaduse § 9', 'lastekaitseseaduse § 9', 'SHS § 9', 'kuni 2015. aastani kehtinud redaktsiooni § 9', 'vastavalt § 9'].map(sample => designation(sample, sample.indexOf('§'))),
+    ['own', 'same', 'other', 'other', 'version', null]);
 });
