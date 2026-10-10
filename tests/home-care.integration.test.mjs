@@ -6485,3 +6485,68 @@ test('kliendi kuuleht: käigud ja ära jäänud käigud kliendi keeles, üksuse 
   ]);
   assert.equal(JSON.stringify(audit).includes('Linda'), false);
 });
+
+test('kojutulek: märk naasmisest esimese käiguni kliendi lehel, plaanides ja tähtaegade lehel', async (t) => {
+  const f = await fixture(t);
+  const north = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Põhi ${f.tag}`, type: 'TEAM' } });
+  await db.organizationCapabilityGrant.create({
+    data: { membershipId: f.members.cover.id, capability: 'HOME_CARE_COORDINATOR', scopeType: 'UNIT', scopeUnitId: north.id, validFrom: at('2026-01-01T00:00:00Z') }
+  });
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const unitLead = await f.ctx(f.users.cover, f.orgA);
+  const start = deps(at('2026-09-01T06:00:00Z'));
+  const make = async (displayName, unitId) => {
+    const client = (await createClient(lead, { displayName, ...(unitId ? { unitId } : {}) }, start)).client;
+    await addTeamMember(lead, client.id, { membershipId: f.members.anu.id }, start);
+    return client;
+  };
+  const linda = await make('Linda Tamm');
+  const peeter = await make('Peeter Põhi', north.id);
+  const aino = await make('Aino Saar');
+  const enn = await make('Enn Lepp');
+  const status = async (client, body, when) => {
+    const version = (await openClient(lead, client.id, deps(at(when)))).client.version;
+    await setClientStatus(lead, client.id, { version, ...body }, deps(at(when)));
+  };
+  /* Linda oli haiglas 28.09 kuni 08.10; Peeter lähedase juures 01.10 kuni 07.10. Aino oli lähedase juures
+     ainult nädalavahetuse (alla kolme päeva) ja Ennu käigud olid peatatud ohutuse pärast: need ei ole kojutulekud. */
+  await status(linda, { status: 'AWAY', statusReason: 'HOSPITAL' }, '2026-09-28T08:00:00Z');
+  await status(linda, { status: 'ACTIVE' }, '2026-10-08T09:00:00Z');
+  await status(peeter, { status: 'AWAY', statusReason: 'WITH_FAMILY' }, '2026-10-01T08:00:00Z');
+  await status(peeter, { status: 'ACTIVE' }, '2026-10-07T09:00:00Z');
+  await status(aino, { status: 'AWAY', statusReason: 'WITH_FAMILY' }, '2026-10-06T08:00:00Z');
+  await status(aino, { status: 'ACTIVE' }, '2026-10-08T09:00:00Z');
+  await status(enn, { status: 'AWAY', statusReason: 'SAFETY' }, '2026-09-20T08:00:00Z');
+  await status(enn, { status: 'ACTIVE' }, '2026-10-08T09:00:00Z');
+  for (const client of [linda, peeter, aino]) {
+    await createSlots(lead, client.id, { weekdays: [5], startTime: '12:00', plannedMinutes: 30, workerMembershipId: f.members.anu.id, validFrom: '2026-10-05' }, start);
+  }
+
+  assert.deepEqual((await openClient(anu, linda.id, deps())).homecoming, { returnedOn: '2026-10-08', awayFrom: '2026-09-28', reason: 'HOSPITAL' });
+  assert.deepEqual((await openClient(anu, peeter.id, deps())).homecoming, { returnedOn: '2026-10-07', awayFrom: '2026-10-01', reason: 'WITH_FAMILY' });
+  assert.equal((await openClient(anu, aino.id, deps())).homecoming, null);
+  assert.equal((await openClient(anu, enn.id, deps())).homecoming, null);
+
+  /* Tähtaegade leht: varasem naasmine ees; üksuse hooldusjuht näeb ainult oma üksuse klienti. */
+  const open = async (context, now = NOW) => (await getDeadlines(context, deps(now))).homecomingsOpen.map((item) => [item.client.displayName, item.returnedOn, item.days, item.reason]);
+  assert.deepEqual(await open(lead), [['Peeter Põhi', '2026-10-07', 2, 'WITH_FAMILY'], ['Linda Tamm', '2026-10-08', 1, 'HOSPITAL']]);
+  assert.deepEqual(await open(unitLead), [['Peeter Põhi', '2026-10-07', 2, 'WITH_FAMILY']]);
+
+  /* Päevaplaan ja „minu päev": tänasel (reede 09.10) käigul on kojutuleku märk; Aino käigul ei ole. */
+  const marks = (visits) => visits.map((visit) => [visit.client.displayName, visit.homecoming?.returnedOn || null]).sort((a, b) => a[0].localeCompare(b[0], 'et'));
+  const planVisits = (plan) => plan.workers.flatMap((worker) => worker.visits);
+  assert.deepEqual(marks(planVisits(await getDayPlan(lead, { day: '2026-10-09' }, deps()))), [['Aino Saar', null], ['Linda Tamm', '2026-10-08'], ['Peeter Põhi', '2026-10-07']]);
+  assert.deepEqual(marks((await getMyDay(anu, deps())).visits), [['Aino Saar', null], ['Linda Tamm', '2026-10-08'], ['Peeter Põhi', '2026-10-07']]);
+
+  /* Esimene käik pärast naasmist võtab märgi ära; telefonikõne ei võta. */
+  await createEntry(anu, peeter.id, { contactMode: 'PHONE', text: 'Helistas, et on kodus.' }, deps());
+  assert.ok((await openClient(anu, peeter.id, deps())).homecoming);
+  await createEntry(anu, linda.id, { kind: 'NOTE', contactMode: 'VISIT', text: 'Kojutuleku käik', visitMinutes: 60 }, deps());
+  assert.equal((await openClient(anu, linda.id, deps())).homecoming, null);
+  assert.deepEqual(await open(lead), [['Peeter Põhi', '2026-10-07', 2, 'WITH_FAMILY']]);
+  assert.deepEqual(marks((await getMyDay(anu, deps())).visits).filter((row) => row[1]), [['Peeter Põhi', '2026-10-07']]);
+  /* Märk aegub 30 päeva pärast naasmist ka ilma käiguta. */
+  assert.deepEqual(await open(lead, at('2026-11-06T08:00:00Z')), [['Peeter Põhi', '2026-10-07', 30, 'WITH_FAMILY']]);
+  assert.deepEqual(await open(lead, at('2026-11-07T08:00:00Z')), []);
+});

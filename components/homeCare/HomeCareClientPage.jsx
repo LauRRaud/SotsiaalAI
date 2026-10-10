@@ -21,7 +21,7 @@ import HomeCareEntryItem from "./HomeCareEntryItem";
 import HomeCareFridgeSheet from "./HomeCareFridgeSheet";
 import HomeCareHistory from "./HomeCareHistory";
 import HomeCareOutbox from "./HomeCareOutbox";
-import HomeCarePlanView from "./HomeCarePlanView";
+import HomeCarePlanView, { planDayLabel } from "./HomeCarePlanView";
 import HomeCareReasonForm from "./HomeCareReasonForm";
 import HomeCareRelatives from "./HomeCareRelatives";
 import HomeCareSafetyCard from "./HomeCareSafetyCard";
@@ -356,6 +356,16 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
         </p>
       ) : null}
       {client.status === CareClientStatus.AWAY ? <p className="hc-notice">{t("home_care.client.away_notice")}</p> : null}
+      {/* Kojutulek (K6-f): klient on äraolekult tagasi ja pärast seda ei ole käiku kirjas. Kaob esimese käigu kirjega. */}
+      {data.homecoming ? (
+        <p className="hc-notice hc-notice--warn" role="status">
+          {t("home_care.homecoming.notice", { date: planDayLabel(data.homecoming.returnedOn), from: planDayLabel(data.homecoming.awayFrom) })}
+          {data.homecoming.reason ? ` (${t(`home_care.status_reason.AWAY.${data.homecoming.reason}`)})` : ""}
+          {". "}
+          {t("home_care.homecoming.first_visit")}
+          {access.isCoordinator ? ` ${t("home_care.homecoming.coordinator")}` : ""}
+        </p>
+      ) : null}
       {ended ? <p className="hc-notice">{t("home_care.client.ended_notice")}</p> : null}
       {canWrite ? null : <p className="hc-notice">{t("home_care.client.read_only")}</p>}
 
