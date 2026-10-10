@@ -98,6 +98,7 @@ import { answerDecisionNotice, createDecisionNotice, withdrawDecisionNotice } fr
 import { getDaySheet } from '../lib/homeCare/daySheet.js';
 import { markFirstVisit } from '../lib/homeCare/firstVisits.js';
 import { answerTransport, getTransportCard, requestTransport, withdrawTransport } from '../lib/homeCare/transport.js';
+import { addTrip, getTripLog, retractTrip } from '../lib/homeCare/trips.js';
 import { endRelative, flagRelativeDoubt, getSharingCard, saveRelative } from '../lib/homeCare/relatives.js';
 import { saveSafetyCard } from '../lib/homeCare/safetyCard.js';
 import { composeNoAnswerText } from '../lib/homeCare/noAnswerText.js';
@@ -1885,6 +1886,8 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
   await saveRelative(lead, client.id, { name: 'Mari Tamm', relation: 'tütar', level: 1 }, deps());
   /* Ohutuskaardi vastus (K5-n), et väljavõttes oleks ka see kogu. */
   await saveSafetyCard(lead, client.id, { items: { ANIMALS: { answer: 'NO' } } }, deps());
+  /* Sõidupäeviku rida (K6-a). */
+  await addTrip(lead, { vehicle: 'ORG', startOdometer: 100, endOdometer: 120, purpose: 'Käigud linnas' }, deps());
   /* Transpordi soov (K5-w). */
   await requestTransport(lead, client.id, { wantedOn: '2026-10-20', destination: 'Perearsti juurde' }, deps());
   /* Esmakäigu teade (K5-v). */
@@ -2013,6 +2016,7 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
     decisionNotices: await db.careDecisionNotice.count({ where: ofOrg }),
     firstVisitNotices: await db.careFirstVisitNotice.count({ where: ofOrg }),
     transportRequests: await db.careTransportRequest.count({ where: ofOrg }),
+    tripEntries: await db.careTripEntry.count({ where: ofOrg }),
     auditEvents: await db.dataAuditLog.count({
       where: { action: { startsWith: 'org.home_care_' }, meta: { path: ['organizationId'], equals: f.orgA.id }, createdAt: { lt: (await exportRows())[0].createdAt } }
     })
@@ -6190,4 +6194,70 @@ test('transpordi soovi teade: hooldusjuht saab teate ilma sisuta, esitaja ei saa
   /* Tagasi võetud soovi teavitust enam ei näidata. */
   await withdrawTransport(anu, linda.id, made.requestId, deps());
   await assert.rejects(assertNotificationRecipient(db, { type: TYPE, userId: f.users.lead.id, sourceId: made.requestId, targetId: made.requestId }), (error) => error.status === 404);
+});
+
+test('sõidupäevik: töötaja paneb sõidu kirja kahe näiduga, hooldusjuht näeb kuu kokkuvõtet, ekslik rida tühistatakse', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const clerk = await f.ctx(f.users.clerk, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, deps())).client;
+  for (const key of ['anu', 'bert']) await addTeamMember(lead, linda.id, { membershipId: f.members[key].id }, deps());
+
+  /* Päevikut näeb ja täidab hooldaja (kellegi meeskonna liige) või hooldusjuht; kõrvaline liige mitte. */
+  await expectError(getTripLog(clerk, {}, deps()), 403, 'org.errors.missing_capability');
+  await expectError(addTrip(clerk, { vehicle: 'OWN', startOdometer: 1, endOdometer: 2, purpose: 'x' }, deps()), 403, 'org.errors.missing_capability');
+  const empty = await getTripLog(anu, {}, deps());
+  assert.deepEqual([empty.month, empty.canAdd, empty.isCoordinator, empty.mine.trips, empty.mine.last, empty.all], ['2026-10', true, false, [], null, null]);
+
+  const first = await addTrip(anu, { day: '2026-10-08', vehicle: 'OWN', plate: ' 123 abc ', startOdometer: '84 120', endOdometer: 84162, purpose: '  Koduteenuse käigud  Haapsalus ' }, deps());
+  assert.deepEqual(first.mine.trips.map((trip) => [trip.day, trip.vehicle, trip.plate, trip.startOdometer, trip.endOdometer, trip.km, trip.purpose, trip.isMine]), [
+    ['2026-10-08', 'OWN', '123 ABC', 84120, 84162, 42, 'Koduteenuse käigud Haapsalus', true]
+  ]);
+  /* Uue sõidu algnäidu ettepanek on eelmise sõidu lõppnäit. */
+  assert.deepEqual(first.mine.last, { vehicle: 'OWN', plate: '123 ABC', endOdometer: 84162 });
+  await addTrip(anu, { vehicle: 'OWN', plate: '123 ABC', startOdometer: 84162, endOdometer: 84180, purpose: 'Käigud Ridalas' }, deps());
+  await addTrip(bert, { day: '2026-10-09', vehicle: 'ORG', startOdometer: 15000, endOdometer: 15030, purpose: 'Käigud linnas' }, deps());
+  /* Septembri sõit ei ole oktoobri vaates; liiga vana ja tuleviku päev ning sobimatud näidud lükatakse tagasi. */
+  await addTrip(anu, { day: '2026-09-30', vehicle: 'OWN', startOdometer: 84000, endOdometer: 84020, purpose: 'Käigud linnas' }, deps());
+  await expectError(addTrip(anu, { day: '2026-10-10', vehicle: 'OWN', startOdometer: 1, endOdometer: 2, purpose: 'x' }, deps()), 400, 'home_care.errors.trip_day');
+  await expectError(addTrip(anu, { day: '2026-07-01', vehicle: 'OWN', startOdometer: 1, endOdometer: 2, purpose: 'x' }, deps()), 400, 'home_care.errors.trip_day');
+  await expectError(addTrip(anu, { vehicle: 'OWN', startOdometer: 200, endOdometer: 100, purpose: 'x' }, deps()), 400, 'home_care.errors.trip_odometer');
+  await expectError(addTrip(anu, { vehicle: 'OWN', startOdometer: 100, endOdometer: 5000, purpose: 'x' }, deps()), 400, 'home_care.errors.trip_odometer');
+  await expectError(addTrip(anu, { vehicle: 'BUS', startOdometer: 1, endOdometer: 2, purpose: 'x' }, deps()), 400, 'home_care.errors.trip_vehicle');
+  await expectError(addTrip(anu, { vehicle: 'OWN', startOdometer: 1, endOdometer: 2 }, deps()), 400, 'home_care.errors.trip_purpose');
+
+  /* Töötaja näeb ainult oma sõite; kogu asutuse hooldusjuht kõiki ja kokkuvõtet töötaja kaupa. */
+  const mine = await getTripLog(anu, { month: '2026-10' }, deps());
+  assert.deepEqual([mine.mine.trips.length, mine.mine.km, mine.all], [2, 60, null]);
+  assert.equal((await getTripLog(anu, { month: '2026-09' }, deps())).mine.km, 20);
+  const all = await getTripLog(lead, { month: '2026-10' }, deps());
+  assert.deepEqual([all.isCoordinator, all.mine.trips.length, all.all.trips.length, all.all.truncated], [true, 0, 3, false]);
+  assert.deepEqual(all.all.workers.map((row) => [row.name.split(' ')[0], row.trips, row.km, row.ownKm]), [['Anu', 2, 60, 60], ['Bert', 1, 30, 0]]);
+  assert.equal((await getTripLog(leadB, { month: '2026-10' }, deps())).all.trips.length, 0);
+
+  /* TÜHISTAMINE: põhjusega; oma sõidu tühistab töötaja, teise töötaja sõidu ainult hooldusjuht. */
+  const bertTrip = all.all.trips.find((trip) => trip.vehicle === 'ORG');
+  await expectError(retractTrip(anu, bertTrip.id, { reason: 'x' }, deps()), 404, 'home_care.errors.trip_not_found');
+  await expectError(retractTrip(lead, bertTrip.id, {}, deps()), 400, 'home_care.errors.trip_retract_reason');
+  const afterLead = await retractTrip(lead, bertTrip.id, { reason: 'Vale auto' }, deps());
+  assert.deepEqual(afterLead.all.workers.map((row) => row.name.split(' ')[0]), ['Anu']);
+  await expectError(retractTrip(lead, bertTrip.id, { reason: 'Uuesti' }, deps()), 409, 'home_care.errors.trip_retracted');
+  const afterMine = await retractTrip(anu, mine.mine.trips[0].id, { reason: 'Vale näit' }, deps());
+  assert.deepEqual([afterMine.mine.trips.length, afterMine.mine.km], [1, 42]);
+  assert.equal(await db.careTripEntry.count({ where: { organizationId: f.orgA.id } }), 4);
+
+  /* ANDMEBAAS: näidud, sõiduk ja tühistuse väljad on kontrollitud. */
+  const raw = { organizationId: f.orgA.id, membershipId: f.members.anu.id, workerName: 'Anu', day: '2026-10-09', vehicle: 'OWN', startOdometer: 10, endOdometer: 20, purpose: 'x' };
+  await assert.rejects(db.careTripEntry.create({ data: { ...raw, endOdometer: 5 } }));
+  await assert.rejects(db.careTripEntry.create({ data: { ...raw, endOdometer: 5000 } }));
+  await assert.rejects(db.careTripEntry.create({ data: { ...raw, vehicle: 'BUS' } }));
+  await assert.rejects(db.careTripEntry.create({ data: { ...raw, day: '9.10.2026' } }));
+  await assert.rejects(db.careTripEntry.create({ data: { ...raw, retractedAt: NOW } }));
+  await assert.rejects(db.careTripEntry.create({ data: { ...raw, retractReason: 'Põhjus ilma ajata' } }));
+  const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_trip_changed', meta: { path: ['organizationId'], equals: f.orgA.id } } });
+  assert.deepEqual(audit.map((entry) => entry.meta.change).sort(), ['added', 'added', 'added', 'added', 'retracted', 'retracted']);
+  assert.equal(JSON.stringify(audit).includes('Haapsalus'), false);
 });

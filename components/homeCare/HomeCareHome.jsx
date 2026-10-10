@@ -310,6 +310,15 @@ export default function HomeCareHome({ context, initial, unitOptions, myDay = nu
         </div>
       ) : null}
 
+      {/* Sõidupäevik (K6-a): igale hooldajale ja hooldusjuhile. */}
+      {canSearch ? (
+        <div className="hc-row">
+          <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/soidud`}>
+            {t("home_care.trips.link")}
+          </Link>
+        </div>
+      ) : null}
+
       {canSearch ? (
         <div className="hc-section">
           <form className="hc-form" onSubmit={runSearch} role="search">

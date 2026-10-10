@@ -13192,7 +13192,14 @@
       "transport_closed": "Sellel soovil on juba vastus või see on tagasi võetud.",
       "transport_answer": "Vali, kas sõit on korraldatud või ei saa.",
       "transport_decline_reason": "Kirjuta, miks sõitu korraldada ei saa.",
-      "card_driver_full": "Autojuhile nähtavaid ridu saab olla kuni {limit}."
+      "card_driver_full": "Autojuhile nähtavaid ridu saab olla kuni {limit}.",
+      "trip_day": "Sõidu päev peab olema täna või kuni kaks kuud tagasi.",
+      "trip_vehicle": "Vali, kas sõitsid isikliku või asutuse autoga.",
+      "trip_odometer": "Näidud ei sobi: lõppnäit peab olema algnäidust suurem või sama ja üks sõit kuni {limit} km.",
+      "trip_purpose": "Kirjuta sõidu siht ja eesmärk.",
+      "trip_not_found": "Sõitu ei leitud.",
+      "trip_retracted": "See sõit on juba tühistatud.",
+      "trip_retract_reason": "Kirjuta, miks sõit tühistatakse."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -14752,6 +14759,52 @@
         "issued_on": "välja antud {date}",
         "foot": "Leht kannab isikuandmeid. Hävita see pärast sõitu."
       }
+    },
+    "trips": {
+      "link": "Sõidupäevik",
+      "title": "Sõidupäevik",
+      "intro": "Pane iga töösõit kirja läbisõidumõõdiku alg- ja lõppnäiduga. Kilomeetrid arvutatakse näitude vahest. Päevik on hüvitise alus ja läheb raamatupidamisse.",
+      "mine_title": "Minu sõidud",
+      "mine_empty": "Selles kuus ei ole sõite kirjas.",
+      "add": "Lisa sõit",
+      "day_label": "Sõidu päev",
+      "vehicle_label": "Sõiduk",
+      "vehicles": {
+        "OWN": "isiklik auto",
+        "ORG": "asutuse auto"
+      },
+      "plate_label": "Registreerimisnumber",
+      "start_label": "Läbisõidumõõdiku näit sõidu alguses",
+      "end_label": "Läbisõidumõõdiku näit sõidu lõpus",
+      "purpose_label": "Siht ja eesmärk",
+      "purpose_hint": "Kirjuta, kuhu ja milleks sõitsid, ilma kliendi nimeta (näiteks „koduteenuse käigud Haapsalus”).",
+      "save": "Salvesta sõit",
+      "cancel": "Loobu",
+      "km": "{km} km",
+      "odometer_line": "näit {start} → {end}",
+      "retract": "Tühista",
+      "retract_reason": "Miks sõit tühistatakse",
+      "retract_save": "Tühista sõit",
+      "all_title": "Kõik töötajad",
+      "all_empty": "Selles kuus ei ole ükski töötaja sõite kirja pannud.",
+      "worker_line": "sõite {trips} · {km} km, sellest isikliku autoga {ownKm} km",
+      "truncated": "Näidatud on esimesed {count} rida.",
+      "download": "Laadi sõidupäevik alla",
+      "download_hint": "Tabelifail (CSV) raamatupidamisele: iga sõidu päev, töötaja, sõiduk, näidud, kilomeetrid ja eesmärk ning kokkuvõte töötaja kaupa. Hüvitist siin ei arvutata."
+    },
+    "trip_sheet": {
+      "title": "Koduteenuse sõidupäevik",
+      "col_day": "Kuupäev",
+      "col_worker": "Töötaja",
+      "col_vehicle": "Sõiduk",
+      "col_plate": "Registreerimisnumber",
+      "col_start": "Algnäit",
+      "col_end": "Lõppnäit",
+      "col_km": "Kilomeetreid",
+      "col_purpose": "Siht ja eesmärk",
+      "workers_title": "Kokku töötaja kaupa",
+      "col_trips": "Sõite",
+      "col_own_km": "Sellest isikliku autoga"
     }
   },
   "stage": {

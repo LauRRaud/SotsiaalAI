@@ -13192,7 +13192,14 @@
       "transport_closed": "This request already has an answer or has been withdrawn.",
       "transport_answer": "Choose whether the ride is arranged or not possible.",
       "transport_decline_reason": "Write why the ride cannot be arranged.",
-      "card_driver_full": "Up to {limit} lines can be visible to the driver."
+      "card_driver_full": "Up to {limit} lines can be visible to the driver.",
+      "trip_day": "The day of the trip must be today or up to two months back.",
+      "trip_vehicle": "Choose whether you drove your own car or the organisation's.",
+      "trip_odometer": "The readings do not fit: the end reading must be the same as or larger than the start reading, and one trip up to {limit} km.",
+      "trip_purpose": "Write the trip's destination and purpose.",
+      "trip_not_found": "The trip was not found.",
+      "trip_retracted": "This trip has already been retracted.",
+      "trip_retract_reason": "Write why the trip is retracted."
     },
     "incidents": {
       "title": "Incident register",
@@ -14752,6 +14759,52 @@
         "issued_on": "issued on {date}",
         "foot": "This page carries personal data. Destroy it after the ride."
       }
+    },
+    "trips": {
+      "link": "Trip log",
+      "title": "Trip log",
+      "intro": "Record every work trip with the odometer reading at the start and at the end. The kilometres are the difference between the readings. The log is the basis for compensation and goes to accounting.",
+      "mine_title": "My trips",
+      "mine_empty": "No trips are recorded for this month.",
+      "add": "Add a trip",
+      "day_label": "Day of the trip",
+      "vehicle_label": "Vehicle",
+      "vehicles": {
+        "OWN": "own car",
+        "ORG": "the organisation's car"
+      },
+      "plate_label": "Registration number",
+      "start_label": "Odometer reading at the start",
+      "end_label": "Odometer reading at the end",
+      "purpose_label": "Destination and purpose",
+      "purpose_hint": "Write where you drove and what for, without the client's name (for example \"home care visits in Haapsalu\").",
+      "save": "Save the trip",
+      "cancel": "Cancel",
+      "km": "{km} km",
+      "odometer_line": "reading {start} → {end}",
+      "retract": "Retract",
+      "retract_reason": "Why the trip is retracted",
+      "retract_save": "Retract the trip",
+      "all_title": "All workers",
+      "all_empty": "No worker has recorded a trip for this month.",
+      "worker_line": "trips {trips} · {km} km, of which {ownKm} km by own car",
+      "truncated": "The first {count} rows are shown.",
+      "download": "Download the trip log",
+      "download_hint": "A table file (CSV) for accounting: each trip's day, worker, vehicle, readings, kilometres and purpose, and a summary by worker. Compensation is not calculated here."
+    },
+    "trip_sheet": {
+      "title": "Home care trip log",
+      "col_day": "Date",
+      "col_worker": "Worker",
+      "col_vehicle": "Vehicle",
+      "col_plate": "Registration number",
+      "col_start": "Start reading",
+      "col_end": "End reading",
+      "col_km": "Kilometres",
+      "col_purpose": "Destination and purpose",
+      "workers_title": "Total by worker",
+      "col_trips": "Trips",
+      "col_own_km": "Of which by own car"
     }
   },
   "stage": {
