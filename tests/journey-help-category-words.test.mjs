@@ -6,6 +6,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { hasAssistiveDeviceSignal } from '../lib/journey/assistiveDevices.js';
 import { buildHelpMediationHandoff, inferHelpCategoryCode } from '../lib/journey/helpMediationHandoff.js';
 
 const code = (summary, domains = []) => inferHelpCategoryCode({ summary, domains });
@@ -84,6 +85,40 @@ test('üleandmine: ü- ja õ-sõnaga kirjeldus annab praktilise vajaduse ja otsi
   const learning = buildHelpMediationHandoff({ id: 'j-2', summary: 'Õppimine on raske' });
   assert.deepEqual([learning.hasPracticalNeed, learning.categoryCode], [true, 'LEARNING_GUIDANCE']);
   assert.equal(buildHelpMediationHandoff({ id: 'j-3', summary: 'Töövorm on muutunud' }).hasPracticalNeed, false);
+});
+
+test('platvormi enda soovitus „Vaata Abivahenduse võimalusi" ei ole abivahendi vajadus', () => {
+  /* Leitud 11.10.2026 ülevaatusel: iga Teekond, millel oli praktilise abi soovitus, sai abi otsimise
+     osas ka valiku „Abivahendid" ja eelpöördumisse rea „abivahendid ja kohandused". */
+  const learning = {
+    summary: 'Poja õppimine on raske ja ta jääb koolis maha. Tahan teada, kust saada abi.',
+    domains: ['lapse heaolu'],
+    suggestedActions: [{ title: 'Täpsusta ja kinnita teekonna kokkuvõte' }, { title: 'Vaata sobivaid kontakte teenusekaardilt' }, { title: 'Vaata Abivahenduse võimalusi' }]
+  };
+  assert.equal(hasAssistiveDeviceSignal(learning), false);
+  for (const text of ['Abivahendus', 'abivahenduse võimalused', 'Leidsin abi Abivahendusest.', 'ABIVAHENDUST ei ole vaja', 'vaatan abivahendusse']) {
+    assert.equal(hasAssistiveDeviceSignal({ summary: text }), false, text);
+  }
+  /* Päris abivahendi sõnavormid loevad endiselt. */
+  for (const text of ['abivahend', 'Ema vajab abivahendit.', 'abivahendi taotlus', 'Abivahendid on katki', 'küsin abivahendeid', 'abivahendiga saab hakkama', 'ABIVAHEND']) {
+    assert.equal(hasAssistiveDeviceSignal({ summary: text }), true, text);
+  }
+  /* „duss" (dušš ilma täppideta) sobis iga sõnaga, mis lõpeb „-dusse". */
+  for (const text of ['Ema läks hooldusse.', 'Võtsin vallaga ühendusse', 'Poeg läks haridusse tööle', 'kogudusse']) {
+    assert.equal(hasAssistiveDeviceSignal({ summary: text }), false, text);
+  }
+  for (const text of ['dušš on kõrge äärega', 'Duss on katki', 'ei saa dussi alla', 'vajab dušitooli', '(dušš)']) {
+    assert.equal(hasAssistiveDeviceSignal({ summary: text }), true, text);
+  }
+  /* Kui Teekonnas on mõlemad, loeb abivahend. */
+  assert.equal(hasAssistiveDeviceSignal({ summary: 'Vaatasin Abivahendust, aga vajan hoopis abivahendit.' }), true);
+  /* Soovituste loend, mille mustand ise koostab, ei tekita abivahendi märki üheski harus peale abivahendi oma. */
+  const draft = readFileSync(new URL('../lib/journey/draft.js', import.meta.url), 'utf8');
+  const titles = [...draft.matchAll(/type: "([A-Z_]+)",\s*title: "([^"]+)"/g)].map((match) => ({ type: match[1], title: match[2] }));
+  assert.ok(titles.length >= 7, 'soovituste pealkirjad leiti');
+  for (const { type, title } of titles) {
+    assert.equal(hasAssistiveDeviceSignal({ suggestedActions: [{ title }] }), type === 'ASSISTIVE_DEVICES', `${type}: ${title}`);
+  }
 });
 
 test('fail jõuab brauserisse: avaldises ei ole tahavaadet ega ASCII sõnapiiri', () => {
