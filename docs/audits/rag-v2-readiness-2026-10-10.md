@@ -60,7 +60,32 @@ Lisaks: ametlike juhislehtede igakuine värskendus on ajakavas (1. ja 3. kuupäe
 
 Üks küsimus (riigi rahastatud toetatud elamine alkoholisõltuvuse korral) sai otsustava sätte kolmel korral neljast: selle sätte lõik ei ole otsingu kandidaatide seas ja jõuab tõenditesse ainult siis, kui valitud lõik sellele viitab. Teadmiskaart ei toonud otsustavat lõiku üheski pöördes, kus lisasammu liik salvestati.
 
-See mõõt on automaatne: ta näitab, et õige lõik jõudis mudelini ja sellele viidati, mitte seda, kas vastuse sõnastus on õige; vastuseid ei loetud. Sama graafiprofiil **ilma valikumudelita** leiab täna 24 tingimust 30-st (02.10.2026, poole väiksema korpusega, 28). Vahe näitab, et suuremas korpuses teeb töö ära mudeli kirjutatud otsinguplaan ja mudeli tehtud valik, mitte liidetud järjestus üksi. Tulemused küsimuse kaupa: [tõendite kaust](evidence/readiness-2026-10-10/).
+See mõõt on automaatne: ta näitab, et õige lõik jõudis mudelini ja sellele viidati, mitte seda, kas vastuse sõnastus on õige. Sõnastus loeti eraldi (järgmine lõik). Sama graafiprofiil **ilma valikumudelita** leiab täna 24 tingimust 30-st (02.10.2026, poole väiksema korpusega, 28). Vahe näitab, et suuremas korpuses teeb töö ära mudeli kirjutatud otsinguplaan ja mudeli tehtud valik, mitte liidetud järjestus üksi. Tulemused küsimuse kaupa: [tõendite kaust](evidence/readiness-2026-10-10/).
+
+**Vastuste sõnastus, loetud seaduse vastu (10.10.2026 hommikul, tasuta: agendid lugesid, iga kahtlast vastust luges teine lugeja uuesti):** samad 72 vastust.
+
+| | Vastuseid |
+|---|---:|
+| Ütleb otsustava tingimuse õigesti | 58 |
+| Osaliselt (tingimus on olemas, kuid nõrgendatud või järeldus tegemata) | 8 |
+| Jätab otsustava tingimuse välja | 3 |
+| Ütleb seadusele vastupidist | 3 |
+| Neist eksitavad inimesele, kes vastuse järgi tegutseb | 6 |
+
+Õige lõik oli kõigil neil juhtudel mudeli ees; viga on lugemises. Kolm selget viga: üür emalt (viidatud sätte juurde loetakse tingimus, mida seal ei ole; vale mõlemal korral), sõjaseisukorra 14 päeva (kolm nädalat loeti lühemaks kui 14 päeva) ja eriolukorra tähtaeg (anti tavaline 7 päeva).
+
+**Kiire ja põhjalik mõtlemisaste samadel küsimustel (tasuline, omaniku loal, 0,0970 USD):** kümme küsimust, mille kiire vastus ei olnud õige, küsiti kaks korda põhjalikuma astmega ja loeti samamoodi.
+
+| | Kiire (26 vastust) | Põhjalik (20 vastust) |
+|---|---:|---:|
+| Õige | 13 | 13 |
+| Osaliselt | 7 | 6 |
+| Jätab tingimuse välja | 3 | 0 |
+| Ütleb seadusele vastupidist | 3 | 1 |
+| Pöörde mediaan | 19 s | 46 s |
+| Hind pöörde kohta | 0,0039 USD | 0,0048 USD |
+
+Põhjalik aste eksib raskete seadusküsimuste puhul selgelt harvem (1 vale 20-st, kiirel 6 vale 26-st), kuid pööre on 2,4 korda pikem. Võrdlus on kiire astme kahjuks kallutatud: küsimused valiti selle järgi, kus kiire eksis, ja ülejäänud 20 küsimusel põhjalikku ei mõõdetud. Üks viga (üür emalt) jäi mõlemas. Valim on väike. Vaikimisi astme valik rolli kaupa on omaniku otsus.
 
 **Otsing (tasuta otsingukontroll, 33 kindlat küsimust):** kaks võrdlust lähteseisuga, üks muudetud ja üks muutmata koodiga, mõlemas 33/33 sama. Kontroll on kasutatav enne iga otsingut puudutavat väljalaset.
 
@@ -145,5 +170,5 @@ Mudelikutsed sel õhtul ja ööl plaani hindades: täpsustava küsimuse kontroll
 ## Kontrollimata
 
 - Mitu kasutajat korraga; avamise plaan päris lehel; varundusest taastamine.
-- Raskete tingimuste vastuste sõnastus (mõõdeti, kas õige lõik jõudis mudelini ja sellele viidati); spetsialisti rolli vastused samadele küsimustele.
+- Spetsialisti rolli vastused samadele rasketele küsimustele.
 - Omavalitsuse aktide uued redaktsioonid 01.01.2027 (viis akti): Riigi Teatajas ei pruugi neid veel olla.

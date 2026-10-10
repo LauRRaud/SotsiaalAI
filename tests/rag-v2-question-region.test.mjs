@@ -20,7 +20,7 @@ import { validateCatalogue, checkTurn } from '../lib/rag-v2/pilot/conversation-e
 // catalogue and the knowledge lane read `source`, the saved state is resolvePersonRegions of the same checked places.
 // A stand-in for EstNLTK: each word reads as itself and, for the inflected fixture words, its lemma. The directory has
 // the shape the municipal adapter gives: the display name and the base name of each municipality.
-const LEMMAS = { vallas: 'vald', valla: 'vald', valda: 'vald', vallast: 'vald', linnas: 'linn', linna: 'linn', maardus: 'maardu', nõos: 'nõo', tartus: 'tartu', viimsis: 'viimsi', koses: 'kose',
+const LEMMAS = { vallas: 'vald', valla: 'vald', valda: 'vald', vallast: 'vald', linnas: 'linn', linna: 'linn', maardus: 'maardu', maardusse: 'maardu', nõos: 'nõo', tartus: 'tartu', viimsis: 'viimsi', koses: 'kose',
   omavalitsuses: 'omavalitsus', elukohas: 'elukoht', linnades: 'linn' };
 const analyzer = { analyze: async words => words.map(word => { const lower = word.toLowerCase(); return `vmet${lower}${LEMMAS[lower] ? ` vmet${LEMMAS[lower]}` : ''}`; }) };
 const directory = [['anija_vald', 'Anija vald', 'Anija'], ['harku_vald', 'Harku vald', 'Harku'], ['kose_vald', 'Kose vald', 'Kose'], ['maardu_linn', 'Maardu linn', 'Maardu'],
@@ -289,13 +289,18 @@ test('Codex F2: a place of work is a circumstance; the search keeps the residenc
   const firstPerson = await turn({ before: nooState, texts: ['Elan Nõo vallas.', later[1][0]], plan: { person: 'user', places: [], queries: queries[3] } });
   assert.deepEqual([firstPerson.source.region, firstPerson.people.user], [null, [null, 'unresolved']]);
   // Asking about that municipality's service is still a question about it, beside the work place and without it.
+  // ADR-128 (10.10.2026): so is a request for information that is no question, the last five here. Until then "Soovin
+  // infot Maardu isikliku abistaja teenuse kohta." stood in the limit below and stayed with the residence.
   for (const message of ['Töötan Maardus. Kas Maardus saab isikliku abistaja teenust?', 'Tahan teada, kas Maardus saab isikliku abistaja teenust.',
-    'Räägi Maardu isikliku abistaja teenusest.', 'Maardus saab isikliku abistaja teenust?', 'Kui palju Maardus isikliku abistaja teenus maksab?']) {
+    'Räägi Maardu isikliku abistaja teenusest.', 'Maardus saab isikliku abistaja teenust?', 'Kui palju Maardus isikliku abistaja teenus maksab?',
+    'Soovin infot Maardu isikliku abistaja teenuse kohta.', 'Sooviksin teada Maardu isikliku abistaja teenuse hinda.', 'Mind huvitab Maardu isikliku abistaja teenus.',
+    'Töötan Maardus. Vajan infot Maardu isikliku abistaja teenuse kohta.', 'Мне нужна информация об услуге личного помощника в Маарду.']) {
     const result = await turn({ before: nooState, texts: ['Elan Nõo vallas.', message], plan: { person: 'user', places: [], queries: ['Maardu isikliku abistaja teenus'] } });
     assert.deepEqual([result.source.region, result.source.state, result.people.user], ['maardu_linn', 'question_region', ['noo_vald', 'reported']], message);
   }
-  // A limit, not a goal: a request with no question in it is not read as one, and stays with the residence.
-  for (const message of ['Maardu isikliku abistaja teenus', 'Soovin infot Maardu isikliku abistaja teenuse kohta.']) {
+  // A limit, not a goal: a bare name of the matter, an information word after the name, and a request with no wish word
+  // are not read as asking, and stay with the residence.
+  for (const message of ['Maardu isikliku abistaja teenus', 'Soovin Maardu isikliku abistaja teenuse kohta infot.', 'Infot Maardu isikliku abistaja teenuse kohta.']) {
     const result = await turn({ before: nooState, texts: ['Elan Nõo vallas.', message], plan: { person: 'user', places: [], queries: ['Maardu isikliku abistaja teenus'] } });
     assert.deepEqual([result.source, result.people.user], [home('noo_vald'), ['noo_vald', 'reported']], message);
   }
@@ -530,4 +535,199 @@ test('ADR-084 (Codex F2): a follow-up that names a municipality by a common word
     ['Ja mis see maksab?', false], ['Kas Maardus saab isikliku abistaja teenust?', false], ['Kuidas ma seda taotleda saan?', false], ['', false]]) {
     assert.equal(await namesPlaceByCommonWord(text, analyzer), expected, text);
   }
+});
+
+// ADR-128 (10.10.2026): a request for information that is no question ("Soovin infot Maardu … kohta") asks about the
+// municipality named after it in its clause; until then it was the limit ADR-074 named. The rule reads the words as
+// written and the clause breaks, never the morphology's terms: the stand-in analyzer only finds the names here.
+const asks = async text => (await placeOccurrences(text, directory, analyzer)).map(item => item.asking);
+
+test('ADR-128: a wish, need or search for information, or a word of interest, before the name in its clause asks about it (ET, EN, RU)', async () => {
+  for (const text of [
+    // The wish word and the wanted word side by side, and the word of interest alone.
+    'Soovin infot Maardu isikliku abistaja teenuse kohta.', 'Soovin teavet Maardu koduteenuse kohta.', 'Sooviksin teada Maardu koduteenuse hinda.', 'Tahaksin infot Maardu toetuste kohta.',
+    'Mind huvitab Maardu isikliku abistaja teenus.', 'Vajan infot Maardu sotsiaaltranspordi kohta.', 'Palun infot Maardu koduteenuse kohta.', 'Otsin infot Maardu hooldekodude kohta.',
+    'Tahan teada Kose valla sotsiaaltranspordi hinda.', 'Mind huvitaks Tartu valla sotsiaaltransport.', 'Meid huvitavad Maardu linna toetused.', 'Tahaks teada Maardu koduteenuse hinda.',
+    'Tahaksin küsida Maardu koduteenuse kohta.', 'Sooviksin uurida Viimsi valla toetuste kohta.', 'Soovin lisainfot Maardu koduteenuse kohta.', 'Soovin lisainformatsiooni Maardu koduteenuse kohta.',
+    'Palun selgitust Märjamaa valla hooldajatoetuse kohta.', 'Otsime infot Põhja-Sakala valla koduteenuse kohta.',
+    // The name later in the clause; filler words between the two; a greeting or a lead-in in a clause of its own.
+    'Soovin infot isikliku abistaja teenuse kohta Maardus.', 'Sooviksin saada täpsemat teavet Harku valla toimetulekutoetuse kohta.', 'Soovin rohkem infot Viimsi valla koduteenuse kohta.',
+    'Palun andke mulle infot Viimsi valla koduteenuse kohta.', 'Tere! Vajaksin ülevaadet Anija valla toetustest.', 'Mul on küsimus: soovin infot Harku valla koduteenuse kohta.',
+    'Tere\nSoovin infot Maardu koduteenuse kohta',
+    // "vaja" carries no tense: a present or conditional "on", "oleks" before it leaves it a request.
+    'Mul on vaja infot Maardu koduteenuse kohta.', 'Mul oleks vaja infot Maardu koduteenuse kohta.', 'Oleks vaja teada Maardu koduteenuse hinda.',
+    // No capitals and no punctuation; a question word after the name does not hide the request before it; the reason
+    // follows in a clause of its own; a base name two municipalities share is one mention with both as candidates.
+    'soovin infot maardu koduteenuse kohta', 'Soovin infot Maardu koduteenuse kohta kuidas taotleda', 'Soovin infot Maardu isikliku abistaja teenuse kohta, sest ema vajab abi.', 'Soovin infot Tartu kohta.',
+    'I would like information about the personal assistant service in Maardu.', 'I need information on home care in Maardu.', 'I am looking for information about home care in Viimsi.',
+    'I\'m interested in home care in Harku.', 'I\'d like to know the price of home care in Maardu.', 'I would like to ask about home care in Maardu.', 'We need details on home care in Viimsi.',
+    // English "if" joins no telling clause here: it opens the indirect question.
+    'I would like to know if home care is available in Maardu.',
+    'Мне нужна информация об услуге личного помощника в Маарду.', 'Хочу узнать про услугу личного помощника в Маарду.', 'Интересует услуга личного помощника в Маарду.',
+    'Хотел бы получить информацию о домашнем уходе в Виймси.', 'Мне нужно узнать про услугу в Маарду.', 'Хотелось бы спросить про услуги в Маарду.',
+    // Every word of the lists stands in a row: the plural and conditional wishes, each filler, each word for what is
+    // wanted (a list word no row reads could be mistyped or dropped with no test noticing).
+    'Sooviks infot Maardu koduteenuse kohta.', 'Soovime veel informatsiooni Maardu koduteenuse kohta.', 'Sooviksime ka lisateavet Maardu koduteenuse kohta.', 'Tahame täpsemalt teada Maardu koduteenuse hinda.',
+    'Tahaksime veidi infot Maardu koduteenuse kohta.', 'Vajame lisa info Maardu koduteenuse kohta.', 'Paluksin natuke selgitusi Maardu koduteenuse kohta.', 'Palun anna meile infot Maardu koduteenuse kohta.',
+    'Palume infot Maardu koduteenuse kohta.', 'Soovin väga teada Maardu koduteenuse hinda.', 'I want to get some more information about home care in Maardu.', 'We are seeking information about home care in Maardu.',
+    'Хотим узнать про услуги в Маарду.', 'Хотела бы знать про услуги в Маарду.', 'Мне нужны сведения об услугах в Маарду.', 'Прошу больше информации об услугах в Маарду.', 'Ищу информацию об услугах в Маарду.',
+    'Интересуют услуги в Маарду.',
+    // A denial or a past word that ends the sentence, the clause or the line before takes nothing away from the request
+    // after it: the word right before the wish word counts only inside the request's own stretch.
+    'Vastust ei olnud. Soovin infot Maardu koduteenuse kohta.', 'Ei, soovin infot Maardu koduteenuse kohta.', 'Vastust ei olnud\nSoovin infot Maardu koduteenuse kohta',
+    // A hyphen inside a word cuts nothing; only one with a space on both sides stands for a dash (below).
+    'Soovin infot e-teenuste kohta Maardus.',
+  ]) assert.deepEqual(await asks(text), [true], text);
+  // Several mentions: each is read in its own clause ("ja" between two names does not cut the request).
+  for (const [text, expected] of [['Soovin infot Maardu ja Viimsi valla koduteenuse kohta.', [true, true]], ['Elan Nõo vallas. Soovin infot Maardu koduteenuse kohta.', [false, true]],
+    ['Töötan Maardus. Soovin infot Maardu isikliku abistaja teenuse kohta.', [false, true]], ['Töötan Maardus\nSoovin infot Maardu koduteenuse kohta', [false, true]]]) assert.deepEqual(await asks(text), expected, text);
+});
+
+test('ADR-128: a report, a wish for something else, a denied or past wish, and a place in a clause or on a line that only tells, are no requests', async () => {
+  for (const text of [
+    // A report, a circumstance, a third person's wish, the name before everything, a bare name of the matter.
+    'Sain infot Maardu linnavalitsusest, et toetus lõpeb.', 'Töötan Maardus.', 'Ema soovib elada Tartus.', 'Maardu linnavalitsus saatis mulle info.', 'Maardu isikliku abistaja teenus',
+    'Ema sai teavet Kose vallavalitsusest.', 'Ema soovib infot Maardu koduteenuse kohta.', 'Käisin eile Viimsis infot küsimas.',
+    // A wish for something else than information: a move (the residence rules read moves), help, a flat, work.
+    'Soovin kolida Maardusse.', 'Vajan abi Maardus.', 'Soovin elada Maardus.', 'Tahan Maardusse tööle minna.', 'Otsin Maardus korterit.', 'Otsin tööd Maardus.', 'Mul on vaja Maardusse kolida.', 'Vaja abi Maardus.',
+    // Another word than a filler between the two: the speaker gives information, or the wish word is a politeness.
+    'Soovin jagada infot Maardu linnavalitsuse kohta.', 'Tahan anda infot Maardu linnavalitsuse kohta.', 'Palun aidake, sain infot Maardu linnavalitsusest.', 'palun aidake sain infot maardu linnavalitsusest',
+    'Palun vabandust, töötan Maardus.',
+    // The name in another clause or sentence, behind a joining word where the comma is left out, or on the next line.
+    'Soovin infot koduteenuse kohta, töötan Maardus.', 'Soovin infot koduteenuse kohta. Ema elab Kose vallas.', 'Mind huvitab koduteenus, sest töötan Maardus.',
+    'Soovin infot koduteenuse kohta sest töötan Maardus.', 'Soovin infot koduteenuse kohta aga töötan Maardus.', 'Soovin infot koduteenuse kohta ent töötan Maardus', 'Soovin infot koduteenuse kohta ehkki töötan Maardus',
+    'Vajan infot kuna ema kolib Maardusse.', 'Soovin teada anda et kolisin Maardusse.', 'Soovin infot koduteenuse kohta\nTöötan Maardus', 'Mind huvitab koduteenus\nTöötan Maardus',
+    // The name before the request (the order of "Töötan Maardus ja soovin infot …"), the wanted word after the name, no
+    // wish word, the request wrapped over two lines by hand: limits, today's reading.
+    'Töötan Maardus ja soovin infot koduteenuse kohta.', 'Maardus soovin infot koduteenuse kohta.', 'Soovin Maardu koduteenuse kohta infot.', 'Infot Maardu koduteenuse kohta.', 'Soovin infot\nMaardu koduteenuse kohta',
+    // Denied, or in the past: another form of the verb ("ei huvita", "soovisin", "tahtsin"), or the word right before it.
+    'Mind ei huvita Maardu.', 'Mind ei huvitaks Maardu.', 'Ma ei tahaks infot Maardu kohta.', 'Soovisin infot Maardu linnavalitsuselt, aga vastust ei tulnud.', 'Tahtsin infot Maardu linnavalitsuselt.',
+    'Mul oli vaja infot Maardu linnavalitsusest.', 'Mul ei ole vaja infot Maardu kohta.', 'Mul pole vaja infot Maardu kohta.', 'Mul polnud vaja infot Maardu kohta.',
+    'I work in Maardu.', 'I received information from the Maardu city government.', 'I would like to move to Maardu.', 'I need help in Maardu.', 'I don\'t need information about Maardu.',
+    'I\'m not interested in Maardu.', 'I need information on home care because I work in Maardu.', 'I need information on home care though I work in Maardu', 'I need information on home care\nI work in Maardu',
+    'I was looking for information about Maardu yesterday.', 'I was interested in Maardu before.', 'We were seeking information from the Maardu city government.',
+    'Я работаю в Маарду.', 'Я получил информацию от управы Маарду.', 'Мне нужна помощь в Маарду.', 'Хочу переехать в Маарду.', 'Меня не интересует Маарду.', 'Мне не нужна информация о Маарду.',
+    'Мама хочет жить в Маарду.', 'Мне была нужна информация от управы Маарду.', 'Мне было нужно узнать про Маарду.', 'Мне нужна информация об уходе поскольку я работаю в Маарду',
+    'Мне нужна информация об уходе если я работаю в Маарду', 'Мне нужна информация об уходе хотя я работаю в Маарду', 'Мне нужна информация об уходе\nЯ работаю в Маарду',
+    // Not read, as before: punctuation between the wanted word and the name, a wish for another thing than the listed ones.
+    'Soovin infot: Maardu koduteenus.', 'Vajan Maardu sotsiaaltöötaja kontakti.',
+    // Every joining word and every past word of the lists stands in a row (each is a must-not rule of its own).
+    'Soovin infot koduteenuse kohta kui töötan Maardus', 'Soovin infot koduteenuse kohta kuid töötan Maardus', 'Soovin infot koduteenuse kohta kuigi töötan Maardus',
+    'I need information on home care since I work in Maardu', 'I need information on home care but I work in Maardu', 'I need information on home care although I work in Maardu',
+    'Мне нужна информация об уходе но я работаю в Маарду', 'Mul on olnud vaja infot Maardu linnavalitsusest.', 'Мне были нужны сведения от управы Маарду.',
+    // A hyphen with a space on both sides is typed for a dash and ends the request like a line break: what follows tells
+    // something. The cost: a request with such a hyphen between the wanted word and the name is not read either.
+    'Soovin infot koduteenuse kohta - töötan Maardus.', 'Mind huvitab koduteenus - töötan Maardus', 'I need information on home care - I work in Maardu', 'Soovin infot - Maardu koduteenus.',
+    // The request stands before the name: a word of interest after it is not read (the limit of "the name before the
+    // request", which the rows above pin for a wish word only).
+    'Maardu koduteenus huvitab mind.',
+    // ADR-074 (Codex F2), kept through the rewrite of its line: a work place before a question word, in one clause that
+    // ends with a question mark, is not asked about.
+    'Töötan Maardus mis koduteenust ma saan?',
+  ]) assert.deepEqual(await asks(text), [false], text);
+  // Limits, not goals: the syntax rule reads these as requests, and only the second condition of ADR-074 (the plan's
+  // queries name that municipality and no other) holds them. A run-on sentence with "ja" (noun phrases are joined by it
+  // far more often: "Maardu ja Viimsi valla koduteenuse kohta"), an aside in brackets, "teada anda" (to notify), a denial
+  // that is not the word right before, reported speech. A run-on sentence with no joining word at all, a denial two
+  // words back in a word of the list ("pole enam vaja": the list reaches one word), a need that is denied by "no" (in
+  // Estonian "no" is a filler, "No tahaks teada …", so it is not in the list), and a third person's interest.
+  for (const text of ['Soovin infot koduteenuse kohta ja töötan Maardus.', 'Soovin infot koduteenuse kohta (töötan Maardus).', 'Tahan teada anda Maardu linnavalitsuse tegevusest.',
+    'I no longer need information about Maardu.', 'He said he would ask about home care in Maardu.', 'Soovin infot koduteenuse kohta töötan Maardus', 'Mul pole enam vaja infot Maardu kohta.',
+    'There is no need to ask Maardu.', 'My mother is interested in moving to Maardu.']) assert.deepEqual(await asks(text), [true], text);
+});
+
+test('ADR-128: a request is searched in the municipality it names, the residence kept; the plan\'s queries decide as for a question', async () => {
+  const told = (message, queries) => turn({ before: nooState, texts: ['Elan Nõo vallas.', message], plan: { person: 'user', places: [], queries } });
+  // The wordings of the task, with no attribution from the plan: the server reads the mention as another one, asked about.
+  for (const message of ['Soovin infot Maardu isikliku abistaja teenuse kohta.', 'Sooviksin teada Maardu isikliku abistaja teenuse hinda.', 'Tahaksin infot Maardu isikliku abistaja teenuse kohta.',
+    'Mind huvitab Maardu isikliku abistaja teenus.', 'Vajan infot Maardu isikliku abistaja teenuse kohta.', 'Palun infot Maardu isikliku abistaja teenuse kohta.', 'Otsin infot Maardu isikliku abistaja teenuse kohta.',
+    'Soovin teavet isikliku abistaja teenuse kohta Maardus.', 'Mul on vaja infot Maardu isikliku abistaja teenuse kohta.', 'Мне нужна информация об услуге личного помощника в Маарду.',
+    'Хочу узнать про услугу личного помощника в Маарду.', 'Интересует услуга личного помощника в Маарду.']) {
+    const result = await told(message, ['Maardu isikliku abistaja teenus']);
+    assert.deepEqual([result.source, result.people, result.places.map(item => [item.region, item.relation, item.asking, item.reason])],
+      [asked('maardu_linn', home('noo_vald')), { user: ['noo_vald', 'reported'] }, [['maardu_linn', 'other', true, 'unattributed_other_mention']]], message);
+  }
+  // The second condition of ADR-074 is as it was: the person's own municipality in a query is set aside; no named
+  // municipality, or a third one, keeps the search with the person; the own municipality is never an asked one.
+  const request = 'Soovin infot Maardu koduteenuse kohta.';
+  assert.deepEqual((await told(request, ['Maardu koduteenus', 'Nõo valla sotsiaalabi'])).source, asked('maardu_linn', home('noo_vald')));
+  for (const queries of [['koduteenuse taotlemine'], ['Maardu koduteenus', 'Viimsi valla koduteenus']]) assert.deepEqual((await told(request, queries)).source, home('noo_vald'), queries.join(' | '));
+  assert.deepEqual((await told('Soovin infot Nõo valla koduteenuse kohta.', ['Nõo valla koduteenus'])).source, home('noo_vald'));
+  // Two requested municipalities, and a base name two municipalities share: both are kept, none chosen.
+  const two = await told('Soovin infot Maardu ja Viimsi valla koduteenuse kohta.', ['Maardu koduteenus', 'Viimsi valla koduteenus']);
+  assert.deepEqual([two.source.state, two.source.candidates, two.people.user], ['question_regions', ['maardu_linn', 'viimsi_vald'], ['noo_vald', 'reported']]);
+  const shared = await told('Soovin infot Tartu sotsiaaltranspordi kohta.', ['Tartu sotsiaaltransporditeenus']);
+  assert.deepEqual([shared.source.state, shared.source.candidates, shared.people.user], ['question_regions', ['tartu_linn', 'tartu_vald'], ['noo_vald', 'reported']]);
+  // A person who has given no residence gets the scope such a first message had before: the plan's queries.
+  const first = await turn({ texts: ['Soovin infot Maardu isikliku abistaja teenuse kohta.'], plan: { person: 'user', places: [], queries: ['Maardu isikliku abistaja teenus'] } });
+  assert.deepEqual([first.source.state, first.source.region, first.people], ['search_plan_region', 'maardu_linn', {}]);
+  // The home and the request in one message: the home is saved, the requested municipality searched.
+  const both = await turn({ texts: ['Elan Nõo vallas. Soovin infot Maardu isikliku abistaja teenuse kohta.'], plan: { person: 'user',
+    places: [place(1, 'Elan Nõo vallas', 'Nõo vald', 'user', 'lives'), place(1, 'Soovin infot Maardu isikliku abistaja teenuse kohta', 'Maardu linn', 'user', 'other')],
+    queries: ['Maardu isikliku abistaja teenuse korraldamine'] } });
+  assert.deepEqual([both.source, both.people], [asked('maardu_linn', home('noo_vald', 'user', 'person_mentioned_region')), { user: ['noo_vald', 'reported'] }]);
+  // The work place first, then the request about the same municipality.
+  assert.deepEqual((await told('Töötan Maardus. Soovin infot Maardu isikliku abistaja teenuse kohta.', ['Maardu isikliku abistaja teenus'])).source, asked('maardu_linn', home('noo_vald')));
+});
+
+test('ADR-128: what must not become a request keeps the residence, also when the plan calls the place another mention and its queries name only that place', async () => {
+  const told = (message, places = []) => turn({ before: nooState, texts: ['Elan Nõo vallas.', message], plan: { person: 'user', places, queries: ['Maardu koduteenus'] } });
+  const other = quote => [place(2, quote, 'Maardu linn', 'user', 'other')];
+  // The message and the clause the plan quotes for the place (Codex F2's shape: the query names the place alone).
+  for (const [message, quote] of [['Sain infot Maardu linnavalitsusest, et toetus lõpeb.', 'Sain infot Maardu linnavalitsusest'], ['Maardu linnavalitsus saatis mulle info.', null],
+    ['Soovin kolida Maardusse.', null], ['Vajan abi Maardus.', null], ['Töötan Maardus.', null], ['Töötan Maardus ja soovin infot koduteenuse kohta.', 'Töötan Maardus'],
+    ['Soovin infot koduteenuse kohta. Töötan Maardus.', 'Töötan Maardus'], ['Soovin infot koduteenuse kohta, töötan Maardus.', 'töötan Maardus'],
+    ['Soovin infot koduteenuse kohta sest töötan Maardus.', 'töötan Maardus'], ['Mind huvitab koduteenus, sest töötan Maardus.', 'sest töötan Maardus'],
+    ['Soovin infot koduteenuse kohta\nTöötan Maardus', 'Töötan Maardus'], ['Soovin infot koduteenuse kohta - töötan Maardus.', 'töötan Maardus'], ['Mul oli vaja infot Maardu linnavalitsusest.', null],
+    ['I don\'t need information about Maardu.', null],
+    ['I was looking for information about Maardu yesterday.', null], ['Я получил информацию от управы Маарду.', null], ['Мне была нужна информация от управы Маарду.', null],
+    ['Мне нужна информация об уходе поскольку я работаю в Маарду', null]]) {
+    const result = await told(message, other(quote || message));
+    assert.deepEqual([result.source, result.people], [home('noo_vald'), { user: ['noo_vald', 'reported'] }], message);
+  }
+  // The line break, without the plan's attribution too: a request on one line and the work place on the next.
+  const lines = await told('Soovin infot koduteenuse kohta\nTöötan Maardus');
+  assert.deepEqual([lines.source, lines.people], [home('noo_vald'), { user: ['noo_vald', 'reported'] }]);
+  // A limit, kept as one (the same as ADR-074's "kas ma saan koduteenust kui töötan Maardus" without its comma): a telling
+  // clause joined by "ja" reads as requested, and the plan's queries alone decide where the search goes.
+  const joined = 'Soovin infot koduteenuse kohta ja töötan Maardus.', quoted = [place(2, 'töötan Maardus', 'Maardu linn', 'user', 'other')];
+  assert.deepEqual((await turn({ before: nooState, texts: ['Elan Nõo vallas.', joined], plan: { person: 'user', places: quoted, queries: ['Nõo valla koduteenus'] } })).source, home('noo_vald'));
+  assert.deepEqual((await told(joined, quoted)).source, asked('maardu_linn', home('noo_vald')));
+});
+
+test('ADR-128: which mention is whose stays as it was: a first-person clause needs the plan\'s attribution, a clause about another person is theirs', async () => {
+  const told = (message, places = []) => turn({ before: nooState, texts: ['Elan Nõo vallas.', message], plan: { person: 'user', places, queries: ['Maardu koduteenus'] } });
+  // "Ma", "I": the clause is the user's own, and a place in it that the plan left unattributed leaves the residence
+  // unresolved, exactly as for "Kas ma saan Maardus …?" (ADR-074's own limit). The rule sets only `asking`.
+  for (const message of ['Ma soovin infot Maardu koduteenuse kohta.', 'Ma tahaks teada Maardu koduteenuse hinda.', 'I would like information about home care in Maardu.', 'I need information on home care in Maardu.']) {
+    const bare = await told(message);
+    assert.deepEqual([bare.source.region, bare.people.user], [null, [null, 'unresolved']], message);
+    const attributed = await told(message, [place(2, message, 'Maardu linn', 'user', 'other')]);
+    assert.deepEqual([attributed.source, attributed.people.user], [asked('maardu_linn', home('noo_vald')), ['noo_vald', 'reported']], message);
+  }
+  // A word that starts like a word for a person ("lapsehoiuteenus": laps) makes the clause somebody's: unattributed, it
+  // decides nothing; with the plan's attribution the request is read.
+  const care = 'Soovin infot Maardu lapsehoiuteenuse kohta.';
+  const unread = await told(care);
+  assert.deepEqual([unread.places, unread.source], [[], home('noo_vald')]);
+  assert.deepEqual((await told(care, [place(2, care, 'Maardu linn', 'user', 'other')])).source, asked('maardu_linn', home('noo_vald')));
+  // A request for another person is searched for her, both residences kept.
+  const before = { people: [saved('user', 'anija_vald'), saved('ema', 'kose_vald')], focus: 'ema' }, forHer = 'Soovin infot Tartu valla sotsiaaltranspordi kohta ema jaoks.';
+  const hers = await turn({ before, texts: [LIVE[0], LIVE[1], forHer], plan: { person: 'ema', places: [place(3, forHer, 'Tartu vald', 'ema', 'other')], queries: ['Tartu valla sotsiaaltransporditeenus'] } });
+  assert.deepEqual([hers.source, hers.people], [asked('tartu_vald', home('kose_vald', 'ema')), { user: ['anija_vald', 'reported'], ema: ['kose_vald', 'reported'] }]);
+  // A place the same message negates is never a requested one.
+  const negated = await turn({ before: { people: [saved('user', 'kose_vald')], focus: 'user' }, texts: ['Elan Kose vallas.', 'Ma ei ela enam Kose vallas. Soovin infot Kose valla toetuste kohta.'],
+    plan: { person: 'user', places: [place(2, 'Soovin infot Kose valla toetuste kohta', 'Kose vald', 'user', 'other')], queries: ['Kose vald toimetulekutoetus'] } });
+  assert.deepEqual([negated.source.state, negated.source.region, negated.people.user], ['region_required_after_negation', null, [null, 'negated']]);
+});
+
+test('ADR-128: the turns after a request go on like after a question (ADR-074, ADR-081), and the user\'s own request returns to the residence', async () => {
+  const texts = ['Elan Nõo vallas.', 'Soovin infot Maardu isikliku abistaja teenuse kohta.'];
+  const request = await turn({ before: nooState, texts, plan: { person: 'user', places: [], queries: ['Maardu isikliku abistaja teenus'] } });
+  assert.deepEqual([askedRegions(request.source), askedPerson(request.source)], [['maardu_linn'], 'user']);
+  const follow = (text, queries) => turn({ before: request.value, after: request, texts: [...texts, text], plan: { person: 'user', places: [], queries } });
+  // The measured plan of a follow-up that names no municipality (ADR-081), and a short request that names it again.
+  assert.deepEqual((await follow('Ja mis see maksab?', ['Isikliku abistaja teenuse tasu kujunemine inimese omaosalus'])).source, asked('maardu_linn', home('noo_vald'), 'earlier_question'));
+  assert.deepEqual((await follow('Soovin rohkem infot', ['Maardu isikliku abistaja teenus'])).source, asked('maardu_linn', home('noo_vald'), 'earlier_question'));
+  assert.deepEqual((await follow('Aga millist koduteenust ma ise saan?', ['Nõo valla koduteenus'])).source, home('noo_vald'));
 });
