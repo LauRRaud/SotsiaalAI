@@ -7,7 +7,10 @@
  *     stores it in the encrypted per-user IndexedDB partition, never in the
  *     HTTP cache.
  *  2. Only the static application shell is cached: hashed /_next/static
- *     assets, icons and successfully fetched /valitoo navigations.
+ *     assets, the hashed text catalogue (/i18n/<locale>.<hash>.js), icons and
+ *     successfully fetched /valitoo navigations. The catalogue used to be
+ *     written inside every page's HTML; since it became a file of its own a
+ *     cached /valitoo page needs it to show its texts offline.
  *  3. The worker performs no background fetches and sends nothing anywhere —
  *     it is a shell, not a data channel.
  */
@@ -57,6 +60,7 @@ function isApiRequest(url) {
 function isStaticAsset(url) {
   return (
     url.pathname.startsWith("/_next/static/") ||
+    url.pathname.startsWith("/i18n/") ||
     url.pathname.startsWith("/icons/") ||
     url.pathname === "/site.webmanifest"
   );
@@ -88,7 +92,13 @@ self.addEventListener("fetch", (event) => {
         const cached = await cache.match(request);
         if (cached) return cached;
         const response = await fetch(request);
-        if (response.ok) cache.put(request, response.clone());
+        // A response the server marked "no-store" (a catalogue asked for under an
+        // outdated name) is passed on but never kept. Storing is not awaited and
+        // its failure (a full device) never fails the request itself. Older
+        // catalogues are not dropped: a cached /valitoo page of an earlier build
+        // still points to its own catalogue file, like to its own build files.
+        const keep = response.ok && !/no-store/i.test(response.headers.get("Cache-Control") || "");
+        if (keep) cache.put(request, response.clone()).catch(() => {});
         return response;
       })()
     );

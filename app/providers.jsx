@@ -39,12 +39,11 @@ function RouteScrollReset() {
 export default function Providers({
   children,
   initialLocale = "et",
-  messages = {},
   session = null,
   initialA11yPrefs = null
 }) {
   return <SessionProvider session={session} refetchOnWindowFocus={false}>
-      <I18nProvider initialLocale={initialLocale} messages={messages}>
+      <I18nProvider initialLocale={initialLocale}>
         <AccessibilityProvider initialPrefs={initialA11yPrefs}>
           <RouteScrollReset />
           {/* Kursorikalle karussellikaardil (react-bits TiltedCard efekt

@@ -1,6 +1,8 @@
 "use client";
 
-import React, { createContext, useCallback, useContext, useMemo, useRef, useState } from "react";
+import React, { createContext, use, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
+import { hasTexts } from "@/lib/i18n/catalogLoader";
+import { loadCatalog, readCatalog, refreshCatalog } from "./catalogs";
 const I18nContext = createContext(null);
 function get(obj, path, fallback) {
   if (!obj) return fallback;
@@ -15,13 +17,33 @@ function interpolate(template, vars) {
   if (!template || !vars || typeof template !== "string") return template;
   return template.replace(/\{(\w+)\}/g, (m, k) => Object.prototype.hasOwnProperty.call(vars, k) && vars[k] != null ? String(vars[k]) : m);
 }
+
+/**
+ * KUST KATALOOG TULEB. Kataloogi ei anta enam atribuudina (nii kirjutati umbes
+ * 800 kB teksti iga lehe HTML-i sisse). Lehe enda keele kataloog on käes enne
+ * esimest joonistust (`readCatalog`, vt ./catalogs.js): brauseris pani selle
+ * kohale lehe lõpu skript, serveris on see serveri mälus. Nii joonistab server
+ * lehe päris tekstidega ja brauser elustab selle samade tekstidega.
+ *
+ * VARUTEE. Kui lehe skript ei jõudnud kohale (päring ebaõnnestus), laaditakse
+ * keelefail eraldi ja `use` ootab selle ära: serveri joonistatud leht jääb
+ * seni ette ja tõlkimata võtmeid ei näidata. See on erand, mitte tavaline tee:
+ * oodates teeb React brauseris tühja tööd. Lubadus hoitakse olekus, sest `use`
+ * peab igal joonistusel saama sama lubaduse.
+ */
 export default function I18nProvider({
   initialLocale = "et",
-  messages = {},
   children
 }) {
   const [locale, setLocaleState] = useState(initialLocale);
-  const [dict, setDict] = useState(messages || {});
+  const [ready] = useState(() => readCatalog(initialLocale));
+  const [pending] = useState(() => (ready ? null : loadCatalog(initialLocale)));
+  const loaded = ready || use(pending);
+  /* Hiljem vahetatud kataloog: keelevahetuse eelvaade ja salvestatud keel
+     (ligipääsetavuse aken kutsub `setMessages`), teise keelega värskendatud leht
+     või uuesti õnnestunud laadimine. */
+  const [replaced, setReplaced] = useState(null);
+  const dict = replaced || loaded;
   const liveRef = useRef(null);
   const missingKeysRef = useRef(new Set());
   const t = useCallback((key, arg2, arg3) => {
@@ -62,19 +84,47 @@ export default function I18nProvider({
     const template = get(dict, "common.language_changed", "Language changed: {language}");
     announce(template.replace("{language}", languageName));
   }, [locale, dict, announce]);
+  /* Tühi kataloog ei asenda olemasolevat: ebaõnnestunud laadimine ei tohi
+     tekste ekraanilt ära võtta. */
   const setMessages = useCallback(nextMessages => {
-    setDict(nextMessages || {});
+    setReplaced(hasTexts(nextMessages) ? nextMessages : null);
   }, []);
-  React.useEffect(() => {
-    setDict(messages || {});
-  }, [messages]);
-  React.useEffect(() => {
-    if (!initialLocale) return;
+  /* Leht tuli serverist teise keelega kui see, millega ta avati (keel vahetati
+     ja leht värskendati): võetakse selle keele kataloog. Esimesel korral on
+     õige kataloog juba käes. */
+  const shownLocaleRef = useRef(initialLocale);
+  useEffect(() => {
+    if (!initialLocale) return undefined;
     setLocaleState(initialLocale);
     try {
       document.documentElement.setAttribute("lang", initialLocale);
     } catch {}
+    if (shownLocaleRef.current === initialLocale) return undefined;
+    shownLocaleRef.current = initialLocale;
+    let live = true;
+    refreshCatalog(initialLocale).then(next => {
+      if (live && hasTexts(next)) setReplaced(next);
+    });
+    return () => {
+      live = false;
+    };
   }, [initialLocale]);
+  /* Kataloogi laadimine ebaõnnestus (võrk katkes): leht töötab varutekstidega
+     ja proovib ühe korra uuesti. */
+  const emptyAtMount = !hasTexts(loaded);
+  useEffect(() => {
+    if (!emptyAtMount) return undefined;
+    let live = true;
+    const timer = setTimeout(() => {
+      refreshCatalog(shownLocaleRef.current).then(next => {
+        if (live && hasTexts(next)) setReplaced(next);
+      });
+    }, 4000);
+    return () => {
+      live = false;
+      clearTimeout(timer);
+    };
+  }, [emptyAtMount]);
   const value = useMemo(() => ({
     locale,
     messages: dict,

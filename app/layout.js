@@ -2,6 +2,7 @@ import "./styles/globals.css";
 import { cookies } from "next/headers";
 import { getServerSession } from "next-auth";
 import { Exo_2 } from "next/font/google";
+import { catalogScriptPath } from "@/lib/i18n/catalogAsset";
 import Providers from "./providers";
 import ViewportLayoutSetter from "@/components/ViewportLayoutSetter";
 import ServiceWorkerRegistrar from "@/components/pwa/ServiceWorkerRegistrar";
@@ -288,11 +289,6 @@ export const viewport = {
     { media: "(prefers-color-scheme: dark)", color: "#140b07" }
   ]
 };
-const MESSAGES = {
-  et: () => import("@/messages/et.json"),
-  ru: () => import("@/messages/ru.json"),
-  en: () => import("@/messages/en.json")
-};
 function normalizeUiProfile(uiProfile) {
   if (uiProfile === "mac") return "mac";
   if (uiProfile === "lg" || uiProfile === "xl") return "lg";
@@ -335,10 +331,11 @@ export default async function RootLayout({
   const jar = await cookies();
   const cookieLocale = jar.get("NEXT_LOCALE")?.value;
   const locale = ["et", "ru", "en"].includes(cookieLocale || "") ? cookieLocale : "et";
-  let messages = {};
-  try {
-    messages = (await MESSAGES[locale]()).default ?? {};
-  } catch {}
+  /* TEKSTIKATALOOGI ATRIBUUDINA KAASA EI ANTA. Varem laadis paigutus keelefaili
+     ja andis selle kliendile atribuudina: umbes 800 kB teksti kirjutati iga lehe
+     HTML-i sisse. Nüüd viitab leht kataloogile kui eraldi failile (skript keha
+     lõpus, vt allpool ja lib/i18n/catalogAsset.js) ja pakkujale läheb ainult keel. */
+  const catalogSrc = catalogScriptPath(locale);
   const session = await getServerSession(authConfig).catch(() => null);
   /* Session-cookie without Max-Age: the arrival flow runs once per browser
      session, independent of how long the user has been signed in. */
@@ -384,7 +381,7 @@ export default async function RootLayout({
         {/* Liquid glass serva-refraktsiooni SVG-filter (#lg-bend) —
             viidatakse glass.css backdrop-filteritest */}
         <GlassFilters />
-        <Providers initialLocale={locale} messages={messages} session={session} initialA11yPrefs={initialA11yPrefs}>
+        <Providers initialLocale={locale} session={session} initialA11yPrefs={initialA11yPrefs}>
           <ViewportLayoutSetter />
           <ServiceWorkerRegistrar />
           <LiquidCursor />
@@ -411,6 +408,14 @@ export default async function RootLayout({
             </DockStepsProvider>
           </PanelInfoSlotProvider>
         </Providers>
+        {/* TEKSTIKATALOOG. Tavaline (mitte async) skript keha LÕPUS: brauser
+            joonistab lehe sisu enne ja käivitab selle skripti enne neid lehe lõpu
+            skripte, millest React elustamiseks andmed saab. Kataloog on seega käes
+            enne esimest joonistust brauseris. Faili nimes on sisu räsi, nii et see
+            püsib vahemälus, kuni tekstid muutuvad. Ära lisa `async` ega `defer`:
+            siis võib React alustada enne kataloogi. */}
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+        <script id="i18n-catalog" src={catalogSrc} />
       </body>
     </html>;
 }
