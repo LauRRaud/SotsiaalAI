@@ -274,7 +274,9 @@ export default function HomeCareMonth({ context, initial }) {
                     row.heavy ? t("home_care.work_nature.heavy_visits", { count: row.heavy }) : null,
                     row.companionVisits
                       ? t("home_care.month.worker_companion", { visits: row.companionVisits, amount: minutesLabel(t, row.companionMinutes) })
-                      : null
+                      : null,
+                    /* Sõidupäeviku kilomeetrid (K6-b). */
+                    row.km ? t("home_care.month.worker_km", { km: row.km, ownKm: row.ownKm || 0 }) : null
                   ]
                     .filter(Boolean)
                     .join(" · ")}

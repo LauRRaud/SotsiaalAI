@@ -13810,7 +13810,8 @@
       "away_days": "ajutiselt ära {count} päeva",
       "signals_line": "Hooldajate märkamisi sel kuul: {opened}; vastuse sai {handled}, vastust ootab {waiting}.",
       "signals_median": "Vastus tuli tavaliselt {days} päevaga.",
-      "signals_median_same_day": "Vastus tuli tavaliselt samal päeval."
+      "signals_median_same_day": "Vastus tuli tavaliselt samal päeval.",
+      "worker_km": "sõitis {km} km, sellest isikliku autoga {ownKm} km"
     },
     "slots": {
       "title": "Käigud nädalas",
@@ -14555,7 +14556,9 @@
       "col_reason": "Põhjus",
       "download": "Laadi kuu tabel alla",
       "hint_locked": "Tabelifail (CSV) lukustatud arvudega; avaneb tabelarvutuses.",
-      "hint_running": "Tabelifail (CSV) jooksvate arvudega; failis on kirjas, et kuu ei ole lukus. Enne linnale saatmist lukusta kuu."
+      "hint_running": "Tabelifail (CSV) jooksvate arvudega; failis on kirjas, et kuu ei ole lukus. Enne linnale saatmist lukusta kuu.",
+      "col_worker_km": "Kilomeetreid",
+      "col_worker_own_km": "Sellest isikliku autoga"
     },
     "notice": {
       "title": "Teated otsustajale",
