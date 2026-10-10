@@ -96,6 +96,25 @@ Iga avaldamine kirjutab ajastatud tööde unit-failid `/etc/systemd/system/`-i u
 | **Monitooring** | iga jooks jätab rea `CaseWorkRetentionRun` tabelisse — **enne** tööd, mitte pärast |
 | **Jälg** | systemd `failed` seis, journal ja iga jooksu `CaseWorkRetentionRun` rida; eraldi automatiseeritud smoke-alarmi repos enam ei ole |
 
+## `sotsiaalai-mtr-refresh` (A4 tegevusloa kontroll)
+
+`sotsiaalai-mtr-refresh.timer` käivitab iga tunni 20. minutil `npm run mtr:refresh`. Korje ei kontrolli tunnis kõiki: ta võtab ainult need teenuseprofiilid, millel on registrikood ja vähemalt üks loakataloogiga seotud teenus ning mille järgmise kontrolli aeg on käes (edukas kontroll 14 päeva pärast, tõrke järel 1 h, 6 h, 24 h). Üks kontroll on kolm järjestikust päringut majandustegevuse registrisse; partii on kümme profiili jooksu kohta. Faililukk `/var/lock/sotsiaalai-mtr-refresh.lock` ei lase kahel jooksul korraga käia.
+
+Kuni ükski teenus ei ole kataloogiga seotud, ei tee töö ühtegi registripäringut. Sidumine on halduri teadlik toiming (`POST /api/admin/service-licence-binding`), mitte automaatne.
+
+Esmane lubamine serveris (avaldamine paigaldab `.service` faili, taimerit mitte):
+
+```sh
+R=$(systemctl show -p WorkingDirectory --value sotsiaalai-frontend)
+sudo install -m 0644 "$R/deploy/systemd/sotsiaalai-mtr-refresh.timer" /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now sotsiaalai-mtr-refresh.timer
+systemctl list-timers sotsiaalai-mtr-refresh.timer --no-pager
+journalctl -u sotsiaalai-mtr-refresh.service -n 20 --no-pager
+```
+
+Kuivjooks näitab, kes oleks järgmises partiis, ega päri registrist midagi: `npm run mtr:refresh:dry`. Seis halduri jaoks: `GET /api/admin/licence-alarms`.
+
 ## Teavitused ja perioodilised taastetööd
 
 `sotsiaalai-notifications.timer` käivitab iga viie minuti järel

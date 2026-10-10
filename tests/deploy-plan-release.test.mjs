@@ -79,7 +79,8 @@ test('every job unit of the repository that runs the app is written for the rele
   const jobs = (await repositoryUnits()).filter(unit => jobUnit(unit.name, unit.text, APP));
   const names = jobs.map(unit => unit.name).sort();
   for (const name of ['sotsiaalai-casework-retention.service', 'sotsiaalai-notifications.service', 'sotsiaalai-service-map-contact-check.service',
-    'sotsiaalai-payment-emails.service', 'sotsiaalai-subscription-renewals.service', 'sotsiaalai-service-availability.service']) assert(names.includes(name), name);
+    'sotsiaalai-payment-emails.service', 'sotsiaalai-subscription-renewals.service', 'sotsiaalai-service-availability.service',
+    'sotsiaalai-mtr-refresh.service']) assert(names.includes(name), name);
   // The frontend has its own override; a unit that does not run the app's code (routing engine, storage check) is left alone.
   for (const name of ['sotsiaalai-frontend.service', 'sotsiaalai-osrm.service', 'sotsiaalai-materials-storage-verify.service']) assert.equal(names.includes(name), false, name);
   for (const unit of jobs) {
