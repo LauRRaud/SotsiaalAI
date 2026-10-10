@@ -22,7 +22,7 @@ EnvironmentFile=/etc/sotsiaalai/frontend.env
 # Partii hoiab ühe jooksu lühikese ega koorma võõrast registrit.
 Environment=MTR_REFRESH_BATCH=10
 
-# LUKK. Pika registritõrke korral võib tunnine käivitus eelmisele otsa joosta. `-n` = ära
+# LUKK. Käsitsi käivitatud jooks võib taimeri omale otsa joosta. `-n` = ära
 # oota: kui eelmine jooks veel käib, on õige vastus mitte käivituda. Lukk on failil, mitte
 # ainult systemd'i „üks instants" käitumisel: käsitsi käivitatud `npm run mtr:refresh` ei
 # tea systemd'ist midagi.
@@ -33,8 +33,8 @@ ExecStart=/usr/bin/flock -n /var/lock/sotsiaalai-mtr-refresh.lock \
 TimeoutStartSec=1800
 
 # RETRY tuleb TAIMERILT: `oneshot` ei tohi `Restart`-i kanda. Korje ise austab iga profiili
-# `nextCheckAt`-i (edukas kontroll 14 päeva, tõrke järel 1 h, 6 h, 24 h), seega tunnine
-# käivitus ei kontrolli kedagi tihedamini kui ette nähtud.
+# `nextCheckAt`-i (edukas kontroll 30 päeva pärast, tõrke järel järgmisel ööl), seega
+# igaöine käivitus ei kontrolli kedagi tihedamini kui ette nähtud.
 StandardOutput=journal
 StandardError=journal
 SyslogIdentifier=mtr-refresh

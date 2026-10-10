@@ -529,20 +529,31 @@ küsimus tugevam, sest siis on midagi konkreetset näidata.
 | 7 | Sidumata teenus ei tekita päringut ega väidet | `serviceKey IS NULL` → `SERVICE_MAPPING_REQUIRED`, silti ei ole |
 | 8 | Uus võti = andmed, mitte migratsioon | võtmeid ei ole üheski enum'is ega `CHECK`-piirangus |
 
-### Lukustatud rütm (omanik 05.08)
+### Lukustatud rütm (omanik 10.10.2026; varasem 05.08 rütm on all ajaloona)
 
 ```
-Edukas kontroll        → järgmine automaatne kontroll 14 päeva pärast
-Registritõrge          → uus katse 1 h, siis 6 h, siis 24 h
-Positiivse märgise värskus → 16 päeva
+Esimene kontroll       → kohe, kui inimene teenuse liigi kinnitab (sidumine)
+Edukas kontroll        → järgmine automaatne kontroll 30 päeva pärast
+Luba esimest korda ei leitud → kinnitav kontroll järgmisel ööl
+Registritõrge          → uus katse järgmisel ööl
+Positiivse märgise värskus → 35 päeva
 Käsitsi kontroll       → maksimaalselt kord 15 minuti jooksul
-Cron                   → 0 * * * * (koos flock-iga)
+Ajastus                → systemd taimer kord ööpäevas kell 3.20 (koos flock-iga)
 ```
 
-**Miks 16 päeva, mitte 14:** kahepäevane puhver 14-päevase korje ümber. Ilma selleta kaoks
-märgis kohe, kui täpselt 14. päeva kontroll ajutiselt ebaõnnestub — puhvriga jõuab korduskatse
-enne ära. **Miks cron ikkagi kord tunnis:** ta ei kontrolli kõiki, vaid vaatab, kelle
-`nextCheckAt` on käes. Ainult nii saavad 1 h ja 6 h korduskatsed päriselt toimuda.
+**Miks kord kuus.** Omanik 10.10.2026: tunnine töö ei õigusta end; kontroll olgu umbes kord
+kuus ja alguses paneb inimene selle ise käima. Tegevusluba ei muutu päevade kaupa ja loa
+lõppkuupäev lõpetab positiivse märgise niikuinii samal päeval, korjest sõltumata.
+**Miks 35 päeva, mitte 30:** viiepäevane puhver. Ilma selleta kaoks märgis kohe, kui täpselt
+30. päeva kontroll ajutiselt ebaõnnestub; puhvriga jõuab korje viis ööd uuesti proovida.
+**Miks taimer ikkagi iga öö:** ta ei kontrolli kõiki, vaid vaatab, kelle `nextCheckAt` on
+käes. Nii jaotuvad kontrollid kuu peale ja tõrge ei lükka järgmist katset kuu võrra edasi.
+**Miks kinnitav kontroll järgmisel ööl:** avalik „luba ei leitud" nõuab kahte järjestikust
+tühja vastust. Kui teine tuleks alles kuu pärast, seisaks teenus nii kaua kinnitamata.
+
+Ajalugu: 05.08 rütm oli 14 päeva, värskus 16 päeva, tõrke järel 1 h, 6 h ja 24 h ning cron
+kord tunnis. Seda ajastust serverisse kunagi ei paigaldatud. Astmestik on endiselt
+seadistatav (`MTR_RETRY_HOURS`), kui ajastus kunagi tihedamaks tehakse.
 
 Kõik väärtused on env-ist muudetavad (`lib/mtr/policy.js`). Positiivne seis kehtib **lühima
 ankru järgi** — kas kontroll vananeb või luba lõpeb, kumb enne tuleb.

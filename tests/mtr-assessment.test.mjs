@@ -241,7 +241,7 @@ test("vale alateenuse luba ei kata teist alateenust", () => {
 
 test("positiivne seis kehtib lühima ankru järgi ja lugemisrada jõustab selle", () => {
   const indefinite = assessServiceLicence({ serviceKey: "TOETATUD_ELAMINE", check: okCheck([licence()]), now: NOW });
-  assert.equal(indefinite.publicStatusValidUntil.toISOString(), "2026-08-21T09:00:00.000Z", "ankruks kontrolli värskus (16 päeva)");
+  assert.equal(indefinite.publicStatusValidUntil.toISOString(), "2026-09-09T09:00:00.000Z", "ankruks kontrolli värskus (35 päeva)");
 
   const ending = assessServiceLicence({
     serviceKey: "TOETATUD_ELAMINE",
@@ -257,10 +257,23 @@ test("positiivne seis kehtib lühima ankru järgi ja lugemisrada jõustab selle"
 });
 
 test("korje rütm ja käsitsi jahtumine on konfiguratsioonist", () => {
-  assert.equal(nextCheckAfter({ succeeded: true, now: NOW }).toISOString(), "2026-08-19T12:00:00.000Z", "edukas kontroll -> 14 paeva");
-  assert.equal(nextCheckAfter({ succeeded: false, consecutiveFailures: 0, now: NOW }).toISOString(), "2026-08-05T13:00:00.000Z");
-  assert.equal(nextCheckAfter({ succeeded: false, consecutiveFailures: 1, now: NOW }).toISOString(), "2026-08-05T18:00:00.000Z");
-  assert.equal(nextCheckAfter({ succeeded: false, consecutiveFailures: 9, now: NOW }).toISOString(), "2026-08-06T12:00:00.000Z", "torkeastmestik jaab 1/6/24 h");
+  /* Omanik 10.10.2026: kontroll kord kuus; korje ärkab kord ööpäevas. */
+  assert.equal(nextCheckAfter({ succeeded: true, now: NOW }).toISOString(), "2026-09-04T12:00:00.000Z", "edukas kontroll -> 30 paeva");
+  assert.equal(nextCheckAfter({ succeeded: false, consecutiveFailures: 0, now: NOW }).toISOString(), "2026-08-06T12:00:00.000Z", "torge -> jargmisel ool");
+  assert.equal(nextCheckAfter({ succeeded: false, consecutiveFailures: 9, now: NOW }).toISOString(), "2026-08-06T12:00:00.000Z");
+  /* Luba esimest korda ei leitud: teist kinnitavat kontrolli ei oodata kuu aega. */
+  assert.equal(nextCheckAfter({ succeeded: true, pendingSecondCheck: true, now: NOW }).toISOString(), "2026-08-06T12:00:00.000Z");
+  /* Astmestik on endiselt seadistatav, kui ajastus kunagi tihedamaks tehakse. */
+  const savedRetry = process.env.MTR_RETRY_HOURS;
+  process.env.MTR_RETRY_HOURS = "1,6,24";
+  try {
+    assert.equal(nextCheckAfter({ succeeded: false, consecutiveFailures: 0, now: NOW }).toISOString(), "2026-08-05T13:00:00.000Z");
+    assert.equal(nextCheckAfter({ succeeded: false, consecutiveFailures: 1, now: NOW }).toISOString(), "2026-08-05T18:00:00.000Z");
+    assert.equal(nextCheckAfter({ succeeded: false, consecutiveFailures: 9, now: NOW }).toISOString(), "2026-08-06T12:00:00.000Z");
+  } finally {
+    if (savedRetry === undefined) delete process.env.MTR_RETRY_HOURS;
+    else process.env.MTR_RETRY_HOURS = savedRetry;
+  }
 
   assert.equal(manualCheckAllowed({ lastAttemptAt: null, now: NOW }), true);
   assert.equal(manualCheckAllowed({ lastAttemptAt: new Date("2026-08-05T11:50:00.000Z"), now: NOW }), false);
