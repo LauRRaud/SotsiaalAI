@@ -7004,7 +7004,8 @@
       "home_care_incident_assigned": "A home care incident was assigned to you",
       "home_care_visits_changed": "Your home care visits changed",
       "home_care_obstacle_reported": "A care worker reported an obstacle",
-      "home_care_change_noticed": "Care workers noticed a change"
+      "home_care_change_noticed": "Care workers noticed a change",
+      "home_care_transport_requested": "A care worker requested transport for a client"
     },
     "center": {
       "title": "Notifications",
