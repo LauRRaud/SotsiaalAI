@@ -7005,7 +7005,8 @@
       "home_care_visits_changed": "Your home care visits changed",
       "home_care_obstacle_reported": "A care worker reported an obstacle",
       "home_care_change_noticed": "Care workers noticed a change",
-      "home_care_transport_requested": "A care worker requested transport for a client"
+      "home_care_transport_requested": "A care worker requested transport for a client",
+      "home_care_talk_requested": "A worker wants to talk after an incident"
     },
     "center": {
       "title": "Notifications",
@@ -13215,7 +13216,12 @@
       "representative_checked_future": "The day the document was seen cannot be in the future.",
       "representative_too_many": "The client already has {limit} representative records in force. End one of them first.",
       "representative_not_found": "The representative record was not found.",
-      "representative_ended": "This record has already been ended."
+      "representative_ended": "This record has already been ended.",
+      "talk_not_incident": "Talking can be asked for only on a hard incident.",
+      "talk_not_author": "Talking can be asked for by the person who recorded the incident.",
+      "talk_not_found": "The wish to talk was not found.",
+      "talk_handled": "This wish has already been marked as talked.",
+      "talk_withdrawn": "The worker took this wish back."
     },
     "incidents": {
       "title": "Incident register",
@@ -14958,6 +14964,19 @@
       "period_open": "no end date",
       "copy_line": "copy: {place}",
       "checked_line": "document seen on {date} by {name}"
+    },
+    "talk": {
+      "ask": "I want to talk about this",
+      "ask_hint": "The coordinator gets a notice that you want to talk about this incident. You do not have to write anything and the team does not see it. You can also talk about it in covision:",
+      "covision_link": "open covision",
+      "sent_line": "Your wish to talk was sent to the coordinator on {date}.",
+      "withdraw": "Take the wish back",
+      "wants_line": "{name} wants to talk about this incident (since {date}).",
+      "handled": "Talked",
+      "handled_line": "This incident has been talked about: {date}, marked by {name}.",
+      "list_title": "Want to talk after a hard incident",
+      "list_hint": "The worker pressed \"I want to talk about this\" on an incident. Talk to them and then mark \"Talked\"; what you talked about is not written here.",
+      "list_line": "{name}: {type}, wish since {date}."
     }
   },
   "stage": {

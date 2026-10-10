@@ -103,6 +103,7 @@ import { answerTransport, getTransportCard, requestTransport, withdrawTransport 
 import { addTrip, getTripLog, retractTrip } from '../lib/homeCare/trips.js';
 import { endRelative, flagRelativeDoubt, getSharingCard, saveRelative } from '../lib/homeCare/relatives.js';
 import { addRepresentative, endRepresentative } from '../lib/homeCare/representatives.js';
+import { handleTalk, requestTalk, withdrawTalk } from '../lib/homeCare/talkRequests.js';
 import { saveSafetyCard } from '../lib/homeCare/safetyCard.js';
 import { composeNoAnswerText } from '../lib/homeCare/noAnswerText.js';
 import { assertNotificationRecipient, serializeNotificationEvent } from '../lib/notifications.js';
@@ -1889,6 +1890,8 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
   await saveRelative(lead, client.id, { name: 'Mari Tamm', relation: 'tütar', level: 1 }, deps());
   /* Ohutuskaardi vastus (K5-n), et väljavõttes oleks ka see kogu. */
   await saveSafetyCard(lead, client.id, { items: { ANIMALS: { answer: 'NO' } } }, deps());
+  /* Rääkimise soov (K6-k) kukkumise juhtumi juures, et väljavõttes oleks ka see kogu. */
+  await requestTalk(anu, client.id, fall.entry.id, deps());
   /* Esindusõiguse kirje (K6-i), et väljavõttes oleks ka see kogu. */
   await addRepresentative(lead, client.id, { name: 'Mari Tamm', basis: 'POWER_OF_ATTORNEY', scope: 'Lepingu sõlmimine' }, deps());
   /* Sõidupäeviku rida (K6-a). */
@@ -2023,6 +2026,7 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
     transportRequests: await db.careTransportRequest.count({ where: ofOrg }),
     tripEntries: await db.careTripEntry.count({ where: ofOrg }),
     clientRepresentatives: await db.careClientRepresentative.count({ where: ofOrg }),
+    talkRequests: await db.careTalkRequest.count({ where: ofOrg }),
     auditEvents: await db.dataAuditLog.count({
       where: { action: { startsWith: 'org.home_care_' }, meta: { path: ['organizationId'], equals: f.orgA.id }, createdAt: { lt: (await exportRows())[0].createdAt } }
     })
@@ -6774,4 +6778,96 @@ test('kriisiarvud riskianalüüsi jaoks: rühmad, sõltuvused, kriitilised käig
   const scoped = (await getCrisisList(unitLead, deps())).figures;
   assert.deepEqual([scoped.clients, scoped.byLevel.WEEKLY, scoped.criticalClients, scoped.criticalWeeklyMinutes, scoped.workers, scoped.vehicles], [1, 1, 1, 90, null, null]);
   assert.ok(aino.id);
+});
+
+test('soovin sellest rääkida: raske erijuhtumi autor küsib, hooldusjuht näeb ja märgib räägituks, meeskond ei näe', async (t) => {
+  const f = await fixture(t);
+  const north = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Põhi ${f.tag}`, type: 'TEAM' } });
+  await db.organizationCapabilityGrant.create({
+    data: { membershipId: f.members.cover.id, capability: 'HOME_CARE_COORDINATOR', scopeType: 'UNIT', scopeUnitId: north.id, validFrom: at('2026-01-01T00:00:00Z') }
+  });
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const unitLead = await f.ctx(f.users.cover, f.orgA);
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, deps())).client;
+  for (const key of ['anu', 'bert']) await addTeamMember(lead, linda.id, { membershipId: f.members[key].id }, deps());
+  const hard = (await createEntry(anu, linda.id, { kind: 'INCIDENT', incidentType: 'AGGRESSION', text: 'Poeg karjus ja lõi ukse kinni.' }, deps())).entry;
+  const thanks = (await createEntry(anu, linda.id, { kind: 'INCIDENT', incidentType: 'THANKS', text: 'Tänas.' }, deps())).entry;
+  const note = (await createEntry(anu, linda.id, { text: 'Tavaline käik.' }, deps())).entry;
+  const talkOf = async (context, entryId) => (await listEntries(context, linda.id, {}, deps())).items.find((item) => item.id === entryId).talk;
+  assert.equal(await talkOf(anu, hard.id), null);
+
+  /* Küsida saab ainult raske erijuhtumi autor. */
+  await expectError(requestTalk(anu, linda.id, thanks.id, deps()), 400, 'home_care.errors.talk_not_incident');
+  await expectError(requestTalk(anu, linda.id, note.id, deps()), 400, 'home_care.errors.talk_not_incident');
+  await expectError(requestTalk(bert, linda.id, hard.id, deps()), 403, 'home_care.errors.talk_not_author');
+  await expectError(requestTalk(anu, linda.id, 'cmv0olematukirje000000000', deps()), 404, 'home_care.errors.entry_not_found');
+
+  /* Soov: teade hooldusjuhile (mitte esitajale), kordusvajutus uut rida ei tee. */
+  const sent = [];
+  const asked = await requestTalk(anu, linda.id, hard.id, { ...deps(), notify: async (payload) => sent.push(payload) });
+  assert.deepEqual([asked.talk.state, asked.talk.mine, asked.talk.requesterName], ['OPEN', true, null]);
+  assert.deepEqual(sent.map((payload) => [payload.requestId, payload.organizationId, payload.actorMembershipId]), [[asked.talk.id, f.orgA.id, f.members.anu.id]]);
+  const again = await requestTalk(anu, linda.id, hard.id, { ...deps(), notify: async (payload) => sent.push(payload) });
+  assert.deepEqual([again.talk.id, sent.length, await db.careTalkRequest.count({ where: { entryId: hard.id } })], [asked.talk.id, 1, 1]);
+
+  /* Kes näeb: esitaja oma soovi, hooldusjuht nimega; meeskonnakaaslane ei näe midagi. */
+  assert.deepEqual([(await talkOf(anu, hard.id)).mine, (await talkOf(anu, hard.id)).state], [true, 'OPEN']);
+  const seen = await talkOf(lead, hard.id);
+  assert.deepEqual([seen.mine, seen.state, Boolean(seen.requesterName)], [false, 'OPEN', true]);
+  assert.equal(await talkOf(bert, hard.id), null);
+  const open = async (context) => (await getDeadlines(context, deps())).talkRequestsOpen.map((item) => [item.client.displayName, item.incidentType, item.id]);
+  assert.deepEqual(await open(lead), [['Linda Tamm', 'AGGRESSION', asked.talk.id]]);
+  /* Üksuse hooldusjuhi ulatuses seda klienti ei ole. */
+  assert.deepEqual(await open(unitLead), []);
+
+  /* Tagasi võtmine ja uus soov; räägituks märgib ainult selle kliendi hooldusjuht. */
+  await expectError(withdrawTalk(bert, linda.id, hard.id, deps()), 404, 'home_care.errors.talk_not_found');
+  assert.equal((await withdrawTalk(anu, linda.id, hard.id, deps())).talk, null);
+  assert.deepEqual(await open(lead), []);
+  await expectError(handleTalk(lead, asked.talk.id, deps()), 409, 'home_care.errors.talk_withdrawn');
+  const second = await requestTalk(anu, linda.id, hard.id, deps());
+  assert.notEqual(second.talk.id, asked.talk.id);
+  await expectError(handleTalk(anu, second.talk.id, deps()), 403, 'org.errors.missing_capability');
+  await expectError(handleTalk(unitLead, second.talk.id, deps()), 403, 'home_care.errors.access_reason_required');
+  const done = await handleTalk(lead, second.talk.id, deps(at('2026-10-09T10:00:00Z')));
+  assert.deepEqual([done.talk.state, done.talk.handledAt, Boolean(done.talk.handledByName)], ['HANDLED', '2026-10-09T10:00:00.000Z', true]);
+  await expectError(handleTalk(lead, second.talk.id, deps()), 409, 'home_care.errors.talk_handled');
+  await expectError(withdrawTalk(anu, linda.id, hard.id, deps()), 409, 'home_care.errors.talk_handled');
+  assert.deepEqual([(await talkOf(anu, hard.id)).state, await open(lead)], ['HANDLED', []]);
+
+  /* Andmebaas ei luba tagasi võetud soovi räägituks märkida; jälg ei kanna nime ega teksti. */
+  await assert.rejects(db.careTalkRequest.update({ where: { id: asked.talk.id }, data: { handledAt: at('2026-10-09T11:00:00Z') } }));
+  await assert.rejects(db.careTalkRequest.update({ where: { id: asked.talk.id }, data: { handledByName: 'Keegi' } }));
+  const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_talk_request_changed', meta: { path: ['organizationId'], equals: f.orgA.id } }, orderBy: { createdAt: 'asc' } });
+  assert.deepEqual(audit.map((row) => [row.meta.change, row.meta.entryId]), [['requested', hard.id], ['withdrawn', hard.id], ['requested', hard.id], ['handled', hard.id]]);
+  assert.equal(JSON.stringify(audit).includes('karjus'), false);
+});
+
+test('soovin sellest rääkida: teavitus hooldusjuhile kannab ainult rea ID-d', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, deps())).client;
+  await addTeamMember(lead, linda.id, { membershipId: f.members.anu.id }, deps());
+  const hard = (await createEntry(anu, linda.id, { kind: 'INCIDENT', incidentType: 'WORK_ACCIDENT', text: 'Libisesin trepil.' }, deps())).entry;
+  const TYPE = 'HOME_CARE_TALK_REQUESTED';
+  const noticed = () => Promise.all([f.users.lead, f.users.anu].map((user) => db.notificationEvent.count({ where: { userId: user.id, type: TYPE } })));
+  const made = await requestTalk(anu, linda.id, hard.id, depsWithNotify());
+  assert.deepEqual(await noticed(), [1, 0]);
+  /* Teavituses ei ole töötajat, klienti ega juhtumi teksti; link viib suunajale. */
+  const event = await db.notificationEvent.findFirst({ where: { userId: f.users.lead.id, type: TYPE } });
+  const stored = JSON.stringify(event);
+  for (const secret of ['Linda', linda.id, hard.id, 'Libisesin', f.members.anu.id]) assert.equal(stored.includes(secret), false, secret);
+  const shown = serializeNotificationEvent(event);
+  assert.deepEqual([shown.href, shown.labelKey], [`/org/koduteenus/raagime/${made.talk.id}`, 'notifications.events.home_care_talk_requested']);
+  /* Adressaat on hooldusjuht; esitaja ise ega tagasi võetud soovi puhul keegi teadet ei näe. */
+  const allowed = (userId) => assertNotificationRecipient(db, { type: TYPE, userId, sourceId: made.talk.id, targetId: made.talk.id }).then(() => true, () => false);
+  assert.deepEqual([await allowed(f.users.lead.id), await allowed(f.users.anu.id)], [true, false]);
+  /* Kordusvajutus uut teadet ei tee. */
+  await requestTalk(anu, linda.id, hard.id, depsWithNotify());
+  assert.deepEqual(await noticed(), [1, 0]);
+  await withdrawTalk(anu, linda.id, hard.id, deps());
+  assert.equal(await allowed(f.users.lead.id), false);
 });

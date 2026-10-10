@@ -4,10 +4,11 @@ import Link from "next/link";
 import { useId, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import { CareContactMode, CareEntryKind, CareIncidentStatus, HOME_CARE_LIMITS } from "@/lib/homeCare/constants";
+import { CARE_TALK_INCIDENT_TYPES, CareContactMode, CareEntryKind, CareIncidentStatus, HOME_CARE_LIMITS } from "@/lib/homeCare/constants";
 
 import HomeCareEntryForm from "./HomeCareEntryForm";
 import HomeCareIncidentTrail from "./HomeCareIncidentTrail";
+import HomeCareTalkRequest from "./HomeCareTalkRequest";
 import { clientHref, formatDateTime, formatTime, homeCareBase, useHomeCareApi } from "./homeCareClient";
 
 const KIND_BADGE = {
@@ -248,6 +249,19 @@ export default function HomeCareEntryItem({
             ? t("home_care.entry.read_count", { count: entry.readCount })
             : t("home_care.entry.unread")}
         </p>
+      ) : null}
+
+      {/* „Soovin sellest rääkida" (K6-k): raske erijuhtumi autor küsib; soovi näevad tema ja hooldusjuht. */}
+      {incident && !retracted && !showClient ? (
+        <HomeCareTalkRequest
+          organizationId={organizationId}
+          clientId={clientId}
+          entryId={entry.id}
+          initial={entry.talk || null}
+          canAsk={canWrite && entry.isMine && CARE_TALK_INCIDENT_TYPES.includes(incident.type)}
+          canHandle={canWrite && isCoordinator}
+          timeZone={timeZone}
+        />
       ) : null}
 
       {canEdit || canSeeHistory || canSetIncident ? (

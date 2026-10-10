@@ -7005,7 +7005,8 @@
       "home_care_visits_changed": "Sinu koduteenuse käigud muutusid",
       "home_care_obstacle_reported": "Hooldaja teatas takistusest",
       "home_care_change_noticed": "Hooldajad märkasid muutust",
-      "home_care_transport_requested": "Hooldaja soovis kliendile transporti"
+      "home_care_transport_requested": "Hooldaja soovis kliendile transporti",
+      "home_care_talk_requested": "Töötaja soovib pärast erijuhtumit rääkida"
     },
     "center": {
       "title": "Teavitused",
@@ -13215,7 +13216,12 @@
       "representative_checked_future": "Dokumendi nägemise päev ei saa olla tulevikus.",
       "representative_too_many": "Kliendil on juba {limit} kehtivat esindaja kirjet. Lõpeta enne mõni neist.",
       "representative_not_found": "Esindaja kirjet ei leitud.",
-      "representative_ended": "See esindusõiguse kirje on juba lõpetatud."
+      "representative_ended": "See esindusõiguse kirje on juba lõpetatud.",
+      "talk_not_incident": "Rääkimist saab soovida ainult raske erijuhtumi juures.",
+      "talk_not_author": "Rääkimist saab soovida see, kes erijuhtumi kirja pani.",
+      "talk_not_found": "Rääkimise soovi ei leitud.",
+      "talk_handled": "See soov on juba räägituks märgitud.",
+      "talk_withdrawn": "Töötaja võttis selle soovi tagasi."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -14958,6 +14964,19 @@
       "period_open": "tähtajatu",
       "copy_line": "koopia: {place}",
       "checked_line": "dokumenti nägi {date} {name}"
+    },
+    "talk": {
+      "ask": "Soovin sellest rääkida",
+      "ask_hint": "Hooldusjuht saab teate, et soovid sellest juhtumist rääkida. Midagi kirjutama ei pea ja meeskond seda ei näe. Võid sellest rääkida ka kovisioonis:",
+      "covision_link": "ava kovisioon",
+      "sent_line": "Sinu soov rääkida on hooldusjuhile saadetud {date}.",
+      "withdraw": "Võta soov tagasi",
+      "wants_line": "{name} soovib sellest juhtumist rääkida (alates {date}).",
+      "handled": "Räägitud",
+      "handled_line": "Sellest juhtumist on räägitud: {date}, märkis {name}.",
+      "list_title": "Soovivad pärast rasket juhtumit rääkida",
+      "list_hint": "Töötaja vajutas erijuhtumi juures „Soovin sellest rääkida”. Räägi temaga ja märgi siis „Räägitud”; mida rääkisite, siia ei kirjutata.",
+      "list_line": "{name}: {type}, soov alates {date}."
     }
   },
   "stage": {
