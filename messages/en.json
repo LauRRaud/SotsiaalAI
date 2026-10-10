@@ -4244,11 +4244,11 @@
         "editParts": {
           "text": "Text",
           "category": "Category",
-          "form": "Type, time, group",
-          "terms": "Place and conditions"
+          "form": "Type and time",
+          "terms": "Terms"
         },
         "editPartsLabel": "Parts of the listing",
-        "saveAllNote": "Saving stores the changes of all four parts at once.",
+        "saveAllNote": "One save covers all four parts.",
         "saving": "Saving...",
         "discardArmed": "Press again to discard",
         "discardNote": "The changes are not saved and will be lost if you discard them.",
@@ -4256,7 +4256,8 @@
         "descriptionRequired": "The description cannot be empty.",
         "charsUsed": "{count} / {max} characters",
         "connectOptionsFailed": "Your own listings could not be loaded. Go back to the list and open the listing again."
-      }
+      },
+      "updateConflict": "The listing was changed elsewhere in the meantime, so this was not saved. Go back to the list, open the listing again and make the change there."
     },
     "sources": {
       "dialog_label": "Conversation sources",

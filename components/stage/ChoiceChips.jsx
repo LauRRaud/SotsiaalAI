@@ -10,6 +10,8 @@
  *
  * Ligipääsetavus: rühm (`group`) nimega, iga variant on `checkbox`.
  * `labelHidden`: silt on ainult ekraanilugejale (sammu pealkiri ütleb sama).
+ * `columns` sunnib veergude arvu (vaikimisi kuni kolm) ja `keepColumns` hoiab
+ * seda ka kitsas töölaua paneelis, nagu `ChoiceRow`-l.
  *
  * Kujundus: ChoiceChips.module.css.
  */
@@ -18,7 +20,7 @@ import { useId } from "react";
 
 import styles from "./ChoiceChips.module.css";
 
-export default function ChoiceChips({ label, hint, options, values = [], onToggle, labelHidden = false, disabled = false }) {
+export default function ChoiceChips({ label, hint, options, values = [], onToggle, columns, keepColumns = false, labelHidden = false, disabled = false }) {
   const labelId = useId();
   return (
     <div className={styles.field} role="group" aria-labelledby={labelId}>
@@ -26,7 +28,7 @@ export default function ChoiceChips({ label, hint, options, values = [], onToggl
         {label}
       </span>
       {hint ? <span className={styles.hint}>{hint}</span> : null}
-      <div className={styles.options} style={{ "--choice-cols": Math.min(options.length, 3) }}>
+      <div className={styles.options} data-keep={keepColumns ? "1" : undefined} style={{ "--choice-cols": columns || Math.min(options.length, 3) }}>
         {options.map((option) => (
           <button
             key={option.value}

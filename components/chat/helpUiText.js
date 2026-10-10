@@ -25,6 +25,7 @@ export function getHelpUiText(t) {
     startChat: t("chat.help.startChat"),
     ownListing: t("chat.help.ownListing"),
     updateFailed: t("chat.help.updateFailed"),
+    updateConflict: t("chat.help.updateConflict"),
     deleteFailed: t("chat.help.deleteFailed"),
     loadFailed: t("chat.help.loadFailed"),
     detailLoadFailed: t("chat.help.detailLoadFailed"),

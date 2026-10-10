@@ -4244,11 +4244,11 @@
         "editParts": {
           "text": "Tekst",
           "category": "Kategooria",
-          "form": "Liik, aeg, sihtrühm",
-          "terms": "Koht ja tingimused"
+          "form": "Liik ja aeg",
+          "terms": "Tingimused"
         },
         "editPartsLabel": "Kuulutuse osad",
-        "saveAllNote": "Salvestamine salvestab kõigi nelja osa muudatused korraga.",
+        "saveAllNote": "Üks salvestamine katab kõik neli osa.",
         "saving": "Salvestan...",
         "discardArmed": "Vajuta uuesti, et loobuda",
         "discardNote": "Muudatused on salvestamata ja lähevad loobumisel kaotsi.",
@@ -4256,7 +4256,8 @@
         "descriptionRequired": "Kirjeldus ei tohi olla tühi.",
         "charsUsed": "{count} / {max} tähemärki",
         "connectOptionsFailed": "Sinu enda kuulutusi ei saanud laadida. Mine tagasi loendisse ja ava kuulutus uuesti."
-      }
+      },
+      "updateConflict": "Kuulutust on vahepeal mujal muudetud, seepärast seda ei salvestatud. Mine tagasi loendisse, ava kuulutus uuesti ja tee muudatus seal."
     },
     "sources": {
       "dialog_label": "Vastuste allikad",

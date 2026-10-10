@@ -22,6 +22,7 @@ import HelpListingsPanel from "@/components/chat/HelpListingsPanel";
 import SelectedListingContext from "@/components/chat/SelectedListingContext";
 import { getHelpUiText } from "@/components/chat/helpUiText";
 import { panelLeaveAllowed } from "@/lib/panelLeaveGuard";
+import { editStartState } from "@/components/chat/selectedListingSheet";
 import { pushWithTransition } from "@/lib/routeTransition";
 import { clearStaleScrollLock } from "@/lib/scrollLock";
 import { resolveChatLayoutVars } from "./chat/chatLayoutVars";
@@ -1723,11 +1724,12 @@ export default function ChatBody({
         loading: false,
         error: ""
       }));
-    } catch (error) {
+    } catch {
       setListingsPanelState((prev) => ({
         ...prev,
         loading: false,
-        error: error?.message || helpUi.loadFailed
+        /* Kataloogi lause: võrgutõrke enda tekst oleks brauseri „Failed to fetch". */
+        error: helpUi.loadFailed
       }));
     }
   }, [helpUi.loadFailed, locale]);
@@ -1878,20 +1880,10 @@ export default function ChatBody({
       if (!prev.listing) return prev;
       return {
         ...prev,
-        edit: {
-          title: prev.listing.editableTitle || prev.listing.title || "",
-          description: prev.listing.editableDescription || prev.listing.description || "",
-          primaryCategoryCode: prev.listing.primaryCategoryCode || "",
-          roleLabel: prev.listing.roleLabel || "",
-          rawPlace: prev.listing.editableRawPlace || prev.listing.rawPlace || "",
-          helpType: prev.listing.helpType || "",
-          timeType: prev.listing.timeType || "",
-          availabilityOrStart: prev.listing.editableAvailabilityOrStart || prev.listing.availabilityOrStart || "",
-          compensationDetails: prev.listing.editableCompensationDetails || prev.listing.compensationDetails || "",
-          conditions: prev.listing.editableConditions || prev.listing.conditions || "",
-          targetGroupCodes: Array.isArray(prev.listing.targetGroupCodes) ? prev.listing.targetGroupCodes : [],
-          targetGroups: Array.isArray(prev.listing.targetGroupLabels) ? prev.listing.targetGroupLabels.join(", ") : ""
-        }
+        /* Eelmise katse tõrge ei tule uude vormi kaasa. */
+        error: "",
+        /* Algseis on reeglite failis: sama, millega vorm võrdleb, kas midagi on muudetud. */
+        edit: editStartState(prev.listing)
       };
     });
   }, []);
@@ -1930,14 +1922,29 @@ export default function ChatBody({
           compensationDetails: editPayload?.compensationDetails,
           conditions: editPayload?.conditions,
           targetGroupCodes: Array.isArray(editPayload?.targetGroupCodes) ? editPayload.targetGroupCodes : undefined,
-          targetGroups: Array.isArray(editPayload?.targetGroups) ? editPayload.targetGroups : []
+          targetGroups: Array.isArray(editPayload?.targetGroups) ? editPayload.targetGroups : [],
+          /* Server nõuab muutmisel kuulutuse muutmisaega (lib/help/requests.js,
+             offers.js): kui kuulutust on vahepeal mujal muudetud, vastab ta 409
+             ja teist muudatust üle ei kirjutata. Ilma selleta vastas server alati
+             400 ja salvestamine ei õnnestunud kunagi. */
+          expectedUpdatedAt: listing.updatedAt
         })
       });
       const payload = await response.json().catch(() => ({}));
+      if (response.status === 409) {
+        setSelectedListingState((prev) => isSelectedListing(prev, listing) ? {
+          ...prev,
+          busyAction: "",
+          error: helpUi.updateConflict
+        } : prev);
+        return;
+      }
       if (!response.ok || payload?.ok === false || !payload?.listing) {
         throw new Error(helpUi.updateFailed);
       }
-      patchListingCollections(listing.kind, payload.listing);
+      /* Vastus on omaniku vaade, aga loendi rea märki „Minu kuulutus" see ei
+         kanna: ilma selleta läheks rida loendis teiste kuulutuste alla. */
+      patchListingCollections(listing.kind, { ...payload.listing, isOwn: true });
       setSelectedListingState((prev) => isSelectedListing(prev, listing) ? {
         ...prev,
         listing: payload.listing,
@@ -1952,7 +1959,7 @@ export default function ChatBody({
         error: helpUi.updateFailed
       } : prev);
     }
-  }, [helpUi.updateFailed, locale, patchListingCollections, selectedListingState.listing]);
+  }, [helpUi.updateConflict, helpUi.updateFailed, locale, patchListingCollections, selectedListingState.listing]);
   const requestDeleteOwnedListing = useCallback(() => {
     setSelectedListingState((prev) => prev.listing ? {
       ...prev,
@@ -2705,7 +2712,7 @@ export default function ChatBody({
     onDismiss: dismissSelectedListing,
     onStartEdit: startListingEdit,
     onChangeEditField: changeListingEditField,
-    onCancelEdit: () => setSelectedListingState((prev) => ({ ...prev, edit: null, busyAction: "" })),
+    onCancelEdit: () => setSelectedListingState((prev) => ({ ...prev, edit: null, busyAction: "", error: "" })),
     onSaveEdit: saveListingEdit,
     /* Kustutamine on kaks vajutust samal nupul avatud kuulutuse vaates:
        esimene küsib (`deleteConfirmOpen`), teine kustutab, „Loobu" võtab

@@ -109,13 +109,39 @@ export function listingViewKey({ loading = false, listing = null, error = "", ed
    alati eesti keeles ja kordavad seda, mis kuulutusel on eraldi väljadena
    olemas, seepärast lõigatakse need lugemise vaates ära. Sama lõige oli vanas
    komponendis; õige parandus on serveris (read ei peaks kirjelduse sees olema). */
-const APPENDED_LINES = /\b(?:Põhikategooria|Omavalitsus|Täpsem asukoht|Sihtrühm|Abi vorm|Tasu info|Ajalisus|Saadavus\s*\/\s*algus|Lisatingimused|Tingimused|Oskused või taust):/iu;
+const APPENDED_LABELS = "Põhikategooria|Omavalitsus|Täpsem asukoht|Sihtrühm|Abi vorm|Tasu info|Ajalisus|Saadavus\\s*\\/\\s*algus|Lisatingimused|Tingimused|Oskused või taust";
+const APPENDED_LINES = new RegExp(`\\b(?:${APPENDED_LABELS}):`, "iu");
+const APPENDED_LINE = new RegExp(`^(?:${APPENDED_LABELS}):(?:\\s|$)`, "iu");
 
-export function cleanDescription(listing = {}) {
-  const text = plain(listing?.description);
-  if (!text) return "";
+/* Üherealine tekst (võõra vaade või vana kirje): kõik esimesest lisareast alates jääb ära. */
+function cutTail(text) {
   const match = text.match(APPENDED_LINES);
   return (match?.index > 0 ? text.slice(0, match.index) : text).trim();
+}
+
+/**
+ * Kuulutuse tekst ilma serveri lisatud ridadeta.
+ *
+ * Omaniku vaade annab kirjelduse ridadena (`editableDescription`): siis jäävad
+ * välja ainult lisaread ise, rea kaupa. Kõik muu jääb alles, ka see, mille
+ * inimene muutmise vormis lisaridade järele kirjutas (ühe lõikega kaoks see
+ * lugemise vaatest), ja lõigud jäävad lõikudeks. Kui kogu tekst koosneb
+ * lisaridadest, näidatakse seda sellisena, nagu see on.
+ */
+export function cleanDescription(listing = {}) {
+  const lined = String(listing?.editableDescription ?? "").replace(/\r\n?/g, "\n").trim();
+  if (lined) {
+    const kept = lined
+      .split("\n")
+      .filter((line) => !APPENDED_LINE.test(line.trim()))
+      .join("\n")
+      .replace(/\n{3,}/g, "\n\n")
+      .trim();
+    if (!kept) return lined;
+    return kept.includes("\n") ? kept : cutTail(kept);
+  }
+  const text = plain(listing?.description);
+  return text ? cutTail(text) : "";
 }
 
 /**
@@ -299,6 +325,28 @@ export function editValues(listing = null, editState = null) {
   };
 }
 
+/**
+ * Millega muutmise vorm algab: kuulutuse enda väljad. Leht
+ * (`components/alalehed/ChatBody.jsx`, `startListingEdit`) avab vormi sellega
+ * ja `editDirty` võrdleb sellega, seega on algseis üks ja sama.
+ */
+export function editStartState(listing = {}) {
+  return {
+    title: listing?.editableTitle || listing?.title || "",
+    description: listing?.editableDescription || listing?.description || "",
+    primaryCategoryCode: listing?.primaryCategoryCode || "",
+    roleLabel: listing?.roleLabel || "",
+    rawPlace: listing?.editableRawPlace || listing?.rawPlace || "",
+    helpType: listing?.helpType || "",
+    timeType: listing?.timeType || "",
+    availabilityOrStart: listing?.editableAvailabilityOrStart || listing?.availabilityOrStart || "",
+    compensationDetails: listing?.editableCompensationDetails || listing?.compensationDetails || "",
+    conditions: listing?.editableConditions || listing?.conditions || "",
+    targetGroupCodes: Array.isArray(listing?.targetGroupCodes) ? listing.targetGroupCodes : [],
+    targetGroups: Array.isArray(listing?.targetGroupLabels) ? listing.targetGroupLabels.join(", ") : ""
+  };
+}
+
 /** Sihtrühma märkimine ja märke eemaldamine: tagastab uue koodide loendi. */
 export function toggleTargetGroup(codes, code) {
   const selected = Array.isArray(codes) ? codes : [];
@@ -327,6 +375,16 @@ export function editSnapshot(values = {}) {
     values.compensationDetails,
     values.conditions
   ]);
+}
+
+/**
+ * Kas vormis on midagi muudetud. Võrdlus käib kuulutuse endaga, mitte vormi
+ * avamise hetke pildiga: kui töölaud vahepeal suletakse ja uuesti avatakse
+ * (vormi olek on lehel ja jääb alles), teab vorm endiselt, et seda on muudetud.
+ */
+export function editDirty(listing = null, editState = null) {
+  if (!listing || !editState) return false;
+  return editSnapshot(editValues(listing, editState)) !== editSnapshot(editValues(listing, editStartState(listing)));
 }
 
 /**

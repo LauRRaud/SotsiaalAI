@@ -37,6 +37,8 @@
   color: var(--text-warm);
   line-height: 1.55;
   overflow-wrap: anywhere;
+  /* Oma kuulutuse tekst tuleb ridadena: lõigud jäävad lõikudeks. */
+  white-space: pre-line;
 }
 /* Faktid: nimetus ja väärtus paarina, paarid reas üksteise järel. Pikk vabatekst
    (saadavus, tasu, tingimused) võtab oma rea. */

@@ -13,7 +13,10 @@
  *    Mitu sellist rida üksteise all annavad tabeli, kus veerud on kohakuti.
  *  - `layout="stack"` (vaikimisi): küsimus üleval, variandid selle all võrgus.
  *    Sobib pikkadele või paljudele variantidele. `columns` sunnib veergude
- *    arvu (nt neli lühikest varianti ühes reas).
+ *    arvu (nt neli lühikest varianti ühes reas). Kitsal pinnal läheb rida
+ *    ikkagi kahte veergu; `keepColumns` hoiab sunnitud arvu ka kitsas töölaua
+ *    paneelis (34 kuni 40 rem), kus lühikesed sildid ühte ritta mahuvad.
+ *    Telefonis jääb kaks veergu.
  *
  * `labelHidden`: silt on ainult ekraanilugejale (nt valik, mille pealkiri on
  * juba sammu pealkirjas).
@@ -38,6 +41,7 @@ export default function ChoiceRow({
   onChange,
   layout = "stack",
   columns,
+  keepColumns = false,
   labelHidden = false,
   disabled = false
 }) {
@@ -58,6 +62,7 @@ export default function ChoiceRow({
     <div
       className={styles.row}
       data-layout={layout}
+      data-keep={keepColumns ? "1" : undefined}
       style={{ "--choice-count": options.length, "--choice-cols": columns || Math.min(options.length, 3) }}
       role="radiogroup"
       aria-labelledby={labelId}

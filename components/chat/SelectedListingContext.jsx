@@ -50,8 +50,8 @@ import styles from "./selectedListing.module.css";
 import {
   CONFIRM_MS,
   connectChoice,
+  editDirty,
   editProblem,
-  editSnapshot,
   editValues,
   listingNotice,
   listingSheet,
@@ -103,8 +103,6 @@ export default function SelectedListingContext({
   /* Ühendamise valik on ees ainult siis, kui inimene selle avas. */
   const [connectOpen, setConnectOpen] = useState(false);
   const [editPart, setEditPart] = useState("text");
-  /* Vormi sisu sel hetkel, kui muutmine algas: selle järgi on teada, kas midagi on muudetud. */
-  const [baseline, setBaseline] = useState("");
   const [discardArmed, setDiscardArmed] = useState(false);
   const [problemKey, setProblemKey] = useState("");
   const [leaveAsked, setLeaveAsked] = useState(false);
@@ -112,14 +110,13 @@ export default function SelectedListingContext({
   const view = listingViewKey({ loading, listing, error, editState, isOwn, connectOpen });
   const editing = Boolean(editState);
   const values = editValues(listing, editState);
-  const snapshot = editing ? editSnapshot(values) : "";
-  const dirty = editing && baseline !== "" && snapshot !== baseline;
+  /* Muudetud või mitte: võrdlus kuulutuse endaga (vt `editDirty`), nii et
+     töölaua sulgemine ja uuesti avamine seda ei kaota. */
+  const dirty = editDirty(listing, editState);
   const listingKey = listing ? `${listing.kind}:${listing.id}` : "";
 
   const viewRef = useRef(view);
   viewRef.current = view;
-  const snapshotRef = useRef(snapshot);
-  snapshotRef.current = snapshot;
   /* Millal ees olev vaade ilmus ja millal kustutamine või loobumine teist vajutust küsima hakkas. */
   const shownAt = useRef(0);
   const deleteAskedAt = useRef(0);
@@ -136,13 +133,21 @@ export default function SelectedListingContext({
     setConnectOpen(false);
   }, [listingKey]);
 
-  /* Muutmine algas või lõppes: vorm algab esimesest osast ja võrdlus algseisuga algab uuesti. */
+  /* Muutmine algas või lõppes: vorm algab esimesest osast. */
   useEffect(() => {
     setEditPart("text");
     setDiscardArmed(false);
     setProblemKey("");
-    setBaseline(editing ? snapshotRef.current : "");
   }, [editing]);
+
+  /* Nõusolekupäring läks teele: saatmise nupp kaob vaatest (teist korda saata
+     ei pakuta) ja fookus koos sellega. See läheb vaate pealkirjale, nagu vaate
+     vahetusel. */
+  const sentNow = view === "connect" && Boolean(error) && error === ui.connectPending;
+  useEffect(() => {
+    if (!sentNow) return;
+    rootRef.current?.querySelector("[data-step-heading]")?.focus({ preventScroll: true });
+  }, [sentNow]);
 
   /* Vaate vahetusel kaob nupp, mida vajutati (loendi rida, „Muuda", „Loobu"),
      ja klaviatuuri fookus koos sellega: fookus läheb uue vaate pealkirjale.
@@ -183,22 +188,45 @@ export default function SelectedListingContext({
   /* Salvestamata muudatused. Kiirmenüü tagasinool, Esc ja paneeli sulgemine ei
      ole selle komponendi nupud: esimene lahkumine jääb kinni ja vaate kohal
      seisab põhjus, teine lahkub. Akna sulgemise ja uuesti laadimise peab kinni
-     brauseri enda küsimus. */
+     brauseri enda küsimus.
+
+     ESC. Töölaual on Esc-il oma kuulaja (components/chat/WorkspacePanel.jsx),
+     mis väravat ei küsi ja sulgeb töölaua ka siis, kui fookus on tekstiväljal.
+     Seepärast peab see komponent Esc-i kinni enne teisi (püüdmise faasis): esimene
+     vajutus küsib ja peatub, teine läheb edasi. Sama vajutuse jooksul võib
+     väravat küsida veel keegi (paneeli raam): `passing` vastab neile sama, mis
+     siin juba otsustati. */
   useEffect(() => {
     if (!dirty) return undefined;
     const leave = twoPressLeaveGuard({
       onAsk: () => setLeaveAsked(true),
       onClear: () => setLeaveAsked(false)
     });
-    const release = setPanelLeaveGuard(leave);
+    let passing = false;
+    const gate = (reason) => passing || leave(reason);
+    const release = setPanelLeaveGuard(gate);
+    const holdEscape = (event) => {
+      if (event.key !== "Escape") return;
+      if (gate("escape")) {
+        passing = true;
+        window.setTimeout(() => {
+          passing = false;
+        }, 0);
+        return;
+      }
+      event.preventDefault();
+      event.stopPropagation();
+    };
     const warn = (event) => {
       event.preventDefault();
       event.returnValue = "";
     };
+    window.addEventListener("keydown", holdEscape, true);
     window.addEventListener("beforeunload", warn);
     return () => {
       release();
       leave.clear();
+      window.removeEventListener("keydown", holdEscape, true);
       window.removeEventListener("beforeunload", warn);
     };
   }, [dirty]);
@@ -244,6 +272,13 @@ export default function SelectedListingContext({
     /* Topeltklõpsu teine vajutus ei kustuta. */
     if (pressTooSoon(deleteAskedAt.current)) return;
     onConfirmDelete?.();
+  };
+
+  /* „Loobu" kustutamise küsimuse kõrval kaob koos küsimusega: fookus läheb
+     tagasi kustutamise nupule, mitte ei kao lehelt. */
+  const withdrawDelete = () => {
+    rootRef.current?.querySelector('[data-danger="true"]')?.focus({ preventScroll: true });
+    onCancelDelete?.();
   };
 
   const submitConnect = () => {
@@ -337,7 +372,7 @@ export default function SelectedListingContext({
           /* Kustutada saab oma kuulutust; administraator ka võõrast (`canDelete`). */
           remove={
             isOwn || canDelete
-              ? { armed: deleteArmed, busy: busyAction === "delete", onPress: pressDelete, onCancel: () => onCancelDelete?.() }
+              ? { armed: deleteArmed, busy: busyAction === "delete", onPress: pressDelete, onCancel: withdrawDelete }
               : null
           }
         />

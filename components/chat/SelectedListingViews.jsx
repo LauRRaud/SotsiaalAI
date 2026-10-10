@@ -300,7 +300,7 @@ export function EditView({ t, ui, form }) {
         }
       >
         <div className={form.busy ? `${list.stack} ${styles.busy}` : list.stack} aria-busy={form.busy ? "true" : undefined}>
-          <ChoiceRow label={t("chat.help.opened.editPartsLabel")} labelHidden options={editPartOptions(t)} value={form.part} onChange={form.onPart} columns={4} />
+          <ChoiceRow label={t("chat.help.opened.editPartsLabel")} labelHidden options={editPartOptions(t)} value={form.part} onChange={form.onPart} columns={4} keepColumns />
 
           {/* Ühe osa väljad: vahe tuleb väljade endi polstrist, mitte vaate üldisest vahest. */}
           <div className={styles.part}>
@@ -331,12 +331,14 @@ export function EditView({ t, ui, form }) {
 
             {form.part === "form" ? (
               <>
-                <ChoiceRow label={ui.helpType} options={helpTypeOptions(ui, t)} value={values.helpType} onChange={(value) => form.onField("helpType", value)} columns={4} />
-                <ChoiceRow label={ui.timeType} options={timeTypeOptions(ui, t)} value={values.timeType} onChange={(value) => form.onField("timeType", value)} columns={4} />
+                <ChoiceRow label={ui.helpType} options={helpTypeOptions(ui, t)} value={values.helpType} onChange={(value) => form.onField("helpType", value)} columns={4} keepColumns />
+                <ChoiceRow label={ui.timeType} options={timeTypeOptions(ui, t)} value={values.timeType} onChange={(value) => form.onField("timeType", value)} columns={4} keepColumns />
                 <ChoiceChips
                   label={ui.targetGroups}
                   options={targetGroupOptions(t)}
                   values={values.targetGroupCodes}
+                  columns={4}
+                  keepColumns
                   onToggle={(code) => form.onField("targetGroupCodes", toggleTargetGroup(values.targetGroupCodes, code))}
                 />
               </>
@@ -354,13 +356,14 @@ export function EditView({ t, ui, form }) {
                     onChange={(value) => form.onField("compensationDetails", value)}
                   />
                 </div>
-                <TextAreaField
+                {/* Millal abi vaja on või saab: lühike lause, üks rida (nii mahub osa paneeli ära). */}
+                <LineField
+                  t={t}
                   label={ui.availabilityOrStart}
-                  hint={counterText(values.availabilityOrStart, EDIT_LIMITS.availabilityOrStart, t) || undefined}
+                  size="lg"
                   value={values.availabilityOrStart}
+                  max={EDIT_LIMITS.availabilityOrStart}
                   onChange={(value) => form.onField("availabilityOrStart", value)}
-                  rows={2}
-                  maxLength={EDIT_LIMITS.availabilityOrStart}
                 />
                 <TextAreaField
                   label={ui.conditions}

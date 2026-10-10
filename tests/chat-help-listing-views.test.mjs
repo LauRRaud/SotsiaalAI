@@ -25,8 +25,10 @@ import {
   connectChoice,
   counterText,
   editPartOptions,
+  editDirty,
   editProblem,
   editSnapshot,
+  editStartState,
   editValues,
   helpTypeOptions,
   listingChips,
@@ -44,6 +46,7 @@ import {
 } from '../components/chat/selectedListingSheet.js';
 import { getHelpUiText } from '../components/chat/helpUiText.js';
 import { HELP_LISTING_TEXT_LIMITS } from '../lib/help/listingLimits.js';
+import { toHelpListingDetailView, toPublicHelpListingDetailView } from '../lib/help/listingViews.js';
 
 /* Tööpuus on reavahetus CRLF, kontrollis LF: võrdlused käivad LF kujul. */
 const read = (path) => fs.readFileSync(new URL(path, import.meta.url), 'utf8').replace(/\r\n/g, '\n');
@@ -236,6 +239,16 @@ test('kirjelduse lõpust lõigatakse serveri lisatud struktuuriread, tekst ise j
   assert.equal(cleanDescription({ description: 'Lihtsalt tekst ilma lisaridadeta.' }), 'Lihtsalt tekst ilma lisaridadeta.');
   assert.equal(cleanDescription({ description: 'Tingimused: ainult tööpäeviti' }), 'Tingimused: ainult tööpäeviti', 'kui tekst algab sellise reaga, ei jää tühjus');
   assert.equal(cleanDescription({}), '');
+  /* Omaniku vaade annab teksti ridadena: välja jäävad ainult lisaread ise, rea kaupa. See, mis
+     inimene vormis lisaridade järele kirjutas, jääb näha ja lõigud jäävad lõikudeks. */
+  const lined = { description: 'ei loe', editableDescription: 'Esimene lõik.\n\nTeine lõik.\nPõhikategooria: Digiabi\nOmavalitsus: Tartu linn\nLisatud hiljem.' };
+  assert.equal(cleanDescription(lined), 'Esimene lõik.\n\nTeine lõik.\nLisatud hiljem.');
+  assert.equal(cleanDescription({ editableDescription: 'Tekst.\n\nPõhikategooria: Digiabi\n\nAjalisus: Ühekordne' }), 'Tekst.');
+  assert.equal(cleanDescription({ editableDescription: 'Esimene rida.\nMeie tingimused: ainult tööpäeviti\nTingimused: kokkuleppel' }), 'Esimene rida.\nMeie tingimused: ainult tööpäeviti', 'rea sees olev sõna ei ole lisarida');
+  assert.equal(cleanDescription({ editableDescription: 'Põhikategooria: Digiabi\nOmavalitsus: Tartu linn' }), 'Põhikategooria: Digiabi\nOmavalitsus: Tartu linn', 'ainult lisaridadest tekst ei jää tühjaks');
+  /* Vana kirje, kus lisaread on tekstiga samal real: lõige nagu enne. */
+  assert.equal(cleanDescription({ editableDescription: 'Pakun sõitu. Tasu info: kütuse eest' }), 'Pakun sõitu.');
+  assert.ok(read(STYLE).includes('white-space: pre-line;'), 'lõigud on lugemise vaates näha');
   /* Võõra kuulutuse kirjeldus on serveris sama märksõnade rida mis kokkuvõte: seda ei korrata. */
   assert.equal(listingText(OTHER), '');
   assert.equal(listingText({ title: 'Sama lause', description: 'Sama lause' }), '');
@@ -438,7 +451,10 @@ test('kustutamine on kaks vajutust samal nupul ja tagajärg seisab nupu kõrval'
   assert.ok(views.includes('id={noteId}>\n              {t("chat.help.opened.deleteNote")}'));
   assert.ok(views.includes('event.repeat && (event.key === "Enter" || event.key === " ")'));
   /* Kustutada saab oma kuulutust; administraator ka võõrast. */
-  assert.ok(context.includes('isOwn || canDelete\n              ? { armed: deleteArmed, busy: busyAction === "delete", onPress: pressDelete, onCancel: () => onCancelDelete?.() }'));
+  assert.ok(context.includes('isOwn || canDelete\n              ? { armed: deleteArmed, busy: busyAction === "delete", onPress: pressDelete, onCancel: withdrawDelete }'));
+  /* „Loobu" kaob koos küsimusega: fookus läheb tagasi kustutamise nupule (klahvikordus seda ei vajuta). */
+  assert.match(context, /const withdrawDelete = \(\) => \{\s+rootRef\.current\?\.querySelector\('\[data-danger="true"\]'\)\?\.focus\(\{ preventScroll: true \}\);\s+onCancelDelete\?\.\(\);/);
+  assert.ok(views.includes('data-danger="true"') && views.includes('onKeyDown={ignoreKeyRepeat}\n                onClick={remove.onPress}'));
   /* Eraldi kinnitusakent ei ole kummaski failis ega lehel. */
   for (const source of [CONTEXT, VIEWS, CHAT]) assert.ok(!read(source).includes('ModalConfirm'), source);
 });
@@ -486,7 +502,16 @@ test('saatmine ei tule topeltklõpsust ega käimasoleva päringu ajal; välju ei
 test('salvestamata muudatused: loobumine ja lahkumine küsivad teist vajutust', () => {
   const context = read(CONTEXT);
   /* Kiirmenüü tagasinool, Esc ja akna sulgemine käivad ühise värava kaudu. */
-  assert.ok(context.includes('const release = setPanelLeaveGuard(leave);') && context.includes('twoPressLeaveGuard({'));
+  assert.ok(context.includes('const release = setPanelLeaveGuard(gate);') && context.includes('twoPressLeaveGuard({'));
+  /* Töölaua enda Esc-kuulaja väravat ei küsi: avatud kuulutus peab Esc-i kinni enne teda
+     (püüdmise faasis) ja peatab sündmuse, kui värav ei luba. Teine vajutus läheb edasi ja
+     sama vajutuse jooksul küsijad saavad sama vastuse. */
+  assert.match(context, /const holdEscape = \(event\) => \{\s+if \(event\.key !== "Escape"\) return;\s+if \(gate\("escape"\)\) \{\s+passing = true;[\s\S]*?return;\s+\}\s+event\.preventDefault\(\);\s+event\.stopPropagation\(\);/);
+  assert.ok(context.includes('window.addEventListener("keydown", holdEscape, true);') && context.includes('window.removeEventListener("keydown", holdEscape, true);'));
+  assert.ok(context.includes('const gate = (reason) => passing || leave(reason);'));
+  assert.ok(read('../components/chat/WorkspacePanel.jsx').includes('if (event.key !== "Escape") return;\n      event.preventDefault();\n      handleWorkspaceBack();'), 'töölaua kuulaja on endiselt see, mille pärast püüdmist vaja on');
+  /* Muudetud või mitte otsustatakse kuulutuse enda järgi, mitte vormi avamise hetke pildi järgi. */
+  assert.ok(context.includes('const dirty = editDirty(listing, editState);') && !context.includes('setBaseline'));
   assert.ok(context.includes('if (!dirty) return undefined;') && context.includes('window.addEventListener("beforeunload", warn);'));
   assert.ok(context.includes('t("chat.help.opened.leaveAsked")'), 'põhjus seisab vaate kohal');
   assert.ok(context.indexOf('{leaveAsked ? (') < context.indexOf('{body}'), 'teade on vaadete kohal, mitte ühe vaate sees');
@@ -523,11 +548,14 @@ test('kuulutuse päringud on samad mis enne', () => {
   /* Salvestamine: sama aadress, meetod ja keha väljad samas järjekorras. */
   const save = chat.slice(chat.indexOf('const saveListingEdit = useCallback'), chat.indexOf('const requestDeleteOwnedListing'));
   assert.ok(save.includes('fetch(`/api/help/listings/${encodeURIComponent(listing.kind)}/${encodeURIComponent(listing.id)}?locale=${encodeURIComponent(locale)}`, {\n        method: "PATCH",\n        headers: {\n          "Content-Type": "application/json"\n        },\n        body: JSON.stringify({'));
+  const body = save.slice(save.indexOf('body: JSON.stringify({'), save.indexOf('const payload = await response.json()'));
   assert.deepEqual(
-    [...save.matchAll(/^\s{10}(\w+): /gm)].map((match) => match[1]),
-    ['title', 'description', 'primaryCategoryCode', 'roleLabel', 'rawPlace', 'helpType', 'timeType', 'availabilityOrStart', 'compensationDetails', 'conditions', 'targetGroupCodes', 'targetGroups']
+    [...body.matchAll(/^\s{10}(\w+): /gm)].map((match) => match[1]),
+    ['title', 'description', 'primaryCategoryCode', 'roleLabel', 'rawPlace', 'helpType', 'timeType', 'availabilityOrStart', 'compensationDetails', 'conditions', 'targetGroupCodes', 'targetGroups', 'expectedUpdatedAt']
   );
-  assert.ok(save.includes('targetGroupCodes: Array.isArray(editPayload?.targetGroupCodes) ? editPayload.targetGroupCodes : undefined,\n          targetGroups: Array.isArray(editPayload?.targetGroups) ? editPayload.targetGroups : []'));
+  assert.ok(save.includes('targetGroupCodes: Array.isArray(editPayload?.targetGroupCodes) ? editPayload.targetGroupCodes : undefined,\n          targetGroups: Array.isArray(editPayload?.targetGroups) ? editPayload.targetGroups : [],'));
+  /* Üks lisandus: server nõuab muutmisel kuulutuse muutmisaega ja ilma selleta vastas alati 400. */
+  assert.ok(body.includes('expectedUpdatedAt: listing.updatedAt'));
   /* Kustutamine ja ühendamine. */
   assert.ok(chat.includes('const response = await fetch(`/api/help/listings/${encodeURIComponent(listing.kind)}/${encodeURIComponent(listing.id)}`, {\n        method: "DELETE"\n      });'));
   assert.ok(chat.includes('const payload = listing.kind === "request"\n        ? { requestId: listing.id, offerId: selectedConnectListingId }\n        : { requestId: selectedConnectListingId, offerId: listing.id };\n      const response = await fetch("/api/help/matches", {\n        method: "POST",\n        headers: {\n          "Content-Type": "application/json"\n        },\n        body: JSON.stringify(payload)\n      });'));
@@ -555,7 +583,7 @@ test('hilinenud vastus ei rakendu valele kuulutusele', () => {
   assert.ok(chat.includes('const openingKey = `${kind}:${id}`;') && chat.includes('openingKey: ""'));
   assert.equal(chat.split('prev.openingKey !== openingKey ? prev : {').length - 1, 2, 'nii õnnestumine kui ka tõrge');
   /* Salvestamine, kustutamine ja ühendamine: tulemus kehtib selle kuulutuse kohta, mille jaoks päring tehti. */
-  assert.equal(chat.split('isSelectedListing(prev, listing) ? {').length - 1, 5);
+  assert.equal(chat.split('isSelectedListing(prev, listing) ? {').length - 1, 6);
   assert.ok(chat.includes('return Boolean(state?.listing && listing && state.listing.id === listing.id && state.listing.kind === listing.kind);'));
 });
 
@@ -605,4 +633,127 @@ test('kujundus on mooduli klassidega: paljaste siltide reegleid, !important-it e
   const used = new Set([...`${views}\n${read(CONTEXT)}`.matchAll(/\bstyles\.([A-Za-z]+)/g)].map((match) => match[1]));
   assert.ok(used.size >= 15);
   for (const name of used) assert.ok(new RegExp(`\\.${name}\\b`).test(css), `klass ${name} on moodulis`);
+});
+
+/* --- Salvestamine päriselt: muutmisaeg, algseis ja vastuolu ----------------------- */
+
+test('omaniku vaade kannab muutmisaega ja vormi kirjeldus hoiab reavahetused', () => {
+  const record = {
+    id: 'r1',
+    title: 'Vajan abi',
+    description: 'Esimene   lõik.\r\n\r\n\r\n\r\nTeine lõik,\n  kahel real. ',
+    status: 'OPEN',
+    updatedAt: new Date('2026-10-10T05:00:00.123Z')
+  };
+  const view = toHelpListingDetailView(record, { kind: 'request', locale: 'et' });
+  assert.equal(view.updatedAt, '2026-10-10T05:00:00.123Z', 'täpselt see aeg, mida server muutmisel võrdleb');
+  assert.equal(view.editableDescription, 'Esimene lõik.\n\nTeine lõik,\nkahel real.');
+  assert.equal(view.description, 'Esimene lõik. Teine lõik, kahel real.', 'lugemise vaate tekst on nagu enne');
+  assert.equal(toHelpListingDetailView({ id: 'r2' }, { kind: 'offer' }).updatedAt, null);
+  assert.equal(toHelpListingDetailView({ id: 'r3', updatedAt: 'ei ole aeg' }, { kind: 'offer' }).updatedAt, null);
+  /* Server keeldub ilma muutmisajata ja võrdleb seda salvestatuga: leping, mille järgi leht käib. */
+  for (const file of ['../lib/help/requests.js', '../lib/help/offers.js']) {
+    const source = read(file);
+    assert.ok(/_EXPECTED_UPDATED_AT_REQUIRED/.test(source) && source.includes('where: { id, updatedAt: expectedUpdatedAt }'), file);
+  }
+  /* Võõrale antav vaade muutmisaega ei kanna. */
+  const publicView = toPublicHelpListingDetailView({ ...record, status: 'OPEN' }, { kind: 'request', locale: 'et' });
+  assert.equal(publicView.id, 'r1');
+  assert.ok(!('updatedAt' in publicView) && !('editableDescription' in publicView));
+});
+
+test('vormi algseis tuleb kuulutusest ja „muudetud" otsustatakse selle järgi', () => {
+  const listing = {
+    id: 'r1',
+    kind: 'request',
+    title: 'Abisoov: Digiabi',
+    editableTitle: 'Vajan abi telefoniga',
+    description: 'Üks rida.',
+    editableDescription: 'Üks\nrida.',
+    primaryCategoryCode: 'DIGITAL_HELP',
+    helpType: 'VOLUNTARY',
+    timeType: 'ONE_TIME',
+    rawPlace: 'Annelinn',
+    availabilityOrStart: 'Õhtuti',
+    conditions: '',
+    targetGroupCodes: ['ELDER', 'DISABILITY'],
+    targetGroupLabels: ['Eakad']
+  };
+  const start = editStartState(listing);
+  assert.equal(start.title, 'Vajan abi telefoniga');
+  assert.equal(start.description, 'Üks\nrida.', 'vorm saab reavahetustega teksti');
+  assert.deepEqual(start.targetGroupCodes, ['ELDER', 'DISABILITY']);
+  assert.equal(start.targetGroups, 'Eakad');
+  /* Äsja avatud vorm ei ole muudetud; iga välja muutus on. */
+  assert.equal(editDirty(listing, start), false);
+  assert.equal(editDirty(listing, null), false, 'vormi ei ole');
+  assert.equal(editDirty(null, start), false, 'kuulutust ei ole');
+  for (const field of ['title', 'description', 'rawPlace', 'availabilityOrStart', 'compensationDetails', 'conditions']) {
+    assert.equal(editDirty(listing, { ...start, [field]: `${start[field]}x` }), true, field);
+  }
+  assert.equal(editDirty(listing, { ...start, primaryCategoryCode: 'TRANSPORT' }), true);
+  assert.equal(editDirty(listing, { ...start, helpType: '' }), true);
+  assert.equal(editDirty(listing, { ...start, targetGroupCodes: ['ELDER', 'CHILD'] }), true);
+  /* Muudetud ja tagasi muudetud vorm ei ole muudetud. */
+  assert.equal(editDirty(listing, { ...start, title: 'Vajan abi telefoniga' }), false);
+  /* Sama olek uuesti (töölaud suleti ja avati: komponent sündis uuesti) on ikka muudetud. */
+  const edited = { ...start, description: 'Uus tekst' };
+  assert.equal(editDirty(listing, edited), true);
+  assert.equal(editDirty({ ...listing }, { ...edited }), true);
+  /* Leht avab vormi sama funktsiooniga ja ei too eelmise katse tõrget kaasa. */
+  const chat = read(CHAT);
+  assert.match(chat, /const startListingEdit = useCallback\(\(\) => \{\s+setSelectedListingState\(\(prev\) => \{\s+if \(!prev\.listing\) return prev;\s+return \{\s+\.\.\.prev,[\s\S]*?error: "",[\s\S]*?edit: editStartState\(prev\.listing\)\s+\};/);
+  assert.ok(chat.includes('onCancelEdit: () => setSelectedListingState((prev) => ({ ...prev, edit: null, busyAction: "", error: "" })),'));
+});
+
+test('salvestamise vastus: vastuolu kohta on oma lause ja rida jääb minu kuulutuste alla', () => {
+  const chat = read(CHAT);
+  const save = chat.slice(chat.indexOf('const saveListingEdit = useCallback'), chat.indexOf('const requestDeleteOwnedListing'));
+  assert.match(save, /if \(response\.status === 409\) \{[\s\S]*?error: helpUi\.updateConflict[\s\S]*?return;\s+\}/);
+  assert.deepEqual(missingIn('chat.help.updateConflict'), []);
+  assert.equal(ui.updateConflict, at(catalogs.et, 'chat.help.updateConflict'));
+  /* Serveri vastus on omaniku vaade ilma loendi märgita: leht paneb märgi ise. */
+  assert.ok(save.includes('patchListingCollections(listing.kind, { ...payload.listing, isOwn: true });'));
+  assert.ok(read('../app/api/help/listings/[kind]/[id]/route.js').includes('if (code.endsWith("_CONFLICT")) {\n    return {\n      status: 409,'));
+  /* Loendi laadimise võrgutõrge on kataloogi lause. */
+  const load = chat.slice(chat.indexOf('const loadListingsPanel = useCallback'), chat.indexOf('const openListingsPanel = useCallback'));
+  assert.ok(load.includes('error: helpUi.loadFailed') && !load.includes('error?.message'));
+});
+
+test('pärast nõusolekupäringu saatmist läheb fookus vaate pealkirjale', () => {
+  const context = read(CONTEXT);
+  assert.match(context, /const sentNow = view === "connect" && Boolean\(error\) && error === ui\.connectPending;\s+useEffect\(\(\) => \{\s+if \(!sentNow\) return;\s+rootRef\.current\?\.querySelector\("\[data-step-heading\]"\)\?\.focus\(\{ preventScroll: true \}\);\s+\}, \[sentNow\]\);/);
+  assert.ok(context.indexOf('const sentNow') < context.indexOf('if (!view) return null;'), 'efekt on enne varast tagastust');
+});
+
+test('muutmise vorm mahub kitsasse töölaua paneeli: sakid ja valikud on ühes reas', () => {
+  /* Abisoovide paneel on 37 rem lai: alla 40 rem läheb valikurida kahte veergu (telefoni reegel) ja
+     vormi kolm osa neljast ei mahtunud paneeli (mõõdetud 1536 x 640: kuni 170 px üle). Vorm lubab
+     veergude arvu hoida; telefonis jääb kaks veergu. */
+  const views = read(VIEWS);
+  assert.equal(views.split('columns={4} keepColumns />').length - 1, 3, 'sakid, abi liik ja ajalisus');
+  assert.ok(views.includes('columns={4}\n                  keepColumns\n                  onToggle='), 'sihtrühmad neljas veerus');
+  const row = read('../components/stage/ChoiceRow.jsx');
+  const rowStyle = read('../components/stage/ChoiceRow.module.css');
+  assert.ok(row.includes('keepColumns = false,') && row.includes('data-keep={keepColumns ? "1" : undefined}'));
+  assert.ok(rowStyle.includes('@container (min-width: 34rem) and (max-width: 40rem) {\n  .row[data-layout="stack"][data-keep="1"] .options {\n    grid-template-columns: repeat(var(--choice-cols, 3), minmax(0, 1fr));'));
+  const chips = read('../components/stage/ChoiceChips.jsx');
+  const chipsStyle = read('../components/stage/ChoiceChips.module.css');
+  assert.ok(chips.includes('columns, keepColumns = false,') && chips.includes('"--choice-cols": columns || Math.min(options.length, 3)'));
+  assert.ok(chipsStyle.includes('@container (min-width: 34rem) and (max-width: 40rem) {\n  .options[data-keep="1"] {'));
+  /* Ilma loata käitub rida nagu enne: vaikimisi veergude hoidmist ei ole. */
+  assert.ok(!read('../components/casework/sections/SectionBits.jsx').includes('keepColumns'));
+  /* Millal abi saab, on üks rida (lühike lause); pikk tekst on ainult kirjeldus ja tingimused. */
+  assert.equal(views.split('<TextAreaField').length - 1, 2);
+  assert.ok(views.includes('label={ui.availabilityOrStart}\n                  size="lg"'));
+  /* Sakkide nimed on lühikesed, et neli mahuks ühte ritta ka inglise ja vene keeles. */
+  for (const lang of LANGS) {
+    for (const key of EDIT_PART_KEYS) assert.ok(at(catalogs[lang], `chat.help.opened.editParts.${key}`).length <= 14, `${lang} ${key}`);
+  }
+});
+
+test('abikuulutuse liigi sõna on platvormi oma ja vene keeles ei ole ladina tähtedes sõnu', () => {
+  const views = read('../lib/help/listingViews.js');
+  assert.ok(views.includes('et: "Abisoov",') && !views.includes('et: "Abipalve"'), 'abipalve on kiireloomuline abipalve, mitte abikuulutus');
+  assert.ok(views.includes('return "Все возрастные группы";') && !views.includes('Vse vozrastnye'));
 });
