@@ -46,11 +46,6 @@
 .rows {
   composes: rows from "../stage/rows.module.css";
 }
-/* Loend saab fookuse ainult koodist (juurde laaditi, aga uusi ridu ei tulnud):
-   see on lugemise koht, mitte vajutatav asi, raami ümber ei joonistata. */
-.rows:focus {
-  outline: none;
-}
 .rowItem {
   composes: rowItem from "../stage/rows.module.css";
 }

@@ -62,7 +62,13 @@ export default function PersonalSearchPage() {
     }
   }, [moreFault]);
 
-  const onSubmit = (event) => { event.preventDefault(); session.search(query); };
+  /* Ootamise ajal ei ole nupud päriselt kinni: kinni nupp kaotab mõnes brauseris
+     fookuse. Nupp on märgitud hõivatuks ja teist päringut ei saadeta. */
+  const onSubmit = (event) => {
+    event.preventDefault();
+    if (state === "loading") return;
+    session.search(query);
+  };
   const retry = () => {
     /* Vajutatud nupp kaob koos teatega: fookus läheb väljale. */
     inputRef.current?.focus();
@@ -115,7 +121,7 @@ export default function PersonalSearchPage() {
                 autoComplete="off"
               />
             </div>
-            <Button type="submit" size="sm" variant="primary" disabled={state === "loading"}>
+            <Button type="submit" size="sm" variant="primary" aria-busy={state === "loading" || undefined}>
               {t("personal_search.submit")}
             </Button>
           </Form>
@@ -197,7 +203,7 @@ export default function PersonalSearchPage() {
                       {t("personal_search.sign_in")}
                     </Button>
                   ) : (
-                    <Button ref={moreActionRef} type="button" size="sm" variant="secondary" disabled={loadingMore} onClick={session.loadMore}>
+                    <Button ref={moreActionRef} type="button" size="sm" variant="secondary" aria-busy={loadingMore || undefined} onClick={session.loadMore}>
                       {loadingMore ? t("personal_search.loading_more") : moreFault ? t("personal_search.retry") : t("personal_search.load_more")}
                     </Button>
                   )}

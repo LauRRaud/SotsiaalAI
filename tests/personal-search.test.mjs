@@ -20,6 +20,7 @@ import {
   isPersonalSearchCursorValue,
   matchExcerpt,
   normalizePersonalSearchCursor,
+  normalizePersonalSearchQuery,
   searchPersonalObjects
 } from '../lib/search/personalSearch.js';
 import { activeFieldAttachmentDocumentWhere, openableDocumentWhere, visibleRecordingDocumentWhere } from '../lib/documents/recordingVisibility.js';
@@ -162,6 +163,18 @@ test('vestlus leitakse sõnumi tekstist ja rida näitab lõiku otsisõna ümbert
   assert.deepEqual(Object.keys(answer.results[0]).sort(), ['excerpt', 'href', 'kind', 'status', 'title', 'updatedAt']);
   /* Sõnumi teksti rida ei kanna: ainult lõik. */
   assert.ok(!JSON.stringify(answer.results).includes('messages'));
+});
+
+test('otsisõnast võetakse juhtmärgid välja: nullbait ei jõua andmebaasi', async () => {
+  const NUL = String.fromCharCode(0);
+  assert.deepEqual(normalizePersonalSearchQuery(`raba${NUL}kivi`), { ok: true, query: 'raba kivi' });
+  assert.deepEqual(normalizePersonalSearchQuery(`${NUL}${String.fromCharCode(9)}  koduteenus${String.fromCharCode(127)} `), { ok: true, query: 'koduteenus' });
+  assert.deepEqual(normalizePersonalSearchQuery(NUL), { ok: true, query: '' });
+  assert.deepEqual(normalizePersonalSearchQuery('õ ä ö ü š ž'), { ok: true, query: 'õ ä ö ü š ž' });
+  assert.equal(normalizePersonalSearchQuery('a'.repeat(121)).ok, false);
+  const prisma = fakePrisma();
+  await searchPersonalObjects({ prisma, userId: 'user-1', query: `raba${NUL}kivi` });
+  assert.ok(!JSON.stringify(prisma.calls).includes('u0000'), 'nullbaiti päringus ei ole');
 });
 
 test('kursor on rea id: muu kujuga väärtus ei jõua andmebaasi', async () => {
@@ -435,7 +448,7 @@ test('„Näita rohkem” laeb juurde ekraanil oleva loendi ridu, ükskõik mis 
   const page = read(PAGE);
   assert.ok(page.includes('onClick={session.loadMore}'));
   assert.equal(page.split('session.search(').length - 1, 1, 'välja tekst läheb otsingusse ühes kohas');
-  assert.ok(page.includes('const onSubmit = (event) => { event.preventDefault(); session.search(query); };'));
+  assert.ok(page.includes('session.search(query);') && page.includes('onSubmit={onSubmit}'), 'otsingusse läheb välja tekst vormi saatmisel');
 });
 
 test('ebaõnnestunud juurde laadimine jätab read alles ja uus vajutus küsib sama lehte', async () => {
@@ -587,6 +600,10 @@ test('leht hoiab oma lubadusi: kuuldav seis, fookus, oma laused keeldumisele', (
      kui inimene ei ole vahepeal mujale läinud. */
   assert.ok(page.includes('(row || list).focus()') && page.includes('focusIsFree(moreActionRef.current)'));
   assert.ok(page.includes('<ol ref={listRef} tabIndex={-1}'), 'loend saab fookuse võtta');
+  /* Ootamise ajal ei ole kumbki nupp päriselt kinni (fookus ei kao), vaid hõivatud. */
+  assert.ok(!/<Button[^>]*\sdisabled=/.test(page), 'lehel ei ole kinni nuppu');
+  assert.ok(page.includes('aria-busy={state === "loading" || undefined}') && page.includes('aria-busy={loadingMore || undefined}'));
+  assert.ok(page.includes('if (state === "loading") return;'), 'teist otsingut ootamise ajal ei saadeta');
   /* Vea korral jääb sama nupp paigale: sama element, teine silt. */
   assert.ok(page.includes('loadingMore ? t("personal_search.loading_more") : moreFault ? t("personal_search.retry") : t("personal_search.load_more")'));
   /* Kadunud seanss viib sisse logima ja toob tagasi sellele lehele. */
