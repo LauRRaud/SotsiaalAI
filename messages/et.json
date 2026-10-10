@@ -11838,7 +11838,8 @@
       "accept": "Nõustun ja liitun",
       "decline": "Keeldun",
       "accepted": "Oled nüüd liige.",
-      "declined": "Kutse on tagasi lükatud."
+      "declined": "Kutse on tagasi lükatud.",
+      "jobTitle": "Ametinimetus (võid jätta tühjaks)"
     },
     "audit": {
       "heading": "Organisatsiooni audit",

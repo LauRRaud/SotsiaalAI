@@ -31,6 +31,9 @@ export default function OrgInvitesClient({ context, initialPage, units }) {
   const [invites, setInvites] = useState(initialPage?.items || []);
   const [nextCursor, setNextCursor] = useState(initialPage?.nextCursor || null);
   const [email, setEmail] = useState("");
+  /* Ametinimetus (nt „hooldaja") läheb liikmesusele kaasa: liikmete loend ja töölauad
+     näitavad seda nime kõrval ja nimeta liikme puhul nime asemel. */
+  const [jobTitle, setJobTitle] = useState("");
   const [seatRole, setSeatRole] = useState("SOCIAL_WORKER");
   const [templateKey, setTemplateKey] = useState("MEMBER");
   const [primaryUnitId, setPrimaryUnitId] = useState("");
@@ -76,17 +79,19 @@ export default function OrgInvitesClient({ context, initialPage, units }) {
           email,
           seatRole,
           capabilityTemplate: templateKey,
-          primaryUnitId: primaryUnitId || null
+          primaryUnitId: primaryUnitId || null,
+          jobTitle: jobTitle.trim() || null
         },
         fallbackKey: "org.errors.invite_create_failed"
       });
       if (payload?.inviteToken) {
         setIssuedLink(`${window.location.origin}/org/liitu?token=${encodeURIComponent(payload.inviteToken)}`);
         setEmail("");
+        setJobTitle("");
         await reload();
       }
     },
-    [call, email, organizationId, primaryUnitId, reload, seatRole, templateKey]
+    [call, email, jobTitle, organizationId, primaryUnitId, reload, seatRole, templateKey]
   );
 
   const revoke = useCallback(
@@ -121,6 +126,17 @@ export default function OrgInvitesClient({ context, initialPage, units }) {
                 type="email"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
+                style={{ width: "100%" }}
+              />
+            </label>
+            <label>
+              <span className="ow-meta__term">{t("org.invites.jobTitle")}</span>
+              <Input
+                type="text"
+                value={jobTitle}
+                maxLength={200}
+                autoComplete="off"
+                onChange={(event) => setJobTitle(event.target.value)}
                 style={{ width: "100%" }}
               />
             </label>
