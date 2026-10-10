@@ -7,6 +7,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import OrgHeader from "@/components/org/OrgHeader";
 
 import { decisionVolumeLabel, minutesLabel } from "./HomeCareDecisionView";
+import HomeCareMonthLock from "./HomeCareMonthLock";
 import HomeCareOutbox from "./HomeCareOutbox";
 import { planDayLabel } from "./HomeCarePlanView";
 import { clientHref, formatDateTime, homeCareBase, useHomeCareApi } from "./homeCareClient";
@@ -22,6 +23,9 @@ function monthLabel(month) {
  *   1. Kliendi kaupa: käigud ja osutatud aeg otsustatud aja kõrval.
  *   2. Töötaja kaupa: käigud ja aeg, eraldi need käigud, kus ta oli kaasas.
  *   3. Ära jäänud käigud (erijuhtumid „ei avanud ust" ja „keeldus abist").
+ *
+ * Lukustatud kuu (K5-p) arvud tulevad hetktõmmisest; kliendil, keda enam nimekirjas ei ole,
+ * on nime asemel selgitus ja linki ei ole.
  *
  * Lingid kliendi lehele on `prefetch={false}`: lehe avamine jätab avamislogisse rea.
  */
@@ -40,6 +44,25 @@ export default function HomeCareMonth({ context, initial }) {
     });
     if (result.ok) setData(result.data);
   };
+
+  const locked = data.lock?.state === "LOCKED";
+  /* Rida kliendi kohta, kes võib hetktõmmises olla, aga nimekirjast kadunud. */
+  const clientRow = (client, key, name, meta) =>
+    client.displayName === null ? (
+      <li key={key}>
+        <span className="hc-client">
+          <span className="hc-client__name">{t("home_care.month_lock.client_gone")}</span>
+          <span className="hc-client__meta">{meta}</span>
+        </span>
+      </li>
+    ) : (
+      <li key={key}>
+        <Link className="hc-client" href={clientHref(organizationId, client.id)} prefetch={false}>
+          <span className="hc-client__name">{name}</span>
+          <span className="hc-client__meta">{meta}</span>
+        </Link>
+      </li>
+    );
 
   const clientMeta = (row) =>
     [
@@ -87,7 +110,15 @@ export default function HomeCareMonth({ context, initial }) {
           <button className="hc-btn hc-btn--quiet" type="button" onClick={() => load(data.previousMonth)} disabled={busy}>
             {t("home_care.month.previous")}
           </button>
-          <h3 className="hc-section-title">{monthLabel(data.month)}</h3>
+          <h3 className="hc-section-title">
+            {monthLabel(data.month)}
+            {locked ? (
+              <>
+                {" "}
+                <span className="hc-badge">{t("home_care.month_lock.badge")}</span>
+              </>
+            ) : null}
+          </h3>
           <button className="hc-btn hc-btn--quiet" type="button" onClick={() => load(data.nextMonth)} disabled={busy || !data.nextMonth}>
             {t("home_care.month.next")}
           </button>
@@ -105,13 +136,16 @@ export default function HomeCareMonth({ context, initial }) {
             missed: data.totals.missed
           })}
         </p>
+        {locked ? (
+          <p className="hc-notice">{data.lock.snapshotShown ? t("home_care.month_lock.locked_banner") : t("home_care.month_lock.locked_banner_unit")}</p>
+        ) : null}
         {data.untilDay && data.untilDay === data.today ? (
           <p className="hc-hint">{t("home_care.month.until_today", { date: planDayLabel(data.untilDay) })}</p>
         ) : null}
         {data.truncated ? <p className="hc-notice">{t("home_care.deadlines.truncated", { count: data.clients.length })}</p> : null}
       </section>
 
-      {/* Kuu lahtised asjad (K5-j): mida enne kuu numbrite saatmist üle vaadata. Kuud ei lukustata. */}
+      {/* Kuu lahtised asjad (K5-j): mida enne kuu numbrite saatmist üle vaadata. Lukustamine on lehe lõpus. */}
       {data.openItems ? (
         <section className="hc-section" aria-labelledby="hc-month-open">
           <h3 className="hc-section-title" id="hc-month-open">
@@ -161,28 +195,28 @@ export default function HomeCareMonth({ context, initial }) {
           <p className="hc-sub">{t("home_care.month.clients_empty")}</p>
         ) : (
           <ul className="hc-list">
-            {data.clients.map((row) => (
-              <li key={row.client.id}>
-                <Link className="hc-client" href={clientHref(organizationId, row.client.id)} prefetch={false}>
-                  <span className="hc-client__name">
-                    {row.client.displayName}
-                    {row.client.status !== "ACTIVE" ? (
-                      <>
-                        {" "}
-                        <span className="hc-badge hc-badge--warn">{t(`home_care.status.${row.client.status}`)}</span>
-                      </>
-                    ) : null}
-                    {data.complete && row.expectedMinutes !== null && row.minutes > row.expectedMinutes ? (
-                      <>
-                        {" "}
-                        <span className="hc-badge">{t("home_care.month.over_badge")}</span>
-                      </>
-                    ) : null}
-                  </span>
-                  <span className="hc-client__meta">{clientMeta(row)}</span>
-                </Link>
-              </li>
-            ))}
+            {data.clients.map((row) =>
+              clientRow(
+                row.client,
+                row.client.id,
+                <>
+                  {row.client.displayName}
+                  {row.client.status && row.client.status !== "ACTIVE" ? (
+                    <>
+                      {" "}
+                      <span className="hc-badge hc-badge--warn">{t(`home_care.status.${row.client.status}`)}</span>
+                    </>
+                  ) : null}
+                  {data.complete && row.expectedMinutes !== null && row.minutes > row.expectedMinutes ? (
+                    <>
+                      {" "}
+                      <span className="hc-badge">{t("home_care.month.over_badge")}</span>
+                    </>
+                  ) : null}
+                </>,
+                clientMeta(row)
+              )
+            )}
           </ul>
         )}
       </section>
@@ -225,20 +259,25 @@ export default function HomeCareMonth({ context, initial }) {
           <p className="hc-sub">{t("home_care.month.missed_empty")}</p>
         ) : (
           <ul className="hc-list">
-            {data.missed.map((row) => (
-              <li key={row.entryId}>
-                <Link className="hc-client" href={clientHref(organizationId, row.client.id)} prefetch={false}>
-                  <span className="hc-client__name">{row.client.displayName}</span>
-                  <span className="hc-client__meta">
-                    {formatDateTime(row.occurredAt, timeZone)} · {t(`home_care.incident.types.${row.type}`)}
-                  </span>
-                </Link>
-              </li>
-            ))}
+            {data.missed.map((row) =>
+              clientRow(row.client, row.entryId, row.client.displayName, `${formatDateTime(row.occurredAt, timeZone)} · ${t(`home_care.incident.types.${row.type}`)}`)
+            )}
           </ul>
         )}
         <p className="hc-hint">{t("home_care.month.how")}</p>
       </section>
+
+      {/* Kuu lukustamine (K5-p): kuu sulgemise kolmas samm. Võti nullib vormi, kui kuu või luku seis vahetub. */}
+      {data.lock ? (
+        <HomeCareMonthLock
+          key={`${data.month}:${data.lock.state}`}
+          organizationId={organizationId}
+          timeZone={timeZone}
+          data={data}
+          onChange={setData}
+          onReload={() => load(data.month)}
+        />
+      ) : null}
     </section>
   );
 }

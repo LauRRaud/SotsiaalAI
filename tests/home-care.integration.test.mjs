@@ -93,6 +93,7 @@ import { getReferralContacts, saveReferralContacts } from '../lib/homeCare/refer
 import { addWorkerRecord, endWorkerRecord, getWorkerCards } from '../lib/homeCare/workerRecords.js';
 import { getFridgeSheet } from '../lib/homeCare/fridgeSheet.js';
 import { getMonthOpenItems } from '../lib/homeCare/monthClose.js';
+import { getMonthPage, lockMonth, reopenMonth } from '../lib/homeCare/monthLock.js';
 import { endRelative, saveRelative } from '../lib/homeCare/relatives.js';
 import { saveSafetyCard } from '../lib/homeCare/safetyCard.js';
 import { composeNoAnswerText } from '../lib/homeCare/noAnswerText.js';
@@ -1880,6 +1881,9 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
   await saveRelative(lead, client.id, { name: 'Mari Tamm', relation: 'tütar', level: 1 }, deps());
   /* Ohutuskaardi vastus (K5-n), et väljavõttes oleks ka see kogu. */
   await saveSafetyCard(lead, client.id, { items: { ANIMALS: { answer: 'NO' } } }, deps());
+  /* Kuu lukk (K5-p): eelmise kuu arvud lukku. */
+  const september = await getMonthPage(lead, { month: '2026-09' }, deps());
+  await lockMonth(lead, { month: '2026-09', seen: { visits: september.totals.visits, minutes: september.totals.minutes, open: september.lock.openItemCount } }, deps());
   const obstacleOfAnu = await reportObstacle(anu, { kind: 'LATE_30' }, deps());
   await handleObstacle(lead, obstacleOfAnu.obstacle.id, {}, deps());
   /* Ühe päeva erand (K3-b): järgmise esmaspäeva käik jääb ära. */
@@ -1995,6 +1999,7 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
     workerRecords: await db.careWorkerRecord.count({ where: ofOrg }),
     clientRelatives: await db.careClientRelative.count({ where: ofOrg }),
     safetyItems: await db.careSafetyItem.count({ where: ofOrg }),
+    monthLocks: await db.careMonthLock.count({ where: ofOrg }),
     auditEvents: await db.dataAuditLog.count({
       where: { action: { startsWith: 'org.home_care_' }, meta: { path: ['organizationId'], equals: f.orgA.id }, createdAt: { lt: (await exportRows())[0].createdAt } }
     })
@@ -5511,4 +5516,118 @@ test('ohutuskaart: meeskond ja hooldusjuht täidavad, vastuste ajalugu, ülevaat
   assert.equal(audit.length, 4);
   for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['change', 'clientId', 'organizationId']);
   assert.equal(JSON.stringify(audit).includes('Koer'), false);
+});
+
+test('kuu lukustamine: hetktõmmis, hilisemad kirjed eraldi, uuesti avamine põhjusega', async (t) => {
+  const f = await fixture(t);
+  const north = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Põhi ${f.tag}`, type: 'TEAM' } });
+  await db.organizationCapabilityGrant.create({
+    data: { membershipId: f.members.cover.id, capability: 'HOME_CARE_COORDINATOR', scopeType: 'UNIT', scopeUnitId: north.id, validFrom: at('2026-01-01T00:00:00Z') }
+  });
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const unitLead = await f.ctx(f.users.cover, f.orgA);
+  const start = deps(at('2026-09-01T08:00:00Z'));
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, start)).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi', unitId: north.id }, start)).client;
+  for (const client of [linda, peeter]) await addTeamMember(lead, client.id, { membershipId: f.members.anu.id }, start);
+  /* Peetri muster algab 28.09 (kolmapäeviti): 30.09 käik jääb kirja panemata ja on kuu lahtine asi. */
+  await createSlots(lead, peeter.id, { weekdays: [3], startTime: '10:00', plannedMinutes: 30, workerMembershipId: f.members.anu.id, validFrom: '2026-09-28' }, start);
+  const visit = (client, when, minutes = 30) =>
+    createEntry(anu, client.id, { kind: 'NOTE', contactMode: 'VISIT', text: 'Käik', visitMinutes: minutes, occurredAt: when }, deps(at(when)));
+  const first = await visit(linda, '2026-09-10T06:30:00Z');
+  await visit(linda, '2026-09-17T06:30:00Z');
+  await visit(peeter, '2026-09-16T07:00:00Z', 45);
+
+  const lockDay = deps(at('2026-10-05T08:00:00Z'));
+  const open = await getMonthPage(lead, { month: '2026-09' }, lockDay);
+  assert.deepEqual([open.lock.state, open.lock.canLock, open.lock.blocked, open.lock.openItemCount, open.totals.visits, open.totals.minutes], ['OPEN', true, null, 1, 3, 105]);
+  assert.deepEqual(open.lock.history, []);
+  const seen = { visits: 3, minutes: 105, open: 1 };
+
+  /* Jooksvat kuud ei lukustata; üksuse hooldusjuht ja hooldaja ei lukusta; vigane kuu ja vahepeal muutunud arvud lükatakse tagasi. */
+  const october = await getMonthPage(lead, { month: '2026-10' }, lockDay);
+  assert.deepEqual([october.lock.canLock, october.lock.blocked], [false, 'NOT_OVER']);
+  await expectError(lockMonth(lead, { month: '2026-10', seen: { visits: 0, minutes: 0, open: 0 } }, lockDay), 409, 'home_care.errors.month_not_over');
+  assert.equal((await getMonthPage(unitLead, { month: '2026-09' }, lockDay)).lock.blocked, 'SCOPE');
+  await expectError(lockMonth(unitLead, { month: '2026-09', seen }, lockDay), 403, 'org.errors.missing_capability');
+  await expectError(lockMonth(anu, { month: '2026-09', seen }, lockDay), 403, 'org.errors.missing_capability');
+  await expectError(lockMonth(lead, { seen }, lockDay), 400, 'home_care.errors.invalid_month');
+  await expectError(lockMonth(lead, { month: '2026-13', seen }, lockDay), 400, 'home_care.errors.invalid_month');
+  await expectError(lockMonth(lead, { month: '2026-09', seen: { ...seen, visits: 2 } }, lockDay), 409, 'home_care.errors.month_changed');
+  await expectError(lockMonth(lead, { month: '2026-09', seen: { ...seen, open: 0 } }, lockDay), 409, 'home_care.errors.month_changed');
+  await expectError(lockMonth(lead, { month: '2026-09' }, lockDay), 409, 'home_care.errors.month_changed');
+  assert.equal(await db.careMonthLock.count({ where: { organizationId: f.orgA.id } }), 0);
+
+  const locked = await lockMonth(lead, { month: '2026-09', seen }, lockDay);
+  assert.deepEqual(
+    [locked.lock.state, locked.lock.snapshotShown, locked.lock.canReopen, locked.lock.drift, locked.lock.after.total, locked.lock.openItemCount, locked.lock.lockedAt],
+    ['LOCKED', true, true, null, 0, 1, '2026-10-05T08:00:00.000Z']
+  );
+  assert.match(locked.lock.lockedByName, /Juta/);
+  await expectError(lockMonth(lead, { month: '2026-09', seen }, lockDay), 409, 'home_care.errors.month_already_locked');
+  /* Hetktõmmises on kliendi ID ja arvud, nime ei ole. */
+  const stored = await db.careMonthLock.findFirst({ where: { organizationId: f.orgA.id, month: '2026-09', reopenedAt: null } });
+  assert.equal(JSON.stringify(stored.snapshot).includes('Linda'), false);
+  assert.deepEqual(Object.fromEntries(stored.snapshot.clients.map((row) => [row.clientId, [row.visits, row.minutes]])), { [linda.id]: [2, 60], [peeter.id]: [1, 45] });
+  assert.deepEqual(stored.snapshot.open, { missing: 1, incidents: 0, signals: 0, medication: 0 });
+
+  /* PÄRAST LUKUSTAMIST: hooldaja ununenud käik läheb päevikusse (kirjet ei lükata tagasi) ja parandus samuti. */
+  const late = await createEntry(anu, linda.id, { kind: 'NOTE', contactMode: 'VISIT', text: 'Ununenud käik', visitMinutes: 30, occurredAt: '2026-09-24T06:30:00Z' }, deps(at('2026-10-05T12:00:00Z')));
+  assert.equal(late.created, true);
+  await correctEntry(anu, linda.id, first.entry.id, { text: 'Käik', reason: 'Vale kestus', revision: 1, visitMinutes: 45 }, deps(at('2026-10-05T13:00:00Z')));
+
+  const viewDay = deps(at('2026-10-06T08:00:00Z'));
+  const view = await getMonthPage(lead, { month: '2026-09' }, viewDay);
+  /* Lukustatud arvud ei muutu; vahe ja hilisemad muudatused on eraldi näha. */
+  assert.deepEqual([view.totals.visits, view.totals.minutes], [3, 105]);
+  assert.deepEqual(view.clients.map((row) => [row.client.displayName, row.visits, row.minutes]), [['Linda Tamm', 2, 60], ['Peeter Põhi', 1, 45]]);
+  assert.deepEqual(view.lock.drift, { visits: 1, minutes: 45 });
+  assert.deepEqual([view.lock.after.added, view.lock.after.corrected, view.lock.after.retracted, view.lock.after.planChanged, view.lock.after.total], [1, 1, 0, 0, 2]);
+  assert.deepEqual(view.lock.after.items.map((item) => [item.kind, item.client.displayName, item.at]), [
+    ['CORRECTED', 'Linda Tamm', '2026-10-05T13:00:00.000Z'],
+    ['ADDED', 'Linda Tamm', '2026-10-05T12:00:00.000Z']
+  ]);
+  /* Üksuse hooldusjuht näeb luku seisu ja oma üksuse jooksvaid arve; Linda muudatused ei ole tema skoobis. */
+  const unitView = await getMonthPage(unitLead, { month: '2026-09' }, viewDay);
+  assert.deepEqual([unitView.lock.state, unitView.lock.snapshotShown, unitView.lock.canReopen, unitView.lock.drift, unitView.lock.after.total], ['LOCKED', false, false, null, 0]);
+  assert.deepEqual(unitView.clients.map((row) => row.client.displayName), ['Peeter Põhi']);
+  /* Tähtaegade vaade toob lukustatud kuu ette; hooldaja kuu lehte ei näe. */
+  assert.deepEqual((await getDeadlines(lead, viewDay)).monthLocksChanged.map((item) => [item.month, item.changes]), [['2026-09', 2]]);
+  assert.deepEqual((await getDeadlines(unitLead, viewDay)).monthLocksChanged, []);
+  await expectError(getMonthPage(anu, { month: '2026-09' }, viewDay), 403, 'org.errors.missing_capability');
+
+  /* UUESTI AVAMINE: põhjus on kohustuslik; ainult kogu asutuse hooldusjuht. */
+  const reopenDay = deps(at('2026-10-06T09:00:00Z'));
+  await expectError(reopenMonth(lead, { month: '2026-09' }, reopenDay), 400, 'home_care.errors.month_reopen_reason');
+  await expectError(reopenMonth(unitLead, { month: '2026-09', reason: 'Proov' }, reopenDay), 403, 'org.errors.missing_capability');
+  const reopened = await reopenMonth(lead, { month: '2026-09', reason: 'Ununenud käik lisati' }, reopenDay);
+  assert.deepEqual([reopened.lock.state, reopened.lock.canLock, reopened.totals.visits, reopened.totals.minutes], ['OPEN', true, 4, 150]);
+  assert.deepEqual(reopened.lock.history.map((row) => [row.lockedAt, row.reopenedAt, row.reopenReason]), [['2026-10-05T08:00:00.000Z', '2026-10-06T09:00:00.000Z', 'Ununenud käik lisati']]);
+  await expectError(reopenMonth(lead, { month: '2026-09', reason: 'Veel kord' }, reopenDay), 409, 'home_care.errors.month_not_locked');
+  assert.deepEqual((await getDeadlines(lead, reopenDay)).monthLocksChanged, []);
+
+  /* UUS LUKK: uus hetktõmmis sisaldab hilisemat käiku ja parandust; vana lukk jääb alles. */
+  const again = await lockMonth(lead, { month: '2026-09', seen: { visits: 4, minutes: 150, open: 1 } }, deps(at('2026-10-06T10:00:00Z')));
+  assert.deepEqual([again.lock.state, again.totals.visits, again.totals.minutes, again.lock.drift, again.lock.after.total, again.lock.history.length], ['LOCKED', 4, 150, null, 0, 1]);
+  assert.equal(await db.careMonthLock.count({ where: { organizationId: f.orgA.id, month: '2026-09' } }), 2);
+  /* Päevaplaani muudatus pärast lukustamist: 30.09 tegemata käik märgitakse ära jäetuks. */
+  const slot = (await getClientSlots(lead, peeter.id, deps())).slots[0];
+  await cancelVisit(lead, peeter.id, slot.id, { day: '2026-09-30', reason: 'CLIENT_AWAY' }, deps(at('2026-10-06T11:00:00Z')));
+  const planned = await getMonthPage(lead, { month: '2026-09' }, deps(at('2026-10-06T12:00:00Z')));
+  assert.deepEqual([planned.lock.after.planChanged, planned.lock.after.total, planned.lock.drift, planned.totals.cancelled], [1, 1, { cancelled: 1 }, 0]);
+
+  /* ANDMEBAAS: ühel kuul üks kehtiv lukk; uuesti avamise väljad käivad koos; kuu kuju on kontrollitud. */
+  const lockRow = { organizationId: f.orgA.id, snapshot: {}, lockedByName: 'Proov' };
+  await assert.rejects(db.careMonthLock.create({ data: { ...lockRow, month: '2026-09' } }));
+  await assert.rejects(db.careMonthLock.create({ data: { ...lockRow, month: '2026-9' } }));
+  await assert.rejects(db.careMonthLock.create({ data: { ...lockRow, month: '2026-08', reopenedAt: at('2026-10-06T12:00:00Z') } }));
+  await assert.rejects(db.careMonthLock.create({ data: { ...lockRow, month: '2026-08', reopenReason: 'Põhjus ilma ajata' } }));
+  /* Teine asutus seda lukku ei näe. */
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  assert.equal((await getMonthPage(leadB, { month: '2026-09' }, viewDay)).lock.state, 'OPEN');
+
+  const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_month_lock_changed', meta: { path: ['organizationId'], equals: f.orgA.id } }, orderBy: { createdAt: 'asc' } });
+  assert.deepEqual(audit.map((row) => row.meta.change).sort(), ['locked', 'locked', 'reopened']);
+  assert.equal(JSON.stringify(audit).includes('Ununenud'), false);
 });

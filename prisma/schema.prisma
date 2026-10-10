@@ -5606,6 +5606,7 @@ model Organization {
   careClientEntries      CareClientEntry[]
   careActivities         CareActivity[]
   careReferralContacts   CareReferralContact[]
+  careMonthLocks         CareMonthLock[]
 
   @@unique([createdByUserId, creationClientActionId], name: "Organization_creation_action_unique")
   @@index([status])
@@ -8635,6 +8636,33 @@ model CareReferralContact {
   organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 
   @@index([organizationId, endedAt, position])
+}
+
+/// KODUTEENUS K5-p — KUU LUKK (kava II.6.10): kuu arvude hetktõmmis hetkel, mil hooldusjuht
+/// kuu lukustas. Hetktõmmises on kliendi ID ja arvud, nime ei ole. Ühel kuul on korraga üks
+/// kehtiv lukk (osaline unikaalne indeks migratsioonis); uuesti avatud lukk jääb alles koos
+/// avamise aja, avaja ja põhjusega.
+model CareMonthLock {
+  id             String @id @default(cuid())
+  organizationId String
+  /// Kuu kujul AAAA-KK.
+  month          String
+  /// Kuu kokkuvõtte arvud lukustamise hetkel (`snapshotOf`).
+  snapshot       Json
+  /// Mitu asja oli lukustamise hetkel lahti.
+  openItemCount  Int    @default(0)
+
+  lockedByMembershipId   String?
+  lockedByName           String
+  lockedAt               DateTime  @default(now())
+  reopenedAt             DateTime?
+  reopenedByMembershipId String?
+  reopenedByName         String?
+  reopenReason           String?
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId, month, lockedAt])
 }
 
 /// KODUTEENUS K5-e — TÖÖTAJA KAART (kava II.6.10): taustakontroll (ainult kuupäev; tulemust

@@ -144,6 +144,18 @@ export default function HomeCareDeadlines({ context, deadlines }) {
         clientLine(item, t("home_care.deadlines.risk_lines_line", { count: item.lines, date: planDayLabel(item.oldestOn) }))
       )}
 
+      {/* Lukustatud kuud, kuhu on hiljem lisatud või muudetud (K5-p); rida viib selle kuu kokkuvõttesse. */}
+      {(deadlines.monthLocksChanged || []).length
+        ? section("month_changed", deadlines.monthLocksChanged, (item) => (
+            <li key={item.month}>
+              <Link className="hc-client" href={`/org/${organizationId}/koduteenus/kuu?kuu=${item.month}`}>
+                <span className="hc-client__name">{item.month.split("-").reverse().join(".")}</span>
+                <span className="hc-client__meta">{t("home_care.deadlines.month_changed_line", { count: item.changes })}</span>
+              </Link>
+            </li>
+          ))
+        : null}
+
       {/* Töötajate kaardid (K5-e): ainult kogu asutuse hooldusjuhile; rida viib töötajate lehele. */}
       {(deadlines.workerRecordsDue || []).length
         ? section("workers_due", deadlines.workerRecordsDue, (item) => (
