@@ -13684,7 +13684,10 @@
       "safety_old": "the safety card was assessed {date}: review it",
       "month_changed_title": "Locked months with later additions or changes",
       "month_changed_empty": "No later changes in locked months.",
-      "month_changed_line": "changes after locking: {count}"
+      "month_changed_line": "changes after locking: {count}",
+      "over_volume_title": "Time provided above the decided volume for three locked months in a row: tell the decision maker",
+      "over_volume_empty": "No client has been above the decided volume three months in a row.",
+      "over_volume_line": "above the decided volume: {list}"
     },
     "visit": {
       "title": "What you did",
@@ -14463,6 +14466,40 @@
       "history_title": "Earlier locks",
       "history_line": "Locked by {lockedBy}, {lockedAt}. Reopened by {reopenedBy}, {reopenedAt}: {reason}",
       "client_gone": "The client is no longer on the list"
+    },
+    "month_sheet": {
+      "title": "Home care month summary",
+      "state": "State",
+      "state_locked": "Locked figures. Locked by {name}, {date}.",
+      "state_running": "The month is not locked: running figures as of {date}.",
+      "state_unit": "The month is locked. These are the unit's running figures as of {date}.",
+      "clients_title": "By client",
+      "col_client": "Client",
+      "col_status": "Status",
+      "col_visits": "Visits",
+      "col_hours": "Hours provided",
+      "col_expected": "Hours decided",
+      "col_difference": "Difference (hours)",
+      "col_without_length": "Visits without a length",
+      "col_missed": "Missed visits",
+      "col_cancelled": "Visits cancelled in advance",
+      "col_away_days": "Temporarily away (days)",
+      "col_refused": "Not done: refused",
+      "col_not_needed": "Not done: not needed",
+      "col_could_not": "Not done: could not",
+      "total": "Total",
+      "workers_title": "By worker",
+      "col_worker": "Worker",
+      "col_worker_hours": "Hours",
+      "col_heavy": "Visits to clients marked as heavy work",
+      "col_companion_visits": "Visits as a companion",
+      "col_companion_hours": "Hours as a companion",
+      "missed_title": "Missed visits",
+      "col_time": "Time",
+      "col_reason": "Reason",
+      "download": "Download the month table",
+      "hint_locked": "A table file (CSV) with the locked figures; opens in a spreadsheet.",
+      "hint_running": "A table file (CSV) with the running figures; the file says that the month is not locked. Lock the month before sending it to the municipality."
     }
   },
   "stage": {

@@ -5631,3 +5631,48 @@ test('kuu lukustamine: hetktõmmis, hilisemad kirjed eraldi, uuesti avamine põh
   assert.deepEqual(audit.map((row) => row.meta.change).sort(), ['locked', 'locked', 'reopened']);
   assert.equal(JSON.stringify(audit).includes('Ununenud'), false);
 });
+
+test('kolm lukustatud kuud järjest üle otsustatud mahu: tähtaegade nimekiri', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const start = deps(at('2026-06-20T08:00:00Z'));
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, start)).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi' }, start)).client;
+  for (const client of [linda, peeter]) await addTeamMember(lead, client.id, { membershipId: f.members.anu.id }, start);
+  /* Linda: otsustatud 2 tundi kuus, osutatud 3; Peeter: otsustatud 10 tundi kuus, osutatud 1. */
+  await createDecision(lead, linda.id, { kind: 'ACT', validFrom: '2026-07-01', volumeHours: '2', volumePeriod: 'MONTH' }, start);
+  await createDecision(lead, peeter.id, { kind: 'ACT', validFrom: '2026-07-01', volumeHours: '10', volumePeriod: 'MONTH' }, start);
+  const visit = (client, when, minutes) =>
+    createEntry(anu, client.id, { kind: 'NOTE', contactMode: 'VISIT', text: 'Käik', visitMinutes: minutes, occurredAt: when }, deps(at(when)));
+  for (const month of ['07', '08', '09']) {
+    await visit(linda, `2026-${month}-10T06:30:00Z`, 90);
+    await visit(linda, `2026-${month}-20T06:30:00Z`, 90);
+    await visit(peeter, `2026-${month}-15T07:00:00Z`, 60);
+  }
+
+  const october = deps(at('2026-10-05T08:00:00Z'));
+  const lock = async (month) => {
+    const page = await getMonthPage(lead, { month }, october);
+    await lockMonth(lead, { month, seen: { visits: page.totals.visits, minutes: page.totals.minutes, open: page.lock.openItemCount } }, october);
+  };
+  /* Kuni kõik kolm kuud ei ole lukus, nimekirja ei ole. */
+  assert.deepEqual((await getDeadlines(lead, october)).overVolumeStreak, []);
+  await lock('2026-07');
+  await lock('2026-08');
+  assert.deepEqual((await getDeadlines(lead, october)).overVolumeStreak, []);
+  await lock('2026-09');
+  const due = (await getDeadlines(lead, october)).overVolumeStreak;
+  assert.deepEqual(
+    due.map((item) => [item.client.displayName, item.months.map((month) => [month.month, month.minutes, month.expectedMinutes])]),
+    [['Linda Tamm', [['2026-07', 180, 120], ['2026-08', 180, 120], ['2026-09', 180, 120]]]]
+  );
+  /* Uuesti avatud kuu võtab nimekirja ära; lõppenud teenusega klienti seal ei ole. */
+  await reopenMonth(lead, { month: '2026-08', reason: 'Kontroll' }, october);
+  assert.deepEqual((await getDeadlines(lead, october)).overVolumeStreak, []);
+  await lock('2026-08');
+  assert.equal((await getDeadlines(lead, october)).overVolumeStreak.length, 1);
+  const version = (await db.careClient.findUnique({ where: { id: linda.id }, select: { version: true } })).version;
+  await setClientStatus(lead, linda.id, { version, status: 'ENDED', statusReason: 'MOVED' }, october);
+  assert.deepEqual((await getDeadlines(lead, october)).overVolumeStreak, []);
+});
