@@ -8,7 +8,7 @@ Teostus Claude Opus 5.5. Omanik 09.10.2026 õhtul: „kas saame graph rag süste
 - **Rasked tingimused jõuavad vastusesse.** 30 küsimust, kus vastuse otsustab üks säte (erand, tähtaeg, välistus), küsiti päris vestluse rajal kaks korda ja kuus neist veel kaks korda: 72 pöördest 71-l oli otsustav säte vastuse mudelile antud lõikude hulgas ja vastus viitas sellele.
 - **Sel ööl läks serverisse üheksa muudatust** (tabel allpool), nende seas kaks tööriista, millega edaspidi saab tasuta kontrollida: otsingukontroll enne väljalaset ja vestluse tervise aruanne.
 - **Paljudele kasutajatele avamiseks ei ole veel valmis.** Takistused ei ole vastuste sisus, vaid asjades, mis on omaniku otsused: seaduste uued redaktsioonid, kes ja mis rahaga vestlust kasutab, varukoopiad, tõrgete sõnastus.
-- **Kõige lähem tähtaeg on 31.10.2026.** Sel päeval lõpeb korpuses kolme seaduse redaktsioon ja 1. novembrist kaovad need vastustest, kui uut redaktsiooni ei ole sisse võetud. Uued redaktsioonid on alla laaditud ja ette valmistatud; ost ootab omaniku sõna.
+- **Seaduste uued redaktsioonid on serveris alates 10.10.2026 hommikust** (korpus v75, omaniku loal, 0,0223 USD): 31.10.2026 ja 31.12.2026 lõppevate seaduste järgmised redaktsioonid on sees. Lahti on riigilõivuseaduse üks katmata päev (31.10.2026) ja iga-aastased aktid, mille järglasi ei ole veel avaldatud.
 
 ## Mis sel ööl serverisse läks
 
@@ -81,7 +81,7 @@ Otsing hoiab seadusest ainult seda redaktsiooni, mis küsitud päeval kehtib. Ku
 
 **Mõõdetud tulevaste kuupäevade seisuga (tasuta, [ADR-124](../rag-v2/adr-124-acts-that-end-and-the-experiment-at-a-date.md)):** 30 raske tingimusega küsimust graafiprofiiliga, ilma valikumudelita. Otsustav säte jõudis tõendite hulka 10.10.2026 seisuga 24 küsimusel, 01.11.2026 seisuga 24 ja 01.01.2027 seisuga 23 küsimusel. Lõppevad seadused neid küsimusi ei puuduta (kataloog neid seadusi ei kata); üks tingimus kaob, kui sotsiaalhoolekande seaduse teadmiskaardid 30.11.2026 lõpevad (mõõdetud 01.01.2027 seisuga).
 
-**Mis on tehtud:** 27 puuduvat redaktsiooni (19 seadust ja Kadrina valla kord) on Riigi Teatajast alla laaditud ja kohalikult ette valmistatud: 5440 lõiku, vektorite hind kuni 0,32 USD. Indeksis oleks pärast seda 80 983 lõiku 100 000-st, serveri kettal kulub umbes 2,1 GB 22-st vabast. Midagi ei ole ostetud ega avaldatud.
+**Tehtud 10.10.2026 hommikul (korpus v75):** 27 puuduvat redaktsiooni (19 seaduse 26 teksti ja Kadrina valla kord, 5440 lõiku) on serveris. Osta tuli 291 vektorit, **0,0223 USD**; indeksis on 80 948 lõiku 100 000-st ja ketast 20 GB vaba. Tabeli read 31.10, 30.11 ja 31.12 on sellega kaetud, välja arvatud riigilõivuseaduse üks päev ja 2026. aasta riigieelarve seadus.
 
 **Edaspidi:** igakuine kontroll (25. kuupäeval) kirjutab nüüd oma teatesse ka loendi aktidest, mille redaktsioon lõpeb 90 päeva jooksul. Uusi redaktsioone see sisse ei too.
 
@@ -89,7 +89,7 @@ Otsing hoiab seadusest ainult seda redaktsiooni, mis küsitud päeval kehtib. Ku
 
 ### 1. Seaduste uued redaktsioonid (enne 31.10.2026)
 
-- Kas ostan ettevalmistatud 27 redaktsiooni (lagi 0,35 USD)?
+- ~~Kas ostan ettevalmistatud 27 redaktsiooni?~~ Ostetud 10.10.2026 omaniku loal (0,0223 USD).
 - Kas uute redaktsioonide sissevõtt saab alalise igakuise sammu oma rahalaega? Seaduste redaktsioonid on suured ja abivahendite värskenduse 0,10 USD kuus neid ei kata.
 - Sotsiaalhoolekande seaduse teadmiskaardid on redaktsioonil, mis kehtib 30.11.2026-ni. Järgmisel redaktsioonil kaarte ei ole. Valikud: lasta neil lõppeda, teha uued (tasuline mudelitöö) või kanda olemasolevad üle seal, kus sätte sõnastus ei muutunud. Mõõtmine: ilma valikumudelita maksab kaartide lõpp ühe tingimuse 30-st; päris vestluse rajal ei toonud kaart otsustavat lõiku üheski pöördes, kus see salvestati. Soovitus: lasta lõppeda.
 
@@ -131,7 +131,7 @@ Iga allikas kannab korpuses silti „ainult arenduseks“. Kood laseb selle sild
 
 ## Mida soovitan, selles järjekorras
 
-1. **Osta seaduste redaktsioonid** (kuni 0,35 USD) enne 31.10.2026.
+1. ~~Osta seaduste redaktsioonid~~ (tehtud 10.10.2026). Otsusta, kas uute redaktsioonide sissevõtt saab alalise igakuise sammu.
 2. **Lülita sisse öine krüptitud varundus** (varukoopiate hoidla on olemas).
 3. **Proovi avamise plaani testkontoga:** säilitus, tühjaks jäänud read, vestluste 90 päeva.
 4. **Otsusta eelarve ja selle sõnastus** enne teise konto lisamist: praegune loendur lõpeb vale teatega.

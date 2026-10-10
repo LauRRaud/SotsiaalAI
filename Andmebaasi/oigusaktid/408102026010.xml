@@ -17,23 +17,16 @@
 			<joustumine>2021-06-01</joustumine>
 			<aktiNr>58</aktiNr>
 		</vastuvoetud>
-		<avaldamismarge>
-			<RTosa>RT IV</RTosa>
-			<avaldamineKuupaev>2024-12-31+02:00</avaldamineKuupaev>
-			<RTaasta>2024</RTaasta>
-			<RTartikkel>38</RTartikkel>
-			<aktViide>431122024038</aktViide>
-		</avaldamismarge>
-		<kehtivus>
-			<kehtivuseAlgus>2025-01-03</kehtivuseAlgus>
-		<kehtivuseLopp>2026-10-10+03:00</kehtivuseLopp></kehtivus>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-10-08</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>10</RTartikkel><aktViide>408102026010</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2026-10-11</kehtivuseAlgus>
+		</kehtivus>
 		<versioon>
 			<dokumentVersioon>1</dokumentVersioon>
-			<dokumentVersioonKuupaev>2024-12-26</dokumentVersioonKuupaev>
+			<dokumentVersioonKuupaev>2026-10-06</dokumentVersioonKuupaev>
 		</versioon>
 		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
-		<globaalID>431122024038</globaalID>
-		<metaandmedVersioon>18</metaandmedVersioon>
+		<globaalID>408102026010</globaalID>
+		<metaandmedVersioon>22</metaandmedVersioon>
 		<metaandmedVersioonKuupaev>2026-10-07</metaandmedVersioonKuupaev>
 		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
 		<terviktekstiGrupiID>1051851</terviktekstiGrupiID>
@@ -65,6 +58,17 @@
 		</avaldamismarge>
 		<joustumine id="dbcf584e-d7a0-41f6-8d4b-3a8277dba387">2025-01-03</joustumine>
 		<aktiNr id="f903599d-2a4f-4117-893e-dc2ccb0a5e49">37</aktiNr>
+	</muutmismarge>
+	<muutmismarge id="e608517a-7e95-416b-a6df-95dbff85920a">
+		<aktikuupaev id="d2343303-9c48-435e-b9b2-c78c53e090cd">2026-09-30</aktikuupaev>
+		<avaldamismarge id="19693c09-8267-4718-9af1-7af099853a58">
+			<RTosa id="71f8fe03-bbaf-4c48-bf94-a62e2773d16f">RT IV</RTosa>
+			<avaldamineKuupaev id="14794e3a-0ea1-46c2-bdd0-73163f0713b3">2026-10-08</avaldamineKuupaev>
+			<RTartikkel id="ef6dfff6-6f80-4391-b0d7-d26a9c8936a4">2</RTartikkel>
+			<aktViide id="27b76979-b4e6-4711-9f24-8a47906373c8">408102026002</aktViide>
+		</avaldamismarge>
+		<joustumine id="28d3f897-4204-4beb-94e9-1e864149e2fa">2026-10-11</joustumine>
+		<aktiNr id="f6cbe7b0-2a15-4231-89b8-cab1c9ff7acc">19</aktiNr>
 	</muutmismarge>
 	<sisu id="46fc9b38-b88c-4415-866a-51c87bc92df3">
 		<preambul id="8ae7b06c-d75a-46c9-a1c7-a1ebabf5035e">
@@ -1477,8 +1481,17 @@
 					<loigeNr id="f693f50d-3065-4b1b-a4de-b343de9ed276">6</loigeNr>
 					<kuvatavNr id="f9e8bafa-94a1-4447-9254-ed39ca488ab9"><![CDATA[(6)]]></kuvatavNr>
 					<sisuTekst id="e426eeeb-b708-4881-b7ec-6fac3e9b6251">
-						<tavatekst id="80e0640e-2564-470c-9532-1c8431a9af2e">Teenuse pakkumise koolieelse lasteasutuse seaduse alusel korraldab vallavalitsus.</tavatekst>
+						<tavatekst id="80e0640e-2564-470c-9532-1c8431a9af2e">Teenuse pakkumist alusharidusseaduse alusel korraldab vallavalitsus.</tavatekst>
 					</sisuTekst>
+					<muutmismarge id="80e352e9-b513-43ce-9328-f60a65883797">
+						<avaldamismarge id="19da6b2f-da1d-42a8-86f2-4247c4fd9223">
+							<RTosa id="0c8c3861-8187-48b4-94d7-e60bd2d76817">RT IV</RTosa>
+							<avaldamineKuupaev id="59e1bd8b-a671-4e1b-8303-4aef2d9e60bf">2026-10-08</avaldamineKuupaev>
+							<RTartikkel id="56faf1b0-c7bb-4ecf-83b7-bf7861e90f02">2</RTartikkel>
+							<aktViide id="ae993eb4-1227-46cf-ade4-e8c04d77fda1">408102026002</aktViide>
+						</avaldamismarge>
+						<joustumine id="dc27f0d0-ddd0-4090-ab0b-b5003e4dbe66">2026-10-11</joustumine>
+					</muutmismarge>
 				</loige>
 			</paragrahv>
 			<paragrahv id="para22">
@@ -1526,66 +1539,66 @@
 					</sisuTekst>
 				</loige>
 				<loige id="para23lg2">
-					<loigeNr>2</loigeNr>
-					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
-					<sisuTekst>
-						<tavatekst>Täiendavad sotsiaalteenused on:</tavatekst>
+					<loigeNr id="52f4df95-45b0-4880-814c-81a82692fc7b">2</loigeNr>
+					<kuvatavNr id="30cd0435-4cd6-4547-a878-4b32626db982"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="2b3fb9e5-6831-40ea-af36-da9275800c47">
+						<tavatekst id="64e27957-83e4-4736-8a28-e47d86c91194">Täiendavad sotsiaalteenused on:</tavatekst>
 					</sisuTekst>
 					<alampunkt id="para23lg2p1">
-						<alampunktNr>1</alampunktNr>
-						<kuvatavNr><![CDATA[1) ]]></kuvatavNr>
-						<sisuTekst>
-							<tavatekst>erialaspetsialisti nõustamis- ja teraapiateenus;</tavatekst>
+						<alampunktNr id="41877a31-625c-4909-a485-bf72ae22294f">1</alampunktNr>
+						<kuvatavNr id="c5d89410-78f2-43f9-a0c5-27e1d427f1c0"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="00580345-b366-480c-af09-db0d54464905">
+							<tavatekst id="9b9b6c05-901e-4967-8a14-7d6de711b1c6">erialaspetsialisti nõustamis- ja teraapiateenus;</tavatekst>
 						</sisuTekst>
 					</alampunkt>
 					<alampunkt id="para23lg2p2">
-						<alampunktNr>2</alampunktNr>
-						<kuvatavNr><![CDATA[2) ]]></kuvatavNr>
-						<sisuTekst>
-							<tavatekst>tugirühmad ja tugiprogrammid;</tavatekst>
+						<alampunktNr id="93314bda-dbb9-47f5-a051-f40f68ba0f0b">2</alampunktNr>
+						<kuvatavNr id="1a6657da-5929-4ec7-915a-2374f2200016"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="2ab267e4-2d19-4d1f-acf6-b3f62fd742ae">
+							<tavatekst id="264dcb7e-b7e8-4dcd-b085-337d89767e80">tugirühmad ja tugiprogrammid;</tavatekst>
 						</sisuTekst>
 					</alampunkt>
 					<alampunkt id="para23lg2p3">
-						<alampunktNr>3</alampunktNr>
-						<kuvatavNr><![CDATA[3) ]]></kuvatavNr>
-						<sisuTekst>
-							<tavatekst>vanemluskoolitus;</tavatekst>
+						<alampunktNr id="298149c7-56b5-45f1-b3f3-ba85a81b8d47">3</alampunktNr>
+						<kuvatavNr id="7a5fd24f-5264-4470-a913-5e19322922ff"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="2dba8924-e500-45b9-9bcb-336a48279be1">
+							<tavatekst id="0f0ecdf0-729a-409c-8d79-714ed8fa84f9">vanemluskoolitus;</tavatekst>
 						</sisuTekst>
 					</alampunkt>
 					<alampunkt id="para23lg2p4">
-						<alampunktNr>4</alampunktNr>
-						<kuvatavNr><![CDATA[4) ]]></kuvatavNr>
-						<sisuTekst>
-							<tavatekst>kriisiabi, sh laste leinalaager;</tavatekst>
+						<alampunktNr id="b6ed4c0a-2630-4551-9a56-70a7ba60ae07">4</alampunktNr>
+						<kuvatavNr id="0f48c1ff-7ca5-490f-a462-06c8093e4a21"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="f9271e50-d843-46c1-81bf-d0716e58ec1d">
+							<tavatekst id="20814e97-a2b1-4b1e-87c9-fa57c13f6d96">kriisiabi, sh laste leinalaager;</tavatekst>
 						</sisuTekst>
 					</alampunkt>
 					<alampunkt id="para23lg2p5">
-						<alampunktNr>5</alampunktNr>
-						<kuvatavNr><![CDATA[5) ]]></kuvatavNr>
-						<sisuTekst>
-							<tavatekst>muud teenused.</tavatekst>
+						<alampunktNr id="367460ec-eb2b-4f83-a49f-2d2247391cf7">5</alampunktNr>
+						<kuvatavNr id="be19c24a-7306-43b9-af4a-35405910c747"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="b38d3ce9-4f0f-4852-bb46-3bdf33fd81e7">
+							<tavatekst id="f47ae045-2774-4bc9-b9cd-964c0cf082f2">muud teenused.</tavatekst>
 						</sisuTekst>
 					</alampunkt>
 				</loige>
 				<loige id="para23lg3">
-					<loigeNr>3</loigeNr>
-					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
-					<sisuTekst>
-						<tavatekst>Teenuse määrab isikule sotsiaalosakonna ametnik isiku avalduse ja tema abivajaduse hindamise alusel kuni kuueks teenuskorraks kalendriaastas.</tavatekst>
+					<loigeNr id="292c76a6-bcdd-41b5-a4b3-7a1e3e79a994">3</loigeNr>
+					<kuvatavNr id="5338ef64-8816-47ee-9a5d-abde142c9d81"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="f03bcfc6-125e-4be4-9bd8-d5587df726e8">
+						<tavatekst id="ad559cf3-e6c9-429c-b3a0-51f912298cef">Teenuse määrab isikule sotsiaalosakonna ametnik isiku avalduse ja tema abivajaduse hindamise alusel kuni kuueks teenuskorraks kalendriaastas.</tavatekst>
 					</sisuTekst>
 				</loige>
 				<loige id="para23lg4">
-					<loigeNr>4</loigeNr>
-					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
-					<sisuTekst>
-						<tavatekst>Teenust rahastatakse osaliselt või täielikult valla eelarvest.</tavatekst>
+					<loigeNr id="efe2ce3a-bcc1-44cf-b219-3c39329d62a5">4</loigeNr>
+					<kuvatavNr id="05edc675-292b-42d4-aada-168ef44a4aff"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="2c8ff842-f13d-4423-8ed1-ccda2c78a58e">
+						<tavatekst id="736268b1-77e1-46a3-b330-8ef60c134f21">Teenust rahastatakse osaliselt või täielikult valla eelarvest.</tavatekst>
 					</sisuTekst>
 				</loige>
 				<loige id="para23lg5">
-					<loigeNr>5</loigeNr>
-					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
-					<sisuTekst>
-						<tavatekst>Teenuse saaja poolt tasutava osa suurus oleneb teenuse maksumusest ning tema majanduslikust olukorrast.</tavatekst>
+					<loigeNr id="2ae08fbe-3b33-4f7d-ba43-ff61c3cb738f">5</loigeNr>
+					<kuvatavNr id="156ffa60-6fd7-4bdc-a8c0-964f8f781441"><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst id="70039c30-adc6-491f-9151-9531577d7582">
+						<tavatekst id="fd9bf822-be7e-4737-b67f-28be0c1943ee">Teenuse saaja poolt tasutava osa suurus oleneb teenuse maksumusest ning tema majanduslikust olukorrast.</tavatekst>
 					</sisuTekst>
 					<muutmismarge id="906a27fe-512f-458e-ae42-56a70f4adabf">
 						<avaldamismarge id="124ee0bd-ee1e-4e42-94c6-20342503391a">

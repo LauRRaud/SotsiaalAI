@@ -1,9 +1,9 @@
 {
   "schema_version": "rag-v2/legal-acts-in-index-1",
-  "generated_at": "2026-10-09T15:43:27.178Z",
+  "generated_at": "2026-10-10T06:08:41.160Z",
   "tenant": "sotsiaalai-corpus",
-  "store_generation": "generation_bdec132be247a77e806c278f9d899059dff9c853f456529b120f2c796c7b1cea",
-  "policy_documents": 8659,
+  "store_generation": "generation_ad9f63f8ba280b63553631639cfc0f0683e13783e010f8a133eea0d8da266daf",
+  "policy_documents": 8722,
   "acts": [
     {
       "document_id": "document_005199d74750ea0e1516034366803c9226115d36349d91b74b6ec0e360d34f6a",
@@ -604,6 +604,18 @@
       "index_to": "2026-06-30"
     },
     {
+      "document_id": "document_12976d3e8d43d718ade1cca0ae747011fce7fa8daa8c6a6a3ce297546649e07d",
+      "version_id": "version_b05fb30573328ee113a81d419b5f5b27073a0ab5dab20a856643afc060dfaf30",
+      "globaal_id": "111072026091",
+      "group": "1000609",
+      "title": "Halduskohtumenetluse seadustik",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/111072026091.xml",
+      "index_from": "2027-07-01",
+      "index_to": "2032-12-31"
+    },
+    {
       "document_id": "document_12e097e55ff2f7c7f82035ad7a63338c6e5b5cca933de22502bc0de9a14621cb",
       "version_id": "version_898bdf9b3095a2d2eef511a235b22a7e59b88ce98b1dc228b9d86db63cdc4315",
       "globaal_id": "428122019021",
@@ -770,6 +782,18 @@
       "index_to": null
     },
     {
+      "document_id": "document_19f19e47984bc5efc0ffbfa827645176fea08fa82b26e7f92572c95cba03716b",
+      "version_id": "version_7b21ee1712dd0f2616f1af8984b2a9cd7dbb5963981f35d7ee2fb889d86833ab",
+      "globaal_id": "103072026008",
+      "group": "1039283",
+      "title": "Riigihangete seadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/103072026008.xml",
+      "index_from": "2027-01-01",
+      "index_to": null
+    },
+    {
       "document_id": "document_1a6d38d970bebf5f7f19240f5966a1d2a67aefceacd2e430db9cfa13f586af46",
       "version_id": "version_b85680436ffc4eb1a06141853fce964274f5a2da382369cbc1a2c7c9d823a84b",
       "globaal_id": "406072021008",
@@ -852,6 +876,18 @@
       "source_path": "oigusaktid/416122025002.xml",
       "index_from": "2026-01-01",
       "index_to": null
+    },
+    {
+      "document_id": "document_1c2811ee099867419a70b40e4ae2637e86cb05e36f3a3ff048078e3a6ca5f7b6",
+      "version_id": "version_17391699d6498a530d4ccdc1126a0b15b045f2492b0de7f42570bfabd1efb56d",
+      "globaal_id": "111072026062",
+      "group": "153716",
+      "title": "Riikliku pensionikindlustuse seadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/111072026062.xml",
+      "index_from": "2027-01-01",
+      "index_to": "2030-12-31"
     },
     {
       "document_id": "document_1c840eb3b21200ee906c867e85899ce500310b23a5e05489ff7c109db12a26b7",
@@ -1183,6 +1219,18 @@
       ],
       "source_path": "oigusaktid/419062026027.xml",
       "index_from": "2026-07-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_25f7215f64efdd91c056e8a788a0377cb8f92b699d5ef96d02f1c5d14edb1c0b",
+      "version_id": "version_a607bfc77369e30ffb54275d239a76da3a2aa53359cda356111d624e39e83d56",
+      "globaal_id": "111072026099",
+      "group": "158691",
+      "title": "Täitemenetluse seadustik",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/111072026099.xml",
+      "index_from": "2027-07-01",
       "index_to": null
     },
     {
@@ -1560,6 +1608,18 @@
       "index_to": null
     },
     {
+      "document_id": "document_30df46afe75d5fd4095f432586fb8c9b7306c54e90e78cb98bda1b8ccd4d1ff8",
+      "version_id": "version_b4bd1508f0df700d95ba8677294adef1cd6d6677524a0347a34564e609a657c1",
+      "globaal_id": "109072026077",
+      "group": "162383",
+      "title": "Avaliku teabe seadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/109072026077.xml",
+      "index_from": "2027-01-01",
+      "index_to": "2030-04-23"
+    },
+    {
       "document_id": "document_311a5ab0aa7b935760b6f52495f37a6efec281437ca177fe74f30f2a9219e708",
       "version_id": "version_d6eee775bc18d49c64a6801ea7857efac65309a697787eacfb2dcf55fa1d91a5",
       "globaal_id": "406032018074",
@@ -1854,6 +1914,42 @@
       "index_to": null
     },
     {
+      "document_id": "document_3c82bdbd7509836e36730be374184ffea3cbd967b893bf242ba5eb05c2380442",
+      "version_id": "version_0a71dcab2148998969da7cdd7dfae57ff877fe1e9d599a7fc33e30e96b6a8a86",
+      "globaal_id": "130062026039",
+      "group": "1056097",
+      "title": "Tööturumeetmete seadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/130062026039.xml",
+      "index_from": "2027-01-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_3cf4c533abb3cd0c500906fc0e2c7ee0a19d6f3680adc782853bf31bff662285",
+      "version_id": "version_ea650f4eb5bcb5f42651f6cee981dbc15cc3e3d6feb60dc81066fb6ecda9ae20",
+      "globaal_id": "103072026036",
+      "group": "331584",
+      "title": "Töölepingu seadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/103072026036.xml",
+      "index_from": "2027-01-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_3d53efbe7702214a6ed82a19fd0975f8d66abd604afe5add360ef6ed4768b92b",
+      "version_id": "version_e9a858e2244735902804d77e59078038be5fe18da054ac69dc0c688b30e2d0c8",
+      "globaal_id": "103072026007",
+      "group": "1039283",
+      "title": "Riigihangete seadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/103072026007.xml",
+      "index_from": "2026-11-01",
+      "index_to": "2026-12-31"
+    },
+    {
       "document_id": "document_3e30c693407dc79756882d7334b4ac13f95e087c6916e9d6517cdf19c73b55ec",
       "version_id": "version_62d87af1d628d06cca718017ee649368d01ac1f8b12397d74d2430ea0ac22bc0",
       "globaal_id": "130062026132",
@@ -2070,6 +2166,18 @@
       "index_to": null
     },
     {
+      "document_id": "document_46cc3819253199da853840e10c330a8fc127b759c9e4b6804a376b39cce881cc",
+      "version_id": "version_591fa0eade316cd9528c125b2808ff0f2914a71516d24c491934bec88bd15823",
+      "globaal_id": "111072026102",
+      "group": "148004",
+      "title": "Tsiviilkohtumenetluse seadustik",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/111072026102.xml",
+      "index_from": "2027-01-01",
+      "index_to": "2027-06-30"
+    },
+    {
       "document_id": "document_4703035b9a7d4b3eacac6051856b0de4e75741c3a1287e9642730f6ca3528fbf",
       "version_id": "version_7ad549a10b06ec7c4e6b7e82000a3a473c90ec73068999c1ada3f8a8e85de9a2",
       "globaal_id": "412052026001",
@@ -2119,6 +2227,18 @@
       ],
       "source_path": "oigusaktid/422062023024.xml",
       "index_from": "2023-07-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_4bd4b0de072a3fe825a50dc45d1fc08334848da1787d21a203b981a5697bded9",
+      "version_id": "version_05a4ff9eff8d07abab0f636ddd57d8860830f172cb8101f7c69dfcc2eacaeb7f",
+      "globaal_id": "111072026103",
+      "group": "148004",
+      "title": "Tsiviilkohtumenetluse seadustik",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/111072026103.xml",
+      "index_from": "2027-07-01",
       "index_to": null
     },
     {
@@ -2922,6 +3042,18 @@
       "index_to": null
     },
     {
+      "document_id": "document_62016b066a9c385e135cedafdc3474694acb2a4bf3bac67a2453d445e0190860",
+      "version_id": "version_2fc12a6601a3f5cb79c03685e672bf10b40bf109976b1a7f89b8733e76f4cdea",
+      "globaal_id": "109072026029",
+      "group": "162500",
+      "title": "Karistusseadustik",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/109072026029.xml",
+      "index_from": "2027-01-01",
+      "index_to": null
+    },
+    {
       "document_id": "document_621b1900bdf3954c4b322ee93959e0e6e23b061ad895272d5bfaa0a42be8d063",
       "version_id": "version_46eb852f150969820a14e84bdf2132598a51cc310b9eb12eb13d43f73baff77b",
       "globaal_id": "427112024036",
@@ -2933,6 +3065,18 @@
       ],
       "source_path": "oigusaktid/427112024036.xml",
       "index_from": "2024-11-30",
+      "index_to": null
+    },
+    {
+      "document_id": "document_633c2d6ddd1843351d54a58530758115dd51ab6b110c552da695b3d644619fc9",
+      "version_id": "version_4a3a1140f4f8269ce531d9b0a0c3433d54ad3906bb3ce9303d83a46b8f7dcfb0",
+      "globaal_id": "109072026018",
+      "group": "344763",
+      "title": "Põhikooli- ja gümnaasiumiseadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/109072026018.xml",
+      "index_from": "2027-01-01",
       "index_to": null
     },
     {
@@ -3792,6 +3936,18 @@
       "index_to": null
     },
     {
+      "document_id": "document_7dc68cde91ca6ede99489c04e25cceedb6e96181525c834b1b276076dc8bfb63",
+      "version_id": "version_abb844480270db3cefc5ba9aa13ce75e1f7639058fb497a5eb4e3a17f4a2c043",
+      "globaal_id": "111072026080",
+      "group": "135277",
+      "title": "Kriminaalmenetluse seadustik",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/111072026080.xml",
+      "index_from": "2027-01-01",
+      "index_to": null
+    },
+    {
       "document_id": "document_7ddbd85a2d3a12fcd13fead669fe38e73e46d8accd064aed199590de057d83f1",
       "version_id": "version_620d35358e7eeb3998540a35bf80d765ec520d6c8d04f04c1076f532386d9f21",
       "globaal_id": "405072022012",
@@ -3926,6 +4082,32 @@
       "source_path": "oigusaktid/111072026168.xml",
       "index_from": "2027-01-01",
       "index_to": "2027-06-30"
+    },
+    {
+      "document_id": "document_811215aeb51748ba894317dd37b821020b32a22ddcbef65ea0da04168adf3dbb",
+      "version_id": "version_e77c20dbdb01d22d5327f4cff9c98c80a46bdf43bf79af1986158b0ca227151e",
+      "globaal_id": "111072026067",
+      "group": "152867",
+      "title": "Vangistusseadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/111072026067.xml",
+      "index_from": "2027-01-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_81b92d85b80324d8d766707d5600847febdbcc442e349d98eaa084fe4009512f",
+      "version_id": "version_0312232f07cd65627d34ba693783e9960c2c73dd8a31f03f6483ec491b61f700",
+      "globaal_id": "408102026010",
+      "group": "1051851",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Kadrina Vallavolikogu",
+      "regions": [
+        "kadrina_vald"
+      ],
+      "source_path": "oigusaktid/408102026010.xml",
+      "index_from": "2026-10-11",
+      "index_to": null
     },
     {
       "document_id": "document_81e346f69d5034c475c0da6dff2ba4b6cebe0d62d5276572b97c125182be8483",
@@ -4274,6 +4456,18 @@
       "index_to": "2026-12-31"
     },
     {
+      "document_id": "document_8b5c1ba577c7da1bb57c7923ae340007204b68b11e63659e4f2f560bbdfa0b27",
+      "version_id": "version_adc15479454e4fd6d082e0f87d0a676f029516f4d9ca3b27be04257c2fe88de3",
+      "globaal_id": "111072026146",
+      "group": "157934",
+      "title": "Riigi õigusabi seadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/111072026146.xml",
+      "index_from": "2027-01-01",
+      "index_to": null
+    },
+    {
       "document_id": "document_8b723fa5ba39c3f1c50654ff047ad8ecd82106390e46231a91cc5ad67321a63c",
       "version_id": "version_f7c887168be258742ae99e0e740ef2df3b2db72d795eea3606908348c2fe70fb",
       "globaal_id": "412042025015",
@@ -4358,6 +4552,18 @@
       "index_to": null
     },
     {
+      "document_id": "document_8cb2e1c7fb6deac82425ab1fb85bafb2f92a830e90e8f00d7c38681bc918c98d",
+      "version_id": "version_7e54a1254f3ddfc285fb2e2ad173bf37626f00e873e623c7b637565d2dc2efe9",
+      "globaal_id": "130062026035",
+      "group": "1027098",
+      "title": "Töövõimetoetuse seadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/130062026035.xml",
+      "index_from": "2027-02-01",
+      "index_to": null
+    },
+    {
       "document_id": "document_8d55f8f300d1bcd25c3fee5c777db6f28d57be48d6ab9576e9fc9735d1f5e8cc",
       "version_id": "version_ab97299132f5b3b37de46c6545eecf9515d9924c552e32c5df940d4a8aa0b56b",
       "globaal_id": "403072018058",
@@ -4384,6 +4590,18 @@
       "source_path": "oigusaktid/422052018007.xml",
       "index_from": "2018-05-25",
       "index_to": null
+    },
+    {
+      "document_id": "document_8ed6ddf77505a1777a3324a99bcf166b2d57b0baafb3dd47d2b253c0d45bcc56",
+      "version_id": "version_1be9f5fea5ec7fcd43e910c1030ce0cafaa543e47fb41a418d5a60265393b448",
+      "globaal_id": "111072026079",
+      "group": "135277",
+      "title": "Kriminaalmenetluse seadustik",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/111072026079.xml",
+      "index_from": "2026-11-01",
+      "index_to": "2026-12-31"
     },
     {
       "document_id": "document_8ee83538d7dddbbdb21cf94a7c4b0a22039200c208105af81629b20530e509d4",
@@ -4426,6 +4644,18 @@
       "source_path": "oigusaktid/426022026027.xml",
       "index_from": "2026-03-01",
       "index_to": null
+    },
+    {
+      "document_id": "document_8f35a151eb99507748a09bf5dd7a9338a72965f30e9c8e863d1ca7f412a90f9f",
+      "version_id": "version_77e3b52bb94461aad0a26ef52d84b12018a2007fafca31dbfdd5df9e9843933a",
+      "globaal_id": "111072026098",
+      "group": "158691",
+      "title": "Täitemenetluse seadustik",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/111072026098.xml",
+      "index_from": "2027-01-01",
+      "index_to": "2027-06-30"
     },
     {
       "document_id": "document_9009ad0d34f62879572f790fae7fa9e62c367220ddf2cd2a902f5810f810ddbe",
@@ -4540,6 +4770,18 @@
       "index_to": null
     },
     {
+      "document_id": "document_9496ab6c7d938c01442b7807546fd9553097a18a5ace6a2018c032d6138180e9",
+      "version_id": "version_81c875e8beeaa5385e01329f9231eaba09b9ea03a1b06195f2d2274434a23d44",
+      "globaal_id": "130062026029",
+      "group": "162949",
+      "title": "Ravikindlustuse seadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/130062026029.xml",
+      "index_from": "2027-02-01",
+      "index_to": null
+    },
+    {
       "document_id": "document_94ebcbe2787130f92e785981b58f679d8fb9097c737f5fe5221f36f20eaa21e5",
       "version_id": "version_106f3c4daf5e837a0b6ed84ddffbc9dc3454e92ea0de3a9cf0bd208671365e7d",
       "globaal_id": "406022025035",
@@ -4580,6 +4822,18 @@
       "source_path": "oigusaktid/424092022025.xml",
       "index_from": "2022-10-01",
       "index_to": null
+    },
+    {
+      "document_id": "document_9605707dbe81b31d1bfbbd4788e86fa932668d7174c3bb97c1d6249b6c064da9",
+      "version_id": "version_d2fd09673dbe6b9b3d878e8f8835e19891441e9748e3493e3414befba56efe44",
+      "globaal_id": "130062026010",
+      "group": "162383",
+      "title": "Avaliku teabe seadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/130062026010.xml",
+      "index_from": "2026-12-01",
+      "index_to": "2026-12-31"
     },
     {
       "document_id": "document_97119df3e76a493992daa2265491277e937d9fed9aca46cb8b830601d27f3f07",
@@ -5883,7 +6137,7 @@
     },
     {
       "document_id": "document_c7c4c5aa62c6ad68882bf53f036a237de415cda277e68b84a1543a0d6c5ffc60",
-      "version_id": "version_440505292c24a1b340f218277f63e56a38c5387eca249d95bc44692275df0bad",
+      "version_id": "version_d8182d42d78286700c9ca803bf09309500b453113d996fc41b1a5fe9b1be52ab",
       "globaal_id": "431122024038",
       "group": "1051851",
       "title": "Sotsiaalhoolekandelise abi andmise kord",
@@ -5893,7 +6147,7 @@
       ],
       "source_path": "oigusaktid/431122024038.xml",
       "index_from": "2025-01-03",
-      "index_to": null
+      "index_to": "2026-10-10"
     },
     {
       "document_id": "document_c7db5224ab443116d9f9dfb9686f2e95c125fe661eff9ed0fa075ab84d235f28",
@@ -6350,6 +6604,30 @@
       "index_to": null
     },
     {
+      "document_id": "document_d2dfa6bc50d39d773d69144f132a7a35c1f68f329f2143c54f20382d36766881",
+      "version_id": "version_c8585584cf1bfadfe7ca60f05b30cc38fe4d226a5242dc501b3095cc24e54d74",
+      "globaal_id": "111072026090",
+      "group": "1000609",
+      "title": "Halduskohtumenetluse seadustik",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/111072026090.xml",
+      "index_from": "2027-01-01",
+      "index_to": "2027-06-30"
+    },
+    {
+      "document_id": "document_d302689713295625f91d46749f89b745d58fbb7da737061b340e517593a1d532",
+      "version_id": "version_1e4a42e9aa7a073d32a2289e83577bd3f17bf5efe1ab55a6b0be48081038f3e7",
+      "globaal_id": "111072026145",
+      "group": "157934",
+      "title": "Riigi õigusabi seadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/111072026145.xml",
+      "index_from": "2026-11-01",
+      "index_to": "2026-12-31"
+    },
+    {
       "document_id": "document_d31c0ec622d7655f6f08c4a63829a57662b297d1715fc0be6e3faa1e5ddd8842",
       "version_id": "version_fe57053cbb791e8478b3c4240d9ff0f9733c108adf84b2fe0349accdf0bccb12",
       "globaal_id": "407062016009",
@@ -6431,6 +6709,18 @@
       ],
       "source_path": "oigusaktid/426022026040.xml",
       "index_from": "2026-03-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_d51021f24bc8f0df96d42bc6c5579d007b0bcca80faaeff7f85b2fa9dc4e6d2f",
+      "version_id": "version_640142ae479412a70a5920e1c6bbaab671683481397076eed49b4c86c82c6b83",
+      "globaal_id": "130062026041",
+      "group": "162491",
+      "title": "Töötuskindlustuse seadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/130062026041.xml",
+      "index_from": "2027-01-01",
       "index_to": null
     },
     {
@@ -6934,6 +7224,18 @@
       "index_to": null
     },
     {
+      "document_id": "document_e7310a903e1e4f22fb25215cacbd999b1eff1fb815ee6762f79fddfc22a18ffc",
+      "version_id": "version_0992186055b6e6e111625ada76e723ea3dcb27af957157bdbe93d6888560cf55",
+      "globaal_id": "130062026133",
+      "group": "153395",
+      "title": "Tervishoiuteenuste korraldamise seadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/130062026133.xml",
+      "index_from": "2027-01-01",
+      "index_to": null
+    },
+    {
       "document_id": "document_e7b921f323143fc7facd538a2ded6a9e9229277ff1b8e1549a51b726f585aaa9",
       "version_id": "version_311ba7a12068587e648c2dd670dc6ccfe9bd44a80ca050e0c37decf728aff469",
       "globaal_id": "422012022033",
@@ -7373,6 +7675,18 @@
       ],
       "source_path": "oigusaktid/402092020003.xml",
       "index_from": "2020-09-05",
+      "index_to": null
+    },
+    {
+      "document_id": "document_f4e59f6ed777160d398ea67d2a289249696651e3deab554f0d1d6aaa1a262159",
+      "version_id": "version_898e6a8eec5d7d4334cba692a78bd3f12ca958cdcdca6ec735bb819c89127f69",
+      "globaal_id": "111072026160",
+      "group": "1063588",
+      "title": "Välismaalasele rahvusvahelise kaitse andmise seadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/111072026160.xml",
+      "index_from": "2027-01-01",
       "index_to": null
     },
     {

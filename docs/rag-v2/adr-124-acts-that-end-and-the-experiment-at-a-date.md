@@ -57,6 +57,17 @@ Mida see ütleb:
 
 **Koormuse tähelepanek.** Kataloogi 1 jooks 01.11 seisuga katkes esimesel korral: samal ajal jooksid serveris otsingukontroll ja üks päris pööre ning vektoriandmebaasi päringud ületasid 30 sekundi piiri. Kordus üksi jooksis läbi. Raskeid mõõtmisi tuleb serveris käivitada ükshaaval.
 
+## Täiendus 10.10.2026 hommikul: korpus v75, 27 redaktsiooni on serveris
+
+Omanik 10.10.2026: „Seaduste 27 uut redaktsiooni, lagi 0,35 USD, tähtaeg 31.10, minu jah olemas.“
+
+- **Sisse võeti** 19 seaduse järgmised redaktsioonid (26 teksti) ja Kadrina valla korra muutunud redaktsioon: 5440 lõiku. Vektoreid tuli osta 291 sisendile, sest ülejäänud lõigud on sõna-sõnalt samad mis eelmises redaktsioonis ja nende vektorid olid olemas: **0,0223 USD** (lagi 0,35).
+- **Serveris:** indeks `331f9dec`, 8722 dokumenti, 80 948 lõiku 100 000-st, plaan `m4-corpus-chat-20261010a.json`, ketas 20 GB vaba. Käik võttis neli minutit.
+- Karistusseadustiku 01.01.2027 redaktsioonis ei ole enam § 143 ja § 143², selle valik on 39 paragrahvi (enne 41).
+- **Mis lõpeb 90 päeva jooksul pärast seda** (vaade `ending` uue aktide loendiga): riigilõivuseadusel on üks katmata päev, 31.10.2026 (Riigi Teataja andmetes lõpeb üks redaktsioon 30.10 ja järgmine algab 01.11); 2026. aasta riigieelarve seadus ja viis omavalitsuse iga-aastast akti lõpevad 31.12.2026 ja nende järglasi ei ole veel avaldatud. Enne oli loendis 18 riigi akti.
+- **Tasuta otsingukontroll uue korpusega** ([ADR-122](adr-122-free-search-gate.md), lähteseisu vastu, põlvkonna vahetus lubatud): 33 küsimusest ühelgi ei kadunud ega nihkunud otsustav lõik ja kandidaadid on samad.
+- **Kõrvalleid:** sama kontroll näitas, et iga küsimuse sisend kasvas täpselt 1107 tokeni võrra. Põhjus: otsing annab vastuse mudelile iga pöörde juurde loendi kõigist riigi õigusaktide redaktsioonidest, mis sel päeval ei kehti, ja 26 tulevast redaktsiooni pikendasid seda. Parandus on eraldi muudatus (ADR-130).
+
 ## Kontrollimata
 
 - Töövoo esimene päris käivitus GitHubis (25.10.2026).
