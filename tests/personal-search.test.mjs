@@ -1,6 +1,7 @@
 // „Minu otsing” (/otsi): reeglid, mida silm brauseris kergesti ei märka.
 //
-// Leht otsib inimese enda vestlusi, Teekondi ja dokumente pealkirja järgi. Brauseris
+// Leht otsib inimese enda vestlusi (sõnumi teksti järgi), Teekondi ja dokumente
+// (pealkirja järgi) ja näitab neid ühes kuupäevajärjekorras. Brauseris
 // leitud vead olid kõik seda laadi, et tavalise otsinguga neid ei näe: „Näita rohkem”
 // küsis välja teksti järgi, mitte loendi oma; ebaõnnestunud juurde laadimine viskas
 // read minema; otsing näitas pealkirja järgi dokumenti, mida dokumentide leht peidab;
@@ -17,6 +18,7 @@ import {
   PERSONAL_SEARCH_LIMITS,
   escapeLikePattern,
   isPersonalSearchCursorValue,
+  matchExcerpt,
   normalizePersonalSearchCursor,
   searchPersonalObjects
 } from '../lib/search/personalSearch.js';
@@ -45,9 +47,13 @@ function fakePrisma({ rows = {}, fail = {} } = {}) {
   });
   return { calls, conversation: source('conversation'), journey: source('journey'), userDocument: source('document') };
 }
-const journeyRows = (count) => Array.from({ length: count }, (_, index) => ({
-  id: `jrn_${String(index).padStart(28, '0')}`, title: `Teekond ${index}`, status: 'ACTIVE', updatedAt: new Date(Date.UTC(2026, 0, 28 - index))
+/* Read on allika enda järjekorras (uuem enne); `day` on kuupäev jaanuaris 2026. */
+const journeyRows = (count, firstDay = 28) => Array.from({ length: count }, (_, index) => ({
+  id: `jrn_${String(index).padStart(28, '0')}`, title: `Teekond ${index}`, status: 'ACTIVE', updatedAt: new Date(Date.UTC(2026, 0, firstDay - index))
 }));
+const documentRow = (id, day) => ({ id, title: `Dokument ${id}`, originalName: null, kind: 'MATERIAL', updatedAt: new Date(Date.UTC(2026, 0, day)) });
+const conversationRow = (id, day, extra = {}) => ({ id, title: null, summary: null, isPinned: false, lastActivityAt: new Date(Date.UTC(2026, 0, day)), messages: [], ...extra });
+const days = (answer) => answer.results.map((row) => Number(row.updatedAt.slice(8, 10)));
 function enumValues(name) {
   const body = new RegExp(`enum ${name} \\{([^}]*)\\}`).exec(read('../prisma/schema.prisma'))?.[1] || '';
   return body.split(/\r?\n/).map((line) => line.replace(/\/\/.*$/, '').trim()).filter(Boolean);
@@ -61,16 +67,22 @@ test('otsitakse täpselt seda teksti, mis kirjutati: LIKE-märgid % ja _ ei ole 
 
   const prisma = fakePrisma();
   await searchPersonalObjects({ prisma, userId: 'user-1', query: '50%_a' });
+  const escaped = { contains: '50\\%\\_a', mode: 'insensitive' };
   const titleFilters = [
-    prisma.calls.conversation[0].where.AND[0].OR,
     prisma.calls.journey[0].where.AND[0].OR,
     prisma.calls.document[0].where.AND[0].OR
   ].flat();
-  assert.equal(titleFilters.length, 4, 'vestluse ja Teekonna pealkiri, dokumendi pealkiri ja failinimi');
+  assert.equal(titleFilters.length, 3, 'Teekonna pealkiri, dokumendi pealkiri ja failinimi');
   for (const filter of titleFilters) {
     const [field] = Object.values(filter);
-    assert.deepEqual(field, { contains: '50\\%\\_a', mode: 'insensitive' });
+    assert.deepEqual(field, escaped);
   }
+  /* Vestlus: pealkiri, kokkuvõte, sõnumi tekst ja rea lõigu jaoks loetav sõnum. */
+  const [byTitle, bySummary, byMessage] = prisma.calls.conversation[0].where.AND[0].OR;
+  assert.deepEqual(byTitle.AND[0], { title: escaped });
+  assert.deepEqual(bySummary, { summary: escaped });
+  assert.deepEqual(byMessage, { messages: { some: { content: escaped } } });
+  assert.deepEqual(prisma.calls.conversation[0].select.messages.where, { content: escaped });
 });
 
 test('dokumenti otsitakse samade tingimustega, millega dokumendi leht selle avab', async () => {
@@ -98,7 +110,7 @@ test('rakenduse enda pandud pealkiri ei ole vestluse pealkiri', async () => {
   const prisma = fakePrisma();
   await searchPersonalObjects({ prisma, userId: 'user-1', query: 'sisepiloot' });
   const where = prisma.calls.conversation[0].where;
-  assert.deepEqual(where.AND[1], { NOT: { title: { in: [...APP_GIVEN_CONVERSATION_TITLES] } } });
+  assert.deepEqual(where.AND[0].OR[0].AND[1], { NOT: { title: { in: [...APP_GIVEN_CONVERSATION_TITLES] } } });
   assert.equal(where.userId, 'user-1');
   assert.equal(where.archivedAt, null);
 
@@ -108,8 +120,48 @@ test('rakenduse enda pandud pealkiri ei ole vestluse pealkiri', async () => {
   assert.ok(written.length >= 1, `piloodi rada kirjutab pealkirja ${written.length} kohas`);
   assert.deepEqual(written.filter((title) => !APP_GIVEN_CONVERSATION_TITLES.includes(title)), []);
 
-  /* Sõnumite sisu otsing ei loe: lehe tekst lubab ainult pealkirja. */
-  assert.ok(!JSON.stringify(where).includes('messages'), 'vestluse sõnumeid ei päri');
+  /* Sõnumist leitud vestlus ei kanna rakenduse pandud pealkirja: rea nimi on lõik sõnumist. */
+  const found = await searchPersonalObjects({
+    prisma: fakePrisma({ rows: { conversation: [conversationRow(CUID, 9, { title: 'M4 sisepiloot', messages: [{ content: 'Kuidas taotleda toimetulekutoetust?' }] })] } }),
+    userId: 'user-1', query: 'toimetulekutoetust'
+  });
+  assert.equal(found.results[0].title, null);
+  assert.equal(found.results[0].excerpt, 'Kuidas taotleda toimetulekutoetust?');
+});
+
+test('vestlus leitakse sõnumi tekstist ja rida näitab lõiku otsisõna ümbert', async () => {
+  const long = `${'Algus on pikk jutt, mis ei puutu asjasse. '.repeat(6)}Siis tuli jutuks **rabakivi** tänava maja ja selle küte. ${'Lõpp on samuti pikk ja asjasse ei puutu. '.repeat(6)}`;
+  const excerpt = matchExcerpt(long, 'RABAKIVI');
+  assert.ok(excerpt.includes('rabakivi tänava'), excerpt);
+  assert.ok(!excerpt.includes('*'), 'vormindusmärke lõigus ei ole');
+  assert.ok(excerpt.startsWith('…') && excerpt.endsWith('…'), 'lõigatud otsad on tähistatud');
+  assert.ok(excerpt.length <= PERSONAL_SEARCH_LIMITS.excerptLength + 2, String(excerpt.length));
+  assert.ok(!/^…\S*\s?$/.test(excerpt) && !/\s…$/.test(excerpt), excerpt);
+  /* Lühike tekst jääb terveks; reavahetused ja pealkirjamärgid kaovad. */
+  assert.equal(matchExcerpt('# Pealkiri\n\n> tsitaat `kood`\nrida', 'kood'), 'Pealkiri tsitaat kood rida');
+  assert.equal(matchExcerpt('', 'abc'), '');
+  assert.equal(matchExcerpt(null, 'abc'), '');
+  /* Sõna, mida lõigust ei leia (andmebaas leidis teise tähekujuga): teksti algus. */
+  assert.ok(matchExcerpt(long, 'zzz').startsWith('Algus on pikk jutt'));
+  /* Väga pikk otsisõna ei vii lõiget tekstist välja. */
+  assert.ok(matchExcerpt(long, 'x'.repeat(120)).length > 0);
+
+  const rows = [
+    conversationRow('conv-a', 9, { title: 'Minu pandud nimi', messages: [{ content: 'Räägime sellest, kuidas rabakivi maja kütta.' }] }),
+    conversationRow('conv-b', 8, { title: 'Rabakivi maja', messages: [{ content: 'rabakivi' }] }),
+    conversationRow('conv-c', 7, { summary: 'Kokkuvõte: rabakivi tänava pere.' }),
+    conversationRow('conv-d', 6, { isPinned: true, messages: [{ content: 'rabakivi' }] })
+  ];
+  const answer = await searchPersonalObjects({ prisma: fakePrisma({ rows: { conversation: rows } }), userId: 'user-1', query: 'rabakivi' });
+  assert.deepEqual(answer.results.map((row) => [row.title, row.excerpt, row.status]), [
+    ['Minu pandud nimi', 'Räägime sellest, kuidas rabakivi maja kütta.', 'ACTIVE'],
+    ['Rabakivi maja', null, 'ACTIVE'],
+    [null, 'Kokkuvõte: rabakivi tänava pere.', 'ACTIVE'],
+    [null, 'rabakivi', 'PINNED']
+  ]);
+  assert.deepEqual(Object.keys(answer.results[0]).sort(), ['excerpt', 'href', 'kind', 'status', 'title', 'updatedAt']);
+  /* Sõnumi teksti rida ei kanna: ainult lõik. */
+  assert.ok(!JSON.stringify(answer.results).includes('messages'));
 });
 
 test('kursor on rea id: muu kujuga väärtus ei jõua andmebaasi', async () => {
@@ -127,13 +179,67 @@ test('kursor on rea id: muu kujuga väärtus ei jõua andmebaasi', async () => {
   assert.equal(prisma.calls.document.length, 0, 'lõpuni loetud allikat uuesti ei küsita');
 });
 
-test('leht on 8 rida allika kohta ja järgmise lehe kursor on viimase näidatud rea id', async () => {
-  const rows = journeyRows(PERSONAL_SEARCH_LIMITS.resultsPerKind + 1);
-  const answer = await searchPersonalObjects({ prisma: fakePrisma({ rows: { journey: rows } }), userId: 'user-1', query: 'teekond' });
-  assert.equal(answer.results.length, 8);
+test('leht on 20 rida kokku ja järgmise lehe kursor on allika viimase näidatud rea id', async () => {
+  const size = PERSONAL_SEARCH_LIMITS.pageSize;
+  assert.equal(size, 20);
+  const rows = journeyRows(size + 1);
+  const prisma = fakePrisma({ rows: { journey: rows } });
+  const answer = await searchPersonalObjects({ prisma, userId: 'user-1', query: 'teekond' });
+  assert.equal(prisma.calls.journey[0].take, size + 1, 'küsitakse lehe jagu ja üks peale');
+  assert.equal(answer.results.length, size);
   assert.equal(answer.partial, false);
-  assert.deepEqual(answer.pagination, { hasMore: true, nextCursor: { conversation: '__done__', journey: rows[7].id, document: '__done__' } });
+  assert.deepEqual(answer.pagination, { hasMore: true, nextCursor: { conversation: '__done__', journey: rows[size - 1].id, document: '__done__' } });
   assert.deepEqual(Object.keys(answer.results[0]).sort(), ['href', 'kind', 'status', 'title', 'updatedAt']);
+  /* Täpselt lehe jagu ridu: rohkem ei ole. */
+  const exact = await searchPersonalObjects({ prisma: fakePrisma({ rows: { journey: journeyRows(size) } }), userId: 'user-1', query: 'teekond' });
+  assert.equal(exact.results.length, size);
+  assert.deepEqual(exact.pagination, { hasMore: false, nextCursor: { conversation: '__done__', journey: '__done__', document: '__done__' } });
+});
+
+test('read on ühes kuupäevajärjekorras üle allikate ja „Näita rohkem” jätkab sama järjekorda', async () => {
+  /* Kolm allikat, igaühes rohkem kui lehe jagu ridu, kuupäevad põimuvad:
+     vestlused 30, 27, 24 …; Teekonnad 29, 26, 23 …; dokumendid 28, 25, 22 … (jaanuar ei ulatu, aga
+     kuupäev võib minna ka eelmisse kuusse: võrreldakse aega, mitte päeva numbrit). */
+  const at = (first, index) => first - index * 3;
+  const conversations = Array.from({ length: 21 }, (_, index) => conversationRow(`conv-${String(index).padStart(2, '0')}`, at(30, index), { messages: [{ content: 'abc' }] }));
+  const journeys = Array.from({ length: 21 }, (_, index) => ({ id: `jrn_${String(index).padStart(28, '0')}`, title: `Teekond ${index}`, status: 'ACTIVE', updatedAt: new Date(Date.UTC(2026, 0, at(29, index))) }));
+  const documents = Array.from({ length: 21 }, (_, index) => documentRow(`doc-${String(index).padStart(2, '0')}`, at(28, index)));
+  const first = await searchPersonalObjects({ prisma: fakePrisma({ rows: { conversation: conversations, journey: journeys, document: documents } }), userId: 'user-1', query: 'abc' });
+  const times = first.results.map((row) => Date.parse(row.updatedAt));
+  assert.equal(first.results.length, 20);
+  assert.deepEqual(times, [...times].sort((a, b) => b - a), 'esimene leht on ajas kahanev');
+  assert.deepEqual(first.results.slice(0, 6).map((row) => row.kind), ['conversation', 'journey', 'document', 'conversation', 'journey', 'document']);
+  /* 20 rida = 7 vestlust, 7 Teekonda, 6 dokumenti; iga allikas jätkab oma viimasest näidatud reast. */
+  assert.deepEqual(first.pagination, { hasMore: true, nextCursor: { conversation: 'conv-06', journey: journeys[6].id, document: 'doc-05' } });
+
+  /* Järgmine leht: andmebaas annab iga allika read kursorist edasi; ükski uus rida ei ole uuem kui esimese lehe viimane. */
+  const second = await searchPersonalObjects({
+    prisma: fakePrisma({ rows: { conversation: conversations.slice(7), journey: journeys.slice(7), document: documents.slice(6) } }),
+    userId: 'user-1', query: 'abc', cursor: first.pagination.nextCursor
+  });
+  const later = second.results.map((row) => Date.parse(row.updatedAt));
+  assert.ok(later[0] <= times.at(-1), 'teise lehe esimene rida ei ole uuem kui esimese lehe viimane');
+  assert.deepEqual(later, [...later].sort((a, b) => b - a));
+  const seen = new Set(first.results.map(resultKey));
+  assert.deepEqual(second.results.filter((row) => seen.has(resultKey(row))), [], 'ükski rida ei kordu');
+});
+
+test('allikas, mille ridu lehele ei mahtunud, jääb oma kohale ja teda küsitakse uuesti', async () => {
+  /* 21 uut Teekonda ja kaks vana dokumenti: esimene leht on ainult Teekonnad. */
+  const journeys = journeyRows(21, 28);
+  const documents = [documentRow('doc-old-1', 2), documentRow('doc-old-2', 1)];
+  const first = await searchPersonalObjects({ prisma: fakePrisma({ rows: { journey: journeys, document: documents } }), userId: 'user-1', query: 'abc' });
+  assert.deepEqual([...new Set(first.results.map((row) => row.kind))], ['journey']);
+  /* Dokumentidest ei võetud midagi: kursor jääb algusesse (null), aga „veel on”. */
+  assert.deepEqual(first.pagination, { hasMore: true, nextCursor: { conversation: '__done__', journey: journeys[19].id, document: null } });
+
+  const prisma = fakePrisma({ rows: { journey: journeys.slice(20), document: documents } });
+  const second = await searchPersonalObjects({ prisma, userId: 'user-1', query: 'abc', cursor: first.pagination.nextCursor });
+  assert.equal(prisma.calls.conversation.length, 0, 'lõpuni loetud allikat ei küsita');
+  assert.equal('cursor' in prisma.calls.document[0], false, 'dokumendid algavad oma esimesest reast');
+  assert.deepEqual(second.results.map((row) => row.kind), ['journey', 'document', 'document']);
+  assert.deepEqual(days(second), [8, 2, 1]);
+  assert.deepEqual(second.pagination, { hasMore: false, nextCursor: { conversation: '__done__', journey: '__done__', document: '__done__' } });
 });
 
 test('lugemata jäänud allikas on nimetatud, jätkab samast kohast ja seda saab uuesti küsida', async () => {

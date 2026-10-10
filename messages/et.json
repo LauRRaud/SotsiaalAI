@@ -10700,7 +10700,7 @@
   "personal_search": {
     "title": "Minu otsing",
     "card_meta": "Minu tööobjektid",
-    "intro": "Otsi oma Teekondi ja dokumente pealkirja järgi.",
+    "intro": "Otsi oma vestlusi, Teekondi ja dokumente.",
     "label": "Otsing",
     "submit": "Otsi",
     "loading": "Otsin sinu objekte…",
@@ -10737,7 +10737,7 @@
       "field_photo": "Välitöö foto",
       "service_log_report": "Teenuspäeviku aruanne"
     },
-    "scope": "Vestlusi siit enamasti ei leia, sest vestlustel pealkirja ei ole. Otsi neid vestluste loendist: seal loeb otsing ka sõnumeid.",
+    "scope": "Vestluse leiab sõna järgi, mis on mõnes selle sõnumis. Teekonna ja dokumendi leiab pealkirja järgi.",
     "partial_empty": "Osa otsingust jäi tegemata: {kinds}. Mujalt vasteid ei leitud.",
     "more_error": "Rohkem tulemusi ei saanud praegu laadida. Juba leitud read on alles.",
     "rate_limited_wait": "Otsinguid tuli liiga kiiresti järjest. Proovi uuesti {seconds} sekundi pärast.",

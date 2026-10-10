@@ -60,6 +60,13 @@
 .rowTitle {
   composes: rowTitle from "../stage/rows.module.css";
 }
+/* Lõik vestluse sõnumist pealkirja all: vaiksem ja oma real. */
+.excerpt {
+  display: block;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  font-weight: 400;
+}
 .rowMeta {
   composes: rowMeta from "../stage/rows.module.css";
 }
@@ -77,13 +84,19 @@
   justify-self: start;
 }
 
-/* Kitsal pinnal murduvad liik ja aeg pealkirja alla. */
+/* Kitsal pinnal murduvad liik ja aeg pealkirja alla; nool jääb pealkirja kõrvale
+   (ilma oma kohata kukkus see kolmandale reale ja tegi iga rea kõrgemaks). */
 @container (max-width: 34rem) {
   .row {
     grid-template-columns: minmax(0, 1fr) auto;
   }
   .rowMeta {
     grid-column: 1 / -1;
+    grid-row: 2;
     justify-content: flex-start;
+  }
+  .open {
+    grid-column: 2;
+    grid-row: 1;
   }
 }

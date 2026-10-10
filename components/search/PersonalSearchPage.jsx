@@ -164,7 +164,11 @@ export default function PersonalSearchPage() {
                     <li className={styles.rowItem} key={resultKey(item)}>
                       <a className={styles.row} href={localizePath(item.href, locale)}>
                         {/* Pealkiri on TEKST: sisu tuleb React'i lapsena, mitte HTML-ina. */}
-                        <span className={styles.rowTitle}>{item.title || word(`personal_search.untitled.${item.kind}`) || kind}</span>
+                        <span className={styles.rowTitle}>
+                          {item.title || item.excerpt || word(`personal_search.untitled.${item.kind}`) || kind}
+                          {/* Pealkirjaga vestlus, mille otsisõna on sõnumis: lõik näitab, kus. */}
+                          {item.title && item.excerpt ? <span className={styles.excerpt}>{item.excerpt}</span> : null}
+                        </span>
                         <span className={styles.rowMeta}>
                           <span className={styles.kind}>{[kind, itemStatus].filter(Boolean).join(" · ")}</span>
                           <time className={styles.time} dateTime={item.updatedAt || undefined}>

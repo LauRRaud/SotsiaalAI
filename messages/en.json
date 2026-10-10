@@ -10700,7 +10700,7 @@
   "personal_search": {
     "title": "My search",
     "card_meta": "My work items",
-    "intro": "Search your Journeys and documents by title.",
+    "intro": "Search your conversations, Journeys and documents.",
     "label": "Search",
     "submit": "Search",
     "loading": "Searching your items…",
@@ -10737,7 +10737,7 @@
       "field_photo": "Field work photo",
       "service_log_report": "Service log report"
     },
-    "scope": "You will mostly not find conversations here, because conversations have no title. Search for them in the conversation list: that search reads the messages too.",
+    "scope": "A conversation is found by a word in one of its messages. A Journey or a document is found by its title.",
     "partial_empty": "Part of the search could not be done: {kinds}. No matches were found elsewhere.",
     "more_error": "More results could not be loaded right now. The rows already found are still here.",
     "rate_limited_wait": "Too many searches in a row. Try again in {seconds} s.",
