@@ -152,6 +152,15 @@ export default function HomeCareMonth({ context, initial }) {
             missed: data.totals.missed
           })}
         </p>
+        {/* Märkamiste vastamise näit (K5-x): mitu selle kuu märkamist sai vastuse ja kui kiiresti. */}
+        {data.signalStats?.opened ? (
+          <p className="hc-sub">
+            {t("home_care.month.signals_line", { opened: data.signalStats.opened, handled: data.signalStats.handled, waiting: data.signalStats.waiting })}
+            {data.signalStats.medianDays === null
+              ? ""
+              : ` ${data.signalStats.medianDays === 0 ? t("home_care.month.signals_median_same_day") : t("home_care.month.signals_median", { days: data.signalStats.medianDays })}`}
+          </p>
+        ) : null}
         {locked ? (
           <p className="hc-notice">{data.lock.snapshotShown ? t("home_care.month_lock.locked_banner") : t("home_care.month_lock.locked_banner_unit")}</p>
         ) : null}

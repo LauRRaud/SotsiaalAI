@@ -6081,3 +6081,34 @@ test('transpordi soov: meeskond soovib, hooldusjuht vastab, korraldatud sõit on
   assert.deepEqual(audit.map((entry) => entry.meta.change).sort(), ['arranged', 'declined', 'requested', 'requested', 'requested', 'withdrawn', 'withdrawn']);
   assert.equal(JSON.stringify(audit).includes('Perearsti'), false);
 });
+
+test('püsivuse mõju ja märkamiste näit: kes on kliendi juures käinud ning mitu märkamist sai vastuse', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const start = deps(at('2026-08-20T08:00:00Z'));
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, start)).client;
+  for (const key of ['anu', 'bert', 'cover']) await addTeamMember(lead, linda.id, { membershipId: f.members[key].id }, start);
+  await createSlots(lead, linda.id, { weekdays: [5], startTime: '14:00', plannedMinutes: 30, workerMembershipId: f.members.anu.id, validFrom: '2026-09-28' }, start);
+  const visit = (who, when, change) => createEntry(who, linda.id, { kind: 'NOTE', contactMode: 'VISIT', text: 'Käik', visitMinutes: 30, change, occurredAt: when }, deps(at(when)));
+  /* Bert käis üle nelja nädala tagasi (ei loe), Anu kahel korral viimase nelja nädala sees. */
+  await visit(bert, '2026-09-01T07:00:00Z');
+  await visit(anu, '2026-09-25T07:00:00Z');
+  await visit(anu, '2026-10-02T07:00:00Z', { answer: 'YES', areas: ['MOBILITY'], major: true });
+
+  const plan = await getDayPlan(lead, { day: '2026-10-09' }, deps());
+  assert.deepEqual(plan.recentWorkers, { [linda.id]: [f.members.anu.id] });
+  /* Kliendil, kellel sel päeval käiku ei ole, kirjet ei ole; hooldaja päevaplaani ei näe. */
+  assert.deepEqual((await getDayPlan(lead, { day: '2026-10-10' }, deps())).recentWorkers, {});
+
+  /* MÄRKAMISTE NÄIT: oktoobris üks märkamine, vastuseta; pärast vastamist loetakse vastatuks. */
+  const october = await getMonthPage(lead, { month: '2026-10' }, deps());
+  assert.deepEqual(october.signalStats, { opened: 1, handled: 0, waiting: 1, medianDays: null });
+  const signal = await db.careChangeSignal.findFirst({ where: { clientId: linda.id } });
+  await handleChangeSignal(lead, signal.id, { outcome: 'WATCHING', note: 'Jälgime' }, deps(at('2026-10-09T09:00:00Z')));
+  assert.deepEqual((await getMonthPage(lead, { month: '2026-10' }, deps())).signalStats, { opened: 1, handled: 1, waiting: 0, medianDays: 7 });
+  /* Septembris märkamisi ei olnud; tuleviku kuu kohta näitu ei arvutata. */
+  assert.deepEqual((await getMonthPage(lead, { month: '2026-09' }, deps())).signalStats, { opened: 0, handled: 0, waiting: 0, medianDays: null });
+  assert.equal((await getMonthPage(lead, { month: '2026-11' }, deps())).signalStats, null);
+});

@@ -13796,7 +13796,10 @@
       "not_done": "activities not done: refused {refused}, not needed {notNeeded}, could not be done {couldNot}",
       "cancelled_count": "{count} planned visits cancelled",
       "medication": "medication: reminded {reminded}, seen taken {sawTaken}, given {gave}; not marked {unmarked}, not done {notDone}",
-      "away_days": "away for {count} days"
+      "away_days": "away for {count} days",
+      "signals_line": "Changes noticed by care workers this month: {opened}; answered {handled}, waiting for an answer {waiting}.",
+      "signals_median": "An answer usually came within {days} days.",
+      "signals_median_same_day": "An answer usually came the same day."
     },
     "slots": {
       "title": "Visits in a week",
@@ -13905,7 +13908,8 @@
       "obstacle_absent": "Mark an absence for this day",
       "obstacle_seen": "{line}. Seen.",
       "obstacle_handled_saved": "The notice is marked as seen.",
-      "obstacle_absent_saved": "The absence is marked. The worker's visits not yet done are in the group “Worker absent”."
+      "obstacle_absent_saved": "The absence is marked. The worker's visits not yet done are in the group “Worker absent”.",
+      "continuity_impact": "This worker has not been at this client in the last four weeks: the client would get worker number {count} within four weeks."
     },
     "priority": {
       "label": "Importance of the visit",
