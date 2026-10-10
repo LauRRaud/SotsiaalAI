@@ -63,6 +63,7 @@ import { createActivity, listActivities, seedDefaultActivities, updateActivity }
 import { activateCarePlan, discardCarePlanDraft, getCarePlanEditor, getCarePlans, saveCarePlanDraft } from '../lib/homeCare/carePlans.js';
 import { CARE_ACTIVITY_GROUPS } from '../lib/homeCare/constants.js';
 import { getDeadlines } from '../lib/homeCare/deadlines.js';
+import { loadExceptionStreakWithin } from '../lib/homeCare/exceptionStreak.js';
 import { createDecision, getDecisionEditor, getDecisions, retractDecision, updateDecision } from '../lib/homeCare/decisions.js';
 import { createHomeCareExport, getHomeCareExportOverview, prepareHomeCareExport } from '../lib/homeCare/export.js';
 import { HOME_CARE_EXPORT_KEYS, checkHomeCareExport } from '../lib/homeCare/exportFormat.js';
@@ -6549,4 +6550,60 @@ test('kojutulek: märk naasmisest esimese käiguni kliendi lehel, plaanides ja t
   /* Märk aegub 30 päeva pärast naasmist ka ilma käiguta. */
   assert.deepEqual(await open(lead, at('2026-11-06T08:00:00Z')), [['Peeter Põhi', '2026-10-07', 30, 'WITH_FAMILY']]);
   assert.deepEqual(await open(lead, at('2026-11-07T08:00:00Z')), []);
+});
+
+test('käigud ilma ühegi erandita: märge hooldusjuhile, kui viimased käigud on kõik „nagu kavas"', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const start = deps(at('2026-09-01T06:00:00Z'));
+  const client = (await createClient(lead, { displayName: 'Linda Tamm' }, start)).client;
+  await addTeamMember(lead, client.id, { membershipId: f.members.anu.id }, start);
+  const catalogue = (await seedDefaultActivities(lead, start)).activities;
+  const wash = catalogue.find((item) => item.group === 'HYGIENE');
+  const heat = catalogue.find((item) => item.group === 'HEATING');
+  const shop = catalogue.find((item) => item.group === 'SHOPPING');
+  const draft = (
+    await saveCarePlanDraft(
+      lead,
+      client.id,
+      { lines: [{ activityId: wash.id, frequencyKind: 'WEEKLY', frequencyCount: 2, mode: 'TOGETHER' }, { activityId: heat.id, frequencyKind: 'DAILY', frequencyCount: 1, mode: 'FOR' }] },
+      start
+    )
+  ).draft;
+  await activateCarePlan(lead, client.id, { version: draft.version }, start);
+  let hour = 0;
+  const visit = (activities, extra = {}) => {
+    hour += 1;
+    const when = new Date(at('2026-10-01T00:00:00Z').getTime() + hour * 60 * 60 * 1000);
+    return createEntry(anu, client.id, { visitMinutes: 30, activities, occurredAt: when.toISOString(), ...extra }, deps(new Date(when.getTime() + 60 * 1000)));
+  };
+  const asPlanned = [{ activityId: wash.id, mode: 'TOGETHER' }, { activityId: heat.id, mode: 'FOR' }];
+  const streak = (size) => db.$transaction((tx) => loadExceptionStreakWithin(tx, client.id, { size }));
+
+  /* Kolm käiku nagu kavas: kolmese akna märge on olemas, neljase oma veel mitte. */
+  await visit(asPlanned);
+  await visit(asPlanned);
+  await visit(asPlanned);
+  assert.deepEqual(await streak(3), { visits: 3, since: '2026-10-01T01:00:00.000Z' });
+  assert.equal(await streak(4), null);
+  /* Käik ilma kava toiminguta (ainult kestus) ei loe ega katkesta. */
+  await createEntry(anu, client.id, { kind: 'NOTE', contactMode: 'VISIT', text: 'Jutuajamine', visitMinutes: 15, occurredAt: '2026-10-01T03:30:00Z' }, deps(at('2026-10-01T03:35:00Z')));
+  assert.deepEqual(await streak(3), { visits: 3, since: '2026-10-01T01:00:00.000Z' });
+
+  /* Iga erand katkestab: tegemata toiming, teine viis kui kavas, kavaväline toiming, „täna oli teisiti". */
+  const broken = async (activities, extra) => {
+    const made = (await visit(activities, extra)).entry;
+    assert.equal(await streak(3), null);
+    await retractEntry(anu, client.id, made.id, { reason: 'Proov', revision: 1 }, deps(at('2026-10-08T08:00:00Z')));
+    assert.ok(await streak(3));
+  };
+  await broken([{ activityId: wash.id, outcome: 'REFUSED' }, { activityId: heat.id, mode: 'FOR' }]);
+  await broken([{ activityId: wash.id, mode: 'FOR' }, { activityId: heat.id, mode: 'FOR' }]);
+  await broken([...asPlanned, { activityId: shop.id, mode: 'FOR' }]);
+  await broken(asPlanned, { text: 'Oli kurvem kui tavaliselt', change: { answer: 'YES', areas: ['MOOD'] } });
+
+  /* Kliendi lehel: 30 käigu piir ei ole täis, seega märget ei ole; töötaja ei saa seda välja kunagi. */
+  assert.equal((await openClient(lead, client.id, deps())).exceptionStreak, null);
+  assert.equal((await openClient(anu, client.id, deps())).exceptionStreak, null);
 });
