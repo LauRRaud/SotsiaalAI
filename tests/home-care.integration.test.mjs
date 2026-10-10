@@ -59,6 +59,7 @@ import {
   listChronologyReleases
 } from '../lib/homeCare/chronology.js';
 import { getCallCounts } from '../lib/homeCare/calls.js';
+import { addControlCall, retractControlCall } from '../lib/homeCare/controlCalls.js';
 import { createActivity, listActivities, seedDefaultActivities, updateActivity } from '../lib/homeCare/activities.js';
 import { activateCarePlan, discardCarePlanDraft, getCarePlanEditor, getCarePlans, saveCarePlanDraft } from '../lib/homeCare/carePlans.js';
 import { CARE_ACTIVITY_GROUPS } from '../lib/homeCare/constants.js';
@@ -1890,6 +1891,8 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
   await saveRelative(lead, client.id, { name: 'Mari Tamm', relation: 'tütar', level: 1 }, deps());
   /* Ohutuskaardi vastus (K5-n), et väljavõttes oleks ka see kogu. */
   await saveSafetyCard(lead, client.id, { items: { ANIMALS: { answer: 'NO' } } }, deps());
+  /* Kontrollkõne (K6-l), et väljavõttes oleks ka see kogu. */
+  await addControlCall(lead, client.id, { outcome: 'MATCHES', spokeWith: 'CLIENT' }, deps());
   /* Rääkimise soov (K6-k) kukkumise juhtumi juures, et väljavõttes oleks ka see kogu. */
   await requestTalk(anu, client.id, fall.entry.id, deps());
   /* Esindusõiguse kirje (K6-i), et väljavõttes oleks ka see kogu. */
@@ -2027,6 +2030,7 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
     tripEntries: await db.careTripEntry.count({ where: ofOrg }),
     clientRepresentatives: await db.careClientRepresentative.count({ where: ofOrg }),
     talkRequests: await db.careTalkRequest.count({ where: ofOrg }),
+    controlCalls: await db.careControlCall.count({ where: ofOrg }),
     auditEvents: await db.dataAuditLog.count({
       where: { action: { startsWith: 'org.home_care_' }, meta: { path: ['organizationId'], equals: f.orgA.id }, createdAt: { lt: (await exportRows())[0].createdAt } }
     })
@@ -6870,4 +6874,78 @@ test('soovin sellest rääkida: teavitus hooldusjuhile kannab ainult rea ID-d', 
   assert.deepEqual(await noticed(), [1, 0]);
   await withdrawTalk(anu, linda.id, hard.id, deps());
   assert.equal(await allowed(f.users.lead.id), false);
+});
+
+test('kontrollkõne: hooldusjuht paneb kirja, meeskond ei näe, tegemata kõned on tähtaegade lehel', async (t) => {
+  const f = await fixture(t);
+  const north = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Põhi ${f.tag}`, type: 'TEAM' } });
+  await db.organizationCapabilityGrant.create({
+    data: { membershipId: f.members.cover.id, capability: 'HOME_CARE_COORDINATOR', scopeType: 'UNIT', scopeUnitId: north.id, validFrom: at('2026-01-01T00:00:00Z') }
+  });
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const unitLead = await f.ctx(f.users.cover, f.orgA);
+  /* Linda ja Peeter on teenusel üle 90 päeva; Aino alles kuu; Enn on ajutiselt ära. Teenuse algus on
+     kliendi rea loomise aeg (andmebaasi kell), seepärast seatakse see siin otse. */
+  const make = async (displayName, createdAt, unitId) => {
+    const client = (await createClient(lead, { displayName, ...(unitId ? { unitId } : {}) }, deps())).client;
+    await db.careClient.update({ where: { id: client.id }, data: { createdAt: at(createdAt) } });
+    return client;
+  };
+  const linda = await make('Linda Tamm', '2026-06-01T06:00:00Z');
+  const peeter = await make('Peeter Põhi', '2026-06-01T06:00:00Z', north.id);
+  const enn = await make('Enn Lepp', '2026-06-01T06:00:00Z');
+  const aino = await make('Aino Saar', '2026-09-10T06:00:00Z');
+  await addTeamMember(lead, linda.id, { membershipId: f.members.anu.id }, deps());
+  await setClientStatus(lead, enn.id, { version: enn.version, status: 'AWAY', statusReason: 'HOSPITAL' }, deps());
+
+  const due = async (context, now = NOW) => (await getDeadlines(context, deps(now))).controlCallsDue.map((item) => [item.client.displayName, item.lastReachedOn, item.days]);
+  assert.deepEqual(await due(lead), [['Linda Tamm', null, 130], ['Peeter Põhi', null, 130]]);
+  assert.deepEqual(await due(unitLead), [['Peeter Põhi', null, 130]]);
+  /* Kliendi lehel: hooldusjuhile jaotis, meeskonnale mitte midagi. */
+  const before = (await openClient(lead, linda.id, deps())).controlCalls;
+  assert.deepEqual([before.items, before.lastReachedOn, before.due, before.days], [[], null, true, 130]);
+  assert.equal((await openClient(anu, linda.id, deps())).controlCalls, null);
+  assert.equal((await openClient(lead, aino.id, deps())).controlCalls.due, false);
+
+  /* Vigane sisend ei salvestu; töötaja ei saa kõnet kirja panna. */
+  const bad = (body, key) => expectError(addControlCall(lead, linda.id, body, deps()), 400, key);
+  await bad({}, 'home_care.errors.control_call_outcome_required');
+  await bad({ outcome: 'MATCHES' }, 'home_care.errors.control_call_spoke_required');
+  await bad({ outcome: 'DIFFERS', spokeWith: 'CLIENT' }, 'home_care.errors.control_call_note_required');
+  await bad({ outcome: 'MATCHES', spokeWith: 'CLIENT', calledOn: '2026-10-10' }, 'home_care.errors.control_call_day_future');
+  await expectError(addControlCall(anu, linda.id, { outcome: 'MATCHES', spokeWith: 'CLIENT' }, deps()), 403, 'org.errors.missing_capability');
+  assert.equal(await db.careControlCall.count({ where: { organizationId: f.orgA.id } }), 0);
+
+  /* „Ei saanud kätte" jätab kõne tegemata; kätte saadud kõne võtab kliendi nimekirjast. */
+  const missed = await addControlCall(lead, linda.id, { outcome: 'NOT_REACHED', spokeWith: 'CLIENT', calledOn: '2026-10-08' }, deps());
+  assert.deepEqual([missed.controlCalls.items.map((item) => [item.calledOn, item.outcome, item.spokeWith]), missed.controlCalls.due], [[['2026-10-08', 'NOT_REACHED', null]], true]);
+  assert.deepEqual((await due(lead)).map((row) => row[0]), ['Linda Tamm', 'Peeter Põhi']);
+  const talked = await addControlCall(lead, linda.id, { outcome: 'DIFFERS', spokeWith: 'RELATIVE', note: '  Tütre sõnul reedel ei käidud. ' }, deps());
+  assert.deepEqual(
+    talked.controlCalls.items.map((item) => [item.calledOn, item.outcome, item.spokeWith, item.note, item.isMine]),
+    [['2026-10-09', 'DIFFERS', 'RELATIVE', 'Tütre sõnul reedel ei käidud.', true], ['2026-10-08', 'NOT_REACHED', null, null, true]]
+  );
+  assert.deepEqual([talked.controlCalls.lastReachedOn, talked.controlCalls.due, talked.controlCalls.days], ['2026-10-09', false, 0]);
+  assert.deepEqual((await due(lead)).map((row) => row[0]), ['Peeter Põhi']);
+  /* Kvartal hiljem on Linda uuesti nimekirjas: 92 päeva veel mitte, 93. päeval jah. */
+  assert.equal((await due(lead, at('2027-01-09T08:00:00Z'))).some((row) => row[0] === 'Linda Tamm'), false);
+  assert.deepEqual((await due(lead, at('2027-01-10T08:00:00Z'))).find((row) => row[0] === 'Linda Tamm'), ['Linda Tamm', '2026-10-09', 93]);
+
+  /* Tühistamine: rida jääb alles, kõne on jälle tegemata; teise üksuse hooldusjuht ei saa. */
+  await expectError(retractControlCall(unitLead, linda.id, talked.callId, deps()), 403, 'home_care.errors.access_reason_required');
+  const back = await retractControlCall(lead, linda.id, talked.callId, deps());
+  assert.deepEqual([back.controlCalls.items.map((item) => item.outcome), back.controlCalls.due], [['NOT_REACHED'], true]);
+  await expectError(retractControlCall(lead, linda.id, talked.callId, deps()), 409, 'home_care.errors.control_call_retracted');
+  await expectError(retractControlCall(lead, peeter.id, talked.callId, deps()), 404, 'home_care.errors.control_call_not_found');
+  assert.ok((await db.careControlCall.findUnique({ where: { id: talked.callId } })).retractedAt);
+
+  /* Andmebaas hoiab piire ka koodist mööda kirjutades; jälg ei kanna tulemust ega märkust. */
+  const raw = { organizationId: f.orgA.id, clientId: linda.id, calledOn: '2026-10-09' };
+  await assert.rejects(db.careControlCall.create({ data: { ...raw, outcome: 'MATCHES' } }));
+  await assert.rejects(db.careControlCall.create({ data: { ...raw, outcome: 'NOT_REACHED', spokeWith: 'CLIENT' } }));
+  await assert.rejects(db.careControlCall.create({ data: { ...raw, outcome: 'DIFFERS', spokeWith: 'CLIENT' } }));
+  const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_control_call_changed', meta: { path: ['organizationId'], equals: f.orgA.id } }, orderBy: { createdAt: 'asc' } });
+  assert.deepEqual(audit.map((row) => row.meta.change), ['added', 'added', 'retracted']);
+  assert.equal(JSON.stringify(audit).includes('Tütre'), false);
 });

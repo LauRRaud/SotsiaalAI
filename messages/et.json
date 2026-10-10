@@ -13221,7 +13221,13 @@
       "talk_not_author": "Rääkimist saab soovida see, kes erijuhtumi kirja pani.",
       "talk_not_found": "Rääkimise soovi ei leitud.",
       "talk_handled": "See soov on juba räägituks märgitud.",
-      "talk_withdrawn": "Töötaja võttis selle soovi tagasi."
+      "talk_withdrawn": "Töötaja võttis selle soovi tagasi.",
+      "control_call_day_future": "Helistamise päev ei saa olla tulevikus.",
+      "control_call_outcome_required": "Vali, mis kõnest selgus.",
+      "control_call_spoke_required": "Vali, kellega rääkisid.",
+      "control_call_note_required": "Kirjuta, mis ei klappinud.",
+      "control_call_not_found": "Kontrollkõne kirjet ei leitud.",
+      "control_call_retracted": "See kirje on juba tühistatud."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -13789,7 +13795,11 @@
       "representatives_due_title": "Esindusõigused, mis lõpevad või on lõppenud",
       "representatives_due_empty": "Ühegi esindusõiguse tähtaeg ei ole lähedal.",
       "representatives_due_line": "esindaja {name}: õigus lõpeb {date}",
-      "representatives_due_expired": "esindaja {name}: õigus lõppes {date}"
+      "representatives_due_expired": "esindaja {name}: õigus lõppes {date}",
+      "control_calls_title": "Kontrollkõne tegemata",
+      "control_calls_empty": "Kõigile klientidele on sel kvartalil helistatud.",
+      "control_calls_line": "viimati saadi kätte {date}",
+      "control_calls_never": "ei ole kordagi kätte saadud"
     },
     "visit": {
       "title": "Mida tegid",
@@ -14977,6 +14987,33 @@
       "list_title": "Soovivad pärast rasket juhtumit rääkida",
       "list_hint": "Töötaja vajutas erijuhtumi juures „Soovin sellest rääkida”. Räägi temaga ja märgi siis „Räägitud”; mida rääkisite, siia ei kirjutata.",
       "list_line": "{name}: {type}, soov alates {date}."
+    },
+    "control_call": {
+      "title": "Kontrollkõne",
+      "hint": "Kord kvartalis helistad kliendile ise, mitte hooldaja kaudu, ja küsid, kas käigud on toimunud nii, nagu kirjas. Meeskond seda jaotist ei näe.",
+      "last_line": "Viimane kõne, kus kedagi kätte saadi: {date}.",
+      "never": "Ühtegi kõnet, kus kedagi kätte saadi, ei ole kirjas.",
+      "due": "On aeg helistada.",
+      "add": "Pane kontrollkõne kirja",
+      "day_label": "Mis päeval helistasid",
+      "day_hint": "Tühjaks jäetud väli tähendab tänast päeva.",
+      "outcome_label": "Mis selgus",
+      "outcomes": {
+        "MATCHES": "käigud on toimunud nii, nagu kirjas",
+        "DIFFERS": "jutt ei klapi kirjapanduga",
+        "NOT_REACHED": "ei saanud kätte"
+      },
+      "party_label": "Kellega rääkisid",
+      "parties": {
+        "CLIENT": "kliendiga",
+        "RELATIVE": "lähedasega",
+        "REPRESENTATIVE": "esindajaga"
+      },
+      "note_label": "Märkus",
+      "note_hint": "Kirjuta, mis ei klappinud.",
+      "save": "Salvesta",
+      "cancel": "Loobu",
+      "retract": "Tühista (ekslik kirje)"
     }
   },
   "stage": {

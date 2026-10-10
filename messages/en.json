@@ -13221,7 +13221,13 @@
       "talk_not_author": "Talking can be asked for by the person who recorded the incident.",
       "talk_not_found": "The wish to talk was not found.",
       "talk_handled": "This wish has already been marked as talked.",
-      "talk_withdrawn": "The worker took this wish back."
+      "talk_withdrawn": "The worker took this wish back.",
+      "control_call_day_future": "The day of the call cannot be in the future.",
+      "control_call_outcome_required": "Choose what the call showed.",
+      "control_call_spoke_required": "Choose who you spoke with.",
+      "control_call_note_required": "Write what did not match.",
+      "control_call_not_found": "The control call record was not found.",
+      "control_call_retracted": "This record has already been retracted."
     },
     "incidents": {
       "title": "Incident register",
@@ -13789,7 +13795,11 @@
       "representatives_due_title": "Rights of representation that end or have ended",
       "representatives_due_empty": "No right of representation is close to its end.",
       "representatives_due_line": "representative {name}: the right ends on {date}",
-      "representatives_due_expired": "representative {name}: the right ended on {date}"
+      "representatives_due_expired": "representative {name}: the right ended on {date}",
+      "control_calls_title": "Control call not made",
+      "control_calls_empty": "Every client has been called this quarter.",
+      "control_calls_line": "last reached on {date}",
+      "control_calls_never": "never reached"
     },
     "visit": {
       "title": "What you did",
@@ -14977,6 +14987,33 @@
       "list_title": "Want to talk after a hard incident",
       "list_hint": "The worker pressed \"I want to talk about this\" on an incident. Talk to them and then mark \"Talked\"; what you talked about is not written here.",
       "list_line": "{name}: {type}, wish since {date}."
+    },
+    "control_call": {
+      "title": "Control call",
+      "hint": "Once a quarter you call the client yourself, not through the carer, and ask whether the visits have taken place as recorded. The team does not see this section.",
+      "last_line": "Last call where somebody was reached: {date}.",
+      "never": "No call where somebody was reached is on record.",
+      "due": "It is time to call.",
+      "add": "Record a control call",
+      "day_label": "The day you called",
+      "day_hint": "An empty field means today.",
+      "outcome_label": "What you found",
+      "outcomes": {
+        "MATCHES": "the visits have taken place as recorded",
+        "DIFFERS": "the account does not match the records",
+        "NOT_REACHED": "could not reach anybody"
+      },
+      "party_label": "Who you spoke with",
+      "parties": {
+        "CLIENT": "the client",
+        "RELATIVE": "a relative",
+        "REPRESENTATIVE": "the representative"
+      },
+      "note_label": "Note",
+      "note_hint": "Write what did not match.",
+      "save": "Save",
+      "cancel": "Cancel",
+      "retract": "Retract (entered by mistake)"
     }
   },
   "stage": {
