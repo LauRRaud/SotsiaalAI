@@ -49,11 +49,11 @@
   },
   "corpus": {
     "written_by": "rag-v2/register-corpus-1",
-    "version": "v78",
-    "index_generation": "98359144",
+    "version": "v79",
+    "index_generation": "2c886587",
     "read_at": "2026-10-11",
-    "documents": 9602,
-    "units": 89970,
+    "documents": 9641,
+    "units": 90388,
     "note": "What the RAG on the server holds: the documents of the corpus policy by what they are (by_content), and by where the source file is kept (from_repository, outside_repository). One file of the repository may give many documents (a municipality package gives its services, forms and contacts). On a source entry, corpus_documents is the number of corpus documents the file gives; 0 means the file is not in the corpus.",
     "by_content": [
       {
@@ -116,9 +116,9 @@
       {
         "content": "official_pages",
         "name": "official guidance pages",
-        "documents": 911,
+        "documents": 950,
         "by_source_type": {
-          "web_page": 911
+          "web_page": 950
         }
       },
       {
@@ -197,10 +197,10 @@
       }
     },
     "source_files_not_in_corpus": 61,
-    "outside_repository_documents": 3086
+    "outside_repository_documents": 3125
   },
   "outside_repository": {
-    "documents": 3086,
+    "documents": 3125,
     "note": "Sources of the corpus that are not files of the repository. Copies are in the corpus store (the main checkout's git-ignored tmp/ and the server). Of contacts only counts are given: a contact's title is a person's name.",
     "kinds": [
       {
@@ -5589,13 +5589,13 @@
       {
         "kind": "guidance_pages",
         "name": "institutions' guidance pages chosen by rule",
-        "documents": 551,
+        "documents": 590,
         "by_source_type": {
-          "web_page": 551
+          "web_page": 590
         },
         "made_from": "the lists register/web_pages_coverage_1.json and register/web_pages_coverage_2.json, collected with scripts/rag-v2-web-pages.mjs and chosen with scripts/rag-v2-web-select.mjs (ADR-137)",
         "reason": "the choice takes the paragraphs that name a person out of a page; the monthly refresh of the repository's pages would put the collector's own reading in its place",
-        "publishers": 10,
+        "publishers": 11,
         "sources": [
           {
             "title": "Andmekaitsespetsialist",
@@ -8351,6 +8351,201 @@
             "title": "Ümbrikupalk",
             "url": "https://www.tooelu.ee/et/20/umbrikupalk",
             "publisher": "Tööinspektsioon"
+          },
+          {
+            "title": "Avavangla",
+            "url": "https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/vabanemiseks-valmistumine/mis-avavangla",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Elektrooniline valve",
+            "url": "https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/kriminaalhooldus/elektrooniline-valve",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Ettevalmistused vabanemiseks",
+            "url": "https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/vabanemiseks-valmistumine/ettevalmistused-vabanemiseks",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Helistamine",
+            "url": "https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/koned-ja-kokkusaamised-kinnipeetavaga/telefonikoned",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Huvitegevused vanglas",
+            "url": "https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/eneseteostus-vanglas/huvitegevused-vanglas",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Igapäevaelu vanglas",
+            "url": "https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/vanglas-elamine/igapaevaelu-vanglas",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Kahjumaksed kannatanule",
+            "url": "https://vanglateenistus.ee/abiks-kannatanule/praktiline-nou/kahjumaksed-kannatanule",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Kinnipeetava kaebeõigus",
+            "url": "https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/kinnipeetava-oigused/kinnipeetava-kaebeoigus",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Kirja saatmine",
+            "url": "https://vanglateenistus.ee/karistuse-kandmine-vanglas/suhtlemine-kinnipeetavaga/kirjavahetus-ja-pakid",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Kohtumine advokaadi, notari või esindajaga",
+            "url": "https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/kinnipeetava-oigused/kohtumine-advokaadi-notari-voi-esindajaga",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Kui karistust kandva inimese käitumine teeb muret",
+            "url": "https://vanglateenistus.ee/abiks-kannatanule/praktiline-nou/kui-karistust-kandva-inimese-kaitumine-teeb-muret",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Kui kinnipeetav vabaneb",
+            "url": "https://vanglateenistus.ee/abiks-kannatanule/karistuse-kandmine/kui-kinnipeetav-vabaneb",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Kui lähedane on kriminaalhooldusalune",
+            "url": "https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/vangistus-lahedase-seisukohast/kui-lahedane-kriminaalhooldusalune",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Kui lähedane on vanglas",
+            "url": "https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/vangistus-lahedase-seisukohast/kui-lahedane-vanglas",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Kuidas lapsega rääkida",
+            "url": "https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/vangistus-lahedase-seisukohast/kuidas-raakida-lapsega-vangistusest",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Kust saavad lähedased infot",
+            "url": "https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/vangistus-lahedase-seisukohast/kust-saavad-lahedased-infot",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Lapsevanema vangistus",
+            "url": "https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/vangistus-lahedase-seisukohast/lapsevanema-vangistus",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Lubatud ja keelatud esemed vanglas",
+            "url": "https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/vanglas-elamine/lubatud-ja-keelatud-esemed-vanglas",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Lühiajaline kokkusaamine",
+            "url": "https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/koned-ja-kokkusaamised-kinnipeetavaga/luhiajaline-kokkusaamine",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Lühiajaline väljasõit",
+            "url": "https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/koned-ja-kokkusaamised-kinnipeetavaga/luhiajaline-valjasoit",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Milles seisneb karistuse kandmine",
+            "url": "https://vanglateenistus.ee/abiks-kannatanule/karistuse-kandmine/milles-seisneb-karistuse-kandmine",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Mis on kriminaalhooldus?",
+            "url": "https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/kriminaalhooldus/mis-kriminaalhooldus",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Paki saatmine",
+            "url": "https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/saadetised-kinnipeetavale/paki-saatmine",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Pikaajaline kokkusaamine",
+            "url": "https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/koned-ja-kokkusaamised-kinnipeetavaga/pikaajaline-kokkusaamine",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Raha saatmine",
+            "url": "https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/saadetised-kinnipeetavale/raha-saatmine",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Riskihindamine ja hoolduskava",
+            "url": "https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/kriminaalhooldus/riskihindamine-ja-hoolduskava",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Riskihindamine ja individuaalne täitmiskava",
+            "url": "https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/vanglas-elamine/riskihindamine-ja-individuaalne-taitmiskava",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Tervishoiuteenused vanglas",
+            "url": "https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/vanglas-elamine/tervishoiuteenused-vanglas",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Tingimisi ennetähtaegne vabastamine",
+            "url": "https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/vabanemiseks-valmistumine/ennetahtaegne-vabanemine",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Turvalise koostöö raamistik (TUKO)",
+            "url": "https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/kriminaalhooldus/turvalise-koostoo-raamistik",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Töötamine vanglas",
+            "url": "https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/eneseteostus-vanglas/tootamine-vanglas",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Vabanemise teekond",
+            "url": "https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/vabanemiseks-valmistumine/vabanemise-teekond",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Vabatahtlike töö vanglas",
+            "url": "https://vanglateenistus.ee/koostoopartnerile-ja-vabatahtlikule/uldkasulik-too-ja-vabatahtlik-too/vabatahtlike-too-vanglas",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Vangistuse etapid",
+            "url": "https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/vanglas-elamine/vangistuse-etapid",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Vangistuseks valmistumine",
+            "url": "https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/vanglas-elamine/vangistuseks-valmistumine",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Videokohtumine",
+            "url": "https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/koned-ja-kokkusaamised-kinnipeetavaga/videokohtumised",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Õppimine vanglas",
+            "url": "https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/eneseteostus-vanglas/oppimine-vanglas",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Üldkasulik töö",
+            "url": "https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/kriminaalhooldus/uldkasulik-too",
+            "publisher": "Vanglateenistus"
+          },
+          {
+            "title": "Üldkasuliku töö partnerile",
+            "url": "https://vanglateenistus.ee/koostoopartnerile-ja-vabatahtlikule/uldkasulik-too-ja-vabatahtlik-too/uldkasuliku-too-partnerile",
+            "publisher": "Vanglateenistus"
           }
         ]
       },

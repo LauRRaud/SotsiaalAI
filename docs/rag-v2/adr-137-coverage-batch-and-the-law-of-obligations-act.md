@@ -190,6 +190,15 @@ Seega: uus sisu ei jätnud ühtegi otsustavat sätet tõenditest välja nii, et 
 
 **Soovitus kandidaatide kohta.** Jätta praegu nii. Kaks pikka lehte pealkirjaga „Toimetulekutoetus“ võtavad toimetulekutoetuse küsimustes suure osa tõendite kohtadest, aga kuue toimetulekutoetuse küsimuse kõigis 12 pöördes oli otsustav seaduse säte tõendites; viide puudus ühel, kus vastus oli õige sama paragrahvi teise lõike põhjal. Ühe dokumendi kohtade piiramine muudaks otsingut kõigi küsimuste jaoks; seda tasub teha siis, kui mõni mõõdetud vastus läheb selle pärast valeks.
 
+## Järeltäiendus v79: Vanglateenistuse lehed (11.10.2026)
+
+Nimekirjas oli vangla.ee (26 lehte), mida 10.10 lugeda ei saanud: iga aadress andis ühe skriptiga joonistatud lehe. 11.10 selgus omaniku küsimuse peale (kas brauseriga lugemine aitaks), et sait on kolinud aadressile **vanglateenistus.ee** ja uus sait on tavalise lugejaga loetav. Sisse läks **39 lehte** (19 225 sõna, 418 lõiku): vabanemine ja kriminaalhooldus (9), abiks kinnipeetava lähedastele (12), abiks kannatanule (4), vanglasse saabumine ja elu vanglas (12), üldkasulik ja vabatahtlik töö (2). Loeti 40; valikureegel jättis välja usutegevuse lehe (nimetab peamiselt inimesi) ja võttis 13 lehest välja inimest nimetavad lõigud; 12 sõnapaari, mis ei ole inimesed, lisati reegli loendisse. Uudised, asutuse tutvustus ja kontaktide lehed jäid lugemata. Lehed on teises katvuse nimekirjas (`web_pages_coverage_2.json`, nüüd 348) ja igakuise uuenduse seisus ([ADR-141](adr-141-monthly-refresh-of-rule-chosen-pages.md)).
+
+| Käik | Sisendeid ostetud | Märke | Hind | Indeks | Dokumente | Lõike |
+|---|---:|---:|---:|---|---:|---:|
+| v79 | 405 | 69 406 | 0,0090 USD | `2c886587` | 9641 | 90 388 |
+
+Alus: omaniku nõusolek nimekirjale 10.10 („minu nõusolek on ka andmebaasi anda“); nimekirja ostud kokku 0,2927 USD minu pandud 0,35 USD laest. Vestlusplaan `/etc/sotsiaalai/m4-corpus-chat-20261011c.json`; järgmine alus põhikausta `tmp/rag-v2-prison/ship/policy.json` (9641 dokumenti). Mudeliga mõõtmata.
 ## Kus lehed on
 
 Lehtede tekstid ei ole repos: valikureegel võtab neist lõike välja, aga igakuine ametlike lehtede uuendus ([ADR-116](adr-116-official-pages-monthly-refresh.md)) seda reeglit ei tunne ja asendaks koopia lugeja omaga. Tekstid on põhikausta `tmp/rag-v2-v76/sources/veebilehed` all ja registrid loetlevad need pealkirja ja aadressiga. Võlaõigusseaduse failid on repos (`Andmebaasi/oigusaktid`).
@@ -198,6 +207,6 @@ Lehtede tekstid ei ole repos: valikureegel võtab neist lõike välja, aga igaku
 
 - Need 564 lehte ei ole igakuises uuenduses. Uuendus peaks enne oskama valikureeglit.
 - PDF-id, millele kestlehed viitavad (Tervisekassa infomaterjalid, eetika käsiraamat, lasteabi käsiraamat).
-- Vanglast vabanemine ja Töötukassa (omaniku otsus: kas küsida neilt luba või andmeid).
-- Omaniku otsustamata küsimused nimekirjafailist: tubakainfo.ee ja venekeelsed koopiad jäid välja.
+- ~~Vanglast vabanemine~~ (sees alates v79, vt järeltäiendus). Töötukassa: omaniku otsus, kas küsida neilt luba või andmeid.
+- Venekeelsed koopiad: omanik 11.10.2026 „seda ka pigem ei pane“; ei lisata. tubakainfo.ee on endiselt tema otsustada ja jäi välja.
 - ~~Mudeliga mõõtmata: kas vastused uusi lehti kasutavad.~~ Mõõdetud 11.10 (osa „Tasuline vastuste kontroll“).

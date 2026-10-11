@@ -16,9 +16,9 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | taastatud_allikad | 0 | 22 | Serveri vanast indeksist taastatud tekst. Enne importi võrrelda põhipakettidega. |
 
 <!-- corpus-state:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
-## RAG-i seis: mis on serveris (korpus v78)
+## RAG-i seis: mis on serveris (korpus v79)
 
-Seis 11.10.2026: serveris töötav RAG (korpus **v78**, indeks `98359144`) sisaldab **9 602 dokumenti** (89 970 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
+Seis 11.10.2026: serveris töötav RAG (korpus **v79**, indeks `2c886587`) sisaldab **9 641 dokumenti** (90 388 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
 
 | Mis on RAG-is | Dokumente | Kus on loend |
 |---|---:|---|
@@ -28,12 +28,12 @@ Seis 11.10.2026: serveris töötav RAG (korpus **v78**, indeks `98359144`) sisal
 | Ajakirja Sotsiaaltöö artiklid | 892 | jaotis „Sisufailid“ |
 | Õigusaktid | 594 | jaotis „Sisufailid“ |
 | Juhendid, infomaterjalid ja uuringud | 429 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
-| Ametlikud juhislehed (ametite veebilehed) | 911 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
+| Ametlikud juhislehed (ametite veebilehed) | 950 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
 | Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) | 848 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Hooldekodude kohamaksumus omavalitsuste kaupa | 79 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müügi- ja üüripunktid | 93 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müüjate lehed | 51 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
-| **Kokku** | **9602** | |
+| **Kokku** | **9641** | |
 
 <details><summary>Tehniline jaotus arendajale: kus allikafailid asuvad</summary>
 
@@ -47,7 +47,7 @@ Dokumentide arvud ei võrdu ülal olevate failide arvudega: üks fail võib anda
 | `veebilehed` | 361 | web_page 360, research_report 1 |
 | `juhendid_ja_uuringud` | 171 | information_material 81, research_report 46, official_guideline 38, policy_analysis 6 |
 
-Koodihoidlas (GitHub) ei ole 3086 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
+Koodihoidlas (GitHub) ei ole 3125 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
 
 | Allikas | Dokumente | Millest tehakse | Miks ei ole koodihoidlas |
 |---|---:|---|---|
@@ -56,7 +56,7 @@ Koodihoidlas (GitHub) ei ole 3086 dokumendi allikafaile; need on korpuse hoidlas
 | Abivahendite müügi- ja üüripunktide lehed | 93 | Sotsiaalkindlustusameti kaarditabelist skriptiga `scripts/rag-v2-assistive-points.mjs`, iga omavalitsuse kohta üks leht (ADR-096) | punktide telefoninumbrid; leht tehakse tabelist uuesti |
 | Abivahendite müüjate lehed | 51 (18 väljaandjat) | nimekiri `register/web_pages_vendors.json`, korjaja `scripts/rag-v2-web-pages.mjs` (ADR-095) | ettevõtete enda tekstid ja telefoninumbrid |
 | Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) | 848 (54 väljaandjat) | nimekirjad `register/web_pages_organisations.json` ja `register/web_pages_associations.json` ning nimekirjade `register/web_pages_coverage_1.json` ja `_2.json` organisatsioonid, korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-095, ADR-137, ADR-140) | organisatsioonide enda tekstid |
-| Asutuste juhislehed, valitud reegliga | 551 (10 väljaandjat) | nimekirjad `register/web_pages_coverage_1.json` ja `register/web_pages_coverage_2.json`, korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-137) | valik võtab lehest välja isikut nimetavad lõigud; repos olevate lehtede igakuine uuendus asendaks sellise koopia lugeja omaga |
+| Asutuste juhislehed, valitud reegliga | 590 (11 väljaandjat) | nimekirjad `register/web_pages_coverage_1.json` ja `register/web_pages_coverage_2.json`, korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-137) | valik võtab lehest välja isikut nimetavad lõigud; repos olevate lehtede igakuine uuendus asendaks sellise koopia lugeja omaga |
 | Uuringud ja juhendid väljaandja ametlikult aadressilt | 257 (30 väljaandjat) | asutuste veebilehtede uuringute ja juhendite loenditest ning ajakirja Sotsiaaltöö uudiskirjas viidatud dokumentidest (`register/newsletter_documents.json`); iga fail on alla laaditud väljaandja ametlikult aadressilt | suured failid; allikas on ametlik aadress |
 
 Koodihoidla allikafailid, mida RAG-is ei ole (61):
@@ -2357,7 +2357,7 @@ Koodihoidla allikafailid, mida RAG-is ei ole (61):
 <!-- corpus-outside:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
 ## RAG-is olevad lehed ja kontaktid
 
-Serveris töötav RAG, korpus v78, 11.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
+Serveris töötav RAG, korpus v79, 11.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
 
 ### Hooldekodude kohamaksumuse lehed (79)
 
@@ -3450,7 +3450,7 @@ Serveris töötav RAG, korpus v78, 11.10.2026. Siin on loend sellest, mida jaoti
 | Võrumaa Puuetega Inimeste Koda | PIK ringid | <https://www.vorukoda.ee/tegevused/pik-ringid> |
 | Võrumaa Puuetega Inimeste Koda | TASUTA ÕIGUSABI ERIVAJADUSTEGA INIMESTELE | <https://www.vorukoda.ee/tasuta-oigusabi-erivajadustega-inimestele> |
 
-### Asutuste juhislehed, valitud reegliga (551)
+### Asutuste juhislehed, valitud reegliga (590)
 
 | Väljaandja | Pealkiri | Aadress |
 |---|---|---|
@@ -4005,6 +4005,45 @@ Serveris töötav RAG, korpus v78, 11.10.2026. Siin on loend sellest, mida jaoti
 | Tööinspektsioon | Välismaise tööandja juurde tööle minek | <https://www.tooelu.ee/et/47/valismaise-tooandja-juurde-toole-minek> |
 | Tööinspektsioon | Väljaspoolt Euroopa Liitu Eestisse | <https://www.tooelu.ee/et/42/valjaspoolt-euroopa-liitu-eestisse> |
 | Tööinspektsioon | Ümbrikupalk | <https://www.tooelu.ee/et/20/umbrikupalk> |
+| Vanglateenistus | Avavangla | <https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/vabanemiseks-valmistumine/mis-avavangla> |
+| Vanglateenistus | Elektrooniline valve | <https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/kriminaalhooldus/elektrooniline-valve> |
+| Vanglateenistus | Ettevalmistused vabanemiseks | <https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/vabanemiseks-valmistumine/ettevalmistused-vabanemiseks> |
+| Vanglateenistus | Helistamine | <https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/koned-ja-kokkusaamised-kinnipeetavaga/telefonikoned> |
+| Vanglateenistus | Huvitegevused vanglas | <https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/eneseteostus-vanglas/huvitegevused-vanglas> |
+| Vanglateenistus | Igapäevaelu vanglas | <https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/vanglas-elamine/igapaevaelu-vanglas> |
+| Vanglateenistus | Kahjumaksed kannatanule | <https://vanglateenistus.ee/abiks-kannatanule/praktiline-nou/kahjumaksed-kannatanule> |
+| Vanglateenistus | Kinnipeetava kaebeõigus | <https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/kinnipeetava-oigused/kinnipeetava-kaebeoigus> |
+| Vanglateenistus | Kirja saatmine | <https://vanglateenistus.ee/karistuse-kandmine-vanglas/suhtlemine-kinnipeetavaga/kirjavahetus-ja-pakid> |
+| Vanglateenistus | Kohtumine advokaadi, notari või esindajaga | <https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/kinnipeetava-oigused/kohtumine-advokaadi-notari-voi-esindajaga> |
+| Vanglateenistus | Kui karistust kandva inimese käitumine teeb muret | <https://vanglateenistus.ee/abiks-kannatanule/praktiline-nou/kui-karistust-kandva-inimese-kaitumine-teeb-muret> |
+| Vanglateenistus | Kui kinnipeetav vabaneb | <https://vanglateenistus.ee/abiks-kannatanule/karistuse-kandmine/kui-kinnipeetav-vabaneb> |
+| Vanglateenistus | Kui lähedane on kriminaalhooldusalune | <https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/vangistus-lahedase-seisukohast/kui-lahedane-kriminaalhooldusalune> |
+| Vanglateenistus | Kui lähedane on vanglas | <https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/vangistus-lahedase-seisukohast/kui-lahedane-vanglas> |
+| Vanglateenistus | Kuidas lapsega rääkida | <https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/vangistus-lahedase-seisukohast/kuidas-raakida-lapsega-vangistusest> |
+| Vanglateenistus | Kust saavad lähedased infot | <https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/vangistus-lahedase-seisukohast/kust-saavad-lahedased-infot> |
+| Vanglateenistus | Lapsevanema vangistus | <https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/vangistus-lahedase-seisukohast/lapsevanema-vangistus> |
+| Vanglateenistus | Lubatud ja keelatud esemed vanglas | <https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/vanglas-elamine/lubatud-ja-keelatud-esemed-vanglas> |
+| Vanglateenistus | Lühiajaline kokkusaamine | <https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/koned-ja-kokkusaamised-kinnipeetavaga/luhiajaline-kokkusaamine> |
+| Vanglateenistus | Lühiajaline väljasõit | <https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/koned-ja-kokkusaamised-kinnipeetavaga/luhiajaline-valjasoit> |
+| Vanglateenistus | Milles seisneb karistuse kandmine | <https://vanglateenistus.ee/abiks-kannatanule/karistuse-kandmine/milles-seisneb-karistuse-kandmine> |
+| Vanglateenistus | Mis on kriminaalhooldus? | <https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/kriminaalhooldus/mis-kriminaalhooldus> |
+| Vanglateenistus | Paki saatmine | <https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/saadetised-kinnipeetavale/paki-saatmine> |
+| Vanglateenistus | Pikaajaline kokkusaamine | <https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/koned-ja-kokkusaamised-kinnipeetavaga/pikaajaline-kokkusaamine> |
+| Vanglateenistus | Raha saatmine | <https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/saadetised-kinnipeetavale/raha-saatmine> |
+| Vanglateenistus | Riskihindamine ja hoolduskava | <https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/kriminaalhooldus/riskihindamine-ja-hoolduskava> |
+| Vanglateenistus | Riskihindamine ja individuaalne täitmiskava | <https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/vanglas-elamine/riskihindamine-ja-individuaalne-taitmiskava> |
+| Vanglateenistus | Tervishoiuteenused vanglas | <https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/vanglas-elamine/tervishoiuteenused-vanglas> |
+| Vanglateenistus | Tingimisi ennetähtaegne vabastamine | <https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/vabanemiseks-valmistumine/ennetahtaegne-vabanemine> |
+| Vanglateenistus | Turvalise koostöö raamistik (TUKO) | <https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/kriminaalhooldus/turvalise-koostoo-raamistik> |
+| Vanglateenistus | Töötamine vanglas | <https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/eneseteostus-vanglas/tootamine-vanglas> |
+| Vanglateenistus | Vabanemise teekond | <https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/vabanemiseks-valmistumine/vabanemise-teekond> |
+| Vanglateenistus | Vabatahtlike töö vanglas | <https://vanglateenistus.ee/koostoopartnerile-ja-vabatahtlikule/uldkasulik-too-ja-vabatahtlik-too/vabatahtlike-too-vanglas> |
+| Vanglateenistus | Vangistuse etapid | <https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/vanglas-elamine/vangistuse-etapid> |
+| Vanglateenistus | Vangistuseks valmistumine | <https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/vanglas-elamine/vangistuseks-valmistumine> |
+| Vanglateenistus | Videokohtumine | <https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/koned-ja-kokkusaamised-kinnipeetavaga/videokohtumised> |
+| Vanglateenistus | Õppimine vanglas | <https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/eneseteostus-vanglas/oppimine-vanglas> |
+| Vanglateenistus | Üldkasulik töö | <https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/kriminaalhooldus/uldkasulik-too> |
+| Vanglateenistus | Üldkasuliku töö partnerile | <https://vanglateenistus.ee/koostoopartnerile-ja-vabatahtlikule/uldkasulik-too-ja-vabatahtlik-too/uldkasuliku-too-partnerile> |
 
 ### Uuringud ja juhendid väljaandja ametlikult aadressilt (257)
 
