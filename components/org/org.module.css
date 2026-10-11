@@ -129,7 +129,8 @@
   min-width: 0;
   display: flex;
   flex-wrap: wrap;
-  align-items: start;
+  /* Kui üks silt murdub kahele reale, jäävad väljad ikka kohakuti. */
+  align-items: end;
   gap: 0.65rem 1rem;
 }
 .pair > * {

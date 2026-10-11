@@ -162,7 +162,7 @@ test('sammude seis, kokkuvõte ja link', () => {
 });
 
 test('tekstid on kolmes keeles olemas ja uutes sõnades ei ole mõttekriipsu ega sirgeid jutumärke', () => {
-  const own = ['invite_person', 'revoke_named', 'revoke_confirm', 'keep', 'revoke_note', 'decline_note', 'first_name', 'last_name', 'name', 'seat_question', 'role_question', 'role_note',
+  const own = ['invite_person', 'revoke_named', 'revoke_confirm', 'keep', 'revoke_note', 'decline_note', 'name', 'seat_question', 'role_question', 'role_note',
     'unit_question', 'no_unit', 'unit_needed', 'unit_optional', 'units_none', 'need_email', 'need_unit', 'to_who', 'to_unit', 'send_lead', 'make', 'making', 'link_made', 'link_copy',
     'link_copied', 'steps_label'];
   const old = ['heading', 'intro', 'email', 'unit', 'revoke', 'empty', 'linkHeading', 'linkHint', 'nameHint'];

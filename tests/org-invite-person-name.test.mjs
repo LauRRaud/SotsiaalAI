@@ -9,6 +9,7 @@ import fs from "node:fs";
 import { acceptInvite, createInvite, declineInvite, revokeInvite } from "../lib/org/inviteService.js";
 import { createInviteToken, toInvitePreview } from "../lib/org/invites.js";
 import { PERSON_NAME_MAX, cleanPersonName, hasPersonName } from "../lib/org/personName.js";
+import { EMPTY_INVITE, inviteProblem, nameHalf } from "../components/org/invites/inviteRules.js";
 
 const read = (path) => fs.readFileSync(new URL(path, import.meta.url), "utf8");
 
@@ -164,7 +165,15 @@ test("andmebaasi kontroll, vorm ja tekstid", () => {
   const form = read("../components/org/OrgInvitesClient.jsx");
   assert.match(form, /firstName: firstName\.trim\(\) \|\| null/);
   assert.match(form, /lastName: lastName\.trim\(\) \|\| null/);
-  assert.match(form, /disabled=\{busy \|\| \(templateNeedsUnit && !primaryUnitId\) \|\| nameHalf\}/, "pool nime ei lähe teele");
+  /* Pool nime ei lähe teele: reegel ütleb, mis on puudu, ja leht küsib reeglilt enne saatmist. */
+  const half = { ...EMPTY_INVITE, email: "mari@example.test", firstName: "Mari", lastName: "  " };
+  assert.equal(nameHalf(half), true);
+  assert.equal(inviteProblem(half)?.key, "org.errors.invite_name_incomplete", "pool nime ei lähe teele");
+  assert.equal(nameHalf({ ...half, lastName: "Maasikas" }), false);
+  assert.equal(nameHalf({ ...half, firstName: "" }), false, "nimeta kutse on lubatud");
+  assert.match(form, /const problem = inviteProblem\(live\.current\);\s+if \(problem\) \{[\s\S]{0,200}?return;/, "leht ei saada kutset, kui reegel leiab puuduse");
+  const views = read("../components/org/invites/InvitesViews.jsx");
+  for (const key of ["firstName", "lastName"]) assert.ok(views.includes(`t("org.invites.${key}")`), key);
   assert.match(read("../components/org/OrgJoinClient.jsx"), /t\("org\.invites\.previewName"/);
 
   for (const locale of ["et", "en", "ru"]) {

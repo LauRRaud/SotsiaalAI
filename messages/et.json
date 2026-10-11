@@ -12044,8 +12044,6 @@
       "keep": "Jäta alles",
       "revoke_note": "Kutse link lakkab kohe kehtimast. Uuesti kutsumiseks tuleb luua uus kutse.",
       "decline_note": "Kirjutatu kustub ja kutset ei looda.",
-      "first_name": "Eesnimi",
-      "last_name": "Perekonnanimi",
       "name": "Nimi",
       "seat_question": "Mis kohale teda kutsutakse?",
       "role_question": "Mis roll tal organisatsioonis on?",

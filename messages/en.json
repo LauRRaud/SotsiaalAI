@@ -12044,8 +12044,6 @@
       "keep": "Keep it",
       "revoke_note": "The invitation link stops working at once. To invite again you need a new invitation.",
       "decline_note": "What you wrote is discarded and no invitation is created.",
-      "first_name": "First name",
-      "last_name": "Last name",
       "name": "Name",
       "seat_question": "Which seat are they invited to?",
       "role_question": "What is their role in the organisation?",

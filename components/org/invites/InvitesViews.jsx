@@ -152,16 +152,16 @@ export function WhoView({ t, form, onField, fieldRef, notice, decline, onNext })
         </label>
         <div className={shared.pair}>
           <label className={shared.line} data-size="sm">
-            <span className={shared.fieldLabel}>{t("org.invites.first_name")}</span>
+            <span className={shared.fieldLabel}>{t("org.invites.firstName")}</span>
             <Input className={shared.input} value={form.firstName} maxLength={PERSON_NAME_MAX} autoComplete="off" onChange={(event) => onField("firstName", event.target.value)} onKeyDown={onEnter(onNext)} />
           </label>
           <label className={shared.line} data-size="sm">
-            <span className={shared.fieldLabel}>{t("org.invites.last_name")}</span>
+            <span className={shared.fieldLabel}>{t("org.invites.lastName")}</span>
             <Input className={shared.input} value={form.lastName} maxLength={PERSON_NAME_MAX} autoComplete="off" onChange={(event) => onField("lastName", event.target.value)} onKeyDown={onEnter(onNext)} />
           </label>
         </div>
         <label className={shared.line}>
-          <span className={shared.fieldLabel}>{t("org.join.job_title")}</span>
+          <span className={shared.fieldLabel}>{t("org.invites.jobTitle")}</span>
           <Input className={shared.input} value={form.jobTitle} maxLength={JOB_TITLE_LIMIT} autoComplete="off" onChange={(event) => onField("jobTitle", event.target.value)} onKeyDown={onEnter(onNext)} />
         </label>
       </div>
