@@ -40,7 +40,10 @@ test('iga koduteenuse leht joonistab vaate, mis kannab organisatsiooni kesta', (
     /* Iga `return (` selles failis, mis joonistab lehe (`hc-shell`), on kesta sees. */
     const shells = source.match(/<section className="hc-shell">/g) || [];
     const parts = source.match(/<OrgPart context=\{context\} part="home_care"/g) || [];
-    assert.ok(shells.length > 0 && shells.length === parts.length, `${view}: lehti ${shells.length}, kesti ${parts.length}`);
+    /* Avaleht on laud: laua joonistab oma vaade (ilma `hc-shell`-ita) ja avalehe vaated
+       käivad kõik ühe kesta kaudu, seega on kesti seal üks rohkem kui vana kihi lehti. */
+    const desk = view === 'HomeCareHome' ? 1 : 0;
+    assert.ok(shells.length > 0 && shells.length + desk === parts.length, `${view}: lehti ${shells.length}, kesti ${parts.length}`);
     /* Lehe pealkiri (h1) tuleb kestast; vaade ise teist ei lisa. */
     assert.ok(!/<h1[\s>]/.test(source), `${view}: h1`);
   }

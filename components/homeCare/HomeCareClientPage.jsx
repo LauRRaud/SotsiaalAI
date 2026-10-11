@@ -94,7 +94,6 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
   const [confirmDeath, setConfirmDeath] = useState(false);
 
   const base = `${homeCareBase(organizationId)}/kliendid/${clientId}`;
-  const backHref = `/org/${organizationId}/koduteenus`;
 
   /* Kiirtee jaotise juurde. Leht keritakse paneeli sees, seega aadressi `#` ei aita: jaotis
      tuuakse nähtavale ja fookus läheb selle pealkirjale, et ekraanilugeja ja klaviatuur jõuaksid
@@ -276,9 +275,6 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
     return (
       <OrgPart context={context} part="home_care" partLabel={t("home_care.client.page_name")}>
       <section className="hc-shell">
-        <Link className="hc-back" href={backHref}>
-          {t("home_care.client.back")}
-        </Link>
         <HomeCareReasonForm
           organizationId={organizationId}
           clientId={clientId}
@@ -294,9 +290,6 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
     return (
       <OrgPart context={context} part="home_care" partLabel={t("home_care.client.page_name")}>
       <section className="hc-shell">
-        <Link className="hc-back" href={backHref}>
-          {t("home_care.client.back")}
-        </Link>
         <p className="hc-error" role="alert">
           {page.error || t("home_care.errors.open_failed")}
         </p>
@@ -332,9 +325,6 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
     <OrgPart context={context} part="home_care" partLabel={t("home_care.client.page_name")}>
     <HomeCareAccessProvider onReasonRequired={() => setLapsed(true)}>
     <section className="hc-shell">
-      <Link className="hc-back" href={backHref}>
-        {t("home_care.client.back")}
-      </Link>
 
       {lapsed ? (
         <HomeCareReasonForm

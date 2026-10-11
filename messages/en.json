@@ -3164,7 +3164,9 @@
         },
         "assistant": {
           "title": "Clarify with the assistant",
-          "lead": "The assistant asks for details and helps find a suitable contact. You may skip this step."
+          "lead": "The assistant asks for details and helps find a suitable contact. You may skip this step.",
+          "notes": "The assistant's notes",
+          "tags": "Keywords"
         },
         "review": {
           "all_answers": "All answers",
@@ -13906,8 +13908,6 @@
       "description": "Clients, diary and team"
     },
     "home": {
-      "intro_worker": "Your clients. Open a client to see the agreements and write in the diary.",
-      "intro_coordinator": "All clients. The overview shows new entries, unread handover notes and open incidents.",
       "my_clients": "My clients",
       "all_clients": "Clients",
       "empty_worker": "You are not on any client's team yet. The care coordinator adds you to a client.",
@@ -13918,7 +13918,6 @@
       "search_hint": "The search shows only the name. Outside your own team you are asked for a reason before the page opens.",
       "needs_reason": "opens with a reason",
       "add_client": "Add client",
-      "overview_link": "Coordinator overview",
       "show_ended": "Show ended",
       "show_active": "Show active",
       "empty_ended": "There are no ended clients.",
@@ -13955,7 +13954,6 @@
       }
     },
     "client": {
-      "back": "Back to clients",
       "name": "Name",
       "internal_code": "Code",
       "internal_code_hint": "Your organisation's internal code, for example the same name form you use in your current tool.",
@@ -14155,7 +14153,6 @@
     },
     "overview": {
       "title": "Coordinator overview",
-      "back": "Back to clients",
       "recent_title": "Entries since yesterday",
       "recent_empty": "There are no new entries.",
       "recent_more": "The latest 100 entries are shown.",
@@ -14455,7 +14452,6 @@
       "title": "Incident register",
       "intro": "All incidents, complaints and thanks in your area of responsibility. Open ones come first.",
       "link": "Incident register",
-      "back": "Back to clients",
       "tab_active": "Open ({count})",
       "tab_closed": "Closed ({count})",
       "tab_all": "All",
@@ -14486,7 +14482,6 @@
     "chronology": {
       "title": "Client chronology",
       "link": "Compile a chronology",
-      "back": "Back to the client page",
       "intro": "Choose a period and review the entries. Only the entries you select go into the document, and you can remove third-party details from the text. The diary entries are not changed.",
       "period_title": "Period",
       "load": "Show entries",
@@ -14531,7 +14526,6 @@
     "releases": {
       "title": "Release log",
       "link": "Releases",
-      "back": "Back to clients",
       "intro": "Every compiled chronology: for whom, on what basis and who compiled it. The official register is the organisation's document management; this list is a work log.",
       "empty": "There are no releases yet.",
       "period": "Period: {from} – {to}",
@@ -14794,7 +14788,6 @@
       "none": "No care plan is in force yet.",
       "create_link": "Draw up a care plan",
       "edit_link": "Change the care plan",
-      "back": "Back to the client's page",
       "editor_intro": "You are changing a draft. The plan in force stays the same until you put the draft into force; the earlier plan then stays in the list of earlier plans.",
       "active_title": "Plan in force",
       "none_yet": "This client has no care plan in force yet.",
@@ -15221,7 +15214,6 @@
     },
     "absences": {
       "link": "Absences",
-      "back": "Back to the day plan",
       "title": "Absences",
       "intro": "Mark when a care worker is not at work. The day plan then brings forward the visits whose worker is absent and does not offer that worker as a replacement. The reason is not asked here.",
       "list_title": "Marked absences",
@@ -16261,6 +16253,39 @@
       "limits_title": "What is not here",
       "limits_money": "Client money is a record, not a payment. Card details and PIN codes are never written here.",
       "limits_official": "The official procedure takes place in STAR. Here is the organisation's own work: the diary, the plan and the agreements."
+    },
+    "desk": {
+      "groups": {
+        "daily": "Every day",
+        "people": "Clients and workers",
+        "month": "Month and exports"
+      },
+      "names": {
+        "overview": "Overview",
+        "incidents": "Incidents",
+        "name": "My name"
+      },
+      "lines": {
+        "today": "Your visits today",
+        "overview": "New since yesterday",
+        "day": "Today's visits and workers",
+        "week": "Visits by worker",
+        "absences": "Who is away and when",
+        "deadlines": "Waiting for your decision",
+        "clients": "Find, open or add a client",
+        "my_clients": "Open a client or search by name",
+        "incidents": "Incidents and complaints",
+        "keys": "Who holds each key",
+        "crisis": "Who needs help in a crisis",
+        "workers": "Trainings and checks",
+        "refer": "Where to send a person on",
+        "month": "Time provided, month lock",
+        "trips": "Work trips and kilometres",
+        "calls": "Who calls and about what",
+        "releases": "Chronologies made",
+        "activities": "Activities catalogue",
+        "export": "All data as one file"
+      }
     }
   },
   "stage": {

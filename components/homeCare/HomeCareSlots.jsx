@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useId, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
@@ -257,14 +256,11 @@ export default function HomeCareSlots({ context, initial }) {
   ) : null;
 
   return (
-    <OrgPart context={context} part="home_care" partLabel={t("home_care.slots.title")}>
+    <OrgPart context={context} part="home_care" partLabel={t("home_care.slots.title")} up={{ label: t("home_care.client.page_name"), href: clientHref }}>
     <section className="hc-shell">
       <HomeCareOutbox ownerId={context.membership?.id || ""} timeZone={timeZone} />
 
       <div className="hc-head">
-        <Link className="hc-back" href={clientHref} prefetch={false}>
-          {t("home_care.plan.back")}
-        </Link>
         <h2 className="hc-title">{client.displayName}</h2>
         <p className="hc-sub">{t("home_care.slots.editor_intro")}</p>
       </div>

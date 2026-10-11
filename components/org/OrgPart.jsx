@@ -14,11 +14,19 @@
  * sama võte mis Teekonna ja Juhtumitöö laual (`StepRail parts`). Telefonis
  * kiirmenüüs nimesid ei ole; seal ütleb rida paneeli ülaservas, kus inimene on.
  *
+ * ÜKS TASE ÜLES (omanik 11.10, koduteenuse kavand, variant A). Nelja ruuduga
+ * nupp viib alati ühe taseme võrra üles. Osal, millel on oma laud (`PART_DESK`:
+ * koduteenus), viib see alalehel osa lauale ja kannab osa nime; osa laual endal
+ * viib see organisatsiooni lauale nagu mujal. Veel sügavamal olev leht ütleb oma
+ * taseme ise (`up`): kliendi alaleht viib kliendi lehele.
+ *
  * `part`: osa võti (`org.nav.<võti>`) või tühi, kui see leht ON laud.
  * `partLabel`: osa nimi, kui see ei tule võtmest (nt laua vaade „Minu koht" või
  *   koduteenuse alaleht „Päevaplaan": osa on `home_care`, nimi on alalehe oma).
  *   Kiirmenüü näitab nimest umbes 20 tähte; pikem nimi lõigatakse.
- * `onDesk`: mida nelja ruuduga nupp teeb; vaikimisi avab laua marsruudi.
+ * `onDesk`: mida nelja ruuduga nupp teeb; vaikimisi avab ühe taseme võrra
+ *   kõrgema lehe marsruudi.
+ * `up`: `{ label, href }`, kui üks tase üles ei ole organisatsiooni ega osa laud.
  * `compact`: nelja ruuduga nupp ilma nimeta (nimi jääb nupu sildiks). Kasutus:
  *   osa sees käib sammudega töö ja sammud on kiirmenüüs kõrval; koos nimega
  *   läheks kiirmenüü liiga pikaks (omanik 09.10).
@@ -39,17 +47,23 @@ import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 
 import shared from "./org.module.css";
 
+/* Osa, millel on oma laud: osa võti → laua aadressi lõpp. */
+const PART_DESK = Object.freeze({ home_care: "koduteenus" });
+
 /* Osa võti → info võti failis lib/dashboardInfoContent.js. */
 const PART_INFO = Object.freeze({ home_care: "home_care" });
 
-export default function OrgPart({ context, part = "", partLabel = "", onDesk, compact = false, children }) {
+export default function OrgPart({ context, part = "", partLabel = "", onDesk, compact = false, up = null, children }) {
   const { t } = useI18n();
   const router = useRouter();
   const organization = context?.organization || {};
   const name = organization.displayName || t("org.home.invites.unnamed");
   const label = partLabel || (part ? t(`org.nav.${part}`) : "");
   const open = Boolean(label);
-  const toDesk = onDesk || (() => router.push(`/org/${organization.id}`));
+  /* Alaleht osal, millel on oma laud: üks tase üles on osa laud. */
+  const level = up || (partLabel && PART_DESK[part] ? { label: t(`org.nav.${part}`), href: `/org/${organization.id}/${PART_DESK[part]}` } : null);
+  const upName = level ? level.label : name;
+  const toDesk = onDesk || (() => router.push(level ? level.href : `/org/${organization.id}`));
   /* Tühi võti ei registreeri midagi: teiste osade lehed jäävad nii, nagu on. */
   usePanelInfoSlot({ infoId: PART_INFO[part] || "" });
 
@@ -64,14 +78,14 @@ export default function OrgPart({ context, part = "", partLabel = "", onDesk, co
         wide={!open}
         onOverview={toDesk}
         label={t("org.desk.rail_label")}
-        allLabel={name}
+        allLabel={upName}
         allText={compact ? "" : undefined}
         stepLabel={() => label}
       />
       <div className={shared.page}>
         {open ? (
           <p className={shared.kicker}>
-            {name} · {label}
+            {upName} · {label}
           </p>
         ) : null}
         {children}

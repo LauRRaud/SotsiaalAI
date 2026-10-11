@@ -77,9 +77,6 @@ export default function HomeCareOverview({ context, overview }) {
       <HomeCareOutbox ownerId={context.membership?.id || ""} timeZone={timeZone} />
 
       <div className="hc-head">
-        <Link className="hc-back" href={`/org/${organizationId}/koduteenus`}>
-          {t("home_care.overview.back")}
-        </Link>
       </div>
 
       <section className="hc-section">

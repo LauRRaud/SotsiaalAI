@@ -62,9 +62,6 @@ export default function HomeCareCrisisList({ context, list }) {
     <OrgPart context={context} part="home_care" partLabel={t("home_care.crisis.list_title")}>
     <section className="hc-shell">
       <div className="hc-head">
-        <Link className="hc-back" href={`/org/${organizationId}/koduteenus`}>
-          {t("home_care.client.back")}
-        </Link>
         <p className="hc-sub">{t("home_care.crisis.list_intro", { count: list.clientCount, date: planDayLabel(list.today) })}</p>
         {list.truncated ? <p className="hc-notice">{t("home_care.crisis.truncated", { count: list.clientCount })}</p> : null}
         <div className="hc-row">
