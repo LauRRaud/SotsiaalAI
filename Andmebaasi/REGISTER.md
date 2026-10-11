@@ -16,9 +16,9 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | taastatud_allikad | 0 | 22 | Serveri vanast indeksist taastatud tekst. Enne importi võrrelda põhipakettidega. |
 
 <!-- corpus-state:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
-## RAG-i seis: mis on serveris (korpus v83)
+## RAG-i seis: mis on serveris (korpus v84)
 
-Seis 11.10.2026: serveris töötav RAG (korpus **v83**, indeks `5288f882`) sisaldab **10 248 dokumenti** (91 828 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
+Seis 11.10.2026: serveris töötav RAG (korpus **v84**, indeks `74de5ca3`) sisaldab **10 569 dokumenti** (93 401 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
 
 | Mis on RAG-is | Dokumente | Kus on loend |
 |---|---:|---|
@@ -28,12 +28,12 @@ Seis 11.10.2026: serveris töötav RAG (korpus **v83**, indeks `5288f882`) sisal
 | Ajakirja Sotsiaaltöö artiklid | 892 | jaotis „Sisufailid“ |
 | Õigusaktid | 594 | jaotis „Sisufailid“ |
 | Juhendid, infomaterjalid ja uuringud | 436 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
-| Ametlikud juhislehed (ametite veebilehed) | 1456 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
-| Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) | 942 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
+| Ametlikud juhislehed (ametite veebilehed) | 1587 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
+| Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) | 1132 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Hooldekodude kohamaksumus omavalitsuste kaupa | 79 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müügi- ja üüripunktid | 93 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müüjate lehed | 51 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
-| **Kokku** | **10248** | |
+| **Kokku** | **10569** | |
 
 <details><summary>Tehniline jaotus arendajale: kus allikafailid asuvad</summary>
 
@@ -47,7 +47,7 @@ Dokumentide arvud ei võrdu ülal olevate failide arvudega: üks fail võib anda
 | `veebilehed` | 361 | web_page 360, research_report 1 |
 | `juhendid_ja_uuringud` | 171 | information_material 81, research_report 46, official_guideline 38, policy_analysis 6 |
 
-Koodihoidlas (GitHub) ei ole 3732 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
+Koodihoidlas (GitHub) ei ole 4053 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
 
 | Allikas | Dokumente | Millest tehakse | Miks ei ole koodihoidlas |
 |---|---:|---|---|
@@ -55,8 +55,8 @@ Koodihoidlas (GitHub) ei ole 3732 dokumendi allikafaile; need on korpuse hoidlas
 | Hooldekodude kohamaksumuse lehed | 79 | Sotsiaalkindlustusameti hinnaseire tabelist skriptiga `scripts/rag-v2-care-prices.mjs`, iga omavalitsuse kohta üks leht ja üks ülevaade (ADR-104) | hooldekodude telefoninumbrid; leht tehakse tabelist uuesti |
 | Abivahendite müügi- ja üüripunktide lehed | 93 | Sotsiaalkindlustusameti kaarditabelist skriptiga `scripts/rag-v2-assistive-points.mjs`, iga omavalitsuse kohta üks leht (ADR-096) | punktide telefoninumbrid; leht tehakse tabelist uuesti |
 | Abivahendite müüjate lehed | 51 (18 väljaandjat) | nimekiri `register/web_pages_vendors.json`, korjaja `scripts/rag-v2-web-pages.mjs` (ADR-095) | ettevõtete enda tekstid ja telefoninumbrid |
-| Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) | 942 (59 väljaandjat) | nimekirjad `register/web_pages_organisations.json`, `register/web_pages_associations.json` ja `register/web_pages_associations_2.json` ning nimekirjade `register/web_pages_coverage_1.json` ja `_2.json` organisatsioonid, korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-095, ADR-137, ADR-140) | organisatsioonide enda tekstid |
-| Asutuste juhislehed, valitud reegliga | 1096 (12 väljaandjat) | nimekirjad `register/web_pages_coverage_1.json`, `register/web_pages_coverage_2.json` ja `register/web_pages_coverage_3.json` (õigusabi lehe toimetatud artiklid), korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-137, ADR-143) | valik võtab lehest välja isikut nimetavad lõigud; repos olevate lehtede igakuine uuendus asendaks sellise koopia lugeja omaga |
+| Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) | 1132 (68 väljaandjat) | nimekirjad `register/web_pages_organisations.json`, `register/web_pages_associations.json` ja `register/web_pages_associations_2.json` ning nimekirjade `register/web_pages_coverage_1.json` ja `_2.json` organisatsioonid, korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-095, ADR-137, ADR-140) | organisatsioonide enda tekstid |
+| Asutuste juhislehed, valitud reegliga | 1227 (13 väljaandjat) | nimekirjad `register/web_pages_coverage_1.json`, `register/web_pages_coverage_2.json` ja `register/web_pages_coverage_3.json` (õigusabi lehe toimetatud artiklid), korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-137, ADR-143), ning `register/web_pages_tootukassa.json` (Töötukassa lehed 11.10.2026 brauserikorjest, ADR-146) | valik võtab lehest välja isikut nimetavad lõigud; repos olevate lehtede igakuine uuendus asendaks sellise koopia lugeja omaga |
 | Uuringud ja juhendid väljaandja ametlikult aadressilt | 264 (33 väljaandjat) | asutuste veebilehtede uuringute ja juhendite loenditest ning ajakirja Sotsiaaltöö uudiskirjas viidatud dokumentidest (`register/newsletter_documents.json`); iga fail on alla laaditud väljaandja ametlikult aadressilt | suured failid; allikas on ametlik aadress |
 
 Koodihoidla allikafailid, mida RAG-is ei ole (61):
@@ -2357,7 +2357,7 @@ Koodihoidla allikafailid, mida RAG-is ei ole (61):
 <!-- corpus-outside:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
 ## RAG-is olevad lehed ja kontaktid
 
-Serveris töötav RAG, korpus v83, 11.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
+Serveris töötav RAG, korpus v84, 11.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
 
 ### Hooldekodude kohamaksumuse lehed (79)
 
@@ -2597,7 +2597,7 @@ Serveris töötav RAG, korpus v83, 11.10.2026. Siin on loend sellest, mida jaoti
 | Tervise Abi | Kuulmisabivahendid, häiresüsteemid ja lisad | <https://terviseabi.ee/tootekategooria/kuulmisabivahendid/> |
 | Tervise Abi | Tallinna sotsiaalvalveteenus | <https://terviseabi.ee/teenused/sotsiaalvalveteenus> |
 
-### Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) (942)
+### Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) (1132)
 
 | Väljaandja | Pealkiri | Aadress |
 |---|---|---|
@@ -2762,6 +2762,92 @@ Serveris töötav RAG, korpus v83, 11.10.2026. Siin on loend sellest, mida jaoti
 | Eesti Hemofiiliaühing | Infomaterjalid | <https://www.hemofiilia.ee/meist/infomaterjalid> |
 | Eesti Hemofiiliaühing | Tegevused | <https://www.hemofiilia.ee/tegevused> |
 | Eesti Hemofiiliaühing | Veritsushäiretest | <https://www.hemofiilia.ee/meist/veritsushairetest> |
+| Eesti Inimõiguste Keskus | Eesti Inimõiguste Keskus | <https://humanrights.ee/tegevus/keskus/> |
+| Eesti Inimõiguste Keskus | Eesti Inimõiguste Keskus ja digitaalõigused | <https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/eesti-inimoiguste-keskus-ja-digitaaloigused/> |
+| Eesti Inimõiguste Keskus | 7 sammu mitmekesisuse ja kaasatuse arendamiseks | <https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/7-sammu-mitmekesisuse-vaartustamiseks/> |
+| Eesti Inimõiguste Keskus | Avaliku arvamuse uuring LGBT teemadel (2026) | <https://humanrights.ee/materjalid/avaliku-arvamuse-uuring-lgbt-teemadel-2026/> |
+| Eesti Inimõiguste Keskus | Diskrimineerimise keeld | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/diskrimineerimise-keeld/> |
+| Eesti Inimõiguste Keskus | Diskrimineerimise keeld rahvusvahelistes õigusaktides | <https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/diskrimineerimise-keeld-rahvusvahelistes-oigusaktides/> |
+| Eesti Inimõiguste Keskus | Ebaregulaarsed sisserändajad – küsimused ja vastused | <https://humanrights.ee/teemad/pagulased/ebaregulaarsed-sisserandajad/> |
+| Eesti Inimõiguste Keskus | Eessõna | <https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/eessona/> |
+| Eesti Inimõiguste Keskus | Eesti elanike hoiakud LGBT teemadel | <https://humanrights.ee/eesti-elanike-hoiakud-lgbt-teemadel/> |
+| Eesti Inimõiguste Keskus | Halduskius sõjaväeteenistuses osalemise tõlgendamisel | <https://humanrights.ee/kaasused/halduskius-sojavaeteenistuses-osalemise-tolgendamisel/> |
+| Eesti Inimõiguste Keskus | Hea lugeja | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/hea-lugeja/> |
+| Eesti Inimõiguste Keskus | Iga klikk loeb, ka sinu andmeid! | <https://humanrights.ee/iga-klikk-loeb-ka-sinu-andmeid/> |
+| Eesti Inimõiguste Keskus | Infomaterjal vaenukõne ja -kuritegude kohta | <https://humanrights.ee/materjalid/materjal-vaenu-kohta/> |
+| Eesti Inimõiguste Keskus | Inimõigused ja inimõiguste alusväärtused Eesti koolis ja hariduspoliitikas | <https://humanrights.ee/materjalid/inimoigused-ja-inimoiguste-alusvaartused-eesti-koolis-ja-hariduspoliitikas/> |
+| Eesti Inimõiguste Keskus | Inimõigused, infoühiskond ja Eesti: esialgne kaardistus | <https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/> |
+| Eesti Inimõiguste Keskus | Inimõigusi edendava projekti või tegevuse kavandamise ja elluviimise juhend | <https://humanrights.ee/materjalid/inimoigushariduse-tegevuste-kavandamise-ja-elluviimise-juhend/> |
+| Eesti Inimõiguste Keskus | Inimõiguste hariduse meetodid noorsootöötajatele | <https://humanrights.ee/materjalid/inimoiguste-hariduse-meetodid-noorsootootajatele/> |
+| Eesti Inimõiguste Keskus | Inimõiguste kaitsjad | <https://humanrights.ee/teemad/inimoigused-eestis/inimoiguste-kaitsjad/> |
+| Eesti Inimõiguste Keskus | Isikuandmete kaitse | <https://humanrights.ee/tegevus/keskus/isikuandmete-kaitse/> |
+| Eesti Inimõiguste Keskus | Juhend “Seksuaalse ja soolise ahistamise ennetamine töökohal” | <https://humanrights.ee/materjalid/juhend-seksuaalse-ja-soolise-ahistamise-ennetamine-tookohal/> |
+| Eesti Inimõiguste Keskus | Kaardimäng seksuaalse ja soolise mitmekesisusega seotud mõistete kohta | <https://humanrights.ee/materjalid/kaardimang-seksuaalse-ja-soolise-mitmekesisusega-seotud-moistete-kohta/> |
+| Eesti Inimõiguste Keskus | Kes vastutab ja mille eest? | <https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/kes-vastutab-ja-mille-eest/> |
+| Eesti Inimõiguste Keskus | Kogunemisvabaduse piiramine avaliku võimu poolt | <https://humanrights.ee/kaasused/kogunemisvabaduse-piiramine-avaliku-voimu-poolt/> |
+| Eesti Inimõiguste Keskus | Kokkuvõte lihtsas keeles | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/lihtsas-keeles-kokkuvote/> |
+| Eesti Inimõiguste Keskus | Koolitused | <https://humanrights.ee/teemad/mitmekesisus-ja-kaasatus/koolitused/> |
+| Eesti Inimõiguste Keskus | Kuidas luua mitmekesisust ja erinevusi väärtustavat ning kaasavat töökeskkonda? | <https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/> |
+| Eesti Inimõiguste Keskus | Kuidas luua toetav ja turvaline töökeskkond eri kultuuritaustaga inimestele? | <https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/kuidas-luua-toetav-ja-turvaline-tookeskkond-eri-kultuuritaustaga-inimestele/> |
+| Eesti Inimõiguste Keskus | Kuidas luua toetav töökeskkond ATH-ga või autistlikule inimesele? | <https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/kuidas-luua-toetav-tookeskkond-ath-ga-voi-autistlikule-inimesele/> |
+| Eesti Inimõiguste Keskus | Kuidas mõõta mitmekesisust ja kaasatust? | <https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/kuidas-moota-mitmekesisust-ja-kaasatust/> |
+| Eesti Inimõiguste Keskus | Lahendused ja ideed teadlikkuse tõstmiseks | <https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/lahendused-ja-ideed-teadlikkuse-tostmiseks/> |
+| Eesti Inimõiguste Keskus | LGBT+ inimeste olukord | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/lgbt-inimeste-olukord/> |
+| Eesti Inimõiguste Keskus | LGBTI+ filmifestival Festheart | <https://humanrights.ee/kaasused/lgbti-filmifestival-festheart/> |
+| Eesti Inimõiguste Keskus | Materjalid | <https://humanrights.ee/materjalid/> |
+| Eesti Inimõiguste Keskus | Meedia ja vähemused | <https://humanrights.ee/materjalid/meedia-ja-vahemused/> |
+| Eesti Inimõiguste Keskus | Mida teha? | <https://humanrights.ee/teemad/vaen/mida-teha/> |
+| Eesti Inimõiguste Keskus | Miks on mitmekesisuse väärtustamine kasulik? | <https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/miks-on-mitmekesisuse-vaartustamine-kasulik/> |
+| Eesti Inimõiguste Keskus | Miks on vaja soolist palgalõhet mõõta ja vähendada? | <https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/miks-on-vaja-soolist-palgalohet-moota-ja-vahendada/> |
+| Eesti Inimõiguste Keskus | Mis edasi? | <https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/mis-edasi/> |
+| Eesti Inimõiguste Keskus | Mis on ligipääsetavus ja kuidas seda tagada? | <https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/mis-on-ligipaasetavus-ja-kuidas-seda-tagada/> |
+| Eesti Inimõiguste Keskus | Mis on mitmekesisus ja kaasatus? | <https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/mis-on-mitmekesisus-ja-kaasatus/> |
+| Eesti Inimõiguste Keskus | Mis on võrdne kohtlemine? | <https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/mis-on-vordne-kohtlemine/> |
+| Eesti Inimõiguste Keskus | Mitmekesisuse arendamise riskid | <https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/mitmekesisuse-riskid/> |
+| Eesti Inimõiguste Keskus | Mitmekesisuse kuu | <https://humanrights.ee/teemad/mitmekesisus-ja-kaasatus/mitmekesisuse-kuu/> |
+| Eesti Inimõiguste Keskus | Mitmekesisuse päeva tööriistakast | <https://humanrights.ee/materjalid/mitmekesisuse-paeva-tooriistakast/> |
+| Eesti Inimõiguste Keskus | Mitmekesisuse töökoha märgis | <https://humanrights.ee/materjalid/mitmekesisuse-tookoha-margis/> |
+| Eesti Inimõiguste Keskus | Nõustamine | <https://humanrights.ee/noustamine/> |
+| Eesti Inimõiguste Keskus | Olukord Eestis | <https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/olukord-eestis/> |
+| Eesti Inimõiguste Keskus | Olulised institutsioonid Eestis | <https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/olulised-institutsioonid-eestis/> |
+| Eesti Inimõiguste Keskus | Pagulaste ja varjupaigataotlejate õigused | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/pagulaste-ja-varjupaigataotlejate-oigused/> |
+| Eesti Inimõiguste Keskus | Pagulaste palkamine Eesti tööturul | <https://humanrights.ee/materjalid/pagulaste-palkamine-eesti-tooturul/> |
+| Eesti Inimõiguste Keskus | Perekonna taasühinemine | <https://humanrights.ee/kaasused/perekonna-taasuhinemine/> |
+| Eesti Inimõiguste Keskus | Piinamise, ebainimlikult või alandavalt kohtlemise ja karistamise keeld | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/piinamise-ebainimlikult-voi-alandavalt-kohtlemise-ja-karistamise-keeld/> |
+| Eesti Inimõiguste Keskus | Projekt SafeNet | <https://humanrights.ee/teemad/vaen/sotsiaalmeedia/> |
+| Eesti Inimõiguste Keskus | Puuetega inimeste olukord | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/puuetega-inimeste-olukord/> |
+| Eesti Inimõiguste Keskus | Põhiõigustele avalduva mõju hindamise kontrollnimekiri tehisintellektisüsteemide puhul | <https://humanrights.ee/materjalid/pohioigustele-avalduva-moju-hindamise-kontrollnimekiri-tehisintellektisusteemide-puhul/> |
+| Eesti Inimõiguste Keskus | Põimõppekursus “Mitmekesisus ja kaasatus” | <https://humanrights.ee/materjalid/poimoppekursus-mitmekesisus-ja-kaasatus/> |
+| Eesti Inimõiguste Keskus | Rahvusvähemused ja lõimumispoliitika | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/rahvusvahemused-ja-loimumispoliitika/> |
+| Eesti Inimõiguste Keskus | Saa teadmisi inimõiguste kohta eri teemade ja igapäevaste olukordade kaudu | <https://humanrights.ee/teemad/inimoigused-eestis/inimoiguste-e-giid/> |
+| Eesti Inimõiguste Keskus | Sissejuhatus | <https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/sissejuhatus/> |
+| Eesti Inimõiguste Keskus | Sooline võrdsus | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/sooline-vordsus/> |
+| Eesti Inimõiguste Keskus | Strateegiline hagelemine | <https://humanrights.ee/teemad/strateegiline-hagelemine/> |
+| Eesti Inimõiguste Keskus | Sõbraliku tööandja juhend | <https://humanrights.ee/materjalid/sobraliku-tooandja-juhend/> |
+| Eesti Inimõiguste Keskus | Sõnavabadus | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/sonavabadus/> |
+| Eesti Inimõiguste Keskus | Taustauuring TI kasutamise mõju kohta põhiõigustele (inglise keeles) | <https://humanrights.ee/materjalid/taustauuring-ti-kasutamise-moju-kohta-pohioigustele-inglise-keeles/> |
+| Eesti Inimõiguste Keskus | Teema 1: profileerimine ja riik | <https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/teema-1-profileerimine-ja-riik/> |
+| Eesti Inimõiguste Keskus | Teema 2: Isikuandmete kaitse üldmääruse (GDPR) rakendamine | <https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/teema-2-isikuandmete-kaitse-uldmaaruse-gdpr-rakendamine/> |
+| Eesti Inimõiguste Keskus | Teema 3: Väljendusvabadus internetis | <https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/teema-3-valjendusvabadus-internetis/> |
+| Eesti Inimõiguste Keskus | Teemad | <https://humanrights.ee/teemad/> |
+| Eesti Inimõiguste Keskus | Teemade kaardistus | <https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/teemade-kaardistus/> |
+| Eesti Inimõiguste Keskus | Tehisintellekt ja EL põhiõiguste harta (poliitikadokument) | <https://humanrights.ee/materjalid/poliitikadokument/> |
+| Eesti Inimõiguste Keskus | Tehisintellektisüsteemide arendamine ja põhiõigused: teadlikkuse tagamise, hindamise ja vastutuse hea tava | <https://humanrights.ee/materjalid/tehisintellektisusteemide-arendamine-ja-pohioigused-teadlikkuse-tagamise-hindamise-ja-vastutuse-hea-tava/> |
+| Eesti Inimõiguste Keskus | Turvaline ruum noorsootöös – põhimõtted ja soovitused noorsootöötajatele | <https://humanrights.ee/materjalid/turvaline-ruum-noorsootoos-pohimotted-ja-soovitused-noorsootootajatele/> |
+| Eesti Inimõiguste Keskus | Töö- ja pereelu ühitamise parimad praktikad | <https://humanrights.ee/materjalid/too-ja-pereelu-uhitamise-parimad-praktikad/> |
+| Eesti Inimõiguste Keskus | Usaldusväärne tööandja ennetab ahistamist ja loob turvalise töökeskkonna | <https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/usaldusvaarne-tooandja-ennetab-ahistamist-ja-loob-turvalise-tookeskkonna/> |
+| Eesti Inimõiguste Keskus | Uuring “Mitmekesisus ja kaasatus tööandjate pilgu läbi” | <https://humanrights.ee/materjalid/uuring-mitmekesisus-ja-kaasatus-tooandjate-pilgu-labi/> |
+| Eesti Inimõiguste Keskus | Vaenukõne ja vaenukuriteod | <https://humanrights.ee/teemad/vaen/vaenukone/> |
+| Eesti Inimõiguste Keskus | Varjupaigataotlejate ja pagulaste nõustamine | <https://humanrights.ee/teemad/pagulased/varjupaigataotlejate-noustamine/> |
+| Eesti Inimõiguste Keskus | Vene pagulaspere lapsendamise kaasus | <https://humanrights.ee/kaasused/pagulaspere-lapsendamise-kaasus/> |
+| Eesti Inimõiguste Keskus | Võitlus vaenu vastu | <https://humanrights.ee/teemad/vaen/> |
+| Eesti Inimõiguste Keskus | Võrdse kohtlemise käsiraamat | <https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/> |
+| Eesti Inimõiguste Keskus | Võrdse kohtlemise normid ja diskrimineerimise keeld Eesti seadustes | <https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/vordse-kohtlemise-normid-ja-diskrimineerimise-keeld-eesti-seadustes/> |
+| Eesti Inimõiguste Keskus | Võrdse kohtlemise võrgustik | <https://humanrights.ee/teemad/vordne-kohtlemine/vordse-kohtlemise-vorgustik/> |
+| Eesti Inimõiguste Keskus | Võrdse kohtlemise võrgustik | <https://humanrights.ee/teemad/inimoigused-eestis/vkv/> |
+| Eesti Inimõiguste Keskus | Võta ühendust | <https://humanrights.ee/tegevus/keskus/vota-uhendust/> |
+| Eesti Inimõiguste Keskus | Õigus perekonna- ja eraelu puutumatusele | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/oigus-perekonna-ja-eraelu-puutumatusele/> |
+| Eesti Inimõiguste Keskus | ÜRO inimõiguste ülevaatus | <https://humanrights.ee/uro-inimoiguste-ulevaatus/> |
 | Eesti Insuldipatsientide Selts | 10 praktilist ideed insuldist taastumise teekonnal | <https://www.insuldiselts.ee/elu-parast-insulti/10-ideed-insuldist-taastumise-teekonnal> |
 | Eesti Insuldipatsientide Selts | 4 olulist A-d | <https://www.insuldiselts.ee/mis-on-insult/4-olulist-a-d> |
 | Eesti Insuldipatsientide Selts | Elu pärast insulti | <https://www.insuldiselts.ee/elu-parast-insulti> |
@@ -2844,6 +2930,31 @@ Serveris töötav RAG, korpus v83, 11.10.2026. Siin on loend sellest, mida jaoti
 | Eesti Kuulmispuuetega Laste Vanemate Liit | Kuulmispuudest | <https://www.eklvl.ee/kuulmispuudest> |
 | Eesti Kuulmispuuetega Laste Vanemate Liit | Muud abivahendid | <https://www.eklvl.ee/kuulmispuudest/muud-abivahendid> |
 | Eesti Kuulmispuuetega Laste Vanemate Liit | Teatmik puudega laste peredele | <https://www.eklvl.ee/kuulmispuudest/kasulik-info/teatmik-puudega-laste-peredele> |
+| Eesti Lasterikaste Perede Liit | Avaliku suhtumise kujundamine | <https://www.lasterikkad.ee/avaliku-suhtumise-kujundamine/> |
+| Eesti Lasterikaste Perede Liit | Eetikakoodeks | <https://www.lasterikkad.ee/meist/eetikakoodeks/> |
+| Eesti Lasterikaste Perede Liit | Kogemusnoustamine | <https://www.lasterikkad.ee/kogemusnoustamine/> |
+| Eesti Lasterikaste Perede Liit | Lääne-Harju Lasterikkad Laenutus | <https://www.lasterikkad.ee/laaneharju/meist/laenutus/> |
+| Eesti Lasterikaste Perede Liit | Lääne-Harju Lasterikkad Meie | <https://www.lasterikkad.ee/laaneharju/meist/> |
+| Eesti Lasterikaste Perede Liit | Lääne-Viru Lasterikkad Meist | <https://www.lasterikkad.ee/laane-viru/meist/> |
+| Eesti Lasterikaste Perede Liit | Noustamine | <https://www.lasterikkad.ee/noustamine/?page_id=508> |
+| Eesti Lasterikaste Perede Liit | Noustamine | <https://www.lasterikkad.ee/noustamine/?page_id=506> |
+| Eesti Lasterikaste Perede Liit | Noustamine | <https://www.lasterikkad.ee/noustamine/?page_id=151> |
+| Eesti Lasterikaste Perede Liit | Noustamine | <https://www.lasterikkad.ee/noustamine/?page_id=163> |
+| Eesti Lasterikaste Perede Liit | Noustamine | <https://www.lasterikkad.ee/noustamine/?page_id=165> |
+| Eesti Lasterikaste Perede Liit | Noustamine | <https://www.lasterikkad.ee/noustamine/?page_id=4> |
+| Eesti Lasterikaste Perede Liit | Peresobralik toitlustusasutus | <https://www.lasterikkad.ee/avaliku-suhtumise-kujundamine/peresobralik-toitlustusasutus/> |
+| Eesti Lasterikaste Perede Liit | Peretunde loomine | <https://www.lasterikkad.ee/peretunde-loomine/> |
+| Eesti Lasterikaste Perede Liit | Pärnumaa Lasterikkad Meist | <https://www.lasterikkad.ee/parnumaa/meist/> |
+| Eesti Lasterikaste Perede Liit | Raplamaa Lasterikkad Meist | <https://www.lasterikkad.ee/raplamaa/meist/> |
+| Eesti Lasterikaste Perede Liit | Raplamaa Lasterikkad Peredele | <https://www.lasterikkad.ee/raplamaa/peredele/> |
+| Eesti Lasterikaste Perede Liit | Saaremaa Lasterikaste Perede Ühendus Meist | <https://www.lasterikkad.ee/saaremaa/meist/> |
+| Eesti Lasterikaste Perede Liit | Saku Valla Lasterikkad Meist | <https://www.lasterikkad.ee/saku/meist/> |
+| Eesti Lasterikaste Perede Liit | Samm parema homse nimel | <https://www.lasterikkad.ee/noustamine/> |
+| Eesti Lasterikaste Perede Liit | Taotlemise tingimused | <https://www.lasterikkad.ee/taotlemise-tingimused/> |
+| Eesti Lasterikaste Perede Liit | Tartu Pereliit Eetikakoodeks | <https://www.lasterikkad.ee/tartumaa/meist/dokumendid/> |
+| Eesti Lasterikaste Perede Liit | Tartu Pereliit Meist | <https://www.lasterikkad.ee/tartumaa/meist/> |
+| Eesti Lasterikaste Perede Liit | Valgamaa Lasterikaste Perede Ühing Meist | <https://www.lasterikkad.ee/valgamaa/meist/> |
+| Eesti Lasterikaste Perede Liit | Viljandimaa Lasterikkad Meist | <https://www.lasterikkad.ee/viljandimaa/meist/> |
 | Eesti Lihasehaigete Selts | Eesti Lihasehaigete Selts (ELS) | <https://www.els.ee/> |
 | Eesti Lihasehaigete Selts | ELS infolehed | <https://www.els.ee/infolehed> |
 | Eesti Lihasehaigete Selts | Kaasnähud | <https://www.els.ee/kaasnahud> |
@@ -2857,7 +2968,32 @@ Serveris töötav RAG, korpus v83, 11.10.2026. Siin on loend sellest, mida jaoti
 | Eesti Liikumispuudega Inimeste Liit | Artiklid ja ettekanded meist | <https://elil.ee/et/varia/artiklid-ja-ettekanded-meist> |
 | Eesti Liikumispuudega Inimeste Liit | ELIL eetikakoodeks | <https://elil.ee/et/eesti-liikumispuudega-inimeste-liit/elil-eetikakoodeks> |
 | Eesti Liikumispuudega Inimeste Liit | Liikmete listiga liitumine | <https://elil.ee/et/liikmete-listiga-liitumine> |
+| Eesti Naiste Varjupaikade Liit | Eetikakoodeks | <https://naisteliin.ee/index.php?id=77> |
+| Eesti Naiste Varjupaikade Liit | Eetikakoodeks | <https://www.naisteliin.ee/?id=120> |
+| Eesti Naiste Varjupaikade Liit | ENVL | <https://naisteliin.ee/?id=117> |
+| Eesti Naiste Varjupaikade Liit | Infomaterjalid | <https://naisteliin.ee/?id=148> |
+| Eesti Naiste Varjupaikade Liit | KKK | <https://naisteliin.ee/?id=116> |
+| Eesti Naiste Varjupaikade Liit | Meist | <https://naisteliin.ee/index.php?id=28> |
+| Eesti Naiste Varjupaikade Liit | Mida teha, kui | <https://www.naisteliin.ee/?id=110> |
+| Eesti Naiste Varjupaikade Liit | Naiste tugikeskuste teenused | <https://www.naisteliin.ee/?id=166> |
+| Eesti Naiste Varjupaikade Liit | Naistevastase vägivalla ilmingud | <https://naisteliin.ee/index.php?id=108> |
+| Eesti Naiste Varjupaikade Liit | Paarisuhtevägivald | <https://www.naisteliin.ee/?id=109> |
+| Eesti Naiste Varjupaikade Liit | Teenusekirjeldus | <https://www.naisteliin.ee/?id=139> |
+| Eesti Naiste Varjupaikade Liit | Teenusekirjeldus | <https://naisteliin.ee/index.php?id=159> |
+| Eesti Naiste Varjupaikade Liit | Tugikeskused | <https://naisteliin.ee/index.php?id=111> |
+| Eesti Naiste Varjupaikade Liit | Tugitelefon 1492 | <https://www.naisteliin.ee/?id=115> |
+| Eesti Naiste Varjupaikade Liit | Vägivallast | <https://naisteliin.ee/index.php?id=107> |
+| Eesti Naiste Varjupaikade Liit | Www.naisteliin.ee | <https://www.naisteliin.ee/?id=1> |
 | Eesti Neeruhaigete Liit | Kõik neerudest. | <https://www.neer.ee/> |
+| Eesti Pagulasabi | Kontaktid | <https://pagulasabi.ee/et/kontaktid> |
+| Eesti Pagulasabi | Majanduslik heaolu | <https://www.pagulasabi.ee/et/majanduslik-heaolu> |
+| Eesti Pagulasabi | Märkamatu keeleõpe toetab pagulastaustaga noorte kohanemist | <https://www.pagulasabi.ee/et/markamatu-keeleope-toetab-pagulastaustaga-noorte-kohanemist> |
+| Eesti Pagulasabi | Praktiline juhend: kuidas toetada Ukraina noori keeleõppes ja lõimumises | <https://pagulasabi.ee/et/praktiline-juhend-kuidas-toetada-ukraina-noori-keeleoppes-ja-loimumises> |
+| Eesti Pagulasabi | Privaatsuspoliitika | <https://pagulasabi.ee/node/499> |
+| Eesti Pagulasabi | Sotsiaalne heaolu | <https://www.pagulasabi.ee/et/sotsiaalne-heaolu> |
+| Eesti Pagulasabi | Tutvustus | <https://www.pagulasabi.ee/et/tutvustus> |
+| Eesti Pagulasabi | Tuult tiibadesse: Keeleõppe ja kohanemise tugi aitab Ukraina noortel oma tulevikku kujundada | <https://pagulasabi.ee/et/tuult-tiibadesse-keeleoppe-ja-kohanemise-tugi-aitab-ukraina-noortel-oma-tulevikku-kujundada> |
+| Eesti Pagulasabi | Ukraina noorte toetamine Eestis: keel, kogukond ja tulevikuvõimalused | <https://www.pagulasabi.ee/et/ukraina-noorte-toetamine-eestis-keel-kogukond-ja-tulevikuvoimalused> |
 | Eesti Paralümpiakomitee | Eesti Paralümpiakomitee | <https://www.paralympic.ee/> |
 | Eesti Paralümpiakomitee | Boccia | <https://www.paralympic.ee/et/spordialad/boccia/2> |
 | Eesti Paralümpiakomitee | EPK Dokumendid | <https://www.paralympic.ee/et/epk-dokumendid> |
@@ -2868,6 +3004,18 @@ Serveris töötav RAG, korpus v83, 11.10.2026. Siin on loend sellest, mida jaoti
 | Eesti Paralümpiakomitee | Parajudo | <https://www.paralympic.ee/et/spordialad/parajudo/3> |
 | Eesti Paralümpiakomitee | Spordialad | <https://www.paralympic.ee/et/spordialad> |
 | Eesti Paralümpiakomitee | Sport | <https://www.paralympic.ee/et/sporditurvalisus> |
+| Eesti Patsientide Liit | Abiks arsti juures | <https://patsiendid.ee/patsiendi-oigused/abiks-arsti-juures> |
+| Eesti Patsientide Liit | Abiks ravimi ostmisel | <https://patsiendid.ee/patsiendi-oigused/abiks-ravimi-ostmisel> |
+| Eesti Patsientide Liit | Korduma kippuvad küsimused: | <https://patsiendid.ee/liikmele/kkk> |
+| Eesti Patsientide Liit | Küsi apteekrilt oma ravimite kohta | <https://patsiendid.ee/liikmele/kusi-oma-ravimite-kohta> |
+| Eesti Patsientide Liit | Loe lähemalt tervisest: | <https://patsiendid.ee/liikmele/loe-haiguste-kohta> |
+| Eesti Patsientide Liit | Olulised nõuandetelefonid | <https://patsiendid.ee/partnerid/nouandetelefonid> |
+| Eesti Patsientide Liit | Olulised õigusaktid | <https://patsiendid.ee/patsiendi-oigused/oigusaktid> |
+| Eesti Patsientide Liit | Patsiendi ABC | <https://patsiendid.ee/patsiendi-oigused/patsiendi-abc> |
+| Eesti Patsientide Liit | Patsiendikesksus | <https://patsiendid.ee/patsiendi-oigused/patsiendikesksus> |
+| Eesti Patsientide Liit | Ravimite hüvitamine | <https://patsiendid.ee/patsiendi-oigused/ravimite-huvitamine> |
+| Eesti Patsientide Liit | Riiklikud olulised tervishoiusüsteemi lingid: | <https://patsiendid.ee/partnerid/riik> |
+| Eesti Patsientide Liit | Ühingu eesmärgid: | <https://patsiendid.ee/meist/eesmargid> |
 | Eesti Pimedate Liit | Abivahendid | <https://pimedateliit.ee/abivahendid> |
 | Eesti Pimedate Liit | Arvutid ja nutiseadmed | <https://pimedateliit.ee/arvutid-ja-nutiseadmed> |
 | Eesti Pimedate Liit | Eesti Pimedate Liidust | <https://pimedateliit.ee/> |
@@ -2902,6 +3050,27 @@ Serveris töötav RAG, korpus v83, 11.10.2026. Siin on loend sellest, mida jaoti
 | Eesti Psüühikahäiretega Inimeste Lähedaste Liit | Liitu meiega | <https://epill.ee/> |
 | Eesti Psüühikahäiretega Inimeste Lähedaste Liit | Psüühikahäiretest | <https://epill.ee/psuuhikahairetest> |
 | Eesti Psüühikahäiretega Inimeste Lähedaste Liit | Tegevused | <https://epill.ee/tegevused> |
+| Eesti Punane Rist | Elupäästva esmaabi lühikursus | <https://redcross.ee/koolitused/elupaastva-esmaabi-luhikursus> |
+| Eesti Punane Rist | Esileht | <https://redcross.ee/> |
+| Eesti Punane Rist | Esmaabi põhikoolitus | <https://redcross.ee/koolitused/esmaabi-pohikoolitus-16-h> |
+| Eesti Punane Rist | Esmaabi põhikoolitus osaliselt e-õppena | <https://redcross.ee/koolitused/esmaabi-pohikoolitus-osaliselt-e-oppena> |
+| Eesti Punane Rist | Esmaabi ringõppus | <https://redcross.ee/esmaabi-ringoppus> |
+| Eesti Punane Rist | Esmaabi täiendkoolitus | <https://redcross.ee/koolitused/esmaabi-taiendkoolitus> |
+| Eesti Punane Rist | Esmaabikoolitus lastevanematele | <https://redcross.ee/koolitused/esmaabikoolitus-lastevanematele> |
+| Eesti Punane Rist | Esmaabiõpetajate põhikoolitus | <https://redcross.ee/koolitused/esmaabikoolitajate-pohikoolitus> |
+| Eesti Punane Rist | Esmaabiõpetajate täiendkoolitus | <https://redcross.ee/koolitused/esmaabikoolitajate-taiendkoolitus> |
+| Eesti Punane Rist | Koolitused | <https://www.redcross.ee/koolitused> |
+| Eesti Punane Rist | Koolitusmaterjalid | <https://redcross.ee/koolitusmaterjalid> |
+| Eesti Punane Rist | Korduvad küsimused | <https://redcross.ee/bumerang/KKK> |
+| Eesti Punane Rist | Liikumise põhimõtted | <https://redcross.ee/pohimotted> |
+| Eesti Punane Rist | Psühholoogiline esmaabi | <https://redcross.ee/psuhholoogiline-esmaabi> |
+| Eesti Punane Rist | Psühholoogilise esmaabi koolitus | <https://redcross.ee/koolitused/psuhholoogilise-esmaabi-koolitus> |
+| Eesti Punane Rist | Tegevus | <https://redcross.ee/tegevus> |
+| Eesti Punane Rist | Telli koolitus ettevõttele | <https://redcross.ee/telli-koolitus-ettevottele> |
+| Eesti Punane Rist | Tervise edendamine | <https://redcross.ee/tervise-edendamine> |
+| Eesti Punane Rist | Traumateadliku psühholoogilise esmaabi koolitus | <https://redcross.ee/traumateadliku-psuhholoogilise-esmaabi-koolitus> |
+| Eesti Punane Rist | Vabatahtlike koolitused | <https://redcross.ee/vabatahtlike-koolitused> |
+| Eesti Punane Rist | Väike esmaabiaandja, koolitus lasteaialastele | <https://redcross.ee/koolitused/vaike-esmaabiaandja-koolitus-lasteaialastele> |
 | Eesti Puuetega Inimeste Koda | Eesti Puuetega Inimeste Koda | <https://epikoda.ee/> |
 | Eesti Puuetega Inimeste Koda | Ametlikud arvamused ja pöördumised | <https://epikoda.ee/tegevusvaldkonnad/huvikaitse/ametlikud-arvamused-ja-poordumised> |
 | Eesti Puuetega Inimeste Koda | Andmekaitse tingimused | <https://epikoda.ee/vota-uhendust/andmekaitse> |
@@ -3037,6 +3206,11 @@ Serveris töötav RAG, korpus v83, 11.10.2026. Siin on loend sellest, mida jaoti
 | Eesti Vaimupuudega Inimeste Tugiliit | TÖÖANDJAD | <https://vaimukad.ee/tooandjad> |
 | Eesti Viipekeeletõlkide Kutseühing | Koolitused | <https://evkty.ee/koolitused> |
 | Eesti Viipekeeletõlkide Kutseühing | Kutse andmine | <https://evkty.ee/kutse-omistamine> |
+| Eesti Võlanõustajate Liit | Abiotsijale | <https://evnl.ee/abiotsijale/> |
+| Eesti Võlanõustajate Liit | Eetikakoodeks | <https://evnl.ee/uhingust/eetikakoodeks/> |
+| Eesti Võlanõustajate Liit | Evnl.ee | <https://evnl.ee/> |
+| Eesti Võlanõustajate Liit | Rahatarkus | <https://evnl.ee/abiotsijale/rahatarkus/> |
+| Eesti Võlanõustajate Liit | Teenuse korraldus | <https://evnl.ee/abiotsijale/teenuse-korraldus/> |
 | Eesti Vähiliit | Eesti Vähiliit | <https://cancer.ee/> |
 | Eesti Vähiliit | Eesnäärmevähk | <https://cancer.ee/info-vahist/vahipaikmed/eesnaarmevahk> |
 | Eesti Vähiliit | Emakakaelavähk | <https://cancer.ee/info-vahist/vahipaikmed/emakakaelavahk> |
@@ -3159,6 +3333,14 @@ Serveris töötav RAG, korpus v83, 11.10.2026. Siin on loend sellest, mida jaoti
 | MTÜ Lastekaitse Liit | Märka oma kodukohta | <https://www.lastekaitseliit.ee/et/marka-oma-kodukohta> |
 | MTÜ Lastekaitse Liit | Päevapilt "Hea on olla laps" | <https://www.lastekaitseliit.ee/et/> |
 | MTÜ Lastekaitse Liit | Tasuta õigusabi võimalustest | <https://www.lastekaitseliit.ee/et/tasuta-oigusabi-voimalustest> |
+| MTÜ Oma Pere | Eestkostja ja hooldusvanem | <https://www.omapere.ee/eestkostja-ja-hooldusvanem/> |
+| MTÜ Oma Pere | Lapsendaja | <https://www.omapere.ee/lapsendaja/> |
+| MTÜ Oma Pere | Lapsendatu | <https://www.omapere.ee/lapsendatu/> |
+| MTÜ Oma Pere | Oleme tugiorganisatsioon lapsendaja- hooldus- ja eestkosteperedele. | <https://www.omapere.ee/> |
+| MTÜ Oma Pere | Planeerimata rasedus | <https://www.omapere.ee/planeerimata-rasedus/> |
+| MTÜ Oma Pere | Spetsialist | <https://www.omapere.ee/professionaal> |
+| MTÜ Oma Pere | Tugiteenused kasuperedele | <https://www.omapere.ee/noustamine/> |
+| MTÜ Oma Pere | Viljatusravi teekond | <https://www.omapere.ee/lapsendamist-kaaluv/> |
 | MTÜ Pallium | mtü pallium | <https://pallium.ee/palliumist> |
 | MTÜ Pallium | HAIGUSEGA TOIMETULEK KODUS | <https://pallium.ee/patsiendile?articleId=5d07e239981dff0c7d7b10c0> |
 | MTÜ Pallium | Hospiits | <https://pallium.ee/patsiendile?articleId=5d07e269981dff0c7d7b10c1> |
@@ -3462,6 +3644,14 @@ Serveris töötav RAG, korpus v83, 11.10.2026. Siin on loend sellest, mida jaoti
 | Saaremaa Puuetega Inimeste Koda | SPIK TEENUSED | <https://www.saarekoda.ee/7ca6c-about/teenused/spik-teenused> |
 | Saaremaa Puuetega Inimeste Koda | Teenused | <https://www.saarekoda.ee/7ca6c-about/teenused> |
 | Saaremaa Puuetega Inimeste Koda | Uurimused | <https://www.saarekoda.ee/dokumendid/uurimused> |
+| SOS Lasteküla Eesti Ühing | Ennetustöö | <https://sos-lastekyla.ee/ennetustoo/> |
+| SOS Lasteküla Eesti Ühing | Grupikodu | <https://sos-lastekyla.ee/meie-too/asendushooldus/grupikodu/grupikodu/> |
+| SOS Lasteküla Eesti Ühing | Hoolduspere | <https://sos-lastekyla.ee/meie-too/asendushooldus/hoolduspere/> |
+| SOS Lasteküla Eesti Ühing | Info kohaliku omavalitsuse lastekaitsetöötajale | <https://sos-lastekyla.ee/info-kohaliku-omavalitsuse-lastekaitsetootajale/> |
+| SOS Lasteküla Eesti Ühing | Järelhooldus | <https://sos-lastekyla.ee/meie-too/jarelhooldus/> |
+| SOS Lasteküla Eesti Ühing | Perekodu | <https://sos-lastekyla.ee/meie-too/asendushooldus/perekodu/> |
+| SOS Lasteküla Eesti Ühing | Teata abivajavast lapsest | <https://sos-lastekyla.ee/lapse-kaitsmine/> |
+| SOS Lasteküla Eesti Ühing | Võta ühendust | <https://sos-lastekyla.ee/vota-uhendust/> |
 | Tallinna ja Harjumaa Kurtide Ühing | Tallinna ja Harjumaa Kurtide Ühing | <https://www.thky.ee/> |
 | Tallinna ja Harjumaa Kurtide Ühing | Avaleht | <https://www.thky.ee/avaleht> |
 | Tallinna ja Harjumaa Kurtide Ühing | Kontakt | <https://www.thky.ee/organisatsioonist/kontakt> |
@@ -3544,7 +3734,7 @@ Serveris töötav RAG, korpus v83, 11.10.2026. Siin on loend sellest, mida jaoti
 | Võrumaa Puuetega Inimeste Koda | PIK ringid | <https://www.vorukoda.ee/tegevused/pik-ringid> |
 | Võrumaa Puuetega Inimeste Koda | TASUTA ÕIGUSABI ERIVAJADUSTEGA INIMESTELE | <https://www.vorukoda.ee/tasuta-oigusabi-erivajadustega-inimestele> |
 
-### Asutuste juhislehed, valitud reegliga (1096)
+### Asutuste juhislehed, valitud reegliga (1227)
 
 | Väljaandja | Pealkiri | Aadress |
 |---|---|---|
@@ -3576,6 +3766,137 @@ Serveris töötav RAG, korpus v83, 11.10.2026. Siin on loend sellest, mida jaoti
 | Andmekaitse Inspektsioon | Töötlemise õiguslikud alused | <https://www.aki.ee/isikuandmed/andmetootlejale/tootlemise-oiguslikud-alused> |
 | Andmekaitse Inspektsioon | Vastuväidete esitamine | <https://www.aki.ee/isikuandmed/inimese-oigused/vastuvaidete-esitamine> |
 | Andmekaitse Inspektsioon | Ühisjuhend: Abivajavast lapsest teatamine ja andmekaitse | <https://www.aki.ee/juhendid/isikuandmed/uhisjuhend-abivajavast-lapsest-teatamine-ja-andmekaitse> |
+| Eesti Töötukassa | Abi ja nõustamine koondamisel | <https://www.tootukassa.ee/et/teenused/tooandjatele/abi-ja-noustamine-koondamisel> |
+| Eesti Töötukassa | Abiks kandideerijale | <https://www.tootukassa.ee/et/teenused/toootsingud/abiks-kandideerijale> |
+| Eesti Töötukassa | Ajutine töötamine arveloleku ajal | <https://www.tootukassa.ee/et/teenused/toootsingud/ajutine-tootamine-arveloleku-ajal> |
+| Eesti Töötukassa | Alaealise tööle võtmine | <https://www.tootukassa.ee/et/teenused/tooandjatele/alaealise-toole-votmine> |
+| Eesti Töötukassa | Alaealise töötamise toetamine | <https://www.tootukassa.ee/et/teenused/tooandjatele/alaealise-tootamise-toetamine> |
+| Eesti Töötukassa | Arengutreening | <https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/arengutreening> |
+| Eesti Töötukassa | Arstivisiit ja hindamise taotluse esitamine | <https://www.tootukassa.ee/et/teenused/toovoime-hindamine/arstivisiit-ja-hindamise-taotluse-esitamine> |
+| Eesti Töötukassa | Avaldused ja vormid | <https://www.tootukassa.ee/et/otseteed/avaldused-ja-vormid> |
+| Eesti Töötukassa | Eksperdiarvamuse koostamine | <https://www.tootukassa.ee/et/teenused/toovoime-hindamine/eksperdiarvamuse-koostamine> |
+| Eesti Töötukassa | Elektroonilised osavõtuandmed | <https://www.tootukassa.ee/et/artikkel/elektroonilised-osavotuandmed> |
+| Eesti Töötukassa | Esindused \| Töötukassa | <https://www.tootukassa.ee/et/kontaktid/esindused> |
+| Eesti Töötukassa | Ettevõtluse järelteenused | <https://www.tootukassa.ee/et/teenused/ettevotlusega-alustamine/ettevotluse-jarelteenused> |
+| Eesti Töötukassa | Ettevõtlusega alustamine | <https://www.tootukassa.ee/et/teenused/ettevotlusega-alustamine> |
+| Eesti Töötukassa | EURES (Euroopa töövahenduse teenused) | <https://www.tootukassa.ee/et/teenused/eures-euroopa-toovahenduse-teenused> |
+| Eesti Töötukassa | Euroopa Liit ja töötuskindlustus | <https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/euroopa-liit-ja-tootuskindlustus> |
+| Eesti Töötukassa | Euroopa Liit ja töövõimetoetus | <https://www.tootukassa.ee/et/teenused/toovoimetoetus/euroopa-liit-ja-toovoimetoetus> |
+| Eesti Töötukassa | EVAT kasutamine | <https://www.tootukassa.ee/et/teenused/ettevotlusega-alustamine/evat-kasutamine> |
+| Eesti Töötukassa | EVAT kasutamise kontroll | <https://www.tootukassa.ee/et/teenused/ettevotlusega-alustamine/evat-kasutamise-kontroll> |
+| Eesti Töötukassa | EVAT korduma kippuvad küsimused | <https://www.tootukassa.ee/et/teenused/ettevotlusega-alustamine-sai-taotleda-kuni-31032026/evat-korduma-kippuvad-kusimused> |
+| Eesti Töötukassa | Hindamise otsus ja abi töö leidmisel | <https://www.tootukassa.ee/et/teenused/toovoime-hindamine/hindamise-otsus-ja-abi-too-leidmisel> |
+| Eesti Töötukassa | Juhatus ja nõukogu | <https://www.tootukassa.ee/et/kontaktid/juhatus-ja-noukogu> |
+| Eesti Töötukassa | Juhatuse liige | <https://www.tootukassa.ee/et/teenused/toootsingud/juhatuse-liige> |
+| Eesti Töötukassa | Karjäär ja koolitamine | <https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine> |
+| Eesti Töötukassa | Karjääri kujundamine | <https://www.tootukassa.ee/et/karjaarikujundajale/karjaarikujundamine> |
+| Eesti Töötukassa | Karjäärinõustamine | <https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/karjaarinoustamine> |
+| Eesti Töötukassa | Kollektiivne koondamine | <https://www.tootukassa.ee/et/teenused/tooandjatele/kollektiivne-koondamine> |
+| Eesti Töötukassa | Koolitajate otsing | <https://www.tootukassa.ee/et/koolitajad?pageSize=20> |
+| Eesti Töötukassa | Koolitused töötavatele inimestele | <https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/koolitus-tootajale-toota-ja-opi> |
+| Eesti Töötukassa | Koolituskaart | <https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/koolituskaart> |
+| Eesti Töötukassa | Koolitustoetus tööandjatele | <https://www.tootukassa.ee/et/teenused/tooandjatele/koolitustoetus-tooandjatele> |
+| Eesti Töötukassa | Koolitustoetus tööandjatele muutuste olukorras | <https://www.tootukassa.ee/et/teenused/tooandjatele/koolitustoetus-tooandjatele-muutuste-olukorras> |
+| Eesti Töötukassa | Koolitustoetus tööandjatele töötaja digioskuste arendamiseks | <https://www.tootukassa.ee/et/teenused/tooandjatele/koolitustoetus-tooandjatele-tootaja-ikt-oskuste-arendamiseks> |
+| Eesti Töötukassa | Koolitustoetus tööandjatele töötaja eesti keele oskuse arendamiseks | <https://www.tootukassa.ee/et/teenused/tooandjatele/koolitustoetus-tooandjatele-tootaja-eesti-keele-oskuse-arendamiseks> |
+| Eesti Töötukassa | Koolitustoetus tööandjatele töötaja roheoskuste arendamiseks | <https://www.tootukassa.ee/et/teenused/tooandjatele/koolitustoetus-tooandjatele-tootaja-roheoskuste-arendamiseks> |
+| Eesti Töötukassa | Koolitustoetus tööandjatele töötajate värbamiseks | <https://www.tootukassa.ee/et/teenused/tooandjatele/koolitustoetus-tooandjatele-tootajate-varbamiseks> |
+| Eesti Töötukassa | Koondamine ja maksejõuetus | <https://www.tootukassa.ee/et/koondamine-ja-maksejouetus> |
+| Eesti Töötukassa | Koondamise korral | <https://www.tootukassa.ee/et/teenused/toootsingud/koondamise-korral> |
+| Eesti Töötukassa | Koondamishüvitis | <https://www.tootukassa.ee/et/teenused/tooandjatele/koondamishuvitis> |
+| Eesti Töötukassa | Koostöökokkulepped töötuna registreeritud kliendiga | <https://www.tootukassa.ee/et/artikkel/koostookokkulepped-tootuna-registreeritud-kliendiga> |
+| Eesti Töötukassa | Koostöövõimalused EURES Euroopa tööturuasutuste võrgustikuga | <https://www.tootukassa.ee/et/teenused/partneritele/koostoovoimalused-eures-euroopa-tooturuasutuste-vorgustikuga> |
+| Eesti Töötukassa | Koostöövõimalused kogemusnõustajatele | <https://www.tootukassa.ee/et/teenused/partneritele/koostoovoimalused-kogemusnoustajatele> |
+| Eesti Töötukassa | Koostöövõimalused koolitusasutustele | <https://www.tootukassa.ee/et/teenused/partneritele/koostoovoimalused-koolitusasutustele> |
+| Eesti Töötukassa | Koostöövõimalused nõustamisteenuste osutajatele | <https://www.tootukassa.ee/et/teenused/partneritele/koostoovoimalused-noustamisteenuste-osutajatele> |
+| Eesti Töötukassa | Koostöövõimalused tööandjatele | <https://www.tootukassa.ee/et/teenused/partneritele/koostoovoimalused-tooandjatele> |
+| Eesti Töötukassa | Koostöövõimalused üldhariduskoolidele | <https://www.tootukassa.ee/et/teenused/partneritele/koostoovoimalused-uldhariduskoolidele> |
+| Eesti Töötukassa | Luba välismaalase töölevõtmiseks | <https://www.tootukassa.ee/et/teenused/tooandjatele/luba-valismaalase-toolevotmiseks> |
+| Eesti Töötukassa | Maksmise peatamine ja lõpetamine | <https://www.tootukassa.ee/et/teenused/toovoimetoetus/maksmise-peatamine-ja-lopetamine> |
+| Eesti Töötukassa | Maksuvaba tulu alates 1. jaanuarist 2026 | <https://www.tootukassa.ee/et/teenused/tooandjatele/maksuvaba-tulu-alates-1-jaanuarist-2026> |
+| Eesti Töötukassa | Noorele | <https://www.tootukassa.ee/et/teenused/toootsingud/noorele> |
+| Eesti Töötukassa | Nõustamisteenuste osutajad | <https://www.tootukassa.ee/et/noustamisteenused> |
+| Eesti Töötukassa | Oskuste arendamine | <https://www.tootukassa.ee/et/karjaarikujundajale/oskuste-arendamine> |
+| Eesti Töötukassa | Palgatoetus | <https://www.tootukassa.ee/et/teenused/tooandjatele/palgatoetus> |
+| Eesti Töötukassa | Pankrotihüvitis | <https://www.tootukassa.ee/et/teenused/tooandjatele/pankrotihuvitis> |
+| Eesti Töötukassa | Partnerite võimalused | <https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/partnerite-voimalused> |
+| Eesti Töötukassa | Pikaajaline haigusleht | <https://www.tootukassa.ee/et/teenused/too-ja-tervis/pikaajaline-haigusleht> |
+| Eesti Töötukassa | Proovitöö | <https://www.tootukassa.ee/et/teenused/toootsingud/proovitoo> |
+| Eesti Töötukassa | Psühholoogiline ja võlanõustamine | <https://www.tootukassa.ee/et/teenused/toootsingud/psuhholoogiline-ja-volanoustamine> |
+| Eesti Töötukassa | Põlevkivisektori töötajale | <https://www.tootukassa.ee/et/teenused/toootsingud/polevkivisektori-tootajale> |
+| Eesti Töötukassa | Rahvusvahelise kaitse saaja töötamise toetamine (sai taotleda kuni 31.08.2026) | <https://www.tootukassa.ee/et/teenused/tooandjatele/rahvusvahelise-kaitse-saaja-tootamise-toetamine> |
+| Eesti Töötukassa | Ravikindlustus | <https://www.tootukassa.ee/et/teenused/toootsingud/ravikindlustus> |
+| Eesti Töötukassa | Seminarid | <https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/seminarid> |
+| Eesti Töötukassa | Sertifikaadi või kutsetunnistuse kulude hüvitamine | <https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/sertifikaadi-voi-kutsetunnistuse-kulude-huvitamine> |
+| Eesti Töötukassa | Sertifikaadi või kutsetunnistuse saamine | <https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/sertifikaadi-voi-kutsetunnistuse-saamine> |
+| Eesti Töötukassa | Sotsiaalmaksu hüvitamine vähenenud töövõimega inimese eest | <https://www.tootukassa.ee/et/teenused/tooandjatele/sotsiaalmaksu-huvitamine-vahenenud-toovoimega-inimese-eest> |
+| Eesti Töötukassa | Stipendium | <https://www.tootukassa.ee/et/teenused/toootsingud/stipendium> |
+| Eesti Töötukassa | Sõidu- ja majutustoetus | <https://www.tootukassa.ee/et/teenused/toootsingud/soidu-ja-majutustoetus> |
+| Eesti Töötukassa | Taotluse esitamine eestkoste või volitusega | <https://www.tootukassa.ee/et/teenused/toovoimetoetus/taotluse-esitamine-eestkoste-voi-volitusega> |
+| Eesti Töötukassa | Tasemeõppes osalemise toetus | <https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/tasemeoppes-osalemise-toetus> |
+| Eesti Töötukassa | Teiste riikide tööturuasutused | <https://www.tootukassa.ee/et/teenused/eures-euroopa-toovahenduse-teenused/teiste-riikide-tooturuasutused> |
+| Eesti Töötukassa | Tervisepiiranguga inimese tööandja nõustamine | <https://www.tootukassa.ee/et/teenused/tooandjatele/tervisepiiranguga-inimese-tooandja-noustamine> |
+| Eesti Töötukassa | Tervisepiiranguga inimese töötamise toetamine | <https://www.tootukassa.ee/et/teenused/tooandjatele/tervisepiiranguga-inimese-tootamise-toetamine> |
+| Eesti Töötukassa | Toetatavad põhikutsealad | <https://www.tootukassa.ee/et/artikkel/toetatavad-pohikutsealad> |
+| Eesti Töötukassa | Toetatud töölerakendamine | <https://www.tootukassa.ee/et/teenused/too-ja-tervis/toetatud-toolerakendamine> |
+| Eesti Töötukassa | Toetuse maksmine | <https://www.tootukassa.ee/et/teenused/toovoimetoetus/toetuse-maksmine> |
+| Eesti Töötukassa | Toetuse ümberarvutamine suurenenud sissetuleku tõttu | <https://www.tootukassa.ee/et/teenused/toovoimetoetus/toetuse-umberarvutamine-suurenenud-sissetuleku-tottu> |
+| Eesti Töötukassa | Tugiisikuga töötamine | <https://www.tootukassa.ee/et/teenused/too-ja-tervis/tugiisikuga-tootamine> |
+| Eesti Töötukassa | Töö ja tervis | <https://www.tootukassa.ee/et/teenused/too-ja-tervis> |
+| Eesti Töötukassa | Töö ja töötaja Euroopast (EURES) | <https://www.tootukassa.ee/et/teenused/eures-euroopa-toovahenduse-teenused/too-ja-tootaja-euroopast-eures> |
+| Eesti Töötukassa | Töö kaotamine | <https://www.tootukassa.ee/et/toootsijale/too-kaotamine> |
+| Eesti Töötukassa | Tööalane abivahend | <https://www.tootukassa.ee/et/teenused/too-ja-tervis/tooalane-abivahend> |
+| Eesti Töötukassa | Tööalane rehabilitatsioon | <https://www.tootukassa.ee/et/teenused/too-ja-tervis/tooalane-rehabilitatsioon> |
+| Eesti Töötukassa | Tööalase rehabilitatsiooni osutajad | <https://www.tootukassa.ee/et/rehabilitatsioon> |
+| Eesti Töötukassa | Tööalaste abivahendite ja töökoha kohandamise näited | <https://www.tootukassa.ee/et/artikkel/tooalaste-abivahendite-ja-tookoha-kohandamise-naited> |
+| Eesti Töötukassa | Tööampsude KKK | <https://www.tootukassa.ee/et/artikkel/tooampsude-kkk> |
+| Eesti Töötukassa | Tööandja tegevus kollektiivsel koondamisel | <https://www.tootukassa.ee/et/teenused/tooandjatele/tooandja-tegevus-kollektiivsel-koondamisel> |
+| Eesti Töötukassa | Tööandjatele | <https://www.tootukassa.ee/et/teenused/tooandjatele> |
+| Eesti Töötukassa | Töökeskne nõustamine | <https://www.tootukassa.ee/et/teenused/toootsingud/tookeskne-noustamine> |
+| Eesti Töötukassa | Töökoha kohandamine | <https://www.tootukassa.ee/et/teenused/too-ja-tervis/tookoha-kohandamine> |
+| Eesti Töötukassa | Tööotsingud | <https://www.tootukassa.ee/et/teenused/toootsingud> |
+| Eesti Töötukassa | Tööpraktika | <https://www.tootukassa.ee/et/teenused/toootsingud/toopraktika> |
+| Eesti Töötukassa | Tööta ja õpi | <https://www.tootukassa.ee/et/toota-ja-opi> |
+| Eesti Töötukassa | Töötaja ja muu isik | <https://www.tootukassa.ee/et/teenused/toootsingud/tootaja-ja-muu-isik> |
+| Eesti Töötukassa | Töötaja leidmine ja koolitamine | <https://www.tootukassa.ee/et/tootaja-leidmine-ja-koolitamine> |
+| Eesti Töötukassa | Töötajate vaba liikumine ja sotsiaalkindlustus | <https://www.tootukassa.ee/et/teenused/eures-euroopa-toovahenduse-teenused/tootajate-vaba-liikumine-ja-sotsiaalkindlustus> |
+| Eesti Töötukassa | Töötamine Eestis | <https://www.tootukassa.ee/et/teenused/toootsingud/tootamine-eestis> |
+| Eesti Töötukassa | Töötukassa esindused | <https://www.tootukassa.ee/kontaktid/tootukassa-esindused> |
+| Eesti Töötukassa | Töötukassast | <https://www.tootukassa.ee/et/tootukassast> |
+| Eesti Töötukassa | Töötuna arveloleku lõpetamine | <https://www.tootukassa.ee/et/teenused/toootsingud/tootuna-arveloleku-lopetamine> |
+| Eesti Töötukassa | Töötuna registreerimine | <https://www.tootukassa.ee/et/teenused/toootsingud/tootuna-registreerimine> |
+| Eesti Töötukassa | Töötushüvitiste maksmise süsteemi muudatuse KKK | <https://www.tootukassa.ee/et/artikkel/tootushuvitiste-maksmise-susteemi-muudatuse-kkk> |
+| Eesti Töötukassa | Töötuskindlustushüvitis | <https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis> |
+| Eesti Töötukassa | Töötuskindlustushüvitis laevapere liikmetele | <https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitis-laevapere-liikmetele> |
+| Eesti Töötukassa | Töötuskindlustushüvitis välisriigis tööd otsides | <https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitis-valisriigis-tood-otsides> |
+| Eesti Töötukassa | Töötuskindlustushüvitise arvestamine ja maksmine | <https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitise-arvestamine-ja-maksmine> |
+| Eesti Töötukassa | Töötuskindlustushüvitise korduv taotlemine | <https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitise-korduv-taotlemine> |
+| Eesti Töötukassa | Töötuskindlustushüvitise maksmise lõpetamine enne perioodi lõppu | <https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitise-maksmise-lopetamine-enne-perioodi-loppu> |
+| Eesti Töötukassa | Töötuskindlustushüvitise maksmise periood | <https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitise-maksmise-periood> |
+| Eesti Töötukassa | Töötuskindlustushüvitise perioodi KKK | <https://www.tootukassa.ee/et/artikkel/tootuskindlustushuvitise-perioodi-kkk> |
+| Eesti Töötukassa | Töötuskindlustushüvitise suurus ja selle arvutamine | <https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitise-suurus-ja-selle-arvutamine> |
+| Eesti Töötukassa | Töötuskindlustushüvitise taotlemine ja määramine | <https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitise-taotlemine-ja-maaramine> |
+| Eesti Töötukassa | Töötuskindlustusmakse | <https://www.tootukassa.ee/et/teenused/tooandjatele/tootuskindlustusmakse> |
+| Eesti Töötukassa | Töötuskindlustusstaaži arvestamine | <https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustusstaazi-arvestamine> |
+| Eesti Töötukassa | Töövahendus | <https://www.tootukassa.ee/et/teenused/tooandjatele/toovahendus> |
+| Eesti Töötukassa | Töövõime hindamine | <https://www.tootukassa.ee/et/tervisepiiranguga-inimesele/toovoime-hindamine> |
+| Eesti Töötukassa | Töövõime hindamine | <https://www.tootukassa.ee/et/teenused/toovoime-hindamine> |
+| Eesti Töötukassa | Töövõime hindamise põhimõtted ja metoodika | <https://www.tootukassa.ee/et/teenused/toovoime-hindamine/toovoime-hindamise-pohimotted-ja-metoodika> |
+| Eesti Töötukassa | Töövõime hindamise taotlemine välismaal elades | <https://www.tootukassa.ee/et/teenused/toovoime-hindamine/toovoime-hindamise-taotlemine-valismaal-elades> |
+| Eesti Töötukassa | Töövõime hindamise taotluse esitamine esindaja poolt | <https://www.tootukassa.ee/et/teenused/toovoime-hindamine/toovoime-hindamise-taotluse-esitamine-esindaja-poolt> |
+| Eesti Töötukassa | Töövõimekaart | <https://www.tootukassa.ee/et/teenused/toovoime-hindamine/toovoimekaart> |
+| Eesti Töötukassa | Töövõimet hindavad tervishoiuasutused | <https://www.tootukassa.ee/et/teenused/toovoime-hindamine/toovoimet-hindavad-tervishoiuasutused> |
+| Eesti Töötukassa | Töövõimetoetus | <https://www.tootukassa.ee/et/teenused/toovoimetoetus> |
+| Eesti Töötukassa | Töövõimetoetuse maksmise jätkamine kordushindamisel | <https://www.tootukassa.ee/et/teenused/toovoimetoetus/toovoimetoetuse-maksmise-jatkamine-kordushindamisel> |
+| Eesti Töötukassa | Töövõimetoetuse saamise tingimused | <https://www.tootukassa.ee/et/teenused/toovoimetoetus/toovoimetoetuse-saamise-tingimused> |
+| Eesti Töötukassa | Töövõimetoetuse suurus | <https://www.tootukassa.ee/et/teenused/toovoimetoetus/toovoimetoetuse-suurus> |
+| Eesti Töötukassa | Töövõimetoetuse taotlemine | <https://www.tootukassa.ee/et/tervisepiiranguga-inimesele/toovoimetoetuse-taotlemine> |
+| Eesti Töötukassa | Vaide esitamine | <https://www.tootukassa.ee/et/jalus/ametlikku/vaide-esitamine> |
+| Eesti Töötukassa | Vanaduspensioniealisele | <https://www.tootukassa.ee/et/teenused/toootsingud/vanaduspensioniealisele> |
+| Eesti Töötukassa | Vähese tähtsusega abi | <https://www.tootukassa.ee/et/vahese-tahtsusega-abi-ja-riigiabi> |
+| Eesti Töötukassa | Õigus töövõimetoetusele | <https://www.tootukassa.ee/et/teenused/toovoimetoetus/oigus-toovoimetoetusele> |
+| Eesti Töötukassa | Üldkontakt | <https://www.tootukassa.ee/et/kontaktid> |
+| Eesti Töötukassa | Üleminek töövõimetuspensionilt töövõimetoetusele | <https://www.tootukassa.ee/et/teenused/toovoimetoetus/uleminek-toovoimetuspensionilt-toovoimetoetusele> |
 | Haridus- ja Noorteamet (Teeviit) | 10 nippi turvalise kohtingurakenduse kohtumiseks | <https://www.teeviit.ee/10-nippi-turvalisteks-kohtinguteks/> |
 | Haridus- ja Noorteamet (Teeviit) | 10 nippi, kuidas hoiduda läbipõlemisest | <https://www.teeviit.ee/10-nippi-kuidas-hoiduda-labipolemisest/> |
 | Haridus- ja Noorteamet (Teeviit) | 5 küsimust ja vastust alkoholi kohta | <https://www.teeviit.ee/5-kusimust-ja-vastust-alkoholi-kohta/> |

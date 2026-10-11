@@ -1,6 +1,6 @@
 {
   "version": "web-pages-1",
-  "note": "Ühingute enda lehed katvuse kaardi nõrkade ridade jaoks (omanik 11.10.2026: „mittetulundusühingute lehed - need ka sisse panna“; ADR-140, korpus v78): vaimne tervis (Peaasi), lähisuhte- ja seksuaalvägivald (Naiste Tugi- ja Teabekeskus), noore seksuaaltervis (Eesti Seksuaaltervise Liit), elu lõpp (Pallium), hasartmängu- ja digisõltuvus (Hasartmängusõltuvuse Nõustamiskeskus), lapse õigused (Lastekaitse Liit), hingehoid, omastehooldus ja tasuta õigusabi kohad (Eesti Juristide Liit). Loend on korpuses olevate lehtede nimekiri: iga leht oma aadressiga, alamlehti ei loeta. Lehed valiti kahes sammus: valikureegel (scripts/rag-v2-web-select.mjs) võttis välja inimesi nimetavad lõigud ja lehed, seejärel jäid välja lehed, mis räägivad ühingust endast (ajalugu, projektid, uudised, puhkuseteated), teises keeles lehed ja Palliumi 2019.–2020. aasta kokkuvõtted riigi toetustest. Lisatud 11.10.2026 (korpus v80): Anonüümsed Alkohoolikud, Al-Anon Eesti ja Laste ja Noorte Kriisiprogramm. Lisatud 11.10.2026 (korpus v81): ühingute tutvustuslehed, mis esimesel korral lehe haaval välja jäid (omaniku valik).",
+  "note": "Ühingute enda lehed katvuse kaardi nõrkade ridade jaoks (omanik 11.10.2026: „mittetulundusühingute lehed - need ka sisse panna“; ADR-140, korpus v78): vaimne tervis (Peaasi), lähisuhte- ja seksuaalvägivald (Naiste Tugi- ja Teabekeskus), noore seksuaaltervis (Eesti Seksuaaltervise Liit), elu lõpp (Pallium), hasartmängu- ja digisõltuvus (Hasartmängusõltuvuse Nõustamiskeskus), lapse õigused (Lastekaitse Liit), hingehoid, omastehooldus ja tasuta õigusabi kohad (Eesti Juristide Liit). Loend on korpuses olevate lehtede nimekiri: iga leht oma aadressiga, alamlehti ei loeta. Lehed valiti kahes sammus: valikureegel (scripts/rag-v2-web-select.mjs) võttis välja inimesi nimetavad lõigud ja lehed, seejärel jäid välja lehed, mis räägivad ühingust endast (ajalugu, projektid, uudised, puhkuseteated), teises keeles lehed ja Palliumi 2019.–2020. aasta kokkuvõtted riigi toetustest. Lisatud 11.10.2026 (korpus v80): Anonüümsed Alkohoolikud, Al-Anon Eesti ja Laste ja Noorte Kriisiprogramm. Lisatud 11.10.2026 (korpus v81): ühingute tutvustuslehed, mis esimesel korral lehe haaval välja jäid (omaniku valik). Lisatud 11.10.2026 (korpus v84, ADR-146): üheksa ühingu lehed teise tööriista korjest, loetud projekti enda lehelugejaga ja valitud reegliga (Inimõiguste Keskus, Lasterikaste Perede Liit, Punane Rist, Naiste Varjupaikade Liit, Patsientide Liit, Pagulasabi, Oma Pere, SOS Lasteküla, Võlanõustajate Liit).",
   "pages": [
     {
       "source_id": "juristaitab_avaleht",
@@ -3789,6 +3789,836 @@
       "url": "https://naistetugi.ee/teenuste-hinnakiri",
       "title": "Teenuste hinnakiri*",
       "publisher": "Naiste Tugi- ja Teabekeskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_eesti_elanike_hoiakud_lgbt_teemadel",
+      "url": "https://humanrights.ee/eesti-elanike-hoiakud-lgbt-teemadel/",
+      "title": "Eesti elanike hoiakud LGBT teemadel",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_iga_klikk_loeb_ka_sinu_andmeid",
+      "url": "https://humanrights.ee/iga-klikk-loeb-ka-sinu-andmeid/",
+      "title": "Iga klikk loeb, ka sinu andmeid!",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_materjalid",
+      "url": "https://humanrights.ee/materjalid/",
+      "title": "Materjalid",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_materjalid_avaliku_arvamuse_uuring_lgbt_teemadel_2026",
+      "url": "https://humanrights.ee/materjalid/avaliku-arvamuse-uuring-lgbt-teemadel-2026/",
+      "title": "Avaliku arvamuse uuring LGBT teemadel (2026)",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_materjalid_inimoigused_infouhiskond_ja_eesti_esialgne_kaardistus",
+      "url": "https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/",
+      "title": "Inimõigused, infoühiskond ja Eesti: esialgne kaardistus",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_inimoigused_infouhiskond_ja_eesti_esialgne_kaardistus_eesti_inimoiguste_keskus_ja_digitaaloiguse",
+      "url": "https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/eesti-inimoiguste-keskus-ja-digitaaloigused/",
+      "title": "Eesti Inimõiguste Keskus ja digitaalõigused",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_inimoigused_infouhiskond_ja_eesti_esialgne_kaardistus_lahendused_ja_ideed_teadlikkuse_tostmiseks",
+      "url": "https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/lahendused-ja-ideed-teadlikkuse-tostmiseks/",
+      "title": "Lahendused ja ideed teadlikkuse tõstmiseks",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_inimoigused_infouhiskond_ja_eesti_esialgne_kaardistus_olukord_eestis",
+      "url": "https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/olukord-eestis/",
+      "title": "Olukord Eestis",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_inimoigused_infouhiskond_ja_eesti_esialgne_kaardistus_teema_1_profileerimine_ja_riik",
+      "url": "https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/teema-1-profileerimine-ja-riik/",
+      "title": "Teema 1: profileerimine ja riik",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_inimoigused_infouhiskond_ja_eesti_esialgne_kaardistus_teema_2_isikuandmete_kaitse_uldmaaruse_gdp",
+      "url": "https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/teema-2-isikuandmete-kaitse-uldmaaruse-gdpr-rakendamine/",
+      "title": "Teema 2: Isikuandmete kaitse üldmääruse (GDPR) rakendamine",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_inimoigused_infouhiskond_ja_eesti_esialgne_kaardistus_teema_3_valjendusvabadus_internetis",
+      "url": "https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/teema-3-valjendusvabadus-internetis/",
+      "title": "Teema 3: Väljendusvabadus internetis",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_inimoigused_infouhiskond_ja_eesti_esialgne_kaardistus_teemade_kaardistus",
+      "url": "https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/teemade-kaardistus/",
+      "title": "Teemade kaardistus",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_materjalid_inimoigused_ja_inimoiguste_alusvaartused_eesti_koolis_ja_hariduspoliitikas",
+      "url": "https://humanrights.ee/materjalid/inimoigused-ja-inimoiguste-alusvaartused-eesti-koolis-ja-hariduspoliitikas/",
+      "title": "Inimõigused ja inimõiguste alusväärtused Eesti koolis ja hariduspoliitikas",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_materjalid_inimoigushariduse_tegevuste_kavandamise_ja_elluviimise_juhend",
+      "url": "https://humanrights.ee/materjalid/inimoigushariduse-tegevuste-kavandamise-ja-elluviimise-juhend/",
+      "title": "Inimõigusi edendava projekti või tegevuse kavandamise ja elluviimise juhend",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_materjalid_inimoiguste_hariduse_meetodid_noorsootootajatele",
+      "url": "https://humanrights.ee/materjalid/inimoiguste-hariduse-meetodid-noorsootootajatele/",
+      "title": "Inimõiguste hariduse meetodid noorsootöötajatele",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_materjalid_juhend_seksuaalse_ja_soolise_ahistamise_ennetamine_tookohal",
+      "url": "https://humanrights.ee/materjalid/juhend-seksuaalse-ja-soolise-ahistamise-ennetamine-tookohal/",
+      "title": "Juhend “Seksuaalse ja soolise ahistamise ennetamine töökohal”",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_materjalid_kaardimang_seksuaalse_ja_soolise_mitmekesisusega_seotud_moistete_kohta",
+      "url": "https://humanrights.ee/materjalid/kaardimang-seksuaalse-ja-soolise-mitmekesisusega-seotud-moistete-kohta/",
+      "title": "Kaardimäng seksuaalse ja soolise mitmekesisusega seotud mõistete kohta",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_materjalid_kuidas_luua_mitmekesisust_ja_erinevusi_vaartustavat_ning_kaasavat_tookeskkonda",
+      "url": "https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/",
+      "title": "Kuidas luua mitmekesisust ja erinevusi väärtustavat ning kaasavat töökeskkonda?",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_kuidas_luua_mitmekesisust_ja_erinevusi_vaartustavat_ning_kaasavat_tookeskkonda_mitmekesisuse_ris",
+      "url": "https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/mitmekesisuse-riskid/",
+      "title": "Mitmekesisuse arendamise riskid",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_materjalid_materjal_vaenu_kohta",
+      "url": "https://humanrights.ee/materjalid/materjal-vaenu-kohta/",
+      "title": "Infomaterjal vaenukõne ja -kuritegude kohta",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_materjalid_meedia_ja_vahemused",
+      "url": "https://humanrights.ee/materjalid/meedia-ja-vahemused/",
+      "title": "Meedia ja vähemused",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_materjalid_mitmekesisuse_paeva_tooriistakast",
+      "url": "https://humanrights.ee/materjalid/mitmekesisuse-paeva-tooriistakast/",
+      "title": "Mitmekesisuse päeva tööriistakast",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_materjalid_mitmekesisuse_tookoha_margis",
+      "url": "https://humanrights.ee/materjalid/mitmekesisuse-tookoha-margis/",
+      "title": "Mitmekesisuse töökoha märgis",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_materjalid_pagulaste_palkamine_eesti_tooturul",
+      "url": "https://humanrights.ee/materjalid/pagulaste-palkamine-eesti-tooturul/",
+      "title": "Pagulaste palkamine Eesti tööturul",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_materjalid_pohioigustele_avalduva_moju_hindamise_kontrollnimekiri_tehisintellektisusteemide_puhu",
+      "url": "https://humanrights.ee/materjalid/pohioigustele-avalduva-moju-hindamise-kontrollnimekiri-tehisintellektisusteemide-puhul/",
+      "title": "Põhiõigustele avalduva mõju hindamise kontrollnimekiri tehisintellektisüsteemide puhul",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_materjalid_poimoppekursus_mitmekesisus_ja_kaasatus",
+      "url": "https://humanrights.ee/materjalid/poimoppekursus-mitmekesisus-ja-kaasatus/",
+      "title": "Põimõppekursus “Mitmekesisus ja kaasatus”",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_materjalid_poliitikadokument",
+      "url": "https://humanrights.ee/materjalid/poliitikadokument/",
+      "title": "Tehisintellekt ja EL põhiõiguste harta (poliitikadokument)",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_materjalid_sobraliku_tooandja_juhend",
+      "url": "https://humanrights.ee/materjalid/sobraliku-tooandja-juhend/",
+      "title": "Sõbraliku tööandja juhend",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_materjalid_taustauuring_ti_kasutamise_moju_kohta_pohioigustele_inglise_keeles",
+      "url": "https://humanrights.ee/materjalid/taustauuring-ti-kasutamise-moju-kohta-pohioigustele-inglise-keeles/",
+      "title": "Taustauuring TI kasutamise mõju kohta põhiõigustele (inglise keeles)",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_materjalid_tehisintellektisusteemide_arendamine_ja_pohioigused_teadlikkuse_tagamise_hindamise_ja",
+      "url": "https://humanrights.ee/materjalid/tehisintellektisusteemide-arendamine-ja-pohioigused-teadlikkuse-tagamise-hindamise-ja-vastutuse-hea-tava/",
+      "title": "Tehisintellektisüsteemide arendamine ja põhiõigused: teadlikkuse tagamise, hindamise ja vastutuse hea tava",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_materjalid_too_ja_pereelu_uhitamise_parimad_praktikad",
+      "url": "https://humanrights.ee/materjalid/too-ja-pereelu-uhitamise-parimad-praktikad/",
+      "title": "Töö- ja pereelu ühitamise parimad praktikad",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_materjalid_turvaline_ruum_noorsootoos_pohimotted_ja_soovitused_noorsootootajatele",
+      "url": "https://humanrights.ee/materjalid/turvaline-ruum-noorsootoos-pohimotted-ja-soovitused-noorsootootajatele/",
+      "title": "Turvaline ruum noorsootöös – põhimõtted ja soovitused noorsootöötajatele",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_materjalid_uuring_mitmekesisus_ja_kaasatus_tooandjate_pilgu_labi",
+      "url": "https://humanrights.ee/materjalid/uuring-mitmekesisus-ja-kaasatus-tooandjate-pilgu-labi/",
+      "title": "Uuring “Mitmekesisus ja kaasatus tööandjate pilgu läbi”",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_materjalid_vordse_kohtlemise_kasiraamat",
+      "url": "https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/",
+      "title": "Võrdse kohtlemise käsiraamat",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_vordse_kohtlemise_kasiraamat_diskrimineerimise_keeld_rahvusvahelistes_oigusaktides",
+      "url": "https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/diskrimineerimise-keeld-rahvusvahelistes-oigusaktides/",
+      "title": "Diskrimineerimise keeld rahvusvahelistes õigusaktides",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_vordse_kohtlemise_kasiraamat_eessona",
+      "url": "https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/eessona/",
+      "title": "Eessõna",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_vordse_kohtlemise_kasiraamat_mis_edasi",
+      "url": "https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/mis-edasi/",
+      "title": "Mis edasi?",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_noustamine",
+      "url": "https://humanrights.ee/noustamine/",
+      "title": "Nõustamine",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_teemad",
+      "url": "https://humanrights.ee/teemad/",
+      "title": "Teemad",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_inimoigused_eestis_inimoiguste_e_giid",
+      "url": "https://humanrights.ee/teemad/inimoigused-eestis/inimoiguste-e-giid/",
+      "title": "Saa teadmisi inimõiguste kohta eri teemade ja igapäevaste olukordade kaudu",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_inimoigused_eestis_inimoiguste_kaitsjad",
+      "url": "https://humanrights.ee/teemad/inimoigused-eestis/inimoiguste-kaitsjad/",
+      "title": "Inimõiguste kaitsjad",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_inimoigused_eestis_vkv",
+      "url": "https://humanrights.ee/teemad/inimoigused-eestis/vkv/",
+      "title": "Võrdse kohtlemise võrgustik",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_mitmekesisus_ja_kaasatus_koolitused",
+      "url": "https://humanrights.ee/teemad/mitmekesisus-ja-kaasatus/koolitused/",
+      "title": "Koolitused",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_mitmekesisus_ja_kaasatus_mitmekesisuse_kuu",
+      "url": "https://humanrights.ee/teemad/mitmekesisus-ja-kaasatus/mitmekesisuse-kuu/",
+      "title": "Mitmekesisuse kuu",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_pagulased_ebaregulaarsed_sisserandajad",
+      "url": "https://humanrights.ee/teemad/pagulased/ebaregulaarsed-sisserandajad/",
+      "title": "Ebaregulaarsed sisserändajad – küsimused ja vastused",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_pagulased_varjupaigataotlejate_noustamine",
+      "url": "https://humanrights.ee/teemad/pagulased/varjupaigataotlejate-noustamine/",
+      "title": "Varjupaigataotlejate ja pagulaste nõustamine",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_teemad_strateegiline_hagelemine",
+      "url": "https://humanrights.ee/teemad/strateegiline-hagelemine/",
+      "title": "Strateegiline hagelemine",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_teemad_vaen",
+      "url": "https://humanrights.ee/teemad/vaen/",
+      "title": "Võitlus vaenu vastu",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_vaen_mida_teha",
+      "url": "https://humanrights.ee/teemad/vaen/mida-teha/",
+      "title": "Mida teha?",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_vaen_sotsiaalmeedia",
+      "url": "https://humanrights.ee/teemad/vaen/sotsiaalmeedia/",
+      "title": "Projekt SafeNet",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_vaen_vaenukone",
+      "url": "https://humanrights.ee/teemad/vaen/vaenukone/",
+      "title": "Vaenukõne ja vaenukuriteod",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_vordne_kohtlemine_vordse_kohtlemise_vorgustik",
+      "url": "https://humanrights.ee/teemad/vordne-kohtlemine/vordse-kohtlemise-vorgustik/",
+      "title": "Võrdse kohtlemise võrgustik",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_tegevus_keskus",
+      "url": "https://humanrights.ee/tegevus/keskus/",
+      "title": "Eesti Inimõiguste Keskus",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_keskus_isikuandmete_kaitse",
+      "url": "https://humanrights.ee/tegevus/keskus/isikuandmete-kaitse/",
+      "title": "Isikuandmete kaitse",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_keskus_vota_uhendust",
+      "url": "https://humanrights.ee/tegevus/keskus/vota-uhendust/",
+      "title": "Võta ühendust",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_uro_inimoiguste_ulevaatus",
+      "url": "https://humanrights.ee/uro-inimoiguste-ulevaatus/",
+      "title": "ÜRO inimõiguste ülevaatus",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "pagulasabi_et_kontaktid",
+      "url": "https://pagulasabi.ee/et/kontaktid",
+      "title": "Kontaktid",
+      "publisher": "Eesti Pagulasabi",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "pagulasabi_et_tuult_tiibadesse_keeleoppe_ja_kohanemise_tugi_aitab_ukraina_noortel_oma_tulevikku_kujundada",
+      "url": "https://pagulasabi.ee/et/tuult-tiibadesse-keeleoppe-ja-kohanemise-tugi-aitab-ukraina-noortel-oma-tulevikku-kujundada",
+      "title": "Tuult tiibadesse: Keeleõppe ja kohanemise tugi aitab Ukraina noortel oma tulevikku kujundada",
+      "publisher": "Eesti Pagulasabi",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "pagulasabi_node_499",
+      "url": "https://pagulasabi.ee/node/499",
+      "title": "Privaatsuspoliitika",
+      "publisher": "Eesti Pagulasabi",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "pagulasabi_et_majanduslik_heaolu",
+      "url": "https://www.pagulasabi.ee/et/majanduslik-heaolu",
+      "title": "Majanduslik heaolu",
+      "publisher": "Eesti Pagulasabi",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "pagulasabi_et_sotsiaalne_heaolu",
+      "url": "https://www.pagulasabi.ee/et/sotsiaalne-heaolu",
+      "title": "Sotsiaalne heaolu",
+      "publisher": "Eesti Pagulasabi",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "pagulasabi_et_tutvustus",
+      "url": "https://www.pagulasabi.ee/et/tutvustus",
+      "title": "Tutvustus",
+      "publisher": "Eesti Pagulasabi",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "patsiendid_liikmele_kkk",
+      "url": "https://patsiendid.ee/liikmele/kkk",
+      "title": "Korduma kippuvad küsimused:",
+      "publisher": "Eesti Patsientide Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "patsiendid_liikmele_kusi_oma_ravimite_kohta",
+      "url": "https://patsiendid.ee/liikmele/kusi-oma-ravimite-kohta",
+      "title": "Küsi apteekrilt oma ravimite kohta",
+      "publisher": "Eesti Patsientide Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "patsiendid_liikmele_loe_haiguste_kohta",
+      "url": "https://patsiendid.ee/liikmele/loe-haiguste-kohta",
+      "title": "Loe lähemalt tervisest:",
+      "publisher": "Eesti Patsientide Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "patsiendid_meist_eesmargid",
+      "url": "https://patsiendid.ee/meist/eesmargid",
+      "title": "Ühingu eesmärgid:",
+      "publisher": "Eesti Patsientide Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "patsiendid_partnerid_nouandetelefonid",
+      "url": "https://patsiendid.ee/partnerid/nouandetelefonid",
+      "title": "Olulised nõuandetelefonid",
+      "publisher": "Eesti Patsientide Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "patsiendid_partnerid_riik",
+      "url": "https://patsiendid.ee/partnerid/riik",
+      "title": "Riiklikud olulised tervishoiusüsteemi lingid:",
+      "publisher": "Eesti Patsientide Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "patsiendid_patsiendi_oigused_abiks_arsti_juures",
+      "url": "https://patsiendid.ee/patsiendi-oigused/abiks-arsti-juures",
+      "title": "Abiks arsti juures",
+      "publisher": "Eesti Patsientide Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "patsiendid_patsiendi_oigused_abiks_ravimi_ostmisel",
+      "url": "https://patsiendid.ee/patsiendi-oigused/abiks-ravimi-ostmisel",
+      "title": "Abiks ravimi ostmisel",
+      "publisher": "Eesti Patsientide Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "patsiendid_patsiendi_oigused_oigusaktid",
+      "url": "https://patsiendid.ee/patsiendi-oigused/oigusaktid",
+      "title": "Olulised õigusaktid",
+      "publisher": "Eesti Patsientide Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "patsiendid_patsiendi_oigused_patsiendi_abc",
+      "url": "https://patsiendid.ee/patsiendi-oigused/patsiendi-abc",
+      "title": "Patsiendi ABC",
+      "publisher": "Eesti Patsientide Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "patsiendid_patsiendi_oigused_patsiendikesksus",
+      "url": "https://patsiendid.ee/patsiendi-oigused/patsiendikesksus",
+      "title": "Patsiendikesksus",
+      "publisher": "Eesti Patsientide Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "patsiendid_patsiendi_oigused_ravimite_huvitamine",
+      "url": "https://patsiendid.ee/patsiendi-oigused/ravimite-huvitamine",
+      "title": "Ravimite hüvitamine",
+      "publisher": "Eesti Patsientide Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "punanerist_bumerang_kkk",
+      "url": "https://redcross.ee/bumerang/KKK",
+      "title": "Korduvad küsimused",
+      "publisher": "Eesti Punane Rist",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "punanerist_esmaabi_ringoppus",
+      "url": "https://redcross.ee/esmaabi-ringoppus",
+      "title": "Esmaabi ringõppus",
+      "publisher": "Eesti Punane Rist",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "punanerist_pohimotted",
+      "url": "https://redcross.ee/pohimotted",
+      "title": "Liikumise põhimõtted",
+      "publisher": "Eesti Punane Rist",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "punanerist_psuhholoogiline_esmaabi",
+      "url": "https://redcross.ee/psuhholoogiline-esmaabi",
+      "title": "Psühholoogiline esmaabi",
+      "publisher": "Eesti Punane Rist",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "punanerist_tegevus",
+      "url": "https://redcross.ee/tegevus",
+      "title": "Tegevus",
+      "publisher": "Eesti Punane Rist",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "punanerist_tervise_edendamine",
+      "url": "https://redcross.ee/tervise-edendamine",
+      "title": "Tervise edendamine",
+      "publisher": "Eesti Punane Rist",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "punanerist_traumateadliku_psuhholoogilise_esmaabi_koolitus",
+      "url": "https://redcross.ee/traumateadliku-psuhholoogilise-esmaabi-koolitus",
+      "title": "Traumateadliku psühholoogilise esmaabi koolitus",
+      "publisher": "Eesti Punane Rist",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "punanerist_vabatahtlike_koolitused",
+      "url": "https://redcross.ee/vabatahtlike-koolitused",
+      "title": "Vabatahtlike koolitused",
+      "publisher": "Eesti Punane Rist",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "soslastekyla_meie_too_jarelhooldus",
+      "url": "https://sos-lastekyla.ee/meie-too/jarelhooldus/",
+      "title": "Järelhooldus",
+      "publisher": "SOS Lasteküla Eesti Ühing",
       "source_type": "organization_page",
       "language": "et",
       "jurisdiction_level": "NATIONAL",
