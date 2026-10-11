@@ -1,6 +1,6 @@
 # ADR-140: ühingute enda lehed (korpus v78)
 
-Kuupäev: 11.10.2026. Teostus Claude Opus 5.5. Seis: **korpus v78 on serveris töös alates 11.10.2026 02:37; otsing ja katvus mõõdetud tasuta; vastuseid mudeliga ei ole mõõdetud.**
+Kuupäev: 11.10.2026. Teostus Claude Opus 5.5. Seis: **korpus v78 on serveris töös alates 11.10.2026 02:37; otsing ja katvus mõõdetud tasuta; vastused mõõdetud 36 pöördega (allpool).**
 
 ## Miks
 
@@ -98,10 +98,36 @@ Käik algas ajal, mil teise seansi muudatuse kasutuselevõtt oli pooleli (kontro
 
 Elu lõpu rea õhukesed lahtrid (raha, kohalik kord, ootamise ajal, õigused) jäid õhukeseks: Palliumi lehed selgitavad haigust ja hooldust, mitte seda, kes maksab ja kuidas taotleda.
 
+## Tasuline vastuste kontroll (11.10.2026)
+
+Omanik 11.10.2026, kui olin öelnud mahu ja hinna (36 pööret, umbes 0,15 USD, lagi 0,18 USD): „koosta küsimused ja küsi ära“. 18 küsimust, mis algavad inimese murest, igaüks kaks korda päris vestluse rajal, korpusel v78 (`w4/check96` serveris; küsimused `tmp/rag-v2-v78/check96/questions.json`). **36 pööret, vigu 0, kõik vastused läbisid kontrolli, 0,1244 USD.** Ühtegi kohta ei loetud küsimusest valesti.
+
+| Küsimus | Millele vastus viitas |
+|---|---|
+| Tütar lõikab ennast | Peaasi „Kuidas aidata kedagi, kes end vigastab?“ (2/2) |
+| Sõber ei jaksa enam elada | Peaasi „Kuidas aidata enesetapumõtetega …“ ja „Kust leida abi ja tuge“ (2/2), ohvriabi leht; vastus ütleb, mida küsida, millal helistada 112 ja kuhu veel |
+| Paanikahood | Peaasi „Paanikahäire“, „Ärevushäirete ravi“, korduvad küsimused (2/2) |
+| Lein pärast abikaasa surma | Peaasi „Keha reageerib“, „Soovitused enesehooleks“, „Kust leida abi ja tuge“ (2/2) |
+| Ema räägib häältest | terviseportaali „Arstiabi“; Peaasi „Millal pöörduda spetsialisti poole“ (1/2). Peaasi leht psühhoosi haigestunu lähedasele oli ühel korral kandidaatide seas, aga mudelile seda ei antud |
+| Mees kontrollib telefoni ja raha | noorteinfo portaali ja ohvriabi lähisuhtevägivalla lehed. Naiste tugikeskuse „Emotsionaalne vägivald“ oli mõlemal korral kandidaatide seas, aga mudelile seda ei antud |
+| Õde ei lahku vägivaldse mehe juurest | naiste tugikeskuse „Kuidas aidata?“ (2/2) |
+| Vend võtab 80-aastase ema pensioni | ohvriabi ja ministeeriumi lehed, ajakirja artiklid; vastus nimetab majanduslikku väärkohtlemist ja kriisitelefoni |
+| 16-aastane kardab rasedust | Seksuaaltervise Liidu „Rasedus“ ja „Küsi nõu“ (2/2) |
+| Isa õhupuudus kodus | Palliumi „Õhupuudus“ (2/2), Regionaalhaigla palliatiivravi keskus; vastus algab sellega, et tugeva õhupuuduse korral helista 112 |
+| Mis on hospiits | Kliinikumi „Palliatiivravi ja hospiits“ (2/2), Palliumi „Hospiits“ (1/2) |
+| Poeg mängib ööd läbi arvutis | nõustamiskeskuse „Digisõltuvus“ ja Peaasi „Arvutisõltuvus“ olid mudelile antud; vastus viitas Peaasi lehele ühel korral ja toetus muidu koolikohustuse sätetele ja lasteabile |
+| Palk kasiinosse ja kiirlaen | Hasartmängusõltuvuse Nõustamiskeskus (2/2), „Maksejõuetus“ |
+| Lapse arvamus vanemate lahkuminekul | lastekaitseseadus ja tsiviilkohtumenetluse seadustik; Lastekaitse Liidu lehti ei olnud vaja |
+| Dementset ema hooldav lähedane on läbi | Dementsuse Kompetentsikeskuse lehed (varasem sisu); Omastehoolduse lehed ei olnud kandidaatide seas |
+| Tasuta õigusnõu | ametlik „Õigusabi“ (2/2), Juristide Liidu „Teised õigusnõustajad“ (1/2) |
+| Telefonikelmus | ohvriabi „Kelmuse ohvriks sattudes saab tuge ka ohvriabist“ (2/2; korpuse v76 sisu) |
+| Kliendi terviseandmed perearstilt (spetsialist) | Andmekaitse Inspektsiooni lehed (2/2; korpuse v76 sisu), omavalitsuse sotsiaalteenuse üldjuhend |
+
+Ühingute lehtedele suunatud 16 küsimusest 12 puhul viitas vastus vähemalt ühel korral ühingu lehele. Ülejäänud nelja vastas vestlus teiste allikate põhjal (seadus, ametlik leht, varasem organisatsiooni leht) ja ükski neist vastustest ei olnud selle pärast vale. Kahes küsimuses (emotsionaalne vägivald, psühhoos) jõudis ühingu leht kandidaatide sekka, aga mitte mudelile antud lõikude hulka: samal teemal on korpuses mitu lehte ja valik võttis teised.
 ## Lahtine
 
-- **juristaitab.ee rubriik „Kiirelt kätte“** (umbes kaks tuhat lühikest õigusartiklit, mida toimetab Justiits- ja Digiministeeriumi lepingupartner; igal artiklil viimase kontrolli kuupäev). See kataks võlad, pärimise, eestkoste, töösuhted, üüri ja perekonnaõiguse inimese keeles, aga on maht, mis nõuab dokumentide piiri tõstmist (omanik lubas 15 000-ni) ja mõõtmist, kas kokkuvõtted ei tõrju seaduse sätteid kandidaatide seast. Omaniku otsus.
+- **juristaitab.ee rubriik „Kiirelt kätte“** (umbes kaks tuhat lühikest õigusartiklit, mida toimetab Justiits- ja Digiministeeriumi lepingupartner; igal artiklil viimase kontrolli kuupäev). See kataks võlad, pärimise, eestkoste, töösuhted, üüri ja perekonnaõiguse inimese keeles, aga on maht, mis nõuab dokumentide piiri tõstmist (omanik lubas 15 000-ni) ja mõõtmist, kas kokkuvõtted ei tõrju seaduse sätteid kandidaatide seast. Omanik 11.10.2026: „selles ma kahtlen, pigem ei pane“. Ei lisata, kuni ta ei ütle teisiti.
 - Need 314 lehte ei ole igakuises uuenduses (nagu ADR-137 lehedki): uuendus peab enne oskama valikureeglit ja lehe haaval tehtud valikut.
 - Lugeja võtab alamlehe pealkirjaks lingi teksti, kui lehel pealkirja ei ole (Eluliini leht „Loe lisa >“); lehe enda `<title>` oleks õige.
 - Anonüümsed Alkohoolikud, Al-Anon, Convictus ja lastekriisi leht: proovida uuesti või küsida ühingutelt.
-- Mudeliga mõõtmata: kas vastused neid lehti kasutavad.
+- ~~Mudeliga mõõtmata: kas vastused neid lehti kasutavad.~~ Mõõdetud 11.10 (osa „Tasuline vastuste kontroll“).

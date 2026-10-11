@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "note": "Katvuse kaardi nõrkade ridade juhislehed, teine osa (10.10.2026): töö kaotus ja töösuhe (Tööinspektsiooni tööelu portaal), toiduabi ja abi siis, kui sissetulek ei kata elamist, noore mure (noorteinfo portaal Teeviit), eaka väärkohtlemine ja kelmus (ohvriabi), elu lõpp (õendusabi, palliatiivravi, lähedase juhised), spetsialisti tööteemad (Sotsiaalkindlustusameti jaotis spetsialistile, andmekaitse, sotsiaaltöö eetika, tööstress). Lehed on väljaandja enda saidilt, saidikaardi või menüü järgi, iga leht oma aadressiga. Töötukassa lehti ei saa lugeda (ADR-111).",
+  "note": "Katvuse kaardi nõrkade ridade juhislehed, teine osa (10.10.2026): töö kaotus ja töösuhe (Tööinspektsiooni tööelu portaal), toiduabi ja abi siis, kui sissetulek ei kata elamist, noore mure (noorteinfo portaal Teeviit), eaka väärkohtlemine ja kelmus (ohvriabi), elu lõpp (õendusabi, palliatiivravi, lähedase juhised), spetsialisti tööteemad (Sotsiaalkindlustusameti jaotis spetsialistile, andmekaitse, sotsiaaltöö eetika, tööstress). Lehed on väljaandja enda saidilt, saidikaardi või menüü järgi, iga leht oma aadressiga. Töötukassa lehti ei saa lugeda (ADR-111). Lisatud 11.10.2026 (korpus v79): Vanglateenistuse uue saidi vanglateenistus.ee 39 juhislehte (vabanemine ja kriminaalhooldus, abiks kinnipeetava lähedastele ja kannatanule, elu vanglas); nimekirjas 10.10 olnud vangla.ee ei olnud siis loetav.",
   "pages": [
     {
       "source_id": "tooelu_7_toolepingu_solmimine",
@@ -3152,6 +3152,396 @@
       "title": "Eetikakäsiraamat | ESTA",
       "publisher": "Eesti Sotsiaaltöö Assotsiatsioon",
       "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_kui_kinnipeetav_vabaneb",
+      "url": "https://vanglateenistus.ee/abiks-kannatanule/karistuse-kandmine/kui-kinnipeetav-vabaneb",
+      "title": "Kui kinnipeetav vabaneb",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_milles_seisneb_karistuse_kandmine",
+      "url": "https://vanglateenistus.ee/abiks-kannatanule/karistuse-kandmine/milles-seisneb-karistuse-kandmine",
+      "title": "Milles seisneb karistuse kandmine",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_kahjumaksed_kannatanule",
+      "url": "https://vanglateenistus.ee/abiks-kannatanule/praktiline-nou/kahjumaksed-kannatanule",
+      "title": "Kahjumaksed kannatanule",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_kui_karistust_kandva_inimese_kaitumine_teeb_muret",
+      "url": "https://vanglateenistus.ee/abiks-kannatanule/praktiline-nou/kui-karistust-kandva-inimese-kaitumine-teeb-muret",
+      "title": "Kui karistust kandva inimese käitumine teeb muret",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_luhiajaline_kokkusaamine",
+      "url": "https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/koned-ja-kokkusaamised-kinnipeetavaga/luhiajaline-kokkusaamine",
+      "title": "Lühiajaline kokkusaamine",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_luhiajaline_valjasoit",
+      "url": "https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/koned-ja-kokkusaamised-kinnipeetavaga/luhiajaline-valjasoit",
+      "title": "Lühiajaline väljasõit",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_pikaajaline_kokkusaamine",
+      "url": "https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/koned-ja-kokkusaamised-kinnipeetavaga/pikaajaline-kokkusaamine",
+      "title": "Pikaajaline kokkusaamine",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_telefonikoned",
+      "url": "https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/koned-ja-kokkusaamised-kinnipeetavaga/telefonikoned",
+      "title": "Helistamine",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_videokohtumised",
+      "url": "https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/koned-ja-kokkusaamised-kinnipeetavaga/videokohtumised",
+      "title": "Videokohtumine",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_paki_saatmine",
+      "url": "https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/saadetised-kinnipeetavale/paki-saatmine",
+      "title": "Paki saatmine",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_raha_saatmine",
+      "url": "https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/saadetised-kinnipeetavale/raha-saatmine",
+      "title": "Raha saatmine",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_kui_lahedane_kriminaalhooldusalune",
+      "url": "https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/vangistus-lahedase-seisukohast/kui-lahedane-kriminaalhooldusalune",
+      "title": "Kui lähedane on kriminaalhooldusalune",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_kui_lahedane_vanglas",
+      "url": "https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/vangistus-lahedase-seisukohast/kui-lahedane-vanglas",
+      "title": "Kui lähedane on vanglas",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_kuidas_raakida_lapsega_vangistusest",
+      "url": "https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/vangistus-lahedase-seisukohast/kuidas-raakida-lapsega-vangistusest",
+      "title": "Kuidas lapsega rääkida",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_kust_saavad_lahedased_infot",
+      "url": "https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/vangistus-lahedase-seisukohast/kust-saavad-lahedased-infot",
+      "title": "Kust saavad lähedased infot",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_lapsevanema_vangistus",
+      "url": "https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/vangistus-lahedase-seisukohast/lapsevanema-vangistus",
+      "title": "Lapsevanema vangistus",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_kirjavahetus_ja_pakid",
+      "url": "https://vanglateenistus.ee/karistuse-kandmine-vanglas/suhtlemine-kinnipeetavaga/kirjavahetus-ja-pakid",
+      "title": "Kirja saatmine",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_uldkasuliku_too_partnerile",
+      "url": "https://vanglateenistus.ee/koostoopartnerile-ja-vabatahtlikule/uldkasulik-too-ja-vabatahtlik-too/uldkasuliku-too-partnerile",
+      "title": "Üldkasuliku töö partnerile",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_vabatahtlike_too_vanglas",
+      "url": "https://vanglateenistus.ee/koostoopartnerile-ja-vabatahtlikule/uldkasulik-too-ja-vabatahtlik-too/vabatahtlike-too-vanglas",
+      "title": "Vabatahtlike töö vanglas",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_elektrooniline_valve",
+      "url": "https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/kriminaalhooldus/elektrooniline-valve",
+      "title": "Elektrooniline valve",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_mis_kriminaalhooldus",
+      "url": "https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/kriminaalhooldus/mis-kriminaalhooldus",
+      "title": "Mis on kriminaalhooldus?",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_riskihindamine_ja_hoolduskava",
+      "url": "https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/kriminaalhooldus/riskihindamine-ja-hoolduskava",
+      "title": "Riskihindamine ja hoolduskava",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_turvalise_koostoo_raamistik",
+      "url": "https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/kriminaalhooldus/turvalise-koostoo-raamistik",
+      "title": "Turvalise koostöö raamistik (TUKO)",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_uldkasulik_too",
+      "url": "https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/kriminaalhooldus/uldkasulik-too",
+      "title": "Üldkasulik töö",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_ennetahtaegne_vabanemine",
+      "url": "https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/vabanemiseks-valmistumine/ennetahtaegne-vabanemine",
+      "title": "Tingimisi ennetähtaegne vabastamine",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_ettevalmistused_vabanemiseks",
+      "url": "https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/vabanemiseks-valmistumine/ettevalmistused-vabanemiseks",
+      "title": "Ettevalmistused vabanemiseks",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_mis_avavangla",
+      "url": "https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/vabanemiseks-valmistumine/mis-avavangla",
+      "title": "Avavangla",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_vabanemise_teekond",
+      "url": "https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/vabanemiseks-valmistumine/vabanemise-teekond",
+      "title": "Vabanemise teekond",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_huvitegevused_vanglas",
+      "url": "https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/eneseteostus-vanglas/huvitegevused-vanglas",
+      "title": "Huvitegevused vanglas",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_oppimine_vanglas",
+      "url": "https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/eneseteostus-vanglas/oppimine-vanglas",
+      "title": "Õppimine vanglas",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_tootamine_vanglas",
+      "url": "https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/eneseteostus-vanglas/tootamine-vanglas",
+      "title": "Töötamine vanglas",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_kinnipeetava_kaebeoigus",
+      "url": "https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/kinnipeetava-oigused/kinnipeetava-kaebeoigus",
+      "title": "Kinnipeetava kaebeõigus",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_kohtumine_advokaadi_notari_voi_esindajaga",
+      "url": "https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/kinnipeetava-oigused/kohtumine-advokaadi-notari-voi-esindajaga",
+      "title": "Kohtumine advokaadi, notari või esindajaga",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_igapaevaelu_vanglas",
+      "url": "https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/vanglas-elamine/igapaevaelu-vanglas",
+      "title": "Igapäevaelu vanglas",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_lubatud_ja_keelatud_esemed_vanglas",
+      "url": "https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/vanglas-elamine/lubatud-ja-keelatud-esemed-vanglas",
+      "title": "Lubatud ja keelatud esemed vanglas",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_riskihindamine_ja_individuaalne_taitmiskava",
+      "url": "https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/vanglas-elamine/riskihindamine-ja-individuaalne-taitmiskava",
+      "title": "Riskihindamine ja individuaalne täitmiskava",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_tervishoiuteenused_vanglas",
+      "url": "https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/vanglas-elamine/tervishoiuteenused-vanglas",
+      "title": "Tervishoiuteenused vanglas",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_vangistuse_etapid",
+      "url": "https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/vanglas-elamine/vangistuse-etapid",
+      "title": "Vangistuse etapid",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "vanglateenistus_vangistuseks_valmistumine",
+      "url": "https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/vanglas-elamine/vangistuseks-valmistumine",
+      "title": "Vangistuseks valmistumine",
+      "publisher": "Vanglateenistus",
+      "source_type": "web_page",
       "language": "et",
       "jurisdiction_level": "NATIONAL",
       "subpages": false
