@@ -446,7 +446,7 @@ function buildLocalPreInquiryDraft({ topic, situation, recipient, assessmentDraf
     "",
     recipient?.type === "SERVICE_PROVIDER"
       ? "Palun andke teada, kas teie teenus võiks sellises olukorras sobida ning millised on tingimused, vabad ajad ja vajadusel suunamise või otsuse nõuded."
-      : "Palun aidata välja selgitada, millised toetused või teenused võiksid minu olukorras sobida ning millised oleksid järgmised sammud.",
+      : "Palun aidata välja selgitada, millised toetused või teenused võiksid selles olukorras sobida ning millised oleksid järgmised sammud.",
     "",
     "Lugupidamisega"
   ].filter((line, index, source) => line || source[index - 1] !== "");
