@@ -17,11 +17,16 @@ const EMPTY = Object.freeze({ relativeId: "", name: "", relation: "", phone: "",
  * lähedaseta; siin on selle tulemus. Ilma lähedasteta näeb jaotist ainult see, kes saab
  * neid lisada.
  */
-export default function HomeCareRelatives({ organizationId, clientId, initial = [], canEdit = false, canFlag = false }) {
+export default function HomeCareRelatives({ organizationId, clientId, initial = [], canEdit = false, canFlag = false, onChanged }) {
   const { t } = useI18n();
   const { call, busy, error, setError } = useHomeCareApi();
   const fieldId = useId();
-  const [items, setItems] = useState(initial || []);
+  const [items, setItemsState] = useState(initial || []);
+  /* Leht hoiab sama seisu osade laua plaadi jaoks: muutus läheb ka sinna. */
+  const setItems = (next) => {
+    setItemsState(next);
+    onChanged?.(next);
+  };
   const [editing, setEditing] = useState(false);
   const [form, setForm] = useState({ ...EMPTY });
 

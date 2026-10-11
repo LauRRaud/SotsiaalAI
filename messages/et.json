@@ -14019,9 +14019,6 @@
         "REASON": "põhjusega"
       },
       "talk_to_coordinator": "Enne käiku räägi hooldusjuhiga.",
-      "jump_label": "Kiirteed sellel lehel",
-      "jump_entry": "Kirjuta kirje",
-      "jump_diary": "Päevik",
       "handovers_title": "Viimased teated järgmisele",
       "away_notice": "Klient on ajutiselt ära.",
       "ended_notice": "Teenus on lõpetatud. Leht on loetav.",
@@ -16341,6 +16338,59 @@
       "none": "Täna sul käike ei ole.",
       "done_part": "tehtud {count}",
       "later_part": "hiljem veel {count}"
+    },
+    "parts": {
+      "names": {
+        "door": "Ukse taga",
+        "slots": "Käigud",
+        "safety": "Ohutus",
+        "relatives": "Lähedased",
+        "manage": "Hooldusjuhile"
+      },
+      "lines": {
+        "door": "Enne kui lähed ja teated",
+        "entry": "Käik, teade või erijuhtum",
+        "diary_last": "Viimane kirje {date}",
+        "diary_none": "Kirjeid ei ole",
+        "plan_review": "Ülevaatus {date}",
+        "plan_no_review": "Ülevaatuse päev on määramata",
+        "plan_none": "Kava ei ole veel",
+        "slots": "Käike nädalas: {count}",
+        "slots_none": "Käike ei ole kirjas",
+        "decision_none": "Otsust ei ole kirjas",
+        "decision_no_volume": "Mahtu ei ole kirjas",
+        "safety": "Ohutuskaart ja tavaline seis",
+        "safety_preconditions": "Täitmata eeltingimusi: {count}",
+        "keys_none": "Võtmeid ei ole",
+        "key_mine": "Nr {tag} on sinu käes",
+        "key_held": "Nr {tag}: {name}",
+        "key_office": "Nr {tag} on kontoris",
+        "keys_count": "Võtmeid {count}",
+        "keys_count_mine": "Võtmeid {count}, sinu käes {mine}",
+        "money_mine": "Sinu käes {amount}",
+        "money_held": "Töötajate käes {amount}",
+        "money_none": "Raha kellegi käes ei ole",
+        "supplies_none": "Varusid ei jälgita",
+        "supplies_ok": "Kõik on piisav",
+        "supplies_unmarked": "Seis on märkimata",
+        "supply_state": "{kind}: {state}",
+        "transport_none": "Sõite ei ole",
+        "transport_next": "Sõit {date}",
+        "transport_waiting": "Soov ootab vastust",
+        "relatives_none": "Lähedasi ei ole kirjas",
+        "relatives_count": "Lähedasi {count}",
+        "team_none": "Meeskonnas ei ole kedagi",
+        "team_more": "{name} ja veel {count}",
+        "manage": "Seis, andmed ja teated",
+        "manage_signals": "Märkamisi ootab vastust: {count}",
+        "manage_review": "Vaata üle, mis on lahti"
+      }
+    },
+    "door": {
+      "back": "Tagasi ukse taha",
+      "more_handovers": "Varasemaid teateid: {count}",
+      "no_answer": "Uks ei avane",
+      "write_entry": "Kirjuta kirje"
     }
   },
   "stage": {

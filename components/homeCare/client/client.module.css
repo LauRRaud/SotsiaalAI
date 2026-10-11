@@ -1,0 +1,245 @@
+/* Kliendi lehe vaated: „Ukse taga", viimased teated ja osade laud.
+   Read, märgid ja laused on organisatsioonide lehtede ühised
+   (../../org/org.module.css), plaadi materjal organisatsiooni laua oma
+   (../../org/desk/desk.module.css); siin on ainult see, mis on kliendi lehel oma. */
+
+/* Vaade, mis ei ole ees, jääb lehele alles (pooleli kirje ei tohi kaduda), aga
+   ruumi ei võta. */
+.slot {
+  min-width: 0;
+}
+.slot[hidden] {
+  display: none;
+}
+
+/* --- Ülaserv: nimi, seis, aadress ja telefon --------------------------------- */
+.head {
+  min-width: 0;
+  display: grid;
+  gap: 0.1rem;
+}
+.nameRow {
+  composes: head from "../../org/desk/desk.module.css";
+}
+/* Kaks klassi: laua ülaserva ja nime reeglid (üks klass, teisest failist) ei tohi
+   siin võita. */
+.head .nameRow {
+  align-items: center;
+}
+.name {
+  composes: name from "../../org/desk/desk.module.css";
+}
+.head .name {
+  font-size: 1.15rem;
+  line-height: 1.3;
+}
+.where {
+  margin: 0;
+  max-width: none;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 0.9rem;
+  color: var(--text-soft);
+}
+.tel {
+  composes: tel from "../clients/clients.module.css";
+}
+/* Kontaktide märkus on inimese kirjutatud: reavahetused jäävad. */
+.contact {
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+/* Rida, mis viib osasse, kus midagi ootab: tugevam raam. Kaks klassi, et rea
+   enda reegel (teisest failist) ei võidaks. */
+.alert.alert {
+  border-color: color-mix(in srgb, var(--text-warm) 62%, transparent);
+}
+
+/* --- Kaart „Enne kui lähed" ja viimane teade ---------------------------------- */
+.door {
+  min-width: 0;
+  display: grid;
+  gap: 0.65rem 1.4rem;
+}
+/* Nimi, hoiatused ja read, mis viivad osasse, kus midagi ootab. */
+.lead {
+  min-width: 0;
+  display: grid;
+  align-content: start;
+  gap: 0.65rem;
+}
+.block {
+  min-width: 0;
+  display: grid;
+  align-content: start;
+  gap: 0.3rem;
+}
+.captionRow {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.caption {
+  composes: caption from "../desk/desk.module.css";
+}
+/* Sõna, mis on tegevus (kaardi muutmine): allajoonitud, sõrme jaoks piisavalt kõrge. */
+.textButton {
+  flex: none;
+  min-height: var(--hit-target-min, 2.75rem);
+  /* Kõrge puutesiht ei tohi kaardi pealkirja rida kõrgemaks teha. */
+  margin-block: -0.75rem;
+  padding: 0 0.15rem;
+  border: 0;
+  background: none;
+  color: var(--text-warm);
+  font: inherit;
+  font-size: var(--fs-small, 0.875rem);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+.textButton:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+/* Kaardi read on täies pikkuses: aadress, võtme asukoht ja oht ei tohi ukse taga
+   poolikuks jääda. */
+.card {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+.cardLine {
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.5rem;
+}
+.cardText {
+  flex: 1 1 12rem;
+  min-width: 0;
+  color: var(--text-warm);
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+/* Viimane teade järgmisele: kolm rida ees, terve tekst ja varasemad teated
+   vajutuse taga. */
+.handover {
+  composes: cell from "../../stage/cell.module.css";
+}
+/* Kaks klassi: lahtri enda laius ja joondus (teisest failist) ei tohi võita. */
+.block .handover {
+  width: 100%;
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.9rem;
+  text-align: start;
+}
+.handoverText {
+  color: var(--text-warm);
+  line-height: 1.4;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+.meta,
+.more {
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.4;
+}
+.more {
+  color: var(--text-warm);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.handoverItem {
+  display: grid;
+  gap: 0.15rem;
+}
+
+/* --- Osade laud ---------------------------------------------------------------- */
+.tiles {
+  composes: tiles from "../../org/desk/desk.module.css";
+}
+.tile {
+  composes: tile from "../../org/desk/desk.module.css";
+}
+/* Kaks klassi: organisatsiooni laua plaadi reegel ei tohi siin võita (vt selle
+   faili märkust stiilifailide laadimise järjekorra kohta). Plaat on madalam:
+   14 osa peab mahtuma paneeli koos kliendi nimega. */
+.tiles .tile {
+  min-height: 0;
+}
+.tiles .tile[data-wait="1"] {
+  border-color: color-mix(in srgb, var(--text-warm) 62%, transparent);
+}
+.tileTitle {
+  composes: tileTitle from "../../org/desk/desk.module.css";
+}
+.tileSummary {
+  composes: tileSummary from "../../org/desk/desk.module.css";
+}
+/* Rida võib alata andmetest tulnud sõnaga („küttepuud: otsas"): lause algab suure tähega. */
+.tileSummary::first-letter {
+  text-transform: uppercase;
+}
+.tile[data-wait="1"] .tileSummary {
+  color: var(--text-warm);
+  font-weight: 560;
+}
+
+/* --- Vana kihi osa -------------------------------------------------------------- */
+.old {
+  composes: notes from "../desk/desk.module.css";
+}
+/* Vana kihi leht hoiab oma laiust keskel; vaates algab see vasakult. */
+.old.old {
+  max-width: none;
+  margin-inline: 0;
+}
+/* Vana kihi ümbris ütleb oma kuju ise (display: flex): peidetud ümbris peab ikka peitu jääma. */
+.old[hidden] {
+  display: none;
+}
+
+@container (min-width: 34rem) {
+  /* Laiemal pinnal on viimane teade nime kõrval ja kaart kogu laiuses: paneel on
+     lai ja madal, kaardi read jäävad nii ühele reale. */
+  .door[data-side="1"] {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    align-items: start;
+  }
+  .door[data-side="1"] > [data-area="side"] {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .door[data-side="1"] > [data-area="card"] {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+}
+@container (max-width: 34rem) {
+  /* Telefonis kaks veergu: 14 osa on seitse rida ja plaadil on ka osa seis. */
+  .tiles.tiles {
+    gap: 0.3rem;
+  }
+  .tiles .tile {
+    padding-block: 0.3rem;
+  }
+}

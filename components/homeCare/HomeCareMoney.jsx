@@ -24,11 +24,16 @@ export function euroText(cents, locale) {
  * jääk. See on arvestus, mitte makse. Iga hooldaja näeb oma ridu; hooldusjuht näeb ka,
  * kui palju selle kliendi raha kellegi käes on.
  */
-export default function HomeCareMoney({ organizationId, clientId, initial, canWrite = false, isCoordinator = false }) {
+export default function HomeCareMoney({ organizationId, clientId, initial, canWrite = false, isCoordinator = false, onChanged }) {
   const { t, locale } = useI18n();
   const { call, busy, error, setError } = useHomeCareApi();
   const fieldId = useId();
-  const [money, setMoney] = useState(initial || { balanceCents: 0, entries: [], holders: [], today: "" });
+  const [money, setMoneyState] = useState(initial || { balanceCents: 0, entries: [], holders: [], today: "" });
+  /* Leht hoiab sama seisu osade laua plaadi jaoks: muutus läheb ka sinna. */
+  const setMoney = (next) => {
+    setMoneyState(next);
+    onChanged?.(next);
+  };
   const [adding, setAdding] = useState(false);
   const [form, setForm] = useState({ kind: "", amount: "", note: "" });
 

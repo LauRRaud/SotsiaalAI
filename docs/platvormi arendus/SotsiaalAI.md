@@ -104,16 +104,33 @@ koduteenus vaatega „Täna” ja hooldusjuhil lauaga, laua plaatidel on kindel 
 tagasilingi eemaldamine (#706); hooldaja päev väikeste vaadetena (#709); kliendid,
 uus klient, „Kuhu suunata” ja oma nimi (#717). Avaleht on nüüd laud ja väikesed
 vaated; 22 alalehe sisu on veel vanal `hc-*` kihil (`app/styles/home-care.css`).
-**Järgmine ühik** on kliendi leht: esimene vaade „Ukse taga” ja ülejäänud osad
-plaatidena; siis kirje ja päevik, kliendi osad, hooldusjuhi osa, päevaplaan,
-tähtajad ja ülevaade, kuu ja väljavõtted, registrid, vana kihi eemaldamine.
+**Kliendi lehe kuju (11.10 hilisõhtu, PR „the client page is a desk of parts”):**
+leht on osade laud ja avaneb kõigil vaatega „Ukse taga” (nimi, aadress, telefon,
+kaart „Enne kui lähed”, viimane teade järgmisele; all „Uks ei avane” ja „Kirjuta
+kirje”). Osi on 14 (ukse taga, uus kirje, päevik, hoolduskava, käigud, otsus ja
+maht, ohutus, võtmed, raha, varud, transport, lähedased, meeskond, hooldusjuhile);
+osa, kus inimesel ei ole midagi näha ega teha, laual ei ole. Plaadi rida tuleb
+lehe enda andmetest ja plaat, kus midagi ootab, on tugevama raamiga. Kiirmenüüs
+kannab nelja ruuduga nupp osa vaates nime „Kliendi leht” ja viib osade lauale,
+laual viib see koduteenusesse. Osade SISU on veel vanal kihil; kõik osad jäävad
+lehele peidetult alles, et pooleli kirje ja avatud vorm vaate vahetusel ei kaoks.
+Kui luba lõpeb lahtise lehe ajal, ilmub põhjuse vorm avatud vaate kohale (kohalikult
+läbi mängitud: kirje tekst jäi alles). Mõõdetud kohalikult 1536 × 640 ja 390 × 844
+aknas, heledas ja tumedas teemas, eesti, inglise ja vene keeles: „Ukse taga” mahub
+viie kuni 60 tähe pikkuse kaardirea, kahe teate ja tavalise aadressiga (telefonis
+844/844, arvutis 496/522); pikemate kaardiridadega kerib kogu paneel (kaardi read
+on alati täies pikkuses). Osade laud mahub 14 plaadiga (arvutis kuni 494/522).
+**Järgmine ühik** on kliendi lehe sisu: uus kirje sammudena ja päevik (koos seadmes
+ootavate kirjete kasti ja kõne märkimisega); siis igapäevased osad, hooldusjuhi osa
+ja kliendi alalehed, päevaplaan, tähtajad ja ülevaade, kuu ja väljavõtted, registrid,
+vana kihi eemaldamine.
 Päringud, `app/api/**` ja `lib/**` jäävad puutumata (ainus erand oli infotekstide
 fail). Mõõtmine muutis kavandit kahes kohas: viis täispikka käigurida ei mahtunud
 pika päevaga ekraanile (järgmine käik on täies pikkuses, kolm järgmist ühel real)
 ja laua rühmas on kuni kuus plaati. Vaadet „Täna” ei ole elus nähtud: omaniku
 kontol ei ole oma käike; kohalikult on see mõõdetud hooldaja kontoga. Reeglid on
-puhastes failides `components/homeCare/{desk,day,clients}/`, testid
-`tests/home-care-{desk,my-day,clients-view,info}.test.mjs`. Mõõdud, lõksud,
+puhastes failides `components/homeCare/{desk,day,clients,client}/`, testid
+`tests/home-care-{desk,my-day,clients-view,client-parts,info}.test.mjs`. Mõõdud, lõksud,
 kohaliku eelvaate retsept ja ühikute järjekord on mälumärkmes
 `koduteenus-views-mockup` ja seansside ühises märkmes
 `side-session-notes/local_b3b842f1-182e-48a3-bcc3-6878e50813a2/koduteenus-vaadete-kavand.md`.

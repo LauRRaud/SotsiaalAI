@@ -12,11 +12,16 @@ import { formatDateTime, homeCareBase, useHomeCareApi } from "./homeCareClient";
  * ühe puudutusega igaüks, kes kliendi juures käib; mis varusid jälgitakse ja kes neid
  * täiendab, paneb paika hooldusjuht. Märkuse saab lisada pärast seisu valimist.
  */
-export default function HomeCareSupplies({ organizationId, clientId, initial = [], timeZone, canWrite = false, canManage = false }) {
+export default function HomeCareSupplies({ organizationId, clientId, initial = [], timeZone, canWrite = false, canManage = false, onChanged }) {
   const { t } = useI18n();
   const { call, busy, error, setError } = useHomeCareApi();
   const fieldId = useId();
-  const [supplies, setSupplies] = useState(initial || []);
+  const [supplies, setSuppliesState] = useState(initial || []);
+  /* Leht hoiab sama seisu osade laua plaadi jaoks: muutus läheb ka sinna. */
+  const setSupplies = (next) => {
+    setSuppliesState(next);
+    onChanged?.(next);
+  };
   /* Avatud vorm: `{ mode: "track" }` või `{ mode: "note", supplyId }`. Korraga üks. */
   const [open, setOpen] = useState(null);
   const [form, setForm] = useState({ kind: "", responsible: "", note: "" });
