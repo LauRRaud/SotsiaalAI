@@ -1,7 +1,14 @@
 name: quality-gate
 
-# One production build, used directly by deployment. The AI chooses lint/tests
-# before publishing; broad validation and the webpack build remain opt-in tools.
+# The one place where the whole repository is checked before the server: one production build
+# (used directly by deployment), and next to it lint, the catalogue check and the whole unit
+# suite. The three jobs run side by side; `deploy` starts only when all of them succeed, so a
+# red test or a lint error stops that deploy.
+#
+# Why here and not in every branch: ten development sessions each ran the same full round on
+# the owner's computer before their PR. On this runner the suite takes under two minutes
+# (measured 11.10.2026: 288 files, 2476 tests, 108 s; lint 121 s). A session runs only the test
+# files its change touches (AGENTS.md, "Kontrollid").
 on:
   push:
     branches: [main]
@@ -20,28 +27,30 @@ concurrency:
   group: release-build-${{ github.ref }}
   cancel-in-progress: true
 
+# The same placeholder environment for every job: the build and the tests load modules that read it.
+env:
+  DATABASE_URL: postgresql://sotsiaal_user@127.0.0.1:5432/sotsiaal_ai_ci
+  NEXT_PUBLIC_SITE_URL: https://sotsiaal.pro
+  APP_URL: https://sotsiaal.pro
+  NEXTAUTH_URL: https://sotsiaal.pro
+  NEXTAUTH_SECRET: ${{ github.sha }}
+  AUTH_SECRET: ${{ github.sha }}
+  OPENAI_API_KEY: ${{ github.sha }}
+  RAG_SERVICE_API_KEY: ${{ github.sha }}
+  RAG_INTERNAL_HOST: 127.0.0.1
+  RAG_API_BASE: http://127.0.0.1:8000
+  EMAIL_FROM: ci@sotsiaal.pro
+  DATA_RETENTION_DAYS: 90
+  CONVERSATION_TTL_DAYS: 90
+  PAYMENT_RETENTION_DAYS: 2555
+  PAYMENT_RAW_RETENTION_DAYS: 90
+  LOG_RETENTION_DAYS: 90
+
 jobs:
   build:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
     timeout-minutes: 20
-    env:
-      DATABASE_URL: postgresql://sotsiaal_user@127.0.0.1:5432/sotsiaal_ai_ci
-      NEXT_PUBLIC_SITE_URL: https://sotsiaal.pro
-      APP_URL: https://sotsiaal.pro
-      NEXTAUTH_URL: https://sotsiaal.pro
-      NEXTAUTH_SECRET: ${{ github.sha }}
-      AUTH_SECRET: ${{ github.sha }}
-      OPENAI_API_KEY: ${{ github.sha }}
-      RAG_SERVICE_API_KEY: ${{ github.sha }}
-      RAG_INTERNAL_HOST: 127.0.0.1
-      RAG_API_BASE: http://127.0.0.1:8000
-      EMAIL_FROM: ci@sotsiaal.pro
-      DATA_RETENTION_DAYS: 90
-      CONVERSATION_TTL_DAYS: 90
-      PAYMENT_RETENTION_DAYS: 2555
-      PAYMENT_RAW_RETENTION_DAYS: 90
-      LOG_RETENTION_DAYS: 90
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
@@ -65,3 +74,35 @@ jobs:
           compression-level: 0
           retention-days: 7
           if-no-files-found: error
+
+  unit:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install locked dependencies and generate Prisma client
+        run: npm ci --no-audit --no-fund
+      - name: Run the whole unit suite
+        run: npm test
+
+  lint:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install locked dependencies and generate Prisma client
+        run: npm ci --no-audit --no-fund
+      - name: Check that every language has every text
+        run: npm run i18n:check
+      - name: Lint the whole repository
+        run: npm run lint

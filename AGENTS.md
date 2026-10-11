@@ -23,9 +23,11 @@
 
 AI valib muudatuse järgi väikseima vajaliku kontrolli. Kiirus ja tavakasutajate töö säilimine on eesmärk; täislint, kõik testid, kaks build'i ega muu üldine kontrolliring ei käivitu automaatselt iga muudatusega. Dokumentatsioonimuudatus ei vaja teste ega build'i.
 
+**Täisring jookseb üks kord GitHubis, mitte igas harus.** `main`-i värav (`quality-gate`) jooksutab pärast liitmist ehituse kõrval kogu repo lint'i, tõlgete kontrolli ja kõik unit-testid (umbes kolm minutit); `deploy` käivitub ainult siis, kui kõik kolm on rohelised. Oma harus ära jooksuta enne PR-i `npm test`-i, `npm run lint`-i ega kohalikku build'i: käivita ainult need testifailid, mida muudatus puudutab. Pärast liitmist vaata värav üle; kui see läks sinu muudatusest punaseks, paranda kohe, sest punane `main` peatab kõigi paigalduse.
+
 - Tasulised mudelitestid ega eraldi AI-hindamisring ei ole arenduse või töö valmimise nõue. Ära lisa neid kohustuslikuks järgmiseks sammuks ega peata tööd nende loa ootamiseks. Kasuta tehnilise käitumise kontrollimiseks kohalikke sihtteste, testadaptereid ja olemasolevaid tõendeid; kirjelda ausalt sisulise kvaliteedi kontrollimata osa.
-- Vajadusel JS/JSX lint: `npx eslint <failid>`.
-- Unit-testid vajadusel: `npm test` või üks fail `node --import ./scripts/register-node-source-loader.mjs --test tests/<fail>`. `*.integration.test.mjs` ja `scripts/run-unit-tests.mjs`-is nimetatud failid vajavad kohalikku andmebaasi või EstNLTK-d.
+- Vajadusel JS/JSX lint ainult muudetud failidel: `npx eslint <failid>`.
+- Unit-testid harus: muudatust puudutavad failid, `node --import ./scripts/register-node-source-loader.mjs --test tests/<fail>`. Kogu komplekt (`npm test`) on värava töö. `*.integration.test.mjs` ja `scripts/run-unit-tests.mjs`-is nimetatud failid vajavad kohalikku andmebaasi või EstNLTK-d ega jookse väravas.
 - Tõlgete kontroll vajadusel: `npm run i18n:check`.
 - Prisma skeemi/migratsiooni korral vali vajalik kontroll (`npx prisma validate`, migratsiooni sihttest või proov eraldatud andmebaasis). Migratsioon peab sobima ka eelmise rakenduse versiooniga; destruktiivne muutus vajab eraldi andmesäilituse ja ülemineku lahendust. Serveris rakendatakse ainult muutunud migratsioonikomplekte, piiratud lukuaegadega.
 - Iga muudatus: `git diff --check`; enne commit'i ka stage'itud diffi kontroll.
