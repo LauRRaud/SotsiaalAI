@@ -29,7 +29,7 @@ Neljast katsest (kolm tasulise kontrolli ringi ja üks päris pööre) tõi otsi
 
 ## Piirid
 
-- Loetakse ainult üleriigilisi õigusakte, mille pealkiri on otsinguulatuses üks (kehtiv redaktsioon). Omavalitsuse määrust nii ei tooda: 60 määruse pealkirja 286-st on mitmel omavalitsusel sama.
+- Loetakse ainult üleriigilisi õigusakte, mille pealkiri on otsinguulatuses üks (kehtiv redaktsioon). Omavalitsuse määrust nii ei tooda: 60 määruse pealkirja 286-st on mitmel omavalitsusel sama. **Alates 11.10.2026 loetakse ka määruse sätet, pealkirja ja pöörde omavalitsuse järgi: [ADR-142](adr-142-a-regulation-provision-the-question-names.md).**
 - Seaduse nimi peab olema kirjas nii, nagu see on (pealkiri või ametlik lühend). Kokku kirjutatud („sotsiaalhoolekandeseadus“) või omal moel lühendatud nime ei tunta.
 - Kaks kohta: kolmas küsimuses nimetatud säte jääb otsingu leida.
 - Punkti („p 2“) ei eristata; tuuakse lõige.
