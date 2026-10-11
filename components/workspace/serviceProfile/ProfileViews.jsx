@@ -24,6 +24,8 @@
  * Kujundus: profile.module.css (siin kõrval).
  */
 
+import { useState } from "react";
+
 import CheckCard from "@/components/stage/CheckCard";
 import ChoiceRow from "@/components/stage/ChoiceRow";
 import StepPanel from "@/components/stage/StepPanel";
@@ -31,6 +33,7 @@ import Button from "@/components/ui/Button";
 
 import { AreaFields, Chip, ItemRow, LineField, Notice, TextField } from "./ProfileFields";
 import styles from "./profile.module.css";
+import { publishCheckView } from "./profileModel";
 
 /**
  * Asutuse kinnituse seis ühe lausena (`representation`: `{ text, href, warn }`, otsus
@@ -117,7 +120,7 @@ function WhoView({ tp, form, options, representation, onField, register, note, s
             <RepresentationLine tp={tp} representation={representation} />
           </p>
         ) : null}
-        <ChoiceRow
+        <ChoiceRow keepColumns
           label={tp("fields.organization_type", "Organisatsiooni tüüp")}
           options={options.organizationType}
           value={form.organizationType}
@@ -318,20 +321,16 @@ function LocationsView({ tp, options, locations, note, save }) {
  * Kumbki ei eelda teist: vestluses leitav osutaja ei pea olema kaardil ja vastupidi.
  * Kui asutus on kinnitamata, ütleb vaade seda enne salvestamist ja staatust
  * „Avaldatud" ei pakuta (`statusOptions` tuleb lehelt, reegel: `statusChoices`).
- * Üldine juhis avaldamise kohta jääb siis ära: vaade peab paneeli mahtuma ja
- * kuni asutus on kinnitamata, on see lause see, mida inimene teadma peab.
+ * Üldist juhist vaate ülaservas ei ole: märkekaart „Leitav teenusekaardil" ütleb sama asja
+ * (profiil on kaardil ainult avaldatuna ja aadressivastega) ja koos juhisega ei mahtunud vaade
+ * vene keeles töölaua paneeli (485 px, mahub 464).
  */
 function VisibilityView({ tp, form, statusOptions, representation, onField, note, save }) {
   const blocked = Boolean(representation?.warn);
   return (
-    <StepPanel
-      title={tp("views.visibility.title", "Avaldamine")}
-      lead={blocked ? null : tp("publish_help", "Avaldamata ja ülevaatusel profiil ei ilmu teenusekaardile. Avaldatud profiil vajab markeriks ka usaldusväärset aadressivastet.")}
-      note={note}
-      actions={save}
-    >
+    <StepPanel title={tp("views.visibility.title", "Avaldamine")} note={note} actions={save}>
       <div className={styles.stack}>
-        <ChoiceRow
+        <ChoiceRow keepColumns
           label={tp("fields.status", "Profiili staatus")}
           columns={statusOptions.length}
           options={statusOptions}
@@ -362,12 +361,47 @@ function VisibilityView({ tp, form, statusOptions, representation, onField, note
   );
 }
 
+/** Üks avaldamise kontrolli rida: seis, lause ja tee vaatesse, kus seda saab parandada. */
+function CheckRow({ tp, row }) {
+  return (
+    <li className={styles.check} data-tone={row.blocking ? "risk" : undefined}>
+      <Chip tone={row.blocking ? "risk" : row.ok ? "ok" : row.optional ? undefined : "wait"}>
+        {row.blocking
+          ? tp("views.check.missing", "Puudu")
+          : row.ok
+            ? tp("views.check.ok", "Korras")
+            : row.optional
+              ? tp("views.check.optional", "Sinu valik")
+              : tp("views.check.review", "Vaata üle")}
+      </Chip>
+      <span className={styles.checkText}>
+        {row.text}
+        {row.detail ? <span className={styles.checkDetail}>{row.detail}</span> : null}
+      </span>
+      {/* Asutuse kinnitamine on omaette leht: sinna viib link, teistel ridadel nupp vaatesse. */}
+      {row.target?.href ? (
+        <a className={styles.textButton} href={row.target.href}>
+          {row.target.name} ›
+        </a>
+      ) : row.target ? (
+        <button type="button" className={styles.textButton} aria-label={row.target.label} onClick={row.target.onClick}>
+          {row.target.name} ›
+        </button>
+      ) : null}
+    </li>
+  );
+}
+
 /**
- * Avaldamise kontroll: mis on korras ja mis mitte. Rida, mis ei ole korras,
- * viib vaatesse, kus seda saab parandada. Rida, mis takistab salvestamist, on
- * eraldi märgitud.
+ * Avaldamise kontroll. Ees on read, mis ei ole korras (takistavad enne), lehekülgede kaupa; rida
+ * viib vaatesse, kus seda saab parandada. Korras read on avatavas plokis. Mis on ees, otsustab
+ * `publishCheckView` failis profileModel.js; lehekülg on selle vaate enda asi.
+ *
+ * Enne olid kõik read ühes loendis ja üheksa reaga ei mahtunud vaade töölaua paneeli.
  */
 function CheckView({ tp, check, note, save }) {
+  const [page, setPage] = useState(0);
+  const view = publishCheckView(check.rows, { page });
   return (
     <StepPanel title={tp("views.check.title", "Avaldamise kontroll")} note={note} actions={save}>
       <div className={styles.stack}>
@@ -376,35 +410,36 @@ function CheckView({ tp, check, note, save }) {
             {tp("views.publish_blocked", "Avaldatud profiili ei saa salvestada, kuni puuduv on lisatud.")}
           </Notice>
         ) : null}
-        <ul className={styles.checks}>
-          {check.rows.map((row) => (
-            <li key={row.key} className={styles.check} data-tone={row.blocking ? "risk" : undefined}>
-              <Chip tone={row.blocking ? "risk" : row.ok ? "ok" : row.optional ? undefined : "wait"}>
-                {row.blocking
-                  ? tp("views.check.missing", "Puudu")
-                  : row.ok
-                    ? tp("views.check.ok", "Korras")
-                    : row.optional
-                      ? tp("views.check.optional", "Sinu valik")
-                      : tp("views.check.review", "Vaata üle")}
-              </Chip>
-              <span className={styles.checkText}>
-                {row.text}
-                {row.detail ? <span className={styles.checkDetail}>{row.detail}</span> : null}
-              </span>
-              {/* Asutuse kinnitamine on omaette leht: sinna viib link, teistel ridadel nupp vaatesse. */}
-              {row.target?.href ? (
-                <a className={styles.textButton} href={row.target.href}>
-                  {row.target.name} ›
-                </a>
-              ) : row.target ? (
-                <button type="button" className={styles.textButton} aria-label={row.target.label} onClick={row.target.onClick}>
-                  {row.target.name} ›
-                </button>
-              ) : null}
-            </li>
-          ))}
-        </ul>
+        {view.allOk ? (
+          <p className={styles.quiet}>{tp("views.check.all_ok", "Kõik kontrollid on korras.")}</p>
+        ) : (
+          <ul className={styles.checks}>
+            {view.open.items.map((row) => (
+              <CheckRow key={row.key} tp={tp} row={row} />
+            ))}
+          </ul>
+        )}
+        {view.open.pages > 1 ? (
+          <p className={styles.line}>
+            <span className={styles.count}>{tp("views.check.range", "{from} kuni {to}, kokku {total}", { from: view.open.from, to: view.open.to, total: view.open.total })}</span>
+            <button type="button" className={styles.textButton} disabled={view.open.page <= 0} onClick={() => setPage(view.open.page - 1)}>
+              ‹ {tp("views.check.prev", "Eelmised")}
+            </button>
+            <button type="button" className={styles.textButton} disabled={view.open.page >= view.open.pages - 1} onClick={() => setPage(view.open.page + 1)}>
+              {tp("views.check.next", "Järgmised")} ›
+            </button>
+          </p>
+        ) : null}
+        {view.ok.length ? (
+          <details className={styles.fold}>
+            <summary className={styles.foldTitle}>{tp("views.check.ok_fold", "Korras · {count}", { count: view.ok.length })}</summary>
+            <ul className={styles.checks}>
+              {view.ok.map((row) => (
+                <CheckRow key={row.key} tp={tp} row={row} />
+              ))}
+            </ul>
+          </details>
+        ) : null}
       </div>
     </StepPanel>
   );

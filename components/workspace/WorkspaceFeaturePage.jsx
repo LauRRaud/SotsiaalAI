@@ -4556,7 +4556,9 @@ function ServiceProfileSurface({ t, locale }) {
         }
       : publish.blocking.length && !onView("check")
         ? {
-            text: tp("views.publish_blocked", "Avaldatud profiili ei saa salvestada, kuni puuduv on lisatud."),
+            /* Jalareas on lühike lause (pikk on kontrolli vaates endas): pikk lause murdus jalareas kolmele
+               reale ja tegi iga vaate kuni 70 px kõrgemaks. */
+            text: tp("views.publish_blocked_short", "Salvestada ei saa: midagi on puudu."),
             go: { label: tp("views.check.short", "Kontroll"), onClick: () => openView("check") }
           }
         : dirty

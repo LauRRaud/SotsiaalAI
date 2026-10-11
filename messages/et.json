@@ -3674,7 +3674,6 @@
         "other": "Muu"
       },
       "map_preview_empty": "Aadressi vaste eelvaade ilmub pärast geokodeerimist.",
-      "publish_help": "Avaldamata ja ülevaatusel profiil ei ilmu teenusekaardile. Avaldatud profiil vajab markeriks ka usaldusväärset aadressivastet.",
       "age_group_options": {
         "child": "Laps",
         "youth": "Noor",
@@ -3882,7 +3881,12 @@
           "missing": "Puudu",
           "summary_ok": "Kõik on korras",
           "summary_open": "Üle vaadata: {count}",
-          "optional": "Sinu valik"
+          "optional": "Sinu valik",
+          "all_ok": "Kõik kontrollid on korras.",
+          "ok_fold": "Korras · {count}",
+          "range": "{from} kuni {to}, kokku {total}",
+          "prev": "Eelmised",
+          "next": "Järgmised"
         },
         "service": {
           "title": "Teenus",
@@ -4009,7 +4013,8 @@
         "remove_service": "Eemalda teenus",
         "remove_location": "Eemalda teeninduskoht",
         "no_name": "nimi puudub",
-        "confirm_replace": "Vajuta uuesti: kohalikud muudatused lähevad kaotsi"
+        "confirm_replace": "Vajuta uuesti: kohalikud muudatused lähevad kaotsi",
+        "publish_blocked_short": "Salvestada ei saa: midagi on puudu."
       },
       "conflict": {
         "local_version": "Kohalik vorm",

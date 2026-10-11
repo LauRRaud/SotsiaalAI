@@ -3674,7 +3674,6 @@
         "other": "Other"
       },
       "map_preview_empty": "Address match preview appears after geocoding.",
-      "publish_help": "Unpublished and review profiles are not shown on the service map. Published profiles still need a reliable address match before a marker appears.",
       "age_group_options": {
         "child": "Child",
         "youth": "Youth",
@@ -3882,7 +3881,12 @@
           "missing": "Missing",
           "summary_ok": "Everything is in order",
           "summary_open": "To review: {count}",
-          "optional": "Your choice"
+          "optional": "Your choice",
+          "all_ok": "Every check is in order.",
+          "ok_fold": "In order · {count}",
+          "range": "{from} to {to} of {total}",
+          "prev": "Previous",
+          "next": "Next"
         },
         "service": {
           "title": "Service",
@@ -4009,7 +4013,8 @@
         "remove_service": "Remove service",
         "remove_location": "Remove service location",
         "no_name": "no name",
-        "confirm_replace": "Press again: local changes will be lost"
+        "confirm_replace": "Press again: local changes will be lost",
+        "publish_blocked_short": "Cannot save: something is missing."
       },
       "conflict": {
         "local_version": "Local form",

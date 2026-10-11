@@ -42,7 +42,7 @@ function PlaceView({ tp, location, options, onField, remove, note, save }) {
     >
       <div className={styles.stack}>
         <LineField size="lg" label={tp("locations.label", "Nimetus")} value={location.label} onChange={(value) => onField("label", value)} />
-        <ChoiceRow
+        <ChoiceRow keepColumns
           label={tp("locations.status", "Teeninduskoha olek")}
           columns={options.status.length}
           options={options.status}
