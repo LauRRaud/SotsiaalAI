@@ -11751,14 +11751,56 @@
     },
     "home": {
       "heading": "My organisations",
-      "intro": "You can work personally or in the context of one or more organisations. Leaving an organisation does not affect your account or personal data.",
       "empty": "You do not belong to any organisation yet.",
       "pendingInvites": "Invitations sent to you",
-      "noPendingInvites": "No pending invitations.",
       "openWorkspace": "Open workspace",
-      "createHeading": "Create an organisation workspace",
       "haveInvite": "I have an organisation invitation",
-      "usePersonally": "I use this personally"
+      "usePersonally": "I use this personally",
+      "board": {
+        "join_note": "You join an organisation by invitation: the inviter sends you a link.",
+        "privacy_note": "An organisation does not see your conversations, documents or Wellbeing records.",
+        "filter": {
+          "label": "What to show",
+          "invites": "Invitations ({count})"
+        }
+      },
+      "invites": {
+        "lead": "To join, open the link the inviter sent you. Membership starts only after you confirm.",
+        "until": "Valid until {date}",
+        "unnamed": "Organisation"
+      },
+      "create": {
+        "label": "Steps of creating an organisation",
+        "steps": {
+          "name": {
+            "title": "Name and registry details",
+            "short": "Name"
+          },
+          "kind": {
+            "title": "Kind of organisation",
+            "short": "Kind"
+          },
+          "confirm": {
+            "title": "Creating",
+            "short": "Create"
+          }
+        },
+        "name_hint": "The name members see every day. It may be shorter than the legal name.",
+        "legal_note": "The legal name and registry code help to identify the organisation. You can also add them later in the settings.",
+        "kind_question": "What kind of organisation is it?",
+        "need_name": "Write the organisation's name.",
+        "need_kind": "Choose what kind of organisation it is.",
+        "to_name": "Add the name",
+        "to_kind": "Choose the kind",
+        "missing": "not added",
+        "founder_note": "You become the organisation's first administrator.",
+        "creating": "Creating the organisation",
+        "decline": {
+          "label": "Cancel",
+          "confirm": "Yes, cancel",
+          "note": "What you wrote is discarded and no organisation is created."
+        }
+      }
     },
     "create": {
       "displayName": "Organisation name",

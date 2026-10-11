@@ -1,0 +1,107 @@
+/* Organisatsioonide lehtede ühised osad: lehe kest, laused, märk, loendi read,
+   sõnade read, väljad ja teist vajutust küsiv tegevus.
+
+   Need on sõna-sõnalt samad mis Teekonna lehtedel ja tulevad sealt (`composes`),
+   et sama reegel ei oleks kahes failis kaks korda (korduste kontroll). Kui mõni
+   neist peab organisatsioonide lehtedel teistsugune olema, kirjuta erisus SIIA
+   selle klassi alla, mitte Teekonna faili. Lehe enda kuju on lehe moodulis
+   (nt ./home/home.module.css). */
+
+.page {
+  composes: page from "../journey/journey.module.css";
+}
+.stack {
+  composes: stack from "../journey/journey.module.css";
+}
+
+/* --- Laused ------------------------------------------------------------------ */
+.quiet {
+  composes: quiet from "../journey/journey.module.css";
+}
+.small {
+  composes: small from "../journey/journey.module.css";
+}
+.live {
+  composes: live from "../journey/journey.module.css";
+}
+.notice {
+  composes: notice from "../journey/journey.module.css";
+}
+.footError {
+  composes: footError from "../journey/journey.module.css";
+}
+
+/* --- Märk ja loendi read -------------------------------------------------------- */
+.chip {
+  composes: chip from "../journey/journey.module.css";
+}
+.rows {
+  composes: rows from "../journey/journey.module.css";
+}
+.rowItem {
+  composes: rowItem from "../journey/journey.module.css";
+}
+.row {
+  composes: row from "../journey/journey.module.css";
+}
+.rowMain {
+  composes: rowMain from "../journey/journey.module.css";
+}
+.rowTitle {
+  composes: rowTitle from "../journey/journey.module.css";
+}
+.rowSub {
+  composes: rowSub from "../journey/journey.module.css";
+}
+.rowMeta {
+  composes: rowMeta from "../journey/journey.module.css";
+}
+.time {
+  composes: time from "../journey/journey.module.css";
+}
+
+/* --- Sõnade read: nimetus ja väärtus -------------------------------------------- */
+.facts {
+  composes: facts from "../journey/journey.module.css";
+}
+.fact {
+  composes: fact from "../journey/journey.module.css";
+}
+.factLabel {
+  composes: factLabel from "../journey/journey.module.css";
+}
+.factValue {
+  composes: factValue from "../journey/journey.module.css";
+}
+/* Tühjaks jäetud vabatahtlik väli: sõna on vaiksem kui kirjutatud väärtus. */
+.factValue[data-quiet="1"] {
+  color: var(--text-dim);
+}
+
+/* --- Tegevus, mis küsib teist vajutust ja väljad --------------------------------- */
+.armed {
+  composes: armed from "../journey/journey.module.css";
+}
+.line {
+  composes: line from "../journey/journey.module.css";
+}
+.fieldLabel {
+  composes: fieldLabel from "../journey/journey.module.css";
+}
+.input {
+  composes: input from "../journey/journey.module.css";
+}
+/* Vihje välja all: vaikne rida. */
+.hint {
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.4;
+}
+
+/* Telefonis ja puuteekraanil on väli sõrme jaoks kõrgem (paneel on telefonis
+   veidi vähendatud, nii et 3 rem annab ekraanil umbes 44 px). */
+@media (max-width: 480px), (pointer: coarse) {
+  .input {
+    min-height: 3rem;
+  }
+}
