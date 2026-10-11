@@ -1,6 +1,6 @@
 # ADR-143: õigusabi lehe toimetatud artiklid, indeksi piirid 15 000 dokumenti ja 150 000 lõiku ning riikide register
 
-Kuupäev: 11.10.2026. Teostus Claude Opus 5.5. Seis: **ettevalmistus on valmis ja mõõdetud tasuta; artiklite ost on omaniku loaga töös (vt „Eelkontrollid ja hind“), alus on korpus v82; dokumentide piir, korjaja täiendus, valikureegli parandused ja riikide register on koodis; ost ootab omaniku jah-sõna.**
+Kuupäev: 11.10.2026. Teostus Claude Opus 5.5. Seis: **korpus v83 on serveris töös alates 11.10.2026 kell 13:19 (479 artiklit, 0,0422 USD); indeksi piirid, korjaja täiendus, valikureegli parandused ja riikide register on koodis; otsing mõõdetud tasuta; vastuseid mudeliga ei ole mõõdetud.**
 
 ## Miks
 
@@ -24,7 +24,7 @@ Varasem hinnang „umbes kaks tuhat lühikest õigusartiklit“ ei pidanud paika
 
 **Juristi vastuseid ei loetud ja need ei lähe sisse.** Omanik neid ei soovi; vastus on kirjutatud ühe inimese juhtumi kohta ja ilma küsimuseta ei ole selge, millele ta vastab; pärast vastamist ei kontrolli neid keegi üle. Loendilehti loeti 93 (toimetatud artiklid on kõik esimesel 26 lehel); juristi vastuste arv on arvutatud lehekülgede arvust.
 
-## Mis läheks sisse
+## Mis läks sisse
 
 **479 toimetatud artiklit, 98 603 sõna, 670 lõiku.** Väljaandjana on kirjas „Justiits- ja Digiministeerium (Jurist aitab)“: sait ütleb enda kohta, et see on ministeeriumi veebileht, mida haldab lepingupartner Eesti Juristide Liit.
 
@@ -106,6 +106,32 @@ Alus on korpus v82 (indeks `ec1defd0`), aluspoliitika põhikausta `tmp/rag-v2-v8
 
 Lõigud ja sisendite maht on mõõdetud päris lugejaga (`lib/rag-v2/ingestion.js`) iga artikli kohta eraldi ajutises hoidlas, mitte kohalikus korpuse hoidlas: **670 lõiku, 670 erinevat sisendit, 324 442 märki**, hinnaga 0,13 USD miljoni märgi kohta **0,042 USD**. Lagi: **0,06 USD ja kuni 700 sisendit**. Omanik 11.10.2026 küsimusele „Kas ostan: 479 artiklit, lagi 0,06 USD?“: „need ära osta“.
 
+## Ost ja korpus v83 (11.10.2026)
+
+Kohalik sisestus: 479 artiklit, ülevaatus reegli järgi (`scripts/rag-v2-review-by-rule.mjs`, liik „ametlik veebileht“, hoiatusi 0, takistusi 0), avaldatud kohalikku hoidlasse, pakitud aluse v82 poliitika peale. Enne üleslaadimist võrreldi sisestatud failid valikureegli värske käiguga (479 samad baidid) ja uus poliitika alusega (kõik 9769 alles, 479 uut).
+
+| Käik | Sisendeid ostetud | Märke | Hind | Indeks | Dokumente | Lõike |
+|---|---:|---:|---:|---|---:|---:|
+| v83 | 670 | 324 442 | 0,0422 USD | `5288f882` | 10 248 | 91 828 |
+
+Serveri tasuta plaan näitas enne ostu täpselt kohalikku arvestust (670 sisendit, 0,042177 USD); teadmata tulemusega päringuid 0. Käik algas kell 13:10 ja lõppes 13:19 (ost 3 min, indeks 5 min), ajal, mil ühtegi kasutuselevõttu ega muud tööd ei käinud. Vestlusplaan: `/etc/sotsiaalai/m4-corpus-chat-20261011g.json`. Hoidla pakiti käigu lõpus ise. Vaba ketast pärast: 14 GB. **Järgmine alus:** põhikausta `tmp/rag-v2-v79/ship/policy.json` (10 248 dokumenti; kausta nimi on ettevalmistuse oma).
+
+Artiklid on registrites (`Andmebaasi/REGISTER.json`, `REGISTER.md`: asutuste juhislehti 1096), nimekirjas `Andmebaasi/register/web_pages_coverage_3.json` ja igakuise uuenduse seisus (rühm `coverage`, 479 koopiat külvatud; uuendus loeb nüüd vaikimisi kolme nimekirja).
+
+### Mõõdetud pärast ostu (tasuta, serveris)
+
+**Otsinguvärav** (33 raske tingimusega küsimust, alus korpus v77; sama võrdlus korpusel v82 kaks tundi varem): vigu 0, **otsustav lõik ei kadunud ühelgi küsimusel ega liikunud tahapoole**; üks küsimus parem (nagu v82-l), 21 täpselt samad, 11 muutunud (v82-l 4). Muutunud küsimustes on otsustava lõigu koht sama mis enne (17→17, 4→4, 32→32, 31→31, 3→3, 2→2, 7→7, 8→8) ja kandidaatide seas vahetus üks kuni kolm lõiku või muutus järjekord. Otsingu aja mediaan 5249 ms (alus) ja 4725 ms (nüüd). Värava küsimused on sotsiaalhoolekande teemadel; õigusartiklite enda teemasid (elatis, täitemenetlus, pärimine, tööleping) need ei mõõda.
+
+**Mahu mõõtepink** (`w4/cap-bench2.mjs`, samad sisendid mis varem):
+
+| Põlvkond | Dokumente | Lõike | Sõnaotsing, kaks teksti | Vektorotsing | Kataloog |
+|---|---:|---:|---|---:|---:|
+| v77 | 9288 | 88 181 | 6,1–7,3 s ja 7,7–10,0 s | 244 ms | 55 ms |
+| v82 | 9769 | 91 158 | 6,3 s ja 7,5 s | 241 ms | 56 ms |
+| v83 | 10 248 | 91 828 | 6,3 s ja 7,4 s | 328 ms | 57 ms |
+
+Kataloog käitub nagu arvutatud (57 ms 10 248 dokumendiga). **Sõnaotsingu arvud ei ole eelmiste mõõtmistega võrreldavad:** sama põlvkond v77 andis eelmisel ööl 4,6 ja 5,6 s. Mõõtmise ajal läks tööle teise muudatuse kasutuselevõtt (teenuse taaskäivitus ja soojendus; koormus 5 nelja tuuma peal), nii et pink mõõtis koormatud serverit. Kolm põlvkonda on omavahel võrdsed, seega uus sisu ise otsingut aeglasemaks ei teinud; puhas kordus vaiksel serveril on tegemata. Kui see annab ka vaikselt üle 6 s, tuleb 150 000 lõigu arvutus (7,1 ja 8,1 s) üle vaadata.
+
 ## Mis võib valesti minna
 
 - **Kokkuvõtted võtavad otsingus seaduse sätete kohti.** Seda on korra mõõdetud (ADR-137: kaks lehte võtsid kuni 17 kandidaadikohta 36-st, otsustav säte liikus tahapoole, ei kadunud). Otsing hoiab riigi seaduste lõikudele kuus kohta; see on kaitse, mitte garantii.
@@ -123,9 +149,12 @@ Kui otsustav säte mõnes küsimuses kaob, võetakse partii poliitikast tagasi.
 
 ## Lahtine
 
-- Ost ja korpuse täiendus (omaniku jah-sõna, lagi 0,06 USD).
+- ~~Ost ja korpuse täiendus.~~ Tehtud 11.10.2026 (korpus v83).
+- Mahu mõõtepingi puhas kordus vaiksel serveril ja planeerija hinnangu kontroll uuele põlvkonnale.
+- Tasuline vastuste kontroll õigusküsimustega (umbes 20 pööret, umbes 0,08 USD): kas vastus toob artikli kõrvale ka seaduse sätte. Vajab omaniku luba.
+- Artiklis nimetatud säte ei tule artikliga kaasa: graafi osa loob seoseid ainult seaduse enda sees ja käsitsi tehtud kaartidel.
 - Puuduvad seadused teemadele, kus artikkel jääks üksi (asjaõigusseadus, korteriomandi- ja korteriühistuseadus, pankrotiseadus, tarbijakaitseseadus, tulumaksuseadus, notari tasu seadus): eraldi suurusega samm.
 - Kontrollimise kuupäeva uuendamine, kui tekst ei muutu.
 - 17 alla 30 sõna artiklit: nimekirja oma alampiir, kui neid soovitakse.
 - Riikide registri ühendamine vestluse kohalugemisega.
-- Artiklite lisamine igakuisesse uuendusse pärast täiendust (uuenduse seis tuleb külvata).
+- ~~Artiklite lisamine igakuisesse uuendusse.~~ Tehtud: rühm `coverage` on külvatud.

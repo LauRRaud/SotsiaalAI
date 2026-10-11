@@ -16,9 +16,9 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | taastatud_allikad | 0 | 22 | Serveri vanast indeksist taastatud tekst. Enne importi võrrelda põhipakettidega. |
 
 <!-- corpus-state:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
-## RAG-i seis: mis on serveris (korpus v82)
+## RAG-i seis: mis on serveris (korpus v83)
 
-Seis 11.10.2026: serveris töötav RAG (korpus **v82**, indeks `ec1defd0`) sisaldab **9 769 dokumenti** (91 158 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
+Seis 11.10.2026: serveris töötav RAG (korpus **v83**, indeks `5288f882`) sisaldab **10 248 dokumenti** (91 828 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
 
 | Mis on RAG-is | Dokumente | Kus on loend |
 |---|---:|---|
@@ -28,12 +28,12 @@ Seis 11.10.2026: serveris töötav RAG (korpus **v82**, indeks `ec1defd0`) sisal
 | Ajakirja Sotsiaaltöö artiklid | 892 | jaotis „Sisufailid“ |
 | Õigusaktid | 594 | jaotis „Sisufailid“ |
 | Juhendid, infomaterjalid ja uuringud | 436 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
-| Ametlikud juhislehed (ametite veebilehed) | 977 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
+| Ametlikud juhislehed (ametite veebilehed) | 1456 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
 | Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) | 942 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Hooldekodude kohamaksumus omavalitsuste kaupa | 79 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müügi- ja üüripunktid | 93 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müüjate lehed | 51 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
-| **Kokku** | **9769** | |
+| **Kokku** | **10248** | |
 
 <details><summary>Tehniline jaotus arendajale: kus allikafailid asuvad</summary>
 
@@ -47,7 +47,7 @@ Dokumentide arvud ei võrdu ülal olevate failide arvudega: üks fail võib anda
 | `veebilehed` | 361 | web_page 360, research_report 1 |
 | `juhendid_ja_uuringud` | 171 | information_material 81, research_report 46, official_guideline 38, policy_analysis 6 |
 
-Koodihoidlas (GitHub) ei ole 3253 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
+Koodihoidlas (GitHub) ei ole 3732 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
 
 | Allikas | Dokumente | Millest tehakse | Miks ei ole koodihoidlas |
 |---|---:|---|---|
@@ -56,7 +56,7 @@ Koodihoidlas (GitHub) ei ole 3253 dokumendi allikafaile; need on korpuse hoidlas
 | Abivahendite müügi- ja üüripunktide lehed | 93 | Sotsiaalkindlustusameti kaarditabelist skriptiga `scripts/rag-v2-assistive-points.mjs`, iga omavalitsuse kohta üks leht (ADR-096) | punktide telefoninumbrid; leht tehakse tabelist uuesti |
 | Abivahendite müüjate lehed | 51 (18 väljaandjat) | nimekiri `register/web_pages_vendors.json`, korjaja `scripts/rag-v2-web-pages.mjs` (ADR-095) | ettevõtete enda tekstid ja telefoninumbrid |
 | Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) | 942 (59 väljaandjat) | nimekirjad `register/web_pages_organisations.json`, `register/web_pages_associations.json` ja `register/web_pages_associations_2.json` ning nimekirjade `register/web_pages_coverage_1.json` ja `_2.json` organisatsioonid, korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-095, ADR-137, ADR-140) | organisatsioonide enda tekstid |
-| Asutuste juhislehed, valitud reegliga | 617 (11 väljaandjat) | nimekirjad `register/web_pages_coverage_1.json` ja `register/web_pages_coverage_2.json`, korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-137) | valik võtab lehest välja isikut nimetavad lõigud; repos olevate lehtede igakuine uuendus asendaks sellise koopia lugeja omaga |
+| Asutuste juhislehed, valitud reegliga | 1096 (12 väljaandjat) | nimekirjad `register/web_pages_coverage_1.json`, `register/web_pages_coverage_2.json` ja `register/web_pages_coverage_3.json` (õigusabi lehe toimetatud artiklid), korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-137, ADR-143) | valik võtab lehest välja isikut nimetavad lõigud; repos olevate lehtede igakuine uuendus asendaks sellise koopia lugeja omaga |
 | Uuringud ja juhendid väljaandja ametlikult aadressilt | 264 (33 väljaandjat) | asutuste veebilehtede uuringute ja juhendite loenditest ning ajakirja Sotsiaaltöö uudiskirjas viidatud dokumentidest (`register/newsletter_documents.json`); iga fail on alla laaditud väljaandja ametlikult aadressilt | suured failid; allikas on ametlik aadress |
 
 Koodihoidla allikafailid, mida RAG-is ei ole (61):
@@ -2357,7 +2357,7 @@ Koodihoidla allikafailid, mida RAG-is ei ole (61):
 <!-- corpus-outside:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
 ## RAG-is olevad lehed ja kontaktid
 
-Serveris töötav RAG, korpus v82, 11.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
+Serveris töötav RAG, korpus v83, 11.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
 
 ### Hooldekodude kohamaksumuse lehed (79)
 
@@ -3544,7 +3544,7 @@ Serveris töötav RAG, korpus v82, 11.10.2026. Siin on loend sellest, mida jaoti
 | Võrumaa Puuetega Inimeste Koda | PIK ringid | <https://www.vorukoda.ee/tegevused/pik-ringid> |
 | Võrumaa Puuetega Inimeste Koda | TASUTA ÕIGUSABI ERIVAJADUSTEGA INIMESTELE | <https://www.vorukoda.ee/tasuta-oigusabi-erivajadustega-inimestele> |
 
-### Asutuste juhislehed, valitud reegliga (617)
+### Asutuste juhislehed, valitud reegliga (1096)
 
 | Väljaandja | Pealkiri | Aadress |
 |---|---|---|
@@ -3640,6 +3640,485 @@ Serveris töötav RAG, korpus v82, 11.10.2026. Siin on loend sellest, mida jaoti
 | Haridus- ja Noorteamet (Teeviit) | Ära lase söömishäirel võtta oma elu üle kontrolli | <https://www.teeviit.ee/ara-lase-soomishairel-votta-oma-elu-ule-kontrolli/> |
 | Haridus- ja Noorteamet (Teeviit) | Ärevus ja ärevushäired – müüdid ja reaalsus | <https://www.teeviit.ee/arevushairete-muudid-ja-reaalsus/> |
 | Haridus- ja Noorteamet (Teeviit) | Ärevuse tunne võib hakata segama igapäevaelu | <https://www.teeviit.ee/arevuse-tunne-voib-hakata-segama-igapaevaelu/> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Abielu lahutamine kohtus | <https://www.juristaitab.ee/et/abielu-lahutamine-kohtus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Abielu lahutamine notaris | <https://www.juristaitab.ee/et/abielu-lahutamine-notaris> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Abielu lahutamine perekonnaseisuasutuses | <https://www.juristaitab.ee/et/abielu-lahutamine-perekonnaseisuasutuses> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Abielu sõlmimise eeldused | <https://www.juristaitab.ee/et/abielu-solmimise-eeldused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Abielu sõlmimise ja lahutamise avaldused | <https://www.juristaitab.ee/et/abielu-solmimise-ja-lahutamise-avaldused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Abieluvararegistriga tutvumine ja ärakirjade tellimine | <https://www.juristaitab.ee/et/abieluvararegistriga-tutvumine-ja-arakirjade-tellimine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Abikaasade varalised õigused | <https://www.juristaitab.ee/et/abikaasade-varalised-oigused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Abikaasade vastastikune testament | <https://www.juristaitab.ee/et/abikaasade-vastastikune-testament-3> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Aegumine | <https://www.juristaitab.ee/et/aegumine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Ametliku dokumendi tunnustamine ja täitmine Euroopa Parlamendi ja nõukogu määruse (EÜ) nr 805/2004 alusel | <https://www.juristaitab.ee/et/ametliku-dokumendi-tunnustamine-ja-taitmine-euroopa-parlamendi-ja-noukogu-maaruse-eu-nr-8052004> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Ametliku juriidilise dokumendi tunnustamine ja täitmine Euroopa Nõukogu määruse nr 44/2001 | <https://www.juristaitab.ee/et/ametliku-juriidilise-dokumendi-tunnustamine-ja-taitmine-euroopa-noukogu-maaruse-nr-442001> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Ametliku juriidilise dokumendi tunnustamine ja täitmine Euroopa Parlamendi ja Nõukogu määruse nr 1215/2012, | <https://www.juristaitab.ee/et/ametliku-juriidilise-dokumendi-tunnustamine-ja-taitmine-euroopa-parlamendi-ja-noukogu-maaruse-nr-0> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Ametliku juriidilise dokumendi tunnustamine ja täitmine nn. Lugano 2007 konventsioon | <https://www.juristaitab.ee/et/ametliku-juriidilise-dokumendi-tunnustamine-ja-taitmine-nn-lugano-2007-konventsioon> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Ametliku juriidilise dokumendi tunnustamine ja täitmine välismaal | <https://www.juristaitab.ee/et/ametliku-juriidilise-dokumendi-tunnustamine-ja-taitmine-valismaal> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Asjaajamine Vene Föderatsiooni pädevate asutustega pärast Eesti–Vene õigusabilepingu lõppemist | <https://www.juristaitab.ee/et/asjaajamine-vene-foderatsiooni-padevate-asutustega-parast-eesti-vene-oigusabilepingu-loppemist> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Dokumentide legaliseerimiskohustusest | <https://www.juristaitab.ee/et/dokumentide-legaliseerimiskohustusest> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Dokumentide vormid piiriüleseks asjaajamiseks | <https://www.juristaitab.ee/et/dokumentide-vormid-piiriuleseks-asjaajamiseks> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Eestkoste alaealise üle | <https://www.juristaitab.ee/et/eestkoste-alaealise-ule> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Eestkostja määramine. Kas eestkostja saab määrata ilma eestkostetava nõusolekuta? | <https://www.juristaitab.ee/et/eestkostja-maaramine-kas-eestkostja-saab-maarata-ilma-eestkostetava-nousolekuta> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Ehitus | <https://www.juristaitab.ee/et/ehitus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Ehitusnormid ja -nõuded | <https://www.juristaitab.ee/et/ehitusnormid-ja-nouded> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Ei ole saanud maksuteadet? | <https://www.juristaitab.ee/et/ei-ole-saanud-maksuteadet> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Elame elukaaslasega vabalt koos juba aastaid. Mis siis juriidilises mõttes muutuks, kui me abielu registreeriksime? Kas midagi muutub ka meie laste suhtes? | <https://www.juristaitab.ee/et/elame-elukaaslasega-vabalt-koos-juba-aastaid-mis-siis-juriidilises-mottes-muutuks-kui-me-abielu> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Elatis - hagi või avaldus? Kuhu esitada? | <https://www.juristaitab.ee/et/elatis-hagi-voi-avaldus-kuhu-esitada> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Elatisabi taotlemine kohtumenetluse ajal | <https://www.juristaitab.ee/et/elatisabi-taotlemine-kohtumenetluse-ajal> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Elatisabi taotlemine täitemenetluse ajal | <https://www.juristaitab.ee/et/elatisabi-taotlemine-taitemenetluse-ajal> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Elatisotsuse tunnustamine | <https://www.juristaitab.ee/et/elatisotsuse-tunnustamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Elatisotsuse tunnustamine ja täitemenetlusaegse elatisabi taotlemine kui võlgnik on välisriigis | <https://www.juristaitab.ee/et/elatisotsuse-tunnustamine-ja-taitemenetlusaegse-elatisabi-taotlemine-kui-volgnik-valisriigis> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Erilised nõuded kinnisvara müügil | <https://www.juristaitab.ee/et/erilised-nouded-kinnisvara-muugil> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Euroopa maksekäsk | <https://www.juristaitab.ee/et/euroopa-maksekask> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Füüsilise isiku maksejõuetus | <https://www.juristaitab.ee/et/fuusilise-isiku-maksejouetus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Füüsilise isiku maksejõuetuse seadus | <https://www.juristaitab.ee/et/fuusilise-isiku-maksejouetuse-seadus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Hagile vastamine | <https://www.juristaitab.ee/et/hagile-vastamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Halduskohtusse pöördumine | <https://www.juristaitab.ee/et/halduskohtusse-poordumine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kaasomanike kokkuleppe õiguslikud võimalused | <https://www.juristaitab.ee/et/kaasomanike-kokkuleppe-oiguslikud-voimalused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kahju hüvitamise alused | <https://www.juristaitab.ee/et/kahju-huvitamise-alused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kahju hüvitamise erijuhud | <https://www.juristaitab.ee/et/kahju-huvitamise-erijuhud> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kahju hüvitamise nõude esitamine | <https://www.juristaitab.ee/et/kahju-huvitamise-noude-esitamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kahju hüvitamise ulatus | <https://www.juristaitab.ee/et/kahju-huvitamise-ulatus-0> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kahju liigid | <https://www.juristaitab.ee/et/kahju-liigid> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas abikaasa võib nõuda ülalpidamise andmist ka tagasiulatuvalt? | <https://www.juristaitab.ee/et/kas-abikaasa-voib-nouda-ulalpidamise-andmist-ka-tagasiulatuvalt> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas abikaasad võivad esitada tuludeklaratsiooni ühiselt? | <https://www.juristaitab.ee/et/kas-abikaasad-voivad-esitada-tuludeklaratsiooni-uhiselt> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas abikaasad võivad sõlmida notariaalse kokkuleppe ülalpidamiseks peale lahutust? | <https://www.juristaitab.ee/et/kas-abikaasad-voivad-solmida-notariaalse-kokkuleppe-ulalpidamiseks-peale-lahutust> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas apostillida dokumendi originaal või ärakiri? | <https://www.juristaitab.ee/et/kas-apostillida-dokumendi-originaal-voi-arakiri> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas Eesti kohtutäitur saab minu nõuet täita välisriigis elava/töötava isiku suhtes? | <https://www.juristaitab.ee/et/kas-eesti-kohtutaitur-saab-minu-nouet-taita-valisriigis-elavatootava-isiku-suhtes> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas eestkostja on kohustatud eestkostetavat ülal pidama? | <https://www.juristaitab.ee/et/kas-eestkostja-kohustatud-eestkostetavat-ulal-pidama> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas elatisabi on võimalik saada ka juhul, kui lapsele ei ole elatist kohtu kaudu välja mõistetud? | <https://www.juristaitab.ee/et/kas-elatisabi-voimalik-saada-ka-juhul-kui-lapsele-ei-ole-elatist-kohtu-kaudu-valja-moistetud> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas elatisabi saab taotleda, kui võlgnik elab välismaal ning Eestis ei ole võimalik täitemenetlust alustada? | <https://www.juristaitab.ee/et/kas-elatisabi-saab-taotleda-kui-volgnik-elab-valismaal-ning-eestis-ei-ole-voimalik-taitemenetlust> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas elatist saab nõuda vanavanemalt (asenduskohustus)? | <https://www.juristaitab.ee/et/kas-elatist-saab-nouda-vanavanemalt-asenduskohustus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas hüpoteegiga koormatud kinnisasja saab müüa, kinkida? | <https://www.juristaitab.ee/et/kas-hupoteegiga-koormatud-kinnisasja-saab-muua-kinkida> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas ja millal tulumaksu saab tagasi või tuleb juurde maksta? | <https://www.juristaitab.ee/et/kas-ja-millal-tulumaksu-saab-tagasi-voi-tuleb-juurde-maksta> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas kandeavalduse eest pean maksma? | <https://www.juristaitab.ee/et/kas-kandeavalduse-eest-pean-maksma> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas katseaeg pikeneb haiguse aja võrra? | <https://www.juristaitab.ee/et/kas-katseaeg-pikeneb-haiguse-aja-vorra> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas kohalikul omavalitsusel on õigus/ kohustus kanda minu taotluse alusel juurdepääsutee valla teederegistrisse? | <https://www.juristaitab.ee/et/kas-kohalikul-omavalitsusel-oigus-kohustus-kanda-minu-taotluse-alusel-juurdepaasutee-valla> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas kohtul on õigus keelduda mind kohustustest vabastamast? | <https://www.juristaitab.ee/et/kas-kohtul-oigus-keelduda-mind-kohustustest-vabastamast> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas kohtutäitur peab vastama minu kirjadele ja e-kirjadele? | <https://www.juristaitab.ee/et/kas-kohtutaitur-peab-vastama-minu-kirjadele-ja-e-kirjadele> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas lapse ema võib nõuda lapse isalt ülalpidamist ka endale? Kui isa kasvatab last, kas tema saab nõuda emalt? | <https://www.juristaitab.ee/et/kas-lapse-ema-voib-nouda-lapse-isalt-ulalpidamist-ka-endale-kui-isa-kasvatab-last-kas-tema-saab> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas lapse võib perekonnast eraldada? Kas võib vanemalt hooldusõiguse täielikult ära võtta? | <https://www.juristaitab.ee/et/kas-lapse-voib-perekonnast-eraldada-kas-voib-vanemalt-hooldusoiguse-taielikult-ara-votta> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas legaliseerida dokumendi originaal või ärakiri? | <https://www.juristaitab.ee/et/kas-legaliseerida-dokumendi-originaal-voi-arakiri> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas legaliseeritud dokumendile tuleb lisada tõlge? | <https://www.juristaitab.ee/et/kas-legaliseeritud-dokumendile-tuleb-lisada-tolge> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas lisada apostillitud dokumendile ka tõlge? | <https://www.juristaitab.ee/et/kas-lisada-apostillitud-dokumendile-ka-tolge> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas ma saan Eesti Töötukassalt hüvitist ka siis, kui pankrotimenetlus lõpetatakse raugemise tõttu pankrotti välja kuulutamata? | <https://www.juristaitab.ee/et/kas-ma-saan-eesti-tootukassalt-huvitist-ka-siis-kui-pankrotimenetlus-lopetatakse-raugemise-tottu> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas mul on võimalik lahutamise korral abikaasaga omavahel abieluvara jagamise osas kokku leppida? | <https://www.juristaitab.ee/et/kas-mul-voimalik-lahutamise-korral-abikaasaga-omavahel-abieluvara-jagamise-osas-kokku-leppida> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas oma isiklike asjade (nt auto) müümisest saadud tulu pealt tuleb maksta tulumaksu? | <https://www.juristaitab.ee/et/kas-oma-isiklike-asjade-nt-auto-muumisest-saadud-tulu-pealt-tuleb-maksta-tulumaksu> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas oma maa ja korteri müügi pealt tuleb maksta tulumaksu? | <https://www.juristaitab.ee/et/kas-oma-maa-ja-korteri-muugi-pealt-tuleb-maksta-tulumaksu> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas on võimalus valida erinevate hüpoteekide vahel? Mis on ühishüpoteek? | <https://www.juristaitab.ee/et/kas-voimalus-valida-erinevate-hupoteekide-vahel-mis-uhishupoteek> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas pärandist on võimalik loobuda osaliselt või tingimuslikult? | <https://www.juristaitab.ee/et/kas-parandist-voimalik-loobuda-osaliselt-voi-tingimuslikult> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas riigi õigusabi taotlusele tuleb lisada veel mingeid dokumente? | <https://www.juristaitab.ee/et/kas-riigi-oigusabi-taotlusele-tuleb-lisada-veel-mingeid-dokumente> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas riigipoolne elatisabi maksmine tähendab, et elatisvõlgnik enam lapsele elatist maksma ei pea? | <https://www.juristaitab.ee/et/kas-riigipoolne-elatisabi-maksmine-tahendab-et-elatisvolgnik-enam-lapsele-elatist-maksma-ei-pea> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas sissenõudjal on õigus kohtutäiturit vahetada? | <https://www.juristaitab.ee/et/kas-sissenoudjal-oigus-kohtutaiturit-vahetada> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas suuline kokkulepe on leping? | <https://www.juristaitab.ee/et/kas-suuline-kokkulepe-leping> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas tarbijavaidluste komisjoni poolt tehtud otsuse peale saab edasi kaevata? | <https://www.juristaitab.ee/et/kas-tarbijavaidluste-komisjoni-poolt-tehtud-otsuse-peale-saab-edasi-kaevata> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas tulumaksuga maksustatakse autokompensatsioon? | <https://www.juristaitab.ee/et/kas-tulumaksuga-maksustatakse-autokompensatsioon> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas tulumaksuga maksustatakse välislähetuse päevaraha? | <https://www.juristaitab.ee/et/kas-tulumaksuga-maksustatakse-valislahetuse-paevaraha> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas täitemenetlusaegset elatisabi saab taotleda vaid ühe vanema kohta? | <https://www.juristaitab.ee/et/kas-taitemenetlusaegset-elatisabi-saab-taotleda-vaid-uhe-vanema-kohta> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas töövaidluskomisjon/kohus saab töötajat töökohale ennistada või määratakse hüvitis? | <https://www.juristaitab.ee/et/kas-toovaidluskomisjonkohus-saab-tootajat-tookohale-ennistada-voi-maaratakse-huvitis> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas vanem võib otsustada last puudutavaid küsimusi või esindada last üksinda? | <https://www.juristaitab.ee/et/kas-vanem-voib-otsustada-last-puudutavaid-kusimusi-voi-esindada-last-uksinda> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas vanemad võivad ise elatise osas kokku leppida? | <https://www.juristaitab.ee/et/kas-vanemad-voivad-ise-elatise-osas-kokku-leppida> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas vara müügist saadud kasult tuleb maksta tulumaksu? | <https://www.juristaitab.ee/et/kas-vara-muugist-saadud-kasult-tuleb-maksta-tulumaksu> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas võib maha arvata eluasemelaenu intresse? | <https://www.juristaitab.ee/et/kas-voib-maha-arvata-eluasemelaenu-intresse> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas võib maha arvata koolituskulud? | <https://www.juristaitab.ee/et/kas-voib-maha-arvata-koolituskulud> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas võib nõuda abikaasalt endale ülalpidamist, kui abikaasad elavad lahus, aga abielu on lahutamata? | <https://www.juristaitab.ee/et/kas-voib-nouda-abikaasalt-endale-ulalpidamist-kui-abikaasad-elavad-lahus-aga-abielu-lahutamata> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas ühingu asutamise eest on ette nähtud riigilõiv? | <https://www.juristaitab.ee/et/kas-uhingu-asutamise-eest-ette-nahtud-riigiloiv> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas üüritulult tuleb maksta tulumaksu? | <https://www.juristaitab.ee/et/kas-uuritulult-tuleb-maksta-tulumaksu> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kasutuslepingu liigid | <https://www.juristaitab.ee/et/kasutuslepingu-liigid> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kasutuslepingu lõpetamine ja vara tagastamine | <https://www.juristaitab.ee/et/kasutuslepingu-lopetamine-ja-vara-tagastamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kasutuslepingu olulised tingimused | <https://www.juristaitab.ee/et/kasutuslepingu-olulised-tingimused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kasutuslepingu pooled ja nende kohustused | <https://www.juristaitab.ee/et/kasutuslepingu-pooled-ja-nende-kohustused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kasutuslepingute eritingimused | <https://www.juristaitab.ee/et/kasutuslepingute-eritingimused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Katseaeg | <https://www.juristaitab.ee/et/katseaeg> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Katseaeg, töölepingu lõpetamine katseajal | <https://www.juristaitab.ee/et/katseaeg-toolepingu-lopetamine-katseajal> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kellele ja millal elatist tuleb maksta? | <https://www.juristaitab.ee/et/kellele-ja-millal-elatist-tuleb-maksta> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kellele kuulub lapse hooldusõigus? | <https://www.juristaitab.ee/et/kellele-kuulub-lapse-hooldusoigus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kellele kuulub leitud vara? | <https://www.juristaitab.ee/et/kellele-kuulub-leitud-vara> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes esitab avalduse uue omaniku kinnistusraamatusse kandmiseks ja kes teeb kinnistusraamatusse vastava muudatuse? | <https://www.juristaitab.ee/et/kes-esitab-avalduse-uue-omaniku-kinnistusraamatusse-kandmiseks-ja-kes-teeb-kinnistusraamatusse> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes kannab menetluskulud maksekäsu kiirmenetluses? | <https://www.juristaitab.ee/et/kes-kannab-menetluskulud-maksekasu-kiirmenetluses> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes kehtestab maksumäära? | <https://www.juristaitab.ee/et/kes-kehtestab-maksumaara> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes maksab maamaksu? | <https://www.juristaitab.ee/et/kes-maksab-maamaksu> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes menetleb kuritegusid? | <https://www.juristaitab.ee/et/kes-menetleb-kuritegusid> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes määrab riigi õigusabi osutava advokaadi? | <https://www.juristaitab.ee/et/kes-maarab-riigi-oigusabi-osutava-advokaadi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes on elatise taotleja? | <https://www.juristaitab.ee/et/kes-elatise-taotleja> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes on maksekäsu kiirmenetluse poolteks elatise nõudes? | <https://www.juristaitab.ee/et/kes-maksekasu-kiirmenetluse-poolteks-elatise-noudes> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes on maksekäsu kiirmenetluses poolteks? | <https://www.juristaitab.ee/et/kes-maksekasu-kiirmenetluses-poolteks> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes on pankrotihaldur? | <https://www.juristaitab.ee/et/kes-pankrotihaldur> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes on pädev allkirja õigsuse kinnitamiseks? | <https://www.juristaitab.ee/et/kes-padev-allkirja-oigsuse-kinnitamiseks> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes on pädev dokumendi tõlke õigsuse kinnitamiseks? | <https://www.juristaitab.ee/et/kes-padev-dokumendi-tolke-oigsuse-kinnitamiseks> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes on pädev dokumendi ärakirja õigsuse kinnitamiseks? | <https://www.juristaitab.ee/et/kes-padev-dokumendi-arakirja-oigsuse-kinnitamiseks> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes on residendist füüsiline isik? | <https://www.juristaitab.ee/et/kes-residendist-fuusiline-isik> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes on usaldusisik? | <https://www.juristaitab.ee/et/kes-usaldusisik> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes otsustab kohustustest vabastamise menetluse algatamise ning millisel juhul ei ole võimalik seda teha? | <https://www.juristaitab.ee/et/kes-otsustab-kohustustest-vabastamise-menetluse-algatamise-ning-millisel-juhul-ei-ole-voimalik-seda> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes otsustab lapse elukoha üle? | <https://www.juristaitab.ee/et/kes-otsustab-lapse-elukoha-ule> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes peab maksma kohtutäituri tasu ja muud kulud? | <https://www.juristaitab.ee/et/kes-peab-maksma-kohtutaituri-tasu-ja-muud-kulud> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes peab tagama lapse ülalpidamise? | <https://www.juristaitab.ee/et/kes-peab-tagama-lapse-ulalpidamise> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes peavad äriregistrit, mittetulundusühingute ja sihtasutuste registrit, kommertspandiregistrit ning laevakinnistusraamatut? | <https://www.juristaitab.ee/et/kes-peavad-ariregistrit-mittetulundusuhingute-ja-sihtasutuste-registrit-kommertspandiregistrit-ning> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes saab taotleda riigi õigusabi? | <https://www.juristaitab.ee/et/kes-saab-taotleda-riigi-oigusabi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes saavad algatada pärimismenetlust? | <https://www.juristaitab.ee/et/kes-saavad-algatada-parimismenetlust> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes saavad asutada ühinguid ja füüsilisest isikust ettevõtjat ettevõtjaportaali kaudu? | <https://www.juristaitab.ee/et/kes-saavad-asutada-uhinguid-ja-fuusilisest-isikust-ettevotjat-ettevotjaportaali-kaudu> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes teeb kande abieluvararegistrisse? | <https://www.juristaitab.ee/et/kes-teeb-kande-abieluvararegistrisse> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes teostab järelevalvet eestkostja tegevuse üle? | <https://www.juristaitab.ee/et/kes-teostab-jarelevalvet-eestkostja-tegevuse-ule> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kindlustuslepingu liigid | <https://www.juristaitab.ee/et/kindlustuslepingu-liigid> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kindlustuslepingu lõpetamine | <https://www.juristaitab.ee/et/kindlustuslepingu-lopetamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kindlustuslepingu olulised tingimused | <https://www.juristaitab.ee/et/kindlustuslepingu-olulised-tingimused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kindlustuslepingu sõlmimine | <https://www.juristaitab.ee/et/kindlustuslepingu-solmimine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kindlustuslepingu vaidluste lahendamine | <https://www.juristaitab.ee/et/kindlustuslepingu-vaidluste-lahendamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kinke maksustamine | <https://www.juristaitab.ee/et/kinke-maksustamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kinkelepingu erijuhud | <https://www.juristaitab.ee/et/kinkelepingu-erijuhud> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kinkelepingu olulised tingimused | <https://www.juristaitab.ee/et/kinkelepingu-olulised-tingimused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kinkelepingu vorminõuded ja sisu | <https://www.juristaitab.ee/et/kinkelepingu-vorminouded-ja-sisu> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kinkelepingust taganemine | <https://www.juristaitab.ee/et/kinkelepingust-taganemine-5> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kinnisvara laenu tagatiseks | <https://www.juristaitab.ee/et/kinnisvara-laenu-tagatiseks> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kodune testament | <https://www.juristaitab.ee/et/kodune-testament> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kohtuotsuse tunnustamine „Laste ja teiste pereliikmete elatise rahvusvahelise sissenõudmise“ konventsiooni | <https://www.juristaitab.ee/et/kohtuotsuse-tunnustamine-laste-ja-teiste-pereliikmete-elatise-rahvusvahelise-sissenoudmise> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kohtuotsuse tunnustamine Euroopa Parlamendi ja Nõukogu määruse nr 805/2004 | <https://www.juristaitab.ee/et/kohtuotsuse-tunnustamine-euroopa-parlamendi-ja-noukogu-maaruse-nr-8052004> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kohtuotsuse tunnustamine ja elatisabi saamine „Laste ja teiste pereliikmete elatise rahvusvahelise sissenõudmise“ konventsiooni | <https://www.juristaitab.ee/et/kohtuotsuse-tunnustamine-ja-elatisabi-saamine-laste-ja-teiste-pereliikmete-elatise-rahvusvahelise> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kohtuotsuse tunnustamine ja elatisabi taotlemine „Ülalpidamiskohustusi käsitlevate otsuste tunnustamise ja täitmise“ konventsiooni | <https://www.juristaitab.ee/et/kohtuotsuse-tunnustamine-ja-elatisabi-taotlemine-ulalpidamiskohustusi-kasitlevate-otsuste> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kohtuotsuse tunnustamine ja täitmine "Välisriigist ülalpidamise taotlemise" konventsioon | <https://www.juristaitab.ee/et/kohtuotsuse-tunnustamine-ja-taitmine-valisriigist-ulalpidamise-taotlemise-konventsioon> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kohtuotsuse tunnustamine ja täitmine "Välisriigist ülalpidamise taotlemise" konventsioon ja elatisabi | <https://www.juristaitab.ee/et/kohtuotsuse-tunnustamine-ja-taitmine-valisriigist-ulalpidamise-taotlemise-konventsioon-ja-elatisabi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kohtuotsuse tunnustamine ja täitmine „Ülalpidamiskohustusi käsitlevate otsuste tunnustamise ja täitmise” konventsiooni ehk Haagi ülalpidamiskohustuste konventsiooni alusel | <https://www.juristaitab.ee/et/kohtuotsuse-tunnustamine-ja-taitmine-ulalpidamiskohustusi-kasitlevate-otsuste-tunnustamise-ja> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kohtuotsuse tunnustamine ja täitmine Euroopa Nõukogu määruse nr 2201/2003 | <https://www.juristaitab.ee/et/kohtuotsuse-tunnustamine-ja-taitmine-euroopa-noukogu-maaruse-nr-22012003> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kohtuotsuse tunnustamine ja täitmine Euroopa Nõukogu määruse nr 44/2001 | <https://www.juristaitab.ee/et/kohtuotsuse-tunnustamine-ja-taitmine-euroopa-noukogu-maaruse-nr-442001> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kohtuotsuse tunnustamine ja täitmine Euroopa Parlamendi ja Nõukogu määruse nr 1215/2012, | <https://www.juristaitab.ee/et/kohtuotsuse-tunnustamine-ja-taitmine-euroopa-parlamendi-ja-noukogu-maaruse-nr-12152012> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kohtuotsuse tunnustamine ja täitmine ja elatisabi taotlemine Nõukogu määruse nr 4/2009 | <https://www.juristaitab.ee/et/kohtuotsuse-tunnustamine-ja-taitmine-ja-elatisabi-taotlemine-noukogu-maaruse-nr-42009> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kohtuotsuse tunnustamine ja täitmine Nõukogu määruse nr 4/2009 | <https://www.juristaitab.ee/et/kohtuotsuse-tunnustamine-ja-taitmine-noukogu-maaruse-nr-42009> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kohtuotsuse tunnustamine ja täitmine välismaal (mh elatis) | <https://www.juristaitab.ee/et/kohtuotsuse-tunnustamine-ja-taitmine-valismaal-mh-elatis> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kohtutäitur on arestinud minu sissetulekud, mis ei kuulu seaduse kohaselt arestimisele. Mida teha? | <https://www.juristaitab.ee/et/kohtutaitur-arestinud-minu-sissetulekud-mis-ei-kuulu-seaduse-kohaselt-arestimisele-mida-teha> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kokkulepped kohtumenetluses | <https://www.juristaitab.ee/et/kokkulepped-kohtumenetluses> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Korteriomanike õigused ja kohustused | <https://www.juristaitab.ee/et/korteriomanike-oigused-ja-kohustused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Korteriühistu juhtimine | <https://www.juristaitab.ee/et/korteriuhistu-juhtimine-0> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Korteriühistu moodustamine | <https://www.juristaitab.ee/et/korteriuhistu-moodustamine-0> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Korteriühistu probleemide lahendamine | <https://www.juristaitab.ee/et/korteriuhistu-probleemide-lahendamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Korteriühistu ülesanded ja vastutus | <https://www.juristaitab.ee/et/korteriuhistu-ulesanded-ja-vastutus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuhu esitada maksekäsu kiirmenetluse avaldus? | <https://www.juristaitab.ee/et/kuhu-esitada-maksekasu-kiirmenetluse-avaldus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuhu esitada pankrotiavaldus? | <https://www.juristaitab.ee/et/kuhu-esitada-pankrotiavaldus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuhu ja kellele esitada riigi õigusabi taotlus? | <https://www.juristaitab.ee/et/kuhu-ja-kellele-esitada-riigi-oigusabi-taotlus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuhu ja kui palju tuleb tasuda riigilõivu maksekäsu kiirmenetluse avalduse esitamise eest? | <https://www.juristaitab.ee/et/kuhu-ja-kui-palju-tuleb-tasuda-riigiloivu-maksekasu-kiirmenetluse-avalduse-esitamise-eest> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuhu peame vaidluse korral pärandvara jagamiseks pöörduma? | <https://www.juristaitab.ee/et/kuhu-peame-vaidluse-korral-parandvara-jagamiseks-poorduma> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui hooldusõigus on ainult ühel vanemal, kas teine saab seda endale nõuda? | <https://www.juristaitab.ee/et/kui-hooldusoigus-ainult-uhel-vanemal-kas-teine-saab-seda-endale-nouda> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui kaua kohustustest vabastamise menetlus kestab ja mida tuleb pärast seda teha? | <https://www.juristaitab.ee/et/kui-kaua-kohustustest-vabastamise-menetlus-kestab-ja-mida-tuleb-parast-seda-teha> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui kaua peab ülalpidamist lahutatud abikaasale andma? Kas võib nõuda ka tagasiulatuvalt? | <https://www.juristaitab.ee/et/kui-kaua-peab-ulalpidamist-lahutatud-abikaasale-andma-kas-voib-nouda-ka-tagasiulatuvalt> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui kiiresti on võimalik abielu lahutada? | <https://www.juristaitab.ee/et/kui-kiiresti-voimalik-abielu-lahutada> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui kiiresti saab abielluda? | <https://www.juristaitab.ee/et/kui-kiiresti-saab-abielluda> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui kiiresti tehakse abieluvararegistrisse kanne? | <https://www.juristaitab.ee/et/kui-kiiresti-tehakse-abieluvararegistrisse-kanne> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui lahutatud abikaasa on tervislikel põhjustel kodune ja ei oma sissetulekut, kas ta saab lahutatud abikaasalt ülalpidamist nõuda? | <https://www.juristaitab.ee/et/kui-lahutatud-abikaasa-tervislikel-pohjustel-kodune-ja-ei-oma-sissetulekut-kas-ta-saab-lahutatud> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui ma ei saa suhelda registriga elektrooniliselt, siis kuhu täpselt pean minema? | <https://www.juristaitab.ee/et/kui-ma-ei-saa-suhelda-registriga-elektrooniliselt-siis-kuhu-tapselt-pean-minema> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui olen hakanud esitama ettevõtjaportaalist kandeavaldust ja enne registriosakonnale esitamist on tekkinud küsimused, siis kelle poole saan nende küsimustega pöörduda? | <https://www.juristaitab.ee/et/kui-olen-hakanud-esitama-ettevotjaportaalist-kandeavaldust-ja-enne-registriosakonnale-esitamist> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui palju maksab abielu sõlmimine perekonnaseisuametis ja notari juures? | <https://www.juristaitab.ee/et/kui-palju-maksab-abielu-solmimine-perekonnaseisuametis-ja-notari-juures> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui palju maksab abieluvararegistri andmetega tutvumine? | <https://www.juristaitab.ee/et/kui-palju-maksab-abieluvararegistri-andmetega-tutvumine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui palju peab lahutatud abikaasale ülalpidamist maksma? | <https://www.juristaitab.ee/et/kui-palju-peab-lahutatud-abikaasale-ulalpidamist-maksma> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui palju tuleb tasuda pankrotiavalduse esitamisel riigilõivu? | <https://www.juristaitab.ee/et/kui-palju-tuleb-tasuda-pankrotiavalduse-esitamisel-riigiloivu> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui pärijaks on alaealine | <https://www.juristaitab.ee/et/kui-parijaks-alaealine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui registriosakond on teinud mulle puuduste kõrvaldamise määruse, siis mida pean edasi tegema? Kas saan esitada määruskaebuse? | <https://www.juristaitab.ee/et/kui-registriosakond-teinud-mulle-puuduste-korvaldamise-maaruse-siis-mida-pean-edasi-tegema-kas-saan> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui soovin füüsilise isikuna tegeleda ettevõtlusega, kas pean olema sel juhul kantud äriregistrisse? | <https://www.juristaitab.ee/et/kui-soovin-fuusilise-isikuna-tegeleda-ettevotlusega-kas-pean-olema-sel-juhul-kantud-ariregistrisse> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui täiendavat maksuvaba tulu lapse ülalpidamise korral tahavad kasutada mõlemad vanemad? | <https://www.juristaitab.ee/et/kui-taiendavat-maksuvaba-tulu-lapse-ulalpidamise-korral-tahavad-kasutada-molemad-vanemad> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui täitemenetlusaegse elatisabi saaja ei soovi enam elatisabi väljamakseid saada, siis kuhu peaks ta avalduse esitama? | <https://www.juristaitab.ee/et/kui-taitemenetlusaegse-elatisabi-saaja-ei-soovi-enam-elatisabi-valjamakseid-saada-siis-kuhu-peaks> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui vanema majanduslik seis ei võimalda üldse elatist maksta, kas siis ei saagi elatist nõuda? Aga kui vanemal on palju lapsi? | <https://www.juristaitab.ee/et/kui-vanema-majanduslik-seis-ei-voimalda-uldse-elatist-maksta-kas-siis-ei-saagi-elatist-nouda-aga> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui vanematevahelist vaidlust ei õnnestu lahendada kokkuleppel | <https://www.juristaitab.ee/et/kui-vanematevahelist-vaidlust-ei-onnestu-lahendada-kokkuleppel> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas arvutada vastuväite tähtaega? | <https://www.juristaitab.ee/et/kuidas-arvutada-vastuvaite-tahtaega> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas elatist taotleda Eestis? | <https://www.juristaitab.ee/et/kuidas-elatist-taotleda-eestis> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas elatist taotleda teises Euroopa Liidu liikmesriigis? | <https://www.juristaitab.ee/et/kuidas-elatist-taotleda-teises-euroopa-liidu-liikmesriigis> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas esitada hagiavaldust kohtusse? | <https://www.juristaitab.ee/et/kuidas-esitada-hagiavaldust-kohtusse> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas esitada maksekäsu kiirmenetluse avaldust? | <https://www.juristaitab.ee/et/kuidas-esitada-maksekasu-kiirmenetluse-avaldust> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas esitada täitedokument kohtutäiturile täitmiseks? | <https://www.juristaitab.ee/et/kuidas-esitada-taitedokument-kohtutaiturile-taitmiseks> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas ja kuhu ma saan esitada kaebuse kohtutäituri tegevusele? | <https://www.juristaitab.ee/et/kuidas-ja-kuhu-ma-saan-esitada-kaebuse-kohtutaituri-tegevusele-0> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas ja kuhu ma saan esitada kaebuse kohtutäituri tegevusele? | <https://www.juristaitab.ee/et/kuidas-ja-kuhu-ma-saan-esitada-kaebuse-kohtutaituri-tegevusele> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas jagunevad menetluskulud menetlusabi andmisel? | <https://www.juristaitab.ee/et/kuidas-jagunevad-menetluskulud-menetlusabi-andmisel> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas kulgeb maksekäsu kiirmenetluse protsess? | <https://www.juristaitab.ee/et/kuidas-kulgeb-maksekasu-kiirmenetluse-protsess> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas kulgeb maksekäsu kiirmenetluse protsess? | <https://www.juristaitab.ee/et/kuidas-kulgeb-maksekasu-kiirmenetluse-protsess-0> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas kuriteod liigituvad? | <https://www.juristaitab.ee/et/kuidas-kuriteod-liigituvad> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas käituda siis, kui võlgniku suhtes küll täitemenetlus käib, kuid võlgnik on maksnud lapse elatisraha otse? | <https://www.juristaitab.ee/et/kuidas-kaituda-siis-kui-volgniku-suhtes-kull-taitemenetlus-kaib-kuid-volgnik-maksnud-lapse> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas lepingut sõlmida? | <https://www.juristaitab.ee/et/kuidas-lepingut-solmida> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas ma saan aresti alt vabastatud elatusmiinimumi kasutada? | <https://www.juristaitab.ee/et/kuidas-ma-saan-aresti-alt-vabastatud-elatusmiinimumi-kasutada> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas ma saan täitemenetlusaegset elatisabi taotleda siis, kui lapse isa ei ole märgitud lapse sünnitunnistusele? | <https://www.juristaitab.ee/et/kuidas-ma-saan-taitemenetlusaegset-elatisabi-taotleda-siis-kui-lapse-isa-ei-ole-margitud-lapse> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas määrata kinnisomandi ulatust? | <https://www.juristaitab.ee/et/kuidas-maarata-kinnisomandi-ulatust> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas määratakse elatise suurus? | <https://www.juristaitab.ee/et/kuidas-maaratakse-elatise-suurus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas omand tekib? | <https://www.juristaitab.ee/et/kuidas-omand-tekib> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas on võimalik kinnisasja kinkida? | <https://www.juristaitab.ee/et/kuidas-voimalik-kinnisasja-kinkida> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas pärandit vastu võtta? Kas peab tegema kindlaid toiminguid selleks, et pärand vastu võtta? | <https://www.juristaitab.ee/et/kuidas-parandit-vastu-votta-kas-peab-tegema-kindlaid-toiminguid-selleks-et-parand-vastu-votta> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas saab hüpoteeki seada? | <https://www.juristaitab.ee/et/kuidas-saab-hupoteeki-seada> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas saada kohtumenetluses riigipoolset menetlusabi? | <https://www.juristaitab.ee/et/kuidas-saada-kohtumenetluses-riigipoolset-menetlusabi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas saada riigi õigusabi? | <https://www.juristaitab.ee/et/kuidas-saada-riigi-oigusabi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas saada teada, kes on pankrotistunud ettevõtte pankrotihaldur? | <https://www.juristaitab.ee/et/kuidas-saada-teada-kes-pankrotistunud-ettevotte-pankrotihaldur> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas saan asutada äriühingu, mittetulundusühingu, sihtasutuse, välismaa äriühingu filiaali või füüsilisest isikust ettevõtja? | <https://www.juristaitab.ee/et/kuidas-saan-asutada-ariuhingu-mittetulundusuhingu-sihtasutuse-valismaa-ariuhingu-filiaali-voi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas servituudid jagunevad ja milline on nende olemus? Mille poolest erineb reaalservituut isiklikust servituudist? | <https://www.juristaitab.ee/et/kuidas-servituudid-jagunevad-ja-milline-nende-olemus-mille-poolest-erineb-reaalservituut-isiklikust> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas servituudid tekivad ja lõppevad? Mille poolest erineb servituut võlaõiguslikust lepingust? | <https://www.juristaitab.ee/et/kuidas-servituudid-tekivad-ja-loppevad-mille-poolest-erineb-servituut-volaoiguslikust-lepingust> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas taotleda elatislahendi muutmist teises Euroopa Liidu liikmesriigis? | <https://www.juristaitab.ee/et/kuidas-taotleda-elatislahendi-muutmist-teises-euroopa-liidu-liikmesriigis> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas teada saada, milline täitur minu suhtes esitatud nõuet täidab? | <https://www.juristaitab.ee/et/kuidas-teada-saada-milline-taitur-minu-suhtes-esitatud-nouet-taidab> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas teavitada pankrotihaldurit enda nõudest? | <https://www.juristaitab.ee/et/kuidas-teavitada-pankrotihaldurit-enda-noudest> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas teha testamenti? | <https://www.juristaitab.ee/et/kuidas-teha-testamenti> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas tehakse pärimisregistrisse kandeid? | <https://www.juristaitab.ee/et/kuidas-tehakse-parimisregistrisse-kandeid> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas tellida abieluvararegistrist ärakirju? | <https://www.juristaitab.ee/et/kuidas-tellida-abieluvararegistrist-arakirju> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas toimub apostilliga kinnitamine? | <https://www.juristaitab.ee/et/kuidas-toimub-apostilliga-kinnitamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas toimub kohtutäituri tasu ja muude kulude vaidlustamine? | <https://www.juristaitab.ee/et/kuidas-toimub-kohtutaituri-tasu-ja-muude-kulude-vaidlustamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas toimub lapse isaduse tuvastamine? | <https://www.juristaitab.ee/et/kuidas-toimub-lapse-isaduse-tuvastamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas toimub omandamise ja võõrandamise tehingu sõlmimine? | <https://www.juristaitab.ee/et/kuidas-toimub-omandamise-ja-voorandamise-tehingu-solmimine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas toimub pärandist loobumine? | <https://www.juristaitab.ee/et/kuidas-toimub-parandist-loobumine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas toimub pärimisregistrile päringute esitamine? | <https://www.juristaitab.ee/et/kuidas-toimub-parimisregistrile-paringute-esitamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas toimub testamendi registreerimine? | <https://www.juristaitab.ee/et/kuidas-toimub-testamendi-registreerimine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas tuleb ühist hooldusõigust teostada? | <https://www.juristaitab.ee/et/kuidas-tuleb-uhist-hooldusoigust-teostada> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas täitemenetlusaegset elatisabi arvutatakse? | <https://www.juristaitab.ee/et/kuidas-taitemenetlusaegset-elatisabi-arvutatakse> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas valida oma nõude täitmiseks kohtutäiturit? | <https://www.juristaitab.ee/et/kuidas-valida-oma-noude-taitmiseks-kohtutaiturit> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas vormistada kinnisasja või selle osa kasutusse andmist? | <https://www.juristaitab.ee/et/kuidas-vormistada-kinnisasja-voi-selle-osa-kasutusse-andmist> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kus ja kuidas saan tutvuda registriandmetega? | <https://www.juristaitab.ee/et/kus-ja-kuidas-saan-tutvuda-registriandmetega> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kus kohast leiaksin asutamiseks ühingu põhikirja? | <https://www.juristaitab.ee/et/kus-kohast-leiaksin-asutamiseks-uhingu-pohikirja> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kus kohast saan informatsiooni erinõuetega tegevusaladel tegutsemise kohta? | <https://www.juristaitab.ee/et/kus-kohast-saan-informatsiooni-erinouetega-tegevusaladel-tegutsemise-kohta> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kus kohast saan rohkem informatsiooni laevade registreerimise kohta? | <https://www.juristaitab.ee/et/kus-kohast-saan-rohkem-informatsiooni-laevade-registreerimise-kohta> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kus saab abielu lahutada? | <https://www.juristaitab.ee/et/kus-saab-abielu-lahutada> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kus saab abielu sõlmida? | <https://www.juristaitab.ee/et/kus-saab-abielu-solmida> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kust ma saan teada, kas ettevõte on pankrotis või eelmenetlus on raugenud pankrotti välja kuulutamata? | <https://www.juristaitab.ee/et/kust-ma-saan-teada-kas-ettevote-pankrotis-voi-eelmenetlus-raugenud-pankrotti-valja-kuulutamata> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kust ma saan teada, kes on määratud pankrotis ettevõtte pankrotihalduriks? | <https://www.juristaitab.ee/et/kust-ma-saan-teada-kes-maaratud-pankrotis-ettevotte-pankrotihalduriks> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Lapsele eestkostja määramine ilma vanema õiguste äravõtmiseta | <https://www.juristaitab.ee/et/lapsele-eestkostja-maaramine-ilma-vanema-oiguste-aravotmiseta> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Lapsele määratud eestkostja õigused ja kohustused | <https://www.juristaitab.ee/et/lapsele-maaratud-eestkostja-oigused-ja-kohustused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Legaliseerimine | <https://www.juristaitab.ee/et/legaliseerimine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Lepingu lõpetamine | <https://www.juristaitab.ee/et/lepingu-lopetamine-1> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Lepingu täitmine ja vastutus | <https://www.juristaitab.ee/et/lepingu-taitmine-ja-vastutus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Lähenemiskeeld | <https://www.juristaitab.ee/et/lahenemiskeeld> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Ma tahaksin kinnitada mingi fakti olemasolu või mitteolemasolu | <https://www.juristaitab.ee/et/ma-tahaksin-kinnitada-mingi-fakti-olemasolu-voi-mitteolemasolu> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Maakohtusse pöördumine | <https://www.juristaitab.ee/et/maakohtusse-poordumine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Maksekäsu kiirmenetlus lapse elatisnõudes | <https://www.juristaitab.ee/et/maksekasu-kiirmenetlus-lapse-elatisnoudes> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Maksekäsu kiirmenetluse avalduste vormid | <https://www.juristaitab.ee/et/maksekasu-kiirmenetluse-avalduste-vormid> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Maksekäsu kiirmenetluse muutumine hagimenetluseks | <https://www.juristaitab.ee/et/maksekasu-kiirmenetluse-muutumine-hagimenetluseks> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Maksekäsu kiirmenetluse muutumine hagimenetluseks | <https://www.juristaitab.ee/et/maksekasu-kiirmenetluse-muutumine-hagimenetluseks-0> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Maksuvabastused ja – soodustused | <https://www.juristaitab.ee/et/maksuvabastused-ja-soodustused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Menetluskulud | <https://www.juristaitab.ee/et/menetluskulud> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida arvestatakse minu majandusliku seisundi hindamisel? | <https://www.juristaitab.ee/et/mida-arvestatakse-minu-majandusliku-seisundi-hindamisel> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida kujutab endast pärandvara inventuur? | <https://www.juristaitab.ee/et/mida-kujutab-endast-parandvara-inventuur> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida peab jälgima lepingute sõlmimisel? | <https://www.juristaitab.ee/et/mida-peab-jalgima-lepingute-solmimisel> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida peab tegema avaliku dokumendi kasutamiseks välismaal? | <https://www.juristaitab.ee/et/mida-peab-tegema-avaliku-dokumendi-kasutamiseks-valismaal> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida peaks vanem teadma lapse vara valitsemisel? | <https://www.juristaitab.ee/et/mida-peaks-vanem-teadma-lapse-vara-valitsemisel> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida pean tegema juhul, kui olen saanud ärikeelu? | <https://www.juristaitab.ee/et/mida-pean-tegema-juhul-kui-olen-saanud-arikeelu> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida pean tegema, kui olen äsja abiellunud ja nime vahetanud ning olen äriregistrisse ühingu juhatuse liikmena kantud vana nimega? | <https://www.juristaitab.ee/et/mida-pean-tegema-kui-olen-asja-abiellunud-ja-nime-vahetanud-ning-olen-ariregistrisse-uhingu> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida pean tegema, kui ühingu juhatuse liikmete volitused hakkavad peagi lõppema? | <https://www.juristaitab.ee/et/mida-pean-tegema-kui-uhingu-juhatuse-liikmete-volitused-hakkavad-peagi-loppema> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha kindlustusjuhtumi korral? | <https://www.juristaitab.ee/et/mida-teha-kindlustusjuhtumi-korral> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha kui on olemas jõustunud kohtuotsus elatise nõudes, kuid teine vanem ei täida otsust vabatahtlikult? | <https://www.juristaitab.ee/et/mida-teha-kui-olemas-joustunud-kohtuotsus-elatise-noudes-kuid-teine-vanem-ei-taida-otsust> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha kui võlgnik ei täida maksekäsku vabatahtlikult? | <https://www.juristaitab.ee/et/mida-teha-kui-volgnik-ei-taida-maksekasku-vabatahtlikult-0> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha kui võlgnik ei täida maksekäsku vabatahtlikult? | <https://www.juristaitab.ee/et/mida-teha-kui-volgnik-ei-taida-maksekasku-vabatahtlikult> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha olukorras, kus kohtutäitur ei ole pikema aja jooksul suutnud nõuet sisse nõuda? | <https://www.juristaitab.ee/et/mida-teha-olukorras-kus-kohtutaitur-ei-ole-pikema-aja-jooksul-suutnud-nouet-sisse-nouda> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha, kui esitatakse nõue kaasomaniku vara vastu? | <https://www.juristaitab.ee/et/mida-teha-kui-esitatakse-noue-kaasomaniku-vara-vastu> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha, kui internetist tellitud kaup ei vasta veebilehel avaldatud kirjeldusele? | <https://www.juristaitab.ee/et/mida-teha-kui-internetist-tellitud-kaup-ei-vasta-veebilehel-avaldatud-kirjeldusele> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha, kui lahuselav vanem ei maksa elatist? | <https://www.juristaitab.ee/et/mida-teha-kui-lahuselav-vanem-ei-maksa-elatist> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha, kui lapse heaolu on ohustatud? | <https://www.juristaitab.ee/et/mida-teha-kui-lapse-heaolu-ohustatud> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha, kui on olemas jõustunud kohtuotsus elatise nõudes, kuid teine vanem ei täida otsust vabatahtlikult ning ka täitemenetlus ei anna tulemust? | <https://www.juristaitab.ee/et/mida-teha-kui-olemas-joustunud-kohtuotsus-elatise-noudes-kuid-teine-vanem-ei-taida-otsust-0> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha, kui on õigus ülalpidamist saada, aga lahutatud abikaasa seda vabatahtlikult ei maksa? | <https://www.juristaitab.ee/et/mida-teha-kui-oigus-ulalpidamist-saada-aga-lahutatud-abikaasa-seda-vabatahtlikult-ei-maksa> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha, kui on ühine hooldusõigus, aga vanematel on vaidlus mingis konkreetses last puudutavas küsimuses? | <https://www.juristaitab.ee/et/mida-teha-kui-uhine-hooldusoigus-aga-vanematel-vaidlus-mingis-konkreetses-last-puudutavas-kusimuses> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha, kui pean kohtusse pöörduma | <https://www.juristaitab.ee/et/mida-teha-kui-pean-kohtusse-poorduma> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha, kui vanemad ei saa/ei taha enam ühist hooldusõigust teostada? | <https://www.juristaitab.ee/et/mida-teha-kui-vanemad-ei-saaei-taha-enam-uhist-hooldusoigust-teostada> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha, kui võlad ületavad varasid? | <https://www.juristaitab.ee/et/mida-teha-kui-volad-uletavad-varasid> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha, kui võlgniku suhtes on Eestis alustatud elatise sissenõudmise täitemenetlus, kuid võlgnik kolis välisriiki? | <https://www.juristaitab.ee/et/mida-teha-kui-volgniku-suhtes-eestis-alustatud-elatise-sissenoudmise-taitemenetlus-kuid-volgnik> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha, kui võlgniku suhtes on välisriigis juba täitemenetlus käimas, kuid võlgnik siiski lapsele elatist ei maksa? | <https://www.juristaitab.ee/et/mida-teha-kui-volgniku-suhtes-valisriigis-juba-taitemenetlus-kaimas-kuid-volgnik-siiski-lapsele> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida tähendab „kasu“ vara müügist? | <https://www.juristaitab.ee/et/mida-tahendab-kasu-vara-muugist> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida tähendab „suhtlusõigus“? Mida teha, kui see on vastuolus lapse huvidega? | <https://www.juristaitab.ee/et/mida-tahendab-suhtlusoigus-mida-teha-kui-see-vastuolus-lapse-huvidega> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida tähendab „vanema hooldusõigus“? | <https://www.juristaitab.ee/et/mida-tahendab-vanema-hooldusoigus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida tähendab „vara“, mille müügist saadavalt kasult tuleb maksta tulumaksu? | <https://www.juristaitab.ee/et/mida-tahendab-vara-mille-muugist-saadavalt-kasult-tuleb-maksta-tulumaksu> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida tähendab tulumaksuga maksustamisel „soetamismaksumus“? | <https://www.juristaitab.ee/et/mida-tahendab-tulumaksuga-maksustamisel-soetamismaksumus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida tähendab täiendav maksuvaba tulu lapse ülalpidamise korral? | <https://www.juristaitab.ee/et/mida-tahendab-taiendav-maksuvaba-tulu-lapse-ulalpidamise-korral> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida võib maksustatavast tulust maha arvata? | <https://www.juristaitab.ee/et/mida-voib-maksustatavast-tulust-maha-arvata> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Miks ei ole kohtutäitur minu arvelduskontole elatusmiinimumi jätnud? | <https://www.juristaitab.ee/et/miks-ei-ole-kohtutaitur-minu-arvelduskontole-elatusmiinimumi-jatnud> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Miks on vajalik 1-kuuline ooteperiood enne kui elatisabi hakatakse maksma? | <https://www.juristaitab.ee/et/miks-vajalik-1-kuuline-ooteperiood-enne-kui-elatisabi-hakatakse-maksma> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millal ja kui palju hakkab riik täitemenetlusaegset elatisabi maksma? | <https://www.juristaitab.ee/et/millal-ja-kui-palju-hakkab-riik-taitemenetlusaegset-elatisabi-maksma> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millal ja kui palju maksta? | <https://www.juristaitab.ee/et/millal-ja-kui-palju-maksta> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millal ja kuidas esitada tuludeklaratsiooni? | <https://www.juristaitab.ee/et/millal-ja-kuidas-esitada-tuludeklaratsiooni> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millal ja kuidas läheb valdus võõrandajalt omandajale üle? | <https://www.juristaitab.ee/et/millal-ja-kuidas-laheb-valdus-voorandajalt-omandajale-ule> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millal ja mis tingimustel on võimalik täitemenetluses rakendada võlgniku suhtes sunnimeetmeid (näiteks võlgniku juhtimisõiguse peatamine)? | <https://www.juristaitab.ee/et/millal-ja-mis-tingimustel-voimalik-taitemenetluses-rakendada-volgniku-suhtes-sunnimeetmeid-naiteks> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millal kinnitab notar allkirja õigsuse? | <https://www.juristaitab.ee/et/millal-kinnitab-notar-allkirja-oigsuse> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millal kohtutäituri poole pöörduda? | <https://www.juristaitab.ee/et/millal-kohtutaituri-poole-poorduda> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millal lõpetatakse kohtumenetlusaegse elatisabi maksmine? | <https://www.juristaitab.ee/et/millal-lopetatakse-kohtumenetlusaegse-elatisabi-maksmine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millal lõppeb pärandvarale hoiumeetme rakendamine? | <https://www.juristaitab.ee/et/millal-loppeb-parandvarale-hoiumeetme-rakendamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millal määratakse lapsele erieestkostja? | <https://www.juristaitab.ee/et/millal-maaratakse-lapsele-erieestkostja> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millal on nõutav kaubal kasutusjuhendi olemasolu ja kas müüja vastutab selles sisalduva teabe mittekorrektsuse korral? | <https://www.juristaitab.ee/et/millal-noutav-kaubal-kasutusjuhendi-olemasolu-ja-kas-muuja-vastutab-selles-sisalduva-teabe> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millal pärimismenetlus lõpeb? | <https://www.juristaitab.ee/et/millal-parimismenetlus-lopeb> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millal saab kinnisvara omandav pool kinnisasja omanikuks? | <https://www.juristaitab.ee/et/millal-saab-kinnisvara-omandav-pool-kinnisasja-omanikuks> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millal võib olla tegemist lapse vara ohustamisega? Mis siis juhtub? | <https://www.juristaitab.ee/et/millal-voib-olla-tegemist-lapse-vara-ohustamisega-mis-siis-juhtub> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mille alusel arvutatakse maamaks? | <https://www.juristaitab.ee/et/mille-alusel-arvutatakse-maamaks> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mille järgi peaks valima täitemenetlust läbiviiva kohtutäituri? | <https://www.juristaitab.ee/et/mille-jargi-peaks-valima-taitemenetlust-labiviiva-kohtutaituri> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mille poolest erineb omand valdusest? | <https://www.juristaitab.ee/et/mille-poolest-erineb-omand-valdusest> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mille poolest erineb töövõtuleping töölepingust? | <https://www.juristaitab.ee/et/mille-poolest-erineb-toovotuleping-toolepingust> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Milles seisneb avalik-õiguslike kitsenduste olemus? | <https://www.juristaitab.ee/et/milles-seisneb-avalik-oiguslike-kitsenduste-olemus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Milline dokument kinnitab abielu lahutamist? | <https://www.juristaitab.ee/et/milline-dokument-kinnitab-abielu-lahutamist> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Milline nimi jääb abikaasadele pärast abiellumist? | <https://www.juristaitab.ee/et/milline-nimi-jaab-abikaasadele-parast-abiellumist> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Milline on apostillimise protseduur? | <https://www.juristaitab.ee/et/milline-apostillimise-protseduur> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Milline on legaliseerimise protseduur? | <https://www.juristaitab.ee/et/milline-legaliseerimise-protseduur> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Milline on perekonnanimi pärast lahutust? | <https://www.juristaitab.ee/et/milline-perekonnanimi-parast-lahutust> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Milline on ületunnitöö ja öötöö? | <https://www.juristaitab.ee/et/milline-uletunnitoo-ja-ootoo> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Milline tulu maksustatakse tulumaksuga? | <https://www.juristaitab.ee/et/milline-tulu-maksustatakse-tulumaksuga> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millise aja jooksul kehtib kaubale või teenusele seadusest tulenev pretensiooni esitamise õigus? | <https://www.juristaitab.ee/et/millise-aja-jooksul-kehtib-kaubale-voi-teenusele-seadusest-tulenev-pretensiooni-esitamise-oigus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millise aja jooksul peab kaupleja tarbija poolt kauba puuduse suhtes esitatud pretensiooni läbi vaatama ning kuidas tuleb pretensioon esitada? | <https://www.juristaitab.ee/et/millise-aja-jooksul-peab-kaupleja-tarbija-poolt-kauba-puuduse-suhtes-esitatud-pretensiooni-labi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millise tähtaja jooksul peab kohtutäitur võlgnikult täitemenetluse läbiviimise raames saadud summad sissenõudjale üle kandma? | <https://www.juristaitab.ee/et/millise-tahtaja-jooksul-peab-kohtutaitur-volgnikult-taitemenetluse-labiviimise-raames-saadud-summad> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised andmed peavad sisalduma maksekäsu kiirmenetluse avalduses lapse elatisnõudes? | <https://www.juristaitab.ee/et/millised-andmed-peavad-sisalduma-maksekasu-kiirmenetluse-avalduses-lapse-elatisnoudes> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised andmed peavad sisalduma maksekäsu kiirmenetluse avalduses? | <https://www.juristaitab.ee/et/millised-andmed-peavad-sisalduma-maksekasu-kiirmenetluse-avalduses> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised dokumendid on vajalikud notarisse kaasa võtta, et algatada pärimisprotsess? | <https://www.juristaitab.ee/et/millised-dokumendid-vajalikud-notarisse-kaasa-votta-et-algatada-parimisprotsess> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised dokumendid on vajalikud omandamise ja võõrandamise tehingu sõlmimiseks? | <https://www.juristaitab.ee/et/millised-dokumendid-vajalikud-omandamise-ja-voorandamise-tehingu-solmimiseks> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised dokumendid tuleb esitada abiellumiseks notari juures? | <https://www.juristaitab.ee/et/millised-dokumendid-tuleb-esitada-abiellumiseks-notari-juures> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised dokumendid tuleb esitada abiellumisel perekonnaseisuametis? | <https://www.juristaitab.ee/et/millised-dokumendid-tuleb-esitada-abiellumisel-perekonnaseisuametis> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised dokumendid tuleb esitada registriosakonnale ühingu asutamiseks, kandeandmete muutmiseks, muude registrisse sisestatud andmete muutmiseks? | <https://www.juristaitab.ee/et/millised-dokumendid-tuleb-esitada-registriosakonnale-uhingu-asutamiseks-kandeandmete-muutmiseks> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised hüvitised on töölepingu ülesütlemisel? | <https://www.juristaitab.ee/et/millised-huvitised-toolepingu-ulesutlemisel> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised nõuded kehtivad ostetud asja parandamise või vahetamise suhtes? | <https://www.juristaitab.ee/et/millised-nouded-kehtivad-ostetud-asja-parandamise-voi-vahetamise-suhtes> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised on elatisabi saaja kohustused? | <https://www.juristaitab.ee/et/millised-elatisabi-saaja-kohustused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised on füüsilisele isikule menetlusabi andmise tingimused ja piirangud? | <https://www.juristaitab.ee/et/millised-fuusilisele-isikule-menetlusabi-andmise-tingimused-ja-piirangud> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised on karistused kuritegude eest? | <https://www.juristaitab.ee/et/millised-karistused-kuritegude-eest> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised on korteriomandi erisused? | <https://www.juristaitab.ee/et/millised-korteriomandi-erisused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised on pankrotihalduri kohustused? | <https://www.juristaitab.ee/et/millised-pankrotihalduri-kohustused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised on pädevad institutsioonid? | <https://www.juristaitab.ee/et/millised-padevad-institutsioonid> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised on pärimisega seotud kulutused? | <https://www.juristaitab.ee/et/millised-parimisega-seotud-kulutused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised on tarbija õigused lennuki või rongi hilinemisel? | <https://www.juristaitab.ee/et/millised-tarbija-oigused-lennuki-voi-rongi-hilinemisel> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised on teede ja tehnorajatistega seotud kitsendused? | <https://www.juristaitab.ee/et/millised-teede-ja-tehnorajatistega-seotud-kitsendused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised on töölepingu kohustuslikud tingimused? | <https://www.juristaitab.ee/et/millised-toolepingu-kohustuslikud-tingimused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised on töölepingu lõpetamise alused? | <https://www.juristaitab.ee/et/millised-toolepingu-lopetamise-alused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised on vee ja veekogudega seotud kitsendused? | <https://www.juristaitab.ee/et/millised-vee-ja-veekogudega-seotud-kitsendused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised tasud on ette nähtud omandamise ja võõrandamise tehingu eest? | <https://www.juristaitab.ee/et/millised-tasud-ette-nahtud-omandamise-ja-voorandamise-tehingu-eest> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised õigused on tarbijal kauba tagastamiseks kataloogist tellimise korral? | <https://www.juristaitab.ee/et/millised-oigused-tarbijal-kauba-tagastamiseks-kataloogist-tellimise-korral> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Milliseid dokumente ei saa kinnitada apostilliga? | <https://www.juristaitab.ee/et/milliseid-dokumente-ei-saa-kinnitada-apostilliga> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Milliseid dokumente ei saa legaliseerida? | <https://www.juristaitab.ee/et/milliseid-dokumente-ei-saa-legaliseerida> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Milliseid dokumente kohtutäitur täidab? | <https://www.juristaitab.ee/et/milliseid-dokumente-kohtutaitur-taidab> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Milliseid sotsiaalkindlustushüvitisi riik pakub? | <https://www.juristaitab.ee/et/milliseid-sotsiaalkindlustushuvitisi-riik-pakub> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Milliseid vaidlusi lahendab tarbijavaidluste komisjon? | <https://www.juristaitab.ee/et/milliseid-vaidlusi-lahendab-tarbijavaidluste-komisjon> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Milliseid vaidlusi lahendab Tarbijavaidluste komisjon? | <https://www.juristaitab.ee/et/milliseid-vaidlusi-lahendab-tarbijavaidluste-komisjon-0> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millisel juhul on pärandi inventuur kohustuslik? | <https://www.juristaitab.ee/et/millisel-juhul-parandi-inventuur-kohustuslik> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millisel juhul peab omanik sallima võõrast tegevust või mõjutusi oma kinnisasja suhtes? Millal kaotab omanik õiguse teostada oma omandit piiranguteta? | <https://www.juristaitab.ee/et/millisel-juhul-peab-omanik-sallima-voorast-tegevust-voi-mojutusi-oma-kinnisasja-suhtes-millal> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millises järjekorras täidetakse elatise asjas tekkinud võlgnevused? | <https://www.juristaitab.ee/et/millises-jarjekorras-taidetakse-elatise-asjas-tekkinud-volgnevused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millises ulatuses sissetulekut ei arestita? | <https://www.juristaitab.ee/et/millises-ulatuses-sissetulekut-ei-arestita> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millises ulatuses täiskasvanule eestkoste määratakse? | <https://www.juristaitab.ee/et/millises-ulatuses-taiskasvanule-eestkoste-maaratakse> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millises vormis peaks lepingud olema sõlmitud? | <https://www.juristaitab.ee/et/millises-vormis-peaks-lepingud-olema-solmitud> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millises vormis sõlmitakse tehingud kinnisasjadega? | <https://www.juristaitab.ee/et/millises-vormis-solmitakse-tehingud-kinnisasjadega> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millist teavet peab reisikorraldaja andma reisijale enne pakettreisilepingu sõlmimist? | <https://www.juristaitab.ee/et/millist-teavet-peab-reisikorraldaja-andma-reisijale-enne-pakettreisilepingu-solmimist> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millistel juhtudel võib kohus menetlusabi andmise tühistada ja mis saab siis menetlusabi taotlenud isiku menetluskuludest? | <https://www.juristaitab.ee/et/millistel-juhtudel-voib-kohus-menetlusabi-andmise-tuhistada-ja-mis-saab-siis-menetlusabi-taotlenud> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millistel juhtumitel ei saa lahutatud abikaasa ülalpidamist nõuda? | <https://www.juristaitab.ee/et/millistel-juhtumitel-ei-saa-lahutatud-abikaasa-ulalpidamist-nouda> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millistele nõuetele peab vastama tarbijale müüdav asi? | <https://www.juristaitab.ee/et/millistele-nouetele-peab-vastama-tarbijale-muudav-asi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Minu vastu on algatatud kohtumenetlus | <https://www.juristaitab.ee/et/minu-vastu-algatatud-kohtumenetlus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis ajast alates võib elatist nõuda? | <https://www.juristaitab.ee/et/mis-ajast-alates-voib-elatist-nouda> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis hetkest alates võib kohtutäitur täitemenetluses tasu nõuda? | <https://www.juristaitab.ee/et/mis-hetkest-alates-voib-kohtutaitur-taitemenetluses-tasu-nouda> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis juhtub, kui vanem mingil põhjusel ei ole võimeline hooldusõigust teostama? | <https://www.juristaitab.ee/et/mis-juhtub-kui-vanem-mingil-pohjusel-ei-ole-voimeline-hooldusoigust-teostama> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis keeles tuleb riigi õigusabi taotlus esitada? | <https://www.juristaitab.ee/et/mis-keeles-tuleb-riigi-oigusabi-taotlus-esitada> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis kuupäeval maksab Sotsiaalkindlustusamet elatisabi? | <https://www.juristaitab.ee/et/mis-kuupaeval-maksab-sotsiaalkindlustusamet-elatisabi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis ma edasi tegema pean, kui kohus on teinud määruse, millega on otsustatud algatada kohustustest vabastamise menetlus? | <https://www.juristaitab.ee/et/mis-ma-edasi-tegema-pean-kui-kohus-teinud-maaruse-millega-otsustatud-algatada-kohustustest> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis nõuete puhul ei saa maksekäsu kiirmenetlust kasutada? | <https://www.juristaitab.ee/et/mis-nouete-puhul-ei-saa-maksekasu-kiirmenetlust-kasutada> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis oli haldusõigusrikkumine? | <https://www.juristaitab.ee/et/mis-oli-haldusoigusrikkumine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on abieluvaraleping? | <https://www.juristaitab.ee/et/mis-abieluvaraleping> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on abieluvararegister | <https://www.juristaitab.ee/et/mis-abieluvararegister> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on annak? | <https://www.juristaitab.ee/et/mis-annak> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on avalik dokument? | <https://www.juristaitab.ee/et/mis-avalik-dokument> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on broneerimisleping ja mille poolest erineb see eellepingust? | <https://www.juristaitab.ee/et/mis-broneerimisleping-ja-mille-poolest-erineb-see-eellepingust> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on dokumendi ametlik tõlge? | <https://www.juristaitab.ee/et/mis-dokumendi-ametlik-tolge> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on elatis? | <https://www.juristaitab.ee/et/mis-elatis> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on elatisabi? | <https://www.juristaitab.ee/et/mis-elatisabi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on elatusmiinimum? | <https://www.juristaitab.ee/et/mis-elatusmiinimum> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on hoiatus? Millises vormis see esitatakse? | <https://www.juristaitab.ee/et/mis-hoiatus-millises-vormis-see-esitatakse> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on hoiatustrahv? | <https://www.juristaitab.ee/et/mis-hoiatustrahv> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on hoonestusõigus? | <https://www.juristaitab.ee/et/mis-hoonestusoigus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on hüpoteek? | <https://www.juristaitab.ee/et/mis-hupoteek> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on kahju hüvitamine? | <https://www.juristaitab.ee/et/mis-kahju-huvitamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on kasutusleping? | <https://www.juristaitab.ee/et/mis-kasutusleping> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on kindlustusleping? | <https://www.juristaitab.ee/et/mis-kindlustusleping> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on kinkeleping? | <https://www.juristaitab.ee/et/mis-kinkeleping> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on kinnisasi? | <https://www.juristaitab.ee/et/mis-kinnisasi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on kinnistu ning kinnisasi | <https://www.juristaitab.ee/et/mis-kinnistu-ning-kinnisasi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on kuriteod? | <https://www.juristaitab.ee/et/mis-kuriteod> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on makseettepanek ja maksekäsk? | <https://www.juristaitab.ee/et/mis-makseettepanek-ja-maksekask-0> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on makseettepanek ja maksekäsk? | <https://www.juristaitab.ee/et/mis-makseettepanek-ja-maksekask> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on maksekäsu kiirmenetlus lapse elatisnõudes? | <https://www.juristaitab.ee/et/mis-maksekasu-kiirmenetlus-lapse-elatisnoudes> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on ostu tõendav dokument ning millised nõuded selle suhtes kehtivad? | <https://www.juristaitab.ee/et/mis-ostu-toendav-dokument-ning-millised-nouded-selle-suhtes-kehtivad> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on pankrot? | <https://www.juristaitab.ee/et/mis-pankrot> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on põlvnemine? | <https://www.juristaitab.ee/et/mis-polvnemine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on põlvnemisest tulenev ülalpidamise kohustus ja õigus ning kellele see laieneb? | <https://www.juristaitab.ee/et/mis-polvnemisest-tulenev-ulalpidamise-kohustus-ja-oigus-ning-kellele-see-laieneb> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on pärandvara pankrot? | <https://www.juristaitab.ee/et/mis-parandvara-pankrot> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on pärimisregister? | <https://www.juristaitab.ee/et/mis-parimisregister> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on reaalkoormatise sisuks? Kuidas reaalkoormatis tekib ja lõppeb? | <https://www.juristaitab.ee/et/mis-reaalkoormatise-sisuks-kuidas-reaalkoormatis-tekib-ja-loppeb> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on riigi õigusabi? | <https://www.juristaitab.ee/et/mis-riigi-oigusabi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on riigipoolne menetlusabi? | <https://www.juristaitab.ee/et/mis-riigipoolne-menetlusabi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on süüteod? | <https://www.juristaitab.ee/et/mis-suuteod> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on süüteod? | <https://www.juristaitab.ee/et/mis-suuteod-0> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on teenuse osutamise leping? | <https://www.juristaitab.ee/et/mis-teenuse-osutamise-leping> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on vabatahtliku täitmise tähtaeg? | <https://www.juristaitab.ee/et/mis-vabatahtliku-taitmise-tahtaeg> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on vallasasi? | <https://www.juristaitab.ee/et/mis-vallasasi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on vara juurdekasvu tasaarvestus? | <https://www.juristaitab.ee/et/mis-vara-juurdekasvu-tasaarvestus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on varalahusus? | <https://www.juristaitab.ee/et/mis-varalahusus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on varaühisus? | <https://www.juristaitab.ee/et/mis-varauhisus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on väärteod? | <https://www.juristaitab.ee/et/mis-vaarteod> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on ärakirja õigsuse kinnitamine? | <https://www.juristaitab.ee/et/mis-arakirja-oigsuse-kinnitamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis peaks lepingus kirjas olema? | <https://www.juristaitab.ee/et/mis-peaks-lepingus-kirjas-olema> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis saab peale nõudeavalduse esitamist? Kas haldur võtab minuga ühendust? | <https://www.juristaitab.ee/et/mis-saab-peale-noudeavalduse-esitamist-kas-haldur-votab-minuga-uhendust> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis saab siis, kui kohus vabastab mind pankrotimenetluses täitmata jäänud kohustustest? Mis saab nendest võlausaldajatest, kes jätsid esitamata või ei esitanud tähtaegselt pankrotimenetluse jooksul nõudeavaldust? | <https://www.juristaitab.ee/et/mis-saab-siis-kui-kohus-vabastab-mind-pankrotimenetluses-taitmata-jaanud-kohustustest-mis-saab> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis tingimustel saab töötasu vähendada? | <https://www.juristaitab.ee/et/mis-tingimustel-saab-tootasu-vahendada> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis vahe on kaasomandil ja ühisomandil? Kuidas käib kaasomandi ja ühisomandi valdamine, kasutamine ja käsutamine? | <https://www.juristaitab.ee/et/mis-vahe-kaasomandil-ja-uhisomandil-kuidas-kaib-kaasomandi-ja-uhisomandi-valdamine-kasutamine-ja> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mul on küsimus maksude kohta | <https://www.juristaitab.ee/et/mul-kusimus-maksude-kohta> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mul on küsimus töösuhete kohta | <https://www.juristaitab.ee/et/mul-kusimus-toosuhete-kohta> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Muu kohtuotsuse tunnustamine | <https://www.juristaitab.ee/et/muu-kohtuotsuse-tunnustamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Müügileping | <https://www.juristaitab.ee/et/muugileping> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Müügilepingu korral asja üleandmine ja vastuvõtmine | <https://www.juristaitab.ee/et/muugilepingu-korral-asja-uleandmine-ja-vastuvotmine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Müügilepingu olulised tingimused | <https://www.juristaitab.ee/et/muugilepingu-olulised-tingimused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Müügilepingu puudused ja garantiid | <https://www.juristaitab.ee/et/muugilepingu-puudused-ja-garantiid> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Müügilepingu rikkumine ja tagajärjed | <https://www.juristaitab.ee/et/muugilepingu-rikkumine-ja-tagajarjed> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Müügilepingu vorm | <https://www.juristaitab.ee/et/muugilepingu-vorm> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Müüja ja ostja õigused ja kohustused | <https://www.juristaitab.ee/et/muuja-ja-ostja-oigused-ja-kohustused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Nn. Lugano 2007 konventsioon | <https://www.juristaitab.ee/et/nn-lugano-2007-konventsioon> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Nn. Lugano 2007 konventsioon ja elatisabi | <https://www.juristaitab.ee/et/nn-lugano-2007-konventsioon-ja-elatisabi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Notari tasust vabastamine | <https://www.juristaitab.ee/et/notari-tasust-vabastamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Notariaalne abieluvaraleping | <https://www.juristaitab.ee/et/notariaalne-abieluvaraleping> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Notariaalne testament | <https://www.juristaitab.ee/et/notariaalne-testament> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Notariaalse elatislepingu tunnistamine Nõukogu määruse nr 4/2009, | <https://www.juristaitab.ee/et/notariaalse-elatislepingu-tunnistamine-noukogu-maaruse-nr-42009> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Oleme kaasomanikud ja soovime kaasomandit lõpetada selliselt, et ühest omanikust saab ainuomanik | <https://www.juristaitab.ee/et/oleme-kaasomanikud-ja-soovime-kaasomandit-lopetada-selliselt-et-uhest-omanikust-saab-ainuomanik> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Oleme kaasomanikud ning soovime kokku leppida kaasomandi kasutuskorras | <https://www.juristaitab.ee/et/oleme-kaasomanikud-ning-soovime-kokku-leppida-kaasomandi-kasutuskorras> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Olen saanud täitmisteate. Mida teha? | <https://www.juristaitab.ee/et/olen-saanud-taitmisteate-mida-teha> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Olen võla õigeaegselt tasunud, kuid kohtutäitur algatas minu suhtes täitemenetluse. Mida teha? | <https://www.juristaitab.ee/et/olen-vola-oigeaegselt-tasunud-kuid-kohtutaitur-algatas-minu-suhtes-taitemenetluse-mida-teha> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Omakäeline testament | <https://www.juristaitab.ee/et/omakaeline-testament> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Ostueesõigus | <https://www.juristaitab.ee/et/ostueesoigus-3> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Planeeringud | <https://www.juristaitab.ee/et/planeeringud-0> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Planeeringud ja ehitus | <https://www.juristaitab.ee/et/planeeringud-ja-ehitus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Puhkus: kestus, liigid, puhkuse andmise kohustus, kompenseerimise võimalikkus | <https://www.juristaitab.ee/et/puhkus-kestus-liigid-puhkuse-andmise-kohustus-kompenseerimise-voimalikkus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Pärandit on vaja pärimismenetluse lõppemiseni hooldada. Kes määrab pärandvara hoiumeetmed, hooldaja ja hooldamise piirid? | <https://www.juristaitab.ee/et/parandit-vaja-parimismenetluse-loppemiseni-hooldada-kes-maarab-parandvara-hoiumeetmed-hooldaja-ja> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Pärimisleping | <https://www.juristaitab.ee/et/parimisleping> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Pärimisprotsessi algatamine | <https://www.juristaitab.ee/et/parimisprotsessi-algatamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Rahvusvaheline lapserööv | <https://www.juristaitab.ee/et/rahvusvaheline-lapseroov> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Rahvusvaheline lapserööv | <https://www.juristaitab.ee/et/rahvusvaheline-lapseroov-0> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Rahvusvaheline lastekaitse | <https://www.juristaitab.ee/et/rahvusvaheline-lastekaitse> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Rahvusvaheline õigusabi | <https://www.juristaitab.ee/et/rahvusvaheline-oigusabi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Riigi õigusabi vormid | <https://www.juristaitab.ee/et/riigi-oigusabi-vormid> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Riigilõiv kohtusse pöördumisel | <https://www.juristaitab.ee/et/riigiloiv-kohtusse-poordumisel> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Riigilõivu tagastamise taotlemine | <https://www.juristaitab.ee/et/riigiloivu-tagastamise-taotlemine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Saladuse hoidmise kohustus ja konkurentsipiirang | <https://www.juristaitab.ee/et/saladuse-hoidmise-kohustus-ja-konkurentsipiirang> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Seadusjärgne pärimine | <https://www.juristaitab.ee/et/seadusjargne-parimine-6> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Soovin täitemenetluses tasuda võlga osade kaupa. Kelle poole ma peaks pöörduma? | <https://www.juristaitab.ee/et/soovin-taitemenetluses-tasuda-volga-osade-kaupa-kelle-poole-ma-peaks-poorduma> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Soovite esitada enda so füüsilise isiku pankrotiavaldust. Kuidas toimida? | <https://www.juristaitab.ee/et/soovite-esitada-enda-so-fuusilise-isiku-pankrotiavaldust-kuidas-toimida> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Soovite esitada ettevõtte vastu pankrotiavaldust. Kuidas toimida? | <https://www.juristaitab.ee/et/soovite-esitada-ettevotte-vastu-pankrotiavaldust-kuidas-toimida> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Sundosa saamise õigust. Kellel on õigus sundosale pärimismenetluses? | <https://www.juristaitab.ee/et/sundosa-saamise-oigust-kellel-oigus-sundosale-parimismenetluses> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Süütegude ennetamine | <https://www.juristaitab.ee/et/suutegude-ennetamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Tagaseljaotsus | <https://www.juristaitab.ee/et/tagaseljaotsus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Tarbijakrediit | <https://www.juristaitab.ee/et/tarbijakrediit> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Teenuse osutaja ja tellija õigused ja kohustused | <https://www.juristaitab.ee/et/teenuse-osutaja-ja-tellija-oigused-ja-kohustused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Teenuse osutamise lepingu sisu ja tingimused | <https://www.juristaitab.ee/et/teenuse-osutamise-lepingu-sisu-ja-tingimused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Tehingud lapse varaga | <https://www.juristaitab.ee/et/tehingud-lapse-varaga> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Testamendi hoidmine | <https://www.juristaitab.ee/et/testamendi-hoidmine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Testamendijärgne pärimine | <https://www.juristaitab.ee/et/testamendijargne-parimine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Tulumaksu tagastuse arestimine | <https://www.juristaitab.ee/et/tulumaksu-tagastuse-arestimine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Tunnistajate juuresolekul kinnitatud testament | <https://www.juristaitab.ee/et/tunnistajate-juuresolekul-kinnitatud-testament> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Tunnustamine Leedus, Lätis või Poolas õigusabilepingute alusel | <https://www.juristaitab.ee/et/tunnustamine-leedus-latis-voi-poolas-oigusabilepingute-alusel> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Tunnustamine Ukrainas õigusabilepingute alusel | <https://www.juristaitab.ee/et/tunnustamine-ukrainas-oigusabilepingute-alusel> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Tunnustamine Ukrainas õigusabilepingute alusel ning elatisabi taotlemine | <https://www.juristaitab.ee/et/tunnustamine-ukrainas-oigusabilepingute-alusel-ning-elatisabi-taotlemine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Tähtajaline tööleping: tähtaeg, tingimused, lõpetamise alused | <https://www.juristaitab.ee/et/tahtajaline-tooleping-tahtaeg-tingimused-lopetamise-alused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Täiendav maksuvaba tulu vanaduspensionieas | <https://www.juristaitab.ee/et/taiendav-maksuvaba-tulu-vanaduspensionieas> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Täisealiste eestkoste | <https://www.juristaitab.ee/et/taisealiste-eestkoste> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Täitemenetluse aluseks olevate nõuete aegumine | <https://www.juristaitab.ee/et/taitemenetluse-aluseks-olevate-nouete-aegumine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Töölepingu ülesütlemine töötaja algatusel. Tähtajad ja ülesütlemise vorm | <https://www.juristaitab.ee/et/toolepingu-ulesutlemine-tootaja-algatusel-tahtajad-ja-ulesutlemise-vorm> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Töövaidlus | <https://www.juristaitab.ee/et/toovaidlus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Töövaidluste lahendamine töövaidluskomisjonis ja kohtus. Vaidlustamise tähtajad, riigilõiv, edasikaebamine | <https://www.juristaitab.ee/et/toovaidluste-lahendamine-toovaidluskomisjonis-ja-kohtus-vaidlustamise-tahtajad-riigiloiv> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Vahekohtuotsuse tunnustamine ja täitmine välismaal | <https://www.juristaitab.ee/et/vahekohtuotsuse-tunnustamine-ja-taitmine-valismaal> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Vaidluste lahendamine | <https://www.juristaitab.ee/et/vaidluste-lahendamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Valdus | <https://www.juristaitab.ee/et/valdus-0> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Vanema ja lapse suhte tekkimine ning isaduse kindlakstegemine | <https://www.juristaitab.ee/et/vanema-ja-lapse-suhte-tekkimine-ning-isaduse-kindlakstegemine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Vanemahüvitis | <https://www.juristaitab.ee/et/vanemahuvitis> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Varalise vastutuse leping | <https://www.juristaitab.ee/et/varalise-vastutuse-leping> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Vastuväide ja selle tähtaeg? | <https://www.juristaitab.ee/et/vastuvaide-ja-selle-tahtaeg> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Viivised, leppetrahvid, sissenõudekulud | <https://www.juristaitab.ee/et/viivised-leppetrahvid-sissenoudekulud> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Võlgadega pärand - kas pärandist loobuda või pärand vastu võtta? | <https://www.juristaitab.ee/et/volgadega-parand-kas-parandist-loobuda-voi-parand-vastu-votta> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Võlgniku põhilised kohustused täitemenetluses | <https://www.juristaitab.ee/et/volgniku-pohilised-kohustused-taitemenetluses> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Võlgniku põhilised õigused täitemenetluses | <https://www.juristaitab.ee/et/volgniku-pohilised-oigused-taitemenetluses> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Väljaande Ametlikud Teadaanded andmetel on ettevõte pankrotis. Mis ma edasi tegema pean? | <https://www.juristaitab.ee/et/valjaande-ametlikud-teadaanded-andmetel-ettevote-pankrotis-mis-ma-edasi-tegema-pean> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Õigusabilepingud | <https://www.juristaitab.ee/et/oigusabilepingud> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Õppefilm "Vaidluste lahendamisest kohtus" | <https://www.juristaitab.ee/et/oppefilm-vaidluste-lahendamisest-kohtus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Ülalpidamise ulatus ja viis | <https://www.juristaitab.ee/et/ulalpidamise-ulatus-ja-viis> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Ülalpidamiskohustus pärast lahutust seoses ühise lapse hooldamisega | <https://www.juristaitab.ee/et/ulalpidamiskohustus-parast-lahutust-seoses-uhise-lapse-hooldamisega> |
 | Põhja-Eesti Regionaalhaigla | Iseseisev statsionaarne õendusabiteenus | <https://www.regionaalhaigla.ee/iseseisev-statsionaarne-oendusabiteenus> |
 | Põhja-Eesti Regionaalhaigla | Lähedasele | <https://www.regionaalhaigla.ee/patsiendile/lahedasele> |
 | Põhja-Eesti Regionaalhaigla | Palliatiivravi | <https://www.regionaalhaigla.ee/palliatiivravi> |
