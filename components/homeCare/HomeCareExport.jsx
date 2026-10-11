@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import OrgHeader from "@/components/org/OrgHeader";
+import OrgPart from "@/components/org/OrgPart";
 import { CARE_EXPORT_REASONS } from "@/lib/homeCare/constants";
 import { HOME_CARE_EXPORT_EXCLUSIONS } from "@/lib/homeCare/exportFormat";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
@@ -129,15 +129,14 @@ export default function HomeCareExport({ context, initial }) {
   const working = step === "working";
 
   return (
-    <section className="ow-shell hc-shell">
-      <OrgHeader context={context} />
+    <OrgPart context={context} part="home_care" partLabel={t("home_care.export.title")}>
+    <section className="hc-shell">
       <HomeCareOutbox ownerId={context.membership?.id || ""} timeZone={timeZone} />
 
       <div className="hc-head">
         <Link className="hc-back" href={`/org/${organizationId}/koduteenus`}>
           {t("home_care.client.back")}
         </Link>
-        <h2 className="hc-title">{t("home_care.export.title")}</h2>
         <p className="hc-sub">{t("home_care.export.intro")}</p>
         <p className="hc-hint">{t("home_care.export.who_hint")}</p>
       </div>
@@ -267,5 +266,6 @@ export default function HomeCareExport({ context, initial }) {
         )}
       </section>
     </section>
+    </OrgPart>
   );
 }

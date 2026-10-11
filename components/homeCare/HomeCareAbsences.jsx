@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useId, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import OrgHeader from "@/components/org/OrgHeader";
+import OrgPart from "@/components/org/OrgPart";
 import DateField from "@/components/ui/DateField";
 import Dropdown from "@/components/ui/Dropdown";
 import { CARE_ABSENCE_KINDS, CareAbsenceKind } from "@/lib/homeCare/constants";
@@ -147,15 +147,14 @@ export default function HomeCareAbsences({ context, initial }) {
   ) : null;
 
   return (
-    <section className="ow-shell hc-shell">
-      <OrgHeader context={context} />
+    <OrgPart context={context} part="home_care" partLabel={t("home_care.absences.title")}>
+    <section className="hc-shell">
       <HomeCareOutbox ownerId={context.membership?.id || ""} timeZone={timeZone} />
 
       <div className="hc-head">
         <Link className="hc-back" href={`/org/${organizationId}/koduteenus/paev`}>
           {t("home_care.absences.back")}
         </Link>
-        <h2 className="hc-title">{t("home_care.absences.title")}</h2>
         <p className="hc-sub">{t("home_care.absences.intro")}</p>
       </div>
 
@@ -228,5 +227,6 @@ export default function HomeCareAbsences({ context, initial }) {
         )}
       </section>
     </section>
+    </OrgPart>
   );
 }

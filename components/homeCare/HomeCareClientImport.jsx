@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useId, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import OrgHeader from "@/components/org/OrgHeader";
+import OrgPart from "@/components/org/OrgPart";
 import Dropdown from "@/components/ui/Dropdown";
 import { CLIENT_IMPORT_MAX_CHARS, CLIENT_IMPORT_MAX_ROWS, ClientImportStatus } from "@/lib/homeCare/clientTable";
 
@@ -120,14 +120,12 @@ export default function HomeCareClientImport({ context, unitOptions }) {
   const busy = check.busy || apply.busy;
 
   return (
-    <section className="ow-shell hc-shell">
-      <OrgHeader context={context} />
-
+    <OrgPart context={context} part="home_care" partLabel={t("home_care.import.title")}>
+    <section className="hc-shell">
       <div className="hc-head">
         <Link className="hc-back" href={`/org/${organizationId}/koduteenus`}>
           {t("home_care.client.back")}
         </Link>
-        <h2 className="hc-title">{t("home_care.import.title")}</h2>
         <p className="hc-sub">{t("home_care.import.intro")}</p>
         <p className="hc-hint">{t("home_care.import.columns_hint", { limit: CLIENT_IMPORT_MAX_ROWS })}</p>
       </div>
@@ -317,5 +315,6 @@ export default function HomeCareClientImport({ context, unitOptions }) {
         </section>
       ) : null}
     </section>
+    </OrgPart>
   );
 }

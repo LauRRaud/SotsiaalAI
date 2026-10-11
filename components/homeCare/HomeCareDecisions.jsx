@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useId, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import OrgHeader from "@/components/org/OrgHeader";
+import OrgPart from "@/components/org/OrgPart";
 import DateField from "@/components/ui/DateField";
 import {
   CARE_DECISION_KINDS,
@@ -339,15 +339,15 @@ export default function HomeCareDecisions({ context, initial }) {
   ) : null;
 
   return (
-    <section className="ow-shell hc-shell">
-      <OrgHeader context={context} />
+    <OrgPart context={context} part="home_care" partLabel={t("home_care.decision.title")}>
+    <section className="hc-shell">
       <HomeCareOutbox ownerId={context.membership?.id || ""} timeZone={timeZone} />
 
       <div className="hc-head">
         <Link className="hc-back" href={clientHref} prefetch={false}>
           {t("home_care.plan.back")}
         </Link>
-        <h2 className="hc-title">{t("home_care.decision.editor_title", { name: client.displayName })}</h2>
+        <h2 className="hc-title">{client.displayName}</h2>
         <p className="hc-sub">{t("home_care.decision.editor_intro")}</p>
       </div>
 
@@ -434,5 +434,6 @@ export default function HomeCareDecisions({ context, initial }) {
         )}
       </section>
     </section>
+    </OrgPart>
   );
 }

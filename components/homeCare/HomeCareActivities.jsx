@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useId, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import OrgHeader from "@/components/org/OrgHeader";
+import OrgPart from "@/components/org/OrgPart";
 import Dropdown from "@/components/ui/Dropdown";
 import {
   CARE_ACTIVITY_DOMAINS,
@@ -145,15 +145,14 @@ export default function HomeCareActivities({ context, initial }) {
   );
 
   return (
-    <section className="ow-shell hc-shell">
-      <OrgHeader context={context} />
+    <OrgPart context={context} part="home_care" partLabel={t("home_care.activities.title")}>
+    <section className="hc-shell">
       <HomeCareOutbox ownerId={context.membership?.id || ""} timeZone={timeZone} />
 
       <div className="hc-head">
         <Link className="hc-back" href={`/org/${organizationId}/koduteenus`}>
           {t("home_care.client.back")}
         </Link>
-        <h2 className="hc-title">{t("home_care.activities.title")}</h2>
         <p className="hc-sub">{t("home_care.activities.intro")}</p>
       </div>
 
@@ -248,5 +247,6 @@ export default function HomeCareActivities({ context, initial }) {
 
       <p className="hc-hint">{t("home_care.activities.source")}</p>
     </section>
+    </OrgPart>
   );
 }

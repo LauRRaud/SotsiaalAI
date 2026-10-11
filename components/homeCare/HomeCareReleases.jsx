@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import OrgHeader from "@/components/org/OrgHeader";
+import OrgPart from "@/components/org/OrgPart";
 
 import { clientHref, formatDateTime, homeCareBase, useHomeCareApi } from "./homeCareClient";
 
@@ -43,14 +43,12 @@ export default function HomeCareReleases({ context, initial }) {
   };
 
   return (
-    <section className="ow-shell hc-shell">
-      <OrgHeader context={context} />
-
+    <OrgPart context={context} part="home_care" partLabel={t("home_care.releases.title")}>
+    <section className="hc-shell">
       <div className="hc-head">
         <Link className="hc-back" href={`/org/${organizationId}/koduteenus`}>
           {t("home_care.releases.back")}
         </Link>
-        <h2 className="hc-title">{t("home_care.releases.title")}</h2>
         <p className="hc-sub">{t("home_care.releases.intro")}</p>
       </div>
 
@@ -113,5 +111,6 @@ export default function HomeCareReleases({ context, initial }) {
         ) : null}
       </section>
     </section>
+    </OrgPart>
   );
 }

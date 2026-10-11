@@ -13795,7 +13795,6 @@
       "description": "Clients, diary and team"
     },
     "home": {
-      "title": "Home care",
       "intro_worker": "Your clients. Open a client to see the agreements and write in the diary.",
       "intro_coordinator": "All clients. The overview shows new entries, unread handover notes and open incidents.",
       "my_clients": "My clients",
@@ -13883,7 +13882,8 @@
       "status_source": "Who told you (required)",
       "status_death_next": "Next",
       "status_death_save": "I confirm and save",
-      "status_death_confirm": "Confirm that the news is certain. First talk yourself to the care workers who visited this client: after saving, the client disappears from their day and they get a notice that their visits changed. A change made by mistake can be undone by marking the client as on the service again."
+      "status_death_confirm": "Confirm that the news is certain. First talk yourself to the care workers who visited this client: after saving, the client disappears from their day and they get a notice that their visits changed. A change made by mistake can be undone by marking the client as on the service again.",
+      "page_name": "Client's page"
     },
     "card": {
       "title": "Before you go",
@@ -14461,7 +14461,7 @@
     },
     "import": {
       "link": "Import clients from a table",
-      "title": "Import clients from a table",
+      "title": "Client import",
       "intro": "Copy the client table (for example from a spreadsheet) and paste it here, or choose a CSV file. Each row is one client. Before importing you see what becomes of each row.",
       "columns_hint": "The first row must hold the column names. Recognised: Name (required), Code, Address, Phone, Note. Up to {limit} rows at a time.",
       "text_label": "Table",
@@ -14684,7 +14684,6 @@
       "create_link": "Draw up a care plan",
       "edit_link": "Change the care plan",
       "back": "Back to the client's page",
-      "editor_title": "Care plan: {name}",
       "editor_intro": "You are changing a draft. The plan in force stays the same until you put the draft into force; the earlier plan then stays in the list of earlier plans.",
       "active_title": "Plan in force",
       "none_yet": "This client has no care plan in force yet.",
@@ -14761,7 +14760,6 @@
         "ENDED": "ended",
         "RETRACTED": "retracted"
       },
-      "editor_title": "Decision and volume: {name}",
       "editor_intro": "Write down what the municipality has decided: who decided, until when the decision is in force and how much help it grants. The decision document stays where it is now.",
       "current_title": "Decision in force",
       "all_title": "All decisions",
@@ -15015,7 +15013,6 @@
       "worker_inactive": "the worker's membership is not valid",
       "from": "from {date}",
       "until": "until {date}",
-      "editor_title": "Visits in a week: {name}",
       "editor_intro": "Recurring visits at this client's home. A change applies from today; the plan of past days stays as it was.",
       "new_title": "New recurring visit",
       "edit_title": "Change the visit: {weekday}",

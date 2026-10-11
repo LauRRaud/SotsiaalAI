@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useId, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import OrgHeader from "@/components/org/OrgHeader";
+import OrgPart from "@/components/org/OrgPart";
 import { CARE_TRIP_VEHICLES, HOME_CARE_LIMITS } from "@/lib/homeCare/constants";
 import { composeTripSheet } from "@/lib/homeCare/tripSheet";
 
@@ -148,14 +148,12 @@ export default function HomeCareTrips({ context, initial }) {
   );
 
   return (
-    <section className="ow-shell hc-shell">
-      <OrgHeader context={context} />
-
+    <OrgPart context={context} part="home_care" partLabel={t("home_care.trips.title")}>
+    <section className="hc-shell">
       <div className="hc-head">
         <Link className="hc-back" href={`/org/${organizationId}/koduteenus`}>
           {t("home_care.client.back")}
         </Link>
-        <h2 className="hc-title">{t("home_care.trips.title")}</h2>
         <p className="hc-sub">{t("home_care.trips.intro")}</p>
       </div>
 
@@ -279,5 +277,6 @@ export default function HomeCareTrips({ context, initial }) {
         </section>
       ) : null}
     </section>
+    </OrgPart>
   );
 }

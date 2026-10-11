@@ -13795,7 +13795,6 @@
       "description": "Kliendid, päevik ja meeskond"
     },
     "home": {
-      "title": "Koduteenus",
       "intro_worker": "Sinu kliendid. Ava klient, et näha kokkuleppeid ja kirjutada päevikusse.",
       "intro_coordinator": "Kõik kliendid. Ülevaates on uued kirjed, lugemata teated ja lahtised erijuhtumid.",
       "my_clients": "Minu kliendid",
@@ -13883,7 +13882,8 @@
       "status_source": "Kellelt teade tuli (kohustuslik)",
       "status_death_next": "Edasi",
       "status_death_save": "Kinnitan ja salvestan",
-      "status_death_confirm": "Kinnita, et teade on kindel. Räägi enne ise hooldajatega, kes selle kliendi juures käisid: pärast salvestamist kaob klient nende päevast ja nad saavad teate, et käigud muutusid. Ekslikult tehtud muudatuse saab tagasi võtta, kui märgid kliendi uuesti teenusele."
+      "status_death_confirm": "Kinnita, et teade on kindel. Räägi enne ise hooldajatega, kes selle kliendi juures käisid: pärast salvestamist kaob klient nende päevast ja nad saavad teate, et käigud muutusid. Ekslikult tehtud muudatuse saab tagasi võtta, kui märgid kliendi uuesti teenusele.",
+      "page_name": "Kliendi leht"
     },
     "card": {
       "title": "Enne kui lähed",
@@ -14461,7 +14461,7 @@
     },
     "import": {
       "link": "Too kliendid tabelist",
-      "title": "Klientide sissetoomine tabelist",
+      "title": "Kliendid tabelist",
       "intro": "Kopeeri klientide tabel (näiteks arvutustabelist) ja kleebi see siia või vali CSV-fail. Iga rida on üks klient. Enne sissetoomist näed, mis igast reast saab.",
       "columns_hint": "Esimene rida peab olema veergude nimedega. Tuntakse ära: Nimi (kohustuslik), Tunnus, Aadress, Telefon, Märkus. Kuni {limit} rida korraga.",
       "text_label": "Tabel",
@@ -14684,7 +14684,6 @@
       "create_link": "Koosta hoolduskava",
       "edit_link": "Muuda hoolduskava",
       "back": "Tagasi kliendi lehele",
-      "editor_title": "Hoolduskava: {name}",
       "editor_intro": "Muudad mustandit. Kehtiv kava jääb samaks, kuni mustandi kehtestad; siis jääb eelmine kava alles varasemate kavade loendis.",
       "active_title": "Kehtiv kava",
       "none_yet": "Sellel kliendil ei ole veel kehtivat hoolduskava.",
@@ -14761,7 +14760,6 @@
         "ENDED": "lõppenud",
         "RETRACTED": "tühistatud"
       },
-      "editor_title": "Otsus ja maht: {name}",
       "editor_intro": "Kirjuta siia, mida omavalitsus on otsustanud: kes otsustas, mis ajani otsus kehtib ja kui palju abi on ette nähtud. Otsuse dokument jääb sinna, kus see praegu on.",
       "current_title": "Kehtiv otsus",
       "all_title": "Kõik otsused",
@@ -15015,7 +15013,6 @@
       "worker_inactive": "töötaja liikmesus ei kehti",
       "from": "alates {date}",
       "until": "kuni {date}",
-      "editor_title": "Käigud nädalas: {name}",
       "editor_intro": "Korduvad käigud selle kliendi juures. Muudatus kehtib tänasest; möödunud päevade plaan jääb nii, nagu see oli.",
       "new_title": "Uus korduv käik",
       "edit_title": "Muuda käiku: {weekday}",

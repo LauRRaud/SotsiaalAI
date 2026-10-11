@@ -15,7 +15,9 @@
  * kiirmenüüs nimesid ei ole; seal ütleb rida paneeli ülaservas, kus inimene on.
  *
  * `part`: osa võti (`org.nav.<võti>`) või tühi, kui see leht ON laud.
- * `partLabel`: osa nimi, kui see ei tule võtmest (nt laua vaade „Minu koht").
+ * `partLabel`: osa nimi, kui see ei tule võtmest (nt laua vaade „Minu koht" või
+ *   koduteenuse alaleht „Päevaplaan": osa on `home_care`, nimi on alalehe oma).
+ *   Kiirmenüü näitab nimest umbes 20 tähte; pikem nimi lõigatakse.
  * `onDesk`: mida nelja ruuduga nupp teeb; vaikimisi avab laua marsruudi.
  * `compact`: nelja ruuduga nupp ilma nimeta (nimi jääb nupu sildiks). Kasutus:
  *   osa sees käib sammudega töö ja sammud on kiirmenüüs kõrval; koos nimega

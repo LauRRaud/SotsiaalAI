@@ -4,7 +4,7 @@
  * veerg, puutesiht vähemalt 2.75rem, püsikaart „enne kui lähed" kohe üleval.
  * Laiemal ekraanil muutub ainult laius, sisu järjekord ei muutu.
  *
- * Sama keel mis `ow-*` ja `cw-*` failidel: üks prefiks, ei ühtegi globaalset
+ * Sama keel mis `cw-*` failil: üks prefiks, ei ühtegi globaalset
  * elemendiselektorit, värvid `currentColor` segudena, et hele ja tume teema
  * töötaksid ilma eraldi reegliteta.
  */

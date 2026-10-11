@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useId, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
+import OrgPart from "@/components/org/OrgPart";
 
 import { clientHref, formatDateTime, homeCareBase, useHomeCareApi } from "./homeCareClient";
 
@@ -54,14 +55,14 @@ export default function HomeCareDoorTag({ context, client, initialTag }) {
   };
 
   return (
+    <OrgPart context={context} part="home_care" partLabel={t("home_care.door_tag.title")}>
     <section className="hc-shell">
       <Link className="hc-back" href={clientHref(organizationId, client.id)} prefetch={false}>
         {t("home_care.chronology.back")}
       </Link>
 
       <header className="hc-head">
-        <h1 className="hc-title">{t("home_care.door_tag.title")}</h1>
-        <p className="hc-sub">{client.displayName}</p>
+        <h2 className="hc-title">{client.displayName}</h2>
         <p className="hc-sub">{t("home_care.door_tag.intro")}</p>
         <p className="hc-hint">{t("home_care.door_tag.safe")}</p>
       </header>
@@ -164,5 +165,6 @@ export default function HomeCareDoorTag({ context, client, initialTag }) {
         <p className="hc-hint">{t("home_care.client.read_only")}</p>
       )}
     </section>
+    </OrgPart>
   );
 }
