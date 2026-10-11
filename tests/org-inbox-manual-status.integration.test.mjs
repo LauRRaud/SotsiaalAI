@@ -312,6 +312,10 @@ test('sulgemine käib nagu enne: töö lõpeb, määramine lõpeb ja ruum jääb
   assert.ok((await db.room.findUnique({ where: { id: room.id }, select: { archivedAt: true } })).archivedAt);
   assert.deepEqual(await access(applicant, room.id, ROOM_WRITE), { ok: false, status: 409, message: 'api.rooms.archived_readonly' });
   assert.equal((await access(applicant, room.id, ROOM_READ)).ok, true);
+  /* Vastutaja saab teate, et töö ei ole enam tema vastutusel: kirje kadus ka tema laualt. */
+  const told = (await listNotificationEvents(mari.id, { db })).filter((entry) => entry.type === 'ORG_WORK_WITHDRAWN');
+  assert.deepEqual(told.map((entry) => entry.labelKey), ['notifications.events.org_work_withdrawn']);
+  assert.equal(await db.notificationEvent.count({ where: { type: 'ORG_WORK_WITHDRAWN', sourceId: first.id, userId: mari.id } }), 1);
   /* Suletud töö ei liigu enam kuhugi, ka mitte tagasivõtmisega. */
   await refused(manual('ASSIGNMENT_PENDING'), 'org.errors.inbox_item_terminal');
 });
