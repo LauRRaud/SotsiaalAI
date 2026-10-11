@@ -128,7 +128,17 @@ kriisiteate ja voogvastuse regressioonid. Eraldatud proovibaas tõendas sama
 rahakulu arvestust mõlemas loomise järjekorras (enne eetikaruum või enne
 üldassistent) ja eri ulatuste korduspäringu konflikti. Sihitud ESLint,
 ET/EN/RU ning diffi kontroll PASS. Skeemi ei muudetud. Piirangu järel uus
-brauseri tervikrada ja pärismudeli kvaliteediproov: NOT_RUN. Avaldamine ootel.
+brauseri tervikrada ja pärismudeli kvaliteediproov: NOT_RUN.
+
+Avaldamine PASS: [tootmisbuild](https://github.com/LauRRaud/SotsiaalAI/actions/runs/38155574685)
+ja [deploy](https://github.com/LauRRaud/SotsiaalAI/actions/runs/38155736672).
+Algne `c69fd6d8` ehitus asendus põhiharu järgmise ühise väljalaskega; avaldatud
+`811dcea0` sisaldab eetikaruumi commit'i `ff446490`.
+19.32 EEST töötava väljalaske kontroll: `811dcea0`, käitusplaani piiratud valikus
+19 dokumenti, põhiteenusega sama kululimiidi register, `/api/health` 200 ning
+uus `/api/ethics/chat` anonüümselt 401/no-store. See ei ole autentitud
+tootmisvestluse ega pärismudeli vastuse sisukvaliteedi tõend. Serveris ei
+käivitatud build'i, lint'i, testikomplekti ega tasulist mudelikutset.
 
 - 44 dokumendi eetikapaketi täpne kattuvus olemasolevaga, valik, import ja
   embedding: NOT_RUN; kõiki avalikke materjale ei saa pidada Eesti nõudeks.
