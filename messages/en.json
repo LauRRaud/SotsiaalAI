@@ -16190,6 +16190,22 @@
       "cancel": "Cancel",
       "line": "Colleagues see you as {name}.",
       "change": "Change name"
+    },
+    "info": {
+      "title": "Home care",
+      "what_title": "What this is for",
+      "what_body": "Home care is the organisation's shared workspace: clients, visits, the diary and the team. A care worker sees their own clients and today's visits; a care coordinator sees their area of responsibility.",
+      "open_title": "How a client's page opens",
+      "open_team": "The client's team and the care coordinator open the page at once.",
+      "open_reason": "Outside the team the page asks for a reason. The permission lasts until the end of today.",
+      "open_trace": "Every opening is recorded. The client's page shows who opened it last and on what basis.",
+      "diary_title": "Diary",
+      "diary_keep": "An entry is not deleted. A correction keeps the earlier content, and a retracted entry stays in the history with the reason.",
+      "diary_visit": "A visit is done when the client has a visit record that day. It is not ticked by hand.",
+      "diary_offline": "Without a connection the entry waits on your device and is sent when the connection returns.",
+      "limits_title": "What is not here",
+      "limits_money": "Client money is a record, not a payment. Card details and PIN codes are never written here.",
+      "limits_official": "The official procedure takes place in STAR. Here is the organisation's own work: the diary, the plan and the agreements."
     }
   },
   "stage": {
