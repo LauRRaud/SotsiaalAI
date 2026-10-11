@@ -621,6 +621,109 @@ export function firstEmailProblem(form) {
   return null;
 }
 
+/* --- Asutuse kinnitus -------------------------------------------------------------
+   Registrikoodiga profiili saab avaldada alles siis, kui on kinnitatud, et konto
+   esindab seda asutust (reegel serveris: lib/serviceProviderRepresentation.js).
+   Server annab profiiliga kaasa seisu SALVESTATUD koodi kohta
+   (`profile.representation`), värav ise loeb aga koodi, mis on vormil. Siin on sama
+   otsus vormi kohta, et leht ütleks seisu enne salvestamist, mitte veana pärast seda. */
+
+export const REPRESENTATION_PATH = "/teenuseprofiil/kinnitus";
+
+/* Sama puhastus, millega server registrikoodi salvestab (tühikud kokku, servad maha). */
+const cleanCode = (value) => String(value || "").replace(/[ \t]+/g, " ").trim();
+
+/** Kinnituse kuupäev lehe keeles (nt „11. okt 2026"); tühi tekst, kui väärtust ei saa lugeda. */
+export function representationDate(value, locale) {
+  const date = value ? new Date(value) : null;
+  if (!date || !Number.isFinite(date.getTime())) return "";
+  return new Intl.DateTimeFormat(locale || "et", { dateStyle: "medium" }).format(date);
+}
+
+const REPRESENTATION_LINES = Object.freeze({
+  confirmed: ["representation.confirmed", "Asutus on kinnitatud {date}."],
+  /* Kuupäevata kinnitus (ei peaks juhtuma): lause ilma tühja kohata. */
+  confirmed_undated: ["publish_checks.representation_confirmed", "Asutus on kinnitatud."],
+  unconfirmed: ["representation.unconfirmed", "Asutus on kinnitamata. Profiili saab avaldada pärast seda, kui on kinnitatud, et esindad seda asutust."],
+  save_first: ["representation.save_first", "Asutus on kinnitamata, avaldada saab pärast kinnitust. Salvesta profiil mustandina ja ava leht „Asutuse kinnitamine”."],
+  changed: ["representation.changed", "Kinnitatud on registrikood {code}. Uue koodiga avaldamiseks salvesta profiil mustandina ja ava leht „Asutuse kinnitamine”."]
+});
+
+/**
+ * Asutuse kinnituse seis VORMI registrikoodi kohta.
+ *
+ *   kind  `none`         vormil ei ole registrikoodi: kinnitust ei ole vaja
+ *         `confirmed`    vormil on salvestatud kood ja see on kinnitatud
+ *         `unconfirmed`  vormil on salvestatud kood, kinnitust ei ole
+ *         `unsaved`      vormi kood ei ole veel salvestatud (uus profiil või uus kood)
+ *         `changed`      kinnitus on olemas, aga salvestatud koodi kohta; vormil on teine kood
+ *         `unknown`      server ei andnud seisu kaasa: otsustab server
+ *   blocksPublish  AVALDATUD profiili salvestamine ei õnnestuks
+ *   step           mida inimene saab teha: `confirm` (kinnitamise leht on kohe avatav),
+ *                  `save` (enne tuleb profiil mustandina salvestada) või `null`
+ *   line           seisu lause `{ key, fallback }`; `{date}` ja `{code}` täidab leht
+ *
+ * `dirty`: vormil on salvestamata muudatusi. Kinnitamise leht on teine leht ja sinna
+ * minnes kaoksid need, seepärast pakutakse linki ainult salvestatud vormi juures.
+ */
+export function representationStatus(form, profile, { dirty = false } = {}) {
+  const formCode = cleanCode(form?.registryCode);
+  const savedCode = cleanCode(profile?.registryCode);
+  const saved = profile?.representation || null;
+  const status = (kind, blocksPublish, step, lineKey) => {
+    const line = REPRESENTATION_LINES[lineKey] || null;
+    return {
+      kind,
+      blocksPublish,
+      step,
+      code: savedCode,
+      confirmedAt: kind === "confirmed" ? saved?.confirmedAt || null : null,
+      line: line ? { key: line[0], fallback: line[1] } : null
+    };
+  };
+  if (!formCode) return status("none", false, null, "");
+  if (formCode !== savedCode) {
+    return saved?.confirmed ? status("changed", true, "save", "changed") : status("unsaved", true, "save", "save_first");
+  }
+  if (!saved) return status("unknown", false, null, "");
+  if (saved.confirmed) return status("confirmed", false, null, representationDate(saved.confirmedAt) ? "confirmed" : "confirmed_undated");
+  return dirty ? status("unconfirmed", true, "save", "save_first") : status("unconfirmed", true, "confirm", "unconfirmed");
+}
+
+/**
+ * Kinnitus võib tulla ajal, mil leht on lahti (lingiga teises aknas või haldurilt).
+ * `state` on kinnitamise lehe seis (`GET /api/service-provider/profile/representation`);
+ * tagastab profiili uue seisuga või SAMA objekti, kui midagi ei muutunud või seis on
+ * teise registrikoodi kohta. Vormi see ei puutu.
+ */
+export function withRepresentationState(profile, state) {
+  if (!profile || !state?.hasProfile) return profile;
+  if (cleanCode(state.registryCode) !== cleanCode(profile.registryCode)) return profile;
+  const current = profile.representation || {};
+  const confirmed = Boolean(state.confirmed);
+  if (Boolean(current.confirmed) === confirmed && Boolean(current.required) === Boolean(state.required)) return profile;
+  return {
+    ...profile,
+    representation: {
+      required: Boolean(state.required),
+      confirmed,
+      confirmedAt: confirmed ? state.confirmedAt || null : null,
+      method: confirmed ? state.method || null : null
+    }
+  };
+}
+
+/**
+ * Staatuse valikud avaldamise vaates. Kui avaldamine ei õnnestuks (asutus on
+ * kinnitamata), siis valikut „Avaldatud" ei pakuta. Profiilil, mis on serveris juba
+ * avaldatud (`savedStatus`), jääb see näha ka siis, kui inimene vahepeal teise
+ * staatuse valib: muidu ei saaks ta vormil enam tagasi selle juurde, mis serveris on.
+ */
+export function statusChoices(options, formStatus, representation, savedStatus = "") {
+  if (!representation?.blocksPublish || formStatus === "PUBLISHED" || savedStatus === "PUBLISHED") return options;
+  return options.filter((option) => option.value !== "PUBLISHED");
+}
+
 /* --- Avaldamine ------------------------------------------------------------------ */
 
 /** Teeninduskohad, mida teenuse juures saab valida (nimi või aadress on olemas). */
@@ -646,9 +749,11 @@ export function locationHasMatch(location) {
 
 /**
  * Avaldamise reeglid. `blocking`: mis takistab AVALDATUD profiili salvestamist
- * (server kontrollib sama: `publish_service_required`, `publish_contact_required`).
+ * (server kontrollib sama: `publish_service_required`, `publish_contact_required`,
+ * `publish_representation_required`). `representation`: asutuse kinnituse seis
+ * (`representationStatus`); ilma selleta kinnitust ei arvestata.
  */
-export function serviceProfilePublishState(form) {
+export function serviceProfilePublishState(form, representation = null) {
   const hasPublishableService = form.serviceItems.some((service) =>
     String(service.name || "").trim() &&
     service.mapVisible !== false &&
@@ -667,7 +772,9 @@ export function serviceProfilePublishState(form) {
     )
   );
   const published = form.status === "PUBLISHED";
-  const blocking = published ? [!hasPublishableService ? "service" : "", !hasContact ? "contact" : ""].filter(Boolean) : [];
+  const blocking = published
+    ? [!hasPublishableService ? "service" : "", !hasContact ? "contact" : "", representation?.blocksPublish ? "representation" : ""].filter(Boolean)
+    : [];
   return { published, hasPublishableService, hasMappableLocation, hasContact, blocking };
 }
 
@@ -696,9 +803,13 @@ export function serviceProfileMapStatus(mapEntry) {
  * `areaChoices` (registri valikud, `serviceAreaChoices`) lisab read teenuste
  * kohta, mille märgitud piirkonda ei saa lugeda. Need ei takista salvestamist
  * ja kaovad, kui piirkond on valitud; `item` viib otse selle teenuse vaatesse.
+ *
+ * `representation` (asutuse kinnituse seis, `representationStatus`) lisab rea
+ * registrikoodiga profiilile. Kinnitamata asutuse rida kannab `href`-i kinnitamise
+ * lehele, kui sinna saab kohe minna; muidu viib see vaatesse, kus registrikood on.
  */
-export function serviceProfilePublishChecks(form, mapEntry, areaChoices = null) {
-  const state = serviceProfilePublishState(form);
+export function serviceProfilePublishChecks(form, mapEntry, areaChoices = null, representation = null) {
+  const state = serviceProfilePublishState(form, representation);
   const unreadAreas = unreadableServiceAreas(form, areaChoices);
   const areaRow = (key, services, [textKey, fallback]) =>
     services.length
@@ -724,10 +835,19 @@ export function serviceProfilePublishChecks(form, mapEntry, areaChoices = null) 
     const [textKey, fallback] = ok ? okText : openText;
     return { key, ok, view, blocking: state.blocking.includes(key), textKey, fallback };
   };
+  const representationRow = representation && (representation.kind === "confirmed" || representation.blocksPublish)
+    ? [{
+        ...row("representation", !representation.blocksPublish, "who",
+          ["publish_checks.representation_confirmed", "Asutus on kinnitatud."],
+          ["publish_checks.representation_missing", "Asutus on kinnitamata: registrikoodiga profiili saab avaldada pärast kinnitust."]),
+        ...(representation.step === "confirm" ? { href: REPRESENTATION_PATH } : {})
+      }]
+    : [];
   return [
     row("status", state.published, "visibility",
       ["publish_checks.status_published", "Profiili staatus on avaldatud."],
       ["publish_checks.status_not_published", "Muuda profiili staatus avaldatuks, kui soovid seda avalikus vaates kuvada."]),
+    ...representationRow,
     row("map", Boolean(form.mapVisible), "visibility",
       ["publish_checks.map_visible", "Profiil on teenusekaardil nähtavaks märgitud."],
       ["publish_checks.map_hidden", "Teenusekaardi nähtavus on välja lülitatud."]),
@@ -782,10 +902,13 @@ const fill = (...flags) => {
 };
 const short = (value, length = 90) => String(value || "").trim().replace(/\s+/g, " ").slice(0, length);
 
-/** Profiili taseme vaadete seis (sammu numbri heledus kiirmenüüs). `areaChoices`: registri valikud kontrolli ridade jaoks. */
-export function profileViewStates(form, mapEntry, areaChoices = null) {
-  const publish = serviceProfilePublishState(form);
-  const checks = serviceProfilePublishChecks(form, mapEntry, areaChoices);
+/**
+ * Profiili taseme vaadete seis (sammu numbri heledus kiirmenüüs). `areaChoices`: registri valikud
+ * kontrolli ridade jaoks; `representation`: asutuse kinnituse seis (`representationStatus`).
+ */
+export function profileViewStates(form, mapEntry, areaChoices = null, representation = null) {
+  const publish = serviceProfilePublishState(form, representation);
+  const checks = serviceProfilePublishChecks(form, mapEntry, areaChoices, representation);
   const named = form.serviceItems.filter(keepsService).length;
   const kept = form.serviceLocations.filter(keepsLocation).length;
   const required = checks.filter((item) => !item.optional);
@@ -846,11 +969,11 @@ export function locationViewStates(location) {
 }
 
 /** Profiili vaadete üks-kaks rida vaates „Kõik sammud". Silte ja sõnu annab leht (`tp`, `options`). */
-export function profileViewSummaries(form, mapEntry, { tp, options, areaChoices = null }) {
+export function profileViewSummaries(form, mapEntry, { tp, options, areaChoices = null, representation = null }) {
   const named = form.serviceItems.filter(keepsService);
   const kept = form.serviceLocations.filter(keepsLocation).length;
   const published = named.filter((item) => item.mapVisible !== false && String(item.status || "").toUpperCase() === "PUBLISHED").length;
-  const open = serviceProfilePublishChecks(form, mapEntry, areaChoices).filter((item) => !item.ok && !item.optional).length;
+  const open = serviceProfilePublishChecks(form, mapEntry, areaChoices, representation).filter((item) => !item.ok && !item.optional).length;
   return {
     who: short(form.organizationName),
     about: short(form.shortDescription || form.longDescription),

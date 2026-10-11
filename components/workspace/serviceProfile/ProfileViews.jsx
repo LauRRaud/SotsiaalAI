@@ -32,8 +32,29 @@ import Button from "@/components/ui/Button";
 import { AreaFields, Chip, ItemRow, LineField, Notice, TextField } from "./ProfileFields";
 import styles from "./profile.module.css";
 
+/**
+ * Asutuse kinnituse seis ühe lausena (`representation`: `{ text, href, warn }`, otsus
+ * failis profileModel.js `representationStatus`). Link kinnitamise lehele on lause järel
+ * ainult siis, kui sinna saab kohe minna.
+ */
+function RepresentationLine({ tp, representation }) {
+  return (
+    <>
+      {representation.text}
+      {representation.href ? (
+        <>
+          {" "}
+          <a className={styles.textButton} href={representation.href}>
+            {tp("representation.open", "Asutuse kinnitamine")}
+          </a>
+        </>
+      ) : null}
+    </>
+  );
+}
+
 /** Kes te olete: nimi, registrikood ja organisatsiooni tüüp. */
-function WhoView({ tp, form, options, onField, note, save }) {
+function WhoView({ tp, form, options, representation, onField, note, save }) {
   return (
     <StepPanel title={tp("views.who.title", "Organisatsioon")} note={note} actions={save}>
       <div className={styles.stack}>
@@ -41,13 +62,10 @@ function WhoView({ tp, form, options, onField, note, save }) {
           <LineField size="lg" label={tp("fields.organization", "Organisatsiooni nimi")} value={form.organizationName} onChange={(value) => onField("organizationName", value)} />
           <LineField size="sm" label={tp("fields.registry_code", "Registrikood")} value={form.registryCode} onChange={(value) => onField("registryCode", value)} />
         </div>
-        {/* Registrikoodiga profiili avaldamine nõuab asutuse kinnitust; tee selle leheni. */}
-        {String(form.registryCode || "").trim() ? (
+        {/* Registrikoodiga profiili avaldamine nõuab asutuse kinnitust: rida ütleb, mis seisus see on. */}
+        {representation ? (
           <p className={styles.quiet}>
-            {tp("representation.note", "Registrikoodiga profiili saab avaldada, kui asutus on kinnitatud.")}{" "}
-            <a className={styles.textButton} href="/teenuseprofiil/kinnitus">
-              {tp("representation.open", "Asutuse kinnitamine")}
-            </a>
+            <RepresentationLine tp={tp} representation={representation} />
           </p>
         ) : null}
         <ChoiceRow
@@ -246,23 +264,35 @@ function LocationsView({ tp, options, locations, note, save }) {
   );
 }
 
-/** Avaldamine: profiili staatus, teenusekaardi nähtavus ja assistendi luba. */
-function VisibilityView({ tp, form, options, onField, note, save }) {
+/**
+ * Avaldamine: profiili staatus, teenusekaardi nähtavus ja assistendi luba.
+ * Kui asutus on kinnitamata, ütleb vaade seda enne salvestamist ja staatust
+ * „Avaldatud" ei pakuta (`statusOptions` tuleb lehelt, reegel: `statusChoices`).
+ * Üldine juhis avaldamise kohta jääb siis ära: vaade peab paneeli mahtuma ja
+ * kuni asutus on kinnitamata, on see lause see, mida inimene teadma peab.
+ */
+function VisibilityView({ tp, form, statusOptions, representation, onField, note, save }) {
+  const blocked = Boolean(representation?.warn);
   return (
     <StepPanel
       title={tp("views.visibility.title", "Avaldamine")}
-      lead={tp("publish_help", "Avaldamata ja ülevaatusel profiil ei ilmu teenusekaardile. Avaldatud profiil vajab markeriks ka usaldusväärset aadressivastet.")}
+      lead={blocked ? null : tp("publish_help", "Avaldamata ja ülevaatusel profiil ei ilmu teenusekaardile. Avaldatud profiil vajab markeriks ka usaldusväärset aadressivastet.")}
       note={note}
       actions={save}
     >
       <div className={styles.stack}>
         <ChoiceRow
           label={tp("fields.status", "Profiili staatus")}
-          columns={options.status.length}
-          options={options.status}
+          columns={statusOptions.length}
+          options={statusOptions}
           value={form.status}
           onChange={(value) => onField("status", value)}
         />
+        {blocked ? (
+          <Notice tone="wait">
+            <RepresentationLine tp={tp} representation={representation} />
+          </Notice>
+        ) : null}
         <div className={styles.cards}>
           <CheckCard
             title={tp("visibility.visible", "Avalda teenusekaardil")}
@@ -312,7 +342,12 @@ function CheckView({ tp, check, note, save }) {
                 {row.text}
                 {row.detail ? <span className={styles.checkDetail}>{row.detail}</span> : null}
               </span>
-              {row.target ? (
+              {/* Asutuse kinnitamine on omaette leht: sinna viib link, teistel ridadel nupp vaatesse. */}
+              {row.target?.href ? (
+                <a className={styles.textButton} href={row.target.href}>
+                  {row.target.name} ›
+                </a>
+              ) : row.target ? (
                 <button type="button" className={styles.textButton} aria-label={row.target.label} onClick={row.target.onClick}>
                   {row.target.name} ›
                 </button>
