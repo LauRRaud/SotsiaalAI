@@ -56,7 +56,7 @@ import { ContextView, JourneyView, PathView, SituationView, UrgencyView, WhoView
 import DomainsView from "./preInquiry/DomainsView";
 import { AssistantView, RecipientView, ReviewView, SavedView, SendView, SentStateView, SentTextView, TextView } from "./preInquiry/FlowViews";
 import PreInquiryStart from "./preInquiry/PreInquiryStart";
-import { SHARINGS_PATH, replaceInquiryRow, senderFlowKeys, senderListCounts, senderOpenMode, sentInquiryView } from "./preInquiry/senderModel";
+import { SHARINGS_PATH, replaceInquiryRow, senderCanEdit, senderFlowKeys, senderListCounts, senderOpenMode, sentInquiryView } from "./preInquiry/senderModel";
 import { CheckView, InfoView, InquiryView, NetworkView, PlanView, PrepareView, QueueView, SettingsView } from "./preInquiry/ReceiverViews";
 import viewStyles from "./preInquiry/views.module.css";
 import LocationStepView from "./serviceProfile/LocationViews";
@@ -1937,6 +1937,9 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     const content = buildPreInquiryDownloadContent(inquiry);
     if (!downloadTextFile(content, buildPreInquiryDownloadName(inquiry.topic))) return;
     setNotice(readText(t, "workspace_feature_pages.pre_inquiries.download_success", "Draft downloaded."));
+    /* „Alla laaditud" on saatmata pöördumise seis. Saadetud pöördumise olek on saaja töövoo oma
+       ja alla laadimine seda ei puuduta (server keeldub samuti). */
+    if (!senderCanEdit(inquiry)) return;
     await markSavedInquiryDownloaded(inquiry);
   }
 
