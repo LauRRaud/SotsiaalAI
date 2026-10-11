@@ -81,5 +81,9 @@ test('iga Teekonna seis annab loendile oma võtme (reegel on üks)', () => {
     assert.equal(linkedPreInquiryState(row), name);
     keys.add(state(row).key);
   }
-  assert.deepEqual([...keys].sort(), [...PRE_INQUIRY_SENDER_STATE_KEYS].sort());
+  /* Loend lisab Teekonna seisudele kaks: asutuse otsus (lükkas tagasi, lõpetas töö), mida
+     Teekond näitab oma real eraldi. Nende reegel: tests/pre-inquiry-outcome.test.mjs. */
+  const OUTCOME_KEYS = ['declined', 'work_closed'];
+  assert.deepEqual([...keys, ...OUTCOME_KEYS].sort(), [...PRE_INQUIRY_SENDER_STATE_KEYS].sort());
+  for (const key of OUTCOME_KEYS) assert.equal(keys.has(key), false, `${key} ei tule Teekonna seisust`);
 });

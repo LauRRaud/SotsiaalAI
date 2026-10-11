@@ -3329,6 +3329,7 @@
           "text_lead": "Selle teksti saatsid. Saadetud pöördumist enam muuta ei saa.",
           "text_lead_unsent": "Arhiveeritud pöördumise tekst. Muutmiseks taasava pöördumine.",
           "text_heading": "Pöördumise tekst",
+          "outcome_note": "Asutuse selgitus",
           "next": {
             "waiting": "Vastuvõtja ei ole pöördumist veel vastu võtnud. Kui ta selle vastu võtab, näed seda siin.",
             "accepted": "Vastuvõtja on pöördumise vastu võtnud. Vastus tuleb ühisesse vestlusruumi.",
@@ -3336,7 +3337,9 @@
             "external": "Saatsid selle pöördumise e-kirjaga. Vastus tuleb sinu e-posti; vastuvõtmist platvorm ei näe.",
             "recalled": "Võtsid selle pöördumise tagasi. Vastuvõtja seda enam ei näe.",
             "replaced": "Saatsid selle pöördumise kohta paranduse. Vastuvõtja juures kehtib parandatud pöördumine.",
-            "archived": "See pöördumine on saatmata ja arhiveeritud."
+            "archived": "See pöördumine on saatmata ja arhiveeritud.",
+            "declined": "Asutus ei võta seda pöördumist tööle. Kui vajad abi, pöördu teise adressaadi poole.",
+            "work_closed": "Asutus on selle pöördumisega töö lõpetanud. Kui vajad veel abi, saada uus pöördumine."
           }
         },
         "pager": {
@@ -3355,7 +3358,9 @@
         "sent_external": "saadetud e-kirjaga, vastuvõtt teadmata",
         "recalled": "tagasi võetud",
         "replaced": "asendatud parandusega",
-        "archived": "arhiveeritud"
+        "archived": "arhiveeritud",
+        "declined": "asutus lükkas tagasi {date}",
+        "work_closed": "asutus lõpetas töö {date}"
       }
     },
     "service_map": {
@@ -7446,7 +7451,8 @@
       "service_representation_confirmed": "Asutus on kinnitatud: teenuseprofiili saab nüüd avaldada",
       "service_representation_revoked": "Asutuse kinnitus võeti tagasi; avaldatud teenuseprofiil peideti",
       "service_profile_published": "Sinu teenuseprofiil on avaldatud",
-      "pre_inquiry_work_closed": "Asutus lõpetas sinu eelpöördumisega töö"
+      "pre_inquiry_work_closed": "Asutus lõpetas sinu eelpöördumisega töö",
+      "pre_inquiry_declined": "Asutus lükkas sinu eelpöördumise tagasi"
     },
     "center": {
       "title": "Teavitused",

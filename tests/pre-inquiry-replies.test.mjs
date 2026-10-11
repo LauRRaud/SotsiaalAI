@@ -165,6 +165,7 @@ test('sama reegel mis Teekonna lugejal', async () => {
 
 test('loend ja üksik pöördumine annavad arvu kaasa', () => {
   const read = (path) => fs.readFileSync(new URL(path, import.meta.url), 'utf8');
-  assert.ok(read('../app/api/pre-inquiries/route.js').includes('inquiries: await withPreInquiryReplies(auth.userId, page.items)'));
+  /* Vastuste arvu peale lisatakse samas kohas asutuse otsus (tests/pre-inquiry-outcome.test.mjs). */
+  assert.ok(read('../app/api/pre-inquiries/route.js').includes('await withPreInquiryReplies(auth.userId, page.items)'));
   assert.ok(read('../app/api/pre-inquiries/[id]/route.js').includes('await withPreInquiryReplies(auth.userId, [serializePreInquiry(inquiry, { viewerId: auth.userId })])'));
 });

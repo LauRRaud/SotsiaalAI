@@ -418,8 +418,10 @@ export function SendView({ tr, summary, notices, privacyPrompt, choices, actions
  *
  * `facts`: `[[silt, väärtus]]`; `hint`: lause koos lingiga lehele, kus saab tagasi võtta või
  * parandust saata; `actions`: vaate tegevused (vestlusruum, kopeerimine, alla laadimine).
+ * `note`: `{ label, text }` või null: asutuse selgitus, kui asutus lükkas pöördumise tagasi või
+ * lõpetas töö ja kirjutas pöördujale, miks.
  */
-export function SentStateView({ tr, topic, state, tone, facts, next, hint, actions }) {
+export function SentStateView({ tr, topic, state, tone, facts, next, hint, actions, note = null }) {
   return (
     <StepPanel title={tr("steps.sent_state.title", "Pöördumise seis")} question={topic} actions={actions}>
       <div className={styles.stack}>
@@ -439,6 +441,12 @@ export function SentStateView({ tr, topic, state, tone, facts, next, hint, actio
           </dl>
         ) : null}
         {next ? <p className={styles.quiet}>{next}</p> : null}
+        {note ? (
+          <div data-outcome-note="1">
+            <p className={styles.subheading}>{note.label}</p>
+            <p className={receiver.text}>{note.text}</p>
+          </div>
+        ) : null}
         {hint ? (
           <p className={styles.quiet}>
             {hint.text}{" "}
