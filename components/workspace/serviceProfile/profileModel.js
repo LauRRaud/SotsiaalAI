@@ -332,9 +332,9 @@ export function countyChoice(value, choices, emptyLabel) {
 }
 
 /* Mitu valitud omavalitsust mahub piirkonna vaatesse ilma, et vaade teistest pikemaks läheks
-   (mõõdetud 1536 × 640 aknas): profiili vaates üks rida lahtreid, sest seal on ka juhis ja
-   kirjelduse väli; teenuse vaates kaks rida. */
-const AREA_FIT = Object.freeze({ area: 3, reach: 6 });
+   (mõõdetud 1536 × 640 aknas): üks rida lahtreid. Profiili vaates on selle kõrval juhis ja
+   kirjelduse väli, teenuse vaates piirkonna tüüp ja vihje profiili maakonna kohta. */
+const AREA_FIT = Object.freeze({ area: 3, reach: 3 });
 
 /**
  * Kas piirkonna vaade (`view`: "area" profiilil, "reach" teenusel) on teistest
@@ -378,7 +378,8 @@ export function createServiceProfileLocationForm(location = null, index = 0, pro
     label: location?.label || "",
     address: location?.address || location?.normalizedAddress || (index === 0 ? profile?.address || "" : ""),
     normalizedAddress: location?.normalizedAddress || (index === 0 ? profile?.normalizedAddress || mapEntry?.normalizedAddress || "" : ""),
-    county: location?.county || profile?.county || "",
+    /* Koha maakonna loeb server ametlikust aadressivastest; vorm seda profiililt ei laena. */
+    county: location?.county || "",
     latitude: location?.latitude ?? (index === 0 ? mapEntry?.latitude ?? "" : ""),
     longitude: location?.longitude ?? (index === 0 ? mapEntry?.longitude ?? "" : ""),
     adsObjectId: location?.adsObjectId || (index === 0 ? mapEntry?.adsObjectId || "" : ""),
@@ -424,7 +425,9 @@ export function createServiceProfileServiceForm(service = null, index = 0, profi
     deliveryModes: joinList(service?.deliveryModes),
     serviceArea: service?.serviceArea || profile?.serviceArea || "",
     serviceAreaType: service?.serviceAreaType || "",
-    county: service?.county || profile?.county || "",
+    /* Tühi maakond tähendab „sama mis profiilil" (lugeja võtab profiili oma lugemise hetkel):
+       vorm ei kirjuta profiili maakonda teenusele, muidu salvestuks see koopiana. */
+    county: service?.county || "",
     municipalityIds: joinList(service?.municipalityIds),
     areaDescription: service?.areaDescription || "",
     serviceLanguages: joinList(service?.serviceLanguages),

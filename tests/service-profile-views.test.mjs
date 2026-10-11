@@ -605,13 +605,13 @@ test('varem käsitsi kirjutatud piirkond jääb näha ja maha võetavaks', () =>
   assert.deepEqual(unreadableServiceAreas({ ...form, serviceItems: [{ ...form.serviceItems[0], serviceAreaType: 'KOV põhine' }] }, none), { municipality: [], county: [] });
 
   /* Vaade, mis on teate või paljude valitud omavalitsuste tõttu teistest pikem, on laval „vaba":
-     teised vaated ei võta selle kõrgust (mõõdetud 1536 × 640 aknas: profiili vaatesse mahub üks
-     rida lahtreid, teenuse vaatesse kaks). */
+     teised vaated ei võta selle kõrgust (mõõdetud 1536 × 640 aknas: kummassegi vaatesse mahub
+     üks rida lahtreid). */
   const many = choices.municipalities.slice(0, 7).map((option) => option.value);
   assert.equal(areaViewIsTall('area', many.slice(0, 3).join(', '), 'Tartumaa', choices), false);
   assert.equal(areaViewIsTall('area', many.slice(0, 4).join(', '), 'Tartumaa', choices), true);
-  assert.equal(areaViewIsTall('reach', many.slice(0, 6).join(', '), '', choices), false);
-  assert.equal(areaViewIsTall('reach', many.join(', '), '', choices), true);
+  assert.equal(areaViewIsTall('reach', many.slice(0, 3).join(', '), '', choices), false);
+  assert.equal(areaViewIsTall('reach', many.slice(0, 4).join(', '), '', choices), true);
   assert.equal(areaViewIsTall('reach', 'Tartu', '', choices), true, 'teade lugemata sõna kohta');
   assert.equal(areaViewIsTall('area', '', 'Lõuna-Eesti', choices), true, 'teade maakonna kohta');
   assert.equal(areaViewIsTall('area', 'Tartu, Lõuna-Eesti', 'Lõuna-Eesti', none), false, 'ilma registrita teadet ei ole');
@@ -681,6 +681,37 @@ test('kontroll ütleb, kui teenuse piirkonda ei saa lugeda, ja rida kaob, kui pi
   /* Leht viib rea teenuse vaatesse ja annab registri kontrollile kaasa. */
   assert.ok(surface.includes('openItem(row.item.kind, row.item.index, row.item.view)'));
   assert.ok(surface.includes('serviceProfilePublishChecks(form, mapEntry, areaChoices, representation, register)'));
+});
+
+test('vorm ei kirjuta profiili maakonda teenusele ega teeninduskohale', () => {
+  const profile = { ...sampleProfile(), county: 'Tartumaa' };
+  const form = createServiceProfileForm(profile);
+  /* Teenuse tühi maakond tähendab „sama mis profiilil"; koha maakonna loeb server aadressist. */
+  assert.equal(form.county, 'Tartumaa');
+  assert.equal(form.serviceItems[0].county, '');
+  assert.equal(form.serviceLocations[0].county, '');
+  assert.equal(serviceProfileDirty(form, profile), false);
+  const payload = serviceProfileSavePayload(form, profile.updatedAt);
+  assert.deepEqual([payload.county, payload.serviceItems[0].county, payload.serviceLocations[0].county], ['Tartumaa', '', '']);
+  /* Oma maakond jääb alles. */
+  const own = createServiceProfileForm({ ...profile, serviceItems: [{ ...profile.serviceItems[0], county: 'Raplamaa' }], serviceLocations: [{ ...profile.serviceLocations[0], county: 'Jõgevamaa' }] });
+  assert.deepEqual([own.serviceItems[0].county, own.serviceLocations[0].county], ['Raplamaa', 'Jõgevamaa']);
+  /* Lugeja võtab tühja maakonna puhul profiili oma: maakondlik teenus ei too kontrolli rida. */
+  const choices = serviceAreaChoices(registerRows);
+  const inherits = { ...form, serviceItems: [{ ...form.serviceItems[0], serviceAreaType: 'Maakondlik' }] };
+  assert.deepEqual(unreadableServiceAreas(inherits, choices), { municipality: [], county: [] });
+  assert.deepEqual(unreadableServiceAreas({ ...inherits, county: '' }, choices).county.map((item) => item.index), [0]);
+
+  /* Teenuse vaade ütleb, mida tühi valik tähendab, ja nimetab profiili maakonna. */
+  const fields = read(VIEW_SOURCES[0]);
+  assert.ok(fields.includes('inherited ? tp("area.county_inherited", "Sama mis profiilil") : tp("area.county_none", "Täpsustamata")'));
+  assert.ok(fields.includes('inherited && !countyPick.value ? tp("area.county_inherited_hint", "Profiili maakond: {county}", { county: inherited }) : ""'));
+  assert.ok(read(VIEW_SOURCES[2]).includes('inheritedCounty={profileCounty}'));
+  assert.ok(!read(VIEW_SOURCES[1]).includes('inheritedCounty'), 'profiili enda vaates pärimist ei ole');
+  assert.ok(surface.includes('profileCounty={form.county}'));
+  for (const lang of LANGS) assert.ok(catalog(lang).area.county_inherited_hint.includes('{county}'), lang);
+  /* Profiili vana kuju („Tartu maakond") näidatakse vihjes registri nimega. */
+  assert.equal(countyChoice('Tartu maakond', choices, '').value, 'Tartumaa');
 });
 
 test('assistendi koopia hoiatus jääb pärast salvestamist lava kohale', () => {

@@ -3816,6 +3816,8 @@
       },
       "area": {
         "county_none": "Täpsustamata",
+        "county_inherited": "Sama mis profiilil",
+        "county_inherited_hint": "Profiili maakond: {county}",
         "municipalities": "Omavalitsused",
         "add_municipality": "Lisa omavalitsus",
         "chosen": "Valitud omavalitsused",

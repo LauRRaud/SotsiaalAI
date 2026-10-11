@@ -3816,6 +3816,8 @@
       },
       "area": {
         "county_none": "Unspecified",
+        "county_inherited": "Same as the profile",
+        "county_inherited_hint": "Profile county: {county}",
         "municipalities": "Municipalities",
         "add_municipality": "Add a municipality",
         "chosen": "Chosen municipalities",
