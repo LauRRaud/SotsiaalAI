@@ -12113,7 +12113,34 @@
       "lifecycle": "Lifecycle",
       "submitForVerification": "Submit for verification",
       "archive": "Archive organisation",
-      "archiveHint": "Archiving is final. An archived organisation cannot be restored."
+      "archiveHint": "Archiving is final. An archived organisation cannot be restored.",
+      "module_on": "On",
+      "module_off": "Off",
+      "suspend_confirm": "Yes, suspend",
+      "suspend_note": "Suspending closes this workflow for all members until the module is switched on again.",
+      "tabs": {
+        "label": "Settings views",
+        "modules": "Modules",
+        "status": "Status",
+        "export": "Export"
+      },
+      "activate_org": "Confirm and activate",
+      "restore_org": "Restore the organisation",
+      "suspend_org": "Suspend the organisation",
+      "suspend_org_confirm": "Yes, suspend the organisation",
+      "suspend_org_note": "In a suspended organisation nobody can make changes until the platform restores it.",
+      "archive_confirm": "Yes, archive for good",
+      "status_lines": {
+        "DRAFT": "The organisation is a draft. Send it for the platform's identity check: structure, members and modules can be managed after it is confirmed.",
+        "PENDING_VERIFICATION": "The platform is checking the organisation's details. Structure, members and modules can be managed after it is confirmed.",
+        "ACTIVE": "The organisation has been checked and is in use.",
+        "SUSPENDED": "The platform has suspended the organisation. No changes can be made.",
+        "ARCHIVED": "The organisation has been archived. It cannot be restored."
+      },
+      "open_export": "Open the export",
+      "back_to_settings": "Back to settings",
+      "export_generated": "The file was made at {time}.",
+      "export_making": "Making the export"
     },
     "legalKind": {
       "MUNICIPALITY": "Local government",

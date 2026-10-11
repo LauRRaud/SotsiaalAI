@@ -12113,7 +12113,34 @@
       "lifecycle": "Elutsükkel",
       "submitForVerification": "Saada kontrolli",
       "archive": "Arhiveeri organisatsioon",
-      "archiveHint": "Arhiveerimine on lõplik. Arhiveeritud organisatsiooni ei saa taastada."
+      "archiveHint": "Arhiveerimine on lõplik. Arhiveeritud organisatsiooni ei saa taastada.",
+      "module_on": "Sees",
+      "module_off": "Väljas",
+      "suspend_confirm": "Jah, peata",
+      "suspend_note": "Peatamine sulgeb selle töövoo kõigile liikmetele, kuni moodul uuesti sisse lülitatakse.",
+      "tabs": {
+        "label": "Seadete vaated",
+        "modules": "Moodulid",
+        "status": "Seis",
+        "export": "Väljavõte"
+      },
+      "activate_org": "Kinnita ja aktiveeri",
+      "restore_org": "Taasta organisatsioon",
+      "suspend_org": "Peata organisatsioon",
+      "suspend_org_confirm": "Jah, peata organisatsioon",
+      "suspend_org_note": "Peatatud organisatsioonis ei saa keegi muudatusi teha, kuni platvorm selle taastab.",
+      "archive_confirm": "Jah, arhiveeri lõplikult",
+      "status_lines": {
+        "DRAFT": "Organisatsioon on mustand. Saada see platvormi identiteedikontrolli: struktuuri, liikmeid ja mooduleid saab hallata pärast kinnitamist.",
+        "PENDING_VERIFICATION": "Platvorm kontrollib organisatsiooni andmeid. Struktuuri, liikmeid ja mooduleid saab hallata pärast kinnitamist.",
+        "ACTIVE": "Organisatsioon on kontrollitud ja kasutusel.",
+        "SUSPENDED": "Platvorm on organisatsiooni peatanud. Muudatusi teha ei saa.",
+        "ARCHIVED": "Organisatsioon on arhiveeritud. Seda ei saa taastada."
+      },
+      "open_export": "Ava väljavõte",
+      "back_to_settings": "Tagasi seadetesse",
+      "export_generated": "Fail on koostatud {time}.",
+      "export_making": "Koostan väljavõtet"
     },
     "legalKind": {
       "MUNICIPALITY": "Kohalik omavalitsus",
