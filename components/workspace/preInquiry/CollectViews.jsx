@@ -165,8 +165,14 @@ export function ContextView({ tr, support, onSupport }) {
   );
 }
 
-/** Teekonnast kaasa tulnud info: inimene märgib, mida selles eelpöördumises kasutada. */
-export function JourneyView({ tr, options, labels, selected, busy, onToggle, children }) {
+/**
+ * Teekonnast kaasa tulnud info: inimene märgib, mida selles eelpöördumises kasutada.
+ *
+ * `preview`: plokk, mis näitab täpselt, mis kaasa läheb. See on pikk (kokkuvõte, teemad,
+ * puuduv info, sammud) ja koos valikukaartidega paneeli ei mahtunud; nüüd avaneb see soovi
+ * korral valikute all. `empty`: tekst, kui Teekonnast ei tulnud midagi kaasa.
+ */
+export function JourneyView({ tr, options, labels, selected, busy, onToggle, preview, empty }) {
   return (
     <StepPanel
       title={tr("views.journey.title", "Mida Teekonnast kasutada")}
@@ -174,13 +180,20 @@ export function JourneyView({ tr, options, labels, selected, busy, onToggle, chi
     >
       <div className={styles.stack}>
         {options.length ? (
-          <div className={styles.cards}>
+          <div className={styles.cards} data-compact="">
             {options.map((id) => (
               <CheckCard key={id} title={labels[id] || id} checked={selected.includes(id)} disabled={busy} onChange={(checked) => onToggle(id, checked)} />
             ))}
           </div>
         ) : null}
-        {children}
+        {preview ? (
+          <details className={styles.fold}>
+            <summary className={styles.foldTitle}>{tr("views.journey.fold", "Vaata, mis täpselt kaasa läheb")}</summary>
+            {preview}
+          </details>
+        ) : empty ? (
+          <p className={styles.quiet}>{empty}</p>
+        ) : null}
       </div>
     </StepPanel>
   );

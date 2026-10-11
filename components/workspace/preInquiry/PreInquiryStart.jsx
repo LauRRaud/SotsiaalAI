@@ -24,10 +24,18 @@ import styles from "./PreInquiryStart.module.css";
  * saadetud). Varem pääses saadetud pöördumise juurde ainult Teekonna kaudu. Nupp seisab
  * pealkirja real paremal: see ei ole neljas viis alustada, vaid tee juba tehtu juurde, ja
  * omaette rida kaartide all ei mahtunud töölaua paneeli ära.
+ *
+ * `error`: lehe veateade (nt Teekonnast kaasa tulev info ei laadinud). Varem avaekraan seda ei
+ * näidanud ja inimene jäi sõnatult algusesse.
  */
-export default function PreInquiryStart({ title, lead, options, onStart, mine = null }) {
+export default function PreInquiryStart({ title, lead, options, onStart, mine = null, error = "" }) {
   return (
     <div className={styles.start}>
+      {error ? (
+        <p className={styles.error} role="alert">
+          {error}
+        </p>
+      ) : null}
       <header className={styles.head}>
         <div className={styles.titleRow}>
           <h1 className={styles.title}>{title}</h1>

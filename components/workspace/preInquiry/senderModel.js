@@ -153,3 +153,89 @@ export function senderListCounts(inquiries) {
   const sent = list.filter((inquiry) => inquiry?.sentAt).length;
   return { total: list.length, sent, unsent: list.length - sent };
 }
+
+/* --- Adressaadi tühi loend ----------------------------------------------------------
+   Leht näitas iga tühja loendi juures sama vihjet („lisa vähemalt piirkond või KOV ning
+   lühike olukorra kirjeldus"), ka siis, kui piirkond ja kirjeldus olid antud ja loend oli tühi
+   otsingusõna pärast (otsing täidetakse KOV-i tekstist ette) või kontakte ei olnudki. */
+
+/**
+ * Miks adressaadi loend on tühi: `{ key, query? }`. Tekst: `views.recipient.empty.<võti>`.
+ *
+ *   loading        kontakte alles laaditakse
+ *   no_contacts    teenusekaardilt ei tulnud ühtegi kontakti
+ *   no_filter      otsing on tühi ja liik valimata: loendit ei ole veel küsitud
+ *   none_of_type   valitud liiki kontakte ei ole
+ *   no_match_type  otsingule ei vasta ükski valitud liiki kontakt
+ *   no_match       otsingule ei vasta ükski kontakt
+ *
+ * `entryCount`: kõik laaditud kontaktid; `typeCount`: valitud liiki kontaktid (otsingut arvestamata).
+ */
+export function recipientEmptyReason({ loading = false, query = "", type = "", entryCount = 0, typeCount = 0 } = {}) {
+  const text = String(query || "").trim();
+  if (loading) return { key: "loading" };
+  if (!entryCount) return { key: "no_contacts" };
+  if (!text && !type) return { key: "no_filter" };
+  if (type && !typeCount) return { key: "none_of_type" };
+  if (text) return { key: type ? "no_match_type" : "no_match", query: text };
+  return { key: "none_of_type" };
+}
+
+/* --- Leheküljed -----------------------------------------------------------------------
+   Loend, mis paneeli ei mahu, jagatakse lehekülgedeks: paneeli sees kerivat kasti ei ole. */
+
+/** Üks lehekülg loendist: `{ items, page, pages, from, to, total }` (`from` ja `to` algavad ühest). */
+export function pageOf(items, page = 0, size = 5) {
+  const list = Array.isArray(items) ? items : [];
+  const perPage = Math.max(1, Math.floor(Number(size)) || 1);
+  const pages = Math.max(1, Math.ceil(list.length / perPage));
+  const current = Math.max(0, Math.min(pages - 1, Math.floor(Number(page)) || 0));
+  const start = current * perPage;
+  const slice = list.slice(start, start + perPage);
+  return { items: slice, page: current, pages, from: slice.length ? start + 1 : 0, to: start + slice.length, total: list.length };
+}
+
+/* --- Minu eelpöördumised: rühmad ---------------------------------------------------- */
+
+export const SENDER_LIST_GROUPS = Object.freeze(["sent", "drafts", "archive"]);
+/* Mitu rida mahub loendi vaatesse koos rühmavaliku, tegevusrea ja lehe teatega („Eelpöördumine
+   arhiveeriti" seisab loendi kohal). Mõõdetud 1536 × 640 aknas ja töölaua paneelis: neli rida
+   mahtus ilma teateta, koos teatega läks 49 px üle. */
+export const SENDER_LIST_PAGE = 3;
+
+/** Mis rühma pöörduja rida kuulub: saadetud, mustand (saatmata) või arhiiv (saatmata ja arhiveeritud). */
+export function senderListGroupOf(inquiry) {
+  if (inquiry?.sentAt) return "sent";
+  return upper(inquiry?.status) === "ARCHIVED" ? "archive" : "drafts";
+}
+
+/**
+ * Loendi vaade: rühmade arvud, ees olev rühm ja selle üks lehekülg.
+ * `group` tühi: esimene rühm, kus midagi on (saadetud, siis mustandid, siis arhiiv).
+ */
+export function senderListView(inquiries, { group = "", page = 0, pageSize = SENDER_LIST_PAGE } = {}) {
+  const byGroup = { sent: [], drafts: [], archive: [] };
+  for (const inquiry of Array.isArray(inquiries) ? inquiries : []) byGroup[senderListGroupOf(inquiry)].push(inquiry);
+  const active = SENDER_LIST_GROUPS.includes(group) ? group : SENDER_LIST_GROUPS.find((key) => byGroup[key].length) || "drafts";
+  return {
+    group: active,
+    counts: { sent: byGroup.sent.length, drafts: byGroup.drafts.length, archive: byGroup.archive.length },
+    ...pageOf(byGroup[active], page, pageSize)
+  };
+}
+
+/** Mida loendireal teha saab peale avamise: saatmata mustandi saab arhiveerida. */
+export function senderRowCanArchive(inquiry) {
+  return senderListGroupOf(inquiry) === "drafts";
+}
+
+/* --- Pikk tekst kokkuvõttes ------------------------------------------------------------- */
+
+/** Teksti algus kuni `limit` märki, sõna pealt lõigatud; pikemale lisandub „…". */
+export function excerptOf(value, limit = 220) {
+  const text = String(value || "").replace(/\s+/g, " ").trim();
+  if (text.length <= limit) return text;
+  const cut = text.slice(0, limit);
+  const space = cut.lastIndexOf(" ");
+  return `${(space > limit * 0.6 ? cut.slice(0, space) : cut).replace(/[\s,;:.]+$/, "")}…`;
+}
