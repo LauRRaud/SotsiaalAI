@@ -28,6 +28,10 @@ test('a stored chosen page is read by its own address, with the title it was rea
   assert.equal('region' in readingEntry(meta(), new Map([['naidis_leht', { source_id: 'naidis_leht' }]])), false);
   assert.equal(readingEntry(meta({ register_title: undefined })).title, 'Näidis: Leht');
   assert.equal(readingEntry(meta()).subpages, false);
+  // Where the page's own date stands (ADR-143) is the list entry's too, and is given only when the entry names it.
+  assert.equal('updated_region' in readingEntry(meta(), listed), false);
+  assert.deepEqual(readingEntry(meta(), new Map([['naidis_leht', { source_id: 'naidis_leht', region: 'main .sisu', updated_region: '.kontrollitud' }]])),
+    { source_id: 'naidis_leht', url: 'https://naidis.example/leht', title: 'Leht', publisher: 'Näidis', source_type: 'organization_page', language: 'et', region: 'main .sisu', updated_region: '.kontrollitud', subpages: false });
 });
 
 test('a page that reads as it did is not judged anew; a changed one is chosen again only on the second equal reading', () => {

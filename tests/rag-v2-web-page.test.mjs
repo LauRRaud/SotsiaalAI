@@ -116,6 +116,43 @@ test('a page without a content region is read from its body with its menus left 
   assert.notEqual(extractPage('<main><h1>Pealkiri</h1><p>Teine tekst.</p></main>', 'https://naidis.example/y').contentSha256, hinted.contentSha256);
 });
 
+test('a hint of two parts names a block inside another; the day a page says of itself is read where the list entry names it', async () => {
+  // A site of the kind that gives one class to an article's body and to its own description block (ADR-143): beside the body stand a row of tags, a vote, a feedback form, the day
+  // the article was last checked, and a list of other articles.
+  const article = `<html lang="et"><head><title>Katseaeg | Näidisnõu</title></head><body><header><div id="kirjeldus"><div class="field field--name-body"><p>Näidisnõu on näidisministeeriumi veebileht.</p></div></div></header>
+    <main><article><h1>Katseaeg</h1><div class="tag-bread"><div class="field--name-field-tags"><a href="/et/taxonomy/term/3">Töö</a></div></div>
+    <div class="node__content"><div class="field field--name-body"><p>Katseaja kestus on üldjuhul neli kuud alates tööle asumise päevast.</p><p>Katseajal võib töölepingu üles öelda viieteistkümnepäevase etteteatamisega.</p></div>
+    <div class="vote-widget"><a title="Jah">Jah</a> <span class="count">151</span></div><form><label>Märksõnad</label><input name="m"></form>
+    <div class="last-updated"><div class="field__label">Kontrollitud:</div><div class="field--name-field-kontrollitud"><time datetime="2026-06-25T21:00:00Z">26.06.2026</time></div></div></div>
+    <div class="side-wrp"><h2>Samal teemal</h2><p><a href="/et/puhkus">Puhkus</a></p></div></article></main></body></html>`, address = 'https://naidisnou.example/et/katseaeg';
+  // The class alone names two blocks, so it names no region, and the page is read from its main part with everything beside the body.
+  const alone = extractPage(article, address, { region: '.field--name-body' });
+  assert.deepEqual([alone.region, alone.html.includes('Samal teemal'), alone.html.includes('taxonomy/term'), alone.updated], ['main', true, true, null]);
+  const page = extractPage(article, address, { region: 'main .field--name-body', updatedRegion: '.last-updated' });
+  assert.equal(page.region, 'hint');
+  assert.match(page.html, /<article>\n<h1>Katseaeg<\/h1>\n<p>Katseaja kestus on üldjuhul neli kuud alates tööle asumise päevast\.<\/p>\n<p>Katseajal võib töölepingu üles öelda viieteistkümnepäevase etteteatamisega\.<\/p>\n<\/article>/u);
+  for (const gone of ['Samal teemal', 'taxonomy', 'Jah', '151', 'Märksõnad', 'Kontrollitud', '26.06.2026', 'näidisministeeriumi']) assert.equal(page.html.includes(gone), false, gone);
+  // The day is the one the page writes, not the mark's day in another time zone; it is metadata and not in the content hash.
+  assert.equal(page.updated, '2026-06-26');
+  assert.equal(extractPage(article.replace('26.06.2026', '27.06.2026'), address, { region: 'main .field--name-body', updatedRegion: '.last-updated' }).contentSha256, page.contentSha256);
+  assert.equal(extractPage(article.replace('>26.06.2026<', '><'), address, { region: 'main .field--name-body', updatedRegion: '.last-updated' }).updated, '2026-06-25', 'without a written date, the day of the mark');
+  // No day where the element is not one, holds no date, or holds one that is no day of the calendar; the outer part must stand around the inner one.
+  for (const [html, hint] of [[article, '.field'], [article, '.side-wrp'], [article.replace('26.06.2026', '31.02.2026'), '.last-updated'], [article, 'header .last-updated']]) {
+    assert.equal(extractPage(html, address, { region: 'main .field--name-body', updatedRegion: hint }).updated, null, hint);
+  }
+  assert.equal(extractPage(article, address, { region: 'header .node__content' }).region, 'main');
+  assert.equal(extractPage(article, address, { region: 'header .field--name-body' }).html.includes('näidisministeeriumi'), true);
+  // A page that writes its date as a line of the content keeps giving it; the named element overrules that line.
+  assert.equal(extractPage(PAGE, URL_PAGE, { updatedRegion: '.puudub' }).updated, '2026-09-23');
+  assert.equal(extractPage(PAGE.replace('<footer>', '<footer><span class="kontroll">Kontrollitud 01.10.2026</span>'), URL_PAGE, { updatedRegion: '.kontroll' }).updated, '2026-10-01');
+  // A list entry's updated_region reaches the page, and the day reaches the metadata.
+  const collected = await collectEntry({ source_id: 'naidisnou_katseaeg', url: address, title: 'Katseaeg', publisher: 'Näidisnõu', region: 'main .field--name-body', updated_region: '.last-updated', subpages: false },
+    { fetchImpl: async () => new Response(article, { status: 200, headers: { 'content-type': 'text/html; charset=utf-8' } }) });
+  const [read] = collected.pages;
+  assert.deepEqual([read.status, read.page.region, read.page.updated], ['read', 'hint', '2026-06-26']);
+  assert.equal(pageMetadata({ entry: read.entry, page: read.page, fetched: read.fetched, sourcePath: 'x.html' }).page_updated, '2026-06-26');
+});
+
 test('the stored page is a source the corpus reader takes as it is, and its metadata is what the adapter reads', async t => {
   const page = extractPage(PAGE, URL_PAGE), root = await fs.mkdtemp(path.join(os.tmpdir(), 'rag-v2-web-page-'));
   t.after(() => fs.rm(root, { recursive: true, force: true }));

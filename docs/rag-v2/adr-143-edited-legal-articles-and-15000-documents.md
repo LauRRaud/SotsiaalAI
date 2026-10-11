@@ -1,0 +1,123 @@
+# ADR-143: õigusabi lehe toimetatud artiklid, dokumentide piir 15 000 ja riikide register
+
+Kuupäev: 11.10.2026. Teostus Claude Opus 5.5. Seis: **ettevalmistus on valmis ja mõõdetud tasuta; midagi ei ole ostetud ega kogusse pandud (korpus on v81); dokumentide piir, korjaja täiendus, valikureegli parandused ja riikide register on koodis; ost ootab omaniku jah-sõna.**
+
+## Miks
+
+[ADR-140](adr-140-associations-own-pages.md) jättis lahtiseks juristaitab.ee rubriigi „Kiirelt kätte“. Omanik 11.10.2026, päeva jooksul:
+
+- öösel teises aknas: „selles ma kahtlen, pigem ei pane“, ja selles seansis: „juristi sisu ma ei soovi“ (ettevalmistus peatati);
+- hiljem, kui oli näha, mida rubriik sisaldab: „mul on ju eluküsimusega pöördujad ka platvormil ja tihti ka sotsiaaltöötajad soovivad lihtsat seaduse selgitust. Selline väike lõik koos seadusega oleks ju hea?“;
+- küsimus-vastus kujul juristi postituste kohta: „mida ma ei taha, on need küsimused“ ja „minu arust peaks olema andmebaasis ainult vastused. Sest küsib meil ju kasutaja“;
+- toimetatud artiklite kohta: „on artikleid ka, mis ei ole vormis "küsimus - vastus" - need võiks meil kindlasti sees olla“;
+- dokumentide piiri kohta: „tõstame 15000 peale“;
+- kui valikureegel luges riikide nimesid inimeste nimedeks: „riigi nimed peaks olema mul kuskil ühenduses nii, et süsteem saaks aru, kas tegu on riigi nime või inimese nimega. ehk siis mingi register peaks olema“.
+
+## Mida rubriik tegelikult sisaldab
+
+Varasem hinnang „umbes kaks tuhat lühikest õigusartiklit“ ei pidanud paika. Rubriigis on 197 loendilehte ja **3933 kirjet kahte liiki**, loend on liigi järgi järjestatud:
+
+| Liik | Kirjeid | Mis see on |
+|---|---:|---|
+| „Korduma kippuvad küsimused“ | 501 | toimetatud artikkel, igal „Kontrollitud: pp.kk.aaaa“ |
+| „Juristi vastus“ | umbes 3430 | eraisiku enda küsimus ja juristi vastus sellele, kuupäevaga „Vastatud“ |
+
+**Juristi vastuseid ei loetud ja need ei lähe sisse.** Omanik neid ei soovi; vastus on kirjutatud ühe inimese juhtumi kohta ja ilma küsimuseta ei ole selge, millele ta vastab; pärast vastamist ei kontrolli neid keegi üle. Loendilehti loeti 93 (toimetatud artiklid on kõik esimesel 26 lehel); juristi vastuste arv on arvutatud lehekülgede arvust.
+
+## Mis läheks sisse
+
+**479 toimetatud artiklit, 98 603 sõna, 670 lõiku.** Väljaandjana on kirjas „Justiits- ja Digiministeerium (Jurist aitab)“: sait ütleb enda kohta, et see on ministeeriumi veebileht, mida haldab lepingupartner Eesti Juristide Liit.
+
+- **Pikkus:** veerand artiklitest on kuni 71 sõna, pooled kuni 126, kolmveerand kuni 233, pikim 1862. 375 artiklit on üks lõik.
+- **Vanus:** kõigil 479 artiklil on kontrollimise kuupäev ja kõik on vahemikus 11.06.2026 kuni 27.07.2026 (juunis 463, juulis 16). Üle kahe aasta vanuseid ei ole.
+
+Teemade kaupa (üks artikkel võib olla mitme teema all):
+
+| Teema | Artikleid | Lõike | Kas teema seadus on kogus |
+|---|---:|---:|---|
+| Perekond (elatis, elatisabi, hooldusõigus, eestkoste, abielu, lahutus) | 121 | 156 | jah: perekonnaseadus, perehüvitiste seadus |
+| Kohtusse pöördumine (maksekäsu kiirmenetlus, riigi õigusabi, lähenemiskeeld) | 76 | 105 | jah: kohtumenetluse seadustikud, riigi õigusabi seadus, riigilõivuseadus |
+| Võlad (täitemenetlus, pankrot, võlgade ümberkujundamine) | 59 | 75 | osalt: täitemenetluse seadustik ja füüsilise isiku maksejõuetuse seadus on, pankrotiseadust ei ole |
+| Piiriülene asjaajamine (kohtuotsuse tunnustamine, elatis välismaalt, dokumendid välismaal) | 54 | 131 | ei: Euroopa määrusi ja konventsioone kogus ei ole |
+| Kinnisvara ja asjaõigus | 48 | 55 | ei: asjaõigusseadust ja korteriühistute seadust ei ole |
+| Lepingud ja kahju hüvitamine | 45 | 50 | jah: võlaõigusseadus |
+| Pärimine | 34 | 45 | jah: pärimisseadus (notari tasu seadust ei ole) |
+| Dokumentide vormid (artikkel koos vormi lingiga) | 33 | 88 | |
+| Maksud | 28 | 30 | ei: tulumaksuseadust ja maamaksuseadust ei ole |
+| Töö | 19 | 33 | jah: töölepingu seadus |
+| Ettevõtlus ja ühingud | 17 | 17 | ei |
+| Tarbijakaitse | 13 | 18 | osalt: võlaõigusseadus on, tarbijakaitseseadust ei ole |
+| Süüteod | 10 | 16 | jah: karistusseadustik, kriminaalmenetluse seadustik |
+| Riiklikud toetused; haridus ja sotsiaalteenused | 2 | 3 | jah |
+
+**Välja jäi 22 loetud artiklit:** 17 on alla 30 sõna (viis neist on ainult vormi link, kaksteist ühelauselised vastused; reegli alampiir), kolmel on pealkirjas „majandusaasta aruande“ (reegel jätab aruannete lehed välja ja seda siin ei muudetud), kahel lühikesel maksekäsu artiklil võtab kohtu postkasti aadress, mida reegel paigutada ei oska, ära üle veerandi tekstist. Kahest artiklist võeti välja kolm lõiku: üks nimetab inimest, kaks sisaldavad konsulaadi aadressi.
+
+## Kuidas loeti
+
+Tasuta, korjaja `rag-v2/web-page-2`, üks päring korraga, vähemalt 1,6 s vahega, saidi robotifail lubab. 501 aadressi, üks andis esimesel korral saidi vea ja loeti uuesti.
+
+**Sisuosa vihje `.field--name-body` üksi ei toimi.** Sama klass on igal lehel kahel plokil: artikli sisul ja päises oleval saidi kirjeldusel. Korjaja nõuab, et vihje nimetaks täpselt ühe ploki, ja langes tagasi lehe põhiosale: salvestatud koopias olid sildirida, hääletuse arvud ja plokk „Samal teemal“. Korjaja täiendused (`lib/rag-v2/web-page.js`, `web-collect.js`):
+
+- **Kaheosaline vihje** („`main .field--name-body`“): teine osa esimese sees. Üheosalist vihjet loetakse nagu enne.
+- **Lehe enda kuupäeva koht** (nimekirja kirje `updated_region`, siin `.last-updated`): kuupäev „Kontrollitud: 26.06.2026“ seisab väljaspool artikli sisu. See läheb lehe andmetesse väljale `page_updated`, mille allika kaart juba mudelile annab ([ADR-114](adr-114-present-figure-for-a-future-event-and-three-laws.md)), mitte teksti sisse. Igakuine uuendus kannab mõlemat vihjet (`lib/rag-v2/chosen-refresh.js`).
+
+Viie artikli peal (eri teemad, algus ja lõpp) kontrollitud: koopias on ainult artikli sisu; sildirida, hääletus, tagasisidevorm, „Anna tagasisidet“ ja „Samal teemal“ puuduvad. Nimekirja kirjetel silte ei ole (silt oleks otsinguabi dokumendi igal lõigul); teemad on kõrvalfailis.
+
+## Valikureegel ja riikide register
+
+Reegel (`lib/rag-v2/web-select.js`) eksis selle sisu peal neljal viisil; esimese käiguga võttis ta 501 artiklist 454, parandatuna 479.
+
+- **Õigusakti number ei ole kuupäev.** „Nõukogu määruse nr 4/2009“ ja „Lugano 2007 konventsioon“ pealkirjas (viimane ka aadressis) loeti varasemaks aastaks ja 13 artiklit jäi välja kui vananenud. Akti numbri ja konventsiooni nime aasta jäetakse nüüd vahele; iga muu varasem aasta dateerib lehe nagu enne.
+- **Üksuse postkast ei ole inimese aadress.** Valikureeglil oli oma, vanem aadressikontroll, mis tundis ainult kanalisõnade loendit; ministeeriumi „central.authority@“ võttis välja 35 lõiku artiklitest, mis lugeja just sinna suunavad. Nüüd ei ole inimese oma ka aadress, mille korjaja loeb asutuse kanaliks või üksuse postkastiks ([ADR-132](adr-132-a-units-mailbox-is-not-a-persons-address.md)).
+- **Riigi nimi ei ole inimese nimi.** Uus register `lib/rag-v2/countries.js`: 208 riigi ja nimekuju eestikeelsed nimed algvormis, omastav ainult seal, kus tüvi muutub. Sõnapaar on riigi oma, kui see on mitmesõnalise nime kaks järjestikust sõna („Burkina Faso“, „Sri Lankas“, „Püha Tooli“), kaks riigi nime („Kasahstan Kasahstani“) või riigi nimi koos riigivormi sõnaga („Venemaa Föderatsiooniga“, „Rootsi Kuningriigiga“). Üks riigi nimi mõne muu sõna kõrval ei piisa, sest perekonnanimi võib olla riigi nimi; eesnimi paari ees otsustab enne („Mari Soome“ on inimene). Käändevormid tehakse lihtsa reegliga, sest valikureegel töötab ka igakuises uuenduses ilma keeleteenuseta; vestluses, kus kohanimesid loeb juba EstNLTK, saab sama registrit küsida lemma järgi (seda ei ole tehtud).
+- **Üheksa sõnapaari**, mis ei ole inimesed ega riigid („Ametlikud Teadaanded“ kolmes käändes, „New Yorgis“, „Adobe Reader“ jt), lisati loendisse `NOT_PERSONS`, igaüks üle vaadatud.
+
+**Mõju varasemale sisule** (vana ja uus reegel samade lugemiste peal, 1626 lehte korpuste v63 ja v76 kuni v81 lugemistest): 1617 lehel sama tulemus, 9 lehel jääb alles üks kuni neli lõiku rohkem, ükski leht ei tule juurde ega jää välja. Alles jäävad lõigud vaadati üle: üksuste postkastid (koos uute artiklitega kokku 12 eri aadressi, ühtegi inimese oma) ja paarid „Rootsi Kuningriigiga“, „Šveitsi Konföderatsioonis“, „Ametlikud Teadaanded“. Korpuses olevad koopiad sellest ei muutu: igakuine uuendus valib lehe uuesti alles siis, kui leht ise kaks korda sama moodi muutunud on.
+
+Enne pakkimist vaadati paigutatud artiklid üle: korduvaid plokke ei ole; ühtegi sõnapaari, mida reegel inimeseks loeks, ei jäänud; 40 e-posti aadressi on kõik asutuste üldaadressid; lingi sihtkohtades @-märke ei ole. Seitse pealkirja kordub kahel eri sisuga artiklil (saidil on need eri aadressidel).
+
+## Dokumentide piir 15 000
+
+Piir seisis kahes kohas: `INDEX_CAPACITY.documents` (`lib/rag-v2/search/capacity.js`) ja otsingu enda `UNIFIED_LIMITS.directoryDocuments` (`lib/rag-v2/search/unified.js`). Mõlemad on nüüd 15 000 ja test hoiab need võrdsena: indeks, mille üks vastu võtab ja teine tagasi lükkab, katkestaks vestluse iga pöörde. Lõikude piir jääb 100 000.
+
+Dokumentide arvuga kasvab kõigi dokumentide kataloog, mille pööre loeb ühe korra. Sama mõõtepingiga serveris ([ADR-108](adr-108-index-capacity-100000-and-statistics.md), [ADR-137](adr-137-coverage-batch-and-the-law-of-obligations-act.md)): 38 ms 6470 dokumendiga, 48 ms 8337-ga, 53 ms 8722-ga, 56 ms 9288-ga ehk umbes 6 ms iga tuhande dokumendi kohta. Sama joont mööda on kataloog 15 000 dokumendi juures umbes 90 ms, umbes 35 ms rohkem pöörde kohta kui praegu. Sõnaotsing, vektorotsing ja mälus hoitavad vektorid sõltuvad lõikude arvust ja ei muutu. **Mõõtmata:** üle 9735 dokumendiga indeksit ei ole olemas; mõõtepink tuleb käivitada pärast täiendust.
+
+Serveri plaan kontrollib piiri töötava väljalaske koodiga, nii et piir peab olema kasutusele võetud enne ostu.
+
+## Eelkontrollid ja hind
+
+Alus on korpus v81 (indeks `f66fd13d`), aluspoliitika põhikausta `tmp/rag-v2-v81/ship/policy.json`.
+
+| | Praegu | Pärast | Piir |
+|---|---:|---:|---:|
+| Dokumente | 9735 | 10 214 | 15 000 (enne 10 000) |
+| Lõike | 90 707 | 91 377 | 100 000 |
+| Ketas serveris | 16 GB vaba (pärast v80) | umbes 0,25 GB vähem | |
+
+Ühist silti partiil ei ole. Serveri ketast ega mälu täna üle ei mõõdetud.
+
+Lõigud ja sisendite maht on mõõdetud päris lugejaga (`lib/rag-v2/ingestion.js`) iga artikli kohta eraldi ajutises hoidlas, mitte kohalikus korpuse hoidlas: **670 lõiku, 670 erinevat sisendit, 324 442 märki**, hinnaga 0,13 USD miljoni märgi kohta **0,042 USD**. Pakutav lagi: **0,06 USD ja kuni 700 sisendit**.
+
+## Mis võib valesti minna
+
+- **Kokkuvõtted võtavad otsingus seaduse sätete kohti.** Seda on korra mõõdetud (ADR-137: kaks lehte võtsid kuni 17 kandidaadikohta 36-st, otsustav säte liikus tahapoole, ei kadunud). Otsing hoiab riigi seaduste lõikudele kuus kohta; see on kaitse, mitte garantii.
+- **Teemadel, kus seadust kogus ei ole** (piiriülene asjaajamine, kinnisvara, maksud, ettevõtlus: 147 artiklit ja 233 lõiku; koos pankroti ja tarbijakaitsega 181 artiklit), vastaks Luna ainult artikli põhjal. Leht on juhis, mitte õiguslik alus, nii et summasid ja õigusi ta sellest seaduse nimel ei väida.
+- **Vananemine.** Praegu on kõik artiklid kontrollitud suvel 2026. Igakuine uuendus loeb lehe uuesti, aga kui muutub ainult kontrollimise kuupäev ja tekst jääb samaks, siis lehe andmetes olev kuupäev ei uuene.
+- **Saidi kiirus.** 501 lehe lugemine võttis 40 minutit; sait vastas vahepeal 10 sekundiga lehe kohta.
+
+## Kuidas pärast ostu mõõta
+
+1. **Tasuta otsinguvärav** (`scripts/rag-v2-search-gate.mjs`, kataloogide 60 küsimust): alus salvestatakse samal päeval korpusel v81 enne ostu, võrdlus pärast. Loetakse, kas otsustav lõik kadus või liikus, ja konteksti pikkus.
+2. **Tasuta mahu mõõtepink** (kataloogi aeg 10 214 dokumendiga) ja planeerija hinnang uuele põlvkonnale.
+3. **Tasuline vastuste kontroll** (eraldi luba): umbes kümme õigusküsimust artiklite teemadel, igaüks kaks korda päris vestluse rajal, otsustav säte enne seaduse tekstist paika pandud. Hinnang 20 pööret, umbes 0,08 USD. Värava olemasolevad küsimused neid teemasid peaaegu ei puuduta ja uus väravaküsimus vajab oma päringuvektorit.
+
+Kui otsustav säte mõnes küsimuses kaob, võetakse partii poliitikast tagasi.
+
+## Lahtine
+
+- Ost ja korpuse täiendus (omaniku jah-sõna, lagi 0,06 USD).
+- Puuduvad seadused teemadele, kus artikkel jääks üksi (asjaõigusseadus, korteriomandi- ja korteriühistuseadus, pankrotiseadus, tarbijakaitseseadus, tulumaksuseadus, notari tasu seadus): eraldi suurusega samm.
+- Kontrollimise kuupäeva uuendamine, kui tekst ei muutu.
+- 17 alla 30 sõna artiklit: nimekirja oma alampiir, kui neid soovitakse.
+- Riikide registri ühendamine vestluse kohalugemisega.
+- Artiklite lisamine igakuisesse uuendusse pärast täiendust (uuenduse seis tuleb külvata).
