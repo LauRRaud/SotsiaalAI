@@ -1,6 +1,6 @@
 {
   "version": "web-pages-1",
-  "note": "Eesti Töötukassa enda lehed (korpus v84, ADR-146): teenuste ja hüvede lehed, korduvad küsimused, esindused ja sissejuhatavad lehed. Lehed on loetud teise tööriista 11.10.2026 brauserikorjest (kokkuvolditud plokid avatud) projekti enda lehelugejaga; saidi robotifail lubab lehtede aadresse, aga mitte teed, kust tekst laaditakse, seetõttu ei ole need lehed igakuises uuenduses ja jäävad korjepäeva seisuga, kuni Töötukassa lubab lugemist või annab teksti muul viisil. Välja jäid statistikalehed, jaluse halduslehed, blogi, partnerilehed, lõppenud töötutoetuse leht ja kogemuslood.",
+  "note": "Eesti Töötukassa enda lehed (korpus v84, ADR-146): teenuste ja hüvede lehed, korduvad küsimused, esindused ja sissejuhatavad lehed. Lehed on loetud teise tööriista 11.10.2026 brauserikorjest (kokkuvolditud plokid avatud) projekti enda lehelugejaga; saidi robotifail lubab lehtede aadresse, aga mitte teed, kust tekst laaditakse, seetõttu ei ole need lehed igakuises uuenduses ja jäävad korjepäeva seisuga, kuni Töötukassa lubab lugemist või annab teksti muul viisil. Välja jäid statistikalehed, jaluse halduslehed, blogi, partnerilehed, lõppenud töötutoetuse leht ja kogemuslood. Lisatud 11.10.2026 (korpus v85): kaks teekonnalehte teise tööriista korduskontrollist (tööotsing; töö ja tervis); teekonnalehtedelt on välja võetud plokid, mis seisavad juba varasemal teekonnalehel.",
   "pages": [
     {
       "source_id": "tootukassa_artikkel_elektroonilised_osavotuandmed",
@@ -1306,6 +1306,26 @@
       "source_id": "tootukassa_kontaktid_tootukassa_esindused",
       "url": "https://www.tootukassa.ee/kontaktid/tootukassa-esindused",
       "title": "Töötukassa esindused",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tervisepiiranguga_inimesele_too_ja_tervis",
+      "url": "https://www.tootukassa.ee/et/tervisepiiranguga-inimesele/too-ja-tervis",
+      "title": "Töö ja tervis",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toootsijale_toootsing",
+      "url": "https://www.tootukassa.ee/et/toootsijale/toootsing",
+      "title": "Tööotsing",
       "publisher": "Eesti Töötukassa",
       "source_type": "web_page",
       "language": "et",

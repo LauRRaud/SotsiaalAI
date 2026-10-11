@@ -16,9 +16,9 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | taastatud_allikad | 0 | 22 | Serveri vanast indeksist taastatud tekst. Enne importi võrrelda põhipakettidega. |
 
 <!-- corpus-state:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
-## RAG-i seis: mis on serveris (korpus v84)
+## RAG-i seis: mis on serveris (korpus v85)
 
-Seis 11.10.2026: serveris töötav RAG (korpus **v84**, indeks `74de5ca3`) sisaldab **10 569 dokumenti** (93 401 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
+Seis 11.10.2026: serveris töötav RAG (korpus **v85**, indeks `0695a9a9`) sisaldab **10 571 dokumenti** (93 471 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
 
 | Mis on RAG-is | Dokumente | Kus on loend |
 |---|---:|---|
@@ -28,12 +28,12 @@ Seis 11.10.2026: serveris töötav RAG (korpus **v84**, indeks `74de5ca3`) sisal
 | Ajakirja Sotsiaaltöö artiklid | 892 | jaotis „Sisufailid“ |
 | Õigusaktid | 594 | jaotis „Sisufailid“ |
 | Juhendid, infomaterjalid ja uuringud | 436 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
-| Ametlikud juhislehed (ametite veebilehed) | 1587 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
+| Ametlikud juhislehed (ametite veebilehed) | 1589 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
 | Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) | 1132 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Hooldekodude kohamaksumus omavalitsuste kaupa | 79 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müügi- ja üüripunktid | 93 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müüjate lehed | 51 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
-| **Kokku** | **10569** | |
+| **Kokku** | **10571** | |
 
 <details><summary>Tehniline jaotus arendajale: kus allikafailid asuvad</summary>
 
@@ -47,7 +47,7 @@ Dokumentide arvud ei võrdu ülal olevate failide arvudega: üks fail võib anda
 | `veebilehed` | 361 | web_page 360, research_report 1 |
 | `juhendid_ja_uuringud` | 171 | information_material 81, research_report 46, official_guideline 38, policy_analysis 6 |
 
-Koodihoidlas (GitHub) ei ole 4053 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
+Koodihoidlas (GitHub) ei ole 4055 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
 
 | Allikas | Dokumente | Millest tehakse | Miks ei ole koodihoidlas |
 |---|---:|---|---|
@@ -56,7 +56,7 @@ Koodihoidlas (GitHub) ei ole 4053 dokumendi allikafaile; need on korpuse hoidlas
 | Abivahendite müügi- ja üüripunktide lehed | 93 | Sotsiaalkindlustusameti kaarditabelist skriptiga `scripts/rag-v2-assistive-points.mjs`, iga omavalitsuse kohta üks leht (ADR-096) | punktide telefoninumbrid; leht tehakse tabelist uuesti |
 | Abivahendite müüjate lehed | 51 (18 väljaandjat) | nimekiri `register/web_pages_vendors.json`, korjaja `scripts/rag-v2-web-pages.mjs` (ADR-095) | ettevõtete enda tekstid ja telefoninumbrid |
 | Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) | 1132 (68 väljaandjat) | nimekirjad `register/web_pages_organisations.json`, `register/web_pages_associations.json` ja `register/web_pages_associations_2.json` ning nimekirjade `register/web_pages_coverage_1.json` ja `_2.json` organisatsioonid, korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-095, ADR-137, ADR-140) | organisatsioonide enda tekstid |
-| Asutuste juhislehed, valitud reegliga | 1227 (13 väljaandjat) | nimekirjad `register/web_pages_coverage_1.json`, `register/web_pages_coverage_2.json` ja `register/web_pages_coverage_3.json` (õigusabi lehe toimetatud artiklid), korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-137, ADR-143), ning `register/web_pages_tootukassa.json` (Töötukassa lehed 11.10.2026 brauserikorjest, ADR-146) | valik võtab lehest välja isikut nimetavad lõigud; repos olevate lehtede igakuine uuendus asendaks sellise koopia lugeja omaga |
+| Asutuste juhislehed, valitud reegliga | 1229 (13 väljaandjat) | nimekirjad `register/web_pages_coverage_1.json`, `register/web_pages_coverage_2.json` ja `register/web_pages_coverage_3.json` (õigusabi lehe toimetatud artiklid), korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-137, ADR-143), ning `register/web_pages_tootukassa.json` (Töötukassa lehed 11.10.2026 brauserikorjest, ADR-146) | valik võtab lehest välja isikut nimetavad lõigud; repos olevate lehtede igakuine uuendus asendaks sellise koopia lugeja omaga |
 | Uuringud ja juhendid väljaandja ametlikult aadressilt | 264 (33 väljaandjat) | asutuste veebilehtede uuringute ja juhendite loenditest ning ajakirja Sotsiaaltöö uudiskirjas viidatud dokumentidest (`register/newsletter_documents.json`); iga fail on alla laaditud väljaandja ametlikult aadressilt | suured failid; allikas on ametlik aadress |
 
 Koodihoidla allikafailid, mida RAG-is ei ole (61):
@@ -2357,7 +2357,7 @@ Koodihoidla allikafailid, mida RAG-is ei ole (61):
 <!-- corpus-outside:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
 ## RAG-is olevad lehed ja kontaktid
 
-Serveris töötav RAG, korpus v84, 11.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
+Serveris töötav RAG, korpus v85, 11.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
 
 ### Hooldekodude kohamaksumuse lehed (79)
 
@@ -3734,7 +3734,7 @@ Serveris töötav RAG, korpus v84, 11.10.2026. Siin on loend sellest, mida jaoti
 | Võrumaa Puuetega Inimeste Koda | PIK ringid | <https://www.vorukoda.ee/tegevused/pik-ringid> |
 | Võrumaa Puuetega Inimeste Koda | TASUTA ÕIGUSABI ERIVAJADUSTEGA INIMESTELE | <https://www.vorukoda.ee/tasuta-oigusabi-erivajadustega-inimestele> |
 
-### Asutuste juhislehed, valitud reegliga (1227)
+### Asutuste juhislehed, valitud reegliga (1229)
 
 | Väljaandja | Pealkiri | Aadress |
 |---|---|---|
@@ -3843,6 +3843,7 @@ Serveris töötav RAG, korpus v84, 11.10.2026. Siin on loend sellest, mida jaoti
 | Eesti Töötukassa | Toetuse ümberarvutamine suurenenud sissetuleku tõttu | <https://www.tootukassa.ee/et/teenused/toovoimetoetus/toetuse-umberarvutamine-suurenenud-sissetuleku-tottu> |
 | Eesti Töötukassa | Tugiisikuga töötamine | <https://www.tootukassa.ee/et/teenused/too-ja-tervis/tugiisikuga-tootamine> |
 | Eesti Töötukassa | Töö ja tervis | <https://www.tootukassa.ee/et/teenused/too-ja-tervis> |
+| Eesti Töötukassa | Töö ja tervis | <https://www.tootukassa.ee/et/tervisepiiranguga-inimesele/too-ja-tervis> |
 | Eesti Töötukassa | Töö ja töötaja Euroopast (EURES) | <https://www.tootukassa.ee/et/teenused/eures-euroopa-toovahenduse-teenused/too-ja-tootaja-euroopast-eures> |
 | Eesti Töötukassa | Töö kaotamine | <https://www.tootukassa.ee/et/toootsijale/too-kaotamine> |
 | Eesti Töötukassa | Tööalane abivahend | <https://www.tootukassa.ee/et/teenused/too-ja-tervis/tooalane-abivahend> |
@@ -3854,6 +3855,7 @@ Serveris töötav RAG, korpus v84, 11.10.2026. Siin on loend sellest, mida jaoti
 | Eesti Töötukassa | Tööandjatele | <https://www.tootukassa.ee/et/teenused/tooandjatele> |
 | Eesti Töötukassa | Töökeskne nõustamine | <https://www.tootukassa.ee/et/teenused/toootsingud/tookeskne-noustamine> |
 | Eesti Töötukassa | Töökoha kohandamine | <https://www.tootukassa.ee/et/teenused/too-ja-tervis/tookoha-kohandamine> |
+| Eesti Töötukassa | Tööotsing | <https://www.tootukassa.ee/et/toootsijale/toootsing> |
 | Eesti Töötukassa | Tööotsingud | <https://www.tootukassa.ee/et/teenused/toootsingud> |
 | Eesti Töötukassa | Tööpraktika | <https://www.tootukassa.ee/et/teenused/toootsingud/toopraktika> |
 | Eesti Töötukassa | Tööta ja õpi | <https://www.tootukassa.ee/et/toota-ja-opi> |
