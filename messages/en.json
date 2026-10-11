@@ -2897,7 +2897,6 @@
       "fields": {
         "topic": "Topic",
         "situation": "Situation description",
-        "recipient_type": "Recipient type",
         "recipient_search": "Find recipient",
         "assessment_path": "Pre-assessment path",
         "concerns_about": "Who the inquiry is about",
@@ -2913,7 +2912,7 @@
       "placeholders": {
         "topic": "Short subject",
         "situation": "Describe the situation, need, or question.",
-        "recipient": "Municipality contact, organization intake team, service provider, or area",
+        "recipient": "Name, municipality or service",
         "draft": "Generated inquiry text",
         "municipality": "For example Tallinn, Poltsamaa parish, or area",
         "existing_support": "Who or what is helping now?",
@@ -2929,10 +2928,6 @@
         "organization_inbox_description": "Organization inbox inside Sotsiaal.pro",
         "provider": "Service provider",
         "selected": "Selected contact"
-      },
-      "delivery": {
-        "internal": "Inside Sotsiaal.pro",
-        "external_email": "Email"
       },
       "receiving": {
         "accepts_platform": "Receive pre-inquiries on the platform",
@@ -2980,8 +2975,6 @@
         "send_internal": "Send in platform",
         "save_workflow": "Save workflow",
         "archive": "Archive",
-        "show_more_contacts": "Show more contacts",
-        "show_less_contacts": "Show less",
         "choose_recipient": "Choose recipient",
         "choose_contact": "Choose this contact",
         "view_service_map": "View on service map",
@@ -3056,7 +3049,6 @@
         "reprojected": "The pre-inquiry text was rebuilt from the selected parts."
       },
       "preview": {
-        "no_auto_send": "Nothing is sent automatically.",
         "check_note": "Before confirming, check the recipient, the delivery method, the inquiry text and the pre-info. An in-platform inquiry reaches the recipient's Inquiries view; the email text opens in your email app for review.",
         "recipient_prefix": "Recipient",
         "delivery_prefix": "Delivery method",
@@ -3170,7 +3162,6 @@
         },
         "recipient": {
           "title": "Recipient",
-          "lead": "Contacts come from the Service map. Choose who the pre-inquiry goes to; Sotsiaal.pro itself is not a recipient.",
           "empty": {
             "loading": "Loading contacts...",
             "no_contacts": "The service map has no contact right now that a pre-inquiry could be sent to.",
@@ -3178,7 +3169,30 @@
             "none_of_type": "The service map has no contacts of this type right now. Choose another type.",
             "no_match_type": "No contact of this type matches \"{query}\". Try another word or another type.",
             "no_match": "No contact matches \"{query}\". Try another word, for example the name of a municipality."
-          }
+          },
+          "back": "All contacts",
+          "source_suggested": "Suggested · {count}",
+          "chosen": "Chosen",
+          "facts": {
+            "email": "E-mail",
+            "channel": "The inquiry goes",
+            "place": "Location",
+            "area": "Service area",
+            "service": "Service"
+          },
+          "channel": {
+            "platform": "on the Sotsiaal.pro platform",
+            "email": "by e-mail from your e-mail app",
+            "both": "on the platform or by e-mail",
+            "manual": "cannot be sent from here; you can copy or download the text"
+          },
+          "services": "Which service is your inquiry about?",
+          "no_services": "This provider has no service you can send an inquiry about from here right now.",
+          "filters": "Which contacts to show",
+          "source_note": "Contacts come from the Service map. Sotsiaal.pro itself is not a recipient.",
+          "choose_service": "Choose a service",
+          "change_service": "Choose another service",
+          "back_contact": "Contact details"
         },
         "text": {
           "title": "Text of the pre-inquiry",

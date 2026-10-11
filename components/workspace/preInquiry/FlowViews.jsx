@@ -5,8 +5,8 @@
  * saadetud pöördumise lugemisvaated (seis ja tekst) ja „Minu eelpöördumised".
  *
  * Nagu eelinfo vaated (CollectViews.jsx), ei hoia need olekut: väärtused ja
- * tegevused tulevad lehelt. Loendite kaardid (adressaat, salvestatud
- * eelpöördumine) näitavad ühte põhitegevust; ülejäänu avaneb kaardi seest.
+ * tegevused tulevad lehelt. Loendid (adressaadid, salvestatud eelpöördumised) on
+ * madalad read lehekülgede kaupa; ühe adressaadi kogu info on tema enda vaates.
  *
  * Kujundus: views.module.css ja lists.module.css.
  */
@@ -112,100 +112,173 @@ export function ReviewView({ tr, rows, missing, page = 0, onPage, children }) {
   );
 }
 
-/** Üks soovitatud kontakt: kes, miks just tema, ja üks põhitegevus. */
-function RecipientCard({ tr, entry, selected, typeLabel, subtitle, reason, region, meta, referral, availability, serviceActions, onSelect, mapHref, profileHref }) {
+/**
+ * Üks adressaat loendis: nimi, liik ja üks rida selle kohta, kus ja millega ta tegeleb. Rida
+ * avab kontakti vaate; valik tehakse seal. Rida on madal ja kindla kõrgusega (vana kaart oli
+ * 205 kuni 352 px ja kolm kaarti ei mahtunud paneeli).
+ */
+function RecipientRow({ item, glow }) {
   return (
-    <article className={lists.card} data-selected={selected ? "true" : undefined}>
-      <header className={lists.cardHead}>
-        <h4 className={lists.cardTitle}>{entry.title}</h4>
-        <span className={lists.chip}>{typeLabel}</span>
-      </header>
-      {subtitle ? <p className={lists.cardLine}>{subtitle}</p> : null}
-      {reason ? <p className={lists.cardReason}>{reason}</p> : null}
-      {entry.routingReason ? <p className={lists.cardReason}>{entry.routingReason}</p> : null}
-      {[region, meta].filter(Boolean).length ? <p className={lists.cardMeta}>{[region, meta].filter(Boolean).join(" · ")}</p> : null}
-      {referral ? <p className={lists.cardMeta}>{referral}</p> : null}
-      {availability.map(({ service, presentation }) => (
-        <p key={`${service.id || service.name}-availability`} className={styles.notice} data-tone={presentation.tone === "positive" ? "ok" : undefined}>
-          {presentation.icon} {service.name}: {presentation.label}. {presentation.ageText}. {presentation.warning}
+    <article className={`${lists.card} ${lists.line}`} data-selected={item.selected ? "true" : undefined}>
+      <div className={lists.lineMain}>
+        <h4 className={lists.cardTitle}>{item.title}</h4>
+        <p className={lists.lineState}>
+          {item.selected ? (
+            <span className={lists.chip} data-tone="ok">
+              {item.selectedLabel}
+            </span>
+          ) : null}
+          <span className={lists.chip}>{item.typeLabel}</span>
+          {item.meta ? <span className={lists.cardMeta}>{item.meta}</span> : null}
         </p>
-      ))}
-      <div className={lists.cardActions}>
-        {serviceActions
-          ? serviceActions.map((action) => (
-              <Button key={action.providerServiceId} type="button" size="sm" variant={selected ? "secondary" : "primary"} onClick={() => onSelect(entry, action)}>
-                {tr("actions.choose_contact", "Vali see kontakt")}: {action.name}
-              </Button>
-            ))
-          : (
-              <Button type="button" size="sm" variant={selected ? "secondary" : "primary"} onClick={() => onSelect(entry)}>
-                {selected ? tr("recipient.selected", "Valitud kontakt") : tr("actions.choose_contact", "Vali see kontakt")}
-              </Button>
-            )}
-        <span className={styles.links}>
-          {mapHref ? (
-            <Button as="a" href={mapHref} size="sm" variant="linkBrand">
-              {tr("actions.view_service_map", "Vaata teenusekaardil")}
-            </Button>
-          ) : null}
-          {profileHref ? (
-            <Button as="a" href={profileHref} size="sm" variant="linkBrand">
-              {tr("actions.view_profile", "Vaata profiili")}
-            </Button>
-          ) : null}
-        </span>
+      </div>
+      <div className={lists.lineActions}>
+        <Button type="button" size="sm" variant="primary" glow={glow} onClick={item.onOpen}>
+          {item.openLabel}
+        </Button>
       </div>
     </article>
   );
 }
 
 /**
- * Adressaat: liigi filter, otsing ja soovitatud kontaktid. `emptyText` ütleb, miks loend on
- * tühi (otsus: `recipientEmptyReason` failis senderModel.js); varem oli iga tühja loendi all
- * sama vihje.
+ * Adressaadi loend. Üks filtririda: abilise soovitused (kui neid on) ja kolm adressaadi liiki;
+ * soovituste juures on abilise hinnang, liigi või tühja valiku juures otsinguväli. Loend on
+ * lehekülgede kaupa (`pager`). `emptyText` ütleb, miks loend on tühi (otsus:
+ * `recipientEmptyReason` failis senderModel.js) ja `hint`, kust kontaktid tulevad.
+ *
+ * Paneeli ülaservas juhist ei ole: koos filtri, välja, kolme rea ja lehitsejaga ei mahtunud
+ * see töölaua paneeli. Sammu nimi on kiirmenüüs.
  */
-export function RecipientView({ tr, types, type, onType, query, onQuery, confidence, recipients, describe, selectedId, onSelect, hasMore, showMore, onToggleMore, emptyText }) {
+export function RecipientListView({ tr, glow = true, filters, filter, onFilter, searching, query, onQuery, confidence, items, pager, emptyText, hint }) {
   return (
-    <StepPanel
-      title={tr("views.recipient.title", "Adressaat")}
-      lead={tr("views.recipient.lead", "Kontaktid tulevad teenusekaardilt. Vali, kellele pöördumine läheb; Sotsiaal.pro ise ei ole adressaat.")}
-    >
+    <StepPanel title={tr("views.recipient.title", "Adressaat")} note={pager && pager.pages > 1 ? <Pager tr={tr} pager={pager} /> : null}>
       <div className={styles.stack}>
-        <div className={styles.toggles} role="group" aria-label={tr("fields.recipient_type", "Adressaadi tüüp")}>
-          {types.map(([value, label]) => (
-            <button key={value} type="button" className={styles.toggle} aria-pressed={type === value} onClick={() => onType(type === value ? "" : value)}>
+        <div className={styles.toggles} data-count={filters.length} role="group" aria-label={tr("views.recipient.filters", "Milliseid kontakte näidata")}>
+          {filters.map(({ value, label }) => (
+            <button key={value} type="button" className={styles.toggle} aria-pressed={filter === value} onClick={() => onFilter(value)}>
               {label}
             </button>
           ))}
         </div>
-        <LineField
-          label={tr("fields.recipient_search", "Otsi adressaati")}
-          value={query}
-          placeholder={tr("placeholders.recipient", "KOV kontakt, organisatsiooni vastuvõtutiim, teenuseosutaja või piirkond")}
-          onChange={onQuery}
-        />
-        {confidence ? (
-          <p className={styles.notice}>
-            <strong>{tr("routing.confidence", "Kontaktisoovituse kindlus")}:</strong> {confidence.label || confidence.level}
+        {searching ? (
+          <LineField
+            label={tr("fields.recipient_search", "Otsi adressaati")}
+            value={query}
+            placeholder={tr("placeholders.recipient", "Nimi, omavalitsus või teenus")}
+            onChange={onQuery}
+          />
+        ) : confidence ? (
+          <p className={styles.quiet}>
+            {tr("routing.confidence", "Kontaktisoovituse kindlus")}: {confidence.label || confidence.level}
             {confidence.text ? `. ${confidence.text}` : ""}
           </p>
         ) : null}
-        {recipients.length ? (
+        {items.length ? (
           <div className={lists.list}>
-            {recipients.map((entry) => (
-              <RecipientCard key={entry.id} tr={tr} entry={entry} selected={selectedId === entry.id} onSelect={onSelect} {...describe(entry)} />
+            {items.map((item) => (
+              <RecipientRow key={item.id} item={item} glow={glow} />
             ))}
           </div>
         ) : (
-          <p className={styles.quiet} aria-live="polite">
-            {emptyText}
-          </p>
+          <>
+            <p className={styles.quiet} aria-live="polite">
+              {emptyText}
+            </p>
+            {hint ? <p className={styles.quiet}>{hint}</p> : null}
+          </>
         )}
-        {hasMore ? (
-          <Button type="button" size="sm" variant="secondary" onClick={onToggleMore}>
-            {showMore ? tr("actions.show_less_contacts", "Näita vähem") : tr("actions.show_more_contacts", "Vaata rohkem kontakte")}
+      </div>
+    </StepPanel>
+  );
+}
+
+/**
+ * Üks kontakt: kes ta on, miks ta võib sobida, kus ta asub ja mis teel pöördumine läheb.
+ * `choose` on vaate põhitegevus: KOV kontaktil ja vastuvõtulaual „Vali see kontakt",
+ * mitme teenusega teenuseosutajal „Vali teenus" (avab teenuse valiku vaate). `missing` on
+ * lause, miks seda kontakti valida ei saa. `onBack` viib tagasi loendisse.
+ *
+ * Teenusekaardid olid algul siin samas vaates: koos andmetega oli vaade töölaua paneelis
+ * 491 px (mahub 461). Suunamise vajaduse ja kättesaadavuse hoiatus on saatmise sammus valitud
+ * teenuse kohta, mitte siin kõigi kohta.
+ */
+export function RecipientContactView({ tr, glow = true, contact, onBack }) {
+  return (
+    <StepPanel
+      title={tr("views.recipient.title", "Adressaat")}
+      question={contact.title}
+      note={
+        <button type="button" className={styles.textLink} onClick={onBack}>
+          ‹ {tr("views.recipient.back", "Kõik kontaktid")}
+        </button>
+      }
+      actions={
+        contact.choose ? (
+          <Button type="button" variant={contact.choose.quiet ? "secondary" : "primary"} glow={glow && !contact.choose.quiet} onClick={contact.choose.onClick}>
+            {contact.choose.label}
           </Button>
+        ) : null
+      }
+    >
+      <div className={styles.stack}>
+        <p className={styles.chips}>
+          {contact.selected ? (
+            <span className={lists.chip} data-tone="ok">
+              {tr("views.recipient.chosen", "Valitud")}
+            </span>
+          ) : null}
+          <span className={lists.chip}>{contact.typeLabel}</span>
+        </p>
+        {contact.description ? <p className={styles.quiet}>{contact.description}</p> : null}
+        {contact.reason ? <p className={styles.quiet}>{contact.reason}</p> : null}
+        {contact.facts.length ? (
+          <dl className={styles.rows}>
+            {contact.facts.map(([label, value]) => (
+              <div key={label} className={styles.row}>
+                <dt className={styles.rowLabel}>{label}</dt>
+                <dd className={styles.rowValue}>{value}</dd>
+              </div>
+            ))}
+          </dl>
         ) : null}
+        {contact.missing ? <p className={styles.quiet}>{contact.missing}</p> : null}
+        {contact.links.length ? (
+          <p className={styles.linkRow}>
+            {contact.links.map((link) => (
+              <a key={link.href} className={styles.textLink} href={link.href}>
+                {link.label}
+              </a>
+            ))}
+          </p>
+        ) : null}
+      </div>
+    </StepPanel>
+  );
+}
+
+/**
+ * Teenuseosutaja teenuse valik: iga teenus on kaart nime ja kättesaadavusega; vajutus valib
+ * adressaadi koos teenusega. Teenused on lehekülgede kaupa (`pager`); `onBack` viib tagasi
+ * kontakti vaatesse.
+ */
+export function RecipientServicesView({ tr, provider, services, pager, onBack }) {
+  return (
+    <StepPanel
+      title={tr("views.recipient.title", "Adressaat")}
+      question={tr("views.recipient.services", "Mis teenuse kohta pöördud?")}
+      lead={provider}
+      note={
+        <button type="button" className={styles.textLink} onClick={onBack}>
+          ‹ {tr("views.recipient.back_contact", "Kontakti andmed")}
+        </button>
+      }
+      actions={pager && pager.pages > 1 ? <Pager tr={tr} pager={pager} /> : null}
+    >
+      <div className={styles.pairCards}>
+        {services.map((service) => (
+          <ActionCard key={service.key} title={service.title} description={service.description} pressed={service.pressed} onClick={service.onClick} />
+        ))}
       </div>
     </StepPanel>
   );
@@ -239,23 +312,48 @@ export function TextView({ tr, topic, onTopic, draft, onDraft, remaining, childr
   );
 }
 
-/** Saatmine: kellele ja mis viisil, ning iga tegevus eraldi kaardina koos selgitusega. */
-export function SendView({ tr, summary, notices, privacyPrompt, choices }) {
+/**
+ * Saatmine: kellele ja mis teel. Kohaletoimetamise tegevused (`choices`: saada platvormis, ava
+ * e-kirjana, kinnita e-kirja saatmine) on kaardid koos selgitusega; salvestamine, kopeerimine
+ * ja alla laadimine (`actions`) on vaate jaluses nuppudena, selgitus vihjena. `note` on lehe
+ * teade selle vaate tegevuse kohta („salvestati"): jaluses ei võta see vaatelt kõrgust.
+ *
+ * Enne olid kõik tegevused kaardid: viie kaardiga (e-kirja adressaat pärast salvestamist) oli
+ * vaade töölaua paneelis 471 px ja koos teenuseosutaja teadetega 561 px (mahub 461). Töölaua
+ * paneelis määrab kõrgeim vaade kogu lava kõrguse, nii et siis kerisid kõik sammud.
+ * Isikuandmete küsimus (`privacyPrompt`) on ees üksi: enne otsust ei ole midagi saata.
+ */
+export function SendView({ tr, summary, notices, privacyPrompt, choices, actions, note }) {
   return (
-    <StepPanel title={tr("views.send.title", "Saatmine")} lead={tr("preview.no_auto_send", "Midagi ei saadeta automaatselt.")}>
+    <StepPanel
+      title={tr("views.send.title", "Saatmine")}
+      note={note || null}
+      actions={actions.map((action) => (
+        <Button key={action.key} type="button" size="sm" variant="secondary" disabled={action.disabled} title={action.hint} onClick={action.onClick}>
+          {action.label}
+        </Button>
+      ))}
+    >
       <div className={styles.stack}>
-        {summary ? <p className={styles.notice}>{summary}</p> : null}
-        {notices.map((text) => (
-          <p key={text} className={styles.quiet}>
-            {text}
-          </p>
-        ))}
-        {privacyPrompt}
-        <ActionCardGrid label={tr("views.send.title", "Saatmine")}>
-          {choices.map((choice) => (
-            <ActionCard key={choice.key} title={choice.title} description={choice.description} disabled={choice.disabled} onClick={choice.onClick} />
-          ))}
-        </ActionCardGrid>
+        {privacyPrompt ? (
+          privacyPrompt
+        ) : (
+          <>
+            {summary ? <p className={styles.quiet}>{summary}</p> : null}
+            {notices.map((text) => (
+              <p key={text} className={styles.quiet}>
+                {text}
+              </p>
+            ))}
+            {choices.length ? (
+              <ActionCardGrid label={tr("views.send.title", "Saatmine")}>
+                {choices.map((choice) => (
+                  <ActionCard key={choice.key} title={choice.title} description={choice.description} disabled={choice.disabled} onClick={choice.onClick} />
+                ))}
+              </ActionCardGrid>
+            ) : null}
+          </>
+        )}
       </div>
     </StepPanel>
   );
