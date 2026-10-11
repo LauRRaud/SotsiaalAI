@@ -16252,7 +16252,7 @@
     "suggestion_note": "The draft uses the question, facts, options and missing information. It may be shortened; review the entire result.",
     "identifiers": "Review and generalise:",
     "confirmation": "I have reviewed this saved text and removed unnecessary personal data. I will choose where to use it below.",
-    "ai_privacy": "“Discuss with the assistant” sends only this text and reflection instructions to the existing AI assistant. The model provider processes it and the conversation is stored under the usual assistant terms. Deleting this private reflection will not delete that conversation.",
+    "ai_privacy": "“Discuss with the assistant” sends only this text and reflection instructions to the existing AI assistant. The model provider processes it and the conversation is stored under the usual assistant terms. Deleting this private reflection will not delete that conversation. Sources are searched only within the selected ethics collection. Search is never automatically widened to the whole database.",
     "covision_privacy": "Covision receives a separate private draft of this text. Inviting participants and publishing content to them takes place in Covision. Later changes here will not update that copy.",
     "expert_closed": "Sending to an expert is currently unavailable. This room does not implement the ESTA Ethics Compass method.",
     "ask": "Discuss with the assistant",
@@ -16281,6 +16281,7 @@
       "confirmation": "Review and confirm the saved text.",
       "snapshot": "Add a short text to use elsewhere.",
       "identifiers": "The text may contain identifying data. Generalise it before continuing.",
+      "sources": "The ethics collection is currently unavailable. Please try again later.",
       "assistant": "The assistant did not complete an answer. You can retry the same request.",
       "failed": "The action failed. Please try again."
     },

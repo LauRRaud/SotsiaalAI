@@ -16252,7 +16252,7 @@
     "suggestion_note": "Algmustand kasutab küsimust, fakte, valikuid ja puuduvat teavet. See võib olla lühendatud; loe tulemus tervikuna üle.",
     "identifiers": "Kontrolli ja üldista:",
     "confirmation": "Olen selle salvestatud teksti üle vaadanud ja eemaldanud tarbetud isikuandmed. Valin all, kuhu seda kasutada.",
-    "ai_privacy": "„Aruta assistendiga” saadab ainult selle teksti ja arutlemisjuhise olemasolevale AI-assistendile. Teksti töötleb ka mudeliteenuse pakkuja ning vestlus salvestub assistendi tavapärase korra järgi. Privaatse arutelu kustutamine seda vestlust ei kustuta.",
+    "ai_privacy": "„Aruta assistendiga” saadab ainult selle teksti ja arutlemisjuhise olemasolevale AI-assistendile. Teksti töötleb ka mudeliteenuse pakkuja ning vestlus salvestub assistendi tavapärase korra järgi. Privaatse arutelu kustutamine seda vestlust ei kustuta. Allikaid otsitakse ainult Eetikaruumi valitud eetikaallikatest. Otsingut ei laiendata automaatselt kogu andmebaasile.",
     "covision_privacy": "Kovisiooni jaoks luuakse sellest tekstist eraldi privaatne mustand. Osalejate kutsumine ja neile nähtava sisu avaldamine toimub kovisioonis. Hilisemad muudatused siin sinna üle ei kandu.",
     "expert_closed": "Eksperdile saatmise võimalust praegu ei ole. See ruum ei rakenda ESTA Eetikakompassi metoodikat.",
     "ask": "Aruta assistendiga",
@@ -16281,6 +16281,7 @@
       "confirmation": "Vaata salvestatud tekst üle ja kinnita see.",
       "snapshot": "Lisa lühike tekst, mida soovid edasi kasutada.",
       "identifiers": "Tekstis võib olla tuvastavaid andmeid. Üldista need enne jätkamist.",
+      "sources": "Eetikaruumi allikakogu ei ole praegu kättesaadav. Proovi hiljem uuesti.",
       "assistant": "Assistent ei lõpetanud vastust. Võid sama päringut uuesti proovida.",
       "failed": "Toiming ei õnnestunud. Proovi uuesti."
     },

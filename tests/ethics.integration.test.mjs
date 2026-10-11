@@ -8,6 +8,8 @@ import pg from 'pg';
 import { readFileSync } from 'node:fs';
 import { createEthics, readEthics, listEthics, updateEthics, deleteEthics, handoffEthics, prepareEthicsAssistant, ethicsExport } from '../lib/ethics/records.js';
 import { DATA_EXPORT_REGISTRY } from '../lib/dataExport/registry.js';
+import { PilotStore } from '../lib/rag-v2/pilot/store.js';
+import { restrictPilotSources } from '../lib/rag-v2/pilot/source-scope.js';
 
 const url = new URL(process.env.ETHICS_TEST_DATABASE_URL || 'postgres://invalid/invalid');
 if (!['localhost', '127.0.0.1'].includes(url.hostname) || !url.pathname.endsWith('_ethics_probe')) throw Error('isolated local ETHICS_TEST_DATABASE_URL required');
@@ -17,6 +19,33 @@ test.after(() => db.$disconnect());
 const snapshot = 'Kuidas arutada inimese soovi iseseisvalt elada ja lähedaste muret turvalisuse pärast?';
 const content = { title: 'PRIVATE_TITLE', question: 'PRIVATE_QUESTION', facts: 'PRIVATE_FACTS', shareDraft: snapshot };
 const error = status => e => e.status === status;
+
+test('ethics and general turns share the same actual spending ledger in either creation order', async t => {
+  const user = await db.user.create({ data: { email: `ethics-budget-${randomUUID()}@example.invalid` } });
+  const ledgerIds = [];
+  t.after(async () => { await db.user.delete({ where: { id: user.id } }); await db.m4PilotLedger.deleteMany({ where: { id: { in: ledgerIds } } }); });
+  for (const ethicsFirst of [true, false]) {
+    const base = { id: randomUUID(), tenant: 'fixture', configHash: randomUUID(), mode: 'test', profile: {}, generationId: 'fixture', retentionHours: 1, expiresAt: null,
+      documents: { ethics: 'v1', other: 'v2' }, budget: { attempts: 10, embeddingAttempts: 10, answerAttempts: 10, tokens: 1000, nanoUsd: 1000 } };
+    ledgerIds.push(base.id);
+    const scoped = restrictPilotSources(base, { id: 'ethics', sources: [{ documentId: 'ethics', versionId: 'v1' }] });
+    const conv = await db.conversation.create({ data: { userId: user.id, role: 'SOCIAL_WORKER', metadata: { m4: true } } });
+    const store = new PilotStore(db);
+    let firstInput;
+    for (const config of ethicsFirst ? [scoped, base] : [base, scoped]) {
+      const input = { convId: conv.id, clientTurnKey: randomUUID(), question: 'Synthetic reflection', contextMode: 'new' };
+      firstInput ??= input;
+      const { row } = await store.claim(config, user.id, input);
+      await store.reserve(config, row, 'embedding', { tokens: 10, nanoUsd: 10 }, {});
+      await store.save(config, row, 'stopped', {});
+    }
+    const ledger = await db.m4PilotLedger.findUnique({ where: { id: base.id } });
+    assert.equal(ledger.configHash, base.configHash);
+    assert.equal(ledger.totals.embeddingAttempts, 2);
+    assert.equal(ledger.totals.nanoUsd, 20);
+    await assert.rejects(store.existing(ethicsFirst ? base : scoped, user.id, firstInput), { code: 'idempotency_conflict' });
+  }
+});
 
 test('owner isolation, concurrent saves, confirmed minimal handoff and deletion boundaries', async t => {
   const users = [];

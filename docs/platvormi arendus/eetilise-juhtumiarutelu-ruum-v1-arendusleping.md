@@ -125,6 +125,12 @@ administraatori roll ei ava teise kasutaja mustandit. Esimese ühiku andmevaliku
   privaatne pealkiri ja muud väljad kaasa ei lähe. Kasutus toimub olemasoleva
   assistendi vestluse, kvoodi, allikaviidete ja säilituse kaudu. AI vastust ei
   kanta automaatselt kasutaja refleksiooniväljadele ega märgita inimese otsuseks.
+- Omaniku 11.10 täpsustus: Eetikaruum otsib ainult eraldi valitud eetikaallikatest.
+  Sama RAG-mootor kasutab serveris piiratud dokumendi- ja versiooniloendit;
+  valik kehtib otsingu, graafiseoste ja viidete kontrolli juures. Valiku puudumine
+  ei ava kogu korpust. Üldvestluse varasemat vastust ega olekut kaasa ei võeta.
+  Allikavalik on `config/ethics-sources.json`; praegu 19 juba indekseeritud
+  dokumenti. Uue 44 dokumendi paketi import on eraldi töö.
 - Kovisioonile luuakse kinnitatud tekstist muutumatu koopia omaniku privaatsesse
   ettevalmistusse. Osalejaid ei kutsuta ega sisu neile avaldata selle toiminguga.
   Need toimingud jäävad olemasolevasse kovisioonivoogu.

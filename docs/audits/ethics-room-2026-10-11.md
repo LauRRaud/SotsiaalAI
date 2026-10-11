@@ -87,6 +87,49 @@ sõnaotsingu tõend, mitte kogu hübriidotsingu ega mudeli vastuse kvaliteedi t�
 
 ## Tõendamata ja järgmise ühiku piirid
 
+### 11.10 täpsustus: ainult eetikaallikate otsing
+
+Omanik: „kogu rag andmebaasi ei ole vaja eetikaruumi, ainult eetika oma”.
+`/api/ethics/chat` kasutab senist assistenditeenust, kuid iga konfiguratsiooni
+lugemine kitsendab lubatud dokumendid `config/ethics-sources.json` valikuga.
+Valikus on 19 täpse versiooniga dokumenti: kuus eetikaartiklit/põhimõtete teksti,
+sotsiaalvaldkonna ja noorsootöötaja koodeksid ning 11 sotsiaalvaldkonna
+organisatsiooni/eriala eetikapõhimõtet. Valik põhineb aktiivse indeksi
+metaandmetel ja tekstilõikude vaatlusel, mitte kõikide dokumentide täielikul
+sisukvaliteedi ekspertiisil. Tutvustuslehed, korduvad üldised MTÜ koodeksid ja
+valepositiivsed pealkirjavasted (kosmeetika, sünteetilised opioidid) jäid välja.
+
+Piirang rakendub enne otsinguradade jaotust: sama lubatud dokumendiloend kehtib
+PostgreSQL-i, vektorotsingu, graafiseoste ja viidete taastamise juures.
+Tuumas pole eetika nime/ID järgi käitumiserandit; nimeline kogum on toote
+konfiguratsioonis ning üldine adapter teeb õigustega ühisosa. Indeksi või
+põhiplaani õiguse muutus ei lisa kogusse dokumenti; muutunud versioon vajab
+valiku uuendamist. Tühi ühisosa peatab vastamise selge veateatega ega ava kogu
+korpust. Valmis paketi või päringu taaskasutuse eriplanid tõrjutakse.
+
+Eetikaruumi päring lubab ainult uut konteksti ilma varasema pöörde viiteta.
+Seega ei saa üldassistendi varasem vastus ega dialoogiolek tuua laia korpuse
+sisu vastusesse. Eraldi konfiguratsiooniräsi tõrjub eri ulatuste pöördevõtme
+taaskasutuse. Kulupiir ja selle arvestus on ühised; uut eelarvet ei teki.
+Tavalise assistendi allikavalik säilib. Muudatus lisati RAG-i teostusmanifesti.
+
+19.21 EEST tasuta lugemiskontroll: sama v86 aktiivne indeks, 10 571 lubatud
+dokumendist valiku kõik 19 täpset versiooni olemas. Senise profiili sõnaotsing:
+
+| Päring | Piiratud kogust leitu | Aeg |
+|---|---|---|
+| eetikakoodeks enesemääramine konfidentsiaalsus | 8 lõiku neljast koodeksi/teemaintervjuu dokumendist | 1390 ms |
+| eetikapõhimõtted inimväärikus | 8 lõiku IASSW põhimõtetest | 56 ms |
+| kosmeetika | 0 lõiku | 9 ms |
+
+Kohalikud kontrollid: 22 sihttesti PASS, sh konfiguratsiooni ühisosa,
+versiooni/õiguse kadumine, otsingu ja viidete piir, HTTP kontekstipiir,
+kriisiteate ja voogvastuse regressioonid. Eraldatud proovibaas tõendas sama
+rahakulu arvestust mõlemas loomise järjekorras (enne eetikaruum või enne
+üldassistent) ja eri ulatuste korduspäringu konflikti. Sihitud ESLint,
+ET/EN/RU ning diffi kontroll PASS. Skeemi ei muudetud. Piirangu järel uus
+brauseri tervikrada ja pärismudeli kvaliteediproov: NOT_RUN. Avaldamine ootel.
+
 - 44 dokumendi eetikapaketi täpne kattuvus olemasolevaga, valik, import ja
   embedding: NOT_RUN; kõiki avalikke materjale ei saa pidada Eesti nõudeks.
 - Mudeli eetilise arutelu sisuline kvaliteet ja juhise järgimine: NOT_PROVEN.

@@ -92,6 +92,15 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**11.10 Eetikaruum kasutab ainult eetikaallikaid (Codex):** omaniku täpsustuse
+järgi on assistendi päringul serveris eraldi 19 dokumendi/versiooni valik.
+Sama RAG-mootor ja kululimiit; valik piirab otsingut, graafiseoseid ja viiteid.
+Tühi valik ei ava kogu korpust, üldvestluse varasem kontekst ei tule kaasa.
+22 sihttesti, proovibaasi ühise kuluarvestuse kontroll, lint ja ET/EN/RU PASS.
+19.21 v86 tasuta sõnaotsing leidis valikust koodeksi ja IASSW põhimõtted.
+Uue 44 dokumendi paketi import ning pärismudeli kvaliteet NOT_RUN. Avaldamine
+ootel. [Tõendid](../audits/ethics-room-2026-10-11.md).
+
 **11.10 Eetikaruumi esimene töövoog (Codex):** `/eetikaruum` salvestab omaniku
 privaatse refleksiooni ning saadab kinnitatud eraldi teksti olemasolevale assistendile
 või privaatsesse kovisioonimustandisse. ET/EN/RU, kuus sihttesti, migratsiooni proov
