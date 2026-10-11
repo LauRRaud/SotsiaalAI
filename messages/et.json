@@ -12369,6 +12369,26 @@
       "reassign_reason": "Põhjus (jääb kirja)",
       "assigned": "Töö on määratud.",
       "assign_failed": "Määramine ei õnnestunud."
+    },
+    "join": {
+      "dock_invite": "Kutse",
+      "dock_offer": "Tasutud ligipääs",
+      "invite_question": "{name} kutsub sind liituma.",
+      "seat": "Koht",
+      "job_title": "Ametinimetus",
+      "role": "Roll",
+      "no_capabilities": "Haldusõigusi ei anta. Sinust saab liige.",
+      "decline_confirm": "Jah, keeldun",
+      "decline_note": "Kutse lükatakse tagasi. Liitumiseks on siis vaja uut kutset.",
+      "accepting": "Liitun",
+      "opening": "Oled nüüd liige. Avan tööruumi.",
+      "loading": "Laen kutset.",
+      "no_token": "Sellel lingil ei ole kutse võtit. Ava link uuesti sõnumist, mille kutsuja sulle saatis.",
+      "offer_question": "{name} pakub sulle tasutud ligipääsu.",
+      "offer_decline_note": "Pakkumine lükatakse tagasi. Ligipääsu eest tasumiseks on siis vaja uut pakkumist.",
+      "offer_accepting": "Avan ligipääsu",
+      "offer_loading": "Laen pakkumist.",
+      "offer_no_token": "Sellel lingil ei ole pakkumise võtit. Ava link uuesti sõnumist, mille organisatsioon sulle saatis."
     }
   },
   "service_log": {

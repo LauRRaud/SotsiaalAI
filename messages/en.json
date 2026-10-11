@@ -12369,6 +12369,26 @@
       "reassign_reason": "Reason (this is recorded)",
       "assigned": "The work has been assigned.",
       "assign_failed": "Assigning failed."
+    },
+    "join": {
+      "dock_invite": "Invitation",
+      "dock_offer": "Paid access",
+      "invite_question": "{name} invites you to join.",
+      "seat": "Seat",
+      "job_title": "Job title",
+      "role": "Role",
+      "no_capabilities": "No administrative rights are given. You become a member.",
+      "decline_confirm": "Yes, I decline",
+      "decline_note": "The invitation is declined. To join you then need a new invitation.",
+      "accepting": "Joining",
+      "opening": "You are now a member. Opening the workspace.",
+      "loading": "Loading the invitation.",
+      "no_token": "This link has no invitation key. Open the link again from the message the inviter sent you.",
+      "offer_question": "{name} offers you paid access.",
+      "offer_decline_note": "The offer is declined. For paid access you then need a new offer.",
+      "offer_accepting": "Opening access",
+      "offer_loading": "Loading the offer.",
+      "offer_no_token": "This link has no offer key. Open the link again from the message the organisation sent you."
     }
   },
   "service_log": {

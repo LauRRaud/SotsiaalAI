@@ -10,20 +10,18 @@
 
 import { CAPABILITY_TEMPLATES, ORGANIZATION_LEGAL_KINDS } from "@/lib/org/constants";
 
+import { dayOf } from "../orgRules.js";
+
+/* Teist vajutust küsiva tegevuse ajad ja kuupäeva kuju on organisatsioonide
+   lehtede ühised (../orgRules.js); avaleht annab need siit edasi. */
+export { CONFIRM_MS, PRESS_GAP_MS, dayOf, pressTooSoon } from "../orgRules.js";
+
 /** Loomise sammud lehe järjekorras. Loend on kindel: samm ei teki ega kao kirjutamise ajal. */
 export const CREATE_STEPS = Object.freeze(["name", "kind", "confirm"]);
 
 /** Serveri piirid (`lib/org/organizations.js`): nimi 200 märki, registrikood 40. */
 export const NAME_LIMIT = 200;
 export const REGISTRY_CODE_LIMIT = 40;
-
-/* Teine vajutus samal nupul ei tule topeltklõpsust; kinnituse ootus aegub. */
-export const PRESS_GAP_MS = 400;
-export const CONFIRM_MS = 8000;
-
-export function pressTooSoon(since, now = Date.now()) {
-  return Boolean(since) && now - since < PRESS_GAP_MS;
-}
 
 /**
  * Tühi loomise vorm. Liik on alguses VALIMATA: vana vorm pakkus ette „Kohalik
@@ -33,15 +31,6 @@ export const EMPTY_FORM = Object.freeze({ displayName: "", legalKind: "", legalN
 
 function text(value) {
   return typeof value === "string" ? value : "";
-}
-
-/** ISO hetk → `15.10.2026` inimese enda ajavööndis. Vigane väärtus annab tühja sõne. */
-export function dayOf(iso) {
-  if (!iso) return "";
-  const date = new Date(iso);
-  if (Number.isNaN(date.getTime())) return "";
-  const two = (value) => String(value).padStart(2, "0");
-  return `${two(date.getDate())}.${two(date.getMonth() + 1)}.${date.getFullYear()}`;
 }
 
 /* ---------- Loend -------------------------------------------------------------- */
