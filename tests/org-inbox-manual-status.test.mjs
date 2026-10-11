@@ -23,7 +23,7 @@ import { workActions } from '../components/org/inbox/inboxRules.js';
 import { serverT } from '../lib/i18n/serverMessages.js';
 import { assertNotificationRecipient, createNotificationEvent, serializeNotificationEvent } from '../lib/notifications.js';
 import { WorkspaceContextKind, hasCapability } from '../lib/org/accessContext.js';
-import { INBOX_STATUS_TRANSITIONS, OrganizationInboxStatus, inboxStatusFollowsAssignment } from '../lib/org/constants.js';
+import { INBOX_CLOSING_NOTE_LIMIT, INBOX_STATUS_TRANSITIONS, OrganizationInboxStatus, inboxStatusFollowsAssignment } from '../lib/org/constants.js';
 import { assignWork, getInboxItem, hadWorkOnInboxItem, handOverWork, listInboxItemPage, respondToAssignment, transitionInboxItem } from '../lib/org/inbox.js';
 import { ROOM_WRITE, resolveRoomAccess } from '../lib/rooms/accessGuard.js';
 import { ensureRoomForPreInquiry } from '../lib/rooms/preInquiryRoom.js';
@@ -253,7 +253,9 @@ const callHooks = () => {
   const calls = { ended: [], released: [] };
   return { calls, hooks: { endRoomCall: async (input) => calls.ended.push(input), releaseFromCalls: async (left) => calls.released.push(left) } };
 };
-const manual = (db, toStatus, { hooks = callHooks().hooks, now = NOW, reason } = {}) =>
+/* Tagasilükkamine nõuab selgitust pöördujale; kus test ise selgitust ei anna, läheb see siit. */
+const DECLINE_NOTE = 'See ei kuulu meie valla pädevusse. Pöördu oma elukoha valla poole.';
+const manual = (db, toStatus, { hooks = callHooks().hooks, now = NOW, reason = toStatus === 'REJECTED' ? DECLINE_NOTE : undefined } = {}) =>
   transitionInboxItem(coordinator(), 'i1', { toStatus, reason }, { db, now, ...hooks });
 const refused = (promise, status, message) => assert.rejects(promise, (error) => error.status === status && error.message === message);
 const transitions = (state) => state.audits.filter((row) => row.action === 'org.inbox_item_transitioned');
@@ -732,7 +734,7 @@ const PAGE_REQUESTS = {
     seen.assignment ? transitionInboxItem(viewer, 'i1', { toStatus: 'ASSIGNMENT_PENDING' }, { db, now: NOW, ...callHooks().hooks }) : null,
   close: ({ db, viewer }) => transitionInboxItem(viewer, 'i1', { toStatus: 'CLOSED' }, { db, now: NOW, ...callHooks().hooks }),
   /* Pöördumise tagasilükkamine: nii lõpetab koordinaator pöördumise, millel ei ole vastutajat. */
-  rejectItem: ({ db, viewer }) => transitionInboxItem(viewer, 'i1', { toStatus: 'REJECTED' }, { db, now: NOW, ...callHooks().hooks })
+  rejectItem: ({ db, viewer }) => transitionInboxItem(viewer, 'i1', { toStatus: 'REJECTED', reason: DECLINE_NOTE }, { db, now: NOW, ...callHooks().hooks })
 };
 const OFFER_OF = { assign: 'assign', accept: 'respond', reject: 'respond', handOver: 'handOver', takeBack: 'takeBack', close: 'close', rejectItem: 'rejectItem' };
 
@@ -843,6 +845,71 @@ test('laua loendis on ainult lõpetamata töö: ka tagasi lükatud pöördumine 
     /* Ajalugu on alles: lõpetatud kirjed toob `includeClosed` ja seisufilter. */
     assert.deepEqual(await listed(db, { includeClosed: true }), [['i1', stage]], stage);
     assert.deepEqual(await listed(db, { status: stage }), [['i1', stage]], stage);
+    /* Laua vaade „Lõpetatud”: ainult lõpetatud kirjed. */
+    assert.deepEqual(await listed(db, { closedOnly: true }), finished ? [['i1', stage]] : [], stage);
+  }
+  /* Lõpetatud rida kannab lõpetamise aega (loend näitab seda vastutaja asemel). */
+  const closed = await world('CLOSED');
+  const [row] = (await listInboxItemPage(coordinator(), { db: closed.db, closedOnly: true, now: LATER })).items;
+  assert.deepEqual([row.status, row.closedAt, row.assignment], ['CLOSED', LATER, null]);
+});
+
+test('tagasilükkamine ei ole kunagi paljas „ei”: selgitus pöördujale on kohustuslik, sulgemisel soovi korral', async () => {
+  const REQUIRED = 'org.errors.inbox_reject_reason_required';
+  const snapshot = (state) => JSON.stringify([state.item, state.assignments, state.audits, state.roomMembers, state.notifications]);
+
+  /* Ilma selgituseta, tühja ja ainult tühikutest selgitusega server keeldub ega kirjuta midagi. */
+  for (const stage of ['RECEIVED', 'REVIEWING', 'ASSIGNMENT_PENDING']) {
+    for (const reason of [null, '', '   \n ']) {
+      const { db, state } = await world(stage);
+      const before = snapshot(state);
+      await refused(manual(db, 'REJECTED', { reason }), 400, REQUIRED);
+      assert.equal(snapshot(state), before, `${stage}: ${JSON.stringify(reason)}`);
+    }
+    /* Päring, kus selgituse välja ei olegi (abiline `manual` paneks selle ise juurde). */
+    const { db, state } = await world(stage);
+    const before = snapshot(state);
+    await refused(transitionInboxItem(coordinator(), 'i1', { toStatus: 'REJECTED' }, { db, now: NOW, ...callHooks().hooks }), 400, REQUIRED);
+    assert.equal(snapshot(state), before, stage);
+  }
+  /* Lubamatu siire saab ikka oma vastuse, mitte „kirjuta selgitus”. */
+  for (const stage of ['ASSIGNED', 'ACCEPTED']) {
+    const { db } = await world(stage);
+    await refused(manual(db, 'REJECTED', { reason: '' }), 409, INVALID);
+  }
+  const finished = await world('CLOSED');
+  await refused(manual(finished.db, 'REJECTED', { reason: '' }), 409, TERMINAL);
+
+  /* Selgitus salvestatakse kärbitult ja piiratud pikkusega; koordinaator näeb seda lõpetatud kirjel. */
+  const declined = await world('RECEIVED');
+  await manual(declined.db, 'REJECTED', { reason: '  See ei kuulu meie valla pädevusse.  ' });
+  assert.equal(declined.state.item.closedReason, 'See ei kuulu meie valla pädevusse.');
+  const seen = await getInboxItem(coordinator(), 'i1', { db: declined.db, now: LATER });
+  assert.deepEqual([seen.status, seen.closedAt, seen.closedReason], ['REJECTED', NOW, 'See ei kuulu meie valla pädevusse.']);
+  const long = await world('RECEIVED');
+  await manual(long.db, 'REJECTED', { reason: 'a'.repeat(INBOX_CLOSING_NOTE_LIMIT + 60) });
+  assert.equal(long.state.item.closedReason.length, INBOX_CLOSING_NOTE_LIMIT);
+
+  /* Sulgemisel on selgitus soovi korral: ilma selleta sulgub töö nagu enne. */
+  const plain = await world('ACCEPTED');
+  await manual(plain.db, 'CLOSED');
+  assert.deepEqual([plain.state.item.status, plain.state.item.closedReason], ['CLOSED', null]);
+  const noted = await world('ACCEPTED');
+  await manual(noted.db, 'CLOSED', { reason: ' Lahendatud: koduteenus on määratud. ' });
+  assert.equal(noted.state.item.closedReason, 'Lahendatud: koduteenus on määratud.');
+  assert.equal((await getInboxItem(coordinator(), 'i1', { db: noted.db, now: LATER })).closedReason, 'Lahendatud: koduteenus on määratud.');
+
+  /* Töö, mis ei lõpe, selgitust ei saa: tagasivõtmisel antud tekst ei jää kirje külge. */
+  const taken = await world('ACCEPTED');
+  await manual(taken.db, 'ASSIGNMENT_PENDING', { reason: 'see ei ole lõpetamine' });
+  assert.deepEqual([taken.state.item.closedAt, taken.state.item.closedReason], [null, null]);
+  const open = await getInboxItem(coordinator(), 'i1', { db: taken.db, now: LATER });
+  assert.deepEqual([open.closedAt, open.closedReason], [null, null]);
+
+  /* Keeldumise lause on kolmes keeles. */
+  for (const locale of ['et', 'en', 'ru']) {
+    const sentence = serverT(locale, REQUIRED);
+    assert.ok(sentence !== REQUIRED && sentence.length > 20 && !/[—–]/.test(sentence), locale);
   }
 });
 

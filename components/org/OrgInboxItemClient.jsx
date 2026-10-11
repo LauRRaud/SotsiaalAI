@@ -7,17 +7,30 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import { buildRoomChatPath } from "@/lib/roomPath";
 
 import { ItemView } from "./inbox/InboxViews";
-import { itemFacts, itemTabs, sourceParts, workActions, workerOptions } from "./inbox/inboxRules";
+import {
+  CLOSING_NOTE_LIMIT,
+  ENDINGS,
+  activeEnding,
+  closingNoteOf,
+  endingProblem,
+  endingReason,
+  groupOfItem,
+  inboxPagePath,
+  itemFacts,
+  itemTabs,
+  showsOpenedNotice,
+  sourceParts,
+  workActions,
+  workerOptions
+} from "./inbox/inboxRules";
 import OrgPart from "./OrgPart";
 import { useOrgApi } from "./useOrgApi";
 import { useSecondPress } from "./useSecondPress";
 
 /* Teist vajutust küsiva tegevuse märkus: mis juhtub, kui inimene kinnitab. */
 const ARMED_NOTES = Object.freeze({
-  close: "org.inbox.close_note",
   reject: "org.inbox.reject_note",
-  takeBack: "org.inbox.take_back_note",
-  rejectItem: "org.inbox.reject_item_note"
+  takeBack: "org.inbox.take_back_note"
 });
 
 /**
@@ -29,8 +42,12 @@ const ARMED_NOTES = Object.freeze({
  *
  * KUJU (11.10). Neli kasti üksteise all on nüüd kaks väikest vaadet (pöördumine
  * ja töö), vt ./inbox/InboxViews.jsx; mis tegevused on võimalikud, otsustab
- * ./inbox/inboxRules.js. Töö tagasilükkamine, töö tagasivõtmine, sulgemine ja pöördumise
- * tagasilükkamine küsivad teist vajutust.
+ * ./inbox/inboxRules.js. Töö tagasilükkamine ja töö tagasivõtmine küsivad teist vajutust.
+ *
+ * TÖÖ LÕPETAMINE (sulgemine, pöördumise tagasilükkamine) avab töö vaates väikese vormi:
+ * selgitus pöördujale ja mis juhtub. Tagasilükkamisel on selgitus kohustuslik, sulgemisel
+ * soovi korral (omanik 11.10.2026: põhjust peab küsima ja pöörduja peab seda nägema). Vorm
+ * ise on teine samm, seega eraldi teist vajutust seal ei ole.
  */
 export default function OrgInboxItemClient({ context, item, members, canAssign }) {
   const { t, locale } = useI18n();
@@ -42,6 +59,9 @@ export default function OrgInboxItemClient({ context, item, members, canAssign }
   /* Mis päring käib: "" | "assign" | "accept" | "reject" | "handover" | "takeBack" | "close" | "rejectItem" | "room". */
   const [pending, setPending] = useState("");
   const [hint, setHint] = useState("");
+  /* Mis lõpetamise vorm on ees ("" | "close" | "rejectItem") ja mis sinna on kirjutatud. */
+  const [wantedEnding, setWantedEnding] = useState("");
+  const [endingText, setEndingText] = useState("");
   const confirm = useSecondPress();
   const clearConfirm = confirm.clear;
   const sending = useRef(false);
@@ -118,23 +138,24 @@ export default function OrgInboxItemClient({ context, item, members, canAssign }
   const close = useCallback(async () => {
     const payload = await call(`/api/org/${organizationId}/inbox/${item.id}`, {
       method: "PATCH",
-      body: { toStatus: "CLOSED" },
+      body: { toStatus: "CLOSED", reason: endingReason(endingText) },
       fallbackKey: "org.errors.inbox_transition_failed"
     });
     if (payload) router.push(`/org/${organizationId}/vastuvott`);
-  }, [call, item.id, organizationId, router]);
+  }, [call, endingText, item.id, organizationId, router]);
 
   /* Pöördumise tagasilükkamine: nii lõpetab koordinaator pöördumise, millel ei ole vastutajat
      (omaniku otsus 11.10.2026). Server teeb sama mis sulgemisel: töö lõpeb, pöörduja saab
-     teate ja tema vestlusruum, kui see on, jääb ainult loetavaks. */
+     teate ja tema vestlusruum, kui see on, jääb ainult loetavaks. Selgitus on kohustuslik:
+     server keeldub ilma selleta. */
   const rejectItem = useCallback(async () => {
     const payload = await call(`/api/org/${organizationId}/inbox/${item.id}`, {
       method: "PATCH",
-      body: { toStatus: "REJECTED" },
+      body: { toStatus: "REJECTED", reason: endingReason(endingText) },
       fallbackKey: "org.errors.inbox_transition_failed"
     });
     if (payload) router.push(`/org/${organizationId}/vastuvott`);
-  }, [call, item.id, organizationId, router]);
+  }, [call, endingText, item.id, organizationId, router]);
 
   /* Töö tagasivõtmine töötajalt: käsitsi „ootab määramist" lõpetab serveris elava määramise
      (`transitionInboxItem`). Koordinaator jääb kirje juurde ja saab töö uuesti määrata. */
@@ -167,7 +188,25 @@ export default function OrgInboxItemClient({ context, item, members, canAssign }
   const actions = workActions(item, { context, canAssign });
   const tabs = itemTabs(actions);
   const tab = tabs.includes(wantedTab) ? wantedTab : "package";
-  const listHref = `/org/${organizationId}/vastuvott`;
+  /* Vorm on ees ainult töö vaates ja ainult tegevusele, mis selles seisus võimalik on. */
+  const ending = tab === "work" ? activeEnding(wantedEnding, actions) : "";
+  const openEnding = (kind) => {
+    clearConfirm();
+    setError("");
+    setHint("");
+    setEndingText("");
+    setWantedEnding(kind);
+  };
+  const submitEnding = () => {
+    const problem = endingProblem(ending, endingText);
+    if (problem) {
+      setHint(t(`org.inbox.${problem}`));
+      return;
+    }
+    void once(ending, ending === "close" ? close : rejectItem);
+  };
+  /* Lõpetatud kirjelt viib „Tagasi loendisse" lõpetatud pöördumiste rühma, kust inimene tuli. */
+  const listHref = inboxPagePath(organizationId, groupOfItem(item));
 
   /* Vaate vahetusel läheb fookus valitud lahtrile (lahtrid joonistatakse uuesti). */
   const shown = useRef("");
@@ -178,6 +217,15 @@ export default function OrgInboxItemClient({ context, item, members, canAssign }
     if (first || !moved) return;
     rootRef.current?.querySelector("[role=radio][aria-checked=true]")?.focus({ preventScroll: true });
   }, [tab]);
+  /* Vormi avanemisel läheb fookus tekstiväljale, vormist loobumisel tagasi vaate lahtrile. */
+  const shownEnding = useRef("");
+  useEffect(() => {
+    const before = shownEnding.current;
+    shownEnding.current = ending;
+    if (before === ending) return;
+    const target = ending ? rootRef.current?.querySelector("textarea") : rootRef.current?.querySelector("[role=radio][aria-checked=true]");
+    target?.focus({ preventScroll: true });
+  }, [ending]);
 
   const armedNote = ARMED_NOTES[confirm.armed] ? t(ARMED_NOTES[confirm.armed]) : "";
   const notice = error ? { tone: "risk", text: error } : hint ? { tone: "risk", text: hint } : null;
@@ -193,11 +241,38 @@ export default function OrgInboxItemClient({ context, item, members, canAssign }
             clearConfirm();
             setError("");
             setHint("");
+            setWantedEnding("");
             setWantedTab(value);
           }}
           facts={itemFacts(item, members, { t })}
           parts={sourceParts(item, { t })}
+          closingNote={closingNoteOf(item)}
+          openedNotice={showsOpenedNotice(item)}
           withheld={Boolean(withheld)}
+          ending={
+            ending
+              ? {
+                  kind: ending,
+                  question: t(ENDINGS[ending].question),
+                  hint: t(ENDINGS[ending].hint),
+                  note: t(ENDINGS[ending].note),
+                  submit: t(ENDINGS[ending].submit),
+                  value: endingText,
+                  limit: CLOSING_NOTE_LIMIT,
+                  busy: pending === ending,
+                  onChange: (value) => {
+                    setEndingText(value);
+                    setHint("");
+                  },
+                  onBack: () => {
+                    setError("");
+                    setHint("");
+                    setWantedEnding("");
+                  },
+                  onSubmit: submitEnding
+                }
+              : null
+          }
           work={{
             actions,
             pending,
@@ -237,10 +312,8 @@ export default function OrgInboxItemClient({ context, item, members, canAssign }
             onReject: () => confirm.press("reject", () => once("reject", () => respond("reject"))),
             takeBackArmed: confirm.armed === "takeBack",
             onTakeBack: () => confirm.press("takeBack", () => once("takeBack", takeBack)),
-            closeArmed: confirm.armed === "close",
-            onClose: () => confirm.press("close", () => once("close", close)),
-            rejectItemArmed: confirm.armed === "rejectItem",
-            onRejectItem: () => confirm.press("rejectItem", () => once("rejectItem", rejectItem))
+            onClose: () => openEnding("close"),
+            onRejectItem: () => openEnding("rejectItem")
           }}
           room={
             item.room?.canOpen
