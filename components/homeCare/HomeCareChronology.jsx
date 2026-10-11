@@ -105,11 +105,8 @@ export default function HomeCareChronology({ context, client }) {
   };
 
   return (
-    <OrgPart context={context} part="home_care" partLabel={t("home_care.chronology.title")}>
+    <OrgPart context={context} part="home_care" partLabel={t("home_care.chronology.title")} up={{ label: t("home_care.client.page_name"), href: clientHref(organizationId, client.id) }}>
     <section className="hc-shell">
-      <Link className="hc-back" href={clientHref(organizationId, client.id)} prefetch={false}>
-        {t("home_care.chronology.back")}
-      </Link>
 
       <header className="hc-head">
         <h2 className="hc-title">{client.displayName}</h2>

@@ -123,9 +123,6 @@ export default function HomeCareClientImport({ context, unitOptions }) {
     <OrgPart context={context} part="home_care" partLabel={t("home_care.import.title")}>
     <section className="hc-shell">
       <div className="hc-head">
-        <Link className="hc-back" href={`/org/${organizationId}/koduteenus`}>
-          {t("home_care.client.back")}
-        </Link>
         <p className="hc-sub">{t("home_care.import.intro")}</p>
         <p className="hc-hint">{t("home_care.import.columns_hint", { limit: CLIENT_IMPORT_MAX_ROWS })}</p>
       </div>

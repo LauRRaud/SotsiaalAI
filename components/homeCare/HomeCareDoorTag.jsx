@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useId, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
@@ -55,11 +54,8 @@ export default function HomeCareDoorTag({ context, client, initialTag }) {
   };
 
   return (
-    <OrgPart context={context} part="home_care" partLabel={t("home_care.door_tag.title")}>
+    <OrgPart context={context} part="home_care" partLabel={t("home_care.door_tag.title")} up={{ label: t("home_care.client.page_name"), href: clientHref(organizationId, client.id) }}>
     <section className="hc-shell">
-      <Link className="hc-back" href={clientHref(organizationId, client.id)} prefetch={false}>
-        {t("home_care.chronology.back")}
-      </Link>
 
       <header className="hc-head">
         <h2 className="hc-title">{client.displayName}</h2>

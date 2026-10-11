@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useId, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
@@ -75,9 +74,6 @@ export default function HomeCareWorkers({ context, initial }) {
     <OrgPart context={context} part="home_care" partLabel={t("home_care.workers.title")}>
     <section className="hc-shell">
       <div className="hc-head">
-        <Link className="hc-back" href={`/org/${organizationId}/koduteenus`}>
-          {t("home_care.client.back")}
-        </Link>
         <p className="hc-sub">{t("home_care.workers.intro")}</p>
       </div>
 

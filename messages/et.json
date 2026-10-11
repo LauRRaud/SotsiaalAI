@@ -13906,8 +13906,6 @@
       "description": "Kliendid, päevik ja meeskond"
     },
     "home": {
-      "intro_worker": "Sinu kliendid. Ava klient, et näha kokkuleppeid ja kirjutada päevikusse.",
-      "intro_coordinator": "Kõik kliendid. Ülevaates on uued kirjed, lugemata teated ja lahtised erijuhtumid.",
       "my_clients": "Minu kliendid",
       "all_clients": "Kliendid",
       "empty_worker": "Sa ei ole veel ühegi kliendi meeskonnas. Hooldusjuht lisab sind kliendi juurde.",
@@ -13918,7 +13916,6 @@
       "search_hint": "Otsing näitab ainult nime. Väljaspool oma meeskonda küsitakse lehe avamiseks põhjust.",
       "needs_reason": "avaneb põhjusega",
       "add_client": "Lisa klient",
-      "overview_link": "Hooldusjuhi ülevaade",
       "show_ended": "Näita lõpetatuid",
       "show_active": "Näita aktiivseid",
       "empty_ended": "Lõpetatud kliente ei ole.",
@@ -13955,7 +13952,6 @@
       }
     },
     "client": {
-      "back": "Tagasi klientide juurde",
       "name": "Nimi",
       "internal_code": "Tunnus",
       "internal_code_hint": "Asutuse sisemine tunnus, näiteks sama nimekuju, mida kasutate praeguses töövahendis.",
@@ -14155,7 +14151,6 @@
     },
     "overview": {
       "title": "Hooldusjuhi ülevaade",
-      "back": "Tagasi klientide juurde",
       "recent_title": "Kirjed pärast eilset",
       "recent_empty": "Uusi kirjeid ei ole.",
       "recent_more": "Näidatud on viimased 100 kirjet.",
@@ -14455,7 +14450,6 @@
       "title": "Erijuhtumite register",
       "intro": "Kõik erijuhtumid, kaebused ja tänud sinu vastutusalas. Lahtised on ees.",
       "link": "Erijuhtumite register",
-      "back": "Tagasi klientide juurde",
       "tab_active": "Lahtised ({count})",
       "tab_closed": "Suletud ({count})",
       "tab_all": "Kõik",
@@ -14486,7 +14480,6 @@
     "chronology": {
       "title": "Kliendi kronoloogia",
       "link": "Koosta kronoloogia",
-      "back": "Tagasi kliendi lehele",
       "intro": "Vali ajavahemik ja vaata kirjed üle. Dokumenti lähevad ainult need kirjed, mille ise valid, ja tekstist saad eemaldada kolmandate isikute andmed. Päeviku kirjeid see ei muuda.",
       "period_title": "Ajavahemik",
       "load": "Näita kirjeid",
@@ -14531,7 +14524,6 @@
     "releases": {
       "title": "Väljastuste loend",
       "link": "Väljastused",
-      "back": "Tagasi klientide juurde",
       "intro": "Kõik koostatud kronoloogiad: kellele, mis alusel ja kes koostas. Ametlik register on asutuse dokumendihaldus; see loend on tööloend.",
       "empty": "Väljastusi veel ei ole.",
       "period": "Ajavahemik: {from} – {to}",
@@ -14794,7 +14786,6 @@
       "none": "Hoolduskava ei ole veel kehtestatud.",
       "create_link": "Koosta hoolduskava",
       "edit_link": "Muuda hoolduskava",
-      "back": "Tagasi kliendi lehele",
       "editor_intro": "Muudad mustandit. Kehtiv kava jääb samaks, kuni mustandi kehtestad; siis jääb eelmine kava alles varasemate kavade loendis.",
       "active_title": "Kehtiv kava",
       "none_yet": "Sellel kliendil ei ole veel kehtivat hoolduskava.",
@@ -15221,7 +15212,6 @@
     },
     "absences": {
       "link": "Puudumised",
-      "back": "Tagasi päevaplaani",
       "title": "Puudumised",
       "intro": "Märgi, millal hooldaja tööl ei ole. Päevaplaan tõstab siis esile käigud, mille tegija puudub, ega paku teda asendajaks. Põhjust siin ei küsita.",
       "list_title": "Märgitud puudumised",
@@ -16261,6 +16251,39 @@
       "limits_title": "Mida siin ei ole",
       "limits_money": "Kliendi raha on arvestus, mitte makse. Pangakaardi andmeid ega PIN-koodi siia ei kirjutata.",
       "limits_official": "Ametlik menetlus toimub STAR-is. Siin on asutuse enda töö: päevik, plaan ja kokkulepped."
+    },
+    "desk": {
+      "groups": {
+        "daily": "Iga päev",
+        "people": "Kliendid ja töötajad",
+        "month": "Kuu ja väljavõtted"
+      },
+      "names": {
+        "overview": "Ülevaade",
+        "incidents": "Erijuhtumid",
+        "name": "Minu nimi"
+      },
+      "lines": {
+        "today": "Sinu tänased käigud",
+        "overview": "Mis on pärast eilset uut",
+        "day": "Tänased käigud ja tegijad",
+        "week": "Käigud töötajate kaupa",
+        "absences": "Kes ja millal ei tööta",
+        "deadlines": "Mis ootab sinu otsust",
+        "clients": "Otsi, ava või lisa klient",
+        "my_clients": "Ava klient või otsi nime järgi",
+        "incidents": "Juhtumid, kaebused, tänud",
+        "keys": "Kelle käes on iga võti",
+        "crisis": "Kes vajab kriisis tuge",
+        "workers": "Koolitused ja kontrollid",
+        "refer": "Kuhu inimene edasi saata",
+        "month": "Osutatud aeg ja kuu lukk",
+        "trips": "Töösõidud ja kilomeetrid",
+        "calls": "Kes ja millest helistab",
+        "releases": "Koostatud kronoloogiad",
+        "activities": "Asutuse toimingute loend",
+        "export": "Kõik andmed ühe failina"
+      }
     }
   },
   "stage": {
