@@ -137,8 +137,9 @@ export default function OrgHomeClient({ organizations, pendingInvites, canCreate
     let tries = 0;
     const settle = () => {
       const target = mode === "create" ? nameRef.current : rootRef.current?.querySelector("[data-step-heading]");
+      /* Kui inimene on vahepeal ise mõne välja või nupu peale läinud, jääb fookus sinna. */
       const held = document.activeElement;
-      if (held && held !== document.body && held !== target) return;
+      if (held && held !== target && held.matches?.("input, textarea, select, button, a[href]")) return;
       target?.focus?.({ preventScroll: true });
       tries += 1;
       if (document.activeElement !== target && tries < FOCUS_TRIES) frame = window.requestAnimationFrame(settle);

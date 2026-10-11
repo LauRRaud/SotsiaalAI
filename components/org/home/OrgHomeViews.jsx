@@ -83,7 +83,7 @@ export function BoardView({ t, filter, onFilter, orgRows, inviteRows, create, hr
             <ul className={shared.rows} aria-label={t("org.home.pendingInvites")}>
               {inviteRows.map((row) => (
                 <li key={row.id} className={shared.rowItem}>
-                  <div className={styles.invite}>
+                  <div className={shared.rowStatic}>
                     <span className={shared.rowMain}>
                       <span className={shared.rowTitle}>{row.title}</span>
                       {row.sub ? <span className={shared.rowSub}>{row.sub}</span> : null}

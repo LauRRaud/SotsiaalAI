@@ -17,13 +17,3 @@
   flex: 0 1 21rem;
   min-width: 0;
 }
-
-/* --- Kutse rida -------------------------------------------------------------------- */
-/* Kutset siit ei avata (link on kutsuja käes): rida on loetav, mitte vajutatav. */
-.invite {
-  composes: row from "../org.module.css";
-  cursor: default;
-}
-.invite:hover {
-  background: var(--glass-cell-bg);
-}

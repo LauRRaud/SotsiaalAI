@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 
+import { visibleOrgParts } from "./orgParts";
+
 /**
  * T25 ORG-FOUNDATION-V1 — organisatsiooni navigatsioon.
  *
@@ -14,88 +16,15 @@ import { useI18n } from "@/components/i18n/I18nProvider";
  *
  * See on MUGAVUS, mitte turvapiir: iga link viib route'i peale, mis kontrollib
  * õigust ise uuesti. Navigatsiooni peitmine üksi ei kaitse midagi.
+ *
+ * Osade loend (võti, tee, nõutav õigus ja moodul ning põhjendused, miks mõni
+ * osa õigust ei nõua) on failis ./orgParts.js: sama loendit kasutab
+ * organisatsiooni laud.
  */
 export default function OrgNav({ organizationId, capabilities = [], activeModules = [] }) {
   const { t } = useI18n();
   const pathname = usePathname();
-  const granted = new Set(capabilities.map((grant) => grant.capability));
-  const modules = new Set(activeModules);
-
-  const items = [
-    { key: "overview", href: `/org/${organizationId}`, label: t("org.nav.overview") },
-    { key: "structure", href: `/org/${organizationId}/struktuur`, label: t("org.nav.structure") },
-    /* Vastuvõtt sõltub MOODULIST, mitte capability'st. Teadlik erand
-       capability-põhisest peitmisest: määratud töötajal EI OLE
-       `INBOX_COORDINATOR`-it, aga ta peab oma tööd nägema. Loend on serveris
-       skoobitud — õiguseta liige näeb tühja lauda, mitte võõrast tööd. */
-    {
-      key: "inbox",
-      href: `/org/${organizationId}/vastuvott`,
-      label: t("org.nav.inbox"),
-      requiresModule: "KOV_INTAKE"
-    },
-    {
-      key: "funding",
-      href: `/org/${organizationId}/arveldus`,
-      label: t("org.nav.funding"),
-      requires: "BILLING_MANAGER"
-    },
-    /* Tugi on IGA liikme oma — ei capability't ega moodulit. Toeavaldus on
-       töötaja õigus, mitte funktsioon, mida organisatsioon lubab. */
-    { key: "support", href: `/org/${organizationId}/tugi`, label: t("org.nav.support") },
-    /* Teenuspäeviku aruanded on samuti IGA liikme oma ja sama põhjusega:
-       õigus näha tuleb SAATMISEST, mitte rollist. Capability otsustab hoopis
-       seda, kellele tohib saata. */
-    { key: "service_reports", href: `/org/${organizationId}/aruanded`, label: t("org.nav.service_reports") },
-    /* Graafik on juhi vahend: capability otsustab SISU (tühi tahvel ilma
-       õiguseta), mitte lingi olemasolu — muidu peaks nav teadma sedasama
-       reeglistikku, mida teab juba `dispatchBoard.js`. */
-    { key: "dispatch", href: `/org/${organizationId}/graafik`, label: t("org.nav.dispatch") },
-    /* Koduteenus sõltub MOODULIST, mitte capability'st: hooldajal ei ole
-       ühtegi capability't, aga ta peab oma kliente nägema. Loend on serveris
-       skoobitud (meeskond või hooldusjuht). */
-    {
-      key: "home_care",
-      href: `/org/${organizationId}/koduteenus`,
-      label: t("org.nav.home_care"),
-      requiresModule: "HOME_CARE"
-    },
-    {
-      key: "profile",
-      href: `/org/${organizationId}/teenusprofiil`,
-      label: t("org.nav.profile"),
-      requires: "SERVICE_PROFILE_EDITOR",
-      requiresModule: "SERVICE_DELIVERY"
-    },
-    {
-      key: "members",
-      href: `/org/${organizationId}/liikmed`,
-      label: t("org.nav.members"),
-      requires: "MEMBER_ADMIN"
-    },
-    {
-      key: "invites",
-      href: `/org/${organizationId}/kutsed`,
-      label: t("org.nav.invites"),
-      requires: "MEMBER_ADMIN"
-    },
-    {
-      key: "audit",
-      href: `/org/${organizationId}/audit`,
-      label: t("org.nav.audit"),
-      requires: "AUDIT_VIEWER"
-    },
-    {
-      key: "settings",
-      href: `/org/${organizationId}/seaded`,
-      label: t("org.nav.settings"),
-      requires: "ORG_OWNER"
-    }
-  ].filter(
-    (item) =>
-      (!item.requires || granted.has(item.requires)) &&
-      (!item.requiresModule || modules.has(item.requiresModule))
-  );
+  const items = visibleOrgParts(organizationId, { capabilities, activeModules });
 
   return (
     <nav className="ow-nav" aria-label={t("org.title")}>
@@ -108,7 +37,7 @@ export default function OrgNav({ organizationId, capabilities = [], activeModule
             className="ow-nav__link"
             aria-current={isCurrent ? "page" : undefined}
           >
-            {item.label}
+            {t(`org.nav.${item.key}`)}
           </Link>
         );
       })}

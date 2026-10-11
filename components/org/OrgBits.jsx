@@ -6,7 +6,9 @@
  * Kujundus: ./org.module.css.
  */
 
+import ChoiceRow from "@/components/stage/ChoiceRow";
 import Button from "@/components/ui/Button";
+import Dropdown from "@/components/ui/Dropdown";
 
 import shared from "./org.module.css";
 
@@ -27,11 +29,12 @@ export function footNote(notice, quiet = "") {
 
 /**
  * Sõnade read: `rows` on `[{ key, label, value, quiet? }]`. Tühja väärtusega
- * rida jääb välja (tühja rida ega kriipsu ei näidata).
+ * rida jääb välja (tühja rida ega kriipsu ei näidata). `inline`: lühikesed read
+ * üksteise kõrval ühel real (murduvad, kui ei mahu).
  */
-export function Facts({ rows, busy = false }) {
+export function Facts({ rows, busy = false, inline = false }) {
   return (
-    <div className={shared.facts} aria-busy={busy ? "true" : undefined}>
+    <div className={shared.facts} data-inline={inline ? "1" : undefined} aria-busy={busy ? "true" : undefined}>
       {rows
         .filter((row) => row.value)
         .map((row) => (
@@ -62,5 +65,25 @@ export function ArmedButton({ armed, label, confirm, onPress, busy = false, mark
     >
       {armed ? confirm : label}
     </Button>
+  );
+}
+
+/* Kuni nii palju variante on korraga näha lahtritena; rohkem läheb rippvalikusse. */
+const PICK_CELLS_MAX = 6;
+
+/**
+ * Üks valik organisatsiooni enda andmetest (üksus, liige), mille pikkust ette ei
+ * tea. Kuni kuus varianti on ühelaiused lahtrid (kõik kohe näha, kaks rida), pikem
+ * loend on platvormi rippvalik: kolmkümmend lahtrit ei mahuks ühtegi vaatesse.
+ */
+export function PickOne({ label, options, value, onChange, columns = 3, disabled = false }) {
+  if (options.length <= PICK_CELLS_MAX) {
+    return <ChoiceRow label={label} options={options} value={value} onChange={onChange} columns={columns} keepColumns disabled={disabled} />;
+  }
+  return (
+    <label className={shared.line}>
+      <span className={shared.fieldLabel}>{label}</span>
+      <Dropdown value={value} onChange={onChange} ariaLabel={label} options={options} disabled={disabled} />
+    </label>
   );
 }

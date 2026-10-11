@@ -59,7 +59,9 @@ test("ametinimetus lõigatakse 200 märgini", async () => {
 test("kutsevorm saadab ametinimetuse ja selle silt on kolmes keeles olemas", () => {
   const source = fs.readFileSync(new URL("../components/org/OrgInvitesClient.jsx", import.meta.url), "utf8");
   assert.match(source, /jobTitle: jobTitle\.trim\(\) \|\| null/, "vorm peab ametinimetuse päringuga kaasa saatma");
-  assert.match(source, /t\("org\.invites\.jobTitle"\)/);
+  /* Vormi väljad on vaadete failis (leht hoiab olekut ja päringuid). */
+  const views = fs.readFileSync(new URL("../components/org/invites/InvitesViews.jsx", import.meta.url), "utf8");
+  assert.match(views, /t\("org\.invites\.jobTitle"\)/);
   for (const locale of ["et", "en", "ru"]) {
     const messages = JSON.parse(fs.readFileSync(new URL(`../messages/${locale}.json`, import.meta.url), "utf8"));
     assert.equal(typeof messages.org.invites.jobTitle, "string", `${locale}: puudub org.invites.jobTitle`);

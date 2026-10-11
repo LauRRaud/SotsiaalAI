@@ -1,0 +1,14 @@
+/* Struktuuri osa: üksuste puu. Rea materjal ja kõrvaltegevus on organisatsioonide
+   lehtede ühised (../org.module.css); siin on ainult puu taane. */
+
+/* Üksuse rida: loetav (ei avane), alamüksus on tasandi võrra taandatud. Taane on
+   rea SEES (polster), nii et read jäävad ühelaiused ja kõrvaltegevus ühele joonele. */
+.unit {
+  composes: rowStatic from "../org.module.css";
+}
+.unit[data-depth="2"] {
+  padding-inline-start: 2.2rem;
+}
+.unit[data-depth="3"] {
+  padding-inline-start: 3.5rem;
+}

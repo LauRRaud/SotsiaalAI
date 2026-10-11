@@ -1,14 +1,12 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import Button from "@/components/ui/Button";
-import Checkbox from "@/components/ui/Checkbox";
-import Form from "@/components/ui/Form";
-import Input from "@/components/ui/Input";
 
-import OrgHeader from "./OrgHeader";
+import OrgPart from "./OrgPart";
+import { DataView, EditorsView, NoProfileView, TextView } from "./profile/ProfileViews";
+import { PROFILE_TABS, convertSubject, editorNames, formFromProfile, profileDirty, shownProfileTab } from "./profile/profileRules";
 import { useOrgApi } from "./useOrgApi";
 
 /**
@@ -21,34 +19,40 @@ import { useOrgApi } from "./useOrgApi";
  * SALVESTAMINE KANNAB VERSIOONI (`expectedUpdatedAt`). Kaks toimetajat võivad
  * sama profiili korraga avada; kes teisena salvestab, saab 409 ega kirjuta
  * esimese muudatust vaikselt üle.
+ *
+ * KUJU (11.10). Vorm ja toimetajate kast üksteise all on nüüd kolm väikest
+ * vaadet (andmed, kirjeldus, toimetajad), vt ./profile/ProfileViews.jsx; reeglid
+ * on failis ./profile/profileRules.js. Andmed ja kirjeldus on üks kirje ja üks
+ * salvestus: kummagi vaate nupp salvestab kogu vormi.
  */
 export default function OrgProfileClient({ context, profile, editors, convertibleProfile }) {
   const { t } = useI18n();
-  const { call, busy, error } = useOrgApi();
-  const [form, setForm] = useState(() => ({
-    organizationName: profile?.organizationName || "",
-    shortDescription: profile?.shortDescription || "",
-    phone: profile?.phone || "",
-    email: profile?.email || "",
-    website: profile?.website || ""
-  }));
+  const { call, error, setError } = useOrgApi();
+  const [form, setForm] = useState(() => formFromProfile(profile));
   const [convertConfirmed, setConvertConfirmed] = useState(false);
+  const [wantedTab, setWantedTab] = useState("data");
+  /* Mis päring käib: "" | "save" | "convert". */
+  const [pending, setPending] = useState("");
+  const [hint, setHint] = useState("");
+  const sending = useRef(false);
+  /* Pärast salvestamist laadib leht end ise uuesti: siis brauser lahkumist üle ei küsi. */
+  const reloading = useRef(false);
+  const rootRef = useRef(null);
 
   const organizationId = context.organization.id;
   const writable = context?.writable !== false;
 
-  const save = useCallback(
-    async (event) => {
-      event.preventDefault();
-      const payload = await call(`/api/org/${organizationId}/teenusprofiil`, {
-        method: "PATCH",
-        body: { profileId: profile.id, expectedUpdatedAt: profile.updatedAt, ...form },
-        fallbackKey: "org.errors.profile_update_failed"
-      });
-      if (payload) window.location.reload();
-    },
-    [call, form, organizationId, profile]
-  );
+  const save = useCallback(async () => {
+    const payload = await call(`/api/org/${organizationId}/teenusprofiil`, {
+      method: "PATCH",
+      body: { profileId: profile.id, expectedUpdatedAt: profile.updatedAt, ...form },
+      fallbackKey: "org.errors.profile_update_failed"
+    });
+    if (payload) {
+      reloading.current = true;
+      window.location.reload();
+    }
+  }, [call, form, organizationId, profile]);
 
   const convert = useCallback(async () => {
     const payload = await call(`/api/org/${organizationId}/teenusprofiil`, {
@@ -56,111 +60,102 @@ export default function OrgProfileClient({ context, profile, editors, convertibl
       body: { profileId: convertibleProfile.id, ownerConfirmed: convertConfirmed },
       fallbackKey: "org.errors.profile_convert_failed"
     });
-    if (payload) window.location.reload();
+    if (payload) {
+      reloading.current = true;
+      window.location.reload();
+    }
   }, [call, convertConfirmed, convertibleProfile, organizationId]);
 
-  return (
-    <section className="ow-shell">
-      <OrgHeader context={context} />
+  /* Üks tegevus korraga: topeltvajutus ei saada teist päringut. */
+  const once = useCallback(async (name, work) => {
+    if (sending.current) return;
+    sending.current = true;
+    setPending(name);
+    setHint("");
+    try {
+      await work();
+    } finally {
+      sending.current = false;
+      setPending("");
+    }
+  }, []);
 
-      <div className="ow-card">
-        <h2 className="ow-title" style={{ fontSize: "1.125rem" }}>
-          {t("org.profile.heading")}
-        </h2>
-        <p className="ow-subtitle">{t("org.profile.intro")}</p>
-      </div>
+  const tab = shownProfileTab(wantedTab);
+  const dirty = profile ? profileDirty(form, profile) : false;
 
-      {profile ? (
-        <>
-          <Form className="ow-card" onSubmit={save}>
-            <div className="ow-grid">
-              {[
-                ["organizationName", t("org.create.displayName")],
-                ["phone", t("org.profile.phone")],
-                ["email", t("org.profile.email")],
-                ["website", t("org.profile.website")]
-              ].map(([field, label]) => (
-                <label key={field}>
-                  <span className="ow-meta__term">{label}</span>
-                  <Input
-                    value={form[field]}
-                    onChange={(event) => setForm((old) => ({ ...old, [field]: event.target.value }))}
-                    style={{ width: "100%" }}
-                  />
-                </label>
-              ))}
-            </div>
-            <label>
-              <span className="ow-meta__term">{t("org.profile.shortDescription")}</span>
-              <textarea
-                rows={3}
-                value={form.shortDescription}
-                onChange={(event) => setForm((old) => ({ ...old, shortDescription: event.target.value }))}
-                style={{ width: "100%" }}
-              />
-            </label>
-            {writable ? (
-              <div className="ow-actions">
-                <Button type="submit" disabled={busy}>
-                  {t("org.profile.save")}
-                </Button>
-              </div>
-            ) : null}
-          </Form>
+  /* Vaate vahetusel läheb fookus valitud lahtrile (lahtrid joonistatakse uuesti). */
+  const shown = useRef("");
+  useEffect(() => {
+    const first = shown.current === "";
+    const moved = shown.current !== tab;
+    shown.current = tab;
+    if (first || !moved) return;
+    rootRef.current?.querySelector("[role=radio][aria-checked=true]")?.focus({ preventScroll: true });
+  }, [tab]);
 
-          <section className="ow-card" aria-labelledby="ow-editors">
-            <h3 id="ow-editors" className="ow-title" style={{ fontSize: "1rem" }}>
-              {t("org.profile.editors")}
-            </h3>
-            {editors.length === 0 ? (
-              <p className="ow-empty">{t("org.profile.noEditors")}</p>
-            ) : (
-              <ul className="ow-chips">
-                {editors.map((editor) => (
-                  <li key={editor.membershipId} className="ow-chip">
-                    {[editor.firstName, editor.lastName].filter(Boolean).join(" ") || editor.email}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </section>
-        </>
-      ) : (
-        <section className="ow-card">
-          <p className="ow-empty">{t("org.profile.noProfile")}</p>
-          {convertibleProfile && writable ? (
-            <>
-              {/* MIS profiili ma üle annan. Üleandmine on pöördumatu tegu ja
-                  ilma objekti nimeta on kinnitus pime — kasutaja võib arvata,
-                  et jutt on hoopis mõnest teisest profiilist. */}
-              <p className="ow-meta__value">
-                <span className="ow-meta__term">{t("org.profile.convertSubject")}</span>{" "}
-                {convertibleProfile.organizationName || convertibleProfile.id}
-              </p>
-              <p className="ow-subtitle">{t("org.profile.convertHint")}</p>
-              <label style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start" }}>
-                <Checkbox
-                  bare
-                  checked={convertConfirmed}
-                  onChange={setConvertConfirmed}
-                />
-                <span>{t("org.profile.convertConfirm")}</span>
-              </label>
-              <div className="ow-actions">
-                <Button type="button" onClick={convert} disabled={busy || !convertConfirmed}>
-                  {t("org.profile.convert")}
-                </Button>
-              </div>
-            </>
-          ) : null}
-        </section>
-      )}
+  /* Salvestamata muudatustega lehelt lahkumine: brauser küsib üle. */
+  useEffect(() => {
+    if (!dirty) return undefined;
+    const warn = (event) => {
+      if (reloading.current) return;
+      event.preventDefault();
+      event.returnValue = "";
+    };
+    window.addEventListener("beforeunload", warn);
+    return () => window.removeEventListener("beforeunload", warn);
+  }, [dirty]);
 
-      {error ? (
-        <p className="ow-notice ow-notice--warning" role="alert">
-          {error}
-        </p>
-      ) : null}
-    </section>
+  const notice = error ? { tone: "risk", text: error } : hint ? { tone: "risk", text: hint } : null;
+  const wrap = (view) => (
+    <div ref={rootRef}>
+      <OrgPart context={context} part="profile">
+        {view}
+      </OrgPart>
+    </div>
   );
+
+  if (!profile) {
+    return wrap(
+      <NoProfileView
+        t={t}
+        notice={notice}
+        convert={
+          convertibleProfile && writable
+            ? {
+                subject: convertSubject(convertibleProfile, { t }),
+                confirmed: convertConfirmed,
+                onConfirm: (value) => {
+                  setConvertConfirmed(value);
+                  setHint("");
+                },
+                busy: pending === "convert",
+                onConvert: () => {
+                  if (!convertConfirmed) {
+                    setHint(t("org.profile.need_confirm"));
+                    return;
+                  }
+                  void once("convert", convert);
+                }
+              }
+            : null
+        }
+      />
+    );
+  }
+
+  const tabs = [...PROFILE_TABS];
+  const changeTab = (value) => {
+    setError("");
+    setHint("");
+    setWantedTab(value);
+  };
+  const changeField = (key, value) => {
+    setForm((current) => ({ ...current, [key]: value }));
+    setError("");
+  };
+  const saver = writable ? { busy: pending === "save", onSave: () => once("save", save) } : null;
+
+  if (tab === "editors") return wrap(<EditorsView t={t} tabs={tabs} tab={tab} onTab={changeTab} editors={editorNames(editors, { t })} />);
+  if (tab === "text") return wrap(<TextView t={t} tabs={tabs} tab={tab} onTab={changeTab} form={form} onField={changeField} readOnly={!writable} dirty={dirty} notice={notice} save={saver} />);
+  return wrap(<DataView t={t} tabs={tabs} tab={tab} onTab={changeTab} form={form} onField={changeField} readOnly={!writable} dirty={dirty} notice={notice} save={saver} />);
 }

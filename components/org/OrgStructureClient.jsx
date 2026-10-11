@@ -1,51 +1,61 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import Button from "@/components/ui/Button";
-import Dropdown from "@/components/ui/Dropdown";
-import Form from "@/components/ui/Form";
-import Input from "@/components/ui/Input";
-import { ORGANIZATION_UNIT_TYPES } from "@/lib/org/constants";
 
-import OrgHeader from "./OrgHeader";
+import OrgPart from "./OrgPart";
+import { StructureBoard, UnitForm } from "./structure/StructureViews";
+import { EMPTY_UNIT, canEditStructure, parentOptions, unitDirty, unitProblemKey, unitRow, unitTree, unitTypeOptions } from "./structure/structureRules";
 import { useOrgApi } from "./useOrgApi";
+import { useSecondPress } from "./useSecondPress";
 
-/** Üksuste puu. Sügavus tuleb serverist (`depth`), mitte kliendi arvutusest. */
+/**
+ * Üksuste puu. Sügavus tuleb serverist (`depth`), mitte kliendi arvutusest.
+ *
+ * KUJU (11.10). Leht oli kast loendiga ja selle all vorm. Nüüd on ees kas puu
+ * (alamüksus oma vanema all) või uue üksuse vorm. Vaated on failis
+ * ./structure/StructureViews.jsx, reeglid failis ./structure/structureRules.js;
+ * see fail hoiab olekut ja teeb päringud. Arhiveerimine küsib teist vajutust.
+ */
 export default function OrgStructureClient({ context, initialUnits }) {
   const { t } = useI18n();
-  const { call, busy, error } = useOrgApi();
+  const { call, busy, error, setError } = useOrgApi();
   const [units, setUnits] = useState(initialUnits || []);
-  const [name, setName] = useState("");
-  const [type, setType] = useState("TEAM");
-  const [parentUnitId, setParentUnitId] = useState("");
+  const [form, setForm] = useState(EMPTY_UNIT);
+  const [mode, setMode] = useState("list");
+  /* Mis päring käib: "" | "add" | "archive:<id>". */
+  const [pending, setPending] = useState("");
+  const [notice, setNotice] = useState(null);
+  const confirm = useSecondPress();
+  const clearConfirm = confirm.clear;
+  const sending = useRef(false);
+  const rootRef = useRef(null);
+  const nameRef = useRef(null);
+  const live = useRef(form);
+  live.current = form;
 
-  const canEdit =
-    context?.writable !== false &&
-    (context?.capabilities || []).some((grant) => grant.capability === "MEMBER_ADMIN");
+  const canEdit = canEditStructure(context);
 
   const reload = useCallback(async () => {
     const payload = await call(`/api/org/${context.organization.id}/units`);
     if (payload?.units) setUnits(payload.units);
   }, [call, context.organization.id]);
 
-  const addUnit = useCallback(
-    async (event) => {
-      event.preventDefault();
-      const payload = await call(`/api/org/${context.organization.id}/units`, {
-        method: "POST",
-        body: { name, type, parentUnitId: parentUnitId || null },
-        fallbackKey: "org.errors.unit_create_failed"
-      });
-      if (payload) {
-        setName("");
-        setParentUnitId("");
-        await reload();
-      }
-    },
-    [call, context.organization.id, name, parentUnitId, reload, type]
-  );
+  const addUnit = useCallback(async () => {
+    const { name, type, parentUnitId } = live.current;
+    const payload = await call(`/api/org/${context.organization.id}/units`, {
+      method: "POST",
+      body: { name, type, parentUnitId: parentUnitId || null },
+      fallbackKey: "org.errors.unit_create_failed"
+    });
+    if (payload) {
+      setForm(EMPTY_UNIT);
+      setMode("list");
+      setNotice({ text: t("org.structure.added", { name: name.trim() }) });
+      await reload();
+    }
+  }, [call, context.organization.id, reload, t]);
 
   const archive = useCallback(
     async (unitId) => {
@@ -58,91 +68,120 @@ export default function OrgStructureClient({ context, initialUnits }) {
     [call, context.organization.id, reload]
   );
 
-  return (
-    <section className="ow-shell">
-      <OrgHeader context={context} />
+  /* Üks tegevus korraga: topeltvajutus ei saada teist päringut. */
+  const once = useCallback(async (name, work) => {
+    if (sending.current) return;
+    sending.current = true;
+    setPending(name);
+    setNotice(null);
+    try {
+      await work();
+    } finally {
+      sending.current = false;
+      setPending("");
+    }
+  }, []);
 
-      <div className="ow-card">
-        <h2 className="ow-title" style={{ fontSize: "1.125rem" }}>
-          {t("org.structure.heading")}
-        </h2>
-        <p className="ow-subtitle">{t("org.structure.intro")}</p>
-        <p className="ow-empty">{t("org.structure.maxDepthHint")}</p>
+  const rows = useMemo(() => unitTree(units).map((unit) => unitRow(unit, { t })), [units, t]);
+  const types = useMemo(() => unitTypeOptions(t), [t]);
+  const parents = useMemo(() => parentOptions(units, t), [units, t]);
 
-        {units.length === 0 ? (
-          <p className="ow-empty">{t("org.structure.empty")}</p>
-        ) : (
-          <ul className="ow-tree">
-            {units.map((unit) => (
-              <li key={unit.id} className="ow-tree__item" data-depth={unit.depth}>
-                <span>{unit.name}</span>
-                <span className="ow-chip">{t(`org.unitType.${unit.type}`)}</span>
-                {canEdit ? (
-                  <Button type="button" onClick={() => archive(unit.id)} disabled={busy}>
-                    {t("org.structure.archive")}
-                  </Button>
-                ) : null}
-              </li>
-            ))}
-          </ul>
-        )}
+  /* Vaate vahetusel (puu ↔ vorm) kaob vajutatud nupp: fookus läheb nime väljale
+     või vaate pealkirjale. Esimesel joonistusel fookust ei võeta. */
+  const shown = useRef("");
+  useEffect(() => {
+    const first = shown.current === "";
+    const moved = shown.current !== mode;
+    shown.current = mode;
+    if (first || !moved) return;
+    if (mode === "add") nameRef.current?.focus?.({ preventScroll: true });
+    else rootRef.current?.querySelector("[data-step-heading]")?.focus({ preventScroll: true });
+  }, [mode]);
+
+  const leaveForm = useCallback(() => {
+    setForm(EMPTY_UNIT);
+    setMode("list");
+    setNotice(null);
+    setError("");
+  }, [setError]);
+
+  const fault = error ? { tone: "risk", text: error } : notice;
+
+  if (mode === "add" && canEdit) {
+    return (
+      <div ref={rootRef}>
+        <OrgPart context={context} part="structure">
+          <UnitForm
+            t={t}
+            form={form}
+            onField={(key, value) => {
+              setForm((current) => ({ ...current, [key]: value }));
+              clearConfirm();
+              setNotice(null);
+              setError("");
+            }}
+            types={types}
+            parents={parents}
+            fieldRef={nameRef}
+            notice={fault}
+            decline={{
+              armed: confirm.armed === "decline",
+              onPress: () => {
+                if (sending.current) return;
+                if (!unitDirty(live.current)) leaveForm();
+                else confirm.press("decline", leaveForm);
+              }
+            }}
+            save={{
+              busy: busy && pending === "add",
+              onSave: () => {
+                const problem = unitProblemKey(live.current);
+                if (problem) {
+                  setNotice({ tone: "risk", text: t(problem) });
+                  nameRef.current?.focus?.({ preventScroll: true });
+                  return;
+                }
+                clearConfirm();
+                void once("add", addUnit);
+              }
+            }}
+          />
+        </OrgPart>
       </div>
+    );
+  }
 
-      {canEdit ? (
-        <Form className="ow-card" onSubmit={addUnit}>
-          <h2 className="ow-title" style={{ fontSize: "1rem" }}>
-            {t("org.structure.add")}
-          </h2>
-          <div className="ow-grid">
-            <label>
-              <span className="ow-meta__term">{t("org.structure.name")}</span>
-              <Input
-                required
-                value={name}
-                onChange={(event) => setName(event.target.value)}
-                style={{ width: "100%" }}
-              />
-            </label>
-            <label>
-              <span className="ow-meta__term">{t("org.structure.type")}</span>
-              <Dropdown
-                value={type}
-                onChange={setType}
-                ariaLabel={t("org.structure.type")}
-                options={ORGANIZATION_UNIT_TYPES.map((unitType) => ({
-                  value: unitType,
-                  label: t(`org.unitType.${unitType}`)
-                }))}
-              />
-            </label>
-            <label>
-              <span className="ow-meta__term">{t("org.structure.parent")}</span>
-              <Dropdown
-                value={parentUnitId}
-                onChange={setParentUnitId}
-                ariaLabel={t("org.structure.parent")}
-                options={[
-                  { value: "", label: t("org.structure.noParent") },
-                  ...units
-                    .filter((unit) => unit.depth < 3)
-                    .map((unit) => ({ value: unit.id, label: unit.name }))
-                ]}
-              />
-            </label>
-          </div>
-          <div className="ow-actions">
-            <Button type="submit" disabled={busy}>
-              {t("org.structure.add")}
-            </Button>
-          </div>
-        </Form>
-      ) : null}
-
-      {error ? (
-        <p className="ow-notice ow-notice--warning" role="alert">
-          {error}
-        </p>
-      ) : null}
-    </section>
+  return (
+    <div ref={rootRef}>
+      <OrgPart context={context} part="structure">
+        <StructureBoard
+          t={t}
+          rows={rows}
+          add={
+            canEdit
+              ? {
+                  onAdd: () => {
+                    clearConfirm();
+                    setError("");
+                    setNotice(null);
+                    setMode("add");
+                  }
+                }
+              : null
+          }
+          archive={
+            canEdit
+              ? {
+                  armedId: confirm.armed.startsWith("archive:") ? confirm.armed.slice(8) : "",
+                  busyId: pending.startsWith("archive:") ? pending.slice(8) : "",
+                  onPress: (row) => confirm.press(`archive:${row.id}`, () => once(`archive:${row.id}`, () => archive(row.id))),
+                  onCancel: clearConfirm
+                }
+              : null
+          }
+          notice={fault}
+        />
+      </OrgPart>
+    </div>
   );
 }

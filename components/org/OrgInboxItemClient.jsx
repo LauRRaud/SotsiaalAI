@@ -1,44 +1,59 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import Button from "@/components/ui/Button";
-import Dropdown from "@/components/ui/Dropdown";
 import { buildRoomChatPath } from "@/lib/roomPath";
 
-import OrgHeader from "./OrgHeader";
+import { ItemView } from "./inbox/InboxViews";
+import { itemFacts, itemTabs, sourceParts, workActions, workerOptions } from "./inbox/inboxRules";
+import OrgPart from "./OrgPart";
 import { useOrgApi } from "./useOrgApi";
+import { useSecondPress } from "./useSecondPress";
 
 /**
- * Ühe pöördumise vaade.
+ * Ühe vastuvõtukirje vaade.
  *
- * KUVATAV SISU tuleb serveri valge nimekirjaga projektsioonist
- * (`projectSourcePackage`) ja on koordinaatorile ning määratud töötajale
- * TÄPSELT SAMA. Siin komponendis ei tohi olla ühtegi välja, mida server ei
+ * PAKETT ON SAATJA KINNITATUD ja ainult see. Siin ei ole ega tule Teekonda,
+ * vestlusi ega muud materjali. Vaade kuvab ainult välju, mille server on
  * saatnud — kui midagi puudub, on see serveri otsus, mitte UI puudujääk.
+ *
+ * KUJU (11.10). Neli kasti üksteise all on nüüd kaks väikest vaadet (pöördumine
+ * ja töö), vt ./inbox/InboxViews.jsx; mis tegevused on võimalikud, otsustab
+ * ./inbox/inboxRules.js. Tagasilükkamine ja sulgemine küsivad teist vajutust.
  */
 export default function OrgInboxItemClient({ context, item, members, canAssign }) {
   const { t, locale } = useI18n();
   const router = useRouter();
-  const { call, busy, error } = useOrgApi();
+  const { call, error, setError } = useOrgApi();
   const [assigneeId, setAssigneeId] = useState("");
   const [handoverId, setHandoverId] = useState("");
+  const [wantedTab, setWantedTab] = useState("package");
+  /* Mis päring käib: "" | "assign" | "accept" | "reject" | "handover" | "close". */
+  const [pending, setPending] = useState("");
+  const [hint, setHint] = useState("");
+  const confirm = useSecondPress();
+  const clearConfirm = confirm.clear;
+  const sending = useRef(false);
+  const rootRef = useRef(null);
 
   const organizationId = context.organization.id;
-  const writable = context?.writable !== false;
-  const source = item.source || {};
   /* Server ei saatnud sisu ja ütles ka, miks. UI ei tohi seda tõlgendada
      „andmed ei laadinud" veaks ega joonistada tühje välju, mille kõrval on
      endiselt „määra töötaja" — nupp, mille server niikuinii 409-ga tagasi
      lükkab. Tühi vorm annaks lubaduse, mida ei ole. */
   const withheld = item.sourceWithheldReason || null;
   const assignment = item.assignment || null;
-  const isMyAssignment = assignment?.membershipId === context.membership?.id;
 
   const refresh = useCallback(() => router.refresh(), [router]);
+  /* Töötaja, kes töö ära andis või tagasi lükkas ega ole ise määraja, ei näe
+     kirjet enam (server vastab talle nagu olematule): tema jaoks avaneb loend,
+     mitte „lehte ei leitud". Määraja jääb kirje juurde. */
+  const leaveOrRefresh = useCallback(() => {
+    if (canAssign) router.refresh();
+    else router.push(`/org/${organizationId}/vastuvott`);
+  }, [canAssign, organizationId, router]);
 
   const assign = useCallback(async () => {
     if (!assigneeId) return;
@@ -57,9 +72,11 @@ export default function OrgInboxItemClient({ context, item, members, canAssign }
         body: { action },
         fallbackKey: "org.errors.work_response_failed"
       });
-      if (payload) refresh();
+      if (!payload) return;
+      if (action === "reject") leaveOrRefresh();
+      else refresh();
     },
-    [assignment, call, organizationId, refresh]
+    [assignment, call, leaveOrRefresh, organizationId, refresh]
   );
 
   const handOver = useCallback(async () => {
@@ -69,13 +86,16 @@ export default function OrgInboxItemClient({ context, item, members, canAssign }
       body: { toMembershipId: handoverId },
       fallbackKey: "org.errors.work_handover_failed"
     });
-    if (payload) refresh();
-  }, [assignment, call, handoverId, organizationId, refresh]);
+    if (payload) {
+      setHandoverId("");
+      leaveOrRefresh();
+    }
+  }, [assignment, call, handoverId, leaveOrRefresh, organizationId]);
 
   /* Töö vastu võtnud töötaja vastab pöördujale samas ühises vestlusruumis, mida kasutab
      nimeline saaja. `item.room.canOpen` ütleb ainult, kas nuppu näidata: ligipääsu
      otsustab server igal vajutusel uuesti. */
-  const sourceId = source.id || "";
+  const sourceId = item.source?.id || "";
   const openRoom = useCallback(async () => {
     if (!sourceId) return;
     const payload = await call(`/api/pre-inquiries/${encodeURIComponent(sourceId)}/room`, {
@@ -94,159 +114,117 @@ export default function OrgInboxItemClient({ context, item, members, canAssign }
     if (payload) router.push(`/org/${organizationId}/vastuvott`);
   }, [call, item.id, organizationId, router]);
 
+  /* Üks tegevus korraga: topeltvajutus ei saada teist päringut. */
+  const once = useCallback(async (name, work) => {
+    if (sending.current) return;
+    sending.current = true;
+    setPending(name);
+    setHint("");
+    try {
+      await work();
+    } finally {
+      sending.current = false;
+      setPending("");
+    }
+  }, []);
+
+  const actions = workActions(item, { context, canAssign });
+  const tabs = itemTabs(actions);
+  const tab = tabs.includes(wantedTab) ? wantedTab : "package";
+  const listHref = `/org/${organizationId}/vastuvott`;
+
+  /* Vaate vahetusel läheb fookus valitud lahtrile (lahtrid joonistatakse uuesti). */
+  const shown = useRef("");
+  useEffect(() => {
+    const first = shown.current === "";
+    const moved = shown.current !== tab;
+    shown.current = tab;
+    if (first || !moved) return;
+    rootRef.current?.querySelector("[role=radio][aria-checked=true]")?.focus({ preventScroll: true });
+  }, [tab]);
+
+  const armedNote = confirm.armed === "close" ? t("org.inbox.close_note") : confirm.armed === "reject" ? t("org.inbox.reject_note") : "";
+  const notice = error ? { tone: "risk", text: error } : hint ? { tone: "risk", text: hint } : null;
+
   return (
-    <section className="ow-shell">
-      <OrgHeader context={context} />
-
-      <div className="ow-card">
-        <Link className="ow-nav__link" href={`/org/${organizationId}/vastuvott`}>
-          {t("org.inbox.backToList")}
-        </Link>
-        <dl className="ow-meta">
-          <div>
-            <dt className="ow-meta__term">{t("org.inbox.status")}</dt>
-            <dd className="ow-meta__value">{t(`org.inboxStatus.${item.status}`)}</dd>
-          </div>
-          <div>
-            <dt className="ow-meta__term">{t("org.inbox.assignee")}</dt>
-            <dd className="ow-meta__value">
-              {assignment ? t(`org.workStatus.${assignment.status}`) : t("org.inbox.unassigned")}
-            </dd>
-          </div>
-          {item.urgencyDeclaredBySender ? (
-            <div>
-              <dt className="ow-meta__term">{t("org.inbox.urgency")}</dt>
-              <dd className="ow-meta__value">{item.urgencyDeclaredBySender}</dd>
-            </div>
-          ) : null}
-        </dl>
-        {/* Avamise teade käib AVAMISE kohta. Tagasivõetud kirjet ei avatud —
-            server ei märkinud `openedAt`-i — ja lubadus „sinu avamine on
-            pöördujale nähtav" oleks siin lihtsalt vale. */}
-        {withheld ? null : (
-          <p className="ow-notice ow-notice--privacy">{t("org.inbox.openedNotice")}</p>
-        )}
-      </div>
-
-      <section className="ow-card" aria-labelledby="ow-package">
-        <h2 id="ow-package" className="ow-title" style={{ fontSize: "1rem" }}>
-          {t("org.inbox.sourcePackage")}
-        </h2>
-        {withheld ? (
-          <p className="ow-notice ow-notice--privacy">{t("org.inbox.recalledNotice")}</p>
-        ) : (
-          <>
-            <dl className="ow-meta">
-              <div>
-                <dt className="ow-meta__term">{t("org.inbox.topic")}</dt>
-                <dd className="ow-meta__value">{source.topic || "—"}</dd>
-              </div>
-            </dl>
-            <div>
-              <h3 className="ow-meta__term">{t("org.inbox.situation")}</h3>
-              <p className="ow-meta__value" style={{ whiteSpace: "pre-wrap" }}>
-                {source.situation || "—"}
-              </p>
-            </div>
-            {source.userEditedDraft || source.generatedDraft ? (
-              <div>
-                <h3 className="ow-meta__term">{t("org.inbox.draft")}</h3>
-                <p className="ow-meta__value" style={{ whiteSpace: "pre-wrap" }}>
-                  {source.userEditedDraft || source.generatedDraft}
-                </p>
-              </div>
-            ) : null}
-          </>
-        )}
-      </section>
-
-      {writable && !withheld ? (
-        <section className="ow-card" aria-labelledby="ow-work">
-          <h2 id="ow-work" className="ow-title" style={{ fontSize: "1rem" }}>
-            {t("org.members.actions")}
-          </h2>
-          <div className="ow-actions">
-            {canAssign && !assignment ? (
-              <>
-                <label>
-                  <span className="ow-meta__term">{t("org.inbox.assign")}</span>
-                  <Dropdown
-                    value={assigneeId}
-                    onChange={setAssigneeId}
-                    ariaLabel={t("org.inbox.assign")}
-                    placeholder="—"
-                    options={members.map((member) => ({
-                      value: member.membershipId,
-                      label:
-                        [member.person.firstName, member.person.lastName].filter(Boolean).join(" ") ||
-                        member.membershipId
-                    }))}
-                  />
-                </label>
-                <Button type="button" onClick={assign} disabled={busy || !assigneeId}>
-                  {t("org.inbox.assign")}
-                </Button>
-              </>
-            ) : null}
-
-            {/* Vastu võtta või tagasi lükata saab AINULT määratud inimene ise —
-                juht ei saa töötaja eest vastutust võtta. */}
-            {isMyAssignment && assignment.status === "PENDING" ? (
-              <>
-                <Button type="button" onClick={() => respond("accept")} disabled={busy}>
-                  {t("org.inbox.accept")}
-                </Button>
-                <Button type="button" onClick={() => respond("reject")} disabled={busy}>
-                  {t("org.inbox.reject")}
-                </Button>
-              </>
-            ) : null}
-
-            {item.room?.canOpen ? (
-              <Button type="button" onClick={openRoom} disabled={busy}>
-                {t("org.inbox.openRoom")}
-              </Button>
-            ) : null}
-
-            {assignment && (canAssign || isMyAssignment) ? (
-              <>
-                <label>
-                  <span className="ow-meta__term">{t("org.inbox.handOver")}</span>
-                  <Dropdown
-                    value={handoverId}
-                    onChange={setHandoverId}
-                    ariaLabel={t("org.inbox.handOver")}
-                    placeholder="—"
-                    options={members
-                      .filter((member) => member.membershipId !== assignment.membershipId)
-                      .map((member) => ({
-                        value: member.membershipId,
-                        label:
-                          [member.person.firstName, member.person.lastName].filter(Boolean).join(" ") ||
-                          member.membershipId
-                      }))}
-                  />
-                </label>
-                <Button type="button" onClick={handOver} disabled={busy || !handoverId}>
-                  {t("org.inbox.handOver")}
-                </Button>
-              </>
-            ) : null}
-
-            {canAssign ? (
-              <Button type="button" onClick={close} disabled={busy}>
-                {t("org.inbox.close")}
-              </Button>
-            ) : null}
-          </div>
-        </section>
-      ) : null}
-
-      {error ? (
-        <p className="ow-notice ow-notice--warning" role="alert">
-          {error}
-        </p>
-      ) : null}
-    </section>
+    <div ref={rootRef}>
+      <OrgPart context={context} part="inbox">
+        <ItemView
+          t={t}
+          tabs={tabs}
+          tab={tab}
+          onTab={(value) => {
+            clearConfirm();
+            setError("");
+            setHint("");
+            setWantedTab(value);
+          }}
+          facts={itemFacts(item, members, { t })}
+          parts={sourceParts(item, { t })}
+          withheld={Boolean(withheld)}
+          work={{
+            actions,
+            pending,
+            workers: workerOptions(members, { t }),
+            assigneeId,
+            onAssignee: (value) => {
+              setAssigneeId(value);
+              setHint("");
+            },
+            onAssign: () => {
+              if (!assigneeId) {
+                setHint(t("org.inbox.pick_first"));
+                return;
+              }
+              clearConfirm();
+              void once("assign", assign);
+            },
+            others: workerOptions(members, { t, exclude: assignment?.membershipId || "" }),
+            handoverId,
+            onHandover: (value) => {
+              setHandoverId(value);
+              setHint("");
+            },
+            onHandOver: () => {
+              if (!handoverId) {
+                setHint(t("org.inbox.pick_first"));
+                return;
+              }
+              clearConfirm();
+              void once("handover", handOver);
+            },
+            onAccept: () => {
+              clearConfirm();
+              void once("accept", () => respond("accept"));
+            },
+            rejectArmed: confirm.armed === "reject",
+            onReject: () => confirm.press("reject", () => once("reject", () => respond("reject"))),
+            closeArmed: confirm.armed === "close",
+            onClose: () => confirm.press("close", () => once("close", close))
+          }}
+          room={
+            item.room?.canOpen
+              ? {
+                  busy: pending === "room",
+                  onOpen: () => {
+                    clearConfirm();
+                    void once("room", openRoom);
+                  }
+                }
+              : null
+          }
+          notice={notice}
+          armedNote={armedNote}
+          back={{
+            href: listHref,
+            onBack: (event) => {
+              if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+              event.preventDefault();
+              router.push(listHref);
+            }
+          }}
+        />
+      </OrgPart>
+    </div>
   );
 }

@@ -14,6 +14,12 @@
   composes: stack from "../journey/journey.module.css";
 }
 
+/* Telefonis kiirmenüüs nimesid ei ole: rida paneeli ülaservas ütleb, kus
+   inimene on (organisatsioon ja osa). Laiemal ekraanil on see rida peidus. */
+.kicker {
+  composes: kicker from "../stage/StepFlight.module.css";
+}
+
 /* --- Laused ------------------------------------------------------------------ */
 .quiet {
   composes: quiet from "../journey/journey.module.css";
@@ -29,6 +35,10 @@
 }
 .footError {
   composes: footError from "../journey/journey.module.css";
+}
+/* Inimese enda kirjutatud tekst: lõigud jäävad lõikudeks. */
+.own {
+  composes: own from "../journey/journey.module.css";
 }
 
 /* --- Märk ja loendi read -------------------------------------------------------- */
@@ -60,6 +70,29 @@
   composes: time from "../journey/journey.module.css";
 }
 
+/* Rida, mida ei avata (lugeda ei ole rohkem kui real): loetav, mitte vajutatav. */
+.rowStatic {
+  composes: row from "../journey/journey.module.css";
+  cursor: default;
+}
+.rowStatic:hover {
+  background: var(--glass-cell-bg);
+}
+/* Rida koos kõrvaltegevusega (nt „Tühista"): tegevus on rea kõrval vaikne sõna,
+   pärast esimest vajutust päris nupp ja rea all lause, mis juhtub. */
+.item {
+  composes: item from "../journey/dashboard/dashboard.module.css";
+}
+.itemAside {
+  composes: itemAside from "../journey/dashboard/dashboard.module.css";
+}
+.aside {
+  composes: aside from "../journey/dashboard/dashboard.module.css";
+}
+.itemNote {
+  composes: itemNote from "../journey/dashboard/dashboard.module.css";
+}
+
 /* --- Sõnade read: nimetus ja väärtus -------------------------------------------- */
 .facts {
   composes: facts from "../journey/journey.module.css";
@@ -72,6 +105,13 @@
 }
 .factValue {
   composes: factValue from "../journey/journey.module.css";
+}
+/* Lühikesed seisuread üksteise kõrval (avatud pöördumine): pöördumise tekstile jääb
+   rohkem ruumi. Kitsal pinnal murduvad need ise mitmele reale. */
+.facts[data-inline="1"] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 1.4rem;
 }
 /* Tühjaks jäetud vabatahtlik väli: sõna on vaiksem kui kirjutatud väärtus. */
 .factValue[data-quiet="1"] {
@@ -91,6 +131,34 @@
 .input {
   composes: input from "../journey/journey.module.css";
 }
+/* Kaks lühikest välja kõrvuti; kitsal pinnal üksteise all. */
+.pair {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  /* Kui üks silt murdub kahele reale, jäävad väljad ikka kohakuti. */
+  align-items: end;
+  gap: 0.65rem 1rem;
+}
+.pair > * {
+  flex: 0 1 14rem;
+}
+/* Tekst, mis kopeeritakse tervikuna (nt kutse link): murdub igast kohast ja üks
+   vajutus valib kõik. */
+.code {
+  margin: 0;
+  max-width: none;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.8rem;
+  background: var(--glass-cell-bg);
+  color: var(--text-warm);
+  font-family: var(--font-mono, ui-monospace, "Cascadia Mono", Consolas, monospace);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  user-select: all;
+}
 /* Vihje välja all: vaikne rida. */
 .hint {
   color: var(--text-dim);
@@ -104,4 +172,85 @@
   .input {
     min-height: 3rem;
   }
+}
+
+/* --- Avatud kirje ülaserv: nimi vasakul, vaadete lahtrid paremal ----------------- */
+.headBar {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.3rem 1rem;
+}
+.headName {
+  margin: 0;
+  max-width: none;
+  min-width: 0;
+  color: var(--text-warm);
+  font-weight: 560;
+  overflow-wrap: anywhere;
+}
+
+/* Loetav loend: read üksteise all äärejoonega, ilma kastita. */
+.lines {
+  composes: lines from "../journey/dashboard/dashboard.module.css";
+}
+.lineItem {
+  composes: lineItem from "../journey/dashboard/dashboard.module.css";
+}
+
+/* --- Rühm pealkirjaga ja tegevuslahtrid --------------------------------------- */
+/* Rühm: väike pealkiri ja selle all sisu (nt „Tal on" ja õiguste lahtrid). */
+.group {
+  min-width: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+.groupTitle {
+  margin: 0;
+  max-width: none;
+  color: var(--text-warm);
+  font-weight: 560;
+}
+/* Tegevuslahtrid: ühelaiused nupud võrgus (sama materjal mis valikulahtritel).
+   Võrk on nii lai, kui pikim silt vajab, mitte paneeli laiune. */
+.cells {
+  min-width: 0;
+  max-width: 100%;
+  display: inline-grid;
+  justify-self: start;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+.cellButton {
+  composes: option from "../stage/ChoiceRow.module.css";
+  min-width: 7rem;
+}
+/* Lahter, mis küsib teist vajutust: tugevam raam ja kaal. */
+.cellButton[data-armed="1"] {
+  color: var(--text-warm);
+  font-weight: 620;
+  border-color: color-mix(in srgb, var(--text-warm) 72%, transparent);
+}
+@container (max-width: 30rem) {
+  .cells {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* --- Read, mille kõrval on tegevus -------------------------------------------------
+   Kõik read lõpevad samal joonel, ka siis, kui tegevuse sõna on eri pikkusega
+   („Peata", „Aktiveeri") või mõnel real tegevust ei ole. */
+.rows:has(> .item) {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+.rows:has(> .item) > * {
+  grid-column: 1 / -1;
+}
+.rows:has(> .item) > .item {
+  grid-template-columns: subgrid;
+}
+.rows:has(> .item) > .item > .itemAside {
+  justify-content: flex-end;
 }

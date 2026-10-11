@@ -24,6 +24,15 @@ export function secondPress(armedKey, key, armedAt, now = Date.now()) {
   return pressTooSoon(armedAt, now) ? "wait" : "go";
 }
 
+/** ISO hetk → `11.10.2026 09.30` inimese enda ajavööndis. Vigane väärtus annab tühja sõne. */
+export function stampOf(iso) {
+  if (!iso) return "";
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return "";
+  const two = (value) => String(value).padStart(2, "0");
+  return `${two(date.getDate())}.${two(date.getMonth() + 1)}.${date.getFullYear()} ${two(date.getHours())}.${two(date.getMinutes())}`;
+}
+
 /** ISO hetk → `15.10.2026` inimese enda ajavööndis. Vigane väärtus annab tühja sõne. */
 export function dayOf(iso) {
   if (!iso) return "";
