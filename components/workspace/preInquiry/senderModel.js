@@ -19,7 +19,7 @@
  * Seisu reegel on üks: lib/preInquirySenderState.js (sama, mida näitab Teekond).
  */
 
-import { preInquirySenderState, preInquirySenderTone } from "@/lib/preInquirySenderState";
+import { organizationOutcomeOf, preInquirySenderState, preInquirySenderTone } from "@/lib/preInquirySenderState";
 
 export const SHARINGS_PATH = "/minu-jagamised";
 
@@ -74,7 +74,9 @@ const NEXT_BY_STATE = Object.freeze({
   sent_external: "external",
   recalled: "recalled",
   replaced: "replaced",
-  archived: "archived"
+  archived: "archived",
+  declined: "declined",
+  work_closed: "work_closed"
 });
 
 /**
@@ -87,6 +89,8 @@ const NEXT_BY_STATE = Object.freeze({
  *   situation  inimese kirjeldus
  *   text       pöördumise tekst, kui see erineb kirjeldusest (muidu tühi)
  *   next       võti lausele „mis edasi saab" (`views.sent.next.<võti>`)
+ *   outcome    asutuse otsus, kui asutus on tööga lõpetanud: `{ kind, at, note }` (`kind` on
+ *              `declined` või `closed`; `note` on asutuse selgitus pöördujale või tühi); muidu `null`
  *   actions    mida siin teha saab:
  *     room     ava ühine vestlusruum (saaja on vastu võtnud)
  *     recall   server lubaks tagasi võtta (tehakse lehel „Minu jagamised")
@@ -101,8 +105,13 @@ export function sentInquiryView(inquiry, { now = Date.now() } = {}) {
   const live = sent && !inquiry?.recalledAt;
   const situation = String(inquiry?.situation || "").trim();
   const draft = String(inquiry?.userEditedDraft || inquiry?.generatedDraft || "").trim();
+  /* Asutus on tööga lõpetanud: ruumi saab lugeda ainult siis, kui see on olemas (tagasi lükatud
+     pöördumisel, mida keegi tööle ei võtnud, ruumi ei ole ja nupp annaks eksitava keeldumise);
+     paranduse vihjet enam ei näidata, sest asutus selle pöördumisega ei tegele. */
+  const outcome = organizationOutcomeOf(inquiry);
   return {
     state,
+    outcome: outcome ? { kind: outcome.kind, at: outcome.at || null, note: String(outcome.note || "").trim() } : null,
     recipient: String(inquiry?.recipientOrganization?.displayName || inquiry?.selectedRecipientName || inquiry?.recipientEntry?.title || "").trim(),
     channel: !sent ? "none" : internal ? "platform" : "email",
     sentAt: inquiry?.sentAt || null,
@@ -110,11 +119,12 @@ export function sentInquiryView(inquiry, { now = Date.now() } = {}) {
     text: draft && draft !== situation ? draft : "",
     next: NEXT_BY_STATE[state.key] || "",
     actions: {
-      room: live && internal && Boolean(inquiry?.openedAt),
+      room: live && internal && Boolean(inquiry?.openedAt) && (!outcome || Boolean(outcome.hasRoom)),
       recall: live && internal && !inquiry?.openedAt && upper(inquiry?.status) === "SENT",
       correct:
         live &&
         internal &&
+        !outcome &&
         Boolean(inquiry?.openedAt) &&
         !inquiry?.supersededById &&
         Boolean(inquiry?.recipientOwnerId || inquiry?.recipientOrganizationId),
@@ -129,8 +139,16 @@ export function sentInquiryView(inquiry, { now = Date.now() } = {}) {
  * „vastatud" seis vahele: siin jäetakse varem teada olnud arv alles.
  */
 export function keepReplyFacts(previous, next) {
-  if (!next || !previous || next.replyCount !== undefined || previous.replyCount === undefined) return next;
-  return { ...next, replyCount: previous.replyCount, lastReplyAt: previous.lastReplyAt ?? null };
+  if (!next || !previous) return next;
+  let merged = next;
+  if (next.replyCount === undefined && previous.replyCount !== undefined) {
+    merged = { ...merged, replyCount: previous.replyCount, lastReplyAt: previous.lastReplyAt ?? null };
+  }
+  /* Sama lugu asutuse otsusega: seda kannavad ainult loendi ja ühe pöördumise lugemise vastused. */
+  if (next.organizationOutcome === undefined && previous.organizationOutcome !== undefined) {
+    merged = { ...merged, organizationOutcome: previous.organizationOutcome };
+  }
+  return merged;
 }
 
 /**
@@ -179,6 +197,194 @@ export function recipientEmptyReason({ loading = false, query = "", type = "", e
   if (type && !typeCount) return { key: "none_of_type" };
   if (text) return { key: type ? "no_match_type" : "no_match", query: text };
   return { key: "none_of_type" };
+}
+
+/* --- Adressaadi samm: loend, üks kontakt ja saatmise tee -----------------------------
+   Kontaktikaart oli 205 kuni 352 px kõrge: kolm kaarti tegid vaate 948 px kõrgeks (paneelis
+   on 522) ja „Vaata rohkem kontakte" kuni 1686 px. Nüüd on loendis madalad read lehekülgede
+   kaupa ja kogu info ühe kontakti kohta on selle kontakti enda vaates. */
+
+/* Mitu adressaati on loendis korraga ees (mõõdetud 1536 × 640 aknas ja töölaua paneelis). */
+export const RECIPIENT_PAGE = 3;
+
+/** Teenuseosutaja teenused, mille kohta pöördumist üldse saata saab (platvormis või e-kirjaga). */
+export function recipientServiceActions(entry) {
+  if (upper(entry?.type) !== "SERVICE_PROVIDER") return [];
+  return (Array.isArray(entry?.serviceActions) ? entry.serviceActions : []).filter(
+    (action) => action?.providerServiceId && (action.platformAllowed || (action.emailAllowed && action.email))
+  );
+}
+
+/**
+ * Mis teel pöördumine adressaadini läheb: `{ platform, email, address }`. ÜKS reegel loendi
+ * reale, kontakti vaatele ja saatmise sammule, et need ei saaks eri juttu rääkida.
+ *
+ * Enne luges leht välju, mida teenusekaardi vastus ei kanna: iga kontakti kaart ütles
+ * „Sotsiaal.pro sisene" (ka ainult e-postiga kontakti oma) ja teenuseosutajale ei pakkunud
+ * saatmise samm ei platvormi ega e-kirja, sest tema kanal on TEENUSE küljes
+ * (`serviceActions`: `platformAllowed`, `emailAllowed`, `email`), mitte kirje küljes.
+ *
+ *   - asutuse vastuvõtulaud ja kirje, mille server on märkinud platvormisiseseks
+ *     (`deliveryChannel: "INTERNAL"`): platvormis;
+ *   - teenuseosutaja: valitud teenuse reegel (`serviceId`); kuni teenus on valimata, see, mida
+ *     vähemalt üks tema teenus lubab (loendi rea jaoks), ja aadressi veel ei ole;
+ *   - muu kontakt (KOV): e-kirjaga, kui kirjel on aadress.
+ */
+export function recipientChannels(entry, { serviceId = "", locationId = "" } = {}) {
+  if (!entry) return { platform: false, email: false, address: "" };
+  const marked = upper(entry.deliveryChannel) === "INTERNAL";
+  if (upper(entry.type) === "SERVICE_PROVIDER") {
+    const actions = recipientServiceActions(entry);
+    if (serviceId) {
+      const action = actions.find(
+        (item) => item.providerServiceId === serviceId && (!locationId || !item.providerLocationId || item.providerLocationId === locationId)
+      );
+      const address = action?.emailAllowed ? String(action.email || "").trim() : "";
+      return { platform: Boolean(action?.platformAllowed), email: Boolean(address), address };
+    }
+    return {
+      platform: actions.some((action) => action.platformAllowed),
+      email: actions.some((action) => action.emailAllowed && action.email),
+      address: ""
+    };
+  }
+  const address = String(entry.email || "").trim();
+  return { platform: marked, email: Boolean(address), address };
+}
+
+/**
+ * Valitud adressaadi kirje laaditud loendist. Salvestatud pöördumine ja abilise soovitus
+ * kannavad kaardikirje tunnust; teenuseosutaja on loendis aga osutamiskoha kaupa
+ * (`parentEntryId`, `providerLocationId`). Ainult loendi tunnuse järgi otsides kaotas uuesti
+ * avatud mustand oma teenuseosutajast adressaadi ja järgmine salvestus kustutas selle.
+ */
+export function findRecipientEntry(entries, id, locationId = "") {
+  const list = Array.isArray(entries) ? entries : [];
+  const wanted = String(id || "");
+  if (!wanted) return null;
+  return (
+    list.find((entry) => entry?.id === wanted) ||
+    list.find((entry) => entry?.parentEntryId === wanted && (!locationId || entry.providerLocationId === locationId)) ||
+    null
+  );
+}
+
+/**
+ * Teenuseosutaja kirje nii, et tema teenuste hulgas on ainult valitud teenus: saatmise sammu
+ * teated (suunamise vajadus, kättesaadavus) käivad siis selle teenuse kohta, mille inimene
+ * valis, mitte kõigi kohta. Valimata teenuse või muu adressaadi korral jääb kirje samaks.
+ */
+export function withChosenService(entry, serviceId = "") {
+  const items = entry?.providerProfile?.serviceItems;
+  if (!serviceId || !Array.isArray(items)) return entry || null;
+  return { ...entry, providerProfile: { ...entry.providerProfile, serviceItems: items.filter((item) => item?.id === serviceId) } };
+}
+
+/** Võti lausele, mis teel pöördumine läheb: `platform`, `both`, `email` või `manual` (ainult salvestamine). */
+export function recipientChannelKey(channels) {
+  if (channels?.platform) return channels.email ? "both" : "platform";
+  return channels?.email ? "email" : "manual";
+}
+
+/**
+ * Abilise soovitused lehe loendi kujul. Soovitus kannab kaardikirje tunnust; lehe laaditud
+ * loendis on teenuseosutaja aga iga osutamiskoha kohta eraldi kirjena (teine tunnus) ja ainult
+ * see kirje kannab valitavaid teenuseid. Ilma selle sammuta oli soovitatud teenuseosutaja kaart
+ * nuputa: teda ei saanud valida. Soovituse põhjendus (`routingReason`) tuleb kaasa.
+ * Soovitus, mida laaditud loendis ei ole, jääb alles sellisena, nagu abiline ta andis.
+ */
+export function suggestedRecipients(suggestions, entries) {
+  const loaded = Array.isArray(entries) ? entries : [];
+  const out = [];
+  const seen = new Set();
+  for (const suggestion of Array.isArray(suggestions) ? suggestions : []) {
+    if (!suggestion?.id) continue;
+    const matches = loaded.filter((entry) => entry?.id === suggestion.id || entry?.parentEntryId === suggestion.id);
+    const rows = matches.length
+      ? matches.map((entry) => ({ ...entry, routingReason: suggestion.routingReason || entry.routingReason || "" }))
+      : [suggestion];
+    for (const row of rows) {
+      if (seen.has(row.id)) continue;
+      seen.add(row.id);
+      out.push(row);
+    }
+  }
+  return out;
+}
+
+/**
+ * Kust adressaadi loend tuleb: `suggested` (abilise soovitused) või `search` (inimese otsing
+ * ja liigi valik kõigi kontaktide seast). Enne näitas loend soovituste olemasolul AINULT
+ * soovitusi: otsing ja liigi valik ei teinud siis enam midagi.
+ * `source` on inimese valik; tühjana on ees soovitused, kui neid on.
+ */
+export function recipientListView({ suggestions = [], entries = [], source = "", page = 0, pageSize = RECIPIENT_PAGE } = {}) {
+  const suggested = Array.isArray(suggestions) ? suggestions : [];
+  const active = source === "search" || !suggested.length ? "search" : "suggested";
+  const rows = [];
+  const seen = new Set();
+  for (const entry of active === "suggested" ? suggested : Array.isArray(entries) ? entries : []) {
+    if (!entry?.id || seen.has(entry.id)) continue;
+    seen.add(entry.id);
+    rows.push(entry);
+  }
+  return { source: active, hasSuggestions: suggested.length > 0, suggestedCount: suggested.length, ...pageOf(rows, page, pageSize) };
+}
+
+/* Filtrirea esimene lahter, kui abilisel on soovitusi; ülejäänud lahtrid on adressaadi liigid. */
+export const RECIPIENT_SUGGESTED = "SUGGESTED";
+
+/**
+ * Mida filtrirea vajutus teeb: `{ source, type }`. Soovituste lahter näitab soovitusi; teine
+ * vajutus samale lahtrile viib tühja otsingusse. Liigi lahter näitab seda liiki kontakte kõigi
+ * seast; teine vajutus võtab liigi maha. Filter ainult näitab: valitud adressaati see ei muuda.
+ */
+export function recipientFilterChange({ source = "search", type = "" } = {}, value = "") {
+  if (value === RECIPIENT_SUGGESTED) return { source: source === "suggested" ? "search" : "suggested", type };
+  return { source: "search", type: source === "search" && type === value ? "" : value };
+}
+
+/**
+ * Adressaadi liik nii, nagu server seda salvestamisel ootab (`recipientType`): tuleb valitud
+ * adressaadist, mitte lehe filtrist. Enne saadeti filtri väärtus, mistõttu liigi vahetamine pidi
+ * valiku tühjendama (server keeldub, kui liik ja kirje ei klapi).
+ */
+export function recipientTypeOf(entry) {
+  if (!entry) return "";
+  const type = upper(entry.type);
+  if (type === "ORGANIZATION_INBOX") return "ORGANIZATION_INBOX";
+  return type === "SERVICE_PROVIDER" ? "SERVICE_PROVIDER" : "KOV_CONTACT";
+}
+
+/* Mitu teenust on teenuse valiku vaates korraga ees (kaks rida kaarte). */
+export const RECIPIENT_SERVICE_PAGE = 4;
+
+/**
+ * Mida kontakti vaate põhinupp teeb:
+ *   `{ kind: "direct" }`             vali see kontakt (KOV kontakt, asutuse vastuvõtulaud);
+ *   `{ kind: "service", action }`    teenuseosutajal on üks teenus, mille kohta saab pöörduda: valik on kohe tehtud;
+ *   `{ kind: "services", count }`    mitu teenust: enne tuleb valida teenus (oma vaade);
+ *   `{ kind: "none" }`               teenuseosutaja, kellel ei ole ühtegi sellist teenust.
+ * Server nõuab teenuseosutaja puhul teenuse valikut (`service_selection_required`).
+ */
+export function recipientChoice(entry) {
+  if (upper(entry?.type) !== "SERVICE_PROVIDER") return { kind: "direct" };
+  const actions = recipientServiceActions(entry);
+  if (!actions.length) return { kind: "none" };
+  if (actions.length === 1) return { kind: "service", action: actions[0] };
+  return { kind: "services", count: actions.length };
+}
+
+/**
+ * Mis on adressaadi sammus ees: `{ mode, id }`, kus `mode` on `list` (loend), `contact` (ühe
+ * kontakti vaade) või `services` (teenuseosutaja teenuse valik).
+ * Avatud kontakt (`peekId`) on ees; muidu näitab samm juba valitud adressaati, kuni inimene
+ * läheb loendisse teist valima (`browsing`). `services`: avatud kontakti teenuse valik.
+ */
+export function recipientStepView({ peekId = "", browsing = false, selectedId = "", services = false } = {}) {
+  const id = String(peekId || (!browsing ? selectedId : "") || "");
+  if (!id) return { mode: "list", id: "" };
+  return { mode: services ? "services" : "contact", id };
 }
 
 /* --- Leheküljed -----------------------------------------------------------------------

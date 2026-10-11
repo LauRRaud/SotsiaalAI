@@ -14,7 +14,7 @@
  * Test: `tests/org-work-views.test.mjs`.
  */
 
-import { OrganizationInboxStatus, canTransitionInboxStatus, isTerminalInboxStatus } from "@/lib/org/constants";
+import { INBOX_CLOSING_NOTE_LIMIT, OrganizationInboxStatus, canTransitionInboxStatus, isTerminalInboxStatus } from "@/lib/org/constants";
 
 import { stampOf } from "../orgRules.js";
 
@@ -31,13 +31,19 @@ export function personName(person) {
  * Loendi rida: millal pöördumine saabus (loend sisu ei kanna, nii et aeg on see,
  * mille järgi rida ära tunda), selle all üksus ja vastutaja (nimi ja kas ta on
  * töö vastu võtnud); paremal saatja enda märge kiireloomulisusest ja seis.
- * Määramata kirje on tähelepanu vajav.
+ * Määramata kirje on tähelepanu vajav. Lõpetatud kirjel (vaade „Lõpetatud") ei ole vastutajat
+ * ega tähelepanu märki: selle asemel seisab, millal töö lõppes.
  */
 export function inboxRow(item, { t }) {
   const assignment = item?.assignment || null;
-  const assignee = assignment
-    ? afterName(personName(assignment) || t("org.inbox.unnamed_worker"), assignment.status ? t(`org.workStatus.${assignment.status}`) : "")
-    : t("org.inbox.unassigned");
+  const finished = isFinishedItem(item);
+  const assignee = finished
+    ? stampOf(item?.closedAt)
+      ? t("org.inbox.finished_at", { date: stampOf(item.closedAt) })
+      : ""
+    : assignment
+      ? afterName(personName(assignment) || t("org.inbox.unnamed_worker"), assignment.status ? t(`org.workStatus.${assignment.status}`) : "")
+      : t("org.inbox.unassigned");
   return {
     id: String(item?.id || ""),
     title: stampOf(item?.receivedAt),
@@ -46,8 +52,13 @@ export function inboxRow(item, { t }) {
     chip: shownItemStatus(item) ? t(`org.inboxStatus.${shownItemStatus(item)}`) : "",
     /* Loetamatu aeg jääb tühjaks, mitte ei viska viga. */
     receivedAt: stampOf(item?.receivedAt) ? new Date(item.receivedAt).toISOString() : "",
-    attention: !assignment
+    attention: !finished && !assignment
   };
+}
+
+/** Kas kirjega on töö lõppenud (suletud, tagasi lükatud või saatja tagasi võetud). */
+export function isFinishedItem(item) {
+  return isTerminalInboxStatus(item?.status || "");
 }
 
 /** Nime järel koma taga algab seisu sõna väikese tähega („Jaan Kask, ootab vastust"). */
@@ -88,12 +99,18 @@ export function assigneeLabel(item, members, { t }) {
   return afterName(name, status);
 }
 
-/** Avatud pöördumise read: seis, vastutaja, saabumise aeg ja saatja märge kiireloomulisusest. */
+/**
+ * Avatud pöördumise read: seis, vastutaja, saabumise aeg ja saatja märge kiireloomulisusest.
+ * Lõpetatud kirjel vastutajat ei ole (elav määramine lõppes koos tööga): „Määramata" oleks
+ * seal vale. Selle asemel seisab, millal töö lõppes.
+ */
 export function itemFacts(item, members, { t }) {
+  const finished = isFinishedItem(item);
   return [
     { key: "status", label: t("org.inbox.status"), value: shownItemStatus(item) ? t(`org.inboxStatus.${shownItemStatus(item)}`) : "" },
-    { key: "assignee", label: t("org.inbox.assignee"), value: assigneeLabel(item, members, { t }) },
+    { key: "assignee", label: t("org.inbox.assignee"), value: finished ? "" : assigneeLabel(item, members, { t }) },
     { key: "received", label: t("org.inbox.receivedAt"), value: stampOf(item?.receivedAt) },
+    { key: "closed", label: t("org.inbox.closedAt"), value: finished ? stampOf(item?.closedAt) : "" },
     { key: "urgency", label: t("org.inbox.urgency"), value: text(item?.urgencyDeclaredBySender) }
   ].filter((row) => row.value);
 }
@@ -109,6 +126,71 @@ export function sourceParts(item, { t }) {
     { key: "situation", label: t("org.inbox.situation"), value: text(source.situation), long: true },
     { key: "draft", label: t("org.inbox.draft"), value: text(source.userEditedDraft) || text(source.generatedDraft), long: true }
   ].filter((part) => part.value);
+}
+
+/**
+ * Selgitus, mille asutus töö lõpetamisel pöördujale kirjutas (tagasilükkamisel kohustuslik,
+ * sulgemisel soovi korral). See ei ole saatja paketi osa ja seisab lehel eraldi. Tühi, kui
+ * selgitust ei ole.
+ */
+export function closingNoteOf(item) {
+  return isFinishedItem(item) ? text(item?.closedReason) : "";
+}
+
+/**
+ * Kas lehel on lause „Sinu avamine on pöördujale nähtav…". Lõpetatud kirjel see enam midagi
+ * ei ütle (tagasi võtta ei ole midagi) ja tagasi võetud pöördumist ei avatudki.
+ */
+export function showsOpenedNotice(item) {
+  return !item?.sourceWithheldReason && !isFinishedItem(item);
+}
+
+/* --- Töö lõpetamine: selgitus pöördujale ---------------------------------------------
+   Sulgemine ja pöördumise tagasilükkamine avavad töö vaates väikese vormi: selgitus
+   pöördujale ja mis juhtub. Tagasilükkamisel on selgitus kohustuslik (server keeldub ilma
+   selleta: tagasilükkamine ei ole kunagi paljas „ei"), sulgemisel soovi korral. */
+
+export const CLOSING_NOTE_LIMIT = INBOX_CLOSING_NOTE_LIMIT;
+
+/** `kind` → mis võtmetega vorm räägib ja kas selgitus on kohustuslik. */
+export const ENDINGS = Object.freeze({
+  close: Object.freeze({ required: false, question: "org.inbox.close_question", hint: "org.inbox.close_hint", note: "org.inbox.close_note", submit: "org.inbox.close" }),
+  rejectItem: Object.freeze({ required: true, question: "org.inbox.reject_item_question", hint: "org.inbox.reject_item_hint", note: "org.inbox.reject_item_note", submit: "org.inbox.reject_item" })
+});
+
+/** Mis lõpetamise vorm on ees: ainult see, mille tegevus on selles seisus võimalik. */
+export function activeEnding(kind, actions) {
+  return ENDINGS[kind] && actions?.[kind] ? kind : "";
+}
+
+/** Miks vormi veel saata ei saa: tühi sõne, kui saab. Võti: `org.inbox.<võti>`. */
+export function endingProblem(kind, value) {
+  return ENDINGS[kind]?.required && !text(value) ? "reason_first" : "";
+}
+
+/** Selgitus nii, nagu see serverisse läheb: kärbitud; tühja ei saadeta. */
+export function endingReason(value) {
+  return text(value).slice(0, CLOSING_NOTE_LIMIT) || undefined;
+}
+
+/* --- Laua loend: töös ja lõpetatud --------------------------------------------------- */
+
+export const INBOX_GROUPS = Object.freeze(["open", "finished"]);
+
+/** Laua lehe aadress: lõpetatud pöördumiste rühm on aadressis, et kirje lehelt saaks sinna tagasi. */
+export function inboxPagePath(organizationId, group = "open") {
+  return `/org/${organizationId}/vastuvott${group === "finished" ? "?lopetatud=1" : ""}`;
+}
+
+/** Mis rühmast kirje pärit on (kuhu „Tagasi loendisse" viib). */
+export function groupOfItem(item) {
+  return isFinishedItem(item) ? "finished" : "open";
+}
+
+/** Loendi päring: rühm „lõpetatud" küsib ainult lõpetatud kirjed, `cursor` järgmise lehe. */
+export function inboxListPath(organizationId, { group = "open", cursor = "" } = {}) {
+  const query = [group === "finished" ? "closed=1" : "", cursor ? `cursor=${encodeURIComponent(cursor)}` : ""].filter(Boolean).join("&");
+  return `/api/org/${organizationId}/inbox${query ? `?${query}` : ""}`;
 }
 
 /**

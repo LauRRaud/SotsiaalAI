@@ -680,7 +680,7 @@ test('kontroll ütleb, kui teenuse piirkonda ei saa lugeda, ja rida kaob, kui pi
   assert.equal(serviceViewStates(kov.serviceItems[0]).reach, 'done');
   /* Leht viib rea teenuse vaatesse ja annab registri kontrollile kaasa. */
   assert.ok(surface.includes('openItem(row.item.kind, row.item.index, row.item.view)'));
-  assert.ok(surface.includes('serviceProfilePublishChecks(form, mapEntry, areaChoices, representation)'));
+  assert.ok(surface.includes('serviceProfilePublishChecks(form, mapEntry, areaChoices, representation, register)'));
 });
 
 test('vorm ei kirjuta profiili maakonda teenusele ega teeninduskohale', () => {

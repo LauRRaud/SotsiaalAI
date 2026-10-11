@@ -25,6 +25,7 @@ export async function GET(request, context) {
     const requestUrl = new URL(request.url);
     const page = await listInboxItemPage(auth.context, {
       includeClosed: requestUrl.searchParams.get("includeClosed") === "1",
+      closedOnly: requestUrl.searchParams.get("closed") === "1",
       cursor: requestUrl.searchParams.get("cursor"),
       take: requestUrl.searchParams.get("take"),
       status: requestUrl.searchParams.get("status"),

@@ -38,6 +38,9 @@ import { representationView } from '../components/workspace/serviceProfile/repre
 
 const NOW = new Date('2026-10-11T08:00:00.000Z');
 const UPDATED = new Date('2026-10-10T10:00:00.000Z');
+/* Nimekontroll äriregistri vastu antakse ette nagu kontaktikontroll: need testid käivad kinnituse
+   enda kohta. Nime reegleid hoiab tests/business-register-names.test.mjs. */
+const nameMatches = async () => ({ result: 'match', registerName: 'Hea Hoolekanne OÜ' });
 const TOKEN = 'a'.repeat(64);
 /* Räsi ei tohi võtit sisaldada: test kontrollib, et toorvõtit ei salvestata. */
 const hashToken = (token) => createHash('sha256').update(`test:${token}`).digest('hex');
@@ -191,6 +194,7 @@ const deps = (db, over = {}) => {
       db,
       now: NOW,
       checkContact: async () => 'match',
+      checkName: nameMatches,
       sendMail: async (mail) => { mails.push(mail); },
       prepareToken: () => ({ token: TOKEN, tokenHash: hashToken(TOKEN) }),
       ...over
@@ -266,7 +270,7 @@ const pending = (over = {}) => profile({
 test('lingiga kinnitamine: õige konto ja kehtiv link kinnitavad, link kulub ära', async () => {
   const db = fakeDb(pending());
   assert.deepEqual(await describeRepresentationLink({ ownerId: 'user_1', token: TOKEN }, { db, now: NOW, hashToken }), { valid: true, organizationName: 'Hea Hoolekanne OÜ', registryCode: '12345678' });
-  const result = await confirmRepresentationByLink({ ownerId: 'user_1', token: TOKEN }, { db, now: NOW, hashToken });
+  const result = await confirmRepresentationByLink({ ownerId: 'user_1', token: TOKEN }, { db, now: NOW, hashToken, checkName: nameMatches });
   assert.equal(result.confirmed, true);
   assert.equal(result.method, 'EMAIL_LINK');
   assert.equal(db.state.profile.representationRegistryCode, '12345678');
@@ -300,19 +304,19 @@ test('lingiga kinnitamine: võõras konto, aegunud link, muudetud kood ja vigane
 
 test('halduri tagasivõtmine tühistab ka ootel lingi', async () => {
   const db = fakeDb(pending({ representationConfirmedAt: NOW, representationRegistryCode: '12345678', representationMethod: 'ADMIN' }));
-  await revokeRepresentationAsAdmin({ profileId: 'prof_1', adminUserId: 'admin_1' }, { db, now: NOW });
+  await revokeRepresentationAsAdmin({ profileId: 'prof_1', adminUserId: 'admin_1' }, { db, now: NOW, checkName: nameMatches });
   assert.equal(db.state.profile.representationRequestHash, null);
   await rejectsWith(confirmRepresentationByLink({ ownerId: 'user_1', token: TOKEN }, { db, now: NOW, hashToken }), RepresentationLinkError.LINK_INVALID);
 });
 
 test('teenuseosutaja vaade: seis ja ootel link ilma räsita', async () => {
   assert.deepEqual(await describeRepresentationForOwner('user_1', { db: fakeDb(null), now: NOW }), { hasProfile: false });
-  const open = await describeRepresentationForOwner('user_1', { db: fakeDb(pending()), now: NOW });
+  const open = await describeRepresentationForOwner('user_1', { db: fakeDb(pending()), now: NOW, checkName: nameMatches });
   assert.equal(open.required, true);
   assert.equal(open.confirmed, false);
   assert.deepEqual(Object.keys(open.pendingLink).sort(), ['expiresAt', 'sentAt']);
   assert.equal(JSON.stringify(open).includes(hashToken(TOKEN)), false);
-  const expired = await describeRepresentationForOwner('user_1', { db: fakeDb(pending({ representationRequestExpiresAt: new Date(NOW.getTime() - 1) })), now: NOW });
+  const expired = await describeRepresentationForOwner('user_1', { db: fakeDb(pending({ representationRequestExpiresAt: new Date(NOW.getTime() - 1) })), now: NOW, checkName: nameMatches });
   assert.equal(expired.pendingLink, null);
 });
 

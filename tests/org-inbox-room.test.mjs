@@ -239,13 +239,17 @@ const callHooks = ({ endFails = false } = {}) => {
     }
   };
 };
-const close = (db, hooks, toStatus = 'CLOSED') => transitionInboxItem(coordinator(), 'i1', { toStatus }, { db, now: NOW, ...hooks });
+/* Tagasilükkamine nõuab selgitust pöördujale (tests/org-inbox-manual-status.test.mjs). */
+const close = (db, hooks, toStatus = 'CLOSED') =>
+  transitionInboxItem(coordinator(), 'i1', { toStatus, reason: toStatus === 'REJECTED' ? 'Ei kuulu meie pädevusse.' : undefined }, { db, now: NOW, ...hooks });
 /* Sama värav, mille taga on ruumi sõnumid: lugemine ja kirjutamine. */
 const roomAccess = (db, roomId, userId, intent) =>
   resolveRoomAccess({ userId, userRole: 'CLIENT', roomId, intent, db, hasActiveSubscription: async () => true });
 const READ_ONLY = { ok: false, status: 409, message: 'api.rooms.archived_readonly' };
 const archiveAudits = (state) => state.audits.filter((row) => row.action === 'ROOM_ARCHIVED');
 const closedNotices = (state) => state.notifications.filter((row) => row.type === 'PRE_INQUIRY_WORK_CLOSED');
+/* Tagasilükkamisel on teatel oma liik ja sõnastus (tests/pre-inquiry-outcome.test.mjs). */
+const declinedNotices = (state) => state.notifications.filter((row) => row.type === 'PRE_INQUIRY_DECLINED');
 
 test('ruumi avab töö vastu võtnud töötaja; koordinaator, ootel töötaja ja muu liige ei ava', async () => {
   const { db, state } = makeDb();
@@ -584,13 +588,14 @@ test('töö sulgemine saadab pöördujale ühe neutraalse teavituse, mis viib te
   assert.equal(closedNotices(state).length, 1);
 });
 
-test('tagasilükkamine enne töö vastuvõtmist saadab sama teavituse; üleandmine ja töö tagasivõtmine ei saada', async () => {
+test('tagasilükkamine enne töö vastuvõtmist saadab pöördujale tagasilükkamise teavituse; üleandmine ja töö tagasivõtmine ei saada', async () => {
   /* Tagasi lükatud ilma vastutaja ja ruumita: pöörduja peab ikka teada saama. */
   const rejected = makeDb();
   rejected.state.item.status = 'RECEIVED';
   rejected.state.assignments = [];
   await close(rejected.db, callHooks().hooks, 'REJECTED');
-  assert.deepEqual(closedNotices(rejected.state).map((row) => [row.userId, row.dedupeKey]), [['poorduja', 'PRE_INQUIRY_WORK_CLOSED:p1:poorduja:closed:i1']]);
+  assert.deepEqual(declinedNotices(rejected.state).map((row) => [row.userId, row.dedupeKey]), [['poorduja', 'PRE_INQUIRY_DECLINED:p1:poorduja:closed:i1']]);
+  assert.deepEqual(closedNotices(rejected.state), [], 'töö lõpetamise teadet tagasilükkamisel ei tule: üks tegu, üks teade');
   assert.equal(rejected.state.rooms.length, 0);
 
   /* Üleandmine ja töö tagasivõtmine ei ole töö lõpp: seda teavitust ei tule. */

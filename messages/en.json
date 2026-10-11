@@ -2751,6 +2751,10 @@
       "profile_conflict": "The profile changed in the meantime. Load the latest state and compare the changes.",
       "publish_contact_required": "Choose at least one contact or an in-platform inquiry path before publishing.",
       "publish_representation_required": "A profile with a registry code can be published after it is confirmed that you represent that organisation. Save the profile as a draft and open the page \"Confirming the organisation\" (sotsiaal.pro/teenuseprofiil/kinnitus).",
+      "publish_register_name_mismatch": "The profile name is not the name the business register has for this registry code, so the profile cannot be published. Open the step \"Organization\": it shows the register's name and lets you put it on the profile with one click. You can still save the profile as a draft with the current name.",
+      "publish_registry_code_not_listed": "We did not find a registered organisation with this registry code in the business register, so the profile cannot be published. Check that the code is correct. If the code is correct and the organisation is in the register, write to info@sotsiaal.pro. You can save the profile as a draft.",
+      "publish_registry_code_required": "An organisation with this name is in the business register. A profile can be published under this name only with the organisation's registry code and a confirmation that you represent it. Add the registry code in the step \"Organization\", or write the name under which you provide the service yourself.",
+      "publish_register_unavailable": "The name cannot be checked against the business register right now, so the profile cannot be published. You can save the profile as a draft. Try again later or write to info@sotsiaal.pro.",
       "publish_service_required": "Add at least one visible published service before publishing.",
       "save_failed": "The service profile could not be saved. Try again; if the error persists, give support the correlation ID.",
       "load_failed": "The service profile could not be loaded.",
@@ -2763,6 +2767,8 @@
       "representation_email_invalid": "Write the organisation's e-mail address.",
       "representation_email_not_in_register": "This address is not listed in the business register as a contact of this registry code. Check your organisation's contacts in the business register (ariregister.rik.ee). Our copy of the register is renewed once a month; if you changed the address recently, write to info@sotsiaal.pro.",
       "representation_register_unavailable": "The business register check cannot be made right now. Try again later or write to info@sotsiaal.pro.",
+      "representation_name_mismatch": "The service profile's name is not the name the business register has for this registry code. Correct the name in the service profile step \"Organization\" and save; then the organisation can be confirmed.",
+      "representation_code_not_listed": "We did not find a registered organisation with this registry code in the business register. Check the code in the service profile. If the code is correct and the organisation is in the register, write to info@sotsiaal.pro.",
       "representation_mail_failed": "The e-mail could not be sent. Try again.",
       "representation_link_invalid": "This link is no longer valid or does not belong to this account."
     },
@@ -2834,7 +2840,11 @@
       "link_confirm": "I confirm",
       "link_confirming": "Confirming...",
       "link_invalid": "This link is no longer valid or does not belong to this account. Send a new link.",
-      "link_done": "The organisation is confirmed. You can now publish the service profile."
+      "link_done": "The organisation is confirmed. You can now publish the service profile.",
+      "name_title": "The profile name does not match the business register",
+      "name_mismatch": "The service profile is named \"{name}\", but the business register has \"{registerName}\" for registry code {code}. The organisation can be confirmed only under the register's name: correct the name in the service profile step \"Organization\" and save.",
+      "name_mismatch_hidden": "The service profile is named \"{name}\", but the business register has a different name for registry code {code}. In the service profile step \"Organization\", write the name exactly as it is in the business register and save.",
+      "code_not_listed": "We did not find a registered organisation with registry code {code} in the business register. Check the code in the service profile. If the code is correct and the organisation is in the register, write to info@sotsiaal.pro."
     }
   },
   "service_availability": {
@@ -2897,7 +2907,6 @@
       "fields": {
         "topic": "Topic",
         "situation": "Situation description",
-        "recipient_type": "Recipient type",
         "recipient_search": "Find recipient",
         "assessment_path": "Pre-assessment path",
         "concerns_about": "Who the inquiry is about",
@@ -2913,7 +2922,7 @@
       "placeholders": {
         "topic": "Short subject",
         "situation": "Describe the situation, need, or question.",
-        "recipient": "Municipality contact, organization intake team, service provider, or area",
+        "recipient": "Name, municipality or service",
         "draft": "Generated inquiry text",
         "municipality": "For example Tallinn, Poltsamaa parish, or area",
         "existing_support": "Who or what is helping now?",
@@ -2929,10 +2938,6 @@
         "organization_inbox_description": "Organization inbox inside Sotsiaal.pro",
         "provider": "Service provider",
         "selected": "Selected contact"
-      },
-      "delivery": {
-        "internal": "Inside Sotsiaal.pro",
-        "external_email": "Email"
       },
       "receiving": {
         "accepts_platform": "Receive pre-inquiries on the platform",
@@ -2980,8 +2985,6 @@
         "send_internal": "Send in platform",
         "save_workflow": "Save workflow",
         "archive": "Archive",
-        "show_more_contacts": "Show more contacts",
-        "show_less_contacts": "Show less",
         "choose_recipient": "Choose recipient",
         "choose_contact": "Choose this contact",
         "view_service_map": "View on service map",
@@ -3056,7 +3059,6 @@
         "reprojected": "The pre-inquiry text was rebuilt from the selected parts."
       },
       "preview": {
-        "no_auto_send": "Nothing is sent automatically.",
         "check_note": "Before confirming, check the recipient, the delivery method, the inquiry text and the pre-info. An in-platform inquiry reaches the recipient's Inquiries view; the email text opens in your email app for review.",
         "recipient_prefix": "Recipient",
         "delivery_prefix": "Delivery method",
@@ -3162,7 +3164,9 @@
         },
         "assistant": {
           "title": "Clarify with the assistant",
-          "lead": "The assistant asks for details and helps find a suitable contact. You may skip this step."
+          "lead": "The assistant asks for details and helps find a suitable contact. You may skip this step.",
+          "notes": "The assistant's notes",
+          "tags": "Keywords"
         },
         "review": {
           "all_answers": "All answers",
@@ -3170,7 +3174,6 @@
         },
         "recipient": {
           "title": "Recipient",
-          "lead": "Contacts come from the Service map. Choose who the pre-inquiry goes to; Sotsiaal.pro itself is not a recipient.",
           "empty": {
             "loading": "Loading contacts...",
             "no_contacts": "The service map has no contact right now that a pre-inquiry could be sent to.",
@@ -3178,7 +3181,30 @@
             "none_of_type": "The service map has no contacts of this type right now. Choose another type.",
             "no_match_type": "No contact of this type matches \"{query}\". Try another word or another type.",
             "no_match": "No contact matches \"{query}\". Try another word, for example the name of a municipality."
-          }
+          },
+          "back": "All contacts",
+          "source_suggested": "Suggested · {count}",
+          "chosen": "Chosen",
+          "facts": {
+            "email": "E-mail",
+            "channel": "The inquiry goes",
+            "place": "Location",
+            "area": "Service area",
+            "service": "Service"
+          },
+          "channel": {
+            "platform": "on the Sotsiaal.pro platform",
+            "email": "by e-mail from your e-mail app",
+            "both": "on the platform or by e-mail",
+            "manual": "cannot be sent from here; you can copy or download the text"
+          },
+          "services": "Which service is your inquiry about?",
+          "no_services": "This provider has no service you can send an inquiry about from here right now.",
+          "filters": "Which contacts to show",
+          "source_note": "Contacts come from the Service map. Sotsiaal.pro itself is not a recipient.",
+          "choose_service": "Choose a service",
+          "change_service": "Choose another service",
+          "back_contact": "Contact details"
         },
         "text": {
           "title": "Text of the pre-inquiry",
@@ -3303,6 +3329,7 @@
           "text_lead": "This is the text you sent. A sent pre-inquiry can no longer be edited.",
           "text_lead_unsent": "The text of an archived pre-inquiry. Reopen it to edit.",
           "text_heading": "Text of the pre-inquiry",
+          "outcome_note": "The organisation's explanation",
           "next": {
             "waiting": "The recipient has not accepted the pre-inquiry yet. When they do, you will see it here.",
             "accepted": "The recipient has accepted the pre-inquiry. The answer will come to the shared conversation room.",
@@ -3310,7 +3337,9 @@
             "external": "You sent this pre-inquiry by e-mail. The answer will come to your e-mail; the platform does not see whether it was accepted.",
             "recalled": "You recalled this pre-inquiry. The recipient no longer sees it.",
             "replaced": "You sent a correction to this pre-inquiry. The corrected pre-inquiry is the one that counts for the recipient.",
-            "archived": "This pre-inquiry was not sent and is archived."
+            "archived": "This pre-inquiry was not sent and is archived.",
+            "declined": "The organisation declined this pre-inquiry. If you need help, contact another recipient.",
+            "work_closed": "The organisation has finished its work on this. If you need more help, send a new pre-inquiry."
           }
         },
         "pager": {
@@ -3329,7 +3358,9 @@
         "sent_external": "sent by e-mail, acceptance unknown",
         "recalled": "recalled",
         "replaced": "replaced by a correction",
-        "archived": "archived"
+        "archived": "archived",
+        "declined": "declined by the organisation {date}",
+        "work_closed": "the organisation finished its work {date}"
       }
     },
     "service_map": {
@@ -3770,6 +3801,12 @@
         "location_missing": "Add a service location with an address if you want a map marker.",
         "contact_ready": "A contact or the platform pre-inquiry channel is present.",
         "contact_missing": "Add a contact or allow platform pre-inquiries.",
+        "register_name_ok": "The organisation's name matches the business register.",
+        "register_name_mismatch": "The organisation's name is not the name the business register has for this registry code.",
+        "register_code_not_listed": "No registered organisation with this registry code was found in the business register.",
+        "register_code_required": "An organisation with this name is in the business register: add the registry code to publish.",
+        "register_unavailable": "The name cannot be checked against the business register right now.",
+        "register_name_detail": "In the register: {name}",
         "assistant_allowed": "The assistant may recommend published services.",
         "assistant_blocked": "The assistant will not recommend these services until permission is enabled.",
         "area_municipality_missing": "A municipality-based service has no municipality chosen from the register.",
@@ -3983,6 +4020,15 @@
         "unconfirmed": "The organisation is not confirmed. The profile can be published after it is confirmed that you represent that organisation.",
         "save_first": "The organisation is not confirmed; the profile can be published after the confirmation. Save a draft and open the page \"Confirming the organisation\".",
         "changed": "The confirmed registry code is {code}. To publish with the new code, save a draft and open the page \"Confirming the organisation\"."
+      },
+      "register_name": {
+        "mismatch": "The business register has \"{name}\" for this registry code. The profile can be confirmed and published only under that name.",
+        "mismatch_hidden": "The business register has a different name for this registry code. Write the name exactly as it is in the business register: the profile cannot be confirmed or published under another name.",
+        "use": "Use the register's name",
+        "code_not_listed": "We did not find a registered organisation with this registry code in the business register. Check the code: the profile cannot be confirmed or published with it.",
+        "code_required": "An organisation with this name is in the business register. Add the registry code: without it the profile cannot be published under this name.",
+        "unavailable": "The name cannot be checked against the business register right now. You can save a draft; publishing works again once the check does.",
+        "as_of": "State of the business register in our copy: {date}."
       }
     },
     "admin_role": {
@@ -7407,7 +7453,8 @@
       "service_representation_confirmed": "The organisation is confirmed: the service profile can now be published",
       "service_representation_revoked": "The organisation's confirmation was withdrawn; a published service profile was hidden",
       "service_profile_published": "Your service profile is published",
-      "pre_inquiry_work_closed": "The organisation finished its work on your pre-inquiry"
+      "pre_inquiry_work_closed": "The organisation finished its work on your pre-inquiry",
+      "pre_inquiry_declined": "The organisation declined your pre-inquiry"
     },
     "center": {
       "title": "Notifications",
@@ -7899,6 +7946,12 @@
       "state_confirmed": "Confirmed {date}",
       "state_confirmed_link": "Confirmed {date} by e-mail link",
       "state_stale": "The registry code has changed since the confirmation (it was given for code {code}). A new confirmation is needed.",
+      "name_match": "The name matches the business register.",
+      "name_mismatch": "The name does not match the business register. In the register: {name}",
+      "name_mismatch_hidden": "The name does not match the business register (sole proprietor; the register's name is not shown here).",
+      "name_code_not_listed": "No registered organisation with this registry code was found in the business register.",
+      "name_unavailable": "The business register cannot be asked right now and its copy cannot be read.",
+      "confirm_blocked": "Confirming is possible once the profile name is the register's name for this code.",
       "basis_shown": "Basis: {basis}",
       "basis_label": "Basis of the confirmation",
       "basis_placeholder": "For example: authorisation digitally signed by a board member, received 11.10.2026",
@@ -7913,7 +7966,10 @@
         "load_failed": "The list of confirmations could not be loaded.",
         "action_failed": "The change could not be saved.",
         "basis_required": "Write the basis of the confirmation ({min} to {max} characters).",
-        "registry_code_changed": "The profile's registry code has changed in the meantime. Reload the list and review it."
+        "registry_code_changed": "The profile's registry code or name has changed in the meantime. Reload the list and review it.",
+        "name_mismatch": "The profile name is not the name the business register has for this registry code. It can be confirmed after the service provider has corrected the name.",
+        "code_not_listed": "No registered organisation with this registry code was found in the business register, so it cannot be confirmed. Check the code in the business register.",
+        "register_unavailable": "The business register cannot be asked right now and its copy cannot be read, so confirming is not possible right now."
       }
     },
     "framework_acceptances": {
@@ -12492,7 +12548,8 @@
       "inbox_item_terminal": "This inquiry is finished or the sender recalled it. No further work is possible on it.",
       "inbox_recall_is_sender_right": "Recall is the sender's right.",
       "invalid_inbox_transition": "That status change is not allowed.",
-      "inbox_status_follows_assignment": "The statuses “Assigned” and “Accepted” come from assigning the work and from the worker's answer. They cannot be chosen by hand.",
+      "inbox_status_follows_assignment": "The statuses “Assigned” and “Accepted” are set when the work is assigned and when the worker answers. They cannot be chosen by hand.",
+      "inbox_reject_reason_required": "Write an explanation for the sender before declining the inquiry.",
       "inbox_transition_failed": "Changing the status failed.",
       "work_already_assigned": "This work already has a responsible person.",
       "work_assignment_not_found": "Assignment not found.",
@@ -12639,14 +12696,27 @@
       "response_lead": "This work has been assigned to you. Do you accept it?",
       "reject_confirm": "Yes, I reject it",
       "reject_note": "The work goes back to the assigner, who can assign it to someone else.",
-      "close_confirm": "Yes, close the work",
-      "close_note": "Closed work leaves the intake desk and cannot be reopened. The sender's conversation room becomes read-only.",
+      "close_note": "Closed work moves to the finished inquiries and cannot be reopened. The sender's conversation room becomes read-only.",
       "take_back": "Take work back",
       "take_back_confirm": "Yes, take it back",
       "take_back_note": "The worker's assignment ends and they leave the conversation room. The room stays open for the sender and the work waits for a new assignment.",
       "reject_item": "Decline the inquiry",
-      "reject_item_confirm": "Yes, decline it",
-      "reject_item_note": "A declined inquiry leaves the intake desk and cannot be reopened. The sender is told that the organisation finished its work on their inquiry, and their conversation room becomes read-only."
+      "reject_item_note": "A declined inquiry moves to the finished inquiries and cannot be reopened. The sender is notified and their conversation room becomes read-only.",
+      "reject_item_question": "Why is the inquiry declined?",
+      "reject_item_hint": "Write it as you would say it to the sender: why you cannot help and where they could turn next.",
+      "close_question": "Explanation for the sender, if you wish",
+      "close_hint": "For example how the work ended or what the sender should do next.",
+      "reason_first": "Write the explanation first.",
+      "ending_back": "Cancel",
+      "outcome_note": "Explanation for the sender",
+      "closedAt": "Finished",
+      "finished_at": "finished {date}",
+      "empty_finished": "There are no finished inquiries.",
+      "groups": {
+        "label": "Inquiry groups",
+        "open": "In progress",
+        "finished": "Finished"
+      }
     },
     "inboxStatus": {
       "RECEIVED": "Received",
@@ -13860,8 +13930,6 @@
       "description": "Clients, diary and team"
     },
     "home": {
-      "intro_worker": "Your clients. Open a client to see the agreements and write in the diary.",
-      "intro_coordinator": "All clients. The overview shows new entries, unread handover notes and open incidents.",
       "my_clients": "My clients",
       "all_clients": "Clients",
       "empty_worker": "You are not on any client's team yet. The care coordinator adds you to a client.",
@@ -13872,7 +13940,6 @@
       "search_hint": "The search shows only the name. Outside your own team you are asked for a reason before the page opens.",
       "needs_reason": "opens with a reason",
       "add_client": "Add client",
-      "overview_link": "Coordinator overview",
       "show_ended": "Show ended",
       "show_active": "Show active",
       "empty_ended": "There are no ended clients.",
@@ -13909,7 +13976,6 @@
       }
     },
     "client": {
-      "back": "Back to clients",
       "name": "Name",
       "internal_code": "Code",
       "internal_code_hint": "Your organisation's internal code, for example the same name form you use in your current tool.",
@@ -14109,7 +14175,6 @@
     },
     "overview": {
       "title": "Coordinator overview",
-      "back": "Back to clients",
       "recent_title": "Entries since yesterday",
       "recent_empty": "There are no new entries.",
       "recent_more": "The latest 100 entries are shown.",
@@ -14409,7 +14474,6 @@
       "title": "Incident register",
       "intro": "All incidents, complaints and thanks in your area of responsibility. Open ones come first.",
       "link": "Incident register",
-      "back": "Back to clients",
       "tab_active": "Open ({count})",
       "tab_closed": "Closed ({count})",
       "tab_all": "All",
@@ -14440,7 +14504,6 @@
     "chronology": {
       "title": "Client chronology",
       "link": "Compile a chronology",
-      "back": "Back to the client page",
       "intro": "Choose a period and review the entries. Only the entries you select go into the document, and you can remove third-party details from the text. The diary entries are not changed.",
       "period_title": "Period",
       "load": "Show entries",
@@ -14485,7 +14548,6 @@
     "releases": {
       "title": "Release log",
       "link": "Releases",
-      "back": "Back to clients",
       "intro": "Every compiled chronology: for whom, on what basis and who compiled it. The official register is the organisation's document management; this list is a work log.",
       "empty": "There are no releases yet.",
       "period": "Period: {from} – {to}",
@@ -14748,7 +14810,6 @@
       "none": "No care plan is in force yet.",
       "create_link": "Draw up a care plan",
       "edit_link": "Change the care plan",
-      "back": "Back to the client's page",
       "editor_intro": "You are changing a draft. The plan in force stays the same until you put the draft into force; the earlier plan then stays in the list of earlier plans.",
       "active_title": "Plan in force",
       "none_yet": "This client has no care plan in force yet.",
@@ -15175,7 +15236,6 @@
     },
     "absences": {
       "link": "Absences",
-      "back": "Back to the day plan",
       "title": "Absences",
       "intro": "Mark when a care worker is not at work. The day plan then brings forward the visits whose worker is absent and does not offer that worker as a replacement. The reason is not asked here.",
       "list_title": "Marked absences",
@@ -16215,6 +16275,50 @@
       "limits_title": "What is not here",
       "limits_money": "Client money is a record, not a payment. Card details and PIN codes are never written here.",
       "limits_official": "The official procedure takes place in STAR. Here is the organisation's own work: the diary, the plan and the agreements."
+    },
+    "desk": {
+      "groups": {
+        "daily": "Every day",
+        "people": "Clients and workers",
+        "month": "Month and exports"
+      },
+      "names": {
+        "overview": "Overview",
+        "incidents": "Incidents",
+        "name": "My name"
+      },
+      "lines": {
+        "today": "Your visits today",
+        "overview": "New since yesterday",
+        "day": "Today's visits and workers",
+        "week": "Visits by worker",
+        "absences": "Who is away and when",
+        "deadlines": "Waiting for your decision",
+        "clients": "Find, open or add a client",
+        "my_clients": "Open a client or search by name",
+        "incidents": "Incidents and complaints",
+        "keys": "Who holds each key",
+        "crisis": "Who needs help in a crisis",
+        "workers": "Trainings and checks",
+        "refer": "Where to send a person on",
+        "month": "Time provided, month lock",
+        "trips": "Work trips and kilometres",
+        "calls": "Who calls and about what",
+        "releases": "Chronologies made",
+        "activities": "Activities catalogue",
+        "export": "All data as one file"
+      }
+    },
+    "today": {
+      "count": "Visits {count}, done {done}",
+      "all_title": "All visits today",
+      "mine_title": "In my hands",
+      "mine_keys": "Keys {count}",
+      "mine_money": "Client money",
+      "back": "Back to today",
+      "none": "You have no visits today.",
+      "done_part": "done {count}",
+      "later_part": "{count} more later"
     }
   },
   "stage": {
@@ -16254,7 +16358,7 @@
     "suggestion_note": "The draft uses the question, facts, options and missing information. It may be shortened; review the entire result.",
     "identifiers": "Review and generalise:",
     "confirmation": "I have reviewed this saved text and removed unnecessary personal data. I will choose where to use it below.",
-    "ai_privacy": "“Discuss with the assistant” sends only this text and reflection instructions to the existing AI assistant. The model provider processes it and the conversation is stored under the usual assistant terms. Deleting this private reflection will not delete that conversation.",
+    "ai_privacy": "“Discuss with the assistant” sends only this text and reflection instructions to the existing AI assistant. The model provider processes it and the conversation is stored under the usual assistant terms. Deleting this private reflection will not delete that conversation. Sources are searched only within the selected ethics collection. Search is never automatically widened to the whole database.",
     "covision_privacy": "Covision receives a separate private draft of this text. Inviting participants and publishing content to them takes place in Covision. Later changes here will not update that copy.",
     "expert_closed": "Sending to an expert is currently unavailable. This room does not implement the ESTA Ethics Compass method.",
     "ask": "Discuss with the assistant",
@@ -16283,6 +16387,7 @@
       "confirmation": "Review and confirm the saved text.",
       "snapshot": "Add a short text to use elsewhere.",
       "identifiers": "The text may contain identifying data. Generalise it before continuing.",
+      "sources": "The ethics collection is currently unavailable. Please try again later.",
       "assistant": "The assistant did not complete an answer. You can retry the same request.",
       "failed": "The action failed. Please try again."
     },

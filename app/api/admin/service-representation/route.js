@@ -6,6 +6,7 @@ import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
 import { safeError } from "@/lib/privacy/safeError";
 import { isSameOriginRequest } from "@/lib/security/sameOriginRequest";
 import {
+  AdminRepresentationNameError,
   confirmRepresentationAsAdmin,
   listRepresentationAdminRows,
   revokeRepresentationAsAdmin
@@ -21,7 +22,8 @@ export const revalidate = 0;
 const ACTION_ERROR_KEYS = new Set([
   "api.common.not_found",
   "admin.service_representation.errors.basis_required",
-  "admin.service_representation.errors.registry_code_changed"
+  "admin.service_representation.errors.registry_code_changed",
+  ...Object.values(AdminRepresentationNameError)
 ]);
 
 async function requireAdmin() {
@@ -75,7 +77,8 @@ export async function POST(request) {
     return json({ ok: true, row });
   } catch (error) {
     const status = Number(error?.status) || 500;
-    if (status < 500 && ACTION_ERROR_KEYS.has(error?.message)) {
+    /* 503 on siin ainult „registrifaili ei saa lugeda": haldur peab seda oma lausega nägema. */
+    if ((status < 500 || status === 503) && ACTION_ERROR_KEYS.has(error?.message)) {
       return errorJson(error.message, status, locale, error?.details ? { details: error.details } : {});
     }
     console.error("[admin/service-representation] action failed", safeError(error));

@@ -52,9 +52,6 @@ export default function HomeCareKeyRegister({ context, register }) {
     <OrgPart context={context} part="home_care" partLabel={t("home_care.keys.register_title")}>
     <section className="hc-shell">
       <div className="hc-head">
-        <Link className="hc-back" href={`/org/${organizationId}/koduteenus`}>
-          {t("home_care.client.back")}
-        </Link>
         <p className="hc-sub">{t("home_care.keys.register_intro")}</p>
         {register.truncated ? <p className="hc-notice">{t("home_care.keys.truncated", { count: register.total })}</p> : null}
       </div>

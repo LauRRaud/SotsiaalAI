@@ -21,9 +21,10 @@ export const metadata = {
  * `INBOX_COORDINATOR`-it, aga ta peab oma tööd nägema. Loend ise on serveris
  * skoobitud: õiguseta liige näeb tühja lauda.
  */
-export default async function OrgInboxPage({ params }) {
+export default async function OrgInboxPage({ params, searchParams }) {
   noStore();
   const { orgId } = await params;
+  const query = (await searchParams) || {};
   if (!isOrgInboxEnabled()) notFound();
 
   const auth = await requireOrgPageContext(orgId, `/org/${orgId}/vastuvott`);
@@ -37,7 +38,13 @@ export default async function OrgInboxPage({ params }) {
     isPlatformAdmin: Boolean(auth.roleState?.isAdmin),
     productRole: auth.roleState?.effectiveRole
   });
-  const page = await listInboxItemPage(fullContext);
+  /* Lõpetatud pöördumiste rühm on koordinaatori vaade: töötaja näeb laual ainult talle
+     määratud tööd ja lõpetatud tööl vastutajat ei ole, seega oleks rühm talle alati tühi.
+     `?lopetatud=1` avab kohe selle rühma (sinna viib lõpetatud kirje „Tagasi loendisse"). */
+  const showFinished = (fullContext.capabilities || []).some((grant) => grant.capability === "INBOX_COORDINATOR");
+  const initialGroup = showFinished && query.lopetatud === "1" ? "finished" : "open";
+  const page = await listInboxItemPage(fullContext, { closedOnly: initialGroup === "finished" });
 
-  return <OrgInboxClient context={auth.context} initialPage={page} />;
+  /* `key`: teise rühma aadressile minnes algab loend uuesti (olek on rühma kohta). */
+  return <OrgInboxClient key={initialGroup} context={auth.context} initialPage={page} initialGroup={initialGroup} showFinished={showFinished} />;
 }

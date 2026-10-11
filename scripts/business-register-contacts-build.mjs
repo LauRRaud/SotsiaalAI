@@ -1,6 +1,11 @@
 /**
- * Teeb äriregistri avaandmete failist „Üldandmed" kontrollfaili, mille järgi platvorm näeb, kas
- * e-posti aadress on registris ühe registrikoodi kontaktina kirjas (lib/businessRegisterContacts.js).
+ * Teeb äriregistri avaandmete failist „Üldandmed" kaks kontrollfaili:
+ *
+ *   1. kontaktid: kas e-posti aadress on registris ühe registrikoodi kontaktina kirjas
+ *      (lib/businessRegisterContacts.js);
+ *   2. nimed: mis nimi on registris ühe registrikoodi all (lib/businessRegisterNames.js).
+ *
+ * Mõlemad tehakse ühe lugemisega samast failist, et nad kirjeldaksid registri sama seisu.
  *
  * Allikas: https://avaandmed.ariregister.rik.ee → „Üldandmed" →
  * ettevotja_rekvisiidid__yldandmed.json.zip (umbes 230 MB, lahti pakituna 4,6 GB; litsents CC BY 4.0,
@@ -9,11 +14,14 @@
  * Käsk tööpuu juurest:
  *   node scripts/business-register-contacts-build.mjs <tee zip-failini> [--source-date 2026-10-10]
  *
- * Väljund: src/server/data/business-register-contact-hashes.bin ja ….meta.json. Aadresse välja ei
- * kirjutata: failis on iga paari (registrikood, e-post) SHA-256 räsi kaheksa esimest baiti.
+ * Väljund kaustas src/server/data:
+ *   business-register-contact-hashes.bin (+ .meta.json)  aadresse välja ei kirjutata: iga paari
+ *       (registrikood, e-post) SHA-256 räsi kaheksa esimest baiti;
+ *   business-register-names.tsv (+ .meta.json)  registrisse kantud asutuste nimed koodi järgi.
+ *       Füüsilisest isikust ettevõtja nime (inimese nimi) välja ei kirjutata, ainult räsi.
  *
  * Fail loetakse voona ja rida-realt: register väljastab iga välja omal real. Kui kuju muutub nii,
- * et asutusi või paare tuleb oodatust palju vähem, lõpetab skript veaga ega kirjuta midagi.
+ * et asutusi, paare või nimesid tuleb oodatust palju vähem, lõpetab skript veaga ega kirjuta midagi.
  */
 import { createReadStream } from "node:fs";
 import { mkdir, open, rename, stat, writeFile } from "node:fs/promises";
@@ -26,12 +34,23 @@ import {
   CONTACT_HASH_BYTES,
   CONTACT_HASH_FILE,
   CONTACT_HASH_META_FILE,
-  collectRegisterContactHashes,
-  hashListFrom
+  contactHashCollector,
+  hashListFrom,
+  registerCompanies
 } from "../lib/businessRegisterContacts.js";
+import {
+  REGISTER_NAMES_FILE,
+  REGISTER_NAMES_META_FILE,
+  registerNameCollector,
+  registerNamesFileFrom
+} from "../lib/businessRegisterNames.js";
 
 const MIN_COMPANIES = 300000;
 const MIN_PAIRS = 300000;
+/* Nimede kuju kontroll: kui õigusliku vormi väli kaob, läheks iga nimi räsiks (lihtnimesid 0);
+   kui füüsilisest isikust ettevõtjaid enam ei tunta, oleks räsisid 0. Kumbki ei ole päris seis. */
+const MIN_PLAIN_NAMES = 250000;
+const MIN_HASHED_NAMES = 10000;
 const ENTRY_NAME = /yldandmed\.json$/u;
 
 function fail(message) {
@@ -58,6 +77,11 @@ async function firstEntry(zipPath) {
   }
 }
 
+async function writeWhole(file, content) {
+  await writeFile(`${file}.tmp`, content);
+  await rename(`${file}.tmp`, file);
+}
+
 const args = process.argv.slice(2);
 const zipPath = args.find((arg) => !arg.startsWith("--"));
 if (!zipPath) fail("anna zip-faili tee");
@@ -80,39 +104,61 @@ inflate.on("error", (error) => {
 });
 source.pipe(inflate);
 
-async function* counted(lines) {
-  for await (const line of lines) {
-    if (line.startsWith('        "ariregistri_kood"')) seen += 1;
-    yield line;
-  }
+const contacts = contactHashCollector();
+const names = registerNameCollector();
+for await (const company of registerCompanies(createInterface({ input: inflate, crlfDelay: Infinity }))) {
+  seen += 1;
+  contacts.add(company);
+  names.add(company);
 }
-
-const { companies, registered, registeredWithEmail: withEmail, hashes } = await collectRegisterContactHashes(
-  counted(createInterface({ input: inflate, crlfDelay: Infinity }))
-);
+const { companies, registered, registeredWithEmail: withEmail, hashes } = contacts.result();
+const { entries, plainNames, hashedNames, byLegalForm } = names.result();
 
 if (companies < MIN_COMPANIES || hashes.size < MIN_PAIRS) {
   fail(`liiga vähe andmeid (asutusi ${companies}, paare ${hashes.size}): faili kuju on ilmselt muutunud; midagi ei kirjutatud`);
 }
+if (plainNames < MIN_PLAIN_NAMES || hashedNames < MIN_HASHED_NAMES) {
+  fail(`nimede kuju ei klapi (lihtnimesid ${plainNames}, räsisid ${hashedNames}): õigusliku vormi väli on ilmselt muutunud; midagi ei kirjutatud`);
+}
 
 const output = hashListFrom(hashes);
-
-await mkdir(path.dirname(CONTACT_HASH_FILE), { recursive: true });
-await writeFile(`${CONTACT_HASH_FILE}.tmp`, output);
-await rename(`${CONTACT_HASH_FILE}.tmp`, CONTACT_HASH_FILE);
-const meta = {
+const namesOutput = registerNamesFileFrom(entries);
+const sourceMeta = {
   sourceFile: entry.name,
   sourceUrl: "https://avaandmed.ariregister.rik.ee/et/avaandmete-allalaadimine",
   sourceLicence: "CC BY 4.0, Registrite ja Infosüsteemide Keskus (äriregister)",
   sourceLastModified: sourceDate || null,
   sourceZipBytes: zipStat.size,
-  builtAt: new Date().toISOString().slice(0, 10),
+  builtAt: new Date().toISOString().slice(0, 10)
+};
+
+await mkdir(path.dirname(CONTACT_HASH_FILE), { recursive: true });
+await writeWhole(CONTACT_HASH_FILE, output);
+await writeFile(CONTACT_HASH_META_FILE, `${JSON.stringify({
+  ...sourceMeta,
   companies,
   registered,
   registeredWithEmail: withEmail,
   pairs: hashes.size,
   hashBytes: CONTACT_HASH_BYTES,
   sha256: createHash("sha256").update(output).digest("hex")
-};
-await writeFile(CONTACT_HASH_META_FILE, `${JSON.stringify(meta, null, 2)}\n`, "utf8");
+}, null, 2)}\n`, "utf8");
+
+await writeWhole(REGISTER_NAMES_FILE, namesOutput);
+await writeFile(REGISTER_NAMES_META_FILE, `${JSON.stringify({
+  ...sourceMeta,
+  contents: "Registrisse kantud (staatus R) asutused, üks rida asutuse kohta, järjestatud registrikoodi järgi.",
+  lineFormats: {
+    N: "kood<TAB>N<TAB>nimi: juriidiline isik või asutus, nimi registri kujul",
+    H: "kood<TAB>H<TAB>räsi: füüsilisest isikust ettevõtja või tundmatu õiguslik vorm; nime failis ei ole, real on paari (kood, ühtlustatud nimi) SHA-256 räsi 16 esimest kuueteistkümnendmärki"
+  },
+  entries: entries.size,
+  plainNames,
+  hashedNames,
+  byLegalForm: Object.fromEntries(Object.entries(byLegalForm).sort(([, left], [, right]) => right - left)),
+  bytes: namesOutput.length,
+  sha256: createHash("sha256").update(namesOutput).digest("hex")
+}, null, 2)}\n`, "utf8");
+
 console.log(`[business-register-contacts] asutusi ${companies}, registris ${registered}, e-postiga ${withEmail}, paare ${hashes.size}, fail ${output.length} baiti`);
+console.log(`[business-register-contacts] nimesid ${entries.size} (lihttekstina ${plainNames}, räsina ${hashedNames}), fail ${namesOutput.length} baiti`);

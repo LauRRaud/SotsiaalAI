@@ -2751,6 +2751,10 @@
       "profile_conflict": "Profiili muudeti vahepeal. Laadi värske seis ja võrdle muudatusi.",
       "publish_contact_required": "Avaldamiseks vali vähemalt üks kontakt või platvormisisene pöördumisviis.",
       "publish_representation_required": "Registrikoodiga profiili saab avaldada pärast seda, kui on kinnitatud, et esindad seda asutust. Salvesta profiil mustandina ja ava leht „Asutuse kinnitamine” (sotsiaal.pro/teenuseprofiil/kinnitus).",
+      "publish_register_name_mismatch": "Profiili nimi ei ole see, mis on äriregistris selle registrikoodi all, seepärast ei saa profiili avaldada. Ava samm „Organisatsioon”: seal on registri nimi näha ja saad selle ühe vajutusega profiilile panna. Mustandina saab profiili salvestada ka praeguse nimega.",
+      "publish_registry_code_not_listed": "Selle registrikoodiga registrisse kantud asutust me äriregistrist ei leidnud, seepärast ei saa profiili avaldada. Kontrolli, et kood on õige. Kui kood on õige ja asutus on registris, kirjuta aadressile info@sotsiaal.pro. Mustandina saab profiili salvestada.",
+      "publish_registry_code_required": "Selle nimega asutus on äriregistris. Selle nime all saab profiili avaldada ainult koos asutuse registrikoodi ja kinnitusega, et sa seda asutust esindad. Lisa sammus „Organisatsioon” registrikood või kirjuta nimi, mille all sa ise teenust osutad.",
+      "publish_register_unavailable": "Nime ei saa praegu äriregistri vastu kontrollida, seepärast ei saa profiili avaldada. Mustandina saab profiili salvestada. Proovi hiljem uuesti või kirjuta aadressile info@sotsiaal.pro.",
       "publish_service_required": "Avaldamiseks lisa vähemalt üks nähtav avaldatud teenus.",
       "save_failed": "Teenuseprofiili ei saanud salvestada. Proovi uuesti; vea kordumisel anna toele korrelatsiooni-ID.",
       "load_failed": "Teenuseprofiili ei saanud laadida.",
@@ -2763,6 +2767,8 @@
       "representation_email_invalid": "Kirjuta asutuse e-posti aadress.",
       "representation_email_not_in_register": "See aadress ei ole äriregistris selle registrikoodi kontaktina kirjas. Vaata oma asutuse kontakte äriregistrist (ariregister.rik.ee). Meie koopia registrist uueneb kord kuus; kui muutsid aadressi hiljuti, kirjuta aadressile info@sotsiaal.pro.",
       "representation_register_unavailable": "Äriregistri kontrolli ei saa praegu teha. Proovi hiljem uuesti või kirjuta aadressile info@sotsiaal.pro.",
+      "representation_name_mismatch": "Teenuseprofiili nimi ei ole see, mis on äriregistris selle registrikoodi all. Paranda nimi teenuseprofiili sammus „Organisatsioon” ja salvesta; siis saab asutuse kinnitada.",
+      "representation_code_not_listed": "Selle registrikoodiga registrisse kantud asutust me äriregistrist ei leidnud. Kontrolli koodi teenuseprofiilis. Kui kood on õige ja asutus on registris, kirjuta aadressile info@sotsiaal.pro.",
       "representation_mail_failed": "Kirja ei saanud saata. Proovi uuesti.",
       "representation_link_invalid": "See link ei kehti enam või ei kuulu sellele kontole."
     },
@@ -2834,7 +2840,11 @@
       "link_confirm": "Kinnitan",
       "link_confirming": "Kinnitan...",
       "link_invalid": "See link ei kehti enam või ei kuulu sellele kontole. Saada uus link.",
-      "link_done": "Asutus on kinnitatud. Nüüd saad teenuseprofiili avaldada."
+      "link_done": "Asutus on kinnitatud. Nüüd saad teenuseprofiili avaldada.",
+      "name_title": "Profiili nimi ei vasta äriregistrile",
+      "name_mismatch": "Teenuseprofiilil on nimi „{name}”, aga äriregistris on registrikoodi {code} nimi „{registerName}”. Asutust saab kinnitada ainult registri nimega: paranda nimi teenuseprofiili sammus „Organisatsioon” ja salvesta.",
+      "name_mismatch_hidden": "Teenuseprofiilil on nimi „{name}”, aga äriregistris on registrikoodi {code} all teine nimi. Kirjuta teenuseprofiili sammus „Organisatsioon” nimi täpselt nii, nagu see on äriregistris, ja salvesta.",
+      "code_not_listed": "Registrikoodiga {code} registrisse kantud asutust me äriregistrist ei leidnud. Kontrolli koodi teenuseprofiilis. Kui kood on õige ja asutus on registris, kirjuta aadressile info@sotsiaal.pro."
     }
   },
   "service_availability": {
@@ -2897,7 +2907,6 @@
       "fields": {
         "topic": "Teema",
         "situation": "Olukorra kirjeldus",
-        "recipient_type": "Adressaadi tüüp",
         "recipient_search": "Otsi adressaati",
         "assessment_path": "Eelkaardistuse viis",
         "concerns_about": "Kelle kohta pöördumine käib",
@@ -2913,7 +2922,7 @@
       "placeholders": {
         "topic": "Lühike pealkiri",
         "situation": "Kirjelda olukorda, vajadust või küsimust.",
-        "recipient": "KOV kontakt, organisatsiooni vastuvõtutiim, teenuseosutaja või piirkond",
+        "recipient": "Nimi, omavalitsus või teenus",
         "draft": "Koostatud pöördumise tekst",
         "municipality": "Näiteks Tallinn, Põltsamaa vald või piirkond",
         "existing_support": "Kes või mis praegu aitab?",
@@ -2929,10 +2938,6 @@
         "organization_inbox_description": "Organisatsiooni postkast Sotsiaal.pro platvormis",
         "provider": "Teenuseosutaja",
         "selected": "Valitud kontakt"
-      },
-      "delivery": {
-        "internal": "Sotsiaal.pro sisene",
-        "external_email": "E-post"
       },
       "receiving": {
         "accepts_platform": "Võtan eelpöördumisi platvormil vastu",
@@ -2980,8 +2985,6 @@
         "send_internal": "Saada platvormis",
         "save_workflow": "Salvesta tööplaan",
         "archive": "Arhiveeri",
-        "show_more_contacts": "Vaata rohkem kontakte",
-        "show_less_contacts": "Näita vähem",
         "choose_recipient": "Vali adressaat",
         "choose_contact": "Vali see kontakt",
         "view_service_map": "Vaata teenusekaardil",
@@ -3056,7 +3059,6 @@
         "reprojected": "Eelpöördumise tekst koostati valitud osadest uuesti."
       },
       "preview": {
-        "no_auto_send": "Midagi ei saadeta automaatselt.",
         "check_note": "Enne kinnitamist kontrolli adressaati, saatmise viisi, pöördumise teksti ja eelinfot. Platvormisisene pöördumine jõuab vastuvõtja Pöördumiste vaatesse; e-kirja tekst avaneb sinu e-posti rakenduses ülevaatamiseks.",
         "recipient_prefix": "Adressaat",
         "delivery_prefix": "Saatmise viis",
@@ -3162,7 +3164,9 @@
         },
         "assistant": {
           "title": "Täpsusta abilisega",
-          "lead": "Abiline küsib täpsustusi ja aitab leida sobiva kontakti. Selle sammu võid vahele jätta."
+          "lead": "Abiline küsib täpsustusi ja aitab leida sobiva kontakti. Selle sammu võid vahele jätta.",
+          "notes": "Abilise märkused",
+          "tags": "Märksõnad"
         },
         "review": {
           "all_answers": "Kõik vastused",
@@ -3170,7 +3174,6 @@
         },
         "recipient": {
           "title": "Adressaat",
-          "lead": "Kontaktid tulevad teenusekaardilt. Vali, kellele pöördumine läheb; Sotsiaal.pro ise ei ole adressaat.",
           "empty": {
             "loading": "Laen kontakte...",
             "no_contacts": "Teenusekaardil ei ole praegu ühtegi kontakti, kellele pöördumist saata.",
@@ -3178,7 +3181,30 @@
             "none_of_type": "Seda liiki kontakte teenusekaardil praegu ei ole. Vali teine liik.",
             "no_match_type": "Otsingule „{query}” ei vasta ükski seda liiki kontakt. Proovi teist sõna või teist liiki.",
             "no_match": "Otsingule „{query}” ei vasta ükski kontakt. Proovi teist sõna, näiteks omavalitsuse nime."
-          }
+          },
+          "back": "Kõik kontaktid",
+          "source_suggested": "Soovitatud · {count}",
+          "chosen": "Valitud",
+          "facts": {
+            "email": "E-post",
+            "channel": "Pöördumine läheb",
+            "place": "Asukoht",
+            "area": "Teeninduspiirkond",
+            "service": "Teenus"
+          },
+          "channel": {
+            "platform": "Sotsiaal.pro platvormis",
+            "email": "e-kirjaga sinu e-posti rakendusest",
+            "both": "platvormis või e-kirjaga",
+            "manual": "siit saata ei saa; teksti saad kopeerida või alla laadida"
+          },
+          "services": "Mis teenuse kohta pöördud?",
+          "no_services": "Sellel teenuseosutajal ei ole praegu teenust, mille kohta saaks siit pöörduda.",
+          "filters": "Milliseid kontakte näidata",
+          "source_note": "Kontaktid tulevad teenusekaardilt. Sotsiaal.pro ise ei ole adressaat.",
+          "choose_service": "Vali teenus",
+          "change_service": "Vali teine teenus",
+          "back_contact": "Kontakti andmed"
         },
         "text": {
           "title": "Pöördumise tekst",
@@ -3303,6 +3329,7 @@
           "text_lead": "Selle teksti saatsid. Saadetud pöördumist enam muuta ei saa.",
           "text_lead_unsent": "Arhiveeritud pöördumise tekst. Muutmiseks taasava pöördumine.",
           "text_heading": "Pöördumise tekst",
+          "outcome_note": "Asutuse selgitus",
           "next": {
             "waiting": "Vastuvõtja ei ole pöördumist veel vastu võtnud. Kui ta selle vastu võtab, näed seda siin.",
             "accepted": "Vastuvõtja on pöördumise vastu võtnud. Vastus tuleb ühisesse vestlusruumi.",
@@ -3310,7 +3337,9 @@
             "external": "Saatsid selle pöördumise e-kirjaga. Vastus tuleb sinu e-posti; vastuvõtmist platvorm ei näe.",
             "recalled": "Võtsid selle pöördumise tagasi. Vastuvõtja seda enam ei näe.",
             "replaced": "Saatsid selle pöördumise kohta paranduse. Vastuvõtja juures kehtib parandatud pöördumine.",
-            "archived": "See pöördumine on saatmata ja arhiveeritud."
+            "archived": "See pöördumine on saatmata ja arhiveeritud.",
+            "declined": "Asutus ei võta seda pöördumist tööle. Kui vajad abi, pöördu teise adressaadi poole.",
+            "work_closed": "Asutus on selle pöördumisega töö lõpetanud. Kui vajad veel abi, saada uus pöördumine."
           }
         },
         "pager": {
@@ -3329,7 +3358,9 @@
         "sent_external": "saadetud e-kirjaga, vastuvõtt teadmata",
         "recalled": "tagasi võetud",
         "replaced": "asendatud parandusega",
-        "archived": "arhiveeritud"
+        "archived": "arhiveeritud",
+        "declined": "asutus lükkas tagasi {date}",
+        "work_closed": "asutus lõpetas töö {date}"
       }
     },
     "service_map": {
@@ -3770,6 +3801,12 @@
         "location_missing": "Lisa teeninduskoht koos aadressiga, kui soovid kaardimarkerit.",
         "contact_ready": "Kontakt või platvormisisene pöördumisviis on olemas.",
         "contact_missing": "Lisa kontakt või luba platvormisisesed eelpöördumised.",
+        "register_name_ok": "Asutuse nimi vastab äriregistrile.",
+        "register_name_mismatch": "Asutuse nimi ei ole see, mis on äriregistris selle registrikoodi all.",
+        "register_code_not_listed": "Selle registrikoodiga registrisse kantud asutust äriregistrist ei leitud.",
+        "register_code_required": "Selle nimega asutus on äriregistris: avaldamiseks lisa registrikood.",
+        "register_unavailable": "Nime ei saa praegu äriregistri vastu kontrollida.",
+        "register_name_detail": "Registris: {name}",
         "assistant_allowed": "Assistent võib avaldatud teenuseid soovitada.",
         "assistant_blocked": "Assistent ei soovita neid teenuseid enne eraldi loa andmist.",
         "area_municipality_missing": "KOV põhisel teenusel ei ole ühtki registrist valitud omavalitsust.",
@@ -3983,6 +4020,15 @@
         "unconfirmed": "Asutus on kinnitamata. Profiili saab avaldada pärast seda, kui on kinnitatud, et esindad seda asutust.",
         "save_first": "Asutus on kinnitamata, avaldada saab pärast kinnitust. Salvesta profiil mustandina ja ava leht „Asutuse kinnitamine”.",
         "changed": "Kinnitatud on registrikood {code}. Uue koodiga avaldamiseks salvesta profiil mustandina ja ava leht „Asutuse kinnitamine”."
+      },
+      "register_name": {
+        "mismatch": "Äriregistris on selle registrikoodi nimi „{name}”. Profiili saab kinnitada ja avaldada ainult selle nimega.",
+        "mismatch_hidden": "Äriregistris on selle registrikoodi all teine nimi. Kirjuta nimi täpselt nii, nagu see on äriregistris: muu nimega ei saa profiili kinnitada ega avaldada.",
+        "use": "Kasuta registri nime",
+        "code_not_listed": "Selle registrikoodiga registrisse kantud asutust me äriregistrist ei leidnud. Kontrolli koodi: selle koodiga ei saa profiili kinnitada ega avaldada.",
+        "code_required": "Selle nimega asutus on äriregistris. Lisa registrikood: ilma selleta ei saa profiili selle nime all avaldada.",
+        "unavailable": "Nime ei saa praegu äriregistri vastu kontrollida. Mustandina saab salvestada; avaldada saab siis, kui kontroll jälle töötab.",
+        "as_of": "Äriregistri seis meie koopias: {date}."
       }
     },
     "admin_role": {
@@ -7407,7 +7453,8 @@
       "service_representation_confirmed": "Asutus on kinnitatud: teenuseprofiili saab nüüd avaldada",
       "service_representation_revoked": "Asutuse kinnitus võeti tagasi; avaldatud teenuseprofiil peideti",
       "service_profile_published": "Sinu teenuseprofiil on avaldatud",
-      "pre_inquiry_work_closed": "Asutus lõpetas sinu eelpöördumisega töö"
+      "pre_inquiry_work_closed": "Asutus lõpetas sinu eelpöördumisega töö",
+      "pre_inquiry_declined": "Asutus lükkas sinu eelpöördumise tagasi"
     },
     "center": {
       "title": "Teavitused",
@@ -7899,6 +7946,12 @@
       "state_confirmed": "Kinnitatud {date}",
       "state_confirmed_link": "Kinnitatud {date} e-kirja lingiga",
       "state_stale": "Registrikood on pärast kinnitust muutunud (kinnitus anti koodile {code}). Vajab uut kinnitust.",
+      "name_match": "Nimi vastab äriregistrile.",
+      "name_mismatch": "Nimi ei vasta äriregistrile. Registris: {name}",
+      "name_mismatch_hidden": "Nimi ei vasta äriregistrile (füüsilisest isikust ettevõtja; registri nime siin ei näidata).",
+      "name_code_not_listed": "Selle registrikoodiga registrisse kantud asutust äriregistrist ei leitud.",
+      "name_unavailable": "Äriregistrit ei saa praegu küsida ja selle koopiat ei saa lugeda.",
+      "confirm_blocked": "Kinnitada saab siis, kui profiili nimi on registri nimi selle koodi kohta.",
       "basis_shown": "Alus: {basis}",
       "basis_label": "Kinnituse alus",
       "basis_placeholder": "Näiteks: juhatuse liikme digiallkirjaga volitus, saadud 11.10.2026",
@@ -7913,7 +7966,10 @@
         "load_failed": "Kinnituste loendit ei saanud laadida.",
         "action_failed": "Muudatust ei saanud salvestada.",
         "basis_required": "Kirjuta kinnituse alus ({min} kuni {max} tähemärki).",
-        "registry_code_changed": "Profiili registrikood on vahepeal muutunud. Laadi loend uuesti ja vaata üle."
+        "registry_code_changed": "Profiili registrikood või nimi on vahepeal muutunud. Laadi loend uuesti ja vaata üle.",
+        "name_mismatch": "Profiili nimi ei ole see, mis on äriregistris selle registrikoodi all. Kinnitada saab pärast seda, kui teenuseosutaja on nime parandanud.",
+        "code_not_listed": "Selle registrikoodiga registrisse kantud asutust äriregistrist ei leitud, seepärast ei saa kinnitada. Kontrolli koodi äriregistrist.",
+        "register_unavailable": "Äriregistrit ei saa praegu küsida ja selle koopiat ei saa lugeda, seepärast ei saa praegu kinnitada."
       }
     },
     "framework_acceptances": {
@@ -12493,6 +12549,7 @@
       "inbox_recall_is_sender_right": "Tagasivõtmine on saatja õigus.",
       "invalid_inbox_transition": "Sellist olekumuutust ei ole lubatud teha.",
       "inbox_status_follows_assignment": "Seisud „Määratud” ja „Vastu võetud” tekivad töö määramisest ja töötaja vastusest. Käsitsi neid valida ei saa.",
+      "inbox_reject_reason_required": "Tagasilükkamiseks kirjuta pöördujale selgitus.",
       "inbox_transition_failed": "Oleku muutmine ebaõnnestus.",
       "work_already_assigned": "Sellel tööl on juba vastutaja.",
       "work_assignment_not_found": "Määramist ei leitud.",
@@ -12639,14 +12696,27 @@
       "response_lead": "See töö on määratud sulle. Kas võtad selle vastu?",
       "reject_confirm": "Jah, lükkan tagasi",
       "reject_note": "Töö läheb tagasi määrajale, kes saab selle kellelegi teisele määrata.",
-      "close_confirm": "Jah, sulge töö",
-      "close_note": "Suletud töö kaob vastuvõtulaualt ja seda ei saa uuesti avada. Pöörduja vestlusruum jääb ainult loetavaks.",
+      "close_note": "Suletud töö läheb lõpetatud pöördumiste hulka ja seda ei saa uuesti avada. Pöörduja vestlusruum jääb ainult loetavaks.",
       "take_back": "Võta töö tagasi",
       "take_back_confirm": "Jah, võta tagasi",
       "take_back_note": "Töötaja määramine lõpeb ja ta lahkub vestlusruumist. Ruum jääb pöördujale avatuks ja töö ootab uut määramist.",
       "reject_item": "Lükka pöördumine tagasi",
-      "reject_item_confirm": "Jah, lükka tagasi",
-      "reject_item_note": "Tagasi lükatud pöördumine kaob vastuvõtulaualt ja seda ei saa uuesti avada. Pöörduja saab teate, et asutus lõpetas tema pöördumisega töö, ja tema vestlusruum jääb ainult loetavaks."
+      "reject_item_note": "Tagasi lükatud pöördumine läheb lõpetatud pöördumiste hulka ja seda ei saa uuesti avada. Pöörduja saab teate ja tema vestlusruum jääb ainult loetavaks.",
+      "reject_item_question": "Miks pöördumine tagasi lükatakse?",
+      "reject_item_hint": "Kirjuta nii, nagu ütleksid seda pöördujale: miks te ei saa aidata ja kuhu ta võiks edasi pöörduda.",
+      "close_question": "Selgitus pöördujale, kui soovid",
+      "close_hint": "Näiteks millega töö lõppes või mida pöörduja peaks edasi tegema.",
+      "reason_first": "Kirjuta enne selgitus.",
+      "ending_back": "Loobu",
+      "outcome_note": "Selgitus pöördujale",
+      "closedAt": "Lõpetatud",
+      "finished_at": "lõpetatud {date}",
+      "empty_finished": "Lõpetatud pöördumisi ei ole.",
+      "groups": {
+        "label": "Pöördumiste rühmad",
+        "open": "Töös",
+        "finished": "Lõpetatud"
+      }
     },
     "inboxStatus": {
       "RECEIVED": "Saabunud",
@@ -13860,8 +13930,6 @@
       "description": "Kliendid, päevik ja meeskond"
     },
     "home": {
-      "intro_worker": "Sinu kliendid. Ava klient, et näha kokkuleppeid ja kirjutada päevikusse.",
-      "intro_coordinator": "Kõik kliendid. Ülevaates on uued kirjed, lugemata teated ja lahtised erijuhtumid.",
       "my_clients": "Minu kliendid",
       "all_clients": "Kliendid",
       "empty_worker": "Sa ei ole veel ühegi kliendi meeskonnas. Hooldusjuht lisab sind kliendi juurde.",
@@ -13872,7 +13940,6 @@
       "search_hint": "Otsing näitab ainult nime. Väljaspool oma meeskonda küsitakse lehe avamiseks põhjust.",
       "needs_reason": "avaneb põhjusega",
       "add_client": "Lisa klient",
-      "overview_link": "Hooldusjuhi ülevaade",
       "show_ended": "Näita lõpetatuid",
       "show_active": "Näita aktiivseid",
       "empty_ended": "Lõpetatud kliente ei ole.",
@@ -13909,7 +13976,6 @@
       }
     },
     "client": {
-      "back": "Tagasi klientide juurde",
       "name": "Nimi",
       "internal_code": "Tunnus",
       "internal_code_hint": "Asutuse sisemine tunnus, näiteks sama nimekuju, mida kasutate praeguses töövahendis.",
@@ -14109,7 +14175,6 @@
     },
     "overview": {
       "title": "Hooldusjuhi ülevaade",
-      "back": "Tagasi klientide juurde",
       "recent_title": "Kirjed pärast eilset",
       "recent_empty": "Uusi kirjeid ei ole.",
       "recent_more": "Näidatud on viimased 100 kirjet.",
@@ -14409,7 +14474,6 @@
       "title": "Erijuhtumite register",
       "intro": "Kõik erijuhtumid, kaebused ja tänud sinu vastutusalas. Lahtised on ees.",
       "link": "Erijuhtumite register",
-      "back": "Tagasi klientide juurde",
       "tab_active": "Lahtised ({count})",
       "tab_closed": "Suletud ({count})",
       "tab_all": "Kõik",
@@ -14440,7 +14504,6 @@
     "chronology": {
       "title": "Kliendi kronoloogia",
       "link": "Koosta kronoloogia",
-      "back": "Tagasi kliendi lehele",
       "intro": "Vali ajavahemik ja vaata kirjed üle. Dokumenti lähevad ainult need kirjed, mille ise valid, ja tekstist saad eemaldada kolmandate isikute andmed. Päeviku kirjeid see ei muuda.",
       "period_title": "Ajavahemik",
       "load": "Näita kirjeid",
@@ -14485,7 +14548,6 @@
     "releases": {
       "title": "Väljastuste loend",
       "link": "Väljastused",
-      "back": "Tagasi klientide juurde",
       "intro": "Kõik koostatud kronoloogiad: kellele, mis alusel ja kes koostas. Ametlik register on asutuse dokumendihaldus; see loend on tööloend.",
       "empty": "Väljastusi veel ei ole.",
       "period": "Ajavahemik: {from} – {to}",
@@ -14748,7 +14810,6 @@
       "none": "Hoolduskava ei ole veel kehtestatud.",
       "create_link": "Koosta hoolduskava",
       "edit_link": "Muuda hoolduskava",
-      "back": "Tagasi kliendi lehele",
       "editor_intro": "Muudad mustandit. Kehtiv kava jääb samaks, kuni mustandi kehtestad; siis jääb eelmine kava alles varasemate kavade loendis.",
       "active_title": "Kehtiv kava",
       "none_yet": "Sellel kliendil ei ole veel kehtivat hoolduskava.",
@@ -15175,7 +15236,6 @@
     },
     "absences": {
       "link": "Puudumised",
-      "back": "Tagasi päevaplaani",
       "title": "Puudumised",
       "intro": "Märgi, millal hooldaja tööl ei ole. Päevaplaan tõstab siis esile käigud, mille tegija puudub, ega paku teda asendajaks. Põhjust siin ei küsita.",
       "list_title": "Märgitud puudumised",
@@ -16215,6 +16275,50 @@
       "limits_title": "Mida siin ei ole",
       "limits_money": "Kliendi raha on arvestus, mitte makse. Pangakaardi andmeid ega PIN-koodi siia ei kirjutata.",
       "limits_official": "Ametlik menetlus toimub STAR-is. Siin on asutuse enda töö: päevik, plaan ja kokkulepped."
+    },
+    "desk": {
+      "groups": {
+        "daily": "Iga päev",
+        "people": "Kliendid ja töötajad",
+        "month": "Kuu ja väljavõtted"
+      },
+      "names": {
+        "overview": "Ülevaade",
+        "incidents": "Erijuhtumid",
+        "name": "Minu nimi"
+      },
+      "lines": {
+        "today": "Sinu tänased käigud",
+        "overview": "Mis on pärast eilset uut",
+        "day": "Tänased käigud ja tegijad",
+        "week": "Käigud töötajate kaupa",
+        "absences": "Kes ja millal ei tööta",
+        "deadlines": "Mis ootab sinu otsust",
+        "clients": "Otsi, ava või lisa klient",
+        "my_clients": "Ava klient või otsi nime järgi",
+        "incidents": "Juhtumid, kaebused, tänud",
+        "keys": "Kelle käes on iga võti",
+        "crisis": "Kes vajab kriisis tuge",
+        "workers": "Koolitused ja kontrollid",
+        "refer": "Kuhu inimene edasi saata",
+        "month": "Osutatud aeg ja kuu lukk",
+        "trips": "Töösõidud ja kilomeetrid",
+        "calls": "Kes ja millest helistab",
+        "releases": "Koostatud kronoloogiad",
+        "activities": "Asutuse toimingute loend",
+        "export": "Kõik andmed ühe failina"
+      }
+    },
+    "today": {
+      "count": "Käike {count}, tehtud {done}",
+      "all_title": "Kõik tänased käigud",
+      "mine_title": "Minu käes",
+      "mine_keys": "Võtmed {count}",
+      "mine_money": "Kliendiraha",
+      "back": "Tagasi tänase päeva juurde",
+      "none": "Täna sul käike ei ole.",
+      "done_part": "tehtud {count}",
+      "later_part": "hiljem veel {count}"
     }
   },
   "stage": {
@@ -16254,7 +16358,7 @@
     "suggestion_note": "Algmustand kasutab küsimust, fakte, valikuid ja puuduvat teavet. See võib olla lühendatud; loe tulemus tervikuna üle.",
     "identifiers": "Kontrolli ja üldista:",
     "confirmation": "Olen selle salvestatud teksti üle vaadanud ja eemaldanud tarbetud isikuandmed. Valin all, kuhu seda kasutada.",
-    "ai_privacy": "„Aruta assistendiga” saadab ainult selle teksti ja arutlemisjuhise olemasolevale AI-assistendile. Teksti töötleb ka mudeliteenuse pakkuja ning vestlus salvestub assistendi tavapärase korra järgi. Privaatse arutelu kustutamine seda vestlust ei kustuta.",
+    "ai_privacy": "„Aruta assistendiga” saadab ainult selle teksti ja arutlemisjuhise olemasolevale AI-assistendile. Teksti töötleb ka mudeliteenuse pakkuja ning vestlus salvestub assistendi tavapärase korra järgi. Privaatse arutelu kustutamine seda vestlust ei kustuta. Allikaid otsitakse ainult Eetikaruumi valitud eetikaallikatest. Otsingut ei laiendata automaatselt kogu andmebaasile.",
     "covision_privacy": "Kovisiooni jaoks luuakse sellest tekstist eraldi privaatne mustand. Osalejate kutsumine ja neile nähtava sisu avaldamine toimub kovisioonis. Hilisemad muudatused siin sinna üle ei kandu.",
     "expert_closed": "Eksperdile saatmise võimalust praegu ei ole. See ruum ei rakenda ESTA Eetikakompassi metoodikat.",
     "ask": "Aruta assistendiga",
@@ -16283,6 +16387,7 @@
       "confirmation": "Vaata salvestatud tekst üle ja kinnita see.",
       "snapshot": "Lisa lühike tekst, mida soovid edasi kasutada.",
       "identifiers": "Tekstis võib olla tuvastavaid andmeid. Üldista need enne jätkamist.",
+      "sources": "Eetikaruumi allikakogu ei ole praegu kättesaadav. Proovi hiljem uuesti.",
       "assistant": "Assistent ei lõpetanud vastust. Võid sama päringut uuesti proovida.",
       "failed": "Toiming ei õnnestunud. Proovi uuesti."
     },

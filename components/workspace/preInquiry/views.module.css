@@ -20,6 +20,20 @@
 .cards[data-compact] {
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr));
 }
+/* Teenuseosutaja teenused: kaks kaarti reas (telefonis üks), et nimi ja kättesaadavus mahuksid
+   kumbki ühele reale. */
+.pairCards {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 0.5rem;
+}
+@media (max-width: 480px) {
+  .pairCards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
 /* Üherealine väli sildiga (nt KOV või piirkond). */
 /* Väli on nii lai, kui sisu vajab: omavalitsuse nimi ei ole paneeli laiune. */
 .field {
@@ -148,7 +162,7 @@
   text-transform: uppercase;
 }
 
-/* Märgitav lahter (filter, mille saab ka maha võtta). */
+/* Märgitav lahter (filter, mille saab ka maha võtta). Kolm või neli lahtrit ühes reas. */
 .toggles {
   min-width: 0;
   display: inline-grid;
@@ -156,6 +170,9 @@
   max-width: 100%;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.4rem;
+}
+.toggles[data-count="4"] {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 .toggle {
   composes: cell from "../../stage/cell.module.css";
@@ -172,17 +189,48 @@
   font-weight: 560;
 }
 
-/* Vestlus abilisega: olemasolev vestlusaken ja sisestusriba vaate sees. */
+/* Täpsustamine abilisega: vastuse osad ja sisestusriba vaate sees. */
 .assistant {
   min-width: 0;
   display: grid;
   gap: 0.6rem;
+}
+/* Abilise järgmine küsimus: sama kaal mis vaate küsimusel (StepPanel). */
+.ask {
+  margin: 0;
+  color: var(--text-warm);
+  font-weight: 560;
+  text-wrap: balance;
+}
+/* Mitu hoiatust ühes teatekastis: iga hoiatus omal real. */
+.noticeLine {
+  margin: 0;
+}
+.noticeLine + .noticeLine {
+  margin-top: 0.35rem;
+}
+/* Avatava ploki lõigud üksteise all, vahega. */
+.fold > p + p {
+  margin-top: 0.5rem;
 }
 
 .links {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem 0.9rem;
+}
+/* Märgid ühe kontakti vaate alguses (valitud, liik) ja tekstilingid selle lõpus. */
+.chips,
+.linkRow {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 0.6rem;
+}
+.linkRow {
+  gap: 0.3rem 1.2rem;
+  font-size: var(--fs-small, 0.875rem);
 }
 /* Link lause sees (tee teisele lehele): tekst, mitte nupp. */
 .textLink {
@@ -233,9 +281,14 @@ button.textLink:disabled {
   .row {
     grid-template-columns: minmax(0, 11rem) minmax(0, 1fr);
   }
+  /* Kolm lahtrit jäävad töölaua paneelis ühte ritta (pikk silt murdub lahtri sees): kahes reas
+     oli filter 46 px kõrgem ja adressaadi loend ei mahtunud paneeli. Neli lahtrit lähevad
+     kahte ritta. */
   .toggles {
     display: grid;
     justify-self: stretch;
+  }
+  .toggles[data-count="4"] {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .toggle {
@@ -253,7 +306,8 @@ button.textLink:disabled {
   .row {
     grid-template-columns: minmax(0, 1fr);
   }
-  .toggles {
+  .toggles,
+  .toggles[data-count="4"] {
     display: grid;
     justify-self: stretch;
     grid-template-columns: repeat(2, minmax(0, 1fr));

@@ -46,9 +46,6 @@ export default function HomeCareReleases({ context, initial }) {
     <OrgPart context={context} part="home_care" partLabel={t("home_care.releases.title")}>
     <section className="hc-shell">
       <div className="hc-head">
-        <Link className="hc-back" href={`/org/${organizationId}/koduteenus`}>
-          {t("home_care.releases.back")}
-        </Link>
         <p className="hc-sub">{t("home_care.releases.intro")}</p>
       </div>
 

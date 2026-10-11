@@ -30,7 +30,9 @@ if (files.length === 0) {
 const result = spawnSync(
   process.execPath,
   ["--import", "./scripts/register-node-source-loader.mjs", "--test", ...files],
-  { stdio: "inherit", env: { ...process.env, TZ: "UTC" } }
+  /* BUSINESS_REGISTER_LIVE=off: ükski test ei küsi äriregistrit võrgust (lib/businessRegisterNameCheck.js);
+     otsepäringu testid annavad võltspäringu ise ette. */
+  { stdio: "inherit", env: { ...process.env, TZ: "UTC", BUSINESS_REGISTER_LIVE: "off" } }
 );
 
 if (result.error) {

@@ -15,6 +15,7 @@ import { resolveOrgAccessContext } from '../lib/org/accessContext.js';
 import { buildOrganizationExport } from '../lib/org/export.js';
 import { assignWork, getInboxItem, hadWorkOnInboxItem, handOverWork, listInboxItemPage, respondToAssignment, transitionInboxItem } from '../lib/org/inbox.js';
 import { createPreInquiry } from '../lib/preInquiries.js';
+import { withOrganizationOutcome } from '../lib/preInquiryOutcome.js';
 import { resolveRoomAccess, ROOM_READ, ROOM_WRITE } from '../lib/rooms/accessGuard.js';
 import { ensureRoomForPreInquiry } from '../lib/rooms/preInquiryRoom.js';
 
@@ -89,7 +90,7 @@ async function seed(t) {
     (await db.organizationWorkAssignment.findMany({ where: { inboxItemId: item.id }, orderBy: { assignedAt: 'asc' }, select: { assigneeMembershipId: true, status: true } }))
       .map((entry) => [entry.assigneeMembershipId, entry.status]);
   const live = async () => (await assignments()).filter(([, status]) => ['PENDING', 'ACCEPTED'].includes(status));
-  const manual = async (toStatus) => transitionInboxItem(await ctx(coordinator), item.id, { toStatus }, { db, ...quiet });
+  const manual = async (toStatus, reason) => transitionInboxItem(await ctx(coordinator), item.id, { toStatus, reason }, { db, ...quiet });
   const assign = async (account) => assignWork(await ctx(coordinator), item.id, { assigneeMembershipId: memberships[account.id].id }, { db });
   const respond = async (account, assignmentId, accept) => respondToAssignment(await ctx(account), assignmentId, { accept }, { db });
   return { applicant, coordinator, mari, jyri, organization, memberships, inquiry, item, ctx, row, assignments, live, manual, assign, respond };
@@ -312,6 +313,10 @@ test('sulgemine käib nagu enne: töö lõpeb, määramine lõpeb ja ruum jääb
   assert.ok((await db.room.findUnique({ where: { id: room.id }, select: { archivedAt: true } })).archivedAt);
   assert.deepEqual(await access(applicant, room.id, ROOM_WRITE), { ok: false, status: 409, message: 'api.rooms.archived_readonly' });
   assert.equal((await access(applicant, room.id, ROOM_READ)).ok, true);
+  /* Vastutaja saab teate, et töö ei ole enam tema vastutusel: kirje kadus ka tema laualt. */
+  const told = (await listNotificationEvents(mari.id, { db })).filter((entry) => entry.type === 'ORG_WORK_WITHDRAWN');
+  assert.deepEqual(told.map((entry) => entry.labelKey), ['notifications.events.org_work_withdrawn']);
+  assert.equal(await db.notificationEvent.count({ where: { type: 'ORG_WORK_WITHDRAWN', sourceId: first.id, userId: mari.id } }), 1);
   /* Suletud töö ei liigu enam kuhugi, ka mitte tagasivõtmisega. */
   await refused(manual('ASSIGNMENT_PENDING'), 'org.errors.inbox_item_terminal');
 });
@@ -321,21 +326,39 @@ test('pöördumise tagasilükkamine: vastutajata pöördumine lõpeb, kaob laua 
   const listed = async (options = {}) => (await listInboxItemPage(await ctx(coordinator), { db, ...options })).items.map((entry) => [entry.id, entry.status]);
   assert.deepEqual(await listed(), [[item.id, 'RECEIVED']]);
 
-  /* Sama päring, mille leht saadab nupuga „Lükka pöördumine tagasi”. */
-  const rejected = await manual('REJECTED');
+  /* Ilma selgituseta server keeldub ja pöördumine jääb lauale. */
+  await assert.rejects(manual('REJECTED'), (error) => error.status === 400 && error.message === 'org.errors.inbox_reject_reason_required');
+  await assert.rejects(manual('REJECTED', '   '), (error) => error.status === 400);
+  assert.deepEqual(await listed(), [[item.id, 'RECEIVED']]);
+
+  /* Sama päring, mille leht saadab nupuga „Lükka pöördumine tagasi”: koos selgitusega pöördujale. */
+  const rejected = await manual('REJECTED', '  See ei kuulu meie valla pädevusse. ');
   assert.equal(rejected.status, 'REJECTED');
   assert.ok((await row()).closedAt);
+  const stored = await db.organizationInboxItem.findUnique({ where: { id: item.id }, select: { closedReason: true } });
+  assert.equal(stored.closedReason, 'See ei kuulu meie valla pädevusse.');
   assert.deepEqual(await assignments(), []);
 
   /* Laual seda enam ei ole; ajaloost ja seisufiltriga leiab. Koordinaator saab kirje avada. */
   assert.deepEqual(await listed(), []);
   assert.deepEqual(await listed({ includeClosed: true }), [[item.id, 'REJECTED']]);
   assert.deepEqual(await listed({ status: 'REJECTED' }), [[item.id, 'REJECTED']]);
-  assert.equal((await getInboxItem(await ctx(coordinator), item.id, { db })).status, 'REJECTED');
+  assert.deepEqual(await listed({ closedOnly: true }), [[item.id, 'REJECTED']]);
+  const seen = await getInboxItem(await ctx(coordinator), item.id, { db });
+  assert.deepEqual([seen.status, seen.closedReason, Boolean(seen.closedAt)], ['REJECTED', 'See ei kuulu meie valla pädevusse.', true]);
 
-  /* Pöörduja saab sama teate mis sulgemisel: asutus lõpetas tema pöördumisega töö. */
-  const notices = await db.notificationEvent.findMany({ where: { userId: applicant.id, type: 'PRE_INQUIRY_WORK_CLOSED' }, select: { sourceId: true } });
-  assert.deepEqual(notices, [{ sourceId: inquiry.id }]);
+  /* Pöörduja saab tagasilükkamise teate (oma liik ja sõnastus), mitte töö lõpetamise oma. */
+  const notices = await db.notificationEvent.findMany({ where: { userId: applicant.id, type: { in: ['PRE_INQUIRY_DECLINED', 'PRE_INQUIRY_WORK_CLOSED'] } }, select: { type: true, sourceId: true } });
+  assert.deepEqual(notices, [{ type: 'PRE_INQUIRY_DECLINED', sourceId: inquiry.id }]);
+  const noticeRows = (await listNotificationEvents(applicant.id, { db })).filter((entry) => entry.type === 'PRE_INQUIRY_DECLINED');
+  assert.deepEqual(noticeRows.map((entry) => [entry.href, entry.labelKey]), [[`/eelpoordumised?openInquiry=${inquiry.id}`, 'notifications.events.pre_inquiry_declined']]);
+
+  /* Pöörduja enda pöördumise real on asutuse otsus ja selgitus; teisele inimesele seda ei lisata. */
+  const inquiryRow = { id: inquiry.id, authorId: applicant.id, sentAt: new Date().toISOString(), recalledAt: null, recipientOrganizationId: inquiry.recipientOrganizationId };
+  const [own] = await withOrganizationOutcome(applicant.id, [inquiryRow], { db });
+  assert.deepEqual([own.organizationOutcome.kind, own.organizationOutcome.note, own.organizationOutcome.hasRoom, typeof own.organizationOutcome.at], ['declined', 'See ei kuulu meie valla pädevusse.', false, 'string']);
+  const [foreign] = await withOrganizationOutcome(coordinator.id, [inquiryRow], { db });
+  assert.equal('organizationOutcome' in foreign, false);
 
   /* Tagasi lükatud pöördumine ei liigu enam kuhugi. */
   await refused(manual('REVIEWING'), 'org.errors.inbox_item_terminal');
