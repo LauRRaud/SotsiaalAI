@@ -98,7 +98,8 @@ või privaatsesse kovisioonimustandisse. ET/EN/RU, kuus sihttesti, migratsiooni 
 ja kohalik brauserirada läbisid. Tooteleping v1.1 täpsustab säilituse, kustutuse ja
 koopiate piire; eksperdikanal jääb suletuks. v86 tasuta sõnaotsing leidis juba
 eetikakoodeksi ja IASSW põhimõtted. Eraldi 44 dokumendi paketi import ning mudeli
-sisuline kvaliteet on NOT_RUN. GitHubi build/deploy on järgmine avaldamissamm.
+sisuline kvaliteet on NOT_RUN. GitHubi build/deploy läbisid; 18.58 serveris
+`c389c096`, migratsioon rakendatud, tervis korras ja anonüümne API ligipääs tõrjutud.
 [Tõendid](../audits/ethics-room-2026-10-11.md).
 
 **11.10 kohaliku koodi uuendus (Codex):** omaniku korraldusel ühendati kohalikku

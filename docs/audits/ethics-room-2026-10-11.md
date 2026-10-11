@@ -2,8 +2,10 @@
 
 Ulatus: kohalik `/eetikaruum`, olemasoleva assistendi ühendamine ja omaniku privaatne
 kovisioonimustand. Kohalik `main`; kasutaja varasemad muudatused säilitatud.
-Eksperdikanalit ei avatud, ESTA metoodikat ei kopeeritud. Serverisse avaldamine
-ja seal uue lehe autentitud kontroll: **NOT_RUN**.
+Eksperdikanalit ei avatud, ESTA metoodikat ei kopeeritud. GitHubi build ja
+automaatne deploy läbisid; aktiivne väljalase 18.58 EEST:
+`c389c0966afe86401c298d3d945e31074269d401`. Tootmises autentitud tervikrida:
+**NOT_RUN**; kohalik autentitud rada ja tootmise anonüümne ligipääsupiir kontrollitud.
 
 ## Käitumine ja privaatsuspiir
 
@@ -52,7 +54,17 @@ takistanud partnerlusvärav ei sobinud kehtiva AGENTS.md ega omaniku arendussoov
   vastus, kovisiooni loomine ja olemasoleva sessiooni avamine: PASS.
   Klaviatuuri PageUp-vahetus kontrollitud. Ekraanilugejaga läbimäng: NOT_RUN.
   Kohaliku Cloudflare telemeetria CORS-vead ei tulnud Eetikaruumi API-st.
-- GitHubi tootmisbuild ja uue funktsiooni tootmiskäitus: NOT_RUN selle raporti koostamisel.
+- EN/RU lehe laadimine keeleküpsisega: PASS. Ajutine brauserikonto, selle koopiad
+  ja sessioonifail kustutati proovibaasist; oma pordi 3001 dev-protsess peatati.
+- [GitHubi tootmisbuild](https://github.com/LauRRaud/SotsiaalAI/actions/runs/38153189531)
+  ja [automaatne deploy](https://github.com/LauRRaud/SotsiaalAI/actions/runs/38153350370):
+  PASS, sama SHA artefakt. Serveris build'i, lint'i ega teste ei korratud.
+- 18.58 EEST: aktiivne teenus `c389c096`; `EthicsReflection` olemas ja migratsiooni
+  `20261015100000_ethics_reflection` `finished_at` täidetud, rollback puudub.
+  `/api/health` 200/ok, `/api/ethics` anonüümselt 401/no-store. `/eetikaruum`
+  annab voogvastuse sees sisselogimissuunamise (`NEXT_REDIRECT`, siht
+  `/vestlus?login=1&next=%2Feetikaruum`); erasisu ei avata. Tootmiskasutajate sisu
+  ei loetud ega kasutatud testimiseks.
 
 ## Olemasoleva RAG-i tõend
 
