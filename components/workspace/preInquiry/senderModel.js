@@ -356,6 +356,16 @@ export function recipientTypeOf(entry) {
   return type === "SERVICE_PROVIDER" ? "SERVICE_PROVIDER" : "KOV_CONTACT";
 }
 
+/**
+ * Kas saatmise samm ütleb, kes asutuses pöördumist ja vestlust loeb: ainult asutuse
+ * vastuvõtulaua kohta, kuhu pöördumine läheb platvormis. Seal ei loe vestlust kogu asutus, vaid
+ * töötaja, kelle käes töö on, ja üleandmise järel järgmine (omaniku otsus 11.10.2026); inimene
+ * peab seda teadma enne saatmist. Nimelise kontakti ja teenuseosutaja korral loeb saaja ise.
+ */
+export function sendTellsOrganizationReaders(entry) {
+  return recipientTypeOf(entry) === "ORGANIZATION_INBOX" && recipientChannels(entry).platform;
+}
+
 /* Mitu teenust on teenuse valiku vaates korraga ees (kaks rida kaarte). */
 export const RECIPIENT_SERVICE_PAGE = 4;
 

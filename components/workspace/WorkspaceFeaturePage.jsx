@@ -72,6 +72,7 @@ import {
   recipientStepView,
   recipientTypeOf,
   replaceInquiryRow,
+  sendTellsOrganizationReaders,
   senderCanEdit,
   senderFlowKeys,
   senderListCounts,
@@ -2842,6 +2843,13 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       }.`
     : tr("views.send.no_recipient", "Adressaat on valimata. Saad pöördumise salvestada, kopeerida või alla laadida.");
   const sendNotices = [
+    /* Asutuse vastuvõtulaud: kes pöördumist ja vestlust loeb, enne kui inimene saadab. */
+    sendTellsOrganizationReaders(selectedRecipient)
+      ? tr(
+          "views.send.organization_readers",
+          "Pöördumist loeb asutuse vastuvõtutiim. Vestlust sinuga loeb töötaja, kes pöördumisega tegeleb; kui töö antakse üle, ka järgmine töötaja."
+        )
+      : "",
     selectedRecipientReferralNotice
       ? `${selectedRecipientReferralNotice} ${tr("preview.referral_hint", "Sa saad teenuseosutajalt küsida lisainfot või pöörduda KOV-i poole.")}`
       : "",

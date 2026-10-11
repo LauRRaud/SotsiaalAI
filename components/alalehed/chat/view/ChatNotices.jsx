@@ -1,3 +1,5 @@
+import { isOrganizationInquiryRoomOrigin } from "@/lib/rooms/origin";
+
 export function getCompactRoomTitle(roomTitle) {
   const source = String(roomTitle || "").trim();
   if (!source) return "";
@@ -73,6 +75,12 @@ export function ChatTopNotices({
   // eemaldatud — omanik EI taha seda ruumi kohal (23.07).
   const showOriginPrivacy = shouldShowRoomOriginPrivacy(roomOrigin);
   const readOnlyText = roomReadOnlyText(t, roomReadOnlyReason);
+  /* Asutuse vastuvõtulaua pöördumise ruum: kes asutuse poolel vestlust loeb. Seda peavad teadma
+     mõlemad, pöörduja enne kirjutamist ja töötaja enne töö üleandmist. Ainult loetavas ruumis
+     (asutus lõpetas töö) lauset ei ole: seal ei loe asutuse poolel enam keegi. */
+  const organizationReaderText = !roomReadOnlyReason && isOrganizationInquiryRoomOrigin(roomOrigin)
+    ? readText(t, "rooms.origin.organizationReader", "Asutuse poolel loeb vestlust töötaja, kes pöördumisega tegeleb; kui töö antakse üle, ka järgmine töötaja.")
+    : "";
 
   return <>
     {isRoomMode && !hideRoomTitle && displayRoomTitle ? <div className="chat-room-header">
@@ -80,6 +88,7 @@ export function ChatTopNotices({
     </div> : null}
     {isRoomMode && roomOrigin && showOriginPrivacy ? <div className="chat-room-origin">
       <span>{roomOriginText(t, roomOrigin)}</span>
+      {organizationReaderText ? <span data-room-organization-reader="1"> {organizationReaderText}</span> : null}
       <span> {readText(t, "rooms.origin.privacyNote", "Ruumi liikmed näevad ainult ruumis jagatud infot ja kasutaja kinnitatud eelinfot. Privaatset Teekonda ega assistendivestlust ei jagata automaatselt.")}</span>
     </div> : null}
     {isRoomMode && readOnlyText ? <div className="chat-room-origin" role="status" data-room-read-only={roomReadOnlyReason}>

@@ -14,6 +14,7 @@ import { assertNotificationRecipient, createNotificationEvent, serializeNotifica
 import { WorkspaceContextKind } from '../lib/org/accessContext.js';
 import { getInboxItem, handOverWork, respondToAssignment, transitionInboxItem } from '../lib/org/inbox.js';
 import { ROOM_READ, ROOM_WRITE, resolveRoomAccess } from '../lib/rooms/accessGuard.js';
+import { buildRoomOrigin, isOrganizationInquiryRoomOrigin, serializeRoomOrigin } from '../lib/rooms/origin.js';
 import { ensureRoomForPreInquiry, findOrganizationInquiryForWorker, readRoomReadOnlyReason } from '../lib/rooms/preInquiryRoom.js';
 import { createRoomMessageSession } from '../lib/rooms/roomMessageSession.js';
 
@@ -692,6 +693,34 @@ test('vestlusaken: ainult loetava ruumi põhjus jõuab aknani, kirjutuskast luku
       assert.equal(/[\u2014\u2013]/.test(text), false, locale);
     }
     assert.ok(messages.journey.related.work_closed.includes('{date}'), locale);
+  }
+});
+
+test('vestlusaken: asutuse laua pöördumise ruumi kohal on lause, kes asutuse poolel vestlust loeb', async () => {
+  const { db, state } = makeDb();
+  await open(db, 'mari');
+  /* Ruumi päritolu nii, nagu see vestlusaknale läheb: asutuse laua pöördumise ruum on äratuntav. */
+  const origin = serializeRoomOrigin(state.rooms[0]);
+  assert.equal(origin.meta.recipientType, 'ORGANIZATION_INBOX');
+  assert.equal(isOrganizationInquiryRoomOrigin(origin), true);
+
+  /* Nimelise saaja, teenuseosutaja ja muu päritoluga ruum seda lauset ei saa. */
+  const originOf = (originType, recipientType) => serializeRoomOrigin(buildRoomOrigin({ originType, originId: 'p9', originMeta: { recipientType } }));
+  assert.equal(isOrganizationInquiryRoomOrigin(originOf('PRE_INQUIRY', 'KOV_CONTACT')), false);
+  assert.equal(isOrganizationInquiryRoomOrigin(originOf('SERVICE_PROVIDER_INQUIRY', 'SERVICE_PROVIDER')), false);
+  assert.equal(isOrganizationInquiryRoomOrigin(originOf('MANUAL_INVITE', 'ORGANIZATION_INBOX')), false);
+  assert.equal(isOrganizationInquiryRoomOrigin(serializeRoomOrigin({ originType: 'PRE_INQUIRY', originId: 'p9', originMeta: null })), false);
+  assert.equal(isOrganizationInquiryRoomOrigin(null), false);
+
+  /* Lause on olemasoleva päritolurea sees. Ainult loetavas ruumis (asutus lõpetas töö) seda ei
+     ole: seal ei loe asutuse poolel enam keegi ja ruumi kohal on lõpetamise põhjus. */
+  const notices = source('../components/alalehed/chat/view/ChatNotices.jsx');
+  assert.match(notices, /const organizationReaderText = !roomReadOnlyReason && isOrganizationInquiryRoomOrigin\(roomOrigin\)\n\s+\? readText\(t, "rooms\.origin\.organizationReader",/);
+  assert.match(notices, /<span>\{roomOriginText\(t, roomOrigin\)\}<\/span>\n\s+\{organizationReaderText \? <span data-room-organization-reader="1"> \{organizationReaderText\}<\/span> : null\}/);
+  for (const locale of ['et', 'en', 'ru']) {
+    const text = JSON.parse(source(`../messages/${locale}.json`)).rooms.origin.organizationReader;
+    assert.ok(typeof text === 'string' && text.length > 60, locale);
+    assert.equal(/[—–{}]/.test(text), false, locale);
   }
 });
 

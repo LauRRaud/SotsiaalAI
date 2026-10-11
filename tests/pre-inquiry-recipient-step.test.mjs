@@ -20,6 +20,7 @@ import {
   recipientServiceActions,
   recipientStepView,
   recipientTypeOf,
+  sendTellsOrganizationReaders,
   suggestedRecipients,
   withChosenService
 } from '../components/workspace/preInquiry/senderModel.js';
@@ -63,6 +64,28 @@ test('saatmise tee: KOV kontakt läheb e-kirjaga, vastuvõtulaud platvormis', ()
   /* Kirje, mille server on märkinud platvormisiseseks (abilise soovitus), pakub mõlemat teed. */
   assert.equal(recipientChannelKey(recipientChannels({ ...kov, deliveryChannel: 'INTERNAL' })), 'both');
   assert.deepEqual(recipientChannels(null), { platform: false, email: false, address: '' });
+});
+
+test('saatmise samm ütleb ainult asutuse vastuvõtulaua kohta, kes pöördumist ja vestlust loeb', () => {
+  /* Asutuse laual ei loe vestlust kogu asutus, vaid töö vastutaja ja üleandmise järel järgmine:
+     inimene peab seda teadma enne saatmist. Nimelise kontakti ja teenuseosutaja juures lauset
+     ei ole, ka siis, kui pöördumine läheb neile platvormis. */
+  assert.equal(sendTellsOrganizationReaders(desk), true);
+  assert.equal(sendTellsOrganizationReaders({ ...desk, deliveryChannel: '' }), false);
+  for (const entry of [null, kov, kovNoMail, { ...kov, deliveryChannel: 'INTERNAL' }, provider([both]), provider([platformOnly])]) {
+    assert.equal(sendTellsOrganizationReaders(entry), false, entry?.id || 'valimata');
+  }
+  /* Leht küsib reeglit valitud adressaadi kohta ja paneb lause saatmise sammu teadete algusesse. */
+  const page = fs.readFileSync(new URL('../components/workspace/WorkspaceFeaturePage.jsx', import.meta.url), 'utf8').replace(/\r\n/g, '\n');
+  assert.match(page, /const sendNotices = \[\n\s+\/\*[^\n]+\*\/\n\s+sendTellsOrganizationReaders\(selectedRecipient\)\n\s+\? tr\(\n\s+"views\.send\.organization_readers",/);
+  for (const lang of LANGS) {
+    const text = at(catalog(lang), 'views.send.organization_readers');
+    assert.ok(typeof text === 'string' && text.length > 60, lang);
+    assert.equal(/[—–{}]/.test(text), false, lang);
+  }
+  /* Eesti lause nimetab mõlemat: kes loeb pöördumist ja kes vestlust pärast üleandmist. */
+  const et = at(catalog('et'), 'views.send.organization_readers');
+  assert.ok(et.includes('vastuvõtutiim') && et.includes('antakse üle') && et.includes('järgmine töötaja'));
 });
 
 test('saatmise tee: teenuseosutajal otsustab valitud teenus', () => {

@@ -3215,6 +3215,7 @@
         "send": {
           "title": "Saatmine",
           "internal_hint": "Pöördumine jõuab vastuvõtja Pöördumiste vaatesse. Näed siin, kui see on vastu võetud.",
+          "organization_readers": "Pöördumist loeb asutuse vastuvõtutiim. Vestlust sinuga loeb töötaja, kes pöördumisega tegeleb; kui töö antakse üle, ka järgmine töötaja.",
           "email_hint": "Tekst avaneb sinu e-posti rakenduses ülevaatamiseks. Platvorm ise e-kirja ei saada.",
           "confirm_hint": "Märgib pöördumise saadetuks. Vastuvõttu platvorm e-kirja puhul ei näe.",
           "save_hint": "Jääb sinu eelpöördumiste alla. Midagi ei saadeta.",
@@ -6381,6 +6382,7 @@
       "serviceProviderInquiry": "Ruum loodi teenusega seotud pöördumise põhjal.",
       "journey": "Ruum on seotud Teekonna töövooga, kuid privaatset Teekonda ei jagata automaatselt.",
       "unknown": "Ruumil ei ole määratud päritolu.",
+      "organizationReader": "Asutuse poolel loeb vestlust töötaja, kes pöördumisega tegeleb; kui töö antakse üle, ka järgmine töötaja.",
       "privacyNote": "Ruumi liikmed näevad ainult ruumis jagatud infot ja kasutaja kinnitatud eelinfot. Privaatset Teekonda ega assistendivestlust ei jagata automaatselt."
     },
     "summary_approval": {
