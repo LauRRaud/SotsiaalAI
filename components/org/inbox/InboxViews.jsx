@@ -8,12 +8,14 @@
  * vastuvõtmine, üleandmine, sulgemine) olid ühes reas ja sulgemine käis ühe
  * vajutusega. Nüüd on korraga ees üks asi:
  *  - `InboxBoard`  pöördumised madalate ridadena: saabumise aeg, üksus, vastutaja, seis;
- *                  rida avab pöördumise (avamine on pöördujale nähtav)
+ *                  rida avab pöördumise (avamine on pöördujale nähtav). Koordinaatoril on
+ *                  kaks rühma: töös ja lõpetatud (suletud ja tagasi lükatud pöördumised)
  *  - `ItemView`    avatud pöördumine kahe väikese vaatega: pöördumine (saatja
  *                  kinnitatud pakett) ja töö (määramine, vastus, üleandmine, töö
  *                  tagasivõtmine, sulgemine, pöördumise tagasilükkamine; töö
- *                  tagasilükkamine, tagasivõtmine, sulgemine ja pöördumise
- *                  tagasilükkamine küsivad teist vajutust)
+ *                  tagasilükkamine ja tagasivõtmine küsivad teist vajutust)
+ *  - `EndingView`  töö lõpetamine (sulgemine või pöördumise tagasilükkamine): selgitus
+ *                  pöördujale ja mis juhtub; avaneb töö vaate asemel
  *
  * Siin on ainult kuju. Otsused on failis ./inboxRules.js; olek ja päringud
  * lehtedel (`../OrgInboxClient.jsx`, `../OrgInboxItemClient.jsx`).
@@ -21,6 +23,7 @@
 
 import ChoiceRow from "@/components/stage/ChoiceRow";
 import StepPanel from "@/components/stage/StepPanel";
+import TextAreaField from "@/components/stage/TextAreaField";
 import Button from "@/components/ui/Button";
 
 import { ArmedButton, Facts, PickOne, SMALL, footNote, ignoreKeyRepeat } from "../OrgBits";
@@ -29,15 +32,32 @@ import shared from "../org.module.css";
 /**
  * Loend. Privaatsuslause all servas on sisu: siin ei ole midagi, mida pöörduja
  * ise ei saatnud. `more`: { busy, onMore } või null.
+ * `groups`: { value, options, busy, onChange } või null. Koordinaator valib, kas ees on töös
+ * olevad või lõpetatud pöördumised; töötajal, kes näeb ainult oma tööd, rühmi ei ole.
  */
-export function InboxBoard({ t, rows, hrefOf, onOpen, more, notice }) {
-  if (!rows.length) {
+export function InboxBoard({ t, rows, hrefOf, onOpen, more, notice, groups = null }) {
+  const finished = groups?.value === "finished";
+  if (!rows.length && !groups) {
     return <StepPanel title={t("org.inbox.heading")} lead={t("org.inbox.empty")} note={footNote(notice, t("org.inbox.privacyNotice"))} />;
+  }
+  const picker = groups ? (
+    <ChoiceRow label={t("org.inbox.groups.label")} labelHidden options={groups.options} value={groups.value} onChange={groups.onChange} columns={groups.options.length} keepColumns />
+  ) : null;
+  if (!rows.length) {
+    return (
+      <StepPanel title={t("org.inbox.heading")} note={footNote(notice, t("org.inbox.privacyNotice"))}>
+        <div className={shared.stack} aria-busy={groups.busy ? "true" : undefined}>
+          {picker}
+          {groups.busy ? null : <p className={shared.quiet}>{finished ? t("org.inbox.empty_finished") : t("org.inbox.empty")}</p>}
+        </div>
+      </StepPanel>
+    );
   }
   return (
     <StepPanel title={t("org.inbox.heading")} note={footNote(notice, t("org.inbox.privacyNotice"))}>
-      <div className={shared.stack}>
-        <ul className={shared.rows} aria-label={t("org.inbox.heading")}>
+      <div className={shared.stack} aria-busy={groups?.busy ? "true" : undefined}>
+        {picker}
+        <ul className={shared.rows} aria-label={finished ? t("org.inbox.groups.finished") : t("org.inbox.heading")}>
           {rows.map((row) => (
             <li key={row.id} className={shared.rowItem}>
               <a className={shared.row} href={hrefOf(row)} title={t("org.inbox.open")} data-item={row.id} onClick={(event) => onOpen(event, row)}>
@@ -76,20 +96,23 @@ export function InboxBoard({ t, rows, hrefOf, onOpen, more, notice }) {
  *   actions: { assign, respond, handOver, takeBack, close, rejectItem },
  *   workers, assigneeId, onAssignee, onAssign,
  *   others, handoverId, onHandover, onHandOver,
- *   onAccept, onReject, rejectArmed, onTakeBack, takeBackArmed, onClose, closeArmed,
- *   onRejectItem, rejectItemArmed, pending
+ *   onAccept, onReject, rejectArmed, onTakeBack, takeBackArmed, onClose, onRejectItem, pending
  * }
+ * `ending`: töö lõpetamise vorm (vt `EndingView`) või null; kui see on ees, ei ole muud näha.
+ * `closingNote`: selgitus, mille asutus lõpetatud töö kohta pöördujale kirjutas (või tühi).
+ * `openedNotice`: kas all on lause „Sinu avamine on pöördujale nähtav…".
  * `room`: { busy, onOpen } või null. Töö vastu võtnud töötaja avab vestlusruumi, kus
  *   ta pöördujale vastab; nupp on mõlemas vaates (see on tema järgmine samm).
  * `back`: { href, onBack }
  */
-export function ItemView({ t, tabs, tab, onTab, facts, parts, withheld, work, room = null, notice, armedNote, back }) {
+export function ItemView({ t, tabs, tab, onTab, facts, parts, closingNote = "", openedNotice = true, withheld, work, ending = null, room = null, notice, armedNote, back }) {
   const actions = work.actions;
   const onWork = tab === "work";
+  if (ending) return <EndingView t={t} ending={ending} notice={notice} />;
   return (
     <StepPanel
       title={t("org.inbox.sourcePackage")}
-      note={footNote(armedNote ? { text: armedNote } : notice, !onWork && !withheld ? t("org.inbox.openedNotice") : "")}
+      note={footNote(armedNote ? { text: armedNote } : notice, !onWork && openedNotice ? t("org.inbox.openedNotice") : "")}
       actions={
         <>
           <Button as="a" href={back.href} size="sm" variant="secondary" data-back="1" onClick={back.onBack}>
@@ -103,11 +126,16 @@ export function ItemView({ t, tabs, tab, onTab, facts, parts, withheld, work, ro
           {onWork && actions.takeBack ? (
             <ArmedButton armed={work.takeBackArmed} busy={work.pending === "takeBack"} label={t("org.inbox.take_back")} confirm={t("org.inbox.take_back_confirm")} onPress={work.onTakeBack} mark="takeBack" />
           ) : null}
+          {/* Töö lõpetamine avab vormi (selgitus pöördujale); vorm ise on teine samm. */}
           {onWork && actions.close ? (
-            <ArmedButton armed={work.closeArmed} busy={work.pending === "close"} label={t("org.inbox.close")} confirm={t("org.inbox.close_confirm")} onPress={work.onClose} mark="close" />
+            <Button {...SMALL} data-end="close" onClick={work.onClose}>
+              {t("org.inbox.close")}
+            </Button>
           ) : null}
           {onWork && actions.rejectItem ? (
-            <ArmedButton armed={work.rejectItemArmed} busy={work.pending === "rejectItem"} label={t("org.inbox.reject_item")} confirm={t("org.inbox.reject_item_confirm")} onPress={work.onRejectItem} mark="rejectItem" />
+            <Button {...SMALL} data-end="rejectItem" onClick={work.onRejectItem}>
+              {t("org.inbox.reject_item")}
+            </Button>
           ) : null}
           {onWork && actions.respond ? (
             <>
@@ -181,8 +209,43 @@ export function ItemView({ t, tabs, tab, onTab, facts, parts, withheld, work, ro
                 )
               )
             )}
+            {closingNote ? (
+              <div className={shared.group} data-closing-note="1">
+                <p className={shared.groupTitle}>{t("org.inbox.outcome_note")}</p>
+                <p className={shared.own}>{closingNote}</p>
+              </div>
+            ) : null}
           </>
         )}
+      </div>
+    </StepPanel>
+  );
+}
+
+/**
+ * Töö lõpetamine: selgitus pöördujale ja mis juhtub. Tagasilükkamisel on selgitus kohustuslik,
+ * sulgemisel soovi korral; kumb, otsustab ./inboxRules.js (`ENDINGS`).
+ *
+ * `ending`: { kind, question, hint, note, submit, value, limit, busy, onChange, onBack, onSubmit }
+ */
+export function EndingView({ t, ending, notice }) {
+  return (
+    <StepPanel
+      title={ending.submit}
+      note={footNote(notice, ending.note)}
+      actions={
+        <>
+          <Button {...SMALL} data-ending-back="1" onClick={ending.onBack}>
+            {t("org.inbox.ending_back")}
+          </Button>
+          <Button type="button" size="sm" variant="primary" data-ending-submit={ending.kind} aria-busy={ending.busy ? "true" : undefined} onKeyDown={ignoreKeyRepeat} onClick={ending.onSubmit}>
+            {ending.submit}
+          </Button>
+        </>
+      }
+    >
+      <div className={shared.stack} aria-busy={ending.busy ? "true" : undefined}>
+        <TextAreaField label={ending.question} hint={ending.hint} value={ending.value} onChange={ending.onChange} rows={3} maxLength={ending.limit} />
       </div>
     </StepPanel>
   );

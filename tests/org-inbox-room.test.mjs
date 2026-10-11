@@ -239,7 +239,9 @@ const callHooks = ({ endFails = false } = {}) => {
     }
   };
 };
-const close = (db, hooks, toStatus = 'CLOSED') => transitionInboxItem(coordinator(), 'i1', { toStatus }, { db, now: NOW, ...hooks });
+/* Tagasilükkamine nõuab selgitust pöördujale (tests/org-inbox-manual-status.test.mjs). */
+const close = (db, hooks, toStatus = 'CLOSED') =>
+  transitionInboxItem(coordinator(), 'i1', { toStatus, reason: toStatus === 'REJECTED' ? 'Ei kuulu meie pädevusse.' : undefined }, { db, now: NOW, ...hooks });
 /* Sama värav, mille taga on ruumi sõnumid: lugemine ja kirjutamine. */
 const roomAccess = (db, roomId, userId, intent) =>
   resolveRoomAccess({ userId, userRole: 'CLIENT', roomId, intent, db, hasActiveSubscription: async () => true });

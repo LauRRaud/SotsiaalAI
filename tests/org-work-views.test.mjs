@@ -7,9 +7,32 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
-import { assigneeLabel, hasWork, inboxRow, itemFacts, itemTabs, personName, shownItemStatus, sourceParts, workActions, workerOptions } from '../components/org/inbox/inboxRules.js';
+import {
+  CLOSING_NOTE_LIMIT,
+  ENDINGS,
+  INBOX_GROUPS,
+  activeEnding,
+  assigneeLabel,
+  closingNoteOf,
+  endingProblem,
+  endingReason,
+  groupOfItem,
+  hasWork,
+  inboxListPath,
+  inboxPagePath,
+  inboxRow,
+  isFinishedItem,
+  itemFacts,
+  itemTabs,
+  personName,
+  showsOpenedNotice,
+  shownItemStatus,
+  sourceParts,
+  workActions,
+  workerOptions
+} from '../components/org/inbox/inboxRules.js';
 import { stampOf } from '../components/org/orgRules.js';
-import { OrganizationInboxStatus, OrganizationWorkAssignmentStatus } from '../lib/org/constants.js';
+import { INBOX_CLOSING_NOTE_LIMIT, OrganizationInboxStatus, OrganizationWorkAssignmentStatus } from '../lib/org/constants.js';
 
 const read = (path) => fs.readFileSync(new URL(path, import.meta.url), 'utf8');
 const catalog = (lang) => JSON.parse(read(`../messages/${lang}.json`));
@@ -239,10 +262,91 @@ test('pöördumise tagasilükkamine: koordinaator ja ainult kirjel, kust server 
   assert.equal(workActions(stale, { context: context({ membership: { id: 'm1' } }), canAssign: true }).rejectItem, true);
 });
 
+test('lõpetatud pöördumine laual ja lehel: vastutajat ega tähelepanu märki ei ole, on lõpetamise aeg ja selgitus', () => {
+  const closedAt = '2026-10-11T15:21:00.000Z';
+  for (const status of ['CLOSED', 'REJECTED', 'RECALLED']) {
+    const finished = item({ status, closedAt, unit: { name: 'Sotsiaalosakond' }, closedReason: ' See ei kuulu meie valla pädevusse. ' });
+    assert.equal(isFinishedItem(finished), true, status);
+    const row = inboxRow(finished, { t });
+    /* „Määramata” oleks lõpetatud real vale: töö ei oota kedagi. */
+    assert.equal(row.sub, `Sotsiaalosakond · lõpetatud ${stampOf(closedAt)}`, status);
+    assert.equal(row.attention, false, status);
+    assert.equal(row.chip, t(`org.inboxStatus.${status}`), status);
+    const facts = itemFacts(finished, MEMBERS, { t });
+    assert.deepEqual(facts.map((fact) => fact.key), ['status', 'received', 'closed'], status);
+    assert.equal(facts.find((fact) => fact.key === 'closed').value, stampOf(closedAt), status);
+    assert.equal(closingNoteOf(finished), 'See ei kuulu meie valla pädevusse.', status);
+    /* Avamise lause käib avamise kohta; lõpetatud kirjel ei ole enam midagi tagasi võtta. */
+    assert.equal(showsOpenedNotice(finished), false, status);
+  }
+  /* Lõpetamise ajata rida (vana kirje) ei näita tühja kuupäeva. */
+  assert.equal(inboxRow(item({ status: 'CLOSED', unit: { name: 'Sotsiaalosakond' } }), { t }).sub, 'Sotsiaalosakond');
+  /* Töös oleval kirjel on kõik nagu enne. */
+  const open = item({ status: 'ASSIGNED', closedReason: 'vana tekst', assignment: { membershipId: 'm2', status: 'PENDING' } });
+  assert.equal(isFinishedItem(open), false);
+  assert.deepEqual(itemFacts(open, MEMBERS, { t }).map((fact) => fact.key), ['status', 'assignee', 'received']);
+  assert.equal(closingNoteOf(open), '');
+  assert.equal(showsOpenedNotice(open), true);
+  assert.equal(showsOpenedNotice(item({ sourceWithheldReason: 'RECALLED' })), false);
+});
+
+test('töö lõpetamise vorm: tagasilükkamisel on selgitus kohustuslik, sulgemisel soovi korral', () => {
+  assert.deepEqual(Object.keys(ENDINGS), ['close', 'rejectItem']);
+  assert.deepEqual([ENDINGS.close.required, ENDINGS.rejectItem.required], [false, true]);
+  /* Vorm on ees ainult tegevusele, mis selles seisus võimalik on. */
+  assert.equal(activeEnding('rejectItem', { rejectItem: true }), 'rejectItem');
+  assert.equal(activeEnding('rejectItem', { rejectItem: false, close: true }), '');
+  assert.equal(activeEnding('close', { close: true }), 'close');
+  assert.equal(activeEnding('takeBack', { takeBack: true }), '', 'tagasivõtmisel vormi ei ole');
+  assert.equal(activeEnding('', { close: true }), '');
+  /* Tühja või ainult tühikutest selgitusega tagasi lükata ei saa; sulgeda saab. */
+  assert.equal(endingProblem('rejectItem', ''), 'reason_first');
+  assert.equal(endingProblem('rejectItem', '  \n '), 'reason_first');
+  assert.equal(endingProblem('rejectItem', 'Ei kuulu meie pädevusse.'), '');
+  assert.equal(endingProblem('close', ''), '');
+  /* Serverisse läheb kärbitud tekst; tühja ei saadeta. Piir on sama mis serveris. */
+  assert.equal(endingReason('  Lahendatud telefoni teel. '), 'Lahendatud telefoni teel.');
+  assert.equal(endingReason('   '), undefined);
+  assert.equal(CLOSING_NOTE_LIMIT, INBOX_CLOSING_NOTE_LIMIT);
+  assert.equal(endingReason('a'.repeat(CLOSING_NOTE_LIMIT + 40)).length, CLOSING_NOTE_LIMIT);
+  for (const lang of LANGS) {
+    const tr = translator(lang);
+    for (const ending of Object.values(ENDINGS)) {
+      for (const key of [ending.question, ending.hint, ending.note, ending.submit]) assert.notEqual(tr(key), key, `${lang}: ${key}`);
+    }
+    assert.notEqual(tr('org.inbox.reason_first'), 'org.inbox.reason_first', lang);
+  }
+  /* Leht saadab selgituse mõlema lõpetamisega ja kummalgi ei ole enam teist vajutust. */
+  const page = read('../components/org/OrgInboxItemClient.jsx');
+  assert.ok(page.includes('body: { toStatus: "CLOSED", reason: endingReason(endingText) }'));
+  assert.ok(page.includes('body: { toStatus: "REJECTED", reason: endingReason(endingText) }'));
+  assert.ok(!page.includes('confirm.press("close"') && !page.includes('confirm.press("rejectItem"'));
+});
+
+test('laua loendi rühmad: töös ja lõpetatud', () => {
+  assert.deepEqual(INBOX_GROUPS, ['open', 'finished']);
+  assert.equal(inboxListPath('o1'), '/api/org/o1/inbox');
+  assert.equal(inboxListPath('o1', { group: 'open', cursor: 'a b' }), '/api/org/o1/inbox?cursor=a%20b');
+  assert.equal(inboxListPath('o1', { group: 'finished' }), '/api/org/o1/inbox?closed=1');
+  assert.equal(inboxListPath('o1', { group: 'finished', cursor: 'c1' }), '/api/org/o1/inbox?closed=1&cursor=c1');
+  for (const lang of LANGS) {
+    for (const key of INBOX_GROUPS) assert.equal(typeof at(catalog(lang), `org.inbox.groups.${key}`), 'string', `${lang}: ${key}`);
+  }
+  /* Lõpetatud kirjelt viib „Tagasi loendisse” lõpetatud pöördumiste rühma: rühm on lehe aadressis. */
+  assert.equal(inboxPagePath('o1'), '/org/o1/vastuvott');
+  assert.equal(inboxPagePath('o1', 'finished'), '/org/o1/vastuvott?lopetatud=1');
+  assert.equal(groupOfItem(item({ status: 'REJECTED' })), 'finished');
+  assert.equal(groupOfItem(item({ status: 'ACCEPTED' })), 'open');
+  assert.ok(read('../app/org/[orgId]/vastuvott/page.jsx').includes('query.lopetatud === "1"'));
+  /* Server loeb sama päringusõna. */
+  assert.ok(read('../app/api/org/[orgId]/inbox/route.js').includes('closedOnly: requestUrl.searchParams.get("closed") === "1"'));
+});
+
 test('tekstid on kolmes keeles olemas ja uutes sõnades ei ole mõttekriipsu ega sirgeid jutumärke', () => {
   const old = ['heading', 'privacyNotice', 'status', 'receivedAt', 'assignee', 'unassigned', 'open', 'empty', 'sourcePackage', 'topic', 'situation', 'draft', 'urgency', 'assign', 'accept', 'reject', 'handOver', 'close',
     'backToList', 'openedNotice', 'recalledNotice'];
-  const fresh = ['unnamed_worker', 'tabs.label', 'tabs.package', 'tabs.work', 'assign_question', 'handover_question', 'pick_first', 'no_workers', 'response_lead', 'reject_confirm', 'reject_note', 'close_confirm', 'close_note', 'take_back', 'take_back_confirm', 'take_back_note', 'reject_item', 'reject_item_confirm', 'reject_item_note'];
+  const fresh = ['unnamed_worker', 'tabs.label', 'tabs.package', 'tabs.work', 'assign_question', 'handover_question', 'pick_first', 'no_workers', 'response_lead', 'reject_confirm', 'reject_note', 'close_note', 'take_back', 'take_back_confirm', 'take_back_note', 'reject_item', 'reject_item_note',
+    'reject_item_question', 'reject_item_hint', 'close_question', 'close_hint', 'reason_first', 'ending_back', 'outcome_note', 'closedAt', 'finished_at', 'empty_finished', 'groups.label', 'groups.open', 'groups.finished'];
   for (const lang of LANGS) {
     for (const key of [...old, ...fresh]) assert.equal(typeof at(catalog(lang), `org.inbox.${key}`), 'string', `${lang}: org.inbox.${key}`);
   }
