@@ -108,6 +108,7 @@ import { isCaseWorkUiEnabled } from "@/lib/casework/flags";
 import { isServiceLogUiEnabled } from "@/lib/serviceLog/flags";
 import { isOrgWorkspaceUiEnabled } from "@/lib/org/flags";
 import GlassCarousel from "@/components/room/GlassCarousel";
+import RoomPlaces from "@/components/room/RoomPlaces";
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
 import { panelLeaveAllowed } from "@/lib/panelLeaveGuard";
 import RoleViewSwitcher from "@/components/workspace/RoleViewSwitcher";
@@ -1830,6 +1831,21 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
               Väljalülitus elab profiilikarusselli "Välja" kaardil (tellija);
               nurga-⏻ eemaldatud. */}
           <div className="room-carousel-wrap" ref={carouselWrapRef} data-room-ui>
+            {/* TÖÖLAUD: tuba on töölaud (omanik 11.10). Tööriistad seisavad toas
+                kolmes kohas; ülejäänud menüüd (avaleht, profiil, tööheaolu,
+                kovisioon) jäävad karusselli ja laua peale. */}
+            {carouselSet === "workspace" ? (
+              <RoomPlaces
+                key="workspace"
+                items={carouselCards}
+                zones={deskZones}
+                backItem={carouselBackItem}
+                role={effectiveRole}
+                onSelect={handleSelect}
+                onRoleChanged={refreshEffectiveRole}
+                t={t}
+              />
+            ) : (
             <GlassCarousel
               key={carouselSet}
               items={carouselCards}
@@ -1850,6 +1866,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
                  puutel jääb kõikjal sama karussell. */
               zones={deskZones}
             />
+            )}
           </div>
 
           {/* Käivituse vahepala (tellija 07.07): AINULT valge S keskel, mis

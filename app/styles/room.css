@@ -57,6 +57,26 @@
 html[data-reduce-motion="1"] .room-view {
   transition: none;
 }
+/* TÖÖLAUD: tuba on töölaud (omanik 11.10). Kui Töölaual minnakse toas ühe koha
+   juurde, suureneb ja nihkub pilt koos tööriistadega (components/room/
+   RoomPlaces.jsx paneb muutujad elemendile .room; märk `data-places` on küljes
+   Töölaual ja ühe sõidu jagu pärast lahkumist, et pilt ei hüppaks tagasi).
+   Alguspunkt on ekraani ülanurk: pildil on 16 px ülevõte igas servas. */
+.room[data-places] .room-view {
+  transform-origin: 16px 16px;
+  transform: scale(var(--places-s, 1)) translate(var(--places-tx, 0px), var(--places-ty, 0px));
+  transition:
+    opacity 1600ms var(--ease-soft),
+    transform 950ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .room[data-places] .room-view {
+    transition: none;
+  }
+}
+html[data-reduce-motion="1"] .room[data-places] .room-view {
+  transition: none;
+}
 
 /* Paneelirežiimi hämardus + hägu: ruum astub sammu tagasi (brief §6).
    Avatud paneeli taga läheb kogu ruum pehmeks (pilt 9/10 etalon). */
