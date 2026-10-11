@@ -316,25 +316,3 @@ test('osa nimi mahub kiirmenüüsse', () => {
     assert.ok(pageName.length <= limit[lang], `${lang}: lehe nimi „${pageName}”`);
   }
 });
-
-test('leht: avaneb ukse taga, kõik osad jäävad lehele ja nelja ruuduga nupp viib osade lauale', () => {
-  const source = read('components/homeCare/HomeCareClientPage.jsx');
-  assert.match(source, /const \[view, setView\] = useState\(CLIENT_LANDING\);/);
-  /* Vaade, mis ei ole ees, on peidetud, mitte eemaldatud: pooleli kirje ja avatud vorm jäävad alles. */
-  assert.match(source, /hidden=\{current !== name\}/);
-  /* Osa vaates kannab nelja ruuduga nupp nime „Kliendi leht" ja viib osade lauale; laual viib see koduteenusesse. */
-  assert.match(source, /up=\{current \? \{ label: pageName, href: clientHref\(organizationId, client\.id\) \} : null\}/);
-  assert.match(source, /onDesk=\{current \? \(\) => setView\(""\) : undefined\}/);
-  /* Luba lõppes: põhjuse vorm on vaadete ees ja ei sõltu sellest, mis vaade on lahti. */
-  const lapsed = source.indexOf('{lapsed ? (');
-  const firstSlot = source.indexOf('{slot(');
-  assert.ok(lapsed > 0 && firstSlot > lapsed, 'põhjuse vorm on enne vaateid');
-  assert.match(source, /<HomeCareAccessProvider onReasonRequired=\{\(\) => setLapsed\(true\)\}>/);
-  /* Lingid kliendi alalehtedele ei lae ette: avamine jätab jälje. */
-  const links = source.match(/<Link [^>]*>/g) || [];
-  assert.equal(links.length, 5);
-  for (const link of links) assert.ok(link.includes('prefetch={false}'), link);
-  /* Vaadetes ei ole ühtegi linki kliendi lehele ega päringut. */
-  const views = read('components/homeCare/client/ClientViews.jsx');
-  assert.ok(!/\bfetch\(|\.call\(/.test(views));
-});

@@ -60,22 +60,22 @@ Omanik samal õhtul: „need võib ära kustutada: 267 on keeldude kontrollid ja
 
 | | Enne | Pärast |
 | --- | ---: | ---: |
-| Testifaile | 318 | 317 |
-| Teste | 2718 | 2626 |
-| Kontrolle | 21 318 | 20 141 |
+| Testifaile | 322 | 321 |
+| Teste | 2748 | 2654 |
+| Kontrolle | 21 540 | 20 348 |
 
-Arvud on kustutamise tööriista omad. See loeb kontrolliks ka kontrolliva abifunktsiooni kutse ja alamtesti sees oleva kontrolli, sellepärast on „enne“ suurem kui ülal.
+Arvud on kustutamise tööriista omad. See loeb kontrolliks ka kontrolliva abifunktsiooni kutse ja alamtesti sees oleva kontrolli, sellepärast on „enne“ suurem kui ülal; peaharu sai loendamise ja kustutamise vahel ka neli uut testifaili.
 
-**Kustutatud: 1177 kontrolli 71 failis (2880 rida).**
+**Kustutatud: 1192 kontrolli 72 failis (2914 rida).**
 
-- 872 kinnitust, et lehe, komponendi või kujunduse failis on kindel rida.
-- 274 keeldu lehe, komponendi või kujunduse faili kohta („seda rida ei ole“).
+- 885 kinnitust, et lehe, komponendi või kujunduse failis on kindel rida.
+- 276 keeldu lehe, komponendi või kujunduse faili kohta („seda rida ei ole“).
 - 18 keeldu serveri koodi ja andmebaasi skeemi kohta.
 - 13 jääki: kontrollid, et vana fail on kustutatud, ja read, mis jäid ilma oma võrdluseta.
-- 92 testi kadus tervikuna, sest neis ei olnud muud. Üks fail kadus tervikuna (`cloudflare-web-analytics-layout.test.mjs`).
+- 94 testi kadus tervikuna, sest neis ei olnud muud. Üks fail kadus tervikuna (`cloudflare-web-analytics-layout.test.mjs`).
 - 20 testi said nime, mis ütleb, mida nad veel kontrollivad.
 
-Ülal loendatud 924 ja 267 asemel on arvud 872 ja 292, sest piir tõmmati rangemalt: iga kinnituse väärtus jälgiti muutujate, tsüklite ja abifunktsioonide kaudu tagasi failini ning kinnitus, milles osaleb ka päris kood, tekstikataloog või andmefail, vaadati ükshaaval üle (25 neist kustutati, ülejäänud jäid).
+Ülal loendatud 924 ja 267 asemel on arvud 885 ja 294, sest piir tõmmati rangemalt: iga kinnituse väärtus jälgiti muutujate, tsüklite ja abifunktsioonide kaudu tagasi failini ning kinnitus, milles osaleb ka päris kood, tekstikataloog või andmefail, vaadati ükshaaval üle (24 neist kustutati, ülejäänud jäid).
 
 **Alles jäi meelega:**
 
@@ -84,7 +84,7 @@ Arvud on kustutamise tööriista omad. See loeb kontrolliks ka kontrolliva abifu
 - **61 kontrolli, mis loevad lehe faili muul eesmärgil:** kas lehel kasutatud tekstivõti on kataloogis kolmes keeles (keele kontroll), kas väli, mida vaade loeb, on mudelis olemas, kas igal teavituse sihtkohal ja dokiga lehel on leht ja nimi, ning brauseris jooksva koodi käitumise testid (võrguta kest, vastuse ootamine).
 - Kõik käitumise, tekstikataloogi ja andmefaili kontrollid.
 
-**Kontrollitud:** 70 muudetud testifaili jooksid läbi: 705 testi, 0 punast. ESLint muudetud failidel puhas.
+**Kontrollitud:** 71 muudetud testifaili jooksid läbi: 723 testi, 0 punast. ESLint muudetud failidel puhas.
 
 **Mis sellest muutub.** Lehe või kujunduse muudatus ei tee enam testi punaseks sõnastuse pärast. Lehe muudatuse kontroll on keel (`npm run i18n:check`, kolm sekundit) ja süntaks (`npx eslint <failid>`); testifaile jooksutatakse ainult siis, kui muutus loogika. Reegel on `AGENTS.md` jaotises „Kontrollid“. Kustutatud kontrollid ei jookse enam kusagil: teste käivitab ainult `npm test` (värava töö `unit`) ja see võtab failid kaustast `tests`.
 
