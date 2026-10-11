@@ -811,6 +811,7 @@ model User {
   journeys                              Journey[]
   wellbeingRecords                      WellbeingRecord[]
   practiceReflections                   PracticeReflection[]
+  ethicsReflections                     EthicsReflection[]
   wellbeingOutputDrafts                 WellbeingOutputDraft[]
   wellbeingPilotViewers                 WellbeingPilotViewer[]
   covisionCasesOwned                    CovisionCase[]                      @relation("CovisionCaseOwner")
@@ -1917,6 +1918,26 @@ model PracticeReflection {
   @@index([ownerUserId, sourceKind, sourceId])
   @@index([retentionState, retentionDeadline, id])
   @@index([retentionState, undoUntil, id])
+}
+
+// Owner-only ethical reflection. Version is a concurrency token, not history.
+model EthicsReflection {
+  id             String   @id @default(cuid())
+  ownerUserId    String
+  version        Int      @default(1)
+  content        Json
+  creationKey    String
+  creationHash   String
+  // Separate, frozen handoff. No FK granting access to the private original.
+  covisionCaseId String?
+  sharedText     String?  @db.Text
+  sharedAt       DateTime?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  owner          User     @relation(fields: [ownerUserId], references: [id], onDelete: Cascade)
+
+  @@unique([ownerUserId, creationKey])
+  @@index([ownerUserId, id])
 }
 
 // SOL-REF-07: iga workerikäik jätab jälgitava, sisutu tulemuse. Kirje sisu,

@@ -2658,6 +2658,9 @@
         "send_redacted": "Send redacted",
         "send_original": "Send anyway"
       }
+    },
+    "section7Ethics": {
+      "body": "<p><strong>7.14 Ethics room.</strong> Only the owner can read, export and delete private ethical reflection fields in the application. Organisation membership and administrator status do not grant access to another user’s reflection. The latest version is kept until the reflection or account is deleted; revision history is not retained. The user can send separately reviewed and confirmed text to the existing AI assistant or create a private Covision draft. AI use is subject to the assistant’s model provider and conversation retention terms. These separate copies are not deleted when the original reflection is deleted. Private reflections are not added to the RAG knowledge corpus or organisation data exports.</p>"
     }
   },
   "legal": {
@@ -16194,5 +16197,128 @@
     "all_steps": "All steps",
     "step_position": "Step {current} of {total}: {label}",
     "next_step": "Next step"
+  },
+  "ethics": {
+    "title": "Ethics room",
+    "lead": "Which question needs careful reflection?",
+    "private": "Only you",
+    "unsaved": "Unsaved changes",
+    "saved_state": "Saved version",
+    "list": "My reflections",
+    "new": "Start a reflection",
+    "empty": "Your private ethical reflections appear here. Start with a question; every field is optional.",
+    "loading": "Loading…",
+    "more": "Show more",
+    "untitled": "Untitled reflection",
+    "title_label": "Short title (optional)",
+    "save": "Save",
+    "saved": "Reflection saved.",
+    "delete": "Delete open reflection",
+    "deleted": "Private reflection deleted.",
+    "export": "Download open reflection",
+    "selected": "Open reflection",
+    "retention": "Use as little personal data as possible. Only you can access your reflection in the application; your organisation and other users cannot. We keep the latest version until you delete the reflection or your account. Earlier versions cannot be restored. Your reflection is also included in your account data export.",
+    "delete_confirm": "Permanently delete this private reflection? Assistant conversations and Covision copies created earlier remain and are managed separately.",
+    "discard": "This reflection has unsaved changes. Discard them?",
+    "replace": "Replace the outgoing text with a new draft?",
+    "share": "Discuss further",
+    "share_question": "Which text would you like to use elsewhere?",
+    "share_help": "Write a separate short text. Replace names with roles and remove contact details and identifying circumstances. Automatic checks cannot detect all personal data. Your private fields will not be added to this text.",
+    "snapshot": "Text to review",
+    "suggest": "Draft from selected fields",
+    "suggestion_note": "The draft uses the question, facts, options and missing information. It may be shortened; review the entire result.",
+    "identifiers": "Review and generalise:",
+    "confirmation": "I have reviewed this saved text and removed unnecessary personal data. I will choose where to use it below.",
+    "ai_privacy": "“Discuss with the assistant” sends only this text and reflection instructions to the existing AI assistant. The model provider processes it and the conversation is stored under the usual assistant terms. Deleting this private reflection will not delete that conversation.",
+    "covision_privacy": "Covision receives a separate private draft of this text. Inviting participants and publishing content to them takes place in Covision. Later changes here will not update that copy.",
+    "expert_closed": "Sending to an expert is currently unavailable. This room does not implement the ESTA Ethics Compass method.",
+    "ask": "Discuss with the assistant",
+    "working": "Working…",
+    "to_covision": "Create private Covision draft",
+    "open_covision": "Open created Covision",
+    "handoff_done": "Private Covision draft created.",
+    "assistant": "Assistant",
+    "ai_origin": "AI-generated reflection. Check claims against the sources and assess their relevance to your situation; the decision remains yours.",
+    "ai_not_saved": "The answer is not automatically added to your reflection fields. The conversation remains in assistant history.",
+    "no_answer": "Choose “Discuss further”, review the outgoing text and start the assistant.",
+    "sources": "Starting sources",
+    "source_help": "Starting points for ethical reflection. These links can be read without AI.",
+    "source_code": "Estonian social sector employee code of ethics",
+    "source_ifsw": "IFSW Global Social Work Statement of Ethical Principles",
+    "source_handbook": "ESTA ethics handbook (in Estonian)",
+    "source_scope": "International comparison material does not replace Estonian requirements. A link here does not prove that a source is available in assistant search; each answer has its own references.",
+    "read_only": "You can read, download and delete your earlier reflections. Creating or editing requires a professional role and an active subscription.",
+    "errors": {
+      "invalid": "Invalid input. Check field lengths and try again.",
+      "empty": "Enter at least a question or title.",
+      "unauthorized": "Please sign in again.",
+      "forbidden": "A professional role is required.",
+      "missing": "Reflection not found or not owned by you.",
+      "conflict": "This reflection changed in another window. Copy your unsaved text elsewhere and reopen the reflection from the list.",
+      "confirmation": "Review and confirm the saved text.",
+      "snapshot": "Add a short text to use elsewhere.",
+      "identifiers": "The text may contain identifying data. Generalise it before continuing.",
+      "assistant": "The assistant did not complete an answer. You can retry the same request.",
+      "failed": "The action failed. Please try again."
+    },
+    "identifier_types": {
+      "personal_code": "personal identification code",
+      "email": "email",
+      "phone": "phone number",
+      "exact_date": "exact date",
+      "address": "address",
+      "name": "possible name",
+      "small_place": "small locality",
+      "institution": "institution",
+      "rare_detail": "unusual detail"
+    },
+    "fields": {
+      "question": {
+        "short": "Question",
+        "label": "What is the ethical question?",
+        "hint": "Describe the tension or conflict. You do not need a final answer yet."
+      },
+      "facts": {
+        "short": "Facts",
+        "label": "What do I know happened?",
+        "hint": "Separate observations from assumptions. Avoid names and exact identifiers."
+      },
+      "interpretations": {
+        "short": "Interpretations",
+        "label": "What am I assuming or interpreting?",
+        "hint": "Which assumptions need checking?"
+      },
+      "voices": {
+        "short": "Perspectives",
+        "label": "Whose voice is heard and whose is missing?",
+        "hint": "Consider the person, their family, professionals and other affected people."
+      },
+      "rights": {
+        "short": "Rights",
+        "label": "Which rights and values are in tension?",
+        "hint": "Consider self-determination, safety, privacy, equality and dignity."
+      },
+      "role": {
+        "short": "My role",
+        "label": "What is my role and responsibility?",
+        "hint": "Consider limits of competence, power relationships and possible conflicts of interest."
+      },
+      "options": {
+        "short": "Options",
+        "label": "What possible actions do I see?",
+        "hint": "Consider benefits, harms and reversibility, including the impact of not acting. Take time before ranking options."
+      },
+      "missing": {
+        "short": "Missing information",
+        "label": "What else is needed before deciding?",
+        "hint": "Which information, consent, perspective or advice from a colleague is missing?"
+      },
+      "review": {
+        "short": "Next step",
+        "label": "What do I decide now, and when will I review it?",
+        "hint": "Record your reasoning and what would change your decision. You can also defer deciding."
+      }
+    },
+    "frozen_snapshot": "View the text copied to Covision"
   }
 }

@@ -2658,6 +2658,9 @@
         "send_redacted": "Saada maskeeritult",
         "send_original": "Saada siiski"
       }
+    },
+    "section7Ethics": {
+      "body": "<p><strong>7.14 Eetikaruum.</strong> Privaatseid eetilise arutelu välju saab rakenduses lugeda, eksportida ja kustutada ainult nende omanik. Organisatsiooni liikmesus ega administraatori roll ei anna ligipääsu teise kasutaja arutelule. Säilib viimane versioon kuni arutelu või konto kustutamiseni; muudatuste ajalugu ei säilitata. Kasutaja saab eraldi ülevaadatud ja kinnitatud teksti saata olemasolevale AI-assistendile või luua sellest privaatse kovisioonimustandi. AI kasutamisel rakenduvad assistendi mudeliteenuse ja vestluse säilitamise tingimused. Need eraldi koopiad ei kustu algse eetilise arutelu kustutamisel. Eetikaruum ei lisa privaatseid arutelusid RAG-i teadmuskorpusse ega organisatsiooni andmeväljavõttesse.</p>"
     }
   },
   "legal": {
@@ -16194,5 +16197,128 @@
     "all_steps": "Kõik sammud",
     "step_position": "Samm {current}/{total}: {label}",
     "next_step": "Järgmine samm"
+  },
+  "ethics": {
+    "title": "Eetikaruum",
+    "lead": "Milline küsimus vajab rahulikku läbimõtlemist?",
+    "private": "Ainult sinule",
+    "unsaved": "Salvestamata muudatused",
+    "saved_state": "Salvestatud versioon",
+    "list": "Minu arutelud",
+    "new": "Alusta arutelu",
+    "empty": "Siin on sinu privaatsed eetilised arutelud. Alusta küsimusest; kõiki välju ei pea täitma.",
+    "loading": "Laadin…",
+    "more": "Näita veel",
+    "untitled": "Pealkirjata arutelu",
+    "title_label": "Lühike pealkiri (valikuline)",
+    "save": "Salvesta",
+    "saved": "Arutelu on salvestatud.",
+    "delete": "Kustuta avatud arutelu",
+    "deleted": "Privaatne arutelu on kustutatud.",
+    "export": "Laadi avatud arutelu alla",
+    "selected": "Avatud arutelu",
+    "retention": "Sisesta võimalikult vähe isikuandmeid. Arutelu näed rakenduses ainult sina, mitte sinu organisatsioon ega teised kasutajad. Säilitame viimast versiooni kuni sina kustutad arutelu või konto. Varasemaid versioone taastada ei saa. Saad enda arutelu alla laadida ka konto andmeväljavõttes.",
+    "delete_confirm": "Kustutan selle privaatse arutelu jäädavalt? Varem loodud assistendivestlus ja kovisioon jäävad alles; neid haldad eraldi.",
+    "discard": "Selles arutelus on salvestamata muudatusi. Jätan need kõrvale?",
+    "replace": "Asendan väljamineva teksti uue mustandiga?",
+    "share": "Edasi arutama",
+    "share_question": "Millist teksti soovid edasi kasutada?",
+    "share_help": "Koosta lühike eraldi tekst. Nimed asenda rollidega, eemalda kontaktid ja äratuntavad üksikasjad. Automaatkontroll ei leia kõiki isikuandmeid. Sinu privaatseid välju sellele tekstile ei lisata.",
+    "snapshot": "Ülevaadatav tekst",
+    "suggest": "Tee väljadest algmustand",
+    "suggestion_note": "Algmustand kasutab küsimust, fakte, valikuid ja puuduvat teavet. See võib olla lühendatud; loe tulemus tervikuna üle.",
+    "identifiers": "Kontrolli ja üldista:",
+    "confirmation": "Olen selle salvestatud teksti üle vaadanud ja eemaldanud tarbetud isikuandmed. Valin all, kuhu seda kasutada.",
+    "ai_privacy": "„Aruta assistendiga” saadab ainult selle teksti ja arutlemisjuhise olemasolevale AI-assistendile. Teksti töötleb ka mudeliteenuse pakkuja ning vestlus salvestub assistendi tavapärase korra järgi. Privaatse arutelu kustutamine seda vestlust ei kustuta.",
+    "covision_privacy": "Kovisiooni jaoks luuakse sellest tekstist eraldi privaatne mustand. Osalejate kutsumine ja neile nähtava sisu avaldamine toimub kovisioonis. Hilisemad muudatused siin sinna üle ei kandu.",
+    "expert_closed": "Eksperdile saatmise võimalust praegu ei ole. See ruum ei rakenda ESTA Eetikakompassi metoodikat.",
+    "ask": "Aruta assistendiga",
+    "working": "Töötlen…",
+    "to_covision": "Loo privaatne kovisioonimustand",
+    "open_covision": "Ava loodud kovisioon",
+    "handoff_done": "Privaatne kovisioonimustand on loodud.",
+    "assistant": "Assistent",
+    "ai_origin": "AI abil koostatud mõtisklus. Kontrolli väiteid allikatest ja hinda sobivust oma olukorrale; otsustamine jääb sulle.",
+    "ai_not_saved": "Vastus ei lisandu automaatselt sinu aruteluväljadele. Vestlus säilib assistendi ajaloos.",
+    "no_answer": "Vali „Edasi arutama”, vaata saadetav tekst üle ja käivita assistent.",
+    "sources": "Lähteallikad",
+    "source_help": "Eetilise arutelu lähtekohad. Need lingid on loetavad ka ilma AI-ta.",
+    "source_code": "Eesti sotsiaalvaldkonna töötaja eetikakoodeks",
+    "source_ifsw": "IFSW ülemaailmsed sotsiaaltöö eetilised põhimõtted (inglise keeles)",
+    "source_handbook": "ESTA eetikakäsiraamat",
+    "source_scope": "Rahvusvaheline võrdlusmaterjal ei asenda Eesti nõudeid. Allikalink siin ei tõenda selle olemasolu assistendi otsingus; konkreetse vastuse aluseks on vastuse juures toodud viited.",
+    "read_only": "Saad oma varasemaid arutelusid lugeda, alla laadida ja kustutada. Uue arutelu või muudatuse jaoks on vaja spetsialisti rolli ja kehtivat tellimust.",
+    "errors": {
+      "invalid": "Sisend ei sobi. Kontrolli väljade pikkust ja proovi uuesti.",
+      "empty": "Kirjuta vähemalt küsimus või pealkiri.",
+      "unauthorized": "Palun logi uuesti sisse.",
+      "forbidden": "Selleks on vaja spetsialisti rolli.",
+      "missing": "Arutelu ei leitud või see ei kuulu sulle.",
+      "conflict": "Arutelu on teises aknas muutunud. Kopeeri oma salvestamata tekst kõrvale ja ava arutelu loendist uuesti.",
+      "confirmation": "Vaata salvestatud tekst üle ja kinnita see.",
+      "snapshot": "Lisa lühike tekst, mida soovid edasi kasutada.",
+      "identifiers": "Tekstis võib olla tuvastavaid andmeid. Üldista need enne jätkamist.",
+      "assistant": "Assistent ei lõpetanud vastust. Võid sama päringut uuesti proovida.",
+      "failed": "Toiming ei õnnestunud. Proovi uuesti."
+    },
+    "identifier_types": {
+      "personal_code": "isikukood",
+      "email": "e-post",
+      "phone": "telefon",
+      "exact_date": "täpne kuupäev",
+      "address": "aadress",
+      "name": "võimalik nimi",
+      "small_place": "väike asula",
+      "institution": "asutus",
+      "rare_detail": "haruldane üksikasi"
+    },
+    "fields": {
+      "question": {
+        "short": "Küsimus",
+        "label": "Milline on eetiline küsimus?",
+        "hint": "Sõnasta pingekoht või vastuolu. Lõplikku vastust ei pea veel teadma."
+      },
+      "facts": {
+        "short": "Faktid",
+        "label": "Mida tean toimunust?",
+        "hint": "Kirjelda tähelepanekuid, eristades need oletustest. Väldi nimesid ja täpseid identifikaatoreid."
+      },
+      "interpretations": {
+        "short": "Tõlgendused",
+        "label": "Mida ma oletan või tõlgendan?",
+        "hint": "Millised eeldused vajavad kontrollimist?"
+      },
+      "voices": {
+        "short": "Vaatenurgad",
+        "label": "Kelle hääl on kuuldav ja kelle oma puudub?",
+        "hint": "Mõtle inimesele, lähedastele, spetsialistidele ja teistele mõjutatud osapooltele."
+      },
+      "rights": {
+        "short": "Õigused",
+        "label": "Millised õigused ja väärtused on pinges?",
+        "hint": "Mõtle enesemääramisele, turvalisusele, privaatsusele, võrdsusele ja väärikusele."
+      },
+      "role": {
+        "short": "Minu roll",
+        "label": "Milline on minu roll ja vastutus?",
+        "hint": "Millised on sinu pädevuse piirid, võimusuhe ja võimalik huvide konflikt?"
+      },
+      "options": {
+        "short": "Valikud",
+        "label": "Milliseid tegutsemisvõimalusi näen?",
+        "hint": "Kaalu iga võimaluse kasu, kahju ja pööratavust, samuti tegevusetuse mõju. Ära kiirusta järjestamisega."
+      },
+      "missing": {
+        "short": "Puuduv teave",
+        "label": "Mida on enne otsustamist vaja juurde?",
+        "hint": "Milline teave, nõusolek, vaatenurk või kolleegi nõu on veel puudu?"
+      },
+      "review": {
+        "short": "Järgmine samm",
+        "label": "Mida otsustan praegu ja millal vaatan üle?",
+        "hint": "Kirjelda enda põhjendust ja seda, mis paneks sind otsust muutma. Võid ka otsustamise edasi lükata."
+      }
+    },
+    "frozen_snapshot": "Vaata kovisiooni kopeeritud teksti"
   }
 }

@@ -1,11 +1,17 @@
 # `EETIKA-RUUM-V1` — Eetilise juhtumiarutelu ruumi arendusleping
 
-Versioon: 1.0 · 28.08.2026
+Versioon: 1.1 · 11.10.2026
 Lepingu liik: privaatse professionaalse refleksiooni ja kinnitatud nõustamiskanali vertikaal
 Elav teostusseis: [`SotsiaalAI.md`](./SotsiaalAI.md) S4 „Ametialane teejuht ja Eetilise
 juhtumiarutelu ruum"
 Tõendipiir lepingu koostamisel: idee ja tooteleping; ESTA metoodika, partnerlus, kood ning
 runtime kontrollimata; `runtime: not_run`
+
+**11.10 kriitiline ulatuse täpsustus:** partnerlusvärav puudutab eksperdikanalit ja
+võõra metoodika kasutamist, mitte SotsiaalAI enda privaatset refleksiooni. Esimene
+teostatav ühik on oma mustand, olemasoleva assistendi vabatahtlik kasutamine ja
+privaatse kovisioonimustandi loomine. Eksperdikanal ja eksperdivastuse tagasitee
+jäävad eraldi hilisemaks ühikuks. See ei võrdu kogu algse V1 lubaduse täitmisega.
 
 ## 1. Lähtekoht ja kasutajalubadus
 
@@ -32,7 +38,7 @@ materjalile.
 
 SotsiaalAI vastutus on privaatsus-, suhtlus- ja töövookiht:
 
-- privaatne ettevalmistus ja versioonid;
+- privaatne ettevalmistus ja ülekirjutamist vältiv versiooninumber;
 - deidentifitseeritud jagamismustand ning kasutaja kinnitus;
 - Kovisiooni ja eetilise nõustamise eraldi adressaat, eesmärk ja nähtavus;
 - eksperdi vastuse turvaline tagasitee;
@@ -107,10 +113,29 @@ Eraldi kandja hoiab ainult vajalikku:
 - eksperdi roll ning vastuse kinnitatud tagasitoomine privaatsesse refleksiooni;
 - päritolu: kasutaja tekst, AI pakutud sõnastus, kinnitatud allikas ja eksperdi sisend.
 
-Audit ja teavitus kannavad ainult sündmuse metaandmeid, mitte juhtumi sisu. Organisatsiooni
-administraator ei näe privaatset mustandit ega vastust. Säilitusaeg, kustutamine, eksport,
-eksperdi juurdepääsu lõpp ja juba saadetud snapshot'i staatus vajavad enne arendust eraldi
-otsust.
+Eksperdikanali adressaat, tähtaeg ja vastuse olek lisanduvad alles selle kanali
+avamisel; privaatne tööleht neid praegu ei kogu. Organisatsiooni liikmesus ega
+administraatori roll ei ava teise kasutaja mustandit. Esimese ühiku andmevalikud:
+
+- Säilib ainult viimane omaniku versioon kuni arutelu või konto kustutamiseni.
+  Versiooninumber väldib kahe akna ülekirjutust; ajaloolisi versioone ei säilitata.
+- Omanik saab kirje alla laadida, lisaks sisaldub see konto andmeväljavõttes.
+  Rolli või tellimuse lõpp ei takista lugemist, eksporti ega kustutamist.
+- AI saab ainult eraldi salvestatud ja ülevaadatud teksti koos arutlemisjuhisega;
+  privaatne pealkiri ja muud väljad kaasa ei lähe. Kasutus toimub olemasoleva
+  assistendi vestluse, kvoodi, allikaviidete ja säilituse kaudu. AI vastust ei
+  kanta automaatselt kasutaja refleksiooniväljadele ega märgita inimese otsuseks.
+- Kovisioonile luuakse kinnitatud tekstist muutumatu koopia omaniku privaatsesse
+  ettevalmistusse. Osalejaid ei kutsuta ega sisu neile avaldata selle toiminguga.
+  Need toimingud jäävad olemasolevasse kovisioonivoogu.
+- Eetilise arutelu kustutamine ei kustuta eraldi assistendivestlust või
+  kovisiooni. Kasutaja näeb seda enne loomist ja kustutamist; neid haldab ta eraldi.
+- Privaatne sisu ei lähe üldisesse RAG-i korpusesse, organisatsiooni eksporti,
+  teavitustesse ega sündmuslogidesse. Eraldi sisuga audittabelit ei looda.
+
+Need on tagasipööratavad tootevalikud, mitte õigusnõu ega eksperdikanali leping.
+Automaatne identifikaatorikontroll on abivahend: võimalikud valepositiivsed
+nimed tuleb üldistada ning kaudsete tunnuste tuvastamine ei ole tõendatud.
 
 ## 7. Teostusetapid
 
@@ -160,7 +185,7 @@ otsust.
 
 ## 8. Vastuvõtukriteeriumid ja DoD
 
-V1 on valmis, kui spetsialist saab luua privaatse ettevalmistuse, jätta selle jagamata,
+Algse täieliku V1 siht on, et spetsialist saab luua privaatse ettevalmistuse, jätta selle jagamata,
 koostada eraldi deidentifitseeritud Kovisiooni snapshot'i või uue kinnitusega eetilise
 pöördumise ning saada vastuse ainult lubatud tööpinda. Ükski liikmesus ega organisatsiooniroll
 ei ava algset sisu. Kasutaja näeb kogu aeg, kes mida näeb, mida AI tegi ja kes vastutab
@@ -170,8 +195,11 @@ Käsitsi kontroll hõlmab vähemalt autorit, Kovisiooni saajat, eetikaeksperti, 
 administraatorit ja kõrvalist kasutajat ning tõendab privaatse mustandi, kahe jagamisteo ja
 vastuse tagasitee nähtavuspiire. Kontrollimata rada jääb `NOT_PROVEN`.
 
-Automatiseeritud testi-, contract-, probe-, smoke- ega E2E-kihti ei looda ega käivitata.
-Koodimuudatuse plokk järgib `SotsiaalAI.md` S11 väikest väravat ja peatüki lõpu build'i.
+Kontrollid järgivad kehtivat `AGENTS.md`-d: sihttest tõendab omaniku piiri,
+konkurentse salvestamise konflikti, korduskatse ühekordsust ja väljamineva koopia
+minimaalsust. Kasutatakse eraldatud testandmeid ja testadapterit; tasuline
+mudelitest ei ole arenduse lõpetamise nõue. Mudeli sisuline eetilise arutelu
+kvaliteet jääb eraldi tõendatavaks. Tootmisbuild toimub GitHubis üks kord.
 
 ## 9. Aktiveerimisväravad
 
