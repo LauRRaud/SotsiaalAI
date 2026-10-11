@@ -22,11 +22,16 @@ export function changeWaitingText(t, signal) {
  * eri hooldajat märgivad 14 päeva jooksul sama valdkonna või üks märgib suure muutuse.
  * Vastus ütleb, mida tehti; vastatud märkamist enam ei muudeta.
  */
-export default function HomeCareChangeSignals({ organizationId, initial = null, timeZone }) {
+export default function HomeCareChangeSignals({ organizationId, initial = null, timeZone, onChanged }) {
   const { t } = useI18n();
   const { call, busy, error, setError } = useHomeCareApi();
   const fieldId = useId();
-  const [signals, setSignals] = useState(initial || { open: [], handled: [] });
+  const [signals, setSignalsState] = useState(initial || { open: [], handled: [] });
+  /* Leht hoiab sama seisu osade laua plaadi jaoks: muutus läheb ka sinna. */
+  const setSignals = (next) => {
+    setSignalsState(next);
+    onChanged?.(next);
+  };
   const [answering, setAnswering] = useState("");
   const [outcome, setOutcome] = useState("");
   const [note, setNote] = useState("");

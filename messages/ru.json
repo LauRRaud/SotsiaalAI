@@ -14019,9 +14019,6 @@
         "REASON": "с причиной"
       },
       "talk_to_coordinator": "Перед визитом поговори с руководителем ухода.",
-      "jump_label": "Быстрые переходы на этой странице",
-      "jump_entry": "Написать запись",
-      "jump_diary": "Дневник",
       "handovers_title": "Последние сообщения следующему",
       "away_notice": "Клиент временно отсутствует.",
       "ended_notice": "Услуга завершена. Страницу можно читать.",
@@ -16341,6 +16338,59 @@
       "none": "Сегодня у тебя визитов нет.",
       "done_part": "выполнено {count}",
       "later_part": "позже ещё {count}"
+    },
+    "parts": {
+      "names": {
+        "door": "У двери",
+        "slots": "Визиты",
+        "safety": "Безопасность",
+        "relatives": "Близкие",
+        "manage": "Руководителю"
+      },
+      "lines": {
+        "door": "Перед визитом и сообщения",
+        "entry": "Визит, сообщение или случай",
+        "diary_last": "Последняя запись {date}",
+        "diary_none": "Записей нет",
+        "plan_review": "Пересмотр {date}",
+        "plan_no_review": "День пересмотра не задан",
+        "plan_none": "Плана пока нет",
+        "slots": "Визитов в неделю: {count}",
+        "slots_none": "Визиты не записаны",
+        "decision_none": "Решение не внесено",
+        "decision_no_volume": "Объём не указан",
+        "safety": "Карта безопасности и обычное состояние",
+        "safety_preconditions": "Невыполненных условий: {count}",
+        "keys_none": "Ключей нет",
+        "key_mine": "№ {tag} у вас",
+        "key_held": "№ {tag}: {name}",
+        "key_office": "№ {tag} в офисе",
+        "keys_count": "Ключей: {count}",
+        "keys_count_mine": "Ключей: {count}, у вас: {mine}",
+        "money_mine": "У вас {amount}",
+        "money_held": "У работников {amount}",
+        "money_none": "Денег ни у кого нет",
+        "supplies_none": "Запасы не отслеживаются",
+        "supplies_ok": "Всего достаточно",
+        "supplies_unmarked": "Состояние не отмечено",
+        "supply_state": "{kind}: {state}",
+        "transport_none": "Поездок нет",
+        "transport_next": "Поездка {date}",
+        "transport_waiting": "Заявка ждёт ответа",
+        "relatives_none": "Близкие не записаны",
+        "relatives_count": "Близких: {count}",
+        "team_none": "В команде никого нет",
+        "team_more": "{name} и ещё {count}",
+        "manage": "Статус, данные и уведомления",
+        "manage_signals": "Наблюдений ждёт ответа: {count}",
+        "manage_review": "Проверьте, что ещё открыто"
+      }
+    },
+    "door": {
+      "back": "Назад к двери",
+      "more_handovers": "Более ранних сообщений: {count}",
+      "no_answer": "Не открывают",
+      "write_entry": "Написать запись"
     }
   },
   "stage": {

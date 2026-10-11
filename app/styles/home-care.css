@@ -490,11 +490,6 @@
   font-size: inherit;
 }
 
-/* Kliendi lehe kiirteed: telefonis algab kirje vorm neljandalt ekraanitäielt. */
-.hc-jump {
-  margin: 0;
-}
-
 .hc-error {
   margin: 0;
   max-width: none;

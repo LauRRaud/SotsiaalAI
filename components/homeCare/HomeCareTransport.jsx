@@ -19,11 +19,16 @@ export function rideText(t, ride) {
  * kell auto tuleb. Loevad kõik, kes lehte näevad: korraldatud sõit on lehe ülaosas, et
  * hooldaja saaks kliendi valmis panna. Sõitu ennast platvorm ei telli.
  */
-export default function HomeCareTransport({ organizationId, clientId, initial = null, canRequest = false, isCoordinator = false, canWrite = false, today = "" }) {
+export default function HomeCareTransport({ organizationId, clientId, initial = null, canRequest = false, isCoordinator = false, canWrite = false, today = "", onChanged }) {
   const { t } = useI18n();
   const { call, busy, error, setError } = useHomeCareApi();
   const fieldId = useId();
-  const [data, setData] = useState(initial || { requests: [], next: null });
+  const [data, setDataState] = useState(initial || { requests: [], next: null });
+  /* Leht hoiab sama seisu osade laua plaadi jaoks: muutus läheb ka sinna. */
+  const setData = (next) => {
+    setDataState(next);
+    onChanged?.(next);
+  };
   /* `mode`: null | "new" | { kind: "arrange" | "decline", id }. */
   const [mode, setMode] = useState(null);
   const [form, setForm] = useState({});

@@ -14019,9 +14019,6 @@
         "REASON": "with a reason"
       },
       "talk_to_coordinator": "Talk to the care coordinator before the visit.",
-      "jump_label": "Shortcuts on this page",
-      "jump_entry": "Write an entry",
-      "jump_diary": "Diary",
       "handovers_title": "Latest notes for the next carer",
       "away_notice": "The client is temporarily away.",
       "ended_notice": "The service has ended. The page can still be read.",
@@ -16341,6 +16338,59 @@
       "none": "You have no visits today.",
       "done_part": "done {count}",
       "later_part": "{count} more later"
+    },
+    "parts": {
+      "names": {
+        "door": "At the door",
+        "slots": "Visits",
+        "safety": "Safety",
+        "relatives": "Relatives",
+        "manage": "For the coordinator"
+      },
+      "lines": {
+        "door": "Before you go, and notes",
+        "entry": "Visit, note or incident",
+        "diary_last": "Last entry {date}",
+        "diary_none": "No entries yet",
+        "plan_review": "Review on {date}",
+        "plan_no_review": "No review day is set",
+        "plan_none": "No plan yet",
+        "slots": "Visits a week: {count}",
+        "slots_none": "No visits on record",
+        "decision_none": "No decision on record",
+        "decision_no_volume": "No volume on record",
+        "safety": "Safety card and usual state",
+        "safety_preconditions": "Open preconditions: {count}",
+        "keys_none": "No keys",
+        "key_mine": "No. {tag} is held by you",
+        "key_held": "No. {tag}: {name}",
+        "key_office": "No. {tag} is in the office",
+        "keys_count": "Keys: {count}",
+        "keys_count_mine": "Keys: {count}, held by you: {mine}",
+        "money_mine": "You hold {amount}",
+        "money_held": "Workers hold {amount}",
+        "money_none": "Nobody holds any money",
+        "supplies_none": "No supplies are followed",
+        "supplies_ok": "Everything is sufficient",
+        "supplies_unmarked": "The state is not marked",
+        "supply_state": "{kind}: {state}",
+        "transport_none": "No rides ahead",
+        "transport_next": "Ride on {date}",
+        "transport_waiting": "A request waits for an answer",
+        "relatives_none": "No relatives recorded",
+        "relatives_count": "Relatives: {count}",
+        "team_none": "Nobody is on the team",
+        "team_more": "{name} and {count} more",
+        "manage": "Status, details and notices",
+        "manage_signals": "Observations waiting for an answer: {count}",
+        "manage_review": "Check what is still open"
+      }
+    },
+    "door": {
+      "back": "Back to the door",
+      "more_handovers": "Earlier notes: {count}",
+      "no_answer": "Door does not open",
+      "write_entry": "Write an entry"
     }
   },
   "stage": {

@@ -1,13 +1,16 @@
-// KODUTEENUS — viimased teated järgmisele kliendi lehe ülaosas.
+// KODUTEENUS — viimased teated järgmisele kliendi lehe esimeses vaates.
 //
-// Telefonis on kliendi leht seitse ekraanitäit pikk ja päevik algab kuuendalt: eelmise hooldaja
+// Telefonis oli kliendi leht seitse ekraanitäit pikk ja päevik algas kuuendalt: eelmise hooldaja
 // teade („supp on külmkapis") jäi sinna, kuhu järgmine hooldaja enne käiku ei jõua (11.10.2026
-// läbimäng). Reegel on puhas funktsioon päeviku esimese lehe peal.
+// läbimäng). Reegel on puhas funktsioon päeviku esimese lehe peal. Nüüd on kliendi leht osade
+// laud ja avaneb vaatega „Ukse taga": seal on ees püsikaart ja viimane teade, varasemad teated
+// on ühe vajutuse taga (components/homeCare/client/clientParts.js).
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { HOME_CARE_LIMITS } from '../lib/homeCare/constants.js';
 import { recentHandoversOf } from '../lib/homeCare/entries.js';
+import { CLIENT_LANDING, DOOR_VIEWS, clientViewer, doorHandover, viewAllowed, viewNameKey } from '../components/homeCare/client/clientParts.js';
 
 const NOW = new Date('2026-10-11T08:00:00Z');
 const item = (id, patch = {}) => ({ id, kind: 'HANDOVER', isMine: false, retractedAt: null, text: `teade ${id}`, authorName: 'Anu Aas', occurredAt: '2026-10-10T08:00:00.000Z', ...patch });
@@ -40,18 +43,22 @@ test('korraga on ees piiratud arv teateid; tühi ja vigane sisend annab tühja l
   for (const bad of [null, undefined, {}, 'x', []]) assert.deepEqual(recentHandoversOf(bad, NOW), []);
 });
 
-test('kliendi leht: kiirteed ja teated on enne püsikaarti ning tekstid on kolmes keeles', () => {
-  const page = readFileSync(new URL('../components/homeCare/HomeCareClientPage.jsx', import.meta.url), 'utf8');
-  const jump = page.indexOf('className="hc-row hc-jump"');
-  const handovers = page.indexOf('data.recentHandovers?.length');
-  const card = page.indexOf('<HomeCareCard');
-  assert.ok(jump > 0 && handovers > jump && card > handovers, 'järjekord: kiirteed, teated, püsikaart');
-  /* Hüpe viib pealkirjani, mis võtab fookuse vastu. */
-  assert.match(page, /id=\{`\$\{fieldId\}-new`\} tabIndex=\{-1\}/);
-  assert.match(page, /id=\{`\$\{fieldId\}-diary`\} tabIndex=\{-1\}/);
+test('kliendi leht avaneb vaatega, kus viimane teade on ees; varasemad on ühe vajutuse taga', () => {
+  const rows = recentHandoversOf([item('eile', { occurredAt: '2026-10-10T16:00:00.000Z' }), item('täna', { occurredAt: '2026-10-11T06:00:00.000Z' }), item('piiril', { occurredAt: '2026-10-04T08:00:00.000Z' })], NOW);
+  /* Leht avaneb vaatega „Ukse taga"; seal on ees kõige uuem teade ja arv, mitu neid veel on. */
+  assert.equal(CLIENT_LANDING, 'door');
+  assert.deepEqual(doorHandover({ recentHandovers: rows }), { latest: rows[0], more: 2 });
+  assert.equal(doorHandover({ recentHandovers: rows }).latest.id, 'täna');
+  assert.deepEqual(doorHandover({ recentHandovers: [] }), { latest: null, more: 0 });
+  /* Kõik viimased teated on osa „Ukse taga" alavaade: selle avab igaüks, kes lehte näeb, ka lugeja. */
+  assert.ok(DOOR_VIEWS.includes('handovers'));
+  const reader = { client: { status: 'ACTIVE' }, access: { isCoordinator: false, canEditCard: false, canWrite: false, membershipId: 'm1' } };
+  assert.equal(viewAllowed('handovers', clientViewer(reader), reader), true);
+  assert.equal(viewNameKey('handovers'), viewNameKey('door'));
   for (const locale of ['et', 'en', 'ru']) {
     const hc = JSON.parse(readFileSync(new URL(`../messages/${locale}.json`, import.meta.url), 'utf8')).home_care;
-    for (const key of ['jump_label', 'jump_entry', 'jump_diary', 'handovers_title']) assert.ok(hc.client[key], `${locale} client.${key}`);
+    assert.ok(hc.client.handovers_title, `${locale} client.handovers_title`);
+    for (const key of ['back', 'more_handovers', 'no_answer', 'write_entry']) assert.ok(hc.door[key], `${locale} door.${key}`);
     assert.ok(hc.card.empty_readonly && hc.no_answer.none_readonly, locale);
     /* Lugejale ei öelda „lisa", kui tal lisamise nuppu ei ole. */
     assert.doesNotMatch(hc.card.empty_readonly + hc.no_answer.none_readonly, /Lisa|Pane kirja|Add |Write |Добав|Запиш/, locale);

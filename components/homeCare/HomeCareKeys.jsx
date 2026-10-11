@@ -29,11 +29,16 @@ export function keyWhere(t, note) {
  * Loeb igaüks, kes lehte näeb. Võtme lisab ja lõpetab hooldusjuht; üle annab hooldusjuht
  * või see, kelle käes võti parajasti on.
  */
-export default function HomeCareKeys({ organizationId, clientId, initial = [], receivers = [], canManage = false, canWrite = false, myMembershipId = null }) {
+export default function HomeCareKeys({ organizationId, clientId, initial = [], receivers = [], canManage = false, canWrite = false, myMembershipId = null, onChanged }) {
   const { t } = useI18n();
   const { call, busy, error, setError } = useHomeCareApi();
   const fieldId = useId();
-  const [keys, setKeys] = useState(initial || []);
+  const [keys, setKeysState] = useState(initial || []);
+  /* Leht hoiab sama seisu osade laua plaadi jaoks: muutus läheb ka sinna. */
+  const setKeys = (next) => {
+    setKeysState(next);
+    onChanged?.(next);
+  };
   /* Avatud vorm: `{ mode: "add" }` või `{ mode: "handover", keyId }`. Korraga üks. */
   const [open, setOpen] = useState(null);
   const [form, setForm] = useState({ tag: "", label: "", holder: "" });
