@@ -56,7 +56,19 @@ import { ContextView, JourneyView, PathView, SituationView, UrgencyView, WhoView
 import DomainsView from "./preInquiry/DomainsView";
 import { AssistantView, RecipientView, ReviewView, SavedView, SendView, SentStateView, SentTextView, TextView } from "./preInquiry/FlowViews";
 import PreInquiryStart from "./preInquiry/PreInquiryStart";
-import { SHARINGS_PATH, replaceInquiryRow, senderCanEdit, senderFlowKeys, senderListCounts, senderOpenMode, sentInquiryView } from "./preInquiry/senderModel";
+import {
+  SHARINGS_PATH,
+  excerptOf,
+  recipientEmptyReason,
+  replaceInquiryRow,
+  senderCanEdit,
+  senderFlowKeys,
+  senderListCounts,
+  senderListView,
+  senderOpenMode,
+  senderRowCanArchive,
+  sentInquiryView
+} from "./preInquiry/senderModel";
 import { CheckView, InfoView, InquiryView, NetworkView, PlanView, PrepareView, QueueView, SettingsView } from "./preInquiry/ReceiverViews";
 import viewStyles from "./preInquiry/views.module.css";
 import LocationStepView from "./serviceProfile/LocationViews";
@@ -881,6 +893,10 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
   const [activeWorkflowStep, setActiveWorkflowStep] = useState("path");
   /* Vastuvõtja: milline vaade on ees ja millist järje rühma ta vaatab
      (tühi = uued, kui neid on, muidu minu töös). */
+  /* Pöörduja loend: milline rühm (tühi = esimene, kus midagi on) ja mitmes lehekülg; ülevaate lehekülg. */
+  const [savedGroup, setSavedGroup] = useState("");
+  const [savedPage, setSavedPage] = useState(0);
+  const [reviewPage, setReviewPage] = useState(0);
   const [receiverStep, setReceiverStep] = useState("queue");
   const [receiverGroup, setReceiverGroup] = useState("");
   const [assessmentPathChosen, setAssessmentPathChosen] = useState(false);
@@ -900,6 +916,16 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
      SOL-WB-14 all kirjas (`AbortController`-ita paralleelsed laadimised). */
   const journeyShareRequestRef = useRef(0);
   const journeyPrefillLoadedRef = useRef(false);
+  /* Kas leht on veel ees. Teekonna eeltäide küsitakse ÜKS kord; selle vastust ei tohi ära
+     visata efekti uus käivitus (tõlkefunktsioon `t` võib lehe laadimise ajal vahetuda), vaid
+     ainult lehelt lahkumine. */
+  const surfaceAliveRef = useRef(true);
+  useEffect(() => {
+    surfaceAliveRef.current = true;
+    return () => {
+      surfaceAliveRef.current = false;
+    };
+  }, []);
   const recipientPrefillLoadedRef = useRef(false);
   const openInquiryLoadedRef = useRef(false);
   const handleOpenInquiryRef = useRef(null);
@@ -1118,10 +1144,11 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     const items = [];
     if (situation.trim()) {
       items.push(
+        /* Kirjeldus on oma sammus täies pikkuses; siin on selle algus, et vaade mahuks paneeli. */
         <ChatMessageItem
           key="pre-inquiry-user-situation"
           role="user"
-          text={situation}
+          text={excerptOf(situation, 220)}
           t={t}
         />
       );
@@ -1259,11 +1286,14 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     normalizedAssessmentState.subject.urgency,
     selectedRecipient
   ]);
-  const canUseJourneyPrefill = useMemo(() => {
-    if (activeDraftJourneySharedInfo) return true;
-    if (typeof window === "undefined") return false;
-    return Boolean(new URLSearchParams(window.location.search || "").get("fromJourney"));
-  }, [activeDraftJourneySharedInfo]);
+  /* Kas leht avati Teekonnast (`?fromJourney=`). Aadressi loetakse pärast esimest joonistust:
+     joonistuse ajal lugedes erines serveri ja brauseri esimene pilt (Teekonna kaardi selgitus)
+     ja React pidi lehe brauseris uuesti üles ehitama. */
+  const [journeyRequested, setJourneyRequested] = useState(false);
+  useEffect(() => {
+    setJourneyRequested(Boolean(new URLSearchParams(window.location.search || "").get("fromJourney")));
+  }, []);
+  const canUseJourneyPrefill = Boolean(activeDraftJourneySharedInfo) || journeyRequested;
   const selectedRecipientReferralNotice = getPreInquiryReferralNotice(selectedRecipient);
   const selectedRecipientAvailabilityNotices = useMemo(
     () => preInquiryAvailabilityNotices(selectedRecipient, t),
@@ -1320,8 +1350,12 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       .map((item) => item.trim())
       .filter(Boolean);
 
+    /* VIGA, mis siin oli: efekt sõltub tõlkefunktsioonist `t`. Kui `t` vahetus päringu ajal,
+       märkis efekti koristus vastuse tühistatuks, aga uus käivitus enam ei küsinud (märge
+       „juba küsitud" oli peal). Server vastas 200, leht jäi avaekraanile ja Teekonnast ei tulnud
+       midagi kaasa; kohalikus proovis juhtus see kolmel korral viiest. Vastus loetakse nüüd
+       alati, kui leht on veel ees. */
     journeyPrefillLoadedRef.current = true;
-    let cancelled = false;
 
     async function loadJourneyPrefill() {
       setNotice("");
@@ -1341,7 +1375,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
         if (!response.ok || !payload?.ok) {
           throw new Error(payload?.message || readText(t, "workspace_feature_pages.pre_inquiries.journey_prefill.load_failed", "Journey prefill could not be loaded."));
         }
-        if (cancelled) return;
+        if (!surfaceAliveRef.current) return;
         const prefill = payload?.prefill || {};
         const sharedInfo = normalizePreInquiryJourneySharedInfo(prefill.sharedJourneyInfo);
         const nextAssessmentState = createEmptyPreInquiryAssessmentState();
@@ -1386,16 +1420,13 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
         }
         setNotice(readText(t, "workspace_feature_pages.pre_inquiries.journey_prefill.loaded", "A pre-inquiry draft was prepared from the journey. Review and edit it before sending."));
       } catch (prefillError) {
-        if (!cancelled) {
+        if (surfaceAliveRef.current) {
           setError(prefillError?.message || readText(t, "workspace_feature_pages.pre_inquiries.journey_prefill.load_failed", "Journey prefill could not be loaded."));
         }
       }
     }
 
     void loadJourneyPrefill();
-    return () => {
-      cancelled = true;
-    };
   }, [t]);
 
   /**
@@ -2388,6 +2419,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
           )
         }))}
         onStart={handleStartWorkflow}
+        error={error}
         mine={
           ownCounts.total
             ? {
@@ -2822,39 +2854,61 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       </div>
     </div>
   ) : null;
-  const savedItems = savedInquiries.map((inquiry) => {
+  /* Minu eelpöördumised: rühmad ja ühe rühma lehekülg (reegel: senderModel.js). Real on seis ja
+     üks põhitegevus; saadetud pöördumise muud tegevused on selle lugemisvaates. */
+  const savedList = senderListView(savedInquiries, { group: savedGroup, page: savedPage });
+  const savedGroups = [
+    { value: "sent", label: tr("views.saved.group_sent", "Saadetud · {count}").replace("{count}", String(savedList.counts.sent)) },
+    { value: "drafts", label: tr("views.saved.group_drafts", "Mustandid · {count}").replace("{count}", String(savedList.counts.drafts)) },
+    { value: "archive", label: tr("views.saved.group_archive", "Arhiiv · {count}").replace("{count}", String(savedList.counts.archive)) }
+  ];
+  const savedEmptyText = !savedInquiries.length
+    ? tr("empty_saved", "Sul ei ole veel salvestatud eelpöördumisi.")
+    : savedList.group === "sent"
+      ? tr("views.saved.empty_sent", "Saadetud eelpöördumisi ei ole.")
+      : savedList.group === "archive"
+        ? tr("views.saved.empty_archive", "Arhiivis ei ole eelpöördumisi.")
+        : tr("views.saved.empty_drafts", "Mustandeid ei ole.");
+  const savedItems = savedList.items.map((inquiry) => {
     const state = senderStateLabel(inquiry);
     return {
       id: inquiry.id,
       title: inquiry.topic || tr("untitled", "Pealkirjata"),
       state: state.text,
       tone: state.tone,
-      meta: [
-        inquiry.recipientOrganization?.displayName || inquiry.selectedRecipientName,
-        inquiry.updatedAt ? `${tr("views.saved.changed", "muudetud")} ${formatDate(inquiry.updatedAt, locale)}` : ""
-      ]
-        .filter(Boolean)
-        .join(" · "),
+      /* Saadetud real loeb, kellele see läks; mustandil, millal seda viimati muudeti. */
+      meta: inquiry.sentAt
+        ? inquiry.recipientOrganization?.displayName || inquiry.selectedRecipientName || ""
+        : inquiry.updatedAt
+          ? `${tr("views.saved.changed", "muudetud")} ${formatDay(inquiry.updatedAt, locale)}`
+          : "",
       openLabel: tr("actions.open", "Ava"),
       onOpen: () => handleOpenInquiry(inquiry),
-      actions: [
-        inquiry.status === "ARCHIVED"
-          ? { key: "reopen", label: tr("actions.reopen", "Taasava muutmiseks"), disabled: saving, onClick: () => handleReopenAuthoredInquiry(inquiry) }
-          : null,
-        {
-          key: "copy",
-          label: tr("actions.copy_short", "Kopeeri"),
-          onClick: () => navigator?.clipboard?.writeText(inquiry.userEditedDraft || inquiry.generatedDraft || inquiry.situation || "")
-        },
-        { key: "download", label: tr("actions.download", "Laadi alla"), onClick: () => handleDownloadSavedInquiry(inquiry) },
-        {
-          key: "archive",
-          label: tr("actions.archive", "Arhiveeri"),
-          disabled: saving || inquiry.status === "SENT" || inquiry.status === "ARCHIVED",
-          onClick: () => handleArchiveAuthoredInquiry(inquiry)
-        }
-      ].filter(Boolean)
+      archive: senderRowCanArchive(inquiry)
+        ? { label: tr("actions.archive", "Arhiveeri"), disabled: saving, onClick: () => handleArchiveAuthoredInquiry(inquiry) }
+        : null
     };
+  });
+  const savedPager = {
+    ...savedList,
+    onPrev: () => setSavedPage(savedList.page - 1),
+    onNext: () => setSavedPage(savedList.page + 1)
+  };
+  /* Miks adressaadi loend on tühi (reegel: senderModel.js). */
+  const recipientEmpty = recipientEmptyReason({
+    loading,
+    query: recipientQuery,
+    type: recipientType,
+    entryCount: entries.length,
+    typeCount: recipientType
+      ? entries.filter((entry) =>
+          recipientType === "SERVICE_PROVIDER"
+            ? entry.type === "SERVICE_PROVIDER"
+            : recipientType === "ORGANIZATION_INBOX"
+              ? entry.type === "ORGANIZATION_INBOX"
+              : entry.type !== "SERVICE_PROVIDER" && entry.type !== "ORGANIZATION_INBOX"
+        ).length
+      : entries.length
   });
 
   /* Saadetud pöördumise lugemisvaade: mida näidata, otsustab senderModel.js. */
@@ -2962,15 +3016,13 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
                 checked ? [...new Set([...journeyShareSelections, id])] : journeyShareSelections.filter((item) => item !== id)
               )
             }
-          >
-            {activeDraftJourneySharedInfo ? (
-              <JourneySharedInfoBlock info={activeDraftJourneySharedInfo} t={t} audience={activeDraftJourneySharedInfoAudience} serviceLabel={selectedRecipient?.title || ""} />
-            ) : (
-              <p className={viewStyles.quiet}>
-                {tr("journey_share.empty", "Teekonna kokkuvõtet ei ole veel kaasa tulnud. Ava eelpöördumine konkreetse Teekonna vaatest või jätka uut eelpöördumist.")}
-              </p>
-            )}
-          </JourneyView>
+            preview={
+              activeDraftJourneySharedInfo ? (
+                <JourneySharedInfoBlock info={activeDraftJourneySharedInfo} t={t} audience={activeDraftJourneySharedInfoAudience} serviceLabel={selectedRecipient?.title || ""} />
+              ) : null
+            }
+            empty={tr("journey_share.empty", "Teekonna kokkuvõtet ei ole veel kaasa tulnud. Ava eelpöördumine konkreetse Teekonna vaatest või jätka uut eelpöördumist.")}
+          />
         );
       case "path":
         return (
@@ -3103,7 +3155,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
         );
       case "review":
         return (
-          <ReviewView tr={tr} rows={preInquiryOverviewRows} missing={preInquiryMissingInfo}>
+          <ReviewView tr={tr} rows={preInquiryOverviewRows} missing={preInquiryMissingInfo} page={reviewPage} onPage={setReviewPage}>
             <PreInquiryAssessmentReviewSection
               t={t}
               title={tr("sections.assessment_review", "Vaata eelinfo üle")}
@@ -3141,6 +3193,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
             hasMore={recommendedRecipients.length > 3}
             showMore={showMoreContacts}
             onToggleMore={() => setShowMoreContacts((value) => !value)}
+            emptyText={tr(`views.recipient.empty.${recipientEmpty.key}`, "").replace("{query}", recipientEmpty.query || "")}
           />
         );
       case "text":
@@ -3175,7 +3228,21 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
           />
         );
       default:
-        return <SavedView tr={tr} items={savedItems} onNew={handleNewInquiryGuarded} />;
+        return (
+          <SavedView
+            tr={tr}
+            groups={savedGroups}
+            group={savedList.group}
+            onGroup={(value) => {
+              setSavedGroup(value);
+              setSavedPage(0);
+            }}
+            items={savedItems}
+            pager={savedPager}
+            emptyText={savedEmptyText}
+            onNew={handleNewInquiryGuarded}
+          />
+        );
     }
   };
 
@@ -3202,7 +3269,11 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
         initialIndex={Math.max(0, flowKeys.indexOf(activeWorkflowStep))}
         activeKey={activeWorkflowStep}
         onStepChange={(index, step) => {
-          if (step) setActiveWorkflowStep(step.key);
+          if (!step) return;
+          /* Teade käib selle vaate tegevuse kohta, kus see tekkis: teise vaatesse minnes ei
+             jää see paneeli kohale ruumi võtma (vaade ei mahuks siis ära). Viga jääb alles. */
+          if (step.key !== activeWorkflowStep) setNotice("");
+          setActiveWorkflowStep(step.key);
         }}
       >
         {renderFlowView}

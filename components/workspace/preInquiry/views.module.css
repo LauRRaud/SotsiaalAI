@@ -15,6 +15,11 @@
   align-items: stretch;
   gap: 0.5rem;
 }
+/* Lühikese sildiga märkekaardid (Teekonna osad): kitsamad lahtrid, et telefonis oleks kaks
+   veergu. Ühes veerus oli seitse kaarti 406 px kõrge ja vaade ei mahtunud ekraanile. */
+.cards[data-compact] {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr));
+}
 /* Üherealine väli sildiga (nt KOV või piirkond). */
 /* Väli on nii lai, kui sisu vajab: omavalitsuse nimi ei ole paneeli laiune. */
 .field {
@@ -142,21 +147,6 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
-.missing {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-}
-.missing li {
-  padding: 0.2rem 0.6rem;
-  border: 1px dashed var(--glass-cell-border);
-  border-radius: 999px;
-  color: var(--text-soft);
-  font-size: var(--fs-small, 0.875rem);
-}
 
 /* Märgitav lahter (filter, mille saab ka maha võtta). */
 .toggles {
@@ -212,6 +202,23 @@
   outline: none;
   box-shadow: var(--focus-ring);
 }
+/* Sama kuju nupuna (lehekülje vahetaja). */
+button.textLink {
+  cursor: pointer;
+}
+button.textLink:disabled {
+  color: var(--text-dim);
+  text-decoration: none;
+  cursor: default;
+}
+/* Lehekülgede vahetaja paneeli alumises servas: vahemik ja kaks tekstinuppu. */
+.pager {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.9rem;
+  font-variant-numeric: tabular-nums;
+}
 
 @container (max-width: 40rem) {
   .pair {
@@ -221,8 +228,10 @@
   .field[data-size] {
     max-width: none;
   }
+  /* Ülevaate rida jääb töölaua paneelis (umbes 37 rem) kahte veergu: ühes veerus oli rida
+     poole kõrgem ja lehekülg ei mahtunud ära. Ühte veergu läheb see telefoni laiuses (all). */
   .row {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: minmax(0, 11rem) minmax(0, 1fr);
   }
   .toggles {
     display: grid;
