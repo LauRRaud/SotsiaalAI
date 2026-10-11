@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { actGenitive, actSections, chunkSection, designation, internalReferences, keepsSuperscripts, namedActReferences, provisionChunks, provisionMentions, readReferences, resolveSection, sectionKey, sectionReferences, wordsBefore,
+import { actGenitive, actSections, chunkSection, designation, internalReferences, keepsSuperscripts, namedActReferences, provisionChunks, provisionMentions, readReferences, regulationGenitive,
+  regulationReferences, resolveSection, sectionKey, sectionReferences, wordsBefore,
   REFERENCE_LIMITS, SUPERSCRIPT_NORMALIZATIONS } from '../lib/rag-v2/search/legal-references.js';
 import { DEFAULT_CONFIG } from '../lib/rag-v2/contracts.js';
 
@@ -214,4 +215,41 @@ test('provisionMentions: every section a text names with its subsections, as wri
   assert.deepEqual([wordsBefore(text, first), wordsBefore(text, last), wordsBefore(titled, titled.indexOf('§'))], ['Vt lastekaitseseaduse', 'Vt lastekaitseseaduse § 3 lõiget 1 ja § 5 ning perekonnaseaduse', 'määruse nr 5']);
   assert.deepEqual(['käesoleva seaduse § 9', 'sama seaduse § 9', 'lastekaitseseaduse § 9', 'SHS § 9', 'kuni 2015. aastani kehtinud redaktsiooni § 9', 'vastavalt § 9'].map(sample => designation(sample, sample.indexOf('§'))),
     ['own', 'same', 'other', 'other', 'version', null]);
+});
+
+// ADR-142 (11.10.2026): the question lane (ADR-135) read only laws and codes; a municipal regulation is named by its
+// title, and by the municipality that gave it.
+test('ADR-142: a regulation\'s provision is read under its title in quotation marks, as it stands or in the genitive, for the regulation of the municipality the words name', () => {
+  const aid = { act: 'harku-abi', title: 'Sotsiaalhoolekandelise abi andmise kord', regions: ['harku_vald'] }, home = { act: 'harku-kodu', title: 'Koduteenuse osutamise tingimused ja kord', regions: ['harku_vald'] };
+  const limits = { act: 'harku-piir', title: 'Eluasemekulude piirmäärade kehtestamine toimetulekutoetuse määramiseks', regions: ['harku_vald'] };
+  const read = (text, list = [aid, home, limits]) => regulationReferences(text, list).map(({ act, base, superscript, subsections }) => [act, `${base}${superscript}`, subsections]);
+  assert.deepEqual([aid, home, limits].map(item => regulationGenitive(item.title)), ['sotsiaalhoolekandelise abi andmise korra', 'koduteenuse osutamise tingimuste ja korra', null]);
+  assert.deepEqual(['Hooldajatoetuse määrus', 'Kalmistute kasutamise eeskiri', null].map(regulationGenitive), ['hooldajatoetuse määruse', 'kalmistute kasutamise eeskirja', null]);
+  for (const text of ['Mida ütleb Harku valla sotsiaalhoolekandelise abi andmise korra § 15 lg 3?', 'Mida ütleb Harku Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise kord“ § 15 lg 3?',
+    'Sotsiaalhoolekandelise abi andmise kord § 15 lõige 3', 'mida ütleb sotsiaalhoolekandelise abi andmise korra § 15 lg 3', 'Harku Vallavolikogu 26.06.2025 määruse nr 12 "Sotsiaalhoolekandelise abi andmise kord" § 15 lg 3',
+    'Kas valla sotsiaalhoolekandelise abi andmise korra § 15 lg 3 lubab seda?', 'Elan Sauel. Mida ütleb Harku valla sotsiaalhoolekandelise abi andmise korra § 15 lg 3?']) {
+    assert.deepEqual(read(text), [['harku-abi', '15', ['3']]], text);
+  }
+  assert.deepEqual(read('Harku valla koduteenuse osutamise tingimuste ja korra § 4'), [['harku-kodu', '4', []]]);
+  // A title whose last word has no genitive an act goes by is read in quotation marks only.
+  assert.deepEqual(read('Harku Vallavolikogu määruse „Eluasemekulude piirmäärade kehtestamine toimetulekutoetuse määramiseks“ § 2'), [['harku-piir', '2', []]]);
+  // Two sections of one list, a raised number as written.
+  assert.deepEqual(read('sotsiaalhoolekandelise abi andmise korra § 15 lg 3 ja § 16¹'), [['harku-abi', '15', ['3']], ['harku-abi', '16¹', []]]);
+  // Of two titles that both end the words, the longer.
+  const short = { act: 'harku-lyhike', title: 'Abi andmise kord', regions: ['harku_vald'] };
+  assert.deepEqual([read('Harku valla sotsiaalhoolekandelise abi andmise korra § 1', [short, aid]), read('Harku valla abi andmise korra § 1', [short, aid])], [[['harku-abi', '1', []]], [['harku-lyhike', '1', []]]]);
+  // Nothing: another municipality named, the issuer alone, no title, the act's own pointer, a title in quotation marks
+  // that is none of them, a range.
+  for (const text of ['Mida ütleb Saue valla sotsiaalhoolekandelise abi andmise korra § 15?', 'Mida ütleb Saue Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise kord“ § 15?', 'Mida ütleb Harku valla määruse § 15?',
+    'Mida ütleb korra § 15?', 'käesoleva korra § 2 kohaselt', 'Harku Vallavolikogu määruse „Jäätmehoolduseeskiri“ § 15', 'sotsiaalhoolekandelise abi andmise korra §-des 5–7', 'Mida ütleb sotsiaalhoolekande seaduse § 15?']) {
+    assert.deepEqual(read(text), [], text);
+  }
+  // Two municipalities' regulations of one title in the scope (a name two municipalities share): the kind the words
+  // name tells them apart, and words that name none name neither.
+  const city = { act: 'tartu-linn', title: aid.title, regions: ['tartu_linn'] }, parish = { act: 'tartu-vald', title: aid.title, regions: ['tartu_vald'] }, both = [city, parish];
+  assert.deepEqual([read('Mida ütleb Tartu valla sotsiaalhoolekandelise abi andmise korra § 5?', both), read('Mida ütleb Tartu Linnavolikogu määruse „Sotsiaalhoolekandelise abi andmise kord“ § 5?', both),
+    read('sotsiaalhoolekandelise abi andmise korra § 5', both)], [[['tartu-vald', '5', []]], [['tartu-linn', '5', []]], []]);
+  // A city whose region has no kind in it, and a name with a hyphen and letters the region id folds.
+  assert.deepEqual(read('Mida ütleb Tallinna linna sotsiaalhoolekandelise abi andmise korra § 3?', [{ ...aid, act: 'tallinn-abi', regions: ['tallinn'] }]), [['tallinn-abi', '3', []]]);
+  assert.deepEqual(read('Mida ütleb Põhja-Sakala Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise kord“ § 3?', [{ ...aid, act: 'ps-abi', regions: ['pohja_sakala_vald'] }]), [['ps-abi', '3', []]]);
 });

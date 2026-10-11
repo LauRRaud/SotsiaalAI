@@ -233,6 +233,42 @@ test('ADR-135: a provision the question names is fetched by its place, under the
   assert.deepEqual(picture(pointer), [['kord', 'ranked_seed', 'Tugiisikuteenust ei os'], ['shs', 'cross_reference', 'Tugiisikuteenust ei võ']]);
 });
 
+// ADR-142 (11.10.2026): the question lane read only laws and codes, so "Harku valla abi andmise korra § 7 lg 2" was left
+// to the search. A regulation of the scope (the turn's municipality) is fetched by its place too, under its title.
+test('ADR-142: a municipal regulation\'s provision the question names is fetched by its place, under the regulation\'s title; another municipality\'s name, the issuer alone and a section it lacks add nothing', async () => {
+  const picture = packet => packet.evidence.map(entry => [entry.document_id, entry.selection.reason?.type ?? entry.selection.reason, entry.source_text.slice(0, 22)]);
+  // The ranked passage (§ 15) points nowhere, so nothing but the question names § 7 or § 2 of the regulation.
+  const asked = (text, options = {}) => namedActFixture({ pointer: 'vallavalitsuse otsuses', text, more: [['7', ['(1)\nTeenust osutatakse isiku kodus.\n(2)', 'Teenuse eest tasub teenuse saaja.']]], ...options })(CHAT_NAMED_ACTS_PROFILE);
+  const held = ['kord', 'question_reference', 'Teenuse eest tasub tee'], audit = { candidates: 1, additions: 1, acts: ['kord:7'] };
+  // The title in the genitive with the municipality, in quotation marks after the council, as it stands, and without
+  // the mark as an ordinary person writes it. Lõige 2 lies in § 7's second passage: that one is added.
+  for (const text of ['Mida ütleb Harku valla abi andmise korra § 7 lg 2?', 'Mida ütleb Harku Vallavolikogu määruse „Abi andmise kord“ § 7 lg 2?', 'Mida ütleb Abi andmise kord § 7 lõige 2?',
+    'mida ütleb harku valla abi andmise korra paragrahv 7 lõige 2', 'Mida ütleb abi andmise korra 7 lg 2?', 'abi andmise korra 7. paragrahvi 2. lõige']) {
+    const packet = await asked(text);
+    assert.equal(packet.state, 'ok', text);
+    assert.deepEqual([picture(packet).find(row => row[1] === 'question_reference'), packet.measurements.question_references], [held, audit], text);
+    assert.deepEqual(packet.evidence.find(entry => entry.selection.reason?.type === 'question_reference').selection.reason, { type: 'question_reference', section: '7', named_act: 'kord' }, text);
+  }
+  // The section alone: its first passage. The chat's route, from the retrieval directory: the same addition.
+  const section = await asked('Mida ütleb Harku valla abi andmise korra § 2?');
+  assert.deepEqual([picture(section).find(row => row[1] === 'question_reference'), section.measurements.question_references.acts], [['kord', 'question_reference', 'Teenuse osutamise otsu'], ['kord:2']]);
+  const viaDirectory = await asked('Mida ütleb Harku valla abi andmise korra § 7 lg 2?', { directory: true });
+  assert.deepEqual([viaDirectory.measurements.loading.strategy, picture(viaDirectory).find(row => row[1] === 'question_reference'), viaDirectory.measurements.question_references], ['candidate_documents', held, audit]);
+  // A law and a regulation in one question: both, in the order they are named, in the two places named acts have.
+  const two = await asked('Mille poolest erinevad SHS § 25 lg 2 ja Harku valla abi andmise korra § 7 lg 2?');
+  assert.deepEqual([picture(two).filter(row => row[1] === 'question_reference').map(row => row[0]), two.measurements.question_references.acts], [['shs', 'kord'], ['shs:25', 'kord:7']]);
+  // Nothing is added: another municipality is named, only the issuer is, the regulation has no such section, the title
+  // is not the regulation's, or the unit rows carry a title the loaded source does not have. The search goes on as it did.
+  for (const [text, options] of [['Mida ütleb Saue valla abi andmise korra § 7 lg 2?', {}], ['Mida ütleb Harku valla määruse § 7 lg 2?', {}], ['Mida ütleb Harku valla abi andmise korra § 99?', {}],
+    ['Mida ütleb Harku valla toetuste maksmise korra § 7?', {}], ['Mida ütleb Harku valla muu korra § 7?', { directory: true, titles: { kord: 'Muu kord' } }]]) {
+    const packet = await asked(text, options);
+    assert.deepEqual([packet.state, picture(packet).some(row => row[1] === 'question_reference'), packet.measurements.question_references?.additions ?? 0], ['ok', false, 0], `${text} ${JSON.stringify(options)}`);
+  }
+  // A profile without the named acts' places does not read the question.
+  const v3 = await namedActFixture({ pointer: 'vallavalitsuse otsuses', text: 'Mida ütleb Harku valla abi andmise korra § 2?' })(CHAT_REFERENCES_PROFILE);
+  assert.deepEqual([picture(v3).length, v3.measurements.question_references], [1, undefined]);
+});
+
 test('chat profile v4 is v3 with two more places for a named other act, in the cross-references\' room', () => {
   const settings = profileId => {
     const { finalLimit, limits, ...flags } = queryForProfile(retrievalProfile(profileId), { text: 'x', language: 'et' });

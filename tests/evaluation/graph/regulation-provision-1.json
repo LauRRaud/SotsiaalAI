@@ -1,0 +1,105 @@
+{
+  "schema_version": "rag-v2/graph-eval-1",
+  "purpose": "ADR-142 (11.10.2026): a municipal regulation provision named in the question, in the ways a person writes it (the title in the genitive with the municipality, in quotation marks after the council, as it stands, without the paragraph mark), sections near the start of an act and far into it; one question that names another municipality than the one searched (nothing may be fetched by place), and a law as the control (ADR-135). region: the municipality the search is made in. No deciding phrases: the measure is whether the named provision is in the evidence (the diagnosis script named in the ADR). The saved query vectors are on the server (rag-v2-work/eval-files/regulation-provision-1/vectors.json).",
+  "date": "2026-10-11",
+  "questions": [
+    {
+      "id": "reg-harku-genitive",
+      "region": "harku_vald",
+      "text": "Mida ütleb Harku valla sotsiaalhoolekandelise abi andmise korra § 15 lg 3?",
+      "queries": [
+        "Harku valla sotsiaalhoolekandelise abi andmise kord tugiisikuteenus"
+      ],
+      "evidence_text": []
+    },
+    {
+      "id": "reg-harku-quoted",
+      "region": "harku_vald",
+      "text": "Mida ütleb Harku Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise kord“ § 20 lg 1?",
+      "queries": [
+        "Harku valla sotsiaalhoolekandelise abi andmise kord"
+      ],
+      "evidence_text": []
+    },
+    {
+      "id": "reg-viljandi-words",
+      "region": "viljandi_vald",
+      "text": "mida ütleb viljandi valla isikliku abistaja teenuse määramise ja osutamise tingimuste ja korra paragrahv 3 lõige 2",
+      "queries": [
+        "Viljandi valla isikliku abistaja teenuse osutamise tingimused"
+      ],
+      "evidence_text": []
+    },
+    {
+      "id": "reg-maardu-markless",
+      "region": "maardu_linn",
+      "text": "Mida ütleb Maardu linna koduteenuse osutamise tingimuste ja korra 3 lg 1?",
+      "queries": [
+        "Maardu linna koduteenuse osutamise tingimused ja kord"
+      ],
+      "evidence_text": []
+    },
+    {
+      "id": "reg-other-municipality",
+      "region": "harku_vald",
+      "text": "Mida ütleb Saue valla sotsiaalhoolekandelise abi andmise korra § 15 lg 3?",
+      "queries": [
+        "Saue valla sotsiaalhoolekandelise abi andmise kord"
+      ],
+      "evidence_text": []
+    },
+    {
+      "id": "reg-law-control",
+      "text": "Mida ütleb SHS § 133 lg 5?",
+      "queries": [
+        "sotsiaalhoolekande seadus toimetulekutoetuse arvestamisel arvesse võetavad eluasemekulud"
+      ],
+      "evidence_text": []
+    },
+    {
+      "id": "reg2-harku-44",
+      "region": "harku_vald",
+      "text": "Mida ütleb Harku valla sotsiaalhoolekandelise abi andmise korra § 44 lg 2?",
+      "queries": [
+        "Harku valla sotsiaalhoolekandelise abi andmise kord"
+      ],
+      "evidence_text": []
+    },
+    {
+      "id": "reg2-harku-58-markless",
+      "region": "harku_vald",
+      "text": "mida ütleb harku valla sotsiaalhoolekandelise abi andmise korra 58 lg 1",
+      "queries": [
+        "Harku valla sotsiaalhoolekandelise abi andmise kord"
+      ],
+      "evidence_text": []
+    },
+    {
+      "id": "reg2-harku-67-quoted",
+      "region": "harku_vald",
+      "text": "Mida ütleb Harku Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise kord“ § 67?",
+      "queries": [
+        "Harku valla sotsiaalhoolekandelise abi andmise kord"
+      ],
+      "evidence_text": []
+    },
+    {
+      "id": "reg2-harku-72-asis",
+      "region": "harku_vald",
+      "text": "Elan Harku vallas. Mida ütleb Sotsiaalhoolekandelise abi andmise kord § 72 lg 1?",
+      "queries": [
+        "Harku valla sotsiaalhoolekandelise abi andmise kord"
+      ],
+      "evidence_text": []
+    },
+    {
+      "id": "reg2-viljandi-9",
+      "region": "viljandi_vald",
+      "text": "Mida ütleb Viljandi valla isikliku abistaja teenuse määramise ja osutamise tingimuste ja korra § 9?",
+      "queries": [
+        "Viljandi valla isikliku abistaja teenuse osutamise tingimused"
+      ],
+      "evidence_text": []
+    }
+  ]
+}

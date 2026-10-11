@@ -59,3 +59,28 @@ Omanik 10.10.2026 hilisõhtul: „tegutse“ kolme lahtise punkti kohta (lagi mi
 Mõlema muudatuse kood on seansi tööfailides (`assist15-prompt43-not-shipped.patch`), mitte repos.
 
 **Jääb lahti:** halduskohtusse pöördumise tähtaeg on vastuses kord olemas, kord mitte. Õigem tee on struktuurne: haldusmenetluse seaduse § 87 viitab halduskohtumenetluse seadustikule ilma paragrahvi numbrita, ja nimetatud aktide rada järgib praegu ainult numbriga viiteid. Kui valitud lõik nimetab teist seadust ilma numbrita, võiks rada tuua sellest seadusest lõigu, mis küsimusega kõige paremini sobib. See vajab eraldi kavandit ja mõõtmist.
+
+## Täiendus 11.10.2026: struktuurne tee on mõõdetud ja ei pidanud vastu
+
+Eelmise täienduse lõpus seisis mõte: kui valitud lõik nimetab teist seadust ilma paragrahvita (haldusmenetluse seaduse § 87: „halduskohtumenetluse seadustikus sätestatud tingimustel ja korras“), võiks nimetatud aktide rada tuua sellest seadusest küsimusega kõige paremini sobiva lõigu. Mõõtsin seda kolmel kujul. **Ükski ei toonud kohtu tähtaega kohale; midagi ei saadetud.** Kulu: 45 päringuvektorit kahe uue küsimustekataloogi jaoks (1146 tokenit, umbes 0,0002 USD), et salvestatud pöörete plaane saaks edaspidi tasuta uuesti läbi mängida. Mudelit ei kutsutud.
+
+Mõõdupuu: kümme 10.10 tasulise kontrolli vaidlustamise pööret (küsimus ja plaani päringud nii, nagu need siis olid) ja kaks kontrollpööret, mängitud läbi otsingukontrolliga ([ADR-122](adr-122-free-search-gate.md)) korpusel v78 ja v79. Kataloog: `tests/evaluation/graph/decision-challenge-1.json`.
+
+| Kuju | Mis mõõdeti | Tulemus |
+|---|---|---|
+| 1. Valitud lõik nimetab seadust (algne mõte) | 10.10 kümne pöörde kirjed | § 87 oli valitud lõikude seas 2 pöördel 10-st. Mõlemal olid nimetatud aktide kaks kohta juba täis numbriga viiteid. Oodatav kasu umbes üks pööre kümnest: ei ehitatud. |
+| 2. Mis tahes kandidaat nimetab seadust, millel kandidaati ei ole; seaduse lähim lõik lisatakse kandidaatide lõppu | ehitatud, serveris kattekausta kaudu, 51 küsimust | Reegel käivitus 43 küsimusel 51-st ja tõi 73 lõiku, peaaegu kõik kõrvalised (puuetega inimeste sotsiaaltoetuste seadus neljateistkümnel korral, välismaalasele rahvusvahelise kaitse andmise seadus kuuel). Kümnest vaidlustamise plaanist ei toonud see halduskohtumenetluse seadustikku **ühelgi**. 33 kontrollküsimusest sai üks otsustava lõigu juurde (perekonnaseaduse § 97), ükski ei kadunud ega nihkunud. Otsingu aja mediaan 3811 → 4052 ms. |
+| 3. Sama, aga nimetada võib ainult seaduse enda lõik | sama kood kitsendatult, 51 küsimust | Käivitus 32 küsimusel, tõi 52 lõiku, endiselt kõrvalised. Vaidlustamise plaanidest 0 kümnest; perekonnaseaduse § 97 võit kadus. |
+
+**Miks.** Kontrollmõõtmine samade kümne plaaniga, serveris oleva koodiga:
+
+- Seadus nimetab teist seadust ilma paragrahvita enamasti loetelus, mitte menetlusviitena („puuetega inimeste sotsiaaltoetuste seaduse alusel makstavad toetused“ sissetulekute loetelus). Kehtivas üleriigilises õiguses teeb seda 378 lõiku 6490-st.
+- § 87 on 36 kandidaadi seas 3 plaanil 10-st, kohtadel 33–36. Mõni seaduselõik nimetab seadustikku 8 plaanil, aga need seisavad kandidaatide lõpus ja enne neid nimetavad teised kandidaadid teisi seadusi.
+- Kui seadustiku seest otsida pöörde enda küsimuse ja päringutega, on lähim lõik tähtaja oma (§ 46 või § 47) ainult 2 plaanil 10-st; tavaliselt on see § 45 („Kaebeõiguse piirangud“) või § 42. § 46 on nelja lähima seas 9 plaanil.
+- Ja isegi kui § 46 on tõendite seas, ütleb vastus kohtu tähtaja umbes pooltel kordadel (10.10 kolmanda päringu katse: 5 pööret 10-st).
+
+Neli nõrka lüli järjest. Reeglit, mis neist läbi tuleks, saaks teha ainult selle ühe juhtumi järgi häälestades, ja müra (lisakandidaadid enamikul pööretel) jääks alles.
+
+Ehitatud koodi (kuju 2 ja 3, koos testidega) plaaster ja kontrollmõõtmise tulemus on seansside märkmete kaustas (`court-deadline-mention-places-not-shipped-2026-10-11.patch`, `court-deadline-probe-2026-10-11.json`), mitte repos. Serveris: `rag-v2-work/w5/` (kataloogid, vektorid, mõõteskriptid `mention-diag.mjs` ja `probe-hkms.mjs`).
+
+**Jääb lahti:** halduskohtusse pöördumise tähtaeg on vastuses kord olemas, kord mitte. Vaide tähtaeg, mis on inimese esimene samm, on vastuses iga kord. Proovimata teed, kumbki tasulise kontrolliga: üks juhendilõik, kus mõlemad tähtajad on koos (kohtu lehe „Halduskohtumenetlus“ ja Sotsiaalkindlustusameti „Vaide esitamine“ on kogus olemas ja 10.10 võttis üks vastus kohtu tähtaja ühelt sellistest lehtedest), või valiku juhis. Tasuta mõõdupuu on nüüd olemas: kataloog näitab, mitmel kümnest plaanist on seadustiku tähtajalõik kandidaatide seas (11.10.2026 korpusel v79: kahel).

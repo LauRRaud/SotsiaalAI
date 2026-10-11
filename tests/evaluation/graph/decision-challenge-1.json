@@ -1,0 +1,155 @@
+{
+  "schema_version": "rag-v2/graph-eval-1",
+  "purpose": "ADR-136 addendum of 11.10.2026: the free yardstick for the court deadline. The questions and search plans of ten stored turns about a decision the person does not accept (search-assist-14, paid checks of 10.10.2026) and two control turns, replayed by the search gate. Deciding phrases, in this order: the deadline for going to court in the Code of Administrative Court Procedure (§ 46 lõige 1, § 47 lõige 2) and the deadline for a challenge (Administrative Procedure Act § 75). The gate tells for each plan whether the passages are among the candidates the selection reads. No model call. The saved query vectors are on the server (rag-v2-work/eval-files/decision-challenge-1/vectors.json).",
+  "date": "2026-10-11",
+  "questions": [
+    {
+      "id": "challenge-a-v1",
+      "text": "Mis õigused mul on, kui vald keeldus mulle toimetulekutoetust maksmast?",
+      "queries": [
+        "Haldusakti vaide esitamine, esitamise koht ja tähtaeg"
+      ],
+      "evidence_text": [
+        "Tühistamiskaebuse võib esitada 30 päeva jooksul",
+        "võib kaebuse selle nõudega esitada 30 päeva jooksul",
+        "Vaie haldusaktile või toimingule tuleb esitada 30 päeva jooksul"
+      ]
+    },
+    {
+      "id": "challenge-a-v2",
+      "text": "Mis õigused mul on, kui vald keeldus mulle toimetulekutoetust maksmast?",
+      "queries": [
+        "Haldusakti vaidlustamine vaie esitamise koht ja tähtaeg",
+        "Toimetulekutoetuse saamise tingimused ja keeldumise alused"
+      ],
+      "evidence_text": [
+        "Tühistamiskaebuse võib esitada 30 päeva jooksul",
+        "võib kaebuse selle nõudega esitada 30 päeva jooksul",
+        "Vaie haldusaktile või toimingule tuleb esitada 30 päeva jooksul"
+      ]
+    },
+    {
+      "id": "challenge-a-v3",
+      "text": "Sotsiaalkindlustusamet nõuab minult toetuse tagasi. Mida ma teha saan?",
+      "queries": [
+        "Haldusakti vaidlustamine vaie esitamise koht ja tähtaeg",
+        "Alusetult makstud toetuse tagasinõudmine Sotsiaalkindlustusamet"
+      ],
+      "evidence_text": [
+        "Tühistamiskaebuse võib esitada 30 päeva jooksul",
+        "võib kaebuse selle nõudega esitada 30 päeva jooksul",
+        "Vaie haldusaktile või toimingule tuleb esitada 30 päeva jooksul"
+      ]
+    },
+    {
+      "id": "challenge-a-v4",
+      "text": "Vald ei ole kahe kuu jooksul mu hooldajatoetuse taotlusele vastanud. Mida ma teha saan?",
+      "queries": [
+        "Hooldajatoetuse taotluse menetlemise tähtaeg vastamata jätmisel",
+        "Haldusorgani tegevusetuse vaidlustamine vaie esitamise koht ja tähtaeg"
+      ],
+      "evidence_text": [
+        "Tühistamiskaebuse võib esitada 30 päeva jooksul",
+        "võib kaebuse selle nõudega esitada 30 päeva jooksul",
+        "Vaie haldusaktile või toimingule tuleb esitada 30 päeva jooksul"
+      ]
+    },
+    {
+      "id": "control-a-v5",
+      "text": "Mu ema on 84 ega saa enam üksi kodus hakkama. Mida vald peab tema heaks tegema?",
+      "queries": [
+        "eaka abivajaduse hindamine kohaliku omavalitsuse kohustused",
+        "koduteenus eakale kes ei tule kodus iseseisvalt toime"
+      ],
+      "evidence_text": []
+    },
+    {
+      "id": "control-a-v6",
+      "text": "Mis õigused mul on, kui ema on hooldekodus ja tema pension ei kata kohatasu?",
+      "queries": [
+        "üldhooldusteenuse rahastamine inimese omaosalus kohaliku omavalitsuse kohustus",
+        "täisealise lapse ülalpidamiskohustus abivajava vanema suhtes tingimused",
+        "üldhooldusteenuse tasu kujunemine pensioni ja kohaliku omavalitsuse toetuse arvestamine"
+      ],
+      "evidence_text": []
+    },
+    {
+      "id": "challenge-b-w1",
+      "text": "Mis õigused mul on, kui vald keeldus mulle toimetulekutoetust maksmast?",
+      "queries": [
+        "Toimetulekutoetuse määramisest keeldumise alused",
+        "Vaide esitamine haldusakti peale esitamise koht tähtaeg"
+      ],
+      "evidence_text": [
+        "Tühistamiskaebuse võib esitada 30 päeva jooksul",
+        "võib kaebuse selle nõudega esitada 30 päeva jooksul",
+        "Vaie haldusaktile või toimingule tuleb esitada 30 päeva jooksul"
+      ]
+    },
+    {
+      "id": "challenge-b-w2",
+      "text": "Mis õigused mul on, kui vald keeldus mulle toimetulekutoetust maksmast?",
+      "queries": [
+        "toimetulekutoetuse määramisest keeldumine tingimused",
+        "haldusakti vaidlustamine vaie esitamise koht tähtaeg"
+      ],
+      "evidence_text": [
+        "Tühistamiskaebuse võib esitada 30 päeva jooksul",
+        "võib kaebuse selle nõudega esitada 30 päeva jooksul",
+        "Vaie haldusaktile või toimingule tuleb esitada 30 päeva jooksul"
+      ]
+    },
+    {
+      "id": "challenge-b-w3",
+      "text": "Vald vähendas mu hooldajatoetust ilma selgituseta. Mida ma teha saan?",
+      "queries": [
+        "hooldajatoetuse vähendamise tingimused põhjendamine",
+        "haldusakti vaide esitamine tähtaeg ja vaideorgan"
+      ],
+      "evidence_text": [
+        "Tühistamiskaebuse võib esitada 30 päeva jooksul",
+        "võib kaebuse selle nõudega esitada 30 päeva jooksul",
+        "Vaie haldusaktile või toimingule tuleb esitada 30 päeva jooksul"
+      ]
+    },
+    {
+      "id": "challenge-c-m1",
+      "text": "Mis õigused mul on, kui vald keeldus mulle toimetulekutoetust maksmast?",
+      "queries": [
+        "toimetulekutoetuse määramisest keeldumise alused",
+        "haldusakti vaie esitamise kord ja tähtaeg"
+      ],
+      "evidence_text": [
+        "Tühistamiskaebuse võib esitada 30 päeva jooksul",
+        "võib kaebuse selle nõudega esitada 30 päeva jooksul",
+        "Vaie haldusaktile või toimingule tuleb esitada 30 päeva jooksul"
+      ]
+    },
+    {
+      "id": "challenge-c-m2",
+      "text": "Mis õigused mul on, kui vald keeldus mulle toimetulekutoetust maksmast?",
+      "queries": [
+        "Toimetulekutoetuse määramisest keeldumise alused ja tingimused",
+        "Haldusakti vaidlustamine vaide esitamise koht ja tähtaeg"
+      ],
+      "evidence_text": [
+        "Tühistamiskaebuse võib esitada 30 päeva jooksul",
+        "võib kaebuse selle nõudega esitada 30 päeva jooksul",
+        "Vaie haldusaktile või toimingule tuleb esitada 30 päeva jooksul"
+      ]
+    },
+    {
+      "id": "challenge-c-m3",
+      "text": "Sotsiaalkindlustusamet nõuab minult toetuse tagasi. Mida ma teha saan?",
+      "queries": [
+        "Sotsiaalkindlustusameti toetuse tagasinõudmine tingimused",
+        "Haldusakti vaidlustamine vaide esitamise koht ja tähtaeg"
+      ],
+      "evidence_text": [
+        "Tühistamiskaebuse võib esitada 30 päeva jooksul",
+        "võib kaebuse selle nõudega esitada 30 päeva jooksul",
+        "Vaie haldusaktile või toimingule tuleb esitada 30 päeva jooksul"
+      ]
+    }
+  ]
+}
