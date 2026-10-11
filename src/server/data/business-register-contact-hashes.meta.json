@@ -2,13 +2,13 @@
   "sourceFile": "ettevotja_rekvisiidid__yldandmed.json",
   "sourceUrl": "https://avaandmed.ariregister.rik.ee/et/avaandmete-allalaadimine",
   "sourceLicence": "CC BY 4.0, Registrite ja Infosüsteemide Keskus (äriregister)",
-  "sourceLastModified": "2026-10-10",
-  "sourceZipBytes": 230456587,
+  "sourceLastModified": "2026-10-11",
+  "sourceZipBytes": 230458661,
   "builtAt": "2026-10-11",
   "companies": 379525,
   "registered": 370102,
   "registeredWithEmail": 358776,
   "pairs": 360551,
   "hashBytes": 8,
-  "sha256": "3ff8880c1ad34316b7a66824252195275389747a78980ea98ea09842cadab6f6"
+  "sha256": "70b79fe64f0921140da62555398e84b21413548aaa4899ead3dc5f9c89fb42eb"
 }

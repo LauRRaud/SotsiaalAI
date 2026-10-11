@@ -54,12 +54,24 @@ import { pushWithTransition } from "@/lib/routeTransition";
 import AdminRoleViewCycleButton from "./AdminRoleViewCycleButton";
 import { ContextView, JourneyView, PathView, SituationView, UrgencyView, WhoView } from "./preInquiry/CollectViews";
 import DomainsView from "./preInquiry/DomainsView";
-import { AssistantView, RecipientView, ReviewView, SavedView, SendView, SentStateView, SentTextView, TextView } from "./preInquiry/FlowViews";
+import { AssistantView, RecipientContactView, RecipientListView, RecipientServicesView, ReviewView, SavedView, SendView, SentStateView, SentTextView, TextView } from "./preInquiry/FlowViews";
 import PreInquiryStart from "./preInquiry/PreInquiryStart";
 import {
   SHARINGS_PATH,
+  RECIPIENT_SERVICE_PAGE,
+  RECIPIENT_SUGGESTED,
   excerptOf,
+  findRecipientEntry,
+  pageOf,
+  recipientChannelKey,
+  recipientChoice,
+  recipientChannels,
   recipientEmptyReason,
+  recipientFilterChange,
+  recipientListView,
+  recipientServiceActions,
+  recipientStepView,
+  recipientTypeOf,
   replaceInquiryRow,
   senderCanEdit,
   senderFlowKeys,
@@ -67,7 +79,9 @@ import {
   senderListView,
   senderOpenMode,
   senderRowCanArchive,
-  sentInquiryView
+  sentInquiryView,
+  suggestedRecipients,
+  withChosenService
 } from "./preInquiry/senderModel";
 import { CheckView, InfoView, InquiryView, NetworkView, PlanView, PrepareView, QueueView, SettingsView } from "./preInquiry/ReceiverViews";
 import viewStyles from "./preInquiry/views.module.css";
@@ -100,6 +114,8 @@ import {
   profileViewStates,
   profileViewSummaries,
   realServiceLocations,
+  registerNameKey,
+  registerNameState,
   representationDate,
   representationStatus,
   serviceAreaChoices,
@@ -474,13 +490,6 @@ function buildLocalPreInquiryDraft({ topic, situation, recipient, assessmentDraf
   return lines.join("\n");
 }
 
-function getPreInquiryChannelLabel(t, channel) {
-  if (channel === "EXTERNAL_EMAIL") {
-    return readText(t, "workspace_feature_pages.pre_inquiries.delivery.external_email", "E-post");
-  }
-  return readText(t, "workspace_feature_pages.pre_inquiries.delivery.internal", "Sotsiaal.pro sisene");
-}
-
 function getPreInquiryRecipientTypeLabel(t, entry) {
   if (entry?.type === "ORGANIZATION_INBOX") {
     return readText(t, "workspace_feature_pages.pre_inquiries.recipient.organization_inbox", "Organisatsiooni vastuvõtutiim");
@@ -503,30 +512,6 @@ function getPreInquiryRecipientSubtitle(t, entry) {
     return entry.description || entry.providerProfile?.shortDescription || entry.providerServices?.join(", ") || "";
   }
   return entry.description || entry.address || "Sotsiaalvaldkonna kontakt";
-}
-
-function getPreInquiryRecipientRegion(entry) {
-  return [
-    entry?.municipalityName,
-    entry?.county,
-    entry?.providerProfile?.serviceArea,
-    entry?.address
-  ].filter(Boolean).join(" · ");
-}
-
-function getPreInquiryRecipientReason(entry, fallback = "") {
-  if (entry?.routingReason) return entry.routingReason;
-  if (entry?.type === "SERVICE_PROVIDER") {
-    const services = entry.providerProfile?.services || entry.providerProfile?.serviceItems?.map((item) => item.name).filter(Boolean) || [];
-    if (services.length) {
-      return `Võib sobida, sest profiilis on seotud teenused: ${services.slice(0, 3).join(", ")}.`;
-    }
-    return "Võib sobida teenuseosutajana, kui kirjeldatud olukord kattub teenuse vastuvõtutingimustega.";
-  }
-  if (entry?.type === "KOV_GENERAL_CONTACT") {
-    return "Võib sobida KOV üldkontaktina, kui vajad abi õige sotsiaalvaldkonna või lastekaitse kontakti leidmisel.";
-  }
-  return fallback || "Võib sobida piirkonna sotsiaalvaldkonna esmase kontaktina.";
 }
 
 function getPreInquiryReferralNotice(entry) {
@@ -871,7 +856,15 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
   const [assessmentQuestions, setAssessmentQuestions] = useState([]);
   const [assessmentState, setAssessmentState] = useState(() => createEmptyPreInquiryAssessmentState());
   const [assistantSuggestions, setAssistantSuggestions] = useState([]);
-  const [showMoreContacts, setShowMoreContacts] = useState(false);
+  /* Adressaadi samm: loendi lehekülg, kust loend tuleb (tühi = abilise soovitused, kui neid on),
+     avatud kontakt ja kas inimene sirvib loendit, kuigi adressaat on juba valitud. */
+  const [recipientPage, setRecipientPage] = useState(0);
+  const [recipientSource, setRecipientSource] = useState("");
+  const [recipientPeekId, setRecipientPeekId] = useState("");
+  const [recipientBrowsing, setRecipientBrowsing] = useState(false);
+  /* Teenuseosutaja teenuse valiku vaade (avatud kontakti kohta) ja selle lehekülg. */
+  const [recipientServicesOpen, setRecipientServicesOpen] = useState(false);
+  const [recipientServicePage, setRecipientServicePage] = useState(0);
   const [inquiries, setInquiries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -1025,9 +1018,21 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     });
   }, [entries, recipientQuery, recipientType]);
 
+  /* Salvestatud pöördumine kannab kaardikirje tunnust; teenuseosutaja on loendis osutamiskoha
+     kaupa. Otsides ainult loendi tunnuse järgi kaotas uuesti avatud mustand oma adressaadi. */
   const selectedRecipient = useMemo(
-    () => entries.find((entry) => entry.id === selectedRecipientId) || null,
-    [entries, selectedRecipientId]
+    () => findRecipientEntry(entries, selectedRecipientId, selectedProviderLocationId),
+    [entries, selectedProviderLocationId, selectedRecipientId]
+  );
+  /* Mis teel pöördumine valitud adressaadini läheb (reegel: senderModel.js, sama mis kontakti vaates). */
+  const selectedChannels = useMemo(
+    () => recipientChannels(selectedRecipient, { serviceId: selectedProviderServiceId, locationId: selectedProviderLocationId }),
+    [selectedProviderLocationId, selectedProviderServiceId, selectedRecipient]
+  );
+  /* Teenuseosutaja teated käivad valitud teenuse kohta, mitte kõigi tema teenuste kohta. */
+  const selectedRecipientService = useMemo(
+    () => withChosenService(selectedRecipient, selectedProviderServiceId),
+    [selectedProviderServiceId, selectedRecipient]
   );
   const normalizedAssessmentState = useMemo(
     () => normalizePreInquiryAssessmentState(assessmentState),
@@ -1049,12 +1054,12 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
   const effectiveSituation = situation.trim() || effectiveAssessmentSituation;
   const selectedRecipientMailto = useMemo(
     () => buildPreInquiryRecipientMailto({
-      recipient: selectedRecipient,
+      recipient: selectedRecipient ? { ...selectedRecipient, email: selectedChannels.address } : null,
       topic,
       draft,
       situation: effectiveSituation
     }),
-    [draft, effectiveSituation, selectedRecipient, topic]
+    [draft, effectiveSituation, selectedChannels.address, selectedRecipient, topic]
   );
   // THE canonical downloadable text for the editor's current state — same helper
   // the saved-records list and the server-side change check use, so "what was
@@ -1121,24 +1126,21 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     assessmentTargetGroups
   ]);
 
-  const recommendedRecipients = useMemo(() => {
-    const hasManualSearch = Boolean(recipientQuery.trim());
-    const source = assistantSuggestions.length
-      ? assistantSuggestions
-        : hasManualSearch || recipientType
-          ? recipientEntries
-        : [];
-    const seen = new Set();
-    return source.filter((entry) => {
-      if (!entry?.id || seen.has(entry.id)) return false;
-      seen.add(entry.id);
-      return true;
-    });
-  }, [assistantSuggestions, recipientEntries, recipientQuery, recipientType]);
-
-  const visibleRecommendedRecipients = showMoreContacts
-    ? recommendedRecipients.slice(0, 12)
-    : recommendedRecipients.slice(0, 3);
+  /* Adressaadi loend: abilise soovitused (laaditud kirjete kujul) või inimese enda otsing kõigi
+     kontaktide seast, lehekülgede kaupa (reegel: senderModel.js). */
+  const suggestedRecipientRows = useMemo(
+    () => suggestedRecipients(assistantSuggestions, entries),
+    [assistantSuggestions, entries]
+  );
+  const recipientList = useMemo(
+    () => recipientListView({
+      suggestions: suggestedRecipientRows,
+      entries: recipientQuery.trim() || recipientType ? recipientEntries : [],
+      source: recipientSource,
+      page: recipientPage
+    }),
+    [recipientEntries, recipientPage, recipientQuery, recipientSource, recipientType, suggestedRecipientRows]
+  );
 
   const conversationItems = useMemo(() => {
     const items = [];
@@ -1294,18 +1296,13 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     setJourneyRequested(Boolean(new URLSearchParams(window.location.search || "").get("fromJourney")));
   }, []);
   const canUseJourneyPrefill = Boolean(activeDraftJourneySharedInfo) || journeyRequested;
-  const selectedRecipientReferralNotice = getPreInquiryReferralNotice(selectedRecipient);
+  const selectedRecipientReferralNotice = getPreInquiryReferralNotice(selectedRecipientService);
   const selectedRecipientAvailabilityNotices = useMemo(
-    () => preInquiryAvailabilityNotices(selectedRecipient, t),
-    [selectedRecipient, t]
+    () => preInquiryAvailabilityNotices(selectedRecipientService, t),
+    [selectedRecipientService, t]
   );
-  const selectedRecipientSupportsPlatform =
-    selectedRecipient?.deliveryChannel === "INTERNAL" ||
-    selectedRecipient?.providerProfile?.acceptsPlatformPreInquiries === true;
-  const selectedRecipientSupportsEmail =
-    Boolean(selectedRecipientMailto) ||
-    selectedRecipient?.providerProfile?.acceptsEmailPreInquiries !== false ||
-    Boolean(selectedRecipient?.email);
+  const selectedRecipientSupportsPlatform = selectedChannels.platform;
+  const selectedRecipientSupportsEmail = Boolean(selectedRecipientMailto);
   const activeReceivedInquiryAssessmentReview = useMemo(
     () => activeReceivedInquiry?.assessmentState
       ? buildPreInquiryAssessmentReview(activeReceivedInquiry.assessmentState, {
@@ -1404,7 +1401,11 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
         setAssessmentQuestions([]);
         setAssessmentState(normalizePreInquiryAssessmentState(nextAssessmentState));
         setAssistantSuggestions([]);
-        setShowMoreContacts(false);
+        setRecipientPage(0);
+        setRecipientSource("");
+        setRecipientPeekId("");
+        setRecipientServicesOpen(false);
+        setRecipientBrowsing(false);
         setDraftTouched(Boolean(prefill.suggestedMessageDraft));
         setSavePrivacyPrompt(null);
         setWorkflowMode("journey");
@@ -1738,7 +1739,11 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     setAssessmentQuestions([]);
     setAssessmentState(createEmptyPreInquiryAssessmentState());
     setAssistantSuggestions([]);
-    setShowMoreContacts(false);
+    setRecipientPage(0);
+    setRecipientSource("");
+    setRecipientPeekId("");
+    setRecipientServicesOpen(false);
+    setRecipientBrowsing(false);
     setDraftTouched(false);
     setWorkflowMode("");
     setActiveWorkflowStep("path");
@@ -1775,7 +1780,11 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     setAssessmentQuestions([]);
     setAssessmentState(normalizePreInquiryAssessmentState(inquiry.assessmentState || createEmptyPreInquiryAssessmentState()));
     setAssistantSuggestions([]);
-    setShowMoreContacts(false);
+    setRecipientPage(0);
+    setRecipientSource("");
+    setRecipientPeekId("");
+    setRecipientServicesOpen(false);
+    setRecipientBrowsing(false);
     setDraftTouched(true);
     /* Saadetud (või muul põhjusel muutmisele suletud) pöördumine avaneb lugemisvaates: seis,
        adressaat ja saadetud tekst. Muutmisvormi ega saatmise sammu sellel ei ole, sest server
@@ -1829,7 +1838,8 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
           topic,
           situation: saveSituation,
           assessmentState: assessmentStateForSave,
-          recipientType,
+          /* Liik tuleb valitud adressaadist; lehe filter võib vahepeal näidata teist liiki. */
+          recipientType: recipientTypeOf(selectedRecipient) || recipientType,
           recipientEntryId: selectedRecipient?.type === "ORGANIZATION_INBOX" ? null : selectedRecipient?.id || null,
           recipientOrganizationId: selectedRecipient?.recipientOrganizationId
             || (activeInquiry?.recipientOrganizationId
@@ -2273,7 +2283,13 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       setAssessmentTargetGroups(Array.isArray(payload?.targetGroups) ? payload.targetGroups : []);
       setAssessmentQuestions(Array.isArray(payload?.clarifyingQuestions) ? payload.clarifyingQuestions : []);
       setAssistantSuggestions(suggestions);
-      setShowMoreContacts(false);
+      setRecipientPage(0);
+      setRecipientSource("");
+      setRecipientPeekId("");
+      setRecipientServicesOpen(false);
+      /* Soovituste järel on adressaadi sammus ees soovituste loend (esimene soovitus on seal
+         märgitud valituks), mitte ainult üks kontakt: inimene näeb ka teisi soovitusi. */
+      setRecipientBrowsing(suggestions.length > 0);
       if (payload?.draftBody || payload?.draft) {
         setDraft(payload.draftBody || payload.draft);
         setDraftTouched(true);
@@ -2337,9 +2353,11 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     setSelectedRecipientId(entry.id);
     setSelectedProviderServiceId(serviceAction?.providerServiceId || "");
     setSelectedProviderLocationId(serviceAction?.providerLocationId || entry.providerLocationId || "");
-    setRecipientType(entry.type === "ORGANIZATION_INBOX"
-      ? "ORGANIZATION_INBOX"
-      : entry.type === "SERVICE_PROVIDER" ? "SERVICE_PROVIDER" : "KOV_CONTACT");
+    setRecipientType(recipientTypeOf(entry));
+    /* Tagasi tulles näitab samm valitud adressaati, mitte loendit. */
+    setRecipientPeekId("");
+    setRecipientServicesOpen(false);
+    setRecipientBrowsing(false);
     setDraftTouched(false);
     setActiveWorkflowStep("text");
   }
@@ -2736,21 +2754,100 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       .replace("{days}", String((state.days ?? 0) + 1));
     return { text: text.trim(), tone: preInquirySenderTone(state.key) };
   };
-  const describeRecipient = (entry) => ({
+  /* Adressaadi samm: loend, ühe kontakti vaade ja teenuseosutaja teenuse valik. Mis on ees ja
+     mida põhinupp teeb, otsustab senderModel.js. */
+  const selectedEntryId = selectedRecipient?.id || "";
+  const recipientRows = recipientList.items.map((entry) => ({
+    id: entry.id,
+    title: entry.title,
     typeLabel: getPreInquiryRecipientTypeLabel(t, entry),
-    subtitle: getPreInquiryRecipientSubtitle(t, entry),
-    reason: getPreInquiryRecipientReason(entry),
-    region: getPreInquiryRecipientRegion(entry),
-    meta: [getPreInquiryChannelLabel(t, entry.deliveryChannel), entry.email, entry.municipalityName || entry.county].filter(Boolean).join(" · "),
-    referral: getPreInquiryReferralNotice(entry),
-    availability: preInquiryAvailabilityNotices(entry, t),
-    serviceActions:
-      entry.type === "SERVICE_PROVIDER"
-        ? (Array.isArray(entry.serviceActions) ? entry.serviceActions : []).filter((action) => action.platformAllowed || action.emailAllowed)
-        : null,
-    mapHref: entry.type !== "ORGANIZATION_INBOX" ? localizePath(`/teenusekaart?entryId=${encodeURIComponent(entry.id)}`, locale) : "",
-    profileHref: entry.providerProfileId ? localizePath(`/teenuseprofiil?profileId=${encodeURIComponent(entry.providerProfileId)}`, locale) : ""
-  });
+    /* Teenuseosutaja on loendis osutamiskoha kaupa: aadress eristab sama nimega ridu. */
+    meta: [entry.type === "SERVICE_PROVIDER" ? entry.address : entry.municipalityName || entry.county, getPreInquiryRecipientSubtitle(t, entry)].filter(Boolean).join(" · "),
+    selected: entry.id === selectedEntryId,
+    selectedLabel: tr("views.recipient.chosen", "Valitud"),
+    openLabel: tr("actions.open", "Ava"),
+    onOpen: () => {
+      setRecipientPeekId(entry.id);
+      setRecipientServicesOpen(false);
+    }
+  }));
+  const recipientPager = {
+    ...recipientList,
+    onPrev: () => setRecipientPage(recipientList.page - 1),
+    onNext: () => setRecipientPage(recipientList.page + 1)
+  };
+  const recipientStep = recipientStepView({ peekId: recipientPeekId, browsing: recipientBrowsing, selectedId: selectedEntryId, services: recipientServicesOpen });
+  const shownRecipient =
+    recipientStep.mode === "list"
+      ? null
+      : suggestedRecipientRows.find((entry) => entry.id === recipientStep.id) || entries.find((entry) => entry.id === recipientStep.id) || null;
+  const describeContact = (entry) => {
+    const isProvider = entry.type === "SERVICE_PROVIDER";
+    const selected = entry.id === selectedEntryId;
+    const choice = recipientChoice(entry);
+    const chosenService = selected && isProvider ? recipientServiceActions(entry).find((action) => action.providerServiceId === selectedProviderServiceId) : null;
+    /* Valitud teenuse korral ütleb rida selle teenuse tee; muidu selle, mida kontakt üldse lubab. */
+    const channels = recipientChannels(entry, chosenService ? { serviceId: chosenService.providerServiceId, locationId: chosenService.providerLocationId || "" } : {});
+    return {
+      title: entry.title,
+      typeLabel: getPreInquiryRecipientTypeLabel(t, entry),
+      selected,
+      description: excerptOf(isProvider ? entry.providerProfile?.shortDescription || "" : getPreInquiryRecipientSubtitle(t, entry), 130),
+      reason: excerptOf(entry.routingReason || "", 130),
+      facts: [
+        [tr("views.recipient.facts.place", "Asukoht"), [...new Set([entry.address, entry.municipalityName, entry.county].filter(Boolean))].slice(0, 2).join(" · ")],
+        [tr("views.recipient.facts.area", "Teeninduspiirkond"), isProvider ? entry.providerProfile?.serviceArea : ""],
+        [tr("views.recipient.facts.email", "E-post"), isProvider ? "" : entry.email],
+        [tr("views.recipient.facts.service", "Teenus"), chosenService?.name],
+        [tr("views.recipient.facts.channel", "Pöördumine läheb"), choice.kind === "none" ? "" : tr(`views.recipient.channel.${recipientChannelKey(channels)}`, "")]
+      ].filter(([, value]) => String(value || "").trim()),
+      missing: choice.kind === "none" ? tr("views.recipient.no_services", "Sellel teenuseosutajal ei ole praegu teenust, mille kohta saaks siit pöörduda.") : "",
+      choose:
+        choice.kind === "none"
+          ? null
+          : choice.kind === "services"
+            ? {
+                label: selected ? tr("views.recipient.change_service", "Vali teine teenus") : tr("views.recipient.choose_service", "Vali teenus"),
+                quiet: selected,
+                onClick: () => {
+                  setRecipientPeekId(entry.id);
+                  setRecipientServicePage(0);
+                  setRecipientServicesOpen(true);
+                }
+              }
+            : {
+                label: selected ? tr("recipient.selected", "Valitud kontakt") : tr("actions.choose_contact", "Vali see kontakt"),
+                quiet: selected,
+                onClick: () => handleSelectRecipient(entry, choice.kind === "service" ? choice.action : null)
+              },
+      links: [
+        entry.type !== "ORGANIZATION_INBOX"
+          ? { href: localizePath(`/teenusekaart?entryId=${encodeURIComponent(entry.id)}`, locale), label: tr("actions.view_service_map", "Vaata teenusekaardil") }
+          : null,
+        entry.providerProfileId
+          ? { href: localizePath(`/teenuseprofiil?profileId=${encodeURIComponent(entry.providerProfileId)}`, locale), label: tr("actions.view_profile", "Vaata profiili") }
+          : null
+      ].filter(Boolean)
+    };
+  };
+  const describeServices = (entry) => {
+    const serviceItems = entry.providerProfile?.serviceItems || [];
+    const selected = entry.id === selectedEntryId;
+    const paged = pageOf(recipientServiceActions(entry), recipientServicePage, RECIPIENT_SERVICE_PAGE);
+    return {
+      services: paged.items.map((action) => {
+        const availability = serviceAvailabilityPresentation(t, serviceItems.find((item) => item.id === action.providerServiceId)?.availability);
+        return {
+          key: `${action.providerServiceId}:${action.providerLocationId || ""}`,
+          title: action.name,
+          description: `${availability.icon} ${availability.label}`,
+          pressed: selected && selectedProviderServiceId === action.providerServiceId,
+          onClick: () => handleSelectRecipient(entry, action)
+        };
+      }),
+      pager: { ...paged, onPrev: () => setRecipientServicePage(paged.page - 1), onNext: () => setRecipientServicePage(paged.page + 1) }
+    };
+  };
   const sendBlocked = saving || !effectiveSituation.trim() || activeInquiry?.status === "ARCHIVED";
   const mailto = activeInquiryMailto || selectedRecipientMailto;
   const sendChoices = [
@@ -2782,28 +2879,31 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
           onClick: () => handleConfirmExternalSent(activeInquiry)
         }
       : null,
+  ].filter(Boolean);
+  /* Salvestamine, kopeerimine ja alla laadimine on saatmise vaate jaluses (selgitus vihjena). */
+  const sendActions = [
     {
       key: "save",
-      title: saving ? tr("actions.saving", "Salvestan...") : tr("actions.save", "Salvesta eelpöördumine"),
-      description: tr("views.send.save_hint", "Jääb sinu eelpöördumiste alla. Midagi ei saadeta."),
+      label: saving ? tr("actions.saving", "Salvestan...") : tr("actions.save", "Salvesta eelpöördumine"),
+      hint: tr("views.send.save_hint", "Jääb sinu eelpöördumiste alla. Midagi ei saadeta."),
       disabled: sendBlocked,
       onClick: handleSave
     },
     {
       key: "copy",
-      title: tr("actions.copy", "Kopeeri tekst"),
-      description: tr("views.send.copy_hint", "Pöördumise tekst lõikelauale, et kleepida see sinna, kus vaja."),
+      label: tr("actions.copy", "Kopeeri tekst"),
+      hint: tr("views.send.copy_hint", "Pöördumise tekst lõikelauale, et kleepida see sinna, kus vaja."),
       disabled: !draft.trim(),
       onClick: handleCopy
     },
     {
       key: "download",
-      title: tr("actions.download", "Laadi alla"),
-      description: tr("views.send.download_hint", "Tekstifail koos eelinfoga sinu seadmesse."),
+      label: tr("actions.download", "Laadi alla"),
+      hint: tr("views.send.download_hint", "Tekstifail koos eelinfoga sinu seadmesse."),
       disabled: !draft.trim() && !effectiveSituation.trim(),
       onClick: handleDownload
     }
-  ].filter(Boolean);
+  ];
   const sendSummary = selectedRecipient
     ? `${tr("preview.recipient_prefix", "Adressaat")}: ${selectedRecipient.title}. ${tr("preview.delivery_prefix", "Saatmise viis")}: ${
         selectedRecipientSupportsPlatform
@@ -3167,34 +3267,58 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
         );
       case "recipient":
         return (
-          <RecipientView
-            tr={tr}
-            types={[
-              ["KOV_CONTACT", tr("recipient.kov", "KOV kontakt")],
-              ["ORGANIZATION_INBOX", tr("recipient.organization_inbox", "Organisatsiooni vastuvõtutiim")],
-              ["SERVICE_PROVIDER", tr("recipient.provider", "Teenuseosutaja")]
-            ]}
-            type={recipientType}
-            onType={(value) => {
-              setRecipientType(value);
-              setSelectedRecipientId("");
-              setSelectedProviderServiceId("");
-              setSelectedProviderLocationId("");
-              setShowMoreContacts(false);
-              setDraftTouched(false);
-            }}
-            query={recipientQuery}
-            onQuery={setRecipientQuery}
-            confidence={assistantRoutingConfidence}
-            recipients={visibleRecommendedRecipients}
-            describe={describeRecipient}
-            selectedId={selectedRecipientId}
-            onSelect={handleSelectRecipient}
-            hasMore={recommendedRecipients.length > 3}
-            showMore={showMoreContacts}
-            onToggleMore={() => setShowMoreContacts((value) => !value)}
-            emptyText={tr(`views.recipient.empty.${recipientEmpty.key}`, "").replace("{query}", recipientEmpty.query || "")}
-          />
+          shownRecipient && recipientStep.mode === "services" ? (
+            <RecipientServicesView
+              tr={tr}
+              provider={shownRecipient.title}
+              {...describeServices(shownRecipient)}
+              onBack={() => setRecipientServicesOpen(false)}
+            />
+          ) : shownRecipient ? (
+            <RecipientContactView
+              tr={tr}
+              glow={flight?.isActive !== false}
+              contact={describeContact(shownRecipient)}
+              onBack={() => {
+                setRecipientPeekId("");
+                setRecipientServicesOpen(false);
+                setRecipientBrowsing(true);
+              }}
+            />
+          ) : (
+            <RecipientListView
+              tr={tr}
+              glow={flight?.isActive !== false}
+              filters={[
+                ...(recipientList.hasSuggestions
+                  ? [{ value: RECIPIENT_SUGGESTED, label: tr("views.recipient.source_suggested", "Soovitatud · {count}").replace("{count}", String(recipientList.suggestedCount)) }]
+                  : []),
+                { value: "KOV_CONTACT", label: tr("recipient.kov", "KOV kontakt") },
+                { value: "ORGANIZATION_INBOX", label: tr("recipient.organization_inbox", "Organisatsiooni vastuvõtutiim") },
+                { value: "SERVICE_PROVIDER", label: tr("recipient.provider", "Teenuseosutaja") }
+              ]}
+              filter={recipientList.source === "suggested" ? RECIPIENT_SUGGESTED : recipientType}
+              onFilter={(value) => {
+                /* Filter ainult näitab: juba valitud adressaat jääb alles (enne tühjendas liigi
+                   vahetus valiku; salvestamisel läheb liik nüüd valitud adressaadi järgi). */
+                const next = recipientFilterChange({ source: recipientList.source, type: recipientType }, value);
+                setRecipientSource(next.source);
+                setRecipientType(next.type);
+                setRecipientPage(0);
+              }}
+              searching={recipientList.source === "search"}
+              hint={recipientEmpty.key === "no_filter" ? tr("views.recipient.source_note", "Kontaktid tulevad teenusekaardilt. Sotsiaal.pro ise ei ole adressaat.") : ""}
+              query={recipientQuery}
+              onQuery={(value) => {
+                setRecipientQuery(value);
+                setRecipientPage(0);
+              }}
+              confidence={assistantRoutingConfidence}
+              items={recipientRows}
+              pager={recipientPager}
+              emptyText={tr(`views.recipient.empty.${recipientEmpty.key}`, "").replace("{query}", recipientEmpty.query || "")}
+            />
+          )
         );
       case "text":
         return (
@@ -3225,6 +3349,8 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
             notices={sendNotices}
             privacyPrompt={privacyPromptBlock}
             choices={sendChoices}
+            actions={sendActions}
+            note={notice}
           />
         );
       default:
@@ -3254,7 +3380,9 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
           {error}
         </p>
       ) : null}
-      {notice ? (
+      {/* Saatmise vaade näitab oma tegevuse teadet ise (vaate jaluses): lava kohal võttis see
+          vaatelt 61 px ja salvestamise järel ei mahtunud vaade paneeli. */}
+      {notice && !(activeWorkflowStep === "send" && flowKeys.includes("send")) ? (
         <p className={viewStyles.notice} aria-live="polite">
           {notice}
         </p>
@@ -3273,6 +3401,13 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
           /* Teade käib selle vaate tegevuse kohta, kus see tekkis: teise vaatesse minnes ei
              jää see paneeli kohale ruumi võtma (vaade ei mahuks siis ära). Viga jääb alles. */
           if (step.key !== activeWorkflowStep) setNotice("");
+          /* Adressaadi sammust lahkudes jääb kehtima ainult tehtud valik: tagasi tulles on ees
+             valitud adressaat (või loend, kui valikut ei ole), mitte pooleli jäänud sirvimine. */
+          if (activeWorkflowStep === "recipient" && step.key !== "recipient") {
+            setRecipientPeekId("");
+            setRecipientServicesOpen(false);
+            setRecipientBrowsing(false);
+          }
           setActiveWorkflowStep(step.key);
         }}
       >
@@ -3960,6 +4095,8 @@ function useServiceProfileAddressSearch({ t, form, location, locationIndex }) {
 const SERVICE_PROFILE_CONFIRM_MS = 8000;
 /* Asutuse kinnituse seisu ei küsita lehele naastes sagedamini kui kord selle aja jooksul. */
 const REPRESENTATION_REFRESH_MS = 15000;
+/* Nimekontroll äriregistri vastu küsitakse, kui kirjutamises on nii pikk paus. */
+const SERVICE_PROFILE_REGISTER_NAME_DELAY_MS = 450;
 
 /**
  * Teenuseprofiil: teenuseosutaja avalik profiil, tema teenused ja teeninduskohad.
@@ -4019,6 +4156,54 @@ function ServiceProfileSurface({ t, locale }) {
      kontrolli read teenuste kohta, mille piirkonda ei saa lugeda. Tuleb profiiliga koos. */
   const [areaRegister, setAreaRegister] = useState([]);
   const areaChoices = useMemo(() => serviceAreaChoices(areaRegister), [areaRegister]);
+  /* Nimi ja äriregister: vorm küsib serverilt, kas kirjutatud nimi vastab registrile, ja näitab
+     vastust sammus „Organisatsioon" ning avaldamise kontrollis. Vastus kannab võtit (kood ja
+     nimi), mille kohta see käib: muudetud vormi kohta vana vastus ei loe. Server kontrollib sama
+     uuesti kinnitamisel ja avaldamisel. */
+  const [registerCheck, setRegisterCheck] = useState(null);
+  const registerKey = registerNameKey(form);
+  useEffect(() => {
+    if (loading || !registerKey.trim()) return undefined;
+    const [registryCode, organizationName] = registerKey.split("\n");
+    const controller = new AbortController();
+    const timer = window.setTimeout(async () => {
+      try {
+        const response = await fetch("/api/service-provider/profile/register-name", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ registryCode, organizationName }),
+          signal: controller.signal
+        });
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok || !payload?.result) return;
+        setRegisterCheck({
+          key: registerKey,
+          result: payload.result,
+          registerName: payload.registerName || "",
+          registerDate: payload.registerDate || ""
+        });
+        /* Tühja nimevälja täidab registri nimi ise. */
+        if (payload.registerName && !organizationName) {
+          setForm((current) => (registerNameKey(current) === registerKey ? { ...current, organizationName: payload.registerName } : current));
+        }
+      } catch {
+        /* Vastuseta jääb rida ära; avaldamisel kontrollib server nime niikuinii. */
+      }
+    }, SERVICE_PROFILE_REGISTER_NAME_DELAY_MS);
+    return () => {
+      window.clearTimeout(timer);
+      controller.abort();
+    };
+  }, [loading, registerKey]);
+  const register = useMemo(() => {
+    const state = registerNameState(form, registerCheck);
+    if (!state) return null;
+    const date = state.registerDate ? new Date(state.registerDate) : null;
+    return {
+      ...state,
+      registerDate: date && Number.isFinite(date.getTime()) ? new Intl.DateTimeFormat(locale, { dateStyle: "medium" }).format(date) : ""
+    };
+  }, [form, registerCheck, locale]);
 
   const applyLoadedProfile = useCallback((loadedProfile) => {
     setProfile(loadedProfile || null);
@@ -4376,7 +4561,7 @@ function ServiceProfileSurface({ t, locale }) {
     }
   }
 
-  const publish = serviceProfilePublishState(form, representation);
+  const publish = serviceProfilePublishState(form, representation, register);
   /* Seisu lause registrikoodi juures ja avaldamise vaates; link ainult siis, kui kinnitamise lehele saab kohe minna. */
   const representationLine = representation.line
     ? {
@@ -4404,16 +4589,17 @@ function ServiceProfileSurface({ t, locale }) {
     tallArea: level === "service"
       ? areaViewIsTall("reach", openedService.municipalityIds, openedService.county, areaChoices)
       : areaViewIsTall("area", form.serviceAreaMunicipalityIds, form.county, areaChoices),
+    tallWho: level === "profile" && Boolean(register?.problem),
     states: level === "service"
       ? serviceViewStates(openedService, { savedAvailability: savedService?.availability || openedService.availability, licenceRow, areaUnread })
       : level === "location"
         ? locationViewStates(openedLocation)
-        : profileViewStates(form, mapEntry, areaChoices, representation),
+        : profileViewStates(form, mapEntry, areaChoices, representation, register),
     summaries: level === "service"
       ? serviceViewSummaries(openedService, { options })
       : level === "location"
         ? locationViewSummaries(openedLocation)
-        : profileViewSummaries(form, mapEntry, { tp, options, areaChoices, representation })
+        : profileViewSummaries(form, mapEntry, { tp, options, areaChoices, representation, register })
   });
 
   /* Salvestamine on iga vaate all servas samas kohas ja salvestab terve profiili. */
@@ -4610,6 +4796,10 @@ function ServiceProfileSurface({ t, locale }) {
         note={note}
         save={save}
         onField={updateField}
+        register={{
+          state: register,
+          onUse: () => updateField("organizationName", register?.registerName || form.organizationName)
+        }}
         services={{
           rows: serviceRows(form),
           max: SERVICE_PROFILE_LIMITS.services,
@@ -4627,7 +4817,7 @@ function ServiceProfileSurface({ t, locale }) {
         }}
         check={{
           blocked: publish.blocking.length > 0,
-          rows: serviceProfilePublishChecks(form, mapEntry, areaChoices, representation).map((row) => {
+          rows: serviceProfilePublishChecks(form, mapEntry, areaChoices, representation, register).map((row) => {
             /* Rida teenuse kohta (piirkond) viib selle teenuse vaatesse, muu rida profiili vaatesse. */
             const targetView = row.item?.view || row.view;
             return {
@@ -4637,7 +4827,7 @@ function ServiceProfileSurface({ t, locale }) {
               /* Valik (assistendi luba) kannab silti „Sinu valik", mitte „Vaata üle". */
               optional: Boolean(row.optional),
               text: tp(row.textKey, row.fallback),
-              detail: row.detail || "",
+              detail: row.detailKey ? tp(row.detailKey, row.detailFallback, row.detailVars) : row.detail || "",
               /* Rida, mis ei ole korras, viib vaatesse, kus seda saab parandada;
                  kinnitamata asutuse rida viib kinnitamise lehele. */
               target: row.ok

@@ -15,6 +15,19 @@ function dateText(value, locale) {
   return new Intl.DateTimeFormat(locale, { dateStyle: "medium" }).format(date);
 }
 
+/* Profiili nimi äriregistri vastu: haldur näeb registri nime enne, kui kinnitab. Server ei kinnita
+   koodi nime all, mis ei ole registris selle koodi nimi (lib/serviceProviderRepresentation.js). */
+function nameCheckText(row, t) {
+  if (row.nameCheck === "match") return t("admin.service_representation.name_match");
+  if (row.nameCheck === "mismatch") {
+    return row.registerName
+      ? t("admin.service_representation.name_mismatch", { name: row.registerName })
+      : t("admin.service_representation.name_mismatch_hidden");
+  }
+  if (row.nameCheck === "code_not_listed") return t("admin.service_representation.name_code_not_listed");
+  return t("admin.service_representation.name_unavailable");
+}
+
 export default function AdminServiceRepresentationClient() {
   const { t, locale } = useI18n();
   const [rows, setRows] = useState([]);
@@ -121,7 +134,13 @@ export default function AdminServiceRepresentationClient() {
                 const fieldId = `representation-basis-${row.id}`;
                 return (
                   <tr key={row.id} className="border-b border-stone-200 align-top last:border-0">
-                    <td className="p-3"><strong style={{ color: "#292524" }}>{row.organizationName}</strong><br /><span>{row.registryCode}</span></td>
+                    <td className="p-3">
+                      <strong style={{ color: "#292524" }}>{row.organizationName}</strong><br /><span>{row.registryCode}</span>
+                      <br />
+                      <span data-name-check={row.nameCheck} className={row.nameCheck === "match" ? "" : "font-semibold text-red-800"}>
+                        {nameCheckText(row, t)}
+                      </span>
+                    </td>
                     <td className="p-3">{row.ownerEmail || "-"}</td>
                     <td className="p-3">{t(`admin.service_representation.profile_status.${row.status}`, {}, row.status)}</td>
                     <td className="p-3">
@@ -139,6 +158,8 @@ export default function AdminServiceRepresentationClient() {
                         <Button type="button" onClick={() => void act(row, "revoke")} disabled={Boolean(busyId)}>
                           {busy ? t("admin.service_representation.working") : t("admin.service_representation.revoke")}
                         </Button>
+                      ) : row.nameCheck !== "match" ? (
+                        <p className="max-w-[16rem]">{t("admin.service_representation.confirm_blocked")}</p>
                       ) : (
                         <div className="flex min-w-[16rem] flex-col gap-2">
                           <label htmlFor={fieldId} className="text-xs font-semibold">{t("admin.service_representation.basis_label")}</label>
