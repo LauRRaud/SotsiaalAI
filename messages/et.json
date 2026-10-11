@@ -12634,7 +12634,10 @@
       "reject_confirm": "Jah, lükkan tagasi",
       "reject_note": "Töö läheb tagasi määrajale, kes saab selle kellelegi teisele määrata.",
       "close_confirm": "Jah, sulge töö",
-      "close_note": "Suletud töö kaob vastuvõtulaualt ja seda ei saa uuesti avada. Pöörduja vestlusruum jääb ainult loetavaks."
+      "close_note": "Suletud töö kaob vastuvõtulaualt ja seda ei saa uuesti avada. Pöörduja vestlusruum jääb ainult loetavaks.",
+      "take_back": "Võta töö tagasi",
+      "take_back_confirm": "Jah, võta tagasi",
+      "take_back_note": "Töötaja määramine lõpeb ja ta lahkub vestlusruumist. Ruum jääb pöördujale avatuks ja töö ootab uut määramist."
     },
     "inboxStatus": {
       "RECEIVED": "Saabunud",

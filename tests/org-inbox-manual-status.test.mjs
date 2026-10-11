@@ -509,9 +509,13 @@ const PAGE_REQUESTS = {
   reject: ({ db, viewer, seen }) => (seen.assignment ? respondToAssignment(viewer, seen.assignment.id, { accept: false }, { db, now: NOW }) : null),
   handOver: ({ db, viewer, seen }) =>
     seen.assignment ? handOverWork(viewer, seen.assignment.id, { toMembershipId: 'm-jüri' }, { db, now: NOW, releaseFromCalls: async () => {} }) : null,
+  /* Töö tagasivõtmine on käsitsi „ootab määramist” kirjel, millel on vastutaja. Vastutajata
+     kirjel muudaks sama päring ainult seisu sõna; seda leht ei saada. */
+  takeBack: ({ db, viewer, seen }) =>
+    seen.assignment ? transitionInboxItem(viewer, 'i1', { toStatus: 'ASSIGNMENT_PENDING' }, { db, now: NOW, ...callHooks().hooks }) : null,
   close: ({ db, viewer }) => transitionInboxItem(viewer, 'i1', { toStatus: 'CLOSED' }, { db, now: NOW, ...callHooks().hooks })
 };
-const OFFER_OF = { assign: 'assign', accept: 'respond', reject: 'respond', handOver: 'handOver', close: 'close' };
+const OFFER_OF = { assign: 'assign', accept: 'respond', reject: 'respond', handOver: 'handOver', takeBack: 'takeBack', close: 'close' };
 
 test('kirje leht pakub igas seisus ja igale vaatajale täpselt neid töö tegevusi, mida server lubab', async () => {
   const mismatches = [];
@@ -554,10 +558,33 @@ test('ainult määramisõigusega vastutaja ei näe kirjet pärast töö äraandm
   assert.ok(page.includes('if (item.isCoordinator) router.refresh();'));
 });
 
-test('leht saadab käsitsi ainult sulgemise ja keeldumise lause on kolmes keeles', () => {
-  /* Kui lehele tuleb teine käsitsi seis, peab see olema üks lubatutest (vt tabel ülal). */
+test('töö tagasivõtmine lehelt: koordinaator jääb kirje juurde ja leht pakub talle uut määramist', async () => {
+  for (const stage of ['ASSIGNED', 'ACCEPTED']) {
+    const { db, state } = await world(stage);
+    const pageActions = async (viewer) => {
+      const seen = await getInboxItem(viewer, 'i1', { db, now: NOW });
+      return workActions(seen, { context: { writable: true, membership: viewer.membership }, canAssign: hasCapability(viewer, 'WORK_ASSIGNER', { unitId: seen.unitId }) });
+    };
+    assert.deepEqual(await pageActions(coordinator()), { assign: false, respond: false, handOver: true, takeBack: true, close: true }, stage);
+
+    /* Sama päring, mille leht saadab. */
+    await manual(db, 'ASSIGNMENT_PENDING');
+    assert.deepEqual([state.item.status, live(state)], ['ASSIGNMENT_PENDING', []], stage);
+
+    /* Koordinaator näeb kirjet edasi: määramine on tagasi, tagasi võtta ega sulgeda ei ole midagi. */
+    assert.deepEqual(await pageActions(coordinator()), { assign: true, respond: false, handOver: false, takeBack: false, close: false }, stage);
+    /* Koordinaatoril, kes ei ole töö määraja, ei jää pärast tagasivõtmist ühtegi tegevust. */
+    assert.deepEqual(await pageActions(context('koordinaator', ['INBOX_COORDINATOR'])), { assign: false, respond: false, handOver: false, takeBack: false, close: false }, stage);
+    /* Endine vastutaja kirjet enam ei näe. */
+    await assert.rejects(getInboxItem(context('mari'), 'i1', { db, now: LATER }), (error) => error.status === 404, stage);
+  }
+});
+
+test('leht saadab käsitsi ainult sulgemise ja töö tagasivõtmise; keeldumise lause on kolmes keeles', () => {
+  /* Kui lehele tuleb veel mõni käsitsi seis, peab see olema üks lubatutest (vt tabel ülal) ja
+     saama rea `PAGE_REQUESTS`-is, kus pakutud päring ka päriselt tehakse. */
   const page = readFileSync(new URL('../components/org/OrgInboxItemClient.jsx', import.meta.url), 'utf8');
-  assert.deepEqual([...page.matchAll(/toStatus: "(\w+)"/g)].map((match) => match[1]), ['CLOSED']);
+  assert.deepEqual([...page.matchAll(/toStatus: "(\w+)"/g)].map((match) => match[1]), ['CLOSED', 'ASSIGNMENT_PENDING']);
 
   for (const locale of ['et', 'en', 'ru']) {
     const text = serverT(locale, FOLLOWS);

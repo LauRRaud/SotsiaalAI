@@ -12634,7 +12634,10 @@
       "reject_confirm": "Yes, I reject it",
       "reject_note": "The work goes back to the assigner, who can assign it to someone else.",
       "close_confirm": "Yes, close the work",
-      "close_note": "Closed work leaves the intake desk and cannot be reopened. The sender's conversation room becomes read-only."
+      "close_note": "Closed work leaves the intake desk and cannot be reopened. The sender's conversation room becomes read-only.",
+      "take_back": "Take work back",
+      "take_back_confirm": "Yes, take it back",
+      "take_back_note": "The worker's assignment ends and they leave the conversation room. The room stays open for the sender and the work waits for a new assignment."
     },
     "inboxStatus": {
       "RECEIVED": "Received",
