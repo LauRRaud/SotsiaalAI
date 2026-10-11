@@ -232,5 +232,20 @@ Pärast indeksi kontrolli sünkrooniti kohalik põhikorpuse hoidla sama
 peaga: 10 649 talletatud dokumenti, sh 43 varem otsingupoliitikast väljas.
 Lisati ainult 35 versiooni, kõik varasemad dokumendiversioonid jäid samaks;
 vana aktiivpea koopia on tööpaketi `local-main-backup/active.json`-is.
-Rakenduse 44-kirjelise konfiguratsiooni avaldamise lõpptõend lisatakse
-pärast GitHubi tavapärast ehitus- ja avaldamisrada.
+
+Avaldamine PASS: [tootmisbuild](https://github.com/LauRRaud/SotsiaalAI/actions/runs/38158032959)
+ja [deploy](https://github.com/LauRRaud/SotsiaalAI/actions/runs/38158227464).
+Parandus `44f97612` avaldati põhiharu ühises väljalaskes `8df98324`;
+vahepealne ehitus asendus uuema põhiharuga, Eetikaruumi konfiguratsioon säilis.
+20.08 EEST töötava teenuse kontroll (`verification-live.json`) PASS:
+paigaldatud konfiguratsioon on täpselt `ethics-44-2026-10-11`, käitusplaanis
+kõik 44 dokumendi-/versioonipaari ja 1399 lõiku, sama aktiivne v87 indeks
+ning üldassistendiga ühine kuluregister. Kolm teemakohast otsingut andsid
+igaüks 8 lõiku ainult lubatud valikust (50–86 ms), „kosmeetika” 0 (50 ms).
+`/api/health` vastas 200. Avaldamine uuendas plaani uue väljalaske
+rakenduse räsidega ning säilitas v87 dokumendivaliku.
+
+Sihitud ESLint ja diffi kontroll PASS. Käituse kontrollid ei kasutanud
+tootmiskasutajate sisu ega teinud mudelikutseid. Autenditud kasutaja
+vestluse tervikrada selle konfiguratsioonimuudatuse järel: NOT_RUN;
+pärismudeli eetilise arutelu sisuline kvaliteet: NOT_PROVEN.

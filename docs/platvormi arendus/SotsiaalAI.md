@@ -92,26 +92,25 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**11.10 Eetikaruum kasutab ainult eetikaallikaid (Codex):** omaniku täpsustuse
-järgi on assistendi päringul serveris eraldi 19 dokumendi/versiooni valik.
-Sama RAG-mootor ja kululimiit; valik piirab otsingut, graafiseoseid ja viiteid.
-Tühi valik ei ava kogu korpust, üldvestluse varasem kontekst ei tule kaasa.
-22 sihttesti, proovibaasi ühise kuluarvestuse kontroll, lint ja ET/EN/RU PASS.
-19.21 v86 tasuta sõnaotsing leidis valikust koodeksi ja IASSW põhimõtted.
-Uue 44 dokumendi paketi import ning pärismudeli kvaliteet NOT_RUN. Build ja
-avaldamine PASS; 19.32 serveris `811dcea0`, 19 allikat, ühine kululimiit,
-tervis 200 ning uus API anonüümselt 401/no-store.
-[Tõendid](../audits/ethics-room-2026-10-11.md).
+**11.10 Eetikaruumi kokkulepitud 44 materjali (Codex):** varasem 19-ne
+valik oli mittetäielik teostus. Nüüd on kõik 44 kogutud dokumendi-/peatükikirjet
+eraldi valikus: 9 olemasolevat vastet, 35 lisatud korpusesse v87. Vektoritöö
+0,040595 USD omaniku kinnitatud 0,05 USD piires. Uus allikavalik avaldatud
+väljalaskes `8df98324`; käitusplaanis 44 täpset versiooni, ülejäänud korpus
+väljas ja assistendiga sama kuluregister. Kolm sihttesti, lint, failide/viidete
+kontroll ja tasuta käitusotsing läbisid. PDF-i küljenduse tuvastatud vead
+parandatud ettevalmistuses; täielik korrektuur ja pärismudeli vastuse kvaliteet
+NOT_PROVEN. [Tõendid](../audits/ethics-room-2026-10-11.md).
 
-**11.10 Eetikaruumi esimene töövoog (Codex):** `/eetikaruum` salvestab omaniku
-privaatse refleksiooni ning saadab kinnitatud eraldi teksti olemasolevale assistendile
-või privaatsesse kovisioonimustandisse. ET/EN/RU, kuus sihttesti, migratsiooni proov
-ja kohalik brauserirada läbisid. Tooteleping v1.1 täpsustab säilituse, kustutuse ja
-koopiate piire; eksperdikanal jääb suletuks. v86 tasuta sõnaotsing leidis juba
-eetikakoodeksi ja IASSW põhimõtted. Eraldi 44 dokumendi paketi import ning mudeli
-sisuline kvaliteet on NOT_RUN. GitHubi build/deploy läbisid; 18.58 serveris
-`c389c096`, migratsioon rakendatud, tervis korras ja anonüümne API ligipääs tõrjutud.
-[Tõendid](../audits/ethics-room-2026-10-11.md).
+**Eetikaruumi töövoog ja kontrollid:** `/eetikaruum` salvestab omaniku
+privaatse refleksiooni ning saadab kinnitatud eraldi teksti olemasolevale
+assistendile või privaatsesse kovisioonimustandisse. Valik piirab otsingut,
+graafiseoseid ja viiteid; tühi valik ei ava kogu korpust ning üldvestluse
+varasem kontekst ei tule kaasa. Varasemad sihttestid, proovibaasi ühise
+kuluarvestuse kontroll, migratsiooni proov, ET/EN/RU ja kohalik brauserirada
+läbisid. Tooteleping v1.1 täpsustab säilituse, kustutuse ja koopiate piire;
+eksperdikanal jääb suletuks. 44 materjali import ja avaldamine on lõpetatud
+ülaltoodud seisuga. [Tõendid](../audits/ethics-room-2026-10-11.md).
 
 **11.10 kohaliku koodi uuendus (Codex):** omaniku korraldusel ühendati kohalikku
 `main`-i `origin/main` seis `70a57cba` (240 seni kohalikust puudu olnud commit'i).
@@ -4132,6 +4131,13 @@ dubleeri ESTA arendatavat Eetikakompassi.
 ---
 
 #### Ametialane teejuht ja Eetilise juhtumiarutelu ruum
+
+**11.10 omaniku täpsustus — kogu 44 materjali pakett:** esialgne 19-ne
+valik ei täitnud kokkulepet. Nüüd kasutab Eetikaruum paketi kõiki 44 kirjet
+(sh keeleversioonid ja peatükid), 9 varasema vaste ning 35 uue dokumendiga.
+Korpus v87, täpsed versioonid `config/ethics-sources.json`-is. Välisriigi ja
+ajalooliste materjalide kontekst on metaandmetes eristatud. Omaniku kinnitatud
+0,05 USD ülempiirist kulus 0,040595 USD. Avaldamise seis S1.0-s, tõendid auditis.
 
 *Lähtematerjal: omaniku 28.08.2026 jagatud avalik arutelu sotsiaalvaldkonna ametite
 kvalifikatsiooninõuete, traumateadlikkuse, lähisuhtevägivalla, lapsega suhtlemise ja
