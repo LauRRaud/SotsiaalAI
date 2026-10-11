@@ -121,7 +121,10 @@ export function sourceParts(item, { t }) {
  *  - üle anda saab määraja või vastutaja ise;
  *  - sulgeda saab KOORDINAATOR, mitte töö määraja (`transitionInboxItem`), ja ainult kirjet,
  *    mille seisust viib siire „suletuks": täna kirjet, millel on vastutaja. Kas inimene on
- *    selle kirje koordinaator, ütleb server kirje küljes (`item.isCoordinator`).
+ *    selle kirje koordinaator, ütleb server kirje küljes (`item.isCoordinator`);
+ *  - töö töötajalt tagasi võtta saab samuti koordinaator ja ainult kirjel, millel on
+ *    vastutaja: käsitsi „ootab määramist" lõpetab seal elava määramise. Vastutajata kirjel
+ *    muudaks sama päring ainult seisu sõna, seda leht ei paku.
  * Seisud küsitakse samalt seisutabelilt, millelt server (`lib/org/constants.js`), mitte
  * siinsest teisest loendist. Lõpetatud kirjel (suletud, tagasi lükatud, saatja tagasi võetud),
  * kirjutuskaitstud organisatsioonis ja tagasi võetud pöördumisel ei ole ühtegi tegevust.
@@ -135,17 +138,19 @@ export function workActions(item, { context, canAssign = false } = {}) {
   const assignment = item?.assignment || null;
   const mine = Boolean(assignment) && assignment.membershipId === context?.membership?.id;
   const open = writable && !withheld && !isTerminalInboxStatus(status);
+  const coordinator = Boolean(item?.isCoordinator);
   return {
     assign: open && Boolean(canAssign) && !assignment && canTransitionInboxStatus(status, OrganizationInboxStatus.ASSIGNED),
     respond: open && mine && assignment?.status === "PENDING",
     handOver: open && Boolean(assignment) && (Boolean(canAssign) || mine),
-    close: open && Boolean(item?.isCoordinator) && canTransitionInboxStatus(status, OrganizationInboxStatus.CLOSED)
+    takeBack: open && coordinator && Boolean(assignment) && canTransitionInboxStatus(status, OrganizationInboxStatus.ASSIGNMENT_PENDING),
+    close: open && coordinator && canTransitionInboxStatus(status, OrganizationInboxStatus.CLOSED)
   };
 }
 
 /** Kas kirjega saab üldse midagi teha (kas töö vaade on olemas). */
 export function hasWork(actions) {
-  return Boolean(actions?.assign || actions?.respond || actions?.handOver || actions?.close);
+  return Boolean(actions?.assign || actions?.respond || actions?.handOver || actions?.takeBack || actions?.close);
 }
 
 /** Avatud pöördumise vaated lahtritena. */

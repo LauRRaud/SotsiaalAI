@@ -10,8 +10,9 @@
  *  - `InboxBoard`  pöördumised madalate ridadena: saabumise aeg, üksus, vastutaja, seis;
  *                  rida avab pöördumise (avamine on pöördujale nähtav)
  *  - `ItemView`    avatud pöördumine kahe väikese vaatega: pöördumine (saatja
- *                  kinnitatud pakett) ja töö (määramine, vastus, üleandmine,
- *                  sulgemine; tagasilükkamine ja sulgemine küsivad teist vajutust)
+ *                  kinnitatud pakett) ja töö (määramine, vastus, üleandmine, töö
+ *                  tagasivõtmine, sulgemine; tagasilükkamine, tagasivõtmine ja
+ *                  sulgemine küsivad teist vajutust)
  *
  * Siin on ainult kuju. Otsused on failis ./inboxRules.js; olek ja päringud
  * lehtedel (`../OrgInboxClient.jsx`, `../OrgInboxItemClient.jsx`).
@@ -71,10 +72,10 @@ export function InboxBoard({ t, rows, hrefOf, onOpen, more, notice }) {
  * Avatud pöördumine.
  *
  * `work`: {
- *   actions: { assign, respond, handOver, close },
+ *   actions: { assign, respond, handOver, takeBack, close },
  *   workers, assigneeId, onAssignee, onAssign,
  *   others, handoverId, onHandover, onHandOver,
- *   onAccept, onReject, rejectArmed, onClose, closeArmed, pending
+ *   onAccept, onReject, rejectArmed, onTakeBack, takeBackArmed, onClose, closeArmed, pending
  * }
  * `room`: { busy, onOpen } või null. Töö vastu võtnud töötaja avab vestlusruumi, kus
  *   ta pöördujale vastab; nupp on mõlemas vaates (see on tema järgmine samm).
@@ -96,6 +97,9 @@ export function ItemView({ t, tabs, tab, onTab, facts, parts, withheld, work, ro
             <Button type="button" size="sm" variant="primary" data-room="1" aria-busy={room.busy ? "true" : undefined} onKeyDown={ignoreKeyRepeat} onClick={room.onOpen}>
               {t("org.inbox.openRoom")}
             </Button>
+          ) : null}
+          {onWork && actions.takeBack ? (
+            <ArmedButton armed={work.takeBackArmed} busy={work.pending === "takeBack"} label={t("org.inbox.take_back")} confirm={t("org.inbox.take_back_confirm")} onPress={work.onTakeBack} mark="takeBack" />
           ) : null}
           {onWork && actions.close ? (
             <ArmedButton armed={work.closeArmed} busy={work.pending === "close"} label={t("org.inbox.close")} confirm={t("org.inbox.close_confirm")} onPress={work.onClose} mark="close" />
