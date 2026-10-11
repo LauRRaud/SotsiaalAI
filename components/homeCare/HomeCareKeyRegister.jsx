@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useId } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import OrgHeader from "@/components/org/OrgHeader";
+import OrgPart from "@/components/org/OrgPart";
 
 import { keyHolderText, keyName } from "./HomeCareKeys";
 import { clientHref } from "./homeCareClient";
@@ -49,14 +49,12 @@ export default function HomeCareKeyRegister({ context, register }) {
   );
 
   return (
-    <section className="ow-shell hc-shell">
-      <OrgHeader context={context} />
-
+    <OrgPart context={context} part="home_care" partLabel={t("home_care.keys.register_title")}>
+    <section className="hc-shell">
       <div className="hc-head">
         <Link className="hc-back" href={`/org/${organizationId}/koduteenus`}>
           {t("home_care.client.back")}
         </Link>
-        <h2 className="hc-title">{t("home_care.keys.register_title")}</h2>
         <p className="hc-sub">{t("home_care.keys.register_intro")}</p>
         {register.truncated ? <p className="hc-notice">{t("home_care.keys.truncated", { count: register.total })}</p> : null}
       </div>
@@ -64,5 +62,6 @@ export default function HomeCareKeyRegister({ context, register }) {
       {section("unreturned", register.unreturned)}
       {section("register", register.keys)}
     </section>
+    </OrgPart>
   );
 }

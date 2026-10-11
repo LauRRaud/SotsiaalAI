@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useId } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import OrgHeader from "@/components/org/OrgHeader";
+import OrgPart from "@/components/org/OrgPart";
 
 import { daysLabel, minutesLabel } from "./HomeCareDecisionView";
 import { euroText } from "./HomeCareMoney";
@@ -65,15 +65,14 @@ export default function HomeCareDeadlines({ context, deadlines }) {
   );
 
   return (
-    <section className="ow-shell hc-shell">
-      <OrgHeader context={context} />
+    <OrgPart context={context} part="home_care" partLabel={t("home_care.deadlines.title")}>
+    <section className="hc-shell">
       <HomeCareOutbox ownerId={context.membership?.id || ""} timeZone={timeZone} />
 
       <div className="hc-head">
         <Link className="hc-back" href={`/org/${organizationId}/koduteenus`}>
           {t("home_care.client.back")}
         </Link>
-        <h2 className="hc-title">{t("home_care.deadlines.title")}</h2>
         <p className="hc-sub">{t("home_care.deadlines.intro", { count: deadlines.clientCount })}</p>
         {deadlines.truncated ? <p className="hc-notice">{t("home_care.deadlines.truncated", { count: deadlines.clientCount })}</p> : null}
       </div>
@@ -357,5 +356,6 @@ export default function HomeCareDeadlines({ context, deadlines }) {
         )
       )}
     </section>
+    </OrgPart>
   );
 }

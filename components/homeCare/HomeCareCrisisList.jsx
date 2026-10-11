@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useId } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import OrgHeader from "@/components/org/OrgHeader";
+import OrgPart from "@/components/org/OrgPart";
 import { composeCrisisSheet } from "@/lib/homeCare/crisisSheet";
 
 import { minutesLabel } from "./HomeCareDecisionView";
@@ -59,14 +59,12 @@ export default function HomeCareCrisisList({ context, list }) {
   );
 
   return (
-    <section className="ow-shell hc-shell">
-      <OrgHeader context={context} />
-
+    <OrgPart context={context} part="home_care" partLabel={t("home_care.crisis.list_title")}>
+    <section className="hc-shell">
       <div className="hc-head">
         <Link className="hc-back" href={`/org/${organizationId}/koduteenus`}>
           {t("home_care.client.back")}
         </Link>
-        <h2 className="hc-title">{t("home_care.crisis.list_title")}</h2>
         <p className="hc-sub">{t("home_care.crisis.list_intro", { count: list.clientCount, date: planDayLabel(list.today) })}</p>
         {list.truncated ? <p className="hc-notice">{t("home_care.crisis.truncated", { count: list.clientCount })}</p> : null}
         <div className="hc-row">
@@ -145,5 +143,6 @@ export default function HomeCareCrisisList({ context, list }) {
         {list.unset.length ? <ul className="hc-list">{list.unset.map(row)}</ul> : <p className="hc-sub">{t("home_care.crisis.unset_empty")}</p>}
       </section>
     </section>
+    </OrgPart>
   );
 }

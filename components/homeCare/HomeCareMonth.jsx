@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useId, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import OrgHeader from "@/components/org/OrgHeader";
+import OrgPart from "@/components/org/OrgPart";
 import { composeMonthSheet, monthSheetState } from "@/lib/homeCare/monthSheet";
 
 import { decisionVolumeLabel, minutesLabel } from "./HomeCareDecisionView";
@@ -110,15 +110,14 @@ export default function HomeCareMonth({ context, initial }) {
       .join(" · ");
 
   return (
-    <section className="ow-shell hc-shell">
-      <OrgHeader context={context} />
+    <OrgPart context={context} part="home_care" partLabel={t("home_care.month.title")}>
+    <section className="hc-shell">
       <HomeCareOutbox ownerId={context.membership?.id || ""} timeZone={timeZone} />
 
       <div className="hc-head">
         <Link className="hc-back" href={`/org/${organizationId}/koduteenus`}>
           {t("home_care.client.back")}
         </Link>
-        <h2 className="hc-title">{t("home_care.month.title")}</h2>
         <p className="hc-sub">{t("home_care.month.intro")}</p>
       </div>
 
@@ -319,5 +318,6 @@ export default function HomeCareMonth({ context, initial }) {
         />
       ) : null}
     </section>
+    </OrgPart>
   );
 }

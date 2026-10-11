@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import OrgHeader from "@/components/org/OrgHeader";
+import OrgPart from "@/components/org/OrgPart";
 import { CareIncidentStatus } from "@/lib/homeCare/constants";
 
 import HomeCareEntryItem from "./HomeCareEntryItem";
@@ -71,8 +71,8 @@ export default function HomeCareOverview({ context, overview }) {
     );
 
   return (
-    <section className="ow-shell hc-shell">
-      <OrgHeader context={context} />
+    <OrgPart context={context} part="home_care" partLabel={t("home_care.overview.title")}>
+    <section className="hc-shell">
       {/* Seadmes ootel kirjed saadetakse ka siit lehelt, mitte ainult avalehelt ja kliendi lehelt. */}
       <HomeCareOutbox ownerId={context.membership?.id || ""} timeZone={timeZone} />
 
@@ -80,7 +80,6 @@ export default function HomeCareOverview({ context, overview }) {
         <Link className="hc-back" href={`/org/${organizationId}/koduteenus`}>
           {t("home_care.overview.back")}
         </Link>
-        <h2 className="hc-title">{t("home_care.overview.title")}</h2>
       </div>
 
       <section className="hc-section">
@@ -111,5 +110,6 @@ export default function HomeCareOverview({ context, overview }) {
         {overview?.recentHasMore ? <p className="hc-hint">{t("home_care.overview.recent_more")}</p> : null}
       </section>
     </section>
+    </OrgPart>
   );
 }

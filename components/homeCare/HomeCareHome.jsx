@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useId, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import OrgHeader from "@/components/org/OrgHeader";
+import OrgPart from "@/components/org/OrgPart";
 
 import HomeCareCallNote from "./HomeCareCallNote";
 import HomeCareClientForm from "./HomeCareClientForm";
@@ -128,11 +128,9 @@ export default function HomeCareHome({ context, initial, unitOptions, myDay = nu
   };
 
   return (
-    <section className="ow-shell hc-shell">
-      <OrgHeader context={context} />
-
+    <OrgPart context={context} part="home_care">
+    <section className="hc-shell">
       <div className="hc-head">
-        <h2 className="hc-title">{t("home_care.home.title")}</h2>
         <p className="hc-sub">
           {isCoordinator ? t("home_care.home.intro_coordinator") : t("home_care.home.intro_worker")}
         </p>
@@ -488,5 +486,6 @@ export default function HomeCareHome({ context, initial, unitOptions, myDay = nu
       {/* Nimi on kirjas: vaikne rida lehe lõpus ja tee selle muutmiseks. */}
       {ownName?.complete ? <HomeCareOwnName organizationId={organizationId} initial={ownName} /> : null}
     </section>
+    </OrgPart>
   );
 }

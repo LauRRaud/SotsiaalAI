@@ -5,6 +5,7 @@ import { useId, useRef, useState } from "react";
 
 import { newClientActionKey } from "@/components/casework/caseWorkClient";
 import { useI18n } from "@/components/i18n/I18nProvider";
+import OrgPart from "@/components/org/OrgPart";
 import DateField from "@/components/ui/DateField";
 import { CareEntryKind, HOME_CARE_LIMITS } from "@/lib/homeCare/constants";
 
@@ -104,14 +105,14 @@ export default function HomeCareChronology({ context, client }) {
   };
 
   return (
+    <OrgPart context={context} part="home_care" partLabel={t("home_care.chronology.title")}>
     <section className="hc-shell">
       <Link className="hc-back" href={clientHref(organizationId, client.id)} prefetch={false}>
         {t("home_care.chronology.back")}
       </Link>
 
       <header className="hc-head">
-        <h1 className="hc-title">{t("home_care.chronology.title")}</h1>
-        <p className="hc-sub">{client.displayName}</p>
+        <h2 className="hc-title">{client.displayName}</h2>
         <p className="hc-sub">{t("home_care.chronology.intro")}</p>
       </header>
 
@@ -321,5 +322,6 @@ export default function HomeCareChronology({ context, client }) {
         </section>
       ) : null}
     </section>
+    </OrgPart>
   );
 }

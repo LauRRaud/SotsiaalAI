@@ -12,15 +12,15 @@ import { homeCareBase, useHomeCareApi } from "./homeCareClient";
  *
  * Kaks kohta kasutavad sama vormi: lehe avamine (sisu asemel) ja juba lahti
  * olev leht, kui päevane luba lõppes või inimene eemaldati meeskonnast. Teisel
- * juhul jääb leht alles, et pooleli olev kirje ei kaoks.
+ * juhul jääb leht alles, et pooleli olev kirje ei kaoks (`inPage`: vorm on siis
+ * üks lehe osadest ja selle pealkiri on osa pealkirja suurune).
  */
-export default function HomeCareReasonForm({ organizationId, clientId, writable, heading = "h1", onGranted }) {
+export default function HomeCareReasonForm({ organizationId, clientId, writable, inPage = false, onGranted }) {
   const { t } = useI18n();
   const { call, busy, error } = useHomeCareApi();
   const fieldId = useId();
   const [reasonCode, setReasonCode] = useState(CareAccessReason.COVERING);
   const [reasonText, setReasonText] = useState("");
-  const Heading = heading;
 
   const submit = async (event) => {
     event.preventDefault();
@@ -34,7 +34,7 @@ export default function HomeCareReasonForm({ organizationId, clientId, writable,
 
   return (
     <form className="hc-section" onSubmit={submit}>
-      <Heading className={heading === "h1" ? "hc-title" : "hc-section-title"}>{t("home_care.reason.title")}</Heading>
+      <h2 className={inPage ? "hc-section-title" : "hc-title"}>{t("home_care.reason.title")}</h2>
       <p className="hc-sub">{t("home_care.reason.intro")}</p>
       <div className="hc-field">
         <span className="hc-label" id={`${fieldId}-reason`}>

@@ -1,9 +1,10 @@
 /**
  * Avatud organisatsiooni osad: mis osad on olemas ja kes neid näeb.
  *
- * ÜKS TÕDE. Sama loendit kasutavad organisatsiooni laud (`./desk`), osa kest
- * (`./OrgPart.jsx`) ja vana lingirida (`./OrgNav.jsx`, mida kannavad veel
- * koduteenuse lehed). Enne oli loend ainult `OrgNav`-i sees.
+ * ÜKS TÕDE. Loendit loeb organisatsiooni laud (`./desk`); osa kest
+ * (`./OrgPart.jsx`) võtab osa nime sama võtme alt (`org.nav.<võti>`). Enne oli
+ * loend vana lingirea sees, mida kandis iga alaleht; viimasena kandsid seda
+ * koduteenuse lehed (11.10 viidud samale kestale).
  *
  * REEGEL (arenduskava §7.3): „Vaated, mille moodul pole aktiivne, ei ilmu
  * navigatsiooni ja route failib serveris suletult." Sama kehtib õiguse kohta:

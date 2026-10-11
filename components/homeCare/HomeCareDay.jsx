@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useId, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import OrgHeader from "@/components/org/OrgHeader";
+import OrgPart from "@/components/org/OrgPart";
 import Dropdown from "@/components/ui/Dropdown";
 import {
   CARE_FIRST_VISIT_OUTCOMES,
@@ -410,15 +410,14 @@ export default function HomeCareDay({ context, initial }) {
     });
 
   return (
-    <section className="ow-shell hc-shell">
-      <OrgHeader context={context} />
+    <OrgPart context={context} part="home_care" partLabel={t("home_care.day.title")}>
+    <section className="hc-shell">
       <HomeCareOutbox ownerId={context.membership?.id || ""} timeZone={timeZone} />
 
       <div className="hc-head">
         <Link className="hc-back" href={`/org/${organizationId}/koduteenus`}>
           {t("home_care.client.back")}
         </Link>
-        <h2 className="hc-title">{t("home_care.day.title")}</h2>
         <p className="hc-sub">{t("home_care.day.intro")}</p>
       </div>
 
@@ -549,5 +548,6 @@ export default function HomeCareDay({ context, initial }) {
       )}
       {data.away.length ? group("away", t("home_care.day.away_title"), data.away, t("home_care.day.away_hint")) : null}
     </section>
+    </OrgPart>
   );
 }

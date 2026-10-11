@@ -92,8 +92,6 @@ test('iga osa marsruut on olemas ja selle nimi ning laua rida on kolmes keeles',
   }
   /* Laua järjekord nimetab ainult päris osi ja kõiki peale ülevaate. */
   assert.deepEqual([...DESK_ORDER].sort(), ORG_PARTS.map((part) => part.key).filter((key) => key !== 'overview').sort());
-  /* Vana lingirida loeb sama loendit. */
-  assert.ok(read('../components/org/OrgNav.jsx').includes('visibleOrgParts(organizationId, { capabilities, activeModules })'));
 });
 
 test('laua plaadid: igapäevane töö ees, haldus lõpus, viimane on „Minu koht”', () => {

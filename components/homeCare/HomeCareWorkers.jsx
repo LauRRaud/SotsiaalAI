@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useId, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import OrgHeader from "@/components/org/OrgHeader";
+import OrgPart from "@/components/org/OrgPart";
 import DateField from "@/components/ui/DateField";
 import { CARE_WORKER_RECORD_KINDS, CareWorkerRecordKind, HOME_CARE_LIMITS } from "@/lib/homeCare/constants";
 
@@ -72,14 +72,12 @@ export default function HomeCareWorkers({ context, initial }) {
   const isTraining = form.kind === CareWorkerRecordKind.TRAINING;
 
   return (
-    <section className="ow-shell hc-shell">
-      <OrgHeader context={context} />
-
+    <OrgPart context={context} part="home_care" partLabel={t("home_care.workers.title")}>
+    <section className="hc-shell">
       <div className="hc-head">
         <Link className="hc-back" href={`/org/${organizationId}/koduteenus`}>
           {t("home_care.client.back")}
         </Link>
-        <h2 className="hc-title">{t("home_care.workers.title")}</h2>
         <p className="hc-sub">{t("home_care.workers.intro")}</p>
       </div>
 
@@ -192,5 +190,6 @@ export default function HomeCareWorkers({ context, initial }) {
         </p>
       ) : null}
     </section>
+    </OrgPart>
   );
 }

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
+import OrgPart from "@/components/org/OrgPart";
 import DateField from "@/components/ui/DateField";
 import Dropdown from "@/components/ui/Dropdown";
 import { CARE_CLIENT_STATUSES, CARE_ENTRY_KINDS, CARE_STATUS_REASONS, CareClientStatus, CareEndReason } from "@/lib/homeCare/constants";
@@ -273,6 +274,7 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
 
   if (needsReason) {
     return (
+      <OrgPart context={context} part="home_care" partLabel={t("home_care.client.page_name")}>
       <section className="hc-shell">
         <Link className="hc-back" href={backHref}>
           {t("home_care.client.back")}
@@ -284,11 +286,13 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
           onGranted={() => reload()}
         />
       </section>
+      </OrgPart>
     );
   }
 
   if (!data) {
     return (
+      <OrgPart context={context} part="home_care" partLabel={t("home_care.client.page_name")}>
       <section className="hc-shell">
         <Link className="hc-back" href={backHref}>
           {t("home_care.client.back")}
@@ -297,6 +301,7 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
           {page.error || t("home_care.errors.open_failed")}
         </p>
       </section>
+      </OrgPart>
     );
   }
 
@@ -324,6 +329,7 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
   const activeTeam = team.filter((member) => member.active);
 
   return (
+    <OrgPart context={context} part="home_care" partLabel={t("home_care.client.page_name")}>
     <HomeCareAccessProvider onReasonRequired={() => setLapsed(true)}>
     <section className="hc-shell">
       <Link className="hc-back" href={backHref}>
@@ -335,13 +341,13 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
           organizationId={organizationId}
           clientId={client.id}
           writable={canWrite}
-          heading="h2"
+          inPage
           onGranted={() => setLapsed(false)}
         />
       ) : null}
 
       <header className="hc-head">
-        <h1 className="hc-title">{client.displayName}</h1>
+        <h2 className="hc-title">{client.displayName}</h2>
         <div className="hc-row">
           {client.status !== CareClientStatus.ACTIVE ? (
             <span className={`hc-badge${ended ? "" : " hc-badge--warn"}`}>{t(`home_care.status.${client.status}`)}</span>
@@ -1061,5 +1067,6 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
       ) : null}
     </section>
     </HomeCareAccessProvider>
+    </OrgPart>
   );
 }
