@@ -124,10 +124,43 @@ Omanik 11.10.2026, kui olin öelnud mahu ja hinna (36 pööret, umbes 0,15 USD, 
 | Kliendi terviseandmed perearstilt (spetsialist) | Andmekaitse Inspektsiooni lehed (2/2; korpuse v76 sisu), omavalitsuse sotsiaalteenuse üldjuhend |
 
 Ühingute lehtedele suunatud 16 küsimusest 12 puhul viitas vastus vähemalt ühel korral ühingu lehele. Ülejäänud nelja vastas vestlus teiste allikate põhjal (seadus, ametlik leht, varasem organisatsiooni leht) ja ükski neist vastustest ei olnud selle pärast vale. Kahes küsimuses (emotsionaalne vägivald, psühhoos) jõudis ühingu leht kandidaatide sekka, aga mitte mudelile antud lõikude hulka: samal teemal on korpuses mitu lehte ja valik võttis teised.
+## Järeltäiendus v80: neli ühingut, mida esimesel korral ei saanud lugeda (11.10.2026)
+
+Omanik 11.10.2026, kui olin öelnud, mis jäi lugemata: „AI-Anon ja teised proovi ikka. Minu luba antud osta vektorid.“ Proovisin uuesti ja kolm asja, mida olin enne öelnud, osutusid valeks või aegunuks:
+
+- **Laste ja Noorte Kriisiprogramm (lastekriis.ee).** Olin kirjutanud, et saidi robotite fail keelab lugemise. See ei ole nii: keeld „Disallow: /“ käib failis ainult nimetatud otsirobotite kohta, tavalisele lugejale on lehed lubatud (paus kaks sekundit). Minu viga faili lugemisel.
+- **Anonüümsed Alkohoolikud (aaestonia.com).** Kaks esimest katset aegusid; nüüd vastas sait tavalisele lugejale.
+- **Convictus (convictus.ee).** Avaleht aadressil ilma www-ta andis viis sõna; aadressil www.convictus.ee on lehed loetavad.
+- **Al-Anon.** Arvatud aadressid ei olnud olemas; päris aadress (alanoneesti.wordpress.com) oli Anonüümsete Alkohoolikute lehel.
+
+Brauserit ei läinud ühegi jaoks vaja. Sisse läks **57 lehte** (15 161 sõna, 216 lõiku):
+
+| Ühing | Lehti | Mis |
+|---|---:|---|
+| Convictus Eesti MTÜ | 26 | abi tarvitajale, lähedasele ja kogukonnale; viis kahjude vähendamise keskust ja buss; programm SÜTIK; 15 teenust (nõustamine, süstlavahetus, naloksoon, kiirtestimine, tugiisik, päevakeskus jt) |
+| Anonüümsed Alkohoolikud | 21 | mis AA on ja ei ole, kas AA on sinu jaoks, 15 nõuannet, kuidas rühm toimib, korduvad küsimused, sotsiaal- ja tervishoiutöötajale ning tööandjale |
+| MTÜ Laste ja Noorte Kriisiprogramm | 5 | lapsele, vanemale, spetsialistile, teenused, leinalaager |
+| Al-Anon Eesti | 5 | tutvustus, korduvad küsimused, 12 sammu ja traditsiooni, alkohoolikute täiskasvanud lapsed |
+
+Kolm käsitsi sammu, mida reegel ei tee:
+
+- **Convictuse lehed** lõpevad kõik sama plokiga (lähimad keskused lahtiolekuaegadega, programm, piirkonnad; 24 % nende lehtede sõnadest) ja viie teenuselehe esimene pealkiri on rubriigi nimi „NÕUSTAMINE“. Plokk võeti välja kõigilt lehtedelt peale avalehe ja pealkirjaks pandi lehe enda `<title>` (`tmp/rag-v2-v80/tools/fix-convictus.mjs`). Selle sammu pärast on need 26 lehte eraldi nimekirjas `web_pages_associations_2.json` ja igakuine uuendus neid ei loe: uuesti lugemisel tuleks sama samm uuesti teha.
+- **Al-Anoni korduvate küsimuste leht** on aadressil „/lood“ ja reegel jätaks selle aadressi pärast välja kui lugude lehe. Lehe enda pealkiri ja sisu on küsimused; reeglilt küsiti selle kohta teise aadressi all ja isikute otsus jäi reegli oma (`tools/alanon-more.mjs`).
+- 17 sõnapaari, mis ei ole inimesed, lisati reegli loendisse.
+
+Välja jäid: AA koosolekute loend ja Al-Anoni rühmade leht (kontaktisikute nimed), lood, teiskeelsed lehed, Convictuse uudised ja meeskond.
+
+| Käik | Sisendeid ostetud | Märke | Hind | Indeks | Dokumente | Lõike |
+|---|---:|---:|---:|---|---:|---:|
+| v80 | 216 | 51 383 | 0,0067 USD | `c7d36b42` | 9 698 | 90 604 |
+
+Vaba ketast serveris pärast: 16 GB. Vestlusplaan `/etc/sotsiaalai/m4-corpus-chat-20261011d.json`; järgmine alus põhikausta `tmp/rag-v2-v80/ship/policy.json`. Vektorite hind kontrolliti samal hommikul pakkuja lehelt (0,13 USD miljoni märgi kohta) ja kirjutati päeva hinnafaili. Mudeliga mõõtmata.
+
+**Mis jäi ka nüüd lugemata.** Töötukassa: lehtede aadressid on robotitele lubatud, aga tekst tuleb skriptiga aadressilt `/web/`, mille nende reeglid robotitele sulgevad; brauser näitaks seda, kuid nii ma sisu ei võta ilma nende loata. Lasteabi käsiraamatu 71 lehte on saidil endal tühjad ka päris brauseris (lehel on ainult pealkiri ja saidi jalus). PDF-idena jagatud materjalid on tegemata.
 ## Lahtine
 
 - **juristaitab.ee rubriik „Kiirelt kätte“** (umbes kaks tuhat lühikest õigusartiklit, mida toimetab Justiits- ja Digiministeeriumi lepingupartner; igal artiklil viimase kontrolli kuupäev). See kataks võlad, pärimise, eestkoste, töösuhted, üüri ja perekonnaõiguse inimese keeles, aga on maht, mis nõuab dokumentide piiri tõstmist (omanik lubas 15 000-ni) ja mõõtmist, kas kokkuvõtted ei tõrju seaduse sätteid kandidaatide seast. Omanik 11.10.2026: „selles ma kahtlen, pigem ei pane“. Ei lisata, kuni ta ei ütle teisiti.
 - Need 314 lehte ei ole igakuises uuenduses (nagu ADR-137 lehedki): uuendus peab enne oskama valikureeglit ja lehe haaval tehtud valikut.
 - Lugeja võtab alamlehe pealkirjaks lingi teksti, kui lehel pealkirja ei ole (Eluliini leht „Loe lisa >“); lehe enda `<title>` oleks õige.
-- Anonüümsed Alkohoolikud, Al-Anon, Convictus ja lastekriisi leht: proovida uuesti või küsida ühingutelt.
+- ~~Anonüümsed Alkohoolikud, Al-Anon, Convictus ja lastekriisi leht~~: sees alates v80 (vt järeltäiendus).
 - ~~Mudeliga mõõtmata: kas vastused neid lehti kasutavad.~~ Mõõdetud 11.10 (osa „Tasuline vastuste kontroll“).

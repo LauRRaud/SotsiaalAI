@@ -1,6 +1,6 @@
 {
   "version": "web-pages-1",
-  "note": "Ühingute enda lehed katvuse kaardi nõrkade ridade jaoks (omanik 11.10.2026: „mittetulundusühingute lehed - need ka sisse panna“; ADR-140, korpus v78): vaimne tervis (Peaasi), lähisuhte- ja seksuaalvägivald (Naiste Tugi- ja Teabekeskus), noore seksuaaltervis (Eesti Seksuaaltervise Liit), elu lõpp (Pallium), hasartmängu- ja digisõltuvus (Hasartmängusõltuvuse Nõustamiskeskus), lapse õigused (Lastekaitse Liit), hingehoid, omastehooldus ja tasuta õigusabi kohad (Eesti Juristide Liit). Loend on korpuses olevate lehtede nimekiri: iga leht oma aadressiga, alamlehti ei loeta. Lehed valiti kahes sammus: valikureegel (scripts/rag-v2-web-select.mjs) võttis välja inimesi nimetavad lõigud ja lehed, seejärel jäid välja lehed, mis räägivad ühingust endast (ajalugu, projektid, uudised, puhkuseteated), teises keeles lehed ja Palliumi 2019.–2020. aasta kokkuvõtted riigi toetustest.",
+  "note": "Ühingute enda lehed katvuse kaardi nõrkade ridade jaoks (omanik 11.10.2026: „mittetulundusühingute lehed - need ka sisse panna“; ADR-140, korpus v78): vaimne tervis (Peaasi), lähisuhte- ja seksuaalvägivald (Naiste Tugi- ja Teabekeskus), noore seksuaaltervis (Eesti Seksuaaltervise Liit), elu lõpp (Pallium), hasartmängu- ja digisõltuvus (Hasartmängusõltuvuse Nõustamiskeskus), lapse õigused (Lastekaitse Liit), hingehoid, omastehooldus ja tasuta õigusabi kohad (Eesti Juristide Liit). Loend on korpuses olevate lehtede nimekiri: iga leht oma aadressiga, alamlehti ei loeta. Lehed valiti kahes sammus: valikureegel (scripts/rag-v2-web-select.mjs) võttis välja inimesi nimetavad lõigud ja lehed, seejärel jäid välja lehed, mis räägivad ühingust endast (ajalugu, projektid, uudised, puhkuseteated), teises keeles lehed ja Palliumi 2019.–2020. aasta kokkuvõtted riigi toetustest. Lisatud 11.10.2026 (korpus v80): Anonüümsed Alkohoolikud, Al-Anon Eesti ja Laste ja Noorte Kriisiprogramm.",
   "pages": [
     {
       "source_id": "juristaitab_avaleht",
@@ -3149,6 +3149,316 @@
       "url": "https://naistetugi.ee/vagivallast/vagivallast",
       "title": "Vägivallast",
       "publisher": "Naiste Tugi- ja Teabekeskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "alanon_avaleht",
+      "url": "https://alanoneesti.wordpress.com/",
+      "title": "Tutvustus",
+      "publisher": "Al-Anon Eesti",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "alanon_avaleht--12-sammu",
+      "url": "https://alanoneesti.wordpress.com/12-sammu",
+      "title": "12 sammu",
+      "publisher": "Al-Anon Eesti",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "alanon_avaleht--12-traditsiooni",
+      "url": "https://alanoneesti.wordpress.com/12-traditsiooni",
+      "title": "12 traditsiooni",
+      "publisher": "Al-Anon Eesti",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "alanon_avaleht--atl",
+      "url": "https://alanoneesti.wordpress.com/atl",
+      "title": "Alkohoolikute Täiskasvanud Lapsed",
+      "publisher": "Al-Anon Eesti",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "alanon_avaleht--lood",
+      "url": "https://alanoneesti.wordpress.com/lood",
+      "title": "Korduma kippuvad küsimused",
+      "publisher": "Al-Anon Eesti",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "aa_ajakirjandus_mis_anonuumsus_tahendab",
+      "url": "https://aaestonia.com/ajakirjandus/mis-anonuumsus-tahendab/",
+      "title": "Mis anonüümsus tähendab?",
+      "publisher": "Anonüümsed Alkohoolikud",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "aa_ajakirjandus_sotsiaaltootajatele",
+      "url": "https://aaestonia.com/ajakirjandus/sotsiaaltootajatele/",
+      "title": "Sotsiaaltöötajatele",
+      "publisher": "Anonüümsed Alkohoolikud",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "aa_ajakirjandus_teavet_aa_lahtiste_koosolekute_kohta",
+      "url": "https://aaestonia.com/ajakirjandus/teavet-aa-lahtiste-koosolekute-kohta/",
+      "title": "Teavet AA lahtiste koosolekute kohta",
+      "publisher": "Anonüümsed Alkohoolikud",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "aa_ajakirjandus_tervishoiutootajatele",
+      "url": "https://aaestonia.com/ajakirjandus/tervishoiutootajatele/",
+      "title": "Tervishoiutöötajatele",
+      "publisher": "Anonüümsed Alkohoolikud",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "aa_ajakirjandus_tooandjatele",
+      "url": "https://aaestonia.com/ajakirjandus/tooandjatele/",
+      "title": "Tööandjatele",
+      "publisher": "Anonüümsed Alkohoolikud",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "aa_alkoholiprobleem",
+      "url": "https://aaestonia.com/alkoholiprobleem/",
+      "title": "Alkoholiprobleem?",
+      "publisher": "Anonüümsed Alkohoolikud",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "aa_alkoholiprobleem_15_nouannet",
+      "url": "https://aaestonia.com/alkoholiprobleem/15-nouannet/",
+      "title": "15 nõuannet",
+      "publisher": "Anonüümsed Alkohoolikud",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "aa_alkoholiprobleem_kas_aa_on_sinu_jaoks",
+      "url": "https://aaestonia.com/alkoholiprobleem/kas-aa-on-sinu-jaoks/",
+      "title": "Kas AA on sinu jaoks?",
+      "publisher": "Anonüümsed Alkohoolikud",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "aa_alkoholiprobleem_kas_aa_sobib_koigile",
+      "url": "https://aaestonia.com/alkoholiprobleem/kas-aa-sobib-koigile/",
+      "title": "Kas AA sobib kõigile?",
+      "publisher": "Anonüümsed Alkohoolikud",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "aa_alkoholiprobleem_kuidas_aa_ruhm_toimib",
+      "url": "https://aaestonia.com/alkoholiprobleem/kuidas-aa-ruhm-toimib/",
+      "title": "Kuidas AA rühm toimib",
+      "publisher": "Anonüümsed Alkohoolikud",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "aa_alkoholiprobleem_miks_me_oleme_tana_siin",
+      "url": "https://aaestonia.com/alkoholiprobleem/miks-me-oleme-tana-siin/",
+      "title": "Miks me oleme täna siin",
+      "publisher": "Anonüümsed Alkohoolikud",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "aa_alkoholiprobleem_tere_tulemast",
+      "url": "https://aaestonia.com/alkoholiprobleem/tere-tulemast/",
+      "title": "Tere tulemast!",
+      "publisher": "Anonüümsed Alkohoolikud",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "aa_mis_on_aa",
+      "url": "https://aaestonia.com/mis-on-aa/",
+      "title": "Mis on AA?",
+      "publisher": "Anonüümsed Alkohoolikud",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "aa_mis_on_aa_12_sammu",
+      "url": "https://aaestonia.com/mis-on-aa/12-sammu/",
+      "title": "12 sammu",
+      "publisher": "Anonüümsed Alkohoolikud",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "aa_mis_on_aa_12_traditsiooni",
+      "url": "https://aaestonia.com/mis-on-aa/12-traditsiooni/",
+      "title": "12 traditsiooni",
+      "publisher": "Anonüümsed Alkohoolikud",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "aa_mis_on_aa_aa_ei_ole",
+      "url": "https://aaestonia.com/mis-on-aa/aa-ei-ole/",
+      "title": "AA ei ole",
+      "publisher": "Anonüümsed Alkohoolikud",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "aa_mis_on_aa_aa_on",
+      "url": "https://aaestonia.com/mis-on-aa/aa-on/",
+      "title": "AA on",
+      "publisher": "Anonüümsed Alkohoolikud",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "aa_mis_on_aa_aa_roll_uhiskonnas",
+      "url": "https://aaestonia.com/mis-on-aa/aa-roll-uhiskonnas/",
+      "title": "AA roll ühiskonnas",
+      "publisher": "Anonüümsed Alkohoolikud",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "aa_mis_on_aa_aa_st_lahemalt",
+      "url": "https://aaestonia.com/mis-on-aa/aa-st-lahemalt/",
+      "title": "AA-st lähemalt",
+      "publisher": "Anonüümsed Alkohoolikud",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "aa_mis_on_aa_anonuumsus",
+      "url": "https://aaestonia.com/mis-on-aa/anonuumsus/",
+      "title": "Anonüümsus",
+      "publisher": "Anonüümsed Alkohoolikud",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "aa_mis_on_aa_korduma_kippuvad_kusimused",
+      "url": "https://aaestonia.com/mis-on-aa/korduma-kippuvad-kusimused/",
+      "title": "Korduma kippuvad küsimused",
+      "publisher": "Anonüümsed Alkohoolikud",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lastekriis_laagrid",
+      "url": "https://lastekriis.ee/laagrid/",
+      "title": "Laager",
+      "publisher": "MTÜ Laste ja Noorte Kriisiprogramm",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lastekriis_lapsele",
+      "url": "https://lastekriis.ee/lapsele/",
+      "title": "Lapsele",
+      "publisher": "MTÜ Laste ja Noorte Kriisiprogramm",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lastekriis_spetsialistile",
+      "url": "https://lastekriis.ee/spetsialistile/",
+      "title": "Spetsialistile",
+      "publisher": "MTÜ Laste ja Noorte Kriisiprogramm",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lastekriis_teenused",
+      "url": "https://lastekriis.ee/teenused/",
+      "title": "Teenused ja hinnakiri",
+      "publisher": "MTÜ Laste ja Noorte Kriisiprogramm",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lastekriis_vanemale",
+      "url": "https://lastekriis.ee/vanemale/",
+      "title": "Vanemale",
+      "publisher": "MTÜ Laste ja Noorte Kriisiprogramm",
       "source_type": "organization_page",
       "language": "et",
       "jurisdiction_level": "NATIONAL",

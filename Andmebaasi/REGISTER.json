@@ -49,11 +49,11 @@
   },
   "corpus": {
     "written_by": "rag-v2/register-corpus-1",
-    "version": "v79",
-    "index_generation": "2c886587",
+    "version": "v80",
+    "index_generation": "c7d36b42",
     "read_at": "2026-10-11",
-    "documents": 9641,
-    "units": 90388,
+    "documents": 9698,
+    "units": 90604,
     "note": "What the RAG on the server holds: the documents of the corpus policy by what they are (by_content), and by where the source file is kept (from_repository, outside_repository). One file of the repository may give many documents (a municipality package gives its services, forms and contacts). On a source entry, corpus_documents is the number of corpus documents the file gives; 0 means the file is not in the corpus.",
     "by_content": [
       {
@@ -124,9 +124,9 @@
       {
         "content": "organisation_pages",
         "name": "organisations' own pages (disability organisations, the food bank, the social workers' association, crisis and mental health associations)",
-        "documents": 848,
+        "documents": 905,
         "by_source_type": {
-          "organization_page": 848
+          "organization_page": 905
         }
       },
       {
@@ -197,10 +197,10 @@
       }
     },
     "source_files_not_in_corpus": 61,
-    "outside_repository_documents": 3125
+    "outside_repository_documents": 3182
   },
   "outside_repository": {
-    "documents": 3125,
+    "documents": 3182,
     "note": "Sources of the corpus that are not files of the repository. Copies are in the corpus store (the main checkout's git-ignored tmp/ and the server). Of contacts only counts are given: a contact's title is a person's name.",
     "kinds": [
       {
@@ -1336,14 +1336,274 @@
       {
         "kind": "organisation_pages",
         "name": "organisations' own pages (disability organisations, the food bank, the social workers' association, crisis and mental health associations)",
-        "documents": 848,
+        "documents": 905,
         "by_source_type": {
-          "organization_page": 848
+          "organization_page": 905
         },
-        "made_from": "the lists register/web_pages_organisations.json and register/web_pages_associations.json and the organisations of register/web_pages_coverage_1.json and _2.json, collected with scripts/rag-v2-web-pages.mjs and chosen with scripts/rag-v2-web-select.mjs (ADR-095, ADR-137, ADR-140)",
+        "made_from": "the lists register/web_pages_organisations.json, register/web_pages_associations.json and register/web_pages_associations_2.json and the organisations of register/web_pages_coverage_1.json and _2.json, collected with scripts/rag-v2-web-pages.mjs and chosen with scripts/rag-v2-web-select.mjs (ADR-095, ADR-137, ADR-140)",
         "reason": "the organisations' own texts",
-        "publishers": 54,
+        "publishers": 58,
         "sources": [
+          {
+            "title": "Al-Anon Eesti: 12 sammu",
+            "url": "https://alanoneesti.wordpress.com/12-sammu",
+            "publisher": "Al-Anon Eesti"
+          },
+          {
+            "title": "Al-Anon Eesti: 12 traditsiooni",
+            "url": "https://alanoneesti.wordpress.com/12-traditsiooni",
+            "publisher": "Al-Anon Eesti"
+          },
+          {
+            "title": "Al-Anon Eesti: Alkohoolikute Täiskasvanud Lapsed",
+            "url": "https://alanoneesti.wordpress.com/atl",
+            "publisher": "Al-Anon Eesti"
+          },
+          {
+            "title": "Al-Anon Eesti: Korduma kippuvad küsimused",
+            "url": "https://alanoneesti.wordpress.com/lood",
+            "publisher": "Al-Anon Eesti"
+          },
+          {
+            "title": "Al-Anon Eesti: Tutvustus",
+            "url": "https://alanoneesti.wordpress.com/",
+            "publisher": "Al-Anon Eesti"
+          },
+          {
+            "title": "Anonüümsed Alkohoolikud: 12 sammu",
+            "url": "https://aaestonia.com/mis-on-aa/12-sammu/",
+            "publisher": "Anonüümsed Alkohoolikud"
+          },
+          {
+            "title": "Anonüümsed Alkohoolikud: 12 traditsiooni",
+            "url": "https://aaestonia.com/mis-on-aa/12-traditsiooni/",
+            "publisher": "Anonüümsed Alkohoolikud"
+          },
+          {
+            "title": "Anonüümsed Alkohoolikud: 15 nõuannet",
+            "url": "https://aaestonia.com/alkoholiprobleem/15-nouannet/",
+            "publisher": "Anonüümsed Alkohoolikud"
+          },
+          {
+            "title": "Anonüümsed Alkohoolikud: AA ei ole",
+            "url": "https://aaestonia.com/mis-on-aa/aa-ei-ole/",
+            "publisher": "Anonüümsed Alkohoolikud"
+          },
+          {
+            "title": "Anonüümsed Alkohoolikud: AA on",
+            "url": "https://aaestonia.com/mis-on-aa/aa-on/",
+            "publisher": "Anonüümsed Alkohoolikud"
+          },
+          {
+            "title": "Anonüümsed Alkohoolikud: AA roll ühiskonnas",
+            "url": "https://aaestonia.com/mis-on-aa/aa-roll-uhiskonnas/",
+            "publisher": "Anonüümsed Alkohoolikud"
+          },
+          {
+            "title": "Anonüümsed Alkohoolikud: AA-st lähemalt",
+            "url": "https://aaestonia.com/mis-on-aa/aa-st-lahemalt/",
+            "publisher": "Anonüümsed Alkohoolikud"
+          },
+          {
+            "title": "Anonüümsed Alkohoolikud: Alkoholiprobleem?",
+            "url": "https://aaestonia.com/alkoholiprobleem/",
+            "publisher": "Anonüümsed Alkohoolikud"
+          },
+          {
+            "title": "Anonüümsed Alkohoolikud: Anonüümsus",
+            "url": "https://aaestonia.com/mis-on-aa/anonuumsus/",
+            "publisher": "Anonüümsed Alkohoolikud"
+          },
+          {
+            "title": "Anonüümsed Alkohoolikud: Kas AA on sinu jaoks?",
+            "url": "https://aaestonia.com/alkoholiprobleem/kas-aa-on-sinu-jaoks/",
+            "publisher": "Anonüümsed Alkohoolikud"
+          },
+          {
+            "title": "Anonüümsed Alkohoolikud: Kas AA sobib kõigile?",
+            "url": "https://aaestonia.com/alkoholiprobleem/kas-aa-sobib-koigile/",
+            "publisher": "Anonüümsed Alkohoolikud"
+          },
+          {
+            "title": "Anonüümsed Alkohoolikud: Korduma kippuvad küsimused",
+            "url": "https://aaestonia.com/mis-on-aa/korduma-kippuvad-kusimused/",
+            "publisher": "Anonüümsed Alkohoolikud"
+          },
+          {
+            "title": "Anonüümsed Alkohoolikud: Kuidas AA rühm toimib",
+            "url": "https://aaestonia.com/alkoholiprobleem/kuidas-aa-ruhm-toimib/",
+            "publisher": "Anonüümsed Alkohoolikud"
+          },
+          {
+            "title": "Anonüümsed Alkohoolikud: Miks me oleme täna siin",
+            "url": "https://aaestonia.com/alkoholiprobleem/miks-me-oleme-tana-siin/",
+            "publisher": "Anonüümsed Alkohoolikud"
+          },
+          {
+            "title": "Anonüümsed Alkohoolikud: Mis anonüümsus tähendab?",
+            "url": "https://aaestonia.com/ajakirjandus/mis-anonuumsus-tahendab/",
+            "publisher": "Anonüümsed Alkohoolikud"
+          },
+          {
+            "title": "Anonüümsed Alkohoolikud: Mis on AA?",
+            "url": "https://aaestonia.com/mis-on-aa/",
+            "publisher": "Anonüümsed Alkohoolikud"
+          },
+          {
+            "title": "Anonüümsed Alkohoolikud: Sotsiaaltöötajatele",
+            "url": "https://aaestonia.com/ajakirjandus/sotsiaaltootajatele/",
+            "publisher": "Anonüümsed Alkohoolikud"
+          },
+          {
+            "title": "Anonüümsed Alkohoolikud: Teavet AA lahtiste koosolekute kohta",
+            "url": "https://aaestonia.com/ajakirjandus/teavet-aa-lahtiste-koosolekute-kohta/",
+            "publisher": "Anonüümsed Alkohoolikud"
+          },
+          {
+            "title": "Anonüümsed Alkohoolikud: Tere tulemast!",
+            "url": "https://aaestonia.com/alkoholiprobleem/tere-tulemast/",
+            "publisher": "Anonüümsed Alkohoolikud"
+          },
+          {
+            "title": "Anonüümsed Alkohoolikud: Tervishoiutöötajatele",
+            "url": "https://aaestonia.com/ajakirjandus/tervishoiutootajatele/",
+            "publisher": "Anonüümsed Alkohoolikud"
+          },
+          {
+            "title": "Anonüümsed Alkohoolikud: Tööandjatele",
+            "url": "https://aaestonia.com/ajakirjandus/tooandjatele/",
+            "publisher": "Anonüümsed Alkohoolikud"
+          },
+          {
+            "title": "Convictus Eesti MTÜ: Convictus Eesti MTÜ",
+            "url": "https://www.convictus.ee/",
+            "publisher": "Convictus Eesti MTÜ"
+          },
+          {
+            "title": "Convictus Eesti MTÜ: HIV ja C-hepatiit kiirtestimine",
+            "url": "https://www.convictus.ee/teenused/hiv-ja-c-hepatiit-kiirtestimine",
+            "publisher": "Convictus Eesti MTÜ"
+          },
+          {
+            "title": "Convictus Eesti MTÜ: Kahjude vähendaja nõustamine",
+            "url": "https://www.convictus.ee/teenused/kahjude-vahendaja-noustamine",
+            "publisher": "Convictus Eesti MTÜ"
+          },
+          {
+            "title": "Convictus Eesti MTÜ: Kahjude vähendamise buss",
+            "url": "https://www.convictus.ee/keskused/kahjude-vahendamise-buss",
+            "publisher": "Convictus Eesti MTÜ"
+          },
+          {
+            "title": "Convictus Eesti MTÜ: Kahjude vähendamise teenus välitööna",
+            "url": "https://www.convictus.ee/teenused/kahjude-vahendamise-teenus-valitoona",
+            "publisher": "Convictus Eesti MTÜ"
+          },
+          {
+            "title": "Convictus Eesti MTÜ: Kogemusnõustamine",
+            "url": "https://www.convictus.ee/teenused/kogemusnoustamine",
+            "publisher": "Convictus Eesti MTÜ"
+          },
+          {
+            "title": "Convictus Eesti MTÜ: Lastekodu 6 Kahjude Vähendamise Keskus",
+            "url": "https://www.convictus.ee/keskused/lastekodu",
+            "publisher": "Convictus Eesti MTÜ"
+          },
+          {
+            "title": "Convictus Eesti MTÜ: Leia abi: Kogukond",
+            "url": "https://www.convictus.ee/kogukond",
+            "publisher": "Convictus Eesti MTÜ"
+          },
+          {
+            "title": "Convictus Eesti MTÜ: Leia abi: Lähedane",
+            "url": "https://www.convictus.ee/lahedane",
+            "publisher": "Convictus Eesti MTÜ"
+          },
+          {
+            "title": "Convictus Eesti MTÜ: Leia abi: Tarvitajale",
+            "url": "https://www.convictus.ee/tarvitaja",
+            "publisher": "Convictus Eesti MTÜ"
+          },
+          {
+            "title": "Convictus Eesti MTÜ: Loovteraapia",
+            "url": "https://www.convictus.ee/teenused/loovteraapia",
+            "publisher": "Convictus Eesti MTÜ"
+          },
+          {
+            "title": "Convictus Eesti MTÜ: Maardu Kahjude Vähendamise Keskus",
+            "url": "https://www.convictus.ee/keskused/maardu",
+            "publisher": "Convictus Eesti MTÜ"
+          },
+          {
+            "title": "Convictus Eesti MTÜ: Ohtlike jäätmete kogumine",
+            "url": "https://www.convictus.ee/teenused/kasutatud-tarvikute-kogumine",
+            "publisher": "Convictus Eesti MTÜ"
+          },
+          {
+            "title": "Convictus Eesti MTÜ: Ohutu tarvitamine ja üledooside ennetamine (Naloksoon)",
+            "url": "https://www.convictus.ee/teenused/ohutu-tarvitamine-ja-uledooside-ennetamine-naloksoon",
+            "publisher": "Convictus Eesti MTÜ"
+          },
+          {
+            "title": "Convictus Eesti MTÜ: Plasti 23 Kahjude Vähendamise Keskus",
+            "url": "https://www.convictus.ee/keskused/plasti",
+            "publisher": "Convictus Eesti MTÜ"
+          },
+          {
+            "title": "Convictus Eesti MTÜ: Programm SÜTIK",
+            "url": "https://www.convictus.ee/programm-sutik",
+            "publisher": "Convictus Eesti MTÜ"
+          },
+          {
+            "title": "Convictus Eesti MTÜ: Psühholoogiline nõustamine",
+            "url": "https://www.convictus.ee/teenused/psuhholoogiline-noustamine",
+            "publisher": "Convictus Eesti MTÜ"
+          },
+          {
+            "title": "Convictus Eesti MTÜ: Päevakeskus",
+            "url": "https://www.convictus.ee/teenused/paevakeskus",
+            "publisher": "Convictus Eesti MTÜ"
+          },
+          {
+            "title": "Convictus Eesti MTÜ: Rakvere Kahjude Vähendamise Keskus",
+            "url": "https://www.convictus.ee/keskused/rakvere",
+            "publisher": "Convictus Eesti MTÜ"
+          },
+          {
+            "title": "Convictus Eesti MTÜ: Sitsi 28 Kahjude Vähendamise Keskus",
+            "url": "https://www.convictus.ee/keskused/sitsi",
+            "publisher": "Convictus Eesti MTÜ"
+          },
+          {
+            "title": "Convictus Eesti MTÜ: Sotsiaalnõustamine",
+            "url": "https://www.convictus.ee/teenused/sotsiaalnoustamine",
+            "publisher": "Convictus Eesti MTÜ"
+          },
+          {
+            "title": "Convictus Eesti MTÜ: Süstlavahetus ja tarvikute jagamine",
+            "url": "https://www.convictus.ee/teenused/sustlavahetus-ja-tarvikute-jagamine",
+            "publisher": "Convictus Eesti MTÜ"
+          },
+          {
+            "title": "Convictus Eesti MTÜ: Tugigrupid ja nõustamine vanglates",
+            "url": "https://www.convictus.ee/teenused/tugigrupid-ja-noustamine-vanglates",
+            "publisher": "Convictus Eesti MTÜ"
+          },
+          {
+            "title": "Convictus Eesti MTÜ: Tugigrupp naistele",
+            "url": "https://www.convictus.ee/teenused/tugigrupp-naistele",
+            "publisher": "Convictus Eesti MTÜ"
+          },
+          {
+            "title": "Convictus Eesti MTÜ: Tugiisiku nõustamine",
+            "url": "https://www.convictus.ee/teenused/tugiisiku-noustamine",
+            "publisher": "Convictus Eesti MTÜ"
+          },
+          {
+            "title": "Convictus Eesti MTÜ: Turvaline seksuaalkäitumine",
+            "url": "https://www.convictus.ee/teenused/turvaline-seksuaalkaitumine",
+            "publisher": "Convictus Eesti MTÜ"
+          },
           {
             "title": "Dementsuse Kompetentsikeskus",
             "url": "https://dementsus.ee/dementsuse-kompetentsikeskus",
@@ -3673,6 +3933,31 @@
             "title": "MTÜ Iseseisev Elu: Visioon, missioon",
             "url": "https://www.iseseisev-elu.ee/iseseisev-elu/visioon-missioon",
             "publisher": "MTÜ Iseseisev Elu"
+          },
+          {
+            "title": "MTÜ Laste ja Noorte Kriisiprogramm: Laager",
+            "url": "https://lastekriis.ee/laagrid/",
+            "publisher": "MTÜ Laste ja Noorte Kriisiprogramm"
+          },
+          {
+            "title": "MTÜ Laste ja Noorte Kriisiprogramm: Lapsele",
+            "url": "https://lastekriis.ee/lapsele/",
+            "publisher": "MTÜ Laste ja Noorte Kriisiprogramm"
+          },
+          {
+            "title": "MTÜ Laste ja Noorte Kriisiprogramm: Spetsialistile",
+            "url": "https://lastekriis.ee/spetsialistile/",
+            "publisher": "MTÜ Laste ja Noorte Kriisiprogramm"
+          },
+          {
+            "title": "MTÜ Laste ja Noorte Kriisiprogramm: Teenused ja hinnakiri",
+            "url": "https://lastekriis.ee/teenused/",
+            "publisher": "MTÜ Laste ja Noorte Kriisiprogramm"
+          },
+          {
+            "title": "MTÜ Laste ja Noorte Kriisiprogramm: Vanemale",
+            "url": "https://lastekriis.ee/vanemale/",
+            "publisher": "MTÜ Laste ja Noorte Kriisiprogramm"
           },
           {
             "title": "MTÜ Lastekaitse Liit: Hea nõu lastega peredele",

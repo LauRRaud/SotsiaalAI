@@ -1,0 +1,266 @@
+{
+  "version": "web-pages-1",
+  "note": "Ühingu lehed, mis on korpuses käsitsi tehtud sammuga ega ole igakuises uuenduses (ADR-140, järeltäiendus v80): Convictus Eesti. Saidi iga lehe lõpus on sama plokk (lähimad keskused, programm, piirkonnad), mis võeti välja kõigilt lehtedelt peale avalehe, ja lehe esimene pealkiri on rubriigi nimi, seega on pealkirjaks lehe enda <title>. Uuesti lugemisel tuleb sama samm uuesti teha (tmp/rag-v2-v80/tools/fix-convictus.mjs).",
+  "pages": [
+    {
+      "source_id": "convictus_avaleht",
+      "url": "https://www.convictus.ee/",
+      "title": "Convictus Eesti MTÜ",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_keskused_kahjude_vahendamise_buss",
+      "url": "https://www.convictus.ee/keskused/kahjude-vahendamise-buss",
+      "title": "Kahjude vähendamise buss",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_keskused_lastekodu",
+      "url": "https://www.convictus.ee/keskused/lastekodu",
+      "title": "Lastekodu 6 Kahjude Vähendamise Keskus",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_keskused_maardu",
+      "url": "https://www.convictus.ee/keskused/maardu",
+      "title": "Maardu Kahjude Vähendamise Keskus",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_keskused_plasti",
+      "url": "https://www.convictus.ee/keskused/plasti",
+      "title": "Plasti 23 Kahjude Vähendamise Keskus",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_keskused_rakvere",
+      "url": "https://www.convictus.ee/keskused/rakvere",
+      "title": "Rakvere Kahjude Vähendamise Keskus",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_keskused_sitsi",
+      "url": "https://www.convictus.ee/keskused/sitsi",
+      "title": "Sitsi 28 Kahjude Vähendamise Keskus",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_kogukond",
+      "url": "https://www.convictus.ee/kogukond",
+      "title": "Leia abi: Kogukond",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_lahedane",
+      "url": "https://www.convictus.ee/lahedane",
+      "title": "Leia abi: Lähedane",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_programm_sutik",
+      "url": "https://www.convictus.ee/programm-sutik",
+      "title": "Programm SÜTIK",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_tarvitaja",
+      "url": "https://www.convictus.ee/tarvitaja",
+      "title": "Leia abi: Tarvitajale",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_hiv_ja_c_hepatiit_kiirtestimine",
+      "url": "https://www.convictus.ee/teenused/hiv-ja-c-hepatiit-kiirtestimine",
+      "title": "HIV ja C-hepatiit kiirtestimine",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_kahjude_vahendaja_noustamine",
+      "url": "https://www.convictus.ee/teenused/kahjude-vahendaja-noustamine",
+      "title": "Kahjude vähendaja nõustamine",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_kahjude_vahendamise_teenus_valitoona",
+      "url": "https://www.convictus.ee/teenused/kahjude-vahendamise-teenus-valitoona",
+      "title": "Kahjude vähendamise teenus välitööna",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_kasutatud_tarvikute_kogumine",
+      "url": "https://www.convictus.ee/teenused/kasutatud-tarvikute-kogumine",
+      "title": "Ohtlike jäätmete kogumine",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_kogemusnoustamine",
+      "url": "https://www.convictus.ee/teenused/kogemusnoustamine",
+      "title": "Kogemusnõustamine",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_loovteraapia",
+      "url": "https://www.convictus.ee/teenused/loovteraapia",
+      "title": "Loovteraapia",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_ohutu_tarvitamine_ja_uledooside_ennetamine_naloksoon",
+      "url": "https://www.convictus.ee/teenused/ohutu-tarvitamine-ja-uledooside-ennetamine-naloksoon",
+      "title": "Ohutu tarvitamine ja üledooside ennetamine (Naloksoon)",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_paevakeskus",
+      "url": "https://www.convictus.ee/teenused/paevakeskus",
+      "title": "Päevakeskus",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_psuhholoogiline_noustamine",
+      "url": "https://www.convictus.ee/teenused/psuhholoogiline-noustamine",
+      "title": "Psühholoogiline nõustamine",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_sotsiaalnoustamine",
+      "url": "https://www.convictus.ee/teenused/sotsiaalnoustamine",
+      "title": "Sotsiaalnõustamine",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_sustlavahetus_ja_tarvikute_jagamine",
+      "url": "https://www.convictus.ee/teenused/sustlavahetus-ja-tarvikute-jagamine",
+      "title": "Süstlavahetus ja tarvikute jagamine",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_tugigrupid_ja_noustamine_vanglates",
+      "url": "https://www.convictus.ee/teenused/tugigrupid-ja-noustamine-vanglates",
+      "title": "Tugigrupid ja nõustamine vanglates",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_tugigrupp_naistele",
+      "url": "https://www.convictus.ee/teenused/tugigrupp-naistele",
+      "title": "Tugigrupp naistele",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_tugiisiku_noustamine",
+      "url": "https://www.convictus.ee/teenused/tugiisiku-noustamine",
+      "title": "Tugiisiku nõustamine",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_turvaline_seksuaalkaitumine",
+      "url": "https://www.convictus.ee/teenused/turvaline-seksuaalkaitumine",
+      "title": "Turvaline seksuaalkäitumine",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    }
+  ]
+}

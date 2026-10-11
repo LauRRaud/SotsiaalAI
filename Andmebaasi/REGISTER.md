@@ -16,9 +16,9 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | taastatud_allikad | 0 | 22 | Serveri vanast indeksist taastatud tekst. Enne importi võrrelda põhipakettidega. |
 
 <!-- corpus-state:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
-## RAG-i seis: mis on serveris (korpus v79)
+## RAG-i seis: mis on serveris (korpus v80)
 
-Seis 11.10.2026: serveris töötav RAG (korpus **v79**, indeks `2c886587`) sisaldab **9 641 dokumenti** (90 388 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
+Seis 11.10.2026: serveris töötav RAG (korpus **v80**, indeks `c7d36b42`) sisaldab **9 698 dokumenti** (90 604 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
 
 | Mis on RAG-is | Dokumente | Kus on loend |
 |---|---:|---|
@@ -29,11 +29,11 @@ Seis 11.10.2026: serveris töötav RAG (korpus **v79**, indeks `2c886587`) sisal
 | Õigusaktid | 594 | jaotis „Sisufailid“ |
 | Juhendid, infomaterjalid ja uuringud | 429 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
 | Ametlikud juhislehed (ametite veebilehed) | 950 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
-| Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) | 848 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
+| Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) | 905 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Hooldekodude kohamaksumus omavalitsuste kaupa | 79 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müügi- ja üüripunktid | 93 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müüjate lehed | 51 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
-| **Kokku** | **9641** | |
+| **Kokku** | **9698** | |
 
 <details><summary>Tehniline jaotus arendajale: kus allikafailid asuvad</summary>
 
@@ -47,7 +47,7 @@ Dokumentide arvud ei võrdu ülal olevate failide arvudega: üks fail võib anda
 | `veebilehed` | 361 | web_page 360, research_report 1 |
 | `juhendid_ja_uuringud` | 171 | information_material 81, research_report 46, official_guideline 38, policy_analysis 6 |
 
-Koodihoidlas (GitHub) ei ole 3125 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
+Koodihoidlas (GitHub) ei ole 3182 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
 
 | Allikas | Dokumente | Millest tehakse | Miks ei ole koodihoidlas |
 |---|---:|---|---|
@@ -55,7 +55,7 @@ Koodihoidlas (GitHub) ei ole 3125 dokumendi allikafaile; need on korpuse hoidlas
 | Hooldekodude kohamaksumuse lehed | 79 | Sotsiaalkindlustusameti hinnaseire tabelist skriptiga `scripts/rag-v2-care-prices.mjs`, iga omavalitsuse kohta üks leht ja üks ülevaade (ADR-104) | hooldekodude telefoninumbrid; leht tehakse tabelist uuesti |
 | Abivahendite müügi- ja üüripunktide lehed | 93 | Sotsiaalkindlustusameti kaarditabelist skriptiga `scripts/rag-v2-assistive-points.mjs`, iga omavalitsuse kohta üks leht (ADR-096) | punktide telefoninumbrid; leht tehakse tabelist uuesti |
 | Abivahendite müüjate lehed | 51 (18 väljaandjat) | nimekiri `register/web_pages_vendors.json`, korjaja `scripts/rag-v2-web-pages.mjs` (ADR-095) | ettevõtete enda tekstid ja telefoninumbrid |
-| Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) | 848 (54 väljaandjat) | nimekirjad `register/web_pages_organisations.json` ja `register/web_pages_associations.json` ning nimekirjade `register/web_pages_coverage_1.json` ja `_2.json` organisatsioonid, korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-095, ADR-137, ADR-140) | organisatsioonide enda tekstid |
+| Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) | 905 (58 väljaandjat) | nimekirjad `register/web_pages_organisations.json`, `register/web_pages_associations.json` ja `register/web_pages_associations_2.json` ning nimekirjade `register/web_pages_coverage_1.json` ja `_2.json` organisatsioonid, korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-095, ADR-137, ADR-140) | organisatsioonide enda tekstid |
 | Asutuste juhislehed, valitud reegliga | 590 (11 väljaandjat) | nimekirjad `register/web_pages_coverage_1.json` ja `register/web_pages_coverage_2.json`, korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-137) | valik võtab lehest välja isikut nimetavad lõigud; repos olevate lehtede igakuine uuendus asendaks sellise koopia lugeja omaga |
 | Uuringud ja juhendid väljaandja ametlikult aadressilt | 257 (30 väljaandjat) | asutuste veebilehtede uuringute ja juhendite loenditest ning ajakirja Sotsiaaltöö uudiskirjas viidatud dokumentidest (`register/newsletter_documents.json`); iga fail on alla laaditud väljaandja ametlikult aadressilt | suured failid; allikas on ametlik aadress |
 
@@ -2357,7 +2357,7 @@ Koodihoidla allikafailid, mida RAG-is ei ole (61):
 <!-- corpus-outside:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
 ## RAG-is olevad lehed ja kontaktid
 
-Serveris töötav RAG, korpus v79, 11.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
+Serveris töötav RAG, korpus v80, 11.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
 
 ### Hooldekodude kohamaksumuse lehed (79)
 
@@ -2597,10 +2597,62 @@ Serveris töötav RAG, korpus v79, 11.10.2026. Siin on loend sellest, mida jaoti
 | Tervise Abi | Kuulmisabivahendid, häiresüsteemid ja lisad | <https://terviseabi.ee/tootekategooria/kuulmisabivahendid/> |
 | Tervise Abi | Tallinna sotsiaalvalveteenus | <https://terviseabi.ee/teenused/sotsiaalvalveteenus> |
 
-### Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) (848)
+### Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) (905)
 
 | Väljaandja | Pealkiri | Aadress |
 |---|---|---|
+| Al-Anon Eesti | 12 sammu | <https://alanoneesti.wordpress.com/12-sammu> |
+| Al-Anon Eesti | 12 traditsiooni | <https://alanoneesti.wordpress.com/12-traditsiooni> |
+| Al-Anon Eesti | Alkohoolikute Täiskasvanud Lapsed | <https://alanoneesti.wordpress.com/atl> |
+| Al-Anon Eesti | Korduma kippuvad küsimused | <https://alanoneesti.wordpress.com/lood> |
+| Al-Anon Eesti | Tutvustus | <https://alanoneesti.wordpress.com/> |
+| Anonüümsed Alkohoolikud | 12 sammu | <https://aaestonia.com/mis-on-aa/12-sammu/> |
+| Anonüümsed Alkohoolikud | 12 traditsiooni | <https://aaestonia.com/mis-on-aa/12-traditsiooni/> |
+| Anonüümsed Alkohoolikud | 15 nõuannet | <https://aaestonia.com/alkoholiprobleem/15-nouannet/> |
+| Anonüümsed Alkohoolikud | AA ei ole | <https://aaestonia.com/mis-on-aa/aa-ei-ole/> |
+| Anonüümsed Alkohoolikud | AA on | <https://aaestonia.com/mis-on-aa/aa-on/> |
+| Anonüümsed Alkohoolikud | AA roll ühiskonnas | <https://aaestonia.com/mis-on-aa/aa-roll-uhiskonnas/> |
+| Anonüümsed Alkohoolikud | AA-st lähemalt | <https://aaestonia.com/mis-on-aa/aa-st-lahemalt/> |
+| Anonüümsed Alkohoolikud | Alkoholiprobleem? | <https://aaestonia.com/alkoholiprobleem/> |
+| Anonüümsed Alkohoolikud | Anonüümsus | <https://aaestonia.com/mis-on-aa/anonuumsus/> |
+| Anonüümsed Alkohoolikud | Kas AA on sinu jaoks? | <https://aaestonia.com/alkoholiprobleem/kas-aa-on-sinu-jaoks/> |
+| Anonüümsed Alkohoolikud | Kas AA sobib kõigile? | <https://aaestonia.com/alkoholiprobleem/kas-aa-sobib-koigile/> |
+| Anonüümsed Alkohoolikud | Korduma kippuvad küsimused | <https://aaestonia.com/mis-on-aa/korduma-kippuvad-kusimused/> |
+| Anonüümsed Alkohoolikud | Kuidas AA rühm toimib | <https://aaestonia.com/alkoholiprobleem/kuidas-aa-ruhm-toimib/> |
+| Anonüümsed Alkohoolikud | Miks me oleme täna siin | <https://aaestonia.com/alkoholiprobleem/miks-me-oleme-tana-siin/> |
+| Anonüümsed Alkohoolikud | Mis anonüümsus tähendab? | <https://aaestonia.com/ajakirjandus/mis-anonuumsus-tahendab/> |
+| Anonüümsed Alkohoolikud | Mis on AA? | <https://aaestonia.com/mis-on-aa/> |
+| Anonüümsed Alkohoolikud | Sotsiaaltöötajatele | <https://aaestonia.com/ajakirjandus/sotsiaaltootajatele/> |
+| Anonüümsed Alkohoolikud | Teavet AA lahtiste koosolekute kohta | <https://aaestonia.com/ajakirjandus/teavet-aa-lahtiste-koosolekute-kohta/> |
+| Anonüümsed Alkohoolikud | Tere tulemast! | <https://aaestonia.com/alkoholiprobleem/tere-tulemast/> |
+| Anonüümsed Alkohoolikud | Tervishoiutöötajatele | <https://aaestonia.com/ajakirjandus/tervishoiutootajatele/> |
+| Anonüümsed Alkohoolikud | Tööandjatele | <https://aaestonia.com/ajakirjandus/tooandjatele/> |
+| Convictus Eesti MTÜ | Convictus Eesti MTÜ | <https://www.convictus.ee/> |
+| Convictus Eesti MTÜ | HIV ja C-hepatiit kiirtestimine | <https://www.convictus.ee/teenused/hiv-ja-c-hepatiit-kiirtestimine> |
+| Convictus Eesti MTÜ | Kahjude vähendaja nõustamine | <https://www.convictus.ee/teenused/kahjude-vahendaja-noustamine> |
+| Convictus Eesti MTÜ | Kahjude vähendamise buss | <https://www.convictus.ee/keskused/kahjude-vahendamise-buss> |
+| Convictus Eesti MTÜ | Kahjude vähendamise teenus välitööna | <https://www.convictus.ee/teenused/kahjude-vahendamise-teenus-valitoona> |
+| Convictus Eesti MTÜ | Kogemusnõustamine | <https://www.convictus.ee/teenused/kogemusnoustamine> |
+| Convictus Eesti MTÜ | Lastekodu 6 Kahjude Vähendamise Keskus | <https://www.convictus.ee/keskused/lastekodu> |
+| Convictus Eesti MTÜ | Leia abi: Kogukond | <https://www.convictus.ee/kogukond> |
+| Convictus Eesti MTÜ | Leia abi: Lähedane | <https://www.convictus.ee/lahedane> |
+| Convictus Eesti MTÜ | Leia abi: Tarvitajale | <https://www.convictus.ee/tarvitaja> |
+| Convictus Eesti MTÜ | Loovteraapia | <https://www.convictus.ee/teenused/loovteraapia> |
+| Convictus Eesti MTÜ | Maardu Kahjude Vähendamise Keskus | <https://www.convictus.ee/keskused/maardu> |
+| Convictus Eesti MTÜ | Ohtlike jäätmete kogumine | <https://www.convictus.ee/teenused/kasutatud-tarvikute-kogumine> |
+| Convictus Eesti MTÜ | Ohutu tarvitamine ja üledooside ennetamine (Naloksoon) | <https://www.convictus.ee/teenused/ohutu-tarvitamine-ja-uledooside-ennetamine-naloksoon> |
+| Convictus Eesti MTÜ | Plasti 23 Kahjude Vähendamise Keskus | <https://www.convictus.ee/keskused/plasti> |
+| Convictus Eesti MTÜ | Programm SÜTIK | <https://www.convictus.ee/programm-sutik> |
+| Convictus Eesti MTÜ | Psühholoogiline nõustamine | <https://www.convictus.ee/teenused/psuhholoogiline-noustamine> |
+| Convictus Eesti MTÜ | Päevakeskus | <https://www.convictus.ee/teenused/paevakeskus> |
+| Convictus Eesti MTÜ | Rakvere Kahjude Vähendamise Keskus | <https://www.convictus.ee/keskused/rakvere> |
+| Convictus Eesti MTÜ | Sitsi 28 Kahjude Vähendamise Keskus | <https://www.convictus.ee/keskused/sitsi> |
+| Convictus Eesti MTÜ | Sotsiaalnõustamine | <https://www.convictus.ee/teenused/sotsiaalnoustamine> |
+| Convictus Eesti MTÜ | Süstlavahetus ja tarvikute jagamine | <https://www.convictus.ee/teenused/sustlavahetus-ja-tarvikute-jagamine> |
+| Convictus Eesti MTÜ | Tugigrupid ja nõustamine vanglates | <https://www.convictus.ee/teenused/tugigrupid-ja-noustamine-vanglates> |
+| Convictus Eesti MTÜ | Tugigrupp naistele | <https://www.convictus.ee/teenused/tugigrupp-naistele> |
+| Convictus Eesti MTÜ | Tugiisiku nõustamine | <https://www.convictus.ee/teenused/tugiisiku-noustamine> |
+| Convictus Eesti MTÜ | Turvaline seksuaalkäitumine | <https://www.convictus.ee/teenused/turvaline-seksuaalkaitumine> |
 | Dementsuse Kompetentsikeskus | Dementsuse Kompetentsikeskus | <https://dementsus.ee/dementsuse-kompetentsikeskus> |
 | Dementsuse Kompetentsikeskus | Abivahendid | <https://dementsus.ee/abivahendid> |
 | Dementsuse Kompetentsikeskus | Dementsus | <https://dementsus.ee/dementsus> |
@@ -3067,6 +3119,11 @@ Serveris töötav RAG, korpus v79, 11.10.2026. Siin on loend sellest, mida jaoti
 | MTÜ Iseseisev Elu | Tooted | <https://www.iseseisev-elu.ee/tooted> |
 | MTÜ Iseseisev Elu | Töötamise toetamise teenus | <https://www.iseseisev-elu.ee/teenused/tootamine> |
 | MTÜ Iseseisev Elu | Visioon, missioon | <https://www.iseseisev-elu.ee/iseseisev-elu/visioon-missioon> |
+| MTÜ Laste ja Noorte Kriisiprogramm | Laager | <https://lastekriis.ee/laagrid/> |
+| MTÜ Laste ja Noorte Kriisiprogramm | Lapsele | <https://lastekriis.ee/lapsele/> |
+| MTÜ Laste ja Noorte Kriisiprogramm | Spetsialistile | <https://lastekriis.ee/spetsialistile/> |
+| MTÜ Laste ja Noorte Kriisiprogramm | Teenused ja hinnakiri | <https://lastekriis.ee/teenused/> |
+| MTÜ Laste ja Noorte Kriisiprogramm | Vanemale | <https://lastekriis.ee/vanemale/> |
 | MTÜ Lastekaitse Liit | Hea nõu lastega peredele | <https://www.lastekaitseliit.ee/et/hea-nou-lastega-peredele> |
 | MTÜ Lastekaitse Liit | Korduma kippuvad küsimused | <https://www.lastekaitseliit.ee/et/korduma-kippuvad-kusimused> |
 | MTÜ Lastekaitse Liit | Kuhu pöörduda abi saamiseks? | <https://www.lastekaitseliit.ee/et/kuhu-poorduda-abi-saamiseks> |
