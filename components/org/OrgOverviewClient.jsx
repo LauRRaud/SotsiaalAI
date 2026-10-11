@@ -25,7 +25,7 @@ import OrgPart from "./OrgPart";
  *
  * Vaated on failis ./desk/DeskViews.jsx, reeglid failis ./desk/orgDesk.js.
  */
-export default function OrgOverviewClient({ context }) {
+export default function OrgOverviewClient({ context, closedParts = [] }) {
   const { t } = useI18n();
   const router = useRouter();
   /* ⓘ kiirmenüüs: sama selgitus mis organisatsioonide avalehel. */
@@ -33,7 +33,7 @@ export default function OrgOverviewClient({ context }) {
   const [view, setView] = useState("desk");
   const rootRef = useRef(null);
 
-  const tiles = useMemo(() => deskTiles(context, { t }), [context, t]);
+  const tiles = useMemo(() => deskTiles(context, { t, closed: closedParts }), [closedParts, context, t]);
   const noticeKey = deskNoticeKey(context);
 
   /* Tavaline vajutus avab osa lehe sees; uue vahekaardi vajutus jääb brauserile. */

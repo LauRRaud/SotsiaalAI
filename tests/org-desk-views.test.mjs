@@ -106,6 +106,9 @@ test('laua plaadid: igapäevane töö ees, haldus lõpus, viimane on „Minu koh
 
   /* Õigusteta liige näeb ainult seda, mis on iga liikme oma. */
   assert.deepEqual(deskTiles(context(), { t }).map((tile) => tile.key), ['dispatch', 'service_reports', 'support', 'structure', 'place']);
+  /* Lipuga suletud lehe plaati lauale ei tule (see viiks lehele „ei leitud”). */
+  assert.deepEqual(deskTiles(context(), { t, closed: ['dispatch', 'service_reports'] }).map((tile) => tile.key), ['support', 'structure', 'place']);
+  assert.ok(fs.readFileSync(new URL('../app/org/[orgId]/page.jsx', import.meta.url), 'utf8').includes('closedParts={closedParts}'));
   for (const lang of LANGS) {
     const tr = translator(lang);
     for (const tile of deskTiles(context({ capabilities: grants(...ORGANIZATION_CAPABILITIES), activeModules: [...ORGANIZATION_MODULE_KEYS] }), { t: tr })) {

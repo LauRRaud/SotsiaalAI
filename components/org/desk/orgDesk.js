@@ -38,14 +38,17 @@ function text(value) {
  * mis seal on. Viimane plaat on alati „Minu koht" (`place`): see ei ole omaette
  * marsruut, vaid laua enda teine vaade (`href` puudub).
  */
-export function deskTiles(context, { t }) {
+export function deskTiles(context, { t, closed = [] }) {
+  /* `closed`: osad, mille leht on serveris suletud (lipp väljas). Plaat, mis
+     viiks lehele „ei leitud", lauale ei tule. */
+  const shut = new Set(closed || []);
   const organizationId = context?.organization?.id || "";
   const rank = (key) => {
     const index = DESK_ORDER.indexOf(key);
     return index < 0 ? DESK_ORDER.length : index;
   };
   const tiles = visibleOrgParts(organizationId, context)
-    .filter((part) => part.key !== "overview")
+    .filter((part) => part.key !== "overview" && !shut.has(part.key))
     .sort((a, b) => rank(a.key) - rank(b.key))
     .map((part) => ({ key: part.key, href: part.href, name: t(`org.nav.${part.key}`), line: t(`org.desk.lines.${part.key}`) }));
   return [...tiles, { key: "place", href: "", name: t("org.desk.place.name"), line: t("org.desk.lines.place") }];
