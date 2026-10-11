@@ -1,8 +1,8 @@
 "use client";
 
 /**
- * Eelpöördumise ülejäänud vaated: abiline, ülevaade, adressaat, tekst, saatmine
- * ja „Minu eelpöördumised".
+ * Eelpöördumise ülejäänud vaated: abiline, ülevaade, adressaat, tekst, saatmine,
+ * saadetud pöördumise lugemisvaated (seis ja tekst) ja „Minu eelpöördumised".
  *
  * Nagu eelinfo vaated (CollectViews.jsx), ei hoia need olekut: väärtused ja
  * tegevused tulevad lehelt. Loendite kaardid (adressaat, salvestatud
@@ -21,6 +21,7 @@ import Input from "@/components/ui/Input";
 
 import { LineField } from "./CollectViews";
 import lists from "./lists.module.css";
+import receiver from "./receiver.module.css";
 import styles from "./views.module.css";
 
 const TEXT_LIMIT = 12000;
@@ -211,6 +212,64 @@ export function SendView({ tr, summary, notices, privacyPrompt, choices }) {
             <ActionCard key={choice.key} title={choice.title} description={choice.description} disabled={choice.disabled} onClick={choice.onClick} />
           ))}
         </ActionCardGrid>
+      </div>
+    </StepPanel>
+  );
+}
+
+/**
+ * Saadetud pöördumise seis: mis seisus see on, kellele ja millal läks ning mis edasi saab.
+ * Muutmist ega uuesti saatmist siin ei ole (server saadetud pöördumist muuta ei luba);
+ * otsus, mida näidata, on failis senderModel.js (`sentInquiryView`).
+ *
+ * `facts`: `[[silt, väärtus]]`; `hint`: lause koos lingiga lehele, kus saab tagasi võtta või
+ * parandust saata; `actions`: vaate tegevused (vestlusruum, kopeerimine, alla laadimine).
+ */
+export function SentStateView({ tr, topic, state, tone, facts, next, hint, actions }) {
+  return (
+    <StepPanel title={tr("steps.sent_state.title", "Pöördumise seis")} question={topic} actions={actions}>
+      <div className={styles.stack}>
+        <p className={receiver.state}>
+          <span className={lists.chip} data-tone={tone}>
+            {state}
+          </span>
+        </p>
+        {facts.length ? (
+          <dl className={styles.rows}>
+            {facts.map(([label, value]) => (
+              <div key={label} className={styles.row}>
+                <dt className={styles.rowLabel}>{label}</dt>
+                <dd className={styles.rowValue}>{value}</dd>
+              </div>
+            ))}
+          </dl>
+        ) : null}
+        {next ? <p className={styles.quiet}>{next}</p> : null}
+        {hint ? (
+          <p className={styles.quiet}>
+            {hint.text}{" "}
+            <a className={styles.textLink} href={hint.href}>
+              {hint.label}
+            </a>
+          </p>
+        ) : null}
+      </div>
+    </StepPanel>
+  );
+}
+
+/** Saadetud pöördumise tekst lugemiseks: inimese kirjeldus ja pöördumise tekst, nagu saaja neid näeb. */
+export function SentTextView({ tr, lead, situation, text }) {
+  return (
+    <StepPanel title={tr("steps.sent_text.title", "Pöördumise tekst")} lead={lead}>
+      <div className={styles.stack}>
+        {situation ? <p className={receiver.situation}>{situation}</p> : null}
+        {text ? (
+          <>
+            <p className={styles.subheading}>{tr("views.sent.text_heading", "Pöördumise tekst")}</p>
+            <p className={receiver.text}>{text}</p>
+          </>
+        ) : null}
       </div>
     </StepPanel>
   );

@@ -3041,7 +3041,8 @@
             "description": "Use the information saved in your private Journey and choose what you want to share in the pre-inquiry.",
             "description_open": "Open your Journey and start the pre-inquiry from there: the information you choose comes along. The Journey stays private."
           }
-        }
+        },
+        "mine": "My pre-inquiries · {count}"
       },
       "overview": {
         "title": "Pre-info overview",
@@ -3118,6 +3119,14 @@
         "saved": {
           "title": "My pre-inquiries",
           "short": "Mine"
+        },
+        "sent_state": {
+          "title": "Status of the pre-inquiry",
+          "short": "Status"
+        },
+        "sent_text": {
+          "title": "Text of the pre-inquiry",
+          "short": "Text"
         }
       },
       "new_confirm": "Starting a new one clears the current unsaved text. Press again if you want to start a new one.",
@@ -3265,6 +3274,29 @@
           "network": {
             "title": "Network",
             "lead": "If helping this person needs another specialist, involve them from here. The person decides whether they agree to the sharing."
+          }
+        },
+        "sent": {
+          "recipient": "Recipient",
+          "no_recipient": "not chosen",
+          "sent_at": "Sent",
+          "channel_platform": "on the platform",
+          "channel_email": "by e-mail",
+          "last_reply": "Latest reply",
+          "sharings_link": "My shares",
+          "recall_hint": "Until the recipient has accepted the pre-inquiry, you can recall it on the page",
+          "correct_hint": "If something needs correcting, you can send a correction on the page",
+          "text_lead": "This is the text you sent. A sent pre-inquiry can no longer be edited.",
+          "text_lead_unsent": "The text of an archived pre-inquiry. Reopen it to edit.",
+          "text_heading": "Text of the pre-inquiry",
+          "next": {
+            "waiting": "The recipient has not accepted the pre-inquiry yet. When they do, you will see it here.",
+            "accepted": "The recipient has accepted the pre-inquiry. The answer will come to the shared conversation room.",
+            "answered": "The recipient has answered. The answer is in the shared conversation room.",
+            "external": "You sent this pre-inquiry by e-mail. The answer will come to your e-mail; the platform does not see whether it was accepted.",
+            "recalled": "You recalled this pre-inquiry. The recipient no longer sees it.",
+            "replaced": "You sent a correction to this pre-inquiry. The corrected pre-inquiry is the one that counts for the recipient.",
+            "archived": "This pre-inquiry was not sent and is archived."
           }
         }
       },

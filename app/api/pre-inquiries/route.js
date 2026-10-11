@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
 import { createPreInquiry, listVisiblePreInquiryPage } from "@/lib/preInquiries";
+import { withPreInquiryReplies } from "@/lib/preInquiryReplies";
 import { safeError } from "@/lib/privacy/safeError";
 import { enforcePreInquiryRateLimit, preInquiryErrorJson, publicPreInquiryError } from "@/lib/preInquiryApiBoundary";
 
@@ -41,7 +42,8 @@ export async function GET(request) {
     });
     return json({
       ok: true,
-      inquiries: page.items,
+      /* Pöörduja enda saadetud read kannavad ka seda, kas saaja on ühises ruumis vastanud. */
+      inquiries: await withPreInquiryReplies(auth.userId, page.items),
       page: { total: page.total, hasMore: page.hasMore, nextCursor: page.nextCursor }
     });
   } catch (error) {

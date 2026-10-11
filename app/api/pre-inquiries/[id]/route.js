@@ -6,6 +6,7 @@ import {
   serializePreInquiry,
   updatePreInquiry
 } from "@/lib/preInquiries";
+import { withPreInquiryReplies } from "@/lib/preInquiryReplies";
 import { safeError } from "@/lib/privacy/safeError";
 import { enforcePreInquiryRateLimit, preInquiryErrorJson, publicPreInquiryError } from "@/lib/preInquiryApiBoundary";
 
@@ -46,9 +47,10 @@ export async function GET(request, context) {
     if (!inquiry) {
       return errorJson("api.common.not_found", 404, locale);
     }
+    const [serialized] = await withPreInquiryReplies(auth.userId, [serializePreInquiry(inquiry, { viewerId: auth.userId })]);
     return json({
       ok: true,
-      inquiry: serializePreInquiry(inquiry, { viewerId: auth.userId })
+      inquiry: serialized
     });
   } catch (error) {
     console.error("[pre-inquiries] detail load failed", safeError(error));
