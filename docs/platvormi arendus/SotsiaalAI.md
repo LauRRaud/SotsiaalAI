@@ -4687,6 +4687,17 @@ Kasutaja loob konto, kinnitab e-posti, kasutab PIN-i ja saab oma konto kustutada
 kustutus käib päriselt läbi kõigi kihtide. Privaatsuspiirid on jõustatud serveris, mitte
 liideses — ka administraator ei pääse võõra kovisioonijuhtumi ega tööheaolu kirjete juurde.
 
+**Isikuandmete hoiatus.**
+Enne saatmist küsib platvorm üle, kui tekstis on telefoninumber, isikukood, e-posti aadress
+või aadress: muuda, saada varjatult või saada siiski. See kehtib vestluses abilisega, ruumi
+sõnumis, eelpöördumises ja dokumendi koostamisel; avalikus abikuulutuses varjatakse
+isikuandmed alati. Inimene saab hoiatuse konto seadetest välja lülitada (omaniku soov
+11.10.2026): siis läheb privaatne tekst küsimata nii, nagu ta selle kirjutas, avalik tekst
+varjatakse endiselt. Otsuse teeb server igal kontrollil. Tuvastaja reeglid vaadati 11.10
+üle: 25 tavalisest lausest sai enne 13 vale hoiatuse (kuupäev, summa, arve- ja viitenumber,
+registrikood, IBAN), pärast 3 (asutuse üldtelefon, aadress ja postkast, mida inimese omast
+eristada ei saa). Hoiatuse lause ja leitud liikide nimed on lehe keeles.
+
 **Keeled ja ligipääsetavus.**
 Platvorm töötab eesti, inglise ja vene keeles ning tõlkepariteeti kontrollib eraldi värav —
 üheski keeles ei tohi jääda auk. Ekraanilugeja, klaviatuurinavigatsioon ja liikumise
@@ -4713,6 +4724,7 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 | Jõudlus ja kulu | kvoodileke, L3 renewals-timerid, L5 kuluajalugu (S4.2 nr 13–15) |
 | Maksed | recurring on koodis ja väljas — **lüliti, mitte arendus**; päris ost toodangus tõendamata |
 | Admin | ADMIN-P0.2…P0.4, P1 |
+| Isikuandmete hoiatus | iga vestlussõnum teeb enne saatmist eraldi kontrollipäringu ka siis, kui hoiatus on väljas (kiirust saab võita, kui leht teab lüliti seisu) · asutuse üldkontakti ei eristata inimese omast · IBAN-i, nime ja terviseandmeid kohalik tuvastaja ei märka · varjatud tekstis on liigi nimi eesti keeles ka inglise ja vene lehel · teine tuvastaja (`PRIVACY_FILTER_PROVIDER`) on serveris kontrollimata · omaniku otsus: kas spetsialistil, kes kirjutab kliendi andmeid, tohib hoiatus väljas olla |
 | Koondite kaitse | **O-WB-K** — kas ühtne avalik number või mehhanismi kirjeldus; admini kriisiloendur vajab enne mistahes avalikku „k≥5" lubadust karastust (vt osa II ptk 1) |
 
 ---

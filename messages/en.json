@@ -2335,6 +2335,13 @@
       "current_pin_invalid": "Current PIN is invalid.",
       "user_not_found": "User not found.",
       "pin_setup_required": "Before changing your email or deleting your account, please create a PIN via recovery from your current email."
+    },
+    "privacy_prompt": {
+      "on_hint": "The personal data warning is on. Before sending, you are asked to confirm when the text contains a phone number, a personal identification code, an e-mail address or a street address.",
+      "off_hint": "The personal data warning is off. The text is sent as you wrote it. In a public listing personal data is always hidden.",
+      "turn_off": "Turn the warning off",
+      "turn_on": "Turn the warning on",
+      "save_failed": "The setting could not be saved."
     }
   },
   "materials_page": {
@@ -2570,7 +2577,14 @@
     "send_original": "Send anyway",
     "unavailable_title": "Privacy check is temporarily unavailable",
     "unavailable": "Your message was not sent. Please check again.",
-    "retry": "Check again"
+    "retry": "Check again",
+    "warning": "The text may contain personal data. Send only what is really needed.",
+    "types": {
+      "email": "e-mail address",
+      "phone": "phone number",
+      "estonian_personal_code": "personal identification code",
+      "address": "address"
+    }
   },
   "privacy": {
     "title": "Privacy",
