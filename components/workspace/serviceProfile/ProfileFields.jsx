@@ -8,7 +8,9 @@
  * MÄRKIDE LOENDUR on vaikne rida kohe oma välja all (kujundusaudit K08: vanal
  * lehel seisis „12 / 1000" järgmise välja sildi küljes ja luges nagu selle
  * osa). Väljade vahe on loenduri ja järgmise sildi vahel selgelt suurem kui
- * välja ja tema loenduri vahel.
+ * välja ja tema loenduri vahel. Loendur ilmub alles piiri lähedal (reegel:
+ * `counterShown` failis profileModel.js): registrikoodi all seisev „8 / 1000" on müra ja iga
+ * loenduririda tegi vaate 18 px kõrgemaks.
  *
  * Siin ei ole olekut ega päringuid: kõik tuleb lehelt
  * (`ServiceProfileSurface` failis ../WorkspaceFeaturePage.jsx).
@@ -24,7 +26,7 @@ import Dropdown from "@/components/ui/Dropdown";
 import Input from "@/components/ui/Input";
 import { SERVICE_PROFILE_LIMITS } from "@/lib/serviceProviderProfileLimits";
 
-import { countyChoice, municipalityChoice, optionsWithSelected, splitList, toggleListValue } from "./profileModel";
+import { counterShown, countyChoice, municipalityChoice, optionsWithSelected, splitList, toggleListValue } from "./profileModel";
 import styles from "./profile.module.css";
 
 const lengthOf = (value) => (typeof value === "string" ? value.length : 0);
@@ -41,6 +43,8 @@ function Counter({ id, value, max }) {
 /** Üherealine väli sildi, vihje ja loenduriga. `size` ütleb, kui lai sisu on (sm, lg). */
 export function LineField({ label, hint, value, onChange, size, type, maxLength = SERVICE_PROFILE_LIMITS.shortText, placeholder, autoComplete, onFocus }) {
   const id = useId();
+  const counted = counterShown(value, maxLength);
+  const described = [hint ? `${id}-hint` : "", counted ? `${id}-count` : ""].filter(Boolean).join(" ");
   return (
     <div className={styles.field} data-size={size}>
       <label className={styles.fieldLabel} htmlFor={id}>
@@ -53,11 +57,11 @@ export function LineField({ label, hint, value, onChange, size, type, maxLength 
         maxLength={maxLength}
         placeholder={placeholder}
         autoComplete={autoComplete}
-        describedBy={hint ? `${id}-hint ${id}-count` : `${id}-count`}
+        describedBy={described || undefined}
         onFocus={onFocus}
         onChange={(event) => onChange?.(event.target.value)}
       />
-      <Counter id={`${id}-count`} value={value} max={maxLength} />
+      {counted ? <Counter id={`${id}-count`} value={value} max={maxLength} /> : null}
       {hint ? (
         <span className={styles.fieldHint} id={`${id}-hint`}>
           {hint}
@@ -72,7 +76,7 @@ export function TextField({ label, hint, value, onChange, rows = 3, maxLength = 
   return (
     <div className={styles.counted}>
       <TextAreaField label={label} hint={hint} value={value} rows={rows} maxLength={maxLength} onChange={onChange} />
-      <Counter value={value} max={maxLength} />
+      {counterShown(value, maxLength) ? <Counter value={value} max={maxLength} /> : null}
     </div>
   );
 }
@@ -85,6 +89,7 @@ export function TextField({ label, hint, value, onChange, rows = 3, maxLength = 
 export function ChipsField({ label, hint, value, options, onChange, labelHidden = false }) {
   return (
     <ChoiceChips
+      keepColumns
       label={label}
       labelHidden={labelHidden}
       hint={hint}

@@ -53,7 +53,7 @@ function ServiceView({ tp, service, options, onField, remove, note, save }) {
           value={service.name}
           onChange={(value) => onField("name", value)}
         />
-        <ChoiceRow
+        <ChoiceRow keepColumns
           label={tp("service_items.status", "Teenuse olek")}
           columns={options.status.length}
           options={options.status}
@@ -85,8 +85,8 @@ function ScopeView({ tp, service, onField, note, save }) {
       <div className={styles.stack}>
         {/* Kaks vastandlikku välja kõrvuti: mis kuulub teenuse sisse ja mis mitte. */}
         <div className={styles.pair}>
-          <TextField label={tp("service_items.includes_text", "Mida teenus sisaldab")} value={service.includesText} rows={4} onChange={(value) => onField("includesText", value)} />
-          <TextField label={tp("service_items.excludes_text", "Mida teenus ei sisalda")} value={service.excludesText} rows={4} onChange={(value) => onField("excludesText", value)} />
+          <TextField label={tp("service_items.includes_text", "Mida teenus sisaldab")} value={service.includesText} rows={3} onChange={(value) => onField("includesText", value)} />
+          <TextField label={tp("service_items.excludes_text", "Mida teenus ei sisalda")} value={service.excludesText} rows={3} onChange={(value) => onField("excludesText", value)} />
         </div>
         <TextField label={tp("service_items.additional_info", "Lisainfo")} value={service.additionalInfo} rows={2} onChange={(value) => onField("additionalInfo", value)} />
       </div>
@@ -181,7 +181,7 @@ function PlacesView({ tp, places, note, save }) {
       }
     >
       {places.options.length ? (
-        <ChoiceChips label={tp("service_items.locations", "Teeninduskohad")} options={places.options} values={places.values} onToggle={places.onToggle} />
+        <ChoiceChips keepColumns label={tp("service_items.locations", "Teeninduskohad")} options={places.options} values={places.values} onToggle={places.onToggle} />
       ) : (
         <p className={styles.quiet}>
           {tp(
@@ -199,7 +199,7 @@ function ReachView({ tp, service, options, area, profileCounty, onField, note, s
   return (
     <StepPanel title={tp("views.reach.title", "Teenuse piirkond")} note={note} actions={save}>
       <div className={styles.stack}>
-        <ChoiceRow
+        <ChoiceRow keepColumns
           label={tp("service_items.service_area_type", "Piirkonna tüüp")}
           options={options.areaType}
           value={service.serviceAreaType}
@@ -234,7 +234,7 @@ function PriceView({ tp, service, options, onField, note, save }) {
   return (
     <StepPanel title={tp("views.price.title", "Hind")} note={note} actions={save}>
       <div className={styles.stack}>
-        <ChoiceRow label={tp("service_items.fee_type", "Hinnastus")} options={options.fee} value={service.feeType} onChange={(value) => onField("feeType", value)} />
+        <ChoiceRow keepColumns label={tp("service_items.fee_type", "Hinnastus")} options={options.fee} value={service.feeType} onChange={(value) => onField("feeType", value)} />
         <LineField size="lg" label={tp("service_items.price_description", "Hinna täpsustus")} value={service.priceDescription} onChange={(value) => onField("priceDescription", value)} />
       </div>
     </StepPanel>
@@ -246,7 +246,7 @@ function AvailabilityView({ tp, service, availability, onField, note, save }) {
   return (
     <StepPanel title={tp("views.availability.title", "Kättesaadavus")} note={note} actions={save}>
       <div className={styles.stack}>
-        <ChoiceRow
+        <ChoiceRow keepColumns
           label={tp("service_items.availability_status", "Kättesaadavus")}
           labelHidden
           columns={2}
@@ -307,21 +307,21 @@ function DirectView({ tp, service, options, onField, note, save }) {
   const columns = options.requirement.length;
   return (
     <StepPanel title={tp("views.direct.title", "Otsepöördumine ja suunamine")} note={note} actions={save}>
-      <ChoiceRow
+      <ChoiceRow keepColumns
         label={tp("service_items.direct_contact_allowed", "Otsekontakt lubatud")}
         columns={columns}
         options={options.requirement}
         value={service.directContactAllowed}
         onChange={(value) => onField("directContactAllowed", value)}
       />
-      <ChoiceRow
+      <ChoiceRow keepColumns
         label={tp("service_items.requires_ska_referral", "Vajab SKA suunamist")}
         columns={columns}
         options={options.requirement}
         value={service.requiresSkaReferral}
         onChange={(value) => onField("requiresSkaReferral", value)}
       />
-      <ChoiceRow
+      <ChoiceRow keepColumns
         label={tp("service_items.requires_specialist_referral", "Vajab spetsialisti suunamist")}
         columns={columns}
         options={options.requirement}
@@ -336,14 +336,14 @@ function KovView({ tp, service, options, onField, note, save }) {
   const columns = options.requirement.length;
   return (
     <StepPanel title={tp("views.kov.title", "KOV hindamine ja otsus")} note={note} actions={save}>
-      <ChoiceRow
+      <ChoiceRow keepColumns
         label={tp("service_items.requires_kov_assessment", "Vajab KOV hindamist")}
         columns={columns}
         options={options.requirement}
         value={service.requiresKovAssessment}
         onChange={(value) => onField("requiresKovAssessment", value)}
       />
-      <ChoiceRow
+      <ChoiceRow keepColumns
         label={tp("service_items.requires_kov_decision", "Vajab KOV otsust")}
         columns={columns}
         options={options.requirement}
@@ -374,7 +374,7 @@ function ChannelsView({ tp, service, options, onField, note, save }) {
   return (
     <StepPanel title={tp("views.channels.title", "Pöördumise viisid")} note={note} actions={save}>
       <div className={styles.stack}>
-        <ChoiceRow label={tp("service_items.contact_mode", "Kontaktiviis")} options={options.contactMode} value={service.contactMode} onChange={(value) => onField("contactMode", value)} />
+        <ChoiceRow keepColumns label={tp("service_items.contact_mode", "Kontaktiviis")} options={options.contactMode} value={service.contactMode} onChange={(value) => onField("contactMode", value)} />
         <div className={styles.cards}>
           <CheckCard
             title={tp("pre_inquiries.accepts_platform", "Võtab vastu Sotsiaal.pro siseseid eelpöördumisi")}
@@ -393,7 +393,7 @@ function ServiceContactView({ tp, service, options, onField, onContactStrategy, 
   return (
     <StepPanel title={tp("views.service_contact.title", "Teenuse kontakt")} note={note} actions={save}>
       <div className={styles.stack}>
-        <ChoiceRow
+        <ChoiceRow keepColumns
           label={tp("contact_strategy.label", "Teenuse kontakt")}
           labelHidden
           columns={options.contactStrategy.length}
@@ -476,7 +476,7 @@ function LicenceView({ tp, service, licence, note, save }) {
           </Notice>
         ) : choosing ? (
           <>
-            <ChoiceRow
+            <ChoiceRow keepColumns
               label={tp("views.licence.kind_label", "Teenuse liik tegevusloa kontrolli jaoks")}
               labelHidden
               /* Kolm veergu: kaheteistkümne variandiga jääb valik koos juhise ja nuppudega paneeli sisse. */

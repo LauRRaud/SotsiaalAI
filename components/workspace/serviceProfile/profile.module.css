@@ -51,8 +51,10 @@
   display: grid;
   gap: 0.3rem;
 }
+/* Lühike väli (registrikood, maakond): nii lai, et silt ei murdu kahele reale ka vene keeles
+   („Регистрационный код" tegi 11 rem laiuses väljas vaate 27 px kõrgemaks). */
 .field[data-size="sm"] {
-  flex: 0 1 11rem;
+  flex: 0 1 13rem;
   max-width: 13rem;
 }
 .field[data-size="md"] {
@@ -264,6 +266,38 @@
   color: var(--text-dim);
 }
 
+/* Avatav plokk korras ridadega: kontrolli vaates on ees see, mis vajab tähelepanu. */
+.fold {
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 1rem;
+  background: var(--glass-cell-bg);
+}
+.foldTitle {
+  min-height: var(--hit-target-min, 2.75rem);
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 1rem;
+  color: var(--text-warm);
+  font-weight: 560;
+  cursor: pointer;
+}
+.foldTitle:focus-visible {
+  outline: none;
+  border-radius: 1rem;
+  box-shadow: var(--focus-ring);
+}
+.fold[open] {
+  padding-bottom: 0.4rem;
+}
+.fold > .checks {
+  margin-inline: 1rem;
+}
+.textButton:disabled {
+  color: var(--text-dim);
+  text-decoration: none;
+  cursor: default;
+}
+
 /* --- Tekstinupp: tee teise vaatesse (loendisse tagasi, puuduva välja juurde) -- */
 .textButton {
   padding: 0;
@@ -405,7 +439,11 @@
    ülaserva vabas ribas (PanelFrame'i ülapolster). Rida on voos, seega kerib
    see sisuga kaasa ega saa midagi katta. */
 
-@container (max-width: 40rem) {
+/* Kitsas pind: väljad, kaardid ja read lähevad üksteise alla. Piir on 34 rem, mitte 40: töölaua
+   paneel on umbes 37,8 rem lai ja seal mahuvad kaks välja või kaarti kõrvuti. 40 rem piiriga
+   läks töölaua paneelis iga paar üksteise alla ja vaated ei mahtunud paneeli (kontakti vaade
+   580 px, teenuse „Mida teenus sisaldab" 606 px; mahub 476). */
+@container (max-width: 34rem) {
   .field,
   .field[data-size] {
     flex-basis: 100%;

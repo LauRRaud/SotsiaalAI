@@ -946,6 +946,59 @@ export function serviceProfilePublishChecks(form, mapEntry, areaChoices = null, 
   ];
 }
 
+/* --- Märkide loendur ------------------------------------------------------------------ */
+
+/* Mis osast piirist alates loendur välja all ilmub. */
+export const COUNTER_FROM = 0.8;
+
+/**
+ * Kas välja all on märkide loendur. Loendur on vajalik siis, kui piir on lähedal; tühja või
+ * lühikese väärtuse all on see müra ja võtab igalt väljareal 18 px (töölaua paneelis ei
+ * mahtunud vaated selle pärast ära).
+ */
+export function counterShown(value, max) {
+  const limit = Number(max);
+  if (!Number.isFinite(limit) || limit <= 0) return false;
+  return (typeof value === "string" ? value.length : 0) >= Math.floor(limit * COUNTER_FROM);
+}
+
+/* --- Avaldamise kontrolli vaade --------------------------------------------------- */
+
+/* Mitu tähelepanu vajavat rida on kontrolli vaates korraga ees. */
+export const PUBLISH_CHECK_PAGE = 5;
+
+/**
+ * Avaldamise kontrolli read vaate kujul. Ees on read, mis ei ole korras: takistavad enne, siis
+ * „vaata üle" ja viimasena teenuseosutaja enda valikud (assistendi luba), lehekülgede kaupa.
+ * Korras read on avatavas plokis.
+ *
+ * Enne olid kõik read ühes loendis: üheksa reaga oli vaade töölaua paneelis 503 px (mahub 476)
+ * ja kõik profiili vaated kerisid seal, sest töölaua paneelis määrab kõrgeim vaade lava kõrguse.
+ *
+ *   open   lehekülg ridadest, mis vajavad tähelepanu: `{ items, page, pages, from, to, total }`
+ *   ok     korras read
+ *   allOk  kas ükski rida ei vaja tähelepanu
+ */
+export function publishCheckView(rows, { page = 0, pageSize = PUBLISH_CHECK_PAGE } = {}) {
+  const list = (Array.isArray(rows) ? rows : []).filter(Boolean);
+  const rank = (row) => (row.blocking ? 0 : row.optional ? 2 : 1);
+  const open = list
+    .filter((row) => !row.ok)
+    .map((row, index) => ({ row, index }))
+    .sort((a, b) => rank(a.row) - rank(b.row) || a.index - b.index)
+    .map(({ row }) => row);
+  const size = Math.max(1, Math.floor(Number(pageSize)) || 1);
+  const pages = Math.max(1, Math.ceil(open.length / size));
+  const current = Math.max(0, Math.min(pages - 1, Math.floor(Number(page)) || 0));
+  const start = current * size;
+  const items = open.slice(start, start + size);
+  return {
+    open: { items, page: current, pages, from: items.length ? start + 1 : 0, to: start + items.length, total: open.length },
+    ok: list.filter((row) => row.ok),
+    allOk: open.length === 0
+  };
+}
+
 /* --- Vaated ---------------------------------------------------------------------- */
 
 /* Teeninduskohad on enne teenuseid: teenuse juures valitakse, millistes kohtades seda osutatakse. */
