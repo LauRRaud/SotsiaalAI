@@ -10,6 +10,14 @@ const ANSWER_REASONS = {
   unclear: { et: "Raske aru saada", en: "Hard to understand" },
   other: { et: "Muu", en: "Other" }
 };
+// Allika veateate põhjused haldurile (kasutaja näeb neid kataloogist, chat.sources.report_*).
+const SOURCE_REASONS = {
+  outdated: { et: "Info on aegunud", en: "Information is outdated" },
+  wrong_content: { et: "Sisu ei vasta", en: "Content does not match" },
+  broken_link: { et: "Link ei avane", en: "Link does not open" },
+  wrong_source: { et: "Vale allikas", en: "Wrong source" },
+  other: { et: "Muu", en: "Other" }
+};
 
 /** Üks teadete järjekord: avatud teadete laadimine ja lahendatuks märkimine auditi märkusega. */
 function useFeedbackQueue(endpoint) {
@@ -128,17 +136,32 @@ export default function RagAdminSourceFeedbackScreen({ locale = "en" }) {
           <h2>{et ? "Allikate veateated" : "Source error reports"}</h2>
           <Button type="button" size="sm" onClick={sources.load}>{et ? "Värskenda" : "Refresh"}</Button>
         </div>
+        <p>
+          {et
+            ? "Inimene teatas allikate paneelis ühe vastuse ühe allika veast. Dokumendi tunnuse järgi leiab allika korpusest; pööre ja viide ütlevad, millises vastuses seda kasutati."
+            : "A person reported an error of one source of one answer in the sources panel. The document id finds the source in the corpus; the turn and the reference tell which answer used it."}
+        </p>
         <QueueStatus queue={sources} et={et} emptyText={et ? "Avatud teateid ei ole." : "There are no open reports."} />
         <div className="ra-source-feedback-list">
           {sources.items.map(item => (
             <article key={item.id} className="ra-source-feedback-item">
               <div>
-                <strong>{item.category}</strong>
-                <code>{item.sourceId}</code>
-                <span>{item.sourceType}</span>
+                <strong>{SOURCE_REASONS[item.category]?.[et ? "et" : "en"] || item.category}</strong>
+                {item.sourceTitle ? <span>{item.sourceTitle}</span> : null}
                 <time dateTime={item.createdAt}>{formatTime(item.createdAt)}</time>
               </div>
-              {item.note ? <p>{item.note}</p> : null}
+              <div>
+                <span>{et ? "Dokument" : "Document"}</span>
+                <code>{item.sourceId}</code>
+                {item.turnId ? (
+                  <>
+                    <span>{et ? "Pööre" : "Turn"}</span>
+                    <code>{item.turnId}</code>
+                    <span>{item.sourceRef}</span>
+                  </>
+                ) : null}
+              </div>
+              {item.note ? <p className="ra-answer-feedback-text">{item.note}</p> : null}
               <ResolveControls queue={sources} item={item} et={et} />
             </article>
           ))}

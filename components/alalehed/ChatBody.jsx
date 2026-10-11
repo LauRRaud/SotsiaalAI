@@ -3069,6 +3069,7 @@ export default function ChatBody({
   return <>
     <ChatBodyView
       pilotMode={pilotMode}
+      convId={convId}
       embedded={embedded}
       t={t}
       locale={locale}

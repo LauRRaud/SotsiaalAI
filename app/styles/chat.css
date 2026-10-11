@@ -2332,8 +2332,7 @@ html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] [role="article"
   gap: 0.45rem;
 }
 
-.chat-source-links a,
-.chat-source-feedback > button {
+.chat-source-links a {
   display: inline-flex;
   align-items: center;
   min-height: 2.25rem;
@@ -2351,59 +2350,11 @@ html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] [role="article"
 }
 
 .chat-source-links a:hover,
-.chat-source-links a:focus-visible,
-.chat-source-feedback > button:hover,
-.chat-source-feedback > button:focus-visible {
+.chat-source-links a:focus-visible {
   border-color: var(--glass-border);
   background: rgba(255, 255, 255, 0.075);
 }
-
-.chat-source-feedback {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.55rem;
-  margin-left: auto;
-}
-
-.chat-source-feedback:has(form) {
-  flex-basis: 100%;
-  margin-left: 0;
-}
-
-.chat-source-feedback-status {
-  color: var(--text-dim);
-  font-size: var(--fs-small);
-}
-
-.chat-source-feedback form {
-  flex-basis: 100%;
-  width: 100%;
-  margin-top: 0.2rem;
-  padding-top: 0.75rem;
-  border-top: 1px solid var(--glass-cell-border);
-}
-
-.chat-source-feedback form,
-.chat-source-feedback label {
-  display: grid;
-  gap: 0.35rem;
-}
-
-/* .dd-trigger seisab `select`-i kõrval: platvormi valikmenüü on element
-   poolest <button>, seega ei taba teda ükski `select`-reegel. Ilma selleta
-   kaoks siit lehelt tema mõõt ja pind. */
-.chat-source-feedback select,
-.chat-source-feedback .dd-trigger,
-.chat-source-feedback textarea {
-  width: 100%;
-  padding: 0.65rem 0.75rem;
-  border: 1px solid var(--glass-cell-border);
-  border-radius: 0.7rem;
-  background: var(--glass-cell-bg);
-  color: inherit;
-  font: inherit;
-}
+/* Allika veateate link, märge ja vorm: ChatSourceReport.module.css ja FeedbackForm.module.css. */
 
 @media (max-width: 560px) {
   #chat-sources-panel {
@@ -2427,14 +2378,8 @@ html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] [role="article"
   }
 
   .chat-source-actions,
-  .chat-source-links,
-  .chat-source-feedback {
+  .chat-source-links {
     align-items: stretch;
-  }
-
-  .chat-source-feedback {
-    flex-basis: 100%;
-    margin-left: 0;
   }
 }
 
