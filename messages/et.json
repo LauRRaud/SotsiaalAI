@@ -4434,20 +4434,22 @@
       "warning_historical": "Ajalooline allikas",
       "warning_expired": "Allika kehtivus on lõppenud",
       "warning_stale": "Allikas vajab uut kontrolli",
-      "report_action": "Teata allika veast",
-      "report_category": "Vea liik",
-      "report_outdated": "Info võib olla aegunud",
-      "report_wrong_content": "Allika sisu ei vasta",
+      "report_action": "Teata veast",
+      "report_category": "Mis on allikaga valesti?",
+      "report_outdated": "Info on aegunud",
+      "report_wrong_content": "Sisu ei vasta",
       "report_broken_link": "Link ei avane",
-      "report_wrong_source": "Vastusega on seotud vale allikas",
-      "report_other": "Muu probleem",
-      "report_note": "Lühike märkus (valikuline)",
-      "report_send": "Saada teade",
+      "report_wrong_source": "Vale allikas",
+      "report_other": "Muu",
+      "report_note": "Soovi korral kirjuta täpsemalt",
+      "report_send": "Saada",
       "report_sending": "Saadan…",
-      "report_sent": "Teade saadeti. Aitäh.",
+      "report_sent": "Teade on saadetud. Aitäh!",
       "report_failed": "Teadet ei õnnestunud saata. Proovi uuesti.",
-      "report_open": "Sinu teade ootab kontrolli",
-      "report_resolved": "Sinu teade on kontrollitud"
+      "report_resolved": "Sinu teade on kontrollitud.",
+      "report_note_label": "Märkus",
+      "report_cancel": "Loobu",
+      "report_choose": "Vali üks põhjus."
     },
     "upload": {
       "aria": "Laadi dokument",
@@ -7671,6 +7673,15 @@
       "rate_limited": "Oled lühikese ajaga palju tagasisidet saatnud. Proovi tunni aja pärast uuesti.",
       "resolution_invalid": "Lahenduse märkus on kohustuslik, kuni 1000 märki.",
       "failed": "Tagasisidet ei õnnestunud saata. Proovi uuesti."
+    },
+    "source_feedback": {
+      "invalid": "Teadet ei saanud vastu võtta. Proovi uuesti.",
+      "reason_required": "Vali üks põhjus.",
+      "note_too_long": "Märkus on liiga pikk. Kirjuta kuni 500 märki.",
+      "not_found": "Seda allikat ei leitud. Värskenda vestlust ja proovi uuesti.",
+      "rate_limited": "Oled lühikese ajaga palju teateid saatnud. Proovi tunni aja pärast uuesti.",
+      "resolution_invalid": "Lahenduse märkus on kohustuslik, kuni 1000 märki.",
+      "failed": "Teadet ei õnnestunud saata. Proovi uuesti."
     }
   },
   "admin": {

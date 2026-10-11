@@ -2179,6 +2179,12 @@ model DataAuditLog {
   @@index([action, createdAt])
 }
 
+/// Inimese teade ühe vastuse ühe allika kohta („Teata veast" allikate paneelis).
+///
+/// Üks rida teataja, pöörde ja viite kohta (`dedupeKey`). `messageId` on vastuse sõnum, `turnId` vastuse pööre
+/// (M4PilotTurn.id) ja `sourceRef` allika viide selles vastuses (S3). `sourceId` on allika dokumendi tunnus korpuses
+/// ja `sourceTitle` selle pealkiri teate hetkel: nende järgi leiab haldur dokumendi ka siis, kui vestlust enam ei ole.
+/// Pealkiri on korpuse avalik sisu, mitte vestluse oma.
 model SourceFeedback {
   id             String    @id @default(cuid())
   reporterId     String
@@ -2194,6 +2200,9 @@ model SourceFeedback {
   resolvedAt     DateTime?
   resolvedById   String?
   resolutionNote String?   @db.VarChar(1000)
+  turnId         String?
+  sourceRef      String?
+  sourceTitle    String?   @db.VarChar(300)
 
   reporter   User  @relation("SourceFeedbackReporter", fields: [reporterId], references: [id], onDelete: Cascade)
   resolvedBy User? @relation("SourceFeedbackResolver", fields: [resolvedById], references: [id], onDelete: SetNull)

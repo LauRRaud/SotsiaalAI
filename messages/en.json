@@ -4434,20 +4434,22 @@
       "warning_historical": "Historical source",
       "warning_expired": "This source is no longer valid",
       "warning_stale": "This source needs a new check",
-      "report_action": "Report a source error",
-      "report_category": "Problem type",
-      "report_outdated": "Information may be outdated",
-      "report_wrong_content": "Source content does not match",
+      "report_action": "Report an error",
+      "report_category": "What is wrong with the source?",
+      "report_outdated": "Information is outdated",
+      "report_wrong_content": "Content does not match",
       "report_broken_link": "Link does not open",
-      "report_wrong_source": "Wrong source linked to the answer",
-      "report_other": "Other problem",
-      "report_note": "Short note (optional)",
-      "report_send": "Send report",
+      "report_wrong_source": "Wrong source",
+      "report_other": "Other",
+      "report_note": "Add details if you like",
+      "report_send": "Send",
       "report_sending": "Sending…",
-      "report_sent": "Report sent. Thank you.",
+      "report_sent": "Your report has been sent. Thank you!",
       "report_failed": "The report could not be sent. Please try again.",
-      "report_open": "Your report is awaiting review",
-      "report_resolved": "Your report has been reviewed"
+      "report_resolved": "Your report has been checked.",
+      "report_note_label": "Note",
+      "report_cancel": "Cancel",
+      "report_choose": "Choose one reason."
     },
     "upload": {
       "aria": "Upload document",
@@ -7671,6 +7673,15 @@
       "rate_limited": "You have sent a lot of feedback in a short time. Try again in an hour.",
       "resolution_invalid": "A resolution note is required, up to 1000 characters.",
       "failed": "The feedback could not be sent. Try again."
+    },
+    "source_feedback": {
+      "invalid": "The report could not be accepted. Try again.",
+      "reason_required": "Choose one reason.",
+      "note_too_long": "The note is too long. Write up to 500 characters.",
+      "not_found": "That source was not found. Refresh the conversation and try again.",
+      "rate_limited": "You have sent a lot of reports in a short time. Try again in an hour.",
+      "resolution_invalid": "A resolution note is required, up to 1000 characters.",
+      "failed": "The report could not be sent. Try again."
     }
   },
   "admin": {

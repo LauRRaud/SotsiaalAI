@@ -11,6 +11,7 @@ import { ChatRecordingNotice, ChatTopNotices } from "./view/ChatNotices";
 
 export default function ChatBodyView({
   pilotMode = null,
+  convId = null,
   embedded: _embedded,
   t,
   locale,
@@ -205,6 +206,7 @@ export default function ChatBodyView({
                 conversationSources={panelSources || conversationSources}
                 latestAnswerSources={panelSources || latestAnswerSources}
                 allConversationSources={panelSources || allConversationSources}
+                convId={isRoomMode ? null : convId}
                 onClose={closeSourcesPanel}
                 returnFocusRef={sourcesButtonRef}
               /> : null}

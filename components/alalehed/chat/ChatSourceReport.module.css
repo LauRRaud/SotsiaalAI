@@ -1,0 +1,43 @@
+/* Allika veateade allikate paneelis: vaikne link „Teata veast" allika tegevuste real, saadetud
+   teate märge ja vormi koht allika kaardi sees. Vorm ise on FeedbackForm. */
+
+/* Link on sama keelega mis saidi lingid (base.css `a`): õrn allajoon, hõljudes selgem. Ta ei ole
+   teine nupp „Ava allikas" kõrval, sest see on harva vajalik kõrvaltegevus. */
+.trigger {
+  width: auto;
+  min-height: 2.25rem;
+  margin: 0;
+  padding: 0.3rem 0.2rem;
+  border: 0;
+  border-radius: 0.4rem;
+  background: transparent;
+  box-shadow: none;
+  color: var(--text-dim);
+  font: inherit;
+  font-size: var(--fs-small, 0.875rem);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--link-underline);
+  cursor: pointer;
+  transition: text-decoration-color var(--dur-fast) var(--ease-soft);
+}
+.trigger:hover,
+.trigger[aria-expanded="true"] {
+  text-decoration-color: var(--link-underline-hover);
+}
+.trigger:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.status {
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+}
+.report {
+  flex-basis: 100%;
+  width: 100%;
+  min-width: 0;
+  margin-top: 0.2rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--glass-cell-border);
+}

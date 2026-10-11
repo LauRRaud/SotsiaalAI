@@ -1122,7 +1122,8 @@ body.ra-drawer-open .panel-close {
   background: var(--glass-cell-bg);
 }
 
-.ra-source-feedback-item > div:first-child {
+.ra-source-feedback-item > div:first-child,
+.ra-source-feedback-item > div:first-child + div {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem 0.8rem;
