@@ -1,0 +1,1316 @@
+{
+  "version": "web-pages-1",
+  "note": "Eesti Töötukassa enda lehed (korpus v84, ADR-146): teenuste ja hüvede lehed, korduvad küsimused, esindused ja sissejuhatavad lehed. Lehed on loetud teise tööriista 11.10.2026 brauserikorjest (kokkuvolditud plokid avatud) projekti enda lehelugejaga; saidi robotifail lubab lehtede aadresse, aga mitte teed, kust tekst laaditakse, seetõttu ei ole need lehed igakuises uuenduses ja jäävad korjepäeva seisuga, kuni Töötukassa lubab lugemist või annab teksti muul viisil. Välja jäid statistikalehed, jaluse halduslehed, blogi, partnerilehed, lõppenud töötutoetuse leht ja kogemuslood.",
+  "pages": [
+    {
+      "source_id": "tootukassa_artikkel_elektroonilised_osavotuandmed",
+      "url": "https://www.tootukassa.ee/et/artikkel/elektroonilised-osavotuandmed",
+      "title": "Elektroonilised osavõtuandmed",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_artikkel_koostookokkulepped_tootuna_registreeritud_kliendiga",
+      "url": "https://www.tootukassa.ee/et/artikkel/koostookokkulepped-tootuna-registreeritud-kliendiga",
+      "title": "Koostöökokkulepped töötuna registreeritud kliendiga",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_artikkel_toetatavad_pohikutsealad",
+      "url": "https://www.tootukassa.ee/et/artikkel/toetatavad-pohikutsealad",
+      "title": "Toetatavad põhikutsealad",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_artikkel_tooalaste_abivahendite_ja_tookoha_kohandamise_naited",
+      "url": "https://www.tootukassa.ee/et/artikkel/tooalaste-abivahendite-ja-tookoha-kohandamise-naited",
+      "title": "Tööalaste abivahendite ja töökoha kohandamise näited",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_artikkel_tooampsude_kkk",
+      "url": "https://www.tootukassa.ee/et/artikkel/tooampsude-kkk",
+      "title": "Tööampsude KKK",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_artikkel_tootushuvitiste_maksmise_susteemi_muudatuse_kkk",
+      "url": "https://www.tootukassa.ee/et/artikkel/tootushuvitiste-maksmise-susteemi-muudatuse-kkk",
+      "title": "Töötushüvitiste maksmise süsteemi muudatuse KKK",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_artikkel_tootuskindlustushuvitise_perioodi_kkk",
+      "url": "https://www.tootukassa.ee/et/artikkel/tootuskindlustushuvitise-perioodi-kkk",
+      "title": "Töötuskindlustushüvitise perioodi KKK",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_ametlikku_vaide_esitamine",
+      "url": "https://www.tootukassa.ee/et/jalus/ametlikku/vaide-esitamine",
+      "title": "Vaide esitamine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_karjaarikujundajale_karjaarikujundamine",
+      "url": "https://www.tootukassa.ee/et/karjaarikujundajale/karjaarikujundamine",
+      "title": "Karjääri kujundamine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_karjaarikujundajale_oskuste_arendamine",
+      "url": "https://www.tootukassa.ee/et/karjaarikujundajale/oskuste-arendamine",
+      "title": "Oskuste arendamine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_et_kontaktid",
+      "url": "https://www.tootukassa.ee/et/kontaktid",
+      "title": "Üldkontakt",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_kontaktid_esindused",
+      "url": "https://www.tootukassa.ee/et/kontaktid/esindused",
+      "title": "Esindused | Töötukassa",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_kontaktid_juhatus_ja_noukogu",
+      "url": "https://www.tootukassa.ee/et/kontaktid/juhatus-ja-noukogu",
+      "title": "Juhatus ja nõukogu",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_et_koolitajad",
+      "url": "https://www.tootukassa.ee/et/koolitajad?pageSize=20",
+      "title": "Koolitajate otsing",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_et_koondamine_ja_maksejouetus",
+      "url": "https://www.tootukassa.ee/et/koondamine-ja-maksejouetus",
+      "title": "Koondamine ja maksejõuetus",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_et_noustamisteenused",
+      "url": "https://www.tootukassa.ee/et/noustamisteenused",
+      "title": "Nõustamisteenuste osutajad",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_otseteed_avaldused_ja_vormid",
+      "url": "https://www.tootukassa.ee/et/otseteed/avaldused-ja-vormid",
+      "title": "Avaldused ja vormid",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_et_rehabilitatsioon",
+      "url": "https://www.tootukassa.ee/et/rehabilitatsioon",
+      "title": "Tööalase rehabilitatsiooni osutajad",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_teenused_ettevotlusega_alustamine",
+      "url": "https://www.tootukassa.ee/et/teenused/ettevotlusega-alustamine",
+      "title": "Ettevõtlusega alustamine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_ettevotlusega_alustamine_sai_taotleda_kuni_31032026_evat_korduma_kippuvad_kusimused",
+      "url": "https://www.tootukassa.ee/et/teenused/ettevotlusega-alustamine-sai-taotleda-kuni-31032026/evat-korduma-kippuvad-kusimused",
+      "title": "EVAT korduma kippuvad küsimused",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_ettevotlusega_alustamine_ettevotluse_jarelteenused",
+      "url": "https://www.tootukassa.ee/et/teenused/ettevotlusega-alustamine/ettevotluse-jarelteenused",
+      "title": "Ettevõtluse järelteenused",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_ettevotlusega_alustamine_evat_kasutamine",
+      "url": "https://www.tootukassa.ee/et/teenused/ettevotlusega-alustamine/evat-kasutamine",
+      "title": "EVAT kasutamine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_ettevotlusega_alustamine_evat_kasutamise_kontroll",
+      "url": "https://www.tootukassa.ee/et/teenused/ettevotlusega-alustamine/evat-kasutamise-kontroll",
+      "title": "EVAT kasutamise kontroll",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_teenused_eures_euroopa_toovahenduse_teenused",
+      "url": "https://www.tootukassa.ee/et/teenused/eures-euroopa-toovahenduse-teenused",
+      "title": "EURES (Euroopa töövahenduse teenused)",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_eures_euroopa_toovahenduse_teenused_teiste_riikide_tooturuasutused",
+      "url": "https://www.tootukassa.ee/et/teenused/eures-euroopa-toovahenduse-teenused/teiste-riikide-tooturuasutused",
+      "title": "Teiste riikide tööturuasutused",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_eures_euroopa_toovahenduse_teenused_too_ja_tootaja_euroopast_eures",
+      "url": "https://www.tootukassa.ee/et/teenused/eures-euroopa-toovahenduse-teenused/too-ja-tootaja-euroopast-eures",
+      "title": "Töö ja töötaja Euroopast (EURES)",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_eures_euroopa_toovahenduse_teenused_tootajate_vaba_liikumine_ja_sotsiaalkindlustus",
+      "url": "https://www.tootukassa.ee/et/teenused/eures-euroopa-toovahenduse-teenused/tootajate-vaba-liikumine-ja-sotsiaalkindlustus",
+      "title": "Töötajate vaba liikumine ja sotsiaalkindlustus",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_teenused_karjaar_ja_koolitamine",
+      "url": "https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine",
+      "title": "Karjäär ja koolitamine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_karjaar_ja_koolitamine_arengutreening",
+      "url": "https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/arengutreening",
+      "title": "Arengutreening",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_karjaar_ja_koolitamine_karjaarinoustamine",
+      "url": "https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/karjaarinoustamine",
+      "title": "Karjäärinõustamine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_karjaar_ja_koolitamine_koolitus_tootajale_toota_ja_opi",
+      "url": "https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/koolitus-tootajale-toota-ja-opi",
+      "title": "Koolitused töötavatele inimestele",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_karjaar_ja_koolitamine_koolituskaart",
+      "url": "https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/koolituskaart",
+      "title": "Koolituskaart",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_karjaar_ja_koolitamine_partnerite_voimalused",
+      "url": "https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/partnerite-voimalused",
+      "title": "Partnerite võimalused",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_karjaar_ja_koolitamine_seminarid",
+      "url": "https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/seminarid",
+      "title": "Seminarid",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_karjaar_ja_koolitamine_sertifikaadi_voi_kutsetunnistuse_kulude_huvitamine",
+      "url": "https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/sertifikaadi-voi-kutsetunnistuse-kulude-huvitamine",
+      "title": "Sertifikaadi või kutsetunnistuse kulude hüvitamine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_karjaar_ja_koolitamine_sertifikaadi_voi_kutsetunnistuse_saamine",
+      "url": "https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/sertifikaadi-voi-kutsetunnistuse-saamine",
+      "title": "Sertifikaadi või kutsetunnistuse saamine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_karjaar_ja_koolitamine_tasemeoppes_osalemise_toetus",
+      "url": "https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/tasemeoppes-osalemise-toetus",
+      "title": "Tasemeõppes osalemise toetus",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_partneritele_koostoovoimalused_eures_euroopa_tooturuasutuste_vorgustikuga",
+      "url": "https://www.tootukassa.ee/et/teenused/partneritele/koostoovoimalused-eures-euroopa-tooturuasutuste-vorgustikuga",
+      "title": "Koostöövõimalused EURES Euroopa tööturuasutuste võrgustikuga",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_partneritele_koostoovoimalused_kogemusnoustajatele",
+      "url": "https://www.tootukassa.ee/et/teenused/partneritele/koostoovoimalused-kogemusnoustajatele",
+      "title": "Koostöövõimalused kogemusnõustajatele",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_partneritele_koostoovoimalused_koolitusasutustele",
+      "url": "https://www.tootukassa.ee/et/teenused/partneritele/koostoovoimalused-koolitusasutustele",
+      "title": "Koostöövõimalused koolitusasutustele",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_partneritele_koostoovoimalused_noustamisteenuste_osutajatele",
+      "url": "https://www.tootukassa.ee/et/teenused/partneritele/koostoovoimalused-noustamisteenuste-osutajatele",
+      "title": "Koostöövõimalused nõustamisteenuste osutajatele",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_partneritele_koostoovoimalused_tooandjatele",
+      "url": "https://www.tootukassa.ee/et/teenused/partneritele/koostoovoimalused-tooandjatele",
+      "title": "Koostöövõimalused tööandjatele",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_partneritele_koostoovoimalused_uldhariduskoolidele",
+      "url": "https://www.tootukassa.ee/et/teenused/partneritele/koostoovoimalused-uldhariduskoolidele",
+      "title": "Koostöövõimalused üldhariduskoolidele",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_teenused_too_ja_tervis",
+      "url": "https://www.tootukassa.ee/et/teenused/too-ja-tervis",
+      "title": "Töö ja tervis",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_too_ja_tervis_pikaajaline_haigusleht",
+      "url": "https://www.tootukassa.ee/et/teenused/too-ja-tervis/pikaajaline-haigusleht",
+      "title": "Pikaajaline haigusleht",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_too_ja_tervis_toetatud_toolerakendamine",
+      "url": "https://www.tootukassa.ee/et/teenused/too-ja-tervis/toetatud-toolerakendamine",
+      "title": "Toetatud töölerakendamine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_too_ja_tervis_tooalane_abivahend",
+      "url": "https://www.tootukassa.ee/et/teenused/too-ja-tervis/tooalane-abivahend",
+      "title": "Tööalane abivahend",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_too_ja_tervis_tooalane_rehabilitatsioon",
+      "url": "https://www.tootukassa.ee/et/teenused/too-ja-tervis/tooalane-rehabilitatsioon",
+      "title": "Tööalane rehabilitatsioon",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_too_ja_tervis_tookoha_kohandamine",
+      "url": "https://www.tootukassa.ee/et/teenused/too-ja-tervis/tookoha-kohandamine",
+      "title": "Töökoha kohandamine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_too_ja_tervis_tugiisikuga_tootamine",
+      "url": "https://www.tootukassa.ee/et/teenused/too-ja-tervis/tugiisikuga-tootamine",
+      "title": "Tugiisikuga töötamine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_teenused_tooandjatele",
+      "url": "https://www.tootukassa.ee/et/teenused/tooandjatele",
+      "title": "Tööandjatele",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tooandjatele_abi_ja_noustamine_koondamisel",
+      "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/abi-ja-noustamine-koondamisel",
+      "title": "Abi ja nõustamine koondamisel",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tooandjatele_alaealise_toole_votmine",
+      "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/alaealise-toole-votmine",
+      "title": "Alaealise tööle võtmine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tooandjatele_alaealise_tootamise_toetamine",
+      "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/alaealise-tootamise-toetamine",
+      "title": "Alaealise töötamise toetamine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tooandjatele_kollektiivne_koondamine",
+      "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/kollektiivne-koondamine",
+      "title": "Kollektiivne koondamine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tooandjatele_koolitustoetus_tooandjatele",
+      "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/koolitustoetus-tooandjatele",
+      "title": "Koolitustoetus tööandjatele",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tooandjatele_koolitustoetus_tooandjatele_muutuste_olukorras",
+      "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/koolitustoetus-tooandjatele-muutuste-olukorras",
+      "title": "Koolitustoetus tööandjatele muutuste olukorras",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tooandjatele_koolitustoetus_tooandjatele_tootaja_eesti_keele_oskuse_arendamiseks",
+      "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/koolitustoetus-tooandjatele-tootaja-eesti-keele-oskuse-arendamiseks",
+      "title": "Koolitustoetus tööandjatele töötaja eesti keele oskuse arendamiseks",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tooandjatele_koolitustoetus_tooandjatele_tootaja_ikt_oskuste_arendamiseks",
+      "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/koolitustoetus-tooandjatele-tootaja-ikt-oskuste-arendamiseks",
+      "title": "Koolitustoetus tööandjatele töötaja digioskuste arendamiseks",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tooandjatele_koolitustoetus_tooandjatele_tootaja_roheoskuste_arendamiseks",
+      "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/koolitustoetus-tooandjatele-tootaja-roheoskuste-arendamiseks",
+      "title": "Koolitustoetus tööandjatele töötaja roheoskuste arendamiseks",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tooandjatele_koolitustoetus_tooandjatele_tootajate_varbamiseks",
+      "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/koolitustoetus-tooandjatele-tootajate-varbamiseks",
+      "title": "Koolitustoetus tööandjatele töötajate värbamiseks",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tooandjatele_koondamishuvitis",
+      "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/koondamishuvitis",
+      "title": "Koondamishüvitis",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tooandjatele_luba_valismaalase_toolevotmiseks",
+      "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/luba-valismaalase-toolevotmiseks",
+      "title": "Luba välismaalase töölevõtmiseks",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tooandjatele_maksuvaba_tulu_alates_1_jaanuarist_2026",
+      "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/maksuvaba-tulu-alates-1-jaanuarist-2026",
+      "title": "Maksuvaba tulu alates 1. jaanuarist 2026",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tooandjatele_palgatoetus",
+      "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/palgatoetus",
+      "title": "Palgatoetus",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tooandjatele_pankrotihuvitis",
+      "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/pankrotihuvitis",
+      "title": "Pankrotihüvitis",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tooandjatele_rahvusvahelise_kaitse_saaja_tootamise_toetamine",
+      "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/rahvusvahelise-kaitse-saaja-tootamise-toetamine",
+      "title": "Rahvusvahelise kaitse saaja töötamise toetamine (sai taotleda kuni 31.08.2026)",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tooandjatele_sotsiaalmaksu_huvitamine_vahenenud_toovoimega_inimese_eest",
+      "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/sotsiaalmaksu-huvitamine-vahenenud-toovoimega-inimese-eest",
+      "title": "Sotsiaalmaksu hüvitamine vähenenud töövõimega inimese eest",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tooandjatele_tervisepiiranguga_inimese_tooandja_noustamine",
+      "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/tervisepiiranguga-inimese-tooandja-noustamine",
+      "title": "Tervisepiiranguga inimese tööandja nõustamine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tooandjatele_tervisepiiranguga_inimese_tootamise_toetamine",
+      "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/tervisepiiranguga-inimese-tootamise-toetamine",
+      "title": "Tervisepiiranguga inimese töötamise toetamine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tooandjatele_tooandja_tegevus_kollektiivsel_koondamisel",
+      "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/tooandja-tegevus-kollektiivsel-koondamisel",
+      "title": "Tööandja tegevus kollektiivsel koondamisel",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tooandjatele_tootuskindlustusmakse",
+      "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/tootuskindlustusmakse",
+      "title": "Töötuskindlustusmakse",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tooandjatele_toovahendus",
+      "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/toovahendus",
+      "title": "Töövahendus",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_teenused_toootsingud",
+      "url": "https://www.tootukassa.ee/et/teenused/toootsingud",
+      "title": "Tööotsingud",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toootsingud_abiks_kandideerijale",
+      "url": "https://www.tootukassa.ee/et/teenused/toootsingud/abiks-kandideerijale",
+      "title": "Abiks kandideerijale",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toootsingud_ajutine_tootamine_arveloleku_ajal",
+      "url": "https://www.tootukassa.ee/et/teenused/toootsingud/ajutine-tootamine-arveloleku-ajal",
+      "title": "Ajutine töötamine arveloleku ajal",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toootsingud_juhatuse_liige",
+      "url": "https://www.tootukassa.ee/et/teenused/toootsingud/juhatuse-liige",
+      "title": "Juhatuse liige",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toootsingud_koondamise_korral",
+      "url": "https://www.tootukassa.ee/et/teenused/toootsingud/koondamise-korral",
+      "title": "Koondamise korral",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toootsingud_noorele",
+      "url": "https://www.tootukassa.ee/et/teenused/toootsingud/noorele",
+      "title": "Noorele",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toootsingud_polevkivisektori_tootajale",
+      "url": "https://www.tootukassa.ee/et/teenused/toootsingud/polevkivisektori-tootajale",
+      "title": "Põlevkivisektori töötajale",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toootsingud_proovitoo",
+      "url": "https://www.tootukassa.ee/et/teenused/toootsingud/proovitoo",
+      "title": "Proovitöö",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toootsingud_psuhholoogiline_ja_volanoustamine",
+      "url": "https://www.tootukassa.ee/et/teenused/toootsingud/psuhholoogiline-ja-volanoustamine",
+      "title": "Psühholoogiline ja võlanõustamine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toootsingud_ravikindlustus",
+      "url": "https://www.tootukassa.ee/et/teenused/toootsingud/ravikindlustus",
+      "title": "Ravikindlustus",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toootsingud_soidu_ja_majutustoetus",
+      "url": "https://www.tootukassa.ee/et/teenused/toootsingud/soidu-ja-majutustoetus",
+      "title": "Sõidu- ja majutustoetus",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toootsingud_stipendium",
+      "url": "https://www.tootukassa.ee/et/teenused/toootsingud/stipendium",
+      "title": "Stipendium",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toootsingud_tookeskne_noustamine",
+      "url": "https://www.tootukassa.ee/et/teenused/toootsingud/tookeskne-noustamine",
+      "title": "Töökeskne nõustamine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toootsingud_toopraktika",
+      "url": "https://www.tootukassa.ee/et/teenused/toootsingud/toopraktika",
+      "title": "Tööpraktika",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toootsingud_tootaja_ja_muu_isik",
+      "url": "https://www.tootukassa.ee/et/teenused/toootsingud/tootaja-ja-muu-isik",
+      "title": "Töötaja ja muu isik",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toootsingud_tootamine_eestis",
+      "url": "https://www.tootukassa.ee/et/teenused/toootsingud/tootamine-eestis",
+      "title": "Töötamine Eestis",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toootsingud_tootuna_arveloleku_lopetamine",
+      "url": "https://www.tootukassa.ee/et/teenused/toootsingud/tootuna-arveloleku-lopetamine",
+      "title": "Töötuna arveloleku lõpetamine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toootsingud_tootuna_registreerimine",
+      "url": "https://www.tootukassa.ee/et/teenused/toootsingud/tootuna-registreerimine",
+      "title": "Töötuna registreerimine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toootsingud_vanaduspensioniealisele",
+      "url": "https://www.tootukassa.ee/et/teenused/toootsingud/vanaduspensioniealisele",
+      "title": "Vanaduspensioniealisele",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_teenused_tootuskindlustushuvitis",
+      "url": "https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis",
+      "title": "Töötuskindlustushüvitis",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tootuskindlustushuvitis_euroopa_liit_ja_tootuskindlustus",
+      "url": "https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/euroopa-liit-ja-tootuskindlustus",
+      "title": "Euroopa Liit ja töötuskindlustus",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tootuskindlustushuvitis_tootuskindlustushuvitis_laevapere_liikmetele",
+      "url": "https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitis-laevapere-liikmetele",
+      "title": "Töötuskindlustushüvitis laevapere liikmetele",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tootuskindlustushuvitis_tootuskindlustushuvitis_valisriigis_tood_otsides",
+      "url": "https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitis-valisriigis-tood-otsides",
+      "title": "Töötuskindlustushüvitis välisriigis tööd otsides",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tootuskindlustushuvitis_tootuskindlustushuvitise_arvestamine_ja_maksmine",
+      "url": "https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitise-arvestamine-ja-maksmine",
+      "title": "Töötuskindlustushüvitise arvestamine ja maksmine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tootuskindlustushuvitis_tootuskindlustushuvitise_korduv_taotlemine",
+      "url": "https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitise-korduv-taotlemine",
+      "title": "Töötuskindlustushüvitise korduv taotlemine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tootuskindlustushuvitis_tootuskindlustushuvitise_maksmise_lopetamine_enne_perioodi_loppu",
+      "url": "https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitise-maksmise-lopetamine-enne-perioodi-loppu",
+      "title": "Töötuskindlustushüvitise maksmise lõpetamine enne perioodi lõppu",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tootuskindlustushuvitis_tootuskindlustushuvitise_maksmise_periood",
+      "url": "https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitise-maksmise-periood",
+      "title": "Töötuskindlustushüvitise maksmise periood",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tootuskindlustushuvitis_tootuskindlustushuvitise_suurus_ja_selle_arvutamine",
+      "url": "https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitise-suurus-ja-selle-arvutamine",
+      "title": "Töötuskindlustushüvitise suurus ja selle arvutamine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tootuskindlustushuvitis_tootuskindlustushuvitise_taotlemine_ja_maaramine",
+      "url": "https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitise-taotlemine-ja-maaramine",
+      "title": "Töötuskindlustushüvitise taotlemine ja määramine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tootuskindlustushuvitis_tootuskindlustusstaazi_arvestamine",
+      "url": "https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustusstaazi-arvestamine",
+      "title": "Töötuskindlustusstaaži arvestamine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_teenused_toovoime_hindamine",
+      "url": "https://www.tootukassa.ee/et/teenused/toovoime-hindamine",
+      "title": "Töövõime hindamine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toovoime_hindamine_arstivisiit_ja_hindamise_taotluse_esitamine",
+      "url": "https://www.tootukassa.ee/et/teenused/toovoime-hindamine/arstivisiit-ja-hindamise-taotluse-esitamine",
+      "title": "Arstivisiit ja hindamise taotluse esitamine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toovoime_hindamine_eksperdiarvamuse_koostamine",
+      "url": "https://www.tootukassa.ee/et/teenused/toovoime-hindamine/eksperdiarvamuse-koostamine",
+      "title": "Eksperdiarvamuse koostamine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toovoime_hindamine_hindamise_otsus_ja_abi_too_leidmisel",
+      "url": "https://www.tootukassa.ee/et/teenused/toovoime-hindamine/hindamise-otsus-ja-abi-too-leidmisel",
+      "title": "Hindamise otsus ja abi töö leidmisel",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toovoime_hindamine_toovoime_hindamise_pohimotted_ja_metoodika",
+      "url": "https://www.tootukassa.ee/et/teenused/toovoime-hindamine/toovoime-hindamise-pohimotted-ja-metoodika",
+      "title": "Töövõime hindamise põhimõtted ja metoodika",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toovoime_hindamine_toovoime_hindamise_taotlemine_valismaal_elades",
+      "url": "https://www.tootukassa.ee/et/teenused/toovoime-hindamine/toovoime-hindamise-taotlemine-valismaal-elades",
+      "title": "Töövõime hindamise taotlemine välismaal elades",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toovoime_hindamine_toovoime_hindamise_taotluse_esitamine_esindaja_poolt",
+      "url": "https://www.tootukassa.ee/et/teenused/toovoime-hindamine/toovoime-hindamise-taotluse-esitamine-esindaja-poolt",
+      "title": "Töövõime hindamise taotluse esitamine esindaja poolt",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toovoime_hindamine_toovoimekaart",
+      "url": "https://www.tootukassa.ee/et/teenused/toovoime-hindamine/toovoimekaart",
+      "title": "Töövõimekaart",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toovoime_hindamine_toovoimet_hindavad_tervishoiuasutused",
+      "url": "https://www.tootukassa.ee/et/teenused/toovoime-hindamine/toovoimet-hindavad-tervishoiuasutused",
+      "title": "Töövõimet hindavad tervishoiuasutused",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_teenused_toovoimetoetus",
+      "url": "https://www.tootukassa.ee/et/teenused/toovoimetoetus",
+      "title": "Töövõimetoetus",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toovoimetoetus_euroopa_liit_ja_toovoimetoetus",
+      "url": "https://www.tootukassa.ee/et/teenused/toovoimetoetus/euroopa-liit-ja-toovoimetoetus",
+      "title": "Euroopa Liit ja töövõimetoetus",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toovoimetoetus_maksmise_peatamine_ja_lopetamine",
+      "url": "https://www.tootukassa.ee/et/teenused/toovoimetoetus/maksmise-peatamine-ja-lopetamine",
+      "title": "Maksmise peatamine ja lõpetamine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toovoimetoetus_oigus_toovoimetoetusele",
+      "url": "https://www.tootukassa.ee/et/teenused/toovoimetoetus/oigus-toovoimetoetusele",
+      "title": "Õigus töövõimetoetusele",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toovoimetoetus_taotluse_esitamine_eestkoste_voi_volitusega",
+      "url": "https://www.tootukassa.ee/et/teenused/toovoimetoetus/taotluse-esitamine-eestkoste-voi-volitusega",
+      "title": "Taotluse esitamine eestkoste või volitusega",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toovoimetoetus_toetuse_maksmine",
+      "url": "https://www.tootukassa.ee/et/teenused/toovoimetoetus/toetuse-maksmine",
+      "title": "Toetuse maksmine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toovoimetoetus_toetuse_umberarvutamine_suurenenud_sissetuleku_tottu",
+      "url": "https://www.tootukassa.ee/et/teenused/toovoimetoetus/toetuse-umberarvutamine-suurenenud-sissetuleku-tottu",
+      "title": "Toetuse ümberarvutamine suurenenud sissetuleku tõttu",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toovoimetoetus_toovoimetoetuse_maksmise_jatkamine_kordushindamisel",
+      "url": "https://www.tootukassa.ee/et/teenused/toovoimetoetus/toovoimetoetuse-maksmise-jatkamine-kordushindamisel",
+      "title": "Töövõimetoetuse maksmise jätkamine kordushindamisel",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toovoimetoetus_toovoimetoetuse_saamise_tingimused",
+      "url": "https://www.tootukassa.ee/et/teenused/toovoimetoetus/toovoimetoetuse-saamise-tingimused",
+      "title": "Töövõimetoetuse saamise tingimused",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toovoimetoetus_toovoimetoetuse_suurus",
+      "url": "https://www.tootukassa.ee/et/teenused/toovoimetoetus/toovoimetoetuse-suurus",
+      "title": "Töövõimetoetuse suurus",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toovoimetoetus_uleminek_toovoimetuspensionilt_toovoimetoetusele",
+      "url": "https://www.tootukassa.ee/et/teenused/toovoimetoetus/uleminek-toovoimetuspensionilt-toovoimetoetusele",
+      "title": "Üleminek töövõimetuspensionilt töövõimetoetusele",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tervisepiiranguga_inimesele_toovoime_hindamine",
+      "url": "https://www.tootukassa.ee/et/tervisepiiranguga-inimesele/toovoime-hindamine",
+      "title": "Töövõime hindamine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_tervisepiiranguga_inimesele_toovoimetoetuse_taotlemine",
+      "url": "https://www.tootukassa.ee/et/tervisepiiranguga-inimesele/toovoimetoetuse-taotlemine",
+      "title": "Töövõimetoetuse taotlemine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_toootsijale_too_kaotamine",
+      "url": "https://www.tootukassa.ee/et/toootsijale/too-kaotamine",
+      "title": "Töö kaotamine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_et_toota_ja_opi",
+      "url": "https://www.tootukassa.ee/et/toota-ja-opi",
+      "title": "Tööta ja õpi",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_et_tootaja_leidmine_ja_koolitamine",
+      "url": "https://www.tootukassa.ee/et/tootaja-leidmine-ja-koolitamine",
+      "title": "Töötaja leidmine ja koolitamine",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_et_tootukassast",
+      "url": "https://www.tootukassa.ee/et/tootukassast",
+      "title": "Töötukassast",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_et_vahese_tahtsusega_abi_ja_riigiabi",
+      "url": "https://www.tootukassa.ee/et/vahese-tahtsusega-abi-ja-riigiabi",
+      "title": "Vähese tähtsusega abi",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tootukassa_kontaktid_tootukassa_esindused",
+      "url": "https://www.tootukassa.ee/kontaktid/tootukassa-esindused",
+      "title": "Töötukassa esindused",
+      "publisher": "Eesti Töötukassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    }
+  ]
+}

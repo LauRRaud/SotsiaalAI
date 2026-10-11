@@ -49,11 +49,11 @@
   },
   "corpus": {
     "written_by": "rag-v2/register-corpus-1",
-    "version": "v83",
-    "index_generation": "5288f882",
+    "version": "v84",
+    "index_generation": "74de5ca3",
     "read_at": "2026-10-11",
-    "documents": 10248,
-    "units": 91828,
+    "documents": 10569,
+    "units": 93401,
     "note": "What the RAG on the server holds: the documents of the corpus policy by what they are (by_content), and by where the source file is kept (from_repository, outside_repository). One file of the repository may give many documents (a municipality package gives its services, forms and contacts). On a source entry, corpus_documents is the number of corpus documents the file gives; 0 means the file is not in the corpus.",
     "by_content": [
       {
@@ -116,17 +116,17 @@
       {
         "content": "official_pages",
         "name": "official guidance pages",
-        "documents": 1456,
+        "documents": 1587,
         "by_source_type": {
-          "web_page": 1456
+          "web_page": 1587
         }
       },
       {
         "content": "organisation_pages",
         "name": "organisations' own pages (disability organisations, the food bank, the social workers' association, crisis and mental health associations)",
-        "documents": 942,
+        "documents": 1132,
         "by_source_type": {
-          "organization_page": 942
+          "organization_page": 1132
         }
       },
       {
@@ -197,10 +197,10 @@
       }
     },
     "source_files_not_in_corpus": 61,
-    "outside_repository_documents": 3732
+    "outside_repository_documents": 4053
   },
   "outside_repository": {
-    "documents": 3732,
+    "documents": 4053,
     "note": "Sources of the corpus that are not files of the repository. Copies are in the corpus store (the main checkout's git-ignored tmp/ and the server). Of contacts only counts are given: a contact's title is a person's name.",
     "kinds": [
       {
@@ -1336,13 +1336,13 @@
       {
         "kind": "organisation_pages",
         "name": "organisations' own pages (disability organisations, the food bank, the social workers' association, crisis and mental health associations)",
-        "documents": 942,
+        "documents": 1132,
         "by_source_type": {
-          "organization_page": 942
+          "organization_page": 1132
         },
         "made_from": "the lists register/web_pages_organisations.json, register/web_pages_associations.json and register/web_pages_associations_2.json and the organisations of register/web_pages_coverage_1.json and _2.json, collected with scripts/rag-v2-web-pages.mjs and chosen with scripts/rag-v2-web-select.mjs (ADR-095, ADR-137, ADR-140)",
         "reason": "the organisations' own texts",
-        "publishers": 59,
+        "publishers": 68,
         "sources": [
           {
             "title": "Al-Anon Eesti: 12 sammu",
@@ -2150,6 +2150,436 @@
             "publisher": "Eesti Hemofiiliaühing"
           },
           {
+            "title": "Eesti Inimõiguste Keskus",
+            "url": "https://humanrights.ee/tegevus/keskus/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus ja digitaalõigused",
+            "url": "https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/eesti-inimoiguste-keskus-ja-digitaaloigused/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: 7 sammu mitmekesisuse ja kaasatuse arendamiseks",
+            "url": "https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/7-sammu-mitmekesisuse-vaartustamiseks/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Avaliku arvamuse uuring LGBT teemadel (2026)",
+            "url": "https://humanrights.ee/materjalid/avaliku-arvamuse-uuring-lgbt-teemadel-2026/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Diskrimineerimise keeld",
+            "url": "https://humanrights.ee/materjalid/inimoigused-eestis-2026/diskrimineerimise-keeld/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Diskrimineerimise keeld rahvusvahelistes õigusaktides",
+            "url": "https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/diskrimineerimise-keeld-rahvusvahelistes-oigusaktides/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Ebaregulaarsed sisserändajad – küsimused ja vastused",
+            "url": "https://humanrights.ee/teemad/pagulased/ebaregulaarsed-sisserandajad/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Eessõna",
+            "url": "https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/eessona/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Eesti elanike hoiakud LGBT teemadel",
+            "url": "https://humanrights.ee/eesti-elanike-hoiakud-lgbt-teemadel/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Halduskius sõjaväeteenistuses osalemise tõlgendamisel",
+            "url": "https://humanrights.ee/kaasused/halduskius-sojavaeteenistuses-osalemise-tolgendamisel/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Hea lugeja",
+            "url": "https://humanrights.ee/materjalid/inimoigused-eestis-2026/hea-lugeja/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Iga klikk loeb, ka sinu andmeid!",
+            "url": "https://humanrights.ee/iga-klikk-loeb-ka-sinu-andmeid/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Infomaterjal vaenukõne ja -kuritegude kohta",
+            "url": "https://humanrights.ee/materjalid/materjal-vaenu-kohta/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Inimõigused ja inimõiguste alusväärtused Eesti koolis ja hariduspoliitikas",
+            "url": "https://humanrights.ee/materjalid/inimoigused-ja-inimoiguste-alusvaartused-eesti-koolis-ja-hariduspoliitikas/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Inimõigused, infoühiskond ja Eesti: esialgne kaardistus",
+            "url": "https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Inimõigusi edendava projekti või tegevuse kavandamise ja elluviimise juhend",
+            "url": "https://humanrights.ee/materjalid/inimoigushariduse-tegevuste-kavandamise-ja-elluviimise-juhend/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Inimõiguste hariduse meetodid noorsootöötajatele",
+            "url": "https://humanrights.ee/materjalid/inimoiguste-hariduse-meetodid-noorsootootajatele/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Inimõiguste kaitsjad",
+            "url": "https://humanrights.ee/teemad/inimoigused-eestis/inimoiguste-kaitsjad/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Isikuandmete kaitse",
+            "url": "https://humanrights.ee/tegevus/keskus/isikuandmete-kaitse/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Juhend “Seksuaalse ja soolise ahistamise ennetamine töökohal”",
+            "url": "https://humanrights.ee/materjalid/juhend-seksuaalse-ja-soolise-ahistamise-ennetamine-tookohal/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Kaardimäng seksuaalse ja soolise mitmekesisusega seotud mõistete kohta",
+            "url": "https://humanrights.ee/materjalid/kaardimang-seksuaalse-ja-soolise-mitmekesisusega-seotud-moistete-kohta/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Kes vastutab ja mille eest?",
+            "url": "https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/kes-vastutab-ja-mille-eest/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Kogunemisvabaduse piiramine avaliku võimu poolt",
+            "url": "https://humanrights.ee/kaasused/kogunemisvabaduse-piiramine-avaliku-voimu-poolt/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Kokkuvõte lihtsas keeles",
+            "url": "https://humanrights.ee/materjalid/inimoigused-eestis-2026/lihtsas-keeles-kokkuvote/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Koolitused",
+            "url": "https://humanrights.ee/teemad/mitmekesisus-ja-kaasatus/koolitused/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Kuidas luua mitmekesisust ja erinevusi väärtustavat ning kaasavat töökeskkonda?",
+            "url": "https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Kuidas luua toetav ja turvaline töökeskkond eri kultuuritaustaga inimestele?",
+            "url": "https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/kuidas-luua-toetav-ja-turvaline-tookeskkond-eri-kultuuritaustaga-inimestele/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Kuidas luua toetav töökeskkond ATH-ga või autistlikule inimesele?",
+            "url": "https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/kuidas-luua-toetav-tookeskkond-ath-ga-voi-autistlikule-inimesele/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Kuidas mõõta mitmekesisust ja kaasatust?",
+            "url": "https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/kuidas-moota-mitmekesisust-ja-kaasatust/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Lahendused ja ideed teadlikkuse tõstmiseks",
+            "url": "https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/lahendused-ja-ideed-teadlikkuse-tostmiseks/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: LGBT+ inimeste olukord",
+            "url": "https://humanrights.ee/materjalid/inimoigused-eestis-2026/lgbt-inimeste-olukord/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: LGBTI+ filmifestival Festheart",
+            "url": "https://humanrights.ee/kaasused/lgbti-filmifestival-festheart/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Materjalid",
+            "url": "https://humanrights.ee/materjalid/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Meedia ja vähemused",
+            "url": "https://humanrights.ee/materjalid/meedia-ja-vahemused/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Mida teha?",
+            "url": "https://humanrights.ee/teemad/vaen/mida-teha/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Miks on mitmekesisuse väärtustamine kasulik?",
+            "url": "https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/miks-on-mitmekesisuse-vaartustamine-kasulik/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Miks on vaja soolist palgalõhet mõõta ja vähendada?",
+            "url": "https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/miks-on-vaja-soolist-palgalohet-moota-ja-vahendada/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Mis edasi?",
+            "url": "https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/mis-edasi/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Mis on ligipääsetavus ja kuidas seda tagada?",
+            "url": "https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/mis-on-ligipaasetavus-ja-kuidas-seda-tagada/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Mis on mitmekesisus ja kaasatus?",
+            "url": "https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/mis-on-mitmekesisus-ja-kaasatus/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Mis on võrdne kohtlemine?",
+            "url": "https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/mis-on-vordne-kohtlemine/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Mitmekesisuse arendamise riskid",
+            "url": "https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/mitmekesisuse-riskid/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Mitmekesisuse kuu",
+            "url": "https://humanrights.ee/teemad/mitmekesisus-ja-kaasatus/mitmekesisuse-kuu/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Mitmekesisuse päeva tööriistakast",
+            "url": "https://humanrights.ee/materjalid/mitmekesisuse-paeva-tooriistakast/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Mitmekesisuse töökoha märgis",
+            "url": "https://humanrights.ee/materjalid/mitmekesisuse-tookoha-margis/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Nõustamine",
+            "url": "https://humanrights.ee/noustamine/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Olukord Eestis",
+            "url": "https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/olukord-eestis/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Olulised institutsioonid Eestis",
+            "url": "https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/olulised-institutsioonid-eestis/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Pagulaste ja varjupaigataotlejate õigused",
+            "url": "https://humanrights.ee/materjalid/inimoigused-eestis-2026/pagulaste-ja-varjupaigataotlejate-oigused/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Pagulaste palkamine Eesti tööturul",
+            "url": "https://humanrights.ee/materjalid/pagulaste-palkamine-eesti-tooturul/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Perekonna taasühinemine",
+            "url": "https://humanrights.ee/kaasused/perekonna-taasuhinemine/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Piinamise, ebainimlikult või alandavalt kohtlemise ja karistamise keeld",
+            "url": "https://humanrights.ee/materjalid/inimoigused-eestis-2026/piinamise-ebainimlikult-voi-alandavalt-kohtlemise-ja-karistamise-keeld/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Projekt SafeNet",
+            "url": "https://humanrights.ee/teemad/vaen/sotsiaalmeedia/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Puuetega inimeste olukord",
+            "url": "https://humanrights.ee/materjalid/inimoigused-eestis-2026/puuetega-inimeste-olukord/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Põhiõigustele avalduva mõju hindamise kontrollnimekiri tehisintellektisüsteemide puhul",
+            "url": "https://humanrights.ee/materjalid/pohioigustele-avalduva-moju-hindamise-kontrollnimekiri-tehisintellektisusteemide-puhul/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Põimõppekursus “Mitmekesisus ja kaasatus”",
+            "url": "https://humanrights.ee/materjalid/poimoppekursus-mitmekesisus-ja-kaasatus/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Rahvusvähemused ja lõimumispoliitika",
+            "url": "https://humanrights.ee/materjalid/inimoigused-eestis-2026/rahvusvahemused-ja-loimumispoliitika/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Saa teadmisi inimõiguste kohta eri teemade ja igapäevaste olukordade kaudu",
+            "url": "https://humanrights.ee/teemad/inimoigused-eestis/inimoiguste-e-giid/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Sissejuhatus",
+            "url": "https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/sissejuhatus/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Sooline võrdsus",
+            "url": "https://humanrights.ee/materjalid/inimoigused-eestis-2026/sooline-vordsus/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Strateegiline hagelemine",
+            "url": "https://humanrights.ee/teemad/strateegiline-hagelemine/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Sõbraliku tööandja juhend",
+            "url": "https://humanrights.ee/materjalid/sobraliku-tooandja-juhend/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Sõnavabadus",
+            "url": "https://humanrights.ee/materjalid/inimoigused-eestis-2026/sonavabadus/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Taustauuring TI kasutamise mõju kohta põhiõigustele (inglise keeles)",
+            "url": "https://humanrights.ee/materjalid/taustauuring-ti-kasutamise-moju-kohta-pohioigustele-inglise-keeles/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Teema 1: profileerimine ja riik",
+            "url": "https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/teema-1-profileerimine-ja-riik/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Teema 2: Isikuandmete kaitse üldmääruse (GDPR) rakendamine",
+            "url": "https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/teema-2-isikuandmete-kaitse-uldmaaruse-gdpr-rakendamine/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Teema 3: Väljendusvabadus internetis",
+            "url": "https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/teema-3-valjendusvabadus-internetis/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Teemad",
+            "url": "https://humanrights.ee/teemad/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Teemade kaardistus",
+            "url": "https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/teemade-kaardistus/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Tehisintellekt ja EL põhiõiguste harta (poliitikadokument)",
+            "url": "https://humanrights.ee/materjalid/poliitikadokument/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Tehisintellektisüsteemide arendamine ja põhiõigused: teadlikkuse tagamise, hindamise ja vastutuse hea tava",
+            "url": "https://humanrights.ee/materjalid/tehisintellektisusteemide-arendamine-ja-pohioigused-teadlikkuse-tagamise-hindamise-ja-vastutuse-hea-tava/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Turvaline ruum noorsootöös – põhimõtted ja soovitused noorsootöötajatele",
+            "url": "https://humanrights.ee/materjalid/turvaline-ruum-noorsootoos-pohimotted-ja-soovitused-noorsootootajatele/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Töö- ja pereelu ühitamise parimad praktikad",
+            "url": "https://humanrights.ee/materjalid/too-ja-pereelu-uhitamise-parimad-praktikad/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Usaldusväärne tööandja ennetab ahistamist ja loob turvalise töökeskkonna",
+            "url": "https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/usaldusvaarne-tooandja-ennetab-ahistamist-ja-loob-turvalise-tookeskkonna/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Uuring “Mitmekesisus ja kaasatus tööandjate pilgu läbi”",
+            "url": "https://humanrights.ee/materjalid/uuring-mitmekesisus-ja-kaasatus-tooandjate-pilgu-labi/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Vaenukõne ja vaenukuriteod",
+            "url": "https://humanrights.ee/teemad/vaen/vaenukone/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Varjupaigataotlejate ja pagulaste nõustamine",
+            "url": "https://humanrights.ee/teemad/pagulased/varjupaigataotlejate-noustamine/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Vene pagulaspere lapsendamise kaasus",
+            "url": "https://humanrights.ee/kaasused/pagulaspere-lapsendamise-kaasus/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Võitlus vaenu vastu",
+            "url": "https://humanrights.ee/teemad/vaen/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Võrdse kohtlemise käsiraamat",
+            "url": "https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Võrdse kohtlemise normid ja diskrimineerimise keeld Eesti seadustes",
+            "url": "https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/vordse-kohtlemise-normid-ja-diskrimineerimise-keeld-eesti-seadustes/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Võrdse kohtlemise võrgustik",
+            "url": "https://humanrights.ee/teemad/vordne-kohtlemine/vordse-kohtlemise-vorgustik/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Võrdse kohtlemise võrgustik",
+            "url": "https://humanrights.ee/teemad/inimoigused-eestis/vkv/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Võta ühendust",
+            "url": "https://humanrights.ee/tegevus/keskus/vota-uhendust/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: Õigus perekonna- ja eraelu puutumatusele",
+            "url": "https://humanrights.ee/materjalid/inimoigused-eestis-2026/oigus-perekonna-ja-eraelu-puutumatusele/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
+            "title": "Eesti Inimõiguste Keskus: ÜRO inimõiguste ülevaatus",
+            "url": "https://humanrights.ee/uro-inimoiguste-ulevaatus/",
+            "publisher": "Eesti Inimõiguste Keskus"
+          },
+          {
             "title": "Eesti Insuldipatsientide Selts: 10 praktilist ideed insuldist taastumise teekonnal",
             "url": "https://www.insuldiselts.ee/elu-parast-insulti/10-ideed-insuldist-taastumise-teekonnal",
             "publisher": "Eesti Insuldipatsientide Selts"
@@ -2560,6 +2990,131 @@
             "publisher": "Eesti Kuulmispuuetega Laste Vanemate Liit"
           },
           {
+            "title": "Eesti Lasterikaste Perede Liit: Avaliku suhtumise kujundamine",
+            "url": "https://www.lasterikkad.ee/avaliku-suhtumise-kujundamine/",
+            "publisher": "Eesti Lasterikaste Perede Liit"
+          },
+          {
+            "title": "Eesti Lasterikaste Perede Liit: Eetikakoodeks",
+            "url": "https://www.lasterikkad.ee/meist/eetikakoodeks/",
+            "publisher": "Eesti Lasterikaste Perede Liit"
+          },
+          {
+            "title": "Eesti Lasterikaste Perede Liit: Kogemusnoustamine",
+            "url": "https://www.lasterikkad.ee/kogemusnoustamine/",
+            "publisher": "Eesti Lasterikaste Perede Liit"
+          },
+          {
+            "title": "Eesti Lasterikaste Perede Liit: Lääne-Harju Lasterikkad Laenutus",
+            "url": "https://www.lasterikkad.ee/laaneharju/meist/laenutus/",
+            "publisher": "Eesti Lasterikaste Perede Liit"
+          },
+          {
+            "title": "Eesti Lasterikaste Perede Liit: Lääne-Harju Lasterikkad Meie",
+            "url": "https://www.lasterikkad.ee/laaneharju/meist/",
+            "publisher": "Eesti Lasterikaste Perede Liit"
+          },
+          {
+            "title": "Eesti Lasterikaste Perede Liit: Lääne-Viru Lasterikkad Meist",
+            "url": "https://www.lasterikkad.ee/laane-viru/meist/",
+            "publisher": "Eesti Lasterikaste Perede Liit"
+          },
+          {
+            "title": "Eesti Lasterikaste Perede Liit: Noustamine",
+            "url": "https://www.lasterikkad.ee/noustamine/?page_id=508",
+            "publisher": "Eesti Lasterikaste Perede Liit"
+          },
+          {
+            "title": "Eesti Lasterikaste Perede Liit: Noustamine",
+            "url": "https://www.lasterikkad.ee/noustamine/?page_id=506",
+            "publisher": "Eesti Lasterikaste Perede Liit"
+          },
+          {
+            "title": "Eesti Lasterikaste Perede Liit: Noustamine",
+            "url": "https://www.lasterikkad.ee/noustamine/?page_id=151",
+            "publisher": "Eesti Lasterikaste Perede Liit"
+          },
+          {
+            "title": "Eesti Lasterikaste Perede Liit: Noustamine",
+            "url": "https://www.lasterikkad.ee/noustamine/?page_id=163",
+            "publisher": "Eesti Lasterikaste Perede Liit"
+          },
+          {
+            "title": "Eesti Lasterikaste Perede Liit: Noustamine",
+            "url": "https://www.lasterikkad.ee/noustamine/?page_id=165",
+            "publisher": "Eesti Lasterikaste Perede Liit"
+          },
+          {
+            "title": "Eesti Lasterikaste Perede Liit: Noustamine",
+            "url": "https://www.lasterikkad.ee/noustamine/?page_id=4",
+            "publisher": "Eesti Lasterikaste Perede Liit"
+          },
+          {
+            "title": "Eesti Lasterikaste Perede Liit: Peresobralik toitlustusasutus",
+            "url": "https://www.lasterikkad.ee/avaliku-suhtumise-kujundamine/peresobralik-toitlustusasutus/",
+            "publisher": "Eesti Lasterikaste Perede Liit"
+          },
+          {
+            "title": "Eesti Lasterikaste Perede Liit: Peretunde loomine",
+            "url": "https://www.lasterikkad.ee/peretunde-loomine/",
+            "publisher": "Eesti Lasterikaste Perede Liit"
+          },
+          {
+            "title": "Eesti Lasterikaste Perede Liit: Pärnumaa Lasterikkad Meist",
+            "url": "https://www.lasterikkad.ee/parnumaa/meist/",
+            "publisher": "Eesti Lasterikaste Perede Liit"
+          },
+          {
+            "title": "Eesti Lasterikaste Perede Liit: Raplamaa Lasterikkad Meist",
+            "url": "https://www.lasterikkad.ee/raplamaa/meist/",
+            "publisher": "Eesti Lasterikaste Perede Liit"
+          },
+          {
+            "title": "Eesti Lasterikaste Perede Liit: Raplamaa Lasterikkad Peredele",
+            "url": "https://www.lasterikkad.ee/raplamaa/peredele/",
+            "publisher": "Eesti Lasterikaste Perede Liit"
+          },
+          {
+            "title": "Eesti Lasterikaste Perede Liit: Saaremaa Lasterikaste Perede Ühendus Meist",
+            "url": "https://www.lasterikkad.ee/saaremaa/meist/",
+            "publisher": "Eesti Lasterikaste Perede Liit"
+          },
+          {
+            "title": "Eesti Lasterikaste Perede Liit: Saku Valla Lasterikkad Meist",
+            "url": "https://www.lasterikkad.ee/saku/meist/",
+            "publisher": "Eesti Lasterikaste Perede Liit"
+          },
+          {
+            "title": "Eesti Lasterikaste Perede Liit: Samm parema homse nimel",
+            "url": "https://www.lasterikkad.ee/noustamine/",
+            "publisher": "Eesti Lasterikaste Perede Liit"
+          },
+          {
+            "title": "Eesti Lasterikaste Perede Liit: Taotlemise tingimused",
+            "url": "https://www.lasterikkad.ee/taotlemise-tingimused/",
+            "publisher": "Eesti Lasterikaste Perede Liit"
+          },
+          {
+            "title": "Eesti Lasterikaste Perede Liit: Tartu Pereliit Eetikakoodeks",
+            "url": "https://www.lasterikkad.ee/tartumaa/meist/dokumendid/",
+            "publisher": "Eesti Lasterikaste Perede Liit"
+          },
+          {
+            "title": "Eesti Lasterikaste Perede Liit: Tartu Pereliit Meist",
+            "url": "https://www.lasterikkad.ee/tartumaa/meist/",
+            "publisher": "Eesti Lasterikaste Perede Liit"
+          },
+          {
+            "title": "Eesti Lasterikaste Perede Liit: Valgamaa Lasterikaste Perede Ühing Meist",
+            "url": "https://www.lasterikkad.ee/valgamaa/meist/",
+            "publisher": "Eesti Lasterikaste Perede Liit"
+          },
+          {
+            "title": "Eesti Lasterikaste Perede Liit: Viljandimaa Lasterikkad Meist",
+            "url": "https://www.lasterikkad.ee/viljandimaa/meist/",
+            "publisher": "Eesti Lasterikaste Perede Liit"
+          },
+          {
             "title": "Eesti Lihasehaigete Selts (ELS)",
             "url": "https://www.els.ee/",
             "publisher": "Eesti Lihasehaigete Selts"
@@ -2625,9 +3180,134 @@
             "publisher": "Eesti Liikumispuudega Inimeste Liit"
           },
           {
+            "title": "Eesti Naiste Varjupaikade Liit: Eetikakoodeks",
+            "url": "https://naisteliin.ee/index.php?id=77",
+            "publisher": "Eesti Naiste Varjupaikade Liit"
+          },
+          {
+            "title": "Eesti Naiste Varjupaikade Liit: Eetikakoodeks",
+            "url": "https://www.naisteliin.ee/?id=120",
+            "publisher": "Eesti Naiste Varjupaikade Liit"
+          },
+          {
+            "title": "Eesti Naiste Varjupaikade Liit: ENVL",
+            "url": "https://naisteliin.ee/?id=117",
+            "publisher": "Eesti Naiste Varjupaikade Liit"
+          },
+          {
+            "title": "Eesti Naiste Varjupaikade Liit: Infomaterjalid",
+            "url": "https://naisteliin.ee/?id=148",
+            "publisher": "Eesti Naiste Varjupaikade Liit"
+          },
+          {
+            "title": "Eesti Naiste Varjupaikade Liit: KKK",
+            "url": "https://naisteliin.ee/?id=116",
+            "publisher": "Eesti Naiste Varjupaikade Liit"
+          },
+          {
+            "title": "Eesti Naiste Varjupaikade Liit: Meist",
+            "url": "https://naisteliin.ee/index.php?id=28",
+            "publisher": "Eesti Naiste Varjupaikade Liit"
+          },
+          {
+            "title": "Eesti Naiste Varjupaikade Liit: Mida teha, kui",
+            "url": "https://www.naisteliin.ee/?id=110",
+            "publisher": "Eesti Naiste Varjupaikade Liit"
+          },
+          {
+            "title": "Eesti Naiste Varjupaikade Liit: Naiste tugikeskuste teenused",
+            "url": "https://www.naisteliin.ee/?id=166",
+            "publisher": "Eesti Naiste Varjupaikade Liit"
+          },
+          {
+            "title": "Eesti Naiste Varjupaikade Liit: Naistevastase vägivalla ilmingud",
+            "url": "https://naisteliin.ee/index.php?id=108",
+            "publisher": "Eesti Naiste Varjupaikade Liit"
+          },
+          {
+            "title": "Eesti Naiste Varjupaikade Liit: Paarisuhtevägivald",
+            "url": "https://www.naisteliin.ee/?id=109",
+            "publisher": "Eesti Naiste Varjupaikade Liit"
+          },
+          {
+            "title": "Eesti Naiste Varjupaikade Liit: Teenusekirjeldus",
+            "url": "https://www.naisteliin.ee/?id=139",
+            "publisher": "Eesti Naiste Varjupaikade Liit"
+          },
+          {
+            "title": "Eesti Naiste Varjupaikade Liit: Teenusekirjeldus",
+            "url": "https://naisteliin.ee/index.php?id=159",
+            "publisher": "Eesti Naiste Varjupaikade Liit"
+          },
+          {
+            "title": "Eesti Naiste Varjupaikade Liit: Tugikeskused",
+            "url": "https://naisteliin.ee/index.php?id=111",
+            "publisher": "Eesti Naiste Varjupaikade Liit"
+          },
+          {
+            "title": "Eesti Naiste Varjupaikade Liit: Tugitelefon 1492",
+            "url": "https://www.naisteliin.ee/?id=115",
+            "publisher": "Eesti Naiste Varjupaikade Liit"
+          },
+          {
+            "title": "Eesti Naiste Varjupaikade Liit: Vägivallast",
+            "url": "https://naisteliin.ee/index.php?id=107",
+            "publisher": "Eesti Naiste Varjupaikade Liit"
+          },
+          {
+            "title": "Eesti Naiste Varjupaikade Liit: Www.naisteliin.ee",
+            "url": "https://www.naisteliin.ee/?id=1",
+            "publisher": "Eesti Naiste Varjupaikade Liit"
+          },
+          {
             "title": "Eesti Neeruhaigete Liit: Kõik neerudest.",
             "url": "https://www.neer.ee/",
             "publisher": "Eesti Neeruhaigete Liit"
+          },
+          {
+            "title": "Eesti Pagulasabi: Kontaktid",
+            "url": "https://pagulasabi.ee/et/kontaktid",
+            "publisher": "Eesti Pagulasabi"
+          },
+          {
+            "title": "Eesti Pagulasabi: Majanduslik heaolu",
+            "url": "https://www.pagulasabi.ee/et/majanduslik-heaolu",
+            "publisher": "Eesti Pagulasabi"
+          },
+          {
+            "title": "Eesti Pagulasabi: Märkamatu keeleõpe toetab pagulastaustaga noorte kohanemist",
+            "url": "https://www.pagulasabi.ee/et/markamatu-keeleope-toetab-pagulastaustaga-noorte-kohanemist",
+            "publisher": "Eesti Pagulasabi"
+          },
+          {
+            "title": "Eesti Pagulasabi: Praktiline juhend: kuidas toetada Ukraina noori keeleõppes ja lõimumises",
+            "url": "https://pagulasabi.ee/et/praktiline-juhend-kuidas-toetada-ukraina-noori-keeleoppes-ja-loimumises",
+            "publisher": "Eesti Pagulasabi"
+          },
+          {
+            "title": "Eesti Pagulasabi: Privaatsuspoliitika",
+            "url": "https://pagulasabi.ee/node/499",
+            "publisher": "Eesti Pagulasabi"
+          },
+          {
+            "title": "Eesti Pagulasabi: Sotsiaalne heaolu",
+            "url": "https://www.pagulasabi.ee/et/sotsiaalne-heaolu",
+            "publisher": "Eesti Pagulasabi"
+          },
+          {
+            "title": "Eesti Pagulasabi: Tutvustus",
+            "url": "https://www.pagulasabi.ee/et/tutvustus",
+            "publisher": "Eesti Pagulasabi"
+          },
+          {
+            "title": "Eesti Pagulasabi: Tuult tiibadesse: Keeleõppe ja kohanemise tugi aitab Ukraina noortel oma tulevikku kujundada",
+            "url": "https://pagulasabi.ee/et/tuult-tiibadesse-keeleoppe-ja-kohanemise-tugi-aitab-ukraina-noortel-oma-tulevikku-kujundada",
+            "publisher": "Eesti Pagulasabi"
+          },
+          {
+            "title": "Eesti Pagulasabi: Ukraina noorte toetamine Eestis: keel, kogukond ja tulevikuvõimalused",
+            "url": "https://www.pagulasabi.ee/et/ukraina-noorte-toetamine-eestis-keel-kogukond-ja-tulevikuvoimalused",
+            "publisher": "Eesti Pagulasabi"
           },
           {
             "title": "Eesti Paralümpiakomitee",
@@ -2678,6 +3358,66 @@
             "title": "Eesti Paralümpiakomitee: Sport",
             "url": "https://www.paralympic.ee/et/sporditurvalisus",
             "publisher": "Eesti Paralümpiakomitee"
+          },
+          {
+            "title": "Eesti Patsientide Liit: Abiks arsti juures",
+            "url": "https://patsiendid.ee/patsiendi-oigused/abiks-arsti-juures",
+            "publisher": "Eesti Patsientide Liit"
+          },
+          {
+            "title": "Eesti Patsientide Liit: Abiks ravimi ostmisel",
+            "url": "https://patsiendid.ee/patsiendi-oigused/abiks-ravimi-ostmisel",
+            "publisher": "Eesti Patsientide Liit"
+          },
+          {
+            "title": "Eesti Patsientide Liit: Korduma kippuvad küsimused:",
+            "url": "https://patsiendid.ee/liikmele/kkk",
+            "publisher": "Eesti Patsientide Liit"
+          },
+          {
+            "title": "Eesti Patsientide Liit: Küsi apteekrilt oma ravimite kohta",
+            "url": "https://patsiendid.ee/liikmele/kusi-oma-ravimite-kohta",
+            "publisher": "Eesti Patsientide Liit"
+          },
+          {
+            "title": "Eesti Patsientide Liit: Loe lähemalt tervisest:",
+            "url": "https://patsiendid.ee/liikmele/loe-haiguste-kohta",
+            "publisher": "Eesti Patsientide Liit"
+          },
+          {
+            "title": "Eesti Patsientide Liit: Olulised nõuandetelefonid",
+            "url": "https://patsiendid.ee/partnerid/nouandetelefonid",
+            "publisher": "Eesti Patsientide Liit"
+          },
+          {
+            "title": "Eesti Patsientide Liit: Olulised õigusaktid",
+            "url": "https://patsiendid.ee/patsiendi-oigused/oigusaktid",
+            "publisher": "Eesti Patsientide Liit"
+          },
+          {
+            "title": "Eesti Patsientide Liit: Patsiendi ABC",
+            "url": "https://patsiendid.ee/patsiendi-oigused/patsiendi-abc",
+            "publisher": "Eesti Patsientide Liit"
+          },
+          {
+            "title": "Eesti Patsientide Liit: Patsiendikesksus",
+            "url": "https://patsiendid.ee/patsiendi-oigused/patsiendikesksus",
+            "publisher": "Eesti Patsientide Liit"
+          },
+          {
+            "title": "Eesti Patsientide Liit: Ravimite hüvitamine",
+            "url": "https://patsiendid.ee/patsiendi-oigused/ravimite-huvitamine",
+            "publisher": "Eesti Patsientide Liit"
+          },
+          {
+            "title": "Eesti Patsientide Liit: Riiklikud olulised tervishoiusüsteemi lingid:",
+            "url": "https://patsiendid.ee/partnerid/riik",
+            "publisher": "Eesti Patsientide Liit"
+          },
+          {
+            "title": "Eesti Patsientide Liit: Ühingu eesmärgid:",
+            "url": "https://patsiendid.ee/meist/eesmargid",
+            "publisher": "Eesti Patsientide Liit"
           },
           {
             "title": "Eesti Pimedate Liit: Abivahendid",
@@ -2848,6 +3588,111 @@
             "title": "Eesti Psüühikahäiretega Inimeste Lähedaste Liit: Tegevused",
             "url": "https://epill.ee/tegevused",
             "publisher": "Eesti Psüühikahäiretega Inimeste Lähedaste Liit"
+          },
+          {
+            "title": "Eesti Punane Rist: Elupäästva esmaabi lühikursus",
+            "url": "https://redcross.ee/koolitused/elupaastva-esmaabi-luhikursus",
+            "publisher": "Eesti Punane Rist"
+          },
+          {
+            "title": "Eesti Punane Rist: Esileht",
+            "url": "https://redcross.ee/",
+            "publisher": "Eesti Punane Rist"
+          },
+          {
+            "title": "Eesti Punane Rist: Esmaabi põhikoolitus",
+            "url": "https://redcross.ee/koolitused/esmaabi-pohikoolitus-16-h",
+            "publisher": "Eesti Punane Rist"
+          },
+          {
+            "title": "Eesti Punane Rist: Esmaabi põhikoolitus osaliselt e-õppena",
+            "url": "https://redcross.ee/koolitused/esmaabi-pohikoolitus-osaliselt-e-oppena",
+            "publisher": "Eesti Punane Rist"
+          },
+          {
+            "title": "Eesti Punane Rist: Esmaabi ringõppus",
+            "url": "https://redcross.ee/esmaabi-ringoppus",
+            "publisher": "Eesti Punane Rist"
+          },
+          {
+            "title": "Eesti Punane Rist: Esmaabi täiendkoolitus",
+            "url": "https://redcross.ee/koolitused/esmaabi-taiendkoolitus",
+            "publisher": "Eesti Punane Rist"
+          },
+          {
+            "title": "Eesti Punane Rist: Esmaabikoolitus lastevanematele",
+            "url": "https://redcross.ee/koolitused/esmaabikoolitus-lastevanematele",
+            "publisher": "Eesti Punane Rist"
+          },
+          {
+            "title": "Eesti Punane Rist: Esmaabiõpetajate põhikoolitus",
+            "url": "https://redcross.ee/koolitused/esmaabikoolitajate-pohikoolitus",
+            "publisher": "Eesti Punane Rist"
+          },
+          {
+            "title": "Eesti Punane Rist: Esmaabiõpetajate täiendkoolitus",
+            "url": "https://redcross.ee/koolitused/esmaabikoolitajate-taiendkoolitus",
+            "publisher": "Eesti Punane Rist"
+          },
+          {
+            "title": "Eesti Punane Rist: Koolitused",
+            "url": "https://www.redcross.ee/koolitused",
+            "publisher": "Eesti Punane Rist"
+          },
+          {
+            "title": "Eesti Punane Rist: Koolitusmaterjalid",
+            "url": "https://redcross.ee/koolitusmaterjalid",
+            "publisher": "Eesti Punane Rist"
+          },
+          {
+            "title": "Eesti Punane Rist: Korduvad küsimused",
+            "url": "https://redcross.ee/bumerang/KKK",
+            "publisher": "Eesti Punane Rist"
+          },
+          {
+            "title": "Eesti Punane Rist: Liikumise põhimõtted",
+            "url": "https://redcross.ee/pohimotted",
+            "publisher": "Eesti Punane Rist"
+          },
+          {
+            "title": "Eesti Punane Rist: Psühholoogiline esmaabi",
+            "url": "https://redcross.ee/psuhholoogiline-esmaabi",
+            "publisher": "Eesti Punane Rist"
+          },
+          {
+            "title": "Eesti Punane Rist: Psühholoogilise esmaabi koolitus",
+            "url": "https://redcross.ee/koolitused/psuhholoogilise-esmaabi-koolitus",
+            "publisher": "Eesti Punane Rist"
+          },
+          {
+            "title": "Eesti Punane Rist: Tegevus",
+            "url": "https://redcross.ee/tegevus",
+            "publisher": "Eesti Punane Rist"
+          },
+          {
+            "title": "Eesti Punane Rist: Telli koolitus ettevõttele",
+            "url": "https://redcross.ee/telli-koolitus-ettevottele",
+            "publisher": "Eesti Punane Rist"
+          },
+          {
+            "title": "Eesti Punane Rist: Tervise edendamine",
+            "url": "https://redcross.ee/tervise-edendamine",
+            "publisher": "Eesti Punane Rist"
+          },
+          {
+            "title": "Eesti Punane Rist: Traumateadliku psühholoogilise esmaabi koolitus",
+            "url": "https://redcross.ee/traumateadliku-psuhholoogilise-esmaabi-koolitus",
+            "publisher": "Eesti Punane Rist"
+          },
+          {
+            "title": "Eesti Punane Rist: Vabatahtlike koolitused",
+            "url": "https://redcross.ee/vabatahtlike-koolitused",
+            "publisher": "Eesti Punane Rist"
+          },
+          {
+            "title": "Eesti Punane Rist: Väike esmaabiaandja, koolitus lasteaialastele",
+            "url": "https://redcross.ee/koolitused/vaike-esmaabiaandja-koolitus-lasteaialastele",
+            "publisher": "Eesti Punane Rist"
           },
           {
             "title": "Eesti Puuetega Inimeste Koda",
@@ -3525,6 +4370,31 @@
             "publisher": "Eesti Viipekeeletõlkide Kutseühing"
           },
           {
+            "title": "Eesti Võlanõustajate Liit: Abiotsijale",
+            "url": "https://evnl.ee/abiotsijale/",
+            "publisher": "Eesti Võlanõustajate Liit"
+          },
+          {
+            "title": "Eesti Võlanõustajate Liit: Eetikakoodeks",
+            "url": "https://evnl.ee/uhingust/eetikakoodeks/",
+            "publisher": "Eesti Võlanõustajate Liit"
+          },
+          {
+            "title": "Eesti Võlanõustajate Liit: Evnl.ee",
+            "url": "https://evnl.ee/",
+            "publisher": "Eesti Võlanõustajate Liit"
+          },
+          {
+            "title": "Eesti Võlanõustajate Liit: Rahatarkus",
+            "url": "https://evnl.ee/abiotsijale/rahatarkus/",
+            "publisher": "Eesti Võlanõustajate Liit"
+          },
+          {
+            "title": "Eesti Võlanõustajate Liit: Teenuse korraldus",
+            "url": "https://evnl.ee/abiotsijale/teenuse-korraldus/",
+            "publisher": "Eesti Võlanõustajate Liit"
+          },
+          {
             "title": "Eesti Vähiliit",
             "url": "https://cancer.ee/",
             "publisher": "Eesti Vähiliit"
@@ -4133,6 +5003,46 @@
             "title": "MTÜ Lastekaitse Liit: Tasuta õigusabi võimalustest",
             "url": "https://www.lastekaitseliit.ee/et/tasuta-oigusabi-voimalustest",
             "publisher": "MTÜ Lastekaitse Liit"
+          },
+          {
+            "title": "MTÜ Oma Pere: Eestkostja ja hooldusvanem",
+            "url": "https://www.omapere.ee/eestkostja-ja-hooldusvanem/",
+            "publisher": "MTÜ Oma Pere"
+          },
+          {
+            "title": "MTÜ Oma Pere: Lapsendaja",
+            "url": "https://www.omapere.ee/lapsendaja/",
+            "publisher": "MTÜ Oma Pere"
+          },
+          {
+            "title": "MTÜ Oma Pere: Lapsendatu",
+            "url": "https://www.omapere.ee/lapsendatu/",
+            "publisher": "MTÜ Oma Pere"
+          },
+          {
+            "title": "MTÜ Oma Pere: Oleme tugiorganisatsioon lapsendaja- hooldus- ja eestkosteperedele.",
+            "url": "https://www.omapere.ee/",
+            "publisher": "MTÜ Oma Pere"
+          },
+          {
+            "title": "MTÜ Oma Pere: Planeerimata rasedus",
+            "url": "https://www.omapere.ee/planeerimata-rasedus/",
+            "publisher": "MTÜ Oma Pere"
+          },
+          {
+            "title": "MTÜ Oma Pere: Spetsialist",
+            "url": "https://www.omapere.ee/professionaal",
+            "publisher": "MTÜ Oma Pere"
+          },
+          {
+            "title": "MTÜ Oma Pere: Tugiteenused kasuperedele",
+            "url": "https://www.omapere.ee/noustamine/",
+            "publisher": "MTÜ Oma Pere"
+          },
+          {
+            "title": "MTÜ Oma Pere: Viljatusravi teekond",
+            "url": "https://www.omapere.ee/lapsendamist-kaaluv/",
+            "publisher": "MTÜ Oma Pere"
           },
           {
             "title": "mtü pallium",
@@ -5650,6 +6560,46 @@
             "publisher": "Saaremaa Puuetega Inimeste Koda"
           },
           {
+            "title": "SOS Lasteküla Eesti Ühing: Ennetustöö",
+            "url": "https://sos-lastekyla.ee/ennetustoo/",
+            "publisher": "SOS Lasteküla Eesti Ühing"
+          },
+          {
+            "title": "SOS Lasteküla Eesti Ühing: Grupikodu",
+            "url": "https://sos-lastekyla.ee/meie-too/asendushooldus/grupikodu/grupikodu/",
+            "publisher": "SOS Lasteküla Eesti Ühing"
+          },
+          {
+            "title": "SOS Lasteküla Eesti Ühing: Hoolduspere",
+            "url": "https://sos-lastekyla.ee/meie-too/asendushooldus/hoolduspere/",
+            "publisher": "SOS Lasteküla Eesti Ühing"
+          },
+          {
+            "title": "SOS Lasteküla Eesti Ühing: Info kohaliku omavalitsuse lastekaitsetöötajale",
+            "url": "https://sos-lastekyla.ee/info-kohaliku-omavalitsuse-lastekaitsetootajale/",
+            "publisher": "SOS Lasteküla Eesti Ühing"
+          },
+          {
+            "title": "SOS Lasteküla Eesti Ühing: Järelhooldus",
+            "url": "https://sos-lastekyla.ee/meie-too/jarelhooldus/",
+            "publisher": "SOS Lasteküla Eesti Ühing"
+          },
+          {
+            "title": "SOS Lasteküla Eesti Ühing: Perekodu",
+            "url": "https://sos-lastekyla.ee/meie-too/asendushooldus/perekodu/",
+            "publisher": "SOS Lasteküla Eesti Ühing"
+          },
+          {
+            "title": "SOS Lasteküla Eesti Ühing: Teata abivajavast lapsest",
+            "url": "https://sos-lastekyla.ee/lapse-kaitsmine/",
+            "publisher": "SOS Lasteküla Eesti Ühing"
+          },
+          {
+            "title": "SOS Lasteküla Eesti Ühing: Võta ühendust",
+            "url": "https://sos-lastekyla.ee/vota-uhendust/",
+            "publisher": "SOS Lasteküla Eesti Ühing"
+          },
+          {
             "title": "Tallinna ja Harjumaa Kurtide Ühing",
             "url": "https://www.thky.ee/",
             "publisher": "Tallinna ja Harjumaa Kurtide Ühing"
@@ -6059,13 +7009,13 @@
       {
         "kind": "guidance_pages",
         "name": "institutions' guidance pages chosen by rule",
-        "documents": 1096,
+        "documents": 1227,
         "by_source_type": {
-          "web_page": 1096
+          "web_page": 1227
         },
-        "made_from": "the lists register/web_pages_coverage_1.json, register/web_pages_coverage_2.json and register/web_pages_coverage_3.json (the legal aid site's edited articles), collected with scripts/rag-v2-web-pages.mjs and chosen with scripts/rag-v2-web-select.mjs (ADR-137, ADR-143)",
+        "made_from": "the lists register/web_pages_coverage_1.json, register/web_pages_coverage_2.json and register/web_pages_coverage_3.json (the legal aid site's edited articles), collected with scripts/rag-v2-web-pages.mjs and chosen with scripts/rag-v2-web-select.mjs (ADR-137, ADR-143), and register/web_pages_tootukassa.json (the unemployment insurance fund's pages, read from a browser capture of 11.10.2026, ADR-146)",
         "reason": "the choice takes the paragraphs that name a person out of a page; the monthly refresh of the repository's pages would put the collector's own reading in its place",
-        "publishers": 12,
+        "publishers": 13,
         "sources": [
           {
             "title": "Andmekaitsespetsialist",
@@ -6206,6 +7156,661 @@
             "title": "Ühisjuhend: Abivajavast lapsest teatamine ja andmekaitse",
             "url": "https://www.aki.ee/juhendid/isikuandmed/uhisjuhend-abivajavast-lapsest-teatamine-ja-andmekaitse",
             "publisher": "Andmekaitse Inspektsioon"
+          },
+          {
+            "title": "Abi ja nõustamine koondamisel",
+            "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/abi-ja-noustamine-koondamisel",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Abiks kandideerijale",
+            "url": "https://www.tootukassa.ee/et/teenused/toootsingud/abiks-kandideerijale",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Ajutine töötamine arveloleku ajal",
+            "url": "https://www.tootukassa.ee/et/teenused/toootsingud/ajutine-tootamine-arveloleku-ajal",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Alaealise tööle võtmine",
+            "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/alaealise-toole-votmine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Alaealise töötamise toetamine",
+            "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/alaealise-tootamise-toetamine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Arengutreening",
+            "url": "https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/arengutreening",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Arstivisiit ja hindamise taotluse esitamine",
+            "url": "https://www.tootukassa.ee/et/teenused/toovoime-hindamine/arstivisiit-ja-hindamise-taotluse-esitamine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Avaldused ja vormid",
+            "url": "https://www.tootukassa.ee/et/otseteed/avaldused-ja-vormid",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Eksperdiarvamuse koostamine",
+            "url": "https://www.tootukassa.ee/et/teenused/toovoime-hindamine/eksperdiarvamuse-koostamine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Elektroonilised osavõtuandmed",
+            "url": "https://www.tootukassa.ee/et/artikkel/elektroonilised-osavotuandmed",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Esindused | Töötukassa",
+            "url": "https://www.tootukassa.ee/et/kontaktid/esindused",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Ettevõtluse järelteenused",
+            "url": "https://www.tootukassa.ee/et/teenused/ettevotlusega-alustamine/ettevotluse-jarelteenused",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Ettevõtlusega alustamine",
+            "url": "https://www.tootukassa.ee/et/teenused/ettevotlusega-alustamine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "EURES (Euroopa töövahenduse teenused)",
+            "url": "https://www.tootukassa.ee/et/teenused/eures-euroopa-toovahenduse-teenused",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Euroopa Liit ja töötuskindlustus",
+            "url": "https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/euroopa-liit-ja-tootuskindlustus",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Euroopa Liit ja töövõimetoetus",
+            "url": "https://www.tootukassa.ee/et/teenused/toovoimetoetus/euroopa-liit-ja-toovoimetoetus",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "EVAT kasutamine",
+            "url": "https://www.tootukassa.ee/et/teenused/ettevotlusega-alustamine/evat-kasutamine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "EVAT kasutamise kontroll",
+            "url": "https://www.tootukassa.ee/et/teenused/ettevotlusega-alustamine/evat-kasutamise-kontroll",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "EVAT korduma kippuvad küsimused",
+            "url": "https://www.tootukassa.ee/et/teenused/ettevotlusega-alustamine-sai-taotleda-kuni-31032026/evat-korduma-kippuvad-kusimused",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Hindamise otsus ja abi töö leidmisel",
+            "url": "https://www.tootukassa.ee/et/teenused/toovoime-hindamine/hindamise-otsus-ja-abi-too-leidmisel",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Juhatus ja nõukogu",
+            "url": "https://www.tootukassa.ee/et/kontaktid/juhatus-ja-noukogu",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Juhatuse liige",
+            "url": "https://www.tootukassa.ee/et/teenused/toootsingud/juhatuse-liige",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Karjäär ja koolitamine",
+            "url": "https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Karjääri kujundamine",
+            "url": "https://www.tootukassa.ee/et/karjaarikujundajale/karjaarikujundamine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Karjäärinõustamine",
+            "url": "https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/karjaarinoustamine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Kollektiivne koondamine",
+            "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/kollektiivne-koondamine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Koolitajate otsing",
+            "url": "https://www.tootukassa.ee/et/koolitajad?pageSize=20",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Koolitused töötavatele inimestele",
+            "url": "https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/koolitus-tootajale-toota-ja-opi",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Koolituskaart",
+            "url": "https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/koolituskaart",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Koolitustoetus tööandjatele",
+            "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/koolitustoetus-tooandjatele",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Koolitustoetus tööandjatele muutuste olukorras",
+            "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/koolitustoetus-tooandjatele-muutuste-olukorras",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Koolitustoetus tööandjatele töötaja digioskuste arendamiseks",
+            "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/koolitustoetus-tooandjatele-tootaja-ikt-oskuste-arendamiseks",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Koolitustoetus tööandjatele töötaja eesti keele oskuse arendamiseks",
+            "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/koolitustoetus-tooandjatele-tootaja-eesti-keele-oskuse-arendamiseks",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Koolitustoetus tööandjatele töötaja roheoskuste arendamiseks",
+            "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/koolitustoetus-tooandjatele-tootaja-roheoskuste-arendamiseks",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Koolitustoetus tööandjatele töötajate värbamiseks",
+            "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/koolitustoetus-tooandjatele-tootajate-varbamiseks",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Koondamine ja maksejõuetus",
+            "url": "https://www.tootukassa.ee/et/koondamine-ja-maksejouetus",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Koondamise korral",
+            "url": "https://www.tootukassa.ee/et/teenused/toootsingud/koondamise-korral",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Koondamishüvitis",
+            "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/koondamishuvitis",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Koostöökokkulepped töötuna registreeritud kliendiga",
+            "url": "https://www.tootukassa.ee/et/artikkel/koostookokkulepped-tootuna-registreeritud-kliendiga",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Koostöövõimalused EURES Euroopa tööturuasutuste võrgustikuga",
+            "url": "https://www.tootukassa.ee/et/teenused/partneritele/koostoovoimalused-eures-euroopa-tooturuasutuste-vorgustikuga",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Koostöövõimalused kogemusnõustajatele",
+            "url": "https://www.tootukassa.ee/et/teenused/partneritele/koostoovoimalused-kogemusnoustajatele",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Koostöövõimalused koolitusasutustele",
+            "url": "https://www.tootukassa.ee/et/teenused/partneritele/koostoovoimalused-koolitusasutustele",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Koostöövõimalused nõustamisteenuste osutajatele",
+            "url": "https://www.tootukassa.ee/et/teenused/partneritele/koostoovoimalused-noustamisteenuste-osutajatele",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Koostöövõimalused tööandjatele",
+            "url": "https://www.tootukassa.ee/et/teenused/partneritele/koostoovoimalused-tooandjatele",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Koostöövõimalused üldhariduskoolidele",
+            "url": "https://www.tootukassa.ee/et/teenused/partneritele/koostoovoimalused-uldhariduskoolidele",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Luba välismaalase töölevõtmiseks",
+            "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/luba-valismaalase-toolevotmiseks",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Maksmise peatamine ja lõpetamine",
+            "url": "https://www.tootukassa.ee/et/teenused/toovoimetoetus/maksmise-peatamine-ja-lopetamine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Maksuvaba tulu alates 1. jaanuarist 2026",
+            "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/maksuvaba-tulu-alates-1-jaanuarist-2026",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Noorele",
+            "url": "https://www.tootukassa.ee/et/teenused/toootsingud/noorele",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Nõustamisteenuste osutajad",
+            "url": "https://www.tootukassa.ee/et/noustamisteenused",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Oskuste arendamine",
+            "url": "https://www.tootukassa.ee/et/karjaarikujundajale/oskuste-arendamine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Palgatoetus",
+            "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/palgatoetus",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Pankrotihüvitis",
+            "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/pankrotihuvitis",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Partnerite võimalused",
+            "url": "https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/partnerite-voimalused",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Pikaajaline haigusleht",
+            "url": "https://www.tootukassa.ee/et/teenused/too-ja-tervis/pikaajaline-haigusleht",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Proovitöö",
+            "url": "https://www.tootukassa.ee/et/teenused/toootsingud/proovitoo",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Psühholoogiline ja võlanõustamine",
+            "url": "https://www.tootukassa.ee/et/teenused/toootsingud/psuhholoogiline-ja-volanoustamine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Põlevkivisektori töötajale",
+            "url": "https://www.tootukassa.ee/et/teenused/toootsingud/polevkivisektori-tootajale",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Rahvusvahelise kaitse saaja töötamise toetamine (sai taotleda kuni 31.08.2026)",
+            "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/rahvusvahelise-kaitse-saaja-tootamise-toetamine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Ravikindlustus",
+            "url": "https://www.tootukassa.ee/et/teenused/toootsingud/ravikindlustus",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Seminarid",
+            "url": "https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/seminarid",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Sertifikaadi või kutsetunnistuse kulude hüvitamine",
+            "url": "https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/sertifikaadi-voi-kutsetunnistuse-kulude-huvitamine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Sertifikaadi või kutsetunnistuse saamine",
+            "url": "https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/sertifikaadi-voi-kutsetunnistuse-saamine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Sotsiaalmaksu hüvitamine vähenenud töövõimega inimese eest",
+            "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/sotsiaalmaksu-huvitamine-vahenenud-toovoimega-inimese-eest",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Stipendium",
+            "url": "https://www.tootukassa.ee/et/teenused/toootsingud/stipendium",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Sõidu- ja majutustoetus",
+            "url": "https://www.tootukassa.ee/et/teenused/toootsingud/soidu-ja-majutustoetus",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Taotluse esitamine eestkoste või volitusega",
+            "url": "https://www.tootukassa.ee/et/teenused/toovoimetoetus/taotluse-esitamine-eestkoste-voi-volitusega",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Tasemeõppes osalemise toetus",
+            "url": "https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/tasemeoppes-osalemise-toetus",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Teiste riikide tööturuasutused",
+            "url": "https://www.tootukassa.ee/et/teenused/eures-euroopa-toovahenduse-teenused/teiste-riikide-tooturuasutused",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Tervisepiiranguga inimese tööandja nõustamine",
+            "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/tervisepiiranguga-inimese-tooandja-noustamine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Tervisepiiranguga inimese töötamise toetamine",
+            "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/tervisepiiranguga-inimese-tootamise-toetamine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Toetatavad põhikutsealad",
+            "url": "https://www.tootukassa.ee/et/artikkel/toetatavad-pohikutsealad",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Toetatud töölerakendamine",
+            "url": "https://www.tootukassa.ee/et/teenused/too-ja-tervis/toetatud-toolerakendamine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Toetuse maksmine",
+            "url": "https://www.tootukassa.ee/et/teenused/toovoimetoetus/toetuse-maksmine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Toetuse ümberarvutamine suurenenud sissetuleku tõttu",
+            "url": "https://www.tootukassa.ee/et/teenused/toovoimetoetus/toetuse-umberarvutamine-suurenenud-sissetuleku-tottu",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Tugiisikuga töötamine",
+            "url": "https://www.tootukassa.ee/et/teenused/too-ja-tervis/tugiisikuga-tootamine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töö ja tervis",
+            "url": "https://www.tootukassa.ee/et/teenused/too-ja-tervis",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töö ja töötaja Euroopast (EURES)",
+            "url": "https://www.tootukassa.ee/et/teenused/eures-euroopa-toovahenduse-teenused/too-ja-tootaja-euroopast-eures",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töö kaotamine",
+            "url": "https://www.tootukassa.ee/et/toootsijale/too-kaotamine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Tööalane abivahend",
+            "url": "https://www.tootukassa.ee/et/teenused/too-ja-tervis/tooalane-abivahend",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Tööalane rehabilitatsioon",
+            "url": "https://www.tootukassa.ee/et/teenused/too-ja-tervis/tooalane-rehabilitatsioon",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Tööalase rehabilitatsiooni osutajad",
+            "url": "https://www.tootukassa.ee/et/rehabilitatsioon",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Tööalaste abivahendite ja töökoha kohandamise näited",
+            "url": "https://www.tootukassa.ee/et/artikkel/tooalaste-abivahendite-ja-tookoha-kohandamise-naited",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Tööampsude KKK",
+            "url": "https://www.tootukassa.ee/et/artikkel/tooampsude-kkk",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Tööandja tegevus kollektiivsel koondamisel",
+            "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/tooandja-tegevus-kollektiivsel-koondamisel",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Tööandjatele",
+            "url": "https://www.tootukassa.ee/et/teenused/tooandjatele",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töökeskne nõustamine",
+            "url": "https://www.tootukassa.ee/et/teenused/toootsingud/tookeskne-noustamine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töökoha kohandamine",
+            "url": "https://www.tootukassa.ee/et/teenused/too-ja-tervis/tookoha-kohandamine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Tööotsingud",
+            "url": "https://www.tootukassa.ee/et/teenused/toootsingud",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Tööpraktika",
+            "url": "https://www.tootukassa.ee/et/teenused/toootsingud/toopraktika",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Tööta ja õpi",
+            "url": "https://www.tootukassa.ee/et/toota-ja-opi",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töötaja ja muu isik",
+            "url": "https://www.tootukassa.ee/et/teenused/toootsingud/tootaja-ja-muu-isik",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töötaja leidmine ja koolitamine",
+            "url": "https://www.tootukassa.ee/et/tootaja-leidmine-ja-koolitamine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töötajate vaba liikumine ja sotsiaalkindlustus",
+            "url": "https://www.tootukassa.ee/et/teenused/eures-euroopa-toovahenduse-teenused/tootajate-vaba-liikumine-ja-sotsiaalkindlustus",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töötamine Eestis",
+            "url": "https://www.tootukassa.ee/et/teenused/toootsingud/tootamine-eestis",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töötukassa esindused",
+            "url": "https://www.tootukassa.ee/kontaktid/tootukassa-esindused",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töötukassast",
+            "url": "https://www.tootukassa.ee/et/tootukassast",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töötuna arveloleku lõpetamine",
+            "url": "https://www.tootukassa.ee/et/teenused/toootsingud/tootuna-arveloleku-lopetamine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töötuna registreerimine",
+            "url": "https://www.tootukassa.ee/et/teenused/toootsingud/tootuna-registreerimine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töötushüvitiste maksmise süsteemi muudatuse KKK",
+            "url": "https://www.tootukassa.ee/et/artikkel/tootushuvitiste-maksmise-susteemi-muudatuse-kkk",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töötuskindlustushüvitis",
+            "url": "https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töötuskindlustushüvitis laevapere liikmetele",
+            "url": "https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitis-laevapere-liikmetele",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töötuskindlustushüvitis välisriigis tööd otsides",
+            "url": "https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitis-valisriigis-tood-otsides",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töötuskindlustushüvitise arvestamine ja maksmine",
+            "url": "https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitise-arvestamine-ja-maksmine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töötuskindlustushüvitise korduv taotlemine",
+            "url": "https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitise-korduv-taotlemine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töötuskindlustushüvitise maksmise lõpetamine enne perioodi lõppu",
+            "url": "https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitise-maksmise-lopetamine-enne-perioodi-loppu",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töötuskindlustushüvitise maksmise periood",
+            "url": "https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitise-maksmise-periood",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töötuskindlustushüvitise perioodi KKK",
+            "url": "https://www.tootukassa.ee/et/artikkel/tootuskindlustushuvitise-perioodi-kkk",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töötuskindlustushüvitise suurus ja selle arvutamine",
+            "url": "https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitise-suurus-ja-selle-arvutamine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töötuskindlustushüvitise taotlemine ja määramine",
+            "url": "https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitise-taotlemine-ja-maaramine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töötuskindlustusmakse",
+            "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/tootuskindlustusmakse",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töötuskindlustusstaaži arvestamine",
+            "url": "https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustusstaazi-arvestamine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töövahendus",
+            "url": "https://www.tootukassa.ee/et/teenused/tooandjatele/toovahendus",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töövõime hindamine",
+            "url": "https://www.tootukassa.ee/et/tervisepiiranguga-inimesele/toovoime-hindamine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töövõime hindamine",
+            "url": "https://www.tootukassa.ee/et/teenused/toovoime-hindamine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töövõime hindamise põhimõtted ja metoodika",
+            "url": "https://www.tootukassa.ee/et/teenused/toovoime-hindamine/toovoime-hindamise-pohimotted-ja-metoodika",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töövõime hindamise taotlemine välismaal elades",
+            "url": "https://www.tootukassa.ee/et/teenused/toovoime-hindamine/toovoime-hindamise-taotlemine-valismaal-elades",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töövõime hindamise taotluse esitamine esindaja poolt",
+            "url": "https://www.tootukassa.ee/et/teenused/toovoime-hindamine/toovoime-hindamise-taotluse-esitamine-esindaja-poolt",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töövõimekaart",
+            "url": "https://www.tootukassa.ee/et/teenused/toovoime-hindamine/toovoimekaart",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töövõimet hindavad tervishoiuasutused",
+            "url": "https://www.tootukassa.ee/et/teenused/toovoime-hindamine/toovoimet-hindavad-tervishoiuasutused",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töövõimetoetus",
+            "url": "https://www.tootukassa.ee/et/teenused/toovoimetoetus",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töövõimetoetuse maksmise jätkamine kordushindamisel",
+            "url": "https://www.tootukassa.ee/et/teenused/toovoimetoetus/toovoimetoetuse-maksmise-jatkamine-kordushindamisel",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töövõimetoetuse saamise tingimused",
+            "url": "https://www.tootukassa.ee/et/teenused/toovoimetoetus/toovoimetoetuse-saamise-tingimused",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töövõimetoetuse suurus",
+            "url": "https://www.tootukassa.ee/et/teenused/toovoimetoetus/toovoimetoetuse-suurus",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Töövõimetoetuse taotlemine",
+            "url": "https://www.tootukassa.ee/et/tervisepiiranguga-inimesele/toovoimetoetuse-taotlemine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Vaide esitamine",
+            "url": "https://www.tootukassa.ee/et/jalus/ametlikku/vaide-esitamine",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Vanaduspensioniealisele",
+            "url": "https://www.tootukassa.ee/et/teenused/toootsingud/vanaduspensioniealisele",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Vähese tähtsusega abi",
+            "url": "https://www.tootukassa.ee/et/vahese-tahtsusega-abi-ja-riigiabi",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Õigus töövõimetoetusele",
+            "url": "https://www.tootukassa.ee/et/teenused/toovoimetoetus/oigus-toovoimetoetusele",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Üldkontakt",
+            "url": "https://www.tootukassa.ee/et/kontaktid",
+            "publisher": "Eesti Töötukassa"
+          },
+          {
+            "title": "Üleminek töövõimetuspensionilt töövõimetoetusele",
+            "url": "https://www.tootukassa.ee/et/teenused/toovoimetoetus/uleminek-toovoimetuspensionilt-toovoimetoetusele",
+            "publisher": "Eesti Töötukassa"
           },
           {
             "title": "10 nippi turvalise kohtingurakenduse kohtumiseks",
