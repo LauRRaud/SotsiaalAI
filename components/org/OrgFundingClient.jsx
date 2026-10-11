@@ -1,20 +1,30 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import Button from "@/components/ui/Button";
-import Dropdown from "@/components/ui/Dropdown";
-import Form from "@/components/ui/Form";
-import Input from "@/components/ui/Input";
-import {
-  CLIENT_SPONSORSHIP_REFERENCE_PRICE_CENTS,
-  ORGANIZATION_SEAT_ROLES,
-  SEAT_ROLE_REFERENCE_PRICE_CENTS
-} from "@/lib/org/constants";
 
-import OrgHeader from "./OrgHeader";
+import { LinkView, PlanForm, PlanView, PlansBoard, SponsorshipForm, SponsorshipsBoard } from "./funding/FundingViews";
+import {
+  EMPTY_PLAN,
+  FUNDING_TABS,
+  assignableMembers,
+  emailLooksRight,
+  planActions,
+  planFacts,
+  planProblemKey,
+  planRow,
+  seatReferencePrice,
+  seatRoleOptions,
+  seatedPeople,
+  shownFundingTab,
+  sponsorshipLink,
+  sponsorshipReferencePrice,
+  sponsorshipRow
+} from "./funding/fundingRules";
+import OrgPart from "./OrgPart";
 import { useOrgApi } from "./useOrgApi";
+import { useSecondPress } from "./useSecondPress";
 
 /**
  * Rahastuse vaade.
@@ -22,36 +32,41 @@ import { useOrgApi } from "./useOrgApi";
  * MIDA SIIN EI OLE JA EI TULE: ühegi inimese kasutussagedust, vestluste arvu,
  * aktiivsusaega ega tootlikkust. Organisatsioon näeb, KELLE eest ta maksab —
  * mitte seda, mida see inimene teeb (arenduskava §5.6, §7.4).
+ *
+ * KUJU (11.10). Tabel ja kaks vormi üksteise all on nüüd kaks loendit (kohaplaanid
+ * ja pöördujate tasutud ligipääs), üks avatud plaan, kaks väikest vormi ja ühe
+ * korra näidatav link. Vaated on failis ./funding/FundingViews.jsx, reeglid failis
+ * ./funding/fundingRules.js; see fail hoiab olekut ja teeb päringud. Koha
+ * vabastamine, plaani lõpetamine ja pakkumise tühistamine küsivad teist vajutust.
  */
-function formatCents(cents, locale) {
-  return new Intl.NumberFormat(locale || "et", {
-    style: "currency",
-    currency: "EUR",
-    minimumFractionDigits: 2
-  }).format((Number(cents) || 0) / 100);
-}
-
 export default function OrgFundingClient({ context, initialSeatPlans, initialSponsorshipPage, members }) {
   const { t, locale } = useI18n();
-  const { call, busy, error } = useOrgApi();
+  const { call, error, setError } = useOrgApi();
   const [seatPlans, setSeatPlans] = useState(initialSeatPlans || []);
   const [sponsorships, setSponsorships] = useState(initialSponsorshipPage?.items || []);
   const [sponsorshipCursor, setSponsorshipCursor] = useState(initialSponsorshipPage?.nextCursor || null);
-  const [seatRole, setSeatRole] = useState("SOCIAL_WORKER");
-  const [seatLimit, setSeatLimit] = useState(1);
+  const [planForm, setPlanForm] = useState(EMPTY_PLAN);
   const [sponsorEmail, setSponsorEmail] = useState("");
   const [issuedLink, setIssuedLink] = useState("");
+  const [copied, setCopied] = useState(false);
+  const [wantedTab, setWantedTab] = useState("plans");
+  /* Mis on ees: "list" | "plan" | "newPlan" | "offer" | "link". */
+  const [mode, setMode] = useState("list");
+  const [openPlanId, setOpenPlanId] = useState("");
+  const [assigneeId, setAssigneeId] = useState("");
+  /* Mis päring käib: "" | "addPlan" | "assign" | "release:<id>" | "end" | "offer" | "revoke:<id>" | "more". */
+  const [pending, setPending] = useState("");
+  const [hint, setHint] = useState("");
+  const confirm = useSecondPress();
+  const clearConfirm = confirm.clear;
+  const sending = useRef(false);
+  const rootRef = useRef(null);
+  const fieldRef = useRef(null);
+  const live = useRef({ planForm, sponsorEmail });
+  live.current = { planForm, sponsorEmail };
 
   const organizationId = context.organization.id;
   const writable = context?.writable !== false;
-
-  /* Juba koha saanud inimene ei tohi valikuloendis olla: server keelduks
-     (`seat_already_assigned`), aga kasutaja jaoks näeks see välja nagu viga
-     tema toimingus. Koht on liikmesuse kohta ÜKS, seega arvestame kõiki
-     plaane, mitte ainult käesolevat. */
-  const seatedMembershipIds = new Set(
-    seatPlans.flatMap((plan) => plan.assignments.map((assignment) => assignment.membershipId))
-  );
 
   const reload = useCallback(async () => {
     const [plans, sponsors] = await Promise.all([
@@ -78,18 +93,19 @@ export default function OrgFundingClient({ context, initialSeatPlans, initialSpo
     setSponsorshipCursor(payload.nextCursor || null);
   }, [call, organizationId, sponsorshipCursor]);
 
-  const addPlan = useCallback(
-    async (event) => {
-      event.preventDefault();
-      const payload = await call(`/api/org/${organizationId}/seats`, {
-        method: "POST",
-        body: { seatRole, seatLimit: Number(seatLimit) },
-        fallbackKey: "org.errors.seat_plan_create_failed"
-      });
-      if (payload) await reload();
-    },
-    [call, organizationId, reload, seatLimit, seatRole]
-  );
+  const addPlan = useCallback(async () => {
+    const { seatRole, seatLimit } = live.current.planForm;
+    const payload = await call(`/api/org/${organizationId}/seats`, {
+      method: "POST",
+      body: { seatRole, seatLimit: Number(seatLimit) },
+      fallbackKey: "org.errors.seat_plan_create_failed"
+    });
+    if (payload) {
+      setPlanForm(EMPTY_PLAN);
+      setMode("list");
+      await reload();
+    }
+  }, [call, organizationId, reload]);
 
   const assign = useCallback(
     async (seatPlanId, membershipId) => {
@@ -99,7 +115,10 @@ export default function OrgFundingClient({ context, initialSeatPlans, initialSpo
         body: { membershipId },
         fallbackKey: "org.errors.seat_assign_failed"
       });
-      if (payload) await reload();
+      if (payload) {
+        setAssigneeId("");
+        await reload();
+      }
     },
     [call, organizationId, reload]
   );
@@ -126,25 +145,22 @@ export default function OrgFundingClient({ context, initialSeatPlans, initialSpo
     [call, organizationId, reload]
   );
 
-  const sponsor = useCallback(
-    async (event) => {
-      event.preventDefault();
-      setIssuedLink("");
-      const payload = await call(`/api/org/${organizationId}/sponsorships`, {
-        method: "POST",
-        body: { email: sponsorEmail },
-        fallbackKey: "org.errors.sponsorship_create_failed"
-      });
-      if (payload?.sponsorshipToken) {
-        setIssuedLink(
-          `${window.location.origin}/org/toetus?token=${encodeURIComponent(payload.sponsorshipToken)}`
-        );
-        setSponsorEmail("");
-        await reload();
-      }
-    },
-    [call, organizationId, reload, sponsorEmail]
-  );
+  const sponsor = useCallback(async () => {
+    const { sponsorEmail } = live.current;
+    setIssuedLink("");
+    const payload = await call(`/api/org/${organizationId}/sponsorships`, {
+      method: "POST",
+      body: { email: sponsorEmail },
+      fallbackKey: "org.errors.sponsorship_create_failed"
+    });
+    if (payload?.sponsorshipToken) {
+      setIssuedLink(sponsorshipLink(window.location.origin, payload.sponsorshipToken));
+      setCopied(false);
+      setSponsorEmail("");
+      setMode("link");
+      await reload();
+    }
+  }, [call, organizationId, reload]);
 
   const revokeSponsorship = useCallback(
     async (sponsorshipId) => {
@@ -157,233 +173,264 @@ export default function OrgFundingClient({ context, initialSeatPlans, initialSpo
     [call, organizationId, reload]
   );
 
-  return (
-    <section className="ow-shell">
-      <OrgHeader context={context} />
+  /* Üks tegevus korraga: topeltvajutus ei saada teist päringut. */
+  const once = useCallback(async (name, work) => {
+    if (sending.current) return;
+    sending.current = true;
+    setPending(name);
+    setHint("");
+    try {
+      await work();
+    } finally {
+      sending.current = false;
+      setPending("");
+    }
+  }, []);
 
-      <div className="ow-card">
-        <h2 className="ow-title" style={{ fontSize: "1.125rem" }}>
-          {t("org.funding.heading")}
-        </h2>
-        <p className="ow-subtitle">{t("org.funding.intro")}</p>
-        <p className="ow-notice ow-notice--privacy">{t("org.funding.privacyNotice")}</p>
-      </div>
+  const tabs = [...FUNDING_TABS];
+  const tab = shownFundingTab(wantedTab);
+  const planRows = useMemo(() => seatPlans.map((plan) => planRow(plan, { t, locale })), [seatPlans, t, locale]);
+  const sponsorshipRows = useMemo(() => sponsorships.map((row) => sponsorshipRow(row, { t, locale, writable })), [sponsorships, t, locale, writable]);
+  const roles = useMemo(() => seatRoleOptions(t), [t]);
+  const openPlan = seatPlans.find((plan) => plan.id === openPlanId) || null;
 
-      <section className="ow-card" aria-labelledby="ow-plans">
-        <h3 id="ow-plans" className="ow-title" style={{ fontSize: "1rem" }}>
-          {t("org.funding.plans")}
-        </h3>
+  /* Vaate vahetusel kaob vajutatud rida või nupp: fookus läheb vormi väljale või
+     vaate pealkirjale. Esimesel joonistusel fookust ei võeta. */
+  const shown = useRef("");
+  const shownKey = `${mode}:${openPlan ? openPlan.id : ""}`;
+  useEffect(() => {
+    const first = shown.current === "";
+    const moved = shown.current !== shownKey;
+    shown.current = shownKey;
+    if (first || !moved) return;
+    if (mode === "newPlan" || mode === "offer") fieldRef.current?.focus?.({ preventScroll: true });
+    else rootRef.current?.querySelector("[data-step-heading]")?.focus({ preventScroll: true });
+  }, [mode, shownKey]);
 
-        {seatPlans.length === 0 ? (
-          <p className="ow-empty">{t("org.funding.empty")}</p>
-        ) : (
-          <div className="ow-tablewrap">
-            <table className="ow-table">
-              <caption>{t("org.funding.plans")}</caption>
-              <thead>
-                <tr>
-                  <th scope="col">{t("org.funding.seatRole")}</th>
-                  <th scope="col">{t("org.funding.seatLimit")}</th>
-                  <th scope="col">{t("org.funding.price")}</th>
-                  <th scope="col">{t("org.funding.source")}</th>
-                  <th scope="col">{t("org.funding.status")}</th>
-                  <th scope="col">{t("org.members.actions")}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {seatPlans.map((plan) => (
-                  <tr key={plan.id}>
-                    <td data-label={t("org.funding.seatRole")}>{t(`org.seatRole.${plan.seatRole}`)}</td>
-                    <td data-label={t("org.funding.seatLimit")}>
-                      {plan.usedSeats} / {plan.seatLimit}
-                      <br />
-                      <span className="ow-meta__term">
-                        {t("org.funding.free")}: {plan.freeSeats}
-                      </span>
-                      <ul className="ow-chips">
-                        {plan.assignments.map((assignment) => (
-                          <li key={assignment.id} className="ow-chip">
-                            {[assignment.person.firstName, assignment.person.lastName]
-                              .filter(Boolean)
-                              .join(" ") || assignment.person.email}
-                            {writable ? (
-                              <button
-                                type="button"
-                                onClick={() => release(assignment.id)}
-                                disabled={busy}
-                                aria-label={`${t("org.funding.release")}: ${assignment.person.email}`}
-                              >
-                                ×
-                              </button>
-                            ) : null}
-                          </li>
-                        ))}
-                      </ul>
-                    </td>
-                    <td data-label={t("org.funding.price")}>
-                      {formatCents(plan.unitPriceCents, locale)}
-                      {plan.priceReason ? (
-                        <>
-                          <br />
-                          <span className="ow-meta__term">{plan.priceReason}</span>
-                        </>
-                      ) : null}
-                    </td>
-                    <td data-label={t("org.funding.source")}>{t(`org.seatPlanSource.${plan.source}`)}</td>
-                    <td data-label={t("org.funding.status")}>{t(`org.seatPlanStatus.${plan.status}`)}</td>
-                    <td data-label={t("org.members.actions")}>
-                      {writable && plan.status === "ACTIVE" ? (
-                        <div className="ow-actions">
-                          <label>
-                            <span className="ow-meta__term">{t("org.funding.assign")}</span>
-                            {/* TOIMINGUMENÜÜ, mitte väli: valik käivitab
-                                määramise ja liige liigub kohe ülal olevasse
-                                loendisse. Seetõttu jääb menüü ise alati tühja
-                                seisu (varem tegi sama `defaultValue=""`). */}
-                            <Dropdown
-                              value=""
-                              disabled={busy}
-                              onChange={(membershipId) => assign(plan.id, membershipId)}
-                              ariaLabel={t("org.funding.assign")}
-                              placeholder={t("org.funding.chooseMember")}
-                              options={members
-                                .filter(
-                                  (member) =>
-                                    member.seatRole === plan.seatRole &&
-                                    member.status === "ACTIVE" &&
-                                    !seatedMembershipIds.has(member.membershipId)
-                                )
-                                .map((member) => ({
-                                  value: member.membershipId,
-                                  label:
-                                    [member.person.firstName, member.person.lastName]
-                                      .filter(Boolean)
-                                      .join(" ") || member.membershipId
-                                }))}
-                            />
-                          </label>
-                          <Button type="button" onClick={() => endPlan(plan.id)} disabled={busy}>
-                            {t("org.funding.endPlan")}
-                          </Button>
-                        </div>
-                      ) : null}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
+  const toList = useCallback(() => {
+    clearConfirm();
+    setError("");
+    setHint("");
+    setMode("list");
+  }, [clearConfirm, setError]);
 
-        {writable ? (
-          <Form onSubmit={addPlan} className="ow-grid">
-            <label>
-              <span className="ow-meta__term">{t("org.funding.seatRole")}</span>
-              <Dropdown
-                value={seatRole}
-                onChange={setSeatRole}
-                ariaLabel={t("org.funding.seatRole")}
-                options={ORGANIZATION_SEAT_ROLES.map((role) => ({
-                  value: role,
-                  label: t(`org.seatRole.${role}`)
-                }))}
-              />
-            </label>
-            <label>
-              <span className="ow-meta__term">{t("org.funding.seatLimit")}</span>
-              <Input
-                type="number"
-                min="0"
-                value={seatLimit}
-                onChange={(event) => setSeatLimit(event.target.value)}
-              />
-            </label>
-            <p className="ow-empty">
-              {t("org.funding.referencePrice")}: {formatCents(SEAT_ROLE_REFERENCE_PRICE_CENTS[seatRole], locale)}
-            </p>
-            <div className="ow-actions">
-              <Button type="submit" disabled={busy}>
-                {t("org.funding.addPlan")}
-              </Button>
-            </div>
-          </Form>
-        ) : null}
-      </section>
+  const changeTab = (value) => {
+    clearConfirm();
+    setError("");
+    setWantedTab(value);
+  };
+  const notice = error ? { tone: "risk", text: error } : hint ? { tone: "risk", text: hint } : null;
+  const wrap = (view) => (
+    <div ref={rootRef}>
+      <OrgPart context={context} part="funding">
+        {view}
+      </OrgPart>
+    </div>
+  );
 
-      <section className="ow-card" aria-labelledby="ow-sponsorships">
-        <h3 id="ow-sponsorships" className="ow-title" style={{ fontSize: "1rem" }}>
-          {t("org.funding.sponsorships")}
-        </h3>
-        <p className="ow-subtitle">{t("org.funding.sponsorshipIntro")}</p>
+  if (mode === "link" && issuedLink) {
+    return wrap(
+      <LinkView
+        t={t}
+        link={issuedLink}
+        copied={copied}
+        onCopy={async () => {
+          try {
+            await navigator.clipboard.writeText(issuedLink);
+            setCopied(true);
+          } catch {
+            /* Lõikelaud ei ole lubatud: valime lingi teksti, et inimene saaks selle ise kopeerida. */
+            const node = rootRef.current?.querySelector("[data-link]");
+            if (node) window.getSelection()?.selectAllChildren(node);
+          }
+        }}
+        onDone={() => {
+          /* Link kaob koos selle vaatega: seda ei hoita kusagil. */
+          setIssuedLink("");
+          setWantedTab("sponsorships");
+          toList();
+        }}
+      />
+    );
+  }
 
-        {sponsorships.length === 0 ? (
-          <p className="ow-empty">{t("org.funding.noSponsorships")}</p>
-        ) : (
-          <ul className="ow-chips">
-            {sponsorships.map((row) => (
-              <li key={row.id} className="ow-chip">
-                {row.email} · {formatCents(row.unitPriceCents, locale)}
-                {writable && row.status === "PENDING" ? (
-                  <button
-                    type="button"
-                    onClick={() => revokeSponsorship(row.id)}
-                    disabled={busy}
-                    aria-label={`${t("org.funding.revokeSponsorship")}: ${row.email}`}
-                  >
-                    ×
-                  </button>
-                ) : null}
-              </li>
-            ))}
-          </ul>
-        )}
-        {sponsorshipCursor ? (
-          <div className="ow-actions">
-            <Button type="button" variant="secondary" disabled={busy} onClick={loadSponsorships}>
-              {t("org.pagination.loadMore")}
-            </Button>
-          </div>
-        ) : null}
+  if (mode === "newPlan" && writable) {
+    return wrap(
+      <PlanForm
+        t={t}
+        form={planForm}
+        onField={(key, value) => {
+          setPlanForm((current) => ({ ...current, [key]: value }));
+          setHint("");
+          setError("");
+        }}
+        roles={roles}
+        reference={seatReferencePrice(planForm.seatRole, locale)}
+        fieldRef={fieldRef}
+        notice={notice}
+        decline={{
+          onPress: () => {
+            setPlanForm(EMPTY_PLAN);
+            toList();
+          }
+        }}
+        save={{
+          busy: pending === "addPlan",
+          onSave: () => {
+            const problem = planProblemKey(live.current.planForm);
+            if (problem) {
+              setHint(t(problem));
+              return;
+            }
+            void once("addPlan", addPlan);
+          }
+        }}
+      />
+    );
+  }
 
-        {writable ? (
-          <Form onSubmit={sponsor} className="ow-grid">
-            <label>
-              <span className="ow-meta__term">{t("org.funding.sponsorEmail")}</span>
-              <Input
-                required
-                type="email"
-                value={sponsorEmail}
-                onChange={(event) => setSponsorEmail(event.target.value)}
-              />
-            </label>
-            <p className="ow-empty">
-              {t("org.funding.referencePrice")}:{" "}
-              {formatCents(CLIENT_SPONSORSHIP_REFERENCE_PRICE_CENTS, locale)}
-            </p>
-            <div className="ow-actions">
-              <Button type="submit" disabled={busy}>
-                {t("org.funding.createSponsorship")}
-              </Button>
-            </div>
-          </Form>
-        ) : null}
+  if (mode === "offer" && writable) {
+    return wrap(
+      <SponsorshipForm
+        t={t}
+        email={sponsorEmail}
+        onEmail={(value) => {
+          setSponsorEmail(value);
+          setHint("");
+          setError("");
+        }}
+        reference={sponsorshipReferencePrice(locale)}
+        fieldRef={fieldRef}
+        notice={notice}
+        decline={{
+          onPress: () => {
+            setSponsorEmail("");
+            toList();
+          }
+        }}
+        save={{
+          busy: pending === "offer",
+          onSave: () => {
+            if (!emailLooksRight(live.current.sponsorEmail)) {
+              setHint(t("org.funding.need_email"));
+              return;
+            }
+            void once("offer", sponsor);
+          }
+        }}
+      />
+    );
+  }
 
-        {issuedLink ? (
-          <div className="ow-card">
-            <h4 className="ow-title" style={{ fontSize: "0.9375rem" }}>
-              {t("org.funding.linkHeading")}
-            </h4>
-            <p className="ow-subtitle">{t("org.funding.linkHint")}</p>
-            <p className="ow-code">{issuedLink}</p>
-          </div>
-        ) : null}
-      </section>
+  if (mode === "plan" && openPlan) {
+    const actions = planActions(openPlan, { writable });
+    const people = seatedPeople(openPlan, { t });
+    const armedSeat = people.find((person) => confirm.armed === `release:${person.id}`);
+    const armedNote = confirm.armed === "end" ? t("org.funding.end_note") : armedSeat ? t("org.funding.release_note", { name: armedSeat.label }) : "";
+    return wrap(
+      <PlanView
+        t={t}
+        title={t(`org.seatRole.${openPlan.seatRole}`)}
+        facts={planFacts(openPlan, { t, locale })}
+        people={people}
+        canRelease={actions.release}
+        release={{
+          armedId: armedSeat?.id || "",
+          onPress: (person) => confirm.press(`release:${person.id}`, () => once(`release:${person.id}`, () => release(person.id)))
+        }}
+        assign={
+          actions.assign
+            ? {
+                options: assignableMembers(openPlan, seatPlans, members, { t }),
+                value: assigneeId,
+                onChoose: (value) => {
+                  setAssigneeId(value);
+                  setHint("");
+                },
+                busy: pending === "assign",
+                onAssign: () => {
+                  if (!assigneeId) {
+                    setHint(t("org.funding.pick_first"));
+                    return;
+                  }
+                  clearConfirm();
+                  void once("assign", () => assign(openPlan.id, assigneeId));
+                }
+              }
+            : null
+        }
+        end={actions.end ? { armed: confirm.armed === "end", busy: pending === "end", onPress: () => confirm.press("end", () => once("end", () => endPlan(openPlan.id))) } : null}
+        notice={notice}
+        armedNote={armedNote}
+        busy={Boolean(pending)}
+        onBack={() => {
+          setAssigneeId("");
+          toList();
+        }}
+      />
+    );
+  }
 
-      {error ? (
-        <p className="ow-notice ow-notice--warning" role="alert">
-          {error}
-        </p>
-      ) : null}
-    </section>
+  if (tab === "sponsorships") {
+    return wrap(
+      <SponsorshipsBoard
+        t={t}
+        tabs={tabs}
+        tab={tab}
+        onTab={changeTab}
+        rows={sponsorshipRows}
+        offer={
+          writable
+            ? {
+                onOffer: () => {
+                  clearConfirm();
+                  setError("");
+                  setHint("");
+                  setMode("offer");
+                }
+              }
+            : null
+        }
+        revoke={{
+          armedId: confirm.armed.startsWith("revoke:") ? confirm.armed.slice(7) : "",
+          busyId: pending.startsWith("revoke:") ? pending.slice(7) : "",
+          onPress: (row) => confirm.press(`revoke:${row.id}`, () => once(`revoke:${row.id}`, () => revokeSponsorship(row.id))),
+          onCancel: clearConfirm
+        }}
+        more={sponsorshipCursor ? { busy: pending === "more", onMore: () => once("more", loadSponsorships) } : null}
+        notice={notice}
+      />
+    );
+  }
+
+  return wrap(
+    <PlansBoard
+      t={t}
+      tabs={tabs}
+      tab={tab}
+      onTab={changeTab}
+      rows={planRows}
+      onOpen={(id) => {
+        clearConfirm();
+        setError("");
+        setHint("");
+        setAssigneeId("");
+        setOpenPlanId(id);
+        setMode("plan");
+      }}
+      add={
+        writable
+          ? {
+              onAdd: () => {
+                clearConfirm();
+                setError("");
+                setHint("");
+                setMode("newPlan");
+              }
+            }
+          : null
+      }
+      notice={notice}
+    />
   );
 }
