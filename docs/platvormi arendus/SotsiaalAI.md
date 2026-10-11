@@ -92,6 +92,32 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**11.10 Koduteenuse lehed väikesteks vaadeteks (Claude, pooleli):** koduteenuse
+23 lehte olid pikad keritavad lehed (kliendi leht proovandmetega 13 116 px, paneel
+522 px) ja liikumine oli paneeli sees. Omanik vastas klõpsatavale kavandile
+(https://claude.ai/artifact/PjAbeaUFqMDYPMpQFy9TTe): „infonupp vii kiirmenüüsse ja
+lahtised asjad otsusta ära”. Otsused: liikumise variant A (koduteenusel on oma laud,
+kiirmenüü nelja ruuduga nupp viib alati ühe taseme üles), hooldajal avaneb
+koduteenus vaatega „Täna” ja hooldusjuhil lauaga, laua plaatidel on kindel lause
+(arve ei ole, uut päringut ei tehta), pikk loend kerib tervet paneeli.
+**Elus:** info kiirmenüüs kõigil koduteenuse lehtedel (#699); laud, tasemed ja 24
+tagasilingi eemaldamine (#706); hooldaja päev väikeste vaadetena (#709); kliendid,
+uus klient, „Kuhu suunata” ja oma nimi (#717). Avaleht on nüüd laud ja väikesed
+vaated; 22 alalehe sisu on veel vanal `hc-*` kihil (`app/styles/home-care.css`).
+**Järgmine ühik** on kliendi leht: esimene vaade „Ukse taga” ja ülejäänud osad
+plaatidena; siis kirje ja päevik, kliendi osad, hooldusjuhi osa, päevaplaan,
+tähtajad ja ülevaade, kuu ja väljavõtted, registrid, vana kihi eemaldamine.
+Päringud, `app/api/**` ja `lib/**` jäävad puutumata (ainus erand oli infotekstide
+fail). Mõõtmine muutis kavandit kahes kohas: viis täispikka käigurida ei mahtunud
+pika päevaga ekraanile (järgmine käik on täies pikkuses, kolm järgmist ühel real)
+ja laua rühmas on kuni kuus plaati. Vaadet „Täna” ei ole elus nähtud: omaniku
+kontol ei ole oma käike; kohalikult on see mõõdetud hooldaja kontoga. Reeglid on
+puhastes failides `components/homeCare/{desk,day,clients}/`, testid
+`tests/home-care-{desk,my-day,clients-view,info}.test.mjs`. Mõõdud, lõksud,
+kohaliku eelvaate retsept ja ühikute järjekord on mälumärkmes
+`koduteenus-views-mockup` ja seansside ühises märkmes
+`side-session-notes/local_b3b842f1-182e-48a3-bcc3-6878e50813a2/koduteenus-vaadete-kavand.md`.
+
 **11.10 Eetikaruumi kokkulepitud 44 materjali (Codex):** varasem 19-ne
 valik oli mittetäielik teostus. Nüüd on kõik 44 kogutud dokumendi-/peatükikirjet
 eraldi valikus: 9 olemasolevat vastet, 35 lisatud korpusesse v87. Vektoritöö
