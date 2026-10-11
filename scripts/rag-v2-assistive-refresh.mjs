@@ -12,9 +12,13 @@
 //   3. the web pages in the corpus (the vendors' pages, the Board's guidance pages): read again with the page
 //      collector; a changed page is a proposal first and replaces the stored copy on the second equal reading; a page
 //      marked for review is never placed by itself
-//      The organisations' own pages in the corpus (ADR-095) are read again in the same way. Those were chosen by a
-//      rule (lib/rag-v2/web-select.js: a paragraph that names a person is taken out), so a changed page is chosen
-//      again by that rule on its second equal reading; a page the rule now leaves out is reported and stays as it is
+//      The pages chosen for the corpus by a rule are read again in the same way (ADR-141): the organisations' own
+//      pages (ADR-095), the institutions' guidance pages of the coverage lists (ADR-137) and the associations' pages
+//      (ADR-140). The rule (lib/rag-v2/web-select.js) takes a paragraph that names a person out, so a changed page is
+//      chosen again by that rule on its second equal reading, with the content region hint of its list entry; a page
+//      the rule now leaves out is reported and stays as it is; a page whose content region is found another way than
+//      when it was chosen, or whose chosen text fell under half, is held for a person (--approve-chosen names the ids
+//      a person has looked at). A page that reads as it did is never judged anew
 //   4. the changed sources are collected under <state>/increment with their register, and a report says what was
 //      found. --mark-ingested says the increment went into the corpus: the next run compares against it.
 //   5. the table of confirmed readings (--checks, ADR-117): for every web page of step 3 whose stored copy read the
@@ -26,6 +30,10 @@
 //   <state>/pending.json              the changes the last reading proposed
 //   <state>/accepted/pages/           the stored copies of the vendors' pages
 //   <state>/accepted/organisations/   the organisations' pages as chosen for the corpus
+//   <state>/accepted/coverage/        the pages of the two coverage lists as chosen for the corpus
+//   <state>/accepted/associations/    the associations' pages as chosen for the corpus
+//                                     (a group's folder is seeded with scripts/rag-v2-chosen-seed.mjs; a group without
+//                                     a folder is not read)
 //   <state>/ingested/abivahendid/     the points' pages as the corpus has them
 //   <state>/accepted/care-homes.json  the accepted reading of the care homes' price table
 //   <state>/pending-care.json         the changes its last reading proposed
@@ -38,6 +46,9 @@
 //     [--skip-care] [--care-from <table.xlsx>] [--approve-care-removals key,key]
 //     [--official-list Andmebaasi/register/web_pages.json] [--official id,id] [--official-stored Andmebaasi/veebilehed]
 //     [--organisations-list Andmebaasi/register/web_pages_organisations.json] [--checks lib/rag-v2/search/web-page-checks.json]
+//     [--coverage-lists Andmebaasi/register/web_pages_coverage_1.json,Andmebaasi/register/web_pages_coverage_2.json]
+//     [--associations-list Andmebaasi/register/web_pages_associations.json]
+//     [--only-chosen organisations,coverage,associations] [--approve-chosen id,id]
 //   node … scripts/rag-v2-assistive-refresh.mjs --state <dir> --mark-ingested
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -50,6 +61,7 @@ import { ASSISTIVE_REFRESH, decidePoints, refreshedPointPages } from '../lib/rag
 import { CARE_PRICES, SKA_CARE_PAGE, tableLink, sheetRows, careTable, decideHomes, refreshedCarePages } from '../lib/rag-v2/care-prices.js';
 import { chosenMetadata, lowerWords, selectPage } from '../lib/rag-v2/web-select.js';
 import { checksAfterRefresh } from '../lib/rag-v2/official-refresh.js';
+import { readingEntry, rechosenAction, stateAgainstLists } from '../lib/rag-v2/chosen-refresh.js';
 
 const { values } = parseArgs({ options: { state: { type: 'string' }, municipalities: { type: 'string', default: 'Andmebaasi/KOV' }, 'from-reading': { type: 'string' },
   'approve-removals': { type: 'string', default: '' }, 'skip-points': { type: 'boolean', default: false }, 'skip-pages': { type: 'boolean', default: false },
@@ -58,8 +70,11 @@ const { values } = parseArgs({ options: { state: { type: 'string' }, municipalit
   'official-list': { type: 'string', default: 'Andmebaasi/register/web_pages.json' },
   official: { type: 'string', default: 'sotsiaalkindlustusamet_ska_abivahendi_vajajale,sotsiaalkindlustusamet_ska_abivahendi_ettevottele' },
   'official-stored': { type: 'string', default: 'Andmebaasi/veebilehed' }, 'organisations-list': { type: 'string', default: 'Andmebaasi/register/web_pages_organisations.json' },
-  checks: { type: 'string', default: 'lib/rag-v2/search/web-page-checks.json' } } });
-if (!values.state) throw Error('usage: --state <dir outside the repository> [--from-reading <points.json>] [--approve-removals key,key] [--skip-points] [--skip-pages] [--dry-run] | --mark-ingested');
+  checks: { type: 'string', default: 'lib/rag-v2/search/web-page-checks.json' },
+  'coverage-lists': { type: 'string', default: 'Andmebaasi/register/web_pages_coverage_1.json,Andmebaasi/register/web_pages_coverage_2.json' },
+  'associations-list': { type: 'string', default: 'Andmebaasi/register/web_pages_associations.json' },
+  'only-chosen': { type: 'string', default: '' }, 'approve-chosen': { type: 'string', default: '' } } });
+if (!values.state) throw Error('usage: --state <dir outside the repository> [--from-reading <points.json>] [--approve-removals key,key] [--skip-points] [--skip-pages] [--dry-run] [--only-chosen group,group] [--approve-chosen id,id] | --mark-ingested');
 const state = path.resolve(values.state), dry = values['dry-run'];
 const readJson = async (file, fallback = null) => fs.readFile(file, 'utf8').then(JSON.parse, () => fallback);
 const write = async (file, content) => { if (dry) return; await fs.mkdir(path.dirname(file), { recursive: true }); await fs.writeFile(file, content); };
@@ -207,48 +222,60 @@ if (!values['skip-pages']) {
       failed: rows.filter(row => ['failed', 'robots_disallowed'].includes(row.status)).map(row => `${row.url} ${row.error || row.status}`) });
   }
 
-  // The organisations' own pages: read by their own addresses, never placed by the collector (most are marked for
-  // review for the very thing the choice looks after). A change confirmed by a second equal reading is chosen again.
-  const organisations = path.join(state, 'accepted', 'organisations'), kept = [];
-  for (const file of (await walk(organisations)).filter(name => name.endsWith('.json'))) {
-    const meta = await readJson(path.join(organisations, file));
-    if (meta?.source_id && meta.url) kept.push({ rel: file.replace(/\.json$/u, ''), meta });
-  }
-  if (kept.length) {
-    const work = path.join(state, 'web-organisations'), list = path.join(work, 'list.json');
+  // The pages chosen for the corpus by the rule (ADR-141): the organisations' own pages, the institutions' guidance
+  // pages and the associations' pages, a folder of the state a group. Read by their own addresses, never placed by
+  // the collector (most are marked for review for the very thing the choice looks after). A change confirmed by a
+  // second equal reading is chosen again, and only that page: a page that reads as it did is not judged anew.
+  const lists = names => Promise.all(names.split(',').map(name => name.trim()).filter(Boolean).map(name => readJson(name)));
+  const approvedChosen = new Set(values['approve-chosen'].split(',').map(id => id.trim()).filter(Boolean)), onlyChosen = values['only-chosen'].split(',').map(label => label.trim()).filter(Boolean);
+  const groups = [{ label: 'organisations', lists: values['organisations-list'] }, { label: 'coverage', lists: values['coverage-lists'] }, { label: 'associations', lists: values['associations-list'] }]
+    .filter(group => !onlyChosen.length || onlyChosen.includes(group.label));
+  for (const group of groups) {
+    const folder = path.join(state, 'accepted', group.label), kept = [];
+    for (const file of (await walk(folder)).filter(name => name.endsWith('.json'))) {
+      const meta = await readJson(path.join(folder, file));
+      if (meta?.source_id && meta.url) kept.push({ rel: file.replace(/\.json$/u, ''), meta });
+    }
+    if (!kept.length) continue;
+    const named = (await lists(group.lists)).filter(Boolean), listed = new Map(named.flatMap(list => list.pages ?? []).map(page => [page.source_id, page]));
+    const work = path.join(state, `web-${group.label}`), list = path.join(work, 'list.json');
     await fs.mkdir(work, { recursive: true });
-    await fs.writeFile(list, `${JSON.stringify({ version: 'web-pages-1', note: 'The organisations\' pages in the corpus, for the refresh.',
-      pages: kept.map(({ meta }) => ({ source_id: meta.source_id, url: meta.url, title: meta.register_title || meta.title, publisher: meta.publisher, source_type: meta.source_type, language: meta.language, subpages: false })) }, null, 1)}\n`);
-    const out = execFileSync(process.execPath, ['scripts/rag-v2-web-pages.mjs', '--list', list, '--work', work, '--stored', organisations, '--no-subpages', '--delay-ms', values['delay-ms']], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
+    await fs.writeFile(list, `${JSON.stringify({ version: 'web-pages-1', note: `The chosen pages of the corpus (${group.label}), for the refresh.`, pages: kept.map(({ meta }) => readingEntry(meta, listed)) }, null, 1)}\n`);
+    const out = execFileSync(process.execPath, ['scripts/rag-v2-web-pages.mjs', '--list', list, '--work', work, '--stored', folder, '--no-subpages', '--delay-ms', values['delay-ms']], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
     const summary = JSON.parse(out.trim().split('\n').at(-1)), { rows } = await readJson(path.join(summary.run, 'report.json')), confirmed = rows.filter(row => row.status === 'confirmed');
     const read = async (base, rel) => ({ html: await fs.readFile(path.join(base, `${rel}.html`), 'utf8'), meta: await readJson(path.join(base, `${rel}.json`)) });
     const relOf = row => kept.find(item => item.meta.source_id === row.id)?.rel;
     // A page that reads as it did when it was chosen: the chosen copy in the corpus still says what the page says.
-    for (const row of rows.filter(item => item.status === 'unchanged')) { const rel = relOf(row); if (rel) confirmedCopies.push(path.join(organisations, `${rel}.html`)); }
-    // The rule's reading: the pages as stored and the confirmed ones as read now.
+    for (const row of rows.filter(item => item.status === 'unchanged')) { const rel = relOf(row); if (rel) confirmedCopies.push(path.join(folder, `${rel}.html`)); }
+    // The rule's reading: the group's pages as stored and the confirmed ones as read now.
     const texts = [];
-    for (const { rel } of kept) texts.push(await fs.readFile(path.join(organisations, `${rel}.html`), 'utf8'));
+    for (const { rel } of kept) texts.push(await fs.readFile(path.join(folder, `${rel}.html`), 'utf8'));
     for (const row of confirmed) texts.push((await read(path.join(summary.run, 'pages'), relOf(row))).html);
-    const leaveOut = (await readJson(values['organisations-list']))?.selection?.leave_out;
+    const leaveOut = named.map(item => item.selection?.leave_out).filter(Boolean).join('|');
     const context = { lower: lowerWords(texts), places: new Set(municipalities.flatMap(item => `${item.name} ${item.county || ''}`.toLowerCase().split(/[\s-]+/u).filter(Boolean))), leaveOut: leaveOut ? new RegExp(leaveOut, 'iu') : null };
-    const applied = [], sameAsChosen = [], leftOut = [];
+    const applied = [], sameAsChosen = [], leftOut = [], held = [];
     for (const row of confirmed) {
-      const rel = relOf(row), page = await read(path.join(summary.run, 'pages'), rel), before = await read(organisations, rel), chosen = selectPage(page, context);
-      if (!chosen.keep) { leftOut.push(`${row.url} (${chosen.why})`); continue; }
+      const rel = relOf(row), page = await read(path.join(summary.run, 'pages'), rel), before = await read(folder, rel), chosen = selectPage(page, context);
+      const { action, why } = rechosenAction({ before, page, chosen, approved: approvedChosen.has(row.id) });
+      // Left out by the rule, or held for a person: the chosen copy and the proposal stay as they are.
+      if (action === 'left_out') { leftOut.push(`${row.url} (${why})`); continue; }
+      if (action === 'held') { held.push(`${row.id} ${row.url} (${why})`); continue; }
       const metadata = `${JSON.stringify(chosenMetadata(page.meta, chosen), null, 2)}\n`;
       for (const ext of ['html', 'json']) await write(path.join(work, 'previous', stamp.replace(/[:.]/gu, '-'), `${rel}.${ext}`), ext === 'html' ? before.html : `${JSON.stringify(before.meta, null, 2)}\n`);
-      await write(path.join(organisations, `${rel}.html`), chosen.html); await write(path.join(organisations, `${rel}.json`), metadata);
+      await write(path.join(folder, `${rel}.html`), chosen.html); await write(path.join(folder, `${rel}.json`), metadata);
       // The copy as chosen from today's reading: the same bytes as before, or new ones that the increment brings.
-      if (!dry || chosen.html === before.html) confirmedCopies.push(path.join(organisations, `${rel}.html`));
+      if (!dry || action === 'same') confirmedCopies.push(path.join(folder, `${rel}.html`));
       if (!dry) for (const ext of ['html', 'json']) await fs.rm(path.join(work, 'proposals', `${rel}.${ext}`), { force: true });
       // A change inside what the choice takes out changes nothing in the corpus.
-      if (chosen.html === before.html) { sameAsChosen.push(row.url); continue; }
+      if (action === 'same') { sameAsChosen.push(row.url); continue; }
       await write(path.join(increment, 'veebilehed', `${rel}.html`), chosen.html); await write(path.join(increment, 'veebilehed', `${rel}.json`), metadata);
       changedSources.push(`veebilehed/${rel}.html`); applied.push(`confirmed: ${row.url}`);
     }
-    report.pages.push({ list: 'organisations', read: rows.length, status: summary.status, applied, proposed: rows.filter(row => row.status === 'proposed').map(row => row.url),
-      changedOnlyInWhatTheChoiceTakesOut: sameAsChosen, changedAndLeftOutByTheChoice: leftOut,
-      failed: rows.filter(row => ['failed', 'robots_disallowed'].includes(row.status)).map(row => `${row.url} ${row.error || row.status}`) });
+    report.pages.push({ list: group.label, read: rows.length, status: summary.status, applied, proposed: rows.filter(row => row.status === 'proposed').map(row => row.url),
+      changedOnlyInWhatTheChoiceTakesOut: sameAsChosen, changedAndLeftOutByTheChoice: leftOut, changedAndHeldForAPerson: held,
+      failed: rows.filter(row => ['failed', 'robots_disallowed'].includes(row.status)).map(row => `${row.url} ${row.error || row.status}`),
+      // A list that names every page by itself is the corpus's own list of the group: the state must hold exactly those.
+      ...(against => (against ? { inStateNotInLists: against.notInLists, inListsNotInState: against.notInState } : {}))(stateAgainstLists(kept.map(item => item.meta.source_id), named)) });
   }
 }
 
