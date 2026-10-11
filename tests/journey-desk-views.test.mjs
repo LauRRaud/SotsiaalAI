@@ -38,6 +38,8 @@ import {
   plainDayLabel,
   preInquiryShareOptions,
   pressTooSoon,
+  previewNoteKey,
+  previewStateOf,
   relatedCounts,
   rebaseForm,
   reviewedShareHref,
@@ -46,6 +48,7 @@ import {
   shareBlockKey,
   situationForm,
   situationProblemKey,
+  situationReadTabs,
   startTarget,
   stepGroups,
   stepMeta,
@@ -176,6 +179,44 @@ test('saadetud pöördumiste lause tuleb faktidest: vastus on tugevaim', () => {
   /* Rea seis tuleb serverilt; kui seda ei ole, tuletatakse see samadest faktidest. */
   assert.equal(linkedState({ state: 'ANSWERED' }), 'ANSWERED');
   assert.equal(linkedState({ status: 'READY', sentAt: '2026-10-01T00:00:00Z', openedAt: '2026-10-02T00:00:00Z' }), 'OPENED');
+});
+
+test('olukorra lugemisvaated: puuduolev info on omaette vaade ainult siis, kui midagi on kirjas', () => {
+  assert.deepEqual(situationReadTabs(journey({ missingInfo: [] })), ['text', 'noticed']);
+  assert.deepEqual(situationReadTabs(journey({ missingInfo: ['', '  '] })), ['text', 'noticed']);
+  assert.deepEqual(situationReadTabs(journey({ missingInfo: ['Kas mõni teenus on juba olemas?'] })), ['text', 'noticed', 'missing']);
+  assert.deepEqual(situationReadTabs(null), ['text', 'noticed']);
+  /* Igal vaatel on lahtri silt kolmes keeles. */
+  for (const tab of ['text', 'noticed', 'missing']) {
+    for (const lang of ['et', 'en', 'ru']) assert.ok(word(lang, `journey.desk.situation.read_tabs.${tab}`), `${lang} ${tab}`);
+  }
+});
+
+test('eelvaate päringu seis: ootamine tuleb valiku võrdlusest, viga jääb veaks', () => {
+  const done = (key, failed = false) => ({ key, preview: null, failed });
+  /* Osa ei ole ees: midagi ei küsita. */
+  assert.equal(previewStateOf({ requestKey: '', result: done('j1|summary') }), 'idle');
+  /* Esimene päring ja muutunud valik on ootamine, kuni vastus on sama valiku kohta. */
+  assert.equal(previewStateOf({ requestKey: 'j1|summary', result: done('') }), 'loading');
+  assert.equal(previewStateOf({ requestKey: 'j1|summary,wish', result: done('j1|summary') }), 'loading');
+  assert.equal(previewStateOf({ requestKey: 'j1|summary', result: done('j1|summary') }), 'ready');
+  assert.equal(previewStateOf({ requestKey: 'j1|summary', result: done('j1|summary', true) }), 'failed');
+});
+
+test('eelvaate lause: viga ei näe välja nagu tühi valik ja vana tekst ei jää vea ette', () => {
+  /* Tekst on olemas: näidatakse teksti, ka uue vastuse ootamise ajal. */
+  assert.equal(previewNoteKey({ state: 'ready', text: 'Hooldan ema.' }), '');
+  assert.equal(previewNoteKey({ state: 'loading', text: 'Hooldan ema.' }), '');
+  /* Vastust veel ei ole. */
+  assert.equal(previewNoteKey({ state: 'loading', text: '' }), 'journey.desk.share.preview_loading');
+  /* Server vastas, aga valitud osades ei ole midagi. */
+  assert.equal(previewNoteKey({ state: 'ready', text: '' }), 'journey.share.empty_preview');
+  /* Päring ebaõnnestus: sama lause ka siis, kui varasem tekst on alles. */
+  assert.equal(previewNoteKey({ state: 'failed', text: '' }), 'journey.desk.share.preview_failed');
+  assert.equal(previewNoteKey({ state: 'failed', text: 'Hooldan ema.' }), 'journey.desk.share.preview_failed');
+  for (const key of ['journey.desk.share.preview_loading', 'journey.desk.share.preview_failed', 'journey.share.empty_preview']) {
+    for (const lang of ['et', 'en', 'ru']) assert.ok(word(lang, key), `${lang} ${key}`);
+  }
 });
 
 test('eelpöördumisse saab kaasa võtta ainult seda, mis Teekonnas olemas on', () => {

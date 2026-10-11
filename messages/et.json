@@ -9235,7 +9235,8 @@
         "read_tabs": {
           "label": "Mida vaatad",
           "text": "Kirjeldus",
-          "noticed": "Mida märkasime"
+          "noticed": "Mida märkasime",
+          "missing": "Mis on puudu"
         }
       },
       "wish": {
@@ -9277,7 +9278,9 @@
         "tabs": {
           "label": "Valik või eelvaade",
           "choose": "Mida kaasa võtad"
-        }
+        },
+        "preview_loading": "Paneme eelvaadet kokku.",
+        "preview_failed": "Eelvaadet ei saanud praegu näidata. Sinu valik on alles ja saad jätkata."
       },
       "help": {
         "kinds": {

@@ -9235,7 +9235,8 @@
         "read_tabs": {
           "label": "What you look at",
           "text": "Description",
-          "noticed": "What we noticed"
+          "noticed": "What we noticed",
+          "missing": "What is missing"
         }
       },
       "wish": {
@@ -9277,7 +9278,9 @@
         "tabs": {
           "label": "Choice or preview",
           "choose": "What you take along"
-        }
+        },
+        "preview_loading": "Putting the preview together.",
+        "preview_failed": "The preview could not be shown right now. Your choice is kept and you can go on."
       },
       "help": {
         "kinds": {
