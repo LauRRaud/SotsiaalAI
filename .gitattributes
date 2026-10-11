@@ -26,3 +26,6 @@ public/vendor/mediapipe/** -text -whitespace
 
 # Evaluation data packages (hash-checked archives)
 *.tar.gz binary
+
+# Business register contact check file: raw 8-byte hashes, never line-ending converted.
+src/server/data/*.bin binary

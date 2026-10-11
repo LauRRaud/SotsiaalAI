@@ -2539,6 +2539,12 @@ model ServiceProviderProfile {
   representationMethod           String?
   representationConfirmedById    String?
   representationBasis            String?
+  /// Üks ootel kinnituslink asutuse registris olevale e-postile: lingi räsi, kood, millele
+  /// link anti, ja ajad. E-posti aadressi ei salvestata.
+  representationRequestHash      String?
+  representationRequestCode      String?
+  representationRequestExpiresAt DateTime?
+  representationRequestSentAt    DateTime?
   createdAt                      DateTime                     @default(now())
   updatedAt                      DateTime                     @updatedAt
 

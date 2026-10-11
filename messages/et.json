@@ -2730,14 +2730,21 @@
       "organization_name_required": "Sisesta organisatsiooni nimi.",
       "profile_conflict": "Profiili muudeti vahepeal. Laadi värske seis ja võrdle muudatusi.",
       "publish_contact_required": "Avaldamiseks vali vähemalt üks kontakt või platvormisisene pöördumisviis.",
-      "publish_representation_required": "Registrikoodiga profiili saab avaldada pärast seda, kui platvorm on kinnitanud, et esindad seda asutust. Salvesta profiil mustandina ja kirjuta aadressile info@sotsiaal.pro; pärast kinnitust saad profiili avaldada.",
+      "publish_representation_required": "Registrikoodiga profiili saab avaldada pärast seda, kui on kinnitatud, et esindad seda asutust. Salvesta profiil mustandina ja ava leht „Asutuse kinnitamine” (sotsiaal.pro/teenuseprofiil/kinnitus).",
       "publish_service_required": "Avaldamiseks lisa vähemalt üks nähtav avaldatud teenus.",
       "save_failed": "Teenuseprofiili ei saanud salvestada. Proovi uuesti; vea kordumisel anna toele korrelatsiooni-ID.",
       "load_failed": "Teenuseprofiili ei saanud laadida.",
       "too_many_list_items": "Ühes loendis on liiga palju valikuid.",
       "too_many_locations": "Teeninduskohtade ülempiir on täis. Eemalda enne uue koha lisamist mõni olemasolev.",
       "too_many_services": "Teenuste ülempiir on täis. Eemalda enne uue teenuse lisamist mõni olemasolev.",
-      "address_suggestions_failed": "Aadressisoovitusi ei saanud laadida."
+      "address_suggestions_failed": "Aadressisoovitusi ei saanud laadida.",
+      "representation_profile_required": "Kirjuta enne teenuseprofiili asutuse registrikood ja salvesta profiil mustandina.",
+      "representation_already_confirmed": "Asutus on juba kinnitatud.",
+      "representation_email_invalid": "Kirjuta asutuse e-posti aadress.",
+      "representation_email_not_in_register": "See aadress ei ole äriregistris selle registrikoodi kontaktina kirjas. Vaata oma asutuse kontakte äriregistrist (ariregister.rik.ee). Meie koopia registrist uueneb kord kuus; kui muutsid aadressi hiljuti, kirjuta aadressile info@sotsiaal.pro.",
+      "representation_register_unavailable": "Äriregistri kontrolli ei saa praegu teha. Proovi hiljem uuesti või kirjuta aadressile info@sotsiaal.pro.",
+      "representation_mail_failed": "Kirja ei saanud saata. Proovi uuesti.",
+      "representation_link_invalid": "See link ei kehti enam või ei kuulu sellele kontole."
     },
     "licence": {
       "public": {
@@ -2784,6 +2791,30 @@
         "bind_rate_limited": "Teenuse liiki on viimase tunni jooksul liiga palju kordi muudetud. Proovi hiljem uuesti.",
         "bind_check_pending": "Liik on kinnitatud, aga kontrolli ei saanud kohe teha. Vajuta „Kontrolli uuesti”."
       }
+    },
+    "representation": {
+      "title": "Asutuse kinnitamine",
+      "loading": "Loen seisu.",
+      "lead": "Registrikoodiga teenuseprofiili saab avaldada, kui on kinnitatud, et sa esindad seda asutust.",
+      "login_needed": "Logi sisse kontoga, millega teenuseprofiil tehti.",
+      "no_profile": "Sul ei ole veel registrikoodiga teenuseprofiili. Kirjuta teenuseprofiili asutuse registrikood ja salvesta profiil mustandina.",
+      "open_profile": "Ava teenuseprofiil",
+      "organization": "{name}, registrikood {code}",
+      "confirmed": "Asutus on kinnitatud {date}. Profiili saab avaldada.",
+      "how": "Saadame kinnituslingi asutuse e-postile, mis on äriregistris kirjas. Lingi avad selle sama kontoga sisse logituna.",
+      "email_label": "Asutuse e-post äriregistris",
+      "email_hint": "Aadressi me ei salvesta: kontrollime ainult, et see on registris selle asutuse juures kirjas.",
+      "send": "Saada kinnituslink",
+      "sending": "Saadan...",
+      "sent": "Kinnituslink on saadetud. Ava see {days} päeva jooksul selle sama kontoga sisse logituna.",
+      "pending": "Kinnituslink saadeti {date} ja kehtib kuni {until}. Kui kiri ei jõudnud kohale, saada uus.",
+      "other_way": "Kui asutuse e-posti registris ei ole või sa sinna ligi ei pääse, kirjuta aadressile info@sotsiaal.pro.",
+      "link_title": "Kinnita, et esindad seda asutust",
+      "link_body": "Kinnitades tõendad, et teenuseprofiil „{name}” (registrikood {code}) on selle asutuse oma.",
+      "link_confirm": "Kinnitan",
+      "link_confirming": "Kinnitan...",
+      "link_invalid": "See link ei kehti enam või ei kuulu sellele kontole. Saada uus link.",
+      "link_done": "Asutus on kinnitatud. Nüüd saad teenuseprofiili avaldada."
     }
   },
   "service_availability": {
@@ -3862,6 +3893,10 @@
       "conflict": {
         "local_version": "Kohalik vorm",
         "server_version": "Serveri uuem versioon"
+      },
+      "representation": {
+        "note": "Registrikoodiga profiili saab avaldada, kui asutus on kinnitatud.",
+        "open": "Asutuse kinnitamine"
       }
     },
     "admin_role": {
@@ -6426,6 +6461,11 @@
           "html": "<div style=\"font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1a1a1a;line-height:1.55\"><p>Tere!</p><p>Täname! Sinu makse õnnestus ja kutse on saadetud.</p><p><strong>Makstud:</strong> {amount} {currency}<br><strong>Kuupäev:</strong> {paidAt}<br><strong>Kutsutu:</strong> {inviteeEmail}<br><strong>Ruum:</strong> {roomTitle}<br><strong>Roll:</strong> {roleLabel}</p><p>Kutsutu saab liitumislingi e-postiga. Tema ligipääs kehtib ühe kuu alates liitumisest.</p><p style=\"color:#888888;font-size:13px\">Küsimuste korral kirjuta {supportEmail}.</p></div>"
         }
       }
+    },
+    "service_representation": {
+      "subject": "Sotsiaal.pro: kinnitage oma asutuse teenuseprofiil",
+      "text": "Tere\n\nSotsiaal.pro kasutaja soovib avaldada teenuseprofiili asutuse „{organizationName}” (registrikood {registryCode}) nime all. Kiri tuli sellele aadressile, sest see on äriregistris selle asutuse kontaktina kirjas.\n\nKui teenuseprofiil on teie asutuse oma, avage link ja kinnitage. Link tuleb avada selle Sotsiaal.pro kontoga sisse logituna, millega profiil tehti:\n{confirmUrl}\n\nLink kehtib {days} päeva.\n\nKui teie asutus ei ole teenuseprofiili teinud, ärge linki avage ega saatke seda kellelegi edasi: ilma kinnituseta profiili ei avaldata. Sellest kirjast võite teada anda aadressil info@sotsiaal.pro.\n\nSotsiaal.pro",
+      "html": "<div style=\"font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1a1a1a;line-height:1.55\"><p>Tere</p><p>Sotsiaal.pro kasutaja soovib avaldada teenuseprofiili asutuse „{organizationName}” (registrikood {registryCode}) nime all. Kiri tuli sellele aadressile, sest see on äriregistris selle asutuse kontaktina kirjas.</p><p>Kui teenuseprofiil on teie asutuse oma, vajutage nuppu ja kinnitage. Link tuleb avada selle Sotsiaal.pro kontoga sisse logituna, millega profiil tehti.</p><p style=\"margin:24px 0\"><a href=\"{confirmUrl}\" style=\"display:inline-block;background-color:#4d4d4d;background-color:rgba(26,26,26,0.78);background-image:linear-gradient(180deg,rgba(255,255,255,0.20) 0%,rgba(255,255,255,0.05) 45%,rgba(255,255,255,0) 100%);color:#f7f7f7;text-decoration:none;padding:14px 34px;border:1px solid rgba(255,255,255,0.30);border-radius:14px;font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-weight:500;font-size:19px;letter-spacing:.04em;box-shadow:0 6px 18px rgba(26,26,26,0.18)\">AVA KINNITAMINE</a></p><p>Link kehtib {days} päeva.</p><p style=\"color:#888888;font-size:13px\">Kui teie asutus ei ole teenuseprofiili teinud, ärge linki avage ega saatke seda kellelegi edasi: ilma kinnituseta profiili ei avaldata. Sellest kirjast võite teada anda aadressil info@sotsiaal.pro.</p></div>"
     }
   },
   "covision": {
@@ -7704,6 +7744,7 @@
       },
       "state_unconfirmed": "Kinnitamata",
       "state_confirmed": "Kinnitatud {date}",
+      "state_confirmed_link": "Kinnitatud {date} e-kirja lingiga",
       "state_stale": "Registrikood on pärast kinnitust muutunud (kinnitus anti koodile {code}). Vajab uut kinnitust.",
       "basis_shown": "Alus: {basis}",
       "basis_label": "Kinnituse alus",

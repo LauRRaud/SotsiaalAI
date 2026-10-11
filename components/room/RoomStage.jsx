@@ -180,6 +180,8 @@ const CARDLESS_DOCK_LABELS = {
      ole organisatsiooni liige. */
   "/org/liitu": "org.join.dock_invite",
   "/org/toetus": "org.join.dock_offer",
+  /* Avaneb e-kirja lingist või teenuseprofiili lehelt. */
+  "/teenuseprofiil/kinnitus": "service_provider_profile.representation.title",
 };
 /* Leht, mille kaart avab teise tee: kaart „Pöördumised" viib vestluse töölaua
    teele, aga otselink (Teekonnast, „ava pöördumine") avab /eelpoordumised.
