@@ -627,10 +627,31 @@ test('üleandmine: kui töö annab edasi keegi teine, saab senine vastutaja sama
   await handOverWork(context('mari'), own.first.id, { toMembershipId: 'm-jyri' }, { db: own.db, now: NOW, releaseFromCalls: release });
   assert.deepEqual(noticeList(own.state), ['ORG_WORK_ASSIGNED:jyri', 'ORG_WORK_ASSIGNED:mari', 'PRE_INQUIRY_STATUS_CHANGED:poorduja']);
 
-  /* Töö sulgemine ei ole töö äravõtmine: vastutaja seda teadet ei saa. */
-  const closed = await world('ACCEPTED');
-  await manual(closed.db, 'CLOSED');
-  assert.equal(notices(closed.state, WITHDRAWN).length, 0);
+});
+
+test('töö sulgemine: vastutaja saab sama teate, sest kirje kaob ka tema laualt; ise sulgedes ei saa', async () => {
+  for (const stage of ['ASSIGNED', 'ACCEPTED']) {
+    const { db, state, first } = await world(stage);
+    await manual(db, 'CLOSED', { reason: 'Nõustamine tehtud.' });
+    assert.deepEqual(notices(state, WITHDRAWN).map((row) => [row.userId, row.sourceId, row.targetId]), [['mari', first.id, 'i1']], stage);
+    /* Teade ei ütle, et töö suleti, ega kanna sulgemise põhjust. */
+    assert.equal(JSON.stringify(notices(state, WITHDRAWN)[0]).includes('Nõustamine'), false, stage);
+    await assertNotificationRecipient(db, { type: WITHDRAWN, userId: 'mari', sourceId: first.id, targetId: 'i1' });
+    /* Pöörduja saab oma teate töö lõpetamise kohta nagu enne; üleandmise teadet ei tule. */
+    assert.deepEqual(noticeList(state), ['ORG_WORK_ASSIGNED:mari', 'ORG_WORK_WITHDRAWN:mari', 'PRE_INQUIRY_WORK_CLOSED:poorduja'], stage);
+    /* Teate link: endine vastutaja jõuab asutuse vastuvõtulauale ka suletud kirje korral. */
+    assert.equal(await hadWorkOnInboxItem(context('mari'), 'i1', { db }), true, stage);
+  }
+
+  /* Koordinaator oli ise vastutaja ja sulgeb oma töö: talle teadet ei tule. */
+  const own = await world('ACCEPTED', { assignee: 'koordinaator' });
+  await manual(own.db, 'CLOSED');
+  assert.deepEqual([own.state.item.status, notices(own.state, WITHDRAWN).length], ['CLOSED', 0]);
+
+  /* Vastutajata pöördumise tagasilükkamisel ei ole kedagi, kellele teatada. */
+  const unassigned = await world('RECEIVED');
+  await manual(unassigned.db, 'REJECTED');
+  assert.deepEqual(noticeList(unassigned.state), ['PRE_INQUIRY_WORK_CLOSED:poorduja']);
 });
 
 test('teate aadress: endine vastutaja jõuab asutuse vastuvõtulauale, võõras saab endiselt „lehte ei leitud”', async () => {
