@@ -11751,14 +11751,56 @@
     },
     "home": {
       "heading": "Minu organisatsioonid",
-      "intro": "Sa võid töötada isiklikult või ühe või mitme organisatsiooni kontekstis. Organisatsioonist lahkumine ei puuduta sinu kontot ega isiklikke andmeid.",
       "empty": "Sa ei kuulu veel ühtegi organisatsiooni.",
       "pendingInvites": "Sulle saadetud kutsed",
-      "noPendingInvites": "Ootel kutseid ei ole.",
       "openWorkspace": "Ava tööruum",
-      "createHeading": "Loo organisatsiooni tööruum",
       "haveInvite": "Mul on organisatsiooni kutse",
-      "usePersonally": "Kasutan isiklikult"
+      "usePersonally": "Kasutan isiklikult",
+      "board": {
+        "join_note": "Organisatsiooniga liitutakse kutsega: kutsuja saadab sulle lingi.",
+        "privacy_note": "Organisatsioon ei näe sinu vestlusi, dokumente ega Tööheaolu kirjeid.",
+        "filter": {
+          "label": "Mida näidata",
+          "invites": "Kutsed ({count})"
+        }
+      },
+      "invites": {
+        "lead": "Liitumiseks ava link, mille kutsuja sulle saatis. Liikmesus tekib alles pärast sinu kinnitust.",
+        "until": "Kehtib kuni {date}",
+        "unnamed": "Organisatsioon"
+      },
+      "create": {
+        "label": "Organisatsiooni loomise sammud",
+        "steps": {
+          "name": {
+            "title": "Nimi ja registriandmed",
+            "short": "Nimi"
+          },
+          "kind": {
+            "title": "Asutuse liik",
+            "short": "Liik"
+          },
+          "confirm": {
+            "title": "Loomine",
+            "short": "Loomine"
+          }
+        },
+        "name_hint": "Nimi, mida liikmed iga päev näevad. Võib olla lühem kui juriidiline nimi.",
+        "legal_note": "Juriidiline nimi ja registrikood aitavad asutust tuvastada. Võid need lisada ka hiljem seadetes.",
+        "kind_question": "Mis liiki asutus see on?",
+        "need_name": "Kirjuta organisatsiooni nimi.",
+        "need_kind": "Vali, mis liiki asutus see on.",
+        "to_name": "Lisa nimi",
+        "to_kind": "Vali liik",
+        "missing": "lisamata",
+        "founder_note": "Sinust saab organisatsiooni esimene haldaja.",
+        "creating": "Loon organisatsiooni",
+        "decline": {
+          "label": "Loobu",
+          "confirm": "Jah, loobu",
+          "note": "Kirjutatu kustub ja organisatsiooni ei looda."
+        }
+      }
     },
     "create": {
       "displayName": "Organisatsiooni nimi",
