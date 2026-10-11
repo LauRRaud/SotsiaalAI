@@ -7,6 +7,7 @@ import { useCallback, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
+import { buildRoomChatPath } from "@/lib/roomPath";
 
 import OrgHeader from "./OrgHeader";
 import { useOrgApi } from "./useOrgApi";
@@ -20,7 +21,7 @@ import { useOrgApi } from "./useOrgApi";
  * saatnud — kui midagi puudub, on see serveri otsus, mitte UI puudujääk.
  */
 export default function OrgInboxItemClient({ context, item, members, canAssign }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const router = useRouter();
   const { call, busy, error } = useOrgApi();
   const [assigneeId, setAssigneeId] = useState("");
@@ -70,6 +71,19 @@ export default function OrgInboxItemClient({ context, item, members, canAssign }
     });
     if (payload) refresh();
   }, [assignment, call, handoverId, organizationId, refresh]);
+
+  /* Töö vastu võtnud töötaja vastab pöördujale samas ühises vestlusruumis, mida kasutab
+     nimeline saaja. `item.room.canOpen` ütleb ainult, kas nuppu näidata: ligipääsu
+     otsustab server igal vajutusel uuesti. */
+  const sourceId = source.id || "";
+  const openRoom = useCallback(async () => {
+    if (!sourceId) return;
+    const payload = await call(`/api/pre-inquiries/${encodeURIComponent(sourceId)}/room`, {
+      method: "POST",
+      fallbackKey: "pre_inquiries.errors.room_failed"
+    });
+    if (payload?.room?.id) router.push(buildRoomChatPath(payload.room.id, locale));
+  }, [call, locale, router, sourceId]);
 
   const close = useCallback(async () => {
     const payload = await call(`/api/org/${organizationId}/inbox/${item.id}`, {
@@ -186,6 +200,12 @@ export default function OrgInboxItemClient({ context, item, members, canAssign }
                   {t("org.inbox.reject")}
                 </Button>
               </>
+            ) : null}
+
+            {item.room?.canOpen ? (
+              <Button type="button" onClick={openRoom} disabled={busy}>
+                {t("org.inbox.openRoom")}
+              </Button>
             ) : null}
 
             {assignment && (canAssign || isMyAssignment) ? (

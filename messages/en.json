@@ -12272,6 +12272,7 @@
       "reject": "I decline",
       "handOver": "Hand over",
       "close": "Close work",
+      "openRoom": "Open conversation room",
       "backToList": "Back to list",
       "openedNotice": "Your opening is visible to the sender, and after it they can no longer recall the inquiry.",
       "recalledNotice": "The sender recalled this inquiry before it was opened. The content is no longer visible and no work can be done on it."
