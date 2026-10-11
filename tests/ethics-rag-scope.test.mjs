@@ -30,8 +30,12 @@ test('collection intersects current authorization and exact versions, has separa
     assert.throws(() => restrictPilotSources({ ...base, ...special }, collection), { code: 'source_scope_incompatible' });
   }
   const actual = JSON.parse(readFileSync(new URL('../config/ethics-sources.json', import.meta.url)));
+  // The collected package is the agreed scope; a smaller ad hoc index selection is incomplete.
+  assert.equal(actual.sources.length, 44);
+  assert.equal(new Set(actual.sources.map(s => s.packageId)).size, 44);
   assert.equal(new Set(actual.sources.map(s => s.documentId)).size, actual.sources.length);
   for (const source of actual.sources) {
+    assert.match(source.packageId, /^ethics-[a-z-]+$/);
     assert.match(source.documentId, /^document_[a-f0-9]{64}$/);
     assert.match(source.versionId, /^version_[a-f0-9]{64}$/);
   }

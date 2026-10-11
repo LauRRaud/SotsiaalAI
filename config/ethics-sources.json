@@ -1,164 +1,401 @@
 {
-  "id": "ethics-2026-10-11",
-  "selection": "Professional ethics, ethical reflection and social-sector codes. Reviewed topic selection from the active index; exact versions only. Landing pages and unrelated keyword matches excluded.",
+  "id": "ethics-44-2026-10-11",
+  "selection": "The owner-requested 44 collected ethics documents/chapters, including language variants. Exact reviewed versions; foreign and historical contexts retained in source metadata.",
   "sources": [
     {
-      "documentId": "document_3f416caf64664ba69d649b0730d907c56bf5cc310ed4e55f776c7af024f18656",
-      "versionId": "version_df1fcab91940492239420725d54d8e8a1de6ba83962db94ab30022cfffca0666",
-      "title": "Sotsiaaltöö kui abistava elukutse eetilised alused",
-      "year": 2016,
-      "urls": []
-    },
-    {
-      "documentId": "document_6f0e1bfdf8f21b95b0de42720669f69b0a1f253348bd18c69917e3537b000377",
-      "versionId": "version_d50472866e2b4176550fe1e0ae4b11d391650ccd368dca5b19e0a08abc7d6582",
-      "title": "Eetika köielkõnd sotsiaalteadustes",
-      "year": 2020,
-      "urls": []
-    },
-    {
-      "documentId": "document_7c74d792104356913e01db089ac58881cc2f0d3c62296947823465951259f8b5",
-      "versionId": "version_da8a07b6a3ca47b504488f03b87b0bd415c204405b50334c9b1232e4ff013a87",
-      "title": "Eetikapõhimõtted sotsiaaltöös. Global Social Work Statement of Ethical Principles (IASSW 2018)",
-      "year": 2019,
-      "urls": []
-    },
-    {
-      "documentId": "document_99a8543e9fbc2f32a087381fc00feace1737173df56498bc2f30628c67021e79",
-      "versionId": "version_56491b55f791db74654bff8689c340525303ba454013e9c0ae11f76ee5262667",
-      "title": "Sotsiaaltööuurimuse eetika",
-      "year": 2024,
-      "urls": []
-    },
-    {
-      "documentId": "document_a67061d967ae261f2e9aaab7b85c6659b22f16ad0132c431b8477e4a167f3537",
-      "versionId": "version_39e7c80dc546a3259f21c3be27f6ea2c4ebe225b340101561ee1754028b54cd9",
-      "title": "Eetikakoodeks on sotsiaalvaldkonna professionaalne kompass. Intervjuu eetikakomitee liikmetega",
-      "year": 2023,
-      "urls": []
-    },
-    {
-      "documentId": "document_ade32fafa6a7199386fa3ca1300d0d2231dffd1292e93430bd667d13c78f7de6",
-      "versionId": "version_0d97ab07ae2c60419688874b9c0fe75d31608c00fdaf12b69dc383cc98beb101",
-      "title": "Sotsiaaltöö hädaolukorra, eetika ja digiteerimise kolmnurgas",
-      "year": 2021,
-      "urls": []
-    },
-    {
-      "documentId": "document_3d98221d263af08aafe936f2d6839e894d3f0e2d1632fb81a80d833516d5a4e5",
-      "versionId": "version_0f8920c395d09f713f925801b5750a407a594260ce91a8df4d2dad016f9d02ec",
-      "title": "Eesti Afaasialiit: Eesti Afaasialiidu eetikakoodeks",
-      "year": null,
+      "packageId": "ethics-aki-child-guidance",
+      "documentId": "document_5387934dfa2932409af11a19daf00b9b15644a56d957ee1af45076c327b84270",
+      "versionId": "version_3592e7fe349826aa001ac7e84ad9e81ac468785e4967ddf39fb3ce6fce66616e",
+      "title": "Abivajavast lapsest teatamine ja andmekaitse",
       "urls": [
-        "https://afaasia.ee/organisatsioon/eetikakoodeks"
+        "https://www.aki.ee/sites/default/files/documents/2024-09/Abivajavast%20lapsest%20teatamine%20ja%20andmekaitse%20juhend.pdf"
       ]
     },
     {
-      "documentId": "document_15207ee9fec8ed59951b2edeaf02ec78f683d05a163e62403658cba1bb4c602b",
-      "versionId": "version_21d387094d8582e99eeabb20c2b6a67c0cd1e47956ee611f703e31b03e244d13",
-      "title": "Eesti Liikumispuudega Inimeste Liit: ELIL eetikakoodeks",
-      "year": null,
+      "packageId": "ethics-aki-consent",
+      "documentId": "document_e0b4e07ed8646fc13d17ebdec9bdc09f898f65823052bdf6406078d40b0dde03",
+      "versionId": "version_ab1295be4d8755a520a2f44da83be192c4d43164eacbca52ec4ef487b460b527",
+      "title": "Andmekaitsetingimused ja nõusolek — AKI",
       "urls": [
-        "https://elil.ee/et/eesti-liikumispuudega-inimeste-liit/elil-eetikakoodeks"
+        "https://www.aki.ee/sites/default/files/documents/2025-07/AKI_Andmekaitsetingimused%20ja%20n%C3%B5usolek_A4_WEB-links-form.pdf"
       ]
     },
     {
-      "documentId": "document_88454c5daf8fec7952fbfb31e32edb78caaecf2ad39053cd6f7010b85495723e",
-      "versionId": "version_d0ac75e2249e271f34202eda09ae37e86d0d9654069d0cd29e54097916580cac",
-      "title": "Tugiliisu: EETIKA",
-      "year": null,
+      "packageId": "ethics-aki-employment",
+      "documentId": "document_70f04062d3e04991934dc07a307456b30357a9d9b24ebff39cbf03f309796b89",
+      "versionId": "version_c08d3b9a2ee1c6051beb9d66aeb7e4a6b4c0642320e4a477e098a67e16e8cc0b",
+      "title": "Isikuandmete töötlemine töösuhetes | Andmekaitse Inspektsioon",
       "urls": [
-        "https://tugiliisu.ee/asutus-ja-eesmargid/eetilise-tegutsemise-pohimotted"
+        "https://www.aki.ee/isikuandmed/juhendid-ja-abimaterjalid/isikuandmete-tootlemine-toosuhetes"
       ]
     },
     {
-      "documentId": "document_8fa9a6e80992b0a0963384ca27491822c4de4e554217a5ab430a5ba7bf729569",
-      "versionId": "version_b33d28c6495319a6f95c006293dedd3e97b73f98cd4159cbd63d8b4eda9282ae",
-      "title": "Eesti Autismiliit: Eetilised põhimõtted",
-      "year": null,
+      "packageId": "ethics-aki-health",
+      "documentId": "document_3b9e1f4f76d0cc9b2159ef7915d92c9b60e69261b6358639d35f9a2a46127504",
+      "versionId": "version_120be1002476d3cc3a17647b6b47f380ecd36ce6b9727e32e1dae95751304d30",
+      "title": "Isikuandmete töötlemine tervishoius | Andmekaitse Inspektsioon",
       "urls": [
-        "https://www.autismiliit.ee/meist/eetilised-pohimotted"
+        "https://www.aki.ee/isikuandmete-tootlemine-tervishoius"
       ]
     },
     {
-      "documentId": "document_a437ca5b885a2725967affd483654e68e836195149b01f2b9cb5b143de0e4d59",
-      "versionId": "version_24fc2787304ab09f5b015f91c9ed47bcab0f51a551643ee25b025feae9123bb2",
-      "title": "MTÜ Iseseisev Elu: Eetika",
-      "year": null,
+      "packageId": "ethics-aki-transparency",
+      "documentId": "document_be4ed6051006561b62489aa6701b76bc1416ed27d118806d676a84719293f91c",
+      "versionId": "version_3c56d248a2e1c38b005e30658a5222c7138fba96cd8c83de657913a4e3fb16c1",
+      "title": "Teave isikuandmete kasutamise kohta | Andmekaitse Inspektsioon",
       "urls": [
-        "https://www.iseseisev-elu.ee/iseseisev-elu/eetika"
+        "https://www.aki.ee/isikuandmed/inimese-oigused/teave-isikuandmete-kasutamise-kohta"
       ]
     },
     {
-      "documentId": "document_bd09fb9b379c47c2ee2b5cf04e0884be940005cfe63854f96bbc65a3ca830f53",
-      "versionId": "version_ba0920a7e766f07c62640927fb08945b25ff07979f1b37e3e5156eb67b5e9bea",
-      "title": "Saaremaa Puuetega Inimeste Koda: Eetikakoodeks",
-      "year": null,
+      "packageId": "ethics-basw-adult-care",
+      "documentId": "document_144de236285249ead590e0a7fa7ea476d6dde1896928a230191f275495823888",
+      "versionId": "version_93e6c33d4faef2f2b07bf450e3d8809ed3142c6ea0bac8a8d77fba59deab7629",
+      "title": "An Ethical Approach to Meeting Needs in Adult Social Care — BASW 2022",
       "urls": [
-        "https://www.saarekoda.ee/dokumendid/eetikakoodeks"
+        "https://www.basw.co.uk/sites/default/files/2024-04/BASW%20England%20Policy%20An%20Ethical%20Approach%20to%20Meeting%20Needs%20in%20Adult%20Social%20Care%20July%202022.pdf"
       ]
     },
     {
-      "documentId": "document_88efa49dab6030232d34e27cc15189d6ea4588796f27414d27612bc8086073b6",
-      "versionId": "version_05f37238104686f8532ab2698efe456f9ee535bbadcff068d175298e9355d32d",
-      "title": "Eesti noorsootöötaja eetikakoodeks",
-      "year": 2026,
+      "packageId": "ethics-basw-code",
+      "documentId": "document_63cc2d0d246b753ef338cffee768bff8fd47d0f73907787c780525a8dca8e497",
+      "versionId": "version_bae827de92a70ca0f77e9416ce9121d10e5efcad656ceee7693ca9c92a96d368",
+      "title": "Code of Ethics | BASW",
       "urls": [
-        "https://eetika.ee/sites/default/files/2026-06/Noorsoot%C3%B6%C3%B6taja%20eetikakoodeks.pdf"
+        "https://basw.co.uk/policy-practice/standards/code-ethics"
       ]
     },
     {
-      "documentId": "document_ada0e2f4544fa2aa984bacfd212fc24a7ac0f46c49067429f452d3556376ee7a",
-      "versionId": "version_8482d49228f929150cb42e1b98393a723f4f512167bdcd5e29ceb8f6477c96fb",
-      "title": "Hingehoidja eetilised põhimõtted",
-      "year": null,
+      "packageId": "ethics-child-participation",
+      "documentId": "document_5febcffd1f8fe648abf17501da95261c77d2ae3dc310c49e9f056a56fa9a6e43",
+      "versionId": "version_971578436a1fee03df0ce36cab226861d45391d0565e022468697d46c68066f7",
+      "title": "Lapse osalemise põhimõtted",
       "urls": [
-        "https://www.hingehoid.ee/hingehoid/hingehoidja-eetilised-pohimotted"
+        "https://www.oiguskantsler.ee/sites/default/files/lapse%20%C3%B5igused/Lapse-osalemise-pohimotted.pdf"
       ]
     },
     {
-      "documentId": "document_f894bac1a1eb0ab8d26c5f439a1a8f3b255e22effd5b0096c2ceed34ef39a5b2",
-      "versionId": "version_85bef930790e953c5b51e24d8ce82278c088b883d8914dde2cb1fda075da0e90",
-      "title": "MTÜ Eluliin: Eetilise tegutsemise põhimõtted",
-      "year": null,
+      "packageId": "ethics-child-rights",
+      "documentId": "document_98686dd49c7c6f95cb0a60724f110489e87d4527980a11d2f5f94cb7b937ede0",
+      "versionId": "version_659c55c139f6d35a18f9633367e84a1b4894e267c3ebd0b70348b45ed693ac0a",
+      "title": "Laste ja noorte õigused ja kohustused | Õiguskantsler",
       "urls": [
-        "https://www.eluliin.ee/eetilise-tegutsemise-pohimotted"
+        "https://www.oiguskantsler.ee/tegevusvaldkonnad/laste-ja-noorte-oigused/laste-ja-noorte-oigused-ja-kohustused"
       ]
     },
     {
-      "documentId": "document_4acff4d7cf9b41087d78097e666469699452dec941bc473b810c72649219b5b3",
-      "versionId": "version_ae3a7b396785d0a3bed674648f25fc8abbe1a4356345e975a7e008f1fc927517",
-      "title": "Eesti Naiste Varjupaikade Liit: Eetikakoodeks",
-      "year": null,
+      "packageId": "ethics-child-wellbeing",
+      "documentId": "document_680fa2817969cd7fe5b64bda883bff6b3c965e55fda258db4dc5c62b50c6d453",
+      "versionId": "version_28dcf78ae082b29510b53d647c9bf46e2910fe8d6c044906abc97b7fc0f4712a",
+      "title": "Lapse heaolu hindamise käsiraamat",
       "urls": [
-        "https://www.naisteliin.ee/?id=120"
+        "https://sotsiaalkindlustusamet.ee/media/3451/download"
       ]
     },
     {
+      "packageId": "ethics-childminder-code",
+      "documentId": "document_b814d764c6875ac832fd640d4e494b5094b05179485e5dcdf68c3d6719198448",
+      "versionId": "version_017c27dc036b45ae1108e4d30b03ce1f12a6fab54def00d6d933863c9405465a",
+      "title": "Lapsehoidja kutse-eetika",
+      "urls": [
+        "https://www.eswa.eswa.ee/wp-content/uploads/2020/03/Lisa-3-Lapsehoidja-kutse-eetika.pdf"
+      ]
+    },
+    {
+      "packageId": "ethics-crc-en",
+      "documentId": "document_0e743ea4f3195d0ed69d55e664a7689e509317afb286448ed7c61ef6378c0fc6",
+      "versionId": "version_867f97c76604fba5d8875a9976cb855a3c1cb382eba357f37d61ddfca4fb8122",
+      "title": "Convention on the Rights of the Child",
+      "urls": [
+        "https://www.ohchr.org/sites/default/files/crc.pdf"
+      ]
+    },
+    {
+      "packageId": "ethics-crpd-en",
+      "documentId": "document_1e2a252acb101139bc65c6513c2f27841521756b4165ab4f26229d0ca3a9a789",
+      "versionId": "version_30a202f6266b4879837204dee87340e3f687e2f3787626a9a9844e81df1119d6",
+      "title": "UN Enable - Text of the Convention on the Rights of Persons with Disabilities",
+      "urls": [
+        "https://www.un.org/esa/socdev/enable/rights/convtexte.htm"
+      ]
+    },
+    {
+      "packageId": "ethics-crpd-estonia-observations",
+      "documentId": "document_ce9cb81c2c4d5607f95402fc90a22915bce7f9d0e180a2c980f27f6fa0a4c3a4",
+      "versionId": "version_0125bcf102ecf94a5df35d7b848ed316872e29d58dd17e0cd31b892c467a417c",
+      "title": "Concluding Observations on the Initial Report of Estonia — CRPD Committee 2021",
+      "urls": [
+        "https://www.oiguskantsler.ee/sites/default/files/Concluding%20observations%20on%20the%20initial%20report%20of%20Estonia%20%282021%29.pdf"
+      ]
+    },
+    {
+      "packageId": "ethics-debt-code",
       "documentId": "document_67a7c58f79ff0846766f7358de1b1c7bd8917a71be304004c12f9f82261599eb",
       "versionId": "version_117a58290801d2b830690d116cb287b4aa70cd497107e2081d2e63fb00707d76",
-      "title": "Eesti Võlanõustajate Liit: Eetikakoodeks",
-      "year": null,
+      "title": "Eetikakoodeks – Eesti Võlanõustajate liit",
       "urls": [
         "https://evnl.ee/uhingust/eetikakoodeks/"
       ]
     },
     {
-      "documentId": "document_b5f0bf068438ac5052c0b2b681509677e86e7d4f76eca0f0bd9f8d06c5415e05",
-      "versionId": "version_8320313703b663089b7b3a329da9f5626540ac8fd1020001e221db2928bb37e6",
-      "title": "Eesti Lasterikaste Perede Liit: Eetikakoodeks",
-      "year": null,
+      "packageId": "ethics-echr-court-et",
+      "documentId": "document_7c0238a7932cfdd75cb8cef82cf4ee39f03e1496e9073f549f402171f63a6921",
+      "versionId": "version_6a0ab3f3b157f127cbfb31710d20c33e300bac5529e02d9a6713a0ebe49697c1",
+      "title": "Euroopa inimõiguste konventsioon",
       "urls": [
-        "https://www.lasterikkad.ee/meist/eetikakoodeks/"
+        "https://www.echr.coe.int/documents/604084/839313/Convention_EST.pdf/48a34ce7-a621-b072-765c-ac690cc5a455?download=true&t=1675077940415&version=1.1"
       ]
     },
     {
+      "packageId": "ethics-esta-code",
+      "documentId": "document_635dc2afa9345bfc5e3008b58e1b9ab3a8357a35aebab1f7092b2489baa909b9",
+      "versionId": "version_9eb1cfb11742534ebe312f931d314f7ac9234a1d651161313e68dd5e85c40a95",
+      "title": "Eetikakoodeks | ESTA",
+      "urls": [
+        "https://eswa.eswa.ee/eetikakoodeks/"
+      ]
+    },
+    {
+      "packageId": "ethics-esta-code-pdf-en",
+      "documentId": "document_8033fcb41796c780c2f10f7c87fe6e68f4c3d285b7f354a189861a0c23711414",
+      "versionId": "version_ad44e23324c877edab77d3bbe3ef8ca2d275a2570ce483c360a7930b9e93bd72",
+      "title": "Code of Ethics for Employees in the Area of Social Affairs — ESTA",
+      "urls": [
+        "https://www.eswa.ee/wp-content/uploads/2026/05/sotsiaalvaldkonna-tootaja-koodeks_eng.pdf"
+      ]
+    },
+    {
+      "packageId": "ethics-esta-code-pdf-et",
       "documentId": "document_cfa33d396a5809e730235e9c1275a9ce84364183191afa77628c88e444bbb5d6",
       "versionId": "version_d202dd014e6701f5baa8077660365245066463fcf2d9e80e5a2cd158f700a24a",
-      "title": "Sotsiaalvaldkonna töötaja eetikakoodeks",
-      "year": 2022,
+      "title": "Sotsiaalvaldkonna töötaja eetikakoodeks — ESTA",
       "urls": [
         "https://www.eswa.ee/wp-content/uploads/2026/05/sotsiaalvaldkonna-tootaja-koodeks.pdf"
+      ]
+    },
+    {
+      "packageId": "ethics-esta-code-pdf-ru",
+      "documentId": "document_db9c5cb060d9947c5640ec47159887722855482ece783d05a87d294dd2f16ad6",
+      "versionId": "version_e1012c10917f65efddc5e79dd415ad482900ce7cb93a803954c49d1bb2f68e3e",
+      "title": "Кодекс этики работников социальной сферы — ESTA",
+      "urls": [
+        "https://www.eswa.ee/wp-content/uploads/2026/05/sotsiaalvaldkonna-tootaja-koodeks_RU.pdf"
+      ]
+    },
+    {
+      "packageId": "ethics-esta-handbook",
+      "documentId": "document_efbd7872126cc2b46783a20417929d895f6a64d57cad3a25f84bb873aae938b4",
+      "versionId": "version_c8ebd65dd56731f9c7bca9028b14acb15704c79a884e00421b6c0d1f9ab25b2b",
+      "title": "Eetikakäsiraamat | ESTA",
+      "urls": [
+        "https://eswa.eswa.ee/eetikakasiraamat/"
+      ]
+    },
+    {
+      "packageId": "ethics-iassw-full-en",
+      "documentId": "document_cd796f19f3a70ce252b85ba8b7cbce015f6bcf19defe8565cd648790844418fc",
+      "versionId": "version_499557a1bf0031ef6cb3871773f5687bc99556dfd1a387b5b2feff24c5d20080",
+      "title": "Global Social Work Statement of Ethical Principles — IASSW 2018",
+      "urls": [
+        "https://www.iassw-aiets.org/wp-content/uploads/2023/06/Global-Social-Work-Statement-of-Ethical-Principles-IASSW-27-April-2018-01-English.pdf"
+      ]
+    },
+    {
+      "packageId": "ethics-iassw-translation-et",
+      "documentId": "document_d4904371eefb63e0ed48c7ebc9aa4b038e595c0d61c865fe89f877fbc028fbd9",
+      "versionId": "version_82cc85792bdf8cbf30ed4bb8dc3b73fa573383daabbd1c3b210ac2610e134d2b",
+      "title": "Eetikapõhimõtted sotsiaaltöös — IASSW 2018 (eestikeelne tõlge)",
+      "urls": [
+        "https://www.eswa.eswa.ee/wp-content/uploads/2020/06/Eetikapohimotted-sotsiaaltoos_Sotsiaaltoo_4_2020.pdf"
+      ]
+    },
+    {
+      "packageId": "ethics-ifsw-cases",
+      "documentId": "document_b31cd0f567653098ca1d52b026bbc0ae94fba7d7b00cbe72e629ae734aa16e7a",
+      "versionId": "version_212dde9cce7499dadfd86e1b3d64702bd3d0fb4ce573209f25e3b410780ddc9c",
+      "title": "Pandemic Ethics: A Resource for Social Work Students, Educators and Practitioners — 2021",
+      "urls": [
+        "https://www.ifsw.org/wp-content/uploads/2021/09/2021-08-27-Pandemic-Ethics-Resource-FINAL.pdf"
+      ]
+    },
+    {
+      "packageId": "ethics-ifsw-education",
+      "documentId": "document_dd6a9daa027a1f209769efb7fd625301cf6f777de0c799742730c1d01aff21fe",
+      "versionId": "version_a61dac015aa2379d733dd39e60732d72b2eda384987adf7ec45cea45afbb2bca",
+      "title": "Global Standards for Social Work Education and Training – International Federation of Social Workers",
+      "urls": [
+        "https://www.ifsw.org/global-standards-for-social-work-education-and-training/"
+      ]
+    },
+    {
+      "packageId": "ethics-ifsw-handbook",
+      "documentId": "document_49f87ac670ea251f2e67d5389a232182b5b5d099bb514f49a5478a1959120a16",
+      "versionId": "version_c4409563cca5578e6d605eff534281407c4a9aa791d805352cb33671de511c10",
+      "title": "Social Work as a Global Profession: Handbook for Teaching and Learning — 2024",
+      "urls": [
+        "https://www.ifsw.org/wp-content/uploads/2024/10/2024-10-02-Handbook-Global-SW-FINAL.pdf"
+      ]
+    },
+    {
+      "packageId": "ethics-ifsw-principles",
+      "documentId": "document_b5e6a79009828626608bf9d36c9902b74c417f9b6b564cd47a83923b1408037e",
+      "versionId": "version_a3c5f58ff1cd9a33841fa388eb5927fca8399229262fa1d5cf45af53c9c28317",
+      "title": "Global Social Work Statement of Ethical Principles – International Federation of Social Workers",
+      "urls": [
+        "https://www.ifsw.org/global-social-work-statement-of-ethical-principles/"
+      ]
+    },
+    {
+      "packageId": "ethics-ifsw-research",
+      "documentId": "document_64bd3405a33ccf658159d4960cf932562738b7a669b5717fb70c7617c45140c5",
+      "versionId": "version_760e7d9439b71c4b563aafebac5bdf7f2a2b055ebaca9e2fdb2310f72391fb1b",
+      "title": "Ethical Challenges for Social Workers during Covid-19: A Global Perspective — 2020",
+      "urls": [
+        "https://www.ifsw.org/wp-content/uploads/2020/07/2020-06-30-Ethical-Challenges-Covid19-FINAL.pdf"
+      ]
+    },
+    {
+      "packageId": "ethics-nasw-ai",
+      "documentId": "document_a124d28415e2a9ad1714edbe3dd305e765909bef8e6d2de780f77d500882d158",
+      "versionId": "version_f854363b7275d380c0805be2d30a85fb6b09ce915deaa82997b41182b1c079d8",
+      "title": "AI and Social Work",
+      "urls": [
+        "https://www.socialworkers.org/About/Ethics/AI-and-Social-Work"
+      ]
+    },
+    {
+      "packageId": "ethics-nasw-clients",
+      "documentId": "document_8af0c34f21834dbc6711f5ffb6522b8f2cecb02422ac0c76f1aa71baeb0ea581",
+      "versionId": "version_f8797a1366fa8612540e50071d296f1333126db6896c9fd1685c0a38bb7250d6",
+      "title": "Social Workers' Ethical Responsibilities to Clients",
+      "urls": [
+        "https://www.socialworkers.org/About/Ethics/Code-of-Ethics/Code-of-Ethics-English/Social-Workers-Ethical-Responsibilities-to-Clients"
+      ]
+    },
+    {
+      "packageId": "ethics-nasw-code",
+      "documentId": "document_4c2014afd401502fca1671990cae7db1cab0f2587279e5f549023c414e328dd0",
+      "versionId": "version_3094809b51e90b970dbe9feaf8ce9803cca1095a7ae31eea3dc575bb5d9c59e2",
+      "title": "Code of Ethics: English",
+      "urls": [
+        "https://www.socialworkers.org/Code-of-Ethics"
+      ]
+    },
+    {
+      "packageId": "ethics-nasw-colleagues",
+      "documentId": "document_bb7a09cc75ebfbe6ceaa983a6dfd6a1539f987ea75fe38e5e75a3dfc2b9e62db",
+      "versionId": "version_8f4e14199e30813107306f3852e96543c2e18ac76ecbf9d44298f16e7d0e1c62",
+      "title": "Social Workers' Ethical Responsibilities to Colleagues",
+      "urls": [
+        "https://www.socialworkers.org/About/Ethics/Code-of-Ethics/Code-of-Ethics-English/Social-Workers-Ethical-Responsibilities-to-Colleagues"
+      ]
+    },
+    {
+      "packageId": "ethics-nasw-profession",
+      "documentId": "document_51c2cfad46aa91b5f1633b2d97c1ddfc0ad6819a0623483259f35fe6889c8984",
+      "versionId": "version_c0eb758953ef6ac98bc438eca3c0ed2a4d00debcd6f7562e129f5f3ea8cf8d92",
+      "title": "Social Workers' Ethical Responsibilities to the Social Work Profession",
+      "urls": [
+        "https://www.socialworkers.org/About/Ethics/Code-of-Ethics/Code-of-Ethics-English/Social-Workers-Ethical-Responsibilities-to-the-Social-Work-Profession"
+      ]
+    },
+    {
+      "packageId": "ethics-nasw-professional",
+      "documentId": "document_ca1a220e672522927d42e63cbe6dac3911af4c871708f0e17f397b515ac76df4",
+      "versionId": "version_c672d63aeddcf56f7fceb7f61a366e53fef5bba1e28a8e52675a83a6d81c714c",
+      "title": "Social Workers' Ethical Responsibilities as Professionals",
+      "urls": [
+        "https://www.socialworkers.org/About/Ethics/Code-of-Ethics/Code-of-Ethics-English/Social-Workers-Ethical-Responsibilities-as-Professionals"
+      ]
+    },
+    {
+      "packageId": "ethics-nasw-society",
+      "documentId": "document_7e7ce4329a17795c48de81f63ed4f172d510ce91e7c9886aa924df8d66b6af7c",
+      "versionId": "version_7ccee4f66b2c211bb3b1e947c9579129d9b5037bd40aa4c107db473545eb7a32",
+      "title": "Social Workers' Ethical Responsibilities to the Broader Society",
+      "urls": [
+        "https://www.socialworkers.org/About/Ethics/Code-of-Ethics/Code-of-Ethics-English/Social-Workers-Ethical-Responsibilities-to-the-Broader-Society"
+      ]
+    },
+    {
+      "packageId": "ethics-nasw-technology",
+      "documentId": "document_f1a06fd51b9ac143121f71d12f8dd375e9ac9969ecc1bd5c7da3fbbdc1d9dc10",
+      "versionId": "version_b3e1c321a418944e1adfc8b900595d1366a62b97d726ec7671d1551a58abf43b",
+      "title": "Standards for Technology in Social Work Practice",
+      "urls": [
+        "https://www.socialworkers.org/Practice/NASW-Practice-Standards-Guidelines/Standards-for-Technology-in-Social-Work-Practice/"
+      ]
+    },
+    {
+      "packageId": "ethics-nasw-workplace",
+      "documentId": "document_367573bf3aa53ec8d3180fda30ae64ebdee1f884e7012902c4cf0b7c7ded0563",
+      "versionId": "version_1a62878707946157e16b3a501de6174b9305a54cff573bd5d3809a339da68cc6",
+      "title": "Social Workers Ethical Responsibilities in Practice Settings",
+      "urls": [
+        "https://www.socialworkers.org/About/Ethics/Code-of-Ethics/Code-of-Ethics-English/Social-Workers-Ethical-Responsibilities-in-Practice-Settings"
+      ]
+    },
+    {
+      "packageId": "ethics-ngo-code",
+      "documentId": "document_acb8a39f4e3fce274e4edd041e0d45e12e2e9b5607a1e744eb979681e1351c5d",
+      "versionId": "version_cc4e9d9a87e7d6fe4e57136395db923fda81847b3fc24000a17631de410f8b7a",
+      "title": "Vabaühenduste eetikakoodeks - Hea Kodanik",
+      "urls": [
+        "https://heakodanik.ee/vabauhenduste-eetikakoodeks/"
+      ]
+    },
+    {
+      "packageId": "ethics-scie-communication",
+      "documentId": "document_3846639ee90a057ca5b7d7298ffe7a1a7acebb0eb570cbf1cab3ff9cf197984a",
+      "versionId": "version_e52f56aebff76e16f1c84f3654af6e092f993d280c7b426654a7e88081c4e47e",
+      "title": "Dignity: Information and good communication - SCIE",
+      "urls": [
+        "https://www.scie.org.uk/providing-care/dignity-in-care/communication/"
+      ]
+    },
+    {
+      "packageId": "ethics-scie-death",
+      "documentId": "document_c644934d1a279afffd5cd945ddf17c37d0a406d6087502b4b9ba47dafd17b666",
+      "versionId": "version_9f559d072ec680eed142f64020b26e96da940f16f6e81bf60ff5abddf85e2125",
+      "title": "A dignified death - SCIE",
+      "urls": [
+        "https://www.scie.org.uk/providing-care/dignity-in-care/death/"
+      ]
+    },
+    {
+      "packageId": "ethics-scie-freedom",
+      "documentId": "document_5bbb3da3e34ce76793e5ed8017631fa574dfba67da1db61b0f992789530322d6",
+      "versionId": "version_a4ed0b7302bb6e13c87616931f33293dc6b46d93983383316aa26c25949a0041",
+      "title": "Freedom to choose and dignity in care - SCIE",
+      "urls": [
+        "https://www.scie.org.uk/providing-care/dignity-in-care/freedom/"
+      ]
+    },
+    {
+      "packageId": "ethics-scie-involvement",
+      "documentId": "document_40fc9d391a127951558ece2f7bf83a208c9e1af5130a048ed148d43244d9fcb1",
+      "versionId": "version_e2b22cf6d0e6acb74789fe504acf9e63a24789074783d7ec5e594da10b7b9da8",
+      "title": "Involvement and inclusion promoting dignity in care - SCIE",
+      "urls": [
+        "https://www.scie.org.uk/providing-care/dignity-in-care/involvement/"
+      ]
+    },
+    {
+      "packageId": "ethics-scie-recognising-the-individual",
+      "documentId": "document_90e5a14ad827e654cd2f6153f53dd88e07cc212efa700572bfb52af2ca023694",
+      "versionId": "version_ba9066869306fa3700f6e3b94641e0c9236b80cb0f12de1b1a140c01371d42a4",
+      "title": "Recognising the individual to promote dignity in care - SCIE",
+      "urls": [
+        "https://www.scie.org.uk/providing-care/dignity-in-care/recognising-the-individual/"
+      ]
+    },
+    {
+      "packageId": "ethics-shelters-code",
+      "documentId": "document_176db6eb1c3a13a4ecd88b0b78125bd94c523ec5c3569ea434ab31b51947ccc4",
+      "versionId": "version_674b340668bdc9641a22795769eff93575cccf15eeaee007cff6c8fc9647358b",
+      "title": "Eesti Naiste Varjupaikade Liit > Meist > Eetikakoodeks",
+      "urls": [
+        "https://naisteliin.ee/index.php?id=77"
       ]
     }
   ]

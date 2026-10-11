@@ -140,8 +140,9 @@ uus `/api/ethics/chat` anonüümselt 401/no-store. See ei ole autentitud
 tootmisvestluse ega pärismudeli vastuse sisukvaliteedi tõend. Serveris ei
 käivitatud build'i, lint'i, testikomplekti ega tasulist mudelikutset.
 
-- 44 dokumendi eetikapaketi täpne kattuvus olemasolevaga, valik, import ja
-  embedding: NOT_RUN; kõiki avalikke materjale ei saa pidada Eesti nõudeks.
+- Selle 19 allikaga väljalaske ajal oli 44 dokumendi paketi import NOT_RUN;
+  see oli mittetäielik teostus, mitte omaniku kokkuleppe täitmine. Järgnev
+  parandus käsitleb kogu lubatud paketti.
 - Mudeli eetilise arutelu sisuline kvaliteet ja juhise järgimine: NOT_PROVEN.
   Üldise assistendi prompt ei ole garantii, et iga vastus järgib soovitud stiili.
 - Automaatne tuvastus on heuristiline, võib anda valehäireid ja jätta tunnuseid
@@ -150,3 +151,86 @@ käivitatud build'i, lint'i, testikomplekti ega tasulist mudelikutset.
   haldab assistendi ajalugu. Vana vastust ei taastata Eetikaruumi vormi.
 - Eksperdikanal, eksperdivastuse tagasitee ning osalejatele avaldamise/kutsete
   terviktest ei kuulu selle privaatse mustandi ühikusse.
+
+## 44 materjali taastamine kokkulepitud ulatusse
+
+Omanik parandas ulatust: „19 valitud eetikaallikaga? pidi olema 44 ju”.
+44 tähendab kogutud dokumendi- ja peatükikirjeid, sh ESTA keeleversioonid ning
+NASW koodeksi eraldi peatükid; see ei tähenda 44 sõltumatut väljaannet.
+Eelnev 19-ne valik oli koostatud teisest, juba indekseeritud allikaloendist.
+
+19.36 EEST mõõdetud v86 indeksis oli paketi üheksale materjalile vaste:
+neli sama originaalfaili SHA-256-ga ning viis sama veebiaadressiga.
+Viie veebiteksti võrdlus: AKI töösuhete ja teavituse tekstid sõnaliselt samad;
+võlanõustaja koodeksist on indeksis eemaldatud navigeerimine/botikontroll,
+varjupaikade koodeksil on lisaks korduv pealkiri. AKI tervishoiu tekstis on
+indeksist välja jäänud rikkumistabeli koondpealkiri; tabeli sisu on olemas.
+Need üheksa versiooni kasutatakse uuesti. Ülejäänud 35 materjali valmistati
+ette standardse `planIngestBatch` / `prepareIngest` / ülevaatuse rajaga, ilma
+RAG-tuuma allika-ID järgi käitumiserandit lisamata.
+
+Kohalik tööpakett: `tmp/ethics-corpus-import/`. Täpne allikate ja versioonide
+seos on `prepared.json` ja rakenduse `config/ethics-sources.json`; rühma plaan
+`plan.json`, ülevaatus `review-v86.json`, saatmispakett `ship-v87/`.
+Rühm `ingest_batch_0def9660e9a20508d2dd7ea29c68ad80be016e40725853d7347fc90c40a5d4a1`:
+35 lisatavat dokumenti, 1126 lõiku, 1125 erinevat vektorisisendit,
+312 268 tokenit enne serveri vahemälu arvestamist; 0 ülevaatuse blokeerijat.
+Eraldatud kohalik hoidla võttis serveri v86 lähtepea ja avaldas sellele ainult
+need 35 materjali; põhikausta ühise hoidla pead ei muudetud.
+
+Teksti ettevalmistuses parandati kolm tuvastatud probleemi:
+
+- AKI nõusoleku voldiku kolm lehte: visuaalselt kontrollitud veerud ning
+  tabelite küsimuse/selgituse paarid; tühje jah/ei kaste ei esitata vastustena.
+- Euroopa inimõiguste konventsiooni 31 lehe küljendusülevaade ja PDF lk 5:
+  algne PDF-lugeja põimis kõrvutiasuvate trükilehtede artikleid. Ettevalmistatud
+  leheküljetekst säilitab artiklite järjekorra ja algse PDF-i lehelingid.
+- IASSW tõlke PDF lk 2: pildiga võrreldud fondi-Unicode'i vead
+  „Põimustumisele”, „deinitsioon”, „Ejective” ja puuduv T parandati sellel lehel.
+  Kõigi ülejäänud lehtede täielikku korrektuuri ei tehtud.
+
+Algfailid säilivad. Nende kolme materjali sisend on eraldi ettevalmistatud
+HTML, mille sektsioon nimetab algse PDF-i lehe ja viitab sellele; seda ei
+esitata algse PDF-i automaatselt tuvastatud tekstikohana. Täpsed teisendused
+ja räsi on algpaketi `quality-checks/*layout.json` failides. IFSW 2020/2021
+materjalide tekstitud viimased lehed kontrolliti pildina: need on dekoratiivsed
+tagakaaned. ESTA käsiraamatu välja jäetud viiteloendid kontrolliti; sisulised
+peatükid on lõikudes alles. Kõigi PDF-ide kõigi lehtede täielik visuaalne
+korrektuur, allikate õiguslik ajakohasus ja eksperthinnang: NOT_PROVEN.
+
+Kohalik kontroll PASS: 35 muutumatu versiooni faili- ja viiteterviklus,
+44 erinevat paketi-/dokumendivastet, võõra dokumendi välistamine piiratud
+konfiguratsioonist, ühine kuluregister, AKI tabelipaar ja konventsiooni
+artiklite järjestus. Kolm Eetikaruumi allikapiiri sihttesti PASS (TZ=UTC),
+sh kohustuslik 44 kirje kontroll. Pärismudeli vastuse kvaliteeti ei mõõdetud.
+
+Omaniku kinnitus pärast kuni 0,05 USD piiri nimetamist: „minu poolt luba ja
+raha antud”. Vektoritöö kavandatud kulu enne vahemälu on 0,040595 USD,
+aluseks [OpenAI text-embedding-3-large hinnaleht](https://developers.openai.com/api/docs/models/text-embedding-3-large),
+kontrollitud 11.10: 0,13 USD miljoni sisendtokeni kohta. Serveri v87 tööle on
+seatud 0,05 USD rahapiir ja 1126 välissisendi piir; tasulist vastusehindamist
+selle loaga ei käivitata.
+
+19.58 EEST lõpetas serveri v87 import edukalt: 1125 edukat vektorikutset,
+312 268 sisendtokenit, teadmata tulemusega kutseid 0. Valideeritud
+kasutusandmetest arvutatud kulu **0,040594840 USD** (mitte teenuse arve).
+Uues indeksis on 10 606 dokumenti ja 94 597 lõiku; varasema indeksi read
+ja kontrollsummad jäid samaks. Aktiivne indeks:
+`search_generation_7ee75d5087725f03b5a11932c53f62d0330cc52750cec53dbd9cb098fdcd836c`.
+Teenuse uus ühine plaan on `/etc/sotsiaalai/m4-corpus-chat-20261011-ethics44.json`.
+
+20.00 EEST tasuta käituskontroll (`verification-index.json`): kõik 44 täpset
+dokumendi-/versioonipaari on aktiivses indeksis ja lubatud plaanis,
+kokku 1399 lõiku. Piiratud otsing leidis „enesemääramine”, „confidentiality”
+ja „artificial intelligence” puhul igaühel 8 lõiku üksnes lubatud valikust;
+„kosmeetika” andis 0. Sama assistendi kuluregister säilib. Rakenduse
+avaldatud konfiguratsioon oli selle kontrolli ajal veel 19-ne; 44 kontrolliti
+ettevalmistatud konfiguratsiooniga. Uusi mudelikutseid selles kontrollis ei tehtud.
+
+Pärast indeksi kontrolli sünkrooniti kohalik põhikorpuse hoidla sama
+`generation_891047b68e1f2b2f20659e6cc278e2e76d65d0a4f777f95eac74f6fec95b9beb`
+peaga: 10 649 talletatud dokumenti, sh 43 varem otsingupoliitikast väljas.
+Lisati ainult 35 versiooni, kõik varasemad dokumendiversioonid jäid samaks;
+vana aktiivpea koopia on tööpaketi `local-main-backup/active.json`-is.
+Rakenduse 44-kirjelise konfiguratsiooni avaldamise lõpptõend lisatakse
+pärast GitHubi tavapärast ehitus- ja avaldamisrada.
