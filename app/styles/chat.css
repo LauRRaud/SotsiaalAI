@@ -1369,6 +1369,22 @@ body > [data-msg-menu] > button[role="menuitem"]:disabled {
 body > [data-msg-menu] > button[role="menuitem"][data-speaking="true"] {
   color: var(--dusk-sunset);
 }
+/* Tehtud tegevus (tagasiside on saadetud): tuhmim, aga fookuse ja sildiga. */
+body > [data-msg-menu] > button[role="menuitem"][aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: default;
+}
+/* Tegevuse kaart (vastuse tagasiside) samas klaasis ja samas kohas kus riba:
+   pill muutub kaardiks. Kaardi sisu stiilid on komponendi kõrval
+   (AnswerFeedbackCard.module.css). Väga madalas aknas kerib kaart ise. */
+body > [data-msg-menu][data-msg-menu-panel] {
+  display: block;
+  width: min(21rem, calc(100vw - 1rem));
+  max-height: calc(100dvh - 1rem);
+  padding: 0.9rem;
+  border-radius: 1.35rem;
+  overflow-y: auto;
+}
 /* Kellaaeg riba lõpus: vaikne tekst, õrna joonega ikoonidest eraldatud. */
 body > [data-msg-menu] > [data-msg-menu-time] {
   display: flex;

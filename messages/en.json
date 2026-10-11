@@ -3932,7 +3932,9 @@
       "listen": "Listen",
       "copy": "Copy",
       "sources": "Sources",
-      "retry": "Retry"
+      "retry": "Retry",
+      "feedback": "Feedback",
+      "feedback_sent": "Sent"
     },
     "diagnostics": {
       "decision_title": "Why did the system decide this?",
@@ -4776,6 +4778,24 @@
         "alreadyActive": "There is already an active match for this listing.",
         "failed": "Failed to create the connection."
       }
+    },
+    "answer_feedback": {
+      "action": "Give feedback",
+      "sent_aria": "Feedback has been sent",
+      "title": "What was wrong with the answer?",
+      "reason_unanswered": "Didn't answer the question",
+      "reason_wrong_or_outdated": "Wrong or outdated",
+      "reason_unclear": "Hard to understand",
+      "reason_other": "Other",
+      "note_label": "Note",
+      "note_placeholder": "Add details if you like",
+      "notice": "With your feedback, the administrator sees this question and answer.",
+      "send": "Send",
+      "sending": "Sending…",
+      "cancel": "Cancel",
+      "sent": "Thank you! Your feedback has been sent.",
+      "failed": "The feedback could not be sent. Try again.",
+      "choose_reason": "Choose one reason."
     }
   },
   "documents": {
@@ -7642,6 +7662,15 @@
     "search": {
       "query_too_long": "The search term is too long. Shorten it and try again.",
       "unavailable": "Search is not available right now. Please try again later."
+    },
+    "answer_feedback": {
+      "invalid": "The feedback could not be accepted. Try again.",
+      "reason_required": "Choose one reason.",
+      "note_too_long": "The note is too long. Write up to 500 characters.",
+      "not_found": "That answer was not found. Refresh the conversation and try again.",
+      "rate_limited": "You have sent a lot of feedback in a short time. Try again in an hour.",
+      "resolution_invalid": "A resolution note is required, up to 1000 characters.",
+      "failed": "The feedback could not be sent. Try again."
     }
   },
   "admin": {

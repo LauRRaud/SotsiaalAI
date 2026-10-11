@@ -838,6 +838,8 @@ model User {
   effectivePracticeAuditEvents          EffectivePracticeAuditEvent[]       @relation("EffectivePracticeAuditActor")
   sourceFeedbackReported                SourceFeedback[]                    @relation("SourceFeedbackReporter")
   sourceFeedbackResolved                SourceFeedback[]                    @relation("SourceFeedbackResolver")
+  answerFeedbackReported                AnswerFeedback[]                    @relation("AnswerFeedbackReporter")
+  answerFeedbackResolved                AnswerFeedback[]                    @relation("AnswerFeedbackResolver")
   notificationEvents                    NotificationEvent[]
   domainEventsActed                     DomainEvent[]                       @relation("DomainEventActor")
   pendingEmailChange                    PendingEmailChange?
@@ -2199,6 +2201,36 @@ model SourceFeedback {
   @@index([reporterId, createdAt])
   @@index([status, createdAt])
   @@index([sourceId, status])
+}
+
+/// Inimese teade ühe assistendi vastuse kohta (omanik 11.10.2026: „anna tagasisidet", hinnanguid ega loendureid ei ole).
+///
+/// Üks rida teataja ja pöörde kohta. `turnId` on vastuse pöörde tunnus (M4PilotTurn.id, sama mis vestluse
+/// sõnumite `metadata.m4TurnId`): kehva vastuse põhjus loetakse selle pöörde kirjest, kuni kirje alles on.
+/// Rida ise vestluse sisu ei hoia. Halduri vaade loeb küsimuse ja vastuse vestluse enda sõnumitest
+/// (`userMessageId`, `assistantMessageId`), nii et kustutatud või aegunud vestlus võtab need kaasa.
+/// Eraldi mudel, mitte SourceFeedback: seal on allikas kohustuslik ja ühe sõnumi kohta võib olla mitu teadet.
+model AnswerFeedback {
+  id                 String    @id @default(cuid())
+  reporterId         String
+  conversationId     String
+  turnId             String
+  userMessageId      String?
+  assistantMessageId String?
+  category           String
+  note               String?   @db.VarChar(500)
+  status             String    @default("OPEN")
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  resolvedAt         DateTime?
+  resolvedById       String?
+  resolutionNote     String?   @db.VarChar(1000)
+
+  reporter   User  @relation("AnswerFeedbackReporter", fields: [reporterId], references: [id], onDelete: Cascade)
+  resolvedBy User? @relation("AnswerFeedbackResolver", fields: [resolvedById], references: [id], onDelete: SetNull)
+
+  @@unique([reporterId, turnId])
+  @@index([status, createdAt])
 }
 
 model DataDeletionJob {
