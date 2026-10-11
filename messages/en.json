@@ -7338,6 +7338,7 @@
       "pre_inquiry_arrived": "A pre-inquiry has arrived for you",
       "org_support_share_received": "A support message was sent to you",
       "org_work_assigned": "Work was assigned to you in an organisation",
+      "org_work_withdrawn": "Work assigned to you in an organisation is no longer your responsibility",
       "network_share_received": "You received a network share",
       "network_share_changed": "A network share changed status",
       "pre_inquiry_status_changed": "The status of your pre-inquiry changed",

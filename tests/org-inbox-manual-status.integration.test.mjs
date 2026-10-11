@@ -10,9 +10,10 @@ import assert from 'node:assert/strict';
 import { randomBytes } from 'node:crypto';
 import { PrismaClient } from '../generated/prisma/client.ts';
 import { PrismaPg } from '@prisma/adapter-pg';
+import { listNotificationEvents } from '../lib/notifications.js';
 import { resolveOrgAccessContext } from '../lib/org/accessContext.js';
 import { buildOrganizationExport } from '../lib/org/export.js';
-import { assignWork, getInboxItem, handOverWork, listInboxItemPage, respondToAssignment, transitionInboxItem } from '../lib/org/inbox.js';
+import { assignWork, getInboxItem, hadWorkOnInboxItem, handOverWork, listInboxItemPage, respondToAssignment, transitionInboxItem } from '../lib/org/inbox.js';
 import { createPreInquiry } from '../lib/preInquiries.js';
 import { resolveRoomAccess, ROOM_READ, ROOM_WRITE } from '../lib/rooms/accessGuard.js';
 import { ensureRoomForPreInquiry } from '../lib/rooms/preInquiryRoom.js';
@@ -187,6 +188,72 @@ test('töö tagasivõtmine: määramine lõpeb samas tehingus, töötaja lahkub 
   const exported = (await buildOrganizationExport(organization.id, { db })).inboxItems.find((entry) => entry.id === item.id);
   assert.equal(exported.status, 'ACCEPTED');
   assert.deepEqual(exported.assignments.map((entry) => entry.status).sort(), ['ACCEPTED', 'ENDED']);
+});
+
+test('töö tagasivõtmise teated: töötaja saab teada, et töö ei ole enam tema vastutusel, pöörduja saab neutraalse teate', async (t) => {
+  const { applicant, coordinator, mari, jyri, organization, memberships, inquiry, item, ctx, manual, assign, respond } = await seed(t);
+  const first = await assign(mari);
+  await respond(mari, first.id, true);
+  const shown = async (account, type) => (await listNotificationEvents(account.id, { db })).filter((row) => row.type === type);
+  /* Enne tagasivõtmist on Maril teade „sulle määrati töö”. */
+  assert.equal((await shown(mari, 'ORG_WORK_ASSIGNED')).length, 1);
+  assert.equal((await shown(mari, 'ORG_WORK_WITHDRAWN')).length, 0);
+
+  await manual('ASSIGNMENT_PENDING');
+
+  /* Töötaja teade: ainult tunnused, allikaks lõppenud määramine, siht sama kirje. */
+  const rows = await db.notificationEvent.findMany({
+    where: { type: 'ORG_WORK_WITHDRAWN', sourceId: first.id },
+    select: { userId: true, sourceType: true, targetKind: true, targetId: true, workspaceId: true, emailPolicy: true, dedupeKey: true }
+  });
+  assert.deepEqual(rows, [{
+    userId: mari.id,
+    sourceType: 'ORG_WORK_ASSIGNMENT',
+    targetKind: 'ORG_INBOX_ITEM',
+    targetId: item.id,
+    workspaceId: organization.id,
+    emailPolicy: 'OPTIONAL',
+    dedupeKey: `ORG_WORK_WITHDRAWN:${first.id}:${mari.id}:v1`
+  }]);
+  /* Mari loendis on uus teade ja vana „sulle määrati töö” on kadunud, sest töö ei ole enam tema käes. */
+  assert.deepEqual((await shown(mari, 'ORG_WORK_WITHDRAWN')).map((row) => [row.href, row.labelKey, row.ackMode]), [
+    [`/org/vastuvott/${item.id}`, 'notifications.events.org_work_withdrawn', 'read']
+  ]);
+  assert.equal((await shown(mari, 'ORG_WORK_ASSIGNED')).length, 0);
+  for (const other of [coordinator, jyri, applicant]) assert.equal((await shown(other, 'ORG_WORK_WITHDRAWN')).length, 0);
+
+  /* Teate aadress: Mari kirjet ei ava, suunaja viib ta asutuse vastuvõtulauale. */
+  await assert.rejects(getInboxItem(await ctx(mari), item.id, { db }), (error) => error.status === 404);
+  assert.equal(await hadWorkOnInboxItem(await ctx(mari), item.id, { db }), true);
+  assert.equal(await hadWorkOnInboxItem(await ctx(jyri), item.id, { db }), false);
+
+  /* Pöörduja: sama neutraalne teade mis üleandmisel, viide tema enda pöördumisele. */
+  const told = await db.notificationEvent.findMany({
+    where: { userId: applicant.id, type: 'PRE_INQUIRY_STATUS_CHANGED' },
+    select: { sourceId: true, dedupeKey: true }
+  });
+  assert.deepEqual(told, [{ sourceId: inquiry.id, dedupeKey: `PRE_INQUIRY_STATUS_CHANGED:${inquiry.id}:${applicant.id}:takeback:${first.id}` }]);
+  assert.equal((await shown(applicant, 'PRE_INQUIRY_STATUS_CHANGED')).length, 1);
+
+  /* Töö määratakse Marile uuesti: teade „ei ole enam sinu vastutusel” kaob tema loendist. */
+  const again = await assign(mari);
+  assert.equal((await shown(mari, 'ORG_WORK_WITHDRAWN')).length, 0);
+  assert.ok((await shown(mari, 'ORG_WORK_ASSIGNED')).length >= 1);
+
+  /* Koordinaator annab Mari vastamata töö Jürile: Mari saab uue teate selle määramise kohta,
+     Jüri oma ülesande. */
+  await handOverWork(await ctx(coordinator), again.id, { toMembershipId: memberships[jyri.id].id }, { db, releaseFromCalls: noCalls });
+  assert.equal((await shown(mari, 'ORG_WORK_WITHDRAWN')).length, 2);
+  assert.equal((await shown(jyri, 'ORG_WORK_ASSIGNED')).length, 1);
+  assert.equal((await shown(jyri, 'ORG_WORK_WITHDRAWN')).length, 0);
+});
+
+test('töö ise ära andnud töötaja teadet ei saa', async (t) => {
+  const { mari, jyri, memberships, ctx, assign, respond } = await seed(t);
+  const first = await assign(mari);
+  await respond(mari, first.id, true);
+  await handOverWork(await ctx(mari), first.id, { toMembershipId: memberships[jyri.id].id }, { db, releaseFromCalls: noCalls });
+  assert.equal(await db.notificationEvent.count({ where: { type: 'ORG_WORK_WITHDRAWN', sourceId: first.id } }), 0);
 });
 
 test('tagasivõtmine ja töötaja vastus korraga: kumb ka ei võidaks, töö ootab määramist ja elavat määramist ei jää', async (t) => {
