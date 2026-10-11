@@ -22,14 +22,25 @@
  * `compact`: nelja ruuduga nupp ilma nimeta (nimi jääb nupu sildiks). Kasutus:
  *   osa sees käib sammudega töö ja sammud on kiirmenüüs kõrval; koos nimega
  *   läheks kiirmenüü liiga pikaks (omanik 09.10).
+ *
+ * INFO. Osa, millel on oma info (`PART_INFO`), saab infonupu kiirmenüüsse lehe
+ * nime kõrvale: vajutus vahetab paneeli sisu info vastu ja tagasi (omanik
+ * 11.10: info on kiirmenüüs, mitte lehe nurgas). Koduteenuse 23 lehte kannavad
+ * osa `home_care` ja saavad info siit ühest kohast. Leht, mis registreerib oma
+ * info ise (laud, graafik, aruanded), tabelisse ei kuulu: kaks registreerijat
+ * ühel lehel kirjutaksid teineteist üle.
  */
 
 import { useRouter } from "next/navigation";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import StepRail from "@/components/stage/StepRail";
+import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 
 import shared from "./org.module.css";
+
+/* Osa võti → info võti failis lib/dashboardInfoContent.js. */
+const PART_INFO = Object.freeze({ home_care: "home_care" });
 
 export default function OrgPart({ context, part = "", partLabel = "", onDesk, compact = false, children }) {
   const { t } = useI18n();
@@ -39,6 +50,8 @@ export default function OrgPart({ context, part = "", partLabel = "", onDesk, co
   const label = partLabel || (part ? t(`org.nav.${part}`) : "");
   const open = Boolean(label);
   const toDesk = onDesk || (() => router.push(`/org/${organization.id}`));
+  /* Tühi võti ei registreeri midagi: teiste osade lehed jäävad nii, nagu on. */
+  usePanelInfoSlot({ infoId: PART_INFO[part] || "" });
 
   return (
     <>

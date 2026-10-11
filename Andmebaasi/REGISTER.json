@@ -49,8 +49,8 @@
   },
   "corpus": {
     "written_by": "rag-v2/register-corpus-1",
-    "version": "v85",
-    "index_generation": "0695a9a9",
+    "version": "v86",
+    "index_generation": "ed2d72bd",
     "read_at": "2026-10-11",
     "documents": 10571,
     "units": 93471,

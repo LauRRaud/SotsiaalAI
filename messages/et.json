@@ -7341,6 +7341,7 @@
       "pre_inquiry_arrived": "Sulle saabus eelpöördumine",
       "org_support_share_received": "Sulle saadeti toeavaldus",
       "org_work_assigned": "Sulle määrati organisatsioonis töö",
+      "org_work_withdrawn": "Sulle organisatsioonis määratud töö ei ole enam sinu vastutusel",
       "network_share_received": "Sulle saabus võrgustikujagamine",
       "network_share_changed": "Võrgustikujagamise olek muutus",
       "pre_inquiry_status_changed": "Sinu eelpöördumise olek muutus",
@@ -12637,7 +12638,13 @@
       "reject_confirm": "Jah, lükkan tagasi",
       "reject_note": "Töö läheb tagasi määrajale, kes saab selle kellelegi teisele määrata.",
       "close_confirm": "Jah, sulge töö",
-      "close_note": "Suletud töö kaob vastuvõtulaualt ja seda ei saa uuesti avada. Pöörduja vestlusruum jääb ainult loetavaks."
+      "close_note": "Suletud töö kaob vastuvõtulaualt ja seda ei saa uuesti avada. Pöörduja vestlusruum jääb ainult loetavaks.",
+      "take_back": "Võta töö tagasi",
+      "take_back_confirm": "Jah, võta tagasi",
+      "take_back_note": "Töötaja määramine lõpeb ja ta lahkub vestlusruumist. Ruum jääb pöördujale avatuks ja töö ootab uut määramist.",
+      "reject_item": "Lükka pöördumine tagasi",
+      "reject_item_confirm": "Jah, lükka tagasi",
+      "reject_item_note": "Tagasi lükatud pöördumine kaob vastuvõtulaualt ja seda ei saa uuesti avada. Pöörduja saab teate, et asutus lõpetas tema pöördumisega töö, ja tema vestlusruum jääb ainult loetavaks."
     },
     "inboxStatus": {
       "RECEIVED": "Saabunud",
@@ -16190,6 +16197,22 @@
       "cancel": "Loobu",
       "line": "Kolleegid näevad sind nimega {name}.",
       "change": "Muuda nime"
+    },
+    "info": {
+      "title": "Koduteenus",
+      "what_title": "Milleks see on",
+      "what_body": "Koduteenus on asutuse ühine tööruum: kliendid, käigud, päevik ja meeskond. Hooldaja näeb oma kliente ja tänast päeva, hooldusjuht oma vastutusala.",
+      "open_title": "Kuidas kliendi leht avaneb",
+      "open_team": "Kliendi meeskond ja hooldusjuht avavad lehe kohe.",
+      "open_reason": "Väljaspool meeskonda küsib leht põhjust. Luba kehtib tänase päeva lõpuni.",
+      "open_trace": "Iga avamine jääb kirja. Kliendi lehel on näha, kes ja mis alusel lehte viimati avas.",
+      "diary_title": "Päevik",
+      "diary_keep": "Kirjet ei kustutata. Parandus jätab varasema sisu alles ja tühistatud kirje jääb ajalukku koos põhjusega.",
+      "diary_visit": "Käik on tehtud, kui kliendi juures on sel päeval käigu kirje. Käsitsi seda ei märgita.",
+      "diary_offline": "Kui võrku ei ole, ootab kirje sinu seadmes ja saadetakse, kui ühendus taastub.",
+      "limits_title": "Mida siin ei ole",
+      "limits_money": "Kliendi raha on arvestus, mitte makse. Pangakaardi andmeid ega PIN-koodi siia ei kirjutata.",
+      "limits_official": "Ametlik menetlus toimub STAR-is. Siin on asutuse enda töö: päevik, plaan ja kokkulepped."
     }
   },
   "stage": {
