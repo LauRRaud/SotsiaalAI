@@ -98,8 +98,10 @@ Sama RAG-mootor ja kululimiit; valik piirab otsingut, graafiseoseid ja viiteid.
 Tühi valik ei ava kogu korpust, üldvestluse varasem kontekst ei tule kaasa.
 22 sihttesti, proovibaasi ühise kuluarvestuse kontroll, lint ja ET/EN/RU PASS.
 19.21 v86 tasuta sõnaotsing leidis valikust koodeksi ja IASSW põhimõtted.
-Uue 44 dokumendi paketi import ning pärismudeli kvaliteet NOT_RUN. Avaldamine
-ootel. [Tõendid](../audits/ethics-room-2026-10-11.md).
+Uue 44 dokumendi paketi import ning pärismudeli kvaliteet NOT_RUN. Build ja
+avaldamine PASS; 19.32 serveris `811dcea0`, 19 allikat, ühine kululimiit,
+tervis 200 ning uus API anonüümselt 401/no-store.
+[Tõendid](../audits/ethics-room-2026-10-11.md).
 
 **11.10 Eetikaruumi esimene töövoog (Codex):** `/eetikaruum` salvestab omaniku
 privaatse refleksiooni ning saadab kinnitatud eraldi teksti olemasolevale assistendile
