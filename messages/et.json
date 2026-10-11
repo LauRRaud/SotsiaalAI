@@ -2984,7 +2984,6 @@
         "view_service_map": "Vaata teenusekaardil",
         "view_profile": "Vaata profiili",
         "edit": "Muuda",
-        "copy_short": "Kopeeri",
         "new_inquiry": "Uus eelpöördumine"
       },
       "recipients_lead": "Kontaktid ilmuvad, kui olukord, piirkond ja pöördumise suund on piisavalt selged.",
@@ -3041,20 +3040,18 @@
             "description": "Kasuta oma privaatses Teekonnas salvestatud infot ja vali, mida soovid eelpöördumises jagada.",
             "description_open": "Ava oma Teekond ja alusta eelpöördumist sealt: nii tuleb sinu valitud info kaasa. Teekond jääb privaatseks."
           }
-        }
+        },
+        "mine": "Minu eelpöördumised · {count}"
       },
       "overview": {
         "title": "Eelinfo ülevaade",
-        "lead": "Siin näed infot, mida kasutatakse pöördumise koostamiseks. Enne saatmist saad kõike muuta.",
-        "empty": "Eelinfo täitub töövoo käigus.",
-        "missing_hint": "Need andmed võivad aidata sobivamat kontakti leida, kuid sa ei pea kõike lisama."
+        "empty": "Eelinfo täitub töövoo käigus."
       },
       "journey_share": {
         "lead": "Teekonna info on privaatne. Märgi ainult need osad, mida soovid selle eelpöördumise koostamisel kasutada.",
         "empty": "Teekonna kokkuvõtet ei ole veel kaasa tulnud. Ava eelpöördumine konkreetse Teekonna vaatest või jätka uut eelpöördumist.",
         "reprojected": "Eelpöördumise tekst koostati valitud osadest uuesti."
       },
-      "recipients_hint": "Kontaktide soovitamiseks lisa vähemalt piirkond või KOV ning lühike olukorra kirjeldus.",
       "preview": {
         "no_auto_send": "Midagi ei saadeta automaatselt.",
         "check_note": "Enne kinnitamist kontrolli adressaati, saatmise viisi, pöördumise teksti ja eelinfot. Platvormisisene pöördumine jõuab vastuvõtja Pöördumiste vaatesse; e-kirja tekst avaneb sinu e-posti rakenduses ülevaatamiseks.",
@@ -3118,6 +3115,14 @@
         "saved": {
           "title": "Minu eelpöördumised",
           "short": "Minu omad"
+        },
+        "sent_state": {
+          "title": "Pöördumise seis",
+          "short": "Seis"
+        },
+        "sent_text": {
+          "title": "Pöördumise tekst",
+          "short": "Tekst"
         }
       },
       "new_confirm": "Uue alustamine tühjendab praeguse salvestamata teksti. Vajuta uuesti, kui soovid alustada uut.",
@@ -3149,24 +3154,34 @@
           "lead": "Võid kõik tühjaks jätta. Täpsem taust säästab vastuvõtjat üle küsimast."
         },
         "journey": {
-          "title": "Mida Teekonnast kasutada"
+          "title": "Mida Teekonnast kasutada",
+          "fold": "Vaata, mis täpselt kaasa läheb"
         },
         "assistant": {
           "title": "Täpsusta abilisega",
           "lead": "Abiline küsib täpsustusi ja aitab leida sobiva kontakti. Selle sammu võid vahele jätta."
         },
         "review": {
-          "missing": "Lisamata",
-          "all_answers": "Kõik vastused"
+          "all_answers": "Kõik vastused",
+          "missing_line": "Lisamata: {items}."
         },
         "recipient": {
           "title": "Adressaat",
-          "lead": "Kontaktid tulevad teenusekaardilt. Vali, kellele pöördumine läheb; Sotsiaal.pro ise ei ole adressaat."
+          "lead": "Kontaktid tulevad teenusekaardilt. Vali, kellele pöördumine läheb; Sotsiaal.pro ise ei ole adressaat.",
+          "empty": {
+            "loading": "Laen kontakte...",
+            "no_contacts": "Teenusekaardil ei ole praegu ühtegi kontakti, kellele pöördumist saata.",
+            "no_filter": "Vali adressaadi liik või kirjuta otsingusse nimi, omavalitsus või teenus.",
+            "none_of_type": "Seda liiki kontakte teenusekaardil praegu ei ole. Vali teine liik.",
+            "no_match_type": "Otsingule „{query}” ei vasta ükski seda liiki kontakt. Proovi teist sõna või teist liiki.",
+            "no_match": "Otsingule „{query}” ei vasta ükski kontakt. Proovi teist sõna, näiteks omavalitsuse nime."
+          }
         },
         "text": {
           "title": "Pöördumise tekst",
           "lead": "Loe üle ja muuda. Seda teksti näeb vastuvõtja.",
-          "draft": "Tekst"
+          "draft": "Tekst",
+          "journey_fold": "Teekonnast kaasa minev info"
         },
         "send": {
           "title": "Saatmine",
@@ -3180,9 +3195,14 @@
           "check_note": "Enne saatmist kontrolli adressaati, teksti ja eelinfot."
         },
         "saved": {
-          "more": "Veel",
-          "less": "Vähem",
-          "changed": "muudetud"
+          "changed": "muudetud",
+          "groups": "Milliseid eelpöördumisi näidata",
+          "group_sent": "Saadetud · {count}",
+          "group_drafts": "Mustandid · {count}",
+          "group_archive": "Arhiiv · {count}",
+          "empty_sent": "Saadetud eelpöördumisi ei ole.",
+          "empty_drafts": "Mustandeid ei ole.",
+          "empty_archive": "Arhiivis ei ole eelpöördumisi."
         },
         "receiver": {
           "flow_label": "Pöördumiste vastuvõtt",
@@ -3266,6 +3286,34 @@
             "title": "Võrgustik",
             "lead": "Kui selle inimese abistamiseks on vaja teist spetsialisti, kaasa ta siit. Inimene otsustab ise, kas ta jagamisega nõustub."
           }
+        },
+        "sent": {
+          "recipient": "Adressaat",
+          "no_recipient": "valimata",
+          "sent_at": "Saadetud",
+          "channel_platform": "platvormis",
+          "channel_email": "e-kirjaga",
+          "last_reply": "Viimane vastus",
+          "sharings_link": "Minu jagamised",
+          "recall_hint": "Kuni vastuvõtja ei ole pöördumist vastu võtnud, saad selle tagasi võtta lehel",
+          "correct_hint": "Kui midagi on vaja parandada, saad paranduse saata lehel",
+          "text_lead": "Selle teksti saatsid. Saadetud pöördumist enam muuta ei saa.",
+          "text_lead_unsent": "Arhiveeritud pöördumise tekst. Muutmiseks taasava pöördumine.",
+          "text_heading": "Pöördumise tekst",
+          "next": {
+            "waiting": "Vastuvõtja ei ole pöördumist veel vastu võtnud. Kui ta selle vastu võtab, näed seda siin.",
+            "accepted": "Vastuvõtja on pöördumise vastu võtnud. Vastus tuleb ühisesse vestlusruumi.",
+            "answered": "Vastuvõtja on vastanud. Vastus on ühises vestlusruumis.",
+            "external": "Saatsid selle pöördumise e-kirjaga. Vastus tuleb sinu e-posti; vastuvõtmist platvorm ei näe.",
+            "recalled": "Võtsid selle pöördumise tagasi. Vastuvõtja seda enam ei näe.",
+            "replaced": "Saatsid selle pöördumise kohta paranduse. Vastuvõtja juures kehtib parandatud pöördumine.",
+            "archived": "See pöördumine on saatmata ja arhiveeritud."
+          }
+        },
+        "pager": {
+          "range": "{from} kuni {to}, kokku {total}",
+          "prev": "Eelmised",
+          "next": "Järgmised"
         }
       },
       "sender_state": {

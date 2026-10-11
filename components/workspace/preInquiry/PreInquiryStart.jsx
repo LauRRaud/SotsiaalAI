@@ -15,14 +15,36 @@
  */
 
 import ActionCard from "@/components/stage/ActionCard";
+import Button from "@/components/ui/Button";
 
 import styles from "./PreInquiryStart.module.css";
 
-export default function PreInquiryStart({ title, lead, options, onStart }) {
+/**
+ * `mine`: `{ label, onOpen }`, tee pöörduja enda eelpöördumiste loendisse (mustandid ja
+ * saadetud). Varem pääses saadetud pöördumise juurde ainult Teekonna kaudu. Nupp seisab
+ * pealkirja real paremal: see ei ole neljas viis alustada, vaid tee juba tehtu juurde, ja
+ * omaette rida kaartide all ei mahtunud töölaua paneeli ära.
+ *
+ * `error`: lehe veateade (nt Teekonnast kaasa tulev info ei laadinud). Varem avaekraan seda ei
+ * näidanud ja inimene jäi sõnatult algusesse.
+ */
+export default function PreInquiryStart({ title, lead, options, onStart, mine = null, error = "" }) {
   return (
     <div className={styles.start}>
+      {error ? (
+        <p className={styles.error} role="alert">
+          {error}
+        </p>
+      ) : null}
       <header className={styles.head}>
-        <h1 className={styles.title}>{title}</h1>
+        <div className={styles.titleRow}>
+          <h1 className={styles.title}>{title}</h1>
+          {mine ? (
+            <Button type="button" size="sm" variant="secondary" onClick={mine.onOpen}>
+              {mine.label}
+            </Button>
+          ) : null}
+        </div>
         {lead ? <p className={styles.lead}>{lead}</p> : null}
       </header>
       <div className={styles.options} role="group" aria-label={title}>

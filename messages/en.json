@@ -2984,7 +2984,6 @@
         "view_service_map": "View on service map",
         "view_profile": "View profile",
         "edit": "Edit",
-        "copy_short": "Copy",
         "new_inquiry": "New pre-inquiry"
       },
       "recipients_lead": "Contacts appear once the situation, area, and inquiry direction are clear enough.",
@@ -3041,20 +3040,18 @@
             "description": "Use the information saved in your private Journey and choose what you want to share in the pre-inquiry.",
             "description_open": "Open your Journey and start the pre-inquiry from there: the information you choose comes along. The Journey stays private."
           }
-        }
+        },
+        "mine": "My pre-inquiries · {count}"
       },
       "overview": {
         "title": "Pre-info overview",
-        "lead": "Here you can see the information used to prepare the inquiry. You can change everything before sending.",
-        "empty": "Pre-info fills in as the workflow progresses.",
-        "missing_hint": "These details can help find a more suitable contact, but you do not have to add everything."
+        "empty": "Pre-info fills in as the workflow progresses."
       },
       "journey_share": {
         "lead": "Journey information is private. Select only the parts you want to use when preparing this pre-inquiry.",
         "empty": "No Journey summary has come along yet. Open the pre-inquiry from a specific Journey's view or continue with a new pre-inquiry.",
         "reprojected": "The pre-inquiry text was rebuilt from the selected parts."
       },
-      "recipients_hint": "To get contact suggestions, add at least a region or municipality and a short description of the situation.",
       "preview": {
         "no_auto_send": "Nothing is sent automatically.",
         "check_note": "Before confirming, check the recipient, the delivery method, the inquiry text and the pre-info. An in-platform inquiry reaches the recipient's Inquiries view; the email text opens in your email app for review.",
@@ -3118,6 +3115,14 @@
         "saved": {
           "title": "My pre-inquiries",
           "short": "Mine"
+        },
+        "sent_state": {
+          "title": "Status of the pre-inquiry",
+          "short": "Status"
+        },
+        "sent_text": {
+          "title": "Text of the pre-inquiry",
+          "short": "Text"
         }
       },
       "new_confirm": "Starting a new one clears the current unsaved text. Press again if you want to start a new one.",
@@ -3149,24 +3154,34 @@
           "lead": "You may leave everything empty. A precise background saves the receiver from asking again."
         },
         "journey": {
-          "title": "What to use from the Journey"
+          "title": "What to use from the Journey",
+          "fold": "See exactly what goes along"
         },
         "assistant": {
           "title": "Clarify with the assistant",
           "lead": "The assistant asks for details and helps find a suitable contact. You may skip this step."
         },
         "review": {
-          "missing": "Not added",
-          "all_answers": "All answers"
+          "all_answers": "All answers",
+          "missing_line": "Not added: {items}."
         },
         "recipient": {
           "title": "Recipient",
-          "lead": "Contacts come from the Service map. Choose who the pre-inquiry goes to; Sotsiaal.pro itself is not a recipient."
+          "lead": "Contacts come from the Service map. Choose who the pre-inquiry goes to; Sotsiaal.pro itself is not a recipient.",
+          "empty": {
+            "loading": "Loading contacts...",
+            "no_contacts": "The service map has no contact right now that a pre-inquiry could be sent to.",
+            "no_filter": "Choose a recipient type or type a name, a municipality or a service into the search.",
+            "none_of_type": "The service map has no contacts of this type right now. Choose another type.",
+            "no_match_type": "No contact of this type matches \"{query}\". Try another word or another type.",
+            "no_match": "No contact matches \"{query}\". Try another word, for example the name of a municipality."
+          }
         },
         "text": {
           "title": "Text of the pre-inquiry",
           "lead": "Read it through and edit. This is the text the receiver sees.",
-          "draft": "Text"
+          "draft": "Text",
+          "journey_fold": "Information that goes along from the Journey"
         },
         "send": {
           "title": "Sending",
@@ -3180,9 +3195,14 @@
           "check_note": "Before sending, check the recipient, the text and the pre-info."
         },
         "saved": {
-          "more": "More",
-          "less": "Less",
-          "changed": "changed"
+          "changed": "changed",
+          "groups": "Which pre-inquiries to show",
+          "group_sent": "Sent · {count}",
+          "group_drafts": "Drafts · {count}",
+          "group_archive": "Archive · {count}",
+          "empty_sent": "There are no sent pre-inquiries.",
+          "empty_drafts": "There are no drafts.",
+          "empty_archive": "The archive has no pre-inquiries."
         },
         "receiver": {
           "flow_label": "Receiving pre-inquiries",
@@ -3266,6 +3286,34 @@
             "title": "Network",
             "lead": "If helping this person needs another specialist, involve them from here. The person decides whether they agree to the sharing."
           }
+        },
+        "sent": {
+          "recipient": "Recipient",
+          "no_recipient": "not chosen",
+          "sent_at": "Sent",
+          "channel_platform": "on the platform",
+          "channel_email": "by e-mail",
+          "last_reply": "Latest reply",
+          "sharings_link": "My shares",
+          "recall_hint": "Until the recipient has accepted the pre-inquiry, you can recall it on the page",
+          "correct_hint": "If something needs correcting, you can send a correction on the page",
+          "text_lead": "This is the text you sent. A sent pre-inquiry can no longer be edited.",
+          "text_lead_unsent": "The text of an archived pre-inquiry. Reopen it to edit.",
+          "text_heading": "Text of the pre-inquiry",
+          "next": {
+            "waiting": "The recipient has not accepted the pre-inquiry yet. When they do, you will see it here.",
+            "accepted": "The recipient has accepted the pre-inquiry. The answer will come to the shared conversation room.",
+            "answered": "The recipient has answered. The answer is in the shared conversation room.",
+            "external": "You sent this pre-inquiry by e-mail. The answer will come to your e-mail; the platform does not see whether it was accepted.",
+            "recalled": "You recalled this pre-inquiry. The recipient no longer sees it.",
+            "replaced": "You sent a correction to this pre-inquiry. The corrected pre-inquiry is the one that counts for the recipient.",
+            "archived": "This pre-inquiry was not sent and is archived."
+          }
+        },
+        "pager": {
+          "range": "{from} to {to} of {total}",
+          "prev": "Previous",
+          "next": "Next"
         }
       },
       "sender_state": {

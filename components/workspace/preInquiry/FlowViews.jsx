@@ -1,8 +1,8 @@
 "use client";
 
 /**
- * Eelpöördumise ülejäänud vaated: abiline, ülevaade, adressaat, tekst, saatmine
- * ja „Minu eelpöördumised".
+ * Eelpöördumise ülejäänud vaated: abiline, ülevaade, adressaat, tekst, saatmine,
+ * saadetud pöördumise lugemisvaated (seis ja tekst) ja „Minu eelpöördumised".
  *
  * Nagu eelinfo vaated (CollectViews.jsx), ei hoia need olekut: väärtused ja
  * tegevused tulevad lehelt. Loendite kaardid (adressaat, salvestatud
@@ -11,9 +11,8 @@
  * Kujundus: views.module.css ja lists.module.css.
  */
 
-import { useState } from "react";
-
 import ActionCard, { ActionCardGrid } from "@/components/stage/ActionCard";
+import ChoiceRow from "@/components/stage/ChoiceRow";
 import StepPanel from "@/components/stage/StepPanel";
 import TextAreaField from "@/components/stage/TextAreaField";
 import Button from "@/components/ui/Button";
@@ -21,6 +20,8 @@ import Input from "@/components/ui/Input";
 
 import { LineField } from "./CollectViews";
 import lists from "./lists.module.css";
+import receiver from "./receiver.module.css";
+import { excerptOf, pageOf } from "./senderModel";
 import styles from "./views.module.css";
 
 const TEXT_LIMIT = 12000;
@@ -37,20 +38,59 @@ export function AssistantView({ tr, children }) {
   );
 }
 
-/** Ülevaade: mis infot pöördumise koostamiseks kasutatakse ja mis on veel lisamata. */
-export function ReviewView({ tr, rows, missing, children }) {
+/**
+ * Lehekülgede vahetaja paneeli alumises servas: mis vahemik on ees ja nupud eelmise ja
+ * järgmise juurde. Loend, mis paneeli ei mahu, jagatakse lehekülgedeks (reegel: `pageOf`
+ * failis senderModel.js); paneeli sees kerivat kasti ei ole.
+ */
+function Pager({ tr, pager }) {
+  return (
+    <span className={styles.pager}>
+      <span>
+        {tr("views.pager.range", "{from} kuni {to}, kokku {total}")
+          .replace("{from}", String(pager.from))
+          .replace("{to}", String(pager.to))
+          .replace("{total}", String(pager.total))}
+      </span>
+      <button type="button" className={styles.textLink} disabled={pager.page <= 0} onClick={pager.onPrev}>
+        ‹ {tr("views.pager.prev", "Eelmised")}
+      </button>
+      <button type="button" className={styles.textLink} disabled={pager.page >= pager.pages - 1} onClick={pager.onNext}>
+        {tr("views.pager.next", "Järgmised")} ›
+      </button>
+    </span>
+  );
+}
+
+/* Mitu ülevaate rida on korraga ees ja kui pikk on ühe rea väärtus (pikem tekst lõigatakse;
+   täies pikkuses on see oma sammus ja plokis „Kõik vastused"). Mõõdetud nii, et vaade mahub
+   paneeli ka töölaual. */
+const REVIEW_PAGE = 4;
+const REVIEW_VALUE_LIMIT = 120;
+
+/**
+ * Ülevaade: mis infot pöördumise koostamiseks kasutatakse ja mis on veel lisamata.
+ * Read on lehekülgede kaupa (`page`, `onPage`), sest üksteist rida koos pika kirjeldusega ei
+ * mahtunud paneeli (mõõdetud 1461 px 522 vastu).
+ */
+export function ReviewView({ tr, rows, missing, page = 0, onPage, children }) {
+  const paged = pageOf(rows, page, REVIEW_PAGE);
   return (
     <StepPanel
       title={tr("overview.title", "Eelinfo ülevaade")}
-      lead={tr("overview.lead", "Siin näed infot, mida kasutatakse pöördumise koostamiseks. Enne saatmist saad kõike muuta.")}
+      note={
+        paged.pages > 1 ? (
+          <Pager tr={tr} pager={{ ...paged, onPrev: () => onPage?.(paged.page - 1), onNext: () => onPage?.(paged.page + 1) }} />
+        ) : null
+      }
     >
       <div className={styles.stack}>
-        {rows.length ? (
+        {paged.items.length ? (
           <dl className={styles.rows}>
-            {rows.map(([label, value]) => (
+            {paged.items.map(([label, value]) => (
               <div key={label} className={styles.row}>
                 <dt className={styles.rowLabel}>{label}</dt>
-                <dd className={styles.rowValue}>{value}</dd>
+                <dd className={styles.rowValue}>{excerptOf(value, REVIEW_VALUE_LIMIT)}</dd>
               </div>
             ))}
           </dl>
@@ -58,15 +98,7 @@ export function ReviewView({ tr, rows, missing, children }) {
           <p className={styles.quiet}>{tr("overview.empty", "Eelinfo täitub töövoo käigus.")}</p>
         )}
         {missing.length ? (
-          <>
-            <p className={styles.subheading}>{tr("views.review.missing", "Lisamata")}</p>
-            <ul className={styles.missing}>
-              {missing.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-            <p className={styles.quiet}>{tr("overview.missing_hint", "Need andmed võivad aidata sobivamat kontakti leida, kuid sa ei pea kõike lisama.")}</p>
-          </>
+          <p className={styles.quiet}>{tr("views.review.missing_line", "Lisamata: {items}.").replace("{items}", missing.join(", "))}</p>
         ) : null}
         {/* Kõik vastused küsimuste kaupa avanevad soovi korral: vaade näitab algul kokkuvõtet. */}
         {children ? (
@@ -127,8 +159,12 @@ function RecipientCard({ tr, entry, selected, typeLabel, subtitle, reason, regio
   );
 }
 
-/** Adressaat: liigi filter, otsing ja soovitatud kontaktid. */
-export function RecipientView({ tr, types, type, onType, query, onQuery, confidence, recipients, describe, selectedId, onSelect, hasMore, showMore, onToggleMore }) {
+/**
+ * Adressaat: liigi filter, otsing ja soovitatud kontaktid. `emptyText` ütleb, miks loend on
+ * tühi (otsus: `recipientEmptyReason` failis senderModel.js); varem oli iga tühja loendi all
+ * sama vihje.
+ */
+export function RecipientView({ tr, types, type, onType, query, onQuery, confidence, recipients, describe, selectedId, onSelect, hasMore, showMore, onToggleMore, emptyText }) {
   return (
     <StepPanel
       title={tr("views.recipient.title", "Adressaat")}
@@ -161,7 +197,9 @@ export function RecipientView({ tr, types, type, onType, query, onQuery, confide
             ))}
           </div>
         ) : (
-          <p className={styles.quiet}>{tr("recipients_hint", "Kontaktide soovitamiseks lisa vähemalt piirkond või KOV ning lühike olukorra kirjeldus.")}</p>
+          <p className={styles.quiet} aria-live="polite">
+            {emptyText}
+          </p>
         )}
         {hasMore ? (
           <Button type="button" size="sm" variant="secondary" onClick={onToggleMore}>
@@ -188,7 +226,14 @@ export function TextView({ tr, topic, onTopic, draft, onDraft, remaining, childr
         <TextAreaField label={tr("views.text.draft", "Tekst")} value={draft} rows={5} maxLength={TEXT_LIMIT} onChange={onDraft} />
         {/* Loendur ilmub alles piiri lähedal: muidu on see lihtsalt müra. */}
         {TEXT_LIMIT - draft.length < 1000 ? <span className={styles.counter}>{remaining(TEXT_LIMIT - draft.length)}</span> : null}
-        {children}
+        {/* Teekonnast kaasa minev info on pikk plokk: see avaneb soovi korral, et tekstivaade
+            mahuks paneeli (mõõdetud 1051 px 522 vastu, kui plokk oli alati lahti). */}
+        {children ? (
+          <details className={styles.fold}>
+            <summary className={styles.foldTitle}>{tr("views.text.journey_fold", "Teekonnast kaasa minev info")}</summary>
+            {children}
+          </details>
+        ) : null}
       </div>
     </StepPanel>
   );
@@ -216,59 +261,131 @@ export function SendView({ tr, summary, notices, privacyPrompt, choices }) {
   );
 }
 
-/** Üks salvestatud eelpöördumine: seis sõnadega, üks põhitegevus, ülejäänu avaneb. */
-function SavedRow({ tr, item }) {
-  const [open, setOpen] = useState(false);
+/**
+ * Saadetud pöördumise seis: mis seisus see on, kellele ja millal läks ning mis edasi saab.
+ * Muutmist ega uuesti saatmist siin ei ole (server saadetud pöördumist muuta ei luba);
+ * otsus, mida näidata, on failis senderModel.js (`sentInquiryView`).
+ *
+ * `facts`: `[[silt, väärtus]]`; `hint`: lause koos lingiga lehele, kus saab tagasi võtta või
+ * parandust saata; `actions`: vaate tegevused (vestlusruum, kopeerimine, alla laadimine).
+ */
+export function SentStateView({ tr, topic, state, tone, facts, next, hint, actions }) {
   return (
-    <article className={lists.card}>
-      <header className={lists.cardHead}>
+    <StepPanel title={tr("steps.sent_state.title", "Pöördumise seis")} question={topic} actions={actions}>
+      <div className={styles.stack}>
+        <p className={receiver.state}>
+          <span className={lists.chip} data-tone={tone}>
+            {state}
+          </span>
+        </p>
+        {facts.length ? (
+          <dl className={styles.rows}>
+            {facts.map(([label, value]) => (
+              <div key={label} className={styles.row}>
+                <dt className={styles.rowLabel}>{label}</dt>
+                <dd className={styles.rowValue}>{value}</dd>
+              </div>
+            ))}
+          </dl>
+        ) : null}
+        {next ? <p className={styles.quiet}>{next}</p> : null}
+        {hint ? (
+          <p className={styles.quiet}>
+            {hint.text}{" "}
+            <a className={styles.textLink} href={hint.href}>
+              {hint.label}
+            </a>
+          </p>
+        ) : null}
+      </div>
+    </StepPanel>
+  );
+}
+
+/** Saadetud pöördumise tekst lugemiseks: inimese kirjeldus ja pöördumise tekst, nagu saaja neid näeb. */
+export function SentTextView({ tr, lead, situation, text }) {
+  return (
+    <StepPanel title={tr("steps.sent_text.title", "Pöördumise tekst")} lead={lead}>
+      <div className={styles.stack}>
+        {situation ? <p className={receiver.situation}>{situation}</p> : null}
+        {text ? (
+          <>
+            <p className={styles.subheading}>{tr("views.sent.text_heading", "Pöördumise tekst")}</p>
+            <p className={receiver.text}>{text}</p>
+          </>
+        ) : null}
+      </div>
+    </StepPanel>
+  );
+}
+
+/**
+ * Üks eelpöördumine pöörduja loendis: teema, seis sõnadega ja üks põhitegevus. Mustandi saab
+ * siit ka arhiveerida; saadetud pöördumise muud tegevused on selle lugemisvaates. Rida on
+ * madal ja kindla kõrgusega, et lehekülg mahuks paneeli (vana kaart avas rea all lisanuppude
+ * ploki ja seitse kaarti olid 1071 px).
+ */
+function SavedRow({ item }) {
+  return (
+    <article className={`${lists.card} ${lists.line}`}>
+      <div className={lists.lineMain}>
         <h4 className={lists.cardTitle}>{item.title}</h4>
-        <span className={lists.chip} data-tone={item.tone}>
-          {item.state}
-        </span>
-      </header>
-      {item.meta ? <p className={lists.cardMeta}>{item.meta}</p> : null}
-      <div className={lists.cardActions}>
+        <p className={lists.lineState}>
+          <span className={lists.chip} data-tone={item.tone}>
+            {item.state}
+          </span>
+          {item.meta ? <span className={lists.cardMeta}>{item.meta}</span> : null}
+        </p>
+      </div>
+      <div className={lists.lineActions}>
+        {item.archive ? (
+          <Button type="button" size="sm" variant="secondary" disabled={item.archive.disabled} onClick={item.archive.onClick}>
+            {item.archive.label}
+          </Button>
+        ) : null}
         <Button type="button" size="sm" variant="primary" onClick={item.onOpen}>
           {item.openLabel}
         </Button>
-        <Button type="button" size="sm" variant="secondary" aria-expanded={open} onClick={() => setOpen((value) => !value)}>
-          {open ? tr("views.saved.less", "Vähem") : tr("views.saved.more", "Veel")}
-        </Button>
       </div>
-      {open ? (
-        <div className={lists.more}>
-          {item.actions.map((action) => (
-            <Button key={action.key} type="button" size="sm" variant="secondary" disabled={action.disabled} onClick={action.onClick}>
-              {action.label}
-            </Button>
-          ))}
-        </div>
-      ) : null}
     </article>
   );
 }
 
-/** Minu eelpöördumised: mis on saadetud, mis vastu võetud, mis pooleli. */
-export function SavedView({ tr, items, onNew }) {
+/**
+ * Minu eelpöördumised: rühmad (saadetud, mustandid, arhiiv) ja ees oleva rühma üks lehekülg.
+ * `groups`: `[{ value, label }]` koos arvudega; `pager`: lehekülje seis (`pageOf`) ja vahetajad.
+ */
+export function SavedView({ tr, groups, group, onGroup, items, pager, emptyText, onNew }) {
   return (
     <StepPanel
       title={tr("sections.saved", "Minu eelpöördumised")}
+      note={pager && pager.pages > 1 ? <Pager tr={tr} pager={pager} /> : null}
       actions={
         <Button type="button" variant="secondary" onClick={onNew}>
           {tr("actions.new_inquiry", "Uus eelpöördumine")}
         </Button>
       }
     >
-      {items.length ? (
-        <div className={lists.list}>
-          {items.map((item) => (
-            <SavedRow key={item.id} tr={tr} item={item} />
-          ))}
-        </div>
-      ) : (
-        <p className={styles.quiet}>{tr("empty_saved", "Sul ei ole veel salvestatud eelpöördumisi.")}</p>
-      )}
+      <div className={styles.stack}>
+        <ChoiceRow
+          label={tr("views.saved.groups", "Milliseid eelpöördumisi näidata")}
+          labelHidden
+          columns={groups.length}
+          keepColumns
+          options={groups}
+          value={group}
+          onChange={onGroup}
+        />
+        {items.length ? (
+          <div className={lists.list}>
+            {items.map((item) => (
+              <SavedRow key={item.id} item={item} />
+            ))}
+          </div>
+        ) : (
+          <p className={styles.quiet}>{emptyText}</p>
+        )}
+      </div>
     </StepPanel>
   );
 }

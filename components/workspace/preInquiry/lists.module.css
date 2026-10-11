@@ -81,10 +81,50 @@
   gap: 0.4rem 0.6rem;
   margin-top: 0.3rem;
 }
-.more {
+/* Pöörduja loendi rida („Minu eelpöördumised"): teema ja seis vasakul, tegevused paremal samal
+   real. Rida on madal ja kindla kõrgusega, et lehekülg mahuks paneeli ka töölaual; teema on
+   ühel real. Telefonis lähevad tegevused sisu alla. */
+.line {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 0.9rem;
+  padding-block: 0.5rem;
+}
+.lineMain {
+  min-width: 0;
+  display: grid;
+  gap: 0.15rem;
+}
+.lineMain .cardTitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* Seis ja selle kõrval adressaat või muutmise aeg ühel real: pikk nimi lõigatakse, et rida
+   jääks sama kõrgeks (murduv rida tegi töölaua paneelis loendi 57 px kõrgemaks). */
+.lineState {
+  min-width: 0;
+  margin: 0;
   display: flex;
-  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+.lineState .cardMeta {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lineActions {
+  display: flex;
+  align-items: center;
   gap: 0.4rem;
-  padding-top: 0.5rem;
-  border-top: 1px solid color-mix(in srgb, var(--text-warm) 10%, transparent);
+}
+@media (max-width: 480px) {
+  .line {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .lineActions {
+    margin-top: 0.25rem;
+  }
 }
