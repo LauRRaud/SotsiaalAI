@@ -1139,6 +1139,17 @@ body.ra-drawer-open .panel-close {
   gap: 0.35rem;
 }
 
+/* Vastuse tagasiside: märkus, küsimus ja vastus hoiavad oma reavahetused. */
+.ra-source-feedback-item .ra-answer-feedback-text {
+  margin: 0.4rem 0 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.ra-source-feedback-item summary {
+  cursor: pointer;
+}
+
 .ra-source-feedback-item textarea {
   width: 100%;
   padding: 0.7rem;

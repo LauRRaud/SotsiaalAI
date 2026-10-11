@@ -15,6 +15,7 @@ import { useChatStream } from "@/components/chat/hooks/useChatStream";
 import { useChatConversationState } from "../chat/hooks/useChatConversationState";
 import { usePilotDialogue } from '../chat/hooks/usePilotDialogue';
 import { usePilotReasoning } from '../chat/hooks/usePilotReasoning';
+import { useAnswerFeedback } from "../chat/hooks/useAnswerFeedback";
 import { prettifyFileName } from "@/components/chat/utils/sources";
 import { collectMessageSources, useConversationSources } from "@/components/chat/hooks/useConversationSources";
 import { useChatAnalysisController } from "@/components/chat/hooks/useChatAnalysisController";
@@ -2696,15 +2697,18 @@ export default function ChatBody({
     if (typeof retryLast !== "function") return;
     retryLast(renderedMessages);
   }, [retryLast, renderedMessages]);
+  // Vastuse tagasiside (omanik 11.10): päring tehakse ainult vestluses, kus mõne vastuse pöörde tunnus on teada.
+  const hasFeedbackTurns = useMemo(() => renderedMessages.some(msg => msg.role === "ai" && !!msg.turnId), [renderedMessages]);
+  const answerFeedback = useAnswerFeedback({ convId, enabled: hasFeedbackTurns && !isRoomMode });
   const messageItems = useMemo(() => {
     const items = renderedMessages.map((msg, msgIndex, allMessages) => {
       const messageSources = msg.role === "ai"
         ? collectMessageSources(msg, analysis.uploadPreview)
         : [];
-      return <ChatMessageItem key={msg.id} messageId={msg.id} entranceIndex={allMessages.length - 1 - msgIndex} role={msg.role} text={msg.text} attachments={msg.attachments} cards={msg.cards} createdAt={msg.createdAt} aiVisible={!!msg.aiVisible} typingEffect={!!msg.typingEffect} onTypingComplete={msg.onTypingComplete === "emptyIntro" ? handleEmptyIntroTyped : undefined} authorName={msg.authorName} authorRole={msg.authorRole} isRoomMode={isRoomMode} t={t} locale={locale} isLightTheme={isLightTheme} voiceEnabled={voiceEnabled} canSpeak={Boolean(voiceEnabled && speechReady && String(msg.text || "").trim())} isSpeaking={isSpeaking} onSpeak={speakText} messageSources={messageSources} onShowSources={openMessageSources} diagnosticRef={msg.diagnosticRef} isStreaming={!!msg.isStreaming} completionStatus={msg.completionStatus} onRetry={msg.role === "ai" && !isRoomMode ? handleRetry : undefined} retryPending={isChatGenerating} />;
+      return <ChatMessageItem key={msg.id} messageId={msg.id} entranceIndex={allMessages.length - 1 - msgIndex} role={msg.role} text={msg.text} attachments={msg.attachments} cards={msg.cards} createdAt={msg.createdAt} aiVisible={!!msg.aiVisible} typingEffect={!!msg.typingEffect} onTypingComplete={msg.onTypingComplete === "emptyIntro" ? handleEmptyIntroTyped : undefined} authorName={msg.authorName} authorRole={msg.authorRole} isRoomMode={isRoomMode} t={t} locale={locale} isLightTheme={isLightTheme} voiceEnabled={voiceEnabled} canSpeak={Boolean(voiceEnabled && speechReady && String(msg.text || "").trim())} isSpeaking={isSpeaking} onSpeak={speakText} messageSources={messageSources} onShowSources={openMessageSources} diagnosticRef={msg.diagnosticRef} isStreaming={!!msg.isStreaming} completionStatus={msg.completionStatus} onRetry={msg.role === "ai" && !isRoomMode ? handleRetry : undefined} retryPending={isChatGenerating} turnId={msg.role === "ai" && !isRoomMode ? msg.turnId : undefined} feedbackSent={!!msg.turnId && answerFeedback.sentTurns.has(msg.turnId)} onFeedback={answerFeedback.submit} />;
     });
     return items;
-  }, [analysis.uploadPreview, handleEmptyIntroTyped, handleRetry, isChatGenerating, isLightTheme, isRoomMode, isSpeaking, locale, openMessageSources, renderedMessages, speakText, speechReady, t, voiceEnabled]);
+  }, [analysis.uploadPreview, answerFeedback.sentTurns, answerFeedback.submit, handleEmptyIntroTyped, handleRetry, isChatGenerating, isLightTheme, isRoomMode, isSpeaking, locale, openMessageSources, renderedMessages, speakText, speechReady, t, voiceEnabled]);
   const activeModeLabel = useMemo(() => {
     return getWorkflowModeLabel(t, activeWorkflow);
   }, [activeWorkflow, t]);

@@ -80,8 +80,8 @@ export function getRagAdminCopy(locale) {
           subtitle: "Vaata salvestatud SourcePackage'i hetktõmmiseid, ülevaatuse märke ja vajalikke toiminguid."
         },
         sourceFeedback: {
-          title: "Allikate veateated",
-          subtitle: "Vaata kasutajate allikapõhiseid veateateid ja märgi kontrollitud juhtumid auditeeritavalt lahendatuks."
+          title: "Veateated ja vastuste tagasiside",
+          subtitle: "Vaata, mida inimesed vastuste ja allikate kohta teatasid, ning märgi kontrollitud teated auditeeritavalt lahendatuks."
         }
       },
       kov: {
@@ -178,8 +178,8 @@ export function getRagAdminCopy(locale) {
         subtitle: "Inspect persisted SourcePackage snapshots, review flags, and minimal review actions."
       },
       sourceFeedback: {
-        title: "Source error reports",
-        subtitle: "Review source-specific user reports and resolve checked items with an audit trail."
+        title: "Reports and answer feedback",
+        subtitle: "Review what people reported about answers and sources, and resolve checked items with an audit trail."
       }
     },
     kov: {

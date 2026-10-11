@@ -3,6 +3,7 @@
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { parseAssistantMarkdownBlocks } from "@/lib/chat/messageMarkdown";
 import { messageLinks, splitByLinks } from "@/lib/chat/messageLinks";
+import AnswerFeedbackCard from "./AnswerFeedbackCard";
 import MessageActionsMenu from "./MessageActionsMenu";
 
 const ICON_PROPS = {
@@ -39,6 +40,20 @@ const SOURCES_ICON = (
     <path d="M12 3.5 3.5 8 12 12.5 20.5 8Z" />
     <path d="M3.5 12 12 16.5 20.5 12" />
     <path d="M3.5 16 12 20.5 20.5 16" />
+  </svg>
+);
+// Tagasiside: jutumull hüüumärgiga (omanik valis 11.10); saadetud teate järel on mullis linnuke.
+const FEEDBACK_ICON = (
+  <svg {...ICON_PROPS}>
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+    <path d="M12 7v3.5" />
+    <path d="M12 13.6h.01" />
+  </svg>
+);
+const FEEDBACK_SENT_ICON = (
+  <svg {...ICON_PROPS}>
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+    <path d="m9 10 2 2 4-4" />
   </svg>
 );
 
@@ -195,6 +210,9 @@ const ChatMessageItem = memo(function ChatMessageItem({
   completionStatus = null,
   onRetry,
   retryPending = false,
+  turnId = null,
+  feedbackSent = false,
+  onFeedback,
   entranceIndex = 0
 }) {
   const isAssistant = role === "ai";
@@ -393,6 +411,20 @@ const ChatMessageItem = memo(function ChatMessageItem({
           ariaLabel: sourcesLabel,
           onSelect: () => onShowSources?.(messageSources),
           icon: SOURCES_ICON
+        });
+      }
+      // Tagasisidet saab anda valmis vastuse kohta, mille pöörde tunnus on teada. Saadetud teate järel
+      // jääb ikoon ribale tuhmina ja ütleb „Saadetud": ühe vastuse kohta on üks teade.
+      if (turnId && typeof onFeedback === "function" && !isStreaming && normalizedCompletionStatus !== "PENDING") {
+        messageActions.push({
+          key: "feedback",
+          label: tipLabel(feedbackSent ? "feedback_sent" : "feedback", feedbackSent ? "Saadetud" : "Tagasiside"),
+          ariaLabel: tr(feedbackSent ? "chat.answer_feedback.sent_aria" : "chat.answer_feedback.action") || undefined,
+          inert: feedbackSent,
+          icon: feedbackSent ? FEEDBACK_SENT_ICON : FEEDBACK_ICON,
+          renderPanel: ({ close }) => (
+            <AnswerFeedbackCard t={t} onSubmit={data => onFeedback(turnId, data)} onClose={close} />
+          )
         });
       }
     }

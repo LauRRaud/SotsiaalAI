@@ -1788,7 +1788,9 @@ export function useChatStream(config) {
             cards,
             workflow,
             isStreaming: false,
-            completionStatus: cfg.pilotEnabled ? data?.completionStatus || "COMPLETED" : "COMPLETED"
+            completionStatus: cfg.pilotEnabled ? data?.completionStatus || "COMPLETED" : "COMPLETED",
+            // Vastuse pöörde tunnus: selle järgi saab inimene vastuse kohta tagasisidet anda.
+            ...(typeof data?.turnId === "string" && data.turnId ? { turnId: data.turnId } : {})
           }));
 
           // Sama reegel mis voo rajal: lahendatud kavatsus vabastab võtme (SOL-CHAT-03).

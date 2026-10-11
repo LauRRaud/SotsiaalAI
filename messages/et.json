@@ -3932,7 +3932,9 @@
       "listen": "Kuula",
       "copy": "Kopeeri",
       "sources": "Allikad",
-      "retry": "Uuesti"
+      "retry": "Uuesti",
+      "feedback": "Tagasiside",
+      "feedback_sent": "Saadetud"
     },
     "diagnostics": {
       "decision_title": "Miks süsteem nii otsustas?",
@@ -4776,6 +4778,24 @@
         "alreadyActive": "Selle kuulutuse jaoks on aktiivne match juba olemas.",
         "failed": "Ühenduse loomine ebaõnnestus."
       }
+    },
+    "answer_feedback": {
+      "action": "Anna tagasisidet",
+      "sent_aria": "Tagasiside on saadetud",
+      "title": "Mis oli vastusel viga?",
+      "reason_unanswered": "Ei vastanud küsimusele",
+      "reason_wrong_or_outdated": "Vale või vananenud",
+      "reason_unclear": "Raske aru saada",
+      "reason_other": "Muu",
+      "note_label": "Märkus",
+      "note_placeholder": "Soovi korral kirjuta täpsemalt",
+      "notice": "Koos tagasisidega näeb haldur seda küsimust ja vastust.",
+      "send": "Saada",
+      "sending": "Saadan…",
+      "cancel": "Loobu",
+      "sent": "Aitäh! Tagasiside on saadetud.",
+      "failed": "Tagasisidet ei õnnestunud saata. Proovi uuesti.",
+      "choose_reason": "Vali üks põhjus."
     }
   },
   "documents": {
@@ -7642,6 +7662,15 @@
     "search": {
       "query_too_long": "Otsingusõna on liiga pikk. Lühenda seda ja proovi uuesti.",
       "unavailable": "Otsing ei ole praegu saadaval. Proovi hiljem uuesti."
+    },
+    "answer_feedback": {
+      "invalid": "Tagasisidet ei saanud vastu võtta. Proovi uuesti.",
+      "reason_required": "Vali üks põhjus.",
+      "note_too_long": "Märkus on liiga pikk. Kirjuta kuni 500 märki.",
+      "not_found": "Seda vastust ei leitud. Värskenda vestlust ja proovi uuesti.",
+      "rate_limited": "Oled lühikese ajaga palju tagasisidet saatnud. Proovi tunni aja pärast uuesti.",
+      "resolution_invalid": "Lahenduse märkus on kohustuslik, kuni 1000 märki.",
+      "failed": "Tagasisidet ei õnnestunud saata. Proovi uuesti."
     }
   },
   "admin": {

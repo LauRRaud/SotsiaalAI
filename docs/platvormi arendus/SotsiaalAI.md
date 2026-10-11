@@ -92,6 +92,14 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**11.10 vastuse tagasiside vestluses („Anna tagasisidet“):** omanik 11.10: „kas assistendi sõnumimullis võiks olla nt kehva vastuse tõttu ka "anna tagasisidet" nupp? like jne ma ei soovi“. Kuju (kaart märkusega), ikooni (jutumull hüüumärgiga) ja selle, et haldur näeb koos teatega küsimust ja vastust, kinnitas ta klõpsatava näidise järgi.
+Assistendi vastuse ikooniribal (⋯) on tagasiside ikoon; see avab riba asemel väikese kaardi: üks põhjus neljast (ei vastanud küsimusele, vale või vananenud, raske aru saada, muu), soovi korral märkus kuni 500 märki ja rida „Koos tagasisidega näeb haldur seda küsimust ja vastust“. Hinnanguid ega loendureid ei ole; ühe vastuse kohta on üks teade ja pärast saatmist ütleb ikoon „Saadetud“.
+Uus tabel `AnswerFeedback` (migratsioon `20261014130000_answer_feedback`, aditiivne) hoiab teatajat, vestlust, pöörde tunnust (`turnId` = `M4PilotTurn.id`), põhjust, märkust ja olekut OPEN/RESOLVED, mitte vestluse sisu: halduri vaade loeb küsimuse ja vastuse vestluse enda sõnumitest ja ainult avatud teate juurde. Eraldi mudel, sest `SourceFeedback` nõuab allikat ja lubab ühe sõnumi kohta mitu teadet.
+Haldur näeb teateid lehel Admin → RAG → „Veateated“ (`/admin/rag/source-feedback`), jaotis „Vastuste tagasiside“ allikate veateadete kohal; lahendamine jätab auditi kirje.
+Kood: `lib/answerFeedback.js`, `app/api/answer-feedback`, `app/api/admin/answer-feedback`, `components/alalehed/chat/AnswerFeedbackCard.jsx`, `MessageActionsMenu.jsx` (kaardi režiim), `components/chat/hooks/useAnswerFeedback.js`; pöörde tunnus jõuab lehele `pilotChatResult`-i kaudu. Testid `tests/answer-feedback.test.mjs`.
+Kohalik brauseriproov proovibaasiga: saatmine, topelt saatmine, võõras vastus 404, „Saadetud“ pärast uut laadimist, halduri vaade ja lahendamine, klaviatuur, telefoni laius, hele teema, vene keel. Päris lehe läbiproov on PR-i juures.
+**Lahtine (omaniku otsus):** teate rida ei aegu (nagu allika veateade); inimese enda märkus ei ole andmeväljavõttes (sama klass mis allika veateatel). **Kõrvalleid (koodi järgi, brauseris proovimata):** allika veateate nupp ei ilmu RAG v2 vastuste allikate juures, sest neil allikatel ei ole `source_id` välja.
+
 **08.10 eesti hääl serveris: Meelis + omaniku kümneribaline EQ** (`e0d906ca`).
 Omaniku korraldus „vii serverisse” täidetud: GitHub ehitas tootmisartefakti ühe korra
 ja sama SHA paigaldati serverisse 08.10 kell 23.21 (Europe/Tallinn).
