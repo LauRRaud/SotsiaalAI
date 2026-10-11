@@ -1,0 +1,45 @@
+/* Aruannete osa: kuu nimi rea pealkirjana ja eelvaate tabel. Read, laused ja
+   lahtrid on organisatsioonide lehtede ühised (../org.module.css). */
+
+/* Kuu nimi algab suure tähega (keele enda kuju on väiketäht: „september 2026"). */
+.month {
+  composes: rowTitle from "../org.module.css";
+  margin: 0;
+  max-width: none;
+}
+.month::first-letter {
+  text-transform: uppercase;
+}
+
+/* Eelvaate tabel võib olla paneelist laiem: see kerib külgsuunas oma kastis.
+   Püstsuunas kasti ei piirata: pikk tabel kerib koos kogu paneeli sisuga. */
+.table {
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.8rem;
+}
+.table:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.table table {
+  border-collapse: collapse;
+  font-size: var(--fs-small, 0.875rem);
+  font-variant-numeric: tabular-nums;
+}
+.table td {
+  padding: 0.3rem 0.7rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--text-warm) 10%, transparent);
+  color: var(--text-warm);
+  text-align: start;
+  white-space: nowrap;
+}
+.table tr:first-child td {
+  color: var(--text-soft);
+  font-weight: 560;
+}
+.table tr:last-child td {
+  border-bottom: 0;
+}
