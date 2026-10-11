@@ -49,11 +49,11 @@
   },
   "corpus": {
     "written_by": "rag-v2/register-corpus-1",
-    "version": "v80",
-    "index_generation": "c7d36b42",
+    "version": "v81",
+    "index_generation": "f66fd13d",
     "read_at": "2026-10-11",
-    "documents": 9698,
-    "units": 90604,
+    "documents": 9735,
+    "units": 90707,
     "note": "What the RAG on the server holds: the documents of the corpus policy by what they are (by_content), and by where the source file is kept (from_repository, outside_repository). One file of the repository may give many documents (a municipality package gives its services, forms and contacts). On a source entry, corpus_documents is the number of corpus documents the file gives; 0 means the file is not in the corpus.",
     "by_content": [
       {
@@ -124,9 +124,9 @@
       {
         "content": "organisation_pages",
         "name": "organisations' own pages (disability organisations, the food bank, the social workers' association, crisis and mental health associations)",
-        "documents": 905,
+        "documents": 942,
         "by_source_type": {
-          "organization_page": 905
+          "organization_page": 942
         }
       },
       {
@@ -197,10 +197,10 @@
       }
     },
     "source_files_not_in_corpus": 61,
-    "outside_repository_documents": 3182
+    "outside_repository_documents": 3219
   },
   "outside_repository": {
-    "documents": 3182,
+    "documents": 3219,
     "note": "Sources of the corpus that are not files of the repository. Copies are in the corpus store (the main checkout's git-ignored tmp/ and the server). Of contacts only counts are given: a contact's title is a person's name.",
     "kinds": [
       {
@@ -1336,13 +1336,13 @@
       {
         "kind": "organisation_pages",
         "name": "organisations' own pages (disability organisations, the food bank, the social workers' association, crisis and mental health associations)",
-        "documents": 905,
+        "documents": 942,
         "by_source_type": {
-          "organization_page": 905
+          "organization_page": 942
         },
         "made_from": "the lists register/web_pages_organisations.json, register/web_pages_associations.json and register/web_pages_associations_2.json and the organisations of register/web_pages_coverage_1.json and _2.json, collected with scripts/rag-v2-web-pages.mjs and chosen with scripts/rag-v2-web-select.mjs (ADR-095, ADR-137, ADR-140)",
         "reason": "the organisations' own texts",
-        "publishers": 58,
+        "publishers": 59,
         "sources": [
           {
             "title": "Al-Anon Eesti: 12 sammu",
@@ -1505,6 +1505,11 @@
             "publisher": "Convictus Eesti MTÜ"
           },
           {
+            "title": "Convictus Eesti MTÜ: Kuidas käituda kui näen kasutatud süstalt?",
+            "url": "https://www.convictus.ee/uudised/kuidas-kaituda-kui-naen-kasutatud-sustalt",
+            "publisher": "Convictus Eesti MTÜ"
+          },
+          {
             "title": "Convictus Eesti MTÜ: Lastekodu 6 Kahjude Vähendamise Keskus",
             "url": "https://www.convictus.ee/keskused/lastekodu",
             "publisher": "Convictus Eesti MTÜ"
@@ -1582,6 +1587,11 @@
           {
             "title": "Convictus Eesti MTÜ: Süstlavahetus ja tarvikute jagamine",
             "url": "https://www.convictus.ee/teenused/sustlavahetus-ja-tarvikute-jagamine",
+            "publisher": "Convictus Eesti MTÜ"
+          },
+          {
+            "title": "Convictus Eesti MTÜ: Toidu- ja riideabi",
+            "url": "https://www.convictus.ee/teenused/toidu-ja-riideabi",
             "publisher": "Convictus Eesti MTÜ"
           },
           {
@@ -3160,6 +3170,11 @@
             "publisher": "Eesti Seksuaaltervise Liit"
           },
           {
+            "title": "Eesti Seksuaaltervise Liit: Kontakt",
+            "url": "https://seksuaaltervis.ee/kontakt",
+            "publisher": "Eesti Seksuaaltervise Liit"
+          },
+          {
             "title": "Eesti Seksuaaltervise Liit: Küsi nõu",
             "url": "https://seksuaaltervis.ee/kusi-nou",
             "publisher": "Eesti Seksuaaltervise Liit"
@@ -3217,6 +3232,11 @@
           {
             "title": "Eesti Seksuaaltervise Liit: Rasestumisvastased meetodid ehk rasestumisvastased vahendid",
             "url": "https://seksuaaltervis.ee/rasestumisvastased-vahendid/rasestumisvastased-meetodid-ehk-rasestumisvastased-vahendid",
+            "publisher": "Eesti Seksuaaltervise Liit"
+          },
+          {
+            "title": "Eesti Seksuaaltervise Liit: Seksuaaltervis",
+            "url": "https://seksuaaltervis.ee/",
             "publisher": "Eesti Seksuaaltervise Liit"
           },
           {
@@ -3775,6 +3795,11 @@
             "publisher": "Hingehoid"
           },
           {
+            "title": "Hingehoid: Hinge hoid",
+            "url": "https://www.hingehoid.ee/",
+            "publisher": "Hingehoid"
+          },
+          {
             "title": "Hingehoid: Hingehoiukeskus",
             "url": "https://www.hingehoid.ee/hingehoiukeskus",
             "publisher": "Hingehoid"
@@ -3785,8 +3810,28 @@
             "publisher": "Hingehoid"
           },
           {
+            "title": "Hingehoid: Kutsestandard",
+            "url": "https://www.hingehoid.ee/hingehoidjale",
+            "publisher": "Hingehoid"
+          },
+          {
+            "title": "Hingehoid: KUTSESTANDARD",
+            "url": "https://hingehoid.ee/hingehoidjale/kutsestandard",
+            "publisher": "Hingehoid"
+          },
+          {
+            "title": "Hingehoid: Kõrgharidus",
+            "url": "https://www.hingehoid.ee/korgharidus",
+            "publisher": "Hingehoid"
+          },
+          {
             "title": "Hingehoid: Vajan tuge",
             "url": "https://www.hingehoid.ee/vajad-toetust",
+            "publisher": "Hingehoid"
+          },
+          {
+            "title": "Hingehoidja eetilised põhimõtted",
+            "url": "https://www.hingehoid.ee/hingehoid/hingehoidja-eetilised-pohimotted",
             "publisher": "Hingehoid"
           },
           {
@@ -3855,6 +3900,16 @@
             "publisher": "MTÜ Eesti Omastehooldus"
           },
           {
+            "title": "MTÜ Eesti Omastehooldus: Abivahendid",
+            "url": "https://omastehooldus.eu/abivahendid",
+            "publisher": "MTÜ Eesti Omastehooldus"
+          },
+          {
+            "title": "MTÜ Eesti Omastehooldus: Dokumendid",
+            "url": "https://omastehooldus.eu/dokumendid",
+            "publisher": "MTÜ Eesti Omastehooldus"
+          },
+          {
             "title": "MTÜ Eesti Omastehooldus: Omastehoolduse 10 teesi",
             "url": "https://omastehooldus.eu/omastehoolduse-10-teesi",
             "publisher": "MTÜ Eesti Omastehooldus"
@@ -3863,6 +3918,41 @@
             "title": "MTÜ Eesti Omastehooldus: Ühingud ja ametid",
             "url": "https://omastehooldus.eu/uhingud-ja-ametid",
             "publisher": "MTÜ Eesti Omastehooldus"
+          },
+          {
+            "title": "MTÜ Eesti Omastehooldus: Ühingust",
+            "url": "https://omastehooldus.eu/uhingust",
+            "publisher": "MTÜ Eesti Omastehooldus"
+          },
+          {
+            "title": "MTÜ Eesti Omastehooldus: Üldkontakt",
+            "url": "https://omastehooldus.eu/uldkontakt",
+            "publisher": "MTÜ Eesti Omastehooldus"
+          },
+          {
+            "title": "MTÜ Eluliin: Eetilise tegutsemise põhimõtted",
+            "url": "https://www.eluliin.ee/eetilise-tegutsemise-pohimotted",
+            "publisher": "MTÜ Eluliin"
+          },
+          {
+            "title": "MTÜ Eluliin: Emotsionaalse toe telefon",
+            "url": "https://www.eluliin.ee/node/15",
+            "publisher": "MTÜ Eluliin"
+          },
+          {
+            "title": "MTÜ Eluliin: Harta",
+            "url": "https://www.eluliin.ee/harta",
+            "publisher": "MTÜ Eluliin"
+          },
+          {
+            "title": "MTÜ Eluliin: Psühholoogiline kriisinõustamine",
+            "url": "https://www.eluliin.ee/psuhholoogiline-kriisinoustamine",
+            "publisher": "MTÜ Eluliin"
+          },
+          {
+            "title": "MTÜ Eluliin: Tule vabatahtlikuks",
+            "url": "https://www.eluliin.ee/tule-vabatahtlikuks",
+            "publisher": "MTÜ Eluliin"
           },
           {
             "title": "MTÜ Iseseisev Elu: Eetika",
@@ -3960,8 +4050,28 @@
             "publisher": "MTÜ Laste ja Noorte Kriisiprogramm"
           },
           {
+            "title": "MTÜ Lastekaitse Liit: Evidence to Protect – laste turvalisus ja õiguste kaitse digikeskkonnas",
+            "url": "https://www.lastekaitseliit.ee/et/evidence-to-protect-laste-turvalisus-ja-oiguste-kaitse-digikeskkonnas",
+            "publisher": "MTÜ Lastekaitse Liit"
+          },
+          {
             "title": "MTÜ Lastekaitse Liit: Hea nõu lastega peredele",
             "url": "https://www.lastekaitseliit.ee/et/hea-nou-lastega-peredele",
+            "publisher": "MTÜ Lastekaitse Liit"
+          },
+          {
+            "title": "MTÜ Lastekaitse Liit: HEA ON OLLA LAPS!",
+            "url": "https://www.lastekaitseliit.ee/et/hea-on-olla-laps",
+            "publisher": "MTÜ Lastekaitse Liit"
+          },
+          {
+            "title": "MTÜ Lastekaitse Liit: Huvihariduse küsitluse tulemused",
+            "url": "https://www.lastekaitseliit.ee/et/huviharidusetulemused",
+            "publisher": "MTÜ Lastekaitse Liit"
+          },
+          {
+            "title": "MTÜ Lastekaitse Liit: Koostöövõrgustik laste osaluse edendamiseks Balti- ja Põhjamaades",
+            "url": "https://www.lastekaitseliit.ee/et/koostoovorgustik-laste-osaluse-edendamiseks-balti-ja-pohjamaades",
             "publisher": "MTÜ Lastekaitse Liit"
           },
           {
@@ -3985,9 +4095,49 @@
             "publisher": "MTÜ Lastekaitse Liit"
           },
           {
+            "title": "MTÜ Lastekaitse Liit: Lapse õiguste saadikud",
+            "url": "https://www.lastekaitseliit.ee/et/lapse-oiguste-saadikud",
+            "publisher": "MTÜ Lastekaitse Liit"
+          },
+          {
+            "title": "MTÜ Lastekaitse Liit: Lastekaitse Liidu Fond",
+            "url": "https://www.lastekaitseliit.ee/et/lastekaitseliit/lastekaitse-liidu-fond",
+            "publisher": "MTÜ Lastekaitse Liit"
+          },
+          {
+            "title": "MTÜ Lastekaitse Liit: Meie tegevused",
+            "url": "https://www.lastekaitseliit.ee/et/meie-tegevused",
+            "publisher": "MTÜ Lastekaitse Liit"
+          },
+          {
+            "title": "MTÜ Lastekaitse Liit: Meist",
+            "url": "https://www.lastekaitseliit.ee/et/meist",
+            "publisher": "MTÜ Lastekaitse Liit"
+          },
+          {
+            "title": "MTÜ Lastekaitse Liit: MTÜ Lastekaitse Liidu üle-eestilise võrgustikutöö arendamine ja liikmeskonna võimendamine",
+            "url": "https://www.lastekaitseliit.ee/et/mtu-lastekaitse-liidu-ule-eestilise-vorgustikutoo-arendamine-ja-liikmeskonna-voimendamine",
+            "publisher": "MTÜ Lastekaitse Liit"
+          },
+          {
+            "title": "MTÜ Lastekaitse Liit: Märka oma kodukohta",
+            "url": "https://www.lastekaitseliit.ee/et/marka-oma-kodukohta",
+            "publisher": "MTÜ Lastekaitse Liit"
+          },
+          {
+            "title": "MTÜ Lastekaitse Liit: Päevapilt \"Hea on olla laps\"",
+            "url": "https://www.lastekaitseliit.ee/et/",
+            "publisher": "MTÜ Lastekaitse Liit"
+          },
+          {
             "title": "MTÜ Lastekaitse Liit: Tasuta õigusabi võimalustest",
             "url": "https://www.lastekaitseliit.ee/et/tasuta-oigusabi-voimalustest",
             "publisher": "MTÜ Lastekaitse Liit"
+          },
+          {
+            "title": "mtü pallium",
+            "url": "https://pallium.ee/palliumist",
+            "publisher": "MTÜ Pallium"
           },
           {
             "title": "MTÜ Pallium: HAIGUSEGA TOIMETULEK KODUS",
@@ -4127,6 +4277,11 @@
           {
             "title": "MTÜ Peaasjad: Dieedi pidamine",
             "url": "https://peaasi.ee/dieedi-pidamine/",
+            "publisher": "MTÜ Peaasjad"
+          },
+          {
+            "title": "MTÜ Peaasjad: E-nõustamine",
+            "url": "https://peaasi.ee/e-noustamine/",
             "publisher": "MTÜ Peaasjad"
           },
           {
@@ -5200,6 +5355,11 @@
             "publisher": "MTÜ Peaasjad"
           },
           {
+            "title": "Isikuandmete töötlemine Naiste Tugi- ja Teabekeskuses",
+            "url": "https://naistetugi.ee/isikuandmete-tootlemine-naiste-tugi-ja-teabekeskuses",
+            "publisher": "Naiste Tugi- ja Teabekeskus"
+          },
+          {
             "title": "Naiste Tugi- ja Teabekeskus",
             "url": "https://naistetugi.ee/abiasutused",
             "publisher": "Naiste Tugi- ja Teabekeskus"
@@ -5207,6 +5367,11 @@
           {
             "title": "Naiste Tugi- ja Teabekeskus: “Miks ta ei lahku” – kaheksa selgitavat sammu",
             "url": "https://naistetugi.ee/miks-ta-ei-lahku-kaheksa-selgitavat-sammu",
+            "publisher": "Naiste Tugi- ja Teabekeskus"
+          },
+          {
+            "title": "Naiste Tugi- ja Teabekeskus: Denim Day ehk teksapäev – 29. aprill",
+            "url": "https://naistetugi.ee/denim-day-ehk-teksapaev-29-aprill",
             "publisher": "Naiste Tugi- ja Teabekeskus"
           },
           {
@@ -5225,6 +5390,11 @@
             "publisher": "Naiste Tugi- ja Teabekeskus"
           },
           {
+            "title": "Naiste Tugi- ja Teabekeskus: Kaebuste esitamine ja lahendamine",
+            "url": "https://naistetugi.ee/kaebuste-esitamine-ja-lahendamine",
+            "publisher": "Naiste Tugi- ja Teabekeskus"
+          },
+          {
             "title": "Naiste Tugi- ja Teabekeskus: Kes on süüdi ja miks naised ei lahku?",
             "url": "https://naistetugi.ee/vagivallast/kes-on-suudi-ja-miks-naised-ei-lahku",
             "publisher": "Naiste Tugi- ja Teabekeskus"
@@ -5237,6 +5407,11 @@
           {
             "title": "Naiste Tugi- ja Teabekeskus: Kuidas soorollid on seotud perevägivallaga?",
             "url": "https://naistetugi.ee/kuidas-soorollid-on-seotud-perevagivallaga",
+            "publisher": "Naiste Tugi- ja Teabekeskus"
+          },
+          {
+            "title": "Naiste Tugi- ja Teabekeskus: Meist",
+            "url": "https://naistetugi.ee/meist",
             "publisher": "Naiste Tugi- ja Teabekeskus"
           },
           {
@@ -5265,8 +5440,18 @@
             "publisher": "Naiste Tugi- ja Teabekeskus"
           },
           {
+            "title": "Naiste Tugi- ja Teabekeskus: Teenuste hinnakiri*",
+            "url": "https://naistetugi.ee/teenuste-hinnakiri",
+            "publisher": "Naiste Tugi- ja Teabekeskus"
+          },
+          {
             "title": "Naiste Tugi- ja Teabekeskus: Tugiisikute juhendmaterjal kriminaalmenetlusest",
             "url": "https://naistetugi.ee/vagivallast/seksuaalvagivallast/tugiisikute-juhendmaterjal-kriminaalmenetlusest",
+            "publisher": "Naiste Tugi- ja Teabekeskus"
+          },
+          {
+            "title": "Naiste Tugi- ja Teabekeskus: Täna on 25. november – täna on rahvusvaheline naistevastase vägivalla vastu võitlemise päev!",
+            "url": "https://naistetugi.ee/tana-on-25-november-tana-on-rahvusvaheline-naistevastase-vagivalla-vastu-voitlemise-paev",
             "publisher": "Naiste Tugi- ja Teabekeskus"
           },
           {

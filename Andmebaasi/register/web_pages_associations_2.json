@@ -1,6 +1,6 @@
 {
   "version": "web-pages-1",
-  "note": "Ühingu lehed, mis on korpuses käsitsi tehtud sammuga ega ole igakuises uuenduses (ADR-140, järeltäiendus v80): Convictus Eesti. Saidi iga lehe lõpus on sama plokk (lähimad keskused, programm, piirkonnad), mis võeti välja kõigilt lehtedelt peale avalehe, ja lehe esimene pealkiri on rubriigi nimi, seega on pealkirjaks lehe enda <title>. Uuesti lugemisel tuleb sama samm uuesti teha (tmp/rag-v2-v80/tools/fix-convictus.mjs).",
+  "note": "Ühingu lehed, mis on korpuses käsitsi tehtud sammuga ega ole igakuises uuenduses (ADR-140, järeltäiendus v80): Convictus Eesti. Saidi iga lehe lõpus on sama plokk (lähimad keskused, programm, piirkonnad), mis võeti välja kõigilt lehtedelt peale avalehe, ja lehe esimene pealkiri on rubriigi nimi, seega on pealkirjaks lehe enda <title>. Uuesti lugemisel tuleb sama samm uuesti teha (tmp/rag-v2-v80/tools/fix-convictus.mjs). Lisatud 11.10.2026 (korpus v81): neli abiinfo lehte, mis on paigutatud käsitsi (lehe enda pealkiri; alla reegli sõnapiiri või aadressis „uudised“): Eluliini kaks telefonilehte ja Convictuse kaks lehte.",
   "pages": [
     {
       "source_id": "convictus_avaleht",
@@ -257,6 +257,46 @@
       "url": "https://www.convictus.ee/teenused/turvaline-seksuaalkaitumine",
       "title": "Turvaline seksuaalkäitumine",
       "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_toidu_ja_riideabi",
+      "url": "https://www.convictus.ee/teenused/toidu-ja-riideabi",
+      "title": "Toidu- ja riideabi",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_uudised_kuidas_kaituda_kui_naen_kasutatud_sustalt",
+      "url": "https://www.convictus.ee/uudised/kuidas-kaituda-kui-naen-kasutatud-sustalt",
+      "title": "Kuidas käituda kui näen kasutatud süstalt?",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "eluliin_avaleht--node--15",
+      "url": "https://www.eluliin.ee/node/15",
+      "title": "Emotsionaalse toe telefon",
+      "publisher": "MTÜ Eluliin",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "eluliin_avaleht--psuhholoogiline-kriisinoustamine",
+      "url": "https://www.eluliin.ee/psuhholoogiline-kriisinoustamine",
+      "title": "Psühholoogiline kriisinõustamine",
+      "publisher": "MTÜ Eluliin",
       "source_type": "organization_page",
       "language": "et",
       "jurisdiction_level": "NATIONAL",

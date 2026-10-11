@@ -157,6 +157,22 @@ Välja jäid: AA koosolekute loend ja Al-Anoni rühmade leht (kontaktisikute nim
 Vaba ketast serveris pärast: 16 GB. Vestlusplaan `/etc/sotsiaalai/m4-corpus-chat-20261011d.json`; järgmine alus põhikausta `tmp/rag-v2-v80/ship/policy.json`. Vektorite hind kontrolliti samal hommikul pakkuja lehelt (0,13 USD miljoni märgi kohta) ja kirjutati päeva hinnafaili. Mudeliga mõõtmata.
 
 **Mis jäi ka nüüd lugemata.** Töötukassa: lehtede aadressid on robotitele lubatud, aga tekst tuleb skriptiga aadressilt `/web/`, mille nende reeglid robotitele sulgevad; brauser näitaks seda, kuid nii ma sisu ei võta ilma nende loata. Lasteabi käsiraamatu 71 lehte on saidil endal tühjad ka päris brauseris (lehel on ainult pealkiri ja saidi jalus). PDF-idena jagatud materjalid on tegemata.
+## Järeltäiendus v81: korjatud lehed, mis olid välja jäänud (11.10.2026)
+
+Omanik 11.10.2026: „lisa lehed, mille korje on tehtud“. Küsisin, milliseid korjatud ja välja jäetud rühmi ta mõtleb (abiinfoga lehed; ühingute tutvustuslehed; Palliumi toetuste kokkuvõtted; juristaitab.ee artiklid), ja ta valis kaks esimest.
+
+Sisse läks **37 lehte** (8 259 sõna, 103 lõiku):
+
+- **Viis abiinfo lehte:** Eluliini emotsionaalse toe telefon ja psühholoogiline kriisinõustamine, Convictuse „Kuidas käituda kui näen kasutatud süstalt?“ ja „Toidu- ja riideabi“, Peaasi e-nõustamine. Neli esimest on paigutatud käsitsi (`tmp/rag-v2-v81/tools/place-by-hand.mjs`): lugeja oli võtnud pealkirjaks lingi teksti või rubriigi nime, üks leht on alla reegli 30 sõna ja üks on aadressil, kus on sõna „uudised“. Enne paigutamist kontrolliti, et ükski lõik ei nimeta inimest; pealkirjaks on lehe enda pealkiri. Need neli on nimekirjas `web_pages_associations_2.json` ja igakuine uuendus neid ei loe.
+- **32 tutvustuslehte** ühingutest endist (Lastekaitse Liit 11, naiste tugikeskus 6, Hingehoid 5, Omastehooldus 4, Eluliin 3, Seksuaaltervise Liit 2, Pallium 1): tegevused, põhimõtted, eetika, kutsestandard, kampaaniad, kontakt, kaebuste kord. Reegel oli need valinud; välja olin need jätnud lehe haaval kui lehed, mis räägivad ühingust, mitte abist.
+
+Välja jäid ka nüüd: neli Eluliini projektilehte, mille tekst on inglise keeles; puhkuseteated, pakkumised kuupäeva ja hinnaga, arvamuslood ja raamatututvustused; Palliumi toetuste kokkuvõtted ja juristaitab.ee artiklid (omanik neid ei valinud); kõik lehed, mille reegel jätab välja inimeste nimetamise pärast.
+
+| Käik | Sisendeid ostetud | Märke | Hind | Indeks | Dokumente | Lõike |
+|---|---:|---:|---:|---|---:|---:|
+| v81 | 103 | 29 332 | 0,0038 USD | `f66fd13d` | 9 735 | 90 707 |
+
+Vestlusplaan `/etc/sotsiaalai/m4-corpus-chat-20261011e.json`; järgmine alus põhikausta `tmp/rag-v2-v81/ship/policy.json`. Mudeliga mõõtmata.
 ## Lahtine
 
 - **juristaitab.ee rubriik „Kiirelt kätte“** (umbes kaks tuhat lühikest õigusartiklit, mida toimetab Justiits- ja Digiministeeriumi lepingupartner; igal artiklil viimase kontrolli kuupäev). See kataks võlad, pärimise, eestkoste, töösuhted, üüri ja perekonnaõiguse inimese keeles, aga on maht, mis nõuab dokumentide piiri tõstmist (omanik lubas 15 000-ni) ja mõõtmist, kas kokkuvõtted ei tõrju seaduse sätteid kandidaatide seast. Omanik 11.10.2026: „selles ma kahtlen, pigem ei pane“. Ei lisata, kuni ta ei ütle teisiti.
