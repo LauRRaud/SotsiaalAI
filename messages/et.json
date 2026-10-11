@@ -3722,7 +3722,9 @@
         "assistant_allowed": "Assistent võib avaldatud teenuseid soovitada.",
         "assistant_blocked": "Assistent ei soovita neid teenuseid enne eraldi loa andmist.",
         "area_municipality_missing": "KOV põhisel teenusel ei ole ühtki registrist valitud omavalitsust.",
-        "area_county_missing": "Maakondlikul teenusel ei ole maakonda valitud."
+        "area_county_missing": "Maakondlikul teenusel ei ole maakonda valitud.",
+        "representation_confirmed": "Asutus on kinnitatud.",
+        "representation_missing": "Asutus on kinnitamata: registrikoodiga profiili saab avaldada pärast kinnitust."
       },
       "area": {
         "county_none": "Täpsustamata",
@@ -3923,8 +3925,11 @@
         "server_version": "Serveri uuem versioon"
       },
       "representation": {
-        "note": "Registrikoodiga profiili saab avaldada, kui asutus on kinnitatud.",
-        "open": "Asutuse kinnitamine"
+        "open": "Asutuse kinnitamine",
+        "confirmed": "Asutus on kinnitatud {date}.",
+        "unconfirmed": "Asutus on kinnitamata. Profiili saab avaldada pärast seda, kui on kinnitatud, et esindad seda asutust.",
+        "save_first": "Asutus on kinnitamata, avaldada saab pärast kinnitust. Salvesta profiil mustandina ja ava leht „Asutuse kinnitamine”.",
+        "changed": "Kinnitatud on registrikood {code}. Uue koodiga avaldamiseks salvesta profiil mustandina ja ava leht „Asutuse kinnitamine”."
       }
     },
     "admin_role": {

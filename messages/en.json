@@ -3722,7 +3722,9 @@
         "assistant_allowed": "The assistant may recommend published services.",
         "assistant_blocked": "The assistant will not recommend these services until permission is enabled.",
         "area_municipality_missing": "A municipality-based service has no municipality chosen from the register.",
-        "area_county_missing": "A county-based service has no county chosen."
+        "area_county_missing": "A county-based service has no county chosen.",
+        "representation_confirmed": "The organisation is confirmed.",
+        "representation_missing": "The organisation is not confirmed: a profile with a registry code can be published after the confirmation."
       },
       "area": {
         "county_none": "Unspecified",
@@ -3923,8 +3925,11 @@
         "server_version": "Newer version on the server"
       },
       "representation": {
-        "note": "A profile with a registry code can be published once the organisation is confirmed.",
-        "open": "Confirming the organisation"
+        "open": "Confirming the organisation",
+        "confirmed": "The organisation was confirmed on {date}.",
+        "unconfirmed": "The organisation is not confirmed. The profile can be published after it is confirmed that you represent that organisation.",
+        "save_first": "The organisation is not confirmed; the profile can be published after the confirmation. Save a draft and open the page \"Confirming the organisation\".",
+        "changed": "The confirmed registry code is {code}. To publish with the new code, save a draft and open the page \"Confirming the organisation\"."
       }
     },
     "admin_role": {

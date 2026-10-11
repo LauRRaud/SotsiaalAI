@@ -67,6 +67,7 @@ import {
   LIST_VIEW_OF,
   LOCATION_VIEW_KEYS,
   PROFILE_VIEW_KEYS,
+  REPRESENTATION_PATH,
   SERVICE_PROFILE_KEY,
   SERVICE_VIEW_KEYS,
   areaViewIsTall,
@@ -86,6 +87,8 @@ import {
   profileViewStates,
   profileViewSummaries,
   realServiceLocations,
+  representationDate,
+  representationStatus,
   serviceAreaChoices,
   serviceProfileDirty,
   serviceProfileOptionSets,
@@ -97,7 +100,9 @@ import {
   serviceViewStates,
   serviceViewSummaries,
   splitList,
-  unreadableServiceAreas
+  statusChoices,
+  unreadableServiceAreas,
+  withRepresentationState
 } from "./serviceProfile/profileModel";
 import HelpMatchDecisionPanel from "./HelpMatchDecisionPanel";
 import ServiceMapLeaflet from "./ServiceMapLeaflet";
@@ -3766,6 +3771,8 @@ function useServiceProfileAddressSearch({ t, form, location, locationIndex }) {
 
 /* Teine vajutus eemaldamiseks peab tulema selle aja sees. */
 const SERVICE_PROFILE_CONFIRM_MS = 8000;
+/* Asutuse kinnituse seisu ei küsita lehele naastes sagedamini kui kord selle aja jooksul. */
+const REPRESENTATION_REFRESH_MS = 15000;
 
 /**
  * Teenuseprofiil: teenuseosutaja avalik profiil, tema teenused ja teeninduskohad.
@@ -3982,6 +3989,35 @@ function ServiceProfileSurface({ t, locale }) {
   });
   /* Vorm sünnib profiilist, seega on „kas on salvestamata muudatusi" võrdlus sama funktsiooni väljundiga. */
   const dirty = useMemo(() => serviceProfileDirty(form, profile), [form, profile]);
+  /* Asutuse kinnituse seis vormi registrikoodi kohta: rida registrikoodi juures,
+     avaldamise vaade ja kontroll ütlevad seda enne salvestamist. */
+  const representation = useMemo(() => representationStatus(form, profile, { dirty }), [form, profile, dirty]);
+  /* Kinnitus võib tulla mujalt (lingiga teises aknas või haldurilt), kui see leht
+     on lahti. Lehele naastes loetakse seis uuesti; vormi see ei puutu. */
+  const awaitingRepresentation = representation.kind === "unconfirmed";
+  useEffect(() => {
+    if (!awaitingRepresentation) return undefined;
+    let cancelled = false;
+    let lastAsked = 0;
+    const refresh = async () => {
+      if (document.visibilityState !== "visible" || Date.now() - lastAsked < REPRESENTATION_REFRESH_MS) return;
+      lastAsked = Date.now();
+      try {
+        const response = await fetch("/api/service-provider/profile/representation", { cache: "no-store" });
+        const payload = await response.json().catch(() => ({}));
+        if (!cancelled && response.ok) setProfile((current) => withRepresentationState(current, payload?.state));
+      } catch {
+        /* Seis jääb, nagu oli: salvestamisel otsustab server. */
+      }
+    };
+    document.addEventListener("visibilitychange", refresh);
+    window.addEventListener("focus", refresh);
+    return () => {
+      cancelled = true;
+      document.removeEventListener("visibilitychange", refresh);
+      window.removeEventListener("focus", refresh);
+    };
+  }, [awaitingRepresentation]);
 
   /* Teenuse või koha avamisel ja sulgemisel ehitatakse lava uuesti ja vajutatud
      nupp kaob. Fookus läheb siis uue vaate pealkirjale, muidu jääks klaviatuuri
@@ -4153,7 +4189,18 @@ function ServiceProfileSurface({ t, locale }) {
     }
   }
 
-  const publish = serviceProfilePublishState(form);
+  const publish = serviceProfilePublishState(form, representation);
+  /* Seisu lause registrikoodi juures ja avaldamise vaates; link ainult siis, kui kinnitamise lehele saab kohe minna. */
+  const representationLine = representation.line
+    ? {
+        text: tp(representation.line.key, representation.line.fallback, {
+          date: representationDate(representation.confirmedAt, locale),
+          code: representation.code
+        }),
+        href: representation.step === "confirm" ? localizePath(REPRESENTATION_PATH, locale) : "",
+        warn: representation.blocksPublish
+      }
+    : null;
   const servicePlaces = realServiceLocations(form);
   const savedService = openedService ? (profile?.serviceItems || []).find((item) => item.id === openedService.id) || null : null;
   const licenceRow = openedService?.id ? licence.statuses.get(openedService.id) || null : null;
@@ -4174,12 +4221,12 @@ function ServiceProfileSurface({ t, locale }) {
       ? serviceViewStates(openedService, { savedAvailability: savedService?.availability || openedService.availability, licenceRow, areaUnread })
       : level === "location"
         ? locationViewStates(openedLocation)
-        : profileViewStates(form, mapEntry, areaChoices),
+        : profileViewStates(form, mapEntry, areaChoices, representation),
     summaries: level === "service"
       ? serviceViewSummaries(openedService, { options })
       : level === "location"
         ? locationViewSummaries(openedLocation)
-        : profileViewSummaries(form, mapEntry, { tp, options, areaChoices })
+        : profileViewSummaries(form, mapEntry, { tp, options, areaChoices, representation })
   });
 
   /* Salvestamine on iga vaate all servas samas kohas ja salvestab terve profiili. */
@@ -4370,6 +4417,8 @@ function ServiceProfileSurface({ t, locale }) {
         tp={tp}
         form={form}
         options={options}
+        statusOptions={statusChoices(options.status, form.status, representation, profile?.status)}
+        representation={representationLine}
         area={areaChoices}
         note={note}
         save={save}
@@ -4391,7 +4440,7 @@ function ServiceProfileSurface({ t, locale }) {
         }}
         check={{
           blocked: publish.blocking.length > 0,
-          rows: serviceProfilePublishChecks(form, mapEntry, areaChoices).map((row) => {
+          rows: serviceProfilePublishChecks(form, mapEntry, areaChoices, representation).map((row) => {
             /* Rida teenuse kohta (piirkond) viib selle teenuse vaatesse, muu rida profiili vaatesse. */
             const targetView = row.item?.view || row.view;
             return {
@@ -4402,10 +4451,13 @@ function ServiceProfileSurface({ t, locale }) {
               optional: Boolean(row.optional),
               text: tp(row.textKey, row.fallback),
               detail: row.detail || "",
-              /* Rida, mis ei ole korras, viib vaatesse, kus seda saab parandada. */
+              /* Rida, mis ei ole korras, viib vaatesse, kus seda saab parandada;
+                 kinnitamata asutuse rida viib kinnitamise lehele. */
               target: row.ok
                 ? null
-                : {
+                : row.href
+                  ? { name: tp("representation.open", "Asutuse kinnitamine"), href: localizePath(row.href, locale) }
+                  : {
                     name: tp(`views.${targetView}.short`, ""),
                     label: tp("views.go_to", "Ava vaade: {view}", { view: tp(`views.${targetView}.title`, "") }),
                     onClick: () => (row.item ? openItem(row.item.kind, row.item.index, row.item.view) : openView(row.view))
