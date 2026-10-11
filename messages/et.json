@@ -16391,6 +16391,46 @@
       "more_handovers": "Varasemaid teateid: {count}",
       "no_answer": "Uks ei avane",
       "write_entry": "Kirjuta kirje"
+    },
+    "entry_steps": {
+      "label": "Uus kirje",
+      "names": {
+        "kind": "Kirje liik",
+        "done": "Mida tegid",
+        "time": "Kestus ja aeg",
+        "text": "Mida nägid"
+      },
+      "short": {
+        "kind": "Liik",
+        "done": "Toimingud",
+        "time": "Aeg",
+        "text": "Tekst"
+      },
+      "kind_question": "Mis kirje see on?",
+      "contact_question": "Kuidas te kokku puutusite?",
+      "quick_call": "Märgi kõne",
+      "done_question": "Mida sa täna tegid?",
+      "detail": "Täpsusta",
+      "pick_action": "vali, mida tegid",
+      "nothing_to_mark": "Toiminguid märgitakse käigu kirjel. Mine edasi järgmise sammu juurde.",
+      "how_question": "Kuidas tehti?",
+      "medication_question": "Mida ravimiga tegid?",
+      "skip_question": "Jäi tegemata, sest",
+      "unmark": "Võta märge maha",
+      "to_list": "Tagasi loendisse",
+      "minutes_question": "Kui kaua käik kestis?",
+      "minutes_other": "Muu kestus minutites",
+      "change_edit": "Muuda",
+      "areas_done": "Valmis",
+      "summary_done": "tehtud {count}",
+      "summary_skipped": "tegemata {count}",
+      "fix": "Ava see samm",
+      "to_diary": "Ava päevik",
+      "back": "Tagasi kirje juurde",
+      "problems": {
+        "incident_type": "Vali esimeses sammus, mis juhtus.",
+        "text": "Kirjuta, mida nägid ja tegid: selle kirje saab salvestada ainult tekstiga."
+      }
     }
   },
   "stage": {

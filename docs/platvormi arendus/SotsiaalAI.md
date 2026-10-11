@@ -104,7 +104,7 @@ koduteenus vaatega „Täna” ja hooldusjuhil lauaga, laua plaatidel on kindel 
 tagasilingi eemaldamine (#706); hooldaja päev väikeste vaadetena (#709); kliendid,
 uus klient, „Kuhu suunata” ja oma nimi (#717). Avaleht on nüüd laud ja väikesed
 vaated; 22 alalehe sisu on veel vanal `hc-*` kihil (`app/styles/home-care.css`).
-**Kliendi lehe kuju (11.10 hilisõhtu, PR „the client page is a desk of parts”):**
+**Kliendi lehe kuju (11.10 hilisõhtu, #724, elus):**
 leht on osade laud ja avaneb kõigil vaatega „Ukse taga” (nimi, aadress, telefon,
 kaart „Enne kui lähed”, viimane teade järgmisele; all „Uks ei avane” ja „Kirjuta
 kirje”). Osi on 14 (ukse taga, uus kirje, päevik, hoolduskava, käigud, otsus ja
@@ -120,17 +120,41 @@ aknas, heledas ja tumedas teemas, eesti, inglise ja vene keeles: „Ukse taga”
 viie kuni 60 tähe pikkuse kaardirea, kahe teate ja tavalise aadressiga (telefonis
 844/844, arvutis 496/522); pikemate kaardiridadega kerib kogu paneel (kaardi read
 on alati täies pikkuses). Osade laud mahub 14 plaadiga (arvutis kuni 494/522).
-**Järgmine ühik** on kliendi lehe sisu: uus kirje sammudena ja päevik (koos seadmes
-ootavate kirjete kasti ja kõne märkimisega); siis igapäevased osad, hooldusjuhi osa
-ja kliendi alalehed, päevaplaan, tähtajad ja ülevaade, kuu ja väljavõtted, registrid,
-vana kihi eemaldamine.
+Elus kontroll #724 järel (omaniku seansiga ainult lugedes): värav ja paigaldus
+rohelised, uued sõnad kolme keele avalikus kataloogis, koduteenuse laud ja 17 teed
+vastavad; kliendi lehte elus ei avatud, uus kuju on nähtud ainult kohalikult.
+**Uus kirje sammudena (12.10 öö, PR „a new entry is four steps”):** kirje vorm oli
+üks pikk vorm (telefonis 1800 px). Nüüd on uus kirje neli sammu kiirmenüüs: kirje
+liik (ja kuidas kokku puututi), mida tegid (kava toimingud; vajutus märgib
+tehtuks, „Täpsusta” avab viisi, ravimitoimingu märke ja tegemata jäämise põhjuse),
+kestus ja aeg, mida nägid (küsimus „kas midagi oli teisiti”, tekst, dikteerimine,
+salvestamine). Tavaline käigu kirje avaneb toimingute sammuga (2/4). Pärast
+salvestamist on ees üks lause ja tee päevikusse. Vormi olek, mustand seadmes,
+kordussaatmise võti ja järjekord võrguta on tõstetud konksu
+`components/homeCare/entry/useEntryForm.js` (kood liikus sõna-sõnalt); sama konksu
+kasutab kirje paranduse vorm päevikus, mis on veel vanal kihil. Kõne märkimine ja
+„Peaaegu juhtus” on uue kirje alavaated (vana sisu). Mõõdetud kohalikult: telefonis
+mahuvad kõik sammud (844/844; et, en, ru), arvutis kuni 513/522 eesti keeles;
+üheksa pika nimega toiminguga loend kerib kogu paneeli (1203/844 ja 711/522), nagu
+pikk loend ikka. Arvutis ei mahtunud viimane samm esmalt ära (593/522): tekst on
+nüüd vasakul ning küsimus ja dikteerimine selle kõrval. Lahti: vene keeles on
+käigul tehtud erijuhtumi kirje toimingute samm arvutis 43 px üle paneeli (565/522).
+Päris salvestus on läbi tehtud kohalikus proovibaasis (kirje jõudis päevikusse
+toimingute ja kestusega; proovikirje on eemaldatud).
+**Vaadete teste ei ole:** unit-testid kustutati omaniku otsusega 11.10 öösel (#725,
+#726, reegel failis `AGENTS.md`), nende hulgas ümberehituse ajal tehtud laua,
+hooldaja päeva, klientide ja kliendi osade testid; uusi ei kirjutata. Tõend on
+brauseris mõõtmine ja läbivajutamine, päringute võrdlus, lint ja kataloogi kontroll.
+**Järgmine ühik** on päevik (kirjed ridadena, avatud kirje, parandus ja tühistamine,
+otsing; koos seadmes ootavate kirjete kasti, kõne märkimise ja „Peaaegu juhtus”
+vaatega); siis igapäevased osad, hooldusjuhi osa ja kliendi alalehed, päevaplaan,
+tähtajad ja ülevaade, kuu ja väljavõtted, registrid, vana kihi eemaldamine.
 Päringud, `app/api/**` ja `lib/**` jäävad puutumata (ainus erand oli infotekstide
 fail). Mõõtmine muutis kavandit kahes kohas: viis täispikka käigurida ei mahtunud
 pika päevaga ekraanile (järgmine käik on täies pikkuses, kolm järgmist ühel real)
 ja laua rühmas on kuni kuus plaati. Vaadet „Täna” ei ole elus nähtud: omaniku
 kontol ei ole oma käike; kohalikult on see mõõdetud hooldaja kontoga. Reeglid on
-puhastes failides `components/homeCare/{desk,day,clients,client}/`, testid
-`tests/home-care-{desk,my-day,clients-view,client-parts,info}.test.mjs`. Mõõdud, lõksud,
+puhastes failides `components/homeCare/{desk,day,clients,client,entry}/`. Mõõdud, lõksud,
 kohaliku eelvaate retsept ja ühikute järjekord on mälumärkmes
 `koduteenus-views-mockup` ja seansside ühises märkmes
 `side-session-notes/local_b3b842f1-182e-48a3-bcc3-6878e50813a2/koduteenus-vaadete-kavand.md`.

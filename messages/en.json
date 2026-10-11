@@ -16391,6 +16391,46 @@
       "more_handovers": "Earlier notes: {count}",
       "no_answer": "Door does not open",
       "write_entry": "Write an entry"
+    },
+    "entry_steps": {
+      "label": "New entry",
+      "names": {
+        "kind": "Kind of entry",
+        "done": "What you did",
+        "time": "Length and time",
+        "text": "What you saw"
+      },
+      "short": {
+        "kind": "Kind",
+        "done": "Activities",
+        "time": "Time",
+        "text": "Text"
+      },
+      "kind_question": "What kind of entry is this?",
+      "contact_question": "How were you in contact?",
+      "quick_call": "Note a call",
+      "done_question": "What did you do today?",
+      "detail": "Details",
+      "pick_action": "choose what you did",
+      "nothing_to_mark": "Activities are marked on a visit entry. Go on to the next step.",
+      "how_question": "How was it done?",
+      "medication_question": "What did you do with the medicine?",
+      "skip_question": "Was not done because",
+      "unmark": "Remove the mark",
+      "to_list": "Back to the list",
+      "minutes_question": "How long did the visit last?",
+      "minutes_other": "Another length in minutes",
+      "change_edit": "Change",
+      "areas_done": "Done",
+      "summary_done": "done {count}",
+      "summary_skipped": "not done {count}",
+      "fix": "Open that step",
+      "to_diary": "Open the diary",
+      "back": "Back to the entry",
+      "problems": {
+        "incident_type": "Choose in the first step what happened.",
+        "text": "Write what you saw and did: this entry can be saved only with a text."
+      }
     }
   },
   "stage": {

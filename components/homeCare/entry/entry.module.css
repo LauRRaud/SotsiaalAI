@@ -1,0 +1,117 @@
+/* Uue kirje sammud ja dikteerimine.
+   Read, märgid, väljad ja laused on organisatsioonide lehtede ühised
+   (../../org/org.module.css); siin on ainult see, mis on kirje vaadetel oma. */
+
+/* Sõna, mis on tegevus (tühjenda mustand, muuda vastust). */
+.textButton {
+  composes: textButton from "../client/client.module.css";
+}
+
+/* Sama sõna omaette real (lisa muu toiming): puutesiht ei tohi naaberrea peale ulatuda. */
+.wordButton {
+  min-height: var(--hit-target-min, 2.75rem);
+  padding: 0 0.15rem;
+  border: 0;
+  background: none;
+  color: var(--text-warm);
+  font: inherit;
+  font-size: var(--fs-small, 0.875rem);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+.wordButton:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* Toimingu rida: nimi ja selle all, kuidas tehti või miks jäi tegemata. */
+.activity {
+  composes: visit from "../day/day.module.css";
+}
+/* Kaks klassi: rea enda joondus (teisest failist) ei tohi võita. Märgitud rida
+   on tugevama raamiga (sama keel mis valitud lahtril). */
+.activity.activity {
+  align-items: center;
+}
+.activity[data-state="skipped"] {
+  border-color: color-mix(in srgb, var(--text-warm) 34%, transparent);
+}
+.main {
+  composes: main from "../day/day.module.css";
+}
+.sub {
+  composes: sub from "../day/day.module.css";
+}
+/* Valik on veel tegemata (põhjus või ravimitoimingu märge): rida ütleb seda selgelt. */
+.sub[data-wait="1"] {
+  color: var(--text-warm);
+  font-weight: 560;
+}
+
+/* Kestus: kiirvalik ja selle all väli muu arvu jaoks. */
+.minutes {
+  min-width: 0;
+  display: grid;
+  gap: 0.2rem;
+}
+/* Kuupäeva ja kellaaja väli on nii lai kui selle sisu. */
+.when {
+  max-width: 18rem;
+}
+
+/* Kaks osa: telefonis üksteise all, laiemal pinnal kõrvuti (erijuhtumi lisa valikute või toimingute kõrval). */
+.sides {
+  min-width: 0;
+  display: grid;
+  gap: 0.65rem 1.4rem;
+}
+.sides > * {
+  min-width: 0;
+}
+
+/* Viimane samm: küsimus, tekst, dikteerimine ja erijuhtumi hinnang. */
+.write {
+  min-width: 0;
+  display: grid;
+  gap: 0.5rem 1.4rem;
+}
+.write > * {
+  min-width: 0;
+}
+
+@container (min-width: 34rem) {
+  /* Laiemal pinnal on tekst vasakul ning küsimus ja dikteerimine selle kõrval:
+     paneel on lai ja madal. */
+  .write {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    align-items: start;
+  }
+  .write > [data-area="text"] {
+    grid-column: 1;
+    grid-row: 1 / span 3;
+  }
+  .write > [data-area="change"],
+  .write > [data-area="dictation"],
+  .write > [data-area="assessment"] {
+    grid-column: 2;
+  }
+  .sides[data-side="1"] {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+/* --- Dikteerimine -------------------------------------------------------------- */
+.dictation {
+  min-width: 0;
+  display: grid;
+  gap: 0.3rem;
+}
+.dictationRow {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
