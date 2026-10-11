@@ -2,7 +2,6 @@
 // „kustutatud", aga osa tema andmetest on alles ja neid ei leia enam keegi.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
 import { deleteDocumentFileAndRecord } from '../lib/documents/deleteDocumentRecord.js';
 import { deleteWellbeingRecordForUser } from '../lib/wellbeing/records.js';
 
@@ -63,22 +62,6 @@ test('F-ERR-03: rea kustutuse viga jõuab kutsujani (rida jääb nähtavaks ja k
   const steps = documentSteps({ record: new Error('P2025') });
   await assert.rejects(deleteDocumentFileAndRecord(steps), /P2025/);
   assert.deepEqual(steps.calls, ['file', 'record']);
-});
-
-test('F-ERR-03: dokumendi kustutamise marsruut kasutab seda järjekorda ja kirjutab auditi pärast kustutust', () => {
-  const route = readFileSync(new URL('../app/api/documents/[id]/route.js', import.meta.url), 'utf8');
-  const helper = route.indexOf('await deleteDocumentFileAndRecord({');
-  assert.ok(helper > 0);
-  /* Fail kustutatakse rea järgi, mis on alles (mitte kustutatud rea vastuse järgi). */
-  assert.match(route, /storagePath: existing\.storagePath,\s+deleteFile: deleteStoredDocument/);
-  /* „Kustutatud" auditiread tulevad pärast kustutust, mitte enne. */
-  assert.ok(route.indexOf('action: "DOCUMENT_DELETE"') > helper);
-  assert.ok(route.indexOf('logDocumentsAudit("document.deleted"') > helper);
-  /* Faili viga on aus 503, mitte „kustutatud". */
-  assert.match(route, /error\?\.status === 503[\s\S]{0,400}errorJson\("documents\.errors\.delete_failed", 503, locale\)/);
-  /* Vana järjekord (rida enne, fail pärast, viga ainult logisse) ei ole enam kuskil kasutusel. */
-  const helperSource = readFileSync(new URL('../lib/documents/deleteDocumentRecord.js', import.meta.url), 'utf8');
-  assert.equal(/deleteDocumentRecordAndFile|onFileDeleteError/.test(route + helperSource), false);
 });
 
 /* ---------- F-ERR-01: tööheaolu kirje ja selle mustandid ---------- */

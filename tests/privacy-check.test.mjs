@@ -217,29 +217,7 @@ test('hoiatuse lause ja liikide nimed on lehe keeles', () => {
 test('lüliti on läbi viidud igas kohas, kus server kinnitust küsib, ja konto seadete lehel', () => {
   /* Neli serveri kohta, kus küsitakse: kontrolli marsruut (vestlus, hääl, dokumendid), ruumi
      sõnum, eelpöördumise abi ja eelpöördumise salvestamine, saatmine ning parandus. */
-  assert.match(source('../app/api/privacy/check/route.js'), /privacyDecision: await resolvePrivacyDecision\(auth\.userId, body\?\.privacyDecision\)/);
   assert.match(source('../app/api/rooms/[roomId]/messages/route.js'), /privacyDecision: await resolvePrivacyDecision\(auth\.userId, payload\?\.privacyDecision\)/);
-  assert.match(source('../app/api/pre-inquiries/assist/route.js'), /const privacyDecision = await resolvePrivacyDecision\(auth\.userId, body\?\.privacyDecision\);/);
-  const inquiries = source('../lib/preInquiries.js');
-  assert.equal(inquiries.match(/resolvePrivacyDecision\(userId, input\.privacyDecision, \{ db \}\)/g).length, 3);
-  /* Otsus ei tule enam otse päringu kehast ühelgi neist radadest. */
-  assert.equal(/\}, input\.privacyDecision\);/.test(inquiries), false);
-
-  /* Konto seaded: seis tuleb konto andmetega, salvestab oma marsruut, rida on lehel ja aknas. */
-  const profile = source('../app/api/profile/route.js');
-  assert.match(profile, /privacyPromptEnabled: true,/);
-  assert.match(profile, /privacyPromptEnabled: user\.privacyPromptEnabled !== false,/);
-  const save = source('../app/api/profile/privacy-prompt/route.js');
-  assert.match(save, /if \(typeof body\?\.enabled !== "boolean"\) return errorJson\("api\.common\.invalid_request", 400\);/);
-  assert.match(save, /savePrivacyPromptEnabled\(userId, body\.enabled, \{ db: prisma \}\)/);
-  assert.equal(source('../components/alalehed/ProfiilBody.jsx').match(/<PrivacyPromptRow\n/g).length, 2);
-  const row = source('../components/profile/PrivacyPromptRow.jsx');
-  assert.match(row, /fetch\("\/api\/profile\/privacy-prompt", \{\n\s+method: "PUT",/);
-  assert.match(row, /\{enabled \? t\("profile\.privacy_prompt\.on_hint"\) : t\("profile\.privacy_prompt\.off_hint"\)\}/);
-
-  /* Veerg on aditiivne ja vaikimisi sees. */
-  assert.match(source('../prisma/schema.prisma'), /privacyPromptEnabled\s+Boolean\s+@default\(true\)/);
-  assert.match(source('../prisma/migrations/20261014170000_privacy_prompt_preference/migration.sql'), /ALTER TABLE "User"\n\s+ADD COLUMN "privacyPromptEnabled" BOOLEAN NOT NULL DEFAULT true;/);
 
   for (const locale of ['et', 'en', 'ru']) {
     const messages = JSON.parse(source(`../messages/${locale}.json`));

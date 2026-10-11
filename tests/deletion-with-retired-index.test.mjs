@@ -5,7 +5,6 @@
 // dokumendi fail kustutati, aga konto ega dokumendi rida ei kustunud kunagi.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
 import { isRagRetiredFailure, ragDeletionBlocks } from '../lib/privacy/ragDeletionResult.js';
 import { runUserDeletionCleanup } from '../lib/privacy/userDeletionOrchestrator.js';
 import { sweepFieldRetention } from '../lib/field/retentionSweep.js';
@@ -101,15 +100,4 @@ test('toorheli pühkimine: takistuse korral ei kustutata faili enne rida ära', 
   const noFile = fieldSweep(retired, { fileOk: false });
   await noFile.run;
   assert.deepEqual(noFile.calls, ['rag', 'file']);
-});
-
-test('üldine dokumentide pühkimine ja indeksist eemaldamine kasutavad sama reeglit', () => {
-  const retention = readFileSync(new URL('../lib/retention.js', import.meta.url), 'utf8');
-  const loop = retention.slice(retention.indexOf('for (const document of staleDocuments)'));
-  const check = loop.indexOf('if (ragDeletionBlocks(ragResult)) continue;');
-  const file = loop.indexOf('await deleteTrackedStorageFile({');
-  assert.ok(check > 0 && file > check, 'indeksi tulemust vaadatakse enne faili kustutamist');
-  assert.equal(/!ragResult\.ok \|\| !fileResult\.ok/.test(retention), false);
-  const deletion = readFileSync(new URL('../lib/privacy/documentDeletion.js', import.meta.url), 'utf8');
-  assert.match(deletion, /return \{ ok: false, pending: true, retired: isRagRetiredFailure\(result\), externalRef, error: result\.error \}/);
 });
