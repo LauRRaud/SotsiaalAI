@@ -47,13 +47,14 @@ export default function OrgInboxItemClient({ context, item, members, canAssign }
   const assignment = item.assignment || null;
 
   const refresh = useCallback(() => router.refresh(), [router]);
-  /* Töötaja, kes töö ära andis või tagasi lükkas ega ole ise määraja, ei näe
+  /* Töötaja, kes töö ära andis või tagasi lükkas ega ole selle kirje koordinaator, ei näe
      kirjet enam (server vastab talle nagu olematule): tema jaoks avaneb loend,
-     mitte „lehte ei leitud". Määraja jääb kirje juurde. */
+     mitte „lehte ei leitud". Koordinaator jääb kirje juurde. Töö määramise õigus üksi
+     kirjet ei ava, seega otsustab serveri öeldud `isCoordinator`, mitte `canAssign`. */
   const leaveOrRefresh = useCallback(() => {
-    if (canAssign) router.refresh();
+    if (item.isCoordinator) router.refresh();
     else router.push(`/org/${organizationId}/vastuvott`);
-  }, [canAssign, organizationId, router]);
+  }, [item.isCoordinator, organizationId, router]);
 
   const assign = useCallback(async () => {
     if (!assigneeId) return;

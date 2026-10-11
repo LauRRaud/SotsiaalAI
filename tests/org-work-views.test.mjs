@@ -96,25 +96,95 @@ test('avatud pöördumise read ja saatja kinnitatud pakett: tühja osa ega kriip
   assert.deepEqual(sourceParts({}, { t }), []);
 });
 
+/* Kirje igas seisus, nagu server selle lehele annab: vastutajata seisudel elavat määramist ei
+   ole, „määratud” kirjel ootab määramine vastust, „vastu võetud” kirjel on see vastu võetud.
+   Vastutaja on alati m2. */
+const LIVE_ASSIGNMENT = { ASSIGNED: 'PENDING', ACCEPTED: 'ACCEPTED' };
+const staged = (status, over = {}) =>
+  item({ status, assignment: LIVE_ASSIGNMENT[status] ? { id: 'a1', membershipId: 'm2', status: LIVE_ASSIGNMENT[status] } : null, ...over });
+/* Kes kirjet vaatab. Server näitab kirjet ainult koordinaatorile ja elava töö vastutajale
+   (`getInboxItem`), seega muid vaatajaid lehel ei ole; `isCoordinator` tuleb kirje küljes
+   serverist, `canAssign` arvutab leht töö määramise õigusest. */
+const VIEWERS = [
+  { name: 'koordinaator ja määraja', isCoordinator: true, canAssign: true, me: 'm1' },
+  { name: 'ainult koordinaator', isCoordinator: true, canAssign: false, me: 'm1' },
+  { name: 'koordinaator ja määraja, ise vastutaja', isCoordinator: true, canAssign: true, me: 'm2' },
+  { name: 'määraja, ise vastutaja', isCoordinator: false, canAssign: true, me: 'm2' },
+  { name: 'vastutaja', isCoordinator: false, canAssign: false, me: 'm2' }
+];
+const offered = (status, viewer, over = {}) => {
+  const actions = workActions(staged(status, { isCoordinator: viewer.isCoordinator, ...over }), { context: context({ membership: { id: viewer.me } }), canAssign: viewer.canAssign });
+  return Object.keys(actions).filter((key) => actions[key]).join(' ');
+};
+/* Veerud on `VIEWERS` järjekorras; `null` = see inimene seda kirjet ei näe (ta ei ole
+   koordinaator ja elavat tööd tal ei ole). Sama tabeli serveri pool, kus iga pakutud tegevus
+   ka päriselt tehakse: tests/org-inbox-manual-status.test.mjs. */
+const EXPECTED_ACTIONS = {
+  RECEIVED: ['assign', '', 'assign', null, null],
+  REVIEWING: ['assign', '', 'assign', null, null],
+  ASSIGNMENT_PENDING: ['assign', '', 'assign', null, null],
+  ASSIGNED: ['handOver close', 'close', 'respond handOver close', 'respond handOver', 'respond handOver'],
+  ACCEPTED: ['handOver close', 'close', 'handOver close', 'handOver', 'handOver'],
+  CLOSED: ['', '', '', null, null],
+  REJECTED: ['', '', '', null, null],
+  RECALLED: ['', '', '', null, null]
+};
+
+test('töö tegevused iga seisu ja rolli kohta: leht pakub ainult seda, mida server selles seisus lubab', () => {
+  assert.deepEqual(Object.keys(EXPECTED_ACTIONS), Object.values(OrganizationInboxStatus), 'tabelis on iga seis');
+  for (const status of Object.values(OrganizationInboxStatus)) {
+    VIEWERS.forEach((viewer, index) => {
+      const expected = EXPECTED_ACTIONS[status][index];
+      if (expected === null) return;
+      assert.equal(offered(status, viewer), expected, `${status}, ${viewer.name}`);
+    });
+  }
+});
+
+test('töö tegevused: kolm juhtu, kus leht pakkus tegevust, millest server keeldus', () => {
+  const [both, coordinatorOnly, , assignerAssignee] = VIEWERS;
+  /* 1. Vastutajata kirjel sulgemist ei ole: server lubab „suletud” ainult kirjel, millel on
+        vastutaja. Nii on see ka pärast seda, kui töötaja töö tagasi lükkas. */
+  for (const status of ['RECEIVED', 'REVIEWING', 'ASSIGNMENT_PENDING']) {
+    for (const viewer of [both, coordinatorOnly]) assert.ok(!offered(status, viewer).includes('close'), `${status}, ${viewer.name}`);
+  }
+  /* 2. Lõpetatud kirjel ei ole ühtegi tegevust ja töö vaadet ei ole. */
+  for (const status of ['CLOSED', 'REJECTED', 'RECALLED']) {
+    const actions = workActions(staged(status, { isCoordinator: true }), { context: context({ membership: { id: 'm1' } }), canAssign: true });
+    assert.equal(hasWork(actions), false, status);
+    assert.deepEqual(itemTabs(actions), ['package'], status);
+  }
+  /* 3. Sulgemine käib koordinaatori, mitte töö määraja õigusega. */
+  for (const status of ['ASSIGNED', 'ACCEPTED']) {
+    assert.ok(!offered(status, assignerAssignee).includes('close'), `${status}: määraja, kes ei ole koordinaator`);
+    assert.ok(offered(status, coordinatorOnly).includes('close'), `${status}: koordinaator, kes ei ole määraja`);
+  }
+});
+
 test('töö tegevused: kes mida teha saab', () => {
-  /* Määraja ja vastutajata kirje: määramine ja sulgemine. */
-  assert.deepEqual(workActions(item(), { context: context({ membership: { id: 'm1' } }), canAssign: true }), { assign: true, respond: false, handOver: false, close: true });
+  /* Koordinaator, kes on ka määraja, ja vastutajata kirje: määramine. */
+  assert.deepEqual(workActions(staged('RECEIVED', { isCoordinator: true }), { context: context({ membership: { id: 'm1' } }), canAssign: true }), { assign: true, respond: false, handOver: false, close: false });
   /* Määratud töötaja, kes ei ole määraja: vastamine ja üleandmine, sulgemist ei ole. */
-  const pending = item({ assignment: { id: 'a1', membershipId: 'm2', status: 'PENDING' } });
+  const pending = staged('ASSIGNED');
   assert.deepEqual(workActions(pending, { context: context(), canAssign: false }), { assign: false, respond: true, handOver: true, close: false });
   /* Juht ei saa töötaja eest vastutust võtta. */
-  assert.equal(workActions(pending, { context: context({ membership: { id: 'm1' } }), canAssign: true }).respond, false);
+  assert.equal(workActions({ ...pending, isCoordinator: true }, { context: context({ membership: { id: 'm1' } }), canAssign: true }).respond, false);
   /* Vastu võetud töö: vastamist enam ei ole, üle anda saab. */
-  const accepted = item({ assignment: { id: 'a1', membershipId: 'm2', status: 'ACCEPTED' } });
-  assert.deepEqual(workActions(accepted, { context: context(), canAssign: false }), { assign: false, respond: false, handOver: true, close: false });
+  assert.deepEqual(workActions(staged('ACCEPTED'), { context: context(), canAssign: false }), { assign: false, respond: false, handOver: true, close: false });
   /* Kõrvaline liige: mitte midagi. */
   const outsider = workActions(pending, { context: context({ membership: { id: 'm9' } }), canAssign: false });
   assert.equal(hasWork(outsider), false);
   assert.deepEqual(itemTabs(outsider), ['package']);
-  assert.deepEqual(itemTabs(workActions(item(), { context: context(), canAssign: true })), ['package', 'work']);
+  assert.deepEqual(itemTabs(workActions(staged('RECEIVED', { isCoordinator: true }), { context: context(), canAssign: true })), ['package', 'work']);
   /* Tagasi võetud pöördumine ja kirjutuskaitstud organisatsioon: tööd teha ei saa. */
-  assert.equal(hasWork(workActions(item({ sourceWithheldReason: 'RECALLED' }), { context: context(), canAssign: true })), false);
-  assert.equal(hasWork(workActions(pending, { context: context({ writable: false }), canAssign: true })), false);
+  assert.equal(hasWork(workActions(staged('RECEIVED', { isCoordinator: true, sourceWithheldReason: 'RECALLED' }), { context: context(), canAssign: true })), false);
+  assert.equal(hasWork(workActions({ ...pending, isCoordinator: true }, { context: context({ writable: false }), canAssign: true })), false);
+  /* Seisuta kirje (leht ei saanud serverilt seisu): tegevusi ei pakuta. */
+  assert.equal(hasWork(workActions({ id: 'i1', isCoordinator: true, assignment: null }, { context: context(), canAssign: true })), false);
+  /* Enne üleandmise parandust üle antud rida („vastu võetud” kirje, vastust ootav määramine):
+     uus vastutaja saab vastata ja koordinaator sulgeda, nagu server lubab. */
+  const handedOver = staged('ACCEPTED', { isCoordinator: true, assignment: { id: 'a2', membershipId: 'm2', status: 'PENDING' } });
+  assert.deepEqual(workActions(handedOver, { context: context(), canAssign: true }), { assign: false, respond: true, handOver: true, close: true });
 });
 
 test('tekstid on kolmes keeles olemas ja uutes sõnades ei ole mõttekriipsu ega sirgeid jutumärke', () => {

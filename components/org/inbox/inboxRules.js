@@ -14,6 +14,8 @@
  * Test: `tests/org-work-views.test.mjs`.
  */
 
+import { OrganizationInboxStatus, canTransitionInboxStatus, isTerminalInboxStatus } from "@/lib/org/constants";
+
 import { stampOf } from "../orgRules.js";
 
 function text(value) {
@@ -110,26 +112,34 @@ export function sourceParts(item, { t }) {
 }
 
 /**
- * Mis töö tegevused on võimalikud.
- *  - määrata saab see, kellel on töö määramise õigus, ja ainult vastutajata kirjet;
+ * Mis töö tegevused on võimalikud. LEHT PAKUB AINULT SEDA, MIDA SERVER SELLES SEISUS LUBAB:
+ * nupp, mille vajutus saab keeldumise, on lubadus, mida ei ole.
+ *  - määrata saab see, kellel on töö määramise õigus, ja ainult vastutajata kirjet, mille
+ *    seisust viib siire „määratuks" (`assignWork`);
  *  - vastu võtta või tagasi lükata saab AINULT määratud inimene ise (juht ei saa
  *    töötaja eest vastutust võtta) ja ainult vastust ootavat määramist;
  *  - üle anda saab määraja või vastutaja ise;
- *  - sulgeda saab töö määraja.
- * Kirjutuskaitstud organisatsioonis ja tagasi võetud pöördumisel ei ole ühtegi:
- * tühi vorm annaks lubaduse, mida server niikuinii tagasi lükkab.
+ *  - sulgeda saab KOORDINAATOR, mitte töö määraja (`transitionInboxItem`), ja ainult kirjet,
+ *    mille seisust viib siire „suletuks": täna kirjet, millel on vastutaja. Kas inimene on
+ *    selle kirje koordinaator, ütleb server kirje küljes (`item.isCoordinator`).
+ * Seisud küsitakse samalt seisutabelilt, millelt server (`lib/org/constants.js`), mitte
+ * siinsest teisest loendist. Lõpetatud kirjel (suletud, tagasi lükatud, saatja tagasi võetud),
+ * kirjutuskaitstud organisatsioonis ja tagasi võetud pöördumisel ei ole ühtegi tegevust.
+ * Serveri pool, kus iga pakutud tegevus ka päriselt tehakse:
+ * `tests/org-inbox-manual-status.test.mjs`.
  */
 export function workActions(item, { context, canAssign = false } = {}) {
   const writable = context?.writable !== false;
   const withheld = Boolean(item?.sourceWithheldReason);
+  const status = item?.status || "";
   const assignment = item?.assignment || null;
   const mine = Boolean(assignment) && assignment.membershipId === context?.membership?.id;
-  const open = writable && !withheld;
+  const open = writable && !withheld && !isTerminalInboxStatus(status);
   return {
-    assign: open && Boolean(canAssign) && !assignment,
+    assign: open && Boolean(canAssign) && !assignment && canTransitionInboxStatus(status, OrganizationInboxStatus.ASSIGNED),
     respond: open && mine && assignment?.status === "PENDING",
     handOver: open && Boolean(assignment) && (Boolean(canAssign) || mine),
-    close: open && Boolean(canAssign)
+    close: open && Boolean(item?.isCoordinator) && canTransitionInboxStatus(status, OrganizationInboxStatus.CLOSED)
   };
 }
 
