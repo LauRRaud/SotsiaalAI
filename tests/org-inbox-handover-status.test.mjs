@@ -272,10 +272,11 @@ test('üleandmise siire on omaette reegel: seisutabel ja selle kaks väravat jä
   /* Tabelisse siiret ei lisatud: muidu avaneks see ka kahele väravale allpool. */
   assert.equal(canTransitionInboxStatus('ACCEPTED', 'ASSIGNED'), false);
 
-  /* Koordinaator ei saa vastu võetud tööd käsitsi „määratuks” kirjutada. */
+  /* Koordinaator ei saa vastu võetud tööd käsitsi „määratuks” kirjutada. „Määratud” ei ole
+     käsitsi valitav ühestki seisust (tests/org-inbox-manual-status.test.mjs). */
   const manual = makeDb();
   await assignedAndAccepted(manual.db);
-  await conflict(transitionInboxItem(coordinator(), 'i1', { toStatus: 'ASSIGNED' }, { db: manual.db, now: LATER, releaseFromCalls: noCalls }), 'org.errors.invalid_inbox_transition');
+  await conflict(transitionInboxItem(coordinator(), 'i1', { toStatus: 'ASSIGNED' }, { db: manual.db, now: LATER, releaseFromCalls: noCalls }), 'org.errors.inbox_status_follows_assignment');
   assert.equal(manual.state.item.status, 'ACCEPTED');
 
   /* Vastutajata „vastu võetud” kirjet ei saa otse uuesti määrata (SOL-ORG-08). */

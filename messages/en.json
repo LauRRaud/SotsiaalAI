@@ -12411,6 +12411,7 @@
       "inbox_item_terminal": "This inquiry is finished or the sender recalled it. No further work is possible on it.",
       "inbox_recall_is_sender_right": "Recall is the sender's right.",
       "invalid_inbox_transition": "That status change is not allowed.",
+      "inbox_status_follows_assignment": "The statuses “Assigned” and “Accepted” come from assigning the work and from the worker's answer. They cannot be chosen by hand.",
       "inbox_transition_failed": "Changing the status failed.",
       "work_already_assigned": "This work already has a responsible person.",
       "work_assignment_not_found": "Assignment not found.",
