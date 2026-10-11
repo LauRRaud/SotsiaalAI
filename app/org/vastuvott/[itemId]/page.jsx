@@ -4,7 +4,7 @@ import { notFound, redirect } from "next/navigation";
 import prisma from "@/lib/prisma";
 import { resolveOrgAccessContext } from "@/lib/org/accessContext";
 import { isOrgInboxEnabled } from "@/lib/org/flags";
-import { getInboxItem } from "@/lib/org/inbox";
+import { getInboxItem, hadWorkOnInboxItem } from "@/lib/org/inbox";
 
 import { requireOrgSession } from "../../_serverContext";
 
@@ -26,7 +26,8 @@ export const metadata = {
  *
  * Siin lahendatakse organisatsioon alles PÄRAST õiguskontrolli ja siis
  * suunatakse päris vaatesse. Kes kirjet näha ei tohi, saab 404 — sama vastuse
- * kui olematu kirje puhul.
+ * kui olematu kirje puhul. Erand on endine vastutaja, kes jõuab asutuse
+ * vastuvõtulauale (vt lõpust).
  */
 export default async function OrgInboxItemRedirectPage({ params }) {
   noStore();
@@ -59,11 +60,18 @@ export default async function OrgInboxItemRedirectPage({ params }) {
   /* Sama värav kui päris vaates: `getInboxItem` viskab 404, kui vaataja ei ole
      koordinaator ega määratud töötaja. Kontrollime SIIN, et suunamine ise ei
      muutuks olemasolu-oraakliks. */
+  let visible = true;
   try {
     await getInboxItem(context, item.id);
   } catch {
-    notFound();
+    visible = false;
   }
+  if (visible) redirect(`/org/${item.organizationId}/vastuvott/${item.id}`);
 
-  redirect(`/org/${item.organizationId}/vastuvott/${item.id}`);
+  /* Endine vastutaja: töö võeti tagasi või anti teisele ja teade „töö ei ole enam sinu
+     vastutusel" viib siia. Kirjet ta enam ei ava, aga „lehte ei leitud" oleks tema jaoks
+     vale vastus: ta jõuab asutuse vastuvõtulauale, kus on tema ülejäänud töö. Kõik teised
+     saavad endiselt 404. */
+  if (await hadWorkOnInboxItem(context, item.id)) redirect(`/org/${item.organizationId}/vastuvott`);
+  notFound();
 }

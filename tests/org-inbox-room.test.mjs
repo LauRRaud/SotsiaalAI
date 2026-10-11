@@ -601,8 +601,12 @@ test('tagasilükkamine enne töö vastuvõtmist saadab sama teavituse; üleandmi
   await close(moved.db, callHooks().hooks, 'ASSIGNMENT_PENDING');
   assert.equal(moved.state.item.status, 'ASSIGNMENT_PENDING');
   assert.equal(closedNotices(moved.state).length, 0);
-  /* Üleandmise enda neutraalne teade on alles ja teist liiki. */
-  assert.deepEqual(moved.state.notifications.map((row) => row.type), ['PRE_INQUIRY_STATUS_CHANGED']);
+  /* Üleandmise ja tagasivõtmise enda neutraalsed teated on alles ja teist liiki
+     (tests/org-inbox-manual-status.test.mjs). */
+  assert.deepEqual(moved.state.notifications.map((row) => row.dedupeKey), [
+    `PRE_INQUIRY_STATUS_CHANGED:p1:poorduja:handover:${next.id}`,
+    `PRE_INQUIRY_STATUS_CHANGED:p1:poorduja:takeback:${next.id}`
+  ]);
 });
 
 test('teavituse tõrge ei keera sulgemist tagasi; tagasi võetud pöördumine ja sulgeja ise teavitust ei saa', async () => {

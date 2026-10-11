@@ -10,6 +10,9 @@
 // vastusest; „ootab määramist" tähendab käsitsi „võtan töö töötajalt tagasi" ja lõpetab elava
 // määramise samas tehingus.
 //
+// Töö tagasivõtmisel ja teise inimese tehtud üleandmisel saab senine vastutaja teate, et töö ei
+// ole enam tema vastutusel; tagasivõtmisel saab pöörduja sama neutraalse teate mis üleandmisel.
+//
 // Andmebaasi asemel on mälus hoitav kaksik, mis vastab ainult neile päringutele, mida need
 // rajad teevad. Päris andmebaasiga käib sama lugu failis
 // tests/org-inbox-manual-status.integration.test.mjs.
@@ -18,9 +21,10 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { workActions } from '../components/org/inbox/inboxRules.js';
 import { serverT } from '../lib/i18n/serverMessages.js';
+import { assertNotificationRecipient, createNotificationEvent, serializeNotificationEvent } from '../lib/notifications.js';
 import { WorkspaceContextKind, hasCapability } from '../lib/org/accessContext.js';
 import { INBOX_STATUS_TRANSITIONS, OrganizationInboxStatus, inboxStatusFollowsAssignment } from '../lib/org/constants.js';
-import { assignWork, getInboxItem, handOverWork, respondToAssignment, transitionInboxItem } from '../lib/org/inbox.js';
+import { assignWork, getInboxItem, hadWorkOnInboxItem, handOverWork, respondToAssignment, transitionInboxItem } from '../lib/org/inbox.js';
 import { ROOM_WRITE, resolveRoomAccess } from '../lib/rooms/accessGuard.js';
 import { ensureRoomForPreInquiry } from '../lib/rooms/preInquiryRoom.js';
 
@@ -54,7 +58,7 @@ function makeDb() {
   const state = {
     inquiry: {
       id: 'p1',
-      authorId: 'pöörduja',
+      authorId: 'poorduja',
       recipientOwnerId: null,
       recipientOrganizationId: ORG,
       recipientType: 'ORGANIZATION_INBOX',
@@ -69,16 +73,32 @@ function makeDb() {
     },
     organization: { id: ORG, status: 'ACTIVE', modules: [{ moduleKey: 'KOV_INTAKE', status: 'ACTIVE' }] },
     item: { id: 'i1', organizationId: ORG, unitId: null, sourceType: 'PRE_INQUIRY', sourceId: 'p1', status: 'RECEIVED', receivedAt: SENT, lastTransitionAt: SENT, closedAt: null, closedReason: null, urgencyDeclaredBySender: null },
-    memberships: ['koordinaator', 'mari', 'jüri'].map((userId) => ({ id: `m-${userId}`, organizationId: ORG, userId, status: 'ACTIVE' })),
+    memberships: ['koordinaator', 'mari', 'jyri'].map((userId) => ({ id: `m-${userId}`, organizationId: ORG, userId, status: 'ACTIVE' })),
     assignments: [],
     rooms: [],
     roomMembers: [],
-    audits: []
+    audits: [],
+    notifications: [],
+    notifyFails: false
   };
 
   const membership = (membershipId) => state.memberships.find((row) => row.id === membershipId) || null;
   const withAssignee = (row) => ({ ...row, assignee: membership(row.assigneeMembershipId) });
   const assignmentsOf = (rule) => state.assignments.filter((row) => matches(row.status, rule)).map(withAssignee);
+  /* Määramise päringud: töö rajad küsivad tunnuse ja asutuse järgi, teavituste
+     adressaadikontroll kirje, seisu ja vastutaja järgi (ka „sellel kirjel ei ole tal elavat
+     määramist"). */
+  const assignmentMatches = (row, where) => {
+    const assignee = membership(row.assigneeMembershipId);
+    for (const key of ['id', 'inboxItemId', 'assigneeMembershipId']) {
+      if (key in where && row[key] !== where[key]) return false;
+    }
+    if ('status' in where && !matches(row.status, where.status)) return false;
+    if (where.assignee && !Object.entries(where.assignee).every(([key, rule]) => matches(assignee?.[key], rule))) return false;
+    if (where.inboxItem?.organizationId && where.inboxItem.organizationId !== state.item.organizationId) return false;
+    const none = where.inboxItem?.assignments?.none;
+    return !none || !state.assignments.some((other) => assignmentMatches(other, none));
+  };
   const organizationOk = (rule) =>
     !rule ||
     (state.organization.status === rule.status &&
@@ -110,7 +130,29 @@ function makeDb() {
     $queryRaw: async () => [],
     preInquiry: {
       findUnique: async ({ where }) => (where.id === state.inquiry.id ? { ...state.inquiry } : null),
+      /* Teavituse adressaadikontroll: pöördumine tunnuse, autori ja tagasivõtmise järgi. */
+      findFirst: async ({ where }) => {
+        const row = state.inquiry;
+        if (where.id !== row.id) return null;
+        if ('authorId' in where && where.authorId !== row.authorId) return null;
+        if ('recalledAt' in where && where.recalledAt === null && row.recalledAt) return null;
+        return { id: row.id };
+      },
       updateMany: async () => ({ count: 0 })
+    },
+    /* Teavituste kiht: e-kirja eelistus ja teavituse rida. Sama võtmega teist rida ei teki. */
+    user: { findUnique: async () => ({ notificationEmailEnabled: false }) },
+    notificationEvent: {
+      create: async ({ data }) => {
+        if (state.notifyFails) throw new Error('notification store unavailable');
+        if (state.notifications.some((row) => row.dedupeKey === data.dedupeKey)) {
+          throw Object.assign(new Error('unique'), { code: 'P2002' });
+        }
+        const row = { id: id('n'), ...data };
+        state.notifications.push(row);
+        return { ...row };
+      },
+      findUnique: async ({ where }) => state.notifications.find((row) => row.dedupeKey === where.dedupeKey) || null
     },
     organizationInboxItem: {
       findFirst: async ({ where, select }) => {
@@ -122,10 +164,8 @@ function makeDb() {
     },
     organizationWorkAssignment: {
       findFirst: async ({ where }) => {
-        const row = state.assignments.find(
-          (entry) => entry.id === where.id && (!('assigneeMembershipId' in where) || entry.assigneeMembershipId === where.assigneeMembershipId)
-        );
-        return row && where.inboxItem.organizationId === ORG ? { ...withAssignee(row), inboxItem: { ...state.item } } : null;
+        const row = state.assignments.find((entry) => assignmentMatches(entry, where));
+        return row ? { ...withAssignee(row), inboxItem: { ...state.item } } : null;
       },
       findUnique: async ({ where }) => ({ ...state.assignments.find((row) => row.id === where.id) }),
       updateMany: async ({ where, data }) => {
@@ -143,8 +183,7 @@ function makeDb() {
     },
     organizationMembership: {
       findFirst: async ({ where }) => state.memberships.find((row) => row.id === where.id && row.organizationId === where.organizationId && row.status === where.status) || null,
-      /* Teavitused ei ole selle testi teema: tühi vastus lõpetab teavitaja enne kirjutamist. */
-      findUnique: async () => null
+      findUnique: async ({ where }) => membership(where.id)
     },
     room: {
       findFirst: async ({ where, select }) => {
@@ -216,6 +255,10 @@ const manual = (db, toStatus, { hooks = callHooks().hooks, now = NOW, reason } =
   transitionInboxItem(coordinator(), 'i1', { toStatus, reason }, { db, now, ...hooks });
 const refused = (promise, status, message) => assert.rejects(promise, (error) => error.status === status && error.message === message);
 const transitions = (state) => state.audits.filter((row) => row.action === 'org.inbox_item_transitioned');
+const WITHDRAWN = 'ORG_WORK_WITHDRAWN';
+const STATUS_CHANGED = 'PRE_INQUIRY_STATUS_CHANGED';
+const notices = (state, type) => state.notifications.filter((row) => row.type === type);
+const noticeList = (state) => state.notifications.map((row) => `${row.type}:${row.userId}`).sort();
 
 /**
  * Kirje seis ja elav töömääramine ütlevad sama asja: vastust ootav määramine on „määratud"
@@ -297,7 +340,7 @@ const EXPECTED = {
 };
 
 test('iga käsitsi siire igast lahtisest seisust: lubatud siire õnnestub, keelatud ei muuda midagi ja seis jääb määramisega kooskõlla', async () => {
-  const snapshot = (state) => JSON.stringify([state.item, state.assignments, state.audits, state.roomMembers]);
+  const snapshot = (state) => JSON.stringify([state.item, state.assignments, state.audits, state.roomMembers, state.notifications]);
   for (const stage of OPEN_STAGES) {
     for (const toStatus of Object.values(OrganizationInboxStatus)) {
       const { db, state } = await world(stage);
@@ -345,7 +388,7 @@ test('lõpetatud kirje ei liigu käsitsi kuhugi', async () => {
 test('töö tagasivõtmine: vastu võtnud töötaja määramine lõpeb, ta lahkub vestlusruumist ja ruum jääb pöördujale kirjutatavaks', async () => {
   const { db, state, first } = await world('ACCEPTED');
   const { room } = await openRoom(db, 'mari');
-  assert.deepEqual(activeMembers(state), ['mari:MEMBER', 'pöörduja:OWNER']);
+  assert.deepEqual(activeMembers(state), ['mari:MEMBER', 'poorduja:OWNER']);
   const auditsBefore = state.audits.length;
 
   const { calls, hooks } = callHooks();
@@ -358,12 +401,12 @@ test('töö tagasivõtmine: vastu võtnud töötaja määramine lõpeb, ta lahku
   assert.deepEqual(live(state), []);
 
   /* Töötaja lahkus ruumist ja vabastati ruumi kõnest; kõnet ennast ei lõpetata. */
-  assert.deepEqual(activeMembers(state), ['pöörduja:OWNER']);
+  assert.deepEqual(activeMembers(state), ['poorduja:OWNER']);
   assert.equal(state.roomMembers.find((row) => row.userId === 'mari').leftAt, NOW);
   assert.deepEqual(calls, { ended: [], released: [{ roomId: room.id, userId: 'mari' }] });
   /* Töö ei lõppenud: ruum ei ole arhiivis ja pöörduja saab edasi kirjutada. */
   assert.equal(state.rooms[0].archivedAt, null);
-  assert.equal(await canWrite(db, room.id, 'pöörduja'), true);
+  assert.equal(await canWrite(db, room.id, 'poorduja'), true);
   assert.equal(state.audits.some((row) => row.action === 'ROOM_ARCHIVED'), false);
 
   /* Üks auditirida: kes võttis, kellelt ja mis määramine lõppes. */
@@ -383,12 +426,12 @@ test('töö tagasivõtmine: vastu võtnud töötaja määramine lõpeb, ta lahku
   assert.deepEqual([seen.status, seen.assignment], ['ASSIGNMENT_PENDING', null]);
 
   /* Koordinaator määrab töö Jürile; Jüri võtab vastu ja liitub sama ruumiga. */
-  const second = await assignWork(coordinator(), 'i1', { assigneeMembershipId: 'm-jüri' }, { db, now: LATER });
-  assert.deepEqual([state.item.status, live(state)], ['ASSIGNED', [['m-jüri', 'PENDING']]]);
-  await respondToAssignment(context('jüri'), second.id, { accept: true }, { db, now: LATER });
-  assert.deepEqual([state.item.status, live(state)], ['ACCEPTED', [['m-jüri', 'ACCEPTED']]]);
-  assert.deepEqual(activeMembers(state), ['jüri:MEMBER', 'pöörduja:OWNER']);
-  assert.deepEqual(await openRoom(db, 'jüri'), { room, created: false });
+  const second = await assignWork(coordinator(), 'i1', { assigneeMembershipId: 'm-jyri' }, { db, now: LATER });
+  assert.deepEqual([state.item.status, live(state)], ['ASSIGNED', [['m-jyri', 'PENDING']]]);
+  await respondToAssignment(context('jyri'), second.id, { accept: true }, { db, now: LATER });
+  assert.deepEqual([state.item.status, live(state)], ['ACCEPTED', [['m-jyri', 'ACCEPTED']]]);
+  assert.deepEqual(activeMembers(state), ['jyri:MEMBER', 'poorduja:OWNER']);
+  assert.deepEqual(await openRoom(db, 'jyri'), { room, created: false });
   assert.equal(state.rooms.length, 1);
 });
 
@@ -453,6 +496,157 @@ test('enne seda reeglit lahku läinud read: käsitsi siire ei jäta elavat mää
   assert.deepEqual([handed.state.item.status, handed.state.assignments[0].status, live(handed.state)], ['ASSIGNMENT_PENDING', 'ENDED', []]);
 });
 
+test('töö tagasivõtmine: töötaja saab teate, et töö ei ole enam tema vastutusel, ja pöörduja neutraalse teate', async () => {
+  const { db, state, first } = await world('ACCEPTED');
+  const recipient = (userId, assignmentId = first.id) =>
+    assertNotificationRecipient(db, { type: WITHDRAWN, userId, sourceId: assignmentId, targetId: 'i1' });
+  /* Enne tagasivõtmist seda teadet ei ole ja adressaadireegel seda ka ei lubaks. */
+  assert.deepEqual(noticeList(state), ['ORG_WORK_ASSIGNED:mari']);
+  await assert.rejects(recipient('mari'), (error) => error.status === 404);
+
+  await manual(db, 'ASSIGNMENT_PENDING', { reason: 'Mari jäi haiguslehele.' });
+
+  const rows = notices(state, WITHDRAWN);
+  assert.equal(rows.length, 1);
+  const { id: _id, emailNextAttemptAt: _next, emailMessageId: _message, ...notice } = rows[0];
+  assert.deepEqual(notice, {
+    userId: 'mari',
+    type: WITHDRAWN,
+    sourceType: 'ORG_WORK_ASSIGNMENT',
+    sourceId: first.id,
+    dedupeKey: `ORG_WORK_WITHDRAWN:${first.id}:mari:v1`,
+    targetKind: 'ORG_INBOX_ITEM',
+    targetId: 'i1',
+    eventId: null,
+    workspaceKind: 'org_space',
+    workspaceId: ORG,
+    expiresAt: null,
+    emailPolicy: 'OPTIONAL',
+    emailStatus: 'NOT_REQUESTED'
+  });
+  /* Teade kannab ainult tunnuseid: ei tegijat, põhjust, pöördujat ega pöördumise sisu. */
+  for (const secret of ['koordinaator', 'haiguslehele', 'poorduja', 'Koduteenus', 'poes']) {
+    assert.equal(JSON.stringify(rows[0]).includes(secret), false, secret);
+  }
+
+  /* Loendis: oma lause ja kirje aadress. Avada ei ole midagi, seega saab teade loetuks loendis. */
+  const shown = serializeNotificationEvent({ ...rows[0], createdAt: NOW });
+  assert.deepEqual(
+    [shown.href, shown.labelKey, shown.ackMode, shown.badgeKey],
+    ['/org/vastuvott/i1', 'notifications.events.org_work_withdrawn', 'read', 'pre_inquiries']
+  );
+  for (const locale of ['et', 'en', 'ru']) {
+    const text = serverT(locale, 'notifications.events.org_work_withdrawn');
+    assert.notEqual(text, 'notifications.events.org_work_withdrawn', locale);
+    assert.ok(text.length > 30 && /\s/.test(text), locale);
+    assert.equal(/[—–]/.test(text), false, locale);
+  }
+
+  /* Adressaat on ainult endine vastutaja. */
+  await recipient('mari');
+  for (const other of ['koordinaator', 'jyri', 'poorduja', 'vooras']) await assert.rejects(recipient(other), (error) => error.status === 404, other);
+
+  /* Pöörduja: sama neutraalne teade mis üleandmisel, selle tagasivõtmise võtmega. */
+  assert.deepEqual(
+    notices(state, STATUS_CHANGED).map((row) => [row.userId, row.sourceId, row.dedupeKey]),
+    [['poorduja', 'p1', `PRE_INQUIRY_STATUS_CHANGED:p1:poorduja:takeback:${first.id}`]]
+  );
+  assert.deepEqual(noticeList(state), ['ORG_WORK_ASSIGNED:mari', 'ORG_WORK_WITHDRAWN:mari', 'PRE_INQUIRY_STATUS_CHANGED:poorduja']);
+
+  /* Töö määratakse Marile uuesti: vana teade ütleks valet ja adressaadireegel peidab selle. */
+  const again = await assignWork(coordinator(), 'i1', { assigneeMembershipId: 'm-mari' }, { db, now: LATER });
+  await assert.rejects(recipient('mari'), (error) => error.status === 404);
+
+  /* Teine tagasivõtmine on uus lõppenud määramine ja uus teade. Töötaja ei olnud veel vastanud,
+     seega pöördujale midagi ei muutunud ja talle uut teadet ei tule. */
+  await manual(db, 'ASSIGNMENT_PENDING', { now: LATER });
+  assert.deepEqual(notices(state, WITHDRAWN).map((row) => row.sourceId), [first.id, again.id]);
+  await recipient('mari');
+  await recipient('mari', again.id);
+  assert.equal(notices(state, STATUS_CHANGED).length, 1);
+
+  /* Sama määramise kohta teist teadet ei teki. */
+  const repeated = await createNotificationEvent({ type: WITHDRAWN, userId: 'mari', sourceId: again.id, targetId: 'i1' }, { db });
+  assert.equal(repeated.created, false);
+  assert.equal(notices(state, WITHDRAWN).length, 2);
+});
+
+test('teadet ei saa see, kes töö ise ära võttis; peatatud liikmesus teadet ei saa ja teate tõrge ei keera tagasivõtmist tagasi', async () => {
+  /* Koordinaator oli ise vastutaja ja võtab töö endalt tagasi: talle teadet ei tule, pöördujale tuleb. */
+  const own = makeDb();
+  const mine = await assignWork(coordinator(), 'i1', { assigneeMembershipId: 'm-koordinaator' }, { db: own.db, now: ASSIGNED_AT });
+  await respondToAssignment(coordinator(), mine.id, { accept: true }, { db: own.db, now: ACCEPTED_AT });
+  await manual(own.db, 'ASSIGNMENT_PENDING');
+  assert.deepEqual([own.state.item.status, notices(own.state, WITHDRAWN).length, notices(own.state, STATUS_CHANGED).length], ['ASSIGNMENT_PENDING', 0, 1]);
+
+  /* Pöörduja on sama asutuse koordinaator ja võtab töö ise tagasi: tema teadet ei saa, töötaja saab. */
+  const author = await world('ACCEPTED');
+  author.state.inquiry.authorId = 'koordinaator';
+  await manual(author.db, 'ASSIGNMENT_PENDING');
+  assert.deepEqual([notices(author.state, WITHDRAWN).map((row) => row.userId), notices(author.state, STATUS_CHANGED).length], [['mari'], 0]);
+
+  /* Peatatud liikmesusega töötaja teadet ei saa: ta ei pääse asutuse lauale. */
+  const suspended = await world('ACCEPTED');
+  suspended.state.memberships.find((row) => row.userId === 'mari').status = 'SUSPENDED';
+  await manual(suspended.db, 'ASSIGNMENT_PENDING');
+  assert.deepEqual([suspended.state.item.status, notices(suspended.state, WITHDRAWN).length], ['ASSIGNMENT_PENDING', 0]);
+
+  /* Teavituste tõrge: töö on tagasi võetud ja määramine lõpetatud, viga läheb logisse. */
+  const broken = await world('ACCEPTED');
+  broken.state.notifyFails = true;
+  const logged = [];
+  const original = console.error;
+  console.error = (...args) => logged.push(args.join(' '));
+  try {
+    assert.equal((await manual(broken.db, 'ASSIGNMENT_PENDING')).status, 'ASSIGNMENT_PENDING');
+  } finally {
+    console.error = original;
+  }
+  assert.deepEqual([broken.state.item.status, live(broken.state), broken.state.assignments[0].status], ['ASSIGNMENT_PENDING', [], 'ENDED']);
+  assert.deepEqual(logged.map((line) => line.replace(/ notification store unavailable$/, '')), [
+    '[org-inbox] former assignee notification failed',
+    '[org-inbox] author notification failed'
+  ]);
+});
+
+test('üleandmine: kui töö annab edasi keegi teine, saab senine vastutaja sama teate; ise ära andes ei saa', async () => {
+  const release = callHooks().hooks.releaseFromCalls;
+  const moved = await world('ACCEPTED');
+  await handOverWork(coordinator(), moved.first.id, { toMembershipId: 'm-jyri' }, { db: moved.db, now: NOW, releaseFromCalls: release });
+  assert.deepEqual(notices(moved.state, WITHDRAWN).map((row) => [row.userId, row.sourceId, row.targetId]), [['mari', moved.first.id, 'i1']]);
+  /* Uus vastutaja saab oma teate ja pöörduja neutraalse teate nagu enne. */
+  assert.deepEqual(noticeList(moved.state), ['ORG_WORK_ASSIGNED:jyri', 'ORG_WORK_ASSIGNED:mari', 'ORG_WORK_WITHDRAWN:mari', 'PRE_INQUIRY_STATUS_CHANGED:poorduja']);
+  const recipient = (userId) => assertNotificationRecipient(moved.db, { type: WITHDRAWN, userId, sourceId: moved.first.id, targetId: 'i1' });
+  await recipient('mari');
+  await assert.rejects(recipient('jyri'), (error) => error.status === 404);
+
+  /* Mari annab töö ise edasi: ta teab seda niigi. */
+  const own = await world('ACCEPTED');
+  await handOverWork(context('mari'), own.first.id, { toMembershipId: 'm-jyri' }, { db: own.db, now: NOW, releaseFromCalls: release });
+  assert.deepEqual(noticeList(own.state), ['ORG_WORK_ASSIGNED:jyri', 'ORG_WORK_ASSIGNED:mari', 'PRE_INQUIRY_STATUS_CHANGED:poorduja']);
+
+  /* Töö sulgemine ei ole töö äravõtmine: vastutaja seda teadet ei saa. */
+  const closed = await world('ACCEPTED');
+  await manual(closed.db, 'CLOSED');
+  assert.equal(notices(closed.state, WITHDRAWN).length, 0);
+});
+
+test('teate aadress: endine vastutaja jõuab asutuse vastuvõtulauale, võõras saab endiselt „lehte ei leitud”', async () => {
+  const { db } = await world('ACCEPTED');
+  await manual(db, 'ASSIGNMENT_PENDING');
+  /* Kirjet endine vastutaja enam ei ava; suunaja küsib, kas tal on selle kirjega töö olnud. */
+  await assert.rejects(getInboxItem(context('mari'), 'i1', { db, now: LATER }), (error) => error.status === 404);
+  assert.equal(await hadWorkOnInboxItem(context('mari'), 'i1', { db }), true);
+  assert.equal(await hadWorkOnInboxItem(context('jyri'), 'i1', { db }), false);
+  assert.equal(await hadWorkOnInboxItem(context('mari'), 'teine-kirje', { db }), false);
+  assert.equal(await hadWorkOnInboxItem({ ...context('mari'), organization: { id: 'org-2' } }, 'i1', { db }), false);
+  assert.equal(await hadWorkOnInboxItem({ ...context('mari'), membership: null }, 'i1', { db }), false);
+
+  const page = readFileSync(new URL('../app/org/vastuvott/[itemId]/page.jsx', import.meta.url), 'utf8').replace(/\r\n/g, '\n');
+  assert.match(page, /if \(visible\) redirect\(`\/org\/\$\{item\.organizationId\}\/vastuvott\/\$\{item\.id\}`\);/);
+  assert.match(page, /if \(await hadWorkOnInboxItem\(context, item\.id\)\) redirect\(`\/org\/\$\{item\.organizationId\}\/vastuvott`\);\n\s+notFound\(\);\n\}/);
+});
+
 test('seisutabel on sama: määramine ja töötaja vastus küsivad luba sealt nagu enne', async () => {
   assert.deepEqual(INBOX_STATUS_TRANSITIONS, {
     RECEIVED: ['REVIEWING', 'ASSIGNMENT_PENDING', 'ASSIGNED', 'REJECTED', 'RECALLED'],
@@ -504,11 +698,11 @@ const VIEWERS = [
 ];
 /* Tegevus nii, nagu leht selle saadab. `null` = lehel ei ole, mida saata (määramist ei ole). */
 const PAGE_REQUESTS = {
-  assign: ({ db, viewer }) => assignWork(viewer, 'i1', { assigneeMembershipId: 'm-jüri' }, { db, now: NOW }),
+  assign: ({ db, viewer }) => assignWork(viewer, 'i1', { assigneeMembershipId: 'm-jyri' }, { db, now: NOW }),
   accept: ({ db, viewer, seen }) => (seen.assignment ? respondToAssignment(viewer, seen.assignment.id, { accept: true }, { db, now: NOW }) : null),
   reject: ({ db, viewer, seen }) => (seen.assignment ? respondToAssignment(viewer, seen.assignment.id, { accept: false }, { db, now: NOW }) : null),
   handOver: ({ db, viewer, seen }) =>
-    seen.assignment ? handOverWork(viewer, seen.assignment.id, { toMembershipId: 'm-jüri' }, { db, now: NOW, releaseFromCalls: async () => {} }) : null,
+    seen.assignment ? handOverWork(viewer, seen.assignment.id, { toMembershipId: 'm-jyri' }, { db, now: NOW, releaseFromCalls: async () => {} }) : null,
   /* Töö tagasivõtmine on käsitsi „ootab määramist” kirjel, millel on vastutaja. Vastutajata
      kirjel muudaks sama päring ainult seisu sõna; seda leht ei saada. */
   takeBack: ({ db, viewer, seen }) =>
@@ -551,7 +745,7 @@ test('ainult määramisõigusega vastutaja ei näe kirjet pärast töö äraandm
   const { db, first } = await world('ACCEPTED');
   const assigner = context('mari', ['WORK_ASSIGNER']);
   assert.equal((await getInboxItem(assigner, 'i1', { db, now: NOW })).isCoordinator, false);
-  await handOverWork(assigner, first.id, { toMembershipId: 'm-jüri' }, { db, now: NOW, releaseFromCalls: async () => {} });
+  await handOverWork(assigner, first.id, { toMembershipId: 'm-jyri' }, { db, now: NOW, releaseFromCalls: async () => {} });
   await assert.rejects(getInboxItem(assigner, 'i1', { db, now: LATER }), (error) => error.status === 404);
   /* Leht otsustab jäämise serveri öeldud `isCoordinator` järgi, mitte määramisõiguse järgi. */
   const page = readFileSync(new URL('../components/org/OrgInboxItemClient.jsx', import.meta.url), 'utf8');
