@@ -46,7 +46,7 @@
 //     [--skip-care] [--care-from <table.xlsx>] [--approve-care-removals key,key]
 //     [--official-list Andmebaasi/register/web_pages.json] [--official id,id] [--official-stored Andmebaasi/veebilehed]
 //     [--organisations-list Andmebaasi/register/web_pages_organisations.json] [--checks lib/rag-v2/search/web-page-checks.json]
-//     [--coverage-lists Andmebaasi/register/web_pages_coverage_1.json,Andmebaasi/register/web_pages_coverage_2.json]
+//     [--coverage-lists Andmebaasi/register/web_pages_coverage_1.json,Andmebaasi/register/web_pages_coverage_2.json,Andmebaasi/register/web_pages_coverage_3.json]
 //     [--associations-list Andmebaasi/register/web_pages_associations.json]
 //     [--only-chosen organisations,coverage,associations] [--approve-chosen id,id]
 //   node … scripts/rag-v2-assistive-refresh.mjs --state <dir> --mark-ingested
@@ -71,7 +71,7 @@ const { values } = parseArgs({ options: { state: { type: 'string' }, municipalit
   official: { type: 'string', default: 'sotsiaalkindlustusamet_ska_abivahendi_vajajale,sotsiaalkindlustusamet_ska_abivahendi_ettevottele' },
   'official-stored': { type: 'string', default: 'Andmebaasi/veebilehed' }, 'organisations-list': { type: 'string', default: 'Andmebaasi/register/web_pages_organisations.json' },
   checks: { type: 'string', default: 'lib/rag-v2/search/web-page-checks.json' },
-  'coverage-lists': { type: 'string', default: 'Andmebaasi/register/web_pages_coverage_1.json,Andmebaasi/register/web_pages_coverage_2.json' },
+  'coverage-lists': { type: 'string', default: 'Andmebaasi/register/web_pages_coverage_1.json,Andmebaasi/register/web_pages_coverage_2.json,Andmebaasi/register/web_pages_coverage_3.json' },
   'associations-list': { type: 'string', default: 'Andmebaasi/register/web_pages_associations.json' },
   'only-chosen': { type: 'string', default: '' }, 'approve-chosen': { type: 'string', default: '' } } });
 if (!values.state) throw Error('usage: --state <dir outside the repository> [--from-reading <points.json>] [--approve-removals key,key] [--skip-points] [--skip-pages] [--dry-run] [--only-chosen group,group] [--approve-chosen id,id] | --mark-ingested');
