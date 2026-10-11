@@ -11984,7 +11984,28 @@
       "grantCapability": "Grant right",
       "revokeCapability": "Revoke right",
       "applyTemplate": "Apply role template",
-      "setPrimaryUnit": "Set primary unit"
+      "setPrimaryUnit": "Set primary unit",
+      "rights_more": "{name} and {count} more",
+      "units_none": "Not assigned to a unit",
+      "tabs": {
+        "label": "Member views",
+        "member": "Member",
+        "unit": "Primary unit",
+        "rights": "Rights"
+      },
+      "back": "Back to the list",
+      "end_confirm": "Yes, end the membership",
+      "end_note": "The membership ends at once. The person's account and personal data stay.",
+      "ended": "The membership has ended.",
+      "unit_question": "What is their primary unit?",
+      "rights_held": "They have",
+      "rights_none": "No administrative rights. They are a member of this organisation.",
+      "rights_grant": "Give more",
+      "revoke_confirm": "Yes, take away",
+      "revoke_note": "A second press takes the right “{name}” away at once.",
+      "rights_owner_only": "Rights are given and taken away by the organisation's owner.",
+      "grant_confirm": "Yes, give",
+      "grant_owner_note": "A second press makes them an owner: they can change all rights and settings and archive the organisation."
     },
     "invites": {
       "heading": "Invitations",

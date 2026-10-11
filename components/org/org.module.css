@@ -111,3 +111,60 @@
     min-height: 3rem;
   }
 }
+
+/* --- Avatud kirje ülaserv: nimi vasakul, vaadete lahtrid paremal ----------------- */
+.headBar {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.3rem 1rem;
+}
+.headName {
+  margin: 0;
+  max-width: none;
+  min-width: 0;
+  color: var(--text-warm);
+  font-weight: 560;
+  overflow-wrap: anywhere;
+}
+
+/* --- Rühm pealkirjaga ja tegevuslahtrid --------------------------------------- */
+/* Rühm: väike pealkiri ja selle all sisu (nt „Tal on" ja õiguste lahtrid). */
+.group {
+  min-width: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+.groupTitle {
+  margin: 0;
+  max-width: none;
+  color: var(--text-warm);
+  font-weight: 560;
+}
+/* Tegevuslahtrid: ühelaiused nupud võrgus (sama materjal mis valikulahtritel).
+   Võrk on nii lai, kui pikim silt vajab, mitte paneeli laiune. */
+.cells {
+  min-width: 0;
+  max-width: 100%;
+  display: inline-grid;
+  justify-self: start;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+.cellButton {
+  composes: option from "../stage/ChoiceRow.module.css";
+  min-width: 7rem;
+}
+/* Lahter, mis küsib teist vajutust: tugevam raam ja kaal. */
+.cellButton[data-armed="1"] {
+  color: var(--text-warm);
+  font-weight: 620;
+  border-color: color-mix(in srgb, var(--text-warm) 72%, transparent);
+}
+@container (max-width: 30rem) {
+  .cells {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

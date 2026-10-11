@@ -11984,7 +11984,28 @@
       "grantCapability": "Anna õigus",
       "revokeCapability": "Võta õigus ära",
       "applyTemplate": "Rakenda rollimall",
-      "setPrimaryUnit": "Määra põhiüksus"
+      "setPrimaryUnit": "Määra põhiüksus",
+      "rights_more": "{name} ja veel {count}",
+      "units_none": "Üksusesse määramata",
+      "tabs": {
+        "label": "Liikme vaated",
+        "member": "Liige",
+        "unit": "Põhiüksus",
+        "rights": "Õigused"
+      },
+      "back": "Tagasi loendisse",
+      "end_confirm": "Jah, lõpeta liikmesus",
+      "end_note": "Liikmesus lõpeb kohe. Inimese konto ja isiklikud andmed jäävad alles.",
+      "ended": "Liikmesus on lõpetatud.",
+      "unit_question": "Mis on tema põhiüksus?",
+      "rights_held": "Tal on",
+      "rights_none": "Haldusõigusi ei ole. Ta on selle organisatsiooni liige.",
+      "rights_grant": "Anna juurde",
+      "revoke_confirm": "Jah, võta ära",
+      "revoke_note": "Teine vajutus võtab õiguse „{name}” kohe ära.",
+      "rights_owner_only": "Õigusi annab ja võtab ära organisatsiooni omanik.",
+      "grant_confirm": "Jah, anna",
+      "grant_owner_note": "Teine vajutus teeb temast omaniku: ta saab muuta kõiki õigusi ja seadeid ning organisatsiooni arhiveerida."
     },
     "invites": {
       "heading": "Kutsed",
