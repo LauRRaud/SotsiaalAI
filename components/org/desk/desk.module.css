@@ -62,7 +62,14 @@
   }
 }
 @container (max-width: 28rem) {
+  /* Telefonis on 13 osaga laual seitse rida: plaadid on tihedamalt, et laud
+     koos privaatsuslausega mahuks ekraanile. */
   .tiles {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.3rem;
+  }
+  .tile {
+    min-height: 0;
+    padding-block: 0.3rem;
   }
 }

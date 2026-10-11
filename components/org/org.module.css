@@ -230,3 +230,19 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* --- Read, mille kõrval on tegevus -------------------------------------------------
+   Kõik read lõpevad samal joonel, ka siis, kui tegevuse sõna on eri pikkusega
+   („Peata", „Aktiveeri") või mõnel real tegevust ei ole. */
+.rows:has(> .item) {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+.rows:has(> .item) > * {
+  grid-column: 1 / -1;
+}
+.rows:has(> .item) > .item {
+  grid-template-columns: subgrid;
+}
+.rows:has(> .item) > .item > .itemAside {
+  justify-content: flex-end;
+}
