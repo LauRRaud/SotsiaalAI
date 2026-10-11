@@ -55,9 +55,21 @@
   flex: 0 1 11rem;
   max-width: 13rem;
 }
+.field[data-size="md"] {
+  flex: 0 1 15rem;
+  max-width: 16rem;
+}
 .field[data-size="lg"] {
   flex: 1 1 22rem;
   max-width: 36rem;
+}
+/* Rippvalik (maakond, omavalitsuse lisamine) seisab üherealise välja kõrval:
+   sama kõrgus ja kirjamõõt. Platvormi valikmenüü on vaikimisi 2 px madalam ja
+   veidi väiksema kirjaga (app/styles/dropdown.css). */
+.field :global(.dd-trigger) {
+  padding-block: 0.62em;
+  font-size: var(--input-font-size);
+  line-height: 1.25;
 }
 .fieldLabel {
   color: var(--text-warm);

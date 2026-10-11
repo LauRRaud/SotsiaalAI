@@ -15,7 +15,9 @@ import {
   SERVICE_PROFILE_KEY,
   SERVICE_PROFILE_OPTIONS,
   SERVICE_VIEW_KEYS,
+  areaViewIsTall,
   availabilityChoices,
+  countyChoice,
   createServiceProfileForm,
   emailLooksValid,
   firstEmailProblem,
@@ -25,10 +27,12 @@ import {
   keepsService,
   locationRows,
   locationViewStates,
+  municipalityChoice,
   optionsWithSelected,
   profileViewStates,
   profileViewSummaries,
   realServiceLocations,
+  serviceAreaChoices,
   serviceProfileDirty,
   serviceProfileMapStatus,
   serviceProfileOptionSets,
@@ -40,9 +44,12 @@ import {
   serviceViewStates,
   serviceViewSummaries,
   splitList,
-  toggleListValue
+  toggleListValue,
+  unreadableServiceAreas
 } from '../components/workspace/serviceProfile/profileModel.js';
+import { assistantDirectoryCounts } from '../lib/serviceProviderAssistantGate.js';
 import { SERVICE_PROFILE_LIMITS } from '../lib/serviceProviderProfileLimits.js';
+import { ServiceAreaKind, municipalityRegister, readServiceArea } from '../lib/serviceProviderServiceArea.js';
 
 const read = (path) => fs.readFileSync(new URL(path, import.meta.url), 'utf8');
 const catalog = (lang) => JSON.parse(read(`../messages/${lang}.json`)).workspace_feature_pages.service_profile;
@@ -380,9 +387,14 @@ test('lehe lubadused: kaks vajutust eemaldamiseks, loendur välja all, valikud l
   }
   for (const source of [...VIEW_SOURCES.map(read), surface]) {
     assert.ok(!source.includes('role="status"'), 'teated ei kasuta status-rolli (ühine kiht joonistab selle kastina)');
-    assert.ok(!source.includes('DocumentsDropdown'), 'rippvalikuid ei ole: variandid on kohe näha');
     assert.ok(!source.includes('feature-section'), 'vaated ei ole vanal ühisel kihil');
   }
+  /* Valikud on kohe näha lahtrid. Rippvalik on ainult registrist valimiseks (15 maakonda,
+     78 omavalitsust) ja elab ühes kohas, ühises väljafailis: vaated ise seda ei joonista. */
+  for (const source of [...VIEW_SOURCES.slice(1).map(read), surface]) {
+    assert.ok(!source.includes('Dropdown'), 'vaates rippvalikuid ei ole: variandid on kohe näha');
+  }
+  assert.equal(read(VIEW_SOURCES[0]).split('<Dropdown').length - 1, 1, 'rippvalik on ainult registri valiku väljal');
   /* Märkide loendur on välja enda all (K08) ja piirid tulevad ühest kohast. */
   const fields = read(VIEW_SOURCES[0]);
   assert.ok(fields.includes('className={styles.counter}'), 'loenduril on oma klass');
@@ -452,6 +464,223 @@ test('komaga valikuväärtus jääb loendis üheks tervikuks', () => {
     assert.deepEqual(saved.categories, [withComma[0]]);
     assert.equal(saved.category, withComma[0]);
   }
+});
+
+// Piirkond registrist (ADR-144). Vestluse assistent saab osutajat nimetada ainult koha kohta, mille
+// kohta küsitakse, seega peab märgitud piirkond olema loetav. Vorm küsis maakonda ja omavalitsusi
+// vabatekstina: „Tartu" (nii linn kui vald) või „Lõuna-Eesti" ei katnud ühtki kohta.
+const registerRows = JSON.parse(read('../src/server/data/municipalities.rich.json'));
+const UNREAD_NONE = { municipalities: 0, counties: 0, ambiguous: 0 };
+
+test('piirkonna valikud tulevad registrist ja valitud väärtusi loeb piirkonna lugeja', () => {
+  const choices = serviceAreaChoices(registerRows);
+  assert.equal(choices.municipalities.length, 78);
+  assert.equal(choices.counties.length, 15);
+  assert.deepEqual(choices.counties.slice(0, 3).map((option) => option.value), ['Harjumaa', 'Hiiumaa', 'Ida-Virumaa']);
+  /* Loend on eesti tähestiku järgi: õ, ä, ö, ü on lõpus, mitte o ja a kõrval. */
+  const names = choices.municipalities.map((option) => option.label);
+  assert.deepEqual(names, [...names].sort((a, b) => a.localeCompare(b, 'et')));
+
+  /* Lugeja ehitab registri ise (nagu vestluse poolel): iga valik, mida vorm pakub, on loetav. */
+  const register = municipalityRegister(registerRows);
+  for (const option of choices.municipalities) {
+    const area = readServiceArea({ serviceAreaType: 'KOV põhine', municipalityIds: [option.value] }, {}, register);
+    assert.deepEqual([area.kind, area.municipalities, area.unread], [ServiceAreaKind.MUNICIPALITY, [option.slug], UNREAD_NONE], option.value);
+  }
+  for (const option of choices.counties) {
+    const area = readServiceArea({ serviceAreaType: 'Maakondlik', county: option.value }, {}, register);
+    assert.deepEqual([area.kind, area.counties.length, area.unread], [ServiceAreaKind.COUNTY, 1, UNREAD_NONE], option.value);
+  }
+
+  /* Terve tee: valik vormis → salvestatav keha → lugeja. */
+  const form = createServiceProfileForm(sampleProfile());
+  let picked = '';
+  for (const name of ['Elva vald', 'Tartu linn']) {
+    assert.ok(municipalityChoice(picked, choices).options.some((option) => option.value === name), `${name} on pakkumises`);
+    picked = toggleListValue(picked, name);
+  }
+  const after = municipalityChoice(picked, choices);
+  assert.deepEqual([after.selected, after.unread, after.options.length, after.full], [['Elva vald', 'Tartu linn'], [], 76, false]);
+  const county = countyChoice('', choices, 'Täpsustamata');
+  assert.deepEqual([county.value, county.unread, county.options.length, county.options[0]], ['', false, 16, { value: '', label: 'Täpsustamata' }]);
+  form.serviceItems[0] = { ...form.serviceItems[0], serviceAreaType: 'KOV põhine', municipalityIds: picked };
+  form.serviceItems.push({ ...form.serviceItems[0], id: '', name: 'Tugiisik', serviceAreaType: 'Maakondlik', municipalityIds: '', county: 'Raplamaa' });
+  form.serviceAreaMunicipalityIds = toggleListValue('', 'Tallinn');
+  form.county = 'Harjumaa';
+  const payload = serviceProfileSavePayload(form, null);
+  assert.deepEqual(payload.serviceItems[0].municipalityIds, ['Elva vald', 'Tartu linn']);
+  assert.deepEqual(payload.serviceAreaMunicipalityIds, ['Tallinn']);
+  const [byMunicipality, byCounty] = payload.serviceItems.map((service) => readServiceArea(service, payload, register));
+  assert.deepEqual([byMunicipality.kind, byMunicipality.municipalities, byMunicipality.unread], [ServiceAreaKind.MUNICIPALITY, ['elva-vald', 'tartu-linn'], UNREAD_NONE]);
+  assert.deepEqual([byCounty.kind, byCounty.counties, byCounty.unread], [ServiceAreaKind.COUNTY, ['rapla'], UNREAD_NONE]);
+  /* Profiili enda valik: tüübita teenus pärib selle ja lugeja loeb. */
+  const inherited = readServiceArea({ serviceAreaType: '' }, payload, register);
+  assert.deepEqual([inherited.kind, inherited.municipalities, inherited.unread], [ServiceAreaKind.MUNICIPALITY, ['tallinn'], UNREAD_NONE]);
+
+  /* Loendus (scripts/service-profile-assistant-count.mjs): kui see profiil on avaldatud ja loaga,
+     ei jää tema vormist valitud piirkonnas ühtki sõna lugemata. */
+  const published = {
+    id: 'p1',
+    status: 'PUBLISHED',
+    assistantRecommendationAllowed: true,
+    registryCode: null,
+    county: payload.county,
+    serviceAreaMunicipalityIds: payload.serviceAreaMunicipalityIds,
+    serviceMapEntry: { id: 'e1', status: 'PUBLISHED' },
+    serviceLocations: [],
+    serviceItems: payload.serviceItems.map((service, index) => ({ ...service, id: `s${index}`, status: 'PUBLISHED', mapVisible: true, locationLinks: [] }))
+  };
+  const counts = assistantDirectoryCounts([published], registerRows);
+  assert.deepEqual([counts.profiles.allowed, counts.services.public], [1, 2]);
+  assert.deepEqual(counts.services.unreadAreaWords, UNREAD_NONE);
+  assert.deepEqual(counts.services.area, { national: 0, county: 1, municipality: 1, unknown: 0 });
+  /* Vastupidi: käsitsi kirjutatud sõnad loeb sama loendus lugemata sõnadeks. */
+  const handWritten = { ...published, serviceItems: [{ ...published.serviceItems[0], municipalityIds: ['Tartu', 'Lõuna-Eesti'] }] };
+  assert.deepEqual(assistantDirectoryCounts([handWritten], registerRows).services.unreadAreaWords, { municipalities: 1, counties: 0, ambiguous: 1 });
+
+  /* Piirkonna vaates valitud maakond salvestub: teeninduskoha vana maakond ei kirjuta seda üle
+     (koht pärib maakonna loomisel profiililt ja tal endal seda välja ei ole). */
+  const moved = createServiceProfileForm({ ...sampleProfile(), county: 'Raplamaa', serviceLocations: [{ ...sampleProfile().serviceLocations[0], county: 'Raplamaa' }] });
+  assert.equal(serviceProfileSavePayload(moved, null).county, 'Raplamaa');
+  assert.equal(serviceProfileSavePayload({ ...moved, county: 'Harjumaa' }, null).county, 'Harjumaa');
+  assert.equal(serviceProfileSavePayload({ ...moved, county: '' }, null).county, '');
+
+  /* Server lubab loendis kuni 50 kirjet: täis loend ei paku rohkem lisada. */
+  const fifty = choices.municipalities.slice(0, SERVICE_PROFILE_LIMITS.listItems).map((option) => option.value).join(', ');
+  assert.equal(municipalityChoice(fifty, choices).full, true);
+  /* Väljafail joonistab valikud registrist ja keelab lisamise, kui loend on täis. */
+  const fields = read(VIEW_SOURCES[0]);
+  assert.ok(fields.includes('options={pick.options}') && fields.includes('disabled={pick.full}') && fields.includes('options={countyPick.options}'));
+  for (const view of [read(VIEW_SOURCES[1]), read(VIEW_SOURCES[2])]) assert.ok(view.includes('<AreaFields'), 'vaade kasutab registri valikut');
+  for (const view of VIEW_SOURCES.map(read)) {
+    assert.ok(!view.includes('fields.municipalities') && !view.includes('service_items.municipality_ids'), 'vabateksti välja „KOV-id või piirkonnad" enam ei ole');
+  }
+  /* Leht saab registri profiiliga koos ja annab selle mõlemale piirkonna vaatele. */
+  assert.ok(surface.includes('setAreaRegister(Array.isArray(payload?.areaRegister) ? payload.areaRegister : [])'));
+  assert.equal(surface.split('area={areaChoices}').length - 1, 2);
+  const route = read('../app/api/service-provider/profile/route.js');
+  assert.ok(route.includes('areaRegister: municipalities.map(({ slug, displayName, baseName, county }) => ({ slug, displayName, baseName, county }))'));
+});
+
+test('varem käsitsi kirjutatud piirkond jääb näha ja maha võetavaks', () => {
+  const choices = serviceAreaChoices(registerRows);
+  const legacy = 'Elva, Tartu, Lõuna-Eesti, Põltsamaa vald';
+  const pick = municipalityChoice(legacy, choices);
+  assert.deepEqual(pick.selected, ['Elva', 'Tartu', 'Lõuna-Eesti', 'Põltsamaa vald']);
+  /* „Tartu" sobib linnale ja vallale, „Lõuna-Eesti" ei ole omavalitsus: kumbki ei kata ühtki kohta. */
+  assert.deepEqual(pick.unread, ['Tartu', 'Lõuna-Eesti']);
+  /* Loetav vana kuju („Elva") katab oma omavalitsuse: seda ei pakuta teist korda. */
+  const offered = pick.options.map((option) => option.value);
+  assert.ok(!offered.includes('Elva vald') && !offered.includes('Põltsamaa vald'));
+  assert.ok(offered.includes('Tartu linn') && offered.includes('Tartu vald'));
+  assert.equal(offered.length, 76);
+  /* Näha: väli joonistab valitud sõnad lahtritena (valikuloend on tühi, lahtrid tulevad väärtusest). */
+  assert.deepEqual(optionsWithSelected([], legacy).map((option) => option.value), pick.selected);
+  assert.ok(read(VIEW_SOURCES[0]).includes('value={municipalities} options={[]} onChange={onMunicipalities}'));
+  /* Maha võetav: vajutus lahtrile eemaldab selle sõna, teised jäävad. */
+  const cleaned = toggleListValue(legacy, 'Lõuna-Eesti');
+  assert.deepEqual(splitList(cleaned), ['Elva', 'Tartu', 'Põltsamaa vald']);
+  assert.deepEqual(municipalityChoice(cleaned, choices).unread, ['Tartu']);
+  /* Ei kao vaikselt: salvestamine saadab kõik sõnad, mida osutaja maha ei võtnud. */
+  const form = { ...createServiceProfileForm(sampleProfile()), serviceAreaMunicipalityIds: legacy };
+  form.serviceItems = [{ ...form.serviceItems[0], municipalityIds: legacy }];
+  const payload = serviceProfileSavePayload(form, null);
+  assert.deepEqual(payload.serviceAreaMunicipalityIds, pick.selected);
+  assert.deepEqual(payload.serviceItems[0].municipalityIds, pick.selected);
+
+  /* Maakond: loetav vana kuju näitab registri nime valituna, tundmatu jääb omaette valikuna alles. */
+  const old = countyChoice('Harju maakond', choices, 'Täpsustamata');
+  assert.deepEqual([old.value, old.unread, old.options.length], ['Harjumaa', false, 16]);
+  const unknown = countyChoice(' Lõuna-Eesti ', choices, 'Täpsustamata');
+  assert.deepEqual([unknown.value, unknown.unread, unknown.options.length], ['Lõuna-Eesti', true, 17]);
+  assert.deepEqual(unknown.options.at(-1), { value: 'Lõuna-Eesti', label: 'Lõuna-Eesti' });
+  assert.equal(serviceProfileSavePayload({ ...form, county: 'Lõuna-Eesti' }, null).county, 'Lõuna-Eesti');
+
+  /* Kui register ei laadinud, ei hinda vorm ühtki sõna loetamatuks ja sõnad jäävad alles. */
+  const none = serviceAreaChoices([]);
+  const blind = municipalityChoice(legacy, none);
+  assert.deepEqual([blind.selected, blind.options, blind.unread], [pick.selected, [], []]);
+  const blindCounty = countyChoice('Lõuna-Eesti', none, 'Täpsustamata');
+  assert.deepEqual([blindCounty.value, blindCounty.unread, blindCounty.options.length], ['Lõuna-Eesti', false, 2]);
+  assert.deepEqual(unreadableServiceAreas({ ...form, serviceItems: [{ ...form.serviceItems[0], serviceAreaType: 'KOV põhine' }] }, none), { municipality: [], county: [] });
+
+  /* Vaade, mis on teate või paljude valitud omavalitsuste tõttu teistest pikem, on laval „vaba":
+     teised vaated ei võta selle kõrgust (mõõdetud 1536 × 640 aknas: profiili vaatesse mahub üks
+     rida lahtreid, teenuse vaatesse kaks). */
+  const many = choices.municipalities.slice(0, 7).map((option) => option.value);
+  assert.equal(areaViewIsTall('area', many.slice(0, 3).join(', '), 'Tartumaa', choices), false);
+  assert.equal(areaViewIsTall('area', many.slice(0, 4).join(', '), 'Tartumaa', choices), true);
+  assert.equal(areaViewIsTall('reach', many.slice(0, 6).join(', '), '', choices), false);
+  assert.equal(areaViewIsTall('reach', many.join(', '), '', choices), true);
+  assert.equal(areaViewIsTall('reach', 'Tartu', '', choices), true, 'teade lugemata sõna kohta');
+  assert.equal(areaViewIsTall('area', '', 'Lõuna-Eesti', choices), true, 'teade maakonna kohta');
+  assert.equal(areaViewIsTall('area', 'Tartu, Lõuna-Eesti', 'Lõuna-Eesti', none), false, 'ilma registrita teadet ei ole');
+  assert.deepEqual(serviceProfileSteps(PROFILE_VIEW_KEYS, { tp, tallArea: true }).filter((step) => step.free).map((step) => step.key), ['area', 'locations', 'services']);
+  assert.equal(serviceProfileSteps(SERVICE_VIEW_KEYS, { tp, tallArea: true }).find((step) => step.key === 'reach').free, true);
+  assert.equal(serviceProfileSteps(SERVICE_VIEW_KEYS, { tp }).find((step) => step.key === 'reach').free, false);
+  assert.ok(surface.includes('areaViewIsTall("reach", openedService.municipalityIds, openedService.county, areaChoices)'));
+  assert.ok(surface.includes('areaViewIsTall("area", form.serviceAreaMunicipalityIds, form.county, areaChoices)'));
+});
+
+test('kontroll ütleb, kui teenuse piirkonda ei saa lugeda, ja rida kaob, kui piirkond on valitud', () => {
+  const profile = sampleProfile();
+  const choices = serviceAreaChoices(registerRows);
+  const form = createServiceProfileForm(profile);
+  const withArea = (patch) => ({ ...form, serviceItems: [{ ...form.serviceItems[0], municipalityIds: '', county: '', ...patch }] });
+  const checks = (value) => serviceProfilePublishChecks(value, profile.serviceMapEntry, choices);
+  const keys = (value) => checks(value).map((row) => row.key);
+  const BASE = ['status', 'map', 'service', 'location', 'contact', 'assistant', 'address'];
+  assert.deepEqual(keys(form), BASE, 'täpsustamata tüübiga teenus ei too rida');
+
+  /* KOV põhine teenus ilma omavalitsuseta: rida ilmub, ei takista salvestamist ja viib teenuse piirkonna vaatesse. */
+  const kov = withArea({ serviceAreaType: 'KOV põhine' });
+  assert.deepEqual(keys(kov), ['status', 'map', 'service', 'location', 'contact', 'area_municipality', 'assistant', 'address']);
+  const row = checks(kov).find((item) => item.key === 'area_municipality');
+  assert.deepEqual(row, {
+    key: 'area_municipality',
+    ok: false,
+    view: 'services',
+    item: { kind: 'service', index: 0, view: 'reach' },
+    blocking: false,
+    textKey: 'publish_checks.area_municipality_missing',
+    fallback: 'KOV põhisel teenusel ei ole ühtki registrist valitud omavalitsust.',
+    detail: 'Koduteenus'
+  });
+  assert.ok(PROFILE_VIEW_KEYS.includes(row.view) && SERVICE_VIEW_KEYS.includes(row.item.view));
+  assert.deepEqual(serviceProfilePublishState(kov).blocking, []);
+  /* Sõnad, mida register ei loe, ei ole valik. */
+  assert.ok(keys(withArea({ serviceAreaType: 'KOV põhine', municipalityIds: 'Tartu, Lõuna-Eesti' })).includes('area_municipality'));
+  /* Registrist valitud omavalitsus: rida kaob. Sama, kui omavalitsus on valitud profiili piirkonnas (lugeja varu). */
+  assert.deepEqual(keys(withArea({ serviceAreaType: 'KOV põhine', municipalityIds: 'Elva vald' })), BASE);
+  assert.deepEqual(keys({ ...kov, serviceAreaMunicipalityIds: 'Elva vald' }), BASE);
+
+  /* Maakondlik teenus ilma maakonnata. */
+  const county = withArea({ serviceAreaType: 'Maakondlik' });
+  assert.deepEqual(keys(county), ['status', 'map', 'service', 'location', 'contact', 'area_county', 'assistant', 'address']);
+  assert.equal(checks(county).find((item) => item.key === 'area_county').textKey, 'publish_checks.area_county_missing');
+  assert.ok(keys(withArea({ serviceAreaType: 'Maakondlik', county: 'Lõuna-Eesti' })).includes('area_county'));
+  assert.deepEqual(keys(withArea({ serviceAreaType: 'Maakondlik', county: 'Raplamaa' })), BASE);
+  assert.deepEqual(keys({ ...county, county: 'Raplamaa' }), BASE, 'profiili maakond on varu');
+
+  /* Teised tüübid ei küsi midagi; nimeta teenus ei salvestu ja seda ei hinnata. */
+  for (const type of ['', 'Üleriigiline', 'Veebiteenus', 'Teeninduskoha põhine']) assert.deepEqual(keys(withArea({ serviceAreaType: type })), BASE, type);
+  const twoServices = { ...form, serviceItems: [kov.serviceItems[0], { ...kov.serviceItems[0], name: 'Tugiisik' }, { ...kov.serviceItems[0], name: ' ' }] };
+  assert.equal(checks(twoServices).find((item) => item.key === 'area_municipality').detail, 'Koduteenus, Tugiisik');
+  assert.deepEqual(unreadableServiceAreas(twoServices, choices).municipality.map((item) => item.index), [0, 1]);
+  /* Tüübid, mida mudel jälgib, on päris valikuväärtused. */
+  const areaTypes = SERVICE_PROFILE_OPTIONS.areaType.map(([value]) => value);
+  assert.ok(areaTypes.includes('KOV põhine') && areaTypes.includes('Maakondlik'));
+
+  /* Sammu seis ja kokkuvõte: lahtine rida jätab kontrolli pooleli; ilma registrita ei hinnata midagi. */
+  const options = serviceProfileOptionSets((key, fallback) => fallback);
+  assert.equal(profileViewStates(kov, profile.serviceMapEntry, choices).check, 'partial');
+  assert.equal(profileViewStates(kov, profile.serviceMapEntry).check, 'done');
+  assert.equal(profileViewSummaries(kov, profile.serviceMapEntry, { tp, options, areaChoices: choices }).check, 'views.check.summary_open:{"count":1}');
+  assert.equal(serviceViewStates(kov.serviceItems[0], { areaUnread: true }).reach, 'partial');
+  assert.equal(serviceViewStates(kov.serviceItems[0]).reach, 'done');
+  /* Leht viib rea teenuse vaatesse ja annab registri kontrollile kaasa. */
+  assert.ok(surface.includes('openItem(row.item.kind, row.item.index, row.item.view)'));
+  assert.ok(surface.includes('serviceProfilePublishChecks(form, mapEntry, areaChoices)'));
 });
 
 test('assistendi koopia hoiatus jääb pärast salvestamist lava kohale', () => {

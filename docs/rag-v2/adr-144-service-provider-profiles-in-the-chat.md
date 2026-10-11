@@ -90,7 +90,7 @@ Kahtluse korral on vastus „ei“. Midagi ei kopeerita, seega mõjub loa tagasi
 
 ### Piirkonna lugemine: `lib/serviceProviderServiceArea.js`
 
-Vorm küsib piirkonna tüüpi valikuna, aga maakonda ja omavalitsusi vabatekstina. Moodul loeb need omavalitsuste registri vastu:
+Vorm küsib piirkonna tüüpi valikuna. Maakond ja omavalitsused valitakse alates 11.10.2026 omavalitsuste registrist (salvestub täisnimi „Elva vald“ ja maakond kujul „Tartumaa“); varasemad profiilid võivad kanda käsitsi kirjutatud sõnu. Moodul loeb mõlemad omavalitsuste registri vastu:
 
 | Vormi tüüp | Loetakse |
 |---|---|
@@ -134,7 +134,7 @@ node --env-file=<väljalaske env> --import ./scripts/register-node-source-loader
 
 ## Piirid ja kõrvalleiud
 
-- **Vorm küsib omavalitsusi vabatekstina.** Kuni vorm ei paku neid registrist valida, jääb osa piirkondi lugemata (loendus näitab, kui palju). See on profiililehe töö, mitte selle ADR-i oma.
-- Teeninduskohal ei ole omavalitsust, ainult aadress ja maakond: teeninduskoha põhine teenus loetakse maakonna täpsusega.
+- **Vorm küsis omavalitsusi vabatekstina; alates 11.10.2026 valitakse need registrist.** Profiili vaates „Tegevuspiirkond“ ja teenuse vaates „Teenuse piirkond“ valib osutaja maakonna ja omavalitsused loendist (`components/workspace/serviceProfile/ProfileFields.jsx`, `AreaFields`; reeglid `profileModel.js`). Varem käsitsi kirjutatud sõna, mida register ei loe, jääb vormis näha ja maha võetavaks ning vaade ütleb, et see ei ole loendist valitud. Avaldamise kontroll näitab mitteblokeeriva reana KOV põhist teenust, millel ei ole ühtki loetavat omavalitsust, ja maakondlikku teenust, millel ei ole maakonda. Loenduse väli `unreadAreaWords` jääb uute sisestuste puhul nulli.
+- Teeninduskohal ei ole omavalitsust, ainult aadress ja maakond: teeninduskoha põhine teenus loetakse maakonna täpsusega. Teeninduskohal ei ole vormis maakonna välja: koht pärib maakonna loomisel profiililt ja profiili maakonna hilisem muutmine kohta ei muuda.
 - Vana tee jäänused (`serviceProfileRetrievalGuard`, `serviceProfileRagRemoval`, tabel `ServiceProviderProfileRagJob`, 0 rida) on puutumata.
 - Esindusõiguse reeglit (#666, #668) ei muudetud.

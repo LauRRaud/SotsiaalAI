@@ -20,6 +20,8 @@
  */
 
 import { SERVICE_AVAILABILITY_DESCRIPTION_MAX_LENGTH } from "@/lib/serviceAvailability";
+import { SERVICE_PROFILE_LIMITS } from "@/lib/serviceProviderProfileLimits";
+import { countyKey, municipalityRegister, municipalitySlugOf, readServiceArea, ServiceAreaKind } from "@/lib/serviceProviderServiceArea";
 
 export const SERVICE_PROFILE_KEY = "workspace_feature_pages.service_profile";
 
@@ -258,6 +260,115 @@ export function availabilityChoices(options, value, legacyLabel) {
   return [...options, { value, label: `${legacyLabel}: ${value}` }];
 }
 
+/* --- Piirkond registrist ---------------------------------------------------------
+   Maakond ja omavalitsused valitakse omavalitsuste registrist (server annab read
+   profiili laadimisel kaasa). Salvestub registri täisnimi („Elva vald") ja maakond
+   registri kujul („Tartumaa"): neid loeb lib/serviceProviderServiceArea.js kindlasti
+   ja vestluse assistent saab osutajat nimetada ainult loetava koha kohta.
+
+   Varem käsitsi kirjutatud sõna, mida register ei tunne („Lõuna-Eesti") või mis
+   sobib kahele omavalitsusele („Tartu"), jääb valituna näha ja maha võetavaks;
+   vaade ütleb, et see ei kata ühtki kohta. Kas sõna on loetav, otsustab sama
+   lugeja, mitte siinne koopia. */
+
+const byLabel = (a, b) => a.label.localeCompare(b.label, "et");
+
+/**
+ * Registri read (`{ slug, displayName, baseName, county }`) valikuteks:
+ * `{ register, municipalities, counties, countyNames }`. Tühi register annab
+ * tühjad valikud ja siis ei hinda vorm ühtki sõna loetamatuks.
+ */
+export function serviceAreaChoices(rows = []) {
+  const list = (Array.isArray(rows) ? rows : []).filter((row) => row?.slug && row?.displayName);
+  const countyNames = new Map();
+  for (const row of list) {
+    const key = countyKey(row.county);
+    if (key && !countyNames.has(key)) countyNames.set(key, String(row.county).trim());
+  }
+  return {
+    register: municipalityRegister(list),
+    municipalities: list.map((row) => ({ value: row.displayName, label: row.displayName, slug: row.slug })).sort(byLabel),
+    counties: [...countyNames.values()].map((name) => ({ value: name, label: name })).sort(byLabel),
+    countyNames
+  };
+}
+
+/**
+ * Omavalitsuste valik: `selected` (vormi sõnad), `options` (mida saab veel
+ * lisada), `unread` (valitud sõnad, mida register ei loe) ja `full` (serveri
+ * loendipiir on täis).
+ */
+export function municipalityChoice(value, choices) {
+  const selected = splitList(value);
+  const full = selected.length >= SERVICE_PROFILE_LIMITS.listItems;
+  if (!choices?.municipalities?.length) return { selected, options: [], unread: [], full };
+  const taken = new Set();
+  const unread = [];
+  for (const item of selected) {
+    const slug = municipalitySlugOf(item, choices.register);
+    if (slug) taken.add(slug);
+    else unread.push(item);
+  }
+  return {
+    selected,
+    options: choices.municipalities.filter((option) => !taken.has(option.slug)).map(({ value: name, label }) => ({ value: name, label })),
+    unread,
+    full
+  };
+}
+
+/**
+ * Maakonna valik. Loetav vana kuju („Harju maakond") näitab registri nime
+ * valituna; sõna, mida register ei tunne, jääb omaette valikuna alles, kuni
+ * osutaja valib teise (`unread`).
+ */
+export function countyChoice(value, choices, emptyLabel) {
+  const raw = String(value || "").trim();
+  const known = choices?.countyNames?.get(countyKey(raw)) || "";
+  const counties = choices?.counties || [];
+  const options = [{ value: "", label: emptyLabel }, ...counties];
+  if (raw && !known) options.push({ value: raw, label: raw });
+  return { value: known || raw, options, unread: Boolean(raw && !known && counties.length) };
+}
+
+/* Mitu valitud omavalitsust mahub piirkonna vaatesse ilma, et vaade teistest pikemaks läheks
+   (mõõdetud 1536 × 640 aknas): profiili vaates üks rida lahtreid, sest seal on ka juhis ja
+   kirjelduse väli; teenuse vaates kaks rida. */
+const AREA_FIT = Object.freeze({ area: 3, reach: 6 });
+
+/**
+ * Kas piirkonna vaade (`view`: "area" profiilil, "reach" teenusel) on teistest
+ * pikem: valitud omavalitsusi on rohkem, kui vaatesse mahub, või vaates on
+ * teade sõna kohta, mida register ei loe. Selline vaade on laval „vaba"
+ * (`serviceProfileSteps`), et teised vaated ei võtaks selle kõrgust.
+ */
+export function areaViewIsTall(view, municipalities, county, choices) {
+  const pick = municipalityChoice(municipalities, choices);
+  return pick.selected.length > AREA_FIT[view] || pick.unread.length > 0 || countyChoice(county, choices, "").unread;
+}
+
+/* Piirkonna tüübid, mille juures register peab midagi lugema (väärtused on valikuloendis `areaType`). */
+const AREA_TYPE_NEEDS = Object.freeze({ "KOV põhine": "municipality", Maakondlik: "county" });
+
+/**
+ * Teenused, mille märgitud piirkonda ei saa lugeda: tüüp on „KOV põhine", aga
+ * ühtki loetavat omavalitsust ei ole, või „Maakondlik" ja maakonda ei ole.
+ * `{ municipality: [{ index, name }], county: [...] }`. Loeb sama lugeja, mis
+ * vestluse poolel, koos tema varuga (teenuse tühi loend → profiili oma).
+ */
+export function unreadableServiceAreas(form, choices) {
+  const found = { municipality: [], county: [] };
+  if (!choices?.municipalities?.length) return found;
+  const profile = { serviceAreaMunicipalityIds: splitList(form.serviceAreaMunicipalityIds), county: form.county };
+  form.serviceItems.forEach((service, index) => {
+    const need = AREA_TYPE_NEEDS[service.serviceAreaType];
+    if (!need || !keepsService(service)) return;
+    const area = readServiceArea({ ...service, municipalityIds: splitList(service.municipalityIds) }, profile, choices.register);
+    if (area.kind === ServiceAreaKind.UNKNOWN) found[need].push({ index, name: String(service.name).trim() });
+  });
+  return found;
+}
+
 /* --- Vormi kuju ---------------------------------------------------------------- */
 
 export function createServiceProfileLocationForm(location = null, index = 0, profile = null) {
@@ -440,7 +551,10 @@ export function serviceProfileSavePayload(form, expectedUpdatedAt) {
     adsObjectId: primaryMapLocation?.adsObjectId || form.adsObjectId,
     geocodingProvider: primaryMapLocation?.geocodingProvider || form.geocodingProvider,
     geocodingSuggestionToken: primaryMapLocation?.geocodingSuggestionToken || form.geocodingSuggestionToken,
-    county: primaryMapLocation?.county || form.county,
+    /* Maakonna valib osutaja piirkonna vaates ise. Teeninduskohal maakonna välja ei ole (koht
+       pärib selle loomisel profiililt), seega ei tohi koha vana maakond valikut üle kirjutada:
+       nii läks piirkonna vaates muudetud või tühjaks valitud maakond salvestamisel vaikselt tagasi. */
+    county: form.county,
     services: [],
     serviceCategories: [],
     targetGroups: [],
@@ -578,9 +692,27 @@ export function serviceProfileMapStatus(mapEntry) {
 /**
  * Avaldamise kontrolli read. Igal real on `view`: vaade, kus seda asja saab
  * muuta, nii et „puudu" ei jää tupikuks. `blocking` rida takistab salvestamist.
+ *
+ * `areaChoices` (registri valikud, `serviceAreaChoices`) lisab read teenuste
+ * kohta, mille märgitud piirkonda ei saa lugeda. Need ei takista salvestamist
+ * ja kaovad, kui piirkond on valitud; `item` viib otse selle teenuse vaatesse.
  */
-export function serviceProfilePublishChecks(form, mapEntry) {
+export function serviceProfilePublishChecks(form, mapEntry, areaChoices = null) {
   const state = serviceProfilePublishState(form);
+  const unreadAreas = unreadableServiceAreas(form, areaChoices);
+  const areaRow = (key, services, [textKey, fallback]) =>
+    services.length
+      ? [{
+          key,
+          ok: false,
+          view: "services",
+          item: { kind: "service", index: services[0].index, view: "reach" },
+          blocking: false,
+          textKey,
+          fallback,
+          detail: services.map((service) => service.name).join(", ")
+        }]
+      : [];
   /* Kui aadressi ei ole kusagil (ei kohal ega kaardikirjel), ei ole ka midagi
      vastendada: rida ütleb siis „pärast aadressi salvestamist", mitte „vastet
      ei leitud". Kaardikirje võib aadressita profiilil kanda olekut FAILED. */
@@ -608,6 +740,10 @@ export function serviceProfilePublishChecks(form, mapEntry) {
     row("contact", state.hasContact, "contact",
       ["publish_checks.contact_ready", "Kontakt või platvormisisene pöördumisviis on olemas."],
       ["publish_checks.contact_missing", "Lisa kontakt või luba platvormisisesed eelpöördumised."]),
+    ...areaRow("area_municipality", unreadAreas.municipality,
+      ["publish_checks.area_municipality_missing", "KOV põhisel teenusel ei ole ühtki registrist valitud omavalitsust."]),
+    ...areaRow("area_county", unreadAreas.county,
+      ["publish_checks.area_county_missing", "Maakondlikul teenusel ei ole maakonda valitud."]),
     /* Assistendi luba on teenuseosutaja VALIK, mitte nõue: rida ütleb seisu, aga
        ei loe „üle vaadata" hulka ega takista kontrolli sammu valmis saamast.
        Muidu survestaks kontroll nõusolekut andma. */
@@ -646,10 +782,10 @@ const fill = (...flags) => {
 };
 const short = (value, length = 90) => String(value || "").trim().replace(/\s+/g, " ").slice(0, length);
 
-/** Profiili taseme vaadete seis (sammu numbri heledus kiirmenüüs). */
-export function profileViewStates(form, mapEntry) {
+/** Profiili taseme vaadete seis (sammu numbri heledus kiirmenüüs). `areaChoices`: registri valikud kontrolli ridade jaoks. */
+export function profileViewStates(form, mapEntry, areaChoices = null) {
   const publish = serviceProfilePublishState(form);
-  const checks = serviceProfilePublishChecks(form, mapEntry);
+  const checks = serviceProfilePublishChecks(form, mapEntry, areaChoices);
   const named = form.serviceItems.filter(keepsService).length;
   const kept = form.serviceLocations.filter(keepsLocation).length;
   const required = checks.filter((item) => !item.optional);
@@ -668,8 +804,11 @@ export function profileViewStates(form, mapEntry) {
   };
 }
 
-/** Avatud teenuse vaadete seis. `licenceRow`: selle teenuse tegevusloa rida, kui see on laaditud. */
-export function serviceViewStates(service, { savedAvailability = null, licenceRow = null } = {}) {
+/**
+ * Avatud teenuse vaadete seis. `licenceRow`: selle teenuse tegevusloa rida, kui see on laaditud.
+ * `areaUnread`: piirkonna tüüp on valitud, aga registrist loetavat kohta ei ole (samm jääb pooleli).
+ */
+export function serviceViewStates(service, { savedAvailability = null, licenceRow = null, areaUnread = false } = {}) {
   const freshness = savedAvailability?.freshness || "unknown";
   const customContact = service.contactStrategy === "CUSTOM";
   return {
@@ -683,7 +822,7 @@ export function serviceViewStates(service, { savedAvailability = null, licenceRo
     delivery: hasList(service.deliveryModes) ? "done" : hasList(service.communicationSupport) ? "partial" : "empty",
     languages: fill(hasList(service.serviceLanguages), hasList(service.inquiryLanguages)),
     places: (service.locationIds || []).length ? "done" : "empty",
-    reach: has(service.serviceAreaType) ? "done" : has(service.county) || hasList(service.municipalityIds) ? "partial" : "empty",
+    reach: has(service.serviceAreaType) && !areaUnread ? "done" : has(service.serviceAreaType) || has(service.county) || hasList(service.municipalityIds) ? "partial" : "empty",
     reach_note: has(service.serviceArea) || has(service.areaDescription) ? "done" : "empty",
     price: service.feeType && service.feeType !== "UNKNOWN" ? "done" : has(service.priceDescription) ? "partial" : "empty",
     availability: has(service.availabilityStatus) ? "done" : has(service.availabilityDescription) ? "partial" : "empty",
@@ -707,11 +846,11 @@ export function locationViewStates(location) {
 }
 
 /** Profiili vaadete üks-kaks rida vaates „Kõik sammud". Silte ja sõnu annab leht (`tp`, `options`). */
-export function profileViewSummaries(form, mapEntry, { tp, options }) {
+export function profileViewSummaries(form, mapEntry, { tp, options, areaChoices = null }) {
   const named = form.serviceItems.filter(keepsService);
   const kept = form.serviceLocations.filter(keepsLocation).length;
   const published = named.filter((item) => item.mapVisible !== false && String(item.status || "").toUpperCase() === "PUBLISHED").length;
-  const open = serviceProfilePublishChecks(form, mapEntry).filter((item) => !item.ok && !item.optional).length;
+  const open = serviceProfilePublishChecks(form, mapEntry, areaChoices).filter((item) => !item.ok && !item.optional).length;
   return {
     who: short(form.organizationName),
     about: short(form.shortDescription || form.longDescription),
@@ -760,15 +899,20 @@ export function locationViewSummaries(location) {
 /**
  * Lava sammud: `[{ key, label, short, state, summary, free }]`.
  * Loendid võivad olla pikad (`free`): nende järgi ühist kõrgust ei võeta.
+ * `tallArea`: piirkonna vaates on palju valitud omavalitsusi või teade (`areaViewIsTall`).
  */
-export function serviceProfileSteps(keys, { tp, states = {}, summaries = {}, placeCount = 0 }) {
+export function serviceProfileSteps(keys, { tp, states = {}, summaries = {}, placeCount = 0, tallArea = false }) {
   return keys.map((key) => ({
     key,
     label: tp(`views.${key}.title`, key),
     short: tp(`views.${key}.short`, key),
     state: states[key] || "empty",
     summary: summaries[key] || undefined,
-    free: key === "services" || key === "locations" || (key === "places" && placeCount > PLACES_FIT)
+    free:
+      key === "services" ||
+      key === "locations" ||
+      (key === "places" && placeCount > PLACES_FIT) ||
+      ((key === "area" || key === "reach") && tallArea)
   }));
 }
 

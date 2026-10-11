@@ -3720,7 +3720,18 @@
         "contact_ready": "Kontakt või platvormisisene pöördumisviis on olemas.",
         "contact_missing": "Lisa kontakt või luba platvormisisesed eelpöördumised.",
         "assistant_allowed": "Assistent võib avaldatud teenuseid soovitada.",
-        "assistant_blocked": "Assistent ei soovita neid teenuseid enne eraldi loa andmist."
+        "assistant_blocked": "Assistent ei soovita neid teenuseid enne eraldi loa andmist.",
+        "area_municipality_missing": "KOV põhisel teenusel ei ole ühtki registrist valitud omavalitsust.",
+        "area_county_missing": "Maakondlikul teenusel ei ole maakonda valitud."
+      },
+      "area": {
+        "county_none": "Täpsustamata",
+        "municipalities": "Omavalitsused",
+        "add_municipality": "Lisa omavalitsus",
+        "chosen": "Valitud omavalitsused",
+        "limit": "Valida saab kuni {max} omavalitsust.",
+        "unread_municipalities": "Need nimed ei ole loendist valitud: {names}. Võta need maha ja vali loendist õige omavalitsus.",
+        "unread_county": "Maakond „{name}” ei ole loendist valitud. Vali maakond loendist."
       },
       "views": {
         "who": {

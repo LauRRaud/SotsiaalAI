@@ -69,6 +69,7 @@ import {
   PROFILE_VIEW_KEYS,
   SERVICE_PROFILE_KEY,
   SERVICE_VIEW_KEYS,
+  areaViewIsTall,
   availabilityChoices,
   createServiceProfileForm,
   createServiceProfileLocationForm,
@@ -85,6 +86,7 @@ import {
   profileViewStates,
   profileViewSummaries,
   realServiceLocations,
+  serviceAreaChoices,
   serviceProfileDirty,
   serviceProfileOptionSets,
   serviceProfilePublishChecks,
@@ -94,7 +96,8 @@ import {
   serviceRows,
   serviceViewStates,
   serviceViewSummaries,
-  splitList
+  splitList,
+  unreadableServiceAreas
 } from "./serviceProfile/profileModel";
 import HelpMatchDecisionPanel from "./HelpMatchDecisionPanel";
 import ServiceMapLeaflet from "./ServiceMapLeaflet";
@@ -3818,6 +3821,10 @@ function ServiceProfileSurface({ t, locale }) {
     [t]
   );
   const options = useMemo(() => serviceProfileOptionSets(tp), [tp]);
+  /* Omavalitsuste register: maakonna ja omavalitsuste valikud piirkonna vaadetes ning
+     kontrolli read teenuste kohta, mille piirkonda ei saa lugeda. Tuleb profiiliga koos. */
+  const [areaRegister, setAreaRegister] = useState([]);
+  const areaChoices = useMemo(() => serviceAreaChoices(areaRegister), [areaRegister]);
 
   const applyLoadedProfile = useCallback((loadedProfile) => {
     setProfile(loadedProfile || null);
@@ -3840,6 +3847,7 @@ function ServiceProfileSurface({ t, locale }) {
         if (!cancelled) {
           const loadedProfile = payload?.profile || null;
           applyLoadedProfile(loadedProfile);
+          setAreaRegister(Array.isArray(payload?.areaRegister) ? payload.areaRegister : []);
         }
       } catch (loadError) {
         if (!cancelled) {
@@ -4001,10 +4009,11 @@ function ServiceProfileSurface({ t, locale }) {
     setOpened(null);
     setView(key);
   };
-  const openItem = (kind, index) => {
+  /* `viewKey`: avaldamise kontrolli rida võib viia otse teenuse vaatesse, kus puuduv asi on. */
+  const openItem = (kind, index, viewKey) => {
     setConfirming("");
     setOpened({ kind, index });
-    setView(kind === "service" ? SERVICE_VIEW_KEYS[0] : LOCATION_VIEW_KEYS[0]);
+    setView(viewKey || (kind === "service" ? SERVICE_VIEW_KEYS[0] : LOCATION_VIEW_KEYS[0]));
   };
   const closeItem = () => {
     setConfirming("");
@@ -4152,19 +4161,25 @@ function ServiceProfileSurface({ t, locale }) {
   const licenceKind = licence.kindState(openedService?.id || "");
   const licenceKindLabel = (key) => licence.kinds.find((kind) => kind.serviceKey === key)?.label || "";
 
+  const unreadAreas = unreadableServiceAreas(form, areaChoices);
+  const areaUnread = level === "service" && [...unreadAreas.municipality, ...unreadAreas.county].some((item) => item.index === opened.index);
+
   const steps = serviceProfileSteps(viewKeys, {
     tp,
     placeCount: servicePlaces.length,
+    tallArea: level === "service"
+      ? areaViewIsTall("reach", openedService.municipalityIds, openedService.county, areaChoices)
+      : areaViewIsTall("area", form.serviceAreaMunicipalityIds, form.county, areaChoices),
     states: level === "service"
-      ? serviceViewStates(openedService, { savedAvailability: savedService?.availability || openedService.availability, licenceRow })
+      ? serviceViewStates(openedService, { savedAvailability: savedService?.availability || openedService.availability, licenceRow, areaUnread })
       : level === "location"
         ? locationViewStates(openedLocation)
-        : profileViewStates(form, mapEntry),
+        : profileViewStates(form, mapEntry, areaChoices),
     summaries: level === "service"
       ? serviceViewSummaries(openedService, { options })
       : level === "location"
         ? locationViewSummaries(openedLocation)
-        : profileViewSummaries(form, mapEntry, { tp, options })
+        : profileViewSummaries(form, mapEntry, { tp, options, areaChoices })
   });
 
   /* Salvestamine on iga vaate all servas samas kohas ja salvestab terve profiili. */
@@ -4234,6 +4249,7 @@ function ServiceProfileSurface({ t, locale }) {
           tp={tp}
           service={openedService}
           options={options}
+          area={areaChoices}
           note={note}
           save={save}
           remove={removeAction}
@@ -4354,6 +4370,7 @@ function ServiceProfileSurface({ t, locale }) {
         tp={tp}
         form={form}
         options={options}
+        area={areaChoices}
         note={note}
         save={save}
         onField={updateField}
@@ -4374,23 +4391,27 @@ function ServiceProfileSurface({ t, locale }) {
         }}
         check={{
           blocked: publish.blocking.length > 0,
-          rows: serviceProfilePublishChecks(form, mapEntry).map((row) => ({
-            key: row.key,
-            ok: row.ok,
-            blocking: row.blocking,
-            /* Valik (assistendi luba) kannab silti „Sinu valik", mitte „Vaata üle". */
-            optional: Boolean(row.optional),
-            text: tp(row.textKey, row.fallback),
-            detail: row.detail || "",
-            /* Rida, mis ei ole korras, viib vaatesse, kus seda saab parandada. */
-            target: row.ok
-              ? null
-              : {
-                  name: tp(`views.${row.view}.short`, ""),
-                  label: tp("views.go_to", "Ava vaade: {view}", { view: tp(`views.${row.view}.title`, "") }),
-                  onClick: () => openView(row.view)
-                }
-          }))
+          rows: serviceProfilePublishChecks(form, mapEntry, areaChoices).map((row) => {
+            /* Rida teenuse kohta (piirkond) viib selle teenuse vaatesse, muu rida profiili vaatesse. */
+            const targetView = row.item?.view || row.view;
+            return {
+              key: row.key,
+              ok: row.ok,
+              blocking: row.blocking,
+              /* Valik (assistendi luba) kannab silti „Sinu valik", mitte „Vaata üle". */
+              optional: Boolean(row.optional),
+              text: tp(row.textKey, row.fallback),
+              detail: row.detail || "",
+              /* Rida, mis ei ole korras, viib vaatesse, kus seda saab parandada. */
+              target: row.ok
+                ? null
+                : {
+                    name: tp(`views.${targetView}.short`, ""),
+                    label: tp("views.go_to", "Ava vaade: {view}", { view: tp(`views.${targetView}.title`, "") }),
+                    onClick: () => (row.item ? openItem(row.item.kind, row.item.index, row.item.view) : openView(row.view))
+                  }
+            };
+          })
         }}
       />
     );

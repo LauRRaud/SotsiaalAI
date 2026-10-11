@@ -3720,7 +3720,18 @@
         "contact_ready": "A contact or the platform pre-inquiry channel is present.",
         "contact_missing": "Add a contact or allow platform pre-inquiries.",
         "assistant_allowed": "The assistant may recommend published services.",
-        "assistant_blocked": "The assistant will not recommend these services until permission is enabled."
+        "assistant_blocked": "The assistant will not recommend these services until permission is enabled.",
+        "area_municipality_missing": "A municipality-based service has no municipality chosen from the register.",
+        "area_county_missing": "A county-based service has no county chosen."
+      },
+      "area": {
+        "county_none": "Unspecified",
+        "municipalities": "Municipalities",
+        "add_municipality": "Add a municipality",
+        "chosen": "Chosen municipalities",
+        "limit": "You can choose up to {max} municipalities.",
+        "unread_municipalities": "These names were not chosen from the list: {names}. Remove them and choose the right municipality from the list.",
+        "unread_county": "The county “{name}” was not chosen from the list. Choose a county from the list."
       },
       "views": {
         "who": {
