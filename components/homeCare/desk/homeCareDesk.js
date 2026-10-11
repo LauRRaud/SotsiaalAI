@@ -53,6 +53,11 @@ export const WORKER_TILES = Object.freeze(["today", "clients", "trips", "refer"]
 /** Avalehe enda vaated ja nende nime võti kiirmenüüs. */
 export const HOME_VIEWS = Object.freeze({
   today: "home_care.slots.today_title",
+  /* Vaate „Täna" alavaated kannavad sama nime: nelja ruuduga nupp viib neist lauale, „Tagasi" vaatesse „Täna". */
+  all: "home_care.slots.today_title",
+  mine: "home_care.slots.today_title",
+  obstacle: "home_care.slots.today_title",
+  next: "home_care.slots.next_title",
   clients: "home_care.home.all_clients",
   add: "home_care.home.add_client",
   refer: "home_care.referrals.title",

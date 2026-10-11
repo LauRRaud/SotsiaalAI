@@ -16300,6 +16300,17 @@
         "activities": "Activities catalogue",
         "export": "All data as one file"
       }
+    },
+    "today": {
+      "count": "Visits {count}, done {done}",
+      "all_title": "All visits today",
+      "mine_title": "In my hands",
+      "mine_keys": "Keys {count}",
+      "mine_money": "Client money",
+      "back": "Back to today",
+      "none": "You have no visits today.",
+      "done_part": "done {count}",
+      "later_part": "{count} more later"
     }
   },
   "stage": {
