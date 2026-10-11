@@ -62,7 +62,9 @@ export const HOME_VIEWS = Object.freeze({
   /* Kõne märkimine otsingu tulemuse realt. */
   call: "home_care.entry_steps.quick_call",
   refer: "home_care.referrals.title",
-  name: "home_care.desk.names.name"
+  name: "home_care.desk.names.name",
+  /* Seadmes ootavate kirjete loend: avaneb realt laua ja vaate „Täna" kohal. */
+  outbox: "home_care.outbox.name"
 });
 
 /** Kas inimesel on täna või lähipäevil midagi oma: käik, võti, raha, puudumine või takistuse teade. */

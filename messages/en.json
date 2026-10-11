@@ -14593,7 +14593,15 @@
       "full": "There are already {limit} unsent entries on this device. Restore the connection and send them first.",
       "item_blocked": "waiting for access",
       "blocked_hint": "You do not have access to this client's diary right now. Open the client's page (as a covering worker, choose a reason) or talk to the care coordinator. The entry stays on this device and will be sent when access returns.",
-      "retry": "Try sending again"
+      "retry": "Try sending again",
+      "name": "Waiting entries",
+      "back": "Back",
+      "line_pending": "Sent on their own when the connection returns",
+      "line_attention": "Need a step from you: {count}",
+      "done": "No entries are waiting on this device any more.",
+      "open": "View",
+      "delete_armed": "Confirm deleting",
+      "delete_note": "The entry will be lost: it is not on the server. Press again if you are sure."
     },
     "dictation": {
       "start": "Dictate",

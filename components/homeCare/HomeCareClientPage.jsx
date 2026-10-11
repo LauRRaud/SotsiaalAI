@@ -37,7 +37,6 @@ import HomeCareTransport from "./HomeCareTransport";
 import HomeCareDecisionView, { decisionVolumeLabel, minutesLabel } from "./HomeCareDecisionView";
 import EntryFlow from "./entry/EntryFlow";
 import HomeCareFridgeSheet from "./HomeCareFridgeSheet";
-import HomeCareOutbox from "./HomeCareOutbox";
 import HomeCarePlanView, { planDayLabel } from "./HomeCarePlanView";
 import HomeCareReasonForm from "./HomeCareReasonForm";
 import HomeCareRelatives from "./HomeCareRelatives";
@@ -62,6 +61,7 @@ import {
   useHomeCareApi
 } from "./homeCareClient";
 import { getOutboxManager } from "./homeCareOutbox";
+import OutboxPanel, { OutboxNotice } from "./outbox/OutboxPanel";
 import { euroText } from "./HomeCareMoney";
 
 function sortEntries(items) {
@@ -131,6 +131,8 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
   const [confirmDeath, setConfirmDeath] = useState(false);
   /* Avatud vaade; tühi sõne on osade laud. */
   const [view, setView] = useState(CLIENT_LANDING);
+  /* Vaade, kust seadmes ootavate kirjete loend avati (osade laud või „Ukse taga"): sinna viib „Tagasi". */
+  const [outboxFrom, setOutboxFrom] = useState(CLIENT_LANDING);
 
   const base = `${homeCareBase(organizationId)}/kliendid/${clientId}`;
 
@@ -436,10 +438,18 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
             </section>
           ) : null}
 
-          {/* Seadmes ootavad kirjed: osade laual ja vaates „Ukse taga", sest sinna leht avaneb. */}
-          <section className={`hc-shell ${styles.old}`} hidden={current !== "" && current !== "door"}>
-            <HomeCareOutbox ownerId={ownerId} timeZone={timeZone} />
-          </section>
+          {/* Seadmes ootavad kirjed: üks rida osade laua ja vaate „Ukse taga" kohal (sinna leht avaneb); rida avab loendi. */}
+          <div className={styles.above} hidden={current !== "" && current !== "door"}>
+            <OutboxNotice
+              ownerId={ownerId}
+              onOpen={() => {
+                setOutboxFrom(current);
+                setView("outbox");
+              }}
+            />
+          </div>
+
+          {slot("outbox", <OutboxPanel ownerId={ownerId} timeZone={timeZone} back={{ label: t("home_care.outbox.back"), onBack: () => setView(outboxFrom) }} />)}
 
           {slot("", <PartsView title={pageName} client={head} tiles={clientTiles(who, tileData, format)} onOpen={setView} />)}
 

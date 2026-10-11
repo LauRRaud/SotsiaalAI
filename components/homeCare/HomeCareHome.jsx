@@ -21,11 +21,11 @@ import { rideText } from "./HomeCareTransport";
 import { euroText } from "./HomeCareMoney";
 import { useHomeCareObstacle } from "./HomeCareObstacle";
 import { minutesLabel } from "./HomeCareDecisionView";
-import HomeCareOutbox from "./HomeCareOutbox";
 import HomeCareOwnName from "./HomeCareOwnName";
 import HomeCareReferrals from "./HomeCareReferrals";
 import { planDayLabel } from "./HomeCarePlanView";
 import { clientHref, formatTime, homeCareBase, useHomeCareApi } from "./homeCareClient";
+import OutboxPanel, { OutboxNotice } from "./outbox/OutboxPanel";
 
 /**
  * Koduteenuse avaleht: LAUD ja avalehe enda vaated.
@@ -75,6 +75,8 @@ export default function HomeCareHome({ context, initial, unitOptions, myDay = nu
   const [listCount, setListCount] = useState(CLIENTS_PAGE);
   /* Klient, kelle kohta kõnet märgitakse (otsingu tulemuse realt). */
   const [callFor, setCallFor] = useState(null);
+  /* Vaade, kust seadmes ootavate kirjete loend avati (laud või „Täna"): sinna viib „Tagasi". */
+  const [outboxFrom, setOutboxFrom] = useState("");
 
   const who = useMemo(() => deskViewer({ context, initial, myDay, referrals, ownName }), [context, initial, myDay, referrals, ownName]);
   const groups = useMemo(() => deskGroups(who, { t, organizationId }), [organizationId, t, who]);
@@ -143,8 +145,16 @@ export default function HomeCareHome({ context, initial, unitOptions, myDay = nu
     chips: visitChips(visit, { t })
   });
 
-  /* Seadmes ootavad kirjed: laual ja vaates „Täna", sest sinna koduteenus avaneb. */
-  const outbox = <HomeCareOutbox ownerId={context.membership?.id || ""} timeZone={timeZone} />;
+  /* Seadmes ootavad kirjed: üks rida laua ja vaate „Täna" kohal (sinna koduteenus avaneb); rida avab loendi. */
+  const outbox = (
+    <OutboxNotice
+      ownerId={context.membership?.id || ""}
+      onOpen={() => {
+        setOutboxFrom(view);
+        setView("outbox");
+      }}
+    />
+  );
 
   /* Avalehe vaade: kest ütleb nime kiirmenüüs, nelja ruuduga nupp viib lauale. */
   const inPart = (body) => (
@@ -157,6 +167,10 @@ export default function HomeCareHome({ context, initial, unitOptions, myDay = nu
   if (view === "name") {
     /* Nimeta inimene: kolleegid näeksid tema kohal kriipsu, seepärast on vorm kohe ees. */
     return inPart(<HomeCareOwnName organizationId={organizationId} initial={ownName} onDone={() => setView(ownName?.complete ? "clients" : landingView({ ...who, needsName: false }))} />);
+  }
+
+  if (view === "outbox") {
+    return inPart(<OutboxPanel ownerId={context.membership?.id || ""} timeZone={timeZone} back={{ label: t("home_care.outbox.back"), onBack: () => setView(outboxFrom) }} />);
   }
 
   const visits = myDay?.visits || [];

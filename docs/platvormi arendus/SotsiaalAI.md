@@ -144,7 +144,7 @@ nüüd vasakul ning küsimus ja dikteerimine selle kõrval. Lahti: vene keeles o
 käigul tehtud erijuhtumi kirje toimingute samm arvutis 43 px üle paneeli (565/522).
 Päris salvestus on läbi tehtud kohalikus proovibaasis (kirje jõudis päevikusse
 toimingute ja kestusega; proovikirje on eemaldatud).
-**Päevik (12.10 öö, otse `main`-i, commit'id `f56b7ee0`, `6f0d71df` ja järgmine, elus):**
+**Päevik (12.10 öö, otse `main`-i, commit'id `f56b7ee0`, `6f0d71df`, `da381c7e` ja järgmine, elus):**
 kliendi lehe päevik oli üks pikk osa (telefonis umbes 6900 px). Nüüd on see loend:
 kirjed madalate ridadena (aeg, autor, teksti algus, märgid), viis rida ja „Näita
 varasemaid”. Otsing ja filter on omaette vaade (kehtiv otsing seisab loendi kohal ühe
@@ -175,21 +175,31 @@ teist vajutust) ja üle toomise vorm (failivalija avab nupp all servas); vana
 `HomeCareHistory.jsx` on kustutatud. Mõõdetud: loend ja vorm mahuvad (vorm arvutis
 447/522, telefonis 844/844), avatud dokument on tekst ja kerib paneeli (serveri
 esimene lehekülg korraga oli arvutis 6387 px, sellepärast kolm lõiku korraga).
-Lahti: pooleli parandus kaob, kui avada teine kirje; avatud kirjes ei ole
+Seadmes ootavad kirjed on uuel kihil üks lause vaate kohal (kliendi lehel osade laua
+ja vaate „Ukse taga” kohal, avalehel laua ja vaate „Täna” kohal): mitu kirjet ootab
+ja kas mõni vajab inimese sammu; sõna „Vaata” avab loendi omaette vaatena (kelle
+kohta, mis seisus, tekst, mida teha; „Saada kohe”; tagasi lükatud kirje saab uuesti
+saata või kustutada, kustutamine küsib teist vajutust). Lausega mahuvad lauad
+endiselt paneeli (hooldusjuhi laud 518/522, osade laud kuni 508/522, „Ukse taga”
+432/522; telefonis 844/844); terve rea kõrgune teade oli laual 3 kuni 17 px üle.
+Kohalikult läbi mängitud ilma serverita (salvestamise päring vastati brauseris):
+kirje jäi seadmesse ootele, tagasi lükatud kirje sai kustutada. 12 vana kihi lehte
+näitavad sama järjekorda veel vana kastina (`HomeCareOutbox.jsx`), kuni nende ühik
+tuleb. Lahti: pooleli parandus kaob, kui avada teine kirje; avatud kirjes ei ole
 kliendi nime; kliendi lehte ei ole elus avatud.
 **Vaadete teste ei ole:** unit-testid kustutati omaniku otsusega 11.10 öösel (#725,
 #726, reegel failis `AGENTS.md`), nende hulgas ümberehituse ajal tehtud laua,
 hooldaja päeva, klientide ja kliendi osade testid; uusi ei kirjutata. Tõend on
 brauseris mõõtmine ja läbivajutamine, päringute võrdlus, lint ja kataloogi kontroll.
-**Järgmine ühik** on seadmes ootavate kirjete kast (kasutusel kliendi lehel, avalehel
-ja 12 vana kihi lehel); siis igapäevased osad, hooldusjuhi osa ja kliendi alalehed, päevaplaan,
+**Järgmine ühik** on kliendi lehe igapäevased osad (hoolduskava, käigud, otsus ja maht,
+ohutus, võtmed, raha, varud, transport, lähedased, meeskond); siis hooldusjuhi osa ja kliendi alalehed, päevaplaan,
 tähtajad ja ülevaade, kuu ja väljavõtted, registrid, vana kihi eemaldamine.
 Päringud, `app/api/**` ja `lib/**` jäävad puutumata (ainus erand oli infotekstide
 fail). Mõõtmine muutis kavandit kahes kohas: viis täispikka käigurida ei mahtunud
 pika päevaga ekraanile (järgmine käik on täies pikkuses, kolm järgmist ühel real)
 ja laua rühmas on kuni kuus plaati. Vaadet „Täna” ei ole elus nähtud: omaniku
 kontol ei ole oma käike; kohalikult on see mõõdetud hooldaja kontoga. Reeglid on
-puhastes failides `components/homeCare/{desk,day,clients,client,entry,diary}/`. Mõõdud, lõksud,
+puhastes failides `components/homeCare/{desk,day,clients,client,entry,diary,outbox}/`. Mõõdud, lõksud,
 kohaliku eelvaate retsept ja ühikute järjekord on mälumärkmes
 `koduteenus-views-mockup` ja seansside ühises märkmes
 `side-session-notes/local_b3b842f1-182e-48a3-bcc3-6878e50813a2/koduteenus-vaadete-kavand.md`.

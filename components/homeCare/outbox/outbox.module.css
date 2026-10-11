@@ -1,0 +1,56 @@
+/* Seadmes ootavad kirjed: rida vaate kohal ja loend.
+   Read, märgid ja laused on organisatsioonide lehtede ühised
+   (../../org/org.module.css); siin on ainult see, mis on nendel vaadetel oma. */
+
+/* Lause vaate kohal: mitu kirjet ootab ja sõna, mis avab loendi. Kirje, mis vajab
+   inimese sammu, teeb äärejoone ja sõnad tugevamaks. */
+.notice[data-wait="1"] {
+  border-inline-start-color: color-mix(in srgb, var(--status-error) 70%, transparent);
+}
+.title {
+  font-weight: 560;
+}
+.title::after {
+  content: ".";
+}
+.textButton {
+  composes: textButton from "../client/client.module.css";
+}
+
+/* Üks ootav kirje: kelle kohta ja mis seisus, millal kirjutati, tekst ja mida teha. */
+.item {
+  display: grid;
+  gap: 0.2rem;
+}
+.head {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.6rem;
+}
+.meta {
+  composes: meta from "../client/client.module.css";
+}
+.actions {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 0.2rem;
+}
+/* Lause kustutamise nupu all pärast esimest vajutust: mis juhtub. */
+.consequence {
+  color: var(--text-warm);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.4;
+}
+
+@container (min-width: 34rem) {
+  /* Laiemal pinnal (arvuti paneel on madal) on lause väiksem: hooldusjuhi laud
+     17 plaadiga oli tavalise kirjaga 3 px üle paneeli. */
+  .notice.notice {
+    font-size: var(--fs-small, 0.875rem);
+    line-height: 1.4;
+  }
+}

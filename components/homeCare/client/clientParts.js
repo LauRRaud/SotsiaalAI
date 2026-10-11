@@ -27,6 +27,9 @@ export const ENTRY_VIEWS = Object.freeze(["call", "near_miss"]);
 /** Osa „Päevik" alavaated: otsing, avatud kirje, selle parandus, tabamused varasemast ajaloost ja varasem ajalugu ise. */
 export const DIARY_VIEWS = Object.freeze(["diary_search", "diary_item", "diary_correct", "history_hits", "history"]);
 
+/** Seadmes ootavate kirjete loend: avaneb realt osade laua ja vaate „Ukse taga" kohal. */
+export const OUTBOX_VIEW = "outbox";
+
 /** Osa nime võti (plaadil ja kiirmenüüs). */
 const NAMES = Object.freeze({
   door: "home_care.parts.names.door",
@@ -95,7 +98,7 @@ export function partVisible(part, who, data) {
 
 /** Kas vaate tohib avada: osade laud, nähtav osa või osa alavaade. */
 export function viewAllowed(view, who, data) {
-  if (view === "") return true;
+  if (view === "" || view === OUTBOX_VIEW) return true;
   if (DOOR_VIEWS.includes(view)) return view !== "no_answer" || canOpenNoAnswer(who, data);
   if (ENTRY_VIEWS.includes(view)) return partVisible("entry", who, data);
   if (DIARY_VIEWS.includes(view)) return partVisible("diary", who, data);
@@ -104,6 +107,7 @@ export function viewAllowed(view, who, data) {
 
 /** Vaate nime võti kiirmenüüs; alavaade kannab oma osa nime. */
 export function viewNameKey(view) {
+  if (view === OUTBOX_VIEW) return "home_care.outbox.name";
   if (DOOR_VIEWS.includes(view)) return NAMES.door;
   if (ENTRY_VIEWS.includes(view)) return NAMES.entry;
   if (DIARY_VIEWS.includes(view)) return NAMES.diary;

@@ -14593,7 +14593,15 @@
       "full": "Seadmes on juba {limit} saatmata kirjet. Taasta ühendus ja saada need enne ära.",
       "item_blocked": "ootab ligipääsu",
       "blocked_hint": "Sul ei ole praegu selle kliendi päevikule ligipääsu. Ava kliendi leht (asendajana vali põhjus) või räägi hooldusjuhiga. Kirje jääb seadmesse alles ja saadetakse, kui ligipääs taastub.",
-      "retry": "Proovi uuesti saata"
+      "retry": "Proovi uuesti saata",
+      "name": "Ootel kirjed",
+      "back": "Tagasi",
+      "line_pending": "Saadetakse ise, kui ühendus taastub",
+      "line_attention": "Vajab sinu sammu: {count}",
+      "done": "Selles seadmes ei oota enam ühtegi kirjet.",
+      "open": "Vaata",
+      "delete_armed": "Kinnita kustutamine",
+      "delete_note": "Kirje läheb kaotsi: serveris seda ei ole. Vajuta uuesti, kui oled kindel."
     },
     "dictation": {
       "start": "Dikteeri",

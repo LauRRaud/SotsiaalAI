@@ -12,6 +12,15 @@
   display: none;
 }
 
+/* Rida vaate kohal (seadmes ootavad kirjed): tühjana ega peidetuna ei võta ruumi. */
+.above {
+  min-width: 0;
+}
+.above:empty,
+.above[hidden] {
+  display: none;
+}
+
 /* --- Ülaserv: nimi, seis, aadress ja telefon --------------------------------- */
 .head {
   min-width: 0;
