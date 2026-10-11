@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { actGenitive, actSections, chunkSection, designation, internalReferences, keepsSuperscripts, namedActReferences, provisionChunks, provisionMentions, readReferences, regulationGenitive,
-  regulationReferences, resolveSection, sectionKey, sectionReferences, wordsBefore,
+import { actGenitive, actSections, chunkSection, designation, internalReferences, keepsSuperscripts, lawNames, namedActLists, namedActReferences, provisionChunks, provisionMentions, readReferences, regulationGenitive,
+  regulationReferences, resolveSection, sectionKey, sectionReferences, sectionResolution, wordsBefore,
   REFERENCE_LIMITS, SUPERSCRIPT_NORMALIZATIONS } from '../lib/rag-v2/search/legal-references.js';
 import { DEFAULT_CONFIG } from '../lib/rag-v2/contracts.js';
 
@@ -143,6 +143,39 @@ test('a named other act: its title in the genitive directly before the list name
   // The number is as written; the other act's own sections say which section it is.
   assert.deepEqual([resolveSection('25', '', ['24', '25', '26'], true), resolveSection('45', '¹³', ['45', '45^13'], true), resolveSection('131', '', ['13^1'], false),
     resolveSection('131', '', ['13^1'], true), resolveSection('7', '', ['8'], true)], ['25', '45^13', '13^1', null, null]);
+});
+
+// ADR-145 (11.10.2026): the other ways a text names a law directly before a list. Of the lists in the corpus's guides,
+// studies and pages that name an indexed law so, three in four are written with the abbreviation.
+test('ADR-145: a law is also named by Riigi Teataja\'s abbreviation as written, by its title as it stands and by its genitive joined or split otherwise; a range is given to be counted', () => {
+  assert.deepEqual(['Sotsiaalhoolekande seadus', 'Lastekaitseseadus', 'Halduskohtumenetluse seadustik', 'Abivahendite loetelu'].map(lawNames),
+    [['sotsiaalhoolekande seaduse', 'sotsiaalhoolekandeseaduse'], ['lastekaitseseaduse', 'lastekaitse seaduse'], ['halduskohtumenetluse seadustiku', 'halduskohtumenetluseseadustiku'], []]);
+  const names = new Map([['sotsiaalhoolekande seaduse', 'shs'], ['sotsiaalhoolekandeseaduse', 'shs'], ['sotsiaalhoolekande seadus', 'shs'], ['lastekaitseseaduse', 'lks'], ['lastekaitse seaduse', 'lks']]);
+  const abbreviations = new Map([['SHS', 'shs'], ['LasteKS', 'lks'], ['TMS', 'tms']]);
+  const read = text => namedActReferences(text, names, abbreviations).map(({ act, base, superscript, subsections }) => [act, base + superscript, subsections]);
+  // The abbreviation: alone, in brackets, at the start, with a case ending (with a hyphen or without one), in a list.
+  assert.deepEqual(read('Abi osutamisel lähtutakse isiku tahtest (SHS § 3 lg 1 p 2).'), [['shs', '3', ['1']]]);
+  assert.deepEqual(read('SHS § 17 lg 2 kohaselt hindab abivajadust kohalik omavalitsus.'), [['shs', '17', ['2']]]);
+  assert.deepEqual(read('Teenuse sisu on kirjas SHS-i § 15 lõikes 1 ja LasteKSi §-s 27.'), [['shs', '15', ['1']], ['lks', '27', []]]);
+  assert.deepEqual(read('Vt SHS §-d 5 ja 9 ning § 14 lg 1; LasteKS § 21.'), [['shs', '5', []], ['shs', '9', []], ['shs', '14', ['1']], ['lks', '21', []]]);
+  // The title as it stands and the genitive in another spelling; a name is read in small letters, as before.
+  assert.deepEqual(read('Alus: Sotsiaalhoolekande seadus § 26 lg 1.'), [['shs', '26', ['1']]]);
+  assert.deepEqual(read('Vastavalt sotsiaalhoolekandeseaduse § 76 lõikele 5 ja lastekaitse seaduse §-le 26.'), [['shs', '76', ['5']], ['lks', '26', []]]);
+  // An abbreviation is read only as Riigi Teataja writes it, as a word of its own: small letters, another case of
+  // letters, a longer abbreviation, a word that only ends with it and an unknown one name nothing.
+  for (const text of ['Arvestada tuleb ka muid kulusid jms, tms § 5 alusel.', 'shs § 17 lg 2 kohaselt.', 'Shs § 17 lg 2 kohaselt.', 'SHSRS § 17 kohaselt.', 'MSHS § 17 kohaselt.',
+    'lasteKS § 21 kohaselt.', 'KOKS § 22 lg 1 alusel.', 'SHS kohaselt hindab vald abivajadust, vt § 15.']) assert.deepEqual(read(text), [], text);
+  // A name the words before it give to an earlier act or wording names none.
+  assert.deepEqual(read('Kuni 31.12.2015 kehtinud sotsiaalhoolekande seaduse § 22 lõike 1 alusel.'), []);
+  // A range of sections is no reference to follow; the lists give it with its other end, so that a reader can count it.
+  assert.deepEqual(read('Toetust arvestatakse SHS §-des 131–133 sätestatud alustel.'), []);
+  assert.deepEqual(namedActLists('Toetust arvestatakse SHS §-des 131–133 ja § 134 lg 2 alusel.', names, abbreviations).map(({ act, base, to, named, subsections }) => [act, base, to, named, subsections]),
+    [['shs', '131', ['133', ''], 'SHS', []], ['shs', '134', null, 'SHS', ['2']]]);
+  // Without the abbreviations (the reading of ADR-063) one names nothing.
+  assert.deepEqual(namedActReferences('SHS § 17 lg 2 kohaselt.', names), []);
+  // Why a number names no section of the act.
+  assert.deepEqual([sectionResolution('25', '', ['24', '25'], true), sectionResolution('7', '', ['8'], true), sectionResolution('131', '', ['13^1', '131'], false), sectionResolution('131', '', ['13^1', '131'], true)],
+    [{ key: '25' }, { reason: 'section_not_in_act' }, { reason: 'section_ambiguous' }, { key: '131' }]);
 });
 
 test('the passages that hold a named subsection: its own text, also when it runs on; without one, the section\'s start', () => {

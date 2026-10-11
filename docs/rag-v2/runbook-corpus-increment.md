@@ -290,6 +290,11 @@ Vastus on `current`, `stale` või `invalid`. Deploy kasutab põhjalikumat kontro
   ```
 
   Exit 0: muutusi pole. Exit 10: vaata aruande leide. Exit 20: mõni päring ebaõnnestus. Puuduvate redaktsioonide XML-id saab `--download <kaust>` valikuga; need lähevad sammudest 1–9 läbi nagu iga teine allikas.
+- **Seosed seadusesätetega** ([ADR-145](adr-145-a-passage-points-at-the-provision-it-names.md)). Seoseid ei salvestata, need loetakse otsingu ajal lõigu tekstist. Tasuta loendus näitab, mitu lõiku viitab kogus olevale seadusele, mis kujul, ja mis jäi välja ning miks (loeb kohalikku hoidlat umbes kümme minutit):
+
+  ```bash
+  node scripts/rag-v2-provision-relations.mjs --store tmp/rag-v2-corpus-store-v25 --policy <täienduse poliitika> --out tmp/provision-relations.json
+  ```
 
 ## Seotud
 
