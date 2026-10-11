@@ -2,23 +2,30 @@
  * Asutuse kinnitamise lehe vaate valik: milline väike vaade on ees.
  *
  * Puhas funktsioon, et otsust saaks testida ilma leheta. Järjekord on tähtis: sisselogimine ja
- * õigus enne kõike muud; lingiga tulles otsustab link; ilma lingita otsustab profiili seis.
+ * õigus enne kõike muud; nimi, mis ei vasta äriregistrile, enne kinnitamist (kinnitust selle nime
+ * all ei anta ja kinnitatud asutuse profiili ei saa selle nimega avaldada); lingiga tulles
+ * otsustab link; ilma lingita otsustab profiili seis.
  *
  *   wait          seanssi või seisu veel loetakse
  *   login         inimene ei ole sisse logitud
  *   forbidden     server keeldus (konto ei ole teenuseosutaja oma)
  *   done          link kinnitati just praegu
+ *   name          profiili nimi ei ole äriregistris selle registrikoodi nimi või koodi ei ole
+ *                 registri koopias: enne tuleb profiil parandada
  *   confirmed     asutus on juba kinnitatud
  *   link          kehtiv link: üks nupp „Kinnitan"
  *   link_invalid  link ei kehti või ei kuulu sellele kontole; all on vorm uue lingi jaoks
  *   no_profile    profiili või registrikoodi ei ole
  *   request       vorm: saada kinnituslink
  */
+const NAME_PROBLEMS = new Set(["mismatch", "code_not_listed"]);
+
 export function representationView({ session, loaded, forbidden, hasToken, done, state, link }) {
   if (session === "unauthenticated") return "login";
   if (session !== "authenticated" || !loaded) return "wait";
   if (forbidden) return "forbidden";
   if (done) return "done";
+  if (state?.hasProfile && state?.required && NAME_PROBLEMS.has(state?.nameCheck)) return "name";
   if (state?.confirmed) return "confirmed";
   if (hasToken && link?.valid) return "link";
   if (!state?.hasProfile || !state?.required) return "no_profile";

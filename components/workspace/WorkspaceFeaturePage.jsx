@@ -114,6 +114,8 @@ import {
   profileViewStates,
   profileViewSummaries,
   realServiceLocations,
+  registerNameKey,
+  registerNameState,
   representationDate,
   representationStatus,
   serviceAreaChoices,
@@ -4093,6 +4095,8 @@ function useServiceProfileAddressSearch({ t, form, location, locationIndex }) {
 const SERVICE_PROFILE_CONFIRM_MS = 8000;
 /* Asutuse kinnituse seisu ei küsita lehele naastes sagedamini kui kord selle aja jooksul. */
 const REPRESENTATION_REFRESH_MS = 15000;
+/* Nimekontroll äriregistri vastu küsitakse, kui kirjutamises on nii pikk paus. */
+const SERVICE_PROFILE_REGISTER_NAME_DELAY_MS = 450;
 
 /**
  * Teenuseprofiil: teenuseosutaja avalik profiil, tema teenused ja teeninduskohad.
@@ -4152,6 +4156,54 @@ function ServiceProfileSurface({ t, locale }) {
      kontrolli read teenuste kohta, mille piirkonda ei saa lugeda. Tuleb profiiliga koos. */
   const [areaRegister, setAreaRegister] = useState([]);
   const areaChoices = useMemo(() => serviceAreaChoices(areaRegister), [areaRegister]);
+  /* Nimi ja äriregister: vorm küsib serverilt, kas kirjutatud nimi vastab registrile, ja näitab
+     vastust sammus „Organisatsioon" ning avaldamise kontrollis. Vastus kannab võtit (kood ja
+     nimi), mille kohta see käib: muudetud vormi kohta vana vastus ei loe. Server kontrollib sama
+     uuesti kinnitamisel ja avaldamisel. */
+  const [registerCheck, setRegisterCheck] = useState(null);
+  const registerKey = registerNameKey(form);
+  useEffect(() => {
+    if (loading || !registerKey.trim()) return undefined;
+    const [registryCode, organizationName] = registerKey.split("\n");
+    const controller = new AbortController();
+    const timer = window.setTimeout(async () => {
+      try {
+        const response = await fetch("/api/service-provider/profile/register-name", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ registryCode, organizationName }),
+          signal: controller.signal
+        });
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok || !payload?.result) return;
+        setRegisterCheck({
+          key: registerKey,
+          result: payload.result,
+          registerName: payload.registerName || "",
+          registerDate: payload.registerDate || ""
+        });
+        /* Tühja nimevälja täidab registri nimi ise. */
+        if (payload.registerName && !organizationName) {
+          setForm((current) => (registerNameKey(current) === registerKey ? { ...current, organizationName: payload.registerName } : current));
+        }
+      } catch {
+        /* Vastuseta jääb rida ära; avaldamisel kontrollib server nime niikuinii. */
+      }
+    }, SERVICE_PROFILE_REGISTER_NAME_DELAY_MS);
+    return () => {
+      window.clearTimeout(timer);
+      controller.abort();
+    };
+  }, [loading, registerKey]);
+  const register = useMemo(() => {
+    const state = registerNameState(form, registerCheck);
+    if (!state) return null;
+    const date = state.registerDate ? new Date(state.registerDate) : null;
+    return {
+      ...state,
+      registerDate: date && Number.isFinite(date.getTime()) ? new Intl.DateTimeFormat(locale, { dateStyle: "medium" }).format(date) : ""
+    };
+  }, [form, registerCheck, locale]);
 
   const applyLoadedProfile = useCallback((loadedProfile) => {
     setProfile(loadedProfile || null);
@@ -4509,7 +4561,7 @@ function ServiceProfileSurface({ t, locale }) {
     }
   }
 
-  const publish = serviceProfilePublishState(form, representation);
+  const publish = serviceProfilePublishState(form, representation, register);
   /* Seisu lause registrikoodi juures ja avaldamise vaates; link ainult siis, kui kinnitamise lehele saab kohe minna. */
   const representationLine = representation.line
     ? {
@@ -4537,16 +4589,17 @@ function ServiceProfileSurface({ t, locale }) {
     tallArea: level === "service"
       ? areaViewIsTall("reach", openedService.municipalityIds, openedService.county, areaChoices)
       : areaViewIsTall("area", form.serviceAreaMunicipalityIds, form.county, areaChoices),
+    tallWho: level === "profile" && Boolean(register?.problem),
     states: level === "service"
       ? serviceViewStates(openedService, { savedAvailability: savedService?.availability || openedService.availability, licenceRow, areaUnread })
       : level === "location"
         ? locationViewStates(openedLocation)
-        : profileViewStates(form, mapEntry, areaChoices, representation),
+        : profileViewStates(form, mapEntry, areaChoices, representation, register),
     summaries: level === "service"
       ? serviceViewSummaries(openedService, { options })
       : level === "location"
         ? locationViewSummaries(openedLocation)
-        : profileViewSummaries(form, mapEntry, { tp, options, areaChoices, representation })
+        : profileViewSummaries(form, mapEntry, { tp, options, areaChoices, representation, register })
   });
 
   /* Salvestamine on iga vaate all servas samas kohas ja salvestab terve profiili. */
@@ -4743,6 +4796,10 @@ function ServiceProfileSurface({ t, locale }) {
         note={note}
         save={save}
         onField={updateField}
+        register={{
+          state: register,
+          onUse: () => updateField("organizationName", register?.registerName || form.organizationName)
+        }}
         services={{
           rows: serviceRows(form),
           max: SERVICE_PROFILE_LIMITS.services,
@@ -4760,7 +4817,7 @@ function ServiceProfileSurface({ t, locale }) {
         }}
         check={{
           blocked: publish.blocking.length > 0,
-          rows: serviceProfilePublishChecks(form, mapEntry, areaChoices, representation).map((row) => {
+          rows: serviceProfilePublishChecks(form, mapEntry, areaChoices, representation, register).map((row) => {
             /* Rida teenuse kohta (piirkond) viib selle teenuse vaatesse, muu rida profiili vaatesse. */
             const targetView = row.item?.view || row.view;
             return {
@@ -4770,7 +4827,7 @@ function ServiceProfileSurface({ t, locale }) {
               /* Valik (assistendi luba) kannab silti „Sinu valik", mitte „Vaata üle". */
               optional: Boolean(row.optional),
               text: tp(row.textKey, row.fallback),
-              detail: row.detail || "",
+              detail: row.detailKey ? tp(row.detailKey, row.detailFallback, row.detailVars) : row.detail || "",
               /* Rida, mis ei ole korras, viib vaatesse, kus seda saab parandada;
                  kinnitamata asutuse rida viib kinnitamise lehele. */
               target: row.ok

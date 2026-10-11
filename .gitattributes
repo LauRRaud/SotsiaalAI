@@ -29,3 +29,6 @@ public/vendor/mediapipe/** -text -whitespace
 
 # Business register contact check file: raw 8-byte hashes, never line-ending converted.
 src/server/data/*.bin binary
+# Business register names file: read by byte offsets, so line endings stay LF; 370 000 lines are
+# not shown as a text diff.
+src/server/data/business-register-names.tsv binary

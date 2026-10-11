@@ -1,0 +1,38 @@
+{
+  "sourceFile": "ettevotja_rekvisiidid__yldandmed.json",
+  "sourceUrl": "https://avaandmed.ariregister.rik.ee/et/avaandmete-allalaadimine",
+  "sourceLicence": "CC BY 4.0, Registrite ja Infosüsteemide Keskus (äriregister)",
+  "sourceLastModified": "2026-10-11",
+  "sourceZipBytes": 230458661,
+  "builtAt": "2026-10-11",
+  "contents": "Registrisse kantud (staatus R) asutused, üks rida asutuse kohta, järjestatud registrikoodi järgi.",
+  "lineFormats": {
+    "N": "kood<TAB>N<TAB>nimi: juriidiline isik või asutus, nimi registri kujul",
+    "H": "kood<TAB>H<TAB>räsi: füüsilisest isikust ettevõtja või tundmatu õiguslik vorm; nime failis ei ole, real on paari (kood, ühtlustatud nimi) SHA-256 räsi 16 esimest kuueteistkümnendmärki"
+  },
+  "entries": 370102,
+  "plainNames": 345506,
+  "hashedNames": 24596,
+  "byLegalForm": {
+    "OÜ": 286171,
+    "KÜ": 25622,
+    "FIE": 24596,
+    "MTÜ": 22693,
+    "UÜ": 3505,
+    "AS": 1912,
+    "KOVAS": 1529,
+    "TÜH": 1452,
+    "TÜ": 1038,
+    "SA": 726,
+    "FIL": 441,
+    "TRAS": 144,
+    "AMETÜ": 135,
+    "MPÜ": 56,
+    "AVOIG": 38,
+    "EMÜ": 18,
+    "SE": 14,
+    "ERAK": 12
+  },
+  "bytes": 11414878,
+  "sha256": "df1704c8364cb077d98f0b738148834820bce3f105f0af00561eff877e19fe36"
+}

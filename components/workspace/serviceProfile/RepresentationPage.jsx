@@ -183,6 +183,20 @@ export default function RepresentationPage() {
         <Notice tone="risk" alert>{forbidden}</Notice>
       </StepPanel>
     );
+  } else if (view === "name") {
+    /* Nimi ei vasta äriregistrile: kinnitada ei saa enne, kui profiil on parandatud. */
+    const vars = { name: state?.organizationName || "", code: state?.registryCode || "", registerName: state?.registerName || "" };
+    panel = (
+      <StepPanel title={title} question={tr("name_title")} actions={toProfile}>
+        <Notice tone="risk" alert>
+          {state?.nameCheck === "code_not_listed"
+            ? tr("code_not_listed", vars)
+            : state?.registerName
+              ? tr("name_mismatch", vars)
+              : tr("name_mismatch_hidden", vars)}
+        </Notice>
+      </StepPanel>
+    );
   } else if (view === "done" || view === "confirmed") {
     panel = (
       <StepPanel title={title} question={organization} actions={toProfile}>

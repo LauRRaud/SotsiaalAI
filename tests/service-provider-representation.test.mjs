@@ -17,6 +17,9 @@ import {
 
 const NOW = new Date('2026-10-11T08:00:00.000Z');
 const UPDATED = new Date('2026-10-10T10:00:00.000Z');
+/* Nimekontroll äriregistri vastu antakse ette nagu kontaktikontroll: need testid käivad kinnituse
+   enda kohta. Nime reegleid hoiab tests/business-register-names.test.mjs. */
+const nameMatches = async () => ({ result: 'match', registerName: 'Hea Hoolekanne OÜ' });
 
 function fakeDb(profile, { entries = [{ providerProfileId: profile?.id, status: 'PUBLISHED' }] } = {}) {
   const state = { profile: profile ? { ...profile } : null, entries: entries.map((entry) => ({ ...entry })), events: [] };
@@ -140,7 +143,7 @@ test('haldur kinnitab: alus on kohustuslik ja kood peab olema see, mida haldur n
 
   const row = await confirmRepresentationAsAdmin(
     { profileId: 'prof_1', adminUserId: 'admin_1', registryCode: '12345678', basis: '  Juhatuse liikme   digiallkirjaga volitus  ' },
-    { db, now: NOW }
+    { db, now: NOW, checkName: nameMatches }
   );
   assert.equal(row.confirmed, true);
   assert.equal(row.method, 'ADMIN');
@@ -174,7 +177,7 @@ test('tagasivõtmine: avaldatud profiil ja kaardi kirje lähevad samas tehingus 
     representationBasis: 'Volitus'
   }));
   const later = new Date('2026-10-12T09:00:00.000Z');
-  const row = await revokeRepresentationAsAdmin({ profileId: 'prof_1', adminUserId: 'admin_1' }, { db, now: later });
+  const row = await revokeRepresentationAsAdmin({ profileId: 'prof_1', adminUserId: 'admin_1' }, { db, now: later, checkName: nameMatches });
   assert.equal(row.confirmed, false);
   assert.equal(row.status, 'HIDDEN');
   assert.equal(db.state.profile.status, 'HIDDEN');
@@ -192,18 +195,18 @@ test('tagasivõtmine: mustandi seis ega kaardi kirje ei muutu', async () => {
     profile({ representationConfirmedAt: NOW, representationRegistryCode: '12345678', representationMethod: 'ADMIN' }),
     { entries: [{ providerProfileId: 'prof_1', status: 'DRAFT' }] }
   );
-  const row = await revokeRepresentationAsAdmin({ profileId: 'prof_1', adminUserId: 'admin_1' }, { db, now: NOW });
+  const row = await revokeRepresentationAsAdmin({ profileId: 'prof_1', adminUserId: 'admin_1' }, { db, now: NOW, checkName: nameMatches });
   assert.equal(row.status, 'DRAFT');
   assert.equal(db.state.profile.updatedAt, UPDATED);
   assert.equal(db.state.entries[0].status, 'DRAFT');
 });
 
 test('halduri loend: kinnitamata on ees ja alus läheb ainult haldurile', async () => {
-  const rows = await listRepresentationAdminRows({ db: fakeDb(profile()) });
+  const rows = await listRepresentationAdminRows({ db: fakeDb(profile()), loadNames: async () => null });
   assert.equal(rows.length, 1);
   assert.deepEqual(Object.keys(rows[0]).sort(), [
-    'basis', 'confirmed', 'confirmedAt', 'confirmedRegistryCode', 'id', 'method', 'organizationName',
-    'ownerEmail', 'registryCode', 'stale', 'status', 'updatedAt'
+    'basis', 'confirmed', 'confirmedAt', 'confirmedRegistryCode', 'id', 'method', 'nameCheck', 'organizationName',
+    'ownerEmail', 'registerName', 'registryCode', 'stale', 'status', 'updatedAt'
   ]);
 });
 
