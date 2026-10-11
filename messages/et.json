@@ -16286,6 +16286,17 @@
         "activities": "Asutuse toimingute loend",
         "export": "Kõik andmed ühe failina"
       }
+    },
+    "today": {
+      "count": "Käike {count}, tehtud {done}",
+      "all_title": "Kõik tänased käigud",
+      "mine_title": "Minu käes",
+      "mine_keys": "Võtmed {count}",
+      "mine_money": "Kliendiraha",
+      "back": "Tagasi tänase päeva juurde",
+      "none": "Täna sul käike ei ole.",
+      "done_part": "tehtud {count}",
+      "later_part": "hiljem veel {count}"
     }
   },
   "stage": {

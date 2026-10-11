@@ -6,7 +6,10 @@ import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react"
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import OrgPart from "@/components/org/OrgPart";
+import { CARE_OBSTACLE_KINDS } from "@/lib/homeCare/constants";
 
+import { AllVisitsView, MineView, NextDaysView, ObstacleView, TodayView } from "./day/DayViews";
+import { allLine, obstacleButtonKey, showObstacle, splitToday, visitChips, visitLine, visitNotes } from "./day/myDay";
 import { HomeDeskView } from "./desk/DeskViews";
 import { deskGroups, deskViewer, landingView, viewName } from "./desk/homeCareDesk";
 import HomeCareCallNote from "./HomeCareCallNote";
@@ -14,75 +17,13 @@ import HomeCareClientForm from "./HomeCareClientForm";
 import { keyName, keyWhere } from "./HomeCareKeys";
 import { rideText } from "./HomeCareTransport";
 import { euroText } from "./HomeCareMoney";
-import HomeCareObstacle from "./HomeCareObstacle";
+import { useHomeCareObstacle } from "./HomeCareObstacle";
 import { minutesLabel } from "./HomeCareDecisionView";
 import HomeCareOutbox from "./HomeCareOutbox";
 import HomeCareOwnName from "./HomeCareOwnName";
 import HomeCareReferrals from "./HomeCareReferrals";
 import { planDayLabel } from "./HomeCarePlanView";
-import { clientHref, homeCareBase, useHomeCareApi } from "./homeCareClient";
-
-/** Üks käik hooldaja päevas: kellaaeg, klient ja selle päeva erandid (K3-b). */
-function MyVisit({ organizationId, visit }) {
-  const { t } = useI18n();
-  return (
-    <li>
-      <Link className="hc-client" href={clientHref(organizationId, visit.client.id)} prefetch={false}>
-        <span className="hc-client__name">
-          {visit.startTime} {visit.client.displayName}
-          {visit.done ? (
-            <>
-              {" "}
-              <span className="hc-badge">{t("home_care.slots.done_badge")}</span>
-            </>
-          ) : null}
-          {visit.state === "CANCELLED" ? (
-            <>
-              {" "}
-              <span className="hc-badge hc-badge--warn">{t("home_care.day.states.CANCELLED")}</span>
-            </>
-          ) : null}
-          {visit.covering ? (
-            <>
-              {" "}
-              <span className="hc-badge">{t("home_care.day.covering")}</span>
-            </>
-          ) : null}
-          {visit.change?.timeChanged ? (
-            <>
-              {" "}
-              <span className="hc-badge">{t("home_care.day.changed_time")}</span>
-            </>
-          ) : null}
-        </span>
-        <span className="hc-client__meta">
-          {[
-            minutesLabel(t, visit.plannedMinutes),
-            visit.client.address,
-            visit.note,
-            visit.state === "CANCELLED" && visit.change?.reason ? t(`home_care.day.cancel_reasons.${visit.change.reason}`) : null,
-            visit.change?.note,
-            /* Võti (K4-b): kui selle kliendi võti ei ole minu käes, siis kelle käes see on. */
-            visit.key && !visit.key.held && visit.state !== "CANCELLED" ? keyWhere(t, visit.key) : null,
-            /* Sõit (K5-w): kliendil on sel päeval korraldatud sõit, pane ta valmis. */
-            visit.ride ? rideText(t, visit.ride) : null
-          ]
-            .filter(Boolean)
-            .join(" · ")}
-        </span>
-      </Link>
-      {/* Kojutulek (K6-f): esimene käik pärast äraolekut. */}
-      {visit.homecoming ? <p className="hc-notice">{t("home_care.homecoming.my_line", { date: planDayLabel(visit.homecoming.returnedOn) })}</p> : null}
-      {/* Esmakäik (K5-v): klient ei tunne mind; kas talle on teatatud. */}
-      {visit.firstVisit ? (
-        <p className="hc-notice">
-          {t("home_care.first_visit.my_line")}{" "}
-          {visit.firstVisit.outcome ? t(`home_care.first_visit.my_outcomes.${visit.firstVisit.outcome}`) : t("home_care.first_visit.my_not_marked")}
-        </p>
-      ) : null}
-    </li>
-  );
-}
+import { clientHref, formatTime, homeCareBase, useHomeCareApi } from "./homeCareClient";
 
 /**
  * Koduteenuse avaleht: LAUD ja avalehe enda vaated.
@@ -98,8 +39,9 @@ function MyVisit({ organizationId, visit }) {
  * HOOLDAJAL AVANEB „TÄNA", hooldusjuhil laud (`landingView`): hooldaja avab
  * lehe ukse taga ja tänased käigud peavad olema esimese asjana ees.
  *
- * VAADETE SISU on veel vanal `hc-*` kihil: see ühik viis liikumise kiirmenüüsse,
- * vaated ise tehakse väikesteks järgmises ühikus.
+ * HOOLDAJA PÄEV („Täna", kõik tänased käigud, „Minu käes", takistuse teade,
+ * järgmised päevad) on väikesed vaated (./day/). Kliendid, uus klient, „Kuhu
+ * suunata" ja oma nimi on veel vanal `hc-*` kihil.
  *
  * LINGID KLIENDI LEHELE ON `prefetch={false}`. Kliendi lehe avamine jätab
  * avamislogisse rea; ette laadimine kirjutaks sinna avamisi, mida inimene ei
@@ -180,118 +122,162 @@ export default function HomeCareHome({ context, initial, unitOptions, myDay = nu
     setResults(result.ok ? result.data.clients || [] : null);
   };
 
+  /* Takistuse teade (K3-e): olek ja päringud; vaated on failis ./day/DayViews.jsx. */
+  const obstacleState = useHomeCareObstacle({ organizationId, initial: myDay?.obstacle || null });
+
+  /* Käigu rida vaadete jaoks: sõnad reeglitest (./day/myDay.js), vormindajad siit. */
+  const visitRow = (visit) => ({
+    key: visit.slotId,
+    href: clientHref(organizationId, visit.client.id),
+    title: `${visit.startTime} ${visit.client.displayName}`,
+    line: visitLine(visit, { t, minutes: (value) => minutesLabel(t, value), keyWhere: (place) => keyWhere(t, place), ride: (ride) => rideText(t, ride) }),
+    notes: visitNotes(visit, { t, day: planDayLabel }),
+    chips: visitChips(visit, { t })
+  });
+
   /* Seadmes ootavad kirjed: laual ja vaates „Täna", sest sinna koduteenus avaneb. */
   const outbox = <HomeCareOutbox ownerId={context.membership?.id || ""} timeZone={timeZone} />;
 
-  /* Avalehe vaade vanal kihil: kest ütleb nime kiirmenüüs, nelja ruuduga nupp viib lauale. */
-  const inView = (body) => {
-    const label = viewName(view, who, { t });
-    return (
-      <div ref={rootRef}>
-        <OrgPart context={context} part="home_care" partLabel={label} onDesk={() => setView("")}>
-          <section className="hc-shell">
-            <h2 className="sr-only" tabIndex={-1} data-step-heading>
-              {label}
-            </h2>
-            {body}
-          </section>
-        </OrgPart>
-      </div>
+  /* Avalehe vaade: kest ütleb nime kiirmenüüs, nelja ruuduga nupp viib lauale. */
+  const inPart = (body) => (
+    <div ref={rootRef}>
+      <OrgPart context={context} part="home_care" partLabel={viewName(view, who, { t })} onDesk={() => setView("")}>
+        {body}
+      </OrgPart>
+    </div>
+  );
+  /* Vaade, mille sisu on veel vanal kihil. */
+  const inView = (body) =>
+    inPart(
+      <section className="hc-shell">
+        <h2 className="sr-only" tabIndex={-1} data-step-heading>
+          {viewName(view, who, { t })}
+        </h2>
+        {body}
+      </section>
     );
-  };
 
   if (view === "name") {
     /* Nimeta inimene: kolleegid näeksid tema kohal kriipsu, seepärast on vorm kohe ees. */
     return inView(<HomeCareOwnName organizationId={organizationId} initial={ownName} />);
   }
 
+  const visits = myDay?.visits || [];
+
   if (view === "today") {
-    return inView(
-      <>
+    const split = splitToday(visits);
+    const nextDays = myDay?.next || [];
+    const keys = myDay?.keys || [];
+    const money = myDay?.money || [];
+    const sent = obstacleState.obstacle;
+    return inPart(
+      <TodayView
+        t={t}
+        day={{
+          date: myDay?.weekday ? `${t(`home_care.slots.weekdays_long.${myDay.weekday}`)} ${planDayLabel(myDay.today)}` : t("home_care.slots.today_title"),
+          count: visits.length ? t("home_care.today.count", { count: visits.length, done: split.done.length }) : ""
+        }}
+        absent={myDay?.absent ? t("home_care.absences.my_notice") : ""}
+        rows={{
+          first: split.first ? visitRow(split.first) : null,
+          follow: split.follow.map(visitRow),
+          /* Üks käik on niigi täies pikkuses ees: rida „Kõik tänased käigud" tuleb alates kahest. */
+          all: visits.length > 1 ? { title: t("home_care.today.all_title"), line: allLine(split, { t }) } : null
+        }}
+        next={nextDays.length ? { title: t("home_care.slots.next_title") } : null}
+        mine={
+          keys.length || money.length
+            ? {
+                keys: keys.length ? { title: t("home_care.today.mine_keys", { count: keys.length }), line: keys.map((key) => keyName(t, key)).join(", ") } : null,
+                money: money.length ? { title: t("home_care.today.mine_money"), line: euroText(money.reduce((sum, item) => sum + item.balanceCents, 0), locale) } : null
+              }
+            : null
+        }
+        obstacle={
+          showObstacle({ ...myDay, obstacle: sent })
+            ? {
+                note: sent
+                  ? `${t("home_care.obstacle.sent", { time: formatTime(sent.reportedAt, timeZone), kind: t(`home_care.obstacle.kinds.${sent.kind}`) })} ${t(sent.handled ? "home_care.obstacle.handled_hint" : "home_care.obstacle.sent_hint")}`
+                  : "",
+                attention: Boolean(sent && !sent.handled),
+                error: obstacleState.error,
+                button: t(obstacleButtonKey(sent)),
+                canReport: Boolean(context.writable),
+                canWithdraw: Boolean(context.writable && sent && !sent.handled),
+                busy: obstacleState.busy
+              }
+            : null
+        }
+        onAll={() => setView("all")}
+        onNext={() => setView("next")}
+        onMine={() => setView("mine")}
+        onObstacle={() => {
+          obstacleState.start();
+          setView("obstacle");
+        }}
+        onWithdraw={obstacleState.withdraw}
+      >
         {outbox}
+      </TodayView>
+    );
+  }
 
-        {/* Tänane päev (K3-a): sulle määratud tänased käigud kellaaja järjekorras. */}
-        {myDay?.absent ? <p className="hc-notice">{t("home_care.absences.my_notice")}</p> : null}
-        {myDay?.visits?.length ? (
-          <div className="hc-section">
-            <h3 className="hc-section-title">{t("home_care.slots.today_title")}</h3>
-            <ul className="hc-list">
-              {myDay.visits.map((visit) => (
-                <MyVisit key={visit.slotId} organizationId={organizationId} visit={visit} />
-              ))}
-            </ul>
-          </div>
-        ) : null}
+  if (view === "all") {
+    return inPart(<AllVisitsView t={t} rows={visits.map(visitRow)} onBack={() => setView("today")} />);
+  }
 
-        {/* Minu käes olevad võtmed (K4-b): ripatsi number, kelle võti ja mille võti. */}
-        {myDay?.keys?.length ? (
-          <div className="hc-section">
-            <h3 className="hc-section-title">{t("home_care.keys.mine_title")}</h3>
-            <ul className="hc-list">
-              {myDay.keys.map((key) => (
-                <li key={key.id}>
-                  <Link className="hc-client" href={clientHref(organizationId, key.client.id)} prefetch={false}>
-                    <span className="hc-client__name">
-                      {keyName(t, key)}
-                      {key.clientEnded ? (
-                        <>
-                          {" "}
-                          <span className="hc-badge hc-badge--warn">{t("home_care.keys.return_badge")}</span>
-                        </>
-                      ) : null}
-                    </span>
-                    <span className="hc-client__meta">{key.client.displayName}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
+  if (view === "mine") {
+    /* Minu käes olevad võtmed (K4-b) ja kliendiraha (K4-c): rida avab kliendi lehe. */
+    return inPart(
+      <MineView
+        t={t}
+        keys={(myDay?.keys || []).map((key) => ({
+          id: key.id,
+          href: clientHref(organizationId, key.client.id),
+          name: keyName(t, key),
+          client: key.client.displayName,
+          badge: key.clientEnded ? t("home_care.keys.return_badge") : ""
+        }))}
+        money={(myDay?.money || []).map((item) => ({
+          id: item.client.id,
+          href: clientHref(organizationId, item.client.id),
+          client: item.client.displayName,
+          amount: euroText(item.balanceCents, locale)
+        }))}
+        onBack={() => setView("today")}
+      />
+    );
+  }
 
-        {/* Minu käes olev kliendiraha (K4-c): jääk kliendi kaupa. */}
-        {myDay?.money?.length ? (
-          <div className="hc-section">
-            <h3 className="hc-section-title">{t("home_care.money.mine_title")}</h3>
-            <ul className="hc-list">
-              {myDay.money.map((item) => (
-                <li key={item.client.id}>
-                  <Link className="hc-client" href={clientHref(organizationId, item.client.id)} prefetch={false}>
-                    <span className="hc-client__name">{item.client.displayName}</span>
-                    <span className="hc-client__meta">{euroText(item.balanceCents, locale)}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
+  if (view === "obstacle") {
+    /* „Mul on takistus" (K3-e): valik ja saatmine; vaade sulgub, kui teade läks teele. */
+    return inPart(
+      <ObstacleView
+        t={t}
+        options={CARE_OBSTACLE_KINDS.map((value) => ({ value, label: t(`home_care.obstacle.kinds.${value}`) }))}
+        kind={obstacleState.kind}
+        onKind={obstacleState.setKind}
+        busy={obstacleState.busy}
+        error={obstacleState.error}
+        onSend={async () => {
+          if (await obstacleState.report()) setView("today");
+        }}
+        onCancel={() => setView("today")}
+      />
+    );
+  }
 
-        {/* „Mul on takistus" (K3-e): hooldaja teatab ise, kui tänane päev ei lähe plaani järgi. */}
-        {myDay && !myDay.absent && (myDay.obstacle || myDay.visits?.some((visit) => !visit.done && visit.state !== "CANCELLED")) ? (
-          <HomeCareObstacle organizationId={organizationId} timeZone={timeZone} initial={myDay.obstacle || null} canReport={Boolean(context.writable)} />
-        ) : null}
-
-        {/* Järgmised päevad (K3-d): siit näeb, mis teate „sinu käigud muutusid" taga on. */}
-        {myDay?.next?.length ? (
-          <div className="hc-section">
-            <h3 className="hc-section-title">{t("home_care.slots.next_title")}</h3>
-            {myDay.next.map((item) => (
-              <div key={item.day}>
-                <p className="hc-sub">
-                  {t(`home_care.slots.weekdays_long.${item.weekday}`)} {planDayLabel(item.day)}
-                  {item.absent ? ` · ${t("home_care.slots.next_absent")}` : ""}
-                </p>
-                {item.visits.length ? (
-                  <ul className="hc-list">
-                    {item.visits.map((visit) => (
-                      <MyVisit key={visit.slotId} organizationId={organizationId} visit={visit} />
-                    ))}
-                  </ul>
-                ) : null}
-              </div>
-            ))}
-          </div>
-        ) : null}
-      </>
+  if (view === "next") {
+    /* Järgmised päevad (K3-d): siit näeb, mis teate „sinu käigud muutusid" taga on. */
+    return inPart(
+      <NextDaysView
+        t={t}
+        days={(myDay?.next || []).map((item) => ({
+          key: item.day,
+          title: `${t(`home_care.slots.weekdays_long.${item.weekday}`)} ${planDayLabel(item.day)}${item.absent ? ` · ${t("home_care.slots.next_absent")}` : ""}`,
+          rows: item.visits.map(visitRow)
+        }))}
+      />
     );
   }
 

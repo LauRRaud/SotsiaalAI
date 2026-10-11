@@ -1,0 +1,96 @@
+/* Hooldaja päeva vaated (`Täna`, `Minu käes`, järgmised päevad).
+   Read, märgid ja väljad on organisatsioonide lehtede ühised
+   (../../org/org.module.css); siin on ainult see, mis on päeva vaadetel oma. */
+
+/* Vana kihi osa vaate ülaservas (seadmes ootavad kirjed): sama ümbris mis laual. */
+.notes {
+  composes: notes from "../desk/desk.module.css";
+}
+
+/* Ülaserv: päev ja selle kõrval käikude arv. */
+.head {
+  composes: head from "../../org/desk/desk.module.css";
+}
+.date {
+  composes: name from "../../org/desk/desk.module.css";
+}
+.count {
+  composes: seat from "../../org/desk/desk.module.css";
+}
+
+/* Käigud, järgmiste päevade lahter ja „Minu käes". Telefonis üksteise all,
+   laiemal pinnal on kaks viimast käikude kõrval. */
+.cols {
+  min-width: 0;
+  display: grid;
+  gap: 0.4rem 0.65rem;
+}
+.pair {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: start;
+  gap: 0.4rem;
+}
+
+/* Käigu rida: teine rida murdub (aadress ja võtme asukoht ei tohi ukse taga
+   poolikuks jääda), teated on eraldi ridadel. */
+.visit {
+  align-items: start;
+}
+.main {
+  min-width: 0;
+  display: grid;
+  gap: 0.1rem;
+}
+.sub,
+.note {
+  min-width: 0;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.note {
+  color: var(--text-warm);
+}
+
+/* Järgmised päevad: päevad üksteise all, laiemal pinnal kahes veerus. */
+.days {
+  min-width: 0;
+  display: grid;
+  align-items: start;
+  gap: 0.65rem 1rem;
+}
+
+@container (min-width: 34rem) {
+  .days {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  /* Laiemal pinnal on järgmised päevad ja „Minu käes" käikude kõrval ning käigu
+     sõnad nime järel samal real. Käikude loend võtab vasaku veeru kogu kõrguses. */
+  .cols[data-side="1"] {
+    grid-template-columns: minmax(0, 1fr) 13rem;
+    grid-auto-rows: min-content;
+    align-items: start;
+  }
+  .cols[data-side="1"] .list {
+    grid-column: 1;
+    grid-row: 1 / span 3;
+  }
+  .cols[data-side="1"] > [data-area] {
+    grid-column: 2;
+  }
+  .cols[data-side="1"] .pair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .visit .main {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 0.75rem;
+  }
+  .visit .note {
+    flex-basis: 100%;
+  }
+}
