@@ -108,8 +108,9 @@ test('graph experiment arms share one extra room; the chat profiles are unchange
 // source: the pointing document's version fields; pointer: the words it names the section with; sections: the act's
 // other section numbers (Codex review of #301: a number is read as exactly as the pointing text keeps it).
 // own: the passages of the pointing document's own § 2; more: its further sections (ADR-068).
+// localFields, actFields: fields of the pointing document and of the act beside the ones they have (ADR-145: their days).
 function namedActFixture({ twin = false, sameAct = false, directory = false, titles = null, source = {}, pointer: named = null, sections: numbers = null,
-  own = ['Teenuse osutamise otsustab osakond.'], more = [], text = 'tugiisik' } = {}) {
+  own = ['Teenuse osutamise otsustab osakond.'], more = [], text = 'tugiisik', localFields = {}, actFields = {} } = {}) {
   const tenant = 'named-acts', embedding = new MockEmbedding(), config = searchConfig(embedding.config);
   const act = (doc, title, fields, sections, versionFields = {}) => {
     const version = `${doc}-v1`, spans = [], chunks = [], source_units = [];
@@ -131,10 +132,10 @@ function namedActFixture({ twin = false, sameAct = false, directory = false, tit
         { id: `parent-${c.id}`, type: 'PARENT_SECTION', from_id: c.id, to_id: c.parent_section_id }]) };
   };
   const pointer = named ?? (sameAct ? 'käesoleva korra § 2' : 'sotsiaalhoolekande seaduse § 25 lõikes 2');
-  const local = act('kord', 'Abi andmise kord', { valid_from: { value: '2026-01-01' }, regions: { value: ['harku_vald'] } },
+  const local = act('kord', 'Abi andmise kord', { valid_from: { value: '2026-01-01' }, regions: { value: ['harku_vald'] }, ...localFields },
     [['15', [`Tugiisikuteenust ei osuta isik, kes on ${pointer} nimetatud isik.`]], ['2', own], ...more], source);
   // The act itself is a Riigi Teataja XML that keeps its superscripts, whatever the pointing document is.
-  const national = (doc = 'shs') => act(doc, 'Sotsiaalhoolekande seadus', { valid_from: { value: '2026-10-01' } },
+  const national = (doc = 'shs') => act(doc, 'Sotsiaalhoolekande seadus', { valid_from: { value: '2026-10-01' }, ...actFields },
     [['24', ['Tugiisikuteenuse eesmärk on toetada iseseisvat toimetulekut.']],
       ['25', ['(1)\nKohaliku omavalitsuse üksus loob isikule võimalused teenuse saamiseks.\n(2)', 'Tugiisikuteenust ei või osutada isik, kes on teenuse saaja alaneja või üleneja sugulane.']],
       ...(numbers || []).map(number => [number, [`Paragrahvi ${number} tekst.`]])],
@@ -267,6 +268,63 @@ test('ADR-142: a municipal regulation\'s provision the question names is fetched
   // A profile without the named acts' places does not read the question.
   const v3 = await namedActFixture({ pointer: 'vallavalitsuse otsuses', text: 'Mida ütleb Harku valla abi andmise korra § 2?' })(CHAT_REFERENCES_PROFILE);
   assert.deepEqual([picture(v3).length, v3.measurements.question_references], [1, undefined]);
+});
+
+// ADR-145 (11.10.2026): a guide's or a study's "SHS § 25 lg 2" is a relation to that provision as much as a regulation's
+// "sotsiaalhoolekande seaduse § 25 lõikes 2". The selected passage of any document is read for every way texts name a
+// law, and what is not followed is counted with its reason.
+test('ADR-145: a selected passage names the law by its abbreviation, its title or another spelling and the provision is added; a text older than the act, a range, an unknown or ambiguous number and a full pair of places are left out and counted', async () => {
+  const guide = { valid_from: { value: null }, regions: { value: null }, source_type: { value: 'official_guideline' } };
+  const run = (options = {}) => namedActFixture(options)(CHAT_SUBSECTIONS_PROFILE);
+  const added = packet => packet.evidence.filter(entry => entry.selection.reason?.named_act).map(entry => [entry.selection.reason.section, entry.source_text.slice(0, 22)]);
+  const held = [['25', 'Tugiisikuteenust ei võ']], audit = { candidates: 1, additions: 1, acts: ['shs:25'] };
+  // Every written form, in an act's passage and in a guide's, from the directory and without it.
+  for (const pointer of ['SHS § 25 lõikes 2', '(SHS § 25 lg 2)', 'SHS-i § 25 lõikes 2', 'SHSi § 25 lg 2 p 1', 'Sotsiaalhoolekande seadus § 25 lg 2', 'sotsiaalhoolekandeseaduse § 25 lõikes 2']) {
+    for (const options of [{}, { directory: true }, { localFields: { ...guide, publication_year: { value: 2024 } } }]) {
+      const packet = await run({ pointer, ...options });
+      assert.equal(packet.state, 'ok', pointer);
+      assert.deepEqual([added(packet), packet.measurements.named_act_references], [held, audit], `${pointer} ${JSON.stringify(options)}`);
+      assert.deepEqual(packet.evidence.find(entry => entry.selection.reason?.named_act).selection.reason, { type: 'cross_reference', seed_evidence_id: packet.evidence[0].evidence_id, section: '25', named_act: 'shs' });
+    }
+  }
+  // The section alone: its first passage.
+  assert.deepEqual(added(await run({ pointer: 'SHS § 25' })), [['25', '(1)\nKohaliku omavalits']]);
+  // Nothing is read: the abbreviation in small letters, an act the scope does not hold, a name given to an earlier
+  // act, and an abbreviation whose title two documents of the scope share.
+  for (const options of [{ pointer: 'shs § 25 lõikes 2' }, { pointer: 'VÕS § 25 lõikes 2' }, { pointer: 'varem kehtinud sotsiaalhoolekande seaduse § 25 lõikes 2' }, { pointer: 'SHS § 25 lõikes 2', twin: true }]) {
+    const packet = await run(options);
+    assert.deepEqual([packet.state, added(packet), packet.measurements.named_act_references], ['ok', [], { candidates: 0, additions: 0, acts: [] }], JSON.stringify(options));
+  }
+  // Read, left out and counted. A range of sections; a section the act does not have; a number that could be two of
+  // the act's sections in a text that may have lost a superscript.
+  const leftOut = async options => { const packet = await run(options); assert.equal(packet.state, 'ok'); return [added(packet), packet.measurements.named_act_references.left_out]; };
+  assert.deepEqual(await leftOut({ pointer: 'SHS §-des 24–25' }), [[], { range: 1 }]);
+  assert.deepEqual(await leftOut({ pointer: 'SHS § 99 lõikes 1' }), [[], { section_not_in_act: 1 }]);
+  assert.deepEqual(await leftOut({ pointer: 'SHS § 131', sections: ['13¹', '131'], source: { source_format: 'pdf' } }), [[], { section_ambiguous: 1 }]);
+  // The act's first day (its entry into force; where the text gives none, its adoption) against the day the pointing
+  // text speaks from: a version's first day in force, a publication day, a year's first day, the day a page was read.
+  const since = first => ({ actFields: { legal_text: { value: first } } }), force = since({ act_in_force_from: '2016-01-01', adopted: '2015-12-09' });
+  assert.deepEqual(await leftOut({ pointer: 'SHS § 25 lõikes 2', ...force, localFields: { valid_from: { value: '2015-06-01' } } }), [[], { older_document: 1 }]);
+  assert.deepEqual(await leftOut({ pointer: 'SHS § 25 lõikes 2', ...force, localFields: { ...guide, publication_year: { value: 2014 } } }), [[], { older_document: 1 }]);
+  assert.deepEqual(await leftOut({ pointer: 'SHS § 25 lõikes 2', ...force, localFields: { ...guide, publication_date: { value: '2015-12-20' } } }), [[], { older_document: 1 }]);
+  assert.deepEqual(await leftOut({ pointer: 'SHS § 25 lõikes 2', ...since({ adopted: '2026-05-18' }), localFields: { ...guide, source_checked_at: { value: '2026-03-02T10:00:00.000Z' } } }), [[], { older_document: 1 }]);
+  assert.deepEqual(await leftOut({ pointer: 'SHS § 25 lõikes 2', ...force, localFields: guide }), [[], { undated_document: 1 }]);
+  for (const localFields of [{}, { ...guide, publication_year: { value: 2016 } }, { ...guide, publication_date: { value: '2016-01-01' } }, { ...guide, retrieved_at: { value: '2026-09-30T08:00:00.000Z' } }]) {
+    assert.deepEqual(await leftOut({ pointer: 'SHS § 25 lõikes 2', ...force, localFields }), [held, undefined], JSON.stringify(localFields));
+  }
+  // An act whose first day is not known is followed as before, whatever the pointing text's day.
+  assert.deepEqual(await leftOut({ pointer: 'SHS § 25 lõikes 2', localFields: guide }), [held, undefined]);
+  // Two places: the third provision of one passage is counted, not added.
+  const three = await run({ pointer: 'SHS § 24, § 25 lõikes 2 ja § 26', sections: ['26'] });
+  assert.deepEqual([added(three).map(([section]) => section), three.measurements.named_act_references], [['24', '25'], { candidates: 2, additions: 2, acts: ['shs:24', 'shs:25'], left_out: { over_limit: 1 } }]);
+  // The genitive, the one form read before, keeps its turn: what a turn was given before this it is given still, and
+  // another form takes the room that leaves.
+  const first = await run({ pointer: 'SHS § 24, samuti sotsiaalhoolekande seaduse § 25 lõikes 2 ja sotsiaalhoolekande seaduse § 26', sections: ['26'] });
+  assert.deepEqual([added(first).map(([section]) => section), first.measurements.named_act_references], [['25', '26'], { candidates: 2, additions: 2, acts: ['shs:25', 'shs:26'], left_out: { over_limit: 1 } }]);
+  const room = await run({ pointer: 'SHS § 24, samuti sotsiaalhoolekande seaduse § 25 lõikes 2' });
+  assert.deepEqual([added(room).map(([section]) => section), room.measurements.named_act_references], [['25', '24'], { candidates: 2, additions: 2, acts: ['shs:25', 'shs:24'] }]);
+  // A profile without the named acts' places reads none of it.
+  assert.deepEqual([added(await namedActFixture({ pointer: 'SHS § 25 lõikes 2' })(CHAT_REFERENCES_PROFILE)), (await namedActFixture({ pointer: 'SHS § 25 lõikes 2' })(CHAT_REFERENCES_PROFILE)).measurements.named_act_references], [[], undefined]);
 });
 
 test('chat profile v4 is v3 with two more places for a named other act, in the cross-references\' room', () => {
