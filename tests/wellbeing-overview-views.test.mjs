@@ -50,14 +50,3 @@ test('igal töövool, mida ülevaade võib soovitada, on nimi kataloogis ja tee'
   }
   for (const tool of wellbeingTools) assert.ok(tool.route.startsWith('/tooheaolu/'), tool.id);
 });
-
-test('leht ei ole enam vanal ühisel kihil ega kanna eestikeelseid silte koodis', () => {
-  const page = read('../components/wellbeing/OverviewWorkflow.jsx');
-  assert.ok(!page.includes('<li key={workflowType}>{workflowType}</li>'), 'töövoo sisemist nime ei trükita');
-  assert.ok(!/const (signalLabels|workflowLabels) = \{/.test(page), 'sildid ei ole koodis sõnedena');
-  assert.ok(!page.includes('role="status"'), 'teated ei kasuta status-rolli');
-  const shell = read('../components/wellbeing/WellbeingPage.jsx');
-  const staged = shell.slice(shell.indexOf('const STAGED_TOOLS'), shell.indexOf(']);', shell.indexOf('const STAGED_TOOLS')));
-  assert.ok(staged.includes('"overview"'), 'leht joonistab end ise, ilma vana `wellbeing-workflow` kihita');
-  assert.ok(shell.includes('<OverviewWorkflow onNavigate={navigate} />'), 'soovitatud töövoog viib oma lehele');
-});

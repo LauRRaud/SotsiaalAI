@@ -133,47 +133,9 @@ test('paneeli vaba äär: laial kaardil suumi nuppudest paremal, kitsal kaardil 
   assert.ok(ZOOM_CONTROL_CLEARANCE > 44);
 });
 
-test('komponent: kaart ehitab paneeli alati seotud funktsiooniga', () => {
-  const source = read('../components/workspace/ServiceMapLeaflet.jsx');
-  /* Valmis sõlme kaardile ei anta (kaart jätaks selle meelde). */
-  assert.ok(!source.includes('setPopupContent('), 'paneeli sisu uuendatakse `update()` kaudu');
-  assert.ok(source.includes('popup.update();'));
-  /* Vaate vahetus käib komponendi kaudu, mitte paneeli sees. */
-  assert.ok(source.includes('view.onBack?.(shown.entry.id);'));
-  assert.ok(source.includes('if (opened.id === selectedEntryId) view.onReopen?.(opened.id);'));
-  assert.ok(!source.includes('listView.hidden'), 'paneel ei vaheta vaadet kohapeal ilma kaardita');
-  /* Uus valik toob kontakti ette; sama valiku kordus vaadet ei muuda. */
-  assert.match(source, /if \(lastSelectedRef\.current !== selectedEntryId\) \{\s*lastSelectedRef\.current = selectedEntryId;\s*groupListRef\.current = "";/);
-  /* Sisuta ligipääsutee plokki ei joonistata. */
-  assert.ok(source.includes('if (!hasDetails && !isHealthContact) return null;'));
-  /* Vaba äär loetakse kaardi laiusest iga ehituse eel. */
-  assert.ok(source.includes('popup.options.autoPanPaddingTopLeft = popupTopLeftPadding(mapRef.current?.getSize?.().x);'));
-  assert.ok(source.includes('autoPanPaddingBottomRight: [POPUP_EDGE_PADDING, POPUP_EDGE_PADDING]'));
-  assert.ok(source.includes('className={`service-map-leaflet-shell ${styles.shell}`}'));
-  /* Leht ja kaart kasutavad sama telefoni reeglit ning kaart saab lehe keele. */
-  const page = read('../components/workspace/WorkspaceFeaturePage.jsx');
-  assert.ok(!page.includes('function serviceMapPhoneHref('));
-  assert.ok(page.includes('import { servicePhoneHref } from "@/components/workspace/serviceMapPopupRules";'));
-  assert.match(page, /<ServiceMapLeaflet[^>]*locale=\{locale\}/s);
-});
-
-test('kujundus: paneel mahub kaardialasse, legend ja suumi nupud ei kata seda', () => {
-  const css = read('../app/styles/workspace.css');
-  const moduleCss = read('../components/workspace/ServiceMapLeaflet.module.css');
+test('paneeli vaba äär ja kitsa kaardi piir on reegli arvud', () => {
   /* Kõrgus ja laius tulevad kaardiala mõõtudest; valem arvestab sama vaba äärega. */
-  assert.match(css, /\.service-map-canvas \{[^}]*container-type: size;/s);
-  assert.ok(css.includes('max-height: min(65vh, 32rem, calc(100cqh - 1.3rem - 46px));'));
-  assert.equal(css.split("min(24rem, calc(100cqw - 3.4rem))").length - 1, 2);
   assert.equal(POPUP_EDGE_PADDING, 10, 'valem 46 px = raam 4 + nool 20 + 2 × vaba äär 10 + varu 2');
-  /* Vana brauseri varu on omaette plokis (kaks deklaratsiooni samas reeglis ehitust üle ei ela). */
-  const fallback = css.slice(css.indexOf('@supports not (height: 1cqh)'));
-  assert.ok(fallback.includes('max-height: min(65vh, 32rem);'));
-  assert.equal(fallback.split('calc(100vw - 3rem)').length - 1, 2);
-  /* Legend peidab end avatud paneeli ajaks. */
-  assert.match(css, /\.service-map-leaflet-shell:has\(\.leaflet-popup\) \.service-map-leaflet__legend \{\s*visibility: hidden;/);
   /* Kitsal kaardil peidetakse suumi nupud avatud paneeli ajaks; piir on sama mis reeglis. */
-  assert.match(moduleCss, /@container \(max-width: 479\.98px\) \{\s*\.shell:has\(:global\(\.leaflet-popup\)\) :global\(\.leaflet-control-zoom\) \{\s*visibility: hidden;/);
   assert.equal(NARROW_MAP_WIDTH, 480);
-  /* Kihistamata moodul võidab Leafleti lõiguveerised. */
-  assert.match(moduleCss, /\.shell :global\(\.leaflet-popup-content\) p,[^{]*\{\s*margin: 0;/s);
 });

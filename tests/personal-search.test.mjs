@@ -150,7 +150,6 @@ test('dokumenti otsitakse samade tingimustega, millega dokumendi leht selle avab
   for (const route of ['route.js', 'download/route.js', 'audio-select/route.js', 'transcribe/route.js']) {
     const source = read(`../app/api/documents/[id]/${route}`);
     assert.ok(source.includes('...openableDocumentWhere()'), `${route} kasutab ühist tingimust`);
-    assert.ok(!source.includes('fieldVisitAttachments: {'), `${route}: tingimuse koopiat ei ole`);
   }
 });
 
@@ -556,12 +555,6 @@ test('„Näita rohkem” laeb juurde ekraanil oleva loendi ridu, ükskõik mis 
   assert.deepEqual(view.announce, { append: true, added: 1, total: 3, hasMore: false }, 'lisandunud ridade arv on teada');
   assert.deepEqual(view.appended, { firstNewIndex: 2 }, 'fookus läheb esimesele uuele reale');
   assert.ok(views.some((item) => item.loadingMore === true) && view.loadingMore === false);
-
-  /* Leht annab nupule käigu enda funktsiooni ja otsib välja tekstiga ainult vormi saatmisel. */
-  const page = read(PAGE);
-  assert.ok(page.includes('onClick={session.loadMore}'));
-  assert.equal(page.split('session.search(').length - 1, 1, 'välja tekst läheb otsingusse ühes kohas');
-  assert.ok(page.includes('session.search(query);') && page.includes('onSubmit={onSubmit}'), 'otsingusse läheb välja tekst vormi saatmisel');
 });
 
 test('ebaõnnestunud juurde laadimine jätab read alles ja uus vajutus küsib sama lehte', async () => {
@@ -701,26 +694,4 @@ test('päring serverile: keha, vastuse lugemine ja keeldumised', async () => {
   assert.deepEqual(offline, { ok: false, fault: { kind: 'general', seconds: 0 } });
   const aborted = await requestSearchPage(body, undefined, async () => { throw Object.assign(new Error('aborted'), { name: 'AbortError' }); });
   assert.deepEqual(aborted, { aborted: true });
-});
-
-test('leht hoiab oma lubadusi: kuuldav seis, fookus, oma laused keeldumisele', () => {
-  const page = read(PAGE);
-  /* Seis on kuuldav: rida on alati lehel, mitte display:none; status-rolli ei ole. */
-  assert.ok(page.includes('aria-live="polite"') && !page.includes('role="status"'));
-  assert.ok(page.includes('className={statusVisible ? styles.status : "sr-only"}'), 'tühi või ainult kuuldav rida jääb lehele, ruumi võtmata');
-  assert.ok(!/\.status:empty/.test(read('../components/search/search.module.css')), 'tühi seisu rida ei ole display:none');
-  /* Pärast juurde laadimist saab fookuse esimene uus rida või loend, aga ainult siis,
-     kui inimene ei ole vahepeal mujale läinud. */
-  assert.ok(page.includes('(row || list).focus()') && page.includes('focusIsFree(moreActionRef.current)'));
-  assert.ok(page.includes('<ol ref={listRef} tabIndex={-1}'), 'loend saab fookuse võtta');
-  /* Ootamise ajal ei ole kumbki nupp päriselt kinni (fookus ei kao), vaid hõivatud. */
-  assert.ok(!/<Button[^>]*\sdisabled=/.test(page), 'lehel ei ole kinni nuppu');
-  assert.ok(page.includes('aria-busy={state === "loading" || undefined}') && page.includes('aria-busy={loadingMore || undefined}'));
-  assert.ok(page.includes('if (state === "loading") return;'), 'teist otsingut ootamise ajal ei saadeta');
-  /* Vea korral jääb sama nupp paigale: sama element, teine silt. */
-  assert.ok(page.includes('loadingMore ? t("personal_search.loading_more") : moreFault ? t("personal_search.retry") : t("personal_search.load_more")'));
-  /* Kadunud seanss viib sisse logima ja toob tagasi sellele lehele. */
-  assert.ok(page.includes('loginHref("/otsi")') && page.includes('t("api.common.unauthorized")'));
-  /* Brauseri enda veatekst ekraanile ei jõua. */
-  assert.ok(!page.includes('error.message') && !page.includes('error?.message') && !page.includes('fetch('));
 });

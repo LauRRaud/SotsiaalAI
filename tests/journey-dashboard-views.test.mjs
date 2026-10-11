@@ -373,17 +373,7 @@ test('Teekonna lehed kannavad dokki ja saavad dokis kaardi „Teekond" nime', ()
   /* Päris vestlus hoiab alumist serva composeri jaoks; töölaua sisuleht mitte. */
   assert.equal(panelHasRoomDock('/vestlus'), false);
   assert.equal(panelHasRoomDock('/vestlus', { workspace: 'journey' }), true);
-  const stage = read('../components/room/RoomStage.jsx');
-  const frame = read('../components/room/PanelFrame.jsx');
-  assert.ok(stage.includes('"/teekond": "/vestlus?workspace=journey"'), 'alias kaardi tee juurde');
-  assert.ok(stage.includes('href: "/vestlus?workspace=journey"'), 'kaart „Teekond" on olemas');
   const aliases = { '/teekond': '/vestlus?workspace=journey' };
   assert.ok(dockLabelRoutes('/teekond', '', aliases).includes('/vestlus?workspace=journey'));
   assert.ok(dockLabelRoutes('/teekond/jrn_1', '', aliases).includes('/vestlus?workspace=journey'), 'avatud Teekond kannab sama nime');
-  /* Raam ei pea Teekonda enam vestluseks (seal oleks nurgas rist ja ⓘ). */
-  assert.ok(!frame.includes('normalized.startsWith("/teekond")'));
-  /* Töölaua sees on lehe nimi samuti dokis, mitte paneelil. */
-  const panel = read('../components/chat/WorkspacePanel.jsx');
-  const inDock = panel.slice(panel.indexOf('const EMBEDDED_TITLE_IN_DOCK'), panel.indexOf(']);', panel.indexOf('const EMBEDDED_TITLE_IN_DOCK')));
-  assert.ok(inDock.includes('"journey"'));
 });

@@ -257,12 +257,11 @@ test('vaadete, hoidjate ja lehtede tekstivõtmed on kataloogis kolmes keeles', (
 
 test('igal osal ja sammul on nimi ja lühinimi kiirmenüü jaoks', () => {
   const groups = [
-    ['supervision.process.views', PART_KEYS, MODEL, 'supervision.process.views.${key}'],
-    ['supervision.share.views', SHARE_STEP_KEYS, PAGES.share, 'supervision.share.views.${key}'],
-    ['supervision.close.views', CLOSE_STEP_KEYS, PAGES.close, 'supervision.close.views.${key}']
+    ['supervision.process.views', PART_KEYS],
+    ['supervision.share.views', SHARE_STEP_KEYS],
+    ['supervision.close.views', CLOSE_STEP_KEYS]
   ];
-  for (const [base, keys, source, mark] of groups) {
-    assert.ok(read(source).includes(mark), `${source} paneb vaated kokku võtmest ${mark}`);
+  for (const [base, keys] of groups) {
     for (const lang of LANGS) {
       const views = at(catalog(lang), base);
       assert.deepEqual(Object.keys(views).sort(), [...keys].sort(), `${lang}: ${base} kannab täpselt neid vaateid`);
@@ -350,7 +349,6 @@ test('osad: kelle laual mis on, ankrud ja aadressiriba', () => {
   const linked = [...notifications.matchAll(/\?ala=([a-z]+)/g)].map((match) => match[1]);
   assert.ok(linked.length >= 3, `teavituste ankruid leiti ${linked.length}`);
   for (const anchor of linked) assert.equal(partFromSearch(anchor), anchor, `teavituse ankur ${anchor} avab osa`);
-  assert.ok(read('../components/supervision/SupervisionCreatePage.jsx').includes('?ala=kontrakt'), 'uus protsess avaneb kontrakti osas');
 
   assert.equal(partFromSearch(' Kokkuvotted '), 'kokkuvotted');
   for (const none of ['', null, undefined, 'midagi', 'ala']) assert.equal(partFromSearch(none), '', 'tundmatu ankur tähendab kõigi osade vaadet');
@@ -676,11 +674,6 @@ test('kohtumised: read, toimunu on lõplik ja aeg läheb päringusse õigel kuju
   assert.equal(meetingsMode({ mode: 'meeting', canPlan: true, hasMeeting: false }), 'list');
   assert.equal(meetingsMode({ mode: 'note', canPlan: true, hasMeeting: true }), 'note');
   assert.equal(meetingsMode({ mode: 'note', canPlan: false, hasMeeting: true }), 'meeting');
-
-  const panel = code(PANELS.meetings);
-  assert.ok(panel.includes('body: { plannedAt: time.value }'));
-  assert.ok(panel.includes('body: { status: "HELD", expectedVersion: meeting.version }'));
-  assert.ok(panel.includes('body: { note: noteDraft.trim() || null, expectedVersion: opened.version }'));
 });
 
 test('kokkuvõtted: seis, privaatsusmärk ja tegevused rolli järgi', () => {
@@ -777,22 +770,6 @@ test('jagamine: eelvaade näitab täpselt seda, mis päringusse läheb', () => {
   assert.deepEqual(shareAudienceNames(supervisorProcess(), 'PROCESS'), ['Mina Ise', 'Mari Maasikas']);
   assert.deepEqual(shareAudienceNames(null, 'PROCESS'), []);
   assert.deepEqual(shareAudienceNames({ participants: [] }, 'SUPERVISOR_ONLY'), []);
-
-  const page = code(PAGES.share);
-  assert.ok(page.includes('body: shareBody(item, audience)'), 'päringu keha tuleb samast kohast mis eelvaade');
-  assert.ok(page.includes('const shareTitle = useMemo(() => shareTitleOf(item), [item]);'));
-  assert.ok(page.includes('useState(SHARE_AUDIENCE_DEFAULT)'));
-  /* Kinnitamata kontrakt on OMA olek, mitte „proovi uuesti". */
-  assert.match(page, /payload\?\.messageKey === "supervision\.errors\.contract_not_accepted"\) \{\s*setNotReady\(true\);\s*return;/);
-  assert.ok(page.includes('if (!detail.payload?.process?.capabilities?.canShareTopic) setNotReady(true);'));
-  /* Juba jagatud kirje eelvaadet ei näidata; pärast jagamist avaneb jagatud teemade osa. */
-  assert.ok(page.includes('} else if (item.sharedTopicId) {') && page.includes('supervision.share.alreadyShared'));
-  assert.ok(page.includes('router.push(partHref(processId, PART.TOPICS));'));
-  assert.ok(page.includes('partHref(processId, PART.ANTECHAMBER)') && page.includes('partHref(processId, PART.CONTRACT)'));
-  /* Värava kaks astet: jagamine käib läbi kahe vajutusega nupu. */
-  const gate = code(VIEWS.gate);
-  assert.equal(gate.split('onShare').length - 1, 2, 'jagamise päringule viib ainult kinnitatud vajutus');
-  assert.ok(gate.includes('onConfirm={onShare}'));
 });
 
 test('sulgemine: loend, takistused ja päring', () => {
@@ -837,20 +814,7 @@ test('sulgemine: loend, takistused ja päring', () => {
   assert.equal(CLOSE_TITLE_MAX, 200);
   assert.ok(serverPreview.includes('normalizeText(input?.generalizedTitle, { required: true, max: 200, field: "generalized_title" })'));
 
-  const page = code(PAGES.close);
-  assert.ok(page.includes('body: { expectedVersion: process.version, generalizedTitle: title.title }'));
   assert.ok(serverPreview.includes('assertAllowedKeys(input, ["expectedVersion", "generalizedTitle"]);'));
-  /* Puuduv pealkiri viib pealkirja sammu juurde, mitte ei jäta nuppu halliks. */
-  assert.match(page, /if \(!title\.ok\) \{\s*setChecked\(true\);\s*setView\("title"\);\s*return;\s*\}/);
-  assert.ok(page.includes('payload?.messageKey === "supervision.errors.already_closed"'));
-  assert.match(page, /payload\?\.messageKey === "supervision\.errors\.pending_summaries"\) \{\s*await load\(\);\s*setMessage\(t\("supervision\.close\.pendingBlock"\)\);/);
-  assert.ok(page.includes('if (previewResult.payload?.preview?.alreadyClosed) router.replace(closedHref);'));
-  assert.ok(page.includes('} else if (!preview.canClose) {'), 'kes sulgeda ei saa, näeb ainult loendit');
-  assert.ok(page.includes('pendingRows.length ? "supervision.close.pendingBlock" : "supervision.close.onlySupervisor"'));
-  const gate = code(VIEWS.gate);
-  assert.equal(gate.split('onClose').length - 1, 2, 'sulgemise päringule viib ainult kinnitatud vajutus');
-  assert.ok(gate.includes('onConfirm={onClose}') && gate.includes('consequence={t("supervision.close.consequence")}'));
-  assert.ok(gate.includes('data-kind="deleted"') || gate.includes('column("deleted"'), 'kaks eristatud tulpa');
 });
 
 test('409: põhjus öeldakse välja, kui see ei ole kellegi teise muudatus', () => {
@@ -861,105 +825,11 @@ test('409: põhjus öeldakse välja, kui see ei ole kellegi teise muudatus', () 
   }
 });
 
-test('tagasivõtmatu tegu küsib teist vajutust ja tagajärg on nupu kõrval', () => {
-  const bits = code(VIEWS.bits);
-  /* Topeltklõps ja all hoitud klahv ei läbi mõlemat astet. */
-  assert.ok(bits.includes('if (event.repeat && (event.key === "Enter" || event.key === " ")) event.preventDefault();'));
-  assert.ok(bits.includes('const MIN_GAP_MS = 400;') && bits.includes('if (!press.settled()) return;'));
-  assert.match(bits, /if \(!armed\) \{\s*press\.arm\(name, consequence\);\s*return;\s*\}/);
-  /* Keelatud nupp nullib kinnituse ootuse; vaate sisu vahetus samuti. */
-  assert.ok(bits.includes('if (disabled && armed) disarm();'));
-  assert.match(bits, /useEffect\(\(\) => \{\s*disarm\(\);\s*\}, \[disarm, resetKey\]\);/);
-  /* Fookus ei lähe pärast sisu vahetust teise tagasivõtmatu teo nupule. */
-  assert.ok(bits.includes('data-danger="true"') && bits.includes(':not([data-danger])'));
-
-  /* Iga tagasivõtmatu tegu jõuab päringuni ainult kinnitatud vajutuse kaudu. */
-  const destructive = [
-    [VIEWS.frame, 'onActivate', 'supervision.process.contract.activateConsequence'],
-    [VIEWS.frame, 'onWithdraw', 'supervision.process.participants.withdrawConsequence'],
-    [VIEWS.frame, 'onLeave', 'supervision.leave.confirmHint'],
-    [VIEWS.work, 'onDelete', 'supervision.process.antechamber.deleteConsequence'],
-    [VIEWS.work, 'onWithdraw', 'supervision.process.topics.withdrawConsequence'],
-    [VIEWS.work, 'onMarkHeld', 'supervision.process.meetings.heldConsequence'],
-    [VIEWS.work, 'onDiscard', 'supervision.process.summaries.discardConsequencePending'],
-    [VIEWS.work, 'onSubmit', 'supervision.process.summaries.submitConsequence'],
-    [VIEWS.work, 'onApprove', 'supervision.process.summaries.approveConsequence']
-  ];
-  for (const [source, handler, consequence] of destructive) {
-    const text = code(source);
-    const confirmed = [...text.matchAll(new RegExp(`onConfirm=\\{(\\(\\) => )?${handler}[(}]`, 'g'))];
-    assert.ok(confirmed.length >= 1, `${source}: ${handler} on kahe vajutusega nupu taga`);
-    /* Käsitlejat nimetatakse ainult vaate parameetrites ja kinnituse sees: mujal seda ei kutsuta ega anta edasi.
-       (`onSubmit=` on vormi enda omadus, mitte see käsitleja.) */
-    const uses = text.split(new RegExp(`\\b${handler}\\b(?!=)`)).length - 1;
-    const declared = text.split(new RegExp(`(?<!onConfirm=)[,{]\\s*${handler}\\s*(?=[,}])`)).length - 1;
-    assert.equal(uses - declared, confirmed.length, `${source}: ${handler} jõuab päringuni ainult kinnitatud vajutusest`);
-    assert.ok(text.includes(`"${consequence}"`), `${source}: ${handler} tagajärg on öeldud`);
-  }
-  /* Tagajärg seisab tegevusrea teates nupu kõrval. */
-  for (const source of [VIEWS.frame, VIEWS.work, VIEWS.gate]) assert.ok(code(source).includes('note={press.note || note}'), source);
-  for (const source of SOURCES) assert.ok(!code(source).includes('window.confirm'), `${source}: brauseri küsimusakent ei kasutata`);
-
+test('kokkuvõtte kustutamine ja asendamine: server teeb seda, mida tekstid lubavad', () => {
   /* Tekstid lubavad ainult seda, mida server teeb. */
   const summaries = read('../lib/supervision/summaries.js');
   assert.ok(summaries.includes('supervisionSummaryApproval.deleteMany') && summaries.includes('if (fresh.status !== "DRAFT") throw conflict("supervision.errors.conflict", "SUMMARY_NOT_DRAFT");'));
   assert.ok(read('../lib/supervision/service.js').includes('data: { status: "SUPERSEDED" }'));
-});
-
-test('lehed on sammulaval: ei teist klaaskasti, ei status-rolli, ei toorest ankrut', () => {
-  for (const source of SOURCES) {
-    const text = code(source);
-    assert.ok(!text.includes('role="status"'), `${source}: teated ei kasuta status-rolli (ühine kiht joonistab selle kastina)`);
-    assert.ok(!text.includes('SupervisionPage.module.css'), `${source}: vana kest (klaaskast paneeli sees) ei ole kasutusel`);
-    assert.ok(!text.includes('SubpageHeader'), `${source}: lehe pealkirja paneelis ei korrata`);
-    assert.ok(!/<(Button|a)\b[^>]*\b(as="a"|href=)/.test(text), `${source}: toores ankur laadiks kogu rakenduse uuesti`);
-    assert.ok(!text.includes('<Dropdown'), `${source}: valikud on lahtrites, mitte rippvalikus`);
-    assert.ok(!/<textarea\b/.test(text), `${source}: tekstiväli on TextAreaField`);
-    assert.ok(!/disabled=\{[^}]*\}\s*(onChange|value)=/.test(text) && !/<(Input|TextAreaField|ChoiceRow)\b[^>]*\bdisabled/.test(text), `${source}: välju päringu ajaks ei keelata`);
-  }
-  assert.ok(!fs.existsSync(new URL('../components/supervision/SupervisionPage.module.css', import.meta.url)), 'vana kesta fail on kustutatud');
-  for (const source of Object.values(VIEWS)) {
-    const text = code(source);
-    assert.ok(!text.includes('supervisionRequest') && !text.includes('fetch('), `${source}: vaade ainult joonistab`);
-  }
-  assert.ok(!code(MODEL).includes('react'), 'read ja reeglid on failis ilma JSX-ita');
-
-  const page = read(PAGES.process);
-  const lines = (text) => text.split(/\r?\n/).map((line) => line.trim());
-  assert.ok(lines(page).includes('parts'), 'laud annab lavale `parts`');
-  assert.ok(page.includes('startWide={openIndex < 0}'), 'laud avaneb kõigi osade vaates, kui tee osa ei nimeta');
-  assert.ok(page.includes('initialIndex={Math.max(0, openIndex)}') && page.includes('activeKey={openIndex >= 0 ? part : undefined}'));
-  assert.ok(page.includes('const urlPart = partFromSearch(searchParams.get("ala"));') && page.includes('const [part, setPart] = useState(urlPart);'));
-  assert.ok(page.includes('window.history.replaceState(null, ""'), 'osa vahetus ei tee ajalookirjet');
-  assert.ok(page.includes('<PartMark name={step.key} active={Boolean(flight?.isActive)} onChange={markPart} />'));
-  /* Kutsutu näeb kutset, mitte lauda. */
-  assert.match(page, /if \(!desk\) \{\s*return <SupervisionInvitedCard onDone=\{load\} process=\{process\} \/>;/);
-  /* Värskendus, mis ei õnnestu, ei viska laualt välja. */
-  assert.ok(page.includes('if (loadedRef.current && status !== 401 && status !== 404) {'));
-  /* Otselink ja värskendus jõuavad kokkuvõtete osani; läige on ainult ees oleval osal. */
-  assert.ok(page.includes('selectedSummaryId={summaryId}') && page.includes('active={Boolean(flight?.isActive)}'));
-  assert.ok(page.includes('const glow = flight?.isActive !== false;'));
-  assert.ok(page.includes('<EeskamberPanel process={process} items={privateItems} glow={glow} />'), 'eeskambri loend jõuab osani');
-  assert.ok(page.includes('router.push(closeHref(processId))') && page.includes('router.push(outcomeHref(outcomeId))') && page.includes('router.push(SUPERVISION_HOME_HREF)'));
-
-  const summaries = read(PANELS.summaries);
-  assert.ok(summaries.includes('if (!active || closed) return undefined;') && summaries.includes('document.visibilityState !== "visible"'));
-  assert.ok(summaries.includes('linkedRef.current === selectedSummaryId'), 'otselingi kokkuvõte avatakse üks kord');
-
-  for (const key of ['share', 'close']) {
-    const text = read(PAGES[key]);
-    assert.ok(text.includes('<StepFlight') && !lines(text).includes('parts'), `${key}: jada on sammud, mitte laua osad`);
-  }
-  /* Mudeli märgid jõuavad vaatesse: vaade loeb välju, mille read annavad. */
-  const work = code(VIEWS.work);
-  for (const field of ['kind.description', 'draftTitle', 'row.sharedText', 'row.kindText', 'item.withdrawnNote', 'item.fromWellbeing', 'item.canShare', 'topic.privacy.scope', 'row.privacy.scope', 'topic.canWithdraw', 'meeting.canMarkHeld', 'meeting.canEditNote', 'row.hasNote', 'summary.approvedByMe', 'summary.canApprove', 'summary.privacy', 'row.privacy', 'summary.discardKind']) {
-    assert.ok(work.includes(field), `töövaated loevad välja ${field}`);
-  }
-  const frame = code(VIEWS.frame);
-  for (const field of ['row.canActivate', 'row.canWithdraw', 'row.statusText', 'view.needsAcceptance', 'view.active.since', 'row.meta']) {
-    assert.ok(frame.includes(field), `raami vaated loevad välja ${field}`);
-  }
-  assert.ok(code(VIEWS.bits).includes('row.sub'), 'rea teine rida (kes jagas, millal toimus) jõuab reale');
 });
 
 test('privaatsusmärk on püsielement igas vaates, mis kannab sisu', () => {
@@ -990,50 +860,6 @@ test('privaatsusmärk on püsielement igas vaates, mis kannab sisu', () => {
   assert.ok(antechamber.includes('expectedVersion: editing.version'), 'eeskambri kirje salvestatakse versiooniga');
   /* Versioonikonflikt: tekst jääb vormi ja värske versioon tuleb kaasa. */
   assert.ok(antechamber.includes('{ ...current, version: fresh.version }') && antechamber.includes('supervision.process.antechamber.conflictKept'));
-});
-
-test('päringud on samad, mis enne', () => {
-  const contract = code(PANELS.contract);
-  assert.ok(contract.includes('`${base}/contract-versions`, { body: { body } }'));
-  assert.ok(contract.includes('/activate`, {') && contract.includes('body: { expectedVersion: process.version }'));
-  assert.ok(contract.includes('`${base}/contract-acceptance`, { body: { contractVersionId: process.activeContract?.id || "" } }'));
-  const participants = code(PANELS.participants);
-  assert.ok(participants.includes('/invites`, { body: { userId } }') && participants.includes('/withdraw-invite`)'));
-  const antechamber = code(PANELS.antechamber);
-  assert.ok(antechamber.includes('body: { kind: draft.kind, title: draft.title.trim() || null, body }'));
-  assert.ok(antechamber.includes('{ method: "PATCH", body: { title: editing.title.trim() || null, body, expectedVersion: editing.version } }'));
-  assert.ok(antechamber.includes('{ method: "DELETE" }'));
-  const summaries = code(PANELS.summaries);
-  assert.ok(summaries.includes('/summaries`, { body: payload }'));
-  assert.ok(summaries.includes('body: { body, expectedVersion: opened.version }') && summaries.includes('body: { expectedVersion: summary.version }'));
-  assert.ok(summaries.includes('/approve`)') && summaries.includes('{ method: "DELETE" }'));
-  const page = code(PAGES.process);
-  assert.ok(page.includes('`/api/supervision/participations/${encodeURIComponent(participationId)}/leave`'));
-  assert.ok(page.includes('supervisionRequest("/api/supervision/outcomes"'));
-  /* Üks päring korraga ja 409 läheb lehele, mitte osa veateateks. */
-  const request = code('../components/supervision/process/usePartRequest.js');
-  assert.ok(request.includes('if (running.current) return false;') && request.includes('await onConflict?.(payload);') && request.includes('await onReload?.();'));
-});
-
-test('kujundus on komponendi kõrval ja klassinimedega', () => {
-  for (const file of ['../components/supervision/process/process.module.css', '../components/supervision/PrivacyBadge.module.css']) {
-    const css = read(file).replace(/\/\*[\s\S]*?\*\//g, '');
-    const selectors = [...css.matchAll(/(^|[}{])\s*([^{}@]+?)\s*\{/g)].map((match) => match[2].trim()).filter(Boolean);
-    assert.ok(selectors.length >= 4, `${file}: valijaid leiti ${selectors.length}`);
-    const bareTag = /(^|[\s>+~,(])(h[1-6]|p|ul|ol|li|dl|dt|dd|a|div|span|section|article|form|label|input|textarea|button)(?=$|[\s>+~,.:[)])/;
-    assert.deepEqual(selectors.filter((selector) => bareTag.test(selector.replace(/:global\(html\.theme-light\)/g, ''))), [], file);
-  }
-  const css = read('../components/supervision/process/process.module.css').replace(/\/\*[\s\S]*?\*\//g, '');
-  /* Lehe kest on ainult paigutus: klaaspind on juba paneel. */
-  const shell = css.slice(css.indexOf('.shell {'), css.indexOf('}', css.indexOf('.shell {')));
-  for (const surface of ['background', 'backdrop-filter', 'box-shadow', 'border', 'padding']) {
-    assert.ok(!shell.includes(surface), `kestal ei ole omadust ${surface}`);
-  }
-  /* Iga vaadetes kasutatud klass on moodulis olemas (kirjaviga jätaks elemendi kujunduseta). */
-  const defined = new Set([...css.matchAll(/\.([A-Za-z][A-Za-z0-9]*)/g)].map((match) => match[1]));
-  for (const source of [...Object.values(VIEWS), ...Object.values(PAGES)]) {
-    for (const match of read(source).matchAll(/\bstyles\.([A-Za-z0-9]+)/g)) assert.ok(defined.has(match[1]), `${source}: klass ${match[1]} on moodulis`);
-  }
 });
 
 test('eestikeelsetes tekstides ei ole mõttekriipsu ega sirgeid jutumärke', () => {

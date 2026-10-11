@@ -10,7 +10,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {
   AUDIENCE_OPTIONS, AUDIO_SOURCE_LIST_LIMIT, AUDIO_VIEWS, AUDIO_WAYS, CLIENT_AGENT_TASK_OPTIONS, CLIENT_MAX_DOCUMENTS, COMPOSE_VIEWS_CLIENT, COMPOSE_VIEWS_WORKER,
-  COMPOSE_PAUSED, CONFIRM_KINDS, FREE_VIEWS, LANGUAGE_OPTIONS, LENGTH_OPTIONS, PRESS_GAP_MS, PRIVACY_ACTIONS, PRIVACY_CHOICE_KEYS, PRIVACY_WORKFLOW, RECENT_RESULTS_LIMIT, TEMPLATE_NOTE_KEYS, TONE_OPTIONS, VERSION_KINDS, VIEW_TEXT_KEYS,
+  COMPOSE_PAUSED, CONFIRM_KINDS, FREE_VIEWS, LANGUAGE_OPTIONS, LENGTH_OPTIONS, PRESS_GAP_MS, PRIVACY_ACTIONS, PRIVACY_CHOICE_KEYS, PRIVACY_WORKFLOW, TEMPLATE_NOTE_KEYS, TONE_OPTIONS, VERSION_KINDS, VIEW_TEXT_KEYS,
   activeViewFor, audioFileProblem, audioSourceRows, clientStatusLabel, clientTaskArtifactType, composeBlocker, confirmPress, confirmTexts, errorWayFor, formatDuration, hasUnsavedText,
   instructionLimit, isComposableType, isTemplateCompatible, isVersionActive, outputTypeOptions, pressAllowed, privacyChoiceKey, privacyChoices, privacyTextKeys, recentResultRows, recordingPurposeLabel, refineBlocker,
   resultSheet, resultStateOf, serverMessage, snippet, sourceRows, statusLabel, summaryBlocker, templateChoiceUnsaved, templateNoteKind, templateOptions, templatePlaceholderList, templateStatus,
@@ -32,9 +32,7 @@ const GUARDS_HOOK = '../components/agent/drafting/usePressGuards.js';
 const AUDIO_PATH = '../components/agent/drafting/AudioPath.jsx';
 const BITS = '../components/agent/drafting/DraftingBits.jsx';
 const VIEWS = ['../components/agent/drafting/ComposeViews.jsx', '../components/agent/drafting/ResultViews.jsx', '../components/agent/drafting/AudioViews.jsx', BITS];
-const STYLES = '../components/agent/drafting/drafting.module.css';
 const SOURCES = [PAGE, MODEL, AUDIO_HOOK, FILES_HOOK, GUARDS_HOOK, AUDIO_PATH, ...VIEWS];
-const count = (text, part) => text.split(part).length - 1;
 
 /* Sama reegel mis lehe `t`-l: puuduv võti annab varuteksti või võtme enda. Nii paistab testis
    välja iga koht, kus ekraanile jõuaks võti või toores väärtus. */
@@ -66,8 +64,6 @@ test('vaadete ja reeglite tekstivõtmed on kataloogis kolmes keeles', () => {
 });
 
 test('igal vaatel on nimi ja lühinimi kiirmenüü jaoks', () => {
-  const page = read(PAGE);
-  assert.ok(page.includes('`documents.drafting.views.${key}.title`') && page.includes('`documents.drafting.views.${key}.short`'), 'leht võtab vaate nime kataloogist');
   /* Iga vaade, mille leht lavale annab, on nimega vaadete hulgas. */
   for (const client of [false, true]) {
     for (const level of ['compose', 'audio']) {
@@ -279,7 +275,6 @@ test('heli rada: transkripti ei koostata teist korda ja kokkuvõte tehakse ainul
   assert.equal(audioFileProblem(null), 'documents.errors.audio_mime_not_allowed');
   /* Loendi piir on sama, mis marsruudis: vaade ütleb selle arvu välja. */
   assert.ok(read('../app/api/documents/audio-sources/route.js').includes(`take: ${AUDIO_SOURCE_LIST_LIMIT}`));
-  assert.ok(read(PAGE).includes(`/api/documents/artifacts?limit=${RECENT_RESULTS_LIMIT}`));
 });
 
 test('salvestamata tekst: mis loetakse muudetuks ja mis läheks taastamisel päriselt kaotsi', () => {
@@ -322,39 +317,15 @@ test('teine vajutus: topeltklõps ei läbi mõlemat astet ja tasuline töö ei k
 
   /* Leht küsib teist vajutust kõige eest, mis viiks teksti kaasa või on pöördumatu. */
   const page = read(PAGE);
-  for (const call of [
-    'guarded("compose", hasTextEdits && !options.confirmed',
-    'guarded("clear", hasTextEdits, handleClearWorkspaceResult)',
-    'guarded(`version:${row.key}`, versionTextAtRisk',
-    'guarded("saved", versionTextAtRisk, handleRestoreSavedVersion)',
-    'guarded(`open:${row.key}`, hasTextEdits',
-    'guarded("delete", true',
-    'guarded(key, true, () => void handleApprove())',
-    'guarded(`leave:${href}`, unsavedAnywhere',
-    'guarded(key, recorderBusy()',
-  ]) assert.ok(page.includes(call), call);
   const audioPath = read(AUDIO_PATH);
-  for (const call of ['guarded("summary", unsavedText', 'guarded(`audio:${row.key}`, audio.canSaveAudioTranscript', 'guarded("upload", audio.canSaveAudioTranscript', 'guarded(`way:${nextValue}`, way === "record_now" && recorderBusy()']) {
-    assert.ok(audioPath.includes(call), call);
-  }
   /* Iga võti, millega leht teist vajutust küsib, on sõnadega tabelis. */
   for (const source of [page, audioPath]) {
     for (const match of source.matchAll(/guarded\((?:"|`)([a-z]+)/g)) assert.ok(CONFIRM_KINDS[match[1]], `teise vajutuse liik ${match[1]}`);
   }
   for (const kind of ['approve', 'finish', 'exit', 'esc']) assert.ok(CONFIRM_KINDS[kind], kind);
-  /* Akna sulgemisel küsib brauser; Esc küsib teist vajutust; klahvikordus ei vajuta nuppe. */
-  assert.ok(page.includes('addEventListener("beforeunload"') && page.includes('pressConfirm("esc")'));
-  assert.ok(page.includes('event.repeat && (event.key === "Enter" || event.key === " ")'));
 });
 
 // --- Brauseris kinnitatud vead (10.10) --------------------------------------------------
-
-/* Lehe funktsiooni keha lähtetekstist: nimest kuni funktsiooni lõpuni (sama taandega sulg). */
-function functionBody(source, name) {
-  const start = source.indexOf(`function ${name}(`);
-  assert.ok(start > 0, `funktsioon ${name} on lehel`);
-  return source.slice(start, source.indexOf('\n  }\n', start));
-}
 
 // Malli valik elas ainult lehe olekus: seda ei loetud salvestamata muudatuseks, ükski vaade
 // ei öelnud, millega see salvestub, ja versiooni taastamine vahetas valiku vaikselt ära.
@@ -387,24 +358,6 @@ test('mall: valik on salvestamata muudatus ja teksti taastamine seda ei puuduta'
       assert.ok(text.includes(messages.documents.actions.save_draft) && text.includes(messages.documents.drafting.views.text.short), `${lang}: ${kind}`);
     }
     assert.ok(messages.documents.drafting.text.unsaved_template.includes(messages.documents.actions.save_draft), lang);
-  }
-
-  const page = read(PAGE);
-  /* Salvestamata on nii tekst kui ka malli valik: lahkumine, akna sulgemine ja Esc küsivad üle. */
-  assert.ok(page.includes('const templateUnsaved = templateChoiceUnsaved({ result: workspaceResult, selectedTemplateId, client: isClientRole })'));
-  assert.ok(page.includes('const hasDraftEdits = hasTextEdits || templateUnsaved'));
-  assert.ok(page.includes('const unsavedAnywhere = hasDraftEdits || audio.canSaveAudioTranscript'));
-  assert.ok(page.includes('unsaved: hasDraftEdits,'), 'sammu seis näitab salvestamata muudatust');
-  assert.ok(page.includes('? t("documents.drafting.text.unsaved_template")'), 'teksti vaade ütleb, et malli valik on salvestamata');
-  assert.ok(page.includes('noteKind ? t(TEMPLATE_NOTE_KEYS[noteKind]) : ""') && page.includes('noteKind === "unsaved" ? { label: viewShort("text"), onClick: () => openView("text") } : null'), 'malli vaate jalarida ja tee teksti vaatesse');
-  /* Salvestus saadab valitud malli endiselt kaasa (päring on sama mis enne). */
-  assert.ok(page.includes('templateId: selectedTemplateId || null,'));
-
-  /* Taastamine puudutab ainult teksti: malli valik ja väljundi tüüp jäävad paika. */
-  for (const name of ['handleRestoreWorkspaceVersion', 'handleRestoreSavedVersion']) {
-    const body = functionBody(page, name);
-    assert.ok(body.includes('setResultTitle(') && body.includes('setResultContent('), `${name} taastab teksti`);
-    assert.ok(!body.includes('setSelectedTemplateId(') && !body.includes('setOutputType('), `${name} ei muuda malli ega väljundi tüüpi`);
   }
 });
 
@@ -457,12 +410,6 @@ test('mall: lubamata malliga mustand salvestub ja keeldumine viib malli vaatesse
     assert.ok(messages.drafting.template.blocked.includes(messages.drafting.template.none), `${lang}: lubamata malli lause ütleb, mida teha`);
     assert.ok(/DOCX/.test(messages.drafting.template.not_word), lang);
   }
-  const page = read(PAGE);
-  assert.ok(page.includes('failure.way = errorWayFor(resultPayload?.messageKey)') && page.split('setErrorWay(String(error?.way || ""))').length - 1 === 2, 'salvestamine ja kinnitamine');
-  assert.ok(page.includes('const way = active && errorWay && errorWay !== key ? { label: viewShort(errorWay), onClick: () => openView(errorWay) } : null'));
-  assert.ok(page.includes('if (errorWay) setErrorWay("")'), 'tee kustub koos veaga');
-  assert.ok(page.includes('chosen.blocked && resultState === "draft" ? t("documents.drafting.template.blocked") : ""'));
-  assert.ok(page.includes('chosen.shapesFile === false ? t("documents.drafting.template.not_word") : ""'));
 });
 
 // Malli vaade ütles, et mall annab tekstile ülesehituse. Kuni koostamine on peatatud, on
@@ -475,7 +422,6 @@ test('mall: vaade ütleb, mis on tõsi, ja loetleb kohatäitjad, mida kinnitamin
   const exporter = read('../lib/documents/docxExport.js');
   assert.ok(exporter.includes('for (const name of DOCX_TEMPLATE_PLACEHOLDERS) {'));
   for (const name of DOCX_TEMPLATE_PLACEHOLDERS) assert.ok(exporter.includes(`\\{\\{${name}\\}\\}`), `${name} asendatakse`);
-  assert.ok(read(PAGE).includes('lead={t("documents.drafting.template.lead", { placeholders: templatePlaceholderList() })}'));
   for (const lang of LANGS) {
     const t = translator(lang);
     const lead = t('documents.drafting.template.lead', { placeholders: list });
@@ -488,13 +434,7 @@ test('mall: vaade ütleb, mis on tõsi, ja loetleb kohatäitjad, mida kinnitamin
 // Ruum pakkus PDF-i linki ja lubas PDF-i iga kinnitatud teksti juures, ka siis, kui PDF-i ei
 // tehtud (tekstis on märke, mida PDF ei toeta): link vastas veaga.
 test('kinnitatud tekst: PDF-i pakutakse ainult siis, kui see on olemas', () => {
-  const page = read(PAGE);
-  assert.ok(page.includes('import { artifactDownloads } from "@/components/documents/detail/detailModel"'), 'sama reegel mis teksti detaililehel');
-  assert.ok(page.includes('const files = artifactDownloads(workspaceResult)') && page.includes('downloads={downloadLinks(files)}'), 'kinnitamise vaate lingid tulevad reeglist');
-  assert.ok(!page.includes('downloadLinks(workspaceResult?.downloadUrls)') && !page.includes('payload?.downloadUrls ||'), 'serveri linke ei võeta enam otse');
   /* Teade ja jalarida ütlevad, kui valmis on ainult Wordi fail (samad laused mis detaililehel). */
-  assert.ok(/: files\.pdfMissing\s+\? "documents\.detail\.approve\.done_no_pdf"\s+: "documents\.feedback\.approved"/.test(page));
-  assert.ok(/final\s+\? files\.pdfMissing\s+\? t\("api\.exports\.pdf_content_not_supported"\)/.test(page));
   for (const lang of LANGS) {
     const messages = catalog(lang);
     assert.equal(typeof messages.documents.detail.approve.done_no_pdf, 'string', lang);
@@ -514,37 +454,13 @@ test('versioonid: lause ei luba rohkem, kui on, ja taastamise teade ei soovita a
   /* Tekst, mida ei ole veel salvestatud, tuleb salvestada. */
   assert.equal(versionRestoredKey({ title: 'Aruanne', content: 'Tekst' }, { title: 'Aruanne', content: 'Tekst' }), 'documents.drafting.feedback.version_restored');
   assert.equal(versionRestoredKey(null, { title: 'x', content: 'y' }), 'documents.drafting.feedback.version_restored');
-  const page = read(PAGE);
-  assert.ok(page.includes('setRunFeedback({ message: t(versionRestoredKey(workspaceResult, version)) })'));
-  assert.ok(page.includes('lead={t(COMPOSE_PAUSED ? "documents.drafting.versions.lead_paused" : "documents.drafting.versions.lead", { count: WORKSPACE_VERSION_LIMIT })}'));
   /* Uus versioon tekib ainult koostamisel, täiendamisel ja heli raja kokkuvõttest: kuni
      koostamine on peatatud, ei saa neid olla üle ühe. */
-  assert.equal(count(page, 'appendWorkspaceVersion({'), 2, 'appendWorkspaceVersion: kirjeldus ja üks kutse');
-  assert.ok(functionBody(page, 'handleRefine').includes('appendWorkspaceVersion({'), 'lisaja on täiendamine');
   for (const lang of LANGS) {
     const versions = catalog(lang).documents.drafting.versions;
     assert.ok(!versions.lead_paused.includes('{count}'), `${lang}: peatatud ajal arvu ei lubata`);
     assert.equal(typeof catalog(lang).documents.drafting.feedback.version_restored_same, 'string', lang);
   }
-});
-
-// Serveri veateade tuli brauseri keeles ja võrgutõrke korral oli ekraanil brauseri enda
-// ingliskeelne tekst („Failed to fetch”).
-test('iga päring kannab lehe keelt ja brauseri veatekst ei jõua ekraanile', () => {
-  for (const path of [PAGE, AUDIO_HOOK, FILES_HOOK]) {
-    const source = read(path);
-    const requests = source.split('fetch(').slice(1);
-    assert.ok(requests.length >= 3, `${path}: päringuid ${requests.length}`);
-    for (const request of requests) {
-      const head = request.slice(0, 420);
-      assert.ok(/headers: localeHeaders\(locale\)|"x-ui-locale": locale|headers: requestHeaders/.test(head), `${path}: ${request.slice(0, 60)}`);
-    }
-    assert.ok(!/[eE]rror\??\.message/.test(source), `${path}: vea toorest teksti ei kuvata`);
-    assert.ok(!/payload\?\.message \|\|/i.test(source), `${path}: serveri sõnum käib läbi serverMessage`);
-    assert.ok(!/throw new Error\((?:serverMessage|payload|t\()/.test(source), `${path}: ekraanile mõeldud viga on RequestFailure`);
-    assert.ok(source.includes('failureText(error, t('), path);
-  }
-  assert.ok(read(PAGE).includes('const requestHeaders = {\n      "Content-Type": "application/json",\n      "x-ui-locale": locale\n    }'));
 });
 
 test('serveri veateade: võti ei jõua ekraanile', () => {
@@ -581,80 +497,6 @@ test('isikuandmete kontroll käib enne koostamist ja täiendamist sama töövoo 
   assert.ok(page.indexOf('await checkPrivacy("compose", text)') < page.indexOf('const nextDraft = await runGeneration({'));
   assert.ok(page.indexOf('await checkPrivacy("refine", text)') < page.indexOf('const nextDraft = await handleRefine(nextText'));
   assert.ok(page.includes('privacyDecision: { action: "use_redacted" }') && page.includes('privacyDecision: { action: "send_original" }'));
-});
-
-test('tasulised päringud on samad mis enne ja käivituvad ainult oma nupust', () => {
-  const page = read(PAGE);
-  const audioHook = read(AUDIO_HOOK);
-  const audioPath = read(AUDIO_PATH);
-
-  /* Koostamine: aadress, meetod, keha väljad ja kavatsuse võti. */
-  assert.equal(count(page, 'fetch("/api/documents/artifacts/generate"'), 1);
-  for (const part of [
-    'documentIds: sourceDocuments.map((document) => document.id),',
-    'templateId: isClientRole ? undefined : templateIdToUse || undefined,',
-    'instruction: nextInstruction,',
-    '? `${clientTaskInstruction(clientTask)}\\n\\n${effectiveInstruction}`',
-    'buildIntentSignature(generationPayload)',
-    'idempotencyKey: generateIntentRef.current.key',
-    'generateIntentRef.current = null',
-  ]) assert.ok(page.includes(part), part);
-
-  /* Täiendamine. */
-  assert.equal(count(page, 'fetch("/api/documents/artifacts/refine"'), 1);
-  for (const part of [
-    'artifactId: workspaceResult.id || undefined,',
-    'expectedUpdatedAt: workspaceResult.updatedAt,',
-    'currentContent: resultContent,',
-    'refinementInstruction: effectiveRefinement,',
-    'buildIntentSignature(refinePayload)',
-    'idempotencyKey: refineIntentRef.current.key',
-  ]) assert.ok(page.includes(part), part);
-
-  /* Transkript ja kokkuvõte (heli raja konksus). */
-  assert.equal(count(audioHook, '/transcribe`, {'), 1);
-  assert.ok(audioHook.includes('body: JSON.stringify({ language, idempotencyKey: selectedAudioSource.id })'));
-  assert.equal(count(audioHook, '/summary`, {'), 1);
-  for (const part of [
-    'const transcript = await saveAudioTranscriptIfNeeded()',
-    'content: transcriptDocument.content',
-    'buildIntentSignature({ ...summaryPayload, transcriptId: transcript.id })',
-    'idempotencyKey: summaryIntentRef.current.key',
-  ]) assert.ok(audioHook.includes(part), part);
-  /* Salvestamata parandused salvestatakse enne kokkuvõtte päringut. */
-  assert.ok(audioHook.indexOf('const transcript = await saveAudioTranscriptIfNeeded()') < audioHook.indexOf('/summary`, {'));
-
-  /* Kutsujaid on täpselt üks kummagi kohta ja see on tasulise töö värava sees. */
-  assert.equal(count(page, 'runGeneration('), 2, 'koostamise päringut kutsub ainult „Koosta tekst”');
-  assert.equal(count(page, 'handleRefine('), 2, 'täiendamise päringut kutsub ainult „Täienda teksti”');
-  assert.equal(count(page, 'runPaid('), 2, 'lehel on kaks tasulist tööd: koostamine ja täiendamine');
-  assert.equal(count(audioPath, 'runPaid('), 2, 'heli rajal on kaks tasulist tööd: transkript ja kokkuvõte');
-  assert.equal(count(audioPath, 'audio.handleTranscribeAudio()'), 1);
-  assert.equal(count(audioPath, 'audio.handleCreateAudioSummary()'), 1);
-  assert.ok(audioPath.includes('runPaid(() => audio.handleTranscribeAudio())'));
-  assert.ok(/runPaid\(async \(\) => \{\s*const ready = await audio\.handleCreateAudioSummary\(\)/.test(audioPath));
-
-  /* Ükski mõjur (kerimine, sammu vahetus, laadimine) ei käivita tasulist tööd. */
-  for (const source of [page, audioHook, audioPath]) {
-    for (const effect of source.split(/useEffect\(/).slice(1)) {
-      const body = effect.slice(0, effect.indexOf('\n  }, ['));
-      for (const paid of ['runGeneration', 'handleRefine', 'pressCompose', 'pressRefine', 'handleTranscribeAudio', 'handleCreateAudioSummary', 'runPaid']) {
-        assert.ok(!body.includes(paid), `mõjur ei kutsu ${paid}`);
-      }
-    }
-  }
-  assert.ok(!page.includes('flight.next') && !audioPath.includes('flight.next'), 'vaade ei liigu ise edasi');
-
-  /* Värav: korraga üks ja mitte topeltklõpsust. */
-  const guards = read(GUARDS_HOOK);
-  assert.ok(guards.includes('if (paidBusyRef.current || !pressAllowed(paidPressAt.current, now)) return undefined'));
-  /* Vaated ei tee ühtegi päringut. */
-  for (const view of VIEWS) assert.ok(!read(view).includes('fetch('), `${view} ainult joonistab`);
-  /* Tasulise töö nupud on nimega nupud, mis ei reageeri klahvikordusele. */
-  const bits = read(BITS);
-  assert.ok(bits.includes('export function PaidButton') && bits.includes('onKeyDown={noKeyRepeat}'));
-  assert.equal(count(read('../components/agent/drafting/AudioViews.jsx'), '<PaidButton'), 2);
-  assert.equal(count(bits, '<PaidButton'), 1, 'juhise vaate kuju kannab koostamise ja täiendamise nuppu');
 });
 
 test('salvesti jääb puutumata: nõusolek enne mikrofoni ja samad omadused', () => {
@@ -771,54 +613,6 @@ test('sammude seisud: tehtud samm on heledam', () => {
   for (const key of VIEW_TEXT_KEYS) assert.ok(['empty', 'partial', 'done'].includes(empty[key]), key);
 });
 
-test('leht kannab ridade märgid vaateni ja vaated loevad neid', () => {
-  /* Märk, mis mudelis pandi, peab jõudma vaateni: leht laotab rea (`...row`) ja lisab tegevuse. */
-  const page = read(PAGE);
-  const audioPath = read(AUDIO_PATH);
-  assert.ok(/versionRows\(workspaceVersions[^)]*\)\.map\(\(row\) => \(\{\s*\.\.\.row,/.test(page));
-  assert.ok(/recentResultRows\(recentArtifacts[^)]*\)\.map\(\(row\) => \(\{\s*\.\.\.row,/.test(page));
-  assert.ok(page.includes('rows.map((row) => ({ ...row, onRemove:'));
-  assert.ok(/rows: rows\.map\(\(row\) => \(\{\s*\.\.\.row,/.test(audioPath));
-  const compose = read('../components/agent/drafting/ComposeViews.jsx');
-  for (const field of ['row.title', 'row.chips', 'row.meta', 'row.download', 'row.onRemove']) assert.ok(compose.includes(field), field);
-  const result = read('../components/agent/drafting/ResultViews.jsx');
-  for (const field of ['row.title', 'row.kind', 'row.current', 'row.meta', 'row.onRestore', 'row.restoreLabel', 'row.status', 'row.tone', 'row.date', 'row.onOpen', 'row.openLabel']) assert.ok(result.includes(field), field);
-  for (const field of ['sheet.chips', 'sheet.facts', 'sheet.sources', 'chip.tone', 'fact.label', 'source.href']) assert.ok(result.includes(field), field);
-  const audio = read('../components/agent/drafting/AudioViews.jsx');
-  for (const field of ['row.title', 'row.origin', 'row.meta', 'row.hasTranscript', 'row.selected', 'row.onChoose', 'row.chooseLabel']) assert.ok(audio.includes(field), field);
-});
-
-test('leht ei ole enam vanal ühisel kihil ja kujundus on lehe oma failis', () => {
-  const page = read(PAGE);
-  const code = [page, read(AUDIO_PATH), ...VIEWS.map(read)].join('\n');
-  assert.ok(!page.includes('feature-page') && !page.includes('agent-mode'), 'vana kihi klasse ei ole');
-  assert.ok(!page.includes('ChatComposer') && !page.includes('ConversationView') && !page.includes('OptionCard') && !page.includes('DocumentsDropdown'));
-  assert.ok(!read('../app/styles/feature-pages.css').includes('agent-mode'), 'vana kihi reeglid on eemaldatud');
-  /* Teated ei kasuta status-rolli (paneeli üldkiht joonistab selle oma värviga). */
-  assert.ok(!code.includes('role="status"'));
-  assert.ok(page.includes('headerClassName="sr-only"'), 'lehe nimi on kiirmenüüs, pealkiri ekraanilugejale');
-  /* Põhinupu läige on ainult ees oleval vaatel. */
-  assert.ok(page.includes('const glow = flight?.isActive !== false'));
-  /* Töölaua sees ei korrata lehe nime paneelil ega vahetata aadressi. */
-  const panel = read('../components/chat/WorkspacePanel.jsx');
-  const dock = panel.slice(panel.indexOf('const EMBEDDED_TITLE_IN_DOCK'), panel.indexOf(']);', panel.indexOf('const EMBEDDED_TITLE_IN_DOCK')));
-  assert.ok(dock.includes('"document_drafting"'));
-  assert.ok(page.includes('if (embedded) return\n    router.replace(buildWorkspaceHref('));
-  assert.equal(count(page, 'router.replace('), 1, 'aadressi muudab ainult syncWorkspaceUrl');
-
-  const css = read(STYLES);
-  assert.ok(!css.includes('!important'), 'lehe kujundus ei sunni värve');
-  assert.ok(!/#[0-9a-fA-F]{3,8}\b/.test(css), 'värvid tulevad platvormi muutujatest');
-  /* Reeglid on klasside peal, mitte paljaste siltide peal. */
-  for (const line of css.split('\n')) {
-    if (/^[^\s@/*}][^{]*\{\s*$/.test(line)) assert.ok(/^\s*\./.test(line), `valija „${line.trim()}” algab klassiga`);
-  }
-  /* Iga klass, mida vaated kasutavad, on kujundusfailis olemas. */
-  const used = new Set([...code.matchAll(/styles\.([a-zA-Z0-9]+)/g)].map((match) => match[1]));
-  assert.ok(used.size > 30, `klasse leiti ${used.size}`);
-  for (const name of used) assert.ok(new RegExp(`\\.${name}\\b`).test(css), `klass ${name}`);
-});
-
 test('kui server koostamist ei tee, on see takistus esimene ja lehel on selle kohta lause', async () => {
   const { RAG_AVAILABLE } = await import('../lib/rag/retired.js');
   assert.equal(COMPOSE_PAUSED, !RAG_AVAILABLE, 'leht loeb sama lippu mis server');
@@ -833,6 +627,4 @@ test('kui server koostamist ei tee, on see takistus esimene ja lehel on selle ko
     const messages = JSON.parse(fs.readFileSync(new URL(`../messages/${lang}.json`, import.meta.url), 'utf8'));
     assert.equal(typeof messages.documents.drafting.paused, 'string', lang);
   }
-  const page = fs.readFileSync(new URL('../components/agent/AgentModePage.jsx', import.meta.url), 'utf8');
-  assert.equal(page.split('paused: COMPOSE_PAUSED').length - 1, 4, 'kõik neli takistuse arvutust teavad peatamisest');
 });

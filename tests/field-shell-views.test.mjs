@@ -44,34 +44,3 @@ test('avalehe ja ühenduse seisu tekstid on kataloogis kolmes keeles', () => {
     for (const key of ['pending', 'failed']) assert.ok(messages.field.sync.short[key].includes('{count}'), `${lang}: ${key}`);
   }
 });
-
-test('ühenduse seis ei kleepu sisu peale ja paneelil ei ole lehe pealkirja', () => {
-  /* Vana ühine stiilifail (`app/styles/field.css`) on külastuse vaate ümbertegemisega eemaldatud. */
-  for (const file of fs.readdirSync(new URL('../app/styles/', import.meta.url)).filter((name) => name.endsWith('.css'))) {
-    assert.ok(!read(`../app/styles/${file}`).includes('fld-connection'), `${file}: vana kleepuv riba on stiilidest eemaldatud`);
-  }
-  for (const file of ['../components/field/fieldConnection.module.css', '../components/field/fieldShell.module.css']) {
-    assert.ok(!/position:\s*(sticky|fixed)/.test(read(file)), `${file}: midagi ei kleepu sisu kohale`);
-  }
-  for (const file of ['../components/field/FieldShell.jsx', '../components/field/FieldVisitRoom.jsx']) {
-    const source = read(file);
-    assert.ok(source.includes('<FieldConnection'), `${file} kasutab ühist ühenduse seisu`);
-    assert.ok(!source.includes('fld-connection'), `${file}: vana riba ei ole`);
-  }
-  const shell = read('../components/field/FieldShell.jsx');
-  assert.ok(shell.includes('<h1 className="sr-only">'), 'lehe pealkiri on ainult ekraanilugejale');
-  assert.ok(!shell.includes('fullWidth'), 'nuppe ei venitata paneeli laiuseks');
-  assert.ok(!shell.includes('role="status"'), 'teated ei kasuta status-rolli');
-  /* Lehe raam annab juba <main>-i; teine selle sees on vigane märgistus. */
-  assert.ok(!/<main[\s>]/.test(shell), 'avaleht ei tee teist main-elementi');
-});
-
-test('telefonis on põhitegevus pöidla ulatuses ja puuteala vähemalt 48 px', () => {
-  const css = read('../components/field/fieldShell.module.css');
-  /* Leht täidab paneeli kõrguse; StepPanel paneb tegevusrea selle alla serva. */
-  assert.match(css, /\.page\s*\{[^}]*min-height:\s*100%/);
-  assert.match(css, /\.view > :last-child\s*\{[^}]*flex:\s*1 1 auto/);
-  /* Rida ja puuteekraani nupud ning väljad: 3rem = 48 px. */
-  assert.match(css, /\.row\s*\{[^}]*min-height:\s*3rem/);
-  assert.match(css, /\(pointer:\s*coarse\)\s*\{[^}]*\.page button,\s*\.page input\s*\{[^}]*min-height:\s*3rem/);
-});

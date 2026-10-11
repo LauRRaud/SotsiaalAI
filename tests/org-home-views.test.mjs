@@ -238,11 +238,6 @@ test('tekstid on kolmes keeles olemas ja lehe sõnades ei ole mõttekriipsu ega 
   assert.equal(translator('et')('org.home.board.filter.invites', { count: 2 }), 'Kutsed (2)');
 });
 
-test('leht kannab kiirmenüüd ja teeb ühe päringu samal kujul nagu enne', () => {
+test('leht kannab kiirmenüüd', () => {
   assert.equal(panelHasRoomDock('/org'), true);
-  const page = read('../app/org/OrgHomeClient.jsx');
-  assert.equal(page.match(/fetch\(/g).length, 1);
-  assert.ok(page.includes('body: JSON.stringify({ displayName, legalKind, legalName, registryCode, clientActionId })'));
-  /* ⓘ on kiirmenüüs, mitte lehe nurgas ega pealkirja all. */
-  assert.ok(page.includes('usePanelInfoSlot({ infoId: "org" })'));
 });

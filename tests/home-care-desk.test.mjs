@@ -132,21 +132,3 @@ test('avalehe vaate nimi mahub kiirmenüüsse', () => {
     }
   }
 });
-
-test('ükski koduteenuse vaade ei kanna tagasilinki paneelis', () => {
-  for (const name of fs.readdirSync(path.join(root, 'components/homeCare'))) {
-    if (!name.endsWith('.jsx')) continue;
-    assert.ok(!read(`components/homeCare/${name}`).includes('hc-back'), name);
-  }
-});
-
-test('kest viib osa alalehelt osa lauale ja kliendi alaleht kliendi lehele', () => {
-  const shell = read('components/org/OrgPart.jsx');
-  assert.match(shell, /const PART_DESK = Object\.freeze\(\{ home_care: "koduteenus" \}\);/);
-  assert.match(shell, /const level = up \|\| \(partLabel && PART_DESK\[part\] \?/);
-  assert.match(shell, /allLabel=\{upName\}/);
-  /* Kliendi alalehed ütlevad oma taseme ise: üks tase üles on kliendi leht. */
-  for (const view of ['HomeCareChronology', 'HomeCareDecisions', 'HomeCareDoorTag', 'HomeCarePlanEditor', 'HomeCareSlots']) {
-    assert.match(read(`components/homeCare/${view}.jsx`), /up=\{\{ label: t\("home_care\.client\.page_name"\), href: clientHref/, view);
-  }
-});

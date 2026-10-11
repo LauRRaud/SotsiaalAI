@@ -1,6 +1,6 @@
 # Testide ülevaatus: mis on tarbetu või habras (11.10.2026)
 
-Omaniku küsimus 11.10.2026: „ehk on test üldse liiga palju ja ebavajalikud“. See leht vastab arvudega. Ühtki testi ei ole kustutatud.
+Omaniku küsimus 11.10.2026: „ehk on test üldse liiga palju ja ebavajalikud“. See leht vastab arvudega. Loendamise ajal ei kustutatud midagi; mis pärast omaniku otsust kustutati, on jaotises „Tehtud“.
 
 ## Lühike vastus
 
@@ -53,6 +53,42 @@ Valdkonniti: RAG-i 1017 testis on lähtekoodi teksti kinnitusi 14, koduteenuse 3
 3. **Reegel `AGENTS.md`-sse**, et hunnik uuesti ei kasvaks: uus test kontrollib käitumist; lähtekoodi teksti tohib kinnitada ainult keelu või turvareegli jaoks. (Omanik ütles sama 9. oktoobril.)
 
 Mida see ei puuduta: ükski õiguse, privaatsuse, makse, andmete kustutamise ega kriisiabi test.
+
+## Tehtud (11.10.2026 õhtul, omaniku otsus)
+
+Omanik samal õhtul: „need võib ära kustutada: 267 on keeldude kontrollid ja ~924 on liiga konkreetsed lehe kinnitused, mis kontrollivad täpset koodirida, mitte tegelikku toimimist“ ning „kustuta jah kõik nii, et ma saan pärast lihtsalt keele ja süntaksi testi teha, ja vajadusel veel mõned“.
+
+| | Enne | Pärast |
+| --- | ---: | ---: |
+| Testifaile | 318 | 317 |
+| Teste | 2718 | 2626 |
+| Kontrolle | 21 318 | 20 141 |
+
+Arvud on kustutamise tööriista omad. See loeb kontrolliks ka kontrolliva abifunktsiooni kutse ja alamtesti sees oleva kontrolli, sellepärast on „enne“ suurem kui ülal.
+
+**Kustutatud: 1177 kontrolli 71 failis (2880 rida).**
+
+- 872 kinnitust, et lehe, komponendi või kujunduse failis on kindel rida.
+- 274 keeldu lehe, komponendi või kujunduse faili kohta („seda rida ei ole“).
+- 18 keeldu serveri koodi ja andmebaasi skeemi kohta.
+- 13 jääki: kontrollid, et vana fail on kustutatud, ja read, mis jäid ilma oma võrdluseta.
+- 92 testi kadus tervikuna, sest neis ei olnud muud. Üks fail kadus tervikuna (`cloudflare-web-analytics-layout.test.mjs`).
+- 20 testi said nime, mis ütleb, mida nad veel kontrollivad.
+
+Ülal loendatud 924 ja 267 asemel on arvud 872 ja 292, sest piir tõmmati rangemalt: iga kinnituse väärtus jälgiti muutujate, tsüklite ja abifunktsioonide kaudu tagasi failini ning kinnitus, milles osaleb ka päris kood, tekstikataloog või andmefail, vaadati ükshaaval üle (25 neist kustutati, ülejäänud jäid).
+
+**Alles jäi meelega:**
+
+- **167 kontrolli 39 testis, mille nimi ütleb privaatsuse, ligipääsu, nõusoleku, andmete kustutamise või makse reegli.** 78 neist loevad lehe faili. Näited: sisestatu ei lahku seadmest (toimetulekutoetuse kalkulaator), nõusolek enne mikrofoni, isikuandmete kontroll enne koostamist, teate leht suunab ainult saaja, teenus ei kustuta võtit ega üleandmise jälge, maksevalikut ei saa teha ühe eksinud vajutusega. Nendele reeglitele käitumise testi ei ole; kui kinnitus kustutada, ei valva reeglit miski. Failid: `answer-feedback`, `business-register-names`, `chat-feedback-lifecycle`, `deletion-completeness`, `deletion-with-retired-index`, `document-drafting-views` (2 testi), `home-care-door-steps`, `home-care-keys`, `home-care-money`, `home-care-obstacles` (2), `home-care-preconditions`, `home-care-supplies`, `home-care-visit-notice` (2), `home-care-work-nature`, `network-share-client-decision`, `notification-target-pages`, `org-inbox-manual-status` (2), `org-inbox-room`, `pre-inquiry-recipient-step`, `privacy-check`, `profile-own-name`, `rag-v2-service-providers`, `same-origin-request`, `service-provider-assistant-gate`, `service-provider-representation`, `sharing-view-trail` (2), `subsistence-calculator-views`, `supervision-entry-views`, `supervision-process-views` (3), `urgent-desk-queue`, `workspace-panels-views` (2).
+- **128 kinnitust serveri koodi kohta ja 54 andmebaasi skeemi kohta** („see rida on olemas“). Omanik nimetas kustutamiseks keelud ja lehe kinnitused; need kaks rühma ei ole kumbki.
+- **61 kontrolli, mis loevad lehe faili muul eesmärgil:** kas lehel kasutatud tekstivõti on kataloogis kolmes keeles (keele kontroll), kas väli, mida vaade loeb, on mudelis olemas, kas igal teavituse sihtkohal ja dokiga lehel on leht ja nimi, ning brauseris jooksva koodi käitumise testid (võrguta kest, vastuse ootamine).
+- Kõik käitumise, tekstikataloogi ja andmefaili kontrollid.
+
+**Kontrollitud:** 70 muudetud testifaili jooksid läbi: 705 testi, 0 punast. ESLint muudetud failidel puhas.
+
+**Mis sellest muutub.** Lehe või kujunduse muudatus ei tee enam testi punaseks sõnastuse pärast. Lehe muudatuse kontroll on keel (`npm run i18n:check`, kolm sekundit) ja süntaks (`npx eslint <failid>`); testifaile jooksutatakse ainult siis, kui muutus loogika. Reegel on `AGENTS.md` jaotises „Kontrollid“. Kustutatud kontrollid ei jookse enam kusagil: teste käivitab ainult `npm test` (värava töö `unit`) ja see võtab failid kaustast `tests`.
+
+**Mida see ei tõenda.** Kustutatud kinnitused ei kaitsnud käitumist, aga mõni keeld hoidis kujunduse kokkulepet (brauseri kinnitusakent ei ole, paljaid sildivalijaid ei ole, vana ühist kihti ei kasutata). Neid kokkuleppeid hoiab nüüd ainult ülevaatus ja `AGENTS.md`.
 
 ## Kuidas loendati
 

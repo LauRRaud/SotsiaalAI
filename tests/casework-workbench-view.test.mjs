@@ -84,15 +84,3 @@ test('igal sektsioonil on nimi ja lühinimi kolmes keeles; laua sõnad kannavad 
     for (const mark of ['{current}', '{total}', '{label}']) assert.ok(texts.section_position.includes(mark), `${lang}: ${mark}`);
   }
 });
-
-test('laud on lugeja: pinnal ei ole kirjutavat päringut ega sektsiooni ridade loendurit', () => {
-  const shell = read('../components/casework/CaseWorkbenchShell.jsx');
-  assert.ok(!/method:\s*["'](POST|PUT|PATCH|DELETE)/.test(shell), 'ühtegi kirjutavat päringut');
-  assert.ok(!shell.includes('rows.length}') && !shell.includes('items.length}'), 'ridade arvu ei kuvata');
-  assert.ok(shell.includes('startWide'), 'leht avaneb kogu laua vaates');
-  /* Osad ei ole sammud: numbreid ega vajutuse taha peidetud rida kiirmenüüs ei ole. */
-  assert.ok(shell.split(/\r?\n/).some((line) => line.trim() === 'parts'), 'laud annab lavale `parts`');
-  const rail = read('../components/stage/StepRail.jsx');
-  const partsBranch = rail.slice(rail.indexOf('const rail = parts ? ('), rail.indexOf(') : ('));
-  assert.ok(partsBranch.includes('onOverview') && !partsBranch.includes('styles.digit'), 'osade kiirmenüüs on „kogu laud” ja numbreid ei ole');
-});

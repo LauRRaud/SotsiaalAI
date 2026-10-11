@@ -476,24 +476,6 @@ test('vaadete tekstivõtmed on kataloogis kolmes keeles', () => {
   }
 });
 
-test('lehe lubadused: kustutamine küsib teist vajutust, teated ei kasuta status-rolli, brauseri dialoogi ei ole', () => {
-  const files = ['JourneyDetail.jsx', 'JourneySteps.jsx', 'JourneyAssessment.jsx', 'JourneyClosure.jsx', 'JourneyPaperSheet.jsx', 'detail/DeskParts.jsx', 'detail/DeskBits.jsx'];
-  for (const file of files) {
-    const source = read(`../components/journey/${file}`);
-    assert.ok(!source.includes('role="status"'), `${file}: status-roll`);
-    assert.ok(!/window\.(confirm|alert|prompt)\(/.test(source), `${file}: brauseri dialoog`);
-    assert.ok(!/<(textarea|select)\b/.test(source), `${file}: paljas väli vana kihi peal`);
-  }
-  /* Kolm kustutamist (samm, märge, Teekond) käivad kahe vajutusega nupu kaudu. */
-  assert.ok(/<TwoPress[^>]*\n?[^>]*danger[\s\S]{0,400}journey\.own_steps\.delete/.test(read('../components/journey/JourneySteps.jsx')));
-  assert.ok(/<TwoPress[\s\S]{0,200}journey\.assessment\.delete/.test(read('../components/journey/JourneyAssessment.jsx')));
-  assert.ok(/<TwoPress[\s\S]{0,200}journey\.actions\.delete/.test(read('../components/journey/detail/DeskParts.jsx')));
-  /* Vana üldkiht on läinud: Teekonna lehed ei kasuta enam üldisi journey-klasse. */
-  assert.ok(!fs.existsSync(new URL('../app/styles/journey.css', import.meta.url)));
-  assert.ok(!read('../app/styles/globals.css').includes('journey.css'));
-  for (const file of [...files, 'JourneyDashboard.jsx', 'dashboard/DashboardViews.jsx']) assert.ok(!/className="journey-/.test(read(`../components/journey/${file}`)), file);
-});
-
 test('eestikeelsetes laua tekstides ei ole mõttekriipsu ega sirgeid jutumärke', () => {
   const walk = (node, path, out) => {
     for (const [key, value] of Object.entries(node)) {

@@ -82,14 +82,7 @@ test("marsruut: nimi tuleb sessiooni kasutajale, mitte päringu kehast; e-posti 
   assert.match(profile, /firstName: name\.firstName,\s*lastName: name\.lastName/);
 });
 
-test("vorm on konto seadete mõlemas vaates ja tekstid on kolmes keeles", () => {
-  const page = read("../components/alalehed/ProfiilBody.jsx");
-  assert.equal([...page.matchAll(/<ProfileNameForm\b/g)].length, 2, "rida konto lehel ja sama rida hüpikaknas");
-  const form = read("../components/profile/ProfileNameForm.jsx");
-  assert.match(form, /fetch\("\/api\/profile\/name", \{\s*method: "PUT"/);
-  assert.match(form, /disabled=\{disabled \|\| busy \|\| !dirty \|\| !complete\}/);
-  /* Poole nimega on nupp kinni ja rida ütleb, miks. */
-  assert.match(form, /dirty && !complete \?[\s\S]*profile\.name\.incomplete/);
+test("nime vormi tekstid on kolmes keeles", () => {
   for (const locale of ["et", "en", "ru"]) {
     const name = JSON.parse(read(`../messages/${locale}.json`)).profile.name;
     for (const key of ["hint", "first", "last", "save", "saved", "incomplete", "save_failed"]) assert.equal(typeof name[key], "string", `${locale} profile.name.${key}`);

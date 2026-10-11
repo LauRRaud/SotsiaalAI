@@ -120,12 +120,3 @@ test('platvormi enda soovitus „Vaata Abivahenduse võimalusi" ei ole abivahend
     assert.equal(hasAssistiveDeviceSignal({ suggestedActions: [{ title }] }), type === 'ASSISTIVE_DEVICES', `${type}: ${title}`);
   }
 });
-
-test('fail jõuab brauserisse: avaldises ei ole tahavaadet ega ASCII sõnapiiri', () => {
-  const source = readFileSync(new URL('../lib/journey/helpMediationHandoff.js', import.meta.url), 'utf8');
-  const code = source.replace(/\/\*[\s\S]*?\*\//g, '');
-  /* Vanem Safari ei loe tahavaatega avaldist üldse: Teekonna leht jääks avanemata. */
-  assert.doesNotMatch(code, /\(\?<[!=]/);
-  assert.doesNotMatch(code, /\\\\?b\(/, '`\\b` ei tunne täpitähti');
-  assert.doesNotMatch(code, /\\\\?w/, '`\\w` ei tunne täpitähti');
-});

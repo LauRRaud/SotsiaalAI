@@ -154,11 +154,4 @@ test('tekstid on kolmes keeles olemas, leht ei küsi hüpikaknaga ja päringuid 
     }
   }
   for (const key of keys) assert.ok(!/[—–]| - |"/.test(at(catalog('et'), `org.board.${key}`)), key);
-  const page = read('../components/org/OrgDispatchBoard.jsx');
-  assert.equal((page.match(/fetch\(/g) || []).length, 2);
-  assert.ok(!/window\.prompt|window\.confirm|alert\(/.test(page), 'küsimus on vaade, mitte brauseri hüpikaken');
-  /* Serveri sõnum on võti: leht tõlgib selle lauseks. */
-  assert.ok(page.includes('resolveApiMessage({ payload: body, t, fallbackKey: "org.board.assign_failed" })'));
-  /* Leht saab kesta jaoks organisatsiooni konteksti. */
-  assert.ok(read('../app/org/[orgId]/graafik/page.jsx').includes('context={auth.context}'));
 });

@@ -131,20 +131,9 @@ test('the button\'s state: the plan\'s own effort until the user chooses, then t
   assert.doesNotThrow(() => saveReasoning(blocked, 'low'));
 });
 
-test('the chat sends the choice with a pilot request, and the composer has the lightning button in three languages', async () => {
+test('the quick answer button has its words in three languages and the old menu item is gone', async () => {
   const read = file => fs.readFile(file, 'utf8');
-  const stream = await read('components/chat/hooks/useChatStream.js');
-  assert.match(stream, /\.\.\.\(cfg\.pilotReasoning \? \{ reasoning: cfg\.pilotReasoning \} : \{\}\)/u);
-  const body = await read('components/alalehed/ChatBody.jsx');
-  assert.match(body, /usePilotReasoning\(pilotMode && !isRoomMode \? pilotReasoning : null\)/u);
-  assert.match(body, /pilotReasoning: reasoningChoice\.effort,/u);
-  assert.match(body, /quickAnswer=\{reasoningChoice\.available \? reasoningChoice\.quick : null\}/u);
-  assert.match(await read('app/vestlus/page.js'), /pilotReasoning = reasoningOffer\(config\)/u);
-  assert.match(await read('components/chat/hooks/usePilotReasoning.js'), /quick: available && effort === quick,/u);
   // One control for one setting: the button next to the microphone, pressed = the quick answer; no menu item beside it.
-  const composer = await read('components/alalehed/chat/ChatComposer.jsx');
-  assert.match(composer, /quickAnswer !== null && !isRoomMode \? <button type="button" className="conv-quick-answer" aria-label=\{t\("chat\.quick_answer\.button_aria"\)\} aria-pressed=\{quickAnswer \? "true" : "false"\} data-active=\{quickAnswer \? "true" : undefined\} data-tooltip=\{quickAnswer \? t\("chat\.quick_answer\.on"\) : t\("chat\.quick_answer\.off"\)\}[^>]* onClick=\{onToggleQuickAnswer\} \/>/u);
-  assert.doesNotMatch(composer, /menuitemcheckbox|think_thoroughly/u);
   const labels = {};
   for (const locale of ['et', 'en', 'ru']) {
     const chat = JSON.parse(await read(`messages/${locale}.json`)).chat;
@@ -154,15 +143,4 @@ test('the chat sends the choice with a pilot request, and the composer has the l
   assert.deepEqual(labels, { et: { button_aria: 'Kiire vastus', on: 'Kiire vastus', off: 'Põhjalik vastus' },
     en: { button_aria: 'Quick answer', on: 'Quick answer', off: 'Thorough answer' },
     ru: { button_aria: 'Быстрый ответ', on: 'Быстрый ответ', off: 'Вдумчивый ответ' } });
-  // One glyph for both states (owner 06.10.2026): an outline with the microphone's line; a filled one and a firmer
-  // line were both too loud. Only the tone tells the state: the lit one has the text's. It sits on the same button box
-  // as the microphone's.
-  const css = await read('app/styles/chat.css');
-  const rules = css.match(/button\.conv-quick-answer[^{]*\{[^}]*\}/gu).join('\n');
-  assert.deepEqual(rules.match(/stroke-width='[\d.]+'/gu), ["stroke-width='1.6'"]);
-  assert.match(rules, /button\.conv-quick-answer::before \{[^}]*--glyph: url\("data:image\/svg\+xml,[^"]*fill='none' stroke='black' stroke-width='1\.6'/u);
-  assert.match(css, /button\.conv-quick-answer\[data-active="true"\] \{\s*color: var\(--text-warm\);/u);
-  assert.doesNotMatch(rules, /fill='black'|\[data-active="true"\]::before/u);
-  assert.match(css, /button\.conv-quick-answer \{[^}]*min-inline-size: var\(--hit-target-min\);/u);
-  assert.doesNotMatch(css, /menuitemcheckbox/u);
 });

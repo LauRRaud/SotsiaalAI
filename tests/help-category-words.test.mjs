@@ -6,7 +6,6 @@
 // sama, millega muudatust enne ja pärast mõõdeti.
 import test from "node:test";
 import assert from "node:assert/strict";
-import fs from "node:fs";
 
 import { inferHelpCategoryCode } from "../lib/help/categories.js";
 import { createHelpWorkflowExtraction } from "../lib/help/workflowExtraction.js";
@@ -181,12 +180,4 @@ test("vestluse töövoog: kontaktirida ei ole digiabi ja lapse paljas mainimine 
   assert.equal(chat("Mul on kaks last ja laps on haige", "HOME_HELP"), "HOME_HELP");
   assert.equal(chat("Lapsele tuge koolis"), "CHILD_YOUTH_SUPPORT");
   assert.equal(chat("midagi muud", "TRANSPORT"), "TRANSPORT");
-});
-
-test("reeglifailides ei ole enam lühikest tüve ega terve sõnana kirjutatud tüve", () => {
-  const categories = fs.readFileSync(new URL("../lib/help/categories.js", import.meta.url), "utf8").replace(/\/\*[\s\S]*?\*\//g, "");
-  assert.doesNotMatch(categories, /\\b\(/, "kategooriate reeglid ei kasuta ASCII sõnapiiri");
-  assert.doesNotMatch(categories, /\[a-z\]\*/, "tüve jätk peab tundma täpitähti");
-  const workflow = fs.readFileSync(new URL("../lib/help/workflowExtraction.js", import.meta.url), "utf8").replace(/\/\*[\s\S]*?\*\//g, "");
-  assert.doesNotMatch(workflow, /vii\\w\*/, "`vii\\w*` loeb transpordiks ka „viimasel” ja „viis”");
 });

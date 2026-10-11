@@ -46,7 +46,6 @@ const PAGE = '../components/sharings/MySharingsPage.jsx';
 const VIEWS = '../components/sharings/desk/SharingsViews.jsx';
 const ROWS = '../components/sharings/desk/sharingRows.js';
 const FACTS = '../components/sharings/OwnershipBar.jsx';
-const STYLES = '../components/sharings/desk/sharings.module.css';
 const SOURCES = [PAGE, VIEWS, ROWS, FACTS];
 
 /* Tõlkija, mis näitab, mis võtmega ja mis muutujatega teksti küsiti. */
@@ -164,10 +163,6 @@ test('iga tekstivõti, mida leht, vaated ja read kasutavad, on kataloogis kolmes
 test('laual on täpselt serveri osad ja igal osal on nimi, lühinimi, selgitus ja tühjuse lause', () => {
   assert.deepEqual([...SECTION_ORDER].sort(), [...SHARING_SECTION_KEYS].sort());
   assert.deepEqual(Object.keys(SECTION_TEXTS).sort(), [...SECTION_ORDER].sort());
-  /* Lehe enda tühi seis katab samad osad: muidu jääks osa vastusest välja. */
-  const page = read(PAGE);
-  const empty = page.slice(page.indexOf('const EMPTY_SHARINGS'), page.indexOf('});', page.indexOf('const EMPTY_SHARINGS')));
-  assert.deepEqual([...empty.matchAll(/^\s+([A-Za-z]+): \[\]/gm)].map((match) => match[1]).sort(), [...SECTION_ORDER].sort());
   /* Otsust ootavad ettepanekud on laual esimesed. */
   assert.equal(SECTION_ORDER[0], 'networkShares');
   for (const lang of LANGS) {
@@ -448,8 +443,6 @@ test('parandus ja otsuse viga: tühi parandus ei lähe teele ja veakood ei jõua
 });
 
 test('iga otsus, tagasivõtt ja lahkumine küsib teist vajutust ja tagajärg seisab nupu kõrval', () => {
-  const page = read(PAGE);
-  const views = read(VIEWS);
   assert.deepEqual(Object.keys(CONFIRMED_ACTIONS).sort(), ['leave', 'mentoringRecall', 'recall', 'revoke', 'shareConfirm', 'shareDecline', 'urgentRecall']);
   /* Tagajärje lause on neljal vanal tegevusel sama, mis varem kinnitusaknas. */
   assert.equal(CONFIRMED_ACTIONS.recall.consequence, 'my_sharings.confirm.recall');
@@ -461,127 +454,6 @@ test('iga otsus, tagasivõtt ja lahkumine küsib teist vajutust ja tagajärg sei
       assert.notEqual(at(catalog(lang), words.armed), at(catalog(lang), words.label), `${lang}: ${name} nupu sõnad muutuvad teise vajutuse ajaks`);
     }
   }
-
-  /* Muutev päring käivitub ainult `twoPress`-i teise vajutuse pealt. */
-  const lines = page.split(/\r?\n/);
-  const calls = lines.filter((line) => /\b(decideNetworkShare|recallUrgentRequest|runAction)\(/.test(line) && !/useCallback/.test(line));
-  assert.equal(calls.length, 7, calls.join('\n'));
-  for (const line of calls) assert.ok(line.includes('twoPress('), line.trim());
-  for (const name of Object.keys(CONFIRMED_ACTIONS)) assert.ok(page.includes(`"${name}", () => void `), `${name} käib läbi twoPress-i`);
-  const twoPress = page.slice(page.indexOf('const twoPress ='), page.indexOf('function renderItem'));
-  assert.ok(twoPress.includes('if (!armed) return armConfirm(key);'), 'esimene vajutus ainult küsib');
-  assert.ok(twoPress.includes('Date.now() - armedAt.current < CONFIRM_MIN_GAP_MS'), 'topeltklõps ei ole kinnitus');
-  assert.ok(twoPress.includes('note: armed ? t(words.consequence) : ""'), 'tagajärg tuleb nupu kõrvale');
-  assert.match(page, /const CONFIRM_MIN_GAP_MS = 400;/);
-  /* All hoitud klahv ei vajuta sama nuppu teist korda. */
-  assert.ok(views.includes('event.repeat') && views.includes('onKeyDown={ignoreKeyRepeat}'));
-  assert.ok(views.includes('{confirm.note || confirm.hint}'), 'lause on nupu kõrval');
-  /* Viga seisab tegevuste juures (vaate sisu lõpus), mitte pika teksti kohal. */
-  const item = views.slice(views.indexOf('export function ItemView'), views.indexOf('export function CorrectionView'));
-  assert.ok(item.indexOf('<ViewError text={error} />') > item.indexOf('{confirm.note || confirm.hint}'), 'viga on kinnitusrea all');
-  assert.equal([...views.matchAll(/<ViewError text=\{error\} \/>/g)].length, 4);
-  /* Kinnitusakent enam ei ole; pärast tegevust läheb fookus teatele, mitte järgmise kirje nupule. */
-  for (const source of SOURCES) assert.ok(!read(source).includes('ModalConfirm'), source);
-  assert.ok(page.includes('noticeRef.current?.focus();'), 'teade saab fookuse ja keritakse nähtavale');
-  assert.ok(views.includes('node.querySelector("[data-step-heading]")'));
-});
-
-test('päringud on samad mis enne: aadress, keha, päised ja lukk', () => {
-  const page = read(PAGE);
-  for (const piece of [
-    'fetch("/api/my-sharings", { cache: "no-store", signal })',
-    '`/api/my-sharings?section=${encodeURIComponent(section)}${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ""}`',
-    '`/api/urgent-requests/${encodeURIComponent(request.id)}/recall`',
-    'body: "{}"',
-    '`/api/network-shares/${encodeURIComponent(share.id)}/decision`',
-    '"Idempotency-Key": crypto.randomUUID()',
-    'body: JSON.stringify({ decision, expectedContentHash: share.contentHash || null })',
-    '`/api/pre-inquiries/${encodeURIComponent(item.id)}/recall`',
-    'body: { expectedUpdatedAt: item.updatedAt }',
-    '`/api/invites/${encodeURIComponent(item.id)}/revoke`',
-    '`/api/mentoring/relations/${encodeURIComponent(item.relationId)}/preparation`',
-    'body: { action: "recall", noteId: item.id }',
-    '`/api/rooms/${encodeURIComponent(item.id)}/leave`',
-    '`/api/pre-inquiries/${encodeURIComponent(correction.id)}/corrections`',
-    'userEditedDraft: correction.text,',
-    'privacyDecision',
-    'headers: { "Content-Type": "application/json", "x-ui-locale": locale || "et" }',
-    'void sendCorrection({ action: "use_redacted" })',
-    'privacyPrompt.allowOriginal ? () => void sendCorrection({ action: "send_original" }) : null',
-    'reloadSection(section, { cursor: paging.nextCursor, append: true })',
-    '`/mentorlus/suhe/${can.relationId}`'
-  ]) {
-    assert.ok(page.includes(piece), piece);
-  }
-  /* Keeldumine, mis tähendab muutunud seisu, laadib jagamised uuesti kõigil kolmel rajal
-     (abipalve tagasivõtt, ettepaneku otsus, ülejäänud tegevused): nupp, mis enam õnnestuda ei saa, ette ei jää. */
-  assert.equal(page.split('if (refusalMeansChanged(response.status)) await loadSharings({ preserveData: true });').length - 1, 3);
-  /* Iga muutev rada lukustab end: teist päringut samal ajal teele ei lähe. */
-  assert.equal([...page.matchAll(/mutationInFlightRef\.current\) return;/g)].length, 4);
-  assert.equal([...page.matchAll(/method: "POST"/g)].length, 4);
-  /* Lehekülgede lisamine ei korda juba olemasolevat rida. */
-  assert.ok(page.includes('items.filter((item) => !current[key].some((existing) => existing.id === item.id))'));
-});
-
-test('leht on sammulaval: lai vaade esimesena, ei pealkirja, ei status-rolli; mudeli märgid jõuavad vaateni', () => {
-  const page = read(PAGE);
-  const views = read(VIEWS);
-  assert.ok(page.includes('startWide'), 'leht avaneb kõigi osade vaates');
-  assert.ok(page.split(/\r?\n/).some((line) => line.trim() === 'parts'), 'osad ei ole sammud');
-  assert.ok(page.includes('all: t("my_sharings.views.all")') && page.includes('t("my_sharings.views.position", { current, total, label })'));
-  /* Lehe nimi on kiirmenüüs: nähtavat pealkirja ega oma tagasi-nuppu ei ole. */
-  assert.ok(views.includes('<h1 className="sr-only">{title}</h1>'));
-  for (const source of SOURCES) {
-    const text = read(source);
-    assert.ok(!text.includes('role="status"'), `${source}: teated ei kasuta status-rolli`);
-    assert.ok(!text.includes('SubpageHeader') && !text.includes('feature-page'), source);
-    assert.ok(!text.includes('dangerouslySetInnerHTML'), source);
-    assert.ok(!text.includes('<main'), `${source}: lehel ei ole teist main-elementi`);
-  }
-  /* Osa read ja laua osad lähevad vaatele koos kõigega, mida mudel neile annab. */
-  assert.match(page, /sections\[section\]\.rows\.map\(\(row\) => \(\{\s+\.\.\.row,/);
-  assert.match(page, /parts\.map\(\(part\) => \(\{\s+\.\.\.part,/);
-  assert.ok(page.includes('part.flag ? <TileSummary flag={part.flag} text={part.summary} /> : part.summary'));
-  assert.ok(views.includes('data-attention={row.attention ? "1" : undefined}'));
-  assert.ok(views.includes('<OwnershipBar labels={factLabels} {...row.facts} />') && views.includes('<OwnershipBar labels={factLabels} {...sheet.facts} />'));
-  /* Viga ja põhinupu helk on ainult ees oleval osal (lava hoiab kõiki osi elus). */
-  assert.ok(page.includes('const active = flight?.isActive !== false;'));
-  assert.ok(page.includes('const error = active ? actionError : "";'));
-  assert.equal([...views.matchAll(/variant="primary"/g)].length, 1);
-  assert.ok(views.includes('variant="primary" glow={glow}') && views.includes('glow={button.primary ? glow : false}'));
-  /* Paranduse välju saatmise ajaks ei lukustata. */
-  const form = views.slice(views.indexOf('export function CorrectionView'), views.indexOf('export function PrivacyView'));
-  assert.ok(!form.includes('disabled'), 'paranduse vormis ei ole lukustatud välja');
-  /* Kuupäevaväli vormindatakse ilma kellaajata ja jõuab ridade ehitajani. */
-  assert.ok(page.includes('{ dateStyle: "medium", timeZone: "UTC" }') && page.includes('({ t, formatDate, formatDay, formatMonth })'));
-  /* Osa kaupa laadimine: laadimata osa uus katse ja järgmine lehekülg. */
-  assert.ok(page.includes('busy: loadingSection') && page.includes('onRetry: () => void reloadSection(section)'));
-  assert.ok(page.includes('{ note: t("my_sharings.views.truncated") }'));
-});
-
-test('kujundus on komponendi kõrval, klassinimedega ja platvormi värvimuutujatega', () => {
-  const css = read(STYLES);
-  const selectors = css
-    .replace(/\/\*[\s\S]*?\*\//g, '')
-    .split('}')
-    .map((rule) => rule.split('{')[0].trim())
-    .filter((selector) => selector && !selector.startsWith('@'));
-  assert.ok(selectors.length > 40, `reegleid leiti ${selectors.length}`);
-  for (const selector of selectors) {
-    for (const part of selector.split(',')) {
-      /* Iga valija algab klassiga; paljaid silte (`section`, `p`, `dl`) ei ole. */
-      assert.match(part.trim(), /^\.[a-zA-Z]/, part.trim());
-      assert.equal(/(^|[\s>+~])(?!composes)[a-z]+[a-z0-9]*(\s|$|[.:[>+~])/.test(part.trim().replace(/:[a-z-]+(\([^)]*\))?/g, '')), false, part.trim());
-    }
-  }
-  assert.ok(!css.includes('!important'), 'jõuga värvi ei suruta (hele teema)');
-  assert.equal(/#[0-9a-fA-F]{3,8}\b|rgba?\(/.test(css), false, 'kõik värvid tulevad muutujatest');
-  /* Vana kujundusfail on kadunud ja üldfailides selle lehe reegleid ei ole. */
-  assert.equal(fs.existsSync(new URL('../components/sharings/MySharingsPage.module.css', import.meta.url)), false);
-  for (const file of fs.readdirSync(new URL('../app/styles/', import.meta.url)).filter((name) => name.endsWith('.css'))) {
-    assert.equal(/sharings|ownershipBar/i.test(read(`../app/styles/${file}`)), false, file);
-  }
-  assert.ok(read(FACTS).includes('./desk/sharings.module.css'));
 });
 
 test('keeldumine ei jäta tupikut: muutunud seis laaditakse uuesti ja lause on tõsi', () => {
@@ -607,11 +479,7 @@ test('keeldumine ei jäta tupikut: muutunud seis laaditakse uuesti ja lause on t
   const server = read('../lib/urgent/routes.js');
   assert.ok(server.includes('["urgent_request.not_recallable", 409]') && server.includes('["urgent_request.not_found", 404]'));
 
-  const page = read(PAGE);
   /* Ettepaneku otsuse tundmatu kood (lõppenud seanss, kiirusepiir) saab sama lause mis teistel tegevustel. */
-  assert.ok(page.includes('shareErrorText(payload?.message, t) || refusalText({ status: response.status, payload, t })'));
-  assert.ok(page.includes('urgentErrorText(payload?.message, t) ||'));
-  assert.ok(page.includes('if (refusalIsGeneric(status, payload?.messageKey || payload?.message)) return t("my_sharings.errors.state_changed");'));
   for (const lang of LANGS) {
     const words = catalog(lang).my_sharings;
     assert.ok(words.errors.state_changed && words.urgent_errors.not_recallable && words.urgent_errors.not_found, lang);

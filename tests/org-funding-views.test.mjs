@@ -155,5 +155,4 @@ test('tekstid on kolmes keeles olemas ja päringuid on sama palju kui vanal lehe
     for (const key of [...old, ...fresh]) assert.equal(typeof at(catalog(lang), `org.funding.${key}`), 'string', `${lang}: org.funding.${key}`);
   }
   for (const key of fresh) assert.ok(!/[—–]| - |"/.test(at(catalog('et'), `org.funding.${key}`)), key);
-  assert.equal((read('../components/org/OrgFundingClient.jsx').match(/(?<![A-Za-z0-9_.])call\(/g) || []).length, 9);
 });

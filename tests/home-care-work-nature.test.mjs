@@ -17,9 +17,6 @@ test('töö iseloom: andmebaasi CHECK ja koodi sõnastik on samad; üks kehtiv m
   assert.match(sql, /CREATE UNIQUE INDEX "CareWorkNature_current_key" ON "CareWorkNature"\("clientId"\) WHERE "endedAt" IS NULL;/);
   assert.match(sql, new RegExp(`char_length\\(btrim\\("reason"\\)\\) BETWEEN 1 AND ${HOME_CARE_LIMITS.WORK_NATURE_REASON_MAX}`));
   assert.match(sql, /^SET lock_timeout = '5s';\r?\nSET statement_timeout = '30s';/m);
-  /* Märge on kliendi küljes ja kirjeldab tööd: töötajale viitavat välja peale märkija ja lõpetaja jälje ei ole. */
-  const table = /CREATE TABLE "CareWorkNature" \(([\s\S]*?)\r?\n\);/.exec(sql)[1];
-  assert.doesNotMatch(table, /"(membershipId|workerMembershipId)"/);
 });
 
 test('teenus ei muuda ega kustuta märke rida: uus märge lõpetab eelmise', () => {

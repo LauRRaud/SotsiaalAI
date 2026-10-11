@@ -27,8 +27,6 @@ test('vaadete tekstivõtmed on kataloogis kolmes keeles', () => {
 });
 
 test('igal vaatel on nimi ja lühinimi kiirmenüü jaoks', () => {
-  const page = read('../components/wellbeing/MyRecordsWorkflow.jsx');
-  for (const key of VIEW_KEYS) assert.ok(page.includes(`"${key}"`), `leht kasutab vaadet ${key}`);
   for (const lang of ['et', 'en', 'ru']) {
     const views = catalog(lang).wellbeing.my_records.views;
     for (const key of VIEW_KEYS) {
@@ -46,14 +44,4 @@ test('filtrite, mustandi seisu ja kontrollpunkti vastuse võtmed, mida leht kokk
     for (const status of ['draft', 'ready_to_share', 'in_covision']) assert.equal(typeof wellbeing.my_records.draft_status[status], 'string', `${lang}: ${status}`);
     for (const state of ['kept', 'not_kept', 'unclear']) assert.equal(typeof wellbeing.checkpoint.follow_up[state], 'string', `${lang}: ${state}`);
   }
-});
-
-test('kustutamine küsib teist vajutust ja leht ei ole enam vanal ühisel kihil', () => {
-  const page = read('../components/wellbeing/MyRecordsWorkflow.jsx');
-  assert.ok(page.includes('armConfirm("record")') && page.includes('armConfirm("record-drafts")'), 'kirje kustutamine kahe vajutusega');
-  assert.ok(page.includes('armConfirm(draft.id)'), 'mustandi kustutamine kahe vajutusega');
-  assert.ok(!page.includes('role="status"'), 'teated ei kasuta status-rolli (ühine kiht joonistab selle kastina)');
-  const shell = read('../components/wellbeing/WellbeingPage.jsx');
-  const staged = shell.slice(shell.indexOf('const STAGED_TOOLS'), shell.indexOf(']);', shell.indexOf('const STAGED_TOOLS')));
-  assert.ok(staged.includes('"my-records"'), 'leht joonistab end ise, ilma vana `wellbeing-workflow` kihita');
 });

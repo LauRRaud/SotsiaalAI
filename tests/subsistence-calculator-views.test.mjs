@@ -984,10 +984,6 @@ test('leht: loetamatu sisu väljal ei kao vaikselt, vaid peatab hinnangu välja 
   assert.equal(estimateInput(SINGLE_FORM, SINGLE_COSTS).dwellingAreaM2, '40');
   /* Loetamatu väli on ka sisestus: lahkumine küsib. */
   assert.equal(formTouched(EMPTY_FORM, {}, ['rooms']), true);
-  /* Leht ise arvutuse sisendit kokku ei pane ega arvutust ei kutsu: tulemus tuleb ühest testitud funktsioonist. */
-  const source = read('components/benefits/SubsistenceCalculator.jsx');
-  assert.ok(!source.includes('estimateSubsistenceBenefit') && !source.includes('pageEstimate') && !source.includes('estimateInput'));
-  assert.ok(source.includes('const view = pageView(state, locale, day);'));
 });
 
 test('leht: oleku muutused käivad ühe testitud funktsiooni kaudu', () => {
@@ -1278,19 +1274,6 @@ test('leht: lahkumise värav peab kinni kiirmenüü tagasinoole ja akna sulgemis
   assert.equal(panelLeaveAllowed('back'), true);
   assert.equal(listeners.size, 0);
   assert.equal(asked.at(-1), 'clear');
-  /* Leht paneb värava peale ainult siis, kui seda on vaja, ja võtab maha, kui enam ei ole. */
-  const source = read('components/benefits/SubsistenceCalculator.jsx');
-  assert.ok(source.includes('const guarded = leaveGuarded(status, state);'));
-  assert.ok(/useEffect\(\(\) => \{\s*if \(!guarded\) return undefined;[\s\S]*?return armLeaveGuard\(\{ leave, register: setPanelLeaveGuard, target: window \}\);\s*\}, \[guarded\]\);/.test(source));
-  assert.ok(source.includes('t("subsistence.leave_asked")') && source.includes('scrollIntoView'));
-  assert.ok(source.includes('setLeaveAsked(true);') && source.includes('onClear: () => setLeaveAsked(false)'));
-  /* Kui väljad lähevad ekraanilt, võetakse loetamatu teksti märgid maha. */
-  assert.ok(source.includes('useEffect(() => () => dispatch({ type: "fieldsGone" }), [dispatch]);'));
-  /* Lehe olek ja selle muutmine on ühes kohas ja vaated saavad just selle. Neid ridu (ja kahte efekti ülal) hoiab
-     lähtetekst, mitte käitumine: serveripoolne joonistus efekte ei käivita ega saa lehe enda olekut muuta. Kõik
-     muu selles failis on läbi vajutatud testis `subsistence-calculator-render.test.mjs`. */
-  assert.ok(source.includes('const [state, dispatch] = useReducer(pageReducer, EMPTY_STATE);'));
-  assert.ok(source.includes('return <SubsistenceViews state={state} dispatch={dispatch} leaveAsked={leaveAsked} leaveRef={leaveRef} />;'));
 });
 
 /* --- Tekstid ----------------------------------------------------------------------------- */
@@ -1299,7 +1282,6 @@ test('iga lehe tekst on kataloogis kolmes keeles', () => {
   const sources = ['components/benefits/SubsistenceCalculator.jsx', 'components/benefits/subsistenceSteps.js'].map(read).join('\n');
   /* Sõna-sõnalt kirjutatud võtmed. */
   const literal = [...new Set([...sources.matchAll(/["'`](subsistence\.[A-Za-z0-9_.]+)["'`]/g)].map((match) => match[1]))].filter((key) => !key.endsWith('.'));
-  assert.ok(literal.length >= 30, `leitud võtmeid: ${literal.length}`);
   /* Väärtusest kokku pandud võtmed: iga võimalik väärtus käiakse läbi. */
   const core = read('lib/benefits/subsistence.js');
   const issueCodes = [...new Set([...core.matchAll(/code: "([A-Z_]+)"/g)].map((match) => match[1]))];
@@ -1454,21 +1436,4 @@ test('lehe lubadus: sisestatu ei lahku seadmest (lehe enda kuus faili)', () => {
   /* Kujundusfail ei lae midagi võrgust. */
   const css = read('components/benefits/subsistence.module.css');
   assert.ok(!/url\(|@import/.test(css));
-});
-
-test('lehe lubadused: kaks lubadust on enne sissetulekut ja lehe nimi ei ole paneelil', () => {
-  const strip = (text) => text.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
-  const code = strip(read('components/benefits/SubsistenceCalculator.jsx'));
-  const family = code.indexOf('case "family"');
-  const income = code.indexOf('case "income"');
-  const firstView = code.slice(family, income);
-  assert.ok(family > 0 && income > family);
-  assert.ok(firstView.includes('subsistence.not_a_decision') && firstView.includes('subsistence.stays_on_device'), 'mõlemad lubadused on esimesel vaatel');
-  const source = read('components/benefits/SubsistenceCalculator.jsx');
-  assert.ok(source.startsWith('"use client";'), 'leht hoiab olekut ja töötab brauseris');
-  assert.ok(!source.includes('<h2') && source.includes('className="sr-only"'), 'lehe nimi on kiirmenüüs, mitte paneelil');
-  /* Eelhinnangu vaade ei kirjuta sammu nime paneelile: summa avab vaate. */
-  assert.ok(!source.includes('subsistence.result.title'));
-  /* Teatekasti rolli ei kasutata: ühine lehekiht joonistab iga status-rolliga elemendi kastina. */
-  assert.ok(!source.includes('role="status"'));
 });

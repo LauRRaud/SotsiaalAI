@@ -180,11 +180,6 @@ test('tekstid on kolmes keeles ja vaade näitab selgitust', () => {
   /* Loend ja üksik pöördumine annavad otsuse kaasa; vaade näitab selgitust. */
   assert.ok(read('../app/api/pre-inquiries/route.js').includes('inquiries: await withOrganizationOutcome(auth.userId, await withPreInquiryReplies(auth.userId, page.items))'));
   assert.ok(read('../app/api/pre-inquiries/[id]/route.js').includes('await withOrganizationOutcome('));
-  assert.ok(read('../components/workspace/WorkspaceFeaturePage.jsx').includes('note={sentView.outcome?.note ? { label: tr("views.sent.outcome_note", "Asutuse selgitus"), text: sentView.outcome.note } : null}'));
-  assert.ok(read('../components/workspace/preInquiry/FlowViews.jsx').includes('data-outcome-note="1"'));
-  /* Selgitus tuleb üldise lause „mis edasi saab” asemele: mõlemad korraga vaatesse ei mahu
-     (mõõdetud 1536 × 640 aknas pikima lubatud selgitusega, eesti ja vene keeles). */
-  assert.ok(read('../components/workspace/WorkspaceFeaturePage.jsx').includes('next={sentView.next && !sentView.outcome?.note ? tr(`views.sent.next.${sentView.next}`, "") : ""}'));
   /* Laused „mis edasi saab” mahuvad ühele reale (kuni 95 märki), et vaade ei kasvaks. */
   for (const lang of LANGS) {
     const next = catalog(lang).workspace_feature_pages.pre_inquiries.views.sent.next;

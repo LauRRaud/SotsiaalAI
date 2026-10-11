@@ -202,29 +202,7 @@ test('laadija: üks lubadus keele kohta, üks kordus, ja tõrke järel ei jää 
 });
 
 test('kataloog ei lähe lehe HTML-i sisse ega lehe põhikimpu', () => {
-  const layout = read('../app/layout.js');
-  /* Paigutus ei laadi keelefaili ega anna kataloogi kliendile atribuudina. */
-  assert.ok(!/messages\/(et|en|ru)\.json/.test(layout), 'paigutus ei impordi keelefaili');
-  assert.ok(!/<Providers[^>]*\bmessages=/.test(layout), 'kataloogi ei anta atribuudina');
-  const providers = read('../app/providers.jsx');
-  assert.ok(!/\bmessages\b/.test(providers), 'vahekiht ei kanna kataloogi edasi');
-  /* Skript on keha lõpus, tavaline (mitte async ega defer): käivitub enne, kui React lehe elustab. */
-  const tag = /<script id="i18n-catalog"[^>]*\/>/.exec(layout)?.[0] || '';
-  assert.equal(tag, '<script id="i18n-catalog" src={catalogSrc} />');
-  assert.ok(layout.includes('const catalogSrc = catalogScriptPath(locale);'));
-  assert.ok(layout.indexOf(tag) > layout.indexOf('</Providers>') && layout.indexOf(tag) < layout.indexOf('</body>'), 'skript on keha lõpus pärast lehe sisu');
-
-  /* Pakkuja loeb kataloogi ootamata ja ootab (`use`) ainult siis, kui seda ei ole. */
-  const provider = read('../components/i18n/I18nProvider.jsx');
-  assert.ok(provider.includes('const [ready] = useState(() => readCatalog(initialLocale));'));
-  assert.ok(provider.includes('const loaded = ready || use(pending);'));
-  assert.ok(!/\bmessages\s*=\s*\{\}/.test(provider), 'pakkuja ei võta kataloogi atribuudina');
-
   /* Kliendi kood ei impordi keelefaili tavalise impordiga: ainus koht on laadija kolm `import()` rida. */
-  const catalogs = read('../components/i18n/catalogs.js');
-  assert.equal([...catalogs.matchAll(/import\("@\/messages\/(et|ru|en)\.json"\)/g)].length, 3);
-  assert.ok(!/^import [^\n]*messages\/[a-z]{2}\.json/m.test(catalogs));
-  assert.ok(catalogs.includes(`"${CATALOG_GLOBAL}"`) && catalogs.includes(`"${CATALOG_SERVER_GLOBAL}"`), 'kliendi ja serveri pool kasutavad sama kohta');
   const offenders = [];
   const walk = (dir) => {
     for (const entry of fs.readdirSync(new URL(dir, import.meta.url), { withFileTypes: true })) {
@@ -237,18 +215,6 @@ test('kataloog ei lähe lehe HTML-i sisse ega lehe põhikimpu', () => {
   walk('../components');
   walk('../app');
   assert.deepEqual(offenders, [], 'keelefaili impordib ainult components/i18n/catalogs.js');
-});
-
-test('välitöö võrguta kest hoiab kataloogi faili', () => {
-  const worker = read('../public/sw.js');
-  assert.ok(worker.includes('url.pathname.startsWith("/i18n/")'), 'kataloogi fail on kesta staatiline osa');
-  /* API vastuseid ei hoita endiselt kunagi ja vahemälu nimed ei muutunud (vana kest jääb alles). */
-  assert.ok(worker.includes('if (isApiRequest(url)) return;'));
-  assert.ok(worker.includes('const SW_VERSION = "field-v1-1";'));
-  /* Vana nimega (vahemäluta märgitud) vastust ei hoita. */
-  assert.ok(worker.includes('!/no-store/i.test(response.headers.get("Cache-Control") || "")'));
-  /* Hoiule panekut ei oodata vastuse teel: täis seade ei tohi faili päringut nurjata. */
-  assert.ok(!/await cache\.put\(/.test(worker), 'hoiule panekut ei oodata');
 });
 
 /* Käivitab teenusetöötaja faili võltsitud keskkonnas ja laseb sellel päringuid teenindada. */
@@ -342,14 +308,4 @@ test('serveri joonistus ja brauser loevad kataloogi kumbki oma kohast', async ()
   } finally {
     delete globalThis.window;
   }
-
-  /* Pakkuja näitab hiljem vahetatud kataloogi (keelevahetus), muidu seda, millega leht avati. */
-  const provider = read('../components/i18n/I18nProvider.jsx');
-  assert.ok(provider.includes('const dict = replaced || loaded;'));
-  assert.ok(provider.includes('const val = get(dict, key, undefined);'));
-  /* Salvestatud keel jääb: akna sulgemine ei pane tagasi keelt, millega aken avati. */
-  const modal = read('../components/accessibility/AccessibilityModal.jsx');
-  const save = modal.slice(modal.indexOf('const save = async () => {'));
-  const cleared = save.indexOf('previewedLangRef.current = null;');
-  assert.ok(cleared > 0 && cleared < save.indexOf('onClose?.();'), 'eelvaate märk võetakse maha enne akna sulgemist');
 });

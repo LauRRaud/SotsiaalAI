@@ -20,17 +20,6 @@ test('Töölaua menüü on kolm teed; sisulehed selle all saavad paneeli ja doki
   assert.equal(panelHasRoomDock('/toolaud/kiireloomuline-abi'), true);
 });
 
-test('ruum ja raam loevad menüüks samu teid', () => {
-  const stage = fs.readFileSync(new URL('../components/room/RoomStage.jsx', import.meta.url), 'utf8');
-  const frame = fs.readFileSync(new URL('../components/room/PanelFrame.jsx', import.meta.url), 'utf8');
-  /* RoomStage hoiab kolme teed eraldi muutujates, sest kasutab neid ka
-     eraldi (milline kaardikomplekt on ees). */
-  for (const route of WORKSPACE_HUB_ROUTES) assert.ok(stage.includes(`normalized === "${route}"`), `RoomStage: ${route}`);
-  assert.match(stage, /const isWorkspaceRoute = normalized === "\/toolaud" \|\| isWellbeingRoute \|\| isKovisionRoute;/);
-  assert.ok(frame.includes('const isWorkspaceHub = isWorkspaceHubRoute(normalized);'));
-  assert.ok(!frame.includes('normalized.startsWith("/toolaud/")'), 'raam ei pea iga Töölaua alateed menüüks');
-});
-
 // Dokk kannab lehe nime, sest leht ise pealkirja ei kanna. Alamteel ja sama
 // lehe teise päringuga jäi dokki varem ainult tagasi-nool.
 test('dokk otsib lehe nime täpse tee, aliase, päringuta tee ja vanema tee järgi', () => {
@@ -63,21 +52,6 @@ test('dokk otsib lehe nime täpse tee, aliase, päringuta tee ja vanema tee jär
   assert.deepEqual(dockLabelRoutes('/vestlus', '', embedded), ['/vestlus']);
   assert.deepEqual(dockLabelRoutes('/'), ['/']);
   assert.deepEqual(dockLabelRoutes(''), ['/']);
-});
-
-test('ruum kasutab doki nime otsimisel sama järjekorda ja oma komplekti kaart on esimene', () => {
-  const stage = fs.readFileSync(new URL('../components/room/RoomStage.jsx', import.meta.url), 'utf8');
-  assert.ok(stage.includes('dockLabelRoutes(normalized, search, DOCK_CARD_ALIASES)'));
-  assert.ok(stage.includes('const byRoute = pickDockLabel('), 'kaardita nimi käib sama järjekorda mööda');
-  /* Teise rolli kaart annab lehele nime ka siis, kui vaataja rollil seda kaarti ei ole. */
-  assert.ok(stage.includes('return { workspaceItems: cards, workspaceAllCards: all };'));
-  assert.ok(/profileItems,\s+\/\*[^*]*\*\/\s+workspaceAllCards,\s+\]\.forEach/.test(stage), 'rollifiltrita loend on nimeotsingus viimane');
-  const own = stage.indexOf('cards.find((item) => item.href === here) ||');
-  const byRoute = stage.indexOf('byRoute ||', own);
-  const cardless = stage.indexOf('(cardless ? {', own);
-  assert.ok(own > 0 && byRoute > own && cardless > byRoute, 'järjekord: oma komplekt, tee järgi, kaardita lehe nimi');
-  assert.ok(stage.includes('"/documents": "/vestlus?workspace=documents"'), 'dokumentide leht kannab oma kaardi nime');
-  assert.ok(stage.includes('"/vestlus?workspace=service_profile": "/teenuseprofiil"'), 'töölaua sees avatud teenuseprofiil kannab oma kaardi nime');
 });
 
 // Kaart võib olla ainult ühel rollil. Teise rolliga vaataja (administraator
