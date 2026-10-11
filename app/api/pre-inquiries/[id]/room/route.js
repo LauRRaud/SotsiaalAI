@@ -3,7 +3,7 @@ import { authConfig } from "@/auth";
 import { errorJson, json, localeFromRequest, publicErrorMessageKey, publicErrorStatus } from "@/lib/documents/server";
 import { getVisiblePreInquiry } from "@/lib/preInquiries";
 import { safeError } from "@/lib/privacy/safeError";
-import { ensureRoomForPreInquiry } from "@/lib/rooms/preInquiryRoom";
+import { ensureRoomForPreInquiry, findOrganizationInquiryForWorker } from "@/lib/rooms/preInquiryRoom";
 import { enforcePreInquiryRateLimit } from "@/lib/preInquiryApiBoundary";
 
 export const runtime = "nodejs";
@@ -39,28 +39,32 @@ export async function POST(request, context) {
   if (limited) return limited;
 
   try {
-    const inquiry = await getVisiblePreInquiry(auth.userId, await readId(context));
+    const inquiryId = await readId(context);
+    /* Asutuse vastuvõtulaua töötaja ei ole pöördumise nimeline saaja: teda tunneb ainult
+       vastu võetud töömääramine. Kumbki lugemine on eelkontroll; otsuse teeb
+       `ensureRoomForPreInquiry` luku all andmebaasist. */
+    const inquiry = await getVisiblePreInquiry(auth.userId, inquiryId)
+      || await findOrganizationInquiryForWorker(auth.userId, inquiryId);
     if (!inquiry) return errorJson("api.common.not_found", 404, locale);
 
-    const isAuthor = inquiry.authorId === auth.userId;
-    const isRecipient = inquiry.recipientOwnerId === auth.userId;
-    if (!isAuthor && !isRecipient) {
-      return errorJson("api.common.forbidden", 403, locale);
+    /* Asutuse laual selgub teine osapool alles luku all (töö vastu võtnud töötaja), seega
+       siinne osapoolte loendus käib ainult nimelise saaja kohta. */
+    if (!inquiry.recipientOrganizationId) {
+      const isAuthor = inquiry.authorId === auth.userId;
+      const isRecipient = inquiry.recipientOwnerId === auth.userId;
+      if (!isAuthor && !isRecipient) {
+        return errorJson("api.common.forbidden", 403, locale);
+      }
+
+      const participantIds = [auth.userId, inquiry.authorId, inquiry.recipientOwnerId]
+        .filter(Boolean)
+        .map((value) => String(value));
+      if (new Set(participantIds).size < 2) {
+        return errorJson("pre_inquiries.errors.room_requires_platform_recipient", 409, locale);
+      }
     }
 
-    const participantIds = [auth.userId, inquiry.authorId, inquiry.recipientOwnerId]
-      .filter(Boolean)
-      .map((value) => String(value));
-    const uniqueParticipantIds = [...new Set(participantIds)];
-    if (uniqueParticipantIds.length < 2) {
-      return errorJson("pre_inquiries.errors.room_requires_platform_recipient", 409, locale);
-    }
-
-    const { room, created } = await ensureRoomForPreInquiry({
-      userId: auth.userId,
-      inquiry,
-      participantIds: uniqueParticipantIds
-    });
+    const { room, created } = await ensureRoomForPreInquiry({ userId: auth.userId, inquiry });
 
     return json({
       ok: true,

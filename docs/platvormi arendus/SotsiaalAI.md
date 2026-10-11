@@ -3313,6 +3313,15 @@ Vastuvõtja poolel on laud, kus pöördumised seisavad järjekorras koos etteval
 kokkuvõttega. Ametnik näeb inimese enda sõnu ja AI koostatud struktuuri eraldi ja
 märgistatult — masina mustandit ei esitata kunagi inimese ütlusena.
 
+Asutuse vastuvõtulauale saadetud pöördumisele vastab töötaja samas ühises vestlusruumis,
+mida kasutab nimeline saaja. Koordinaator määrab töö, töötaja võtab selle vastu, avab kirje
+lehelt vestlusruumi ja vastab; pöörduja Teekond näitab siis „Saaja on vastanud" ja ruum on
+pöörduja ruumide loendis. Ruumis on pöörduja ja see üks töötaja: koordinaator, kes ei ole
+vastutaja, ja teised asutuse liikmed vestlust ei näe. Töö üleandmisel lahkub senine vastutaja
+ruumist kohe ja uus vastutaja näeb pärast töö vastuvõtmist ka varasemat vestlust (omaniku
+otsus 11.10.2026). Töö sulgemisel lõpeb töötaja ligipääs; ruum ja vestluse ajalugu jäävad
+pöördujale. Asutus näeb endiselt ainult pöörduja kinnitatud paketti, mitte tema Teekonda.
+
 **Teenusekaart ja teenuseprofiil.**
 Teenusekaart näitab, millised sotsiaalteenused ja osutajad piirkonnas olemas on, kellele
 nad on mõeldud ja kuidas nendeni jõuab. Osutajal on oma profiil, mida ta ise haldab.
@@ -3398,6 +3407,7 @@ toota nuppu, mis ei vii kuhugi.
 | Teenusekaart | kaart + kättesaadavus | loendivaade/klasterdamine; usaldusmärgistus — vajab MTR-kontrolli (vt tegemata) |
 | Abisoovid | kood valmis | kriitiline mass (kasutajad); match-nõusoleku tooteotsus; moderatsioonimudel |
 | Eelpöördumine | täisrada koodis | piloodis tõendamata — vajab KOV-partnerit |
+| Asutuse vastuvõtulaua vestlusruum | töötaja vastab pöördujale ühises ruumis; üleandmisel liigub vestlus uuele vastutajale | pöördujale ei öelda saatmisel ega ruumis, et asutuse poolel loeb vestlust töö vastutaja ja üleandmise järel järgmine (kujundus) · pärast töö sulgemist saab pöörduja ruumi edasi kirjutada, aga asutuse poolel ei loe seda keegi (omaniku otsus: kas ruum jääb siis ainult loetavaks) · üleandmise ja uue vastutaja vastuvõtmise vahel ei ole ruumis asutuse poolt kedagi · pöörduja saadetud pöördumise vaates ei ole ruumi avamise nuppu (kujundus) · päris saidil ei ole ühtegi asutust adressaadina, seega seal läbi mängimata |
 
 ### Tegemata
 
