@@ -115,9 +115,6 @@ export default function HomeCareMonth({ context, initial }) {
       <HomeCareOutbox ownerId={context.membership?.id || ""} timeZone={timeZone} />
 
       <div className="hc-head">
-        <Link className="hc-back" href={`/org/${organizationId}/koduteenus`}>
-          {t("home_care.client.back")}
-        </Link>
         <p className="hc-sub">{t("home_care.month.intro")}</p>
       </div>
 

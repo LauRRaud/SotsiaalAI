@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
@@ -49,9 +48,6 @@ export default function HomeCareCalls({ context, initial }) {
       <HomeCareOutbox ownerId={context.membership?.id || ""} timeZone={timeZone} />
 
       <div className="hc-head">
-        <Link className="hc-back" href={`/org/${organizationId}/koduteenus`}>
-          {t("home_care.client.back")}
-        </Link>
         <p className="hc-sub">{t("home_care.calls.intro")}</p>
       </div>
 

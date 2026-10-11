@@ -1,0 +1,93 @@
+/* Koduteenuse laud (`/org/<id>/koduteenus`): rühmad ja plaadid.
+   Plaadi materjal on organisatsiooni laua oma (../../org/desk/desk.module.css);
+   siin on ainult see, mis koduteenuse laual teisiti on. */
+
+.desk {
+  min-width: 0;
+  display: grid;
+  gap: 0.65rem;
+}
+/* Teated laua kohal (vana kihi osad). Kaks klassi, et vana kihi polster ei võidaks;
+   tühi ümbris kaob. */
+.notes.notes {
+  padding: 0;
+}
+.notes:empty {
+  display: none;
+}
+
+/* Hooldusjuhi laud: kolm rühma veergudena. Veerus on kuni kuus plaati. */
+.groups {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem 0.6rem;
+}
+.group {
+  min-width: 0;
+  display: grid;
+  align-content: start;
+  gap: 0.4rem;
+}
+.caption {
+  margin: 0;
+  max-width: none;
+  color: var(--text-dim);
+  font-size: 0.74rem;
+  font-weight: 560;
+  letter-spacing: 0.12em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+.tiles {
+  composes: tiles from "../../org/desk/desk.module.css";
+}
+/* Kaks klassi: organisatsiooni laua veergude reegel (üks klass) ei tohi siin võita. */
+.groups .tiles {
+  grid-template-columns: minmax(0, 1fr);
+}
+/* Madalam kui organisatsiooni laua plaat: kuue reaga veerg peab mahtuma paneeli. */
+.tile {
+  composes: tile from "../../org/desk/desk.module.css";
+}
+.groups .tiles .tile {
+  min-height: 0;
+}
+.tileTitle {
+  composes: tileTitle from "../../org/desk/desk.module.css";
+}
+.tileSummary {
+  composes: tileSummary from "../../org/desk/desk.module.css";
+}
+
+/* Hooldaja laud: üks rühm, plaadid kõrvuti nagu organisatsiooni laual. */
+.groups[data-single="1"] {
+  grid-template-columns: minmax(0, 1fr);
+}
+.groups[data-single="1"] .tiles {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@container (max-width: 34rem) {
+  /* Telefonis on rühmad üksteise all ja hooldusjuhi plaadil ainult nimi: 17
+     plaati koos ridadega ei mahuks ekraanile. */
+  .groups {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+  .group {
+    gap: 0.3rem;
+  }
+  .groups .tiles,
+  .groups[data-single="1"] .tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.3rem;
+  }
+  .groups:not([data-single="1"]) .tiles .tile {
+    min-height: var(--hit-target-min, 2.75rem);
+    align-content: center;
+  }
+  .groups:not([data-single="1"]) .tileSummary {
+    display: none;
+  }
+}
