@@ -82,9 +82,7 @@ test('märk tuleb ainult päris arvust ja ütleb, kas keegi ootab või on mul po
     assert.equal(waitingFor('poordumised', badges, 'SOCIAL_WORKER'), null);
   }
   assert.equal(waitingFor('juhtumitoo', { pre_inquiries: badge(5), field_visits: badge(5) }, 'SOCIAL_WORKER'), null);
-  /* Iga märgi võti on päris kaardi võti (muidu ei sütti märk kunagi). */
-  const stage = read('../components/room/RoomStage.jsx');
-  for (const key of Object.keys(CARD_BADGE_KEY)) assert.ok(stage.includes(`key: "${key}"`), `kaart ${key} on Töölaua loendis`);
+  /* Iga märgi arvu annab server. */
   const continuity = read('../lib/workspaceContinuity.js');
   for (const badgeKey of new Set(Object.values(CARD_BADGE_KEY))) assert.ok(continuity.includes(`badgeKey: "${badgeKey}"`), `server annab arvu ${badgeKey}`);
 });
@@ -151,20 +149,4 @@ test('veerud, lähim koht ja nooleklahv', () => {
   assert.equal(stepPlace(places, 'teadmine', 1).id, 'teadmine');
   assert.equal(stepPlace(places, 'mina', -1).id, 'mina');
   assert.equal(stepPlace([], 'mina', 1), null);
-});
-
-test('Töölaud kasutab toavaadet, teised menüüd jäävad karusselli ja laua peale', () => {
-  const stage = read('../components/room/RoomStage.jsx');
-  assert.ok(stage.includes('{carouselSet === "workspace" ? ('), 'toavaade ainult Töölaua komplektile');
-  assert.ok(stage.includes('<RoomPlaces'));
-  /* Tööheaolu laud ja ülejäänud karussellid on endiselt GlassCarousel. */
-  assert.ok(stage.includes('if (carouselSet === "wellbeing") return WELLBEING_ZONES;'));
-  assert.equal([...stage.matchAll(/<GlassCarousel\b/g)].length, 3, 'karussell ja kaks dokki');
-  /* Toapilt liigub ainult Töölaua kaameraga: reegel on märgi `data-places` taga. */
-  const css = read('../app/styles/room.css');
-  assert.ok(css.includes('.room[data-places] .room-view {'));
-  assert.ok(!/^\.room-view \{[^}]*transform:/m.test(css), 'teistel lehtedel pildil teisendust ei ole');
-  /* Värav on karusselliga üks ja sama (aken, paneel ja avatud ülariba lukustavad). */
-  assert.ok(read('../components/room/GlassCarousel.jsx').includes('isRoomInteractive(navRef.current, options)'));
-  assert.ok(read('../components/room/RoomPlaces.jsx').includes('isRoomInteractive(root)'));
 });

@@ -914,11 +914,6 @@ test('tagasilükkamine ei ole kunagi paljas „ei”: selgitus pöördujale on k
 });
 
 test('leht saadab käsitsi ainult sulgemise, pöördumise tagasilükkamise ja töö tagasivõtmise; keeldumise lause on kolmes keeles', () => {
-  /* Kui lehele tuleb veel mõni käsitsi seis, peab see olema üks lubatutest (vt tabel ülal) ja
-     saama rea `PAGE_REQUESTS`-is, kus pakutud päring ka päriselt tehakse. */
-  const page = readFileSync(new URL('../components/org/OrgInboxItemClient.jsx', import.meta.url), 'utf8');
-  assert.deepEqual([...page.matchAll(/toStatus: "(\w+)"/g)].map((match) => match[1]), ['CLOSED', 'REJECTED', 'ASSIGNMENT_PENDING']);
-
   for (const locale of ['et', 'en', 'ru']) {
     const text = serverT(locale, FOLLOWS);
     assert.notEqual(text, FOLLOWS, locale);

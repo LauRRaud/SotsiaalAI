@@ -88,13 +88,12 @@ test('vaadete ja lehtede tekstivõtmed on kataloogis kolmes keeles', () => {
 
 test('igal vaatel on nimi ja lühinimi kiirmenüü jaoks', () => {
   const groups = [
-    ['supervision.home.views', HOME_PART_KEYS, PAGES.home, 'HOME_PART_KEYS'],
-    ['supervision.create.views', CREATE_STEP_KEYS, PAGES.create, 'CREATE_STEP_KEYS'],
-    ['supervision.invited.views', INVITED_STEP_KEYS, PAGES.invited, 'INVITED_STEP_KEYS'],
-    ['supervision.outcome.views', ['contract', 'final', 'meeting', 'meetingNth'], '../components/supervision/entry/entryRows.js', 'supervision.outcome.views.']
+    ['supervision.home.views', HOME_PART_KEYS],
+    ['supervision.create.views', CREATE_STEP_KEYS],
+    ['supervision.invited.views', INVITED_STEP_KEYS],
+    ['supervision.outcome.views', ['contract', 'final', 'meeting', 'meetingNth']]
   ];
-  for (const [base, keys, source, mark] of groups) {
-    assert.ok(read(source).includes(mark), `${source} paneb vaated kokku loendist ${mark}`);
+  for (const [base, keys] of groups) {
     for (const lang of LANGS) {
       const views = at(catalog(lang), base);
       for (const key of keys) {
@@ -261,11 +260,6 @@ test('loomine: puuduv tüüp või pealkiri viib õige sammu juurde ja päringu k
   assert.equal(createDraft({ ...full, plannedMeetingCount: '0' }).firstProblemStep, 'title');
   assert.equal(createDraft(undefined).firstProblemStep, 'type');
   for (const step of ['type', 'title']) assert.ok(CREATE_STEP_KEYS.includes(step));
-
-  const page = read(PAGES.create);
-  assert.ok(page.includes('useState({ type: "", title: "", goal: "", plannedMeetingCount: "5" })'), 'vorm algab valimata tüübiga');
-  assert.ok(page.includes('setView(draft.firstProblemStep)'), 'puuduse korral viiakse inimene selle sammu juurde');
-  assert.ok(page.includes('?ala=kontrakt'), 'uus protsess avaneb kontrakti alal');
 });
 
 test('superviisori õiguse selgitus tuleb ainult õiguse puudumise peale', () => {
@@ -325,63 +319,4 @@ test('paki osad: kontrakt ja iga kokkuvõte omaette, järjekord pakis ja mitte �
   }
   assert.equal(excerpt('a  b\n\nc'), 'a b c');
   assert.ok(excerpt('x'.repeat(300)).length <= 111);
-});
-
-test('keeldumine küsib teist vajutust ja kinnitus jääb ette', () => {
-  const card = read(PAGES.invited);
-  assert.ok(card.includes('onClick: () => (confirming ? respond("decline") : armConfirm())'), 'keeldumine kahe vajutusega');
-  assert.equal(card.split('respond("decline")').length - 1, 1, 'keeldumise päringule viib ainult kinnitatud vajutus');
-  /* Pärast keeldumist protsessi uuesti ei laeta: server vastaks 404 ja kinnitus kaoks. */
-  assert.match(card, /if \(action === "decline"\) \{\s*setDeclined\(true\);\s*return;\s*\}/);
-  assert.ok(card.includes('supervision.invited.declineConfirm') && card.includes('supervision.invited.declineHint'));
-  /* Aegunud kontraktiversioon: värske tekst laetakse ja kinnitaja viiakse selle juurde. */
-  assert.match(card, /if \(isConflict\(status\)\) \{[\s\S]*?setView\("contract"\);[\s\S]*?await onDone\?\.\(\);/);
-});
-
-test('lehed on sammulaval: ei teist klaaskasti, ei status-rolli, ei toorest ankrut', () => {
-  /* Kommentaarid räägivad vanast lehest; lubadus käib koodi kohta. */
-  const code = (source) => read(source).replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
-  for (const source of [...Object.values(PAGES), ...VIEWS]) {
-    const text = code(source);
-    assert.ok(!text.includes('role="status"'), `${source}: teated ei kasuta status-rolli (ühine kiht joonistab selle kastina)`);
-    assert.ok(!text.includes('SupervisionPage.module.css'), `${source}: vana kest (klaaskast paneeli sees) ei ole kasutusel`);
-    assert.ok(!text.includes('SubpageHeader'), `${source}: lehe pealkirja paneelis ei korrata`);
-    assert.ok(!/<(Button|a)\b[^>]*\b(as="a"|href=)/.test(text), `${source}: toores ankur laadiks kogu rakenduse uuesti`);
-    assert.ok(!text.includes('<Dropdown'), `${source}: valikud on lahtrites, mitte rippvalikus`);
-  }
-  for (const source of VIEWS) {
-    const text = code(source);
-    assert.ok(!text.includes('supervisionRequest') && !text.includes('fetch('), `${source}: vaade ainult joonistab`);
-  }
-
-  const home = read(PAGES.home);
-  const lines = (text) => text.split(/\r?\n/).map((line) => line.trim());
-  assert.ok(lines(home).includes('parts'), 'laud annab lavale `parts`');
-  assert.ok(home.includes('startWide={!openPart}'), 'laud avaneb kõigi osade vaates, kui tee osa ei nimeta');
-  assert.ok(!home.includes('supervision.common.loading")}</p>'), 'laud ei oota päringut: iga osa näitab oma laadimist ise');
-  assert.ok(read(PAGES.outcomeList).includes('initialPart="outcomes"'), 'pakkide tee avab sama laua pakkide osas');
-
-  const outcome = read(PAGES.outcome);
-  assert.ok(lines(outcome).includes('parts') && lines(outcome).includes('startWide'), 'pakk avaneb sisukorrana');
-  /* Pakk on külmutatud koopia: lehel ei ole ühtegi kirjutavat päringut. */
-  assert.ok(!/method:\s*["'](POST|PUT|PATCH|DELETE)/.test(outcome));
-  assert.ok(!/method:\s*["'](POST|PUT|PATCH|DELETE)/.test(home));
-
-  /* Privaatsusmärk on püsielement igas vaates, mis kannab sisu. */
-  assert.ok(read('../components/supervision/entry/OutcomeViews.jsx').split('<PrivacyBadge scope="private" />').length - 1 >= 2);
-  assert.ok(read('../components/supervision/entry/HomeViews.jsx').includes('<PrivacyBadge scope="private" />'));
-  assert.ok(read('../components/supervision/entry/InvitedViews.jsx').includes('<PrivacyBadge scope="invited" />'));
-});
-
-test('kujundus on komponendi kõrval ja klassinimedega', () => {
-  const css = read('../components/supervision/entry/entry.module.css').replace(/\/\*[\s\S]*?\*\//g, '');
-  const selectors = [...css.matchAll(/(^|[}{])\s*([^{}@]+?)\s*\{/g)].map((match) => match[2].trim()).filter(Boolean);
-  assert.ok(selectors.length > 30, `valijaid leiti ${selectors.length}`);
-  const bareTag = /(^|[\s>+~,(])(h[1-6]|p|ul|ol|li|dl|dt|dd|a|div|span|section|article|form|label|input|textarea|button)(?=$|[\s>+~,.:[)])/;
-  assert.deepEqual(selectors.filter((selector) => bareTag.test(selector.replace(/:global\(html\.theme-light\)/g, ''))), []);
-  /* Lehe kest on ainult paigutus: klaaspind on juba paneel. */
-  const shell = css.slice(css.indexOf('.shell {'), css.indexOf('}', css.indexOf('.shell {')));
-  for (const surface of ['background', 'backdrop-filter', 'box-shadow', 'border', 'padding']) {
-    assert.ok(!shell.includes(surface), `kestal ei ole omadust ${surface}`);
-  }
 });

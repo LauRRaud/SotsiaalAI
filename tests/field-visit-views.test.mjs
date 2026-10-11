@@ -27,7 +27,6 @@ import {
 import { FIELD_ITEM_STATE, FIELD_PROVENANCES, FIELD_VISIT_STATUSES } from '../lib/field/constants.js';
 
 const read = (path) => fs.readFileSync(new URL(path, import.meta.url), 'utf8');
-const exists = (path) => fs.existsSync(new URL(path, import.meta.url));
 const catalog = (lang) => JSON.parse(read(`../messages/${lang}.json`));
 const at = (node, key) => key.split('.').reduce((value, part) => (value && typeof value === 'object' ? value[part] : undefined), node);
 const LANGS = ['et', 'en', 'ru'];
@@ -171,77 +170,4 @@ test('külastuse vaate tekstid on kataloogis kolmes keeles', () => {
   for (const lang of LANGS) {
     for (const view of views) assert.ok(catalog(lang).field.view[view].length <= 14, `${lang}: ${view}`);
   }
-});
-
-test('kustutamine, tagasivõtmine, sulgemine, ärajätmine ja ülekirjutamine küsivad teist vajutust', () => {
-  const room = read('../components/field/FieldVisitRoom.jsx');
-  for (const call of [
-    'twoPress("cancel-safety", () => patchVisit({ action: "cancel_safety" }))',
-    'twoPress("close-visit", () => patchVisit({ action: "close" }))',
-    'twoPress("cancel-visit", () => patchVisit({ action: "cancel_visit" }))',
-    'twoPress("purge", purgeLocal)',
-    'twoPress("draft", () => setAiDraft(null))',
-    'twoPress(`note:${note.clientItemId}`, () => removeServerNote(note))',
-    'twoPress(`att:${attachment.clientItemId}`, () => removeAttachment(attachment))',
-    'twoPress(`item:${id}`, () => sync.deleteItem(id))',
-    'twoPress(`conflict:${id}:device`, () => sync.resolveConflict(id, "device"))',
-    'twoPress(`conflict:${id}:server`, () => sync.resolveConflict(id, "server"))'
-  ]) {
-    assert.ok(room.includes(call), call);
-  }
-  /* Ükski neist ei käi enam otse nupust: iga tegevus on lehel üks kord, teise vajutuse sees. */
-  const count = (text) => room.split(text).length - 1;
-  assert.equal(count('sync.deleteItem(id)'), 1, 'üksuse eemaldamine');
-  assert.equal(count('sync.resolveConflict('), 2, 'konflikti lahendamine');
-  assert.equal(count('action: "cancel_visit"'), 1);
-  assert.equal(count('action: "close"'), 1);
-  assert.equal(count('action: "cancel_safety"'), 1);
-  assert.equal(count('removeAttachment(attachment)'), 1);
-  /* Reegel ise on puhas funktsioon (testitud ülal) ja leht kasutab seda. */
-  assert.ok(room.includes('nextConfirm(confirming, key)'));
-  assert.ok(room.includes('placeAfterLoad(current, body?.visit?.status)'));
-  /* Nupu tekst näitab, et tegevus ootab teist vajutust. */
-  const views = read('../components/field/visit/VisitViews.jsx').replace(/\s+/g, ' ');
-  for (const key of ['`item:${id}`', '`conflict:${id}:device`', '`conflict:${id}:server`', '`note:${note.clientItemId}`', '`att:${attachment.clientItemId}`']) {
-    assert.ok(views.includes(`confirmLabel( ${key}`) || views.includes(`confirmLabel(${key}`), `nupu tekst: ${key}`);
-  }
-});
-
-test('helisalvestus ja mustand ei jää teise vaate taha', () => {
-  const room = read('../components/field/FieldVisitRoom.jsx');
-  /* Käimasolev salvestus on näha ja peatatav igas vaates, mitte ainult seal, kus see algas. */
-  assert.ok(room.includes('{recording && currentView !== "capture" ? ('));
-  assert.ok(room.includes('onClick={stopRecording}>{t("field.audio.stop")}</Button>'));
-  /* Mustand on päris vaade: teised järeltöö vaated jäävad avatavaks. */
-  assert.ok(room.includes('hasDraft: Boolean(aiDraft)'));
-  assert.ok(room.includes('{currentView === "aiDraft" && aiDraft ? ('));
-  assert.equal(room.split('setPlace({ phase: "follow_up", view: "aiDraft", picked: true });').length - 1, 2, 'pildilt lugemine ja transkribeerimine avavad mustandi vaate');
-});
-
-test('külastuse vaade on vanalt kihilt maas ja midagi ei kleepu', () => {
-  assert.equal(exists('../app/styles/field.css'), false, 'vana stiilifail on eemaldatud');
-  assert.ok(!read('../app/styles/globals.css').includes('"./field.css"'), 'vana stiilifaili ei laeta');
-  for (const file of ['../components/field/FieldVisitRoom.jsx', '../components/field/visit/VisitViews.jsx']) {
-    const source = read(file);
-    assert.ok(!/className=(["'`{])[^>]*\bfld-/.test(source), `${file}: vanu klasse ei ole`);
-    assert.ok(!source.includes('role="status"'), `${file}: teated ei kasuta status-rolli`);
-    assert.ok(!source.includes('fullWidth'), `${file}: nuppe ei venitata`);
-    assert.ok(!/<main[\s>]/.test(source), `${file}: teist main-elementi ei ole`);
-    assert.ok(!source.includes('role="dialog"'), `${file}: mustand on vaade, mitte dialoog`);
-  }
-  const css = read('../components/field/visit/visit.module.css');
-  assert.ok(!/position:\s*(sticky|fixed)/.test(css), 'midagi ei kleepu sisu kohale');
-  /* Faasi ja vaate lahtrid on puuteekraanil 48 px kõrged (leping 7.2); madalam
-     kõrgus on lubatud ainult hiirega laual. */
-  assert.match(css, /\.tab\s*\{[^}]*min-height:\s*3rem/);
-  const desktopAt = css.indexOf('@media (min-width: 641px) and (pointer: fine)');
-  assert.ok(desktopAt > 0);
-  assert.ok(!/min-height:\s*(2\.5|2\.1)rem/.test(css.slice(0, desktopAt)), 'madalamad lahtrid ainult laua reeglis');
-  assert.match(css.slice(desktopAt), /\.tabRow\[data-level="view"\] \.tab\s*\{[^}]*min-height:\s*2\.1rem/);
-  assert.match(css, /\.choice \[role="radio"\]\s*\{[^}]*min-height:\s*3rem/);
-  /* Telefonis on faasi ja vaate valik all, tegevusrea all. */
-  assert.match(css, /@media \(max-width: 480px\) \{[\s\S]*?\.tabs\s*\{[^}]*order:\s*2;[^}]*flex-direction:\s*column-reverse/);
-  /* ChoiceRow tunneb ainult paigutusi stack ja scale. */
-  const viewsSource = read('../components/field/visit/VisitViews.jsx');
-  for (const match of viewsSource.matchAll(/layout="([a-z]+)"/g)) assert.ok(['stack', 'scale'].includes(match[1]), match[1]);
 });

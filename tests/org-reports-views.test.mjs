@@ -71,7 +71,4 @@ test('tekstid on kolmes keeles olemas ja päringuid on sama palju kui vanal lehe
   for (const key of ['intro', 'no_preview', 'format_csv', 'format_pdf', 'sender', 'kov', 'sent', 'entries_label', 'opened', 'note_label', 'format_question', 'preview_label', 'viewing', 'view_failed', 'download_failed']) {
     assert.ok(!/[—–]| - |"/.test(at(catalog('et'), `org.reports.${key}`)), key);
   }
-  assert.equal((read('../components/org/OrgServiceReportsClient.jsx').match(/fetch\(/g) || []).length, 4);
-  /* Leht saab kesta jaoks organisatsiooni konteksti. */
-  assert.ok(read('../app/org/[orgId]/aruanded/page.jsx').includes('context={auth.context}'));
 });

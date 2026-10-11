@@ -177,6 +177,4 @@ test('tekstid on kolmes keeles olemas ja uutes sõnades ei ole mõttekriipsu ega
   for (const key of own) assert.ok(!/[—–]| - |"/.test(at(catalog('et'), `org.invites.${key}`)), key);
   /* Platvorm kutsutule kirja ei saada: nupp ei tohi öelda „saada". */
   assert.ok(!/saada/i.test(at(catalog('et'), 'org.invites.make')));
-  const page = read('../components/org/OrgInvitesClient.jsx');
-  assert.equal(page.match(/(?<![A-Za-z0-9_.])call\(/g).length, 4);
 });

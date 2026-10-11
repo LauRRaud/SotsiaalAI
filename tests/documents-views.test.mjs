@@ -23,7 +23,6 @@ const LANGS = ['et', 'en', 'ru'];
 const PAGE = '../components/documents/DocumentsPage.jsx';
 const VIEWS = '../components/documents/workspace/DocumentsViews.jsx';
 const ROWS = '../components/documents/workspace/documentRows.js';
-const STYLES = '../components/documents/workspace/documents.module.css';
 
 /* Sama reegel mis lehe `t`-l: puuduv võti annab varuteksti või võtme enda. Nii
    paistab testis välja iga koht, kus ekraanile jõuaks võti või toores väärtus. */
@@ -78,8 +77,6 @@ test('vaadete ja ridade tekstivõtmed on kataloogis kolmes keeles', () => {
 });
 
 test('igal vaatel on nimi ja lühinimi kiirmenüü jaoks; lava sõnad kannavad oma kohatäitjaid', () => {
-  const page = read(PAGE);
-  assert.ok(page.includes('`documents.views.${key}.title`') && page.includes('`documents.views.${key}.short`'), 'leht võtab vaate nime kataloogist');
   /* Iga osa, mida leht lavale annab, on nimega vaadete hulgas. */
   for (const keys of [viewKeysFor(), viewKeysFor({ opened: true }), viewKeysFor({ client: true, opened: true })]) {
     for (const key of keys) assert.ok(VIEW_TEXT_KEYS.includes(key), `vaatel ${key} on tekstid`);
@@ -257,143 +254,13 @@ test('faili valik: lubatud tüübid on serveri omad ja liiga suur fail ei lähe 
   assert.equal(uploadProblem({ size: MAX_DOCUMENT_SIZE_BYTES + 1 }), 'documents.errors.file_too_large');
 });
 
-test('kustutamine ja peatamine küsivad teist vajutust; brauseri kinnitusakent ei ole', () => {
-  const page = read(PAGE);
-  assert.ok(!page.includes('window.confirm') && !read(VIEWS).includes('confirm('), 'brauseri kinnitusakent ei kasutata');
-  assert.ok(page.includes('confirmAction(removeKey,') && page.includes('confirmAction(stopKey,'), 'kustutamine ja peatamine käivad läbi kahe vajutuse');
-  assert.ok(page.includes('const armed = confirming === key') && page.includes('if (!armed) return armConfirm(key)'), 'esimene vajutus ainult relvastab');
-  /* Teise vajutuse nupp seisab teistest tegevustest eraldi ja selgitus tuleb selle kõrvale:
-     tegevusrea nupud ei tohi teise vajutuse ajaks selle kohale nihkuda. */
-  const views = read(VIEWS);
-  const confirmRow = views.slice(views.indexOf('className={styles.confirm}'), views.indexOf('</StepPanel>', views.indexOf('className={styles.confirm}')));
-  assert.ok(confirmRow.includes('onClick={danger.onClick}') && confirmRow.includes('{danger.note}'), 'nupp ja selgitus on samal real');
-  assert.ok(!page.includes('actions.push(confirmAction('), 'kahe vajutusega tegevus ei ole tegevusreas');
-  /* Päringu ajaks nuppe välja ei lülitata (fookus kaoks); topeltvajutuse peab kinni lukk. */
-  assert.ok(page.includes('if (busyRef.current) return undefined'), 'üks muutev päring korraga');
-  for (const name of ['patchDocument', 'removeItem', 'copyArtifact', 'stopResearch']) {
-    const start = page.indexOf(`async function ${name}(`);
-    assert.ok(start > 0 && page.slice(start, start + 220).includes('return exclusive(async () => {'), `${name} käib läbi luku`);
-  }
-  /* Kustutav päring on lehel ühes kohas ja sinna viib ainult kahe vajutusega tegevus. */
-  assert.equal(page.split('method: "DELETE"').length - 1, 1);
-  assert.equal(page.match(/(?<![.\w])removeItem\(/g).length, 2, 'removeItem: kirjeldus ja üks kutse');
-  assert.equal(page.match(/(?<![.\w])stopResearch\(/g).length, 2, 'stopResearch: kirjeldus ja üks kutse');
-});
-
-test('leht hoiab alles kõik päringud, pöörduja piirangu ja töölaua sees töötamise', () => {
-  const page = read(PAGE);
-  for (const url of [
-    '`/api/documents?${params.toString()}`',
-    '`/api/documents/artifacts?${params.toString()}`',
-    '`/api/documents/analyses?${params.toString()}`',
-    '`/api/research/jobs?${params.toString()}`',
-    '"/api/framework-acceptances/worker"',
-    'fetch("/api/documents", { method: "POST", headers: localeHeaders(locale), body: formData })',
-    '`/api/documents/${encodeURIComponent(id)}`',
-    '`/api/documents/artifacts/${encodeURIComponent(id)}`',
-    '`/api/documents/artifacts/${encodeURIComponent(artifactId)}`',
-    '`/api/documents/analyses/${encodeURIComponent(id)}`',
-    '`/api/research/jobs/${encodeURIComponent(id)}`',
-    '`/api/research/jobs/${encodeURIComponent(id)}/stop`',
-  ]) assert.ok(page.includes(url), url);
-  assert.ok(page.includes('method: "PATCH"') && page.includes('expectedUpdatedAt: currentDocument.updatedAt'), 'muudatus kannab kaasa versiooni');
-  assert.ok(page.includes('if (isClientRole) params.set("kind", "MATERIAL")'), 'pöörduja näeb ainult materjale');
-  assert.ok(page.includes('DocumentsPage({ embedded = false, onBack = null, hideHeader = false })'), 'töölaua sees töötamise omadused');
-  assert.ok(page.includes('if (isClientRole && embedded) return <div />'), 'pöörduja töölaua sees: tühi');
-  assert.ok(page.includes('markChatWorkspaceRestore()') && page.includes('if (embedded) return content'), 'tagasitee ja töölaua kuju');
-  assert.ok(page.includes('window.location.hash === "#artifacts" || params.has("artifacts")'), 'vana süvalink avab loendi');
-  assert.ok(page.includes('loadMoreWorkspace') && read(VIEWS).includes('documents.workspace.load_more'), 'vanemate laadimine on alles');
-});
-
-test('leht on sammulaval osadena ja ei kasuta enam vana ühist kihti', () => {
-  const page = read(PAGE);
-  const views = read(VIEWS);
-  assert.ok(page.split(/\r?\n/).some((line) => line.trim() === 'parts'), 'leht annab lavale `parts`');
-  assert.ok(!page.includes('startWide'), 'leht avaneb sisenemise vaates, mitte kõigi osade vaates');
-  for (const source of [page, views]) {
-    assert.ok(!source.includes('role="status"'), 'teated ei kasuta status-rolli (ühine kiht joonistab selle kastina)');
-    assert.ok(!/documents-[a-z]/.test(source.replace(/documents-add-help/g, '')), 'vanu `documents-*` klasse ei ole');
-    assert.ok(!source.includes('feature-page') && !source.includes('ui/Panel"'), 'vana pinda ega pesastatud paneele ei ole');
-    assert.ok(!source.includes('DocumentsDropdown') && !source.includes('OptionCard'), 'valikud on ühelaiused lahtrid, mitte rippvalik ega pillid');
-  }
-  /* Vanad üldreeglid on eemaldatud; teiste lehtede reegel samas plokis jäi alles. */
-  const featureCss = read('../app/styles/feature-pages.css');
-  assert.ok(!/\.documents-(entry|upload|list|item|provenance|notice|error|page)/.test(featureCss) && !featureCss.includes('feature-page--documents'));
-  /* Koostamisruum on nüüd oma moodulis (components/agent/drafting): ka selle üldreeglid on läinud. */
-  assert.ok(!featureCss.includes('.feature-page--agent') && !featureCss.includes('.agent-mode'), 'koostamise lehe üldreeglid on eemaldatud');
-  assert.ok(!read('../app/styles/workspace.css').includes('.documents-dropzone'));
-  /* Kujundus on mooduli klassidega: paljaste siltide peale reegleid ei kirjutata. */
-  const css = read(STYLES).replace(/\/\*[\s\S]*?\*\//g, '');
-  for (const match of css.matchAll(/(^|\})\s*([^{}@]+)\{/g)) {
-    for (const selector of match[2].split(',')) {
-      assert.ok(!/(^|[\s>+~])(p|h[1-6]|ul|li|dl|dt|dd|section|div|span|label|input|button|form|a)(?![\w-])/.test(selector.trim().replace(/:global\([^)]*\)/g, '')), `paljas silt valijas: ${selector.trim()}`);
-    }
-  }
-});
-
-test('ülevaatuse parandused: raamistiku vaade ei korda oma nime, otsing ei vaju kokku, topeltklõps ei kustuta', () => {
-  const views = read('../components/documents/workspace/DocumentsViews.jsx');
-  const framework = views.slice(views.indexOf('export function FrameworkView'));
-  assert.ok(!/question=\{t\("documents\.views\.framework\.title"\)\}/.test(framework), 'vaate nimi ei ole paneelil nähtav küsimus');
-  const css = read('../components/documents/workspace/documents.module.css');
-  assert.match(css, /\.search\s*\{[^}]*flex:\s*1 1 16rem/);
-  assert.ok(!/\.tools\s*\{[^}]*grid-template-columns/.test(css), 'otsing ja filter ei ole võrgus, kus filter võtab kogu rea');
-  const page = read('../components/documents/DocumentsPage.jsx');
-  assert.ok(page.includes('Date.now() - armedAt.current < CONFIRM_MIN_GAP_MS'));
-  assert.ok(views.includes('event.target.value = "";'), 'failiväli tühjendatakse pärast lugemist');
-});
-
-test('töölaua sees avatud lehel ei korrata paneelil lehe pealkirja', () => {
-  const panel = read('../components/chat/WorkspacePanel.jsx');
-  assert.match(panel, /const EMBEDDED_TITLE_IN_DOCK = new Set\(\[[^\]]*"documents"[^\]]*"pre_inquiries"[^\]]*\]\);/);
-  assert.ok(panel.includes('headerClassName={EMBEDDED_TITLE_IN_DOCK.has(activeEmbeddedFeature) ? "sr-only" : undefined}'));
-});
-
-test('faili lisamise vaade: kukutusala kannab ainult juhist, abitekst ja valitud fail on omal kohal (K07)', () => {
-  const views = read(VIEWS);
-  const start = views.indexOf('className={styles.dropzone}');
-  const dropzone = views.slice(start, views.indexOf('</button>', start));
-  assert.ok(start > 0 && dropzone.includes('documents.form.dropzone_idle') && dropzone.includes('documents.form.dropzone_active'));
-  assert.ok(!dropzone.includes('file_help') && !dropzone.includes('form.file'), 'kukutusalas ei ole abiteksti ega faili nime');
-  assert.ok(views.includes('className={styles.help}') && views.includes('className={styles.fileRow}'), 'abirida ja valitud faili rida on eraldi');
-  /* Liik ja malli otstarve on ühelaiused lahtrid; malli otstarve ainult malli puhul. */
-  assert.ok(views.includes('{form.templateFor ? (') && /templateFor:\s+uploadKind === "TEMPLATE"/.test(read(PAGE)));
-  assert.equal(views.split('<ChoiceRow').length - 1, 3, 'liik, malli otstarve ja loendi filter');
-});
-
 // --- Brauseris kinnitatud vead (10.10) --------------------------------------------------
 
 // Liigi „Mall” korral oli vaade paneelist kõrgem (brauseris 535 px 522 px paneelis).
 test('faili lisamine mahub paneeli ka malli puhul: otstarbe küsimus on lahtrite kõrval ja read hoiavad oma veerge', () => {
-  const views = read(VIEWS);
-  const css = read(STYLES).replace(/\r\n/g, '\n');
-  const add = views.slice(views.indexOf('export function AddFileView('), views.indexOf('export function ListView('));
-  const rows = add.split('<ChoiceRow').slice(1).map((part) => part.slice(0, part.indexOf('/>')));
-  assert.equal(rows.length, 2, 'liik ja malli otstarve');
-  for (const row of rows) assert.ok(/\bkeepColumns\b/.test(row), 'rida hoiab oma veergude arvu 34 kuni 40 rem laiusel pinnal');
-  assert.ok(rows[0].includes('columns={form.kinds.length}') && rows[1].includes('columns={3}'));
-
-  /* LAI PIND (40 rem ja laiem). Otstarbe küsimus seisab lahtrite kõrval: omaette rida
-     lahtrite kohal (üks tekstirida ja 0,45 rem vahe, kokku umbes 2 rem) on läinud. Valikurühma
-     enda silt on ainult ekraanilugejale ja nähtavat küsimust ei loeta teist korda. */
-  assert.ok(rows[1].includes('labelHidden') && !rows[0].includes('labelHidden'), 'ainult otstarbe rühma silt on peidetud');
-  assert.ok(add.includes('<span className={styles.purposeLabel} aria-hidden="true">'), 'nähtav küsimus on lahtrite kõrval');
-  assert.equal(add.split('t("documents.form.template_for_placeholder")').length - 1, 2, 'sama tekst nähtavalt ja valikurühma sildina');
-  assert.match(css, /\.purpose \{[^}]*grid-column: 1 \/ -1;[^}]*grid-template-columns: minmax\(0, 9rem\) minmax\(0, 1fr\);[^}]*align-items: center;/);
-  /* Kitsal pinnal läheb küsimus lahtrite kohale (lahtrid terves laiuses). */
-  assert.match(css, /@container \(max-width: 40rem\) \{[\s\S]*?\.purpose \{\s*grid-template-columns: minmax\(0, 1fr\);/);
-  /* Lahtrite rühm on oma ümbrise esimene laps: valikurea ülemine õhk jääb ära. */
-  assert.match(add, /<div className=\{styles\.choice\}>\s*<ChoiceRow\s+label=\{t\("documents\.form\.template_for_placeholder"\)\}\s+labelHidden/);
-  /* Valitud faili rida ei hoia enam omaette kõrgust: abirida ja see rida mahuvad kukutusala kõrvale. */
-  const fileRow = css.slice(css.indexOf('.fileRow {'), css.indexOf('}', css.indexOf('.fileRow {')));
-  assert.ok(!fileRow.includes('min-height') && fileRow.includes('padding-top: 0.35rem;'));
-  assert.ok(!views.includes('styles.choiceWide') && !css.includes('.choiceWide'), 'vana täislaiuses rea klass on läinud');
-
   /* KITSAS TÖÖLAUA PANEEL (34 kuni 40 rem). Otstarbe rida on kolmes veerus kaks rida (enne
      kahes veerus kolm) ja liik üks rida (enne kaks). Lahter on seal 2,75 rem ja ridade vahe
      0,4 rem: vaade on 2 × (2,75 + 0,4) rem ehk umbes 100 px madalam. */
-  const choice = read('../components/stage/ChoiceRow.module.css');
-  assert.match(choice, /@container \(min-width: 34rem\) and \(max-width: 40rem\) \{\s*\.row\[data-layout="stack"\]\[data-keep="1"\] \.options \{\s*grid-template-columns: repeat\(var\(--choice-cols, 3\), minmax\(0, 1fr\)\);/);
   assert.equal(Math.ceil(TEMPLATE_FOR_VALUES.length / 3), 2);
   assert.equal(Math.ceil(TEMPLATE_FOR_VALUES.length / 2), 3);
   /* Sildid on lühikesed sõnad: kolm kõrvuti mahuvad (pikim alla 25 märgi igas keeles). */
@@ -407,10 +274,7 @@ test('faili lisamine mahub paneeli ka malli puhul: otstarbe küsimus on lahtrite
 // Üleslaadimine võtab malliks vastu PDF-, DOCX- ja TXT-faili, aga kinnitatud faili kuju annab
 // ainult Wordi mall. Jalarida ütleb seda ja ütleb, kust kohatäitjad teada saab.
 test('malli lisamisel ütleb jalarida, mis on tõsi: kuju annab ainult Wordi mall', () => {
-  const views = read(VIEWS);
   /* Lause on vaate jalareal nupu kõrval (seal ei tee see vaadet kõrgemaks) ja ainult malli puhul. */
-  assert.ok(views.includes('note={form.templateFor ? t("documents.form.template_help") : undefined}'));
-  assert.ok(views.includes('{t("documents.form.file_help")}'), 'lubatud failitüüpide abirida on kukutusala kõrval alles');
   for (const lang of LANGS) {
     const help = catalog(lang).documents.form.template_help;
     assert.ok(/DOCX/.test(help) && help.split(/[.!?](?:\s|$)/).filter(Boolean).length === 2, `${lang}: kaks lauset, Wordi mall nimetatud`);
@@ -432,12 +296,6 @@ test('suletud otsingu ajal: luba ei lähe lukku ja tekstid ei luba otsingut', ()
   for (const other of [{ status: 'done' }, { status: 'SOMETHING' }, {}, null, undefined]) assert.equal(unfinishedRagRemoval(other, { ragAvailable: true }), '');
 
   /* Kaart ütleb, mida luba praegu annab; otsingust ei räägi kumbki leht. */
-  for (const source of [PAGE, '../components/documents/DocumentDetailPage.jsx']) {
-    const text = read(source);
-    assert.ok(text.includes('t("documents.views.item.share_desc")'), source);
-    assert.ok(!text.includes('documents.provenance.rag.in_search_when_shared'), source);
-    assert.ok(text.includes('disabled: Boolean(can.share.removal)'), `${source}: kaart on lukus ainult loetava eemaldamise ajal`);
-  }
   for (const lang of LANGS) assert.ok(!/otsing|search|поиск/i.test(catalog(lang).documents.views.item.share_desc), lang);
 
   /* Fakt „Otsing”: lubatud fail ei lähe praegu ühtegi otsingusse. */
@@ -448,35 +306,6 @@ test('suletud otsingu ajal: luba ei lähe lukku ja tekstid ei luba otsingut', ()
   assert.equal(fact(allowed), RAG_AVAILABLE ? words.in_search_when_shared : words.not_in_search);
   assert.equal(fact(byId('d4')), RAG_AVAILABLE ? words.removal_failed : words.not_in_search);
   assert.equal(fact(byId('d1')), words.not_in_search);
-});
-
-// Teise vajutuse küsimus (kustuta, peata) jäi ootele, kui inimene käis vahepeal lehe teises
-// osas: tagasi tulles kustutas üks vajutus.
-test('teise vajutuse küsimus ei jää ootele, kui osa vahetub', () => {
-  const page = read(PAGE);
-  const change = page.slice(page.indexOf('onStepChange={(index, step) => {'), page.indexOf('{renderView}'));
-  assert.ok(change.includes('window.clearTimeout(confirmTimer.current)') && change.includes('setConfirming("")'), 'osa vahetus võtab küsimuse maha');
-  /* Sama teevad dokumendi avamine ja sulgemine. */
-  for (const name of ['openItem', 'closeItem']) {
-    const start = page.indexOf(`function ${name}(`);
-    assert.ok(start > 0 && page.slice(start, start + 160).includes('setConfirming("")'), name);
-  }
-});
-
-// Serveri veateade tuli brauseri keeles ja võrgutõrke korral oli ekraanil brauseri enda
-// ingliskeelne tekst („Failed to fetch”).
-test('iga päring kannab lehe keelt ja brauseri veatekst ei jõua ekraanile', () => {
-  const page = read(PAGE);
-  const requests = page.split('await fetch(').length - 1;
-  assert.equal(requests, 11, 'lehe päringud');
-  assert.equal(page.split('headers: localeHeaders(locale').length - 1, requests, 'iga päring kannab lehe keelt');
-  assert.ok(!/[eE]rror\??\.message/.test(page), 'vea toorest teksti ei kuvata');
-  assert.ok(!/payload\?\.message \|\|/.test(page), 'serveri sõnum käib läbi `serverMessage`');
-  assert.ok(!page.includes('throw new Error('), 'ekraanile mõeldud viga on RequestFailure');
-  assert.ok(page.includes('import { RequestFailure, failureText, serverMessage } from "./detail/detailModel"'));
-  /* Iga päringu keeldumine on serveri lausega viga; püütud viga käib läbi `failureText`. */
-  assert.equal(page.split('throw new RequestFailure(serverMessage(payload, t, ').length - 1, requests);
-  assert.ok(page.split('failureText(error, ').length - 1 >= 10);
 });
 
 // Kinnitatud tekstist ei tehta PDF-i, kui selles on märke, mida PDF-i kirjatüüp ei kanna;

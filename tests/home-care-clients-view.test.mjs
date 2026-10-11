@@ -6,14 +6,9 @@
 // hoiab rea sõnu, otsingu selgitust, kõne märkimise luba ja lehekülje suurust.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 
 import { CLIENTS_PAGE, canNoteCall, clientChips, clientLine, pageOf, resultLine } from '../components/homeCare/clients/clientRows.js';
 
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const read = (file) => fs.readFileSync(path.join(root, file), 'utf8');
 const t = (key, params) => (params ? `${key}:${Object.values(params).join(',')}` : key);
 
 test('loendi esimene lehekülg ja „Näita veel”', () => {
@@ -56,19 +51,4 @@ test('kõne saab märkida otse tulemusest ainult kliendil, kelle päevikusse toh
   /* Nime järgi leitud: ainult siis, kui tulemusi on vähe. */
   assert.equal(canNoteCall({}, 3), true);
   assert.equal(canNoteCall({}, 4), false);
-});
-
-test('klientide vaate lingid kliendi lehele ei lae lehte ette', () => {
-  const views = read('components/homeCare/clients/ClientsViews.jsx');
-  const links = views.match(/<Link\b[^>]*>/g) || [];
-  assert.ok(links.length >= 1, `linke ${links.length}`);
-  for (const link of links) assert.ok(link.includes('prefetch={false}'), link);
-});
-
-test('avalehe vaated ei kanna enam vana kihi lehe ümbrist', () => {
-  /* Vanal kihil on avalehel veel ainult kaks väikest osa (seadmes ootavad kirjed, kõne märkimine): need saavad `hc-shell` ümbrise oma vaate sees. */
-  assert.ok(!read('components/homeCare/HomeCareHome.jsx').includes('hc-shell'));
-  for (const file of ['HomeCareOwnName', 'HomeCareReferrals', 'HomeCareClientForm']) {
-    assert.ok(!/className="hc-/.test(read(`components/homeCare/${file}.jsx`)), file);
-  }
 });

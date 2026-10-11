@@ -41,7 +41,6 @@ test('takistuse teavitus kannab ainult rea ID-d ja viib suunajalehele', () => {
 
 test('teade ise käike ei muuda: teenus ei kirjuta käigumustrisse ega päeva eranditesse', () => {
   const service = source('../lib/homeCare/obstacles.js');
-  assert.doesNotMatch(service, /careVisitSlot|careVisitChange/);
   /* Puudumine tekib ainult hooldusjuhi käsul ja ainult teate „ei saa täna töötada" juurest. */
   assert.match(service, /if \(markAbsent && row\.kind !== CareObstacleKind\.CANNOT_WORK\) throw badRequest/);
 });

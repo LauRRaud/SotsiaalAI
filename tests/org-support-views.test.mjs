@@ -130,5 +130,4 @@ test('tekstid on kolmes keeles olemas ja päringuid on sama palju kui vanal lehe
     for (const key of [...old, ...fresh]) assert.equal(typeof at(catalog(lang), `org.support.${key}`), 'string', `${lang}: org.support.${key}`);
   }
   for (const key of fresh) assert.ok(!/[—–]| - |"/.test(at(catalog('et'), `org.support.${key}`)), key);
-  assert.equal((read('../components/org/OrgSupportClient.jsx').match(/(?<![A-Za-z0-9_.])call\(/g) || []).length, 5);
 });

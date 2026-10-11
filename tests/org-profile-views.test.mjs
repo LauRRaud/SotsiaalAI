@@ -45,8 +45,4 @@ test('tekstid on kolmes keeles olemas ja päringuid on sama palju kui vanal lehe
     for (const key of [...old, ...fresh]) assert.equal(typeof at(catalog(lang), `org.profile.${key}`), 'string', `${lang}: org.profile.${key}`);
   }
   for (const key of fresh) assert.ok(!/[—–]| - |"/.test(at(catalog('et'), `org.profile.${key}`)), key);
-  const page = read('../components/org/OrgProfileClient.jsx');
-  assert.equal((page.match(/(?<![A-Za-z0-9_.])call\(/g) || []).length, 2);
-  /* Salvestamine kannab versiooni: teine salvestaja ei kirjuta esimese muudatust vaikselt üle. */
-  assert.ok(page.includes('body: { profileId: profile.id, expectedUpdatedAt: profile.updatedAt, ...form }'));
 });

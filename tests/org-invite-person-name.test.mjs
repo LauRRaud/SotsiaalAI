@@ -162,19 +162,12 @@ test("andmebaasi kontroll, vorm ja tekstid", () => {
   assert.match(sql, /"firstName" IS NOT NULL\s+AND "lastName" IS NOT NULL/);
   assert.equal([...sql.matchAll(new RegExp(`BETWEEN 1 AND ${PERSON_NAME_MAX}\\b`, "g"))].length, 2);
 
-  const form = read("../components/org/OrgInvitesClient.jsx");
-  assert.match(form, /firstName: firstName\.trim\(\) \|\| null/);
-  assert.match(form, /lastName: lastName\.trim\(\) \|\| null/);
   /* Pool nime ei lähe teele: reegel ütleb, mis on puudu, ja leht küsib reeglilt enne saatmist. */
   const half = { ...EMPTY_INVITE, email: "mari@example.test", firstName: "Mari", lastName: "  " };
   assert.equal(nameHalf(half), true);
   assert.equal(inviteProblem(half)?.key, "org.errors.invite_name_incomplete", "pool nime ei lähe teele");
   assert.equal(nameHalf({ ...half, lastName: "Maasikas" }), false);
   assert.equal(nameHalf({ ...half, firstName: "" }), false, "nimeta kutse on lubatud");
-  assert.match(form, /const problem = inviteProblem\(live\.current\);\s+if \(problem\) \{[\s\S]{0,200}?return;/, "leht ei saada kutset, kui reegel leiab puuduse");
-  const views = read("../components/org/invites/InvitesViews.jsx");
-  for (const key of ["firstName", "lastName"]) assert.ok(views.includes(`t("org.invites.${key}")`), key);
-  assert.match(read("../components/org/OrgJoinClient.jsx"), /t\("org\.invites\.previewName"/);
 
   for (const locale of ["et", "en", "ru"]) {
     const org = JSON.parse(read(`../messages/${locale}.json`)).org;

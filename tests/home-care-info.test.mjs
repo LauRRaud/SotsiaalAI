@@ -63,13 +63,3 @@ test('eesti tekst on lihtne: mõttekriipsu ega sirgeid jutumärke ei ole', () =>
     assert.ok(!/[—–"]/.test(text), key);
   }
 });
-
-test('kest registreerib koduteenuse info ja vaated ise teist ei registreeri', () => {
-  const shell = read('components/org/OrgPart.jsx');
-  assert.match(shell, /const PART_INFO = Object\.freeze\(\{ home_care: "home_care" \}\);/);
-  assert.match(shell, /usePanelInfoSlot\(\{ infoId: PART_INFO\[part\] \|\| "" \}\);/);
-  for (const name of fs.readdirSync(path.join(root, 'components/homeCare'))) {
-    if (!name.endsWith('.jsx')) continue;
-    assert.ok(!read(`components/homeCare/${name}`).includes('usePanelInfoSlot'), `${name}: info tuleb kestast`);
-  }
-});

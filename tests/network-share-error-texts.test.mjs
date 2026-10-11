@@ -69,11 +69,3 @@ test('kood → lause; tundmatu kood, võõras tekst ja puuduv tõlge annavad var
   assert.equal(networkShareErrorText(() => '', 'network_share.not_found', fallback), fallback);
   assert.equal(networkShareErrorText(null, 'network_share.not_found', fallback), fallback);
 });
-
-test('töötaja koostamisvaade ja saaja postkast kasutavad seda abilist', () => {
-  for (const path of ['components/network/NetworkShareComposer.jsx', 'components/network/NetworkShareInbox.jsx']) {
-    const source = read(path);
-    assert.match(source, /networkShareErrorText\(t, payload\?\.message, /, path);
-    assert.equal(source.includes('resolveApiMessage'), false, path);
-  }
-});

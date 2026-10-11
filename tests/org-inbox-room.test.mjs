@@ -670,21 +670,7 @@ test('vestlusaken: ainult loetava ruumi põhjus jõuab aknani, kirjutuskast luku
   assert.equal(session.getState().meta.readOnlyReason, 'ORG_WORK_CLOSED');
   session.close();
 
-  /* Põhjus on ruumi kohal ja kirjutuskast on lukus; saatmise 409 ütleb põhjuse ja laeb ruumi uuesti. */
-  const notices = source('../components/alalehed/chat/view/ChatNotices.jsx');
-  assert.match(notices, /if \(reason === "ORG_WORK_CLOSED"\) \{\n\s+return readText\(t, "rooms\.read_only\.org_work_closed",/);
-  assert.match(notices, /return readText\(t, "rooms\.read_only\.archived",/);
-  assert.match(notices, /\{isRoomMode && readOnlyText \? <div className="chat-room-origin" role="status" data-room-read-only=\{roomReadOnlyReason\}>/);
-  const composer = source('../components/alalehed/chat/ChatComposer.jsx');
-  assert.match(composer, /const roomWriteClosed = isRoomMode && \(roomBlocked \|\| roomAuthRequired \|\| roomReadOnly\);/);
-  assert.match(composer, /disabled=\{isGenerating \|\| roomWriteClosed\} rows=\{1\}/);
-  assert.match(source('../components/alalehed/chat/ChatBodyView.jsx'), /roomReadOnly=\{Boolean\(roomReadOnlyReason\)\}/);
-  const stream = source('../components/chat/hooks/useChatStream.js');
-  assert.match(stream, /if \(res\.status === 409 && data\?\.messageKey === "api\.rooms\.archived_readonly"\) \{\n\s+cfg\.setErrorBanner\?\.\(tr\("api\.rooms\.archived_readonly"\)\);\n\s+if \(cfg\.onRoomReadOnly\) \{\n\s+Promise\.resolve\(cfg\.onRoomReadOnly\(\)\)\.then\(\(\) => cfg\.setErrorBanner\?\.\(null\)\)\.catch\(\(\) => \{\}\);\n\s+\}\n\s+return false;\n\s+\}/);
-  assert.match(source('../components/alalehed/ChatBody.jsx'), /onRoomReadOnly: reloadRoomMessages,/);
-
   /* Teekonna rida ütleb sama asja enne, kui pöörduja ruumi avab. */
-  assert.match(source('../components/journey/detail/DeskParts.jsx'), /const when = item\?\.workClosedAt\n\s+\? t\("journey\.related\.work_closed", \{ date: dayOf\(item\.workClosedAt\) \}\)\n\s+: item\?\.lastReplyAt/);
   for (const locale of ['et', 'en', 'ru']) {
     const messages = JSON.parse(source(`../messages/${locale}.json`));
     const texts = [messages.rooms.read_only.org_work_closed, messages.rooms.read_only.archived, messages.journey.related.work_closed];

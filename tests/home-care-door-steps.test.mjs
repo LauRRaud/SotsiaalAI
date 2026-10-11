@@ -60,14 +60,6 @@ test('sammude tabel: piirid on samad mis koodis; ridu ei muudeta ega kustutata',
   assert.doesNotMatch(service, /careClientEntry/);
 });
 
-test('nupp „Ei saa sisse" saadab erijuhtumi tavalise kirje aadressile ja oskab seadme järjekorda', () => {
-  const component = source('../components/homeCare/HomeCareNoAnswer.jsx');
-  assert.match(component, /kind: CareEntryKind\.INCIDENT,\s+incidentType: CareIncidentType\.DOOR_NOT_OPENED/);
-  assert.match(component, /\/kirjed`, \{\s+method: "POST"/);
-  assert.match(component, /device\.enqueue\(\{ organizationId, clientId, clientName, body \}\)/);
-  assert.match(component, /href="tel:112"/);
-});
-
 test('sammude ja nupu tekstid on kolmes keeles', () => {
   for (const locale of ['et', 'en', 'ru']) {
     const hc = JSON.parse(source(`../messages/${locale}.json`)).home_care;

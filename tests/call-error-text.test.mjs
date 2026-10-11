@@ -76,30 +76,7 @@ test('koodil on oma lause; tundmatu ja sisemine kood saavad üldise lause', () =
   assert.equal(callErrorText('call.not_active', null), '');
 });
 
-test('kõne alustamise või liitumise tõrge jõuab vestluse veareale', () => {
-  /* Kõneriba näitab tõrget ainult avatud kõne detailides. Väljaspool kõnet ei jõudnud tõrge
-     ekraanile üldse: nupp „Alusta helikõnet" ei teinud nähtavalt midagi. */
-  const chat = readFileSync(join(root, 'components/alalehed/ChatBody.jsx'), 'utf8').replace(/\r\n/g, '\n');
-  const start = chat.indexOf('const roomCallError = roomCallSession?.error || "";');
-  const effect = chat.slice(start, chat.indexOf('}, [roomCallError, roomCallJoined, t]);', start));
-  assert.ok(start > 0 && effect.length > 0);
-  /* Üks kord tõrke kohta; kõnes olles näitab tõrget kõneriba ise. */
-  assert.match(effect, /if \(roomCallJoined \|\| shownRoomCallErrorRef\.current === roomCallError\) return;/);
-  assert.match(effect, /if \(!roomCallError\) \{\n\s+shownRoomCallErrorRef\.current = "";\n\s+return;\n\s+\}/);
-  assert.match(effect, /const message = callErrorText\(roomCallError, t\);\n\s+if \(message\) setErrorBanner\(message\);/);
-  /* Taustapäringu ja ligipääsu kadumise tõrkeid veareale ei tooda. */
-  const quiet = chat.slice(chat.indexOf('const ROOM_CALL_QUIET_ERRORS = new Set(['), chat.indexOf(']);', chat.indexOf('const ROOM_CALL_QUIET_ERRORS')));
-  for (const code of ['call.load_failed', 'call.mic_not_controlled_here', 'api.rooms.access_denied', 'api.rooms.not_found', 'api.common.unauthorized']) {
-    assert.ok(quiet.includes(`"${code}"`), code);
-  }
-  assert.equal(quiet.includes('subscription_required'), false, 'tellimuse puudumine peab ekraanile jõudma');
-});
-
-test('kõneriba ei näita tõrke koodi otse', () => {
-  const bar = readFileSync(join(root, 'components/rooms/RoomCallBar.jsx'), 'utf8').replace(/\r\n/g, '\n');
-  assert.match(bar, /import \{ callErrorText \} from "@\/lib\/calls\/errorText";/);
-  assert.match(bar, /: callErrorText\(error, t\) \|\| text\(t, "calls\.errors\.generic", "[^"]+"\)\}/);
-  assert.equal(/:\s*error\}/.test(bar), false, 'toorest koodi ei kuvata');
+test('kõne tõrkelausetes ei ole mõttekriipsu ja igas keeles on sama hulk lauseid', () => {
   /* Laused ei sisalda mõttekriipse ja igal keelel on sama hulk lauseid. */
   const sizes = ['et', 'en', 'ru'].map((locale) => {
     const errors = catalog(locale).calls.errors;

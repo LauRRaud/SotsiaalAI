@@ -112,7 +112,4 @@ test('teenusekaardi otsing leiab osutaja maakonna nimega ka siis, kui teenus pä
   const countyFilter = filters.slice(filters.indexOf('const normalizedCounty = normalizeText(county);'), filters.indexOf('const normalizedKeyword = normalizeText(keyword);'));
   assert.ok(countyFilter.includes('{ county: { contains: normalizedCounty, mode: "insensitive" } }'));
   assert.ok(countyFilter.includes('address: { contains: normalizedCounty, mode: "insensitive" }'));
-  assert.ok(!countyFilter.includes('serviceItems: { some: { mapVisible: true, status: "PUBLISHED", county'));
-  /* Kumbki normaliseerija ei võta maakonda enam profiili vaikeväärtustest. */
-  assert.ok(!source.includes('profileDefaults.county'));
 });

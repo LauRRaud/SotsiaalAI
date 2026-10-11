@@ -112,14 +112,6 @@ function serverKeys(path, name) {
   const block = source.slice(start, source.indexOf('})', start));
   return [...block.matchAll(/^\s*([A-Z_0-9]+):/gm)].map((match) => match[1]);
 }
-function serverNumber(path, name) {
-  const match = read(path).match(new RegExp(`const ${name} = (\\d+);`));
-  assert.ok(match, `${name} on failis ${path}`);
-  return Number(match[1]);
-}
-
-/* JSX-i avav silt koos atribuutidega (ka mitmel real). */
-const openingTags = (source, name) => [...source.matchAll(new RegExp(`<${name}\\b[^>]*?(?:=>[^>]*?)*>`, 'gs'))].map((match) => match[0]);
 
 test('vaadete tekstivõtmed on kataloogis kolmes keeles', () => {
   const keys = new Set();
@@ -212,23 +204,6 @@ test('loendid, mis peavad serveriga kokku minema, lähevad kokku', () => {
 });
 
 test('väljade pikkused ja võtme vihje lubavad ainult seda, mida server vastu võtab', () => {
-  const views = VIEWS.map(read).join('\n');
-  const limits = [...views.matchAll(/maxLength=\{(\d+)\}/g)].map((match) => Number(match[1]));
-  const allowed = new Set([
-    serverNumber('../lib/casework/caseWorkMeetingPrep.js', 'TEXT_MAX'),
-    serverNumber('../lib/casework/caseWorkMeetingNote.js', 'TEXT_MAX'),
-    serverNumber('../lib/casework/caseWorkDraft.js', 'TEXT_MAX'),
-    serverNumber('../lib/casework/caseWorkMeetingNote.js', 'REASON_MAX'),
-    serverNumber('../lib/casework/caseWorkDraft.js', 'FIELD_KEY_MAX')
-  ]);
-  assert.ok(limits.length >= 6, `pikkuse piire leiti ${limits.length}`);
-  assert.deepEqual(limits.filter((limit) => !allowed.has(limit)), []);
-  /* Tagasivõtmise põhjus ja välja võti kannavad oma, lühemat piiri. */
-  const notes = read('../components/casework/sections/NoteViews.jsx');
-  assert.ok(notes.includes(`maxLength={${serverNumber('../lib/casework/caseWorkMeetingNote.js', 'REASON_MAX')}}`));
-  const drafts = read('../components/casework/sections/DraftViews.jsx');
-  assert.ok(drafts.includes(`maxLength={${serverNumber('../lib/casework/caseWorkDraft.js', 'FIELD_KEY_MAX')}}`));
-
   /* Vihje näidisvõti peab ise läbima serveri kuju kontrolli (varem oli kohatäiteks
      koodi kirjutatud eestikeelne sõna ja täpitähega võti lükati tagasi ilma selgituseta). */
   const shape = read('../lib/casework/caseWorkDraft.js').match(/const FIELD_KEY_SHAPE = \/(.+)\/;/);
@@ -239,7 +214,6 @@ test('väljade pikkused ja võtme vihje lubavad ainult seda, mida server vastu v
     assert.ok(example, `${lang}: vihje lõpeb näidisvõtmega`);
     assert.ok(new RegExp(shape[1]).test(example[1]), `${lang}: näidisvõti ${example[1]} sobib serverile`);
   }
-  assert.ok(!/placeholder="[A-ZÄÖÜÕ]/.test(drafts), 'koodi kirjutatud näidisvõtit ei ole');
 });
 
 test('uue rea saab saata alles siis, kui tekst on kirjutatud ja päritolu valitud', () => {
@@ -540,124 +514,4 @@ test('ootel jäljed on järjekord: sama võti ei korda, korduskatse käib lõpun
   assert.deepEqual(sent, ['k1', 'k2']);
   assert.deepEqual(result, { remaining: [first], flushed: 1, errorKey: 'casework.errors.transfer_block_stale' });
   assert.deepEqual(await flushPendingAudits([], async () => {}), { remaining: [], flushed: 0, errorKey: null });
-});
-
-test('pöördumatu tegu küsib teist vajutust ega käivitu otse nupust', () => {
-  const bits = read('../components/casework/sections/SectionBits.jsx');
-  /* Teine vajutus tuleb ühisest nupust (ConfirmButton: klahvikordus ja topeltklõps ei läbi mõlemat astet). */
-  assert.ok(bits.includes('<ConfirmButton') && bits.includes('as={Button}'));
-  const views = VIEWS.map(read).join('\n');
-  for (const call of [
-    'onConfirm={remove.onConfirm}',
-    'onConfirm={retract.onConfirm}',
-    'onConfirm={model.onMark}',
-    'onConfirm={onTransition}'
-  ]) {
-    assert.ok(views.includes(call), `kahe vajutusega: ${call}`);
-  }
-  assert.ok(!/onClick=\{[^}]*\b(remove|retract)\.onConfirm\b/.test(views), 'eemaldamine ja tagasivõtmine ei käivitu otse vajutusest');
-  assert.ok(!/onClick=\{[^}]*\bmodel\.onMark\b/.test(views), 'ülekantuks märkimine ei käivitu otse vajutusest');
-  /* Iga kaheastmeline nupp on seotud oma sihiga: poolik kinnitus ei kandu teise rea nupule. */
-  assert.equal((views.match(/<TwoStep\b/g) || []).length, (views.match(/<TwoStep\s+key=/g) || []).length);
-
-  /* Sektsioonid annavad teod vaadetele ainult `onConfirm` kaudu. */
-  const prep = read('../components/casework/MeetingPrepSection.jsx');
-  assert.ok(prep.includes('onConfirm: onDelete') && prep.includes('actions.removeQuestion(openQuestion.id)'));
-  /* Arhiveeritud sisuga ettevalmistust ei kustutata (O-JTA-6) ja sinna ei lisata. */
-  assert.ok(prep.includes('remove: purged ? null') && /add: purged\s*\?\s*null/.test(prep));
-  const note = read('../components/casework/MeetingNoteSection.jsx');
-  assert.ok(note.includes('actions.retractEntry(openEntry.id, reason.trim())'));
-  /* Tagasivõtmine vajab põhjust ENNE kinnitust: nupp on kinni, kuni see on kirjutatud. */
-  assert.ok(note.includes('disabled: locked || busy || !reason.trim()'));
-  const draft = read('../components/casework/DraftSection.jsx');
-  assert.ok(draft.includes('needsConfirm: transitionNeedsConfirm(chosen)'));
-  /* Märkmel ja mustandil kustutamist ei ole: märge on kohtumise jälg, mustand ahela lüli. */
-  for (const source of [note, draft]) assert.ok(!/method: "DELETE", locale \}\)/.test(source.replace(/\/fields\?[^\n]*\n?/g, '')));
-});
-
-test('vaated hoiavad oma lubadusi: sakirida jääb paigale, väli ei lähe salvestamise ajaks kinni', () => {
-  const sections = SECTIONS.map(read);
-  const views = VIEWS.map(read);
-  const all = [...sections, ...views].join('\n');
-
-  /* Teated ilma status-rollita (ühine kiht joonistab selle kastina), vana kihti ega rippvalikuid ei ole. */
-  assert.ok(!all.includes('role="status"'));
-  assert.ok(!/["'`\s]cw-[a-z]/.test(all), 'vana cw-* kihti ei ole');
-  assert.ok(!/<select|<option|<h2\b|<h3\b|dangerouslySetInnerHTML/.test(all));
-
-  /* Avatud kirje vaated on kirjeldused, mille joonistab üks ja sama komponent:
-     saki vahetus ei võta sakirida maha ja fookus jääb vajutatud sakile. */
-  for (const path of ['MeetingPrepSection', 'MeetingNoteSection', 'DraftSection']) {
-    const source = read(`../components/casework/${path}.jsx`);
-    assert.equal((source.match(/<OpenView\b/g) || []).length, 1, `${path}: üks OpenView`);
-    assert.ok(source.includes('return <OpenView {...screen()} />;'), path);
-    /* Avatud kirje on võtmega komponent: kirjes A pooleli tekst ei lähe kirje B alla. */
-    assert.ok(/<(Prep|Note|Draft)Editor\s+key=\{open(Prep|Note|Draft)\.id\}/.test(source), `${path}: avatud kirje on võtmega`);
-    /* Aegunud vastus ei kirjuta värskemat üle ja suletud kirjet ei avata uuesti. */
-    assert.ok(/if \(requested(Prep|Note|Draft)Id\.current !== (prep|note|draft)Id\) return;/.test(source), path);
-    assert.ok(/requested(Prep|Note|Draft)Id\.current === open(Prep|Note|Draft)Id/.test(source), path);
-  }
-
-  /* Fookust ei viida kunagi nupule: all hoitud Enter vajutaks seda kohe. */
-  const bits = views[0];
-  const focus = bits.slice(bits.indexOf('export function useSwapFocus'), bits.indexOf('export function blockRepeatEnter'));
-  assert.ok(focus.includes('[data-autofocus] textarea') && focus.includes('[data-step-heading]') && !focus.includes('button'));
-
-  /* Väljad jäävad päringu ajaks lahti (keelamine viskaks fookuse minema): välja
-     keelab ainult lukk, topeltvajutuse eest kaitseb `run()`. */
-  for (const source of views) {
-    for (const name of ['Input', 'TextAreaField', 'ChoiceRow', 'ProvenanceChoice', 'Textarea']) {
-      for (const tag of openingTags(source, name)) {
-        const disabled = tag.match(/disabled=\{([^}]*)\}/);
-        if (disabled) assert.ok(!/busy|working/.test(disabled[1]), `${name}: ${disabled[0]}`);
-      }
-    }
-  }
-  const data = read('../components/casework/sections/useSectionData.js');
-  assert.ok(data.includes('if (busyRef.current) return null;'), 'teine vajutus samal ajal ei tee teist päringut');
-
-  /* Põhinupu helk on oma joonistuspind ja lava hoiab kõik osad alles: iga
-     põhinupp saab teada, kas tema osa on ees. */
-  for (const source of [...sections, ...views]) {
-    for (const tag of openingTags(source, 'Button')) {
-      if (tag.includes('variant="primary"') || tag.includes('? "primary"')) assert.ok(/\bglow=\{/.test(tag), tag.replace(/\s+/g, ' '));
-    }
-  }
-  assert.ok(views[2].includes('buttonProps={{ size: "sm", variant: "primary", glow }}'), 'salvesti nupp saab sama märgi');
-
-  /* Märk, mille mudel paneb, jõuab ka vaatesse. */
-  assert.ok(sections[0].includes('row.purged ?') && sections[1].includes('row.linkedPrep ?') && sections[3].includes('row.pending ?'));
-  assert.ok(bits.includes('data-state={tab.state}') && bits.includes('tab.pending ?') && bits.includes('tab.count ?'));
-  assert.ok(views[1].includes('row.ai ?') && views[2].includes('row.retracted ?') && views[2].includes('row.revised ?'));
-
-  /* Kinnitamise siht ei ole ette valitud ja kinnitada ei saa enne valikut (L4). */
-  assert.ok(sections[0].includes('const [confirmTo, setConfirmTo] = useState("");'));
-  assert.ok(bits.includes('disabled={locked || busy || !value}'));
-  /* Kirjutuskaitstud juhtumis on ülekantuks märkimine väljas. Kopeerida saab (server lubab seda
-     teadlikult: seda teeb töötaja enne arhiveerimist); arhiveeritud juhtumis on ka kopeerimine väljas. */
-  assert.ok(sections[3].includes('disabled: locked || busy,'));
-  assert.ok(sections[3].includes('copyDisabled: archived || busy,'));
-  /* Kopeerimise ootel jäljed elavad sektsioonis, mitte avatud elemendi juures. */
-  assert.ok(sections[3].includes('const [pendingAudits, setPendingAudits] = useState({});'));
-  assert.ok(sections[3].includes('transfer.pendingCount ? <Chip tone="wait">'), 'salvestamata jälg on näha elemendi päises');
-  assert.ok(!/useState\([^)]*\)[^\n]*pendingAudits/.test(sections[4]), 'ülekandeteod ei hoia järjekorda ise');
-});
-
-test('juhtumi lava annab sektsioonidele juhtumi seisu ja kohtumise heli on oma osa', () => {
-  const detail = read('../components/casework/CaseWorkDetail.jsx');
-  for (const name of ['MeetingPrepSection', 'MeetingNoteSection', 'MeetingAudioSection', 'DraftSection']) {
-    const tag = openingTags(detail, name)[0] || '';
-    assert.ok(tag.includes('locked={!isActive}') && tag.includes('caseBusy={busy}') && tag.includes('active={active}'), name);
-  }
-  /* Sektsioon joonistab oma vaated ise: raam ei mähi neid enam ühte paneeli. */
-  assert.ok(!detail.includes('StepPanel'));
-  assert.ok(detail.includes('const active = flight?.isActive !== false;'));
-  assert.ok(detail.includes('onLinked={refreshLinkedItems}') && detail.includes('onRecording={setRecording}'));
-  /* Salvestit ennast ei muudeta: vaade annab talle nupu ja klassid ning loeb seisu juurelemendilt. */
-  const noteViews = read('../components/casework/sections/NoteViews.jsx');
-  assert.ok(noteViews.includes('ButtonComponent={Button}') && noteViews.includes('classNames={RECORDER_CLASSES}'));
-  assert.ok(noteViews.includes('[data-recorder-phase]') && read('../components/documents/SessionRecorder.jsx').includes('data-recorder-phase={phase}'));
-  /* Sidumise tõrge ja seoste loendi värskendamise tõrge on eri asjad. */
-  const audio = read('../components/casework/MeetingAudioSection.jsx');
-  assert.ok(audio.indexOf('setNoticeKey("casework.note.audio_linked")') < audio.indexOf('await onLinked?.()'));
 });

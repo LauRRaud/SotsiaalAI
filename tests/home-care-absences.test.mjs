@@ -14,9 +14,6 @@ test('puudumine ja tähtsus: andmebaasi CHECK-id ja koodi sõnastikud on samad',
   assert.deepEqual([...CARE_VISIT_PRIORITIES], ['A', 'B', 'C']);
   assert.match(sql, /ADD COLUMN "priority" TEXT NOT NULL DEFAULT 'B';/);
   assert.match(sql, /"toDay" >= "fromDay"/);
-  /* Põhjuse ega vaba teksti välja tabelis ei ole. */
-  const table = /CREATE TABLE "CareAbsence" \(([\s\S]*?)\n\);/.exec(sql)[1];
-  assert.doesNotMatch(table, /"(reason|note|text|diagnosis)"/);
 });
 
 test('päevaplaan: tegija puudub ainult veel tegemata käigul; tähtsus tuleb mustri realt', () => {

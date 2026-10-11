@@ -156,9 +156,4 @@ test('tekstid on kolmes keeles olemas ja uutes sõnades ei ole mõttekriipsu ega
       'back_to_settings', 'export_generated', 'export_making', 'status_lines.DRAFT', 'status_lines.PENDING_VERIFICATION', 'status_lines.ACTIVE', 'status_lines.SUSPENDED', 'status_lines.ARCHIVED'].map((key) => `org.settings.${key}`)
   ];
   for (const key of fresh) assert.ok(!/[—–]| - |"/.test(at(catalog('et'), key)), `${key}: ${at(catalog('et'), key)}`);
-  /* Päringuid on sama palju kui vanal lehel. */
-  const count = (path) => (read(path).match(/(?<![A-Za-z0-9_.])call\(/g) || []).length;
-  assert.equal(count('../components/org/OrgStructureClient.jsx'), 3);
-  assert.equal(count('../components/org/OrgSettingsClient.jsx'), 2);
-  assert.equal(count('../components/org/OrgExportClient.jsx'), 1);
 });

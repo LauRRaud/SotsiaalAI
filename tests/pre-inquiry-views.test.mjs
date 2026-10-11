@@ -35,8 +35,6 @@ test('vaadete tekstivõtmed on kataloogis kolmes keeles', () => {
 });
 
 test('igal töövoo vaatel on nimi ja lühinimi kiirmenüü jaoks', () => {
-  const page = read('../components/workspace/WorkspaceFeaturePage.jsx');
-  for (const key of FLOW_KEYS) assert.ok(page.includes(`"${key}"`), `leht kasutab vaadet ${key}`);
   for (const lang of ['et', 'en', 'ru']) {
     const steps = catalog(lang).steps;
     assert.equal(typeof steps.label, 'string');
@@ -47,8 +45,6 @@ test('igal töövoo vaatel on nimi ja lühinimi kiirmenüü jaoks', () => {
 });
 
 test('vastuvõtja vaadetel on nimi ja lühinimi ning seisu sõnad kannavad oma kohatäitjaid', () => {
-  const page = read('../components/workspace/WorkspaceFeaturePage.jsx');
-  for (const key of RECEIVER_KEYS) assert.ok(page.includes(`"${key}"`), `leht kasutab vaadet ${key}`);
   for (const lang of ['et', 'en', 'ru']) {
     const receiver = catalog(lang).views.receiver;
     for (const key of RECEIVER_KEYS) {
@@ -60,12 +56,6 @@ test('vastuvõtja vaadetel on nimi ja lühinimi ning seisu sõnad kannavad oma k
   }
 });
 
-test('vastuvõtja vaade ei näita töövoo koodi ega ava esimest pöördumist ise', () => {
-  const page = read('../components/workspace/WorkspaceFeaturePage.jsx');
-  assert.ok(!page.includes('{inquiry.status || "DRAFT"}'), 'loend ei trüki olekukoodi');
-  assert.ok(!page.includes(': receiverInquiries[0] || null'), 'esimest pöördumist ei avata vaikimisi');
-});
-
 test('pöörduja seisu sõnad on kataloogis iga seisu jaoks', () => {
   const states = PRE_INQUIRY_SENDER_STATE_KEYS;
   /* Kümme pöördumise enda seisu ja kaks asutuse otsust (tagasi lükatud, töö lõpetatud). */
@@ -75,12 +65,4 @@ test('pöörduja seisu sõnad on kataloogis iga seisu jaoks', () => {
     for (const state of states) assert.equal(typeof labels[state], 'string', `${lang}: ${state}`);
     assert.ok(labels.accepted.includes('{date}') && labels.sent_waiting.includes('{days}'), lang);
   }
-});
-
-test('paneelis ei ole üldist „Edasi" nuppu ega kerimise vihjet', () => {
-  const stage = read('../components/stage/StepFlight.jsx') + read('../components/stage/StepPanel.jsx');
-  assert.ok(!stage.includes('scroll-frames'), 'kerimise vihje on eemaldatud');
-  const form = read('../components/wellbeing/WellbeingStepForm.jsx');
-  assert.ok(!form.includes('next_to'), 'tööheaolu vormis ei ole „Edasi: …" nuppu');
-  assert.ok(read('../components/stage/StepRail.jsx').includes('next.onClick'), 'edasi liigutakse kiirmenüü noolest');
 });

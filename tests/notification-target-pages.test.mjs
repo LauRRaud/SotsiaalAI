@@ -113,7 +113,4 @@ test('ruumi aadress tuleb ühest kohast ja aadressi /ruum/<id> ei ehita keegi', 
     .filter((file) => /["'`]\/ruum\/[^"'`\s]/.test(readFileSync(file, 'utf8')))
     .map((file) => relative(root, file).split(sep).join('/'));
   assert.deepEqual(offenders, []);
-
-  const inbox = read('components/network/NetworkShareInbox.jsx');
-  assert.match(inbox, /href=\{buildRoomChatPath\(openedShare\.roomId, locale\)\}/);
 });

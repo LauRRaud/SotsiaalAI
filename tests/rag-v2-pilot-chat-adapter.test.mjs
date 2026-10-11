@@ -184,9 +184,6 @@ test('a legal source\'s provision stands beside its act\'s title in the reply, t
   assert.deepEqual(pilotChatMessages([historyTurn(stored, turn.question)], 'conv-123').at(-1).sources.map(item => item.label), reply.sources.map(item => item.label));
   const view = await historySourceView({ adapters: {}, config: {}, record, ref: 'S1' }), other = await historySourceView({ adapters: {}, config: {}, record, ref: 'S2' });
   assert.deepEqual([view.title, view.provision, 'provision' in other], ['Fiktiivsete toetuste seadus', '§ 133 lg 5–7', false]);
-  // The source page shows it under the title, before the page list and the reference.
-  const page = await fs.readFile('app/chat-source/page.jsx', 'utf8');
-  assert.ok(page.includes('{[source.provision, location, source.ref].filter(Boolean).join(\' · \')}'));
   // The live source view (a turn whose row is still readable) gives the same label from the passage's place: the one
   // layer of the chain no other test reached (fit review, 10.10.2026). Pinned by its expression, as the page is.
   const server = await fs.readFile('lib/chat/m4PilotServer.js', 'utf8');

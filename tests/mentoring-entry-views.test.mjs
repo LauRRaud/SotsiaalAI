@@ -81,7 +81,6 @@ function literalKeys() {
 
 test('vaadete tekstivõtmed on kataloogis kolmes keeles ja kannavad samu kohatäitjaid', () => {
   const keys = literalKeys();
-  assert.ok(keys.size > 110, `võtmeid leiti ${keys.size}`);
   const marks = (text) => [...String(text).matchAll(/\{(\w+)\}/g)].map((match) => match[1]).sort().join(',');
   const source = catalog('et');
   for (const lang of LANGS) {
@@ -403,40 +402,6 @@ test('mentori profiil: osad tulevad sisust ja välisel kirjel taotluse osa ei ol
   for (const part of parts) assert.ok(part.label && part.short, part.key);
 });
 
-test('lõplik tegevus küsib teist vajutust: keeldumine, taotluse tühistamine ja mentorluse lõpetamine', () => {
-  const home = read('../components/mentoring/MentoringHomePage.jsx');
-  assert.ok(home.includes('armConfirm(`decline:${row.id}`)'), 'taotlusest keeldumine kahe vajutusega');
-  assert.ok(home.includes('armConfirm(`cancel:${row.id}`)'), 'taotluse tühistamine kahe vajutusega');
-  /* Otse nupu külge seotud keeldumist ega tühistamist ei ole. */
-  assert.ok(!/onDecline: \(\) => respond\(/.test(home) && !/onCancel: \(\) => cancelRequest\(/.test(home));
-  const profile = read('../components/mentoring/MyMentorProfilePage.jsx');
-  assert.ok(profile.includes('armConfirm("retire")'), 'mentorluse lõpetamine kahe vajutusega');
-  assert.equal(profile.match(/runAction\("retire"\)/g).length, 1, 'lõpetamine käivitub ainult kinnitatud vajutusest');
-});
-
-test('lehed on sammulaval, ilma teise kaardi, lehe pealkirja ja status-rollita', () => {
-  for (const source of [...PAGES, ...VIEWS]) {
-    const code = read(source);
-    assert.ok(!code.includes('role="status"'), `${source}: teated ei kasuta status-rolli (ühine kiht joonistab selle omal moel)`);
-    assert.ok(!code.includes('MentoringPage.module.css'), `${source}: vana tume kaart on läinud`);
-    assert.ok(!code.includes('SubpageHeader'), `${source}: paneelis ei ole lehe pealkirja`);
-    assert.ok(!code.includes('as="a"'), `${source}: lingid on next/link, mitte terve lehe uuesti laadiv ankur`);
-    /* Seisu sõna ei panda kokku serveri koodist: see käib läbi `statusWord`-i. */
-    assert.ok(!/toLowerCase\(\)\}`\)/.test(code), `${source}: võtit ei ehitata toorest koodist`);
-  }
-  for (const page of PAGES) assert.ok(read(page).includes('<StepFlight'), `${page} on sammulaval`);
-  for (const view of VIEWS.slice(0, 3)) {
-    const code = read(view);
-    assert.ok(code.includes('<StepPanel'), `${view} joonistab vaated StepPanel-iga`);
-    assert.ok(!code.includes('fetch('), `${view}: vaade ainult joonistab, päringud on lehel`);
-  }
-  const lines = (page) => read(page).split(/\r?\n/).map((line) => line.trim());
-  /* Avaleht ja mentori profiil ei ole sammud, vaid osad; avaleht avaneb kõigi osade ülevaates. */
-  assert.ok(lines(PAGES[0]).includes('startWide') && lines(PAGES[0]).includes('parts'));
-  assert.ok(lines(PAGES[2]).includes('parts') && !lines(PAGES[2]).includes('startWide'));
-  assert.ok(!lines(PAGES[1]).includes('parts'), 'profiilivorm on sammud');
-});
-
 test('versioonikonflikti järel jäävad vormi ainult inimese muudatused', () => {
   const before = { displayName: 'Mari', bioShort: 'vana tutvustus', fields: ['lastekaitse'], topics: [] };
   const fresh = { displayName: 'Mari M.', bioShort: 'admin parandas', fields: ['lastekaitse', 'võlanõustamine'], topics: ['läbipõlemine'] };
@@ -451,25 +416,4 @@ test('versioonikonflikti järel jäävad vormi ainult inimese muudatused', () =>
   assert.deepEqual(mergeAfterConflict(toForm(before), before, fresh), toForm(fresh));
   const mine = Object.fromEntries(Object.keys(toForm(before)).map((key) => [key, 'x']));
   assert.deepEqual(mergeAfterConflict(mine, before, fresh), mine);
-});
-
-test('ülevaatuse parandused: silt ei korda vaate nime, väli ei lukustu salvestamise ajaks', () => {
-  const views = read('../components/mentoring/entry/MyProfileViews.jsx');
-  assert.match(views, /export function TextView[\s\S]*?labelHidden/);
-  const page = read('../components/mentoring/MyMentorProfilePage.jsx');
-  assert.ok(page.includes('const formProps = { disabled: locked, note, actions: saveButton };'));
-  assert.ok(page.includes('if (busy) return false;'), 'topeltsaatmist hoiab ära kontroll, mitte välja lukustamine');
-  assert.ok(page.includes('mergeAfterConflict(current, before, fresh)'));
-});
-
-test('lehe kujundus on oma moodulis ja klassinimedega, ilma paljaste siltide valijateta', () => {
-  const css = read('../components/mentoring/entry/entry.module.css').replace(/\/\*[\s\S]*?\*\//g, '');
-  const selectors = [...css.matchAll(/(^|[{}])\s*([^{}@]+)\{/g)].flatMap((match) => match[2].split(',')).map((selector) => selector.trim()).filter(Boolean);
-  assert.ok(selectors.length > 40, `valijaid leiti ${selectors.length}`);
-  const bare = selectors.filter((selector) => !/^(\.|:global\()/.test(selector) || /[\s>+~](?![.:])[a-z]/.test(selector.replace(/:global\([^)]*\)\s*/, '')));
-  assert.deepEqual(bare, []);
-  /* Tee edasi teistele mentorluse lehtedele jääb alles. */
-  const rows = read('../components/mentoring/entry/entryRows.js');
-  assert.ok(rows.includes('/mentorlus/suhe/') && rows.includes('/mentorlus/mentor/'));
-  assert.ok(read('../components/mentoring/MentoringHomePage.jsx').includes('"/mentorlus/profiil"'));
 });

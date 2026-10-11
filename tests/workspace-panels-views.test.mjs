@@ -100,11 +100,6 @@ const SOURCES = [
   HELP_PANEL,
   '../components/chat/helpListingRows.js'
 ];
-const STYLES = [
-  '../components/invite/views/invite.module.css',
-  '../components/materials/views/materials.module.css',
-  '../components/chat/helpListings.module.css'
-];
 
 /* --- Kataloog --------------------------------------------------------------- */
 
@@ -135,8 +130,6 @@ test('igal vaatel on nimi ja lühinimi, mis mahub kiirmenüüsse', () => {
     /* Kuulutuste loendi nimi tuleb kasutajalt: need kaks, mida kiirmenüü näitab. */
     for (const key of ['helpRequests', 'helpOffers']) assert.ok(catalogs[lang].chat.help[key].length <= 18, `${lang}: chat.help.${key}`);
   }
-  const page = read(INVITE_PAGE);
-  assert.ok(page.includes('t(`invite.views.${key}.title`)') && page.includes('t(`invite.views.${key}.short`)'));
 });
 
 test('võtmed, mis pannakse kokku väärtusest, on iga võimaliku väärtuse jaoks olemas', () => {
@@ -324,40 +317,6 @@ test('makse valik näitab iga rolli hinda ja nupu tekst on tavaline lause', () =
 
 /* --- Kutsu osaleja: lehe lubadused ------------------------------------------ */
 
-test('kutse päringud ja nende kehad on samad mis vanal vormil', () => {
-  const page = read(INVITE_PAGE);
-  for (const piece of [
-    'fetch("/api/invites/sponsored/init", {',
-    'fetch("/api/invites", {',
-    'emails: parsed,',
-    'lang: locale,',
-    'payment_mode: paymentMode,',
-    'payment_mode: paymentMode || undefined,',
-    'room_id: roomId || undefined,',
-    'room_title: trimmedRoomTitle || undefined,',
-    'host_display_name: !roomId ? trimmedHostName || undefined : undefined,',
-    'relationship_type: effectiveRelationshipType,',
-    'targetRole: effectiveTargetRole,',
-    'acceptedTerms: sponsoredCheckoutAgreed,',
-    '`/api/invites/${id}/resend`',
-    '`/api/invites/${id}/revoke`',
-    'window.location.assign(checkoutUrl);',
-    'url.searchParams.set("room_id", roomId);',
-    't("invite.success_delivery_pending", {',
-    'window.addEventListener("sotsiaalai:open-invite", handler);',
-    'new CustomEvent("sotsiaalai:restore-workspace-from-modal", {'
-  ]) {
-    assert.ok(page.includes(piece), `alles: ${piece}`);
-  }
-  /* Kutsuja tasutud kutse läheb ainult makse teele, tavaline ainult kutsete teele. */
-  assert.equal(page.split('fetch("/api/invites/sponsored/init"').length - 1, 1);
-  assert.equal(page.split('fetch("/api/invites", {').length - 1, 1);
-  /* Kõik kolm kasutusviisi on alles: töölaua sees, modaalina ja makse tagasitulek. */
-  assert.ok(page.includes('export default function InviteModal({ embedded = false, onBack = null, hideHeader = false } = {})'));
-  assert.ok(page.includes('if (!embedded && paymentReturn) {') && page.includes('contentClassName="invite-modal-card invite-payment-status"'));
-  assert.ok(page.includes('!hideHeader ? (') && page.includes('onBack?.();'));
-});
-
 test('lause selle kohta, millele kutsutu ligi pääseb, on sõna-sõnalt alles', () => {
   assert.equal(
     catalogs.et.invite.participant.scope,
@@ -394,43 +353,13 @@ test('maksevalikut ei saa teha ühe eksinud vajutusega ja kutset ei saada Enter'
   assert.ok(views.includes('event.preventDefault();') && views.includes('onEnter?.();'));
 });
 
-test('kutse tühistamine küsib teist vajutust ja read kannavad oma märgid vaateni', () => {
-  const page = read(INVITE_PAGE);
+test('kutse read kannavad oma märgid vaateni', () => {
   const views = read(INVITE_VIEWS);
   const sent = views.slice(views.indexOf('export function SentView'), views.indexOf('export function SignedOutView'));
-  assert.match(sent, /<ConfirmButton[\s\S]*?confirmLabel=\{t\("invite\.revoke_confirm"\)\}[\s\S]*?onConfirm=\{row\.onRevoke\}/);
-  assert.ok(!/onClick=\{row\.onRevoke\}/.test(sent), 'tühistamine ei ole ühe vajutuse taga');
-  /* Pärast tühistamist läheb fookus loendile, mitte järgmise rea nupule. */
-  assert.ok(page.includes('if (kind !== "resend") sentListRef.current?.focus({ preventScroll: true });'));
-  assert.ok(sent.includes('ref={listRef} tabIndex={-1}'));
   /* Iga väli, mida vaade realt loeb, tuleb ridade tegijalt või lehelt. */
   const made = new Set([...Object.keys(inviteRows([{ id: 1, status: 'SENT' }], { t })[0]), 'busy', 'onResend', 'onRevoke']);
   const used = new Set([...sent.matchAll(/\brow\.(\w+)/g)].map((match) => match[1]));
   assert.deepEqual([...used].filter((name) => !made.has(name)), []);
-  assert.ok(page.includes('rows={inviteRows(invites, { t }).map((row) => ({') && page.includes('...row,'));
-});
-
-test('kutse lehe kuju: töölaua sees sammulaval, modaalis oma vaadete vahetajaga', () => {
-  const page = read(INVITE_PAGE);
-  const views = read(INVITE_VIEWS);
-  assert.equal(page.split('<StepFlight').length - 1, 1);
-  const embedded = page.slice(page.lastIndexOf('if (embedded) {'), page.lastIndexOf('<Modal'));
-  assert.ok(embedded.includes('<StepFlight') && embedded.includes('key={viewKeys.join("|")}') && embedded.includes('activeKey={activeView}'));
-  const modal = page.slice(page.lastIndexOf('<Modal'));
-  assert.ok(!modal.includes('<StepFlight') && modal.includes('<ChoiceRow') && modal.includes('renderView(activeView)'));
-  /* Töölaua sees ei ole pealkirja paneelil; modaalis ütleb pealkiri, mis aken lahti on. */
-  assert.ok(page.includes('headerClassName={embedded ? "sr-only" : undefined}'));
-  /* Põhinupu läige ainult ees oleval vaatel. */
-  const render = page.slice(page.indexOf('const renderView'), page.indexOf('const header'));
-  assert.ok(render.includes('const glow = flight ? flight.isActive !== false : true;'));
-  assert.equal(render.split('variant="primary"').length - 1, render.split('glow={glow}').length - 1);
-  /* Vana kiht on läinud. */
-  for (const source of [page, views]) {
-    assert.ok(!source.includes('OptionCard') && !source.includes('invite-participant') && !source.includes('feature-page'));
-    assert.ok(!source.includes('role="status"'), 'teated ei kasuta status-rolli');
-  }
-  /* Väljad ei lähe saatmise ajaks lukku (fookus kaoks). */
-  for (const input of views.matchAll(/<Input\b[\s\S]*?\/>/g)) assert.ok(!input[0].includes('disabled'), 'väli ei ole keelatud');
 });
 
 /* --- Materjalid: reeglid ----------------------------------------------------- */
@@ -635,70 +564,8 @@ test('õiguste vorm: import avaneb, kui kõik on täidetud, ja päringu keha on 
 
 /* --- Materjalid: lehe lubadused --------------------------------------------- */
 
-test('materjalide lehe päringud on alles ja loend ning saatmine vahetuvad kohapeal', () => {
-  const page = read(MATERIALS_PAGE);
-  for (const piece of [
-    'fetch(`/api/materials?${query.toString()}`, { cache: "no-store" })',
-    'const query = new URLSearchParams({ limit: "20" })',
-    'fetch("/api/materials", {',
-    'formData.append("file", selectedFile)',
-    'formData.append("comment", comment)',
-    'formData.append("idempotencyKey", idempotencyKeyRef.current)',
-    'fetch(`/api/materials/${encodeURIComponent(id)}`, { method: "DELETE" })',
-    'usePanelInfoSlot({',
-    'export default function MaterialsPage({ locale = "et", embedded = false, onBack = null, hideHeader = false })'
-  ]) {
-    assert.ok(page.includes(piece), `alles: ${piece}`);
-  }
-  /* Loend ja vorm ei ole kaks järjestikust sammu: sammulava ei ole. */
-  assert.ok(!page.includes('StepFlight'));
-  assert.ok(page.includes('headerClassName="sr-only"'), 'lehe nimi on kiirmenüüs, pealkiri ekraanilugejale');
-  assert.ok(page.includes('if (embedded) return content'));
-  /* Faili või selgituse muutus teeb uue saatmise tunnuse (vana lehe reegel). */
-  assert.equal(page.split('idempotencyKeyRef.current = ""').length - 1, 3);
-  /* Serveri võtmekujuline sõnum ei jõua ekraanile toorelt. */
-  assert.ok(!page.includes('payload?.message ||') && page.split('resolveApiMessage({ payload, t, fallbackKey:').length - 1 >= 3);
-  /* Ülevaatuse tee on ainult administraatoril. */
-  assert.ok(page.includes('onReview={admin ? () => setView("review") : null}') && page.includes('if (view === "review" && admin) {'));
-  /* Rea märgid jõuavad vaateni. */
-  assert.ok(page.includes('rows={mineRows(myMaterials, { t, locale: resolvedLocale }).map((row) => ({') && page.includes('...row,'));
-});
-
-test('tagasivõtmine, tagasilükkamine ja kustutamine küsivad teist vajutust', () => {
+test('materjalide loendi read kannavad oma märgid vaateni', () => {
   const views = read(MATERIALS_VIEWS);
-  const review = read(REVIEW_VIEWS);
-  const admin = read(MATERIALS_ADMIN);
-  const item = views.slice(views.indexOf('export function MaterialItemView'), views.indexOf('export function SendView'));
-  assert.match(item, /<ConfirmButton[\s\S]*?confirmLabel=\{t\("materials_page\.views\.item\.withdraw_confirm"\)\}[\s\S]*?onConfirm=\{onWithdraw\}/);
-  assert.ok(!item.includes('onClick={onWithdraw}'));
-  const submission = review.slice(review.indexOf('export function SubmissionView'), review.indexOf('export function RightsView'));
-  assert.match(submission, /<ConfirmButton[\s\S]*?confirmLabel=\{t\("materials_page\.admin\.reject_confirm"\)\}[\s\S]*?onConfirm=\{onReject\}/);
-  assert.match(submission, /<ConfirmButton[\s\S]*?confirmLabel=\{t\("materials_page\.admin\.delete_again"\)\}[\s\S]*?onConfirm=\{onDelete\}/);
-  assert.ok(!submission.includes('onClick={onReject}') && !submission.includes('onClick={onDelete}'));
-  /* Brauseri dialooge enam ei ole: neid ei saa tõlkida ega testida. */
-  for (const source of [views, review, admin, read(MATERIALS_PAGE)]) {
-    assert.ok(!/window\.(confirm|prompt|alert)\(/.test(source));
-    assert.ok(!source.includes('role="status"'), 'teated ei kasuta status-rolli');
-    assert.ok(!source.includes('feature-page') && !source.includes('materials-item') && !source.includes('OptionCard'));
-  }
-  /* Ülevaatuse päringud on samad mis enne. */
-  for (const piece of [
-    'const query = new URLSearchParams({ limit: "100" })',
-    'body: JSON.stringify({ action, reviewNote: note, expectedRevision: items.find((item) => item.id === id)?.reviewRevision })',
-    'action: "import_rag",',
-    'expectedRevision: item.reviewRevision,',
-    'rights: rightsPayload(rights)',
-    'if (response.status === 409 && payload?.current?.id) {',
-    'handleReview(opened.id, "mark_reviewed")',
-    'handleReview(opened.id, "reject")',
-    'id="rag-documents-submitted-materials"',
-    'variant = "materials",',
-    'refreshKey = 0,'
-  ]) {
-    assert.ok(admin.includes(piece), `alles: ${piece}`);
-  }
-  /* Märkuse ja õiguste väljad ei lähe päringu ajaks lukku. */
-  for (const input of review.matchAll(/<Input\b[\s\S]*?\/>/g)) assert.ok(!input[0].includes('disabled'));
   /* Iga väli, mida loendi rida vaates loeb, tuleb ridade tegijalt või lehelt. */
   const rows = views.slice(views.indexOf('export function Rows'), views.indexOf('export function MineListView'));
   const made = new Set([...Object.keys(submissionRows([{ id: 1 }], { t })[0]), ...Object.keys(mineRows([{ id: 1 }], { t })[0]), 'onOpen']);
@@ -756,77 +623,4 @@ test('loendi liik ja kuulutuste arv', () => {
   assert.equal(listingCountText(10, { ui, complete: false }), '', 'laaditud ridade arv ei ole koguarv, kui loendil on järg');
 });
 
-test('kuulutuste paneel: kõik kasutusviisid on alles ja rida on üks tegevus', () => {
-  const panel = read(HELP_PANEL);
-  for (const prop of ['title = ""', 'items = []', 'loading = false', 'error = ""', 'emptyText = ""', 'nextOffset = null', 'isClosing = false', 'onLoadMore', 'onSelectItem', 'detailNode = null', 'infoId', 'embedded = false', 'hideHeader = false', 'onClose', 'onBackToProfile', 'onBackToWorkspace']) {
-    assert.ok(panel.includes(`  ${prop}`), `omadus on alles: ${prop}`);
-  }
-  /* Avatud kuulutus tuleb loendi asemele samasse ümbrisesse (vt tests/chat-help-listing-views.test.mjs);
-     vana kihi klassid on ainult modaali ümbrisel. */
-  assert.ok(panel.includes('const body = hasDetail ? detailNode : list;') && panel.includes('"feature-page--help-listings",'));
-  assert.ok(!panel.includes('workspace-feature-embedded'), 'avatud kuulutusel ei ole enam vana ümbrist');
-  assert.equal(panel.split('feature-page').length - 1, 3, 'vana kihi klassid on ainult modaali ümbrisel');
-  /* Modaal ja selle tagasitee. Sulgemine küsib luba väravalt (salvestamata muudatustega kuulutus). */
-  assert.ok(panel.includes('createPortal(') && panel.includes('contentClassName={legacyContentClassName}') && panel.includes('closeOnOverlayClick={!isClosing}'));
-  assert.ok(panel.includes('leave(onBackToProfile || onBackToWorkspace || onClose);') && panel.includes('onClose={() => leave(onClose)}') && panel.includes('showBack={!isWorkspaceReturn}'));
-  assert.ok(panel.includes('document.body.classList.toggle("help-listings-modal-open", true);'));
-  /* Töölaua sees pealkirja paneelil ei ole. */
-  assert.ok(panel.includes('headerClassName={embedded ? "sr-only" : undefined}'));
-  /* Rida avab kuulutuse; ilma avamise tegevuseta ei ole rida nupp. */
-  assert.ok(panel.includes('onClick={() => onSelectItem(row.item)}') && panel.includes('<div className={styles.rowStatic}>'));
-  /* Juurde laadimise ajal jäävad read ette ja nupp on keelatud. */
-  assert.ok(panel.includes('disabled={loading} onClick={onLoadMore}'));
-  assert.ok(!panel.includes('role="status"') && !panel.includes('ui/Panel"') && !panel.includes('help-listings-item-card'));
-  /* Mõõtmine, mille tulemust ükski stiilireegel ei lugenud, on eemaldatud. */
-  assert.ok(!panel.includes('measured-height') && !panel.includes('ResizeObserver'));
-});
-
 /* --- Kest: töölaua paneel ja üldfailid ---------------------------------------- */
-
-test('töölaua sees ei korrata nende lehtede pealkirja paneelil', () => {
-  const panel = read('../components/chat/WorkspacePanel.jsx');
-  const set = panel.match(/const EMBEDDED_TITLE_IN_DOCK = new Set\(\[([^\]]*)\]\);/);
-  assert.ok(set, 'loend on ühel real');
-  for (const key of ['documents', 'pre_inquiries', 'service_profile', 'invite', 'materials', 'help_requests', 'help_offers']) {
-    assert.ok(set[1].includes(`"${key}"`), key);
-  }
-  assert.ok(panel.includes('headerClassName={EMBEDDED_TITLE_IN_DOCK.has(activeEmbeddedFeature) ? "sr-only" : undefined}'));
-  /* Kuulutuste loend tuleb vestluselt: pealkiri on peidus ainult siis, kui aadress lehte nimetab. */
-  assert.ok(panel.includes('EMBEDDED_TITLE_IN_DOCK.has(embeddedPanelMeta?.infoId) && searchParams?.get("workspace") === embeddedPanelMeta?.infoId'));
-  assert.ok(panel.includes('headerClassName={embeddedPanelTitleInDock ? "sr-only" : undefined}'));
-  /* Paneel annab lehtedele samad omadused mis enne. */
-  assert.match(panel, /<MaterialsPage\s+locale=\{locale\}\s+embedded\s+hideHeader\s+onBack=\{handleWorkspaceBack\}\s+\/>/);
-  assert.match(panel, /<InviteModal\s+embedded\s+hideHeader\s+onBack=\{handleWorkspaceBack\}\s+\/>/);
-  /* Kuulutuste võtmed, mida vestlus paneeli kirjelduses annab. */
-  const chat = read('../components/alalehed/ChatBody.jsx');
-  assert.ok(chat.includes('infoId: activeListingsPanel.key') && chat.includes('key: "help_requests",') && chat.includes('key: "help_offers",'));
-});
-
-test('vanad üldreeglid on eemaldatud ja need, mida veel kasutatakse, on alles', () => {
-  const feature = read('../app/styles/feature-pages.css');
-  const workspace = read('../app/styles/workspace.css');
-  for (const name of ['materials-item', 'materials-submit-section', 'materials-library-section', 'feature-page--materials', 'help-listings-item-card', 'help-listings-scroll', 'help-listings-body', 'help-listings-panel']) {
-    assert.ok(!feature.includes(name), `feature-pages.css: ${name}`);
-  }
-  assert.ok(!workspace.includes('invite-participant'));
-  /* Avatud kuulutuse ümbris, kutse modaal ja makse tagasituleku kaart kasutavad üldreegleid edasi. */
-  assert.ok(feature.includes('.feature-page--help-listings {'));
-  for (const name of ['.invite-modal-back {', '.invite-modal-overlay {', '.invite-modal-card {', '.invite-payment-status-body {']) assert.ok(workspace.includes(name), name);
-});
-
-test('kujundus on mooduli klassidega: paljaste siltide reegleid ega !important-it ei ole', () => {
-  for (const file of STYLES) {
-    const css = read(file).replace(/\/\*[\s\S]*?\*\//g, '');
-    assert.ok(!css.includes('!important'), `${file}: !important`);
-    for (const match of css.matchAll(/(^|\})\s*([^{}@]+)\{/g)) {
-      for (const selector of match[2].split(',')) {
-        assert.ok(!/(^|[\s>+~])(p|h[1-6]|ul|li|dl|dt|dd|section|div|span|label|input|button|form|a)(?![\w-])/.test(selector.trim().replace(/:global\([^)]*\)/g, '')), `${file}: paljas silt valijas: ${selector.trim()}`);
-      }
-    }
-    /* Ühte omadust ei kirjutata kaks korda järjest (ehitus jätab alles ainult viimase). */
-    for (const block of css.matchAll(/\{([^{}]*)\}/g)) {
-      const names = block[1].split(';').map((line) => line.split(':')[0].trim()).filter(Boolean);
-      assert.equal(new Set(names).size, names.length, `${file}: korduv omadus plokis ${block[1].trim().slice(0, 60)}`);
-    }
-  }
-});

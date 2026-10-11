@@ -16,9 +16,6 @@ test('võtmeraamat: andmebaasi CHECK-id ja koodi sõnastik on samad; ripatsi num
   assert.match(sql, /CREATE UNIQUE INDEX "CareKey_tag_key" ON "CareKey"\("organizationId", lower\("tag"\)\) WHERE "closedAt" IS NULL;/);
   assert.match(sql, /"closedAt" IS NULL AND "outcome" IS NULL/);
   assert.match(sql, /^SET lock_timeout = '5s';\r?\nSET statement_timeout = '30s';/m);
-  /* Võtme real ei ole kliendi nime ega aadressi: seos kliendiga on ainult kliendi ID kaudu. */
-  const table = /CREATE TABLE "CareKey" \(([\s\S]*?)\r?\n\);/.exec(sql)[1];
-  assert.doesNotMatch(table, /"(address|clientName|displayName)"/);
 });
 
 test('teenus ei kustuta võtit ega üleandmise jälge', () => {

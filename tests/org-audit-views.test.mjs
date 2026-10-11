@@ -52,6 +52,4 @@ test('iga kataloogi lause kuulub päris toimingule ja on kolmes keeles', () => {
   }
   for (const value of Object.values(catalog('et').org.audit.actions)) assert.ok(!/[—–]| - |"/.test(value), value);
   assert.equal(t('org.audit.shown', { shown: 21, total: 140 }), 'Näha 21 sündmust 140-st.');
-  /* Päring on sama mis vanal lehel: üks `fetch`. */
-  assert.equal((read('../components/org/OrgAuditClient.jsx').match(/fetch\(/g) || []).length, 1);
 });

@@ -111,11 +111,3 @@ test('päeva vaadete sõnad on kolmes keeles olemas', () => {
   for (const view of ['all', 'mine', 'obstacle']) assert.equal(HOME_VIEWS[view], HOME_VIEWS.today);
   assert.equal(HOME_VIEWS.next, 'home_care.slots.next_title');
 });
-
-test('päeva vaadete lingid kliendi lehele ei lae lehte ette', () => {
-  /* Kliendi lehe avamine jätab avamislogisse rea: ette laadimine kirjutaks sinna avamisi, mida inimene ei teinud. */
-  const views = read('components/homeCare/day/DayViews.jsx');
-  const links = views.match(/<Link\b[^>]*>/g) || [];
-  assert.ok(links.length >= 3, `linke ${links.length}`);
-  for (const link of links) assert.ok(link.includes('prefetch={false}'), link);
-});

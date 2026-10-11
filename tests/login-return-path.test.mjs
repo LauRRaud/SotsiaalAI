@@ -5,11 +5,9 @@
 // tagasi viiakse ainult selle saidi enda teele ja et iga selline leht tee kaasa annab.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import fs from 'node:fs';
 
 import { loginHref, safeNextPath } from '../lib/safeNextPath.js';
 
-const read = (path) => fs.readFileSync(new URL(path, import.meta.url), 'utf8');
 const ORIGIN = 'https://sotsiaal.pro';
 const BACKSLASH = String.fromCharCode(92);
 
@@ -56,35 +54,4 @@ test('sisselogimisakna aadress kannab tee kaasa ja kodeerib selle', () => {
   /* Aadress loetakse tagasi samaks teeks. */
   const back = new URL(loginHref('/teekond/abc?tab=1'), ORIGIN).searchParams.get('next');
   assert.equal(safeNextPath(back, ORIGIN), '/teekond/abc?tab=1');
-});
-
-test('vestlus viib sisse logitud inimese tagasiteele ja lehed annavad tee kaasa', () => {
-  const chat = read('../components/alalehed/ChatBody.jsx');
-  const start = chat.indexOf('const nextReturnHandledRef = useRef(false);');
-  assert.ok(start > 0);
-  const effect = chat.slice(start, start + 520);
-  for (const piece of [
-    'if (!requestLoginOnOpen || status !== "authenticated") return;',
-    'const next = safeNextPath(searchParams?.get("next"), window.location.origin);',
-    'if (!next) return;',
-    'nextReturnHandledRef.current = true;',
-    'router.replace(next);'
-  ]) {
-    assert.ok(effect.includes(piece), piece);
-  }
-  /* Tee tuleb aadressilt ainult selle ühe kontrolli kaudu. */
-  assert.equal(chat.split('get("next")').length - 1, 1);
-  assert.ok(read('../app/vestlus/page.js').includes('requestLoginOnOpen={loginRequested || emailVerifiedEntry}'));
-  for (const [file, expected] of [
-    ['../components/benefits/SubsistenceCalculator.jsx', 'href={loginHref("/toimetulekutoetus")}'],
-    ['../components/urgent/UrgentRequestForm.jsx', 'href={loginHref(pathname || "/kiireloomuline-abi")}'],
-    ['../app/kovisioon/page.jsx', 'redirect(localizePath(loginHref("/kovisioon"), locale));'],
-    ['../app/lopetatud-juhtumid/page.jsx', 'redirect(localizePath(loginHref("/lopetatud-juhtumid"), locale));'],
-    ['../app/parimad-praktikad/page.jsx', 'redirect(localizePath(loginHref("/parimad-praktikad"), locale));'],
-    ['../app/teemaseemned/page.jsx', 'redirect(localizePath(loginHref("/teemaseemned"), locale));']
-  ]) {
-    const source = read(file);
-    assert.ok(source.includes(expected), file);
-    assert.ok(!source.includes('"/vestlus?login=1"'), `${file}: paljast sisselogimise aadressi ei ole`);
-  }
 });

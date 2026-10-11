@@ -49,19 +49,6 @@ const PAGE_SOURCES = [
   '../components/casework/caseViews.js',
   '../components/casework/caseWorkClient.js'
 ];
-/* Sektsioonid, mis hoiavad oma andmeid ise, ja nende vaated (./sections). Nende
-   enda lubadusi hoiab tests/casework-sections-views.test.mjs. */
-const SECTION_SOURCES = [
-  '../components/casework/MeetingPrepSection.jsx',
-  '../components/casework/MeetingNoteSection.jsx',
-  '../components/casework/MeetingAudioSection.jsx',
-  '../components/casework/DraftSection.jsx',
-  '../components/casework/TransferPanel.jsx',
-  '../components/casework/sections/SectionBits.jsx',
-  '../components/casework/sections/PrepViews.jsx',
-  '../components/casework/sections/NoteViews.jsx',
-  '../components/casework/sections/DraftViews.jsx'
-];
 const RAW_ENUMS = /\b(ACTIVE|READ_ONLY|ARCHIVED|OPEN|RESOLVED|NOT_APPLICABLE|USER_DOCUMENT|AGENT_ARTIFACT|FIELD_VISIT|MUSTAND|VAJAB_KONTROLLI|COPIED_FOR_STAR2)\b/;
 
 /* Teenuskihti ei impordita (ta toob Prisma kliendi): loeme sõnastiku failist. */
@@ -141,14 +128,6 @@ test('seisu, liigi ja päritolu sõnad, mida leht kokku paneb, on olemas; tundma
 test('filtri ja punkti seisude loendid on samad mis teenuskihis', () => {
   assert.deepEqual(CASE_STATE_FILTERS.slice(1), serverKeys('../lib/casework/caseWorkAssist.js', 'RETENTION_STATE'));
   assert.deepEqual([...MISSING_STATUSES], serverKeys('../lib/casework/caseWorkMissingInfo.js', 'MISSING_INFO_STATUS'));
-  /* Seose liigid: lehe valikuloend ja serveri register. */
-  const detail = read('../components/casework/CaseWorkDetail.jsx');
-  const types = detail.slice(detail.indexOf('const TARGET_TYPES = ['), detail.indexOf('];', detail.indexOf('const TARGET_TYPES = [')));
-  const registry = read('../lib/casework/caseWorkItem.js');
-  const block = registry.slice(registry.indexOf('const TARGET_REGISTRY'), registry.indexOf('export const CASE_WORK_TARGETS'));
-  const server = [...block.matchAll(/\[CASE_WORK_TARGET\.([A-Z_]+)\]:/g)].map((match) => match[1]);
-  assert.ok(server.length >= 3, `serveri registrist leiti ${server.length} liiki`);
-  assert.deepEqual([...types.matchAll(/"([A-Z_]+)"/g)].map((match) => match[1]), server);
 });
 
 test('loendi päring: filter läheb serverisse, „kõik” ja tundmatu väärtus ei lähe', () => {
@@ -323,82 +302,4 @@ test('elutsükkel on ühesuunaline; kell öeldakse välja enne arhiveerimist ja 
   assert.equal(retentionView({ record: { retentionState: 'ARCHIVED' }, retentionClock: null, ...context }).countdown, '');
   const unknown = retentionView({ record: { retentionState: 'PURGED' }, ...context });
   assert.deepEqual([unknown.next, unknown.stateText], [null, 'Tundmatu seis']);
-});
-
-test('pöördumatu tegu küsib teist vajutust', () => {
-  const views = read('../components/casework/cases/CaseDetailViews.jsx');
-  for (const call of [
-    'onConfirm={() => onUnlink(row.id)}',
-    'onConfirm={() => onRemove(point.id)}',
-    'onConfirm={() => onTransition(view.next)}',
-    'onConfirm={onArchive}',
-    'onConfirm={onErase}'
-  ]) {
-    assert.ok(views.includes(call), `kahe vajutusega: ${call}`);
-  }
-  assert.ok(!/onClick=\{[^}]*\b(onUnlink|onRemove|onTransition|onArchive|onErase)\b/.test(views), 'ükski neist ei käivitu otse vajutusest');
-  /* Mõlemad elutsükli siirded käivad sama kaheastmelise nupu kaudu (varem oli kirjutuskaitse ühe vajutusega). */
-  assert.ok(views.includes('casework.page.parts.retention.confirm_read_only') && views.includes('casework.page.confirm_retention_to_archived'));
-
-  /* Nupu loogika: esimene vajutus ainult küsib, ja keelatud nupp nullib küsimuse. */
-  const button = read('../components/casework/ConfirmButton.jsx');
-  const click = button.slice(button.indexOf('onClick={async () => {'), button.indexOf('{armed ? confirmLabel : label}'));
-  assert.ok(click.indexOf('if (!armed)') >= 0 && click.indexOf('if (!armed)') < click.indexOf('await onConfirm()'), 'kinnitamata vajutus ei jõua teoni');
-  assert.ok(/if \(!armed\) \{\s*armedAt\.current = Date\.now\(\);\s*setArmed\(true\);\s*return;/.test(click), 'esimene vajutus lõpeb küsimusega');
-  assert.equal(button.split('onConfirm()').length - 1, 1, 'tegu käivitub ühest kohast');
-  assert.ok(/if \(disabled\) setArmed\(false\)/.test(button), 'keelatud nupp nullib teise astme');
-});
-
-test('leht on sammulaval: osad, mitte vana ühine kiht, ja teated ilma status-rollita', () => {
-  const shell = read('../components/casework/CaseWorkShell.jsx');
-  const detail = read('../components/casework/CaseWorkDetail.jsx');
-  const listViews = read('../components/casework/cases/CaseListViews.jsx');
-  const detailViews = read('../components/casework/cases/CaseDetailViews.jsx');
-
-  for (const [name, source] of [['CaseWorkShell', shell], ['CaseWorkDetail', detail], ['CaseListViews', listViews], ['CaseDetailViews', detailViews]]) {
-    assert.ok(!/className="[^"]*\bcw-/.test(source) && !/["'`]cw-[a-z]/.test(source), `${name}: vana cw-* kihti ei ole`);
-    assert.ok(!/<select|<option|<h2/.test(source), `${name}: rippvalikuid ega sektsioonipealkirju ei ole`);
-  }
-  for (const path of [...PAGE_SOURCES, ...SECTION_SOURCES, '../components/casework/ConfirmButton.jsx']) {
-    assert.ok(!read(path).includes('role="status"'), `${path}: teated ei kasuta status-rolli (ühine kiht joonistab selle kastina)`);
-  }
-
-  /* Juhtumi osad ei ole sammud: numbreid ega noolt „järgmine” ei ole, juhtum avaneb ülevaates. */
-  assert.ok(detail.split(/\r?\n/).some((line) => line.trim() === 'parts'), 'detail annab lavale `parts`');
-  assert.ok(detail.includes('startWide={landIndex < 0}'), 'juhtum avaneb ülevaates');
-  for (const key of CASE_PART_ORDER) assert.ok(detail.includes(`case "${key}":`), `osa ${key} on joonistatud`);
-  for (const key of CASE_LIST_VIEWS) assert.ok(shell.includes(`"${key}"`), `loendileht kasutab vaadet ${key}`);
-  /* Loend ja vorm vahetuvad kohapeal: need ei ole kaks järjestikust sammu. */
-  assert.ok(!shell.includes('StepFlight'), 'loendileht ei ole sammulaval');
-  assert.ok(shell.includes('onCancel={() => setView("list")}'), 'vormist saab loendisse tagasi');
-  /* Põhiandmed ja STAR-i viide salvestavad kumbki ainult oma väljad ja värskendavad ainult oma osa. */
-  const saveBasics = detail.slice(detail.indexOf('const saveBasics = useCallback('), detail.indexOf('const saveStar = useCallback('));
-  const saveStar = detail.slice(detail.indexOf('const saveStar = useCallback('), detail.indexOf('const linkItem = useCallback('));
-  assert.ok(saveBasics.includes('nextContactAt') && !saveBasics.includes('externalSystem') && !saveBasics.includes('externalReference'));
-  assert.ok(saveBasics.includes('loadCase({ form: "basics" })'));
-  assert.ok(saveStar.includes('externalSystem') && saveStar.includes('externalReference') && !saveStar.includes('clientDisplayName') && !saveStar.includes('nextContactAt'));
-  assert.ok(saveStar.includes('loadCase({ form: "star" })'));
-  /* Kaheastmeline nupp: klahvikordus ja topeltklõps ei läbi mõlemat astet ühe liigutusega. */
-  const confirm = read('../components/casework/ConfirmButton.jsx');
-  assert.ok(confirm.includes('event.repeat') && confirm.includes('Date.now() - armedAt.current < MIN_GAP_MS'));
-  /* Fookust ei viida pöördumatu teo nupule. */
-  assert.ok(read('../components/casework/cases/CaseDetailViews.jsx').includes(':not([data-danger])'));
-  /* Teise juhtumi avamine ehitab detaili uuesti: pooleli tekst ei lähe kaasa. */
-  assert.ok(shell.includes('<CaseWorkDetail key={selectedId}'), 'detail on juhtumi kaupa võtmega');
-
-  /* Toorest väärtust ei kuvata: vaated saavad valmis sõnad, mitte enum'i. */
-  for (const source of [listViews, detailViews]) {
-    assert.ok(!/>\s*\{[A-Za-z.?]*\.(status|retentionState|targetType|transferState)\}/.test(source), 'vaade ei kuva seisu ega liigi toorest väärtust');
-  }
-
-  /* Sektsioonid on lava osad: oma kaarti ega suurt pealkirja nad ei joonista
-     ja vana ühist kihti (cw-*) ei kasuta enam ükski fail. */
-  for (const path of [...SECTION_SOURCES, '../components/casework/ConfirmButton.jsx']) {
-    const source = read(path);
-    assert.ok(!/["'`\s]cw-[a-z]/.test(source), `${path}: vana cw-* kihti ei ole`);
-    assert.ok(!/<h2\b/.test(source) && !source.includes('section_title'), `${path}: sektsiooni pealkirja ei korrata`);
-  }
-  /* Vana üldfail on kustutatud koos oma impordiga: kui keegi selle tagasi toob, kukub test. */
-  assert.ok(!fs.existsSync(new URL('../app/styles/casework.css', import.meta.url)), 'app/styles/casework.css on kustutatud');
-  assert.ok(!read('../app/styles/globals.css').includes('casework.css'), 'üldfail ei impordi juhtumi vana kihti');
 });

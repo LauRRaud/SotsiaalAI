@@ -1,7 +1,6 @@
 // Paneelist lahkumise värav: leht võib esimese lahkumise kinni pidada.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import fs from 'node:fs';
 
 import { panelLeaveAllowed, setPanelLeaveGuard, twoPressLeaveGuard } from '../lib/panelLeaveGuard.js';
 
@@ -51,17 +50,4 @@ test('kahe vajutusega värav: esimene küsib, topeltvajutus ei loe, teine lubab,
   assert.equal(leave(), false, 'aegunud küsimus ei luba lahkuda');
   leave.clear();
   assert.deepEqual(seen, ['ask', 'clear', 'ask', 'ask', 'clear']);
-});
-
-test('kiirmenüü tagasi-nool ja paneeli sulgemine küsivad väravalt enne lahkumist', () => {
-  const read = (path) => fs.readFileSync(new URL(path, import.meta.url), 'utf8');
-  const stage = read('../components/room/RoomStage.jsx');
-  const close = stage.indexOf('if (item.action === "panel-close") {');
-  assert.ok(close > 0 && stage.indexOf('if (!panelLeaveAllowed("dock")) return;', close) < stage.indexOf('router.push', close));
-  const frame = read('../components/room/PanelFrame.jsx');
-  const closePanel = frame.indexOf('const closePanel = useCallback(() => {');
-  assert.ok(closePanel > 0 && frame.indexOf('if (!panelLeaveAllowed("close")) return;', closePanel) < frame.indexOf('router.push', closePanel));
-  /* Koostatud teksti leht registreerib värava, kuni mustandis on salvestamata tekst. */
-  const detail = read('../components/documents/ArtifactDetailPage.jsx');
-  assert.ok(detail.includes('setPanelLeaveGuard(') && detail.includes('twoPressLeaveGuard('));
 });

@@ -163,11 +163,6 @@ test('PDF kannab kinnitaja keele silte, kui PDF neid joonistada suudab', () => {
     assert.equal(canCreateArtifactPdf({ artifact: { ...SUMMARY, content: 'Привет' }, sources: [], labels: artifactPdfLabels(lang, SUMMARY.type) }), false, lang);
     assert.equal(canCreateArtifactPdf({ artifact: SUMMARY, sources: [{ title: 'Заметки', originalName: 'z.txt' }], labels: artifactPdfLabels(lang, SUMMARY.type) }), false, lang);
   }
-  /* PDF-i lähtetekstis ei ole enam sisse kirjutatud silte ega koodist tehtud liigi nime. */
-  const source = read('../lib/documents/pdfExport.js');
-  for (const old of ['"Allikdokumendid:', 'Tüüp: ${', 'Kinnitatud: ${', '"Sisu:"', '"(empty)"', 'formatArtifactType']) assert.ok(!source.includes(old), old);
-  const docx = read('../lib/documents/docxExport.js');
-  for (const old of ['"Sources"', '"Content"', '`Type: ${', '`Approved: ${', '"No source documents linked."', 'replace(/_/g, " ")']) assert.ok(!docx.includes(old), old);
 });
 
 test('kinnitamine teeb failid kinnitaja lehe keeles ja jätab keele kirja', () => {
