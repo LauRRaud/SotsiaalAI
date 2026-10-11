@@ -54,6 +54,9 @@ export default async function OrgInboxItemPage({ params }) {
     notFound();
   }
 
+  /* Määramine ja üleandmine käivad töö määramise õigusega. Sulgemine käib koordinaatori
+     õigusega, mille server ütleb kirje küljes (`item.isCoordinator`); seda siin uuesti ei
+     arvutata. */
   const canAssign = hasCapability(context, "WORK_ASSIGNER", { unitId: item.unitId });
   /* Liikmete loend on määramise ja üleandmise valikuloend — seepärast ainult
      siis, kui inimene tohib määrata või on ise vastutaja. */

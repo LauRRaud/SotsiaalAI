@@ -16,10 +16,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { workActions } from '../components/org/inbox/inboxRules.js';
 import { serverT } from '../lib/i18n/serverMessages.js';
-import { WorkspaceContextKind } from '../lib/org/accessContext.js';
+import { WorkspaceContextKind, hasCapability } from '../lib/org/accessContext.js';
 import { INBOX_STATUS_TRANSITIONS, OrganizationInboxStatus, inboxStatusFollowsAssignment } from '../lib/org/constants.js';
-import { assignWork, getInboxItem, respondToAssignment, transitionInboxItem } from '../lib/org/inbox.js';
+import { assignWork, getInboxItem, handOverWork, respondToAssignment, transitionInboxItem } from '../lib/org/inbox.js';
 import { ROOM_WRITE, resolveRoomAccess } from '../lib/rooms/accessGuard.js';
 import { ensureRoomForPreInquiry } from '../lib/rooms/preInquiryRoom.js';
 
@@ -229,18 +230,31 @@ function agrees(state) {
   return !['ASSIGNED', 'ACCEPTED'].includes(state.item.status);
 }
 
-/** Lauale jõudnud kirje viiakse päris radu pidi soovitud seisu. */
-async function world(stage) {
+/**
+ * Lauale jõudnud kirje viiakse päris radu pidi soovitud seisu. „Suletud” kirje on enne määratud
+ * ja vastu võetud, „tagasi lükatud” kirjel ei ole vastutajat olnud; saatja tagasivõtmine ei käi
+ * nende radade kaudu ja pannakse kaksikule otse.
+ */
+async function world(stage, { assignee = 'mari' } = {}) {
   const made = makeDb();
-  const { db } = made;
+  const { db, state } = made;
   if (stage === 'RECEIVED') return made;
   if (stage === 'REVIEWING' || stage === 'ASSIGNMENT_PENDING') {
     await manual(db, stage, { now: ASSIGNED_AT });
     return made;
   }
-  const first = await assignWork(coordinator(), 'i1', { assigneeMembershipId: 'm-mari' }, { db, now: ASSIGNED_AT });
+  if (stage === 'REJECTED') {
+    await manual(db, stage, { now: LATER });
+    return made;
+  }
+  if (stage === 'RECALLED') {
+    Object.assign(state.inquiry, { status: 'RECALLED', openedAt: null, recalledAt: LATER });
+    Object.assign(state.item, { status: 'RECALLED', lastTransitionAt: LATER, closedAt: LATER });
+    return made;
+  }
+  const first = await assignWork(coordinator(), 'i1', { assigneeMembershipId: `m-${assignee}` }, { db, now: ASSIGNED_AT });
   if (stage === 'ASSIGNED') return { ...made, first };
-  await respondToAssignment(context('mari'), first.id, { accept: true }, { db, now: ACCEPTED_AT });
+  await respondToAssignment(context(assignee), first.id, { accept: true }, { db, now: ACCEPTED_AT });
   if (stage === 'ACCEPTED') return { ...made, first };
   await manual(db, stage, { now: LATER });
   return { ...made, first };
@@ -470,6 +484,74 @@ test('seisutabel on sama: määramine ja töötaja vastus küsivad luba sealt na
     );
     assert.equal(agrees(state), true, stage);
   }
+});
+
+/* LEHT PAKUB AINULT SEDA, MIDA SERVER LUBAB. Kirje lehe reegel (`workActions`) ei vaadanud
+   kirje seisu ja küsis sulgemiseks töö määramise õigust. Kolm juhtu, mille pärast see test on:
+     1. vastutajata kirjel („saabunud”, „vaatlemisel”, „ootab määramist”, ka pärast töötaja
+        tagasilükkamist) pakuti sulgemist, server lubab sealt ainult tagasilükkamise;
+     2. lõpetatud kirjel pakuti määramist ja sulgemist;
+     3. sulgemist pakuti töö määrajale, server nõuab koordinaatori õigust.
+   Iga seisu ja vaataja kohta loeb test kirje nii, nagu leht selle saab (`getInboxItem`), küsib
+   lehe reeglilt tegevused ja teeb seejärel iga tegevuse päriselt: pakutu õnnestub, pakkumata
+   jäetust server keeldub. */
+const VIEWERS = [
+  { name: 'koordinaator ja määraja', userId: 'koordinaator', capabilities: ['INBOX_COORDINATOR', 'WORK_ASSIGNER'], assignee: 'mari' },
+  { name: 'ainult koordinaator', userId: 'koordinaator', capabilities: ['INBOX_COORDINATOR'], assignee: 'mari' },
+  { name: 'koordinaator ja määraja, ise vastutaja', userId: 'koordinaator', capabilities: ['INBOX_COORDINATOR', 'WORK_ASSIGNER'], assignee: 'koordinaator' },
+  { name: 'määraja, ise vastutaja', userId: 'mari', capabilities: ['WORK_ASSIGNER'], assignee: 'mari' },
+  { name: 'vastutaja', userId: 'mari', capabilities: [], assignee: 'mari' }
+];
+/* Tegevus nii, nagu leht selle saadab. `null` = lehel ei ole, mida saata (määramist ei ole). */
+const PAGE_REQUESTS = {
+  assign: ({ db, viewer }) => assignWork(viewer, 'i1', { assigneeMembershipId: 'm-jüri' }, { db, now: NOW }),
+  accept: ({ db, viewer, seen }) => (seen.assignment ? respondToAssignment(viewer, seen.assignment.id, { accept: true }, { db, now: NOW }) : null),
+  reject: ({ db, viewer, seen }) => (seen.assignment ? respondToAssignment(viewer, seen.assignment.id, { accept: false }, { db, now: NOW }) : null),
+  handOver: ({ db, viewer, seen }) =>
+    seen.assignment ? handOverWork(viewer, seen.assignment.id, { toMembershipId: 'm-jüri' }, { db, now: NOW, releaseFromCalls: async () => {} }) : null,
+  close: ({ db, viewer }) => transitionInboxItem(viewer, 'i1', { toStatus: 'CLOSED' }, { db, now: NOW, ...callHooks().hooks })
+};
+const OFFER_OF = { assign: 'assign', accept: 'respond', reject: 'respond', handOver: 'handOver', close: 'close' };
+
+test('kirje leht pakub igas seisus ja igale vaatajale täpselt neid töö tegevusi, mida server lubab', async () => {
+  const mismatches = [];
+  let checked = 0;
+  for (const stage of Object.values(OrganizationInboxStatus)) {
+    for (const who of VIEWERS) {
+      const viewer = context(who.userId, who.capabilities);
+      for (const [request, send] of Object.entries(PAGE_REQUESTS)) {
+        const { db, state } = await world(stage, { assignee: who.assignee });
+        assert.equal(state.item.status, stage);
+        /* Kes kirjet ei näe, sellel lehte ei ole. */
+        const seen = await getInboxItem(viewer, 'i1', { db, now: NOW }).catch((error) => (error.status === 404 ? null : Promise.reject(error)));
+        if (!seen) continue;
+        const actions = workActions(seen, {
+          context: { writable: true, membership: viewer.membership },
+          canAssign: hasCapability(viewer, 'WORK_ASSIGNER', { unitId: seen.unitId })
+        });
+        const offered = Boolean(actions[OFFER_OF[request]]);
+        const attempt = send({ db, viewer, seen });
+        const outcome = attempt === null ? 'nothing to send' : await attempt.then(() => 'ok', (error) => `${error.status} ${error.message}`);
+        checked += 1;
+        if (offered !== (outcome === 'ok')) mismatches.push(`${stage}, ${who.name}: ${request} ${offered ? 'pakutakse' : 'ei pakuta'}, server: ${outcome}`);
+      }
+    }
+  }
+  assert.deepEqual(mismatches, []);
+  /* 8 seisu ja 5 vaatajat: vastutajata ja lõpetatud kirjet näevad ainult kolm koordinaatorit. */
+  assert.equal(checked, (6 * 3 + 2 * 5) * Object.keys(PAGE_REQUESTS).length);
+});
+
+test('ainult määramisõigusega vastutaja ei näe kirjet pärast töö äraandmist: leht viib ta loendisse', async () => {
+  /* Kirjet näeb koordinaator või elava töö vastutaja; töö määramise õigus üksi kirjet ei ava. */
+  const { db, first } = await world('ACCEPTED');
+  const assigner = context('mari', ['WORK_ASSIGNER']);
+  assert.equal((await getInboxItem(assigner, 'i1', { db, now: NOW })).isCoordinator, false);
+  await handOverWork(assigner, first.id, { toMembershipId: 'm-jüri' }, { db, now: NOW, releaseFromCalls: async () => {} });
+  await assert.rejects(getInboxItem(assigner, 'i1', { db, now: LATER }), (error) => error.status === 404);
+  /* Leht otsustab jäämise serveri öeldud `isCoordinator` järgi, mitte määramisõiguse järgi. */
+  const page = readFileSync(new URL('../components/org/OrgInboxItemClient.jsx', import.meta.url), 'utf8');
+  assert.ok(page.includes('if (item.isCoordinator) router.refresh();'));
 });
 
 test('leht saadab käsitsi ainult sulgemise ja keeldumise lause on kolmes keeles', () => {
