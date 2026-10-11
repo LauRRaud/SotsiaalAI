@@ -90,6 +90,42 @@ Arvud on kustutamise tööriista omad. See loeb kontrolliks ka kontrolliva abifu
 
 **Mida see ei tõenda.** Kustutatud kinnitused ei kaitsnud käitumist, aga mõni keeld hoidis kujunduse kokkulepet (brauseri kinnitusakent ei ole, paljaid sildivalijaid ei ole, vana ühist kihti ei kasutata). Neid kokkuleppeid hoiab nüüd ainult ülevaatus ja `AGENTS.md`.
 
+## Lõppseis (ööl vastu 12.10.2026, omaniku otsus)
+
+Pärast eelmist jaotist ütles omanik kahes sammus, et kustutada tuleb rohkem. Kõigepealt: „kustuta need ka“ nende kahe rühma kohta, mis eelmises jaotises alles jäid (167 kontrolli nimega kaitstud testides ning 182 kinnitust serveri koodi ja skeemi kohta). Siis: „2600 testi kustutad ka ära“. Tema eesmärk oli öeldud juba varem: „et ma saan pärast lihtsalt keele ja süntaksi testi teha, ja vajadusel veel mõned“.
+
+| | Enne seda sammu | Pärast |
+| --- | ---: | ---: |
+| Testifaile | 321 | 12 |
+| Teste | 2654 | 73 |
+
+Kustutatud on 309 testifaili (284 ühiktestide faili ja kõik 25 andmebaasi vajavat faili nimega `*.integration.test.mjs`) ning 9 abifaili, mida kasutasid ainult need (helinäidised, salvestatud lugemid, lehe asendajad). Kokku 71 553 rida. Kõik on Giti ajaloos alles: viimane commit enne kustutamist on `e12ba018`.
+
+**Mis kontrollib muudatust nüüd.** Keel (`npm run i18n:check`) ja süntaks (ESLint ja rakenduse ehitus). Mõlemad jooksevad väravas kogu repole.
+
+**12 faili, mis jäid (omaniku „vajadusel veel mõned“).** Valiku alus: test jääb ainult siis, kui vaikne viga tähendaks päris kahju ja keele ega süntaksi kontroll seda ei näe.
+
+| Kahju | Fail | Mida valvab |
+| --- | --- | --- |
+| Raha | `rag-cost` | AI päringu hinna arvutus; tundmatu kulu ei tohi paista tasuta |
+| Raha | `rag-v2-corpus-run` | tasuline korpuse ost: pooleli jäänud ostu ei tehta teist korda |
+| Raha | `rag-v2-capacity` | indeksi mahu piir, mille järgi ost planeeritakse |
+| Isikuandmed | `privacy-check` | isikuandmete märkaja enne teksti saatmist AI-le |
+| Turve | `same-origin-request` | muutev päring võõralt lehelt lükatakse tagasi |
+| Kriisiabi | `rag-v2-pilot-crisis-route` | kriisilause saab kriisiabi teate ka siis, kui kõik muu ebaõnnestub |
+| Andmete kustutamine | `deletion-completeness` | fail kustutatakse enne rida; viga ei jäta poolikut seisu |
+| Andmete kustutamine | `deletion-with-retired-index` | konto kustutamine jõuab lõpuni |
+| Hoidla | `rag-v2-store-pack` | serveri indeksi pakkimine ei kaota andmeid |
+| Paigaldus | `deploy-plan-release` | väljalase ei vii kaasa saladusi; skeemi muutus ilma migratsioonita ei lähe välja |
+| Keel | `server-message-keys` | serveri tõrkevõti on kataloogis lausena (muidu näeb inimene võtit) |
+| Keel | `call-error-text` | igal kõne tõrkekoodil on lause kolmes keeles |
+
+Need 12 faili jooksevad väravas (`npm test`) ja nende punane tulemus peatab paigalduse nagu enne. Kohalikult jooksid need läbi: 73 testi, 70 rohelist, 3 vahele jäetud (vajavad Linuxi kesta), 0 punast.
+
+**Mida enam ükski test ei kontrolli.** Õiguste ja rollide väravad (organisatsioon, koduteenus, ruumid, jagamised, superviisioon, mentorlus), RAG-i otsing, kohalugemine ja vastuse koostamine (umbes tuhat testi), dokumentide, Teekonna ja eelpöördumise reeglid, teenuseprofiili nimekontroll äriregistri vastu, tegevuslubade kontroll, kõik lehtede mudelid. Viga neis kohtades tuleb nüüd välja brauseris või päris kasutuses, mitte enne liitmist.
+
+**Jäägid, mida ei puudutatud.** Lähtekoodi kommentaarid umbes 40 failis nimetavad kustutatud testifaile; need on ainult kommentaarid. Kaust `tests/evaluation` (vestluse hindamise stsenaariumid, mida kasutavad skriptid) ja `tests/fixtures/rag-v2-municipal-packet.mjs` (kasutavad kaks mõõteskripti) jäid alles. Kaks hindamisskripti nimetavad oma päritolu arvutuses faili `tests/rag-v2-pilot.test.mjs`; puuduv fail neid ei peata.
+
 ## Kuidas loendati
 
 Iga testifail loeti süntaksipuuks ja iga `assert` liigitati selle järgi, kust tema võrreldav väärtus tuleb: failist loetud lähtekood, tekstikataloog, andmefail või arvutatud tulemus. Pisteline valim (28 rida) näitas, et liigitus eksib umbes ühel juhul kümnest, enamasti kataloogi ja lähtekoodi piiril; arvud on seega täpsed umbes kümnendiku piires. Ajalugu: iga faili `git log`, loetud read, mille commit eemaldas pärast faili loomist.

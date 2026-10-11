@@ -6,7 +6,6 @@
 // küsimine, kättesaadavuse kinnitus ja halduri kättesaadavuse leht vastasid alati 403.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
 import { isSameOriginRequest } from '../lib/security/sameOriginRequest.js';
 
 const ENV_KEYS = ['NEXTAUTH_URL', 'AUTH_URL', 'APP_URL'];
@@ -91,16 +90,4 @@ test('kõik seadistatud aadressid loevad; vigane seadistus ei luba midagi juurde
     assert.equal(isSameOriginRequest(request(INTERNAL, 'https://sotsiaal.pro')), false);
     assert.equal(isSameOriginRequest(request(INTERNAL, 'https://127.0.0.1:3000')), true);
   });
-});
-
-test('neli muutvat teed kasutavad seda kontrolli pärast õiguse kontrolli', () => {
-  for (const path of [
-    '../app/api/admin/service-representation/route.js',
-    '../app/api/admin/service-availability/route.js',
-    '../app/api/service-provider/profile/representation/route.js',
-    '../app/api/service-provider/profile/services/[serviceId]/availability-confirmation/route.js'
-  ]) {
-    const source = readFileSync(new URL(path, import.meta.url), 'utf8');
-    assert.match(source, /if \(!isSameOriginRequest\(request\)\) return errorJson\("api\.common\.forbidden", 403/u, path);
-  }
 });
