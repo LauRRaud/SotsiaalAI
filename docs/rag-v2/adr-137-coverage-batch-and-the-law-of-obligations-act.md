@@ -199,6 +199,43 @@ Nimekirjas oli vangla.ee (26 lehte), mida 10.10 lugeda ei saanud: iga aadress an
 | v79 | 405 | 69 406 | 0,0090 USD | `2c886587` | 9641 | 90 388 |
 
 Alus: omaniku nõusolek nimekirjale 10.10 („minu nõusolek on ka andmebaasi anda“); nimekirja ostud kokku 0,2927 USD minu pandud 0,35 USD laest. Vestlusplaan `/etc/sotsiaalai/m4-corpus-chat-20261011c.json`; järgmine alus põhikausta `tmp/rag-v2-prison/ship/policy.json` (9641 dokumenti). Mudeliga mõõtmata.
+## Järeltäiendus v82: tubakainfo.ee ja kestlehtede taga olnud dokumendid (11.10.2026)
+
+Omanik 11.10.2026, kui küsisin kahe lahtise asja kohta: „jah, need pdf-id tuleb alla laadida ja võrrelda, kas mul on. tubaka ja nikotiini teema on ka oluline.“ Ostu kohta (lagi 0,04 USD): „jah“.
+
+**tubakainfo.ee (Tervise Arengu Instituut): 27 lehte, 10 078 sõna.** Saidi enda saidikaardis on 69 lehte; eestikeelseid 35. Loeti 31, reegel valis 29 (kaks on alla 30 sõna), lehe haaval jäid välja avaleht (bänneri tekst) ja üks viitaleht. Ette jäid välja venekeelsed koopiad, kolm testi ja 2020. aasta koroonaleht. Leht aadressil `/kontakt/` ei ole kontaktide loend, vaid „Kuhu pöörduda, et saada abi tubakast loobumiseks?“, ja läks sisse. Kontroll enne pakkimist: ükski lõik ei nimeta inimest, e-posti aadresse ei ole, saidi korduvat plokki ei ole. Lehed on nimekirjas `web_pages_coverage_1.json` ja igakuise uuenduse seisus.
+
+**Kestlehed.** Kestleht on leht, kus on pealkiri ja faili link ning sisu on failis; korjaja luges lehe, reegel jättis selle alla 30 sõna tõttu välja ja faili ei toonud keegi. v76 lugemises oli alla 30 sõnaga lehti 45. Päris fail oli taga kümnel (`tmp/rag-v2-v82/tools/shell-pdfs.mjs`): Tervisekassa seitse infomaterjali, Tartu Ülikooli Kliinikumi kaks patsiendimaterjali ja Sotsiaalkindlustusameti koduteenuse leht 13 failiga. Ülejäänud on saidil endal tühjad: sotsiaaltöö assotsiatsiooni eetika käsiraamatu seitse teemalehte (failiks on näidisleht), Kliinikumi viis patsiendiinfo lehte, lasteabi.ee jaotiste lehed; või on need valikulehed (toidupanga piirkonnad, alkoinfo tööriistad). Assotsiatsiooni eetika lehelt tuli lisaks sotsiaalvaldkonna töötaja eetikakoodeks.
+
+**Võrdlus sellega, mis juba olemas on** (`tools/compare-have.mjs`, `tools/compare-text-all.mjs`): alla laaditi 15 faili ja igaüht võrreldi kolmel viisil: samad baidid (kõik `Andmebaasi` kausta PDF-id ja registri kirjed), sama tekst (faili viiesõnaliste järjendite valim otsiti üles iga `Andmebaasi` PDF-i tekstist) ja sama aadress või pealkiri (register, ametlike dokumentide nimekiri, korpuse dokumendid väljaspool hoidlat).
+
+| Fail | Tulemus |
+|---|---|
+| Koduteenuse juhend (Sotsiaalkindlustusamet, 2024) | kogus (v65), sama aadress; samad baidid ka uudiskirja kaustas |
+| Koduteenuse kvaliteedijuhis | kogus (v65), sama aadress |
+| Koduteenuse lihtsustatud kulumudeli juhend | kogus (v65), sama aadress |
+| Koduteenuste korraldus (Riigikontroll, 2023) | kogus, samad baidid |
+| Sünnitusjärgne depressioon (Tervisekassa) | kogus on varasem trükk, tekstist 82% sama; ei lisatud ega asendatud |
+| Depressioonivihik | ei sobi: PDF-i tekstikihis puuduvad sõnavahed |
+| Insult (Kliinikum, 2 lk) | ei sobi: skaneeritud pilt, tekstikihti ei ole |
+| Kas oled mõelnud alkoholitarvitamise vähendamise peale? | välja jäetud: ühe lehe kaart, umbes 110 sõna, samad piirid on alkoinfo.ee lehtedel |
+| Sotsiaalvaldkonna töötaja eetikakoodeks (Eesti Sotsiaaltöö Assotsiatsioon, 2022) | **uus, lisatud** (5 lk, 1 420 sõna) |
+| Koduteenuse teenusedisaini projekti raport (Sotsiaalkindlustusamet, 2022) | **uus, lisatud** (65 lk, 19 600 sõna) |
+| Insuldipatsiendi infomaterjal: Elu pärast insulti (Tartu Ülikooli Kliinikum, 2021) | **uus, lisatud** (60 lk, 9 394 sõna) |
+| Alkoholi liigtarvitamine – mis see on ja kust saab abi (Tervisekassa, 2021) | **uus, lisatud** (12 lk, 1 564 sõna) |
+| Vaevuste leevendamine palliatiivses ravis (Tervisekassa, 2023) | **uus, lisatud** (44 lk, 6 493 sõna) |
+| Vähem alkoholi. Kas ja kuidas? (Tervisekassa, 2021) | **uus, lisatud** (16 lk, 1 298 sõna) |
+| Ärevuse töövihik (Tervisekassa, 2019) | **uus, lisatud** (15 lk, 5 588 sõna) |
+
+Koduteenuse lehe kaheksa seminari slaidiesitlust jäid välja (slaidid, pealkirjas esineja nimi). Dokumentide aadressiks on faili enda ametlik aadress; metaandmetes on ka leht, mille küljes fail on. Liik on infomaterjal, teenusedisaini raportil uuring.
+
+Kaks partiid (lehed, siis dokumendid) avaldati kohalikus hoidlas üksteise järel. Teise partii plaan tuleb teha pärast esimese avaldamist: enne tehtud plaaniga annab avaldamine `batch_review_stale_generation`.
+
+| Käik | Dokumente | Sisendeid ostetud | Märke | Hind | Indeks | Dokumente kokku | Lõike kokku |
+|---|---:|---:|---:|---:|---|---:|---:|
+| v82 | 34 | 448 | 184 012 | 0,0239 USD | `ec1defd0` | 9 769 | 91 158 |
+
+Vestlusplaan `/etc/sotsiaalai/m4-corpus-chat-20261011f.json`; järgmine alus põhikausta `tmp/rag-v2-v82/ship/policy.json`. Mudeliga mõõtmata.
 ## Kus lehed on
 
 Lehtede tekstid ei ole repos: valikureegel võtab neist lõike välja, aga igakuine ametlike lehtede uuendus ([ADR-116](adr-116-official-pages-monthly-refresh.md)) seda reeglit ei tunne ja asendaks koopia lugeja omaga. Tekstid on põhikausta `tmp/rag-v2-v76/sources/veebilehed` all ja registrid loetlevad need pealkirja ja aadressiga. Võlaõigusseaduse failid on repos (`Andmebaasi/oigusaktid`).
@@ -206,7 +243,7 @@ Lehtede tekstid ei ole repos: valikureegel võtab neist lõike välja, aga igaku
 ## Lahtine
 
 - Need 564 lehte ei ole igakuises uuenduses. Uuendus peaks enne oskama valikureeglit.
-- PDF-id, millele kestlehed viitavad (Tervisekassa infomaterjalid, eetika käsiraamat, lasteabi käsiraamat).
+- ~~PDF-id, millele kestlehed viitavad.~~ Tehtud v82-s (vt järeltäiendus): seitse uut dokumenti sees; eetika käsiraamat ja lasteabi käsiraamat on saidil endal tühjad. Lahti: Tervisekassa „Sünnitusjärgne depressioon“ uus trükk (kogus on varasem), kaks faili ilma loetava tekstita.
 - ~~Vanglast vabanemine~~ (sees alates v79, vt järeltäiendus). Töötukassa: omaniku otsus, kas küsida neilt luba või andmeid.
-- Venekeelsed koopiad: omanik 11.10.2026 „seda ka pigem ei pane“; ei lisata. tubakainfo.ee on endiselt tema otsustada ja jäi välja.
+- Venekeelsed koopiad: omanik 11.10.2026 „seda ka pigem ei pane“; ei lisata. ~~tubakainfo.ee~~ sees alates v82 (omanik 11.10.2026: „tubaka ja nikotiini teema on ka oluline“).
 - ~~Mudeliga mõõtmata: kas vastused uusi lehti kasutavad.~~ Mõõdetud 11.10 (osa „Tasuline vastuste kontroll“).

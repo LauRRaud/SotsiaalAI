@@ -16,9 +16,9 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | taastatud_allikad | 0 | 22 | Serveri vanast indeksist taastatud tekst. Enne importi võrrelda põhipakettidega. |
 
 <!-- corpus-state:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
-## RAG-i seis: mis on serveris (korpus v81)
+## RAG-i seis: mis on serveris (korpus v82)
 
-Seis 11.10.2026: serveris töötav RAG (korpus **v81**, indeks `f66fd13d`) sisaldab **9 735 dokumenti** (90 707 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
+Seis 11.10.2026: serveris töötav RAG (korpus **v82**, indeks `ec1defd0`) sisaldab **9 769 dokumenti** (91 158 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
 
 | Mis on RAG-is | Dokumente | Kus on loend |
 |---|---:|---|
@@ -27,13 +27,13 @@ Seis 11.10.2026: serveris töötav RAG (korpus **v81**, indeks `f66fd13d`) sisal
 | Omavalitsuste kontaktid | 1638 | faili lõpus arvudena omavalitsuste kaupa (nimesid siia ei kirjutata) |
 | Ajakirja Sotsiaaltöö artiklid | 892 | jaotis „Sisufailid“ |
 | Õigusaktid | 594 | jaotis „Sisufailid“ |
-| Juhendid, infomaterjalid ja uuringud | 429 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
-| Ametlikud juhislehed (ametite veebilehed) | 950 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
+| Juhendid, infomaterjalid ja uuringud | 436 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
+| Ametlikud juhislehed (ametite veebilehed) | 977 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
 | Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) | 942 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Hooldekodude kohamaksumus omavalitsuste kaupa | 79 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müügi- ja üüripunktid | 93 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müüjate lehed | 51 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
-| **Kokku** | **9735** | |
+| **Kokku** | **9769** | |
 
 <details><summary>Tehniline jaotus arendajale: kus allikafailid asuvad</summary>
 
@@ -47,7 +47,7 @@ Dokumentide arvud ei võrdu ülal olevate failide arvudega: üks fail võib anda
 | `veebilehed` | 361 | web_page 360, research_report 1 |
 | `juhendid_ja_uuringud` | 171 | information_material 81, research_report 46, official_guideline 38, policy_analysis 6 |
 
-Koodihoidlas (GitHub) ei ole 3219 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
+Koodihoidlas (GitHub) ei ole 3253 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
 
 | Allikas | Dokumente | Millest tehakse | Miks ei ole koodihoidlas |
 |---|---:|---|---|
@@ -56,8 +56,8 @@ Koodihoidlas (GitHub) ei ole 3219 dokumendi allikafaile; need on korpuse hoidlas
 | Abivahendite müügi- ja üüripunktide lehed | 93 | Sotsiaalkindlustusameti kaarditabelist skriptiga `scripts/rag-v2-assistive-points.mjs`, iga omavalitsuse kohta üks leht (ADR-096) | punktide telefoninumbrid; leht tehakse tabelist uuesti |
 | Abivahendite müüjate lehed | 51 (18 väljaandjat) | nimekiri `register/web_pages_vendors.json`, korjaja `scripts/rag-v2-web-pages.mjs` (ADR-095) | ettevõtete enda tekstid ja telefoninumbrid |
 | Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) | 942 (59 väljaandjat) | nimekirjad `register/web_pages_organisations.json`, `register/web_pages_associations.json` ja `register/web_pages_associations_2.json` ning nimekirjade `register/web_pages_coverage_1.json` ja `_2.json` organisatsioonid, korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-095, ADR-137, ADR-140) | organisatsioonide enda tekstid |
-| Asutuste juhislehed, valitud reegliga | 590 (11 väljaandjat) | nimekirjad `register/web_pages_coverage_1.json` ja `register/web_pages_coverage_2.json`, korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-137) | valik võtab lehest välja isikut nimetavad lõigud; repos olevate lehtede igakuine uuendus asendaks sellise koopia lugeja omaga |
-| Uuringud ja juhendid väljaandja ametlikult aadressilt | 257 (30 väljaandjat) | asutuste veebilehtede uuringute ja juhendite loenditest ning ajakirja Sotsiaaltöö uudiskirjas viidatud dokumentidest (`register/newsletter_documents.json`); iga fail on alla laaditud väljaandja ametlikult aadressilt | suured failid; allikas on ametlik aadress |
+| Asutuste juhislehed, valitud reegliga | 617 (11 väljaandjat) | nimekirjad `register/web_pages_coverage_1.json` ja `register/web_pages_coverage_2.json`, korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-137) | valik võtab lehest välja isikut nimetavad lõigud; repos olevate lehtede igakuine uuendus asendaks sellise koopia lugeja omaga |
+| Uuringud ja juhendid väljaandja ametlikult aadressilt | 264 (33 väljaandjat) | asutuste veebilehtede uuringute ja juhendite loenditest ning ajakirja Sotsiaaltöö uudiskirjas viidatud dokumentidest (`register/newsletter_documents.json`); iga fail on alla laaditud väljaandja ametlikult aadressilt | suured failid; allikas on ametlik aadress |
 
 Koodihoidla allikafailid, mida RAG-is ei ole (61):
 
@@ -2357,7 +2357,7 @@ Koodihoidla allikafailid, mida RAG-is ei ole (61):
 <!-- corpus-outside:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
 ## RAG-is olevad lehed ja kontaktid
 
-Serveris töötav RAG, korpus v81, 11.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
+Serveris töötav RAG, korpus v82, 11.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
 
 ### Hooldekodude kohamaksumuse lehed (79)
 
@@ -3544,7 +3544,7 @@ Serveris töötav RAG, korpus v81, 11.10.2026. Siin on loend sellest, mida jaoti
 | Võrumaa Puuetega Inimeste Koda | PIK ringid | <https://www.vorukoda.ee/tegevused/pik-ringid> |
 | Võrumaa Puuetega Inimeste Koda | TASUTA ÕIGUSABI ERIVAJADUSTEGA INIMESTELE | <https://www.vorukoda.ee/tasuta-oigusabi-erivajadustega-inimestele> |
 
-### Asutuste juhislehed, valitud reegliga (590)
+### Asutuste juhislehed, valitud reegliga (617)
 
 | Väljaandja | Pealkiri | Aadress |
 |---|---|---|
@@ -3836,6 +3836,7 @@ Serveris töötav RAG, korpus v81, 11.10.2026. Siin on loend sellest, mida jaoti
 | Tartu Ülikooli Kliinikum | Sotsiaaltöötaja teenus kliinikumis | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/sotsiaaltootaja-teenus-kliinikumis/> |
 | Tartu Ülikooli Kliinikum | Vähktõvega patsiendi hingehoidlik toetamine hematoloogia-onkoloogia kliinikus | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/vahktovega-patsiendi-hingehoidlik-toetamine-hematoloogia-onkoloogia-kliinikus/> |
 | Tartu Ülikooli Kliinikum | Üldistunud ärevushäire | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/uldistunud-arevushaire/> |
+| Tervise Arengu Instituut | 25 põhjust tubakast ja nikotiinist loobumiseks | <https://www.tubakainfo.ee/miks-suitsetamisest-loobuda/25-pohjust-suitsetamisest-loobumiseks/> |
 | Tervise Arengu Instituut | Abivõimalused lastele ja noortele | <https://www.narko.ee/abivoimalused-noortele> |
 | Tervise Arengu Instituut | Abivõimalused sõjapõgenikele | <https://www.narko.ee/siit-saad-abi/abivoimalused-sojapogenikele> |
 | Tervise Arengu Instituut | Ainejäägiga esemete testimise tulemused | <https://www.narko.ee/kogukond/testimine-tulemused> |
@@ -3856,6 +3857,7 @@ Serveris töötav RAG, korpus v81, 11.10.2026. Siin on loend sellest, mida jaoti
 | Tervise Arengu Instituut | Ayahuasca | <https://www.narko.ee/ained/ayahuasca-caapi-hoasca-vegetal-yage-mihi-dapa> |
 | Tervise Arengu Instituut | Bensodiasepiinid (rahustid) | <https://www.narko.ee/ained/bensodiasepiinid> |
 | Tervise Arengu Instituut | Binge drinking ehk purjutamine | <https://alkoinfo.ee/et/millal-vahendada/ule-piiride/binge-drinking-ehk-purjutamine> |
+| Tervise Arengu Instituut | E-sigaret | <https://www.tubakainfo.ee/mis-on-sigaretis/e-sigaret/> |
 | Tervise Arengu Instituut | Eakad | <https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/eakad> |
 | Tervise Arengu Instituut | Eesmargi seadmine | <https://alkoinfo.ee/et/kuidas-vahendada/kas-muutuda-kas-vahendada/eesmargi-seadmine> |
 | Tervise Arengu Instituut | Efedriin | <https://www.narko.ee/ained/efedriin> |
@@ -3882,7 +3884,9 @@ Serveris töötav RAG, korpus v81, 11.10.2026. Siin on loend sellest, mida jaoti
 | Tervise Arengu Instituut | Kodeiin | <https://www.narko.ee/ained/kodeiin> |
 | Tervise Arengu Instituut | Kokaiin | <https://www.narko.ee/ained/kokaiin> |
 | Tervise Arengu Instituut | Korduma kippuvad küsimused | <https://www.narko.ee/kogukond/korduma-kippuvad-kusimused> |
+| Tervise Arengu Instituut | Kortermaja elanikule | <https://www.tubakainfo.ee/passiivne-suitsetamine/kortermaja-elanikule/> |
 | Tervise Arengu Instituut | Kuhu poorduda | <https://alkoinfo.ee/et/kuidas-vahendada/spetsialisti-abi/kuhu-poorduda> |
+| Tervise Arengu Instituut | Kuhu pöörduda, et saada abi tubakast loobumiseks? | <https://www.tubakainfo.ee/kontakt/> |
 | Tervise Arengu Instituut | Kui lähedane joob | <https://alkoinfo.ee/et/lahedastele> |
 | Tervise Arengu Instituut | Kuidas aidata lahedast | <https://alkoinfo.ee/et/lahedastele/kuidas-aidata-lahedast> |
 | Tervise Arengu Instituut | Kuidas aru saada, et lähedane tarvitab uimasteid? | <https://www.narko.ee/lahedased/kuidas-aru-saada-et-lahedane-tarvitab-uimasteid> |
@@ -3907,10 +3911,14 @@ Serveris töötav RAG, korpus v81, 11.10.2026. Siin on loend sellest, mida jaoti
 | Tervise Arengu Instituut | Kuidas vähendada kanepitarvitamise riske | <https://www.narko.ee/tarvitajad/kuidas-vahendada-tarvitamisega-kaasnevaid-ohte/kuidas-vahendada-kanepitarvitamise-riske> |
 | Tervise Arengu Instituut | Kuidas vähendada tarvitamisega kaasnevaid ohte? | <https://www.narko.ee/tarvitajad/kuidas-vahendada-tarvitamisega-kaasnevaid-ohte> |
 | Tervise Arengu Instituut | Kuidas vähendada? | <https://alkoinfo.ee/et/kuidas-vahendada> |
+| Tervise Arengu Instituut | Kuidas öelda EI? | <https://www.tubakainfo.ee/dr-suits/kuidas-oelda-ei/> |
 | Tervise Arengu Instituut | Kuritarvitamine ja soltuvus | <https://alkoinfo.ee/et/millal-vahendada/ule-piiride/kuritarvitamine-ja-soltuvus> |
 | Tervise Arengu Instituut | Kust tulevad „narkomaanid”? | <https://www.narko.ee/kogukond> |
+| Tervise Arengu Instituut | Kuumutatavad tubakatooted | <https://www.tubakainfo.ee/mis-on-sigaretis/kuumutatavad-tubakatooted/> |
 | Tervise Arengu Instituut | Kärbseseen | <https://www.narko.ee/ained/karbseseen> |
 | Tervise Arengu Instituut | Liigtarvitamise astmed | <https://alkoinfo.ee/et/millal-vahendada/ule-piiride/liigtarvitamise-astmed> |
+| Tervise Arengu Instituut | Loobu tubakast ja nikotiinist | <https://www.tubakainfo.ee/loobu-suitsetamisest/> |
+| Tervise Arengu Instituut | Loobumisplaan | <https://www.tubakainfo.ee/loobu-suitsetamisest/loobumisplaan/> |
 | Tervise Arengu Instituut | Loogastumine | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-sailitamine/loogastumine> |
 | Tervise Arengu Instituut | LSD | <https://www.narko.ee/ained/lsd> |
 | Tervise Arengu Instituut | Luulusalvei, salvia | <https://www.narko.ee/ained/luulusalvei-salvia> |
@@ -3927,6 +3935,7 @@ Serveris töötav RAG, korpus v81, 11.10.2026. Siin on loend sellest, mida jaoti
 | Tervise Arengu Instituut | Mida teha, kui sõber tarvitab uimasteid? | <https://www.narko.ee/noored/mida-teha-kui-sober-tarvitab-uimasteid> |
 | Tervise Arengu Instituut | Miks ja kuidas tekib sõltuvus ning miks on raske sellest vabaneda? | <https://www.narko.ee/narkootikumide-moju-kehale/miks-ja-kuidas-tekib-soltuvus-ning-miks-on-raske-sellest-vabaneda> |
 | Tervise Arengu Instituut | Miks on uimastid ohtlikud? | <https://www.narko.ee/noored/miks-on-uimastid-ohtlikud> |
+| Tervise Arengu Instituut | Miks tubakatoodetest loobuda? | <https://www.tubakainfo.ee/miks-suitsetamisest-loobuda/> |
 | Tervise Arengu Instituut | Miks uimasteid proovitakse | <https://www.narko.ee/noored/uimastite-proovimise-pohjused> |
 | Tervise Arengu Instituut | Millal poorduda spetsialisti poole | <https://alkoinfo.ee/et/kuidas-vahendada/spetsialisti-abi/millal-poorduda-spetsialisti-poole> |
 | Tervise Arengu Instituut | Millal vähendada? | <https://alkoinfo.ee/et/millal-vahendada> |
@@ -3951,8 +3960,11 @@ Serveris töötav RAG, korpus v81, 11.10.2026. Siin on loend sellest, mida jaoti
 | Tervise Arengu Instituut | Narkootikumidega seotud seadusandlusest Eestis | <https://www.narko.ee/olukord-eestis/eesti-seadusandlus> |
 | Tervise Arengu Instituut | Narkootiliste ja psühhotroopsete ainete andmebaas | <https://www.narko.ee/mis-on-uimastid-ja-kuidas-neid-liigitatakse/narkootiliste-ja-psuhhotroopsete-ainete-andmebaas> |
 | Tervise Arengu Instituut | Narkosüütegude märkamine ja neist teavitamine | <https://www.narko.ee/kogukond/narkosuutegude-markamine-ja-neist-teavitamine> |
+| Tervise Arengu Instituut | Nikotiini võõrutusnähud | <https://www.tubakainfo.ee/loobu-suitsetamisest/nikotiini-voorutusnahud/> |
+| Tervise Arengu Instituut | Nikotiinipadi | <https://www.tubakainfo.ee/mis-on-sigaretis/nikotiinipadi/> |
 | Tervise Arengu Instituut | Nitaseenid | <https://www.narko.ee/ained/nitaseenid> |
 | Tervise Arengu Instituut | Noored | <https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/noored> |
+| Tervise Arengu Instituut | Nõuanded | <https://www.tubakainfo.ee/passiivne-suitsetamine/nouanded/> |
 | Tervise Arengu Instituut | Nõuanded festivalikülastajatele | <https://www.narko.ee/tarvitajad/nouanded-festivalikulastajale> |
 | Tervise Arengu Instituut | Nõustamisprogramm kanepitarvitajatele (VALIK programm) | <https://www.narko.ee/siit-saad-abi/noustamisprogramm-kanepitarvitajatele> |
 | Tervise Arengu Instituut | Ohutum süstimine | <https://www.narko.ee/tarvitajad/kuidas-vahendada-tarvitamisega-kaasnevaid-ohte/ohutum-sustimine> |
@@ -3960,6 +3972,8 @@ Serveris töötav RAG, korpus v81, 11.10.2026. Siin on loend sellest, mida jaoti
 | Tervise Arengu Instituut | Oma mustrite teadvustamine | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine/oma-mustrite-teadvustamine> |
 | Tervise Arengu Instituut | Oopium | <https://www.narko.ee/ained/oopium> |
 | Tervise Arengu Instituut | Pankreatiit | <https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/pankreatiit> |
+| Tervise Arengu Instituut | Passiivne suitsetamine | <https://www.tubakainfo.ee/passiivne-suitsetamine/> |
+| Tervise Arengu Instituut | Passiivse suitsetamise ja veipimise ohud | <https://www.tubakainfo.ee/passiivne-suitsetamine/passivsed-tubakatooted/> |
 | Tervise Arengu Instituut | Plussid miinused | <https://alkoinfo.ee/et/kuidas-vahendada/kas-muutuda-kas-vahendada/plussid-miinused> |
 | Tervise Arengu Instituut | Pohmell | <https://alkoinfo.ee/et/moju/alkoholi-toime/pohmell> |
 | Tervise Arengu Instituut | Positiivsed muutused | <https://alkoinfo.ee/et/kuidas-vahendada/kas-muutuda-kas-vahendada/plussid-miinused/positiivsed-muutused> |
@@ -3978,13 +3992,25 @@ Serveris töötav RAG, korpus v81, 11.10.2026. Siin on loend sellest, mida jaoti
 | Tervise Arengu Instituut | Spetsialisti abi | <https://alkoinfo.ee/et/kuidas-vahendada/spetsialisti-abi> |
 | Tervise Arengu Instituut | Sport | <https://alkoinfo.ee/et/moju/moju-elukvaliteedile/sport> |
 | Tervise Arengu Instituut | Sudame ja veresoonkond | <https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/sudame-ja-veresoonkond> |
+| Tervise Arengu Instituut | Suitsetamine ja veipimine siseruumides ja välisõhus | <https://www.tubakainfo.ee/passiivne-suitsetamine/kodus-autos-oues/> |
+| Tervise Arengu Instituut | Suitsetamise mõju elustiilile ja rahakotile | <https://www.tubakainfo.ee/miks-suitsetamisest-loobuda/suitsetamise-moju-elustiilile-ja-raha-kulu/> |
+| Tervise Arengu Instituut | Suitsetamise mõju lastele ja rasedatele | <https://www.tubakainfo.ee/passiivne-suitsetamine/suitsetamise-moju-lastele-ja-rasedatele/> |
+| Tervise Arengu Instituut | Suitsetatavad tubakatooted | <https://www.tubakainfo.ee/mis-on-sigaretis/suitsetatavad-tubakatooted/> |
+| Tervise Arengu Instituut | Suitsuvabad tubakatooted | <https://www.tubakainfo.ee/mis-on-sigaretis/suitsuvabad-tubakatooted/> |
+| Tervise Arengu Instituut | Sõltuvuse teke tubakatoodetest | <https://www.tubakainfo.ee/mis-on-sigaretis/suitsetamise-soltuvuse-teke/> |
 | Tervise Arengu Instituut | Sõltuvusravi, sh opioidisõltuvuse asendusravi | <https://www.narko.ee/siit-saad-abi/soltuvusravi-sh-opoiodisoltuvuse-asendusravi> |
 | Tervise Arengu Instituut | Sünteetilised opioidid – fentanüülid, nitaseenid, orfiinid | <https://www.narko.ee/ained/sunteetilised-opioidid> |
 | Tervise Arengu Instituut | Tagasilangused | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-sailitamine/tagasilangused> |
 | Tervise Arengu Instituut | Tasuta sotsiaal- ja õigusabi ning tervishoiuteenused ravikindlustamata inimestele | <https://www.narko.ee/siit-saad-abi/tasuta-sotsiaal-ja-oigusabi> |
+| Tervise Arengu Instituut | Tee otsus – loobu nikotiinist! | <https://www.tubakainfo.ee/loobu-suitsetamisest/tee-otsus/> |
 | Tervise Arengu Instituut | Tolerants | <https://alkoinfo.ee/et/millal-vahendada/ule-piiride/kuritarvitamine-ja-soltuvus/tolerants> |
 | Tervise Arengu Instituut | Top 8 põhjust, miks noored narkootikume tarvitavad | <https://www.narko.ee/noored/top-8-pohjust-miks-noored-narkootikume-tarvitavad-2> |
 | Tervise Arengu Instituut | Tsüklorfiin, spirokolrfiin | <https://www.narko.ee/ained/tsuklorfiin> |
+| Tervise Arengu Instituut | Tubaka ja ravimite koostarvitamise mõju | <https://www.tubakainfo.ee/mis-on-sigaretis/ravimitega-koosmoju/> |
+| Tervise Arengu Instituut | Tubakast ja nikotiinist loobumise nõustamine | <https://www.tubakainfo.ee/loobu-suitsetamisest/noustamiskabinetid/> |
+| Tervise Arengu Instituut | Tubakatoodete mõju keskkonnale | <https://www.tubakainfo.ee/miks-suitsetamisest-loobuda/suitsetamise-moju-keskkonnale/> |
+| Tervise Arengu Instituut | Tubakatoodete mõju tervisele ja välimusele | <https://www.tubakainfo.ee/miks-suitsetamisest-loobuda/suitsetamise-moju-tervisele/> |
+| Tervise Arengu Instituut | Tubakatooted | <https://www.tubakainfo.ee/mis-on-sigaretis/> |
 | Tervise Arengu Instituut | Uimasteid tarvitajate inimeste häbimärgistamine | <https://www.narko.ee/kogukond/stigmatiseerimine-ja-selle-moju> |
 | Tervise Arengu Instituut | Uimastiga kokku puutunud esemete testimine | <https://www.narko.ee/kogukond/testimine> |
 | Tervise Arengu Instituut | Uimastite tarvitamise faasid | <https://www.narko.ee/tarvitajad/uimastite-tarvitamise-faasid> |
@@ -3999,6 +4025,7 @@ Serveris töötav RAG, korpus v81, 11.10.2026. Siin on loend sellest, mida jaoti
 | Tervise Arengu Instituut | Vannisoolad | <https://www.narko.ee/ained/vannisoolad> |
 | Tervise Arengu Instituut | Voorutusnahud | <https://alkoinfo.ee/et/millal-vahendada/ule-piiride/kuritarvitamine-ja-soltuvus/voorutusnahud> |
 | Tervise Arengu Instituut | Vota alkoholist puhkust | <https://alkoinfo.ee/et/kuidas-vahendada/kuidas-juua-vahem/vota-alkoholist-puhkust> |
+| Tervise Arengu Instituut | Ära alusta! | <https://www.tubakainfo.ee/dr-suits/ara-alusta/> |
 | Tervise Arengu Instituut | Üledoosi tunnused ja kuidas aidata | <https://www.narko.ee/tarvitajad/kuidas-vahendada-tarvitamisega-kaasnevaid-ohte/uledoosi-tunnused-ja-kuidas-aidata> |
 | Tervisekassa | Alkoholi liigtarvitamine – mis see on ja kust saab abi | <https://www.tervisekassa.ee/infomaterjalid/alkoholi-liigtarvitamine-mis-see-ja-kust-saab-abi> |
 | Tervisekassa | Taastusravi | <https://www.tervisekassa.ee/taastusravi> |
@@ -4139,7 +4166,7 @@ Serveris töötav RAG, korpus v81, 11.10.2026. Siin on loend sellest, mida jaoti
 | Vanglateenistus | Üldkasulik töö | <https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/kriminaalhooldus/uldkasulik-too> |
 | Vanglateenistus | Üldkasuliku töö partnerile | <https://vanglateenistus.ee/koostoopartnerile-ja-vabatahtlikule/uldkasulik-too-ja-vabatahtlik-too/uldkasuliku-too-partnerile> |
 
-### Uuringud ja juhendid väljaandja ametlikult aadressilt (257)
+### Uuringud ja juhendid väljaandja ametlikult aadressilt (264)
 
 | Väljaandja | Pealkiri | Aadress |
 |---|---|---|
@@ -4163,6 +4190,7 @@ Serveris töötav RAG, korpus v81, 11.10.2026. Siin on loend sellest, mida jaoti
 | Eesti Puuetega Inimeste Koda | Elu erilise lapsega – toimetulek ja vajadused. Uuringu raport | <https://www.epikoda.ee/wp-content/uploads/2018/09/Elu_erilise_lapsega_toimetulek_ja_vajadused_uuringu_kokkuvote.pdf> |
 | Eesti Puuetega Inimeste Koda | Puuetega inimeste eluolu Eestis. ÜRO puuetega inimeste õiguste konventsiooni täitmise variraport | <https://epikoda.ee/wp-content/uploads/2025/09/EPIK_variraport_webi.pdf> |
 | Eesti Rakendusuuringute Keskus Centar | Tööga seotud sotsiaalkaitsemudelid ja nende sobivus alternatiivsete tööturuarengute korral | <https://centar.ee/pdf/ee/2018_Tooga_seotud_sotsiaalkaitse_mudelid_ja_nende_sobivus_alternatiivsete_tooturuarengute_korral_Eestis.pdf> |
+| Eesti Sotsiaaltöö Assotsiatsioon | Sotsiaalvaldkonna töötaja eetikakoodeks | <https://www.eswa.ee/wp-content/uploads/2026/05/sotsiaalvaldkonna-tootaja-koodeks.pdf> |
 | Haridus- ja Noorteamet | Noorteinfo käsiraamat | <https://www.teeviit.ee/wp-content/uploads/2025/10/noorteinfo-kasiraamat-2025-1.pdf> |
 | Haridus- ja Teadusministeerium | 19–26aastaste noorte noorsootöös osalemise motivatsioon | <https://www.hm.ee/sites/default/files/documents/2022-10/19-26_osalemine_noorsootoos.pdf> |
 | Haridus- ja Teadusministeerium | Eesti noortevaldkonna töötajaskonna töötingimused | <https://www.hm.ee/sites/default/files/documents/2024-01/Eesti%20noortevaldkonna%20to%CC%88o%CC%88tajaskonna%20to%CC%88o%CC%88tingimused_2.pdf> |
@@ -4251,6 +4279,7 @@ Serveris töötav RAG, korpus v81, 11.10.2026. Siin on loend sellest, mida jaoti
 | Sotsiaalkindlustusamet | Koduteenuse juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-06/Koduteenuse%20juhend_18.06.2024.pdf> |
 | Sotsiaalkindlustusamet | Koduteenuse kvaliteedijuhis | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-08/Koduteenuse%20kvaliteedijuhis%2031.07.2024.pdf> |
 | Sotsiaalkindlustusamet | Koduteenuse lihtsustatud kulumudeli juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-05/koduteenuse_lihtsustatud_kulumudeli_juhend.pdf> |
+| Sotsiaalkindlustusamet | Koduteenuse teenusedisaini projekti raport | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-05/koduteenuse_teenusedisaini_projekti_raport_2022.pdf> |
 | Sotsiaalkindlustusamet | Kolm maja – tööriist lapse kaasamiseks | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-11/Kolm%20maja.pdf> |
 | Sotsiaalkindlustusamet | Koondaruande juhendmaterjal | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-07/Koondaruande%20juhendmaterjal_03.07.2026.pdf> |
 | Sotsiaalkindlustusamet | Kovisiooni juhend lastekaitsetöötajatele | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Kovisiooni-juhend-lastekaitsetootajatele.pdf> |
@@ -4377,6 +4406,7 @@ Serveris töötav RAG, korpus v81, 11.10.2026. Siin on loend sellest, mida jaoti
 | Tartu Ülikool | Noorte osalus otsustusprotsessides | <https://skytte.ut.ee/sites/default/files/2022-05/lopparuanne_19.03_noorte_osalus_rake.pdf> |
 | Tartu Ülikool | Suitsiidimõtete esinemine ja sellega seotud tegurid Eesti 15-aastastel kooliõpilastel aastatel 2006–2022 | <https://dspace.ut.ee/server/api/core/bitstreams/c2947b03-24e3-432d-9d86-d2e653cdb5e6/content> |
 | Tartu Ülikool | Tartu linna vanemaealiste uuring | <https://skytte.ut.ee/sites/default/files/2025-01/Tartu_linna_vanemaealiste_uuring_l%C3%B5pparuanne.pdf> |
+| Tartu Ülikooli Kliinikum | Insuldipatsiendi infomaterjal: Elu pärast insulti | <https://www.kliinikum.ee/wp-content/uploads/2021/02/kliinikum_insult_web.pdf> |
 | Tervise Arengu Instituut | Avaliku sektori esindajate hinnangud vanemluse valdkonnale | <https://tai.ee/sites/default/files/2022-02/Avaliku%20sektori%20esindajate%20hinnangud%20vanelmuse%20valdkonnale_01.2022.pdf> |
 | Tervise Arengu Instituut | Dementsusega inimesi toetav õppiv hoolekandeasutus | <https://www.tai.ee/sites/default/files/2024-09/suvekooli_kokkuvote_2024.pdf> |
 | Tervise Arengu Instituut | Eesti rahvastiku vaimse tervise uuringu lühikokkuvõte | <https://tai.ee/sites/default/files/2023-03/RVTU_lyhikokkuvote_2023.pdf> |
@@ -4399,6 +4429,10 @@ Serveris töötav RAG, korpus v81, 11.10.2026. Siin on loend sellest, mida jaoti
 | Tervise Arengu Instituut | Uimastite tarvitamine koolinoorte seas: tubakatoodete, alkoholi ja narkootiliste ainete tarvitamine Eesti 15–16-aastaste õpilaste seas | <https://www.tai.ee/sites/default/files/2025-04/espad_raport_2024_25.04.2025.pdf> |
 | Tervise Arengu Instituut | Vanemaealiste vigastused 2016─2020 | <https://www.tai.ee/sites/default/files/2022-01/Vanemaealiste%20vigastused%202016-2020.pdf> |
 | Tervise Arengu Instituut | VEPA Käitumisoskuste Mängu rakendamise vahehindamine | <https://www.tai.ee/sites/default/files/2021-03/151721412645_VEPA_vahehindamine_lopparuanne.pdf> |
+| Tervisekassa | Alkoholi liigtarvitamine – mis see on ja kust saab abi | <https://tervisekassa.ee/media/337/download?inline> |
+| Tervisekassa | Vaevuste leevendamine palliatiivses ravis | <https://tervisekassa.ee/media/388/download?inline> |
+| Tervisekassa | Vähem alkoholi. Kas ja kuidas? | <https://tervisekassa.ee/media/321/download?inline> |
+| Tervisekassa | Ärevuse töövihik | <https://tervisekassa.ee/media/712/download?inline> |
 | Verge Eesti | Sekkumised koolivägivalla ja koolikiusamise korral | <https://www.verge.ee/wp-content/uploads/2023/08/verge_koolikiusjavagivald_A4-3.pdf> |
 
 ### Omavalitsuste kontaktid (1638)

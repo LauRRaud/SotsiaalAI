@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "note": "Katvuse kaardi nõrkade ridade juhislehed, esimene osa (10.10.2026): uimastid (narko.ee) ja alkohol (alkoinfo.ee), mõlemad Tervise Arengu Instituudi saidid; lasteabi.ee (Sotsiaalkindlustusamet, lasteabitelefon 116 111); toiduabi (Eesti Toidupank). Lehed on väljaandja enda saidikaardi järgi, iga leht oma aadressiga; isiklikud lood, testid, uudised, kontaktide loendid, pildilehed ja teiskeelsed koopiad jäävad välja. Vanglateenistuse saiti ei saa lugeda: iga aadress annab sama skriptiga laetava lehe.",
+  "note": "Katvuse kaardi nõrkade ridade juhislehed, esimene osa (10.10.2026): uimastid (narko.ee) ja alkohol (alkoinfo.ee), mõlemad Tervise Arengu Instituudi saidid; lasteabi.ee (Sotsiaalkindlustusamet, lasteabitelefon 116 111); toiduabi (Eesti Toidupank). Lehed on väljaandja enda saidikaardi järgi, iga leht oma aadressiga; isiklikud lood, testid, uudised, kontaktide loendid, pildilehed ja teiskeelsed koopiad jäävad välja. Vanglateenistuse saiti ei saa lugeda: iga aadress annab sama skriptiga laetava lehe. Lisatud 11.10.2026 (korpus v82, omanik: „tubaka ja nikotiini teema on ka oluline“): tubakainfo.ee (Tervise Arengu Instituut), lehed saidi enda saidikaardi järgi; venekeelsed koopiad, testid, 2020. aasta koroonaleht, avaleht ja üks viitaleht jäid välja.",
   "pages": [
     {
       "source_id": "narko_abivoimalused_noortele",
@@ -2626,6 +2626,276 @@
       "title": "Vali toidupank",
       "publisher": "Eesti Toidupank",
       "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tubakainfo_dr_suits_ara_alusta",
+      "url": "https://www.tubakainfo.ee/dr-suits/ara-alusta/",
+      "title": "Ära alusta!",
+      "publisher": "Tervise Arengu Instituut",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tubakainfo_dr_suits_kuidas_oelda_ei",
+      "url": "https://www.tubakainfo.ee/dr-suits/kuidas-oelda-ei/",
+      "title": "Kuidas öelda EI?",
+      "publisher": "Tervise Arengu Instituut",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tubakainfo_kontakt",
+      "url": "https://www.tubakainfo.ee/kontakt/",
+      "title": "Kuhu pöörduda, et saada abi tubakast loobumiseks?",
+      "publisher": "Tervise Arengu Instituut",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tubakainfo_loobu_suitsetamisest",
+      "url": "https://www.tubakainfo.ee/loobu-suitsetamisest/",
+      "title": "Loobu tubakast ja nikotiinist",
+      "publisher": "Tervise Arengu Instituut",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tubakainfo_loobu_suitsetamisest_loobumisplaan",
+      "url": "https://www.tubakainfo.ee/loobu-suitsetamisest/loobumisplaan/",
+      "title": "Loobumisplaan",
+      "publisher": "Tervise Arengu Instituut",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tubakainfo_loobu_suitsetamisest_nikotiini_voorutusnahud",
+      "url": "https://www.tubakainfo.ee/loobu-suitsetamisest/nikotiini-voorutusnahud/",
+      "title": "Nikotiini võõrutusnähud",
+      "publisher": "Tervise Arengu Instituut",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tubakainfo_loobu_suitsetamisest_noustamiskabinetid",
+      "url": "https://www.tubakainfo.ee/loobu-suitsetamisest/noustamiskabinetid/",
+      "title": "Tubakast ja nikotiinist loobumise nõustamine",
+      "publisher": "Tervise Arengu Instituut",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tubakainfo_loobu_suitsetamisest_tee_otsus",
+      "url": "https://www.tubakainfo.ee/loobu-suitsetamisest/tee-otsus/",
+      "title": "Tee otsus – loobu nikotiinist!",
+      "publisher": "Tervise Arengu Instituut",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tubakainfo_miks_suitsetamisest_loobuda",
+      "url": "https://www.tubakainfo.ee/miks-suitsetamisest-loobuda/",
+      "title": "Miks tubakatoodetest loobuda?",
+      "publisher": "Tervise Arengu Instituut",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tubakainfo_miks_suitsetamisest_loobuda_25_pohjust_suitsetamisest_loobumiseks",
+      "url": "https://www.tubakainfo.ee/miks-suitsetamisest-loobuda/25-pohjust-suitsetamisest-loobumiseks/",
+      "title": "25 põhjust tubakast ja nikotiinist loobumiseks",
+      "publisher": "Tervise Arengu Instituut",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tubakainfo_miks_suitsetamisest_loobuda_suitsetamise_moju_elustiilile_ja_raha_kulu",
+      "url": "https://www.tubakainfo.ee/miks-suitsetamisest-loobuda/suitsetamise-moju-elustiilile-ja-raha-kulu/",
+      "title": "Suitsetamise mõju elustiilile ja rahakotile",
+      "publisher": "Tervise Arengu Instituut",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tubakainfo_miks_suitsetamisest_loobuda_suitsetamise_moju_keskkonnale",
+      "url": "https://www.tubakainfo.ee/miks-suitsetamisest-loobuda/suitsetamise-moju-keskkonnale/",
+      "title": "Tubakatoodete mõju keskkonnale",
+      "publisher": "Tervise Arengu Instituut",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tubakainfo_miks_suitsetamisest_loobuda_suitsetamise_moju_tervisele",
+      "url": "https://www.tubakainfo.ee/miks-suitsetamisest-loobuda/suitsetamise-moju-tervisele/",
+      "title": "Tubakatoodete mõju tervisele ja välimusele",
+      "publisher": "Tervise Arengu Instituut",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tubakainfo_mis_on_sigaretis",
+      "url": "https://www.tubakainfo.ee/mis-on-sigaretis/",
+      "title": "Tubakatooted",
+      "publisher": "Tervise Arengu Instituut",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tubakainfo_mis_on_sigaretis_e_sigaret",
+      "url": "https://www.tubakainfo.ee/mis-on-sigaretis/e-sigaret/",
+      "title": "E-sigaret",
+      "publisher": "Tervise Arengu Instituut",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tubakainfo_mis_on_sigaretis_kuumutatavad_tubakatooted",
+      "url": "https://www.tubakainfo.ee/mis-on-sigaretis/kuumutatavad-tubakatooted/",
+      "title": "Kuumutatavad tubakatooted",
+      "publisher": "Tervise Arengu Instituut",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tubakainfo_mis_on_sigaretis_nikotiinipadi",
+      "url": "https://www.tubakainfo.ee/mis-on-sigaretis/nikotiinipadi/",
+      "title": "Nikotiinipadi",
+      "publisher": "Tervise Arengu Instituut",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tubakainfo_mis_on_sigaretis_ravimitega_koosmoju",
+      "url": "https://www.tubakainfo.ee/mis-on-sigaretis/ravimitega-koosmoju/",
+      "title": "Tubaka ja ravimite koostarvitamise mõju",
+      "publisher": "Tervise Arengu Instituut",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tubakainfo_mis_on_sigaretis_suitsetamise_soltuvuse_teke",
+      "url": "https://www.tubakainfo.ee/mis-on-sigaretis/suitsetamise-soltuvuse-teke/",
+      "title": "Sõltuvuse teke tubakatoodetest",
+      "publisher": "Tervise Arengu Instituut",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tubakainfo_mis_on_sigaretis_suitsetatavad_tubakatooted",
+      "url": "https://www.tubakainfo.ee/mis-on-sigaretis/suitsetatavad-tubakatooted/",
+      "title": "Suitsetatavad tubakatooted",
+      "publisher": "Tervise Arengu Instituut",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tubakainfo_mis_on_sigaretis_suitsuvabad_tubakatooted",
+      "url": "https://www.tubakainfo.ee/mis-on-sigaretis/suitsuvabad-tubakatooted/",
+      "title": "Suitsuvabad tubakatooted",
+      "publisher": "Tervise Arengu Instituut",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tubakainfo_passiivne_suitsetamine",
+      "url": "https://www.tubakainfo.ee/passiivne-suitsetamine/",
+      "title": "Passiivne suitsetamine",
+      "publisher": "Tervise Arengu Instituut",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tubakainfo_passiivne_suitsetamine_kodus_autos_oues",
+      "url": "https://www.tubakainfo.ee/passiivne-suitsetamine/kodus-autos-oues/",
+      "title": "Suitsetamine ja veipimine siseruumides ja välisõhus",
+      "publisher": "Tervise Arengu Instituut",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tubakainfo_passiivne_suitsetamine_kortermaja_elanikule",
+      "url": "https://www.tubakainfo.ee/passiivne-suitsetamine/kortermaja-elanikule/",
+      "title": "Kortermaja elanikule",
+      "publisher": "Tervise Arengu Instituut",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tubakainfo_passiivne_suitsetamine_nouanded",
+      "url": "https://www.tubakainfo.ee/passiivne-suitsetamine/nouanded/",
+      "title": "Nõuanded",
+      "publisher": "Tervise Arengu Instituut",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tubakainfo_passiivne_suitsetamine_passivsed_tubakatooted",
+      "url": "https://www.tubakainfo.ee/passiivne-suitsetamine/passivsed-tubakatooted/",
+      "title": "Passiivse suitsetamise ja veipimise ohud",
+      "publisher": "Tervise Arengu Instituut",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tubakainfo_passiivne_suitsetamine_suitsetamise_moju_lastele_ja_rasedatele",
+      "url": "https://www.tubakainfo.ee/passiivne-suitsetamine/suitsetamise-moju-lastele-ja-rasedatele/",
+      "title": "Suitsetamise mõju lastele ja rasedatele",
+      "publisher": "Tervise Arengu Instituut",
+      "source_type": "web_page",
       "language": "et",
       "jurisdiction_level": "NATIONAL",
       "subpages": false

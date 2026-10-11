@@ -49,11 +49,11 @@
   },
   "corpus": {
     "written_by": "rag-v2/register-corpus-1",
-    "version": "v81",
-    "index_generation": "f66fd13d",
+    "version": "v82",
+    "index_generation": "ec1defd0",
     "read_at": "2026-10-11",
-    "documents": 9735,
-    "units": 90707,
+    "documents": 9769,
+    "units": 91158,
     "note": "What the RAG on the server holds: the documents of the corpus policy by what they are (by_content), and by where the source file is kept (from_repository, outside_repository). One file of the repository may give many documents (a municipality package gives its services, forms and contacts). On a source entry, corpus_documents is the number of corpus documents the file gives; 0 means the file is not in the corpus.",
     "by_content": [
       {
@@ -105,20 +105,20 @@
       {
         "content": "guides",
         "name": "guides, information materials and studies",
-        "documents": 429,
+        "documents": 436,
         "by_source_type": {
-          "research_report": 198,
+          "research_report": 199,
           "official_guideline": 122,
-          "information_material": 103,
+          "information_material": 109,
           "policy_analysis": 6
         }
       },
       {
         "content": "official_pages",
         "name": "official guidance pages",
-        "documents": 950,
+        "documents": 977,
         "by_source_type": {
-          "web_page": 950
+          "web_page": 977
         }
       },
       {
@@ -197,10 +197,10 @@
       }
     },
     "source_files_not_in_corpus": 61,
-    "outside_repository_documents": 3219
+    "outside_repository_documents": 3253
   },
   "outside_repository": {
-    "documents": 3219,
+    "documents": 3253,
     "note": "Sources of the corpus that are not files of the repository. Copies are in the corpus store (the main checkout's git-ignored tmp/ and the server). Of contacts only counts are given: a contact's title is a person's name.",
     "kinds": [
       {
@@ -6059,9 +6059,9 @@
       {
         "kind": "guidance_pages",
         "name": "institutions' guidance pages chosen by rule",
-        "documents": 590,
+        "documents": 617,
         "by_source_type": {
-          "web_page": 590
+          "web_page": 617
         },
         "made_from": "the lists register/web_pages_coverage_1.json and register/web_pages_coverage_2.json, collected with scripts/rag-v2-web-pages.mjs and chosen with scripts/rag-v2-web-select.mjs (ADR-137)",
         "reason": "the choice takes the paragraphs that name a person out of a page; the monthly refresh of the repository's pages would put the collector's own reading in its place",
@@ -7508,6 +7508,11 @@
             "publisher": "Tartu Ülikooli Kliinikum"
           },
           {
+            "title": "25 põhjust tubakast ja nikotiinist loobumiseks",
+            "url": "https://www.tubakainfo.ee/miks-suitsetamisest-loobuda/25-pohjust-suitsetamisest-loobumiseks/",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
             "title": "Abivõimalused lastele ja noortele",
             "url": "https://www.narko.ee/abivoimalused-noortele",
             "publisher": "Tervise Arengu Instituut"
@@ -7605,6 +7610,11 @@
           {
             "title": "Binge drinking ehk purjutamine",
             "url": "https://alkoinfo.ee/et/millal-vahendada/ule-piiride/binge-drinking-ehk-purjutamine",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "E-sigaret",
+            "url": "https://www.tubakainfo.ee/mis-on-sigaretis/e-sigaret/",
             "publisher": "Tervise Arengu Instituut"
           },
           {
@@ -7738,8 +7748,18 @@
             "publisher": "Tervise Arengu Instituut"
           },
           {
+            "title": "Kortermaja elanikule",
+            "url": "https://www.tubakainfo.ee/passiivne-suitsetamine/kortermaja-elanikule/",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
             "title": "Kuhu poorduda",
             "url": "https://alkoinfo.ee/et/kuidas-vahendada/spetsialisti-abi/kuhu-poorduda",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kuhu pöörduda, et saada abi tubakast loobumiseks?",
+            "url": "https://www.tubakainfo.ee/kontakt/",
             "publisher": "Tervise Arengu Instituut"
           },
           {
@@ -7863,6 +7883,11 @@
             "publisher": "Tervise Arengu Instituut"
           },
           {
+            "title": "Kuidas öelda EI?",
+            "url": "https://www.tubakainfo.ee/dr-suits/kuidas-oelda-ei/",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
             "title": "Kuritarvitamine ja soltuvus",
             "url": "https://alkoinfo.ee/et/millal-vahendada/ule-piiride/kuritarvitamine-ja-soltuvus",
             "publisher": "Tervise Arengu Instituut"
@@ -7873,6 +7898,11 @@
             "publisher": "Tervise Arengu Instituut"
           },
           {
+            "title": "Kuumutatavad tubakatooted",
+            "url": "https://www.tubakainfo.ee/mis-on-sigaretis/kuumutatavad-tubakatooted/",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
             "title": "Kärbseseen",
             "url": "https://www.narko.ee/ained/karbseseen",
             "publisher": "Tervise Arengu Instituut"
@@ -7880,6 +7910,16 @@
           {
             "title": "Liigtarvitamise astmed",
             "url": "https://alkoinfo.ee/et/millal-vahendada/ule-piiride/liigtarvitamise-astmed",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Loobu tubakast ja nikotiinist",
+            "url": "https://www.tubakainfo.ee/loobu-suitsetamisest/",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Loobumisplaan",
+            "url": "https://www.tubakainfo.ee/loobu-suitsetamisest/loobumisplaan/",
             "publisher": "Tervise Arengu Instituut"
           },
           {
@@ -7960,6 +8000,11 @@
           {
             "title": "Miks on uimastid ohtlikud?",
             "url": "https://www.narko.ee/noored/miks-on-uimastid-ohtlikud",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Miks tubakatoodetest loobuda?",
+            "url": "https://www.tubakainfo.ee/miks-suitsetamisest-loobuda/",
             "publisher": "Tervise Arengu Instituut"
           },
           {
@@ -8083,6 +8128,16 @@
             "publisher": "Tervise Arengu Instituut"
           },
           {
+            "title": "Nikotiini võõrutusnähud",
+            "url": "https://www.tubakainfo.ee/loobu-suitsetamisest/nikotiini-voorutusnahud/",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Nikotiinipadi",
+            "url": "https://www.tubakainfo.ee/mis-on-sigaretis/nikotiinipadi/",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
             "title": "Nitaseenid",
             "url": "https://www.narko.ee/ained/nitaseenid",
             "publisher": "Tervise Arengu Instituut"
@@ -8090,6 +8145,11 @@
           {
             "title": "Noored",
             "url": "https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/noored",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Nõuanded",
+            "url": "https://www.tubakainfo.ee/passiivne-suitsetamine/nouanded/",
             "publisher": "Tervise Arengu Instituut"
           },
           {
@@ -8125,6 +8185,16 @@
           {
             "title": "Pankreatiit",
             "url": "https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/pankreatiit",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Passiivne suitsetamine",
+            "url": "https://www.tubakainfo.ee/passiivne-suitsetamine/",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Passiivse suitsetamise ja veipimise ohud",
+            "url": "https://www.tubakainfo.ee/passiivne-suitsetamine/passivsed-tubakatooted/",
             "publisher": "Tervise Arengu Instituut"
           },
           {
@@ -8218,6 +8288,36 @@
             "publisher": "Tervise Arengu Instituut"
           },
           {
+            "title": "Suitsetamine ja veipimine siseruumides ja välisõhus",
+            "url": "https://www.tubakainfo.ee/passiivne-suitsetamine/kodus-autos-oues/",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Suitsetamise mõju elustiilile ja rahakotile",
+            "url": "https://www.tubakainfo.ee/miks-suitsetamisest-loobuda/suitsetamise-moju-elustiilile-ja-raha-kulu/",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Suitsetamise mõju lastele ja rasedatele",
+            "url": "https://www.tubakainfo.ee/passiivne-suitsetamine/suitsetamise-moju-lastele-ja-rasedatele/",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Suitsetatavad tubakatooted",
+            "url": "https://www.tubakainfo.ee/mis-on-sigaretis/suitsetatavad-tubakatooted/",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Suitsuvabad tubakatooted",
+            "url": "https://www.tubakainfo.ee/mis-on-sigaretis/suitsuvabad-tubakatooted/",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Sõltuvuse teke tubakatoodetest",
+            "url": "https://www.tubakainfo.ee/mis-on-sigaretis/suitsetamise-soltuvuse-teke/",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
             "title": "Sõltuvusravi, sh opioidisõltuvuse asendusravi",
             "url": "https://www.narko.ee/siit-saad-abi/soltuvusravi-sh-opoiodisoltuvuse-asendusravi",
             "publisher": "Tervise Arengu Instituut"
@@ -8238,6 +8338,11 @@
             "publisher": "Tervise Arengu Instituut"
           },
           {
+            "title": "Tee otsus – loobu nikotiinist!",
+            "url": "https://www.tubakainfo.ee/loobu-suitsetamisest/tee-otsus/",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
             "title": "Tolerants",
             "url": "https://alkoinfo.ee/et/millal-vahendada/ule-piiride/kuritarvitamine-ja-soltuvus/tolerants",
             "publisher": "Tervise Arengu Instituut"
@@ -8250,6 +8355,31 @@
           {
             "title": "Tsüklorfiin, spirokolrfiin",
             "url": "https://www.narko.ee/ained/tsuklorfiin",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Tubaka ja ravimite koostarvitamise mõju",
+            "url": "https://www.tubakainfo.ee/mis-on-sigaretis/ravimitega-koosmoju/",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Tubakast ja nikotiinist loobumise nõustamine",
+            "url": "https://www.tubakainfo.ee/loobu-suitsetamisest/noustamiskabinetid/",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Tubakatoodete mõju keskkonnale",
+            "url": "https://www.tubakainfo.ee/miks-suitsetamisest-loobuda/suitsetamise-moju-keskkonnale/",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Tubakatoodete mõju tervisele ja välimusele",
+            "url": "https://www.tubakainfo.ee/miks-suitsetamisest-loobuda/suitsetamise-moju-tervisele/",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Tubakatooted",
+            "url": "https://www.tubakainfo.ee/mis-on-sigaretis/",
             "publisher": "Tervise Arengu Instituut"
           },
           {
@@ -8320,6 +8450,11 @@
           {
             "title": "Vota alkoholist puhkust",
             "url": "https://alkoinfo.ee/et/kuidas-vahendada/kuidas-juua-vahem/vota-alkoholist-puhkust",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Ära alusta!",
+            "url": "https://www.tubakainfo.ee/dr-suits/ara-alusta/",
             "publisher": "Tervise Arengu Instituut"
           },
           {
@@ -9022,15 +9157,15 @@
       {
         "kind": "official_documents",
         "name": "studies and guides taken from their publishers' official addresses",
-        "documents": 257,
+        "documents": 264,
         "by_source_type": {
-          "research_report": 151,
+          "research_report": 152,
           "official_guideline": 84,
-          "information_material": 22
+          "information_material": 28
         },
         "made_from": "the lists of studies and guides on the institutions' own sites and the documents the newsletter of the journal Sotsiaaltöö pointed to (register/newsletter_documents.json), each downloaded from its publisher's official address",
         "reason": "large files; the official address is the source",
-        "publishers": 30,
+        "publishers": 33,
         "sources": [
           {
             "title": "Huvihariduse kättesaadavus Eestis",
@@ -9131,6 +9266,11 @@
             "title": "Tööga seotud sotsiaalkaitsemudelid ja nende sobivus alternatiivsete tööturuarengute korral",
             "url": "https://centar.ee/pdf/ee/2018_Tooga_seotud_sotsiaalkaitse_mudelid_ja_nende_sobivus_alternatiivsete_tooturuarengute_korral_Eestis.pdf",
             "publisher": "Eesti Rakendusuuringute Keskus Centar"
+          },
+          {
+            "title": "Sotsiaalvaldkonna töötaja eetikakoodeks",
+            "url": "https://www.eswa.ee/wp-content/uploads/2026/05/sotsiaalvaldkonna-tootaja-koodeks.pdf",
+            "publisher": "Eesti Sotsiaaltöö Assotsiatsioon"
           },
           {
             "title": "Noorteinfo käsiraamat",
@@ -9570,6 +9710,11 @@
           {
             "title": "Koduteenuse lihtsustatud kulumudeli juhend",
             "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-05/koduteenuse_lihtsustatud_kulumudeli_juhend.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Koduteenuse teenusedisaini projekti raport",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-05/koduteenuse_teenusedisaini_projekti_raport_2022.pdf",
             "publisher": "Sotsiaalkindlustusamet"
           },
           {
@@ -10203,6 +10348,11 @@
             "publisher": "Tartu Ülikool"
           },
           {
+            "title": "Insuldipatsiendi infomaterjal: Elu pärast insulti",
+            "url": "https://www.kliinikum.ee/wp-content/uploads/2021/02/kliinikum_insult_web.pdf",
+            "publisher": "Tartu Ülikooli Kliinikum"
+          },
+          {
             "title": "Avaliku sektori esindajate hinnangud vanemluse valdkonnale",
             "url": "https://tai.ee/sites/default/files/2022-02/Avaliku%20sektori%20esindajate%20hinnangud%20vanelmuse%20valdkonnale_01.2022.pdf",
             "publisher": "Tervise Arengu Instituut"
@@ -10311,6 +10461,26 @@
             "title": "VEPA Käitumisoskuste Mängu rakendamise vahehindamine",
             "url": "https://www.tai.ee/sites/default/files/2021-03/151721412645_VEPA_vahehindamine_lopparuanne.pdf",
             "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Alkoholi liigtarvitamine – mis see on ja kust saab abi",
+            "url": "https://tervisekassa.ee/media/337/download?inline",
+            "publisher": "Tervisekassa"
+          },
+          {
+            "title": "Vaevuste leevendamine palliatiivses ravis",
+            "url": "https://tervisekassa.ee/media/388/download?inline",
+            "publisher": "Tervisekassa"
+          },
+          {
+            "title": "Vähem alkoholi. Kas ja kuidas?",
+            "url": "https://tervisekassa.ee/media/321/download?inline",
+            "publisher": "Tervisekassa"
+          },
+          {
+            "title": "Ärevuse töövihik",
+            "url": "https://tervisekassa.ee/media/712/download?inline",
+            "publisher": "Tervisekassa"
           },
           {
             "title": "Sekkumised koolivägivalla ja koolikiusamise korral",
