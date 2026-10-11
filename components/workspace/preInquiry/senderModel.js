@@ -280,6 +280,23 @@ export function withChosenService(entry, serviceId = "") {
   return { ...entry, providerProfile: { ...entry.providerProfile, serviceItems: items.filter((item) => item?.id === serviceId) } };
 }
 
+/**
+ * Märgib laaditud kontaktide seas need, kellele pöördumine läheb platvormis (`ids`: serveri
+ * loend KOV kontaktidest, kelle konto võtab pöördumisi vastu). Märk on sama, mida kannab asutuse
+ * vastuvõtulaud (`deliveryChannel: "INTERNAL"`), nii et saatmise tee reegel (`recipientChannels`)
+ * ei pea neid eraldi tundma. Teenuseosutaja kirjet ei märgita: tema kanal on teenuse küljes.
+ */
+export function markPlatformContacts(entries, ids) {
+  const list = Array.isArray(entries) ? entries : [];
+  const marked = new Set((Array.isArray(ids) ? ids : []).map((id) => String(id || "")).filter(Boolean));
+  if (!marked.size) return list;
+  return list.map((entry) =>
+    entry?.id && marked.has(entry.id) && upper(entry.type) !== "SERVICE_PROVIDER" && upper(entry.deliveryChannel) !== "INTERNAL"
+      ? { ...entry, deliveryChannel: "INTERNAL" }
+      : entry
+  );
+}
+
 /** Võti lausele, mis teel pöördumine läheb: `platform`, `both`, `email` või `manual` (ainult salvestamine). */
 export function recipientChannelKey(channels) {
   if (channels?.platform) return channels.email ? "both" : "platform";

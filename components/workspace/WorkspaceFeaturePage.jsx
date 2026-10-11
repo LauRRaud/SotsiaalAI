@@ -61,6 +61,7 @@ import {
   RECIPIENT_SUGGESTED,
   excerptOf,
   findRecipientEntry,
+  markPlatformContacts,
   pageOf,
   recipientChannelKey,
   recipientChoice,
@@ -949,7 +950,12 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
             throw new Error(organizationPayload?.message || "Organization recipients could not be loaded.");
           }
           all.push(...(Array.isArray(organizationPayload?.recipients) ? organizationPayload.recipients : []));
-          return all;
+          /* KOV kontaktid, kelle konto võtab pöördumisi platvormis vastu: neile pakub saatmise samm
+             „Saada platvormis" (teenusekaardi vastus seda ei ütle). Kui loendit ei saa, jääb neile
+             e-kiri nagu enne: leht ei jää selle pärast laadimata. */
+          const platformResponse = await fetch("/api/pre-inquiries/platform-contacts", { cache: "no-store" }).catch(() => null);
+          const platformPayload = platformResponse?.ok ? await platformResponse.json().catch(() => ({})) : {};
+          return markPlatformContacts(all, platformPayload?.entryIds);
         }
         async function loadAllInquiries() {
           const all = [];
