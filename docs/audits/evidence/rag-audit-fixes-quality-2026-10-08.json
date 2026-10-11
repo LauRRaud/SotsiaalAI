@@ -1,0 +1,226 @@
+{
+  "type": "targeted_checks_not_full_semantic_verdict",
+  "rows": [
+    {
+      "role": "CLIENT",
+      "scenario": "relative-support-person",
+      "turnIndex": 0,
+      "checks": {
+        "completed": true,
+        "relativeRuleCited": true,
+        "grandmotherProhibited": true
+      }
+    },
+    {
+      "role": "CLIENT",
+      "scenario": "version-change",
+      "turnIndex": 0,
+      "checks": {
+        "completed": true,
+        "bothVersionsCited": true
+      }
+    },
+    {
+      "role": "CLIENT",
+      "scenario": "home-care-dialogue",
+      "turnIndex": 0,
+      "checks": {
+        "completed": true,
+        "needRetained": true,
+        "cityRetained": true,
+        "livesAloneRetained": true
+      }
+    },
+    {
+      "role": "CLIENT",
+      "scenario": "home-care-dialogue",
+      "turnIndex": 1,
+      "checks": {
+        "completed": true,
+        "needRetained": true,
+        "cityRetained": true,
+        "livesAloneRetained": true,
+        "pensionRetained": true,
+        "samePersonScope": true,
+        "hourPrice": true,
+        "abilityToPayQualification": true
+      }
+    },
+    {
+      "role": "CLIENT",
+      "scenario": "work-wellbeing-research",
+      "turnIndex": 0,
+      "checks": {
+        "completed": true,
+        "multipleSources": true,
+        "yearsPresent": true
+      }
+    },
+    {
+      "role": "SOCIAL_WORKER",
+      "scenario": "relative-support-person",
+      "turnIndex": 0,
+      "checks": {
+        "completed": true,
+        "relativeRuleCited": true,
+        "grandmotherProhibited": true
+      }
+    },
+    {
+      "role": "SOCIAL_WORKER",
+      "scenario": "version-change",
+      "turnIndex": 0,
+      "checks": {
+        "completed": true,
+        "bothVersionsCited": true
+      }
+    },
+    {
+      "role": "SOCIAL_WORKER",
+      "scenario": "home-care-dialogue",
+      "turnIndex": 0,
+      "checks": {
+        "completed": true,
+        "needRetained": true,
+        "cityRetained": true,
+        "livesAloneRetained": true,
+        "noOwnProfessionReferral": true
+      }
+    },
+    {
+      "role": "SOCIAL_WORKER",
+      "scenario": "home-care-dialogue",
+      "turnIndex": 1,
+      "checks": {
+        "completed": true,
+        "needRetained": true,
+        "cityRetained": true,
+        "livesAloneRetained": true,
+        "pensionRetained": true,
+        "samePersonScope": true,
+        "hourPrice": true,
+        "abilityToPayQualification": true
+      }
+    },
+    {
+      "role": "SOCIAL_WORKER",
+      "scenario": "work-wellbeing-research",
+      "turnIndex": 0,
+      "checks": {
+        "completed": true,
+        "multipleSources": true,
+        "yearsPresent": true
+      }
+    },
+    {
+      "role": "SERVICE_PROVIDER",
+      "scenario": "relative-support-person",
+      "turnIndex": 0,
+      "checks": {
+        "completed": true,
+        "relativeRuleCited": true,
+        "grandmotherProhibited": true
+      }
+    },
+    {
+      "role": "SERVICE_PROVIDER",
+      "scenario": "version-change",
+      "turnIndex": 0,
+      "checks": {
+        "completed": true,
+        "bothVersionsCited": true
+      }
+    },
+    {
+      "role": "SERVICE_PROVIDER",
+      "scenario": "home-care-dialogue",
+      "turnIndex": 0,
+      "checks": {
+        "completed": true,
+        "needRetained": true,
+        "cityRetained": true,
+        "livesAloneRetained": true
+      }
+    },
+    {
+      "role": "SERVICE_PROVIDER",
+      "scenario": "home-care-dialogue",
+      "turnIndex": 1,
+      "checks": {
+        "completed": true,
+        "needRetained": true,
+        "cityRetained": true,
+        "livesAloneRetained": true,
+        "pensionRetained": true,
+        "samePersonScope": true,
+        "hourPrice": false,
+        "abilityToPayQualification": true
+      }
+    },
+    {
+      "role": "SERVICE_PROVIDER",
+      "scenario": "work-wellbeing-research",
+      "turnIndex": 0,
+      "checks": {
+        "completed": true,
+        "multipleSources": true,
+        "yearsPresent": true
+      }
+    }
+  ],
+  "failures": [
+    {
+      "role": "SERVICE_PROVIDER",
+      "scenario": "home-care-dialogue",
+      "turnIndex": 1,
+      "check": "hourPrice"
+    }
+  ],
+  "manualReview": {
+    "verdict": "NOT_PROVEN_full_quality_equivalence_do_not_deploy",
+    "improvements": [
+      "All three relative-support-person answers cite the actual kinship exclusion; the rule is now present in their candidate pools.",
+      "The specialist home-care answer addresses their casework; the provider answer no longer directly assigns the authority decision to the provider.",
+      "All six home-care states retain the need for assistance and the city; all three followups retain 700 EUR and the same person/scope.",
+      "All three followups mention affordability, reduction or access, but not all have the current local price."
+    ],
+    "remaining": [
+      {
+        "id": "Q1",
+        "role": "SERVICE_PROVIDER",
+        "scenario": "home-care-dialogue",
+        "turnIndex": 1,
+        "finding": "Current Tartu price is absent; the answer correctly labels a 2023 price as historical but cannot answer the current price question.",
+        "cause": "First-turn place quote excludes the place name; checked place status becomes unresolved and later source scope remains region_required despite Tartu in the search query."
+      },
+      {
+        "id": "Q2",
+        "role": "CLIENT",
+        "scenario": "home-care-dialogue",
+        "turnIndex": 1,
+        "ref": "S1",
+        "finding": "Answer changes the source threshold for 13 EUR/hour from greater than 801 to greater than 800.",
+        "sourceExcerpt": "13 eurot tunnis, kui tema sissetulek on suurem kui 801 eurot kuus.",
+        "answerExcerpt": "Kui nende summa ületab 800 eurot kuus, on tunnitasu 13 eurot."
+      },
+      {
+        "id": "Q3",
+        "role": "SERVICE_PROVIDER",
+        "scenario": "version-change",
+        "turnIndex": 0,
+        "refs": [
+          "S1",
+          "S2"
+        ],
+        "finding": "Answer says the carer can now apply; carer already appears in both versions. The changed title is specialist versus social department official.",
+        "sourceDates": [
+          "2026-10-06",
+          "2025-09-01"
+        ],
+        "unchangedTerm": "hooldaja",
+        "answerExcerpt": "Abi vajava inimese eest võivad toetust või teenust taotleda nüüd ka hooldaja ja sotsiaaltöötaja;"
+      }
+    ],
+    "limits": "Targeted review is not a full legal or statistical validation; source hash/identifier checks do not prove entailment."
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "observedAtUtc": "2026-10-08T14:52:59Z",
+  "localHead": "0ef1ac33",
+  "originMain": "18f5cf256c9e82db35ba86587c47056d8fa8869b",
+  "frontendWorkingDirectory": "/home/ubuntu/apps/sotsiaalai-releases/18f5cf256c9e82db35ba86587c47056d8fa8869b",
+  "frontendState": "active",
+  "memoryMiB": { "total": 8936, "available": 5981, "swapTotal": 2047, "swapUsed": 1645 },
+  "vmstatIntervalSamples": [
+    { "seconds": 1, "swapInKiBPerSecond": 0, "swapOutKiBPerSecond": 0, "cpuIdlePct": 65, "ioWaitPct": 1 },
+    { "seconds": 1, "swapInKiBPerSecond": 0, "swapOutKiBPerSecond": 624, "cpuIdlePct": 51, "ioWaitPct": 0 }
+  ],
+  "pressure": { "memorySomeAvg10": 0.02, "memoryFullAvg10": 0.02, "ioSomeAvg10": 1.82, "ioFullAvg10": 1.64 },
+  "limitations": "Two one-second intervals are not a load test or evidence about peak traffic. The first vmstat line was since-boot and was excluded.",
+  "readOnlyProbe": {
+    "startedBeforeOwnerPause": true,
+    "stoppedOnOwnerInstruction": true,
+    "signal": "SIGTERM",
+    "exitCode": -15,
+    "completeResultProduced": false,
+    "frontendUntouched": true,
+    "paidCalls": 0,
+    "status": "INTERRUPTED_NOT_EVIDENCE_OF_POST_FIX_SPEED"
+  },
+  "afterOwnerPause": {
+    "tests": "NOT_RUN",
+    "serverMeasurements": "NOT_RUN",
+    "actions": ["read local code and existing evidence", "offline arithmetic", "prepare report and guarded measurement scripts"]
+  },
+  "cumulativePaidNanoUsdUnchanged": 629070650
+}

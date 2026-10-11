@@ -1,0 +1,1041 @@
+{
+  "measuredAt": "2026-10-08T11:10:05.183Z",
+  "before": {
+    "turns": 15,
+    "stages": {
+      "plan": {
+        "calls": 15,
+        "input": 23264,
+        "output": 3092,
+        "cacheRead": 20720,
+        "cacheWrite": 2499,
+        "nanoUsd": 2070075
+      },
+      "embedding": {
+        "calls": 15,
+        "input": 1124,
+        "output": 0,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "nanoUsd": 146120
+      },
+      "rerank": {
+        "calls": 15,
+        "input": 265285,
+        "output": 2183,
+        "cacheRead": 35275,
+        "cacheWrite": 229965,
+        "nanoUsd": 30194375
+      },
+      "answer": {
+        "calls": 15,
+        "input": 254984,
+        "output": 12969,
+        "cacheRead": 107352,
+        "cacheWrite": 147587,
+        "nanoUsd": 26010895
+      }
+    },
+    "input": 544657,
+    "output": 18244,
+    "nanoUsd": 58421465,
+    "firstTextP50": 22068,
+    "firstTextP95": 36513,
+    "answeredP50": 26064,
+    "answeredP95": 40461,
+    "rerankP50": 2477
+  },
+  "after": {
+    "turns": 15,
+    "stages": {
+      "plan": {
+        "calls": 15,
+        "input": 23264,
+        "output": 3106,
+        "cacheRead": 20720,
+        "cacheWrite": 2499,
+        "nanoUsd": 2077075
+      },
+      "embedding": {
+        "calls": 15,
+        "input": 1229,
+        "output": 0,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "nanoUsd": 159770
+      },
+      "rerank": {
+        "calls": 15,
+        "input": 270466,
+        "output": 2280,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "nanoUsd": 28186600
+      },
+      "answer": {
+        "calls": 15,
+        "input": 263138,
+        "output": 10650,
+        "cacheRead": 107352,
+        "cacheWrite": 155741,
+        "nanoUsd": 25870645
+      }
+    },
+    "input": 558097,
+    "output": 16036,
+    "nanoUsd": 56294090,
+    "firstTextP50": 18462,
+    "firstTextP95": 41530,
+    "answeredP50": 22988,
+    "answeredP95": 43813,
+    "rerankP50": 2662
+  },
+  "roles": [
+    {
+      "role": "CLIENT",
+      "before": {
+        "turns": 5,
+        "stages": {
+          "plan": {
+            "calls": 5,
+            "input": 7758,
+            "output": 1125,
+            "cacheRead": 5920,
+            "cacheWrite": 1823,
+            "nanoUsd": 851075
+          },
+          "embedding": {
+            "calls": 5,
+            "input": 374,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "nanoUsd": 48620
+          },
+          "rerank": {
+            "calls": 5,
+            "input": 92181,
+            "output": 579,
+            "cacheRead": 0,
+            "cacheWrite": 92166,
+            "nanoUsd": 11811750
+          },
+          "answer": {
+            "calls": 5,
+            "input": 89305,
+            "output": 3765,
+            "cacheRead": 30672,
+            "cacheWrite": 58618,
+            "nanoUsd": 9517970
+          }
+        },
+        "input": 189618,
+        "output": 5469,
+        "nanoUsd": 22229415,
+        "firstTextP50": 22414,
+        "firstTextP95": 36513,
+        "answeredP50": 29070,
+        "answeredP95": 39280,
+        "rerankP50": 1712
+      },
+      "after": {
+        "turns": 5,
+        "stages": {
+          "plan": {
+            "calls": 5,
+            "input": 7758,
+            "output": 748,
+            "cacheRead": 5920,
+            "cacheWrite": 1823,
+            "nanoUsd": 662575
+          },
+          "embedding": {
+            "calls": 5,
+            "input": 348,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "nanoUsd": 45240
+          },
+          "rerank": {
+            "calls": 5,
+            "input": 91273,
+            "output": 812,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "nanoUsd": 9533300
+          },
+          "answer": {
+            "calls": 5,
+            "input": 86978,
+            "output": 3462,
+            "cacheRead": 30672,
+            "cacheWrite": 56291,
+            "nanoUsd": 9075595
+          }
+        },
+        "input": 186357,
+        "output": 5022,
+        "nanoUsd": 19316710,
+        "firstTextP50": 33959,
+        "firstTextP95": 41530,
+        "answeredP50": 37542,
+        "answeredP95": 43813,
+        "rerankP50": 3937
+      }
+    },
+    {
+      "role": "SOCIAL_WORKER",
+      "before": {
+        "turns": 5,
+        "stages": {
+          "plan": {
+            "calls": 5,
+            "input": 7753,
+            "output": 976,
+            "cacheRead": 7400,
+            "cacheWrite": 338,
+            "nanoUsd": 605750
+          },
+          "embedding": {
+            "calls": 5,
+            "input": 393,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "nanoUsd": 51090
+          },
+          "rerank": {
+            "calls": 5,
+            "input": 85666,
+            "output": 761,
+            "cacheRead": 17308,
+            "cacheWrite": 68343,
+            "nanoUsd": 9097955
+          },
+          "answer": {
+            "calls": 5,
+            "input": 89308,
+            "output": 4656,
+            "cacheRead": 38340,
+            "cacheWrite": 50953,
+            "nanoUsd": 9082025
+          }
+        },
+        "input": 183120,
+        "output": 6393,
+        "nanoUsd": 18836820,
+        "firstTextP50": 31144,
+        "firstTextP95": 32395,
+        "answeredP50": 32560,
+        "answeredP95": 40461,
+        "rerankP50": 3130
+      },
+      "after": {
+        "turns": 5,
+        "stages": {
+          "plan": {
+            "calls": 5,
+            "input": 7753,
+            "output": 1181,
+            "cacheRead": 7400,
+            "cacheWrite": 338,
+            "nanoUsd": 708250
+          },
+          "embedding": {
+            "calls": 5,
+            "input": 449,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "nanoUsd": 58370
+          },
+          "rerank": {
+            "calls": 5,
+            "input": 90868,
+            "output": 705,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "nanoUsd": 9439300
+          },
+          "answer": {
+            "calls": 5,
+            "input": 87748,
+            "output": 3739,
+            "cacheRead": 38340,
+            "cacheWrite": 49393,
+            "nanoUsd": 8428525
+          }
+        },
+        "input": 186818,
+        "output": 5625,
+        "nanoUsd": 18634445,
+        "firstTextP50": 18315,
+        "firstTextP95": 19478,
+        "answeredP50": 21019,
+        "answeredP95": 25021,
+        "rerankP50": 1811
+      }
+    },
+    {
+      "role": "SERVICE_PROVIDER",
+      "before": {
+        "turns": 5,
+        "stages": {
+          "plan": {
+            "calls": 5,
+            "input": 7753,
+            "output": 991,
+            "cacheRead": 7400,
+            "cacheWrite": 338,
+            "nanoUsd": 613250
+          },
+          "embedding": {
+            "calls": 5,
+            "input": 357,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "nanoUsd": 46410
+          },
+          "rerank": {
+            "calls": 5,
+            "input": 87438,
+            "output": 843,
+            "cacheRead": 17967,
+            "cacheWrite": 69456,
+            "nanoUsd": 9284670
+          },
+          "answer": {
+            "calls": 5,
+            "input": 76371,
+            "output": 4548,
+            "cacheRead": 38340,
+            "cacheWrite": 38016,
+            "nanoUsd": 7410900
+          }
+        },
+        "input": 171919,
+        "output": 6382,
+        "nanoUsd": 17355230,
+        "firstTextP50": 18576,
+        "firstTextP95": 22068,
+        "answeredP50": 24060,
+        "answeredP95": 25951,
+        "rerankP50": 2922
+      },
+      "after": {
+        "turns": 5,
+        "stages": {
+          "plan": {
+            "calls": 5,
+            "input": 7753,
+            "output": 1177,
+            "cacheRead": 7400,
+            "cacheWrite": 338,
+            "nanoUsd": 706250
+          },
+          "embedding": {
+            "calls": 5,
+            "input": 432,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "nanoUsd": 56160
+          },
+          "rerank": {
+            "calls": 5,
+            "input": 88325,
+            "output": 763,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "nanoUsd": 9214000
+          },
+          "answer": {
+            "calls": 5,
+            "input": 88412,
+            "output": 3449,
+            "cacheRead": 38340,
+            "cacheWrite": 50057,
+            "nanoUsd": 8366525
+          }
+        },
+        "input": 184922,
+        "output": 5389,
+        "nanoUsd": 18342935,
+        "firstTextP50": 17032,
+        "firstTextP95": 20127,
+        "answeredP50": 22348,
+        "answeredP95": 23824,
+        "rerankP50": 2662
+      }
+    }
+  ],
+  "cumulativeNanoUsd": 366613975,
+  "checks": [
+    {
+      "role": "CLIENT",
+      "scenario": "relative-support-person",
+      "turnIndex": 0,
+      "before": {
+        "completed": true,
+        "referencesBound": true,
+        "fullEvidenceHashes": true,
+        "priced": true,
+        "replayFree": true,
+        "streamed": true,
+        "relativeClauseInEvidence": true,
+        "relativeProhibition": true
+      },
+      "after": {
+        "completed": true,
+        "referencesBound": true,
+        "fullEvidenceHashes": true,
+        "priced": true,
+        "replayFree": true,
+        "streamed": true,
+        "relativeClauseInEvidence": true,
+        "relativeProhibition": true
+      },
+      "beforeNanoUsd": "4036250",
+      "afterNanoUsd": "3407255",
+      "beforeRerankInput": 17970,
+      "afterRerankInput": 16428,
+      "fixedPoolProjection": {
+        "format": "full_text",
+        "contentChanged": false
+      },
+      "sameOriginalCandidatePool": false,
+      "beforeCitedTitles": [
+        "Sotsiaalhoolekande seadus"
+      ],
+      "afterCitedTitles": [
+        "Sotsiaalhoolekande seadus"
+      ]
+    },
+    {
+      "role": "CLIENT",
+      "scenario": "version-change",
+      "turnIndex": 0,
+      "before": {
+        "completed": true,
+        "referencesBound": true,
+        "fullEvidenceHashes": true,
+        "priced": true,
+        "replayFree": true,
+        "streamed": true,
+        "bothVersionsCited": true,
+        "noKnownUnchangedDeadlineAsNew": true
+      },
+      "after": {
+        "completed": true,
+        "referencesBound": true,
+        "fullEvidenceHashes": true,
+        "priced": true,
+        "replayFree": true,
+        "streamed": true,
+        "bothVersionsCited": true,
+        "noKnownUnchangedDeadlineAsNew": true
+      },
+      "beforeNanoUsd": "5715925",
+      "afterNanoUsd": "4783915",
+      "beforeRerankInput": 17311,
+      "afterRerankInput": 17013,
+      "fixedPoolProjection": {
+        "format": "full_text",
+        "contentChanged": false
+      },
+      "sameOriginalCandidatePool": false,
+      "beforeCitedTitles": [
+        "Sotsiaalhoolekandelise abi osutamise kord"
+      ],
+      "afterCitedTitles": [
+        "Sotsiaalhoolekandelise abi osutamise kord"
+      ]
+    },
+    {
+      "role": "CLIENT",
+      "scenario": "home-care-dialogue",
+      "turnIndex": 0,
+      "before": {
+        "completed": true,
+        "referencesBound": true,
+        "fullEvidenceHashes": true,
+        "priced": true,
+        "replayFree": true,
+        "streamed": true
+      },
+      "after": {
+        "completed": true,
+        "referencesBound": true,
+        "fullEvidenceHashes": true,
+        "priced": true,
+        "replayFree": true,
+        "streamed": true
+      },
+      "beforeNanoUsd": "5028165",
+      "afterNanoUsd": "4513005",
+      "beforeRerankInput": 18898,
+      "afterRerankInput": 19091,
+      "fixedPoolProjection": {
+        "format": "full_text",
+        "contentChanged": false
+      },
+      "sameOriginalCandidatePool": false,
+      "beforeCitedTitles": [
+        "Tartu linna sotsiaalhoolekandelise abi andmise kord",
+        "Koduteenuste korraldus",
+        "Koduteenuse juhend",
+        "Koduteenus",
+        "Tugiisikuteenus täisealisele"
+      ],
+      "afterCitedTitles": [
+        "Tartu linna sotsiaalhoolekandelise abi andmise kord",
+        "Koduteenuse juhend",
+        "Tartu linnaportaali sotsiaaltoetuste ja -teenuste e-taotlused",
+        "Üldtaotlus Tartu linna sotsiaaltoetuse või -teenuse taotlemiseks",
+        "Koduteenus"
+      ]
+    },
+    {
+      "role": "CLIENT",
+      "scenario": "home-care-dialogue",
+      "turnIndex": 1,
+      "before": {
+        "completed": true,
+        "referencesBound": true,
+        "fullEvidenceHashes": true,
+        "priced": true,
+        "replayFree": true,
+        "streamed": true,
+        "incomeKept": true,
+        "cityKept": true,
+        "samePersonAndScope": true,
+        "visitPriceInEvidence": true,
+        "hourPriceInEvidence": true,
+        "hourPriceInAnswer": true
+      },
+      "after": {
+        "completed": true,
+        "referencesBound": true,
+        "fullEvidenceHashes": true,
+        "priced": true,
+        "replayFree": true,
+        "streamed": true,
+        "incomeKept": true,
+        "cityKept": true,
+        "samePersonAndScope": true,
+        "visitPriceInEvidence": true,
+        "hourPriceInEvidence": true,
+        "hourPriceInAnswer": true
+      },
+      "beforeNanoUsd": "3801775",
+      "afterNanoUsd": "3195640",
+      "beforeRerankInput": 20701,
+      "afterRerankInput": 19906,
+      "fixedPoolProjection": {
+        "format": "full_text",
+        "contentChanged": false
+      },
+      "sameOriginalCandidatePool": false,
+      "beforeCitedTitles": [
+        "Tartu linna sotsiaalhoolekandelise abi andmise kord",
+        "Sotsiaalhoolekande seadus"
+      ],
+      "afterCitedTitles": [
+        "Tartu linna sotsiaalhoolekandelise abi andmise kord"
+      ]
+    },
+    {
+      "role": "CLIENT",
+      "scenario": "work-wellbeing-research",
+      "turnIndex": 0,
+      "before": {
+        "completed": true,
+        "referencesBound": true,
+        "fullEvidenceHashes": true,
+        "priced": true,
+        "replayFree": true,
+        "streamed": true,
+        "multipleCitedTitles": true,
+        "riskAndSupport": true,
+        "yearsInAnswer": true
+      },
+      "after": {
+        "completed": true,
+        "referencesBound": true,
+        "fullEvidenceHashes": true,
+        "priced": true,
+        "replayFree": true,
+        "streamed": true,
+        "multipleCitedTitles": true,
+        "riskAndSupport": true,
+        "yearsInAnswer": true
+      },
+      "beforeNanoUsd": "3647300",
+      "afterNanoUsd": "3416895",
+      "beforeRerankInput": 17301,
+      "afterRerankInput": 18835,
+      "fixedPoolProjection": {
+        "format": "full_text",
+        "contentChanged": false
+      },
+      "sameOriginalCandidatePool": false,
+      "beforeCitedTitles": [
+        "Töötingimused on sotsiaal- ja lastekaitsetöötajate heaolu põhiküsimus",
+        "OSKA sotsiaaltöö uuringu lühiversioon 2021",
+        "Sotsiaaltöötajate tööalase toetuse kogemused",
+        "Sotsiaaltöö spetsialistide enesehoiu arusaamad ja kogemused"
+      ],
+      "afterCitedTitles": [
+        "Töötingimused on sotsiaal- ja lastekaitsetöötajate heaolu põhiküsimus",
+        "Sotsiaaltöö spetsialistide enesehoiu arusaamad ja kogemused",
+        "Sotsiaaltöötajate tööalase toetuse kogemused",
+        "OSKA sotsiaaltöö uuringu lühiversioon 2021"
+      ]
+    },
+    {
+      "role": "SOCIAL_WORKER",
+      "scenario": "relative-support-person",
+      "turnIndex": 0,
+      "before": {
+        "completed": true,
+        "referencesBound": true,
+        "fullEvidenceHashes": true,
+        "priced": true,
+        "replayFree": true,
+        "streamed": true,
+        "relativeClauseInEvidence": true,
+        "relativeProhibition": true
+      },
+      "after": {
+        "completed": true,
+        "referencesBound": true,
+        "fullEvidenceHashes": true,
+        "priced": true,
+        "replayFree": true,
+        "streamed": true,
+        "relativeClauseInEvidence": true,
+        "relativeProhibition": true
+      },
+      "beforeNanoUsd": "2915870",
+      "afterNanoUsd": "2532765",
+      "beforeRerankInput": 17368,
+      "afterRerankInput": 17707,
+      "fixedPoolProjection": {
+        "format": "full_text",
+        "contentChanged": false
+      },
+      "sameOriginalCandidatePool": false,
+      "beforeCitedTitles": [
+        "Sotsiaalhoolekande seadus"
+      ],
+      "afterCitedTitles": [
+        "Sotsiaalhoolekande seadus"
+      ]
+    },
+    {
+      "role": "SOCIAL_WORKER",
+      "scenario": "version-change",
+      "turnIndex": 0,
+      "before": {
+        "completed": true,
+        "referencesBound": true,
+        "fullEvidenceHashes": true,
+        "priced": true,
+        "replayFree": true,
+        "streamed": true,
+        "bothVersionsCited": true,
+        "noKnownUnchangedDeadlineAsNew": true
+      },
+      "after": {
+        "completed": true,
+        "referencesBound": true,
+        "fullEvidenceHashes": true,
+        "priced": true,
+        "replayFree": true,
+        "streamed": true,
+        "bothVersionsCited": true,
+        "noKnownUnchangedDeadlineAsNew": true
+      },
+      "beforeNanoUsd": "3625005",
+      "afterNanoUsd": "5065415",
+      "beforeRerankInput": 17311,
+      "afterRerankInput": 17013,
+      "fixedPoolProjection": {
+        "format": "full_text",
+        "contentChanged": false
+      },
+      "sameOriginalCandidatePool": false,
+      "beforeCitedTitles": [
+        "Sotsiaalhoolekandelise abi osutamise kord"
+      ],
+      "afterCitedTitles": [
+        "Sotsiaalhoolekandelise abi osutamise kord"
+      ]
+    },
+    {
+      "role": "SOCIAL_WORKER",
+      "scenario": "home-care-dialogue",
+      "turnIndex": 0,
+      "before": {
+        "completed": true,
+        "referencesBound": true,
+        "fullEvidenceHashes": true,
+        "priced": true,
+        "replayFree": true,
+        "streamed": true,
+        "noSelfReferral": true
+      },
+      "after": {
+        "completed": true,
+        "referencesBound": true,
+        "fullEvidenceHashes": true,
+        "priced": true,
+        "replayFree": true,
+        "streamed": true,
+        "noSelfReferral": false
+      },
+      "beforeNanoUsd": "5330545",
+      "afterNanoUsd": "4556735",
+      "beforeRerankInput": 18692,
+      "afterRerankInput": 18927,
+      "fixedPoolProjection": {
+        "format": "full_text",
+        "contentChanged": false
+      },
+      "sameOriginalCandidatePool": false,
+      "beforeCitedTitles": [
+        "Koduteenuse juhend",
+        "Tartu linna sotsiaalhoolekandelise abi andmise kord",
+        "Sotsiaalhoolekande seadus",
+        "Koduteenus"
+      ],
+      "afterCitedTitles": [
+        "Koduteenuse juhend",
+        "Tartu linna sotsiaalhoolekandelise abi andmise kord",
+        "Sotsiaalhoolekande seadus",
+        "Tartu linnaportaali sotsiaaltoetuste ja -teenuste e-taotlused",
+        "Koduteenus"
+      ]
+    },
+    {
+      "role": "SOCIAL_WORKER",
+      "scenario": "home-care-dialogue",
+      "turnIndex": 1,
+      "before": {
+        "completed": true,
+        "referencesBound": true,
+        "fullEvidenceHashes": true,
+        "priced": true,
+        "replayFree": true,
+        "streamed": true,
+        "incomeKept": true,
+        "cityKept": true,
+        "samePersonAndScope": true,
+        "visitPriceInEvidence": true,
+        "hourPriceInEvidence": true,
+        "hourPriceInAnswer": true
+      },
+      "after": {
+        "completed": true,
+        "referencesBound": true,
+        "fullEvidenceHashes": true,
+        "priced": true,
+        "replayFree": true,
+        "streamed": true,
+        "incomeKept": true,
+        "cityKept": true,
+        "samePersonAndScope": true,
+        "visitPriceInEvidence": true,
+        "hourPriceInEvidence": true,
+        "hourPriceInAnswer": true
+      },
+      "beforeNanoUsd": "3298865",
+      "afterNanoUsd": "3037815",
+      "beforeRerankInput": 15495,
+      "afterRerankInput": 19189,
+      "fixedPoolProjection": {
+        "format": "full_text",
+        "contentChanged": false
+      },
+      "sameOriginalCandidatePool": false,
+      "beforeCitedTitles": [
+        "Tartu linna sotsiaalhoolekandelise abi andmise kord",
+        "Sotsiaalhoolekande seadus"
+      ],
+      "afterCitedTitles": [
+        "Tartu linna sotsiaalhoolekandelise abi andmise kord",
+        "Sotsiaalhoolekande seadus"
+      ]
+    },
+    {
+      "role": "SOCIAL_WORKER",
+      "scenario": "work-wellbeing-research",
+      "turnIndex": 0,
+      "before": {
+        "completed": true,
+        "referencesBound": true,
+        "fullEvidenceHashes": true,
+        "priced": true,
+        "replayFree": true,
+        "streamed": true,
+        "multipleCitedTitles": true,
+        "riskAndSupport": true,
+        "yearsInAnswer": true
+      },
+      "after": {
+        "completed": true,
+        "referencesBound": true,
+        "fullEvidenceHashes": true,
+        "priced": true,
+        "replayFree": true,
+        "streamed": true,
+        "multipleCitedTitles": true,
+        "riskAndSupport": true,
+        "yearsInAnswer": true
+      },
+      "beforeNanoUsd": "3666535",
+      "afterNanoUsd": "3441715",
+      "beforeRerankInput": 16800,
+      "afterRerankInput": 18032,
+      "fixedPoolProjection": {
+        "format": "full_text",
+        "contentChanged": false
+      },
+      "sameOriginalCandidatePool": false,
+      "beforeCitedTitles": [
+        "Töötingimused on sotsiaal- ja lastekaitsetöötajate heaolu põhiküsimus",
+        "Sotsiaaltöö spetsialistide enesehoiu arusaamad ja kogemused",
+        "Sotsiaaltöötajate tööalase toetuse kogemused",
+        "OSKA sotsiaaltöö uuringu lühiversioon 2021",
+        "Maasotsiaaltöötajad räägivad oma tööst ja endast selle töö tegijana"
+      ],
+      "afterCitedTitles": [
+        "Töötingimused on sotsiaal- ja lastekaitsetöötajate heaolu põhiküsimus",
+        "Sotsiaaltöötajate tööalase toetuse kogemused",
+        "OSKA sotsiaaltöö uuringu lühiversioon 2021",
+        "Sotsiaaltöö spetsialistide enesehoiu arusaamad ja kogemused"
+      ]
+    },
+    {
+      "role": "SERVICE_PROVIDER",
+      "scenario": "relative-support-person",
+      "turnIndex": 0,
+      "before": {
+        "completed": true,
+        "referencesBound": true,
+        "fullEvidenceHashes": true,
+        "priced": true,
+        "replayFree": true,
+        "streamed": true,
+        "relativeClauseInEvidence": true,
+        "relativeProhibition": true
+      },
+      "after": {
+        "completed": true,
+        "referencesBound": true,
+        "fullEvidenceHashes": true,
+        "priced": true,
+        "replayFree": true,
+        "streamed": true,
+        "relativeClauseInEvidence": true,
+        "relativeProhibition": true
+      },
+      "beforeNanoUsd": "1215025",
+      "afterNanoUsd": "2535500",
+      "beforeRerankInput": 17970,
+      "afterRerankInput": 17914,
+      "fixedPoolProjection": {
+        "format": "full_text",
+        "contentChanged": false
+      },
+      "sameOriginalCandidatePool": false,
+      "beforeCitedTitles": [
+        "Sotsiaalhoolekande seadus",
+        "Tugiisikuteenuse juhend"
+      ],
+      "afterCitedTitles": [
+        "Sotsiaalhoolekande seadus"
+      ]
+    },
+    {
+      "role": "SERVICE_PROVIDER",
+      "scenario": "version-change",
+      "turnIndex": 0,
+      "before": {
+        "completed": true,
+        "referencesBound": true,
+        "fullEvidenceHashes": true,
+        "priced": true,
+        "replayFree": true,
+        "streamed": true,
+        "bothVersionsCited": true,
+        "noKnownUnchangedDeadlineAsNew": true
+      },
+      "after": {
+        "completed": true,
+        "referencesBound": true,
+        "fullEvidenceHashes": true,
+        "priced": true,
+        "replayFree": true,
+        "streamed": true,
+        "bothVersionsCited": true,
+        "noKnownUnchangedDeadlineAsNew": true
+      },
+      "beforeNanoUsd": "5405050",
+      "afterNanoUsd": "4962975",
+      "beforeRerankInput": 17026,
+      "afterRerankInput": 17311,
+      "fixedPoolProjection": {
+        "format": "full_text",
+        "contentChanged": false
+      },
+      "sameOriginalCandidatePool": false,
+      "beforeCitedTitles": [
+        "Sotsiaalhoolekandelise abi osutamise kord"
+      ],
+      "afterCitedTitles": [
+        "Sotsiaalhoolekandelise abi osutamise kord"
+      ]
+    },
+    {
+      "role": "SERVICE_PROVIDER",
+      "scenario": "home-care-dialogue",
+      "turnIndex": 0,
+      "before": {
+        "completed": true,
+        "referencesBound": true,
+        "fullEvidenceHashes": true,
+        "priced": true,
+        "replayFree": true,
+        "streamed": true
+      },
+      "after": {
+        "completed": true,
+        "referencesBound": true,
+        "fullEvidenceHashes": true,
+        "priced": true,
+        "replayFree": true,
+        "streamed": true
+      },
+      "beforeNanoUsd": "3372280",
+      "afterNanoUsd": "4409175",
+      "beforeRerankInput": 16189,
+      "afterRerankInput": 16711,
+      "fixedPoolProjection": {
+        "format": "full_text",
+        "contentChanged": false
+      },
+      "sameOriginalCandidatePool": false,
+      "beforeCitedTitles": [
+        "Tartu linna sotsiaalhoolekandelise abi andmise kord",
+        "Koduteenuste korraldus",
+        "Koduteenuse juhend"
+      ],
+      "afterCitedTitles": [
+        "Tartu linna sotsiaalhoolekandelise abi andmise kord",
+        "Sotsiaalhoolekande seadus",
+        "Heaolumeistri teenus",
+        "Koduteenus"
+      ]
+    },
+    {
+      "role": "SERVICE_PROVIDER",
+      "scenario": "home-care-dialogue",
+      "turnIndex": 1,
+      "before": {
+        "completed": true,
+        "referencesBound": true,
+        "fullEvidenceHashes": true,
+        "priced": true,
+        "replayFree": true,
+        "streamed": true,
+        "incomeKept": true,
+        "cityKept": true,
+        "samePersonAndScope": true,
+        "visitPriceInEvidence": true,
+        "hourPriceInEvidence": true,
+        "hourPriceInAnswer": true
+      },
+      "after": {
+        "completed": true,
+        "referencesBound": true,
+        "fullEvidenceHashes": true,
+        "priced": true,
+        "replayFree": true,
+        "streamed": true,
+        "incomeKept": true,
+        "cityKept": true,
+        "samePersonAndScope": true,
+        "visitPriceInEvidence": true,
+        "hourPriceInEvidence": true,
+        "hourPriceInAnswer": true
+      },
+      "beforeNanoUsd": "3674855",
+      "afterNanoUsd": "3123120",
+      "beforeRerankInput": 19592,
+      "afterRerankInput": 18876,
+      "fixedPoolProjection": {
+        "format": "full_text",
+        "contentChanged": false
+      },
+      "sameOriginalCandidatePool": false,
+      "beforeCitedTitles": [
+        "Tartu linna sotsiaalhoolekandelise abi andmise kord",
+        "Sotsiaalhoolekande seadus"
+      ],
+      "afterCitedTitles": [
+        "Tartu linna sotsiaalhoolekandelise abi andmise kord",
+        "Sotsiaalhoolekande seadus"
+      ]
+    },
+    {
+      "role": "SERVICE_PROVIDER",
+      "scenario": "work-wellbeing-research",
+      "turnIndex": 0,
+      "before": {
+        "completed": true,
+        "referencesBound": true,
+        "fullEvidenceHashes": true,
+        "priced": true,
+        "replayFree": true,
+        "streamed": true,
+        "multipleCitedTitles": true,
+        "riskAndSupport": true,
+        "yearsInAnswer": true
+      },
+      "after": {
+        "completed": true,
+        "referencesBound": true,
+        "fullEvidenceHashes": true,
+        "priced": true,
+        "replayFree": true,
+        "streamed": true,
+        "multipleCitedTitles": true,
+        "riskAndSupport": true,
+        "yearsInAnswer": true
+      },
+      "beforeNanoUsd": "3688020",
+      "afterNanoUsd": "3312165",
+      "beforeRerankInput": 16661,
+      "afterRerankInput": 17513,
+      "fixedPoolProjection": {
+        "format": "full_text",
+        "contentChanged": false
+      },
+      "sameOriginalCandidatePool": false,
+      "beforeCitedTitles": [
+        "Töötingimused on sotsiaal- ja lastekaitsetöötajate heaolu põhiküsimus",
+        "Sotsiaaltöötajate tööalase toetuse kogemused",
+        "OSKA sotsiaaltöö uuringu olulisemad tulemused",
+        "Sotsiaaltöö spetsialistide enesehoiu arusaamad ja kogemused"
+      ],
+      "afterCitedTitles": [
+        "Töötingimused on sotsiaal- ja lastekaitsetöötajate heaolu põhiküsimus",
+        "Sotsiaaltöö spetsialistide enesehoiu arusaamad ja kogemused",
+        "Sotsiaaltöötajate tööalase toetuse kogemused"
+      ]
+    }
+  ]
+}
