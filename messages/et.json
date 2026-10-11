@@ -10447,19 +10447,24 @@
     "back_card": "Tagasi",
     "zones": {
       "juhtum": {
-        "name": "Juhtum"
+        "name": "Juhtum",
+        "what": "valgustatud sein: inimesed ja nende asjad"
       },
       "teadmine": {
-        "name": "Teadmine"
+        "name": "Teadmine",
+        "what": "riiul: kust leida ja mille põhjal kirjutada"
       },
       "mina": {
-        "name": "Mina"
+        "name": "Mina",
+        "what": "tugitool ja lamp: mina ise ja minu areng"
       },
       "minu_tee": {
-        "name": "Minu tee"
+        "name": "Minu tee",
+        "what": "valgustatud sein: minu asjad ja nende seis"
       },
       "leian_abi": {
-        "name": "Leian abi"
+        "name": "Leian abi",
+        "what": "riiul: kust abi leida"
       },
       "vaade": {
         "name": "Vaade"
@@ -10470,6 +10475,11 @@
       "korraldus": {
         "name": "Korraldus"
       }
+    },
+    "places": {
+      "back_room": "Tagasi kogu tuppa",
+      "waiting_count": "{count} ootab",
+      "waiting_draft": "pooleli"
     },
     "kovision_room_card": "Kovisiooni ruum",
     "kovision_seeds_card": "Teemaseemned",

@@ -10447,19 +10447,24 @@
     "back_card": "Back",
     "zones": {
       "juhtum": {
-        "name": "Casework"
+        "name": "Casework",
+        "what": "the lit wall: people and their matters"
       },
       "teadmine": {
-        "name": "Knowledge"
+        "name": "Knowledge",
+        "what": "the shelf: where to find and what to write from"
       },
       "mina": {
-        "name": "Self"
+        "name": "Self",
+        "what": "armchair and lamp: myself and my growth"
       },
       "minu_tee": {
-        "name": "My path"
+        "name": "My path",
+        "what": "the lit wall: my matters and where they stand"
       },
       "leian_abi": {
-        "name": "Finding help"
+        "name": "Finding help",
+        "what": "the shelf: where to find help"
       },
       "vaade": {
         "name": "View"
@@ -10470,6 +10475,11 @@
       "korraldus": {
         "name": "Arrangement"
       }
+    },
+    "places": {
+      "back_room": "Back to the whole room",
+      "waiting_count": "{count} waiting",
+      "waiting_draft": "in progress"
     },
     "kovision_room_card": "Co-vision room",
     "kovision_seeds_card": "Topic seeds",

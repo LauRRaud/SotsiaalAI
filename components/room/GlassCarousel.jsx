@@ -24,6 +24,7 @@ import { DockStepsOutlet } from "@/components/stage/DockSteps";
 import RoleViewSwitcher from "@/components/workspace/RoleViewSwitcher";
 import useQuickMenuMotion, { useQuickMenuIndex } from "@/components/ui/useQuickMenuMotion";
 import { HAND_EVENT } from "@/lib/handGestures";
+import { isRoomInteractive } from "@/lib/roomInteractive";
 
 /* Sama brauserivaate eluea jooksul hoitav kiire mälu. sessionStorage on
    endiselt püsiv varuvariant (F5 ja route-remount), kuid seda saab lugeda
@@ -532,31 +533,7 @@ export default function GlassCarousel({
      ülariba kohale — mõlemal juhul ignoreeris karussell iga käeliigutust
      (omanik 28.09: „menüüs ei tahtnud need töötada"). Avatud ülariba
      lukustab endiselt. */
-  const roomInteractive = useCallback(({ pointer = true } = {}) => {
-    const root = navRef.current;
-    if (!root) return false;
-    const wrap = root.closest(".room-carousel-wrap");
-    if (!wrap || wrap.inert) return false;
-    const room = root.closest(".room");
-    if (!room) return false;
-    if (room.dataset.departing === "1" || room.dataset.loginOpen === "1" || room.dataset.cardPage === "1") return false;
-    // Ükski lahtiolev modal (ligipääsetavus, kontakt/paigalda) ei tohi
-    // lasta rullikul/nooltel tagust karusselli pöörata (tellija 07.07).
-    if (room.dataset.a11yOpen === "1" || room.dataset.infoOpen === "1") return false;
-    if (document.documentElement.getAttribute("data-room-mode") === "panel") return false;
-    /* Juhtpaneel elab ruumi ja main-kihi vahel eraldi kihis, et see oleks
-       kasutatav ka töövaadetes. Seetõttu otsime seda dokumendist, mitte
-       enam ainult .room elemendi seest. */
-    const topbar = document.querySelector(".room-topbar");
-    if (
-      topbar &&
-      (topbar.dataset.open === "1" ||
-        (pointer && (topbar.matches?.(":hover") || topbar.matches?.(":focus-within"))))
-    ) {
-      return false;
-    }
-    return true;
-  }, []);
+  const roomInteractive = useCallback((options) => isRoomInteractive(navRef.current, options), []);
 
   /* ↑/↓ liigutab laual KLAVIATUURI FOOKUST reast ritta. Varem liigutas ta
      rea esiletõstet; kui see 03.08 kadus, ei jäänud žestile mõtet, aga
