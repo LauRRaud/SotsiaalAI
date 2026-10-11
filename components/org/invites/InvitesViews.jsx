@@ -29,7 +29,7 @@ import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import { PERSON_NAME_MAX } from "@/lib/org/personName";
 
-import { ArmedButton, Facts, SMALL, footNote, ignoreKeyRepeat } from "../OrgBits";
+import { ArmedButton, Facts, PickOne, SMALL, footNote, ignoreKeyRepeat } from "../OrgBits";
 import shared from "../org.module.css";
 import { JOB_TITLE_LIMIT } from "./inviteRules";
 
@@ -184,7 +184,7 @@ export function UnitView({ t, value, options, needsUnit, onUnit, notice }) {
   return (
     <StepPanel title={t("org.invites.steps.unit.title")} note={footNote(notice, needsUnit ? t("org.invites.unit_needed") : t("org.invites.unit_optional"))}>
       {options.length > 1 ? (
-        <ChoiceRow label={t("org.invites.unit_question")} options={options} value={value} onChange={onUnit} columns={3} keepColumns />
+        <PickOne label={t("org.invites.unit_question")} options={options} value={value} onChange={onUnit} />
       ) : (
         <p className={shared.quiet}>{t("org.invites.units_none")}</p>
       )}

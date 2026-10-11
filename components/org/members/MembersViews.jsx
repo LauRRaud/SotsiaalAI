@@ -21,7 +21,7 @@ import ChoiceRow from "@/components/stage/ChoiceRow";
 import StepPanel from "@/components/stage/StepPanel";
 import Button from "@/components/ui/Button";
 
-import { ArmedButton, Facts, SMALL, footNote, ignoreKeyRepeat } from "../OrgBits";
+import { ArmedButton, Facts, PickOne, SMALL, footNote, ignoreKeyRepeat } from "../OrgBits";
 import shared from "../org.module.css";
 
 /** Loend. Rida avab liikme; privaatsuslause all servas on sisu, mitte kaunistus. */
@@ -109,7 +109,7 @@ export function MemberView({ t, name, tabs, tab, onTab, facts, unit, rights, lif
         </div>
         {tab === "member" ? <Facts rows={facts} /> : null}
         {tab === "unit" ? (
-          <ChoiceRow label={t("org.members.unit_question")} options={unit.options} value={unit.value} onChange={unit.onChange} columns={3} keepColumns />
+          <PickOne label={t("org.members.unit_question")} options={unit.options} value={unit.value} onChange={unit.onChange} />
         ) : null}
         {tab === "rights" ? (
           <>

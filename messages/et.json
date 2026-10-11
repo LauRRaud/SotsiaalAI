@@ -11963,7 +11963,13 @@
       "add": "Lisa üksus",
       "archive": "Arhiveeri",
       "empty": "Üksusi ei ole veel loodud.",
-      "maxDepthHint": "Struktuur toetab kuni kolme tasandit."
+      "maxDepthHint": "Struktuur toetab kuni kolme tasandit.",
+      "archive_named": "Arhiveeri üksus: {name}",
+      "archive_confirm": "Jah, arhiveeri",
+      "archive_note": "Üksus läheb arhiivi ja kaob loendist. Üksust, kus on liikmeid või alamüksusi, arhiveerida ei saa.",
+      "decline_note": "Kirjutatu kustub ja üksust ei lisata.",
+      "adding": "Lisan üksust",
+      "added": "Üksus „{name}” on lisatud."
     },
     "members": {
       "heading": "Liikmed",

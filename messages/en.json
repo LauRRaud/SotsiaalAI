@@ -11963,7 +11963,13 @@
       "add": "Add unit",
       "archive": "Archive",
       "empty": "No units have been created yet.",
-      "maxDepthHint": "The structure supports up to three levels."
+      "maxDepthHint": "The structure supports up to three levels.",
+      "archive_named": "Archive the unit: {name}",
+      "archive_confirm": "Yes, archive",
+      "archive_note": "The unit goes to the archive and leaves the list. A unit that has members or sub-units cannot be archived.",
+      "decline_note": "What you wrote is discarded and no unit is added.",
+      "adding": "Adding the unit",
+      "added": "The unit “{name}” has been added."
     },
     "members": {
       "heading": "Members",
