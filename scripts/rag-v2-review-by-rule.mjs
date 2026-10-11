@@ -34,6 +34,11 @@ const KINDS = {
   document: { note: 'Väljaandja avaldatud uuring või juhend (PDF), alla laaditud väljaandja ametlikult aadressilt loendi järgi (Sotsiaalministeeriumi läbiviidud uuringud; Sotsiaalkindlustusameti lehed spetsialistile ja koostööpartnerile; ajakirja Sotsiaaltöö uudiskirjas viidatud dokumendid). Pealkiri on loendist ega pruugi sõna-sõnalt seista dokumendi tekstis. Tekstikihita lehed (kaaned, pildid) ja keerukad tabelid jäävad lugemata; viidete loendit ei tükeldata. Uuring on taust ja tõendus, juhend on asutuse juhis; kumbki ei ole õiguslik alus.',
     expected: ['layout_coverage_limit', 'pdf_column_order_detected', 'pdf_glyph_char_codes_recovered', 'pdf_nul_replaced', 'pdf_pages_without_body_text', 'pdf_pages_without_text_layer', 'pdf_text_box_read_by_cell', 'reference_list_not_chunked', 'title_not_matched_in_pdf'] },
 };
+// A collected page or document may carry source-anchored knowledge a model prepared for it in a batch (cards and their relations, ADR-054,
+// ADR-147): the ingest has checked every card's quote against the source's own text and marks the import unreviewed. The rule lets it through
+// for a page, an organisation's page and a document, and the item's note says what the cards are.
+const KNOWLEDGE = 'knowledge_import_unreviewed', WITH_KNOWLEDGE = new Set(['page', 'organisation', 'document']);
+const KNOWLEDGE_NOTE = ' Allika juurde on imporditud mudeliga koostatud teadmiskaardid ja nende seosed (ADR-054, ADR-147): iga kaardi tsitaat on kontrollitud allika enda teksti vastu, väidete sõnastust ja seoseid ei ole inimene üle vaadanud; need on otsinguabi, mitte allikas.';
 const value = field => (field && typeof field === 'object' && 'value' in field ? field.value : field);
 const kindOf = item => {
   const type = value(item.fields?.source_type), title = String(value(item.fields?.title) ?? '');
@@ -46,8 +51,8 @@ for (const item of draft.items) {
   const kind = kindOf(item), warnings = (item.warnings || []).map(warning => warning.code).sort();
   const key = `${kind ?? `unknown:${value(item.fields?.source_type)}`} | ${item.state} | warnings ${warnings.join('+') || '-'} | blockers ${(item.blockers || []).length}`;
   tally[key] = (tally[key] || 0) + 1;
-  if (!kind || item.state !== 'prepared' || (item.blockers || []).length || warnings.some(code => !KINDS[kind].expected.includes(code))) { problems.push(key); continue; }
-  item.decision = 'include'; item.note = KINDS[kind].note;
+  if (!kind || item.state !== 'prepared' || (item.blockers || []).length || warnings.some(code => !KINDS[kind].expected.includes(code) && !(code === KNOWLEDGE && WITH_KNOWLEDGE.has(kind)))) { problems.push(key); continue; }
+  item.decision = 'include'; item.note = KINDS[kind].note + (warnings.includes(KNOWLEDGE) ? KNOWLEDGE_NOTE : '');
 }
 console.log(JSON.stringify({ items: draft.items.length, tally, problems: problems.length }, null, 1));
 if (problems.length) { console.log('NOT WRITTEN: an item is not what the rule covers'); process.exit(2); }
