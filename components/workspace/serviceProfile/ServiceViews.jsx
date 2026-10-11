@@ -195,7 +195,7 @@ function PlacesView({ tp, places, note, save }) {
 }
 
 /** Kus teenust osutatakse: piirkonna tüüp, maakond ja omavalitsused registrist. */
-function ReachView({ tp, service, options, area, onField, note, save }) {
+function ReachView({ tp, service, options, area, profileCounty, onField, note, save }) {
   return (
     <StepPanel title={tp("views.reach.title", "Teenuse piirkond")} note={note} actions={save}>
       <div className={styles.stack}>
@@ -210,6 +210,7 @@ function ReachView({ tp, service, options, area, onField, note, save }) {
           area={area}
           county={service.county}
           municipalities={service.municipalityIds}
+          inheritedCounty={profileCounty}
           onCounty={(value) => onField("county", value)}
           onMunicipalities={(value) => onField("municipalityIds", value)}
         />

@@ -134,9 +134,14 @@ function SelectField({ label, hint, value, options, onChange, size, placeholder,
  * Varem käsitsi kirjutatud sõna, mida register ei tunne, on samuti lahter ja
  * teade ütleb, et see ei kata ühtki kohta (reeglid: profileModel.js).
  * `children`: väljad, mis seisavad valikutega samas reas.
+ * `inheritedCounty`: profiili maakond teenuse vaates. Teenuse tühi maakond
+ * tähendab siis „sama mis profiilil" (lugeja võtab profiili oma), mitte
+ * „täpsustamata".
  */
-export function AreaFields({ tp, area, county, municipalities, onCounty, onMunicipalities, children }) {
-  const countyPick = countyChoice(county, area, tp("area.county_none", "Täpsustamata"));
+export function AreaFields({ tp, area, county, municipalities, inheritedCounty = "", onCounty, onMunicipalities, children }) {
+  /* Teenuse tühi maakond tähendab „sama mis profiilil": valik ütleb seda ja vihje nimetab maakonna. */
+  const inherited = countyChoice(inheritedCounty, area, "").value;
+  const countyPick = countyChoice(county, area, inherited ? tp("area.county_inherited", "Sama mis profiilil") : tp("area.county_none", "Täpsustamata"));
   const pick = municipalityChoice(municipalities, area);
   /* Üks teade mõlema kohta: kaks kasti üksteise all teeksid vaate asjatult pikaks. */
   const warnings = [
@@ -149,7 +154,14 @@ export function AreaFields({ tp, area, county, municipalities, onCounty, onMunic
     <div className={styles.stack}>
       <div className={styles.fields}>
         {children}
-        <SelectField size="sm" label={tp("fields.county", "Maakond")} value={countyPick.value} options={countyPick.options} onChange={onCounty} />
+        <SelectField
+          size={inherited ? "md" : "sm"}
+          label={tp("fields.county", "Maakond")}
+          hint={inherited && !countyPick.value ? tp("area.county_inherited_hint", "Profiili maakond: {county}", { county: inherited }) : ""}
+          value={countyPick.value}
+          options={countyPick.options}
+          onChange={onCounty}
+        />
         <SelectField
           size="md"
           label={tp("area.municipalities", "Omavalitsused")}

@@ -4484,6 +4484,7 @@ function ServiceProfileSurface({ t, locale }) {
           service={openedService}
           options={options}
           area={areaChoices}
+          profileCounty={form.county}
           note={note}
           save={save}
           remove={removeAction}

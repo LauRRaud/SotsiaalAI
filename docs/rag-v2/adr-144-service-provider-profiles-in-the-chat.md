@@ -95,9 +95,9 @@ Vorm küsib piirkonna tüüpi valikuna. Maakond ja omavalitsused valitakse alate
 | Vormi tüüp | Loetakse |
 |---|---|
 | Üleriigiline, Veebiteenus | iga omavalitsus |
-| Maakondlik | teenuse (või profiili) maakond; „Harjumaa“, „Harju maakond“ ja „Harju“ on sama |
+| Maakondlik | teenuse maakond; kui see on tühi, profiili maakond lugemise hetkel. „Harjumaa“, „Harju maakond“ ja „Harju“ on sama |
 | KOV põhine | teenuse (või profiili) omavalitsused: täisnimi, tunnus või ühene lühinimi |
-| Teeninduskoha põhine | teenuse avalike teeninduskohtade maakond (kohal on aadress ja maakond, omavalitsust ei ole) |
+| Teeninduskoha põhine | teenuse avalike teeninduskohtade maakond, mille server loeb koha ametlikust aadressivastest; aadressivasteta koha puhul teenuse või profiili maakond |
 | Täpsustamata | kitsaim märgitud: omavalitsused, muidu maakond |
 
 Midagi ei oletata: kirjeldustest piirkonda ei loeta. Sõna, mida register ei tunne, ja nimi, mis sobib kahele omavalitsusele („Tartu“), ei kata ühtki kohta; sellised sõnad loetakse kokku. Teadmata piirkonnaga teenust ei pakuta ühegi koha küsimusele.
@@ -135,6 +135,7 @@ node --env-file=<väljalaske env> --import ./scripts/register-node-source-loader
 ## Piirid ja kõrvalleiud
 
 - **Vorm küsis omavalitsusi vabatekstina; alates 11.10.2026 valitakse need registrist.** Profiili vaates „Tegevuspiirkond“ ja teenuse vaates „Teenuse piirkond“ valib osutaja maakonna ja omavalitsused loendist (`components/workspace/serviceProfile/ProfileFields.jsx`, `AreaFields`; reeglid `profileModel.js`). Varem käsitsi kirjutatud sõna, mida register ei loe, jääb vormis näha ja maha võetavaks ning vaade ütleb, et see ei ole loendist valitud. Avaldamise kontroll näitab mitteblokeeriva reana KOV põhist teenust, millel ei ole ühtki loetavat omavalitsust, ja maakondlikku teenust, millel ei ole maakonda. Loenduse väli `unreadAreaWords` jääb uute sisestuste puhul nulli.
-- Teeninduskohal ei ole omavalitsust, ainult aadress ja maakond: teeninduskoha põhine teenus loetakse maakonna täpsusega. Teeninduskohal ei ole vormis maakonna välja: koht pärib maakonna loomisel profiililt ja profiili maakonna hilisem muutmine kohta ei muuda.
+- Teeninduskohal ei ole omavalitsust, ainult aadress ja maakond: teeninduskoha põhine teenus loetakse maakonna täpsusega. **Koha maakond tuleb alates 11.10.2026 ametlikust aadressivastest** (`countyFromOfficialAddress`: „Lossi tn 1, Põltsamaa linn, Põltsamaa vald, Jõgeva maakond“ → „Jõgevamaa“), mitte profiililt: kohal ei ole vormis maakonna välja ja profiililt päritud maakond jäi valeks, kui profiili maakonda hiljem muudeti. Olemasolev koht saab õige maakonna järgmisel salvestamisel; aadressivasteta kohal oma maakonda ei ole. Samast aadressist saaks lugeda ka omavalitsuse (teeninduskoha põhine teenus kataks siis ühe omavalitsuse, mitte maakonna): see on omaniku otsus ja tegemata.
+- **Teenuse tühi maakond tähendab „sama mis profiilil“.** Server ei kopeeri enam profiili maakonda teenusele: koopia ei lasknud maakonda tühjaks jätta ja jäi valeks, kui profiili maakond muutus. Lugeja võtab profiili maakonna lugemise hetkel. Teenusekaardi vabasõnaotsing loeb seepärast ka profiili maakonda; maakonna filter teenuse maakonda ei kasutanud. Varem kopeeritud maakond jääb teenusele alles, kuni osutaja valib „Sama mis profiilil“.
 - Vana tee jäänused (`serviceProfileRetrievalGuard`, `serviceProfileRagRemoval`, tabel `ServiceProviderProfileRagJob`, 0 rida) on puutumata.
 - Esindusõiguse reeglit (#666, #668) ei muudetud.

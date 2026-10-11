@@ -3779,6 +3779,8 @@
       },
       "area": {
         "county_none": "Не уточнено",
+        "county_inherited": "Как в профиле",
+        "county_inherited_hint": "Уезд профиля: {county}",
         "municipalities": "Самоуправления",
         "add_municipality": "Добавить самоуправление",
         "chosen": "Выбранные самоуправления",
