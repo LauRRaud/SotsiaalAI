@@ -71,7 +71,8 @@ test('töötajate valikud ja vastutaja nimi: sisemist ID-d ei näidata kunagi', 
 });
 
 test('pärast üleandmist ei seisa lehel kõrvuti „vastu võetud” ja „ootab vastust”', () => {
-  /* Server jätab kirje seisu ACCEPTED, kuigi uus määramine ootab vastust. */
+  /* Enne serveri parandust üle antud rida: kirje on ACCEPTED, kuigi uus määramine ootab
+     vastust. Uutel ridadel teeb siirde server (tests/org-inbox-handover-status.test.mjs). */
   const handedOver = item({ status: 'ACCEPTED', assignment: { membershipId: 'm2', firstName: 'Jaan', lastName: 'Kask', status: 'PENDING' } });
   assert.equal(shownItemStatus(handedOver), 'ASSIGNED');
   assert.equal(inboxRow(handedOver, { t }).chip, 'Määratud');
