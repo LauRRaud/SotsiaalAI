@@ -47,6 +47,7 @@ import {
   getPreInquiryQuestionFollowUpQuestions,
   normalizePreInquiryAssessmentState
 } from "@/lib/preInquiriesQuestionnaire";
+import { setPanelLeaveGuard, twoPressLeaveGuard } from "@/lib/panelLeaveGuard";
 import { buildRoomChatPath } from "@/lib/roomPath";
 import { pushWithTransition } from "@/lib/routeTransition";
 import AdminRoleViewCycleButton from "./AdminRoleViewCycleButton";
@@ -120,6 +121,8 @@ import {
   representationDate,
   representationStatus,
   serviceAreaChoices,
+  escapeBelongsToWidget,
+  leaveGuardOn,
   serviceProfileDirty,
   serviceProfileOptionSets,
   serviceProfilePublishChecks,
@@ -4294,6 +4297,48 @@ function ServiceProfileSurface({ t, locale }) {
   /* Asutuse kinnituse seis vormi registrikoodi kohta: rida registrikoodi juures,
      avaldamise vaade ja kontroll ütlevad seda enne salvestamist. */
   const representation = useMemo(() => representationStatus(form, profile, { dirty }), [form, profile, dirty]);
+  /* LAHKUMISE KAITSE. Lehelt viivad ära teed, mida leht ise ei joonista: kiirmenüü tagasi-nool,
+     paneeli sulgemine ja Esc. Salvestamata muudatustega lahkus inimene seni vaikselt ja
+     muudatused kadusid. Nüüd peetakse esimene lahkumine kinni ja leht ütleb, miks; teine vajutus
+     lahkub. Töölaua paneelis sulgeb Esc paneeli ilma väravalt küsimata
+     (components/chat/WorkspacePanel.jsx), seepärast peab leht Esc-i ise kinni (sama võte mis
+     components/chat/SelectedListingContext.jsx). Akna sulgemise ja uuesti laadimise katab
+     brauseri enda küsimus. Millal kaitse peal on, otsustab `leaveGuardOn` (profileModel.js). */
+  const [leaveAsked, setLeaveAsked] = useState(false);
+  const guarded = leaveGuardOn({ loading, dirty });
+  useEffect(() => {
+    if (!guarded) return undefined;
+    const leave = twoPressLeaveGuard({ onAsk: () => setLeaveAsked(true), onClear: () => setLeaveAsked(false) });
+    let passing = false;
+    const gate = (reason) => passing || leave(reason);
+    const release = setPanelLeaveGuard(gate);
+    const holdEscape = (event) => {
+      /* Esc, mis kuulub lehe enda avatud osale (kiirmenüü sammude loend, rippvalik), jääb sellele. */
+      if (event.key !== "Escape" || escapeBelongsToWidget(event.target)) return;
+      if (gate("escape")) {
+        passing = true;
+        window.setTimeout(() => {
+          passing = false;
+        }, 0);
+        return;
+      }
+      event.preventDefault();
+      event.stopPropagation();
+    };
+    const warn = (event) => {
+      event.preventDefault();
+      event.returnValue = "";
+    };
+    window.addEventListener("keydown", holdEscape, true);
+    window.addEventListener("beforeunload", warn);
+    return () => {
+      release();
+      leave.clear();
+      window.removeEventListener("keydown", holdEscape, true);
+      window.removeEventListener("beforeunload", warn);
+    };
+  }, [guarded]);
+
   /* Kinnitus võib tulla mujalt (lingiga teises aknas või haldurilt), kui see leht
      on lahti. Lehele naastes loetakse seis uuesti; vormi see ei puutu. */
   const awaitingRepresentation = representation.kind === "unconfirmed";
@@ -4792,6 +4837,11 @@ function ServiceProfileSurface({ t, locale }) {
       {saveWarning ? (
         <p className={profileStyles.notice} data-tone="wait" aria-live="polite">
           {saveWarning}
+        </p>
+      ) : null}
+      {leaveAsked ? (
+        <p className={profileStyles.notice} data-tone="wait" role="alert">
+          {tp("views.unsaved_leave", "Muudatused on salvestamata. Vajuta uuesti, kui tahad lahkuda ilma salvestamata.")}
         </p>
       ) : null}
       {conflictProfile ? (

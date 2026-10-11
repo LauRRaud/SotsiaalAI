@@ -4014,7 +4014,8 @@
         "remove_location": "Remove service location",
         "no_name": "no name",
         "confirm_replace": "Press again: local changes will be lost",
-        "publish_blocked_short": "Cannot save: something is missing."
+        "publish_blocked_short": "Cannot save: something is missing.",
+        "unsaved_leave": "Your changes are not saved. Press again to leave without saving."
       },
       "conflict": {
         "local_version": "Local form",

@@ -519,6 +519,28 @@ export function serviceProfileDirty(form, profile) {
   return JSON.stringify(form) !== JSON.stringify(createServiceProfileForm(profile || null));
 }
 
+/* --- Lahkumise kaitse ----------------------------------------------------------- */
+
+/**
+ * Kas lehelt lahkumine tuleb kinni pidada: vormil on muudatusi, mida profiilis ei ole. Laadimise
+ * ajal kaitset ei ole (vorm on siis tühi ja profiil tulemata: see ei ole inimese muudatus).
+ * `dirty` on võrdlus profiili endaga (`serviceProfileDirty`), mitte lehe avamisel tehtud
+ * koopiaga: tagasi muudetud väli ei jäta kaitset peale ja salvestamine võtab selle maha.
+ */
+export function leaveGuardOn({ loading = false, dirty = false } = {}) {
+  return Boolean(dirty) && !loading;
+}
+
+/**
+ * Kas Esc kuulub lehe enda avatud osale, mitte lahkumisele: kiirmenüü sammude loend
+ * (`data-esc-scope`) ja avatud rippvalik sulguvad Esc-iga ise ja lahkumise kaitse ei tohi seda
+ * vajutust endale võtta.
+ */
+export function escapeBelongsToWidget(target) {
+  if (!target || typeof target.closest !== "function") return false;
+  return Boolean(target.closest('[data-esc-scope], [role="listbox"], [aria-haspopup="listbox"][aria-expanded="true"]'));
+}
+
 /* --- Mis salvestub -------------------------------------------------------------- */
 
 /* Server jätab nimeta teenuse ja sisuta teeninduskoha salvestamata. Samad

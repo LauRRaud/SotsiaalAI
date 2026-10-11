@@ -4014,7 +4014,8 @@
         "remove_location": "Eemalda teeninduskoht",
         "no_name": "nimi puudub",
         "confirm_replace": "Vajuta uuesti: kohalikud muudatused lähevad kaotsi",
-        "publish_blocked_short": "Salvestada ei saa: midagi on puudu."
+        "publish_blocked_short": "Salvestada ei saa: midagi on puudu.",
+        "unsaved_leave": "Muudatused on salvestamata. Vajuta uuesti, kui tahad lahkuda ilma salvestamata."
       },
       "conflict": {
         "local_version": "Kohalik vorm",
