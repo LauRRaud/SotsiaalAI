@@ -167,6 +167,21 @@
   color: var(--text-soft);
 }
 
+/* --- Varasem ajalugu teisest kohast ------------------------------------------------ */
+/* Dokumendi rea teine rida murdub (kes ja millal üle tõi). */
+.sub {
+  composes: sub from "../day/day.module.css";
+}
+/* Üle toomise vorm: telefonis üksteise all, laiemal pinnal tekst vasakul ja nimi selle kõrval. */
+.importForm {
+  min-width: 0;
+  display: grid;
+  gap: 0.5rem 1.4rem;
+}
+.importForm > * {
+  min-width: 0;
+}
+
 @container (min-width: 34rem) {
   /* Laiemal pinnal on kirje üks rida: aeg, autor, teksti algus ja märgid kõrvuti.
      Aja ja autori veerud on kõigil ridadel sama laiad, et tekstid algaksid kohakuti;
@@ -203,5 +218,17 @@
   /* Toimingud kahes veerus: pikk loend jääb poole lühemaks. */
   .activities {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .importForm {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    align-items: start;
+  }
+  .importForm > [data-area="text"] {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .importForm > [data-area="name"] {
+    grid-column: 2;
+    grid-row: 1;
   }
 }

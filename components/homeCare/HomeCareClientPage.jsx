@@ -25,6 +25,7 @@ import { DoorView, HandoversView, OldPart, PartsView } from "./client/ClientView
 import { DIARY_PAGE, HITS_PAGE, NO_FILTER, diaryPage, diaryRows, filterActive as filterActiveOf, filterLine, historyVisible } from "./diary/diaryRows";
 import { DiarySearchView, DiaryView, HistoryHitsView } from "./diary/DiaryViews";
 import EntryOpen from "./diary/EntryOpen";
+import ImportedHistory from "./diary/ImportedHistory";
 import HomeCareCallNote from "./HomeCareCallNote";
 import HomeCareCard from "./HomeCareCard";
 import HomeCareChangeSignals from "./HomeCareChangeSignals";
@@ -36,7 +37,6 @@ import HomeCareTransport from "./HomeCareTransport";
 import HomeCareDecisionView, { decisionVolumeLabel, minutesLabel } from "./HomeCareDecisionView";
 import EntryFlow from "./entry/EntryFlow";
 import HomeCareFridgeSheet from "./HomeCareFridgeSheet";
-import HomeCareHistory from "./HomeCareHistory";
 import HomeCareOutbox from "./HomeCareOutbox";
 import HomeCarePlanView, { planDayLabel } from "./HomeCarePlanView";
 import HomeCareReasonForm from "./HomeCareReasonForm";
@@ -719,24 +719,22 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
             />
           )}
 
-          {/* Varasem ajalugu teisest kohast: sisu on veel vana kihi osa. */}
+          {/* Varasem ajalugu teisest kohast: dokumentide loend, avatud tekst ja üle toomine on selle sees omaette vaated. */}
           {seesHistory
             ? slot(
                 "history",
-                <OldPart title={t("home_care.history.title")} back={toDiary}>
-                  <HomeCareHistory
-                    organizationId={organizationId}
-                    clientId={client.id}
-                    histories={data.histories || []}
-                    timeZone={timeZone}
-                    isCoordinator={access.isCoordinator}
-                    canWrite={canWrite}
-                    onChange={(next) => {
-                      setData((now) => ({ ...now, histories: next }));
-                      setHistoryHits(null);
-                    }}
-                  />
-                </OldPart>
+                <ImportedHistory
+                  organizationId={organizationId}
+                  clientId={client.id}
+                  histories={data.histories || []}
+                  timeZone={timeZone}
+                  canManage={access.isCoordinator && canWrite}
+                  back={toDiary}
+                  onChange={(next) => {
+                    setData((now) => ({ ...now, histories: next }));
+                    setHistoryHits(null);
+                  }}
+                />
               )
             : null}
 

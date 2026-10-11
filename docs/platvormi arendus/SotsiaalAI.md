@@ -144,7 +144,7 @@ nüüd vasakul ning küsimus ja dikteerimine selle kõrval. Lahti: vene keeles o
 käigul tehtud erijuhtumi kirje toimingute samm arvutis 43 px üle paneeli (565/522).
 Päris salvestus on läbi tehtud kohalikus proovibaasis (kirje jõudis päevikusse
 toimingute ja kestusega; proovikirje on eemaldatud).
-**Päevik (12.10 öö, otse `main`-i, commit'id `f56b7ee0` ja järgmine, elus):**
+**Päevik (12.10 öö, otse `main`-i, commit'id `f56b7ee0`, `6f0d71df` ja järgmine, elus):**
 kliendi lehe päevik oli üks pikk osa (telefonis umbes 6900 px). Nüüd on see loend:
 kirjed madalate ridadena (aeg, autor, teksti algus, märgid), viis rida ja „Näita
 varasemaid”. Otsing ja filter on omaette vaade (kehtiv otsing seisab loendi kohal ühe
@@ -169,14 +169,20 @@ kuni 417/522 ja 844/844, erijuhtumi parandus 513/522 (vene keeles 522/522) ja
 parandus oli telefonis 73 px üle). Päris parandus ja tühistamine on läbi tehtud
 kohalikus proovibaasis (proovikirje on eemaldatud); loa lõppemine päeviku vaates
 jätab otsisõna ja pooleli kirje alles. Päringud on samad (kutseid 5 ja 18 enne ja
-pärast). Lahti: pooleli parandus kaob, kui avada teine kirje; avatud kirjes ei ole
+pärast). Varasem ajalugu teisest kohast on samuti väikesed vaated: üle toodud
+dokumendid ridadena, avatud dokument (kolm lõiku ja „Näita veel”; eemaldamine küsib
+teist vajutust) ja üle toomise vorm (failivalija avab nupp all servas); vana
+`HomeCareHistory.jsx` on kustutatud. Mõõdetud: loend ja vorm mahuvad (vorm arvutis
+447/522, telefonis 844/844), avatud dokument on tekst ja kerib paneeli (serveri
+esimene lehekülg korraga oli arvutis 6387 px, sellepärast kolm lõiku korraga).
+Lahti: pooleli parandus kaob, kui avada teine kirje; avatud kirjes ei ole
 kliendi nime; kliendi lehte ei ole elus avatud.
 **Vaadete teste ei ole:** unit-testid kustutati omaniku otsusega 11.10 öösel (#725,
 #726, reegel failis `AGENTS.md`), nende hulgas ümberehituse ajal tehtud laua,
 hooldaja päeva, klientide ja kliendi osade testid; uusi ei kirjutata. Tõend on
 brauseris mõõtmine ja läbivajutamine, päringute võrdlus, lint ja kataloogi kontroll.
-**Järgmine ühik** on päeviku kolmas tükk (varasem ajalugu teisest kohast ja seadmes
-ootavate kirjete kast); siis igapäevased osad, hooldusjuhi osa ja kliendi alalehed, päevaplaan,
+**Järgmine ühik** on seadmes ootavate kirjete kast (kasutusel kliendi lehel, avalehel
+ja 12 vana kihi lehel); siis igapäevased osad, hooldusjuhi osa ja kliendi alalehed, päevaplaan,
 tähtajad ja ülevaade, kuu ja väljavõtted, registrid, vana kihi eemaldamine.
 Päringud, `app/api/**` ja `lib/**` jäävad puutumata (ainus erand oli infotekstide
 fail). Mõõtmine muutis kavandit kahes kohas: viis täispikka käigurida ei mahtunud

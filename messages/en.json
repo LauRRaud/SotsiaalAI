@@ -14643,16 +14643,12 @@
       "empty": "If a diary about this client has been kept elsewhere (for example in Drive), it can be imported here.",
       "mark": "imported history, authors and times not verified",
       "meta": "Imported {time} · {name} · {count} characters",
-      "show": "Show the text",
-      "hide": "Hide the text",
       "remove": "Remove",
-      "remove_confirm": "Remove from here, the original stays",
       "add": "Import the existing diary",
       "add_hint": "Copy the client's existing diary and paste it here, or choose a text file. The text is imported as it is: no entries are made from it and no dates are derived. Check that it is the right client's diary.",
       "name_label": "Where it comes from",
       "name_hint": "For example “Drive diary 2023–2026”.",
       "text_label": "Diary text",
-      "file_label": "or choose a text file",
       "save": "Import",
       "hits_title": "Found in the earlier history",
       "hits_hint": "These passages are from imported text; the kind and period filters do not apply to them.",
@@ -16438,7 +16434,10 @@
       "to_trail": "Back to the trail",
       "retract_confirm": "Confirm the retraction",
       "retract_note": "The text of a retracted entry is no longer shown in the diary. Press again if you are sure.",
-      "retract_reason_missing": "Write why you are retracting the entry."
+      "retract_reason_missing": "Write why you are retracting the entry.",
+      "pick_file": "Choose a text file",
+      "history_remove_confirm": "Confirm the removal",
+      "history_remove_note": "The text is removed from here and the search no longer finds it. The original document stays where it came from. Press again if you are sure."
     }
   },
   "stage": {

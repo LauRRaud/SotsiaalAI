@@ -20,6 +20,13 @@ export const DIARY_PAGE = 5;
  */
 export const HITS_PAGE = 3;
 
+/**
+ * Mitu lõiku üle toodud dokumendist on ees enne nuppu „Näita veel". Server
+ * annab teksti suurte lehekülgede kaupa (proovandmetega 14 lõiku, arvutis üle
+ * 6000 px): vaate tegevused on all servas ja peavad jääma käeulatusse.
+ */
+export const DOC_PAGE = 3;
+
 /** Tühi otsing: päevik näitab kõiki kirjeid. */
 export const NO_FILTER = Object.freeze({ kind: "", from: "", to: "", q: "" });
 
@@ -126,6 +133,18 @@ export function diaryRows(items, { t, moment, today }) {
 export function diaryPage(rows, { expanded, hasMore }) {
   const shown = expanded ? rows : rows.slice(0, DIARY_PAGE);
   return { rows: shown, more: shown.length < rows.length || Boolean(hasMore) };
+}
+
+/**
+ * Üle toodud dokumentide read: `[{ key, title, line }]`. Rida ütleb, millal ja
+ * kes teksti üle tõi ja kui pikk see on. `moment` vormindab ajahetke.
+ */
+export function historyRows(histories, { t, moment }) {
+  return (Array.isArray(histories) ? histories : []).map((history) => ({
+    key: history.id,
+    title: history.title,
+    line: t("home_care.history.meta", { time: moment(history.createdAt), name: history.importedByName, count: history.charCount })
+  }));
 }
 
 /**
