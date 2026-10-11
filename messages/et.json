@@ -12658,7 +12658,20 @@
       "convertSubject": "Üle antav profiil",
       "shortDescription": "Lühikirjeldus",
       "save": "Salvesta",
-      "versionConflict": "Keegi teine muutis profiili vahepeal. Laadi leht uuesti."
+      "versionConflict": "Keegi teine muutis profiili vahepeal. Laadi leht uuesti.",
+      "tabs": {
+        "label": "Profiili vaated",
+        "data": "Kontaktandmed",
+        "text": "Kirjeldus",
+        "editors": "Toimetajad"
+      },
+      "unnamed_profile": "Nimeta profiil",
+      "saving": "Salvestan",
+      "unsaved": "Muudatused on salvestamata.",
+      "read_only": "Organisatsioon ei ole praegu muudetav: profiili saab ainult vaadata.",
+      "convert_note": "Üleandmist ei saa tagasi võtta.",
+      "converting": "Viin profiili üle",
+      "need_confirm": "Kinnita üleandmine märkeruuduga."
     },
     "exportView": {
       "heading": "Organisatsiooni eksport",

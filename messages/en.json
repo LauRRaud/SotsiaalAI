@@ -12658,7 +12658,20 @@
       "convertSubject": "Profile being transferred",
       "shortDescription": "Short description",
       "save": "Save",
-      "versionConflict": "Someone else changed the profile in the meantime. Reload the page."
+      "versionConflict": "Someone else changed the profile in the meantime. Reload the page.",
+      "tabs": {
+        "label": "Profile views",
+        "data": "Contact details",
+        "text": "Description",
+        "editors": "Editors"
+      },
+      "unnamed_profile": "Unnamed profile",
+      "saving": "Saving",
+      "unsaved": "The changes have not been saved.",
+      "read_only": "The organisation cannot be changed right now: the profile is read-only.",
+      "convert_note": "The handover cannot be undone.",
+      "converting": "Handing the profile over",
+      "need_confirm": "Confirm the handover with the checkbox."
     },
     "exportView": {
       "heading": "Organisation export",
