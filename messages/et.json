@@ -12031,7 +12031,60 @@
       "firstName": "Eesnimi (võid jätta tühjaks)",
       "lastName": "Perekonnanimi (võid jätta tühjaks)",
       "nameHint": "Nimi läheb kutsega kaasa. Kui inimesel ei ole platvormil veel nime, saab ta selle liitumisel; kui tal on nimi juba kirjas, jääb tema enda oma. Hiljem muudab ta nime ise.",
-      "previewName": "Kutsuja pani sulle nimeks „{name}”. Kui sul platvormil veel nime ei ole, hakkab see kehtima liitumisel; oma nime saad hiljem ise muuta. Kui sul on nimi juba kirjas, jääb sinu enda oma."
+      "previewName": "Kutsuja pani sulle nimeks „{name}”. Kui sul platvormil veel nime ei ole, hakkab see kehtima liitumisel; oma nime saad hiljem ise muuta. Kui sul on nimi juba kirjas, jääb sinu enda oma.",
+      "invite_person": "Kutsu inimene",
+      "revoke_named": "Tühista kutse: {name}",
+      "revoke_confirm": "Jah, tühista",
+      "keep": "Jäta alles",
+      "revoke_note": "Kutse link lakkab kohe kehtimast. Uuesti kutsumiseks tuleb luua uus kutse.",
+      "decline_note": "Kirjutatu kustub ja kutset ei looda.",
+      "first_name": "Eesnimi",
+      "last_name": "Perekonnanimi",
+      "name": "Nimi",
+      "seat_question": "Mis kohale teda kutsutakse?",
+      "role_question": "Mis roll tal organisatsioonis on?",
+      "role_note": "Koht otsustab tellimuse hinna. Roll annab õigused; tavaline liige haldusõigusi ei saa.",
+      "unit_question": "Mis üksusesse ta kuulub?",
+      "no_unit": "Üksuseta",
+      "unit_needed": "Valitud roll kehtib ühe üksuse piires: vali üksus.",
+      "unit_optional": "Üksuse võib jätta valimata ja määrata hiljem liikmete osas.",
+      "units_none": "Üksusi ei ole veel loodud. Need saab lisada osas „Struktuur”.",
+      "need_email": "Kirjuta kutsutava e-posti aadress.",
+      "need_unit": "Valitud roll kehtib ühe üksuse piires. Vali üksus.",
+      "to_who": "Paranda kutsutava andmed",
+      "to_unit": "Vali üksus",
+      "send_lead": "Kutse loomisel saad lingi, mille edastad kutsutule ise. Platvorm talle kirja ei saada.",
+      "make": "Loo kutse",
+      "making": "Loon kutset",
+      "link_made": "Kutse on loodud.",
+      "link_copy": "Kopeeri link",
+      "link_copied": "Link on kopeeritud.",
+      "steps_label": "Kutse loomise sammud",
+      "steps": {
+        "who": {
+          "title": "Kellele",
+          "short": "Kellele"
+        },
+        "role": {
+          "title": "Koht ja roll",
+          "short": "Roll"
+        },
+        "unit": {
+          "title": "Üksus",
+          "short": "Üksus"
+        },
+        "send": {
+          "title": "Kutse loomine",
+          "short": "Loomine"
+        }
+      },
+      "statuses": {
+        "PENDING": "Ootel",
+        "ACCEPTED": "Vastu võetud",
+        "DECLINED": "Tagasi lükatud",
+        "REVOKED": "Tühistatud",
+        "EXPIRED": "Aegunud"
+      }
     },
     "audit": {
       "heading": "Organisatsiooni audit",

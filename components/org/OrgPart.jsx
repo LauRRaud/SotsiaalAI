@@ -17,6 +17,9 @@
  * `part`: osa võti (`org.nav.<võti>`) või tühi, kui see leht ON laud.
  * `partLabel`: osa nimi, kui see ei tule võtmest (nt laua vaade „Minu koht").
  * `onDesk`: mida nelja ruuduga nupp teeb; vaikimisi avab laua marsruudi.
+ * `compact`: nelja ruuduga nupp ilma nimeta (nimi jääb nupu sildiks). Kasutus:
+ *   osa sees käib sammudega töö ja sammud on kiirmenüüs kõrval; koos nimega
+ *   läheks kiirmenüü liiga pikaks (omanik 09.10).
  */
 
 import { useRouter } from "next/navigation";
@@ -26,7 +29,7 @@ import StepRail from "@/components/stage/StepRail";
 
 import shared from "./org.module.css";
 
-export default function OrgPart({ context, part = "", partLabel = "", onDesk, children }) {
+export default function OrgPart({ context, part = "", partLabel = "", onDesk, compact = false, children }) {
   const { t } = useI18n();
   const router = useRouter();
   const organization = context?.organization || {};
@@ -47,6 +50,7 @@ export default function OrgPart({ context, part = "", partLabel = "", onDesk, ch
         onOverview={toDesk}
         label={t("org.desk.rail_label")}
         allLabel={name}
+        allText={compact ? "" : undefined}
         stepLabel={() => label}
       />
       <div className={shared.page}>

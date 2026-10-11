@@ -12031,7 +12031,60 @@
       "firstName": "First name (optional)",
       "lastName": "Last name (optional)",
       "nameHint": "The name travels with the invitation. If the person has no name on the platform yet, they get it when they join; if they already have one, their own stays. They can change it later themselves.",
-      "previewName": "The inviter wrote your name as “{name}”. If you have no name on the platform yet, it applies when you join; you can change your name later yourself. If you already have a name, your own stays."
+      "previewName": "The inviter wrote your name as “{name}”. If you have no name on the platform yet, it applies when you join; you can change your name later yourself. If you already have a name, your own stays.",
+      "invite_person": "Invite a person",
+      "revoke_named": "Revoke the invitation: {name}",
+      "revoke_confirm": "Yes, revoke",
+      "keep": "Keep it",
+      "revoke_note": "The invitation link stops working at once. To invite again you need a new invitation.",
+      "decline_note": "What you wrote is discarded and no invitation is created.",
+      "first_name": "First name",
+      "last_name": "Last name",
+      "name": "Name",
+      "seat_question": "Which seat are they invited to?",
+      "role_question": "What is their role in the organisation?",
+      "role_note": "The seat decides the subscription price. The role gives rights; an ordinary member gets no administrative rights.",
+      "unit_question": "Which unit do they belong to?",
+      "no_unit": "No unit",
+      "unit_needed": "The chosen role applies within one unit: choose the unit.",
+      "unit_optional": "You may leave the unit unchosen and set it later in the members part.",
+      "units_none": "No units have been created yet. They can be added in “Structure”.",
+      "need_email": "Write the invitee's e-mail address.",
+      "need_unit": "The chosen role applies within one unit. Choose the unit.",
+      "to_who": "Fix the invitee's details",
+      "to_unit": "Choose the unit",
+      "send_lead": "Creating the invitation gives you a link that you pass on to the invitee yourself. The platform does not send them a message.",
+      "make": "Create the invitation",
+      "making": "Creating the invitation",
+      "link_made": "The invitation has been created.",
+      "link_copy": "Copy the link",
+      "link_copied": "The link has been copied.",
+      "steps_label": "Steps of creating an invitation",
+      "steps": {
+        "who": {
+          "title": "For whom",
+          "short": "Whom"
+        },
+        "role": {
+          "title": "Seat and role",
+          "short": "Role"
+        },
+        "unit": {
+          "title": "Unit",
+          "short": "Unit"
+        },
+        "send": {
+          "title": "Creating the invitation",
+          "short": "Create"
+        }
+      },
+      "statuses": {
+        "PENDING": "Pending",
+        "ACCEPTED": "Accepted",
+        "DECLINED": "Declined",
+        "REVOKED": "Revoked",
+        "EXPIRED": "Expired"
+      }
     },
     "audit": {
       "heading": "Organisation audit",

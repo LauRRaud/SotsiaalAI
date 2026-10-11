@@ -62,7 +62,7 @@ export function StepNumber({ index, state = "empty" }) {
 /* Täisnimi, kui see mahub kiirmenüüsse lõikamata (umbes 18 tähte); muidu lühinimi. */
 const nameOf = (step) => (String(step?.label || "").length <= 18 ? step?.label : step?.short || step?.label);
 
-export default function StepRail({ steps, activeIndex, wide = false, parts = false, onSelect, onOverview, label, allLabel, stepLabel, next = null, hidden = false }) {
+export default function StepRail({ steps, activeIndex, wide = false, parts = false, onSelect, onOverview, label, allLabel, allText, stepLabel, next = null, hidden = false }) {
   const { slot, hasDock } = useDockStepsSlot();
   const trackRef = useRef(null);
   /* Rida on lahti selle sammu jaoks, mille pealt see avati: kui samm vahetub
@@ -131,9 +131,13 @@ export default function StepRail({ steps, activeIndex, wide = false, parts = fal
           <span className="gc-shortcut-icon" aria-hidden="true">
             <OverviewGridIcon />
           </span>
-          <span className="gc-shortcut-text" aria-hidden="true">
-            {allLabel}
-          </span>
+          {/* `allText=""`: ainult ikoon (nimi jääb nupu sildiks), kui kiirmenüüs on
+              selle kõrval veel sammud ja rida läheks muidu liiga pikaks. */}
+          {allText === "" ? null : (
+            <span className="gc-shortcut-text" aria-hidden="true">
+              {allText ?? allLabel}
+            </span>
+          )}
         </button>
         {wide ? null : (
           <span className={`${styles.part} gc-shortcut`} data-on="1" aria-current="step" aria-label={stepLabel(current, activeIndex)}>

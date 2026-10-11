@@ -66,6 +66,29 @@
   composes: time from "../journey/journey.module.css";
 }
 
+/* Rida, mida ei avata (lugeda ei ole rohkem kui real): loetav, mitte vajutatav. */
+.rowStatic {
+  composes: row from "../journey/journey.module.css";
+  cursor: default;
+}
+.rowStatic:hover {
+  background: var(--glass-cell-bg);
+}
+/* Rida koos kõrvaltegevusega (nt „Tühista"): tegevus on rea kõrval vaikne sõna,
+   pärast esimest vajutust päris nupp ja rea all lause, mis juhtub. */
+.item {
+  composes: item from "../journey/dashboard/dashboard.module.css";
+}
+.itemAside {
+  composes: itemAside from "../journey/dashboard/dashboard.module.css";
+}
+.aside {
+  composes: aside from "../journey/dashboard/dashboard.module.css";
+}
+.itemNote {
+  composes: itemNote from "../journey/dashboard/dashboard.module.css";
+}
+
 /* --- Sõnade read: nimetus ja väärtus -------------------------------------------- */
 .facts {
   composes: facts from "../journey/journey.module.css";
@@ -96,6 +119,33 @@
 }
 .input {
   composes: input from "../journey/journey.module.css";
+}
+/* Kaks lühikest välja kõrvuti; kitsal pinnal üksteise all. */
+.pair {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: 0.65rem 1rem;
+}
+.pair > * {
+  flex: 0 1 14rem;
+}
+/* Tekst, mis kopeeritakse tervikuna (nt kutse link): murdub igast kohast ja üks
+   vajutus valib kõik. */
+.code {
+  margin: 0;
+  max-width: none;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.8rem;
+  background: var(--glass-cell-bg);
+  color: var(--text-warm);
+  font-family: var(--font-mono, ui-monospace, "Cascadia Mono", Consolas, monospace);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  user-select: all;
 }
 /* Vihje välja all: vaikne rida. */
 .hint {
