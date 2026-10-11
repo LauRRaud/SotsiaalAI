@@ -36,6 +36,10 @@
 .footError {
   composes: footError from "../journey/journey.module.css";
 }
+/* Inimese enda kirjutatud tekst: lõigud jäävad lõikudeks. */
+.own {
+  composes: own from "../journey/journey.module.css";
+}
 
 /* --- Märk ja loendi read -------------------------------------------------------- */
 .chip {

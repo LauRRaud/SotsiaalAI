@@ -12411,7 +12411,22 @@
       "openRoom": "Ava vestlusruum",
       "backToList": "Tagasi loendisse",
       "openedNotice": "Sinu avamine on pöördujale nähtav ja pärast seda ei saa ta pöördumist enam tagasi võtta.",
-      "recalledNotice": "Saatja võttis selle pöördumise tagasi enne avamist. Sisu ei ole enam nähtav ja tööd sellega teha ei saa."
+      "recalledNotice": "Saatja võttis selle pöördumise tagasi enne avamist. Sisu ei ole enam nähtav ja tööd sellega teha ei saa.",
+      "unnamed_worker": "Nimeta töötaja",
+      "tabs": {
+        "label": "Pöördumise vaated",
+        "package": "Pöördumine",
+        "work": "Töö"
+      },
+      "assign_question": "Kellele töö määrata?",
+      "handover_question": "Kellele töö üle anda?",
+      "pick_first": "Vali enne töötaja.",
+      "no_workers": "Töötajaid, kelle hulgast valida, ei ole.",
+      "response_lead": "See töö on määratud sulle. Kas võtad selle vastu?",
+      "reject_confirm": "Jah, lükkan tagasi",
+      "reject_note": "Töö läheb tagasi määrajale, kes saab selle kellelegi teisele määrata.",
+      "close_confirm": "Jah, sulge töö",
+      "close_note": "Suletud töö kaob vastuvõtulaualt."
     },
     "inboxStatus": {
       "RECEIVED": "Saabunud",

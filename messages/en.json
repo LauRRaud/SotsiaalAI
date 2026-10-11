@@ -12411,7 +12411,22 @@
       "openRoom": "Open conversation room",
       "backToList": "Back to list",
       "openedNotice": "Your opening is visible to the sender, and after it they can no longer recall the inquiry.",
-      "recalledNotice": "The sender recalled this inquiry before it was opened. The content is no longer visible and no work can be done on it."
+      "recalledNotice": "The sender recalled this inquiry before it was opened. The content is no longer visible and no work can be done on it.",
+      "unnamed_worker": "Unnamed worker",
+      "tabs": {
+        "label": "Inquiry views",
+        "package": "Inquiry",
+        "work": "Work"
+      },
+      "assign_question": "Who should the work be assigned to?",
+      "handover_question": "Who should the work be handed over to?",
+      "pick_first": "Choose a worker first.",
+      "no_workers": "There are no workers to choose from.",
+      "response_lead": "This work has been assigned to you. Do you accept it?",
+      "reject_confirm": "Yes, I reject it",
+      "reject_note": "The work goes back to the assigner, who can assign it to someone else.",
+      "close_confirm": "Yes, close the work",
+      "close_note": "Closed work leaves the intake desk."
     },
     "inboxStatus": {
       "RECEIVED": "Received",

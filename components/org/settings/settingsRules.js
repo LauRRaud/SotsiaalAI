@@ -57,11 +57,5 @@ export function exportFileName(organizationId, generatedAt) {
   return `organisatsioon-${organizationId}-${String(generatedAt || "").slice(0, 10)}.json`;
 }
 
-/** ISO hetk → `11.10.2026 09.30` inimese enda ajavööndis. Vigane väärtus annab tühja sõne. */
-export function stampOf(iso) {
-  if (!iso) return "";
-  const date = new Date(iso);
-  if (Number.isNaN(date.getTime())) return "";
-  const two = (value) => String(value).padStart(2, "0");
-  return `${two(date.getDate())}.${two(date.getMonth() + 1)}.${date.getFullYear()} ${two(date.getHours())}.${two(date.getMinutes())}`;
-}
+/* Koostamise aja kuju on organisatsioonide lehtede ühine (../orgRules.js). */
+export { stampOf } from "../orgRules.js";
