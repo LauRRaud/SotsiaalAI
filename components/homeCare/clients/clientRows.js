@@ -4,7 +4,7 @@
  * on vaates korraga.
  *
  * Vaade on failis ./ClientsViews.jsx, olek ja päringud lehel
- * (`../HomeCareHome.jsx`). Test: `tests/home-care-clients-view.test.mjs`.
+ * (`../HomeCareHome.jsx`).
  */
 
 /**

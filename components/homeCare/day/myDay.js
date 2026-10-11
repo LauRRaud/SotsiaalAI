@@ -4,7 +4,6 @@
  * lubatud.
  *
  * Vaated on failis ./DayViews.jsx, olek lehel (`../HomeCareHome.jsx`).
- * Test: `tests/home-care-my-day.test.mjs`.
  */
 
 /**

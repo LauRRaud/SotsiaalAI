@@ -6,7 +6,6 @@
  * Leht (`../HomeCareClientPage.jsx`) hoiab olekut ja päringuid, vaated
  * (`./ClientViews.jsx`) joonistavad. Plaadi rida tuleb andmetest, mille leht
  * niikuinii laeb: uut päringut plaadi jaoks ei tehta.
- * Test: `tests/home-care-client-parts.test.mjs`.
  */
 
 /** Osad selles järjekorras, nagu need osade laual on. */
@@ -21,6 +20,9 @@ export const CLIENT_LANDING = "door";
 
 /** Osa „Ukse taga" alavaated: kaardi muutmine, „Kui uks ei avane" ja kõik viimased teated. */
 export const DOOR_VIEWS = Object.freeze(["card", "no_answer", "handovers"]);
+
+/** Osa „Uus kirje" alavaated: kirjed, mis vormi ei vaja (kõne märkimine ja „Peaaegu juhtus"). */
+export const ENTRY_VIEWS = Object.freeze(["call", "near_miss"]);
 
 /** Osa nime võti (plaadil ja kiirmenüüs). */
 const NAMES = Object.freeze({
@@ -88,16 +90,18 @@ export function partVisible(part, who, data) {
   return Boolean(SEE[part]?.(who, data || {}));
 }
 
-/** Kas vaate tohib avada: osade laud, nähtav osa või osa „Ukse taga" alavaade. */
+/** Kas vaate tohib avada: osade laud, nähtav osa või osa alavaade. */
 export function viewAllowed(view, who, data) {
   if (view === "") return true;
   if (DOOR_VIEWS.includes(view)) return view !== "no_answer" || canOpenNoAnswer(who, data);
+  if (ENTRY_VIEWS.includes(view)) return partVisible("entry", who, data);
   return partVisible(view, who, data);
 }
 
 /** Vaate nime võti kiirmenüüs; alavaade kannab oma osa nime. */
 export function viewNameKey(view) {
   if (DOOR_VIEWS.includes(view)) return NAMES.door;
+  if (ENTRY_VIEWS.includes(view)) return NAMES.entry;
   return NAMES[view] || "";
 }
 

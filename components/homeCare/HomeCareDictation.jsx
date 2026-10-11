@@ -4,6 +4,11 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import { useSpeech } from "@/components/chat/hooks/useSpeech";
 import { useI18n } from "@/components/i18n/I18nProvider";
+import { SMALL } from "@/components/org/OrgBits";
+import shared from "@/components/org/org.module.css";
+import Button from "@/components/ui/Button";
+
+import styles from "./entry/entry.module.css";
 
 /* Kõnetuvastuse vastust oodatakse kuni nii kaua; kliendi enda ajapiir on 90 s. */
 const WAITING_MAX_MS = 95_000;
@@ -22,8 +27,11 @@ const WAITING_MAX_MS = 95_000;
  * „Muudan tekstiks" on näha lõpetamise vajutusest kuni tekst (või viga) kohale
  * jõuab: kõnetuvastus võtab mõne sekundi ja ilma selleta ei oleks näha, kas
  * midagi toimub.
+ *
+ * `hint`: selgitus nupu all (uue kirje sammudes); vana paranduse vorm annab
+ * selgituse ise ja seob selle nupuga (`describedBy`).
  */
-export default function HomeCareDictation({ onText, disabled = false, describedBy }) {
+export default function HomeCareDictation({ onText, disabled = false, describedBy, hint = "" }) {
   const { t, locale } = useI18n();
   const [waiting, setWaiting] = useState(false);
   const waitingTimer = useRef(null);
@@ -65,45 +73,48 @@ export default function HomeCareDictation({ onText, disabled = false, describedB
 
   const showWaiting = waiting && !speech.recording && !speech.recordingError;
 
+  /* Seisu read on `aria-live`, mitte role="status": ühine lehekiht joonistab iga status-rolliga elemendi teatekastina. */
   return (
-    <div className="hc-field">
-      <div className="hc-row">
-        <button
-          className={`hc-btn${speech.recording ? " hc-btn--danger" : " hc-btn--quiet"}`}
-          type="button"
+    <div className={styles.dictation}>
+      <div className={styles.dictationRow}>
+        <Button
+          {...SMALL}
+          className={speech.recording ? shared.armed : undefined}
+          data-dictation={speech.recording ? "stop" : "start"}
           onClick={toggle}
           disabled={disabled || showWaiting}
           aria-pressed={speech.recording}
           aria-describedby={describedBy}
         >
           {speech.recording ? t("home_care.dictation.stop") : t("home_care.dictation.start")}
-        </button>
+        </Button>
         {speech.recording ? (
-          <button className="hc-btn hc-btn--quiet" type="button" onClick={speech.cancelRecording}>
+          <Button {...SMALL} data-dictation="discard" onClick={speech.cancelRecording}>
             {t("home_care.dictation.discard")}
-          </button>
+          </Button>
         ) : null}
       </div>
       {speech.recording ? (
-        <p className="hc-hint" role="status">
+        <p className={shared.hint} aria-live="polite">
           {t("home_care.dictation.listening")}
         </p>
       ) : null}
       {showWaiting ? (
-        <p className="hc-hint" role="status">
+        <p className={shared.hint} aria-live="polite">
           {t("home_care.dictation.transcribing")}
         </p>
       ) : null}
       {speech.recordingError ? (
-        <p className="hc-error" role="alert">
+        <p className={shared.notice} data-tone="risk" role="alert">
           {speech.recordingError}
         </p>
       ) : null}
       {speech.voiceNotice && !speech.recordingError ? (
-        <p className="hc-hint" role="status">
+        <p className={shared.hint} aria-live="polite">
           {speech.voiceNotice}
         </p>
       ) : null}
+      {hint && !speech.recording && !showWaiting ? <p className={shared.hint}>{hint}</p> : null}
     </div>
   );
 }

@@ -6,7 +6,6 @@
  * Leht (`../HomeCareHome.jsx`) hoiab olekut, vaated (`./DeskViews.jsx`)
  * joonistavad. Kes mida näeb, on sama reegel, mis oli vana lingirea ümber
  * (hooldusjuhi lingid, väljavõtte ja töötajate õigus, otsingu õigus).
- * Test: `tests/home-care-desk.test.mjs`.
  */
 
 const coordinator = (who) => who.isCoordinator;

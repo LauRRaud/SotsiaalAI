@@ -33,7 +33,7 @@ import HomeCareControlCalls from "./HomeCareControlCalls";
 import HomeCareDecisionNotices from "./HomeCareDecisionNotices";
 import HomeCareTransport from "./HomeCareTransport";
 import HomeCareDecisionView, { decisionVolumeLabel, minutesLabel } from "./HomeCareDecisionView";
-import HomeCareEntryForm from "./HomeCareEntryForm";
+import EntryFlow from "./entry/EntryFlow";
 import HomeCareEntryItem from "./HomeCareEntryItem";
 import HomeCareFridgeSheet from "./HomeCareFridgeSheet";
 import HomeCareHistory from "./HomeCareHistory";
@@ -84,10 +84,11 @@ function sortEntries(items) {
  * kannab osa vaates nime „Kliendi leht" ja viib osade lauale; osade laual viib
  * see koduteenusesse (kest `components/org/OrgPart.jsx`).
  *
- * VAADE, MIS EI OLE EES, JÄÄB LEHELE ALLES (peidetult). Osade sisu on veel vanal
- * `hc-*` kihil ja hoiab oma olekut ise: kui vaade eemaldataks, kaoks pooleli
- * kirje, avatud vorm ja äsja salvestatud seis. Seepärast on kõik osad korraga
- * lehel nagu enne ja ees on üks.
+ * VAADE, MIS EI OLE EES, JÄÄB LEHELE ALLES (peidetult). Enamiku osade sisu on veel
+ * vanal `hc-*` kihil ja hoiab oma olekut ise: kui vaade eemaldataks, kaoks avatud
+ * vorm ja äsja salvestatud seis. Seepärast on kõik osad korraga lehel nagu enne
+ * ja ees on üks. Uus kirje on sammudena (`./entry/EntryFlow.jsx`): selle olek on
+ * konksus, mis elab lehel kogu aja, nii et pooleli kirje vaate vahetusel ei kao.
  *
  * Meeskonda mittekuuluv hooldaja näeb sisu asemel põhjuse küsimist. Enne
  * põhjuse andmist ei näita leht kliendi kohta midagi.
@@ -357,6 +358,7 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
   const current = viewAllowed(view, who, data) ? view : "";
   const sees = (part) => partVisible(part, who, data);
   const toDoor = { label: t("home_care.door.back"), onBack: () => setView("door") };
+  const toEntry = { label: t("home_care.entry_steps.back"), onBack: () => setView("entry") };
 
   const head = {
     name: client.displayName,
@@ -388,6 +390,8 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
         partLabel={current ? t(viewNameKey(current)) : pageName}
         up={current ? { label: pageName, href: clientHref(organizationId, client.id) } : null}
         onDesk={current ? () => setView("") : undefined}
+        /* Uue kirje sammud on kiirmenüüs lehe nime kõrval: nelja ruuduga nupp on siis ilma nimeta. */
+        compact={current === "entry"}
       >
         <HomeCareAccessProvider onReasonRequired={() => setLapsed(true)}>
           {lapsed ? (
@@ -476,11 +480,12 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
             </OldPart>
           )}
 
-          {part(
-            "entry",
-            <>
-              <section className="hc-section" aria-label={t("home_care.entry.new_title")}>
-                <HomeCareEntryForm
+          {/* Uus kirje sammudena. Osa on lehel kogu aja (pooleli kirje elab selle konksus), sammud joonistatakse, kui osa on ees. */}
+          {sees("entry")
+            ? slot(
+                "entry",
+                <EntryFlow
+                  active={current === "entry"}
                   organizationId={organizationId}
                   clientId={client.id}
                   team={team}
@@ -490,26 +495,44 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
                   plan={data.plan}
                   usualState={data.usualState || []}
                   onSaved={upsertEntry}
+                  onQuick={setView}
+                  onDiary={() => setView("diary")}
+                  onDoor={() => setView("door")}
                 />
-                {/* Kõne ei ole käik: selle märkimine ei tohi nõuda vormi täitmist. */}
-                <HomeCareCallNote
-                  organizationId={organizationId}
-                  clientId={client.id}
-                  clientName={client.displayName}
-                  viewerMembershipId={access.membershipId}
-                  onSaved={upsertEntry}
-                />
-              </section>
-              {/* „Peaaegu juhtus" (K5-h): kahe puudutusega märge olukorrast, kus midagi oleks võinud juhtuda. */}
-              <HomeCareNearMiss
-                organizationId={organizationId}
-                clientId={client.id}
-                clientName={client.displayName}
-                viewerMembershipId={access.membershipId}
-                onSaved={upsertEntry}
-              />
-            </>
-          )}
+              )
+            : null}
+
+          {/* Kõne ei ole käik: selle märkimine ei tohi nõuda vormi täitmist. */}
+          {sees("entry")
+            ? slot(
+                "call",
+                <OldPart title={t("home_care.entry_steps.quick_call")} back={toEntry}>
+                  <HomeCareCallNote
+                    organizationId={organizationId}
+                    clientId={client.id}
+                    clientName={client.displayName}
+                    viewerMembershipId={access.membershipId}
+                    onSaved={upsertEntry}
+                  />
+                </OldPart>
+              )
+            : null}
+
+          {/* „Peaaegu juhtus" (K5-h): kahe puudutusega märge olukorrast, kus midagi oleks võinud juhtuda. */}
+          {sees("entry")
+            ? slot(
+                "near_miss",
+                <OldPart title={t("home_care.near_miss.start")} back={toEntry}>
+                  <HomeCareNearMiss
+                    organizationId={organizationId}
+                    clientId={client.id}
+                    clientName={client.displayName}
+                    viewerMembershipId={access.membershipId}
+                    onSaved={upsertEntry}
+                  />
+                </OldPart>
+              )
+            : null}
 
           {part(
             "diary",
