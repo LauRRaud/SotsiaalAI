@@ -55,9 +55,14 @@ function afterName(name, status) {
 }
 
 /**
- * Kirje seis, nagu see inimesele paistab. Pärast töö üleandmist jääb kirje serveris
- * seisu „vastu võetud", kuigi uus vastutaja ei ole veel vastanud: lehel seisaks siis
- * kõrvuti „Vastu võetud" ja „Ootab vastust". Sel juhul on kirje „määratud".
+ * Kirje seis, nagu see inimesele paistab. Töö üleandmisel viib server kirje ise seisu
+ * „määratud" (`handOverWork`, `inboxStatusAfterHandOver` failis `lib/org`), seega uutel
+ * ridadel see reegel midagi ei muuda.
+ *
+ * Reegel jääb alles ridade pärast, mis anti üle enne seda parandust: need on serveris
+ * seisus „vastu võetud", kuigi uus vastutaja ei ole veel vastanud, ja lehel seisaks muidu
+ * kõrvuti „Vastu võetud" ja „Ootab vastust". Selline rida saab serveris õige seisu kohe,
+ * kui uus vastutaja vastab või töö antakse uuesti üle.
  */
 export function shownItemStatus(item) {
   const status = item?.status || "";
