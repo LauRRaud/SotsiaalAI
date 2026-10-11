@@ -1,6 +1,6 @@
 {
   "version": "web-pages-1",
-  "note": "Ühingute enda lehed katvuse kaardi nõrkade ridade jaoks (omanik 11.10.2026: „mittetulundusühingute lehed - need ka sisse panna“; ADR-140, korpus v78): vaimne tervis (Peaasi), lähisuhte- ja seksuaalvägivald (Naiste Tugi- ja Teabekeskus), noore seksuaaltervis (Eesti Seksuaaltervise Liit), elu lõpp (Pallium), hasartmängu- ja digisõltuvus (Hasartmängusõltuvuse Nõustamiskeskus), lapse õigused (Lastekaitse Liit), hingehoid, omastehooldus ja tasuta õigusabi kohad (Eesti Juristide Liit). Loend on korpuses olevate lehtede nimekiri: iga leht oma aadressiga, alamlehti ei loeta. Lehed valiti kahes sammus: valikureegel (scripts/rag-v2-web-select.mjs) võttis välja inimesi nimetavad lõigud ja lehed, seejärel jäid välja lehed, mis räägivad ühingust endast (ajalugu, projektid, uudised, puhkuseteated), teises keeles lehed ja Palliumi 2019.–2020. aasta kokkuvõtted riigi toetustest. Lisatud 11.10.2026 (korpus v80): Anonüümsed Alkohoolikud, Al-Anon Eesti ja Laste ja Noorte Kriisiprogramm.",
+  "note": "Ühingute enda lehed katvuse kaardi nõrkade ridade jaoks (omanik 11.10.2026: „mittetulundusühingute lehed - need ka sisse panna“; ADR-140, korpus v78): vaimne tervis (Peaasi), lähisuhte- ja seksuaalvägivald (Naiste Tugi- ja Teabekeskus), noore seksuaaltervis (Eesti Seksuaaltervise Liit), elu lõpp (Pallium), hasartmängu- ja digisõltuvus (Hasartmängusõltuvuse Nõustamiskeskus), lapse õigused (Lastekaitse Liit), hingehoid, omastehooldus ja tasuta õigusabi kohad (Eesti Juristide Liit). Loend on korpuses olevate lehtede nimekiri: iga leht oma aadressiga, alamlehti ei loeta. Lehed valiti kahes sammus: valikureegel (scripts/rag-v2-web-select.mjs) võttis välja inimesi nimetavad lõigud ja lehed, seejärel jäid välja lehed, mis räägivad ühingust endast (ajalugu, projektid, uudised, puhkuseteated), teises keeles lehed ja Palliumi 2019.–2020. aasta kokkuvõtted riigi toetustest. Lisatud 11.10.2026 (korpus v80): Anonüümsed Alkohoolikud, Al-Anon Eesti ja Laste ja Noorte Kriisiprogramm. Lisatud 11.10.2026 (korpus v81): ühingute tutvustuslehed, mis esimesel korral lehe haaval välja jäid (omaniku valik).",
   "pages": [
     {
       "source_id": "juristaitab_avaleht",
@@ -3459,6 +3459,336 @@
       "url": "https://lastekriis.ee/vanemale/",
       "title": "Vanemale",
       "publisher": "MTÜ Laste ja Noorte Kriisiprogramm",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "seksuaaltervis_avaleht",
+      "url": "https://seksuaaltervis.ee/",
+      "title": "Seksuaaltervis",
+      "publisher": "Eesti Seksuaaltervise Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "seksuaaltervis_avaleht--kontakt",
+      "url": "https://seksuaaltervis.ee/kontakt",
+      "title": "Kontakt",
+      "publisher": "Eesti Seksuaaltervise Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "hingehoid_avaleht--hingehoidjale--kutsestandard",
+      "url": "https://hingehoid.ee/hingehoidjale/kutsestandard",
+      "title": "KUTSESTANDARD",
+      "publisher": "Hingehoid",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "hingehoid_avaleht",
+      "url": "https://www.hingehoid.ee/",
+      "title": "Hinge hoid",
+      "publisher": "Hingehoid",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "hingehoid_avaleht--hingehoid--hingehoidja-eetilised-pohimotted",
+      "url": "https://www.hingehoid.ee/hingehoid/hingehoidja-eetilised-pohimotted",
+      "title": "Hingehoidja eetilised põhimõtted",
+      "publisher": "Hingehoid",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "hingehoid_avaleht--hingehoidjale",
+      "url": "https://www.hingehoid.ee/hingehoidjale",
+      "title": "Kutsestandard",
+      "publisher": "Hingehoid",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "hingehoid_avaleht--korgharidus",
+      "url": "https://www.hingehoid.ee/korgharidus",
+      "title": "Kõrgharidus",
+      "publisher": "Hingehoid",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "omastehooldus_avaleht--abivahendid",
+      "url": "https://omastehooldus.eu/abivahendid",
+      "title": "Abivahendid",
+      "publisher": "MTÜ Eesti Omastehooldus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "omastehooldus_avaleht--dokumendid",
+      "url": "https://omastehooldus.eu/dokumendid",
+      "title": "Dokumendid",
+      "publisher": "MTÜ Eesti Omastehooldus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "omastehooldus_avaleht--uhingust",
+      "url": "https://omastehooldus.eu/uhingust",
+      "title": "Ühingust",
+      "publisher": "MTÜ Eesti Omastehooldus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "omastehooldus_avaleht--uldkontakt",
+      "url": "https://omastehooldus.eu/uldkontakt",
+      "title": "Üldkontakt",
+      "publisher": "MTÜ Eesti Omastehooldus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "eluliin_avaleht--eetilise-tegutsemise-pohimotted",
+      "url": "https://www.eluliin.ee/eetilise-tegutsemise-pohimotted",
+      "title": "Eetilise tegutsemise põhimõtted",
+      "publisher": "MTÜ Eluliin",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "eluliin_avaleht--harta",
+      "url": "https://www.eluliin.ee/harta",
+      "title": "Harta",
+      "publisher": "MTÜ Eluliin",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "eluliin_avaleht--tule-vabatahtlikuks",
+      "url": "https://www.eluliin.ee/tule-vabatahtlikuks",
+      "title": "Tule vabatahtlikuks",
+      "publisher": "MTÜ Eluliin",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lastekaitseliit_avaleht",
+      "url": "https://www.lastekaitseliit.ee/et/",
+      "title": "Päevapilt \"Hea on olla laps\"",
+      "publisher": "MTÜ Lastekaitse Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lastekaitseliit_avaleht--evidence-to-protect-laste-turvalisus-ja-oiguste-kaitse-digikeskkonnas",
+      "url": "https://www.lastekaitseliit.ee/et/evidence-to-protect-laste-turvalisus-ja-oiguste-kaitse-digikeskkonnas",
+      "title": "Evidence to Protect – laste turvalisus ja õiguste kaitse digikeskkonnas",
+      "publisher": "MTÜ Lastekaitse Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lastekaitseliit_avaleht--hea-on-olla-laps",
+      "url": "https://www.lastekaitseliit.ee/et/hea-on-olla-laps",
+      "title": "HEA ON OLLA LAPS!",
+      "publisher": "MTÜ Lastekaitse Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lastekaitseliit_avaleht--huviharidusetulemused",
+      "url": "https://www.lastekaitseliit.ee/et/huviharidusetulemused",
+      "title": "Huvihariduse küsitluse tulemused",
+      "publisher": "MTÜ Lastekaitse Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lastekaitseliit_avaleht--koostoovorgustik-laste-osaluse-edendamiseks-balti-ja-pohjamaades",
+      "url": "https://www.lastekaitseliit.ee/et/koostoovorgustik-laste-osaluse-edendamiseks-balti-ja-pohjamaades",
+      "title": "Koostöövõrgustik laste osaluse edendamiseks Balti- ja Põhjamaades",
+      "publisher": "MTÜ Lastekaitse Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lastekaitseliit_avaleht--lapse-oiguste-saadikud",
+      "url": "https://www.lastekaitseliit.ee/et/lapse-oiguste-saadikud",
+      "title": "Lapse õiguste saadikud",
+      "publisher": "MTÜ Lastekaitse Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lastekaitseliit_avaleht--lastekaitseliit--lastekaitse-liidu-fond",
+      "url": "https://www.lastekaitseliit.ee/et/lastekaitseliit/lastekaitse-liidu-fond",
+      "title": "Lastekaitse Liidu Fond",
+      "publisher": "MTÜ Lastekaitse Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lastekaitseliit_avaleht--marka-oma-kodukohta",
+      "url": "https://www.lastekaitseliit.ee/et/marka-oma-kodukohta",
+      "title": "Märka oma kodukohta",
+      "publisher": "MTÜ Lastekaitse Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lastekaitseliit_avaleht--meie-tegevused",
+      "url": "https://www.lastekaitseliit.ee/et/meie-tegevused",
+      "title": "Meie tegevused",
+      "publisher": "MTÜ Lastekaitse Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lastekaitseliit_avaleht--meist",
+      "url": "https://www.lastekaitseliit.ee/et/meist",
+      "title": "Meist",
+      "publisher": "MTÜ Lastekaitse Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lastekaitseliit_avaleht--mtu-lastekaitse-liidu-ule-eestilise-vorgustikutoo-arendamine-ja-liikmeskonna-voimendamine",
+      "url": "https://www.lastekaitseliit.ee/et/mtu-lastekaitse-liidu-ule-eestilise-vorgustikutoo-arendamine-ja-liikmeskonna-voimendamine",
+      "title": "MTÜ Lastekaitse Liidu üle-eestilise võrgustikutöö arendamine ja liikmeskonna võimendamine",
+      "publisher": "MTÜ Lastekaitse Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "pallium_avaleht--palliumist",
+      "url": "https://pallium.ee/palliumist",
+      "title": "mtü pallium",
+      "publisher": "MTÜ Pallium",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "peaasi_e_noustamine",
+      "url": "https://peaasi.ee/e-noustamine/",
+      "title": "E-nõustamine",
+      "publisher": "MTÜ Peaasjad",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "naistetugi_avaleht--denim-day-ehk-teksapaev-29-aprill",
+      "url": "https://naistetugi.ee/denim-day-ehk-teksapaev-29-aprill",
+      "title": "Denim Day ehk teksapäev – 29. aprill",
+      "publisher": "Naiste Tugi- ja Teabekeskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "naistetugi_avaleht--isikuandmete-tootlemine-naiste-tugi-ja-teabekeskuses",
+      "url": "https://naistetugi.ee/isikuandmete-tootlemine-naiste-tugi-ja-teabekeskuses",
+      "title": "Isikuandmete töötlemine Naiste Tugi- ja Teabekeskuses",
+      "publisher": "Naiste Tugi- ja Teabekeskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "naistetugi_avaleht--kaebuste-esitamine-ja-lahendamine",
+      "url": "https://naistetugi.ee/kaebuste-esitamine-ja-lahendamine",
+      "title": "Kaebuste esitamine ja lahendamine",
+      "publisher": "Naiste Tugi- ja Teabekeskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "naistetugi_avaleht--meist",
+      "url": "https://naistetugi.ee/meist",
+      "title": "Meist",
+      "publisher": "Naiste Tugi- ja Teabekeskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "naistetugi_avaleht--tana-on-25-november-tana-on-rahvusvaheline-naistevastase-vagivalla-vastu-voitlemise-paev",
+      "url": "https://naistetugi.ee/tana-on-25-november-tana-on-rahvusvaheline-naistevastase-vagivalla-vastu-voitlemise-paev",
+      "title": "Täna on 25. november – täna on rahvusvaheline naistevastase vägivalla vastu võitlemise päev!",
+      "publisher": "Naiste Tugi- ja Teabekeskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "naistetugi_avaleht--teenuste-hinnakiri",
+      "url": "https://naistetugi.ee/teenuste-hinnakiri",
+      "title": "Teenuste hinnakiri*",
+      "publisher": "Naiste Tugi- ja Teabekeskus",
       "source_type": "organization_page",
       "language": "et",
       "jurisdiction_level": "NATIONAL",

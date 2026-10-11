@@ -16,9 +16,9 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | taastatud_allikad | 0 | 22 | Serveri vanast indeksist taastatud tekst. Enne importi võrrelda põhipakettidega. |
 
 <!-- corpus-state:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
-## RAG-i seis: mis on serveris (korpus v80)
+## RAG-i seis: mis on serveris (korpus v81)
 
-Seis 11.10.2026: serveris töötav RAG (korpus **v80**, indeks `c7d36b42`) sisaldab **9 698 dokumenti** (90 604 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
+Seis 11.10.2026: serveris töötav RAG (korpus **v81**, indeks `f66fd13d`) sisaldab **9 735 dokumenti** (90 707 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
 
 | Mis on RAG-is | Dokumente | Kus on loend |
 |---|---:|---|
@@ -29,11 +29,11 @@ Seis 11.10.2026: serveris töötav RAG (korpus **v80**, indeks `c7d36b42`) sisal
 | Õigusaktid | 594 | jaotis „Sisufailid“ |
 | Juhendid, infomaterjalid ja uuringud | 429 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
 | Ametlikud juhislehed (ametite veebilehed) | 950 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
-| Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) | 905 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
+| Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) | 942 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Hooldekodude kohamaksumus omavalitsuste kaupa | 79 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müügi- ja üüripunktid | 93 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müüjate lehed | 51 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
-| **Kokku** | **9698** | |
+| **Kokku** | **9735** | |
 
 <details><summary>Tehniline jaotus arendajale: kus allikafailid asuvad</summary>
 
@@ -47,7 +47,7 @@ Dokumentide arvud ei võrdu ülal olevate failide arvudega: üks fail võib anda
 | `veebilehed` | 361 | web_page 360, research_report 1 |
 | `juhendid_ja_uuringud` | 171 | information_material 81, research_report 46, official_guideline 38, policy_analysis 6 |
 
-Koodihoidlas (GitHub) ei ole 3182 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
+Koodihoidlas (GitHub) ei ole 3219 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
 
 | Allikas | Dokumente | Millest tehakse | Miks ei ole koodihoidlas |
 |---|---:|---|---|
@@ -55,7 +55,7 @@ Koodihoidlas (GitHub) ei ole 3182 dokumendi allikafaile; need on korpuse hoidlas
 | Hooldekodude kohamaksumuse lehed | 79 | Sotsiaalkindlustusameti hinnaseire tabelist skriptiga `scripts/rag-v2-care-prices.mjs`, iga omavalitsuse kohta üks leht ja üks ülevaade (ADR-104) | hooldekodude telefoninumbrid; leht tehakse tabelist uuesti |
 | Abivahendite müügi- ja üüripunktide lehed | 93 | Sotsiaalkindlustusameti kaarditabelist skriptiga `scripts/rag-v2-assistive-points.mjs`, iga omavalitsuse kohta üks leht (ADR-096) | punktide telefoninumbrid; leht tehakse tabelist uuesti |
 | Abivahendite müüjate lehed | 51 (18 väljaandjat) | nimekiri `register/web_pages_vendors.json`, korjaja `scripts/rag-v2-web-pages.mjs` (ADR-095) | ettevõtete enda tekstid ja telefoninumbrid |
-| Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) | 905 (58 väljaandjat) | nimekirjad `register/web_pages_organisations.json`, `register/web_pages_associations.json` ja `register/web_pages_associations_2.json` ning nimekirjade `register/web_pages_coverage_1.json` ja `_2.json` organisatsioonid, korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-095, ADR-137, ADR-140) | organisatsioonide enda tekstid |
+| Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) | 942 (59 väljaandjat) | nimekirjad `register/web_pages_organisations.json`, `register/web_pages_associations.json` ja `register/web_pages_associations_2.json` ning nimekirjade `register/web_pages_coverage_1.json` ja `_2.json` organisatsioonid, korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-095, ADR-137, ADR-140) | organisatsioonide enda tekstid |
 | Asutuste juhislehed, valitud reegliga | 590 (11 väljaandjat) | nimekirjad `register/web_pages_coverage_1.json` ja `register/web_pages_coverage_2.json`, korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-137) | valik võtab lehest välja isikut nimetavad lõigud; repos olevate lehtede igakuine uuendus asendaks sellise koopia lugeja omaga |
 | Uuringud ja juhendid väljaandja ametlikult aadressilt | 257 (30 väljaandjat) | asutuste veebilehtede uuringute ja juhendite loenditest ning ajakirja Sotsiaaltöö uudiskirjas viidatud dokumentidest (`register/newsletter_documents.json`); iga fail on alla laaditud väljaandja ametlikult aadressilt | suured failid; allikas on ametlik aadress |
 
@@ -2357,7 +2357,7 @@ Koodihoidla allikafailid, mida RAG-is ei ole (61):
 <!-- corpus-outside:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
 ## RAG-is olevad lehed ja kontaktid
 
-Serveris töötav RAG, korpus v80, 11.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
+Serveris töötav RAG, korpus v81, 11.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
 
 ### Hooldekodude kohamaksumuse lehed (79)
 
@@ -2597,7 +2597,7 @@ Serveris töötav RAG, korpus v80, 11.10.2026. Siin on loend sellest, mida jaoti
 | Tervise Abi | Kuulmisabivahendid, häiresüsteemid ja lisad | <https://terviseabi.ee/tootekategooria/kuulmisabivahendid/> |
 | Tervise Abi | Tallinna sotsiaalvalveteenus | <https://terviseabi.ee/teenused/sotsiaalvalveteenus> |
 
-### Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) (905)
+### Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) (942)
 
 | Väljaandja | Pealkiri | Aadress |
 |---|---|---|
@@ -2633,6 +2633,7 @@ Serveris töötav RAG, korpus v80, 11.10.2026. Siin on loend sellest, mida jaoti
 | Convictus Eesti MTÜ | Kahjude vähendamise buss | <https://www.convictus.ee/keskused/kahjude-vahendamise-buss> |
 | Convictus Eesti MTÜ | Kahjude vähendamise teenus välitööna | <https://www.convictus.ee/teenused/kahjude-vahendamise-teenus-valitoona> |
 | Convictus Eesti MTÜ | Kogemusnõustamine | <https://www.convictus.ee/teenused/kogemusnoustamine> |
+| Convictus Eesti MTÜ | Kuidas käituda kui näen kasutatud süstalt? | <https://www.convictus.ee/uudised/kuidas-kaituda-kui-naen-kasutatud-sustalt> |
 | Convictus Eesti MTÜ | Lastekodu 6 Kahjude Vähendamise Keskus | <https://www.convictus.ee/keskused/lastekodu> |
 | Convictus Eesti MTÜ | Leia abi: Kogukond | <https://www.convictus.ee/kogukond> |
 | Convictus Eesti MTÜ | Leia abi: Lähedane | <https://www.convictus.ee/lahedane> |
@@ -2649,6 +2650,7 @@ Serveris töötav RAG, korpus v80, 11.10.2026. Siin on loend sellest, mida jaoti
 | Convictus Eesti MTÜ | Sitsi 28 Kahjude Vähendamise Keskus | <https://www.convictus.ee/keskused/sitsi> |
 | Convictus Eesti MTÜ | Sotsiaalnõustamine | <https://www.convictus.ee/teenused/sotsiaalnoustamine> |
 | Convictus Eesti MTÜ | Süstlavahetus ja tarvikute jagamine | <https://www.convictus.ee/teenused/sustlavahetus-ja-tarvikute-jagamine> |
+| Convictus Eesti MTÜ | Toidu- ja riideabi | <https://www.convictus.ee/teenused/toidu-ja-riideabi> |
 | Convictus Eesti MTÜ | Tugigrupid ja nõustamine vanglates | <https://www.convictus.ee/teenused/tugigrupid-ja-noustamine-vanglates> |
 | Convictus Eesti MTÜ | Tugigrupp naistele | <https://www.convictus.ee/teenused/tugigrupp-naistele> |
 | Convictus Eesti MTÜ | Tugiisiku nõustamine | <https://www.convictus.ee/teenused/tugiisiku-noustamine> |
@@ -2964,6 +2966,7 @@ Serveris töötav RAG, korpus v80, 11.10.2026. Siin on loend sellest, mida jaoti
 | Eesti Seksuaaltervise Liit | HPV (Human papillomavirus) ehk inimese papilloomviirus | <https://seksuaaltervis.ee/suguhaigused/hpv-ehk-papilloomviirus> |
 | Eesti Seksuaaltervise Liit | Hädaabimeetodid ehk vahekorrajärgsed rasestumisvastased vahendid | <https://seksuaaltervis.ee/rasestumisvastased-vahendid/sos-pill> |
 | Eesti Seksuaaltervise Liit | Kondoom | <https://seksuaaltervis.ee/rasestumisvastased-vahendid/kondoom> |
+| Eesti Seksuaaltervise Liit | Kontakt | <https://seksuaaltervis.ee/kontakt> |
 | Eesti Seksuaaltervise Liit | Küsi nõu | <https://seksuaaltervis.ee/kusi-nou> |
 | Eesti Seksuaaltervise Liit | Minipillid | <https://seksuaaltervis.ee/rasestumisvastased-vahendid/minipillid> |
 | Eesti Seksuaaltervise Liit | Mis on suguhaigused? | <https://seksuaaltervis.ee/suguhaigused/mis-on-suguhaigused> |
@@ -2976,6 +2979,7 @@ Serveris töötav RAG, korpus v80, 11.10.2026. Siin on loend sellest, mida jaoti
 | Eesti Seksuaaltervise Liit | Rasestumisvastane implantaat | <https://seksuaaltervis.ee/rasestumisvastased-vahendid/rasestumisvastane-implantaat> |
 | Eesti Seksuaaltervise Liit | Rasestumisvastane plaaster | <https://seksuaaltervis.ee/rasestumisvastased-vahendid/rasestumisvastane-plaaster> |
 | Eesti Seksuaaltervise Liit | Rasestumisvastased meetodid ehk rasestumisvastased vahendid | <https://seksuaaltervis.ee/rasestumisvastased-vahendid/rasestumisvastased-meetodid-ehk-rasestumisvastased-vahendid> |
+| Eesti Seksuaaltervise Liit | Seksuaaltervis | <https://seksuaaltervis.ee/> |
 | Eesti Seksuaaltervise Liit | Sterilisatsioon | <https://seksuaaltervis.ee/rasestumisvastased-vahendid/sterilisatsioon> |
 | Eesti Seksuaaltervise Liit | Sugu | <https://seksuaaltervis.ee/sugu> |
 | Eesti Seksuaaltervise Liit | Sünnitus | <https://seksuaaltervis.ee/rasedus-2/sunnitus> |
@@ -3087,9 +3091,14 @@ Serveris töötav RAG, korpus v80, 11.10.2026. Siin on loend sellest, mida jaoti
 | Hasartmängusõltuvuse Nõustamiskeskus | Testi ennast | <https://15410.ee/digisoltuvus/testi-ennast-arvutisoltuvus> |
 | Hasartmängusõltuvuse Nõustamiskeskus | Testi ennast | <https://15410.ee/hasartmangusoltuvus/testi-ennast-hasartmangusoltuvus> |
 | Hingehoid | Hingehoid | <https://www.hingehoid.ee/hingehoid> |
+| Hingehoid | Hinge hoid | <https://www.hingehoid.ee/> |
 | Hingehoid | Hingehoiukeskus | <https://www.hingehoid.ee/hingehoiukeskus> |
 | Hingehoid | Hingehoiutelefon | <https://www.hingehoid.ee/hingehoiutelefon> |
+| Hingehoid | Kutsestandard | <https://www.hingehoid.ee/hingehoidjale> |
+| Hingehoid | KUTSESTANDARD | <https://hingehoid.ee/hingehoidjale/kutsestandard> |
+| Hingehoid | Kõrgharidus | <https://www.hingehoid.ee/korgharidus> |
 | Hingehoid | Vajan tuge | <https://www.hingehoid.ee/vajad-toetust> |
+| Hingehoid | Hingehoidja eetilised põhimõtted | <https://www.hingehoid.ee/hingehoid/hingehoidja-eetilised-pohimotted> |
 | Ida-Virumaa Puuetega Inimeste Koda | Igapäevaelu toetamine | <https://erivajadus.ee/teenused/igapaeva-elu-toetamine> |
 | Ida-Virumaa Puuetega Inimeste Koda | Isikukeskse erihoolekande teenuse mudeli (ISTE) rakendamine kohalikus omavalitsuses – Jõhvi vallavalitsus | <https://erivajadus.ee/teenused/pilootprojekt-isikukeskse-erihoolekande-teenusmudeli-rakendamine-kohalikus-omavalitsuses-johvi-vallavalitsus> |
 | Ida-Virumaa Puuetega Inimeste Koda | Isikukeskse erihoolekande teenuse mudeli (ISTE) rakendamine kohalikus omavalitsuses – Kohtla-Järve linnavalitsus | <https://erivajadus.ee/teenused/pilootprojekt-isikukeskse-erihoolekande-teenusmudeli-rakendamine-kohalikus-omavalitsuses-kohtla-jarve> |
@@ -3103,8 +3112,17 @@ Serveris töötav RAG, korpus v80, 11.10.2026. Siin on loend sellest, mida jaoti
 | Lääne-Virumaa Puuetega Inimeste Koda | Rahastatud projektid | <https://www.virukoda.ee/Projektid> |
 | Lääne-Virumaa Puuetega Inimeste Koda | Ühingust | <https://www.virukoda.ee/Meist> |
 | MTÜ Eesti Omastehooldus | Abiks omastehooldajale | <https://omastehooldus.eu/abiks-omastehooldajale> |
+| MTÜ Eesti Omastehooldus | Abivahendid | <https://omastehooldus.eu/abivahendid> |
+| MTÜ Eesti Omastehooldus | Dokumendid | <https://omastehooldus.eu/dokumendid> |
 | MTÜ Eesti Omastehooldus | Omastehoolduse 10 teesi | <https://omastehooldus.eu/omastehoolduse-10-teesi> |
 | MTÜ Eesti Omastehooldus | Ühingud ja ametid | <https://omastehooldus.eu/uhingud-ja-ametid> |
+| MTÜ Eesti Omastehooldus | Ühingust | <https://omastehooldus.eu/uhingust> |
+| MTÜ Eesti Omastehooldus | Üldkontakt | <https://omastehooldus.eu/uldkontakt> |
+| MTÜ Eluliin | Eetilise tegutsemise põhimõtted | <https://www.eluliin.ee/eetilise-tegutsemise-pohimotted> |
+| MTÜ Eluliin | Emotsionaalse toe telefon | <https://www.eluliin.ee/node/15> |
+| MTÜ Eluliin | Harta | <https://www.eluliin.ee/harta> |
+| MTÜ Eluliin | Psühholoogiline kriisinõustamine | <https://www.eluliin.ee/psuhholoogiline-kriisinoustamine> |
+| MTÜ Eluliin | Tule vabatahtlikuks | <https://www.eluliin.ee/tule-vabatahtlikuks> |
 | MTÜ Iseseisev Elu | Eetika | <https://www.iseseisev-elu.ee/iseseisev-elu/eetika> |
 | MTÜ Iseseisev Elu | Igapäevaelu toetamise teenus | <https://www.iseseisev-elu.ee/teenused/iet> |
 | MTÜ Iseseisev Elu | Igapäevaelu toetamise teenusele saamine ja teenuse lõppemine | <https://www.iseseisev-elu.ee/teenused/iet/iet-teenus> |
@@ -3124,12 +3142,24 @@ Serveris töötav RAG, korpus v80, 11.10.2026. Siin on loend sellest, mida jaoti
 | MTÜ Laste ja Noorte Kriisiprogramm | Spetsialistile | <https://lastekriis.ee/spetsialistile/> |
 | MTÜ Laste ja Noorte Kriisiprogramm | Teenused ja hinnakiri | <https://lastekriis.ee/teenused/> |
 | MTÜ Laste ja Noorte Kriisiprogramm | Vanemale | <https://lastekriis.ee/vanemale/> |
+| MTÜ Lastekaitse Liit | Evidence to Protect – laste turvalisus ja õiguste kaitse digikeskkonnas | <https://www.lastekaitseliit.ee/et/evidence-to-protect-laste-turvalisus-ja-oiguste-kaitse-digikeskkonnas> |
 | MTÜ Lastekaitse Liit | Hea nõu lastega peredele | <https://www.lastekaitseliit.ee/et/hea-nou-lastega-peredele> |
+| MTÜ Lastekaitse Liit | HEA ON OLLA LAPS! | <https://www.lastekaitseliit.ee/et/hea-on-olla-laps> |
+| MTÜ Lastekaitse Liit | Huvihariduse küsitluse tulemused | <https://www.lastekaitseliit.ee/et/huviharidusetulemused> |
+| MTÜ Lastekaitse Liit | Koostöövõrgustik laste osaluse edendamiseks Balti- ja Põhjamaades | <https://www.lastekaitseliit.ee/et/koostoovorgustik-laste-osaluse-edendamiseks-balti-ja-pohjamaades> |
 | MTÜ Lastekaitse Liit | Korduma kippuvad küsimused | <https://www.lastekaitseliit.ee/et/korduma-kippuvad-kusimused> |
 | MTÜ Lastekaitse Liit | Kuhu pöörduda abi saamiseks? | <https://www.lastekaitseliit.ee/et/kuhu-poorduda-abi-saamiseks> |
 | MTÜ Lastekaitse Liit | Lapse õigused | <https://www.lastekaitseliit.ee/et/lapse-oigused> |
 | MTÜ Lastekaitse Liit | Lapse õiguste ABC | <https://www.lastekaitseliit.ee/et/laste-oiguste-abc> |
+| MTÜ Lastekaitse Liit | Lapse õiguste saadikud | <https://www.lastekaitseliit.ee/et/lapse-oiguste-saadikud> |
+| MTÜ Lastekaitse Liit | Lastekaitse Liidu Fond | <https://www.lastekaitseliit.ee/et/lastekaitseliit/lastekaitse-liidu-fond> |
+| MTÜ Lastekaitse Liit | Meie tegevused | <https://www.lastekaitseliit.ee/et/meie-tegevused> |
+| MTÜ Lastekaitse Liit | Meist | <https://www.lastekaitseliit.ee/et/meist> |
+| MTÜ Lastekaitse Liit | MTÜ Lastekaitse Liidu üle-eestilise võrgustikutöö arendamine ja liikmeskonna võimendamine | <https://www.lastekaitseliit.ee/et/mtu-lastekaitse-liidu-ule-eestilise-vorgustikutoo-arendamine-ja-liikmeskonna-voimendamine> |
+| MTÜ Lastekaitse Liit | Märka oma kodukohta | <https://www.lastekaitseliit.ee/et/marka-oma-kodukohta> |
+| MTÜ Lastekaitse Liit | Päevapilt "Hea on olla laps" | <https://www.lastekaitseliit.ee/et/> |
 | MTÜ Lastekaitse Liit | Tasuta õigusabi võimalustest | <https://www.lastekaitseliit.ee/et/tasuta-oigusabi-voimalustest> |
+| MTÜ Pallium | mtü pallium | <https://pallium.ee/palliumist> |
 | MTÜ Pallium | HAIGUSEGA TOIMETULEK KODUS | <https://pallium.ee/patsiendile?articleId=5d07e239981dff0c7d7b10c0> |
 | MTÜ Pallium | Hospiits | <https://pallium.ee/patsiendile?articleId=5d07e269981dff0c7d7b10c1> |
 | MTÜ Pallium | Koduõendusteenus | <https://pallium.ee/patsiendile?articleId=5d07e5b2981dff0c7d7b10c7> |
@@ -3158,6 +3188,7 @@ Serveris töötav RAG, korpus v80, 11.10.2026. Siin on loend sellest, mida jaoti
 | MTÜ Peaasjad | Depressiooni ennetamine | <https://peaasi.ee/depressiooni-ennetamine/> |
 | MTÜ Peaasjad | Depressiooni võimalikud tagajärjed noorukitel | <https://peaasi.ee/depressiooni-voimalikud-tagajarjed-noorukitel/> |
 | MTÜ Peaasjad | Dieedi pidamine | <https://peaasi.ee/dieedi-pidamine/> |
+| MTÜ Peaasjad | E-nõustamine | <https://peaasi.ee/e-noustamine/> |
 | MTÜ Peaasjad | Emotsionaalsed seisundid | <https://peaasi.ee/emotsionaalsed-seisundid/> |
 | MTÜ Peaasjad | Emotsioonid | <https://peaasi.ee/emotsioonid/> |
 | MTÜ Peaasjad | Emotsioonide vaoshoidmine | <https://peaasi.ee/emotsioonide-vaoshoidmine/> |
@@ -3372,20 +3403,26 @@ Serveris töötav RAG, korpus v80, 11.10.2026. Siin on loend sellest, mida jaoti
 | MTÜ Peaasjad | Ärevushäirete ravi | <https://peaasi.ee/arevushairete-ravi/> |
 | MTÜ Peaasjad | Üksildusest – mida see tähendab ja kuidas sellega paremini toime tulla? | <https://peaasi.ee/uksildusest-mida-see-tahendab-ja-kuidas-sellega-paremini-toime-tulla/> |
 | MTÜ Peaasjad | Üldistunud ärevushäire | <https://peaasi.ee/uldistunud-arevushaire/> |
+| Naiste Tugi- ja Teabekeskus | Isikuandmete töötlemine Naiste Tugi- ja Teabekeskuses | <https://naistetugi.ee/isikuandmete-tootlemine-naiste-tugi-ja-teabekeskuses> |
 | Naiste Tugi- ja Teabekeskus | Naiste Tugi- ja Teabekeskus | <https://naistetugi.ee/abiasutused> |
 | Naiste Tugi- ja Teabekeskus | “Miks ta ei lahku” – kaheksa selgitavat sammu | <https://naistetugi.ee/miks-ta-ei-lahku-kaheksa-selgitavat-sammu> |
+| Naiste Tugi- ja Teabekeskus | Denim Day ehk teksapäev – 29. aprill | <https://naistetugi.ee/denim-day-ehk-teksapaev-29-aprill> |
 | Naiste Tugi- ja Teabekeskus | Eakatevastane vägivald | <https://naistetugi.ee/eakatevastane-vagivald> |
 | Naiste Tugi- ja Teabekeskus | Emotsionaalne vägivald | <https://naistetugi.ee/vagivallast/emotsionaalne-vagivald> |
 | Naiste Tugi- ja Teabekeskus | Haavatud naisele | <https://naistetugi.ee/haavatud-naisele> |
+| Naiste Tugi- ja Teabekeskus | Kaebuste esitamine ja lahendamine | <https://naistetugi.ee/kaebuste-esitamine-ja-lahendamine> |
 | Naiste Tugi- ja Teabekeskus | Kes on süüdi ja miks naised ei lahku? | <https://naistetugi.ee/vagivallast/kes-on-suudi-ja-miks-naised-ei-lahku> |
 | Naiste Tugi- ja Teabekeskus | Kuidas aidata? | <https://naistetugi.ee/vagivallast/kuidas-aidata> |
 | Naiste Tugi- ja Teabekeskus | Kuidas soorollid on seotud perevägivallaga? | <https://naistetugi.ee/kuidas-soorollid-on-seotud-perevagivallaga> |
+| Naiste Tugi- ja Teabekeskus | Meist | <https://naistetugi.ee/meist> |
 | Naiste Tugi- ja Teabekeskus | Miks paljud vägistamisohvid ei hakka vastu ega hüüa appi | <https://naistetugi.ee/miks-paljud-vagistamisohvid-ei-hakka-vastu-ega-huua-appi> |
 | Naiste Tugi- ja Teabekeskus | Ohumärgid | <https://naistetugi.ee/vagivallast/ohumargid> |
 | Naiste Tugi- ja Teabekeskus | Perevägivald | <https://naistetugi.ee/vagivallast/perevagivald> |
 | Naiste Tugi- ja Teabekeskus | Seksuaalvägivalla ohvrite tugiisikute juhendmaterjal | <https://naistetugi.ee/vagivallast/seksuaalvagivallast/seksuaalvagivalla-ohvrite-tugiisikute-juhendmaterjal> |
 | Naiste Tugi- ja Teabekeskus | Seksuaalvägivallast | <https://naistetugi.ee/vagivallast/seksuaalvagivallast> |
+| Naiste Tugi- ja Teabekeskus | Teenuste hinnakiri* | <https://naistetugi.ee/teenuste-hinnakiri> |
 | Naiste Tugi- ja Teabekeskus | Tugiisikute juhendmaterjal kriminaalmenetlusest | <https://naistetugi.ee/vagivallast/seksuaalvagivallast/tugiisikute-juhendmaterjal-kriminaalmenetlusest> |
+| Naiste Tugi- ja Teabekeskus | Täna on 25. november – täna on rahvusvaheline naistevastase vägivalla vastu võitlemise päev! | <https://naistetugi.ee/tana-on-25-november-tana-on-rahvusvaheline-naistevastase-vagivalla-vastu-voitlemise-paev> |
 | Naiste Tugi- ja Teabekeskus | Vägivald ja lapsed | <https://naistetugi.ee/vagivallast/vagivald-ja-lapsed> |
 | Naiste Tugi- ja Teabekeskus | Vägivalda soodustavad tegurid | <https://naistetugi.ee/vagivallast/vagivalda-soodustavad-tegurid> |
 | Naiste Tugi- ja Teabekeskus | Vägivalla tsükliteooria | <https://naistetugi.ee/vagivallast/vagivalla-tsukliteooria> |
