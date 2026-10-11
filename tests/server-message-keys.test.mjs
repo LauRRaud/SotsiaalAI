@@ -16,7 +16,7 @@ const et = catalog('et');
 const lookup = (messages, key) => key.split('.').reduce((node, part) => (node && typeof node === 'object' ? node[part] : undefined), messages);
 
 /* Rühmad, mille võtmed on inimesele näidatavad laused (mitte auditi ega sündmuste nimed). */
-const MESSAGE_GROUPS = /^(api\.|pre_inquiries\.errors\.|covision\.errors\.|covision\.next_action\.|materials_page\.errors\.|documents\.errors\.|documents\.agent_workspace\.|privacy\.|service_provider_profile\.errors\.|research\.error\.|home_care\.errors\.|wellbeing\.pilot\.|wellbeing\.aggregate\.|workspace\.kind\.)/;
+const MESSAGE_GROUPS = /^(api\.|pre_inquiries\.errors\.|covision\.errors\.|covision\.next_action\.|materials_page\.errors\.|documents\.errors\.|documents\.agent_workspace\.|privacy\.|service_provider_profile\.errors\.|research\.error\.|home_care\.errors\.|wellbeing\.pilot\.|wellbeing\.aggregate\.|workspace\.kind\.|org\.errors\.)/;
 
 /* Võtme kujuga sõned, mis ei jõua inimeseni: arendaja või seadistuse vead ja terviseseisu koodid. */
 const INTERNAL = new Set([

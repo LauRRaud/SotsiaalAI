@@ -29,7 +29,11 @@ export async function GET(request, context) {
   }
 }
 
-/** Seisusiire. `RECALLED` on saatja õigus ja seda siit valida ei saa. */
+/**
+ * Seisusiire koordinaatori käega. `RECALLED` on saatja õigus ja seda siit valida ei saa;
+ * „määratud" ja „vastu võetud" tekivad määramisest ja töötaja vastusest, samuti mitte siit.
+ * „Ootab määramist" võtab töö töötajalt tagasi (vt `transitionInboxItem`).
+ */
 export async function PATCH(request, context) {
   const auth = await requireOrgContext(request, context);
   if (!auth.ok) return auth.response;
