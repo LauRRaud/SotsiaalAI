@@ -15,9 +15,15 @@ import { validatePersonalDataSurfaceRegistry } from "../lib/dataExport/personalD
 // The request handlers with only the sign-in check and the database replaced. The database is a small in-memory
 // stand-in that answers exactly the queries the handlers make and keeps the table's one rule: one row per reporter
 // and turn.
+// A row against a query's conditions: equality, and the three comparisons the handlers use.
+const matches = (row, where) => Object.entries(where).every(([key, value]) => !value || typeof value !== "object" || value instanceof Date ? row[key] === value
+  : "gte" in value ? row[key] >= value.gte : "lt" in value ? row[key] < value.lt : "not" in value ? row[key] !== value.not : false);
+const removeWhere = (rows, where) => { const kept = rows.filter(row => !matches(row, where)), count = rows.length - kept.length; rows.splice(0, rows.length, ...kept); return { count }; };
+
 function database({ turns = [], messages = [], conversations = {} } = {}) {
   const rows = [], audit = [];
-  let serial = 0, clock = Date.parse("2026-10-11T09:00:00Z");
+  // Reports are dated just before now: a report lives 30 days from its sending (chatFeedbackLifecycle.js).
+  let serial = 0, clock = Date.now() - 120000;
   const db = {
     rows, audit,
     createRace: null,
@@ -46,7 +52,8 @@ function database({ turns = [], messages = [], conversations = {} } = {}) {
         rows.push(row);
         return row;
       },
-      findMany: async ({ where }) => rows.filter(row => Object.entries(where).every(([key, value]) => row[key] === value)).map(row => ({ ...row })),
+      findMany: async ({ where }) => rows.filter(row => matches(row, where)).map(row => ({ ...row })),
+      deleteMany: async ({ where }) => removeWhere(rows, where),
       updateMany: async ({ where, data }) => {
         const hit = rows.filter(row => row.id === where.id && row.status === where.status);
         for (const row of hit) Object.assign(row, data);
@@ -202,17 +209,13 @@ test("a reason from the list is required, and a body with other fields or no JSO
 test("more than ten reports in an hour are refused", async () => {
   const turns = Array.from({ length: 11 }, (_, index) => ({ id: `turn-${index}`, userId: "anna", conversationId: "conv-anna" }));
   const db = database({ turns });
-  const now = Date.now;
-  Date.now = () => Date.parse("2026-10-11T09:00:30Z");
-  try {
-    for (let index = 0; index < 10; index++) {
-      assert.equal((await answerFeedbackPost(post({ convId: "conv-anna", turnId: `turn-${index}`, category: "other" }), { authenticate: signedIn("anna"), prisma: db })).status, 201);
-    }
-    const eleventh = await answerFeedbackPost(post({ convId: "conv-anna", turnId: "turn-10", category: "other" }), { authenticate: signedIn("anna"), prisma: db });
-    assert.equal(eleventh.status, 429);
-    assert.equal(eleventh.body.message, "api.answer_feedback.rate_limited");
-    assert.equal(db.rows.length, 10);
-  } finally { Date.now = now; }
+  for (let index = 0; index < 10; index++) {
+    assert.equal((await answerFeedbackPost(post({ convId: "conv-anna", turnId: `turn-${index}`, category: "other" }), { authenticate: signedIn("anna"), prisma: db })).status, 201);
+  }
+  const eleventh = await answerFeedbackPost(post({ convId: "conv-anna", turnId: "turn-10", category: "other" }), { authenticate: signedIn("anna"), prisma: db });
+  assert.equal(eleventh.status, 429);
+  assert.equal(eleventh.body.message, "api.answer_feedback.rate_limited");
+  assert.equal(db.rows.length, 10);
 });
 
 test("a person's own list names only the turns they reported in that conversation", async () => {

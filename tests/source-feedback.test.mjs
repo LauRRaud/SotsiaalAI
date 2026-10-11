@@ -31,10 +31,16 @@ function publishedTurn(id = "turn-1") {
   return { row, view, record, messages: historyMessages(record, row.payload.question) };
 }
 
+// A row against a query's conditions: equality, and the three comparisons the handlers use.
+const matches = (row, where) => Object.entries(where).every(([key, value]) => !value || typeof value !== "object" || value instanceof Date ? row[key] === value
+  : "gte" in value ? row[key] >= value.gte : "lt" in value ? row[key] < value.lt : "not" in value ? row[key] !== value.not : false);
+const removeWhere = (rows, where) => { const kept = rows.filter(row => !matches(row, where)), count = rows.length - kept.length; rows.splice(0, rows.length, ...kept); return { count }; };
+
 // The request handlers with only the sign-in check and the database replaced.
 function database({ messages = [], conversations = {} } = {}) {
   const rows = [], audit = [];
-  let serial = 0, clock = Date.parse("2026-10-11T09:00:00Z");
+  // Reports are dated just before now: a report lives 30 days from its sending (chatFeedbackLifecycle.js).
+  let serial = 0, clock = Date.now() - 120000;
   const db = {
     rows, audit,
     createRace: null,
@@ -56,7 +62,8 @@ function database({ messages = [], conversations = {} } = {}) {
         rows.push(row);
         return row;
       },
-      findMany: async ({ where }) => rows.filter(row => Object.entries(where).every(([key, value]) => value && typeof value === "object" ? row[key] !== value.not : row[key] === value)).map(row => ({ ...row })),
+      findMany: async ({ where }) => rows.filter(row => matches(row, where)).map(row => ({ ...row })),
+      deleteMany: async ({ where }) => removeWhere(rows, where),
       updateMany: async ({ where, data }) => {
         const hit = rows.filter(row => row.id === where.id && row.status === where.status);
         for (const row of hit) Object.assign(row, data);
@@ -205,15 +212,11 @@ test("more than ten reports in an hour are refused", async () => {
   const db = database({ conversations: { "conv-anna": "anna" },
     messages: turns.map((turn, index) => ({ id: `m-${index}`, conversationId: "conv-anna", role: "ASSISTANT", metadata: turn.messages.assistant.metadata })) });
   const targets = turns.flatMap((_, index) => ["S1", "S2"].map(ref => ({ convId: "conv-anna", turnId: `turn-${index}`, ref, category: "other" })));
-  const now = Date.now;
-  Date.now = () => Date.parse("2026-10-11T09:00:30Z");
-  try {
-    for (const target of targets.slice(0, 10)) assert.equal((await sourceFeedbackPost(post(target), { authenticate: signedIn("anna"), prisma: db })).status, 201);
-    const eleventh = await sourceFeedbackPost(post(targets[10]), { authenticate: signedIn("anna"), prisma: db });
-    assert.equal(eleventh.status, 429);
-    assert.equal(eleventh.body.message, "api.source_feedback.rate_limited");
-    assert.equal(db.rows.length, 10);
-  } finally { Date.now = now; }
+  for (const target of targets.slice(0, 10)) assert.equal((await sourceFeedbackPost(post(target), { authenticate: signedIn("anna"), prisma: db })).status, 201);
+  const eleventh = await sourceFeedbackPost(post(targets[10]), { authenticate: signedIn("anna"), prisma: db });
+  assert.equal(eleventh.status, 429);
+  assert.equal(eleventh.body.message, "api.source_feedback.rate_limited");
+  assert.equal(db.rows.length, 10);
 });
 
 test("a person's own list names the answer sources they reported, and nobody else's", async () => {
@@ -235,7 +238,7 @@ test("only an administrator reads the queue and resolves; the queue names the do
   const { status, body } = await sourceFeedbackAdminList(queue, { authenticate: admin, prisma: db });
   assert.equal(status, 200);
   const cited = anna.record.sources.find(source => source.ref === "S2");
-  assert.deepEqual(body.items.map(({ id: _id, createdAt: _createdAt, ...item }) => item), [{ turnId: "turn-anna", sourceRef: "S2", sourceId: cited.document,
+  assert.deepEqual(body.items.map(({ id: _id, createdAt: _createdAt, expiresAt: _expiresAt, ...item }) => item), [{ turnId: "turn-anna", sourceRef: "S2", sourceId: cited.document,
     sourceTitle: [cited.title, cited.provision].filter(Boolean).join(", "), sourceType: "rag_v2", category: "broken_link", note: "Link annab vea 404.", status: "OPEN", resolvedAt: null, resolutionNote: null }]);
 
   for (const invalid of [{}, { resolutionNote: " " }, { resolutionNote: "x".repeat(1001) }, { resolutionNote: "ok", status: "OPEN" }]) {
