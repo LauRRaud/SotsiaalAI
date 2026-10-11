@@ -24,9 +24,9 @@ test('the capacity is a measured decision (ADR-100, ADR-108, ADR-143): 100,000 u
   assert.throws(() => assertIndexCapacity({ documents: 8337, units: 100001 }), /local_index_limit/);
   // Corpus v66 (8179 documents, 57 860 units) with the 30 studies the first attempt of v66 was refused for (3959 units).
   assert.doesNotThrow(() => assertIndexCapacity({ documents: 8209, units: 57860 + 3959 }));
-  // Corpus v79 (9641 documents, 90 388 units) with a batch that passes the earlier bound of 10,000 documents.
-  assert.doesNotThrow(() => assertIndexCapacity({ documents: 9641 + 501, units: 90388 + 2000 }));
-  assert.throws(() => assertIndexCapacity({ documents: 15001, units: 90388 }), /local_index_limit/);
+  // Corpus v81 (9735 documents, 90 707 units) with the 479 articles (670 units) that pass the earlier bound of 10,000 documents.
+  assert.doesNotThrow(() => assertIndexCapacity({ documents: 9735 + 479, units: 90707 + 670 }));
+  assert.throws(() => assertIndexCapacity({ documents: 15001, units: 90707 }), /local_index_limit/);
 });
 
 test('the search reads a directory as large as the index may hold', () => {
