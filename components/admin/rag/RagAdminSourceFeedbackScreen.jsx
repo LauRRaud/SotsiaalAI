@@ -73,6 +73,13 @@ function QueueStatus({ queue, et, emptyText }) {
   );
 }
 
+// Teade kustub 30 päeva pärast saatmist, ka lahendamata: järjekord ütleb kuupäeva, et miski ei kaoks märkamatult.
+function ExpiryNote({ item, et }) {
+  if (!item.expiresAt) return null;
+  const date = new Intl.DateTimeFormat(et ? "et-EE" : "en-GB", { dateStyle: "medium" }).format(new Date(item.expiresAt));
+  return <span>{et ? `Kustub ${date}` : `Deleted on ${date}`}</span>;
+}
+
 function ResolveControls({ queue, item, et }) {
   const resolving = queue.state === `resolving:${item.id}`;
   return (
@@ -103,8 +110,8 @@ export default function RagAdminSourceFeedbackScreen({ locale = "en" }) {
         </div>
         <p>
           {et
-            ? "Inimene andis vestluses vastuse kohta tagasisidet. Küsimus ja vastus on näha seni, kuni vestlus on alles; pöörde tunnuse järgi saab pöörde kirjest lugeda, miks vastus selline tuli."
-            : "A person gave feedback about an answer in the chat. The question and the answer are shown while the conversation exists; the turn id leads to the turn's record, which tells why the answer came out as it did."}
+            ? "Inimene andis vestluses vastuse kohta tagasisidet. Küsimus ja vastus on näha seni, kuni vestlus on alles; pöörde tunnuse järgi saab pöörde kirjest lugeda, miks vastus selline tuli. Teade kustub 30 päeva pärast saatmist, ka lahendamata."
+            : "A person gave feedback about an answer in the chat. The question and the answer are shown while the conversation exists; the turn id leads to the turn's record, which tells why the answer came out as it did. A report is deleted 30 days after it was sent, resolved or not."}
         </p>
         <QueueStatus queue={answers} et={et} emptyText={et ? "Avatud tagasisidet ei ole." : "There is no open feedback."} />
         <div className="ra-source-feedback-list">
@@ -115,6 +122,7 @@ export default function RagAdminSourceFeedbackScreen({ locale = "en" }) {
                 <span>{et ? "Pööre" : "Turn"}</span>
                 <code>{item.turnId}</code>
                 <time dateTime={item.createdAt}>{formatTime(item.createdAt)}</time>
+                <ExpiryNote item={item} et={et} />
               </div>
               {item.note ? <p className="ra-answer-feedback-text">{item.note}</p> : null}
               {item.question || item.answer ? (
@@ -138,8 +146,8 @@ export default function RagAdminSourceFeedbackScreen({ locale = "en" }) {
         </div>
         <p>
           {et
-            ? "Inimene teatas allikate paneelis ühe vastuse ühe allika veast. Dokumendi tunnuse järgi leiab allika korpusest; pööre ja viide ütlevad, millises vastuses seda kasutati."
-            : "A person reported an error of one source of one answer in the sources panel. The document id finds the source in the corpus; the turn and the reference tell which answer used it."}
+            ? "Inimene teatas allikate paneelis ühe vastuse ühe allika veast. Dokumendi tunnuse järgi leiab allika korpusest; pööre ja viide ütlevad, millises vastuses seda kasutati. Teade kustub 30 päeva pärast saatmist, ka lahendamata."
+            : "A person reported an error of one source of one answer in the sources panel. The document id finds the source in the corpus; the turn and the reference tell which answer used it. A report is deleted 30 days after it was sent, resolved or not."}
         </p>
         <QueueStatus queue={sources} et={et} emptyText={et ? "Avatud teateid ei ole." : "There are no open reports."} />
         <div className="ra-source-feedback-list">
@@ -149,6 +157,7 @@ export default function RagAdminSourceFeedbackScreen({ locale = "en" }) {
                 <strong>{SOURCE_REASONS[item.category]?.[et ? "et" : "en"] || item.category}</strong>
                 {item.sourceTitle ? <span>{item.sourceTitle}</span> : null}
                 <time dateTime={item.createdAt}>{formatTime(item.createdAt)}</time>
+                <ExpiryNote item={item} et={et} />
               </div>
               <div>
                 <span>{et ? "Dokument" : "Document"}</span>

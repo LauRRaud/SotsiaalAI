@@ -2611,6 +2611,9 @@
     "section7Supervision": {
       "body": "<p><strong>7.12 Supervisiooni jagatud tõend.</strong> Erandina punktis 7.10 toodud üldreeglist kustuvad konto sulgemisel kasutaja privaatne supervisiooni eeskamber ja tema isiklik püsiväljund. Jagatud supervisiooniprotsess, kontraktiversioonid ja kinnitamise faktid, kinnitatud kokkuvõtted, sulgemiskirje ning sisuvaba auditijälg säilivad teiste osalejate ühise tõendina ilma kustutatud kasutaja identiteedita. Kuni eraldi säilitustähtaeg on kinnitatud, on need kirjed olekus AWAITING_POLICY ja neid ei kustutata automaatselt.</p>"
     },
+    "section7Feedback": {
+      "body": "<p><strong>7.13 Tagasiside vastuse ja allika kohta.</strong> Vestluses assistendi vastuse kohta antud tagasiside ja allika veateade (valitud põhjus ja kasutaja märkus) säilivad kuni 30 päeva alates saatmisest ning kustutatakse seejärel ka juhul, kui teadet ei ole veel läbi vaadatud. Konto kustutamisel kustuvad need koos kontoga. Kasutaja enda teated sisalduvad tema andmeväljavõttes.</p>"
+    },
     "section8": {
       "heading": "8. Kasutaja õigused",
       "items": "<li>Õigus küsida ligipääsu enda andmetele ja saada neist koopia.</li><li>Õigus parandada ebaõigeid või puudulikke andmeid.</li><li>Õigus taotleda andmete kustutamist, kui selleks on õiguslik alus.</li><li>Õigus piirata töötlemist või esitada vastuväiteid õigustatud huvile tuginevale töötlemisele.</li><li>Õigus saada andmed ülekantavas vormis juhul, kui töötlemine põhineb lepingul või nõusolekul ja toimub automatiseeritult.</li><li>Õigus võtta nõusolek tagasi, kui konkreetne töötlus põhineb nõusolekul; tagasivõtmine ei mõjuta varasema töötluse seaduslikkust.</li><li>Õigus taotleda inimese sekkumist, kui leiad, et automatiseeritud loogika või AI-põhine töötlus vajab ülevaatamist.</li><li>Õigus esitada kaebus <aDpa>Andmekaitse Inspektsioonile</aDpa>.</li>"
