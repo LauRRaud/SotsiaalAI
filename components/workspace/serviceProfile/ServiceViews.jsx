@@ -26,7 +26,7 @@ import StepPanel from "@/components/stage/StepPanel";
 import Button from "@/components/ui/Button";
 
 import { AVAILABILITY_NOTE_LIMIT } from "./profileModel";
-import { Chip, ChipsField, LineField, Notice, TextField } from "./ProfileFields";
+import { AreaFields, Chip, ChipsField, LineField, Notice, TextField } from "./ProfileFields";
 import styles from "./profile.module.css";
 
 /** Teenus ise: nimi, olek ja nähtavus kaardimarkeri all. Siit saab teenuse ka eemaldada. */
@@ -194,7 +194,8 @@ function PlacesView({ tp, places, note, save }) {
   );
 }
 
-function ReachView({ tp, service, options, onField, note, save }) {
+/** Kus teenust osutatakse: piirkonna tüüp, maakond ja omavalitsused registrist. */
+function ReachView({ tp, service, options, area, onField, note, save }) {
   return (
     <StepPanel title={tp("views.reach.title", "Teenuse piirkond")} note={note} actions={save}>
       <div className={styles.stack}>
@@ -204,10 +205,14 @@ function ReachView({ tp, service, options, onField, note, save }) {
           value={service.serviceAreaType}
           onChange={(value) => onField("serviceAreaType", value)}
         />
-        <div className={styles.fields}>
-          <LineField size="sm" label={tp("fields.county", "Maakond")} value={service.county} onChange={(value) => onField("county", value)} />
-          <LineField label={tp("service_items.municipality_ids", "KOV-id või piirkonnad")} value={service.municipalityIds} onChange={(value) => onField("municipalityIds", value)} />
-        </div>
+        <AreaFields
+          tp={tp}
+          area={area}
+          county={service.county}
+          municipalities={service.municipalityIds}
+          onCounty={(value) => onField("county", value)}
+          onMunicipalities={(value) => onField("municipalityIds", value)}
+        />
       </div>
     </StepPanel>
   );

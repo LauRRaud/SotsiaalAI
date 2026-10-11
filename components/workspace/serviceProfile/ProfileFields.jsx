@@ -2,7 +2,8 @@
 
 /**
  * Teenuseprofiili vaadete ühised tükid: üherealine väli, tekstiväli, märgitav
- * valikurühm, märk, teade, loendirida ja paneeli alumise serva olekurida.
+ * valikurühm, piirkonna valik registrist, märk, teade, loendirida ja paneeli
+ * alumise serva olekurida.
  *
  * MÄRKIDE LOENDUR on vaikne rida kohe oma välja all (kujundusaudit K08: vanal
  * lehel seisis „12 / 1000" järgmise välja sildi küljes ja luges nagu selle
@@ -19,10 +20,11 @@ import { useId } from "react";
 
 import ChoiceChips from "@/components/stage/ChoiceChips";
 import TextAreaField from "@/components/stage/TextAreaField";
+import Dropdown from "@/components/ui/Dropdown";
 import Input from "@/components/ui/Input";
 import { SERVICE_PROFILE_LIMITS } from "@/lib/serviceProviderProfileLimits";
 
-import { optionsWithSelected, splitList, toggleListValue } from "./profileModel";
+import { countyChoice, municipalityChoice, optionsWithSelected, splitList, toggleListValue } from "./profileModel";
 import styles from "./profile.module.css";
 
 const lengthOf = (value) => (typeof value === "string" ? value.length : 0);
@@ -90,6 +92,80 @@ export function ChipsField({ label, hint, value, options, onChange, labelHidden 
       values={splitList(value)}
       onToggle={(option) => onChange(toggleListValue(value, option))}
     />
+  );
+}
+
+/**
+ * Üks valik pikast loendist: platvormi rippvalik sildiga. Lehe muud valikud on
+ * kohe näha lahtrid (`ChoiceRow`, kuni kuus varianti); rippvalik on ainult
+ * registri jaoks, kus variante on 15 (maakonnad) või 78 (omavalitsused).
+ */
+function SelectField({ label, hint, value, options, onChange, size, placeholder, disabled }) {
+  const id = useId();
+  return (
+    <div className={styles.field} data-size={size}>
+      <label className={styles.fieldLabel} htmlFor={id}>
+        {label}
+      </label>
+      <Dropdown
+        id={id}
+        value={value}
+        options={options}
+        placeholder={placeholder}
+        ariaLabel={label}
+        disabled={disabled}
+        describedBy={hint ? `${id}-hint` : undefined}
+        onChange={onChange}
+      />
+      {hint ? (
+        <span className={styles.fieldHint} id={`${id}-hint`}>
+          {hint}
+        </span>
+      ) : null}
+    </div>
+  );
+}
+
+/**
+ * Piirkond registrist: maakond (üks) ja omavalitsused (mitu). Omavalitsus
+ * lisatakse rippvalikust ja valitud seisavad all märgitud lahtritena; vajutus
+ * lahtrile võtab selle maha. Nii mahub 78 omavalitsuse valik ühte vaatesse.
+ *
+ * Varem käsitsi kirjutatud sõna, mida register ei tunne, on samuti lahter ja
+ * teade ütleb, et see ei kata ühtki kohta (reeglid: profileModel.js).
+ * `children`: väljad, mis seisavad valikutega samas reas.
+ */
+export function AreaFields({ tp, area, county, municipalities, onCounty, onMunicipalities, children }) {
+  const countyPick = countyChoice(county, area, tp("area.county_none", "Täpsustamata"));
+  const pick = municipalityChoice(municipalities, area);
+  /* Üks teade mõlema kohta: kaks kasti üksteise all teeksid vaate asjatult pikaks. */
+  const warnings = [
+    pick.unread.length
+      ? tp("area.unread_municipalities", "Need nimed ei ole loendist valitud: {names}. Võta need maha ja vali loendist õige omavalitsus.", { names: pick.unread.join(", ") })
+      : "",
+    countyPick.unread ? tp("area.unread_county", "Maakond „{name}” ei ole loendist valitud. Vali maakond loendist.", { name: countyPick.value }) : ""
+  ].filter(Boolean);
+  return (
+    <div className={styles.stack}>
+      <div className={styles.fields}>
+        {children}
+        <SelectField size="sm" label={tp("fields.county", "Maakond")} value={countyPick.value} options={countyPick.options} onChange={onCounty} />
+        <SelectField
+          size="md"
+          label={tp("area.municipalities", "Omavalitsused")}
+          hint={pick.full ? tp("area.limit", "Valida saab kuni {max} omavalitsust.", { max: SERVICE_PROFILE_LIMITS.listItems }) : ""}
+          value=""
+          options={pick.options}
+          placeholder={tp("area.add_municipality", "Lisa omavalitsus")}
+          disabled={pick.full}
+          onChange={(name) => onMunicipalities(toggleListValue(municipalities, name))}
+        />
+      </div>
+      {pick.selected.length ? (
+        <ChipsField label={tp("area.chosen", "Valitud omavalitsused")} labelHidden value={municipalities} options={[]} onChange={onMunicipalities} />
+      ) : null}
+      {warnings.length ? <Notice tone="wait">{warnings.join(" ")}</Notice> : null}
+    </div>
   );
 }
 

@@ -29,7 +29,7 @@ import ChoiceRow from "@/components/stage/ChoiceRow";
 import StepPanel from "@/components/stage/StepPanel";
 import Button from "@/components/ui/Button";
 
-import { Chip, ItemRow, LineField, Notice, TextField } from "./ProfileFields";
+import { AreaFields, Chip, ItemRow, LineField, Notice, TextField } from "./ProfileFields";
 import styles from "./profile.module.css";
 
 /** Kes te olete: nimi, registrikood ja organisatsiooni tüüp. */
@@ -119,8 +119,8 @@ function InquiriesView({ tp, form, onField, note, save }) {
   );
 }
 
-/** Üldine tegevuspiirkond. */
-function AreaView({ tp, form, onField, note, save }) {
+/** Üldine tegevuspiirkond: kirjeldus oma sõnadega, maakond ja omavalitsused registrist. */
+function AreaView({ tp, form, area, onField, note, save }) {
   return (
     <StepPanel
       title={tp("views.area.title", "Tegevuspiirkond")}
@@ -128,11 +128,16 @@ function AreaView({ tp, form, onField, note, save }) {
       note={note}
       actions={save}
     >
-      <div className={styles.fields}>
+      <AreaFields
+        tp={tp}
+        area={area}
+        county={form.county}
+        municipalities={form.serviceAreaMunicipalityIds}
+        onCounty={(value) => onField("county", value)}
+        onMunicipalities={(value) => onField("serviceAreaMunicipalityIds", value)}
+      >
         <LineField size="lg" label={tp("fields.service_area", "Teeninduspiirkond")} value={form.serviceArea} onChange={(value) => onField("serviceArea", value)} />
-        <LineField label={tp("fields.municipalities", "KOV-id või piirkonnad")} value={form.serviceAreaMunicipalityIds} onChange={(value) => onField("serviceAreaMunicipalityIds", value)} />
-        <LineField size="sm" label={tp("fields.county", "Maakond")} value={form.county} onChange={(value) => onField("county", value)} />
-      </div>
+      </AreaFields>
     </StepPanel>
   );
 }
