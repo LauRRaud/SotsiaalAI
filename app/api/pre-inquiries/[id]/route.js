@@ -6,6 +6,7 @@ import {
   serializePreInquiry,
   updatePreInquiry
 } from "@/lib/preInquiries";
+import { withOrganizationOutcome } from "@/lib/preInquiryOutcome";
 import { withPreInquiryReplies } from "@/lib/preInquiryReplies";
 import { safeError } from "@/lib/privacy/safeError";
 import { enforcePreInquiryRateLimit, preInquiryErrorJson, publicPreInquiryError } from "@/lib/preInquiryApiBoundary";
@@ -47,7 +48,10 @@ export async function GET(request, context) {
     if (!inquiry) {
       return errorJson("api.common.not_found", 404, locale);
     }
-    const [serialized] = await withPreInquiryReplies(auth.userId, [serializePreInquiry(inquiry, { viewerId: auth.userId })]);
+    const [serialized] = await withOrganizationOutcome(
+      auth.userId,
+      await withPreInquiryReplies(auth.userId, [serializePreInquiry(inquiry, { viewerId: auth.userId })])
+    );
     return json({
       ok: true,
       inquiry: serialized

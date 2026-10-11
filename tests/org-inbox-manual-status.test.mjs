@@ -653,7 +653,7 @@ test('töö sulgemine: vastutaja saab sama teate, sest kirje kaob ka tema laualt
   /* Vastutajata pöördumise tagasilükkamisel ei ole kedagi, kellele teatada. */
   const unassigned = await world('RECEIVED');
   await manual(unassigned.db, 'REJECTED');
-  assert.deepEqual(noticeList(unassigned.state), ['PRE_INQUIRY_WORK_CLOSED:poorduja']);
+  assert.deepEqual(noticeList(unassigned.state), ['PRE_INQUIRY_DECLINED:poorduja']);
 });
 
 test('teate aadress: endine vastutaja jõuab asutuse vastuvõtulauale, võõras saab endiselt „lehte ei leitud”', async () => {

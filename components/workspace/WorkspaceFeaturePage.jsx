@@ -2975,7 +2975,11 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
             state={label.text}
             tone={label.tone}
             facts={facts}
-            next={sentView.next ? tr(`views.sent.next.${sentView.next}`, "") : ""}
+            /* Asutuse selgitus tuleb üldise lause „mis edasi saab" asemele, mitte selle kõrvale: selgitus
+               ütleb sama asja asutuse enda sõnadega ja mõlemad korraga vaatesse ei mahu (mõõdetud
+               1536 × 640 aknas pikima lubatud selgitusega). */
+            next={sentView.next && !sentView.outcome?.note ? tr(`views.sent.next.${sentView.next}`, "") : ""}
+            note={sentView.outcome?.note ? { label: tr("views.sent.outcome_note", "Asutuse selgitus"), text: sentView.outcome.note } : null}
             hint={hint}
             actions={
               <>

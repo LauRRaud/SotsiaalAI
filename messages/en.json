@@ -3329,6 +3329,7 @@
           "text_lead": "This is the text you sent. A sent pre-inquiry can no longer be edited.",
           "text_lead_unsent": "The text of an archived pre-inquiry. Reopen it to edit.",
           "text_heading": "Text of the pre-inquiry",
+          "outcome_note": "The organisation's explanation",
           "next": {
             "waiting": "The recipient has not accepted the pre-inquiry yet. When they do, you will see it here.",
             "accepted": "The recipient has accepted the pre-inquiry. The answer will come to the shared conversation room.",
@@ -3336,7 +3337,9 @@
             "external": "You sent this pre-inquiry by e-mail. The answer will come to your e-mail; the platform does not see whether it was accepted.",
             "recalled": "You recalled this pre-inquiry. The recipient no longer sees it.",
             "replaced": "You sent a correction to this pre-inquiry. The corrected pre-inquiry is the one that counts for the recipient.",
-            "archived": "This pre-inquiry was not sent and is archived."
+            "archived": "This pre-inquiry was not sent and is archived.",
+            "declined": "The organisation declined this pre-inquiry. If you need help, contact another recipient.",
+            "work_closed": "The organisation has finished its work on this. If you need more help, send a new pre-inquiry."
           }
         },
         "pager": {
@@ -3355,7 +3358,9 @@
         "sent_external": "sent by e-mail, acceptance unknown",
         "recalled": "recalled",
         "replaced": "replaced by a correction",
-        "archived": "archived"
+        "archived": "archived",
+        "declined": "declined by the organisation {date}",
+        "work_closed": "the organisation finished its work {date}"
       }
     },
     "service_map": {
@@ -7446,7 +7451,8 @@
       "service_representation_confirmed": "The organisation is confirmed: the service profile can now be published",
       "service_representation_revoked": "The organisation's confirmation was withdrawn; a published service profile was hidden",
       "service_profile_published": "Your service profile is published",
-      "pre_inquiry_work_closed": "The organisation finished its work on your pre-inquiry"
+      "pre_inquiry_work_closed": "The organisation finished its work on your pre-inquiry",
+      "pre_inquiry_declined": "The organisation declined your pre-inquiry"
     },
     "center": {
       "title": "Notifications",

@@ -19,7 +19,7 @@
  * Seisu reegel on üks: lib/preInquirySenderState.js (sama, mida näitab Teekond).
  */
 
-import { preInquirySenderState, preInquirySenderTone } from "@/lib/preInquirySenderState";
+import { organizationOutcomeOf, preInquirySenderState, preInquirySenderTone } from "@/lib/preInquirySenderState";
 
 export const SHARINGS_PATH = "/minu-jagamised";
 
@@ -74,7 +74,9 @@ const NEXT_BY_STATE = Object.freeze({
   sent_external: "external",
   recalled: "recalled",
   replaced: "replaced",
-  archived: "archived"
+  archived: "archived",
+  declined: "declined",
+  work_closed: "work_closed"
 });
 
 /**
@@ -87,6 +89,8 @@ const NEXT_BY_STATE = Object.freeze({
  *   situation  inimese kirjeldus
  *   text       pöördumise tekst, kui see erineb kirjeldusest (muidu tühi)
  *   next       võti lausele „mis edasi saab" (`views.sent.next.<võti>`)
+ *   outcome    asutuse otsus, kui asutus on tööga lõpetanud: `{ kind, at, note }` (`kind` on
+ *              `declined` või `closed`; `note` on asutuse selgitus pöördujale või tühi); muidu `null`
  *   actions    mida siin teha saab:
  *     room     ava ühine vestlusruum (saaja on vastu võtnud)
  *     recall   server lubaks tagasi võtta (tehakse lehel „Minu jagamised")
@@ -101,8 +105,13 @@ export function sentInquiryView(inquiry, { now = Date.now() } = {}) {
   const live = sent && !inquiry?.recalledAt;
   const situation = String(inquiry?.situation || "").trim();
   const draft = String(inquiry?.userEditedDraft || inquiry?.generatedDraft || "").trim();
+  /* Asutus on tööga lõpetanud: ruumi saab lugeda ainult siis, kui see on olemas (tagasi lükatud
+     pöördumisel, mida keegi tööle ei võtnud, ruumi ei ole ja nupp annaks eksitava keeldumise);
+     paranduse vihjet enam ei näidata, sest asutus selle pöördumisega ei tegele. */
+  const outcome = organizationOutcomeOf(inquiry);
   return {
     state,
+    outcome: outcome ? { kind: outcome.kind, at: outcome.at || null, note: String(outcome.note || "").trim() } : null,
     recipient: String(inquiry?.recipientOrganization?.displayName || inquiry?.selectedRecipientName || inquiry?.recipientEntry?.title || "").trim(),
     channel: !sent ? "none" : internal ? "platform" : "email",
     sentAt: inquiry?.sentAt || null,
@@ -110,11 +119,12 @@ export function sentInquiryView(inquiry, { now = Date.now() } = {}) {
     text: draft && draft !== situation ? draft : "",
     next: NEXT_BY_STATE[state.key] || "",
     actions: {
-      room: live && internal && Boolean(inquiry?.openedAt),
+      room: live && internal && Boolean(inquiry?.openedAt) && (!outcome || Boolean(outcome.hasRoom)),
       recall: live && internal && !inquiry?.openedAt && upper(inquiry?.status) === "SENT",
       correct:
         live &&
         internal &&
+        !outcome &&
         Boolean(inquiry?.openedAt) &&
         !inquiry?.supersededById &&
         Boolean(inquiry?.recipientOwnerId || inquiry?.recipientOrganizationId),
@@ -129,8 +139,16 @@ export function sentInquiryView(inquiry, { now = Date.now() } = {}) {
  * „vastatud" seis vahele: siin jäetakse varem teada olnud arv alles.
  */
 export function keepReplyFacts(previous, next) {
-  if (!next || !previous || next.replyCount !== undefined || previous.replyCount === undefined) return next;
-  return { ...next, replyCount: previous.replyCount, lastReplyAt: previous.lastReplyAt ?? null };
+  if (!next || !previous) return next;
+  let merged = next;
+  if (next.replyCount === undefined && previous.replyCount !== undefined) {
+    merged = { ...merged, replyCount: previous.replyCount, lastReplyAt: previous.lastReplyAt ?? null };
+  }
+  /* Sama lugu asutuse otsusega: seda kannavad ainult loendi ja ühe pöördumise lugemise vastused. */
+  if (next.organizationOutcome === undefined && previous.organizationOutcome !== undefined) {
+    merged = { ...merged, organizationOutcome: previous.organizationOutcome };
+  }
+  return merged;
 }
 
 /**
