@@ -15,13 +15,15 @@ test('index capacity is one shared bound for planning, purchase and indexing', (
   assert.throws(() => assertIndexCapacity({ documents: -1, units: 1 }), /local_index_limit/);
 });
 
-test('the capacity is a measured decision (ADR-100, ADR-108, ADR-143): 100,000 units, 15,000 documents', () => {
+test('the capacity is a measured decision (ADR-100, ADR-108, ADR-143): 150,000 units, 15,000 documents', () => {
   // A change of these numbers needs a new measurement of a turn's search cost (ADR-036), written into an ADR.
   // ADR-108 (08.10.2026): 80,000 -> 100,000 units, measured with six generations up to the live 68,408 units.
   // ADR-143 (11.10.2026): 10,000 -> 15,000 documents, from the directory's measured line up to 9,288 documents.
-  assert.deepEqual({ ...INDEX_CAPACITY }, { documents: 15000, units: 100000 });
+  // ADR-143 (11.10.2026): 100,000 -> 150,000 units, from the same line, last measured at 88,181 units (ADR-137).
+  assert.deepEqual({ ...INDEX_CAPACITY }, { documents: 15000, units: 150000 });
   assert.doesNotThrow(() => assertIndexCapacity({ documents: 8337, units: 68408 + 31592 }));
-  assert.throws(() => assertIndexCapacity({ documents: 8337, units: 100001 }), /local_index_limit/);
+  assert.doesNotThrow(() => assertIndexCapacity({ documents: 8337, units: 150000 }));
+  assert.throws(() => assertIndexCapacity({ documents: 8337, units: 150001 }), /local_index_limit/);
   // Corpus v66 (8179 documents, 57 860 units) with the 30 studies the first attempt of v66 was refused for (3959 units).
   assert.doesNotThrow(() => assertIndexCapacity({ documents: 8209, units: 57860 + 3959 }));
   // Corpus v81 (9735 documents, 90 707 units) with the 479 articles (670 units) that pass the earlier bound of 10,000 documents.

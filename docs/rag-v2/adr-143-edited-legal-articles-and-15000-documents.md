@@ -1,6 +1,6 @@
-# ADR-143: õigusabi lehe toimetatud artiklid, dokumentide piir 15 000 ja riikide register
+# ADR-143: õigusabi lehe toimetatud artiklid, indeksi piirid 15 000 dokumenti ja 150 000 lõiku ning riikide register
 
-Kuupäev: 11.10.2026. Teostus Claude Opus 5.5. Seis: **ettevalmistus on valmis ja mõõdetud tasuta; midagi ei ole ostetud ega kogusse pandud (korpus on v81); dokumentide piir, korjaja täiendus, valikureegli parandused ja riikide register on koodis; ost ootab omaniku jah-sõna.**
+Kuupäev: 11.10.2026. Teostus Claude Opus 5.5. Seis: **ettevalmistus on valmis ja mõõdetud tasuta; artiklite ost on omaniku loaga töös (vt „Eelkontrollid ja hind“), alus on korpus v82; dokumentide piir, korjaja täiendus, valikureegli parandused ja riikide register on koodis; ost ootab omaniku jah-sõna.**
 
 ## Miks
 
@@ -78,25 +78,33 @@ Enne pakkimist vaadati paigutatud artiklid üle: korduvaid plokke ei ole; ühteg
 
 ## Dokumentide piir 15 000
 
-Piir seisis kahes kohas: `INDEX_CAPACITY.documents` (`lib/rag-v2/search/capacity.js`) ja otsingu enda `UNIFIED_LIMITS.directoryDocuments` (`lib/rag-v2/search/unified.js`). Mõlemad on nüüd 15 000 ja test hoiab need võrdsena: indeks, mille üks vastu võtab ja teine tagasi lükkab, katkestaks vestluse iga pöörde. Lõikude piir jääb 100 000.
+Piir seisis kahes kohas: `INDEX_CAPACITY.documents` (`lib/rag-v2/search/capacity.js`) ja otsingu enda `UNIFIED_LIMITS.directoryDocuments` (`lib/rag-v2/search/unified.js`). Mõlemad on nüüd 15 000 ja test hoiab need võrdsena: indeks, mille üks vastu võtab ja teine tagasi lükkab, katkestaks vestluse iga pöörde.
 
 Dokumentide arvuga kasvab kõigi dokumentide kataloog, mille pööre loeb ühe korra. Sama mõõtepingiga serveris ([ADR-108](adr-108-index-capacity-100000-and-statistics.md), [ADR-137](adr-137-coverage-batch-and-the-law-of-obligations-act.md)): 38 ms 6470 dokumendiga, 48 ms 8337-ga, 53 ms 8722-ga, 56 ms 9288-ga ehk umbes 6 ms iga tuhande dokumendi kohta. Sama joont mööda on kataloog 15 000 dokumendi juures umbes 90 ms, umbes 35 ms rohkem pöörde kohta kui praegu. Sõnaotsing, vektorotsing ja mälus hoitavad vektorid sõltuvad lõikude arvust ja ei muutu. **Mõõtmata:** üle 9735 dokumendiga indeksit ei ole olemas; mõõtepink tuleb käivitada pärast täiendust.
 
 Serveri plaan kontrollib piiri töötava väljalaske koodiga, nii et piir peab olema kasutusele võetud enne ostu.
 
+## Lõikude piir 150 000
+
+Omanik 11.10.2026, kui arvud olid ees: „lõikude piir tuleks panna sada viiskümmend tuhat 150 000 ja need ära osta“ (10.10 oli ta seda juba lubanud: „kui vaja, siis suurenda ka lõikude arvu indeksis 150 000 peale“). `INDEX_CAPACITY.units` on nüüd 150 000; see arv seisab ainult ühes kohas.
+
+Viimane mõõtmine sama mõõtepingiga on sama päeva korpuselt v77 ([ADR-137](adr-137-coverage-batch-and-the-law-of-obligations-act.md), 88 181 lõiku): sõnaotsing kahe tekstiga 4,6 ja 5,6 s, vektorotsing 255 ms. Varasemate mõõtmiste joon peab (0,4 s ja 26 ms iga 10 000 lõigu kohta). Sama joont mööda 150 000 lõigu juures: sõnaotsingu mõõtepäring umbes 7,1 ja 8,1 s (andmebaasi ajapiir on 15 s), vektorotsing umbes 0,42 s, päris pöördel umbes 1,3 s rohkem kui praegu. Vektorid võtavad siis mälus 1,8 GB (praegu 1,1 GB). **Mõõtmata:** üle 91 158 lõiguga indeksit ei ole olemas.
+
+**Enne seda piiri otsustab serveri ketas.** Üks lõik võtab serveris umbes 0,3 MB; 11.10.2026 vaba 16 GB mahutab umbes 45 000 lõiku juurde ehk kokku umbes 135 000. Mälu juurde osta ei ole vaja; ketast on vaja enne, kui kogu läheb üle umbes 130 000 lõigu.
+
 ## Eelkontrollid ja hind
 
-Alus on korpus v81 (indeks `f66fd13d`), aluspoliitika põhikausta `tmp/rag-v2-v81/ship/policy.json`.
+Alus on korpus v82 (indeks `ec1defd0`), aluspoliitika põhikausta `tmp/rag-v2-v82/ship/policy.json`. Ettevalmistuse ajal oli alus v81 ja arvud olid 34 dokumendi ja 451 lõigu võrra väiksemad.
 
 | | Praegu | Pärast | Piir |
 |---|---:|---:|---:|
-| Dokumente | 9735 | 10 214 | 15 000 (enne 10 000) |
-| Lõike | 90 707 | 91 377 | 100 000 |
+| Dokumente | 9769 | 10 248 | 15 000 (enne 10 000) |
+| Lõike | 91 158 | 91 828 | 150 000 (enne 100 000) |
 | Ketas serveris | 16 GB vaba (pärast v80) | umbes 0,25 GB vähem | |
 
 Ühist silti partiil ei ole. Serveri ketast ega mälu täna üle ei mõõdetud.
 
-Lõigud ja sisendite maht on mõõdetud päris lugejaga (`lib/rag-v2/ingestion.js`) iga artikli kohta eraldi ajutises hoidlas, mitte kohalikus korpuse hoidlas: **670 lõiku, 670 erinevat sisendit, 324 442 märki**, hinnaga 0,13 USD miljoni märgi kohta **0,042 USD**. Pakutav lagi: **0,06 USD ja kuni 700 sisendit**.
+Lõigud ja sisendite maht on mõõdetud päris lugejaga (`lib/rag-v2/ingestion.js`) iga artikli kohta eraldi ajutises hoidlas, mitte kohalikus korpuse hoidlas: **670 lõiku, 670 erinevat sisendit, 324 442 märki**, hinnaga 0,13 USD miljoni märgi kohta **0,042 USD**. Lagi: **0,06 USD ja kuni 700 sisendit**. Omanik 11.10.2026 küsimusele „Kas ostan: 479 artiklit, lagi 0,06 USD?“: „need ära osta“.
 
 ## Mis võib valesti minna
 
