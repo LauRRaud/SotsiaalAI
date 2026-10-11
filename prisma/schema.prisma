@@ -2531,6 +2531,14 @@ model ServiceProviderProfile {
   checkedAt                      DateTime?
   ragSourceId                    String?
   ragMetadata                    Json?
+  /// Kinnitus, et profiili tegija esindab seda asutust. Kehtib ainult koodi
+  /// `representationRegistryCode` kohta: kui profiili registrikood muutub, kinnitus
+  /// enam ei kehti. Viis on ADMIN või EMAIL_LINK (kontroll migratsioonis).
+  representationConfirmedAt      DateTime?
+  representationRegistryCode     String?
+  representationMethod           String?
+  representationConfirmedById    String?
+  representationBasis            String?
   createdAt                      DateTime                     @default(now())
   updatedAt                      DateTime                     @updatedAt
 

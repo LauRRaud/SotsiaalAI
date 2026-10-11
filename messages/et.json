@@ -2730,6 +2730,7 @@
       "organization_name_required": "Sisesta organisatsiooni nimi.",
       "profile_conflict": "Profiili muudeti vahepeal. Laadi värske seis ja võrdle muudatusi.",
       "publish_contact_required": "Avaldamiseks vali vähemalt üks kontakt või platvormisisene pöördumisviis.",
+      "publish_representation_required": "Registrikoodiga profiili saab avaldada pärast seda, kui platvorm on kinnitanud, et esindad seda asutust. Salvesta profiil mustandina ja kirjuta aadressile info@sotsiaal.pro; pärast kinnitust saad profiili avaldada.",
       "publish_service_required": "Avaldamiseks lisa vähemalt üks nähtav avaldatud teenus.",
       "save_failed": "Teenuseprofiili ei saanud salvestada. Proovi uuesti; vea kordumisel anna toele korrelatsiooni-ID.",
       "load_failed": "Teenuseprofiili ei saanud laadida.",
@@ -7617,6 +7618,7 @@
         "wellbeing": "Tööheaolu koond",
         "urgent_desks": "Kiireloomulised töölauad",
         "service_availability": "Teenuste värskus",
+        "service_representation": "Asutuse esindamise kinnitused",
         "mentoring": "Mentorlus",
         "framework_acceptances": "Tööalase kasutuse kinnitused",
         "rag": "RAG-i haldus",
@@ -7679,6 +7681,45 @@
       "errors": {
         "load_failed": "Kättesaadavuse ülevaadet ei saanud laadida.",
         "dispatch_failed": "Meeldetuletusi ei saanud töödelda."
+      }
+    },
+    "service_representation": {
+      "eyebrow": "Teenuseprofiilid",
+      "title": "Asutuse esindamise kinnitused",
+      "lead": "Registrikoodiga teenuseprofiili ei saa avaldada enne, kui on kinnitatud, et konto esindab seda asutust. Kinnita ainult siis, kui sul on alus käes, näiteks juhatuse liikme digiallkirjaga volitus.",
+      "table_caption": "Registrikoodiga teenuseprofiilid ja nende kinnituse seis",
+      "empty": "Registrikoodiga teenuseprofiile ei ole.",
+      "columns": {
+        "organization": "Asutus ja registrikood",
+        "owner": "Konto",
+        "profile": "Profiil",
+        "state": "Kinnitus",
+        "action": "Tegevus"
+      },
+      "profile_status": {
+        "DRAFT": "mustand",
+        "PUBLISHED": "avaldatud",
+        "HIDDEN": "peidetud",
+        "NEEDS_REVIEW": "ülevaatusel"
+      },
+      "state_unconfirmed": "Kinnitamata",
+      "state_confirmed": "Kinnitatud {date}",
+      "state_stale": "Registrikood on pärast kinnitust muutunud (kinnitus anti koodile {code}). Vajab uut kinnitust.",
+      "basis_shown": "Alus: {basis}",
+      "basis_label": "Kinnituse alus",
+      "basis_placeholder": "Näiteks: juhatuse liikme digiallkirjaga volitus, saadud 11.10.2026",
+      "confirm": "Kinnita",
+      "revoke": "Võta kinnitus tagasi",
+      "working": "Salvestan...",
+      "revoke_note": "Kui profiil on avaldatud, läheb see tagasivõtmisel peitu.",
+      "confirmed_message": "Kinnitatud: {name}.",
+      "revoked_message": "Kinnitus võetud tagasi: {name}.",
+      "revoked_hidden_message": "Kinnitus võetud tagasi ja profiil peidetud: {name}.",
+      "errors": {
+        "load_failed": "Kinnituste loendit ei saanud laadida.",
+        "action_failed": "Muudatust ei saanud salvestada.",
+        "basis_required": "Kirjuta kinnituse alus ({min} kuni {max} tähemärki).",
+        "registry_code_changed": "Profiili registrikood on vahepeal muutunud. Laadi loend uuesti ja vaata üle."
       }
     },
     "framework_acceptances": {

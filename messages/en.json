@@ -2730,6 +2730,7 @@
       "organization_name_required": "Enter the organisation name.",
       "profile_conflict": "The profile changed in the meantime. Load the latest state and compare the changes.",
       "publish_contact_required": "Choose at least one contact or an in-platform inquiry path before publishing.",
+      "publish_representation_required": "A profile with a registry code can be published after the platform has confirmed that you represent that organisation. Save the profile as a draft and write to info@sotsiaal.pro; after confirmation you can publish the profile.",
       "publish_service_required": "Add at least one visible published service before publishing.",
       "save_failed": "The service profile could not be saved. Try again; if the error persists, give support the correlation ID.",
       "load_failed": "The service profile could not be loaded.",
@@ -7617,6 +7618,7 @@
         "wellbeing": "Wellbeing overview",
         "urgent_desks": "Urgent desks",
         "service_availability": "Service freshness",
+        "service_representation": "Representation confirmations",
         "mentoring": "Mentoring",
         "framework_acceptances": "Work-use confirmations",
         "rag": "RAG administration",
@@ -7679,6 +7681,45 @@
       "errors": {
         "load_failed": "The availability overview could not be loaded.",
         "dispatch_failed": "The reminders could not be processed."
+      }
+    },
+    "service_representation": {
+      "eyebrow": "Service profiles",
+      "title": "Representation confirmations",
+      "lead": "A service profile with a registry code cannot be published until it is confirmed that the account represents that organisation. Confirm only when you hold the basis, for example an authorisation digitally signed by a board member.",
+      "table_caption": "Service profiles with a registry code and their confirmation state",
+      "empty": "There are no service profiles with a registry code.",
+      "columns": {
+        "organization": "Organisation and registry code",
+        "owner": "Account",
+        "profile": "Profile",
+        "state": "Confirmation",
+        "action": "Action"
+      },
+      "profile_status": {
+        "DRAFT": "draft",
+        "PUBLISHED": "published",
+        "HIDDEN": "hidden",
+        "NEEDS_REVIEW": "in review"
+      },
+      "state_unconfirmed": "Not confirmed",
+      "state_confirmed": "Confirmed {date}",
+      "state_stale": "The registry code has changed since the confirmation (it was given for code {code}). A new confirmation is needed.",
+      "basis_shown": "Basis: {basis}",
+      "basis_label": "Basis of the confirmation",
+      "basis_placeholder": "For example: authorisation digitally signed by a board member, received 11.10.2026",
+      "confirm": "Confirm",
+      "revoke": "Withdraw the confirmation",
+      "working": "Saving...",
+      "revoke_note": "If the profile is published, withdrawing hides it.",
+      "confirmed_message": "Confirmed: {name}.",
+      "revoked_message": "Confirmation withdrawn: {name}.",
+      "revoked_hidden_message": "Confirmation withdrawn and the profile hidden: {name}.",
+      "errors": {
+        "load_failed": "The list of confirmations could not be loaded.",
+        "action_failed": "The change could not be saved.",
+        "basis_required": "Write the basis of the confirmation ({min} to {max} characters).",
+        "registry_code_changed": "The profile's registry code has changed in the meantime. Reload the list and review it."
       }
     },
     "framework_acceptances": {
