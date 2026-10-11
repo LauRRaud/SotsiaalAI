@@ -314,7 +314,8 @@ function LocationsView({ tp, options, locations, note, save }) {
 }
 
 /**
- * Avaldamine: profiili staatus, teenusekaardi nähtavus ja assistendi luba.
+ * Avaldamine: profiili staatus ja kaks eraldi linnukest: leitav teenusekaardil, leitav vestluses (ADR-144).
+ * Kumbki ei eelda teist: vestluses leitav osutaja ei pea olema kaardil ja vastupidi.
  * Kui asutus on kinnitamata, ütleb vaade seda enne salvestamist ja staatust
  * „Avaldatud" ei pakuta (`statusOptions` tuleb lehelt, reegel: `statusChoices`).
  * Üldine juhis avaldamise kohta jääb siis ära: vaade peab paneeli mahtuma ja
@@ -344,14 +345,14 @@ function VisibilityView({ tp, form, statusOptions, representation, onField, note
         ) : null}
         <div className={styles.cards}>
           <CheckCard
-            title={tp("visibility.visible", "Avalda teenusekaardil")}
+            title={tp("visibility.visible", "Leitav teenusekaardil")}
             description={tp("visibility.visible_help", "Teenusekaart kuvab profiili ainult siis, kui staatus on avaldatud ja vähemalt ühel kaardil nähtaval teeninduskohal on ametlik aadressivaste.")}
             checked={form.mapVisible}
             onChange={(value) => onField("mapVisible", value)}
           />
           <CheckCard
-            title={tp("pre_inquiries.assistant_recommendation_allowed", "Luba assistendil avaldatud teenuseid soovitada")}
-            description={tp("pre_inquiries.assistant_recommendation_help", "Avaldatud teenusekirjed lisatakse AI teadmuskihile ainult selle valiku korral.")}
+            title={tp("pre_inquiries.assistant_recommendation_allowed", "Leitav vestluses")}
+            description={tp("pre_inquiries.assistant_recommendation_help", "Vestluse assistent nimetab sinu asutust, teenuseid ja üldkontakti inimesele, kes küsib teenust sinu piirkonnas. Ta ei soovita ega võrdle osutajaid.")}
             checked={form.assistantRecommendationAllowed}
             onChange={(value) => onField("assistantRecommendationAllowed", value)}
           />

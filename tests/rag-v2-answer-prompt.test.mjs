@@ -85,7 +85,8 @@ test('prompt v10 keeps every v9 guardrail in each answer language, and v9 plans 
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-11'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-10'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-9'));
-  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-42');
+  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-43');
+  assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-42'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-41'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-40'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-39'));
@@ -406,7 +407,7 @@ test('dialogue prompt 29 to 32 (ADR-102): a finding carries its year, an older s
 test('dialogue prompt 41 (ADR-120): a turn that is only a thank-you is told how to reply; every other turn reads what it read', async () => {
   const { THANKS_INSTRUCTIONS, dialogueRequest: request } = await import('../lib/rag-v2/pilot/dialogue.js');
   const model = { model: 'gpt-6-luna', maxOutputTokens: 4096, reasoning: 'low' }, evidence = { evidence: [] };
-  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-42');
+  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-43');
   const plain = request(model, 'Kas saab toetust?', evidence, 'et', {}).instructions, thanks = request(model, 'Aitäh!', evidence, 'et', { messageKind: 'thanks' }).instructions;
   // One more line, right after the rules on asking; without the mark, and with any other value of it, nothing.
   assert.deepEqual([thanks.split(THANKS_INSTRUCTIONS).length, plain.includes(THANKS_INSTRUCTIONS), thanks.replace(THANKS_INSTRUCTIONS, '') === plain], [2, false, true]);
