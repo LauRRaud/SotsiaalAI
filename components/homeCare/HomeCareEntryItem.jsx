@@ -1,15 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useId, useState } from "react";
+import { useId } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import { CARE_TALK_INCIDENT_TYPES, CareContactMode, CareEntryKind, CareIncidentStatus, HOME_CARE_LIMITS } from "@/lib/homeCare/constants";
+import { CareContactMode, CareEntryKind, CareIncidentStatus, HOME_CARE_LIMITS } from "@/lib/homeCare/constants";
 
-import HomeCareEntryForm from "./HomeCareEntryForm";
+import { useEntryActions } from "./diary/useEntryActions";
 import HomeCareIncidentTrail from "./HomeCareIncidentTrail";
-import HomeCareTalkRequest from "./HomeCareTalkRequest";
-import { clientHref, formatDateTime, formatTime, homeCareBase, useHomeCareApi } from "./homeCareClient";
+import { clientHref, formatDateTime, formatTime } from "./homeCareClient";
 
 const KIND_BADGE = {
   [CareEntryKind.INCIDENT]: " hc-badge--danger",
@@ -18,116 +17,36 @@ const KIND_BADGE = {
 };
 
 /**
- * Üks päevikukirje.
+ * Üks päevikukirje MITME KLIENDI LOENDIS (vana kiht): erijuhtumite leht ja
+ * hooldusjuhi ülevaade. Kliendi lehel on kirje omaette vaade
+ * (`./diary/EntryOpen.jsx`).
  *
- * Kirjet ei kustutata: tühistatud kirje jääb oma kohale ilma tekstita ja
- * parandatud kirjel on märge. Varasemat sisu näevad autor ja hooldusjuht
- * („Ajalugu").
+ * Siin saab muuta erijuhtumi seisu, määrata vastutaja ja lisada täiendusi.
+ * Kirje teksti parandamine, tühistamine ja varasem sisu käivad kliendi lehel,
+ * kus on olemas kaart ja meeskond: rida viib sinna kliendi nime kaudu.
  *
- * `showClient` on hooldusjuhi ülevaate jaoks: seal on kirjed mitme kliendi
- * kohta ja parandamine käib kliendi lehel, kus on olemas kaart ja meeskond.
+ * Olek ja päringud on konksus `./diary/useEntryActions.js` (sama, mida kasutab
+ * kliendi lehe vaade).
  */
-export default function HomeCareEntryItem({
-  organizationId,
-  entry,
-  timeZone,
-  canWrite = false,
-  isCoordinator = false,
-  team = [],
-  viewerMembershipId = null,
-  showClient = false,
-  plan = null,
-  onChange
-}) {
+export default function HomeCareEntryItem({ organizationId, entry, timeZone, canWrite = false, isCoordinator = false, onChange }) {
   const { t } = useI18n();
-  const { call, busy, error, setError } = useHomeCareApi();
   const fieldId = useId();
-  const [mode, setMode] = useState(null);
-  const [reason, setReason] = useState("");
-  const [note, setNote] = useState("");
-  const [revisions, setRevisions] = useState(null);
+  const { busy, error, mode, setMode, note, setNote, rights, close, setIncidentStatus } = useEntryActions({
+    organizationId,
+    entry,
+    canWrite,
+    isCoordinator,
+    showClient: true,
+    onChange
+  });
 
-  const clientId = entry.clientId;
-  const base = `${homeCareBase(organizationId)}/kliendid/${clientId}/kirjed/${entry.id}`;
-  const retracted = Boolean(entry.retractedAt);
+  const { retracted, canSetIncident, canSeeTrail } = rights;
   const incident = entry.incident;
-  const canEdit = canWrite && !showClient && (entry.isMine || isCoordinator);
-  /* Erijuhtumi tühistab hooldusjuht: autori tühistus võtaks lahtise juhtumi
-     registrist vaikselt maha. Server keelab sama. */
-  const canRetract = canEdit && (!incident || isCoordinator);
-  const canSeeHistory = !showClient && (entry.isMine || isCoordinator) && entry.revision > 1;
-  const canSetIncident = canWrite && isCoordinator && incident && !retracted;
-  /* Juhtumi käiku näevad hooldusjuht ja autor (autor ainult oma täiendusi). */
-  const canSeeTrail = Boolean(incident) && (isCoordinator || entry.isMine);
-
-  const close = () => {
-    setMode(null);
-    setReason("");
-    setNote("");
-    setError("");
-  };
-
-  const retract = async (event) => {
-    event.preventDefault();
-    const result = await call(`${base}/tuhista`, {
-      method: "POST",
-      body: { reason, revision: entry.revision },
-      fallbackKey: "home_care.errors.save_failed"
-    });
-    if (result.ok) {
-      onChange?.(result.data.entry);
-      close();
-    }
-  };
-
-  const setIncidentStatus = async (status, withNote = "") => {
-    const result = await call(`${base}/juhtum`, {
-      method: "POST",
-      body: { status, note: withNote },
-      fallbackKey: "home_care.errors.save_failed"
-    });
-    if (result.ok) {
-      onChange?.(result.data.entry);
-      close();
-    }
-  };
-
-  const toggleHistory = async () => {
-    if (mode === "history") {
-      close();
-      return;
-    }
-    setMode("history");
-    const result = await call(`${base}/ajalugu`, { fallbackKey: "home_care.errors.list_failed" });
-    setRevisions(result.ok ? result.data.revisions || [] : null);
-  };
-
-  if (mode === "correct") {
-    return (
-      <li className="hc-entry">
-        <h3 className="hc-section-title">{t("home_care.entry.correct_title")}</h3>
-        <HomeCareEntryForm
-          organizationId={organizationId}
-          clientId={clientId}
-          team={team}
-          viewerMembershipId={viewerMembershipId}
-          timeZone={timeZone}
-          entry={entry}
-          plan={plan}
-          onCancel={close}
-          onSaved={(next) => {
-            onChange?.(next);
-            close();
-          }}
-        />
-      </li>
-    );
-  }
 
   return (
     <li className="hc-entry">
       <div className="hc-entry__head">
-        {showClient && entry.client ? (
+        {entry.client ? (
           <Link className="hc-entry__link" href={clientHref(organizationId, entry.client.id)} prefetch={false}>
             {entry.client.displayName}
           </Link>
@@ -251,43 +170,9 @@ export default function HomeCareEntryItem({
         </p>
       ) : null}
 
-      {/* „Soovin sellest rääkida" (K6-k): raske erijuhtumi autor küsib; soovi näevad tema ja hooldusjuht. */}
-      {incident && !retracted && !showClient ? (
-        <HomeCareTalkRequest
-          organizationId={organizationId}
-          clientId={clientId}
-          entryId={entry.id}
-          initial={entry.talk || null}
-          canAsk={canWrite && entry.isMine && CARE_TALK_INCIDENT_TYPES.includes(incident.type)}
-          canHandle={canWrite && isCoordinator}
-          timeZone={timeZone}
-        />
-      ) : null}
-
-      {canEdit || canSeeHistory || canSetIncident ? (
+      {canSetIncident ? (
         <div className="hc-row">
-          {canEdit && !retracted ? (
-            <button className="hc-btn hc-btn--quiet" type="button" onClick={() => setMode("correct")} disabled={busy}>
-              {t("home_care.entry.correct")}
-            </button>
-          ) : null}
-          {canRetract && !retracted ? (
-            <button className="hc-btn hc-btn--quiet" type="button" onClick={() => setMode("retract")} disabled={busy}>
-              {t("home_care.entry.retract")}
-            </button>
-          ) : null}
-          {canSeeHistory ? (
-            <button
-              className="hc-btn hc-btn--quiet"
-              type="button"
-              onClick={toggleHistory}
-              disabled={busy}
-              aria-expanded={mode === "history"}
-            >
-              {t("home_care.entry.history")}
-            </button>
-          ) : null}
-          {canSetIncident && incident.status === CareIncidentStatus.OPEN ? (
+          {incident.status === CareIncidentStatus.OPEN ? (
             <button
               className="hc-btn hc-btn--quiet"
               type="button"
@@ -297,12 +182,12 @@ export default function HomeCareEntryItem({
               {t("home_care.incident.set_in_review")}
             </button>
           ) : null}
-          {canSetIncident && incident.status !== CareIncidentStatus.CLOSED ? (
+          {incident.status !== CareIncidentStatus.CLOSED ? (
             <button className="hc-btn hc-btn--quiet" type="button" onClick={() => setMode("close")} disabled={busy}>
               {t("home_care.incident.close")}
             </button>
           ) : null}
-          {canSetIncident && incident.status === CareIncidentStatus.CLOSED ? (
+          {incident.status === CareIncidentStatus.CLOSED ? (
             <button
               className="hc-btn hc-btn--quiet"
               type="button"
@@ -324,35 +209,6 @@ export default function HomeCareEntryItem({
           isCoordinator={isCoordinator}
           onEntryChange={onChange}
         />
-      ) : null}
-
-      {mode === "retract" ? (
-        <form className="hc-form" onSubmit={retract}>
-          <h3 className="hc-section-title">{t("home_care.entry.retract_title")}</h3>
-          <p className="hc-hint">{t("home_care.entry.retract_hint")}</p>
-          <div className="hc-field">
-            <label className="hc-label" htmlFor={`${fieldId}-reason`}>
-              {t("home_care.entry.reason_label")}
-            </label>
-            <input
-              id={`${fieldId}-reason`}
-              className="hc-input"
-              value={reason}
-              onChange={(event) => setReason(event.target.value)}
-              maxLength={HOME_CARE_LIMITS.REASON_MAX}
-              required
-              autoComplete="off"
-            />
-          </div>
-          <div className="hc-row">
-            <button className="hc-btn hc-btn--danger" type="submit" disabled={busy}>
-              {t("home_care.entry.retract_save")}
-            </button>
-            <button className="hc-btn" type="button" onClick={close} disabled={busy}>
-              {t("home_care.entry.cancel")}
-            </button>
-          </div>
-        </form>
       ) : null}
 
       {mode === "close" ? (
@@ -385,50 +241,6 @@ export default function HomeCareEntryItem({
             </button>
           </div>
         </form>
-      ) : null}
-
-      {mode === "history" && revisions ? (
-        <div className="hc-history">
-          <h3 className="hc-section-title">{t("home_care.entry.history_title")}</h3>
-          {revisions.length === 0 ? (
-            <p className="hc-sub">{t("home_care.entry.history_empty")}</p>
-          ) : (
-            <ul className="hc-list hc-list--plain">
-              {revisions.map((revision) => (
-                <li key={revision.id} className="hc-entry">
-                  <div className="hc-entry__head">
-                    <span className="hc-badge">{t(`home_care.entry.revision_kind.${revision.kind}`)}</span>
-                    <span className="hc-entry__author">{revision.actorName}</span>
-                    <time className="hc-entry__time" dateTime={revision.createdAt}>
-                      {formatDateTime(revision.createdAt, timeZone)}
-                    </time>
-                  </div>
-                  <p className="hc-entry__meta">
-                    {t("home_care.entry.reason_label")}: {revision.reason}
-                  </p>
-                  {revision.text ? <p className="hc-entry__text hc-entry__text--muted">{revision.text}</p> : null}
-                  {revision.visit ? (
-                    <p className="hc-entry__meta">
-                      {[
-                        revision.visit.minutes ? t("home_care.visit.lasted", { minutes: revision.visit.minutes }) : null,
-                        ...(revision.visit.activities || []).map(
-                          (activity) =>
-                            `${activity.name} · ${
-                              activity.outcome && activity.outcome !== "DONE"
-                                ? t(`home_care.visit.outcomes.${activity.outcome}`)
-                                : t(`home_care.visit.modes.${activity.mode}`)
-                            }`
-                        )
-                      ]
-                        .filter(Boolean)
-                        .join("; ")}
-                    </p>
-                  ) : null}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
       ) : null}
 
       {error ? (

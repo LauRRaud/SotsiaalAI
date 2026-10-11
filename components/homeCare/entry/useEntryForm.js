@@ -69,9 +69,9 @@ function restoredMedication(value) {
  *
  * Konks hoiab kõike, mis ei ole joonistamine: väljade olek, pooleli kirje
  * seadmes, kordussaatmise võti, päringud ja järjekord võrguta. Vaated on eraldi:
- * uue kirje sammud (`./EntryViews.jsx`, kokku pandud failis `./EntryFlow.jsx`)
- * ja kirje paranduse vorm vanal kihil (`../HomeCareEntryForm.jsx`). Mõlemad
- * kasutavad sama konksu, et reeglid ei oleks kahes kohas.
+ * kirje sammud (`./EntryViews.jsx`, kokku pandud failis `./EntryFlow.jsx`).
+ * Uus kirje ja kirje parandus päevikus käivad samadel sammudel ja samal konksul,
+ * et reeglid ei oleks kahes kohas.
  *
  * KORDUSSAATMINE. Esimesel katsel pannakse paika päringu võti. Kui salvestus
  * ebaõnnestub ja inimene vajutab uuesti, läheb teele TÄPSELT sama keha: server

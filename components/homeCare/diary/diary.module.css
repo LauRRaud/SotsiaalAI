@@ -77,6 +77,96 @@
   composes: meta from "../client/client.module.css";
 }
 
+/* --- Avatud kirje ------------------------------------------------------------------ */
+/* Ülaserv: aeg ja autor täies pikkuses, märgid nende järel. */
+.openHead {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.6rem;
+}
+.openHead > p {
+  margin: 0;
+  max-width: none;
+}
+.openTitle {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.openWho {
+  color: var(--text-soft);
+}
+.openWho::before {
+  content: " · ";
+}
+.openChips {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+/* Vaiksed read (millal server kirje sai, kas teadet on loetud) omaette real. */
+.openHead > [data-note] {
+  flex-basis: 100%;
+}
+/* Käigul tehtud toimingud: nimi ja kuidas tehti; tegemata jäänud toiming on tugevama sõnaga. */
+.activities {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.1rem 1.4rem;
+}
+.activity {
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.5rem;
+  line-height: 1.45;
+}
+.activityName {
+  color: var(--text-warm);
+  overflow-wrap: anywhere;
+}
+.activityLine {
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+}
+.activity[data-wait="1"] .activityLine {
+  color: var(--text-warm);
+  font-weight: 560;
+}
+/* Link omaette real: sõrme jaoks piisavalt kõrge. */
+.link {
+  composes: link from "../clients/clients.module.css";
+  display: inline-block;
+  line-height: var(--hit-target-min, 2.75rem);
+  font-size: var(--fs-small, 0.875rem);
+}
+.link::first-letter {
+  text-transform: uppercase;
+}
+/* Põhjuse väli: üks lause. */
+.reason.reason {
+  max-width: 34rem;
+}
+/* Sündmuse rida (varasem sisu, juhtumi käik): märk ning kes ja millal. */
+.eventHead {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.6rem;
+}
+/* Varasem tekst, mis enam ei kehti: vaiksem kui kehtiv tekst. */
+.old.old {
+  color: var(--text-soft);
+}
+
 @container (min-width: 34rem) {
   /* Laiemal pinnal on kirje üks rida: aeg, autor, teksti algus ja märgid kõrvuti.
      Aja ja autori veerud on kõigil ridadel sama laiad, et tekstid algaksid kohakuti;
@@ -109,5 +199,9 @@
   .entry .chips {
     justify-content: flex-end;
     flex-wrap: nowrap;
+  }
+  /* Toimingud kahes veerus: pikk loend jääb poole lühemaks. */
+  .activities {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

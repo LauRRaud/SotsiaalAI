@@ -14077,7 +14077,6 @@
         "INCIDENT": "Erijuhtum",
         "CONCERN": "Mure hooldusjuhile"
       },
-      "contact_label": "Kontakt",
       "contact": {
         "VISIT": "Käik",
         "PHONE": "Telefon",
@@ -15059,7 +15058,6 @@
     "visit": {
       "title": "Mida tegid",
       "no_plan": "Kehtivat hoolduskava ei ole. Toimingu saad lisada asutuse kataloogist.",
-      "mode_label": "Kuidas tehti: {name}",
       "modes": {
         "GUIDE": "tegi ise, juhendasin",
         "TOGETHER": "tegime koos",
@@ -15069,7 +15067,6 @@
       "add_other": "Lisa muu toiming",
       "other_placeholder": "Vali toiming kataloogist",
       "catalogue_done": "Kõik kataloogi toimingud on juba loendis.",
-      "minutes_label": "Käigu kestus minutites (võid jätta tühjaks)",
       "minutes_quick": "Kestuse kiirvalik",
       "minutes": "{minutes} min",
       "lasted": "käik kestis {minutes} min",
@@ -15086,9 +15083,6 @@
         "NOT_NEEDED": "polnud vaja",
         "COULD_NOT": "ei saanud teha"
       },
-      "skip": "jäi tegemata",
-      "skip_label": "Jäi tegemata: {name}",
-      "skip_reason_label": "Miks jäi tegemata: {name}",
       "reason_missing": "Vali, miks toiming tegemata jäi, või võta märge maha.",
       "mark_rest": "Märgi ülejäänud tehtuks ({count})",
       "reason_pick": "Vali põhjus."
@@ -15648,7 +15642,6 @@
       "cancel": "Loobu"
     },
     "medication": {
-      "action_label": "{name}: mida tegid",
       "pick": "Vali, mida tegid: meeldetuletus, võtmise nägemine ja andmine on eri toimingud.",
       "missing": "Vali ravimitoimingu juures, mida tegid.",
       "actions": {
@@ -16429,7 +16422,8 @@
       "back": "Tagasi kirje juurde",
       "problems": {
         "incident_type": "Vali esimeses sammus, mis juhtus.",
-        "text": "Kirjuta, mida nägid ja tegid: selle kirje saab salvestada ainult tekstiga."
+        "text": "Kirjuta, mida nägid ja tegid: selle kirje saab salvestada ainult tekstiga.",
+        "reason": "Kirjuta, miks sa kirjet parandad."
       }
     },
     "diary": {
@@ -16440,7 +16434,11 @@
       "hits_count": "Lõike: {count}",
       "hits_count_more": "Lõike: üle {count}",
       "history_count": "Üle toodud dokumente: {count}",
-      "history_none": "Senist päevikut ei ole üle toodud"
+      "history_none": "Senist päevikut ei ole üle toodud",
+      "to_trail": "Tagasi käigu juurde",
+      "retract_confirm": "Kinnita tühistamine",
+      "retract_note": "Tühistatud kirje tekst ei ole päevikus enam näha. Vajuta uuesti, kui oled kindel.",
+      "retract_reason_missing": "Kirjuta, miks sa kirje tühistad."
     }
   },
   "stage": {

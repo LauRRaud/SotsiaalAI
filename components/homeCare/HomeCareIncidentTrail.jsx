@@ -1,111 +1,35 @@
 "use client";
 
-import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { useId } from "react";
 
-import { newClientActionKey } from "@/components/casework/caseWorkClient";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Dropdown from "@/components/ui/Dropdown";
-import { CareIncidentUpdateKind, HOME_CARE_LIMITS } from "@/lib/homeCare/constants";
+import { HOME_CARE_LIMITS } from "@/lib/homeCare/constants";
 
-import { formatDateTime, homeCareBase, useHomeCareApi } from "./homeCareClient";
+import { trailRows } from "./diary/entryOpen";
+import { useIncidentTrail } from "./diary/useIncidentTrail";
+import { formatDateTime } from "./homeCareClient";
 
 /**
- * Erijuhtumi käik: täiendused, seisumuutused ja vastutaja ajajärjestuses.
+ * Erijuhtumi käik kirje real MITME KLIENDI LOENDIS (vana kiht): erijuhtumite
+ * leht ja hooldusjuhi ülevaade. Kliendi lehel on käik avatud kirje alavaade
+ * (`./diary/EntryOpen.jsx`).
  *
- * Kirje teksti täiendus ei muuda. Hooldusjuht näeb kogu käiku ja määrab
- * vastutaja; autor näeb ja lisab oma täiendusi (hooldusjuhi märkmeid talle ei
- * näidata, sest seal võib olla info, mis ei ole kogu meeskonna jaoks).
- *
- * Käik laaditakse alles avamisel: päevikus võib olla kümneid erijuhtumeid ja
- * enamikku neist parajasti ei vaadata.
+ * Olek ja päringud on konksus `./diary/useIncidentTrail.js`, ridade sõnad
+ * reeglites `./diary/entryOpen.js`; siin on ainult märgistus.
  */
 export default function HomeCareIncidentTrail({ organizationId, entry, timeZone, canWrite, isCoordinator, onEntryChange }) {
   const { t } = useI18n();
-  const { call, busy, error } = useHomeCareApi();
   const fieldId = useId();
-  const [open, setOpen] = useState(false);
-  const [updates, setUpdates] = useState(null);
-  const [text, setText] = useState("");
-  const [assignees, setAssignees] = useState(null);
-  /* Sama täienduse korduskatsel läheb teele sama võti; teksti muutmine teeb uue. */
-  const attemptRef = useRef(null);
-
-  const base = `${homeCareBase(organizationId)}/kliendid/${entry.clientId}/kirjed/${entry.id}`;
-  const retracted = Boolean(entry.retractedAt);
-  const assigneeId = entry.incident?.assignee?.membershipId || "";
-
-  const load = useCallback(async () => {
-    const result = await call(`${base}/kaik`, { fallbackKey: "home_care.errors.list_failed" });
-    setUpdates(result.ok ? result.data.updates || [] : null);
-  }, [base, call]);
-
-  /* Seisu või vastutaja muutus (ka kirje rea nuppudest) lisab käiku rea. Lahtine
-     käik laaditakse siis uuesti, muidu jääks uus rida ja sulgemise selgitus
-     nägemata, kuni paneel suletakse ja avatakse. */
-  const trailKey = `${entry.incident?.status || ""}|${assigneeId}`;
-  const seenKey = useRef(trailKey);
-  useEffect(() => {
-    if (seenKey.current === trailKey) return;
-    seenKey.current = trailKey;
-    if (open) load();
-  }, [trailKey, open, load]);
-
-  const toggle = async () => {
-    if (open) {
-      setOpen(false);
-      return;
-    }
-    setOpen(true);
-    await load();
-    if (isCoordinator && canWrite && !assignees) {
-      const result = await call(`${base}/vastutaja`, { fallbackKey: "home_care.errors.list_failed" });
-      if (result.ok) setAssignees(result.data.assignees || []);
-    }
-  };
-
-  const add = async (event) => {
-    event.preventDefault();
-    if (attemptRef.current?.text !== text) attemptRef.current = { text, key: newClientActionKey() };
-    const result = await call(`${base}/kaik`, {
-      method: "POST",
-      body: { text, clientRequestId: attemptRef.current.key },
-      fallbackKey: "home_care.errors.save_failed"
-    });
-    if (result.ok) {
-      const saved = result.data.update;
-      setUpdates((current) => [...(current || []).filter((item) => item.id !== saved.id), saved]);
-      setText("");
-      attemptRef.current = null;
-    }
-  };
-
-  const assign = async (membershipId) => {
-    if ((membershipId || "") === assigneeId) return;
-    const result = await call(`${base}/vastutaja`, {
-      method: "POST",
-      body: { membershipId: membershipId || null },
-      fallbackKey: "home_care.errors.save_failed"
-    });
-    if (result.ok) {
-      /* Käik laaditakse uuesti siis, kui kirje uus vastutaja siia jõuab (vt efekt ülal). */
-      onEntryChange?.(result.data.entry);
-    }
-  };
-
-  const describe = (update) => {
-    if (update.kind === CareIncidentUpdateKind.STATUS) {
-      const change = `${t(`home_care.incident.status.${update.fromStatus || "OPEN"}`)} → ${t(
-        `home_care.incident.status.${update.toStatus}`
-      )}`;
-      return update.text ? `${change}. ${update.text}` : change;
-    }
-    if (update.kind === CareIncidentUpdateKind.ASSIGNED) {
-      return update.assigned
-        ? t("home_care.trail.assigned_to", { name: update.assigneeName || "—" })
-        : t("home_care.trail.unassigned");
-    }
-    return update.text || "";
-  };
+  const { busy, error, open, updates, text, setText, assignees, retracted, assigneeId, show, hide, add, assign } = useIncidentTrail({
+    organizationId,
+    entry,
+    canWrite,
+    isCoordinator,
+    onEntryChange
+  });
+  const toggle = () => (open ? hide() : show());
+  const rows = updates ? trailRows(updates, { t, moment: (value) => formatDateTime(value, timeZone) }) : null;
 
   return (
     <div className="hc-form">
@@ -120,22 +44,20 @@ export default function HomeCareIncidentTrail({ organizationId, entry, timeZone,
           <h3 className="hc-section-title">{t("home_care.trail.title")}</h3>
           {isCoordinator ? null : <p className="hc-hint">{t("home_care.trail.author_only_note")}</p>}
 
-          {updates && updates.length > 0 ? (
+          {rows && rows.length > 0 ? (
             <ul className="hc-list hc-list--plain">
-              {updates.map((update) => (
-                <li key={update.id} className="hc-entry">
+              {rows.map((row) => (
+                <li key={row.key} className="hc-entry">
                   <div className="hc-entry__head">
-                    <span className="hc-badge">{t(`home_care.trail.kind.${update.kind}`)}</span>
-                    <span className="hc-entry__author">{update.actorName}</span>
-                    <time className="hc-entry__time" dateTime={update.createdAt}>
-                      {formatDateTime(update.createdAt, timeZone)}
-                    </time>
+                    <span className="hc-badge">{row.kind}</span>
+                    <span className="hc-entry__author">{row.who}</span>
+                    <span className="hc-entry__time">{row.when}</span>
                   </div>
-                  <p className="hc-entry__text">{describe(update)}</p>
+                  <p className="hc-entry__text">{row.text}</p>
                 </li>
               ))}
             </ul>
-          ) : updates ? (
+          ) : rows ? (
             <p className="hc-sub">{t("home_care.trail.empty")}</p>
           ) : null}
 

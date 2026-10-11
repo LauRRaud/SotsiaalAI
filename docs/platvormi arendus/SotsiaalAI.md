@@ -132,7 +132,7 @@ salvestamine). Tavaline käigu kirje avaneb toimingute sammuga (2/4). Pärast
 salvestamist on ees üks lause ja tee päevikusse. Vormi olek, mustand seadmes,
 kordussaatmise võti ja järjekord võrguta on tõstetud konksu
 `components/homeCare/entry/useEntryForm.js` (kood liikus sõna-sõnalt); sama konksu
-kasutab kirje paranduse vorm päevikus, mis on veel vanal kihil. Kõne märkimine ja
+ja samu samme kasutab kirje parandus päevikus. Kõne märkimine ja
 „Peaaegu juhtus” on uuel kihil omaette väikesed vaated (12.10 öö, otse `main`-i):
 kliendi lehel uue kirje esimesest sammust, avalehel otsingu tulemuse realt („Märgi
 kõne” rea kõrval, klienti avamata); pärast salvestamist üks lause ja tee tagasi.
@@ -144,20 +144,46 @@ nüüd vasakul ning küsimus ja dikteerimine selle kõrval. Lahti: vene keeles o
 käigul tehtud erijuhtumi kirje toimingute samm arvutis 43 px üle paneeli (565/522).
 Päris salvestus on läbi tehtud kohalikus proovibaasis (kirje jõudis päevikusse
 toimingute ja kestusega; proovikirje on eemaldatud).
+**Päevik (12.10 öö, otse `main`-i, commit'id `f56b7ee0` ja järgmine, elus):**
+kliendi lehe päevik oli üks pikk osa (telefonis umbes 6900 px). Nüüd on see loend:
+kirjed madalate ridadena (aeg, autor, teksti algus, märgid), viis rida ja „Näita
+varasemaid”. Otsing ja filter on omaette vaade (kehtiv otsing seisab loendi kohal ühe
+reana), otsingu tabamused varasemast ajaloost on rea taga (kolm lõiku ja „Näita
+veel”). Avatud kirje on omaette vaade: kogu tekst, käigu toimingud ja kestus, mis oli
+teisiti, erijuhtumi andmed ja tegevused lahtritena selle all. Iga tegevus, mis küsib
+midagi juurde, on kirje sees omakorda väike vaade: tühistamine (põhjus ja teine
+vajutus samal nupul), erijuhtumi sulgemine, varasem sisu, juhtumi käik (täiendus ja
+vastutaja valik). Parandus käib uue kirje sammudel (avaneb viimase sammuga, põhjus on
+kohustuslik, igas sammus „Loobu”); vana vorm `HomeCareEntryForm.jsx` on kustutatud.
+Kirje tegevuste, juhtumi käigu ja rääkimise soovi olek ja päringud on konksudes
+`components/homeCare/diary/use*.js`; `HomeCareEntryItem.jsx` ja
+`HomeCareIncidentTrail.jsx` on jäänud vana kihi vaadeteks samadel konksudel ja
+teenivad erijuhtumite lehte ja hooldusjuhi ülevaadet, kuni nende ühik tuleb. Kuupäevad
+otsingu vaates on brauseri enda kuupäevaväli nagu teistel sammulava lehtedel
+(platvormi oma valija avanes telefonis kiirmenüü alla). Mõõdetud kohalikult
+1536 × 640 ja 390 × 844 aknas, heledas ja tumedas teemas, eesti, inglise ja vene
+keeles: loend 514/522 ja 844/844, otsing kuni 514/522 ja 844/844, avatud kirje
+kuni 417/522 ja 844/844, erijuhtumi parandus 513/522 (vene keeles 522/522) ja
+844/844. Mõõtmine muutis kuju kahes kohas: otsingu selgitus läks vaate alla serva
+(arvutis oli 7 px üle) ja paranduses jäi dikteerimise selgitus ära (erijuhtumi
+parandus oli telefonis 73 px üle). Päris parandus ja tühistamine on läbi tehtud
+kohalikus proovibaasis (proovikirje on eemaldatud); loa lõppemine päeviku vaates
+jätab otsisõna ja pooleli kirje alles. Päringud on samad (kutseid 5 ja 18 enne ja
+pärast). Lahti: pooleli parandus kaob, kui avada teine kirje; avatud kirjes ei ole
+kliendi nime; kliendi lehte ei ole elus avatud.
 **Vaadete teste ei ole:** unit-testid kustutati omaniku otsusega 11.10 öösel (#725,
 #726, reegel failis `AGENTS.md`), nende hulgas ümberehituse ajal tehtud laua,
 hooldaja päeva, klientide ja kliendi osade testid; uusi ei kirjutata. Tõend on
 brauseris mõõtmine ja läbivajutamine, päringute võrdlus, lint ja kataloogi kontroll.
-**Järgmine ühik** on päevik (kirjed ridadena, avatud kirje, parandus ja tühistamine,
-otsing; koos seadmes ootavate kirjete kasti, kõne märkimise ja „Peaaegu juhtus”
-vaatega); siis igapäevased osad, hooldusjuhi osa ja kliendi alalehed, päevaplaan,
+**Järgmine ühik** on päeviku kolmas tükk (varasem ajalugu teisest kohast ja seadmes
+ootavate kirjete kast); siis igapäevased osad, hooldusjuhi osa ja kliendi alalehed, päevaplaan,
 tähtajad ja ülevaade, kuu ja väljavõtted, registrid, vana kihi eemaldamine.
 Päringud, `app/api/**` ja `lib/**` jäävad puutumata (ainus erand oli infotekstide
 fail). Mõõtmine muutis kavandit kahes kohas: viis täispikka käigurida ei mahtunud
 pika päevaga ekraanile (järgmine käik on täies pikkuses, kolm järgmist ühel real)
 ja laua rühmas on kuni kuus plaati. Vaadet „Täna” ei ole elus nähtud: omaniku
 kontol ei ole oma käike; kohalikult on see mõõdetud hooldaja kontoga. Reeglid on
-puhastes failides `components/homeCare/{desk,day,clients,client,entry}/`. Mõõdud, lõksud,
+puhastes failides `components/homeCare/{desk,day,clients,client,entry,diary}/`. Mõõdud, lõksud,
 kohaliku eelvaate retsept ja ühikute järjekord on mälumärkmes
 `koduteenus-views-mockup` ja seansside ühises märkmes
 `side-session-notes/local_b3b842f1-182e-48a3-bcc3-6878e50813a2/koduteenus-vaadete-kavand.md`.

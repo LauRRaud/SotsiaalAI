@@ -19,7 +19,7 @@ import {
 } from "@/lib/homeCare/constants";
 
 import HomeCareDictation from "../HomeCareDictation";
-import { formatDateTime } from "../homeCareClient";
+import { formatDateTime, toZonedInputValue } from "../homeCareClient";
 import { ENTRY_STEPS, activityRows, changeSummary, entryProblem, entryStepStates, entrySummary, openingStep } from "./entryRules";
 import { ActivityView, ChangeView, DoneView, KindView, TextView, TimeView } from "./EntryViews";
 import { VISIT_MINUTE_CHOICES, useEntryForm } from "./useEntryForm";
@@ -40,10 +40,32 @@ import { VISIT_MINUTE_CHOICES, useEntryForm } from "./useEntryForm";
  *
  * PÄRAST SALVESTAMIST on ees üks lause (kirje on päevikus või ootab seadmes) ja
  * kaks teed edasi; uus tühi vorm ei jää ette, nagu poleks midagi juhtunud.
+ *
+ * PARANDUS (`entry`). Samad sammud avanevad olemasoleva kirjega: liigivalik on
+ * kitsam, küsimust „kas midagi oli teisiti" ei ole, viimases sammus on
+ * paranduse põhjus (kohustuslik, jääb kirje ajalukku) ja igas sammus „Loobu"
+ * (`onCancel`). Parandus avaneb viimase sammuga; pärast salvestamist otsustab
+ * leht (`onSaved`), mis ees on. Seadme mustandit ega järjekorda parandus ei kasuta.
  */
-export default function EntryFlow({ active, organizationId, clientId, team = [], viewerMembershipId = null, clientName = "", timeZone, plan = null, usualState = [], onSaved, onQuick, onDiary, onDoor }) {
+export default function EntryFlow({
+  active,
+  organizationId,
+  clientId,
+  team = [],
+  viewerMembershipId = null,
+  clientName = "",
+  timeZone,
+  entry = null,
+  plan = null,
+  usualState = [],
+  onSaved,
+  onCancel,
+  onQuick,
+  onDiary,
+  onDoor
+}) {
   const { t } = useI18n();
-  const form = useEntryForm({ organizationId, clientId, team, viewerMembershipId, clientName, timeZone, plan, onSaved });
+  const form = useEntryForm({ organizationId, clientId, team, viewerMembershipId, clientName, timeZone, entry, plan, onSaved });
   /* Samm, kuhu inimene ise liikus; tühi sõne tähendab avanemise sammu. */
   const [stepKey, setStepKey] = useState("");
   /* Avatud toiming sammus „Mida tegid"; tühi sõne on loend. */
@@ -101,6 +123,7 @@ export default function EntryFlow({ active, organizationId, clientId, team = [],
   const steps = ENTRY_STEPS.map((key) => ({ key, label: t(`home_care.entry_steps.names.${key}`), short: t(`home_care.entry_steps.short.${key}`), state: states[key] }));
   const rows = activityRows(form, { t });
   const problem = tried ? entryProblem(form) : null;
+  const cancel = form.correcting && onCancel ? { label: t("home_care.entry.cancel"), onCancel } : null;
   const titleOf = (key) => t(`home_care.entry_steps.names.${key}`);
   const option = (prefix) => (value) => ({ value, label: t(`${prefix}.${value}`) });
 
@@ -130,7 +153,7 @@ export default function EntryFlow({ active, organizationId, clientId, team = [],
   return (
     <div inert={form.sending} aria-busy={form.sending ? "true" : undefined}>
       <StepFlight
-        label={t("home_care.entry_steps.label")}
+        label={t(form.correcting ? "home_care.entry.correct_title" : "home_care.entry_steps.label")}
         steps={steps}
         initialIndex={Math.max(ENTRY_STEPS.indexOf(current), 0)}
         activeKey={current}
@@ -178,10 +201,15 @@ export default function EntryFlow({ active, organizationId, clientId, team = [],
                       }
                     : null
                 }
-                quick={[
-                  { key: "call", label: t("home_care.entry_steps.quick_call"), onOpen: () => onQuick("call") },
-                  { key: "near_miss", label: t("home_care.near_miss.start"), onOpen: () => onQuick("near_miss") }
-                ]}
+                quick={
+                  form.correcting
+                    ? []
+                    : [
+                        { key: "call", label: t("home_care.entry_steps.quick_call"), onOpen: () => onQuick("call") },
+                        { key: "near_miss", label: t("home_care.near_miss.start"), onOpen: () => onQuick("near_miss") }
+                      ]
+                }
+                cancel={cancel}
               />
             );
           }
@@ -285,6 +313,7 @@ export default function EntryFlow({ active, organizationId, clientId, team = [],
                     : null
                 }
                 idle={!form.isVisit && !form.isIncident ? t("home_care.entry_steps.nothing_to_mark") : ""}
+                cancel={cancel}
               />
             );
           }
@@ -315,8 +344,9 @@ export default function EntryFlow({ active, organizationId, clientId, team = [],
                 }
                 occurred={{
                   label: t("home_care.entry.occurred_label"),
-                  hint: t("home_care.entry.occurred_hint"),
-                  value: form.occurredLocal,
+                  /* Parandus näitab kirje praegust aega; muutmata aega kaasa ei saadeta (see jääb nagu on). */
+                  hint: form.correcting ? "" : t("home_care.entry.occurred_hint"),
+                  value: form.occurredLocal || (form.correcting ? toZonedInputValue(entry.occurredAt, timeZone) : ""),
                   onChange: (value) => {
                     form.touch();
                     form.setOccurredLocal(value);
@@ -335,6 +365,7 @@ export default function EntryFlow({ active, organizationId, clientId, team = [],
                       }
                     : null
                 }
+                cancel={cancel}
               />
             );
           }
@@ -401,7 +432,8 @@ export default function EntryFlow({ active, organizationId, clientId, team = [],
                 },
                 max: HOME_CARE_LIMITS.ENTRY_TEXT_MAX
               }}
-              dictation={<HomeCareDictation onText={form.addDictated} disabled={form.busy || form.sending} hint={t("home_care.dictation.hint")} />}
+              /* Paranduses on vaates ka põhjuse väli: dikteerimise selgitus jääb ära, et vaade mahuks telefoni ekraanile. */
+              dictation={<HomeCareDictation onText={form.addDictated} disabled={form.busy || form.sending} hint={form.correcting ? "" : t("home_care.dictation.hint")} />}
               cut={form.dictationCut ? t("home_care.dictation.cut", { limit: HOME_CARE_LIMITS.ENTRY_TEXT_MAX }) : ""}
               assessment={
                 form.isIncident
@@ -427,8 +459,22 @@ export default function EntryFlow({ active, organizationId, clientId, team = [],
                     }
                   : null
               }
+              reason={
+                form.correcting
+                  ? {
+                      label: t("home_care.entry.reason_label"),
+                      value: form.reason,
+                      onChange: (value) => {
+                        form.touch();
+                        form.setReason(value);
+                      },
+                      max: HOME_CARE_LIMITS.REASON_MAX
+                    }
+                  : null
+              }
               notice={form.error ? { text: form.error, tone: "risk" } : null}
-              save={{ label: t("home_care.entry.save"), busy: form.busy || form.sending, onSave: save }}
+              cancel={cancel}
+              save={{ label: t(form.correcting ? "home_care.entry.correct_save" : "home_care.entry.save"), busy: form.busy || form.sending, onSave: save }}
             />
           );
         }}

@@ -32,6 +32,14 @@ import Input from "@/components/ui/Input";
 
 import styles from "./entry.module.css";
 
+/** Paranduse katkestamine: `cancel`: { label, onCancel } või null (uuel kirjel seda ei ole). */
+const Cancel = ({ cancel }) =>
+  cancel ? (
+    <Button {...SMALL} data-entry="cancel" onClick={cancel.onCancel}>
+      {cancel.label}
+    </Button>
+  ) : null;
+
 /** Taastatud pooleli kirje: teade ja tee selle tühjendamiseks. `draft`: { text, clear, onClear } või null. */
 function Draft({ draft }) {
   if (!draft) return null;
@@ -50,13 +58,14 @@ function Draft({ draft }) {
  * `incident`: { notice, label, options, value, onChange } või null;
  * `quick`: [{ key, label, onOpen }] (kirjed, mis vormi ei vaja: kõne, „peaaegu juhtus").
  */
-export function KindView({ title, draft, kind, contact, incident, quick }) {
+export function KindView({ title, draft, kind, contact, incident, quick, cancel = null }) {
   return (
     <StepPanel
       title={title}
       actions={
-        quick.length ? (
+        quick.length || cancel ? (
           <>
+            <Cancel cancel={cancel} />
             {quick.map((item) => (
               <Button key={item.key} {...SMALL} data-entry-quick={item.key} onClick={item.onOpen}>
                 {item.label}
@@ -95,16 +104,21 @@ export function KindView({ title, draft, kind, contact, incident, quick }) {
  *   rest: { label, onRest } | null, other: { label, placeholder, options, loaded, busy, error, done, onLoad, onAdd } } või null;
  * `incident`: { label, options, values, onToggle } või null; `idle`: lause, kui märkida ei ole midagi.
  */
-export function DoneView({ title, draft, visit, incident, idle }) {
+export function DoneView({ title, draft, visit, incident, idle, cancel = null }) {
   return (
     <StepPanel
       title={title}
       note={visit?.other.error ? footNote({ text: visit.other.error, tone: "risk" }) : ""}
       actions={
-        visit?.rest ? (
-          <Button type="button" size="sm" variant="primary" data-entry="rest" onClick={visit.rest.onRest}>
-            {visit.rest.label}
-          </Button>
+        visit?.rest || cancel ? (
+          <>
+            <Cancel cancel={cancel} />
+            {visit?.rest ? (
+              <Button type="button" size="sm" variant="primary" data-entry="rest" onClick={visit.rest.onRest}>
+                {visit.rest.label}
+              </Button>
+            ) : null}
+          </>
         ) : null
       }
     >
@@ -213,9 +227,9 @@ export function ActivityView({ title, name, mode, medication, skip, hint, clear,
  * `minutes`: { label, options, value, onPick, inputLabel, onInput, max } või null (ei ole käik);
  * `occurred`: { label, hint, value, onChange }; `companion`: { label, options, value, onChange } või null.
  */
-export function TimeView({ title, draft, minutes, occurred, companion }) {
+export function TimeView({ title, draft, minutes, occurred, companion, cancel = null }) {
   return (
-    <StepPanel title={title}>
+    <StepPanel title={title} actions={cancel ? <Cancel cancel={cancel} /> : null}>
       <div className={shared.stack}>
         <Draft draft={draft} />
         {minutes ? (
@@ -230,7 +244,7 @@ export function TimeView({ title, draft, minutes, occurred, companion }) {
         <label className={`${shared.line} ${styles.when}`}>
           <span className={shared.fieldLabel}>{occurred.label}</span>
           <Input className={shared.input} type="datetime-local" value={occurred.value} onChange={(event) => occurred.onChange(event.target.value)} data-entry="occurred" />
-          <span className={shared.hint}>{occurred.hint}</span>
+          {occurred.hint ? <span className={shared.hint}>{occurred.hint}</span> : null}
         </label>
         {companion ? <PickOne label={companion.label} options={companion.options} value={companion.value} onChange={companion.onChange} columns={3} /> : null}
       </div>
@@ -242,17 +256,19 @@ export function TimeView({ title, draft, minutes, occurred, companion }) {
  * 4/4 Mida nägid.
  * `summary`: kokkuvõtte rida; `change`: { label, options, value, onAnswer, line, edit: { label, onEdit } | null } või null;
  * `text`: { label, hint, value, onChange, max }; `dictation`: dikteerimise osa; `cut`: teade, kui dikteeritud tekst ei mahtunud;
- * `assessment`: { label, value, onChange, max } või null; `visibility`: kes kirjet näeb;
+ * `assessment`: { label, value, onChange, max } või null; `reason`: { label, value, onChange, max } või null (paranduse põhjus);
+ * `visibility`: kes kirjet näeb; `cancel`: { label, onCancel } või null;
  * `problem`: { text, fix: { label, onFix } | null } või null; `notice`: { text, tone } või null;
  * `save`: { label, busy, onSave }.
  */
-export function TextView({ title, draft, summary, change, text, dictation, cut, assessment, visibility, problem, notice, save }) {
+export function TextView({ title, draft, summary, change, text, dictation, cut, assessment, reason = null, visibility, problem, notice, cancel = null, save }) {
   return (
     <StepPanel
       title={title}
       note={footNote(notice, problem ? problem.text : visibility)}
       actions={
         <>
+          <Cancel cancel={cancel} />
           {problem?.fix ? (
             <Button {...SMALL} data-entry="fix" onClick={problem.fix.onFix}>
               {problem.fix.label}
@@ -296,6 +312,12 @@ export function TextView({ title, draft, summary, change, text, dictation, cut, 
             <div data-area="assessment">
               <TextAreaField label={assessment.label} value={assessment.value} onChange={assessment.onChange} rows={2} maxLength={assessment.max} />
             </div>
+          ) : null}
+          {reason ? (
+            <label className={shared.line} data-area="reason">
+              <span className={shared.fieldLabel}>{reason.label}</span>
+              <input className={shared.input} value={reason.value} onChange={(event) => reason.onChange(event.target.value)} maxLength={reason.max} autoComplete="off" data-entry="reason" />
+            </label>
           ) : null}
         </div>
       </div>

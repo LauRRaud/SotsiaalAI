@@ -19,11 +19,13 @@
 export const ENTRY_STEPS = Object.freeze(["kind", "done", "time", "text"]);
 
 /**
- * Mis sammuga uus kirje avaneb. Tavaline käigu kirje (vaikimisi valik) algab
+ * Mis sammuga kirje avaneb. Tavaline käigu kirje (vaikimisi valik) algab
  * toimingutest, kui kliendil on neid loendis: hooldaja märgib ukse taga kõige
  * sagedamini just seda ja liik on juba õige. Muu kirje algab liigist.
  */
 export function openingStep(form) {
+  /* Parandus avaneb viimase sammuga: seal on tekst, paranduse põhjus ja salvestamine. */
+  if (form?.correcting) return "text";
   return form?.kind === "NOTE" && form.isVisit && (form.visitChoices || []).length > 0 ? "done" : "kind";
 }
 
@@ -40,6 +42,8 @@ export function entryProblem(form) {
   if (form.medicationMissing) return { key: "home_care.medication.missing", step: "done" };
   if (form.changed && !(form.diffAreas || []).length) return { key: "home_care.change.area_missing", step: "text" };
   if (form.textRequired && !filled(form.text)) return { key: "home_care.entry_steps.problems.text", step: "text" };
+  /* Parandus nõuab põhjust: see jääb kirje ajalukku. */
+  if (form.correcting && !filled(form.reason)) return { key: "home_care.entry_steps.problems.reason", step: "text" };
   return null;
 }
 

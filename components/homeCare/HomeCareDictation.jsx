@@ -28,8 +28,9 @@ const WAITING_MAX_MS = 95_000;
  * jõuab: kõnetuvastus võtab mõne sekundi ja ilma selleta ei oleks näha, kas
  * midagi toimub.
  *
- * `hint`: selgitus nupu all (uue kirje sammudes); vana paranduse vorm annab
- * selgituse ise ja seob selle nupuga (`describedBy`).
+ * `hint`: selgitus nupu all (uue kirje sammudes; kirje paranduses jääb see ära,
+ * et vaade mahuks telefoni ekraanile). `describedBy`: kutsuja enda selgituse ID,
+ * kui ta näitab selgitust ise.
  */
 export default function HomeCareDictation({ onText, disabled = false, describedBy, hint = "" }) {
   const { t, locale } = useI18n();

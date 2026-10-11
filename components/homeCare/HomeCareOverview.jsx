@@ -63,7 +63,6 @@ export default function HomeCareOverview({ context, overview }) {
             timeZone={timeZone}
             canWrite={canWrite}
             isCoordinator
-            showClient
             onChange={onIncidentChange}
           />
         ))}

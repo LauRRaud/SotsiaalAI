@@ -24,6 +24,7 @@ import {
 import { DoorView, HandoversView, OldPart, PartsView } from "./client/ClientViews";
 import { DIARY_PAGE, HITS_PAGE, NO_FILTER, diaryPage, diaryRows, filterActive as filterActiveOf, filterLine, historyVisible } from "./diary/diaryRows";
 import { DiarySearchView, DiaryView, HistoryHitsView } from "./diary/DiaryViews";
+import EntryOpen from "./diary/EntryOpen";
 import HomeCareCallNote from "./HomeCareCallNote";
 import HomeCareCard from "./HomeCareCard";
 import HomeCareChangeSignals from "./HomeCareChangeSignals";
@@ -34,7 +35,6 @@ import HomeCareDecisionNotices from "./HomeCareDecisionNotices";
 import HomeCareTransport from "./HomeCareTransport";
 import HomeCareDecisionView, { decisionVolumeLabel, minutesLabel } from "./HomeCareDecisionView";
 import EntryFlow from "./entry/EntryFlow";
-import HomeCareEntryItem from "./HomeCareEntryItem";
 import HomeCareFridgeSheet from "./HomeCareFridgeSheet";
 import HomeCareHistory from "./HomeCareHistory";
 import HomeCareOutbox from "./HomeCareOutbox";
@@ -121,6 +121,8 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
   const [allHits, setAllHits] = useState(false);
   /* Avatud kirje. Hoitakse kirjet ennast, mitte kohta loendis: filtriga päevikus võib parandatud kirje loendist välja jääda. */
   const [opened, setOpened] = useState(null);
+  /* Kirje, mille parandus on pooleli (ID); tühi sõne, kui parandust ei ole. */
+  const [correcting, setCorrecting] = useState("");
   const [lapsed, setLapsed] = useState(false);
   const [panel, setPanel] = useState(null);
   const [status, setStatus] = useState(initial?.client?.status || CareClientStatus.ACTIVE);
@@ -159,6 +161,7 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
       setHistoryHits(null);
       setExpanded(false);
       setOpened(null);
+      setCorrecting("");
       setNeedsReason(false);
       setLapsed(false);
       page.setError("");
@@ -383,7 +386,9 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
   const seesHistory = historyVisible(who, data);
   /* Alavaade, mille sisu ei ole enam olemas (kirje ei ole avatud, tabamusi ei ole), annab päeviku loendi. */
   const gone = (allowed === "diary_item" && !opened) || (allowed === "history_hits" && !hits.length) || (allowed === "history" && !seesHistory);
-  const current = gone ? "diary" : allowed;
+  /* Parandus on ees ainult selle kirje kohta, mis on avatud; muidu on ees kirje ise või loend. */
+  const fixing = Boolean(opened && correcting === opened.id);
+  const current = gone ? "diary" : allowed === "diary_correct" && !fixing ? (opened ? "diary_item" : "diary") : allowed;
   const sees = (part) => partVisible(part, who, data);
   const toDoor = { label: t("home_care.door.back"), onBack: () => setView("door") };
   const toEntry = { label: t("home_care.entry_steps.back"), onBack: () => setView("entry") };
@@ -421,8 +426,8 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
         partLabel={current ? t(viewNameKey(current)) : pageName}
         up={current ? { label: pageName, href: clientHref(organizationId, client.id) } : null}
         onDesk={current ? () => setView("") : undefined}
-        /* Uue kirje sammud on kiirmenüüs lehe nime kõrval: nelja ruuduga nupp on siis ilma nimeta. */
-        compact={current === "entry"}
+        /* Kirje sammud (uus kirje, parandus) on kiirmenüüs lehe nime kõrval: nelja ruuduga nupp on siis ilma nimeta. */
+        compact={current === "entry" || current === "diary_correct"}
       >
         <HomeCareAccessProvider onReasonRequired={() => setLapsed(true)}>
           {lapsed ? (
@@ -579,6 +584,8 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
               }
               rows={diaryList.rows}
               onOpen={(id) => {
+                /* Teise kirje avamine lõpetab eelmise kirje pooleli paranduse. */
+                if (correcting !== id) setCorrecting("");
                 setOpened(entries.items.find((entry) => entry.id === id) || null);
                 setView("diary_item");
               }}
@@ -650,28 +657,54 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
             />
           )}
 
-          {/* Avatud kirje: sisu on veel vana kihi kirje koos oma tegevustega. */}
+          {/* Avatud kirje: kogu tekst ja tegevused; iga tegevus, mis küsib midagi juurde, on selle sees omaette vaade. */}
           {slot(
             "diary_item",
             opened ? (
-              <OldPart title={t("home_care.diary.item_title")} back={toDiary}>
-                <ul className="hc-list hc-list--plain">
-                  <HomeCareEntryItem
-                    key={opened.id}
-                    organizationId={organizationId}
-                    entry={opened}
-                    timeZone={timeZone}
-                    canWrite={canWrite}
-                    isCoordinator={access.isCoordinator}
-                    team={team}
-                    viewerMembershipId={access.membershipId}
-                    plan={data.plan}
-                    onChange={upsertEntry}
-                  />
-                </ul>
-              </OldPart>
+              <EntryOpen
+                key={opened.id}
+                organizationId={organizationId}
+                entry={opened}
+                timeZone={timeZone}
+                canWrite={canWrite}
+                isCoordinator={access.isCoordinator}
+                back={toDiary}
+                onChange={upsertEntry}
+                onCorrect={() => {
+                  setCorrecting(opened.id);
+                  setView("diary_correct");
+                }}
+              />
             ) : null
           )}
+
+          {/* Kirje parandus samadel sammudel mis uus kirje. Osa on lehel, kuni parandus on pooleli (olek elab konksus). */}
+          {fixing
+            ? slot(
+                "diary_correct",
+                <EntryFlow
+                  key={`${opened.id}-${opened.revision}`}
+                  active={current === "diary_correct"}
+                  organizationId={organizationId}
+                  clientId={client.id}
+                  team={team}
+                  viewerMembershipId={access.membershipId}
+                  clientName={client.displayName}
+                  timeZone={timeZone}
+                  entry={opened}
+                  plan={data.plan}
+                  onSaved={(next) => {
+                    upsertEntry(next);
+                    setCorrecting("");
+                    setView("diary_item");
+                  }}
+                  onCancel={() => {
+                    setCorrecting("");
+                    setView("diary_item");
+                  }}
+                />
+              )
+            : null}
 
           {slot(
             "history_hits",

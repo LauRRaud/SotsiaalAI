@@ -24,8 +24,8 @@ export const DOOR_VIEWS = Object.freeze(["card", "no_answer", "handovers"]);
 /** Osa „Uus kirje" alavaated: kirjed, mis vormi ei vaja (kõne märkimine ja „Peaaegu juhtus"). */
 export const ENTRY_VIEWS = Object.freeze(["call", "near_miss"]);
 
-/** Osa „Päevik" alavaated: otsing, avatud kirje, tabamused varasemast ajaloost ja varasem ajalugu ise. */
-export const DIARY_VIEWS = Object.freeze(["diary_search", "diary_item", "history_hits", "history"]);
+/** Osa „Päevik" alavaated: otsing, avatud kirje, selle parandus, tabamused varasemast ajaloost ja varasem ajalugu ise. */
+export const DIARY_VIEWS = Object.freeze(["diary_search", "diary_item", "diary_correct", "history_hits", "history"]);
 
 /** Osa nime võti (plaadil ja kiirmenüüs). */
 const NAMES = Object.freeze({

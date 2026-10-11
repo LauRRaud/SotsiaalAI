@@ -95,7 +95,6 @@ export default function HomeCareIncidents({ context, initial, focused: initialFo
       timeZone={timeZone}
       canWrite={canWrite}
       isCoordinator
-      showClient
       onChange={onChange}
     />
   );

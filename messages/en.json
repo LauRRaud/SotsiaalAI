@@ -14077,7 +14077,6 @@
         "INCIDENT": "Incident",
         "CONCERN": "Concern for the coordinator"
       },
-      "contact_label": "Contact",
       "contact": {
         "VISIT": "Visit",
         "PHONE": "Phone",
@@ -15059,7 +15058,6 @@
     "visit": {
       "title": "What you did",
       "no_plan": "There is no care plan in force. You can add an activity from the organisation's catalogue.",
-      "mode_label": "How it was done: {name}",
       "modes": {
         "GUIDE": "did it themselves, I guided",
         "TOGETHER": "we did it together",
@@ -15069,7 +15067,6 @@
       "add_other": "Add another activity",
       "other_placeholder": "Choose an activity from the catalogue",
       "catalogue_done": "All activities of the catalogue are already in the list.",
-      "minutes_label": "Length of the visit in minutes (may be left empty)",
       "minutes_quick": "Quick choice of length",
       "minutes": "{minutes} min",
       "lasted": "the visit lasted {minutes} min",
@@ -15086,9 +15083,6 @@
         "NOT_NEEDED": "was not needed",
         "COULD_NOT": "could not be done"
       },
-      "skip": "not done",
-      "skip_label": "Not done: {name}",
-      "skip_reason_label": "Why it was not done: {name}",
       "reason_missing": "Choose why the activity was not done, or remove the mark.",
       "mark_rest": "Mark the rest as done ({count})",
       "reason_pick": "Choose the reason."
@@ -15648,7 +15642,6 @@
       "cancel": "Cancel"
     },
     "medication": {
-      "action_label": "{name}: what you did",
       "pick": "Choose what you did: reminding, seeing it taken and giving are different actions.",
       "missing": "Choose at the medication activity what you did.",
       "actions": {
@@ -16429,7 +16422,8 @@
       "back": "Back to the entry",
       "problems": {
         "incident_type": "Choose in the first step what happened.",
-        "text": "Write what you saw and did: this entry can be saved only with a text."
+        "text": "Write what you saw and did: this entry can be saved only with a text.",
+        "reason": "Write why you are correcting the entry."
       }
     },
     "diary": {
@@ -16440,7 +16434,11 @@
       "hits_count": "Passages: {count}",
       "hits_count_more": "Passages: more than {count}",
       "history_count": "Documents brought over: {count}",
-      "history_none": "No earlier diary has been brought over"
+      "history_none": "No earlier diary has been brought over",
+      "to_trail": "Back to the trail",
+      "retract_confirm": "Confirm the retraction",
+      "retract_note": "The text of a retracted entry is no longer shown in the diary. Press again if you are sure.",
+      "retract_reason_missing": "Write why you are retracting the entry."
     }
   },
   "stage": {
