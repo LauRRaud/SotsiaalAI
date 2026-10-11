@@ -1,0 +1,299 @@
+{
+  "reviewedCommit": "ca5970f9",
+  "paidCallsThisReview": 0,
+  "reviewedPaidReceipts": 362,
+  "currentNanoUsd": 335901185,
+  "priorNanoUsd": 30712790,
+  "cumulativeNanoUsd": 366613975,
+  "sameCandidateTextHashLists": 0,
+  "groups": [
+    {
+      "role": "all",
+      "before": {
+        "turns": 15,
+        "rerankInput": 265285,
+        "rerankInputNanoUsd": 29102875,
+        "cacheRead": 35275,
+        "cacheWrite": 229965,
+        "totalNanoUsd": 58421465,
+        "answerP50ms": 26064,
+        "answerP95ms": 40461,
+        "sameInputWithoutCacheNanoUsd": 26528500,
+        "sameInputWithoutCacheDeltaPercent": -8.845775546230394
+      },
+      "after": {
+        "turns": 15,
+        "rerankInput": 270466,
+        "rerankInputNanoUsd": 27046600,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "totalNanoUsd": 56294090,
+        "answerP50ms": 22988,
+        "answerP95ms": 43813,
+        "sameInputWithoutCacheNanoUsd": 27046600,
+        "sameInputWithoutCacheDeltaPercent": 0
+      },
+      "observedInputPriceDeltaPercent": -7.065539057567339,
+      "observedTotalPriceDeltaPercent": -3.641426999476993
+    },
+    {
+      "role": "CLIENT",
+      "before": {
+        "turns": 5,
+        "rerankInput": 92181,
+        "rerankInputNanoUsd": 11522250,
+        "cacheRead": 0,
+        "cacheWrite": 92166,
+        "totalNanoUsd": 22229415,
+        "answerP50ms": 29070,
+        "answerP95ms": 39280,
+        "sameInputWithoutCacheNanoUsd": 9218100,
+        "sameInputWithoutCacheDeltaPercent": -19.99739634186032
+      },
+      "after": {
+        "turns": 5,
+        "rerankInput": 91273,
+        "rerankInputNanoUsd": 9127300,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "totalNanoUsd": 19316710,
+        "answerP50ms": 37542,
+        "answerP95ms": 43813,
+        "sameInputWithoutCacheNanoUsd": 9127300,
+        "sameInputWithoutCacheDeltaPercent": 0
+      },
+      "observedInputPriceDeltaPercent": -20.785436872138686,
+      "observedTotalPriceDeltaPercent": -13.1029314086763
+    },
+    {
+      "role": "SOCIAL_WORKER",
+      "before": {
+        "turns": 5,
+        "rerankInput": 85666,
+        "rerankInputNanoUsd": 8717455,
+        "cacheRead": 17308,
+        "cacheWrite": 68343,
+        "totalNanoUsd": 18836820,
+        "answerP50ms": 32560,
+        "answerP95ms": 40461,
+        "sameInputWithoutCacheNanoUsd": 8566600,
+        "sameInputWithoutCacheDeltaPercent": -1.7304935901590546
+      },
+      "after": {
+        "turns": 5,
+        "rerankInput": 90868,
+        "rerankInputNanoUsd": 9086800,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "totalNanoUsd": 18634445,
+        "answerP50ms": 21019,
+        "answerP95ms": 25021,
+        "sameInputWithoutCacheNanoUsd": 9086800,
+        "sameInputWithoutCacheDeltaPercent": 0
+      },
+      "observedInputPriceDeltaPercent": 4.23684435422953,
+      "observedTotalPriceDeltaPercent": -1.0743586231646285
+    },
+    {
+      "role": "SERVICE_PROVIDER",
+      "before": {
+        "turns": 5,
+        "rerankInput": 87438,
+        "rerankInputNanoUsd": 8863170,
+        "cacheRead": 17967,
+        "cacheWrite": 69456,
+        "totalNanoUsd": 17355230,
+        "answerP50ms": 24060,
+        "answerP95ms": 25951,
+        "sameInputWithoutCacheNanoUsd": 8743800,
+        "sameInputWithoutCacheDeltaPercent": -1.3468093244290658
+      },
+      "after": {
+        "turns": 5,
+        "rerankInput": 88325,
+        "rerankInputNanoUsd": 8832500,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "totalNanoUsd": 18342935,
+        "answerP50ms": 22348,
+        "answerP95ms": 23824,
+        "sameInputWithoutCacheNanoUsd": 8832500,
+        "sameInputWithoutCacheDeltaPercent": 0
+      },
+      "observedInputPriceDeltaPercent": -0.3460387197808501,
+      "observedTotalPriceDeltaPercent": 5.6911086744456885
+    }
+  ],
+  "fixedInputTurns": [
+    {
+      "role": "CLIENT",
+      "scenario": "relative-support-person",
+      "turnIndex": 0,
+      "measuredInputNanoUsd": 2246175,
+      "counterfactualUncachedInputNanoUsd": 1797000,
+      "deltaPercent": -19.99732879228021
+    },
+    {
+      "role": "CLIENT",
+      "scenario": "version-change",
+      "turnIndex": 0,
+      "measuredInputNanoUsd": 2163800,
+      "counterfactualUncachedInputNanoUsd": 1731100,
+      "deltaPercent": -19.99722710047139
+    },
+    {
+      "role": "CLIENT",
+      "scenario": "home-care-dialogue",
+      "turnIndex": 0,
+      "measuredInputNanoUsd": 2362175,
+      "counterfactualUncachedInputNanoUsd": 1889800,
+      "deltaPercent": -19.997459968037933
+    },
+    {
+      "role": "CLIENT",
+      "scenario": "home-care-dialogue",
+      "turnIndex": 1,
+      "measuredInputNanoUsd": 2587550,
+      "counterfactualUncachedInputNanoUsd": 2070100,
+      "deltaPercent": -19.997681204227934
+    },
+    {
+      "role": "CLIENT",
+      "scenario": "work-wellbeing-research",
+      "turnIndex": 0,
+      "measuredInputNanoUsd": 2162550,
+      "counterfactualUncachedInputNanoUsd": 1730100,
+      "deltaPercent": -19.997225497676354
+    },
+    {
+      "role": "SOCIAL_WORKER",
+      "scenario": "relative-support-person",
+      "turnIndex": 0,
+      "measuredInputNanoUsd": 2170925,
+      "counterfactualUncachedInputNanoUsd": 1736800,
+      "deltaPercent": -19.997236201158497
+    },
+    {
+      "role": "SOCIAL_WORKER",
+      "scenario": "version-change",
+      "turnIndex": 0,
+      "measuredInputNanoUsd": 173380,
+      "counterfactualUncachedInputNanoUsd": 1731100,
+      "deltaPercent": 898.4427269581266
+    },
+    {
+      "role": "SOCIAL_WORKER",
+      "scenario": "home-care-dialogue",
+      "turnIndex": 0,
+      "measuredInputNanoUsd": 2336425,
+      "counterfactualUncachedInputNanoUsd": 1869200,
+      "deltaPercent": -19.99743197406294
+    },
+    {
+      "role": "SOCIAL_WORKER",
+      "scenario": "home-care-dialogue",
+      "turnIndex": 1,
+      "measuredInputNanoUsd": 1936800,
+      "counterfactualUncachedInputNanoUsd": 1549500,
+      "deltaPercent": -19.99690210656754
+    },
+    {
+      "role": "SOCIAL_WORKER",
+      "scenario": "work-wellbeing-research",
+      "turnIndex": 0,
+      "measuredInputNanoUsd": 2099925,
+      "counterfactualUncachedInputNanoUsd": 1680000,
+      "deltaPercent": -19.997142755098395
+    },
+    {
+      "role": "SERVICE_PROVIDER",
+      "scenario": "relative-support-person",
+      "turnIndex": 0,
+      "measuredInputNanoUsd": 179970,
+      "counterfactualUncachedInputNanoUsd": 1797000,
+      "deltaPercent": 898.4997499583263
+    },
+    {
+      "role": "SERVICE_PROVIDER",
+      "scenario": "version-change",
+      "turnIndex": 0,
+      "measuredInputNanoUsd": 2128175,
+      "counterfactualUncachedInputNanoUsd": 1702600,
+      "deltaPercent": -19.997180682979543
+    },
+    {
+      "role": "SERVICE_PROVIDER",
+      "scenario": "home-care-dialogue",
+      "turnIndex": 0,
+      "measuredInputNanoUsd": 2023550,
+      "counterfactualUncachedInputNanoUsd": 1618900,
+      "deltaPercent": -19.997034913888957
+    },
+    {
+      "role": "SERVICE_PROVIDER",
+      "scenario": "home-care-dialogue",
+      "turnIndex": 1,
+      "measuredInputNanoUsd": 2448925,
+      "counterfactualUncachedInputNanoUsd": 1959200,
+      "deltaPercent": -19.997549945384197
+    },
+    {
+      "role": "SERVICE_PROVIDER",
+      "scenario": "work-wellbeing-research",
+      "turnIndex": 0,
+      "measuredInputNanoUsd": 2082550,
+      "counterfactualUncachedInputNanoUsd": 1666100,
+      "deltaPercent": -19.997118916712687
+    }
+  ],
+  "quality": {
+    "specialistSelfReferral": true,
+    "providerNeedFactBefore": true,
+    "providerNeedFactAfter": false,
+    "providerStateDrops": [
+      {
+        "kind": "new_fact",
+        "person": "üksi elav eakas",
+        "reason": "fact_not_quoted"
+      },
+      {
+        "kind": "needs",
+        "reason": "needs_based_on"
+      },
+      {
+        "kind": "needs",
+        "reason": "needs_based_on"
+      }
+    ],
+    "providerNeedsBefore": 1,
+    "providerNeedsAfter": 0,
+    "clientFeeAccessSafeguardBefore": true,
+    "clientFeeAccessSafeguardAfter": false,
+    "note": "These are observed coverage/state differences, not proof that cache policy caused them. No complete entailment score."
+  },
+  "raw": {
+    "status": "passed",
+    "rawFileHashes": 6,
+    "moduleMatches": [
+      "lib/rag-v2/pilot/search-assist.js",
+      "lib/rag-v2/pilot/rerank-cache.js",
+      "lib/rag-v2/pilot/service.js"
+    ],
+    "verifiedRequests": 15,
+    "verifiedCitedEvidence": 167,
+    "legalXml": [
+      {
+        "act": "404072025051",
+        "url": "https://www.riigiteataja.ee/et/akt/404072025051.xml",
+        "sha256": "d9258a18f085bd60867caae3cfd159cd40214f756b9fbda7f6394560379dbf2f",
+        "terminologyHeadingPresent": false
+      },
+      {
+        "act": "403102026022",
+        "url": "https://www.riigiteataja.ee/et/akt/403102026022.xml",
+        "sha256": "a643610c14ad71bc5ef90f2e12ceb70d7c684fcf20b21e5d6f215b1b21619b33",
+        "terminologyHeadingPresent": true
+      }
+    ]
+  }
+}

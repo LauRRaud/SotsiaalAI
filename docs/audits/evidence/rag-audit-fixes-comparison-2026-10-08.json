@@ -1,0 +1,243 @@
+{
+  "trials": [
+    {
+      "phase": "audit-fixes",
+      "turns": 15,
+      "completed": 14,
+      "input": 549360,
+      "output": 16268,
+      "cacheRead": 147142,
+      "cacheWrite": 400971,
+      "nanoUsd": 59884855,
+      "rerankInput": 271786,
+      "rerankInputNanoUsd": 29971735,
+      "answeredP50ms": 22972,
+      "answeredP95ms": 41355,
+      "errors": [
+        {
+          "role": "SOCIAL_WORKER",
+          "scenario": "version-change",
+          "error": "invalid_answer_reference"
+        }
+      ]
+    },
+    {
+      "phase": "audit-fixes-final",
+      "turns": 15,
+      "completed": 15,
+      "input": 552549,
+      "output": 15247,
+      "cacheRead": 67353,
+      "cacheWrite": 483918,
+      "nanoUsd": 68948870,
+      "rerankInput": 271111,
+      "rerankInputNanoUsd": 29710835,
+      "answeredP50ms": 24388,
+      "answeredP95ms": 36887,
+      "errors": []
+    },
+    {
+      "phase": "audit-fixes-role-last",
+      "turns": 15,
+      "completed": 15,
+      "input": 581840,
+      "output": 19238,
+      "cacheRead": 105546,
+      "cacheWrite": 473095,
+      "nanoUsd": 70165405,
+      "rerankInput": 275194,
+      "rerankInputNanoUsd": 28431810,
+      "answeredP50ms": 24272,
+      "answeredP95ms": 40768,
+      "errors": []
+    },
+    {
+      "phase": "audit-fixes-formal-rules",
+      "turns": 15,
+      "completed": 15,
+      "input": 572261,
+      "output": 18338,
+      "cacheRead": 149555,
+      "cacheWrite": 419397,
+      "nanoUsd": 63457545,
+      "rerankInput": 277284,
+      "rerankInputNanoUsd": 30658985,
+      "answeredP50ms": 26017,
+      "answeredP95ms": 36976,
+      "errors": []
+    }
+  ],
+  "receipts": 240,
+  "citations": 312,
+  "cumulativeNanoUsd": 629070650,
+  "comparison": [
+    {
+      "role": "all",
+      "baseline": {
+        "turns": 15,
+        "completed": 15,
+        "input": 544657,
+        "output": 18244,
+        "cacheRead": 163347,
+        "cacheWrite": 380051,
+        "nanoUsd": 58421465,
+        "rerankInput": 265285,
+        "rerankInputNanoUsd": 29102875,
+        "answeredP50ms": 26064,
+        "answeredP95ms": 40461
+      },
+      "previousCandidate": {
+        "turns": 15,
+        "completed": 15,
+        "input": 558097,
+        "output": 16036,
+        "cacheRead": 128072,
+        "cacheWrite": 158240,
+        "nanoUsd": 56294090,
+        "rerankInput": 270466,
+        "rerankInputNanoUsd": 27046600,
+        "answeredP50ms": 22988,
+        "answeredP95ms": 43813
+      },
+      "fixes": {
+        "turns": 15,
+        "completed": 15,
+        "input": 572261,
+        "output": 18338,
+        "cacheRead": 149555,
+        "cacheWrite": 419397,
+        "nanoUsd": 63457545,
+        "rerankInput": 277284,
+        "rerankInputNanoUsd": 30658985,
+        "answeredP50ms": 26017,
+        "answeredP95ms": 36976
+      }
+    },
+    {
+      "role": "CLIENT",
+      "baseline": {
+        "turns": 5,
+        "completed": 5,
+        "input": 189618,
+        "output": 5469,
+        "cacheRead": 36592,
+        "cacheWrite": 152607,
+        "nanoUsd": 22229415,
+        "rerankInput": 92181,
+        "rerankInputNanoUsd": 11522250,
+        "answeredP50ms": 29070,
+        "answeredP95ms": 39280
+      },
+      "previousCandidate": {
+        "turns": 5,
+        "completed": 5,
+        "input": 186357,
+        "output": 5022,
+        "cacheRead": 36592,
+        "cacheWrite": 58114,
+        "nanoUsd": 19316710,
+        "rerankInput": 91273,
+        "rerankInputNanoUsd": 9127300,
+        "answeredP50ms": 37542,
+        "answeredP95ms": 43813
+      },
+      "fixes": {
+        "turns": 5,
+        "completed": 5,
+        "input": 201746,
+        "output": 6102,
+        "cacheRead": 37277,
+        "cacheWrite": 163632,
+        "nanoUsd": 23972480,
+        "rerankInput": 92328,
+        "rerankInputNanoUsd": 11540625,
+        "answeredP50ms": 35212,
+        "answeredP95ms": 36976
+      }
+    },
+    {
+      "role": "SOCIAL_WORKER",
+      "baseline": {
+        "turns": 5,
+        "completed": 5,
+        "input": 183120,
+        "output": 6393,
+        "cacheRead": 63048,
+        "cacheWrite": 119634,
+        "nanoUsd": 18836820,
+        "rerankInput": 85666,
+        "rerankInputNanoUsd": 8717455,
+        "answeredP50ms": 32560,
+        "answeredP95ms": 40461
+      },
+      "previousCandidate": {
+        "turns": 5,
+        "completed": 5,
+        "input": 186818,
+        "output": 5625,
+        "cacheRead": 45740,
+        "cacheWrite": 49731,
+        "nanoUsd": 18634445,
+        "rerankInput": 90868,
+        "rerankInputNanoUsd": 9086800,
+        "answeredP50ms": 21019,
+        "answeredP95ms": 25021
+      },
+      "fixes": {
+        "turns": 5,
+        "completed": 5,
+        "input": 190194,
+        "output": 6401,
+        "cacheRead": 63870,
+        "cacheWrite": 124895,
+        "nanoUsd": 19606695,
+        "rerankInput": 93061,
+        "rerankInputNanoUsd": 9632055,
+        "answeredP50ms": 24412,
+        "answeredP95ms": 30805
+      }
+    },
+    {
+      "role": "SERVICE_PROVIDER",
+      "baseline": {
+        "turns": 5,
+        "completed": 5,
+        "input": 171919,
+        "output": 6382,
+        "cacheRead": 63707,
+        "cacheWrite": 107810,
+        "nanoUsd": 17355230,
+        "rerankInput": 87438,
+        "rerankInputNanoUsd": 8863170,
+        "answeredP50ms": 24060,
+        "answeredP95ms": 25951
+      },
+      "previousCandidate": {
+        "turns": 5,
+        "completed": 5,
+        "input": 184922,
+        "output": 5389,
+        "cacheRead": 45740,
+        "cacheWrite": 50395,
+        "nanoUsd": 18342935,
+        "rerankInput": 88325,
+        "rerankInputNanoUsd": 8832500,
+        "answeredP50ms": 22348,
+        "answeredP95ms": 23824
+      },
+      "fixes": {
+        "turns": 5,
+        "completed": 5,
+        "input": 180321,
+        "output": 5835,
+        "cacheRead": 48408,
+        "cacheWrite": 130870,
+        "nanoUsd": 19878370,
+        "rerankInput": 91895,
+        "rerankInputNanoUsd": 9486305,
+        "answeredP50ms": 21607,
+        "answeredP95ms": 27061
+      }
+    }
+  ]
+}
