@@ -9,6 +9,7 @@ import {
   upsertServiceProviderProfileForOwner
 } from "@/lib/serviceProviderProfiles";
 import { safeError } from "@/lib/privacy/safeError";
+import { announceProfilePublished, readPublicationStatus } from "@/lib/serviceProviderProfileNotices";
 import {
   consumeServiceProviderProfileRateLimit,
   normalizeIdempotencyKey,
@@ -110,11 +111,14 @@ export async function PUT(request) {
       });
     }
     const body = await request.json().catch(() => ({}));
+    /* Olek enne salvestust: avaldamise teade läheb ainult siis, kui profiil just nüüd avaldus. */
+    const previousStatus = await readPublicationStatus(auth.userId);
     const profile = await upsertServiceProviderProfileForOwner(auth.userId, body, {
       actorUserId: auth.userId,
       correlationId,
       idempotencyKey
     });
+    await announceProfilePublished({ previousStatus, profile, locale });
     return json({
       ok: true,
       profile: serializeServiceProviderProfile(profile, { includeAvailabilityOperations: true })

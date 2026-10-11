@@ -6520,6 +6520,23 @@
       "subject": "Sotsiaal.pro: kinnitage oma asutuse teenuseprofiil",
       "text": "Tere\n\nSotsiaal.pro kasutaja soovib avaldada teenuseprofiili asutuse „{organizationName}” (registrikood {registryCode}) nime all. Kiri tuli sellele aadressile, sest see on äriregistris selle asutuse kontaktina kirjas.\n\nKui teenuseprofiil on teie asutuse oma, avage link ja kinnitage. Link tuleb avada selle Sotsiaal.pro kontoga sisse logituna, millega profiil tehti:\n{confirmUrl}\n\nLink kehtib {days} päeva.\n\nKui teie asutus ei ole teenuseprofiili teinud, ärge linki avage ega saatke seda kellelegi edasi: ilma kinnituseta profiili ei avaldata. Sellest kirjast võite teada anda aadressil info@sotsiaal.pro.\n\nSotsiaal.pro",
       "html": "<div style=\"font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1a1a1a;line-height:1.55\"><p>Tere</p><p>Sotsiaal.pro kasutaja soovib avaldada teenuseprofiili asutuse „{organizationName}” (registrikood {registryCode}) nime all. Kiri tuli sellele aadressile, sest see on äriregistris selle asutuse kontaktina kirjas.</p><p>Kui teenuseprofiil on teie asutuse oma, vajutage nuppu ja kinnitage. Link tuleb avada selle Sotsiaal.pro kontoga sisse logituna, millega profiil tehti.</p><p style=\"margin:24px 0\"><a href=\"{confirmUrl}\" style=\"display:inline-block;background-color:#4d4d4d;background-color:rgba(26,26,26,0.78);background-image:linear-gradient(180deg,rgba(255,255,255,0.20) 0%,rgba(255,255,255,0.05) 45%,rgba(255,255,255,0) 100%);color:#f7f7f7;text-decoration:none;padding:14px 34px;border:1px solid rgba(255,255,255,0.30);border-radius:14px;font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-weight:500;font-size:19px;letter-spacing:.04em;box-shadow:0 6px 18px rgba(26,26,26,0.18)\">AVA KINNITAMINE</a></p><p>Link kehtib {days} päeva.</p><p style=\"color:#888888;font-size:13px\">Kui teie asutus ei ole teenuseprofiili teinud, ärge linki avage ega saatke seda kellelegi edasi: ilma kinnituseta profiili ei avaldata. Sellest kirjast võite teada anda aadressil info@sotsiaal.pro.</p></div>"
+    },
+    "service_profile_notice": {
+      "confirmed_by_admin": {
+        "subject": "Sotsiaal.pro: teie asutuse teenuseprofiili tegija on kinnitatud",
+        "text": "Tere\n\nSotsiaal.pro haldur kinnitas, et üks Sotsiaal.pro kasutaja esindab asutust „{organizationName}” (registrikood {registryCode}). See kasutaja saab nüüd avaldada platvormil teie asutuse teenuseprofiili. Kiri tuli sellele aadressile, sest see on teenuseprofiilile kontaktiks märgitud ja äriregistris teie asutuse kontaktina kirjas.\n\nKui teenuseprofiil on teie asutuse oma, ei ole vaja midagi teha.\n\nKui teie asutus ei ole teenuseprofiili teinud, andke sellest teada aadressil info@sotsiaal.pro: võtame kinnituse tagasi ja peidame profiili.\n\nSotsiaal.pro",
+        "html": "<div style=\"font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1a1a1a;line-height:1.55\"><p>Tere</p><p>Sotsiaal.pro haldur kinnitas, et üks Sotsiaal.pro kasutaja esindab asutust „{organizationName}” (registrikood {registryCode}). See kasutaja saab nüüd avaldada platvormil teie asutuse teenuseprofiili. Kiri tuli sellele aadressile, sest see on teenuseprofiilile kontaktiks märgitud ja äriregistris teie asutuse kontaktina kirjas.</p><p>Kui teenuseprofiil on teie asutuse oma, ei ole vaja midagi teha.</p><p style=\"color:#888888;font-size:13px\">Kui teie asutus ei ole teenuseprofiili teinud, andke sellest teada aadressil info@sotsiaal.pro: võtame kinnituse tagasi ja peidame profiili.</p></div>"
+      },
+      "revoked": {
+        "subject": "Sotsiaal.pro: teie asutuse teenuseprofiili kinnitus võeti tagasi",
+        "text": "Tere\n\nSotsiaal.pro haldur võttis tagasi kinnituse, et Sotsiaal.pro kasutaja esindab asutust „{organizationName}” (registrikood {registryCode}). Kui teie asutuse teenuseprofiil oli avaldatud, on see nüüd peidetud ja seda ei saa enne uut kinnitust uuesti avaldada. Kiri tuli sellele aadressile, sest see on teenuseprofiilile kontaktiks märgitud ja äriregistris teie asutuse kontaktina kirjas.\n\nKui teil on küsimusi, kirjutage aadressil info@sotsiaal.pro.\n\nSotsiaal.pro",
+        "html": "<div style=\"font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1a1a1a;line-height:1.55\"><p>Tere</p><p>Sotsiaal.pro haldur võttis tagasi kinnituse, et Sotsiaal.pro kasutaja esindab asutust „{organizationName}” (registrikood {registryCode}). Kui teie asutuse teenuseprofiil oli avaldatud, on see nüüd peidetud ja seda ei saa enne uut kinnitust uuesti avaldada. Kiri tuli sellele aadressile, sest see on teenuseprofiilile kontaktiks märgitud ja äriregistris teie asutuse kontaktina kirjas.</p><p style=\"color:#888888;font-size:13px\">Kui teil on küsimusi, kirjutage aadressil info@sotsiaal.pro.</p></div>"
+      },
+      "published": {
+        "subject": "Sotsiaal.pro: teie asutuse teenuseprofiil on avaldatud",
+        "text": "Tere\n\nAsutuse „{organizationName}” (registrikood {registryCode}) teenuseprofiil on Sotsiaal.pro platvormil avaldatud. Kiri tuli sellele aadressile, sest see on teenuseprofiilile kontaktiks märgitud ja äriregistris teie asutuse kontaktina kirjas.\n\nKui teenuseprofiil on teie asutuse oma, ei ole vaja midagi teha.\n\nKui teie asutus ei ole teenuseprofiili teinud, andke sellest teada aadressil info@sotsiaal.pro: peidame profiili ja kontrollime, kes selle tegi.\n\nSotsiaal.pro",
+        "html": "<div style=\"font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1a1a1a;line-height:1.55\"><p>Tere</p><p>Asutuse „{organizationName}” (registrikood {registryCode}) teenuseprofiil on Sotsiaal.pro platvormil avaldatud. Kiri tuli sellele aadressile, sest see on teenuseprofiilile kontaktiks märgitud ja äriregistris teie asutuse kontaktina kirjas.</p><p>Kui teenuseprofiil on teie asutuse oma, ei ole vaja midagi teha.</p><p style=\"color:#888888;font-size:13px\">Kui teie asutus ei ole teenuseprofiili teinud, andke sellest teada aadressil info@sotsiaal.pro: peidame profiili ja kontrollime, kes selle tegi.</p></div>"
+      }
     }
   },
   "covision": {
@@ -7326,7 +7343,11 @@
       "home_care_obstacle_reported": "Hooldaja teatas takistusest",
       "home_care_change_noticed": "Hooldajad märkasid muutust",
       "home_care_transport_requested": "Hooldaja soovis kliendile transporti",
-      "home_care_talk_requested": "Töötaja soovib pärast erijuhtumit rääkida"
+      "home_care_talk_requested": "Töötaja soovib pärast erijuhtumit rääkida",
+      "service_representation_link_sent": "Kinnituslink saadeti asutuse e-postile: ava see kiri selle kontoga sisse logituna",
+      "service_representation_confirmed": "Asutus on kinnitatud: teenuseprofiili saab nüüd avaldada",
+      "service_representation_revoked": "Asutuse kinnitus võeti tagasi; avaldatud teenuseprofiil peideti",
+      "service_profile_published": "Sinu teenuseprofiil on avaldatud"
     },
     "center": {
       "title": "Teavitused",
