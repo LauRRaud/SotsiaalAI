@@ -69,6 +69,25 @@ Valikureegli sõnaloendisse lisandus 37 paari, mida reegel luges inimese nimeks,
 
 Vestlusplaan `/etc/sotsiaalai/m4-corpus-chat-20261011h.json`; järgmine alus põhikausta `tmp/rag-v2-codex-import/ship/policy.json`.
 
+## Järeltäiendus v85: teekonnalehed (11.10.2026)
+
+Teise tööriista korduskontroll salvestas uuesti kuus Töötukassa teekonnalehte, mis esimeses korjes olid tühjad (koondamine, töötuna registreerimine, tööotsing, töö ja tervis, noorte teenused, tervisepiiranguga inimese töötamise toetamine). Neid lugedes tuli välja **lugemise viga, mis puudutas ka kahte v84 lehte**: teekonnalehe korjes on lehe `<main>` ja selle kõrval sakid ning kokkuvolditud plokid, mille korje ükshaaval avas. Lehelugeja võttis sisupiirkonnaks `<main>` ja jättis kõrval seisva välja, nii et lehest jäi alles kümnendik (näiteks 74 sõna 852-st). Parandus: korjest lugedes tehakse Töötukassa lehe `<main>` tavaliseks plokiks ja piirkonnaks on kogu salvestatud artikkel. Kõik 138 lehte loeti uuesti: 136 on bait-baidilt samad, kaks muutusid („Töö kaotamine“ 158 → 1 023 sõna, „Töötaja leidmine ja koolitamine“ 73 → 930).
+
+Teekonnalehed koosnevad samadest lühikestest plokkidest samade hüvitiste ja teenuste kohta, igaüks omas järjekorras: „Koondamine“ ja „Töötuna registreerimine“ ei sisalda midagi oma (7 ja 9 oma sõna 850-st). Seepärast (`tools/dedupe-journeys.mjs`):
+
+- sisse jäid neli lehte, millel on oma sisu: töö kaotamine, tööotsing, töö ja tervis, töötaja leidmine ja koolitamine;
+- plokk, mis seisab juba varasemal sisse jäänud lehel, võeti hilisemalt välja (111 plokki), et sama lõik ei oleks kogus neli korda;
+- välja jäid koondamise ja töötuna registreerimise teekonnaleht (teenuste lehed samal teemal on kogus) ning kaks lühikest sissejuhatavat lehte (46 ja 53 sõna).
+
+Sisse läks 4 lehte (2 471 sõna): kaks uut ja kaks v84 lehe uut versiooni.
+
+| Käik | Sisendeid ostetud | Märke | Hind | Indeks | Dokumente kokku | Lõike kokku |
+|---|---:|---:|---:|---|---:|---:|
+| v85 | 73 | 9 254 | 0,0012 USD | `0695a9a9` | 10 571 | 93 471 |
+
+**Tasuta otsingukontroll pärast v84** (33 kontrollküsimust, v77 alus; vahepeal lisandusid ka v83 õigusartiklid ja ADR-145 kood): vigu 0, ükski otsustav lõik ei kadunud, kolm tõusis ettepoole, üks langes ühe koha võrra (8. kohalt 9. kohale 36 kandidaadi seas; küsimus tugiisikust, kes on sugulane), 25 küsimuses vahetus mõni kandidaat.
+
+Järgmine alus: põhikausta `tmp/rag-v2-codex-import/ship-v85/policy.json`.
 ## Kus lehed on
 
 - Töötukassa: `Andmebaasi/register/web_pages_tootukassa.json` (131 lehte, ei ole igakuises uuenduses).
@@ -78,7 +97,7 @@ Vestlusplaan `/etc/sotsiaalai/m4-corpus-chat-20261011h.json`; järgmine alus põ
 ## Lahtine
 
 - Töötukassa lehtede värskus. Teine tööriist tegi samal päeval korduskontrolli skripti (`scripts/check-tootukassa-updates.mjs` põhikaustas, veel hoidlasse panemata): see avab lehed brauseris uuesti, võrdleb teksti ja linke eelmise korjega ning kirjutab muutused eraldi kausta. Tööjaotus: korduskontrolli käivitab omanik või teine tööriist; muutunud lehed loetakse siis sama lugejaga nagu siin ja lähevad täiendusse. Ajastust ei ole. Kirja mustand Töötukassale (luba lugeda kord kuus) on omanikul.
-- Kuus Töötukassa teekonnalehte, mis jäid esimeses korjes tühjaks, on korduskontroll uuesti salvestanud (`Andmebaasi/Töötukassa/kontroll-teekonnad-2026-10-11-v2/`); need ei ole veel kogus.
+- ~~Kuus Töötukassa teekonnalehte, mis jäid esimeses korjes tühjaks.~~ Sees alates v85 (vt järeltäiendus).
 - Töötukassa 38 muudatuste uudist ja manuste hulgas olevad juhendid: omaniku otsus.
 - Käsitsi sammuga muudetud ühingute lehed ei ole igakuises uuenduses.
 - Vastuseid nende lehtede pealt ei ole selle otsuse kirjutamise ajal mudeliga mõõdetud.
