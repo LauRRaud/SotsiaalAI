@@ -1250,6 +1250,18 @@ export function useChatStream(config) {
           cfg.setErrorBanner?.(tr("chat.error.subscription_required_profile"));
           return false;
         }
+        /* Ruum jäi ainult loetavaks sel ajal, kui aken oli lahti (omanik arhiveeris või asutus
+           lõpetas töö): laeme ruumi uuesti, et aken näitaks põhjust ruumi kohal ja lukustaks
+           kirjutuskasti. Kirjutatud tekst jääb kasti alles. Üldine veateade jääb ekraanile
+           ainult siis, kui uuesti laadimine ei õnnestu: kaks eri sõnastusega selgitust korraga
+           on halvem kui üks. */
+        if (res.status === 409 && data?.messageKey === "api.rooms.archived_readonly") {
+          cfg.setErrorBanner?.(tr("api.rooms.archived_readonly"));
+          if (cfg.onRoomReadOnly) {
+            Promise.resolve(cfg.onRoomReadOnly()).then(() => cfg.setErrorBanner?.(null)).catch(() => {});
+          }
+          return false;
+        }
         if (!res.ok || data?.ok === false) {
           throw createLocalizedError("chat.room.send_error");
         }

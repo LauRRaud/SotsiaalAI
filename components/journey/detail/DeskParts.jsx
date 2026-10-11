@@ -452,6 +452,15 @@ export function SentPart({ t, journey, hrefOf, more, error, related, onShare }) 
               const state = linkedState(item);
               const topic = String(item?.topic || "").trim() || t("journey.related.pre_inquiry_untitled");
               const href = hrefOf(item);
+              /* Asutus on töö lõpetanud: pöördumise ruum on ainult loetav, seega peab see olema
+                 näha juba siit, mitte alles ruumis. See on rea värskeim seis ja tuleb viimase
+                 vastuse kuupäeva asemele: mõlemad korraga ei mahu telefonis ühele reale (mõõdetud
+                 390 px laiuses) ja märk „saaja on vastanud" jääb reale niikuinii. */
+              const when = item?.workClosedAt
+                ? t("journey.related.work_closed", { date: dayOf(item.workClosedAt) })
+                : item?.lastReplyAt
+                  ? t("journey.related.last_reply", { date: dayOf(item.lastReplyAt) })
+                  : "";
               return (
                 <li key={item.id} className={shared.rowItem}>
                   {/* Tavaline link (terve lehe laadimine), nagu vanal lehel: pöördumiste
@@ -459,7 +468,7 @@ export function SentPart({ t, journey, hrefOf, more, error, related, onShare }) 
                   <a className={shared.row} href={href} aria-label={t("journey.desk.sent.open_named", { title: topic })}>
                     <span className={shared.rowMain}>
                       <span className={shared.rowTitle}>{topic}</span>
-                      {item?.lastReplyAt ? <span className={shared.rowSub}>{t("journey.related.last_reply", { date: dayOf(item.lastReplyAt) })}</span> : null}
+                      {when ? <span className={shared.rowSub}>{when}</span> : null}
                     </span>
                     <span className={shared.rowMeta}>
                       <Chip tone={state === "ANSWERED" ? "wait" : undefined}>{t(`journey.related.pre_inquiry_state.${state}`, "")}</Chip>

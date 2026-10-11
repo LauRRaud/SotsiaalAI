@@ -3335,8 +3335,13 @@ lehelt vestlusruumi ja vastab; pöörduja Teekond näitab siis „Saaja on vasta
 pöörduja ruumide loendis. Ruumis on pöörduja ja see üks töötaja: koordinaator, kes ei ole
 vastutaja, ja teised asutuse liikmed vestlust ei näe. Töö üleandmisel lahkub senine vastutaja
 ruumist kohe ja uus vastutaja näeb pärast töö vastuvõtmist ka varasemat vestlust (omaniku
-otsus 11.10.2026). Töö sulgemisel lõpeb töötaja ligipääs; ruum ja vestluse ajalugu jäävad
-pöördujale. Asutus näeb endiselt ainult pöörduja kinnitatud paketti, mitte tema Teekonda.
+otsus 11.10.2026). Töö sulgemisel (suletud või tagasi lükatud) lõpeb töötaja ligipääs ja ruum
+jääb kõigile ainult loetavaks (omaniku teine otsus 11.10.2026): vestluse ajalugu jääb
+pöördujale ja tema kutsutud liikmele loetavaks, uut sõnumit kirjutada ei saa. Vestlusaken
+ütleb ruumi kohal, et asutus on töö lõpetanud, ja Teekonna rida näitab „asutus lõpetas töö"
+koos kuupäevaga. Suletud tööd uuesti ei avata: kui pöörduja vajab veel abi, saadab ta uue
+pöördumise, mis on uus kirje laual ja uus ruum. Asutus näeb endiselt ainult pöörduja
+kinnitatud paketti, mitte tema Teekonda.
 
 **Teenusekaart ja teenuseprofiil.**
 Teenusekaart näitab, millised sotsiaalteenused ja osutajad piirkonnas olemas on, kellele
@@ -3423,7 +3428,7 @@ toota nuppu, mis ei vii kuhugi.
 | Teenusekaart | kaart + kättesaadavus | loendivaade/klasterdamine; usaldusmärgistus — vajab MTR-kontrolli (vt tegemata) |
 | Abisoovid | kood valmis | kriitiline mass (kasutajad); match-nõusoleku tooteotsus; moderatsioonimudel |
 | Eelpöördumine | täisrada koodis | piloodis tõendamata — vajab KOV-partnerit |
-| Asutuse vastuvõtulaua vestlusruum | töötaja vastab pöördujale ühises ruumis; üleandmisel liigub vestlus uuele vastutajale | pöördujale ei öelda saatmisel ega ruumis, et asutuse poolel loeb vestlust töö vastutaja ja üleandmise järel järgmine (kujundus) · pärast töö sulgemist saab pöörduja ruumi edasi kirjutada, aga asutuse poolel ei loe seda keegi (omaniku otsus: kas ruum jääb siis ainult loetavaks) · üleandmise ja uue vastutaja vastuvõtmise vahel ei ole ruumis asutuse poolt kedagi · pöörduja saadetud pöördumise vaates ei ole ruumi avamise nuppu (kujundus) · päris saidil ei ole ühtegi asutust adressaadina, seega seal läbi mängimata |
+| Asutuse vastuvõtulaua vestlusruum | töötaja vastab pöördujale ühises ruumis; üleandmisel liigub vestlus uuele vastutajale; töö sulgemisel jääb ruum kõigile ainult loetavaks ja pöörduja näeb põhjust ruumis ja Teekonnal (11.10, kohalikult kahe kontoga läbi mängitud) | pöördujale ei öelda saatmisel ega ruumis, et asutuse poolel loeb vestlust töö vastutaja ja üleandmise järel järgmine (kujundus) · pöörduja ei saa teavitust, kui asutus töö lõpetab: ta näeb seda ruumis ja Teekonnal · „Minu eelpöördumised" ja pöördumise vaade ei ütle, et asutus on töö lõpetanud (kujundus; Teekonna real on väli `workClosedAt`) · ainult loetavas ruumis on kõne nupp alles, server keeldub lausega (kujundus) · üleandmise ja uue vastutaja vastuvõtmise vahel ei ole ruumis asutuse poolt kedagi · pöörduja saadetud pöördumise vaates ei ole ruumi avamise nuppu (kujundus) · päris saidil ei ole ühtegi asutust adressaadina, seega seal läbi mängimata |
 
 ### Tegemata
 

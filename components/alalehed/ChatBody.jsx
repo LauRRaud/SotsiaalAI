@@ -571,6 +571,7 @@ export default function ChatBody({
     roomRole,
     isHelpMatchRoom,
     roomOrigin,
+    roomReadOnlyReason,
     roomSummaryApprovals,
     reloadRoomMessages,
     sendToAssistant,
@@ -2307,6 +2308,7 @@ export default function ChatBody({
     roomId: effectiveRoomId,
     roomBlocked,
     roomAuthRequired,
+    onRoomReadOnly: reloadRoomMessages,
     sendToAssistant: allowAssistantForward ? sendToAssistant : false,
     onRoomMessageSent,
     onAssistantMessageCreated: handleAssistantMessageCreated,
@@ -3108,6 +3110,7 @@ export default function ChatBody({
       isRoomMode={isRoomMode}
       roomTitle={roomTitle}
       roomOrigin={roomOrigin}
+      roomReadOnlyReason={roomReadOnlyReason}
       hideRoomTitle={hideRoomTitle}
       allowAssistantForward={allowAssistantForward}
       isHelpMatchRoom={isHelpMatchRoom}

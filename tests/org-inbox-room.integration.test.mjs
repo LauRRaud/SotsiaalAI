@@ -1,20 +1,20 @@
 // Asutuse vastuvõtulaua pöördumise vestlusruum päris andmebaasis: töö vastu võtnud töötaja
 // avab ruumi ja vastab, pöörduja Teekond näitab vastust, üleandmisel liigub vestlus uuele
-// vastutajale ja sulgemisel lõpeb töötaja ligipääs.
+// vastutajale ja sulgemisel lõpeb töötaja ligipääs ning ruum jääb kõigile ainult loetavaks.
 //
 // Käivita isoleeritud proovibaasis:
 //   JOURNEY_TEST_DATABASE_URL=postgres://…/…_probe node --import ./scripts/register-node-source-loader.mjs --test tests/org-inbox-room.integration.test.mjs
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { randomUUID } from 'node:crypto';
+import { randomBytes } from 'node:crypto';
 import { PrismaClient } from '../generated/prisma/client.ts';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { getJourneyDetailForUser } from '../lib/journey/service.js';
 import { resolveOrgAccessContext } from '../lib/org/accessContext.js';
 import { assignWork, getInboxItem, handOverWork, respondToAssignment, transitionInboxItem } from '../lib/org/inbox.js';
 import { createPreInquiry, recallPreInquiry } from '../lib/preInquiries.js';
-import { resolveRoomAccess, ROOM_READ } from '../lib/rooms/accessGuard.js';
-import { ensureRoomForPreInquiry, findOrganizationInquiryForWorker } from '../lib/rooms/preInquiryRoom.js';
+import { resolveRoomAccess, ROOM_READ, ROOM_WRITE } from '../lib/rooms/accessGuard.js';
+import { ensureRoomForPreInquiry, findOrganizationInquiryForWorker, readRoomReadOnlyReason } from '../lib/rooms/preInquiryRoom.js';
 
 const url = new URL(process.env.JOURNEY_TEST_DATABASE_URL || 'postgres://invalid/invalid');
 if (!['localhost', '127.0.0.1'].includes(url.hostname) || !url.pathname.endsWith('_probe')) {
@@ -29,7 +29,9 @@ const START = new Date('2026-01-01T00:00:00Z');
 const noCalls = async () => null;
 
 async function seed(t) {
-  const tag = randomUUID().slice(0, 8);
+  /* Ainult tähed: asutuse nimi läheb pöördumise mustandisse ja numbritest koosnevat märgist
+     pidas isikuandmete kontroll telefoninumbriks (umbes iga kümnes jooks kukkus sellega). */
+  const tag = Array.from(randomBytes(8), (byte) => String.fromCharCode(97 + (byte % 26))).join('');
   const ids = [];
   const user = async (name, role) => {
     const row = await db.user.create({ data: { email: `ir-${tag}-${name}@example.invalid`, role, profile: { create: { firstName: name, lastName: 'Proov' } } } });
@@ -90,6 +92,17 @@ const activeMembers = async (roomId) =>
 const linkedState = async (world, inquiryId) =>
   (await getJourneyDetailForUser(world.applicant.id, world.journey.id, { db })).linkedPreInquiries.find((row) => row.id === inquiryId);
 const canRead = async (account, roomId) => (await resolveRoomAccess({ userId: account.id, userRole: account.role, roomId, intent: ROOM_READ, db })).ok;
+/* Kirjutamise värav, sama mille taga on ruumi sõnumid. Tellimus ei ole selle testi teema. */
+const write = (account, roomId) =>
+  resolveRoomAccess({ userId: account.id, userRole: account.role, roomId, intent: ROOM_WRITE, db, hasActiveSubscription: async () => true });
+const READ_ONLY = { ok: false, status: 409, message: 'api.rooms.archived_readonly' };
+const roomRow = (roomId) => db.room.findUnique({ where: { id: roomId }, select: { archivedAt: true, originType: true, originId: true } });
+const archiveAudits = (roomId) => db.dataAuditLog.findMany({ where: { action: 'ROOM_ARCHIVED', resourceId: roomId }, select: { actorUserId: true, meta: true } });
+/* Väline kõneteenus: test kirjutab üles, mis ruumi kõne lõpetati. */
+const callHooks = () => {
+  const ended = [];
+  return { ended, hooks: { endRoomCall: async (input) => ended.push(input), releaseFromCalls: noCalls } };
+};
 
 test('asutuse laud: vastutaja avab ruumi ja vastab, Teekond näitab vastust, üleandmisel liigub vestlus kaasa', async (t) => {
   const world = await seed(t);
@@ -160,13 +173,104 @@ test('asutuse laud: vastutaja avab ruumi ja vastab, Teekond näitab vastust, ül
   await refused(open(mari, inquiry.id), 403);
   assert.deepEqual((await getInboxItem(await ctx(jyri), item.id, { db })).room, { canOpen: true, id: room.id });
 
-  /* Sulgemine: Jüri ligipääs lõpeb, ruum ja vastus jäävad pöördujale. */
-  await transitionInboxItem(await ctx(coordinator), item.id, { toStatus: 'CLOSED' }, { db, releaseFromCalls: noCalls });
+  /* Enne sulgemist: ruumi saab kirjutada, Teekonna real sulgemise märget ei ole. Jüri jagas
+     ruumis kinnitatud kokkuvõtet (kandja `RoomSharedSummary`). */
+  assert.equal((await write(applicant, room.id)).ok, true);
+  assert.equal(await readRoomReadOnlyReason(await roomRow(room.id), { db }), null);
+  assert.equal('workClosedAt' in (await linkedState(world, inquiry.id)), false);
+  const summary = await db.roomSharedSummary.create({
+    data: { roomId: room.id, artifactId: `art-${inquiry.id}`, sharedByUserId: jyri.id, title: 'Kohtumise kokkuvõte', content: 'Leppisime kokku koduteenuse hindamise.' }
+  });
+
+  /* Sulgemine: Jüri ligipääs lõpeb ja ruum jääb kõigile ainult loetavaks. Ajalugu ja vastus
+     jäävad pöördujale. */
+  const closedAt = new Date();
+  const { ended, hooks } = callHooks();
+  await transitionInboxItem(await ctx(coordinator), item.id, { toStatus: 'CLOSED' }, { db, now: closedAt, ...hooks });
   assert.deepEqual(await activeMembers(room.id), [`${applicant.id}:OWNER`]);
   await refused(open(jyri, inquiry.id), 403);
+  assert.equal(await canRead(jyri, room.id), false);
   assert.deepEqual(await open(applicant, inquiry.id), { room, created: false });
   assert.equal(await canRead(applicant, room.id), true);
-  assert.equal((await linkedState(world, inquiry.id)).state, 'ANSWERED');
+  assert.deepEqual(await write(applicant, room.id), READ_ONLY);
+  assert.equal((await roomRow(room.id)).archivedAt.getTime(), closedAt.getTime());
+  assert.equal(await readRoomReadOnlyReason(await roomRow(room.id), { db }), 'ORG_WORK_CLOSED');
+  assert.equal(await db.roomMessage.count({ where: { roomId: room.id } }), 2);
+  assert.deepEqual(await archiveAudits(room.id), [{
+    actorUserId: coordinator.id,
+    meta: { title: 'Eelpöördumine: Koduteenus', originType: 'PRE_INQUIRY', reason: 'ORG_WORK_CLOSED' }
+  }]);
+  assert.deepEqual(ended, [{ roomId: room.id, actorUserId: coordinator.id }]);
+
+  /* Kokkuvõtte privaatkoopia sai pöörduja sulgemisega samas tehingus; jagajal on originaal. */
+  const copies = await db.roomSummaryCopy.findMany({ where: { roomSharedSummaryId: summary.id }, select: { userId: true, savedAnalysisId: true } });
+  assert.deepEqual(copies.map((row) => row.userId), [applicant.id]);
+  const copy = await db.savedAnalysis.findUnique({ where: { id: copies[0].savedAnalysisId }, select: { ownerId: true, content: true } });
+  assert.deepEqual(copy, { ownerId: applicant.id, content: 'Leppisime kokku koduteenuse hindamise.' });
+
+  /* Teekond ütleb pöördujale, et asutus on töö lõpetanud; vastus on endiselt näha. */
+  const closedRow = await linkedState(world, inquiry.id);
+  assert.deepEqual([closedRow.state, closedRow.replyCount, closedRow.workClosedAt], ['ANSWERED', 1, closedAt.toISOString()]);
+
+  /* Suletud tööd uuesti ei avata. Uus abivajadus on uus pöördumine: uus kirje laual, vana
+     ruum jääb suletuks ja uus ruum tekib alles uue töö vastuvõtmisel. */
+  await refused(transitionInboxItem(await ctx(coordinator), item.id, { toStatus: 'REVIEWING' }, { db, ...hooks }), 409);
+  await refused(assignWork(await ctx(coordinator), item.id, { assigneeMembershipId: memberships[mari.id].id }, { db }), 409);
+  const again = await send();
+  assert.notEqual(again.inquiry.id, inquiry.id);
+  assert.notEqual(again.item.id, item.id);
+  assert.equal(again.item.status, 'RECEIVED');
+  assert.equal('workClosedAt' in (await linkedState(world, again.inquiry.id)), false);
+  await refused(open(applicant, again.inquiry.id), 409);
+  assert.deepEqual(await write(applicant, room.id), READ_ONLY);
+  await getInboxItem(await ctx(coordinator), again.item.id, { db });
+  const third = await assignWork(await ctx(coordinator), again.item.id, { assigneeMembershipId: memberships[mari.id].id }, { db });
+  await respondToAssignment(await ctx(mari), third.id, { accept: true }, { db });
+  const fresh = await open(mari, again.inquiry.id);
+  assert.equal(fresh.created, true);
+  assert.notEqual(fresh.room.id, room.id);
+  assert.equal((await write(applicant, fresh.room.id)).ok, true);
+  /* Uue töö vastutaja ei saa vana, suletud vestlust. */
+  assert.equal(await canRead(mari, room.id), false);
+});
+
+test('asutuse laud: sulgemisel jääb ruum ainult loetavaks ka kutsutud kolmandale liikmele; ruumita sulgemine ei tee midagi', async (t) => {
+  const world = await seed(t);
+  const { applicant, coordinator, mari, member, memberships, send, ctx } = world;
+
+  /* Ruumiga töö: pöörduja kutsus ruumi kolmanda inimese (ruumide leht lubab omanikul kutsuda). */
+  const { inquiry, item } = await send();
+  await getInboxItem(await ctx(coordinator), item.id, { db });
+  const first = await assignWork(await ctx(coordinator), item.id, { assigneeMembershipId: memberships[mari.id].id }, { db });
+  await respondToAssignment(await ctx(mari), first.id, { accept: true }, { db });
+  const { room } = await open(mari, inquiry.id);
+  await db.roomMember.create({ data: { roomId: room.id, userId: member.id, role: 'MEMBER', billingSource: 'SELF' } });
+  assert.equal((await write(member, room.id)).ok, true);
+
+  const { ended, hooks } = callHooks();
+  await transitionInboxItem(await ctx(coordinator), item.id, { toStatus: 'CLOSED' }, { db, ...hooks });
+  assert.deepEqual(await activeMembers(room.id), [`${applicant.id}:OWNER`, `${member.id}:MEMBER`].sort());
+  for (const reader of [applicant, member]) {
+    assert.equal(await canRead(reader, room.id), true);
+    assert.deepEqual(await write(reader, room.id), READ_ONLY);
+  }
+  assert.equal(await canRead(mari, room.id), false);
+  assert.equal((await archiveAudits(room.id)).length, 1);
+  assert.deepEqual(ended, [{ roomId: room.id, actorUserId: coordinator.id }]);
+
+  /* Ruumita töö: sulgemine ei loo ruumi, ei arhiveeri midagi ega kutsu kõneteenust. Teekond
+     näitab sulgemist ikka. */
+  const other = await send();
+  await getInboxItem(await ctx(coordinator), other.item.id, { db });
+  const second = await assignWork(await ctx(coordinator), other.item.id, { assigneeMembershipId: memberships[mari.id].id }, { db });
+  await respondToAssignment(await ctx(mari), second.id, { accept: true }, { db });
+  const quiet = callHooks();
+  await transitionInboxItem(await ctx(coordinator), other.item.id, { toStatus: 'CLOSED' }, { db, ...quiet.hooks });
+  assert.equal(await db.room.count({ where: { originId: other.inquiry.id } }), 0);
+  assert.deepEqual(quiet.ended, []);
+  await refused(open(mari, other.inquiry.id), 403);
+  await refused(open(applicant, other.inquiry.id), 409);
+  assert.ok((await linkedState(world, other.inquiry.id)).workClosedAt);
 });
 
 test('asutuse laud: kaks samaaegset avamist annavad ühe ruumi; üleandmine ja avamine ei jäta endist vastutajat sisse', async (t) => {

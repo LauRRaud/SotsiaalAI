@@ -6,6 +6,7 @@ import { publishRoomEvent } from "@/lib/roomStream";
 import { consumeRateLimit } from "@/lib/rate-limit";
 import { ROOM_READ, ROOM_WRITE, resolveRoomAccess } from "@/lib/rooms/accessGuard";
 import { serializeRoomOrigin } from "@/lib/rooms/origin";
+import { readRoomReadOnlyReason } from "@/lib/rooms/preInquiryRoom";
 import { resolveShareableMeetingSummary } from "@/lib/rooms/meetingSummaryShare";
 import { recordSharedRoomSummary } from "@/lib/rooms/summaryHandover";
 import { applySummaryApprovalPolicy, listRoomSummaryApprovalState } from "@/lib/rooms/summaryApproval";
@@ -242,12 +243,17 @@ export async function GET(req, { params }) {
     });
   } catch {}
 
+  /* Ainult loetava ruumi põhjus läheb vestlusaknale kaasa: muidu sai inimene sellest teada
+     alles siis, kui tema sõnumi saatmine ebaõnnestus. */
+  const readOnlyReason = access.readOnly ? await readRoomReadOnlyReason(access.room) : null;
+
   return json({
     ok: true,
     roomTitle: room.title || "",
     roomRole: String(access.member?.role || auth.userRole || "").trim().toUpperCase(),
     isHelpMatchRoom: Boolean(room.helpMatch?.id),
     roomOrigin: serializeRoomOrigin(room),
+    readOnlyReason,
     summaryApprovals,
     messages: page.map(m => ({
       id: m.id,
