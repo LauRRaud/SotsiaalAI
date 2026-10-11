@@ -3341,7 +3341,9 @@ otsus 11.10.2026). Töö sulgemisel (suletud või tagasi lükatud) lõpeb tööt
 jääb kõigile ainult loetavaks (omaniku teine otsus 11.10.2026): vestluse ajalugu jääb
 pöördujale ja tema kutsutud liikmele loetavaks, uut sõnumit kirjutada ei saa. Vestlusaken
 ütleb ruumi kohal, et asutus on töö lõpetanud, ja Teekonna rida näitab „asutus lõpetas töö"
-koos kuupäevaga. Suletud tööd uuesti ei avata: kui pöörduja vajab veel abi, saadab ta uue
+koos kuupäevaga. Pöörduja saab sulgemise kohta ka teavituse („Asutus lõpetas sinu
+eelpöördumisega töö"), mis viib tema enda pöördumise juurde; teavitus ei kanna sulgemise
+põhjust ega töötaja nime. Suletud tööd uuesti ei avata: kui pöörduja vajab veel abi, saadab ta uue
 pöördumise, mis on uus kirje laual ja uus ruum. Asutus näeb endiselt ainult pöörduja
 kinnitatud paketti, mitte tema Teekonda.
 
@@ -3430,7 +3432,7 @@ toota nuppu, mis ei vii kuhugi.
 | Teenusekaart | kaart + kättesaadavus | loendivaade/klasterdamine; usaldusmärgistus — vajab MTR-kontrolli (vt tegemata) |
 | Abisoovid | kood valmis | kriitiline mass (kasutajad); match-nõusoleku tooteotsus; moderatsioonimudel |
 | Eelpöördumine | täisrada koodis | piloodis tõendamata — vajab KOV-partnerit |
-| Asutuse vastuvõtulaua vestlusruum | töötaja vastab pöördujale ühises ruumis; üleandmisel liigub vestlus uuele vastutajale; töö sulgemisel jääb ruum kõigile ainult loetavaks ja pöörduja näeb põhjust ruumis ja Teekonnal (11.10, kohalikult kahe kontoga läbi mängitud) | pöördujale ei öelda saatmisel ega ruumis, et asutuse poolel loeb vestlust töö vastutaja ja üleandmise järel järgmine (kujundus) · pöörduja ei saa teavitust, kui asutus töö lõpetab: ta näeb seda ruumis ja Teekonnal · „Minu eelpöördumised" ja pöördumise vaade ei ütle, et asutus on töö lõpetanud (kujundus; Teekonna real on väli `workClosedAt`) · ainult loetavas ruumis on kõne nupp alles, server keeldub lausega (kujundus) · üleandmise ja uue vastutaja vastuvõtmise vahel ei ole ruumis asutuse poolt kedagi · pöörduja saadetud pöördumise vaates ei ole ruumi avamise nuppu (kujundus) · päris saidil ei ole ühtegi asutust adressaadina, seega seal läbi mängimata |
+| Asutuse vastuvõtulaua vestlusruum | töötaja vastab pöördujale ühises ruumis; üleandmisel liigub vestlus uuele vastutajale; töö sulgemisel jääb ruum kõigile ainult loetavaks ja pöörduja näeb põhjust ruumis ja Teekonnal (11.10, kohalikult kahe kontoga läbi mängitud); sulgemise kohta saab pöörduja teavituse (11.10, testitud andmebaasiga, lehel läbi mängimata) | pöördujale ei öelda saatmisel ega ruumis, et asutuse poolel loeb vestlust töö vastutaja ja üleandmise järel järgmine (kujundus) · sulgemise teavitus viib pöördumise vaatesse, mis ise sulgemist veel ei ütle (kujundus) · „Minu eelpöördumised" ja pöördumise vaade ei ütle, et asutus on töö lõpetanud (kujundus; Teekonna real on väli `workClosedAt`) · ainult loetavas ruumis on kõne nupp alles, server keeldub lausega (kujundus) · üleandmise ja uue vastutaja vastuvõtmise vahel ei ole ruumis asutuse poolt kedagi · pöörduja saadetud pöördumise vaates ei ole ruumi avamise nuppu (kujundus) · päris saidil ei ole ühtegi asutust adressaadina, seega seal läbi mängimata |
 
 ### Tegemata
 

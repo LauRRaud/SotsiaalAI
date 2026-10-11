@@ -10,6 +10,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { assertNotificationRecipient, createNotificationEvent, serializeNotificationEvent } from '../lib/notifications.js';
 import { WorkspaceContextKind } from '../lib/org/accessContext.js';
 import { getInboxItem, handOverWork, respondToAssignment, transitionInboxItem } from '../lib/org/inbox.js';
 import { ROOM_READ, ROOM_WRITE, resolveRoomAccess } from '../lib/rooms/accessGuard.js';
@@ -44,7 +45,7 @@ function makeDb({ accepted = true } = {}) {
   const state = {
     inquiry: {
       id: 'p1',
-      authorId: 'pöörduja',
+      authorId: 'poorduja',
       recipientOwnerId: null,
       recipientOrganizationId: ORG,
       recipientType: 'ORGANIZATION_INBOX',
@@ -59,11 +60,13 @@ function makeDb({ accepted = true } = {}) {
     },
     organization: { id: ORG, status: 'ACTIVE', modules: [{ moduleKey: 'KOV_INTAKE', status: 'ACTIVE' }] },
     item: { id: 'i1', organizationId: ORG, unitId: null, sourceType: 'PRE_INQUIRY', sourceId: 'p1', status: accepted ? 'ACCEPTED' : 'ASSIGNED', receivedAt: SENT, urgencyDeclaredBySender: null },
-    memberships: ['koordinaator', 'mari', 'jüri', 'tiit'].map((userId) => ({ id: `m-${userId}`, organizationId: ORG, userId, status: 'ACTIVE' })),
+    memberships: ['koordinaator', 'mari', 'jyri', 'tiit'].map((userId) => ({ id: `m-${userId}`, organizationId: ORG, userId, status: 'ACTIVE' })),
     assignments: [{ id: 'a1', inboxItemId: 'i1', assigneeMembershipId: 'm-mari', status: accepted ? 'ACCEPTED' : 'PENDING' }],
     rooms: [],
     roomMembers: [],
     audits: [],
+    notifications: [],
+    notifyFails: false,
     rowLocks: []
   };
 
@@ -104,7 +107,29 @@ function makeDb({ accepted = true } = {}) {
     },
     preInquiry: {
       findUnique: async ({ where }) => (where.id === state.inquiry.id ? { ...state.inquiry } : null),
+      /* Teavituse adressaadikontroll: pöördumine tunnuse, autori ja tagasivõtmise järgi. */
+      findFirst: async ({ where }) => {
+        const row = state.inquiry;
+        if (where.id !== row.id) return null;
+        if ('authorId' in where && where.authorId !== row.authorId) return null;
+        if ('recalledAt' in where && where.recalledAt === null && row.recalledAt) return null;
+        return { id: row.id };
+      },
       updateMany: async () => ({ count: 0 })
+    },
+    /* Teavituste kiht: e-kirja eelistus ja teavituse rida. Sama võtmega teist rida ei teki. */
+    user: { findUnique: async () => ({ notificationEmailEnabled: false }) },
+    notificationEvent: {
+      create: async ({ data }) => {
+        if (state.notifyFails) throw new Error('notification store unavailable');
+        if (state.notifications.some((row) => row.dedupeKey === data.dedupeKey)) {
+          throw Object.assign(new Error('unique'), { code: 'P2002' });
+        }
+        const row = { id: id('n'), ...data };
+        state.notifications.push(row);
+        return { ...row };
+      },
+      findUnique: async ({ where }) => state.notifications.find((row) => row.dedupeKey === where.dedupeKey) || null
     },
     organizationInboxItem: {
       findFirst: async ({ where, select }) => {
@@ -220,37 +245,38 @@ const roomAccess = (db, roomId, userId, intent) =>
   resolveRoomAccess({ userId, userRole: 'CLIENT', roomId, intent, db, hasActiveSubscription: async () => true });
 const READ_ONLY = { ok: false, status: 409, message: 'api.rooms.archived_readonly' };
 const archiveAudits = (state) => state.audits.filter((row) => row.action === 'ROOM_ARCHIVED');
+const closedNotices = (state) => state.notifications.filter((row) => row.type === 'PRE_INQUIRY_WORK_CLOSED');
 
 test('ruumi avab töö vastu võtnud töötaja; koordinaator, ootel töötaja ja muu liige ei ava', async () => {
   const { db, state } = makeDb();
 
   /* Enne ruumi: kes ei ole osapool, saab 403 ja ruumi ei teki. */
-  for (const stranger of ['koordinaator', 'jüri', 'tiit', 'võõras', '']) await refused(db, stranger, 403);
+  for (const stranger of ['koordinaator', 'jyri', 'tiit', 'vooras', '']) await refused(db, stranger, 403);
   assert.equal(state.rooms.length, 0);
 
   const first = await open(db, 'mari');
   assert.equal(first.created, true);
   assert.equal(first.room.title, 'Eelpöördumine: Koduteenus');
-  assert.deepEqual(activeMembers(state), ['mari:MEMBER', 'pöörduja:OWNER']);
-  assert.equal(state.rooms[0].ownerId, 'pöörduja');
+  assert.deepEqual(activeMembers(state), ['mari:MEMBER', 'poorduja:OWNER']);
+  assert.equal(state.rooms[0].ownerId, 'poorduja');
   assert.equal(state.rooms[0].originType, 'PRE_INQUIRY');
   /* Töömääramine loeti postkastikirje rea luku all. */
   assert.ok(state.rowLocks.includes('OrganizationInboxItem:i1'));
 
   /* Üks ruum pöördumise kohta: kordus ja pöörduja saavad sama ruumi. */
   assert.deepEqual(await open(db, 'mari'), { room: first.room, created: false });
-  assert.deepEqual(await open(db, 'pöörduja'), { room: first.room, created: false });
+  assert.deepEqual(await open(db, 'poorduja'), { room: first.room, created: false });
   assert.equal(state.rooms.length, 1);
 
   /* Olemasolev ruum ei ava ust kellelegi teisele ja liikmeid ei lisandu. */
-  for (const stranger of ['koordinaator', 'jüri', 'tiit', 'võõras']) await refused(db, stranger, 403);
-  assert.deepEqual(activeMembers(state), ['mari:MEMBER', 'pöörduja:OWNER']);
+  for (const stranger of ['koordinaator', 'jyri', 'tiit', 'vooras']) await refused(db, stranger, 403);
+  assert.deepEqual(activeMembers(state), ['mari:MEMBER', 'poorduja:OWNER']);
 });
 
 test('enne töö vastuvõtmist ruumi ei ole: ootel töötaja saab 403, pöörduja 409', async () => {
   const { db, state } = makeDb({ accepted: false });
   await refused(db, 'mari', 403);
-  await refused(db, 'pöörduja', 409, 'pre_inquiries.errors.room_requires_acceptance');
+  await refused(db, 'poorduja', 409, 'pre_inquiries.errors.room_requires_acceptance');
   assert.equal(await findOrganizationInquiryForWorker('mari', 'p1', { db }), null);
 
   /* Vastuvõtmine ilma ruumita ruumi ei loo; alles nupuvajutus teeb selle. */
@@ -264,7 +290,7 @@ test('tagasi võetud, saatmata ja avamata pöördumine ruumi ei saa', async () =
   const recalled = makeDb();
   recalled.state.inquiry.recalledAt = NOW;
   await refused(recalled.db, 'mari', 404);
-  await refused(recalled.db, 'pöörduja', 404);
+  await refused(recalled.db, 'poorduja', 404);
 
   const unopened = makeDb();
   unopened.state.inquiry.openedAt = null;
@@ -310,58 +336,58 @@ test('üleandmine: senine vastutaja lahkub kohe, uus liitub vastuvõtmisel ja sa
   const released = [];
   const releaseFromCalls = async (left) => released.push(left);
 
-  const next = await handOverWork(coordinator(), 'a1', { toMembershipId: 'm-jüri' }, { db, now: NOW, releaseFromCalls });
+  const next = await handOverWork(coordinator(), 'a1', { toMembershipId: 'm-jyri' }, { db, now: NOW, releaseFromCalls });
   assert.equal(next.status, 'PENDING');
   assert.equal('_left' in next, false);
   /* Mari liikmesus lõppes samas tehingus ja ta vabastati ruumi kõnest. */
-  assert.deepEqual(activeMembers(state), ['pöörduja:OWNER']);
+  assert.deepEqual(activeMembers(state), ['poorduja:OWNER']);
   assert.equal(state.roomMembers.find((row) => row.userId === 'mari').leftAt, NOW);
   assert.deepEqual(released, [{ roomId: room.id, userId: 'mari' }]);
 
   /* Endise vastutaja lahkunud liikmesust ei taastata; määratud, aga vastu võtmata töötaja
      ei saa samuti sisse. Pöörduja ruum on alles. */
   await refused(db, 'mari', 403);
-  await refused(db, 'jüri', 403);
+  await refused(db, 'jyri', 403);
   assert.equal(await findOrganizationInquiryForWorker('mari', 'p1', { db }), null);
-  assert.deepEqual(await open(db, 'pöörduja'), { room, created: false });
-  assert.deepEqual(activeMembers(state), ['pöörduja:OWNER']);
+  assert.deepEqual(await open(db, 'poorduja'), { room, created: false });
+  assert.deepEqual(activeMembers(state), ['poorduja:OWNER']);
   /* Üleandmine ei ole töö lõpp: ruum jääb kirjutatavaks ka sel ajal, kui uus töötaja ei ole
      veel vastu võtnud. Pöörduja sõnum ootab teda ruumis. */
   assert.equal(state.rooms[0].archivedAt, null);
-  assert.equal((await roomAccess(db, room.id, 'pöörduja', ROOM_WRITE)).ok, true);
+  assert.equal((await roomAccess(db, room.id, 'poorduja', ROOM_WRITE)).ok, true);
   assert.equal(archiveAudits(state).length, 0);
 
   /* Jüri võtab töö vastu: ta on kohe sama ruumi liige (omaniku otsus), uut ruumi ei teki. */
-  await respondToAssignment(context('jüri'), next.id, { accept: true }, { db, now: NOW });
-  assert.deepEqual(activeMembers(state), ['jüri:MEMBER', 'pöörduja:OWNER']);
-  assert.deepEqual(await open(db, 'jüri'), { room, created: false });
+  await respondToAssignment(context('jyri'), next.id, { accept: true }, { db, now: NOW });
+  assert.deepEqual(activeMembers(state), ['jyri:MEMBER', 'poorduja:OWNER']);
+  assert.deepEqual(await open(db, 'jyri'), { room, created: false });
   assert.equal(state.rooms.length, 1);
   await refused(db, 'mari', 403);
   await refused(db, 'koordinaator', 403);
 
   /* Töö läheb Mari-le tagasi: tema vana liikmesuse rida võetakse uuesti kasutusele. */
-  const back = await handOverWork(context('jüri'), next.id, { toMembershipId: 'm-mari' }, { db, now: NOW, releaseFromCalls });
+  const back = await handOverWork(context('jyri'), next.id, { toMembershipId: 'm-mari' }, { db, now: NOW, releaseFromCalls });
   await respondToAssignment(context('mari'), back.id, { accept: true }, { db, now: NOW });
-  assert.deepEqual(activeMembers(state), ['mari:MEMBER', 'pöörduja:OWNER']);
+  assert.deepEqual(activeMembers(state), ['mari:MEMBER', 'poorduja:OWNER']);
   assert.equal(state.roomMembers.filter((row) => row.userId === 'mari').length, 1);
 });
 
 test('üleandmine enne ruumi ja tagasilükkamine: liikmesust ei teki', async () => {
   const { db, state } = makeDb();
   let released = 0;
-  const next = await handOverWork(coordinator(), 'a1', { toMembershipId: 'm-jüri' }, { db, now: NOW, releaseFromCalls: async () => { released += 1; } });
+  const next = await handOverWork(coordinator(), 'a1', { toMembershipId: 'm-jyri' }, { db, now: NOW, releaseFromCalls: async () => { released += 1; } });
   assert.equal(released, 0);
-  await respondToAssignment(context('jüri'), next.id, { accept: false, reason: 'puhkusel' }, { db, now: NOW });
+  await respondToAssignment(context('jyri'), next.id, { accept: false, reason: 'puhkusel' }, { db, now: NOW });
   assert.equal(state.rooms.length, 0);
   assert.equal(state.roomMembers.length, 0);
-  await refused(db, 'jüri', 403);
+  await refused(db, 'jyri', 403);
 });
 
 test('töö sulgemine: vastutaja lahkub ja ruum jääb ainult loetavaks, pöörduja loeb, aga ei kirjuta', async () => {
   const { db, state } = makeDb();
   const { room } = await open(db, 'mari');
   /* Enne sulgemist kirjutavad mõlemad. */
-  assert.equal((await roomAccess(db, room.id, 'pöörduja', ROOM_WRITE)).ok, true);
+  assert.equal((await roomAccess(db, room.id, 'poorduja', ROOM_WRITE)).ok, true);
   assert.equal((await roomAccess(db, room.id, 'mari', ROOM_WRITE)).ok, true);
   assert.equal(await readRoomReadOnlyReason(state.rooms[0], { db }), null);
 
@@ -369,7 +395,7 @@ test('töö sulgemine: vastutaja lahkub ja ruum jääb ainult loetavaks, pöörd
   const closed = await close(db, hooks);
   assert.equal(closed.status, 'CLOSED');
   assert.equal(state.assignments[0].status, 'ENDED');
-  assert.deepEqual(activeMembers(state), ['pöörduja:OWNER']);
+  assert.deepEqual(activeMembers(state), ['poorduja:OWNER']);
 
   /* Ruum on arhiveeritud sama märkega, mida kasutab omaniku arhiveerimine, ja jälg ütleb, miks. */
   assert.equal(state.rooms[0].archivedAt, NOW);
@@ -382,11 +408,11 @@ test('töö sulgemine: vastutaja lahkub ja ruum jääb ainult loetavaks, pöörd
   }]);
 
   /* Pöörduja loeb ajalugu, kirjutada ei saa; põhjus on „asutus lõpetas töö". */
-  const read = await roomAccess(db, room.id, 'pöörduja', ROOM_READ);
+  const read = await roomAccess(db, room.id, 'poorduja', ROOM_READ);
   assert.deepEqual([read.ok, read.readOnly], [true, true]);
-  assert.deepEqual(await roomAccess(db, room.id, 'pöörduja', ROOM_WRITE), READ_ONLY);
+  assert.deepEqual(await roomAccess(db, room.id, 'poorduja', ROOM_WRITE), READ_ONLY);
   assert.equal(await readRoomReadOnlyReason(state.rooms[0], { db }), 'ORG_WORK_CLOSED');
-  assert.deepEqual(await open(db, 'pöörduja'), { room, created: false });
+  assert.deepEqual(await open(db, 'poorduja'), { room, created: false });
 
   /* Endine vastutaja ei loe ega ava. */
   assert.equal((await roomAccess(db, room.id, 'mari', ROOM_READ)).status, 403);
@@ -406,12 +432,12 @@ test('töö sulgemine: pöörduja kutsutud kolmas liige jääb liikmeks ja loeb,
   const { db, state } = makeDb();
   const { room } = await open(db, 'mari');
   /* Pöörduja kutsus ruumi oma tütre (ruumide leht lubab omanikul kutsuda). */
-  state.roomMembers.push({ id: 'rm-tütar', roomId: room.id, userId: 'tütar', role: 'MEMBER', billingSource: 'SELF', leftAt: null });
-  assert.equal((await roomAccess(db, room.id, 'tütar', ROOM_WRITE)).ok, true);
+  state.roomMembers.push({ id: 'rm-tytar', roomId: room.id, userId: 'tytar', role: 'MEMBER', billingSource: 'SELF', leftAt: null });
+  assert.equal((await roomAccess(db, room.id, 'tytar', ROOM_WRITE)).ok, true);
 
   await close(db, callHooks().hooks);
-  assert.deepEqual(activeMembers(state), ['pöörduja:OWNER', 'tütar:MEMBER']);
-  for (const member of ['pöörduja', 'tütar']) {
+  assert.deepEqual(activeMembers(state), ['poorduja:OWNER', 'tytar:MEMBER']);
+  for (const member of ['poorduja', 'tytar']) {
     assert.equal((await roomAccess(db, room.id, member, ROOM_READ)).ok, true, member);
     assert.deepEqual(await roomAccess(db, room.id, member, ROOM_WRITE), READ_ONLY, member);
   }
@@ -428,7 +454,7 @@ test('töö sulgemine ilma ruumita ei tee ruumidega midagi', async () => {
   assert.deepEqual(calls, { ended: [], released: [] });
   /* Pärast sulgemist ei saa ruumi ka enam teha. */
   await refused(db, 'mari', 403);
-  await refused(db, 'pöörduja', 409, 'pre_inquiries.errors.room_requires_acceptance');
+  await refused(db, 'poorduja', 409, 'pre_inquiries.errors.room_requires_acceptance');
   assert.equal(state.rooms.length, 0);
 });
 
@@ -436,16 +462,16 @@ test('tagasi lükatud pöördumine ilma elava vastutajata: varasema vastutaja te
   const { db, state } = makeDb();
   const { room } = await open(db, 'mari');
   /* Töö anti Jürile, Jüri lükkas tagasi: elavat vastutajat ei ole, ruum on pöördujal alles. */
-  const next = await handOverWork(coordinator(), 'a1', { toMembershipId: 'm-jüri' }, { db, now: NOW, releaseFromCalls: noCalls });
-  await respondToAssignment(context('jüri'), next.id, { accept: false, reason: 'puhkusel' }, { db, now: NOW });
+  const next = await handOverWork(coordinator(), 'a1', { toMembershipId: 'm-jyri' }, { db, now: NOW, releaseFromCalls: noCalls });
+  await respondToAssignment(context('jyri'), next.id, { accept: false, reason: 'puhkusel' }, { db, now: NOW });
   assert.equal(state.item.status, 'ASSIGNMENT_PENDING');
   assert.equal(state.rooms[0].archivedAt, null);
-  assert.equal((await roomAccess(db, room.id, 'pöörduja', ROOM_WRITE)).ok, true);
+  assert.equal((await roomAccess(db, room.id, 'poorduja', ROOM_WRITE)).ok, true);
 
   const { calls, hooks } = callHooks();
   await close(db, hooks, 'REJECTED');
   assert.equal(state.rooms[0].archivedAt, NOW);
-  assert.deepEqual(await roomAccess(db, room.id, 'pöörduja', ROOM_WRITE), READ_ONLY);
+  assert.deepEqual(await roomAccess(db, room.id, 'poorduja', ROOM_WRITE), READ_ONLY);
   assert.equal(await readRoomReadOnlyReason(state.rooms[0], { db }), 'ORG_WORK_CLOSED');
   assert.deepEqual(calls.ended, [{ roomId: room.id, actorUserId: 'koordinaator' }]);
 });
@@ -475,7 +501,7 @@ test('pöörduja arhiveeris ruumi enne ise: sulgemine ei kirjuta teist arhiivij�
   await close(db, callHooks().hooks);
   assert.equal(state.rooms[0].archivedAt, SENT);
   assert.equal(archiveAudits(state).length, 0);
-  assert.deepEqual(activeMembers(state), ['pöörduja:OWNER']);
+  assert.deepEqual(activeMembers(state), ['poorduja:OWNER']);
   assert.equal(await readRoomReadOnlyReason(state.rooms[0], { db }), 'ORG_WORK_CLOSED');
 });
 
@@ -497,6 +523,118 @@ test('ainult loetava ruumi põhjus: asutuse otsus ainult selle pöördumise ruum
   /* Tagasi võetud pöördumine ei ole asutuse otsus. */
   state.item.status = 'RECALLED';
   assert.equal(await readRoomReadOnlyReason({ archivedAt, originType: 'PRE_INQUIRY', originId: 'p1' }, { db }), 'ARCHIVED');
+});
+
+test('töö sulgemine saadab pöördujale ühe neutraalse teavituse, mis viib tema pöördumise juurde', async () => {
+  const { db, state } = makeDb();
+  await open(db, 'mari');
+  const recipient = (userId) => assertNotificationRecipient(db, { type: 'PRE_INQUIRY_WORK_CLOSED', userId, sourceId: 'p1', targetId: 'p1' });
+  /* Enne sulgemist seda teavitust ei ole ja adressaadireegel seda ka ei lubaks. */
+  assert.equal(closedNotices(state).length, 0);
+  await assert.rejects(recipient('poorduja'), (error) => error.status === 404);
+
+  await transitionInboxItem(coordinator(), 'i1', { toStatus: 'CLOSED', reason: 'Nõustamine tehtud, klient kolis.' }, { db, now: NOW, ...callHooks().hooks });
+  const notices = closedNotices(state);
+  assert.equal(notices.length, 1);
+  const { id: _id, emailNextAttemptAt: _next, emailMessageId: _message, ...notice } = notices[0];
+  assert.deepEqual(notice, {
+    userId: 'poorduja',
+    type: 'PRE_INQUIRY_WORK_CLOSED',
+    sourceType: 'PRE_INQUIRY',
+    sourceId: 'p1',
+    dedupeKey: 'PRE_INQUIRY_WORK_CLOSED:p1:poorduja:closed:i1',
+    targetKind: 'PRE_INQUIRY',
+    targetId: 'p1',
+    eventId: null,
+    workspaceKind: 'org_space',
+    workspaceId: ORG,
+    expiresAt: null,
+    emailPolicy: 'OPTIONAL',
+    emailStatus: 'NOT_REQUESTED'
+  });
+  /* Teavitus kannab ainult tunnuseid: ei sulgemise põhjust, töötajat ega pöördumise sisu. */
+  for (const secret of ['Nõustamine', 'kolis', 'mari', 'koordinaator', 'Koduteenus', 'poes']) {
+    assert.equal(JSON.stringify(notices[0]).includes(secret), false, secret);
+  }
+
+  /* Loendis: lause oma võtmega ja viide pöörduja enda saadetud pöördumisele. */
+  const shown = serializeNotificationEvent({ ...notices[0], createdAt: NOW });
+  assert.deepEqual(
+    [shown.href, shown.labelKey, shown.ackMode, shown.badgeKey, shown.actionKind],
+    ['/eelpoordumised?openInquiry=p1', 'notifications.events.pre_inquiry_work_closed', 'read', 'pre_inquiries', 'open_pre_inquiry_sent']
+  );
+  for (const locale of ['et', 'en', 'ru']) {
+    const text = JSON.parse(source(`../messages/${locale}.json`)).notifications.events.pre_inquiry_work_closed;
+    assert.ok(text.length > 20, locale);
+    assert.equal(/[\u2014\u2013]/.test(text), false, locale);
+  }
+
+  /* Adressaat on ainult autor; endine vastutaja, koordinaator ja võõras seda ei näe. */
+  await recipient('poorduja');
+  for (const other of ['mari', 'koordinaator', 'vooras']) await assert.rejects(recipient(other), (error) => error.status === 404, other);
+
+  /* Sama kirje kohta teist teavitust ei teki: suletud kirjet uuesti ei suleta ja sama võti
+     annab olemasoleva rea. */
+  await assert.rejects(close(db, callHooks().hooks), (error) => error.status === 409);
+  const again = await createNotificationEvent(
+    { type: 'PRE_INQUIRY_WORK_CLOSED', userId: 'poorduja', sourceId: 'p1', targetId: 'p1', dedupeSuffix: 'closed:i1' },
+    { db }
+  );
+  assert.equal(again.created, false);
+  assert.equal(closedNotices(state).length, 1);
+});
+
+test('tagasilükkamine enne töö vastuvõtmist saadab sama teavituse; üleandmine ja töö tagasivõtmine ei saada', async () => {
+  /* Tagasi lükatud ilma vastutaja ja ruumita: pöörduja peab ikka teada saama. */
+  const rejected = makeDb();
+  rejected.state.item.status = 'RECEIVED';
+  rejected.state.assignments = [];
+  await close(rejected.db, callHooks().hooks, 'REJECTED');
+  assert.deepEqual(closedNotices(rejected.state).map((row) => [row.userId, row.dedupeKey]), [['poorduja', 'PRE_INQUIRY_WORK_CLOSED:p1:poorduja:closed:i1']]);
+  assert.equal(rejected.state.rooms.length, 0);
+
+  /* Üleandmine ja töö tagasivõtmine ei ole töö lõpp: seda teavitust ei tule. */
+  const moved = makeDb();
+  await open(moved.db, 'mari');
+  const next = await handOverWork(coordinator(), 'a1', { toMembershipId: 'm-jyri' }, { db: moved.db, now: NOW, releaseFromCalls: noCalls });
+  await respondToAssignment(context('jyri'), next.id, { accept: true }, { db: moved.db, now: NOW });
+  await close(moved.db, callHooks().hooks, 'ASSIGNMENT_PENDING');
+  assert.equal(moved.state.item.status, 'ASSIGNMENT_PENDING');
+  assert.equal(closedNotices(moved.state).length, 0);
+  /* Üleandmise enda neutraalne teade on alles ja teist liiki. */
+  assert.deepEqual(moved.state.notifications.map((row) => row.type), ['PRE_INQUIRY_STATUS_CHANGED']);
+});
+
+test('teavituse tõrge ei keera sulgemist tagasi; tagasi võetud pöördumine ja sulgeja ise teavitust ei saa', async () => {
+  const broken = makeDb();
+  const { room } = await open(broken.db, 'mari');
+  broken.state.notifyFails = true;
+  const logged = [];
+  const original = console.error;
+  console.error = (...args) => logged.push(args.join(' '));
+  try {
+    assert.equal((await close(broken.db, callHooks().hooks)).status, 'CLOSED');
+  } finally {
+    console.error = original;
+  }
+  assert.equal(broken.state.rooms[0].archivedAt, NOW);
+  assert.deepEqual(await roomAccess(broken.db, room.id, 'poorduja', ROOM_WRITE), READ_ONLY);
+  assert.equal(closedNotices(broken.state).length, 0);
+  assert.equal(logged.length, 1);
+  assert.match(logged[0], /closed work notification failed notification store unavailable/);
+
+  /* Tagasi võetud pöördumine ei ole enam see, mille kohta pöördujale midagi teatada. */
+  const recalled = makeDb();
+  recalled.state.inquiry.recalledAt = NOW;
+  await close(recalled.db, callHooks().hooks);
+  assert.equal(recalled.state.notifications.length, 0);
+
+  /* Pöörduja on sama asutuse koordinaator ja sulgeb oma pöördumise töö ise. */
+  const own = makeDb();
+  own.state.inquiry.authorId = 'koordinaator';
+  await close(own.db, callHooks().hooks);
+  assert.equal(own.state.item.status, 'CLOSED');
+  assert.equal(own.state.notifications.length, 0);
 });
 
 test('vestlusaken: ainult loetava ruumi põhjus jõuab aknani, kirjutuskast lukustub ja tekst on kolmes keeles', async () => {
@@ -554,11 +692,11 @@ test('ruumi omanikuks tehtud töötaja lahkumisel läheb omaniku roll pöörduja
   /* Pöörduja andis ruumi üle töötajale (ruumide leht lubab seda) ja lahkus ise. */
   state.rooms[0].ownerId = 'mari';
   Object.assign(state.roomMembers.find((row) => row.userId === 'mari'), { role: 'OWNER' });
-  Object.assign(state.roomMembers.find((row) => row.userId === 'pöörduja'), { role: 'MODERATOR', leftAt: SENT });
+  Object.assign(state.roomMembers.find((row) => row.userId === 'poorduja'), { role: 'MODERATOR', leftAt: SENT });
 
-  await handOverWork(coordinator(), 'a1', { toMembershipId: 'm-jüri' }, { db, now: NOW, releaseFromCalls: noCalls });
-  assert.equal(state.rooms[0].ownerId, 'pöörduja');
-  assert.deepEqual(activeMembers(state), ['pöörduja:OWNER']);
+  await handOverWork(coordinator(), 'a1', { toMembershipId: 'm-jyri' }, { db, now: NOW, releaseFromCalls: noCalls });
+  assert.equal(state.rooms[0].ownerId, 'poorduja');
+  assert.deepEqual(activeMembers(state), ['poorduja:OWNER']);
   assert.equal(state.roomMembers.find((row) => row.userId === 'mari').role, 'MEMBER');
 });
 
@@ -566,12 +704,12 @@ test('pöörduja, kes on sama asutuse töötaja, ei lahku oma pöördumise ruumi
   const { db, state } = makeDb();
   await open(db, 'mari');
   /* Töö antakse pöördujale endale ja temalt edasi: tema liikmesus ruumis ei tohi lõppeda. */
-  state.memberships.push({ id: 'm-pöörduja', organizationId: ORG, userId: 'pöörduja', status: 'ACTIVE' });
-  const own = await handOverWork(coordinator(), 'a1', { toMembershipId: 'm-pöörduja' }, { db, now: NOW, releaseFromCalls: noCalls });
-  await respondToAssignment(context('pöörduja'), own.id, { accept: true }, { db, now: NOW });
-  assert.deepEqual(activeMembers(state), ['pöörduja:OWNER']);
-  await handOverWork(coordinator(), own.id, { toMembershipId: 'm-jüri' }, { db, now: NOW, releaseFromCalls: noCalls });
-  assert.deepEqual(activeMembers(state), ['pöörduja:OWNER']);
+  state.memberships.push({ id: 'm-poorduja', organizationId: ORG, userId: 'poorduja', status: 'ACTIVE' });
+  const own = await handOverWork(coordinator(), 'a1', { toMembershipId: 'm-poorduja' }, { db, now: NOW, releaseFromCalls: noCalls });
+  await respondToAssignment(context('poorduja'), own.id, { accept: true }, { db, now: NOW });
+  assert.deepEqual(activeMembers(state), ['poorduja:OWNER']);
+  await handOverWork(coordinator(), own.id, { toMembershipId: 'm-jyri' }, { db, now: NOW, releaseFromCalls: noCalls });
+  assert.deepEqual(activeMembers(state), ['poorduja:OWNER']);
 });
 
 test('kirje vaade: ruumi nupp ainult vastu võtnud vastutajale, ruumi ID ainult liikmele', async () => {

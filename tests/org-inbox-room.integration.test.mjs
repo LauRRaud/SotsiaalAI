@@ -10,6 +10,7 @@ import { randomBytes } from 'node:crypto';
 import { PrismaClient } from '../generated/prisma/client.ts';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { getJourneyDetailForUser } from '../lib/journey/service.js';
+import { listNotificationEvents } from '../lib/notifications.js';
 import { resolveOrgAccessContext } from '../lib/org/accessContext.js';
 import { assignWork, getInboxItem, handOverWork, respondToAssignment, transitionInboxItem } from '../lib/org/inbox.js';
 import { createPreInquiry, recallPreInquiry } from '../lib/preInquiries.js';
@@ -211,6 +212,25 @@ test('asutuse laud: vastutaja avab ruumi ja vastab, Teekond näitab vastust, ül
   /* Teekond ütleb pöördujale, et asutus on töö lõpetanud; vastus on endiselt näha. */
   const closedRow = await linkedState(world, inquiry.id);
   assert.deepEqual([closedRow.state, closedRow.replyCount, closedRow.workClosedAt], ['ANSWERED', 1, closedAt.toISOString()]);
+
+  /* Pöörduja sai sulgemise kohta ühe teavituse, mis viib tema pöördumise juurde; töötajad ja
+     koordinaator seda ei saanud ega näe. */
+  const notices = await db.notificationEvent.findMany({
+    where: { type: 'PRE_INQUIRY_WORK_CLOSED', sourceId: inquiry.id },
+    select: { userId: true, targetKind: true, targetId: true, dedupeKey: true, workspaceId: true }
+  });
+  assert.deepEqual(notices, [{
+    userId: applicant.id,
+    targetKind: 'PRE_INQUIRY',
+    targetId: inquiry.id,
+    dedupeKey: `PRE_INQUIRY_WORK_CLOSED:${inquiry.id}:${applicant.id}:closed:${item.id}`,
+    workspaceId: world.organization.id
+  }]);
+  const listed = (await listNotificationEvents(applicant.id, { db })).filter((row) => row.type === 'PRE_INQUIRY_WORK_CLOSED');
+  assert.deepEqual(listed.map((row) => [row.href, row.labelKey]), [[`/eelpoordumised?openInquiry=${inquiry.id}`, 'notifications.events.pre_inquiry_work_closed']]);
+  for (const other of [coordinator, mari, jyri]) {
+    assert.equal((await listNotificationEvents(other.id, { db })).some((row) => row.type === 'PRE_INQUIRY_WORK_CLOSED'), false);
+  }
 
   /* Suletud tööd uuesti ei avata. Uus abivajadus on uus pöördumine: uus kirje laual, vana
      ruum jääb suletuks ja uus ruum tekib alles uue töö vastuvõtmisel. */
