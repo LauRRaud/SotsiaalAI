@@ -4,8 +4,6 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import ChatComposer from "@/components/alalehed/chat/ChatComposer";
-import ChatMessageItem from "@/components/alalehed/chat/ChatMessageItem";
-import ConversationView from "@/components/alalehed/chat/ConversationView";
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
 import DocumentsDropdown from "@/components/documents/DocumentsDropdown";
 import StepFlight from "@/components/stage/StepFlight";
@@ -56,6 +54,7 @@ import { ContextView, JourneyView, PathView, SituationView, UrgencyView, WhoView
 import DomainsView from "./preInquiry/DomainsView";
 import { AssistantView, RecipientContactView, RecipientListView, RecipientServicesView, ReviewView, SavedView, SendView, SentStateView, SentTextView, TextView } from "./preInquiry/FlowViews";
 import PreInquiryStart from "./preInquiry/PreInquiryStart";
+import { assistantAnswer } from "./preInquiry/assistantAnswer";
 import {
   SHARINGS_PATH,
   RECIPIENT_SERVICE_PAGE,
@@ -827,7 +826,6 @@ function CaseworkPreparationPanel({ t, inquiry, locale = "et", embedded = false 
 
 function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", isAdmin = false, currentUserId = "" }) {
   const router = useRouter();
-  const chatWindowRef = useRef(null);
   const inputBarRef = useRef(null);
   const inputRef = useRef(null);
   const fileInputRef = useRef(null);
@@ -1079,52 +1077,18 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     [normalizedAssessmentState, topic]
   );
 
-  const assistantConversationText = useMemo(() => {
-    const lines = [];
-    const lead = String(assistantMessage || assistantReasoning || "").trim();
-    const tags = [...assessmentLifeDomains, ...assessmentTargetGroups];
-    const urgentWarnings = assistantWarnings.filter((warning) => (
-      /112|vahetu|kiire|oht|kriisi/i.test(String(warning || ""))
-    ));
-    const otherWarnings = assistantWarnings.filter((warning) => (
-      warning && !urgentWarnings.includes(warning)
-    ));
-
-    if (lead) lines.push(lead);
-    if (tags.length) {
-      lines.push("", `Märksõnad: ${tags.join(", ")}`);
-    }
-    const questionAuditLines = assessmentQuestions.map((question) => `- ${question}`);
-    const nextQuestionLine = questionAuditLines[0] || "";
-    if (nextQuestionLine) {
-      lines.push(
-        "",
-        "Vasta järgmistele küsimustele:",
-        nextQuestionLine
-      );
-    }
-    if (urgentWarnings.length) {
-      lines.push(
-        "",
-        ...urgentWarnings.map((warning) => `Kiire abi: ${warning}`)
-      );
-    }
-    if (otherWarnings.length) {
-      lines.push(
-        "",
-        ...otherWarnings.map((warning) => `Oluline: ${warning}`)
-      );
-    }
-
-    return lines.join("\n").trim();
-  }, [
-    assistantMessage,
-    assistantReasoning,
-    assistantWarnings,
-    assessmentLifeDomains,
-    assessmentQuestions,
-    assessmentTargetGroups
-  ]);
+  /* Abilise vastus osadena (reegel: preInquiry/assistantAnswer.js). */
+  const assistantReply = useMemo(
+    () => assistantAnswer({
+      message: assistantMessage,
+      reasoning: assistantReasoning,
+      lifeDomains: assessmentLifeDomains,
+      targetGroups: assessmentTargetGroups,
+      questions: assessmentQuestions,
+      warnings: assistantWarnings
+    }),
+    [assistantMessage, assistantReasoning, assistantWarnings, assessmentLifeDomains, assessmentQuestions, assessmentTargetGroups]
+  );
 
   /* Adressaadi loend: abilise soovitused (laaditud kirjete kujul) või inimese enda otsing kõigi
      kontaktide seast, lehekülgede kaupa (reegel: senderModel.js). */
@@ -1141,42 +1105,6 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     }),
     [recipientEntries, recipientPage, recipientQuery, recipientSource, recipientType, suggestedRecipientRows]
   );
-
-  const conversationItems = useMemo(() => {
-    const items = [];
-    if (situation.trim()) {
-      items.push(
-        /* Kirjeldus on oma sammus täies pikkuses; siin on selle algus, et vaade mahuks paneeli. */
-        <ChatMessageItem
-          key="pre-inquiry-user-situation"
-          role="user"
-          text={excerptOf(situation, 220)}
-          t={t}
-        />
-      );
-    }
-    if (assistantConversationText.trim()) {
-      items.push(
-        <ChatMessageItem
-          key="pre-inquiry-assistant-message"
-          role="ai"
-          text={assistantConversationText}
-          t={t}
-        />
-      );
-    }
-    if (assisting) {
-      items.push(
-        <ChatMessageItem
-          key="pre-inquiry-assisting"
-          role="ai"
-          text={readText(t, "workspace_feature_pages.pre_inquiries.actions.assisting", "Otsin...")}
-          t={t}
-        />
-      );
-    }
-    return items;
-  }, [assistantConversationText, assisting, situation, t]);
 
   const receivedInquiries = useMemo(() => {
     if (!currentUserId) return [];
@@ -3201,23 +3129,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
         return <ContextView tr={tr} support={supportContext} onSupport={updateAssessmentSupport} />;
       case "assistant":
         return (
-          <AssistantView tr={tr}>
-            <ConversationView
-              t={t}
-              chatWindowRef={chatWindowRef}
-              isStreamingAny={assisting}
-              hiddenCount={0}
-              pageSize={0}
-              onRevealOlder={() => {}}
-              canHideOlder={false}
-              onHideOlder={() => {}}
-              onJumpToBottom={() => {}}
-              messageItems={conversationItems}
-              mainClassName="documents-agent-conversation-main"
-              windowClassName="documents-agent-conversation-window"
-              isMobile={false}
-              isLightTheme
-            />
+          <AssistantView tr={tr} answer={assistantReply} busy={assisting}>
             <ChatComposer
               t={t}
               locale={locale}

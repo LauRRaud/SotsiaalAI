@@ -3164,7 +3164,9 @@
         },
         "assistant": {
           "title": "Clarify with the assistant",
-          "lead": "The assistant asks for details and helps find a suitable contact. You may skip this step."
+          "lead": "The assistant asks for details and helps find a suitable contact. You may skip this step.",
+          "notes": "The assistant's notes",
+          "tags": "Keywords"
         },
         "review": {
           "all_answers": "All answers",

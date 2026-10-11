@@ -3164,7 +3164,9 @@
         },
         "assistant": {
           "title": "Täpsusta abilisega",
-          "lead": "Abiline küsib täpsustusi ja aitab leida sobiva kontakti. Selle sammu võid vahele jätta."
+          "lead": "Abiline küsib täpsustusi ja aitab leida sobiva kontakti. Selle sammu võid vahele jätta.",
+          "notes": "Abilise märkused",
+          "tags": "Märksõnad"
         },
         "review": {
           "all_answers": "Kõik vastused",

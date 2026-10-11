@@ -18,6 +18,7 @@ import TextAreaField from "@/components/stage/TextAreaField";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 
+import { ASSISTANT_MESSAGE_LIMIT, assistantHasNotes, assistantMessagePlace } from "./assistantAnswer";
 import { LineField } from "./CollectViews";
 import lists from "./lists.module.css";
 import receiver from "./receiver.module.css";
@@ -26,14 +27,65 @@ import styles from "./views.module.css";
 
 const TEXT_LIMIT = 12000;
 
-/** Vestlus abilisega: olemasolev vestlusaken ja sisestusriba (`children`). */
-export function AssistantView({ tr, children }) {
+/**
+ * Täpsustamine abilisega. Abilise vastus on osadena (`answer`, reegel: assistantAnswer.js):
+ * kiire abi hoiatus, sõnumi algus ja järgmine küsimus on ees, sisestusriba (`children`) nende
+ * all; märksõnad, üldised märkused ja pika sõnumi terve tekst avanevad soovi korral.
+ *
+ * Enne oli vastus vestlusmullis inimese kirjelduse mulli all: 806 px (mahub 445) ja töölaua
+ * paneelis, kus kõrgeim vaade määrab lava kõrguse, keris pärast vastust iga samm. Inimese
+ * kirjeldust siin enam ei korrata: see on sammus „Olukord".
+ */
+export function AssistantView({ tr, answer, busy, children }) {
+  const answered = Boolean(answer?.answered);
+  const place = assistantMessagePlace(answer);
   return (
     <StepPanel
       title={tr("views.assistant.title", "Täpsusta abilisega")}
-      lead={tr("views.assistant.lead", "Abiline küsib täpsustusi ja aitab leida sobiva kontakti. Selle sammu võid vahele jätta.")}
+      lead={answered ? undefined : tr("views.assistant.lead", "Abiline küsib täpsustusi ja aitab leida sobiva kontakti. Selle sammu võid vahele jätta.")}
     >
-      <div className={styles.assistant}>{children}</div>
+      <div className={styles.assistant}>
+        {answered ? (
+          <>
+            {/* Kiire abi hoiatused ühes kastis: kolm eraldi kasti ei mahtunud töölaua paneeli. */}
+            {answer.urgent.length ? (
+              <div className={styles.notice} data-tone="risk" role="alert">
+                {answer.urgent.map((text) => (
+                  <p key={text} className={styles.noticeLine}>
+                    {text}
+                  </p>
+                ))}
+              </div>
+            ) : null}
+            {place.inline !== "none" ? (
+              <p className={styles.quiet}>{place.inline === "start" ? excerptOf(answer.message, ASSISTANT_MESSAGE_LIMIT) : answer.message}</p>
+            ) : null}
+            {answer.question ? <p className={styles.ask}>{answer.question}</p> : null}
+          </>
+        ) : null}
+        {busy ? (
+          <p className={styles.quiet} aria-live="polite">
+            {tr("actions.assisting", "Otsin...")}
+          </p>
+        ) : null}
+        {children}
+        {assistantHasNotes(answer) ? (
+          <details className={styles.fold}>
+            <summary className={styles.foldTitle}>{tr("views.assistant.notes", "Abilise märkused")}</summary>
+            {place.folded ? <p className={styles.quiet}>{answer.message}</p> : null}
+            {answer.tags.length ? (
+              <p className={styles.quiet}>
+                {tr("views.assistant.tags", "Märksõnad")}: {answer.tags.join(", ")}
+              </p>
+            ) : null}
+            {answer.notes.map((text) => (
+              <p key={text} className={styles.quiet}>
+                {text}
+              </p>
+            ))}
+          </details>
+        ) : null}
+      </div>
     </StepPanel>
   );
 }

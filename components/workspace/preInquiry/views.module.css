@@ -189,11 +189,29 @@
   font-weight: 560;
 }
 
-/* Vestlus abilisega: olemasolev vestlusaken ja sisestusriba vaate sees. */
+/* Täpsustamine abilisega: vastuse osad ja sisestusriba vaate sees. */
 .assistant {
   min-width: 0;
   display: grid;
   gap: 0.6rem;
+}
+/* Abilise järgmine küsimus: sama kaal mis vaate küsimusel (StepPanel). */
+.ask {
+  margin: 0;
+  color: var(--text-warm);
+  font-weight: 560;
+  text-wrap: balance;
+}
+/* Mitu hoiatust ühes teatekastis: iga hoiatus omal real. */
+.noticeLine {
+  margin: 0;
+}
+.noticeLine + .noticeLine {
+  margin-top: 0.35rem;
+}
+/* Avatava ploki lõigud üksteise all, vahega. */
+.fold > p + p {
+  margin-top: 0.5rem;
 }
 
 .links {
