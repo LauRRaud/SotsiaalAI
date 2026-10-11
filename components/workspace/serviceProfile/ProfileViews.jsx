@@ -53,8 +53,54 @@ function RepresentationLine({ tp, representation }) {
   );
 }
 
+/**
+ * Nimi ja äriregister: mis on valesti ja kuidas seda parandada. Registri nime saab ühe vajutusega
+ * profiilile panna. `register` on `registerNameState` (profileModel.js).
+ *
+ * Teade on ainult siis, kui midagi on valesti. Kui nimi vastab registrile, ei lisandu vaatesse
+ * midagi (seda ütleb avaldamise kontrolli rida): samm „Organisatsioon" on laval üks kõrgemaid ja
+ * iga lisarida kasvataks kõigi vaadete ühist kõrgust. Teatega vaade on laval „vaba"
+ * (`serviceProfileSteps`, `tallWho`).
+ */
+function RegisterNameNote({ tp, register, onUse }) {
+  if (!register?.problem) return null;
+  const text = {
+    mismatch: register.registerName
+      ? tp("register_name.mismatch", "Äriregistris on selle registrikoodi nimi „{name}”. Profiili saab kinnitada ja avaldada ainult selle nimega.", { name: register.registerName })
+      : tp("register_name.mismatch_hidden", "Äriregistris on selle registrikoodi all teine nimi. Kirjuta nimi täpselt nii, nagu see on äriregistris: muu nimega ei saa profiili kinnitada ega avaldada."),
+    code_not_listed: tp("register_name.code_not_listed", "Seda registrikoodi ei ole meie äriregistri koopias. Kontrolli koodi: selle koodiga ei saa profiili kinnitada ega avaldada."),
+    code_required: tp("register_name.code_required", "Selle nimega asutus on äriregistris. Lisa registrikood: ilma selleta ei saa profiili selle nime all avaldada."),
+    unavailable: tp("register_name.unavailable", "Nime ei saa praegu äriregistri vastu kontrollida. Mustandina saab salvestada; avaldada saab siis, kui kontroll jälle töötab.")
+  }[register.result];
+  if (!text) return null;
+  /* Koopia vanus loeb siis, kui register ei tunne koodi või nime: asutus võib olla uus või ümber nimetatud. */
+  const dated = register.registerDate && (register.result === "mismatch" || register.result === "code_not_listed");
+  return (
+    <Notice tone="wait">
+      {text}
+      {register.result === "mismatch" && register.registerName ? (
+        <>
+          {" "}
+          <button type="button" className={styles.textButton} onClick={onUse}>
+            {tp("register_name.use", "Kasuta registri nime")}
+          </button>
+        </>
+      ) : null}
+      {/* Samal real, mitte omaette real: teade jääb lühemaks ja vaade madalamaks. */}
+      {dated ? (
+        <>
+          {" "}
+          <span className={styles.fieldHint}>
+            {tp("register_name.as_of", "Äriregistri seis meie koopias: {date}.", { date: register.registerDate })}
+          </span>
+        </>
+      ) : null}
+    </Notice>
+  );
+}
+
 /** Kes te olete: nimi, registrikood ja organisatsiooni tüüp. */
-function WhoView({ tp, form, options, representation, onField, note, save }) {
+function WhoView({ tp, form, options, representation, onField, register, note, save }) {
   return (
     <StepPanel title={tp("views.who.title", "Organisatsioon")} note={note} actions={save}>
       <div className={styles.stack}>
@@ -62,8 +108,11 @@ function WhoView({ tp, form, options, representation, onField, note, save }) {
           <LineField size="lg" label={tp("fields.organization", "Organisatsiooni nimi")} value={form.organizationName} onChange={(value) => onField("organizationName", value)} />
           <LineField size="sm" label={tp("fields.registry_code", "Registrikood")} value={form.registryCode} onChange={(value) => onField("registryCode", value)} />
         </div>
-        {/* Registrikoodiga profiili avaldamine nõuab asutuse kinnitust: rida ütleb, mis seisus see on. */}
-        {representation ? (
+        <RegisterNameNote tp={tp} register={register?.state} onUse={register?.onUse} />
+        {/* Registrikoodiga profiili avaldamine nõuab asutuse kinnitust: rida ütleb, mis seisus see on.
+            Kuni nimi või kood ei vasta äriregistrile, ei saa asutust kinnitada: siis on ees ainult
+            teade nime kohta. */}
+        {representation && !register?.state?.problem ? (
           <p className={styles.quiet}>
             <RepresentationLine tp={tp} representation={representation} />
           </p>

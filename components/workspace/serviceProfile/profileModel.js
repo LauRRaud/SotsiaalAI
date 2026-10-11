@@ -747,13 +747,43 @@ export function locationHasMatch(location) {
   );
 }
 
+/* --- Nimi ja äriregister ----------------------------------------------------------
+   Registrikoodiga profiili nimi peab olema äriregistris selle koodi nimi; registrikoodita
+   profiil ei saa kanda registrisse kantud asutuse nime. Kontrolli teeb server
+   (lib/businessRegisterNames.js); vorm küsib vastuse kirjutamise ajal ja näitab, mis on valesti. */
+
+/* Vastused, millega profiili avaldada ei saa. `free` (registrikoodita, nime registris ei ole) ja
+   `match` lubavad. */
+const REGISTER_NAME_PROBLEMS = new Set(["mismatch", "code_not_listed", "code_required", "unavailable"]);
+
+/** Mille kohta nimekontrolli vastus käib: vormi registrikood ja nimi. */
+export function registerNameKey(form) {
+  return `${String(form?.registryCode || "").trim()}\n${String(form?.organizationName || "").trim()}`;
+}
+
+/**
+ * Nimekontrolli seis vormil. `check` on serveri vastus koos võtmega
+ * (`{ key, result, registerName, registerDate }`). Vastus loeb ainult siis, kui see käib praeguse
+ * nime ja koodi kohta: pärast iga muudatust on seis `null`, kuni uus vastus tuleb.
+ */
+export function registerNameState(form, check) {
+  if (!check || !check.result || check.key !== registerNameKey(form)) return null;
+  return {
+    result: check.result,
+    registerName: check.registerName || "",
+    registerDate: check.registerDate || "",
+    problem: REGISTER_NAME_PROBLEMS.has(check.result)
+  };
+}
+
 /**
  * Avaldamise reeglid. `blocking`: mis takistab AVALDATUD profiili salvestamist
  * (server kontrollib sama: `publish_service_required`, `publish_contact_required`,
- * `publish_representation_required`). `representation`: asutuse kinnituse seis
- * (`representationStatus`); ilma selleta kinnitust ei arvestata.
+ * `publish_representation_required` ja nime kohta `publish_register_name_mismatch` ning selle kolm
+ * naabrit). `representation`: asutuse kinnituse seis (`representationStatus`); ilma selleta
+ * kinnitust ei arvestata. `register`: nimekontrolli seis (`registerNameState`).
  */
-export function serviceProfilePublishState(form, representation = null) {
+export function serviceProfilePublishState(form, representation = null, register = null) {
   const hasPublishableService = form.serviceItems.some((service) =>
     String(service.name || "").trim() &&
     service.mapVisible !== false &&
@@ -773,9 +803,42 @@ export function serviceProfilePublishState(form, representation = null) {
   );
   const published = form.status === "PUBLISHED";
   const blocking = published
-    ? [!hasPublishableService ? "service" : "", !hasContact ? "contact" : "", representation?.blocksPublish ? "representation" : ""].filter(Boolean)
+    ? [
+        !hasPublishableService ? "service" : "",
+        !hasContact ? "contact" : "",
+        representation?.blocksPublish ? "representation" : "",
+        register?.problem ? "register_name" : ""
+      ].filter(Boolean)
     : [];
   return { published, hasPublishableService, hasMappableLocation, hasContact, blocking };
+}
+
+/* Nimekontrolli rida avaldamise kontrollis: `[tekstivõti, varutekst]` vastuse järgi. */
+const REGISTER_NAME_CHECK_TEXT = Object.freeze({
+  match: ["publish_checks.register_name_ok", "Asutuse nimi vastab äriregistrile."],
+  mismatch: ["publish_checks.register_name_mismatch", "Asutuse nimi ei ole see, mis on äriregistris selle registrikoodi all."],
+  code_not_listed: ["publish_checks.register_code_not_listed", "Seda registrikoodi ei ole meie äriregistri koopias."],
+  code_required: ["publish_checks.register_code_required", "Selle nimega asutus on äriregistris: avaldamiseks lisa registrikood."],
+  unavailable: ["publish_checks.register_unavailable", "Nime ei saa praegu äriregistri vastu kontrollida."]
+});
+
+/* Rida on olemas, kui profiilil on registrikood või nimega on probleem. Registrikoodita profiil,
+   mille nime registris ei ole, rida ei saa: seal ei ole midagi kontrollida. */
+function registerNameCheckRow(register, blocking) {
+  const text = register ? REGISTER_NAME_CHECK_TEXT[register.result] : null;
+  if (!text) return [];
+  const [textKey, fallback] = text;
+  return [{
+    key: "register_name",
+    ok: !register.problem,
+    view: "who",
+    blocking,
+    textKey,
+    fallback,
+    ...(register.result === "mismatch" && register.registerName
+      ? { detailKey: "publish_checks.register_name_detail", detailFallback: "Registris: {name}", detailVars: { name: register.registerName } }
+      : {})
+  }];
 }
 
 /** Aadressi seis teenusekaardil: `{ key, fallback, matched }`. */
@@ -807,9 +870,11 @@ export function serviceProfileMapStatus(mapEntry) {
  * `representation` (asutuse kinnituse seis, `representationStatus`) lisab rea
  * registrikoodiga profiilile. Kinnitamata asutuse rida kannab `href`-i kinnitamise
  * lehele, kui sinna saab kohe minna; muidu viib see vaatesse, kus registrikood on.
+ *
+ * `register` (`registerNameState`) lisab rea asutuse nime kohta äriregistris.
  */
-export function serviceProfilePublishChecks(form, mapEntry, areaChoices = null, representation = null) {
-  const state = serviceProfilePublishState(form, representation);
+export function serviceProfilePublishChecks(form, mapEntry, areaChoices = null, representation = null, register = null) {
+  const state = serviceProfilePublishState(form, representation, register);
   const unreadAreas = unreadableServiceAreas(form, areaChoices);
   const areaRow = (key, services, [textKey, fallback]) =>
     services.length
@@ -860,6 +925,7 @@ export function serviceProfilePublishChecks(form, mapEntry, areaChoices = null, 
     row("contact", state.hasContact, "contact",
       ["publish_checks.contact_ready", "Kontakt või platvormisisene pöördumisviis on olemas."],
       ["publish_checks.contact_missing", "Lisa kontakt või luba platvormisisesed eelpöördumised."]),
+    ...registerNameCheckRow(register, state.blocking.includes("register_name")),
     ...areaRow("area_municipality", unreadAreas.municipality,
       ["publish_checks.area_municipality_missing", "KOV põhisel teenusel ei ole ühtki registrist valitud omavalitsust."]),
     ...areaRow("area_county", unreadAreas.county,
@@ -904,17 +970,19 @@ const short = (value, length = 90) => String(value || "").trim().replace(/\s+/g,
 
 /**
  * Profiili taseme vaadete seis (sammu numbri heledus kiirmenüüs). `areaChoices`: registri valikud
- * kontrolli ridade jaoks; `representation`: asutuse kinnituse seis (`representationStatus`).
+ * kontrolli ridade jaoks; `representation`: asutuse kinnituse seis (`representationStatus`);
+ * `register`: nimekontrolli seis (`registerNameState`).
  */
-export function profileViewStates(form, mapEntry, areaChoices = null, representation = null) {
-  const publish = serviceProfilePublishState(form, representation);
-  const checks = serviceProfilePublishChecks(form, mapEntry, areaChoices, representation);
+export function profileViewStates(form, mapEntry, areaChoices = null, representation = null, register = null) {
+  const publish = serviceProfilePublishState(form, representation, register);
+  const checks = serviceProfilePublishChecks(form, mapEntry, areaChoices, representation, register);
   const named = form.serviceItems.filter(keepsService).length;
   const kept = form.serviceLocations.filter(keepsLocation).length;
   const required = checks.filter((item) => !item.optional);
   const okCount = required.filter((item) => item.ok).length;
   return {
-    who: has(form.organizationName) ? "done" : has(form.organizationType) || has(form.registryCode) ? "partial" : "empty",
+    /* Nimi, mis ei vasta äriregistrile, jätab sammu pooleli: profiili ei saa sellega avaldada. */
+    who: has(form.organizationName) ? (register?.problem ? "partial" : "done") : has(form.organizationType) || has(form.registryCode) ? "partial" : "empty",
     about: fill(has(form.shortDescription), has(form.longDescription)),
     contact: has(form.email) || has(form.phone) ? "done" : has(form.website) || has(form.primaryContactName) ? "partial" : "empty",
     inquiries: form.acceptsPlatformPreInquiries || form.acceptsEmailPreInquiries ? "done" : "empty",
@@ -969,11 +1037,11 @@ export function locationViewStates(location) {
 }
 
 /** Profiili vaadete üks-kaks rida vaates „Kõik sammud". Silte ja sõnu annab leht (`tp`, `options`). */
-export function profileViewSummaries(form, mapEntry, { tp, options, areaChoices = null, representation = null }) {
+export function profileViewSummaries(form, mapEntry, { tp, options, areaChoices = null, representation = null, register = null }) {
   const named = form.serviceItems.filter(keepsService);
   const kept = form.serviceLocations.filter(keepsLocation).length;
   const published = named.filter((item) => item.mapVisible !== false && String(item.status || "").toUpperCase() === "PUBLISHED").length;
-  const open = serviceProfilePublishChecks(form, mapEntry, areaChoices, representation).filter((item) => !item.ok && !item.optional).length;
+  const open = serviceProfilePublishChecks(form, mapEntry, areaChoices, representation, register).filter((item) => !item.ok && !item.optional).length;
   return {
     who: short(form.organizationName),
     about: short(form.shortDescription || form.longDescription),
@@ -1023,8 +1091,9 @@ export function locationViewSummaries(location) {
  * Lava sammud: `[{ key, label, short, state, summary, free }]`.
  * Loendid võivad olla pikad (`free`): nende järgi ühist kõrgust ei võeta.
  * `tallArea`: piirkonna vaates on palju valitud omavalitsusi või teade (`areaViewIsTall`).
+ * `tallWho`: sammus „Organisatsioon" on teade nime kohta äriregistris (`registerNameState().problem`).
  */
-export function serviceProfileSteps(keys, { tp, states = {}, summaries = {}, placeCount = 0, tallArea = false }) {
+export function serviceProfileSteps(keys, { tp, states = {}, summaries = {}, placeCount = 0, tallArea = false, tallWho = false }) {
   return keys.map((key) => ({
     key,
     label: tp(`views.${key}.title`, key),
@@ -1035,7 +1104,8 @@ export function serviceProfileSteps(keys, { tp, states = {}, summaries = {}, pla
       key === "services" ||
       key === "locations" ||
       (key === "places" && placeCount > PLACES_FIT) ||
-      ((key === "area" || key === "reach") && tallArea)
+      ((key === "area" || key === "reach") && tallArea) ||
+      (key === "who" && tallWho)
   }));
 }
 

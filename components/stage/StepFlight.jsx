@@ -174,6 +174,8 @@ export default function StepFlight({ steps, children, label, initialIndex = 0, a
   const reportedRef = useRef(activeIndex);
   const stepsRef = useRef(steps);
   stepsRef.current = steps;
+  /* Millised vaated on „vabad": lava kõrgus arvutatakse uuesti, kui see muutub (vt allpool). */
+  const freeKey = steps.map((step) => (step.free ? "1" : "0")).join("");
   useEffect(() => {
     if (reportedRef.current === activeIndex) return;
     reportedRef.current = activeIndex;
@@ -220,7 +222,9 @@ export default function StepFlight({ steps, children, label, initialIndex = 0, a
       window.removeEventListener("resize", apply);
       observer?.disconnect();
     };
-  }, [activeIndex, wide, count]);
+    /* `freeKey`: kui vaade lakkab olemast „vaba" (nt teade kadus), on ta venitatud lava senise
+       kõrguseni ja tema kast ei muutu, seega vaatleja ei teata: mõõdame siis uuesti. */
+  }, [activeIndex, wide, count, freeKey]);
 
   /* Fookus uue sammu pealkirjale. Saabuv samm on lennu alguses veel peidus
      (mootor lülitab ta nähtavaks, kui kaamera läheneb) ja peidetud elementi
