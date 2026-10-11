@@ -12501,6 +12501,30 @@
       "offer_accepting": "Avan ligipääsu",
       "offer_loading": "Laen pakkumist.",
       "offer_no_token": "Sellel lingil ei ole pakkumise võtit. Ava link uuesti sõnumist, mille organisatsioon sulle saatis."
+    },
+    "desk": {
+      "rail_label": "Organisatsiooni osad",
+      "part_title": "{organization}: {part}",
+      "place": {
+        "name": "Minu koht",
+        "primary_unit": "{name} (põhiüksus)"
+      },
+      "lines": {
+        "inbox": "Saabunud pöördumised",
+        "home_care": "Kliendid, päev ja päevik",
+        "dispatch": "Töötajate päev ja töö määramine",
+        "service_reports": "Sulle saadetud kuuaruanded",
+        "support": "Toeavaldused ja tugikontaktid",
+        "members": "Kes siin töötavad ja mis õigused neil on",
+        "invites": "Kutsu inimene ja vaata ootel kutseid",
+        "structure": "Osakonnad ja tiimid",
+        "profile": "Avalik teenuseprofiil ja selle toimetajad",
+        "funding": "Kohad ja tasutud ligipääsud",
+        "audit": "Kes mida muutis",
+        "settings": "Moodulid, seis ja andmete väljavõte",
+        "place": "Sinu roll, üksused ja õigused"
+      },
+      "draft_notice": "Organisatsioon on mustand. Saada see osas „Seaded” kontrolli: struktuuri, liikmeid ja mooduleid saab hallata pärast kinnitamist."
     }
   },
   "service_log": {

@@ -12501,6 +12501,30 @@
       "offer_accepting": "Opening access",
       "offer_loading": "Loading the offer.",
       "offer_no_token": "This link has no offer key. Open the link again from the message the organisation sent you."
+    },
+    "desk": {
+      "rail_label": "Parts of the organisation",
+      "part_title": "{organization}: {part}",
+      "place": {
+        "name": "My place",
+        "primary_unit": "{name} (primary unit)"
+      },
+      "lines": {
+        "inbox": "Incoming inquiries",
+        "home_care": "Clients, the day and the diary",
+        "dispatch": "The workers' day and assigning work",
+        "service_reports": "Monthly reports sent to you",
+        "support": "Support requests and support contacts",
+        "members": "Who works here and what rights they have",
+        "invites": "Invite a person and see pending invitations",
+        "structure": "Departments and teams",
+        "profile": "The public service profile and its editors",
+        "funding": "Seats and paid access",
+        "audit": "Who changed what",
+        "settings": "Modules, status and data export",
+        "place": "Your role, units and rights"
+      },
+      "draft_notice": "The organisation is a draft. Send it for verification in “Settings”: structure, members and modules can be managed after it is confirmed."
     }
   },
   "service_log": {

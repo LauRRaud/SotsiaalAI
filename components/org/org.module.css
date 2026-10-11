@@ -14,6 +14,12 @@
   composes: stack from "../journey/journey.module.css";
 }
 
+/* Telefonis kiirmenüüs nimesid ei ole: rida paneeli ülaservas ütleb, kus
+   inimene on (organisatsioon ja osa). Laiemal ekraanil on see rida peidus. */
+.kicker {
+  composes: kicker from "../stage/StepFlight.module.css";
+}
+
 /* --- Laused ------------------------------------------------------------------ */
 .quiet {
   composes: quiet from "../journey/journey.module.css";
