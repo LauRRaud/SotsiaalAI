@@ -917,8 +917,8 @@ export function serviceProfilePublishChecks(form, mapEntry, areaChoices = null, 
       ["publish_checks.status_not_published", "Muuda profiili staatus avaldatuks, kui soovid seda avalikus vaates kuvada."]),
     ...representationRow,
     row("map", Boolean(form.mapVisible), "visibility",
-      ["publish_checks.map_visible", "Profiil on teenusekaardil nähtavaks märgitud."],
-      ["publish_checks.map_hidden", "Teenusekaardi nähtavus on välja lülitatud."]),
+      ["publish_checks.map_visible", "Profiil on teenusekaardil leitavaks märgitud."],
+      ["publish_checks.map_hidden", "Teenusekaardil leitavus on välja lülitatud."]),
     row("service", state.hasPublishableService, "services",
       ["publish_checks.service_ready", "Vähemalt üks teenus on avaldamiseks olemas."],
       ["publish_checks.service_missing", "Lisa vähemalt üks avaldatav teenus."]),
@@ -933,13 +933,13 @@ export function serviceProfilePublishChecks(form, mapEntry, areaChoices = null, 
       ["publish_checks.area_municipality_missing", "KOV põhisel teenusel ei ole ühtki registrist valitud omavalitsust."]),
     ...areaRow("area_county", unreadAreas.county,
       ["publish_checks.area_county_missing", "Maakondlikul teenusel ei ole maakonda valitud."]),
-    /* Assistendi luba on teenuseosutaja VALIK, mitte nõue: rida ütleb seisu, aga
+    /* Vestluses leitavus on teenuseosutaja VALIK, mitte nõue: rida ütleb seisu, aga
        ei loe „üle vaadata" hulka ega takista kontrolli sammu valmis saamast.
        Muidu survestaks kontroll nõusolekut andma. */
     {
       ...row("assistant", Boolean(form.assistantRecommendationAllowed), "visibility",
-        ["publish_checks.assistant_allowed", "Assistent võib avaldatud teenuseid soovitada."],
-        ["publish_checks.assistant_blocked", "Assistent ei soovita neid teenuseid enne eraldi loa andmist."]),
+        ["publish_checks.assistant_allowed", "Profiil on vestluses leitavaks märgitud."],
+        ["publish_checks.assistant_blocked", "Vestluses leitavus on välja lülitatud."]),
       optional: true
     },
     { key: "address", ok: map.matched, view: "locations", blocking: false, textKey: map.key, fallback: map.fallback, detail: String(mapEntry?.normalizedAddress || mapEntry?.address || "") }

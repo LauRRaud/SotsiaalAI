@@ -1,8 +1,10 @@
-# ADR-144 — Teenuseosutaja profiil jõuab vestlusse: kavand ja ettevalmistatud osad
+# ADR-144 — Teenuseosutaja profiil jõuab vestlusse
 
 11.10.2026. Teostus Claude Opus 5.5. Omanik 11.10: kas teenuseosutaja (näiteks tugiteenuseid pakkuv väike ühing) jõuab profiili täites andmebaasi ja vestluses nähtavale; ta eelistab, et osutajad hoiavad oma andmeid ise, mitte et meie nende lehti kogume.
 
-**Kavand. Vestlus teenuseprofiile praegu ei loe.** Ehitatud on ainult osad, mis ei vaja omaniku otsust (värav, piirkonna lugemine, loendus); vestlusega need ühendatud ei ole. Mudeliga midagi mõõdetud ei ole, peale ühe päris küsimuse omaniku palvel (jaotis „Kontroll päris lehel“).
+**Seis 11.10.2026 õhtul: ühendatud.** Omanik otsustas samal päeval: „Teenuseosutaja tuleb nimetada ka vestluses, kes on profiili täitnud ja paneb linnukese, et on leitav kaardil ja eraldi linnuke, on leitav vestluses.“ Vestlus loeb nüüd küsimuse hetkel nende osutajate profiile, kes on avaldanud profiili ja pannud linnukese „Leitav vestluses“ (jaotis „Ühendatud vestlusega“). **Mudeliga ei ole seda mõõdetud:** kontrollitud on koodi testidega; tasuline vastuste kontroll ootab omaniku luba.
+
+Allpool on kavand nii, nagu see enne otsust kirja sai; mis sellest on nüüd ehitatud ja mis jäi ettepaneku tasemele, ütleb jaotis „Ühendatud vestlusega“.
 
 ## Lähteseis (kontrollitud koodist, `origin/main` 11.10)
 
@@ -73,7 +75,7 @@ Kui ühes omavalitsuses on kunagi kümneid osutajaid ja liigi järgi sobitusest 
 
 Kulu: ostu ei ole. Vestluse kontekst kasvab iga näidatud osutaja võrra hinnanguliselt 60–100 tokenit (mõõtmata). Kontekstireegli ja vastuse juhise muutus vajab väikest tasulist kontrolli (mõni pööre, mõni sent) ja omaniku luba selleks.
 
-## Ehitatud (otsust ei vaja; vestlus ei kasuta)
+## Värav, piirkonna lugemine ja loendus
 
 ### Värav: `lib/serviceProviderAssistantGate.js`
 
@@ -112,25 +114,75 @@ node --env-file=<väljalaske env> --import ./scripts/register-node-source-loader
 
 ### Kontrollid
 
-`tests/service-provider-assistant-gate.test.mjs` (18 testi, andmebaasita): värav on fail-closed; registrikoodi kinnitus; avaliku teenuseta profiil; piirkonna iga tüüp; kahemõtteline ja tundmatu nimi; omavalitsuse küsimusele ainult seda katvad teenused; link ainult avaliku kaardikirje korral; loendus ei sisalda nimesid; värav ei loe kontakte ning vestluse otsing teda veel ei kutsu.
+`tests/service-provider-assistant-gate.test.mjs` (18 testi, andmebaasita): värav on fail-closed; registrikoodi kinnitus; avaliku teenuseta profiil; piirkonna iga tüüp; kahemõtteline ja tundmatu nimi; omavalitsuse küsimusele ainult seda katvad teenused; link ainult avaliku kaardikirje korral; loendus ei sisalda nimesid; värav ei loe kontakte ning vestluse tuum loeb profiile ainult lugeja kaudu.
 
-## Omaniku otsused (ehitamata)
+## Ühendatud vestlusega (11.10.2026)
 
-1. **Mida osutaja kohta näidatakse.** Ettepanek: asutuse nimi, teenuse nimi ja kategooria, kus osutatakse, tasuta või tasuline ja hinna täpsustus, kuidas teenusele saab (KOV või SKA suunamine), asutuse üldkontakt, kättesaadavus ainult värskelt kinnitatuna. Küsimärgiga: kontaktisiku nimi, tegevusloa märgis.
-2. **Sõnastus.** Ettepanek: „nimetab“, mitte „soovitab“, ja vastus ütleb, et info on osutaja enda antud. Siis tuleb muuta ka vormi loa tekst („Luba assistendil avaldatud teenuseid soovitada“, „lisatakse AI teadmuskihile“).
-3. **Tasuline ja tasuta osutaja.** Ettepanek: koheldakse ühtmoodi ja järjekord ei sõltu kunagi maksmisest (kitsam piirkond ees, siis tähestik); muidu on vastus reklaam.
-4. **Kaardil nähtamatu osutaja** (aadressivaste puudub või kaardi linnuke on maas, aga profiil on avaldatud ja luba antud): kas assistent teda nimetab. Linki talle anda ei saa.
-5. **Vana profiil.** Mitu kuud kinnitamata profiil langeb assistendist välja (ettepanek 12 kuud, enne seda meeldetuletus).
-6. **Organisatsiooni profiil.** Värav nõuab praegu esindusõiguse kinnitust igalt registrikoodiga profiililt, aga kinnitada saab ainult ühe inimese profiili. Kas organisatsiooni enda kontroll loeb kinnituseks.
-7. **Vanad vastused pärast loa tagasivõtmist.** Ettepanek: tekst jääb inimese vestluse ajalukku, osutaja allikakaarti ja linki enam ei näidata.
-8. **Tasuline kontroll** raja ühendamisel (mõni sent).
+### Omaniku otsus ja kuidas seda loeti
 
-## Järgmised sammud pärast otsuseid
+Omaniku sõnad: „Teenuseosutaja tuleb nimetada ka vestluses, kes on profiili täitnud ja paneb linnukese, et on leitav kaardil ja eraldi linnuke, on leitav vestluses.“ Sellest on otsustatud:
 
-1. Lugeja-adapter ja kolmas rada otsingus; osutajate plokk mudeli kontekstis oma viidetega.
-2. Vastuse kontroll, ajalugu ja allikavaade uue viiteliigi jaoks.
-3. Vastuse juhis (sõnastus), plaani uus versioon, tasuline kontroll.
-4. Vormi tekstid.
+- **tee (a):** profiil loetakse andmebaasist küsimuse hetkel, korpusesse seda ei viida;
+- **2. otsus:** vestlus *nimetab* osutajat, ei soovita;
+- **4. otsus:** kaks linnukest on eraldi. Teostaja luges seda nii, et kumbki ei eelda teist: vestluses leitav osutaja ei pea olema teenusekaardil. Sellist osutajat nimetatakse ilma kaardilingita. Kui omanik mõtles teisiti (vestluses ainult see, kes on ka kaardil), on see ühe tingimuse lisamine väravasse.
+
+Ülejäänud otsused (1, 3, 5, 6, 7) on tehtud nii, nagu see ADR ette pani; need on allpool kirjas ja omanik saab iga neist muuta. 8. otsus (tasuline kontroll) on tegemata.
+
+### Vorm
+
+Profiili vaates „Avaldamine“ on kaks linnukest uute nimedega: **„Leitav teenusekaardil“** (`mapVisible`) ja **„Leitav vestluses“** (`assistantRecommendationAllowed`). Vestluse linnukese selgitus ei luba enam „AI teadmuskihti“ ega soovitamist: „Vestluse assistent nimetab sinu asutust, teenuseid ja üldkontakti inimesele, kes küsib teenust sinu piirkonnas. Ta ei soovita ega võrdle osutajaid.“ Avaldamise kontrolli read ütlevad sama sõnaga („leitavaks märgitud“, „leitavus on välja lülitatud“). Tekstid on kolmes keeles. Andmebaasi välju ei muudetud.
+
+### Mida osutaja kohta näidatakse (1. otsus, ettepaneku järgi)
+
+Loend on ühes kohas, `lib/rag-v2/adapters/service-providers.js`, ja lugeja ei küsi andmebaasist muid välju:
+
+- asutuse nimi;
+- iga teenuse kohta, mis küsimuse omavalitsust katab: nimi, valdkond, piirkond (omavalitsuste nimed, maakond või „üleriigiline“), tasu liik ja osutaja enda hinnamärkus, teenusele saamine (otse pöördumine, omavalitsuse hindamine või otsus, Sotsiaalkindlustusameti või spetsialisti suunamine);
+- kättesaadavus („võtab uusi pöördumisi vastu“ jms) ainult siis, kui osutaja kinnitas seda viimase 28 päeva jooksul, koos kinnitamise päevaga;
+- asutuse üldtelefon, e-post ja veebiaadress;
+- lause „Andmed on teenuseosutaja enda sisestatud Sotsiaal.pro teenuseprofiili.“
+
+**Ei näidata:** kirjeldusi, kontaktisiku nime, tegevusloa märgist, teeninduskoha aadressi. Osutaja vabatekst (nimi, hinnamärkus) pannakse ühele reale ja lõigatakse pikkuse järgi.
+
+### Kuidas see töötab
+
+1. **Lugeja** (`lib/rag-v2/adapters/service-provider-directory.js`) küsib andmebaasist avaldatud ja linnukesega profiilid ning laseb igaühe läbi värava (`assistantServicesForMunicipality`). Midagi ei kopeerita ega hoita vahemälus: linnukese mahavõtmine mõjub järgmisel lugemisel.
+2. **Rada otsingus** (`pilot/retrieval.js`, `unifiedSearch`): teadmusraja ja omavalitsuse kirjete raja kõrval loetakse selle omavalitsuse osutajad, mille pööre välja selgitas (ka siis, kui küsitakse teise omavalitsuse kohta, ADR-074). Ilma omavalitsuseta pöördes, tervituses ja tänus rada ei jookse. Lugemise viga ei peata vastust: sel juhul ei nimetata kedagi.
+3. **Järjekord ja piir** (3. otsus, ettepaneku järgi): kitsama piirkonnaga osutaja ees, siis nimi tähestikus. Tasu ega miski, mille eest saaks maksta, järjekorda ei mõjuta (test vahetab tasud ära ja järjekord jääb samaks). Korraga kuni 8 osutajat, igaühelt kuni 3 teenust.
+4. **Allikas ja viide.** Iga osutaja on pöördes üks allikas oma viitega (S-number) nagu iga teine. Tema „dokument“ on `service-provider:<profiil>/<omavalitsus>` ja versioon näidatud teksti räsi. Osutajate allikad seisavad paketis pärast kõiki korpuse allikaid, nii et korpuse viidete numbrid ja kontroll on samad mis ilma rajata (`splitProviderEvidence`); osutaja viiteid kontrollitakse värava, mitte korpuse vastu.
+5. **Mudeli kontekst** (`search/model-context.js`, sama json-5): osutaja väljavõte (`ref`, `source`, `text`), allikakaart `source_type: service_provider_profile` ja plokk `providers` (millised viited, mis omavalitsus, „ainult need, kes profiili sisestasid“). Pöörde kontekst, kus osutajaid ei ole, on täht-tähelt sama mis enne.
+6. **Juhis** (`pilot/dialogue.js`, juhise versioon 43): ainult pöördele, mille kontekstis on osutajad. Nimeta osutaja, kelle teenus küsimusega sobib, sellega, mida tema väljavõte annab, ja ütle üks kord, et andmed on osutaja enda omad; ära soovita, võrdle, järjesta ega kiida; ära ütle, et teisi osutajaid ei ole; kättesaadavust ütle ainult väljavõtte järgi; osutaja väljavõte ei tõenda ühtki reeglit ega õigust; kui ükski teenus ei sobi, ära osutajaid maini. Iga teise pöörde juhis on sama mis versioonis 42.
+7. **Kontroll kolmel hetkel.** Lugemisel (värav), enne vastuse küsimist ja enne avaldamist (`canonicalPacket` küsib iga viidatud osutaja väravast uuesti; lahkunud osutaja peatab pöörde koodiga `service_provider_access_changed`) ning vana vestluse avamisel. Erand: varasem vastus, millelt vestlus jätkub, on vestlus, mitte tõend, ja lahkunud osutaja ei takista inimese järgmist küsimust.
+8. **Vana vastus pärast lahkumist** (7. otsus, ettepaneku järgi): vastuse tekst jääb inimese vestlusse. Osutajat allikana enam ei näidata: allika nime asemel on „Teenuseosutaja profiil (ei ole enam vestluses leitav)“, teksti ega linki ei anta. Pöörde püsikirje (ADR-094) kaardilinki ei hoia.
+9. **Vestluse aken.** Allikate loendis on osutaja allika juures „teenuseosutaja enda andmed“. Kui osutaja on ka teenusekaardil, on vastuse all link „<nimi> teenusekaardil“ (`/teenusekaart?entryId=…`), mis loetakse igal avamisel uuesti. Allikavaade näitab osutaja teksti ainult seni, kuni profiil sama omavalitsuse kohta sama ütleb; pärast muutust ütleb vaade, et allikas on muutunud, ja viib praeguse kaardikirje juurde.
+10. **Lüliti.** `RAG_V2_SERVICE_PROVIDERS=0` võtab lugeja ära ilma väljalasketa: vestlus ei nimeta siis kedagi ja osutajat viidanud pööre näidatakse püsikirjest.
+
+### Maht (loetud vestluse tokeniseerijaga väljamõeldud profiilidel)
+
+| | tokenit |
+|---|---|
+| Juhis (ainult osutajatega pöördes) | 287 |
+| Osutaja ühe teenusega, ainult nimed | 54 |
+| Osutaja ühe teenusega, kõik väljad täidetud | 182 |
+| Osutaja kolme täidetud teenusega | 416 |
+| Rada suurimal kujul (8 osutajat, igaühel 3 teenust) | umbes 3300 |
+
+Ostu ei ole. Kui kontekst on ilma rajata juba täis, saadetakse see ilma osutajateta.
+
+### Kontrollitud ja kontrollimata
+
+Kontrollitud testidega, mudelita (`tests/rag-v2-service-providers.test.mjs`, 16 testi; `tests/rag-v2-search-gate.test.mjs`, rada läbi vestluse päris otsingu mälus hoitava indeksi peal): näidatavate väljade loend; kättesaadavus ainult värskena; värav (avaldamata, linnukeseta, kinnitamata esindusõigusega, avaliku teenuseta profiili ei loeta); kaardil nähtamatu osutaja ilma lingita; piirkond; järjekord ei sõltu tasust; korpuse viidete numbrid ja kontroll ei muutu; muudetud osutajatekst lükatakse tagasi; lahkunud osutaja peatab pöörde, aga mitte järgmist küsimust; allikavaade ja püsikirje; juhis ainult osutajatega pöördes.
+
+**Kontrollimata:** kuidas mudel juhist päriselt järgib (kas nimetab, kui sobib; kas jätab mainimata, kui ei sobi; kas hoidub soovitamast). See vajab tasulist kontrolli (8. otsus), mille teeb omaniku loal: mõni pööre ühe proovi-profiiliga, mõni sent.
+
+### Mis jäi tegemata ja miks
+
+- **5. otsus (vana profiil):** terve profiili aegumist ei ole; ainult kättesaadavus aegub 28 päevaga. Ettepanek (12 kuud kinnitamata profiil langeb vestlusest välja) vajab omaniku sõna ja meeldetuletuse kirja.
+- **6. otsus (organisatsiooni profiil):** värav on muutmata: registrikoodiga profiil vajab kinnitatud esindusõigust.
+- **Omavalitsuseta küsimus:** kui pöördes ei ole omavalitsust, ei nimetata ka üleriigilise piirkonnaga osutajat.
+- **Liigi sobitus on mudeli teha:** talle antakse selle koha osutajad (kuni 8) ja ta valib teenuse nime ja valdkonna järgi. Kui ühes kohas on osutajaid rohkem, jäävad tähestikus tagumised välja; siis on vaja sobitust teenuse liigi järgi (kavandi „hilisem otsus“).
+- **Üle 500 profiili** korraga rada ei loe (ütleb, et kedagi ei ole): selle arvuni jõudes tuleb piirkonna valik viia andmebaasipäringusse.
+- **Mõõtetööriistad** (otsinguvärav, tasuline küsimuste kontroll) loovad vestluse otsingu ilma lugejata ega näe osutajaid enne, kui neile lugeja antakse.
 
 ## Piirid ja kõrvalleiud
 

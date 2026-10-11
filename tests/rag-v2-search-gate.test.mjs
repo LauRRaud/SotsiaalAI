@@ -17,6 +17,7 @@ import { ESTNLTK_LEXICAL } from '../lib/rag-v2/search/morphology.js';
 import { retrievalProfile, CHAT_SUBSECTIONS_PROFILE } from '../lib/rag-v2/search/profiles.js';
 import { collectionName, pointId } from '../lib/rag-v2/search/qdrant.js';
 import { UNIFIED_RETRIEVAL_VERSION, NATIONAL_LAW_RESERVE } from '../lib/rag-v2/search/unified.js';
+import { isProviderDocument, providerText } from '../lib/rag-v2/adapters/service-providers.js';
 
 // ADR-122 (10.10.2026): the search gate's rules, on made-up passages and packets. No database, no model: the search is
 // a stand-in that hands the hook its candidates and returns a packet of the shape the chat's search returns (the merged
@@ -355,7 +356,8 @@ test('the network guard lets a request to Qdrant\'s origin through and stops eve
 // over an index held in memory: sources of the shape tests/rag-v2-pool-reserve.test.mjs builds, a catalog class in
 // place of Postgres, and Qdrant answered by a function that stands behind the gate's own network guard. Forty passages
 // of one parish's regulation rank before a national act's four and a guide's two, until the ranking is changed.
-function memoryIndex() {
+// readers: further adapters of the chat's search (ADR-144: the reader of service providers' profiles).
+function memoryIndex(readers = {}) {
   const tenant = 'gate-synthetic', embedding = new MockEmbedding(), search = searchConfig(embedding.config, ESTNLTK_LEXICAL);
   const source = (doc, count, text, fields = {}) => {
     const version = `${doc}-v1`, spans = Array.from({ length: count }, (_, i) => ({ id: `${doc}-s${i}`, tenant_id: tenant, document_version_id: version, pdf_page: 1, start: i * 80, source_text: `${text} ${i}.` }));
@@ -394,7 +396,7 @@ function memoryIndex() {
     profileId: CHAT_SUBSECTIONS_PROFILE, profile: retrievalProfile(CHAT_SUBSECTIONS_PROFILE), retrievalRouting: UNIFIED_RETRIEVAL_VERSION, recordCatalogue: RECORD_RETRIEVAL_VERSION,
     dialogueVersion: DIALOGUE_VERSION, dialogueStateVersion: REGION_STATE_VERSION, searchAssist: SEARCH_ASSIST_VERSION, configHash: 'c'.repeat(64) };
   const adapters = runtimeAdapters(async () => plan, 'operator', { Catalog, loadRegions: async () => [{ region: 'synthetic_parish', names: ['Synthetic parish', 'Synthetic'] }],
-    analyzer: { analyze: async words => words.map(word => `vmet${word.toLowerCase()}`) } });
+    analyzer: { analyze: async words => words.map(word => `vmet${word.toLowerCase()}`) }, ...readers });
   return { plan, adapters, embedding, network, sent, rank };
 }
 
@@ -455,4 +457,51 @@ test('through the chat\'s own search over an index in memory: the catalogue\'s m
     assert.deepEqual({ ...await replayQuestion(index.adapters, releasedPlan(live), questions[0], saved), ms: null }, { ...national, ms: null });
     assert.deepEqual(refusal({ ...first, search: searchIdentity(live, '2026-10-10') }, first).map(item => item.key), ['recordCatalogue', 'searchAssist']);
   } finally { globalThis.fetch = fetchBefore; }
+});
+
+// ADR-144: the chat names the service providers who entered a profile and ticked "leitav vestluses". Through the
+// chat's own search over the same index in memory: the providers of the turn's municipality come after all corpus
+// evidence with references of their own, and nothing of the lane shows where there is nobody to name.
+test('through the chat\'s own search (ADR-144): the providers of the turn\'s municipality come last; no municipality, no provider or a failed reading names nobody', async () => {
+  const card = { profileId: 'p1', region: 'synthetic_parish', name: 'Synthetic provider', services: [{ name: 'Support person service', area: { kind: 'municipality', names: ['Synthetic parish'] }, feeType: 'FREE' }] };
+  let cards = [card], broken = false;
+  const asked = [];
+  const index = memoryIndex({ loadProviders: async ({ region }) => { asked.push(region); if (broken) throw Object.assign(Error('reader down'), { code: 'reader_down' }); return cards; } });
+  const search = async question => {
+    const query = gateQuery(question, index.plan), scope = question.region ? forcedScope(question.region) : null;
+    query.places = await index.adapters.checkedPlaces(index.plan, query, []);
+    const adapters = scope ? Object.assign(Object.create(index.adapters), { searchScope: async () => ({ scope, knowledgeRegion: scope }) }) : index.adapters;
+    return adapters.unifiedSearch(index.plan, query, await index.embedding.embed(question.text), { variants: [], vectors: new Map(), rerank: null });
+  };
+  const parish = { id: 'provider-parish', region: 'synthetic_parish', text: 'Who provides a support person service?', queries: [] }, national = { id: 'provider-national', text: 'Who provides a support person service?', queries: [] };
+  const fetchBefore = globalThis.fetch, errorBefore = console.error, logged = [];
+  process.env.RAG_V2_QDRANT_URL = 'http://127.0.0.1:56333'; process.env.RAG_V2_QDRANT_KEY = 'made-up-key-of-the-gate-test';
+  globalThis.fetch = qdrantOnly(index.network, () => process.env.RAG_V2_QDRANT_URL);
+  console.error = (...parts) => logged.push(parts.join(' '));
+  try {
+    index.rank(['municipal', 'guide', 'law']);
+    const named = await search(parish), last = named.evidence.at(-1), ref = `S${named.evidence.length}`;
+    assert.deepEqual(asked, ['synthetic_parish']);
+    assert.equal(named.evidence.length > 1 && named.evidence.slice(0, -1).every(entry => !isProviderDocument(entry.document_id)) && isProviderDocument(last.document_id), true);
+    assert.deepEqual([named.provider_context.refs, named.provider_context.region, named.provider_context.shown], [[ref], 'synthetic_parish', 1]);
+    assert.deepEqual(named.retrieval_context.lanes.at(-1), { key: 'providers', kind: 'service_providers', state: 'selected', refs: [ref] });
+    assert.deepEqual(named.model_context.evidence.at(-1), { ref, source: named.model_context.evidence.at(-1).source, text: providerText(card) });
+    assert.deepEqual(named.model_context.providers, named.provider_context);
+    assert.equal(named.reference_map[ref].document_id, last.document_id);
+    assert.equal(Number.isFinite(named.search_timings.lanes.providers.lane), true);
+    // The same question without the provider: the corpus evidence and its references are the same, the lane leaves no trace.
+    cards = [];
+    const alone = await search(parish);
+    assert.deepEqual(alone.evidence.map(entry => entry.evidence_id), named.evidence.slice(0, -1).map(entry => entry.evidence_id));
+    assert.deepEqual(Object.keys(alone.reference_map), Object.keys(named.reference_map).slice(0, -1));
+    assert.equal('provider_context' in alone || 'providers' in alone.model_context || alone.retrieval_context.lanes.some(lane => lane.kind === 'service_providers'), false);
+    // No municipality in the turn: the reader is not asked at all.
+    cards = [card]; asked.length = 0;
+    const unplaced = await search(national);
+    assert.deepEqual([asked, 'provider_context' in unplaced], [[], false]);
+    // A reading that fails names nobody and the turn is answered without it; only the failure's code is logged.
+    broken = true;
+    const failed = await search(parish);
+    assert.deepEqual(['provider_context' in failed, failed.evidence.length, logged], [false, alone.evidence.length, ['[rag-v2] service providers not read reader_down']]);
+  } finally { globalThis.fetch = fetchBefore; console.error = errorBefore; }
 });

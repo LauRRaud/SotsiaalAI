@@ -233,13 +233,17 @@ test('loendus: arvud värava ja piirkonna kohta, ilma ühegi nime või kontaktit
   assert.deepEqual(assistantDirectoryCounts([], []).profiles, { total: 0, byStatus: {}, published: 0, consent: 0, allowed: 0, allowedWithMapLink: 0, blockedPublished: {} });
 });
 
-test('värava väljavalik ei loe kontakte, hindu ega kirjeldusi; vestlus väravat veel ei kasuta', () => {
+test('värava väljavalik ei loe kontakte, hindu ega kirjeldusi; vestluse tuum loeb profiile ainult lugeja kaudu', () => {
   const selected = JSON.stringify(ASSISTANT_GATE_SELECT);
   for (const field of ['phone', 'email', 'website', 'address', 'primaryContactName', 'contactName', 'organizationName', 'name', 'description', 'priceDescription', 'owner']) {
     assert.equal(new RegExp(`"${field}"`, 'u').test(selected), false, field);
   }
-  // Värav on ette valmistatud osa: kuni omaniku otsused on tegemata, ei tohi vestluse otsing teda kutsuda.
+  // Omaniku otsus 11.10.2026: vestlus nimetab osutajat, kes pani linnukese „leitav vestluses". Väravat kutsub ainult
+  // lugeja (lib/rag-v2/adapters/service-provider-directory.js); otsing ja vastuse teenus profiilitabelit ise ei loe.
   const retrieval = readFileSync(new URL('../lib/rag-v2/pilot/retrieval.js', import.meta.url), 'utf8');
   const service = readFileSync(new URL('../lib/rag-v2/pilot/service.js', import.meta.url), 'utf8');
   assert.equal(/serviceProviderAssistantGate|serviceProviderProfile/u.test(retrieval + service), false);
+  const directory = readFileSync(new URL('../lib/rag-v2/adapters/service-provider-directory.js', import.meta.url), 'utf8');
+  assert.match(directory, /assistantServicesForMunicipality\(/u);
+  assert.match(directory, /assistantProfileGate\(/u);
 });

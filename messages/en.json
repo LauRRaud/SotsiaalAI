@@ -3522,7 +3522,7 @@
         "fee_type": "Pricing"
       },
       "visibility": {
-        "visible": "Publish on service map",
+        "visible": "Findable on the service map",
         "visible_help": "The service map shows the profile only when the status is published and at least one map-visible service location has an official address match."
       },
       "status": {
@@ -3543,8 +3543,8 @@
         "accepts_email": "Allow email composition",
         "platform_help": "People can send an internal pre-inquiry to this provider account.",
         "email_help": "The user can compose an email preview and review it before sending.",
-        "assistant_recommendation_allowed": "Allow the assistant to recommend published services",
-        "assistant_recommendation_help": "Published service records are added to the AI knowledge layer only when this is enabled."
+        "assistant_recommendation_allowed": "Findable in the chat",
+        "assistant_recommendation_help": "The chat assistant names your organisation, services and general contact to a person asking about a service in your area. It does not recommend or compare."
       },
       "service_items": {
         "name": "Service name",
@@ -3793,8 +3793,8 @@
       "publish_checks": {
         "status_published": "Profile status is published.",
         "status_not_published": "Set profile status to published if you want to show it publicly.",
-        "map_visible": "Profile is marked visible on the service map.",
-        "map_hidden": "Service map visibility is turned off.",
+        "map_visible": "Profile is marked findable on the service map.",
+        "map_hidden": "Findability on the service map is turned off.",
         "service_ready": "At least one service is ready for publishing.",
         "service_missing": "Add at least one publishable service.",
         "location_ready": "At least one service location is map-visible and has an address.",
@@ -3807,8 +3807,8 @@
         "register_code_required": "An organisation with this name is in the business register: add the registry code to publish.",
         "register_unavailable": "The name cannot be checked against the business register right now.",
         "register_name_detail": "In the register: {name}",
-        "assistant_allowed": "The assistant may recommend published services.",
-        "assistant_blocked": "The assistant will not recommend these services until permission is enabled.",
+        "assistant_allowed": "Profile is marked findable in the chat.",
+        "assistant_blocked": "Findability in the chat is turned off.",
         "area_municipality_missing": "A municipality-based service has no municipality chosen from the register.",
         "area_county_missing": "A county-based service has no county chosen.",
         "representation_confirmed": "The organisation is confirmed.",

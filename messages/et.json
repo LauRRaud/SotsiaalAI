@@ -3522,7 +3522,7 @@
         "general_accessibility_note": "Ligipääsetavuse täpsustus"
       },
       "visibility": {
-        "visible": "Avalda teenusekaardil",
+        "visible": "Leitav teenusekaardil",
         "visible_help": "Teenusekaart kuvab profiili ainult siis, kui staatus on avaldatud ja vähemalt ühel kaardil nähtaval teeninduskohal on ametlik aadressivaste."
       },
       "status": {
@@ -3543,8 +3543,8 @@
         "accepts_email": "Lubab e-kirja koostamist",
         "platform_help": "Inimene saab saata sisemise eelpöördumise selle teenuseosutaja kontole.",
         "email_help": "Kasutaja saab koostada e-kirja eelvaate, mille ta vaatab enne saatmist üle.",
-        "assistant_recommendation_allowed": "Luba assistendil avaldatud teenuseid soovitada",
-        "assistant_recommendation_help": "Avaldatud teenusekirjed lisatakse AI teadmuskihile ainult selle valiku korral."
+        "assistant_recommendation_allowed": "Leitav vestluses",
+        "assistant_recommendation_help": "Vestluse assistent nimetab sinu asutust, teenuseid ja üldkontakti inimesele, kes küsib teenust sinu piirkonnas. Ta ei soovita ega võrdle osutajaid."
       },
       "service_items": {
         "name": "Teenuse nimi",
@@ -3793,8 +3793,8 @@
       "publish_checks": {
         "status_published": "Profiili staatus on avaldatud.",
         "status_not_published": "Muuda profiili staatus avaldatuks, kui soovid seda avalikus vaates kuvada.",
-        "map_visible": "Profiil on teenusekaardil nähtavaks märgitud.",
-        "map_hidden": "Teenusekaardi nähtavus on välja lülitatud.",
+        "map_visible": "Profiil on teenusekaardil leitavaks märgitud.",
+        "map_hidden": "Teenusekaardil leitavus on välja lülitatud.",
         "service_ready": "Vähemalt üks teenus on avaldamiseks olemas.",
         "service_missing": "Lisa vähemalt üks avaldatav teenus.",
         "location_ready": "Vähemalt üks teeninduskoht on kaardil nähtav ja aadressiga.",
@@ -3807,8 +3807,8 @@
         "register_code_required": "Selle nimega asutus on äriregistris: avaldamiseks lisa registrikood.",
         "register_unavailable": "Nime ei saa praegu äriregistri vastu kontrollida.",
         "register_name_detail": "Registris: {name}",
-        "assistant_allowed": "Assistent võib avaldatud teenuseid soovitada.",
-        "assistant_blocked": "Assistent ei soovita neid teenuseid enne eraldi loa andmist.",
+        "assistant_allowed": "Profiil on vestluses leitavaks märgitud.",
+        "assistant_blocked": "Vestluses leitavus on välja lülitatud.",
         "area_municipality_missing": "KOV põhisel teenusel ei ole ühtki registrist valitud omavalitsust.",
         "area_county_missing": "Maakondlikul teenusel ei ole maakonda valitud.",
         "representation_confirmed": "Asutus on kinnitatud.",
