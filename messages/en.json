@@ -12638,7 +12638,10 @@
       "close_note": "Closed work leaves the intake desk and cannot be reopened. The sender's conversation room becomes read-only.",
       "take_back": "Take work back",
       "take_back_confirm": "Yes, take it back",
-      "take_back_note": "The worker's assignment ends and they leave the conversation room. The room stays open for the sender and the work waits for a new assignment."
+      "take_back_note": "The worker's assignment ends and they leave the conversation room. The room stays open for the sender and the work waits for a new assignment.",
+      "reject_item": "Decline the inquiry",
+      "reject_item_confirm": "Yes, decline it",
+      "reject_item_note": "A declined inquiry leaves the intake desk and cannot be reopened. The sender is told that the organisation finished its work on their inquiry, and their conversation room becomes read-only."
     },
     "inboxStatus": {
       "RECEIVED": "Received",

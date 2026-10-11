@@ -24,7 +24,7 @@ import { serverT } from '../lib/i18n/serverMessages.js';
 import { assertNotificationRecipient, createNotificationEvent, serializeNotificationEvent } from '../lib/notifications.js';
 import { WorkspaceContextKind, hasCapability } from '../lib/org/accessContext.js';
 import { INBOX_STATUS_TRANSITIONS, OrganizationInboxStatus, inboxStatusFollowsAssignment } from '../lib/org/constants.js';
-import { assignWork, getInboxItem, hadWorkOnInboxItem, handOverWork, respondToAssignment, transitionInboxItem } from '../lib/org/inbox.js';
+import { assignWork, getInboxItem, hadWorkOnInboxItem, handOverWork, listInboxItemPage, respondToAssignment, transitionInboxItem } from '../lib/org/inbox.js';
 import { ROOM_WRITE, resolveRoomAccess } from '../lib/rooms/accessGuard.js';
 import { ensureRoomForPreInquiry } from '../lib/rooms/preInquiryRoom.js';
 
@@ -46,6 +46,7 @@ const SENDER_ONLY = 'org.errors.inbox_recall_is_sender_right';
 const matches = (value, rule) => {
   if (rule && typeof rule === 'object' && !(rule instanceof Date)) {
     if ('in' in rule) return rule.in.includes(value);
+    if ('notIn' in rule) return !rule.notIn.includes(value);
     if ('not' in rule) return value !== rule.not;
   }
   return value === rule;
@@ -160,6 +161,7 @@ function makeDb() {
         return { ...state.item, assignments: assignmentsOf(select?.assignments?.where?.status ?? { in: LIVE }) };
       },
       findUnique: async ({ where }) => (where.id === state.item.id ? { ...state.item } : null),
+      findMany: async ({ where }) => (itemMatches(where) ? [{ ...state.item, unit: null, assignments: assignmentsOf({ in: LIVE }) }] : []),
       update: async ({ data }) => Object.assign(state.item, data)
     },
     organizationWorkAssignment: {
@@ -707,9 +709,11 @@ const PAGE_REQUESTS = {
      kirjel muudaks sama päring ainult seisu sõna; seda leht ei saada. */
   takeBack: ({ db, viewer, seen }) =>
     seen.assignment ? transitionInboxItem(viewer, 'i1', { toStatus: 'ASSIGNMENT_PENDING' }, { db, now: NOW, ...callHooks().hooks }) : null,
-  close: ({ db, viewer }) => transitionInboxItem(viewer, 'i1', { toStatus: 'CLOSED' }, { db, now: NOW, ...callHooks().hooks })
+  close: ({ db, viewer }) => transitionInboxItem(viewer, 'i1', { toStatus: 'CLOSED' }, { db, now: NOW, ...callHooks().hooks }),
+  /* Pöördumise tagasilükkamine: nii lõpetab koordinaator pöördumise, millel ei ole vastutajat. */
+  rejectItem: ({ db, viewer }) => transitionInboxItem(viewer, 'i1', { toStatus: 'REJECTED' }, { db, now: NOW, ...callHooks().hooks })
 };
-const OFFER_OF = { assign: 'assign', accept: 'respond', reject: 'respond', handOver: 'handOver', takeBack: 'takeBack', close: 'close' };
+const OFFER_OF = { assign: 'assign', accept: 'respond', reject: 'respond', handOver: 'handOver', takeBack: 'takeBack', close: 'close', rejectItem: 'rejectItem' };
 
 test('kirje leht pakub igas seisus ja igale vaatajale täpselt neid töö tegevusi, mida server lubab', async () => {
   const mismatches = [];
@@ -759,26 +763,73 @@ test('töö tagasivõtmine lehelt: koordinaator jääb kirje juurde ja leht paku
       const seen = await getInboxItem(viewer, 'i1', { db, now: NOW });
       return workActions(seen, { context: { writable: true, membership: viewer.membership }, canAssign: hasCapability(viewer, 'WORK_ASSIGNER', { unitId: seen.unitId }) });
     };
-    assert.deepEqual(await pageActions(coordinator()), { assign: false, respond: false, handOver: true, takeBack: true, close: true }, stage);
+    assert.deepEqual(await pageActions(coordinator()), { assign: false, respond: false, handOver: true, takeBack: true, close: true, rejectItem: false }, stage);
 
     /* Sama päring, mille leht saadab. */
     await manual(db, 'ASSIGNMENT_PENDING');
     assert.deepEqual([state.item.status, live(state)], ['ASSIGNMENT_PENDING', []], stage);
 
-    /* Koordinaator näeb kirjet edasi: määramine on tagasi, tagasi võtta ega sulgeda ei ole midagi. */
-    assert.deepEqual(await pageActions(coordinator()), { assign: true, respond: false, handOver: false, takeBack: false, close: false }, stage);
-    /* Koordinaatoril, kes ei ole töö määraja, ei jää pärast tagasivõtmist ühtegi tegevust. */
-    assert.deepEqual(await pageActions(context('koordinaator', ['INBOX_COORDINATOR'])), { assign: false, respond: false, handOver: false, takeBack: false, close: false }, stage);
+    /* Koordinaator näeb kirjet edasi: määramine on tagasi, tagasi võtta ega sulgeda ei ole midagi;
+       vastutajata pöördumise saab ta tagasi lükata. */
+    assert.deepEqual(await pageActions(coordinator()), { assign: true, respond: false, handOver: false, takeBack: false, close: false, rejectItem: true }, stage);
+    /* Koordinaatorile, kes ei ole töö määraja, jääb pärast tagasivõtmist pöördumise tagasilükkamine. */
+    assert.deepEqual(await pageActions(context('koordinaator', ['INBOX_COORDINATOR'])), { assign: false, respond: false, handOver: false, takeBack: false, close: false, rejectItem: true }, stage);
     /* Endine vastutaja kirjet enam ei näe. */
     await assert.rejects(getInboxItem(context('mari'), 'i1', { db, now: LATER }), (error) => error.status === 404, stage);
   }
 });
 
-test('leht saadab käsitsi ainult sulgemise ja töö tagasivõtmise; keeldumise lause on kolmes keeles', () => {
+test('pöördumise tagasilükkamine lehelt: vastutajata pöördumine lõpeb ja lehel ei ole enam ühtegi tegevust', async () => {
+  const pageActions = async (db, viewer) => {
+    const seen = await getInboxItem(viewer, 'i1', { db, now: NOW });
+    return workActions(seen, { context: { writable: true, membership: viewer.membership }, canAssign: hasCapability(viewer, 'WORK_ASSIGNER', { unitId: seen.unitId }) });
+  };
+  const none = { assign: false, respond: false, handOver: false, takeBack: false, close: false, rejectItem: false };
+  for (const stage of ['RECEIVED', 'REVIEWING', 'ASSIGNMENT_PENDING']) {
+    const { db, state } = await world(stage);
+    assert.deepEqual(await pageActions(db, coordinator()), { ...none, assign: true, rejectItem: true }, stage);
+    /* Sama päring, mille leht saadab. */
+    const updated = await manual(db, 'REJECTED');
+    assert.deepEqual([updated.status, state.item.closedAt, live(state)], ['REJECTED', NOW, []], stage);
+    /* Koordinaator näeb lõpetatud kirjet edasi, aga teha sellega enam midagi ei saa. */
+    assert.deepEqual(await pageActions(db, coordinator()), none, stage);
+  }
+
+  /* Töötaja lükkas töö tagasi: kirje ootab määramist ja koordinaator saab pöördumise lõpetada. */
+  const declined = await world('ASSIGNED');
+  await respondToAssignment(context('mari'), declined.first.id, { accept: false, reason: 'koormus' }, { db: declined.db, now: LATER });
+  assert.equal(declined.state.item.status, 'ASSIGNMENT_PENDING');
+  assert.deepEqual(await pageActions(declined.db, coordinator()), { ...none, assign: true, rejectItem: true });
+  await manual(declined.db, 'REJECTED');
+  assert.deepEqual([declined.state.item.status, live(declined.state)], ['REJECTED', []]);
+
+  /* Vastutajaga töö lõpetab sulgemine, mitte tagasilükkamine: seda leht ei paku ja server keeldub. */
+  for (const stage of ['ASSIGNED', 'ACCEPTED']) {
+    const { db } = await world(stage);
+    assert.equal((await pageActions(db, coordinator())).rejectItem, false, stage);
+    await refused(manual(db, 'REJECTED'), 409, INVALID);
+  }
+});
+
+test('laua loendis on ainult lõpetamata töö: ka tagasi lükatud pöördumine kaob sealt', async () => {
+  /* Loend peitis varem ainult „suletud” ja „saatja võttis tagasi” kirjed: tagasi lükatud
+     pöördumine jäi lauale igaveseks, määramata reana, millega midagi teha ei saa. */
+  const listed = async (db, options = {}) => (await listInboxItemPage(coordinator(), { db, now: LATER, ...options })).items.map((row) => [row.id, row.status]);
+  for (const stage of Object.values(OrganizationInboxStatus)) {
+    const { db } = await world(stage);
+    const finished = ['CLOSED', 'REJECTED', 'RECALLED'].includes(stage);
+    assert.deepEqual(await listed(db), finished ? [] : [['i1', stage]], stage);
+    /* Ajalugu on alles: lõpetatud kirjed toob `includeClosed` ja seisufilter. */
+    assert.deepEqual(await listed(db, { includeClosed: true }), [['i1', stage]], stage);
+    assert.deepEqual(await listed(db, { status: stage }), [['i1', stage]], stage);
+  }
+});
+
+test('leht saadab käsitsi ainult sulgemise, pöördumise tagasilükkamise ja töö tagasivõtmise; keeldumise lause on kolmes keeles', () => {
   /* Kui lehele tuleb veel mõni käsitsi seis, peab see olema üks lubatutest (vt tabel ülal) ja
      saama rea `PAGE_REQUESTS`-is, kus pakutud päring ka päriselt tehakse. */
   const page = readFileSync(new URL('../components/org/OrgInboxItemClient.jsx', import.meta.url), 'utf8');
-  assert.deepEqual([...page.matchAll(/toStatus: "(\w+)"/g)].map((match) => match[1]), ['CLOSED', 'ASSIGNMENT_PENDING']);
+  assert.deepEqual([...page.matchAll(/toStatus: "(\w+)"/g)].map((match) => match[1]), ['CLOSED', 'REJECTED', 'ASSIGNMENT_PENDING']);
 
   for (const locale of ['et', 'en', 'ru']) {
     const text = serverT(locale, FOLLOWS);
