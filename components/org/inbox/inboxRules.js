@@ -42,7 +42,8 @@ export function inboxRow(item, { t }) {
     sub: [text(item?.unit?.name), assignee].filter(Boolean).join(" · "),
     urgency: text(item?.urgencyDeclaredBySender),
     chip: item?.status ? t(`org.inboxStatus.${item.status}`) : "",
-    receivedAt: item?.receivedAt ? new Date(item.receivedAt).toISOString() : "",
+    /* Loetamatu aeg jääb tühjaks, mitte ei viska viga. */
+    receivedAt: stampOf(item?.receivedAt) ? new Date(item.receivedAt).toISOString() : "",
     attention: !assignment
   };
 }
