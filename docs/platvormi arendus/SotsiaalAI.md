@@ -92,6 +92,15 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**11.10 Eetikaruumi esimene töövoog (Codex):** `/eetikaruum` salvestab omaniku
+privaatse refleksiooni ning saadab kinnitatud eraldi teksti olemasolevale assistendile
+või privaatsesse kovisioonimustandisse. ET/EN/RU, kuus sihttesti, migratsiooni proov
+ja kohalik brauserirada läbisid. Tooteleping v1.1 täpsustab säilituse, kustutuse ja
+koopiate piire; eksperdikanal jääb suletuks. v86 tasuta sõnaotsing leidis juba
+eetikakoodeksi ja IASSW põhimõtted. Eraldi 44 dokumendi paketi import ning mudeli
+sisuline kvaliteet on NOT_RUN. GitHubi build/deploy on järgmine avaldamissamm.
+[Tõendid](../audits/ethics-room-2026-10-11.md).
+
 **11.10 kohaliku koodi uuendus (Codex):** omaniku korraldusel ühendati kohalikku
 `main`-i `origin/main` seis `70a57cba` (240 seni kohalikust puudu olnud commit'i).
 Neli kohalikku 08.10 auditicommit'i jäävad ühendamise vanemajaloosse; nende
