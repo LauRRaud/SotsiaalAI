@@ -76,9 +76,11 @@ export function InboxBoard({ t, rows, hrefOf, onOpen, more, notice }) {
  *   others, handoverId, onHandover, onHandOver,
  *   onAccept, onReject, rejectArmed, onClose, closeArmed, pending
  * }
+ * `room`: { busy, onOpen } või null. Töö vastu võtnud töötaja avab vestlusruumi, kus
+ *   ta pöördujale vastab; nupp on mõlemas vaates (see on tema järgmine samm).
  * `back`: { href, onBack }
  */
-export function ItemView({ t, tabs, tab, onTab, facts, parts, withheld, work, notice, armedNote, back }) {
+export function ItemView({ t, tabs, tab, onTab, facts, parts, withheld, work, room = null, notice, armedNote, back }) {
   const actions = work.actions;
   const onWork = tab === "work";
   return (
@@ -90,6 +92,11 @@ export function ItemView({ t, tabs, tab, onTab, facts, parts, withheld, work, no
           <Button as="a" href={back.href} size="sm" variant="secondary" data-back="1" onClick={back.onBack}>
             {t("org.inbox.backToList")}
           </Button>
+          {room ? (
+            <Button type="button" size="sm" variant="primary" data-room="1" aria-busy={room.busy ? "true" : undefined} onKeyDown={ignoreKeyRepeat} onClick={room.onOpen}>
+              {t("org.inbox.openRoom")}
+            </Button>
+          ) : null}
           {onWork && actions.close ? (
             <ArmedButton armed={work.closeArmed} busy={work.pending === "close"} label={t("org.inbox.close")} confirm={t("org.inbox.close_confirm")} onPress={work.onClose} mark="close" />
           ) : null}

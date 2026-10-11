@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
+import { buildRoomChatPath } from "@/lib/roomPath";
 
 import { ItemView } from "./inbox/InboxViews";
 import { itemFacts, itemTabs, sourceParts, workActions, workerOptions } from "./inbox/inboxRules";
@@ -23,7 +24,7 @@ import { useSecondPress } from "./useSecondPress";
  * ./inbox/inboxRules.js. Tagasilükkamine ja sulgemine küsivad teist vajutust.
  */
 export default function OrgInboxItemClient({ context, item, members, canAssign }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const router = useRouter();
   const { call, error, setError } = useOrgApi();
   const [assigneeId, setAssigneeId] = useState("");
@@ -90,6 +91,19 @@ export default function OrgInboxItemClient({ context, item, members, canAssign }
       leaveOrRefresh();
     }
   }, [assignment, call, handoverId, leaveOrRefresh, organizationId]);
+
+  /* Töö vastu võtnud töötaja vastab pöördujale samas ühises vestlusruumis, mida kasutab
+     nimeline saaja. `item.room.canOpen` ütleb ainult, kas nuppu näidata: ligipääsu
+     otsustab server igal vajutusel uuesti. */
+  const sourceId = item.source?.id || "";
+  const openRoom = useCallback(async () => {
+    if (!sourceId) return;
+    const payload = await call(`/api/pre-inquiries/${encodeURIComponent(sourceId)}/room`, {
+      method: "POST",
+      fallbackKey: "pre_inquiries.errors.room_failed"
+    });
+    if (payload?.room?.id) router.push(buildRoomChatPath(payload.room.id, locale));
+  }, [call, locale, router, sourceId]);
 
   const close = useCallback(async () => {
     const payload = await call(`/api/org/${organizationId}/inbox/${item.id}`, {
@@ -188,6 +202,17 @@ export default function OrgInboxItemClient({ context, item, members, canAssign }
             closeArmed: confirm.armed === "close",
             onClose: () => confirm.press("close", () => once("close", close))
           }}
+          room={
+            item.room?.canOpen
+              ? {
+                  busy: pending === "room",
+                  onOpen: () => {
+                    clearConfirm();
+                    void once("room", openRoom);
+                  }
+                }
+              : null
+          }
           notice={notice}
           armedNote={armedNote}
           back={{

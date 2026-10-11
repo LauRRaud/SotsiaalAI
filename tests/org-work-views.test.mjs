@@ -113,5 +113,13 @@ test('tekstid on kolmes keeles olemas ja uutes sõnades ei ole mõttekriipsu ega
   for (const key of fresh) assert.ok(!/[—–]| - |"/.test(at(catalog('et'), `org.inbox.${key}`)), key);
   const count = (path) => (read(path).match(/(?<![A-Za-z0-9_.])call\(/g) || []).length;
   assert.equal(count('../components/org/OrgInboxClient.jsx'), 1);
-  assert.equal(count('../components/org/OrgInboxItemClient.jsx'), 4);
+  assert.equal(count('../components/org/OrgInboxItemClient.jsx'), 5);
+  /* Töö vastu võtnud töötaja avab vestlusruumi: nupp on vaates ja päring lehel. */
+  for (const lang of LANGS) {
+    assert.equal(typeof at(catalog(lang), 'org.inbox.openRoom'), 'string', lang);
+    assert.equal(typeof at(catalog(lang), 'pre_inquiries.errors.room_failed'), 'string', lang);
+  }
+  assert.ok(read('../components/org/inbox/InboxViews.jsx').includes('t("org.inbox.openRoom")'));
+  const page = read('../components/org/OrgInboxItemClient.jsx');
+  assert.ok(page.includes('/room`, {') && page.includes('item.room?.canOpen'), 'vestlusruumi avamine on lehel alles');
 });
