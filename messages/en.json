@@ -13953,7 +13953,11 @@
         "OWNER": "This organisation has no care coordinator yet. The care coordinator adds clients, writes care plans and assigns visits; without one, home care stays empty. You give the right on the page “Members”: press “Grant right” on a member's row and choose “Care coordinator”.",
         "OTHER": "This organisation has no care coordinator yet. The care coordinator adds clients, writes care plans and assigns visits. The organisation's owner gives this right on the page “Members”.",
         "members_link": "Open “Members”"
-      }
+      },
+      "more": "Show more",
+      "clear_search": "Back to the list",
+      "search_label_coordinator": "Search by name or phone number",
+      "import_short": "Import a table"
     },
     "status": {
       "ACTIVE": "Active",

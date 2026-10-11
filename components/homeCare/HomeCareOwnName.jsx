@@ -4,6 +4,10 @@ import { useRouter } from "next/navigation";
 import { useId, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
+import { SMALL, footNote } from "@/components/org/OrgBits";
+import shared from "@/components/org/org.module.css";
+import StepPanel from "@/components/stage/StepPanel";
+import Button from "@/components/ui/Button";
 import { OWN_NAME_MAX } from "@/lib/homeCare/ownNameLimits";
 
 import { homeCareBase, useHomeCareApi } from "./homeCareClient";
@@ -13,19 +17,17 @@ import { homeCareBase, useHomeCareApi } from "./homeCareClient";
  * pool (päevaplaan, võtmeraamat, teated, kliendi külmkapileht); kuni nimi on
  * kirjas panemata, seisab seal kriips.
  *
- * Nimeta inimesele on vorm kohe lahti. Kui nimi on olemas, on siin üks vaikne
- * rida ja tee nime muutmiseks.
+ * See on nime vorm omaette vaatena. Nimeta inimesele avab koduteenus selle
+ * kohe; kui nimi on olemas, jõuab siia klientide vaate all servas olevast reast.
+ * `onDone`: kuhu pärast salvestamist või loobumist minna.
  */
-export default function HomeCareOwnName({ organizationId, initial = null }) {
+export default function HomeCareOwnName({ organizationId, initial = null, onDone }) {
   const { t } = useI18n();
   const router = useRouter();
-  const { call, busy, error, setError } = useHomeCareApi();
+  const { call, busy, error } = useHomeCareApi();
   const fieldId = useId();
-  const [name, setName] = useState(initial || { firstName: "", lastName: "", complete: false });
-  const [editing, setEditing] = useState(false);
+  const name = initial || { firstName: "", lastName: "", complete: false };
   const [form, setForm] = useState({ firstName: name.firstName, lastName: name.lastName });
-
-  const open = !name.complete || editing;
 
   const save = async (event) => {
     event.preventDefault();
@@ -35,75 +37,57 @@ export default function HomeCareOwnName({ organizationId, initial = null }) {
       fallbackKey: "home_care.errors.save_failed"
     });
     if (!result.ok) return;
-    setName(result.data.name);
-    setEditing(false);
     /* Nimi on lehel mitmes kohas (meeskond, käigud): loe need serverist uuesti. */
     router.refresh();
+    onDone?.();
   };
 
-  if (!open) {
-    return (
-      <p className="hc-sub">
-        {t("home_care.own_name.line", { name: `${name.firstName} ${name.lastName}` })}{" "}
-        <button
-          type="button"
-          className="hc-btn hc-btn--link"
-          onClick={() => {
-            setForm({ firstName: name.firstName, lastName: name.lastName });
-            setError("");
-            setEditing(true);
-          }}
-        >
-          {t("home_care.own_name.change")}
-        </button>
-      </p>
-    );
-  }
-
   return (
-    <form className="hc-form hc-notice" onSubmit={save} aria-busy={busy}>
-      <p className="hc-hint">{name.complete ? t("home_care.own_name.edit_hint") : t("home_care.own_name.missing")}</p>
-      <div className="hc-row">
-        <label className="hc-field" htmlFor={`${fieldId}-first`}>
-          <span className="hc-label">{t("home_care.own_name.first")}</span>
-          <input
-            id={`${fieldId}-first`}
-            className="hc-input"
-            value={form.firstName}
-            onChange={(event) => setForm((previous) => ({ ...previous, firstName: event.target.value }))}
-            maxLength={OWN_NAME_MAX}
-            autoComplete="given-name"
-            required
-          />
-        </label>
-        <label className="hc-field" htmlFor={`${fieldId}-last`}>
-          <span className="hc-label">{t("home_care.own_name.last")}</span>
-          <input
-            id={`${fieldId}-last`}
-            className="hc-input"
-            value={form.lastName}
-            onChange={(event) => setForm((previous) => ({ ...previous, lastName: event.target.value }))}
-            maxLength={OWN_NAME_MAX}
-            autoComplete="family-name"
-            required
-          />
-        </label>
-      </div>
-      {error ? (
-        <p className="hc-error" role="alert">
-          {error}
-        </p>
-      ) : null}
-      <div className="hc-row">
-        <button type="submit" className="hc-btn hc-btn--primary" disabled={busy}>
-          {t("home_care.own_name.save")}
-        </button>
-        {name.complete ? (
-          <button type="button" className="hc-btn" disabled={busy} onClick={() => setEditing(false)}>
-            {t("home_care.own_name.cancel")}
-          </button>
-        ) : null}
-      </div>
+    <form onSubmit={save} aria-busy={busy}>
+      <StepPanel
+        title={t("home_care.desk.names.name")}
+        lead={name.complete ? t("home_care.own_name.edit_hint") : t("home_care.own_name.missing")}
+        note={footNote(error ? { text: error, tone: "risk" } : null)}
+        actions={
+          <>
+            {name.complete ? (
+              <Button {...SMALL} data-name="cancel" onClick={onDone}>
+                {t("home_care.own_name.cancel")}
+              </Button>
+            ) : null}
+            <Button type="submit" size="sm" variant="primary" data-name="save" aria-busy={busy ? "true" : undefined}>
+              {t("home_care.own_name.save")}
+            </Button>
+          </>
+        }
+      >
+        <div className={shared.pair}>
+          <label className={shared.line} data-size="sm" htmlFor={`${fieldId}-first`}>
+            <span className={shared.fieldLabel}>{t("home_care.own_name.first")}</span>
+            <input
+              id={`${fieldId}-first`}
+              className={shared.input}
+              value={form.firstName}
+              onChange={(event) => setForm((previous) => ({ ...previous, firstName: event.target.value }))}
+              maxLength={OWN_NAME_MAX}
+              autoComplete="given-name"
+              required
+            />
+          </label>
+          <label className={shared.line} data-size="sm" htmlFor={`${fieldId}-last`}>
+            <span className={shared.fieldLabel}>{t("home_care.own_name.last")}</span>
+            <input
+              id={`${fieldId}-last`}
+              className={shared.input}
+              value={form.lastName}
+              onChange={(event) => setForm((previous) => ({ ...previous, lastName: event.target.value }))}
+              maxLength={OWN_NAME_MAX}
+              autoComplete="family-name"
+              required
+            />
+          </label>
+        </div>
+      </StepPanel>
     </form>
   );
 }

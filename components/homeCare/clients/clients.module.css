@@ -1,0 +1,142 @@
+/* Klientide vaade, uue kliendi vorm ja „Kuhu suunata".
+   Read, märgid ja väljad on organisatsioonide lehtede ühised
+   (../../org/org.module.css); siin on ainult see, mis on nendel vaadetel oma. */
+
+/* Rea sisu: teine rida murdub (aadress ei tohi poolikuks jääda). */
+.client {
+  align-items: start;
+}
+.main {
+  composes: main from "../day/day.module.css";
+}
+.sub {
+  composes: sub from "../day/day.module.css";
+}
+
+/* Otsing: väli on nii lai kui nimi, nupp selle kõrval samal joonel. */
+.search {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.5rem 0.65rem;
+}
+/* Silt võib olla väljast pikem (vene keeles oli see 18 rem sees kahel real ja
+   vaade 4 px üle paneeli): väli on nime laiune, silt nii pikk kui vaja. */
+.search > label {
+  flex: 0 1 auto;
+  max-width: 100%;
+}
+.search input {
+  width: 18rem;
+  max-width: 100%;
+}
+
+/* Loendi enda tegevused loendi all. */
+.listActions {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Nime rida all servas: terve lause on vajutatav (sõrme jaoks piisavalt kõrge),
+   allajoonitud on ainult tegevuse sõnad. */
+.nameLine {
+  display: block;
+  width: 100%;
+  min-height: var(--hit-target-min, 2.75rem);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+.link {
+  color: var(--text-warm);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+/* Vana kihi osa rea all (kõne märkimine): sama ümbris mis laual. */
+.old {
+  composes: notes from "../desk/desk.module.css";
+}
+
+/* Telefoninumber loendi real: vajutatav sõrmega, numbrid kohakuti. */
+.tel {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--hit-target-min, 2.75rem);
+  color: var(--text-warm);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+/* Vormi väljad üksteise all; pikk tekstiväli on ainus, mis võtab terve laiuse. */
+.form {
+  min-width: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+.wide,
+.grow,
+.short {
+  min-width: 0;
+  display: grid;
+  gap: 0.3rem;
+}
+/* Kaks välja kõrvuti: pikem (nimi, aadress) võtab ruumi, lühem (telefon, üksus,
+   tunnus) on nii lai kui selle sisu. Kitsal pinnal üksteise all. */
+.formRow {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.4rem 1rem;
+}
+.grow {
+  flex: 1 1 16rem;
+}
+.short {
+  flex: 0 1 12rem;
+}
+/* Selgitus lühikese välja kõrval. */
+.beside {
+  composes: hint from "../../org/org.module.css";
+  flex: 1 1 14rem;
+  margin: 0;
+  max-width: none;
+  align-self: center;
+}
+/* Üks koht loendis „Kuhu suunata": nimi, telefon ja millal pöörduda ühel real. */
+.contact {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 14rem) minmax(0, 9rem) minmax(0, 1fr);
+  gap: 0.4rem;
+}
+
+@container (min-width: 34rem) {
+  /* Laiemal pinnal on kliendid kahes veerus: esimene lehekülg mahub paneeli. */
+  .list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@container (max-width: 34rem) {
+  /* Telefonis on esimesel leheküljel viis rida: koos otsingu ja tegevustega
+     mahub see ekraanile (kuuega ei mahu). */
+  .list:not([data-expanded="1"]) > li:nth-child(n + 6) {
+    display: none;
+  }
+  .contact {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

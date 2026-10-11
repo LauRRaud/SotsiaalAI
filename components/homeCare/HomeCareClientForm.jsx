@@ -3,8 +3,13 @@
 import { useId, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
+import { SMALL, footNote } from "@/components/org/OrgBits";
+import shared from "@/components/org/org.module.css";
+import StepPanel from "@/components/stage/StepPanel";
+import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
 
+import styles from "./clients/clients.module.css";
 import { homeCareBase, useHomeCareApi } from "./homeCareClient";
 
 /**
@@ -13,6 +18,9 @@ import { homeCareBase, useHomeCareApi } from "./homeCareClient";
  * Muutmine saadab NÄHTUD VERSIOONI. Kui keegi teine muutis andmeid vahepeal,
  * vastab server konfliktiga ja vorm jääb täidetuna alles, et midagi ei läheks
  * vaikselt üle kirjutatud.
+ *
+ * Väli on nii lai kui sinna kirjutatav sisu: nimi ja aadress laiemad, telefon ja
+ * tunnus lühikesed. Täislaius on ainult märkuste väljal.
  */
 export default function HomeCareClientForm({ organizationId, client = null, unitOptions = null, onSaved, onCancel }) {
   const { t } = useI18n();
@@ -56,114 +64,69 @@ export default function HomeCareClientForm({ organizationId, client = null, unit
   ];
 
   return (
-    <form className="hc-form" onSubmit={submit}>
-      <div className="hc-field">
-        <label className="hc-label" htmlFor={`${fieldId}-name`}>
-          {t("home_care.client.name")}
-        </label>
-        <input
-          id={`${fieldId}-name`}
-          className="hc-input"
-          value={displayName}
-          onChange={(event) => setDisplayName(event.target.value)}
-          maxLength={200}
-          required
-          autoComplete="off"
-        />
-      </div>
-
-      <div className="hc-grid hc-grid--two">
-        <div className="hc-field">
-          <label className="hc-label" htmlFor={`${fieldId}-address`}>
-            {t("home_care.client.address")}
-          </label>
-          <input
-            id={`${fieldId}-address`}
-            className="hc-input"
-            value={address}
-            onChange={(event) => setAddress(event.target.value)}
-            maxLength={300}
-            autoComplete="off"
-          />
-        </div>
-        <div className="hc-field">
-          <label className="hc-label" htmlFor={`${fieldId}-phone`}>
-            {t("home_care.client.phone")}
-          </label>
-          <input
-            id={`${fieldId}-phone`}
-            className="hc-input"
-            type="tel"
-            value={contactPhone}
-            onChange={(event) => setContactPhone(event.target.value)}
-            maxLength={60}
-            autoComplete="off"
-          />
-        </div>
-      </div>
-
-      <div className="hc-field">
-        <label className="hc-label" htmlFor={`${fieldId}-note`}>
-          {t("home_care.client.contact_note")}
-        </label>
-        <textarea
-          id={`${fieldId}-note`}
-          className="hc-textarea"
-          value={contactNote}
-          onChange={(event) => setContactNote(event.target.value)}
-          maxLength={1000}
-          rows={3}
-        />
-      </div>
-
-      <div className="hc-grid hc-grid--two">
-        <div className="hc-field">
-          <label className="hc-label" htmlFor={`${fieldId}-code`}>
-            {t("home_care.client.internal_code")}
-          </label>
-          <input
-            id={`${fieldId}-code`}
-            className="hc-input"
-            value={internalCode}
-            onChange={(event) => setInternalCode(event.target.value)}
-            maxLength={100}
-            autoComplete="off"
-            aria-describedby={`${fieldId}-code-hint`}
-          />
-          <p className="hc-hint" id={`${fieldId}-code-hint`}>
-            {t("home_care.client.internal_code_hint")}
-          </p>
-        </div>
-        {units.length > 0 ? (
-          <div className="hc-field">
-            <span className="hc-label">{t("home_care.client.unit")}</span>
-            <Dropdown
-              value={unitId}
-              onChange={setUnitId}
-              ariaLabel={t("home_care.client.unit")}
-              options={unitChoices}
-              required={unitRequired}
-            />
+    <form onSubmit={submit} aria-busy={busy}>
+      <StepPanel
+        title={client ? t("home_care.client.details") : t("home_care.client.create_title")}
+        note={footNote(error ? { text: error, tone: "risk" } : null)}
+        actions={
+          <>
+            {onCancel ? (
+              <Button {...SMALL} data-client-form="cancel" onClick={onCancel}>
+                {t("home_care.client.cancel")}
+              </Button>
+            ) : null}
+            <Button type="submit" size="sm" variant="primary" data-client-form="save" aria-busy={busy ? "true" : undefined}>
+              {t("home_care.client.save")}
+            </Button>
+          </>
+        }
+      >
+        <div className={styles.form}>
+          <div className={styles.formRow}>
+            <label className={styles.grow} htmlFor={`${fieldId}-name`}>
+              <span className={shared.fieldLabel}>{t("home_care.client.name")}</span>
+              <input id={`${fieldId}-name`} className={shared.input} value={displayName} onChange={(event) => setDisplayName(event.target.value)} maxLength={200} required autoComplete="off" />
+            </label>
+            <label className={styles.short} htmlFor={`${fieldId}-phone`}>
+              <span className={shared.fieldLabel}>{t("home_care.client.phone")}</span>
+              <input id={`${fieldId}-phone`} className={shared.input} type="tel" value={contactPhone} onChange={(event) => setContactPhone(event.target.value)} maxLength={60} autoComplete="off" />
+            </label>
           </div>
-        ) : null}
-      </div>
-
-      {error ? (
-        <p className="hc-error" role="alert">
-          {error}
-        </p>
-      ) : null}
-
-      <div className="hc-row">
-        <button className="hc-btn hc-btn--primary" type="submit" disabled={busy}>
-          {t("home_care.client.save")}
-        </button>
-        {onCancel ? (
-          <button className="hc-btn" type="button" onClick={onCancel} disabled={busy}>
-            {t("home_care.client.cancel")}
-          </button>
-        ) : null}
-      </div>
+          <div className={styles.formRow}>
+            <label className={styles.grow} htmlFor={`${fieldId}-address`}>
+              <span className={shared.fieldLabel}>{t("home_care.client.address")}</span>
+              <input id={`${fieldId}-address`} className={shared.input} value={address} onChange={(event) => setAddress(event.target.value)} maxLength={300} autoComplete="off" />
+            </label>
+            {units.length > 0 ? (
+              <div className={styles.short}>
+                <span className={shared.fieldLabel}>{t("home_care.client.unit")}</span>
+                <Dropdown value={unitId} onChange={setUnitId} ariaLabel={t("home_care.client.unit")} options={unitChoices} required={unitRequired} />
+              </div>
+            ) : null}
+          </div>
+          <label className={styles.wide} htmlFor={`${fieldId}-note`}>
+            <span className={shared.fieldLabel}>{t("home_care.client.contact_note")}</span>
+            <textarea id={`${fieldId}-note`} className={shared.input} value={contactNote} onChange={(event) => setContactNote(event.target.value)} maxLength={1000} rows={2} />
+          </label>
+          <div className={styles.formRow}>
+            <label className={styles.short} htmlFor={`${fieldId}-code`}>
+              <span className={shared.fieldLabel}>{t("home_care.client.internal_code")}</span>
+              <input
+                id={`${fieldId}-code`}
+                className={shared.input}
+                value={internalCode}
+                onChange={(event) => setInternalCode(event.target.value)}
+                maxLength={100}
+                autoComplete="off"
+                aria-describedby={`${fieldId}-code-hint`}
+              />
+            </label>
+            <p className={styles.beside} id={`${fieldId}-code-hint`}>
+              {t("home_care.client.internal_code_hint")}
+            </p>
+          </div>
+        </div>
+      </StepPanel>
     </form>
   );
 }

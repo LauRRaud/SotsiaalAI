@@ -13953,7 +13953,11 @@
         "OWNER": "Sellel organisatsioonil ei ole veel hooldusjuhti. Hooldusjuht lisab kliendid, koostab hoolduskavad ja jagab käigud; ilma temata jääb koduteenus tühjaks. Õiguse annad lehel „Liikmed”: vajuta liikme real „Anna õigus” ja vali „Hooldusjuht”.",
         "OTHER": "Sellel organisatsioonil ei ole veel hooldusjuhti. Hooldusjuht lisab kliendid, koostab hoolduskavad ja jagab käigud. Selle õiguse annab organisatsiooni omanik lehel „Liikmed”.",
         "members_link": "Ava „Liikmed”"
-      }
+      },
+      "more": "Näita veel",
+      "clear_search": "Tagasi loendisse",
+      "search_label_coordinator": "Otsi nime või telefoninumbri järgi",
+      "import_short": "Too tabelist"
     },
     "status": {
       "ACTIVE": "Aktiivne",
