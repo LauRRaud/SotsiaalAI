@@ -542,7 +542,7 @@ test('vestlusaken: ainult loetava ruumi põhjus jõuab aknani, kirjutuskast luku
     const texts = [messages.rooms.read_only.org_work_closed, messages.rooms.read_only.archived, messages.journey.related.work_closed];
     for (const text of texts) {
       assert.ok(text.length > 15, locale);
-      assert.equal(/[—–]/.test(text), false, locale);
+      assert.equal(/[\u2014\u2013]/.test(text), false, locale);
     }
     assert.ok(messages.journey.related.work_closed.includes('{date}'), locale);
   }

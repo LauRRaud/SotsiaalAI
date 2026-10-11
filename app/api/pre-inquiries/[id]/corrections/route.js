@@ -3,6 +3,7 @@ import { authConfig } from "@/auth";
 import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
 import { sendPreInquiryCorrection } from "@/lib/preInquiries";
 import { safeError } from "@/lib/privacy/safeError";
+import { localizePrivacyPayload, privacyLocaleFromRequest } from "@/lib/privacy/privacyTexts";
 import { enforcePreInquiryRateLimit } from "@/lib/preInquiryApiBoundary";
 
 export const runtime = "nodejs";
@@ -44,6 +45,6 @@ export async function POST(request, context) {
     const messageKey = status < 500 && PUBLIC_ERRORS.has(error?.message)
       ? error.message
       : "pre_inquiries.errors.correction_failed";
-    return errorJson(messageKey, status, locale, error?.privacyPayload || {});
+    return errorJson(messageKey, status, locale, localizePrivacyPayload(error?.privacyPayload, privacyLocaleFromRequest(request)));
   }
 }

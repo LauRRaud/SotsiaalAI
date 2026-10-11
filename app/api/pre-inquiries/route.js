@@ -70,6 +70,6 @@ export async function POST(request) {
     if (publicPreInquiryError(error).status >= 500) {
       console.error("[pre-inquiries] save failed", safeError(error));
     }
-    return preInquiryErrorJson(error, locale, "pre_inquiries.errors.save_failed");
+    return preInquiryErrorJson(error, locale, "pre_inquiries.errors.save_failed", request);
   }
 }

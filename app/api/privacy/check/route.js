@@ -2,6 +2,8 @@ import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
 import { evaluateTextPrivacy, privacyConfirmationResponsePayload } from "@/lib/privacy/privacyGuard";
+import { resolvePrivacyDecision } from "@/lib/privacy/promptPreference";
+import { localizePrivacyPayload, privacyLocaleFromRequest } from "@/lib/privacy/privacyTexts";
 import { safeError } from "@/lib/privacy/safeError";
 
 export const runtime = "nodejs";
@@ -31,13 +33,15 @@ export async function POST(request) {
 
   try {
     const body = await request.json().catch(() => ({}));
+    /* Kui inimene on hoiatuse konto seadetes välja lülitanud, on tema püsiv otsus privaatses
+       töövoos „saada siiski"; avalikus töövoos küsitakse endiselt. */
     const result = evaluateTextPrivacy(body?.text, {
       workflow: body?.workflow,
-      privacyDecision: body?.privacyDecision
+      privacyDecision: await resolvePrivacyDecision(auth.userId, body?.privacyDecision)
     });
 
     if (result.needsPrivacyConfirmation) {
-      return json(privacyConfirmationResponsePayload(result), 409);
+      return json(localizePrivacyPayload(privacyConfirmationResponsePayload(result), privacyLocaleFromRequest(request)), 409);
     }
 
     return json({

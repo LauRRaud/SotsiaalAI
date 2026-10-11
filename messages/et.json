@@ -2335,6 +2335,13 @@
       "night": "Öö",
       "mono": "Mono",
       "hc": "KKR"
+    },
+    "privacy_prompt": {
+      "on_hint": "Isikuandmete hoiatus on sees. Enne saatmist küsitakse sinult üle, kui tekstis on telefoninumber, isikukood, e-posti aadress või aadress.",
+      "off_hint": "Isikuandmete hoiatus on väljas. Tekst saadetakse nii, nagu sa selle kirjutasid. Avalikus kuulutuses varjatakse isikuandmed alati.",
+      "turn_off": "Lülita hoiatus välja",
+      "turn_on": "Lülita hoiatus sisse",
+      "save_failed": "Seadet ei õnnestunud salvestada."
     }
   },
   "materials_page": {
@@ -2570,7 +2577,14 @@
     "send_original": "Saada siiski",
     "unavailable_title": "Privaatsuskontroll on ajutiselt häiritud",
     "unavailable": "Sõnumit ei saadetud. Kontrolli palun uuesti.",
-    "retry": "Kontrolli uuesti"
+    "retry": "Kontrolli uuesti",
+    "warning": "Tekstis võib olla isikuandmeid. Saada ainult see, mida on päriselt vaja.",
+    "types": {
+      "email": "e-posti aadress",
+      "phone": "telefoninumber",
+      "estonian_personal_code": "isikukood",
+      "address": "aadress"
+    }
   },
   "privacy": {
     "title": "Privaatsus",

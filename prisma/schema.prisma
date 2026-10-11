@@ -743,6 +743,9 @@ model User {
   acceptsPreInquiries           Boolean            @default(false)
   notificationEmailEnabled      Boolean?
   notificationPreferenceVersion Int                @default(0)
+  // Isikuandmete hoiatus enne saatmist (konto seaded). Väljas: privaatses töövoos läheb tekst
+  // küsimata nii, nagu inimene selle kirjutas; avalik tekst varjatakse endiselt alati.
+  privacyPromptEnabled          Boolean            @default(true)
 
   // NextAuth
   accounts Account[]

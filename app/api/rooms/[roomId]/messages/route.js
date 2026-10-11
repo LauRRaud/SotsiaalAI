@@ -13,6 +13,8 @@ import { applySummaryApprovalPolicy, listRoomSummaryApprovalState } from "@/lib/
 import { logDocumentsAudit } from "@/lib/documents/audit";
 import { safeError } from "@/lib/privacy/safeError";
 import { evaluateTextPrivacy, privacyConfirmationResponsePayload } from "@/lib/privacy/privacyGuard";
+import { resolvePrivacyDecision } from "@/lib/privacy/promptPreference";
+import { localizePrivacyPayload, privacyLocaleFromRequest } from "@/lib/privacy/privacyTexts";
 import { markHelpMatchContactedByRoom } from "@/lib/help/matches";
 import { markNetworkShareRespondedByRoom } from "@/lib/network/share";
 
@@ -326,10 +328,10 @@ export async function POST(req, { params }) {
   }
   const privacy = evaluateTextPrivacy(rawContent, {
     workflow: "room_private",
-    privacyDecision: payload?.privacyDecision
+    privacyDecision: await resolvePrivacyDecision(auth.userId, payload?.privacyDecision)
   });
   if (privacy.needsPrivacyConfirmation) {
-    return json(privacyConfirmationResponsePayload(privacy), 409);
+    return json(localizePrivacyPayload(privacyConfirmationResponsePayload(privacy), privacyLocaleFromRequest(req)), 409);
   }
   const content = String(privacy.processedText || rawContent).trim();
   if (!content) return errorJson("api.rooms.message_required", 400);
