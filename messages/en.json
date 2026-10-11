@@ -7347,7 +7347,8 @@
       "service_representation_link_sent": "A confirmation link was sent to the organisation's e-mail: open that e-mail while signed in to this account",
       "service_representation_confirmed": "The organisation is confirmed: the service profile can now be published",
       "service_representation_revoked": "The organisation's confirmation was withdrawn; a published service profile was hidden",
-      "service_profile_published": "Your service profile is published"
+      "service_profile_published": "Your service profile is published",
+      "pre_inquiry_work_closed": "The organisation finished its work on your pre-inquiry"
     },
     "center": {
       "title": "Notifications",

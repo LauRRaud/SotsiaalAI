@@ -7347,7 +7347,8 @@
       "service_representation_link_sent": "Kinnituslink saadeti asutuse e-postile: ava see kiri selle kontoga sisse logituna",
       "service_representation_confirmed": "Asutus on kinnitatud: teenuseprofiili saab nüüd avaldada",
       "service_representation_revoked": "Asutuse kinnitus võeti tagasi; avaldatud teenuseprofiil peideti",
-      "service_profile_published": "Sinu teenuseprofiil on avaldatud"
+      "service_profile_published": "Sinu teenuseprofiil on avaldatud",
+      "pre_inquiry_work_closed": "Asutus lõpetas sinu eelpöördumisega töö"
     },
     "center": {
       "title": "Teavitused",
