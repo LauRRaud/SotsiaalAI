@@ -1,16 +1,28 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import Button from "@/components/ui/Button";
-import Dropdown from "@/components/ui/Dropdown";
-import Form from "@/components/ui/Form";
-import Input from "@/components/ui/Input";
-import { CAPABILITY_TEMPLATE_KEYS, CAPABILITY_TEMPLATES, ORGANIZATION_SEAT_ROLES } from "@/lib/org/constants";
+import StepFlight from "@/components/stage/StepFlight";
 
-import OrgHeader from "./OrgHeader";
+import { InvitesBoard, LinkView, RoleView, SendView, UnitView, WhoView } from "./invites/InvitesViews";
+import {
+  EMPTY_INVITE,
+  INVITE_STEPS,
+  inviteDirty,
+  inviteLink,
+  inviteListRow,
+  inviteProblem,
+  inviteStepStates,
+  inviteSummary,
+  seatOptions,
+  templateNeedsUnit,
+  templateOptions,
+  unitOptions
+} from "./invites/inviteRules";
+import OrgPart from "./OrgPart";
 import { useOrgApi } from "./useOrgApi";
+import { useSecondPress } from "./useSecondPress";
 
 /**
  * Kutsete haldus.
@@ -18,21 +30,39 @@ import { useOrgApi } from "./useOrgApi";
  * TOORE LINK kuvatakse ainult üks kord ja seda ei salvestata kuhugi. Andmebaasis
  * on ainult räsi — kui link kaob, tuleb saata uus kutse. See on teadlik piir,
  * mitte puudujääk.
+ *
+ * KUJU (11.10). Leht oli vorm, lingi kast ja tabel üksteise all. Nüüd on ees kas
+ * loend, kutse loomine nelja väikese vaatena sammulaval või äsja loodud kutse
+ * link. Vaated on failis ./invites/InvitesViews.jsx, reeglid failis
+ * ./invites/inviteRules.js; see fail hoiab olekut ja teeb päringud.
  */
 export default function OrgInvitesClient({ context, initialPage, units }) {
   const { t } = useI18n();
-  const { call, busy, error } = useOrgApi();
+  const { call, busy, error, setError } = useOrgApi();
   const [invites, setInvites] = useState(initialPage?.items || []);
   const [nextCursor, setNextCursor] = useState(initialPage?.nextCursor || null);
-  const [email, setEmail] = useState("");
-  const [seatRole, setSeatRole] = useState("SOCIAL_WORKER");
-  const [templateKey, setTemplateKey] = useState("MEMBER");
-  const [primaryUnitId, setPrimaryUnitId] = useState("");
+  /* Ametinimetus (nt „hooldaja") läheb liikmesusele kaasa: liikmete loend ja töölauad
+     näitavad seda nime kõrval ja nimeta liikme puhul nime asemel. Nimi kutsega täidab
+     liitumisel inimese profiili ainult siis, kui tal endal nime ei ole. */
+  const [form, setForm] = useState(EMPTY_INVITE);
+  const [mode, setMode] = useState("list");
+  const [stepKey, setStepKey] = useState("who");
   const [issuedLink, setIssuedLink] = useState("");
+  const [copied, setCopied] = useState(false);
+  /* Mis päring käib: "" | "create" | "more" | "revoke:<id>". */
+  const [pending, setPending] = useState("");
+  /* Vaate enda teade: { view, text, tone }. */
+  const [notice, setNotice] = useState(null);
+  const confirm = useSecondPress();
+  const clearConfirm = confirm.clear;
+  const sending = useRef(false);
+  const rootRef = useRef(null);
+  const emailRef = useRef(null);
+  const live = useRef(form);
+  live.current = form;
 
   const organizationId = context.organization.id;
   const writable = context?.writable !== false;
-  const templateNeedsUnit = CAPABILITY_TEMPLATES[templateKey]?.scope === "UNIT";
 
   const reload = useCallback(async () => {
     const payload = await call(`/api/org/${organizationId}/invites`);
@@ -53,28 +83,33 @@ export default function OrgInvitesClient({ context, initialPage, units }) {
     setNextCursor(payload.nextCursor || null);
   }, [call, nextCursor, organizationId]);
 
-  const create = useCallback(
-    async (event) => {
-      event.preventDefault();
-      setIssuedLink("");
-      const payload = await call(`/api/org/${organizationId}/invites`, {
-        method: "POST",
-        body: {
-          email,
-          seatRole,
-          capabilityTemplate: templateKey,
-          primaryUnitId: primaryUnitId || null
-        },
-        fallbackKey: "org.errors.invite_create_failed"
-      });
-      if (payload?.inviteToken) {
-        setIssuedLink(`${window.location.origin}/org/liitu?token=${encodeURIComponent(payload.inviteToken)}`);
-        setEmail("");
-        await reload();
-      }
-    },
-    [call, email, organizationId, primaryUnitId, reload, seatRole, templateKey]
-  );
+  const create = useCallback(async () => {
+    const { email, seatRole, templateKey, primaryUnitId, jobTitle, firstName, lastName } = live.current;
+    setIssuedLink("");
+    const payload = await call(`/api/org/${organizationId}/invites`, {
+      method: "POST",
+      body: {
+        email,
+        seatRole,
+        capabilityTemplate: templateKey,
+        primaryUnitId: primaryUnitId || null,
+        jobTitle: jobTitle.trim() || null,
+        firstName: firstName.trim() || null,
+        lastName: lastName.trim() || null
+      },
+      fallbackKey: "org.errors.invite_create_failed"
+    });
+    if (payload?.inviteToken) {
+      setIssuedLink(inviteLink(window.location.origin, payload.inviteToken));
+      setCopied(false);
+      /* Koht, roll ja üksus jäävad järgmise kutse jaoks alles (sama rolli kutsutakse
+         sageli mitu inimest); inimese enda andmed tühjendatakse. */
+      setForm((current) => ({ ...current, email: "", jobTitle: "", firstName: "", lastName: "" }));
+      setMode("link");
+      setStepKey("who");
+      await reload();
+    }
+  }, [call, organizationId, reload]);
 
   const revoke = useCallback(
     async (inviteId) => {
@@ -87,146 +122,215 @@ export default function OrgInvitesClient({ context, initialPage, units }) {
     [call, organizationId, reload]
   );
 
-  return (
-    <section className="ow-shell">
-      <OrgHeader context={context} />
+  /* Üks tegevus korraga: topeltvajutus ei saada teist päringut. */
+  const once = useCallback(async (name, work) => {
+    if (sending.current) return;
+    sending.current = true;
+    setPending(name);
+    setNotice(null);
+    try {
+      await work();
+    } finally {
+      sending.current = false;
+      setPending("");
+    }
+  }, []);
 
-      <div className="ow-card">
-        <h2 className="ow-title" style={{ fontSize: "1.125rem" }}>
-          {t("org.invites.heading")}
-        </h2>
-        <p className="ow-subtitle">{t("org.invites.intro")}</p>
+  const rows = useMemo(() => invites.map((invite) => inviteListRow(invite, { t })), [invites, t]);
+  const seats = useMemo(() => seatOptions(t), [t]);
+  const templates = useMemo(() => templateOptions(context, t), [context, t]);
+  const unitChoices = useMemo(() => unitOptions(units, t), [units, t]);
+
+  /* Vaate vahetusel (loend ↔ loomine ↔ link) kaob vajutatud nupp: fookus läheb
+     e-posti väljale või vaate pealkirjale. Lava toob vaate nähtavale mõne kaadri
+     pärast ja peidetud väli fookust ei võta, seepärast proovitakse mitu kaadrit. */
+  const shown = useRef("");
+  useEffect(() => {
+    const first = shown.current === "";
+    const moved = shown.current !== mode;
+    shown.current = mode;
+    if (first || !moved) return undefined;
+    let frame = 0;
+    let tries = 0;
+    const settle = () => {
+      const target = mode === "create" ? emailRef.current : rootRef.current?.querySelector("[data-step-heading]");
+      /* Kui inimene on vahepeal ise mõne välja või nupu peale läinud, jääb fookus sinna. */
+      const held = document.activeElement;
+      if (held && held !== target && held.matches?.("input, textarea, select, button, a[href]")) return;
+      target?.focus?.({ preventScroll: true });
+      tries += 1;
+      if (document.activeElement !== target && tries < 90) frame = window.requestAnimationFrame(settle);
+    };
+    frame = window.requestAnimationFrame(settle);
+    return () => window.cancelAnimationFrame(frame);
+  }, [mode]);
+
+  const changeField = useCallback(
+    (key, value) => {
+      setForm((current) => ({ ...current, [key]: value }));
+      clearConfirm();
+      setNotice(null);
+      setError("");
+    },
+    [clearConfirm, setError]
+  );
+
+  const leaveCreate = useCallback(() => {
+    setMode("list");
+    setStepKey("who");
+    setForm(EMPTY_INVITE);
+    setNotice(null);
+    setError("");
+  }, [setError]);
+
+  /* Loobumine viskab kirjutatu ära: kui midagi on kirjas, küsib see teist vajutust. */
+  const pressDecline = useCallback(() => {
+    if (sending.current) return;
+    if (!inviteDirty(live.current)) {
+      leaveCreate();
+      return;
+    }
+    confirm.press("decline", leaveCreate);
+  }, [confirm, leaveCreate]);
+
+  const pressSend = useCallback(() => {
+    const problem = inviteProblem(live.current);
+    if (problem) {
+      setNotice({ view: problem.step, tone: "risk", text: t(problem.key) });
+      setStepKey(problem.step);
+      return;
+    }
+    clearConfirm();
+    void once("create", create);
+  }, [clearConfirm, create, once, t]);
+
+  const copyLink = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(issuedLink);
+      setCopied(true);
+    } catch {
+      /* Lõikelaud ei ole lubatud: valime lingi teksti, et inimene saaks selle ise kopeerida. */
+      const node = rootRef.current?.querySelector("[data-link]");
+      if (node) window.getSelection()?.selectAllChildren(node);
+    }
+  }, [issuedLink]);
+
+  const fault = error ? { tone: "risk", text: error } : null;
+
+  if (mode === "link" && issuedLink) {
+    return (
+      <div ref={rootRef}>
+        <OrgPart context={context} part="invites">
+          <LinkView
+            t={t}
+            link={issuedLink}
+            copied={copied}
+            onCopy={copyLink}
+            onDone={() => {
+              /* Link kaob koos selle vaatega: seda ei hoita kusagil. */
+              setIssuedLink("");
+              setMode("list");
+            }}
+          />
+        </OrgPart>
       </div>
+    );
+  }
 
-      {writable ? (
-        <Form className="ow-card" onSubmit={create}>
-          <div className="ow-grid">
-            <label>
-              <span className="ow-meta__term">{t("org.invites.email")}</span>
-              <Input
-                required
-                type="email"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                style={{ width: "100%" }}
-              />
-            </label>
-            <label>
-              <span className="ow-meta__term">{t("org.invites.seatRole")}</span>
-              <Dropdown
-                value={seatRole}
-                onChange={setSeatRole}
-                ariaLabel={t("org.invites.seatRole")}
-                options={ORGANIZATION_SEAT_ROLES.map((role) => ({
-                  value: role,
-                  label: t(`org.seatRole.${role}`)
-                }))}
-              />
-            </label>
-            <label>
-              <span className="ow-meta__term">{t("org.invites.template")}</span>
-              <Dropdown
-                value={templateKey}
-                onChange={setTemplateKey}
-                ariaLabel={t("org.invites.template")}
-                options={CAPABILITY_TEMPLATE_KEYS.map((key) => ({
-                  value: key,
-                  label: t(CAPABILITY_TEMPLATES[key].labelKey)
-                }))}
-              />
-            </label>
-            <label>
-              <span className="ow-meta__term">{t("org.invites.unit")}</span>
-              <Dropdown
-                required={templateNeedsUnit}
-                value={primaryUnitId}
-                onChange={setPrimaryUnitId}
-                ariaLabel={t("org.invites.unit")}
-                options={[
-                  { value: "", label: "—" },
-                  ...units.map((unit) => ({ value: unit.id, label: unit.name }))
-                ]}
-              />
-            </label>
-          </div>
-          <div className="ow-actions">
-            {/* Üksuse VÄRAV. Varem hoidis seda kinni natiivne `required`
-                <select>'il; oma valikmenüü juures tuleb värav siia, muidu
-                saaks üksusepõhise malli kutse välja saata ilma üksuseta.
-                Põhjust ütleb välja all seisev vihje (.dd-required). */}
-            <Button type="submit" disabled={busy || (templateNeedsUnit && !primaryUnitId)}>
-              {t("org.invites.create")}
-            </Button>
-          </div>
-        </Form>
-      ) : null}
+  if (mode === "list" || !writable) {
+    const armedId = confirm.armed.startsWith("revoke:") ? confirm.armed.slice(7) : "";
+    return (
+      <div ref={rootRef}>
+        <OrgPart context={context} part="invites">
+          <InvitesBoard
+            t={t}
+            rows={rows}
+            create={
+              writable
+                ? {
+                    onCreate: () => {
+                      confirm.clear();
+                      setError("");
+                      setNotice(null);
+                      setMode("create");
+                      setStepKey("who");
+                    }
+                  }
+                : null
+            }
+            revoke={
+              writable
+                ? {
+                    armedId,
+                    busyId: pending.startsWith("revoke:") ? pending.slice(7) : "",
+                    onPress: (row) => confirm.press(`revoke:${row.id}`, () => once(`revoke:${row.id}`, () => revoke(row.id))),
+                    onCancel: confirm.clear
+                  }
+                : null
+            }
+            more={nextCursor ? { busy: pending === "more", onMore: () => once("more", loadMore) } : null}
+            notice={fault}
+          />
+        </OrgPart>
+      </div>
+    );
+  }
 
-      {issuedLink ? (
-        <div className="ow-card">
-          <h3 className="ow-title" style={{ fontSize: "1rem" }}>
-            {t("org.invites.linkHeading")}
-          </h3>
-          <p className="ow-subtitle">{t("org.invites.linkHint")}</p>
-          <p className="ow-code">{issuedLink}</p>
-        </div>
-      ) : null}
+  const states = inviteStepStates(form);
+  const steps = INVITE_STEPS.map((key) => ({
+    key,
+    label: t(`org.invites.steps.${key}.title`),
+    short: t(`org.invites.steps.${key}.short`),
+    state: states[key]
+  }));
+  const decline = { armed: confirm.armed === "decline", onPress: pressDecline };
+  const noticeOf = (view) => (notice?.view === view ? notice : null);
 
-      {invites.length === 0 ? (
-        <p className="ow-empty">{t("org.invites.empty")}</p>
-      ) : (
-        <div className="ow-tablewrap">
-          <table className="ow-table">
-            <caption>{t("org.invites.heading")}</caption>
-            <thead>
-              <tr>
-                <th scope="col">{t("org.invites.email")}</th>
-                <th scope="col">{t("org.invites.seatRole")}</th>
-                <th scope="col">{t("org.invites.template")}</th>
-                <th scope="col">{t("org.invites.expiresAt")}</th>
-                <th scope="col">{t("org.invites.status")}</th>
-                <th scope="col">{t("org.members.actions")}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {invites.map((invite) => (
-                <tr key={invite.id}>
-                  <td data-label={t("org.invites.email")}>{invite.email}</td>
-                  <td data-label={t("org.invites.seatRole")}>{t(`org.seatRole.${invite.seatRole}`)}</td>
-                  <td data-label={t("org.invites.template")}>
-                    {CAPABILITY_TEMPLATES[invite.capabilityTemplate]
-                      ? t(CAPABILITY_TEMPLATES[invite.capabilityTemplate].labelKey)
-                      : invite.capabilityTemplate}
-                  </td>
-                  <td data-label={t("org.invites.expiresAt")}>
-                    {new Date(invite.expiresAt).toISOString().slice(0, 10)}
-                  </td>
-                  <td data-label={t("org.invites.status")}>{invite.status}</td>
-                  <td data-label={t("org.members.actions")}>
-                    {writable && invite.status === "PENDING" ? (
-                      <Button type="button" onClick={() => revoke(invite.id)} disabled={busy}>
-                        {t("org.invites.revoke")}
-                      </Button>
-                    ) : null}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-      {nextCursor ? (
-        <div className="ow-actions">
-          <Button type="button" variant="secondary" disabled={busy} onClick={loadMore}>
-            {t("org.pagination.loadMore")}
-          </Button>
-        </div>
-      ) : null}
-
-      {error ? (
-        <p className="ow-notice ow-notice--warning" role="alert">
-          {error}
-        </p>
-      ) : null}
-    </section>
+  return (
+    <div ref={rootRef}>
+      <OrgPart context={context} part="invites" compact>
+        <StepFlight
+          label={t("org.invites.steps_label")}
+          steps={steps}
+          activeKey={stepKey}
+          onStepChange={(_index, step) => {
+            setStepKey(step?.key || "who");
+            confirm.clear();
+          }}
+        >
+          {(step, _index, flight) => {
+            const glow = flight?.isActive !== false;
+            if (step.key === "who") {
+              return <WhoView t={t} form={form} onField={changeField} fieldRef={emailRef} notice={noticeOf("who")} decline={decline} onNext={() => setStepKey("role")} />;
+            }
+            if (step.key === "role") return <RoleView t={t} form={form} seats={seats} templates={templates} onField={changeField} />;
+            if (step.key === "unit") {
+              return (
+                <UnitView
+                  t={t}
+                  value={form.primaryUnitId}
+                  options={unitChoices}
+                  needsUnit={templateNeedsUnit(form.templateKey)}
+                  onUnit={(value) => changeField("primaryUnitId", value)}
+                  notice={noticeOf("unit")}
+                />
+              );
+            }
+            return (
+              <SendView
+                t={t}
+                summary={inviteSummary(form, units, { t })}
+                problem={inviteProblem(form)}
+                onFix={(problem) => setStepKey(problem.step)}
+                notice={fault}
+                decline={decline}
+                send={{ busy: busy && pending === "create", onSend: pressSend }}
+                glow={glow}
+              />
+            );
+          }}
+        </StepFlight>
+      </OrgPart>
+    </div>
   );
 }

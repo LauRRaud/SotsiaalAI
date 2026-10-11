@@ -1,0 +1,59 @@
+{
+  "document_id": "web-just_tsiviiloigus_parimisoigus",
+  "title": "Pärimisõigus",
+  "register_title": "Pärimisõigus",
+  "source_id": "just_tsiviiloigus_parimisoigus",
+  "source_type": "web_page",
+  "publisher": "Justiits- ja Digiministeerium",
+  "language": "et",
+  "url": "https://www.just.ee/era-ja-avalik-oigus/tsiviiloigus/parimisoigus",
+  "url_final": "https://www.justdigi.ee/era-ja-avalik-oigus/tsiviiloigus/parimisoigus",
+  "source_path": "just_tsiviiloigus_parimisoigus.html",
+  "source_format": "html",
+  "source_sha256": "68b5fc14e4f51779aa2c2db0c09a2f2607379613389a584a384151840d810216",
+  "content_sha256": "c0c952251bb873d02ffcbc2146b09e06b98957885a43f3721853c65a7eeb7d6e",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:27:13.367Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-04-23",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "de06ea21877f27779046591c75b1e30a6768ffbcfdd79ea045d75f099450d6e7",
+    "stats": {
+      "words": 299,
+      "blocks": 13,
+      "headings": 4,
+      "tables": 0,
+      "links": 4,
+      "linksToOtherSites": 4
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

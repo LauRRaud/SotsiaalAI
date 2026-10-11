@@ -1,0 +1,59 @@
+{
+  "document_id": "web-just_elukutsed_kohtutaitur",
+  "title": "Kohtutäitur",
+  "register_title": "Kohtutäitur",
+  "source_id": "just_elukutsed_kohtutaitur",
+  "source_type": "web_page",
+  "publisher": "Justiits- ja Digiministeerium",
+  "language": "et",
+  "url": "https://www.just.ee/kohtud-ja-oigusteenused/elukutsed/kohtutaitur",
+  "url_final": "https://www.justdigi.ee/kohtud-ja-oigusteenused/elukutsed/kohtutaitur",
+  "source_path": "just_elukutsed_kohtutaitur.html",
+  "source_format": "html",
+  "source_sha256": "ddec9a174bf90883fcdbdce6a5c7d3cc287dff0e67fe092d4a5ec9b0d33ab4e2",
+  "content_sha256": "5746e2497749d4ddbcd9808e1219974a90d1d15ed7e902fb5e31b6059534cc6f",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:26:53.360Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-09-04",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "ef98ba751c9a4a0b165a234d91eb05426c222b36d19c21fb12df787d925589b4",
+    "stats": {
+      "words": 237,
+      "blocks": 13,
+      "headings": 1,
+      "tables": 0,
+      "links": 4,
+      "linksToOtherSites": 3
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

@@ -1,0 +1,19 @@
+/* Organisatsioonide avaleht (`/org`): loend, kutsed ja loomise kolm vaadet.
+   Vaate kuju (juhis, sisu, tegevusrida all servas) tuleb StepPanel-ist, sammud
+   StepFlight-ist ja valikud ChoiceRow-st (components/stage). Laused, märk, read
+   ja väljad on organisatsioonide lehtede ühised (../org.module.css). */
+
+/* --- Loendi kohal: loendi valik vasakul, loomine paremal -------------------------- */
+/* Valikulahtrid on nii laiad, kui kaks sõna vajavad, mitte paneeli laiused. */
+.bar {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem 1rem;
+}
+.filter {
+  flex: 0 1 21rem;
+  min-width: 0;
+}

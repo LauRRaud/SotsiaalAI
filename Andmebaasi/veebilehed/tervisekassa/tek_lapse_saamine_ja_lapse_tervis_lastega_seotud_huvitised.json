@@ -1,0 +1,57 @@
+{
+  "document_id": "web-tek_lapse_saamine_ja_lapse_tervis_lastega_seotud_huvitised",
+  "title": "Lastega seotud hüvitised",
+  "register_title": "Lastega seotud hüvitised",
+  "source_id": "tek_lapse_saamine_ja_lapse_tervis_lastega_seotud_huvitised",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/lapse-saamine-ja-lapse-tervis/lastega-seotud-huvitised",
+  "source_path": "tek_lapse_saamine_ja_lapse_tervis_lastega_seotud_huvitised.html",
+  "source_format": "html",
+  "source_sha256": "7b27807de90734cf62067da79890c64651587cdde249e177c4480c19c94bdeb0",
+  "content_sha256": "a6ab57b697adf1ee4f3e54fa9775ef4952c7c55bd2c6c36c107892690abeef1e",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:38:22.430Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:25:38 GMT",
+      "etag": null
+    },
+    "raw_sha256": "8de5b91d1b4ff7c5546bf58d32240ae1d3e7910576ffb73ead012e1b587b8d21",
+    "stats": {
+      "words": 1139,
+      "blocks": 50,
+      "headings": 17,
+      "tables": 1,
+      "links": 8,
+      "linksToOtherSites": 5
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

@@ -1,0 +1,57 @@
+{
+  "document_id": "web-parimine_parimine_mida_parib",
+  "title": "Pärimine",
+  "register_title": "Pärimine",
+  "source_id": "parimine_parimine_mida_parib",
+  "source_type": "web_page",
+  "publisher": "Notarite Koda",
+  "language": "et",
+  "url": "https://parimine.notar.ee/parimine/mida-parib/",
+  "source_path": "parimine_parimine_mida_parib.html",
+  "source_format": "html",
+  "source_sha256": "3b309b591ae107dd210ad7b2d4a716eb29662da91e961b13d85d0efe11c932bc",
+  "content_sha256": "0c608925862bb6347d1854b595bde9764e675d2a20ae7f678dabb8756d6dba2b",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:40:04.102Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "3628c097dc69f2879dec62d8665d57a4c6a67758d49d798fb4f305f77d35398a",
+    "stats": {
+      "words": 867,
+      "blocks": 42,
+      "headings": 14,
+      "tables": 0,
+      "links": 5,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

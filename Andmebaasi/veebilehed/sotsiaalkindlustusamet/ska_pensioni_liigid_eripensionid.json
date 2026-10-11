@@ -1,0 +1,65 @@
+{
+  "document_id": "web-ska_pensioni_liigid_eripensionid",
+  "title": "Eripensionid, kutsealade ja ametikohtade sooduspensionid",
+  "register_title": "Eripensionid, kutsealade ja ametikohtade sooduspensionid",
+  "source_id": "ska_pensioni_liigid_eripensionid",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-liigid/eripensionid",
+  "source_path": "ska_pensioni_liigid_eripensionid.html",
+  "source_format": "html",
+  "source_sha256": "4a27a0bb795a7582c71bbbee95e2f483182c31e9ca60f450466951a391f7119e",
+  "content_sha256": "72c9fd382b6aceebb4711a2c7b01bd22238f74aea97890c3d5fdbad1220d1c3a",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:23:55.821Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-09-11",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:07:02 GMT",
+      "etag": null
+    },
+    "raw_sha256": "aee7c104208117b679bf6f194ca1fe29751127ab2b9c1ca6fdf5570831a58b19",
+    "stats": {
+      "words": 2122,
+      "blocks": 126,
+      "headings": 24,
+      "tables": 0,
+      "links": 8,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-06/Pensionitaotlus%20EST%20juhistega_18_06_26.docx",
+      "text": "Pensioniavaldus | 72.69 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    }
+  ]
+}

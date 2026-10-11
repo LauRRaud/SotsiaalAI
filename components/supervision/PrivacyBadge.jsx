@@ -1,13 +1,18 @@
 "use client";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import styles from "./SupervisionPage.module.css";
+import styles from "./PrivacyBadge.module.css";
 
 /**
  * PÜSIELEMENT, mitte tooltip (Q2.6 ühisreegel + SUP-P10 invariant): iga vaade,
  * mis kannab sisu, näitab nähtavalt, KES seda näeb. Nelja sisukategooria
  * (Q2.6 „sisu neljane jaotus") märgised elavad ühes kohas, et ükski vaade ei
  * saaks neid vaikselt lahku triivida.
+ *
+ * `draft` on kokkuvõtte mustandi märk („Näed ainult sina (superviisor)"). Vana
+ * kokkuvõtete paneel joonistas selle ise samade klassidega; nüüd on ka see siin.
+ *
+ * Kujundus: PrivacyBadge.module.css (siin kõrval).
  */
 export default function PrivacyBadge({ scope, count = 0 }) {
   const { t } = useI18n();
@@ -16,6 +21,13 @@ export default function PrivacyBadge({ scope, count = 0 }) {
     return (
       <span className={`${styles.privacy} ${styles.privacyPrivate}`} data-privacy="private">
         {t("supervision.privacy.onlyYou")}
+      </span>
+    );
+  }
+  if (scope === "draft") {
+    return (
+      <span className={`${styles.privacy} ${styles.privacyPrivate}`} data-privacy="draft">
+        {t("supervision.summaries.draftOnlyYou")}
       </span>
     );
   }

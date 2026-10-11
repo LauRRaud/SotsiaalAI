@@ -1,0 +1,57 @@
+{
+  "document_id": "web-tek_taiskasvanute_hambaravi_taiskasvanute_ortodontia",
+  "title": "Täiskasvanute ortodontia",
+  "register_title": "Täiskasvanute ortodontia",
+  "source_id": "tek_taiskasvanute_hambaravi_taiskasvanute_ortodontia",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/hambaravi/taiskasvanute-hambaravi/taiskasvanute-ortodontia",
+  "source_path": "tek_taiskasvanute_hambaravi_taiskasvanute_ortodontia.html",
+  "source_format": "html",
+  "source_sha256": "ed6541571a96914abb966e878dc8425ebfeed02bd2b7b6f50e734228929a05d7",
+  "content_sha256": "83bcbc926adda5437130bcefc5f42fb7999c9bc11ce7798b531bcb6e5be99a01",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:37:54.831Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:25:08 GMT",
+      "etag": null
+    },
+    "raw_sha256": "b2b66f70c0b2a13c952a6378215623208bdd24fc8ce35f91d8001a9597108f5a",
+    "stats": {
+      "words": 81,
+      "blocks": 9,
+      "headings": 3,
+      "tables": 0,
+      "links": 2,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

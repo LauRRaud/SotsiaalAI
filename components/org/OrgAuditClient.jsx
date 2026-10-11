@@ -1,15 +1,21 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import Button from "@/components/ui/Button";
 
-import OrgHeader from "./OrgHeader";
+import { AuditBoard } from "./audit/AuditViews";
+import { auditRow } from "./audit/auditRules";
+import OrgPart from "./OrgPart";
 
 /**
- * Organisatsiooni auditivaade. Näitab HALDUSTOIMINGUID — mitte inimeste
+ * Organisatsiooni audit.
+ *
+ * Vaade näitab organisatsiooni ENDA haldustoiminguid: mitte ühegi liikme
  * tegevust. Ridadel ei ole IP-d, seadet ega ühtegi sisuvälja.
+ *
+ * KUJU (11.10). Tabeli asemel madalad read, kus toiming on lause, mitte sisemine
+ * nimi (`./audit/AuditViews.jsx`, `./audit/auditRules.js`).
  */
 export default function OrgAuditClient({ context, initialPage }) {
   const { t } = useI18n();
@@ -46,58 +52,17 @@ export default function OrgAuditClient({ context, initialPage }) {
     }
   }, [busy, hasMore, nextCursor, organizationId, t]);
 
+  const rows = useMemo(() => events.map((event) => auditRow(event, { t })), [events, t]);
+
   return (
-    <section className="ow-shell">
-      <OrgHeader context={context} />
-
-      <div className="ow-card">
-        <h2 className="ow-title" style={{ fontSize: "1.125rem" }}>
-          {t("org.audit.heading")}
-        </h2>
-        <p className="ow-notice ow-notice--privacy">{t("org.audit.intro")}</p>
-        <p className="ow-subtitle">{t("org.audit.total", { count: String(total) })}</p>
-      </div>
-
-      {events.length === 0 ? (
-        <p className="ow-empty">{t("org.audit.empty")}</p>
-      ) : (
-        <div className="ow-tablewrap">
-          <table className="ow-table">
-            <caption>{t("org.audit.heading")}</caption>
-            <thead>
-              <tr>
-                <th scope="col">{t("org.audit.time")}</th>
-                <th scope="col">{t("org.audit.action")}</th>
-                <th scope="col">{t("org.audit.resource")}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {events.map((event) => (
-                <tr key={event.id}>
-                  <td data-label={t("org.audit.time")}>
-                    {new Date(event.createdAt).toISOString().replace("T", " ").slice(0, 16)}
-                  </td>
-                  <td data-label={t("org.audit.action")}>{event.action}</td>
-                  <td data-label={t("org.audit.resource")}>{event.resourceType}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-
-      {hasMore ? (
-        <div className="ow-actions">
-          <Button type="button" variant="secondary" disabled={busy} onClick={loadMore}>
-            {t("org.audit.loadMore")}
-          </Button>
-        </div>
-      ) : null}
-      {error ? (
-        <p className="ow-notice ow-notice--warning" role="alert">
-          {error}
-        </p>
-      ) : null}
-    </section>
+    <OrgPart context={context} part="audit">
+      <AuditBoard
+        t={t}
+        rows={rows}
+        shown={t("org.audit.shown", { shown: rows.length, total: Math.max(total, rows.length) })}
+        more={hasMore ? { busy, onMore: loadMore } : null}
+        notice={error ? { tone: "risk", text: error } : null}
+      />
+    </OrgPart>
   );
 }

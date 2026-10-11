@@ -1,0 +1,57 @@
+{
+  "document_id": "web-notar_ametitoimingud_parimistoimingud",
+  "title": "Pärimistoimingud",
+  "register_title": "Pärimistoimingud",
+  "source_id": "notar_ametitoimingud_parimistoimingud",
+  "source_type": "web_page",
+  "publisher": "Notarite Koda",
+  "language": "et",
+  "url": "https://www.notar.ee/ametitoimingud/parimistoimingud/",
+  "source_path": "notar_ametitoimingud_parimistoimingud.html",
+  "source_format": "html",
+  "source_sha256": "1fe43fe6b85fbcdb015d695a20ece728a76e3383077b7353d352824c61191a34",
+  "content_sha256": "e456a9aedd26af4e72d6c0ad05e3a22a6a89038ddb0617e2a13aa1f3fab60599",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:39:46.102Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 10:21:01 GMT",
+      "etag": null
+    },
+    "raw_sha256": "daf3ca5da92a8cf3976fd747576f1d9eb40e6d8b153dc828afcf94a7dcb3b48a",
+    "stats": {
+      "words": 185,
+      "blocks": 21,
+      "headings": 8,
+      "tables": 0,
+      "links": 9,
+      "linksToOtherSites": 8
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

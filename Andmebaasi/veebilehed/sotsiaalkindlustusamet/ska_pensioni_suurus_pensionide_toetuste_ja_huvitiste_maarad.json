@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_pensioni_suurus_pensionide_toetuste_ja_huvitiste_maarad",
+  "title": "Pensionide, toetuste ja hüvitiste määrad",
+  "register_title": "Pensionide, toetuste ja hüvitiste määrad",
+  "source_id": "ska_pensioni_suurus_pensionide_toetuste_ja_huvitiste_maarad",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-suurus/pensionide-toetuste-ja-huvitiste-maarad",
+  "source_path": "ska_pensioni_suurus_pensionide_toetuste_ja_huvitiste_maarad.html",
+  "source_format": "html",
+  "source_sha256": "4b3c5e3b6360c48c159a2da7d783991d0ce47cfdaeacc7dc526b0413b4dbff7d",
+  "content_sha256": "dc29f89a0a6691b79f1e5ec82f493821d61078e6ec8113ec8667d0865177931e",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:24:23.314Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-04-06",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:07:30 GMT",
+      "etag": null
+    },
+    "raw_sha256": "8a045a0c6850d812df189bf20b82116d43bd800dc3553e6fb88ab0e866fff18f",
+    "stats": {
+      "words": 244,
+      "blocks": 3,
+      "headings": 1,
+      "tables": 1,
+      "links": 0,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

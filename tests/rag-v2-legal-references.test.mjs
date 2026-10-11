@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { actGenitive, actSections, chunkSection, internalReferences, keepsSuperscripts, namedActReferences, provisionChunks, readReferences, resolveSection, sectionKey, sectionReferences,
+import { actGenitive, actSections, chunkSection, designation, internalReferences, keepsSuperscripts, lawNames, namedActLists, namedActReferences, provisionChunks, provisionMentions, readReferences, regulationGenitive,
+  regulationReferences, resolveSection, sectionKey, sectionReferences, sectionResolution, wordsBefore,
   REFERENCE_LIMITS, SUPERSCRIPT_NORMALIZATIONS } from '../lib/rag-v2/search/legal-references.js';
 import { DEFAULT_CONFIG } from '../lib/rag-v2/contracts.js';
 
@@ -144,6 +145,39 @@ test('a named other act: its title in the genitive directly before the list name
     resolveSection('131', '', ['13^1'], true), resolveSection('7', '', ['8'], true)], ['25', '45^13', '13^1', null, null]);
 });
 
+// ADR-145 (11.10.2026): the other ways a text names a law directly before a list. Of the lists in the corpus's guides,
+// studies and pages that name an indexed law so, three in four are written with the abbreviation.
+test('ADR-145: a law is also named by Riigi Teataja\'s abbreviation as written, by its title as it stands and by its genitive joined or split otherwise; a range is given to be counted', () => {
+  assert.deepEqual(['Sotsiaalhoolekande seadus', 'Lastekaitseseadus', 'Halduskohtumenetluse seadustik', 'Abivahendite loetelu'].map(lawNames),
+    [['sotsiaalhoolekande seaduse', 'sotsiaalhoolekandeseaduse'], ['lastekaitseseaduse', 'lastekaitse seaduse'], ['halduskohtumenetluse seadustiku', 'halduskohtumenetluseseadustiku'], []]);
+  const names = new Map([['sotsiaalhoolekande seaduse', 'shs'], ['sotsiaalhoolekandeseaduse', 'shs'], ['sotsiaalhoolekande seadus', 'shs'], ['lastekaitseseaduse', 'lks'], ['lastekaitse seaduse', 'lks']]);
+  const abbreviations = new Map([['SHS', 'shs'], ['LasteKS', 'lks'], ['TMS', 'tms']]);
+  const read = text => namedActReferences(text, names, abbreviations).map(({ act, base, superscript, subsections }) => [act, base + superscript, subsections]);
+  // The abbreviation: alone, in brackets, at the start, with a case ending (with a hyphen or without one), in a list.
+  assert.deepEqual(read('Abi osutamisel lähtutakse isiku tahtest (SHS § 3 lg 1 p 2).'), [['shs', '3', ['1']]]);
+  assert.deepEqual(read('SHS § 17 lg 2 kohaselt hindab abivajadust kohalik omavalitsus.'), [['shs', '17', ['2']]]);
+  assert.deepEqual(read('Teenuse sisu on kirjas SHS-i § 15 lõikes 1 ja LasteKSi §-s 27.'), [['shs', '15', ['1']], ['lks', '27', []]]);
+  assert.deepEqual(read('Vt SHS §-d 5 ja 9 ning § 14 lg 1; LasteKS § 21.'), [['shs', '5', []], ['shs', '9', []], ['shs', '14', ['1']], ['lks', '21', []]]);
+  // The title as it stands and the genitive in another spelling; a name is read in small letters, as before.
+  assert.deepEqual(read('Alus: Sotsiaalhoolekande seadus § 26 lg 1.'), [['shs', '26', ['1']]]);
+  assert.deepEqual(read('Vastavalt sotsiaalhoolekandeseaduse § 76 lõikele 5 ja lastekaitse seaduse §-le 26.'), [['shs', '76', ['5']], ['lks', '26', []]]);
+  // An abbreviation is read only as Riigi Teataja writes it, as a word of its own: small letters, another case of
+  // letters, a longer abbreviation, a word that only ends with it and an unknown one name nothing.
+  for (const text of ['Arvestada tuleb ka muid kulusid jms, tms § 5 alusel.', 'shs § 17 lg 2 kohaselt.', 'Shs § 17 lg 2 kohaselt.', 'SHSRS § 17 kohaselt.', 'MSHS § 17 kohaselt.',
+    'lasteKS § 21 kohaselt.', 'KOKS § 22 lg 1 alusel.', 'SHS kohaselt hindab vald abivajadust, vt § 15.']) assert.deepEqual(read(text), [], text);
+  // A name the words before it give to an earlier act or wording names none.
+  assert.deepEqual(read('Kuni 31.12.2015 kehtinud sotsiaalhoolekande seaduse § 22 lõike 1 alusel.'), []);
+  // A range of sections is no reference to follow; the lists give it with its other end, so that a reader can count it.
+  assert.deepEqual(read('Toetust arvestatakse SHS §-des 131–133 sätestatud alustel.'), []);
+  assert.deepEqual(namedActLists('Toetust arvestatakse SHS §-des 131–133 ja § 134 lg 2 alusel.', names, abbreviations).map(({ act, base, to, named, subsections }) => [act, base, to, named, subsections]),
+    [['shs', '131', ['133', ''], 'SHS', []], ['shs', '134', null, 'SHS', ['2']]]);
+  // Without the abbreviations (the reading of ADR-063) one names nothing.
+  assert.deepEqual(namedActReferences('SHS § 17 lg 2 kohaselt.', names), []);
+  // Why a number names no section of the act.
+  assert.deepEqual([sectionResolution('25', '', ['24', '25'], true), sectionResolution('7', '', ['8'], true), sectionResolution('131', '', ['13^1', '131'], false), sectionResolution('131', '', ['13^1', '131'], true)],
+    [{ key: '25' }, { reason: 'section_not_in_act' }, { reason: 'section_ambiguous' }, { key: '131' }]);
+});
+
 test('the passages that hold a named subsection: its own text, also when it runs on; without one, the section\'s start', () => {
   // § 7 in three passages: lõige 1 and the mark of lõige 2 in the first, lõige 2 over the second and third; § 8 in one.
   const raw = '\n(1)\nEsimene lõige.\n(2)\nTeise lõike algus.\nTeise lõike lõpp.\n(3)\nKolmas lõige.\n';
@@ -186,4 +220,69 @@ test('own references with their subsections: each section once, its named subsec
   // The sections are the ones internalReferences gives, in its order; another act's are none.
   for (const text of ['käesoleva seaduse §-s 9 sätestatud korras ja § 46 lõikes 1', 'lastekaitseseaduse § 9 lõikes 2 ja § 16', '§ 999 lõikes 1 ja § 72 lõikes 1'])
     assert.deepEqual(read(text).map(([key]) => key), internalReferences(text, sections), text);
+});
+
+// ADR-129 (10.10.2026): the server checks every provision an answer names (pilot/provision-check.js). That reader takes
+// a text as written, against no act's list of sections.
+test('provisionMentions: every section a text names with its subsections, as written; the readers above are unchanged', () => {
+  const read = (text, options) => provisionMentions(text, options).map(({ section, to, subsections, through }) => [section, to, subsections, through]);
+  // A list, a range of sections, a range of subsections (its two ends, and the range for a reader that wants what lies between).
+  assert.deepEqual(read('sotsiaalhoolekande seaduse § 133 lõigete 5 ja 6 järgi ning §-des 105–107'), [['133', null, ['5', '6'], []], ['105', '107', [], []]]);
+  assert.deepEqual(read('§ 133 lg 5–7, § 13¹ lg 2¹'), [['133', null, ['5', '7'], [['5', '7']]], ['13^1', null, ['2^1'], []]]);
+  // A number as written: nothing is resolved against an act, so a section no act has is read too.
+  assert.deepEqual(read('§ 999 lõikes 1'), [['999', null, ['1'], []]]);
+  // The word written again names another subsection; the cross-reference readers still take the first group only.
+  assert.deepEqual(read('käesoleva seaduse § 46 lg 1 ja lg 2'), [['46', null, ['1', '2'], []]]);
+  assert.deepEqual(sectionReferences('käesoleva seaduse § 46 lg 1 ja lg 2', ['46']).map(({ key, subsections }) => [key, subsections]), [['46', ['1']]]);
+  // A point or a sentence names no subsection.
+  assert.deepEqual(read('§ 16 punktis 3 ja § 9 lõike 2 teises lauses'), [['16', null, [], []], ['9', null, ['2'], []]]);
+  // A section's own heading at the start of a line is a mention unless the caller leaves headings out.
+  assert.deepEqual(read('§ 12. Teenuse kulud\nvt § 14 lõiget 2'), [['12', null, [], []], ['14', null, ['2'], []]]);
+  assert.deepEqual(read('§ 12. Teenuse kulud\nvt § 14 lõiget 2', { headings: false }), [['14', null, ['2'], []]]);
+  // start: the list's first mark, for every item of the list (the act named before it is the whole list's); end:
+  // where each item's reading stops.
+  const text = 'Vt lastekaitseseaduse § 3 lõiget 1 ja § 5 ning perekonnaseaduse § 97.', found = provisionMentions(text), first = text.indexOf('§'), last = text.lastIndexOf('§');
+  assert.deepEqual(found.map(item => [item.section, item.start, text.slice(item.start, item.end)]), [['3', first, '§ 3 lõiget 1'], ['5', first, '§ 3 lõiget 1 ja § 5'], ['97', last, '§ 97']]);
+  // The words before a list and whose sections it is, as the readers above use them.
+  const titled = 'määruse nr 5 „Abi andmise kord“ § 3';
+  assert.deepEqual([wordsBefore(text, first), wordsBefore(text, last), wordsBefore(titled, titled.indexOf('§'))], ['Vt lastekaitseseaduse', 'Vt lastekaitseseaduse § 3 lõiget 1 ja § 5 ning perekonnaseaduse', 'määruse nr 5']);
+  assert.deepEqual(['käesoleva seaduse § 9', 'sama seaduse § 9', 'lastekaitseseaduse § 9', 'SHS § 9', 'kuni 2015. aastani kehtinud redaktsiooni § 9', 'vastavalt § 9'].map(sample => designation(sample, sample.indexOf('§'))),
+    ['own', 'same', 'other', 'other', 'version', null]);
+});
+
+// ADR-142 (11.10.2026): the question lane (ADR-135) read only laws and codes; a municipal regulation is named by its
+// title, and by the municipality that gave it.
+test('ADR-142: a regulation\'s provision is read under its title in quotation marks, as it stands or in the genitive, for the regulation of the municipality the words name', () => {
+  const aid = { act: 'harku-abi', title: 'Sotsiaalhoolekandelise abi andmise kord', regions: ['harku_vald'] }, home = { act: 'harku-kodu', title: 'Koduteenuse osutamise tingimused ja kord', regions: ['harku_vald'] };
+  const limits = { act: 'harku-piir', title: 'Eluasemekulude piirmäärade kehtestamine toimetulekutoetuse määramiseks', regions: ['harku_vald'] };
+  const read = (text, list = [aid, home, limits]) => regulationReferences(text, list).map(({ act, base, superscript, subsections }) => [act, `${base}${superscript}`, subsections]);
+  assert.deepEqual([aid, home, limits].map(item => regulationGenitive(item.title)), ['sotsiaalhoolekandelise abi andmise korra', 'koduteenuse osutamise tingimuste ja korra', null]);
+  assert.deepEqual(['Hooldajatoetuse määrus', 'Kalmistute kasutamise eeskiri', null].map(regulationGenitive), ['hooldajatoetuse määruse', 'kalmistute kasutamise eeskirja', null]);
+  for (const text of ['Mida ütleb Harku valla sotsiaalhoolekandelise abi andmise korra § 15 lg 3?', 'Mida ütleb Harku Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise kord“ § 15 lg 3?',
+    'Sotsiaalhoolekandelise abi andmise kord § 15 lõige 3', 'mida ütleb sotsiaalhoolekandelise abi andmise korra § 15 lg 3', 'Harku Vallavolikogu 26.06.2025 määruse nr 12 "Sotsiaalhoolekandelise abi andmise kord" § 15 lg 3',
+    'Kas valla sotsiaalhoolekandelise abi andmise korra § 15 lg 3 lubab seda?', 'Elan Sauel. Mida ütleb Harku valla sotsiaalhoolekandelise abi andmise korra § 15 lg 3?']) {
+    assert.deepEqual(read(text), [['harku-abi', '15', ['3']]], text);
+  }
+  assert.deepEqual(read('Harku valla koduteenuse osutamise tingimuste ja korra § 4'), [['harku-kodu', '4', []]]);
+  // A title whose last word has no genitive an act goes by is read in quotation marks only.
+  assert.deepEqual(read('Harku Vallavolikogu määruse „Eluasemekulude piirmäärade kehtestamine toimetulekutoetuse määramiseks“ § 2'), [['harku-piir', '2', []]]);
+  // Two sections of one list, a raised number as written.
+  assert.deepEqual(read('sotsiaalhoolekandelise abi andmise korra § 15 lg 3 ja § 16¹'), [['harku-abi', '15', ['3']], ['harku-abi', '16¹', []]]);
+  // Of two titles that both end the words, the longer.
+  const short = { act: 'harku-lyhike', title: 'Abi andmise kord', regions: ['harku_vald'] };
+  assert.deepEqual([read('Harku valla sotsiaalhoolekandelise abi andmise korra § 1', [short, aid]), read('Harku valla abi andmise korra § 1', [short, aid])], [[['harku-abi', '1', []]], [['harku-lyhike', '1', []]]]);
+  // Nothing: another municipality named, the issuer alone, no title, the act's own pointer, a title in quotation marks
+  // that is none of them, a range.
+  for (const text of ['Mida ütleb Saue valla sotsiaalhoolekandelise abi andmise korra § 15?', 'Mida ütleb Saue Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise kord“ § 15?', 'Mida ütleb Harku valla määruse § 15?',
+    'Mida ütleb korra § 15?', 'käesoleva korra § 2 kohaselt', 'Harku Vallavolikogu määruse „Jäätmehoolduseeskiri“ § 15', 'sotsiaalhoolekandelise abi andmise korra §-des 5–7', 'Mida ütleb sotsiaalhoolekande seaduse § 15?']) {
+    assert.deepEqual(read(text), [], text);
+  }
+  // Two municipalities' regulations of one title in the scope (a name two municipalities share): the kind the words
+  // name tells them apart, and words that name none name neither.
+  const city = { act: 'tartu-linn', title: aid.title, regions: ['tartu_linn'] }, parish = { act: 'tartu-vald', title: aid.title, regions: ['tartu_vald'] }, both = [city, parish];
+  assert.deepEqual([read('Mida ütleb Tartu valla sotsiaalhoolekandelise abi andmise korra § 5?', both), read('Mida ütleb Tartu Linnavolikogu määruse „Sotsiaalhoolekandelise abi andmise kord“ § 5?', both),
+    read('sotsiaalhoolekandelise abi andmise korra § 5', both)], [[['tartu-vald', '5', []]], [['tartu-linn', '5', []]], []]);
+  // A city whose region has no kind in it, and a name with a hyphen and letters the region id folds.
+  assert.deepEqual(read('Mida ütleb Tallinna linna sotsiaalhoolekandelise abi andmise korra § 3?', [{ ...aid, act: 'tallinn-abi', regions: ['tallinn'] }]), [['tallinn-abi', '3', []]]);
+  assert.deepEqual(read('Mida ütleb Põhja-Sakala Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise kord“ § 3?', [{ ...aid, act: 'ps-abi', regions: ['pohja_sakala_vald'] }]), [['ps-abi', '3', []]]);
 });

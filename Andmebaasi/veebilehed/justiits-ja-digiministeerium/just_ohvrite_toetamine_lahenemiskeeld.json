@@ -1,0 +1,84 @@
+{
+  "document_id": "web-just_ohvrite_toetamine_lahenemiskeeld",
+  "title": "Lähenemiskeeld",
+  "register_title": "Lähenemiskeeld",
+  "source_id": "just_ohvrite_toetamine_lahenemiskeeld",
+  "source_type": "web_page",
+  "publisher": "Justiits- ja Digiministeerium",
+  "language": "et",
+  "url": "https://www.just.ee/kuritegevus-ja-selle-ennetus/ohvrite-toetamine/lahenemiskeeld",
+  "url_final": "https://www.justdigi.ee/kuritegevus-ja-selle-ennetus/ohvrite-toetamine/lahenemiskeeld",
+  "source_path": "just_ohvrite_toetamine_lahenemiskeeld.html",
+  "source_format": "html",
+  "source_sha256": "55c638b0230d4cd5d1e41647facdf09a5eeb3665af3055ea43fd4135ae7c8cec",
+  "content_sha256": "9f58bcb323de965cd688d44e0d443d321595700deb4aeafebb24977b4d81bf88",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:27:33.340Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2021-10-07",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "27544810e36cdf89e0b9853105a8cb812edcc4ccb4f61b4be219fc20c8bf7a46",
+    "stats": {
+      "words": 277,
+      "blocks": 14,
+      "headings": 2,
+      "tables": 0,
+      "links": 4,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2021-09/lahenemiskeeld_praktilisi_nouandeid.pdf",
+      "text": "Lähenemiskeelu ülevaade | 655.51 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2021-09/lahenemiskeeld_luhiversioon.pdf",
+      "text": "Lähenemiskeelu lühitutvustus | 448.23 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2021-09/zapret_na_priblizhenie_pikk.pdf",
+      "text": "Lähenemiskeelu ülevaade RUS | 511.85 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2021-09/zapret_na_priblizhenie.pdf",
+      "text": "Lähenemiskeeld lühike RUS | 447.63 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

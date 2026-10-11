@@ -1,0 +1,552 @@
+{
+ "read_on": "2026-10-10",
+ "note": "72 stored test answers to the 30 hard-condition questions, each read against the act by an agent; every verdict other than correct read again by a second, independent agent. Verdict after the second reading.",
+ "count": {
+  "correct": 58,
+  "partly": 8,
+  "omits": 3,
+  "contradicts": 3
+ },
+ "questions": [
+  {
+   "id": "day-support-dementia-retirement",
+   "provision": "Sotsiaalhoolekande seadus § 88 koos § 72 lg 2 p-ga 1 (redaktsioon 01.10.2026-30.11.2026, Andmebaasi/oigusaktid/130062026065.xml); vanaduspensioniiga: Riikliku pensionikindlustuse seadus § 7 lg 1^1 ja 2^1",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "supported-living-alcohol",
+   "provision": "Sotsiaalhoolekande seadus § 95 koos § 72 lg 2 p-ga 2 (130062026065.xml)",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 3,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 4,
+     "verdict": "partly",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "community-living-dementia",
+   "provision": "Sotsiaalhoolekande seadus § 98 koos § 72 lg 2 p-ga 1 (130062026065.xml); omaosalus § 73 lg 1; vanaduspensioniiga: Riikliku pensionikindlustuse seadus § 7 lg 2 ja 2^1",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 3,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 4,
+     "verdict": "partly",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "subsistence-care-home",
+   "provision": "Sotsiaalhoolekande seadus § 132 lg 7 (130062026065.xml); puudujäägi katmine § 22^1 lg 2 ja 5, tasu § 16",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 3,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 4,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "subsistence-prison",
+   "provision": "Sotsiaalhoolekande seadus § 132 lg 7 (130062026065.xml); pere õigus § 131 lg 2",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "involuntary-placement",
+   "provision": "Sotsiaalhoolekande seadus § 105 lg 1 p 3 (koos § 12 lg 1 ja § 105 lg 1 p 1-2, lg 3-5); tsiviilkohtumenetluse seadustik § 533 lg 1-2, § 537 lg 1",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "own-share-shortfall",
+   "provision": "Sotsiaalhoolekande seadus § 74 lg 1 ja 5 koos § 73 lg 2-4 (taotlemine § 74 lg 2 ja 6)",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "rehabilitation-student",
+   "provision": "Sotsiaalhoolekande seadus § 59 lg 3 p 2 (koos § 59 lg 1 p 3)",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 3,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 4,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "day-care-retirement-age",
+   "provision": "Sotsiaalhoolekande seadus § 99² (sissejuhatav lause ja p 1-3) koos § 72 lg 2 p 1; vanaduspensioniea mõiste: riikliku pensionikindlustuse seadus § 7 lg 2¹",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "omits",
+     "misleading": true
+    },
+    {
+     "run": 3,
+     "verdict": "omits",
+     "misleading": false
+    },
+    {
+     "run": 4,
+     "verdict": "omits",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "reclaim-limitation",
+   "provision": "Sotsiaalseadustiku üldosa seadus § 35 lg 1 (koos tsiviilseadustiku üldosa seaduse § 151 lg 1-2 ja §-ga 143); sundtäitmise kohta § 35 lg 2; tagasinõude alus § 31 lg 1, § 32",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "partly",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "reclaim-enforcement",
+   "provision": "Sotsiaalseadustiku üldosa seadus § 35 lg 2 (koos § 32 lg 6); redaktsioon 130062026031, kehtiv alates 01.10.2026",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "coach-reports-child",
+   "provision": "Lastekaitseseadus § 27¹ lg 1 (koos § 27 lg 1–2, 5 ja § 34² lg 3–4); redaktsioon 111072026042, kehtiv 01.10.–31.12.2026",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "student-subsistence-own",
+   "provision": "Sotsiaalhoolekande seadus § 131 lg 9 (koos lg 8, 9¹, 10 ja 11); redaktsioon 130062026065, kehtiv 01.10.–30.11.2026",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "subsistence-new-job",
+   "provision": "Sotsiaalhoolekande seadus § 133 lg 2¹ (koos lg 2², 2³ ja lg 1); redaktsioon 130062026065, kehtiv 01.10.–30.11.2026",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "subsistence-deadline",
+   "provision": "Sotsiaalhoolekande seadus § 132 lg 1 (koos lg 1¹, lg 3 ja § 134 lg 1); redaktsioon 130062026065, kehtiv 01.10.–30.11.2026",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "subsistence-home-loan",
+   "provision": "Sotsiaalhoolekande seadus § 133 lg 5 p 2 (koos § 133 lg 6, lg 9^1 ja lg 9^2; § 131 lg 2) - redaktsioon RT I, 30.06.2026, 65, kehtiv 01.10.-30.11.2026",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "referral-deadline-emergency",
+   "provision": "Sotsiaalhoolekande seadus § 13^2 lg 4 koos § 71 lg 6 (ja § 71 lg 8) - redaktsioon RT I, 30.06.2026, 65",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "partly",
+     "misleading": true
+    }
+   ]
+  },
+  {
+   "id": "student-turns-25",
+   "provision": "Sotsiaalhoolekande seadus § 131 lg 10 (koos § 131 lg 8 ja lg 7) - redaktsioon RT I, 30.06.2026, 65",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "refusal-only-home",
+   "provision": "Sotsiaalhoolekande seadus § 134 lg 5 (koos § 134 lg 4 p 7) - redaktsioon RT I, 30.06.2026, 65",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "service-ended-martial-law",
+   "provision": "Sotsiaalhoolekande seadus § 13^2 lg 3 (koos § 80 lg 1 p 1) - redaktsioon RT I, 30.06.2026, 65",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "contradicts",
+     "misleading": true
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "rent-from-mother",
+   "provision": "Sotsiaalhoolekande seadus § 133 lg 8 (names § 131 lg 7 p 1 and 2; rent as a cost: § 133 lg 5 p 1). Read in Andmebaasi/oigusaktid/130062026065.xml, in force 01.10.2026-30.11.2026.",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "contradicts",
+     "misleading": true
+    },
+    {
+     "run": 2,
+     "verdict": "contradicts",
+     "misleading": true
+    }
+   ]
+  },
+  {
+   "id": "pensioner-with-student-child",
+   "provision": "Sotsiaalhoolekande seadus § 139¹ lg 4 p 4 (exception to lg 2 p 1) together with perekonnaseadus § 97 p 2. Read in 130062026065.xml and 107052025017.xml.",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "partly",
+     "misleading": false
+    },
+    {
+     "run": 3,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 4,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "child-rehabilitation-need",
+   "provision": "Lastekaitseseadus § 28 lg 1 (named by sotsiaalhoolekande seadus § 59 lg 1 p 2); rehabilitation need: SHS § 62 lg 3; application and decision: SHS § 61 lg 1, § 63 lg 1. Read in 111072026042.xml (in force 01.10.2026-31.12.2026) and 130062026065.xml.",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "partly",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "harku-support-person-relative",
+   "provision": "Sotsiaalhoolekande seadus § 25 lg 2 p 2, named by Harku Vallavolikogu 'Sotsiaalhoolekandelise abi andmise kord' § 15 lg 3. Read in 130062026065.xml and 404072025017.xml (in force from 01.09.2025).",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "guardian-ward-family",
+   "provision": "Sotsiaalhoolekande seadus § 131 lg 12 (with § 131 lg 7 on who is a family member and § 133 lg 1 on whose income counts). Read in 130062026065.xml.",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "partly",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "rent-debt-not-counted",
+   "provision": "Sotsiaalhoolekande seadus § 133 lg 7 (koos lg-ga 5), redaktsioon 01.10.2026–30.11.2026 (RT I, 30.06.2026, 65)",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "household-definition",
+   "provision": "Sotsiaalhoolekande seadus § 131 lg 7 p 3 (koos lg 7 sissejuhatava lausega ja lg-ga 4)",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "partly",
+     "misleading": true
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "kuusalu-limits-since",
+   "provision": "Kuusalu Vallavalitsuse 23.04.2026 määrus nr 6 „Eluasemekulude piirmäärade kehtestamine toimetulekutoetuse määramisel“ § 5 lg 1 (piirmäärad § 3; RT IV, 12.09.2026, 22)",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "special-care-decision-time",
+   "provision": "Sotsiaalhoolekande seadus § 70 lg 4",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "pensioner-day-centre",
+   "provision": "Sotsiaalhoolekande seadus § 139¹ lg 5 p 3 (tingimused lg 2; maksmise määr § 139³ lg 1¹)",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  }
+ ]
+}

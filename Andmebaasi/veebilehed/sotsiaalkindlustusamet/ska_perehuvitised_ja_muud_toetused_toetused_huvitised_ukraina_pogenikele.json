@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_perehuvitised_ja_muud_toetused_toetused_huvitised_ukraina_pogenikele",
+  "title": "Toetused ja hüvitised Ukraina põgenikele",
+  "register_title": "Toetused ja hüvitised Ukraina põgenikele",
+  "source_id": "ska_perehuvitised_ja_muud_toetused_toetused_huvitised_ukraina_pogenikele",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/toetused-huvitised-ukraina-pogenikele",
+  "source_path": "ska_perehuvitised_ja_muud_toetused_toetused_huvitised_ukraina_pogenikele.html",
+  "source_format": "html",
+  "source_sha256": "8116d36a3d846910884caa414261305e5bd44d11eb512ea69923bd17b868a1d4",
+  "content_sha256": "6f1f91eb915d14499654014130317d27fb1ba92e84da98ea6883afa19a13cd2a",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:26:14.053Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2025-08-29",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:09:20 GMT",
+      "etag": null
+    },
+    "raw_sha256": "a004d9d3eba29db318bdf3452850bfd766a23c55a0f958cb00edc9fc93505109",
+    "stats": {
+      "words": 247,
+      "blocks": 13,
+      "headings": 6,
+      "tables": 0,
+      "links": 2,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

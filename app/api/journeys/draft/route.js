@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import { authConfig } from "@/auth";
 import { buildJourneyDraft } from "@/lib/journey/draft";
+import { loadMunicipalitySeedEntries } from "@/lib/help/municipalityData";
 import { safeError } from "@/lib/privacy/safeError";
 import { enforceChatRateLimit } from "@/lib/chat-api-rate-limit";
 
@@ -44,7 +45,12 @@ export async function POST(request) {
 
   try {
     const body = await request.json().catch(() => ({}));
-    const draft = buildJourneyDraft(body);
+    /* Omavalitsuste nimed on ainult selleks, et juba nimetatud kohta uuesti ei küsitaks. Kui loendit
+       lugeda ei saa, jääb küsimus alles nagu varem. */
+    const municipalityNames = await loadMunicipalitySeedEntries()
+      .then((entries) => entries.map((entry) => entry.baseName))
+      .catch(() => []);
+    const draft = buildJourneyDraft(body, { municipalityNames });
     return json({
       ok: true,
       draft,

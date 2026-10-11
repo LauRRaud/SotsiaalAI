@@ -1,0 +1,200 @@
+/* Avatud abikuulutus: lugemise vaade (tekst, märgid, faktid, kustutamine),
+   ühendamise valik ja muutmise vorm. Vaate kuju (esimene rida, sisu, tegevusrida
+   all servas) tuleb StepPanel-ist, valikud ChoiceRow-st ja ChoiceChips-ist,
+   pikk tekst TextAreaField-ist (components/stage). Märk, vaikne lause ja teade
+   on samad mis loendil (./helpListings.module.css). Vaated ei kasuta vana ühist
+   kihti: iga osa ütleb oma laiuse, veerised ja värvi ise. Värvid tulevad
+   platvormi muutujatest (app/styles/tokens.css), et hele ja tume teema töötaksid
+   ilma lisareegliteta. */
+
+/* Vaadete ümbris: teade (salvestamata muudatused) ja selle all üks vaade. */
+.swap {
+  min-width: 0;
+  display: grid;
+  gap: 0.7rem;
+  color: var(--text-warm);
+}
+/* Päring on teel: sisu on tuhmim. Välju ega nuppe välja ei lülitata (see viiks
+   klaviatuuri fookuse ära); topeltsaatmist hoiab komponendi enda lukk. */
+.busy {
+  opacity: 0.65;
+}
+
+/* --- Lugemise vaade ---------------------------------------------------------- */
+/* Märgid: liik, minu kuulutus, seis. */
+.line {
+  margin: 0;
+  max-width: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.5rem;
+}
+/* Kuulutuse tekst on see, mida inimene kõigepealt loeb: tavaline lõik, mitte kast. */
+.text {
+  margin: 0;
+  max-width: 68ch;
+  color: var(--text-warm);
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+  /* Oma kuulutuse tekst tuleb ridadena: lõigud jäävad lõikudeks. */
+  white-space: pre-line;
+}
+/* Faktid: nimetus ja väärtus paarina, paarid reas üksteise järel. Pikk vabatekst
+   (saadavus, tasu, tingimused) võtab oma rea. */
+.facts {
+  min-width: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 1.4rem;
+}
+.fact {
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  color: var(--text-warm);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.5;
+}
+.fact[data-wide="1"] {
+  flex-basis: 100%;
+}
+.factLabel {
+  flex: none;
+  color: var(--text-dim);
+}
+.factValue {
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+/* Kustutamine küsib teist vajutust samal nupul: nupp vasakul, tagajärg selle
+   kõrval. Nupp ei liigu, kui selle sõnad vahetuvad. */
+.confirm {
+  composes: fault from "../stage/rows.module.css";
+  padding-top: 0.7rem;
+  border-top: 1px solid color-mix(in srgb, var(--text-warm) 12%, transparent);
+}
+.buttons {
+  flex: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+/* Pöördumatu tegu ei tohi näha välja nagu tavaline tegevus: sama nupp, hoiatav toon. */
+.danger {
+  border-color: color-mix(in srgb, var(--status-error) 60%, transparent);
+  color: var(--status-error);
+  white-space: nowrap;
+}
+/* Pärast esimest vajutust: tugevam kaal ja raam. Sõnad nupul on juba teised. */
+.armed {
+  font-weight: 620;
+  white-space: nowrap;
+  border-color: color-mix(in srgb, var(--text-warm) 72%, transparent);
+}
+/* Tagajärg nupu kõrval: vaikne lause (värv ja veerised loendi klassist
+   `quiet`), väiksem kiri. Pärast esimest vajutust on see selgem. */
+.confirmNote {
+  line-height: 1.4;
+  font-size: var(--fs-small, 0.875rem);
+  flex: 1 1 16rem;
+  min-width: 0;
+}
+.confirm[data-armed="1"] .confirmNote {
+  color: var(--text-warm);
+}
+/* Vaate tõrge paneeli all servas: sama koht mis vaate teatel, hoiatava tooniga. */
+.footError {
+  color: var(--status-error);
+}
+
+/* --- Muutmise vorm ------------------------------------------------------------ */
+/* Vorm ümbritseb vaadet, et Enter väljal ja nupp „Salvesta" saadaksid sama vormi. */
+.form {
+  min-width: 0;
+}
+/* Ühe osa väljad üksteise all. Valikuread ja tekstiväljad kannavad oma polstrit
+   ise, seepärast on vahe siin väike: muidu ei mahuks kolm valikurida vaatesse. */
+.part {
+  min-width: 0;
+  display: grid;
+  gap: 0.25rem;
+}
+/* Väli on nii lai, kui sinna kirjutatav sisu vajab, mitte paneeli laiune. */
+.field {
+  min-width: 0;
+  max-width: 24rem;
+  display: grid;
+  gap: 0.35rem;
+}
+.field[data-size="sm"] {
+  max-width: 18rem;
+}
+.field[data-size="lg"] {
+  max-width: 38rem;
+}
+.fieldLabel {
+  color: var(--text-warm);
+}
+.input {
+  width: 100%;
+  min-width: 0;
+}
+/* Loendur ilmub alles siis, kui väli hakkab täis saama. */
+.counter {
+  color: var(--text-dim);
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+}
+/* Kaks lühikest välja kõrvuti; kitsal pinnal üksteise all. */
+.pair {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: 0.6rem 1rem;
+}
+.pair .field {
+  flex: 1 1 14rem;
+}
+
+/* --- Modaal: kuulutus avati väljaspool loendit --------------------------------- */
+/* Kiht katab akna, kaart seisab keskel ja on ise konteiner. Pikk kuulutus kerib
+   kihti, mitte kasti kaardi sees. */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 4vw, 2rem);
+  overflow-y: auto;
+  background: transparent;
+}
+.card {
+  width: min(100%, 46rem);
+  padding: var(--panel-pad);
+  border: 1px solid var(--glass-cell-border);
+  border-radius: var(--panel-radius);
+  background: var(--panel-glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  color: var(--text-warm);
+  container-type: inline-size;
+}
+
+@container (max-width: 34rem) {
+  .field,
+  .field[data-size] {
+    max-width: none;
+  }
+  .pair .field {
+    flex-basis: 100%;
+  }
+}

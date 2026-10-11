@@ -1,0 +1,66 @@
+{
+  "document_id": "web-kpk_kuidas_elatisenouet_taitmisele_esitada",
+  "title": "Kuidas elatisenõuet täitmisele esitada",
+  "register_title": "Kuidas elatisenõuet täitmisele esitada",
+  "source_id": "kpk_kuidas_elatisenouet_taitmisele_esitada",
+  "source_type": "web_page",
+  "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+  "language": "et",
+  "url": "https://kpkoda.ee/kuidas-elatisenouet-taitmisele-esitada/",
+  "source_path": "kpk_kuidas_elatisenouet_taitmisele_esitada.html",
+  "source_format": "html",
+  "source_sha256": "6c2a3c5b848ceede82b2010e4ee94feaff6ea6647ded1a203968307859d814a8",
+  "content_sha256": "b7136a758569ebe1e911b911dfe944ef7131be3380ac6b4b959c0036eed7433f",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:40:42.788Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "e30e01e09ef58b147cca7137fe2c8022c6c68dcabcf2490b9969dd5bf6afb769",
+    "stats": {
+      "words": 1760,
+      "blocks": 61,
+      "headings": 5,
+      "tables": 0,
+      "links": 7,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 1,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed"
+    ],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://kpkoda.ee/wp-content/uploads/2024/12/avaldus-elatise-taitmisele-esitamiseks-est-rus-2.docx",
+      "text": "AVALDUS ELATISE NÕUDE TÄITMISELE ESITAMISEKS",
+      "type": "docx",
+      "status": "referenced_only"
+    }
+  ]
+}

@@ -1,0 +1,1376 @@
+{
+  "version": "web-pages-1",
+  "note": "Ühingu lehed, mis on korpuses käsitsi tehtud sammuga ega ole igakuises uuenduses (ADR-140, järeltäiendus v80): Convictus Eesti. Saidi iga lehe lõpus on sama plokk (lähimad keskused, programm, piirkonnad), mis võeti välja kõigilt lehtedelt peale avalehe, ja lehe esimene pealkiri on rubriigi nimi, seega on pealkirjaks lehe enda <title>. Uuesti lugemisel tuleb sama samm uuesti teha (tmp/rag-v2-v80/tools/fix-convictus.mjs). Lisatud 11.10.2026 (korpus v81): neli abiinfo lehte, mis on paigutatud käsitsi (lehe enda pealkiri; alla reegli sõnapiiri või aadressis „uudised“): Eluliini kaks telefonilehte ja Convictuse kaks lehte. Lisatud 11.10.2026 (korpus v84, ADR-146): samade ühingute lehed, kust käsitsi sammuga võeti välja saidi korduv plokk või jääkread; need ei ole igakuises uuenduses.",
+  "pages": [
+    {
+      "source_id": "convictus_avaleht",
+      "url": "https://www.convictus.ee/",
+      "title": "Convictus Eesti MTÜ",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_keskused_kahjude_vahendamise_buss",
+      "url": "https://www.convictus.ee/keskused/kahjude-vahendamise-buss",
+      "title": "Kahjude vähendamise buss",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_keskused_lastekodu",
+      "url": "https://www.convictus.ee/keskused/lastekodu",
+      "title": "Lastekodu 6 Kahjude Vähendamise Keskus",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_keskused_maardu",
+      "url": "https://www.convictus.ee/keskused/maardu",
+      "title": "Maardu Kahjude Vähendamise Keskus",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_keskused_plasti",
+      "url": "https://www.convictus.ee/keskused/plasti",
+      "title": "Plasti 23 Kahjude Vähendamise Keskus",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_keskused_rakvere",
+      "url": "https://www.convictus.ee/keskused/rakvere",
+      "title": "Rakvere Kahjude Vähendamise Keskus",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_keskused_sitsi",
+      "url": "https://www.convictus.ee/keskused/sitsi",
+      "title": "Sitsi 28 Kahjude Vähendamise Keskus",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_kogukond",
+      "url": "https://www.convictus.ee/kogukond",
+      "title": "Leia abi: Kogukond",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_lahedane",
+      "url": "https://www.convictus.ee/lahedane",
+      "title": "Leia abi: Lähedane",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_programm_sutik",
+      "url": "https://www.convictus.ee/programm-sutik",
+      "title": "Programm SÜTIK",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_tarvitaja",
+      "url": "https://www.convictus.ee/tarvitaja",
+      "title": "Leia abi: Tarvitajale",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_hiv_ja_c_hepatiit_kiirtestimine",
+      "url": "https://www.convictus.ee/teenused/hiv-ja-c-hepatiit-kiirtestimine",
+      "title": "HIV ja C-hepatiit kiirtestimine",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_kahjude_vahendaja_noustamine",
+      "url": "https://www.convictus.ee/teenused/kahjude-vahendaja-noustamine",
+      "title": "Kahjude vähendaja nõustamine",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_kahjude_vahendamise_teenus_valitoona",
+      "url": "https://www.convictus.ee/teenused/kahjude-vahendamise-teenus-valitoona",
+      "title": "Kahjude vähendamise teenus välitööna",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_kasutatud_tarvikute_kogumine",
+      "url": "https://www.convictus.ee/teenused/kasutatud-tarvikute-kogumine",
+      "title": "Ohtlike jäätmete kogumine",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_kogemusnoustamine",
+      "url": "https://www.convictus.ee/teenused/kogemusnoustamine",
+      "title": "Kogemusnõustamine",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_loovteraapia",
+      "url": "https://www.convictus.ee/teenused/loovteraapia",
+      "title": "Loovteraapia",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_ohutu_tarvitamine_ja_uledooside_ennetamine_naloksoon",
+      "url": "https://www.convictus.ee/teenused/ohutu-tarvitamine-ja-uledooside-ennetamine-naloksoon",
+      "title": "Ohutu tarvitamine ja üledooside ennetamine (Naloksoon)",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_paevakeskus",
+      "url": "https://www.convictus.ee/teenused/paevakeskus",
+      "title": "Päevakeskus",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_psuhholoogiline_noustamine",
+      "url": "https://www.convictus.ee/teenused/psuhholoogiline-noustamine",
+      "title": "Psühholoogiline nõustamine",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_sotsiaalnoustamine",
+      "url": "https://www.convictus.ee/teenused/sotsiaalnoustamine",
+      "title": "Sotsiaalnõustamine",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_sustlavahetus_ja_tarvikute_jagamine",
+      "url": "https://www.convictus.ee/teenused/sustlavahetus-ja-tarvikute-jagamine",
+      "title": "Süstlavahetus ja tarvikute jagamine",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_tugigrupid_ja_noustamine_vanglates",
+      "url": "https://www.convictus.ee/teenused/tugigrupid-ja-noustamine-vanglates",
+      "title": "Tugigrupid ja nõustamine vanglates",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_tugigrupp_naistele",
+      "url": "https://www.convictus.ee/teenused/tugigrupp-naistele",
+      "title": "Tugigrupp naistele",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_tugiisiku_noustamine",
+      "url": "https://www.convictus.ee/teenused/tugiisiku-noustamine",
+      "title": "Tugiisiku nõustamine",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_turvaline_seksuaalkaitumine",
+      "url": "https://www.convictus.ee/teenused/turvaline-seksuaalkaitumine",
+      "title": "Turvaline seksuaalkäitumine",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_teenused_toidu_ja_riideabi",
+      "url": "https://www.convictus.ee/teenused/toidu-ja-riideabi",
+      "title": "Toidu- ja riideabi",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "convictus_uudised_kuidas_kaituda_kui_naen_kasutatud_sustalt",
+      "url": "https://www.convictus.ee/uudised/kuidas-kaituda-kui-naen-kasutatud-sustalt",
+      "title": "Kuidas käituda kui näen kasutatud süstalt?",
+      "publisher": "Convictus Eesti MTÜ",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "eluliin_avaleht--node--15",
+      "url": "https://www.eluliin.ee/node/15",
+      "title": "Emotsionaalse toe telefon",
+      "publisher": "MTÜ Eluliin",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "eluliin_avaleht--psuhholoogiline-kriisinoustamine",
+      "url": "https://www.eluliin.ee/psuhholoogiline-kriisinoustamine",
+      "title": "Psühholoogiline kriisinõustamine",
+      "publisher": "MTÜ Eluliin",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_kaasused_halduskius_sojavaeteenistuses_osalemise_tolgendamisel",
+      "url": "https://humanrights.ee/kaasused/halduskius-sojavaeteenistuses-osalemise-tolgendamisel/",
+      "title": "Halduskius sõjaväeteenistuses osalemise tõlgendamisel",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_kaasused_kogunemisvabaduse_piiramine_avaliku_voimu_poolt",
+      "url": "https://humanrights.ee/kaasused/kogunemisvabaduse-piiramine-avaliku-voimu-poolt/",
+      "title": "Kogunemisvabaduse piiramine avaliku võimu poolt",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_kaasused_lgbti_filmifestival_festheart",
+      "url": "https://humanrights.ee/kaasused/lgbti-filmifestival-festheart/",
+      "title": "LGBTI+ filmifestival Festheart",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_kaasused_pagulaspere_lapsendamise_kaasus",
+      "url": "https://humanrights.ee/kaasused/pagulaspere-lapsendamise-kaasus/",
+      "title": "Vene pagulaspere lapsendamise kaasus",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_kaasused_perekonna_taasuhinemine",
+      "url": "https://humanrights.ee/kaasused/perekonna-taasuhinemine/",
+      "title": "Perekonna taasühinemine",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_inimoigused_eestis_2026_diskrimineerimise_keeld",
+      "url": "https://humanrights.ee/materjalid/inimoigused-eestis-2026/diskrimineerimise-keeld/",
+      "title": "Diskrimineerimise keeld",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_inimoigused_eestis_2026_hea_lugeja",
+      "url": "https://humanrights.ee/materjalid/inimoigused-eestis-2026/hea-lugeja/",
+      "title": "Hea lugeja",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_inimoigused_eestis_2026_lgbt_inimeste_olukord",
+      "url": "https://humanrights.ee/materjalid/inimoigused-eestis-2026/lgbt-inimeste-olukord/",
+      "title": "LGBT+ inimeste olukord",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_inimoigused_eestis_2026_lihtsas_keeles_kokkuvote",
+      "url": "https://humanrights.ee/materjalid/inimoigused-eestis-2026/lihtsas-keeles-kokkuvote/",
+      "title": "Kokkuvõte lihtsas keeles",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_inimoigused_eestis_2026_oigus_perekonna_ja_eraelu_puutumatusele",
+      "url": "https://humanrights.ee/materjalid/inimoigused-eestis-2026/oigus-perekonna-ja-eraelu-puutumatusele/",
+      "title": "Õigus perekonna- ja eraelu puutumatusele",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_inimoigused_eestis_2026_pagulaste_ja_varjupaigataotlejate_oigused",
+      "url": "https://humanrights.ee/materjalid/inimoigused-eestis-2026/pagulaste-ja-varjupaigataotlejate-oigused/",
+      "title": "Pagulaste ja varjupaigataotlejate õigused",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_inimoigused_eestis_2026_piinamise_ebainimlikult_voi_alandavalt_kohtlemise_ja_karistamise_keeld",
+      "url": "https://humanrights.ee/materjalid/inimoigused-eestis-2026/piinamise-ebainimlikult-voi-alandavalt-kohtlemise-ja-karistamise-keeld/",
+      "title": "Piinamise, ebainimlikult või alandavalt kohtlemise ja karistamise keeld",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_inimoigused_eestis_2026_puuetega_inimeste_olukord",
+      "url": "https://humanrights.ee/materjalid/inimoigused-eestis-2026/puuetega-inimeste-olukord/",
+      "title": "Puuetega inimeste olukord",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_inimoigused_eestis_2026_rahvusvahemused_ja_loimumispoliitika",
+      "url": "https://humanrights.ee/materjalid/inimoigused-eestis-2026/rahvusvahemused-ja-loimumispoliitika/",
+      "title": "Rahvusvähemused ja lõimumispoliitika",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_inimoigused_eestis_2026_sonavabadus",
+      "url": "https://humanrights.ee/materjalid/inimoigused-eestis-2026/sonavabadus/",
+      "title": "Sõnavabadus",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_inimoigused_eestis_2026_sooline_vordsus",
+      "url": "https://humanrights.ee/materjalid/inimoigused-eestis-2026/sooline-vordsus/",
+      "title": "Sooline võrdsus",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_kuidas_luua_mitmekesisust_ja_erinevusi_vaartustavat_ning_kaasavat_tookeskkonda_7_sammu_mitmekesi",
+      "url": "https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/7-sammu-mitmekesisuse-vaartustamiseks/",
+      "title": "7 sammu mitmekesisuse ja kaasatuse arendamiseks",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_kuidas_luua_mitmekesisust_ja_erinevusi_vaartustavat_ning_kaasavat_tookeskkonda_kuidas_luua_toeta",
+      "url": "https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/kuidas-luua-toetav-ja-turvaline-tookeskkond-eri-kultuuritaustaga-inimestele/",
+      "title": "Kuidas luua toetav ja turvaline töökeskkond eri kultuuritaustaga inimestele?",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_kuidas_luua_mitmekesisust_ja_erinevusi_vaartustavat_ning_kaasavat_tookeskkonda_kuidas_luua_toeta_2",
+      "url": "https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/kuidas-luua-toetav-tookeskkond-ath-ga-voi-autistlikule-inimesele/",
+      "title": "Kuidas luua toetav töökeskkond ATH-ga või autistlikule inimesele?",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_kuidas_luua_mitmekesisust_ja_erinevusi_vaartustavat_ning_kaasavat_tookeskkonda_kuidas_moota_mitm",
+      "url": "https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/kuidas-moota-mitmekesisust-ja-kaasatust/",
+      "title": "Kuidas mõõta mitmekesisust ja kaasatust?",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_kuidas_luua_mitmekesisust_ja_erinevusi_vaartustavat_ning_kaasavat_tookeskkonda_miks_on_mitmekesi",
+      "url": "https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/miks-on-mitmekesisuse-vaartustamine-kasulik/",
+      "title": "Miks on mitmekesisuse väärtustamine kasulik?",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_kuidas_luua_mitmekesisust_ja_erinevusi_vaartustavat_ning_kaasavat_tookeskkonda_miks_on_vaja_sool",
+      "url": "https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/miks-on-vaja-soolist-palgalohet-moota-ja-vahendada/",
+      "title": "Miks on vaja soolist palgalõhet mõõta ja vähendada?",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_kuidas_luua_mitmekesisust_ja_erinevusi_vaartustavat_ning_kaasavat_tookeskkonda_mis_on_ligipaaset",
+      "url": "https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/mis-on-ligipaasetavus-ja-kuidas-seda-tagada/",
+      "title": "Mis on ligipääsetavus ja kuidas seda tagada?",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_kuidas_luua_mitmekesisust_ja_erinevusi_vaartustavat_ning_kaasavat_tookeskkonda_mis_on_mitmekesis",
+      "url": "https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/mis-on-mitmekesisus-ja-kaasatus/",
+      "title": "Mis on mitmekesisus ja kaasatus?",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_kuidas_luua_mitmekesisust_ja_erinevusi_vaartustavat_ning_kaasavat_tookeskkonda_usaldusvaarne_too",
+      "url": "https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/usaldusvaarne-tooandja-ennetab-ahistamist-ja-loob-turvalise-tookeskkonna/",
+      "title": "Usaldusväärne tööandja ennetab ahistamist ja loob turvalise töökeskkonna",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_vordse_kohtlemise_kasiraamat_kes_vastutab_ja_mille_eest",
+      "url": "https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/kes-vastutab-ja-mille-eest/",
+      "title": "Kes vastutab ja mille eest?",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_vordse_kohtlemise_kasiraamat_mis_on_vordne_kohtlemine",
+      "url": "https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/mis-on-vordne-kohtlemine/",
+      "title": "Mis on võrdne kohtlemine?",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_vordse_kohtlemise_kasiraamat_olulised_institutsioonid_eestis",
+      "url": "https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/olulised-institutsioonid-eestis/",
+      "title": "Olulised institutsioonid Eestis",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_vordse_kohtlemise_kasiraamat_sissejuhatus",
+      "url": "https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/sissejuhatus/",
+      "title": "Sissejuhatus",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "inimoigused_vordse_kohtlemise_kasiraamat_vordse_kohtlemise_normid_ja_diskrimineerimise_keeld_eesti_seadustes",
+      "url": "https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/vordse-kohtlemise-normid-ja-diskrimineerimise-keeld-eesti-seadustes/",
+      "title": "Võrdse kohtlemise normid ja diskrimineerimise keeld Eesti seadustes",
+      "publisher": "Eesti Inimõiguste Keskus",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lasterikkad_avaliku_suhtumise_kujundamine",
+      "url": "https://www.lasterikkad.ee/avaliku-suhtumise-kujundamine/",
+      "title": "Avaliku suhtumise kujundamine",
+      "publisher": "Eesti Lasterikaste Perede Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lasterikkad_avaliku_suhtumise_kujundamine_peresobralik_toitlustusasutus",
+      "url": "https://www.lasterikkad.ee/avaliku-suhtumise-kujundamine/peresobralik-toitlustusasutus/",
+      "title": "Peresobralik toitlustusasutus",
+      "publisher": "Eesti Lasterikaste Perede Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lasterikkad_kogemusnoustamine",
+      "url": "https://www.lasterikkad.ee/kogemusnoustamine/",
+      "title": "Kogemusnoustamine",
+      "publisher": "Eesti Lasterikaste Perede Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lasterikkad_laane_viru_meist",
+      "url": "https://www.lasterikkad.ee/laane-viru/meist/",
+      "title": "Lääne-Viru Lasterikkad Meist",
+      "publisher": "Eesti Lasterikaste Perede Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lasterikkad_laaneharju_meist",
+      "url": "https://www.lasterikkad.ee/laaneharju/meist/",
+      "title": "Lääne-Harju Lasterikkad Meie",
+      "publisher": "Eesti Lasterikaste Perede Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lasterikkad_meist_laenutus",
+      "url": "https://www.lasterikkad.ee/laaneharju/meist/laenutus/",
+      "title": "Lääne-Harju Lasterikkad Laenutus",
+      "publisher": "Eesti Lasterikaste Perede Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lasterikkad_meist_eetikakoodeks",
+      "url": "https://www.lasterikkad.ee/meist/eetikakoodeks/",
+      "title": "Eetikakoodeks",
+      "publisher": "Eesti Lasterikaste Perede Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lasterikkad_noustamine_5",
+      "url": "https://www.lasterikkad.ee/noustamine/",
+      "title": "Samm parema homse nimel",
+      "publisher": "Eesti Lasterikaste Perede Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lasterikkad_noustamine_2",
+      "url": "https://www.lasterikkad.ee/noustamine/?page_id=151",
+      "title": "Noustamine",
+      "publisher": "Eesti Lasterikaste Perede Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lasterikkad_noustamine_9",
+      "url": "https://www.lasterikkad.ee/noustamine/?page_id=163",
+      "title": "Noustamine",
+      "publisher": "Eesti Lasterikaste Perede Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lasterikkad_noustamine_7",
+      "url": "https://www.lasterikkad.ee/noustamine/?page_id=165",
+      "title": "Noustamine",
+      "publisher": "Eesti Lasterikaste Perede Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lasterikkad_noustamine",
+      "url": "https://www.lasterikkad.ee/noustamine/?page_id=4",
+      "title": "Noustamine",
+      "publisher": "Eesti Lasterikaste Perede Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lasterikkad_noustamine_3",
+      "url": "https://www.lasterikkad.ee/noustamine/?page_id=506",
+      "title": "Noustamine",
+      "publisher": "Eesti Lasterikaste Perede Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lasterikkad_noustamine_8",
+      "url": "https://www.lasterikkad.ee/noustamine/?page_id=508",
+      "title": "Noustamine",
+      "publisher": "Eesti Lasterikaste Perede Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lasterikkad_parnumaa_meist",
+      "url": "https://www.lasterikkad.ee/parnumaa/meist/",
+      "title": "Pärnumaa Lasterikkad Meist",
+      "publisher": "Eesti Lasterikaste Perede Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lasterikkad_peretunde_loomine",
+      "url": "https://www.lasterikkad.ee/peretunde-loomine/",
+      "title": "Peretunde loomine",
+      "publisher": "Eesti Lasterikaste Perede Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lasterikkad_raplamaa_meist",
+      "url": "https://www.lasterikkad.ee/raplamaa/meist/",
+      "title": "Raplamaa Lasterikkad Meist",
+      "publisher": "Eesti Lasterikaste Perede Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lasterikkad_raplamaa_peredele",
+      "url": "https://www.lasterikkad.ee/raplamaa/peredele/",
+      "title": "Raplamaa Lasterikkad Peredele",
+      "publisher": "Eesti Lasterikaste Perede Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lasterikkad_saaremaa_meist",
+      "url": "https://www.lasterikkad.ee/saaremaa/meist/",
+      "title": "Saaremaa Lasterikaste Perede Ühendus Meist",
+      "publisher": "Eesti Lasterikaste Perede Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lasterikkad_saku_meist",
+      "url": "https://www.lasterikkad.ee/saku/meist/",
+      "title": "Saku Valla Lasterikkad Meist",
+      "publisher": "Eesti Lasterikaste Perede Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lasterikkad_taotlemise_tingimused",
+      "url": "https://www.lasterikkad.ee/taotlemise-tingimused/",
+      "title": "Taotlemise tingimused",
+      "publisher": "Eesti Lasterikaste Perede Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lasterikkad_tartumaa_meist",
+      "url": "https://www.lasterikkad.ee/tartumaa/meist/",
+      "title": "Tartu Pereliit Meist",
+      "publisher": "Eesti Lasterikaste Perede Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lasterikkad_meist_dokumendid_2",
+      "url": "https://www.lasterikkad.ee/tartumaa/meist/dokumendid/",
+      "title": "Tartu Pereliit Eetikakoodeks",
+      "publisher": "Eesti Lasterikaste Perede Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lasterikkad_valgamaa_meist",
+      "url": "https://www.lasterikkad.ee/valgamaa/meist/",
+      "title": "Valgamaa Lasterikaste Perede Ühing Meist",
+      "publisher": "Eesti Lasterikaste Perede Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "lasterikkad_viljandimaa_meist",
+      "url": "https://www.lasterikkad.ee/viljandimaa/meist/",
+      "title": "Viljandimaa Lasterikkad Meist",
+      "publisher": "Eesti Lasterikaste Perede Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "naisteliin_leht_116",
+      "url": "https://naisteliin.ee/?id=116",
+      "title": "KKK",
+      "publisher": "Eesti Naiste Varjupaikade Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "naisteliin_leht_117",
+      "url": "https://naisteliin.ee/?id=117",
+      "title": "ENVL",
+      "publisher": "Eesti Naiste Varjupaikade Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "naisteliin_leht_148",
+      "url": "https://naisteliin.ee/?id=148",
+      "title": "Infomaterjalid",
+      "publisher": "Eesti Naiste Varjupaikade Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "naisteliin_leht_107",
+      "url": "https://naisteliin.ee/index.php?id=107",
+      "title": "Vägivallast",
+      "publisher": "Eesti Naiste Varjupaikade Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "naisteliin_leht_108",
+      "url": "https://naisteliin.ee/index.php?id=108",
+      "title": "Naistevastase vägivalla ilmingud",
+      "publisher": "Eesti Naiste Varjupaikade Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "naisteliin_leht_111",
+      "url": "https://naisteliin.ee/index.php?id=111",
+      "title": "Tugikeskused",
+      "publisher": "Eesti Naiste Varjupaikade Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "naisteliin_leht_159",
+      "url": "https://naisteliin.ee/index.php?id=159",
+      "title": "Teenusekirjeldus",
+      "publisher": "Eesti Naiste Varjupaikade Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "naisteliin_leht_28",
+      "url": "https://naisteliin.ee/index.php?id=28",
+      "title": "Meist",
+      "publisher": "Eesti Naiste Varjupaikade Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "naisteliin_leht_77",
+      "url": "https://naisteliin.ee/index.php?id=77",
+      "title": "Eetikakoodeks",
+      "publisher": "Eesti Naiste Varjupaikade Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "naisteliin_leht_1",
+      "url": "https://www.naisteliin.ee/?id=1",
+      "title": "Www.naisteliin.ee",
+      "publisher": "Eesti Naiste Varjupaikade Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "naisteliin_leht_109",
+      "url": "https://www.naisteliin.ee/?id=109",
+      "title": "Paarisuhtevägivald",
+      "publisher": "Eesti Naiste Varjupaikade Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "naisteliin_leht_110",
+      "url": "https://www.naisteliin.ee/?id=110",
+      "title": "Mida teha, kui",
+      "publisher": "Eesti Naiste Varjupaikade Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "naisteliin_leht_115",
+      "url": "https://www.naisteliin.ee/?id=115",
+      "title": "Tugitelefon 1492",
+      "publisher": "Eesti Naiste Varjupaikade Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "naisteliin_leht_120",
+      "url": "https://www.naisteliin.ee/?id=120",
+      "title": "Eetikakoodeks",
+      "publisher": "Eesti Naiste Varjupaikade Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "naisteliin_leht_139",
+      "url": "https://www.naisteliin.ee/?id=139",
+      "title": "Teenusekirjeldus",
+      "publisher": "Eesti Naiste Varjupaikade Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "naisteliin_leht_166",
+      "url": "https://www.naisteliin.ee/?id=166",
+      "title": "Naiste tugikeskuste teenused",
+      "publisher": "Eesti Naiste Varjupaikade Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "pagulasabi_et_praktiline_juhend_kuidas_toetada_ukraina_noori_keeleoppes_ja_loimumises",
+      "url": "https://pagulasabi.ee/et/praktiline-juhend-kuidas-toetada-ukraina-noori-keeleoppes-ja-loimumises",
+      "title": "Praktiline juhend: kuidas toetada Ukraina noori keeleõppes ja lõimumises",
+      "publisher": "Eesti Pagulasabi",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "pagulasabi_et_markamatu_keeleope_toetab_pagulastaustaga_noorte_kohanemist",
+      "url": "https://www.pagulasabi.ee/et/markamatu-keeleope-toetab-pagulastaustaga-noorte-kohanemist",
+      "title": "Märkamatu keeleõpe toetab pagulastaustaga noorte kohanemist",
+      "publisher": "Eesti Pagulasabi",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "pagulasabi_et_ukraina_noorte_toetamine_eestis_keel_kogukond_ja_tulevikuvoimalused",
+      "url": "https://www.pagulasabi.ee/et/ukraina-noorte-toetamine-eestis-keel-kogukond-ja-tulevikuvoimalused",
+      "title": "Ukraina noorte toetamine Eestis: keel, kogukond ja tulevikuvõimalused",
+      "publisher": "Eesti Pagulasabi",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "punanerist_avaleht",
+      "url": "https://redcross.ee/",
+      "title": "Esileht",
+      "publisher": "Eesti Punane Rist",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "punanerist_koolitused_elupaastva_esmaabi_luhikursus",
+      "url": "https://redcross.ee/koolitused/elupaastva-esmaabi-luhikursus",
+      "title": "Elupäästva esmaabi lühikursus",
+      "publisher": "Eesti Punane Rist",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "punanerist_koolitused_esmaabi_pohikoolitus_16_h",
+      "url": "https://redcross.ee/koolitused/esmaabi-pohikoolitus-16-h",
+      "title": "Esmaabi põhikoolitus",
+      "publisher": "Eesti Punane Rist",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "punanerist_koolitused_esmaabi_pohikoolitus_osaliselt_e_oppena",
+      "url": "https://redcross.ee/koolitused/esmaabi-pohikoolitus-osaliselt-e-oppena",
+      "title": "Esmaabi põhikoolitus osaliselt e-õppena",
+      "publisher": "Eesti Punane Rist",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "punanerist_koolitused_esmaabi_taiendkoolitus",
+      "url": "https://redcross.ee/koolitused/esmaabi-taiendkoolitus",
+      "title": "Esmaabi täiendkoolitus",
+      "publisher": "Eesti Punane Rist",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "punanerist_koolitused_esmaabikoolitajate_pohikoolitus",
+      "url": "https://redcross.ee/koolitused/esmaabikoolitajate-pohikoolitus",
+      "title": "Esmaabiõpetajate põhikoolitus",
+      "publisher": "Eesti Punane Rist",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "punanerist_koolitused_esmaabikoolitajate_taiendkoolitus",
+      "url": "https://redcross.ee/koolitused/esmaabikoolitajate-taiendkoolitus",
+      "title": "Esmaabiõpetajate täiendkoolitus",
+      "publisher": "Eesti Punane Rist",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "punanerist_koolitused_esmaabikoolitus_lastevanematele",
+      "url": "https://redcross.ee/koolitused/esmaabikoolitus-lastevanematele",
+      "title": "Esmaabikoolitus lastevanematele",
+      "publisher": "Eesti Punane Rist",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "punanerist_koolitused_psuhholoogilise_esmaabi_koolitus",
+      "url": "https://redcross.ee/koolitused/psuhholoogilise-esmaabi-koolitus",
+      "title": "Psühholoogilise esmaabi koolitus",
+      "publisher": "Eesti Punane Rist",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "punanerist_koolitused_vaike_esmaabiaandja_koolitus_lasteaialastele",
+      "url": "https://redcross.ee/koolitused/vaike-esmaabiaandja-koolitus-lasteaialastele",
+      "title": "Väike esmaabiaandja, koolitus lasteaialastele",
+      "publisher": "Eesti Punane Rist",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "punanerist_koolitusmaterjalid",
+      "url": "https://redcross.ee/koolitusmaterjalid",
+      "title": "Koolitusmaterjalid",
+      "publisher": "Eesti Punane Rist",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "punanerist_telli_koolitus_ettevottele",
+      "url": "https://redcross.ee/telli-koolitus-ettevottele",
+      "title": "Telli koolitus ettevõttele",
+      "publisher": "Eesti Punane Rist",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "punanerist_koolitused",
+      "url": "https://www.redcross.ee/koolitused",
+      "title": "Koolitused",
+      "publisher": "Eesti Punane Rist",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "evnl_avaleht",
+      "url": "https://evnl.ee/",
+      "title": "Evnl.ee",
+      "publisher": "Eesti Võlanõustajate Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "evnl_abiotsijale",
+      "url": "https://evnl.ee/abiotsijale/",
+      "title": "Abiotsijale",
+      "publisher": "Eesti Võlanõustajate Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "evnl_abiotsijale_rahatarkus",
+      "url": "https://evnl.ee/abiotsijale/rahatarkus/",
+      "title": "Rahatarkus",
+      "publisher": "Eesti Võlanõustajate Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "evnl_abiotsijale_teenuse_korraldus",
+      "url": "https://evnl.ee/abiotsijale/teenuse-korraldus/",
+      "title": "Teenuse korraldus",
+      "publisher": "Eesti Võlanõustajate Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "evnl_uhingust_eetikakoodeks",
+      "url": "https://evnl.ee/uhingust/eetikakoodeks/",
+      "title": "Eetikakoodeks",
+      "publisher": "Eesti Võlanõustajate Liit",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "omapere_avaleht",
+      "url": "https://www.omapere.ee/",
+      "title": "Oleme tugiorganisatsioon lapsendaja- hooldus- ja eestkosteperedele.",
+      "publisher": "MTÜ Oma Pere",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "omapere_eestkostja_ja_hooldusvanem",
+      "url": "https://www.omapere.ee/eestkostja-ja-hooldusvanem/",
+      "title": "Eestkostja ja hooldusvanem",
+      "publisher": "MTÜ Oma Pere",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "omapere_lapsendaja",
+      "url": "https://www.omapere.ee/lapsendaja/",
+      "title": "Lapsendaja",
+      "publisher": "MTÜ Oma Pere",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "omapere_lapsendamist_kaaluv",
+      "url": "https://www.omapere.ee/lapsendamist-kaaluv/",
+      "title": "Viljatusravi teekond",
+      "publisher": "MTÜ Oma Pere",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "omapere_lapsendatu",
+      "url": "https://www.omapere.ee/lapsendatu/",
+      "title": "Lapsendatu",
+      "publisher": "MTÜ Oma Pere",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "omapere_noustamine",
+      "url": "https://www.omapere.ee/noustamine/",
+      "title": "Tugiteenused kasuperedele",
+      "publisher": "MTÜ Oma Pere",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "omapere_planeerimata_rasedus",
+      "url": "https://www.omapere.ee/planeerimata-rasedus/",
+      "title": "Planeerimata rasedus",
+      "publisher": "MTÜ Oma Pere",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "omapere_professionaal",
+      "url": "https://www.omapere.ee/professionaal",
+      "title": "Spetsialist",
+      "publisher": "MTÜ Oma Pere",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "soslastekyla_ennetustoo",
+      "url": "https://sos-lastekyla.ee/ennetustoo/",
+      "title": "Ennetustöö",
+      "publisher": "SOS Lasteküla Eesti Ühing",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "soslastekyla_info_kohaliku_omavalitsuse_lastekaitsetootajale",
+      "url": "https://sos-lastekyla.ee/info-kohaliku-omavalitsuse-lastekaitsetootajale/",
+      "title": "Info kohaliku omavalitsuse lastekaitsetöötajale",
+      "publisher": "SOS Lasteküla Eesti Ühing",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "soslastekyla_lapse_kaitsmine",
+      "url": "https://sos-lastekyla.ee/lapse-kaitsmine/",
+      "title": "Teata abivajavast lapsest",
+      "publisher": "SOS Lasteküla Eesti Ühing",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "soslastekyla_grupikodu_grupikodu",
+      "url": "https://sos-lastekyla.ee/meie-too/asendushooldus/grupikodu/grupikodu/",
+      "title": "Grupikodu",
+      "publisher": "SOS Lasteküla Eesti Ühing",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "soslastekyla_asendushooldus_hoolduspere",
+      "url": "https://sos-lastekyla.ee/meie-too/asendushooldus/hoolduspere/",
+      "title": "Hoolduspere",
+      "publisher": "SOS Lasteküla Eesti Ühing",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "soslastekyla_asendushooldus_perekodu",
+      "url": "https://sos-lastekyla.ee/meie-too/asendushooldus/perekodu/",
+      "title": "Perekodu",
+      "publisher": "SOS Lasteküla Eesti Ühing",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "soslastekyla_vota_uhendust",
+      "url": "https://sos-lastekyla.ee/vota-uhendust/",
+      "title": "Võta ühendust",
+      "publisher": "SOS Lasteküla Eesti Ühing",
+      "source_type": "organization_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    }
+  ]
+}

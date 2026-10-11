@@ -1,38 +1,87 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+/**
+ * Mentorluse avaleht: leia mentor, minu suhted, taotlused ja mina mentorina.
+ *
+ * KUJU (09.10). Leht oli üks pikk veerg klaaspaneeli sees olevas tumedas
+ * kaardis. Nüüd on see sammulava (`components/stage/StepFlight.jsx`) laua
+ * kujul: leht avaneb kõigi osade ülevaates (igal plaadil esimene rida või
+ * tühjuse põhjus) ja osa avaneb omaette vaates. Osad ei ole sammud, seepärast
+ * annab leht lavale `parts` ja oma sõnad („Kogu mentorlus”).
+ *
+ * Vaated on failis ./entry/HomeViews.jsx, read ehitab ./entry/entryRows.js.
+ * Siin on andmed, päringud ja see, mis vaateid olekuga seob.
+ *
+ * MIS ON TEISITI KUI ENNE (ja miks):
+ *  - Filtrid on valikud kataloogi enda väärtustest ja rakenduvad kohe. Server
+ *    võrdleb terve sildiga täpselt; vabatekstina trükitud „laste” ei leidnud
+ *    sildiga „Lastekaitse” mentorit ja leht ei öelnud, miks.
+ *  - Filter jääb kehtima ka pärast taotlusele vastamist (enne laaditi kataloog
+ *    siis uuesti filtrita, kuigi väljad näitasid filtrit edasi).
+ *  - Kataloogi laadimise viga on viga, mitte lause „mentoreid ei ole”.
+ *  - Keeldumine ja taotluse tühistamine on lõplikud (keeldumisele järgneb 30
+ *    päeva ooteaeg), seepärast küsib nupp teist vajutust.
+ *  - Seisu sõna tuleb loendist (`statusWord`): tundmatu kood ei jõua ekraanile.
+ */
+
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+
 import { useI18n } from "@/components/i18n/I18nProvider";
-import Button from "@/components/ui/Button";
-import Input from "@/components/ui/Input";
-import { SubpageHeader } from "@/components/ui/SubpageHeader";
-import Form from "@/components/ui/Form";
+import StepFlight from "@/components/stage/StepFlight";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import { localizePath } from "@/lib/localizePath";
-import styles from "./MentoringPage.module.css";
 
-const ESTA_MENTORS_URL = "https://eswa.ee/arendus/mentorlus/";
+import { EntryShell } from "./entry/EntryParts";
+import {
+  CATALOG_CAP,
+  catalogFacets,
+  filterQuery,
+  homeParts,
+  incomingRows,
+  mentorRows,
+  pickGroup,
+  relationRows,
+  sentRows,
+  statusWord
+} from "./entry/entryRows";
+import { FindView, MentorView, RelationsView, RequestsView } from "./entry/HomeViews";
+import styles from "./entry/entry.module.css";
 
-function Section({ title, help, children }) {
-  return (
-    <section className={styles.section}>
-      <div className={styles.sectionHeading}>
-        <h2>{title}</h2>
-        {help ? <p>{help}</p> : null}
-      </div>
-      {children}
-    </section>
-  );
-}
+/* Teine vajutus (keeldumine, tühistamine) peab tulema selle aja sees. */
+const CONFIRM_MS = 8000;
+const NO_FILTERS = Object.freeze({ field: "", topic: "", language: "" });
+const NO_FACETS = Object.freeze({ field: [], topic: [], language: [] });
+
+const catalogUrl = (query) => (query ? `/api/mentoring/catalog?${query}` : "/api/mentoring/catalog");
 
 export default function MentoringHomePage() {
   const { t, locale } = useI18n();
   const [overview, setOverview] = useState(null);
   const [catalog, setCatalog] = useState([]);
+  const [catalogFailed, setCatalogFailed] = useState(false);
+  const [facets, setFacets] = useState(NO_FACETS);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState("");
-  const [feedback, setFeedback] = useState("");
+  const [feedback, setFeedback] = useState(null);
   const [busyKey, setBusyKey] = useState("");
-  const [filters, setFilters] = useState({ field: "", topic: "", language: "" });
+  const [filters, setFilters] = useState(NO_FILTERS);
+  const [filterNotice, setFilterNotice] = useState("");
+  const [relationGroup, setRelationGroup] = useState("open");
+  const [requestGroup, setRequestGroup] = useState("incoming");
+  /* Teist vajutust ootav tegevus: `decline:<id>` või `cancel:<id>`. */
+  const [confirming, setConfirming] = useState("");
+  const confirmTimer = useRef(0);
+  /* Kehtiv filter ja kataloogi päringu järjekorranumber: hilinenud vastus ei
+     tohi värskemat loendit üle kirjutada. */
+  const filtersRef = useRef(NO_FILTERS);
+  const catalogRun = useRef(0);
+
+  const armConfirm = useCallback((key) => {
+    window.clearTimeout(confirmTimer.current);
+    setConfirming(key);
+    confirmTimer.current = window.setTimeout(() => setConfirming(""), CONFIRM_MS);
+  }, []);
+  useEffect(() => () => window.clearTimeout(confirmTimer.current), []);
 
   const formatter = useMemo(
     () => new Intl.DateTimeFormat(locale || "et", { dateStyle: "medium" }),
@@ -47,9 +96,11 @@ export default function MentoringHomePage() {
   const load = useCallback(async (signal) => {
     setLoadError("");
     try {
+      const query = filterQuery(filtersRef.current);
+      const run = ++catalogRun.current;
       const [overviewResponse, catalogResponse] = await Promise.all([
         fetch("/api/mentoring/overview", { cache: "no-store", signal }),
-        fetch("/api/mentoring/catalog", { cache: "no-store", signal })
+        fetch(catalogUrl(query), { cache: "no-store", signal })
       ]);
       const overviewPayload = await overviewResponse.json().catch(() => ({}));
       const catalogPayload = await catalogResponse.json().catch(() => ({}));
@@ -61,14 +112,21 @@ export default function MentoringHomePage() {
         }));
       }
       setOverview(overviewPayload);
-      setCatalog(catalogResponse.ok ? catalogPayload?.profiles || [] : []);
+      if (run !== catalogRun.current) return;
+      const catalogOk = catalogResponse.ok && catalogPayload?.ok !== false;
+      const profiles = catalogOk && Array.isArray(catalogPayload?.profiles) ? catalogPayload.profiles : [];
+      setCatalog(profiles);
+      setCatalogFailed(!catalogOk);
+      /* Filtrite valikud tulevad filtrita kataloogist: filtreeritud vastuses on
+         ainult osa väärtusi. */
+      if (catalogOk && !query) setFacets(catalogFacets(profiles, locale));
     } catch (error) {
       if (error?.name === "AbortError") return;
       setLoadError(error?.message || t("mentoring.errors.load_failed"));
     } finally {
       if (!signal?.aborted) setLoading(false);
     }
-  }, [t]);
+  }, [locale, t]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -76,335 +134,240 @@ export default function MentoringHomePage() {
     return () => controller.abort();
   }, [load]);
 
-  const applyFilters = useCallback(async (event) => {
-    event?.preventDefault?.();
-    const params = new URLSearchParams();
-    if (filters.field) params.set("field", filters.field);
-    if (filters.topic) params.set("topic", filters.topic);
-    if (filters.language) params.set("language", filters.language);
+  const changeFilter = useCallback(async (key, value) => {
+    const previous = filtersRef.current;
+    const next = { ...previous, [key]: value };
+    filtersRef.current = next;
+    setFilters(next);
+    setFilterNotice("");
+    const run = ++catalogRun.current;
+    const query = filterQuery(next);
     try {
-      const response = await fetch(`/api/mentoring/catalog?${params.toString()}`, { cache: "no-store" });
+      const response = await fetch(catalogUrl(query), { cache: "no-store" });
       const payload = await response.json().catch(() => ({}));
-      if (response.ok && payload?.ok !== false) setCatalog(payload?.profiles || []);
+      if (!response.ok || payload?.ok === false) throw new Error("catalog");
+      if (run !== catalogRun.current) return;
+      const profiles = Array.isArray(payload?.profiles) ? payload.profiles : [];
+      setCatalog(profiles);
+      setCatalogFailed(false);
+      if (!query) setFacets(catalogFacets(profiles, locale));
     } catch {
-      /* filtriviga ei asenda juba laetud kataloogi */
+      if (run !== catalogRun.current) return;
+      /* Loend jäi selliseks, nagu ta oli. Siis läheb ka valik tagasi: muidu
+         näitaks filter üht ja loend teist. */
+      filtersRef.current = previous;
+      setFilters(previous);
+      setFilterNotice(t("mentoring.home.filter_failed"));
     }
-  }, [filters]);
+  }, [locale, t]);
+
+  const postRequestAction = useCallback(async (requestId, body) => {
+    const response = await fetch(`/api/mentoring/requests/${encodeURIComponent(requestId)}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    });
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok || payload?.ok === false) {
+      const error = new Error(resolveApiMessage({ payload, t, fallbackKey: "mentoring.errors.save_failed" }));
+      error.status = response.status;
+      throw error;
+    }
+    return payload;
+  }, [t]);
+
+  /* Seis muutus mujal (taotlus aegus, tühistati või sai vastuse teises aknas):
+     loend värskendatakse, et vananenud rida ette ei jääks. */
+  const reloadIfStale = useCallback(async (error) => {
+    if (error?.status === 409 || error?.status === 404) await load();
+  }, [load]);
 
   const respond = useCallback(async (requestId, decision) => {
     setBusyKey(`respond:${requestId}`);
-    setFeedback("");
+    setFeedback(null);
+    setConfirming("");
     try {
-      const response = await fetch(`/api/mentoring/requests/${encodeURIComponent(requestId)}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "respond", decision })
-      });
-      const payload = await response.json().catch(() => ({}));
-      if (!response.ok || payload?.ok === false) {
-        throw new Error(resolveApiMessage({ payload, t, fallbackKey: "mentoring.errors.save_failed" }));
-      }
+      const payload = await postRequestAction(requestId, { action: "respond", decision });
       setFeedback(decision === "ACCEPT"
-        ? t("mentoring.home.request_accepted_feedback")
-        : t("mentoring.home.request_declined_feedback"));
+        ? { text: t("mentoring.home.request_accepted_feedback"), tone: "ok", relationId: String(payload?.relationId || "") }
+        : { text: t("mentoring.home.request_declined_feedback") });
       await load();
     } catch (error) {
-      setFeedback(error?.message || t("mentoring.errors.save_failed"));
+      setFeedback({ text: error?.message || t("mentoring.errors.save_failed"), tone: "risk" });
+      await reloadIfStale(error);
     } finally {
       setBusyKey("");
     }
-  }, [load, t]);
+  }, [load, postRequestAction, reloadIfStale, t]);
 
   const cancelRequest = useCallback(async (requestId) => {
     setBusyKey(`cancel:${requestId}`);
-    setFeedback("");
+    setFeedback(null);
+    setConfirming("");
     try {
-      const response = await fetch(`/api/mentoring/requests/${encodeURIComponent(requestId)}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "cancel" })
-      });
-      const payload = await response.json().catch(() => ({}));
-      if (!response.ok || payload?.ok === false) {
-        throw new Error(resolveApiMessage({ payload, t, fallbackKey: "mentoring.errors.save_failed" }));
-      }
-      setFeedback(t("mentoring.home.request_cancelled_feedback"));
+      await postRequestAction(requestId, { action: "cancel" });
+      setFeedback({ text: t("mentoring.home.request_cancelled_feedback") });
       await load();
     } catch (error) {
-      setFeedback(error?.message || t("mentoring.errors.save_failed"));
+      setFeedback({ text: error?.message || t("mentoring.errors.save_failed"), tone: "risk" });
+      await reloadIfStale(error);
     } finally {
       setBusyKey("");
     }
-  }, [load, t]);
+  }, [load, postRequestAction, reloadIfStale, t]);
 
-  const relations = overview?.relations || [];
-  const myRequests = overview?.myRequests || [];
-  const incomingRequests = overview?.incomingRequests || [];
+  const rowContext = { t, formatDate };
+  const relations = relationRows(overview?.relations, rowContext);
+  const openRelations = relations.filter((row) => !row.closed);
+  const closedRelations = relations.filter((row) => row.closed);
+  const incoming = incomingRows(overview?.incomingRequests, rowContext);
+  const sent = sentRows(overview?.myRequests, rowContext);
+  const mentors = mentorRows(catalog, rowContext);
   const profile = overview?.profile || null;
-  const openRelations = relations.filter((relation) => relation.status !== "CLOSED");
-  const closedRelations = relations.filter((relation) => relation.status === "CLOSED");
+
+  const parts = homeParts({ t, mentors, catalogFailed, openRelations, closedRelations, incoming, sent, profile });
+
+  const renderView = (step) => {
+    switch (step.key) {
+      case "relations": {
+        const counts = { open: openRelations.length, closed: closedRelations.length };
+        const group = pickGroup(relationGroup, ["open", "closed"], counts);
+        const labels = {
+          open: t("mentoring.home.views.relations.group_open"),
+          closed: t("mentoring.home.views.relations.group_closed")
+        };
+        return (
+          <RelationsView
+            t={t}
+            groups={["open", "closed"].filter((key) => counts[key] > 0).map((key) => ({ value: key, label: labels[key] }))}
+            group={group}
+            onGroup={setRelationGroup}
+            rows={(group === "closed" ? closedRelations : openRelations).map((row) => ({ ...row, href: localizePath(row.href) }))}
+            empty={{
+              title: t("mentoring.home.empty_title"),
+              help: t("mentoring.home.empty_help"),
+              note: t("mentoring.home.boundary_note")
+            }}
+          />
+        );
+      }
+      case "requests": {
+        const counts = { incoming: incoming.length, sent: sent.length };
+        const group = pickGroup(requestGroup, ["incoming", "sent"], counts);
+        const labels = {
+          incoming: t("mentoring.home.views.requests.group_incoming"),
+          sent: t("mentoring.home.views.requests.group_sent")
+        };
+        return (
+          <RequestsView
+            t={t}
+            notice={feedback
+              ? {
+                  text: feedback.text,
+                  tone: feedback.tone,
+                  href: feedback.relationId ? localizePath(`/mentorlus/suhe/${encodeURIComponent(feedback.relationId)}`) : ""
+                }
+              : null}
+            groups={["incoming", "sent"].filter((key) => counts[key] > 0).map((key) => ({ value: key, label: labels[key] }))}
+            group={group}
+            onGroup={setRequestGroup}
+            incoming={incoming.map((row) => ({
+              ...row,
+              busy: busyKey === `respond:${row.id}`,
+              onAccept: () => respond(row.id, "ACCEPT"),
+              declineLabel: confirming === `decline:${row.id}`
+                ? t("mentoring.home.views.requests.confirm_decline")
+                : t("mentoring.home.decline"),
+              onDecline: () => (confirming === `decline:${row.id}` ? respond(row.id, "DECLINE") : armConfirm(`decline:${row.id}`))
+            }))}
+            sent={sent.map((row) => ({
+              ...row,
+              busy: busyKey === `cancel:${row.id}`,
+              cancelLabel: confirming === `cancel:${row.id}`
+                ? t("mentoring.home.views.requests.confirm_cancel")
+                : t("mentoring.home.cancel_request"),
+              onCancel: () => (confirming === `cancel:${row.id}` ? cancelRequest(row.id) : armConfirm(`cancel:${row.id}`))
+            }))}
+          />
+        );
+      }
+      case "mentor": {
+        const word = profile ? statusWord("profile_status", profile.status, t) : null;
+        /* Märgil „võtab taotlusi vastu” on mõte ainult kataloogis nähtaval
+           profiilil: mustandi või peatatud profiili kõrval see eksitaks. */
+        const active = String(profile?.status || "").toUpperCase() === "ACTIVE";
+        const full = String(profile?.capacity || "").toUpperCase() === "FULL";
+        return (
+          <MentorView
+            t={t}
+            href={localizePath("/mentorlus/profiil")}
+            profile={profile
+              ? {
+                  name: profile.displayName,
+                  chip: word.text,
+                  tone: word.tone,
+                  capacity: active ? (full ? t("mentoring.capacity.full") : t("mentoring.capacity.open")) : ""
+                }
+              : null}
+          />
+        );
+      }
+      default: {
+        const filterItems = [
+          { key: "field", label: t("mentoring.home.filter_field"), all: t("mentoring.home.filter_all_field") },
+          { key: "topic", label: t("mentoring.home.filter_topic"), all: t("mentoring.home.filter_all_topic") },
+          { key: "language", label: t("mentoring.home.filter_language"), all: t("mentoring.home.filter_all_language") }
+        ];
+        return (
+          <FindView
+            t={t}
+            filters={filterItems
+              .filter((item) => facets[item.key].length > 0)
+              .map((item) => ({
+                key: item.key,
+                label: item.label,
+                value: filters[item.key],
+                options: [{ value: "", label: item.all }, ...facets[item.key].map((value) => ({ value, label: value }))],
+                onChange: (value) => void changeFilter(item.key, String(value || ""))
+              }))}
+            notice={filterNotice}
+            failed={catalogFailed}
+            onRetry={() => void load()}
+            rows={mentors.map((row) => (row.external ? row : { ...row, href: localizePath(row.href) }))}
+            emptyText={filterQuery(filters) ? t("mentoring.home.filter_empty") : t("mentoring.home.catalog_empty")}
+            capNote={mentors.length >= CATALOG_CAP ? t("mentoring.home.catalog_capped", { count: CATALOG_CAP }) : ""}
+          />
+        );
+      }
+    }
+  };
 
   return (
-    <main className={styles.page}>
-      <div className={styles.shell} data-glass-back-anchor="">
-        <SubpageHeader title={t("mentoring.home.title")} />
-        <p className={styles.lead}>{t("mentoring.home.lead")}</p>
-        <p aria-live="polite" className={styles.liveRegion} role="status" tabIndex={-1}>
-          {feedback}
-        </p>
-
-        {loading ? <p className={styles.loading}>{t("mentoring.labels.loading")}</p> : null}
-        {loadError ? (
-          <div className={styles.loadError}>
-            <p>{loadError}</p>
-            <Button variant="secondary" onClick={() => { setLoading(true); void load(); }}>
-              {t("mentoring.labels.retry")}
-            </Button>
-          </div>
-        ) : null}
-
-        {!loading && !loadError ? (
-          <>
-            {!openRelations.length && !myRequests.length && !incomingRequests.length ? (
-              <Section
-                help={t("mentoring.home.empty_help")}
-                title={t("mentoring.home.empty_title")}
-              >
-                <p className={styles.cardMeta}>{t("mentoring.home.boundary_note")}</p>
-              </Section>
-            ) : null}
-
-            {openRelations.length ? (
-              <Section title={t("mentoring.home.my_relations")}>
-                <div className={styles.cards}>
-                  {openRelations.map((relation) => (
-                    <article key={relation.id} className={styles.card}>
-                      <h3 className={styles.cardTitle}>
-                        {relation.position === "mentor"
-                          ? t("mentoring.home.relation_as_mentor", { name: relation.mentee?.name || t("mentoring.labels.deleted_user") })
-                          : t("mentoring.home.relation_as_mentee", { name: relation.mentor?.name || t("mentoring.labels.deleted_user") })}
-                      </h3>
-                      <span className={styles.badge}>{t(`mentoring.relation_status.${relation.status.toLowerCase()}`)}</span>
-                      <p className={styles.cardMeta}>
-                        {t("mentoring.home.last_activity", { date: formatDate(relation.lastActivityAt) })}
-                      </p>
-                      <div className={styles.actions}>
-                        <Button as="a" href={localizePath(`/mentorlus/suhe/${relation.id}`, locale)} size="sm" variant="secondary">
-                          {t("mentoring.home.open_relation")}
-                        </Button>
-                      </div>
-                    </article>
-                  ))}
-                </div>
-              </Section>
-            ) : null}
-
-            {incomingRequests.length ? (
-              <Section
-                help={t("mentoring.home.incoming_help")}
-                title={t("mentoring.home.incoming_requests")}
-              >
-                <div className={styles.cards}>
-                  {incomingRequests.map((request) => (
-                    <article key={request.id} className={styles.card}>
-                      <h3 className={styles.cardTitle}>{request.menteeName || t("mentoring.labels.deleted_user")}</h3>
-                      {request.message ? <p className={styles.cardMeta}>{request.message}</p> : null}
-                      <p className={styles.statusLine}>
-                        {t("mentoring.home.request_expires", { date: formatDate(request.expiresAt) })}
-                      </p>
-                      <div className={styles.actions}>
-                        <Button
-                          disabled={busyKey === `respond:${request.id}`}
-                          onClick={() => respond(request.id, "ACCEPT")}
-                          size="sm"
-                        >
-                          {t("mentoring.home.accept")}
-                        </Button>
-                        <Button
-                          disabled={busyKey === `respond:${request.id}`}
-                          onClick={() => respond(request.id, "DECLINE")}
-                          size="sm"
-                          variant="secondary"
-                        >
-                          {t("mentoring.home.decline")}
-                        </Button>
-                      </div>
-                    </article>
-                  ))}
-                </div>
-              </Section>
-            ) : null}
-
-            {myRequests.length ? (
-              <Section title={t("mentoring.home.my_requests")}>
-                <div className={styles.cards}>
-                  {myRequests.map((request) => (
-                    <article key={request.id} className={styles.card}>
-                      <h3 className={styles.cardTitle}>{request.mentorDisplayName || t("mentoring.labels.deleted_user")}</h3>
-                      <span className={styles.badge}>{t(`mentoring.request_status.${request.status.toLowerCase()}`)}</span>
-                      {request.status === "PENDING" ? (
-                        <p className={styles.statusLine}>
-                          {t("mentoring.home.request_expires", { date: formatDate(request.expiresAt) })}
-                        </p>
-                      ) : null}
-                      {request.canCancel ? (
-                        <div className={styles.actions}>
-                          <Button
-                            disabled={busyKey === `cancel:${request.id}`}
-                            onClick={() => cancelRequest(request.id)}
-                            size="sm"
-                            variant="secondary"
-                          >
-                            {t("mentoring.home.cancel_request")}
-                          </Button>
-                        </div>
-                      ) : null}
-                    </article>
-                  ))}
-                </div>
-              </Section>
-            ) : null}
-
-            <Section
-              help={t("mentoring.home.mentor_view_help")}
-              title={t("mentoring.home.mentor_view")}
-            >
-              {profile ? (
-                <div className={styles.card}>
-                  <h3 className={styles.cardTitle}>{profile.displayName}</h3>
-                  <span className={styles.badge}>{t(`mentoring.profile_status.${profile.status.toLowerCase()}`)}</span>
-                  <p className={styles.cardMeta}>
-                    {t(`mentoring.capacity.${(profile.capacity || "OPEN").toLowerCase()}`)}
-                  </p>
-                  <div className={styles.actions}>
-                    <Button as="a" href={localizePath("/mentorlus/profiil", locale)} size="sm" variant="secondary">
-                      {t("mentoring.home.manage_profile")}
-                    </Button>
-                  </div>
-                </div>
-              ) : (
-                <div className={styles.actions}>
-                  <Button as="a" href={localizePath("/mentorlus/profiil", locale)} variant="secondary">
-                    {t("mentoring.home.become_mentor")}
-                  </Button>
-                </div>
-              )}
-            </Section>
-
-            <Section
-              help={t("mentoring.home.catalog_help")}
-              title={t("mentoring.home.catalog")}
-            >
-              <Form className={styles.filters} onSubmit={applyFilters}>
-                <Input
-                  aria-label={t("mentoring.home.filter_field")}
-                  onChange={(event) => setFilters((prev) => ({ ...prev, field: event.target.value }))}
-                  placeholder={t("mentoring.home.filter_field")}
-                  value={filters.field}
-                />
-                <Input
-                  aria-label={t("mentoring.home.filter_topic")}
-                  onChange={(event) => setFilters((prev) => ({ ...prev, topic: event.target.value }))}
-                  placeholder={t("mentoring.home.filter_topic")}
-                  value={filters.topic}
-                />
-                <Input
-                  aria-label={t("mentoring.home.filter_language")}
-                  onChange={(event) => setFilters((prev) => ({ ...prev, language: event.target.value }))}
-                  placeholder={t("mentoring.home.filter_language")}
-                  value={filters.language}
-                />
-                <Button size="sm" type="submit" variant="secondary">
-                  {t("mentoring.home.filter_apply")}
-                </Button>
-              </Form>
-              {catalog.length ? (
-                <div className={styles.cards}>
-                  {catalog.map((mentor) => (
-                    <article key={mentor.id} className={styles.card}>
-                      <h3 className={styles.cardTitle}>{mentor.displayName}</h3>
-                      {mentor.external ? (
-                        <span className={`${styles.badge} ${styles.badgeExternal}`}>
-                          {t("mentoring.home.external_badge", { date: formatDate(mentor.checkedAt) })}
-                        </span>
-                      ) : null}
-                      {mentor.title || mentor.organization ? (
-                        <p className={styles.cardMeta}>
-                          {[mentor.title, mentor.organization].filter(Boolean).join(" · ")}
-                        </p>
-                      ) : null}
-                      {mentor.bioShort ? <p className={styles.cardMeta}>{mentor.bioShort}</p> : null}
-                      {mentor.fields?.length ? (
-                        <div className={styles.tagRow}>
-                          {mentor.fields.slice(0, 5).map((field) => (
-                            <span key={field} className={styles.tag}>{field}</span>
-                          ))}
-                        </div>
-                      ) : null}
-                      <p className={styles.statusLine}>
-                        {mentor.capacity === "FULL"
-                          ? t("mentoring.home.capacity_full")
-                          : t("mentoring.home.capacity_open")}
-                      </p>
-                      <div className={styles.actions}>
-                        {mentor.external ? (
-                          <Button
-                            as="a"
-                            href={mentor.externalProfileUrl || ESTA_MENTORS_URL}
-                            rel="noopener noreferrer"
-                            size="sm"
-                            target="_blank"
-                            variant="secondary"
-                          >
-                            {t("mentoring.home.view_external_profile")}
-                          </Button>
-                        ) : (
-                          <Button as="a" href={localizePath(`/mentorlus/mentor/${mentor.id}`, locale)} size="sm" variant="secondary">
-                            {t("mentoring.home.view_profile")}
-                          </Button>
-                        )}
-                      </div>
-                    </article>
-                  ))}
-                </div>
-              ) : (
-                <p className={styles.empty}>{t("mentoring.home.catalog_empty")}</p>
-              )}
-              <div className={styles.externalLinkBlock}>
-                <h3 className={styles.cardTitle}>{t("mentoring.home.esta_title")}</h3>
-                <p className={styles.cardMeta}>{t("mentoring.home.esta_help")}</p>
-                <p>
-                  <a href={ESTA_MENTORS_URL} rel="noopener noreferrer" target="_blank">
-                    {t("mentoring.home.esta_link")}
-                  </a>
-                </p>
-              </div>
-            </Section>
-
-            {closedRelations.length ? (
-              <Section title={t("mentoring.home.closed_relations")}>
-                <div className={styles.cards}>
-                  {closedRelations.map((relation) => (
-                    <article key={relation.id} className={styles.card}>
-                      <h3 className={styles.cardTitle}>
-                        {relation.position === "mentor"
-                          ? t("mentoring.home.relation_as_mentor", { name: relation.mentee?.name || t("mentoring.labels.deleted_user") })
-                          : t("mentoring.home.relation_as_mentee", { name: relation.mentor?.name || t("mentoring.labels.deleted_user") })}
-                      </h3>
-                      <span className={styles.badge}>{t("mentoring.relation_status.closed")}</span>
-                      <div className={styles.actions}>
-                        <Button as="a" href={localizePath(`/mentorlus/suhe/${relation.id}`, locale)} size="sm" variant="secondary">
-                          {t("mentoring.home.open_archive")}
-                        </Button>
-                      </div>
-                    </article>
-                  ))}
-                </div>
-              </Section>
-            ) : null}
-          </>
-        ) : null}
-      </div>
-    </main>
+    <EntryShell
+      title={t("mentoring.home.title")}
+      loadingText={loading ? t("mentoring.labels.loading") : ""}
+      error={loadError}
+      retryText={t("mentoring.labels.retry")}
+      onRetry={() => {
+        setLoading(true);
+        void load();
+      }}
+    >
+      {!loading && !loadError ? (
+        <StepFlight
+          label={t("mentoring.home.title")}
+          steps={parts}
+          startWide
+          parts
+          texts={{
+            all: t("mentoring.home.all_parts"),
+            position: (current, total, label) => t("mentoring.labels.part_position", { current, total, label })
+          }}
+          wideLead={<p className={styles.lead}>{t("mentoring.home.lead")}</p>}
+        >
+          {renderView}
+        </StepFlight>
+      ) : null}
+    </EntryShell>
   );
 }

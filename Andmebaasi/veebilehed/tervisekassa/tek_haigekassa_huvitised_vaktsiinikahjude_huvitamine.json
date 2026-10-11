@@ -1,0 +1,82 @@
+{
+  "document_id": "web-tek_haigekassa_huvitised_vaktsiinikahjude_huvitamine",
+  "title": "Vaktsiinikahjude hüvitamine Eestis toimunud vaktsineerimise korral",
+  "register_title": "Vaktsiinikahjude hüvitamine Eestis toimunud vaktsineerimise korral",
+  "source_id": "tek_haigekassa_huvitised_vaktsiinikahjude_huvitamine",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/haigekassa-huvitised/vaktsiinikahjude-huvitamine",
+  "source_path": "tek_haigekassa_huvitised_vaktsiinikahjude_huvitamine.html",
+  "source_format": "html",
+  "source_sha256": "3ff454794c1c87d81dce6b04205a1f2c66ab895ee42172511aa36430656b325f",
+  "content_sha256": "6430140549fde3eb4b97c4025fbd0c700a260e0db1dd6c0a7f417a1117e6c327",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:37:34.756Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:24:48 GMT",
+      "etag": null
+    },
+    "raw_sha256": "9e9e5a06db095ef390248f8babdf20ff88f1ae5b057d9c36ea9f84e7d59e95a9",
+    "stats": {
+      "words": 956,
+      "blocks": 68,
+      "headings": 17,
+      "tables": 1,
+      "links": 10,
+      "linksToOtherSites": 3
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Volikiri_PDF_0.pdf",
+      "text": "Volikirja näidis",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/otsus_nr_012_huvitismaarad_2026.pdf",
+      "text": "Juhatuse otsus nr 12",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/media/486/download?inline",
+      "text": "Laadi alla failJuhend (115.38 KB PDF)",
+      "type": "download",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/media/487/download?inline",
+      "text": "Laadi alla failAruande tabel ja info, kuhu saata Aruande tabel (203.98 KB Excel)",
+      "type": "download",
+      "status": "referenced_only"
+    }
+  ]
+}

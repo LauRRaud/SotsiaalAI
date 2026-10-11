@@ -23,6 +23,8 @@
     "sol:progress": "node scripts/sol-audit-tally.mjs --progress",
     "casework:retention": "node --import ./scripts/register-node-source-loader.mjs scripts/casework-retention.mjs",
     "casework:retention:dry": "node --import ./scripts/register-node-source-loader.mjs scripts/casework-retention.mjs --dry-run",
+    "home-care:search-reindex": "node --import ./scripts/register-node-source-loader.mjs scripts/home-care-search-reindex.mjs",
+    "home-care:search-reindex:dry": "node --import ./scripts/register-node-source-loader.mjs scripts/home-care-search-reindex.mjs --dry",
     "materials:notifications": "node --import ./scripts/register-node-source-loader.mjs scripts/material-notifications.mjs",
     "reflection:retention": "node --import ./scripts/register-node-source-loader.mjs scripts/reflection-retention.mjs",
     "mtr:refresh": "node --import ./scripts/register-node-source-loader.mjs scripts/mtr-licence-refresh.mjs",

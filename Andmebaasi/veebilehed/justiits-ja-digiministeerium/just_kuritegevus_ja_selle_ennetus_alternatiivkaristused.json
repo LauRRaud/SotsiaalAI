@@ -1,0 +1,59 @@
+{
+  "document_id": "web-just_kuritegevus_ja_selle_ennetus_alternatiivkaristused",
+  "title": "Alternatiivkaristused",
+  "register_title": "Alternatiivkaristused",
+  "source_id": "just_kuritegevus_ja_selle_ennetus_alternatiivkaristused",
+  "source_type": "web_page",
+  "publisher": "Justiits- ja Digiministeerium",
+  "language": "et",
+  "url": "https://www.just.ee/kuritegevus-ja-selle-ennetus/alternatiivkaristused",
+  "url_final": "https://www.justdigi.ee/kuritegevus-ja-selle-ennetus/alternatiivkaristused",
+  "source_path": "just_kuritegevus_ja_selle_ennetus_alternatiivkaristused.html",
+  "source_format": "html",
+  "source_sha256": "202af90a4fdcf7b79be578afe5e9eb5a435dd8d587c60d7cefc731cc8d10179f",
+  "content_sha256": "8fa90d7355ecb083ef568a17b46157e9ee031015a45dea8ec87833f87f17fdc8",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:27:48.367Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2021-08-23",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "15e1c7348e130162b3b4b5ce0229b53e754e9c48cb31a7a6de9688201061d091",
+    "stats": {
+      "words": 157,
+      "blocks": 9,
+      "headings": 1,
+      "tables": 0,
+      "links": 0,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

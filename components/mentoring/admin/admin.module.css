@@ -1,0 +1,89 @@
+/* Mentorluse haldus: lehe veerg, neli arvu, loendite valiku rida, kirjete
+   toomise kaart ja tõendi väli.
+   Vaate kuju (juhis, tegevusrida) tuleb StepPanel-ist, valikud ChoiceRow-st,
+   read ja lõpliku teo nupp failist ../desk, märk ja laused failist
+   ../entry/entry.module.css. Halduse aken on terve ekraani laiune: leht on
+   selles keskel üks veerg, et read ja väljad ei veniks akna laiuseks. */
+
+.frame {
+  min-width: 0;
+  width: 100%;
+  max-width: 56rem;
+  margin-inline: auto;
+}
+/* Ühe vaate ümbris: siit leiab leht vaate pealkirja ja read, kui fookus peab liikuma. */
+.desk {
+  min-width: 0;
+}
+
+/* --- Neli arvu: ühelaiused madalad lahtrid ----------------------------------- */
+.counters {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+/* Ühine paneelikiht annab lõigule proosa laiuse ja tooni. */
+.counter {
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  display: grid;
+  align-content: start;
+  gap: 0.1rem;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.9rem;
+  background: var(--glass-cell-bg);
+}
+.counterValue {
+  color: var(--text-warm);
+  font-size: 1.15rem;
+  font-weight: 560;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+.counterLabel {
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+/* --- Loendite valik vasakul, ESTA kirjete seisu filter paremal --------------- */
+/* Kitsal pinnal läheb filter valiku alla. */
+.bar {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0 1rem;
+}
+
+/* Kirjete toomine: kaart on oma selgituse laiune, mitte veeru laiune. */
+.card {
+  min-width: 0;
+  max-width: 30rem;
+}
+
+/* Tõendi viide: üherealine väli sildiga, lause laiune. */
+.field {
+  min-width: 0;
+  max-width: 34rem;
+  display: grid;
+  gap: 0.3rem;
+}
+.fieldLabel {
+  color: var(--text-warm);
+}
+
+@media (max-width: 640px) {
+  .counters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .card,
+  .field {
+    max-width: none;
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "document_id": "web-ppa_info_seoses_ukraina_sojaga_ajutise_kaitse_pikendamine",
+  "title": "Info seoses sõjaga Ukrainas",
+  "register_title": "Info seoses sõjaga Ukrainas",
+  "source_id": "ppa_info_seoses_ukraina_sojaga_ajutise_kaitse_pikendamine",
+  "source_type": "web_page",
+  "publisher": "Politsei- ja Piirivalveamet",
+  "language": "et",
+  "url": "https://www.politsei.ee/et/juhend/info-seoses-ukraina-sojaga/ajutise-kaitse-pikendamine",
+  "source_path": "ppa_info_seoses_ukraina_sojaga_ajutise_kaitse_pikendamine.html",
+  "source_format": "html",
+  "source_sha256": "144d780674f7d06a1aba86ee105e10df1ecdd0e2818e6f24eff094107cf16973",
+  "content_sha256": "a85d3e1be9158d6a4105660ba49b46eaea27c0e1c3a9846644ac12f3b7a45250",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:35:25.757Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": "Thu, 08 Oct 2026 17:07:48 GMT",
+      "etag": null
+    },
+    "raw_sha256": "c334aba1dbce6cf7a74c1eefc6b7d9826221c303060cf7e4d7ce0ba4ddc26821",
+    "stats": {
+      "words": 707,
+      "blocks": 37,
+      "headings": 12,
+      "tables": 0,
+      "links": 6,
+      "linksToOtherSites": 3
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.politsei.ee/files/2023-09/ajk-pikendamine-2023.pdf?51e7da906b",
+      "text": "Ajutise kaitse pikendamise ankeet",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2024_6/pereliikmed-alates-06.06.2024-est.pdf?29d6b2bb3a",
+      "text": "Andmed lähedaste ja pereliikmete kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

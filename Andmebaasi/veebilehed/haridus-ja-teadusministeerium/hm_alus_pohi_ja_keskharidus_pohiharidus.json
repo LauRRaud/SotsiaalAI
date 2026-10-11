@@ -1,0 +1,88 @@
+{
+  "document_id": "web-hm_alus_pohi_ja_keskharidus_pohiharidus",
+  "title": "Põhiharidus",
+  "register_title": "Põhiharidus",
+  "source_id": "hm_alus_pohi_ja_keskharidus_pohiharidus",
+  "source_type": "web_page",
+  "publisher": "Haridus- ja Teadusministeerium",
+  "language": "et",
+  "url": "https://www.hm.ee/uldharidus-ja-noored/alus-pohi-ja-keskharidus/pohiharidus",
+  "source_path": "hm_alus_pohi_ja_keskharidus_pohiharidus.html",
+  "source_format": "html",
+  "source_sha256": "bdda264ebec1e01ff131d662bf22a57d28d0f21ea46acad4dfdec9e9ca621b96",
+  "content_sha256": "4cdbceb16400cc8bf605256f2491d972f5a0ed0ccc327bdf04a41b230c3b0319",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:28:01.654Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Fri, 09 Oct 2026 16:26:03 GMT",
+      "etag": null
+    },
+    "raw_sha256": "5461ffa5b24545a95ec4a47b9f4cf534d0013e8e0058a5f34f341530ec6502b7",
+    "stats": {
+      "words": 1309,
+      "blocks": 54,
+      "headings": 13,
+      "tables": 1,
+      "links": 26,
+      "linksToOtherSites": 12
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2024-08/M%C3%A4%C3%A4rus_kh_2024_nr_1.1-1_24_23.asice",
+      "text": "Määrus: Õpilase kutseõppeasutusse vastuvõtu ja kutseõppeasutusest väljaarvamise kord",
+      "type": "asice",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2024-08/Seletuskiri_kh.pdf",
+      "text": "Seletuskiri haridus- ja teadusministri määruse „Õpilase kutseõppeasutusse vastuvõtu ja kutseõppeasutusest väljaarvamise kord“ eelnõu juurde",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2024-08/M%C3%A4%C3%A4rus_%C3%BCh_2024_nr_1.1-1_24_20.asice",
+      "text": "Määrus: Haridus- ja teadusministri määruste muutmine",
+      "type": "asice",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2024-08/seletuskiri_%C3%BCh.pdf",
+      "text": "Haridus- ja teadusministri määruste muutmise eelnõu seletuskiri",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2026-02/Soovitused%20%C3%B5ppe%20korraldamiseks%209%20klassi%20l%C3%B5petajatele%20%C3%B5ppeaasta%20l%C3%B5pus%20%281%29.pdf",
+      "text": "Soovitused õppe korraldamiseks 9. klassi lõpetajatele õppeaasta lõpu (uuendatud 18.02.2026)",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

@@ -1,0 +1,3207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="3037a6cb-7b11-4f41-8a8d-7e561c1d54b6" xsi:schemaLocation="tyviseadus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/tyviseadus_1_10.02.2010.xsd" xmlns="tyviseadus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Riigikogu</valjaandja>
+		<dokumentLiik>seadus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		
+		<lyhend>OAS</lyhend><dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2022-12-14</aktikuupaev>
+			<avaldamismarge>
+				<RTosa>RT I</RTosa>
+				<avaldamineKuupaev>2023-01-06</avaldamineKuupaev>
+				<RTartikkel>1</RTartikkel>
+				<aktViide>106012023001</aktViide>
+			</avaldamismarge>
+			<joustumine>2023-04-01</joustumine>
+		</vastuvoetud>
+		
+		<avaldamismarge><RTosa>RT I</RTosa><avaldamineKuupaev>2026-07-09+03:00</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>46</RTartikkel><aktViide>109072026046</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2026-10-01</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2025-04-02</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>tyviseadus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>109072026046</globaalID>
+		<metaandmedVersioon>17</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2026-07-08</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Maret Mauer</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1055674</terviktekstiGrupiID>
+		<eesmark>Tüviseaduse raamskeem XML struktuuri koostamiseks</eesmark>
+	</metaandmed>
+	<aktinimi>
+		<nimi>
+			<pealkiri>Ohvriabi seadus</pealkiri>
+			<normtehnmarkus>
+				<normtehnmarkusNr>1</normtehnmarkusNr>
+			</normtehnmarkus>
+		</nimi>
+	</aktinimi>
+	<muutmismarge>
+		<aktikuupaev>2025-03-19</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2025-04-08</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>108042025001</aktViide>
+		</avaldamismarge>
+		<joustumine>2026-10-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2026-06-02</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2026-06-30</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>130062026001</aktViide>
+		</avaldamismarge>
+		<joustumine>2026-10-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+			<aktikuupaev>2026-06-18</aktikuupaev>
+			<avaldamismarge>
+				<RTosa>RT I</RTosa>
+				<avaldamineKuupaev>2026-07-09</avaldamineKuupaev>
+				<RTartikkel>13</RTartikkel>
+				<aktViide>109072026013</aktViide>
+			</avaldamismarge>
+			<joustumine>2026-07-19</joustumine>
+		</muutmismarge>
+	<sisu>
+		<peatykk id="ptk1">
+			<peatykkNr>1</peatykkNr>
+			<kuvatavNr><![CDATA[1. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Üldsätted</peatykkPealkiri>
+			<paragrahv id="para1">
+				<paragrahvNr>1</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 1.]]></kuvatavNr>
+				<paragrahvPealkiri>Seaduse reguleerimisala</paragrahvPealkiri>
+				<loige id="para1lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Käesolev seadus sätestab riikliku ohvriabi organisatsioonilised ja õiguslikud alused ning rahastamise ja järelevalve tingimused ja korralduse.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para2">
+				<paragrahvNr>2</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 2.]]></kuvatavNr>
+				<paragrahvPealkiri>Seaduse eesmärk</paragrahvPealkiri>
+				<loige id="para2lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse eesmärk on säilitada või taastada kuriteo, vägivalla või kriisijuhtumi tõttu kahjustatud füüsiliste isikute toimetulekuvõime ja turvatunne ning ennetada vägivalla kordumist ohvriabi korras pakutavate teenuste ja hüvitiste kaudu.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para3">
+				<paragrahvNr>3</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 3.]]></kuvatavNr>
+				<paragrahvPealkiri>Teiste seaduste kohaldamine</paragrahvPealkiri>
+				<loige id="para3lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesolevas seaduses ettenähtud sotsiaalkaitsele kohaldatakse sotsiaalseadustiku üldosa seaduse sätteid, arvestades käesolevas seaduses sätestatud erisusi.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para3lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ohvriabi osutamisel alaealisele ohvrile kohaldatakse lastekaitseseaduses sätestatut, arvestades käesolevas seaduses sätestatud erisusi.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para4">
+				<paragrahvNr>4</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 4.]]></kuvatavNr>
+				<paragrahvPealkiri>Ohvriabi ja ohver</paragrahvPealkiri>
+				<loige id="para4lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ohvriabi käesoleva seaduse tähenduses on riigi korraldatud ohvriabiteenuste ja kuriteoohvri hüvitiste süsteem.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ohver käesoleva seaduse tähenduses on kuriteo, vägivalla või kriisijuhtumi tagajärjel kahjustatud või hukkunud isik.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Inimkaubanduse ohver käesoleva seaduse tähenduses on isik, kes on kannatanu karistusseadustiku §-s 133–133<sup>3</sup>, 138–140 või 175 sätestatud kuriteo tunnustel alustatud kriminaalmenetluses, või isik, keda käsitataks kannatanuna muu samalaadse välisriigis kehtivas karistusseaduses sätestatud kuriteo tunnustel alustatud kriminaalmenetluses.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Naistevastase vägivalla ohver käesoleva seaduse tähenduses on naine, kellele tema suhtes toime pandud perevägivalla või soolise vägivalla, sealhulgas sund või omavoliline vabadusest ilmajätmine, või sellega ähvardamise tulemusena on tekitatud füüsilisi, seksuaalseid, psüühilisi või majanduslikke kahjusid või kannatusi kas avalikus või eraelus.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Perevägivalla ohver käesoleva seaduse tähenduses on isik, kes on kogenud füüsilise, seksuaalse, psüühilise või majandusliku vägivalla akte perekonnas või kooselus või endise või praeguse abikaasa või partneri poolt, sõltumata sellest, kas vägivallaakti toimepanija elab või on elanud ohvriga samas elukohas.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Seksuaalvägivalla ohver käesoleva seaduse tähenduses on isik, kelle suhtes on sooritatud seksuaalseid toiminguid ilma tema nõusolekuta või keda on sunnitud seksuaalsetele toimingutele kolmanda isikuga või keda on seksuaalselt väärkoheldud.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4lg7">
+					<loigeNr>7</loigeNr>
+					<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Terrorikuriteo ohver käesoleva seaduse tähenduses on isik, kes on kannatanu karistusseadustiku §-s 237 sätestatud kuriteo tunnustel alustatud kriminaalmenetluses, kui kriminaalmenetlust alustatakse Eesti Vabariigis, või sotsiaalseadustiku üldosa seaduse § 3 lõikes 1 nimetatud isik, keda käsitataks kannatanuna karistusseadustiku §-s 237 sätestatud kuriteokoosseisule vastavas teos, mis on toime pandud välisriigis.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para5">
+				<paragrahvNr>5</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 5.]]></kuvatavNr>
+				<paragrahvPealkiri>Ohvri kohtlemise põhimõtted</paragrahvPealkiri>
+				<loige id="para5lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Töös ohvriga tuleb:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para5lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>arvestada ohvri kogetud sündmuse iseloomu, ohvri esmavajadusi, vanust, sugu, võimalikku puuet ja küpsust, suhet vägivalla toimepanijaga või sõltuvust temast, austades ohvri füüsilist, vaimset ja moraalset puutumatust;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>alaealise ohvri puhul lähtuda lapse huvidest;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>informeerida ohvrit tema õigustest ja abi saamise võimalustest;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg1p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>suhelda ohvriga selges ja arusaadavas keeles;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg1p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>tagada ohvri ärakuulamine ja toetamine, arvestades vägivalla, kuriteo või kriisijuhtumi mõju ohvri käitumisele ja võimekusele abi vastu võtta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg1p6">
+						<alampunktNr>6</alampunktNr>
+						<kuvatavNr><![CDATA[6)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>vältida taasohvristamist;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg1p7">
+						<alampunktNr>7</alampunktNr>
+						<kuvatavNr><![CDATA[7)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kaasata ohvrit abi andmise kõikides etappides;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg1p8">
+						<alampunktNr>8</alampunktNr>
+						<kuvatavNr><![CDATA[8)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>hinnata ohvri olukorda ja abivajadust terviklikult;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg1p9">
+						<alampunktNr>9</alampunktNr>
+						<kuvatavNr><![CDATA[9)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>tagada abi ohvrile võimalikult kättesaadaval moel.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para6">
+				<paragrahvNr>6</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 6.]]></kuvatavNr>
+				<paragrahvPealkiri>Ohvriabi kohta info kättesaadavuse tagamine</paragrahvPealkiri>
+				<loige id="para6lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Info ohvriabi saamise võimaluste kohta peab olema kättesaadav Sotsiaalkindlustusametis, kohaliku omavalitsuse üksuses, politsei-, pääste-, tervishoiu-, hoolekande-, haridus- ja noorsootööasutustes, prokuratuuris ja kohtus ning muudes asjaomastes asutustes ja nende veebilehtedel.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para7">
+				<paragrahvNr>7</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 7.]]></kuvatavNr>
+				<paragrahvPealkiri>Ohvri andmete edastamine Sotsiaalkindlustusametile ohvriabi saamiseks</paragrahvPealkiri>
+				<loige id="para7lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui kriminaalmenetluses on kannatanul tuvastatud erikohtlemise ja kaitse vajadus, edastab menetleja temaga seotud andmed ohvriabi saamiseks Sotsiaalkindlustusametile esimesel võimalusel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para7lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui ohvriabi vajab isik, kes ei vasta käesoleva paragrahvi lõikes 1 nimetatud tingimustele, edastab politsei või prokuratuur temaga seotud andmed ohvriabi saamiseks Sotsiaalkindlustusametile isiku soovil.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para7lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui ohver on abi saamiseks pöördunud riigi või kohaliku omavalitsuse asutuse, tervishoiu- või hoolekandeasutuse või vastava spetsialisti, sealhulgas vaimse tervise spetsialisti poole, edastab asjaomane asutus, teenuseosutaja või spetsialist tema ees- ja perekonnanime, kontaktandmed, juhtumi liigi ja ohvriabi saamise soovi Sotsiaalkindlustusametile.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para7lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõigetes 1 ja 2 nimetatud andmed on:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para7lg4p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>ohvri ees- ja perekonnanimi;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para7lg4p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>ohvri sünniaeg või isikukood;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para7lg4p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>ohvri kontaktandmed, piiratud teovõimega isiku korral ka tema seadusliku esindaja kontaktandmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para7lg4p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kuriteo korral ohvri suhtes eeldatavalt toime pandud kuriteo liik;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para7lg4p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>juhtumi liik;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para7lg4p6">
+						<alampunktNr>6</alampunktNr>
+						<kuvatavNr><![CDATA[6)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>sündmuse toimumise aeg;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para7lg4p7">
+						<alampunktNr>7</alampunktNr>
+						<kuvatavNr><![CDATA[7)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>ohvri suhe vägivalla toimepanijaga;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para7lg4p8">
+						<alampunktNr>8</alampunktNr>
+						<kuvatavNr><![CDATA[8)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>märge alaealise lapse juhtumis osalemise kohta.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para7lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui käesoleva paragrahvi lõigetes 1–3 nimetatud ohver, kellega seotud andmed on edastatud Sotsiaalkindlustusametile, ei soovi, et tema andmeid töödeldakse ohvriabi pakkumiseks, lõpetab Sotsiaalkindlustusamet andmete edasise töötlemise teenuste pakkumiseks kohe, kui on saanud isikult sellekohase teate.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para8">
+				<paragrahvNr>8</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 8.]]></kuvatavNr>
+				<paragrahvPealkiri>Ohvri abivajaduse hindamine</paragrahvPealkiri>
+				<loige id="para8lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ohvri abivajadust hinnates tuleb anda hinnang tema füüsilisele, tervislikule, psühholoogilisele, emotsionaalsele, sotsiaalsele ja kognitiivsele seisundile ning nendest lähtuvalt tema haavatavusele, et otsustada ohvriabiteenuste vajaduse ja mahu üle.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para8lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui alaealise ohvri abivajadust hinnates selgub, et tegemist on abivajava või hädaohus oleva lapsega, tuleb tagada tema abistamine lastekaitseseaduses sätestatud korras.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para9">
+				<paragrahvNr>9</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 9.]]></kuvatavNr>
+				<paragrahvPealkiri>Täisealise perevägivalla ohvri abivajaduse hindamise erisused</paragrahvPealkiri>
+				<loige id="para9lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Täisealise perevägivalla ohvri puhul tuleb abivajadust hinnates hinnata ka perevägivallast tulenevat riski tema elule ja tervisele.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para9lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui käesoleva paragrahvi lõikes 1 sätestatud hindamise tulemusena selgub, et täiskasvanud ohvril esineb perevägivalla tõttu surma või raske tervisekahjustuse risk (edaspidi <i>hädaohus olev täisealine perevägivalla ohver</i>), peab Sotsiaalkindlustusamet hindama ka ohvrit ohustavast isikust tulenevaid riske ohvri jaoks ning hinnangust lähtuvalt kavandama sobivad tegevused ohvri abistamiseks ja riskide maandamiseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para9lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui ohvriabi vahetult osutav isik tuvastab käesoleva paragrahvi lõikes 1 sätestatud hindamise tulemusena, et isik on hädaohus olev täisealine perevägivalla ohver, edastab ta Sotsiaalkindlustusametile käesoleva paragrahvi lõikes 2 sätestatud hinnangu andmiseks, ohvri abistamiseks ja riskide maandamiseks ohvri avaldatud andmed ohvri, tema alaealiste laste ja teda ohustava isiku kohta.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para10">
+				<paragrahvNr>10</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 10.]]></kuvatavNr>
+				<paragrahvPealkiri>Hädaohus oleva täisealise perevägivalla ohvri abistamine ja juhtumiga seotud andmete töötlemine</paragrahvPealkiri>
+				<loige id="para10lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Hädaohus oleva täisealise perevägivalla ohvri puhul on Sotsiaalkindlustusametil käesoleva seaduse § 9 lõikes 2 sätestatud hinnangu andmiseks, ohvri abistamiseks ja riskide maandamiseks õigus töödelda ohvri, tema alaealiste laste ja teda ohustava isiku isikuandmeid.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para10lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Hädaohus oleva täisealise perevägivalla ohvri isikuandmed on:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para10lg2p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>ees- ja perekonnanimi, isikukood, kontaktandmed ja elukoht (edaspidi <i>üldandmed</i>);</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg2p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed vanemluse ja eestkoste kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg2p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed võimaliku raseduse kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg2p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed tööga hõivatuse kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg2p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>puude raskusaste ja liik;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg2p6">
+						<alampunktNr>6</alampunktNr>
+						<kuvatavNr><![CDATA[6)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>vigastustega seotud terviseandmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg2p7">
+						<alampunktNr>7</alampunktNr>
+						<kuvatavNr><![CDATA[7)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>vägivalla liik;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg2p8">
+						<alampunktNr>8</alampunktNr>
+						<kuvatavNr><![CDATA[8)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>välismaalase puhul Eestis viibimise õiguslik alus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg2p9">
+						<alampunktNr>9</alampunktNr>
+						<kuvatavNr><![CDATA[9)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed Häirekeskusele ning Politsei- ja Piirivalveametile viimase aasta jooksul tehtud väljakutsete kohta, mis puudutavad ohvriga seotud perevägivalda või viitavad sellele;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg2p10">
+						<alampunktNr>10</alampunktNr>
+						<kuvatavNr><![CDATA[10)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>muud juhtumiga seotud asjakohased andmed.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para10lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Hädaohus oleva täisealise perevägivalla ohvri alaealise lapse isikuandmed on:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para10lg3p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>üldandmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg3p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed võimaliku vanemluse või eestkoste kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg3p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed võimaliku raseduse kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg3p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed hariduse omandamise või tööga hõivatuse kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg3p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>puude raskusaste ja liik;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg3p6">
+						<alampunktNr>6</alampunktNr>
+						<kuvatavNr><![CDATA[6)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>vigastustega seotud terviseandmed.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para10lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Hädaohus olevat täisealist perevägivalla ohvrit ohustava isiku isikuandmed on:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para10lg4p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>üldandmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg4p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed vanemluse, leibkonnas kasvavate alaealiste laste ja eestkoste kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg4p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed võimaliku raseduse kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg4p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed tööga hõivatuse kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg4p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>puude raskusaste ja liik;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg4p6">
+						<alampunktNr>6</alampunktNr>
+						<kuvatavNr><![CDATA[6)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>juhtumit mõjutavad terviseandmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg4p7">
+						<alampunktNr>7</alampunktNr>
+						<kuvatavNr><![CDATA[7)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>vägivalla liik;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg4p8">
+						<alampunktNr>8</alampunktNr>
+						<kuvatavNr><![CDATA[8)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>välismaalase puhul Eestis viibimise õiguslik alus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg4p9">
+						<alampunktNr>9</alampunktNr>
+						<kuvatavNr><![CDATA[9)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Häirekeskusele ning Politsei- ja Piirivalveametile viimase aasta jooksul isikuga seoses tehtud väljakutsed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg4p10">
+						<alampunktNr>10</alampunktNr>
+						<kuvatavNr><![CDATA[10)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>karistusregistrisse, sealhulgas karistusregistri arhiivi, kantud karistusandmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg4p11">
+						<alampunktNr>11</alampunktNr>
+						<kuvatavNr><![CDATA[11)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kahtlustatava või süüdistatava isiku suhtes käimas oleva kriminaalmenetluse andmed koos selle esemeks oleva kuriteo liigi ja toimepanemise ajaga;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg4p12">
+						<alampunktNr>12</alampunktNr>
+						<kuvatavNr><![CDATA[12)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>isiku suhtes kriminaalmenetluses kohaldatud tõkendid ning kriminaal- ja tsiviilkohtumenetluses kohaldatud viibimis-, suhtlemis- ja lähenemiskeeld;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg4p13">
+						<alampunktNr>13</alampunktNr>
+						<kuvatavNr><![CDATA[13)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>isikule väljastatud relvasoetamise luba ja relvaluba ning andmed tema omandis või valduses olevate relvade ja laskemoona kohta, samuti isiku relvadele ja laskemoonale ligipääsu kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg4p14">
+						<alampunktNr>14</alampunktNr>
+						<kuvatavNr><![CDATA[14)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>vahi alt, vangistusest või statsionaarselt sundravilt lahkumise aeg;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg4p15">
+						<alampunktNr>15</alampunktNr>
+						<kuvatavNr><![CDATA[15)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>muud juhtumiga seotud asjakohased andmed.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para10lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Hädaohus oleva täisealise perevägivalla ohvri puhul on Sotsiaalkindlustusametil täiendava hinnangu andmiseks, ohvri abistamiseks ja riskide maandamiseks, sealhulgas käesoleva paragrahvi lõigetes 2–4 nimetatud andmete saamiseks ja töötlemiseks, õigus kaasata asjaomaseid asutusi ja spetsialiste. Eelviidatud eesmärkide täitmiseks on õigus andmeid töödelda ka menetlusse kaasatud osapoolte vahel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para10lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalkindlustusametil on õigus kaasata käesoleva paragrahvi lõikes 5 nimetatud eesmärgil järgmisi asutusi ja spetsialiste:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para10lg6p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Politsei- ja Piirivalveamet;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg6p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>prokuratuur;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg6p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>asjaomane kohaliku omavalitsuse üksus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg6p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>asjaomane halduslepingu alusel ohvriabi osutav asutus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg6p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>vägivallast loobumise toetamise teenuse osutaja;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg6p6">
+						<alampunktNr>6</alampunktNr>
+						<kuvatavNr><![CDATA[6)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>täisealist perevägivalla ohvrit ohustava isiku kriminaalhooldaja, kui isik on kriminaalhoolduse all;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg6p7">
+						<alampunktNr>7</alampunktNr>
+						<kuvatavNr><![CDATA[7)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>põhjendatud juhul muu asutus või spetsialist.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para10lg7">
+					<loigeNr>7</loigeNr>
+					<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Isikuandmete töötlemisel käesoleva paragrahvi lõigete 1–4 alusel on Sotsiaalkindlustusametil õigus Euroopa Parlamendi ja nõukogu määruses (EL) 2016/679 füüsiliste isikute kaitse kohta isikuandmete töötlemisel ja selliste andmete vaba liikumise ning direktiivi 95/46/EÜ kehtetuks tunnistamise kohta (isikuandmete kaitse üldmäärus) (ELT L 119, 04.05.2016, lk 1–88) sätestatud andmesubjekti õigusi piirata kuni kolmeks aastaks eesmärgiga kaitsta hädaohus oleva täisealise perevägivalla ohvri ning tema alaealiste laste elu ja tervist.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para10lg8">
+					<loigeNr>8</loigeNr>
+					<kuvatavNr><![CDATA[(8)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõike 7 alusel võib piirata järgmisi andmesubjekti õigusi:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para10lg8p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>õigus saada teada tema isikuandmete töötlemisest, sealhulgas sellest, milliseid isikuandmeid töödeldakse, samuti töötlemise viisi, meetodit, eesmärki, õiguslikku alust, ulatust ja põhjust;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg8p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>õigus saada teada tema isikuandmete vastuvõtjaid ja avaldatavate isikuandmete kategooriaid ning sellest, kas tema isikuandmed edastatakse välisriigile või rahvusvahelisele organisatsioonile;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg8p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>õigus esitada vastuväiteid tema isikuandmete töötlemise kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg8p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>õigus saada teada tema isikuandmetega seotud rikkumisest.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para11">
+				<paragrahvNr>11</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 11.]]></kuvatavNr>
+				<paragrahvPealkiri>Konfidentsiaalsuskohustus</paragrahvPealkiri>
+				<loige id="para11lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Ohvriabi vahetult osutavad isikud ja käesoleva seaduse § 10 alusel infot saanud isikud peavad hoidma konfidentsiaalsena neile ohvriabi osutamisel teatavaks saanud andmeid ohvri ja juhtunuga vahetult seotud isikute kohta, kui seaduses või kokkuleppel ohvriga ei ole ette nähtud teisiti.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk2">
+			<peatykkNr>2</peatykkNr>
+			<kuvatavNr><![CDATA[2. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Nõuded ohvriabi vahetult osutavale isikule</peatykkPealkiri>
+			<paragrahv id="para12">
+				<paragrahvNr>12</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 12.]]></kuvatavNr>
+				<paragrahvPealkiri>Üldnõuded ohvriabi vahetult osutavale isikule</paragrahvPealkiri>
+				<loige id="para12lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ohvriabi vahetult osutavad isikud on ohvriabitöötajad, ohvritega töötavad isikud ja ohvriabi vabatahtlikud.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para12lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ohvriabitöötaja käesoleva seaduse tähenduses on Sotsiaalkindlustusameti ametnik või töötaja, kes täidab talle seaduses või muus õigusaktis sätestatud ohvriabi pakkumise kohustusi.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para12lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ohvriabi vahetult osutav isik peab vastama järgmistele üldnõuetele:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para12lg3p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>ta on vähemalt 18-aastane;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para12lg3p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>tal on ohvriabi osutamiseks vajalikud isikuomadused;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para12lg3p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>teda ei ole karistatud sellise tahtlikult toime pandud kuriteo eest, mis võib ohtu seada teenust saama õigustatud isiku elu, tervise või vara;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para12lg3p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>ta vastab lastekaitseseaduse §-s 20 sätestatud nõuetele, kui abi osutatakse lapsele.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para13">
+				<paragrahvNr>13</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 13.]]></kuvatavNr>
+				<paragrahvPealkiri>Ettevalmistusnõuded ohvriabi vahetult osutavale isikule</paragrahvPealkiri>
+				<loige id="para13lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ohvriabi võib vahetult osutada isik, kes vastab käesoleva seaduse § 12 lõikes 3 nimetatud üldnõuetele ning kellel on vajalik erialane ettevalmistus ohvriabi osutamiseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para13lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ohvriabi vahetult osutava isiku erialase ettevalmistuse nõuded, sealhulgas nõuded haridusele ja täienduskoolitusele, ning täienduskoolituse korraldamise tingimused ja korra kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=109072026046&id=104042023013]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para13lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ohvriabi põhiteenuse osutamisel võib ohvriabitöötaja juhendamisel osaleda oma vabast ajast ja tasu saamata ka ohvriabi vabatahtlik, kelle puhul otsustab Sotsiaalkindlustusamet isiku ettevalmistuse sobivuse.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para13lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Välisriigis omandatud kvalifikatsiooni vastavuse käesolevas seaduses ja selle alusel kehtestatud nõuetele otsustab Sotsiaalkindlustusamet välisriigi kutsekvalifikatsiooni tunnustamise seaduse alusel, arvestades käesolevas seaduses sätestatud erisusi.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk3">
+			<peatykkNr>3</peatykkNr>
+			<kuvatavNr><![CDATA[3. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Ohvriabi korraldus ja ohvriabiteenused</peatykkPealkiri>
+			<jagu id="jg1">
+				<jaguNr>1</jaguNr>
+				<kuvatavNr><![CDATA[1. jagu]]></kuvatavNr>
+				<jaguPealkiri>Ohvriabi korraldus</jaguPealkiri>
+				<paragrahv id="para14">
+					<paragrahvNr>14</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 14.]]></kuvatavNr>
+					<paragrahvPealkiri>Ohvriabi korraldamine</paragrahvPealkiri>
+					<loige id="para14lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Ohvriabi korraldab Sotsiaalkindlustusamet.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para14lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Sotsiaalkindlustusameti ülesanded ohvriabi korraldamisel on:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para14lg2p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvriabiteenuste korraldamine;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para14lg2p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>hüvitiste maksmise korraldamine;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para14lg2p3">
+							<alampunktNr>3</alampunktNr>
+							<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ööpäevaringse ohvriabi kriisitelefoni 116 006 pidamine;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para14lg2p4">
+							<alampunktNr>4</alampunktNr>
+							<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvriabi täienduskoolituste korraldamine;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para14lg2p5">
+							<alampunktNr>5</alampunktNr>
+							<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvriabi vabatahtlike kaasamine ja juhendamine;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para14lg2p6">
+							<alampunktNr>6</alampunktNr>
+							<kuvatavNr><![CDATA[6)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ennetus- ja teavitustegevuste korraldamine.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para14lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Ohvriabi korraldamisel teeb Sotsiaalkindlustusamet koostööd teiste riigi- ja kohaliku omavalitsuse asutustega ning füüsiliste ja juriidiliste isikutega.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para14lg3b1">
+						<loigeNr ylaIndeks="1">3</loigeNr>
+						<kuvatavNr><![CDATA[(3<sup>1</sup>)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Inimkaubanduse ohvrite abistamiseks riikliku suunamismehhanismi, ohvrite piiriülese suunamise kontaktasutuse, inimkaubanduse ennetuse ja koolitusega tegelevate asutuste ning riikliku inimkaubandusevastase võitluse koordinaatori ülesanded kehtestab </tavatekst>
+							<viide>
+								<kuvatavTekst><![CDATA[Vabariigi Valitsus]]></kuvatavTekst>
+								<viideURID>
+									<viideURI><![CDATA[./../vaheleht.html]]></viideURI>
+								</viideURID>
+							</viide>
+							<tavatekst> määrusega.</tavatekst>
+						</sisuTekst>
+							<muutmismarge>
+								<avaldamismarge>
+									<RTosa>RT I</RTosa>
+									<avaldamineKuupaev>2026-07-09</avaldamineKuupaev>
+									<RTartikkel>13</RTartikkel>
+									<aktViide>109072026013</aktViide>
+								</avaldamismarge>
+								<joustumine>2026-07-19</joustumine>
+							</muutmismarge>
+					</loige>
+					<loige id="para14lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Eriolukorra, erakorralise või sõjaseisukorra ajal võib Sotsiaalkindlustusamet ohvriabiteenuste korraldamisel teha ajutiselt teenuste sisu puudutavaid erandeid, kui see on vajalik eriolukorra, erakorralise või sõjaseisukorra ajal ohvriabiteenuste osutamiseks.</tavatekst>
+					</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2026-06-30</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>130062026001</aktViide>
+							</avaldamismarge>
+							<joustumine>2026-10-01</joustumine>
+						</muutmismarge>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="jg2">
+				<jaguNr>2</jaguNr>
+				<kuvatavNr><![CDATA[2. jagu]]></kuvatavNr>
+				<jaguPealkiri>Ohvriabiteenused</jaguPealkiri>
+				<paragrahv id="para15">
+					<paragrahvNr>15</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 15.]]></kuvatavNr>
+					<paragrahvPealkiri>Ohvriabiteenuste eesmärk ja sisu</paragrahvPealkiri>
+					<loige id="para15lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Ohvriabiteenuste eesmärk on tagada kuriteo, vägivalla või kriisijuhtumi tõttu kahjustada saanud isikutele sotsiaalne, psühholoogiline ja emotsionaalne abi (edaspidi <i>psühhosotsiaalne abi</i>), et aidata kaasa nende turvatunde ja toimetulekuvõime säilitamisele või taastamisele ning edasise kahju ennetamisele.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para15lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Ohvriabiteenused on:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para15lg2p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvriabi põhiteenus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para15lg2p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>psühhosotsiaalne abi kriisijuhtumi korral;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para15lg2p3">
+							<alampunktNr>3</alampunktNr>
+							<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>naiste tugikeskuse teenus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para15lg2p4">
+							<alampunktNr>4</alampunktNr>
+							<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>seksuaalvägivalla kriisiabi;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para15lg2p5">
+							<alampunktNr>5</alampunktNr>
+							<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>inimkaubandusohvrite teenus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para15lg2p6">
+							<alampunktNr>6</alampunktNr>
+							<kuvatavNr><![CDATA[6)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>taastava õiguse teenused;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para15lg2p7">
+							<alampunktNr>7</alampunktNr>
+							<kuvatavNr><![CDATA[7)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>vägivallast loobumise toetamine;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para15lg2p8">
+							<alampunktNr>8</alampunktNr>
+							<kuvatavNr><![CDATA[8)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>traumast taastumist toetav vaimse tervise abi.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para15lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Sotsiaalkindlustusamet võib käesoleva paragrahvi lõike 2 punktides 2–7 nimetatud teenuste osutamise, mis on seotud haldusülesande täitmisega, anda halduslepinguga osaliselt või tervikuna üle füüsilisele või juriidilisele isikule või kohaliku omavalitsuse üksusele.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para15lg4">
+						<loigeNr>4</loigeNr>
+						<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Haldusjärelevalvet ohvriabi osutaja üle teeb Sotsiaalkindlustusamet.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para16">
+					<paragrahvNr>16</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 16.]]></kuvatavNr>
+					<paragrahvPealkiri>Ohvriabiteenuste osutamise erisused</paragrahvPealkiri>
+					<loige id="para16lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Käesoleva seaduse § 15 lõike 2 punktides 1 ja 2 nimetatud abi osutatakse lisaks sotsiaalseadustiku üldosa seaduse § 3 lõikes 1 nimetatud isikutele ka inimkaubanduse ohvrile ja Eestis toimunud terrorikuriteo ohvrile, sõltumata sellest, kas tal on Eestis viibimiseks seaduslik alus, kuni tema lahkumiskohustuse tähtpäeva saabumiseni või ennetähtaegse riigist lahkumiseni.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para16lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Välismaalasest ohvrile teenuse osutamine ei ole tema Eestis viibimise seaduslik alus ega lükka tema Eestist lahkumise kohustuse täitmist edasi.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="jg3">
+				<jaguNr>3</jaguNr>
+				<kuvatavNr><![CDATA[3. jagu]]></kuvatavNr>
+				<jaguPealkiri>Ohvriabi põhiteenus</jaguPealkiri>
+				<paragrahv id="para17">
+					<paragrahvNr>17</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 17.]]></kuvatavNr>
+					<paragrahvPealkiri>Ohvriabi põhiteenuse eesmärk ja sisu</paragrahvPealkiri>
+					<loige id="para17lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Ohvriabi põhiteenuse eesmärk on tagada kuriteo, vägivalla või kriisijuhtumi ohvritele asjakohane toetus ja abi.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para17lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Ohvriabi põhiteenus sisaldab järgmist:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para17lg2p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvri informeerimine võimalikest teenustest ja kaitsemeetmetest;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para17lg2p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvri nõustamine ja talle psühhosotsiaalse abi tagamine;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para17lg2p3">
+							<alampunktNr>3</alampunktNr>
+							<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvri abivajaduse hindamine ja talle sobiva ohvriabiteenuse tagamine, vajaduse korral ohvri abistamine juhtumikorralduse põhimõttel;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para17lg2p4">
+							<alampunktNr>4</alampunktNr>
+							<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvri abistamine suhtlemisel riigi- ja kohaliku omavalitsuse asutustega ning asjaomaste füüsiliste ja juriidiliste isikutega.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para17lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Ohvriabi põhiteenust osutavad ohvriabitöötajad.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para18">
+					<paragrahvNr>18</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 18.]]></kuvatavNr>
+					<paragrahvPealkiri>Ohvriabi põhiteenuse osutamise erisused alaealise ohvri puhul</paragrahvPealkiri>
+					<loige id="para18lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Kui Sotsiaalkindlustusamet saab käesoleva seaduse § 7 lõike 1 alusel teate alaealisest, kes võib vajada ohvriabi, selgitab ohvriabitöötaja enne ohvriabiteenuste pakkumist välja, kas ja millist abi on ohvrile ja teda kasvatavale isikule osutanud kohaliku omavalitsuse üksus lastekaitseseaduse alusel.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para18lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Alaealisele seksuaalvägivalla ohvrile osutab Sotsiaalkindlustusamet ohvriabi põhiteenust koos lastekaitseseaduse §-s 29<sup>1</sup> sätestatud meetmetega.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="jg4">
+				<jaguNr>4</jaguNr>
+				<kuvatavNr><![CDATA[4. jagu]]></kuvatavNr>
+				<jaguPealkiri>Psühhosotsiaalne abi kriisijuhtumi korral</jaguPealkiri>
+				<paragrahv id="para19">
+					<paragrahvNr>19</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 19.]]></kuvatavNr>
+					<paragrahvPealkiri>Psühhosotsiaalse abi eesmärk ja sisu kriisijuhtumi korral</paragrahvPealkiri>
+					<loige id="para19lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Psühhosotsiaalset abi kriisijuhtumi korral (edaspidi <i>psühhosotsiaalne kriisiabi</i>) osutatakse kriisijuhtumi ohvrile, et ta tuleks juhtunuga toime, et vähendada juhtumi mõju tema igapäevasele tegutsemisele ning et taastada tema iseseisev toimetulek.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para19lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Kriisijuhtum käesoleva seaduse tähenduses on ootamatu ulatusliku mõjuga juhtum, mis võib kaasa tuua inimeste kahjustumise või hukkumise, põhjustades enamikul sellega seotud inimestest tõsiseid üleelamisi ja abivajaduse.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para19lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Psühhosotsiaalne kriisiabi sisaldab järgmist:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para19lg3p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ööpäevaringne kriisijuhtumitele reageerimine;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para19lg3p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>olukorra hindamine ning seotud asutuste ja isikutega koostöö käivitamine;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para19lg3p3">
+							<alampunktNr>3</alampunktNr>
+							<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>kriisijuhtumi ohvrite väljaselgitamine ja nende esmaste vajaduste hindamine;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para19lg3p4">
+							<alampunktNr>4</alampunktNr>
+							<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>psühholoogilise esmaabi andmine ja muu psühhosotsiaalse abi käivitamine;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para19lg3p5">
+							<alampunktNr>5</alampunktNr>
+							<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>spetsialistide koostöö kriisijuhtumi ohvri abistamisel.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para20">
+					<paragrahvNr>20</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 20.]]></kuvatavNr>
+					<paragrahvPealkiri>Andmete edastamine psühhosotsiaalse kriisiabi korraldamiseks</paragrahvPealkiri>
+					<loige id="para20lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Häirekeskus edastab kriisijuhtumi korral Sotsiaalkindlustusametile psühhosotsiaalse kriisiabi korraldamiseks sündmuse asukoha ja kirjelduse ning info võimalike inimkahjude kohta.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para20lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Kui kriisijuhtumi ohver võib juhtumi asjaolude tõttu vajada ohvriabi enda või juhtumiga seotud teise füüsilise isiku elu ja tervise kaitseks, edastab Politsei- ja Piirivalveamet, Kaitsepolitseiamet või Päästeamet tema andmed Sotsiaalkindlustusametile esimesel võimalusel.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para20lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Kui välisriigis toimunud terrorikuriteo ohver võib juhtumi asjaolude tõttu vajada ohvriabi enda või juhtumiga seotud teise füüsilise isiku elu ja tervise kaitseks, edastab Välisministeerium tema andmed nende olemasolu korral Sotsiaalkindlustusametile esimesel võimalusel.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para20lg4">
+						<loigeNr>4</loigeNr>
+						<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Käesoleva paragrahvi lõigetes 2 ja 3 nimetatud andmeteks on kriisijuhtumi ohvri ees- ja perekonnanimi, kontaktandmed ja seos kriisijuhtumiga.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="jg5">
+				<jaguNr>5</jaguNr>
+				<kuvatavNr><![CDATA[5. jagu]]></kuvatavNr>
+				<jaguPealkiri>Naiste tugikeskuse teenus</jaguPealkiri>
+				<paragrahv id="para21">
+					<paragrahvNr>21</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 21.]]></kuvatavNr>
+					<paragrahvPealkiri>Naiste tugikeskuse teenuse eesmärk ja sisu</paragrahvPealkiri>
+					<loige id="para21lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Naiste tugikeskuse teenuse eesmärk on aidata kaasa naistevastase vägivalla ohvri vägivallast pääsemisele, turvalisuse suurendamisele ja iseseisva toimetuleku saavutamisele.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para21lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Naiste tugikeskuse teenus sisaldab järgmist:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para21lg2p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>valmisolek anda ohvrile ja tema lastele ööpäev läbi esmast psühhosotsiaalset abi;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para21lg2p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvri abivajaduse hindamine, et otsustada teenuse vajaduse ja mahu üle;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para21lg2p3">
+							<alampunktNr>3</alampunktNr>
+							<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvri nõustamine ja psühhosotsiaalse abi tagamine;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para21lg2p4">
+							<alampunktNr>4</alampunktNr>
+							<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>juhtumikorralduse rakendamine juhul, kui ohver vajab iseseisva toimetuleku saavutamiseks pikaajalist ja mitmekülgset abi;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para21lg2p5">
+							<alampunktNr>5</alampunktNr>
+							<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>psühholoogiline nõustamine või psühhoteraapia;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para21lg2p6">
+							<alampunktNr>6</alampunktNr>
+							<kuvatavNr><![CDATA[6)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>juriidiline abi;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para21lg2p7">
+							<alampunktNr>7</alampunktNr>
+							<kuvatavNr><![CDATA[7)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvrile ja tema lastele turvaline ajutine majutus ööpäev läbi.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para21lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Käesoleva paragrahvi lõike 2 punktis 7 nimetatud teenust osutatakse kuni kuus kuud.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para21lg4">
+						<loigeNr>4</loigeNr>
+						<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Naiste tugikeskuse teenust osutab erialaspetsialistidest koosnev meeskond tervikteenusena ja see on kättesaadav igas maakonnas.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="jg6">
+				<jaguNr>6</jaguNr>
+				<kuvatavNr><![CDATA[6. jagu]]></kuvatavNr>
+				<jaguPealkiri>Seksuaalvägivalla kriisiabi</jaguPealkiri>
+				<paragrahv id="para22">
+					<paragrahvNr>22</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 22.]]></kuvatavNr>
+					<paragrahvPealkiri>Seksuaalvägivalla kriisiabi eesmärk ja sisu</paragrahvPealkiri>
+					<loige id="para22lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Seksuaalvägivalla kriisiabi eesmärk on tagada seksuaalvägivalla ohvrile seksuaalvägivalla tõttu vajalik meditsiiniline abi ja esmane psühhosotsiaalne abi, et aidata kaasa ohvri füüsilisele ja psühhosotsiaalsele taastumisele.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para22lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Seksuaalvägivalla kriisiabi sisaldab järgmist:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para22lg2p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvri seisundi esmane hindamine, et otsustada teenuse vajaduse ja mahu üle;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para22lg2p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>esmane psühhosotsiaalne abi;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para22lg2p3">
+							<alampunktNr>3</alampunktNr>
+							<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>seksuaalvägivalla tõttu vajalike tervishoiuteenuste tagamine koos kohtumeditsiinilise tõendmaterjali kogumisega;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para22lg2p4">
+							<alampunktNr>4</alampunktNr>
+							<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>seksuaalvägivalla tõttu vajalikud ravimid ja abivahendid;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para22lg2p5">
+							<alampunktNr>5</alampunktNr>
+							<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvri psühholoogiline ja muu nõustamine.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para22lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Kui seksuaalvägivalla ohver on kindlustatud isik ravikindlustuse seaduse § 5 tähenduses, hüvitatakse käesoleva seaduse alusel isikule osutatud tervishoiuteenuste kulude see osa, mida ravikindlustus ei kata.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para23">
+					<paragrahvNr>23</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 23.]]></kuvatavNr>
+					<paragrahvPealkiri>Alaealise seksuaalvägivalla ohvri abistamine</paragrahvPealkiri>
+					<loige id="para23lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Alaealisele seksuaalvägivalla ohvrile pakub Sotsiaalkindlustusamet lisaks käesoleva seaduse §-s 22 nimetatud teenusele ka lastekaitseseaduses sätestatud abi.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para23lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Lastekaitseseaduses sätestatud abi võimaldamiseks edastab seksuaalvägivalla kriisiabi osutaja esimesel võimalusel Sotsiaalkindlustusametile selle lapse andmed, kellele teenuse osutamisel ilmnes, et last on seksuaalselt väärkoheldud, või tekkis selline kahtlus.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para23lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Käesoleva paragrahvi lõikes 2 nimetatud andmed on lapse ees- ja perekonnanimi, sünniaeg või isikukood, lapse saatja ees- ja perekonnanimi ja kontaktandmed või saatja puudumise korral lapse kontaktandmed ning tema nimetatud täiskasvanu ees- ja perekonnanimi ja kontaktandmed, teenuse osutamise aeg ja üldine kokkuvõte, arvatava väärkohtlemise aeg ning esmane hinnang lapse abivajadusele.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="jg7">
+				<jaguNr>7</jaguNr>
+				<kuvatavNr><![CDATA[7. jagu]]></kuvatavNr>
+				<jaguPealkiri>Inimkaubandusohvrite teenus</jaguPealkiri>
+				<paragrahv id="para24">
+					<paragrahvNr>24</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 24.]]></kuvatavNr>
+					<paragrahvPealkiri>Inimkaubandusohvrite teenuse eesmärk ja sisu</paragrahvPealkiri>
+					<loige id="para24lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Inimkaubandusohvrite teenuse eesmärk on aidata kaasa ohvri turvatunde tekkimisele, füüsilisele ja psühhosotsiaalsele taastumisele ning ennetada uuesti ohvriks langemist.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para24lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Inimkaubandusohvrite teenus sisaldab järgmist:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para24lg2p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>valmisolek anda ohvrile ööpäev läbi esmast psühhosotsiaalset abi;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para24lg2p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvri abivajaduse hindamine, et otsustada teenuse vajaduse ja mahu üle;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para24lg2p3">
+							<alampunktNr>3</alampunktNr>
+							<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>juhtumikorralduse rakendamine juhul, kui ohver vajab iseseisva toimetuleku saavutamiseks pikaajalist ja mitmekülgset abi;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para24lg2p4">
+							<alampunktNr>4</alampunktNr>
+							<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvri nõustamine ja psühhosotsiaalse abi tagamine;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para24lg2p5">
+							<alampunktNr>5</alampunktNr>
+							<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>turvaline ajutine majutus ööpäev läbi;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para24lg2p6">
+							<alampunktNr>6</alampunktNr>
+							<kuvatavNr><![CDATA[6)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>toitlustus ja muu vajalik materiaalne abi;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para24lg2p7">
+							<alampunktNr>7</alampunktNr>
+							<kuvatavNr><![CDATA[7)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>vajalike tervishoiuteenuste kättesaadavuse korraldamine;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para24lg2p8">
+							<alampunktNr>8</alampunktNr>
+							<kuvatavNr><![CDATA[8)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>psühholoogiline nõustamine või psühhoteraapia;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para24lg2p9">
+							<alampunktNr>9</alampunktNr>
+							<kuvatavNr><![CDATA[9)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>juriidiline abi;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para24lg2p10">
+							<alampunktNr>10</alampunktNr>
+							<kuvatavNr><![CDATA[10)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>tõlketeenuse korraldamine käesolevas lõikes nimetatud abi võimaldamiseks.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para24lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Inimkaubanduse ohvrile osutatakse abi vajaduse äralangemiseni.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para24lg4">
+						<loigeNr>4</loigeNr>
+						<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Kui on kahtlus, et isik võib olla inimkaubanduse ohver, võib Sotsiaalkindlustusamet käesoleva seaduse § 8 lõikes 1 sätestatud hindamise tulemusel osutada Politsei- ja Piirivalveametilt või prokuratuurilt kinnituse saamiseni isikule käesoleva paragrahvi lõikes 2 nimetatud teenuseid kuni 14 kalendripäeva.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2026-07-09</avaldamineKuupaev>
+								<RTartikkel>13</RTartikkel>
+								<aktViide>109072026013</aktViide>
+							</avaldamismarge>
+							<joustumine>2026-07-19</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para24lg5">
+						<loigeNr>5</loigeNr>
+						<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Välismaalasele, kellele on välismaalaste seaduse § 205 alusel antud järelemõtlemisaeg, osutatakse teenust kuni tema Eestis seadusliku viibimise tähtpäeva saabumiseni või ennetähtaegse lahkumiseni. Tähtaja määramisest teavitab Politsei- ja Piirivalveamet kohe Sotsiaalkindlustusametit, kes teeb tähtpäeva saabumisel otsuse teenuste osutamise lõpetamise kohta.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para24lg6">
+						<loigeNr>6</loigeNr>
+						<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Välismaalasele teenuse osutamine ei ole tema Eestis viibimise seaduslik alus ega lükka tema Eestist lahkumise kohustuse täitmist edasi.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para24lg7">
+						<loigeNr>7</loigeNr>
+						<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Sotsiaalkindlustusamet lõpetab inimkaubanduse ohvrile teenuste osutamise, kui isik on Eestist lahkunud või tal puudub seaduslik alus Eestis viibida.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para24lg8">
+						<loigeNr>8</loigeNr>
+						<kuvatavNr><![CDATA[(8)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Kui inimkaubanduse ohver on kindlustatud isik ravikindlustuse seaduse § 5 tähenduses, hüvitatakse käesoleva seaduse alusel isikule osutatud tervishoiuteenuste kulude see osa, mida ravikindlustus ei kata.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para25">
+					<paragrahvNr>25</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 25.]]></kuvatavNr>
+					<paragrahvPealkiri>Alaealisele inimkaubanduse ohvrile abi osutamine</paragrahvPealkiri>
+					<loige id="para25lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Kui inimkaubanduse ohvriks langenud isiku vanus ei ole teada ning on põhjust arvata, et ta on alla 18-aastane, käsitatakse teda alaealisena, kuni ei ole tõendatud vastupidist.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para25lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Alaealisele inimkaubanduse ohvrile võib käesoleva seaduse § 24 lõike 2 punktis 5 nimetatud teenuse asemel osutada asendushooldusteenust sotsiaalhoolekande seaduses sätestatud tingimustel ja korras.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para25lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Alaealisele inimkaubanduse ohvrile, keda on seksuaalselt väärkoheldud, osutab Sotsiaalkindlustusamet käesolevas jaos sätestatud teenust koos lastekaitseseaduse §-s 29<sup>1</sup> sätestatud meetmetega.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para25lg4">
+						<loigeNr>4</loigeNr>
+						<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Kui inimkaubanduse ohver on saatjata alaealine välismaalane, lähtutakse tema abistamisel ka välismaalaste seaduses ja sotsiaalhoolekande seaduses saatjata alaealisele välismaalasele abi andmise kohta sätestatust.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="jg8">
+				<jaguNr>8</jaguNr>
+				<kuvatavNr><![CDATA[8. jagu]]></kuvatavNr>
+				<jaguPealkiri>Taastava õiguse teenused</jaguPealkiri>
+				<paragrahv id="para26">
+					<paragrahvNr>26</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 26.]]></kuvatavNr>
+					<paragrahvPealkiri>Taastava õiguse teenuste eesmärk ja sisu</paragrahvPealkiri>
+					<loige id="para26lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Taastava õiguse teenuste eesmärk on erapooletu vahendaja kaasabil ohver ja juhtunuga seotud muud osapooled kokku tuua, anda neile selgitamise ja ärakuulamise võimalus ning jõuda vahendatud protsessi kaudu kokkuleppele, kuidas tekkinud kahju hüvitada ja õiglustunde taastumist toetada.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para26lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Taastava õiguse teenused sisaldavad järgmist:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para26lg2p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>osapoolte teenuse kasutamise nõusoleku ja juhtumi hindamine, et otsustada teenuse vajaduse ja sobivuse üle;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para26lg2p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>juhtumi osapoolte ettevalmistamine võimalikuks kohtumiseks;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para26lg2p3">
+							<alampunktNr>3</alampunktNr>
+							<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>sobiva meetodi valimine taastava õiguse kohtumise korraldamiseks;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para26lg2p4">
+							<alampunktNr>4</alampunktNr>
+							<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>taastava õiguse kohtumise korraldamine;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para26lg2p5">
+							<alampunktNr>5</alampunktNr>
+							<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>vajaduse korral taastava õiguse teenust saama suunajale tagasiside andmine taastava õiguse kohtumise sisu ja sõlmitud kokkuleppe kohta.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para26lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Taastava õiguse teenuste osutamise tingimused ja korra kehtestab </tavatekst>
+							<viide>
+								<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+								<viideURID>
+									<viideURI><![CDATA[./dyn=109072026046&id=129032023004]]></viideURI>
+								</viideURID>
+							</viide>
+							<tavatekst> määrusega.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para27">
+					<paragrahvNr>27</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 27.]]></kuvatavNr>
+					<paragrahvPealkiri>Vahendusteenus</paragrahvPealkiri>
+					<loige id="para27lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Vahendusteenus käesoleva seaduse tähenduses on taastava õiguse teenus, mis seisneb kriminaalmenetluse seadustiku §-s 203<sup>2</sup> sätestatud vahendusmenetluse korraldamises ja selle tulemusena sõlmitud kirjaliku kokkuleppe tingimuste täitmise kontrollimises.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para27lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Vahendusteenusena käsitatakse ka vahendusmenetluse korraldamist ning vajaduse korral vahendusmenetluse tulemusena sõlmitud kirjaliku kokkuleppe tingimuste täitmise kontrollimist, kui esineb üks järgmistest tingimustest:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para27lg2p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>alaealine on võtnud kohustuse kasutada vahendusteenust väärteomenetluse seadustiku § 30 lõike 1 punkti 4 alusel;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para27lg2p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>alaealise suhtes on kriminaalmenetluse lõpetamisel kohaldatud tema nõusolekul vahendusteenuse kasutamise kohustust kriminaalmenetluse seadustiku § 201 lõike 2 punkti 5 alusel;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para27lg2p3">
+							<alampunktNr>3</alampunktNr>
+							<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>kohus on kohaldanud vahendusteenust mõjutusvahendina karistusseadustiku § 87 alusel;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para27lg2p4">
+							<alampunktNr>4</alampunktNr>
+							<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>alaealise suhtes on jäetud kriminaalmenetluse seadustiku § 201 lõike 1 alusel kriminaalmenetlus alustamata või see on lõpetatud põhjusel, et õigusvastase teo on toime pannud oma ea tõttu süüvõimetu alaealine;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para27lg2p5">
+							<alampunktNr>5</alampunktNr>
+							<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>alaealise suhtes on jäetud väärteomenetluse seadustiku § 29 lõike 1 punkti 1 alusel väärteomenetlus alustamata või see on lõpetatud põhjusel, et õigusvastase teo on toime pannud oma ea tõttu süüvõimetu alaealine.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="jg9">
+				<jaguNr>9</jaguNr>
+				<kuvatavNr><![CDATA[9. jagu]]></kuvatavNr>
+				<jaguPealkiri>Vägivallast loobumise toetamine</jaguPealkiri>
+				<paragrahv id="para28">
+					<paragrahvNr>28</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 28.]]></kuvatavNr>
+					<paragrahvPealkiri>Vägivallast loobumise toetamise eesmärk ja sisu</paragrahvPealkiri>
+					<loige id="para28lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Vägivallast loobumise toetamise eesmärk on aidata kaasa vägivalla ennetamisele ja tõkestamisele vägivalla toimepanijale rakendatavate tegevuste kaudu.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para28lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Vägivallast loobumise toetamine sisaldab järgmist:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para28lg2p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>vägivalla toimepanija motivatsiooni ja psühhosotsiaalsete vajaduste hindamine eesmärgiga otsustada teenuse vajaduse ja mahu üle;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para28lg2p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>vägivaldse käitumise võimaliku jätkumise riski hindamine;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para28lg2p3">
+							<alampunktNr>3</alampunktNr>
+							<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>nõustamine vägivallast loobumiseks.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para28lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Vägivallast loobumise toetamisel tuleb pidada esmatähtsaks ohvri turvalisust, toetamist ja inimõigusi.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="jg10">
+				<jaguNr>10</jaguNr>
+				<kuvatavNr><![CDATA[10. jagu]]></kuvatavNr>
+				<jaguPealkiri>Traumast taastumist toetav vaimse tervise abi</jaguPealkiri>
+				<paragrahv id="para29">
+					<paragrahvNr>29</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 29.]]></kuvatavNr>
+					<paragrahvPealkiri>Traumast taastumist toetava vaimse tervise abi eesmärk ja sisu</paragrahvPealkiri>
+					<loige id="para29lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Traumast taastumist toetava vaimse tervise abi eesmärk on soodustada ohvri psühhosotsiaalse tasakaalu taastumist ning vähendada ohvri psüühika- ja käitumishäirete tekkimise tõenäosust või nende intensiivsust.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para29lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Traumast taastumist toetav vaimse tervise abi sisaldab psühholoogilist ja psühhoterapeutilist abi.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para30">
+					<paragrahvNr>30</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 30.]]></kuvatavNr>
+					<paragrahvPealkiri>Traumast taastumist toetavat vaimse tervise abi saama õigustatud isikud</paragrahvPealkiri>
+					<loige id="para30lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Traumast taastumist toetavat vaimse tervise abi on õigus saada:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para30lg1p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>kuriteoohvril, kelle suhtes toime pandud teo kohta on alustatud kriminaalmenetlus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para30lg1p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>perevägivalla või seksuaalvägivalla ohvril;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para30lg1p3">
+							<alampunktNr>3</alampunktNr>
+							<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>käesoleva lõike punktides 1 ja 2 nimetatud ohvri lapsel, lapselapsel, vanemal ja muul last kasvataval isikul, vanavanemal, õel, vennal, ohvriga abielus või püsivas kooselus oleval või olnud isikul;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para30lg1p4">
+							<alampunktNr>4</alampunktNr>
+							<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>isikul, kes osaleb kriminaalmenetluses tunnistajana.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para30lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Käesoleva paragrahvi lõikes 1 nimetatud isikutel on õigus saada traumast taastumist toetavat vaimse tervise abi, kui Sotsiaalkindlustusamet on tuvastanud nende abivajaduse.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para31">
+					<paragrahvNr>31</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 31.]]></kuvatavNr>
+					<paragrahvPealkiri>Traumast taastumist toetava vaimse tervise abi saamise tingimused</paragrahvPealkiri>
+					<loige id="para31lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Käesoleva seaduse § 30 lõikes 1 nimetatud isikutel on õigus saada traumast taastumist toetavat vaimse tervise abi kuni ühe Vabariigi Valitsuse kehtestatud kuutasu alammäära ulatuses.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para31lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Traumast taastumist toetavat vaimse tervise abi on kuni vajaduse äralangemiseni õigus saada:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para31lg2p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>inimkaubanduse ohvril;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para31lg2p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>seksuaalselt väärkoheldud lapsel;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para31lg2p3">
+							<alampunktNr>3</alampunktNr>
+							<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>terrorikuriteo ohvril.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para31lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Käesoleva paragrahvi lõikes 2 nimetatud isikute puhul otsustab Sotsiaalkindlustusamet abi jätkamise vajaduse iga kord, kui teenuse kasutamisel täitub Vabariigi Valitsuse kehtestatud kuutasu alammäär. Sotsiaalkindlustusamet võib küsida teenuseosutajalt hinnangut abi jätkamise vajaduse kohta.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para31lg4">
+						<loigeNr>4</loigeNr>
+						<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Kui alaealine seksuaalvägivalla ohver saab 18-aastaseks käesolevas jaos sätestatud teenuse saamise ajal, on tal õigus saada teenust edasi Vabariigi Valitsuse kehtestatud kuutasu alammäära ulatuses. Sotsiaalkindlustusamet võib otsustada abi jätkamise ka nimetatud kuutasu alammäära täitumise järel käesoleva paragrahvi lõikes 3 sätestatud korras, kui see on põhjendatud alaealise suhtes toime pandud teo raskuse või muude asjaoludega.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para31lg5">
+						<loigeNr>5</loigeNr>
+						<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Ohvril, kellele osutatakse käesoleva seaduse § 29 lõikes 2 nimetatud vaimse tervise abi muu ohvriabiteenuse raames, ei ole õigust samal ajal saada vaimse tervise abi käesolevas jaos sätestatud tingimustel.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para31lg6">
+						<loigeNr>6</loigeNr>
+						<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Käesoleva seaduse § 30 lõike 1 punktides 1 ja 4 nimetatud isikul on õigus saada traumast taastumist toetavat vaimse tervise abi viie aasta jooksul teo toimepanemisest arvates. Karistusseadustiku § 81 lõike 7 punktis 3 nimetatud juhul on isikul õigus saada traumast taastumist toetavat vaimse tervise abi viie aasta jooksul tema täisealiseks saamisest või kriminaalmenetluse alustamisest arvates, kui viimane tähtaeg lõpeb hiljem.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para32">
+					<paragrahvNr>32</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 32.]]></kuvatavNr>
+					<paragrahvPealkiri>Traumast taastumist toetava vaimse tervise abi saamine</paragrahvPealkiri>
+					<loige id="para32lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Traumast taastumist toetava vaimse tervise abi saamiseks esitab isik taotluse Sotsiaalkindlustusametile, kes hindab tema vajadust käesoleva seaduse § 29 lõikes 2 nimetatud abi järele.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para32lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Traumast taastumist toetava vaimse tervise abi taotluse andmete ja nõutavate dokumentide loetelu kehtestab </tavatekst>
+							<viide>
+								<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+								<viideURID>
+									<viideURI><![CDATA[./dyn=109072026046&id=129032023005]]></viideURI>
+								</viideURID>
+							</viide>
+							<tavatekst> määrusega.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para33">
+					<paragrahvNr>33</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 33.]]></kuvatavNr>
+					<paragrahvPealkiri>Traumast taastumist toetava vaimse tervise abi eest tasu maksmise kohustuse ülevõtmine Sotsiaalkindlustusameti poolt</paragrahvPealkiri>
+					<loige id="para33lg1">
+						<loigeNr/>
+						<kuvatavNr/>
+						<sisuTekst>
+							<tavatekst>Sotsiaalkindlustusamet võtab traumast taastumist toetava vaimse tervise abi eest tasu maksmise kohustuse käesoleva seaduse §-s 30 nimetatud õigustatud isikult üle (edaspidi <i>tasu maksmise kohustuse ülevõtmine</i>), kui on täidetud järgmised tingimused:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para33lg1p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>õigustatud isik ja traumast taastumist toetava vaimse tervise abi osutaja on kokku leppinud käesoleva seaduse § 29 lõikes 2 nimetatud teenuse osutamises;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para33lg1p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>traumast taastumist toetava vaimse tervise abi osutaja ja Sotsiaalkindlustusamet on sõlminud käesoleva seaduse §-s 34 nimetatud lepingu.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para34">
+					<paragrahvNr>34</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 34.]]></kuvatavNr>
+					<paragrahvPealkiri>Tasu maksmise kohustuse ülevõtmise leping</paragrahvPealkiri>
+					<loige id="para34lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Tasu maksmise kohustuse ülevõtmise leping on kokkulepe, millega Sotsiaalkindlustusamet ja traumast taastumist toetava vaimse tervise abi osutaja lepivad kokku korras ja tingimustes, millega Sotsiaalkindlustusamet võtab õigustatud isikult tasu maksmise kohustuse üle.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para34lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Sotsiaalkindlustusamet kontrollib enne lepingu sõlmimist maksuvõla puudumist. Kui ilmneb, et traumast taastumist toetava vaimse tervise abi osutajal on maksuvõlg, võib Sotsiaalkindlustusamet jätta lepingu sõlmimata.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para34lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Sotsiaalkindlustusamet sõlmib lepingu kuni kolmeaastase tähtajaga, kuid vähemalt üheks aastaks.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+		</peatykk>
+		<peatykk id="ptk4">
+			<peatykkNr>4</peatykkNr>
+			<kuvatavNr><![CDATA[4. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Kuriteoohvri hüvitis</peatykkPealkiri>
+			<jagu id="jg11">
+				<jaguNr>1</jaguNr>
+				<kuvatavNr><![CDATA[1. jagu]]></kuvatavNr>
+				<jaguPealkiri>Õigus hüvitisele</jaguPealkiri>
+				<paragrahv id="para35">
+					<paragrahvNr>35</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 35.]]></kuvatavNr>
+					<paragrahvPealkiri>Vägivallakuriteo mõiste</paragrahvPealkiri>
+					<loige id="para35lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Käesolevas seaduses käsitatakse vägivallakuriteona otseselt isiku elu või tervise vastu toime pandud kriminaalkorras karistatavat tegu, mille tagajärg on ohvri surm või raske tervisekahjustus karistusseadustiku tähenduses.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para35lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Vägivallakuriteoks loetakse ka ohvrile või kolmandale isikule käesoleva paragrahvi lõikes 1 nimetatud tagajärje põhjustamist olukorras, kus ohver või kolmas isik tõkestas kuritegu, pidas kinni kurjategijat või abistas kuriteoohvrit.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para35lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Käesoleva paragrahvi lõigetes 1 ja 2 nimetatud tegusid käsitatakse vägivallakuriteona ka siis, kui:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para35lg3p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>teo toimepanija ei ole süüvõimeline;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para35lg3p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>teo toimepanijat ei ole kindlaks tehtud, teda ei ole õnnestunud tabada või teda ei ole muudel põhjustel võimalik süüdi mõista ning kriminaalasjas kogutud tõendid viitavad sellele, et toime on pandud vägivallakuritegu.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para36">
+					<paragrahvNr>36</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 36.]]></kuvatavNr>
+					<paragrahvPealkiri>Hüvitist saama õigustatud isikud</paragrahvPealkiri>
+					<loige id="para36lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Õigus saada kuriteoohvri hüvitist (edaspidi <i>hüvitis</i>) on Eesti Vabariigi territooriumil toime pandud vägivallakuriteo Eesti kodanikust või käesoleva paragrahvi lõikes 2 sätestatud juhtudel välismaalasest ohvril, ohvri hooldajal, ohvri ülalpeetaval ja füüsilisel isikul, kes kannab vägivallakuriteo ohvri tervise taastamisega seotud kulud või matusekulud, käesolevas seaduses sätestatud tingimustel.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para36lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Välismaalasel on käesoleva paragrahvi lõikes 1 sätestatud tingimustel õigus saada hüvitist, kui ta:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para36lg2p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>elab Eestis pikaajalise elaniku elamisloa või alalise elamisõiguse või tähtajalise elamisloa või elamisõiguse alusel;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para36lg2p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>on Euroopa Liidu kodanik;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para36lg2p3">
+							<alampunktNr>3</alampunktNr>
+							<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>on vägivallakuritegude ohvritele hüvitiste maksmise Euroopa konventsiooniga ühinenud riigi kodanik;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para36lg2p4">
+							<alampunktNr>4</alampunktNr>
+							<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>on inimkaubanduse ohver või seksuaalselt väärkoheldud laps, sõltumata sellest, kas tal on Eestis viibimiseks seaduslik alus.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para36lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Kui vägivallakuriteo ohver saab kuriteo tagajärjel surma, on õigus saada hüvitist järgmistel isikutel:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para36lg3p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvri laps, kes on alla 18-aastane või alla 24-aastane gümnaasiumi või kutseõppeasutuse statsionaarses õppes või meditsiinilistel näidustustel muus õppevormis õppiv õpilane või ülikoolis või rakenduskõrgkoolis täiskoormusega õppiv üliõpilane või sellest east vanem, kui tal on vastavalt töövõimetoetuse seadusele tuvastatud osaline või puuduv töövõime enne 18-aastaseks saamist või eelnimetatud statsionaarses õppes, meditsiinilistel näidustustel muus õppevormis või täiskoormusega õppimise korral enne 24-aastaseks saamist;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para36lg3p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>laps, kes on kuriteo toimepanemise ajaks ohvri poolt eostatud, kuid sünnib pärast ohvri surma;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para36lg3p3">
+							<alampunktNr>3</alampunktNr>
+							<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvri vanem, kes on vanaduspensionieas või kellel on töövõimetoetuse seaduse alusel tuvastatud osaline või puuduv töövõime;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para36lg3p4">
+							<alampunktNr>4</alampunktNr>
+							<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvri mittetöötav rase lesk, kelle rasedus on kestnud vähemalt 12 nädalat;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para36lg3p5">
+							<alampunktNr>5</alampunktNr>
+							<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvri mittetöötav rase registreeritud elukaaslane, kellega sõlmitud kooseluleping on lõppenud ohvri surma tõttu ja kelle rasedus on kestnud vähemalt 12 nädalat;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para36lg3p6">
+							<alampunktNr>6</alampunktNr>
+							<kuvatavNr><![CDATA[6)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvri lesk või registreeritud elukaaslane, kellega sõlmitud kooseluleping on lõppenud ohvri surma tõttu, kui nimetatud lesel või elukaaslasel on töövõimetoetuse seaduse alusel tuvastatud osaline või puuduv töövõime või ta on vanaduspensionieas ja tema abielu või registreeritud kooselu ohvriga kestis vähemalt ühe aasta.</tavatekst>
+							</sisuTekst>
+							<muutmismarge>
+								<avaldamismarge>
+									<RTosa>RT I</RTosa>
+									<avaldamineKuupaev>2025-04-08</avaldamineKuupaev>
+									<RTartikkel>1</RTartikkel>
+									<aktViide>108042025001</aktViide>
+								</avaldamismarge>
+								<joustumine>2026-10-01</joustumine>
+							</muutmismarge>
+						</alampunkt>
+					</loige>
+					<loige id="para36lg3b1">
+						<loigeNr ylaIndeks="1">3</loigeNr>
+						<kuvatavNr><![CDATA[(3<sup>1</sup>)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Lisaks käesoleva paragrahvi lõikes 3 nimetatud isikutele on õigus saada hüvitist järgmistel ohvri ülalpidamisel olnud isikutel:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para36lg3b1p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>laps, kelle vanema abikaasa või registreeritud elukaaslane või kasuvanem on surnud ja kes ei saa elatist oma vanemalt;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para36lg3b1p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvri vend, õde või lapselaps, kes vastab käesoleva paragrahvi lõike 3 punktis 1 sätestatud tingimustele ja kellel ei ole töövõimelisi vanemaid;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para36lg3b1p3">
+							<alampunktNr>3</alampunktNr>
+							<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvri lahutatud abikaasa, kes jõudis vanaduspensioniikka või kellel tuvastati töövõimetoetuse seaduse alusel osaline või puuduv töövõime enne abielu lahutamist või enne kolme aasta möödumist abielu lahutamisest ja kelle abielu ohvriga kestis vähemalt 25 aastat;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para36lg3b1p4">
+							<alampunktNr>4</alampunktNr>
+							<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvri registreeritud elukaaslane, kellega sõlmitud kooseluleping on lõppenud, kuid kes jõudis vanaduspensioniikka või kellel tuvastati töövõimetoetuse seaduse alusel osaline või puuduv töövõime enne kooselulepingu lõpetamist või enne kolme aasta möödumist kooselulepingu lõpetamisest ja kelle registreeritud kooselu ohvriga kestis vähemalt 25 aastat;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para36lg3b1p5">
+							<alampunktNr>5</alampunktNr>
+							<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvri lapse mittetöötav vanem või eestkostja, kes kasvatab ohvri kuni kolmeaastast last oma perekonnas.</tavatekst>
+							</sisuTekst>
+							<muutmismarge>
+								<avaldamismarge>
+									<RTosa>RT I</RTosa>
+									<avaldamineKuupaev>2025-04-08</avaldamineKuupaev>
+									<RTartikkel>1</RTartikkel>
+									<aktViide>108042025001</aktViide>
+								</avaldamismarge>
+								<joustumine>2026-10-01</joustumine>
+							</muutmismarge>
+						</alampunkt>
+					</loige>
+					<loige id="para36lg4">
+						<loigeNr>4</loigeNr>
+						<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Käesoleva paragrahvi lõikes 1 nimetatud vägivallakuriteo ohvri hooldaja on isik, kes ohvrit hoolduslehe alusel põetab.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para36lg5">
+						<loigeNr>5</loigeNr>
+						<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Välismaal toime pandud vägivallakuriteo Eesti kodanikust või Eesti alalisest elanikust ohvrile makstakse hüvitist juhul, kui tema välismaal viibimine oli tingitud õppimisest, töö- või teenistusülesannete täitmisest või muust mõjuvast põhjusest ning tal ei ole võimalik saada hüvitist kuriteo toimumise asukohariigist.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para37">
+					<paragrahvNr>37</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 37.]]></kuvatavNr>
+					<paragrahvPealkiri>Hüvitise maksmist välistavad asjaolud</paragrahvPealkiri>
+					<loige id="para37lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Hüvitist ei maksta, kui vägivallakuriteo ohver:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para37lg1p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>on kuriteo toimepanemise või kahju tekkimise esile kutsunud või seda soodustanud oma tahtliku käitumisega;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para37lg1p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ei ole 15 päeva jooksul kuriteost teatanud, kuigi ta oleks olnud võimeline seda tegema, ja uurimisasutus või prokuratuur ei ole ka muul viisil sellest teada saanud;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para37lg1p3">
+							<alampunktNr>3</alampunktNr>
+							<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>on süüdi mõistetud vägivallakuriteo toimepanemise eest või karistusseadustiku § 255 lõike 1 või § 256 lõike 1 alusel ja tema karistusandmed ei ole karistusregistrist karistusregistri seaduse kohaselt kustutatud.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para37lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Täisealisele ülalpeetavale hüvitise maksmisest võib keelduda, kui tema käitumises ilmnesid käesoleva paragrahvi lõikes 1 nimetatud asjaolud.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para37lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Hüvitise maksmisest võib keelduda, kui hüvitise taotleja ei ole teinud õiguskaitseasutustega koostööd vägivallakuriteoga seotud asjaolude selgitamiseks, kurjategija kindlakstegemiseks ja tabamiseks ning kahjude tõendamiseks.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="jg12">
+				<jaguNr>2</jaguNr>
+				<kuvatavNr><![CDATA[2. jagu]]></kuvatavNr>
+				<jaguPealkiri>Hüvitatav kahju ja hüvitise suurus</jaguPealkiri>
+				<paragrahv id="para38">
+					<paragrahvNr>38</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 38.]]></kuvatavNr>
+					<paragrahvPealkiri>Hüvitatava kahju liigid</paragrahvPealkiri>
+					<loige id="para38lg1">
+						<loigeNr/>
+						<kuvatavNr/>
+						<sisuTekst>
+							<tavatekst>Käesolevas peatükis sätestatud tingimustel kuulub hüvitamisele vägivallakuriteoga tekitatud varaline kahju järgmiselt:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para38lg1p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvri tervise taastamisega seotud kulud;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para38lg1p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvri prillidele, hambaproteesidele, kontaktläätsedele ja muudele keha funktsioone toetavatele abivahenditele ning isiklikele esemetele tekitatud kahju;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para38lg1p3">
+							<alampunktNr>3</alampunktNr>
+							<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvri matusekulud;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para38lg1p4">
+							<alampunktNr>4</alampunktNr>
+							<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvri ja ohvri hooldaja sissetuleku vähenemisest tulenev kahju;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para38lg1p5">
+							<alampunktNr>5</alampunktNr>
+							<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ülalpidaja kaotusest tulenev kahju.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para39">
+					<paragrahvNr>39</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 39.]]></kuvatavNr>
+					<paragrahvPealkiri>Ohvri tervise taastamisega seotud kulud</paragrahvPealkiri>
+					<loige id="para39lg1">
+						<loigeNr/>
+						<kuvatavNr/>
+						<sisuTekst>
+							<tavatekst>Ohvri tervise taastamisega seotud kulud on tema vägivallakuriteojärgse füüsilise ja vaimse tervise taastamise, ravimite ja keha funktsioone toetavate abivahendite soetamise ning terviseseisundile kohase uue eriala õppimisega seotud kulud ning nimetatud tegevustega seotud sõidukulud.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para40">
+					<paragrahvNr>40</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 40.]]></kuvatavNr>
+					<paragrahvPealkiri>Ohvri prillidele, hambaproteesidele, kontaktläätsedele ja muudele abivahenditele ning isiklikele esemetele tekitatud kahju</paragrahvPealkiri>
+					<loige id="para40lg1">
+						<loigeNr/>
+						<kuvatavNr/>
+						<sisuTekst>
+							<tavatekst>Ohvri prillidele, hambaproteesidele, kontaktläätsedele ja muudele keha funktsioone toetavatele abivahenditele ning hädavajalikele isiklikele esemetele vägivallakuriteoga tekitatud kahju kindlakstegemisel võetakse aluseks Sotsiaalkindlustusametile uurimisasutuse tõendil esitatud teave.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para41">
+					<paragrahvNr>41</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 41.]]></kuvatavNr>
+					<paragrahvPealkiri>Ohvri matusekulud</paragrahvPealkiri>
+					<loige id="para41lg1">
+						<loigeNr/>
+						<kuvatavNr/>
+						<sisuTekst>
+							<tavatekst>Vägivallakuriteo tagajärjel hukkunud ohvri matusteks tehtud kulud hüvitatakse need kandnud isikule.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para42">
+					<paragrahvNr>42</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 42.]]></kuvatavNr>
+					<paragrahvPealkiri>Ohvri ja ohvri hooldaja sissetuleku vähenemisest tulenev kahju</paragrahvPealkiri>
+					<loige id="para42lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Ohvri sissetuleku vähenemisest tulenev kahju vähemalt 16-aastase ohvri puhul on vägivallakuriteo tõttu saamata jäänud osa sotsiaalmaksuga maksustatud tulust.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para42lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Ohvri hooldaja sissetuleku vähenemisest tulenev kahju on vägivallakuriteost põhjustatud ajutise töövõimetuse tõttu saamata jäänud osa sotsiaalmaksuga maksustatud tulust.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para42lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Ohvri ja ohvri hooldaja sissetuleku vähenemisest tulenev kahju hüvitatakse ühe kalendripäeva keskmisest tulust lähtuvalt. Ühe kalendripäeva keskmine tulu arvutatakse vägivallakuriteo toimepanemisele eelnenud kuuel kalendrikuul isikule arvestatud sotsiaalmaksuga maksustatud tulu jagamisel selle perioodi kalendripäevade arvuga. Kuue kuu kalendripäevade arvust arvatakse maha nende päevade arv, millal isik oli töökohustuste või teenistusülesannete täitmisest vabastatud töövõimetuslehe alusel või töötamise registrisse märgitud töötamise peatumise tõttu.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para42lg4">
+						<loigeNr>4</loigeNr>
+						<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Kui ohver või ohvri hooldaja ei saanud käesoleva paragrahvi lõikes 3 nimetatud kuue kalendrikuu jooksul sotsiaalmaksuga maksustatud tulu töötamise peatumise või ajutise töövõimetuse tõttu, arvutatakse hüvitis isiku sotsiaalmaksuga maksustatud tulust, mida ta sai viimase kuu eest enne töötamise peatumist või ajutise töövõimetuse tekkimist.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para42lg5">
+						<loigeNr>5</loigeNr>
+						<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Füüsilisest isikust ettevõtjale arvutatakse hüvitis vägivallakuriteole eelnenud kalendriaastal 1. jaanuarist kuni 31. detsembrini saadud puhastulust.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para42lg6">
+						<loigeNr>6</loigeNr>
+						<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Kui ohvri või ohvri hooldaja ühe kalendripäeva tulu oli väiksem kui Vabariigi Valitsuse kehtestatud kuutasu alammäära ja arvu 30 jagatis, võrdub ühe kalendripäeva keskmine tulu Vabariigi Valitsuse kehtestatud kuutasu alammäära ja arvu 30 jagatisega.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para43">
+					<paragrahvNr>43</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 43.]]></kuvatavNr>
+					<paragrahvPealkiri>Ülalpidaja kaotusest tulenev kahju</paragrahvPealkiri>
+					<loige id="para43lg1">
+						<loigeNr/>
+						<kuvatavNr/>
+						<sisuTekst>
+							<tavatekst>Vägivallakuriteo tagajärjel hukkunud ohvri ülalpeetavale makstakse hüvitist käesoleva seaduse § 41 alusel arvutatud ohvri eelnevast tulust järgmiselt:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para43lg1p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ühele ülalpeetavale 75 protsenti;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para43lg1p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>kahele ülalpeetavale 85 protsenti;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para43lg1p3">
+							<alampunktNr>3</alampunktNr>
+							<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>kolmele või enamale ülalpeetavale kokku 100 protsenti.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para44">
+					<paragrahvNr>44</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 44.]]></kuvatavNr>
+					<paragrahvPealkiri>Hüvitise suuruse arvutamise põhimõtted</paragrahvPealkiri>
+					<loige id="para44lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Käesoleva seaduse § 38 punktis 3 nimetatud matusekulud hüvitatakse need kandnud isikule Vabariigi Valitsuse kehtestatud ühe kuutasu alammääras (edaspidi <i>hüvitise alammäär</i>).</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para44lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Käesoleva seaduse § 38 punktis 2 nimetatud kulud hüvitatakse vähemalt hüvitise alammääras. Nimetatud kulude alammäära ületav osa, samuti käesoleva seaduse § 38 punktides 1, 4 ja 5 nimetatud kulu hüvitatakse 80 protsendi ulatuses.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para44lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Hüvitisest arvatakse maha osa, mille vägivallakuriteo toimepanija on hüvitist saama õigustatud isikule enne hüvitise määramist maksnud, samuti ajutise töövõimetuse tõttu makstud või muust allikast saadud hüvitis. Hüvitisest ei arvata maha töövõimetoetust, toitjakaotustoetust, riikliku pensionikindlustuse seaduse enne 2026. aasta 1. oktoobrit kehtinud redaktsiooni alusel määratud toitjakaotuspensioni ega matuse korraldamiseks saadud kohaliku omavalitsuse üksuse poolt makstud toetust.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2025-04-08</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>108042025001</aktViide>
+							</avaldamismarge>
+							<joustumine>2026-10-01</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para44lg4">
+						<loigeNr>4</loigeNr>
+						<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Hüvitise kogusumma ühe ohvri kohta ei või olla suurem kui 9590 eurot.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para44lg5">
+						<loigeNr>5</loigeNr>
+						<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Hüvitise suuruse arvutamise tingimused ja korra kehtestab </tavatekst>
+							<viide>
+								<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+								<viideURID>
+									<viideURI><![CDATA[./dyn=109072026046&id=129032023044]]></viideURI>
+								</viideURID>
+							</viide>
+							<tavatekst> määrusega.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="jg13">
+				<jaguNr>3</jaguNr>
+				<kuvatavNr><![CDATA[3. jagu]]></kuvatavNr>
+				<jaguPealkiri>Hüvitise määramine</jaguPealkiri>
+				<paragrahv id="para45">
+					<paragrahvNr>45</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 45.]]></kuvatavNr>
+					<paragrahvPealkiri>Hüvitise taotlemine</paragrahvPealkiri>
+					<loige id="para45lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Hüvitise taotlus (edaspidi <i>taotlus</i>) esitatakse Sotsiaalkindlustusametile kolme aasta jooksul vägivallakuriteo toimepanemisest või ohvri surma päevast arvates, välja arvatud käesoleva paragrahvi lõikes 2 sätestatud juhtudel.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para45lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Taotluse võib esitada käesoleva paragrahvi lõikes 1 sätestatust hiljem, kui:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para45lg2p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ülalpeetav sai ohvri surmast teada hiljem kui üks aasta pärast surmapäeva ning taotlus on esitatud kolme aasta jooksul ohvri surmast teadasaamise päevast arvates;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para45lg2p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvri tervisehäire kestis üle ühe aasta ja taotluse õigeaegne esitamine ei olnud terviseseisundi tõttu võimalik ning taotlus on esitatud kolme aasta jooksul pärast terviseseisundi paranemist;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para45lg2p3">
+							<alampunktNr>3</alampunktNr>
+							<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>hüvitise taotlemise aluseks on alaealise vastu toime pandud seksuaalkuritegu ning taotlus on esitatud kolme aasta jooksul pärast ohvri täisealiseks saamist, kui kriminaalmenetluse ajend ei ilmnenud enne tema täisealiseks saamist.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para45lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Taotluses peavad olema hüvitise taotleja andmed ning andmed vägivallakuriteo ja tekitatud kahju kohta, samuti andmed kahju muudest allikatest hüvitamise kohta.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para45lg4">
+						<loigeNr>4</loigeNr>
+						<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Hüvitise taotlemise andmete ja vajalike dokumentide loetelu kehtestab </tavatekst>
+							<viide>
+								<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+								<viideURID>
+									<viideURI><![CDATA[./dyn=109072026046&id=129032023044]]></viideURI>
+								</viideURID>
+							</viide>
+							<tavatekst> määrusega.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para45lg5">
+						<loigeNr>5</loigeNr>
+						<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Hüvitise taotlemiseks vajaliku käesoleva seaduse §-s 40 nimetatud uurimisasutuse tõendi vormi kehtestab </tavatekst>
+							<viide>
+								<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+								<viideURID>
+									<viideURI><![CDATA[./dyn=109072026046&id=131032023002]]></viideURI>
+								</viideURID>
+							</viide>
+							<tavatekst> määrusega.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para45lg6">
+						<loigeNr>6</loigeNr>
+						<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Hüvitise suuruse arvutamisel lähtub Sotsiaalkindlustusamet käesoleva paragrahvi lõike 4 alusel kehtestatud määruses loetletud andmetest ja sotsiaalkaitse infosüsteemi andmeandjate andmetest.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para46">
+					<paragrahvNr>46</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 46.]]></kuvatavNr>
+					<paragrahvPealkiri>Vägivallakuriteost põhjustatud tervisekahjustuse tuvastamine</paragrahvPealkiri>
+					<loige id="para46lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Käesoleva seaduse § 38 punktides 1, 2 ja 4 nimetatud varalise kahju hüvitamiseks kaasab Sotsiaalkindlustusamet arstiõppe läbinud isiku, kes tuvastab isikul vägivallakuriteost tingitud tervisekahjustuse.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para46lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Sotsiaalkindlustusameti kaasatud arstiõppe läbinud isik tuvastab seose vägivallakuriteo ja ohvri raske tervisekahjustuse vahel ning raske tervisekahjustuse kestuse või eeldusliku kestuse.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para46lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Sotsiaalkindlustusameti kaasatud arstiõppe läbinud isikul on ohvri nõusolekul käesoleva paragrahvi lõikes 2 nimetatud seose ja raske tervisekahjustuse kestuse või eeldusliku kestuse tuvastamiseks õigus saada tervise infosüsteemist andmeid:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para46lg3p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>andmete esitaja kohta;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para46lg3p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvri ambulatoorsete visiitide, haiglas viibimise ja diagnooside ning talle osutatud raviteenuste kohta;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para46lg3p3">
+							<alampunktNr>3</alampunktNr>
+							<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ravimite kohta.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para46lg4">
+						<loigeNr>4</loigeNr>
+						<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Käesoleva paragrahvi lõikes 2 nimetatud seose ja raske tervisekahjustuse kestuse või eeldusliku kestuse tuvastamiseks vajalike tervise infosüsteemi andmete loetelu ja päringute perioodid kehtestab </tavatekst>
+							<viide>
+								<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+								<viideURID>
+									<viideURI><![CDATA[./dyn=109072026046&id=129032023025]]></viideURI>
+								</viideURID>
+							</viide>
+							<tavatekst> määrusega.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para46lg5">
+						<loigeNr>5</loigeNr>
+						<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Kui käesoleva paragrahvi lõikes 3 sätestatud andmed tervise infosüsteemis puuduvad või on ebapiisavad, edastab ohvri pere- või eriarst puuduvad andmed tervise infosüsteemi 15 päeva jooksul Sotsiaalkindlustusametilt asjakohase taotluse saamisest arvates ning teavitab sellest Sotsiaalkindlustusametit või edastab terviseseisundit kirjeldavad andmed Sotsiaalkindlustusametile.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para46lg6">
+						<loigeNr>6</loigeNr>
+						<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Sotsiaalkindlustusameti kaasatud arstiõppe läbinud isikul on õigus kontrollida taotlemise käigus isiku esitatud andmete ja dokumentide õigsust ning saada asjakohaseid lisaandmeid, mis võimaldavad hinnata vägivallakuriteo ja raske tervisekahjustuse vahelist seost ning tervisekahjustuse kestust või eelduslikku kestust. Kui kontrollitavad andmed on kantud sotsiaalkaitse infosüsteemi, kasutatakse selles olevaid andmeid. Lisateave võib puudutada eelkõige andmeid:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para46lg6p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>osutatud ohvriabi kohta;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para46lg6p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>lastekaitse- või sotsiaaltöötajalt ohvri suhtes kohaldatud tugimeetmete kohta;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para46lg6p3">
+							<alampunktNr>3</alampunktNr>
+							<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>Eesti Töötukassalt töövõime vähenemise ja selle põhjuste või tööalase rehabilitatsiooni kohta;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para46lg6p4">
+							<alampunktNr>4</alampunktNr>
+							<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>haridusasutuselt või hariduse kompetentsikeskuselt haridusliku erivajaduse kohta, kui see on tekkinud seoses vägivallakuriteoga.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para47">
+					<paragrahvNr>47</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 47.]]></kuvatavNr>
+					<paragrahvPealkiri>Hüvitise maksmise otsustamine</paragrahvPealkiri>
+					<loige id="para47lg1">
+						<loigeNr/>
+						<kuvatavNr/>
+						<sisuTekst>
+							<tavatekst>Sotsiaalkindlustusamet teeb otsuse hüvitise maksmise kohta 30 päeva jooksul taotluse esitamisest arvates.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para48">
+					<paragrahvNr>48</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 48.]]></kuvatavNr>
+					<paragrahvPealkiri>Otsustamise edasilükkamine</paragrahvPealkiri>
+					<loige id="para48lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Sotsiaalkindlustusamet võib hüvitise määramise otsustamise edasi lükata kuni otsuse tegemiseni maakohtus juhul, kui:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para48lg1p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>hüvitise taotleja õigus saada hüvitist vägivallakuriteoga kahju tekitanud isikult on ebaselge;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para48lg1p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>on ilmne, et vägivallakuriteoga kahju tekitanud isik hüvitab selle kahju.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para48lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Kui hüvitise taotlejal on õigus saada sama kahjuga seoses hüvitist muust allikast kui vägivallakuriteoga kahju tekitanud isikult või kui selle hüvitise suurus on ebaselge või vaieldav, võib hüvitise maksmise otsustamise edasi lükata ajani, kui nimetatud õigus või hüvitise suurus on lõplikult kindlaks tehtud ja kahju hüvitatud.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para48lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Kui hüvitise maksmise otsustamine on käesoleva paragrahvi lõigetes 1 ja 2 nimetatud alustel edasi lükatud, otsustab Sotsiaalkindlustusamet hüvitise maksmise kümne päeva jooksul arvates päevast, kui ta on otsuse edasilükkamist tinginud asjaolu äralangemisest teada saanud.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para49">
+					<paragrahvNr>49</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 49.]]></kuvatavNr>
+					<paragrahvPealkiri>Hüvitise maksmine</paragrahvPealkiri>
+					<loige id="para49lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Ohvri ja ohvri hooldaja sissetuleku vähenemisest ning ülalpidaja kaotusest tuleneva kahju korral makstakse hüvitise maksmise otsustamiseni saamata jäänud summad välja korraga ja hüvitise maksmise otsustamisele järgnevast kuust alates perioodiliste maksetena:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para49lg1p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvri sissetuleku taastumiseni, tervise taastumiseni raskest tervisekahjustusest või ohvri surmani;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para49lg1p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>ohvri hooldaja hoolduslehe perioodi lõpuni;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para49lg1p3">
+							<alampunktNr>3</alampunktNr>
+							<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>kuni isik vastab käesoleva seaduse § 36 lõikes 3 või 3<sup>1</sup> sätestatud tingimustele.</tavatekst>
+							</sisuTekst>
+							<muutmismarge>
+								<avaldamismarge>
+									<RTosa>RT I</RTosa>
+									<avaldamineKuupaev>2025-04-08</avaldamineKuupaev>
+									<RTartikkel>1</RTartikkel>
+									<aktViide>108042025001</aktViide>
+								</avaldamismarge>
+								<joustumine>2026-10-01</joustumine>
+							</muutmismarge>
+						</alampunkt>
+					</loige>
+					<loige id="para49lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Perioodiliselt makstava hüvitise korral tehakse makseid iga kuu, kui hüvitise maksmise otsuses ei nähta ette teisiti.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para49lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Ülalpeetavatele määratakse ühine hüvitis. Ülalpeetava kirjaliku taotluse alusel võib tema osa ühisest hüvitisest eraldada.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para49lg4">
+						<loigeNr>4</loigeNr>
+						<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Käesoleva seaduse § 38 punktides 1–3 nimetatud kulud hüvitatakse ühekordse maksena.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para49lg5">
+						<loigeNr>5</loigeNr>
+						<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Käesoleva seaduse § 38 punktis 1 nimetatud kulud hüvitatakse kuni ohvri raskest tervisekahjustusest taastumiseni.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para49lg6">
+						<loigeNr>6</loigeNr>
+						<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Hüvitise taotleja põhjendatud taotlusel võib käesoleva paragrahvi lõikes 1 nimetatud hüvitise välja maksta osadena või kogu summa korraga.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para50">
+					<paragrahvNr>50</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 50.]]></kuvatavNr>
+					<paragrahvPealkiri>Ettemaksuna makstav hüvitis</paragrahvPealkiri>
+					<loige id="para50lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Kui hüvitise maksmise otsustamine lükatakse käesoleva seaduse § 48 lõigetes 1 ja 2 nimetatud juhtudel edasi, on Sotsiaalkindlustusametil õigus maksta hüvitise taotleja taotlusel hüvitist ettemaksuna, kui hüvitise taotleja õigus saada hüvitist on ilmne ja ta on majanduslikult raskes olukorras.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para50lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Ettemaksuna makstav hüvitis ei või olla suurem kui hüvitise taotlemise ajal kehtiv hüvitise alammäär.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para50lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Hüvitise määramisest keeldumise korral võib ettemaksuna makstud hüvitise tagasi nõuda üksnes siis, kui maksmine on tingitud hüvitise taotleja kuritarvitusest.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para51">
+					<paragrahvNr>51</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 51.]]></kuvatavNr>
+					<paragrahvPealkiri>Hüvitise suuruse muutmine ja hüvitise maksmise lõpetamine</paragrahvPealkiri>
+					<loige id="para51lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Riiklike toetuste ja muude maksete suuruse muutmise korral teeb Sotsiaalkindlustusamet omal algatusel ümberarvutused kümne päeva jooksul muudatuse jõustumise päevast arvates.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para51lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Hüvitise suurust vähendatakse või hüvitise maksmine lõpetatakse vähendamise või lõpetamise asjaolu tekkimisele järgnevast kuust arvates.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para51lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Hüvitist suurendatakse suurendamise asjaolu tõendavate dokumentide esitamisele järgnevast kuust arvates.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para51lg4">
+						<loigeNr>4</loigeNr>
+						<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Sotsiaalkindlustusamet vaatab perioodiliselt makstava hüvitise summa üle vähemalt üks kord aastas.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para51lg5">
+						<loigeNr>5</loigeNr>
+						<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Perioodiliselt makstava hüvitise puhul arvestatakse hindade ja elukalliduse muutumisega.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para51lg6">
+						<loigeNr>6</loigeNr>
+						<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Perioodiliselt makstava hüvitise ümberarvutamise tingimused ja korra kehtestab </tavatekst>
+							<viide>
+								<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+								<viideURID>
+									<viideURI><![CDATA[./dyn=109072026046&id=129032023044]]></viideURI>
+								</viideURID>
+							</viide>
+							<tavatekst> määrusega.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para52">
+					<paragrahvNr>52</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 52.]]></kuvatavNr>
+					<paragrahvPealkiri>Ettekirjutusest teavitamine</paragrahvPealkiri>
+					<loige id="para52lg1">
+						<loigeNr/>
+						<kuvatavNr/>
+						<sisuTekst>
+							<tavatekst>Kui Sotsiaalkindlustusamet teeb isikule ettekirjutuse, kuid andmed isiku aadressi kohta puuduvad, või kui isik ei ela teadaoleval aadressil ja tema tegelik viibimiskoht ei ole teada ning ettekirjutust ei ole võimalik sotsiaalseadustiku üldosa seaduses sätestatud viisil teatavaks teha, avaldatakse ettekirjutuse resolutiivosa väljaandes Ametlikud Teadaanded.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para53">
+					<paragrahvNr>53</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 53.]]></kuvatavNr>
+					<paragrahvPealkiri>Riigi tagasinõudeõigus</paragrahvPealkiri>
+					<loige id="para53lg1">
+						<loigeNr/>
+						<kuvatavNr/>
+						<sisuTekst>
+							<tavatekst>Pärast käesoleva seaduse alusel hüvitise maksmist läheb hüvitise saaja õigus nõuda kahju hüvitamist vägivallakuriteoga kahju tekitanud isikult hüvitisena makstud summa ulatuses üle riigile. Tagasinõutav summa ei või olla suurem tsiviilhagiga rahuldatud summast.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="jg14">
+				<jaguNr>4</jaguNr>
+				<kuvatavNr><![CDATA[4. jagu]]></kuvatavNr>
+				<jaguPealkiri>Hüvitise maksmine piiriülesel juhtumil Euroopa Liidus</jaguPealkiri>
+				<paragrahv id="para54">
+					<paragrahvNr>54</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 54.]]></kuvatavNr>
+					<paragrahvPealkiri>Hüvitise maksmine muus Euroopa Liidu liikmesriigis elavale vägivallakuriteo ohvrile</paragrahvPealkiri>
+					<loige id="para54lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Eesti Vabariigi territooriumil toime pandud vägivallakuriteo ohver, ohvri hooldaja, ohvri surma korral tema ülalpeetav ja isik, kes kannab vägivallakuriteo ohvri tervise taastamisega seotud kulud või matusekulud (edaspidi <i>taotleja</i>), kelle alaline elukoht on muus Euroopa Liidu liikmesriigis (edaspidi ka <i>muu liikmesriik</i>), esitab taotluse ja vajalikud lisadokumendid Sotsiaalkindlustusametile või oma elukohariigi pädevale asutusele.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para54lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Sotsiaalkindlustusamet edastab viivitamata muust liikmesriigist saabunud taotluse vastuvõtmise kohta taotlejale ja taotluse edastanud asutusele kinnituse, milles kajastub taotluse menetleja ja taotluse kohta otsuse tegemise tähtaeg.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para54lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Sotsiaalkindlustusamet otsustab hüvitise maksmise kolme kuu jooksul taotluse ja vajalike lisadokumentide kättesaamisest arvates. Otsus saadetakse taotlejale posti teel või elektrooniliselt kümne tööpäeva jooksul otsuse tegemise päevast arvates.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para54lg4">
+						<loigeNr>4</loigeNr>
+						<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Sotsiaalkindlustusamet maksab taotlejale määratud hüvitise välja selle määramise otsustamisele järgneva kalendrikuu jooksul.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para55">
+					<paragrahvNr>55</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 55.]]></kuvatavNr>
+					<paragrahvPealkiri>Hüvitise maksmise erisused</paragrahvPealkiri>
+					<loige id="para55lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Muus liikmesriigis elavale ohvrile ja ohvri hooldajale sissetuleku vähenemisest tuleneva kahju ning ohvri ülalpeetavale ülalpidaja kaotusest tuleneva kahju hüvitise arvutamise aluseks võetakse vägivallakuriteo toimepanemisele eelnenud kuue kuu palgatulu.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para55lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Käesoleva paragrahvi lõikes 1 nimetatud kahju hüvitamise korral makstakse hüvitis välja ühe summana kogu ajavahemiku eest, mille vältel on ohvril raske tervisekahjustus või ta vastab käesoleva seaduse § 36 lõikes 3 või 3<sup>1</sup> sätestatud tingimustele.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2025-04-08</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>108042025001</aktViide>
+							</avaldamismarge>
+							<joustumine>2026-10-01</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para55lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Matusekulud hüvitatakse taotlemise ajal kehtivas hüvitise alammääras.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para56">
+					<paragrahvNr>56</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 56.]]></kuvatavNr>
+					<paragrahvPealkiri>Hüvitise maksmine muus Euroopa Liidu liikmesriigis toime pandud vägivallakuriteo ohvrile</paragrahvPealkiri>
+					<loige id="para56lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Hüvitise maksmise muus liikmesriigis toime pandud vägivallakuriteo ohvrile ja hüvitist saama õigustatud isikule, kelle alaline elukoht on Eestis, otsustab muu liikmesriigi pädev asutus oma õigusaktide alusel.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para56lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Käesoleva paragrahvi lõikes 1 nimetatud isik pöördub Sotsiaalkindlustusametisse, kes vajaduse korral abistab teda taotluse vormistamisel. Sotsiaalkindlustusamet edastab taotluse koos lisadokumentidega 30 päeva jooksul isiku pöördumisest arvates selle liikmesriigi pädevale asutusele, kus vägivallakuritegu toime pandi.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para56lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Kui muu liikmesriigi pädev asutus soovib taotluse menetlemise ajal oma õigusaktide kohaselt ära kuulata käesoleva paragrahvi lõikes 1 nimetatud isiku, tunnistaja või eksperdi, pöördub ta Sotsiaalkindlustusameti poole, kes korraldab:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para56lg3p1">
+							<alampunktNr>1</alampunktNr>
+							<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>nimetatud isikute ärakuulamise muu liikmesriigi pädeva asutuse esindaja poolt telefoni või videokonverentsi teel või</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para56lg3p2">
+							<alampunktNr>2</alampunktNr>
+							<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>nimetatud isikute ärakuulamise ja selle protokollimise, protokolli tõlkimise vajaduse korral ja edastamise muu liikmesriigi pädevale asutusele.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="jg15">
+				<jaguNr>5</jaguNr>
+				<kuvatavNr><![CDATA[5. jagu]]></kuvatavNr>
+				<jaguPealkiri>Hüvitise maksmine vägivallakuritegude ohvritele hüvitise maksmise Euroopa konventsiooniga ühinenud riigi kodanikule</jaguPealkiri>
+				<paragrahv id="para57">
+					<paragrahvNr>57</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 57.]]></kuvatavNr>
+					<paragrahvPealkiri>Hüvitise maksmine Eestis toime pandud vägivallakuriteo ohvrile, kes on vägivallakuritegude ohvritele hüvitise maksmise Euroopa konventsiooniga ühinenud riigi kodanik</paragrahvPealkiri>
+					<loige id="para57lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Eesti Vabariigi territooriumil toime pandud vägivallakuriteo ohvrile, ohvri hooldajale, ohvri surma korral tema ülalpeetavale ja isikule, kes kannab ohvri tervise taastamisega seotud kulud või matusekulud, kui nimetatu on vägivallakuritegude ohvritele hüvitise maksmise Euroopa konventsiooniga ühinenud riigi kodanik, arvutab Sotsiaalkindlustusamet hüvitise suuruse käesoleva seaduse §-s 54 sätestatud korras.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para57lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Sotsiaalkindlustusamet maksab käesoleva paragrahvi lõikes 1 nimetatud isikule määratud hüvitise välja käesoleva seaduse § 54 lõikes 4 sätestatud korras.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+		</peatykk>
+		<peatykk id="ptk5">
+			<peatykkNr>5</peatykkNr>
+			<kuvatavNr><![CDATA[5. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Rahastamine</peatykkPealkiri>
+			<paragrahv id="para58">
+				<paragrahvNr>58</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 58.]]></kuvatavNr>
+				<paragrahvPealkiri>Rahastamine</paragrahvPealkiri>
+				<loige id="para58lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse alusel osutatavaid teenuseid ja makstavaid hüvitisi rahastatakse riigieelarvest.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para59">
+				<paragrahvNr>59</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 59.]]></kuvatavNr>
+				<paragrahvPealkiri>Ohvriabi vabatahtliku kulude hüvitamine</paragrahvPealkiri>
+				<loige id="para59lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ohvriabi vabatahtliku transpordikulud ja muud Sotsiaalkindlustusameti ettenähtud ja tema ülesande täitmiseks vajalikud kulud hüvitab Sotsiaalkindlustusamet.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para59lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõikes 1 nimetatud kulude hüvitamise piirmäära ja korra kehtestab Sotsiaalkindlustusameti peadirektor käskkirjaga.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk6">
+			<peatykkNr>6</peatykkNr>
+			<kuvatavNr><![CDATA[6. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Rakendussätted</peatykkPealkiri>
+			<jagu id="jg16">
+				<jaguNr>1</jaguNr>
+				<kuvatavNr><![CDATA[1. jagu]]></kuvatavNr>
+				<jaguPealkiri>Üleminekusätted</jaguPealkiri>
+				<paragrahv id="para60">
+					<paragrahvNr>60</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 60.]]></kuvatavNr>
+					<paragrahvPealkiri>Hüvitise maksmine</paragrahvPealkiri>
+					<loige id="para60lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Enne 2023. aasta 1. aprilli määratud kuriteoohvri perioodilised hüvitised, millest on maha arvatud isikule makstud töövõimetoetus või toitjakaotuspension ning mille maksmine jätkub pärast nimetatud kuupäeva, arvutatakse ümber vastavalt käesoleva seaduse § 44 lõikele 3.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para60lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Kuriteoohvri perioodilistele hüvitistele, mis on määratud enne 2023. aasta 1. aprilli kehtinud ohvriabi seaduse (RT I 2004, 2, 3) § 11 lõike 7 alusel ja mille maksmine jätkub pärast nimetatud kuupäeva, kohaldatakse kuni 2023. aasta 1. aprillini kehtinud ohvriabi seadust.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="jg17">
+				<jaguNr>2</jaguNr>
+				<kuvatavNr><![CDATA[2. jagu]]></kuvatavNr>
+				<jaguPealkiri>Seaduste muutmine ja kehtetuks tunnistamine</jaguPealkiri>
+				<paragrahv id="para61">
+					<paragrahvNr kehtiv="0">61</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 61.]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst> – </tavatekst>
+					</sisuTekst>
+				</paragrahv>
+				<paragrahv id="para70">
+					<paragrahvNr kehtiv="0">70</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 70. ]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>[Käesolevast tekstist välja jäetud.]</tavatekst>
+					</sisuTekst>
+				</paragrahv>
+			</jagu>
+			<jagu id="jg18">
+				<jaguNr>3</jaguNr>
+				<kuvatavNr><![CDATA[3. jagu]]></kuvatavNr>
+				<jaguPealkiri>Seaduse jõustumine</jaguPealkiri>
+				<paragrahv id="para71">
+					<paragrahvNr>71</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 71.]]></kuvatavNr>
+					<paragrahvPealkiri>Seaduse jõustumine</paragrahvPealkiri>
+					<loige id="para71lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Käesolev seadus jõustub 2023. aasta 1. aprillil.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para71lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Käesoleva seaduse §-d 65 ja 66 jõustuvad üldises korras.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+		</peatykk>
+	</sisu>
+	<normtehnmarkus>
+		<normtehnmarkusNr>1</normtehnmarkusNr>
+		<normtehnmarkusTekst> Nõukogu direktiiv 2004/80/EÜ, mis käsitleb kuriteoohvritele hüvitise maksmist (ELT L 261, 06.08.2004, lk 15–18);<reavahetus/>
+		 Euroopa Parlamendi ja nõukogu direktiiv 2011/36/EL, milles käsitletakse inimkaubanduse tõkestamist ja sellevastast võitlust ning inimkaubanduse ohvrite kaitset ja millega asendatakse nõukogu raamotsus 2002/629/JSK (ELT L 101, 15.04.2011, lk 1–11), muudetud direktiiviga (EL) 2024/1712 (ELT L, 2024/1712, 24.06.2024);<reavahetus/>
+		 Euroopa Parlamendi ja nõukogu direktiiv 2011/93/EL, mis käsitleb laste seksuaalse kuritarvitamise ja ärakasutamise ning lasteporno vastast võitlust ja mis asendab nõukogu raamotsuse 2004/68/JSK (ELT L 335, 17.12.2011, lk 1–14), parandus (ELT L 18, 21.01.2012, lk 7);<reavahetus/>
+		 Euroopa Parlamendi ja nõukogu direktiiv (EL) 2017/541 terrorismivastase võitluse kohta, millega asendatakse nõukogu raamotsus 2002/475/JSK ning muudetakse nõukogu otsust 2005/671/JSK (ELT L 88, 31.03.2017, lk 6–21).</normtehnmarkusTekst>
+		<muutmismarge>
+			<avaldamismarge>
+				<RTosa>RT I</RTosa>
+				<avaldamineKuupaev>2026-07-09</avaldamineKuupaev>
+				<RTartikkel>13</RTartikkel>
+				<aktViide>109072026013</aktViide>
+			</avaldamismarge>
+			<joustumine>2026-07-19</joustumine>
+		</muutmismarge>
+	</normtehnmarkus>
+</oigusakt>

@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { resolvePersonRegions, regionTarget, askedRegions, askedPerson } from '../lib/rag-v2/pilot/person-places.js';
+import { resolvePersonRegions, regionTarget, askedRegions, askedPerson, placedTurns } from '../lib/rag-v2/pilot/person-places.js';
 import { shortReply } from '../lib/rag-v2/pilot/record-scope.js';
 import { runtimeAdapters } from '../lib/rag-v2/pilot/retrieval.js';
 import { REGION_STATE_VERSION, validateStateRegion, validateStateContext, modelStateContext } from '../lib/rag-v2/pilot/dialogue-state.js';
@@ -97,6 +97,38 @@ test('the conversation of 07.10.2026: "Tabasalu" is Harku vald, and the short re
   assert.deepEqual([old.source.state, old.places, keptTexts(old.source)], ['region_required', [], []]);
 });
 
+test('ADR-110: a place the plan numbers wrongly is read in the message that holds its quote', async () => {
+  // The re-test of 08.10.2026: the fourth message of a conversation, with the plan's places as its turn record holds
+  // them. Both attributions name message 1; the clause stands in message 4. Before, the place was left out (message 1
+  // was read), the turn had no municipality and the answer asked which municipality "Jüri" meant.
+  const texts = ['Mu poeg on 4-aastane ja ei räägi peaaegu üldse.', 'Mis see olla võib?', 'Kelle poole ma kõigepealt pöörduma peaksin?', 'Elame Jüris.'];
+  const before = { people: [], focus: 'poeg' }, queries = ['lapse kõne arengu hindamine kelle poole pöörduda'];
+  const numbered = number => ({ person: 'poeg', queries, places: [place(number, 'Elame Jüris', 'Jüri alevik', 'user', 'lives'), place(number, 'Elame Jüris', 'Jüri alevik', 'poeg', 'lives')] });
+  const wrong = await turn({ before, texts, plan: numbered(1) }), right = await turn({ before, texts, plan: numbered(4) });
+  assert.deepEqual(wrong.settlements.map(item => [item.name, item.regions, item.turn, item.via]), [['Jüri', ['rae_vald'], 4, 'plan']]);
+  assert.deepEqual(wrong.places.map(item => [item.person, item.region, item.relation, item.turn]), [['user', 'rae_vald', 'lives', 4], ['poeg', 'rae_vald', 'lives', 4]]);
+  assert.deepEqual([wrong.source.region, wrong.source.named_place, wrong.people], ['rae_vald', { name: 'Jüri alevik', municipality: 'rae_vald' }, { poeg: ['rae_vald', 'reported'], user: ['rae_vald', 'reported'] }]);
+  // The reading is the one the right number gives.
+  assert.deepEqual([wrong.places, wrong.settlements, wrong.source, wrong.people], [right.places, right.settlements, right.source, right.people]);
+
+  // The rule by itself: the quote decides only where exactly one unread message holds it.
+  const messages = [{ turn: 1, text: 'Elan Tabasalus.', read: true }, { turn: 2, text: 'Aga hind?', read: true }, { turn: 3, text: 'Ema elab Jüris.', read: false }, { turn: 4, text: 'Ja mina elan Tabasalus.', read: false }];
+  const moved = placedTurns([place(1, 'Ema elab Jüris', 'Jüri alevik', 'ema', 'lives')], messages);
+  assert.deepEqual(moved, [place(3, 'Ema elab Jüris', 'Jüri alevik', 'ema', 'lives')]);
+  // A right number is left alone (the same object), also when another message repeats the clause.
+  const kept = place(4, 'elan Tabasalus', 'Tabasalu', 'user', 'lives');
+  assert.equal(placedTurns([kept], messages)[0], kept);
+  // A clause only a read message holds stays with its number: what the state has read is not read again.
+  const read = place(2, 'Elan Tabasalus', 'Tabasalu', 'user', 'lives');
+  assert.equal(placedTurns([read], messages.slice(0, 3))[0], read);
+  // A clause two unread messages hold names neither.
+  const twice = [{ turn: 1, text: 'Elan Jüris.', read: false }, { turn: 2, text: 'Jah, elan Jüris.', read: false }], unclear = place(5, 'lan Jüris', 'Jüri alevik', 'user', 'lives');
+  assert.equal(placedTurns([unclear], twice)[0], unclear);
+  // What is not a place of the plan's shape passes through untouched.
+  assert.deepEqual(placedTurns([null, { turn: 'x', quote: 'Elan Jüris' }, { turn: 1, quote: '' }], twice), [null, { turn: 'x', quote: 'Elan Jüris' }, { turn: 1, quote: '' }]);
+  assert.equal(placedTurns(null, twice), null);
+});
+
 test('the plan\'s attribution: a settlement in a clause is read like a municipality, in any case form', async () => {
   // A residence the plan attributes: the person's municipality, saved and anchored in the user's own words.
   const lives = await turn({ texts: ['Elan Tabasalus ja vajan koduteenust.'], plan: { person: 'user', places: [place(1, 'Elan Tabasalus', 'Tabasalu', 'user', 'lives')], queries: ['koduteenuse taotlemine'] } });
@@ -187,6 +219,9 @@ test('a short reply goes on with the place before it; a short question does not 
   assert.equal(shortReply(['aga', 'hind'], 'Aga hind?', 3), false);
   assert.equal(shortReply(['see', 'on', 'minu', 'ema'], 'See on minu ema', 3), false);
   assert.equal(shortReply([], '', 3), false);
+  // ADR-128: the words of a request for information ("soovin", "palun", "vaja", "infot") are lists of their own and not
+  // question words: a short reply that holds one stays a short reply and goes on with the place before it.
+  for (const text of ['jah, soovin', 'jah palun', 'Soovin rohkem infot', 'On vaja infot']) assert.equal(shortReply(text.toLowerCase().match(/[\p{L}']+/gu), text, 3), true, text);
 });
 
 test('the pure parts: admitted names of a directory, the limits, and what the scope carries', async () => {
@@ -209,11 +244,15 @@ test('the pure parts: admitted names of a directory, the limits, and what the sc
   assert.equal(namedPlace({ state: 'person_region', region: 'harku_vald' }, [{ ...item, via: 'state' }], 2).named_place, undefined);
   // A unit whose name ends with its kind word is not given the word twice.
   assert.equal(namedPlace({ state: 'reply_region', region: 'turi_vald' }, [{ ...item, name: 'Mäeküla', kind: 'k', regions: ['turi_vald'] }], 2).named_place.name, 'Mäeküla');
-  // ADR-106: the conversation's other places go with every later scope as known_places, whatever municipality the turn
-  // is about (the user's village while the request is about the mother's town), each once and with one municipality.
+  // ADR-106: the conversation's places of other municipalities go with the scope as known_places (the user's village
+  // while the request is about the mother's town), each once and with one municipality. A place of the turn's own
+  // municipality is not listed: the answer works with that municipality already and need not say again where it lies.
   const village = { name: 'Jüri', kind: 'a', word: 'Jüris', regions: ['rae_vald'], turn: 1, via: 'state' }, town = { name: 'Kuressaare', kind: 'l', word: 'Kuressaares', regions: ['saaremaa_vald'], turn: 1, via: 'state' };
   assert.deepEqual(namedPlace({ state: 'person_region', region: 'saaremaa_vald', person: 'ema' }, [village, town, village], 8),
-    { state: 'person_region', region: 'saaremaa_vald', person: 'ema', known_places: [{ name: 'Jüri alevik', municipality: 'rae_vald' }, { name: 'Kuressaare linn', municipality: 'saaremaa_vald' }] });
+    { state: 'person_region', region: 'saaremaa_vald', person: 'ema', known_places: [{ name: 'Jüri alevik', municipality: 'rae_vald' }] });
+  const own = { state: 'person_region', region: 'rae_vald', person: 'poeg' };
+  assert.equal(namedPlace(own, [village], 6), own);
+  assert.deepEqual(namedPlace({ state: 'region_required', region: null }, [village, town], 21).known_places, [{ name: 'Jüri alevik', municipality: 'rae_vald' }, { name: 'Kuressaare linn', municipality: 'saaremaa_vald' }]);
   // The place the turn itself names is the named place and not a known one; a name of several municipalities is not known.
   const named = namedPlace({ state: 'reply_region', region: 'harku_vald' }, [item, village, { ...village, name: 'Nõmme', kind: 'k', regions: ['a_vald', 'b_vald'] }], 2);
   assert.deepEqual([named.named_place, named.known_places], [{ name: 'Tabasalu alevik', municipality: 'harku_vald' }, [{ name: 'Jüri alevik', municipality: 'rae_vald' }]]);
@@ -228,12 +267,20 @@ test('the adapter builds the rows once for a set of municipalities; the instruct
   const { loadSettlements, loadRegions } = municipalDirectoryAdapter(db), built = await loadSettlements();
   assert.equal(await loadSettlements(), built);
   assert.equal((await loadRegions()).length, directory.length);
+  // ADR-127 (10.10.2026): the directory the chat loads holds the register's two names of each municipality and, for the two
+  // islands that are their municipality, the island's name as a land ("Muhumaal" reads as muhu + maa, and a part of a
+  // compound is no name). It is a name of the municipality itself: no place name stands for it, and the settlement rows
+  // are built for the same municipalities as before.
+  const loaded = await loadRegions();
+  assert.deepEqual(loaded.map(row => [row.region, row.names.slice(0, 2)]), directory.map(row => [row.region, row.names]));
+  assert.deepEqual(loaded.filter(row => row.names.length > 2).map(row => row.names).sort(), [['Kihnu vald', 'Kihnu', 'Kihnumaa'], ['Muhu vald', 'Muhu', 'Muhumaa']]);
+  assert.deepEqual(LOCATION_ALIAS_ENTRIES.filter(alias => ['Muhumaa', 'Kihnumaa'].includes(alias.place)), []);
   assert.deepEqual([built.length, built.filter(row => row.preferred).length], [rows.length, LOCATION_ALIAS_ENTRIES.length]);
   assert.ok(built.some(row => row.name === 'Tabasalu' && row.region === 'harku_vald' && row.preferred && row.kind === 'a'));
-  // search-assist-9: the plan's line on settlements (its last one until search-assist-10 and -11 added theirs after it).
+  // search-assist-9: the plan's line on settlements (its last one until search-assist-10, -11 and -13 added theirs after it).
   const plan = queryPlanRequest({ model: 'm', searchAssist: SEARCH_ASSIST_VERSION }, ['küsimus'], 'et').instructions;
-  assert.equal(SEARCH_ASSIST_VERSION, 'rag-v2/search-assist-11');
-  assert.equal(plan.split('\n').at(-3), PLAN_SETTLEMENT_INSTRUCTIONS);
+  assert.equal(SEARCH_ASSIST_VERSION, 'rag-v2/search-assist-14');
+  assert.equal(plan.split('\n').at(-4), PLAN_SETTLEMENT_INSTRUCTIONS);
   for (const phrase of ['A village, a small town (alevik) or a town district is a place like a municipality', 'also when the message is nothing but that name']) assert.ok(PLAN_SETTLEMENT_INSTRUCTIONS.includes(phrase), phrase);
   // Dialogue prompt 33: the record instructions end with the rule on a named place; a turn without the catalogue has none.
   const body = dialogueRequest({ model: 'm', maxOutputTokens: 100, reasoning: 'low', recordCatalogue: RECORD_RETRIEVAL_VERSION }, 'Küsimus?', { sources: {}, evidence: [] }, 'et', { userTurns: [] });

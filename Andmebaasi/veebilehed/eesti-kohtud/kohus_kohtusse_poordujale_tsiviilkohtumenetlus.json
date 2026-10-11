@@ -1,0 +1,76 @@
+{
+  "document_id": "web-kohus_kohtusse_poordujale_tsiviilkohtumenetlus",
+  "title": "Tsiviilkohtumenetlus",
+  "register_title": "Tsiviilkohtumenetlus",
+  "source_id": "kohus_kohtusse_poordujale_tsiviilkohtumenetlus",
+  "source_type": "web_page",
+  "publisher": "Eesti kohtud",
+  "language": "et",
+  "url": "https://www.kohus.ee/kohtusse-poordujale/tsiviilkohtumenetlus",
+  "source_path": "kohus_kohtusse_poordujale_tsiviilkohtumenetlus.html",
+  "source_format": "html",
+  "source_sha256": "5774e5ddf9d18fe1fa43f3292d4d6e699c073a8054b0d94a87580d2249c2172a",
+  "content_sha256": "28378253118be5e2fad3a79e5bd74bab1971e33a090df12c6733fab5f56e814d",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:39:07.781Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "7be85db177d95799968164dbc8d9c0a9a421576bdf22b5f5992dbe36688b397a",
+    "stats": {
+      "words": 2418,
+      "blocks": 43,
+      "headings": 13,
+      "tables": 0,
+      "links": 11,
+      "linksToOtherSites": 8
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.kohus.ee/sites/default/files/inline-files/fuusilise_isiku_menetlusabi_taotlus_0_1.docx",
+      "text": "taotlus ja andmed majandusliku seisundi kohta.",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/inline-files/fuusilise_isiku_menetlusabi_taotlus_0.docx",
+      "text": "taotlus ja andmed oma majandusliku olukorra kohta",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/inline-files/fuusilise_isiku_menetlusabi_taotlus_0_0.docx",
+      "text": "taotlus ja andmed majandusliku seisundi kohta",
+      "type": "docx",
+      "status": "referenced_only"
+    }
+  ]
+}

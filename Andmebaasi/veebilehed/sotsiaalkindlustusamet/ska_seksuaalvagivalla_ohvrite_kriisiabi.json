@@ -1,0 +1,98 @@
+{
+  "document_id": "web-ska_seksuaalvagivalla_ohvrite_kriisiabi",
+  "title": "Seksuaalvägivalla ohvrile",
+  "register_title": "Seksuaalvägivalla ohvrile",
+  "source_id": "ska_seksuaalvagivalla_ohvrite_kriisiabi",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/seksuaalvagivalla-ohvrite-kriisiabi",
+  "source_path": "ska_seksuaalvagivalla_ohvrite_kriisiabi.html",
+  "source_format": "html",
+  "source_sha256": "d8d90a66898c3b21342581abdc3d9e8ceebd63061f8137dac11aafe0154d9d2b",
+  "content_sha256": "d7b97947ebd1bbc46629c853733e2d06e5d6e024a20615495f71a10f96e4e3d8",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:36:20.830Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-01-30",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:23:24 GMT",
+      "etag": null
+    },
+    "raw_sha256": "3c22080361618a2be660f4edf30fd7076b2e0579a2fafccdd2d1adee801fff97",
+    "stats": {
+      "words": 768,
+      "blocks": 35,
+      "headings": 8,
+      "tables": 0,
+      "links": 19,
+      "linksToOtherSites": 6
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 1,
+      "personLinks": 0,
+      "contactCards": 5,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed",
+      "email_needs_review"
+    ],
+    "needs_review": true
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Ohvriabi%20infovoldik%20SAK%20EST%2Bbleed3mm.pdf",
+      "text": "Seksuaalvägivalla kriisiabikeskusi tutvustav voldik | 1.04 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Ohvriabi_infovoldik_SAK_ENG%2Bbleed3mm.pdf",
+      "text": "Seksuaalvägivalla kriisiabikeskusi tutvustav voldik inglise keeles. Sexual Assault Crisis Centre | 1.09 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Ohvriabi%20infovoldik%20SAK%20RUS%2Bbleed3mm.pdf",
+      "text": "Seksuaalvägivalla kriisiabikeskusi tutvustav voldik vene keeles. Кризисные центры помощи жертвам сексуального насилия | 1.13 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Ohvriabi%20infovoldik%20SAK%20UA%2Bbleed3mm.pdf",
+      "text": "Seksuaalvägivalla kriisiabikeskusi tutvustav voldik ukraina keeles. Кризові центри допомоги жертвам сексуального насильства | 1.1 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Ohvriabi_infovoldik_SAK_FIN%2Bbleed3mm_0.pdf",
+      "text": "Seksuaalvägivalla kriisiabikeskusi tutvustav voldik soome keeles. Seksuaaliväkivallan kriisikeskukset | 1.07 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Seksuaalsest%20ahistamisest%20vaba%20o%CC%88o%CC%88elu%20juhend%20A4_veeb%20linkidega.pdf",
+      "text": "Seksuaalsest ahistamisest vaba ööelu juhend | 2.78 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

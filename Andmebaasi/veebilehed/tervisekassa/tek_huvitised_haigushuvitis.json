@@ -1,0 +1,57 @@
+{
+  "document_id": "web-tek_huvitised_haigushuvitis",
+  "title": "Haigushüvitis",
+  "register_title": "Haigushüvitis",
+  "source_id": "tek_huvitised_haigushuvitis",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/huvitised/haigushuvitis",
+  "source_path": "tek_huvitised_haigushuvitis.html",
+  "source_format": "html",
+  "source_sha256": "f31d9ee7aa079ec21496ef901e6a324a6d953cdcaef5880f6d4a4a07be9cf6b4",
+  "content_sha256": "9f813bddaad5bfc15cc9c49e9218773ad97e90826b4c9713db897ecf683d6b51",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:38:09.891Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:03:27 GMT",
+      "etag": null
+    },
+    "raw_sha256": "bc5a68eb76438ae20396eeab91bf8278e934e30e432a44c538d6afcea5baed54",
+    "stats": {
+      "words": 1002,
+      "blocks": 43,
+      "headings": 9,
+      "tables": 1,
+      "links": 7,
+      "linksToOtherSites": 7
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

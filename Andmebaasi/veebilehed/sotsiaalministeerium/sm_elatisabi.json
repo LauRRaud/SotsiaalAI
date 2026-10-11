@@ -1,0 +1,60 @@
+{
+  "document_id": "web-sm_elatisabi",
+  "title": "Elatisabi",
+  "register_title": "Elatisabi",
+  "source_id": "sm_elatisabi",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalministeerium",
+  "language": "et",
+  "url": "https://www.sm.ee/elatisabi",
+  "source_path": "sm_elatisabi.html",
+  "source_format": "html",
+  "source_sha256": "cb9afc7cd8234671da61d835e2b6446dd1be2d435781a63d6f9b1c83ba30d563",
+  "content_sha256": "0c26cc4746998ea788c34ec9807237708cfaf636fcbcac58a4521bf90dcd7205",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:26:31.681Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2025-07-10",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:05:50 GMT",
+      "etag": null
+    },
+    "raw_sha256": "32bd7acf5723727a31b6a3e0dd95a8c4ecefdc4e3e6548480e89c9f0a4442c3b",
+    "stats": {
+      "words": 3356,
+      "blocks": 106,
+      "headings": 40,
+      "tables": 0,
+      "links": 16,
+      "linksToOtherSites": 16
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 1,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "personal_contact_removed"
+    ],
+    "needs_review": true
+  },
+  "documents": []
+}

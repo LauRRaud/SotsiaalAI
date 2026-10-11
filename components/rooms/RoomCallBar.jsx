@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import Dropdown from "@/components/ui/Dropdown";
 import Input from "@/components/ui/Input";
+import { callErrorText } from "@/lib/calls/errorText";
 
 // Eesti tekst on ainult varuväärtus. Sildid tulevad `calls.recording_purpose_*`
 // võtmetest — samadest, millest server ehitab salvestatava nõusolekuteksti, et
@@ -221,18 +222,11 @@ export default function RoomCallBar({
 
           {error ? (
             <div className="room-call-error">
-              {error === "call.livekit_not_configured"
-                ? text(t, "calls.not_configured", "Helikõne teenus ei ole veel seadistatud.")
-                : error === "call.mic_not_controlled_here"
-                  ? micBlockedTitle
-                  : /* SOL-CALL-10 — kaks mahupiiri, kaks eri lauset. „Ruumi ei ole"
-                       ja „salvestis jäi liiga pikaks" nõuavad inimeselt ERI tegevust,
-                       seega ei tohi neid ühte teksti kokku suruda. */
-                  error === "call.recording_storage_quota_exceeded"
-                    ? text(t, "calls.recording_storage_quota_exceeded", "Salvestusruum on täis — vabasta dokumentide vaates ruumi ja proovi uuesti.")
-                    : error === "call.recording_too_large"
-                      ? text(t, "calls.recording_too_large", "Salvestis ületas lubatud mahu ja seda ei salvestatud.")
-                      : error}
+              {/* Ekraanile läheb lause, mitte kood (lib/calls/errorText.js). Mikrofoni lause
+                  sõltub sellest, kus mikrofon on, ja tuleb siit lehelt. */}
+              {error === "call.mic_not_controlled_here"
+                ? micBlockedTitle
+                : callErrorText(error, t) || text(t, "calls.errors.generic", "Kõne toiming ebaõnnestus. Proovi uuesti.")}
             </div>
           ) : null}
 

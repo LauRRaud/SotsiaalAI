@@ -1,0 +1,111 @@
+/* ChoiceChips: küsimus (ja vihje) üleval, märgitavad ühelaiused lahtrid võrgus.
+   Sama võrk mis ChoiceRow paigutusel „stack". */
+
+.field {
+  min-width: 0;
+  display: grid;
+  gap: 0.45rem;
+  padding-block: 0.55rem;
+}
+.field:first-child {
+  padding-top: 0;
+}
+.label {
+  color: var(--text-warm);
+  font-weight: 560;
+}
+.hint {
+  margin-top: -0.25rem;
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+}
+/* Võrk on nii lai kui sisu vajab: lahtrid on pikima sildi laiused ja omavahel
+   ühelaiused, mitte paneeli kolmandikud. */
+.options {
+  min-width: 0;
+  display: inline-grid;
+  justify-self: start;
+  max-width: 100%;
+  grid-template-columns: repeat(var(--choice-cols, 3), minmax(0, 1fr));
+  gap: 0.4rem;
+}
+.option {
+  composes: cell from "./cell.module.css";
+  min-width: 0;
+  min-height: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 0.75rem;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.25;
+  text-align: left;
+}
+.option[aria-checked="true"] {
+  color: var(--text-warm);
+  font-weight: 560;
+}
+.box {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 1.05rem;
+  height: 1.05rem;
+  border: 1px solid color-mix(in srgb, var(--text-warm) 46%, transparent);
+  border-radius: 0.3rem;
+}
+.box svg {
+  width: 0.7rem;
+  height: 0.7rem;
+  opacity: 0;
+}
+.option[aria-checked="true"] .box {
+  border-color: transparent;
+  background: var(--text-warm);
+  color: var(--text-ink, #1e1e1e);
+}
+.option[aria-checked="true"] .box svg {
+  opacity: 1;
+}
+/* Heledas teemas on --text-warm tume: linnuke peab siis olema hele. */
+:global(html.theme-light) .option[aria-checked="true"] .box {
+  color: #f6f4f0;
+}
+/* Pikk liitsõna kitsas lahtris (telefon) poolitatakse silbi kohalt ja
+   sidekriipsuga, kui brauseril on selle keele poolitusreeglid; muidu murdub
+   sõna sealt, kust mahub. Ilma selleta murdus „toimetulekuraskus|tes" suvalisest
+   kohast. */
+.text {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+@container (max-width: 40rem) {
+  .options {
+    display: grid;
+    justify-self: stretch;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .option {
+    min-height: var(--hit-target-min, 2.75rem);
+  }
+}
+/* Kitsas töölaua paneel (mitte telefon): kutsuja loal jääb veergude arv alles. */
+@container (min-width: 34rem) and (max-width: 40rem) {
+  .options[data-keep="1"] {
+    grid-template-columns: repeat(var(--choice-cols, 3), minmax(0, 1fr));
+  }
+}
+@media (max-width: 640px) {
+  .options {
+    display: grid;
+    justify-self: stretch;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .option {
+    min-height: var(--hit-target-min, 2.75rem);
+  }
+}

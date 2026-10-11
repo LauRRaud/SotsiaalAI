@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_peretoetused_mitmike_toetus",
+  "title": "Mitmike toetus",
+  "register_title": "Mitmike toetus",
+  "source_id": "ska_peretoetused_mitmike_toetus",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/peretoetused/mitmike-toetus",
+  "source_path": "ska_peretoetused_mitmike_toetus.html",
+  "source_format": "html",
+  "source_sha256": "629cd224c2b2a0bb3a8921d61b43254b029fbe4347c225dd5a8e0c2be06111a2",
+  "content_sha256": "75778903d07a358472ec77030d61016fe83caa2adf153fb9fe43dcc8c0c2c231",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:25:53.686Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-09-18",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:09:00 GMT",
+      "etag": null
+    },
+    "raw_sha256": "cebfe99c58ec5c81e83305e4bba0fab185c63c16a6bb6af5bb99ad27605cc366",
+    "stats": {
+      "words": 136,
+      "blocks": 11,
+      "headings": 5,
+      "tables": 0,
+      "links": 3,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

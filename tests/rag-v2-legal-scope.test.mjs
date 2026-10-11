@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
-import { estonianDate, declaredValidity, validityState, legalReference, legalValidityScope, LEGAL_VALIDITY_VERSION } from '../lib/rag-v2/search/legal-validity.js';
+import { estonianDate, declaredValidity, validityState, legalReference, legalValidityScope, leftOutVersions, evidenceScope, LEGAL_VALIDITY_VERSION } from '../lib/rag-v2/search/legal-validity.js';
 import { municipalScope, mergeUnifiedPackets, UNIFIED_RETRIEVAL_VERSION } from '../lib/rag-v2/search/unified.js';
 import { DISCOVERY_SCHEMA } from '../lib/rag-v2/search/discovery.js';
 import { retrievalPlan } from '../lib/rag-v2/pilot/retrieval-plan.js';
@@ -151,6 +151,19 @@ test('merged packet: knowledge evidence outside the kept documents stops the ans
   const merged = mergeUnifiedPackets({ tenant: 't', generationId: 'g', directories, plan, lanes: lane('hms'), scope });
   assert.deepEqual(merged.retrieval_context.scope, report);
   assert.deepEqual(merged.model_context.retrieval.scope, report);
+  // ADR-130: of the left-out versions of acts that ARE in the search, the context names those of the acts its evidence
+  // holds and counts the others; the versions the report itself lists (acts the search lacks) stay in every turn.
+  const others = [{ title: 'hms', valid_from: '2027-01-01', valid_to: null, open_end: true, state: 'not_yet_in_force' },
+    { title: 'Karistusseadustik', valid_from: '2027-01-01', valid_to: null, open_end: true, state: 'not_yet_in_force' },
+    { title: 'Karistusseadustik', valid_from: '2025-01-01', valid_to: '2025-12-31', open_end: false, state: 'expired' }];
+  const narrowed = mergeUnifiedPackets({ tenant: 't', generationId: 'g', directories, plan, lanes: lane('hms'), scope: { ...scope, otherVersions: others } });
+  assert.deepEqual(narrowed.retrieval_context.scope.legal_validity.excluded, [...report.legal_validity.excluded, others[0]]);
+  assert.equal(narrowed.retrieval_context.scope.legal_validity.excluded_other_national_documents, 2);
+  assert.deepEqual(narrowed.model_context.retrieval.scope, narrowed.retrieval_context.scope);
+  assert.deepEqual(narrowed.retrieval_context.scope.municipality, report.municipality);
+  assert.deepEqual(scope.report.legal_validity.excluded.length, 1, 'the scope\'s own report is not changed by a turn');
+  assert.ok(JSON.stringify(narrowed.model_context).length < JSON.stringify(mergeUnifiedPackets({ tenant: 't', generationId: 'g', directories, plan, lanes: lane('hms'),
+    scope: { ...scope, report: { ...report, legal_validity: { ...report.legal_validity, excluded: [...report.legal_validity.excluded, ...others] } } } }).model_context).length);
   assert.equal(merged.retrieval_context.lanes[0].coverage.indexed_documents, 1);
   for (const doc of ['shs-future', 'kord-narva_joesuu_linn']) {
     assert.throws(() => mergeUnifiedPackets({ tenant: 't', generationId: 'g', directories, plan, lanes: lane(doc), scope }), { code: 'unified_lane_scope_mismatch' });
@@ -418,4 +431,33 @@ test('Codex F1: the catalogue fails an answer that presents the unchanged time l
   for (const wrong of ['Edaspidi antakse taotlejale tähtaeg puuduste kõrvaldamiseks.', 'Korda lisandub tähtaeg puuduste kõrvaldamiseks.', 'Puuduste kõrvaldamiseks antav tähtaeg lisandub korda.']) {
     assert.deepEqual(checkTurn(expect, observed(`${right} ${wrong}`), { today: '2026-10-04', version }).checks.filter(check => !check.ok).map(check => check.key), ['must_not'], wrong);
   }
+});
+
+// ADR-130 (10.10.2026): every national legal version not in force on the day was named in every turn's context. Corpus
+// v75 added 26 future versions, and the free search gate showed every one of its 33 questions 1107 tokens longer.
+test('ADR-130: a left-out version is named for an act the search lacks, and by the evidence for an act it has', () => {
+  const titles = new Map([['a-now', 'Seadus A'], ['a-next', 'Seadus A'], ['a-old', 'Seadus A'], ['b-next', 'Seadus B'], ['c-now', 'Seadus C']]);
+  const row = (document_id, state) => ({ document_id, valid_from: '2027-01-01', valid_to: null, open_end: true, state });
+  // A: a version in the search and two left out. B: only a version not yet in force. An excluded document the index
+  // gives no title for is treated like an act the search lacks: named, never silently counted.
+  const { absent, other } = leftOutVersions([row('a-next', 'not_yet_in_force'), row('a-old', 'expired'), row('b-next', 'not_yet_in_force'), row('untitled', 'expired')],
+    [{ document_id: 'a-now' }, { document_id: 'c-now' }], titles);
+  assert.deepEqual([absent.map(item => item.document_id), other.map(item => item.document_id)], [['b-next', 'untitled'], ['a-next', 'a-old']]);
+  assert.deepEqual(leftOutVersions([], [{ document_id: 'a-now' }], titles), { absent: [], other: [] });
+  // The report as a turn carries it. The title an evidence entry gives is the source's own, in either shape.
+  const report = { legal_validity: { as_of: '2026-10-10', periods: [], excluded: [{ title: 'Seadus B', state: 'not_yet_in_force' }], excluded_municipal_documents: 3 }, municipality: { state: 'not_resolved' } };
+  const others = [{ title: 'Seadus A', state: 'not_yet_in_force' }, { title: 'Seadus A', state: 'expired' }, { title: 'Seadus D', state: 'expired' }];
+  for (const evidence of [[{ bibliography: { title: { value: 'Seadus A' } } }], [{ bibliography: { title: 'Seadus A' } }, { bibliography: { title: 'Juhend' } }]]) {
+    const narrowed = evidenceScope(report, others, evidence);
+    assert.deepEqual(narrowed.legal_validity.excluded, [report.legal_validity.excluded[0], others[0], others[1]]);
+    assert.deepEqual([narrowed.legal_validity.excluded_other_national_documents, narrowed.legal_validity.excluded_municipal_documents, narrowed.municipality], [1, 3, report.municipality]);
+  }
+  // No act of the evidence has a left-out version: only the absent act is named, the rest counted.
+  assert.deepEqual(evidenceScope(report, others, [{ bibliography: { title: 'Juhend' } }, { bibliography: {} }]).legal_validity,
+    { ...report.legal_validity, excluded_other_national_documents: 3 });
+  assert.equal(report.legal_validity.excluded.length, 1);
+  // A scope made before this rule (no list of other versions) and a scope without a legal part are carried as they are.
+  assert.equal(evidenceScope(report, undefined, []), report);
+  const local = { municipality: { state: 'mentioned_region' } };
+  assert.equal(evidenceScope(local, others, []), local);
 });

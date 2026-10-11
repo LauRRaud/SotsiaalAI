@@ -1,0 +1,91 @@
+{
+  "document_id": "web-kpk_elatisvolgnevused_elatisabi_taotlemine",
+  "title": "Elatisabi taotlemine",
+  "register_title": "Elatisabi taotlemine",
+  "source_id": "kpk_elatisvolgnevused_elatisabi_taotlemine",
+  "source_type": "web_page",
+  "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+  "language": "et",
+  "url": "https://kpkoda.ee/kohtutaiturid/elatisvolgnevused/elatisabi-taotlemine/",
+  "source_path": "kpk_elatisvolgnevused_elatisabi_taotlemine.html",
+  "source_format": "html",
+  "source_sha256": "e3327f195d16b726c649d0122c1830e6b3b5558b88e5119240c9d0ccf2e68cc6",
+  "content_sha256": "c2223023ecbc3845c31cd6a7c1594e74d4b279fdc00b7b485ad43dbf3721da9f",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:40:30.409Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "7c083398b213ef9ae2bbd2b89a8ff36d7ebea6d03beb66fbd5d6639142ca01b6",
+    "stats": {
+      "words": 2716,
+      "blocks": 89,
+      "headings": 29,
+      "tables": 0,
+      "links": 30,
+      "linksToOtherSites": 11
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 1,
+      "contactCards": 0,
+      "personalEmails": 1,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "personal_contact_removed",
+      "person_named_by_link"
+    ],
+    "needs_review": true
+  },
+  "documents": [
+    {
+      "url": "https://kpkoda.ee/wp-content/uploads/elatisvolgnevused/T%C3%A4itemenetlusaegse__elatisabi_taotlus_27122016_0.doc",
+      "text": "Täitemenetlusaegse elatisabi taotlemise avaldus",
+      "type": "doc",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://kpkoda.ee/wp-content/uploads/elatisvolgnevused/Volikiri%20ET-DE%20uuendatud.doc",
+      "text": "Volikiri välisriigist tuleva elatise vahendamiseks (eesti ja saksa keeles)",
+      "type": "doc",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://kpkoda.ee/wp-content/uploads/elatisvolgnevused/Volikiri%20ET-EN%20uuendatud.doc",
+      "text": "Volikiri välisriigist tuleva elatise vahendamiseks (eesti ja inglise keeles)",
+      "type": "doc",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://kpkoda.ee/wp-content/uploads/elatisvolgnevused/Volikiri%20ET-FI%20uuendatud.doc",
+      "text": "Volikiri välisriigist tuleva elatise vahendamiseks (eesti ja soome keeles)",
+      "type": "doc",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://kpkoda.ee/wp-content/uploads/elatisvolgnevused/Volikiri%20ET-FR%20uuendatud.doc",
+      "text": "Volikiri välisriigist tuleva elatise vahendamiseks (eesti ja prantsuse keeles)",
+      "type": "doc",
+      "status": "referenced_only"
+    }
+  ]
+}

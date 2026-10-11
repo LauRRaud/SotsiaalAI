@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
+import { onViewRoleChanged } from "@/lib/viewRoleSignal";
 
 function normalizeBaseRole(value, isAdmin = false) {
   const normalized = String(value || "").trim().toUpperCase();
@@ -40,6 +41,10 @@ export function useEffectiveRole() {
   const refresh = useCallback(() => {
     setRefreshNonce((value) => value + 1);
   }, []);
+
+  /* Vaadet võib vahetada ka lüliti, mis ei ole selle pinna oma (ruumi
+     varuvalik dokiga lehtedel): roll loetakse siis uuesti. */
+  useEffect(() => onViewRoleChanged(refresh), [refresh]);
 
   useEffect(() => {
     if (status !== "authenticated" || !isAdmin) {

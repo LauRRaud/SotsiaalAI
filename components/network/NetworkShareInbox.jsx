@@ -17,8 +17,8 @@ import { useCallback, useEffect, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
-import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
-import { localizePath } from "@/lib/localizePath";
+import { networkShareErrorText } from "@/lib/network/shareErrorText";
+import { buildRoomChatPath } from "@/lib/roomPath";
 
 function txt(t, key, fallback) {
   return typeof t === "function" ? t(key, fallback) : fallback;
@@ -68,11 +68,8 @@ export default function NetworkShareInbox() {
       });
       const payload = await res.json().catch(() => ({}));
       if (!res.ok || payload?.ok === false) {
-        throw new Error(resolveApiMessage({
-          payload,
-          t,
-          fallbackKey: "network_share.errors.action_failed"
-        }));
+        /* Server vastab koodiga; inimene näeb lauset, mitte koodi. */
+        throw new Error(networkShareErrorText(t, payload?.message, txt(t, "network_share.errors.action_failed", "Toiming ebaõnnestus.")));
       }
       if (payload?.share?.id) {
         setOpenedShares((current) => ({ ...current, [payload.share.id]: payload.share }));
@@ -127,7 +124,9 @@ export default function NetworkShareInbox() {
               </Button>
             ) : null}
             {openedShare?.roomId ? (
-              <Button as="a" size="sm" href={localizePath(`/ruum/${encodeURIComponent(openedShare.roomId)}`, locale)}>
+              /* Ruum avaneb vestlusaknas. Varem viis see nupp ruumide lehe alamaadressile, mida ei
+                 ole olemas, ja saaja sai 404; aadress tuleb nüüd samast kohast kust mujalgi. */
+              <Button as="a" size="sm" href={buildRoomChatPath(openedShare.roomId, locale)}>
                 {txt(t, "network_share.actions.open_room", "Ava arutelu")}
               </Button>
             ) : null}

@@ -1,0 +1,36 @@
+/* PreInquiryStart: pealkiri, lühike selgitus ja kolm valikukaarti üksteise all. */
+
+.start {
+  min-width: 0;
+  display: grid;
+  gap: clamp(0.8rem, 1.8cqi, 1.1rem);
+}
+.head {
+  display: grid;
+  gap: 0.35rem;
+}
+/* Sama mõõt ja kaal mis sammu pealkirjal (components/stage/StepPanel.module.css). */
+.title {
+  margin: 0;
+  font-family: var(--font-display, inherit);
+  font-size: clamp(1.45rem, 1.15rem + 1.2cqi, 2rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.018em;
+  color: var(--text-warm);
+  text-wrap: balance;
+}
+.lead {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--text-soft);
+}
+/* Kolm teed kõrvuti: kolm võrdset kaarti, mitte kolm täislaiuses riba. Kitsal
+   ekraanil lähevad üksteise alla. */
+.options {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  align-items: stretch;
+  gap: 0.5rem;
+}

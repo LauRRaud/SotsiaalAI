@@ -1,0 +1,192 @@
+/* Välitöö avaleht: üks veerg, lame, pöidla ulatuses tegevused (FIELD-A0 ptk 7.2).
+   Vaate kuju (sisu, tegevusrida all servas) tuleb StepPanel-ist. */
+
+/* Leht täidab paneeli kõrguse, et tegevusrida seisaks all servas: telefonis
+   on see pöidla ulatuses, kohe kiirmenüü kohal. */
+.page {
+  min-width: 0;
+  max-width: 38rem;
+  min-height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  color: var(--text-warm);
+}
+.view {
+  min-width: 0;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+/* Vaate sisu on StepPanel (vormis on selle ees vajadusel kontrolli teade). */
+.view > :last-child {
+  flex: 1 1 auto;
+}
+.stack {
+  min-width: 0;
+  display: grid;
+  gap: 0.8rem;
+}
+.quiet {
+  margin: 0;
+  color: var(--text-soft);
+}
+.notice {
+  margin: 0;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.8rem;
+  background: var(--glass-cell-bg);
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+}
+
+/* Hoiatus, mis vajab inimese tegu (saatmata sisu, laadimise viga). */
+.alert {
+  min-width: 0;
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--status-error, #eb9a76) 60%, transparent);
+  border-inline-start-width: 3px;
+  border-radius: 0.9rem;
+  background: color-mix(in srgb, var(--status-error, #eb9a76) 8%, transparent);
+}
+.alert p {
+  margin: 0;
+}
+.alertTitle {
+  margin: 0;
+  font-size: inherit;
+  font-weight: 560;
+}
+
+/* Külastuste rühm: nimi ja arv, selle all read. */
+.group {
+  min-width: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+.groupTitle {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 0.74rem;
+  font-weight: 560;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.groupCount {
+  margin-inline-start: 0.3rem;
+  color: var(--text-soft);
+  font-variant-numeric: tabular-nums;
+}
+.rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+/* Rida on üks vajutatav lahter; puuteala vähemalt 48 px (välitöö leping). */
+.row {
+  composes: cell from "../stage/cell.module.css";
+  min-height: 3rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.3rem 0.9rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 0.9rem;
+  text-decoration: none;
+}
+.row[data-muted="true"] .rowTitle {
+  color: var(--text-soft);
+  font-weight: 500;
+}
+.rowTitle {
+  min-width: 0;
+  font-weight: 560;
+  color: var(--text-warm);
+  overflow-wrap: anywhere;
+}
+.rowMeta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.3rem 0.5rem;
+}
+.chip {
+  flex: none;
+  padding: 0.12rem 0.6rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 999px;
+  color: var(--text-soft);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+.chip[data-tone="wait"] {
+  border-color: color-mix(in srgb, #e6c27a 55%, transparent);
+  color: #e6c27a;
+}
+:global(html.theme-light) .chip[data-tone="wait"] {
+  color: #7a5a12;
+}
+.more {
+  justify-self: start;
+}
+
+/* Hoiatuse rida: tekst vasakul, tegevus paremal. */
+.item {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.4rem 0.9rem;
+}
+.itemText {
+  min-width: 0;
+  display: grid;
+  gap: 0.1rem;
+}
+.itemMeta {
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+}
+
+/* Vormi väli sildi ja vihjega. Koha väli on nii lai, kui aadress vajab. */
+.field {
+  min-width: 0;
+  max-width: 30rem;
+  display: grid;
+  gap: 0.3rem;
+}
+.fieldLabel {
+  color: var(--text-warm);
+}
+.fieldHint {
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+}
+
+@media (max-width: 480px) {
+  /* Tegevusrea ja kiirmenüü vahele jääb õhku. */
+  .page {
+    padding-bottom: 0.6rem;
+  }
+  .row,
+  .item {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .rowMeta {
+    justify-content: flex-start;
+  }
+}
+
+/* Puuteekraan: iga nupp ja väli on vähemalt 48 px kõrge (välitöö leping). */
+@media (max-width: 480px), (pointer: coarse) {
+  .page button,
+  .page input {
+    min-height: 3rem;
+  }
+}

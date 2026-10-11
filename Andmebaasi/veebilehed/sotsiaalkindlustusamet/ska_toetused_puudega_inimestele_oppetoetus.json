@@ -1,0 +1,71 @@
+{
+  "document_id": "web-ska_toetused_puudega_inimestele_oppetoetus",
+  "title": "Õppetoetus",
+  "register_title": "Õppetoetus",
+  "source_id": "ska_toetused_puudega_inimestele_oppetoetus",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/toetused-puudega-inimestele/oppetoetus",
+  "source_path": "ska_toetused_puudega_inimestele_oppetoetus.html",
+  "source_format": "html",
+  "source_sha256": "808a3c85de1ce708d0f363c088a409afb6c8e8640da597ce6e438b5980d9d243",
+  "content_sha256": "166e3f9fcea085aa88203ecf13acf71d72de48320b4bc2d68371e51b6f3059de",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:35:58.741Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2024-02-06",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:35:57 GMT",
+      "etag": null
+    },
+    "raw_sha256": "d04416b02ea88ba3f0a512e2dd9e7eb10042fda0f8219ac9c216eaea09ef1917",
+    "stats": {
+      "words": 164,
+      "blocks": 17,
+      "headings": 6,
+      "tables": 0,
+      "links": 5,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-01/PUUETEGA%20INIMESTE%20SOTSIAALTOETUSTE%20TAOTLUS%2001.2025.docx",
+      "text": "Puuetega inimeste sotsiaaltoetuste taotlus | 36.74 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-01/PUUETEGA%20INIMESTE%20SOTSIAALTOETUSTE%20TAOTLUS%2001.2025%20PABER.pdf",
+      "text": "Puuetega inimeste sotsiaaltoetuste taotlus | 115.01 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

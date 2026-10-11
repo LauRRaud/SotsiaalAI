@@ -1,0 +1,71 @@
+{
+  "document_id": "web-ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_valjastpoolt",
+  "title": "Väljastpoolt Euroopa Liitu tulijate perehüvitised",
+  "register_title": "Väljastpoolt Euroopa Liitu tulijate perehüvitised",
+  "source_id": "ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_valjastpoolt",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/sotsiaalkindlustus-valismaal-ja-valismaalt-tulijatele/valjastpoolt",
+  "source_path": "ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_valjastpoolt.html",
+  "source_format": "html",
+  "source_sha256": "5386452bbae78daffbe6fb22c28e72bcbcae01c64294235e0c828501c11c4369",
+  "content_sha256": "dec9c60cbf5d863c5603a4e18d16a64462968f44cc5ef4197439d5424af5c462",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:26:11.242Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2025-04-24",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:09:18 GMT",
+      "etag": null
+    },
+    "raw_sha256": "91ad64a17e9b24fb47451fa52896cb15f874531f7d3bd3ca42473bdc20d6e448",
+    "stats": {
+      "words": 638,
+      "blocks": 26,
+      "headings": 5,
+      "tables": 0,
+      "links": 6,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/TAOTLUS%20PERETOETUSTE%20JA%20VANEMAH%C3%9CVITISE%20SAAMISEKS%202026_PABER.pdf",
+      "text": "Taotlus peretoetuste ja vanemahüvitise saamiseks ja kohustusliku kogumispensioni täiendavate sissemaksete tegemiseks | 1.2 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/TAOTLUS%20PERETOETUSTE%20JA%20VANEMAH%C3%9CVITISE%20SAAMISEKS_EE%202026.docx",
+      "text": "Taotlus peretoetuste ja vanemahüvitise saamiseks ja kohustusliku kogumispensioni täiendavate sissemaksete tegemiseks | 40.12 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    }
+  ]
+}

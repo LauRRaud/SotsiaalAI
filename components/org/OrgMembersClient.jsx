@@ -1,13 +1,14 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import Button from "@/components/ui/Button";
-import Dropdown from "@/components/ui/Dropdown";
 
-import OrgHeader from "./OrgHeader";
+import { MemberView, MembersBoard } from "./members/MembersViews";
+import { grantNeedsConfirm, heldRights, memberActions, memberFacts, memberName, memberRow, memberTabs, primaryUnitId, shownTab } from "./members/memberRules";
+import OrgPart from "./OrgPart";
 import { useOrgApi } from "./useOrgApi";
+import { useSecondPress } from "./useSecondPress";
 
 /**
  * Liikmete haldusvaade.
@@ -15,11 +16,24 @@ import { useOrgApi } from "./useOrgApi";
  * SIIN EI OLE JA EI TOHI TULLA: „viimati aktiivne", kasutuskordi, vestluste
  * arvu, tootlikkust ega ühtegi privaatset kirjet (arenduskava §7.4). Server ei
  * saada neid välju; see komponent ei tohi neid ka tuletada.
+ *
+ * KUJU (11.10). Leht oli kuue veeruga tabel, mille ridade sees olid rippmenüüd
+ * ja nupud. Nüüd on ees kas loend (liikmed madalate ridadena) või üks avatud
+ * liige kolme väikese vaatega. Vaated on failis ./members/MembersViews.jsx,
+ * reeglid failis ./members/memberRules.js; see fail hoiab olekut ja teeb
+ * päringud. Liikmesuse lõpetamine ja õiguse äravõtmine küsivad teist vajutust.
  */
 export default function OrgMembersClient({ context, initialMembers, units, canGrant }) {
   const { t } = useI18n();
   const { call, busy, error } = useOrgApi();
   const [members, setMembers] = useState(initialMembers || []);
+  const [openId, setOpenId] = useState("");
+  const [wantedTab, setWantedTab] = useState("member");
+  /* Õnnestunud tegevuse lause (nt „Liikmesus on lõpetatud."); tõrke lause tuleb `error`-ist. */
+  const [done, setDone] = useState("");
+  const confirm = useSecondPress();
+  const sending = useRef(false);
+  const rootRef = useRef(null);
 
   const organizationId = context.organization.id;
   const writable = context?.writable !== false;
@@ -47,9 +61,14 @@ export default function OrgMembersClient({ context, initialMembers, units, canGr
         method: "DELETE",
         fallbackKey: "org.errors.member_end_failed"
       });
-      if (payload) await reload();
+      if (payload) {
+        await reload();
+        /* Lõpetatud liiget loendis enam ei ole: tagasi loendisse ja lause, mis juhtus. */
+        setOpenId("");
+        setDone(t("org.members.ended"));
+      }
     },
-    [call, organizationId, reload]
+    [call, organizationId, reload, t]
   );
 
   const setUnit = useCallback(
@@ -76,144 +95,145 @@ export default function OrgMembersClient({ context, initialMembers, units, canGr
     [call, organizationId, reload]
   );
 
-  return (
-    <section className="ow-shell">
-      <OrgHeader context={context} />
+  const grant = useCallback(
+    async (membershipId, capability) => {
+      if (!capability) return;
+      const payload = await call(`/api/org/${organizationId}/members/${membershipId}/capabilities`, {
+        method: "POST",
+        body: { capability, scopeType: "ORGANIZATION" },
+        fallbackKey: "org.errors.capability_grant_failed"
+      });
+      if (payload) await reload();
+    },
+    [call, organizationId, reload]
+  );
 
-      <div className="ow-card">
-        <h2 className="ow-title" style={{ fontSize: "1.125rem" }}>
-          {t("org.members.heading")}
-        </h2>
-        <p className="ow-notice ow-notice--privacy">{t("org.members.privacyNotice")}</p>
+  /* Üks tegevus korraga: topeltvajutus ei saada teist päringut (`busy` jõuab
+     nupuni alles järgmise joonistusega). */
+  const once = useCallback(async (work) => {
+    if (sending.current) return;
+    sending.current = true;
+    setDone("");
+    try {
+      await work();
+    } finally {
+      sending.current = false;
+    }
+  }, []);
+
+  const member = members.find((item) => item.membershipId === openId) || null;
+  const rows = useMemo(() => members.map((item) => memberRow(item, { t })), [members, t]);
+
+  /* Vaate vahetusel (loend ↔ liige) kaob vajutatud rida või nupp: fookus läheb
+     vaate pealkirjale. Esimesel joonistusel fookust ei võeta. */
+  const shown = useRef(null);
+  const shownKey = member ? member.membershipId : "";
+  useEffect(() => {
+    const first = shown.current === null;
+    const moved = shown.current !== shownKey;
+    shown.current = shownKey;
+    if (first || !moved) return;
+    rootRef.current?.querySelector("[data-step-heading]")?.focus({ preventScroll: true });
+  }, [shownKey]);
+
+  const notice = error ? { tone: "risk", text: error } : done ? { text: done } : null;
+
+  if (!member) {
+    return (
+      <div ref={rootRef}>
+        <OrgPart context={context} part="members">
+          <MembersBoard
+            t={t}
+            rows={rows}
+            notice={notice}
+            onOpen={(id) => {
+              confirm.clear();
+              setDone("");
+              setWantedTab("member");
+              setOpenId(id);
+            }}
+          />
+        </OrgPart>
       </div>
+    );
+  }
 
-      {members.length === 0 ? (
-        <p className="ow-empty">{t("org.members.empty")}</p>
-      ) : (
-        <div className="ow-tablewrap">
-          <table className="ow-table">
-            <caption>{t("org.members.heading")}</caption>
-            <thead>
-              <tr>
-                <th scope="col">{t("org.members.person")}</th>
-                <th scope="col">{t("org.members.seatRole")}</th>
-                <th scope="col">{t("org.members.units")}</th>
-                <th scope="col">{t("org.members.capabilities")}</th>
-                <th scope="col">{t("org.members.status")}</th>
-                <th scope="col">{t("org.members.actions")}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {members.map((member) => (
-                <tr key={member.membershipId}>
-                  <td data-label={t("org.members.person")}>
-                    {(() => {
-                      const name = [member.person.firstName, member.person.lastName]
-                        .filter(Boolean)
-                        .join(" ");
-                      /* Nimeta liikme puhul ON e-post nimi — siis ei korrata teda
-                         all teist korda. Kaks identset rida lugesid ekraanilugejas
-                         nagu kaks eri välja. */
-                      return name ? (
-                        <>
-                          {name}
-                          <br />
-                          <span className="ow-meta__term">{member.person.email}</span>
-                        </>
-                      ) : (
-                        member.person.email
-                      );
-                    })()}
-                  </td>
-                  <td data-label={t("org.members.seatRole")}>{t(`org.seatRole.${member.seatRole}`)}</td>
-                  <td data-label={t("org.members.units")}>
-                    <ul className="ow-chips">
-                      {member.units.map((unit) => (
-                        <li key={unit.id} className="ow-chip">
-                          {unit.name}
-                          {unit.isPrimary ? " ★" : ""}
-                        </li>
-                      ))}
-                    </ul>
-                    {writable && units.length ? (
-                      <label>
-                        <span className="ow-meta__term">{t("org.members.setPrimaryUnit")}</span>
-                        {/* TOIMINGUMENÜÜ, mitte väli: valik paneb üksuse
-                            paika ja loend ülal uueneb. Menüü ise jääb tühja
-                            seisu (varem tegi sama `defaultValue=""`). */}
-                        <Dropdown
-                          value=""
-                          onChange={(unitId) => setUnit(member.membershipId, unitId)}
-                          disabled={busy}
-                          ariaLabel={t("org.members.setPrimaryUnit")}
-                          placeholder="—"
-                          options={units.map((unit) => ({ value: unit.id, label: unit.name }))}
-                        />
-                      </label>
-                    ) : null}
-                  </td>
-                  <td data-label={t("org.members.capabilities")}>
-                    <ul className="ow-chips">
-                      {member.capabilities.map((grant) => (
-                        <li
-                          key={grant.id}
-                          className={grant.scopeType === "UNIT" ? "ow-chip ow-chip--scope" : "ow-chip"}
-                        >
-                          {t(`org.capability.${grant.capability}`)}
-                          {canGrant && writable ? (
-                            <button
-                              type="button"
-                              onClick={() => revoke(member.membershipId, grant.id)}
-                              disabled={busy}
-                              aria-label={`${t("org.members.revokeCapability")}: ${t(
-                                `org.capability.${grant.capability}`
-                              )}`}
-                            >
-                              ×
-                            </button>
-                          ) : null}
-                        </li>
-                      ))}
-                    </ul>
-                  </td>
-                  <td data-label={t("org.members.status")}>
-                    {t(`org.membershipStatus.${member.status}`)}
-                  </td>
-                  <td data-label={t("org.members.actions")}>
-                    <div className="ow-actions">
-                      {writable && member.status === "ACTIVE" ? (
-                        <Button type="button" onClick={() => act(member.membershipId, "suspend")} disabled={busy}>
-                          {t("org.members.suspend")}
-                        </Button>
-                      ) : null}
-                      {writable && member.status === "SUSPENDED" ? (
-                        <Button
-                          type="button"
-                          onClick={() => act(member.membershipId, "reactivate")}
-                          disabled={busy}
-                        >
-                          {t("org.members.reactivate")}
-                        </Button>
-                      ) : null}
-                      {writable && member.status !== "ENDED" ? (
-                        <Button type="button" onClick={() => end(member.membershipId)} disabled={busy}>
-                          {t("org.members.end")}
-                        </Button>
-                      ) : null}
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+  const id = member.membershipId;
+  const actions = memberActions(member, { writable, canGrant, units, activeModules: context.activeModules || [] });
+  const tabs = memberTabs(actions);
+  const held = heldRights(member, units, { t });
+  const armedRight = held.find((right) => confirm.armed === `revoke:${right.id}`);
+  const armedGrant = confirm.armed.startsWith("grant:") ? confirm.armed.slice(6) : "";
+  const armedNote =
+    confirm.armed === `end:${id}`
+      ? t("org.members.end_note")
+      : armedRight
+        ? t("org.members.revoke_note", { name: armedRight.label })
+        : armedGrant
+          ? t("org.members.grant_owner_note")
+          : "";
 
-      {error ? (
-        <p className="ow-notice ow-notice--warning" role="alert">
-          {error}
-        </p>
-      ) : null}
-    </section>
+  return (
+    <div ref={rootRef}>
+      <OrgPart context={context} part="members">
+        <MemberView
+          t={t}
+          name={memberName(member)}
+          tabs={tabs}
+          tab={shownTab(tabs, wantedTab)}
+          onTab={(value) => {
+            confirm.clear();
+            setWantedTab(value);
+          }}
+          facts={memberFacts(member, { t })}
+          unit={{
+            options: units.map((unit) => ({ value: unit.id, label: unit.name })),
+            value: primaryUnitId(member),
+            onChange: (unitId) => {
+              if (unitId === primaryUnitId(member)) return;
+              void once(() => setUnit(id, unitId));
+            }
+          }}
+          rights={{
+            held,
+            grantable: actions.grant.map((capability) => ({ value: capability, label: t(`org.capability.${capability}`) })),
+            canRevoke: actions.revoke,
+            armedId: armedRight?.id || "",
+            armedGrant,
+            onRevoke: (right) => confirm.press(`revoke:${right.id}`, () => once(() => revoke(id, right.id))),
+            onGrant: (capability) => {
+              if (grantNeedsConfirm(capability)) {
+                confirm.press(`grant:${capability}`, () => once(() => grant(id, capability)));
+                return;
+              }
+              confirm.clear();
+              void once(() => grant(id, capability));
+            }
+          }}
+          life={{
+            suspend: actions.suspend,
+            reactivate: actions.reactivate,
+            end: actions.end,
+            endArmed: confirm.armed === `end:${id}`,
+            onSuspend: () => {
+              confirm.clear();
+              void once(() => act(id, "suspend"));
+            },
+            onReactivate: () => {
+              confirm.clear();
+              void once(() => act(id, "reactivate"));
+            },
+            onEnd: () => confirm.press(`end:${id}`, () => once(() => end(id)))
+          }}
+          notice={notice}
+          armedNote={armedNote}
+          busy={busy}
+          onBack={() => {
+            confirm.clear();
+            setOpenId("");
+          }}
+        />
+      </OrgPart>
+    </div>
   );
 }

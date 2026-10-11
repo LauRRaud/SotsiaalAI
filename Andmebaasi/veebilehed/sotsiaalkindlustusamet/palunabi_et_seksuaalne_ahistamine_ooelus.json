@@ -1,0 +1,67 @@
+{
+  "document_id": "web-palunabi_et_seksuaalne_ahistamine_ooelus",
+  "title": "Seksuaalne ahistamine ööelus",
+  "register_title": "Seksuaalne ahistamine ööelus",
+  "source_id": "palunabi_et_seksuaalne_ahistamine_ooelus",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://www.palunabi.ee/et/seksuaalne-ahistamine-ooelus",
+  "source_path": "palunabi_et_seksuaalne_ahistamine_ooelus.html",
+  "source_format": "html",
+  "source_sha256": "08e15b8c168274df4e1062118521d726f53c22b487f6ec086c7355662c591066",
+  "content_sha256": "54ea0da4f64c29423f5affffc53d3a54d6783877ce7e199ec26caf3c933f8582",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:37:04.433Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "351351c6347005909bfb3b6bd91072e929c0b32ee16e420e35ccdd0ceeb7d13a",
+    "stats": {
+      "words": 1722,
+      "blocks": 18,
+      "headings": 8,
+      "tables": 0,
+      "links": 12,
+      "linksToOtherSites": 8
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 1,
+      "personalEmails": 2,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed",
+      "personal_contact_removed"
+    ],
+    "needs_review": true
+  },
+  "documents": [
+    {
+      "url": "https://s3-web-1a.tehik.ee/palunabi-live-web-prd/s3fs-public/2026-02/seksuaalsest-ahistamisest-vaba-ooelu-juhend-a4_veeb-linkidega.pdf",
+      "text": "Seksuaalsest ahistamisest vaba ööelu juhend.pdf PDF (2.78 MB)",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

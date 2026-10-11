@@ -37,5 +37,5 @@ export default async function OrgDispatchPage({ params }) {
     getDispatchBoard(auth.userId, { organizationId: orgId }),
     listAssignableWorkers(auth.userId, orgId)
   ]);
-  return <OrgDispatchBoard organizationId={orgId} initialBoard={board} initialWorkers={workers} />;
+  return <OrgDispatchBoard context={auth.context} organizationId={orgId} initialBoard={board} initialWorkers={workers} />;
 }

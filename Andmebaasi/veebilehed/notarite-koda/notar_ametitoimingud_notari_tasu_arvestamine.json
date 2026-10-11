@@ -1,0 +1,57 @@
+{
+  "document_id": "web-notar_ametitoimingud_notari_tasu_arvestamine",
+  "title": "Notari tasu arvestamine",
+  "register_title": "Notari tasu arvestamine",
+  "source_id": "notar_ametitoimingud_notari_tasu_arvestamine",
+  "source_type": "web_page",
+  "publisher": "Notarite Koda",
+  "language": "et",
+  "url": "https://www.notar.ee/ametitoimingud/notari-tasu-arvestamine/",
+  "source_path": "notar_ametitoimingud_notari_tasu_arvestamine.html",
+  "source_format": "html",
+  "source_sha256": "e445bc2581b13169e6f436a639465a11a4c601ef6b54a63afb5b04e45fc4f41f",
+  "content_sha256": "37ba68e52361d3187d678470c08e1a7f2cbb1492338130e3b96e768d25e2d455",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:39:53.635Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 10:13:20 GMT",
+      "etag": null
+    },
+    "raw_sha256": "b32da8e821f19f8509d75fa9a8f4c791c79ce920f1b0f47f649fae231a10f271",
+    "stats": {
+      "words": 837,
+      "blocks": 70,
+      "headings": 14,
+      "tables": 0,
+      "links": 3,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

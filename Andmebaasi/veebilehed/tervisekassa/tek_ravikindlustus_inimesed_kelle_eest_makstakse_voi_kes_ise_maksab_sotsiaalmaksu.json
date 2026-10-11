@@ -1,0 +1,57 @@
+{
+  "document_id": "web-tek_ravikindlustus_inimesed_kelle_eest_makstakse_voi_kes_ise_maksab_sotsiaalmaksu",
+  "title": "Inimesed, kelle eest makstakse või kes ise maksab sotsiaalmaksu",
+  "register_title": "Inimesed, kelle eest makstakse või kes ise maksab sotsiaalmaksu",
+  "source_id": "tek_ravikindlustus_inimesed_kelle_eest_makstakse_voi_kes_ise_maksab_sotsiaalmaksu",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/ravikindlustus/inimesed-kelle-eest-makstakse-voi-kes-ise-maksab-sotsiaalmaksu",
+  "source_path": "tek_ravikindlustus_inimesed_kelle_eest_makstakse_voi_kes_ise_maksab_sotsiaalmaksu.html",
+  "source_format": "html",
+  "source_sha256": "00fc198eeec90e5e158cb75eedfc7a4e7991e32d9abfc6ec8998ee762c0aed8c",
+  "content_sha256": "4ee7ae4a4914f67c114fb397fc0550f8fc2c69996e93c70317eb0df8306e7ae8",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:38:32.444Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:07:15 GMT",
+      "etag": null
+    },
+    "raw_sha256": "68aebd828132611d57568c286cd8c775b76b5fba6338ebe9c682cea021f53d94",
+    "stats": {
+      "words": 161,
+      "blocks": 9,
+      "headings": 3,
+      "tables": 0,
+      "links": 18,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

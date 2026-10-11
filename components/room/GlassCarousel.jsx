@@ -20,6 +20,7 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import IconButton from "@/components/glass/IconButton";
 import GlassCard from "@/components/glass/GlassCard";
 import ChevronIcon from "@/components/brand/icons/ChevronIcon";
+import { DockStepsOutlet } from "@/components/stage/DockSteps";
 import RoleViewSwitcher from "@/components/workspace/RoleViewSwitcher";
 import useQuickMenuMotion, { useQuickMenuIndex } from "@/components/ui/useQuickMenuMotion";
 import { HAND_EVENT } from "@/lib/handGestures";
@@ -64,6 +65,10 @@ export default function GlassCarousel({
   /* Dokirežiimis: lehe info-lüliti lehe nime kõrval ({label, icon, active}).
      null = sellel lehel infot ei ole. */
   infoItem = null,
+  /* Ruumi dokk annab pesa, kuhu sammudega leht joonistab oma sammud lehe nime
+     kõrvale (components/stage/DockSteps). Teised dokid (häälvestlus, Kontakt)
+     pesa ei kanna: korraga tohib pesa olla üks. */
+  stepsOutlet = false,
   /* Dokirežiimis: lehe OMA tegevus ({label, icon, active, tone}) — nt
      häälvestluse Alusta/Lõpeta. Erineb currentItem'ist selle poolest, et
      ta on nupp, mitte silt: leht, mille ainus juhtnupp on dokis, ei pea
@@ -924,6 +929,7 @@ export default function GlassCarousel({
                       <span className="gc-shortcut-text">{currentItem.label}</span>
                     </span>
                   ) : null}
+                  {stepsOutlet ? <DockStepsOutlet /> : null}
                   {/* Lehe ⓘ seisab lehe nime KÕRVAL, mitte akna nurgas
                       (omanik 26.07). Vajutus vahetab akna sisu info vastu;
                       teine vajutus toob lehe tagasi — sellepärast on ta
@@ -950,6 +956,8 @@ export default function GlassCarousel({
                     </button>
                   ) : null}
                 </>
+              ) : stepsOutlet ? (
+                <DockStepsOutlet />
               ) : null
             ) : isDesk ? (
               <div className="gc-zone-track">

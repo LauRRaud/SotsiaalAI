@@ -1,0 +1,2122 @@
+{
+  "document_id": "web-ppa_rahvusvaheline_kaitse_kasulikud_materjalid",
+  "title": "Rahvusvaheline kaitse",
+  "register_title": "Rahvusvaheline kaitse",
+  "source_id": "ppa_rahvusvaheline_kaitse_kasulikud_materjalid",
+  "source_type": "web_page",
+  "publisher": "Politsei- ja Piirivalveamet",
+  "language": "et",
+  "url": "https://www.politsei.ee/et/juhend/rahvusvaheline-kaitse/kasulikud-materjalid",
+  "source_path": "ppa_rahvusvaheline_kaitse_kasulikud_materjalid.html",
+  "source_format": "html",
+  "source_sha256": "e2cc8944425d81468f031e43800d48a7483d30fd4ff5814942c6f76eb3d85e73",
+  "content_sha256": "2e2f0f49947b7b4508fea6901fa87d065aed4b9f9a617556f8450c1b97afbd5b",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:39:45.900Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": "Thu, 08 Oct 2026 17:07:49 GMT",
+      "etag": null
+    },
+    "raw_sha256": "c4c17bdd6b985770d7411a174ad09b5d89c7d41c370de5eafcf8d7f24ee7c77c",
+    "stats": {
+      "words": 3144,
+      "blocks": 135,
+      "headings": 70,
+      "tables": 0,
+      "links": 354,
+      "linksToOtherSites": 10
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/sisumenetlus-eesti-keeles.pdf?894f4f78ce",
+      "text": "Sisumenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/korduvtaotlus-eesti-keeles.pdf?15dbef294a",
+      "text": "Korduvtaotlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/piirimenetlus-eesti-keeles.pdf?ede643a601",
+      "text": "Piirimenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/saatjata-alaealised-eesti-keeles.pdf?6863858a4c",
+      "text": "Saatjata alaealised",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/sisumenetlus-vene-keeles.pdf?a69ec4449a",
+      "text": "Sisumenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/korduvtaotlus-vene-keeles.pdf?9fa679cf51",
+      "text": "Korduvtaotlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/piirimenetlus-vene-keeles.pdf?bc337164c9",
+      "text": "Piirimenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/saatjata-alaealised-vene-keeles.pdf?c14a87a345",
+      "text": "Saatjata alaealised",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/2026-06/sisumenetlus-inglise-keeles.pdf?01f71f9ae3",
+      "text": "Sisumenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/korduvtaotlus-inglise-keeles.pdf?614693c5b0",
+      "text": "Korduvtaotlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/piirimenetlus-inglise-keeles.pdf?902de9f564",
+      "text": "Piirimenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/saatjata-alaealised-inglise-keeles.pdf?c081f67fa0",
+      "text": "Saatjata alaealised",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/sisumenetlus-araabia-keeles.pdf?24c86b7eab",
+      "text": "Sisumenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/korduvtaotlus-araabia-keeles.pdf?6ba15f224f",
+      "text": "Korduvtaotlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/piirimenetlus-araabia-keeles.pdf?4dc59fc5c7",
+      "text": "Piirimenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/saatjata-alaealised-araabia-keeles.pdf?a060eda041",
+      "text": "Saatjata alaealised",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/sisumenetlus-hispaania-keeles.pdf?cb32e198f8",
+      "text": "Sisumenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/korduvtaotlus-hispaania-keeles.pdf?3b9b450646",
+      "text": "Korduvtaotlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/piirimenetlus-hispaania-keeles.pdf?80f5048b09",
+      "text": "Piirimenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/saatjata-alaealised-hispaania-keeles.pdf?3fa715e99a",
+      "text": "Saatjata alaealised",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/sisumenetlus-prantsuse-keeles.pdf?17f38eb3a3",
+      "text": "Sisumenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/korduvtaotlus-prantsuse-keeles.pdf?d619a006e4",
+      "text": "Korduvtaotlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/piirimenetlus-prantsuse-keeles.pdf?54a76075bb",
+      "text": "Piirimenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/saatjata-alaealised-prantsuse-keeles.pdf?da6107697f",
+      "text": "Saatjata alaealised",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/sisumenetlus-ukraina-keeles.pdf?69d3e26852",
+      "text": "Sisumenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/korduvtaotlus-ukraina-keeles.pdf?ffeac3b682",
+      "text": "Korduvtaotlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/piirimenetlus-ukraina-keeles.pdf?b14f275260",
+      "text": "Piirimenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/saatjata-alaealised-ukraina-keeles.pdf?4b42689013",
+      "text": "Saatjata alaealised",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/sisumenetlus-albaania-keeles.pdf?0b3b14fb47",
+      "text": "Sisumenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/korduvtaotlus-albaania-keeles.pdf?7b892a1ef6",
+      "text": "Korduvtaotlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/piirimenetlus-albaania-keeles.pdf?7dcc3b7d45",
+      "text": "Piirimenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/saatjata-alaealised-albaania-keeles.pdf?ac0c250557",
+      "text": "Saatjata alaealised",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/sisumenetlus-aserbaidzaani-keeles.pdf?62f6aaec6c",
+      "text": "Sisumenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/korduvtaotlus-aserbaidzaani-keeles.pdf?74e55acb89",
+      "text": "Korduvtaotlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/piirimenetlus-aserbaidzaani-keeles.pdf?9fb13e98eb",
+      "text": "Piirimenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/saatjata-alaealised-aserbaidzaani-keeles.pdf?a59f369e22",
+      "text": "Saatjata alaealised",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/sisumenetlus-bengali-keeles.pdf?c43eef2630",
+      "text": "Sisumenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/korduvtaotlus-bengali-keeles.pdf?0d908a9b30",
+      "text": "Korduvtaotlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/piirimenetlus-bengali-keeles.pdf?d426680844",
+      "text": "Piirimenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/saatjata-alaealised-bengali-keeles.pdf?0e1aa5db19",
+      "text": "Saatjata alaealised",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/sisumenetlus-dari-keeles.pdf?97a889dfa0",
+      "text": "Sisumenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/korduvtaotlus-dari-keeles.pdf?47d93dcda0",
+      "text": "Korduvtaotlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/piirimenetlus-dari-keeles.pdf?a692c69a02",
+      "text": "Piirimenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/saatjata-alaealised-dari-keeles.pdf?a04efbd282",
+      "text": "Saatjata alaealised",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/sisumenetlus-farsi-keeles.pdf?31a9bc399a",
+      "text": "Sisumenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/korduvtaotlus-farsi-keeles.pdf?82a30c0f1f",
+      "text": "Korduvtaotlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/piirimenetlus-farsi-keeles.pdf?54a434e842",
+      "text": "Piirimenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/saatjata-alaealised-farsi-keeles.pdf?77304f2c6e",
+      "text": "Saatjata alaealised",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/sisumenetlus-gruusia-keeles.pdf?90064e4aa7",
+      "text": "Sisumenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/korduvtaotlus-gruusia-keeles.pdf?69d1603ebe",
+      "text": "Korduvtaotlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/piirimenetlus-gruusia-keeles.pdf?dea3c3f76b",
+      "text": "Piirimenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/saatjata-alaealised-gruusia-keeles.pdf?c987edeaa8",
+      "text": "Saatjata alaealised",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/sisumenetlus-hausa-keeles.pdf?8df1d8d9da",
+      "text": "Sisumenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/korduvtaotlus-hausa-keeles.pdf?6b8c0a97d7",
+      "text": "Korduvtaotlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/piirimenetlus-hausa-keeles.pdf?ad861bcc70",
+      "text": "Piirimenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/saatjata-alaealised-hausa-keeles.pdf?17e9692b68",
+      "text": "Saatjata alaealised",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/sisumenetlus-kurdish-kurmandzi.pdf?0f8b04ba85",
+      "text": "Sisumenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/korduvtaotlus-kurdish-kurmandzi.pdf?cea2d8da5c",
+      "text": "Korduvtaotlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/piirimenetlus-kurdish-kurmandzi.pdf?adb7ee069d",
+      "text": "Piirimenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/saatjata-alaealised-kurdish-kurmandzi.pdf?63778553d2",
+      "text": "Saatjata alaealised",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/sisumenetlus-kurdish-sorani.pdf?f59e18f99d",
+      "text": "Sisumenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/korduvmenetlus-kurdish-sorani.pdf?fb4e8e67c9",
+      "text": "Korduvtaotlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/piirimenetlus-kurdish-sorani.pdf?1ba44dbae7",
+      "text": "Piirimenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/saatjata-alaealised-kurdish-sorani.pdf?619708aaf7",
+      "text": "Saatjata alaealised",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/sisumenetlus-tuergi-keeles.pdf?7539048f10",
+      "text": "Sisumenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/korduvtaotlus-tuergi-keeles.pdf?73ca21cbae",
+      "text": "Korduvtaotlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/piirimenetlus-tuergi-keeles.pdf?caeb5709cc",
+      "text": "Piirimenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/saatjata-alaealised-tuergi-keeles.pdf?6958281003",
+      "text": "Saatjata alaealised",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/sisumenetlus-urdu-keeles.pdf?78cacd0a1d",
+      "text": "Sisumenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/korduvtaotlus-urdu-keeles.pdf?7ce12589f1",
+      "text": "Korduvtaotlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/piirimenetlus-urdu-keeles.pdf?5b330d5b2d",
+      "text": "Piirimenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/saatjata-alaealised-urdu-keeles.pdf?747abdc1e9",
+      "text": "Saatjata alaealised",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/sisumenetlus-valgevene-valgevene-keeles.pdf?81d7bb6eeb",
+      "text": "Sisumenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/korduvtaotlus-valgevene-valgevene-keeles.pdf?95383e12bc",
+      "text": "Korduvtaotlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/piirimenetlus-valgevene-valgevene-keeles.pdf?8258112f24",
+      "text": "Piirimenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/saatjata-alaealised-valgevene-keeles.pdf?e9530dae1b",
+      "text": "Saatjata alaealised",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/2026-07/sisumenetlus-hindi-keeles.pdf?f8d6936352",
+      "text": "Sisumenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/2026-07/korduvtaotlus-hindi-keeles.pdf?9ac3d49d0b",
+      "text": "Korduvtaotlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/2026-07/piirimenetlus-hindi-keeles.pdf?09c4af5874",
+      "text": "Piirimenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/2026-07/saatjata-alaealised-hindi-keeles.pdf?dba377b1e3",
+      "text": "Saatjata alaealised",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/2026-07/sisumenetlus-tigrinja-keeles.pdf?a1609ec06b",
+      "text": "Sisumenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/2026-07/korduvtaotlus-tigrinja-keeles.pdf?07b2059c05",
+      "text": "Korduvtaotlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/2026-07/piirimenetlus-tigrinja-keeles.pdf?338f4351b5",
+      "text": "Piirimenetlus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/2026-07/saatjata-alaealised-tigrinja-keeles.pdf?733acd2bc1",
+      "text": "Saatjata alaealised",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/2026-07/AMMR%20infomaterjalid/taeiskasvanud-ebaseaduslikult-viibijatele-mida-peate-teadma-varjupaiga-ja-raelndehalduse-maeaeruse-kohta-eesti.pdf?6e236e0967",
+      "text": "Täiskasvanud ebaseaduslikule viibijale - mida pead teadma varjupaiga- ja rände haldamise määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/2026-07/AMMR%20infomaterjalid/taeiskasvanud-rvk-saajad-mida-peate-teadma-uemberpaigutamise-kohta-eesti-keeles.pdf?a67e19385e",
+      "text": "Täiskasvanud rahvusvahelise kaitse saajad - mida pead teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/2026-07/AMMR%20infomaterjalid/taeiskasvanud-rvk-taotlejatele-mida-peate-teadma-varjupaiga-ja-raendehalduse-maeaeruse-kohta-eesti-keeles.pdf?b29f366db1",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma varjupaiga-ja rändehalduse määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/2026-07/AMMR%20infomaterjalid/taeiskasvanud-rvk-taotlejatele-mida-peate-teadma-uemberpaigutamise-kohta-eesti-keeles.pdf?5712d0413e",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-ebaseaduslikult-viibijatele-mida-peate-teadma-varjupaiga-ja-raendehalduse-maeaeruse-kohta-vene-keeles.pdf?0372474c21",
+      "text": "Täiskasvanud ebaseaduslikule viibijale - mida pead teadma varjupaiga- ja rände haldamise määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-saajad-mida-peate-teadma-uemberpaigutamise-kohta-vene-keeles.pdf?ad583a7310",
+      "text": "Täiskasvanud rahvusvahelise kaitse saajad - mida pead teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-taotlejatele-mida-peate-teadma-varjupaiga-ja-raendehalduse-maeaeruse-kohta-vene-keeles.pdf?d4111e8698",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma varjupaiga-ja rändehalduse määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-taotlejatele-mida-peate-teadma-uemberpaigutamise-kohta-vene-keeles.pdf?9c512f3f33",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-ebaseaduslikult-viibijatele-mida-peate-teadma-varjupaiga-ja-raelndehalduse-maeaeruse-kohta-inglise.pdf?a5a18bd4b6",
+      "text": "Täiskasvanud ebaseaduslikule viibijale - mida pead teadma varjupaiga- ja rände haldamise määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-saajad-mida-peate-teadma-uemberpaigutamise-kohta-inglise.pdf?cfcf359f61",
+      "text": "Täiskasvanud rahvusvahelise kaitse saajad - mida pead teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-taotlejatele-mida-peate-teadma-varjupaiga-ja-raendehalduse-maeaeruse-kohta-inglise-keeles.pdf?11376f0411",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma varjupaiga-ja rändehalduse määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-taotlejatele-mida-peate-teadma-uemberpaigutamise-kohta-inglise-keeles.pdf?aa0f25a234",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-ebaseaduslikult-viibijatele-mida-peate-teadma-varjupaiga-ja-raelndehalduse-maeaeruse-kohta-araabia-keeles.pdf?15a7612b14",
+      "text": "Täiskasvanud ebaseaduslikule viibijale - mida pead teadma varjupaiga- ja rände haldamise määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-saajad-mida-peate-teadma-uemberpaigutamise-kohta-araabia-keeles.pdf?9040d2927b",
+      "text": "Täiskasvanud rahvusvahelise kaitse saajad - mida pead teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-taotlejatele-mida-peate-teadma-varjupaiga-ja-raendehalduse-maeaeruse-kohta-araabia-keeles.pdf?c7dfd571b5",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma varjupaiga-ja rändehalduse määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-taotlejatele-mida-peate-teadma-uemberpaigutamise-kohta-araabia-keeles.pdf?9feb745c1f",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-ebaseaduslikult-viibijatele-mida-peate-teadma-varjupaiga-ja-raendehalduse-maeaeruse-kohta-hispaania-keeles.pdf?488aa7ae15",
+      "text": "Täiskasvanud ebaseaduslikule viibijale - mida pead teadma varjupaiga- ja rände haldamise määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-saajad-mida-peate-teadma-uemberpaigutamise-kohta-hispaania-keeles.pdf?39a54b0bee",
+      "text": "Täiskasvanud rahvusvahelise kaitse saajad - mida pead teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-taotlejatele-mida-peate-teadma-varjupaiga-ja-raendehalduse-maeaeruse-kohta-hispaania-keeles.pdf?9506d6157e",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma varjupaiga-ja rändehalduse määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-taotlejatele-mida-peate-teadma-uemberpaigutamise-kohta-hispaania-keeles.pdf?d8d4590b78",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-ebaseaduslikult-viibijatele-mida-peate-teadma-varjupaiga-ja-raendehalduse-maeaeruse-kohta-prantsuse-keeles.pdf?caf5d07eb0",
+      "text": "Täiskasvanud ebaseaduslikule viibijale - mida pead teadma varjupaiga- ja rände haldamise määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-saajad-mida-peate-teadma-uemberpaigutamise-kohta-prantsuse-keeles.pdf?1a24f92b8a",
+      "text": "Täiskasvanud rahvusvahelise kaitse saajad - mida pead teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-taotlejatele-mida-peate-teadma-varjupaiga-ja-raendehalduse-maeaeruse-kohta-prantsuse-keeles.pdf?9d8649b450",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma varjupaiga-ja rändehalduse määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-taotlejatele-mida-peate-teadma-uemberpaigutamise-kohta-prantsuse-keeles.pdf?cfa7f2714b",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-ebaseaduslikult-viibijatele-mida-peate-teadma-varjupaiga-ja-raendehalduse-maeaeruse-kohta-ukraina-keeles.pdf?86c0168343",
+      "text": "Täiskasvanud ebaseaduslikule viibijale - mida pead teadma varjupaiga- ja rände haldamise määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-saajad-mida-peate-teadma-uemberpaigutamise-kohta-ukraina-keeles.pdf?83e1f24956",
+      "text": "Täiskasvanud rahvusvahelise kaitse saajad - mida pead teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-taotlejatele-mida-peate-teadma-varjupaiga-ja-raendehalduse-maeaeruse-kohta-ukraina-keeles.pdf?31a0e6f6db",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma varjupaiga-ja rändehalduse määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-taotlejatele-mida-peate-teadma-uemberpaigutamise-kohta-ukraina-keeles.pdf?5a0480ed52",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-ebaseaduslikult-viibijatele-mida-peate-teadma-varjupaiga-ja-raelndehalduse-maeaeruse-kohta-aseri.pdf?ea5a3ce23d",
+      "text": "Täiskasvanud ebaseaduslikule viibijale - mida pead teadma varjupaiga- ja rände haldamise määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-saajad-mida-peate-teadma-uemberpaigutamise-kohta-aseri-keeles.pdf?9888781129",
+      "text": "Täiskasvanud rahvusvahelise kaitse saajad - mida pead teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-taotlejatele-mida-peate-teadma-varjupaiga-ja-raendehalduse-maeaeruse-kohta-aseri-keeles.pdf?238ee7a417",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma varjupaiga-ja rändehalduse määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-taotleja-mida-peate-teadma-uemberpaigutamise-kohta-aseri-keeles.pdf?0befb9237c",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-ebaseaduslikult-viibijatele-mida-peate-teadma-varjupaiga-ja-raendehalduse-maeaeruse-kohta-bengali-keeles.pdf?49eff51858",
+      "text": "Täiskasvanud ebaseaduslikule viibijale - mida pead teadma varjupaiga- ja rände haldamise määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-saajad-mida-peate-teadma-uemberpaigutamise-kohta-bengali-keeles.pdf?4f6ba77451",
+      "text": "Täiskasvanud rahvusvahelise kaitse saajad - mida pead teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-taotlejatele-mida-peate-teadma-varjupaiga-ja-raendehalduse-maeaeruse-kohta-bengali-keeles.pdf?bc085f5889",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma varjupaiga-ja rändehalduse määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-taotlejatele-mida-peate-teadma-uemberpaigutamise-kohta-bengali-keeles.pdf?2f0e89b66f",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/ta-iskasvanud-ebaseaduslikult-viibijatele-mida-peate-teadma-varjupaiga-ja-ra-ndehalduse-ma-a-ruse-kohta-dari-keeles.pdf?6765ecfdbb",
+      "text": "Täiskasvanud ebaseaduslikule viibijale - mida pead teadma varjupaiga- ja rände haldamise määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/ta-iskasvanud-rvk-saajad-mida-peate-teadma-u-mberpaigutamise-kohta-dari-keeles.pdf?8473abc24c",
+      "text": "Täiskasvanud rahvusvahelise kaitse saajad - mida pead teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/ta-iskasvanud-rvk-taotlejatele-mida-peate-teadma-varjupaiga-ja-ra-ndehalduse-ma-a-ruse-kohta-dari-keeles.pdf?d39791dadc",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma varjupaiga-ja rändehalduse määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/ta-iskasvanud-rvk-taotlejatele-mida-peate-teadma-u-mberpaigutamise-kohta-dari-keeles.pdf?d2b483e64d",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/ta-iskasvanud-ebaseaduslikult-viibijatele-mida-peate-teadma-varjupaiga-ja-ra-ndehalduse-ma-a-ruse-kohta-farsi-keeles.pdf?99c533e836",
+      "text": "Täiskasvanud ebaseaduslikule viibijale - mida pead teadma varjupaiga- ja rände haldamise määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/ta-iskasvanud-rvk-saajad-mida-peate-teadma-u-mberpaigutamise-kohta-farsi-keeles.pdf?72b9ecbec9",
+      "text": "Täiskasvanud rahvusvahelise kaitse saajad - mida pead teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/ta-iskasvanud-rvk-taotlejatele-mida-peate-teadma-varjupaiga-ja-ra-ndehalduse-ma-a-ruse-kohta-farsi-keeles.pdf?e817410b30",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma varjupaiga-ja rändehalduse määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/ta-iskasvanud-rvk-taotlejatele-mida-peate-teadma-u-mberpaigutamise-kohta-farsi-keeles.pdf?7ab08d3047",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-ebaseaduslikult-viibijatele-mida-peate-teadma-varjupaiga-ja-raendehalduse-maeaeruse-kohta-gruusia-keeles.pdf?334ec0845b",
+      "text": "Täiskasvanud ebaseaduslikule viibijale - mida pead teadma varjupaiga- ja rände haldamise määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-saajad-mida-peate-teadma-uemberpaigutamise-kohta-gruusia-keeles.pdf?9026496ad5",
+      "text": "Täiskasvanud rahvusvahelise kaitse saajad - mida pead teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-taotlejatele-mida-peate-teadma-varjupaiga-ja-raendehalduse-maeaeruse-kohta-gruusia-keeles.pdf?05b8041a16",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma varjupaiga-ja rändehalduse määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-taotlejatele-mida-peate-teadma-uemberpaigutamise-kohta-gruusia-keeles.pdf?9cb6df1793",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-ebaseaduslikult-viibijatele-mida-peate-teadma-ammr-maeaeruse-kohta-hausa-keeles.pdf?6b65e0f5b9",
+      "text": "Täiskasvanud ebaseaduslikule viibijale - mida pead teadma varjupaiga- ja rände haldamise määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-saajad-mida-peate-teadma-uemberpaigutamise-kohta-hausa-keeles.pdf?0945737260",
+      "text": "Täiskasvanud rahvusvahelise kaitse saajad - mida pead teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-taotlejatele-varjupaiga-ja-raendehalduse-maeaerus-hausa-keeles.pdf?81148c2ed4",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma varjupaiga-ja rändehalduse määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-taotlejatele-mida-peate-teadma-uemberpaigutamise-kohta-hausa-keeles.pdf?dc0109a655",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-ebaseaduslikult-viibijatele-mida-peate-teadma-varjupaiga-ja-raendehalduse-maeaeruse-kohta-kurdi-kurmandzi.pdf?1e3b85d3a3",
+      "text": "Täiskasvanud ebaseaduslikule viibijale - mida pead teadma varjupaiga- ja rände haldamise määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-saajad-mida-peate-teadma-uemberpaigutamise-kohta-kurdi-kurmandzi-keeles.pdf?42802f2596",
+      "text": "Täiskasvanud rahvusvahelise kaitse saajad - mida pead teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-taotlejatele-mida-peate-teadma-varjupaiga-ja-raendehalduse-maeaeruse-kohta-kurdi-kurmandzi-keeles.pdf?94455bdc9f",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma varjupaiga-ja rändehalduse määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-taotlejatele-mida-peate-teadma-uemberpaigutamise-kohta-kurdi-kurmandzi-keeles.pdf?e464ade730",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/ta-iskasvanud-ebaseaduslikult-viibijatele-mida-peate-teadma-varjupaiga-ja-raelndehalduse-maeaeruse-kohta-kurdi-sorani.pdf?9017a4b180",
+      "text": "Täiskasvanud ebaseaduslikule viibijale - mida pead teadma varjupaiga- ja rände haldamise määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/ta-iskasvanud-rvk-saajad-mida-peate-teadma-u-mberpaigutamise-kohta-kurdi-sorani-keeles.pdf?34b229907a",
+      "text": "Täiskasvanud rahvusvahelise kaitse saajad - mida pead teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/ta-iskasvanud-rvk-taotlejatele-mida-peate-teadma-varjupaiga-ja-ra-ndehalduse-ma-a-ruse-kohta-kurdi-sorani-keeles.pdf?5f84894e23",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma varjupaiga-ja rändehalduse määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/ta-iskasvanud-rvk-taotlejatele-mida-peate-teadma-u-mberpaigutamise-kohta-kurdi-sorani-keeles.pdf?6a8944f451",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-ebaseaduslikult-viibijatele-mida-peate-teadma-varjupaiga-ja-raendehalduse-maeaeruse-kohta-tuergi-keeles.pdf?b600967ab8",
+      "text": "Täiskasvanud ebaseaduslikule viibijale - mida pead teadma varjupaiga- ja rände haldamise määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-saajad-mida-peate-teadma-uemberpaigutamise-kohta-tuergi-keeles.pdf?8701b97677",
+      "text": "Täiskasvanud rahvusvahelise kaitse saajad - mida pead teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-taotlejatele-mida-peate-teadma-varjupaiga-ja-raendehalduse-maeaeruse-kohta-tuergi-keeles.pdf?63e7587d41",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma varjupaiga-ja rändehalduse määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-taotlejatele-mida-peate-teadma-uemberpaigutuse-kohta-tuergi-keeles.pdf?b887a46889",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-ebaseaduslikult-viibijatele-mida-peate-teadma-varjupaiga-ja-raendehalduse-maeaeruse-kohta-urdu-keeles.pdf?860638168e",
+      "text": "Täiskasvanud ebaseaduslikule viibijale - mida pead teadma varjupaiga- ja rände haldamise määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-saajad-mida-peate-teadma-uemberpaigutamise-kohta-urdu-keeles.pdf?0c82f8c00a",
+      "text": "Täiskasvanud rahvusvahelise kaitse saajad - mida pead teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-taotlejatele-mida-peate-teadma-varjupaiga-ja-raendehalduse-maeaeruse-kohta-urdu-keeles.pdf?ed7c2be8aa",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma varjupaiga-ja rändehalduse määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-taotlejatele-mida-peate-teadma-uemberpaigutamise-kohta-urdu-keeles.pdf?4ee87d5ac9",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-ebaseaduslikult-viibijatele-mida-peate-teadma-ammr-kohta-valgevene-keeles.pdf?3f65cec273",
+      "text": "Täiskasvanud ebaseaduslikule viibijale - mida pead teadma varjupaiga- ja rände haldamise määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-saajad-mida-peate-teadma-uemberpaigutamise-kohta-valgevene-keeles.pdf?c563dea36c",
+      "text": "Täiskasvanud rahvusvahelise kaitse saajad - mida pead teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-taotlejatele-mida-peate-teadma-varjupaiga-ja-raendehalduse-maeaeruse-kohta-valgevene-keeles.pdf?70028a0a52",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma varjupaiga-ja rändehalduse määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-taotleja-mida-peate-teadma-uemberpaigutamise-kohta-valgevene-keeles.pdf?b69ed9f3aa",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-ebaseaduslikult-viibijatele-mida-peate-teadma-varjupaiga-ja-raendehalduse-maeaeruse-kohta-hindi-keeles.pdf?922ff4f644",
+      "text": "Täiskasvanud ebaseaduslikule viibijale - mida pead teadma varjupaiga- ja rände haldamise määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-saajad-mida-peate-teadma-uemberpaigutamise-kohta-hindi-keeles.pdf?c57b23873e",
+      "text": "Täiskasvanud rahvusvahelise kaitse saajad - mida pead teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-taotlejatele-mida-peate-teadma-varjupaiga-ja-raendehalduse-maeaeruse-kohta-hindi-keeles.pdf?d30f70543e",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma varjupaiga-ja rändehalduse määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-taotlejatele-mida-peate-teadma-uemberpaigutamise-kohta-hindi-keeles.pdf?92f3055ece",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-ebaseaduslikult-viibijatele-mida-peate-teadma-varjupaiga-ja-raendehalduse-maeaeruse-kohta-tigrinja-keeles.pdf?8514b77067",
+      "text": "Täiskasvanud ebaseaduslikule viibijale - mida pead teadma varjupaiga- ja rände haldamise määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-saajad-mida-peate-teadma-uemberpaigutamise-kohta-tigrinja-keeles.pdf?b855d7bb9d",
+      "text": "Täiskasvanud rahvusvahelise kaitse saajad - mida pead teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-taotlejatele-mida-peate-teadma-varjupaiga-ja-raendehalduse-maeaeruse-kohta-tigrinja-keeles.pdf?72bd545cf4",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma varjupaiga-ja rändehalduse määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-taotlejatele-mida-peate-teadma-uemberpaigutamise-kohta-tigrinja-keeles.pdf?1ff9c02e0b",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-ebaseaduslikult-viibijatele-mida-peate-teadma-varjupaiga-ja-raelndehalduse-maeaeruse-kohta-tamili-keeles.pdf?538e339607",
+      "text": "Täiskasvanud ebaseaduslikule viibijale - mida pead teadma varjupaiga- ja rände haldamise määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-saajad-mida-peate-teadma-uemberpaigutamise-kohta-tamili-keeles.pdf?978c84ab56",
+      "text": "Täiskasvanud rahvusvahelise kaitse saajad - mida pead teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-taotlejatele-mida-peate-teadma-varjupaiga-ja-raendehalduse-maeaeruse-kohta-tamili-keeles.pdf?08157ea800",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma varjupaiga-ja rändehalduse määruse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/taeiskasvanud-rvk-taotleja-mida-peate-teadma-uemberpaigutamise-kohta-tamili-keeles.pdf?e36cb9ba03",
+      "text": "Täiskasvanud rahvusvahelise kaitse taotlejatele - mida peate teadma ümberpaigutamise kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/mida-peate-teadma-eurodac-suesteemi-kohta-eesti.pdf?4b615b201d",
+      "text": "Mida peate teadma Eurodac-süsteemi kohta?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ebaseaduslikult-viibivatele-isikutele-eesti.pdf?25fb53c6c4",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ebaseaduslikult viibivatele isikutele?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-isikutele-kes-on-kinni-peetud-seoses-ebaseadusliku-piiriueletusega-eesti.pdf?01aec45594",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - isikutele, kes on kinni peetud seoses ebaseadusliku piiriületusega?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-rahvusvahelise-kaitse-taotlejad-eesti.pdf?1f5448bd6b",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - rahvusvahelise kaitse taotlejad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ajutise-kaitse-saajad-eesti.pdf?f069a74875",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ajutise kaitse saajad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-otsingu-ja-paeaesteoperatsioon-eesti.pdf?4b1f3b715b",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - otsingu ja päästeoperatsioon?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-uemberasustamine-voi-humanitaarne-vastuvott-eesti.pdf?3fca26a7b7",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ümberasustamine või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-on-vaja-sormejaelgi-ja-fotot-uemberasustamine-voi-humanitaane-vastuvott-eesti.pdf?4e027e118c",
+      "text": "Miks on vaja sõrmejälgi ja fotot – ümberasustamine- või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/mida-peate-teadma-eurodac-suesteemi-kohta-vene.pdf?df4503473f",
+      "text": "Mida peate teadma Eurodac-süsteemi kohta?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ebaseaduslikult-viibivatele-isikutele-vene.pdf?0c3e93a72f",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ebaseaduslikult viibivatele isikutele?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-isikutele-kes-on-kinni-peetud-seoses-ebaseadusliku-piiriueletusega-vene.pdf?eece1fd4c0",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - isikutele, kes on kinni peetud seoses ebaseadusliku piiriületusega?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-rahvusvahelise-kaitse-taotlejad-vene.pdf?e229552193",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - rahvusvahelise kaitse taotlejad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ajutise-kaitse-saajad-vene.pdf?036e169d2d",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ajutise kaitse saajad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-otsingu-ja-paeaesteoperatsioon-vene.pdf?581b634ef5",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - otsingu ja päästeoperatsioon?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-vene.pdf?746ebd5b64",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ümberasustamine või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-on-vaja-sormejaelgi-ja-fotot-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-vene.pdf?419e5c000e",
+      "text": "Miks on vaja sõrmejälgi ja fotot – ümberasustamine- või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/mida-peate-teadma-eurodac-suesteemi-kohta-inglise.pdf?7e9313ef85",
+      "text": "Mida peate teadma Eurodac-süsteemi kohta?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ebaseaduslikult-viibivatele-isikutele-inglise.pdf?adf20cd735",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ebaseaduslikult viibivatele isikutele?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-isikutele-kinnipeetud-ebaseadusliku-piiriueletusega-inglise.pdf?9dd1c2e576",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - isikutele, kes on kinni peetud seoses ebaseadusliku piiriületusega?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-rahvusvahelise-kaitse-taotlejad-inglise.pdf?d464e01b71",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - rahvusvahelise kaitse taotlejad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ajutise-kaitse-saajad-inglise.pdf?db240b4975",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ajutise kaitse saajad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-otsingu-ja-paeaesteoperatsioon-inglise.pdf?9e3c914a4f",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - otsingu ja päästeoperatsioon?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-inglise.pdf?915bd7c4e0",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ümberasustamine või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-on-vaja-sormejaelgi-ja-fotot-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-inglise.pdf?7de5041650",
+      "text": "Miks on vaja sõrmejälgi ja fotot – ümberasustamine- või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/mida-peate-teadma-eurodac-suesteemi-kohta-araabia.pdf?f8d660d952",
+      "text": "Mida peate teadma Eurodac-süsteemi kohta?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ebaseaduslikult-viibivatele-isikutele-araabia.pdf?d2c2b22f8d",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ebaseaduslikult viibivatele isikutele?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-isikutele-kes-on-kinni-peetud-seoses-ebaseadusliku-piiriueletusega-araabia.pdf?9893f2de3f",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - isikutele, kes on kinni peetud seoses ebaseadusliku piiriületusega?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-rahvusvahelise-kaitse-taotlejad-araabia.pdf?d1cdc11a89",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - rahvusvahelise kaitse taotlejad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ajutise-kaitse-saajad-araabia.pdf?65791cecc8",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ajutise kaitse saajad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-otsingu-ja-paeaesteoperatsioon-araabia.pdf?cc305ab12f",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - otsingu ja päästeoperatsioon?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-riiklik-uemberasustamine-voi-humanitaarse-vastuvott-araabia.pdf?9114505222",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ümberasustamine või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-on-vaja-sormejaelgi-ja-fotot-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-araabia.pdf?9f3b7e7c4f",
+      "text": "Miks on vaja sõrmejälgi ja fotot – ümberasustamine- või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/mida-peate-teadma-eurodac-suesteemi-kohta-albaania.pdf?c48749f786",
+      "text": "Mida peate teadma Eurodac-süsteemi kohta?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ebaseaduslikult-viibivatele-isikutele-albaania.pdf?78ff5438d1",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ebaseaduslikult viibivatele isikutele?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-isikutele-kes-on-kinni-peetud-seoses-ebaseadusliku-piiriueletusega-albaania.pdf?9dfd4be768",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - isikutele, kes on kinni peetud seoses ebaseadusliku piiriületusega?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-rahvusvahelise-kaitse-taotlejad-albaania.pdf?ce584dd353",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - rahvusvahelise kaitse taotlejad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ajutise-kaitse-saajad-albaania.pdf?fd7274d835",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ajutise kaitse saajad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-otsingu-ja-paeaesteoperatsioon-albaania.pdf?9254cfd417",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - otsingu ja päästeoperatsioon?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-albaania.pdf?58c0ad21f7",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ümberasustamine või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-on-vaja-sormejaelgi-ja-fotot-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-albaania.pdf?a82a212267",
+      "text": "Miks on vaja sõrmejälgi ja fotot – ümberasustamine- või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/mida-peate-teadma-eurodac-suesteemi-kohta-hispaania.pdf?9e74857384",
+      "text": "Mida peate teadma Eurodac-süsteemi kohta?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ebaseaduslikult-viibivatele-isikutele-hispaania.pdf?6be1b469a5",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ebaseaduslikult viibivatele isikutele?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-isikutele-kes-on-kinni-peetud-seoses-ebaseadusliku-piiriueletusega-hispaania.pdf?b3522e3d2e",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - isikutele, kes on kinni peetud seoses ebaseadusliku piiriületusega?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-rahvusvahelise-kaitse-taotlejad-hispaania.pdf?d4a0d283a6",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - rahvusvahelise kaitse taotlejad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ajutise-kaitse-saajad-hispaania.pdf?cfbaefac7d",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ajutise kaitse saajad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-otsingu-ja-paeaesteoperatsioon-hispaania.pdf?b450954a97",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - otsingu ja päästeoperatsioon?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-hispaania.pdf?8cf707e363",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ümberasustamine või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-on-vaja-sormejaelgi-ja-fotot-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-hispaania.pdf?71c0be9379",
+      "text": "Miks on vaja sõrmejälgi ja fotot – ümberasustamine- või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/mida-peate-teadma-eurodac-suesteemi-kohta-prantsuse.pdf?b825cb6fc7",
+      "text": "Mida peate teadma Eurodac-süsteemi kohta?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ebaseaduslikult-viibivatele-isikutele-prantsuse.pdf?5a11274109",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ebaseaduslikult viibivatele isikutele?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-isikutele-kes-on-kinni-peetud-seoses-ebaseadusliku-piiriueletusega-prantsuse.pdf?919906bee9",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - isikutele, kes on kinni peetud seoses ebaseadusliku piiriületusega?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-rahvusvahelise-kaitse-taotlejad-prantsuse.pdf?b077f0b462",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - rahvusvahelise kaitse taotlejad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ajutise-kaitse-saajad-prantsuse.pdf?2218ffeae0",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ajutise kaitse saajad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-otsingu-ja-paeaesteoperatsioon-prantsuse.pdf?3ea422abea",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - otsingu ja päästeoperatsioon?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-prantsuse.pdf?ec879df39f",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ümberasustamine või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-on-vaja-sormejaelgi-ja-fotot-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-prantsuse.pdf?bfc2204ac0",
+      "text": "Miks on vaja sõrmejälgi ja fotot – ümberasustamine- või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/mida-peate-teadma-eurodac-suesteemi-kohta-ukraina.pdf?b1c7fe7c29",
+      "text": "Mida peate teadma Eurodac-süsteemi kohta?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ebaseaduslikult-viibivatele-isikutele-ukraina.pdf?959f31607f",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ebaseaduslikult viibivatele isikutele?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-isikutele-kes-on-kinni-peetud-seoses-ebaseadusliku-piiriueletusega-ukraina.pdf?59a80c72d6",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - isikutele, kes on kinni peetud seoses ebaseadusliku piiriületusega?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-rahvusvahelise-kaitse-taotlejad-ukraina.pdf?446bd19eae",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - rahvusvahelise kaitse taotlejad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ajutise-kaitse-saajad-ukraina.pdf?bfdc3870ac",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ajutise kaitse saajad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-otsingu-ja-paeaesteoperatsioon-ukraina.pdf?7c490e9fce",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - otsingu ja päästeoperatsioon?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-ukraina.pdf?2f2a63e100",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ümberasustamine või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-on-vaja-sormejaelgi-ja-fotot-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-ukraina.pdf?8cdf96f8d9",
+      "text": "Miks on vaja sõrmejälgi ja fotot – ümberasustamine- või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/mida-peate-teadma-eurodac-suesteemi-kohta-aseri.pdf?9e16a5d384",
+      "text": "Mida peate teadma Eurodac-süsteemi kohta?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ebaseaduslikult-viibivatele-isikutele-aseri.pdf?d3ab3f8aee",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ebaseaduslikult viibivatele isikutele?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-isikutele-kes-on-kinni-peetud-seoses-ebaseadusliku-piiriueletusega-aseri.pdf?06bed22889",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - isikutele, kes on kinni peetud seoses ebaseadusliku piiriületusega?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-rahvusvahelise-kaitse-taotlejad-aseri.pdf?aafdad652e",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - rahvusvahelise kaitse taotlejad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ajutise-kaitse-saajad-aseri.pdf?5c7600e449",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ajutise kaitse saajad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-otsingu-ja-paeaesteoperatsioon-aseri.pdf?1ac911800f",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - otsingu ja päästeoperatsioon?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-riikliku-uemberasustamine-voi-humanitaarne-vastuvott-aseri.pdf?39bd3f0990",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ümberasustamine või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-on-vaja-sormejaelgi-ja-fotot-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-aseri.pdf?49b39e6a54",
+      "text": "Miks on vaja sõrmejälgi ja fotot – ümberasustamine- või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/mida-peate-teadma-eurodac-suesteemi-kohta-bengali.pdf?4d09ec5dad",
+      "text": "Mida peate teadma Eurodac-süsteemi kohta?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ebaseaduslikult-viibivatele-isikutele-bengali.pdf?c3f9cf28f3",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ebaseaduslikult viibivatele isikutele?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-isikutele-kes-on-kinni-peetud-seoses-ebaseadusliku-piiriueletusega-bengali.pdf?bf71fb3daa",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - isikutele, kes on kinni peetud seoses ebaseadusliku piiriületusega?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-rahvusvahelise-kaitse-taotlejad-bengali.pdf?64d3a31f71",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - rahvusvahelise kaitse taotlejad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ajutise-kaitse-saajad-bengali.pdf?d1fef20a5c",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ajutise kaitse saajad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-otsingu-ja-paeaesteoperatsioon-bengali.pdf?d86df8f287",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - otsingu ja päästeoperatsioon?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-bengali.pdf?0d5776fcd5",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ümberasustamine või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-on-vaja-sormejaelgi-ja-fotot-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-bengali.pdf?a6f795170b",
+      "text": "Miks on vaja sõrmejälgi ja fotot – ümberasustamine- või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/mida-peate-teadma-eurodac-suesteemi-kohta-dari.pdf?ab510e3f38",
+      "text": "Mida peate teadma Eurodac-süsteemi kohta?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ebaseaduslikult-viibivatele-isikutele-dari.pdf?767ddd4926",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ebaseaduslikult viibivatele isikutele?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-isikutele-kes-on-kinni-peetud-seoses-ebaseadusliku-piiriueletusega-dari.pdf?808425c545",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - isikutele, kes on kinni peetud seoses ebaseadusliku piiriületusega?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-rahvusvahelise-kaitse-taotlejad-dari.pdf?42dc88759c",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - rahvusvahelise kaitse taotlejad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ajutise-kaitse-saajad-dari.pdf?e73a892804",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ajutise kaitse saajad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-otsingu-ja-paeaesteoperatsioon-dari.pdf?09afb3b49f",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - otsingu ja päästeoperatsioon?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-riikliku-uemberasustamine-voi-humanitaarne-vastuvott-dari.pdf?2f157a86f9",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ümberasustamine või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-on-vaja-sormejaelgi-ja-fotot-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-dari.pdf?9d0e9dde87",
+      "text": "Miks on vaja sõrmejälgi ja fotot – ümberasustamine- või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/mida-peate-teadma-eurodac-suesteemi-kohta-farsi.pdf?0fb33d4cc7",
+      "text": "Mida peate teadma Eurodac-süsteemi kohta?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ebaseaduslikult-viibivatele-isikutele-farsi.pdf?03976dbcb0",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ebaseaduslikult viibivatele isikutele?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-isikutele-kes-on-kinni-peetud-seoses-ebaseadusliku-piiriueletusega-farsi.pdf?ec7f6cf79f",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - isikutele, kes on kinni peetud seoses ebaseadusliku piiriületusega?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-rahvusvahelise-kaitse-taotlejad-farsi.pdf?87de800952",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - rahvusvahelise kaitse taotlejad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ajutise-kaitse-saajad-farsi.pdf?7132d974f5",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ajutise kaitse saajad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-otsingu-ja-paeaesteoperatsioon-farsi.pdf?31d9a88686",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - otsingu ja päästeoperatsioon?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-farsi.pdf?e2db2100bf",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ümberasustamine või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-on-vaja-sormejaelgi-ja-fotot-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-farsi.pdf?b3ff7976c4",
+      "text": "Miks on vaja sõrmejälgi ja fotot – ümberasustamine- või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/mida-peate-teadma-eurodac-suesteemi-kohta-gruusia.pdf?acf87f1078",
+      "text": "Mida peate teadma Eurodac-süsteemi kohta?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ebaseaduslikult-viibivatele-isikutele-gruusia.pdf?229e1dd1b4",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ebaseaduslikult viibivatele isikutele?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-isikutele-kes-on-kinni-peetud-seoses-ebaseadusliku-piiriueletusega-gruusia.pdf?051e824ec2",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - isikutele, kes on kinni peetud seoses ebaseadusliku piiriületusega?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-rahvusvahelise-kaitse-taotlejad-gruusia.pdf?a1ef2e615f",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - rahvusvahelise kaitse taotlejad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ajutise-kaitse-saajad-gruusia.pdf?f7cdd8939f",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ajutise kaitse saajad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-otsingu-ja-paeaesteoperatsioon-gruusia.pdf?d87e3fe173",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - otsingu ja päästeoperatsioon?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-gruusia.pdf?acdc58e892",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ümberasustamine või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-on-vaja-sormejaelgi-ja-fotot-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-gruusia.pdf?c41d6a05b3",
+      "text": "Miks on vaja sõrmejälgi ja fotot – ümberasustamine- või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/mida-peate-teadma-eurodac-suesteemi-kohta-hausa.pdf?e8aa100c90",
+      "text": "Mida peate teadma Eurodac-süsteemi kohta?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ebaseaduslikult-viibivatele-isikutele-hausa.pdf?cc23bf9749",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ebaseaduslikult viibivatele isikutele?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-isikutele-kinnipeetud-ebaseadusliku-piiriueletusega-hausa.pdf?b3a69aa593",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - isikutele, kes on kinni peetud seoses ebaseadusliku piiriületusega?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-rahvusvahelise-kaitse-taotlejad-hausa.pdf?d0334db45f",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - rahvusvahelise kaitse taotlejad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ajutise-kaitse-saajad-hausa.pdf?f46f69d46f",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ajutise kaitse saajad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-otsingu-ja-paeaesteoperatsioon-hausa.pdf?af97edd254",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - otsingu ja päästeoperatsioon?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-hausa.pdf?53527eb317",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ümberasustamine või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-on-vaja-sormejaelgi-ja-fotot-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-hausa.pdf?9bc5c10ba6",
+      "text": "Miks on vaja sõrmejälgi ja fotot – ümberasustamine- või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/mida-peate-teadma-eurodac-suesteemi-kohta-kurdi-kurmandzi.pdf?bd0404b89d",
+      "text": "Mida peate teadma Eurodac-süsteemi kohta?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ebaseaduslikult-viibivatele-isikutele-kurdi-kurmandzi.pdf?dc782e86e0",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ebaseaduslikult viibivatele isikutele?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-isikutele-kes-on-kinni-peetud-seoses-ebaseadusliku-piiriueletusega-kurdi-kurmandzi.pdf?a2b14e45d6",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - isikutele, kes on kinni peetud seoses ebaseadusliku piiriületusega?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-rahvusvahelise-kaitse-taotlejad-kurdi-kurmandzi.pdf?748fc9ac63",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - rahvusvahelise kaitse taotlejad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ajutise-kaitse-saajad-kurdi-kurmandzi.pdf?f99e49190e",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ajutise kaitse saajad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-otsingu-ja-paeaesteoperatsioon-kurdi-kurmandzi.pdf?6f04bdd83a",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - otsingu ja päästeoperatsioon?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-kurdi-kurmandzi.pdf?c2248a1634",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ümberasustamine või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-on-vaja-sormejaelgi-ja-fotot-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-kurdi-kurmandzi.pdf?7391759ab4",
+      "text": "Miks on vaja sõrmejälgi ja fotot – ümberasustamine- või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/mida-peate-teadma-eurodac-suesteemi-kohta-kurdi-sorani.pdf?db8a6a9f7b",
+      "text": "Mida peate teadma Eurodac-süsteemi kohta?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ebaseaduslikult-viibivatele-isikutele-kurdi-sorani.pdf?cd83ace0bc",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ebaseaduslikult viibivatele isikutele?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-isikutele-kes-on-kinni-peetud-seoses-ebaseadusliku-piiriueletusega-kurdi-sorani.pdf?e88ced730b",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - isikutele, kes on kinni peetud seoses ebaseadusliku piiriületusega?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-rahvusvahelise-kaitse-taotlejad-kurdi-sorani.pdf?bd955dc385",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - rahvusvahelise kaitse taotlejad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ajutise-kaitse-saajad-kurdi-sorani.pdf?0231ad47a8",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ajutise kaitse saajad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-otsingu-ja-paeaesteoperatsioon-kurdi-sorani.pdf?3b9873e3b1",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - otsingu ja päästeoperatsioon?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-uemberasustamine-voi-humanitaarne-vastuvott-kurdi-sorani.pdf?f00a545292",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ümberasustamine või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-on-vaja-sormejaelgi-ja-fotot-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-kurdi-sorani.pdf?ad1666f12a",
+      "text": "Miks on vaja sõrmejälgi ja fotot – ümberasustamine- või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/mida-peate-teadma-eurodac-suesteemi-kohta-tuergi.pdf?5c31314343",
+      "text": "Mida peate teadma Eurodac-süsteemi kohta?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ebaseaduslikult-viibivatele-isikutele-tuergi.pdf?9406cacf5f",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ebaseaduslikult viibivatele isikutele?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-isikutele-kes-on-kinni-peetud-seoses-ebaseadusliku-piiriueletusega-tuergi.pdf?6a88a3175e",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - isikutele, kes on kinni peetud seoses ebaseadusliku piiriületusega?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-rahvusvahelise-kaitse-taotlejad-tuergi.pdf?5289c530e1",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - rahvusvahelise kaitse taotlejad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ajutise-kaitse-saajad-tuergi.pdf?668976d58c",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ajutise kaitse saajad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-otsingu-ja-paeaesteoperatsioon-tuergi.pdf?0cdba93d3e",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - otsingu ja päästeoperatsioon?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-tuergi.pdf?e5f68a09f5",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ümberasustamine või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-on-vaja-sormejaelgi-ja-fotot-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-tuergi.pdf?af2e482c14",
+      "text": "Miks on vaja sõrmejälgi ja fotot – ümberasustamine- või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/mida-peate-teadma-eurodac-suesteemi-kohta-urdu.pdf?58fac36406",
+      "text": "Mida peate teadma Eurodac-süsteemi kohta?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ebaseaduslikult-viibivatele-isikutele-urdu.pdf?489a5c834d",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ebaseaduslikult viibivatele isikutele?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-isikutele-kes-on-kinni-peetud-seoses-ebaseadusliku-piiriueletusega-urdu.pdf?d9887f839a",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - isikutele, kes on kinni peetud seoses ebaseadusliku piiriületusega?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-rahvusvahelise-kaitse-taotlejad-urdu.pdf?20daef55ed",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - rahvusvahelise kaitse taotlejad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ajutise-kaitse-saajad-urdu.pdf?ec0780ecbe",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ajutise kaitse saajad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-otsingu-ja-paeaesteoperatsioon-urdu.pdf?ff18c6988a",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - otsingu ja päästeoperatsioon?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-urdu.pdf?a5797e3682",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ümberasustamine või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-on-vaja-sormejaelgi-ja-fotot-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-urdu.pdf?84b4720259",
+      "text": "Miks on vaja sõrmejälgi ja fotot – ümberasustamine- või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/mida-peate-teadma-eurodac-suesteemi-kohta-valgevene.pdf?316981ea12",
+      "text": "Mida peate teadma Eurodac-süsteemi kohta?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ebaseaduslikult-viibivaatele-isikutele-valgevene.pdf?d2f1531bc7",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ebaseaduslikult viibivatele isikutele?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-kinnipeetavatele-seoses-ebaseadusliku-piiriueletusega-valgevene.pdf?d269626732",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - isikutele, kes on kinni peetud seoses ebaseadusliku piiriületusega?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-rahvusvahelise-kaitse-taotlejad-valgevene.pdf?f4d65444cf",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - rahvusvahelise kaitse taotlejad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ajutise-kaitse-saajad-valgevene.pdf?e743f9381b",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ajutise kaitse saajad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-otsingu-ja-paeaesteoperatsioon-valgevene.pdf?38ec9a3eaf",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - otsingu ja päästeoperatsioon?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-valgevene.pdf?97d736c78d",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ümberasustamine või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-on-vaja-sormejaelgi-ja-fotot-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-valgevene.pdf?f245bb2123",
+      "text": "Miks on vaja sõrmejälgi ja fotot – ümberasustamine- või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/mida-peate-teadma-eurodac-suesteemi-kohta-hindi.pdf?556dfc78f4",
+      "text": "Mida peate teadma Eurodac-süsteemi kohta?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ebaseaduslikult-viibivatele-isikutele-hindi.pdf?1cb0f3de8d",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ebaseaduslikult viibivatele isikutele?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-isikutele-kes-on-kinni-peetud-seoses-ebaseadusliku-piiriueletusega-hindi.pdf?49662c72a0",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - isikutele, kes on kinni peetud seoses ebaseadusliku piiriületusega?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-rahvusvahelise-kaitse-taotlejad-hindi.pdf?1f87a3cb04",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - rahvusvahelise kaitse taotlejad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ajutise-kaitse-saajad-hindi.pdf?11f95e4bca",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ajutise kaitse saajad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-otsingu-ja-paeaesteoperatsioon-hindi.pdf?e4178e1cdb",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - otsingu ja päästeoperatsioon?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-hindi.pdf?6b93401548",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ümberasustamine või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-on-vaja-sormejaelgi-ja-fotot-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-hindi.pdf?39ecb3b2ef",
+      "text": "Miks on vaja sõrmejälgi ja fotot – ümberasustamine- või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/mida-peate-teadma-eurodac-suesteemi-kohta-tigrinja.pdf?5fe2b21a83",
+      "text": "Mida peate teadma Eurodac-süsteemi kohta?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ebaseaduslikult-viibivatele-isikutele-tigrinja.pdf?8ecc1650cd",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ebaseaduslikult viibivatele isikutele?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-isikutele-kes-on-kinni-peetud-seoses-ebaseadusliku-piiriueletusega-tigrinja.pdf?d7a1696faf",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - isikutele, kes on kinni peetud seoses ebaseadusliku piiriületusega?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-rahvusvahelise-kaitse-taotlejad-tigrinja.pdf?68ebc3491f",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - rahvusvahelise kaitse taotlejad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ajutise-kaitse-saajad-tigrinja.pdf?f7c5b31c61",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ajutise kaitse saajad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-otsingu-ja-paeaesteoperatsioon-tigrinja.pdf?91ed74ec15",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - otsingu ja päästeoperatsioon?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-tigrinja.pdf?a53b984221",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ümberasustamine või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-on-vaja-sormejaelgi-ja-fotot-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-tigrinja.pdf?41bdd89bb4",
+      "text": "Miks on vaja sõrmejälgi ja fotot – ümberasustamine- või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/mida-peate-teadma-eurodac-suesteemi-kohta-tamili.pdf?5cafcf5a85",
+      "text": "Mida peate teadma Eurodac-süsteemi kohta?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ebaseaduslikult-viibivatele-isikutele-tamili.pdf?b4c2d3fed8",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ebaseaduslikult viibivatele isikutele?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-isikutele-kes-on-kinni-peetud-seoses-ebaseadusliku-piiriueletusega-tamili.pdf?271d637f37",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - isikutele, kes on kinni peetud seoses ebaseadusliku piiriületusega?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-rahvusvahelise-kaitse-taotlejad-tamili.pdf?a5b30a1e03",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - rahvusvahelise kaitse taotlejad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-ajutise-kaitse-saajad-tamili.pdf?207eb0a108",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ajutise kaitse saajad?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-otsingu-ja-paeaesteoperatsioon-tamili.pdf?45ddc76a0b",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - otsingu ja päästeoperatsioon?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-edastatakse-minu-isikuandmed-eurodac-suesteemi-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-tamili.pdf?1228663ba3",
+      "text": "Miks edastatakse minu isikuandmed Eurodac-süsteemi - ümberasustamine või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/miks-on-vaja-sormejaelgi-ja-fotot-riiklik-uemberasustamine-voi-humanitaarne-vastuvott-tamili.pdf?992d608f3f",
+      "text": "Miks on vaja sõrmejälgi ja fotot – ümberasustamine- või humanitaarne vastuvõtt?",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

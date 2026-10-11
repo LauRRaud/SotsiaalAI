@@ -1,0 +1,11 @@
+/* Vastuse tagasiside kaart. Klaasi (taust, hägu, raadius) annab sõnumi ikooniriba konteiner
+   (chat.css, [data-msg-menu-panel]) ja vormi paigutuse FeedbackForm; siin on ainult tänusõna. */
+
+.done {
+  margin: 0;
+  padding: 0.1rem 0.25rem;
+  color: var(--room-text);
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}

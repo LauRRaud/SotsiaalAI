@@ -1,0 +1,70 @@
+{
+  "document_id": "web-tek_ravimid_digiretsept",
+  "title": "Digiretsept",
+  "register_title": "Digiretsept",
+  "source_id": "tek_ravimid_digiretsept",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/ravimid/digiretsept",
+  "source_path": "tek_ravimid_digiretsept.html",
+  "source_format": "html",
+  "source_sha256": "91672011dc92324a5bad5758e66aa10fc872766347f800401a1beb2a5b93fd72",
+  "content_sha256": "f9ca99a63754775039248be3c6908fc85fa4bc4bef312d7adc67e363b9636735",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:38:42.463Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:05:50 GMT",
+      "etag": null
+    },
+    "raw_sha256": "3e68e58c7e1d5c28ca2e35c90adf97b4f5ecb7190aad47ec0e397f5c06494c75",
+    "stats": {
+      "words": 1489,
+      "blocks": 63,
+      "headings": 23,
+      "tables": 0,
+      "links": 9,
+      "linksToOtherSites": 7
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://tervisekassa.ee/uploads/userfiles/digiretsept%20A4%20est-rus%20parandused%20kinnitamiseks.pdf",
+      "text": "Digiretsepti infoleht patsiendile",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tehik.ee/sites/default/files/2021-03/Patsiendi_teavitamine_eP-A_EE.pdf",
+      "text": "siin",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

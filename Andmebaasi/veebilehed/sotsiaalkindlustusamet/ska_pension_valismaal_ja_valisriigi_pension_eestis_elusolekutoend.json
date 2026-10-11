@@ -1,0 +1,71 @@
+{
+  "document_id": "web-ska_pension_valismaal_ja_valisriigi_pension_eestis_elusolekutoend",
+  "title": "Elusolekutõend",
+  "register_title": "Elusolekutõend",
+  "source_id": "ska_pension_valismaal_ja_valisriigi_pension_eestis_elusolekutoend",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pension-valismaal-ja-valisriigi-pension-eestis/elusolekutoend",
+  "source_path": "ska_pension_valismaal_ja_valisriigi_pension_eestis_elusolekutoend.html",
+  "source_format": "html",
+  "source_sha256": "45b1c6fbf9b0de1afc9b37b551a909dc15fae012a1ede0f1a636a0de2447abb7",
+  "content_sha256": "b2cb6ea87c526759a6a94f3ebb59e1b4fa8de088cc711a2ee05c5a5b14f74450",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:23:35.761Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-05-14",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:06:42 GMT",
+      "etag": null
+    },
+    "raw_sha256": "7d1b25eb962a5ec4537789c75879a6f8b9439295b7ed5aa5537fef69014cbd0a",
+    "stats": {
+      "words": 398,
+      "blocks": 21,
+      "headings": 5,
+      "tables": 0,
+      "links": 9,
+      "linksToOtherSites": 4
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-02/Elusoleku_toend%20ESTENG_11.02.2025.docx",
+      "text": "Elusoleku tõend | 17.38 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-02/Elusoleku_toend%20ESTENG_11.02.2025.pdf",
+      "text": "Elusoleku tõend | 76.76 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

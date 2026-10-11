@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_pension_valismaal_ja_valisriigi_pension_eestis_valispensioni_ja",
+  "title": "Välispensioni ja rahvapensioni määra vahe",
+  "register_title": "Välispensioni ja rahvapensioni määra vahe",
+  "source_id": "ska_pension_valismaal_ja_valisriigi_pension_eestis_valispensioni_ja",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pension-valismaal-ja-valisriigi-pension-eestis/valispensioni-ja",
+  "source_path": "ska_pension_valismaal_ja_valisriigi_pension_eestis_valispensioni_ja.html",
+  "source_format": "html",
+  "source_sha256": "dc1308a2710966b1a851c5a3d88f1df9143adf7a142ed1c33132cf8dca18fc7b",
+  "content_sha256": "ee9e3fc6b6bac302901e20477bfffcdeec594405fa12650d200774226436b793",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:23:48.283Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-02-25",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:06:55 GMT",
+      "etag": null
+    },
+    "raw_sha256": "5d9a6ac72b377545044636dc43c445bce0f1b73967da9b045b37583c85c15df2",
+    "stats": {
+      "words": 364,
+      "blocks": 23,
+      "headings": 4,
+      "tables": 0,
+      "links": 1,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

@@ -1,0 +1,57 @@
+{
+  "document_id": "web-parimine_notaritasud",
+  "title": "Notaritasud",
+  "register_title": "Notaritasud",
+  "source_id": "parimine_notaritasud",
+  "source_type": "web_page",
+  "publisher": "Notarite Koda",
+  "language": "et",
+  "url": "https://parimine.notar.ee/notaritasud/",
+  "source_path": "parimine_notaritasud.html",
+  "source_format": "html",
+  "source_sha256": "510bf662e0d9f984cb9007460ef4b767c309a8305ba5363eeefcceb091c01f09",
+  "content_sha256": "e02cac651b5803f45dd495a452c8795d3af31e78911ea4d51f6807204bf992f9",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:40:16.559Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "6cc2d746ff4291152e5828b3b54e328410bbed5e470f68ce66f55dbbdaef15db",
+    "stats": {
+      "words": 168,
+      "blocks": 5,
+      "headings": 1,
+      "tables": 2,
+      "links": 0,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

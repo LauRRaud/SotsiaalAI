@@ -1,0 +1,71 @@
+{
+  "document_id": "web-ska_muud_pensioniga_seotud_huvitised_ja_toetused_tagasipoorduja_toetus",
+  "title": "Tagasipöörduja toetus",
+  "register_title": "Tagasipöörduja toetus",
+  "source_id": "ska_muud_pensioniga_seotud_huvitised_ja_toetused_tagasipoorduja_toetus",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/muud-pensioniga-seotud-huvitised-ja-toetused/tagasipoorduja-toetus",
+  "source_path": "ska_muud_pensioniga_seotud_huvitised_ja_toetused_tagasipoorduja_toetus.html",
+  "source_format": "html",
+  "source_sha256": "4ec4b31876b509e180f7d786ffdaaf8b664fd4c572555963a2b409ac8a359a0b",
+  "content_sha256": "2ef9a3c32d19372a9bdd1cbb1b2b239aa6dbd55ba7d3f50e9a0100c91b9c59a6",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:23:25.726Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-06-16",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:06:32 GMT",
+      "etag": null
+    },
+    "raw_sha256": "15b3cc02a7ebb5b66498fabb604dcb3e4211ad6658983b7ba4f43b6df446bc05",
+    "stats": {
+      "words": 419,
+      "blocks": 33,
+      "headings": 4,
+      "tables": 0,
+      "links": 3,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-07/valisriigist_eestisse_elamaasunu_sotsiaaltoetus.rtf",
+      "text": "Välisriigist Eestisse elama asunu sotsiaaltoetus | 110.03 KB | rtf",
+      "type": "rtf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-07/valisriigist_eestisse_elamaasunu_sotsiaaltoetus.pdf",
+      "text": "Välisriigist Eestisse elama asunu sotsiaaltoetus | 107.21 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

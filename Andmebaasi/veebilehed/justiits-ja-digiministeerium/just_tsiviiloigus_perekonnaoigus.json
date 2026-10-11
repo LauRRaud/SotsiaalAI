@@ -1,0 +1,78 @@
+{
+  "document_id": "web-just_tsiviiloigus_perekonnaoigus",
+  "title": "Perekonnaõigus",
+  "register_title": "Perekonnaõigus",
+  "source_id": "just_tsiviiloigus_perekonnaoigus",
+  "source_type": "web_page",
+  "publisher": "Justiits- ja Digiministeerium",
+  "language": "et",
+  "url": "https://www.just.ee/era-ja-avalik-oigus/tsiviiloigus/perekonnaoigus",
+  "url_final": "https://www.justdigi.ee/era-ja-avalik-oigus/tsiviiloigus/perekonnaoigus",
+  "source_path": "just_tsiviiloigus_perekonnaoigus.html",
+  "source_format": "html",
+  "source_sha256": "b46be7ece47b1d73c92f1c8050375d7edc649d81d0ba5fd29b59a92f2ea239dd",
+  "content_sha256": "38e73086e84a68fa11bfdb507917c6381f31d341bb8bf1db1d3d896b5e6b8b43",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:27:08.283Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-04-23",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "3fc453df2322e96a7e19fa7ace86c3758dc97f1ac67eaabe13b46daabf006ff1",
+    "stats": {
+      "words": 2323,
+      "blocks": 74,
+      "headings": 19,
+      "tables": 0,
+      "links": 7,
+      "linksToOtherSites": 3
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2021-06/hooldusoigus_voldik_2016.pdf",
+      "text": "Infovoldik hooldusõiguse teemal | 2.68 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2021-06/eestkoste_22.08.2019.pdf",
+      "text": "Eeskoste | 563.83 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2022-06/UA%20eeskoste.docx",
+      "text": "Ukrainast Eestisse sõjapõgenikena saabunud lastele eestkoste seadmisest | 28.95 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    }
+  ]
+}

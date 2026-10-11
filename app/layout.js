@@ -2,12 +2,14 @@ import "./styles/globals.css";
 import { cookies } from "next/headers";
 import { getServerSession } from "next-auth";
 import { Exo_2 } from "next/font/google";
+import { catalogScriptPath } from "@/lib/i18n/catalogAsset";
 import Providers from "./providers";
 import ViewportLayoutSetter from "@/components/ViewportLayoutSetter";
 import ServiceWorkerRegistrar from "@/components/pwa/ServiceWorkerRegistrar";
 import RoomStage from "@/components/room/RoomStage";
 import PanelFrame from "@/components/room/PanelFrame";
 import { PanelInfoSlotProvider } from "@/components/ui/PanelInfoSlot";
+import { DockStepsProvider } from "@/components/stage/DockSteps";
 import SkipLink from "@/components/room/SkipLink";
 import AmbientAudio from "@/components/room/AmbientAudio";
 import LiquidCursor from "@/components/brand/LiquidCursor";
@@ -287,11 +289,6 @@ export const viewport = {
     { media: "(prefers-color-scheme: dark)", color: "#140b07" }
   ]
 };
-const MESSAGES = {
-  et: () => import("@/messages/et.json"),
-  ru: () => import("@/messages/ru.json"),
-  en: () => import("@/messages/en.json")
-};
 function normalizeUiProfile(uiProfile) {
   if (uiProfile === "mac") return "mac";
   if (uiProfile === "lg" || uiProfile === "xl") return "lg";
@@ -334,10 +331,11 @@ export default async function RootLayout({
   const jar = await cookies();
   const cookieLocale = jar.get("NEXT_LOCALE")?.value;
   const locale = ["et", "ru", "en"].includes(cookieLocale || "") ? cookieLocale : "et";
-  let messages = {};
-  try {
-    messages = (await MESSAGES[locale]()).default ?? {};
-  } catch {}
+  /* TEKSTIKATALOOGI ATRIBUUDINA KAASA EI ANTA. Varem laadis paigutus keelefaili
+     ja andis selle kliendile atribuudina: umbes 800 kB teksti kirjutati iga lehe
+     HTML-i sisse. Nüüd viitab leht kataloogile kui eraldi failile (skript keha
+     lõpus, vt allpool ja lib/i18n/catalogAsset.js) ja pakkujale läheb ainult keel. */
+  const catalogSrc = catalogScriptPath(locale);
   const session = await getServerSession(authConfig).catch(() => null);
   /* Session-cookie without Max-Age: the arrival flow runs once per browser
      session, independent of how long the user has been signed in. */
@@ -383,7 +381,7 @@ export default async function RootLayout({
         {/* Liquid glass serva-refraktsiooni SVG-filter (#lg-bend) —
             viidatakse glass.css backdrop-filteritest */}
         <GlassFilters />
-        <Providers initialLocale={locale} messages={messages} session={session} initialA11yPrefs={initialA11yPrefs}>
+        <Providers initialLocale={locale} session={session} initialA11yPrefs={initialA11yPrefs}>
           <ViewportLayoutSetter />
           <ServiceWorkerRegistrar />
           <LiquidCursor />
@@ -400,12 +398,24 @@ export default async function RootLayout({
               (components/ui/PanelInfoSlot). Ruum on siin sees just seetõttu —
               dokk on temas ja peab sama olekut nägema. */}
           <PanelInfoSlotProvider>
-            <RoomStage initiallyCompletedArrival={initiallyCompletedRoomArrival} />
-            <main id="main" role="main" tabIndex={-1}>
-              <PanelFrame>{children}</PanelFrame>
-            </main>
+            {/* Sama põhjus: sammudega leht joonistab oma sammud doki sisse
+                (components/stage/DockSteps), dokk on ruumis ja leht paneelis. */}
+            <DockStepsProvider>
+              <RoomStage initiallyCompletedArrival={initiallyCompletedRoomArrival} />
+              <main id="main" role="main" tabIndex={-1}>
+                <PanelFrame>{children}</PanelFrame>
+              </main>
+            </DockStepsProvider>
           </PanelInfoSlotProvider>
         </Providers>
+        {/* TEKSTIKATALOOG. Tavaline (mitte async) skript keha LÕPUS: brauser
+            joonistab lehe sisu enne ja käivitab selle skripti enne neid lehe lõpu
+            skripte, millest React elustamiseks andmed saab. Kataloog on seega käes
+            enne esimest joonistust brauseris. Faili nimes on sisu räsi, nii et see
+            püsib vahemälus, kuni tekstid muutuvad. Ära lisa `async` ega `defer`:
+            siis võib React alustada enne kataloogi. */}
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+        <script id="i18n-catalog" src={catalogSrc} />
       </body>
     </html>;
 }

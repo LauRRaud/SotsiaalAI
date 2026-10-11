@@ -76,6 +76,6 @@ export async function PATCH(request, context) {
     if (publicPreInquiryError(error).status >= 500) {
       console.error("[pre-inquiries] update failed", safeError(error));
     }
-    return preInquiryErrorJson(error, locale, "pre_inquiries.errors.save_failed");
+    return preInquiryErrorJson(error, locale, "pre_inquiries.errors.save_failed", request);
   }
 }

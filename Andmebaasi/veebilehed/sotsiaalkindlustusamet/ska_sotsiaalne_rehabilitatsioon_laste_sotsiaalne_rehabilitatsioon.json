@@ -1,0 +1,71 @@
+{
+  "document_id": "web-ska_sotsiaalne_rehabilitatsioon_laste_sotsiaalne_rehabilitatsioon",
+  "title": "Laste sotsiaalne rehabilitatsioon",
+  "register_title": "Laste sotsiaalne rehabilitatsioon",
+  "source_id": "ska_sotsiaalne_rehabilitatsioon_laste_sotsiaalne_rehabilitatsioon",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/sotsiaalne-rehabilitatsioon/laste-sotsiaalne-rehabilitatsioon",
+  "source_path": "ska_sotsiaalne_rehabilitatsioon_laste_sotsiaalne_rehabilitatsioon.html",
+  "source_format": "html",
+  "source_sha256": "33f57ca83e2d7adf4b49934a36f8a22c4131535b84836606944d584170a1542a",
+  "content_sha256": "1a77f6018ff9d547fba98386b73f656de9c895cbb9b68a0d7cf033e81bb1430d",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:35:31.107Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2025-01-27",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:35:29 GMT",
+      "etag": null
+    },
+    "raw_sha256": "28c4320a08f64adfdf266af6c2e1902dbbbeacd2a7b8a5319da823ad73100df9",
+    "stats": {
+      "words": 809,
+      "blocks": 34,
+      "headings": 8,
+      "tables": 0,
+      "links": 9,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.riigiteataja.ee/aktilisa/1190/1202/4010/SOM_m2_lisa1.pdf",
+      "text": "siit",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-09/SRT%20infoleht%20lastele.pdf",
+      "text": "Sotsiaalse rehabilitatsiooni teenuse infoleht lastele | 222.04 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

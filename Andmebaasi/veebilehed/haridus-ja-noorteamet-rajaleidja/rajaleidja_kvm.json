@@ -1,0 +1,79 @@
+{
+  "document_id": "web-rajaleidja_kvm",
+  "title": "Kooliväline nõustamismeeskond",
+  "register_title": "Kooliväline nõustamismeeskond",
+  "source_id": "rajaleidja_kvm",
+  "source_type": "web_page",
+  "publisher": "Haridus- ja Noorteamet (Rajaleidja)",
+  "language": "en",
+  "url": "https://rajaleidja.ee/kvm/",
+  "source_path": "rajaleidja_kvm.html",
+  "source_format": "html",
+  "source_sha256": "1af7941a4c4bb3143fecb754f9acb7116a69062572f3d17208f6f67072bd4c36",
+  "content_sha256": "32433fd60d1be28549e8d2b5660f00c6b09fd6e210d21ce084a4f2eb22e25112",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:40:58.999Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "e39c4d1ec23fa7328ee9b2f878d9877f514d684779e0d0b02e73d09bc6b2fa15",
+    "stats": {
+      "words": 271,
+      "blocks": 14,
+      "headings": 4,
+      "tables": 0,
+      "links": 3,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 1,
+      "personLinks": 1,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "email_needs_review",
+      "person_named_by_link"
+    ],
+    "needs_review": true
+  },
+  "documents": [
+    {
+      "url": "https://rajaleidja.ee/wp-content/uploads/2023/09/Volikiri-Rajaleidjale.docx",
+      "text": "volikirja vorm",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.ee/wp-content/uploads/2022/12/KVM-TAOTLUS.pdf",
+      "text": "PDF formaadis",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.ee/wp-content/uploads/2022/12/KVM-TAOTLUS.docx",
+      "text": "Wordi dokumendina",
+      "type": "docx",
+      "status": "referenced_only"
+    }
+  ]
+}

@@ -30,7 +30,8 @@ try {
   const context = { tenant: values.tenant, subject: values.subject, usage: 'development_only' }, policy = new FilePolicy(values.policy);
   const allowed = await policy.allowed(context);
   const embedding = values.mode === 'status' ? null : values.vectors?.length
-    ? (await reusableEmbeddingCatalog(values.vectors, context.tenant)).embedding : new MockEmbedding();
+    // A --vectors folder may be a purchase that stopped part-way: the vectors it did buy are read (ADR-113).
+    ? (await reusableEmbeddingCatalog(values.vectors, context.tenant, { stopped: true })).embedding : new MockEmbedding();
   if (values.mode === 'plan') {
     // The version layout reads which versions are already sealed; nothing is written.
     if (layout === VERSION_LAYOUT) postgres = new IndexJobStore((await readJson(values.connections)).postgresUrl);

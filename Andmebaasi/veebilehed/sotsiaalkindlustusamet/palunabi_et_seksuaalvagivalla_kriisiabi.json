@@ -1,0 +1,57 @@
+{
+  "document_id": "web-palunabi_et_seksuaalvagivalla_kriisiabi",
+  "title": "Seksuaalvägivalla kriisiabi",
+  "register_title": "Seksuaalvägivalla kriisiabi",
+  "source_id": "palunabi_et_seksuaalvagivalla_kriisiabi",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://www.palunabi.ee/et/seksuaalvagivalla-kriisiabi",
+  "source_path": "palunabi_et_seksuaalvagivalla_kriisiabi.html",
+  "source_format": "html",
+  "source_sha256": "24b640f21555d8e6d164f50147d89b37badf05c60e4a5e9b90f0ee823843249e",
+  "content_sha256": "328d9e920f819dd45e2a91549dfe91f0f2d6312f33268e72bd1003f6eb1040a5",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:37:01.943Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "6a6488aa8665532ba30367098f91e494fdc34999c4ab45944da1353d90b01d72",
+    "stats": {
+      "words": 2296,
+      "blocks": 17,
+      "headings": 1,
+      "tables": 0,
+      "links": 17,
+      "linksToOtherSites": 12
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

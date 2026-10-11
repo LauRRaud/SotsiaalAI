@@ -1,0 +1,96 @@
+{
+  "document_id": "web-just_kuritegevus_ja_selle_ennetus_perevagivald",
+  "title": "Perevägivald",
+  "register_title": "Perevägivald",
+  "source_id": "just_kuritegevus_ja_selle_ennetus_perevagivald",
+  "source_type": "web_page",
+  "publisher": "Justiits- ja Digiministeerium",
+  "language": "et",
+  "url": "https://www.just.ee/kuritegevus-ja-selle-ennetus/perevagivald",
+  "url_final": "https://www.justdigi.ee/kuritegevus-ja-selle-ennetus/perevagivald",
+  "source_path": "just_kuritegevus_ja_selle_ennetus_perevagivald.html",
+  "source_format": "html",
+  "source_sha256": "6eeb4ee94034ddcf5698f284f52b49ed7a08f980ed8944ffd182869333662d23",
+  "content_sha256": "d2e4aebc4c04bb21f525011c40aae6cad06d793eaec04647b84168517f360eed",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:27:38.315Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2024-02-19",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "272896db454da04bf5c72b502ae61bad1f41c3485ea05d3f9930c28231854d54",
+    "stats": {
+      "words": 380,
+      "blocks": 15,
+      "headings": 3,
+      "tables": 0,
+      "links": 10,
+      "linksToOtherSites": 8
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2021-11/V%C3%A4givallaennetuse%20kokkulepe.pdf",
+      "text": "Vägivallaennetuse kokkulepe 2021-2025 | 6.51 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2021-11/%D0%A1%D0%BE%D0%B3%D0%BB%D0%B0%D1%88%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%BF%D1%80%D0%B5%D0%B4%D0%BE%D1%82%D0%B2%D1%80%D0%B0%D1%89%D0%B5%D0%BD%D0%B8%D0%B8%20%D0%BD%D0%B0%D1%81%D0%B8%D0%BB%D0%B8%D1%8F%202021%E2%80%932025.pdf",
+      "text": "Соглашение о предотвращении насилия 2021–2025 | 63.74 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.just.ee/sites/default/files/documents/2023-12/L%C3%A4hisuhtev%C3%A4givalla%20tegevuskava%202024-2027%20%C3%BChine%20deklaratsioon.pdf",
+      "text": "Lähisuhtevägivalla ennetamise kokkulepe",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.just.ee/sites/default/files/documents/2023-12/LSV%20ennetamise%20tegevuskava%202024-2027.pdf",
+      "text": "Lähisuhtevägivalla ennetamise tegevuskavaga aastateks 2024–2027",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.just.ee/sites/default/files/documents/2023-12/LSV%20kokkulepe%20ja%20tegevuskava_l%C3%BChi%C3%BClevaade.pdf",
+      "text": "Lühiülevaade tegevuskavast",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.just.ee/sites/default/files/documents/2024-02/GREVIO%20l%C3%A4hteolukorra%20hindamisaruanne_Eesti_2022.pdf",
+      "text": "raporti",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

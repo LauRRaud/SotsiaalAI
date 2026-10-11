@@ -21,6 +21,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { inertOutside } from "@/lib/inertOutside";
 import Button from "@/components/ui/Button";
+import { refreshCatalog } from "@/components/i18n/catalogs";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { useRouter } from "next/navigation";
 import OptionCard from "@/components/ui/OptionCard";
@@ -244,14 +245,11 @@ export default function AccessibilityModal({
     let canceled = false;
     async function applyLanguageMessages(targetLocale) {
       try {
-        const LOADERS = {
-          et: () => import("@/messages/et.json"),
-          ru: () => import("@/messages/ru.json"),
-          en: () => import("@/messages/en.json")
-        };
-        const mod = await (LOADERS[targetLocale] ? LOADERS[targetLocale]() : LOADERS.et());
+        /* Kataloog tuleb samast laadijast, kust leht selle sai: fail laaditakse
+           üks kord ja ebaõnnestunud katse järel proovitakse uuesti. */
+        const next = await refreshCatalog(targetLocale);
         if (!canceled) {
-          setMessages(mod?.default || {});
+          setMessages(next);
           previewedLangRef.current = targetLocale;
         }
       } catch {}
@@ -446,13 +444,7 @@ export default function AccessibilityModal({
     if (typeof window !== "undefined" && lang && lang !== locale) {
       setLocale(lang);
       try {
-        const LOADERS = {
-          et: () => import("@/messages/et.json"),
-          ru: () => import("@/messages/ru.json"),
-          en: () => import("@/messages/en.json")
-        };
-        const mod = await (LOADERS[lang] ? LOADERS[lang]() : LOADERS.et());
-        setMessages(mod?.default || {});
+        setMessages(await refreshCatalog(lang));
       } catch {}
       try {
         const current = `${window.location.pathname}${window.location.search || ""}${window.location.hash || ""}`;
@@ -462,6 +454,9 @@ export default function AccessibilityModal({
         router.refresh();
       } catch {}
     }
+    /* Salvestatud keel jääb: akna sulgemine ei pane enam hetkeks tagasi keelt,
+       millega aken avati. */
+    previewedLangRef.current = null;
     onPreviewEnd?.();
     onClose?.();
   };
@@ -482,13 +477,7 @@ export default function AccessibilityModal({
     try {
       const orig = originalLocaleRef.current;
       if (previewedLangRef.current && orig !== previewedLangRef.current) {
-        const LOADERS = {
-          et: () => import("@/messages/et.json"),
-          ru: () => import("@/messages/ru.json"),
-          en: () => import("@/messages/en.json")
-        };
-        const loader = LOADERS[orig] || LOADERS.et;
-        loader().then(mod => setMessages(mod?.default || {})).catch(() => {});
+        refreshCatalog(orig).then(next => setMessages(next)).catch(() => {});
       }
     } catch {}
   }, [setMessages]);

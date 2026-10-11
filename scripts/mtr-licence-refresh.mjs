@@ -2,22 +2,15 @@
 /**
  * A4 E6 — ajastatud loakontrolli korje.
  *
- * Käivitatakse cron'ist **kord tunnis** (`0 * * * *`). See EI tähenda, et iga
- * profiili kontrollitakse tunnis: korje võtab ainult need, mille `nextCheckAt`
- * on möödas — edukas kontroll paneb selle **14 päeva** ettepoole. Tunnine rütm
- * on vajalik selleks, et tõrkejärgsed 1 h ja 6 h korduskatsed päriselt
- * toimuksid; kord ööpäevas käiv korje ei tuleks neid kunagi õigel ajal vaatama.
+ * Käivitab systemd taimer `sotsiaalai-mtr-refresh.timer` **kord ööpäevas** (kell 3.20;
+ * failid kaustas `deploy/systemd`). See EI tähenda, et iga profiili kontrollitakse iga päev:
+ * korje võtab ainult need, mille `nextCheckAt` on möödas. Edukas kontroll paneb selle
+ * **30 päeva** ettepoole (omanik 10.10.2026: kontroll kord kuus); tõrke järel ja luba
+ * esimest korda leidmata proovitakse uuesti järgmisel ööl. Esimene kontroll ei oota
+ * korjet: ta käivitub kohe, kui inimene teenuse liigi kinnitab (`bindServiceKey`).
  *
- * ÜKS EKSEMPLAR KORRAGA. Skript ise lukku ei võta — pika MTR-i tõrke korral
- * võib tunnine käivitus eelmisele otsa joosta. Ühe Linuxi serveri puhul
- * lahendab selle `flock`:
- *
- *   0 * * * * flock -n /var/lock/sotsiaalai-mtr-refresh.lock \
- *     /bin/bash -lc 'cd /RAKENDUSE/KAUST && MTR_REFRESH_BATCH=10 npm run mtr:refresh'
- *
- * Andmebaasilukk muutub kohustuslikuks alles siis, kui korje võib käivituda
- * mitmes serveris või konteineris, või kui sama täiskorje saab käivitada ka
- * adminiliidesest.
+ * ÜKS EKSEMPLAR KORRAGA. Skript ise lukku ei võta; taimeri teenus käivitab ta `flock -n`
+ * taga (`/var/lock/sotsiaalai-mtr-refresh.lock`).
  *
  * Profiilid käiakse läbi ÜKSHAAVAL. Paralleelsust ei ole teadlikult: MTR on
  * aeglane avalik register, üks kontroll on kolm päringut, ja mõõdetud 05.08 —

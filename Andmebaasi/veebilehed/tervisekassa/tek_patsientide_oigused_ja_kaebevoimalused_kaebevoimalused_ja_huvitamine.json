@@ -1,0 +1,57 @@
+{
+  "document_id": "web-tek_patsientide_oigused_ja_kaebevoimalused_kaebevoimalused_ja_huvitamine",
+  "title": "Kaebevõimalused ja hüvitamine",
+  "register_title": "Kaebevõimalused ja hüvitamine",
+  "source_id": "tek_patsientide_oigused_ja_kaebevoimalused_kaebevoimalused_ja_huvitamine",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/kontaktpunkt/patsientide-oigused-ja-kaebevoimalused/kaebevoimalused-ja-huvitamine",
+  "source_path": "tek_patsientide_oigused_ja_kaebevoimalused_kaebevoimalused_ja_huvitamine.html",
+  "source_format": "html",
+  "source_sha256": "acaf5de182eb973345a12fba79a8f92e1fb8ea0b0ab34693f1ae7312a069a73f",
+  "content_sha256": "7bec0f5911c6be3327c7ff0f4c838c3ec1ef5dc21de4e308c0771edb7b39ae03",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:39:02.516Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:26:18 GMT",
+      "etag": null
+    },
+    "raw_sha256": "d48f7010eaa77757961697e557dc73d40647753f06061050e8d58f7fa276654f",
+    "stats": {
+      "words": 268,
+      "blocks": 18,
+      "headings": 4,
+      "tables": 0,
+      "links": 6,
+      "linksToOtherSites": 3
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

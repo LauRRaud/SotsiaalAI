@@ -1,0 +1,59 @@
+{
+  "document_id": "web-kpk_mida_kujutab_endast_parandvara_pankrot",
+  "title": "Mida kujutab endast pärandvara pankrot?",
+  "register_title": "Mida kujutab endast pärandvara pankrot?",
+  "source_id": "kpk_mida_kujutab_endast_parandvara_pankrot",
+  "source_type": "web_page",
+  "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+  "language": "et",
+  "url": "https://kpkoda.ee/mida-kujutab-endast-parandvara-pankrot/",
+  "source_path": "kpk_mida_kujutab_endast_parandvara_pankrot.html",
+  "source_format": "html",
+  "source_sha256": "1e13555f4b28e0a59510bbe0b3e0073e9437a8f9deb4a4aaceeec73e8d511f18",
+  "content_sha256": "44859a81f85bd11302bb4a353b2e6d32a43327636ba4fd93b36bd18f20e05a95",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:40:47.829Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "3637ffb143a90904cda2cff00c1f0d499d335073a4588272052c9048c44aa152",
+    "stats": {
+      "words": 733,
+      "blocks": 23,
+      "headings": 5,
+      "tables": 0,
+      "links": 4,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 1,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed"
+    ],
+    "needs_review": false
+  },
+  "documents": []
+}

@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_ravi_ja_pensionikindlustus_kogumispensioni_taiendavad_sissemaksed",
+  "title": "Kogumispensioni täiendavad sissemaksed",
+  "register_title": "Kogumispensioni täiendavad sissemaksed",
+  "source_id": "ska_ravi_ja_pensionikindlustus_kogumispensioni_taiendavad_sissemaksed",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/ravi-ja-pensionikindlustus/kogumispensioni-taiendavad-sissemaksed",
+  "source_path": "ska_ravi_ja_pensionikindlustus_kogumispensioni_taiendavad_sissemaksed.html",
+  "source_format": "html",
+  "source_sha256": "7fcf95050658a4f82e2eeebce67155bed3bd33de85e9baa36073dc27b6a8be9c",
+  "content_sha256": "5e79a4554947f85588576521f1c677bd9a115c2398f2c688a333e4fd32f6243b",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:26:03.715Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-05-27",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:09:10 GMT",
+      "etag": null
+    },
+    "raw_sha256": "7cf907be01edbae8ecdc6a46ea66845ac183d40733824094c87a8406731282c9",
+    "stats": {
+      "words": 475,
+      "blocks": 13,
+      "headings": 2,
+      "tables": 0,
+      "links": 4,
+      "linksToOtherSites": 3
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

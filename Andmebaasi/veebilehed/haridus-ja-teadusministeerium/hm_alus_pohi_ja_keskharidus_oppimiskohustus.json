@@ -1,0 +1,158 @@
+{
+  "document_id": "web-hm_alus_pohi_ja_keskharidus_oppimiskohustus",
+  "title": "Õppimiskohustus",
+  "register_title": "Õppimiskohustus",
+  "source_id": "hm_alus_pohi_ja_keskharidus_oppimiskohustus",
+  "source_type": "web_page",
+  "publisher": "Haridus- ja Teadusministeerium",
+  "language": "et",
+  "url": "https://www.hm.ee/uldharidus-ja-noored/alus-pohi-ja-keskharidus/oppimiskohustus",
+  "source_path": "hm_alus_pohi_ja_keskharidus_oppimiskohustus.html",
+  "source_format": "html",
+  "source_sha256": "ec42b6f2aa87eafb38c8d4c8a9807c0cd7c7fa324f2ec5422a1e4388386eed53",
+  "content_sha256": "bf17d23f6b41e387f94182490fd29eea4a3540f08f1e5f7c8dae1a665b9c7d32",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:27:59.197Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-10-09",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Fri, 09 Oct 2026 16:25:57 GMT",
+      "etag": null
+    },
+    "raw_sha256": "9eb203d0321f2a1d527d90b8e1940a13ab46189859a0da95c7119a306c8c8475",
+    "stats": {
+      "words": 1595,
+      "blocks": 60,
+      "headings": 17,
+      "tables": 0,
+      "links": 48,
+      "linksToOtherSites": 24
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 1,
+      "personLinks": 0,
+      "contactCards": 1,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed",
+      "email_needs_review"
+    ],
+    "needs_review": true
+  },
+  "documents": [
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2026-03/02.03.26.pdf",
+      "text": "\"Õppimiskohustuse reform – info koolidele ja kohalikele omavalitsustele“",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://hm.vportal.ee/sites/default/files/documents/2026-09/HTM%20infotund%2011.09.2026.pdf",
+      "text": "HTM infotunni slaidid",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2026-10/Avak6ne_20261007.pdf",
+      "text": "Avakõne. HTM kantsler Triin Laasi-Õige",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2026-10/Karjaariteenused_oppimiskohustus_20261007.pdf",
+      "text": "Karjääriteenused õppimiskohustuse valguses",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2026-10/P6hikooli_l6petamine_vastuv6tt_20261007.pdf",
+      "text": "Põhikooli lõpetamine ja vastuvõtt 2026 ning 2027",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2026-10/kutseharidus_oppimiskohustus_20261007.pdf",
+      "text": "Kutsehariduse reform: kutsekeskhariduse õppekavad",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2026-10/oppimiskohustuse_t2itmine_20261007.pdf",
+      "text": "Õppimiskohustuse täitmine ja tagamine",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2025-04/HTM_Opilaste%20karjaarikujundamise%20toetamine.pdf",
+      "text": "Õpilaste karjääripädevuste arengu toetamine",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2026-01/HTMi%20slaidid_veebiseminar%2015.01.26.pdf",
+      "text": "HTMi slaidid",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2026-01/HTM-i%20seminar%20VOCO%2015.01.25.pdf",
+      "text": "VOCO slaidid",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2026-01/PERGi%20praktika%20Tuge%20vajavad%20%C3%B5pilased%20g%C3%BCmnaasiumis%20ja%20kutse%C3%B5ppeasutuses.pdf",
+      "text": "PERGi slaidid",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2026-09/%C3%95ppimiskohustuse%20t%C3%A4itmise%20korrad%20veebi%2010.09.2026.pdf",
+      "text": "Soovitused KOVidele õppimiskohustuse täitmise tagamise kordade koostamisel (uuendatud 10.09.2026)",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2025-11/haridusmin_madala_haridustasemega_noorte_osakaal.pdf",
+      "text": "Madala haridustasemega noored.",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2025-09/PJkohad_lopparuanne.pdf",
+      "text": "Põhihariduse järgsete koolikohtade jaotamise tsentraalne mehhanism ja selle piloteerimine",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2025-09/HTM_koolikohtade-jaotamine_onepager.pdf",
+      "text": "Põhihariduse järgsete koolikohtade jaotamise tsentraalne mehhanism",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2025-08/G%C3%BCmnasistide%20%C3%B5pir%C3%A4nne_anal%C3%BC%C3%BCsiraport.pdf",
+      "text": "Gümnasistide õpiränne – kas ja millised tegurid eristavad kodule lähimas gümnaasiumis õppivat noort kaugemal õppivast noorest?",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

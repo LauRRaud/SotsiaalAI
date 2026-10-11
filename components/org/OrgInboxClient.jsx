@@ -1,16 +1,17 @@
 "use client";
 
-import Link from "next/link";
-import { useCallback, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useCallback, useMemo, useRef, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import Button from "@/components/ui/Button";
 
-import OrgHeader from "./OrgHeader";
+import { InboxBoard } from "./inbox/InboxViews";
+import { inboxRow } from "./inbox/inboxRules";
+import OrgPart from "./OrgPart";
 import { useOrgApi } from "./useOrgApi";
 
 /**
- * Vastuvõtulaua LOEND.
+ * Organisatsiooni vastuvõtulaud.
  *
  * Loend ei kanna lähteobjekti sisu — ainult seisu ja vastutajat. Sisu avaneb
  * ühe kirje avamisel, mis on eraldi teadlik samm ja mis märgib pöördujale
@@ -19,14 +20,19 @@ import { useOrgApi } from "./useOrgApi";
  * Tühi loend ei tähenda „viga" ega „pole õigust": õiguseta liige näeb sama
  * tühja lauda kui organisatsioon, kuhu pole veel keegi pöördunud. Just see
  * teeb loendist mittepaljastava pinna.
+ *
+ * KUJU (11.10). Tabeli asemel madalad read (`./inbox/InboxViews.jsx`); rea
+ * sisu otsustab `./inbox/inboxRules.js`.
  */
 export default function OrgInboxClient({ context, initialPage }) {
   const { t } = useI18n();
+  const router = useRouter();
   const { call, busy, error } = useOrgApi();
   const organizationId = context.organization.id;
   const [items, setItems] = useState(initialPage?.items || []);
   const [nextCursor, setNextCursor] = useState(initialPage?.nextCursor || null);
   const [hasMore, setHasMore] = useState(Boolean(initialPage?.hasMore));
+  const sending = useRef(false);
 
   const loadMore = useCallback(async () => {
     if (!nextCursor) return;
@@ -40,73 +46,39 @@ export default function OrgInboxClient({ context, initialPage }) {
     setHasMore(Boolean(payload.hasMore));
   }, [call, nextCursor, organizationId]);
 
+  const rows = useMemo(() => items.map((item) => inboxRow(item, { t })), [items, t]);
+  const hrefOf = useCallback((row) => `/org/${organizationId}/vastuvott/${row.id}`, [organizationId]);
+
   return (
-    <section className="ow-shell">
-      <OrgHeader context={context} />
-
-      <div className="ow-card">
-        <h2 className="ow-title" style={{ fontSize: "1.125rem" }}>
-          {t("org.inbox.heading")}
-        </h2>
-        <p className="ow-subtitle">{t("org.inbox.intro")}</p>
-        <p className="ow-notice ow-notice--privacy">{t("org.inbox.privacyNotice")}</p>
-      </div>
-
-      {items.length === 0 ? (
-        <p className="ow-empty">{t("org.inbox.empty")}</p>
-      ) : (
-        <div className="ow-tablewrap">
-          <table className="ow-table">
-            <caption>{t("org.inbox.heading")}</caption>
-            <thead>
-              <tr>
-                <th scope="col">{t("org.inbox.receivedAt")}</th>
-                <th scope="col">{t("org.inbox.status")}</th>
-                <th scope="col">{t("org.inbox.unit")}</th>
-                <th scope="col">{t("org.inbox.assignee")}</th>
-                <th scope="col">{t("org.members.actions")}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {items.map((item) => (
-                <tr key={item.id}>
-                  <td data-label={t("org.inbox.receivedAt")}>
-                    {new Date(item.receivedAt).toISOString().replace("T", " ").slice(0, 16)}
-                    {item.urgencyDeclaredBySender ? (
-                      <>
-                        <br />
-                        <span className="ow-chip">{item.urgencyDeclaredBySender}</span>
-                      </>
-                    ) : null}
-                  </td>
-                  <td data-label={t("org.inbox.status")}>{t(`org.inboxStatus.${item.status}`)}</td>
-                  <td data-label={t("org.inbox.unit")}>{item.unit?.name || "—"}</td>
-                  <td data-label={t("org.inbox.assignee")}>
-                    {item.assignment
-                      ? `${[item.assignment.firstName, item.assignment.lastName]
-                          .filter(Boolean)
-                          .join(" ") || "—"} · ${t(`org.workStatus.${item.assignment.status}`)}`
-                      : t("org.inbox.unassigned")}
-                  </td>
-                  <td data-label={t("org.members.actions")}>
-                    <Link className="ow-nav__link" href={`/org/${organizationId}/vastuvott/${item.id}`}>
-                      {t("org.inbox.open")}
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-      {hasMore ? (
-        <div className="ow-actions">
-          <Button type="button" variant="secondary" disabled={busy} onClick={loadMore}>
-            {t("org.pagination.loadMore")}
-          </Button>
-        </div>
-      ) : null}
-      {error ? <p className="ow-notice ow-notice--warning">{error}</p> : null}
-    </section>
+    <OrgPart context={context} part="inbox">
+      <InboxBoard
+        t={t}
+        rows={rows}
+        hrefOf={hrefOf}
+        /* Tavaline vajutus avab pöördumise lehe sees; uue vahekaardi vajutus jääb brauserile. */
+        onOpen={(event, row) => {
+          if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+          event.preventDefault();
+          router.push(hrefOf(row));
+        }}
+        more={
+          hasMore
+            ? {
+                busy,
+                onMore: async () => {
+                  if (sending.current) return;
+                  sending.current = true;
+                  try {
+                    await loadMore();
+                  } finally {
+                    sending.current = false;
+                  }
+                }
+              }
+            : null
+        }
+        notice={error ? { tone: "risk", text: error } : null}
+      />
+    </OrgPart>
   );
 }

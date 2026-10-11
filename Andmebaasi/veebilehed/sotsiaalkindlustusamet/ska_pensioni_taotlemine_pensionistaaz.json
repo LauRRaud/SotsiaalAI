@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_pensioni_taotlemine_pensionistaaz",
+  "title": "Pensionistaaž",
+  "register_title": "Pensionistaaž",
+  "source_id": "ska_pensioni_taotlemine_pensionistaaz",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-taotlemine/pensionistaaz",
+  "source_path": "ska_pensioni_taotlemine_pensionistaaz.html",
+  "source_format": "html",
+  "source_sha256": "8f7e20fcb24429a08533dd0366635567a3dc29b1c70226c96cddc663903c1f82",
+  "content_sha256": "6eb195cc41309ef83bbbe8a27595527fa51bf25110e903ce711849994a54daa9",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:24:38.405Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-09-07",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:07:45 GMT",
+      "etag": null
+    },
+    "raw_sha256": "a86732648dccd61508cfb14ef08ec474d3e8d9f2277e35423335f46bb67b26b8",
+    "stats": {
+      "words": 955,
+      "blocks": 48,
+      "headings": 6,
+      "tables": 0,
+      "links": 5,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

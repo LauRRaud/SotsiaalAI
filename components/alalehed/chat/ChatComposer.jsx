@@ -156,6 +156,7 @@ export default function ChatComposer({
   isRoomMode,
   roomBlocked,
   roomAuthRequired,
+  roomReadOnly = false,
   onStop,
   onSend,
   onAuthRequired,
@@ -786,7 +787,10 @@ export default function ChatComposer({
           </button>
         </div>, document.body)
     : null;
-  const documentAttachDisabled = isGenerating || isRoomMode && (roomBlocked || roomAuthRequired);
+  /* Ruumi ei saa kirjutada: ligipääs puudub, seanss on aegunud või ruum on ainult loetav
+     (arhiveeritud; põhjus on ruumi kohal, vt `ChatTopNotices`). */
+  const roomWriteClosed = isRoomMode && (roomBlocked || roomAuthRequired || roomReadOnly);
+  const documentAttachDisabled = isGenerating || roomWriteClosed;
   const showSideControls = !hideTools;
   const privacyCopy = privacyLabels(t);
   const privacyFindingLabels = Array.isArray(privacyPrompt?.findings)
@@ -855,7 +859,7 @@ export default function ChatComposer({
       <div className="chat-composer__field">
         <textarea id="chat-input" ref={inputRef} value={draft} placeholder={placeholderText ?? ""} onChange={e => setDraft(e.target.value)} onKeyDown={handleKeyDown} onFocus={e => {
         onFocusInput?.(e);
-      }} onBlur={onBlurInput} disabled={isGenerating || isRoomMode && (roomBlocked || roomAuthRequired)} rows={1} />
+      }} onBlur={onBlurInput} disabled={isGenerating || roomWriteClosed} rows={1} />
       </div>
       {roomToolsNode}
       <div className="chat-composer__primary-actions">
@@ -867,8 +871,8 @@ export default function ChatComposer({
             selleta oli ainus väljapääs "lõpeta", mis SAADAB heli ära
             (T03 E4 punkt 1: privaatsuslubadus, mitte mugavus). */}
         {showDictationButton && !useSimpleRoomActionButtons && recording && cancelRecording ? <button type="button" aria-label={t("chat.mic.cancel")} data-tooltip={t("chat.composer_tip.discard")} onClick={handleDiscardRecordingClick} onMouseDown={preserveDesktopInputFocusOnMouseDown} data-recording-cancel="true" /> : null}
-        {showDictationButton && !useSimpleRoomActionButtons ? <button type="button" aria-label={recording ? t("chat.mic.stop") : micBlockedLabel || t("chat.mic.start")} data-tooltip={recording ? t("chat.composer_tip.stop_recording") : micBlockedLabel ? t("chat.composer_tip.dictation_paid") : t("chat.composer_tip.dictate")} onClick={handleDictateClick} onMouseDown={preserveDesktopInputFocusOnMouseDown} disabled={isRoomMode && (roomBlocked || roomAuthRequired)} data-speaking={recording ? "true" : "false"} data-recording={recording ? "true" : "false"} data-recording-blocked={micBlockedLabel ? "true" : undefined} data-recording-complete={recordingPulse ? "true" : "false"} /> : null}
-        {isGenerating || isStreamingAny ? <button type="submit" aria-label={t("chat.send.stop")} data-tooltip={t("chat.composer_tip.stop_answer")} disabled={isRoomMode && (roomBlocked || roomAuthRequired) || !hasInput && !isGenerating && !isStreamingAny} data-loader-active="true" onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} /> : hasInput ? <button type="submit" aria-label={t("chat.send.send")} data-tooltip={t("chat.composer_tip.send")} disabled={isRoomMode && (roomBlocked || roomAuthRequired)} onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} /> : canOpenVoiceMode ? <button type="submit" className="conv-voice-mode-trigger" aria-label={t("chat.voice.open")} data-tooltip={t("chat.composer_tip.voice")} data-voice-mode-trigger="true" onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} /> : <button type="submit" aria-label={t("chat.send.send")} data-tooltip={t("chat.composer_tip.send")} disabled={!hasInput || isRoomMode && (roomBlocked || roomAuthRequired)} data-empty-disabled={!hasInput ? "true" : undefined} onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} />}
+        {showDictationButton && !useSimpleRoomActionButtons ? <button type="button" aria-label={recording ? t("chat.mic.stop") : micBlockedLabel || t("chat.mic.start")} data-tooltip={recording ? t("chat.composer_tip.stop_recording") : micBlockedLabel ? t("chat.composer_tip.dictation_paid") : t("chat.composer_tip.dictate")} onClick={handleDictateClick} onMouseDown={preserveDesktopInputFocusOnMouseDown} disabled={roomWriteClosed} data-speaking={recording ? "true" : "false"} data-recording={recording ? "true" : "false"} data-recording-blocked={micBlockedLabel ? "true" : undefined} data-recording-complete={recordingPulse ? "true" : "false"} /> : null}
+        {isGenerating || isStreamingAny ? <button type="submit" aria-label={t("chat.send.stop")} data-tooltip={t("chat.composer_tip.stop_answer")} disabled={roomWriteClosed || !hasInput && !isGenerating && !isStreamingAny} data-loader-active="true" onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} /> : hasInput ? <button type="submit" aria-label={t("chat.send.send")} data-tooltip={t("chat.composer_tip.send")} disabled={roomWriteClosed} onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} /> : canOpenVoiceMode ? <button type="submit" className="conv-voice-mode-trigger" aria-label={t("chat.voice.open")} data-tooltip={t("chat.composer_tip.voice")} data-voice-mode-trigger="true" onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} /> : <button type="submit" aria-label={t("chat.send.send")} data-tooltip={t("chat.composer_tip.send")} disabled={!hasInput || roomWriteClosed} data-empty-disabled={!hasInput ? "true" : undefined} onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} />}
       </div>
     </>;
   return <Form ref={inputRowRef} className="chat-composer" data-room-mode={isRoomMode ? "true" : undefined} style={inputRowStyle} onSubmit={handleSubmit} autoComplete="off">

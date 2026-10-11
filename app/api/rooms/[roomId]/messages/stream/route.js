@@ -4,6 +4,7 @@ import { authConfig } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { subscribeRoom } from "@/lib/roomStream";
 import { ROOM_READ, resolveRoomAccess } from "@/lib/rooms/accessGuard";
+import { createRoomEventStream } from "@/lib/rooms/eventStream";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -90,68 +91,12 @@ export async function GET(_req, {
   if (!access.ok) return new NextResponse(null, {
     status: access.status || 403
   });
-  let cleanup = null;
-  const stream = new ReadableStream({
-    start(controller) {
-      const encoder = new TextEncoder();
-      let cleaned = false;
-      let closed = false;
-      const safeClose = () => {
-        if (closed) return;
-        closed = true;
-        try {
-          controller.close();
-        } catch {}
-      };
-      const write = data => controller.enqueue(encoder.encode(data));
-      const unsubscribe = subscribeRoom(roomId, evt => {
-        if (cleaned) return;
-        try {
-          write(`data: ${JSON.stringify(evt)}\n\n`);
-        } catch {
-          doCleanup();
-          safeClose();
-        }
-      });
-      const heartbeat = setInterval(() => {
-        if (cleaned) return;
-        try {
-          write(": keep-alive\n\n");
-        } catch {
-          doCleanup();
-          safeClose();
-        }
-      }, 15000);
-      const recheck = setInterval(async () => {
-        try {
-          const ok = await ensureAccess(auth.userId, roomId, auth.userRole);
-          if (!ok.ok) {
-            doCleanup();
-            safeClose();
-          }
-        } catch {
-          doCleanup();
-          safeClose();
-        }
-      }, 20000);
-      const doCleanup = () => {
-        if (cleaned) return;
-        cleaned = true;
-        clearInterval(heartbeat);
-        clearInterval(recheck);
-        unsubscribe();
-      };
-      cleanup = doCleanup;
-      try {
-        write(": connected\n\n");
-      } catch {
-        doCleanup();
-        safeClose();
-      }
-    },
-    cancel() {
-      cleanup?.();
-    }
+  /* Audit T01: ligipääsu kontrollitakse enne IGA sündmuse väljasaatmist, mitte ainult
+     ühenduse loomisel ja iga 20 sekundi järel. Ruumist lahkunu ei saa enam ühtegi
+     uut sõnumit. Loogika ja selle kontrollid on `lib/rooms/eventStream.js`-is. */
+  const stream = createRoomEventStream({
+    subscribe: listener => subscribeRoom(roomId, listener),
+    checkAccess: async () => (await ensureAccess(auth.userId, roomId, auth.userRole)).ok === true
   });
   return new NextResponse(stream, {
     status: 200,

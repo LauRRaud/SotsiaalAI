@@ -320,3 +320,66 @@ test('ADR-094: the new plan keeps the running plan\'s retention time for audit r
   assert.equal(run(odd).status, 0);
   assert.doesNotMatch((await calls(odd)).find(line => line.startsWith('plan ')), /--kind/u);
 });
+
+test('ADR-113: a purchase that stopped on an unknown outcome is set aside and the run goes on; any other begun purchase is refused', { skip: !shell && 'no sh' }, async () => {
+  const paths = await tree('stopped'), { work, etc, release, root } = paths;
+  const HEAD = 'generation_head', tenant = path.join(work, 'tmp/rag-v2-corpus-store-v25/tenant_x'), E = path.join(work, 'tmp/rag-v2-corpus-embeddings');
+  // The state a stopped first start leaves: the head raised, its copy kept, the policy in place, a plan, an approval,
+  // the purchase's record and logs.
+  await fs.mkdir(path.join(tenant, 'publications'), { recursive: true });
+  await fs.writeFile(path.join(tenant, 'active.json'), JSON.stringify({ generation: HEAD }));
+  await fs.mkdir(path.join(work, 'tmp/store-backup-v44'), { recursive: true });
+  await fs.writeFile(path.join(work, 'tmp/store-backup-v44/active.json'), JSON.stringify({ generation: 'generation_base' }));
+  await fs.mkdir(path.join(work, 'tmp/rag-v2-corpus-index-v44'), { recursive: true });
+  await fs.writeFile(path.join(work, 'tmp/rag-v2-corpus-index-v44/index-plan.json'), JSON.stringify({ generation_id: 'search_generation_prior' }));
+  await fs.writeFile(path.join(work, 'tmp/rag-v2-corpus-index-v45/policy.json'), '{"policy":"first"}');
+  await fs.mkdir(path.join(E, 'prices'), { recursive: true });
+  await fs.writeFile(path.join(E, 'prices/price-1.json'), '{}');
+  const sha = spawnSync('sha256sum', ['ship-v45.tgz'], { cwd: work, encoding: 'utf8' }).stdout.slice(0, 64);
+  await fs.writeFile(path.join(work, 'ship-v45.json'), JSON.stringify({ sha256: sha, base_generation: 'generation_base', head_generation: HEAD }));
+  await fs.writeFile(path.join(etc, 'frontend.env'), '');
+  await fs.writeFile(path.join(root, 'eval/version-proof.mjs'), 'console.log("{}");\n');
+  await fs.writeFile(path.join(release, 'scripts/rag-v2-corpus-embeddings.mjs'), `import fs from 'node:fs';
+const out = process.argv[process.argv.indexOf('--output') + 1];
+fs.mkdirSync(out); fs.writeFileSync(out + '/embedding-plan.json', '{}');
+console.log(JSON.stringify({ mode: 'plan', external_inputs: 0 }));
+`);
+  await fs.writeFile(path.join(release, 'scripts/rag-v2-index-batch.mjs'), 'process.exit(1);\n');
+  const begun = async state => {
+    for (const folder of ['run-v45', 'plan-v45', 'approval-v45']) await fs.mkdir(path.join(E, folder), { recursive: true });
+    await fs.writeFile(path.join(E, 'run-v45/run.json'), `${JSON.stringify({ mode: 'execute', state }, null, 2)}\n`);
+    await fs.writeFile(path.join(E, 'plan-v45/embedding-plan.json'), '{"plan":"first"}');
+    await fs.writeFile(path.join(E, 'approval-v45/approval-v45.json'), '{}');
+    await fs.writeFile(path.join(work, 'plan-v45.json'), '{}'); await fs.writeFile(path.join(work, 'purchase-v45.log'), 'log');
+  };
+  const unlinkCopy = async () => { if (!(await fs.lstat(path.join(work, 'node_modules')).catch(() => null))?.isSymbolicLink()) await fs.rm(path.join(work, 'node_modules'), { recursive: true, force: true }); };
+
+  // A purchase that completed, or one whose record names no end, is not begun again and nothing is moved.
+  for (const state of ['complete', 'prepared_not_authorized_not_run']) {
+    await begun(state); await unlinkCopy();
+    const refused = run(paths, { RESUME: '' });
+    assert.notEqual(refused.status, 0);
+    assert.match(refused.stdout, /FAILED: a purchase of v45 was already begun .* did not stop on an unknown outcome; this run does not buy again/u);
+    await fs.access(path.join(E, 'run-v45/run.json')); await missing(path.join(E, 'run-v45-stopped-1'));
+  }
+  await fs.rm(path.join(E, 'run-v45/run.json')); await unlinkCopy();
+  assert.match(run(paths, { RESUME: '' }).stdout, /FAILED: a purchase of v45 was already begun/u);
+
+  // The stopped one goes aside with its plan, approval and logs, and the same start makes a new plan.
+  await begun('stopped_unknown'); await unlinkCopy();
+  const first = run(paths, { RESUME: '' });
+  assert.match(first.stdout, /an earlier purchase of v45 stopped on an unknown outcome: set aside as run-v45-stopped-1; the vectors it bought are reused/u);
+  assert.match(first.stdout, /the store head is already this increment's/u);
+  assert.match(first.stdout, /== embedding-plan-done/u);
+  assert.match(first.stdout, /FAILED: index plan/u);
+  assert.equal(JSON.parse(await fs.readFile(path.join(E, 'run-v45-stopped-1/run.json'), 'utf8')).state, 'stopped_unknown');
+  assert.equal(await fs.readFile(path.join(E, 'plan-v45-stopped-1/embedding-plan.json'), 'utf8'), '{"plan":"first"}');
+  for (const file of [path.join(E, 'approval-v45-stopped-1/approval-v45.json'), path.join(work, 'plan-v45-stopped-1.json'), path.join(work, 'purchase-v45-stopped-1.log')]) await fs.access(file);
+  await missing(path.join(E, 'run-v45'));
+  assert.equal(await fs.readFile(path.join(E, 'plan-v45/embedding-plan.json'), 'utf8'), '{}');
+
+  // A second stop of the same version takes the next number; the first one's files stay.
+  await begun('stopped_unknown'); await unlinkCopy();
+  assert.match(run(paths, { RESUME: '' }).stdout, /set aside as run-v45-stopped-2/u);
+  for (const folder of ['run-v45-stopped-1', 'run-v45-stopped-2', 'plan-v45-stopped-2', 'approval-v45-stopped-2']) await fs.access(path.join(E, folder));
+});

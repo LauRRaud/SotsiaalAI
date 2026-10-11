@@ -1,0 +1,60 @@
+{
+  "document_id": "web-hm_alus_pohi_ja_keskharidus_alusharidus",
+  "title": "Alusharidus",
+  "register_title": "Alusharidus",
+  "source_id": "hm_alus_pohi_ja_keskharidus_alusharidus",
+  "source_type": "web_page",
+  "publisher": "Haridus- ja Teadusministeerium",
+  "language": "et",
+  "url": "https://www.hm.ee/uldharidus-ja-noored/alus-pohi-ja-keskharidus/alusharidus",
+  "source_path": "hm_alus_pohi_ja_keskharidus_alusharidus.html",
+  "source_format": "html",
+  "source_sha256": "938cac6e6970a9ec94060363e6d66fa9d97861f7f5fb888c6f373d80fceaccf6",
+  "content_sha256": "4b8a29cf403a05e09f276b470897bfed26dd885a49a59716e2363a9a2cbb78f9",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:27:56.771Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-06-15",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Fri, 09 Oct 2026 16:25:58 GMT",
+      "etag": null
+    },
+    "raw_sha256": "9f2aa1554d7f6f6265e7b4cd869854f067ae0e49c3470b639074172fc2fe22c0",
+    "stats": {
+      "words": 2199,
+      "blocks": 87,
+      "headings": 35,
+      "tables": 0,
+      "links": 16,
+      "linksToOtherSites": 7
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 1,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed"
+    ],
+    "needs_review": false
+  },
+  "documents": []
+}

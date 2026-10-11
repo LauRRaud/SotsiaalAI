@@ -1,0 +1,67 @@
+{
+  "document_id": "web-ska_vaimne_tervis_kriisis_psuhhosotsiaalne_kriisiabi",
+  "title": "Psühhosotsiaalne kriisiabi",
+  "register_title": "Psühhosotsiaalne kriisiabi",
+  "source_id": "ska_vaimne_tervis_kriisis_psuhhosotsiaalne_kriisiabi",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/vaimne-tervis-kriisis/psuhhosotsiaalne-kriisiabi",
+  "source_path": "ska_vaimne_tervis_kriisis_psuhhosotsiaalne_kriisiabi.html",
+  "source_format": "html",
+  "source_sha256": "812009466b560c14485ab3ad7d81dbf59c69af084972cc705cf0a51cda3d8bcf",
+  "content_sha256": "2085eb000a7d95f1a85aa2e491f44d92fb6b2fd82d589e2d8ef7fdde0b33f38a",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:35:08.597Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-10-06",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:35:07 GMT",
+      "etag": null
+    },
+    "raw_sha256": "2795c1ae894fc807f6215468dcc2170b09cd2ece5f2932021e99e1e34fc204b9",
+    "stats": {
+      "words": 449,
+      "blocks": 24,
+      "headings": 5,
+      "tables": 0,
+      "links": 6,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 1,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed"
+    ],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-06/Ps%C3%BChholoogiline%20esmaabi.%20Juhend%20otsestele%20abistajatele.pdf",
+      "text": "Psühholoogilise esmaabi käsiraamat | 2.4 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

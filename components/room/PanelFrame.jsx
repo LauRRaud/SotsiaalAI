@@ -18,10 +18,12 @@ import { readRoomHubPath } from "@/lib/roomHubReturn";
 import {
   isCanvasRoute,
   isWideRoute,
+  isWorkspaceHubRoute,
   panelHasOwnExit,
   panelHasRoomDock
 } from "@/lib/roomDock";
 import { PanelExitProvider } from "@/components/room/PanelExit";
+import { panelLeaveAllowed } from "@/lib/panelLeaveGuard";
 import IconButton from "@/components/glass/IconButton";
 import CloseIcon from "@/components/brand/icons/CloseIcon";
 import MenuIcon from "@/components/brand/icons/MenuIcon";
@@ -212,14 +214,19 @@ export default function PanelFrame({ children }) {
     normalized === "/profiil" && !String(searchParams?.get("sektsioon") || "").trim();
   /* Töölaud koos alamkomplektidega (/toolaud/tooheaolu, /toolaud/kovisioon)
      on karussell (RoomStage), mitte paneel — lehed ise on ainult marsruudi-
-     markerid sr-only sisuga (omanik 21.07, vt app/toolaud/page.jsx). */
-  const isWorkspaceHub = normalized === "/toolaud" || normalized.startsWith("/toolaud/");
+     markerid sr-only sisuga (omanik 21.07, vt app/toolaud/page.jsx).
+     AINULT need kolm menüüteed: Töölaua all olevad sisulehed (Juhtumitöö laud,
+     kiireloomuline vastuvõtt) saavad paneeli nagu iga teine leht. Loend on
+     lib/roomDock.js-is. */
+  const isWorkspaceHub = isWorkspaceHubRoute(normalized);
   const isAdmin = normalized.startsWith("/admin");
   const isConversation = normalized.startsWith("/vestlus");
   const workspaceParam = String(searchParams?.get("workspace") || "").trim();
   const isWorkspaceView = isConversation && Boolean(workspaceParam);
   const isConversationSurface = isConversation && !isWorkspaceView;
-  const isChat = isConversation || normalized.startsWith("/teekond");
+  /* Teekond ei ole enam vestluse raamis: ta on tavaline dokiga leht (omanik
+     10.10), mille sulgemine ja info on kiirmenüüs. */
+  const isChat = isConversation;
   const isCovision = normalized === "/kovisioon";
   /* Suured tööpinnad vajavad laia ja kõrget akent (tellija 06.07 öö):
      teenusekaart = suur kaart.
@@ -280,6 +287,9 @@ export default function PanelFrame({ children }) {
     normalized === "/tellimus";
 
   const closePanel = useCallback(() => {
+    /* Salvestamata tekstiga leht võib esimese sulgemise kinni pidada
+       (lib/panelLeaveGuard.js); ta ütleb siis ise ekraanil, miks. */
+    if (!panelLeaveAllowed("close")) return;
     // pin/e-post sulgub profiili-karusselli
     if (isProfileCardPage || isProfileSectionPage) {
       router.push(localizePath("/profiil", locale));

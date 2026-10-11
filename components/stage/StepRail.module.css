@@ -1,0 +1,177 @@
+/* StepRail: samm kiirmenüüs. Lühike kuju „3/12 sammu nimi" ja nool; vajutusel
+   pikk kuju ehk kõik sammud numbritena. Nuppude välimus (sh kerge taust
+   hõljudes) tuleb kiirmenüü klassidest (carousel.css .gc-shortcut-*); siin on
+   ainult see, mis on sammudele omane. Numbrite ümber rõngast ei ole. */
+
+.track {
+  flex: 0 1 auto;
+}
+
+/* --- Lühike kuju: „3/12 nimi" ------------------------------------------------
+   Tavaline kiirmenüü kirje (puhkeolekus taustata, hõljudes kerge taust), aga
+   tekst on nähtav: see ütleb, kus ma olen. */
+.where:global(.gc-shortcut) {
+  gap: 0.5rem;
+  padding: 0 0.75rem;
+  color: var(--room-text);
+}
+.where :global(.gc-shortcut-text) {
+  max-width: 12rem;
+  margin-left: 0;
+  opacity: 0.72;
+  text-overflow: ellipsis;
+}
+.count {
+  flex: none;
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  font-weight: 560;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Laia vaate nimi lühikeses kujus: ikoon ja nimi kõrvuti. */
+.where :global(.gc-shortcut-icon) + :global(.gc-shortcut-text) {
+  opacity: 1;
+}
+
+/* Laua osa nimi (osad ei ole sammud): silt, mitte nupp. */
+.part:global(.gc-shortcut) {
+  cursor: default;
+  padding: 0 0.8rem;
+}
+.part :global(.gc-shortcut-text) {
+  margin-left: 0;
+}
+
+/* --- Pikk kuju: kõik sammud ---------------------------------------------------
+   Number ilma rõngata. Ootel samm on tuhm, pooleli samm tavaline, tehtud samm
+   hele; aktiivne samm on kiirmenüü tavaline valitud kirje koos nimega. */
+.digit {
+  flex: none;
+  min-width: 1ch;
+  font-family: var(--font-ui);
+  font-size: 0.86rem;
+  font-weight: 560;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+.step:global(.gc-shortcut)[data-state="empty"]:not([data-on="1"]):not(:hover):not(:focus-visible) {
+  color: color-mix(in srgb, var(--room-text) 40%, transparent);
+}
+.step:global(.gc-shortcut)[data-state="done"] {
+  color: var(--room-text);
+}
+.step:global(.gc-shortcut)[data-on="1"] {
+  padding: 0 0.75rem;
+}
+.step :global(.gc-shortcut-text) {
+  text-overflow: ellipsis;
+}
+.track :global(.gc-shortcut[data-on="1"] .gc-shortcut-text) {
+  max-width: 12rem;
+}
+.track[data-open="1"] {
+  animation: rail-open 220ms var(--ease-soft) both;
+}
+@keyframes rail-open {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .track[data-open="1"] {
+    animation: none;
+  }
+}
+:global(html[data-reduce-motion="1"]) .track[data-open="1"] {
+  animation: none;
+}
+
+/* Nool „Järgmine samm": ainus „edasi" nupp. Süttib, kui ees olev samm on tehtud. */
+.next:disabled {
+  opacity: 0.32;
+  cursor: default;
+}
+.next[data-ready="1"]:not(:disabled) {
+  color: var(--room-text, #f4f1ec);
+  background: rgba(248, 248, 248, 0.075);
+  box-shadow: inset 0 0 0 1px rgba(248, 248, 248, 0.22);
+}
+:global(html.theme-light) .next[data-ready="1"]:not(:disabled) {
+  background: rgba(0, 0, 0, 0.06);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.22);
+}
+
+/* Sammu number vaate „Kõik sammud" plaatidel: samuti rõngata. Ootel samm on
+   tuhm, tehtud samm hele. */
+.num {
+  flex: none;
+  min-width: 1.2rem;
+  font-size: 0.86rem;
+  font-weight: 560;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-dim);
+}
+.num[data-state="partial"] {
+  color: var(--text-soft);
+}
+.num[data-state="done"] {
+  color: var(--text-warm);
+}
+
+/* Kui dokis ei ole lehe nime, lõpeb doki oma eraldaja kohe sammu ees: teist
+   joont selle kõrvale ei ole vaja. */
+:global(.gc-shortcut-divider) + :global(.gc-dock-steps) > .lead {
+  display: none;
+}
+
+/* Telefonis ei mahu lehe nimi ja samm korraga kiirmenüüsse: sammude ajal jääb
+   lehe nimi dokist välja (leht näitab seda siis ise sammu kohal). Pikas kujus
+   on seal ainult numbrid ja rida kerib, kui kõik ei mahu. */
+@media (max-width: 768px) {
+  :global(.gc-shortcut-menu):has(.track) :global(.gc-shortcut--current) {
+    display: none;
+  }
+  :global(.gc-shortcut-menu):has(:global(.gc-shortcut--current)) .lead {
+    display: none;
+  }
+  .where:global(.gc-shortcut) {
+    padding: 0 0.8rem;
+  }
+  .step:global(.gc-shortcut)[data-on="1"] {
+    padding: 0;
+  }
+  /* Laua osa nimi: telefonis peidab doki üldreegel sildi teksti ja alles jääks
+     tühi tume ring, mis näeb välja nagu nupp. Osa nime ütleb seal rida paneeli
+     ülaservas (StepFlight). */
+  .part:global(.gc-shortcut) {
+    display: none;
+  }
+}
+
+/* --- Dokita leht: riba seisab omaette pillina seal, kus dokk muidu on -------- */
+.own {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + var(--dock-bottom, 1.5rem));
+  z-index: calc(var(--z-panel, 30) + 5);
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+.ownMenu {
+  pointer-events: auto;
+  max-width: calc(100vw - 2rem);
+}
+.own .lead {
+  display: none;
+}

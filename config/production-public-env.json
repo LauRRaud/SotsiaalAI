@@ -1,6 +1,7 @@
 {
   "NEXT_PUBLIC_CASEWORK_V1_ENABLED": "1",
   "NEXT_PUBLIC_CHAT_ANALYZE_MAX_CHUNKS": "12",
+  "NEXT_PUBLIC_HOME_CARE_ENABLED": "1",
   "NEXT_PUBLIC_ORG_WORKSPACE_ENABLED": "1",
   "NEXT_PUBLIC_RAG_ALLOWED_MIME": "application/pdf,text/plain,text/markdown,application/vnd.openxmlformats-officedocument.wordprocessingml.document",
   "NEXT_PUBLIC_RAG_MAX_UPLOAD_MB": "25",

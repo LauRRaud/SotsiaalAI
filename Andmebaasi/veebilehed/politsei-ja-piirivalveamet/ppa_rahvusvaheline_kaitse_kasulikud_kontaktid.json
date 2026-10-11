@@ -1,0 +1,59 @@
+{
+  "document_id": "web-ppa_rahvusvaheline_kaitse_kasulikud_kontaktid",
+  "title": "Rahvusvaheline kaitse",
+  "register_title": "Rahvusvaheline kaitse",
+  "source_id": "ppa_rahvusvaheline_kaitse_kasulikud_kontaktid",
+  "source_type": "web_page",
+  "publisher": "Politsei- ja Piirivalveamet",
+  "language": "et",
+  "url": "https://www.politsei.ee/et/juhend/rahvusvaheline-kaitse/kasulikud-kontaktid",
+  "source_path": "ppa_rahvusvaheline_kaitse_kasulikud_kontaktid.html",
+  "source_format": "html",
+  "source_sha256": "02fe8fa3f769f74180239140854cc0d684d8d9cbab5659a44278b21e7b626158",
+  "content_sha256": "4547d27c1f22379d71e3731f29c081d512accdb14d855fbdf9c113622b994298",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:39:35.888Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": "Thu, 08 Oct 2026 17:07:49 GMT",
+      "etag": null
+    },
+    "raw_sha256": "7a9f5f2f6c9444741eb0d2945996b95126499c19be617acdea9d97037fb8b253",
+    "stats": {
+      "words": 149,
+      "blocks": 43,
+      "headings": 12,
+      "tables": 0,
+      "links": 6,
+      "linksToOtherSites": 6
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 3,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed"
+    ],
+    "needs_review": false
+  },
+  "documents": []
+}

@@ -1,0 +1,65 @@
+{
+  "document_id": "web-ska_toetused_puudega_inimestele_puudega_vanema_toetus",
+  "title": "Puudega vanema toetus",
+  "register_title": "Puudega vanema toetus",
+  "source_id": "ska_toetused_puudega_inimestele_puudega_vanema_toetus",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/toetused-puudega-inimestele/puudega-vanema-toetus",
+  "source_path": "ska_toetused_puudega_inimestele_puudega_vanema_toetus.html",
+  "source_format": "html",
+  "source_sha256": "9f5552c31320a4d7cb090df842ae5032a6379f4f61bdc7a20e18f89dcd45b5a5",
+  "content_sha256": "d08a8b2c9e76e427fd45abd30a83c845895696f52b7ebc62641f667def6782df",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:36:06.139Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2024-10-04",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:36:04 GMT",
+      "etag": null
+    },
+    "raw_sha256": "79f9f18db9d725b762397c3ed387c0e16a5c1f2e4b6ba7aefc5b79ddd607d255",
+    "stats": {
+      "words": 246,
+      "blocks": 15,
+      "headings": 5,
+      "tables": 0,
+      "links": 5,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-01/PUUETEGA%20INIMESTE%20SOTSIAALTOETUSTE%20TAOTLUS%2001.2025%20PABER.pdf",
+      "text": "Puuetega inimeste sotsiaaltoetuste taotlus | 115.01 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

@@ -50,7 +50,10 @@ export const revalidate = 0
 const DOCUMENTS_RATE_LIMIT_WINDOW_MS = readDocumentsRateLimit(process.env.DOCUMENTS_RATE_LIMIT_WINDOW_MS, 60_000, 1000)
 const ARTIFACTS_CREATE_RATE_LIMIT_MAX = readDocumentsRateLimit(process.env.ARTIFACTS_CREATE_RATE_LIMIT_MAX, 20)
 
+/* `finalSnapshot`: ainult PDF-i suurus. Selle järgi teab loend, kas kinnitatud
+   tekstist tehti PDF (vt `artifactHasPdf`); failide sisu loendiga ei laadita. */
 const artifactInclude = {
+  finalSnapshot: { select: { pdfSize: true } },
   template: {
     select: {
       id: true,

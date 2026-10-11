@@ -1,0 +1,57 @@
+{
+  "document_id": "web-tek_lapse_saamine_ja_lapse_tervis_rase",
+  "title": "Rase",
+  "register_title": "Rase",
+  "source_id": "tek_lapse_saamine_ja_lapse_tervis_rase",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/lapse-saamine-ja-lapse-tervis/rase",
+  "source_path": "tek_lapse_saamine_ja_lapse_tervis_rase.html",
+  "source_format": "html",
+  "source_sha256": "3a4b4788066e80c3019540e292b2e817f25679e03716556c744ba751eafa1954",
+  "content_sha256": "2125eae42620c6eab6b2b5bf93ea945d8b8984377341ef3f51d5a3e21828ac34",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:38:24.929Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:25:41 GMT",
+      "etag": null
+    },
+    "raw_sha256": "724bb63dbc7268aeb1bafda19763b027764aa003534bc7806989dcbbca54bac7",
+    "stats": {
+      "words": 158,
+      "blocks": 14,
+      "headings": 4,
+      "tables": 0,
+      "links": 2,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

@@ -1,0 +1,61 @@
+{
+  "document_id": "web-just_oigusabi_tasuta_oigusnou_eakatele",
+  "title": "Tasuta õigusnõu eakatele",
+  "register_title": "Tasuta õigusnõu eakatele",
+  "source_id": "just_oigusabi_tasuta_oigusnou_eakatele",
+  "source_type": "web_page",
+  "publisher": "Justiits- ja Digiministeerium",
+  "language": "et",
+  "url": "https://www.just.ee/kohtud-ja-oigusteenused/oigusabi/tasuta-oigusnou-eakatele",
+  "url_final": "https://www.justdigi.ee/kohtud-ja-oigusteenused/oigusabi/tasuta-oigusnou-eakatele",
+  "source_path": "just_oigusabi_tasuta_oigusnou_eakatele.html",
+  "source_format": "html",
+  "source_sha256": "b21be55cf4f05b3da84f7cb4f970139f70ec9cc8e5b4c33dc786fc854b64ac2f",
+  "content_sha256": "6abdd052de9e1430513f62c708ae378dca0f9e949c6b9dcdb70361e058e2ce58",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:26:45.724Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-03-31",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "1ef25909904120a73bdccecdb5d0156286756a3f74cc1fd94d3c8c0f88ff6b91",
+    "stats": {
+      "words": 148,
+      "blocks": 12,
+      "headings": 3,
+      "tables": 0,
+      "links": 2,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 1,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "email_needs_review"
+    ],
+    "needs_review": true
+  },
+  "documents": []
+}

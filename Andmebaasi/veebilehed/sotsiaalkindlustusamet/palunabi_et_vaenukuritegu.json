@@ -1,0 +1,57 @@
+{
+  "document_id": "web-palunabi_et_vaenukuritegu",
+  "title": "Vaenukuritegu",
+  "register_title": "Vaenukuritegu",
+  "source_id": "palunabi_et_vaenukuritegu",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://www.palunabi.ee/et/vaenukuritegu",
+  "source_path": "palunabi_et_vaenukuritegu.html",
+  "source_format": "html",
+  "source_sha256": "fd32da8c7105326640135ca3f5fff4a3d5af333467ff24610e6c092ab0ade41c",
+  "content_sha256": "e22b02a9ed35bc5977b9efe35e251885ae79f66f384413038c78e56067a3d63a",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:37:11.926Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "cd45c574998ff2f778c69131c5ad846dd5ee1e47d42502b1da996f605a41fa24",
+    "stats": {
+      "words": 194,
+      "blocks": 4,
+      "headings": 1,
+      "tables": 0,
+      "links": 3,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

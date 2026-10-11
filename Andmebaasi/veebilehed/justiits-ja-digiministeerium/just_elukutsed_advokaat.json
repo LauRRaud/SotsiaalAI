@@ -1,0 +1,59 @@
+{
+  "document_id": "web-just_elukutsed_advokaat",
+  "title": "Advokaat",
+  "register_title": "Advokaat",
+  "source_id": "just_elukutsed_advokaat",
+  "source_type": "web_page",
+  "publisher": "Justiits- ja Digiministeerium",
+  "language": "et",
+  "url": "https://www.just.ee/kohtud-ja-oigusteenused/elukutsed/advokaat",
+  "url_final": "https://www.justdigi.ee/kohtud-ja-oigusteenused/elukutsed/advokaat",
+  "source_path": "just_elukutsed_advokaat.html",
+  "source_format": "html",
+  "source_sha256": "3cad9b3df54c61a84bd0290aa822a09868224efaa737f8dc92a041c6670a31bb",
+  "content_sha256": "5a397090ca34efeec35651fb956725af10e545c44f2780fe9d6cfe7bcb8056d7",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:26:48.283Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2021-10-07",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "3436cd5805d611952fab8dc219872c19ef75e4417690e6113087ab0c95677f52",
+    "stats": {
+      "words": 222,
+      "blocks": 11,
+      "headings": 3,
+      "tables": 0,
+      "links": 3,
+      "linksToOtherSites": 3
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

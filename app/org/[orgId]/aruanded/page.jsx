@@ -42,5 +42,5 @@ export default async function OrgServiceReportsPage({ params }) {
 
   const initialPage = await listReceivedSharePage([membershipId]);
 
-  return <OrgServiceReportsClient organizationId={orgId} initialPage={initialPage} />;
+  return <OrgServiceReportsClient context={auth.context} organizationId={orgId} initialPage={initialPage} />;
 }

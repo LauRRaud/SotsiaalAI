@@ -1,0 +1,84 @@
+# The graph experiment on the server, 10.10.2026 (corpus v74, saved vectors, no model call): the three hard-condition
+# catalogues as of three days. Per run and arm: questions with every deciding phrase in the evidence, and those without.
+# Made by: scripts/rag-v2-graph-experiment.mjs --date <day> --vectors <saved>; read by dates-detail.mjs (this folder).
+c1-2026-10-10: eligible 2293 excluded 64
+   A 3/9 not found: day-support-dementia-retirement, supported-living-alcohol, subsistence-care-home, involuntary-placement, rehabilitation-student, day-care-retirement-age | mean sources 9 tokens 5929
+   V 3/9 not found: day-support-dementia-retirement, supported-living-alcohol, subsistence-care-home, involuntary-placement, rehabilitation-student, day-care-retirement-age | mean sources 9 tokens 6913
+   L 6/9 not found: day-support-dementia-retirement, subsistence-care-home, rehabilitation-student | mean sources 10.44 tokens 8194
+   N 6/9 not found: day-support-dementia-retirement, subsistence-care-home, rehabilitation-student | mean sources 11 tokens 8689
+   O 6/9 not found: day-support-dementia-retirement, subsistence-care-home, rehabilitation-student | mean sources 11.11 tokens 8805
+   C 3/9 not found: day-support-dementia-retirement, supported-living-alcohol, subsistence-care-home, involuntary-placement, rehabilitation-student, day-care-retirement-age | mean sources 9.33 tokens 7279
+   D 6/9 not found: day-support-dementia-retirement, subsistence-care-home, rehabilitation-student | mean sources 9.89 tokens 6631
+   O per question: day-support-dementia-retirement:no/9  supported-living-alcohol:added/13  community-living-dementia:added/11  subsistence-care-home:no/9  subsistence-prison:added/12  involuntary-placement:added/12  own-share-shortfall:added/10  rehabilitation-student:no/11  day-care-retirement-age:added/13
+c1-2026-11-01: eligible 2290 excluded 67
+   A 3/9 not found: day-support-dementia-retirement, supported-living-alcohol, subsistence-care-home, involuntary-placement, rehabilitation-student, day-care-retirement-age | mean sources 9 tokens 5929
+   V 3/9 not found: day-support-dementia-retirement, supported-living-alcohol, subsistence-care-home, involuntary-placement, rehabilitation-student, day-care-retirement-age | mean sources 9 tokens 6913
+   L 6/9 not found: day-support-dementia-retirement, subsistence-care-home, rehabilitation-student | mean sources 10.44 tokens 8194
+   N 6/9 not found: day-support-dementia-retirement, subsistence-care-home, rehabilitation-student | mean sources 11 tokens 8689
+   O 6/9 not found: day-support-dementia-retirement, subsistence-care-home, rehabilitation-student | mean sources 11.11 tokens 8805
+   C 3/9 not found: day-support-dementia-retirement, supported-living-alcohol, subsistence-care-home, involuntary-placement, rehabilitation-student, day-care-retirement-age | mean sources 9.33 tokens 7279
+   D 6/9 not found: day-support-dementia-retirement, subsistence-care-home, rehabilitation-student | mean sources 9.89 tokens 6631
+   O per question: day-support-dementia-retirement:no/9  supported-living-alcohol:added/13  community-living-dementia:added/11  subsistence-care-home:no/9  subsistence-prison:added/12  involuntary-placement:added/12  own-share-shortfall:added/10  rehabilitation-student:no/11  day-care-retirement-age:added/13
+c1-2027-01-01: eligible 2276 excluded 84
+   A 3/9 not found: day-support-dementia-retirement, supported-living-alcohol, subsistence-care-home, involuntary-placement, rehabilitation-student, day-care-retirement-age | mean sources 9 tokens 5909
+   V 3/9 not found: day-support-dementia-retirement, supported-living-alcohol, subsistence-care-home, involuntary-placement, rehabilitation-student, day-care-retirement-age | mean sources 9 tokens 5960
+   L 6/9 not found: day-support-dementia-retirement, subsistence-care-home, rehabilitation-student | mean sources 9.89 tokens 6662
+   N 6/9 not found: day-support-dementia-retirement, subsistence-care-home, rehabilitation-student | mean sources 10.11 tokens 6832
+   O 6/9 not found: day-support-dementia-retirement, subsistence-care-home, rehabilitation-student | mean sources 10.22 tokens 6948
+   C 3/9 not found: day-support-dementia-retirement, supported-living-alcohol, subsistence-care-home, involuntary-placement, rehabilitation-student, day-care-retirement-age | mean sources 9 tokens 5960
+   D 6/9 not found: day-support-dementia-retirement, subsistence-care-home, rehabilitation-student | mean sources 9.89 tokens 6611
+   O per question: day-support-dementia-retirement:no/9  supported-living-alcohol:added/10  community-living-dementia:added/10  subsistence-care-home:no/9  subsistence-prison:added/11  involuntary-placement:added/12  own-share-shortfall:added/10  rehabilitation-student:no/11  day-care-retirement-age:added/10
+c2-2026-10-10: eligible 2293 excluded 64
+   A 4/6 not found: reclaim-limitation, coach-reports-child | mean sources 9 tokens 6392
+   V 4/6 not found: reclaim-limitation, coach-reports-child | mean sources 9 tokens 7296
+   L 4/6 not found: reclaim-limitation, coach-reports-child | mean sources 10.83 tokens 8334
+   N 4/6 not found: reclaim-limitation, coach-reports-child | mean sources 11.5 tokens 8739
+   O 4/6 not found: reclaim-limitation, coach-reports-child | mean sources 11.67 tokens 8915
+   C 4/6 not found: reclaim-limitation, coach-reports-child | mean sources 9.33 tokens 7710
+   D 4/6 not found: reclaim-limitation, coach-reports-child | mean sources 10.5 tokens 7605
+   O per question: reclaim-limitation:no/13  reclaim-enforcement:added/10  coach-reports-child:no/11  student-subsistence-own:added/12  subsistence-new-job:added/9  subsistence-deadline:added/15
+c2-2026-11-01: eligible 2290 excluded 67
+   A 4/6 not found: reclaim-limitation, coach-reports-child | mean sources 9 tokens 6331
+   V 4/6 not found: reclaim-limitation, coach-reports-child | mean sources 9 tokens 7236
+   L 4/6 not found: reclaim-limitation, coach-reports-child | mean sources 10.83 tokens 8273
+   N 4/6 not found: reclaim-limitation, coach-reports-child | mean sources 11.5 tokens 8679
+   O 4/6 not found: reclaim-limitation, coach-reports-child | mean sources 11.67 tokens 8854
+   C 4/6 not found: reclaim-limitation, coach-reports-child | mean sources 9.33 tokens 7649
+   D 4/6 not found: reclaim-limitation, coach-reports-child | mean sources 10.5 tokens 7544
+   O per question: reclaim-limitation:no/13  reclaim-enforcement:added/10  coach-reports-child:no/11  student-subsistence-own:added/12  subsistence-new-job:added/9  subsistence-deadline:added/15
+c2-2027-01-01: eligible 2276 excluded 84
+   A 4/6 not found: reclaim-limitation, coach-reports-child | mean sources 9 tokens 5975
+   V 4/6 not found: reclaim-limitation, coach-reports-child | mean sources 9 tokens 6026
+   L 4/6 not found: reclaim-limitation, coach-reports-child | mean sources 10.5 tokens 7239
+   N 4/6 not found: reclaim-limitation, coach-reports-child | mean sources 10.67 tokens 7332
+   O 4/6 not found: reclaim-limitation, coach-reports-child | mean sources 11 tokens 7679
+   C 4/6 not found: reclaim-limitation, coach-reports-child | mean sources 9 tokens 6026
+   D 4/6 not found: reclaim-limitation, coach-reports-child | mean sources 10.5 tokens 7188
+   O per question: reclaim-limitation:no/13  reclaim-enforcement:added/10  coach-reports-child:no/10  student-subsistence-own:added/11  subsistence-new-job:added/9  subsistence-deadline:added/13
+c3-2026-10-10: eligible 2293 excluded 64
+   A 11/15 not found: referral-deadline-emergency, pensioner-with-student-child, child-rehabilitation-need, guardian-ward-family | mean sources 9 tokens 6616
+   V 11/15 not found: referral-deadline-emergency, pensioner-with-student-child, child-rehabilitation-need, guardian-ward-family | mean sources 9 tokens 7623
+   L 12/15 not found: referral-deadline-emergency, pensioner-with-student-child, child-rehabilitation-need | mean sources 10.67 tokens 8549
+   N 13/15 not found: referral-deadline-emergency, child-rehabilitation-need | mean sources 11.53 tokens 9394
+   O 14/15 not found: child-rehabilitation-need | mean sources 11.8 tokens 9455
+   C 12/15 not found: referral-deadline-emergency, pensioner-with-student-child, child-rehabilitation-need | mean sources 9.67 tokens 8342
+   D 11/15 not found: referral-deadline-emergency, pensioner-with-student-child, child-rehabilitation-need, guardian-ward-family | mean sources 10 tokens 7429
+   O per question: subsistence-home-loan:added/13  referral-deadline-emergency:added/13  student-turns-25:added/12  refusal-only-home:added/14  service-ended-martial-law:added/13  rent-from-mother:added/12  pensioner-with-student-child:added/12  child-rehabilitation-need:no/9  harku-support-person-relative:added/11  guardian-ward-family:added/14  rent-debt-not-counted:added/10  household-definition:added/13  kuusalu-limits-since:added/10  special-care-decision-time:added/9  pensioner-day-centre:added/12
+c3-2026-11-01: eligible 2290 excluded 67
+   A 11/15 not found: referral-deadline-emergency, pensioner-with-student-child, child-rehabilitation-need, guardian-ward-family | mean sources 9 tokens 6616
+   V 11/15 not found: referral-deadline-emergency, pensioner-with-student-child, child-rehabilitation-need, guardian-ward-family | mean sources 9 tokens 7623
+   L 12/15 not found: referral-deadline-emergency, pensioner-with-student-child, child-rehabilitation-need | mean sources 10.67 tokens 8549
+   N 13/15 not found: referral-deadline-emergency, child-rehabilitation-need | mean sources 11.53 tokens 9394
+   O 14/15 not found: child-rehabilitation-need | mean sources 11.8 tokens 9455
+   C 12/15 not found: referral-deadline-emergency, pensioner-with-student-child, child-rehabilitation-need | mean sources 9.67 tokens 8342
+   D 11/15 not found: referral-deadline-emergency, pensioner-with-student-child, child-rehabilitation-need, guardian-ward-family | mean sources 10 tokens 7429
+   O per question: subsistence-home-loan:added/13  referral-deadline-emergency:added/13  student-turns-25:added/12  refusal-only-home:added/14  service-ended-martial-law:added/13  rent-from-mother:added/12  pensioner-with-student-child:added/12  child-rehabilitation-need:no/9  harku-support-person-relative:added/11  guardian-ward-family:added/14  rent-debt-not-counted:added/10  household-definition:added/13  kuusalu-limits-since:added/10  special-care-decision-time:added/9  pensioner-day-centre:added/12
+c3-2027-01-01: eligible 2276 excluded 84
+   A 11/15 not found: referral-deadline-emergency, pensioner-with-student-child, child-rehabilitation-need, guardian-ward-family | mean sources 9 tokens 6592
+   V 11/15 not found: referral-deadline-emergency, pensioner-with-student-child, child-rehabilitation-need, guardian-ward-family | mean sources 9 tokens 6800
+   L 11/15 not found: referral-deadline-emergency, pensioner-with-student-child, child-rehabilitation-need, guardian-ward-family | mean sources 10.13 tokens 7513
+   N 12/15 not found: referral-deadline-emergency, child-rehabilitation-need, guardian-ward-family | mean sources 10.4 tokens 7667
+   O 13/15 not found: child-rehabilitation-need, guardian-ward-family | mean sources 10.67 tokens 7931
+   C 11/15 not found: referral-deadline-emergency, pensioner-with-student-child, child-rehabilitation-need, guardian-ward-family | mean sources 9.13 tokens 6900
+   D 11/15 not found: referral-deadline-emergency, pensioner-with-student-child, child-rehabilitation-need, guardian-ward-family | mean sources 10 tokens 7405
+   O per question: subsistence-home-loan:added/9  referral-deadline-emergency:added/13  student-turns-25:added/11  refusal-only-home:added/12  service-ended-martial-law:added/13  rent-from-mother:added/10  pensioner-with-student-child:added/11  child-rehabilitation-need:no/9  harku-support-person-relative:added/11  guardian-ward-family:no/10  rent-debt-not-counted:added/10  household-definition:added/11  kuusalu-limits-since:added/10  special-care-decision-time:added/9  pensioner-day-centre:added/11

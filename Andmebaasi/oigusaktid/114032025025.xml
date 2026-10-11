@@ -1,0 +1,2210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="9896499e-293f-49ab-b1d0-11002e67a342" xsi:schemaLocation="tyviseadus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/tyviseadus_1_10.02.2010.xsd" xmlns="tyviseadus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Riigikogu</valjaandja>
+		<dokumentLiik>seadus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		
+		<lyhend>KrHS</lyhend><dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>1997-12-17</aktikuupaev>
+			<avaldamismarge>
+				<RTosa>RT I</RTosa>
+				<RTaasta>1998</RTaasta>
+				<RTnr>4</RTnr>
+				<RTartikkel>62</RTartikkel>
+				<aktViide>25479</aktViide>
+			</avaldamismarge>
+			<joustumine>1998-05-01</joustumine>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT I</RTosa><avaldamineKuupaev>2025-03-14</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>25</RTartikkel><aktViide>114032025025</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2025-01-01</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioonKuupaev>2011-02-16</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>tyviseadus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>114032025025</globaalID>
+		<metaandmedVersioon>62</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2025-03-13</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Maret Mauer</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>152074</terviktekstiGrupiID>
+		<eesmark>Tüviseaduse raamskeem XML struktuuri koostamiseks</eesmark>
+	</metaandmed>
+	<aktinimi>
+		<nimi>
+			<pealkiri>Kriminaalhooldusseadus</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge>
+		<aktikuupaev>2002-06-12</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2002</RTaasta>
+			<RTnr>56</RTnr>
+			<RTartikkel>350</RTartikkel>
+			<aktViide>177120</aktViide>
+		</avaldamismarge>
+		<joustumine>2002-09-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2002-06-19</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2002</RTaasta>
+			<RTnr>64</RTnr>
+			<RTartikkel>390</RTartikkel>
+			<aktViide>181957</aktViide>
+		</avaldamismarge>
+		<joustumine>2002-07-29</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<tavatekst>terviktekst RT paberkandjal</tavatekst>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2002</RTaasta>
+			<RTnr>82</RTnr>
+			<RTartikkel>478</RTartikkel>
+			<aktViide>184396</aktViide>
+		</avaldamismarge>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2004-04-07</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2004</RTaasta>
+			<RTnr>27</RTnr>
+			<RTartikkel>176</RTartikkel>
+			<aktViide>738543</aktViide>
+		</avaldamismarge>
+		<joustumine>2004-05-01</joustumine>
+		<tavatekst>, osaliselt 01.07.2005</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2005-02-22</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2005</RTaasta>
+			<RTnr>15</RTnr>
+			<RTartikkel>85</RTartikkel>
+			<aktViide>867951</aktViide>
+		</avaldamismarge>
+		<joustumine>2006-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2006-09-27</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2006</RTaasta>
+			<RTnr>46</RTnr>
+			<RTartikkel>333</RTartikkel>
+			<aktViide>12743811</aktViide>
+		</avaldamismarge>
+		<joustumine>2007-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2008-03-20</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2008</RTaasta>
+			<RTnr>17</RTnr>
+			<RTartikkel>118</RTartikkel>
+			<aktViide>12951257</aktViide>
+		</avaldamismarge>
+		<joustumine>2008-06-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2010-04-14</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2010</RTaasta>
+			<RTnr>17</RTnr>
+			<RTartikkel>93</RTartikkel>
+			<aktViide>13307502</aktViide>
+		</avaldamismarge>
+		<joustumine>2010-05-10</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2010-06-16</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2010</RTaasta>
+			<RTnr>44</RTnr>
+			<RTartikkel>258</RTartikkel>
+			<aktViide>13335643</aktViide>
+		</avaldamismarge>
+		<joustumine>2010-07-19</joustumine>
+		<tavatekst>, osaliselt 01.01.2011</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2011-01-27</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2011-02-23</avaldamineKuupaev>
+			<RTartikkel>2</RTartikkel>
+			<aktViide>123022011002</aktViide>
+		</avaldamismarge>
+		<joustumine>2011-04-05</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2012-05-30</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2012-06-15</avaldamineKuupaev>
+			<RTartikkel>2</RTartikkel>
+			<aktViide>115062012002</aktViide>
+		</avaldamismarge>
+		<joustumine>2013-06-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2012-06-13</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2012-07-10</avaldamineKuupaev>
+			<RTartikkel>2</RTartikkel>
+			<aktViide>110072012002</aktViide>
+		</avaldamismarge>
+		<joustumine>2013-04-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2012-12-05</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2012-12-20</avaldamineKuupaev>
+			<RTartikkel>3</RTartikkel>
+			<aktViide>120122012003</aktViide>
+		</avaldamismarge>
+		<joustumine>2013-01-01</joustumine>
+		<tavatekst>, osaliselt 01.04.2013</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2014-02-19</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2014-03-13</avaldamineKuupaev>
+			<RTartikkel>4</RTartikkel>
+			<aktViide>113032014004</aktViide>
+		</avaldamismarge>
+		<joustumine>2014-07-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2014-06-19</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2014-07-12</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>112072014001</aktViide>
+		</avaldamismarge>
+		<joustumine>2015-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2014-06-19</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2014-06-29</avaldamineKuupaev>
+			<RTartikkel>109</RTartikkel>
+			<aktViide>129062014109</aktViide>
+		</avaldamismarge>
+		<joustumine>2014-07-01</joustumine>
+		<tavatekst>, Vabariigi Valitsuse seaduse § 107³ lõike 4 alusel asendatud ministrite ametinimetused.</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2015-02-18</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2015-03-10</avaldamineKuupaev>
+			<RTartikkel>4</RTartikkel>
+			<aktViide>110032015004</aktViide>
+		</avaldamismarge>
+		<joustumine>2015-06-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2015-12-09</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2015-12-30</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>130122015001</aktViide>
+		</avaldamismarge>
+		<joustumine>2016-01-18</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2016-12-15</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2016-12-31</avaldamineKuupaev>
+			<RTartikkel>2</RTartikkel>
+			<aktViide>131122016002</aktViide>
+		</avaldamismarge>
+		<joustumine>2017-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2017-06-14</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2017-07-07</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>107072017001</aktViide>
+		</avaldamismarge>
+		<joustumine>2017-11-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2017-11-22</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2017-12-05</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>105122017001</aktViide>
+		</avaldamismarge>
+		<joustumine>2017-12-15</joustumine>
+		<tavatekst>, osaliselt 01.01.2018</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2019-02-20</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2019-03-13</avaldamineKuupaev>
+			<RTartikkel>2</RTartikkel>
+			<aktViide>113032019002</aktViide>
+		</avaldamismarge>
+		<joustumine>2019-03-15</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2019-02-20</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2019-03-19</avaldamineKuupaev>
+			<RTartikkel>3</RTartikkel>
+			<aktViide>119032019003</aktViide>
+		</avaldamismarge>
+		<joustumine>2019-07-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2019-12-04</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2019-12-20</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>120122019001</aktViide>
+		</avaldamismarge>
+		<joustumine>2019-12-30</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2022-07-19</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2022-08-06</avaldamineKuupaev>
+			<RTartikkel>5</RTartikkel>
+			<aktViide>106082022005</aktViide>
+		</avaldamismarge>
+		<joustumine>2022-08-16</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2024-03-06</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2024-03-22</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>122032024001</aktViide>
+		</avaldamismarge>
+		<joustumine>2024-04-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2024-12-11</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2024-12-30</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>130122024001</aktViide>
+		</avaldamismarge>
+		<joustumine>2025-01-01</joustumine>
+		<tavatekst>, Vabariigi Valitsuse seaduse § 105.19 lõike 12 alusel asendatud sõna „Justiitsministeerium” sõnadega „Justiits- ja Digiministeerium” vastavas käändes</tavatekst>
+	</muutmismarge>
+	<sisu>
+		<peatykk id="ptk1">
+			<peatykkNr>1</peatykkNr>
+			<kuvatavNr><![CDATA[1. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>ÜLDSÄTTED</peatykkPealkiri>
+			<paragrahv id="para1">
+				<paragrahvNr>1</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 1. ]]></kuvatavNr>
+				<paragrahvPealkiri>Kriminaalhooldus</paragrahvPealkiri>
+				<loige id="para1lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhoolduse käigus valvatakse kriminaalhooldusaluse käitumise ja temale kohtu või prokuröri poolt pandud kohustuste täitmise järele ning soodustatakse kriminaalhooldusaluse sotsiaalset kohanemist eesmärgiga mõjutada teda hoiduma kuritegude toimepanemisest.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2004</RTaasta>
+							<RTnr>27</RTnr>
+							<RTartikkel>176</RTartikkel>
+							<aktViide>738543</aktViide>
+						</avaldamismarge>
+						<joustumine>2004-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para1lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<viide>
+							<kuvatavTekst><![CDATA[Valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=114032025025&id=115032013028;115032013029;115032013030]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> võib määrusega kehtestada kriminaalhoolduse teostamise nõuded ja korra.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2012-12-20</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>120122012003</aktViide>
+						</avaldamismarge>
+						<joustumine>2013-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para2">
+				<paragrahvNr>2</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 2. ]]></kuvatavNr>
+				<paragrahvPealkiri>Kriminaalhooldusalune</paragrahvPealkiri>
+				<loige id="para2lg1">
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusalune on:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para2lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>süüdimõistetu, kelle kohus on seaduses sätestatud korras määranud kriminaalhooldaja järelevalve alla;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>süüdimõistetu, kelle vangistus on asendatud üldkasuliku tööga või narkomaanide sõltuvusraviga või osaliselt asendatud seksuaalkurjategijate kompleksraviga;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2012-06-15</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>115062012002</aktViide>
+							</avaldamismarge>
+							<joustumine>2013-06-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para2lg1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>isik, kelle suhtes on kriminaalmenetlus lõpetatud ning kellele on prokurör või kohus määranud üldkasuliku töö tegemise või kohustuse alluda karistusseadustiku § 75<sup>1</sup> lõikes 1 sätestatud alkoholi tarvitamise keelu täitmist kontrolliva elektroonilise seadme valvele;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2019-03-19</avaldamineKuupaev>
+								<RTartikkel>3</RTartikkel>
+								<aktViide>119032019003</aktViide>
+							</avaldamismarge>
+							<joustumine>2019-07-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para2lg1p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kahtlustatav või süüdistatav, kellel tõkendina kohaldatud vahistamine on asendatud elektroonilisele valvele allumise kohustusega;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<RTaasta>2010</RTaasta>
+								<RTnr>44</RTnr>
+								<RTartikkel>258</RTartikkel>
+								<aktViide>13335643</aktViide>
+							</avaldamismarge>
+							<joustumine>2011-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para2lg1p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kahtlustatav, süüdistatav või süüdimõistetu, kellele kohus on kohaldanud elektroonilise valvega ajutist lähenemiskeeldu või lähenemiskeeldu;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<aktikuupaev>2014-06-19</aktikuupaev>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2014-07-12</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>112072014001</aktViide>
+							</avaldamismarge>
+							<joustumine>2015-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para2lg1p6">
+						<alampunktNr>6</alampunktNr>
+						<kuvatavNr><![CDATA[6) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>süüdlane, kelle arest on asendatud üldkasuliku tööga või kellele kohus on määranud üldkasuliku töö tegemise kohustuse karistusseadustiku § 87 alusel;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2017-12-05</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>105122017001</aktViide>
+							</avaldamismarge>
+							<joustumine>2018-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para2lg1p7">
+						<alampunktNr>7</alampunktNr>
+						<kuvatavNr><![CDATA[7) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kahtlustatav või süüdistatav, kelle kohta on prokurör või kohus tellinud kohtueelse ettekande.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2017-07-07</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>107072017001</aktViide>
+							</avaldamismarge>
+							<joustumine>2017-11-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para3">
+				<paragrahvNr>3</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 3. ]]></kuvatavNr>
+				<paragrahvPealkiri>Kriminaalhooldaja</paragrahvPealkiri>
+				<loige id="para3lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldaja on kriminaalhooldusametnik ja kriminaalhooldusabiline.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para3lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhoolduse ülesanded võib anda ka mittetulundusühingule (kriminaalhooldusühingule), mille üheks põhikirjaliseks tegevuseks on kriminaalhoolduse teostamine.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para3lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhoolduse ülesandeid võib anda lisaks kriminaalhooldajale ka teistele vangla teenistuses olevatele isikutele, kes vastavad kriminaalhooldajale esitatavatele nõuetele.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2022-08-06</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>106082022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2022-08-16</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para4">
+				<paragrahvNr>4</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 4. ]]></kuvatavNr>
+				<paragrahvPealkiri>Kriminaalhooldaja õigus saada teavet</paragrahvPealkiri>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2012-12-20</avaldamineKuupaev>
+						<RTartikkel>3</RTartikkel>
+						<aktViide>120122012003</aktViide>
+					</avaldamismarge>
+					<joustumine>2013-01-01</joustumine>
+				</muutmismarge>
+				<loige id="para4lg1">
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldajal on õigus saada asutustelt ja isikutelt kriminaalhooldusülesannete täitmiseks vajalikku teavet.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2012-12-20</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>120122012003</aktViide>
+						</avaldamismarge>
+						<joustumine>2013-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para4b1">
+				<paragrahvNr ylaIndeks="1">4</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 4<sup>1</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Isikuandmete töötlemine kriminaalhoolduse ettevalmistamisel ja teostamisel</paragrahvPealkiri>
+				<loige id="para4b1lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhoolduse ettevalmistamiseks ja teostamiseks on kriminaalhooldajal õigus töödelda kriminaalhooldusaluse ning kriminaalhooldusalusega seotud isikute isikuandmeid, sealhulgas seaduses sätestatud juhtudel eriliiki isikuandmeid.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4b1lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhoolduse ettevalmistamisel ja teostamisel loetakse kriminaalhooldaja tegevus õiguskaitseasutuse tegevuseks isikuandmete kaitse seaduse § 13 lõike 2 tähenduses ning isikuandmete töötlemisel lähtutakse õiguskaitseasutustele kehtestatud sätetest.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2019-03-13</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>113032019002</aktViide>
+						</avaldamismarge>
+						<joustumine>2019-03-15</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para4b2">
+				<paragrahvNr ylaIndeks="2">4</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 4<sup>2</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Andmesubjekti õigus saada teavet tema isikuandmete töötlemise kohta ja isikuandmete väljastamine</paragrahvPealkiri>
+				<loige id="para4b2lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Isikuandmete töötlemisel käesoleva seaduse alusel võib vastutav töötleja piirata andmesubjekti isikuandmete kaitse seadusest tulenevaid õigusi, kui see on vajalik süüteo tõkestamiseks, avastamiseks, menetlemiseks või karistuse täideviimiseks, distsiplinaarmenetluse või haldusmenetluse läbiviimiseks, teise isiku või andmesubjekti õiguste ja vabaduste kahjustamise takistamiseks, riigi julgeoleku ohustamise takistamiseks või avaliku korra kaitse tagamiseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4b2lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõike 1 alusel võib piirata järgmisi andmesubjekti õigusi:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para4b2lg2p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>õigust saada teada tema isikuandmete töötlemisest, sealhulgas sellest, milliseid isikuandmeid töödeldakse, samuti töötlemise viisi, meetodit, eesmärki, õiguslikku alust, ulatust või põhjust;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4b2lg2p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>õigust saada teada tema isikuandmete vastuvõtjaid ja avaldatavate isikuandmete kategooriaid ning teavet selle kohta, kas tema isikuandmed edastatakse välisriigile või rahvusvahelisele organisatsioonile;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4b2lg2p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>õigust nõuda tema isikuandmete töötlemise piiramist;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4b2lg2p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>õigust esitada vastuväiteid tema isikuandmete töötlemise kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4b2lg2p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>õigust saada teada tema isikuandmetega seotud rikkumisest.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2019-03-13</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>113032019002</aktViide>
+							</avaldamismarge>
+							<joustumine>2019-03-15</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk2">
+			<peatykkNr>2</peatykkNr>
+			<kuvatavNr><![CDATA[2. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>KRIMINAALHOOLDUSOSAKOND</peatykkPealkiri>
+			<muutmismarge>
+				<tavatekst>Kehtetu - </tavatekst>
+				<avaldamismarge>
+					<RTosa>RT I</RTosa>
+					<avaldamineKuupaev>2012-12-20</avaldamineKuupaev>
+					<RTartikkel>3</RTartikkel>
+					<aktViide>120122012003</aktViide>
+				</avaldamismarge>
+				<joustumine>2013-01-01</joustumine>
+			</muutmismarge>
+			<paragrahv id="para5">
+				<paragrahvNr kehtiv="0">5</paragrahvNr>
+				<kuvatavNr>§ 5. </kuvatavNr>
+				<sisuTekst>
+					<tavatekst> – </tavatekst>
+				</sisuTekst>
+			</paragrahv>
+			<paragrahv id="para12">
+				<paragrahvNr kehtiv="0">12</paragrahvNr>
+				<kuvatavNr>§ 12. </kuvatavNr>
+				<muutmismarge>
+					<tavatekst>Kehtetud -</tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2012-12-20</avaldamineKuupaev>
+						<RTartikkel>3</RTartikkel>
+						<aktViide>120122012003</aktViide>
+					</avaldamismarge>
+					<joustumine>2013-01-01</joustumine>
+				</muutmismarge>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk3">
+			<peatykkNr>3</peatykkNr>
+			<kuvatavNr><![CDATA[3. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>KRIMINAALHOOLDUSAMETNIK</peatykkPealkiri>
+			<paragrahv id="para13">
+				<paragrahvNr>13</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 13. ]]></kuvatavNr>
+				<paragrahvPealkiri>Kriminaalhooldusametnikule esitatavad nõuded</paragrahvPealkiri>
+				<loige id="para13lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusametnikuks võib nimetada isiku, kellel on kriminaalhooldustööks vajalikud kõlbelised omadused ning vastav rakenduslik või akadeemiline kõrgharidus.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para13lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<viide>
+							<kuvatavTekst><![CDATA[Valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=114032025025&id=110092013007]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> võib kehtestada täiendavaid kriminaalhooldusametniku, kriminaalhooldusosakonna talituse juhataja ja kriminaalhooldusosakonna juhataja kvalifikatsiooni nõudeid.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2004</RTaasta>
+							<RTnr>27</RTnr>
+							<RTartikkel>176</RTartikkel>
+							<aktViide>738543</aktViide>
+						</avaldamismarge>
+						<joustumine>2004-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para13lg2b1">
+					<loigeNr ylaIndeks="1">2</loigeNr>
+					<kuvatavNr><![CDATA[(2<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusametnikuks võib nimetada ka välisriigi kutsekvalifikatsiooni omandanud isiku, kui tema kutsekvalifikatsiooni on tunnustatud välisriigi kutsekvalifikatsiooni tunnustamise seaduse kohaselt. Välisriigi kutsekvalifikatsiooni tunnustamise seaduse § 7 lõikes 2 sätestatud pädev asutus on Justiits- ja Digiministeerium.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-12-30</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>130122024001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-01</joustumine>
+						<tavatekst>, Vabariigi Valitsuse seaduse § 105.19 lõike 12 alusel asendatud sõna „Justiitsministeerium” sõnadega „Justiits- ja Digiministeerium” vastavas käändes</tavatekst>
+					</muutmismarge>
+				</loige>
+				<loige id="para13lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<viide>
+							<kuvatavTekst><![CDATA[Valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=114032025025&id=110092013007]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> võib määrusega kehtestada kriminaalhooldusametniku tööülesanded, mida täitval ametnikul ei pea olema käesoleva paragrahvi lõikes 1 nimetatud rakenduslikku või akadeemilist kõrgharidust.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2012-12-20</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>120122012003</aktViide>
+						</avaldamismarge>
+						<joustumine>2013-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para14">
+				<paragrahvNr>14</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 14. ]]></kuvatavNr>
+				<paragrahvPealkiri>Kriminaalhooldusametniku katseaeg</paragrahvPealkiri>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2022-08-06</avaldamineKuupaev>
+						<RTartikkel>5</RTartikkel>
+						<aktViide>106082022005</aktViide>
+					</avaldamismarge>
+					<joustumine>2022-08-16</joustumine>
+				</muutmismarge>
+				<loige id="para14lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusametnikule kohaldatakse katseaega kuni kuus kuud ametikohale asumisest arvates.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2022-08-06</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>106082022005</aktViide>
+						</avaldamismarge>
+						<joustumine>2022-08-16</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para15">
+				<paragrahvNr>15</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 15. ]]></kuvatavNr>
+				<paragrahvPealkiri>Juhendamiskohustus</paragrahvPealkiri>
+				<loige id="para15lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusametnik on kohustatud kriminaalhooldusosakonna juhataja korraldusel juhendama kriminaalhoolduse praktikanti ja kriminaalhooldusabilist. Kriminaalhooldusametnik ei ole kohustatud juhendama üheaegselt rohkem kui kahte praktikanti ja viit kriminaalhooldusabilist.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para15lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2012-12-20</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>120122012003</aktViide>
+						</avaldamismarge>
+						<joustumine>2013-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para15b1">
+				<paragrahvNr ylaIndeks="1">15</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 15<sup>1</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Teavitamiskohustus</paragrahvPealkiri>
+				<loige id="para15b1lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldust teostav ametnik peab teavitama talle ametitegevuse käigus teatavaks saanud kuritegudest ja väärtegudest.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2012-12-20</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>120122012003</aktViide>
+						</avaldamismarge>
+						<joustumine>2013-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para15b2">
+				<paragrahvNr ylaIndeks="2">15</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 15<sup>2</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Ametisaladuse hoidmise kohustus</paragrahvPealkiri>
+				<loige id="para15b2lg1">
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusametnik ei tohi avaldada talle seoses teenistusülesannete täitmisega teatavaks saanud asjaolusid ega andmeid, sealhulgas mistahes isikuandmeid ja isikute vahelisi suhteid puudutavaid andmeid. Ametisaladuse hoidmise kohustus on tähtajatu.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2019-03-13</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>113032019002</aktViide>
+						</avaldamismarge>
+						<joustumine>2019-03-15</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para16">
+				<paragrahvNr>16</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 16. ]]></kuvatavNr>
+				<paragrahvPealkiri>Varalise kahju hüvitamine</paragrahvPealkiri>
+				<loige id="para16lg1">
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusametniku teenistusülesannete täitmise tõttu kriminaalhooldusametnikule või tema perekonnaliikmele tahtlikult tekitatud varalise kahju hüvitab riik vangistusseaduse §-s 143 sätestatud korras. Kahjutasu nõutakse sisse süüdiolevalt isikult.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2008</RTaasta>
+							<RTnr>17</RTnr>
+							<RTartikkel>118</RTartikkel>
+							<aktViide>12951257</aktViide>
+						</avaldamismarge>
+						<joustumine>2008-06-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk4">
+			<peatykkNr>4</peatykkNr>
+			<kuvatavNr><![CDATA[4. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>KRIMINAALHOOLDUSABILINE</peatykkPealkiri>
+			<paragrahv id="para17">
+				<paragrahvNr>17</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 17. ]]></kuvatavNr>
+				<paragrahvPealkiri>Kriminaalhooldusabiline</paragrahvPealkiri>
+				<loige id="para17lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusabiline on isik, kes täidab kriminaalhooldusülesandeid oma vabast ajast ja tasu saamata.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para17lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusabiline tegutseb kriminaalhooldusametniku juhendamisel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para17lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusabiline võib olla isik, kes on avaldanud sellekohast soovi ja sobib kriminaalhooldusabilisena tegutsema. Sobivuse hindamisel tutvutakse dokumentide ja vestluse kaudu taotleja isikuomaduste, hariduse, elukäigu ja tööalase tegevusega.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para17lg3b1">
+					<loigeNr ylaIndeks="1">3</loigeNr>
+					<kuvatavNr><![CDATA[(3<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Hindamisel on lubatud töödelda isiku tuvastamise andmeid, kontaktandmeid, elukoha andmeid, isikut iseloomustavaid andmeid, sealhulgas isikuomadusi, hariduse ja õpingute andmeid, elulookirjelduse andmeid, isiku karistusandmeid ning töökoha ja varasema töökogemuse andmeid.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2019-03-13</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>113032019002</aktViide>
+						</avaldamismarge>
+						<joustumine>2019-03-15</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para17lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusabiline ei või olla kohtunik ega prokurör, samuti kohtu, prokuratuuri, politsei või kinnipidamiskoha koosseisuline töötaja, kes on avalik teenistuja.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para17lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusabiline ei tohi avaldada talle seoses ülesannete täitmisega teatavaks saanud asjaolusid ega andmeid, sealhulgas mistahes isikuandmeid ja isikute vahelisi suhteid puudutavaid andmeid. Saladuse hoidmise kohustus on tähtajatu.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2019-03-13</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>113032019002</aktViide>
+						</avaldamismarge>
+						<joustumine>2019-03-15</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para18">
+				<paragrahvNr>18</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 18. ]]></kuvatavNr>
+				<paragrahvPealkiri>Kriminaalhooldusabiliste nimekiri</paragrahvPealkiri>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<RTaasta>2002</RTaasta>
+						<RTnr>64</RTnr>
+						<RTartikkel>390</RTartikkel>
+						<aktViide>181957</aktViide>
+					</avaldamismarge>
+					<joustumine>2002-07-29</joustumine>
+				</muutmismarge>
+				<loige id="para18lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusabilisena võib tegutseda isik, kelle kriminaalhooldusosakonna juhataja on kandnud kriminaalhooldusabiliste nimekirja.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para18lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Osakonna kriminaalhooldusabiliste nimekirja peab kriminaalhooldusosakonna juhataja, üleriigilist kriminaalhooldusabiliste nimekirja peab Justiits- ja Digiministeerium.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-12-30</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>130122024001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-01</joustumine>
+						<tavatekst>, Vabariigi Valitsuse seaduse § 105.19 lõike 12 alusel asendatud sõna „Justiitsministeerium” sõnadega „Justiits- ja Digiministeerium” vastavas käändes</tavatekst>
+					</muutmismarge>
+				</loige>
+				<loige id="para18lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusabiliste nimekirja märgitakse kriminaalhooldusabilise ees- ja perekonnanimi, elukoht, telefon ja töökoht. Kui kriminaalhooldusabiline eelistab tegelemist kindla isikute rühmaga, tehakse selle kohta nimekirja märge.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para18lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Isik kustutatakse kriminaalhooldusabiliste nimekirjast, kui ta on rikkunud kriminaalhooldaja kohustusi või muul viisil osutunud sobimatuks kriminaalhooldusabilisena tegutsema või on korduvalt põhjendamatult keeldunud kriminaalhooldusülesannete täitmisest või kui isik ei soovi enam kriminaalhooldusabilisena tegutseda.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2019-03-13</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>113032019002</aktViide>
+						</avaldamismarge>
+						<joustumine>2019-03-15</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para18lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2002</RTaasta>
+							<RTnr>64</RTnr>
+							<RTartikkel>390</RTartikkel>
+							<aktViide>181957</aktViide>
+						</avaldamismarge>
+						<joustumine>2002-07-29</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para19">
+				<paragrahvNr>19</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 19. ]]></kuvatavNr>
+				<paragrahvPealkiri>Kriminaalhooldusabilise väljaõpe</paragrahvPealkiri>
+				<loige id="para19lg1">
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusosakond tagab kriminaalhooldusabilise väljaõppe enne tema asumist kriminaalhooldusülesannete täitmisele.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2004</RTaasta>
+							<RTnr>27</RTnr>
+							<RTartikkel>176</RTartikkel>
+							<aktViide>738543</aktViide>
+						</avaldamismarge>
+						<joustumine>2004-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para20">
+				<paragrahvNr>20</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 20. ]]></kuvatavNr>
+				<paragrahvPealkiri>Kriminaalhooldusabilise kulude hüvitamine</paragrahvPealkiri>
+				<loige id="para20lg1">
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusabilisele hüvitatakse kriminaalhooldustöö kulud, kuid mitte suurema summa ulatuses kui 10 protsenti kriminaalhooldusametnikule makstavast töötasust.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk5">
+			<peatykkNr>5</peatykkNr>
+			<kuvatavNr><![CDATA[5. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>KRIMINAALHOOLDUSÜHING</peatykkPealkiri>
+			<paragrahv id="para21">
+				<paragrahvNr>21</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 21. ]]></kuvatavNr>
+				<paragrahvPealkiri>Kriminaalhooldusühing</paragrahvPealkiri>
+				<loige id="para21lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Valdkonna eest vastutav minister võib halduslepingu alusel anda kriminaalhooldusülesannete täitmise osaliselt mõne kohtu tööpiirkonnas selleks sobivale ja vastavat soovi avaldanud mittetulundusühingule.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para21lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusühing peab tagama ühtse ja otstarbeka kriminaalhoolduse.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para21lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusühingu kriminaalhooldusega tegelevatele liikmetele kohaldatakse kriminaalhoolduse teostamisel kriminaalhooldusametniku kohta käivaid sätteid.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para21lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusühing määrab ühingu liikmed, kes kriminaalhoolduse teostamisel täidavad kriminaalhooldusosakonna juhataja või selle talituse juhataja ülesandeid.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para21lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusühingu kulude hüvitamise ja rahalise toetuse määramise otsustab valdkonna eest vastutav minister iga-aastase riigieelarve seaduse alusel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para21lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusühingu tegevuse järele kriminaalhooldusülesannete täitmisel ja selleks riigi määratud rahalise toetuse kasutamisel valvavad sama piirkonna kriminaalhooldusosakonna juhataja ja valdkonna eest vastutav minister.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para21lg7">
+					<loigeNr>7</loigeNr>
+					<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusosakonna juhataja ja valdkonna eest vastutav minister võivad anda kriminaalhooldusühingule kriminaalhooldusülesannete täitmisel kohustuslikke juhiseid. Valdkonna eest vastutav minister võib kriminaalhooldusühinguga sõlmitud halduslepingu kriminaalhooldusülesannete mittenõuetekohasel täitmisel või kohustuslike juhiste järgimata jätmisel lõpetada halduslepingus sätestatud korras.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para21lg7b1">
+					<loigeNr ylaIndeks="1">7</loigeNr>
+					<kuvatavNr><![CDATA[(7<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusühingut ei loeta kriminaalhooldusega seotud ülesannete täitmisel õiguskaitseasutuseks isikuandmete kaitse seaduse § 13 lõike 2 tähenduses. Kriminaalhooldusühing on kriminaalhooldusega seotud isikuandmete töötlemisel andmete volitatud töötleja ja on kohustatud isikuandmete töötlemisel järgima vastutava töötleja juhiseid ning isikuandmete kaitse seaduses ning Euroopa Parlamendi ja nõukogu määruses (EL) 2016/679 füüsiliste isikute kaitse kohta isikuandmete töötlemisel ja selliste andmete vaba liikumise ning direktiivi 95/46/EÜ kehtetuks tunnistamise kohta (isikuandmete kaitse üldmäärus) (ELT L 119, 04.05.2016, lk 1–88) volitatud töötlejale kehtestatud nõudeid.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2019-03-13</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>113032019002</aktViide>
+						</avaldamismarge>
+						<joustumine>2019-03-15</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para21lg7b2">
+					<loigeNr ylaIndeks="2">7</loigeNr>
+					<kuvatavNr><![CDATA[(7<sup>2</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusühing ega selle liikmed ei tohi avaldada neile seoses kriminaalhooldusülesannete täitmisega teatavaks saanud asjaolusid ega andmeid, sealhulgas mistahes isikuandmeid ja isikute vahelisi suhteid puudutavaid andmeid. Saladuse hoidmise kohustus on tähtajatu.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2019-03-13</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>113032019002</aktViide>
+						</avaldamismarge>
+						<joustumine>2019-03-15</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para21lg8">
+					<loigeNr>8</loigeNr>
+					<kuvatavNr><![CDATA[(8)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Riik soodustab ja toetab eraühingute poolt kriminaalhoolduse teostamist ja nende liikmete väljaõpet.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para22">
+				<paragrahvNr>22</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 22. ]]></kuvatavNr>
+				<paragrahvPealkiri>Kriminaalhooldusühingute esindajate nõupidamine</paragrahvPealkiri>
+				<loige id="para22lg1">
+					<sisuTekst>
+						<tavatekst>Vähemalt üks kord aastas korraldab valdkonna eest vastutav minister kriminaalhooldusühingute esindajate nõupidamise, millel arutatakse kriminaalhooldusühingute tegevuse finantseerimise ja täiendõppega seotud küsimusi ning kriminaalhoolduse sisulisi küsimusi ning arenguperspektiive.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk6">
+			<peatykkNr>6</peatykkNr>
+			<kuvatavNr><![CDATA[6. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>KRIMINAALHOOLDUSE ETTEVALMISTAMINE</peatykkPealkiri>
+			<paragrahv id="para23">
+				<paragrahvNr>23</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 23. ]]></kuvatavNr>
+				<paragrahvPealkiri>Kohtueelse ettekande taotlemine</paragrahvPealkiri>
+				<loige id="para23lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kohtu, prokuröri või vangla taotlusel nimetab kahtlustatava, süüdistatava või süüdimõistetu elukohajärgse kriminaalhooldusosakonna juhataja kriminaalhooldusametniku, kellele teeb ülesandeks kohtueelse ettekande koostamise.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para23lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusametnik koostab kahtlustatava, süüdistatava või süüdimõistetu kohta käesoleva seaduse § 24 alusel kohtueelse ettekande ning esitab selle kohtule, prokurörile või vanglale nende soovitud tähtaja jooksul.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2006</RTaasta>
+							<RTnr>46</RTnr>
+							<RTartikkel>333</RTartikkel>
+							<aktViide>12743811</aktViide>
+						</avaldamismarge>
+						<joustumine>2007-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para24">
+				<paragrahvNr>24</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 24. ]]></kuvatavNr>
+				<paragrahvPealkiri>Kohtueelne ettekanne</paragrahvPealkiri>
+				<loige id="para24lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusametnik koostab kahtlustatava, süüdistatava või süüdimõistetu kohta kohtueelse ettekande, mis sisaldab kokkuvõtet kahtlustatava või süüdistatava isikuomadustest ja sotsiaalsest olukorrast ning arvamust katseaja ja kahtlustatava, süüdistatava või süüdimõistetu suhtes kohaldatavate kohustuste valiku ja nende kohaldamise tähtaja kohta.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para24lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kohtueelne ettekanne koosneb kahtlustatava või süüdistatava eluloolistest faktidest ja psühholoogilis-sotsiaalsest prognoosist.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para24lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusametnik kohtub kahtlustatava või süüdistatavaga, tema lähedastega ja teiste isikutega, sealhulgas alaealise kahtlustatava korral kriminaalmenetluse seadustiku § 35<sup>2</sup> lõikes 2 nimetatud isikuga, kohtueelse ettekande koostamiseks vajaliku teabe kogumise eesmärgil, tutvub riigi- ja kohaliku omavalitsuse asutuste ning tervishoiuteenuse osutaja andmetega kahtlustatava või süüdistatava kohta, nõuab kahtlustatava või süüdistatava seaduslikult esindajalt, õppeasutuse juhilt ja tööandjalt andmeid kahtlustatava või süüdistatava käitumise ja õppimise kohta.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2019-12-20</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>120122019001</aktViide>
+						</avaldamismarge>
+						<joustumine>2019-12-30</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para24lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kahtlustatava või süüdistatava eluloolised faktid peavad põhinema tõendatud andmetel ja sisaldama viiteid allikatele, mis kinnitavad kohtueelses ettekandes esitatud andmeid.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para24lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu -</tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2012-12-20</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>120122012003</aktViide>
+						</avaldamismarge>
+						<joustumine>2013-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para24lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Alaealise kahtlustatava kohta kohtueelse ettekande koostamisel võetakse arvesse tema haavatavust, samuti tema suhtes varem tehtud individuaalsete hindamiste tulemusi. Kui ettekande aluseks olevad asjaolud menetluse kestel oluliselt muutuvad, koostatakse menetleja taotlusel täiendav ettekanne.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2019-12-20</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>120122019001</aktViide>
+						</avaldamismarge>
+						<joustumine>2019-12-30</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk7">
+			<peatykkNr>7</peatykkNr>
+			<kuvatavNr><![CDATA[7. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>KRIMINAALHOOLDUSE TEOSTAMINE</peatykkPealkiri>
+			<paragrahv id="para25">
+				<paragrahvNr>25</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 25. ]]></kuvatavNr>
+				<paragrahvPealkiri>Kriminaalhooldaja nimetamine</paragrahvPealkiri>
+				<loige id="para25lg1">
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusosakonda täitmisele saadetud kohtulahendi või prokuröri määruse alusel nimetab kriminaalhooldusosakonna juhataja kriminaalhooldusalusele konkreetse kriminaalhooldaja, lähtudes nimetatava spetsialiseerumisest ja töökoormusest. Võimaluse korral teostab kriminaalhooldust kriminaalhooldusametnik, kes koostas kohtueelse ettekande.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2004</RTaasta>
+							<RTnr>27</RTnr>
+							<RTartikkel>176</RTartikkel>
+							<aktViide>738543</aktViide>
+						</avaldamismarge>
+						<joustumine>2004-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para26">
+				<paragrahvNr>26</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 26. ]]></kuvatavNr>
+				<paragrahvPealkiri>Kriminaalhoolduse teostamine</paragrahvPealkiri>
+				<loige id="para26lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhoolduse teostamise käigus valvab kriminaalhooldaja kohtuotsuses märgitud kohustuste täitmise järele, abistab ja nõustab kriminaalhooldusalust nimetatud kohustuste täitmisel ning osutab talle sotsiaalset kohanemist soodustavat abi.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para26lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusalusele osutatakse katseaja jooksul abi töö, õppimis- ja elukoha leidmisel, samuti teiste isiklike probleemide lahendamisel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para26lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldaja peab soodustama kriminaalhooldusaluse võimet igapäevases elus iseseisvalt toime tulla.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para26lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhoolduse teostamisel peab kriminaalhooldaja austama kriminaalhooldusaluse väärikust.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para26lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhoolduse teostamiseks vajalikke andmeid töödeldakse vangistusseaduse §-de 5<sup>1</sup>–5<sup>4</sup> kohaselt.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2015-03-10</avaldamineKuupaev>
+							<RTartikkel>4</RTartikkel>
+							<aktViide>110032015004</aktViide>
+						</avaldamismarge>
+						<joustumine>2015-06-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para26b1">
+				<paragrahvNr ylaIndeks="1">26</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 26<sup>1</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Kriminaalhooldusalusele keelatud aine tarvitamise kontrollimine</paragrahvPealkiri>
+				<loige id="para26b1lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui kohus on määranud kriminaalhooldusalusele kohustuse mitte tarvitada alkoholi ja narkootikume, on kriminaalhooldajal õigus kontrollida kriminaalhooldusalust ning tuvastada alkoholi ja narkootikumide tarvitamine. Alkoholi või narkootikumide tarvitamise tuvastamisel lähtutakse korrakaitseseaduse §-des 38–41 sätestatud korrast.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2014-03-13</avaldamineKuupaev>
+							<RTartikkel>4</RTartikkel>
+							<aktViide>113032014004</aktViide>
+						</avaldamismarge>
+						<joustumine>2014-07-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para26b1lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui kriminaalhooldusametnik ei pea vajalikuks muude andmete kogumist ja kriminaalhooldusalune ei nõua alkoholisisalduse kindlaksmääramist veres või väljahingatavas õhus või narkootikumide tarvitamise tuvastamist verest või bioloogilisest vedelikust võetud prooviga, võib piirduda indikaatorvahendi kasutamisega ning isikul esinevate alkoholi või narkootikumide tarvitamise tunnuste kirjeldusega.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para26b1lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Indikaatorvahendi kasutamise ning isikul alkoholi või narkootikumide tarvitamise tunnuste esinemise või puudumise kohta koostab kriminaalhooldusametnik protokolli. Indikaatorvahendi kasutamise ning kriminaalhooldusalusel esinenud alkoholi või narkootikumide tarvitamisele viitavate tunnuste protokolli vormi kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=114032025025&id=103012013004]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para26b1lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui kriminaalhooldusalune nõuab alkoholisisalduse kindaksmääramist veres või narkootikumide tarvitamise tuvastamist verest või bioloogilisest vedelikust võetud prooviga, peab kriminaalhooldusalune hüvitama vere- või bioloogilise vedeliku proovi (edaspidi <i>proov</i>) võtmise, säilitamise ja edastamise ning uuringu tegemisega kaasnenud kulutused, välja arvatud juhul, kui proov on negatiivne. Sel juhul kannab kulud vangla. Positiivset proovi kinnitav dokument on täitedokument täitemenetluse seadustiku § 2 lõike 1 punkti 21 tähenduses.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-03-22</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>122032024001</aktViide>
+						</avaldamismarge>
+						<joustumine>2024-04-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para26b1lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui proov võetakse tervishoiuteenuse osutaja juures, korraldab kriminaalhooldaja või vangla võetud proovi toimetamise riiklikku ekspertiisiasutusse uuringu tegemiseks ja alkoholi või narkootikumide tarvitamise tuvastamiseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para26b1lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui kriminaalhooldusalune keeldub indikaatorvahendiga kontrollist, proovi andmiseks tervishoiuteenuse osutaja juurde minekust, samuti tervishoiuteenuse osutaja juures proovi andmisest, on tegemist kriminaalhooldaja kontrollile mitteallumisega. Sellisel juhul loeb kriminaalhooldaja kriminaalhooldusaluse tegevuse karistusseadustiku § 75 lõike 1 punkti 3 kohaseks kontrollinõude rikkumiseks.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2012-12-20</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>120122012003</aktViide>
+						</avaldamismarge>
+						<joustumine>2013-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para27">
+				<paragrahvNr>27</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 27. ]]></kuvatavNr>
+				<paragrahvPealkiri>Hoolduskava</paragrahvPealkiri>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<RTaasta>2006</RTaasta>
+						<RTnr>46</RTnr>
+						<RTartikkel>333</RTartikkel>
+						<aktViide>12743811</aktViide>
+					</avaldamismarge>
+					<joustumine>2007-01-01</joustumine>
+				</muutmismarge>
+				<loige id="para27lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Pärast kohtuotsuse jõustumist hindab kriminaalhooldaja kriminaalhooldusaluse kriminogeenseid riske ning koostab neist lähtudes kohtuotsuses märgitud kohustuste täitmise ja kriminaalhoolduse läbiviimise kava (edaspidi <i>hoolduskava</i>).</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2012-12-20</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>120122012003</aktViide>
+						</avaldamismarge>
+						<joustumine>2013-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para27lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Hoolduskava koostamisel osaleb ka kriminaalhooldusalune.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2006</RTaasta>
+							<RTnr>46</RTnr>
+							<RTartikkel>333</RTartikkel>
+							<aktViide>12743811</aktViide>
+						</avaldamismarge>
+						<joustumine>2007-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para27lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldaja hindab kriminaalhooldusaluse kriminogeenseid riske katseaja vältel vähemalt üks kord aastas, teeb hoolduskavasse täitmismärked ning vajaduse korral muudab hoolduskava.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2008</RTaasta>
+							<RTnr>17</RTnr>
+							<RTartikkel>118</RTartikkel>
+							<aktViide>12951257</aktViide>
+						</avaldamismarge>
+						<joustumine>2008-06-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para27lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu -</tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2012-12-20</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>120122012003</aktViide>
+						</avaldamismarge>
+						<joustumine>2013-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para27lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kohtule esitatakse hoolduskava ja selle muutmine ning täitmismärked kohtu nõudmisel.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2006</RTaasta>
+							<RTnr>46</RTnr>
+							<RTartikkel>333</RTartikkel>
+							<aktViide>12743811</aktViide>
+						</avaldamismarge>
+						<joustumine>2007-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para27lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusalusele, kellele on määratud või mõistetud üldkasuliku töö tegemine, koostatakse üldkasuliku töö tegemise ajakava.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2006</RTaasta>
+							<RTnr>46</RTnr>
+							<RTartikkel>333</RTartikkel>
+							<aktViide>12743811</aktViide>
+						</avaldamismarge>
+						<joustumine>2007-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para28">
+				<paragrahvNr>28</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 28. ]]></kuvatavNr>
+				<paragrahvPealkiri>Sotsiaalne rühmatöö</paragrahvPealkiri>
+				<loige id="para28lg1">
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldust võib teostada ka sotsiaalse rühmatöö vormis.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para28b1">
+				<paragrahvNr id="834b8819-b6e5-4daa-b7d7-9340865abd9a" ylaIndeks="1">28</paragrahvNr>
+				<kuvatavNr id="9898db9c-704d-46cb-89d0-a68f52edcb64"><![CDATA[§ 28<sup>1</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri id="5b90a5c2-686c-4d37-97e9-47c5d4146d5b">Võrgustikutöö kriminaalhoolduse teostamisel</paragrahvPealkiri>
+				<loige id="para28b1lg1">
+					<loigeNr id="56bda754-80cb-49d0-9f58-74f2fdd2e577">1</loigeNr>
+					<kuvatavNr id="adcb889a-7214-46ed-b99e-8e7f5c773653"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="d16b9a6f-3973-4039-8756-ff8257558cc5">
+						<tavatekst id="cae35820-e069-4b99-a9ba-ce222269075c">Kriminaalhooldust võib teostada võrgustikutöö vormis nii kriminaalhooldusaluste kui ka kriminaalhooldusalusega seotud isikute puhul, kelle abistamine on vajalik juhtumikorralduse põhimõttel võrgustikutöö raames.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para28b1lg2">
+					<loigeNr id="e29014ac-695b-4ccf-bc0d-55af20d3cf2d">2</loigeNr>
+					<kuvatavNr id="47bdc62c-1499-4c2a-a1c8-4fd4c935fae8"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="aba7397c-1962-411b-9788-f8917a8a5ccd">
+						<tavatekst id="c2a186ce-809a-4a17-99ea-bad1cf148091">Kriminaalhooldajal on kriminaalhoolduse ja võrgustikutöö teostamiseks õigus kaasata asjaomaseid asutusi ja spetsialiste. Õigus võrgustikutööks vajalikke andmeid töödelda on ka võrgustikutöösse kaasatud osapooltel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para28b1lg3">
+					<loigeNr id="0bb5dc80-fc56-48d3-b6e4-ed689987829b">3</loigeNr>
+					<kuvatavNr id="4d789987-5649-4735-95f0-dfda1b163df7"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="1087ebc5-6b5a-4187-af43-f4057f7b7649">
+						<tavatekst id="4dcff97a-b985-46cd-a68a-4a2f9a21335c">Kriminaalhooldajal on õigus võrgustikutöösse kaasata järgmisi asutusi ja spetsialiste:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para28b1lg3p1">
+						<alampunktNr id="272ca3cb-5751-4bc0-8ade-007eb5abbf65">1</alampunktNr>
+						<kuvatavNr id="47ca3cc6-681f-4ef2-9d32-1da22412063d"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="af3d443e-b729-4b78-8a08-5d584913f2b9">
+							<tavatekst id="0a0dc7b0-943a-4826-a7ec-b42d5b136042">Politsei- ja Piirivalveamet;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para28b1lg3p2">
+						<alampunktNr id="d313139e-790b-44a3-a15f-4d0b1bb846e3">2</alampunktNr>
+						<kuvatavNr id="be82bff0-eb3d-49bd-bfc5-3fc8cc5ce3bb"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="ebe11037-842a-471e-8749-936fffd74352">
+							<tavatekst id="01651450-27a4-4722-8789-740e5132a603">Maksu- ja Tolliamet;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para28b1lg3p3">
+						<alampunktNr id="82eb687c-37e0-4ef2-bd7c-6c88a9350005">3</alampunktNr>
+						<kuvatavNr id="07c5d3f9-43ba-47ee-8ec1-8697aed8d926"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="f33d7a29-0d6d-4b54-b5cb-cc7f2c487244">
+							<tavatekst id="9872a5e6-937c-4cff-9657-c3fafa69a463">kohus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para28b1lg3p4">
+						<alampunktNr id="fc48502d-26be-4f2f-b893-f9fb0a364959">4</alampunktNr>
+						<kuvatavNr id="cdf0f4c3-e3be-480e-9a46-32f1966d49b3"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="3396f499-1f75-466d-8e63-f1c25dcf38bf">
+							<tavatekst id="f9cef022-97f0-479d-b680-8594d71808e2">Töötukassa;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para28b1lg3p5">
+						<alampunktNr id="e04dc5ad-95df-475f-9a80-ab3b52abd8f7">5</alampunktNr>
+						<kuvatavNr id="37060641-981b-4dc9-b248-e81ea3e6feae"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="dfec4ab4-8854-4021-a87b-2b3287315087">
+							<tavatekst id="cf9b6870-5b29-4d8d-9e8f-bec48bb41135">Sotsiaalkindlustusamet;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para28b1lg3p6">
+						<alampunktNr id="6e02f8a7-befa-4fc9-8fb8-d0e798d920a4">6</alampunktNr>
+						<kuvatavNr id="e1dd1b41-0778-4256-a7b6-c5fa59ce5a6a"><![CDATA[6) ]]></kuvatavNr>
+						<sisuTekst id="915e111f-1a70-49ea-9249-2378f2d15803">
+							<tavatekst id="5d7cadc4-d173-43d3-aa69-3a66410d9119">sotsiaalhoolekandeasutus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para28b1lg3p7">
+						<alampunktNr id="c8717a95-77fa-4eec-98a7-5ae85a930e50">7</alampunktNr>
+						<kuvatavNr id="23d32b75-d390-43b9-a7b8-9e82fc4f6c87"><![CDATA[7) ]]></kuvatavNr>
+						<sisuTekst id="9eb5622a-abdb-4692-99e4-63c6c66ff3e5">
+							<tavatekst id="8c349202-8286-4177-8c71-64c793a37cb9">kohaliku omavalitsuse üksus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para28b1lg3p8">
+						<alampunktNr id="9db3567e-8128-467a-8ac9-e1026447f2e5">8</alampunktNr>
+						<kuvatavNr id="f379d297-7e45-4a47-90ab-219e0d91565b"><![CDATA[8) ]]></kuvatavNr>
+						<sisuTekst id="335de043-ce87-406e-bb0d-23b0f664c7f4">
+							<tavatekst id="05b4df39-e6cd-46a6-b129-51804d09cf6e">vägivallast või sõltuvusest loobumise toetamise teenuse osutaja;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para28b1lg3p9">
+						<alampunktNr id="b8c5f6d2-b9ad-40ee-88df-1b1d6174daff">9</alampunktNr>
+						<kuvatavNr id="24e1081a-d1aa-477f-a4f5-de48ea4e0335"><![CDATA[9) ]]></kuvatavNr>
+						<sisuTekst id="c47833b1-921c-4bf4-9fea-fe24595636e3">
+							<tavatekst id="28fac375-8db4-4748-bf0e-ae677a46bc24">haridusasutus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para28b1lg3p10">
+						<alampunktNr id="14e11cd3-fa66-46cc-a05b-fcfdd3434199">10</alampunktNr>
+						<kuvatavNr id="e67d0c34-455c-400f-8950-8a964b3b6000"><![CDATA[10) ]]></kuvatavNr>
+						<sisuTekst id="d6906d41-ef48-4ce8-9086-94168fa1e9c7">
+							<tavatekst id="826bb972-f270-4ab2-b763-02a851b556cc">raviasutus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para28b1lg3p11">
+						<alampunktNr id="a92d3acc-b508-4fd5-b5dc-051c4e176ade">11</alampunktNr>
+						<kuvatavNr id="6774dfe0-9164-4503-baf1-ced981652e14"><![CDATA[11) ]]></kuvatavNr>
+						<sisuTekst id="6f51f502-7777-4c3d-920b-a89c11a8e7f8">
+							<tavatekst id="4640df30-fbfe-434c-896f-a4194c5b692d">kohtutäitur;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para28b1lg3p12">
+						<alampunktNr id="df78e437-3270-4f99-ba50-daba48f671bf">12</alampunktNr>
+						<kuvatavNr id="7b33cb25-38a9-4c90-925c-cb908f5c616c"><![CDATA[12) ]]></kuvatavNr>
+						<sisuTekst id="1646230c-b374-4c03-82f9-e10e77e96328">
+							<tavatekst id="c800d63c-6c3e-4a8e-9a2f-f33748d5373e">põhjendatud juhul muu asutus või spetsialist.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2024-03-22</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>122032024001</aktViide>
+							</avaldamismarge>
+							<joustumine>2024-04-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para29">
+				<paragrahvNr>29</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 29. ]]></kuvatavNr>
+				<paragrahvPealkiri>Kriminaalhooldusaluse kohustused</paragrahvPealkiri>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<RTaasta>2004</RTaasta>
+						<RTnr>27</RTnr>
+						<RTartikkel>176</RTartikkel>
+						<aktViide>738543</aktViide>
+					</avaldamismarge>
+					<joustumine>2004-05-01</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para30">
+				<paragrahvNr>30</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 30. ]]></kuvatavNr>
+				<paragrahvPealkiri>Korraline ettekanne</paragrahvPealkiri>
+				<loige id="para30lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldaja koostab sellise kriminaalhooldusaluse kohta, kelle kriminogeenseid riske ei ole hinnatud, katseaja jooksul korralisi ettekandeid, mis sisaldavad hinnangut senisele katseajale, ülevaadet kohtuotsuse ja hoolduskava täitmisest ning hoolduskava muutmisest.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para30lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Korraline ettekanne koostatakse vähemalt iga kuue kuu järel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para30lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu -</tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2012-12-20</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>120122012003</aktViide>
+						</avaldamismarge>
+						<joustumine>2013-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para30lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Korraline ettekanne esitatakse kohtule kohtu nõudmisel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para30lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusaluse kohta, kellele on määratud või mõistetud üldkasuliku töö tegemine, koostatakse ning esitatakse korraline ettekanne kohtu või prokuratuuri nõudmisel.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2006</RTaasta>
+							<RTnr>46</RTnr>
+							<RTartikkel>333</RTartikkel>
+							<aktViide>12743811</aktViide>
+						</avaldamismarge>
+						<joustumine>2007-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para30b1">
+				<paragrahvNr ylaIndeks="1">30</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 30<sup>1</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Ettekanne kriminaalhoolduse lõppemise kohta</paragrahvPealkiri>
+				<loige id="para30b1lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui kriminaalhooldus lõpeb või üldkasulik töö on tehtud, koostab kriminaalhooldusametnik ettekande, mis sisaldab ülevaadet kogu katseajast või üldkasuliku töö kohustuse täitmisest ning kontrollnõuete ja kohustuste täitmisest katseajal.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para30b1lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu -</tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2012-12-20</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>120122012003</aktViide>
+						</avaldamismarge>
+						<joustumine>2013-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para30b1lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ettekanne esitatakse kohtule või prokuratuurile selle nõudmisel.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2010</RTaasta>
+							<RTnr>44</RTnr>
+							<RTartikkel>258</RTartikkel>
+							<aktViide>13335643</aktViide>
+						</avaldamismarge>
+						<joustumine>2010-07-19</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para31">
+				<paragrahvNr>31</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 31. ]]></kuvatavNr>
+				<paragrahvPealkiri>Erakorraline ettekanne</paragrahvPealkiri>
+				<loige id="para31lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusametnik esitab kohtule kriminaalhooldusaluse kohta erakorralise ettekande karistusseadustikus või kriminaalmenetluse seadustikus sätestatud juhtudel.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2010</RTaasta>
+							<RTnr>44</RTnr>
+							<RTartikkel>258</RTartikkel>
+							<aktViide>13335643</aktViide>
+						</avaldamismarge>
+						<joustumine>2011-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para31lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Erakorraline ettekanne sisaldab andmeid tuvastatud rikkumise asjaolude kohta, kokkuvõtet kriminaalhooldusaluse seletusest, kriminaalhooldusametniku hinnangut katseaja senisele kulgemisele ning kriminaalhooldusametniku põhjendatud ettepanekut täiendavate kohustuste määramise, käitumiskontrolli tähtaja pikendamise, alaealisele kriminaalhooldusalusele kohaldatavate mõjutusvahendite liigi muutmise või karistuse täitmisele pööramise kohta.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para31lg2b1">
+					<loigeNr ylaIndeks="1">2</loigeNr>
+					<kuvatavNr><![CDATA[(2<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Erakorraline ettekanne kahtlustatava, süüdistatava või süüdimõistetu poolt elektroonilisele valvele allumise kohustuse rikkumise kohta sisaldab andmeid tuvastatud rikkumise asjaolude kohta, kriminaalhooldusaluse seletuse kokkuvõtet ning kriminaalhooldusametniku ettepanekut elektroonilise valve kohaldamise lõpetamiseks ning vahistamise kohaldamiseks või elektroonilise valve kohaldamise lõpetamiseks ning vangistuse kohaldamiseks. Vangistuse kohaldamise ettepanekule lisatakse ka elektroonilise valve all viibitud päevade arv.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2010</RTaasta>
+							<RTnr>44</RTnr>
+							<RTartikkel>258</RTartikkel>
+							<aktViide>13335643</aktViide>
+						</avaldamismarge>
+						<joustumine>2011-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para31lg2b2">
+					<loigeNr ylaIndeks="2">2</loigeNr>
+					<kuvatavNr><![CDATA[(2<sup>2</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui kriminaalhooldusalune hoidub kõrvale talle määratud narkomaanide sõltuvusravist või seksuaalkurjategijate kompleksravist, esitab selle rikkumise tuvastanud kriminaalhooldusametnik kohtule ettekande, mis sisaldab andmeid rikkumise asjaolude kohta, kokkuvõtet kriminaalhooldusaluse seletusest ning ettepanekut sõltuvusravi või kompleksravi kohaldamise lõpetamiseks ja vangistuse täitmisele pööramiseks.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2012-06-15</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>115062012002</aktViide>
+						</avaldamismarge>
+						<joustumine>2013-06-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para31lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui kriminaalhooldusalune hoidub kõrvale talle määratud üldkasuliku töö tegemise kohustuse täitmisest, esitab selle rikkumise tuvastanud kriminaalhooldusametnik prokurörile ettekande, mis sisaldab andmeid rikkumise asjaolude kohta, tehtud üldkasuliku töö tundide arvu ning kokkuvõtet kriminaalhooldusaluse seletusest.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para31lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusalusele määratud kohustuste kergendamiseks või tühistamiseks, elektroonilise valve tähtaja pikendamiseks või lühendamiseks või esialgu määratud käitumiskontrollist vabastamiseks või selle tähtaja lühendamiseks esitatavas erakorralises ettekandes annab kriminaalhooldusametnik hinnangu katseaja senisele kulgemisele ning esitab põhjendatud ettepaneku.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2014-06-19</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2014-07-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>112072014001</aktViide>
+						</avaldamismarge>
+						<joustumine>2015-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para31lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusaluse kohta, kellele on mõistetud või määratud üldkasulik töö, esitatakse kohtule või prokuratuurile erakorraline ettekanne tähtaja kulgemise peatamiseks kriminaalhooldusaluse haiguse või perekondliku olukorra tõttu või ajaks, kui kriminaalhooldusalune on aja-, asendus- või reservteenistuses. Üldkasuliku töö tähtaja kulgemise peatamist käsitlev ettekanne sisaldab andmeid peatamise aluste ja ettepanekut peatamise aja kohta.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2012-07-10</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>110072012002</aktViide>
+						</avaldamismarge>
+						<joustumine>2013-04-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para31lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui kahtlustatav, süüdistatav või süüdimõistetu, kellele kohus on kohaldanud elektroonilise valvega ajutist lähenemiskeeldu või lähenemiskeeldu, rikub elektroonilisele valvele allumise kohustust, teavitab kriminaalhooldusametnik viivitamata uurimisasutust või prokuratuuri selle kohustuse rikkumisest. Erakorraline ettekanne rikkumise kohta esitatakse uurimisasutusele või prokuratuurile tema nõudmisel.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2014-06-19</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2014-07-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>112072014001</aktViide>
+						</avaldamismarge>
+						<joustumine>2015-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para32">
+				<paragrahvNr>32</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 32. ]]></kuvatavNr>
+				<paragrahvPealkiri>Kriminaalhooldaja asendamine</paragrahvPealkiri>
+				<loige id="para32lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldaja asendatakse, kui:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para32lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kriminaalhooldusametnik vabastatakse ametist või viiakse üle teise kriminaalhooldusosakonna koosseisu;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para32lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kriminaalhooldusametniku teenistussuhe on peatatud;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para32lg1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kriminaalhoolduse eesmärk ja huvid nõuavad senise kriminaalhooldaja asendamist;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para32lg1p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kriminaalhooldusalune muudab elukohta.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para32lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõike 1 punktis 4 nimetatud juhul võib jätta kriminaalhooldaja asendamata, kui asendamine pole vajalik kriminaalhoolduse eesmärkide saavutamise seisukohalt ega ole majanduslikult põhjendatud.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para32lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Uue kriminaalhooldaja nimetamisel rakendatakse käesoleva seaduse paragrahvis 25 sätestatut.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para32lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-03-22</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>122032024001</aktViide>
+						</avaldamismarge>
+						<joustumine>2024-04-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk8">
+			<peatykkNr>8</peatykkNr>
+			<kuvatavNr><![CDATA[8. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>LÕPPSÄTTED</peatykkPealkiri>
+			<paragrahv id="para33">
+				<paragrahvNr kehtiv="0">33</paragrahvNr>
+				<kuvatavNr>§ 33. </kuvatavNr>
+				<sisuTekst>
+					<tavatekst> – </tavatekst>
+				</sisuTekst>
+			</paragrahv>
+			<paragrahv id="para35">
+				<paragrahvNr kehtiv="0">35</paragrahvNr>
+				<kuvatavNr>§ 35. </kuvatavNr>
+				<sisuTekst>
+					<tavatekst>[Käesolevast tekstist välja jäetud.]</tavatekst>
+				</sisuTekst>
+			</paragrahv>
+			<paragrahv id="para36">
+				<paragrahvNr>36</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 36. ]]></kuvatavNr>
+				<paragrahvPealkiri>Kriminaalhooldusametniku ametisse nimetamise erisused</paragrahvPealkiri>
+				<loige id="para36lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kuni 1999. aasta 31. detsembrini nimetab justiitsminister kriminaalhooldusametnikuks isiku, kes on läbinud justiitsministri kinnitatud koolituse, sooritanud eksami ning kellel on kriminaalhooldustööks vajalikud kõlbelised omadused.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para36lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Koolitusse valitakse konkursi alusel isikud, kellel on vähemalt keskharidus.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para36lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Koolitusse võetud isik asub teenistusse kohtu tehnilise sekretäri ametikohale kolmekuulise katseajaga.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para36lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Koolituse läbinud isik sooritab kriminaalhooldusametniku eksami justiitsministri kinnitatud komisjoni ees.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para36lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Justiitsminister kinnitab konkursi korras kriminaalhoolduseksami sooritanud isiku kriminaalhooldusametniku ametikohale.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para36lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusametniku konkursi korra kinnitab justiitsminister.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para36lg7">
+					<loigeNr>7</loigeNr>
+					<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Konkursi läbinud isiku nimetab justiitsminister vastava kohtu kriminaalhooldusametnikuks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para36lg8">
+					<loigeNr>8</loigeNr>
+					<kuvatavNr><![CDATA[(8)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusametnik osaleb kutsetöö kõrval Justiitsministeeriumi poolt korraldatavas täiendõppes ning läbib pärast üheaastast koolitust atesteerimise, mille korraldab justiitsministri kinnitatud atesteerimiskomisjon.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para36lg9">
+					<loigeNr>9</loigeNr>
+					<kuvatavNr><![CDATA[(9)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kuni kriminaalhooldusametnike ametisse nimetamiseni täidavad kriminaalhooldusametniku ülesandeid käesoleva paragrahvi lõikes 3 nimetatud isikud.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para36lg10">
+					<loigeNr>10</loigeNr>
+					<kuvatavNr><![CDATA[(10)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Enne 2004. aasta 1. maid ametisse nimetatud kriminaalhooldusametnikele ei laiene käesoleva seaduse § 13 lõike 2 alusel kehtestatavad täiendavad kvalifikatsiooninõuded.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2004</RTaasta>
+							<RTnr>27</RTnr>
+							<RTartikkel>176</RTartikkel>
+							<aktViide>738543</aktViide>
+						</avaldamismarge>
+						<joustumine>2004-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para36b1">
+				<paragrahvNr ylaIndeks="1">36</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 36<sup>1</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Kriminaalhooldusnõuniku kohustustest vabastamine</paragrahvPealkiri>
+				<loige id="para36b1lg1">
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusametnikud vabastatakse neile pandud täiendavatest kriminaalhooldusnõuniku kohustustest vastava kohtu haldusdirektori käskkirjaga alates 2004. aasta 1. maist.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2004</RTaasta>
+							<RTnr>27</RTnr>
+							<RTartikkel>176</RTartikkel>
+							<aktViide>738543</aktViide>
+						</avaldamismarge>
+						<joustumine>2004-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para37">
+				<paragrahvNr>37</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 37. ]]></kuvatavNr>
+				<paragrahvPealkiri>Kriminaalhooldusosakonna ja selle talituse juhataja</paragrahvPealkiri>
+				<loige id="para37lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kuni 2002. aasta 1. jaanuarini nimetab kriminaalhooldusosakonna juhataja ja kriminaalhooldusosakonna talituse juhataja ametisse justiitsminister.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para37lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kuni 2002. aasta 1. jaanuarini kohaldatakse kriminaalhooldusosakondade talituste juhatajate ametisse nimetamisel käesoleva seaduse § 36 lõigete 2–6 sätteid.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para37lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Enne 2006. aasta 1. jaanuarit ametisse nimetatud kriminaalhooldusosakonna juhatajad vormistatakse nende nõusolekul määratud tähtajaks ametisse alates 2006. aasta 1. jaanuarist.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2005</RTaasta>
+							<RTnr>15</RTnr>
+							<RTartikkel>85</RTartikkel>
+							<aktViide>867951</aktViide>
+						</avaldamismarge>
+						<joustumine>2006-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para37b1">
+				<paragrahvNr ylaIndeks="1">37</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 37<sup>1</sup>. ]]></kuvatavNr>
+				<sisuTekst>
+					<HTMLKonteiner><![CDATA[<b><a href="./dyn=114032025025&id=13363863">Kriminaalhooldusosakonna üleviimine vanglate koosseisu</a></b>]]></HTMLKonteiner>
+				</sisuTekst>
+				<loige id="para37b1lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Maakohtute juures asuvad kriminaalhooldusosakonnad korraldatakse ümber ja ühendatakse vanglate kriminaalhooldusosakondadeks alates 2008. aasta 1. juunist. Kriminaalhooldusosakondade ja vanglate ühendamist korraldab justiitsminister.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para37b1lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusosakonna teenistujate teenistuse jätkamisel vanglate koosseisus ettenähtud ametikohtadel või nende teenistussuhte lõpetamisel kohaldatakse avaliku teenistuse seaduse § 115 lõikes 2 sätestatut.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para37b1lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriminaalhooldusosakondade teenistujad, kelle teenistusülesanded ja ametinimetus kriminaalhooldusosakondade vanglate osakondadeks muutmise tõttu ei muutu või kelle ametinimetuse muutmisega ei muutu teenistusülesanded, jätkavad teenistust alates 2008. aasta 1. juunist vanglate koosseisus määramata tähtajaga.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para37b1lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Justiitsministril ja maakohtute kohtudirektoritel on enne 2008. aasta 1. juunit õigus anda käskkirju teenistujate vabastamiseks koondamise tõttu ja teha riigisekretärile ettepanekuid kuulutada avalik konkurss ametikohtade täitmiseks, lähtudes kriminaalhooldusosakondade struktuurist ja koosseisust. Avaliku teenistuse seaduse § 116 lõike 3 kohase ettepaneku teenistujale asuda teisele ametikohale teeb justiitsminister või tema volitusel maakohtu kohtudirektor või vangla vangladirektor.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2008</RTaasta>
+							<RTnr>17</RTnr>
+							<RTartikkel>118</RTartikkel>
+							<aktViide>12951257</aktViide>
+						</avaldamismarge>
+						<joustumine>2008-06-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para38">
+				<paragrahvNr>38</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 38. ]]></kuvatavNr>
+				<paragrahvPealkiri>Seaduse jõustumise hetkel tingimisi karistust kandvate ja tingimisi enne tähtaega vabastatute suhtes kriminaalhoolduse kohaldamine</paragrahvPealkiri>
+				<loige id="para38lg1">
+					<sisuTekst>
+						<tavatekst>Isikud, kelle suhtes on enne käesoleva seaduse jõustumist kohaldatud tingimisi karistamist või tingimisi karistusest enne tähtaega vabastamist ning kelle katseaeg seaduse jõustumise hetkeks ei ole lõppenud, võetakse arvele isikute elukohajärgsetes kriminaalhooldusosakondades ühe aasta jooksul pärast seaduse jõustumist.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para38b1">
+				<paragrahvNr ylaIndeks="1">38</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 38<sup>1</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Kriminaalhoolduse teostamiseks vajalike andmete töötlemiseks asutatud kriminaalhooldusregister ja selle andmed</paragrahvPealkiri>
+				<loige id="para38b1lg1">
+					<sisuTekst>
+						<tavatekst>Enne 2015. aasta 1. juunit käesoleva seaduse § 26 lõike 5 alusel kriminaalhoolduse teostamiseks vajalike andmete töötlemiseks asutatud andmekogu ja selle andmed liidetakse vangistusseaduse § 5<sup>1</sup> kohaselt asutatava kinnipeetavate, arestialuste, vahistatute ja kriminaalhooldusaluste andmekoguga.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2015-03-10</avaldamineKuupaev>
+							<RTartikkel>4</RTartikkel>
+							<aktViide>110032015004</aktViide>
+						</avaldamismarge>
+						<joustumine>2015-06-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para39">
+				<paragrahvNr>39</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 39. ]]></kuvatavNr>
+				<paragrahvPealkiri>Seaduse jõustumine</paragrahvPealkiri>
+				<loige id="para39lg1">
+					<sisuTekst>
+						<tavatekst>Käesolev seadus jõustub 1998. aasta 1. mail.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+	</sisu>
+</oigusakt>

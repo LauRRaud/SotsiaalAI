@@ -1,0 +1,230 @@
+/* Eelpöördumise vaadete ühine kujundus: väljade virn, teated, loendid.
+   Vaate kuju (pealkiri, juhis, tegevusrida) tuleb StepPanel-ist, küsimused
+   ChoiceRow-st ja tekstiväljad TextAreaField-ist (components/stage). */
+
+.stack {
+  min-width: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+/* Valikukaardid kõrvuti (kuni kolm), mitte täislaiuses ribad üksteise all. */
+.cards {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  align-items: stretch;
+  gap: 0.5rem;
+}
+/* Üherealine väli sildiga (nt KOV või piirkond). */
+/* Väli on nii lai, kui sisu vajab: omavalitsuse nimi ei ole paneeli laiune. */
+.field {
+  min-width: 0;
+  display: grid;
+  gap: 0.35rem;
+  max-width: 30rem;
+}
+.field[data-size="sm"] {
+  max-width: 20rem;
+}
+.field[data-size="lg"] {
+  max-width: 38rem;
+}
+.fieldLabel {
+  color: var(--text-warm);
+}
+.fieldHint {
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+}
+.counter {
+  justify-self: end;
+  color: var(--text-dim);
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Kaks välja kõrvuti; kitsal pinnal üksteise all. */
+.pair {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 0.8rem;
+}
+/* Avatav plokk (nt kõik vastused ülevaates). */
+.fold {
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 1rem;
+  background: var(--glass-cell-bg);
+}
+.foldTitle {
+  min-height: var(--hit-target-min, 2.75rem);
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 1rem;
+  font-weight: 560;
+  color: var(--text-warm);
+  cursor: pointer;
+}
+.foldTitle:focus-visible {
+  outline: none;
+  border-radius: 1rem;
+  box-shadow: var(--focus-ring);
+}
+.fold[open] {
+  padding-bottom: 0.6rem;
+}
+.fold > :not(summary) {
+  margin-inline: 1rem;
+}
+
+/* Teade küsimuse all (ohu hoiatus, lapse märkus) ja lehe üldteade. */
+.notice {
+  margin: 0;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.9rem;
+  background: var(--glass-cell-bg);
+  color: var(--text-soft);
+}
+.notice[data-tone="risk"] {
+  border-color: color-mix(in srgb, var(--status-error, #eb9a76) 60%, transparent);
+  border-inline-start-width: 3px;
+  background: color-mix(in srgb, var(--status-error, #eb9a76) 10%, transparent);
+  color: var(--text-warm);
+}
+.notice[data-tone="ok"] {
+  border-color: color-mix(in srgb, var(--status-success, #c5cf9b) 55%, transparent);
+}
+.quiet {
+  margin: 0;
+  color: var(--text-soft);
+}
+
+/* Ülevaate read: nimetus vasakul, väärtus paremal. */
+.rows {
+  margin: 0;
+  display: grid;
+  gap: 0;
+}
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
+  gap: 0.2rem 1rem;
+  padding-block: 0.45rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--text-warm) 10%, transparent);
+}
+.row:last-child {
+  border-bottom: 0;
+}
+.rowLabel {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+}
+.rowValue {
+  margin: 0;
+  color: var(--text-warm);
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+.subheading {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 0.74rem;
+  font-weight: 560;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.missing {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.missing li {
+  padding: 0.2rem 0.6rem;
+  border: 1px dashed var(--glass-cell-border);
+  border-radius: 999px;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+}
+
+/* Märgitav lahter (filter, mille saab ka maha võtta). */
+.toggles {
+  min-width: 0;
+  display: inline-grid;
+  justify-self: start;
+  max-width: 100%;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+.toggle {
+  composes: cell from "../../stage/cell.module.css";
+  min-height: 2.5rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 0.75rem;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.25;
+  text-align: center;
+}
+.toggle[aria-pressed="true"] {
+  color: var(--text-warm);
+  font-weight: 560;
+}
+
+/* Vestlus abilisega: olemasolev vestlusaken ja sisestusriba vaate sees. */
+.assistant {
+  min-width: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.9rem;
+}
+
+@container (max-width: 40rem) {
+  .pair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .field,
+  .field[data-size] {
+    max-width: none;
+  }
+  .row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .toggles {
+    display: grid;
+    justify-self: stretch;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .toggle {
+    min-height: var(--hit-target-min, 2.75rem);
+  }
+}
+@media (max-width: 640px) {
+  .pair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .field,
+  .field[data-size] {
+    max-width: none;
+  }
+  .row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .toggles {
+    display: grid;
+    justify-self: stretch;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .toggle {
+    min-height: var(--hit-target-min, 2.75rem);
+  }
+}

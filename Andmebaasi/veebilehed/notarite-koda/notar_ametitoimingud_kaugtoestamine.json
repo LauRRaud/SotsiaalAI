@@ -1,0 +1,64 @@
+{
+  "document_id": "web-notar_ametitoimingud_kaugtoestamine",
+  "title": "Kaugtõestamine",
+  "register_title": "Kaugtõestamine",
+  "source_id": "notar_ametitoimingud_kaugtoestamine",
+  "source_type": "web_page",
+  "publisher": "Notarite Koda",
+  "language": "et",
+  "url": "https://www.notar.ee/ametitoimingud/kaugtoestamine/",
+  "source_path": "notar_ametitoimingud_kaugtoestamine.html",
+  "source_format": "html",
+  "source_sha256": "5bebc6167f43e358aa5ca9d3830e57ea6b278820ec3f2e804794fcac8260274f",
+  "content_sha256": "ac2261999a955d9a04084698ec68975787c6696ed33b9e3bd5f5390de914a80f",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:39:56.155Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 10:13:33 GMT",
+      "etag": null
+    },
+    "raw_sha256": "4bfd247d7c96ab6153d139bd2eda0c587970956b308deb7e03aad83500b6cb11",
+    "stats": {
+      "words": 1196,
+      "blocks": 85,
+      "headings": 22,
+      "tables": 0,
+      "links": 4,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.notar.ee/wp-content/uploads/2026/06/kaugtoestamise-juhend-kliendile_3.pdf",
+      "text": "Kaugtõestamise juhend (PDF)",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

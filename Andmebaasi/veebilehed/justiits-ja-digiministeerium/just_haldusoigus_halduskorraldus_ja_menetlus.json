@@ -1,0 +1,59 @@
+{
+  "document_id": "web-just_haldusoigus_halduskorraldus_ja_menetlus",
+  "title": "Halduskorraldus- ja menetlus",
+  "register_title": "Halduskorraldus- ja menetlus",
+  "source_id": "just_haldusoigus_halduskorraldus_ja_menetlus",
+  "source_type": "web_page",
+  "publisher": "Justiits- ja Digiministeerium",
+  "language": "et",
+  "url": "https://www.just.ee/era-ja-avalik-oigus/haldusoigus/halduskorraldus-ja-menetlus",
+  "url_final": "https://www.justdigi.ee/era-ja-avalik-oigus/haldusoigus/halduskorraldus-ja-menetlus",
+  "source_path": "just_haldusoigus_halduskorraldus_ja_menetlus.html",
+  "source_format": "html",
+  "source_sha256": "329a552b684fece136c56017c0283fffc57f5b4ffcaa9a754c22b60d102e3dd3",
+  "content_sha256": "0da445cda92a886aa7323a4d1370ed12fca521f50812d3ec7a6e79d5af82985d",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:27:25.846Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-04-23",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "731ceb67afd849938f34bf5483d686e8a3cb9fe08e6ecfa8a2e5358629ef1205",
+    "stats": {
+      "words": 87,
+      "blocks": 5,
+      "headings": 1,
+      "tables": 0,
+      "links": 0,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

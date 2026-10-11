@@ -1,0 +1,64 @@
+{
+  "document_id": "web-tek_hambaravi_laste_hambaravi",
+  "title": "Laste hambaravi",
+  "register_title": "Laste hambaravi",
+  "source_id": "tek_hambaravi_laste_hambaravi",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/hambaravi/laste-hambaravi",
+  "source_path": "tek_hambaravi_laste_hambaravi.html",
+  "source_format": "html",
+  "source_sha256": "f8c6f19ff4c7c16ee5df5b1deddc8fe92e45041d8fea33f5975dcb243ed9c0d6",
+  "content_sha256": "cee263eb4a7d2002672c0abf44a1fc9d57ca174fe856b390a915717ae2c28f80",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:37:42.285Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:17:15 GMT",
+      "etag": null
+    },
+    "raw_sha256": "080800840c3d66f4e214292690233d9829af271c642e3a9399bdd4a034761672",
+    "stats": {
+      "words": 378,
+      "blocks": 12,
+      "headings": 3,
+      "tables": 0,
+      "links": 8,
+      "linksToOtherSites": 6
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Hambaravi/aruanne_laste_suutervis_2019.pdf",
+      "text": "3-, 6- ja 12-aastaste laste hammaste tervisliku seisukorra kaardistamine",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

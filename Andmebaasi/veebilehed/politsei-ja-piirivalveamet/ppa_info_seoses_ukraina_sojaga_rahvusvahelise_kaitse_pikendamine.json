@@ -1,0 +1,70 @@
+{
+  "document_id": "web-ppa_info_seoses_ukraina_sojaga_rahvusvahelise_kaitse_pikendamine",
+  "title": "Info seoses sõjaga Ukrainas",
+  "register_title": "Info seoses sõjaga Ukrainas",
+  "source_id": "ppa_info_seoses_ukraina_sojaga_rahvusvahelise_kaitse_pikendamine",
+  "source_type": "web_page",
+  "publisher": "Politsei- ja Piirivalveamet",
+  "language": "et",
+  "url": "https://www.politsei.ee/et/juhend/info-seoses-ukraina-sojaga/rahvusvahelise-kaitse-pikendamine",
+  "source_path": "ppa_info_seoses_ukraina_sojaga_rahvusvahelise_kaitse_pikendamine.html",
+  "source_format": "html",
+  "source_sha256": "cdf3cbe00e0ddef859c4ab5b23a6a7016c61773157868278f81713cd074b7045",
+  "content_sha256": "f382f2cace85d05bd0d59eb79d76a4755c48c2fc5c7cf6e3020d336f4b929f8a",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:35:55.690Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": "Thu, 08 Oct 2026 17:07:48 GMT",
+      "etag": null
+    },
+    "raw_sha256": "5d865aaf9d4c0655be738f7a565cd191d1bc665dbc7d2a71355e2adc0b0f42a0",
+    "stats": {
+      "words": 364,
+      "blocks": 24,
+      "headings": 7,
+      "tables": 0,
+      "links": 5,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/08_2026/pikendamise-taotluse-ankeet-est.pdf?888785a1fa",
+      "text": "Taotlusankeet rahvusvahelise kaitse pikendamiseks",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/andmed-laehedaste-ja-pereliikmete-kohta-est.pdf?cda1189e98",
+      "text": "Andmed lähedaste ja pereliikmete kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

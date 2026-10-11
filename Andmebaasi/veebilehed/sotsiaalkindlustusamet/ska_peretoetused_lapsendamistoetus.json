@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_peretoetused_lapsendamistoetus",
+  "title": "Lapsendamistoetus",
+  "register_title": "Lapsendamistoetus",
+  "source_id": "ska_peretoetused_lapsendamistoetus",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/peretoetused/lapsendamistoetus",
+  "source_path": "ska_peretoetused_lapsendamistoetus.html",
+  "source_format": "html",
+  "source_sha256": "f7b6fa3dc719a112e3c3886b2718b80e5ca270aa1cdbea79447849aecad52c05",
+  "content_sha256": "b153865b165be6656055068f80632105074362779b5c3504bce28d55f12dc628",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:25:46.177Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2024-09-30",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:08:53 GMT",
+      "etag": null
+    },
+    "raw_sha256": "5a1d9366c9937b79bc165fd267c3c809b1260baf5336c4b0daae44d6b7d8372d",
+    "stats": {
+      "words": 87,
+      "blocks": 5,
+      "headings": 1,
+      "tables": 0,
+      "links": 2,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

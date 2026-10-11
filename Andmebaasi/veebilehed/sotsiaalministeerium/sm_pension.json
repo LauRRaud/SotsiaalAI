@@ -1,0 +1,58 @@
+{
+  "document_id": "web-sm_pension",
+  "title": "Pension",
+  "register_title": "Pension",
+  "source_id": "sm_pension",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalministeerium",
+  "language": "et",
+  "url": "https://www.sm.ee/pension",
+  "source_path": "sm_pension.html",
+  "source_format": "html",
+  "source_sha256": "a485a472cb400a2114a3a36e3684bf9ee164eca46dfd2ba2b8a7663b5ddba36d",
+  "content_sha256": "bb295447330a090bc141a2fc1ec2ce1eb9b7ccc115d532772e7a72ea52f10960",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:26:21.648Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-08-26",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 16:40:29 GMT",
+      "etag": null
+    },
+    "raw_sha256": "13d7339b7edf426e00c86dce556891935eed87a5a35751e49889e0a9460f9b0c",
+    "stats": {
+      "words": 258,
+      "blocks": 16,
+      "headings": 5,
+      "tables": 0,
+      "links": 9,
+      "linksToOtherSites": 9
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

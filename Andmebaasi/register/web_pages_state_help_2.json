@@ -1,0 +1,2106 @@
+{
+  "version": 1,
+  "note": "Riigi tasandi abi ametlikud juhislehed, teine partii (katvuskaart 08.10.2026, docs/audits/rag-v2-coverage-map-2026-10-08.md: ravikindlustus ja arstiabi kulud, kohtusse pöördumine, võlad ja täitemenetlus, pärimine, vägivalla ohver, lapse tugi koolis, puue ja hoolekanne, abivajav laps ja täiskasvanu). Lehed on väljaandja enda saidilt, saidikaardi või avalehe linkide järgi (08.10.2026), iga leht oma aadressiga; koolitused, uudised, partnerite ja kontaktide loendid jäävad välja. Politsei sait palub päringute vahele 10 sekundit.",
+  "pages": [
+    {
+      "source_id": "ska_abivajav_laps_ja_taiskasvanu_abi_pogenikule",
+      "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/abi-pogenikule",
+      "title": "Abi põgenikule",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_abi_pogenikule_rahvusvahelise_kaitse_taotlemine",
+      "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/abi-pogenikule/rahvusvahelise-kaitse-taotlemine",
+      "title": "Rahvusvaheline kaitse",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_abi_pogenikule_saatjata_alaealised_valismaalased",
+      "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/abi-pogenikule/saatjata-alaealised-valismaalased",
+      "title": "Saatjata alaealised välismaalased",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_abi_pogenikule_tolketeenus_rahvusvahelise_ja_ajutise_kaitse_saajale",
+      "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/abi-pogenikule/tolketeenus-rahvusvahelise-ja-ajutise-kaitse-saajale",
+      "title": "Tõlketeenus rahvusvahelise ja ajutise kaitse saajale",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_abivajav_laps_ja_taiskasvanu_abi_vagivalla_ohvrile",
+      "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/abi-vagivalla-ohvrile",
+      "title": "Abi vägivalla ohvritele",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_abi_vagivalla_ohvrile_kuriteoohvri_huvitis",
+      "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/abi-vagivalla-ohvrile/kuriteoohvri-huvitis",
+      "title": "Kuriteoohvri hüvitis",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_abi_vagivalla_ohvrile_lahisuhtevagivald",
+      "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/abi-vagivalla-ohvrile/lahisuhtevagivald",
+      "title": "Lähisuhtevägivald",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_abi_vagivalla_ohvrile_ohvriabi_kriisitelefon_116006",
+      "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/abi-vagivalla-ohvrile/ohvriabi-kriisitelefon-116006",
+      "title": "Ohvriabi kriisitelefon 116 006",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_abi_vagivalla_ohvrile_traumast_taastumist_toetav_vaimse_tervise_abi",
+      "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/abi-vagivalla-ohvrile/traumast-taastumist-toetav-vaimse-tervise-abi",
+      "title": "Traumast taastumist toetav vaimse tervise abi",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_abi_vagivalla_ohvrile_tugi_vagivallast_loobumiseks",
+      "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/abi-vagivalla-ohvrile/tugi-vagivallast-loobumiseks",
+      "title": "Tugi vägivallast loobumiseks",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_abivajav_laps_ja_taiskasvanu_asendushooldus_ja_kasuvanemlus",
+      "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/asendushooldus-ja-kasuvanemlus",
+      "title": "Asendushooldus ja kasuvanemlus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_asendushooldus_ja_kasuvanemlus_hoolduspereks_saamine",
+      "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/asendushooldus-ja-kasuvanemlus/hoolduspereks-saamine",
+      "title": "Hoolduspere vanemaks saamine",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_asendushooldus_ja_kasuvanemlus_kasuperede_toetamine",
+      "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/asendushooldus-ja-kasuvanemlus/kasuperede-toetamine",
+      "title": "Kasuperede toetamine",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_asendushooldus_ja_kasuvanemlus_lapsendamine",
+      "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/asendushooldus-ja-kasuvanemlus/lapsendamine",
+      "title": "Lapsendamine",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_asendushooldus_ja_kasuvanemlus_lapsendatu_paritoluandmete_otsimine",
+      "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/asendushooldus-ja-kasuvanemlus/lapsendatu-paritoluandmete-otsimine",
+      "title": "Lapsendatu päritoluandmete otsimine",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_abivajav_laps_ja_taiskasvanu_laste_ja_perede_abistamine",
+      "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/laste-ja-perede-abistamine",
+      "title": "Laste ja perede abistamine",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_laste_ja_perede_abistamine_kui_laps_vajab_rohkem_tuge",
+      "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/laste-ja-perede-abistamine/kui-laps-vajab-rohkem-tuge",
+      "title": "Kui laps vajab rohkem tuge",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_laste_ja_perede_abistamine_lapsevanemate_toetamine",
+      "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/laste-ja-perede-abistamine/lapsevanemate-toetamine",
+      "title": "Lapsevanemate toetamine",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_laste_ja_perede_abistamine_lastemaja",
+      "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/laste-ja-perede-abistamine/lastemaja",
+      "title": "Lastemaja",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_laste_ja_perede_abistamine_taisealise_abivajaja_toetamine",
+      "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/laste-ja-perede-abistamine/taisealise-abivajaja-toetamine",
+      "title": "Täisealise abivajaja toetamine",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_abivajav_laps_ja_taiskasvanu_vaimne_tervis_kriisis",
+      "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/vaimne-tervis-kriisis",
+      "title": "Vaimne tervis kriisis",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_vaimne_tervis_kriisis_emotsionaalse_toe_telefon_116123",
+      "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/vaimne-tervis-kriisis/emotsionaalse-toe-telefon-116123",
+      "title": "Ohvriabi emotsionaalse toe telefon 116123",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_vaimne_tervis_kriisis_psuhhosotsiaalne_kriisiabi",
+      "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/vaimne-tervis-kriisis/psuhhosotsiaalne-kriisiabi",
+      "title": "Psühhosotsiaalne kriisiabi",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_vaimne_tervis_kriisis_vaimse_tervise_videonoustamine",
+      "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/vaimne-tervis-kriisis/vaimse-tervise-videonoustamine",
+      "title": "Vaimse tervise videonõustamine",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_puue_ja_hoolekanne_erihoolekanne",
+      "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/erihoolekanne",
+      "title": "Erihoolekanne",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_erihoolekanne_erihoolekandeteenused",
+      "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/erihoolekanne/erihoolekandeteenused",
+      "title": "Erihoolekandeteenused",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_erihoolekanne_isikukeskse_erihoolekande_teenusmudel",
+      "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/erihoolekanne/isikukeskse-erihoolekande-teenusmudel",
+      "title": "Isikukeskse erihoolekande teenusmudel kohalikus omavalitsuses",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_puue_ja_hoolekanne_puude_raskusastme_tuvastamine",
+      "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/puude-raskusastme-tuvastamine",
+      "title": "Puude raskusastme tuvastamine",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_puude_raskusastme_tuvastamine_lapse_puude_raskusastme_tuvastamine",
+      "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/puude-raskusastme-tuvastamine/lapse-puude-raskusastme-tuvastamine",
+      "title": "Lapse puude raskusastme tuvastamine",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_puude_raskusastme_tuvastamine_vanaduspensioniealise_puude_raskusastme",
+      "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/puude-raskusastme-tuvastamine/vanaduspensioniealise-puude-raskusastme",
+      "title": "Vanaduspensioniealise puude raskusastme tuvastamine",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_puue_ja_hoolekanne_sotsiaalne_rehabilitatsioon",
+      "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/sotsiaalne-rehabilitatsioon",
+      "title": "Sotsiaalse rehabilitatsiooni teenus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_sotsiaalne_rehabilitatsioon_laste_sotsiaalne_rehabilitatsioon",
+      "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/sotsiaalne-rehabilitatsioon/laste-sotsiaalne-rehabilitatsioon",
+      "title": "Laste sotsiaalne rehabilitatsioon",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_sotsiaalne_rehabilitatsioon_rehabilitatsiooniteenuse_reform",
+      "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/sotsiaalne-rehabilitatsioon/rehabilitatsiooniteenuse-reform",
+      "title": "Rehabilitatsiooniteenuse reform",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_sotsiaalne_rehabilitatsioon_too_ja_pensioniealiste_sotsiaalne_rehabilitatsioon",
+      "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/sotsiaalne-rehabilitatsioon/too-ja-pensioniealiste-sotsiaalne-rehabilitatsioon",
+      "title": "Sotsiaalse rehabilitatsiooni teenus tööealistele ja pensioniealistele",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_toetavad_teenused_juhtkoer_vaegnagijale",
+      "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/toetavad-teenused/juhtkoer-vaegnagijale",
+      "title": "Juhtkoer vaegnägijale",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_toetavad_teenused_kaugtolge",
+      "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/toetavad-teenused/kaugtolge",
+      "title": "Kaugtõlge",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_toetavad_teenused_kirjutustolge",
+      "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/toetavad-teenused/kirjutustolge",
+      "title": "Kirjutustõlge",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_toetavad_teenused_parkimiskaart",
+      "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/toetavad-teenused/parkimiskaart",
+      "title": "Parkimiskaart",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_toetavad_teenused_puudega_lapse_tugiteenused",
+      "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/toetavad-teenused/puudega-lapse-tugiteenused",
+      "title": "Puudega laste tugiteenused",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_puue_ja_hoolekanne_toetused_puudega_inimestele",
+      "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/toetused-puudega-inimestele",
+      "title": "Toetused puudega inimestele",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_toetused_puudega_inimestele_harvikhaigusega_lapse_toetus",
+      "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/toetused-puudega-inimestele/harvikhaigusega-lapse-toetus",
+      "title": "Harvikhaigusega lapse toetus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_toetused_puudega_inimestele_oppelaenu_kustutamine",
+      "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/toetused-puudega-inimestele/oppelaenu-kustutamine",
+      "title": "Õppelaenu kustutamine",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_toetused_puudega_inimestele_oppetoetus",
+      "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/toetused-puudega-inimestele/oppetoetus",
+      "title": "Õppetoetus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_toetused_puudega_inimestele_puudega_lapse_toetus",
+      "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/toetused-puudega-inimestele/puudega-lapse-toetus",
+      "title": "Puudega lapse toetus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_toetused_puudega_inimestele_puudega_vanaduspensioniealise_inimese_toetus",
+      "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/toetused-puudega-inimestele/puudega-vanaduspensioniealise-inimese-toetus",
+      "title": "Puudega vanaduspensioniealise inimese toetus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_toetused_puudega_inimestele_puudega_vanema_toetus",
+      "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/toetused-puudega-inimestele/puudega-vanema-toetus",
+      "title": "Puudega vanema toetus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_toetused_puudega_inimestele_taienduskoolitustoetus",
+      "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/toetused-puudega-inimestele/taienduskoolitustoetus",
+      "title": "Täienduskoolitustoetus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_ohvriabi",
+      "url": "https://sotsiaalkindlustusamet.ee/ohvriabi",
+      "title": "Ohvriabi",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_ohvriabi_lihtsas_keeles",
+      "url": "https://sotsiaalkindlustusamet.ee/ohvriabi-lihtsas-keeles",
+      "title": "Ohvriabi lihtsas keeles",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_inimkaubandus",
+      "url": "https://sotsiaalkindlustusamet.ee/inimkaubandus",
+      "title": "Inimkaubandus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_naiste_tugikeskused",
+      "url": "https://sotsiaalkindlustusamet.ee/naiste-tugikeskused",
+      "title": "Naiste tugikeskused",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_seksuaalvagivalla_ohvrite_kriisiabi",
+      "url": "https://sotsiaalkindlustusamet.ee/seksuaalvagivalla-ohvrite-kriisiabi",
+      "title": "Seksuaalvägivalla ohvrile",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_abivoimalused_seksuaalvagivalla_uleelanule",
+      "url": "https://sotsiaalkindlustusamet.ee/abivoimalused-seksuaalvagivalla-uleelanule",
+      "title": "Abivõimalused seksuaalvägivalla üleelanule",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_vaie",
+      "url": "https://sotsiaalkindlustusamet.ee/vaie",
+      "title": "Vaide esitamine",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "palunabi_et_ohvriabi",
+      "url": "https://www.palunabi.ee/et/ohvriabi",
+      "title": "Ohvriabi",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "palunabi_et_ohvriabist",
+      "url": "https://www.palunabi.ee/et/ohvriabist",
+      "title": "Ohvriabist",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "palunabi_et_mis_juhtus",
+      "url": "https://www.palunabi.ee/et/mis-juhtus",
+      "title": "Mis juhtus?",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "palunabi_et_kriis",
+      "url": "https://www.palunabi.ee/et/kriis",
+      "title": "Kriis",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "palunabi_et_kriisijuhtumid",
+      "url": "https://www.palunabi.ee/et/kriisijuhtumid",
+      "title": "Kriisijuhtumid",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "palunabi_et_emotsionaalne_tugi",
+      "url": "https://www.palunabi.ee/et/emotsionaalne-tugi",
+      "title": "Emotsionaalne tugi",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "palunabi_et_psuhhosotsiaalne_kriisiabi",
+      "url": "https://www.palunabi.ee/et/psuhhosotsiaalne-kriisiabi",
+      "title": "Psühhosotsiaalne kriisiabi",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "palunabi_et_perevagivald_ja_lahisuhtevagivald",
+      "url": "https://www.palunabi.ee/et/perevagivald-ja-lahisuhtevagivald",
+      "title": "Perevägivald ja lähisuhtevägivald",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "palunabi_et_naistevastane_vagivald",
+      "url": "https://www.palunabi.ee/et/naistevastane-vagivald",
+      "title": "Naistevastane vägivald",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "palunabi_et_naiste_tugikeskused",
+      "url": "https://www.palunabi.ee/et/naiste-tugikeskused",
+      "title": "Naiste tugikeskused",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "palunabi_et_lastevastane_vagivald",
+      "url": "https://www.palunabi.ee/et/lastevastane-vagivald",
+      "title": "Lapse väärkohtlemine",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "palunabi_et_kohtinguvagivald",
+      "url": "https://www.palunabi.ee/et/kohtinguvagivald",
+      "title": "Kohtinguvägivald",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "palunabi_et_ahistav_jalitamine",
+      "url": "https://www.palunabi.ee/et/ahistav-jalitamine",
+      "title": "Ahistav jälitamine",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "palunabi_et_seksuaalvagivald",
+      "url": "https://www.palunabi.ee/et/seksuaalvagivald",
+      "title": "Seksuaalvägivald",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "palunabi_et_seksuaalvagivalla_kriisiabi",
+      "url": "https://www.palunabi.ee/et/seksuaalvagivalla-kriisiabi",
+      "title": "Seksuaalvägivalla kriisiabi",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "palunabi_et_seksuaalne_ahistamine_ooelus",
+      "url": "https://www.palunabi.ee/et/seksuaalne-ahistamine-ooelus",
+      "title": "Seksuaalne ahistamine ööelus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "palunabi_et_inimkaubandus",
+      "url": "https://www.palunabi.ee/et/inimkaubandus",
+      "title": "Inimkaubandus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "palunabi_et_inimkaubandus_0",
+      "url": "https://www.palunabi.ee/et/inimkaubandus-0",
+      "title": "Inimkaubandus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "palunabi_et_vaenukuritegu",
+      "url": "https://www.palunabi.ee/et/vaenukuritegu",
+      "title": "Vaenukuritegu",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "palunabi_et_vagivalla_pealtnagijale",
+      "url": "https://www.palunabi.ee/et/vagivalla-pealtnagijale",
+      "title": "Vägivalla märkajale",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "palunabi_et_vagivallast_loobumise_toetamine",
+      "url": "https://www.palunabi.ee/et/vagivallast-loobumise-toetamine",
+      "title": "Vägivallast loobumise toetamine",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "palunabi_et_kuriteoohvri_huvitis",
+      "url": "https://www.palunabi.ee/et/kuriteoohvri-huvitis",
+      "title": "Kuriteoohvri hüvitis",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "palunabi_et_traumast_taastumist_toetav_vaimse_tervise_abi",
+      "url": "https://www.palunabi.ee/et/traumast-taastumist-toetav-vaimse-tervise-abi",
+      "title": "Traumast taastumist toetav vaimse tervise abi",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "palunabi_et_taastav_oigus",
+      "url": "https://www.palunabi.ee/et/taastav-oigus",
+      "title": "Taastav õigus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_inimesele_arsti_ja_oendusabi",
+      "url": "https://tervisekassa.ee/inimesele/arsti-ja-oendusabi",
+      "title": "Arsti- ja õendusabi",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_arsti_ja_oendusabi_tervishoid_koolis",
+      "url": "https://tervisekassa.ee/inimesele/arsti-ja-oendusabi/tervishoid-koolis",
+      "title": "Tervishoid koolis",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_arsti_ja_oendusabi_tervishoiuteenused",
+      "url": "https://tervisekassa.ee/inimesele/arsti-ja-oendusabi/tervishoiuteenused",
+      "title": "Tervishoiuteenused",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_inimesele_avaldused",
+      "url": "https://tervisekassa.ee/inimesele/avaldused",
+      "title": "Avaldused",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_haigekassa_huvitised_vaktsiinikahjude_huvitamine",
+      "url": "https://tervisekassa.ee/inimesele/haigekassa-huvitised/vaktsiinikahjude-huvitamine",
+      "title": "Vaktsiinikahjude hüvitamine Eestis toimunud vaktsineerimise korral",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_inimesele_hambaravi",
+      "url": "https://tervisekassa.ee/inimesele/hambaravi",
+      "title": "Hambaravi",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_hambaravi_kasulikku_lugemist",
+      "url": "https://tervisekassa.ee/inimesele/hambaravi/kasulikku-lugemist",
+      "title": "Kasulikku lugemist",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_hambaravi_laste_hambaravi",
+      "url": "https://tervisekassa.ee/inimesele/hambaravi/laste-hambaravi",
+      "title": "Laste hambaravi",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_laste_hambaravi_laste_ortodontia",
+      "url": "https://tervisekassa.ee/inimesele/hambaravi/laste-hambaravi/laste-ortodontia",
+      "title": "Laste ortodontia",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_hambaravi_taiskasvanute_hambaravi",
+      "url": "https://tervisekassa.ee/inimesele/hambaravi/taiskasvanute-hambaravi",
+      "title": "Täiskasvanute hambaravi",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_taiskasvanute_hambaravi_hambaproteeside_huvitis",
+      "url": "https://tervisekassa.ee/inimesele/hambaravi/taiskasvanute-hambaravi/hambaproteeside-huvitis",
+      "title": "Hambaproteeside hüvitis",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_taiskasvanute_hambaravi_hambaravihuvitis",
+      "url": "https://tervisekassa.ee/inimesele/hambaravi/taiskasvanute-hambaravi/hambaravihuvitis",
+      "title": "Hambaravihüvitis",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_taiskasvanute_hambaravi_taiskasvanute_ortodontia",
+      "url": "https://tervisekassa.ee/inimesele/hambaravi/taiskasvanute-hambaravi/taiskasvanute-ortodontia",
+      "title": "Täiskasvanute ortodontia",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_taiskasvanute_hambaravi_tasuta_hambaravi",
+      "url": "https://tervisekassa.ee/inimesele/hambaravi/taiskasvanute-hambaravi/tasuta-hambaravi",
+      "title": "Tasuta hambaravi",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_taiskasvanute_hambaravi_valtimatu_hambaravi",
+      "url": "https://tervisekassa.ee/inimesele/hambaravi/taiskasvanute-hambaravi/valtimatu-hambaravi",
+      "title": "Vältimatu hambaravi",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_inimesele_huvitised",
+      "url": "https://tervisekassa.ee/inimesele/huvitised",
+      "title": "Tervisekassa hüvitised",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_huvitised_ajutise_toovoimetuse_huvitise_saamise_piirangud",
+      "url": "https://tervisekassa.ee/inimesele/huvitised/ajutise-toovoimetuse-huvitise-saamise-piirangud",
+      "title": "Ajutise töövõimetuse hüvitise saamise piirangud",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_huvitised_haigestumine_valisriigis",
+      "url": "https://tervisekassa.ee/inimesele/huvitised/haigestumine-valisriigis",
+      "title": "Haigestumine välisriigis",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_huvitised_haigushuvitis",
+      "url": "https://tervisekassa.ee/inimesele/huvitised/haigushuvitis",
+      "title": "Haigushüvitis",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_huvitised_hooldushuvitis",
+      "url": "https://tervisekassa.ee/inimesele/huvitised/hooldushuvitis",
+      "title": "Hooldushüvitis",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_huvitised_raseda_kergemale_toole_ule_viimine",
+      "url": "https://tervisekassa.ee/inimesele/huvitised/raseda-kergemale-toole-ule-viimine",
+      "title": "Raseda kergemale tööle üle viimine",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_huvitised_ravimite_huvitamine",
+      "url": "https://tervisekassa.ee/inimesele/huvitised/ravimite-huvitamine",
+      "title": "Ravimite hüvitamine",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_huvitised_tootingimuste_ajutine_kergendamine",
+      "url": "https://tervisekassa.ee/inimesele/huvitised/tootingimuste-ajutine-kergendamine",
+      "title": "Töötingimuste ajutine kergendamine",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_lapse_saamine_ja_lapse_tervis_lastega_seotud_huvitised",
+      "url": "https://tervisekassa.ee/inimesele/lapse-saamine-ja-lapse-tervis/lastega-seotud-huvitised",
+      "title": "Lastega seotud hüvitised",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_lapse_saamine_ja_lapse_tervis_rase",
+      "url": "https://tervisekassa.ee/inimesele/lapse-saamine-ja-lapse-tervis/rase",
+      "title": "Rase",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_inimesele_minu_andmed_terviseportaal_riigiportaal",
+      "url": "https://tervisekassa.ee/inimesele/minu-andmed-terviseportaal-riigiportaal",
+      "title": "Minu andmed: Terviseportaal; Riigiportaal",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_inimesele_ravikindlustus",
+      "url": "https://tervisekassa.ee/inimesele/ravikindlustus",
+      "title": "Ravikindlustus",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_ravikindlustus_inimesed_kelle_eest_makstakse_voi_kes_ise_maksab_sotsiaalmaksu",
+      "url": "https://tervisekassa.ee/inimesele/ravikindlustus/inimesed-kelle-eest-makstakse-voi-kes-ise-maksab-sotsiaalmaksu",
+      "title": "Inimesed, kelle eest makstakse või kes ise maksab sotsiaalmaksu",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_ravikindlustus_kindlustatuga_vordustatud_inimesed",
+      "url": "https://tervisekassa.ee/inimesele/ravikindlustus/kindlustatuga-vordustatud-inimesed",
+      "title": "Kindlustatuga võrdustatud inimesed",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_ravikindlustus_vabatahtlik_ravikindlustus",
+      "url": "https://tervisekassa.ee/inimesele/ravikindlustus/vabatahtlik-ravikindlustus",
+      "title": "Vabatahtlik ravikindlustus",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_inimesele_ravimid",
+      "url": "https://tervisekassa.ee/inimesele/ravimid",
+      "title": "Ravimid",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_ravimid_digiretsept",
+      "url": "https://tervisekassa.ee/inimesele/ravimid/digiretsept",
+      "title": "Digiretsept",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_ravimid_kehavalise_viljastamisega_seotud_ravimid",
+      "url": "https://tervisekassa.ee/inimesele/ravimid/kehavalise-viljastamisega-seotud-ravimid",
+      "title": "Kehavälise viljastamisega seotud ravimid",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_ravimid_ravimite_erandkorras_huvitamine",
+      "url": "https://tervisekassa.ee/inimesele/ravimid/ravimite-erandkorras-huvitamine",
+      "title": "Ravimite erandkorras hüvitamine",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_ravimid_taiendav_ravimi_ja_meditsiiniseadmehuvitis",
+      "url": "https://tervisekassa.ee/inimesele/ravimid/taiendav-ravimi-ja-meditsiiniseadmehuvitis",
+      "title": "Täiendav ravimi- ja meditsiiniseadmehüvitis",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_ravimid_toimeainepohine_retsept",
+      "url": "https://tervisekassa.ee/inimesele/ravimid/toimeainepohine-retsept",
+      "title": "Toimeainepõhine retsept",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_inimesele_teenustasud_ja_omaosalus",
+      "url": "https://tervisekassa.ee/inimesele/teenustasud-ja-omaosalus",
+      "title": "Teenustasud ja omaosalus",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_inimesele_ukraina_sojapogenikele",
+      "url": "https://tervisekassa.ee/inimesele/ukraina-sojapogenikele",
+      "title": "Ukraina sõjapõgenikele",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_patsientide_oigused_ja_kaebevoimalused_patsientide_oigused",
+      "url": "https://tervisekassa.ee/kontaktpunkt/patsientide-oigused-ja-kaebevoimalused/patsientide-oigused",
+      "title": "Patsientide õigused",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_patsientide_oigused_ja_kaebevoimalused_kaebevoimalused_ja_huvitamine",
+      "url": "https://tervisekassa.ee/kontaktpunkt/patsientide-oigused-ja-kaebevoimalused/kaebevoimalused-ja-huvitamine",
+      "title": "Kaebevõimalused ja hüvitamine",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_raviteekondade_arendamine_insuldi_raviteekond",
+      "url": "https://tervisekassa.ee/raviteekondade-arendamine/insuldi-raviteekond",
+      "title": "Insuldi raviteekond",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "tek_raviteekondade_arendamine_depressiooni_raviteekond",
+      "url": "https://tervisekassa.ee/raviteekondade-arendamine/depressiooni-raviteekond",
+      "title": "Depressiooni raviteekond",
+      "publisher": "Tervisekassa",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kohus_kohtusse_poordujale_tsiviilkohtumenetlus",
+      "url": "https://www.kohus.ee/kohtusse-poordujale/tsiviilkohtumenetlus",
+      "title": "Tsiviilkohtumenetlus",
+      "publisher": "Eesti kohtud",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kohus_tsiviilkohtumenetlus_maksekasu_kiirmenetlus",
+      "url": "https://www.kohus.ee/kohtusse-poordujale/tsiviilkohtumenetlus/maksekasu-kiirmenetlus",
+      "title": "Maksekäsu kiirmenetlus",
+      "publisher": "Eesti kohtud",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kohus_kohtusse_poordujale_halduskohtumenetlus",
+      "url": "https://www.kohus.ee/kohtusse-poordujale/halduskohtumenetlus",
+      "title": "Halduskohtumenetlus",
+      "publisher": "Eesti kohtud",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kohus_kohtusse_poordujale_kriminaalmenetlus",
+      "url": "https://www.kohus.ee/kohtusse-poordujale/kriminaalmenetlus",
+      "title": "Kriminaalmenetlus",
+      "publisher": "Eesti kohtud",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kohus_kriminaalmenetlus_info_kannatanule",
+      "url": "https://www.kohus.ee/kohtusse-poordujale/kriminaalmenetlus/info-kannatanule",
+      "title": "Info kannatanule",
+      "publisher": "Eesti kohtud",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kohus_kriminaalmenetlus_info_tunnistajale",
+      "url": "https://www.kohus.ee/kohtusse-poordujale/kriminaalmenetlus/info-tunnistajale",
+      "title": "Info tunnistajale",
+      "publisher": "Eesti kohtud",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kohus_kohtusse_poordujale_vaarteomenetlus",
+      "url": "https://www.kohus.ee/kohtusse-poordujale/vaarteomenetlus",
+      "title": "Väärteomenetlus",
+      "publisher": "Eesti kohtud",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kohus_kohtusse_poordujale_menetluskulud_ja_menetlusabi",
+      "url": "https://www.kohus.ee/kohtusse-poordujale/menetluskulud-ja-menetlusabi",
+      "title": "Menetluskulud ja menetlusabi",
+      "publisher": "Eesti kohtud",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kohus_menetluskulud_ja_menetlusabi_riigiloivu_tasumine_ja_tagastamine",
+      "url": "https://www.kohus.ee/kohtusse-poordujale/menetluskulud-ja-menetlusabi/riigiloivu-tasumine-ja-tagastamine",
+      "title": "Riigilõivu tasumine ja tagastamine",
+      "publisher": "Eesti kohtud",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kohus_kohtusse_poordujale_millega_erinevad_kohtud_tegelevad",
+      "url": "https://www.kohus.ee/kohtusse-poordujale/millega-erinevad-kohtud-tegelevad",
+      "title": "Millega erinevad kohtud tegelevad?",
+      "publisher": "Eesti kohtud",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kohus_kohtusse_poordujale_meelespea_kohtumajja_saabudes",
+      "url": "https://www.kohus.ee/kohtusse-poordujale/meelespea-kohtumajja-saabudes",
+      "title": "Meelespea kohtumajja saabudes",
+      "publisher": "Eesti kohtud",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kohus_kohtusse_poordujale_kuidas_kohtuga_uhendust_votta",
+      "url": "https://www.kohus.ee/kohtusse-poordujale/kuidas-kohtuga-uhendust-votta",
+      "title": "Kuidas kohtuga ühendust võtta?",
+      "publisher": "Eesti kohtud",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kohus_kohtusse_poordujale_sonaseletusraamat",
+      "url": "https://www.kohus.ee/kohtusse-poordujale/sonaseletusraamat",
+      "title": "Sõnaseletusraamat",
+      "publisher": "Eesti kohtud",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kohus_kohtusse_poordujale_dokumendid_ja_vormid",
+      "url": "https://www.kohus.ee/kohtusse-poordujale/dokumendid-ja-vormid",
+      "title": "Dokumendid ja vormid",
+      "publisher": "Eesti kohtud",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kohus_dokumendid_ja_vormid_dokumentide_esitamise_nouded",
+      "url": "https://www.kohus.ee/kohtusse-poordujale/dokumendid-ja-vormid/dokumentide-esitamise-nouded",
+      "title": "Dokumentide esitamise nõuded",
+      "publisher": "Eesti kohtud",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "notar_ametitoimingud",
+      "url": "https://www.notar.ee/ametitoimingud/",
+      "title": "Ametitoimingud – notariaalsed teenused ühes kohas",
+      "publisher": "Notarite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "notar_ametitoimingud_parimistoimingud",
+      "url": "https://www.notar.ee/ametitoimingud/parimistoimingud/",
+      "title": "Pärimistoimingud",
+      "publisher": "Notarite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "notar_ametitoimingud_perekonnaoiguslikud_toimingud",
+      "url": "https://www.notar.ee/ametitoimingud/perekonnaoiguslikud-toimingud/",
+      "title": "Perekonnaõiguslikud toimingud",
+      "publisher": "Notarite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "notar_ametitoimingud_kinnisvaratoimingud",
+      "url": "https://www.notar.ee/ametitoimingud/kinnisvaratoimingud/",
+      "title": "Kinnisvaratoimingud",
+      "publisher": "Notarite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "notar_ametitoimingud_notari_tasu_arvestamine",
+      "url": "https://www.notar.ee/ametitoimingud/notari-tasu-arvestamine/",
+      "title": "Notari tasu arvestamine",
+      "publisher": "Notarite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "notar_ametitoimingud_kaugtoestamine",
+      "url": "https://www.notar.ee/ametitoimingud/kaugtoestamine/",
+      "title": "Kaugtõestamine",
+      "publisher": "Notarite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "notar_registrid_parimisregister",
+      "url": "https://www.notar.ee/registrid/parimisregister/",
+      "title": "Pärimisregister",
+      "publisher": "Notarite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "notar_registrid_abieluvararegister",
+      "url": "https://www.notar.ee/registrid/abieluvararegister/",
+      "title": "Abieluvararegister",
+      "publisher": "Notarite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "parimine_parimine_kes_parib",
+      "url": "https://parimine.notar.ee/parimine/kes-parib/",
+      "title": "Pärimine",
+      "publisher": "Notarite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "parimine_parimine_mida_parib",
+      "url": "https://parimine.notar.ee/parimine/mida-parib/",
+      "title": "Pärimine",
+      "publisher": "Notarite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "parimine_parimine_parimise_protsess",
+      "url": "https://parimine.notar.ee/parimine/parimise-protsess/",
+      "title": "Pärimine",
+      "publisher": "Notarite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "parimine_parandamine",
+      "url": "https://parimine.notar.ee/parandamine/",
+      "title": "Pärandamine",
+      "publisher": "Notarite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "parimine_parandamine_esemete_parandamine",
+      "url": "https://parimine.notar.ee/parandamine/esemete-parandamine/",
+      "title": "Pärandamine",
+      "publisher": "Notarite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "parimine_parandamine_testament_parimisleping",
+      "url": "https://parimine.notar.ee/parandamine/testament-parimisleping/",
+      "title": "Pärandamine",
+      "publisher": "Notarite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "parimine_notaritasud",
+      "url": "https://parimine.notar.ee/notaritasud/",
+      "title": "Notaritasud",
+      "publisher": "Notarite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "parimine_lisainfo",
+      "url": "https://parimine.notar.ee/lisainfo/",
+      "title": "Lisainfo",
+      "publisher": "Notarite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kpk_kohtutaiturid_taitemenetlusest",
+      "url": "https://kpkoda.ee/kohtutaiturid/taitemenetlusest/",
+      "title": "Täitemenetlusest",
+      "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kpk_kohtutaiturid_nouete_aegumisest",
+      "url": "https://kpkoda.ee/kohtutaiturid/nouete-aegumisest/",
+      "title": "Nõuete aegumisest",
+      "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kpk_kohtutaiturid_tootasu_arestimise_skeem",
+      "url": "https://kpkoda.ee/kohtutaiturid/tootasu-arestimise-skeem/",
+      "title": "Töötasu arestimise skeem",
+      "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kpk_kohtutaiturid_elatisvolgnevused",
+      "url": "https://kpkoda.ee/kohtutaiturid/elatisvolgnevused/",
+      "title": "Elatise nõudmine",
+      "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kpk_elatisvolgnevused_elatisabi_taotlemine",
+      "url": "https://kpkoda.ee/kohtutaiturid/elatisvolgnevused/elatisabi-taotlemine/",
+      "title": "Elatisabi taotlemine",
+      "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kpk_kohtutaiturid_kaebuse_esitamine",
+      "url": "https://kpkoda.ee/kohtutaiturid/kaebuse-esitamine/",
+      "title": "Kaebuse esitamine",
+      "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kpk_kkk",
+      "url": "https://kpkoda.ee/kkk/",
+      "title": "KKK",
+      "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kpk_tasud",
+      "url": "https://kpkoda.ee/tasud/",
+      "title": "Kohtutäituri tasud",
+      "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kpk_elatisevolgnik_ja_pankrotimenetlus",
+      "url": "https://kpkoda.ee/elatisevolgnik-ja-pankrotimenetlus/",
+      "title": "Elatisevõlgnik ja pankrotimenetlus",
+      "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kpk_kuidas_elatisenouet_taitmisele_esitada",
+      "url": "https://kpkoda.ee/kuidas-elatisenouet-taitmisele-esitada/",
+      "title": "Kuidas elatisenõuet täitmisele esitada",
+      "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kpk_taite_ja_pankrotimenetluse_aegsest_elatisabist",
+      "url": "https://kpkoda.ee/taite-ja-pankrotimenetluse-aegsest-elatisabist/",
+      "title": "Täite- ja pankrotimenetluse aegsest elatisabist",
+      "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kpk_mida_kujutab_endast_parandvara_pankrot",
+      "url": "https://kpkoda.ee/mida-kujutab-endast-parandvara-pankrot/",
+      "title": "Mida kujutab endast pärandvara pankrot?",
+      "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kpk_pankrotihaldurid_huvitised_tootajatele",
+      "url": "https://kpkoda.ee/pankrotihaldurid/huvitised-tootajatele/",
+      "title": "Hüvitised töötajatele",
+      "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kpk_usaldusisiku_roll_fuusilise_isiku_maksejouetusmenetluses",
+      "url": "https://kpkoda.ee/usaldusisiku-roll-fuusilise-isiku-maksejouetusmenetluses/",
+      "title": "Usaldusisiku roll füüsilise isiku maksejõuetus-menetluses",
+      "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kpk_tootaja_voimalused_tootasu_sissenoudmiseks_pusivalt_maksejouetult_uhingult",
+      "url": "https://kpkoda.ee/tootaja-voimalused-tootasu-sissenoudmiseks-pusivalt-maksejouetult-uhingult/",
+      "title": "Töötaja võimalused töötasu sissenõudmiseks püsivalt maksejõuetult ühingult",
+      "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "kpk_suhtluskordade_praktika",
+      "url": "https://kpkoda.ee/suhtluskordade-praktika/",
+      "title": "Suhtluskordade praktikast",
+      "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "rajaleidja_kvm",
+      "url": "https://rajaleidja.ee/kvm/",
+      "title": "Kooliväline nõustamismeeskond",
+      "publisher": "Haridus- ja Noorteamet (Rajaleidja)",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_et_avaldus_politseile",
+      "url": "https://www.politsei.ee/et/avaldus-politseile",
+      "title": "Politseile süüteo avalduse esitamine",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_juhend_eksinud_ja_teadmata_kadunud",
+      "url": "https://www.politsei.ee/et/juhend/eksinud-ja-teadmata-kadunud",
+      "title": "Eksinud ja teadmata kadunud",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_eksinud_ja_teadmata_kadunud_loodusesse_minnes",
+      "url": "https://www.politsei.ee/et/juhend/eksinud-ja-teadmata-kadunud/loodusesse-minnes",
+      "title": "Eksinud ja teadmata kadunud",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_eksinud_ja_teadmata_kadunud_politseitoo_abivajajate_otsingutel",
+      "url": "https://www.politsei.ee/et/juhend/eksinud-ja-teadmata-kadunud/politseitoo-abivajajate-otsingutel",
+      "title": "Eksinud ja teadmata kadunud",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_eksinud_ja_teadmata_kadunud_vabatahtlike_kaasamine",
+      "url": "https://www.politsei.ee/et/juhend/eksinud-ja-teadmata-kadunud/vabatahtlike-kaasamine",
+      "title": "Eksinud ja teadmata kadunud",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_juhend_info_seoses_ukraina_sojaga",
+      "url": "https://www.politsei.ee/et/juhend/info-seoses-ukraina-sojaga",
+      "title": "Info seoses sõjaga Ukrainas",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_info_seoses_ukraina_sojaga_ajutine_kaitse_ukraina_kodanikele_ja_nende_pereliikmetele",
+      "url": "https://www.politsei.ee/et/juhend/info-seoses-ukraina-sojaga/ajutine-kaitse-ukraina-kodanikele-ja-nende-pereliikmetele",
+      "title": "Info seoses sõjaga Ukrainas",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_info_seoses_ukraina_sojaga_ajutise_kaitse_pikendamine",
+      "url": "https://www.politsei.ee/et/juhend/info-seoses-ukraina-sojaga/ajutise-kaitse-pikendamine",
+      "title": "Info seoses sõjaga Ukrainas",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_info_seoses_ukraina_sojaga_olukord_piiril",
+      "url": "https://www.politsei.ee/et/juhend/info-seoses-ukraina-sojaga/olukord-piiril",
+      "title": "Info seoses sõjaga Ukrainas",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_info_seoses_ukraina_sojaga_politsei_kodulehel_vaheneb_venekeelne_sisu",
+      "url": "https://www.politsei.ee/et/juhend/info-seoses-ukraina-sojaga/politsei-kodulehel-vaheneb-venekeelne-sisu",
+      "title": "Info seoses sõjaga Ukrainas",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_info_seoses_ukraina_sojaga_rahvusvahelise_kaitse_pikendamine",
+      "url": "https://www.politsei.ee/et/juhend/info-seoses-ukraina-sojaga/rahvusvahelise-kaitse-pikendamine",
+      "title": "Info seoses sõjaga Ukrainas",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_info_seoses_ukraina_sojaga_rahvusvahelise_kaitse_taotlemine",
+      "url": "https://www.politsei.ee/et/juhend/info-seoses-ukraina-sojaga/rahvusvahelise-kaitse-taotlemine",
+      "title": "Info seoses sõjaga Ukrainas",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_info_seoses_ukraina_sojaga_ukraina_kodanike_viibimisoiguse_ajutine_pikendamine",
+      "url": "https://www.politsei.ee/et/juhend/info-seoses-ukraina-sojaga/ukraina-kodanike-viibimisoiguse-ajutine-pikendamine",
+      "title": "Info seoses sõjaga Ukrainas",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_info_seoses_ukraina_sojaga_ukraina_sojapogenike_eestis_olemise_voimalused",
+      "url": "https://www.politsei.ee/et/juhend/info-seoses-ukraina-sojaga/ukraina-sojapogenike-eestis-olemise-voimalused",
+      "title": "Info seoses sõjaga Ukrainas",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_info_seoses_ukraina_sojaga_venemaa_ei_luba_ukraina_kodanikel_siseneda_venemaale",
+      "url": "https://www.politsei.ee/et/juhend/info-seoses-ukraina-sojaga/venemaa-ei-luba-ukraina-kodanikel-siseneda-venemaale",
+      "title": "Info seoses sõjaga Ukrainas",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_juhend_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele",
+      "url": "https://www.politsei.ee/et/juhend/isikut-toendava-dokumendi-taotlemine-liikumisvoimetule-inimesele",
+      "title": "Isikut tõendava dokumendi taotlemine liikumisvõimetule inimesele",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele_kattesaamine",
+      "url": "https://www.politsei.ee/et/juhend/isikut-toendava-dokumendi-taotlemine-liikumisvoimetule-inimesele/kattesaamine",
+      "title": "Isikut tõendava dokumendi taotlemine liikumisvõimetule inimesele",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele_liikumis_ja_allkirjavoimetule_inimese_dok",
+      "url": "https://www.politsei.ee/et/juhend/isikut-toendava-dokumendi-taotlemine-liikumisvoimetule-inimesele/liikumis-ja-allkirjavoimetule-inimese-dokumendi-kattesaamine",
+      "title": "Isikut tõendava dokumendi taotlemine liikumisvõimetule inimesele",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele_liikumisvoimetule_inimesele_elamisloakaar",
+      "url": "https://www.politsei.ee/et/juhend/isikut-toendava-dokumendi-taotlemine-liikumisvoimetule-inimesele/liikumisvoimetule-inimesele-elamisloakaardi-taotlemine",
+      "title": "Isikut tõendava dokumendi taotlemine liikumisvõimetule inimesele",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele_liikumisvoimetule_inimesele_id_kaardi_tao",
+      "url": "https://www.politsei.ee/et/juhend/isikut-toendava-dokumendi-taotlemine-liikumisvoimetule-inimesele/liikumisvoimetule-inimesele-id-kaardi-taotlemine",
+      "title": "Isikut tõendava dokumendi taotlemine liikumisvõimetule inimesele",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele_liikumisvoimetule_inimesele_pin_koodide_t",
+      "url": "https://www.politsei.ee/et/juhend/isikut-toendava-dokumendi-taotlemine-liikumisvoimetule-inimesele/liikumisvoimetule-inimesele-pin-koodide-taotlemine",
+      "title": "Isikut tõendava dokumendi taotlemine liikumisvõimetule inimesele",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_juhend_kaitse_ennast_kelmide_eest",
+      "url": "https://www.politsei.ee/et/juhend/kaitse-ennast-kelmide-eest",
+      "title": "Kaitse ennast kelmide eest",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_kaitse_ennast_kelmide_eest_kelmuse_tuubid_mis_eestis_tana_ringlevad",
+      "url": "https://www.politsei.ee/et/juhend/kaitse-ennast-kelmide-eest/kelmuse-tuubid-mis-eestis-tana-ringlevad",
+      "title": "Kaitse ennast kelmide eest",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_kaitse_ennast_kelmide_eest_kuhu_poorduda",
+      "url": "https://www.politsei.ee/et/juhend/kaitse-ennast-kelmide-eest/kuhu-poorduda",
+      "title": "Kaitse ennast kelmide eest",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_kaitse_ennast_kelmide_eest_teavita_petulehest",
+      "url": "https://www.politsei.ee/et/juhend/kaitse-ennast-kelmide-eest/teavita-petulehest",
+      "title": "Kaitse ennast kelmide eest",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_juhend_laste_seksuaalne_vaeaerkohtlemine_veebis",
+      "url": "https://www.politsei.ee/et/juhend/laste-seksuaalne-vaeaerkohtlemine-veebis",
+      "title": "Laste seksuaalne väärkohtlemine veebis",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_laste_seksuaalne_vaeaerkohtlemine_veebis_digipadevuse_materjalid",
+      "url": "https://www.politsei.ee/et/juhend/laste-seksuaalne-vaeaerkohtlemine-veebis/digipadevuse-materjalid",
+      "title": "Laste seksuaalne väärkohtlemine veebis",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_juhend_politseile_avalduse_esitamine",
+      "url": "https://www.politsei.ee/et/juhend/politseile-avalduse-esitamine",
+      "title": "Politseile avalduse esitamine",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_politseile_avalduse_esitamine_avalduse_esitamine_e_postiga",
+      "url": "https://www.politsei.ee/et/juhend/politseile-avalduse-esitamine/avalduse-esitamine-e-postiga",
+      "title": "Politseile avalduse esitamine",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_politseile_avalduse_esitamine_avalduse_esitamine_postiga",
+      "url": "https://www.politsei.ee/et/juhend/politseile-avalduse-esitamine/avalduse-esitamine-postiga",
+      "title": "Politseile avalduse esitamine",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_juhend_rahvusvaheline_kaitse",
+      "url": "https://www.politsei.ee/et/juhend/rahvusvaheline-kaitse",
+      "title": "Rahvusvaheline kaitse",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_rahvusvaheline_kaitse_elamisloa_pikendamine",
+      "url": "https://www.politsei.ee/et/juhend/rahvusvaheline-kaitse/elamisloa-pikendamine",
+      "title": "Rahvusvaheline kaitse",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_rahvusvaheline_kaitse_kasulikud_kontaktid",
+      "url": "https://www.politsei.ee/et/juhend/rahvusvaheline-kaitse/kasulikud-kontaktid",
+      "title": "Rahvusvaheline kaitse",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_rahvusvaheline_kaitse_kasulikud_materjalid",
+      "url": "https://www.politsei.ee/et/juhend/rahvusvaheline-kaitse/kasulikud-materjalid",
+      "title": "Rahvusvaheline kaitse",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_juhend_taga_enda_ja_oma_laste_turvalisus",
+      "url": "https://www.politsei.ee/et/juhend/taga-enda-ja-oma-laste-turvalisus",
+      "title": "Taga enda ja oma laste turvalisus",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_taga_enda_ja_oma_laste_turvalisus_autosoit",
+      "url": "https://www.politsei.ee/et/juhend/taga-enda-ja-oma-laste-turvalisus/autosoit",
+      "title": "Taga enda ja oma laste turvalisus",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_taga_enda_ja_oma_laste_turvalisus_digiturvalisus",
+      "url": "https://www.politsei.ee/et/juhend/taga-enda-ja-oma-laste-turvalisus/digiturvalisus",
+      "title": "Taga enda ja oma laste turvalisus",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_taga_enda_ja_oma_laste_turvalisus_kodus",
+      "url": "https://www.politsei.ee/et/juhend/taga-enda-ja-oma-laste-turvalisus/kodus",
+      "title": "Taga enda ja oma laste turvalisus",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_taga_enda_ja_oma_laste_turvalisus_kuidas_saab_noor_valtida_pahandustesse_sattumist",
+      "url": "https://www.politsei.ee/et/juhend/taga-enda-ja-oma-laste-turvalisus/kuidas-saab-noor-valtida-pahandustesse-sattumist",
+      "title": "Taga enda ja oma laste turvalisus",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_taga_enda_ja_oma_laste_turvalisus_nouanded_vanematele_laste_turvalisuse_tagamiseks",
+      "url": "https://www.politsei.ee/et/juhend/taga-enda-ja-oma-laste-turvalisus/nouanded-vanematele-laste-turvalisuse-tagamiseks",
+      "title": "Taga enda ja oma laste turvalisus",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_taga_enda_ja_oma_laste_turvalisus_ohutus_avalikus_kohas",
+      "url": "https://www.politsei.ee/et/juhend/taga-enda-ja-oma-laste-turvalisus/ohutus-avalikus-kohas",
+      "title": "Taga enda ja oma laste turvalisus",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ppa_taga_enda_ja_oma_laste_turvalisus_taksosoit_ja_uhistransport",
+      "url": "https://www.politsei.ee/et/juhend/taga-enda-ja-oma-laste-turvalisus/taksosoit-ja-uhistransport",
+      "title": "Taga enda ja oma laste turvalisus",
+      "publisher": "Politsei- ja Piirivalveamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    }
+  ]
+}

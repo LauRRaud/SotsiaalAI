@@ -1,0 +1,76 @@
+{
+  "document_id": "web-tek_ravimid_ravimite_erandkorras_huvitamine",
+  "title": "Ravimite erandkorras hüvitamine",
+  "register_title": "Ravimite erandkorras hüvitamine",
+  "source_id": "tek_ravimid_ravimite_erandkorras_huvitamine",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/ravimid/ravimite-erandkorras-huvitamine",
+  "source_path": "tek_ravimid_ravimite_erandkorras_huvitamine.html",
+  "source_format": "html",
+  "source_sha256": "83fff9aeba2b9ca4e50da8b18ec26d0b10a223c7ccd77807ed33f1b777bae4e8",
+  "content_sha256": "461dcf65b0ad2d4ffc94a8f98b01d6036d2262103d7f724c70f6a83cfe2755cd",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:38:47.464Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:26:03 GMT",
+      "etag": null
+    },
+    "raw_sha256": "bd3bde4dede13ac18215479ff33f61c70cc32b611298bce2f1639d08a58d2363",
+    "stats": {
+      "words": 923,
+      "blocks": 35,
+      "headings": 9,
+      "tables": 0,
+      "links": 8,
+      "linksToOtherSites": 3
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/et_ravimid_30092026.xlsx",
+      "text": "järgmisi ravimeid",
+      "type": "xlsx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/patsiendi_taotlus_uhh.docx",
+      "text": "patsiendi taotlus",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/ekspertkomisjoni_otsus_uhh.docx",
+      "text": "eksperdikomisjoni otsus",
+      "type": "docx",
+      "status": "referenced_only"
+    }
+  ]
+}

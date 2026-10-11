@@ -1,0 +1,57 @@
+{
+  "document_id": "web-kpk_pankrotihaldurid_huvitised_tootajatele",
+  "title": "Hüvitised töötajatele",
+  "register_title": "Hüvitised töötajatele",
+  "source_id": "kpk_pankrotihaldurid_huvitised_tootajatele",
+  "source_type": "web_page",
+  "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+  "language": "et",
+  "url": "https://kpkoda.ee/pankrotihaldurid/huvitised-tootajatele/",
+  "source_path": "kpk_pankrotihaldurid_huvitised_tootajatele.html",
+  "source_format": "html",
+  "source_sha256": "12c06b57d9ae5b57ed855e23ee22dbdaab2659b4d3f032fbd1eaa96baed3fefa",
+  "content_sha256": "215e362683fd80a83744aa0933118830cacdb8e74e2cd4775aa5b0b13f043642",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:40:50.339Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "d54e1e8a9da041d524d80c1fc6dfce94edf8cbc93aa0ab0259a30c71722f8ec9",
+    "stats": {
+      "words": 160,
+      "blocks": 7,
+      "headings": 2,
+      "tables": 0,
+      "links": 7,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

@@ -1,0 +1,57 @@
+{
+  "document_id": "web-tek_inimesele_hambaravi",
+  "title": "Hambaravi",
+  "register_title": "Hambaravi",
+  "source_id": "tek_inimesele_hambaravi",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/hambaravi",
+  "source_path": "tek_inimesele_hambaravi.html",
+  "source_format": "html",
+  "source_sha256": "0366efcdc8daf3a1c9feb8d752fb1e1b6f4c0a5ada6a015e948c5219af03990a",
+  "content_sha256": "f1d7afb81805d1ee438e920c00f5af8d65270fde2d716f4a16db0a8a68c8faa5",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:37:37.269Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:08:27 GMT",
+      "etag": null
+    },
+    "raw_sha256": "28ad4e2b7f8406238c8401303b6f6fc7f690850ae964a0b075a522771185953e",
+    "stats": {
+      "words": 190,
+      "blocks": 14,
+      "headings": 4,
+      "tables": 0,
+      "links": 10,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

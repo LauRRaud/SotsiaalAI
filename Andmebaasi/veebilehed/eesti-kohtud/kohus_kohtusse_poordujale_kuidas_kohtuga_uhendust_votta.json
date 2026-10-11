@@ -1,0 +1,60 @@
+{
+  "document_id": "web-kohus_kohtusse_poordujale_kuidas_kohtuga_uhendust_votta",
+  "title": "Kuidas kohtuga ühendust võtta?",
+  "register_title": "Kuidas kohtuga ühendust võtta?",
+  "source_id": "kohus_kohtusse_poordujale_kuidas_kohtuga_uhendust_votta",
+  "source_type": "web_page",
+  "publisher": "Eesti kohtud",
+  "language": "et",
+  "url": "https://www.kohus.ee/kohtusse-poordujale/kuidas-kohtuga-uhendust-votta",
+  "source_path": "kohus_kohtusse_poordujale_kuidas_kohtuga_uhendust_votta.html",
+  "source_format": "html",
+  "source_sha256": "c0b08ba948bfd5af2acdba5a8063c60373df917746caeaadbaf116463b704345",
+  "content_sha256": "f07ee00a28ba7c743ffeddd852016a74f6634785905d1d1c91eb5314fc61fd9a",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:39:35.356Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "8ade95990fadf74396b7082157265585b56f1754269656fef1d0a07d06193cc2",
+    "stats": {
+      "words": 1735,
+      "blocks": 76,
+      "headings": 27,
+      "tables": 0,
+      "links": 38,
+      "linksToOtherSites": 7
+    },
+    "contacts": {
+      "generalEmails": 20,
+      "otherEmails": 1,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 25,
+      "phonesBesideThem": 20
+    },
+    "warnings": [
+      "personal_contact_removed",
+      "email_needs_review"
+    ],
+    "needs_review": true
+  },
+  "documents": []
+}

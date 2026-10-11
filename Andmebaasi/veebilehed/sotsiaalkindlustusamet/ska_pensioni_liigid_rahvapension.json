@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_pensioni_liigid_rahvapension",
+  "title": "Rahvapension",
+  "register_title": "Rahvapension",
+  "source_id": "ska_pensioni_liigid_rahvapension",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-liigid/rahvapension",
+  "source_path": "ska_pensioni_liigid_rahvapension.html",
+  "source_format": "html",
+  "source_sha256": "d757c012df6c73996f35c555d7912c63bfeb8849880d49b549916b17565fb275",
+  "content_sha256": "42d326e92af67cd74bda13982be92cd9523668baebe2d2ca18bc7071e04f7b08",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:24:00.805Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-04-06",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 16:51:03 GMT",
+      "etag": null
+    },
+    "raw_sha256": "539937784cffb53a22f48718522ea6ed3ac3171556d3b85d2894bbe10e5861ec",
+    "stats": {
+      "words": 192,
+      "blocks": 16,
+      "headings": 3,
+      "tables": 0,
+      "links": 4,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

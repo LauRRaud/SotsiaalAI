@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_abi_pogenikule_tolketeenus_rahvusvahelise_ja_ajutise_kaitse_saajale",
+  "title": "Tõlketeenus rahvusvahelise ja ajutise kaitse saajale",
+  "register_title": "Tõlketeenus rahvusvahelise ja ajutise kaitse saajale",
+  "source_id": "ska_abi_pogenikule_tolketeenus_rahvusvahelise_ja_ajutise_kaitse_saajale",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/abi-pogenikule/tolketeenus-rahvusvahelise-ja-ajutise-kaitse-saajale",
+  "source_path": "ska_abi_pogenikule_tolketeenus_rahvusvahelise_ja_ajutise_kaitse_saajale.html",
+  "source_format": "html",
+  "source_sha256": "09e4ede2fd73a099666d9fc7b8042d0ab584dc1ba825fa89d8a9d56d96d8ce1d",
+  "content_sha256": "9adf9cfd6483d4bdaf9509bc5aa5cca6cfd75b2846768a74b892fe881a553c9f",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:34:20.880Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2025-09-04",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:34:19 GMT",
+      "etag": null
+    },
+    "raw_sha256": "dbe6b583550e04d23252c7fcda5ea1ee8641af92f60c39cedd270fb455d3e760",
+    "stats": {
+      "words": 324,
+      "blocks": 13,
+      "headings": 5,
+      "tables": 0,
+      "links": 0,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

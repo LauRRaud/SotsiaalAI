@@ -1,0 +1,1722 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="803a2445-46b9-4c0c-bb1d-382e23e74b0c" xsi:schemaLocation="tyviseadus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/tyviseadus_1_10.02.2010.xsd" xmlns="tyviseadus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Riigikogu</valjaandja>
+		<dokumentLiik>seadus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		
+		<lyhend>PsAS</lyhend><dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>1997-02-12</aktikuupaev>
+			<avaldamismarge>
+				<RTosa>RT I</RTosa>
+				<RTaasta>1997</RTaasta>
+				<RTnr>16</RTnr>
+				<RTartikkel>260</RTartikkel>
+				<aktViide>33716</aktViide>
+			</avaldamismarge>
+			<joustumine>1997-03-16</joustumine>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT I</RTosa><avaldamineKuupaev>2024-12-31</avaldamineKuupaev><RTaasta>2024</RTaasta><RTartikkel>24</RTartikkel><aktViide>131122024024</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2025-01-10</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioonKuupaev>2012-03-02</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>tyviseadus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>131122024024</globaalID>
+		<metaandmedVersioon>37</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2024-12-30</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Maret Mauer</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>159326</terviktekstiGrupiID>
+		<eesmark>Tüviseaduse raamskeem XML struktuuri koostamiseks</eesmark>
+	</metaandmed>
+	<aktinimi>
+		<nimi>
+			<pealkiri>Psühhiaatrilise abi seadus</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge>
+		<aktikuupaev>1999-02-25</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>1999</RTaasta>
+			<RTnr>31</RTnr>
+			<RTartikkel>425</RTartikkel>
+			<aktViide>77346</aktViide>
+		</avaldamismarge>
+		<joustumine>2000-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2001-05-09</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2001</RTaasta>
+			<RTnr>50</RTnr>
+			<RTartikkel>284</RTartikkel>
+			<aktViide>27072</aktViide>
+		</avaldamismarge>
+		<joustumine>2002-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2001-05-30</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2001</RTaasta>
+			<RTnr>53</RTnr>
+			<RTartikkel>309</RTartikkel>
+			<aktViide>27097</aktViide>
+		</avaldamismarge>
+		<joustumine>2002-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2002-06-05</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2002</RTaasta>
+			<RTnr>53</RTnr>
+			<RTartikkel>336</RTartikkel>
+			<aktViide>174795</aktViide>
+		</avaldamismarge>
+		<joustumine>2002-07-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2002-06-12</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2002</RTaasta>
+			<RTnr>56</RTnr>
+			<RTartikkel>350</RTartikkel>
+			<aktViide>177120</aktViide>
+		</avaldamismarge>
+		<joustumine>2002-09-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2002-06-19</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2002</RTaasta>
+			<RTnr>61</RTnr>
+			<RTartikkel>375</RTartikkel>
+			<aktViide>184811</aktViide>
+		</avaldamismarge>
+		<joustumine>2002-08-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2002-06-19</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2002</RTaasta>
+			<RTnr>62</RTnr>
+			<RTartikkel>377</RTartikkel>
+			<aktViide>181723</aktViide>
+		</avaldamismarge>
+		<joustumine>2002-10-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2002-06-19</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2002</RTaasta>
+			<RTnr>64</RTnr>
+			<RTartikkel>392</RTartikkel>
+			<aktViide>181988</aktViide>
+		</avaldamismarge>
+		<joustumine>2002-07-29</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2005-04-13</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2005</RTaasta>
+			<RTnr>24</RTnr>
+			<RTartikkel>180</RTartikkel>
+			<aktViide>895473</aktViide>
+		</avaldamismarge>
+		<joustumine>2005-05-20</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2005-06-15</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2005</RTaasta>
+			<RTnr>39</RTnr>
+			<RTartikkel>308</RTartikkel>
+			<aktViide>919178</aktViide>
+		</avaldamismarge>
+		<joustumine>2006-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2006-01-26</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2006</RTaasta>
+			<RTnr>7</RTnr>
+			<RTartikkel>42</RTartikkel>
+			<aktViide>989550</aktViide>
+		</avaldamismarge>
+		<joustumine>2006-02-04</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2007-12-20</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2008</RTaasta>
+			<RTnr>3</RTnr>
+			<RTartikkel>22</RTartikkel>
+			<aktViide>12909773</aktViide>
+		</avaldamismarge>
+		<joustumine>2008-09-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2008-12-10</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2008</RTaasta>
+			<RTnr>59</RTnr>
+			<RTartikkel>330</RTartikkel>
+			<aktViide>13099767</aktViide>
+		</avaldamismarge>
+		<joustumine>2009-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2009-09-30</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2009</RTaasta>
+			<RTnr>49</RTnr>
+			<RTartikkel>331</RTartikkel>
+			<aktViide>13225575</aktViide>
+		</avaldamismarge>
+		<joustumine>2010-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2011-01-27</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2011-02-23</avaldamineKuupaev>
+			<RTartikkel>2</RTartikkel>
+			<aktViide>123022011002</aktViide>
+		</avaldamismarge>
+		<joustumine>2011-04-05</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2011-01-27</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2011-02-23</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>123022011001</aktViide>
+		</avaldamismarge>
+		<joustumine>2011-09-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2012-02-15</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2012-03-07</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>107032012001</aktViide>
+		</avaldamismarge>
+		<joustumine>2012-09-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2012-05-30</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2012-06-15</avaldamineKuupaev>
+			<RTartikkel>2</RTartikkel>
+			<aktViide>115062012002</aktViide>
+		</avaldamismarge>
+		<joustumine>2013-06-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2014-06-19</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2014-06-29</avaldamineKuupaev>
+			<RTartikkel>109</RTartikkel>
+			<aktViide>129062014109</aktViide>
+		</avaldamismarge>
+		<joustumine>2014-07-01</joustumine>
+		<tavatekst>, Vabariigi Valitsuse seaduse § 107³ lõike 4 alusel asendatud ministrite ametinimetused alates 2014. aasta 1. juulil jõus olevast redaktsioonist.</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2015-12-09</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2015-12-30</avaldamineKuupaev>
+			<RTartikkel>5</RTartikkel>
+			<aktViide>130122015005</aktViide>
+		</avaldamismarge>
+		<joustumine>2016-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2018-12-05</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2018-12-21</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>121122018001</aktViide>
+		</avaldamismarge>
+		<joustumine>2019-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2021-03-17</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2021-03-24</avaldamineKuupaev>
+			<RTartikkel>5</RTartikkel>
+			<aktViide>124032021005</aktViide>
+		</avaldamismarge>
+		<joustumine>2021-04-03</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2022-09-21</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2022-10-10</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>110102022001</aktViide>
+		</avaldamismarge>
+		<joustumine>2022-10-11</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2023-02-22</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2023-03-11</avaldamineKuupaev>
+			<RTartikkel>9</RTartikkel>
+			<aktViide>111032023009</aktViide>
+		</avaldamismarge>
+		<joustumine>2023-04-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2024-12-11</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+			<RTartikkel>3</RTartikkel>
+			<aktViide>131122024003</aktViide>
+		</avaldamismarge>
+		<joustumine>2025-01-10</joustumine>
+	</muutmismarge>
+	<sisu>
+		<peatykk id="ptk1">
+			<peatykkNr>1</peatykkNr>
+			<kuvatavNr><![CDATA[1. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>ÜLDSÄTTED</peatykkPealkiri>
+			<paragrahv id="para1">
+				<paragrahvNr>1</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 1. ]]></kuvatavNr>
+				<paragrahvPealkiri>Seaduse reguleerimisala</paragrahvPealkiri>
+				<loige id="para1lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Psühhiaatrilise abi seadus reguleerib isikule psühhiaatrilise abi andmise korda ja tingimusi ning isikule psühhiaatrilise abi andmisel tekkivaid suhteid tervishoiuasutustega; sätestab riigi ja kohaliku omavalitsuse kohustused psühhiaatrilise abi korraldamisel ning isiku õigused psühhiaatrilise abi saamisel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para1lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesolevas seaduses ettenähtud haldusmenetlusele kohaldatakse haldusmenetluse seaduse sätteid, kui käesolevas seaduses ei ole sätestatud teisiti.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para1lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Psühhiaatrilist abi osutatakse, lähtudes seaduslikkuse ja humaansuse printsiibist ning järgides inim- ja kodanikuõigusi.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2005</RTaasta>
+							<RTnr>39</RTnr>
+							<RTartikkel>308</RTartikkel>
+							<aktViide>919178</aktViide>
+						</avaldamismarge>
+						<joustumine>2006-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para2">
+				<paragrahvNr>2</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 2. ]]></kuvatavNr>
+				<paragrahvPealkiri>Mõisted</paragrahvPealkiri>
+				<loige id="para2lg1">
+					<sisuTekst>
+						<tavatekst>Käesolevas seaduses kasutatakse mõisteid järgmises tähenduses:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para2lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>psüühikahäire – kehtivale rahvusvahelisele psüühika- ja käitumishäirete klassifikatsioonile vastav psüühiline seisund või käitumishäire;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>psühhiaatriline abi – psüühikahäirete diagnostika, psüühikahäirega isiku ravi ja taastusabi ning psüühikahäireid ennetav tegevus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2lg1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>raviprotsess – isiku uurimise, diagnoosimise, ravimise ja taastusabiga seotud tegevus, mis hõlmab suhteid patsiendi ja arsti ning teiste ravimisele kaasatud isikute, raviasutuste ja Tervisekassaga;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2023-03-11</avaldamineKuupaev>
+								<RTartikkel>9</RTartikkel>
+								<aktViide>111032023009</aktViide>
+							</avaldamismarge>
+							<joustumine>2023-04-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para2lg1p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>psüühikahäirega isiku taastusabi – tegevus psüühikahäirega isiku sotsiaalse toimetulekuvõime taastamiseks;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2lg1p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>teadev nõusolek – nõusolek, mille andmisel isik on võimeline aru saama nõusoleku olemusest ja selle andmise või sellest keeldumise tagajärgedest.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para3">
+				<paragrahvNr>3</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 3. ]]></kuvatavNr>
+				<paragrahvPealkiri>Psühhiaatrilise abi vabatahtlikkus</paragrahvPealkiri>
+				<loige id="para3lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Psühhiaatrilist abi antakse isiku enda nõusoleku alusel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para3lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Psühhiaatrilise abi andmisel piiratud teovõimega isikule kohaldatakse võlaõigusseaduse § 766 lõiget 4.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para3lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tervishoiuteenuse osutaja kaasab piiratud teovõimega isiku seadusliku esindaja või muu piiratud teovõimega isiku poolt usaldatud täisealise teovõimelise isiku, kui see on tervishoiuteenuse osutaja hinnangul piiratud teovõimega isiku huvides.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para3lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Psüühikahäirega isiku ravi ilma tema enda nõusolekuta on lubatud ainult käesoleva seaduse §-des 11 ja 17 sätestatud juhtudel.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2021-03-24</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>124032021005</aktViide>
+						</avaldamismarge>
+						<joustumine>2021-04-03</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para4">
+				<paragrahvNr>4</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 4. ]]></kuvatavNr>
+				<paragrahvPealkiri>Isiku õigused psühhiaatrilise abi saamisel</paragrahvPealkiri>
+				<loige id="para4lg1">
+					<sisuTekst>
+						<tavatekst>Isikul on psühhiaatrilise abi saamisel õigus:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para4lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>saada ravi ja põetust võrdsel alusel muude haigetega;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>saada teavet oma psüühikahäire ja kasutatavate ravi- ning diagnostikameetodite kohta ja tutvuda temasse puutuvate ravidokumentidega, välja arvatud juhul, kui see võib osutuda kahjulikuks tema vaimsele tervisele või teiste isikute julgeolekule. Otsuse teabe edastamise kohta teeb ja annab õiguse tutvuda ravidokumentidega tema raviarst, kes teeb sellekohase kande tema ravidokumenti;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>keelduda psühhiaatrilistest uuringutest ja ravist või neid katkestada, välja arvatud käesoleva seaduse §-des 11 ja 17 sätestatud juhtudel;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kahju hüvitamisele ravi- või põetusvigadest põhjustatud kahju korral.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<RTaasta>2002</RTaasta>
+								<RTnr>64</RTnr>
+								<RTartikkel>392</RTartikkel>
+								<aktViide>181988</aktViide>
+							</avaldamismarge>
+							<joustumine>2002-07-29</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para5">
+				<paragrahvNr>5</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 5. ]]></kuvatavNr>
+				<paragrahvPealkiri>Psüühikahäirete diagnostika ja psüühikahäirega isiku ravi</paragrahvPealkiri>
+				<loige id="para5lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Arst on psüühikahäirete diagnoosimisel ja psühhiaatrilise abi andmisel sõltumatu ning juhindub arstiteadusest, arstieetikast, seadustest ja muudest õigusaktidest.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para5lg2">
+					<loigeNr id="7b108a2d-8c9d-4a12-9768-f3784e82c725">2</loigeNr>
+					<kuvatavNr id="8c13437c-4a72-4302-a51f-09f2dbb5b5b7"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="509532ca-887c-4832-9f22-283ccca3a424">
+						<tavatekst id="378b04fc-a3b1-4025-8bb3-3b0469111d3e">Psüühilist seisundit, ravi ja diagnoosi puudutav teave on isiku eraelu saladus ja seda on lubatud edastada väljapoole raviprotsessi ainult:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para5lg2p1">
+						<alampunktNr id="7577714c-51f9-41d7-b6f7-e330a32e4d66">1</alampunktNr>
+						<kuvatavNr id="750a62e2-2c28-4947-8ada-46c4fbf720a4"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="9a8119a4-d0aa-4364-b033-7f7895354c9e">
+							<tavatekst id="94df0321-7e6c-4316-a4ef-6164add0f45c">isiku enda või tema seadusliku esindaja kirjalikul nõusolekul;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg2p2">
+						<alampunktNr id="12e6b9b0-c439-4263-87a8-0b2c56a18025">2</alampunktNr>
+						<kuvatavNr id="813b7b03-eb31-48ea-b2ae-03e039ffca60"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="9654d56a-3110-4a5e-9206-bc1566777101">
+							<tavatekst id="2edee8be-c994-4de5-9d18-ef67f824022b">uurimisasutuse, politsei, prokuratuuri, kriminaalhooldusosakonna või kohtu seadusest tuleneva nõude alusel;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg2p3">
+						<alampunktNr id="2e304a40-9ac0-4ee8-af54-1340aad95677">3</alampunktNr>
+						<kuvatavNr id="18807b52-1139-457f-9e3e-9c45e5246d08"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="3371fa3a-3185-4236-851b-670c9c4d16f4">
+							<tavatekst id="098aa12c-e84a-420c-9821-f91a5f73466b">narkootiliste ja psühhotroopsete ainete ning nende lähteainete seaduse alusel loodud narkomaaniaravi andmekogule esitamiseks;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg2p4">
+						<alampunktNr id="88fcbc20-2e0b-4bbb-b436-6dc7420b447a">4</alampunktNr>
+						<kuvatavNr id="c879ad40-2526-46a6-9bb8-116bfe3fa7a6"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="27e01721-86b2-4780-ba52-d6dc0f10eb8f">
+							<tavatekst id="5c26a081-5213-4c3c-9b7d-8e738710ed8c">Terviseameti ja Tervisekassa nõudel neile seadusega pandud ülesannete täitmiseks;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg2p5">
+						<alampunktNr id="89545715-c8e7-475f-ae8b-773c00a54c62">5</alampunktNr>
+						<kuvatavNr id="46664c54-54c4-4034-829f-4096373794e0"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="bb95ce08-5a6e-4998-9f92-4550c0275be5">
+							<tavatekst id="d092ccee-53bf-40bb-8e43-6d16028ce49c">isiku elukohajärgsele valla- või linnavalitsusele ja isiku lähedastele ulatuses, milles see on neile vajalik seisukoha või kaebuse esitamiseks isiku kinnisesse asutusse paigutamise menetluses;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg2p6">
+						<alampunktNr id="15193da6-6cd3-4689-8e06-bf1067ba1319">6</alampunktNr>
+						<kuvatavNr id="0dd91025-2490-4302-835e-60b5718e9e6a"><![CDATA[6) ]]></kuvatavNr>
+						<sisuTekst id="969b6e39-aac2-40ac-8bc7-f0c7179c3061">
+							<tavatekst id="c7da6d2d-a217-49de-8711-80db55bdabb9">lapse, lapsevanema ja last kasvatava isiku kohta valla- või linnavalitsusele ja Sotsiaalkindlustusametile lastekaitseseaduse § 34<sup>2</sup> lõike 3 punktides 4 ja 5 ning lõike 4 punktides 6 ja 7 sätestatud ulatuses lapse abivajaduse hindamiseks ja sobiva abi osutamiseks.</tavatekst>
+							<muutmismarge>
+								<avaldamismarge>
+									<RTosa>RT I</RTosa>
+									<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+									<RTartikkel>3</RTartikkel>
+									<aktViide>131122024003</aktViide>
+								</avaldamismarge>
+								<joustumine>2025-01-10</joustumine>
+							</muutmismarge>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para5lg2b1">
+					<loigeNr ylaIndeks="1">2</loigeNr>
+					<kuvatavNr><![CDATA[(2<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lõikes 2 sätestatu ei piira isikuandmete edastamist tervise infosüsteemi ja isikuandmete saamist tervise infosüsteemist vastavalt tervishoiuteenuste korraldamise seadusele.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2008</RTaasta>
+							<RTnr>3</RTnr>
+							<RTartikkel>22</RTartikkel>
+							<aktViide>12909773</aktViide>
+						</avaldamismarge>
+						<joustumine>2008-09-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para5lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Psüühikahäirega isiku raviarst ei ole kohustatud andma kellelegi ütlusi isiku eraelu kohta, mida ta sai teada oma tööülesannete tõttu.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk2">
+			<peatykkNr>2</peatykkNr>
+			<kuvatavNr><![CDATA[2. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>PSÜHHIAATRILISE ABI KORRALDUS</peatykkPealkiri>
+			<paragrahv id="para6">
+				<paragrahvNr>6</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 6. ]]></kuvatavNr>
+				<paragrahvPealkiri>Psühhiaatrilise abi korraldamise üldpõhimõtted</paragrahvPealkiri>
+				<loige id="para6lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Psühhiaatrilise abiga tagatakse raviprotsessis psüühikahäirega isikule järjepidev ja valdkonna eest vastutava ministri poolt kehtestatud standarditele vastav ravi.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para6lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Psühhiaatrilist abi annavad sellekohase tegevusloaga raviasutused, arstid ja muud spetsialistid.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para6lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2002</RTaasta>
+							<RTnr>64</RTnr>
+							<RTartikkel>392</RTartikkel>
+							<aktViide>181988</aktViide>
+						</avaldamismarge>
+						<joustumine>2002-07-29</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para6lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Psühhiaatriline eriarstiabi korraldatakse kohaliku omavalitsuse ja riigi tasandil.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para6lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Psühhiaatrilise abi andmisel välditakse võimaluse korral isiku eemaldamist harjumuspärasest elukeskkonnast.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para6lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Psühhiaatrilist haiglaravi rakendatakse juhul, kui isiku tervise seisundist lähtuvalt ei ole haiglaväline abi piisavalt tõhus või kui isik on temal esineva psüühikahäire tõttu muutunud endale või teistele ohtlikuks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para6lg7">
+					<loigeNr>7</loigeNr>
+					<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalministeerium korraldab psüühikahäireid ennetavat tegevust.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2002</RTaasta>
+							<RTnr>64</RTnr>
+							<RTartikkel>392</RTartikkel>
+							<aktViide>181988</aktViide>
+						</avaldamismarge>
+						<joustumine>2002-07-29</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para7">
+				<paragrahvNr kehtiv="0">7</paragrahvNr>
+				<kuvatavNr>§ 7. </kuvatavNr>
+				<sisuTekst>
+					<tavatekst> – </tavatekst>
+				</sisuTekst>
+			</paragrahv>
+			<paragrahv id="para8">
+				<paragrahvNr kehtiv="0">8</paragrahvNr>
+				<kuvatavNr>§ 8. </kuvatavNr>
+				<muutmismarge>
+					<tavatekst>Kehtetud - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<RTaasta>2002</RTaasta>
+						<RTnr>64</RTnr>
+						<RTartikkel>392</RTartikkel>
+						<aktViide>181988</aktViide>
+					</avaldamismarge>
+					<joustumine>2002-07-29</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para9">
+				<paragrahvNr>9</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 9. ]]></kuvatavNr>
+				<paragrahvPealkiri>Psühhiaatrilise abi seos sotsiaalhoolekandega</paragrahvPealkiri>
+				<loige id="para9lg1">
+					<sisuTekst>
+						<tavatekst>Valla- või linnavalitsus tagab psüühikahäirega isikule sotsiaalteenuste kättesaadavuse kooskõlas sotsiaalhoolekande seadusega.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2012-03-07</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>107032012001</aktViide>
+						</avaldamismarge>
+						<joustumine>2012-09-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk3">
+			<peatykkNr ylaIndeks="1">2</peatykkNr>
+			<kuvatavNr><![CDATA[2<sup>1</sup>. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>ISIKU ÕIGUSTE PIIRANGUD STATSIONAARSEL PSÜHHIAATRILISEL RAVIL </peatykkPealkiri>
+			<muutmismarge>
+				<avaldamismarge>
+					<RTosa>RT I</RTosa>
+					<avaldamineKuupaev>2012-03-07</avaldamineKuupaev>
+					<RTartikkel>1</RTartikkel>
+					<aktViide>107032012001</aktViide>
+				</avaldamismarge>
+				<joustumine>2012-09-01</joustumine>
+			</muutmismarge>
+			<paragrahv id="para9b1">
+				<paragrahvNr ylaIndeks="1">9</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 9<sup>1</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Keelatud ained ja esemed statsionaarsel psühhiaatrilisel ravil</paragrahvPealkiri>
+				<loige id="para9b1lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Statsionaarsel psühhiaatrilisel ravil viibival isikul on keelatud vallata järgmisi aineid või esemeid:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para9b1lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>alkohoolsed joogid alkoholiseaduse tähenduses;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9b1lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>narkootilised ja psühhotroopsed ained narkootiliste ja psühhotroopsete ainete ning nende lähteainete seaduse tähenduses, mis ei ole ravimid ravimiseaduse tähenduses;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9b1lg1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>relvad relvaseaduse tähenduses;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9b1lg1p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lõhkeained, pürotehnilised ained ja pürotehnilised tooted lõhkematerjaliseaduse tähenduses.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para9b1lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tervishoiuteenuse osutaja võib keelata statsionaarsel psühhiaatrilisel ravil viibival isikul vallata ravil aineid või esemeid, mis kujutavad tema tervisliku seisundi tõttu ohtu tema enda või teiste isikute elule või tervisele või ohustavad oluliselt ravil viibivate isikute eraelu puutumatust.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para9b1lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõikes 2 nimetatud aineteks või esemeteks on eelkõige:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para9b1lg3p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>ravimid ravimiseaduse tähenduses;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9b1lg3p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>terariistad;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9b1lg3p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>alkoholi sisaldavad ained.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2012-03-07</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>107032012001</aktViide>
+							</avaldamismarge>
+							<joustumine>2012-09-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para9b2">
+				<paragrahvNr ylaIndeks="2">9</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 9<sup>2</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Isiku asjade läbivaatus, keelatud ainete ja esemete äravõtmine, säilitamine, tagastamine, üleandmine ja hävitamine</paragrahvPealkiri>
+				<loige id="para9b2lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui tervishoiuteenuse osutajal tekib põhjendatud kahtlus, et ravil viibiva isiku valduses on või temale adresseeritud posti- või muu saadetis sisaldab käesoleva seaduse § 9<sup>1</sup> lõigetes 1 või 2 nimetatud aineid või esemeid, on tervishoiuteenuse osutajal õigus isiku valduses olevad asjad läbi vaadata. Keelatud aine või eseme leidmisel on tervishoiuteenuse osutaja kohustatud selle isiku valdusest ära võtma või teavitama politseid. Tervishoiuteenuse osutaja on kohustatud teavitama politseid käesoleva seaduse § 9<sup>1</sup> lõike 1 punktides 2–4 nimetatud ainetest ja esemetest.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para9b2lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Isiku valduses olevate asjade läbivaatamisel ning keelatud ainete ja esemete äravõtmisel peab tervishoiuteenuse osutaja hoiduma isikule saadetud sõnumite saladuse riivest.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para9b2lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui käesoleva seaduse § 9<sup>1</sup> lõigetes 1 või 2 nimetatud aine või ese seab otsesesse ohtu isiku, kelle valduses see on, või teised isikud, peab tervishoiuteenuse osutaja võtma kasutusele meetmed otsese ohu vähendamiseks või kõrvaldamiseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para9b2lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui isiku tervislik seisund seda võimaldab, vaadatakse tema valduses olevad asjad läbi ja võetakse keelatud aine või ese tema valdusest ära tema juuresolekul. Isikult aine või eseme äravõtmise juures peab viibima vähemalt kaks isikut, kellest üks on tervishoiutöötaja ja teine politseiametnik või tervishoiuteenuse osutaja juures töötav isik.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para9b2lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tervishoiuteenuse osutaja peab isiku valdusest äravõetud aine või eseme, mida ei anta üle politseile, säilitama, andma üle isiku seaduslikule esindajale, välja arvatud valla- või linnavalitsusele, või hävitama.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para9b2lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tervishoiuteenuse osutaja on kohustatud säilitama isikult äravõetud eseme kuni äravõtmise põhjuse äralangemiseni. Põhjuse äralangemisel tuleb äravõetud aine või ese isikule viivitamata tagastada.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para9b2lg7">
+					<loigeNr>7</loigeNr>
+					<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui tervishoiuteenuse osutajal ei ole võimalik äravõetud eset või ainet säilitada ja isikul on lepinguline või seaduslik esindaja, annab tervishoiuteenuse osutaja äravõetud aine või eseme üle isiku esindajale, välja arvatud valla- või linnavalitsusele.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para9b2lg8">
+					<loigeNr>8</loigeNr>
+					<kuvatavNr><![CDATA[(8)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Isiku valdusest äravõetud riknenud või säilitustähtaja ületanud ained ja esemed võib tervishoiuteenuse osutaja hävitada.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para9b2lg9">
+					<loigeNr>9</loigeNr>
+					<kuvatavNr><![CDATA[(9)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui ravil viibivale isikule soovitakse üle anda ainet või eset, kontrollib tervishoiuteenuse osutaja enne üleandmist, kas ravil viibivale isikule üleantava aine või eseme valdamise õigust on käesoleva seaduse alusel piiratud. Keelatud aine või eseme avastamisel on tervishoiuteenuse osutajal õigus keelata ainet või eset ravil viibivale isikule üle anda.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para9b2lg10">
+					<loigeNr>10</loigeNr>
+					<kuvatavNr><![CDATA[(10)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tervishoiuteenuse osutaja dokumenteerib isiku valduses olevate asjade läbivaatuse, keelatud esemete äravõtmise, tagastamise, politseile üleandmise või hävitamise isiku haigusloos. Käesoleva seaduse § 9<sup>1</sup> lõikes 2 nimetatud aine või eseme äravõtmisel dokumenteerib tervishoiuteenuse osutaja isiku haigusloos ka aine või eseme äravõtmise põhjuse.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2012-03-07</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>107032012001</aktViide>
+						</avaldamismarge>
+						<joustumine>2012-09-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk4">
+			<peatykkNr>3</peatykkNr>
+			<kuvatavNr><![CDATA[3. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>VÄLTIMATU PSÜHHIAATRILINE ABI</peatykkPealkiri>
+			<paragrahv id="para10">
+				<paragrahvNr>10</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 10. ]]></kuvatavNr>
+				<paragrahvPealkiri>Vältimatu psühhiaatrilise abi andmise üldpõhimõtted</paragrahvPealkiri>
+				<loige id="para10lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kõigile Eesti territooriumil viibivatele isikutele tagatakse vältimatu psühhiaatriline abi.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para10lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Vältimatut psühhiaatrilist abi saab psüühikahäirega isik vaba tahte avalduse alusel, välja arvatud käesoleva seaduse § 11 lõikes 1 sätestatud juhtudel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para10lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Vältimatu psühhiaatriline abi tagatakse psüühikahäirete korral, kus abita jätmine ohustab otseselt isiku elu.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para10lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Vältimatut psühhiaatrilist abi antakse isiku tervise seisundist lähtuvalt kiirabi, haiglavälise või haiglaabi korras.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para11">
+				<paragrahvNr>11</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 11. ]]></kuvatavNr>
+				<paragrahvPealkiri>Tahtest olenematu vältimatu psühhiaatriline abi</paragrahvPealkiri>
+				<loige id="para11lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Isik võetakse tema enda või tema seadusliku esindaja nõusolekuta vältimatu psühhiaatrilise abi korras ravile haigla psühhiaatriaosakonda või jätkatakse ravi, tema tahtest olenemata (edaspidi <i id="77a59391-3c20-4934-ae11-c55842460c0f">tahtest olenematu ravi</i>), ainult järgmiste asjaolude koosesinemise korral:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para11lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>isikul on raske psüühikahäire, mis piirab tema võimet oma käitumisest aru saada või seda juhtida;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para11lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>haiglaravita jätmisel ohustab isik psüühikahäire tõttu iseenda või teiste elu, tervist või julgeolekut;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para11lg1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>muu psühhiaatriline abi ei ole küllaldane.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para11lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tahtest olenematut ravi võib kohaldada üksnes kohtu määruse alusel. Tahtest olenematut ravi võib kohaldada ka kohtu määruseta, kui see on vältimatu isiku enda või avalikkuse kaitseks ja kohtu määruse saamine ei ole piisavalt kiiresti võimalik.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para11lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Otsuse kohaldada tahtest olenematut ravi kohtu loata teeb haigla psühhiaatriaosakonna psühhiaater isiku psühhiaatriaosakonda saabumisel või vaba tahte avalduse alusel haiglas ravil viibival isikul tahtest olenematu ravi kohaldamise vajaduse ilmnemisel viivitamata pärast isiku arstlikku läbivaatust. Otsus vormistatakse valdkonna eest vastutava ministri kehtestatud korra kohaselt. Otsuse vormistamise aeg loetakse tahtest olenematu haiglaravi alguseks, välja arvatud käesoleva paragrahvi lõikes 4<sup>1</sup> nimetatud juhul.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para11lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõikes 3 nimetatud otsuse alusel võib tahtest olenematut ravi kohaldada 48 tunni jooksul tahtest olenematu haiglaravi algusest.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para11lg4b1">
+					<loigeNr ylaIndeks="1">4</loigeNr>
+					<kuvatavNr><![CDATA[(4<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui käesoleva paragrahvi lõikes 3 nimetatud otsus on tehtud ambulatoorsele sundravile määratud isiku suhtes ning isiku sundravi jätkub vastavalt kriminaalmenetluse seadustiku § 402<sup>1</sup> lõikes 4 sätestatule statsionaarse sundravina, siis loetakse otsuse vormistamise aeg statsionaarse sundravi jätkumise alguseks.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2011-02-23</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>123022011001</aktViide>
+						</avaldamismarge>
+						<joustumine>2011-09-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para11lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalhoolekande seaduse § 105 alusel hoolekandeasutusse paigutatud isiku tahtest olenematu ravi kohaldamiseks teeb käesoleva paragrahvi lõikes 3 nimetatud otsuse kohaldada tahtest olenematut ravi kuni 48 tundi tahtest olenematu haiglaravi algusest haigla psühhiaatriaosakonna psühhiaater isiku psühhiaatriaosakonda saabumisel viivitamata pärast isiku arstlikku läbivaatust. Otsus vormistatakse käesoleva paragrahvi lõike 3 alusel kehtestatud õigusaktiga sätestatud korras.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2015-12-30</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>130122015005</aktViide>
+						</avaldamismarge>
+						<joustumine>2016-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para11lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõigetes 2–5 sätestatud asjaoludel ravil viibiv isik ei või katkestada uuringuid ja ravi ega lahkuda haigla psühhiaatriaosakonnast.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para11lg7">
+					<loigeNr>7</loigeNr>
+					<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tahtest olenematu ravi puhul kohaldatakse vähim piiravaid meetodeid, mis tagavad ravile toodud isiku ja teiste isikute turvalisuse. Meditsiiniline personal austab patsiendi õigusi ja seaduslikke huve.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2005</RTaasta>
+							<RTnr>39</RTnr>
+							<RTartikkel>308</RTartikkel>
+							<aktViide>919178</aktViide>
+						</avaldamismarge>
+						<joustumine>2006-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para12">
+				<paragrahvNr>12</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 12. ]]></kuvatavNr>
+				<paragrahvPealkiri>Tahtest olenematut vältimatut psühhiaatrilist abi vajava isiku haiglasse paigutamise kord</paragrahvPealkiri>
+				<loige id="para12lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui on alust arvata, et esinevad käesoleva seaduse § 11 lõikes 1 sätestatud asjaolud, toimetatakse isik haigla psühhiaatriaosakonda kiirabi, politsei, lähedaste või muude isikute poolt, kui see on vältimatu isiku enda või avalikkuse kaitseks ja kohtu määruse saamine ei ole piisavalt kiiresti võimalik.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para12lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui on alust arvata, et esinevad käesoleva seaduse § 11 lõikes 1 sätestatud asjaolud, abistab politsei arsti kirjaliku taotluse alusel tervishoiuteenuse osutajat isiku kinnipidamisel, arstlikul läbivaatusel ja haigla psühhiaatriaosakonda toimetamisel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para12lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2006</RTaasta>
+							<RTnr>7</RTnr>
+							<RTartikkel>42</RTartikkel>
+							<aktViide>989550</aktViide>
+						</avaldamismarge>
+						<joustumine>2006-02-04</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para12lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse § 11 lõigetes 3 ja 5 nimetatud otsusest teavitab arst isikut kohe ja tema lähedasi inimesi või seaduslikku esindajat 12 tunni jooksul otsuse vormistamisest.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para12lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tahtest olenematu ravi kohaldamisel kohtu määruseta on isiku lähedasel inimesel ja seaduslikul esindajal või nende poolt valitud arstil, advokaadil või muul esindajal õigus kohtuda tahtest olenematule ravile paigutatud isikuga. Kohtumise kestuse otsustab raviarst, lähtudes ravile paigutatud isiku tervise seisundist.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2005</RTaasta>
+							<RTnr>39</RTnr>
+							<RTartikkel>308</RTartikkel>
+							<aktViide>919178</aktViide>
+						</avaldamismarge>
+						<joustumine>2006-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para13">
+				<paragrahvNr>13</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 13. ]]></kuvatavNr>
+				<paragrahvPealkiri>Tahtest olenematu ravi kontrollimine</paragrahvPealkiri>
+				<loige id="para13lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Esialgse õiguskaitse rakendamise taotluse isiku tahtest olenematu ravi kohaldamiseks ja isiku haigla psühhiaatriaosakonda paigutamiseks, samuti esialgse õiguskaitse tähtaja pikendamise taotluse esitab isiku elukoha järgne valla- või linnavalitsus, isiku eestkostja või haigla pea- või ülemarst haigla tegevuskohajärgsele kohtule. Haigla pea- või ülemarsti äraolekul esitab taotluse haigla valvearst.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2012-03-07</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>107032012001</aktViide>
+						</avaldamismarge>
+						<joustumine>2012-09-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para13lg1b1">
+					<loigeNr ylaIndeks="1">1</loigeNr>
+					<kuvatavNr><![CDATA[(1<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Isiku tahtest olenematu ravi kohaldamise kauemaks kui esialgse õiguskaitse rakendamiseks, selle pikendamise ja lõpetamise otsustab kohus isiku kinnisesse asutusse paigutamise menetlusele ettenähtud korras isiku elukohajärgse valla- või linnavalitsuse või isiku eestkostja avalduse alusel, kui käesolevast seadusest ei tulene teisiti.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2008</RTaasta>
+							<RTnr>59</RTnr>
+							<RTartikkel>330</RTartikkel>
+							<aktViide>13099767</aktViide>
+						</avaldamismarge>
+						<joustumine>2009-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para13lg1b2">
+					<loigeNr ylaIndeks="2">1</loigeNr>
+					<kuvatavNr><![CDATA[(1<sup>2</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõikes 1 nimetatud taotluse saamisel kontrollib kohus viivitamata psühhiaatrilist sundravi osutavast raviasutusest, kas isikule on määratud ambulatoorne sundravi.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2011-02-23</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>123022011001</aktViide>
+						</avaldamismarge>
+						<joustumine>2011-09-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para13lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Isiku tahtest olenematu ravi haigla psühhiaatriaosakonnas võib kesta üle 48 tunni ainult kohtu loal.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2006</RTaasta>
+							<RTnr>7</RTnr>
+							<RTartikkel>42</RTartikkel>
+							<aktViide>989550</aktViide>
+						</avaldamismarge>
+						<joustumine>2006-02-04</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para13lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Haigla pea- või ülemarst tagab 24 tunni jooksul isiku tahtest olenematu haiglaravi algusest ravile võetud isiku arstliku läbivaatuse teise psühhiaatri poolt, kes ei ole teinud käesoleva seaduse § 11 lõikes 3 või 5 nimetatud otsust.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para13lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõikes 1<sup>1</sup> toodud tahtest olenematu ravi kohaldamiseks ja isiku haigla psühhiaatriaosakonda paigutamiseks esitab haigla pea- või ülemarst vajaduse korral taotluse valla- või linnavalitsusele kohtusse pöördumiseks. Haigla pea- või ülemarsti äraolekul esitab taotluse haigla valvearst. Taotlusele lisatakse käesoleva paragrahvi lõikes 3 nimetatud psühhiaatri arvamus isiku tahtest olenematu haigla psühhiaatriaosakonda paigutamise ja ravi kohaldamise põhjendatuse kohta.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2012-03-07</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>107032012001</aktViide>
+						</avaldamismarge>
+						<joustumine>2012-09-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para13lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõikes 1<sup>1</sup> toodud tahtest olenematu ravi pikendamiseks või lõpetamiseks esitab valla- või linnavalitsus kohtule avalduse, millele on lisatud käesoleva paragrahvi lõikes 3 nimetatud psühhiaatri arvamus isiku tahtest olenematu ravi pikendamise või lõpetamise põhjendatuse kohta. Kohus võib tahtest olenematut ravi pikendada ka isiku eestkostja avalduse alusel. Tahtest olenematu ravi võib kohus lõpetada ka isiku enda või tema eestkostja avalduse alusel või omal algatusel.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2012-03-07</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>107032012001</aktViide>
+						</avaldamismarge>
+						<joustumine>2012-09-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para13lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui kohtu määruse alusel on vaja isik toimetada ärakuulamiseks haiglast kohtusse, teeb seda vajaduse korral politsei.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para13lg7">
+					<loigeNr>7</loigeNr>
+					<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Määruse teinud kohus teatab määrusest politseile, kes võtab vajaduse korral viivitamata tarvitusele abinõud tahtest olenematul ravil viibiva isiku vara kaitsmise tagamiseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para13lg8">
+					<loigeNr>8</loigeNr>
+					<kuvatavNr><![CDATA[(8)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tahtest olenematul ravil viibiva isikuga ei ole lubatud teha kliinilisi katseid, katsetada uusi ravimeid ega ravimeetodeid.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para13lg9">
+					<loigeNr>9</loigeNr>
+					<kuvatavNr><![CDATA[(9)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Järelevalvet tahtest olenematu ravi üle teostab Terviseamet.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2009</RTaasta>
+							<RTnr>49</RTnr>
+							<RTartikkel>331</RTartikkel>
+							<aktViide>13225575</aktViide>
+						</avaldamismarge>
+						<joustumine>2010-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para14">
+				<paragrahvNr>14</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 14. ]]></kuvatavNr>
+				<paragrahvPealkiri>Ohjeldusmeetmete rakendamine</paragrahvPealkiri>
+				<loige id="para14lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tervishoiuteenuse osutaja rakendab psüühikahäirega isiku suhtes ohjeldusmeetmeid käesoleva seaduse § 11 lõikes 1 sätestatud asjaoludel, kui isiku psüühikahäire tõttu on otsene oht enesevigastuseks või vägivallaks teiste isikute suhtes ja muud vahendid ohu kõrvaldamiseks, sealhulgas vestlus, veenmine ja suuline rahustamine, ei ole osutunud küllaldaseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para14lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ohjeldamiseks võib kasutada järgmisi meetmeid:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para14lg2p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>füüsiline ohjeldamine – isiku kinnihoidmine füüsilise jõu abil eesmärgiga piirata isiku liikumist ja liigutuste ulatust;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para14lg2p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>ohjeldamine ravimite abil – isikule ravimite manustamine tema tahte vastaselt isiku rahutussümptomite leevendamiseks;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para14lg2p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>mehaaniline ohjeldamine – mehaaniliste vahendite, sealhulgas ohjeldamisrihmade kasutamine eesmärgiga piirata isiku liikumist ja liigutuste ulatust. Mehaanilist ohjeldamist võib rakendada jälgimisruumis. Mehaanilise ohjeldamise ajal peab olema tagatud, et ükski ohjeldatav ei ole teiste patsientide nägemisulatuses;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para14lg2p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>eraldusruumi paigutamine – isiku eraldusruumi paigutamine tema liikumise ja suhtlemise piiramiseks.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para14lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ohjeldusmeetmeid võib rakendada ainult arsti otsuse alusel. Vältimatu vajaduse korral võib füüsilise või mehaanilise ohjeldamise alustamise või eraldusruumi paigutamise otsustada õde, informeerides ohjeldusmeetme rakendamisest viivitamata arsti, kes otsustab ohjeldusmeetme rakendamise jätkamise vajaduse. Enne ohjeldusmeetme rakendamist peab arst isiklikult ja vahetult hindama isiku seisundit ning tegema otsuse ohjeldusmeetme rakendamise vajaduse ja rakendatava ohjeldusmeetme kohta.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para14lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Isiku suhtes rakendatav ohjeldusmeede peab olema tekkinud otsese ohuga proportsionaalne ning võimalikult vähe riivama isiku õigusi ja vabadusi. Ohu möödumisel lõpetatakse ohjeldusmeetme rakendamine viivitamata.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para14lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tervishoiutöötaja selgitab isikule ohjeldusmeetme rakendamise põhjuseid ja konkreetseid tegevusi, mida ohjeldusmeetme rakendamisel kasutatakse.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para14lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Isiku ravi ei tohi ohjeldusmeetmete rakendamise ajal katkeda.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2012-03-07</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>107032012001</aktViide>
+						</avaldamismarge>
+						<joustumine>2012-09-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para14b1">
+				<paragrahvNr ylaIndeks="1">14</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 14<sup>1</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Ohjeldusmeetme rakendamise jälgimine</paragrahvPealkiri>
+				<loige id="para14b1lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Isik, kelle suhtes on rakendatud ohjeldusmeedet, peab olema tervishoiutöötaja järelevalve all. Mehaanilise ohjeldusmeetme rakendamise puhul peab isik olema tervishoiutöötaja pideva järelevalve all.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para14b1lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Arst peab kontrollima isiku, kelle suhtes on rakendatud ohjeldusmeedet, seisundit ja hindama ohjeldusmeetme rakendamise vajadust vastavalt isiku seisundile kuni ohjeldusmeetme rakendamise lõpetamiseni. Ohjeldusmeetme rakendamise jätkamise vajaduse märgib arst isiku haigusloos.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para14b1lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ohjeldusmeetmete rakendamise jälgimise sageduse kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=131122024024&id=125072012003]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para14b2">
+				<paragrahvNr ylaIndeks="2">14</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 14<sup>2</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Ohjeldusmeetme rakendamise dokumenteerimine</paragrahvPealkiri>
+				<loige id="para14b2lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tervishoiuteenuse osutaja dokumenteerib ohjeldusmeetme rakendamise isiku haigusloos ning sellele lisaks kohas ja viisil, mis võimaldab anda kiire ja üldistatud ülevaate tervishoiuteenuse osutaja rakendatud ohjeldusmeetmete kohta.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para14b2lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Isikul on õigus teha omapoolseid märkusi tema suhtes ohjeldusmeetme rakendamise kohta. Isiku kirjalikud märkused ohjeldusmeetme rakendamise kohta lisatakse haigusloole. Isikul on õigus saada väljavõte haiguslukku kantud andmetest ohjeldusmeetmete rakendamise kohta käesoleva seaduse § 4 punktis 2 sätestatud korras.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2012-03-07</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>107032012001</aktViide>
+						</avaldamismarge>
+						<joustumine>2012-09-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para14b3">
+				<paragrahvNr ylaIndeks="3">14</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 14<sup>3</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Ohjeldusmeetme rakendamise järgne vestlus</paragrahvPealkiri>
+				<loige id="para14b3lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Pärast isiku suhtes ohjeldusmeetme rakendamise lõpetamist viib arst esimesel võimalusel temaga läbi vestluse eesmärgiga vältida ohjeldusmeetme rakendamist tulevikus ja teavitada isikut tema õigustest seoses ohjeldusmeetme rakendamisega.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para14b3lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ohjeldusmeetme rakendamise järgse vestluse läbiviimise ning ohjeldusmeetme rakendamise kohta isikule selgituste andmise tingimused ja korra kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=131122024024&id=125072012003]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para14b4">
+				<paragrahvNr ylaIndeks="4">14</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 14<sup>4</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Ohjeldusmeetme rakendamisest teatamine</paragrahvPealkiri>
+				<loige id="para14b4lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tervishoiuteenuse osutaja on kohustatud hiljemalt järgmisel tööpäeval pärast ohjeldusmeetme rakendamise lõpetamist teavitama Terviseametit igast juhtumist, mille korral ohjeldusmeetme rakendamine kestab rohkem kui 24 tundi järjest.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para14b4lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Terviseametile ohjeldusmeetmete rakendamisest teavitamise korra ja esitatavate andmete loetelu kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=131122024024&id=125072012003]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk5">
+			<peatykkNr>4</peatykkNr>
+			<kuvatavNr><![CDATA[4. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>PSÜHHIAATRIAEKSPERTIIS JA PSÜHHIAATRILINE SUNDRAVI </peatykkPealkiri>
+			<muutmismarge>
+				<avaldamismarge>
+					<RTosa>RT I</RTosa>
+					<avaldamineKuupaev>2011-02-23</avaldamineKuupaev>
+					<RTartikkel>1</RTartikkel>
+					<aktViide>123022011001</aktViide>
+				</avaldamismarge>
+				<joustumine>2011-09-01</joustumine>
+			</muutmismarge>
+			<paragrahv id="para15">
+				<paragrahvNr>15</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 15. ]]></kuvatavNr>
+				<paragrahvPealkiri>Kohtupsühhiaatriaekspertiis</paragrahvPealkiri>
+				<loige id="para15lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2002</RTaasta>
+							<RTnr>64</RTnr>
+							<RTartikkel>392</RTartikkel>
+							<aktViide>181988</aktViide>
+						</avaldamismarge>
+						<joustumine>2002-07-29</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para15lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kohtuniku loal või kohtumääruse alusel võib vabaduses viibiva kahtlustatava, süüdistatava või kohtualuse paigutada haigla psühhiaatriaosakonda kohtupsühhiaatriaekspertiisi tegemiseks. Ekspertiisi taotlenud ametiisik teavitab isiku haigla psühhiaatriaosakonda paigutamisest tema seaduslikku esindajat või lähedast inimest 24 tunni jooksul pärast kohtuniku loa kättesaamist.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2005</RTaasta>
+							<RTnr>39</RTnr>
+							<RTartikkel>308</RTartikkel>
+							<aktViide>919178</aktViide>
+						</avaldamismarge>
+						<joustumine>2006-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para15lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2002</RTaasta>
+							<RTnr>64</RTnr>
+							<RTartikkel>392</RTartikkel>
+							<aktViide>181988</aktViide>
+						</avaldamismarge>
+						<joustumine>2002-07-29</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para15lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2002</RTaasta>
+							<RTnr>64</RTnr>
+							<RTartikkel>392</RTartikkel>
+							<aktViide>181988</aktViide>
+						</avaldamismarge>
+						<joustumine>2002-07-29</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para16">
+				<paragrahvNr>16</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 16. ]]></kuvatavNr>
+				<paragrahvPealkiri>Kaitseväeteenistuseks kõlblikkuse psühhiaatriaekspertiis</paragrahvPealkiri>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<RTaasta>2002</RTaasta>
+						<RTnr>64</RTnr>
+						<RTartikkel>392</RTartikkel>
+						<aktViide>181988</aktViide>
+					</avaldamismarge>
+					<joustumine>2002-07-29</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para17">
+				<paragrahvNr>17</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 17. ]]></kuvatavNr>
+				<paragrahvPealkiri>Psühhiaatrilise sundravi kohaldamine ja järelevalve</paragrahvPealkiri>
+				<loige id="para17lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Psühhiaatrilise sundravi eesmärgiks on psüühikahäire ravi, psüühikahäirest tuleneva ohtlikkuse vähendamine ning isiku toimetuleku taastamine iseseisvaks toimetulekuks ühiskonnas.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para17lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Psühhiaatrilise sundravi osutajale esitatavad nõuded, psühhiaatrilise ravi nõuded ja tervishoiuteenuse osutaja töökorralduse kohtu poolt karistusseadustiku § 86 lõike 1 alusel määratud psühhiaatrilise sundravi kohaldamisel kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=131122024024&id=129082011008]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst>.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para17lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ambulatoorset psühhiaatrilist sundravi võib kohaldada isiku suhtes tema kirjalikul nõusolekul. Nõusolekus märgitakse ravialuse kohustused, mida ravialune peab täitma, et oleks võimalik saavutada ravi eesmärke, ning nende mittetäitmise tagajärjed. Ambulatoorse psühhiaatrilise sundravi kohaldamise nõusolekus nõutavate andmete loetelu kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=131122024024&id=129082011009]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para17lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Isikut, kelle suhtes kohaldatakse ambulatoorset sundravi, teavitatakse sellest, et kui ta osutub endale või ühiskonnale ohtlikuks või kui tema allutamine statsionaarsele ravile on vajalik ravi eesmärkide saavutamiseks, asendatakse ambulatoorne sundravi statsionaarse sundraviga.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para17lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Järelevalvet psühhiaatrilise sundravi osutamise üle teostab Terviseamet.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2011-02-23</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>123022011001</aktViide>
+						</avaldamismarge>
+						<joustumine>2011-09-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk6">
+			<peatykkNr>5</peatykkNr>
+			<kuvatavNr><![CDATA[5. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>FINANTSEERIMINE</peatykkPealkiri>
+			<paragrahv id="para18">
+				<paragrahvNr>18</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 18. ]]></kuvatavNr>
+				<paragrahvPealkiri>Psühhiaatrilise abi finantseerimine</paragrahvPealkiri>
+				<loige id="para18lg1">
+					<sisuTekst>
+						<tavatekst>Psühhiaatrilist abi finantseeritakse tervishoiuteenuste korraldamise seaduses, ravikindlustuse seaduses, sotsiaalhoolekande seaduses ja käesolevas seaduses kehtestatud korras.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2002</RTaasta>
+							<RTnr>62</RTnr>
+							<RTartikkel>377</RTartikkel>
+							<aktViide>181723</aktViide>
+						</avaldamismarge>
+						<joustumine>2002-10-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para19">
+				<paragrahvNr>19</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 19. ]]></kuvatavNr>
+				<paragrahvPealkiri>Vältimatu psühhiaatrilise abi ja psühhiaatrilise sundravi eest tasumine</paragrahvPealkiri>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2022-10-10</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>110102022001</aktViide>
+					</avaldamismarge>
+					<joustumine>2022-10-11</joustumine>
+				</muutmismarge>
+				<loige id="para19lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ravikindlustusega hõlmamata isikule antava vältimatu psühhiaatrilise abi kulud tasutakse Tervisekassa eelarvest Tervisekassa tervishoiuteenuste loetelus sätestatud alustel, tingimustel ja korras.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2023-03-11</avaldamineKuupaev>
+							<RTartikkel>9</RTartikkel>
+							<aktViide>111032023009</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-04-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para19lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ravikindlustatud isiku ja ravikindlustusega hõlmamata isiku psühhiaatrilise sundravi kulud tasutakse Tervisekassa eelarvest Tervisekassa tervishoiuteenuste loetelus sätestatud alustel, tingimustel ja korras.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2023-03-11</avaldamineKuupaev>
+							<RTartikkel>9</RTartikkel>
+							<aktViide>111032023009</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-04-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk7">
+			<peatykkNr ylaIndeks="1">5</peatykkNr>
+			<kuvatavNr><![CDATA[5<sup>1</sup>. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>RIIKLIK JÄRELEVALVE </peatykkPealkiri>
+			<muutmismarge>
+				<avaldamismarge>
+					<RTosa>RT I</RTosa>
+					<avaldamineKuupaev>2012-03-07</avaldamineKuupaev>
+					<RTartikkel>1</RTartikkel>
+					<aktViide>107032012001</aktViide>
+				</avaldamismarge>
+				<joustumine>2012-09-01</joustumine>
+			</muutmismarge>
+			<paragrahv id="para19b1">
+				<paragrahvNr ylaIndeks="1">19</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 19<sup>1</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Riiklik järelevalve psühhiaatrilise abi seaduse täitmise üle</paragrahvPealkiri>
+				<loige id="para19b1lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Järelevalvet käesoleva seaduse alusel psühhiaatrilise abi osutamise üle teostab Terviseamet tervishoiuteenuste korraldamise seaduse 6. peatükis sätestatud alustel ja korras.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2012-03-07</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>107032012001</aktViide>
+						</avaldamismarge>
+						<joustumine>2012-09-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk8">
+			<peatykkNr>6</peatykkNr>
+			<kuvatavNr><![CDATA[6. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>MUUDATUSED VARASEMATES ÕIGUSAKTIDES JA SEADUSE RAKENDAMINE</peatykkPealkiri>
+			<paragrahv id="para20">
+				<paragrahvNr kehtiv="0">20</paragrahvNr>
+				<kuvatavNr>§ 20. </kuvatavNr>
+				<sisuTekst>
+					<tavatekst> – </tavatekst>
+				</sisuTekst>
+			</paragrahv>
+			<paragrahv id="para22">
+				<paragrahvNr kehtiv="0">22</paragrahvNr>
+				<kuvatavNr>§ 22. </kuvatavNr>
+				<sisuTekst>
+					<tavatekst><![CDATA[[Käesolevast tekstist välja jäetud.]]]></tavatekst>
+				</sisuTekst>
+			</paragrahv>
+		</peatykk>
+	</sisu>
+</oigusakt>

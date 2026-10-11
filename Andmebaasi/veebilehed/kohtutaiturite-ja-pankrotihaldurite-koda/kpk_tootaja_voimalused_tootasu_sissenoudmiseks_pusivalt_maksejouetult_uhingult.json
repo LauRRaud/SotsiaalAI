@@ -1,0 +1,59 @@
+{
+  "document_id": "web-kpk_tootaja_voimalused_tootasu_sissenoudmiseks_pusivalt_maksejouetult_uhingult",
+  "title": "Töötaja võimalused töötasu sissenõudmiseks püsivalt maksejõuetult ühingult",
+  "register_title": "Töötaja võimalused töötasu sissenõudmiseks püsivalt maksejõuetult ühingult",
+  "source_id": "kpk_tootaja_voimalused_tootasu_sissenoudmiseks_pusivalt_maksejouetult_uhingult",
+  "source_type": "web_page",
+  "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+  "language": "et",
+  "url": "https://kpkoda.ee/tootaja-voimalused-tootasu-sissenoudmiseks-pusivalt-maksejouetult-uhingult/",
+  "source_path": "kpk_tootaja_voimalused_tootasu_sissenoudmiseks_pusivalt_maksejouetult_uhingult.html",
+  "source_format": "html",
+  "source_sha256": "e2e28da86f01782566d3da4aef2ba830206487255b2b8ac5d240f706d0e91ce1",
+  "content_sha256": "84e88b24dce395a4e3764ddea09a15ab4aa4e2fa28d0de3e6983fd8062fcd8e7",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:40:55.371Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "340f4b882718eb72a846d1e39609b700ed33ddce00d36f1fff21e62fb042650a",
+    "stats": {
+      "words": 1245,
+      "blocks": 31,
+      "headings": 5,
+      "tables": 0,
+      "links": 4,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 1,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed"
+    ],
+    "needs_review": false
+  },
+  "documents": []
+}

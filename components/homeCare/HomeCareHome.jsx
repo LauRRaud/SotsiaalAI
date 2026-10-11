@@ -1,0 +1,491 @@
+"use client";
+
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useId, useState } from "react";
+
+import { useI18n } from "@/components/i18n/I18nProvider";
+import OrgPart from "@/components/org/OrgPart";
+
+import HomeCareCallNote from "./HomeCareCallNote";
+import HomeCareClientForm from "./HomeCareClientForm";
+import { keyName, keyWhere } from "./HomeCareKeys";
+import { rideText } from "./HomeCareTransport";
+import { euroText } from "./HomeCareMoney";
+import HomeCareObstacle from "./HomeCareObstacle";
+import { minutesLabel } from "./HomeCareDecisionView";
+import HomeCareOutbox from "./HomeCareOutbox";
+import HomeCareOwnName from "./HomeCareOwnName";
+import HomeCareReferrals from "./HomeCareReferrals";
+import { planDayLabel } from "./HomeCarePlanView";
+import { clientHref, homeCareBase, useHomeCareApi } from "./homeCareClient";
+
+/** Üks käik hooldaja päevas: kellaaeg, klient ja selle päeva erandid (K3-b). */
+function MyVisit({ organizationId, visit }) {
+  const { t } = useI18n();
+  return (
+    <li>
+      <Link className="hc-client" href={clientHref(organizationId, visit.client.id)} prefetch={false}>
+        <span className="hc-client__name">
+          {visit.startTime} {visit.client.displayName}
+          {visit.done ? (
+            <>
+              {" "}
+              <span className="hc-badge">{t("home_care.slots.done_badge")}</span>
+            </>
+          ) : null}
+          {visit.state === "CANCELLED" ? (
+            <>
+              {" "}
+              <span className="hc-badge hc-badge--warn">{t("home_care.day.states.CANCELLED")}</span>
+            </>
+          ) : null}
+          {visit.covering ? (
+            <>
+              {" "}
+              <span className="hc-badge">{t("home_care.day.covering")}</span>
+            </>
+          ) : null}
+          {visit.change?.timeChanged ? (
+            <>
+              {" "}
+              <span className="hc-badge">{t("home_care.day.changed_time")}</span>
+            </>
+          ) : null}
+        </span>
+        <span className="hc-client__meta">
+          {[
+            minutesLabel(t, visit.plannedMinutes),
+            visit.client.address,
+            visit.note,
+            visit.state === "CANCELLED" && visit.change?.reason ? t(`home_care.day.cancel_reasons.${visit.change.reason}`) : null,
+            visit.change?.note,
+            /* Võti (K4-b): kui selle kliendi võti ei ole minu käes, siis kelle käes see on. */
+            visit.key && !visit.key.held && visit.state !== "CANCELLED" ? keyWhere(t, visit.key) : null,
+            /* Sõit (K5-w): kliendil on sel päeval korraldatud sõit, pane ta valmis. */
+            visit.ride ? rideText(t, visit.ride) : null
+          ]
+            .filter(Boolean)
+            .join(" · ")}
+        </span>
+      </Link>
+      {/* Kojutulek (K6-f): esimene käik pärast äraolekut. */}
+      {visit.homecoming ? <p className="hc-notice">{t("home_care.homecoming.my_line", { date: planDayLabel(visit.homecoming.returnedOn) })}</p> : null}
+      {/* Esmakäik (K5-v): klient ei tunne mind; kas talle on teatatud. */}
+      {visit.firstVisit ? (
+        <p className="hc-notice">
+          {t("home_care.first_visit.my_line")}{" "}
+          {visit.firstVisit.outcome ? t(`home_care.first_visit.my_outcomes.${visit.firstVisit.outcome}`) : t("home_care.first_visit.my_not_marked")}
+        </p>
+      ) : null}
+    </li>
+  );
+}
+
+/**
+ * Koduteenuse avaleht: minu kliendid (hooldaja) või kõik kliendid (hooldusjuht).
+ *
+ * LINGID KLIENDI LEHELE ON `prefetch={false}`. Kliendi lehe avamine jätab
+ * avamislogisse rea; ette laadimine kirjutaks sinna avamisi, mida inimene ei
+ * teinud.
+ *
+ * OTSING näitab ainult nime ja seisu. Meeskonnast väljas oleva kliendi leht
+ * küsib avamisel põhjust (asendaja tee).
+ */
+export default function HomeCareHome({ context, initial, unitOptions, myDay = null, referrals = null, setupHint = null, ownName = null }) {
+  const { t, locale } = useI18n();
+  const router = useRouter();
+  const organizationId = context.organization.id;
+  const list = useHomeCareApi();
+  const search = useHomeCareApi();
+  const searchId = useId();
+
+  const isCoordinator = Boolean(initial?.isCoordinator);
+  const canSearch = Boolean(initial?.canSearch);
+  const [clients, setClients] = useState(initial?.clients || []);
+  const [showEnded, setShowEnded] = useState(false);
+  const [adding, setAdding] = useState(false);
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState(null);
+
+  const loadClients = async (ended) => {
+    const url = `${homeCareBase(organizationId)}/kliendid${ended ? "?status=ENDED" : ""}`;
+    const result = await list.call(url, { fallbackKey: "home_care.errors.list_failed" });
+    if (result.ok) {
+      setClients(result.data.clients || []);
+      setShowEnded(ended);
+    }
+  };
+
+  const runSearch = async (event) => {
+    event.preventDefault();
+    const result = await search.call(`${homeCareBase(organizationId)}/kliendid/otsing`, {
+      method: "POST",
+      body: { q: query },
+      fallbackKey: "home_care.errors.search_failed"
+    });
+    setResults(result.ok ? result.data.clients || [] : null);
+  };
+
+  return (
+    <OrgPart context={context} part="home_care">
+    <section className="hc-shell">
+      <div className="hc-head">
+        <p className="hc-sub">
+          {isCoordinator ? t("home_care.home.intro_coordinator") : t("home_care.home.intro_worker")}
+        </p>
+      </div>
+
+      {/* Nimeta inimene: kolleegid näeksid tema kohal kriipsu, seepärast on vorm kohe ees. */}
+      {ownName && !ownName.complete ? <HomeCareOwnName organizationId={organizationId} initial={ownName} /> : null}
+
+      {/* Hooldusjuhti ei ole üldse: ilma temata ei saa keegi kliente lisada. Omanik saab
+          õiguse ise anda, seepärast on tal link lehele „Liikmed". */}
+      {setupHint ? (
+        <p className="hc-notice">
+          {t(`home_care.home.no_coordinator.${setupHint.viewer}`)}
+          {setupHint.viewer === "OWNER" ? (
+            <>
+              {" "}
+              <Link href={`/org/${organizationId}/liikmed`}>{t("home_care.home.no_coordinator.members_link")}</Link>
+            </>
+          ) : null}
+        </p>
+      ) : null}
+
+      <HomeCareOutbox
+        ownerId={context.membership?.id || ""}
+        timeZone={context.organization.timezone || "Europe/Tallinn"}
+      />
+
+      {/* Tänane päev (K3-a): sulle määratud tänased käigud kellaaja järjekorras. */}
+      {myDay?.absent ? <p className="hc-notice">{t("home_care.absences.my_notice")}</p> : null}
+      {myDay?.visits?.length ? (
+        <div className="hc-section">
+          <h3 className="hc-section-title">{t("home_care.slots.today_title")}</h3>
+          <ul className="hc-list">
+            {myDay.visits.map((visit) => (
+              <MyVisit key={visit.slotId} organizationId={organizationId} visit={visit} />
+            ))}
+          </ul>
+        </div>
+      ) : null}
+
+      {/* Minu käes olevad võtmed (K4-b): ripatsi number, kelle võti ja mille võti. */}
+      {myDay?.keys?.length ? (
+        <div className="hc-section">
+          <h3 className="hc-section-title">{t("home_care.keys.mine_title")}</h3>
+          <ul className="hc-list">
+            {myDay.keys.map((key) => (
+              <li key={key.id}>
+                <Link className="hc-client" href={clientHref(organizationId, key.client.id)} prefetch={false}>
+                  <span className="hc-client__name">
+                    {keyName(t, key)}
+                    {key.clientEnded ? (
+                      <>
+                        {" "}
+                        <span className="hc-badge hc-badge--warn">{t("home_care.keys.return_badge")}</span>
+                      </>
+                    ) : null}
+                  </span>
+                  <span className="hc-client__meta">{key.client.displayName}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+
+      {/* Minu käes olev kliendiraha (K4-c): jääk kliendi kaupa. */}
+      {myDay?.money?.length ? (
+        <div className="hc-section">
+          <h3 className="hc-section-title">{t("home_care.money.mine_title")}</h3>
+          <ul className="hc-list">
+            {myDay.money.map((item) => (
+              <li key={item.client.id}>
+                <Link className="hc-client" href={clientHref(organizationId, item.client.id)} prefetch={false}>
+                  <span className="hc-client__name">{item.client.displayName}</span>
+                  <span className="hc-client__meta">{euroText(item.balanceCents, locale)}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+
+      {/* „Mul on takistus" (K3-e): hooldaja teatab ise, kui tänane päev ei lähe plaani järgi. */}
+      {myDay && !myDay.absent && (myDay.obstacle || myDay.visits?.some((visit) => !visit.done && visit.state !== "CANCELLED")) ? (
+        <HomeCareObstacle
+          organizationId={organizationId}
+          timeZone={context.organization.timezone || "Europe/Tallinn"}
+          initial={myDay.obstacle || null}
+          canReport={Boolean(context.writable)}
+        />
+      ) : null}
+
+      {/* Järgmised päevad (K3-d): siit näeb, mis teate „sinu käigud muutusid" taga on. */}
+      {myDay?.next?.length ? (
+        <div className="hc-section">
+          <h3 className="hc-section-title">{t("home_care.slots.next_title")}</h3>
+          {myDay.next.map((item) => (
+            <div key={item.day}>
+              <p className="hc-sub">
+                {t(`home_care.slots.weekdays_long.${item.weekday}`)} {planDayLabel(item.day)}
+                {item.absent ? ` · ${t("home_care.slots.next_absent")}` : ""}
+              </p>
+              {item.visits.length ? (
+                <ul className="hc-list">
+                  {item.visits.map((visit) => (
+                    <MyVisit key={visit.slotId} organizationId={organizationId} visit={visit} />
+                  ))}
+                </ul>
+              ) : null}
+            </div>
+          ))}
+        </div>
+      ) : null}
+
+      {/* „Kuhu suunata" (K5-c): asutuse loend kohtadest, kuhu inimene suunata, kui küsimus ei ole hooldaja töö. */}
+      <HomeCareReferrals
+        organizationId={organizationId}
+        initial={referrals?.referrals || []}
+        canEdit={Boolean(context.writable && referrals?.canEditReferrals)}
+      />
+
+      {isCoordinator ? (
+        <div className="hc-row">
+          <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/ulevaade`}>
+            {t("home_care.home.overview_link")}
+          </Link>
+          <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/erijuhtumid`}>
+            {t("home_care.incidents.link")}
+          </Link>
+          <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/paev`}>
+            {t("home_care.day.link")}
+          </Link>
+          <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/nadal`}>
+            {t("home_care.week.link")}
+          </Link>
+          <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/puudumised`}>
+            {t("home_care.absences.link")}
+          </Link>
+          <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/votmed`}>
+            {t("home_care.keys.link")}
+          </Link>
+          {referrals?.canEditReferrals ? (
+            <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/tootajad`}>
+              {t("home_care.workers.link")}
+            </Link>
+          ) : null}
+          <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/kriis`}>
+            {t("home_care.crisis.link")}
+          </Link>
+          <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/tahtajad`}>
+            {t("home_care.deadlines.link")}
+          </Link>
+          <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/kuu`}>
+            {t("home_care.month.link")}
+          </Link>
+          <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/valjastused`}>
+            {t("home_care.releases.link")}
+          </Link>
+          <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/koned`}>
+            {t("home_care.calls.link")}
+          </Link>
+          <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/toimingud`}>
+            {t("home_care.activities.link")}
+          </Link>
+          {initial?.canExport ? (
+            <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/valjavote`}>
+              {t("home_care.export.link")}
+            </Link>
+          ) : null}
+          {context.writable ? (
+            <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/sissetoomine`}>
+              {t("home_care.import.link")}
+            </Link>
+          ) : null}
+          {context.writable && !adding ? (
+            <button className="hc-btn hc-btn--primary" type="button" onClick={() => setAdding(true)}>
+              {t("home_care.home.add_client")}
+            </button>
+          ) : null}
+        </div>
+      ) : null}
+
+      {adding ? (
+        <div className="hc-section">
+          <h3 className="hc-section-title">{t("home_care.client.create_title")}</h3>
+          <HomeCareClientForm
+            organizationId={organizationId}
+            unitOptions={unitOptions}
+            onCancel={() => setAdding(false)}
+            onSaved={(client) => {
+              setAdding(false);
+              router.push(clientHref(organizationId, client.id));
+            }}
+          />
+        </div>
+      ) : null}
+
+      {/* Sõidupäevik (K6-a): igale hooldajale ja hooldusjuhile. */}
+      {canSearch ? (
+        <div className="hc-row">
+          <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/soidud`}>
+            {t("home_care.trips.link")}
+          </Link>
+        </div>
+      ) : null}
+
+      {canSearch ? (
+        <div className="hc-section">
+          <form className="hc-form" onSubmit={runSearch} role="search">
+            <div className="hc-field">
+              <label className="hc-label" htmlFor={searchId}>
+                {t("home_care.home.search_label")}
+              </label>
+              <div className="hc-row hc-row--search">
+                <input
+                  id={searchId}
+                  className="hc-input"
+                  type="search"
+                  value={query}
+                  onChange={(event) => setQuery(event.target.value)}
+                  minLength={2}
+                  maxLength={80}
+                  autoComplete="off"
+                  enterKeyHint="search"
+                />
+                <button className="hc-btn" type="submit" disabled={search.busy || query.trim().length < 2}>
+                  {t("home_care.home.search_button")}
+                </button>
+              </div>
+            </div>
+          </form>
+          <p className="hc-hint">{t("home_care.home.search_hint")}</p>
+          {isCoordinator ? <p className="hc-hint">{t("home_care.home.search_phone_hint")}</p> : null}
+          {search.error ? (
+            <p className="hc-error" role="alert">
+              {search.error}
+            </p>
+          ) : null}
+          {results ? (
+            results.length === 0 ? (
+              <p className="hc-sub" role="status">
+                {t("home_care.home.search_empty")}
+              </p>
+            ) : (
+              <ul className="hc-list" aria-live="polite">
+                {results.map((client) => (
+                  <li key={client.id}>
+                    <Link className="hc-client" href={clientHref(organizationId, client.id)} prefetch={false}>
+                      <span className="hc-client__name">{client.displayName}</span>
+                      <span className="hc-client__meta">
+                        {client.status !== "ACTIVE" ? `${t(`home_care.status.${client.status}`)} · ` : ""}
+                        {client.matchedRelative
+                          ? `${t("home_care.home.matched_relative", {
+                              name: client.matchedRelative.relation ? `${client.matchedRelative.name} (${client.matchedRelative.relation})` : client.matchedRelative.name,
+                              level: t(`home_care.relatives.levels.${client.matchedRelative.level}`)
+                            })}${client.matchedRelative.doubt ? ` · ${t("home_care.home.matched_relative_doubt")}` : ""}`
+                          : client.matchedPhone
+                          ? t("home_care.home.matched_phone")
+                          : client.needsReason
+                            ? t("home_care.home.needs_reason")
+                            : t("home_care.client.basis.TEAM")}
+                      </span>
+                    </Link>
+                    {/* Kõne märkimine otse tulemusest (K5-o): helistaja järgi leitud kliendil alati, nime
+                        järgi leitud kliendil siis, kui tulemusi on vähe. Ainult kliendil, kelle päevikusse
+                        vastaja tohib kirjutada. */}
+                    {!client.needsReason && (client.matchedRelative || client.matchedPhone || results.length <= 3) ? (
+                      <HomeCareCallNote
+                        organizationId={organizationId}
+                        clientId={client.id}
+                        clientName={client.displayName}
+                        viewerMembershipId={context.membership?.id || null}
+                      />
+                    ) : null}
+                  </li>
+                ))}
+              </ul>
+            )
+          ) : null}
+        </div>
+      ) : null}
+
+      <div className="hc-section">
+        <div className="hc-row hc-row--between">
+          <h3 className="hc-section-title">
+            {isCoordinator ? t("home_care.home.all_clients") : t("home_care.home.my_clients")}
+            {showEnded ? ` · ${t("home_care.status.ENDED")}` : ""}
+          </h3>
+          {isCoordinator ? (
+            <button
+              className="hc-btn hc-btn--quiet"
+              type="button"
+              onClick={() => loadClients(!showEnded)}
+              disabled={list.busy}
+            >
+              {showEnded ? t("home_care.home.show_active") : t("home_care.home.show_ended")}
+            </button>
+          ) : null}
+        </div>
+        {list.error ? (
+          <p className="hc-error" role="alert">
+            {list.error}
+          </p>
+        ) : null}
+        {clients.length === 0 ? (
+          <p className="hc-sub">
+            {showEnded
+              ? t("home_care.home.empty_ended")
+              : isCoordinator
+                ? t("home_care.home.empty_coordinator")
+                : t("home_care.home.empty_worker")}
+          </p>
+        ) : (
+          <ul className="hc-list">
+            {clients.map((client) => (
+              <li key={client.id}>
+                <Link className="hc-client" href={clientHref(organizationId, client.id)} prefetch={false}>
+                  <span className="hc-client__name">
+                    {client.displayName}
+                    {client.status === "AWAY" ? (
+                      <>
+                        {" "}
+                        <span className="hc-badge hc-badge--warn">{t("home_care.status.AWAY")}</span>
+                      </>
+                    ) : null}
+                    {client.waiting ? (
+                      <>
+                        {" "}
+                        <span className="hc-badge hc-badge--warn">{t("home_care.precondition.badge")}</span>
+                      </>
+                    ) : null}
+                  </span>
+                  {client.address || client.statusNote || client.statusReason ? (
+                    <span className="hc-client__meta">
+                      {[
+                        client.address,
+                        client.status !== "ACTIVE" && client.statusReason
+                          ? t(`home_care.status_reason.${client.status}.${client.statusReason}`)
+                          : null,
+                        client.status !== "ACTIVE" ? client.statusNote : null
+                      ]
+                        .filter(Boolean)
+                        .join(" · ")}
+                    </span>
+                  ) : null}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      {/* Nimi on kirjas: vaikne rida lehe lõpus ja tee selle muutmiseks. */}
+      {ownName?.complete ? <HomeCareOwnName organizationId={organizationId} initial={ownName} /> : null}
+    </section>
+    </OrgPart>
+  );
+}

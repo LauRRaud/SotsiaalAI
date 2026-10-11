@@ -14,8 +14,13 @@
 // act; and S, today's rule (the first passage of each referenced section) simulated the same way, to check the
 // simulation against L. R and S are computed here from the stored bundles (scripts/rag-v2-relation-gold.mjs), with no
 // change to the search code. A question may name its municipality (`region`), which then joins the scope as in the chat.
+// ADR-124 (10.10.2026): the same questions as of a coming day. --date replaces the catalogue's date, so the legal versions
+// in force on that day make the scope and an act whose indexed versions have ended by then is seen missing before the day
+// comes; --vectors reads the saved vectors from one file for the runs of several dates, each with its own --out. A run
+// buys nothing: a text without a saved vector stops it before the database is opened (exit 3), unless --allow-purchase.
 // Usage (server):
 //   node --env-file=... scripts/rag-v2-graph-experiment.mjs --catalogue tests/evaluation/graph/hard-conditions-3.json --out <dir> [--manifest docs/rag-v2/legal-acts-in-index.json]
+//     [--date YYYY-MM-DD] [--vectors <dir>/vectors.json] [--allow-purchase]
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { performance } from 'node:perf_hooks';
@@ -38,16 +43,36 @@ const cold = args.includes('--cold');
 // differs from N (v4) in that alone (v5's pool limit needs a reranker).
 const ARMS = { ...GRAPH_EXPERIMENT_PROFILES, L: CHAT_REFERENCES_PROFILE, N: CHAT_NAMED_ACTS_PROFILE, O: CHAT_SUBSECTIONS_PROFILE, V: CHAT_PROFILE };
 const POINTER_ROOM = { additions: 4, tokens: 3000 };
-if (!cataloguePath || !out) { console.error('usage: --catalogue <json> --out <dir> [--tenant <id>]'); process.exit(2); }
+if (!cataloguePath || !out) { console.error('usage: --catalogue <json> --out <dir> [--tenant <id>] [--date YYYY-MM-DD] [--vectors <json>] [--allow-purchase]'); process.exit(2); }
 const catalogue = JSON.parse(await fs.readFile(cataloguePath, 'utf8'));
+// A --date without a value is a problem, never the catalogue's date under another name.
+const date = args.includes('--date') ? option('--date') : catalogue.date;
 const problems = [];
-if (!/^\d{4}-\d{2}-\d{2}$/u.test(catalogue.date || '')) problems.push('date');
+// A day that does not exist (2026-11-31) would put an act between two of its versions and report it missing.
+if (!/^\d{4}-\d{2}-\d{2}$/u.test(date || '') || Number.isNaN(Date.parse(date)) || new Date(date).toISOString().slice(0, 10) !== date) problems.push('date');
+// A flag the script does not know is a mistake, not something to pass over: "--date=2027-01-01" would measure the
+// catalogue's own date and look like a result for the other day.
+const FLAGS = ['--catalogue', '--out', '--tenant', '--manifest', '--cold', '--date', '--vectors', '--allow-purchase'];
+for (const arg of args) if (arg.startsWith('--') && !FLAGS.includes(arg)) problems.push(`unknown flag ${arg}`);
 for (const q of catalogue.questions || []) {
   if (!/^[a-z0-9-]+$/u.test(q.id || '') || typeof q.text !== 'string' || !Array.isArray(q.queries) || q.queries.length > 3
     || !Array.isArray(q.evidence_text) || !q.evidence_text.length || !['within_document', 'across_documents'].includes(q.kind)
     || (q.region !== undefined && !/^[a-z_]+$/u.test(q.region))) problems.push(q.id || '?');
 }
 if (problems.length || !catalogue.questions?.length) { console.error(JSON.stringify({ ok: false, problems })); process.exit(2); }
+// One embedding per text, kept with the results or in the file --vectors names.
+const vectorFile = option('--vectors') || path.join(out, 'vectors.json');
+const vectors = new Map(Object.entries(await fs.readFile(vectorFile, 'utf8').then(JSON.parse).catch(() => ({}))));
+const unsaved = [...new Set(catalogue.questions.flatMap(q => [q.text, ...q.queries]))].filter(text => !vectors.has(text));
+// ADR-124 (10.10.2026): a text without a saved vector was embedded on the spot, so a run meant to be free bought vectors
+// whenever its --out was a new folder, as it is for every new date. The check needs only the catalogue and the file, so
+// it stands above the database: a refused run has opened nothing and cannot reach the purchase below.
+if (unsaved.length && !args.includes('--allow-purchase')) {
+  console.error(JSON.stringify({ ok: false, code: 'vectors_missing', date, vectors: vectorFile, missing: unsaved.length,
+    questions: catalogue.questions.filter(q => [q.text, ...q.queries].some(text => unsaved.includes(text))).map(q => q.id),
+    detail: 'texts without a saved vector: nothing was opened or bought. --vectors names the file that has them; --allow-purchase buys them' }));
+  process.exit(3);
+}
 await fs.mkdir(out, { recursive: true });
 
 const postgres = new PostgresCatalog(process.env.RAG_V2_POSTGRES_URL);
@@ -61,7 +86,7 @@ try {
   const groups = unifiedDirectory(await postgres.retrievalDirectory(tenant, generation, documents));
   // The knowledge lane as the chat builds it: legal versions in force on the date; municipal texts only of the
   // municipality a question names, none when it names none.
-  const legal = legalValidityScope(groups.knowledge, legalReference(catalogue.date, []));
+  const legal = legalValidityScope(groups.knowledge, legalReference(date, []));
   const scopes = new Map();
   const eligibleFor = region => {
     if (!scopes.has(region ?? '')) scopes.set(region ?? '', municipalScope(legal.eligible, region ? { region } : null).eligible.map(row => row.document_id));
@@ -79,20 +104,19 @@ try {
     return acts.get(documentId);
   };
 
-  // One embedding per text, kept with the results.
-  const vectorFile = path.join(out, 'vectors.json');
-  const vectors = new Map(Object.entries(await fs.readFile(vectorFile, 'utf8').then(JSON.parse).catch(() => ({}))));
-  const texts = [...new Set(catalogue.questions.flatMap(q => [q.text, ...q.queries]))].filter(text => !vectors.has(text));
-  if (texts.length) {
+  // The purchase, reached only with --allow-purchase (the check above). The file's folder first: a paid answer must not
+  // be lost to a --vectors path that does not exist.
+  if (unsaved.length) {
+    await fs.mkdir(path.dirname(vectorFile), { recursive: true });
     const config = generation.config.embedding;
     const response = await fetch(config.endpoint || 'https://api.openai.com/v1/embeddings', { method: 'POST',
       headers: { 'content-type': 'application/json', authorization: `Bearer ${process.env.OPENAI_API_KEY}` },
-      body: JSON.stringify({ model: config.model, input: texts, dimensions: config.dimensions, encoding_format: 'float' }) });
+      body: JSON.stringify({ model: config.model, input: unsaved, dimensions: config.dimensions, encoding_format: 'float' }) });
     if (!response.ok) throw Object.assign(new Error(`embedding_failed_${response.status}`), { code: 'embedding_failed' });
     const body = await response.json();
-    body.data.forEach((item, index) => vectors.set(texts[index], item.embedding));
+    body.data.forEach((item, index) => vectors.set(unsaved[index], item.embedding));
     await fs.writeFile(vectorFile, JSON.stringify(Object.fromEntries(vectors)));
-    console.error(JSON.stringify({ embedded: texts.length, tokens: body.usage?.total_tokens ?? null }));
+    console.error(JSON.stringify({ embedded: unsaved.length, tokens: body.usage?.total_tokens ?? null }));
   }
 
   const spaced = text => text.replace(/\s+/gu, ' ');
@@ -206,9 +230,10 @@ try {
     ownSubsections.mean_token_change += (row.context_tokens - base.context_tokens) / v6.size;
   }
   ownSubsections.mean_token_change = Math.round(ownSubsections.mean_token_change);
-  const report = { schema_version: 'rag-v2/graph-experiment-4', generation: generation.id, date: catalogue.date, catalogue: cataloguePath, verified_marks: verifiedMarks,
+  // date: the day the scope was built for; catalogue_date: the catalogue's own, which differs under --date (ADR-124).
+  const report = { schema_version: 'rag-v2/graph-experiment-4', generation: generation.id, date, catalogue_date: catalogue.date ?? null, catalogue: cataloguePath, verified_marks: verifiedMarks,
     eligible_documents: eligible.length, excluded_legal_versions: legal.excluded.length, pointer_room: POINTER_ROOM,
     simulation_check: { questions: live.size, s_equals_l: [...live].filter(([question, found]) => today.get(question) === found).length }, named_acts: namedActs, own_subsections: ownSubsections, summary, shapes, rows };
   await fs.writeFile(path.join(out, 'graph-experiment.json'), JSON.stringify(report, null, 1));
-  console.log(JSON.stringify({ ok: true, summary, named_acts: namedActs, own_subsections: ownSubsections }, null, 1));
+  console.log(JSON.stringify({ ok: true, date, summary, named_acts: namedActs, own_subsections: ownSubsections }, null, 1));
 } finally { await postgres.close?.(); }

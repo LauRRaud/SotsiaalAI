@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_pension_ja_seotud_huvitised_pensioni_liigid",
+  "title": "Pensioni liigid",
+  "register_title": "Pensioni liigid",
+  "source_id": "ska_pension_ja_seotud_huvitised_pensioni_liigid",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-liigid",
+  "source_path": "ska_pension_ja_seotud_huvitised_pensioni_liigid.html",
+  "source_format": "html",
+  "source_sha256": "97262d2b80bcca7f022cd0ff43990b607c0bb377383ca507fa0d67d5822f19ca",
+  "content_sha256": "ad39411bcf5eb52660da292d47cb186d29dd3009511e36632768cd000d9137fb",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:23:50.791Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2023-10-17",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 16:37:45 GMT",
+      "etag": null
+    },
+    "raw_sha256": "1773572472cff5cb0d8d0b6be88d91b57a5e66fee87935fdac8ca79c20a7a012",
+    "stats": {
+      "words": 213,
+      "blocks": 16,
+      "headings": 8,
+      "tables": 0,
+      "links": 0,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

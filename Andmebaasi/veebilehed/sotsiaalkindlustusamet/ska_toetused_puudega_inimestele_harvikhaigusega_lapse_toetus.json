@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_toetused_puudega_inimestele_harvikhaigusega_lapse_toetus",
+  "title": "Harvikhaigusega lapse toetus",
+  "register_title": "Harvikhaigusega lapse toetus",
+  "source_id": "ska_toetused_puudega_inimestele_harvikhaigusega_lapse_toetus",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/toetused-puudega-inimestele/harvikhaigusega-lapse-toetus",
+  "source_path": "ska_toetused_puudega_inimestele_harvikhaigusega_lapse_toetus.html",
+  "source_format": "html",
+  "source_sha256": "7f66ae3c7b70a892c8675dbb37c7d56b6999350f009466b103bd8f70fd162c4a",
+  "content_sha256": "bc894c4e1437ce26d42f831721afb5ba2cc2487b6bb5fd8b30f01ce2cf9aa31f",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:35:53.606Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2025-05-30",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:35:52 GMT",
+      "etag": null
+    },
+    "raw_sha256": "d9e4216ed3f3d5c2f61caac50fa29a56dd650dda0bd85699d9ed12ad796d0a9e",
+    "stats": {
+      "words": 164,
+      "blocks": 14,
+      "headings": 4,
+      "tables": 0,
+      "links": 5,
+      "linksToOtherSites": 3
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

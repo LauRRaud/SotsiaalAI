@@ -1,0 +1,57 @@
+{
+  "document_id": "web-tek_inimesele_teenustasud_ja_omaosalus",
+  "title": "Teenustasud ja omaosalus",
+  "register_title": "Teenustasud ja omaosalus",
+  "source_id": "tek_inimesele_teenustasud_ja_omaosalus",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/teenustasud-ja-omaosalus",
+  "source_path": "tek_inimesele_teenustasud_ja_omaosalus.html",
+  "source_format": "html",
+  "source_sha256": "260a714e80301cdb92f402606404520f7235cf7f8e7f868c3c486c53ee0dcf77",
+  "content_sha256": "5293d2f405553a18691556df98cf4d4018383e641439f6f7fa25345337bf9216",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:38:55.003Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:05:07 GMT",
+      "etag": null
+    },
+    "raw_sha256": "4383af22a9aee9a7f8491e9504bb2feed77380ae48cdfd68b9cb4744817a479e",
+    "stats": {
+      "words": 965,
+      "blocks": 33,
+      "headings": 13,
+      "tables": 4,
+      "links": 3,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

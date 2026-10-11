@@ -1,0 +1,65 @@
+{
+  "document_id": "web-ska_toetavad_teenused_puudega_lapse_tugiteenused",
+  "title": "Puudega laste tugiteenused",
+  "register_title": "Puudega laste tugiteenused",
+  "source_id": "ska_toetavad_teenused_puudega_lapse_tugiteenused",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/toetavad-teenused/puudega-lapse-tugiteenused",
+  "source_path": "ska_toetavad_teenused_puudega_lapse_tugiteenused.html",
+  "source_format": "html",
+  "source_sha256": "e0805897deaaada43f2e1e7460fda95e6b1484548c4f47d38d3cee0b439f6205",
+  "content_sha256": "9dd949a586492503d000b22efda23ce94e0f7769662f439c8905f5a0e5b82cc6",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:35:48.591Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2025-03-27",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:35:47 GMT",
+      "etag": null
+    },
+    "raw_sha256": "6a8c5db24da101302c780da8145e9947f9bba8d7e76ed0234f3cdb9fde58fd52",
+    "stats": {
+      "words": 273,
+      "blocks": 12,
+      "headings": 4,
+      "tables": 0,
+      "links": 7,
+      "linksToOtherSites": 5
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-08/Lastekaitsejuhtumi%20lahendamisel%20abistavate%20peaspetsialistide%20kontaktandmed_13.08.2025.pdf",
+      "text": "Lastekaitsejuhtumi lahendamisel abistavate peaspetsialistide kontaktandmed | 430.48 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

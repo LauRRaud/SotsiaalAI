@@ -1,50 +1,83 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+/**
+ * Avatud Teekond: laud, mille iga osa on üks asi.
+ *
+ * KUJU (10.10). Leht oli üks pikk veerg vanal ühisel kihil (1536 × 640 aknas
+ * 6091 px sisu 522 px paneelis): soov, sammud, hinnang, paberleht, paus, rada,
+ * teenusekaart, eelpöördumine, jätkumise vorm, muutmise vorm ja kustutamine
+ * seisid üksteise all. Nüüd avaneb leht ülevaates (kõik osad plaatidena, igaühel
+ * oma seis) ja osa avaneb omaette vaates. See on platvormi sammulava
+ * (`components/stage/StepFlight.jsx`) laua kujul: osad ei ole sammud, kiirmenüüs
+ * on nupp kogu laua juurde ja avatud osa nimi.
+ *
+ * SEE FAIL hoiab Teekonda, teeb lehe päringud ja seob osad lavaga. Osade vaated
+ * on failis ./detail/DeskParts.jsx; sammud, hinnang ja paus teevad oma päringud
+ * ise (./JourneySteps.jsx, ./JourneyAssessment.jsx, ./JourneyClosure.jsx).
+ * Reeglid (osade seis, jagamise valikud, vormide seis) on failis
+ * ./detail/journeyDesk.js.
+ *
+ * TEADE JA VIGA. Õnnestunud tegevuse teade seisab laua KOHAL ja jääb ette
+ * järgmise tegevuseni; viga seisab selle osa all servas, kus tegevus tehti.
+ *
+ * SALVESTAMATA TEKST. Osa teatab, kui selles on muudetud teksti (soov, samm,
+ * märge, lõpusõna, jätkumise vorm, olukorra muutmine). Siis peab lahkumise teed,
+ * mida leht ise ei joonista (kiirmenüü tagasinool, Esc, akna sulgemine), kinni
+ * värav `lib/panelLeaveGuard.js`. Osast osasse liikudes tekst ei kao: lava hoiab
+ * kõik osad alles.
+ */
+
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+
 import { useI18n } from "@/components/i18n/I18nProvider";
+import StepFlight from "@/components/stage/StepFlight";
+import StepPanel from "@/components/stage/StepPanel";
 import Button from "@/components/ui/Button";
-import Checkbox from "@/components/ui/Checkbox";
-import Dropdown from "@/components/ui/Dropdown";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
-import { SubpageHeader } from "@/components/ui/SubpageHeader";
-import Form from "@/components/ui/Form";
-import Input from "@/components/ui/Input";
+import JourneyAssessment from "@/components/journey/JourneyAssessment";
+import JourneyClosure from "@/components/journey/JourneyClosure";
+import JourneySteps from "@/components/journey/JourneySteps";
 import { localizePath } from "@/lib/localizePath";
 import { buildServiceMapHandoff } from "@/lib/journey/serviceMapHandoff";
 import { buildAssistiveDevicesHandoff } from "@/lib/journey/assistiveDevices";
+import { journeyErrorText } from "@/lib/journey/errorText";
 import { buildHelpMediationHandoff } from "@/lib/journey/helpMediationHandoff";
 import { buildHealthContactQuestionsDraft, hasHealthContactSignal } from "@/lib/journey/healthContact";
+import { todayInEstonia } from "@/lib/journey/stepRules";
 import { reconcileSuggestedActionTitles } from "@/lib/journey/suggestedActions";
+import { panelLeaveAllowed, setPanelLeaveGuard, twoPressLeaveGuard } from "@/lib/panelLeaveGuard";
 import { pushWithTransition } from "@/lib/routeTransition";
+import { loginHref } from "@/lib/safeNextPath";
 
-const PRIMARY_PATH_VALUES = Object.freeze([
-  "SERVICE_MAP",
-  "PRE_INQUIRY",
-  "DOCUMENT",
-  "HELP_REQUEST",
-  "ROOM",
-  "HEALTH_CONTACT",
-  "COMBINED_SOCIAL_HEALTH",
-  "GENERAL_SUPPORT",
-  "UNKNOWN"
-]);
-
-function formatDate(value, locale = "et") {
-  if (!value) return "";
-  try {
-    return new Intl.DateTimeFormat(locale, {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit"
-    }).format(new Date(value));
-  } catch {
-    return "";
-  }
-}
+import { Chip } from "./detail/DeskBits";
+import { ContinuityPart, DataPart, HelpPart, RoadPart, SentPart, SharePart, SituationPart, WishPart } from "./detail/DeskParts";
+import styles from "./detail/detail.module.css";
+import {
+  DESK_PARTS,
+  HELP_REQUEST_DEFAULT_SHARE,
+  PRE_INQUIRY_DEFAULT_SHARE,
+  ROAD_STATE_KEYS,
+  dayOf,
+  deskTiles,
+  helpCategoryKey,
+  helpKinds,
+  helpOfferMatchHref,
+  helpRequestShareOptions,
+  isArchived,
+  journeyLifeDomains,
+  journeyStateKey,
+  preInquiryShareOptions,
+  previewStateOf,
+  relatedCounts,
+  reviewedShareHref,
+  shareBlockKey,
+  startTarget,
+  textToLines,
+  toggleKey
+} from "./detail/journeyDesk";
+import shared from "./journey.module.css";
 
 async function downloadJourneyExport(journey, filename = "journey.json") {
   const response = await fetch(`/api/journeys/${encodeURIComponent(journey.id)}/export`, { cache: "no-store" });
@@ -60,82 +93,11 @@ async function downloadJourneyExport(journey, filename = "journey.json") {
   URL.revokeObjectURL(url);
 }
 
-function primaryPathLabel(t, value) {
-  return t(`journey.primary_paths.${value || "UNKNOWN"}`, t("journey.primary_paths.UNKNOWN", "Not clear yet"));
-}
-
-function statusLabel(t, status) {
-  const fallback = status === "ARCHIVED"
-    ? "arhiveeritud"
-    : status === "DRAFT"
-      ? "info täpsustamisel"
-      : "alustatud";
-  return t(`journey.status.${status || "ACTIVE"}`, fallback);
-}
-
-function textToLines(value) {
-  return String(value || "")
-    .split(/\r?\n/)
-    .map((line) => line.trim())
-    .filter(Boolean);
-}
-
-function arrayToText(value) {
-  if (!Array.isArray(value)) return "";
-  return value
-    .map((item) => {
-      if (typeof item === "string") return item;
-      return item?.title || "";
-    })
-    .filter(Boolean)
-    .join("\n");
-}
-
-function actionsToText(value) {
-  if (!Array.isArray(value)) return "";
-  return value
-    .map((item) => item?.title || item)
-    .filter(Boolean)
-    .join("\n");
-}
-
-function createFormState(journey) {
-  return {
-    title: journey?.title || "",
-    summary: journey?.summary || "",
-    primaryPath: journey?.primaryPath || "UNKNOWN",
-    domains: arrayToText(journey?.domains),
-    missingInfo: arrayToText(journey?.missingInfo),
-    riskSignals: arrayToText(journey?.riskSignals),
-    suggestedActions: actionsToText(journey?.suggestedActions)
-  };
-}
-
-function readContextObject(context, key) {
-  const value = context && typeof context === "object" && !Array.isArray(context)
-    ? context[key]
-    : null;
-  return value && typeof value === "object" && !Array.isArray(value) ? value : {};
-}
-
-function readContextArray(context, key) {
-  const value = context && typeof context === "object" && !Array.isArray(context)
-    ? context[key]
-    : null;
-  return Array.isArray(value) ? value : [];
-}
-
-function normalizeDisplayItems(value) {
-  if (!Array.isArray(value)) return [];
-  return value
-    .map((item) => (typeof item === "string" ? item : item?.title || item?.name || item?.label || item?.id || ""))
-    .map((item) => String(item || "").trim())
-    .filter(Boolean);
-}
-
-function getJourneyLifeDomains(journey) {
-  const domains = normalizeDisplayItems(readContextArray(journey?.context, "lifeDomains"));
-  return domains.length ? domains : ["igapäevaelu toimingud", "võrgustik ja kõrvalabi"];
+/* Abi liigi sõna; tundmatu kood annab üldise sõna, mitte koodi enda. */
+function helpCategoryWord(t, code) {
+  const key = helpCategoryKey(code);
+  const word = t(key);
+  return word === key ? t(helpCategoryKey("OTHER")) : word;
 }
 
 function hasMunicipalitySignal(journey, serviceMapHandoff) {
@@ -144,42 +106,6 @@ function hasMunicipalitySignal(journey, serviceMapHandoff) {
     ? journey.context
     : {};
   return Boolean(context.municipalityText || context.municipalityId || context.municipality || context.county || context.region);
-}
-
-function buildHelpOfferMatchApiHref(handoff) {
-  if (!handoff?.hasPracticalNeed) return "";
-  const params = new URLSearchParams();
-  params.set("type", "HELP_OFFER");
-  params.set("limit", "1");
-  const keyword = handoff.taxonomy?.needTags?.[0] || handoff.categoryCode || "";
-  if (keyword) params.set("q", keyword);
-  if (handoff.municipalityName) params.set("municipalityName", handoff.municipalityName);
-  return `/api/service-map/entries?${params.toString()}`;
-}
-
-function journeyActivityItems(journey, t, locale) {
-  return (Array.isArray(journey?.activity) ? journey.activity : []).map((item) => ({
-    ...item,
-    title: t(`notifications.events.${String(item.type || "").replaceAll(".", "_")}`, item.type),
-    dateLabel: formatDate(item.occurredAt, locale)
-  }));
-}
-
-function createServiceContinuityState(journey) {
-  const continuity = readContextObject(journey?.context, "serviceContinuity");
-  return {
-    serviceName: continuity.serviceName || "",
-    currentProvider: continuity.currentProvider || "",
-    municipality: continuity.municipality || "",
-    hasExistingService: continuity.hasExistingService === false ? "NO" : continuity.hasExistingService === true ? "YES" : "",
-    knownEndDate: continuity.knownEndDate === false ? "NO" : continuity.knownEndDate === true ? "YES" : "",
-    endDate: continuity.endDate || "",
-    hasDecisionOrPlan: continuity.hasDecisionOrPlan === false ? "NO" : continuity.hasDecisionOrPlan === true ? "YES" : "",
-    documentAttached: continuity.documentAttached === true ? "YES" : continuity.documentAttached === false ? "NO" : "",
-    kovAlreadyInvolved: continuity.kovAlreadyInvolved === true ? "YES" : continuity.kovAlreadyInvolved === false ? "NO" : "",
-    providerAlreadyInvolved: continuity.providerAlreadyInvolved === true ? "YES" : continuity.providerAlreadyInvolved === false ? "NO" : "",
-    userGoal: continuity.userGoal || ""
-  };
 }
 
 function toNullableBoolean(value) {
@@ -277,228 +203,38 @@ function buildContinuityActions(form, t) {
   return actions;
 }
 
-function ContentList({ title, items, emptyText }) {
-  const normalized = Array.isArray(items) ? items : [];
-  return (
-    <section>
-      <h2>{title}</h2>
-      {normalized.length ? (
-        <div>
-          {normalized.map((item, index) => {
-            const label = typeof item === "string" ? item : item?.title || "";
-            return label ? (
-              <span key={`${label}-${index}`}>
-                {label}
-              </span>
-            ) : null;
-          })}
-        </div>
-      ) : (
-        <p>{emptyText}</p>
-      )}
-    </section>
-  );
+const NO_PREVIEW = Object.freeze({ key: "", preview: null, failed: false });
+
+/** Mille kohta eelvaadet praegu küsitakse; tühi, kui osa ei ole ees. */
+function previewRequestKey(journey, selectedShareKeys, enabled) {
+  return enabled && journey?.id ? `${journey.id}|${selectedShareKeys.join(",")}` : "";
 }
 
-function JourneyRoadmap({ journey, t }) {
-  const steps = [
-    { title: t("journey.roadmap.situation", "Olukord kirjeldatud"), state: "done" },
-    { title: t("journey.roadmap.saved", "Ülevaade salvestatud"), state: "done" },
-    { title: t("journey.roadmap.contact", "Kontakt või teenus otsitud"), state: journey?.primaryPath === "SERVICE_MAP" ? "next" : "todo" },
-    { title: t("journey.roadmap.pre_inquiry", "Eelpöördumine koostatud"), state: journey?.primaryPath === "PRE_INQUIRY" ? "next" : "todo" },
-    { title: t("journey.roadmap.response", "Vastus või jätkusuhtlus"), state: "todo" },
-    { title: t("journey.roadmap.next", "Järgmine samm"), state: "todo" }
-  ];
-
-  const stateLabels = {
-    done: t("journey.roadmap.done", "tehtud"),
-    current: t("journey.roadmap.current", "pooleli"),
-    next: t("journey.roadmap.next_recommended", "järgmine soovitatud samm"),
-    todo: t("journey.roadmap.todo", "mitte alustatud")
+/**
+ * Eelvaate päringu lõpp: õnnestunud vastus annab teksti, kõik muu (serveri viga,
+ * katkenud ühendus) jääb kirja veana. Varem jäi vea korral ette vana eelvaade või
+ * lause „midagi ei lisata”, kuigi valik oli tehtud.
+ */
+function previewSettler(setResult, key, controller) {
+  return (payload) => {
+    if (controller.signal.aborted) return;
+    setResult(payload?.ok ? { key, preview: payload.prefill || null, failed: false } : { key, preview: null, failed: true });
   };
-
-  return (
-    <section>
-      <div>
-        <h2>
-          {t("journey.roadmap.title", "Teekonnarada")}
-        </h2>
-        <span>{statusLabel(t, journey?.status)}</span>
-      </div>
-      <ol aria-label={t("journey.roadmap.title", "Teekonnarada")}>
-        {steps.map((step, index) => {
-          const done = step.state === "done";
-          return (
-            <li key={step.title}>
-              <span>
-                {done ? "✓" : index + 1}
-              </span>
-              <span>{step.title}</span>
-              <span>{stateLabels[step.state]}</span>
-            </li>
-          );
-        })}
-      </ol>
-    </section>
-  );
 }
 
-function ActivityHistory({ journey, t, locale }) {
-  const items = journeyActivityItems(journey, t, locale);
-  return (
-    <section>
-      <h2>
-        {t("journey.activity.title", "Tehtud sammud")}
-      </h2>
-      <ol>
-        {items.map((item, index) => (
-          <li key={`${item.title}-${index}`}>
-            <span>{item.title}</span>
-            {item.dateLabel ? <span>{item.dateLabel}</span> : null}
-          </li>
-        ))}
-      </ol>
-    </section>
-  );
-}
-
-function preInquiryStatusLabel(t, status) {
-  const normalized = String(status || "").toUpperCase();
-  return t(
-    `journey.related.pre_inquiry_status.${normalized}`,
-    t("journey.related.pre_inquiry_status.DRAFT", "mustand")
-  );
-}
-
-function LinkedPreInquiries({ journey, t, locale, onLoadMore }) {
-  const items = Array.isArray(journey?.linkedPreInquiries) ? journey.linkedPreInquiries : [];
-
-  if (!items.length) {
-    return (
-      <p>
-        {t(
-          "journey.related.pre_inquiries_empty",
-          "Kui alustad sellest teekonnast eelpöördumise, ilmub see siia koos teema ja staatusega."
-        )}
-      </p>
-    );
-  }
-
-  return (
-    <ul>
-      {items.map((item) => {
-        const topic = String(item?.topic || "").trim()
-          || t("journey.related.pre_inquiry_untitled", "Eelpöördumine");
-        const href = localizePath(
-          `/eelpoordumised?openInquiry=${encodeURIComponent(item.id)}&workspaceRole=CLIENT`,
-          locale
-        );
-        return (
-          <li key={item.id}>
-            <span>{topic}</span>
-            <span>{preInquiryStatusLabel(t, item?.status)}</span>
-            <Button as="a" href={href} variant="linkBrand">
-              {t("journey.related.open", "Ava")}
-            </Button>
-          </li>
-        );
-      })}
-      {journey?.linkedPreInquiriesPage?.hasMore ? (
-        <li>
-          <Button onClick={onLoadMore} variant="linkBrand">
-            {t("journey.actions.load_more", "Laadi rohkem")}
-          </Button>
-        </li>
-      ) : null}
-    </ul>
-  );
-}
-
-function RelatedObjectsPanel({ journey, t, locale, onLoadMorePreInquiries }) {
-  const context = journey?.context && typeof journey.context === "object" && !Array.isArray(journey.context)
-    ? journey.context
-    : {};
-  const groups = [
-    ["linkedDocumentIds", t("journey.related.documents", "Seotud dokumendid")],
-    ["linkedServiceMapEntryIds", t("journey.related.service_contacts", "Seotud teenusekaardi kontaktid")],
-    ["linkedHelpRequestIds", t("journey.related.help_requests", "Seotud abisoovid")],
-    ["linkedHelpOfferIds", t("journey.related.help_offers", "Seotud abipakkumised")],
-    ["linkedRoomIds", t("journey.related.rooms", "Seotud ruumid")]
-  ];
-
-  return (
-    <section>
-      <h2>
-        {t("journey.related.title", "Seotud asjad")}
-      </h2>
-      <div>
-        <div>
-          <h3>{t("journey.related.pre_inquiries", "Seotud eelpöördumised")}</h3>
-          <LinkedPreInquiries journey={journey} t={t} locale={locale} onLoadMore={onLoadMorePreInquiries} />
-        </div>
-        {groups.map(([key, title]) => {
-          const items = normalizeDisplayItems(context[key]);
-          return (
-            <div key={key}>
-              <h3>{title}</h3>
-              {items.length ? (
-                <div>
-                  {items.map((item) => <span key={item}>{item}</span>)}
-                </div>
-              ) : (
-                <p>
-                  {t("journey.related.empty", "Siia ilmuvad eelpöördumised, dokumendid või kontaktid, mille seod selle teekonnaga.")}
-                </p>
-              )}
-            </div>
-          );
-        })}
-      </div>
-    </section>
-  );
-}
-
-function PreInquirySharePanel({ journey, href, t }) {
-  const assistiveDevices = buildAssistiveDevicesHandoff(journey);
-  const [selectedShareKeys, setSelectedShareKeys] = useState(["summary", "domains", "missingInfo"]);
-  const [preview, setPreview] = useState(null);
-  const [thirdPartyAcknowledged, setThirdPartyAcknowledged] = useState(false);
-  const selectedPersonContext = selectedShareKeys.includes("personContext");
-  const reviewedHref = useMemo(() => {
-    const selected = selectedShareKeys.filter(Boolean);
-    const [path, query = ""] = String(href || "").split("?");
-    const params = new URLSearchParams(query);
-    params.set("shareReview", "1");
-    if (selected.length) params.set("share", selected.join(","));
-    else params.delete("share");
-    const serialized = params.toString();
-    return serialized ? `${path}?${serialized}` : path;
-  }, [href, selectedShareKeys]);
-  const toggleShareKey = (key) => {
-    setSelectedShareKeys((current) => (
-      current.includes(key)
-        ? current.filter((item) => item !== key)
-        : [...current, key]
-    ));
-  };
-  const shareOptions = [
-    ["summary", t("journey.share.summary", "olukorra kokkuvõte"), Boolean(journey?.summary)],
-    ["domains", t("journey.share.domains", "seotud teemad"), Boolean(journey?.domains?.length)],
-    ["missingInfo", t("journey.share.missing_info", "puuduolev info"), Boolean(journey?.missingInfo?.length)],
-    ...(assistiveDevices.hasAssistiveDeviceNeed
-      ? [["assistiveDevices", t("journey.share.assistive_devices", "abivahendid ja kohandused"), true]]
-      : []),
-    ["wish", t("journey.share.wish", "inimese soov"), Boolean(journey?.context?.personWish)],
-    ["personContext", t("journey.share.person_context", "kolmanda isiku kontekst"), Boolean(journey?.context?.personContext)],
-    ["serviceContinuity", t("journey.share.service_continuity", "teenuse jätkumise info"), Boolean(journey?.context?.serviceContinuity)],
-    ["municipality", t("journey.share.municipality", "KOV või piirkond"), Boolean(journey?.context?.municipality || journey?.context?.municipalityName)],
-    ["document", t("journey.share.document", "seotud dokument"), Boolean(journey?.context?.contextNote)],
-    ["title", t("journey.share.title_field", "Teekonna pealkiri"), Boolean(journey?.title)]
-  ];
-
+/**
+ * Eelvaade: mida saaja näeks, kui inimene võtab eelpöördumisse kaasa valitud
+ * osad. Server paneb teksti kokku; midagi ei salvestata. Küsitakse ainult siis,
+ * kui osa on ees (`enabled`): lava hoiab kõik osad alles ja muidu läheks päring
+ * teele juba lehe avamisel.
+ */
+function usePreInquiryPreview(journey, selectedShareKeys, enabled) {
+  const [result, setResult] = useState(NO_PREVIEW);
+  const requestKey = previewRequestKey(journey, selectedShareKeys, enabled);
   useEffect(() => {
-    if (!journey?.id) return undefined;
+    if (!requestKey) return undefined;
     const controller = new AbortController();
+    const settle = previewSettler(setResult, requestKey, controller);
     fetch(`/api/journeys/${encodeURIComponent(journey.id)}/pre-inquiry-draft`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -506,91 +242,20 @@ function PreInquirySharePanel({ journey, href, t }) {
       signal: controller.signal
     })
       .then((response) => response.json().catch(() => ({})))
-      .then((payload) => { if (!controller.signal.aborted && payload?.ok) setPreview(payload.prefill || null); })
-      .catch(() => { if (!controller.signal.aborted) setPreview(null); });
+      .then(settle, () => settle(null));
     return () => controller.abort();
-  }, [journey?.id, selectedShareKeys]);
-
-  return (
-    <section>
-      <div>
-        <h3>
-          {t("journey.share.title", "Vali, millist infot soovid eelpöördumises kasutada.")}
-        </h3>
-        <p>
-          {t("journey.share.privacy", "Teekonnast ei jagata automaatselt kogu infot. Vaatad järgmises sammus teksti üle enne saatmist.")}
-        </p>
-      </div>
-      <div>
-        {shareOptions.filter(([, , present]) => present).map(([key, label]) => (
-          <Checkbox
-            key={key}
-            checked={selectedShareKeys.includes(key)}
-            onChange={() => toggleShareKey(key)}
-            label={label}
-          />
-        ))}
-      </div>
-      {selectedPersonContext ? (
-        <Checkbox
-          checked={thirdPartyAcknowledged}
-          onChange={setThirdPartyAcknowledged}
-          label={t("journey.share.person_context_ack", "Kinnitan, et mul on õigus seda teise isiku teavet jagada.")}
-        />
-      ) : null}
-      <section aria-live="polite">
-        <h4>{t("journey.share.recipient_preview", "Adressaat näeb")}</h4>
-        <pre>{preview?.situation || preview?.topic || t("journey.share.empty_preview", "Valitud Teekonna sisu ei lisata.")}</pre>
-      </section>
-      <div>
-        <Button as="a" href={reviewedHref} disabled={!selectedShareKeys.length || (selectedPersonContext && !thirdPartyAcknowledged)}>
-          {t("journey.share.continue", "Jätka eelpöördumise koostamisega")}
-        </Button>
-      </div>
-    </section>
-  );
+  }, [journey?.id, requestKey, selectedShareKeys]);
+  return { preview: result.preview, state: previewStateOf({ requestKey, result }) };
 }
 
-function HelpRequestSharePanel({ journey, href, t }) {
-  const context = journey?.context && typeof journey.context === "object" && !Array.isArray(journey.context)
-    ? journey.context
-    : {};
-  const helpMediation = context.helpMediation && typeof context.helpMediation === "object" && !Array.isArray(context.helpMediation)
-    ? context.helpMediation
-    : {};
-  const handoff = buildHelpMediationHandoff(journey);
-  const shareOptions = [
-    ["summary", t("journey.helpMediation.share.summary", "olukorra lühikokkuvõte"), Boolean(journey?.summary)],
-    ["category", t("journey.helpMediation.share.category", "abi liik"), Boolean(handoff?.categoryCode)],
-    ["region", t("journey.helpMediation.share.region", "piirkond"), Boolean(handoff?.municipalityName || handoff?.municipalityId)],
-    ["timing", t("journey.helpMediation.share.timing", "aeg või sagedus"), Boolean(helpMediation.timing || context.timing)],
-    ["conditions", t("journey.helpMediation.share.conditions", "tingimused"), Boolean(helpMediation.conditions || context.conditions)],
-    ["ownWords", t("journey.helpMediation.share.ownWords", "kasutaja enda sõnastatud vajadus"), Boolean(context.personWish || context.ownWords)]
-  ];
-  const [selectedShareKeys, setSelectedShareKeys] = useState(() => shareOptions
-    .filter(([key, , present]) => present && ["summary", "category", "region", "ownWords"].includes(key))
-    .map(([key]) => key));
-  const [preview, setPreview] = useState(null);
-  const reviewedHref = useMemo(() => {
-    const selected = selectedShareKeys.filter(Boolean);
-    const [path, query = ""] = String(href || "").split("?");
-    const params = new URLSearchParams(query);
-    params.set("shareReview", "1");
-    if (selected.length) params.set("share", selected.join(","));
-    else params.delete("share");
-    const serialized = params.toString();
-    return serialized ? `${path}?${serialized}` : path;
-  }, [href, selectedShareKeys]);
-  const toggleShareKey = (key) => {
-    setSelectedShareKeys((current) => (
-      current.includes(key)
-        ? current.filter((item) => item !== key)
-        : [...current, key]
-    ));
-  };
+/** Sama abisoovi kohta: mis läheks kuulutuse mustandisse. */
+function useHelpRequestPreview(journey, selectedShareKeys, enabled) {
+  const [result, setResult] = useState(NO_PREVIEW);
+  const requestKey = previewRequestKey(journey, selectedShareKeys, enabled);
   useEffect(() => {
-    if (!journey?.id) return undefined;
+    if (!requestKey) return undefined;
     const controller = new AbortController();
+    const settle = previewSettler(setResult, requestKey, controller);
     fetch(`/api/journeys/${encodeURIComponent(journey.id)}/help-request-draft`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -598,150 +263,56 @@ function HelpRequestSharePanel({ journey, href, t }) {
       signal: controller.signal
     })
       .then((response) => response.json().catch(() => ({})))
-      .then((payload) => {
-        if (!controller.signal.aborted) setPreview(payload?.ok ? payload.prefill || null : null);
-      })
-      .catch(() => {
-        if (!controller.signal.aborted) setPreview(null);
-      });
+      .then(settle, () => settle(null));
     return () => controller.abort();
-  }, [journey?.id, selectedShareKeys]);
-  const previewText = [
-    preview?.draft?.description,
-    preview?.draft?.categoryCode ? `${t("journey.helpMediation.share.category", "abi liik")}: ${preview.draft.categoryCode}` : "",
-    preview?.municipalityLabel ? `${t("journey.helpMediation.share.region", "piirkond")}: ${preview.municipalityLabel}` : "",
-    preview?.draft?.availabilityOrStart,
-    preview?.draft?.conditions
-  ].filter(Boolean).join("\n");
-
-  return (
-    <section>
-      <div>
-        <h3>
-          {t("journey.helpMediation.share.title", "Vali, millist infot soovid abisoovis kasutada.")}
-        </h3>
-        <p>
-          {t("journey.helpMediation.share.privacy", "Kogu Teekonda ei kopeerita kuulutusse. Vaatad abisoovi enne avaldamist üle ja kinnitad eraldi, mida kaardil näidatakse.")}
-        </p>
-      </div>
-      <div>
-        {shareOptions.filter(([, , present]) => present).map(([key, label]) => (
-          <Checkbox
-            key={key}
-            checked={selectedShareKeys.includes(key)}
-            onChange={() => toggleShareKey(key)}
-            label={label}
-          />
-        ))}
-      </div>
-      <section aria-live="polite">
-        <h4>{t("journey.share.recipient_preview", "Abisoovi mustandisse läheb")}</h4>
-        <pre>{previewText || t("journey.share.empty_preview", "Valitud Teekonna sisu ei lisata.")}</pre>
-      </section>
-      <div>
-        <Button as="a" href={reviewedHref} disabled={!selectedShareKeys.length}>
-          {t("journey.helpMediation.share.continue", "Alusta abisoovi")}
-        </Button>
-      </div>
-    </section>
-  );
+  }, [journey?.id, requestKey, selectedShareKeys]);
+  return { preview: result.preview, state: previewStateOf({ requestKey, result }) };
 }
 
-function FormListField({ id, label, value, onChange, t, maxItems }) {
-  const itemCount = textToLines(value).length;
-  return (
-    <div>
-      <label htmlFor={id}>
-        {label}
-      </label>
-      <textarea
-        id={id}
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-        placeholder={t("journey.labels.one_item_per_line", "One item per line")}
-      />
-      <small>{t(
-        "journey.labels.item_limit_count",
-        { current: itemCount, limit: maxItems, characters: 220 },
-        "{current}/{limit}, {characters} tähemärki kirje kohta"
-      )}</small>
-    </div>
-  );
-}
-
-function ContinuityTextField({
-  id,
-  label,
-  value,
-  onChange,
-  t,
-  maxLength = 12000,
-  placeholder = "",
-  type = "text"
-}) {
-  return (
-    <div>
-      <label htmlFor={id}>
-        {label}
-      </label>
-      <Input
-        id={id}
-        type={type}
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-        maxLength={maxLength}
-        placeholder={placeholder}
-      />
-      <small>{t("journey.labels.character_count", { current: value.length, limit: maxLength }, "{current}/{limit}")}</small>
-    </div>
-  );
-}
-
-function ContinuityChoiceField({ id, label, value, onChange, t }) {
-  return (
-    <div>
-      <label htmlFor={id}>
-        {label}
-      </label>
-      <Dropdown
-        id={id}
-        value={value}
-        onChange={onChange}
-        ariaLabel={label}
-        options={[
-          { value: "", label: t("journey.serviceContinuity.unknown", "Ei tea veel") },
-          { value: "YES", label: t("journey.serviceContinuity.yes", "Jah") },
-          { value: "NO", label: t("journey.serviceContinuity.no", "Ei") }
-        ]}
-      />
-    </div>
-  );
-}
-
-export default function JourneyDetail({ journeyId }) {
+export default function JourneyDetail({ journeyId, startWith: requestedStart = "" }) {
   const { t, locale } = useI18n();
   const router = useRouter();
   const { status } = useSession();
   const [journey, setJourney] = useState(null);
-  const [form, setForm] = useState(createFormState(null));
-  const [editing, setEditing] = useState(false);
-  const [busy, setBusy] = useState(false);
-  const [continuityOpen, setContinuityOpen] = useState(false);
-  const [continuityForm, setContinuityForm] = useState(createServiceContinuityState(null));
+  const [notFound, setNotFound] = useState(false);
+  const [loadFault, setLoadFault] = useState("");
+  /* Mis lehe päring käib: "" | "save" | "wish" | "continuity" | "reopen" | "delete" | "export" | "more". */
+  const [busy, setBusy] = useState("");
+  /* Viga kuulub selle osa juurde, kus tegevus tehti: { part, text }. */
+  const [fault, setFault] = useState(null);
+  const [notice, setNotice] = useState("");
+  const [leaveAsked, setLeaveAsked] = useState(false);
+  const [dirtyParts, setDirtyParts] = useState({});
+  /* Tuleb lehelt (aadressi `?alusta=`), mitte brauseri aadressiribalt: lehe sees
+     liikudes ei ole aadress esimesel joonistusel veel uus. „Salvesta ja koosta
+     eelpöördumine" avab jagamise valiku kohe. */
+  const target = startTarget(requestedStart);
+  const [partKey, setPartKey] = useState(target?.part || null);
   const [healthDraftOpen, setHealthDraftOpen] = useState(false);
   const [healthQuestionsDraft, setHealthQuestionsDraft] = useState("");
-  const [assistivePreInquiryShareOpen, setAssistivePreInquiryShareOpen] = useState(false);
-  const [preInquiryShareOpen, setPreInquiryShareOpen] = useState(false);
-  const [helpRequestShareOpen, setHelpRequestShareOpen] = useState(false);
-  const [assistiveHelpRequestShareOpen, setAssistiveHelpRequestShareOpen] = useState(false);
+  const [healthCopied, setHealthCopied] = useState(false);
+  const [preInquiryShareKeys, setPreInquiryShareKeys] = useState(PRE_INQUIRY_DEFAULT_SHARE);
+  const [thirdPartyAcknowledged, setThirdPartyAcknowledged] = useState(false);
+  const [helpRequestShareKeys, setHelpRequestShareKeys] = useState(null);
+  const [helpRequestViewOpen, setHelpRequestViewOpen] = useState(false);
   const [helpOfferMatchCount, setHelpOfferMatchCount] = useState(null);
   const [helpOfferMatchLoading, setHelpOfferMatchLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [notice, setNotice] = useState("");
-  const [notFound, setNotFound] = useState(false);
-  const [deleteArmed, setDeleteArmed] = useState(false);
+  const busyRef = useRef("");
+  const noticeRef = useRef(null);
 
-  const updatedAt = useMemo(() => formatDate(journey?.updatedAt, locale), [journey?.updatedAt, locale]);
+  /* Pärast laadimist võetakse märge aadressilt ära, et lehe uuendamine ei avaks
+     sama osa uuesti. */
+  useEffect(() => {
+    if (!target || !journey?.id) return undefined;
+    const frame = window.requestAnimationFrame(() => {
+      const url = new URL(window.location.href);
+      url.searchParams.delete("alusta");
+      window.history.replaceState(window.history.state, "", url);
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [target, journey?.id]);
+
+  const archived = isArchived(journey);
   const serviceMapHandoff = useMemo(
     () => (journey ? buildServiceMapHandoff(journey) : null),
     [journey]
@@ -758,7 +329,7 @@ export default function JourneyDetail({ journeyId }) {
     [journey]
   );
   const helpOfferMatchApiHref = useMemo(
-    () => buildHelpOfferMatchApiHref(helpMediationHandoff),
+    () => helpOfferMatchHref(helpMediationHandoff),
     [helpMediationHandoff]
   );
   const helpOffersHref = localizePath(helpMediationHandoff?.viewOffersHref || "/teenusekaart?type=HELP_OFFER", locale);
@@ -769,36 +340,41 @@ export default function JourneyDetail({ journeyId }) {
     ? localizePath(`/eelpoordumised?fromJourney=${encodeURIComponent(journeyId)}&workspaceRole=CLIENT`, locale)
     : localizePath("/eelpoordumised", locale);
   const documentsHref = localizePath("/documents", locale);
-  const continuity = useMemo(
-    () => readContextObject(journey?.context, "serviceContinuity"),
-    [journey?.context]
-  );
-  const continuityMissingInfo = useMemo(
-    () => buildContinuityMissingInfo(continuityForm, t),
-    [continuityForm, t]
-  );
-  const continuityActions = useMemo(
-    () => buildContinuityActions(continuityForm, t),
-    [continuityForm, t]
-  );
-  const hasContinuity = useMemo(
-    () => Object.keys(continuity).some((key) => continuity[key] !== "" && continuity[key] !== null && continuity[key] !== undefined),
-    [continuity]
-  );
   const showHealthContact = useMemo(
     () => (journey ? hasHealthContactSignal(journey) : false),
     [journey]
   );
-  const lifeDomains = useMemo(() => getJourneyLifeDomains(journey), [journey]);
-  const serviceMapHasMunicipality = useMemo(
-    () => hasMunicipalitySignal(journey, serviceMapHandoff),
-    [journey, serviceMapHandoff]
-  );
   const hasHelpOfferMatches = Number(helpOfferMatchCount) > 0;
+  const kinds = useMemo(
+    () => helpKinds({
+      hasPracticalNeed: Boolean(helpMediationHandoff?.hasPracticalNeed),
+      hasAssistiveDeviceNeed: Boolean(assistiveDevicesHandoff?.hasAssistiveDeviceNeed),
+      hasHealthSignal: showHealthContact
+    }),
+    [assistiveDevicesHandoff?.hasAssistiveDeviceNeed, helpMediationHandoff?.hasPracticalNeed, showHealthContact]
+  );
 
-  const handleBack = useCallback(() => {
-    pushWithTransition(router, localizePath("/teekond", locale));
-  }, [locale, router]);
+  /* Jagamise valikud: ainult see, mis Teekonnas olemas on. Abisoovi vaikimisi
+     valik sõltub Teekonnast, seega arvutatakse see esimesel korral. */
+  const preInquiryOptions = useMemo(
+    () => preInquiryShareOptions(journey, { hasAssistiveDeviceNeed: Boolean(assistiveDevicesHandoff?.hasAssistiveDeviceNeed) }),
+    [assistiveDevicesHandoff?.hasAssistiveDeviceNeed, journey]
+  );
+  const helpRequestOptions = useMemo(() => helpRequestShareOptions(journey, helpMediationHandoff), [helpMediationHandoff, journey]);
+  const helpRequestSelected = useMemo(
+    () => helpRequestShareKeys || helpRequestOptions.filter((option) => HELP_REQUEST_DEFAULT_SHARE.includes(option.value)).map((option) => option.value),
+    [helpRequestOptions, helpRequestShareKeys]
+  );
+  const { preview: preInquiryPreview, state: preInquiryPreviewState } = usePreInquiryPreview(journey, preInquiryShareKeys, partKey === "share");
+  const { preview: helpRequestPreview, state: helpRequestPreviewState } = useHelpRequestPreview(journey, helpRequestSelected, partKey === "help" && helpRequestViewOpen);
+  const helpRequestPreviewText = [
+    helpRequestPreview?.draft?.description,
+    /* Abi liik sõnana (sama kataloog mis abikuulutustel), mitte serveri koodina. */
+    helpRequestPreview?.draft?.categoryCode ? `${t("journey.helpMediation.share.category", "abi liik")}: ${helpCategoryWord(t, helpRequestPreview.draft.categoryCode)}` : "",
+    helpRequestPreview?.municipalityLabel ? `${t("journey.helpMediation.share.region", "piirkond")}: ${helpRequestPreview.municipalityLabel}` : "",
+    helpRequestPreview?.draft?.availabilityOrStart,
+    helpRequestPreview?.draft?.conditions
+  ].filter(Boolean).join("\n");
 
   /* /teekond/[id] EI ole PanelFrame'i marsruudikaardis — ilma selle
      registreerimiseta jääks leht hoopis ilma ⓘ-ta. */
@@ -808,9 +384,14 @@ export default function JourneyDetail({ journeyId }) {
     label: t("journey.info.label", "Open journey info")
   });
 
+  const lock = useCallback((value) => {
+    busyRef.current = value;
+    setBusy(value);
+  }, []);
+
   const loadJourney = useCallback(async () => {
     if (status !== "authenticated" || !journeyId) return;
-    setError("");
+    setLoadFault("");
     setNotFound(false);
 
     const response = await fetch(`/api/journeys/${encodeURIComponent(journeyId)}`, {
@@ -823,19 +404,23 @@ export default function JourneyDetail({ journeyId }) {
       return;
     }
     if (!response.ok || !payload.ok) {
-      throw new Error(payload.message || t("journey.messages.load_failed", "Loading the journey failed."));
+      throw new Error(journeyErrorText(t, payload.message, t("journey.messages.load_failed", "Loading the journey failed.")));
     }
     setJourney(payload.journey || null);
-    setForm(createFormState(payload.journey));
-    setContinuityForm(createServiceContinuityState(payload.journey));
   }, [journeyId, status, t]);
+
+  /* Brauseri enda veateksti (võrgutõrge) ei näidata: lause tuleb kataloogist. */
+  const loadFirst = useCallback(() => {
+    loadJourney().catch((loadError) => {
+      const known = loadError instanceof Error && !(loadError instanceof TypeError) ? loadError.message : "";
+      setLoadFault(known || t("journey.messages.load_failed", "Loading the journey failed."));
+    });
+  }, [loadJourney, t]);
 
   useEffect(() => {
     if (status !== "authenticated") return;
-    loadJourney().catch((loadError) => {
-      setError(loadError.message || t("journey.messages.load_failed", "Loading the journey failed."));
-    });
-  }, [loadJourney, status, t]);
+    loadFirst();
+  }, [loadFirst, status]);
 
   useEffect(() => {
     if (!helpOfferMatchApiHref) {
@@ -869,25 +454,20 @@ export default function JourneyDetail({ journeyId }) {
     return () => controller.abort();
   }, [helpOfferMatchApiHref]);
 
-  const updateForm = useCallback((field, value) => {
-    setForm((current) => ({
-      ...current,
-      [field]: value
-    }));
+  /* Õnnestunud tegevus: teade laua kohale (jääb ette järgmise tegevuseni). */
+  const done = useCallback((text) => {
+    setFault(null);
+    setNotice(text);
   }, []);
-
-  const updateContinuityForm = useCallback((field, value) => {
-    setContinuityForm((current) => ({
-      ...current,
-      [field]: value
-    }));
-  }, []);
-
-  const handleSave = useCallback(async (event) => {
-    event.preventDefault();
-    setBusy(true);
-    setError("");
+  const begin = useCallback((kind) => {
+    lock(kind);
+    setFault(null);
     setNotice("");
+  }, [lock]);
+
+  const handleSave = useCallback(async (form) => {
+    if (busyRef.current) return false;
+    begin("save");
 
     try {
       const response = await fetch(`/api/journeys/${encodeURIComponent(journeyId)}`, {
@@ -908,54 +488,31 @@ export default function JourneyDetail({ journeyId }) {
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload.ok) {
-        throw new Error(payload.message || t("journey.messages.save_failed", "Saving the journey failed."));
+        setFault({ part: "situation", text: journeyErrorText(t, payload.message, t("journey.messages.save_failed", "Saving the journey failed.")) });
+        return false;
       }
       setJourney(payload.journey);
-      setForm(createFormState(payload.journey));
-      setContinuityForm(createServiceContinuityState(payload.journey));
-      setEditing(false);
-      setNotice(t("journey.messages.updated", "Journey updated."));
-    } catch (saveError) {
-      setError(saveError.message || t("journey.messages.save_failed", "Saving the journey failed."));
+      done(t("journey.messages.updated", "Journey updated."));
+      return true;
+    } catch {
+      setFault({ part: "situation", text: t("journey.messages.save_failed", "Saving the journey failed.") });
+      return false;
     } finally {
-      setBusy(false);
+      lock("");
     }
-  }, [form, journey?.suggestedActions, journey?.updatedAt, journeyId, t]);
+  }, [begin, done, journey?.suggestedActions, journey?.updatedAt, journeyId, lock, t]);
 
-  const handleArchive = useCallback(async () => {
-    if (!journeyId || journey?.status === "ARCHIVED") return;
-    setBusy(true);
-    setError("");
-    setNotice("");
-
-    try {
-      const response = await fetch(`/api/journeys/${encodeURIComponent(journeyId)}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ status: "ARCHIVED", expectedUpdatedAt: journey.updatedAt })
-      });
-      const payload = await response.json().catch(() => ({}));
-      if (!response.ok || !payload.ok) {
-        throw new Error(payload.message || t("journey.messages.archive_failed", "Archiving the journey failed."));
-      }
-      setJourney(payload.journey);
-      setForm(createFormState(payload.journey));
-      setContinuityForm(createServiceContinuityState(payload.journey));
-      setEditing(false);
-      setContinuityOpen(false);
-      setNotice(t("journey.messages.archived", "Journey archived."));
-    } catch (archiveError) {
-      setError(archiveError.message || t("journey.messages.archive_failed", "Archiving the journey failed."));
-    } finally {
-      setBusy(false);
-    }
-  }, [journey?.status, journey?.updatedAt, journeyId, t]);
+  /* Paus või lõpetamine (K1-f): osa saadab päringu ise ja annab siia uue seisu. */
+  const handleClosed = useCallback((nextJourney, kind) => {
+    setJourney(nextJourney);
+    done(kind === "FINISHED"
+      ? t("journey.closure.finished_notice", "Teekond on lõpetatud.")
+      : t("journey.closure.paused_notice", "Teekond on pausil."));
+  }, [done, t]);
 
   const handleReopen = useCallback(async () => {
-    if (!journeyId || journey?.status !== "ARCHIVED") return;
-    setBusy(true); setError(""); setNotice("");
+    if (busyRef.current || !journeyId || journey?.status !== "ARCHIVED") return;
+    begin("reopen");
     try {
       const response = await fetch(`/api/journeys/${encodeURIComponent(journeyId)}`, {
         method: "PATCH",
@@ -963,15 +520,22 @@ export default function JourneyDetail({ journeyId }) {
         body: JSON.stringify({ status: "ACTIVE", expectedUpdatedAt: journey.updatedAt })
       });
       const payload = await response.json().catch(() => ({}));
-      if (!response.ok || !payload.ok) throw new Error(payload.message || t("journey.messages.reopen_failed", "Teekonna taasavamine ebaõnnestus."));
-      setJourney(payload.journey); setDeleteArmed(false);
-      setNotice(t("journey.messages.reopened", "Teekond taasavati."));
-    } catch (reopenError) { setError(reopenError.message); } finally { setBusy(false); }
-  }, [journey?.status, journey?.updatedAt, journeyId, t]);
+      if (!response.ok || !payload.ok) {
+        setFault({ part: "closure", text: journeyErrorText(t, payload.message, t("journey.messages.reopen_failed", "Teekonna taasavamine ebaõnnestus.")) });
+        return;
+      }
+      setJourney(payload.journey);
+      done(t("journey.messages.reopened", "Teekond taasavati."));
+    } catch {
+      setFault({ part: "closure", text: t("journey.messages.reopen_failed", "Teekonna taasavamine ebaõnnestus.") });
+    } finally {
+      lock("");
+    }
+  }, [begin, done, journey?.status, journey?.updatedAt, journeyId, lock, t]);
 
   const handleDelete = useCallback(async () => {
-    if (!journeyId) return;
-    setBusy(true); setError("");
+    if (busyRef.current || !journeyId) return;
+    begin("delete");
     try {
       const response = await fetch(`/api/journeys/${encodeURIComponent(journeyId)}`, {
         method: "DELETE",
@@ -979,52 +543,92 @@ export default function JourneyDetail({ journeyId }) {
         body: JSON.stringify({ confirmation: "DELETE" })
       });
       const payload = await response.json().catch(() => ({}));
-      if (!response.ok || !payload.ok) throw new Error(payload.message || t("journey.messages.delete_failed", "Teekonna kustutamine ebaõnnestus."));
+      if (!response.ok || !payload.ok) {
+        setFault({ part: "data", text: journeyErrorText(t, payload.message, t("journey.messages.delete_failed", "Teekonna kustutamine ebaõnnestus.")) });
+        lock("");
+        return;
+      }
+      /* Kustutatud Teekonnal ei ole enam midagi kinni hoida. */
+      setDirtyParts({});
       pushWithTransition(router, localizePath("/teekond", locale));
-    } catch (deleteError) { setError(deleteError.message); setBusy(false); }
-  }, [journeyId, locale, router, t]);
-
-  const handleCancelEdit = useCallback(() => {
-    setForm(createFormState(journey));
-    setEditing(false);
-    setError("");
-  }, [journey]);
+    } catch {
+      setFault({ part: "data", text: t("journey.messages.delete_failed", "Teekonna kustutamine ebaõnnestus.") });
+      lock("");
+    }
+  }, [begin, journeyId, locale, lock, router, t]);
 
   const handleExport = useCallback(async () => {
-    if (!journey) return;
-    setBusy(true);
-    setError("");
+    if (busyRef.current || !journey) return;
+    begin("export");
     try {
       await downloadJourneyExport(journey, `teekond-${journey.id}.json`);
     } catch (exportError) {
-      setError(exportError.message || t("journey.messages.export_failed", "Eksport ebaõnnestus."));
+      setFault({ part: "data", text: journeyErrorText(t, exportError.message, t("journey.messages.export_failed", "Eksport ebaõnnestus.")) });
     } finally {
-      setBusy(false);
+      lock("");
     }
-  }, [journey, t]);
+  }, [begin, journey, lock, t]);
+
+  /* Soovi salvestamine: kogu kontekst läheb kaasa nagu teenuse jätkumise kontrollil,
+     sest server asendab konteksti tervikuna. Tühi tekst eemaldab soovi. */
+  const handleSaveWish = useCallback(async (value) => {
+    if (busyRef.current || !journey || !journeyId) return false;
+    const wish = String(value || "").trim();
+    const context = { ...(journey.context || {}) };
+    if (wish) context.personWish = wish;
+    else delete context.personWish;
+    begin("wish");
+    try {
+      const response = await fetch(`/api/journeys/${encodeURIComponent(journeyId)}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ context, expectedUpdatedAt: journey.updatedAt })
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload.ok) {
+        setFault({ part: "wish", text: journeyErrorText(t, payload.message, t("journey.messages.save_failed", "Saving the journey failed.")) });
+        return false;
+      }
+      setJourney(payload.journey);
+      done(wish ? t("journey.wish.saved", "Sinu soov on salvestatud.") : t("journey.wish.removed", "Soov on eemaldatud."));
+      return true;
+    } catch {
+      setFault({ part: "wish", text: t("journey.messages.save_failed", "Saving the journey failed.") });
+      return false;
+    } finally {
+      lock("");
+    }
+  }, [begin, done, journey, journeyId, lock, t]);
 
   const handleLoadMorePreInquiries = useCallback(async () => {
     const cursor = journey?.linkedPreInquiriesPage?.nextCursor;
-    if (!journeyId || !cursor) return;
-    const response = await fetch(
-      `/api/journeys/${encodeURIComponent(journeyId)}/linked-pre-inquiries?cursor=${encodeURIComponent(cursor)}&limit=25`,
-      { cache: "no-store" }
-    );
-    const payload = await response.json().catch(() => ({}));
-    if (!response.ok || !payload.ok) throw new Error(payload.message || "journeys.errors.load_failed");
-    setJourney((current) => ({
-      ...current,
-      linkedPreInquiries: [...(current?.linkedPreInquiries || []), ...(payload.page?.items || [])],
-      linkedPreInquiriesPage: payload.page
-    }));
-  }, [journey?.linkedPreInquiriesPage?.nextCursor, journeyId]);
+    if (busyRef.current || !journeyId || !cursor) return;
+    begin("more");
+    try {
+      const response = await fetch(
+        `/api/journeys/${encodeURIComponent(journeyId)}/linked-pre-inquiries?cursor=${encodeURIComponent(cursor)}&limit=25`,
+        { cache: "no-store" }
+      );
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload.ok) {
+        setFault({ part: "sent", text: journeyErrorText(t, payload.message, t("journey.messages.load_failed", "Loading the journey failed.")) });
+        return;
+      }
+      setJourney((current) => ({
+        ...current,
+        linkedPreInquiries: [...(current?.linkedPreInquiries || []), ...(payload.page?.items || [])],
+        linkedPreInquiriesPage: payload.page
+      }));
+    } catch {
+      setFault({ part: "sent", text: t("journey.messages.load_failed", "Loading the journey failed.") });
+    } finally {
+      lock("");
+    }
+  }, [begin, journey?.linkedPreInquiriesPage?.nextCursor, journeyId, lock, t]);
 
-  const handleSaveContinuity = useCallback(async (event) => {
-    event.preventDefault();
-    if (!journey || !journeyId) return;
-    setBusy(true);
-    setError("");
-    setNotice("");
+  const handleSaveContinuity = useCallback(async (continuityForm) => {
+    if (busyRef.current || !journey || !journeyId) return false;
+    begin("continuity");
 
     const serviceContinuity = {
       serviceName: continuityForm.serviceName.trim(),
@@ -1070,18 +674,19 @@ export default function JourneyDetail({ journeyId }) {
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload.ok) {
-        throw new Error(payload.message || t("journey.messages.save_failed", "Saving the journey failed."));
+        setFault({ part: "continuity", text: journeyErrorText(t, payload.message, t("journey.messages.save_failed", "Saving the journey failed.")) });
+        return false;
       }
       setJourney(payload.journey);
-      setForm(createFormState(payload.journey));
-      setContinuityForm(createServiceContinuityState(payload.journey));
-      setNotice(t("journey.serviceContinuity.saved", "Teenuse jätkumise kontroll salvestati Teekonda."));
-    } catch (continuityError) {
-      setError(continuityError.message || t("journey.messages.save_failed", "Saving the journey failed."));
+      done(t("journey.serviceContinuity.saved", "Teenuse jätkumise kontroll salvestati Teekonda."));
+      return true;
+    } catch {
+      setFault({ part: "continuity", text: t("journey.messages.save_failed", "Saving the journey failed.") });
+      return false;
     } finally {
-      setBusy(false);
+      lock("");
     }
-  }, [continuityForm, journey, journeyId, t]);
+  }, [begin, done, journey, journeyId, lock, t]);
 
   const handleCreateHealthQuestions = useCallback(() => {
     if (!journey) return;
@@ -1096,735 +701,296 @@ export default function JourneyDetail({ journeyId }) {
       dailyLifeQuestion: t("journey.healthContact.draftDailyLifeQuestion", "Kas see teema võib mõjutada minu igapäevast toimetulekut, tööd, õppimist või olemasolevat tuge?")
     }));
     setHealthDraftOpen(true);
+    setHealthCopied(false);
   }, [journey, t]);
 
+  /* Küsimused jäävad inimese kätte: neid ei salvestata ega saadeta. Kopeerimine
+     on tee need siit kaasa võtta. */
+  const handleCopyHealthQuestions = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(healthQuestionsDraft);
+      setHealthCopied(true);
+    } catch {
+      setFault({ part: "help", text: t("journey.desk.help.copy_failed") });
+    }
+  }, [healthQuestionsDraft, t]);
+
+  /* Osa teatab salvestamata tekstist: üks kindel funktsioon osa kohta, et osa
+     efekt ei käivituks iga joonistuse peale. */
+  const dirtySetters = useMemo(
+    () => Object.fromEntries(DESK_PARTS.map((key) => [key, (dirty) => setDirtyParts((current) => (Boolean(current[key]) === Boolean(dirty) ? current : { ...current, [key]: Boolean(dirty) }))])),
+    []
+  );
+  const dirty = Object.values(dirtyParts).some(Boolean);
+
+  /* Salvestamata tekst ja lahkumise teed, mida leht ise ei joonista: esimene
+     lahkumine jääb kinni ja laua kohal seisab põhjus, teine lahkub. */
+  useEffect(() => {
+    if (!dirty) return undefined;
+    const leave = twoPressLeaveGuard({
+      onAsk: () => setLeaveAsked(true),
+      onClear: () => setLeaveAsked(false)
+    });
+    const release = setPanelLeaveGuard(leave);
+    const warn = (event) => {
+      event.preventDefault();
+      event.returnValue = "";
+    };
+    window.addEventListener("beforeunload", warn);
+    return () => {
+      release();
+      leave.clear();
+      window.removeEventListener("beforeunload", warn);
+    };
+  }, [dirty]);
+
+  /* Tagasi Teekondade loendisse lehe sees (uue vahekaardi vajutus jääb
+     brauserile). Teistele lehtedele viivad lingid on tavalised lingid: need lehed
+     loevad oma aadressi esimesel joonistusel. */
+  const openInApp = useCallback((event, href) => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    /* Lehesisest liikumist brauseri lahkumisküsimus ei näe: salvestamata teksti
+       korral küsib sama värav, mis kiirmenüü tagasinoolel. */
+    if (!panelLeaveAllowed("navigate")) return;
+    pushWithTransition(router, href);
+  }, [router]);
+
+  const frame = (children) => (
+    <section className={styles.page}>
+      {/* Lehe nimi on kiirmenüüs; pealkiri jääb ekraanilugejale. */}
+      <h1 className="sr-only">{journey?.title || t("journey.title", "Teekond")}</h1>
+      {children}
+    </section>
+  );
+  const listHref = localizePath("/teekond", locale);
+  const backToList = (
+    <Button as="a" href={listHref} size="sm" variant="secondary" onClick={(event) => openInApp(event, listHref)}>
+      {t("journey.desk.all_journeys")}
+    </Button>
+  );
+
   if (status === "loading") {
-    return (
-      <main>
-        <div>
-          <div>
-            <SubpageHeader
-              onBack={handleBack}
-              backAriaLabel={t("journey.actions.back_to_list", "Back to journey")}
-              showBack={false}
-              holdPressedVisualDisabled
-            >
-              {t("journey.title", "Teekond")}
-            </SubpageHeader>
-            <p>{t("journey.messages.loading", "Laen teekonda...")}</p>
-          </div>
-        </div>
-      </main>
+    return frame(
+      <StepPanel title={t("journey.title", "Teekond")}>
+        <p className={shared.quiet} aria-live="polite">
+          {t("journey.messages.loading", "Laen teekonda...")}
+        </p>
+      </StepPanel>
     );
   }
 
   if (status !== "authenticated") {
-    return (
-      <main>
-        <div>
-          <div>
-            <SubpageHeader
-              onBack={handleBack}
-              backAriaLabel={t("journey.actions.back_to_list", "Back to journey")}
-              showBack={false}
-              holdPressedVisualDisabled
-            >
-              {t("journey.title", "Teekond")}
-            </SubpageHeader>
-            <section>
-              <div>
-                <h1>{t("journey.title", "Teekond")}</h1>
-              </div>
-              <p>
-                {t("journey.messages.auth_required", "The journey is private. Log in to continue.")}
-              </p>
-              <Button as="a" href="/vestlus?login=1">
-                {t("journey.actions.login", "Log in")}
-              </Button>
-            </section>
-          </div>
-        </div>
-      </main>
+    /* Pärast sisselogimist tuleb inimene sama Teekonna juurde tagasi. */
+    return frame(
+      <StepPanel
+        title={t("journey.title", "Teekond")}
+        lead={t("journey.messages.auth_required", "The journey is private. Log in to continue.")}
+        actions={
+          <Button as="a" href={loginHref(`/teekond/${encodeURIComponent(journeyId)}`)} size="sm" variant="primary">
+            {t("journey.actions.login", "Log in")}
+          </Button>
+        }
+      />
     );
   }
 
   if (notFound) {
-    return (
-      <main>
-        <div>
-          <div>
-            <SubpageHeader
-              onBack={handleBack}
-              backAriaLabel={t("journey.actions.back_to_list", "Back to journey")}
-              showBack={false}
-              holdPressedVisualDisabled
-            >
-              {t("journey.title", "Teekond")}
-            </SubpageHeader>
-            <section>
-              <h1>{t("journey.messages.not_found_title", "Teekonda ei leitud")}</h1>
-              <p>
-                {t("journey.messages.not_found", "This journey is not available or does not belong to your account.")}
-              </p>
-              <Button onClick={handleBack} variant="linkBrand">
-                {t("journey.actions.back_to_list", "Back to journey")}
-              </Button>
-            </section>
-          </div>
-        </div>
-      </main>
+    return frame(
+      <StepPanel title={t("journey.messages.not_found_title", "Teekonda ei leitud")} question={t("journey.messages.not_found_title", "Teekonda ei leitud")} lead={t("journey.messages.not_found", "This journey is not available or does not belong to your account.")} actions={backToList} />
     );
   }
 
-  return (
-    <main className="journey-page">
-      <div className="journey-shell">
-        <div className="journey-content">
-          <SubpageHeader
-            onBack={handleBack}
-            backAriaLabel={t("journey.actions.back_to_list", "Back to journey")}
-            showBack={false}
-            holdPressedVisualDisabled
-          >
-            {t("journey.title", "Teekond")}
-          </SubpageHeader>
-
-          {error ? <p role="alert">{error}</p> : null}
-          {notice ? <p role="status">{notice}</p> : null}
-
-          {!journey ? (
-            <p>{t("journey.messages.loading", "Laen teekonda...")}</p>
-          ) : (
-            <>
-              <section>
-                <div>
-                  <div>
-                    <div>
-                      {t("journey.header.eyebrow", "Private journey layer")}
-                    </div>
-                    <h1>
-                      {journey.title}
-                    </h1>
-                    <div>
-                      <span>
-                        {t("journey.labels.private", "Private")}
-                      </span>
-                      <span>{statusLabel(t, journey.status)}</span>
-                      <span>{primaryPathLabel(t, journey.primaryPath)}</span>
-                      {updatedAt ? (
-                        <span>
-                          {t("journey.labels.updated_at", { date: updatedAt }, "Updated {date}")}
-                        </span>
-                      ) : null}
-                    </div>
-                  </div>
-                  <div>
-                    {journey.status !== "ARCHIVED" ? (
-                      <Button variant="primary" onClick={() => setEditing((current) => !current)} disabled={busy}>
-                        {editing ? t("journey.actions.close_edit", "Close editing") : t("journey.actions.edit", "Edit")}
-                      </Button>
-                    ) : (
-                      <p>{t("journey.messages.archived_readonly", "An archived Journey is read-only. Reopen it before editing.")}</p>
-                    )}
-                    {journey.status !== "ARCHIVED" ? (
-                      <Button variant="danger" onClick={handleArchive} disabled={busy}>
-                        {t("journey.actions.archive", "Archive")}
-                      </Button>
-                    ) : (
-                      <Button onClick={handleReopen} disabled={busy}>
-                        {t("journey.actions.reopen", "Taasava")}
-                      </Button>
-                    )}
-                    <Button onClick={handleExport} disabled={busy}>
-                      {t("journey.actions.export", "Ekspordi JSON-failina")}
-                    </Button>
-                    {!deleteArmed ? (
-                      <Button variant="danger" onClick={() => setDeleteArmed(true)} disabled={busy}>
-                        {t("journey.actions.delete", "Kustuta jäädavalt")}
-                      </Button>
-                    ) : null}
-                  </div>
-                </div>
-              </section>
-
-              {deleteArmed ? (
-                <section className="journey-risk-card" role="alertdialog" aria-labelledby="journey-delete-title">
-                  <h2 id="journey-delete-title">{t("journey.delete.title", "Kustuta Teekond jäädavalt?")}</h2>
-                  <p>{t("journey.delete.body", "Teekonna privaatne sisu kustub. Seotud eelpöördumised jäävad alles, kuid side Teekonnaga katkeb. Soovitame enne eksportida.")}</p>
-                  <Button onClick={handleExport} disabled={busy}>
-                    {t("journey.actions.export", "Ekspordi JSON-failina")}
-                  </Button>
-                  <Button variant="danger" onClick={handleDelete} disabled={busy}>
-                    {t("journey.delete.confirm", "Jah, kustuta jäädavalt")}
-                  </Button>
-                  <Button variant="linkBrand" onClick={() => setDeleteArmed(false)} disabled={busy}>
-                    {t("journey.actions.cancel", "Tühista")}
-                  </Button>
-                </section>
-              ) : null}
-
-              <section>
-                <h2>
-                  {t("journey.privacy.title", "Teekond on privaatne")}
-                </h2>
-                <p>
-                  {t("journey.privacy.description", "Midagi ei jagata enne sinu kinnitust. Teised näevad ainult seda infot, mille sa hiljem eraldi kinnitad ja jagad.")}
-                </p>
-              </section>
-
-              <JourneyRoadmap journey={journey} t={t} />
-
-              <section>
-                <div>
-                  <div>
-                    <h2>
-                      {t("journey.service_map.title", "Ava teenusekaart nende teemade põhjal")}
-                    </h2>
-                    <p>
-                      {serviceMapHandoff?.hasFilter
-                        ? t("journey.service_map.filtered_description", "Teenusekaart avaneb teekonna teemade ja piirkonna signaalidega.")
-                        : t("journey.service_map.fallback_description", "Teenusekaart avaneb üldvaates. Täpsemaks avamiseks lisa KOV või piirkond.")}
-                    </p>
-                    {!serviceMapHasMunicipality ? (
-                      <p>
-                        {t("journey.service_map.missing_municipality", "Teenusekaardi täpsemaks avamiseks lisa KOV või piirkond.")}
-                      </p>
-                    ) : null}
-                    <p>
-                      {t("journey.service_map.privacy_note", "Teenusekaart ei jaga sinu teekonda ühegi osapoolega. See aitab leida sobiva kontakti või järgmise sammu.")}
-                    </p>
-                  </div>
-                  <Button as="a" href={serviceMapHref}>
-                    {t("journey.service_map.open", "Ava teenusekaart")}
-                  </Button>
-                </div>
-              </section>
-
-              {assistiveDevicesHandoff?.hasAssistiveDeviceNeed ? (
-                <section>
-                  <div>
-                    <div>
-                      <div>
-                        <h2>
-                          {t("journey.assistiveDevices.title", "Abivahendid ja kohandused")}
-                        </h2>
-                        <p>
-                          {t("journey.assistiveDevices.description", "Siia saab koondada info abivahendite, kodukohanduse või abivahendi kasutamise toe kohta.")}
-                        </p>
-                        <p>
-                          {t("journey.assistiveDevices.safetyNote", "Sotsiaal.pro ei määra ametlikult abivahendit ega otsusta hüvitamist. Vajadusel täpsusta sobivust KOV-i, spetsialisti, rehabilitatsioonimeeskonna või abivahendi teenuseosutajaga.")}
-                        </p>
-                      </div>
-                      <div>
-                        <Button as="a" href={serviceMapHref} variant="linkBrand">
-                          {t("journey.service_map.open", "Ava teenusekaart")}
-                        </Button>
-                        <Button type="button" onClick={() => setAssistivePreInquiryShareOpen((current) => !current)}>
-                          {t("journey.pre_inquiry.open", "Koosta eelpöördumine")}
-                        </Button>
-                        <Button as="a" href={documentsHref} variant="linkBrand">
-                          {t("journey.assistiveDevices.addDocument", "Lisa dokument")}
-                        </Button>
-                        <Button type="button" variant="primary" onClick={() => setAssistiveHelpRequestShareOpen((current) => !current)}>
-                          {t("journey.assistiveDevices.createPracticalHelpRequest", "Loo abisoov praktiliseks abiks")}
-                        </Button>
-                      </div>
-                    </div>
-                    <div>
-                      {assistiveDevicesHandoff.devices.map((item) => (
-                        <div key={item.id}>
-                          <div>
-                            <strong>{item.name}</strong>
-                            <span>{t(`journey.assistiveDevices.status.${item.status}`, item.status)}</span>
-                          </div>
-                          {item.supportNeed ? <p>{item.supportNeed}</p> : null}
-                          {item.relatedNeedTags?.length ? (
-                            <div>
-                              {item.relatedNeedTags.map((tag) => <span key={tag}>{tag}</span>)}
-                            </div>
-                          ) : null}
-                        </div>
-                      ))}
-                    </div>
-                    {assistivePreInquiryShareOpen ? (
-                      <PreInquirySharePanel journey={journey} href={preInquiryHref} t={t} />
-                    ) : null}
-                    {assistiveHelpRequestShareOpen ? (
-                      <HelpRequestSharePanel journey={journey} href={createHelpRequestHref} t={t} />
-                    ) : null}
-                  </div>
-                </section>
-              ) : null}
-
-              {helpMediationHandoff?.hasPracticalNeed ? (
-                <section>
-                  <div>
-                    <div>
-                      <h2>
-                        {t("journey.helpMediation.title", "Abivahendus")}
-                      </h2>
-                      <p>
-                        {helpOfferMatchLoading
-                          ? t("journey.helpMediation.checkingOffers", "Kontrollin sobivaid abipakkumisi...")
-                          : hasHelpOfferMatches
-                            ? t("journey.helpMediation.offersFoundHint", "Sinu kirjeldus viitab praktilisele abivajadusele. Leidsime võimalikke abipakkumisi, mida saad vaadata.")
-                            : t("journey.helpMediation.noOffersHint", "Sinu kirjeldus viitab praktilisele abivajadusele. Praegu sobivaid abipakkumisi ei leitud, kuid saad luua abisoovi.")}
-                      </p>
-                      {!helpMediationHandoff.municipalityName ? (
-                        <p>
-                          {t("journey.helpMediation.noRegionHint", "Piirkonna lisamine aitab sobivaid abipakkumisi täpsemalt leida.")}
-                        </p>
-                      ) : null}
-                      <p>
-                        {t("journey.helpMediation.privacy", "Teekond ei avalda midagi automaatselt. Abisoovi loomisel valid eraldi, millise info kaasa võtad ja mida kaardil näidatakse.")}
-                      </p>
-                      {helpMediationHandoff.taxonomy?.relatedServiceCategories?.length ? (
-                        <p>
-                          {t("journey.helpMediation.serviceHint", "Sarnase vajadusega võib olla seotud ka KOV teenus või teenuseosutaja kontakt.")}
-                        </p>
-                      ) : null}
-                    </div>
-                    <div>
-                      {hasHelpOfferMatches ? (
-                        <Button as="a" href={helpOffersHref} variant="linkBrand">
-                          {t("journey.helpMediation.viewOffers", "Vaata abipakkumisi")}
-                        </Button>
-                      ) : null}
-                      <Button type="button" onClick={() => setHelpRequestShareOpen((current) => !current)}>
-                        {t("journey.helpMediation.createRequest", "Loo abisoov")}
-                      </Button>
-                      <Button as="a" href={helpRequestsHref} variant="linkBrand">
-                        {t("journey.helpMediation.viewRequests", "Vaata abisoove")}
-                      </Button>
-                      <Button as="a" href={createHelpOfferHref} variant="linkBrand">
-                        {t("journey.helpMediation.createOffer", "Loo abipakkumine")}
-                      </Button>
-                    </div>
-                  </div>
-                  {helpRequestShareOpen ? (
-                    <HelpRequestSharePanel journey={journey} href={createHelpRequestHref} t={t} />
-                  ) : null}
-                </section>
-              ) : null}
-
-              <section>
-                <div>
-                  <div>
-                    <h2>
-                      {t("journey.pre_inquiry.title", "Koosta eelpöördumine selle olukorra põhjal")}
-                    </h2>
-                    <p>
-                      {t("journey.pre_inquiry.description", "Enne eelpöördumise koostamist valid, millist teekonna infot soovid kaasa võtta. Saad teksti enne saatmist üle vaadata ja muuta.")}
-                    </p>
-                    <p>
-                      {t("journey.pre_inquiry.privacy_note", "Teekonda ei jagata automaatselt. Vastuvõtja näeb ainult sinu kinnitatud eelpöördumist.")}
-                    </p>
-                  </div>
-                  <Button type="button" onClick={() => setPreInquiryShareOpen((current) => !current)}>
-                    {t("journey.pre_inquiry.open", "Koosta eelpöördumine")}
-                  </Button>
-                </div>
-                {preInquiryShareOpen ? (
-                  <PreInquirySharePanel journey={journey} href={preInquiryHref} t={t} />
-                ) : null}
-              </section>
-
-              <section>
-                <div>
-                  <div>
-                    <h2>
-                      {t("journey.serviceContinuity.title", "Teenuse jätkumise kontroll")}
-                    </h2>
-                    <p>
-                      {t("journey.serviceContinuity.description", "Kui sul on olemasolev teenus, tugi, otsus või plaan, mis võib vajada jätkumise täpsustamist, saad siin info korrastada ja vajadusel koostada eelpöördumise.")}
-                    </p>
-                    <p>
-                      {t("journey.serviceContinuity.notOfficialAssessment", "See on info korrastamise abivahend, mitte ametlik hinnang, otsus ega teenuse määramine. Pädev asutus või spetsialist hindab ja otsustab.")}
-                    </p>
-                  </div>
-                  {journey.status !== "ARCHIVED" ? (
-                    <Button
-                      type="button"
-                      variant="primary"
-                      onClick={() => setContinuityOpen((current) => !current)}
-                      disabled={busy}
-                    >
-                      {continuityOpen
-                        ? t("journey.serviceContinuity.close", "Sulge kontroll")
-                        : t("journey.serviceContinuity.open", "Teenuse jätkumise kontroll")}
-                    </Button>
-                  ) : null}
-                </div>
-
-                {hasContinuity ? (
-                  <div>
-                    <h3>
-                      {t("journey.serviceContinuity.summaryTitle", "Teenuse jätkumise kokkuvõte")}
-                    </h3>
-                    <div>
-                      {continuity.serviceName ? (
-                        <span>{continuity.serviceName}</span>
-                      ) : null}
-                      {continuity.currentProvider ? (
-                        <span>{continuity.currentProvider}</span>
-                      ) : null}
-                      {continuity.municipality ? (
-                        <span>{continuity.municipality}</span>
-                      ) : null}
-                      {continuity.endDate ? (
-                        <span>
-                          {t("journey.serviceContinuity.endDateValue", { date: continuity.endDate }, "Lõppkuupäev: {date}")}
-                        </span>
-                      ) : null}
-                    </div>
-                    <p>
-                      {continuity.userGoal || t("journey.serviceContinuity.existingSummaryEmpty", "Kasutaja eesmärk vajab veel täpsustamist.")}
-                    </p>
-                    {continuityMissingInfo.length ? (
-                      <div>
-                        <p>
-                          {t("journey.serviceContinuity.missingInfo", "Puuduolev info")}
-                        </p>
-                        <div>
-                          {continuityMissingInfo.map((item) => (
-                            <span key={item}>{item}</span>
-                          ))}
-                        </div>
-                      </div>
-                    ) : null}
-                    <p>
-                      {t("journey.serviceContinuity.privacyNote", "Kontrolli info jääb sinu privaatse Teekonna konteksti. Seda ei jagata spetsialisti, teenuseosutaja ega ruumi liikmetega enne sinu teadlikku kinnitamist.")}
-                    </p>
-                    <div>
-                      <Button as="a" href={preInquiryHref}>
-                        {t("journey.serviceContinuity.createPreInquiry", "Koosta eelpöördumine")}
-                      </Button>
-                      <Button as="a" href={documentsHref} variant="linkBrand">
-                        {t("journey.serviceContinuity.addDocument", "Lisa dokument analüüsiks")}
-                      </Button>
-                      <Button as="a" href={serviceMapHref} variant="linkBrand">
-                        {t("journey.serviceContinuity.openServiceMap", "Ava teenusekaart")}
-                      </Button>
-                    </div>
-                  </div>
-                ) : null}
-
-                {continuityOpen && journey.status !== "ARCHIVED" ? (
-                  <Form onSubmit={handleSaveContinuity}>
-                    <div>
-                      <ContinuityTextField
-                        id="journey-continuity-service-name"
-                        label={t("journey.serviceContinuity.serviceName", "Teenuse või toe nimetus")}
-                        value={continuityForm.serviceName}
-                        onChange={(value) => updateContinuityForm("serviceName", value)}
-                        t={t}
-                        placeholder={t("journey.serviceContinuity.serviceNamePlaceholder", "Näiteks koduteenus, tugiisik, rehabilitatsioon")}
-                      />
-                      <ContinuityTextField
-                        id="journey-continuity-provider"
-                        label={t("journey.serviceContinuity.currentProvider", "Praegune teenuseosutaja või kontakt")}
-                        value={continuityForm.currentProvider}
-                        onChange={(value) => updateContinuityForm("currentProvider", value)}
-                        t={t}
-                        placeholder={t("journey.serviceContinuity.currentProviderPlaceholder", "Teenuseosutaja, KOV kontakt või muu osapool")}
-                      />
-                      <ContinuityTextField
-                        id="journey-continuity-municipality"
-                        label={t("journey.serviceContinuity.municipality", "KOV või piirkond")}
-                        value={continuityForm.municipality}
-                        onChange={(value) => updateContinuityForm("municipality", value)}
-                        t={t}
-                        placeholder={t("journey.serviceContinuity.municipalityPlaceholder", "Näiteks Tartu linn või oma vald")}
-                      />
-                      <ContinuityTextField
-                        id="journey-continuity-end-date"
-                        label={t("journey.serviceContinuity.endDate", "Lõppkuupäev, kui teada")}
-                        value={continuityForm.endDate}
-                        onChange={(value) => updateContinuityForm("endDate", value)}
-                        t={t}
-                        maxLength={80}
-                        placeholder={t("journey.serviceContinuity.endDatePlaceholder", "Kuupäev või vaba kirjeldus")}
-                      />
-                    </div>
-
-                    <div>
-                      <ContinuityChoiceField
-                        id="journey-continuity-existing"
-                        label={t("journey.serviceContinuity.hasExistingService", "Kas teenus või tugi on praegu olemas?")}
-                        value={continuityForm.hasExistingService}
-                        onChange={(value) => updateContinuityForm("hasExistingService", value)}
-                        t={t}
-                      />
-                      <ContinuityChoiceField
-                        id="journey-continuity-known-end-date"
-                        label={t("journey.serviceContinuity.knownEndDate", "Kas lõppkuupäev on teada?")}
-                        value={continuityForm.knownEndDate}
-                        onChange={(value) => updateContinuityForm("knownEndDate", value)}
-                        t={t}
-                      />
-                      <ContinuityChoiceField
-                        id="journey-continuity-decision"
-                        label={t("journey.serviceContinuity.hasDecisionOrPlan", "Kas olemas on otsus, plaan, leping, kiri või muu dokument?")}
-                        value={continuityForm.hasDecisionOrPlan}
-                        onChange={(value) => updateContinuityForm("hasDecisionOrPlan", value)}
-                        t={t}
-                      />
-                      <ContinuityChoiceField
-                        id="journey-continuity-document"
-                        label={t("journey.serviceContinuity.documentAttached", "Kas dokument on juba platvormile lisatud?")}
-                        value={continuityForm.documentAttached}
-                        onChange={(value) => updateContinuityForm("documentAttached", value)}
-                        t={t}
-                      />
-                      <ContinuityChoiceField
-                        id="journey-continuity-kov"
-                        label={t("journey.serviceContinuity.kovAlreadyInvolved", "Kas KOV on juba kaasatud?")}
-                        value={continuityForm.kovAlreadyInvolved}
-                        onChange={(value) => updateContinuityForm("kovAlreadyInvolved", value)}
-                        t={t}
-                      />
-                      <ContinuityChoiceField
-                        id="journey-continuity-provider-involved"
-                        label={t("journey.serviceContinuity.providerAlreadyInvolved", "Kas teenuseosutaja on juba kaasatud?")}
-                        value={continuityForm.providerAlreadyInvolved}
-                        onChange={(value) => updateContinuityForm("providerAlreadyInvolved", value)}
-                        t={t}
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="journey-continuity-user-goal">
-                        {t("journey.serviceContinuity.userGoal", "Mida soovid täpsustada või ette valmistada?")}
-                      </label>
-                      <textarea
-                        id="journey-continuity-user-goal"
-                        value={continuityForm.userGoal}
-                        onChange={(event) => updateContinuityForm("userGoal", event.target.value)}
-                        maxLength={12000}
-                        placeholder={t("journey.serviceContinuity.userGoalPlaceholder", "Näiteks soovin saada selgust, küsida jätkumise võimalust, koostada eelpöördumise või lisada dokumendi analüüsiks.")}
-                      />
-                      <small>{t("journey.labels.character_count", { current: continuityForm.userGoal.length, limit: 12000 }, "{current}/{limit}")}</small>
-                    </div>
-
-                    <div>
-                      <p>
-                        {t("journey.serviceContinuity.nextSteps", "Võimalikud järgmised sammud")}
-                      </p>
-                      <div>
-                        {continuityActions.map((action) => (
-                          <span key={`${action.type || ""}-${action.title}`}>
-                            {action.title}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <Button type="submit" disabled={busy}>
-                        {t("journey.serviceContinuity.save", "Salvesta kontroll")}
-                      </Button>
-                      <Button type="button" variant="linkBrand" onClick={() => setContinuityOpen(false)} disabled={busy}>
-                        {t("journey.serviceContinuity.close", "Sulge kontroll")}
-                      </Button>
-                    </div>
-                  </Form>
-                ) : null}
-              </section>
-
-              {showHealthContact ? (
-                <section>
-                  <div>
-                    <div>
-                      <h2>
-                        {t("journey.healthContact.title", "Tervisekontakti võimalus")}
-                      </h2>
-                      <p>
-                        {t("journey.healthContact.description", "Sinu kirjelduses võib olla tervisega seotud küsimus. Esmane järgmine samm võib olla perearstikeskus, tervisekeskus või ametlik tervisenõu kontakt.")}
-                      </p>
-                      <p>
-                        {t("journey.healthContact.notMedicalAdvice", "Sotsiaal.pro ei anna meditsiinilist hinnangut, diagnoosi ega ravisoovitust, kuid saab aidata küsimused selgelt sõnastada. Kui on vahetu oht, tuleb pöörduda hädaabinumbrile või erakorralise abi poole.")}
-                      </p>
-                    </div>
-                    <Button type="button" variant="primary" onClick={handleCreateHealthQuestions} disabled={busy}>
-                      {t("journey.healthContact.createQuestions", "Koosta küsimused tervisekontaktile")}
-                    </Button>
-                  </div>
-
-                  <p>
-                    {t("journey.healthContact.privateNote", "Küsimused jäävad sinu kätte. Neid ei saadeta automaatselt perearstikeskusele, tervisekeskusele ega muule osapoolele.")}
-                  </p>
-
-                  <div>
-                    <Button as="a" href={serviceMapHref} variant="linkBrand">
-                      {t("journey.healthContact.openServiceMap", "Ava teenusekaart")}
-                    </Button>
-                    <Button as="a" href={documentsHref} variant="linkBrand">
-                      {t("journey.serviceContinuity.addDocument", "Lisa dokument analüüsiks")}
-                    </Button>
-                    <Button as="a" href={preInquiryHref} variant="linkBrand">
-                      {t("journey.healthContact.createPreInquiry", "Koosta eelpöördumine")}
-                    </Button>
-                  </div>
-
-                  {healthDraftOpen ? (
-                    <div>
-                      <label htmlFor="journey-health-contact-draft">
-                        {t("journey.healthContact.questionsDraftTitle", "Küsimused tervisekontaktile")}
-                      </label>
-                      <textarea
-                        id="journey-health-contact-draft"
-                        value={healthQuestionsDraft}
-                        onChange={(event) => setHealthQuestionsDraft(event.target.value)}
-                      />
-                      <p>
-                        {t("journey.healthContact.noAutomaticSharing", "Mustandit ei saadeta automaatselt. Vaata tekst üle, muuda seda vajadusel ja otsusta ise, kas kasutad seda väljaspool platvormi.")}
-                      </p>
-                    </div>
-                  ) : null}
-                </section>
-              ) : null}
-
-              {editing ? (
-                <Form onSubmit={handleSave}>
-                  <div>
-                    <label htmlFor="journey-detail-title">
-                      {t("journey.labels.title", "Title")}
-                    </label>
-                    <Input
-                      id="journey-detail-title"
-                      value={form.title}
-                      onChange={(event) => updateForm("title", event.target.value)}
-                      maxLength={160}
-                      required
-                    />
-                    <small>{t("journey.labels.character_count", { current: form.title.length, limit: 160 }, "{current}/{limit}")}</small>
-                  </div>
-
-                  <div>
-                    <label htmlFor="journey-detail-summary">
-                      {t("journey.labels.summary", "Situation summary")}
-                    </label>
-                    <textarea
-                      id="journey-detail-summary"
-                      value={form.summary}
-                      onChange={(event) => updateForm("summary", event.target.value)}
-                      required
-                      maxLength={12000}
-                    />
-                    <small>{t("journey.labels.character_count", { current: form.summary.length, limit: 12000 }, "{current}/{limit}")}</small>
-                  </div>
-
-                  <div>
-                    <label htmlFor="journey-detail-primary-path">
-                      {t("journey.labels.primary_path", "Primary direction")}
-                    </label>
-                    <Dropdown
-                      id="journey-detail-primary-path"
-                      value={form.primaryPath || "UNKNOWN"}
-                      onChange={(next) => updateForm("primaryPath", next)}
-                      ariaLabel={t("journey.labels.primary_path", "Primary direction")}
-                      options={PRIMARY_PATH_VALUES.map((value) => ({
-                        value,
-                        label: primaryPathLabel(t, value)
-                      }))}
-                    />
-                  </div>
-
-                  <div>
-                    <FormListField
-                      id="journey-detail-domains"
-                      label={t("journey.labels.domains", "Related topics")}
-                      value={form.domains}
-                      onChange={(value) => updateForm("domains", value)}
-                      t={t}
-                      maxItems={12}
-                    />
-                    <FormListField
-                      id="journey-detail-missing-info"
-                      label={t("journey.labels.missing_info", "Missing information")}
-                      value={form.missingInfo}
-                      onChange={(value) => updateForm("missingInfo", value)}
-                      t={t}
-                      maxItems={12}
-                    />
-                    <FormListField
-                      id="journey-detail-risk-signals"
-                      label={t("journey.labels.risk_signals", "Ettevaatlikud tähelepanekud")}
-                      value={form.riskSignals}
-                      onChange={(value) => updateForm("riskSignals", value)}
-                      t={t}
-                      maxItems={8}
-                    />
-                    <FormListField
-                      id="journey-detail-actions"
-                      label={t("journey.labels.suggested_actions", "Suggested next steps")}
-                      value={form.suggestedActions}
-                      onChange={(value) => updateForm("suggestedActions", value)}
-                      t={t}
-                      maxItems={8}
-                    />
-                  </div>
-
-                  <div>
-                    <Button type="submit" disabled={busy}>
-                      {t("journey.actions.save_changes", "Save changes")}
-                    </Button>
-                    <Button variant="linkBrand" onClick={handleCancelEdit} disabled={busy}>
-                      {t("journey.actions.cancel", "Cancel")}
-                    </Button>
-                  </div>
-                </Form>
-              ) : (
-                <>
-                  <section>
-                    <h2>
-                      {t("journey.labels.summary", "Situation summary")}
-                    </h2>
-                    <p>{journey.summary}</p>
-                  </section>
-
-                  <div>
-                    <ContentList
-                      title={t("journey.labels.domains", "Seotud teemad")}
-                      items={journey.domains}
-                      emptyText={t("journey.messages.empty_domains", "Seotud teemasid ei ole veel lisatud.")}
-                    />
-                    <ContentList
-                      title={t("journey.review.life_domains", "Eluvaldkonnad")}
-                      items={lifeDomains}
-                      emptyText={t("journey.review.empty_life_domains", "Eluvaldkonnad täpsustuvad hiljem.")}
-                    />
-                    <ContentList
-                      title={t("journey.labels.missing_info", "Puuduolev info")}
-                      items={journey.missingInfo}
-                      emptyText={t("journey.messages.empty_missing_info", "Puuduolevat infot ei ole veel lisatud.")}
-                    />
-                    <ContentList
-                      title={t("journey.labels.risk_signals", "Ettevaatlikud tähelepanekud")}
-                      items={journey.riskSignals}
-                      emptyText={t("journey.messages.empty_risk_signals", "Ettevaatlikke tähelepanekuid ei ole lisatud.")}
-                    />
-                    <ContentList
-                      title={t("journey.labels.suggested_actions", "Võimalikud järgmised sammud")}
-                      items={journey.suggestedActions}
-                      emptyText={t("journey.messages.empty_suggested_actions", "Järgmised sammud täpsustuvad hiljem.")}
-                    />
-                  </div>
-                  <div>
-                    <ActivityHistory journey={journey} t={t} locale={locale} />
-                    <RelatedObjectsPanel
-                      journey={journey}
-                      t={t}
-                      locale={locale}
-                      onLoadMorePreInquiries={() => handleLoadMorePreInquiries().catch((loadError) => setError(loadError.message))}
-                    />
-                  </div>
-                </>
-              )}
-            </>
-          )}
+  if (!journey) {
+    return frame(
+      loadFault ? (
+        <div className={shared.fault}>
+          <p className={shared.faultText} role="alert">
+            {loadFault}
+          </p>
+          <Button type="button" size="sm" variant="secondary" onClick={loadFirst}>
+            {t("journey.board.retry")}
+          </Button>
         </div>
+      ) : (
+        <StepPanel title={t("journey.title", "Teekond")}>
+          <p className={shared.quiet} aria-live="polite">
+            {t("journey.messages.loading", "Laen teekonda...")}
+          </p>
+        </StepPanel>
+      )
+    );
+  }
+
+  const today = todayInEstonia(new Date());
+  const levelWord = (level) => t(`journey.assessment.levels.${level}`);
+  const tiles = deskTiles(journey, { t, today, helpKinds: kinds, levelWord }).map((tile) => ({
+    ...tile,
+    summary: tile.attention ? <span className={styles.tileNews}>{tile.summaryText}</span> : tile.summaryText
+  }));
+  const indexOfPart = (key) => DESK_PARTS.indexOf(key);
+  const faultOf = (part) => (fault?.part === part ? fault.text : "");
+  const hasMunicipality = hasMunicipalitySignal(journey, serviceMapHandoff);
+  const links = {
+    serviceMap: serviceMapHref,
+    documents: documentsHref,
+    preInquiry: preInquiryHref,
+    helpOffers: helpOffersHref,
+    helpRequests: helpRequestsHref,
+    createHelpOffer: createHelpOfferHref
+  };
+  const blockKey = shareBlockKey(preInquiryShareKeys, thirdPartyAcknowledged);
+  const reviewedPreInquiryHref = reviewedShareHref(preInquiryHref, preInquiryShareKeys);
+  const stateKey = journeyStateKey(journey);
+  const closure = journey.closure?.current || null;
+
+  return frame(
+    <>
+      {/* `aria-live`, mitte status-roll: ühine paneelikiht joonistab iga
+          status-rolliga elemendi omal moel. Ala on alati olemas, et
+          ekraanilugeja kuuleks, kui teade sinna ilmub. */}
+      <div className={shared.live} aria-live="polite">
+        {leaveAsked ? (
+          <p className={shared.notice} role="alert">
+            {t("journey.desk.leave_asked")}
+          </p>
+        ) : notice ? (
+          <p className={shared.notice} tabIndex={-1} ref={noticeRef}>
+            {notice}
+          </p>
+        ) : null}
       </div>
-    </main>
+      <StepFlight
+        label={t("journey.title", "Teekond")}
+        steps={tiles}
+        startWide
+        parts
+        activeKey={partKey}
+        onStepChange={(_index, step) => setPartKey(step?.key || null)}
+        texts={{
+          all: t("journey.desk.all"),
+          position: (current, total, label) => t("journey.desk.position", { current, total, label })
+        }}
+        wideLead={
+          <div className={styles.lead}>
+            <div className={styles.leadMain}>
+              <p className={styles.leadTitle}>{journey.title}</p>
+              <p className={styles.leadMeta}>
+                <Chip tone={archived ? "wait" : undefined}>{t(stateKey)}</Chip>
+                <span className={shared.time}>{t("journey.labels.updated_at", { date: dayOf(journey.updatedAt) })}</span>
+                <span className={shared.small}>{archived && closure?.resumeDue ? t("journey.closure.resume_due") : t("journey.desk.private")}</span>
+              </p>
+            </div>
+            {backToList}
+          </div>
+        }
+      >
+        {(part, _index, flight) => {
+          const desk = { glow: flight?.isActive !== false, setDirty: dirtySetters[part.key] };
+          const goShare = () => flight.goTo(indexOfPart("share"));
+          switch (part.key) {
+            case "situation":
+              return <SituationPart t={t} journey={journey} archived={archived} lifeDomains={journeyLifeDomains(journey)} busy={busy === "save"} error={faultOf("situation")} onSave={handleSave} desk={desk} />;
+            case "wish":
+              return <WishPart t={t} journey={journey} archived={archived} busy={busy === "wish"} error={faultOf("wish")} onSave={handleSaveWish} desk={desk} />;
+            case "steps":
+              return <JourneySteps journey={journey} t={t} desk={desk} onStepsChange={(steps) => setJourney((current) => (current ? { ...current, steps } : current))} />;
+            case "feeling":
+              return <JourneyAssessment journey={journey} t={t} desk={desk} onAssessmentsChange={(assessments) => setJourney((current) => (current ? { ...current, assessments } : current))} />;
+            case "sent":
+              return (
+                <SentPart
+                  t={t}
+                  journey={journey}
+                  hrefOf={(item) => localizePath(`/eelpoordumised?openInquiry=${encodeURIComponent(item.id)}&workspaceRole=CLIENT`, locale)}
+                  more={journey.linkedPreInquiriesPage?.hasMore ? { busy: busy === "more", onMore: handleLoadMorePreInquiries } : null}
+                  error={faultOf("sent")}
+                  related={relatedCounts(journey).map((group) => ({ key: group.key, label: t(group.labelKey), value: String(group.count) }))}
+                  onShare={goShare}
+                />
+              );
+            case "share":
+              return (
+                <SharePart
+                  t={t}
+                  share={{
+                    options: preInquiryOptions.map((option) => ({ value: option.value, label: t(option.labelKey) })),
+                    selected: preInquiryShareKeys,
+                    onToggle: (key) => setPreInquiryShareKeys((current) => toggleKey(current, key)),
+                    previewText: preInquiryPreview?.situation || preInquiryPreview?.topic || "",
+                    previewState: preInquiryPreviewState
+                  }}
+                  ack={{ needed: preInquiryShareKeys.includes("personContext"), checked: thirdPartyAcknowledged, onChange: setThirdPartyAcknowledged }}
+                  blockKey={blockKey}
+                  href={reviewedPreInquiryHref}
+                  desk={desk}
+                />
+              );
+            case "help":
+              return (
+                <HelpPart
+                  t={t}
+                  kinds={kinds}
+                  initial={target?.part === "help" ? target.view : ""}
+                  map={{ hasFilter: Boolean(serviceMapHandoff?.hasFilter), hasMunicipality }}
+                  mediation={{
+                    loading: helpOfferMatchLoading,
+                    hasMatches: hasHelpOfferMatches,
+                    noRegion: !helpMediationHandoff?.municipalityName,
+                    serviceHint: Boolean(helpMediationHandoff?.taxonomy?.relatedServiceCategories?.length)
+                  }}
+                  devices={{ items: assistiveDevicesHandoff?.devices || [] }}
+                  health={{
+                    draftOpen: healthDraftOpen,
+                    draft: healthQuestionsDraft,
+                    copied: healthCopied,
+                    onCreate: handleCreateHealthQuestions,
+                    onChange: (value) => {
+                      setHealthQuestionsDraft(value);
+                      setHealthCopied(false);
+                    },
+                    onCopy: handleCopyHealthQuestions,
+                    /* Mustand jääb alles; uuesti koostamine teeb selle Teekonna praegusest seisust uue. */
+                    onClose: () => setHealthDraftOpen(false)
+                  }}
+                  requestShare={{
+                    options: helpRequestOptions.map((option) => ({ value: option.value, label: t(option.labelKey) })),
+                    selected: helpRequestSelected,
+                    onToggle: (key) => setHelpRequestShareKeys(toggleKey(helpRequestSelected, key)),
+                    previewText: helpRequestPreviewText,
+                    previewState: helpRequestPreviewState,
+                    href: reviewedShareHref(createHelpRequestHref, helpRequestSelected),
+                    onView: setHelpRequestViewOpen
+                  }}
+                  links={links}
+                  error={faultOf("help")}
+                  onShare={goShare}
+                  desk={desk}
+                />
+              );
+            case "continuity":
+              return (
+                <ContinuityPart
+                  t={t}
+                  journey={journey}
+                  archived={archived}
+                  busy={busy === "continuity"}
+                  error={faultOf("continuity")}
+                  rules={{ missing: (form) => buildContinuityMissingInfo(form, t), actions: (form) => buildContinuityActions(form, t) }}
+                  onSave={handleSaveContinuity}
+                  links={links}
+                  desk={desk}
+                />
+              );
+            case "road":
+              return <RoadPart t={t} journey={journey} stateWord={(state) => t(ROAD_STATE_KEYS[state] || ROAD_STATE_KEYS.todo)} />;
+            case "closure":
+              return <JourneyClosure journey={journey} busy={Boolean(busy)} reopenError={faultOf("closure")} onClosed={handleClosed} onReopen={handleReopen} t={t} desk={desk} />;
+            default:
+              return <DataPart t={t} locale={locale} journey={journey} busy={busy} error={faultOf("data")} onExport={handleExport} onDelete={handleDelete} />;
+          }
+        }}
+      </StepFlight>
+    </>
   );
 }

@@ -1,0 +1,57 @@
+{
+  "document_id": "web-notar_ametitoimingud",
+  "title": "Ametitoimingud – notariaalsed teenused ühes kohas",
+  "register_title": "Ametitoimingud – notariaalsed teenused ühes kohas",
+  "source_id": "notar_ametitoimingud",
+  "source_type": "web_page",
+  "publisher": "Notarite Koda",
+  "language": "et",
+  "url": "https://www.notar.ee/ametitoimingud/",
+  "source_path": "notar_ametitoimingud.html",
+  "source_format": "html",
+  "source_sha256": "a75d44a158f692e48b8c17ef877b28e203dfe6ce48f463ed0486d797de116451",
+  "content_sha256": "782a762c7f595d7b95b48860f076c5cc1bfde7635c8739285cf27e1e4df12b51",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:39:43.606Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 10:23:09 GMT",
+      "etag": null
+    },
+    "raw_sha256": "095366d6a103283657d79a124dd9e1cf91b1b6a9a51af595af885542d55a81ab",
+    "stats": {
+      "words": 176,
+      "blocks": 27,
+      "headings": 13,
+      "tables": 0,
+      "links": 12,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

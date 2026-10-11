@@ -1,0 +1,70 @@
+{
+  "document_id": "web-palunabi_et_kriisijuhtumid",
+  "title": "Kriisijuhtumid",
+  "register_title": "Kriisijuhtumid",
+  "source_id": "palunabi_et_kriisijuhtumid",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://www.palunabi.ee/et/kriisijuhtumid",
+  "source_path": "palunabi_et_kriisijuhtumid.html",
+  "source_format": "html",
+  "source_sha256": "52a4a987d451a1b9aa983eeab4bb55c03037eb89a1103c91f11c4a7af5d89e11",
+  "content_sha256": "dbcb5013f2b260032950abfa7e1306e7fec2b0cf6c4caf8c91386e6fe2437afe",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:36:36.825Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "e19e4241b01268a33dd980c12a28ee5e571f244500dd387b9af93c60a6b51875",
+    "stats": {
+      "words": 624,
+      "blocks": 8,
+      "headings": 1,
+      "tables": 0,
+      "links": 6,
+      "linksToOtherSites": 3
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://s3-web-1a.tehik.ee/palunabi-live-web-prd/s3fs-public/2026-07/kriisija%CC%88rgne-to%CC%88o%CC%88vihik-EST.pdf",
+      "text": "kriisijärgne töövihik EST PDF (19.6 MB)",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://s3-web-1a.tehik.ee/palunabi-live-web-prd/s3fs-public/2026-07/Ps%C3%BChholoogiline-esmaabi.-Juhend-otsestele-abistajatele.pdf",
+      "text": "Psühholoogiline-esmaabi.-Juhend-otsestele-abistajatele.pdf PDF (2.4 MB)",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

@@ -6,12 +6,15 @@ import { publishRoomEvent } from "@/lib/roomStream";
 import { consumeRateLimit } from "@/lib/rate-limit";
 import { ROOM_READ, ROOM_WRITE, resolveRoomAccess } from "@/lib/rooms/accessGuard";
 import { serializeRoomOrigin } from "@/lib/rooms/origin";
+import { readRoomReadOnlyReason } from "@/lib/rooms/preInquiryRoom";
 import { resolveShareableMeetingSummary } from "@/lib/rooms/meetingSummaryShare";
 import { recordSharedRoomSummary } from "@/lib/rooms/summaryHandover";
 import { applySummaryApprovalPolicy, listRoomSummaryApprovalState } from "@/lib/rooms/summaryApproval";
 import { logDocumentsAudit } from "@/lib/documents/audit";
 import { safeError } from "@/lib/privacy/safeError";
 import { evaluateTextPrivacy, privacyConfirmationResponsePayload } from "@/lib/privacy/privacyGuard";
+import { resolvePrivacyDecision } from "@/lib/privacy/promptPreference";
+import { localizePrivacyPayload, privacyLocaleFromRequest } from "@/lib/privacy/privacyTexts";
 import { markHelpMatchContactedByRoom } from "@/lib/help/matches";
 import { markNetworkShareRespondedByRoom } from "@/lib/network/share";
 
@@ -242,12 +245,17 @@ export async function GET(req, { params }) {
     });
   } catch {}
 
+  /* Ainult loetava ruumi põhjus läheb vestlusaknale kaasa: muidu sai inimene sellest teada
+     alles siis, kui tema sõnumi saatmine ebaõnnestus. */
+  const readOnlyReason = access.readOnly ? await readRoomReadOnlyReason(access.room) : null;
+
   return json({
     ok: true,
     roomTitle: room.title || "",
     roomRole: String(access.member?.role || auth.userRole || "").trim().toUpperCase(),
     isHelpMatchRoom: Boolean(room.helpMatch?.id),
     roomOrigin: serializeRoomOrigin(room),
+    readOnlyReason,
     summaryApprovals,
     messages: page.map(m => ({
       id: m.id,
@@ -320,10 +328,10 @@ export async function POST(req, { params }) {
   }
   const privacy = evaluateTextPrivacy(rawContent, {
     workflow: "room_private",
-    privacyDecision: payload?.privacyDecision
+    privacyDecision: await resolvePrivacyDecision(auth.userId, payload?.privacyDecision)
   });
   if (privacy.needsPrivacyConfirmation) {
-    return json(privacyConfirmationResponsePayload(privacy), 409);
+    return json(localizePrivacyPayload(privacyConfirmationResponsePayload(privacy), privacyLocaleFromRequest(req)), 409);
   }
   const content = String(privacy.processedText || rawContent).trim();
   if (!content) return errorJson("api.rooms.message_required", 400);

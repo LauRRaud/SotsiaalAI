@@ -48,11 +48,11 @@ export async function POST(request) {
     }
     if (action !== "accept") throw badRequest("org.errors.unknown_action");
 
-    const { organizationId } = await acceptInvite(token, {
+    const { organizationId, nameApplied } = await acceptInvite(token, {
       userId: auth.userId,
       userEmail: auth.userEmail
     });
-    return orgJson({ ok: true, organizationId }, 201);
+    return orgJson({ ok: true, organizationId, nameApplied: Boolean(nameApplied) }, 201);
   } catch (error) {
     return orgErrorResponse(error, "org.errors.invite_invalid", "org");
   }

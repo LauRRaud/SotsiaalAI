@@ -1,0 +1,65 @@
+{
+  "document_id": "web-ska_puue_ja_hoolekanne_erihoolekanne",
+  "title": "Erihoolekanne",
+  "register_title": "Erihoolekanne",
+  "source_id": "ska_puue_ja_hoolekanne_erihoolekanne",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/erihoolekanne",
+  "source_path": "ska_puue_ja_hoolekanne_erihoolekanne.html",
+  "source_format": "html",
+  "source_sha256": "2cd2246d6378af0d77f02b045f6a9d82e508242e02c0ec9c21c4db0ce6c5607f",
+  "content_sha256": "4008f4d79beb2733c058d7177fcf25ddf032b538584984848e5e48e87bccc7b2",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:35:13.564Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-09-04",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:35:12 GMT",
+      "etag": null
+    },
+    "raw_sha256": "c164a1d295f5a795711c60ab3c7b37cfd58654eee2acb2a36c3dee363fa927f7",
+    "stats": {
+      "words": 1055,
+      "blocks": 45,
+      "headings": 11,
+      "tables": 0,
+      "links": 10,
+      "linksToOtherSites": 4
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-09/peaspetsialist%2Bkoordinaator%2Barvemenetluse%20spetsialist_11.09.2026.xlsx",
+      "text": "Erihoolekande- ja rehabilitatsiooniasutuste kontaktisikud SKA-s | 51.36 KB | xlsx",
+      "type": "xlsx",
+      "status": "referenced_only"
+    }
+  ]
+}

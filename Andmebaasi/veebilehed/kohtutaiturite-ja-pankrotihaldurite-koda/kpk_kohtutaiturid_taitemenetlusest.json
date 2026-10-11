@@ -1,0 +1,70 @@
+{
+  "document_id": "web-kpk_kohtutaiturid_taitemenetlusest",
+  "title": "Täitemenetlusest",
+  "register_title": "Täitemenetlusest",
+  "source_id": "kpk_kohtutaiturid_taitemenetlusest",
+  "source_type": "web_page",
+  "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+  "language": "et",
+  "url": "https://kpkoda.ee/kohtutaiturid/taitemenetlusest/",
+  "source_path": "kpk_kohtutaiturid_taitemenetlusest.html",
+  "source_format": "html",
+  "source_sha256": "2fc69c646d710de606b98d73421ff8c2be3ed2b816489834d59176309d58aa13",
+  "content_sha256": "ca82cfc645df7b0268de49be356284a131f8771f621ec207874deb7353a15d6a",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:40:20.350Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "7b4bb1bc50403213cc2491548b798dff730f00974b3c9e2ee89dc417efa9a22d",
+    "stats": {
+      "words": 80,
+      "blocks": 7,
+      "headings": 2,
+      "tables": 0,
+      "links": 16,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.just.ee/sites/www.just.ee/files/volgnike_oigustest_taitemenetluses.pdf",
+      "text": "infovoldik võlgnike õigustest täitemenetluses",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.just.ee/sites/www.just.ee/files/volgnike_oigustest_taitemenetluses_ru.pdf",
+      "text": "infovoldik võlgnike õigustest täitemenetluses (vene keeles, RU",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

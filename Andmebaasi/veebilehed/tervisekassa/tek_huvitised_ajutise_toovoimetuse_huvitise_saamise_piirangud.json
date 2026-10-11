@@ -1,0 +1,57 @@
+{
+  "document_id": "web-tek_huvitised_ajutise_toovoimetuse_huvitise_saamise_piirangud",
+  "title": "Ajutise töövõimetuse hüvitise saamise piirangud",
+  "register_title": "Ajutise töövõimetuse hüvitise saamise piirangud",
+  "source_id": "tek_huvitised_ajutise_toovoimetuse_huvitise_saamise_piirangud",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/huvitised/ajutise-toovoimetuse-huvitise-saamise-piirangud",
+  "source_path": "tek_huvitised_ajutise_toovoimetuse_huvitise_saamise_piirangud.html",
+  "source_format": "html",
+  "source_sha256": "d7c3c32021c58f5d1cb0b63bcd82313c8cb3bcbb4befa5bd4700fe1d5aa0084f",
+  "content_sha256": "7048c7ba2157175102cdd1069171ef21975eeaee1f16ae0428e85b08bd04433a",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:38:04.877Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:25:18 GMT",
+      "etag": null
+    },
+    "raw_sha256": "5d87976db1699ca11573bbb4e22d54549722b22a298627551ff0426860a72ea8",
+    "stats": {
+      "words": 304,
+      "blocks": 14,
+      "headings": 1,
+      "tables": 0,
+      "links": 0,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

@@ -776,6 +776,20 @@ test('XML preserves legal units and distinct validity metadata; external entitie
   await assert.rejects(ingest(await source('xml-broken', 'xml', xml.replace('</paragrahv>', '</wrong>'))), { code: 'invalid_xml_structure' });
 });
 
+test('XML: the empty sections a repealed division keeps as marks make no text and do not stop the act', async () => {
+  // The Law of Obligations Act, chapter 40, "3. jagu": the repeal note stands on the division, and of §§ 734 to 746 the
+  // file keeps the first and the last as sections with a number and no text. Before, each was a record without a line.
+  const note = '<muutmismarge><tavatekst>Kehtetu - </tavatekst><avaldamismarge><RTosa>RT I</RTosa><RTaasta>2010</RTaasta><RTnr>2</RTnr><RTartikkel>3</RTartikkel><aktViide>13256098</aktViide></avaldamismarge><joustumine>2010-01-22</joustumine></muutmismarge>';
+  const mark = number => `<paragrahv id="para${number}"><paragrahvNr kehtiv="0">${number}</paragrahvNr><kuvatavNr> </kuvatavNr><sisuTekst><tavatekst> </tavatekst></sisuTekst></paragrahv>`;
+  const act = xml.replace(/<\/sisu>/u, `<jagu id="jg50"><jaguNr>3</jaguNr><kuvatavNr><![CDATA[3. jagu]]></kuvatavNr><jaguPealkiri/>${note}${mark(734)}${mark(746)}</jagu></sisu>`);
+  const { bundle } = await ingest(await source('xml-empty-marks', 'xml', act)), plain = await ingest(await source('xml-empty-marks-plain', 'xml', xml));
+  assert.equal(bundle.chunks.length, plain.bundle.chunks.length, 'the two marks add no passage');
+  assert.deepEqual(bundle.chunks.map(chunk => chunk.source_text), plain.bundle.chunks.map(chunk => chunk.source_text));
+  assert(bundle.sections.every(section => !section.parent_id || section.span_ids.length), 'no section without a line of text');
+  assert(!bundle.source_units.some(unit => /para734|para746/u.test(unit.locator?.element_id ?? '')));
+  exactLocations(bundle);
+});
+
 test('XML: superscript numbers read as the act is cited, amendment notes are left out, a repealed provision keeps only its number', async () => {
   const note = (text = '') => `<muutmismarge>${text ? `<tavatekst>${text}</tavatekst>` : ''}<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-04-03</avaldamineKuupaev><RTartikkel>17</RTartikkel><aktViide>403042025017</aktViide></avaldamismarge><joustumine>2025-04-06</joustumine></muutmismarge>`;
   const act = xml.replace(/<sisu>.*<\/sisu>/su, '<sisu><peatykk><kuvatavNr><![CDATA[7<sup class="number">1</sup>.]]></kuvatavNr><peatykkPealkiri>Fictional division</peatykkPealkiri>'

@@ -1,0 +1,84 @@
+{
+  "document_id": "web-just_tsiviiloigus_miinimumelatise_muutmine",
+  "title": "Miinimumelatis",
+  "register_title": "Miinimumelatis",
+  "source_id": "just_tsiviiloigus_miinimumelatise_muutmine",
+  "source_type": "web_page",
+  "publisher": "Justiits- ja Digiministeerium",
+  "language": "et",
+  "url": "https://www.just.ee/era-ja-avalik-oigus/tsiviiloigus/miinimumelatise-muutmine",
+  "url_final": "https://www.justdigi.ee/era-ja-avalik-oigus/tsiviiloigus/miinimumelatise-muutmine",
+  "source_path": "just_tsiviiloigus_miinimumelatise_muutmine.html",
+  "source_format": "html",
+  "source_sha256": "92bb89a2b41e087169addd63f738b84b168a00a6846f6593f6e1ee7b6ead683d",
+  "content_sha256": "6057d3cdf7dc63c0d41016a4c2c33a1c6e241d6310b3d2e03d88b12cdbe23fbb",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:27:10.769Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-04-23",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "c438f00a71e0b29f866b5e898dfe7e3cb6bf8dfdb5de1ebdf40eb93ee345fe9a",
+    "stats": {
+      "words": 1398,
+      "blocks": 37,
+      "headings": 14,
+      "tables": 0,
+      "links": 12,
+      "linksToOtherSites": 10
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.just.ee/sites/default/files/documents/2023-03/Elatiste%20KKK%2015.03%20seisuga.pdf",
+      "text": "KoRDUMA KIPPUVAD KÜSIMUSED",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.just.ee/media/491/download",
+      "text": "uuringu lõpparuandes",
+      "type": "download",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.just.ee/sites/www.just.ee/files/miinimumelatise_lopparuanne.pdf",
+      "text": "uuringu",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2023-03/Elatiste%20KKK%2015.03%20seisuga.pdf",
+      "text": "Elatiste KKK 15.03 seisuga.pdf | 273.37 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

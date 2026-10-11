@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_perehuvitised_ja_muud_toetused_perekondlikud_olukorrad",
+  "title": "Perekondlikud olukorrad",
+  "register_title": "Perekondlikud olukorrad",
+  "source_id": "ska_perehuvitised_ja_muud_toetused_perekondlikud_olukorrad",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/perekondlikud-olukorrad",
+  "source_path": "ska_perehuvitised_ja_muud_toetused_perekondlikud_olukorrad.html",
+  "source_format": "html",
+  "source_sha256": "4cab86cbe570994068b0b0d887779512b3610ebd62416f05bddc2225f213b6ad",
+  "content_sha256": "6579f724bf60ec75956db8b322bc7e65bd137a3ecbc0584a9aacce3a799f95a9",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:25:21.049Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2023-10-17",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:08:27 GMT",
+      "etag": null
+    },
+    "raw_sha256": "17c68539d6931126b0d64eb3d407b834f2e0e1b8d430847425bf428edabc3053",
+    "stats": {
+      "words": 230,
+      "blocks": 16,
+      "headings": 8,
+      "tables": 0,
+      "links": 4,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

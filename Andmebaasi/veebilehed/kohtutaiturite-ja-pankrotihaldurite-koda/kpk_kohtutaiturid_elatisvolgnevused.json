@@ -1,0 +1,98 @@
+{
+  "document_id": "web-kpk_kohtutaiturid_elatisvolgnevused",
+  "title": "Elatise nõudmine",
+  "register_title": "Elatise nõudmine",
+  "source_id": "kpk_kohtutaiturid_elatisvolgnevused",
+  "source_type": "web_page",
+  "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+  "language": "et",
+  "url": "https://kpkoda.ee/kohtutaiturid/elatisvolgnevused/",
+  "url_final": "https://kpkoda.ee/kohtutaiturid/elatisvolgnevused/elatise-noudmine/",
+  "source_path": "kpk_kohtutaiturid_elatisvolgnevused.html",
+  "source_format": "html",
+  "source_sha256": "c8a532aec938c0e4aae0ec46a8df08a18fdad95078ae88cacfe2815e198329be",
+  "content_sha256": "1cd07cf5ee8d6285152202ccf1ec1789a621fa113f3d9aaa0d13c852fb03d84c",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:40:28.755Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "35edc5bda6ad4fd93c4f38af8c4fc108d6b4efa8e04ee09a12c454d7c9b2aa53",
+    "stats": {
+      "words": 2546,
+      "blocks": 70,
+      "headings": 22,
+      "tables": 0,
+      "links": 27,
+      "linksToOtherSites": 9
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 1,
+      "contactCards": 0,
+      "personalEmails": 1,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "personal_contact_removed",
+      "person_named_by_link"
+    ],
+    "needs_review": true
+  },
+  "documents": [
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2021-12/KKK%20miinimumelatise%20teemal.pdf",
+      "text": "https://www.justdigi.ee/sites/default/files/documents/2021-12/KKK%20miinimumelatise%20teemal.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://kpkoda.ee/wp-content/uploads/elatisvolgnevused/T%C3%A4itemenetlusaegse__elatisabi_taotlus_27122016_0.doc",
+      "text": "Täitemenetlusaegse elatisabi taotlemise avaldus",
+      "type": "doc",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://kpkoda.ee/wp-content/uploads/elatisvolgnevused/Volikiri%20ET-DE%20uuendatud.doc",
+      "text": "Volikiri välisriigist tuleva elatise vahendamiseks (eesti ja saksa keeles)",
+      "type": "doc",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://kpkoda.ee/wp-content/uploads/elatisvolgnevused/Volikiri%20ET-EN%20uuendatud.doc",
+      "text": "Volikiri välisriigist tuleva elatise vahendamiseks (eesti ja inglise keeles)",
+      "type": "doc",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://kpkoda.ee/wp-content/uploads/elatisvolgnevused/Volikiri%20ET-FI%20uuendatud.doc",
+      "text": "Volikiri välisriigist tuleva elatise vahendamiseks (eesti ja soome keeles)",
+      "type": "doc",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://kpkoda.ee/wp-content/uploads/elatisvolgnevused/Volikiri%20ET-FR%20uuendatud.doc",
+      "text": "Volikiri välisriigist tuleva elatise vahendamiseks (eesti ja prantsuse keeles)",
+      "type": "doc",
+      "status": "referenced_only"
+    }
+  ]
+}

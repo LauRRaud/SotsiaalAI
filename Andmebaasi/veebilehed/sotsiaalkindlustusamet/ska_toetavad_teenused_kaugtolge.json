@@ -1,0 +1,92 @@
+{
+  "document_id": "web-ska_toetavad_teenused_kaugtolge",
+  "title": "Kaugtõlge",
+  "register_title": "Kaugtõlge",
+  "source_id": "ska_toetavad_teenused_kaugtolge",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/toetavad-teenused/kaugtolge",
+  "source_path": "ska_toetavad_teenused_kaugtolge.html",
+  "source_format": "html",
+  "source_sha256": "f43a5c3bbdf23f5666c3ece44e221fc9dccdaf91b2ccbbb6041f1bd378cbe876",
+  "content_sha256": "3d823cc432d609db509bd2aa3403c54eeb8a58059ae0b57ce1ab2b924c275893",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:35:41.177Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-09-24",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:35:39 GMT",
+      "etag": null
+    },
+    "raw_sha256": "aa0d25ed491b2302acb50fd5f2a45788c18700281d8a2b83b608fd098b1a024f",
+    "stats": {
+      "words": 404,
+      "blocks": 23,
+      "headings": 7,
+      "tables": 2,
+      "links": 10,
+      "linksToOtherSites": 3
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 1,
+      "personalEmails": 2,
+      "phonesBesideThem": 1
+    },
+    "warnings": [
+      "contact_card_removed",
+      "personal_contact_removed"
+    ],
+    "needs_review": true
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-02/T%C3%B5lketeenuse-rakenduse-kasutusjuhend-07.02.2025.pdf",
+      "text": "Tõlketeenuse rakenduse täpsema kasutamise õpetus | 1.83 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-04/Kuidas%20logida%20sisse%20Smart-ID-ga%20%28Android%29.pdf",
+      "text": "Kuidas logida sisse Smart-ID-ga (Android) | 387.96 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-04/Kuidas%20logida%20sisse%20Smart-ID-ga%20%28iOS%29.pdf",
+      "text": "Kuidas logida sisse Smart-ID-ga (iOS) | 297.06 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-07/T%C3%B5lketeenuse%20rakenduse%20privaatsuspoliitika.pdf",
+      "text": "Tõlketeenuse rakenduse privaatsuspoliitika | 101.99 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-07/T%C3%B5lketeenuse%20rakenduse%20kasutustingimused.pdf",
+      "text": "Tõlketeenuse rakenduse kasutustingimused | 75.44 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

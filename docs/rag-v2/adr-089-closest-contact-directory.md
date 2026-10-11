@@ -89,7 +89,7 @@ Töötaval versioonil `3e2ac388` ([tõend](../audits/evidence/contact-directory-
 ## Lahti
 
 - **Juhise täpsustus** (omaniku otsus): kas Luna pakub kontakti ainult siis, kui inimene küsib, kelle poole pöörduda, või ka esimese sammuna (praegu peaaegu alati); lisalause ärajätmine; ameti valik (pigem see, kes taotlusi vastu võtab või otsustab, või üksuse üldkontakt). Vajab juhise uut versiooni ja paari pöörde mõõtmist.
-- **Kontaktide kirje maht suures omavalitsuses:** Tallinna üldine kirje jättis ruumi ühele kokkuvõttele. Kaaluda piiri (näiteks avada kirje ainult siis, kui pärast seda mahub teatud arv kokkuvõtteid).
+- ~~**Kontaktide kirje maht suures omavalitsuses:** Tallinna üldine kirje jättis ruumi ühele kokkuvõttele.~~ Lahendatud 09.10.2026: kirje jääb ainult siis, kui sellega jääb alles vähemalt kolmandik kokkuvõtetest ([ADR-121](adr-121-directory-does-not-crowd-out-summaries.md)).
 - Kas kokkuvõtete vähenemine jätab vastusest abi liike välja (üks kolmest võrdlusest viitab sellele), vajab mitut jooksu samal küsimusel.
 
 ## Auditipaketi piir (06.10.2026)

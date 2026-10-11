@@ -1,0 +1,161 @@
+{
+ "read_on": "2026-10-10",
+ "note": "20 answers with the answer effort medium to the ten hard-condition questions whose quick answers were judged less than correct (check85, 0.0970 USD, median 46 s a turn); read against the act by agents, every verdict other than correct read again by a second agent.",
+ "count": {
+  "correct": 13,
+  "partly": 6,
+  "contradicts": 1
+ },
+ "questions": [
+  {
+   "id": "community-living-dementia",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "day-care-retirement-age",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "partly",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "reclaim-limitation",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "partly",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "referral-deadline-emergency",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "partly",
+     "misleading": true
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "service-ended-martial-law",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "rent-from-mother",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "contradicts",
+     "misleading": true
+    },
+    {
+     "run": 2,
+     "verdict": "partly",
+     "misleading": true
+    }
+   ]
+  },
+  {
+   "id": "pensioner-with-student-child",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "child-rehabilitation-need",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "guardian-ward-family",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "correct",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "correct",
+     "misleading": false
+    }
+   ]
+  },
+  {
+   "id": "household-definition",
+   "answers": [
+    {
+     "run": 1,
+     "verdict": "partly",
+     "misleading": false
+    },
+    {
+     "run": 2,
+     "verdict": "partly",
+     "misleading": false
+    }
+   ]
+  }
+ ]
+}

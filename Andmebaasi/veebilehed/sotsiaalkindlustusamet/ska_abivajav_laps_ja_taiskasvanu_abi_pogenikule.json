@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_abivajav_laps_ja_taiskasvanu_abi_pogenikule",
+  "title": "Abi põgenikule",
+  "register_title": "Abi põgenikule",
+  "source_id": "ska_abivajav_laps_ja_taiskasvanu_abi_pogenikule",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/abi-pogenikule",
+  "source_path": "ska_abivajav_laps_ja_taiskasvanu_abi_pogenikule.html",
+  "source_format": "html",
+  "source_sha256": "0f8cd52e1b6c0ba99d6cdb8065310c7a838436e50fbd235776153a586fc8eac5",
+  "content_sha256": "f68fe0bdeea09a4b652a4c5a82dd1b339a737c895554c2f5b58438bb2d26464e",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:34:13.426Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-08-26",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:34:12 GMT",
+      "etag": null
+    },
+    "raw_sha256": "987989860e30e262c7281f5031f45c2decde1bc857bc5e38a17c81802a39e6a1",
+    "stats": {
+      "words": 144,
+      "blocks": 8,
+      "headings": 4,
+      "tables": 0,
+      "links": 0,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

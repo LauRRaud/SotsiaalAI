@@ -132,15 +132,19 @@ export async function GET() {
         ...m,
         roomId: String(m?.roomId || "").trim()
       }))
-      .filter(m => {
-        if (!m.roomId || !m?.room) return false;
-        return hasRoomBillingAccess({
+      /* KÕVA REEGEL (SotsiaalAI.md): oma andmetele ligipääs ei aegu tellimusega. Ruum, mille
+         liige olen, jääb loendisse ka siis, kui tellimus lõppes: ajalugu saab lugeda, uut
+         alustada ei saa (`subscriptionReadOnly`, sama otsus mis lib/rooms/accessGuard.js). */
+      .filter(m => Boolean(m.roomId && m?.room))
+      .map(m => ({
+        ...m,
+        subscriptionReadOnly: !hasRoomBillingAccess({
           userRole: auth.userRole,
           membership: m,
           hasActiveSubscription: userActiveSubscription,
           room: m.room
-        }).ok;
-      });
+        }).ok
+      }));
 
     if (!normalizedMemberships.length) {
       return json({
@@ -192,10 +196,12 @@ export async function GET() {
           origin: serializeRoomOrigin(m.room),
           memberCount,
           archivedAt: m.room.archivedAt || null,
+          /* Tellimuseta liige loeb ja lõpetab; kutsumine ja üleandmine on uus tegevus. */
+          subscriptionReadOnly: m.subscriptionReadOnly,
           canDelete: isOwner && isManualInvite && !isArchived,
           canArchive: isOwner && !isManualInvite && !isArchived,
-          canInvite: isOwner && !isArchived,
-          canTransfer: isOwner && !isArchived,
+          canInvite: isOwner && !isArchived && !m.subscriptionReadOnly,
+          canTransfer: isOwner && !isArchived && !m.subscriptionReadOnly,
           canLeave: !isOwner && !isArchived,
           lastMessage: last
             ? {

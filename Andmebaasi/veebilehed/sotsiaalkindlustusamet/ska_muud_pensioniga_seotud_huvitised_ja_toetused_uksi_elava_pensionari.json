@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_muud_pensioniga_seotud_huvitised_ja_toetused_uksi_elava_pensionari",
+  "title": "Üksi elava pensionäri toetus",
+  "register_title": "Üksi elava pensionäri toetus",
+  "source_id": "ska_muud_pensioniga_seotud_huvitised_ja_toetused_uksi_elava_pensionari",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/muud-pensioniga-seotud-huvitised-ja-toetused/uksi-elava-pensionari",
+  "source_path": "ska_muud_pensioniga_seotud_huvitised_ja_toetused_uksi_elava_pensionari.html",
+  "source_format": "html",
+  "source_sha256": "a52d22b0899eb64ab5ab677c112105e5bc09e02d633bd98ae5ec69d377a12a8f",
+  "content_sha256": "14767ee71b10a270e64cdae94fcf4c906de6ffda7b37242cf4b99155be7a205e",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:23:30.783Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-03-23",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:02:50 GMT",
+      "etag": null
+    },
+    "raw_sha256": "e8fea48eb84af5a9a46f28ff3cc49cf0274d5628e2b7b4a8e909a0b5e379fd74",
+    "stats": {
+      "words": 678,
+      "blocks": 32,
+      "headings": 8,
+      "tables": 0,
+      "links": 4,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

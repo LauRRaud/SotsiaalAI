@@ -1,0 +1,71 @@
+{
+  "document_id": "web-ska_ohvriabi",
+  "title": "Ohvriabi",
+  "register_title": "Ohvriabi",
+  "source_id": "ska_ohvriabi",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/ohvriabi",
+  "source_path": "ska_ohvriabi.html",
+  "source_format": "html",
+  "source_sha256": "098064709684b0b78ffa5a94fd49423c43f164f8298d04eb0e6754f26f5d6728",
+  "content_sha256": "ef9fbaaf72049c5fa5123fe2df0faf9c735d90906159e517a526fbc910b0296d",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:36:10.804Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-03-03",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:23:14 GMT",
+      "etag": null
+    },
+    "raw_sha256": "21c2ce202589e2dbef40720fb6f4ff569a352d877de40676495b654fec0fad91",
+    "stats": {
+      "words": 196,
+      "blocks": 17,
+      "headings": 4,
+      "tables": 0,
+      "links": 9,
+      "linksToOtherSites": 4
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-02/ohvri_andmete_edastamine_sotsiaalkindlustusametile%20%283%29.docx",
+      "text": "Ohvri andmete edastamine sotsiaalkindlustusametile | 18.01 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-03/Teenuse%20standard%20116%20006%20telefonile.pdf",
+      "text": "Miinimumnõuded 116 006 abiliinile | 396.39 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

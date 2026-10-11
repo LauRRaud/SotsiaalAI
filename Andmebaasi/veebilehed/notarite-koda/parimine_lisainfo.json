@@ -1,0 +1,60 @@
+{
+  "document_id": "web-parimine_lisainfo",
+  "title": "Lisainfo",
+  "register_title": "Lisainfo",
+  "source_id": "parimine_lisainfo",
+  "source_type": "web_page",
+  "publisher": "Notarite Koda",
+  "language": "et",
+  "url": "https://parimine.notar.ee/lisainfo/",
+  "source_path": "parimine_lisainfo.html",
+  "source_format": "html",
+  "source_sha256": "fca0407bc4996759405f8d87fb9eee5fa577e01ae98d368c33914a909b48095b",
+  "content_sha256": "2d70f845e796898c368bf799ce6848dea937a1f6bab0e5c38552b37a7a96e9d9",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:40:19.092Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "b310e1c104d4f760d2ec649299ae2fe58868d8dd4604f05a8066abbf2963a956",
+    "stats": {
+      "words": 492,
+      "blocks": 54,
+      "headings": 3,
+      "tables": 0,
+      "links": 10,
+      "linksToOtherSites": 10
+    },
+    "contacts": {
+      "generalEmails": 3,
+      "otherEmails": 5,
+      "personLinks": 5,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "email_needs_review",
+      "person_named_by_link"
+    ],
+    "needs_review": true
+  },
+  "documents": []
+}

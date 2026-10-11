@@ -1,0 +1,1864 @@
+{
+  "document_id": "web-kohus_kohtusse_poordujale_dokumendid_ja_vormid",
+  "title": "Dokumendid ja vormid",
+  "register_title": "Dokumendid ja vormid",
+  "source_id": "kohus_kohtusse_poordujale_dokumendid_ja_vormid",
+  "source_type": "web_page",
+  "publisher": "Eesti kohtud",
+  "language": "et",
+  "url": "https://www.kohus.ee/kohtusse-poordujale/dokumendid-ja-vormid",
+  "source_path": "kohus_kohtusse_poordujale_dokumendid_ja_vormid.html",
+  "source_format": "html",
+  "source_sha256": "f01d64a1dd34f201bbf1ffc056efe864e70e9a1d7713d316d8d529a88d309cf7",
+  "content_sha256": "cb1c35d7a5b896b127f00e7bc5b2e61b5d02b2f40338cf41707e03b2dade23fa",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:39:40.370Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "63a4a9d7da808765b7bfe013b082103d7eaa996539e85d7640db334cf774f34d",
+    "stats": {
+      "words": 2373,
+      "blocks": 280,
+      "headings": 1,
+      "tables": 0,
+      "links": 341,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Abikaasade%20v%C3%B5i%20registreeritud%20elukaaslaste%20%C3%BChine%20maksej%C3%B5uetusavaldus_0.docx",
+      "text": "Abikaasade või registreeritud elukaaslaste ühine maksejõuetusavaldus",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/avaldus_apellatsioonkaebusest_loobumiseks.docx",
+      "text": "avaldus_apellatsioonkaebusest_loobumiseks.docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Avalduse%20na%CC%88idisvorm%20kohtusse%20po%CC%88o%CC%88rdumiseks_0.docx",
+      "text": "Avalduse näidisvorm kohtusse pöördumiseks_0.docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Eestkostja%20aruande%20vorm_t%C3%A4isealine_0.docx",
+      "text": "Eestkoste aruande vorm_täisealine",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Eestkostja%20aruande%20vorm_alaealine_0.docx",
+      "text": "Eestkoste aruande vorm_alaealine",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Kohtu_arengukava_2024-2030.pdf",
+      "text": "Kohtu_arengukava_2024-2030.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Esimese_ja_teise_astme_kohtute_arengukava.pdf",
+      "text": "Esimese_ja_teise_astme_kohtute_arengukava.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/fuusilise_isiku_menetlusabi_taotlus.docx",
+      "text": "fuusilise_isiku_menetlusabi_taotlus.docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Hagiavaldus.docx",
+      "text": "Hagiavaldus.docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Hagiavaldus_abielu_lahutamiseks.docx",
+      "text": "Hagiavaldus_abielu_lahutamiseks.docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Hagiavaldus_abielu_lahutamiseks_uhisvara_jagamise_noudega.docx",
+      "text": "Hagiavaldus_abielu_lahutamiseks_uhisvara_jagamise_noudega.docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Hagiavaldus_lapsele_elatise_valjamoistmiseks_0.docx",
+      "text": "Hagiavaldus_lapsele_elatise_valjamoistmiseks_0.docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Hagi%20tagamise%20avaldus_elatise%20asjas_0.docx",
+      "text": "Hagi tagamise avaldus_elatise asjas_0.docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Hagiavaldus_lapsele_elatise_v%C3%A4ljam%C3%B5istmiseks_miinimumm%C3%A4%C3%A4ras_0.docx",
+      "text": "Hagiavaldus_lapsele_elatise_väljamõistmiseks_miinimummääras_0.docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Hagiavaldus_taisealisele_oppivale_lapsele_elatise_valjamoistmiseks.docx",
+      "text": "Hagiavaldus_taisealisele_oppivale_lapsele_elatise_valjamoistmiseks.docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Hagist_loobumise_avaldus.rtf",
+      "text": "Hagist_loobumise_avaldus.rtf",
+      "type": "rtf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/avaldus_menetluse_lopetamiseks_haldusasjas.rtf",
+      "text": "avaldus_menetluse_lopetamiseks_haldusasjas.rtf",
+      "type": "rtf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/kaebus_halduskohtule%20%281%29.docx",
+      "text": "kaebus_halduskohtule (1).docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Tallinna%20HK%20eelarve%202023.pdf",
+      "text": "Tallinna HK eelarve 2023.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/TartuHK_eelarve_2021.pdf",
+      "text": "TartuHK_eelarve_2021.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Tallinna%20HK%20eelarve%20ja%20t%C3%A4itmine%202022.pdf",
+      "text": "Tallinna HK eelarve ja täitmine 2022.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/TartuHK_eelarve_taitmine_2020.pdf",
+      "text": "TartuHK_eelarve_taitmine_2020.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/HarjuMK_Haldusjuht_%20ametijuhend.pdf",
+      "text": "HarjuMK_Haldusjuht_ ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/HarjuMK_Kohtujurist_ametijuhend.pdf",
+      "text": "HarjuMK_Kohtujurist_ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/HarjuMK_Kohtuistungi%20sekret%C3%A4r%20%28riigisaladuse%20luba%20omav%29_ametijuhend.pdf",
+      "text": "HarjuMK_Kohtuistungi sekretär (riigisaladuse luba omav)_ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/HarjuMK_Kohtuistungi%20sekret%C3%A4r%20%28juhendaja-koolitaja%29_ametijuhend.pdf",
+      "text": "HarjuMK_Kohtuistungi sekretär (juhendaja-koolitaja)_ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/HarjuMK_%20kantselei%20juhataja_%20ametijuhend.pdf",
+      "text": "HarjuMK_ kantselei juhataja_ ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/HarjuMK_konsultant_ametijuhend.pdf",
+      "text": "HarjuMK_konsultant_ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/HarjuMK_Kohtuistungi%20sekret%C3%A4r_ametijuhend%20.pdf",
+      "text": "HarjuMK_Kohtuistungi sekretär_ametijuhend .pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/HarjuMK_%20kantselei%20referent_%20ametijuhend.pdf",
+      "text": "HarjuMK_ kantselei referent_ ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/HarjuMK_I%20ja%20II%20astme%20kohtute%20koolitusjuht_ametijuhend.pdf",
+      "text": "HarjuMK_I ja II astme kohtute koolitusjuht_ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/HarjuMK_%20kohtukordniku%20ametijuhend.pdf",
+      "text": "HarjuMK_ kohtukordniku ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/HarjuMK_%20istungite%20teenindusjuht_%20ametijuhend.pdf",
+      "text": "HarjuMK_ istungite teenindusjuht_ ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/HarjuMK_juhtiv%20kohtuistungi%20sekret%C3%A4r_%20ametijuhend.pdf",
+      "text": "HarjuMK_juhtiv kohtuistungi sekretär_ ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Harju%20MK_andmekvaliteedi%20spetsialisti%20ametijuhend.pdf",
+      "text": "Harju MK_andmekvaliteedi spetsialisti ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Harju%20MK_kantselei%20spetsialisti%20ametijuhend.pdf",
+      "text": "Harju MK_kantselei spetsialisti ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Harju%20MK_kohtuistungi%20sekretari%20%28maksejouetuse%20jarelevalve%29%20ametijuhend.pdf",
+      "text": "Harju MK_kohtuistungi sekretari (maksejouetuse jarelevalve) ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/I%20ja%20II%20astme%20kohtute%20IKT%20koordinaator.pdf",
+      "text": "I ja II astme kohtute IKT koordinaator.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/HarjuMK_tsiviilosakonna%20n%C3%B5unik_ametijuhend.pdf",
+      "text": "HarjuMK_tsiviilosakonna nõunik_ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/HarjuMK_juhtivkohtujurist_ametijuhend_0.pdf",
+      "text": "HarjuMK_juhtivkohtujurist_ametijuhend_0.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/juriidilise_isiku_menetlusabi_taotlus.docx",
+      "text": "juriidilise_isiku_menetlusabi_taotlus.docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/kaebusest_loobumise_avalduse_vorm.rtf",
+      "text": "kaebusest_loobumise_avalduse_vorm.rtf",
+      "type": "rtf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Avaldus%20laevakinnistusraamatu%20kande%20muutmiseks%20kustutamiseks%20v%C3%B5i%20laeva%20kustutamiseks%20laevakinnistusraamatust.docx",
+      "text": "Avaldus laevakinnistusraamatu kande muutmiseks kustutamiseks või laeva kustutamiseks laevakinnistusraamatust.docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Avaldus_laevakinnistusraamatu_kandeavalduse_muutmiseks_tagasivotmiseks_voi_lisadokumentide_esitamiseks.docx",
+      "text": "Avaldus_laevakinnistusraamatu_kandeavalduse_muutmiseks_tagasivotmiseks_voi_lisadokumentide_esitamiseks.docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Avaldus_laevakinnistusraamatusse_kande_tegemiseks.docx",
+      "text": "Avaldus_laevakinnistusraamatusse_kande_tegemiseks.docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Nousolek_kommertspandiregistri_voi_laevakinnistusraamatusse_kande_tegemiseks.docx",
+      "text": "Nousolek_kommertspandiregistri_voi_laevakinnistusraamatusse_kande_tegemiseks.docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Volikiri_laevakinnistusraamatusse_kande_tegemiseks.docx",
+      "text": "Volikiri_laevakinnistusraamatusse_kande_tegemiseks.docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/kohtuistungi_edasilukkamise_taotluse_vorm_tsiviilasjades.doc",
+      "text": "kohtuistungi_edasilukkamise_taotluse_vorm_tsiviilasjades.doc",
+      "type": "doc",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/kohtuistungi_edasilukkamise_taotlus_haldusasjades.docx",
+      "text": "kohtuistungi_edasilukkamise_taotlus_haldusasjades.docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Parima_praktika_edendamine.pdf",
+      "text": "Parima_praktika_edendamine.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/KHN-i%20141.%20korralise%20istungi%20otsuste%20protokoll%2011.09.2026.pdf",
+      "text": "141. protokoll 11.09.2026",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/KHN-i%20140.%20erakorralise%20istungi%20protokoll%2024.08.2026-25.08.2026.pdf",
+      "text": "140. protokoll 24.08-25.08.2026 (elektrooniline istung)",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/KHN-i%20139.%20erakorralise%20istungi%20protokoll%2007.08.2026.pdf",
+      "text": "139. protokoll 07.08.2026 (elektrooniline istung)",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/KHN-i%20138.%20istungi%20protokoll%2022.05.2026.pdf",
+      "text": "138. protokoll 22.05.2026",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/KHN-i%20137.%20istungi%20protokoll%2013.03.2026.pdf",
+      "text": "137. protokoll 13.03.2026",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/136_0.pdf",
+      "text": "136. protokoll 12.12.2025",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/KHN-i%20135.%20istungi%20protokoll%2019.09.2025.pdf",
+      "text": "135. protokoll 19.09.2025",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/134.%20istungi%20protokoll%2030.05.2025.pdf",
+      "text": "134. protokoll, 30.05.2025",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/133.%20protokoll_17.04.2025.pdf",
+      "text": "133. protokoll 17.04.2025",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/132.%20protokoll%2014.03.2025.pdf",
+      "text": "132. protokoll 14.03.2025",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/131.%20protokoll%2006.12.24.pdf",
+      "text": "131. protokoll 6.12.2024",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/130.%20protokoll%2019.-20.09.24.pdf",
+      "text": "130. protokoll 19.-20.09.2024",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/129.%20istungi%20protokoll%2024.05.24.pdf",
+      "text": "129. protokoll 24.05.2024",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/128.%20protokoll%2008.03.2024.pdf",
+      "text": "128. protokoll 08.03.2024",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/127.%20istungi%20protokoll.pdf",
+      "text": "127. protokoll 8.12.2023",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/126.%20protokoll%2005.10-06.10.2023_0.pdf",
+      "text": "126.protokoll 5.-6.10.2023",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/125.%20protokoll%2002.06.2023.pdf",
+      "text": "125.protokoll 02.06.2023",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/124.%20protokoll%2010.03.2023.pdf",
+      "text": "124. protokoll 10.03.2023",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/123.%20protokoll%209.12.2022.pdf",
+      "text": "123.protokoll 09.12.2022",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/122_khn0.pdf",
+      "text": "122. protokoll, 23.09.2022",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/121_khn.pdf",
+      "text": "121. protokoll, 8.-9.09.2022",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/120.%20protokoll%2013.05.2022.pdf",
+      "text": "120. protokoll, 13.05.2022",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/119.%20protokoll%2011.03.2022.pdf",
+      "text": "119. protokoll 11.03.2022",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/118.%20protokoll%2019.11.2021.pdf",
+      "text": "118. protokoll 19.11.2021",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/117.%20protokoll%2016.-17.09.2021_0.pdf",
+      "text": "117. protokoll 16.-17.09.2021_0.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/116.%20protokoll%2014.05.2021.pdf",
+      "text": "116. protokoll, 14.05.2021 (elektrooniline istung)",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/115.%20protokoll%2019.03.2021.pdf",
+      "text": "115. protokoll, 19.03.2021 (elektrooniline istung)",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/114._protokoll_19.02.2021_elektrooniline_istung.pdf",
+      "text": "114. protokoll 19.02.2021 (elektrooniline istung).pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/113._protokoll_02.-05.02.2021_elektrooniline_istung.pdf",
+      "text": "113. protokoll 02.-05.02.2021 (elektrooniline istung).pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/112._protokoll_10.12.2020.pdf",
+      "text": "112. protokoll 10.12.2020.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/111._protokoll_09.-10.09_2020.pdf",
+      "text": "111. protokoll 09.-10.09 2020.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/110._protokoll_20.05.2020_elektrooniline_istung.pdf",
+      "text": "110. protokoll 20.05.2020 (elektrooniline istung).pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/109._protokoll_26.03.2020_elektrooniline_istung.pdf",
+      "text": "109. protokoll 26.03.2020 (elektrooniline istung).pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/108._protokoll_16.03.2020_elektrooniline_istung.pdf",
+      "text": "108. protokoll 16.03.2020 (elektrooniline istung).pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/107._protokoll_13.12.2019.pdf",
+      "text": "107. protokoll 13.12.2019.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/106._protokoll_20.09.2019.pdf",
+      "text": "106. protokoll 20.09.2019.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/105._protokoll_29.-30.05.2019.pdf",
+      "text": "105. protokoll 29.-30.05.2019.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/104._protokoll_28.03.2019.pdf",
+      "text": "104. protokoll 28.03.2019.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/103._protokoll_07.12.2018.pdf",
+      "text": "103. protokoll 07.12.2018.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/102._protokoll_29.10-01.11.2018_elektrooniline_istung.pdf",
+      "text": "102. protokoll 29.10-01.11.2018 (elektrooniline istung).pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/101._protokoll_10.10-17.10.2018_elektrooniline_istung.pdf",
+      "text": "101. protokoll 10.10-17.10.2018 (elektrooniline istung).pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/100._protokoll_21.09.2018.pdf",
+      "text": "100. protokoll 21.09.2018.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/99._protokoll_13.09.2018.pdf",
+      "text": "99. protokoll 13.09.2018.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/98._protokoll_31.05-01.06.2018.pdf",
+      "text": "98. protokoll 31.05-01.06.2018.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/97._protokoll_02.03.2018.pdf",
+      "text": "97. protokoll 02.03.2018.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/96._protokoll_08.12.2017.pdf",
+      "text": "96. protokoll 08.12.2017.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/95._protokoll_29.09.2017.pdf",
+      "text": "95. protokoll 29.09.2017.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/94._protokoll_01.-02.06.2017.pdf",
+      "text": "94. protokoll 01.-02.06.2017.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/93._protokoll_24.03.2017.pdf",
+      "text": "93. protokoll 24.03.2017.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/92._protokoll_09.12.2016.pdf",
+      "text": "92. protokoll 09.12.2016.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/91._protokoll_18.-26.10.2016_elektrooniline_istung.pdf",
+      "text": "91. protokoll 18.-26.10.2016 (elektrooniline istung).pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/90._protokoll_30.09.2016.pdf",
+      "text": "90. protokoll 30.09.2016.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/89._protokoll_02.-03.06.2016.pdf",
+      "text": "89. protokoll 02.-03.06.2016.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/88._protokoll_23.-30.03.2016_elektrooniline_istung.pdf",
+      "text": "88. protokoll 23.-30.03.2016 (elektrooniline istung).pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/87._protokoll_11.03.2016.pdf",
+      "text": "87. protokoll 11.03.2016.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/86._protokoll_03.-10.02.2016%C2%A0elektrooniline_istung.pdf",
+      "text": "86. protokoll 03.-10.02.2016 (elektrooniline istung).pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/85._protokoll_22.12.2015.pdf",
+      "text": "85. protokoll 22.12.2015.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/84._protokoll_11.12.2015.pdf",
+      "text": "84. protokoll 11.12.2015.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/83._protokoll_18.09.2015.pdf",
+      "text": "83. protokoll 18.09.2015.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/82._protokoll_22.05.2015.pdf",
+      "text": "82. protokoll 22.05.2015.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/81._protokoll_08.05.2015.pdf",
+      "text": "81. protokoll 08.05.2015.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/80._protokoll_13.03.2015.pdf",
+      "text": "80. protokoll 13.03.2015.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/79._protokoll_12.12.2014.pdf",
+      "text": "79. protokoll 12.12.2014.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/78._protokoll_31.10.2014.pdf",
+      "text": "78. protokoll 31.10.2014.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/77._protokoll_19.09.2014.pdf",
+      "text": "77. protokoll 19.09.2014.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/76._protokoll_29.05-06.06.2014_elektrooniline_istung.pdf",
+      "text": "76. protokoll 29.05-06.06.2014 (elektrooniline istung).pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/75._protokoll_22.-23.05.2014.pdf",
+      "text": "75. protokoll 22.-23.05.2014.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/74._protokoll_24.04.2014.pdf",
+      "text": "74. protokoll 24.04.2014.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/73._protokoll_14.03.2014.pdf",
+      "text": "73. protokoll 14.03.2014.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/72._protokoll_13.12.2013.pdf",
+      "text": "72. protokoll 13.12.2013.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/71._protokoll_11.10.2013.pdf",
+      "text": "71. protokoll 11.10.2013.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/70._protokoll_23.05-24.05.2013.pdf",
+      "text": "70. protokoll 23.05-24.05.2013.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/69._protokoll_05.04.2013.pdf",
+      "text": "69. protokoll 05.04.2013.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/68._protokoll_01.03-18.03.2013_elektrooniline_istung.pdf",
+      "text": "68. protokoll 01.03-18.03.2013 (elektrooniline istung).pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/67._protokoll_14.12.2012.pdf",
+      "text": "67. protokoll 14.12.2012.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/66._protokoll_20.-21.09.2012.pdf",
+      "text": "66. protokoll 20.-21.09.2012.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/65._protokoll_02.-17.08.2012_elektrooniline_istung.pdf",
+      "text": "65. protokoll 02.-17.08.2012 (elektrooniline istung).pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/64._protokoll_21.06-28.06.2012_elektrooniline_istung.pdf",
+      "text": "64. protokoll 21.06-28.06.2012 (elektrooniline istung).pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/63._protokoll_25.05.2012.pdf",
+      "text": "63. protokoll 25.05.2012.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/62._protokoll_16.03.2012.pdf",
+      "text": "62. protokoll 16.03.2012.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/61._protokoll_31.01-07.02.2012_elektrooniline_istung.pdf",
+      "text": "61. protokoll 31.01-07.02.2012 (elektrooniline istung).pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/60._protokoll_16.12.2011.pdf",
+      "text": "60. protokoll 16.12.2011.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/59.%20protokoll%2015.-16.09.2011.pdf",
+      "text": "59. protokoll 15.-16.09.2011",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/58._protokoll_20.05.2011.pdf",
+      "text": "58. protokoll 20.05.2011.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/57._protokoll_04.-15.04.2011_elektrooniline_istung.pdf",
+      "text": "57. protokoll 04.-15.04.2011 (elektrooniline istung).pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/56._protokoll_18.03.2011.pdf",
+      "text": "56. protokoll 18.03.2011.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/55._protokoll_10.12.2010.pdf",
+      "text": "55. protokoll 10.12.2010.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/54._protokoll_16.-17.09.2010.pdf",
+      "text": "54. protokoll 16.-17.09.2010.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/53._protokoll_03.-13.08.2010.pdf",
+      "text": "53. protokoll 03.-13.08.2010.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/52._protokoll_18.06.2010.pdf",
+      "text": "52. protokoll 18.06.2010.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/51._protokoll_14.05.2010.pdf",
+      "text": "51. protokoll 14.05.2010.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/50._protokoll_12.03.2010.pdf",
+      "text": "50. protokoll 12.03.2010.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/49._protokoll_18.12.2009.pdf",
+      "text": "49. protokoll 18.12.2009.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/48._protokoll_19.11.2009.pdf",
+      "text": "48. protokoll 19.11.2009.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/47._protokoll_28.09.2009_elektrooniline_istung.pdf",
+      "text": "47. protokoll 28.09.2009 (elektrooniline istung).pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/46._protokoll_28.09.2009.pdf",
+      "text": "46. protokoll 28.09.2009.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/45._protokoll_17.-18.09.2009.pdf",
+      "text": "45. protokoll 17.-18.09.2009.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/44._protokoll_05.06.2009_elektrooniline_istung.pdf",
+      "text": "44. protokoll 05.06.2009 (elektrooniline istung).pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/43._protokoll_15.05.2009.pdf",
+      "text": "43. protokoll 15.05.2009.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/42._protokoll_13.03.2009.pdf",
+      "text": "42. protokoll 13.03.2009.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/41._protokoll_06.03.2009.pdf",
+      "text": "41. protokoll 06.03.2009.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/40._protokoll_20.02-2.03.2009.pdf",
+      "text": "40. protokoll 20.02-2.03.2009.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/39._protokoll_06.12.2009_elektrooniline_istung.pdf",
+      "text": "39. protokoll 06.12.2009 (elektrooniline istung).pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/38._protokoll_11.-12.12.2008.pdf",
+      "text": "38. protokoll 11.-12.12.2008.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/37._protokoll_18.09.2008.pdf",
+      "text": "37. protokoll 18.09.2008.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/36._protokoll_23.05.2008.pdf",
+      "text": "36. protokoll 23.05.2008.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/35._protokoll_28.03.2008.pdf",
+      "text": "35. protokoll 28.03.2008.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/34._protokoll_14.12.2007.pdf",
+      "text": "34. protokoll 14.12.2007.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/33._protokoll_27.-28.09.2007.pdf",
+      "text": "33. protokoll 27.-28.09.2007.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/32._protokoll_25.05.2007.pdf",
+      "text": "32. protokoll 25.05.2007.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/31._protokoll_01.12.2006.pdf",
+      "text": "31. protokoll 01.12.2006.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/30._protokoll_14.-15.09.2006.pdf",
+      "text": "30. protokoll 14.-15.09.2006.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/29._protokoll_19.05.2006.pdf",
+      "text": "29. protokoll 19.05.2006.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/28._protokoll_28.04.2006_elektrooniline_istung.pdf",
+      "text": "28. protokoll 28.04.2006 (elektrooniline istung).pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/27._protokoll_17.03.2006.pdf",
+      "text": "27. protokoll 17.03.2006.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/26._protokoll_10.02.2006.pdf",
+      "text": "26. protokoll 10.02.2006.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/25._protokoll_01.02.2006.pdf",
+      "text": "25. protokoll 01.02.2006.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/24._protokoll_02.12.2005.pdf",
+      "text": "24. protokoll 02.12.2005.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/23._protokoll_04.11.2005.pdf",
+      "text": "23. protokoll 04.11.2005.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/22._protokoll_08.-09.09.2005.pdf",
+      "text": "22. protokoll 08.-09.09.2005.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/21._protokoll_27.05.2005.pdf",
+      "text": "21. protokoll 27.05.2005.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/20._protokoll_19.04.2005_elektrooniline_istung.pdf",
+      "text": "20. protokoll 19.04.2005 (elektrooniline istung).pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/19._protokoll_04.03.2005.pdf",
+      "text": "19. protokoll 04.03.2005.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/18._protokoll_24.12.2004_elektrooniline_istung.pdf",
+      "text": "18. protokoll 24.12.2004 (elektrooniline istung).pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/17._protokoll_30.09-01.10.2004.pdf",
+      "text": "17. protokoll 30.09-01.10.2004.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/16._protokoll_31.08.2004.pdf",
+      "text": "16. protokoll 31.08.2004.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/15._protokoll_21.06.2004.pdf",
+      "text": "15. protokoll 21.06.2004.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/14._protokoll_31.05.2004.pdf",
+      "text": "14. protokoll 31.05.2004.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/13._protokoll_23.03.2003.pdf",
+      "text": "13. protokoll 23.03.2003.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/12._protokoll_25.02.2004.pdf",
+      "text": "12. protokoll 25.02.2004.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/11._protokoll_12.11.2003.pdf",
+      "text": "11. protokoll 12.11.2003.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/10._protokoll_12.09.2003.pdf",
+      "text": "10. protokoll 12.09.2003.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/9._protokoll_29.08.2003.pdf",
+      "text": "9. protokoll 29.08.2003.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/8._protokoll_20.06.2003.pdf",
+      "text": "8. protokoll 20.06.2003.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/7._protokoll_19.05.2003.pdf",
+      "text": "7. protokoll 19.05.2003.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/6._protokoll_10.04.2003.pdf",
+      "text": "6. protokoll 10.04.2003.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/5._protokoll_13.02.2003.pdf",
+      "text": "5. protokoll 13.02.2003.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/4._protokoll_24.12.2002_elektrooniline_istung.pdf",
+      "text": "4. protokoll 24.12.2002 (elektrooniline istung).pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/4._protokoll_17.12.2002.pdf",
+      "text": "4. protokoll 17.12.2002.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/3._protokoll_28.11.2002.pdf",
+      "text": "3. protokoll 28.11.2002.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/2._protokoll_29.10.2002.pdf",
+      "text": "2. protokoll 29.10.2002.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/1._protokoll_02.10.2002.pdf",
+      "text": "1. protokoll 02.10.2002.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/P%C3%A4rnu%20Maakohtu%20kodukord.pdf",
+      "text": "Pärnu_MK_kodukord",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/TartuMK_kodukord_0.pdf",
+      "text": "Tartu_MK_kodukord",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/harju_maakohtu_kodukord_redaktsioon_2023.pdf",
+      "text": "Harju_MK_kodukord",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Viru%20Maakohtu%20kodukord%202025.pdf",
+      "text": "Viru_MK_kodukord",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/TlnHK_kodukord_0.pdf",
+      "text": "Tallinna_HK_kodukord",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/TartuHK_kodukord_0.pdf",
+      "text": "Tartu_HK_kodukord",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Tallinna%20RNK%20kodukord%2017.05.2023%20seisuga.pdf",
+      "text": "Tallinna_RKK_kodukord",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/TartuRNK_kodukord.pdf",
+      "text": "Tartu_RKK_kodukord",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/2014._a_menetlusstatistika.pdf",
+      "text": "2014. a menetlusstatistika.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/2013._a_menetlusstatistika.pdf",
+      "text": "2013. a menetlusstatistika.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/2013._I_pa_menetlusstatistika.pdf",
+      "text": "2013. I pa menetlusstatistika.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/2012._a_menetlusstatistika.pdf",
+      "text": "2012. a menetlusstatistika.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/2011._a_menetlusstatistika.pdf",
+      "text": "2011. a menetlusstatistika.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/2011._I_pa_menetlusstatistika.pdf",
+      "text": "2011. I pa menetlusstatistika.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/2010._a_menetlusstatistika.pdf",
+      "text": "2010. a menetlusstatistika.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/2010._I_pa_menetlusstatistika.pdf",
+      "text": "2010. I pa menetlusstatistika.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/2009._a_menetlusstatistika.pdf",
+      "text": "2009. a menetlusstatistika.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/2008._a_menetlusstatistika.pdf",
+      "text": "2008. a menetlusstatistika.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/2008._I_pa_menetlusstatistika.pdf",
+      "text": "2008. I pa menetlusstatistika.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/2000._a_menetlusstatistika.pdf",
+      "text": "2000. a menetlusstatistika.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/1997._a_menetlusstatistika.pdf",
+      "text": "1997. a menetlusstatistika.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Palgajuhend_0.pdf",
+      "text": "Palgajuhend_0.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/VMK%20t%C3%B6%C3%B6jaotusplaan%202026%20.pdf",
+      "text": "VMK tööjaotusplaan 2026 .pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Harju%20Maakohtu%20t%C3%B6%C3%B6jaotusplaan%202026_muudetud%2026.%20mai%202026.pdf",
+      "text": "Harju Maakohtu tööjaotusplaan 2026_muudetud 26. mai 2026.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Tartu%20Ringkonnakohtu%20t%C3%B6%C3%B6jaotusplaan%202026.pdf",
+      "text": "Tartu Ringkonnakohtu tööjaotusplaan 2026.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Tartu%20Maakohtu%20t%C3%B6%C3%B6jaotusplaan%202026.pdf",
+      "text": "Tartu Maakohtu tööjaotusplaan 2026.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/P%C3%A4rnu%20MK%20t%C3%B6%C3%B6jaotusplaan%202026_1.pdf",
+      "text": "Pärnu Maakohtu tööjaotusplaan 2026",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Tartu%20Halduskohtu%20t%C3%B6%C3%B6jaotusplaan%202026.pdf",
+      "text": "Tartu Halduskohtu tööjaotusplaan 2026.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Tallinna%20Ringkonnakohtu%20t%C3%B6%C3%B6jaotusplaan%202026.pdf",
+      "text": "Tallinna Ringkonnakohtu tööjaotusplaan 2026.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Tallinna%20Halduskohtu%202026.%20a%20t%C3%B6%C3%B6jaotusplaani%20tabel.pdf",
+      "text": "Tallinna Halduskohtu 2026. a tööjaotusplaani tabel.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Tallinna%20Halduskohtu%202026.%20aasta%20t%C3%B6%C3%B6jaotusplaan.pdf",
+      "text": "Tallinna Halduskohtu 2026. aasta tööjaotusplaan.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Tallinna%20Ringkonakohtu%20t%C3%B6%C3%B6jaotusplaan%20-%20mai%202025%20tervik.pdf",
+      "text": "Tallinna Ringkonakohtu tööjaotusplaan - mai 2025 tervik.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Harju%20Maakohtu%20t%C3%B6%C3%B6jaotusplaan%202025%20tsiviilosakond.docx",
+      "text": "Harju Maakohtu tööjaotusplaan 2025 tsiviilosakond.docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Harju%20Maakohtu%20t%C3%B6%C3%B6jaotusplaan%202025%20s%C3%BC%C3%BCteoosakond.docx",
+      "text": "Harju Maakohtu tööjaotusplaan 2025 süüteoosakond.docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Tallinna%20Halduskohtu%20t%C3%B6%C3%B6jaotusplaan%202025.pdf",
+      "text": "Tallinna Halduskohtu tööjaotusplaan 2025.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Tallinna%20Halduskohtu%20t%C3%B6%C3%B6jaotusplaan%202025%20tabel.pdf",
+      "text": "Tallinna Halduskohtu tööjaotusplaan 2025 tabel.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Tartu%20Halduskohtu%20t%C3%B6%C3%B6jaotusplaan%202025.pdf",
+      "text": "Tartu Halduskohtu tööjaotusplaan 2025.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/P%C3%A4rnu%20MK%20t%C3%B6%C3%B6jaotusplaan%202025.pdf",
+      "text": "Pärnu MK tööjaotusplaan 2025.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Viru%20Maakohtu%20t%C3%B6%C3%B6jaotusplaan%202025_0.pdf",
+      "text": "Viru Maakohtu tööjaotusplaan 2025_0.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Tartu%20Maakohtu%20t%C3%B6%C3%B6jaotusplaan%202025.pdf",
+      "text": "Tartu Maakohtu tööjaotusplaan 2025.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Tartu%20Ringkonnakohtu%20t%C3%B6%C3%B6jaotusplaan%202025.pdf",
+      "text": "Tartu Ringkonnakohtu tööjaotusplaan 2025.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/VMK%20t%C3%B6%C3%B6jaotusplaan%202025.pdf",
+      "text": "VMK tööjaotusplaan 2025.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/kohtute_kvaliteedijuhtimise_seletuskiri.pdf",
+      "text": "kohtute_kvaliteedijuhtimise_seletuskiri.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/kvaliteedijuhtimine_eesti_kohtususteemis.pdf",
+      "text": "kvaliteedijuhtimine_eesti_kohtususteemis.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Harju%20MK%20eelarve%202023.pdf",
+      "text": "Harju MK eelarve 2023.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/P%C3%A4rnu%20Maakohtu%20eelarve%202023.pdf",
+      "text": "Pärnu Maakohtu eelarve 2023.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Viru%20Maakohtu%20eelarve%202023.pdf",
+      "text": "Viru Maakohtu eelarve 2023.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Viru%20Maakohtu%20eelarve%202022.pdf",
+      "text": "Viru Maakohtu eelarve 2022.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/P%C3%A4rnu%20Maakohtu%20eelarve%20%202022.pdf",
+      "text": "Pärnu Maakohtu eelarve 2022.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Harju%20MK%20eelarve%20ja%20t%C3%A4itmine%202022.pdf",
+      "text": "Harju MK eelarve ja täitmine 2022.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/TartuMK_eelarve_2021.pdf",
+      "text": "TartuMK_eelarve_2021.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/TartuMK_eelarve_taitmine_2020.pdf",
+      "text": "TartuMK_eelarve_taitmine_2020.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/ParnuMK_eelarve20.pdf",
+      "text": "ParnuMK_eelarve20.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/ParnuMK_eelarve21.pdf",
+      "text": "ParnuMK_eelarve21.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/ParnuMK_taitmine20.pdf",
+      "text": "ParnuMK_taitmine20.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/ViruMK_eelarve20.pdf",
+      "text": "ViruMK_eelarve20.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/ViruMK_eelarve21.pdf",
+      "text": "ViruMK_eelarve21.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/ViruMK_taitmine_20.pdf",
+      "text": "ViruMK_taitmine_20.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/P%C3%A4rnu%20Maakohtu%20eelarve%20t%C3%A4itmine%202021.pdf",
+      "text": "Pärnu Maakohtu eelarve täitmine 2021.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/P%C3%A4rnu%20Maakohtu%20eelarve%20t%C3%A4itmine%202022.pdf",
+      "text": "Pärnu Maakohtu eelarve täitmine 2022.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Viru%20Maakohtu%20eelarve%20t%C3%A4itmine%202021.pdf",
+      "text": "Viru Maakohtu eelarve täitmine 2021.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Viru%20Maakohtu%20eelarve%20t%C3%A4itmine%202022.pdf",
+      "text": "Viru Maakohtu eelarve täitmine 2022.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/volgniku_andmete_loetelu_sissetuleku_vara_ja_majandusliku_seisundi_kohta.doc",
+      "text": "volgniku_andmete_loetelu_sissetuleku_vara_ja_majandusliku_seisundi_kohta.doc",
+      "type": "doc",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/vastvaide_maksekasu_kiirmenetluses_0_0.docx",
+      "text": "vastvaide_maksekasu_kiirmenetluses_0_0.docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/vastuvaide_lapse_elatisnoudele_maksekasu_kiirmenetluses_.docx",
+      "text": "vastuvaide_lapse_elatisnoudele_maksekasu_kiirmenetluses_.docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/P%C3%A4rnuMK_haldusjuht.pdf",
+      "text": "PärnuMK_haldusjuht.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/P%C3%A4rnuMK_kohtuistungi_sekretari_ametijuhend.pdf",
+      "text": "PärnuMK_kohtuistungi_sekretari_ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/P%C3%A4rnuMK_kohtujuristi_ametijuhend.pdf",
+      "text": "PärnuMK_kohtujuristi_ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/P%C3%A4rnuMK_kohtujuristi_ametijuhend1.pdf",
+      "text": "PärnuMK_kohtujuristi_ametijuhend1.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/P%C3%A4rnuMK_K%C3%A4rdla_referendi_ametijuhend.pdf",
+      "text": "PärnuMK_Kärdla_referendi_ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/P%C3%A4rnuMK_MKO_referendi_ametijuhend.pdf",
+      "text": "PärnuMK_MKO_referendi_ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/P%C3%A4rnuMK_mko_vanemreferendi_ametijuhend.pdf",
+      "text": "PärnuMK_mko_vanemreferendi_ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/P%C3%A4rnuMK_referendi_ametijuhend.pdf",
+      "text": "PärnuMK_referendi_ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/P%C3%A4rnuMK_uldkantselei_juhataja_ametijuhend.pdf",
+      "text": "PärnuMK_uldkantselei_juhataja_ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/P%C3%A4rnuMK_EKJV%20osakonna%20referendi%20ametijuhend.pdf",
+      "text": "PärnuMK_EKJV osakonna referendi ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/P%C3%A4rnuMK_EKJV%20osakonna%20spetsialisti%20ametijuhend.pdf",
+      "text": "PärnuMK_EKJV osakonna spetsialisti ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Parnu%20MK%20analuutiku%20ametijuhend.pdf",
+      "text": "Parnu MK analuutiku ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Parnu%20MK%20Kohtu%20esimehe%20abi%20-%20teabehaldusju....pdf",
+      "text": "Parnu MK Kohtu esimehe abi - teabehaldusju....pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/P%C3%A4rnu%20MK%20kohtukordniku%20ametijuhend.pdf",
+      "text": "Pärnu MK kohtukordniku ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Ps%C3%BChhiaatri%20eksperdiarvamus_vorm%20eestkoste%20asjas.docx",
+      "text": "Psühhiaatri ekspertarvamuse vorm eestkoste asjas",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Nousolek_kommertspandiregistri_voi_laevakinnistusraamatusse_kande_tegemiseks_0.docx",
+      "text": "Nousolek_kommertspandiregistri_voi_laevakinnistusraamatusse_kande_tegemiseks_0.docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Avaldus_kommertspandiregistrisse_kande_tegemine.docx",
+      "text": "Avaldus_kommertspandiregistrisse_kande_tegemine.docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Avaldus_kommertspandiregistri_kadeavalduse_muutmine_tagasivotmine_lisadokumendid.docx",
+      "text": "Avaldus_kommertspandiregistri_kadeavalduse_muutmine_tagasivotmine_lisadokumendid.docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/UUS_riigiloivu_tagastamise_avaldus_tsiviilkohtumenetlus.rtf",
+      "text": "Riigilõivu tagastamise avaldus tsiviilkohtupidamises",
+      "type": "rtf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/riigiloivu_tagastamise_avalduse_vorm_halduskohtumenetluses.rtf",
+      "text": "riigiloivu_tagastamise_avalduse_vorm_halduskohtumenetluses.rtf",
+      "type": "rtf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/riigiloivust_vabastamise_taotlus_haldusasjades.docx",
+      "text": "riigiloivust_vabastamise_taotlus_haldusasjades.docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Tallinna%20RK%20eelarve%202023.pdf",
+      "text": "Tallinna RK eelarve 2023.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/Tallinna%20RK%20eelarve%20ja%20t%C3%A4itmine%202022.pdf",
+      "text": "Tallinna RK eelarve ja täitmine 2022.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/TartuRK_eelarve_2021.pdf",
+      "text": "TartuRK_eelarve_2021.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/TartuRK_eelarve_taitmine_2020.pdf",
+      "text": "TartuRK_eelarve_taitmine_2020.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/TallinnaHK_kohtuistungisekretar_ametijuhend.pdf",
+      "text": "TallinnaHK_kohtuistungisekretar_ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/TallinnaHK_vanemkohtuistungisekretar_ametijuhend.pdf",
+      "text": "TallinnaHK_vanemkohtuistungisekretar_ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/THK_konsultandi_ametijuhend.pdf",
+      "text": "THK_konsultandi_ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/THK_AJ_kohtujurist_202502_juhendaja-koolitaja.pdf",
+      "text": "THK_AJ_kohtujurist_202502_juhendaja-koolitaja.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/THK_AJ_kohtujurist_202502.pdf",
+      "text": "THK_AJ_kohtujurist_202502.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/THK_AJ_kantselei%20juhataja_202505_0.pdf",
+      "text": "THK_AJ_kantselei juhataja_202505_0.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/TLHK_AJ_referent-kohtuistungi_sekretar.pdf",
+      "text": "TLHK_AJ_referent-kohtuistungi_sekretar.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/TallinnaRNK_halduskolleegiumi_kohtujuristi_ametijuhend.pdf",
+      "text": "TallinnaRNK_halduskolleegiumi_kohtujuristi_ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/TallinnaRNK_tsiviilkolleegiumi_kohtujuristi_ametijuhend.pdf",
+      "text": "TallinnaRNK_tsiviilkolleegiumi_kohtujuristi_ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/TallinnaRNK_halduskolleegiumi%20konsultandi%20ametijuhend.pdf",
+      "text": "TallinnaRNK_halduskolleegiumi konsultandi ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/TallinnaRNK_tsiviilkolleegiumi_kohtujurist%28arendus%29_ametijuhend.pdf",
+      "text": "TallinnaRNK_tsiviilkolleegiumi_kohtujurist(arendus)_ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/TallinnaRNK_kantselei_juhataja_ametijuhend_0.pdf",
+      "text": "TallinnaRNK_kantselei_juhataja_ametijuhend_0.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/TallinnaRNK_kohtu_esimehe_abi_ametijuhend_0.pdf",
+      "text": "TallinnaRNK_kohtu_esimehe_abi_ametijuhend_0.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/TallinnaRNK_kohtuistungi_sekret%C3%A4ri_ametijuhend_0.pdf",
+      "text": "TallinnaRNK_kohtuistungi_sekretäri_ametijuhend_0.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/TallinnaRNK_referendi_ametijuhend_0.pdf",
+      "text": "TallinnaRNK_referendi_ametijuhend_0.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/TallinnaRNK_vanemreferendi_ametijuhend_0.pdf",
+      "text": "TallinnaRNK_vanemreferendi_ametijuhend_0.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/TallinnaRNK_tsiviilkolleegiumi_n%C3%B5unik-kohtujuristi_ametijuhend_0.pdf",
+      "text": "TallinnaRNK_tsiviilkolleegiumi_nõunik-kohtujuristi_ametijuhend_0.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/TallinnaRNK_kriminaalkolleegiumi_kohtujuristi_ametijuhend_0.pdf",
+      "text": "TallinnaRNK_kriminaalkolleegiumi_kohtujuristi_ametijuhend_0.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/dokumendid/TallinnaRNK_kriminaalkolleegiumi_konsultandi_ametijuhend.pdf",
+      "text": "TallinnaRNK_kriminaalkolleegiumi_konsultandi_ametijuhend.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

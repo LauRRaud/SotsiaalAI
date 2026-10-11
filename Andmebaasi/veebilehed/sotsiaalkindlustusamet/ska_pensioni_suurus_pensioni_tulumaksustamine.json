@@ -1,0 +1,71 @@
+{
+  "document_id": "web-ska_pensioni_suurus_pensioni_tulumaksustamine",
+  "title": "Hüvitiste, toetuste ja pensionide tulumaksustamine",
+  "register_title": "Hüvitiste, toetuste ja pensionide tulumaksustamine",
+  "source_id": "ska_pensioni_suurus_pensioni_tulumaksustamine",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-suurus/pensioni-tulumaksustamine",
+  "source_path": "ska_pensioni_suurus_pensioni_tulumaksustamine.html",
+  "source_format": "html",
+  "source_sha256": "9bb994711654e12c3b3c168521fdd56f37771781e66430a4d54008378943d5f5",
+  "content_sha256": "902c4c4acef833acb902de5cd0ccc7e20160828f47ac55ba02032019f2894365",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:24:20.887Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-08-14",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:07:27 GMT",
+      "etag": null
+    },
+    "raw_sha256": "a8059f3eb04f55537ce7582e287c5fa85838d20bc8b41bfe36f5fd73eade86f2",
+    "stats": {
+      "words": 1177,
+      "blocks": 52,
+      "headings": 12,
+      "tables": 0,
+      "links": 14,
+      "linksToOtherSites": 6
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Avaldus%20tulumaksuvabastuse%20kasutamise%20kohta_08.01.2026.pdf",
+      "text": "Avaldus tulumaksuvabastuse kasutamise kohta | 455.08 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Avaldus%20tulumaksuvabastuse%20kasutamise%20kohta_08.01.2026.docx",
+      "text": "Avaldus tulumaksuvabastuse kasutamise kohta | 19.52 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    }
+  ]
+}

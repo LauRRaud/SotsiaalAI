@@ -5,9 +5,12 @@ import { createPortal } from "react-dom";
 
 import CloseIcon from "@/components/brand/icons/CloseIcon";
 import IconButton from "@/components/glass/IconButton";
-import Dropdown from "@/components/ui/Dropdown";
-import Form from "@/components/ui/Form";
+import { pilotSourceRef } from "@/lib/chat/pilotSourceRef";
 import { inertOutside } from "@/lib/inertOutside";
+import { SOURCE_FEEDBACK_CATEGORIES, SOURCE_FEEDBACK_NOTE_MAX } from "@/lib/sourceFeedbackReasons";
+
+import FeedbackForm from "./FeedbackForm";
+import reportStyles from "./ChatSourceReport.module.css";
 
 const SOURCES_DIALOG_TITLE_ID = "chat-sources-title";
 const ChatSourcesPanel = memo(function ChatSourcesPanel({
@@ -17,6 +20,7 @@ const ChatSourcesPanel = memo(function ChatSourcesPanel({
   conversationSources,
   latestAnswerSources,
   allConversationSources,
+  convId = null,
   onClose,
   returnFocusRef
 }) {
@@ -24,11 +28,10 @@ const ChatSourcesPanel = memo(function ChatSourcesPanel({
   const closeRef = useRef(null);
   const prevFocusRef = useRef(null);
   const [activeScope, setActiveScope] = useState("latest");
+  // Allika veateade („Teata veast"): milline allikas on avatud ja milliste kohta on teade juba saadetud
+  // (võti „<pööre>/<viide>", väärtus teate olek).
   const [reportingKey, setReportingKey] = useState("");
-  const [reportCategory, setReportCategory] = useState("outdated");
-  const [reportNote, setReportNote] = useState("");
-  const [reportState, setReportState] = useState({});
-  const [ownFeedback, setOwnFeedback] = useState({});
+  const [ownReports, setOwnReports] = useState({});
   const latestSources = Array.isArray(latestAnswerSources)
     ? latestAnswerSources
     : Array.isArray(conversationSources)
@@ -132,44 +135,39 @@ const ChatSourcesPanel = memo(function ChatSourcesPanel({
     }).format(date);
   }, [locale]);
 
-  const submitReport = useCallback(async source => {
-    if (!source?.messageId || !source?.sourceId) return;
-    const key = String(source.key || source.sourceId);
-    setReportState(current => ({ ...current, [key]: "sending" }));
+  // Vastab FeedbackForm-ile { ok, messageKey }: serveri keeldumise lause on kataloogis võtmega api.source_feedback.*.
+  const submitReport = useCallback(async (target, { category, note }) => {
     try {
       const response = await fetch("/api/source-feedback", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          messageId: source.messageId,
-          sourceId: source.sourceId,
-          category: reportCategory,
-          note: reportNote.trim()
-        })
+        body: JSON.stringify({ convId, turnId: target.turnId, ref: target.ref, category, note })
       });
       const payload = await response.json().catch(() => ({}));
-      if (!response.ok || !payload?.ok) throw new Error("feedback_failed");
-      setReportState(current => ({ ...current, [key]: "sent" }));
-      setOwnFeedback(current => ({ ...current, [source.sourceId]: payload.item }));
-      setReportingKey("");
-      setReportNote("");
+      if (!response.ok || !payload?.ok) {
+        return { ok: false, messageKey: typeof payload?.message === "string" ? payload.message : null };
+      }
+      setOwnReports(current => ({ ...current, [`${target.turnId}/${target.ref}`]: payload.item?.status || "OPEN" }));
+      return { ok: true };
     } catch {
-      setReportState(current => ({ ...current, [key]: "failed" }));
+      return { ok: false, messageKey: null };
     }
-  }, [reportCategory, reportNote]);
+  }, [convId]);
 
   useEffect(() => {
     if (!open) return undefined;
+    setReportingKey("");
     const controller = new AbortController();
     fetch("/api/source-feedback", { cache: "no-store", signal: controller.signal })
       .then(response => response.ok ? response.json() : null)
       .then(payload => {
         if (!payload?.ok || !Array.isArray(payload.items)) return;
-        const bySource = {};
+        const byAnswerSource = {};
         for (const item of payload.items) {
-          if (item?.sourceId && !bySource[item.sourceId]) bySource[item.sourceId] = item;
+          const key = `${item?.turnId}/${item?.sourceRef}`;
+          if (item?.turnId && item?.sourceRef && !byAnswerSource[key]) byAnswerSource[key] = item.status;
         }
-        setOwnFeedback(bySource);
+        setOwnReports(current => ({ ...current, ...byAnswerSource }));
       })
       .catch(() => {});
     return () => controller.abort();
@@ -233,6 +231,10 @@ const ChatSourcesPanel = memo(function ChatSourcesPanel({
                   pageText &&
                   !/^0+(?:\s*[-,]\s*0+)*$/.test(pageText) &&
                   !`${src.label}`.toLowerCase().includes("lk");
+                // Veast saab teatada vastuse allika kohta, mille pööre ja viide on teada.
+                const reportTarget = convId ? pilotSourceRef(src) : null;
+                const reportStatus = reportTarget ? ownReports[`${reportTarget.turnId}/${reportTarget.ref}`] : null;
+                const reporting = !!reportTarget && !reportStatus && reportingKey === src.key;
                 return (
                   <li key={src.key || idx} data-source-trust={src.freshness || "unknown"}>
                     <div className="chat-source-title">{src.label}</div>
@@ -287,65 +289,45 @@ const ChatSourcesPanel = memo(function ChatSourcesPanel({
                           ))}
                         </div>
                       ) : null}
-                      {src.messageId && src.sourceId ? (
-                        <div className="chat-source-feedback">
-                          {ownFeedback[src.sourceId] ? (
-                            <span className="chat-source-feedback-status">
-                              {ownFeedback[src.sourceId].status === "RESOLVED"
-                                ? t("chat.sources.report_resolved")
-                                : t("chat.sources.report_open")}
-                            </span>
-                          ) : null}
+                      {reportTarget ? (
+                        reportStatus ? (
+                          <span className={reportStyles.status} role="status">
+                            {reportStatus === "RESOLVED" ? t("chat.sources.report_resolved") : t("chat.sources.report_sent")}
+                          </span>
+                        ) : (
                           <button
                             type="button"
-                            aria-expanded={reportingKey === src.key}
-                            onClick={() => {
-                              setReportingKey(current => current === src.key ? "" : src.key);
-                              setReportState(current => ({ ...current, [src.key]: "idle" }));
-                            }}
+                            className={reportStyles.trigger}
+                            aria-expanded={reporting}
+                            onClick={() => setReportingKey(current => current === src.key ? "" : src.key)}
                           >
                             {t("chat.sources.report_action")}
                           </button>
-                        {reportingKey === src.key ? (
-                          <Form onSubmit={event => {
-                            event.preventDefault();
-                            submitReport(src);
-                          }}>
-                            <label>
-                              <span>{t("chat.sources.report_category")}</span>
-                              <Dropdown
-                                value={reportCategory}
-                                onChange={setReportCategory}
-                                ariaLabel={t("chat.sources.report_category")}
-                                options={["outdated", "wrong_content", "broken_link", "wrong_source", "other"].map(category => ({
-                                  value: category,
-                                  label: t(`chat.sources.report_${category}`)
-                                }))}
-                              />
-                            </label>
-                            <label>
-                              <span>{t("chat.sources.report_note")}</span>
-                              <textarea
-                                value={reportNote}
-                                onChange={event => setReportNote(event.target.value)}
-                                maxLength={500}
-                                rows={3}
-                              />
-                            </label>
-                            <button type="submit" disabled={reportState[src.key] === "sending"}>
-                              {reportState[src.key] === "sending"
-                                ? t("chat.sources.report_sending")
-                                : t("chat.sources.report_send")}
-                            </button>
-                          </Form>
-                        ) : null}
-                        <span role="status" aria-live="polite">
-                          {reportState[src.key] === "sent"
-                            ? t("chat.sources.report_sent")
-                            : reportState[src.key] === "failed"
-                              ? t("chat.sources.report_failed")
-                              : ""}
-                        </span>
+                        )
+                      ) : null}
+                      {reporting ? (
+                        <div className={reportStyles.report}>
+                          <FeedbackForm
+                            t={t}
+                            title={t("chat.sources.report_category")}
+                            columns={3}
+                            noteRows={2}
+                            noteMax={SOURCE_FEEDBACK_NOTE_MAX}
+                            reasons={SOURCE_FEEDBACK_CATEGORIES.map(category => ({ value: category, label: t(`chat.sources.report_${category}`) }))}
+                            texts={{
+                              noteLabel: t("chat.sources.report_note_label"),
+                              notePlaceholder: t("chat.sources.report_note"),
+                              send: t("chat.sources.report_send"),
+                              sending: t("chat.sources.report_sending"),
+                              cancel: t("chat.sources.report_cancel"),
+                              chooseReason: t("chat.sources.report_choose"),
+                              failed: t("chat.sources.report_failed")
+                            }}
+                            errorPrefix="api.source_feedback."
+                            onSubmit={data => submitReport(reportTarget, data)}
+                            onDone={() => setReportingKey("")}
+                            onCancel={() => setReportingKey("")}
+                          />
                         </div>
                       ) : null}
                     </div>

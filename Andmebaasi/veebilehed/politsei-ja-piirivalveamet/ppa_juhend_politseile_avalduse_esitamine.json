@@ -1,0 +1,59 @@
+{
+  "document_id": "web-ppa_juhend_politseile_avalduse_esitamine",
+  "title": "Politseile avalduse esitamine",
+  "register_title": "Politseile avalduse esitamine",
+  "source_id": "ppa_juhend_politseile_avalduse_esitamine",
+  "source_type": "web_page",
+  "publisher": "Politsei- ja Piirivalveamet",
+  "language": "et",
+  "url": "https://www.politsei.ee/et/juhend/politseile-avalduse-esitamine",
+  "source_path": "ppa_juhend_politseile_avalduse_esitamine.html",
+  "source_format": "html",
+  "source_sha256": "a00893a8abd25d644aa5035f36a1460a888ce0cdc044007eb9220736c1bfe045",
+  "content_sha256": "3f6045e3355b0c246914101f37e3a3380362cdbaa426adb033bc67dd02671c09",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:38:45.840Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": "Thu, 08 Oct 2026 17:07:49 GMT",
+      "etag": null
+    },
+    "raw_sha256": "6e06d3036d104627ba2140a4f34c0e10e5690e73c5bb16110af27f9d7d25589d",
+    "stats": {
+      "words": 44,
+      "blocks": 8,
+      "headings": 2,
+      "tables": 0,
+      "links": 1,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "thin_content"
+    ],
+    "needs_review": true
+  },
+  "documents": []
+}

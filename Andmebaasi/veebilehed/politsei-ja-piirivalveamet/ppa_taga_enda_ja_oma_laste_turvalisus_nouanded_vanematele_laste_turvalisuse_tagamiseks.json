@@ -1,0 +1,57 @@
+{
+  "document_id": "web-ppa_taga_enda_ja_oma_laste_turvalisus_nouanded_vanematele_laste_turvalisuse_tagamiseks",
+  "title": "Taga enda ja oma laste turvalisus",
+  "register_title": "Taga enda ja oma laste turvalisus",
+  "source_id": "ppa_taga_enda_ja_oma_laste_turvalisus_nouanded_vanematele_laste_turvalisuse_tagamiseks",
+  "source_type": "web_page",
+  "publisher": "Politsei- ja Piirivalveamet",
+  "language": "et",
+  "url": "https://www.politsei.ee/et/juhend/taga-enda-ja-oma-laste-turvalisus/nouanded-vanematele-laste-turvalisuse-tagamiseks",
+  "source_path": "ppa_taga_enda_ja_oma_laste_turvalisus_nouanded_vanematele_laste_turvalisuse_tagamiseks.html",
+  "source_format": "html",
+  "source_sha256": "bdf8142afbbcee618c51a8fc7bce2767987eddbf687c0dc1989fe32e05b561be",
+  "content_sha256": "088b3b760e6c659a58ef4ce2ba50fa72c74f3ece0fd28609518d3f1540c02423",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:40:45.985Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": "Thu, 08 Oct 2026 17:07:49 GMT",
+      "etag": null
+    },
+    "raw_sha256": "4f23db76c140643a5312e809ed14e7f57dfac6857e3c861a2bbe6210d8b1bd74",
+    "stats": {
+      "words": 422,
+      "blocks": 26,
+      "headings": 13,
+      "tables": 0,
+      "links": 0,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

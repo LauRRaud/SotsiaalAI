@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 import { REGISTRATION_OPEN } from "@/lib/publicRegistration";
 import { isCaseWorkEnabled } from "@/lib/casework/flags";
+import { isHomeCareEnabled } from "@/lib/homeCare/flags";
 import { isServiceLogEnabled } from "@/lib/serviceLog/flags";
 import { prisma } from "@/lib/prisma";
 import { authorizeCurrentAdminToken } from "@/lib/auth/jwtAuthorization";
@@ -47,6 +48,25 @@ export const FLAGGED_PAGE_REWRITES = [
   { pathname: "/toolaud/juhtumitoo", isEnabled: isCaseWorkEnabled }
 ];
 
+/**
+ * Sama reegel teedele, kus on muutuv osa (organisatsiooni ID). Koduteenuse
+ * lehed asuvad `/org/<id>/koduteenus/...`; väljas lipuga peavad need vastama
+ * nagu `/org/<id>/olematu`, mitte 200-ga, mille kehas on 404-leht.
+ */
+export const FLAGGED_PAGE_PREFIXES = [
+  { parent: "/org/", segment: "koduteenus", isEnabled: isHomeCareEnabled },
+  /* Teavituse suunaja `/org/koduteenus/kirje/<id>`: teel ei ole organisatsiooni
+     ID-d, seega kogu `/org/koduteenus/` alampuu kuulub samale lipule. */
+  { parent: "/org/koduteenus/", segment: null, isEnabled: isHomeCareEnabled }
+];
+
+function matchesFlaggedPrefix(entry, pathname) {
+  if (!pathname.startsWith(entry.parent)) return false;
+  if (entry.segment === null) return true;
+  const parts = pathname.slice(entry.parent.length).split("/");
+  return parts.length >= 2 && parts[0].length > 0 && parts[1] === entry.segment;
+}
+
 /** Olematu tee, mille peale suletud pind kirjutatakse. */
 const MISSING_ROUTE_PATHNAME = "/_puudub";
 
@@ -68,11 +88,24 @@ export async function proxy(req) {
      ÜMBERKIRJUTUS OLEMATULE TEELE, mitte `new NextResponse(null, {status:404})`:
      tühi keha oleks omaette sõrmejälg. Nii tuleb TÄPSELT seesama 404-leht, mille
      annab iga muu olematu marsruut. */
-  const flaggedPage = FLAGGED_PAGE_REWRITES.find(entry => entry.pathname === pathname);
+  const flaggedPage =
+    FLAGGED_PAGE_REWRITES.find(entry => entry.pathname === pathname) ||
+    FLAGGED_PAGE_PREFIXES.find(entry => matchesFlaggedPrefix(entry, pathname));
   if (flaggedPage && !flaggedPage.isEnabled()) {
     const gone = req.nextUrl.clone();
     gone.pathname = MISSING_ROUTE_PATHNAME;
     gone.search = "";
+    /* PÖÖRDPROKSI TAGA PEAB ÜMBERKIRJUTUS MINEMA HTTP-GA. Mõõdetud tootmises
+       09.10.2026 (`next start --hostname 127.0.0.1` nginxi taga): päis
+       `X-Forwarded-Proto: https` teeb siinse aadressi kujuks
+       `https://localhost:3000/_puudub`. Next võrdleb seda oma algaadressiga
+       (`https://127.0.0.1:3000`), peab aadressi võõraks ja toob selle välise
+       päringuna üle TLS-i pordist, mis räägib ainult HTTP-d: vastus oli 500,
+       mitte 404. Lipud, mille taga see haru seni oli, on tootmises sees, seega
+       haru ei käivitunud seal enne koduteenuse lehti kordagi.
+       Serveri enda aadressile (localhost) sunnime seetõttu HTTP: ümberkirjutus
+       jõuab siis alati kohale ja annab sama 404-lehe mis iga olematu marsruut. */
+    if (isLocalHostname(gone.hostname)) gone.protocol = "http:";
     return NextResponse.rewrite(gone);
   }
 
@@ -121,6 +154,9 @@ export const config = {
     "/teenuspaevik",
     "/juhtumid",
     "/toolaud/juhtumitoo",
+    "/org/:orgId/koduteenus",
+    "/org/:orgId/koduteenus/:path*",
+    "/org/koduteenus/:path*",
     "/(et|ru|en)",
     "/(et|ru|en)/:path*"
   ]

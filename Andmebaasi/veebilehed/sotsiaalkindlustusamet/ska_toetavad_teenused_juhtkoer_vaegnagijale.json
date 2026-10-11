@@ -1,0 +1,77 @@
+{
+  "document_id": "web-ska_toetavad_teenused_juhtkoer_vaegnagijale",
+  "title": "Juhtkoer vaegnägijale",
+  "register_title": "Juhtkoer vaegnägijale",
+  "source_id": "ska_toetavad_teenused_juhtkoer_vaegnagijale",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/toetavad-teenused/juhtkoer-vaegnagijale",
+  "source_path": "ska_toetavad_teenused_juhtkoer_vaegnagijale.html",
+  "source_format": "html",
+  "source_sha256": "51b52422a62a371ca6d415dbfc030cb810099088e847b5970ef264a304f11d72",
+  "content_sha256": "b5540da1e12ae44d8dfd3ffd5e18cc3616ac7f44210884d6feb309e2d60e87fa",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:35:38.594Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-05-08",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:35:37 GMT",
+      "etag": null
+    },
+    "raw_sha256": "003971be29c1aa7b89541e9db5169c0b52416930d4815ff30973d91cab691e2e",
+    "stats": {
+      "words": 241,
+      "blocks": 14,
+      "headings": 5,
+      "tables": 0,
+      "links": 7,
+      "linksToOtherSites": 3
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-05/Juhtkoera%20taotlemise%20vorm_08.05.2026.docx",
+      "text": "Juhtkoera taotlemise vorm | 26.18 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-05/Juhtkoera%20treeneri%20kinnituskiri_29.05.2023.pdf",
+      "text": "Juhtkoera treeneri kinnituskiri | 47.33 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-05/Juhtkoerad%20riiklikus%20s%C3%BCsteemis%202026.pdf",
+      "text": "Juhtkoerad riiklikus süsteemis | 203.11 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

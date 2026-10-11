@@ -1,0 +1,57 @@
+{
+  "document_id": "web-ppa_info_seoses_ukraina_sojaga_venemaa_ei_luba_ukraina_kodanikel_siseneda_venemaale",
+  "title": "Info seoses sõjaga Ukrainas",
+  "register_title": "Info seoses sõjaga Ukrainas",
+  "source_id": "ppa_info_seoses_ukraina_sojaga_venemaa_ei_luba_ukraina_kodanikel_siseneda_venemaale",
+  "source_type": "web_page",
+  "publisher": "Politsei- ja Piirivalveamet",
+  "language": "et",
+  "url": "https://www.politsei.ee/et/juhend/info-seoses-ukraina-sojaga/venemaa-ei-luba-ukraina-kodanikel-siseneda-venemaale",
+  "source_path": "ppa_info_seoses_ukraina_sojaga_venemaa_ei_luba_ukraina_kodanikel_siseneda_venemaale.html",
+  "source_format": "html",
+  "source_sha256": "f935bf48036061fc63548f4358429718deb736e2cc2910df0c38e7f1fc667a8a",
+  "content_sha256": "c88944f9f704310973ba02e9d7bddc69c4f7ff0ed31c2f56a5c694a6f9575020",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:36:35.739Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": "Thu, 08 Oct 2026 17:07:48 GMT",
+      "etag": null
+    },
+    "raw_sha256": "567840264fe96e47df9fdcfd1d2dae003249c630d76208347f1260fa283fe581",
+    "stats": {
+      "words": 84,
+      "blocks": 6,
+      "headings": 2,
+      "tables": 0,
+      "links": 0,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

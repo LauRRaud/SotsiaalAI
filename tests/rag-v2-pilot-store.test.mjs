@@ -367,6 +367,56 @@ test('F02/F04/F06/F09: invalid reference keeps exact bounded audit and terminal 
   assert.deepEqual((await db.m4PilotLedger.findUnique({ where: { id: f.config.id } })).totals, before.totals);
 });
 
+// ADR-129 (10.10.2026): the server checks every provision the answer names against the turn's packet, after the answer
+// is validated and before it is saved for publication. An invented act and passage; the model's reply is injected.
+test('ADR-129 real DB: an answer naming a provision its sources give is published with the audit and the source\'s provision, whole or lean; one naming a provision they do not give is refused', async t => {
+  const legal = f => {
+    Object.assign(f.packet.evidence[0], { source_text: '§ 133.\nToetuse arvestamine\n(1)\nToetust arvestatakse kuu kaupa.', bibliography: { title: 'Fiktiivsete toetuste seadus' }, legal_place: { section: '133', subsections: ['1'] } });
+    f.packet.model_context.evidence[0] = { ref: 'S1', provision: '§ 133 lg 1', text: f.packet.evidence[0].source_text };
+  };
+  const answering = (f, text) => { const call = f.service.call; f.service.call = async input => { const result = await call(input); if (input.stage === 'answer') result.value.blocks[0].text = text; return result; }; };
+  const kinds = counts => ({ a: 0, b: 0, c: 0, v: 0, s: 0, p: 0, q: 0, d: 0, ...counts });
+  // A plan that keeps its turns whole (auditDays 7) and one that keeps them lean (auditDays 0, as production does).
+  for (const auditDays of [7, 0]) {
+    const f = await fixture(t, { auditDays });
+    legal(f); answering(f, 'Toetust arvestatakse kuu kaupa (fiktiivsete toetuste seaduse § 133 lg 1).');
+    const turn = await f.service.run(f.user.id, f.input);
+    assert.deepEqual([turn.state, turn.sources.map(source => [source.title, source.provision])], ['completed', [['Fiktiivsete toetuste seadus', '§ 133 lg 1']]], String(auditDays));
+    const row = await turnRows.findUnique({ where: { id: turn.id } });
+    assert.deepEqual([isLeanTurn(row), row.payload.provisionAudit.kinds, row.payload.provisionAudit.mentions, row.payload.provisionAudit.labelled, row.payload.provisionAudit.items, row.payload.packet.evidence[0].legal_place],
+      [auditDays === 0, kinds({ a: 1 }), 1, 1, [], { section: '133', subsections: ['1'] }], String(auditDays));
+    assert.deepEqual(row.payload.responseAudit.validation, { valid: true, code: 'validated' });
+    // The turn's durable record carries the provision with its cited source, and the chat lists it beside the title.
+    const record = (await db.conversationMessage.findFirst({ where: { conversationId: f.conv.id, role: 'ASSISTANT' } })).metadata.m4History;
+    assert.equal(record.sources[0].provision, '§ 133 lg 1');
+    assert.equal((await historySourceView({ adapters: {}, config: f.config, record, ref: 'S1' })).provision, '§ 133 lg 1');
+    const restored = await f.service.run(f.user.id, f.input);
+    assert.deepEqual([restored.id, restored.sources[0].provision, pilotChatMessages([restored], f.conv.id).at(-1).sources[0].label], [turn.id, '§ 133 lg 1', 'S1 · Fiktiivsete toetuste seadus, § 133 lg 1 · Vastuses kasutatud']);
+    assert.deepEqual(f.calls, ['embedding', 'answer']);
+  }
+  // A provision nothing gives, under the policy in force (REFUSED_KINDS is empty, the maintainer's decision of
+  // 10.10.2026): the answer is published, and the audit records the mention as kind d for the health report.
+  const recorded = await fixture(t);
+  legal(recorded); answering(recorded, 'Toetust makstakse 500 eurot (fiktiivsete toetuste seaduse § 999 lg 1).');
+  const published = await recorded.service.run(recorded.user.id, recorded.input), kept = await turnRows.findUnique({ where: { id: published.id } });
+  assert.deepEqual([published.state, kept.payload.provisionAudit.kinds, kept.payload.provisionAudit.items, kept.payload.responseAudit.validation],
+    ['completed', kinds({ d: 1 }), [{ at: '$.blocks[0].text', provision: '§ 999 lg 1', kind: 'd', act: 'named' }], { valid: true, code: 'validated' }]);
+  // The refusal path stays in the code behind the list, and this test injects one: no message is written, the turn
+  // ends answer_rejected and is not answered again.
+  const bad = await fixture(t);
+  bad.service.refusedProvisionKinds = ['d'];
+  legal(bad); answering(bad, 'Toetust makstakse 500 eurot (fiktiivsete toetuste seaduse § 999 lg 1).');
+  await assert.rejects(bad.service.run(bad.user.id, bad.input), { code: 'unsupported_provision', status: 422 });
+  const row = await turnRows.findFirst({ where: { pilotId: bad.config.id } }), validation = row.payload.responseAudit.validation;
+  assert.deepEqual([row.state, row.payload.error, 'answer' in row.payload, 'provisionAudit' in row.payload, row.payload.events.at(-1).state], ['answer_rejected', 'unsupported_provision', false, false, 'response_received']);
+  assert.deepEqual([validation.valid, validation.code, validation.path, validation.provision, validation.provisions.kinds, validation.provisions.items, validation.received.text],
+    [false, 'unsupported_provision', '$.blocks[0].text', '§ 999 lg 1', kinds({ d: 1 }), [{ at: '$.blocks[0].text', provision: '§ 999 lg 1', kind: 'd', act: 'named' }], 'Toetust makstakse 500 eurot (fiktiivsete toetuste seaduse § 999 lg 1).']);
+  assert.equal(await db.conversationMessage.count({ where: { conversationId: bad.conv.id } }), 0);
+  const restored = await bad.service.run(bad.user.id, bad.input);
+  assert.deepEqual([restored.state, restored.failureKind, restored.answer, JSON.stringify(restored).includes('§ 999')], ['answer_rejected', 'provision', undefined, false]);
+  assert.deepEqual([pilotChatMessages([restored], bad.conv.id).at(-1).messageKey, bad.calls], ['m4Pilot.provisionFailed', ['embedding', 'answer']]);
+});
+
 test('F08: failed audit expires with its turn, cannot be restored after revocation, and cannot be recreated late', async t => {
   const f = await fixture(t), call = f.service.call;
   f.service.call = async input => { const result = await call(input); if (input.stage === 'answer') result.value.blocks[0].refs = ['S99']; return result; };

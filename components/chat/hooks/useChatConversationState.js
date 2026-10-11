@@ -536,6 +536,9 @@ export function useChatConversationState({
               ...(normalizedRole === "ai" && msg.completionStatus
                 ? { completionStatus: msg.completionStatus }
                 : {}),
+              ...(normalizedRole === "ai" && typeof msg.turnId === "string" && msg.turnId
+                ? { turnId: msg.turnId }
+                : {}),
               isStreaming: false,
               ...(Number.isFinite(rawCreatedAt) ? {
                 createdAt: rawCreatedAt

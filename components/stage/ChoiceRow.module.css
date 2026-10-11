@@ -1,0 +1,121 @@
+/* ChoiceRow: küsimus ja ühelaiused vastuselahtrid. Kaks paigutust, vt ChoiceRow.jsx. */
+
+.row {
+  min-width: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+.label {
+  min-width: 0;
+  color: var(--text-warm);
+}
+.options {
+  min-width: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+.option {
+  composes: cell from "./cell.module.css";
+  min-width: 0;
+  min-height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem 0.7rem;
+  border-radius: 0.75rem;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.25;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+.option[aria-checked="true"] {
+  color: var(--text-warm);
+  font-weight: 560;
+}
+
+/* --- stack: küsimus üleval, variandid võrgus ---------------------------------
+   Veergude arv tuleb komponendilt (kuni kolm; neli lühikest ühes reas). Võrk on
+   nii lai kui sisu vajab: iga lahter on pikima sildi laiune ja kõik on
+   omavahel ühelaiused. Viis varianti annab 3 + 2, mitte kolm eri pikkusega rida. */
+.row[data-layout="stack"] {
+  padding-block: 0.55rem;
+}
+.row[data-layout="stack"]:first-child {
+  padding-top: 0;
+}
+.row[data-layout="stack"] .label {
+  font-weight: 560;
+}
+.row[data-layout="stack"] .options {
+  display: inline-grid;
+  justify-self: start;
+  max-width: 100%;
+  grid-template-columns: repeat(var(--choice-cols, 3), minmax(0, 1fr));
+}
+.row[data-layout="stack"] .option {
+  min-width: 7rem;
+}
+
+/* --- scale: silt vasakul, lühike skaala paremal ühes reas ------------------- */
+.row[data-layout="scale"] {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 58%);
+  align-items: center;
+  gap: 0.4rem 1.1rem;
+  padding-block: 0.3rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--text-warm) 10%, transparent);
+}
+.row[data-layout="scale"]:last-child {
+  border-bottom: 0;
+}
+.row[data-layout="scale"] .options {
+  grid-template-columns: repeat(var(--choice-count, 3), minmax(0, 1fr));
+}
+
+/* Kitsas pind: skaala läheb sildi alla (lahtrid jäävad ühes reas ühelaiused),
+   puutesiht suuremaks. Konteineripäring kehtib seal, kus lehel on konteiner
+   (`.feature-page`); meediapäring on varu lehtedele, kus seda ei ole. */
+@container (max-width: 40rem) {
+  .row[data-layout="scale"] {
+    grid-template-columns: minmax(0, 1fr);
+    padding-block: 0.55rem;
+  }
+  /* Telefonis kaks veergu terve laiuse peale: puutesiht on tähtsam. */
+  .row[data-layout="stack"] .options {
+    display: grid;
+    justify-self: stretch;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .row[data-layout="stack"] .option {
+    min-width: 0;
+  }
+  .option {
+    min-height: var(--hit-target-min, 2.75rem);
+  }
+}
+/* Kitsas töölaua paneel ei ole telefon: 34 kuni 40 rem laiusele pinnale mahub
+   neli lühikest lahtrit ühte ritta. Kutsuja lubab seda ise (`keepColumns`),
+   sest pikkade siltidega rida peab seal ikka kahte veergu minema. */
+@container (min-width: 34rem) and (max-width: 40rem) {
+  .row[data-layout="stack"][data-keep="1"] .options {
+    grid-template-columns: repeat(var(--choice-cols, 3), minmax(0, 1fr));
+  }
+}
+@media (max-width: 640px) {
+  .row[data-layout="scale"] {
+    grid-template-columns: minmax(0, 1fr);
+    padding-block: 0.55rem;
+  }
+  /* Telefonis kaks veergu terve laiuse peale: puutesiht on tähtsam. */
+  .row[data-layout="stack"] .options {
+    display: grid;
+    justify-self: stretch;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .row[data-layout="stack"] .option {
+    min-width: 0;
+  }
+  .option {
+    min-height: var(--hit-target-min, 2.75rem);
+  }
+}

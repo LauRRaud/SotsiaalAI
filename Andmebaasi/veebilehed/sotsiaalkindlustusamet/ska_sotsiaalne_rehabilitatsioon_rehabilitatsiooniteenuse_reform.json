@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_sotsiaalne_rehabilitatsioon_rehabilitatsiooniteenuse_reform",
+  "title": "Rehabilitatsiooniteenuse reform",
+  "register_title": "Rehabilitatsiooniteenuse reform",
+  "source_id": "ska_sotsiaalne_rehabilitatsioon_rehabilitatsiooniteenuse_reform",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/sotsiaalne-rehabilitatsioon/rehabilitatsiooniteenuse-reform",
+  "source_path": "ska_sotsiaalne_rehabilitatsioon_rehabilitatsiooniteenuse_reform.html",
+  "source_format": "html",
+  "source_sha256": "327293a95822609a34fb955df14f218768dbbba80b31e82b907654f2f35df95a",
+  "content_sha256": "a40348ef367810e744f8b912c0d24ebfd7d80343c6c1aec7cecee46f43b22f2e",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:35:33.634Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-09-03",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:35:32 GMT",
+      "etag": null
+    },
+    "raw_sha256": "a12ffdfe4fe642ee12ff21508e4a4ed68a74fb6a1050eaa3a53a6a03b98c1bc9",
+    "stats": {
+      "words": 1028,
+      "blocks": 50,
+      "headings": 15,
+      "tables": 0,
+      "links": 1,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

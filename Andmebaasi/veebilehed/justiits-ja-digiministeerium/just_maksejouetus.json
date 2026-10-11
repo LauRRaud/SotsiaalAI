@@ -1,0 +1,96 @@
+{
+  "document_id": "web-just_maksejouetus",
+  "title": "Maksejõuetus",
+  "register_title": "Maksejõuetus",
+  "source_id": "just_maksejouetus",
+  "source_type": "web_page",
+  "publisher": "Justiits- ja Digiministeerium",
+  "language": "et",
+  "url": "https://www.just.ee/maksejouetus",
+  "url_final": "https://www.justdigi.ee/maksejouetus",
+  "source_path": "just_maksejouetus.html",
+  "source_format": "html",
+  "source_sha256": "7efa23fcd5b5ce26ef47bb784ce57777d2341961b3f6140bcb4b276e937679f5",
+  "content_sha256": "a2830cfee9a079b96f56213eda42e307af47be5bd12770e404969eab89123f5a",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:27:28.371Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-04-23",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "ed1c3e7b4d2c5f8b928aaf670a4a690d65741c24dab7c029b2f780c88e9e23b6",
+    "stats": {
+      "words": 633,
+      "blocks": 45,
+      "headings": 18,
+      "tables": 0,
+      "links": 22,
+      "linksToOtherSites": 14
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2024-01/V%C3%B5lgniku%20maksej%C3%B5uetusavaldus%202024.docx",
+      "text": "Võlgniku maksejõuetusavaldus | 77.82 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2024-01/ELUKAASLASTE%20%C3%9CHINE%20MAKSEJ%C3%95UETUSAVALDUS%202024.docx",
+      "text": "Võlgnikest abikaasade või registreeritud elukaaslaste ühine maksejõuetusavaldus | 80.47 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2024-02/V%C3%95LAUSALDAJA%20MAKSEJ%C3%95UETUSAVALDUS%202024.docx",
+      "text": "Võlausaldaja maksejõuetusavaldus | 60.26 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2024-02/VARA-%20JA%20V%C3%95LANIMEKIRI.docx",
+      "text": "Vara- ja võlanimekiri | 64.97 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2024-01/V%C3%95LGADE%20%C3%9CMBERKUJUNDAMISE%20KAVA%202024.docx",
+      "text": "Võlgade ümberkujundamise kava | 63.12 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2022-07/Saneerimiskava%20n%C3%A4idis%20ESF.docx",
+      "text": "Saneerimiskava näidis ESF.docx | 43.91 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    }
+  ]
+}

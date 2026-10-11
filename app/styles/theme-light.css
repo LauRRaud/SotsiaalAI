@@ -479,9 +479,6 @@ html.theme-light:not(:has(.room[data-power="standby"])) .pwa-install-inline-help
   border-color: rgba(0, 0, 0, 0.12);
   background: rgba(250, 248, 245, 0.84);
 }
-html.theme-light:not(:has(.room[data-power="standby"])) .journey-quick-help {
-  background: rgba(250, 248, 245, 0.84);
-}
 
 /* ---------- Admin (rag-admin.css, admin-analytics.css) ---------- */
 html.theme-light:not(:has(.room[data-power="standby"])) :is(.ra-table th, .aa-table th) {
@@ -714,14 +711,6 @@ html.theme-light:not(:has(.room[data-power="standby"])) .cvl-gate.is-open {
 /* ---------- Jaamade dokid (register-flight.css, covision-live.css) ---------- */
 html.theme-light:not(:has(.room[data-power="standby"])) :is(.rgf-dock, .cvf-stage-dock) .gc-shortcut[data-state="done"] {
   color: rgba(21, 21, 21, 0.78);
-}
-
-/* ---------- Väljad (field.css) ---------- */
-html.theme-light:not(:has(.room[data-power="standby"])) :is(.fld-warn, .fld-item__error) {
-  color: var(--text-soft);
-}
-html.theme-light:not(:has(.room[data-power="standby"])) .fld-input {
-  background: rgba(255, 255, 255, 0.55);
 }
 
 /* ---------- Teenuspäevik (service-log.css) ---------- */

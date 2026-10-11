@@ -13,10 +13,15 @@
 //     scripts/rag-v2-corpus-refresh.mjs register (ADR-059) and the usual ingest and index path.
 //     --municipalities Andmebaasi/register/kov_oigusaktid.json also names every municipality of that register without
 //     an indexed act in force today (exit 10), since the groups come from the index and cannot show one that is absent.
+//   ending --manifest M [--today YYYY-MM-DD] [--horizon-days 90] [--out FILE]
+//     ADR-124 (10.10.2026): the groups whose indexed versions stop within the horizon, read from the manifest alone (no
+//     request is made). On the day after its last day an act leaves every answer unless its next version has been
+//     indexed, and nothing fails, so the list is for adding those versions in time. Prints the acts by last day,
+//     national first, then one JSON line of counts; --out writes the whole list as JSON. Exit 0: none; 10: some.
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
-import { addDays, analyseGroup, coverage, exitCode, groupStatus, isoDay, municipalCoverage } from '../lib/rag-v2/law-validity.js';
+import { actsEnding, addDays, analyseGroup, coverage, exitCode, groupsInForce, groupStatus, isoDay, municipalCoverage } from '../lib/rag-v2/law-validity.js';
 
 const BASE = process.env.RAG_V2_RT_BASE || 'https://www.riigiteataja.ee';
 const PAGE = 500, MAX_PAGES = 30, ROUNDS = 8, PAUSE_MS = Number(process.env.RAG_V2_RT_PAUSE_MS ?? 200);
@@ -162,7 +167,9 @@ async function checkGroup(group, acts, { today, horizon, indexed }) {
       replacements.push({ ...candidate, in_corpus: inCorpus, ...(inCorpus ? {} : { paragraphs: text?.paragraphs ?? null }), ...(text?.repealed ? { repeal_stub: true } : {}) });
     }
   }
-  const versions = [...members.values()].sort((a, b) => a.from.localeCompare(b.from));
+  // A published version may have no start day yet (10.10.2026: one of the Code of Criminal Procedure, 111072026081);
+  // the sort threw on it and the whole check ended without a report. Such a version sorts first; coverage leaves it out.
+  const versions = [...members.values()].sort((a, b) => (a.from ?? '').localeCompare(b.from ?? ''));
   const result = analyseGroup({ group, corpus: acts, current, published: versions, searched: found.searched, today, horizon, replacements });
   return { ...result, title: acts[0].title, issuer: acts[0].issuer, regions: acts[0].regions, corpus: acts.map(a => a.globaal_id), errors,
     published: versions.map(v => `${v.globaal_id} ${v.from}..${v.to ?? 'open'}${v.repealed ? ` kehtetuks (${v.repealed_by ?? '?'})` : ''}`) };
@@ -218,7 +225,8 @@ try {
   const [mode, ...rest] = process.argv.slice(2);
   const { values } = parseArgs({ args: rest, options: { store: { type: 'string' }, tenant: { type: 'string', default: 'sotsiaalai-corpus' },
     policy: { type: 'string' }, 'input-root': { type: 'string', default: 'Andmebaasi' }, out: { type: 'string' }, manifest: { type: 'string' },
-    today: { type: 'string' }, 'horizon-days': { type: 'string', default: '400' }, download: { type: 'string' }, municipalities: { type: 'string' } } });
+    today: { type: 'string' }, 'horizon-days': { type: 'string' }, download: { type: 'string' }, municipalities: { type: 'string' } } });
+  const today = values.today || new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Tallinn' });
   if (mode === 'manifest') {
     if (!values.store || !values.policy || !values.out) throw Object.assign(new Error('usage'), { code: 'law_validity_usage' });
     const manifest = await buildManifest(values);
@@ -227,8 +235,7 @@ try {
   } else if (mode === 'check') {
     if (!values.manifest || !values.out) throw Object.assign(new Error('usage'), { code: 'law_validity_usage' });
     const manifest = JSON.parse(await fs.readFile(values.manifest, 'utf8'));
-    const today = values.today || new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Tallinn' });
-    const horizon = addDays(today, Number(values['horizon-days']));
+    const horizon = addDays(today, Number(values['horizon-days'] ?? 400));
     const byGroup = new Map();
     for (const act of manifest.acts) {
       const key = act.group || `act:${act.globaal_id}`;
@@ -262,6 +269,33 @@ try {
     const code = Math.max(exitCode(groups), municipal?.without_current_act.length ? 10 : 0);
     console.log(JSON.stringify({ today, groups: groups.length, summary,
       ...(municipal ? { municipalities_without_current_act: municipal.without_current_act.length } : {}), exit: code }));
+    process.exitCode = code;
+  } else if (mode === 'ending') {
+    // An empty value (an unset variable in a wrapper) must not read as a horizon of no days and an all-clear.
+    const asked = values['horizon-days'] ?? '90', days = Number(asked);
+    if (!values.manifest || isoDay(today) !== today || Number.isNaN(Date.parse(today)) || new Date(today).toISOString().slice(0, 10) !== today
+      || !/^\d+$/u.test(asked)) throw Object.assign(new Error('usage'), { code: 'law_validity_usage' });
+    const manifest = JSON.parse(await fs.readFile(values.manifest, 'utf8'));
+    const acts = actsEnding(manifest.acts, today, days), scope = act => act.regions.join(',') || 'national';
+    const count = list => ({ national: list.filter(act => !act.regions.length).length, municipal: list.filter(act => act.regions.length).length });
+    // in_force: the groups with a version in force today, what the listed ones are counted of. resume_after_gap: the
+    // listed groups the manifest shows coming back after uncovered days; the others end with nothing after.
+    const summary = { today, horizon: addDays(today, days), in_force: groupsInForce(manifest.acts, today), ending: count(acts), resume_after_gap: acts.filter(act => act.resumes_on).length,
+      by_last_day: [...new Set(acts.map(act => act.last_day))].sort().map(day => ({ last_day: day, ...count(acts.filter(act => act.last_day === day)) })) };
+    const width = Math.max(5, ...acts.map(act => scope(act).length));
+    if (acts.length) console.log(`last day    left  ${'scope'.padEnd(width)}  act`);
+    for (const act of acts) {
+      const note = act.resumes_on ? `resumes ${act.resumes_on} after ${act.gap_days} uncovered day${act.gap_days === 1 ? '' : 's'}${act.ends_again_on ? `, ends again ${act.ends_again_on}` : ''}`
+        : act.candidates.map(candidate => `candidate: group ${candidate.group}${candidate.same_title ? ', same title' : ` "${candidate.title}"`}`).join('; ');
+      console.log(`${act.last_day}  ${String(act.days_left).padStart(4)}  ${scope(act).padEnd(width)}  ${act.title} (${act.issuer}, group ${act.group})${note ? ` [${note}]` : ''}`);
+    }
+    if (values.out) {
+      await fs.mkdir(path.dirname(path.resolve(values.out)), { recursive: true });
+      await fs.writeFile(values.out, `${JSON.stringify({ schema_version: 'rag-v2/law-acts-ending-1', ...summary, horizon_days: days,
+        manifest: { store_generation: manifest.store_generation, generated_at: manifest.generated_at }, acts }, null, 2)}\n`);
+    }
+    const code = acts.length ? 10 : 0;
+    console.log(JSON.stringify({ ...summary, exit: code }));
     process.exitCode = code;
   } else throw Object.assign(new Error('usage'), { code: 'law_validity_usage' });
 } catch (error) {

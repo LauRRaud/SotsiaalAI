@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_perehuvitiste_ulevaade_isa_vanemahuvitis_ja_isapuhkus",
+  "title": "Isa vanemahüvitis ja isapuhkus",
+  "register_title": "Isa vanemahüvitis ja isapuhkus",
+  "source_id": "ska_perehuvitiste_ulevaade_isa_vanemahuvitis_ja_isapuhkus",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/perehuvitiste-ulevaade/isa-vanemahuvitis-ja-isapuhkus",
+  "source_path": "ska_perehuvitiste_ulevaade_isa_vanemahuvitis_ja_isapuhkus.html",
+  "source_format": "html",
+  "source_sha256": "507b66c136973784dbc9622a60d4204eb159a753305abb64e229aaaf8d7615cf",
+  "content_sha256": "58a16f9af58fa5e971276992046432e2a105428992a6d9714f048bc96aa080ca",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:25:06.007Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-03-05",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:08:12 GMT",
+      "etag": null
+    },
+    "raw_sha256": "c7f8f63142c19639f757f3fee2b41a98add0418a7edab60d0b86c77ab8c2bfb9",
+    "stats": {
+      "words": 1732,
+      "blocks": 78,
+      "headings": 17,
+      "tables": 0,
+      "links": 4,
+      "linksToOtherSites": 3
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

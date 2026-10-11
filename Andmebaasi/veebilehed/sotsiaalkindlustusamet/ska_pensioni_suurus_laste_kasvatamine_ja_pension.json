@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_pensioni_suurus_laste_kasvatamine_ja_pension",
+  "title": "Laste kasvatamine ja pension",
+  "register_title": "Laste kasvatamine ja pension",
+  "source_id": "ska_pensioni_suurus_laste_kasvatamine_ja_pension",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-suurus/laste-kasvatamine-ja-pension",
+  "source_path": "ska_pensioni_suurus_laste_kasvatamine_ja_pension.html",
+  "source_format": "html",
+  "source_sha256": "64f4b41b7cd10b527521e64303406f8185d3f0cbfa4e932cfbb4b1efc8c403d6",
+  "content_sha256": "4b7a94697306dc391a32fa599238e53ea8db842675e31157046f2ff9d76af091",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:24:13.486Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-07-14",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 16:53:46 GMT",
+      "etag": null
+    },
+    "raw_sha256": "66c63d775f8d84ff3dd9b7cf199c2eed1f732f688b33cc7ed1f5ef1e2a9c5a9f",
+    "stats": {
+      "words": 514,
+      "blocks": 31,
+      "headings": 10,
+      "tables": 0,
+      "links": 8,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

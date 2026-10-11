@@ -96,7 +96,7 @@ Kirjes on siis `"asked_in": "earlier_question"`. Jätk kestab pöördest pöörd
 
 ## Piirid
 
-- **Küsimuseta palve jääb elukoha valda.** „Maardu isikliku abistaja teenus“ või „Soovin infot Maardu … kohta“ ei sisalda küsisõna ega küsimärki; server ei loe seda küsimuseks ja otsib elukohast, nagu enne parandust. Test hoiab seda piirina, mitte eesmärgina.
+- **Küsimuseta palve jääb elukoha valda.** „Maardu isikliku abistaja teenus“ või „Soovin infot Maardu … kohta“ ei sisalda küsisõna ega küsimärki; server ei loe seda küsimuseks ja otsib elukohast, nagu enne parandust. Test hoiab seda piirina, mitte eesmärgina. **Alates 10.10.2026 ([ADR-128](adr-128-request-without-a-question.md)):** soov koos sellega, mida soovitakse („Soovin infot Maardu … kohta“), loetakse küsimiseks; nimisõnafraas üksi jääb piiriks.
 - **Vald, millele küsimus viitab asesõnaga** („Töötan Maardus, kas sealt saab …?“), ei ole küsimuse sees nimetatud: otsing jääb elukoha valda.
 - **Töökoht küsimuse sees pärast küsisõna**, kirjavahemärkideta („kas ma saan koduteenust kui töötan Maardus“), loetakse küsimuse osaks. Vale piirkond tekib siis ainult juhul, kui ka plaani päringud nimetavad üksnes töökoha valda.
 - **Järelküsimus toetub plaani päringutele.** Kui plaan kirjutab pärast Maardu küsimust inimese enda palve kohta päringud ainult Maardust, jätkub otsing Maardus. Server ei saa seda sõnumist eristada.

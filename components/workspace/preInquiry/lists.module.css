@@ -1,0 +1,90 @@
+/* Eelpöördumise loendikaardid: soovitatud kontakt ja salvestatud eelpöördumine.
+   Kaardil on pealkiri koos märgiga, paar rida selgitust ja üks põhitegevus. */
+
+.list {
+  min-width: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+.card {
+  min-width: 0;
+  display: grid;
+  gap: 0.3rem;
+  padding: 0.8rem 0.95rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 1rem;
+  background: var(--glass-cell-bg);
+}
+.card[data-selected="true"] {
+  border-color: color-mix(in srgb, var(--text-warm) 62%, transparent);
+  background: color-mix(in srgb, var(--text-warm) 9%, transparent);
+}
+.cardHead {
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 0.8rem;
+  flex-wrap: wrap;
+}
+.cardTitle {
+  min-width: 0;
+  margin: 0;
+  font-size: inherit;
+  font-weight: 560;
+  color: var(--text-warm);
+  overflow-wrap: anywhere;
+}
+.chip {
+  flex: none;
+  padding: 0.12rem 0.55rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 999px;
+  color: var(--text-soft);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+.chip[data-tone="ok"] {
+  border-color: color-mix(in srgb, var(--status-success, #c5cf9b) 55%, transparent);
+  color: var(--status-success, #c5cf9b);
+}
+.chip[data-tone="wait"] {
+  border-color: color-mix(in srgb, #e6c27a 55%, transparent);
+  color: #e6c27a;
+}
+:global(html.theme-light) .chip[data-tone="ok"] {
+  color: #2f6a3f;
+}
+:global(html.theme-light) .chip[data-tone="wait"] {
+  color: #7a5a12;
+}
+.cardLine,
+.cardReason,
+.cardMeta {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.cardLine {
+  color: var(--text-warm);
+}
+.cardReason {
+  color: var(--text-soft);
+}
+.cardMeta {
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+}
+.cardActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.6rem;
+  margin-top: 0.3rem;
+}
+.more {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid color-mix(in srgb, var(--text-warm) 10%, transparent);
+}

@@ -1,0 +1,57 @@
+{
+  "document_id": "web-ppa_kaitse_ennast_kelmide_eest_kelmuse_tuubid_mis_eestis_tana_ringlevad",
+  "title": "Kaitse ennast kelmide eest",
+  "register_title": "Kaitse ennast kelmide eest",
+  "source_id": "ppa_kaitse_ennast_kelmide_eest_kelmuse_tuubid_mis_eestis_tana_ringlevad",
+  "source_type": "web_page",
+  "publisher": "Politsei- ja Piirivalveamet",
+  "language": "et",
+  "url": "https://www.politsei.ee/et/juhend/kaitse-ennast-kelmide-eest/kelmuse-tuubid-mis-eestis-tana-ringlevad",
+  "source_path": "ppa_kaitse_ennast_kelmide_eest_kelmuse_tuubid_mis_eestis_tana_ringlevad.html",
+  "source_format": "html",
+  "source_sha256": "1df50e783bde464e97037450e9cf3a89de4ee92d0137321ef7e1fd5cfe676276",
+  "content_sha256": "e010b46a4d6f2aaf00c8217822f80c5f88349212cd74ad6c1ad9c3c2a28bff3a",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:37:55.802Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": "Thu, 08 Oct 2026 17:07:49 GMT",
+      "etag": null
+    },
+    "raw_sha256": "d1a5ce12fbd5c806b3400c663d9c0bc25c0e4516290612dc86186c9eb2dea3d0",
+    "stats": {
+      "words": 1028,
+      "blocks": 31,
+      "headings": 8,
+      "tables": 0,
+      "links": 0,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

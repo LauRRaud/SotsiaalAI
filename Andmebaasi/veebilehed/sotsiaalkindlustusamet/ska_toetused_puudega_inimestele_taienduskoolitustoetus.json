@@ -1,0 +1,65 @@
+{
+  "document_id": "web-ska_toetused_puudega_inimestele_taienduskoolitustoetus",
+  "title": "Täienduskoolitustoetus",
+  "register_title": "Täienduskoolitustoetus",
+  "source_id": "ska_toetused_puudega_inimestele_taienduskoolitustoetus",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/toetused-puudega-inimestele/taienduskoolitustoetus",
+  "source_path": "ska_toetused_puudega_inimestele_taienduskoolitustoetus.html",
+  "source_format": "html",
+  "source_sha256": "99a39af20da9791157984a68e3e6897be82b5da1b91697a190f0b41d29755a67",
+  "content_sha256": "28b3e8cdb92ef52316b4c1ef0f45a4e5c896e4fe7a93ad477e377e5bab9d59be",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:36:08.699Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2025-12-05",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:36:07 GMT",
+      "etag": null
+    },
+    "raw_sha256": "d04d7ae4dd3c8ce8f36b97773a9045f4790f541d8b05da5b766e19703b140b7a",
+    "stats": {
+      "words": 208,
+      "blocks": 17,
+      "headings": 4,
+      "tables": 0,
+      "links": 5,
+      "linksToOtherSites": 4
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/T%C3%A4ienduskoolitustoetuse%20taotlus.docx",
+      "text": "Täienduskoolitustoetuse taotlus | 35.93 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    }
+  ]
+}

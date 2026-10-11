@@ -1,0 +1,222 @@
+/* Teekonna lehtede ühised osad: lehe kest, laused, märk, sõnade read, teade ja
+   teist vajutust küsiv tegevus. Avaleht (./dashboard) ja avatud Teekond võtavad
+   need siit (`composes`), et sama asi ei oleks kahes failis kaks korda.
+   Lehed ei kasuta vana ühist kihti: iga osa ütleb oma laiuse, veerised ja värvi
+   ise. Värvid tulevad platvormi muutujatest (app/styles/tokens.css), nii et hele
+   ja tume teema töötavad ilma lisareegliteta. */
+
+/* Leht on konteiner: kitsal pinnal (telefon, töölaua paneel) lähevad rea osad
+   üksteise alla. Klaaspaneel ise on lehe pind: siin ei ole kasti, mis kogu sisu
+   veel kord ümbritseks. */
+.page {
+  min-width: 0;
+  display: grid;
+  gap: 0.6rem;
+  color: var(--text-warm);
+  /* Töölaua paneel joondab oma sisu keskele; lehe tekst algab vasakult. */
+  text-align: start;
+  container-type: inline-size;
+}
+.stack {
+  min-width: 0;
+  display: grid;
+  gap: 0.65rem;
+}
+/* Päring on teel: sisu on tuhmim. Välju ega nuppe välja ei lülitata (see viiks
+   klaviatuuri fookuse ära); topeltsaatmist hoiab lehe enda lukk. */
+.stack[aria-busy="true"],
+.item[aria-busy="true"] {
+  opacity: 0.65;
+}
+
+/* --- Laused ------------------------------------------------------------------ */
+.quiet {
+  margin: 0;
+  max-width: 64ch;
+  color: var(--text-soft);
+}
+.small {
+  margin: 0;
+  max-width: 64ch;
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.45;
+}
+/* Inimese enda kirjutatud tekst: lõigud jäävad lõikudeks. */
+.own {
+  margin: 0;
+  max-width: 66ch;
+  color: var(--text-warm);
+  line-height: 1.55;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+/* --- Teade lava kohal --------------------------------------------------------- */
+/* Ala on alati olemas (ekraanilugeja jaoks), tühjana ei võta see ruumi. */
+.live {
+  min-width: 0;
+}
+/* Teade on äärejoonega lause, mitte kast: ühine paneelikiht annaks hoiatuse
+   rolliga elemendile tausta, äärise ja polstri. */
+.notice {
+  margin: 0;
+  max-width: none;
+  padding: 0.1rem 0 0.1rem 0.8rem;
+  border: 0;
+  border-inline-start: 3px solid color-mix(in srgb, var(--text-warm) 46%, transparent);
+  border-radius: 0;
+  background: none;
+  color: var(--text-warm);
+  overflow-wrap: anywhere;
+}
+.notice[data-tone="risk"] {
+  border-inline-start-color: color-mix(in srgb, var(--status-error) 70%, transparent);
+}
+/* Vaate tõrge paneeli all servas. */
+.footError {
+  color: var(--status-error);
+}
+
+/* --- Märk: seis ühe sõnaga ----------------------------------------------------- */
+.chip {
+  flex: none;
+  padding: 0.1rem 0.6rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.8rem;
+  color: var(--text-soft);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.chip::first-letter {
+  text-transform: uppercase;
+}
+/* Tähelepanu vajav seis: tugevam raam ja kaal, mitte ainult värv. */
+.chip[data-tone="wait"] {
+  color: var(--text-warm);
+  font-weight: 560;
+  border-color: color-mix(in srgb, var(--text-warm) 62%, transparent);
+}
+.chip[data-tone="ok"] {
+  border-color: color-mix(in srgb, var(--status-success) 55%, transparent);
+  color: var(--text-warm);
+}
+
+/* --- Loendi read (ühised osad tulevad components/stage/rows.module.css-ist) ---- */
+.rows {
+  composes: rows from "../stage/rows.module.css";
+}
+.rowItem {
+  composes: rowItem from "../stage/rows.module.css";
+}
+.row {
+  composes: row from "../stage/rows.module.css";
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+.rowMain {
+  composes: rowMain from "../stage/rows.module.css";
+}
+.rowTitle {
+  composes: rowTitle from "../stage/rows.module.css";
+}
+/* Rida pealkirja all: üks rida, terve tekst on avatud vaates. */
+.rowSub {
+  min-width: 0;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.35;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.rowMeta {
+  composes: rowMeta from "../stage/rows.module.css";
+}
+.time {
+  composes: rowTime from "../stage/rows.module.css";
+}
+.fault {
+  composes: fault from "../stage/rows.module.css";
+}
+.faultText {
+  composes: faultText from "../stage/rows.module.css";
+}
+
+/* --- Sõnade read: nimetus ja väärtus ------------------------------------------- */
+.facts {
+  min-width: 0;
+  display: grid;
+  gap: 0.15rem;
+}
+.fact {
+  margin: 0;
+  max-width: none;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.5rem;
+  align-items: baseline;
+  line-height: 1.5;
+}
+.factLabel {
+  flex: none;
+  font-size: var(--fs-small, 0.875rem);
+  color: var(--text-dim);
+}
+.factValue {
+  min-width: 0;
+  color: var(--text-warm);
+  overflow-wrap: anywhere;
+}
+
+/* --- Tegevus, mis küsib teist vajutust ------------------------------------------ */
+/* Pärast esimest vajutust: tugevam raam ja kaal. Sõnad nupul on juba teised. */
+.armed {
+  flex: none;
+  white-space: nowrap;
+  font-weight: 620;
+  border-color: color-mix(in srgb, var(--text-warm) 72%, transparent);
+}
+/* Tagajärg nupu juures: enne vajutust vaikne, pärast selge. */
+.consequence {
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  color: var(--text-warm);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.4;
+}
+
+/* --- Väljad ---------------------------------------------------------------------- */
+/* Väli on nii lai, kui sinna kirjutatav sisu vajab; täislai on ainult pikk tekst. */
+.line {
+  min-width: 0;
+  max-width: 30rem;
+  display: grid;
+  gap: 0.3rem;
+}
+.line[data-size="sm"] {
+  max-width: 14rem;
+}
+.fieldLabel {
+  color: var(--text-warm);
+}
+.input {
+  width: 100%;
+  min-width: 0;
+}
+.counter {
+  color: var(--text-dim);
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Kitsal pinnal lähevad rea märgid pealkirja alla. */
+@container (max-width: 34rem) {
+  .row .rowMeta {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: flex-start;
+  }
+}

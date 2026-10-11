@@ -1,0 +1,346 @@
+/* Külastuse vaade: lame, ühes veerus, korraga üks vaade ja selle tegevus all
+   servas (välitöö leping, FIELD-A0 ptk 7.2). Lehe kuju ja puuteala reeglid
+   tulevad avalehe moodulist, et kaks välitöö lehte ei triiviks lahku. */
+
+.page {
+  composes: page from "../fieldShell.module.css";
+}
+.view {
+  composes: view from "../fieldShell.module.css";
+}
+.stack {
+  composes: stack from "../fieldShell.module.css";
+}
+.quiet {
+  composes: quiet from "../fieldShell.module.css";
+  font-size: var(--fs-small, 0.875rem);
+}
+.notice {
+  composes: notice from "../fieldShell.module.css";
+}
+.alert {
+  composes: alert from "../fieldShell.module.css";
+}
+.chip {
+  composes: chip from "../fieldShell.module.css";
+}
+.text {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.strong {
+  margin: 0;
+  font-weight: 560;
+}
+/* Hoiatus, mis ei vaja nuppu: pakett on aegunud, kinnitus ei ole serveris. */
+.warn {
+  margin: 0;
+  padding-inline-start: 0.7rem;
+  border-inline-start: 3px solid color-mix(in srgb, #e6c27a 70%, transparent);
+  color: var(--text-warm);
+  font-size: var(--fs-small, 0.875rem);
+}
+
+/* Mis külastus see on: eesmärk, seis, koht. See on sisu, mitte lehe pealkiri. */
+.head {
+  min-width: 0;
+  display: grid;
+  gap: 0.3rem;
+}
+.goal {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 560;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  /* Telefonis kuni kaks rida; täistekst on paketi vaates. */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.meta {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem 0.5rem;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+}
+.place {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* Käimasolev helisalvestus: näha ja peatatav igas vaates. */
+.recording {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.8rem;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid color-mix(in srgb, var(--status-error, #eb9a76) 60%, transparent);
+  border-radius: 0.8rem;
+  background: color-mix(in srgb, var(--status-error, #eb9a76) 8%, transparent);
+}
+.recordingDot {
+  flex: none;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: var(--status-error, #eb9a76);
+}
+.recordingText {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-weight: 560;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Faasid ja faasi vaated: kaks rida ühtlasi lahtreid. Vahe on 8 px, nagu
+   välitöö leping puuteala vahele nõuab. */
+.tabs {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.tabRow {
+  display: grid;
+  grid-template-columns: repeat(var(--cells, 3), minmax(0, 1fr));
+  gap: 0.5rem;
+}
+.tab {
+  composes: cell from "../../stage/cell.module.css";
+  min-height: 3rem;
+  padding: 0.3rem 0.4rem;
+  border-radius: 0.8rem;
+  text-align: center;
+  font-weight: 560;
+  line-height: 1.2;
+}
+.tab[aria-current] {
+  background: color-mix(in srgb, var(--text-warm) 13%, transparent);
+  border-color: color-mix(in srgb, var(--text-warm) 62%, transparent);
+}
+/* Vaadete rida on kirjalt kergem, aga puutealalt sama kõrge (48 px). */
+.tabRow[data-level="view"] .tab {
+  font-size: var(--fs-small, 0.875rem);
+  font-weight: 500;
+}
+
+/* Vormi väli sildiga. Lühike väli on nii lai, kui sisu vajab. */
+.field {
+  composes: field from "../fieldShell.module.css";
+  max-width: 20rem;
+}
+.field[data-wide="true"] {
+  max-width: 30rem;
+}
+.fieldLabel {
+  composes: fieldLabel from "../fieldShell.module.css";
+}
+.fieldHint {
+  composes: fieldHint from "../fieldShell.module.css";
+}
+/* Kaks välja kõrvuti, kui ruumi on; telefonis üksteise all. */
+.pairs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: 0.7rem 1rem;
+}
+.pairs .field,
+.noteGrid .field {
+  max-width: none;
+}
+/* TextAreaField jätab oma sildi kohale sama vahe: märkme teksti ja päritolu
+   sildid jäävad ühele joonele. */
+.noteGrid .field {
+  padding-block: 0.4rem;
+}
+.pairs {
+  align-items: start;
+}
+
+/* Valikulahtrid (nõusoleku liik) on puuteekraanil 48 px kõrged. */
+.choice {
+  min-width: 0;
+}
+
+/* Märkme tekst ja päritolu: laual kõrvuti, telefonis üksteise all. */
+.noteGrid {
+  display: grid;
+  gap: 0.7rem 1rem;
+  align-items: start;
+}
+
+/* Selgitus ja väljad: telefonis üksteise all, laual kõrvuti (vt laua reegel all). */
+.split {
+  min-width: 0;
+  display: grid;
+  gap: 0.6rem 1.4rem;
+  align-items: start;
+}
+
+/* Sisu rühm oma väikese nimega (võtmeküsimused, seadme üksused). */
+.block {
+  min-width: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+.blockTitle {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 0.74rem;
+  font-weight: 560;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.plainList {
+  margin: 0;
+  padding-inline-start: 1.1rem;
+  display: grid;
+  gap: 0.25rem;
+}
+.inline {
+  justify-self: start;
+}
+
+/* Kontrolli read: liik, tekst, seis ja rea tegevused. */
+.rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+.row {
+  min-width: 0;
+  display: grid;
+  /* Tegevuste veerg võtab kuni poole reast ja murrab oma nupud: mitme nupuga
+     rida (konflikt) ei tohi teksti kokku suruda. */
+  grid-template-columns: minmax(0, 1fr) fit-content(50%);
+  align-items: center;
+  gap: 0.5rem 0.9rem;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.9rem;
+  background: var(--glass-cell-bg);
+}
+.rowBody {
+  min-width: 0;
+  display: grid;
+  gap: 0.15rem;
+}
+.rowType {
+  color: var(--text-dim);
+  font-size: 0.74rem;
+  font-weight: 560;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.rowText {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.rowState {
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+}
+.rowState[data-tone="wait"] {
+  color: #e6c27a;
+}
+.rowState[data-tone="alert"],
+.rowError {
+  color: var(--status-error, #eb9a76);
+}
+.rowError {
+  font-size: var(--fs-small, 0.875rem);
+}
+:global(html.theme-light) .rowState[data-tone="wait"] {
+  color: #7a5a12;
+}
+.rowActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+/* Puuteekraan: valikulahtrid on 48 px kõrged nagu nupud. */
+@media (max-width: 480px), (pointer: coarse) {
+  .choice [role="radio"] {
+    min-height: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* TELEFONIS ON FAASI JA VAATE VALIK ALL, vaate tegevusrea all ja kiirmenüü
+     kohal: leping (FIELD-A0 ptk 7.2) nõuab faasivahetust ja kinnitusi ekraani
+     alumisse kolmandikku. Sisu (näiteks märkme tekstikast) jääb üles, kus see
+     on näha ka lahtise klaviatuuri kõrval. Faaside rida on kõige all. */
+  .view {
+    order: 1;
+  }
+  .tabs {
+    order: 2;
+    flex-direction: column-reverse;
+  }
+  /* Kolm faasi peavad kitsal ekraanil ühele reale mahtuma ilma sõna
+     poolitamata („Ettevalmistus" on pikim): kiri kahaneb ekraani laiusega. */
+  .tab {
+    padding-inline: 0.2rem;
+    font-size: clamp(0.72rem, 3.5vw, 1rem);
+  }
+  .tabRow[data-level="view"] .tab {
+    font-size: clamp(0.7rem, 3.3vw, 0.875rem);
+  }
+  .row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .rowActions {
+    justify-content: flex-start;
+  }
+}
+
+/* Laud (hiir, lai aken): päis ühel real ja madalamad lahtrid, et vaade mahuks
+   paneeli. Puuteekraanil jäävad lahtrid 48 ja 40 px kõrguseks. */
+@media (min-width: 641px) and (pointer: fine) {
+  .head {
+    /* Eesmärk saab vähemalt 45% reast: pikk koht ei suru seda välja. */
+    grid-template-columns: minmax(45%, 1fr) minmax(0, auto);
+    align-items: baseline;
+    column-gap: 0.8rem;
+  }
+  .meta {
+    flex-wrap: nowrap;
+    min-width: 0;
+  }
+  .place {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .goal {
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .head .warn {
+    grid-column: 1 / -1;
+  }
+  .tab {
+    min-height: 2.5rem;
+  }
+  .tabRow[data-level="view"] .tab {
+    min-height: 2.1rem;
+  }
+  .noteGrid {
+    grid-template-columns: minmax(0, 1fr) 14rem;
+  }
+  .split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}

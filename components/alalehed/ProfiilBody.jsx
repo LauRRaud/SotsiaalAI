@@ -19,6 +19,8 @@ import Button from "@/components/ui/Button";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import UsageOverview from "@/components/profile/UsageOverview";
 import DataExportPanel from "@/components/profile/DataExportPanel";
+import PrivacyPromptRow from "@/components/profile/PrivacyPromptRow";
+import ProfileNameForm from "@/components/profile/ProfileNameForm";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import Input from "@/components/ui/Input";
 
@@ -339,6 +341,14 @@ export default function ProfiilBody({
       openA11y?.();
     }
   }], [embedded, handleModeSwitch, isMobileProfileMenu, navigateFromOrbit, nextModeLabel, openA11y, t]);
+  /* Salvestatud nimi jääb lehe andmetesse, et uuesti avatud vorm näitaks juba uut nime. */
+  const saveProfileName = useCallback((name) => {
+    setProfileUser((current) => (current ? { ...current, firstName: name.firstName, lastName: name.lastName } : current));
+  }, []);
+  /* Sama põhjus: lehel ja aknas on sama lüliti ja mõlemad peavad näitama salvestatud seisu. */
+  const savePrivacyPrompt = useCallback((enabled) => {
+    setProfileUser((current) => (current ? { ...current, privacyPromptEnabled: enabled } : current));
+  }, []);
   const handleBack = useCallback(() => {
     if (typeof onBack === "function") {
       onBack();
@@ -522,6 +532,21 @@ export default function ProfiilBody({
               loetav lause) ja nupp (paremal). Vana virn pani nupu ja tema
               seletuse teineteise alla keskele — omanik 26.07. */}
           <section className="konto-card" aria-label={t("profile.account_settings")}>
+            {/* Inimese enda nimi: sama rea kuju mis teistel toimingutel, väljad vasakul ja nupp paremal. */}
+            <ProfileNameForm
+              initialFirstName={profileUser?.firstName || ""}
+              initialLastName={profileUser?.lastName || ""}
+              disabled={loggingOut || loggingOutEverywhere || deleting}
+              onSaved={saveProfileName}
+            />
+            {/* Isikuandmete hoiatus: seis ja selle vahetamine. `key` loob rea uuesti, kui
+                konto andmed laaditi pärast esimest joonistust. */}
+            <PrivacyPromptRow
+              key={`privacy-${profileUser?.privacyPromptEnabled !== false}`}
+              initialEnabled={profileUser?.privacyPromptEnabled !== false}
+              disabled={loggingOut || loggingOutEverywhere || deleting}
+              onSaved={savePrivacyPrompt}
+            />
             <div className="konto-row">
               <p className="konto-hint konto-row__text">
                 {currentDeviceName
@@ -652,6 +677,22 @@ export default function ProfiilBody({
           <div>
               <section>
                 <DataExportPanel active={showAccountSettings} />
+              </section>
+              <section>
+                <ProfileNameForm
+                  initialFirstName={profileUser?.firstName || ""}
+                  initialLastName={profileUser?.lastName || ""}
+                  disabled={loggingOut || loggingOutEverywhere || deleting}
+                  onSaved={saveProfileName}
+                />
+              </section>
+              <section>
+                <PrivacyPromptRow
+                  key={`privacy-${profileUser?.privacyPromptEnabled !== false}`}
+                  initialEnabled={profileUser?.privacyPromptEnabled !== false}
+                  disabled={loggingOut || loggingOutEverywhere || deleting}
+                  onSaved={savePrivacyPrompt}
+                />
               </section>
               <section>
                 <div>

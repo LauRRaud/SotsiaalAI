@@ -1,0 +1,57 @@
+{
+  "document_id": "web-ppa_info_seoses_ukraina_sojaga_olukord_piiril",
+  "title": "Info seoses sõjaga Ukrainas",
+  "register_title": "Info seoses sõjaga Ukrainas",
+  "source_id": "ppa_info_seoses_ukraina_sojaga_olukord_piiril",
+  "source_type": "web_page",
+  "publisher": "Politsei- ja Piirivalveamet",
+  "language": "et",
+  "url": "https://www.politsei.ee/et/juhend/info-seoses-ukraina-sojaga/olukord-piiril",
+  "source_path": "ppa_info_seoses_ukraina_sojaga_olukord_piiril.html",
+  "source_format": "html",
+  "source_sha256": "98ed71f9d6e1c11f514a8a64f7eec9959e6cc51f40e43598c3eb0020458453ad",
+  "content_sha256": "bd14243c87b102d07efbbe53d70babe8bed8baeee892f5733eea5d596a83d591",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:35:35.665Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": "Thu, 08 Oct 2026 17:07:48 GMT",
+      "etag": null
+    },
+    "raw_sha256": "772d7a12675b76bce0897ef284fc8a9c080427e2d404aa8bc716653e1fb7a35b",
+    "stats": {
+      "words": 431,
+      "blocks": 26,
+      "headings": 14,
+      "tables": 0,
+      "links": 0,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

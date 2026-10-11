@@ -1,14 +1,33 @@
 "use client";
 
+/**
+ * Mentori profiil kataloogist: kes ta on, tema tutvustus ja mentorluse taotlus.
+ *
+ * KUJU (09.10). Leht oli üks veerg klaaspaneeli sees olevas tumedas kaardis.
+ * Nüüd on see sammulava (`components/stage/StepFlight.jsx`) osadena: mentor,
+ * tutvustus ja taotlus. Osad ei ole sammud (profiili loetakse, mitte ei
+ * täideta), seepärast annab leht lavale `parts` ja oma sõnad („Kogu profiil”).
+ * Leht avaneb esimeses osas; nupp „Soovi mentorlust” viib taotluse juurde.
+ *
+ * Vaated on failis ./entry/PublicProfileViews.jsx, profiili jaotab osadeks
+ * ./entry/entryRows.js. Siin on andmed, päringud ja see, mis vaateid olekuga
+ * seob.
+ *
+ * Profiil, mida kataloogis enam ei ole (vastus 404), ja laadimise viga on
+ * tavaline lause koos teega edasi, mitte kast kastis.
+ */
+
 import { useCallback, useEffect, useMemo, useState } from "react";
+
 import { useI18n } from "@/components/i18n/I18nProvider";
-import Button from "@/components/ui/Button";
-import Textarea from "@/components/ui/Textarea";
-import { SubpageHeader } from "@/components/ui/SubpageHeader";
-import Form from "@/components/ui/Form";
+import StepFlight from "@/components/stage/StepFlight";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import { localizePath } from "@/lib/localizePath";
-import styles from "./MentoringPage.module.css";
+
+import { EntryShell, TextLink } from "./entry/EntryParts";
+import { PROFILE_LIMITS, publicParts, publicProfileModel } from "./entry/entryRows";
+import { AboutView, RequestView, StoryView } from "./entry/PublicProfileViews";
+import styles from "./entry/entry.module.css";
 
 export default function MentorProfilePublicPage({ profileId }) {
   const { t, locale } = useI18n();
@@ -43,6 +62,9 @@ export default function MentorProfilePublicPage({ profileId }) {
         throw new Error(resolveApiMessage({ payload, t, fallbackKey: "mentoring.errors.load_failed" }));
       }
       setProfile(payload?.profile || null);
+      /* Vastus ilma profiilita jättis lehe varem tühjaks: see on sama seis mis
+         „profiil pole enam saadaval”. */
+      if (!payload?.profile) setUnavailable(true);
     } catch (error) {
       if (error?.name === "AbortError") return;
       setLoadError(error?.message || t("mentoring.errors.load_failed"));
@@ -57,8 +79,7 @@ export default function MentorProfilePublicPage({ profileId }) {
     return () => controller.abort();
   }, [load]);
 
-  const submitRequest = useCallback(async (event) => {
-    event?.preventDefault?.();
+  const submitRequest = useCallback(async () => {
     setBusy(true);
     setFeedback("");
     try {
@@ -72,7 +93,6 @@ export default function MentorProfilePublicPage({ profileId }) {
         throw new Error(resolveApiMessage({ payload, t, fallbackKey: "mentoring.errors.save_failed" }));
       }
       setSent(true);
-      setFeedback(t("mentoring.profile_public.request_sent"));
     } catch (error) {
       setFeedback(error?.message || t("mentoring.errors.save_failed"));
     } finally {
@@ -80,121 +100,102 @@ export default function MentorProfilePublicPage({ profileId }) {
     }
   }, [message, profileId, t]);
 
+  const model = useMemo(() => publicProfileModel(profile), [profile]);
+  const backHref = localizePath("/mentorlus");
+  const parts = publicParts({ t, model, sent });
+  const requestIndex = model.viewKeys.indexOf("request");
+
+  const renderView = (step, index, flight) => {
+    switch (step.key) {
+      case "story":
+        return <StoryView t={t} bio={model.bio} experience={model.experience} />;
+      case "request":
+        return (
+          <RequestView
+            t={t}
+            mode={sent ? "sent" : model.canRequest ? "form" : "full"}
+            message={message}
+            onMessage={(value) => {
+              setMessage(value);
+              setFeedback("");
+            }}
+            maxLength={PROFILE_LIMITS.text}
+            busy={busy}
+            note={feedback}
+            onSubmit={() => void submitRequest()}
+            backHref={backHref}
+          />
+        );
+      default: {
+        const groupTitles = {
+          fields: t("mentoring.profile_public.group.fields"),
+          topics: t("mentoring.profile_public.group.topics"),
+          languages: t("mentoring.profile_public.group.languages"),
+          formats: t("mentoring.profile_public.group.formats")
+        };
+        const checked = profile?.checkedAt ? new Date(profile.checkedAt) : null;
+        const checkedText = checked && Number.isFinite(checked.getTime()) ? formatter.format(checked) : "";
+        return (
+          <AboutView
+            t={t}
+            heading={model.heading}
+            sub={model.sub}
+            chip={
+              model.external
+                ? { text: t("mentoring.home.external_chip"), tone: "quiet" }
+                : model.canRequest
+                  ? { text: t("mentoring.home.capacity_open"), tone: "ok" }
+                  : { text: t("mentoring.home.capacity_full"), tone: "quiet" }
+            }
+            groups={model.groups.map((group) => ({ ...group, title: groupTitles[group.key] }))}
+            note={
+              model.external
+                ? /* Kontrollimise kuupäevata kirjel ütleb sama lause juba lingikaart. */
+                  checkedText
+                  ? t("mentoring.home.external_badge", { date: checkedText })
+                  : ""
+                : t("mentoring.profile_public.self_declared")
+            }
+            externalLink={model.externalUrl}
+            onRequest={model.canRequest && !sent && requestIndex >= 0 ? () => flight.goTo(requestIndex) : null}
+            backHref={backHref}
+          />
+        );
+      }
+    }
+  };
+
   return (
-    <main className={styles.page}>
-      <div className={styles.shell} data-glass-back-anchor="">
-        <SubpageHeader title={t("mentoring.profile_public.title")} />
-        <p aria-live="polite" className={styles.liveRegion} role="status" tabIndex={-1}>
-          {feedback}
-        </p>
+    <EntryShell
+      title={t("mentoring.profile_public.title")}
+      loadingText={loading ? t("mentoring.labels.loading") : ""}
+      error={loadError}
+      retryText={t("mentoring.labels.retry")}
+      onRetry={() => {
+        setLoading(true);
+        void load();
+      }}
+    >
+      {unavailable ? (
+        <div className={styles.fault}>
+          <p className={styles.quiet}>{t("mentoring.profile_public.unavailable")}</p>
+          <TextLink href={backHref}>{t("mentoring.labels.back_to_mentoring")}</TextLink>
+        </div>
+      ) : null}
 
-        {loading ? <p className={styles.loading}>{t("mentoring.labels.loading")}</p> : null}
-
-        {unavailable ? (
-          <div className={styles.empty}>
-            <p>{t("mentoring.profile_public.unavailable")}</p>
-            <Button as="a" href={localizePath("/mentorlus")} variant="secondary">
-              {t("mentoring.labels.back_to_mentoring")}
-            </Button>
-          </div>
-        ) : null}
-
-        {loadError ? (
-          <div className={styles.loadError}>
-            <p>{loadError}</p>
-            <Button onClick={() => { setLoading(true); void load(); }} variant="secondary">
-              {t("mentoring.labels.retry")}
-            </Button>
-          </div>
-        ) : null}
-
-        {!loading && profile ? (
-          <>
-            <section className={styles.section}>
-              <div className={styles.sectionHeading}>
-                <h2>{profile.displayName}</h2>
-                {profile.title || profile.organization ? (
-                  <p>{[profile.title, profile.organization].filter(Boolean).join(" · ")}</p>
-                ) : null}
-              </div>
-              {profile.external ? (
-                <p className={`${styles.badge} ${styles.badgeExternal}`}>
-                  {t("mentoring.home.external_badge", {
-                    date: profile.checkedAt ? formatter.format(new Date(profile.checkedAt)) : ""
-                  })}
-                </p>
-              ) : (
-                <p className={styles.statusLine}>{t("mentoring.profile_public.self_declared")}</p>
-              )}
-              {profile.bioFull || profile.bioShort ? (
-                <p className={styles.cardMeta}>{profile.bioFull || profile.bioShort}</p>
-              ) : null}
-              {profile.experienceSummary ? (
-                <p className={styles.cardMeta}>{profile.experienceSummary}</p>
-              ) : null}
-              {profile.fields?.length ? (
-                <div className={styles.tagRow}>
-                  {profile.fields.map((field) => <span key={field} className={styles.tag}>{field}</span>)}
-                </div>
-              ) : null}
-              {profile.topics?.length ? (
-                <div className={styles.tagRow}>
-                  {profile.topics.map((topic) => <span key={topic} className={styles.tag}>{topic}</span>)}
-                </div>
-              ) : null}
-              {profile.languages?.length ? (
-                <p className={styles.statusLine}>
-                  {t("mentoring.profile_public.languages", { languages: profile.languages.join(", ") })}
-                </p>
-              ) : null}
-              {profile.formats?.length ? (
-                <p className={styles.statusLine}>
-                  {t("mentoring.profile_public.formats", { formats: profile.formats.join(", ") })}
-                </p>
-              ) : null}
-            </section>
-
-            {profile.canRequest && !sent ? (
-              <section className={styles.section}>
-                <div className={styles.sectionHeading}>
-                  <h2>{t("mentoring.profile_public.request_title")}</h2>
-                  <p>{t("mentoring.profile_public.request_help")}</p>
-                </div>
-                <Form className={styles.form} onSubmit={submitRequest}>
-                  <label>
-                    <span>{t("mentoring.profile_public.request_message")}</span>
-                    <Textarea
-                      maxLength={4000}
-                      onChange={(event) => setMessage(event.target.value)}
-                      required
-                      rows={5}
-                      value={message}
-                    />
-                    <span className={styles.fieldHint}>{t("mentoring.profile_public.no_client_data")}</span>
-                  </label>
-                  <div className={styles.actions}>
-                    <Button disabled={busy || !message.trim()} type="submit">
-                      {t("mentoring.profile_public.request_submit")}
-                    </Button>
-                  </div>
-                </Form>
-              </section>
-            ) : null}
-
-            {!profile.canRequest && !profile.external ? (
-              <p className={styles.empty}>{t("mentoring.profile_public.capacity_full_note")}</p>
-            ) : null}
-
-            {sent ? (
-              <div className={styles.actions}>
-                <Button as="a" href={localizePath("/mentorlus")} variant="secondary">
-                  {t("mentoring.labels.back_to_mentoring")}
-                </Button>
-              </div>
-            ) : null}
-          </>
-        ) : null}
-      </div>
-    </main>
+      {!loading && !loadError && !unavailable && profile ? (
+        <StepFlight
+          label={t("mentoring.profile_public.title")}
+          steps={parts}
+          parts
+          texts={{
+            all: t("mentoring.profile_public.all_parts"),
+            position: (current, total, label) => t("mentoring.labels.part_position", { current, total, label })
+          }}
+        >
+          {renderView}
+        </StepFlight>
+      ) : null}
+    </EntryShell>
   );
 }

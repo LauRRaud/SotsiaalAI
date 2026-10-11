@@ -1,0 +1,61 @@
+{
+  "document_id": "web-ska_laste_ja_perede_abistamine_kui_laps_vajab_rohkem_tuge",
+  "title": "Kui laps vajab rohkem tuge",
+  "register_title": "Kui laps vajab rohkem tuge",
+  "source_id": "ska_laste_ja_perede_abistamine_kui_laps_vajab_rohkem_tuge",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/laste-ja-perede-abistamine/kui-laps-vajab-rohkem-tuge",
+  "source_path": "ska_laste_ja_perede_abistamine_kui_laps_vajab_rohkem_tuge.html",
+  "source_format": "html",
+  "source_sha256": "053acad8516ce5a6660f9160d7740b37bc075eec851ed216c41b9b4c745a8662",
+  "content_sha256": "fc52a192ff7cc4d88b0f7da9095bd555371c78e1ffaa9dbe119f1d8eb3804948",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:34:53.575Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-10-02",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:34:52 GMT",
+      "etag": null
+    },
+    "raw_sha256": "9a29bf3c53ab6a7445d3c9da4a6edb7cbed691c34c0efcbefb66281a4123a896",
+    "stats": {
+      "words": 787,
+      "blocks": 47,
+      "headings": 9,
+      "tables": 0,
+      "links": 8,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 2,
+      "otherEmails": 1,
+      "personLinks": 0,
+      "contactCards": 1,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed",
+      "email_needs_review"
+    ],
+    "needs_review": true
+  },
+  "documents": []
+}

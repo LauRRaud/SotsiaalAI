@@ -1,0 +1,77 @@
+{
+  "document_id": "web-ska_abivoimalused_seksuaalvagivalla_uleelanule",
+  "title": "Abivõimalused seksuaalvägivalla üleelanule",
+  "register_title": "Abivõimalused seksuaalvägivalla üleelanule",
+  "source_id": "ska_abivoimalused_seksuaalvagivalla_uleelanule",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/abivoimalused-seksuaalvagivalla-uleelanule",
+  "source_path": "ska_abivoimalused_seksuaalvagivalla_uleelanule.html",
+  "source_format": "html",
+  "source_sha256": "4e0ff023ee29f9cab47b966e3d4f35ae19366644c51dd835ae8cb9319847711b",
+  "content_sha256": "c32b02553674435a673f3057ab4bcfbf354bb62ca04cacda71123212c72c15ff",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:36:23.719Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2024-09-12",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:36:22 GMT",
+      "etag": null
+    },
+    "raw_sha256": "74d3cd1090060ed30e1bc1f81ac14c8329ed5f2e3ece931e69626999e33cb7bb",
+    "stats": {
+      "words": 203,
+      "blocks": 6,
+      "headings": 1,
+      "tables": 0,
+      "links": 6,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Ohvriabi%20infovoldik%20SAK%20EST%2Bbleed3mm.pdf",
+      "text": "Seksuaalvägivalla kriisiabikeskusi tutvustav voldik | 1.04 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Ohvriabi%20infovoldik%20SAK%20RUS%2Bbleed3mm.pdf",
+      "text": "Seksuaalvägivalla kriisiabikeskusi tutvustav voldik vene keeles. Кризисные центры помощи жертвам сексуального насилия | 1.13 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Ohvriabi_infovoldik_SAK_ENG%2Bbleed3mm.pdf",
+      "text": "Seksuaalvägivalla kriisiabikeskusi tutvustav voldik inglise keeles. Sexual Assault Crisis Centre | 1.09 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

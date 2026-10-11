@@ -1,0 +1,2147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="6c08449b-6683-4635-90f8-6d1f75a94ba6" xsi:schemaLocation="tyviseadus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/tyviseadus_1_10.02.2010.xsd" xmlns="tyviseadus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Riigikogu</valjaandja>
+		<dokumentLiik>seadus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		
+		<lyhend>TöMS</lyhend><dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2023-02-15</aktikuupaev>
+			<avaldamismarge>
+				<RTosa>RT I</RTosa>
+				<avaldamineKuupaev>2023-03-07</avaldamineKuupaev>
+				<RTartikkel>5</RTartikkel>
+				<aktViide>107032023005</aktViide>
+			</avaldamismarge>
+			<joustumine>2024-01-01</joustumine>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT I</RTosa><avaldamineKuupaev>2026-06-30</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>39</RTartikkel><aktViide>130062026039</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2027-01-01</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2025-05-27</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>tyviseadus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>130062026039</globaalID>
+		<metaandmedVersioon>36</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2026-06-29</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Maret Mauer</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1056097</terviktekstiGrupiID>
+		<eesmark>Tüviseaduse raamskeem XML struktuuri koostamiseks</eesmark>
+	</metaandmed>
+	<aktinimi>
+		<nimi>
+			<pealkiri>Tööturumeetmete seadus</pealkiri>
+			<normtehnmarkus>
+				<normtehnmarkusNr>1</normtehnmarkusNr>
+			</normtehnmarkus>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="75f53f6f-923b-4504-a636-496d82d92c31">
+		<aktikuupaev id="3999cfa8-f121-4e8c-822a-e61cb0d2bdb6">2023-06-20</aktikuupaev>
+		<avaldamismarge id="40d2f2e6-fb1a-480c-b899-3717b893ebad">
+			<RTosa id="1203d9c4-5326-4638-b4e0-1b7bb76a2789">RT I</RTosa>
+			<avaldamineKuupaev id="8d4e316c-5d59-4808-9cb4-b8d595e58e25">2023-06-30</avaldamineKuupaev>
+			<RTartikkel id="96778b76-2bd1-48a5-a4fe-bb362a67847a">1</RTartikkel>
+			<aktViide id="4639189e-9744-4e32-bb3c-1cab91bd2e0f">130062023001</aktViide>
+		</avaldamismarge>
+		<joustumine id="38db4deb-c3e2-4fa5-bc2e-15530c856e90">2023-07-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="526ae4d5-54fc-43ed-8fa3-2e3ecf78508b">
+		<aktikuupaev id="59f39c23-8de7-4fe2-85ba-60c534f592fe">2023-06-20</aktikuupaev>
+		<avaldamismarge id="1d171f6e-e66a-45e2-baa9-73614ed7333a">
+			<RTosa id="5bb2e20b-bdc1-495c-976d-5c90e70aa63f">RT I</RTosa>
+			<avaldamineKuupaev id="b29ebfd0-5ed4-457d-aa13-663495e27992">2023-07-06</avaldamineKuupaev>
+			<RTartikkel id="96613f1e-57cb-41af-8b6f-eaad27af87af">6</RTartikkel>
+			<aktViide id="e8dd7573-9404-423c-bbd6-01fd355def6c">106072023006</aktViide>
+		</avaldamismarge>
+		<joustumine id="ed0c29d0-3331-4187-9897-7257c6c3f288">2024-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="245c509e-82cf-429b-8f94-887f33b0fd64">
+		<aktikuupaev id="b5cfc58c-f4f7-444c-8c7b-2e11fdd462d9">2024-09-10</aktikuupaev>
+		<avaldamismarge id="c8730542-35ec-4e7e-b741-07581f43ded4">
+			<RTosa id="44d0c2de-abe9-4e36-9a7c-05bbb3b07d6f">RT I</RTosa>
+			<avaldamineKuupaev id="7ea82108-c83d-478e-b850-e0afcc2040da">2024-09-27</avaldamineKuupaev>
+			<RTartikkel id="d308076f-0e5a-40fa-8137-af029f8af0c8">1</RTartikkel>
+			<aktViide id="a08c9f5d-57b1-4ff8-affb-b176aaf06143">127092024001</aktViide>
+		</avaldamismarge>
+		<joustumine id="691bc831-a690-47e8-a877-d6a33459c9c1">2025-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="833ecd6a-ee6c-46e8-be55-a81f5294c651">
+		<aktikuupaev id="cd5f60ea-d956-44b8-a443-a5f8495e488e">2024-12-04</aktikuupaev>
+		<avaldamismarge id="97960952-e644-4bbb-9713-6077d3d43a2f">
+			<RTosa id="ddc1c919-395f-41c6-9ece-7b7aa2f347d5">RT I</RTosa>
+			<avaldamineKuupaev id="5c6a5568-e90b-42b3-9393-3bb7b9388973">2024-12-23</avaldamineKuupaev>
+			<RTartikkel id="c6e729a0-6831-47f1-b840-0474afafe961">1</RTartikkel>
+			<aktViide id="27d7fb95-aba4-403f-89a8-d1b5396a5696">123122024001</aktViide>
+		</avaldamismarge>
+		<joustumine id="23cc5a19-8ca8-4cdc-b7b0-5b5a7c41c15a">2025-09-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="cb3dd5f4-e318-44dd-8068-12970539b008">
+		<aktikuupaev id="9c0a2c90-d118-40ca-ab0c-c56382f168c3">2025-05-14</aktikuupaev>
+		<avaldamismarge id="d174b7b9-2d0c-481e-b96a-b9facb288c94">
+			<RTosa id="d765e886-9c70-463a-9c2a-ca33fda38897">RT I</RTosa>
+			<avaldamineKuupaev id="33b51684-4e9d-4c27-a0d6-04db09711ace">2025-06-03</avaldamineKuupaev>
+			<RTartikkel id="d48f2ae4-03b7-4544-873a-bae9607a276f">1</RTartikkel>
+			<aktViide id="443a3ce9-9fe4-4565-be1f-603eb28537d6">103062025001</aktViide>
+		</avaldamismarge>
+		<joustumine id="0bb94ac7-8436-4750-81d8-9150f8aed2a9">2025-06-13</joustumine>
+		<tavatekst id="20c6b2a4-a051-4e34-b0f3-25056c8412fe">, osaliselt 01.01.2026</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2025-05-21</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2025-06-12</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>112062025001</aktViide>
+		</avaldamismarge>
+		<joustumine>2025-06-22</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2026-05-20</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2026-06-03</avaldamineKuupaev>
+			<RTartikkel>2</RTartikkel>
+			<aktViide>103062026002</aktViide>
+		</avaldamismarge>
+		<joustumine>2027-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2026-06-02</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2026-06-30</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>130062026001</aktViide>
+		</avaldamismarge>
+		<joustumine>2026-10-01</joustumine>
+	</muutmismarge>
+	<sisu>
+		<peatykk id="ptk1">
+			<peatykkNr>1</peatykkNr>
+			<kuvatavNr><![CDATA[1. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Üldsätted</peatykkPealkiri>
+			<paragrahv id="para1">
+				<paragrahvNr>1</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 1. ]]></kuvatavNr>
+				<paragrahvPealkiri>Seaduse reguleerimisala</paragrahvPealkiri>
+				<loige id="para1lg1">
+					<loigeNr id="95defae4-1491-4c79-8cf4-4a9e79736a53">1</loigeNr>
+					<kuvatavNr id="ae113f6e-d16c-418d-be18-b2fd7d638069"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="f17bb7df-931a-449f-9006-6fc3c040b88e">
+						<tavatekst id="cf1af4e0-e27c-4126-9e2a-0bf34dda53f6">Käesolevas seaduses sätestatakse:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para1lg1p1">
+						<alampunktNr id="681b1af2-cfea-4e3d-b82d-ea4a1082c9d6">1</alampunktNr>
+						<kuvatavNr id="ba428155-78c3-4512-957e-2eb7d812e026"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="07fc2469-b2ad-4655-b60b-114d2c779a7d">
+							<tavatekst id="db3faa5c-d791-4c99-8e72-8479426a155c">tööturumeetmed ja nende eesmärgid;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para1lg1p2">
+						<alampunktNr id="421fef5d-3ce6-4f3e-a26f-df30fdaac7b2">2</alampunktNr>
+						<kuvatavNr id="66cfd1e0-4ac5-484b-8780-2a3eefd0ea0f"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="a914196c-e776-4aa2-a2d4-0d4960aeaec4">
+							<tavatekst id="846f9d40-2f1f-44ec-82cc-77bc72f9d283">tööturumeetmete pakkumise korraldamise, pakkumise ja rahastamise põhimõtted;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para1lg1p3">
+						<alampunktNr id="b24225a3-11e0-4352-a904-b8b793fa4443">3</alampunktNr>
+						<kuvatavNr id="6f6a469d-d3e5-44c8-b69e-e74684e160e3"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="eed96e40-7613-400a-877c-e6707ef11016">
+							<tavatekst id="df168606-c4ce-4b2e-a17d-93c15cc98313">töötuna arvelevõtmise nõuded;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para1lg1p4">
+						<alampunktNr id="bd8af47b-67ab-4bca-8b37-408941c2667a">4</alampunktNr>
+						<kuvatavNr id="30058bcb-8192-403e-87a5-b883c200ca0f"><![CDATA[4) ]]></kuvatavNr>
+						<muutmismarge id="7a59bc61-c92a-481f-864e-44587de6dc77">
+							<tavatekst id="9616a17c-1fa1-44f1-a469-d83bd5a9c641">kehtetu -</tavatekst>
+							<avaldamismarge id="3f710164-6444-40b3-9818-d1b6087329cc">
+								<RTosa id="245db18f-4604-46f7-8215-117576f8851c">RT I</RTosa>
+								<avaldamineKuupaev id="f7ad8c0a-0943-4714-9737-33c2a1f045fe">2025-06-03</avaldamineKuupaev>
+								<RTartikkel id="8c5ad2a0-d817-4855-ad7e-540f7975b948">1</RTartikkel>
+								<aktViide id="dbad6078-33f1-43b4-8edf-a242203069de">103062025001</aktViide>
+							</avaldamismarge>
+							<joustumine id="77977cc1-f8d3-42ff-ac2c-549b89551aa9">2026-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para1lg1p5">
+						<alampunktNr id="398d29ac-ad3f-457a-bcd4-bb683df28ae3">5</alampunktNr>
+						<kuvatavNr id="3a35cc5c-0c91-430f-8048-c56b1754c018"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="c90e3591-0a4d-4b06-96bc-0c4812301c64">
+							<tavatekst id="c1301685-1b79-48d6-b397-10b15461064c">töövahendus ja renditööjõu vahendamine ettevõtja poolt;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para1lg1p6">
+						<alampunktNr id="c470baa3-c162-44b2-8395-747d72e61d6d">6</alampunktNr>
+						<kuvatavNr id="7c04a2b4-897a-4525-aaaa-e2e4b1f04d92"><![CDATA[6) ]]></kuvatavNr>
+						<sisuTekst id="8e7ad298-7f8b-4cc5-b0db-9f672b4bbb3f">
+							<tavatekst id="e57a1c5c-7ad3-4dbb-9715-1920bee1acd1">vaidluste lahendamine, õigusliku aluseta makstu tagasinõudmine ja järelevalve.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para1lg2">
+					<loigeNr id="04f462ba-cd9b-4e7d-84eb-00c8acbd6a21">2</loigeNr>
+					<kuvatavNr id="c67968e5-38d3-416f-9e05-8d1195a428f4"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="bd4fa937-78d1-400b-86d1-85c2e8a5a877">
+						<tavatekst id="3838a87e-02f6-48ba-bf61-fbe56ed539a6">Tööturumeetmed käesoleva seaduse tähenduses on tööturuteenused ja tööturutoetused.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para1lg3">
+					<loigeNr id="06eeea6a-8373-4653-9990-2746602e7eef">3</loigeNr>
+					<kuvatavNr id="0c9fee6c-82a4-45b4-9186-0026f564855e"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="9dc8f76c-9b42-4464-972d-7ad91b959228">
+						<tavatekst id="bd88bd50-151e-4dd4-abf6-d5d2e41b599c">Käesolevas seaduses ettenähtud haldusmenetlusele kohaldatakse haldusmenetluse seadust käesolevas seaduses sätestatud erisustega.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para1lg4">
+					<loigeNr id="7dc6b639-aad7-41e5-878e-9c4a5a7b4841">4</loigeNr>
+					<kuvatavNr id="3e02278f-bd22-4b8c-be5c-f8097165cc8a"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="50312ab3-c6e6-45ff-ae93-e6691df8dbc6">
+						<tavatekst id="20ab6e48-e41c-4318-8060-a2cc4962d1e0">Käesolevas seaduses nimetatud otsused, sealhulgas tegevuskava, ja muud dokumendid toimetatakse kätte elektrooniliselt, posti teel lihtkirjaga või töötukassa kohalikus osakonnas, arvestades käesolevas seaduses sätestatud erisusi.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para2">
+				<paragrahvNr id="c56da749-0e32-43d7-8da5-e293794f8f6f">2</paragrahvNr>
+				<kuvatavNr id="42b0cd5a-f89f-4f66-9d31-4626b5ce2739"><![CDATA[§ 2. ]]></kuvatavNr>
+				<paragrahvPealkiri id="d36a882b-e758-4b88-878d-3ec72dee4279">Seaduse eesmärk</paragrahvPealkiri>
+				<loige id="para2lg1">
+					<loigeNr id="15feaac2-c497-47fc-bdda-22e2a36603bc"/>
+					<kuvatavNr id="428feae3-a0b4-4672-bf52-4c1113ca434a"/>
+					<sisuTekst id="0eddc1f2-dac7-481e-8115-acf1fbabcba0">
+						<tavatekst id="57641ee7-6c52-4b03-8dee-c38465519b82">Käesoleva seaduse eesmärk on vähendada töötust ja lühendada selle kestust, ennetada töötust ning toetada tööhõives püsimist ja kvaliteetset tööhõivet, suurendada tööjõu pakkumist ning toetada kaasavat ja kohanemisvõimelist tööturgu ja majanduse struktuurimuutusi tööturumeetmete abil.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para3">
+				<paragrahvNr id="1794a244-6db4-4649-80ec-e541f7a0eed1">3</paragrahvNr>
+				<kuvatavNr id="19a129af-e1d4-4a9e-9493-a2dc220d3773"><![CDATA[§ 3. ]]></kuvatavNr>
+				<paragrahvPealkiri id="35a4debb-b5d3-4abe-95e1-ba2e32a1291b">Seaduse kohaldamisala</paragrahvPealkiri>
+				<loige id="para3lg1">
+					<loigeNr id="8d8ade6b-6b79-40a8-aeb0-f85c6b219452">1</loigeNr>
+					<kuvatavNr id="c0bcaf50-1ffb-4161-88d7-23c557a4bfb6"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="138ff92d-a0fb-43af-a78c-4cb89b2cf3d7">
+						<tavatekst id="e22fadaf-6e9b-4832-bd67-1e47872123aa">Käesolevas seaduses sätestatud tööturumeetmetele on õigus:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para3lg1p1">
+						<alampunktNr id="c03da88f-b93e-426e-b7dd-21133375c72e">1</alampunktNr>
+						<kuvatavNr id="f24ff78f-4dd7-49da-90ee-3ef5c1913728"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="aa2a4851-b7ec-4d63-b387-7163877d7e92">
+							<tavatekst id="e89f9378-e022-4e9d-bb3f-9d093d34cd6b">Eesti alalisel elanikul;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para3lg1p2">
+						<alampunktNr id="db87ea10-9ede-4445-b242-3d9896b60eb8">2</alampunktNr>
+						<kuvatavNr id="c39daabc-634b-4ead-9237-a05840ccd9c3"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="e0409dd1-bf62-43e7-9280-c30442dcbe3e">
+							<tavatekst id="94830ac5-e46d-442f-8c57-6227e95715c2">tähtajalise elamisloa või tähtajalise elamisõiguse alusel Eestis elaval välismaalasel;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para3lg1p3">
+						<alampunktNr id="37c79151-5341-4447-ab30-1d59e4cfa430">3</alampunktNr>
+						<kuvatavNr id="d5103e0c-d3d5-4b00-a304-fbed91d96d45"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="00a9548d-31fd-4456-88c5-bb04b5b4c322">
+							<tavatekst id="65b4a7b6-c8ab-45cc-a25e-1adfb9b84b54">Eestis viibival Euroopa Liidu, Euroopa Majanduspiirkonna liikmesriigi ja Šveitsi Konföderatsiooni kodanikul;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para3lg1p4">
+						<alampunktNr id="4ed49009-5743-46b9-9255-84951e7e2050">4</alampunktNr>
+						<kuvatavNr id="73dd5eb5-1949-4607-aa74-f4fb680d7676"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="65b49fbc-0d2f-468d-b736-8be6235ef8c7">
+							<tavatekst id="12a8b8aa-99a0-491d-b883-2e39c6683dfb">Eestis viibival rahvusvahelise kaitse, sealhulgas ajutise kaitse saajal ja Eestis viibival rahvusvahelise kaitse taotlejal välismaalasele rahvusvahelise kaitse andmise seaduses sätestatud tingimustel;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para3lg1p5">
+						<alampunktNr id="d61f38a0-a592-422f-a80a-6db026a5625a">5</alampunktNr>
+						<kuvatavNr id="73c98286-5d13-4b4f-9c8c-9b70752cf8f4"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="bc43d371-53ef-483b-8da7-1356085c6c29">
+							<tavatekst id="fae01024-5222-478b-9a11-a99e965972e2">ajutiselt ja seaduslikult Eestis viibival välismaalasel, kelle lühiajaline töötamine on välismaalaste seaduse kohaselt registreeritud või kelle õigus Eestis töötada tuleneb välislepingust ja kes töötab;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para3lg1p6">
+						<alampunktNr id="fb209dc5-8bd0-4df4-b71b-9afda6fdc558">6</alampunktNr>
+						<kuvatavNr id="c7b004af-6c7d-42b6-8427-b2dc55053a9e"><![CDATA[6) ]]></kuvatavNr>
+						<sisuTekst id="97d945b6-7b99-40b4-9e48-a732499f20be">
+							<tavatekst id="49498889-c483-453c-89fa-57ea59761735">tööandjal, kes on residendist juriidiline või füüsiline isik, Eesti riigi- või kohaliku omavalitsuse üksuse asutus või mitteresidendist juriidiline isik, kellel on Eestis püsiv tegevuskoht või kellel on Eestis töötajad.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para3lg2">
+					<loigeNr id="d06f25b7-0b47-499d-a510-fa472cdb68a3">2</loigeNr>
+					<kuvatavNr id="62a83ab9-4eff-413e-945a-1d177b24da21"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="d92fee05-8d15-4f3e-9430-10a03eebecc7">
+						<tavatekst id="57d4bf97-8e84-43ad-b69a-6fafc642c4aa">Käesolevat seadust kohaldatakse töötule, töötajale, muule isikule ja tööandjale.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para3lg3">
+					<loigeNr id="65c5e14b-e7d7-4c14-8147-17a7088ea63b">3</loigeNr>
+					<kuvatavNr id="6e0ded73-4e0c-4d65-8de7-5e4073d59e78"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="70046cec-f247-48e6-936a-8a621d7b7287">
+						<tavatekst id="8a97cd5d-61c2-44db-a362-d8355d255f00">Töötu käesoleva seaduse tähenduses on inimene, kes ei tööta, on töötuna Eesti Töötukassas (edaspidi <i>töötukassa</i>) arvele võetud ja otsib tööd.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para3lg4">
+					<loigeNr id="40854080-2eae-4d9a-a243-761c54c424ef">4</loigeNr>
+					<kuvatavNr id="7859a770-3f77-43ef-8c5c-c6d605dc50ed"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="c9fba29e-c02e-4e81-9e23-1add09e92e30">
+						<tavatekst id="b808a0bc-8d1d-4019-aba2-cafdbf78daba">Töötaja käesoleva seaduse tähenduses on inimene, kes on hõivatud käesoleva seaduse § 8 lõike 4 punktides 3–9 nimetatud tegevusega ja pöördub töötukassa poole tööturumeetme saamiseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para3lg5">
+					<loigeNr id="849dd4a4-2de1-4bcc-b565-39b03f534b91">5</loigeNr>
+					<kuvatavNr id="3371b3bb-1396-48ae-ab67-168a89536465"><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst id="c6dd1a90-a1bb-42f3-8c95-516fc81ca9b1">
+						<tavatekst id="eeb31c9f-1e42-46af-b496-ca4fc37af08c">Muu isik käesoleva seaduse tähenduses on inimene, kes ei tööta ega ole töötuna töötukassas arvel ja pöördub töötukassa poole tööturumeetme saamiseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para3lg6">
+					<loigeNr id="64fe759c-884a-4386-9e94-820ee9dbe40b">6</loigeNr>
+					<kuvatavNr id="3b040698-2f23-4b05-987f-ba75bd4d46ed"><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst id="8cfb46b5-ee33-41d4-9b5f-9b22c61927ae">
+						<tavatekst id="d52f7ed8-e02b-4924-8060-96edb36bd869">Käesolevat seadust kohaldatakse välislepingus sätestatud juhtudel välislepingust tulenevate erisustega.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para4">
+				<paragrahvNr id="5a921a86-0b2c-4894-9d5e-94fa50f6ace4">4</paragrahvNr>
+				<kuvatavNr id="c2901820-adf2-40b6-88d9-c7c3a18f7cc8"><![CDATA[§ 4. ]]></kuvatavNr>
+				<paragrahvPealkiri id="00604cc0-634b-49af-9c71-0b73d61b088e">Tööturumeetmete sihtrühmad</paragrahvPealkiri>
+				<loige id="para4lg1">
+					<loigeNr id="103baa38-1ed8-4ec2-97d6-703a1f010c25">1</loigeNr>
+					<kuvatavNr id="7c39eb71-e168-41a1-8c8c-c2306216b17d"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="d937c0dc-d840-4f05-a4e1-aecd99c2a566">
+						<tavatekst id="2da40c87-d1f2-4c63-9572-d2245b4f7242">Käesolevas seaduses nimetatud tööturumeetmeid pakutakse järgmiselt:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para4lg1p1">
+						<alampunktNr id="3ea561b3-f670-4c50-9ec4-48780230b139">1</alampunktNr>
+						<kuvatavNr id="bddc3e61-6fb0-4a97-8878-6d612eab18ff"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="1726e7a8-e6e7-4fc8-ad1f-55a031f4a157">
+							<tavatekst id="21d5c450-6673-45e6-8598-4a36bde95382">töötule pakutakse käesoleva seaduse § 13 lõikes 2 nimetatud tööturumeetmeid;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p2">
+						<alampunktNr id="97615c15-c7e3-446b-8e0f-2e808ca7bb0d">2</alampunktNr>
+						<kuvatavNr id="ee3a998e-1b0d-4672-b3f0-ca0f044098cc"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="c53408a7-2393-4090-b211-23a801a9e694">
+							<tavatekst id="b55f1430-1817-45d7-8b46-5971364c0fa1">töötajale ja muule isikule pakutakse käesoleva seaduse § 13 lõike 2 punktides 1–3 nimetatud tööturumeetmeid;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p3">
+						<alampunktNr id="da0b510d-6067-44a1-bd8a-216295b3ec63">3</alampunktNr>
+						<kuvatavNr id="c6822020-23f0-4354-a30d-6ebbcf502bb6"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="29189159-423d-48a3-89dd-50abef3e1748">
+							<tavatekst id="9ebf0ef0-5fd2-4087-bc86-14f4c04cf7dc">tööandjale pakutakse käesoleva seaduse § 13 lõike 2 punktides 1 ja 2 nimetatud tööturumeetmeid.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para4lg2">
+					<loigeNr id="098f11a7-902a-4375-81b9-0d87949ee22a">2</loigeNr>
+					<kuvatavNr id="f30cbfb6-f756-4ccf-8f01-e85d6499ce93"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="e980d55c-3333-4c33-bda3-f4b63fb8b0bf">
+						<tavatekst id="4143297f-c3e9-45bd-94b9-5fcf443c0b40">Käesoleva seaduse § 13 lõike 2 punktides 4–10 nimetatud tööturumeetmeid pakutakse töötajale, tööandjale ja muule isikule tööhõiveprogrammis sätestatud juhul.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4lg3">
+					<loigeNr id="512f7c85-b540-4018-af35-73c85ad73c31">3</loigeNr>
+					<kuvatavNr id="43d05aa5-2159-4ab8-b0a2-d03afbdcfb71"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="9929d4e7-6583-4749-8f8b-cd4b933c42f4">
+						<tavatekst id="b20f8e83-4a00-46d3-a6ff-c84193412e64">Käesoleva paragrahvi lõiget 2 ei kohaldata käesoleva seaduse § 3 lõike 1 punktis 5 nimetatud välismaalasele.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4lg4">
+					<loigeNr id="e78106f7-e0e7-4293-b2c9-1005438b7e3c">4</loigeNr>
+					<kuvatavNr id="c828fa89-03d8-4cfe-9e7c-fad532317df2"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="f486e81e-6133-4aa0-a46d-fcc95294cd18">
+						<tavatekst id="eff72452-f6bd-4075-abad-733925ce5ed6">Tööturumeetmete pakkumisel võetakse arvesse tööhõiveprogrammist tulenevaid erisusi ja tööturumeetmeid pakutakse isikule tööhõiveprogrammis ettenähtud tingimustel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4lg5">
+					<loigeNr id="3f47f4ba-5a2d-4125-b522-fce0db544198">5</loigeNr>
+					<kuvatavNr id="b374005d-48e6-43c4-8651-749dd76d9a2e"><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst id="0eac09ce-fbfc-492b-9abc-2350cc44c188">
+						<tavatekst id="67e37069-733c-44ac-91b4-9340eaac7ec6">Isikul on õigus töötukassa pakutavatele tööturumeetmetele ulatuses, mis vastab töötukassa hinnangul isiku vajadustele, et saavutada käesolevas seaduses sätestatud eesmärke.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk2">
+			<peatykkNr id="023927b0-d90e-46a0-b453-2a6004a5077d">2</peatykkNr>
+			<kuvatavNr id="47fd951a-d414-4513-b149-23f606f261c9"><![CDATA[2. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="6d46748b-5a29-46d1-afb3-80d5161da350">Tööturumeetmete pakkumise korraldamise ja pakkumise põhimõtted</peatykkPealkiri>
+			<paragrahv id="para5">
+				<paragrahvNr id="ff1e0b44-3547-4c76-9e04-337250f5aad5">5</paragrahvNr>
+				<kuvatavNr id="2d90be1f-d466-4f2b-a0c7-f015a70f398b"><![CDATA[§ 5. ]]></kuvatavNr>
+				<paragrahvPealkiri id="863fa839-1bfe-4df5-bbfb-c3f4ba051f1f">Tööturumeetmete pakkumise korraldamine ja pakkumine</paragrahvPealkiri>
+				<loige id="para5lg1">
+					<loigeNr id="c3d2acd7-4ad4-4d71-a671-e63c3255dead">1</loigeNr>
+					<kuvatavNr id="f9643fbb-83df-470c-8df3-319da312d04f"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="fe6b6899-1784-4162-8f8c-89595f5a4bb5">
+						<tavatekst id="9b7b6f0e-ef14-42ac-9358-19ce496f242c">Käesoleva seaduse alusel korraldab tööturumeetmete pakkumise ja pakub tööturumeetmeid töötukassa.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para5lg2">
+					<loigeNr id="9e126d66-36e0-4f4d-b40b-8a3c4d18c97f">2</loigeNr>
+					<kuvatavNr id="92e3bf7c-dc17-4476-a41d-42bc1e5d93d8"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="1138089d-343b-4be9-8ed7-9f20f2319aa0">
+						<tavatekst id="1700f336-a57e-4a3e-9e20-e118f94bc30b">Tööturumeetmete pakkumist võivad korraldada ja tööturumeetmeid võivad pakkuda kohaliku omavalitsuse üksused ja muud asjaomased füüsilised ja juriidilised isikud seaduses sätestatud juhul või valdkonna eest vastutava ministri kehtestatud tööturumeetmete pakkumise tingimustel ja korra kohaselt.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para5lg3">
+					<loigeNr id="8d2474e0-e3ff-42f8-84b6-8cb150b0b5b0">3</loigeNr>
+					<kuvatavNr id="df3b2dfe-be4e-4e0b-bf38-db8e6df10b7f"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="4c8cd7ca-c9c8-4377-ae5a-1b77bd917d33">
+						<tavatekst id="9d8fad4b-b18b-44db-af15-4694d2c6447b">Ettevõtja võib käesoleva seaduse § 13 lõike 2 punktis 2 nimetatud töövahenduse tööturumeedet pakkuda ja renditööjõudu vahendada käesoleva seaduse 7. peatükis sätestatu kohaselt.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para5lg4">
+					<loigeNr id="589d4db4-1c24-4340-a4f6-ed62e1e87a76">4</loigeNr>
+					<kuvatavNr id="3c2bdf6a-84c1-4dbf-a214-81d57c897d01"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="9d0533cf-45db-4e01-90e2-96855caa2b25">
+						<tavatekst id="eed4f25a-e14c-4e9a-b12c-795e613baf34">Tööturumeetme pakkumise otsustab tööturumeetme pakkumise korraldaja, võttes arvesse:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para5lg4p1">
+						<alampunktNr id="760372d9-4cff-45e4-b12c-fd99bdb6d756">1</alampunktNr>
+						<kuvatavNr id="3fc1c102-8349-4c3a-83e7-b240a03d6e4a"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="8440f732-2e8e-44c1-9738-b2f86f2d18bd">
+							<tavatekst id="81be8130-0ebf-4720-b36c-71c93005e6fa">isiku eriala, töökogemust ja vajadusi ning õigust endale vabalt tööd valida ja töötada;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg4p2">
+						<alampunktNr id="1fbab08b-e0c9-4b3c-917c-0a437106d47e">2</alampunktNr>
+						<kuvatavNr id="34b17fa5-2c31-4ab0-9e60-4263ee9e7c9c"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="5ef2e09a-a0c4-40a0-9f64-aec63c19c19e">
+							<tavatekst id="a29f4185-4d5a-484a-9d4b-7b06238c9d18">tööandja vajadusi ja õigust endale vabalt tööjõudu valida;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg4p3">
+						<alampunktNr id="d73d2d40-1aaf-47e6-a40a-d4ad9c0bd2db">3</alampunktNr>
+						<kuvatavNr id="29304276-9bc5-438c-a49b-f401a525001a"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="36304115-5302-47ec-83ef-648e812cc46d">
+							<tavatekst id="d8013969-467c-4e78-83b0-fb9adb875aac">tööturumeetme eesmärki, tööturu olukorda, sealhulgas tööjõu nõudluse ja pakkumise tasakaalu ja piirkondlikke eripärasid.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para5lg5">
+					<loigeNr id="7cc76ee3-eb10-4286-8046-81ed1060eae5">5</loigeNr>
+					<kuvatavNr id="21dd52a5-60a4-471f-b914-8d27681b063c"><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst id="8419877b-2364-4894-b78f-5b7e19f7ada5">
+						<tavatekst id="874c1756-2f49-4f37-859f-1e5ff8e7a274">Töötukassa korraldab tööturumeetmete pakkumist ning muud tööle saamiseks ja tööl püsimiseks vajalikku abi koostöös tööandjate, kohaliku omavalitsuse üksuste ja teiste teenuseosutajatega, vajaduse korral kaasates isiku nõusolekul tema lähivõrgustikku.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para5lg6">
+					<loigeNr id="64c52400-4230-4cda-9436-570db1890a60">6</loigeNr>
+					<kuvatavNr id="e495ce94-ecd7-4647-8748-15280d38ca4b"><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst id="bd1eaf26-b520-43ff-8f58-af956af05ae1">
+						<tavatekst id="71b900cd-0b14-4fdb-a991-b2466a679382">Töötukassal on õigus kaasata tööturumeetme vajaduse hindamisse eksperte.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para5lg7">
+					<loigeNr id="d31fdadc-4f32-43e9-929d-a84f6fd7bbf3">7</loigeNr>
+					<kuvatavNr id="43437c37-4e91-406d-aa61-48dd3065efc2"><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst id="35b086a6-5d5f-4eca-95a8-31f00212c804">
+						<tavatekst id="a4fc9aaf-be2f-4b37-9796-69dd9e82c4f3">Tööturumeetmete pakkumise korraldamiseks ja pakkumiseks võivad töötukassa ja tööturuteenuse osutaja töödelda järgmisi isikuandmeid:</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="d6602249-d95e-4256-a596-b0e7e95afe15">
+						<avaldamismarge id="fe766e6b-2018-41a5-91ec-1cb7590d2d31">
+							<RTosa id="9950755f-bc44-443d-832d-ed95523d2d73">RT I</RTosa>
+							<avaldamineKuupaev id="3385b724-5448-4f24-bd00-fd0400052da3">2025-06-03</avaldamineKuupaev>
+							<RTartikkel id="b5052756-8b91-4a96-93ac-90cd63236750">1</RTartikkel>
+							<aktViide id="f9ec3f6b-d23c-46ad-996e-7731036565ed">103062025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="d88e8c0d-ce3c-4aca-9f62-896ea490a860">2026-01-01</joustumine>
+					</muutmismarge>
+					<alampunkt id="para5lg7p1">
+						<alampunktNr id="478c4e12-63b4-4f12-a717-aef75573e08d">1</alampunktNr>
+						<kuvatavNr id="0f41f710-c789-4e41-93d4-f3a23a66d521"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="d436ba94-fdf0-4b8a-a0ff-909ce26d4d06">
+							<tavatekst id="ba142f19-1263-4996-91d2-ada246a46a48">isiku üldandmed: ees- ja perekonnanimi, isikukood ja välisriigi isikukoodi väljastanud riik või selle puudumise korral sugu ja sünniaeg, teovõime andmed, elukoha aadress, kontaktandmed (postiaadress, telefoninumber ja e-posti aadress);</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg7p2">
+						<alampunktNr id="448a170e-16d8-4378-8c08-45e5e8995f8f">2</alampunktNr>
+						<kuvatavNr id="daf27028-7c61-4f95-9a7f-e171a2c7080f"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="c6a57c97-d190-40f6-9ac9-1ea0a592ac53">
+							<tavatekst id="328745e3-dbb5-4d7b-99dc-4a0333fb759b">kodakondsuse, elamisloa või -õiguse kehtivuse andmed, lühiajaliselt Eestis töötamise andmed, andmed rahvusvahelise kaitse saaja, ajutise kaitse saaja või taotleja seisundi kohta, surmaandmed, pangakonto number;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg7p3">
+						<alampunktNr id="36ab18e9-a7b2-4fd8-b196-6c6ee7cbebca">3</alampunktNr>
+						<kuvatavNr id="2bb29c6c-dd50-4f1c-b459-794480e1f5f0"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="58b2abe1-89d9-43d3-90c8-4ae326df7092">
+							<tavatekst id="5e60a11a-f174-434c-b99f-11fd74220527">andmed esindusõiguse kohta ning esindaja üldandmed: ees- ja perekonnanimi, isikukood, kontaktandmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg7p4">
+						<alampunktNr id="16159798-c3f9-44da-8da5-c3be56c7c5f2">4</alampunktNr>
+						<kuvatavNr id="cc6b4e9d-9994-4b81-97db-34f42789c414"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="80c4a7e9-d29b-4455-b09e-d590aab0b2db">
+							<tavatekst id="493189aa-b856-4f68-ab76-4ec82767af54">andmed isiku töötamise, sealhulgas välisriigis elamise ja töötamise kohta, ettevõtlusega tegelemise ning ettevõtluskonto omamise kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg7p5">
+						<alampunktNr id="64ef1625-1637-4bfd-8a21-bb6107b78f48">5</alampunktNr>
+						<kuvatavNr id="a69195cc-c691-4dd3-a80e-7b40d286e398"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="46d23a6b-3e49-48a9-978d-8f4c9c5b84ee">
+							<tavatekst id="a07ecebc-8d41-4e3a-be1d-f4a2213c2b90">isiku sissetuleku andmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg7p6">
+						<alampunktNr id="aec93247-61ba-431a-9c28-6bba71c8fb35">6</alampunktNr>
+						<kuvatavNr id="a7f56ae0-f925-4f05-b856-6883900d8bcf"><![CDATA[6) ]]></kuvatavNr>
+						<sisuTekst id="60db3517-16bf-4cf6-a018-f474d99742ef">
+							<tavatekst id="abd77dd6-fc39-418b-a352-42544fa697dd">andmed isiku terviseseisundi, töövõime hindamise ning tuvastatud töövõime ulatuse, püsiva töövõimetuse ja puude raskusastme ning sellega seotud tegutsemise ja osalemise piirangute kohta;</tavatekst>
+							<muutmismarge>
+								<avaldamismarge>
+									<RTosa>RT I</RTosa>
+									<avaldamineKuupaev>2025-06-12</avaldamineKuupaev>
+									<RTartikkel>1</RTartikkel>
+									<aktViide>112062025001</aktViide>
+								</avaldamismarge>
+								<joustumine>2025-06-22</joustumine>
+							</muutmismarge>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg7p7">
+						<alampunktNr id="6efb9d9a-5968-4c84-b603-a43485bab152">7</alampunktNr>
+						<kuvatavNr id="9413b6a4-738a-4322-b259-4f55e548997a"><![CDATA[7) ]]></kuvatavNr>
+						<sisuTekst id="1420637b-17b5-43e9-b22d-22d497a990b4">
+							<tavatekst id="82270296-20d4-4797-ad40-166b5e40abe8">andmed isikule riigi ja kohaliku omavalitsuse üksuse poolt toetuse, pensioni, hüvitise ja elatisabi maksmise ja teenuse pakkumise kohta ning andmed isikule koostatud juhtumiplaani kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg7p8">
+						<alampunktNr id="443d8404-db1b-430c-8f58-749e79d462b6">8</alampunktNr>
+						<kuvatavNr id="9a2a7e54-4ec2-4963-92c3-1726dc8feb7c"><![CDATA[8) ]]></kuvatavNr>
+						<sisuTekst id="cc5dd54c-c779-4caf-bd87-22aba79c147f">
+							<tavatekst id="1d0e2450-0286-422d-9bf5-e6d94ccd5bd4">andmed isikule tööturumeetme pakkumise kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg7p9">
+						<alampunktNr id="be41bc7f-35df-452b-a196-a0d32f653738">9</alampunktNr>
+						<kuvatavNr id="c0e89a32-be6a-407c-867d-af95f59c16d1"><![CDATA[9) ]]></kuvatavNr>
+						<sisuTekst id="2dca3094-be7a-4069-a62a-470d3357ec1f">
+							<tavatekst id="fdcdc3d0-a938-4c14-aec4-ab0655296ed1">hariduse, antud kutse, pädevuse või ameti ning õppimise andmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg7p10">
+						<alampunktNr id="71b4e367-a003-4d76-a8a7-b5a4f319cce1">10</alampunktNr>
+						<kuvatavNr id="9edea0bc-e3b0-40ab-9939-2da11b7930d8"><![CDATA[10) ]]></kuvatavNr>
+						<sisuTekst id="addd36ce-8289-4547-aa88-413f136bcbac">
+							<tavatekst id="d3d9e606-c0cd-4535-a842-010c0b7f17f3">keelteoskuse, digipädevuse ja mootorsõiduki juhtimise oskuse andmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg7p11">
+						<alampunktNr id="dd77f1a7-e387-4212-8a68-affbbc665ec0">11</alampunktNr>
+						<kuvatavNr id="3c0c2646-f3e9-4ad2-8be3-206558922245"><![CDATA[11) ]]></kuvatavNr>
+						<sisuTekst id="b968a443-ae62-49f4-93b6-80fddf9f428c">
+							<tavatekst id="719158f0-2fb0-4f4c-80c3-55a6160fb7be">muud andmed, mis on käesolevas seaduses nimetatud eesmärkidel aluseks isikule tööturumeetmete pakkumise korraldamisel ja pakkumisel.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="e82b8252-06d4-4bb8-a4c3-79f09eb879d1">
+							<avaldamismarge id="44f9ec9f-68d8-4e94-bab9-086be4d11ebf">
+								<RTosa id="61edd0a1-3638-4fd1-af47-f4580d772e82">RT I</RTosa>
+								<avaldamineKuupaev id="39e13526-c348-429c-b3e2-204e4909b803">2025-06-03</avaldamineKuupaev>
+								<RTartikkel id="657a87cf-399f-4c28-b3e0-3a06647cffd2">1</RTartikkel>
+								<aktViide id="3fc5a1d1-15c8-42a1-8f9b-96a4abe8750b">103062025001</aktViide>
+							</avaldamismarge>
+							<joustumine id="bfe1b07f-6be8-4f8f-9064-150e29e86f88">2026-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para5lg8">
+					<loigeNr id="ee6083e5-3e96-4768-9ba8-14715ef76278">8</loigeNr>
+					<kuvatavNr id="fc9ae2d6-9351-4ba5-a1c6-9c4a6b309384"><![CDATA[(8)]]></kuvatavNr>
+					<sisuTekst id="926a6af0-d49d-4845-a7fd-2f831bb1956f">
+						<tavatekst id="ddce4dca-3ffc-4aa9-aabc-dcd43ff0a838">Tööturumeetmed, mille andmeid töötukassa vahetab tööturuteenuse osutajaga infosüsteemide andmevahetuskihi X-tee või töötukassa infosüsteemi kaudu, kehtestatakse tööhõiveprogrammiga. Töötukassa teavitab andmete vahetamisest eelnimetatud viisil tööturuteenuse osutajat vähemalt kuus kuud ette.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para6">
+				<paragrahvNr id="bc0a7057-ecbb-42b6-a623-2ac9655a84e5">6</paragrahvNr>
+				<kuvatavNr id="4747a9ef-ac20-4889-8129-8e36450c7ca9"><![CDATA[§ 6. ]]></kuvatavNr>
+				<paragrahvPealkiri id="5e4d03c3-451e-4fd1-904d-776076a1df43">Tööhõiveprogramm</paragrahvPealkiri>
+				<loige id="para6lg1">
+					<loigeNr id="ffcf8fb4-0901-4789-84d9-246f66dea4b8">1</loigeNr>
+					<kuvatavNr id="73315c9f-491c-423a-a753-72139bdf6a95"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="ae4a3d51-4e25-46c6-8bcd-88b7c3efb59d">
+						<tavatekst id="d36b11db-54bc-4308-95c6-0918437c6200">Tööhõiveprogrammiga kehtestatakse osutatavad tööturuteenused ja makstavad tööturutoetused vastavalt käesoleva seaduse § 13 lõikes 2 loetletud tööturumeetmetele.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para6lg2">
+					<loigeNr id="15fd9671-17b9-4f35-ae6e-63bc8da96c66">2</loigeNr>
+					<kuvatavNr id="836cef8a-d5ab-4d98-aa86-f72c2d59d531"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="b069b1e9-87b4-4d6f-a50a-62a3780aa442">
+						<tavatekst id="7c0eab4d-2472-447a-a8ef-357b2bbe4597">Tööhõiveprogrammis sätestatakse käesoleva seaduse eesmärgi saavutamiseks tööturuteenuste osutamise ja tööturutoetuste maksmise nõuded ja korraldus, tööturuteenustega seotud arendustegevused ning tööturuteenuste ja -toetuste määrad.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para6lg3">
+					<loigeNr id="22aeba98-b4ab-4a9b-b2c1-d9817d5958a9">3</loigeNr>
+					<kuvatavNr id="ecde1539-259c-4c79-b033-83303ca2ec52"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="c622d9e1-3c87-4db0-bbd0-b26ed5a2b83f">
+						<tavatekst id="fb57b77c-5830-4d09-b6be-641546461dec">Tööhõiveprogrammis sätestatakse vähemalt:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para6lg3p1">
+						<alampunktNr id="f3a52f45-79c0-4ca9-a8d6-ebbfe2311dc4">1</alampunktNr>
+						<kuvatavNr id="cb530c21-699a-47ba-a66f-4ef17ab63123"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="6cbcd3d4-2a4f-4bf1-b39f-f5cfab4296a6">
+							<tavatekst id="6505d852-7520-485d-8883-ca34c6c484e4">tööhõiveprogrammi kestus ja rahaline maht ning rahastamise kord;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para6lg3p2">
+						<alampunktNr id="5fe34d2b-e2b6-4157-88fe-03454930aeda">2</alampunktNr>
+						<kuvatavNr id="73721332-8624-4194-91b5-a6c41f4d2078"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="15a76b83-d6c9-4366-b90e-03f72855b1bc">
+							<tavatekst id="950fe2f3-e612-4c3e-8918-55586b94978a">tööturuteenused, nende eesmärgid, neid saama õigustatud isikud, nende osutamise tingimused ja korraldus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para6lg3p3">
+						<alampunktNr id="eeff4130-33d3-41d8-84ae-2d52acfa07e2">3</alampunktNr>
+						<kuvatavNr id="c1263a86-7d43-44c5-8758-9f7671d22496"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="cd14f944-84f8-41e6-81e8-1d5c790df79b">
+							<tavatekst id="79e07994-8b09-4a51-bda1-3c92120e97a5">tööturutoetused, neid saama õigustatud isikud, nende maksmise tingimused ja korraldus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para6lg3p4">
+						<alampunktNr id="f9b8692f-2d8f-48b0-a30b-9928be810572">4</alampunktNr>
+						<kuvatavNr id="80ce4001-8f9c-464c-8f01-65d86d82d3e8"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="4e343a27-34f9-402c-8c7a-7a696c07ad11">
+							<tavatekst id="3abd8fd4-1a2f-4d2e-a298-7eef037d3779">tööturuteenustega seotud arendustegevused;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para6lg3p5">
+						<alampunktNr id="aab35b57-8e55-4de9-b4fa-974f3aa10e3d">5</alampunktNr>
+						<kuvatavNr id="060ef3b2-ddf7-4b2d-b5dc-7494e58ac438"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="e6f72eea-3cca-466f-82a8-826d7f4cff52">
+							<tavatekst id="fcbcf9d3-ce32-4dbe-88ef-49e2f413a360">tööhõiveprogrammi väljund- ja tulemusnäitajad, nende seiramise tingimused ja korraldus ning tööturuteenuste mõju hindamise tingimused ja korraldus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para6lg3p6">
+						<alampunktNr id="2fc84ed5-a31c-4b5b-896e-5f31727af161">6</alampunktNr>
+						<kuvatavNr id="f029f282-b02a-4235-a758-d461cd7d6cc8"><![CDATA[6) ]]></kuvatavNr>
+						<sisuTekst id="ffdb8205-077a-4a1b-b72c-d80dcb4cbfbc">
+							<tavatekst id="276c7745-2ee9-4141-9db2-a5c0dfb92a41">välisvahendite kasutamise tingimused ja kord.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para6lg4">
+					<loigeNr id="83a9d9df-4fbf-4d61-a906-cd4e18f94c6b">4</loigeNr>
+					<kuvatavNr id="b78e4c73-ecf5-46ce-9c69-42030ea5b92e"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="e80f54f5-f0ce-4c97-b530-75bfc54362ba">
+						<tavatekst id="e0d922df-8e9f-4f6b-b2d3-22a3dc1efe48">Tööhõiveprogrammiga võib piirata käesoleva seaduse § 13 lõike 2 punktis 5 nimetatud oskuste arendamise tööturumeetmega, punktis 6 nimetatud ettevõtluse toetamise tööturumeetmega ning punktis 9 nimetatud tööle asumise ja tööl püsimise toetamise tööturumeetmega hõlmatud tööturuteenuste raames õppekavarühmade või õppekavagruppide ja nendesse kuuluvate õppekavade toetamist.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para6lg5">
+					<loigeNr id="585d9528-c779-46ea-942c-92815661e42d">5</loigeNr>
+					<kuvatavNr id="4b8e8229-3a6d-4207-85fc-28f5f667cebf"><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst id="8906e9d2-7abf-44d3-b291-bcff2e7104a5">
+						<tavatekst id="1e71df12-d0dd-4a0a-ba6b-e145719fa519">Tööhõiveprogrammi koostamisel arvestatakse muu hulgas valdkondlikke, riiklikke ja Euroopa Liidu strateegiaid, arengukavasid, rakenduskavasid, sealhulgas Euroopa Liidu toetuste rakenduskava, tööturu olukorda, tööturu tulevikuprognoose, tööturumeetmete arendamise vajadust, Vabariigi Valitsuse tegevuskavas kokkulepitut, töötuskindlustuse seaduses sätestatud tööturuteenuste ja -toetuste sihtkapitali vahendite ja valdkonna rahastamiseks eraldatud välisvahendite hulka ning tööturumeetmete mõju analüüse.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para6lg6">
+					<loigeNr id="c2bb20a8-d4b4-4a21-a8f7-aec2fe855466">6</loigeNr>
+					<kuvatavNr id="1803d6fd-2ce6-47e7-8bdc-43f9244e650b"><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst id="ef024e54-bc22-4545-b065-8e1fcd747b20">
+						<tavatekst id="913ccd9a-2e90-461b-bd49-f3dfc4576d1f">Tööhõiveprogrammi kiidab heaks töötukassa nõukogu ja kehtestab </tavatekst>
+						<viide id="6d51cf99-ecba-4afb-aa17-608206ec9ea5">
+							<kuvatavTekst id="b290e015-c7da-4f1b-b4de-174c9d1bd886"><![CDATA[Vabariigi Valitsus]]></kuvatavTekst>
+							<viideURID id="bc590547-5bf6-4902-9b2a-636a745ca8bb">
+								<viideURI id="cb96d52a-9dc4-4d19-abe3-837750b0dcb4"><![CDATA[./dyn=130062026039&id=103102023021]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst id="ec64fe9f-e096-41f9-9c1a-0fa7aa8f1112"> määrusega.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para6lg7">
+					<loigeNr id="ecc59069-535e-4eba-9a79-d8c1a11a339e">7</loigeNr>
+					<kuvatavNr id="917f7d41-b69a-4184-a6ac-75eb983b3869"><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst id="a6b4e829-2215-44ee-9e31-2a3bd2949744">
+						<tavatekst id="ba2f43ab-2f5e-4a18-9988-3f471d281978">Tööhõiveprogramm kehtestatakse hiljemalt selle kehtivuse lõppemisele eelneva kalendriaasta 31. detsembriks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para6lg8">
+					<loigeNr id="800029ae-fd5e-4ff9-a0a3-8f50ed37f868">8</loigeNr>
+					<kuvatavNr id="a942b237-e5cd-4eb1-840b-e3d585c281de"><![CDATA[(8)]]></kuvatavNr>
+					<sisuTekst id="49ae0b5b-8bac-4722-9482-ba9294aeb888">
+						<tavatekst id="e8c8ee69-9a41-4e53-91e7-004f0616cc4e">Tööhõiveprogrammi viib ellu töötukassa.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para6lg9">
+					<loigeNr id="556e402e-ad30-4c41-9058-2952ff3ebd4c">9</loigeNr>
+					<kuvatavNr id="e498805a-f613-49d5-b43a-2c874226db4b"><![CDATA[(9)]]></kuvatavNr>
+					<sisuTekst id="c36cc77f-9397-49c3-bace-2b1bdc15efc2">
+						<tavatekst id="786d7fe3-a1d2-4a2a-aa72-376c4aa803a7">Tööturuteenuse osutamiseks võib töötukassa sõlmida halduslepingu, kui see on sätestatud käesoleva seaduse alusel kehtestatud tööhõiveprogrammis.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para6b1">
+				<paragrahvNr id="96cf6f9f-3260-4971-8119-00b5fc83eeb1" ylaIndeks="1">6</paragrahvNr>
+				<kuvatavNr id="0202b9e4-65d6-409d-a2bb-c0adcde1dda9"><![CDATA[§ 6<sup>1</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri id="65b75ca1-c69e-4b33-9385-85a75d629977">Tööhõiveprogramm erakorralise ja sõjaseisukorra ajal</paragrahvPealkiri>
+				<loige id="para6b1lg1">
+					<loigeNr id="6fc97e89-1f80-4059-b5e0-3fe1865948e9"/>
+					<kuvatavNr id="ed054912-c233-4d3a-97ff-d4e17a2d0cd7"/>
+					<sisuTekst id="42d78d8c-474b-42e1-b223-99c73ffb0451">
+						<tavatekst id="15c8c067-f269-44a6-8402-3ad7afa77976">Erakorralise või sõjaseisukorra ajal võib Vabariigi Valitsus vähendada tööhõiveprogrammis sätestatud tööturuteenuste osutamise ja tööturutoetuste maksmise ulatust või peatada tööturuteenuste osutamise ja tööturutoetuste maksmise, kui tööturuteenuste osutamine ja tööturutoetuste maksmine on erakorralise või sõjaseisukorra tõttu objektiivsetel põhjustel oluliselt takistatud või kui on vaja kasutada täiendavaid riigi rahalisi vahendeid riigi kaitsmiseks, sealhulgas riigi eelarvelise jätkusuutlikkuse tagamiseks.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="6feaf2b1-2fcb-4463-8a3f-a0cd07d4ca6d">
+						<avaldamismarge id="3596ce6a-52e4-49e6-b932-a10e09a0e7e9">
+							<RTosa id="3b63ffa9-4332-4486-906f-c42665f260c4">RT I</RTosa>
+							<avaldamineKuupaev id="9651d6f8-dc98-4d6b-82d6-4d24e158eabc">2026-06-30</avaldamineKuupaev>
+							<RTartikkel id="30f079bc-a9cf-46bf-af58-82d7427d8fbd">1</RTartikkel>
+							<aktViide id="feee4e4b-e706-4977-8f32-e62b144626d8">130062026001</aktViide>
+						</avaldamismarge>
+						<joustumine id="c9597d28-df62-4ee1-a886-7c9abdb10d4d">2026-10-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk3">
+			<peatykkNr id="06f1e133-d812-4b03-b50c-d7edc903e752">3</peatykkNr>
+			<kuvatavNr id="372a2471-1d13-43c6-9aae-a15a71e6e87d"><![CDATA[3. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="310e937c-b978-495d-b826-aa043dc8f3d2">Tegevuskava, töötuna arvelevõtmine, isiku kohustused ja ajutine töötamine</peatykkPealkiri>
+			<paragrahv id="para7">
+				<paragrahvNr id="13f8c266-61b2-4492-bf3c-8a4125c84b97">7</paragrahvNr>
+				<kuvatavNr id="9e471d01-7dc1-494b-bc1a-c2e0b5e4a75b"><![CDATA[§ 7. ]]></kuvatavNr>
+				<paragrahvPealkiri id="d209386f-4607-4d11-b75e-e50799727db5">Tegevuskava</paragrahvPealkiri>
+				<loige id="para7lg1">
+					<loigeNr id="93078ca1-3b9e-40e7-9a4d-a45490c1d0b1">1</loigeNr>
+					<kuvatavNr id="50cf3d83-dfa8-4705-a2d7-fb4735980a1c"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="2cf6b7b6-1862-4c47-8e54-5fcf05e5963e">
+						<tavatekst id="ccbc6616-de23-460a-9034-a9e0ab89cd15">Tegevuskava eesmärk on kavandada vajalikud tegevused, et isik saaks võimalikult kiiresti töö leida, sobivale tööle asuda või töötamist jätkata.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para7lg2">
+					<loigeNr id="024b1412-dcfb-400f-aef4-98a4adaaf448">2</loigeNr>
+					<kuvatavNr id="e5f72fd6-3e57-4f37-ae65-0f8c6daff7aa"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="6c6a6e31-7cec-4d11-93a0-632bb9a9b0eb">
+						<tavatekst id="a20917b7-1a6b-4818-aeb8-de30bb1f112d">Töötukassa koostab tegevuskava koostöös töötuga töökesksel nõustamisel (edaspidi <i>nõustamine</i>) hiljemalt 30 päeva jooksul isiku töötuna arvelevõtmisest arvates. Vajaduse korral koostatakse tegevuskava ka töötajale või muule isikule. Tegevuskava vaadatakse üle igal nõustamisel ja vajaduse korral seda muudetakse.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para7lg3">
+					<loigeNr id="a9d5b4cf-cffd-434f-9414-7107ebb1f310">3</loigeNr>
+					<kuvatavNr id="280fcdb7-7da0-49f2-ac0b-63d23d31b84a"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="c495178a-5910-4479-b94c-f2b1d41c6ed1">
+						<tavatekst id="01bbe601-dfa1-4ad9-a41e-e4cbfd2806ab">Tegevuskava sisaldab isiku ees- ja perekonnanime, isikukoodi või selle puudumise korral sünniaega, kontaktandmeid ning andmeid hariduse, oskuste, töökogemuse ja töösoovide kohta. Tegevuskavas kirjeldatakse isiku eesmärki ja olukorda ning töö leidmiseks, tööle saamiseks või töötamise jätkamiseks vajalikke tööturumeetmeid, kandideerimisi ja muid tegevusi ning nende tulemusi. Tegevuskavas märgitakse järgmise nõustamise aeg ja viis.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para8">
+				<paragrahvNr id="7651c85f-4af2-4c13-859d-752acfbb19bd">8</paragrahvNr>
+				<kuvatavNr id="76b2ce44-b055-483f-b8b3-2fa1efd60a51"><![CDATA[§ 8. ]]></kuvatavNr>
+				<paragrahvPealkiri id="3d003727-facc-40c2-8c1b-87fd961ff6b7">Isiku töötuna arvelevõtmine</paragrahvPealkiri>
+				<loige id="para8lg1">
+					<loigeNr id="74ad6e41-11a6-4198-b19a-dcb82b831e04">1</loigeNr>
+					<kuvatavNr id="0a84337a-5e71-4d8a-acde-f3402db09111"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="6f237ae8-4abb-497b-a103-351141b5106e">
+						<tavatekst id="b224150d-d865-4f84-9f71-40d85b1478ce">Töötuna arvelevõtmiseks esitab isik töötukassale avalduse. Avaldusele kantakse isiku ees- ja perekonnanimi, isikukood või selle puudumise korral sünniaeg, elukoha aadress, kontaktandmed ja pangakonto number.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para8lg2">
+					<loigeNr id="1b70c295-8eab-4856-92d6-84738c9110b1">2</loigeNr>
+					<kuvatavNr id="24d5ceea-c095-482e-ada8-8681eed4b4fc"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="8effe01b-8fef-46b8-b9a9-2b727fdf5660">
+						<tavatekst id="68e2c1ed-4d91-4feb-b981-11edb3f1776e">Töötukassa kontrollib isiku töötuna arvelevõtmise tingimustele vastavust töötukassa andmekogu andmete alusel. Kui andmed puuduvad või on ebaõiged, on töötukassal töötuna arvelevõtmise tingimustele vastavuse kontrollimiseks õigus nõuda isikult lisaandmeid.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para8lg3">
+					<loigeNr id="d69ab136-2e10-4e47-94f6-6bd56c2fa592">3</loigeNr>
+					<kuvatavNr id="1c63bb39-8ede-440d-ae62-2f24874c95d6"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="055c90b2-f31a-4965-8fad-96d1c4c57e4e">
+						<tavatekst id="2462aaaf-7371-47c2-bd9b-92d3c104eec4">Otsuse isiku töötuna arvelevõtmise või sellest keeldumise kohta teeb töötukassa hiljemalt teisel tööpäeval nõuetekohase avalduse esitamise päevast arvates. Isik võetakse töötuna arvele avalduse esitamise päevast, kuid kõige varem käesolevas seaduses sätestatud tingimustele vastamise päevast.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para8lg4">
+					<loigeNr id="f995f1d6-de00-4650-b02e-b000b1612874">4</loigeNr>
+					<kuvatavNr id="cc5172c1-2798-4761-ba18-3b0282b05712"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="a8f32710-c3df-418b-95e4-7e08c93faa77">
+						<tavatekst id="4f0fb5e2-ed7b-445f-ae5e-75affdb5fb13">Töötuna ei võeta arvele isikut, kes:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para8lg4p1">
+						<alampunktNr id="d178291f-86f5-4d53-b10b-628c21e03a89">1</alampunktNr>
+						<kuvatavNr id="007d7416-36e5-4566-85a9-e9508e5137da"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="6b615ff0-cf86-479d-97fc-76957a51aeb1">
+							<tavatekst id="954064a2-594f-46c3-98d1-72ac03dd0772">on noorem kui 18 aastat, välja arvatud juhul, kui alla 18-aastane isik on täitnud õppimiskohustuse;</tavatekst>
+							<muutmismarge id="83a425b6-f403-4952-b1fd-8831c60662bf">
+								<avaldamismarge id="bfc60297-b598-4a61-8e3b-000ad16beae7">
+									<RTosa id="561632a0-58fe-4092-a7dc-156dc2be6821">RT I</RTosa>
+									<avaldamineKuupaev id="e3941324-2c43-4c60-a005-6703018d3331">2024-12-23</avaldamineKuupaev>
+									<RTartikkel id="479b6d40-74ef-4952-82cd-2370adb9de7c">1</RTartikkel>
+									<aktViide id="45f98f40-a8e1-402f-bed0-b605b461887f">123122024001</aktViide>
+								</avaldamismarge>
+								<joustumine id="0d1cf16b-601b-4d8a-9b0d-b80bf71c34ef">2025-09-01</joustumine>
+							</muutmismarge>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para8lg4p2">
+						<alampunktNr id="7a884115-bf53-4b14-b2cb-aaaaf435edee">2</alampunktNr>
+						<kuvatavNr id="624772de-fcc9-4559-8875-22d13a17127f"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="8b7cb740-d8df-4e90-9d22-ea30147f88fb">
+							<tavatekst id="0300e72c-4c51-4fdf-92d8-93427e86ab42">on jõudnud riikliku pensionikindlustuse seaduse alusel kehtestatud vanaduspensioniikka või kellele on sama seaduse alusel määratud ennetähtaegne vanaduspension;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para8lg4p3">
+						<alampunktNr id="747af242-b2d6-4de9-a539-b167151b953c">3</alampunktNr>
+						<kuvatavNr id="b7497d1d-237a-4421-9513-f24d1802cec2"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="4fb6a1e7-eef2-410a-bd76-05785b7e7640">
+							<tavatekst id="73a7c621-37fe-4d98-aa13-90f0e8952b5d">töötab töölepingu või töövõtu-, käsundus- või teenuse osutamiseks sõlmitud muu võlaõigusliku lepingu alusel või omab ettevõtluskontot ettevõtlustulu lihtsustatud maksustamise seaduse tähenduses või on avalikus teenistuses;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para8lg4p4">
+						<alampunktNr id="8bcbdc4d-7ac2-454f-b497-285cb8b6ea0e">4</alampunktNr>
+						<kuvatavNr id="07611387-4666-4d19-ab31-032f5071d98a"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="2982356c-e1dc-44e7-afb8-327f0fdaf172">
+							<tavatekst id="0dcbc85c-a9d7-4d64-9f77-f390329856f6">on ametis Riigikogu liikmena, Euroopa Parlamendi liikmena, Vabariigi Presidendina, Vabariigi Valitsuse liikmena, kohtunikuna, õiguskantslerina, riigikontrolörina, riikliku lepitajana, kohaliku omavalitsuse üksuse volikogu palgalise esimehena või palgalise aseesimehena, valla- või linnavalitsuse palgalise liikmena, sealhulgas vallavanema või linnapeana, osavalla- või linnaosavanemana;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para8lg4p5">
+						<alampunktNr id="74e7def6-3006-4cfa-9a92-50290d98ff5c">5</alampunktNr>
+						<kuvatavNr id="6e724fa4-274a-4229-b47e-697ab72ec31b"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="00b28a98-46b3-4d92-af2f-35a04421cd67">
+							<tavatekst id="4df95aaa-6315-496d-a315-68b6ebc33068">peab sõltumatu isikuna avalik-õiguslikku ametit;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para8lg4p6">
+						<alampunktNr id="314ec919-3a20-43b1-b502-0a9e71f0c52b">6</alampunktNr>
+						<kuvatavNr id="926ccd90-863d-4093-9b38-4945bbf41da6"><![CDATA[6) ]]></kuvatavNr>
+						<sisuTekst id="8acb294b-57cc-484d-ae8f-79fd2661fd3b">
+							<tavatekst id="1ab7832a-d5c4-4295-babb-188c16b3e53c">on äriühingu juhatuse liige, prokurist, täis- või usaldusühingut esindama volitatud osanik, välismaa äriühingu filiaali juhataja või mitteresidendi muu püsiva tegevuskoha juht, välja arvatud juhul, kui ta ei saa selle eest tasu ning vastab töötuskindlustuse seaduse § 6 lõike 1 punktis 2 ja lõikes 2 või § 6<sup>1</sup> lõike 1 punktis 2 või § 8<sup>2</sup> lõikes 1 sätestatud töötuskindlustushüvitise saamise tingimustele;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="322fb2a7-67c0-465d-a95c-15fb071e7e77">
+							<avaldamismarge id="6222e811-9fee-4a71-8afa-7289d8b5ea2d">
+								<RTosa id="ee1193e7-e354-431e-af11-efbd90759683">RT I</RTosa>
+								<avaldamineKuupaev id="0703bcd0-258d-4fa4-948e-a50d92b71fcf">2025-06-03</avaldamineKuupaev>
+								<RTartikkel id="73de06e9-ff30-41a8-ae6c-1113047e2b75">1</RTartikkel>
+								<aktViide id="d0d92ff6-41a0-47c8-bcee-395b978c7896">103062025001</aktViide>
+							</avaldamismarge>
+							<joustumine id="1f047251-e572-449a-afb8-2ba72a5c37be">2026-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para8lg4p7">
+						<alampunktNr id="f7c03d0c-c487-48bc-9e2f-ec30b193ca00">7</alampunktNr>
+						<kuvatavNr id="d2c525e9-9b97-4d64-b06e-c41f7bacbd99"><![CDATA[7) ]]></kuvatavNr>
+						<sisuTekst id="7213f987-14e7-4fc5-a1cf-fe4e431b1034">
+							<tavatekst id="aff8b31d-b99a-4e2e-8879-b84920ebdfc7">on juriidilise isiku tulumaksuseaduse §-s 9 nimetatud juhtimis- või kontrollorgani liige, keda ei ole nimetatud käesoleva lõike punktis 6, ja saab selle eest tasu;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para8lg4p8">
+						<alampunktNr id="e7726b66-4bd5-4c85-9622-a6e1c6668e4a">8</alampunktNr>
+						<kuvatavNr id="c2d5d779-66ba-4999-b915-d3509e6806aa"><![CDATA[8) ]]></kuvatavNr>
+						<sisuTekst id="d51c494c-a27a-40b7-9d82-7f32c8e66729">
+							<tavatekst id="cf16d556-e340-433e-abcc-eb13d8e30700">on registreeritud füüsilisest isikust ettevõtjana, välja arvatud juhul, kui tema ettevõtte tegevus on peatatud või hooajaline tegevus on lõppenud ning ta vastab töötuskindlustuse seaduse § 6 lõike 1 punktis 2 ja lõikes 2 või § 6<sup>1</sup> lõike 1 punktis 2 või § 8<sup>2</sup> lõikes 1 sätestatud töötuskindlustushüvitise saamise tingimustele;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="60806ed2-c0db-44c5-904d-808fccd06e1e">
+							<avaldamismarge id="73f75bd8-3355-457c-9e39-980184708741">
+								<RTosa id="a2f2a065-64d2-4e04-98cc-205ed0976dbb">RT I</RTosa>
+								<avaldamineKuupaev id="12dba841-d07c-45a0-84f4-34b6daa42bda">2025-06-03</avaldamineKuupaev>
+								<RTartikkel id="d8d079e6-4b01-400e-9b10-9471452de5a1">1</RTartikkel>
+								<aktViide id="f6241135-fe40-461c-890e-4260b6b5382b">103062025001</aktViide>
+							</avaldamismarge>
+							<joustumine id="8950aeee-fca3-4cb2-a57b-1a540a64b722">2026-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para8lg4p9">
+						<alampunktNr id="5fb06d35-4420-4cd4-a8d0-4e3e92272113">9</alampunktNr>
+						<kuvatavNr id="33b0e1eb-72e0-4884-ae63-8d53e0b1b3c9"><![CDATA[9) ]]></kuvatavNr>
+						<sisuTekst id="ca0f080b-790e-4648-baac-5b055c44f175">
+							<tavatekst id="c0e3a36d-ebd5-4c8b-bde3-3585c6c8e3dd">on kantud maksukohustuslaste registrisse füüsilisest isikust ettevõtja ettevõtte tegevuses osaleva abikaasa või registreeritud elukaaslasena, välja arvatud juhul, kui füüsilisest isikust ettevõtja ettevõtte tegevus on peatatud või hooajaline tegevus on lõppenud ning ta vastab töötuskindlustuse seaduse § 6 lõike 1 punktis 2 ja lõikes 2 või § 6<sup>1</sup> lõike 1 punktis 2 või § 8<sup>2</sup> lõikes 1 sätestatud töötuskindlustushüvitise saamise tingimustele;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="41bbfcf1-04cf-4830-ba33-9d7fdf7e8d79">
+							<avaldamismarge id="f6dfe16c-b22f-463f-8cd5-009cc564e752">
+								<RTosa id="db97608c-54e8-46f5-934e-e2afa59598e2">RT I</RTosa>
+								<avaldamineKuupaev id="21aed45b-995d-4e21-a61e-e64c0b0daab8">2025-06-03</avaldamineKuupaev>
+								<RTartikkel id="9ec7537a-c5c9-4a29-878a-447ecc36bfab">1</RTartikkel>
+								<aktViide id="bf1e69c7-bfef-4e0a-a5ef-e8bac91261ff">103062025001</aktViide>
+							</avaldamismarge>
+							<joustumine id="babc85d4-d212-48de-9b24-dfd2274ca639">2026-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para8lg4p10">
+						<alampunktNr id="61745506-3337-4a50-8654-a9e463ea9e35">10</alampunktNr>
+						<kuvatavNr id="36c074f6-ebb6-480e-80be-86bd553464cf"><![CDATA[10) ]]></kuvatavNr>
+						<sisuTekst id="46cba8b6-f54f-4b04-9006-0a3f6cbed89a">
+							<tavatekst id="c629853f-b71c-4d7f-80cf-fa20aa91f5d4">õpib õppeasutuses statsionaarses õppes või täiskoormusega õppes, välja arvatud juhul, kui keskhariduse tasemel toimuvas statsionaarses õppes, kutseõppe statsionaarses õppes või kõrghariduse tasemel toimuvas täiskoormusega õppes õppiv isik vastab töötuskindlustuse seaduse § 6 lõike 1 punktis 2 ja lõikes 2 või § 6<sup>1</sup> lõike 1 punktis 2 või § 8<sup>2</sup> lõikes 1 sätestatud töötuskindlustushüvitise saamise tingimustele või viibib akadeemilisel puhkusel;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="131045b4-61a7-4ebc-bb0b-2e5225a62f8e">
+							<avaldamismarge id="5d8c9501-b107-4883-b24c-8844a6ccc0bc">
+								<RTosa id="b139afb1-d740-4caf-bcb0-d2a647ca8878">RT I</RTosa>
+								<avaldamineKuupaev id="1c92b377-3e4e-4031-896f-0707f03a553a">2025-06-03</avaldamineKuupaev>
+								<RTartikkel id="c7a39604-acba-411d-bc70-852604c7dac3">1</RTartikkel>
+								<aktViide id="22462084-5b91-46d9-ad38-cec2534ba438">103062025001</aktViide>
+							</avaldamismarge>
+							<joustumine id="b02e2e8f-afd9-4f8e-a788-a5eb57b9f667">2026-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para8lg4p11">
+						<alampunktNr id="b1c09860-6154-4b89-aff2-17b160e5a24d">11</alampunktNr>
+						<kuvatavNr id="53e8d164-8360-4783-8228-de5daa845e00"><![CDATA[11) ]]></kuvatavNr>
+						<sisuTekst id="d7fd04ea-af32-4ace-b415-1a3a8f81af59">
+							<tavatekst id="d4353de5-a7e0-431b-8134-80dc3a434769">on ajateenistuses, korralises asendusteenistuses või erakorralises reservasendusteenistuses;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="2a34d98f-6221-4ef0-8629-f6033a7fcedd">
+							<avaldamismarge id="041adf08-c7f9-44c8-bb83-427031af2436">
+								<RTosa id="4b4032d0-69fc-4beb-9bf6-44214e3a4d8b">RT I</RTosa>
+								<avaldamineKuupaev id="00d71773-c416-4e8b-9a7b-fc5e83871197">2025-06-03</avaldamineKuupaev>
+								<RTartikkel id="3e965224-1c5d-4c0f-a196-4b16b8b4b6ce">1</RTartikkel>
+								<aktViide id="3ebc0dec-b08c-4e2b-ada2-6d33cea8e134">103062025001</aktViide>
+							</avaldamismarge>
+							<joustumine id="b27e537b-176c-4e5c-9bb1-448996cfa62c">2025-06-13</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para8lg4p12">
+						<alampunktNr id="626cac5f-c2ea-49ed-9a0d-36d08f9eac21">12</alampunktNr>
+						<kuvatavNr id="b4574b45-e58d-48d7-959f-393005d4383b"><![CDATA[12) ]]></kuvatavNr>
+						<sisuTekst id="b8a90f64-4f4e-4a6e-a38f-6be9dc705281">
+							<tavatekst id="f955f0bf-2a1f-4d7f-9781-8d9b36abcf56">ei vasta ühele või mitmele käesoleva seaduse § 3 lõike 1 punktides 1–4 nimetatud tingimusele;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para8lg4p13">
+						<alampunktNr id="567af313-12c4-4252-90f6-925e417d9fa6">13</alampunktNr>
+						<kuvatavNr id="eb90dc09-e6a7-4254-bfba-8c26582a1ab7"><![CDATA[13) ]]></kuvatavNr>
+						<sisuTekst id="b3006db0-38d1-4215-94db-521fa4411007">
+							<tavatekst id="13e88331-ffb9-4b3d-8e48-a19b6b5683c5">on Eesti Vabariigi välisesinduses töötava teenistujaga või pikaajalisse välislähetusse saadetud ametnikuga kaasasolev abikaasa või registreeritud elukaaslane, kellele makstakse abikaasa- ja registreeritud elukaaslase tasu välisteenistuse seaduse § 67 alusel;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="1ef08197-754d-45f2-bf24-a6638a225098">
+							<avaldamismarge id="f906c00e-94a9-4e87-9d26-e4b00bf91a8a">
+								<RTosa id="94bb3a40-16c5-4119-8804-4bdc268f2210">RT I</RTosa>
+								<avaldamineKuupaev id="3a713512-9819-4e4c-98f2-b5ce07ac061c">2024-09-27</avaldamineKuupaev>
+								<RTartikkel id="10b56604-c2d5-48ec-9e1a-9acf20c13cc4">1</RTartikkel>
+								<aktViide id="b302c726-1fb8-410f-a86b-c3afb14c22f9">127092024001</aktViide>
+							</avaldamismarge>
+							<joustumine id="380a0661-2189-4ce3-9ca9-f895d9ae35f7">2025-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para8lg4p14">
+						<alampunktNr id="cdf3a23b-c0fb-4820-ae87-fef20bf2feec">14</alampunktNr>
+						<kuvatavNr id="45fd9314-ef50-4a58-bb42-0e8d68c7248b"><![CDATA[14) ]]></kuvatavNr>
+						<sisuTekst id="c9470b9a-7d8e-4bc6-9e56-4a573ce68e22">
+							<tavatekst id="7541b2ad-29e3-495d-bc55-283289a2afe9">saab päästeteenistuse seaduse § 19 alusel vanaduspensioni ootel oleva päästeteenistuja toetust.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para8lg5">
+					<loigeNr id="10dccc24-7d4c-4bad-bcbf-264f5397010f">5</loigeNr>
+					<kuvatavNr id="7d873cbc-35cb-4fc0-b9ff-f8d40ff9b0af"><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst id="0264ab7a-46d6-4926-b3af-6974359adc9d">
+						<tavatekst id="25a72a5b-5681-4fa8-bbee-8a7368502365">Isikut ei võeta töötuna arvele enne 90 päeva möödumist viimasest töötuna arveloleku lõpetamisest, kui asjakohase avalduse esitamisele eelneva 12 kuu jooksul lõpetati isiku kaks viimast järjestikust töötuna arvelolekut käesoleva seaduse § 12 lõike 1 punktis 1, 2, 4 või 5 sätestatud alusel.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para9">
+				<paragrahvNr id="fd26bdf1-cb6c-4491-af0a-16c99490e880">9</paragrahvNr>
+				<kuvatavNr id="faa57613-1911-46b0-8e22-d562bb786d8f"><![CDATA[§ 9. ]]></kuvatavNr>
+				<paragrahvPealkiri id="25dd9a2c-f8df-465b-b120-f38e4f0c9330">Töötu põhikohustused</paragrahvPealkiri>
+				<loige id="para9lg1">
+					<loigeNr id="cb0b97d8-124f-42f2-8f97-0b09d31da1c1">1</loigeNr>
+					<kuvatavNr id="1d936401-bb7d-4d11-8f63-afdfaf3ec383"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="2c5ab4bd-f403-47d7-8aaa-af10baaac133">
+						<tavatekst id="21fc760f-9395-4631-a9a6-1893045b5569">Töötu on eelkõige kohustatud:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para9lg1p1">
+						<alampunktNr id="445ebdc8-02f3-4116-9e58-8eadbe4d7ad3">1</alampunktNr>
+						<kuvatavNr id="ad4d799a-9991-4a2b-9f23-7d1de48e05f9"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="a07d2a66-4b1b-4032-8d80-e9926665da41">
+							<tavatekst id="d7b6fd3d-a07f-4e8c-ab30-43ba082444bc">osalema tegevuskava koostamisel ja seda täitma;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg1p2">
+						<alampunktNr id="ddc3469d-cfdb-4568-b00f-f7373c293bee">2</alampunktNr>
+						<kuvatavNr id="373f1955-b123-485a-97a1-bc16a3dfd2d1"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="30bacd2f-46cd-44a1-a365-3568e168e53a">
+							<tavatekst id="bca343a1-383d-4df1-9faa-56fb592bc881">osalema nõustamisel temaga kokkulepitud ajal ja viisil vähemalt üks kord 30 päeva jooksul;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg1p3">
+						<alampunktNr id="8cf848c8-30c4-4e91-aef3-c33d1177bdcb">3</alampunktNr>
+						<kuvatavNr id="2ddc11e7-c1eb-4691-819b-104a19f966f0"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="899c61f5-9f9b-49a0-8918-8bd12c6fa4a4">
+							<tavatekst id="b645b1d4-9e9e-49c0-b1fa-99e10320a937">olema valmis vastu võtma sobiva töö ja kohe tööle asuma;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg1p4">
+						<alampunktNr id="70c42073-d333-4d71-bda5-bb58fa6c703b">4</alampunktNr>
+						<kuvatavNr id="fe1ec249-b894-45b3-949d-4b96eea330af"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="bfe1b701-b51d-4977-8d41-919cbb27a58a">
+							<tavatekst id="2b266673-e395-488e-a8ae-844a74cfd18e">otsima tööd iseseisvalt ja teavitama töötukassat enda tööotsingutest.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para9lg2">
+					<loigeNr id="f3b2fa48-457a-4c14-8bdc-584acb795cbc">2</loigeNr>
+					<kuvatavNr id="b0db8e31-11bf-4d36-afde-586b548b5014"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="0bb56c51-979c-4dee-8107-b4439224302b">
+						<tavatekst id="893f523a-2e83-42dd-a0cb-a8d8e7e3cc38">Nõustamine võib toimuda töötukassas kohapeal, töötukassa infosüsteemi kaudu, telefoni teel või muul viisil. Nõustamise viisi otsustab töötukassa, arvestades isiku soovi ja võimalusi tööd leida. Töötukassa võib nõustamise viisi tööotsingute vältel olenevalt vajadusest muuta.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para9lg3">
+					<loigeNr id="eb7d6bc1-f1c3-424f-8374-4837e88e5ae5">3</loigeNr>
+					<kuvatavNr id="3bb5387b-ec05-41ae-b744-632fc1867a60"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="a9119eed-9695-494c-89fd-daa11f018d5b">
+						<tavatekst id="0b1d7cfd-b0e9-4d92-aa3b-6cefa87081bc">Töötu on valmis kohe tööle asuma, kui puuduvad tema töölerakendumist takistavad asjaolud või need on sellised, mida on võimalik tööturumeetmetega kõrvaldada. Eeldatakse, et töötu viibib tööotsingu ajal Eestis. Välisriigis töö otsimine peab olema enne töötukassaga kokku lepitud.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para9lg4">
+					<loigeNr id="b01d46d8-06df-41fa-b0b4-d317edafac90">4</loigeNr>
+					<kuvatavNr id="b25f8f15-cce6-407a-b45e-a638a06bdcb7"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="b0ae367f-9d3e-412e-b93a-7bf6f2b90743">
+						<tavatekst id="de781e70-def9-4673-ba01-f43440049a19">Töötu peab lisaks käesoleva paragrahvi lõikes 1 loetletud põhikohustustele täitma ka muid käesolevast seadusest ja teistest õigusaktidest tulenevaid kohustusi.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para9lg5">
+					<loigeNr id="6513fd91-af93-4d7f-adca-e6aa9ffb6678">5</loigeNr>
+					<kuvatavNr id="770b1ce9-7026-41fe-a04c-abeb9425920c"><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst id="11b69a46-b1e9-4de3-b68d-8ed0143f1386">
+						<tavatekst id="dcecaf88-3ecd-4be5-8546-d5095e7334e7">Sobivaks tööks töötule esimese 20 nädala vältel töötuna arvelevõtmisest arvates loetakse tööd:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para9lg5p1">
+						<alampunktNr id="31df5b7e-8f01-4b3b-90a2-f5f4c5476ccf">1</alampunktNr>
+						<kuvatavNr id="09e14261-a4c2-4090-a04b-cb6a2bc4cb51"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="beb543d4-7ea2-4e5b-9b2f-acb6fb4477ad">
+							<tavatekst id="988cde1c-2dd7-4740-a8d6-43cac26bc081">mis tervislikel põhjustel ei ole töötule vastunäidustatud;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg5p2">
+						<alampunktNr id="878557f3-f2a2-4425-b58f-806755022337">2</alampunktNr>
+						<kuvatavNr id="e8488224-9f66-41fb-9364-22239f1d29a9"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="300252ab-582e-4764-bbe3-b103cc693abd">
+							<tavatekst id="58e3e4fd-207b-4141-bea8-92405e49f13c">mille puhul sõiduks elukohast töökohta ja tagasi ühissõidukiga ei kulu töötul rohkem kui kaks tundi päevas ega rohkem kui 15 protsenti kuupalgast;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg5p3">
+						<alampunktNr id="73f6982c-9a9f-4349-b02e-b112078eccfb">3</alampunktNr>
+						<kuvatavNr id="a70183a9-ae39-409d-bdeb-5c287d1d9af2"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="89188ac2-4cd8-4f97-8ad9-60a8ae0b29b1">
+							<tavatekst id="ffe380ee-a0a5-4f93-8128-fd22880b44f3">mis vastab töötu haridusele, erialale ja varasemale töökogemusele;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg5p4">
+						<alampunktNr id="f19d51d6-cf89-4960-a79a-3c1ec087d81e">4</alampunktNr>
+						<kuvatavNr id="8638dfdd-7ef2-433e-b748-8c7056f6eb3b"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="900d6184-d051-48c6-b019-b465ccc5800f">
+							<tavatekst id="55bd0090-6bf1-4adf-a6d9-27564757023e">mille eest pakutav töötasu on vähemalt 60 protsenti isiku ühe kuu keskmisest sotsiaalmaksuga maksustatavast tulust, kuid mitte vähem kui kahekordne töölepingu seaduse § 29 lõike 5 alusel kehtestatud töötasu alammäär, kusjuures isiku sotsiaalmaksuga maksustatava ühe kuu keskmise tulu arvutamisel võetakse arvesse töötuna arvelevõtmisele eelnenud viimase kuue kuu kolm esimest kuud.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para9lg6">
+					<loigeNr id="36048157-d18f-475b-9f72-9d699bd4a581">6</loigeNr>
+					<kuvatavNr id="a004c549-884a-4e9d-b47a-06643a2f7fce"><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst id="31e54b9f-992a-4a8d-9e49-5a048fbd824d">
+						<tavatekst id="56a34000-02d6-47f9-a2e8-52b79bd39a50">Sobivaks tööks töötule alates 21. nädalast töötuna arvelevõtmisest arvates loetakse tööd:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para9lg6p1">
+						<alampunktNr id="4af75a3b-3913-463d-8dcf-10f3937ef754">1</alampunktNr>
+						<kuvatavNr id="a569f64e-e45f-4ec5-9c5d-9e57bbeea302"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="1ea38ef9-88a9-4005-b37b-62556cf56b6c">
+							<tavatekst id="258902ea-5a08-4a86-8a63-0ecc4c61e468">mis tervislikel põhjustel ei ole töötule vastunäidustatud;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg6p2">
+						<alampunktNr id="5b20906c-ddc9-4191-81e1-151fbbfaa196">2</alampunktNr>
+						<kuvatavNr id="d2fec7ed-5095-4074-ad5b-c6a793e8c302"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="5e6f2c44-89c0-459c-ac47-4eccddd90d19">
+							<tavatekst id="4e75f59c-e43f-469b-88f1-7b6edaa4862d">mis võib olla tähtajaline;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg6p3">
+						<alampunktNr id="26297533-3ffa-40ec-832a-e2c401cfa9e2">3</alampunktNr>
+						<kuvatavNr id="a2c2ef28-8490-447d-8c24-dc7fa405d99a"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="99b40042-0055-4b7d-a3e8-3d9118d7fd04">
+							<tavatekst id="1ee43f82-5136-4f9b-bcc7-8663725a9233">mille puhul sõiduks elukohast töökohta ja tagasi ühissõidukiga ei kulu töötul rohkem kui kaks tundi päevas ega rohkem kui 15 protsenti kuupalgast;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg6p4">
+						<alampunktNr id="9238b132-7b11-4bc7-a26f-f57a8f194db0">4</alampunktNr>
+						<kuvatavNr id="2ceeba6a-cd00-43b5-8fe4-013e6d0d826f"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="0deeae05-6d3d-47e0-9388-38edd0cb2341">
+							<tavatekst id="b6fd7779-4d6b-4f79-82de-f5b7f045c4dc">mille eest pakutav töötasu on täistööajaga töötamise korral suurem kui töötu samal perioodil saadav töötuskindlustushüvitis, kuid ei ole väiksem kui töölepingu seaduse § 29 lõike 5 alusel kehtestatud töötasu alammäär;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg6p5">
+						<alampunktNr id="c0a18923-fec0-4d19-ada4-e98ee59ad414">5</alampunktNr>
+						<kuvatavNr id="ff1dd468-86fc-4573-a685-00ac23befae5"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="b7916f0c-ef1b-4bb8-8427-b298e4e8c227">
+							<tavatekst id="50ed353f-2b1b-49dc-9654-a68a6b7578e0">mis ei pea vastama töötu haridusele, erialale ega varasemale töökogemusele.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para9lg7">
+					<loigeNr id="c5461310-5e8a-43af-9dd7-c5f09b9a1840">7</loigeNr>
+					<kuvatavNr id="7e2a6461-89b4-4a29-a529-84d148da9c9e"><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst id="2bceb6d3-6b32-42be-bb79-15fb6b7d2793">
+						<tavatekst id="e4810238-58cb-4d9d-84d9-3aca4d43f662">Kui isik võetakse kuue kuu jooksul töötuna arveloleku lõpetamisest arvates uuesti töötuna arvele ja ta ei ole selle aja jooksul olnud hõivatud käesoleva paragrahvi lõikes 8 nimetatud tegevusega, võetakse talle sobiva töö määratlemisel arvesse ka viimase 12 kuu töötuna arveloleku perioodid. Kui isik on viimase 12 kuu jooksul olnud töötuna arvel kokku 20 nädalat või vähem, loetakse talle sobivaks töö, mis vastab käesoleva paragrahvi lõikele 5, ja alates 21. töötuna arveloleku nädalast loetakse töötule sobivaks töö, mis vastab käesoleva paragrahvi lõikele 6. Töötuna arveloleku 21. nädalast, mis on saadud viimase 12 kuu töötuna arveloleku perioodide liitmisel, loetakse töötule sobivaks töö, mis vastab käesoleva paragrahvi lõikele 6.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="8e06c01b-782c-4a22-ae6f-bced41a4b184">
+						<avaldamismarge id="7ddbc667-292a-4f46-96d1-0edc55479de9">
+							<RTosa id="91605035-a55c-41ed-bc86-58f092963bf8">RT I</RTosa>
+							<avaldamineKuupaev id="d577ab43-5b56-4fd1-ac73-31aaf052bc94">2025-06-03</avaldamineKuupaev>
+							<RTartikkel id="94b8ab6d-b368-457e-8036-09f1589fac6c">1</RTartikkel>
+							<aktViide id="66808791-b7a2-43a4-878a-122bf6634660">103062025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="d1a513bf-5409-446b-a608-d90d0557aaf3">2026-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para9lg8">
+					<loigeNr id="e8499aae-dc0e-4df1-8f02-a80732430341">8</loigeNr>
+					<kuvatavNr id="ded5e033-c879-47ce-94b0-f93e624a1c0c"><![CDATA[(8)]]></kuvatavNr>
+					<sisuTekst id="66c293ba-5df4-445d-b1b5-4fad987ee3a2">
+						<tavatekst id="d2825161-0ba2-45d7-8c65-cf9da469eb62">Käesoleva paragrahvi lõikes 7 nimetatud tegevuseks loetakse:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para9lg8p1">
+						<alampunktNr id="c067f259-7403-4359-920a-d9ca8152aa7b">1</alampunktNr>
+						<kuvatavNr id="da1e1eb1-83a4-4904-9208-e4a9afc54612"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="43d3f2f9-c8bb-41f8-bb57-ede6188af5ca">
+							<tavatekst id="86ea1004-9de1-4e06-b57e-5a51cfac161e">töötamist töölepingu alusel või avalikus teenistuses;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg8p2">
+						<alampunktNr id="2b196205-30ab-4a8b-b3d2-228b32e325cb">2</alampunktNr>
+						<kuvatavNr id="8003d1ed-09ef-4ba8-9daa-8e7a33914c6d"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="14bb295b-7d70-4748-b378-889956f6e979">
+							<tavatekst id="248d3433-4776-420f-9368-c8d58e93e245">ametis olemist Riigikogu liikmena, Euroopa Parlamendi liikmena, Vabariigi Presidendina, Vabariigi Valitsuse liikmena, kohtunikuna, õiguskantslerina, riigikontrolörina, riikliku lepitajana, kohaliku omavalitsuse üksuse volikogu palgalise esimehena või palgalise aseesimehena, valla- või linnavalitsuse palgalise liikmena, sealhulgas vallavanemana või linnapeana, osavalla- või linnaosavanemana;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg8p3">
+						<alampunktNr id="fd2ca673-5d64-4a22-b441-569739995b17">3</alampunktNr>
+						<kuvatavNr id="15b5eef7-70ef-40d9-b613-bd2c65760480"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="d0566dc1-7808-4864-beab-fefe47316fe0">
+							<tavatekst id="86a01800-1365-4eba-a6f3-c3a1b9ff19cd">avalik-õigusliku ameti pidamist sõltumatu isikuna;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg8p4">
+						<alampunktNr id="ffa6196a-95e6-4bdc-9c60-a5063ec145f1">4</alampunktNr>
+						<kuvatavNr id="d622397e-3920-4fca-a6c1-1fd6a95c35e9"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="dcd899b8-fb72-480b-97b1-3d781d21fb68">
+							<tavatekst id="44d1dc95-d122-480b-ae95-5dfad33ef3cf">Eestis teenuse osutamist töövõtu-, käsundus- või muu teenuse osutamiseks sõlmitud võlaõigusliku lepingu alusel ja teenuse osutamist või kauba müümist ettevõtlustulu lihtsustatud maksustamise seaduse tähenduses;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg8p5">
+						<alampunktNr id="98d0b43a-9b3d-45f8-b35e-68894afb07c8">5</alampunktNr>
+						<kuvatavNr id="98b1a6c0-0965-402e-a52b-d42701ca1808"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="ed27783f-16d4-4926-890e-4d224585b6a9">
+							<tavatekst id="f73e3ce6-f2f0-408f-a64d-d1f40f7632fc">tegutsemist füüsilisest isikust ettevõtjana Eestis või osalemist abikaasa või registreeritud elukaaslasena füüsilisest isikust ettevõtja ettevõtte tegevuses, kui abikaasa või registreeritud elukaaslane oli kantud maksukohustuslaste registrisse, arvestamata seejuures ajavahemikku, millal ettevõtte tegevus oli peatatud või hooajaline tegevus lõppenud;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg8p6">
+						<alampunktNr id="4218c2df-1613-44dd-b13e-b4f26a1010b4">6</alampunktNr>
+						<kuvatavNr id="9f49b47f-3b47-4975-8b70-2185791f5860"><![CDATA[6) ]]></kuvatavNr>
+						<sisuTekst id="0f996be4-93c8-4b29-9cbc-67f76c8328ca">
+							<tavatekst id="7442d06f-9a9f-44b5-8f77-849d825933c1">õppimist õppeasutuse statsionaarses õppes või täiskoormusega õppes, kui isik on oma õpingud lõpetanud;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg8p7">
+						<alampunktNr id="13e08499-c6ca-4ccb-8977-c05864e4ddd3">7</alampunktNr>
+						<kuvatavNr id="8783fbe3-4b19-4536-86c6-1fad9dd394c6"><![CDATA[7) ]]></kuvatavNr>
+						<sisuTekst id="3d488148-69e2-4f99-b23b-6efbf6ce5588">
+							<tavatekst id="cf333e16-7e91-4fe5-8774-f9b2f9073e06">viibimist ajateenistuses, korralises asendusteenistuses või erakorralises reservasendusteenistuses;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg8p8">
+						<alampunktNr id="2af33ae5-f94b-4a93-b8dd-18c1c49280a6">8</alampunktNr>
+						<kuvatavNr id="cce92b56-ae1d-4d9b-8a30-18c996e02adb"><![CDATA[8) ]]></kuvatavNr>
+						<sisuTekst id="8bb19d72-d992-4695-bed1-a64e7784b73a">
+							<tavatekst id="628bc2f9-420a-409b-a664-d20433ef6c7c">Eesti Vabariigi välisesinduses töötava teenistujaga või pikaajalisse välislähetusse saadetud ametnikuga abikaasa või registreeritud elukaaslasena kaasasolekut, kui talle makstakse välisteenistuse seaduse §-s 67 nimetatud abikaasa ja registreeritud elukaaslase tasu.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="481bcc7d-480f-424a-85c2-0c5713bbfc04">
+							<avaldamismarge id="56ac623d-f82c-4dfd-8434-729d0e54e878">
+								<RTosa id="59971650-4497-4cee-adfe-09dbbca1fb2f">RT I</RTosa>
+								<avaldamineKuupaev id="4d5acd0e-d6cb-40d4-814a-05b6619d012d">2025-06-03</avaldamineKuupaev>
+								<RTartikkel id="2c282344-2e8f-4aa2-8cc7-43868768de33">1</RTartikkel>
+								<aktViide id="a23f9882-cd30-454e-8fa5-2f4393063419">103062025001</aktViide>
+							</avaldamismarge>
+							<joustumine id="cd06b722-9af6-45d6-b787-61793b73b951">2026-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para10">
+				<paragrahvNr id="92bf50b9-dd78-40a0-8aec-c058fc004813">10</paragrahvNr>
+				<kuvatavNr id="af3b6107-2827-4567-b48d-4ba67dbdf4f0"><![CDATA[§ 10. ]]></kuvatavNr>
+				<paragrahvPealkiri id="bbbb3382-c429-45d2-9341-7092aefba9da">Teatamiskohustus</paragrahvPealkiri>
+				<loige id="para10lg1">
+					<loigeNr id="6d951460-3106-462f-b6e3-07851fbdac3d">1</loigeNr>
+					<kuvatavNr id="459e0723-5f8f-47f0-a955-8b9997ef2846"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="27fb759b-d16c-467d-8865-7c71021e3ff0">
+						<tavatekst id="5b5825b2-5b60-4e40-8f4d-774f7885a9b2">Töötu, töötaja, tööandja ja muu isik, kellele pakutakse tööturumeetmeid, on kohustatud viivitamata teatama töötukassale asjaoludest, mis toovad kaasa töötuna arveloleku lõpetamise või tööturumeetme saamise õiguse lõppemise.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para10lg2">
+					<loigeNr id="193268eb-eb3c-4974-9887-0ff4fa79357c">2</loigeNr>
+					<kuvatavNr id="2c3ddddc-fa56-42fe-b339-61f14be38862"><![CDATA[(2)]]></kuvatavNr>
+					<muutmismarge id="74c071ae-2c90-478b-8a08-236050b43669">
+						<tavatekst id="c98ce4ce-53b5-4d87-b5af-1e1d1edd25e3">Kehtetu -</tavatekst>
+						<avaldamismarge id="702ace1f-12e3-4790-a5cc-f3897bcfcdaf">
+							<RTosa id="9d12342e-8607-4e77-9027-30e9a0503fb4">RT I</RTosa>
+							<avaldamineKuupaev id="77745ecb-153e-496d-9428-eb450e0a2329">2025-06-03</avaldamineKuupaev>
+							<RTartikkel id="14996240-1f59-4291-8e33-55b381cdb64d">1</RTartikkel>
+							<aktViide id="b32e97d0-7a0e-4582-8333-0373e412b22b">103062025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="2d01eaa1-ecec-4c38-9873-57aa125cc2bd">2026-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para10lg3">
+					<loigeNr id="dd193655-1ca8-48a8-9ad9-c8efc3439c03">3</loigeNr>
+					<kuvatavNr id="14148be0-b669-4920-9639-81bfb1832a11"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="f301a097-93fc-4b2e-bd8c-449bdae780fd">
+						<tavatekst id="adadf5fb-2367-4eec-bc24-c1cafce703ba">Töötu on kohustatud viivitamata teatama töötukassale ajutisest töötamisest.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para10lg4">
+					<loigeNr id="0783ac29-a7fb-43de-ab12-d3ea05957a00">4</loigeNr>
+					<kuvatavNr id="1b1a3706-2410-4d2f-ad2c-48a996785551"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="0aee5ad6-5b02-44b4-909a-f56589a7de82">
+						<tavatekst id="77afd2fc-0823-4677-92da-bf5d649a6695">Töötu, töötaja ja muu isik, kes osalevad tööturumeetmes, on kohustatud viivitamata teatama töötukassale meetmes osalemise katkestamisest.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para11">
+				<paragrahvNr>11</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 11. ]]></kuvatavNr>
+				<paragrahvPealkiri>Ajutine töötamine</paragrahvPealkiri>
+				<loige id="para11lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ajutine töötamine käesoleva seaduse tähenduses on töötuna arveloleku ajal töötamine töölepingu või töövõtu-, käsundus- või teenuse osutamiseks sõlmitud muu võlaõigusliku lepingu alusel või avalikus teenistuses olek, mille ühekordne kestus ei ületa kaheksat päeva.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para11lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Töötuna arveloleku ajal võib isik ajutiselt töötada kuni kaheksa päeva kalendrikuus, kuid kõige rohkem 12 kalendrikuul 24-kuulise ajavahemiku jooksul. 24-kuulise ajavahemikuna arvestatakse igale ajutisele töötamisele eelnevat 24 kalendrikuud.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para11lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ajutise töötamise eest makstav tasu ühes kalendrikuus kokku ja iga ühekordse töötamise eest ei tohi ületada 40 protsenti töölepingu seaduse § 29 lõike 5 alusel kehtestatud käesoleva kalendriaasta kuu töötasu alammäärast. Ajutise töötamise eest makstava tasuna käsitatakse ka tööandjalt alltöövõtu tellinud isiku poolt töölepingu seaduse § 33<sup>1</sup> alusel makstud tasu.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2026-06-03</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>103062026002</aktViide>
+						</avaldamismarge>
+						<joustumine>2027-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para12">
+				<paragrahvNr id="2f491f70-595a-4e6f-ad51-6942c630cffc">12</paragrahvNr>
+				<kuvatavNr id="2de6824b-1aba-48c6-add4-d6c4844d5920"><![CDATA[§ 12. ]]></kuvatavNr>
+				<paragrahvPealkiri id="8de18996-12ad-41b7-89d2-47110f7c363c">Töötuna arveloleku ja tööturumeetme pakkumise lõpetamine</paragrahvPealkiri>
+				<loige id="para12lg1">
+					<loigeNr id="6d4b398b-9b6d-4d54-b9bd-34878f727832">1</loigeNr>
+					<kuvatavNr id="9947591d-c50b-4497-bda1-d878ae26a694"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="c9f9adcb-c81d-4313-bb85-a119cb6db1d2">
+						<tavatekst id="e88a23e4-c7f6-4b6c-820d-0ab26ac15359">Töötukassa teeb otsuse isiku töötuna arveloleku lõpetamise kohta:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para12lg1p1">
+						<alampunktNr id="a38a8e17-5473-4b5c-add8-0f8a70e89b23">1</alampunktNr>
+						<kuvatavNr id="64f07f54-758b-4346-9b02-9de19e881b25"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="01314e15-4de0-455e-b984-a697c73b7b4c">
+							<tavatekst id="5fd7c95a-95b5-43e6-bf8d-d35a5dd317cd">kui töötu vähemalt üks kord 30 päeva jooksul ei osale nõustamisel, välja arvatud juhul, kui ta ei saanud osaleda mõjuva põhjuse tõttu;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para12lg1p2">
+						<alampunktNr id="18dcfa8a-abb6-4a31-8885-258f4189fe19">2</alampunktNr>
+						<kuvatavNr id="93cb6b7e-43ec-43c9-af57-dbebda57366c"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="7eebfc91-e610-48e5-9218-717c0a2d2ecb">
+							<tavatekst id="2f88a8e8-0712-4bd1-ac7d-b25ba4f44cb8">kui töötu mõjuva põhjuseta kolmandat korda ei osale nõustamisel temaga kokkulepitud ajal või viisil;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para12lg1p3">
+						<alampunktNr id="9e0a5d80-73c8-47ff-8ece-89fc62ec1891">3</alampunktNr>
+						<kuvatavNr id="a54d0e10-57d8-4b5b-8092-1577fdf1072d"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="c94d8e46-d40c-40b7-b384-e05b2337462f">
+							<tavatekst id="e6a76994-d8b5-4fbf-8ffa-8529a03924c9">käesoleva seaduse § 8 lõike 4 punktides 2–14 loetletud juhtudel, välja arvatud käesoleva seaduse §-s 11 nimetatud ajutise töötamise korral;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para12lg1p4">
+						<alampunktNr id="92c73f41-4544-4141-aac4-684fee4b43e6">4</alampunktNr>
+						<kuvatavNr id="78d030e1-25cc-4dc5-84ee-64481eb58831"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="deb6081c-475b-44d4-a787-65c209218c3b">
+							<tavatekst id="4e863ab4-3473-4176-accf-057725fa62f2">kui töötu keeldub tegevuskava täitmisest mõjuva põhjuseta kolmandat korda;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para12lg1p5">
+						<alampunktNr id="211b9476-ad2d-48c0-9e9a-1c50f4f6f0ae">5</alampunktNr>
+						<kuvatavNr id="56103b13-ab9c-4c0e-a641-63c3c6aa5c83"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="91c183f8-48b6-400b-abc6-dbad6684d67e">
+							<tavatekst id="701c1059-d81a-41ec-bcfe-a4dd1f3bcf64">kui töötu keeldub sobivast tööst mõjuva põhjuseta kolmandat korda;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para12lg1p6">
+						<alampunktNr id="db66036a-d0eb-4082-ac4b-1d6f54c834ea">6</alampunktNr>
+						<kuvatavNr id="980dd5f8-7561-4f95-a725-fd6a5397ef53"><![CDATA[6) ]]></kuvatavNr>
+						<sisuTekst id="307fdc83-f656-458e-96c9-e5a16d9b4abf">
+							<tavatekst id="185101dd-9e5f-4246-98a8-fb4ebfc6ae44">kui ettevõtluse toetamise tööturumeetme raames on toetus ettevõtlusega alustamiseks töötu pangakontole üle kantud;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para12lg1p7">
+						<alampunktNr id="79c51a2a-4363-4361-9eb1-3a0f52cc9129">7</alampunktNr>
+						<kuvatavNr id="9fb33687-9d11-4dea-9b7e-2f42f97a89c0"><![CDATA[7) ]]></kuvatavNr>
+						<sisuTekst id="04573a0c-37b1-4a75-9df7-a8701bfc6611">
+							<tavatekst id="53d21270-5a45-400a-8565-76b83f7eba33">töötu soovi korral;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para12lg1p8">
+						<alampunktNr id="086f56e0-8042-4d31-85c0-ec09c00cc3eb">8</alampunktNr>
+						<kuvatavNr id="ebed5bfd-d077-4de7-919a-21327ba62635"><![CDATA[8) ]]></kuvatavNr>
+						<sisuTekst id="a031e689-ad79-4463-b0fa-bb5f42fcdd32">
+							<tavatekst id="a7972a69-7bd8-4925-aed5-27dc4258f1a6">töötu surma korral;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para12lg1p9">
+						<alampunktNr id="957f5729-a7c7-49bc-b823-a6bff3b5cf3c">9</alampunktNr>
+						<kuvatavNr id="4b431879-2ec4-4588-aacd-6fd93130183b"><![CDATA[9) ]]></kuvatavNr>
+						<sisuTekst id="821219dd-a246-4595-af22-ed82b187fe44">
+							<tavatekst id="81a5b66f-64cb-47f4-a92f-8a645450ed56">kui töötu ei ole valmis kohe tööle asuma;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para12lg1p10">
+						<alampunktNr id="6a46b9f3-4dcb-4942-8bf7-1dd7ad82cb0e">10</alampunktNr>
+						<kuvatavNr id="51a80c59-803b-42c4-ad06-744ccafa74cb"><![CDATA[10) ]]></kuvatavNr>
+						<sisuTekst id="3631c03f-1516-4eb7-bfd5-ac15d173e01d">
+							<tavatekst id="dd425da3-7a6c-4e03-9d8d-d0acf887d980">kui töötu ajutise töötamise aeg ületab käesoleva seaduse § 11 lõikes 2 sätestatud aega ühes kalendrikuus või 24-kuulise perioodi jooksul;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para12lg1p11">
+						<alampunktNr id="eb1aaad1-3a1e-4f2d-bec1-6cdbb028d866">11</alampunktNr>
+						<kuvatavNr id="f81d2987-9bd5-4b7b-adfd-8c4384d9bcb3"><![CDATA[11) ]]></kuvatavNr>
+						<sisuTekst id="0f790291-1b6c-4361-b381-bdb45133d964">
+							<tavatekst id="2c4c7e07-f522-4d9d-be45-3422d7f9667d">kui töötule ajutise töötamise eest makstud tasu ületab käesoleva seaduse § 11 lõikes 3 sätestatud piirmäära.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para12lg2">
+					<loigeNr id="1226918d-dffb-4edc-92d3-a563c3d430ab">2</loigeNr>
+					<kuvatavNr id="3ddd4f38-ad0d-4a8f-bb82-626aafc44147"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="804380f2-5da2-4fa4-8d79-3ffdc9dc10cd">
+						<tavatekst id="b069ea3e-761d-4c00-8d1d-24363b59cb90">Töötukassa võib lõpetada töötajale või muule isikule tööturumeetme pakkumise, kui isik ei täida tegevuskava.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk4">
+			<peatykkNr id="fe22f7f1-001e-40d7-8fee-61c0bf7d83bc">4</peatykkNr>
+			<kuvatavNr id="17699aaf-5bcd-4a09-a92b-33dd0c3389a4"><![CDATA[4. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="c08d1ce0-4ef3-418a-9cca-ecb6575edc51">Töötukassa pakutavad tööturumeetmed</peatykkPealkiri>
+			<paragrahv id="para13">
+				<paragrahvNr id="0a38d7f1-9b9c-4b40-930e-722eb9a98eb0">13</paragrahvNr>
+				<kuvatavNr id="8d69cef0-184c-4ad8-b886-ce7e44e6baae"><![CDATA[§ 13. ]]></kuvatavNr>
+				<paragrahvPealkiri id="3547f1eb-a073-4177-b211-a6ff2c0a8e1d">Tööturumeetmed</paragrahvPealkiri>
+				<loige id="para13lg1">
+					<loigeNr id="9f79e343-bc5e-4876-9037-b831d9ce718f">1</loigeNr>
+					<kuvatavNr id="9507da9e-9974-4812-8b7b-ed834e595dcb"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="491cbdfe-fa7e-4bd1-b5e8-fc321ce5685c">
+						<tavatekst id="0b681371-7558-4c63-9719-cd686ab1adae">Töötukassa lähtub tööturumeetmete pakkumisel käesolevas peatükis sätestatust. Tööturumeetmete hulka kuuluvad tööturuteenused ja -toetused nähakse ette tööhõiveprogrammis.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para13lg2">
+					<loigeNr id="fa3ca052-8091-4031-8388-3b1a2ee32f97">2</loigeNr>
+					<kuvatavNr id="44cf2ee1-d5d2-474e-8500-c76090662599"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="c7bdb164-8eb4-46aa-952a-59ffa24b5fc6">
+						<tavatekst id="b8658549-0411-450c-8170-23913ad4c067">Tööturumeetmed on:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para13lg2p1">
+						<alampunktNr id="73987387-e188-42c3-9f92-effb3a648b72">1</alampunktNr>
+						<kuvatavNr id="9bb6b886-2920-47df-b506-bd73f91aac3c"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="a1be9eed-4cb8-4677-9d56-72a5b1e6bccc">
+							<tavatekst id="1e325624-2bbc-4a1d-a948-26db97802c76">tööturu olukorrast ning tööturuteenustest ja -toetustest teavitamine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para13lg2p2">
+						<alampunktNr id="62415fb3-658c-4a50-a399-52e7f075c59f">2</alampunktNr>
+						<kuvatavNr id="712ef795-974c-41dd-a1ee-1996f954536f"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="11184fb2-6485-4002-881d-577c5c004468">
+							<tavatekst id="d3944fcb-3b7b-4110-99a5-925bcc3ca6ce">töövahendus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para13lg2p3">
+						<alampunktNr id="e56b63e3-75db-41ae-96e9-e16add4e1f5b">3</alampunktNr>
+						<kuvatavNr id="243d7665-ddde-4b35-8bf3-bcb16fb36179"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="ed179756-8a9e-4e82-a63e-33ec4e00178c">
+							<tavatekst id="56b347cf-c74c-4475-965f-cbd8b551f543">karjääriteenused;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para13lg2p4">
+						<alampunktNr id="520e4a94-52f7-4d20-9d7a-c791e6b704ac">4</alampunktNr>
+						<kuvatavNr id="5c807de6-11d0-43e4-86f2-06ea1024b502"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="12249e0a-c094-42da-9e3b-b47d5adacbe4">
+							<tavatekst id="f4146ecd-11c7-45dc-92f9-1a238b12a449">töökeskne nõustamine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para13lg2p5">
+						<alampunktNr id="24cf416a-9690-42f8-a8f1-1e98ee1d8098">5</alampunktNr>
+						<kuvatavNr id="8a2e9746-e6b0-432c-bd69-db5e536479a1"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="96141ffd-fccc-498d-a139-4d09664300e8">
+							<tavatekst id="5c97c4ea-778b-4780-8e18-6487bd2cefb5">oskuste arendamine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para13lg2p6">
+						<alampunktNr id="50959756-733e-4772-8fd6-9b625e33e88a">6</alampunktNr>
+						<kuvatavNr id="2cc40eac-809a-40c4-9fe5-1502c01a57fb"><![CDATA[6) ]]></kuvatavNr>
+						<sisuTekst id="39a0ed20-7c5e-40b0-9391-eecd5fea460a">
+							<tavatekst id="3a58cdc0-a6cf-4a93-adad-c74b2a230543">ettevõtluse toetamine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para13lg2p7">
+						<alampunktNr id="5ab145cc-75d8-4516-a05d-867e7aea5195">7</alampunktNr>
+						<kuvatavNr id="63ff4dbb-1466-455b-8219-ddd038866b2c"><![CDATA[7) ]]></kuvatavNr>
+						<sisuTekst id="17b74da9-96bb-4c94-b5bc-74480219d4a3">
+							<tavatekst id="264128ae-dc79-40f7-9795-2e0d78ae33e3">töövalmiduse toetamine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para13lg2p8">
+						<alampunktNr id="192e9d5b-f862-4081-993f-b801255d7d8c">8</alampunktNr>
+						<kuvatavNr id="2ba2e7f1-d0aa-421f-9f80-e4f500c51341"><![CDATA[8) ]]></kuvatavNr>
+						<sisuTekst id="993fcedf-4ed3-46ab-8371-217c7f7c2a86">
+							<tavatekst id="f8cb92da-2885-49dc-8453-32ca6e744ed7">töövõime toetamine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para13lg2p9">
+						<alampunktNr id="8431fb86-4b8f-4cdf-8b1f-f4a6a6d8bcfa">9</alampunktNr>
+						<kuvatavNr id="e93935a1-53b3-4f00-b80b-5a7acd3160ea"><![CDATA[9) ]]></kuvatavNr>
+						<sisuTekst id="0bb63356-de88-4ec4-9821-c24fe42f578b">
+							<tavatekst id="8752a4ea-88e6-44c2-9565-63c3d5c524d1">tööle asumise ja tööl püsimise toetamine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para13lg2p10">
+						<alampunktNr id="2acaf9de-b2e0-4e5c-b047-a5c1e6ac4334">10</alampunktNr>
+						<kuvatavNr id="a5fb647a-a393-4955-9263-285830140109"><![CDATA[10) ]]></kuvatavNr>
+						<sisuTekst id="76d74897-f6db-479c-9a72-8a3a746ae8f5">
+							<tavatekst id="12ee1b03-efb3-45e1-8637-7ad0aa40d8e9">tööturuteenusel osalemise toetamine.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para14">
+				<paragrahvNr id="cede36ac-122c-4cf1-a2fd-e1ac77b093b8">14</paragrahvNr>
+				<kuvatavNr id="d90671c2-2285-4a51-ad23-08d3005745e7"><![CDATA[§ 14. ]]></kuvatavNr>
+				<paragrahvPealkiri id="aec8f83b-014e-4e92-8e64-510a6f9a0b5d">Tööturumeetmete eesmärgid</paragrahvPealkiri>
+				<loige id="para14lg1">
+					<loigeNr id="6ff883d2-62dc-441b-97f1-e258531dc806">1</loigeNr>
+					<kuvatavNr id="8654589b-d5cb-4840-8f13-87cfb01c6f54"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="c1f3ea16-1947-4ce5-83a6-5beb0bf61787">
+						<tavatekst id="7211bb0c-5387-4611-85e1-b3c44e593060">Tööturu olukorrast ning tööturuteenustest ja -toetustest teavitamine on tööturumeede, mille eesmärk on anda teavet tööturu olukorrast, töötamis- ja õppimisvõimalustest ning tööturuteenustest ja -toetustest.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para14lg2">
+					<loigeNr id="093e32db-49b7-4666-aa28-d28487fb5cff">2</loigeNr>
+					<kuvatavNr id="c984bac9-2587-404f-bf67-10aebebaf710"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="b71da1ae-66c8-4c12-a33c-ce3672f1e8d7">
+						<tavatekst id="f3800474-8b26-41fe-ac06-bbf2bf789c16">Töövahendus on tööturumeede, mille eesmärk on toetada isikule sobiva töö ja tööandjale sobiva töötaja leidmist, sealhulgas vahendada töö ja töötaja leidmiseks vajalikku teavet.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para14lg3">
+					<loigeNr id="a922bc93-f3af-4aca-8c7c-0871c93181f0">3</loigeNr>
+					<kuvatavNr id="4295eee9-a1d8-4eae-923d-fd7dd309bf39"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="108f7b1a-8d44-4b71-9092-3e9cb51e78c6">
+						<tavatekst id="4a78ba17-9267-4736-8073-44d18d0de0c0">Karjääriteenused on tööturumeede, mille eesmärk on anda isikule teavet õppimis- ja töötamisvõimaluste kohta, toetada teadlikke õpitee- ja töövalikuid, suurendada eneseteadlikkust ja toetada karjääri kujundamist.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para14lg4">
+					<loigeNr id="5ba33f08-fe81-43d6-8bc4-db55ae1037e2">4</loigeNr>
+					<kuvatavNr id="56351484-109c-48a9-bda0-1617eb28ef96"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="df972a13-ad7c-4093-add2-92cd929e2c66">
+						<tavatekst id="063643af-35c7-4d40-a55d-552e5e0cfe35">Töökeskne nõustamine on tööturumeede, mille eesmärk on toetada isiku tööotsinguid ja -valikuid, tööle saamist või tööga kohanemist ja tööl püsimist.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para14lg5">
+					<loigeNr id="194ca78a-13f4-4f1b-a750-81207aadf8e4">5</loigeNr>
+					<kuvatavNr id="04ae1c85-7416-40f7-9cb4-b3923ff55688"><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst id="1d43d1b8-d044-47e7-958b-766ba6d82de8">
+						<tavatekst id="1f60dcba-06c0-4675-9b25-0ac4fd47cfa9">Oskuste arendamine on tööturumeede, mille eesmärk on toetada isiku töötamiseks vajalike teadmiste ja oskuste omandamist ja arendamist.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para14lg6">
+					<loigeNr id="24b37416-81bb-496e-86a4-4fad2435710e">6</loigeNr>
+					<kuvatavNr id="a3222db6-7bac-46c3-b377-2da2b4008925"><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst id="027006cf-b654-41a8-a9de-0605f5bc68aa">
+						<tavatekst id="64c4e2c1-de37-4924-bdb9-2d6307bc96ef">Ettevõtluse toetamine on tööturumeede, mille eesmärk on toetada isiku alustamist ettevõtlusega ja tagada selle tegevuse jätkusuutlikkus.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para14lg7">
+					<loigeNr id="6540c1c3-c5b2-4137-944a-ff99fa99a943">7</loigeNr>
+					<kuvatavNr id="f10a9db1-764c-44c1-8c4e-6ca824cbe13e"><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst id="e4fae684-2fae-427d-9a82-746da4351b5e">
+						<tavatekst id="a6f3505a-087c-408c-8b4b-32c45a3fba16">Töövalmiduse toetamine on tööturumeede, mille eesmärk on valmistada isik ette tööotsinguteks ja tööeluks, toetada tööharjumust ning nõustada, kuidas tööle saamise ja töötamise takistused kõrvaldada.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para14lg8">
+					<loigeNr id="1b91fb5c-a497-476d-bd9d-536cf3bd865b">8</loigeNr>
+					<kuvatavNr id="22b9e24e-d615-4adb-a5da-67354398adda"><![CDATA[(8)]]></kuvatavNr>
+					<sisuTekst id="86220221-7d08-4702-a6f8-27054f01ccf8">
+						<tavatekst id="0045500a-927a-4b4b-bfb1-89873853b7b0">Töövõime toetamine on tööturumeede, mille eesmärk on toetada tervisest tuleneva takistusega isiku tööle asumist ja tööl püsimist.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para14lg9">
+					<loigeNr id="01fa8c33-edae-4709-9e4a-82115a92e3c5">9</loigeNr>
+					<kuvatavNr id="c464ebab-ab2c-42ba-8d3a-666f0b97ca14"><![CDATA[(9)]]></kuvatavNr>
+					<sisuTekst id="3de1dac5-8533-4981-8871-5a2dffd69a8d">
+						<tavatekst id="b3faed8f-610b-40e0-a004-37d736c38c8f">Tööle asumise ja tööl püsimise toetamine on tööturumeede, mille eesmärk on hüvitada isiku tööle asumise või tööl püsimisega seotud kulud.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para14lg10">
+					<loigeNr id="b328fd29-c58e-47f1-afbe-22e0ddf8f9fe">10</loigeNr>
+					<kuvatavNr id="d2bff486-feab-4751-8b54-df8924ba6d9f"><![CDATA[(10)]]></kuvatavNr>
+					<sisuTekst id="9822b934-ed9d-43a3-8777-2d23d9d76143">
+						<tavatekst id="7a6dc51d-bcd4-49d7-a95b-74a10899a23a">Tööturuteenusel osalemise toetamine on tööturumeede, mille eesmärk on hüvitada isikule teenusel osalemisega seotud kulusid.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para15">
+				<paragrahvNr id="55647649-b6cf-4f1d-8c8a-d47dd131644d">15</paragrahvNr>
+				<kuvatavNr id="14a31457-2c4d-436d-bf68-9e4cd02110c6"><![CDATA[§ 15. ]]></kuvatavNr>
+				<paragrahvPealkiri id="2a5b38f4-aabc-4dff-88a5-062694921f11">Tööturumeetmete raames makstava toetuse piirmäär</paragrahvPealkiri>
+				<loige id="para15lg1">
+					<loigeNr id="dc1b89c9-cde3-45bb-b2a3-47b6a9afb15f"/>
+					<kuvatavNr id="a637c068-9ac8-4184-9694-1d5bb5faaa6c"/>
+					<sisuTekst id="d27c1ce2-74ae-4408-b0e6-30eade3202be">
+						<tavatekst id="12b1fa86-3b6d-4c18-81d0-a5cb5bd49725">Kui tööturuteenusel osalemise toetamise tööturumeetme raames makstakse inimesele tööturutoetust tööturuteenusel osalemisega seotud kulude hüvitamiseks ja tööturuteenusel osalemise soodustamiseks:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para15lg1p1">
+						<alampunktNr id="eb0428ca-0d26-4779-979e-2bfdda3fd9f6">1</alampunktNr>
+						<kuvatavNr id="abb0e196-e6c4-4199-ae3b-70036463118f"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="5527cb41-bf55-482d-bfa5-587b6ec18b76">
+							<tavatekst id="b13c6375-4cc6-46b3-b2eb-4110a0518931">osaletud aja eest, ei tohi kehtestatav toetuse päevamäär olla suurem kui töölepingu seaduse § 29 lõike 5 alusel kehtestatud kuuekordne tunni töötasu alammäär;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para15lg1p2">
+						<alampunktNr id="f1e530d9-15e7-4fb4-bf6d-bf8bdb0d3f58">2</alampunktNr>
+						<kuvatavNr id="f8dd5940-0c27-4f77-8110-d1fd2c0140d6"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="3a95c296-3dee-4ce6-a929-a05e94690956">
+							<tavatekst id="33e232a4-3e62-40ef-acc2-47202248ac24">läbitud vahemaa eest, ei tohi kehtestatav toetuse määr ühe kilomeetri kohta olla suurem kui tulumaksuseaduse § 13 lõike 3 punktis 2 kehtestatud piirmäär ühe kilomeetri kohta, kuid päevas mitte rohkem kui töölepingu seaduse § 29 lõike 5 alusel kehtestatud kümnekordne tunni töötasu alammäär.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk5">
+			<peatykkNr id="53dd4b7c-0061-4311-bdae-052f2bca031b">5</peatykkNr>
+			<kuvatavNr id="7277892d-e522-4885-90d8-509a156ebd21"><![CDATA[5. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="8cb70b46-59db-4bc5-a0b1-3eb65e53266d">Tööturumeetmete rahastamise allikad</peatykkPealkiri>
+			<muutmismarge id="77e297d0-2890-42a8-bdca-8d776cca9764">
+				<avaldamismarge id="1e56dff6-3397-4f80-9cc6-86fa5bf55368">
+					<RTosa id="a871bc64-55e9-4b48-a2ea-e1cebaff1694">RT I</RTosa>
+					<avaldamineKuupaev id="636dd655-26e6-4550-99ea-5696b0803363">2025-06-03</avaldamineKuupaev>
+					<RTartikkel id="01485877-fbee-4762-9e67-f9a97ccf5010">1</RTartikkel>
+					<aktViide id="973566e4-63e2-4375-817f-6aa5b174030c">103062025001</aktViide>
+				</avaldamismarge>
+				<joustumine id="4c17fb8d-a339-4d99-be1b-106bb817963e">2026-01-01</joustumine>
+			</muutmismarge>
+			<paragrahv id="para16">
+				<paragrahvNr id="6a5ca3a3-427d-41ac-9640-57de91ecce08">16</paragrahvNr>
+				<kuvatavNr id="0a8cff88-739b-4f90-84b8-3ff855e3fe33"><![CDATA[§ 16. ]]></kuvatavNr>
+				<paragrahvPealkiri id="131c085e-e5d4-40a4-8c34-0a9241131c48">Tööturumeetmete rahastamine</paragrahvPealkiri>
+				<loige id="para16lg1">
+					<loigeNr id="5b929c66-69e9-4cb1-a6f6-ee30a5fcaea3"/>
+					<kuvatavNr id="e7dafce2-00c7-455b-89e1-e5f6a890a71d"/>
+					<sisuTekst id="7785b818-2d30-4c36-83e5-0565b1945a5d">
+						<tavatekst id="ae115d69-9050-4489-9c6e-0aa552931df0">Tööturumeetmeid rahastatakse töötuskindlustuse seaduse §-s 38<sup>1</sup> sätestatud tööturuteenuste ja -toetuste sihtkapitali vahenditest, riigieelarve sihtotstarbelistest eraldistest ja tööturumeetmete rahastamiseks ettenähtud Euroopa Liidu või muudest toetustest.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para17">
+				<paragrahvNr id="22b57dda-315b-4c17-9f66-71ac2a6c16f6">17</paragrahvNr>
+				<kuvatavNr id="8e42da0b-1061-4ab7-8a1f-8f6fc6ca7f6a"><![CDATA[§ 17. ]]></kuvatavNr>
+				<paragrahvPealkiri id="e77d65e1-24cb-410e-b555-9d3c4135a145">Töötutoetuse rahastamine</paragrahvPealkiri>
+				<muutmismarge id="3bfba724-4725-4c92-bd13-46ba558d0dd8">
+					<tavatekst id="41925c18-2623-4423-ae74-18d1b087d8c6">Kehtetu -</tavatekst>
+					<avaldamismarge id="306b0549-4429-48a7-ab55-83a9977d73ff">
+						<RTosa id="25b483c5-74d2-4444-8d4c-71f1d4482ae4">RT I</RTosa>
+						<avaldamineKuupaev id="085d5ec6-fbab-4d4f-9be5-cc0df6a04422">2025-06-03</avaldamineKuupaev>
+						<RTartikkel id="4e5183a8-00d8-4ab5-b05d-d08f0acd4333">1</RTartikkel>
+						<aktViide id="b01ecb27-876a-4011-a968-428a4e04c34b">103062025001</aktViide>
+					</avaldamismarge>
+					<joustumine id="0e8df0ee-56e8-4c7e-90f0-44deff60b7a0">2026-01-01</joustumine>
+				</muutmismarge>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk6">
+			<peatykkNr id="175134b4-87ec-4862-bf31-e3468025139e">6</peatykkNr>
+			<kuvatavNr id="3794294e-704f-4fa2-9e1f-b83d5c3438d4"><![CDATA[6. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="46dcabef-77a3-4924-a0cd-356bcde3d911">Töötutoetuse taotlemise, määramise ja maksmise tingimused ja kord</peatykkPealkiri>
+			<muutmismarge id="25cd8275-4e80-4e4c-ab62-21a8463e871b">
+				<tavatekst id="6f11af40-d943-4262-aa19-b3b674c3f3a3">Kehtetu -</tavatekst>
+				<avaldamismarge id="12326078-db80-4824-aa68-2ca1b5d2c472">
+					<RTosa id="112e6241-051f-4271-b68e-d83da3d57526">RT I</RTosa>
+					<avaldamineKuupaev id="54b15c8d-5986-4be0-97b6-3e969b108fc2">2025-06-03</avaldamineKuupaev>
+					<RTartikkel id="97523a70-dccd-4a6c-a435-e38072ade235">1</RTartikkel>
+					<aktViide id="e6d48113-54a8-4b6f-8ea7-7850659ff399">103062025001</aktViide>
+				</avaldamismarge>
+				<joustumine id="1a00218c-cccd-4e9c-bca6-26f5ee55cc44">2026-01-01</joustumine>
+			</muutmismarge>
+			<paragrahv id="para18">
+				<paragrahvNr id="8de904ba-f5d0-4b2b-a800-c9e951b71af2">18</paragrahvNr>
+				<kuvatavNr id="28eccb0e-643b-401b-9b48-40e66a2ee51a"><![CDATA[§ 18. ]]></kuvatavNr>
+				<paragrahvPealkiri id="2b2fe52c-e4c3-4df6-a0eb-a2347602be14">Õigus saada töötutoetust</paragrahvPealkiri>
+				<muutmismarge id="00b2a614-2e30-4242-9242-801bd1c3c434">
+					<tavatekst id="a45fc5f7-4ba1-4098-b5cb-f859fefd6cbb">Kehtetu -</tavatekst>
+					<avaldamismarge id="6a61fdba-e498-4bc3-8aa2-02de24cabe54">
+						<RTosa id="5a2c7f91-b2ef-47d8-99dc-7b6a10d05f6a">RT I</RTosa>
+						<avaldamineKuupaev id="8b1ccf48-13c9-4d9d-85f1-4c6390936434">2025-06-03</avaldamineKuupaev>
+						<RTartikkel id="9e9a2216-be1d-47da-b3a6-9991e1394459">1</RTartikkel>
+						<aktViide id="21be4f4c-6bc2-43a1-b82f-b07ff86734b5">103062025001</aktViide>
+					</avaldamismarge>
+					<joustumine id="4bf54d3a-7674-4071-82f0-908d2c78f121">2026-01-01</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para19">
+				<paragrahvNr id="60147db8-8956-4ea4-926f-46edcf1d96bc">19</paragrahvNr>
+				<kuvatavNr id="3fe45f41-85a6-4064-bef9-0e53534898e1"><![CDATA[§ 19. ]]></kuvatavNr>
+				<paragrahvPealkiri id="1b712d73-4cc4-4186-b4a4-eeb6b6ebfa25">Töötutoetuse saamise tingimused</paragrahvPealkiri>
+				<muutmismarge id="2b5f6105-e03b-4201-8c80-a13870e834cd">
+					<tavatekst id="d5cd3fe0-8015-4374-a061-855b13177d9c">Kehtetu -</tavatekst>
+					<avaldamismarge id="561d01e7-b0d3-4a6a-bfa4-cd4b82f7e563">
+						<RTosa id="1dac936e-83ba-4f45-aacc-c0ae82729a7e">RT I</RTosa>
+						<avaldamineKuupaev id="4aa416d0-3fd5-47f7-8870-8f275db74ca8">2025-06-03</avaldamineKuupaev>
+						<RTartikkel id="4ca92a03-2255-4a6e-b344-1be5bba0dd62">1</RTartikkel>
+						<aktViide id="4188ac7b-b45b-4219-afaa-2d16c0aab559">103062025001</aktViide>
+					</avaldamismarge>
+					<joustumine id="b30e89df-4648-4fd3-aa1b-d2bf96e10741">2026-01-01</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para20">
+				<paragrahvNr id="75614026-aade-4f1d-8c37-df34d11fd016">20</paragrahvNr>
+				<kuvatavNr id="62e05278-78a5-42f5-8ff1-058a516167c9"><![CDATA[§ 20. ]]></kuvatavNr>
+				<paragrahvPealkiri id="e86ae5d1-27fb-4391-a038-b8ae7f04bd62">Töötutoetuse taotlemine</paragrahvPealkiri>
+				<muutmismarge id="4365c178-2adf-4c74-a068-c1e3d1dda561">
+					<tavatekst id="40287310-4c40-49f6-8eaa-2ee679125581">Kehtetu -</tavatekst>
+					<avaldamismarge id="e0b44201-c5ee-4ce4-9b3f-3b7993645d62">
+						<RTosa id="4bc326dd-9f9a-40ec-933c-c1a4e5b622b7">RT I</RTosa>
+						<avaldamineKuupaev id="ca347f59-d96f-4d11-96e0-69ab4409d37c">2025-06-03</avaldamineKuupaev>
+						<RTartikkel id="5a1cfd5e-135c-47de-9fc0-250695f0da3b">1</RTartikkel>
+						<aktViide id="5eb0e3b3-c306-4e18-be1e-902531c43f46">103062025001</aktViide>
+					</avaldamismarge>
+					<joustumine id="7ce73e98-61f8-4730-a9df-b925f28f59d3">2026-01-01</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para21">
+				<paragrahvNr id="3074562d-83fc-42eb-b0e3-9ab58a64479c">21</paragrahvNr>
+				<kuvatavNr id="fca94b92-b304-4635-b32c-591f4f7f0461"><![CDATA[§ 21. ]]></kuvatavNr>
+				<paragrahvPealkiri id="4d4e671d-f9c5-4bc5-beac-342fb421cbf0">Töötutoetuse määramine</paragrahvPealkiri>
+				<muutmismarge id="95955d2c-450a-4e6f-aae4-9e88ccbbb021">
+					<tavatekst id="cddd69de-9064-4aa4-a7ae-cd61f8e4b106">Kehtetu -</tavatekst>
+					<avaldamismarge id="b48c0c28-7ca6-4d71-849c-fe5389e23874">
+						<RTosa id="fe8065d6-27bc-400b-9895-d39e81b69b7c">RT I</RTosa>
+						<avaldamineKuupaev id="23e534e8-d048-4530-9f9e-3b686dec45c8">2025-06-03</avaldamineKuupaev>
+						<RTartikkel id="00b33fe1-7377-4b60-9ff3-1ec3ce1d0e45">1</RTartikkel>
+						<aktViide id="7ed99d4d-bfc2-4d3f-808f-05b202f089dd">103062025001</aktViide>
+					</avaldamismarge>
+					<joustumine id="2deda740-7aa6-4321-b0e1-31864d2056df">2026-01-01</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para22">
+				<paragrahvNr id="07845aab-f715-4a04-8e93-295429e877c6">22</paragrahvNr>
+				<kuvatavNr id="9373cdd5-6e45-4e9b-9a3a-8fe2b900631b"><![CDATA[§ 22. ]]></kuvatavNr>
+				<paragrahvPealkiri id="a7864f47-ded1-476d-969e-6d2cf8773386">Töötutoetuse maksmise ajavahemik</paragrahvPealkiri>
+				<muutmismarge id="1a752e62-8e54-4fda-9d86-460742ce0723">
+					<tavatekst id="68d509d9-2f4e-454c-be52-906ccdc80ed6">Kehtetu -</tavatekst>
+					<avaldamismarge id="ae84d575-cdfe-44e7-9e9b-2d42adec89dc">
+						<RTosa id="0c026000-a22d-47e8-9c53-4d35d104a2b9">RT I</RTosa>
+						<avaldamineKuupaev id="6d2a2ffd-74a2-445a-bf7e-c10b005bf76c">2025-06-03</avaldamineKuupaev>
+						<RTartikkel id="0f68cfee-c414-4e7f-a340-38966c41dfcb">1</RTartikkel>
+						<aktViide id="336d2748-d2c2-498d-8933-6404633d90d5">103062025001</aktViide>
+					</avaldamismarge>
+					<joustumine id="cfa1849b-0317-415c-a9ca-dbae88c77812">2026-01-01</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para23">
+				<paragrahvNr id="777a6752-adc4-4185-93cd-20ebf66d3366">23</paragrahvNr>
+				<kuvatavNr id="5a07e33f-0df0-467c-b572-1eee56732991"><![CDATA[§ 23. ]]></kuvatavNr>
+				<paragrahvPealkiri id="8155b24a-483c-4038-8ba3-f1f12120e613">Töötutoetuse arvutamine ja maksmine</paragrahvPealkiri>
+				<muutmismarge id="2bcb9d8c-ddaf-4b15-90e4-f6d7cb9c7fe4">
+					<tavatekst id="efc665fe-f8a0-4ae6-abdf-42d305c27114">Kehtetu -</tavatekst>
+					<avaldamismarge id="6e3f27ed-1bb2-47c1-b2b5-6778c1e5664e">
+						<RTosa id="2dd052c0-58d1-4f1b-b0df-6f4696298e48">RT I</RTosa>
+						<avaldamineKuupaev id="ba5fe3a8-be78-437a-991d-b27fedb67465">2025-06-03</avaldamineKuupaev>
+						<RTartikkel id="7a462bf6-3e13-4d3d-953d-d92df9f8ea0d">1</RTartikkel>
+						<aktViide id="cd8a0aee-4714-4964-80fa-1df5b29b867d">103062025001</aktViide>
+					</avaldamismarge>
+					<joustumine id="a248657d-a55c-45cb-9257-4a39d58ff982">2026-01-01</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para24">
+				<paragrahvNr id="6de32055-888e-4eb8-bdc3-43e7e36b475f">24</paragrahvNr>
+				<kuvatavNr id="c8ce32c1-e964-43c4-9e3f-ea4eeeeac995"><![CDATA[§ 24. ]]></kuvatavNr>
+				<paragrahvPealkiri id="53140f46-7525-4755-988b-58219751641b">Töötutoetuse maksmise peatamine</paragrahvPealkiri>
+				<muutmismarge id="26f4fbc2-e4cf-4522-87bd-f1bc0cf8644e">
+					<tavatekst id="2f2e65be-a31d-4f10-996e-87d5c8738e47">Kehtetu -</tavatekst>
+					<avaldamismarge id="f803283c-c2a8-4a7b-9e18-6378daaf0383">
+						<RTosa id="685426dd-d7d3-49e6-ad9d-98a518eb6373">RT I</RTosa>
+						<avaldamineKuupaev id="45a8f00e-cab2-4823-be59-d33023bbaa88">2025-06-03</avaldamineKuupaev>
+						<RTartikkel id="7c6a83c1-fb20-4b9c-b837-6a2ca56f40eb">1</RTartikkel>
+						<aktViide id="0be75a02-ac1a-4791-9261-f223b3dd279c">103062025001</aktViide>
+					</avaldamismarge>
+					<joustumine id="c285c3f1-f1e6-4b99-8ccf-e04f4fc13a11">2026-01-01</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para25">
+				<paragrahvNr id="cc3d0317-c338-4511-90f2-996a657a7816">25</paragrahvNr>
+				<kuvatavNr id="c037d399-fa83-4fbc-bf46-c4bf2675526b"><![CDATA[§ 25. ]]></kuvatavNr>
+				<paragrahvPealkiri id="e8e3eeab-70dd-4b58-a39c-11236b2e5160">Töötutoetuse maksmise ennetähtaegne lõpetamine</paragrahvPealkiri>
+				<muutmismarge id="3f1f9b62-213f-42fc-bb92-86047d9b9b73">
+					<tavatekst id="d488aedf-6d39-4035-ac90-cc6b9ad59aa5">Kehtetu -</tavatekst>
+					<avaldamismarge id="74be8a9b-ccfc-47c7-9310-2ed8ff4876d3">
+						<RTosa id="82b84f71-9489-484b-b291-48f4c4ccc567">RT I</RTosa>
+						<avaldamineKuupaev id="ef7f17b2-11e3-4c73-9cfe-78322e106cf9">2025-06-03</avaldamineKuupaev>
+						<RTartikkel id="35ec0ee0-1bca-4f9e-bc06-fbc7ac5300ed">1</RTartikkel>
+						<aktViide id="0f579f8b-b4d5-4aa2-892a-2927b36262b9">103062025001</aktViide>
+					</avaldamismarge>
+					<joustumine id="c0508e9c-2f15-4786-911d-a4d428a79fe3">2026-01-01</joustumine>
+				</muutmismarge>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk7">
+			<peatykkNr id="ccd2b734-d551-4659-8e07-6a45e9da7700">7</peatykkNr>
+			<kuvatavNr id="42c0a4f2-3e32-4c9a-afaf-d7e2339654b5"><![CDATA[7. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="6d130ba8-cfcd-462c-9bca-e8fcdc7458fa">Töövahendus ja renditööjõu vahendamine ettevõtja poolt</peatykkPealkiri>
+			<paragrahv id="para26">
+				<paragrahvNr id="8291a3d9-b4f7-4f0a-bca0-850641af0fa4">26</paragrahvNr>
+				<kuvatavNr id="57dd9e61-0c11-4b1a-b640-2c2c8c17aca1"><![CDATA[§ 26. ]]></kuvatavNr>
+				<paragrahvPealkiri id="bc8b2ca0-c674-4b23-81c0-1eb46406a1f2">Teatamiskohustus</paragrahvPealkiri>
+				<loige id="para26lg1">
+					<loigeNr id="de00dcfd-00d2-48bd-98b9-a059f02d2519"/>
+					<kuvatavNr id="17b93730-9ab1-4344-8acd-72f19ab32069"/>
+					<sisuTekst id="bd5e271f-a3fd-42db-ba2f-efcca03628c3">
+						<tavatekst id="dc36eea1-6827-42cc-b534-4ab74aba9299">Ettevõtja esitab enne majandustegevuse alustamist majandustegevusteate majandustegevuse seadustiku üldosa seaduses sätestatud korras, kui ta:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para26lg1p1">
+						<alampunktNr id="b8cc2434-672d-47ed-b563-493e788717b2">1</alampunktNr>
+						<kuvatavNr id="e2ac45d7-7884-4b94-a6d5-158e40f1cf44"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="fe794524-7abe-495a-8c14-4d134f6571e6">
+							<tavatekst id="963131b8-5dc0-49ba-b5fa-4f2f17859cc0">tegeleb käesoleva seaduse § 13 lõike 2 punktis 2 nimetatud ja § 14 lõikes 2 sätestatud töövahendusega;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para26lg1p2">
+						<alampunktNr id="b65466f5-8090-4e7b-bbea-3fd48d083b80">2</alampunktNr>
+						<kuvatavNr id="ef5cc5dc-31cb-4669-a5de-47c27ac44a2e"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="dbc33921-e09b-4468-bf48-3060b817dd2e">
+							<tavatekst id="9c0dfd7d-c35b-4729-836d-77632a646270">sõlmib isikuga töölepingu eesmärgiga suunata ta renditööle töölepingu seaduse § 6 lõike 5 tähenduses (edaspidi <i>renditööjõu vahendamine</i>).</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para27">
+				<paragrahvNr id="c172d0b8-bf30-4c6b-95d9-be468b15cca8">27</paragrahvNr>
+				<kuvatavNr id="13db7f49-c9d4-4072-9b8f-ce23128dca83"><![CDATA[§ 27. ]]></kuvatavNr>
+				<paragrahvPealkiri id="eb64ce63-e0ca-4ff4-bc35-275fed08e94e">Tasu saamise keeld</paragrahvPealkiri>
+				<loige id="para27lg1">
+					<loigeNr id="6ec3f076-961a-4c8a-acbd-495a9960fb06">1</loigeNr>
+					<kuvatavNr id="c7dd0980-46ef-42a9-bd55-505da892073f"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="1ec46af2-27ba-4fe8-83f0-b92aef963675">
+						<tavatekst id="7f24b2ed-647b-4ba4-aaba-fa693cb26954">Ettevõtja, kes tegeleb käesoleva seaduse § 26 punktis 1 nimetatud töövahendusega, ei tohi nõuda tööd leida soovivalt isikult tasu töövahenduse eest.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para27lg2">
+					<loigeNr id="a96214a5-395d-49e9-ab6a-d14d67dfb73c">2</loigeNr>
+					<kuvatavNr id="6533455a-c99e-48ef-8125-c8d2376bfdf6"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="3512ae09-98bf-43fe-b2e4-ae3cf4aed243">
+						<tavatekst id="77fb1027-2850-4d88-9a8b-2f17d696a12a">Ettevõtja, kes tegeleb käesoleva seaduse § 26 punktis 2 nimetatud renditööjõu vahendamisega, ei tohi nõuda töötajalt tasu tema renditööle suunamise eest.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk8">
+			<peatykkNr id="51a5a458-eeb8-4fdd-a1ee-55ecd1c73d43">8</peatykkNr>
+			<kuvatavNr id="93759875-f032-40b0-9e91-862637ebf8ee"><![CDATA[8. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="0efbef1b-b395-499a-a945-15a5cfe74039">Vaidluste lahendamine ja alusetult makstu tagasinõudmine</peatykkPealkiri>
+			<paragrahv id="para28">
+				<paragrahvNr id="bef7f895-b486-48c8-9dbe-00a67c34e076">28</paragrahvNr>
+				<kuvatavNr id="ac5d751d-868a-46a9-b3db-edcb57519681"><![CDATA[§ 28. ]]></kuvatavNr>
+				<paragrahvPealkiri id="bfca4df0-d0b7-45f8-869b-8d01a9d6a40e">Vaidemenetlus</paragrahvPealkiri>
+				<loige id="para28lg1">
+					<loigeNr id="d80d271a-533d-4391-9530-e7f1c0407e33"/>
+					<kuvatavNr id="73892881-5588-4cd6-9c86-4974852a9909"/>
+					<sisuTekst id="b28062e1-830d-4670-8e9d-d766b60a98a0">
+						<tavatekst id="3a02a873-7f41-49c2-b72f-b085c226d4c8">Isik, kes leiab, et töötuna arvelevõtmisel, tegevuskava koostamisel või tööturumeetmete pakkumisel on rikutud tema õigusi või piiratud tema vabadusi, võib esitada vaide töötukassale.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="02ec90ae-7bc7-407e-be1a-8e8a337fea2b">
+						<avaldamismarge id="d9cbc85f-0699-41dc-8192-8cd4e8ea4afa">
+							<RTosa id="81b17ede-d447-4ae6-b646-76855bcded38">RT I</RTosa>
+							<avaldamineKuupaev id="5e197e1b-28d3-45a2-8e09-531b73958dce">2025-06-03</avaldamineKuupaev>
+							<RTartikkel id="7350b7b8-f8e7-4207-8650-fdda99dfac66">1</RTartikkel>
+							<aktViide id="5603b1c2-7fac-41cb-a66e-ef900a1f19c8">103062025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="e8cabb57-5e98-4ec6-a803-639356bfc71e">2026-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para29">
+				<paragrahvNr id="852c9cc5-04d0-46e0-a1a3-59f355370577">29</paragrahvNr>
+				<kuvatavNr id="b8c28770-33ed-4a60-bee9-958339ba57d4"><![CDATA[§ 29. ]]></kuvatavNr>
+				<paragrahvPealkiri id="36480fce-36b4-456e-b2ee-c9439b161f9e">Õigusliku aluseta makstud summade tagasinõudmine</paragrahvPealkiri>
+				<loige id="para29lg1">
+					<loigeNr id="59211995-0539-4177-ad03-282334bd26bf">1</loigeNr>
+					<kuvatavNr id="e680afdb-5644-48b7-ab47-3004671f9771"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="4f3c46e6-ef74-4f38-b379-587bb1c1d4b8">
+						<tavatekst id="7536feab-e16c-4319-9357-e0e0d75c1bf8">Töötukassa võib tööturumeetmete raames osutatud tööturuteenustele ja makstud tööturutoetustele õigusliku aluseta kulunud summad (edaspidi <i>alusetult makstu</i>) tagasi nõuda. Töötukassa nõuab käesoleva seaduse alusel kehtestatud tööhõiveprogrammis sätestatud juhtudel tööturuteenustele ja tööturutoetustele kulunud summad tagasi.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="3097434b-167c-492a-946e-e55197849afb">
+						<avaldamismarge id="da8982aa-a0dd-471e-b209-a88e7c5bf8f3">
+							<RTosa id="9551ac88-b297-4e85-b120-b2b8ec00b3f6">RT I</RTosa>
+							<avaldamineKuupaev id="ca6f9d78-eeaa-47f4-b321-f557649b29cd">2025-06-03</avaldamineKuupaev>
+							<RTartikkel id="d35abee7-4e05-4f37-9203-3ef9a299895d">1</RTartikkel>
+							<aktViide id="391db6ca-8e33-40a9-8979-4067703cbfaa">103062025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="3c97eec8-afe2-44dc-a2fd-f8b80f1a821c">2026-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para29lg2">
+					<loigeNr id="9b48dc0e-c87d-47c2-ae17-7a7b2730f687">2</loigeNr>
+					<kuvatavNr id="af51bb7e-919b-412c-b159-bf7d415a4c8c"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="b12d7ee3-8f4d-4a18-b824-d83f9d0aa99c">
+						<tavatekst id="5e95d2ac-603e-43c5-9d44-090438723c83">Töötukassa võib alusetult makstu isikult tagasi nõuda korraga või vastavalt isikuga sõlmitud kirjalikule kokkuleppele osade kaupa tagasimaksegraafiku alusel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para29lg3">
+					<loigeNr id="6135cc8d-8fbe-4951-a30b-6abf99c37de8">3</loigeNr>
+					<kuvatavNr id="afaa439e-13c0-4844-93a8-2cae586897c6"><![CDATA[(3)]]></kuvatavNr>
+					<muutmismarge id="56c006e6-33db-45af-90f5-08b45225f4aa">
+						<tavatekst id="31381ca6-d494-415e-b100-3bd49e28bdc0">Kehtetu -</tavatekst>
+						<avaldamismarge id="139ac6c6-3669-48fb-8efe-a66447db69ea">
+							<RTosa id="feac1483-9156-480b-8cee-cd3428776d3f">RT I</RTosa>
+							<avaldamineKuupaev id="3c9c7804-b48d-4df3-8130-d9dba50bcf7b">2025-06-03</avaldamineKuupaev>
+							<RTartikkel id="3e7fa85b-0a3f-4b8d-bf0f-7d2864adac02">1</RTartikkel>
+							<aktViide id="363f1ea9-f59d-46d1-ad9a-84b9862ab87e">103062025001</aktViide>
+						</avaldamismarge>
+						<joustumine id="87006020-da16-481d-9b0e-28b9c24dd4e3">2026-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para29lg4">
+					<loigeNr id="c85e5c72-9420-4dfc-adfb-11931afccf99">4</loigeNr>
+					<kuvatavNr id="b27db87b-9d38-4b97-83dd-6fb59017c599"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="07c24d59-a683-40a7-b6d5-6d0ea92eb146">
+						<tavatekst id="f4d0d5e9-d500-4425-9349-fcc4d628d4c1">Töötukassa võib eriolukorra, erakorralise seisukorra või sõjaseisukorra tõttu raskustesse sattunud isikute puhul käesoleva paragrahvi lõikes 1 nimetatud summa tagasinõudmisest loobuda, välja arvatud juhul, kui summa on välja makstud seoses eriolukorraks, erakorraliseks seisukorraks või sõjaseisukorraks kehtestatud tööturuteenuse või tööturutoetusega. Tagasinõudmisest ei saa loobuda ja loobumine on tühine, kui isik on teadvalt esitanud valeandmeid või tagasinõudmisest loobuti isiku pettuslikul viisil toimimise tõttu. Käesoleva lõike esimeses lauses nimetatud erisust võib kohaldada ja tagasinõudmisest loobuda kuni 270 kalendripäeva jooksul eriolukorra, erakorralise seisukorra või sõjaseisukorra lõppemisest arvates.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para29lg5">
+					<loigeNr id="b10664ea-0049-4a99-9b36-d8b9bb3d2084">5</loigeNr>
+					<kuvatavNr id="ad609c94-0162-4e8f-9b70-62d1f8d4e9e9"><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst id="13f86100-70ae-43ad-aa7e-1e3fc449c615">
+						<tavatekst id="fb90e978-58fa-47d1-8d7c-a1c62426ad91">Kui isik alusetult makstut tagasi ei maksa, teeb töötukassa selle tagasinõudmiseks ettekirjutuse koos hoiatusega. Ettekirjutus koos hoiatusega toimetatakse kätte elektrooniliselt või posti teel väljastusteatega tähtkirjaga. Hoiatuses märgitud tähtaja jooksul ettekirjutuse täitmata jätmise korral on töötukassal õigus anda ettekirjutus sundtäitmiseks täitemenetluse seadustikus sätestatud korras.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk9">
+			<peatykkNr id="626f4310-47b6-43e2-b6e0-363d67e8eae1">9</peatykkNr>
+			<kuvatavNr id="9304ea91-55d3-40dd-ad4f-44eaed6eb01c"><![CDATA[9. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="5950fcbf-d755-4772-a96d-15cdc1f2ac23">Riiklik järelevalve</peatykkPealkiri>
+			<paragrahv id="para30">
+				<paragrahvNr id="ddee0dc3-27d0-4311-a4b5-fa19bd5ba504">30</paragrahvNr>
+				<kuvatavNr id="51d604e3-a427-4ab2-826e-5d65cc7c443d"><![CDATA[§ 30. ]]></kuvatavNr>
+				<paragrahvPealkiri id="d4672765-9ddb-448e-872d-ab3c1ff85dc0">Järelevalveasutus</paragrahvPealkiri>
+				<loige id="para30lg1">
+					<loigeNr id="f8101a61-723e-4577-9033-e391e47508a1"/>
+					<kuvatavNr id="c2aafd1b-fcf8-4b87-8b0b-792392a79e2c"/>
+					<sisuTekst id="e4f900f5-2bbd-4d68-801f-284af257f5cc">
+						<tavatekst id="66fcb3e1-3fc9-48aa-8b92-f980999fddb9">Riiklikku järelevalvet käesoleva seaduse §-des 26 ja 27 sätestatud nõuete täitmise üle teeb Tööinspektsioon.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para31">
+				<paragrahvNr id="8e417ba2-7f4c-4b97-b34c-ae622de73521">31</paragrahvNr>
+				<kuvatavNr id="be69702f-4744-41d8-8290-2863390e3c2d"><![CDATA[§ 31. ]]></kuvatavNr>
+				<paragrahvPealkiri id="24edc73d-2cef-4665-a5d8-58f099f077b3">Riikliku järelevalve erimeetmed</paragrahvPealkiri>
+				<loige id="para31lg1">
+					<loigeNr id="609c744d-e53a-4a76-9f5b-19e6195231c1"/>
+					<kuvatavNr id="25571ca0-2c7e-4c6b-bb41-e3a59d6c7400"/>
+					<sisuTekst id="c333c653-d49b-48d3-a5db-1167df079bfa">
+						<tavatekst id="c17bcae9-d6bf-4a4a-9769-4bbc3da0b18d">Tööinspektsioon võib käesolevas seaduses sätestatud riikliku järelevalve tegemiseks kohaldada korrakaitseseaduse §-des 30, 31, 32, 49, 50 ja 51 sätestatud riikliku järelevalve erimeetmeid korrakaitseseaduses sätestatud alusel ja korras.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk10">
+			<peatykkNr id="53f6756e-2d56-4203-bc48-fe6161167884">10</peatykkNr>
+			<kuvatavNr id="9a662e1e-b894-416e-ad8c-dd445d13ef79"><![CDATA[10. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="1a1c8e41-f7a7-43c7-b967-d3093075a1ec">Rakendussätted</peatykkPealkiri>
+			<jagu id="jg1">
+				<jaguNr id="38fdd079-54a1-4bc5-9b61-b671a2b969cc">1</jaguNr>
+				<kuvatavNr id="599e2dc5-9fa3-494d-990d-9711e16522fd"><![CDATA[1. jagu]]></kuvatavNr>
+				<jaguPealkiri id="ef3ba2fc-495d-45fa-9563-0d9e513eabfa">Üleminekusätted</jaguPealkiri>
+				<paragrahv id="para32">
+					<paragrahvNr id="1ffbe517-ec34-4ef2-aff1-34b58f56da9b">32</paragrahvNr>
+					<kuvatavNr id="6381ad94-dc46-4297-9b02-982eb5619d0c"><![CDATA[§ 32. ]]></kuvatavNr>
+					<paragrahvPealkiri id="7d091155-0a7d-45f9-81f2-de939d4c4074">Töötuna ja tööotsijana arvelevõtmise erisused</paragrahvPealkiri>
+					<loige id="para32lg1">
+						<loigeNr id="71cdc7cd-d665-40cd-90ce-6cc8e23f6ba2">1</loigeNr>
+						<kuvatavNr id="45f06435-208c-455a-b11c-348246b6a760"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="561b3d25-f9c4-4dff-9168-a414e0b1cdc0">
+							<tavatekst id="18fcf73b-cc0c-48fa-8853-b426a2dd971b">Kuni 2023. aasta 31. detsembrini kehtinud tööturuteenuste ja -toetuste seaduse § 6 alusel töötuna arvelevõetud isiku suhtes kohaldatakse alates 2024. aasta 1. jaanuarist tööturumeetmete seaduses sätestatut.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para32lg2">
+						<loigeNr id="e731575b-50f7-4fc0-986f-25a860bde1a0">2</loigeNr>
+						<kuvatavNr id="b9eb9650-67bb-4dc7-8195-76e195783cd4"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="947d2e7f-a664-4c65-b15d-da3c550e9c05">
+							<tavatekst id="8fee6e99-942f-4ab2-a8a3-9428f4bb5c30">Kui isik on enne käesoleva seaduse jõustumist esitanud töötukassale avalduse töötuna arvelevõtmiseks ja tema kohta ei ole tehtud töötuna arvelevõtmise otsust, tehakse asjakohane otsus kuni 2023. aasta 31. detsembrini kehtinud tööturuteenuste ja -toetuste seaduse § 6 alusel.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para32lg3">
+						<loigeNr id="a2382299-ed53-4775-9226-27f21c731f3f">3</loigeNr>
+						<kuvatavNr id="90e3b856-29ee-40dc-85c2-194b61a546cd"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="6f833f85-97f7-4e13-b8db-a58d3bba221e">
+							<tavatekst id="3f6ec6ca-52f5-4eea-a89e-484ad2c61ea1">Kuni 2023. aasta 31. detsembrini kehtinud tööturuteenuste ja -toetuste seaduse § 6 alusel tööotsijana arvelevõetud isiku tööotsijana arvelolek lõpeb 2023. aasta 31. detsembril. Alates 2024. aasta 1. jaanuarist käsitatakse kuni 2023. aasta 31. detsembrini tööotsijana arvelevõetud isikut käesoleva seaduse § 3 lõigete 4 ja 5 tähenduses töötajana või muu isikuna ja tema suhtes kohaldatakse tööturumeetmete seaduses sätestatut.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para32lg4">
+						<loigeNr id="797f9bab-19c0-4c76-b708-be61b1067dc1">4</loigeNr>
+						<kuvatavNr id="dbf6505b-0158-4a92-a2eb-84a360ff764a"><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst id="6aa21612-5209-400c-a008-bed5b061f970">
+							<tavatekst id="d7234d35-485b-401d-9d3a-a686f3ff4326">Kui isik on enne käesoleva seaduse jõustumist esitanud töötukassale avalduse tööotsijana arvelevõtmiseks ja tema kohta ei ole tehtud tööotsijana arvelevõtmise otsust, käsitatakse isikut alates 2024. aasta 1. jaanuarist käesoleva seaduse § 3 lõigete 4 ja 5 tähenduses töötajana või muu isikuna ja tema suhtes kohaldatakse tööturumeetmete seaduses sätestatut, ning tööotsijana arvelevõtmise otsust ei tehta.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para32lg5">
+						<loigeNr id="2f36a4cf-4ce3-4ed5-a3a9-3db5e3971df8">5</loigeNr>
+						<kuvatavNr id="435c7ec3-218e-4f88-86c5-890acdff87a1"><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst id="431d42a4-230e-40ff-b8c0-5a184e74fd5c">
+							<tavatekst id="e8e3fcaa-208b-483a-93e9-68468e499113">Käesoleva seaduse § 8 lõike 4 punkti 1 enne 2025. aasta 1. septembrit kehtinud redaktsiooni kohaldatakse alla 18-aastasele isikule, kes esitas töötukassale töötuna arvelevõtmise avalduse või kes on töötuna arvele võetud enne 2025. aasta 1. septembrit või kellele ei kehti õppimiskohustus.</tavatekst>
+							<muutmismarge id="bc314601-b67d-4ff7-a99d-9c2a189cc39b">
+								<avaldamismarge id="84392181-e305-4363-b638-2baafffb1cc2">
+									<RTosa id="ebe147df-b8a6-4b8e-801c-be18daec3b43">RT I</RTosa>
+									<avaldamineKuupaev id="25295030-1c62-44d9-a40d-bc60ed5edf2f">2024-12-23</avaldamineKuupaev>
+									<RTartikkel id="005706e3-2cd9-4be5-b292-a3ce3be94945">1</RTartikkel>
+									<aktViide id="1482a064-39f0-4619-985e-7b1cb9a9beb2">123122024001</aktViide>
+								</avaldamismarge>
+								<joustumine id="dde62268-6d2d-4162-9106-201cc1a9e9b2">2025-09-01</joustumine>
+							</muutmismarge>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para33">
+					<paragrahvNr id="86d9915b-157f-45e7-9a8b-8fe7ceba3c7a">33</paragrahvNr>
+					<kuvatavNr id="10605e9b-52db-4ddb-9003-0261f39459e0"><![CDATA[§ 33. ]]></kuvatavNr>
+					<paragrahvPealkiri id="05e40efe-08c9-4aeb-96bf-963838a4b5b4">Tööturuteenuse osutamise ning tööturutoetuse ja töötutoetuse maksmise erisus</paragrahvPealkiri>
+					<loige id="para33lg1">
+						<loigeNr id="2b7b94ed-913e-471e-84b5-a697d67a7598">1</loigeNr>
+						<kuvatavNr id="99f3754a-ec4d-4c4f-b955-673078e8e4b6"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="1b9e758d-3b83-4d58-b84f-246017b83b1f">
+							<tavatekst id="3a572645-75fa-4a66-8067-12cd8ba39cfb">Isikule, kellele alustati kuni 2023. aasta 31. detsembrini kehtinud tööturuteenuste ja -toetuste seaduses sätestatud tööturuteenuse osutamist või tööturutoetuse, välja arvatud töötutoetus, maksmist või kellega oli teenusel osalemine kokku lepitud, osutatakse tööturuteenust või makstakse tööturutoetust, välja arvatud töötutoetus, kuni 2023. aasta 31. detsembrini kehtinud tööturuteenuste ja -toetuste seaduses sätestatud tingimustel. Käesoleva seaduse § 6 lõike 6 alusel kehtestatud tööhõiveprogrammis sätestatud juhul võib isikule osutada tööturuteenust või tööturutoetust tööhõiveprogrammis sätestatud tingimustel, kui need on isikule soodsamad.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para33lg2">
+						<loigeNr id="011a4572-ec3b-456c-ac70-d92b996388be">2</loigeNr>
+						<kuvatavNr id="d62d9f87-0080-4542-b3bb-d89fa51640d3"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="f6eeded6-135f-47dc-8af6-7581bedfe50f">
+							<tavatekst id="90960689-9c81-4fa9-ae98-fdac06df284a">Kui isik on enne käesoleva seaduse jõustumist avaldanud töötukassale soovi saada tööturuteenust ja selle osutamist ei ole alustatud, osutatakse tööturuteenust tööturumeetmete seaduses sätestatud tingimustel. Kui käesoleva seaduse § 6 lõike 6 alusel kehtestatud tööhõiveprogrammis ei ole taotletud tööturuteenust sätestatud, osutatakse tööturuteenust kuni käesoleva seaduse jõustumiseni kehtinud õigusaktide alusel.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para33lg3">
+						<loigeNr id="01f568aa-a472-47d9-8b07-5506cfee18e0">3</loigeNr>
+						<kuvatavNr id="ef63e280-902f-43b7-8fb1-dbc4df55d5e1"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="bb3fa160-40a1-4fbe-9963-402e970b726e">
+							<tavatekst id="86e1fd3a-b6b5-473b-a246-0ef2a3448f3f">Isikule, kellele alustati töötutoetuse maksmist enne käesoleva seaduse jõustumist, makstakse töötutoetust tööturumeetmete seaduses sätestatud tingimustel.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para33lg4">
+						<loigeNr id="d369abbe-bd62-48cf-9019-ac6c45d1adbb">4</loigeNr>
+						<kuvatavNr id="311cd69d-1ef3-414a-849a-310bcd8f0196"><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst id="a6c78597-1604-4a74-9ce1-ac14fc6b6dc1">
+							<tavatekst id="748a87cb-a749-4899-97d8-61b9e7878ac5">Kui isik on enne käesoleva seaduse jõustumist esitanud töötukassale töötutoetuse saamise avalduse ja töötutoetuse maksmise kohta ei ole tehtud vastavat otsust, tehakse asjakohane otsus tööturumeetmete seaduses sätestatud tingimustel.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para33lg5">
+						<loigeNr id="211617af-b846-473a-9f5f-29eff94304b6">5</loigeNr>
+						<kuvatavNr id="fe5134b7-fc8c-47c2-ac0d-e2e88433a387"><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst id="9d3d2d15-ee75-4efa-a07d-942994eb8f00">
+							<tavatekst id="0b959376-2849-47cb-90aa-39a4e6d6351a">Kui isik on enne 2026. aasta 1. jaanuari esitanud töötukassale töötuskindlustuse seaduse alusel avalduse töötuskindlustushüvitise taotlemiseks ja hüvitise määramata jätmise otsus tehakse pärast 2025. aasta 30. novembrit, on tal õigus esitada töötutoetuse saamise avaldus ka pärast 2025. aasta 31. detsembrit. Nimetatud juhul tehakse asjakohane otsus käesoleva seaduse enne 2026. aasta 1. jaanuari kehtinud redaktsiooni alusel.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="0a856c0e-45d6-40fa-9079-11f3d1e22e54">
+							<avaldamismarge id="d1bb2727-7ef7-42f0-83f8-f8d57806b730">
+								<RTosa id="388f74e6-a929-4981-8024-293bb0ff0e2f">RT I</RTosa>
+								<avaldamineKuupaev id="69784c62-72c2-4854-bb8d-a28aa12af5cb">2025-06-03</avaldamineKuupaev>
+								<RTartikkel id="ec8d4be8-239c-4918-a064-6eb09a27866e">1</RTartikkel>
+								<aktViide id="ca4f66fa-adad-4836-a073-55167bab9e61">103062025001</aktViide>
+							</avaldamismarge>
+							<joustumine id="114430d3-e6ed-4dbb-b11d-ca8c11d76f89">2026-01-01</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para33lg6">
+						<loigeNr id="2ec24f31-723b-43e0-8e43-a8ec2c7ecb5f">6</loigeNr>
+						<kuvatavNr id="53dd7203-953f-41d8-a354-960a4898ea5f"><![CDATA[(6)]]></kuvatavNr>
+						<sisuTekst id="c0b90cc4-950a-4a7a-85e5-d4985e92bf63">
+							<tavatekst id="0d60da1b-543b-4ac4-9a17-194b90f21cee">Kui isik on enne 2026. aasta 1. jaanuari esitanud töötukassale töötutoetuse saamise avalduse ja töötutoetuse maksmise kohta ei ole tehtud otsust enne 2026. aasta 1. jaanuari, tehakse asjakohane otsus käesoleva seaduse enne 2026. aasta 1. jaanuari kehtinud redaktsiooni alusel.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="24bf83cc-4da9-49d6-93da-019ec5c2471b">
+							<avaldamismarge id="9fad1d8e-363a-4f5b-8e9f-53f8fbcb9734">
+								<RTosa id="b4e9892f-d449-4303-a5bc-73e2eb066009">RT I</RTosa>
+								<avaldamineKuupaev id="2a79dc03-80aa-459f-a66b-4dea8c0c8e4b">2025-06-03</avaldamineKuupaev>
+								<RTartikkel id="16bd06a0-ab18-4382-8361-6f884b0c9ada">1</RTartikkel>
+								<aktViide id="9db6dd9e-04e5-40b7-bfe6-4e3d5728248c">103062025001</aktViide>
+							</avaldamismarge>
+							<joustumine id="62d3c445-f31d-43a8-87c3-d3fa72860886">2026-01-01</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para33lg7">
+						<loigeNr id="d1d97af1-efe9-4940-8e48-0a829beb8769">7</loigeNr>
+						<kuvatavNr id="a4d3d7eb-2688-4700-81fc-33a2e5f601e3"><![CDATA[(7)]]></kuvatavNr>
+						<sisuTekst id="67b988e3-ca77-4b8c-94c2-4b3047d9b0a1">
+							<tavatekst id="0ebbe1a9-4b6d-458e-8c64-03d516c2b260">Isikule, kellele makstakse töötutoetust või kellele töötutoetuse maksmine on peatatud käesoleva seaduse enne 2026. aasta 1. jaanuari kehtinud redaktsiooni alusel ning kelle töötutoetuse saamise periood lõppeb pärast 2025. aasta 31. detsembrit, kohaldatakse käesoleva seaduse enne 2026. aasta 1. jaanuari kehtinud redaktsiooni kuni toetuse maksmise lõpetamiseni.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="aae4c890-855e-4ca2-aa37-1c31971475ed">
+							<avaldamismarge id="344697c1-ad14-4081-91f0-a925591524d9">
+								<RTosa id="04429279-2883-4526-b58e-368db163f126">RT I</RTosa>
+								<avaldamineKuupaev id="c3ac78d3-b74a-4639-b9d7-229f2ce148b9">2025-06-03</avaldamineKuupaev>
+								<RTartikkel id="103a34e2-6cac-4860-ab46-06c42c879b6f">1</RTartikkel>
+								<aktViide id="770f9b84-4dcd-4bf5-94b0-d50e574c8ac2">103062025001</aktViide>
+							</avaldamismarge>
+							<joustumine id="0db4b384-0c1a-4554-bc14-bf5c2b28b21a">2026-01-01</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para33lg8">
+						<loigeNr id="c9508370-2328-4b31-9f17-4c69f536a05a">8</loigeNr>
+						<kuvatavNr id="093cdd0d-b2b4-4e5b-91a4-cf71efce03ad"><![CDATA[(8)]]></kuvatavNr>
+						<sisuTekst id="993a6bdd-d024-4bea-b3cb-8b59855c4e06">
+							<tavatekst id="d907b81e-0a63-4fef-9ca7-67d7a349822d">Käesoleva seaduse enne 2026. aasta 1. jaanuari kehtinud redaktsiooni alusel määratud töötutoetuse maksmist rahastatakse riigieelarvest Majandus- ja Kommunikatsiooniministeeriumi eelarve kaudu sihtotstarbelise eraldisena töötukassa eelarvesse eraldatud vahenditest.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="ec720db8-5c41-4ca8-9f07-e84dd7ab34a2">
+							<avaldamismarge id="fa9e68e9-0d65-45b2-99a9-65401ce5167c">
+								<RTosa id="f0062465-d3ad-44de-9eb5-efb0af224577">RT I</RTosa>
+								<avaldamineKuupaev id="8682d594-f5fa-4853-81d2-70988544386b">2025-06-03</avaldamineKuupaev>
+								<RTartikkel id="f85c14e0-2e75-4ec4-aad9-030efda731c3">1</RTartikkel>
+								<aktViide id="cfc23430-be1b-4d87-b885-090ce81980ad">103062025001</aktViide>
+							</avaldamismarge>
+							<joustumine id="25f0b6e7-ccde-4188-badc-4be6e7a2c171">2026-01-01</joustumine>
+						</muutmismarge>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para34">
+					<paragrahvNr id="63d95e2e-d807-44ba-a7c8-2def274c8cd6">34</paragrahvNr>
+					<kuvatavNr id="43de65ca-7838-4ffe-9b64-4ae90eb2f47e"><![CDATA[§ 34. ]]></kuvatavNr>
+					<paragrahvPealkiri id="c7af1fa2-58f8-4db9-9051-448154c0e822">Õigusliku aluseta makstu tagasinõudmise erisus</paragrahvPealkiri>
+					<loige id="para34lg1">
+						<loigeNr id="542769b2-6c91-4008-bdcf-5938563abeb5">1</loigeNr>
+						<kuvatavNr id="7978d13a-2cab-4f6f-a9a7-229517363f91"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="b7b39883-3209-4f16-b53e-6d1a2d46175c">
+							<tavatekst id="37048a68-afa0-4578-ade9-47a5bc23379e">Kui töötukassa on alustanud isikule tööturuteenuse osutamist või tööturutoetuse, välja arvatud töötutoetus, maksmist 2023. aasta 31. detsembrini kehtinud tööturuteenuste ja -toetuste seaduse alusel, toimub alusetult makstu tagasinõudmise menetlus tagasinõudmise asjaolu tekkimise ajal kehtinud seaduse alusel.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para34lg2">
+						<loigeNr id="3fd48967-f556-4a93-92ba-c090056f0f3a">2</loigeNr>
+						<kuvatavNr id="def55368-e845-4585-a3d0-dbdee5504ec5"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="4b593817-3bb3-452c-83c9-4a90698828c8">
+							<tavatekst id="698b1a04-53b9-40bd-b771-0ae7ec786516">Kui isikule on töötutoetus määratud 2023. aasta 31. detsembrini kehtinud tööturuteenuste ja -toetuste seaduse alusel, toimub alusetult makstu tagasinõudmise menetlus käesoleva seaduse alusel.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para34lg3">
+						<loigeNr id="453bb06f-3954-4e04-bd31-c0793d313254">3</loigeNr>
+						<kuvatavNr id="6c5d1cba-6775-4579-8b4e-4855226fd050"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="e5b6e38b-42e1-4f8c-845e-8ad8fda738d0">
+							<tavatekst id="86952fcd-d8fb-453f-8717-027ab1bf8b4c">Kui töötukassa on alustanud alusetult makstu tagasinõudmist 2023. aasta 31. detsembrini kehtinud tööturuteenuste ja -toetuste seaduse alusel, kohaldatakse alusetult makstu tagasinõudmisel 2023. aasta 31. detsembrini kehtinud tööturuteenuste ja -toetuste seaduses sätestatut ning töötutoetuse tagasinõudmisel ka käesoleva seaduse § 29 lõike 3 enne 2026. aasta 1. jaanuari kehtinud redaktsioonis sätestatut.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="3e1870f4-e126-4843-862c-06aa253098f5">
+							<avaldamismarge id="adab6fb2-faef-479b-a5ac-7b5ba4d406d6">
+								<RTosa id="9bfa8763-7206-4c48-90e9-790f3efe764f">RT I</RTosa>
+								<avaldamineKuupaev id="d2d44b58-60d3-408b-80b4-49d05722c165">2025-06-03</avaldamineKuupaev>
+								<RTartikkel id="8dd39e67-ca7a-4a08-9cd9-7a4baf0b53b8">1</RTartikkel>
+								<aktViide id="7abd930c-513f-4f00-a472-17a58b147a9b">103062025001</aktViide>
+							</avaldamismarge>
+							<joustumine id="f6bd0228-df90-419d-9eb8-86495d48c16d">2026-01-01</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para34lg4">
+						<loigeNr id="8629c5bf-5e6d-412a-8199-cddba67ee3a6">4</loigeNr>
+						<kuvatavNr id="c31169e7-da91-4ac2-9cd6-2cdb17a3438a"><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst id="4f6411ae-33a9-495c-b697-cd8ff0fc67d0">
+							<tavatekst id="b0174f7a-3967-4771-866d-1ad3332db5ee">Kui isikule on makstud töötutoetust käesoleva seaduse enne 2026. aasta 1. jaanuari kehtinud redaktsiooni alusel ning tagasinõudmise menetlust alustatakse pärast 2025. aasta 31. detsembrit, toimub alusetult makstu tagasinõudmise menetlus käesoleva seaduse enne 2026. aasta 1. jaanuari kehtinud redaktsiooni alusel.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="78b82db8-59bc-432c-a1b3-0164fa58d105">
+							<avaldamismarge id="7cf5146c-7ffa-47f4-af1b-112113d43552">
+								<RTosa id="2b4667ef-0519-4073-af28-0aa37a50c71d">RT I</RTosa>
+								<avaldamineKuupaev id="6794dbd1-369b-4bc4-8bb5-8efbcb913a14">2025-06-03</avaldamineKuupaev>
+								<RTartikkel id="d5afb988-fdc8-461e-a2fc-b3c9fc67f3e1">1</RTartikkel>
+								<aktViide id="0319a9eb-d11a-4a64-98da-58f3154fb5ca">103062025001</aktViide>
+							</avaldamismarge>
+							<joustumine id="d1cbb070-062f-4cd2-9f8f-0be5ef3885e2">2026-01-01</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para34lg5">
+						<loigeNr id="47d99f6f-0a9e-49cc-8c7c-261ae4804ec5">5</loigeNr>
+						<kuvatavNr id="5ba29e14-6ac4-4e36-be0c-1e7a3eb403fc"><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst id="72265988-7af7-4795-8e91-d8119db2ffd4">
+							<tavatekst id="42c54e7f-63b3-41f0-8785-9c2c51f00c7b">Kui töötukassa on alustanud alusetult makstu tagasinõudmist enne 2026. aasta 1. jaanuari, kohaldatakse alusetult makstu tagasinõudmisel käesoleva seaduse enne 2026. aasta 1. jaanuari kehtinud redaktsiooni.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="e00f36c5-13c9-4260-b49a-e41d6e7e8bbe">
+							<avaldamismarge id="faa14b06-add4-4f60-b51a-b871da4b398c">
+								<RTosa id="44e31fce-815f-448f-9a2a-010969b62066">RT I</RTosa>
+								<avaldamineKuupaev id="771f090e-8b49-46c0-ba5a-9acbd5d0c155">2025-06-03</avaldamineKuupaev>
+								<RTartikkel id="20f20a80-0191-4795-a31c-bbd811d080dc">1</RTartikkel>
+								<aktViide id="922ca6c9-9b15-41cd-94e5-d3771cc91928">103062025001</aktViide>
+							</avaldamismarge>
+							<joustumine id="171e45b7-a562-42a9-81b8-f6409908669c">2026-01-01</joustumine>
+						</muutmismarge>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para35">
+					<paragrahvNr id="4de38240-20b9-4ef2-bd4c-647731a92b65">35</paragrahvNr>
+					<kuvatavNr id="cf06c121-4f1b-43bf-bf23-b168af63d437"><![CDATA[§ 35. ]]></kuvatavNr>
+					<paragrahvPealkiri id="66d5f628-0605-4531-9f1b-60b174f582cc">Töötukassa andmekogu</paragrahvPealkiri>
+					<loige id="para35lg1">
+						<loigeNr id="6a9ddb3a-f764-4f85-9c81-ade25a8d080b"/>
+						<kuvatavNr id="30f1ce79-c771-4622-aca7-e83701d4ed68"/>
+						<sisuTekst id="4d99892a-7b6d-4c3d-b665-f4d48c5e511b">
+							<tavatekst id="c031c1dd-e6ea-4c9c-b962-6b2dda398d5c">Kuni 2023. aasta 31. detsembrini kehtinud tööturuteenuste ja -toetuste seaduse § 8 lõikes 1 nimetatud töötuna ja tööotsijana arvel olevate isikute ning tööturuteenuste osutamise registrina käsitatakse töötuskindlustuse seaduse §-s 35 nimetatud töötukassa andmekogu.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="jg2">
+				<jaguNr id="65933939-a03d-4aa0-8bfe-8ebdc8285bcf">2</jaguNr>
+				<kuvatavNr id="41495ed0-7543-48b0-8399-1cf303e58e33"><![CDATA[2. jagu]]></kuvatavNr>
+				<jaguPealkiri id="f1309a6f-8995-425f-a054-c2ffc1b555d7">Seaduste muutmine ja kehtetuks tunnistamine</jaguPealkiri>
+				<paragrahv id="para36">
+					<paragrahvNr id="17dd8a58-a166-4108-a690-effa28d6f0d3" kehtiv="0">36</paragrahvNr>
+					<kuvatavNr id="ce4449b1-9744-4d78-82ee-475a949adbe3">§ 36.</kuvatavNr>
+					<sisuTekst id="260259ff-b071-44a4-8cad-42254013e61f">
+						<tavatekst id="0298d8e9-391c-49ee-b481-48a438300e4e"> – </tavatekst>
+					</sisuTekst>
+				</paragrahv>
+				<paragrahv id="para50">
+					<paragrahvNr id="a5da9cf0-b05d-44e0-ba11-9c14ca5e6df0" kehtiv="0">50</paragrahvNr>
+					<kuvatavNr id="e8475173-4f61-4bc8-983c-f9db7feaa258">§ 50.</kuvatavNr>
+					<sisuTekst id="70b9fe4e-aa35-4ca7-928a-6d71244832be">
+						<tavatekst id="26271a02-31a9-4c12-a380-403e180ed1b5"> [Käesolevast tekstist välja jäetud.]</tavatekst>
+					</sisuTekst>
+				</paragrahv>
+			</jagu>
+			<jagu id="jg3">
+				<jaguNr id="0be938f9-3504-459f-93bf-51e68058fc10">3</jaguNr>
+				<kuvatavNr id="efd9ff88-4eb5-4fdc-9b8b-5ac0058a516f"><![CDATA[3. jagu]]></kuvatavNr>
+				<jaguPealkiri id="88eb976a-e119-4a94-a5b6-d623dbe33f63">Seaduse jõustumine</jaguPealkiri>
+				<paragrahv id="para51">
+					<paragrahvNr id="79c69231-c896-40de-8091-f2939abd4939">51</paragrahvNr>
+					<kuvatavNr id="4a74b79f-fb91-499f-b30f-c23113b54777"><![CDATA[§ 51. ]]></kuvatavNr>
+					<paragrahvPealkiri id="f8a3d172-a873-4de5-b53e-9192df21b589">Seaduse jõustumine</paragrahvPealkiri>
+					<loige id="para51lg1">
+						<loigeNr id="dc234080-063d-449d-8fcc-14400392bc0d">1</loigeNr>
+						<kuvatavNr id="277ee8ef-1c21-4c7e-a69f-abd759b1b64f"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="52253d45-416c-4b2a-b211-d4cfa46c99cd">
+							<tavatekst id="999f62ad-6a19-49d9-a75a-b85a37f6a223">Käesolev seadus jõustub 2024. aasta 1. jaanuaril.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para51lg2">
+						<loigeNr id="8f3f8a6b-6da9-457c-a7b1-566aa812cf3d">2</loigeNr>
+						<kuvatavNr id="96e3a184-0cfa-48fa-bc82-7663e2754416"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="2e9120b8-3f36-4795-9f33-a0225075dfff">
+							<tavatekst id="ec35033c-4b0d-497a-81ce-d66a811e07e7">Käesoleva seaduse § 47 punktid 2, 4 ja 5 jõustuvad üldises korras.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+		</peatykk>
+	</sisu>
+	<normtehnmarkus id="7be3635a-ff11-4800-a551-4aa6cfc5da3c">
+		<normtehnmarkusNr id="bbf43e8d-0c42-4dd6-b0ba-5b2fdd49b48e">1</normtehnmarkusNr>
+		<normtehnmarkusTekst id="1aa42b33-4641-42e2-a49a-48bac9173240"> Euroopa Parlamendi ja nõukogu direktiiv 2010/41/EL füüsilisest isikust ettevõtjatena tegutsevate meeste ja naiste võrdse kohtlemise põhimõtte kohaldamise kohta, millega tunnistatakse kehtetuks nõukogu direktiiv 86/613/EMÜ (ELT L 180, 15.07.2010, lk 1–6);<reavahetus/> Euroopa Parlamendi ja nõukogu direktiiv 2008/104/EÜ renditöö kohta (ELT L 327, 05.12.2008, lk 9–14).</normtehnmarkusTekst>
+	</normtehnmarkus>
+</oigusakt>

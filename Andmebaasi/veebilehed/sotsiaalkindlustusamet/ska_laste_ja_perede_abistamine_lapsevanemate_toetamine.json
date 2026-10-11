@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_laste_ja_perede_abistamine_lapsevanemate_toetamine",
+  "title": "Lapsevanemate toetamine",
+  "register_title": "Lapsevanemate toetamine",
+  "source_id": "ska_laste_ja_perede_abistamine_lapsevanemate_toetamine",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/laste-ja-perede-abistamine/lapsevanemate-toetamine",
+  "source_path": "ska_laste_ja_perede_abistamine_lapsevanemate_toetamine.html",
+  "source_format": "html",
+  "source_sha256": "70b7099b55b93d8db0277969eeeb2f4df490b48af540b91bc2d181dbd563fc4a",
+  "content_sha256": "882fb1869d541d508275a26c2819237f46c58d9781737f21992557224fcd5a78",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:34:55.529Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-06-25",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:21:59 GMT",
+      "etag": null
+    },
+    "raw_sha256": "74f530fd18dfaf9fc5ed2b04401aa8be30ce3295d76ff575bb2553c5aee9ddbb",
+    "stats": {
+      "words": 782,
+      "blocks": 29,
+      "headings": 6,
+      "tables": 0,
+      "links": 3,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

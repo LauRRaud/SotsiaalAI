@@ -1,0 +1,57 @@
+{
+  "document_id": "web-tek_huvitised_ravimite_huvitamine",
+  "title": "Ravimite hüvitamine",
+  "register_title": "Ravimite hüvitamine",
+  "source_id": "tek_huvitised_ravimite_huvitamine",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/huvitised/ravimite-huvitamine",
+  "source_path": "tek_huvitised_ravimite_huvitamine.html",
+  "source_format": "html",
+  "source_sha256": "244a7f994d70262691258b12bf6c3ceca4be1bb857ea37886bfecd241061c6a4",
+  "content_sha256": "da844e9191ae35dba8a6b9672f0915c51fbe0504d688b6b697c9ebfe956cbba5",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:38:17.425Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:25:31 GMT",
+      "etag": null
+    },
+    "raw_sha256": "7d38aa2bf25de01d142a1e722bef532ff23f4a683cb0ff8d5fcb18c386e83c6e",
+    "stats": {
+      "words": 3609,
+      "blocks": 134,
+      "headings": 40,
+      "tables": 3,
+      "links": 10,
+      "linksToOtherSites": 3
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

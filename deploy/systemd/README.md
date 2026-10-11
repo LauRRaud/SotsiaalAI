@@ -96,6 +96,25 @@ Iga avaldamine kirjutab ajastatud tööde unit-failid `/etc/systemd/system/`-i u
 | **Monitooring** | iga jooks jätab rea `CaseWorkRetentionRun` tabelisse — **enne** tööd, mitte pärast |
 | **Jälg** | systemd `failed` seis, journal ja iga jooksu `CaseWorkRetentionRun` rida; eraldi automatiseeritud smoke-alarmi repos enam ei ole |
 
+## `sotsiaalai-mtr-refresh` (A4 tegevusloa kontroll)
+
+`sotsiaalai-mtr-refresh.timer` käivitab igal ööl kell 3.20 `npm run mtr:refresh` (omanik 10.10.2026: tunnine rütm ei õigusta end). Korje ei kontrolli iga päev kõiki: ta võtab ainult need teenuseprofiilid, millel on registrikood ja vähemalt üks loakataloogiga seotud teenus ning mille järgmise kontrolli aeg on käes (edukas kontroll 30 päeva pärast; tõrke järel ja luba esimest korda leidmata järgmisel ööl). Esimene kontroll ei oota korjet: ta käivitub kohe, kui inimene teenuse liigi kinnitab. Üks kontroll on kolm järjestikust päringut majandustegevuse registrisse; partii on kümme profiili jooksu kohta. Faililukk `/var/lock/sotsiaalai-mtr-refresh.lock` ei lase kahel jooksul korraga käia.
+
+Kuni ükski teenus ei ole kataloogiga seotud, ei tee töö ühtegi registripäringut. Sidumine on inimese teadlik toiming, mitte automaatne: teenuseosutaja kinnitab oma teenuse liigi teenuseprofiili vaates „Tegevusluba” (`POST /api/service-provider/profile/licence-binding`, ainult loakohustuslikud liigid) või seob haldur (`POST /api/admin/service-licence-binding`). Seotud teenus, mida pole veel kordagi kontrollitud, võetakse järgmisel ööl ette ka siis, kui profiili korraline kontroll ei ole veel käes.
+
+Esmane lubamine serveris (avaldamine paigaldab `.service` faili, taimerit mitte):
+
+```sh
+R=$(systemctl show -p WorkingDirectory --value sotsiaalai-frontend)
+sudo install -m 0644 "$R/deploy/systemd/sotsiaalai-mtr-refresh.timer" /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now sotsiaalai-mtr-refresh.timer
+systemctl list-timers sotsiaalai-mtr-refresh.timer --no-pager
+journalctl -u sotsiaalai-mtr-refresh.service -n 20 --no-pager
+```
+
+Kuivjooks näitab, kes oleks järgmises partiis, ega päri registrist midagi: `npm run mtr:refresh:dry`. Seis halduri jaoks: `GET /api/admin/licence-alarms`.
+
 ## Teavitused ja perioodilised taastetööd
 
 `sotsiaalai-notifications.timer` käivitab iga viie minuti järel

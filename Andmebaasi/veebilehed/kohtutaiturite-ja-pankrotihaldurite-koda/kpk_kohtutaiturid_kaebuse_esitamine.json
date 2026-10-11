@@ -1,0 +1,57 @@
+{
+  "document_id": "web-kpk_kohtutaiturid_kaebuse_esitamine",
+  "title": "Kaebuse esitamine",
+  "register_title": "Kaebuse esitamine",
+  "source_id": "kpk_kohtutaiturid_kaebuse_esitamine",
+  "source_type": "web_page",
+  "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+  "language": "et",
+  "url": "https://kpkoda.ee/kohtutaiturid/kaebuse-esitamine/",
+  "source_path": "kpk_kohtutaiturid_kaebuse_esitamine.html",
+  "source_format": "html",
+  "source_sha256": "7424cf5ebf93b74c31c47bdab470c142fa5497348fc4a19e2bc203021748320b",
+  "content_sha256": "b44c7b4947105373eaceac1e6b2716faeade92af3692ddd8970abf3b7380cd8b",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:40:32.842Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "5dca5a5227617816a20ca652bfd6a132fca57d08aeaff41c967dbf349a41b730",
+    "stats": {
+      "words": 234,
+      "blocks": 7,
+      "headings": 2,
+      "tables": 0,
+      "links": 16,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

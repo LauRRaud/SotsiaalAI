@@ -1,0 +1,57 @@
+{
+  "document_id": "web-tek_arsti_ja_oendusabi_tervishoiuteenused",
+  "title": "Tervishoiuteenused",
+  "register_title": "Tervishoiuteenused",
+  "source_id": "tek_arsti_ja_oendusabi_tervishoiuteenused",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/arsti-ja-oendusabi/tervishoiuteenused",
+  "source_path": "tek_arsti_ja_oendusabi_tervishoiuteenused.html",
+  "source_format": "html",
+  "source_sha256": "828e2595747bb7c452651ab6597a105c306090b429cf670993807517a0f61263",
+  "content_sha256": "6ff060ca1e22b258bdb69a8fd649c460998b5096141ef00433ae48cb1dd9a730",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:37:29.743Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:20:34 GMT",
+      "etag": null
+    },
+    "raw_sha256": "ad50daf9d003d0a98946b0f2fc160a88bc2aa393e3668411771bdff329d40e19",
+    "stats": {
+      "words": 988,
+      "blocks": 28,
+      "headings": 6,
+      "tables": 0,
+      "links": 8,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

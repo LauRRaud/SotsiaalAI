@@ -16,7 +16,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
-import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
+import { networkShareErrorText } from "@/lib/network/shareErrorText";
 
 function txt(t, key, fallback) {
   return typeof t === "function" ? t(key, fallback) : fallback;
@@ -91,11 +91,8 @@ export default function NetworkShareComposer({ preInquiryId }) {
         // Autorita pöördumine avastatakse siin: server ütleb, et klienti ei
         // ole, ja alles siis küsime kuvanime.
         if (payload?.message === "network_share.client_required") setNeedsClientName(true);
-        throw new Error(resolveApiMessage({
-          payload,
-          t,
-          fallbackKey: "network_share.errors.action_failed"
-        }));
+        /* Server vastab koodiga; inimene näeb lauset, mitte koodi. */
+        throw new Error(networkShareErrorText(t, payload?.message, txt(t, "network_share.errors.action_failed", "Toiming ebaõnnestus.")));
       }
       setNotice(txt(t, successKey, ""));
       await load();

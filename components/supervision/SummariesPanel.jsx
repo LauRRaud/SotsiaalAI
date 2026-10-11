@@ -1,264 +1,188 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useI18n } from "@/components/i18n/I18nProvider";
-import Button from "@/components/ui/Button";
-import Dropdown from "@/components/ui/Dropdown";
-import Form from "@/components/ui/Form";
-import PrivacyBadge from "./PrivacyBadge";
-import styles from "./SupervisionPage.module.css";
-import { isConflict, supervisionMessage, supervisionRequest } from "./supervisionClient";
-
 /**
- * Vaade 7 „Kokkuvõte ja kinnitamine" (Q2.6). Lugemisvaade ees, kinnitus lõpus.
- * DRAFT näeb AINULT superviisor (server ei serialiseeri seda teistele) —
- * märgis ütleb seda ka nähtavalt. PENDING kannab „ootab N/M kinnitust";
- * kui server on vahepeal APPROVED-i jõudnud, sulandub 409 lihtsalt värskeks
- * olekuks, mitte veaks.
+ * Protsessi laua osa „Kokkuvõtted" (Q2.6 vaade 7): olek ja päringud.
+ *
+ * Lugemisvaade ees, kinnitus lõpus. Mustandit näeb AINULT superviisor (server
+ * ei serialiseeri seda teistele) ja märgis ütleb seda ka nähtavalt.
+ * Kinnitamist ootav kokkuvõte kannab „ootab N/M kinnitust"; kui server on
+ * vahepeal jõudnud kinnitatud seisu, sulandub 409 lihtsalt värskeks olekuks.
+ *
+ * KUJU (09.10). Paneel oli üks veerg: iga kokkuvõte kõrge kaardina (toores seis
+ * `PENDING_APPROVAL` märgil), muutmise vorm kaardi sees ja uue kokkuvõtte vorm
+ * kahe rippvalikuga lõpus. Nüüd on osas üks asi korraga: loend, avatud
+ * kokkuvõte, muutmine või uus kokkuvõte (enne valik, mille kohta see on, siis
+ * tekst). Vaade on failis ./process/WorkViews.jsx.
+ *
+ * OTSELINK. `?summary=<id>` (teavitus, „Jätka siit", sulgemise eelvaate
+ * takistus) avab selle kokkuvõtte kohe; vana paneel keris selle vaatevälja.
+ *
+ * VÄRSKENDAMINE. Kinnitused on grupitöö: kuni osa on ees ja leht nähtaval,
+ * küsitakse seisu mõõdukalt uuesti; taustal ja suletud protsessis päringuid ei
+ * tehta ning lehele naasmine sünkroonib seisu kohe (vanal lehel tegi sama
+ * protsessi leht ise, kui kokkuvõtete sakk oli lahti).
  */
-export default function SummariesPanel({ process, onReload, onConflict, participantCount, selectedSummaryId }) {
-  const { t } = useI18n();
-  const [draft, setDraft] = useState({ kind: "FINAL", meetingId: "", body: "" });
+
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+
+import { useI18n } from "@/components/i18n/I18nProvider";
+
+import { SummariesView } from "./process/WorkViews";
+import { isClosed, newSummaryChoices, newSummaryTitle, summariesLead, summariesMode, summaryDraft, summaryRows } from "./process/processRows";
+import usePartRequest from "./process/usePartRequest";
+
+const REFRESH_MS = 10_000;
+const NEW_DRAFT = Object.freeze({ kind: "", meetingId: "", body: "" });
+
+export default function SummariesPanel({ process, onReload, onConflict, selectedSummaryId, active, glow }) {
+  const { t, locale } = useI18n();
+  const [mode, setMode] = useState("list");
+  const [openId, setOpenId] = useState("");
+  const [draft, setDraft] = useState(NEW_DRAFT);
   const [editing, setEditing] = useState(null);
-  const [busy, setBusy] = useState("");
-  const [message, setMessage] = useState("");
-  const selectedRef = useRef(null);
+  const { busy, message, setMessage, run } = usePartRequest({ t, onReload, onConflict });
 
   const canCreate = Boolean(process.capabilities?.canCreateSummary);
-  const canApprove = Boolean(process.capabilities?.canApproveSummary);
-  const summaries = process.summaries || [];
+  const closed = isClosed(process);
+  const rows = useMemo(() => summaryRows(process, { t, locale }), [locale, process, t]);
+  const choices = useMemo(() => newSummaryChoices(process, { t }), [process, t]);
+  const opened = rows.find((row) => row.id === openId) || null;
 
-  // `?summary=` on otselingitav olek (U2 „Jätka siit") — too see vaatevälja.
+  /* Otselingi kokkuvõte avatakse üks kord selle tunnuse kohta: pärast seda
+     liigub inimene ise ja värskendus ei tohi teda sama kokkuvõtte juurde tagasi tuua. */
+  const linkedRef = useRef("");
+  const hasLinked = Boolean(selectedSummaryId) && rows.some((row) => row.id === selectedSummaryId);
   useEffect(() => {
-    if (selectedSummaryId && selectedRef.current) {
-      selectedRef.current.scrollIntoView({ block: "center", behavior: "auto" });
-    }
-  }, [selectedSummaryId]);
+    if (!hasLinked || linkedRef.current === selectedSummaryId) return;
+    linkedRef.current = selectedSummaryId;
+    setOpenId(selectedSummaryId);
+    setMode("summary");
+  }, [hasLinked, selectedSummaryId]);
 
-  const run = useCallback(async (key, url, body, method = "POST") => {
-    setBusy(key);
-    setMessage("");
-    try {
-      const { ok, status, payload } = await supervisionRequest(url, { method, body });
-      if (!ok) {
-        if (isConflict(status)) {
-          await onConflict?.();
-          return false;
-        }
-        setMessage(supervisionMessage({ status, payload, t, fallbackKey: "supervision.errors.save_failed" }));
-        return false;
+  useEffect(() => {
+    if (!active || closed) return undefined;
+    let inFlight = false;
+    const refresh = async () => {
+      if (document.visibilityState !== "visible" || inFlight) return;
+      inFlight = true;
+      try {
+        await onReload?.();
+      } finally {
+        inFlight = false;
       }
-      await onReload?.();
-      return true;
-    } catch {
-      setMessage(t("supervision.errors.save_failed"));
-      return false;
-    } finally {
-      setBusy("");
-    }
-  }, [onConflict, onReload, t]);
+    };
+    const onVisibilityChange = () => {
+      if (document.visibilityState === "visible") void refresh();
+    };
+    const timer = window.setInterval(() => {
+      void refresh();
+    }, REFRESH_MS);
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    return () => {
+      window.clearInterval(timer);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+    };
+  }, [active, closed, onReload]);
 
-  const create = useCallback(async (event) => {
-    event?.preventDefault?.();
-    const body = draft.body.trim();
+  /* Valimata liik tähendab esimest võimalikku: kui lõpukokkuvõte on juba
+     olemas, on ainus valik kohtumise kokkuvõte. */
+  const kind = choices.kinds.some((option) => option.value === draft.kind) ? draft.kind : choices.kinds[0]?.value || "";
+  const meetingId = kind === "MEETING" && choices.meetings.some((option) => option.value === draft.meetingId) ? draft.meetingId : "";
+  const shownDraft = { kind, meetingId, body: draft.body };
+  const payload = summaryDraft(shownDraft);
+  const draftTitle = newSummaryTitle(process, shownDraft, t);
+
+  const create = useCallback(async () => {
+    if (!payload) return;
+    const ok = await run("create", `/api/supervision/processes/${encodeURIComponent(process.id)}/summaries`, { body: payload });
+    if (!ok) return;
+    setDraft(NEW_DRAFT);
+    setMode("list");
+  }, [payload, process.id, run]);
+
+  const saveDraft = useCallback(async () => {
+    if (!editing || !opened || editing.id !== opened.id) return;
+    const body = editing.body.trim();
     if (!body) return;
-    const ok = await run(
-      "create",
-      `/api/supervision/processes/${encodeURIComponent(process.id)}/summaries`,
-      draft.kind === "MEETING"
-        ? { kind: "MEETING", meetingId: draft.meetingId, body }
-        : { kind: "FINAL", body }
-    );
-    if (ok) setDraft({ kind: "FINAL", meetingId: "", body: "" });
-  }, [draft, process.id, run]);
+    const ok = await run(`save:${opened.id}`, `/api/supervision/summaries/${encodeURIComponent(opened.id)}`, {
+      method: "PATCH",
+      body: { body, expectedVersion: opened.version }
+    });
+    if (!ok) return;
+    setEditing(null);
+    setMode("summary");
+  }, [editing, opened, run]);
 
-  const saveDraft = useCallback(async (summary) => {
-    if (!editing || editing.id !== summary.id) return;
-    const ok = await run(
-      `save:${summary.id}`,
-      `/api/supervision/summaries/${encodeURIComponent(summary.id)}`,
-      { body: editing.body.trim(), expectedVersion: summary.version },
-      "PATCH"
-    );
-    if (ok) setEditing(null);
-  }, [editing, run]);
+  const submit = useCallback(
+    (summaryId) => {
+      const summary = rows.find((row) => row.id === summaryId);
+      if (!summary) return undefined;
+      return run(`submit:${summaryId}`, `/api/supervision/summaries/${encodeURIComponent(summaryId)}/submit`, {
+        body: { expectedVersion: summary.version }
+      });
+    },
+    [rows, run]
+  );
 
-  const submit = useCallback((summary) => run(
-    `submit:${summary.id}`,
-    `/api/supervision/summaries/${encodeURIComponent(summary.id)}/submit`,
-    { expectedVersion: summary.version }
-  ), [run]);
+  const approve = useCallback(
+    (summaryId) => run(`approve:${summaryId}`, `/api/supervision/summaries/${encodeURIComponent(summaryId)}/approve`),
+    [run]
+  );
 
-  const approve = useCallback((summary) => run(
-    `approve:${summary.id}`,
-    `/api/supervision/summaries/${encodeURIComponent(summary.id)}/approve`,
-    undefined
-  ), [run]);
-
-  const discard = useCallback((summary) => {
-    if (typeof window !== "undefined" && !window.confirm(t("supervision.summaries.discardConfirm"))) return;
-    void run(
-      `discard:${summary.id}`,
-      `/api/supervision/summaries/${encodeURIComponent(summary.id)}`,
-      undefined,
-      "DELETE"
-    );
-  }, [run, t]);
+  const discard = useCallback(
+    async (summaryId) => {
+      const ok = await run(`discard:${summaryId}`, `/api/supervision/summaries/${encodeURIComponent(summaryId)}`, { method: "DELETE" });
+      if (!ok) return;
+      /* Kõrvale jäetud kokkuvõtet server enam ei anna: ees on jälle loend. */
+      setEditing(null);
+      setOpenId("");
+      setMode("list");
+    },
+    [run]
+  );
 
   return (
-    <section className={styles.section}>
-      <div className={styles.sectionHeading}>
-        <h2>{t("supervision.summaries.title")}</h2>
-      </div>
-
-      <p aria-live="polite" className={styles.liveRegion} role="status" tabIndex={-1}>
-        {message}
-      </p>
-
-      {!summaries.length ? <p className={styles.empty}>{t("supervision.summaries.empty")}</p> : null}
-
-      {summaries.length ? (
-        <div className={styles.itemList}>
-          {summaries.map((summary) => (
-            <article
-              key={summary.id}
-              ref={summary.id === selectedSummaryId ? selectedRef : null}
-              className={styles.item}
-            >
-              <div className={styles.badgeRow}>
-                <span className={styles.badge}>
-                  {t(`supervision.summaries.${summary.kind === "FINAL" ? "final" : "meeting"}`)}
-                </span>
-                <span className={styles.badge}>{summary.status}</span>
-              </div>
-
-              {summary.status === "DRAFT" ? (
-                <span className={`${styles.privacy} ${styles.privacyPrivate}`} data-privacy="draft">
-                  {t("supervision.summaries.draftOnlyYou")}
-                </span>
-              ) : null}
-              {summary.status === "PENDING_APPROVAL" ? (
-                <p className={styles.statusLine}>
-                  {t("supervision.summaries.waitingApprovals", {
-                    done: summary.approvals?.length || 0,
-                    total: participantCount
-                  })}
-                </p>
-              ) : null}
-              {summary.status === "APPROVED" ? <PrivacyBadge scope="persistent" /> : null}
-
-              {editing?.id === summary.id ? (
-                <div className={styles.form}>
-                  <label>
-                    {t("supervision.summaries.bodyLabel")}
-                    <textarea
-                      maxLength={50000}
-                      onChange={(event) => setEditing((prev) => ({ ...prev, body: event.target.value }))}
-                      value={editing.body}
-                    />
-                  </label>
-                  <div className={styles.actions}>
-                    <Button disabled={busy === `save:${summary.id}`} onClick={() => saveDraft(summary)} size="sm">
-                      {t("supervision.common.save")}
-                    </Button>
-                    <Button onClick={() => setEditing(null)} size="sm" variant="secondary">
-                      {t("supervision.common.cancel")}
-                    </Button>
-                  </div>
-                </div>
-              ) : (
-                <>
-                  <p className={styles.itemBody}>{summary.body}</p>
-                  <div className={styles.actions}>
-                    {canCreate && summary.status === "DRAFT" ? (
-                      <Button
-                        onClick={() => setEditing({ id: summary.id, body: summary.body })}
-                        size="sm"
-                        variant="secondary"
-                      >
-                        {t("supervision.common.edit")}
-                      </Button>
-                    ) : null}
-                    {canCreate && summary.status === "DRAFT" ? (
-                      <Button disabled={busy === `submit:${summary.id}`} onClick={() => submit(summary)} size="sm">
-                        {t("supervision.summaries.submit")}
-                      </Button>
-                    ) : null}
-                    {canApprove && summary.status === "PENDING_APPROVAL" ? (
-                      <Button disabled={busy === `approve:${summary.id}`} onClick={() => approve(summary)} size="sm">
-                        {t("supervision.summaries.approve")}
-                      </Button>
-                    ) : null}
-                    {canCreate && ["DRAFT", "PENDING_APPROVAL"].includes(summary.status) ? (
-                      <Button
-                        disabled={busy === `discard:${summary.id}`}
-                        onClick={() => discard(summary)}
-                        size="sm"
-                        variant="secondary"
-                      >
-                        {t("supervision.summaries.discard")}
-                      </Button>
-                    ) : null}
-                  </div>
-                </>
-              )}
-            </article>
-          ))}
-        </div>
-      ) : null}
-
-      {canCreate ? (
-        <Form className={styles.form} onSubmit={create}>
-          <div className={styles.sectionHeading}>
-            <h3>{t(`supervision.summaries.${draft.kind === "FINAL" ? "newFinal" : "meeting"}`)}</h3>
-          </div>
-          <label>
-            {t("supervision.summaries.title")}
-            <Dropdown
-              onChange={(next) => setDraft((prev) => ({ ...prev, kind: next }))}
-              value={draft.kind}
-              ariaLabel={t("supervision.summaries.title")}
-              options={[
-                { value: "FINAL", label: t("supervision.summaries.final") },
-                { value: "MEETING", label: t("supervision.summaries.meeting") }
-              ]}
-            />
-          </label>
-          {draft.kind === "MEETING" ? (
-            <label>
-              {t("supervision.meetings.title")}
-              <Dropdown
-                onChange={(next) => setDraft((prev) => ({ ...prev, meetingId: next }))}
-                value={draft.meetingId}
-                ariaLabel={t("supervision.meetings.title")}
-                options={[
-                  { value: "", label: "—" },
-                  ...(process.meetings || []).map((meeting) => ({
-                    value: meeting.id,
-                    label: t("supervision.meetings.meetingN", { n: meeting.seq })
-                  }))
-                ]}
-              />
-            </label>
-          ) : null}
-          <label>
-            {t("supervision.summaries.bodyLabel")}
-            <textarea
-              maxLength={50000}
-              onChange={(event) => setDraft((prev) => ({ ...prev, body: event.target.value }))}
-              value={draft.body}
-            />
-          </label>
-          <div className={styles.actions}>
-            <Button
-              disabled={busy === "create" || !draft.body.trim() || (draft.kind === "MEETING" && !draft.meetingId)}
-              type="submit"
-            >
-              {t("supervision.common.save")}
-            </Button>
-          </div>
-        </Form>
-      ) : null}
-    </section>
+    <SummariesView
+      t={t}
+      glow={glow}
+      mode={summariesMode({
+        mode,
+        canCreate,
+        anyChoice: choices.any,
+        hasTarget: Boolean(draftTitle),
+        hasSummary: Boolean(opened),
+        canEdit: Boolean(opened?.canEdit),
+        hasEditing: Boolean(editing)
+      })}
+      rows={rows}
+      summary={opened}
+      canCreate={canCreate}
+      lead={summariesLead(process, t)}
+      note={message}
+      choices={choices}
+      draft={shownDraft}
+      onDraft={setDraft}
+      draftTitle={draftTitle}
+      canSaveDraft={Boolean(payload)}
+      editing={editing}
+      onEditing={setEditing}
+      busy={Boolean(busy)}
+      onMode={(next) => {
+        setMessage("");
+        if (next === "edit" && opened) setEditing({ id: opened.id, body: opened.body });
+        if (next !== "edit") setEditing(null);
+        setMode(next);
+      }}
+      onOpen={(summaryId) => {
+        setMessage("");
+        setOpenId(summaryId);
+        setMode("summary");
+      }}
+      onCreate={create}
+      onSave={saveDraft}
+      onSubmit={submit}
+      onApprove={approve}
+      onDiscard={discard}
+    />
   );
 }

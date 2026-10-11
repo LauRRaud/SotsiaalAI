@@ -1,0 +1,62 @@
+{
+  "document_id": "web-ska_ohvriabi_lihtsas_keeles",
+  "title": "Ohvriabi lihtsas keeles",
+  "register_title": "Ohvriabi lihtsas keeles",
+  "source_id": "ska_ohvriabi_lihtsas_keeles",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/ohvriabi-lihtsas-keeles",
+  "source_path": "ska_ohvriabi_lihtsas_keeles.html",
+  "source_format": "html",
+  "source_sha256": "424bcbe7268487e4243a7eba02d7112a37eb5e02aef774584ec5f89eb9ef806d",
+  "content_sha256": "a8976627c65732c4ebc69adead10f7002bbc2ad41a6c46241861f689860653d7",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:36:13.855Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-04-07",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:36:12 GMT",
+      "etag": null
+    },
+    "raw_sha256": "74854e9b5ca36438b5c797ff1d3bdf6b54c99e38f75f23ad1fd917e1d52398b2",
+    "stats": {
+      "words": 3119,
+      "blocks": 285,
+      "headings": 8,
+      "tables": 0,
+      "links": 15,
+      "linksToOtherSites": 9
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 1,
+      "personLinks": 0,
+      "contactCards": 4,
+      "personalEmails": 1,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed",
+      "personal_contact_removed",
+      "email_needs_review"
+    ],
+    "needs_review": true
+  },
+  "documents": []
+}

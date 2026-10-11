@@ -1,0 +1,94 @@
+{
+  "document_id": "web-tek_raviteekondade_arendamine_insuldi_raviteekond",
+  "title": "Insuldi raviteekond",
+  "register_title": "Insuldi raviteekond",
+  "source_id": "tek_raviteekondade_arendamine_insuldi_raviteekond",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/raviteekondade-arendamine/insuldi-raviteekond",
+  "source_path": "tek_raviteekondade_arendamine_insuldi_raviteekond.html",
+  "source_format": "html",
+  "source_sha256": "69b84d11e1c8d09ca9ce5e00ae144a5d5b3c8ea65b06f9394353a2ff7a2f15f7",
+  "content_sha256": "a9a3cb4e7a7dc37582060dac6f88d99573271451d33e2038d6b83c20a9efdfa8",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:39:05.011Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:26:21 GMT",
+      "etag": null
+    },
+    "raw_sha256": "4149742721be66a00ee7d1af52a2bda635168d956948a1274762c91c3e9934c8",
+    "stats": {
+      "words": 308,
+      "blocks": 21,
+      "headings": 8,
+      "tables": 0,
+      "links": 10,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Insuldi%20juhtprojekt/insuldipatsiendi_raviteekonna_parem_korraldus_ehk_2019.pdf",
+      "text": "raviteekonna analüüsile",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/rrl_lisa_9a_20.03.26_nr93_1.pdf",
+      "text": "lisas 9a",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/media/806/download?inline",
+      "text": "Laadi alla failRaviteekonna standard (12.22 MB PDF)",
+      "type": "download",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/media/804/download?inline",
+      "text": "Laadi alla failInsuldiõe juhend (5.24 MB PDF)",
+      "type": "download",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/media/805/download?inline",
+      "text": "Laadi alla failPerearsti juhend (3.61 MB PDF)",
+      "type": "download",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/media/803/download?inline",
+      "text": "Laadi alla failInsuldikoordinaatori juhend (2.33 MB PDF)",
+      "type": "download",
+      "status": "referenced_only"
+    }
+  ]
+}

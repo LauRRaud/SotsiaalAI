@@ -56,82 +56,65 @@
     scroll-padding-bottom: var(--room-dock-reserve);
   }
 }
-/* Admini S/P/T vaatevalik lehtedel — ⓘ-nupust vahetult VASAKUL samal real.
-   Komponent portaalib end .panel-i otseseks lapseks, seega absoluutne ankur
-   on täpselt sama mis ⓘ ja × nuppudel ning lehe sisu kerimine seda ei liiguta. */
-.admin-role-view-cycle {
-  position: absolute;
-  top: calc(clamp(0.8rem, 1.6vw, 1.3rem) + 0.25rem);
-  left: auto;
-  right: calc(clamp(0.8rem, 1.6vw, 1.3rem) + 6.2rem);
-  bottom: auto;
-  transform: none;
-  z-index: 30;
-}
-.panel-scrim[data-conversation="1"] .admin-role-view-cycle {
-  top: calc(clamp(1.1rem, 2.8lvh, 1.8rem) + 0.45rem);
-  right: calc(clamp(1.1rem, 2.8vw, 2rem) + 7rem);
-}
-@media (min-width: 769px) {
-  .panel-scrim[data-conversation="1"] .admin-role-view-cycle {
-    right: calc(50% - min(31rem, 47vw) + 7rem);
-  }
-}
+/* Admini S/P/T vaatevalik lehtedel: EKRAANI alumises paremas nurgas, doki
+   kõrgusel, samas kohas ja samas näos mis peamenüüs (carousel.css
+   .admin-role-view-cycle--cards). Omanik 25.07 vestluse kohta („rolli nupud
+   peavad all paremas nurgas olema, nagu mujal"), 23.09 („ühtlusta") ja 10.10
+   kõigi lehtede kohta: paneeli ülanurgas ⓘ kõrval hõljus valik lehe sisu peal.
 
-/* Vestluses elab rollilüliti EKRAANI alumises paremas nurgas, nagu töölaual
-   (omanik 25.07: "rolli nupud peavad all paremas nurgas olema, nagu mujal").
-   Ta on ADMINI tööriist: tavakasutaja ei näe teda üldse, seega ta ei tohi
-   istuda ülaservas päris juhtnuppude kõrval ega dikteerida nende paigutust.
+   Ta on ADMINI tööriist: tavakasutaja ei näe teda üldse, seega ei tohi ta
+   istuda päris juhtnuppude kõrval ega dikteerida nende paigutust.
 
-   position: fixed, sest paneel on ekraani servadest sissepoole ja "nurk"
-   tähendab siin ekraani nurka, mitte paneeli oma.
-
-   ASUKOHT FAILIS ON KANDEV: vestluse scrim kannab KORRAGA data-chat="1" ja
-   data-conversation="1", ning ülalolev conversation-reegel on täpselt sama
-   kaaluga (0,3,0). Kui see plokk oleks enne, võidaks conversation-reegel
-   top/right'i ja lüliti veniks üle terve ekraani (top JA bottom korraga).
-   Seepärast siin, mõlemast conversation-reeglist — ka meediapäringust —
-   ALLPOOL. */
-.panel-scrim[data-chat="1"] .admin-role-view-cycle {
+   Komponent portaalib end <body>-sse (vt AdminRoleViewCycleButton): klaaspaneel
+   on `backdrop-filter`-iga ja oleks muidu `position: fixed` sisaldusplokk.
+   Kiht on doki oma (room.css .room-dock-wrap): akna kohal, modaalide all. */
+.admin-role-view-cycle--corner {
   position: fixed;
   top: auto;
   left: auto;
-  /* Sama koht ja välimus mis menüüs (carousel.css
-     .admin-role-view-cycle--cards) — omanik 23.09: „ühtlusta". */
   right: max(1.2vw, 0.9rem);
   bottom: max(5.2%, env(safe-area-inset-bottom, 0px) + 3.2%);
-  z-index: var(--z-floating);
+  z-index: calc(var(--z-panel) + 5);
   padding: 0.22rem;
   border-radius: 999px;
-  background: none;
-  box-shadow: none;
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
-  /* Vaikne, kuni teda vaja läheb — täpselt nagu laual. */
+  /* Vaikne, kuni teda vaja läheb: täpselt nagu laual. */
   opacity: 0.42;
   transition: opacity 260ms var(--ease-soft);
 }
-.panel-scrim[data-chat="1"] .admin-role-view-cycle:hover,
-.panel-scrim[data-chat="1"] .admin-role-view-cycle:focus-within {
+.admin-role-view-cycle--corner:hover,
+.admin-role-view-cycle--corner:focus-within {
   opacity: 1;
 }
-.panel-scrim[data-chat="1"] .admin-role-view-cycle .workspace-role-switch {
+.admin-role-view-cycle--corner .workspace-role-switch {
   gap: 0.12rem;
 }
-.panel-scrim[data-chat="1"] .admin-role-view-cycle .workspace-role-switch button {
+.admin-role-view-cycle--corner .workspace-role-switch button {
   width: 1.85rem;
   height: 1.85rem;
   min-inline-size: var(--hit-target-min);
   min-block-size: var(--hit-target-min);
 }
-/* MOBIILIS ei ole alumine parem nurk vaba: seal hõljub komposer (absoluutne,
-   üle veeru põhja) ja S/P/T maandus otse tema peale, sisestusvälja ja saatmis-
-   noole vahele (omanik 25.07: "rolli nupud peaks mobiilis olema nt sulge nupu
-   kõrval"). Ülemine parem serv on mobiilis ainus vaba juhtnuppude riba, seega
-   lüliti läheb sinna — sulgemisristist VASAKULE, sama vertikaali peale.
-
-   Nihe = risti laius (3rem, panel.css `:is(.panel-menu, .panel-close)`) +
-   0.5rem vahe, täpselt sama arvutus mis ⓘ-nupul (`.panel-menu--info`). */
+/* Lugeja süveneb ja dokk vajub ruumi tagasi (room.css `data-dock-recessed`):
+   valik läheb temaga kaasa, et ta ei jääks üksi loetava teksti kõrvale. */
+html[data-dock-recessed="1"] .admin-role-view-cycle--corner:not(.admin-role-view-cycle--inline) {
+  opacity: 0;
+  pointer-events: none;
+}
+/* Kaardileht: valik kaardi enda alumises paremas nurgas, aluskaardi
+   allikaviite kohal (viide peab jääma loetavaks). Kuni kontaktipaneel on
+   lahti, valikut ei ole, nagu legendigi: paneel võib ulatuda kaardi servani. */
+.service-map-canvas {
+  position: relative;
+}
+.admin-role-view-cycle--corner.service-map-role {
+  position: absolute;
+  right: 0.45rem;
+  bottom: 1.75rem;
+  z-index: var(--service-map-layer-legend, 500);
+}
+.service-map-canvas:has(.leaflet-popup) .service-map-role {
+  display: none;
+}
 @media (max-width: 768px) {
   /* `/vestlus?workspace=…` kannab korraga data-chat ja data-dock märki.
      chat.css-i hilisem data-chat polsterdus lähtestab PanelFrame'i üldise
@@ -141,15 +124,37 @@
     padding-bottom: var(--room-dock-reserve);
   }
 
-  .panel-scrim[data-chat="1"] .admin-role-view-cycle {
+  /* Kitsal ekraanil ei jagu alumises reas kahele asjale ruumi: valik seisab
+     doki KOHAL, nagu peamenüüs (carousel.css sama meediapäring). */
+  .admin-role-view-cycle--corner {
+    bottom: max(13%, env(safe-area-inset-bottom, 0px) + 10.5%);
+  }
+  /* Doki kohal seisev valik kattis lõpuni keritud lehe viimase rea parema
+     poole (mõõdetud 390 × 844: valik 683–734, sisu lõpp 757). Kuni valik on
+     ekraanil, lõpeb lehe sisu tema kohal: reserv on valiku enda kaugus alt
+     servast, tema kõrgus (3.2rem) ja väike vahe. Valikut näeb ainult admin,
+     seega tavakasutaja lehe pikkus ei muutu. Kaardilehe valik istub kaardi
+     sees ega ole <body> otsene laps, teda see ei puuduta. */
+  html:not([data-dock-recessed="1"]) body:has(> .admin-role-view-cycle--corner) .panel-scrim[data-dock="1"] .panel-body {
+    padding-bottom: calc(max(13dvh, env(safe-area-inset-bottom, 0px) + 10.5dvh) + 3.6rem);
+  }
+  /* PÄRIS VESTLUSES (dokita) ei ole alumine parem nurk vaba: seal hõljub
+     komposer ja S/P/T maandus otse tema peale, sisestusvälja ja saatmisnoole
+     vahele (omanik 25.07: „rolli nupud peaks mobiilis olema nt sulge nupu
+     kõrval"). Ülemine parem serv on seal ainus vaba juhtnuppude riba, seega
+     läheb valik sulgemisristist VASAKULE, sama vertikaali peale.
+
+     Nihe = risti laius (3rem, panel.css `:is(.panel-menu, .panel-close)`) +
+     0.5rem vahe, täpselt sama arvutus mis ⓘ-nupul (`.panel-menu--info`). */
+  body:has(.panel-scrim[data-chat="1"]:not([data-dock="1"])) .admin-role-view-cycle--corner {
     top: clamp(1.1rem, 2.8lvh, 1.8rem);
     bottom: auto;
     right: calc(clamp(1.1rem, 2.8vw, 2rem) + 3.5rem);
   }
-  /* ⓘ istub juba risti kõrval — siis astub lüliti temast omakorda vasakule,
+  /* ⓘ istub juba risti kõrval: siis astub valik temast omakorda vasakule,
      et kaks juhtnuppu ei kattuks. ☰ ja ⓘ ei esine kunagi koos (PanelFrame
      renderdab kas-või), seega ☰ (vasakus servas) siia ei puutu. */
-  .panel-scrim[data-chat="1"]:has(.panel-menu--info) .admin-role-view-cycle {
+  body:has(.panel-scrim[data-chat="1"]:not([data-dock="1"]) .panel-menu--info) .admin-role-view-cycle--corner {
     right: calc(clamp(1.1rem, 2.8vw, 2rem) + 7rem);
   }
 }
@@ -1250,9 +1255,6 @@
   width: 1rem;
   height: 1rem;
 }
-.service-map-admin {
-  flex: none;
-}
 /* Kaart täidab kogu ülejäänud ala */
 .service-map-canvas {
   flex: 1;
@@ -1262,6 +1264,9 @@
   overflow: hidden;
   border: 1px solid var(--glass-cell-border);
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  /* Kontaktipaneeli kõrgus arvutatakse SELLE ala kõrgusest (`cqh` allpool),
+     mitte akna kõrgusest: 640 px aknas on kaardiala umbes 350 px. */
+  container-type: size;
 }
 .service-map-canvas .service-map-leaflet-shell {
   position: relative;
@@ -1295,6 +1300,12 @@
   border: 1px solid var(--glass-border-soft);
   font-size: var(--fs-micro);
   color: var(--text-soft);
+}
+/* Legend on kaardikihtide kohal ja kattis avatud kontaktipaneeli alumise osa
+   koos selle nuppudega (kujundusaudit K13). Kuni paneel on lahti, legendi ei
+   näidata: paneeli lugedes ei ole seda vaja. */
+.service-map-leaflet-shell:has(.leaflet-popup) .service-map-leaflet__legend {
+  visibility: hidden;
 }
 .service-map-leaflet__legend-item {
   display: inline-flex;
@@ -1437,10 +1448,11 @@
 }
 /* Popupid klaasikeeles */
 .service-map-canvas .leaflet-popup-content-wrapper {
-  /* Leafleti CSS lisatakse brauseris hiljem ja on kihistamata. Need kaks
-     väärtust peavad seepärast võitma ka tema valge vaike-popupi. */
-  background: rgba(18, 20, 19, 0.94) !important;
-  color: #f5f1e8 !important;
+  /* Paneeli tausta ja kirja värv on failis
+     components/workspace/ServiceMapLeaflet.module.css: Leafleti CSS on
+     kihistamata ja võidab siinse (kihis oleva) reegli, sundimine aga võitis
+     ka heleda teema reegli ja jättis heledas teemas tumeda klaasi tumeda
+     kirjaga. */
   border-radius: 12px;
   border: 1px solid rgba(245, 241, 232, 0.18);
   box-shadow: 0 1rem 2.6rem rgba(8, 10, 9, 0.32), inset 0 1px rgba(255, 255, 255, 0.06);
@@ -1448,20 +1460,43 @@
   backdrop-filter: blur(14px) saturate(0.86);
 }
 .service-map-canvas .leaflet-popup-content {
-  margin: 0.9rem 1rem 0.85rem !important;
-  max-height: min(65vh, 32rem);
+  margin: 0.65rem 0.95rem 0.65rem !important;
+  /* Paneel peab mahtuma kaardialasse, muidu lõikab ala serv ta ära ja sisu
+     ega nuppudeni ei pääse. Maha läheb paneeli enda ülemine ja alumine serv
+     (1.3rem, vt `margin` siin ülal) ning 46 px: raam (4), nool (20), vaba äär
+     mõlemal pool (2 × `POPUP_EDGE_PADDING` failis serviceMapPopupRules.js) ja
+     2 px varu. Brauser, mis `cqh` ühikut ei tunne, saab akna järgi arvutatud
+     piiri allpool (`@supports not`). */
+  max-height: min(65vh, 32rem, calc(100cqh - 1.3rem - 46px));
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-gutter: stable;
 }
+/* Paneel on 24rem lai, et tavaline aadress mahuks ühele reale (iga murtud rida
+   teeb paneeli kõrgemaks ja 640 px aknas on kaardiala madal); rühma loend ja
+   üks kontakt on sama laiad, et vaate vahetus paneeli ei hüpitaks.
+   Laius on seotud kaardiala laiusega (`cqw`), mitte akna laiusega: telefonis
+   on kaardiala aknast kitsam ja paneel ulatus üle selle serva. 3.4rem katab
+   paneeli küljeservad, raami ja vaba ääre mõlemal pool. */
 .service-map-canvas .service-map-leaflet__popup--group .leaflet-popup-content {
-  width: min(20rem, calc(100vw - 3rem)) !important;
+  width: min(24rem, calc(100cqw - 3.4rem)) !important;
 }
 .service-map-canvas .service-map-leaflet__popup--single .leaflet-popup-content {
-  width: min(18.5rem, calc(100vw - 3rem)) !important;
+  width: min(24rem, calc(100cqw - 3.4rem)) !important;
 }
-.service-map-canvas .leaflet-popup-tip {
-  background: rgba(18, 20, 19, 0.94) !important;
+/* Brauser, mis konteineri ühikuid ei tunne (vanem Safari): piirid akna järgi,
+   nagu enne. Kaks järjestikust deklaratsiooni samas reeglis ei sobi varuks,
+   sest ehitus jätab neist alles ainult viimase. */
+@supports not (height: 1cqh) {
+  .service-map-canvas .leaflet-popup-content {
+    max-height: min(65vh, 32rem);
+  }
+  .service-map-canvas .service-map-leaflet__popup--group .leaflet-popup-content {
+    width: min(20rem, calc(100vw - 3rem)) !important;
+  }
+  .service-map-canvas .service-map-leaflet__popup--single .leaflet-popup-content {
+    width: min(18.5rem, calc(100vw - 3rem)) !important;
+  }
 }
 .service-map-popup {
   display: grid;
@@ -1517,7 +1552,6 @@
   margin: 0;
   padding: 0.35em 0.85em;
   border-radius: 999px;
-  color: #f5f1e8 !important;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.28);
   text-decoration: none;
@@ -1582,8 +1616,7 @@
   overflow-wrap: anywhere;
 }
 
-.service-map-popup__availability,
-.service-profile-availability {
+.service-map-popup__availability {
   margin-top: 0.65rem;
   padding: 0.7rem 0.8rem;
   border: 1px solid color-mix(in srgb, #9aa6a0 55%, transparent);
@@ -1592,46 +1625,33 @@
   color: #292929;
 }
 
-.service-map-popup__availability p,
-.service-profile-availability p {
+.service-map-popup__availability p {
   color: inherit;
 }
 
-.service-map-popup__availability[data-tone="warning"],
-.service-profile-availability[data-tone="warning"] {
+.service-map-popup__availability[data-tone="warning"] {
   border-color: #a56828;
   background: #fff6e8;
 }
 
-.service-map-popup__availability[data-tone="positive"],
-.service-profile-availability[data-tone="positive"] {
+.service-map-popup__availability[data-tone="positive"] {
   border-color: #3f725b;
   background: #edf7f1;
 }
 
-.service-map-popup__availability-status,
-.service-profile-availability__status {
+.service-map-popup__availability-status {
   margin: 0;
   font-weight: 700;
 }
 
 .service-map-popup__availability-age,
 .service-map-popup__availability-wait,
-.service-map-popup__availability-warning,
-.service-profile-availability p {
+.service-map-popup__availability-warning {
   margin: 0.25rem 0 0;
 }
 
-.service-map-popup__availability > p,
-.service-profile-availability > p {
+.service-map-popup__availability > p {
   color: #292929;
-}
-
-.panel .service-profile-availability > button[data-variant] {
-  border-color: rgba(41, 41, 41, 0.32);
-  background: rgba(255, 255, 255, 0.92);
-  color: #292929;
-  box-shadow: 0 0.3rem 0.8rem rgba(41, 41, 41, 0.12);
 }
 
 .pre-inquiry-recipient-card {
@@ -1677,7 +1697,6 @@
 }
 
 .service-map-canvas .leaflet-container a.leaflet-popup-close-button {
-  color: #f5f1e8 !important;
   top: 0.35rem;
   right: 0.38rem;
 }
@@ -1855,34 +1874,6 @@
   color: var(--text-dim);
 }
 
-/* Dokumentide üleslaadimise kukutusala — katkendjoonega klaaslahter */
-.documents-dropzone {
-  display: block;
-  width: 100%;
-  padding: 1.1rem 1.2rem;
-  border-radius: 16px;
-  border: 1.5px dashed var(--glass-cell-border);
-  background: var(--glass-cell-bg);
-  color: var(--text-soft);
-  text-align: center;
-  cursor: var(--cursor-pointer);
-  transition:
-    background-color var(--dur-fast) var(--ease-soft),
-    border-color var(--dur-fast) var(--ease-soft),
-    color var(--dur-fast) var(--ease-soft);
-}
-.documents-dropzone:hover,
-.documents-dropzone[data-drag-active="true"] {
-  background: var(--glass-cell-bg-hover);
-  border-color: rgba(255, 255, 255, 0.4);
-  color: var(--text-warm);
-}
-.documents-dropzone p {
-  margin: 0.35em 0 0;
-  font-size: var(--fs-micro);
-  color: var(--text-dim);
-}
-
 /* Kutse-vaate väljad = kanooniline input-baas (glass.css) — kehtib ka
    portaalis renderduvas modaalis, sest baas on globaalne :where(input).
    Eraldi look-reeglit enam pole (tellija 07.07: üks input-kujundus). */
@@ -1892,70 +1883,31 @@
   flex: none;
   margin-bottom: 0.6rem;
 }
-
-/* Kutsevormi rollivalik — üks rahulik otsustusplokk enne e-posti ja makset.
-   Semantika on nähtav tekstina; värv ei ole ainus valiku tunnus. */
-.invite-participant-form {
-  display: grid;
-  gap: clamp(0.7rem, 1.5vw, 1rem);
-  width: min(100%, 36rem);
-  margin-inline: auto;
-}
-
-.invite-participant-type {
-  min-inline-size: 0;
+/* Modaali päis on üks rida: tagasi vasakul, pealkiri, ⓘ paremal.
+   SubpageHeader annab ⓘ-nupu päise ette eraldi elemendina (paneelis hoiab
+   teda nurgas paneeli raam); modaalis seisis ta seetõttu tagasinupu all ja
+   kaks nuppu võtsid pealkirja kohal ligi 100 px (mõõdetud /ruum lehel). */
+.invite-modal-card > .invite-modal-back,
+.invite-modal-card > .dashboard-info-trigger {
+  position: absolute;
+  top: clamp(1.3rem, 3.4vw, 2rem);
   margin: 0;
-  padding: 0;
-  border: 0;
 }
-
-.invite-participant-type > legend {
-  margin-bottom: 0.55rem;
-  color: var(--text-warm);
-  font-size: var(--fs-body);
-  font-weight: 700;
-  letter-spacing: 0.01em;
+.invite-modal-card > .invite-modal-back {
+  inset-inline-start: clamp(1.3rem, 3.4vw, 2rem);
 }
-
-.invite-participant-options {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
-  gap: 0.65rem;
+.invite-modal-card > .dashboard-info-trigger {
+  inset-inline-end: clamp(1.3rem, 3.4vw, 2rem);
 }
-
-.invite-participant-options > label {
-  min-height: 3.25rem;
-  padding: 0.75rem 0.9rem;
-  border: 1px solid var(--glass-cell-border);
-  border-radius: 14px;
-  background: var(--glass-cell-bg);
-  cursor: pointer;
+.invite-modal-card > .glass-subpage-header {
+  min-height: 2.75rem;
+  margin: 0 0 0.8rem;
+  padding-inline: 3.4rem;
+  display: flex;
+  align-items: center;
 }
-
-.invite-participant-options > label[data-checked="true"] {
-  border-color: color-mix(in srgb, var(--text-warm) 62%, transparent);
-  background: var(--glass-cell-bg-hover);
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--text-warm) 18%, transparent);
-}
-
-.invite-participant-options > label[data-focus-visible="true"] {
-  box-shadow: var(--focus-ring);
-}
-
-.invite-participant-scope {
-  margin: 0.7rem 0 0;
-  padding: 0.7rem 0.85rem;
-  border-inline-start: 2px solid color-mix(in srgb, var(--text-warm) 48%, transparent);
-  border-radius: 0 10px 10px 0;
-  color: var(--text-muted);
-  background: color-mix(in srgb, var(--glass-cell-bg) 72%, transparent);
-  font-size: calc(var(--fs-body) * 0.9);
-  line-height: 1.5;
-}
-
-.invite-participant-error {
-  margin: 0.45rem 0 0;
-  color: var(--status-error);
+.invite-modal-card > .glass-subpage-header h2 {
+  margin: 0;
 }
 
 /* Kutse-modali overlay + kaart (portaal body's). Varem oli see pind stiilitu
@@ -1976,6 +1928,7 @@
   overflow-y: auto;
 }
 .invite-modal-card {
+  position: relative;
   width: min(100%, 40rem);
   max-height: min(var(--overlay-available-block-size), 47.5rem);
   display: flex;

@@ -1,0 +1,57 @@
+{
+  "document_id": "web-palunabi_et_kuriteoohvri_huvitis",
+  "title": "Kuriteoohvri hüvitis",
+  "register_title": "Kuriteoohvri hüvitis",
+  "source_id": "palunabi_et_kuriteoohvri_huvitis",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://www.palunabi.ee/et/kuriteoohvri-huvitis",
+  "source_path": "palunabi_et_kuriteoohvri_huvitis.html",
+  "source_format": "html",
+  "source_sha256": "80972a4950d80d859a083935f53fd5fd93f2164f3e6074666a3af35e783bd539",
+  "content_sha256": "2b1ab0f7f4df3942f4e1b315abc156c893181aa238a8be57e62f1545e40058f6",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:37:19.445Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "0dc5c15777779e99509f0f87c855b9d39872e5e4d54b412c8398a051db0abc0f",
+    "stats": {
+      "words": 249,
+      "blocks": 6,
+      "headings": 1,
+      "tables": 0,
+      "links": 3,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

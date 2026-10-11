@@ -1,0 +1,67 @@
+{
+  "document_id": "web-ska_toetavad_teenused_kirjutustolge",
+  "title": "Kirjutustõlge",
+  "register_title": "Kirjutustõlge",
+  "source_id": "ska_toetavad_teenused_kirjutustolge",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/toetavad-teenused/kirjutustolge",
+  "source_path": "ska_toetavad_teenused_kirjutustolge.html",
+  "source_format": "html",
+  "source_sha256": "228e26176f28d5c785cc33f0b4026359e649be7d426ffe5962620b23577735a8",
+  "content_sha256": "5e4dbc53cdb27e96ebbc50c0ef3b750060157e4fce8622046b47ac9335d5b9cc",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:35:43.603Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-09-24",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:35:42 GMT",
+      "etag": null
+    },
+    "raw_sha256": "61fe281c34d1e76aba1db36ea67101e3ca386d333d516644dab2b5c5253afdb4",
+    "stats": {
+      "words": 205,
+      "blocks": 17,
+      "headings": 5,
+      "tables": 1,
+      "links": 6,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 1,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed"
+    ],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2022-02/kuulmislang_tolketeenuste_juhend_kov_okt_2020.pdf",
+      "text": "Kuulmislangusest tingitud tõlketeenuste soovituslikud juhised kohaliku omavalitsuse spetsialistidele | 1.2 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

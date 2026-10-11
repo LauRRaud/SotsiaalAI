@@ -1,0 +1,133 @@
+{
+  "document_id": "web-palunabi_et_inimkaubandus",
+  "title": "Inimkaubandus",
+  "register_title": "Inimkaubandus",
+  "source_id": "palunabi_et_inimkaubandus",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://www.palunabi.ee/et/inimkaubandus",
+  "source_path": "palunabi_et_inimkaubandus.html",
+  "source_format": "html",
+  "source_sha256": "6f1c40498f7900418bc46262d3f5a32f3bc165429090f6f6b13eed8bbb28ab9f",
+  "content_sha256": "94c53f8b9a2de35729576654995e069abb2e7ca1ae42714a540263e81e54845f",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:37:06.938Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "f862c59b37e03cdbea11ae6f884f2cba0ea7662f4c9b4d2d410a1ec19c2d1a0f",
+    "stats": {
+      "words": 635,
+      "blocks": 8,
+      "headings": 1,
+      "tables": 0,
+      "links": 19,
+      "linksToOtherSites": 18
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 1,
+      "personLinks": 0,
+      "contactCards": 1,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed",
+      "email_needs_review"
+    ],
+    "needs_review": true
+  },
+  "documents": [
+    {
+      "url": "https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/ulevaade_inimkaubanduse_kuritegudest_2016._aastal.pdf",
+      "text": "Ülevaade 2016. aasta inimkaubandusega seotud kuritegevusest",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "http://lft.ee/admin/upload/files/Koolitusmaterjal%20HESTIA.pdf",
+      "text": "Inimkaubanduse ja fiktiivsete abielude ennetamine: multidistsiplinaarne lahendus (HESTIA)",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "http://lft.ee/admin/upload/files/HESTIA%20report%20final%20EST.pdf",
+      "text": "Ja nad elasid õnnelikult kuni oma elupäevade lõpuni? Fiktiivsetest abieludest inimkaubanduseni",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "http://lft.ee/admin/upload/files/Noorteuurimus%202015.pdf",
+      "text": "17–20a noorte hoiakud ja teadmised IK-st, prostitutsioonist ja välismaale tööle- või õppimaminekust",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "http://lft.ee/admin/upload/files/Raport1.pdf",
+      "text": "Suunised võõrtöötajate ebaõiglase värbamise, tööalase ärakasutamise ja nendega kaubitsemise ennetamiseks",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "http://lft.ee/admin/upload/files/Raport2.pdf",
+      "text": "Tööjõumigratsiooni varjatud pool: Eesti inimeste tööalase ärakasutamise kogemused välismaal",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/wtb12874_inimkaubaduse_glossary_est_final.pdf",
+      "text": "Inimkaubanduse selgitav sõnastik",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/ik_juhis_2019.pdf",
+      "text": "nimkaubanduse ohvri tuvastamise ja teenusele suunamise juhend. SoM 2019",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/tooalase_ekspluateerimise_eesmargil_toimuva_inimkaubanduse_avastamise_juhis.pdf",
+      "text": "Tööalase ärakasutamise eesmärgil toimuva inimkaubanduse avastamise juhis.",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/hamar_ari.toojou_ekspluateerimise_arimudel.pdf",
+      "text": "Hämar äri. Tööjõu ekspluateerimise ärimudel",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/inimkaubanduse_ohvrid_ja_andmekaitse_europoli_juhendmaterjal.pdf",
+      "text": "Inimkaubanduse ohvrid ja andmekaitse",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/juhendmaterjal_omavalitsusuksustele_meetmed_tohustamaks_inimkaubanduse_vastu_voitlemist_kohalikul_tasandil.pdf",
+      "text": "Juhendmaterjal omavalitsusüksustele. Meetmed tõhustamaks inimkaubanduse vastu võitlemist kohalikul tasandil",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

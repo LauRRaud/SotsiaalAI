@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_pension_valismaal_ja_valisriigi_pension_eestis_euroopa_liidu_pensionid",
+  "title": "Euroopa Liidu pensionid ja lepinguriigid",
+  "register_title": "Euroopa Liidu pensionid ja lepinguriigid",
+  "source_id": "ska_pension_valismaal_ja_valisriigi_pension_eestis_euroopa_liidu_pensionid",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pension-valismaal-ja-valisriigi-pension-eestis/euroopa-liidu-pensionid",
+  "source_path": "ska_pension_valismaal_ja_valisriigi_pension_eestis_euroopa_liidu_pensionid.html",
+  "source_format": "html",
+  "source_sha256": "53f97d898f008ced6f17ab20a4d9097b06eb1041dcd0f70ef5c67bfb3f9d4064",
+  "content_sha256": "ae6bbc2e6d54c2a0bf52b4f7c93e370987e60e0f044b6017cf177e1b2133d9ab",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:23:38.265Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-06-16",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:06:45 GMT",
+      "etag": null
+    },
+    "raw_sha256": "6f835c0d1d63c9e65be84b34459b6eeb46367b0d118e2198dd1b20a65eb0e18e",
+    "stats": {
+      "words": 117,
+      "blocks": 12,
+      "headings": 4,
+      "tables": 0,
+      "links": 11,
+      "linksToOtherSites": 8
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

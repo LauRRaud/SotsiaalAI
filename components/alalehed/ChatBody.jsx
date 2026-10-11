@@ -15,13 +15,16 @@ import { useChatStream } from "@/components/chat/hooks/useChatStream";
 import { useChatConversationState } from "../chat/hooks/useChatConversationState";
 import { usePilotDialogue } from '../chat/hooks/usePilotDialogue';
 import { usePilotReasoning } from '../chat/hooks/usePilotReasoning';
+import { useAnswerFeedback } from "../chat/hooks/useAnswerFeedback";
 import { prettifyFileName } from "@/components/chat/utils/sources";
 import { collectMessageSources, useConversationSources } from "@/components/chat/hooks/useConversationSources";
 import { useChatAnalysisController } from "@/components/chat/hooks/useChatAnalysisController";
 import HelpListingsPanel from "@/components/chat/HelpListingsPanel";
 import SelectedListingContext from "@/components/chat/SelectedListingContext";
 import { getHelpUiText } from "@/components/chat/helpUiText";
-import ModalConfirm from "@/components/ui/ModalConfirm";
+import { panelLeaveAllowed } from "@/lib/panelLeaveGuard";
+import { safeNextPath } from "@/lib/safeNextPath";
+import { editStartState } from "@/components/chat/selectedListingSheet";
 import { pushWithTransition } from "@/lib/routeTransition";
 import { clearStaleScrollLock } from "@/lib/scrollLock";
 import { resolveChatLayoutVars } from "./chat/chatLayoutVars";
@@ -33,6 +36,7 @@ import VoiceModeSurface from "./chat/VoiceModeSurface";
 import RoomCallBar from "@/components/rooms/RoomCallBar";
 import RoomSummaryApprovalCard from "@/components/rooms/RoomSummaryApprovalCard";
 import { useRoomCall } from "@/components/rooms/useRoomCall";
+import { callErrorText } from "@/lib/calls/errorText";
 import { localizePath, stripLocaleFromPath } from "@/lib/localizePath";
 import { buildRoomChatPath } from "@/lib/roomPath";
 import { isActiveDocumentWorkflowState } from "@/lib/chat/documentWorkflowState";
@@ -52,6 +56,15 @@ import {
   resolveWorkspaceRestoreTransition
 } from "@/lib/workspacePanelMorph";
 import { requestPrivacyCheck } from "@/lib/privacy/privacyCheckClient";
+
+/* Kõne tõrked, mida vestluse veareale ei tooda (vt roomCallError allpool). */
+const ROOM_CALL_QUIET_ERRORS = new Set([
+  "call.load_failed",
+  "call.mic_not_controlled_here",
+  "api.rooms.access_denied",
+  "api.rooms.not_found",
+  "api.common.unauthorized"
+]);
 const useIsomorphicLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect;
 const MOBILE_KEYBOARD_OPEN_THRESHOLD = 88;
@@ -137,11 +150,22 @@ function createEmptySelectedListingState() {
     isOwn: false,
     canDelete: false,
     connectOptions: [],
+    connectOptionsFailed: false,
     selectedConnectListingId: "",
     edit: null,
     busyAction: "",
-    deleteConfirmOpen: false
+    deleteConfirmOpen: false,
+    /* Millise kuulutuse avamine on pooleli (`liik:id`). Hilinenud vastus
+       rakendub ainult siis, kui sama avamine on veel käimas. */
+    openingKey: ""
   };
+}
+
+/* Pika päringu tulemus kehtib selle kuulutuse kohta, mille jaoks päring tehti:
+   vahepeal võib ees olla teine kuulutus või mitte ühtegi (inimene läks tagasi
+   loendisse või sulges paneeli). */
+function isSelectedListing(state, listing) {
+  return Boolean(state?.listing && listing && state.listing.id === listing.id && state.listing.kind === listing.kind);
 }
 
 function normalizeActiveWorkflow(value) {
@@ -547,6 +571,7 @@ export default function ChatBody({
     roomRole,
     isHelpMatchRoom,
     roomOrigin,
+    roomReadOnlyReason,
     roomSummaryApprovals,
     reloadRoomMessages,
     sendToAssistant,
@@ -572,6 +597,25 @@ export default function ChatBody({
     isRoomMode && sessionUserId && !roomBlocked && !roomAuthRequired ? effectiveRoomId : "",
     sessionUserId
   );
+  /* Kõne tõrge väljaspool kõnet. Kõneriba näitab tõrget ainult avatud kõne detailides, nii et
+     alustamise või liitumise tõrge (ka „vajalik on tellimus") ei jõudnud ekraanile üldse:
+     nupp ei teinud nähtavalt midagi. Lause läheb vestluse veareale, üks kord tõrke kohta.
+     Taustal käiva seisupäringu ja ligipääsu kadumise tõrkeid siin ei näidata: esimest ei
+     algatanud inimene ja teise jaoks on ruumil oma vaade. */
+  const roomCallError = roomCallSession?.error || "";
+  const roomCallJoined = Boolean(roomCallSession?.joined);
+  const shownRoomCallErrorRef = useRef("");
+  useEffect(() => {
+    if (!roomCallError) {
+      shownRoomCallErrorRef.current = "";
+      return;
+    }
+    if (roomCallJoined || shownRoomCallErrorRef.current === roomCallError) return;
+    shownRoomCallErrorRef.current = roomCallError;
+    if (ROOM_CALL_QUIET_ERRORS.has(roomCallError)) return;
+    const message = callErrorText(roomCallError, t);
+    if (message) setErrorBanner(message);
+  }, [roomCallError, roomCallJoined, t]);
   useIsomorphicLayoutEffect(() => {
     if (typeof window === "undefined") return;
     let shouldRestore = false;
@@ -642,6 +686,20 @@ export default function ChatBody({
     autoLoginHandledRef.current = true;
     setLoginOpen(true);
   }, [requestLoginOnOpen, status]);
+  /* Leht, mis nõuab kontot, saadab sisselogimata inimese siia aadressiga
+     `?login=1&next=<tee>`. Kui ta on sisse logitud (äsja siin aknas, pärast
+     lisakoodi ringi või juba enne), viime ta sinna tagasi. Varem jäi ta
+     vestlusesse ja pidi lehe (näiteks kiireloomulise abipalve vormi) ise
+     uuesti üles otsima. Tee kontrollib `safeNextPath`: ainult selle saidi oma. */
+  const nextReturnHandledRef = useRef(false);
+  useEffect(() => {
+    if (!requestLoginOnOpen || status !== "authenticated") return;
+    if (nextReturnHandledRef.current || typeof window === "undefined") return;
+    const next = safeNextPath(searchParams?.get("next"), window.location.origin);
+    if (!next) return;
+    nextReturnHandledRef.current = true;
+    router.replace(next);
+  }, [requestLoginOnOpen, router, searchParams, status]);
   useEffect(() => {
     if (!emailVerifiedEntry || status !== "authenticated") return;
     if (verifyEntryUrlClearedRef.current) return;
@@ -1679,9 +1737,10 @@ export default function ChatBody({
   const loadListingsPanel = useCallback(async (panelConfig, options = {}) => {
     if (!panelConfig) return;
     const append = options?.append === true;
-    const offset = append
-      ? (Number.isFinite(Number(listingsPanelState.nextOffset)) ? Number(listingsPanelState.nextOffset) : 0)
-      : 0;
+    /* Nihe tuleb kutsujalt, mitte olekust: olekust lugedes sõltuks see
+       funktsioon nihkest ja avamise efekt (allpool) laeks pärast iga „Lae
+       juurde" esimese lehe uuesti, nii et lisatud read kaoksid. */
+    const offset = append && Number.isFinite(Number(options?.offset)) ? Number(options.offset) : 0;
 
     setListingsPanelState((prev) => ({
       ...prev,
@@ -1711,14 +1770,15 @@ export default function ChatBody({
         loading: false,
         error: ""
       }));
-    } catch (error) {
+    } catch {
       setListingsPanelState((prev) => ({
         ...prev,
         loading: false,
-        error: error?.message || helpUi.loadFailed
+        /* Kataloogi lause: võrgutõrke enda tekst oleks brauseri „Failed to fetch". */
+        error: helpUi.loadFailed
       }));
     }
-  }, [helpUi.loadFailed, listingsPanelState.nextOffset, locale]);
+  }, [helpUi.loadFailed, locale]);
   const openListingsPanel = useCallback((panelConfig) => {
     setShowSourcesPanel(false);
     if (listingsPanelCloseTimerRef.current && typeof window !== "undefined") {
@@ -1777,6 +1837,10 @@ export default function ChatBody({
     } catch {}
   }, [setShowSourcesPanel]);
   const backToWorkspaceFromListingsPanel = useCallback(() => {
+    /* Töölaua tagasinool ei ole avatud kuulutuse nupp: kui muutmise vormil on
+       salvestamata muudatusi, peab värav esimese vajutuse kinni ja kuulutus
+       ütleb ise, miks (lib/panelLeaveGuard.js). */
+    if (!panelLeaveAllowed("back")) return;
     closeListingsPanel({
       afterClose: () => {
         restoreWorkspaceFromSharedPanel();
@@ -1787,6 +1851,10 @@ export default function ChatBody({
     const kind = String(item?.kind || "").trim().toLowerCase();
     const id = String(item?.id || "").trim();
     if (!kind || !id) return;
+    /* Vastus võib tulla pärast seda, kui inimene läks tagasi loendisse, avas
+       teise kuulutuse või sulges paneeli: siis seda enam ei rakendata (muidu
+       ilmuks vale kuulutus või, suletud paneeli korral, kuulutus modaalina). */
+    const openingKey = `${kind}:${id}`;
     setSelectedListingState((prev) => ({
       ...prev,
       loading: true,
@@ -1794,7 +1862,8 @@ export default function ChatBody({
       edit: null,
       busyAction: "",
       selectedConnectListingId: "",
-      connectOptions: []
+      connectOptions: [],
+      openingKey
     }));
     try {
       const response = await fetch(`/api/help/listings/${encodeURIComponent(kind)}/${encodeURIComponent(id)}?locale=${encodeURIComponent(locale)}`, {
@@ -1806,6 +1875,9 @@ export default function ChatBody({
       }
 
       let connectOptions = [];
+      /* Minu kuulutuste loend võis jääda laadimata: siis ei tohi ühendamise
+         vaade öelda, et mul sobivat kuulutust ei ole. */
+      let connectOptionsFailed = false;
       if (!payload.isOwn) {
         const oppositeKind = kind === "request" ? "offer" : "request";
         const optionsResponse = await fetch(`/api/help/listings?kind=${encodeURIComponent(oppositeKind)}&scope=mine&status=OPEN&locale=${encodeURIComponent(locale)}&limit=20`, {
@@ -1814,29 +1886,35 @@ export default function ChatBody({
         const optionsPayload = await optionsResponse.json().catch(() => ({}));
         if (optionsResponse.ok && optionsPayload?.ok !== false) {
           connectOptions = Array.isArray(optionsPayload?.items) ? optionsPayload.items : [];
+        } else {
+          connectOptionsFailed = true;
         }
       }
       const initialConnectListingId = connectOptions[0]?.id
         ? String(connectOptions[0].id).trim()
         : "";
 
-      setSelectedListingState({
+      setSelectedListingState((prev) => prev.openingKey !== openingKey ? prev : {
         loading: false,
         error: "",
         listing: payload.listing,
         isOwn: Boolean(payload.isOwn),
         canDelete: Boolean(payload.canDelete),
         connectOptions,
+        connectOptionsFailed,
         selectedConnectListingId: initialConnectListingId,
         edit: null,
         busyAction: "",
-        deleteConfirmOpen: false
+        deleteConfirmOpen: false,
+        openingKey: ""
       });
-    } catch (error) {
-      setSelectedListingState({
+    } catch {
+      /* Tõrke lause tuleb kataloogist: võrgutõrke puhul oleks vea enda tekst
+         brauseri ingliskeelne „Failed to fetch". */
+      setSelectedListingState((prev) => prev.openingKey !== openingKey ? prev : {
         ...createEmptySelectedListingState(),
         loading: false,
-        error: error?.message || helpUi.detailLoadFailed
+        error: helpUi.detailLoadFailed
       });
     }
   }, [helpUi.detailLoadFailed, locale]);
@@ -1848,20 +1926,10 @@ export default function ChatBody({
       if (!prev.listing) return prev;
       return {
         ...prev,
-        edit: {
-          title: prev.listing.editableTitle || prev.listing.title || "",
-          description: prev.listing.editableDescription || prev.listing.description || "",
-          primaryCategoryCode: prev.listing.primaryCategoryCode || "",
-          roleLabel: prev.listing.roleLabel || "",
-          rawPlace: prev.listing.editableRawPlace || prev.listing.rawPlace || "",
-          helpType: prev.listing.helpType || "",
-          timeType: prev.listing.timeType || "",
-          availabilityOrStart: prev.listing.editableAvailabilityOrStart || prev.listing.availabilityOrStart || "",
-          compensationDetails: prev.listing.editableCompensationDetails || prev.listing.compensationDetails || "",
-          conditions: prev.listing.editableConditions || prev.listing.conditions || "",
-          targetGroupCodes: Array.isArray(prev.listing.targetGroupCodes) ? prev.listing.targetGroupCodes : [],
-          targetGroups: Array.isArray(prev.listing.targetGroupLabels) ? prev.listing.targetGroupLabels.join(", ") : ""
-        }
+        /* Eelmise katse tõrge ei tule uude vormi kaasa. */
+        error: "",
+        /* Algseis on reeglite failis: sama, millega vorm võrdleb, kas midagi on muudetud. */
+        edit: editStartState(prev.listing)
       };
     });
   }, []);
@@ -1900,29 +1968,44 @@ export default function ChatBody({
           compensationDetails: editPayload?.compensationDetails,
           conditions: editPayload?.conditions,
           targetGroupCodes: Array.isArray(editPayload?.targetGroupCodes) ? editPayload.targetGroupCodes : undefined,
-          targetGroups: Array.isArray(editPayload?.targetGroups) ? editPayload.targetGroups : []
+          targetGroups: Array.isArray(editPayload?.targetGroups) ? editPayload.targetGroups : [],
+          /* Server nõuab muutmisel kuulutuse muutmisaega (lib/help/requests.js,
+             offers.js): kui kuulutust on vahepeal mujal muudetud, vastab ta 409
+             ja teist muudatust üle ei kirjutata. Ilma selleta vastas server alati
+             400 ja salvestamine ei õnnestunud kunagi. */
+          expectedUpdatedAt: listing.updatedAt
         })
       });
       const payload = await response.json().catch(() => ({}));
+      if (response.status === 409) {
+        setSelectedListingState((prev) => isSelectedListing(prev, listing) ? {
+          ...prev,
+          busyAction: "",
+          error: helpUi.updateConflict
+        } : prev);
+        return;
+      }
       if (!response.ok || payload?.ok === false || !payload?.listing) {
         throw new Error(helpUi.updateFailed);
       }
-      patchListingCollections(listing.kind, payload.listing);
-      setSelectedListingState((prev) => ({
+      /* Vastus on omaniku vaade, aga loendi rea märki „Minu kuulutus" see ei
+         kanna: ilma selleta läheks rida loendis teiste kuulutuste alla. */
+      patchListingCollections(listing.kind, { ...payload.listing, isOwn: true });
+      setSelectedListingState((prev) => isSelectedListing(prev, listing) ? {
         ...prev,
         listing: payload.listing,
         edit: null,
         busyAction: "",
         error: ""
-      }));
-    } catch (error) {
-      setSelectedListingState((prev) => ({
+      } : prev);
+    } catch {
+      setSelectedListingState((prev) => isSelectedListing(prev, listing) ? {
         ...prev,
         busyAction: "",
-        error: error?.message || helpUi.updateFailed
-      }));
+        error: helpUi.updateFailed
+      } : prev);
     }
-  }, [helpUi.updateFailed, locale, patchListingCollections, selectedListingState.listing]);
+  }, [helpUi.updateConflict, helpUi.updateFailed, locale, patchListingCollections, selectedListingState.listing]);
   const requestDeleteOwnedListing = useCallback(() => {
     setSelectedListingState((prev) => prev.listing ? {
       ...prev,
@@ -1953,16 +2036,19 @@ export default function ChatBody({
       if (!response.ok || payload?.ok === false) {
         throw new Error(helpUi.deleteFailed);
       }
+      /* Eemaldab kuulutuse loendist ja sulgeb avatud kuulutuse, kui ees on
+         ikka seesama (`patchListingCollections`). Tingimusteta sulgemist siin
+         enam ei ole: see paneks kinni ka teise kuulutuse, mille inimene
+         kustutamise päringu ajal jõudis avada. */
       patchListingCollections(listing.kind, listing, "delete");
-      dismissSelectedListing();
-    } catch (error) {
-      setSelectedListingState((prev) => ({
+    } catch {
+      setSelectedListingState((prev) => isSelectedListing(prev, listing) ? {
         ...prev,
         busyAction: "",
-        error: error?.message || helpUi.deleteFailed
-      }));
+        error: helpUi.deleteFailed
+      } : prev);
     }
-  }, [dismissSelectedListing, helpUi.deleteFailed, patchListingCollections, selectedListingState.listing]);
+  }, [helpUi.deleteFailed, patchListingCollections, selectedListingState.listing]);
   const connectSelectedListing = useCallback(async () => {
     const listing = selectedListingState.listing;
     const selectedConnectListingId = String(selectedListingState.selectedConnectListingId || "").trim();
@@ -1972,6 +2058,8 @@ export default function ChatBody({
       busyAction: "connect",
       error: ""
     }));
+    /* Mida inimesele öeldakse, kui ühendust ei tekkinud: alati kataloogi lause. */
+    let failureText = helpUi.connectFailed;
     try {
       const payload = listing.kind === "request"
         ? { requestId: listing.id, offerId: selectedConnectListingId }
@@ -1985,14 +2073,18 @@ export default function ChatBody({
       });
       const body = await response.json().catch(() => ({}));
       if (!response.ok || body?.ok === false || !body?.match) {
-        throw new Error(helpUi.connectFailed);
+        /* Server ütleb eraldi, kui kaks kuulutust kokku ei sobi (kategooria,
+           omavalitsus, abi liik, ajalisus või üks ei ole enam avatud): see ei
+           ole tõrge ja uuesti proovimine ei aita. */
+        if (body?.message === "HELP_MATCH_NOT_COMPATIBLE") failureText = helpUi.connectNotCompatible;
+        throw new Error(failureText);
       }
       const roomTarget = body?.match?.roomId ? buildRoomChatPath(body.match.roomId, locale) : null;
-      setSelectedListingState((prev) => ({
+      setSelectedListingState((prev) => isSelectedListing(prev, listing) ? {
         ...prev,
         busyAction: "",
         error: roomTarget ? "" : helpUi.connectPending
-      }));
+      } : prev);
       if (roomTarget) {
         if (activeListingsPanel) {
           closeListingsPanel({
@@ -2008,14 +2100,14 @@ export default function ChatBody({
           pushWithTransition(router, roomTarget);
         });
       }
-    } catch (error) {
-      setSelectedListingState((prev) => ({
+    } catch {
+      setSelectedListingState((prev) => isSelectedListing(prev, listing) ? {
         ...prev,
         busyAction: "",
-        error: error?.message || helpUi.connectFailed
-      }));
+        error: failureText
+      } : prev);
     }
-  }, [activeListingsPanel, closeListingsPanel, dismissSelectedListing, helpUi.connectFailed, helpUi.connectPending, locale, router, selectedListingState.listing, selectedListingState.selectedConnectListingId]);
+  }, [activeListingsPanel, closeListingsPanel, dismissSelectedListing, helpUi.connectFailed, helpUi.connectNotCompatible, helpUi.connectPending, locale, router, selectedListingState.listing, selectedListingState.selectedConnectListingId]);
   const openGlobalRequestsPanel = useCallback((source = "chat") => {
     const returnTarget = getHelpListingsReturnTarget(source);
     openListingsPanel({
@@ -2216,6 +2308,7 @@ export default function ChatBody({
     roomId: effectiveRoomId,
     roomBlocked,
     roomAuthRequired,
+    onRoomReadOnly: reloadRoomMessages,
     sendToAssistant: allowAssistantForward ? sendToAssistant : false,
     onRoomMessageSent,
     onAssistantMessageCreated: handleAssistantMessageCreated,
@@ -2606,15 +2699,18 @@ export default function ChatBody({
     if (typeof retryLast !== "function") return;
     retryLast(renderedMessages);
   }, [retryLast, renderedMessages]);
+  // Vastuse tagasiside (omanik 11.10): päring tehakse ainult vestluses, kus mõne vastuse pöörde tunnus on teada.
+  const hasFeedbackTurns = useMemo(() => renderedMessages.some(msg => msg.role === "ai" && !!msg.turnId), [renderedMessages]);
+  const answerFeedback = useAnswerFeedback({ convId, enabled: hasFeedbackTurns && !isRoomMode });
   const messageItems = useMemo(() => {
     const items = renderedMessages.map((msg, msgIndex, allMessages) => {
       const messageSources = msg.role === "ai"
         ? collectMessageSources(msg, analysis.uploadPreview)
         : [];
-      return <ChatMessageItem key={msg.id} messageId={msg.id} entranceIndex={allMessages.length - 1 - msgIndex} role={msg.role} text={msg.text} attachments={msg.attachments} cards={msg.cards} createdAt={msg.createdAt} aiVisible={!!msg.aiVisible} typingEffect={!!msg.typingEffect} onTypingComplete={msg.onTypingComplete === "emptyIntro" ? handleEmptyIntroTyped : undefined} authorName={msg.authorName} authorRole={msg.authorRole} isRoomMode={isRoomMode} t={t} locale={locale} isLightTheme={isLightTheme} voiceEnabled={voiceEnabled} canSpeak={Boolean(voiceEnabled && speechReady && String(msg.text || "").trim())} isSpeaking={isSpeaking} onSpeak={speakText} messageSources={messageSources} onShowSources={openMessageSources} diagnosticRef={msg.diagnosticRef} isStreaming={!!msg.isStreaming} completionStatus={msg.completionStatus} onRetry={msg.role === "ai" && !isRoomMode ? handleRetry : undefined} retryPending={isChatGenerating} />;
+      return <ChatMessageItem key={msg.id} messageId={msg.id} entranceIndex={allMessages.length - 1 - msgIndex} role={msg.role} text={msg.text} attachments={msg.attachments} cards={msg.cards} createdAt={msg.createdAt} aiVisible={!!msg.aiVisible} typingEffect={!!msg.typingEffect} onTypingComplete={msg.onTypingComplete === "emptyIntro" ? handleEmptyIntroTyped : undefined} authorName={msg.authorName} authorRole={msg.authorRole} isRoomMode={isRoomMode} t={t} locale={locale} isLightTheme={isLightTheme} voiceEnabled={voiceEnabled} canSpeak={Boolean(voiceEnabled && speechReady && String(msg.text || "").trim())} isSpeaking={isSpeaking} onSpeak={speakText} messageSources={messageSources} onShowSources={openMessageSources} diagnosticRef={msg.diagnosticRef} isStreaming={!!msg.isStreaming} completionStatus={msg.completionStatus} onRetry={msg.role === "ai" && !isRoomMode ? handleRetry : undefined} retryPending={isChatGenerating} turnId={msg.role === "ai" && !isRoomMode ? msg.turnId : undefined} feedbackSent={!!msg.turnId && answerFeedback.sentTurns.has(msg.turnId)} onFeedback={answerFeedback.submit} />;
     });
     return items;
-  }, [analysis.uploadPreview, handleEmptyIntroTyped, handleRetry, isChatGenerating, isLightTheme, isRoomMode, isSpeaking, locale, openMessageSources, renderedMessages, speakText, speechReady, t, voiceEnabled]);
+  }, [analysis.uploadPreview, answerFeedback.sentTurns, answerFeedback.submit, handleEmptyIntroTyped, handleRetry, isChatGenerating, isLightTheme, isRoomMode, isSpeaking, locale, openMessageSources, renderedMessages, speakText, speechReady, t, voiceEnabled]);
   const activeModeLabel = useMemo(() => {
     return getWorkflowModeLabel(t, activeWorkflow);
   }, [activeWorkflow, t]);
@@ -2660,14 +2756,21 @@ export default function ChatBody({
     canDelete: selectedListingState.canDelete,
     editState: selectedListingState.edit,
     connectOptions: selectedListingState.connectOptions,
+    connectOptionsFailed: selectedListingState.connectOptionsFailed,
     selectedConnectListingId: selectedListingState.selectedConnectListingId,
     busyAction: selectedListingState.busyAction,
     onDismiss: dismissSelectedListing,
     onStartEdit: startListingEdit,
     onChangeEditField: changeListingEditField,
-    onCancelEdit: () => setSelectedListingState((prev) => ({ ...prev, edit: null, busyAction: "" })),
+    onCancelEdit: () => setSelectedListingState((prev) => ({ ...prev, edit: null, busyAction: "", error: "" })),
     onSaveEdit: saveListingEdit,
+    /* Kustutamine on kaks vajutust samal nupul avatud kuulutuse vaates:
+       esimene küsib (`deleteConfirmOpen`), teine kustutab, „Loobu" võtab
+       küsimuse tagasi. Eraldi kinnitusakent enam ei ole. */
+    deleteArmed: selectedListingState.deleteConfirmOpen,
     onDeleteListing: requestDeleteOwnedListing,
+    onConfirmDelete: deleteOwnedListing,
+    onCancelDelete: cancelDeleteOwnedListing,
     onSelectConnectListing: (value) => setSelectedListingState((prev) => ({ ...prev, selectedConnectListingId: value })),
     onConnect: connectSelectedListing
   } : null;
@@ -2694,7 +2797,7 @@ export default function ChatBody({
       onClose={closeListingsPanel}
       onBackToProfile={activeListingsPanel?.returnToProfile ? backToProfileFromListingsPanel : undefined}
       onBackToWorkspace={activeListingsPanel?.returnToWorkspace ? backToWorkspaceFromListingsPanel : undefined}
-      onLoadMore={() => loadListingsPanel(activeListingsPanel, { append: true })}
+      onLoadMore={() => loadListingsPanel(activeListingsPanel, { append: true, offset: listingsPanelState.nextOffset })}
       onSelectItem={openSelectedListing}
       detailNode={inlineSelectedListingNode}
     />
@@ -2708,20 +2811,6 @@ export default function ChatBody({
   const selectedListingContextNode = !activeListingsPanel && selectedListingContextProps ? (
     <SelectedListingContext
       {...selectedListingContextProps}
-    />
-  ) : null;
-  const deleteListingConfirmNode = selectedListingState.deleteConfirmOpen ? (
-    <ModalConfirm
-      message={helpUi.deleteConfirm}
-      confirmLabel={t("buttons.delete")}
-      cancelLabel={t("buttons.cancel")}
-      confirmVariant="danger"
-      cancelVariant="primary"
-      onConfirm={deleteOwnedListing}
-      onCancel={cancelDeleteOwnedListing}
-      disabled={selectedListingState.busyAction === "delete"}
-      overlayClassName="!z-[146] !bg-transparent !backdrop-blur-0 !backdrop-saturate-100"
-      contentClassName="chat-analysis-upload-modal-card !w-[min(100%,20.5rem)] !max-w-[20.5rem]"
     />
   ) : null;
   const isStreamingAny = useMemo(() => isGenerating || visibleMessages.some(m => m.role === "ai" && m.isStreaming), [isGenerating, visibleMessages]);
@@ -2982,6 +3071,7 @@ export default function ChatBody({
   return <>
     <ChatBodyView
       pilotMode={pilotMode}
+      convId={convId}
       embedded={embedded}
       t={t}
       locale={locale}
@@ -3020,6 +3110,7 @@ export default function ChatBody({
       isRoomMode={isRoomMode}
       roomTitle={roomTitle}
       roomOrigin={roomOrigin}
+      roomReadOnlyReason={roomReadOnlyReason}
       hideRoomTitle={hideRoomTitle}
       allowAssistantForward={allowAssistantForward}
       isHelpMatchRoom={isHelpMatchRoom}
@@ -3114,7 +3205,6 @@ export default function ChatBody({
       closeSourcesPanel={closeSourcesPanel}
       analysisPanelWidth={analysisPanelWidth}
     />
-    {deleteListingConfirmNode}
     <LoginModal
       open={loginOpen}
       onClose={() => {

@@ -201,6 +201,7 @@ sudo -n grep "^OPENAI_API_KEY=" /etc/sotsiaalai/frontend.env | node --env-file=/
 
 - **Lõks:** ilma `--reuse`-ta ei ühti uuesti arvutatud plaan kinnitatuga (`approved_unchanged_baseline_required`). Siis ei osteta midagi, aga `--output` kaust on juba loodud ja järgmine katse vajab uut nime.
 - Kontrolli `<output>/run.json`: seal peab olema `"state": "complete"` ja `usage.succeeded` peab võrduma plaani uute sisendite arvuga. Uue usage-kausta tee on väljal `vectors`. v26-s oli see `pilot_3053…`.
+- **Kui ost peatus poole peal** (`"state": "stopped_unknown"`: ühe päringu tulemus jäi teadmata; [ADR-113](adr-113-stopped-purchase-vectors-count.md)): käivita sama `rag-v2-corpus-run.sh` käsk uuesti. Jooks tõstab peatunud ostu ise kõrvale (`run-v<N>-stopped-<k>` koos plaani, kinnituse ja logidega), loeb selle ostetud vektorid olemasolevaks ja ostab ainult ülejäänud sisendid. Kaustu käsitsi tõsta ei ole vaja. Teise käivituse kulupiir kehtib ainult teisele ostule: liida summad ise ja küsi omanikult, kui kogusumma läheb üle lubatu. Lõpetatud ostu ei alusta jooks kunagi uuesti.
 
 ## 8. Indeksi ehitus
 
@@ -289,6 +290,11 @@ Vastus on `current`, `stale` või `invalid`. Deploy kasutab põhjalikumat kontro
   ```
 
   Exit 0: muutusi pole. Exit 10: vaata aruande leide. Exit 20: mõni päring ebaõnnestus. Puuduvate redaktsioonide XML-id saab `--download <kaust>` valikuga; need lähevad sammudest 1–9 läbi nagu iga teine allikas.
+- **Seosed seadusesätetega** ([ADR-145](adr-145-a-passage-points-at-the-provision-it-names.md)). Seoseid ei salvestata, need loetakse otsingu ajal lõigu tekstist. Tasuta loendus näitab, mitu lõiku viitab kogus olevale seadusele, mis kujul, ja mis jäi välja ning miks (loeb kohalikku hoidlat umbes kümme minutit):
+
+  ```bash
+  node scripts/rag-v2-provision-relations.mjs --store tmp/rag-v2-corpus-store-v25 --policy <täienduse poliitika> --out tmp/provision-relations.json
+  ```
 
 ## Seotud
 

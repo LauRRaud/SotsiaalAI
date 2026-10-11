@@ -36,4 +36,4 @@ Kõik, mis sõltub mudelist: kas spetsialistile enam ei öelda „pöördu valla
 ## Mis jääb lahti
 
 - Valla, kus spetsialist töötab, toob otsingusse plaani päring, mitte vestluse mälu: kui plaan nime päringusse ei kirjuta, jääb pööre ilma. Kui mõõtmine näitab, et sellest ei piisa, tuleb töökoht hoida mälus eraldi väljana (kohalugeja muudatus).
-- Kontrollstsenaariumide käivitaja (`rag-v2-conversation-eval.mjs`) rolli ei sea; rolliga stsenaarium vajab sinna välja.
+- ~~Kontrollstsenaariumide käivitaja (`rag-v2-conversation-eval.mjs`) rolli ei sea.~~ Lahendatud 09.10.2026: stsenaarium võib nimetada rolli ([ADR-118](adr-118-editor-marks-out-of-answers.md)).

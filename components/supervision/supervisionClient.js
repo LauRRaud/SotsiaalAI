@@ -7,39 +7,19 @@ import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
  * Q2.4 ühetaolise-404 reegel peab paistma ka UI-s), 409 → konflikt.
  */
 
-/** `?ala=` püsiankrud (Q2.6 navigeerimisleping). U2 „Jätka siit" sihib neid. */
+/**
+ * `?ala=` püsiankrud (Q2.6 navigeerimisleping). U2 „Jätka siit" ja teavitused
+ * sihivad neid (lib/supervision/notifications.js), seega neid väärtusi ei muudeta.
+ * Protsessi laua kõik osad (need viis ja hiljem lisandunud) ning nende nimed on
+ * failis ./process/processRows.js; sakiriba, mille jaoks siin olid ala loend ja
+ * tõlkevõtmete seos, enam ei ole.
+ */
 export const SUPERVISION_AREAS = Object.freeze({
   KONTRAKT: "kontrakt",
   EESKAMBER: "eeskamber",
   KOHTUMISED: "kohtumised",
   KOKKUVOTTED: "kokkuvotted",
   KAPP: "kapp"
-});
-
-export const SUPERVISION_AREA_LIST = Object.freeze([
-  SUPERVISION_AREAS.KONTRAKT,
-  SUPERVISION_AREAS.EESKAMBER,
-  SUPERVISION_AREAS.KOHTUMISED,
-  SUPERVISION_AREAS.KOKKUVOTTED,
-  SUPERVISION_AREAS.KAPP
-]);
-
-export function normalizeArea(value) {
-  const area = String(value || "").trim().toLowerCase();
-  return SUPERVISION_AREA_LIST.includes(area) ? area : SUPERVISION_AREAS.KONTRAKT;
-}
-
-/**
- * Ala-ankur → `supervision.nav.*` tõlkevõti. Ankrud on eestikeelsed URL-osad
- * (püsivad, Q2.8 „Jätka siit" sihib neid), tõlkevõtmed inglisekeelsed — seos
- * elab siin, et sakiriba ja süvalingid ei saaks lahku triivida.
- */
-export const SUPERVISION_AREA_NAV_KEYS = Object.freeze({
-  [SUPERVISION_AREAS.KONTRAKT]: "contract",
-  [SUPERVISION_AREAS.EESKAMBER]: "eeskamber",
-  [SUPERVISION_AREAS.KOHTUMISED]: "meetings",
-  [SUPERVISION_AREAS.KOKKUVOTTED]: "summaries",
-  [SUPERVISION_AREAS.KAPP]: "kapp"
 });
 
 /**

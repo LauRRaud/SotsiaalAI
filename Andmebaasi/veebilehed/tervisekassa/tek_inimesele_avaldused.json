@@ -1,0 +1,268 @@
+{
+  "document_id": "web-tek_inimesele_avaldused",
+  "title": "Avaldused",
+  "register_title": "Avaldused",
+  "source_id": "tek_inimesele_avaldused",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/avaldused",
+  "source_path": "tek_inimesele_avaldused.html",
+  "source_format": "html",
+  "source_sha256": "2aa284885696214f54d56cc37690a2aafb48c7b92a04dbc6f3641073bcd889fc",
+  "content_sha256": "c3dc27d36150ea2db1f6b2ac059c5c4ecf22d093a4f54d29a8a9fd824c4b6d32",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:37:32.264Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:05:14 GMT",
+      "etag": null
+    },
+    "raw_sha256": "7e3a0ef051566851ce25fa2578852dd401b8ba53855b21804d2c98798e716ff3",
+    "stats": {
+      "words": 617,
+      "blocks": 29,
+      "headings": 8,
+      "tables": 4,
+      "links": 45,
+      "linksToOtherSites": 7
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Avaldused%202026/kontoandmete_muutmise_avaldus_2026.docx",
+      "text": "docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Avaldused%202026/erk_2026.docx",
+      "text": "docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/2026-04/taotlus_plaaniline_valisravi_uus_0.docx",
+      "text": "odt",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/konsiiliumi_vorm_ravikindlustuse_seadus_uus.docx",
+      "text": "odt",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Avaldused%202026/ravikindlustus_taotlus_2026.docx",
+      "text": "docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Blanketid/Blanketid%202024/trh_jaagi_avaldus_2024.odt",
+      "text": "odt",
+      "type": "odt",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/erandkorras_ravimite_hyvitamise_avaldus_patsient.odt",
+      "text": "odt",
+      "type": "odt",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Avaldused%202026/hyvitis_surm_2026.docx",
+      "text": "docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Blanketid/Blanketid%202024/avaldus_kaugvastuvotu_raviarvete_kontrolliks_2024.odt",
+      "text": "odt",
+      "type": "odt",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Blanketid/Blanketid%202024/vaktsiinikahju_taotlus_2024.pdf",
+      "text": "pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Blanketid/Blanketid%202024/vaide_pohi_2024.pdf",
+      "text": "pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Avaldused%202026/el_tervishoiuteenuse_kulu_tagasimakse_2026.docx",
+      "text": "docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Avaldused%202026/el_retsept_taotlus_2026.docx",
+      "text": "docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Avaldused%202026/avaldus_vormi_e104_saamiseks_2026.docx",
+      "text": "docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Avaldused%202026/avaldus_tvh_taotlemiseks_el_liikmesriigis_2026.docx",
+      "text": "docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/taotlus_toendi_s1_saamiseks_2026.docx",
+      "text": "docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Avaldused%202026/avaldus_vormi_e121_s1_katkestamiseks_2026.docx",
+      "text": "docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Avaldused%202026/avaldus_el_riik_tootav_isik_pereliige_2026.docx",
+      "text": "docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Avaldused%202026/_tooandja_toend_haigus_ja_hoolduslehe_kinnitamiseks_2026.docx",
+      "text": "docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Avaldused%202026/tooandja_toend_haigus_ja_hoolduslehe_kinnitamiseks_taidetav_vorm_2026.pdf",
+      "text": "pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Avaldused%202026/_tooandja_toend_kergemale_toole_yleviimise_haiguslehe_kinnitamiseks_2026.docx",
+      "text": "docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Avaldused%202026/tooandja_toend_kergemale_toole_yleviimise_haiguslehe_kinnitamiseks_taidetav_vorm_2026.pdf",
+      "text": "; pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Blanketid/Blanketid%202024/loovisikute_nimekiri_2024.odt",
+      "text": "odt",
+      "type": "odt",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Blanketid/Blanketid%202024/usuline_yhendus_nimekiri_2024.odt",
+      "text": "odt",
+      "type": "odt",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Avaldused%202026/oiend_tooandjale_tvl_andmete_parandamiseks_2026.docx",
+      "text": "docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Blanketid/notarid_kohtutaiturid_nimekiri_2025.odt",
+      "text": "odt",
+      "type": "odt",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Avaldused%202026/oiend_ttole_tvl_andmete_parandamiseks_2026.docx",
+      "text": "docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Blanketid/Blanketid%202024/taotlus_paroolile_2024.odt",
+      "text": "odt",
+      "type": "odt",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Blanketid/Blanketid%202024/retseptiblankettide_tellimus_2024.odt",
+      "text": "odt",
+      "type": "odt",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/raviarsti_pohjendus_ravimi_kompenseerimiseks_2.odt",
+      "text": "odt",
+      "type": "odt",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Blanketid/Blanketid%202024/avaldus_tvh_taotlemiseks_el_liikmesriigis_2024.odt",
+      "text": "odt",
+      "type": "odt",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Blanketid/arstliku_labivaatuse_vastus_2025.docx",
+      "text": "docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Blanketid/Blanketid%202024/hrh_prh_arve_tuhistamiseks_krediteerimiseks_2024.odt",
+      "text": "odt",
+      "type": "odt",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Blanketid/Blanketid%202024/avaldus_perearsti_nimistust_loobumiseks_2024.odt",
+      "text": "odt",
+      "type": "odt",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/taotlus_ekstemporaalse_ravimi_erandkorras_kompenseerimiseks.docx",
+      "text": "docx",
+      "type": "docx",
+      "status": "referenced_only"
+    }
+  ]
+}

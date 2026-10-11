@@ -1,0 +1,59 @@
+{
+  "document_id": "web-ppa_juhend_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele",
+  "title": "Isikut tõendava dokumendi taotlemine liikumisvõimetule inimesele",
+  "register_title": "Isikut tõendava dokumendi taotlemine liikumisvõimetule inimesele",
+  "source_id": "ppa_juhend_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele",
+  "source_type": "web_page",
+  "publisher": "Politsei- ja Piirivalveamet",
+  "language": "et",
+  "url": "https://www.politsei.ee/et/juhend/isikut-toendava-dokumendi-taotlemine-liikumisvoimetule-inimesele",
+  "source_path": "ppa_juhend_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele.html",
+  "source_format": "html",
+  "source_sha256": "bae081ff67db2177a1140f1f43a841a1e08c8a93482d56ce1fe21e648e6e2977",
+  "content_sha256": "5007fd22ff6f6c1b76a3bd60a55c3a417e8bd3227987e6385ed88a41d9536caf",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:36:45.784Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": "Thu, 08 Oct 2026 17:07:49 GMT",
+      "etag": null
+    },
+    "raw_sha256": "5b01a4fd3f644f3ae04ff5c58f367783b79833ccd9a417aba5c8844bb3eea2a8",
+    "stats": {
+      "words": 48,
+      "blocks": 5,
+      "headings": 3,
+      "tables": 0,
+      "links": 0,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "thin_content"
+    ],
+    "needs_review": true
+  },
+  "documents": []
+}

@@ -21,7 +21,6 @@ const BACK_ANCHOR_SELECTOR = [
   ".invite-modal-content",
   ".person-invite-modal-content",
   ".help-listings-modal-content",
-  ".selected-listing-modal-content",
   ".glass-ring",
   ".glass-box"
 ].join(",");

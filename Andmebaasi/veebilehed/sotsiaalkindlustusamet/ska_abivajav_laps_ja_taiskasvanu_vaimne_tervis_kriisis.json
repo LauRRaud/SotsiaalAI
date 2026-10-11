@@ -1,0 +1,60 @@
+{
+  "document_id": "web-ska_abivajav_laps_ja_taiskasvanu_vaimne_tervis_kriisis",
+  "title": "Vaimne tervis kriisis",
+  "register_title": "Vaimne tervis kriisis",
+  "source_id": "ska_abivajav_laps_ja_taiskasvanu_vaimne_tervis_kriisis",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/vaimne-tervis-kriisis",
+  "source_path": "ska_abivajav_laps_ja_taiskasvanu_vaimne_tervis_kriisis.html",
+  "source_format": "html",
+  "source_sha256": "20f730b95251abc9864eb7469aef682141189466736b85c06a94cd4a31e93d0c",
+  "content_sha256": "7b219456151d7813bac855c54c24b9a307de47e741b419443ccecc5d833a30b1",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:35:03.114Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2023-10-18",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:22:06 GMT",
+      "etag": null
+    },
+    "raw_sha256": "7266d70e9924f5b067572594a544095b2bccb74a4eb52756d1a7eb47077d28b1",
+    "stats": {
+      "words": 76,
+      "blocks": 8,
+      "headings": 4,
+      "tables": 0,
+      "links": 0,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "thin_content"
+    ],
+    "needs_review": true
+  },
+  "documents": []
+}

@@ -8,11 +8,11 @@ import ChatMessageItem from "@/components/alalehed/chat/ChatMessageItem";
 import ConversationView from "@/components/alalehed/chat/ConversationView";
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
 import DocumentsDropdown from "@/components/documents/DocumentsDropdown";
+import StepFlight from "@/components/stage/StepFlight";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import { cn } from "@/components/ui/cn";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
-import Checkbox from "@/components/ui/Checkbox";
 import NetworkShareComposer from "@/components/network/NetworkShareComposer";
 import NetworkShareInbox from "@/components/network/NetworkShareInbox";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
@@ -23,6 +23,8 @@ import { localizePath } from "@/lib/localizePath";
 import { preInquiryAvailabilityNotices, serviceAvailabilityPresentation } from "@/lib/serviceAvailabilityUi";
 import { normalizePreInquiryJourneySharedInfo } from "@/lib/preInquiryJourneySharedInfo";
 import { normalizePreInquiryReceiverChecklist } from "@/lib/preInquiryReceiverWorkflow";
+import { preInquiryReceiverQueue, preInquiryReceiverState } from "@/lib/preInquiryReceiverQueue";
+import { preInquirySenderState, preInquirySenderTone } from "@/lib/preInquirySenderState";
 import { serviceProfileSaveNoticeKey } from "@/lib/privacy/serviceProfileSaveNotice";
 import {
   CARRIER_CLASS,
@@ -50,8 +52,61 @@ import {
 import { buildRoomChatPath } from "@/lib/roomPath";
 import { pushWithTransition } from "@/lib/routeTransition";
 import AdminRoleViewCycleButton from "./AdminRoleViewCycleButton";
+import { ContextView, JourneyView, PathView, SituationView, UrgencyView, WhoView } from "./preInquiry/CollectViews";
+import DomainsView from "./preInquiry/DomainsView";
+import { AssistantView, RecipientView, ReviewView, SavedView, SendView, TextView } from "./preInquiry/FlowViews";
+import PreInquiryStart from "./preInquiry/PreInquiryStart";
+import { CheckView, InfoView, InquiryView, NetworkView, PlanView, PrepareView, QueueView, SettingsView } from "./preInquiry/ReceiverViews";
+import viewStyles from "./preInquiry/views.module.css";
+import LocationStepView from "./serviceProfile/LocationViews";
+import { footNote } from "./serviceProfile/ProfileFields";
+import ProfileStepView from "./serviceProfile/ProfileViews";
+import ServiceStepView from "./serviceProfile/ServiceViews";
+import profileStyles from "./serviceProfile/profile.module.css";
+import {
+  LIST_VIEW_OF,
+  LOCATION_VIEW_KEYS,
+  PROFILE_VIEW_KEYS,
+  REPRESENTATION_PATH,
+  SERVICE_PROFILE_KEY,
+  SERVICE_VIEW_KEYS,
+  areaViewIsTall,
+  availabilityChoices,
+  createServiceProfileForm,
+  createServiceProfileLocationForm,
+  createServiceProfileServiceForm,
+  firstEmailProblem,
+  indexAfterSave,
+  keepsLocation,
+  keepsService,
+  locationHasMatch,
+  locationRows,
+  locationTitle,
+  locationViewStates,
+  locationViewSummaries,
+  profileViewStates,
+  profileViewSummaries,
+  realServiceLocations,
+  representationDate,
+  representationStatus,
+  serviceAreaChoices,
+  serviceProfileDirty,
+  serviceProfileOptionSets,
+  serviceProfilePublishChecks,
+  serviceProfilePublishState,
+  serviceProfileSavePayload,
+  serviceProfileSteps,
+  serviceRows,
+  serviceViewStates,
+  serviceViewSummaries,
+  splitList,
+  statusChoices,
+  unreadableServiceAreas,
+  withRepresentationState
+} from "./serviceProfile/profileModel";
 import HelpMatchDecisionPanel from "./HelpMatchDecisionPanel";
 import ServiceMapLeaflet from "./ServiceMapLeaflet";
+import { servicePhoneHref } from "@/components/workspace/serviceMapPopupRules";
 import ServiceLicenceStatus, { useServiceLicenceStatuses } from "@/components/service-provider/ServiceLicenceStatus";
 import { SERVICE_PROFILE_LIMITS } from "@/lib/serviceProviderProfileLimits";
 
@@ -59,7 +114,6 @@ const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAAL.PRO_CHAT_WORKSPACE_RESTOR
 const SERVICE_MAP_RESULT_BUTTON_LIMIT = 24;
 
 const bodyTextClassName = "feature-page__copy";
-const receivingCheckboxLabelClassName = "feature-page__checkbox";
 const serviceMapChoiceCardClassName = "service-map-choice-card";
 
 const ADMIN_WORKSPACE_ROLES = Object.freeze([
@@ -68,31 +122,13 @@ const ADMIN_WORKSPACE_ROLES = Object.freeze([
   "SERVICE_PROVIDER"
 ]);
 
-const PRE_INQUIRY_WORKFLOW_STEPS = Object.freeze([
-  { id: "collect", label: "Täpsusta eelinfot" },
-  { id: "review", label: "Eelinfo ülevaade" },
-  { id: "recipient", label: "Adressaat" },
-  { id: "preview", label: "Pöördumise eelvaade" },
-  { id: "saved", label: "Minu eelpöördumised" }
-]);
+/* Sammude ja alguse valikute tekstid on tõlkekataloogis
+   (workspace_feature_pages.pre_inquiries.steps / .start.options). */
+const PRE_INQUIRY_STEPS_KEY = "workspace_feature_pages.pre_inquiries.steps";
+const PRE_INQUIRY_RECEIVER_STEPS_KEY = "workspace_feature_pages.pre_inquiries.views.receiver.steps";
 
-const PRE_INQUIRY_START_OPTIONS = Object.freeze([
-  {
-    id: "find_recipient",
-    title: "Aita mul leida, kelle poole pöörduda",
-    description: "Kirjelda olukorda. Sotsiaal.pro küsib vajadusel täpsustusi ja aitab leida sobiva KOV kontakti, lastekaitse kontakti või teenuseosutaja."
-  },
-  {
-    id: "known_contact",
-    title: "Mul on kontakt juba olemas",
-    description: "Vali kontakt Teenusekaardilt või otsi adressaati nime, KOV-i, teenuse või piirkonna järgi."
-  },
-  {
-    id: "journey",
-    title: "Jätkan Teekonnast",
-    description: "Kasuta oma privaatses Teekonnas salvestatud infot ja vali, mida soovid eelpöördumises jagada."
-  }
-]);
+const PRE_INQUIRY_START_KEY = "workspace_feature_pages.pre_inquiries.start.options";
+const PRE_INQUIRY_START_OPTIONS = Object.freeze(["find_recipient", "known_contact", "journey"]);
 
 function readText(t, key, fallback) {
   return typeof t === "function" ? t(key, fallback) : fallback;
@@ -104,6 +140,13 @@ function createPreInquiryActionId() {
 
 /* SOL-SPROF-02: „salvestati" ei tohi katta kinni seda, et assistendi koopia
    eemaldamine alles käib või ebaõnnestus. Otsuse ise teeb testitav moodul. */
+/* Salvestamise teated, mis on hoiatused: profiil on kirjas, aga assistendi
+   koopia ei ole veel inimese valikuga kooskõlas. */
+const SAVE_WARNING_KEYS = new Set([
+  "workspace_feature_pages.service_profile.save_success_removal_pending",
+  "workspace_feature_pages.service_profile.save_success_assistant_sync_failed"
+]);
+
 function serviceProfileSaveNotice(t, profile) {
   const notice = serviceProfileSaveNoticeKey(profile);
   return readText(t, notice.key, notice.fallback);
@@ -128,16 +171,6 @@ function readRequestedWorkspaceRole() {
   const params = new URLSearchParams(window.location.search || "");
   const value = params.get("workspaceRole");
   return value ? normalizeWorkspaceRole(value) : "";
-}
-
-function roleLabel(t, role) {
-  if (role === "CLIENT") {
-    return readText(t, "workspace_feature_pages.roles.client", "Pöörduja");
-  }
-  if (role === "SERVICE_PROVIDER") {
-    return readText(t, "workspace_feature_pages.roles.service_provider", "Teenuseosutaja");
-  }
-  return readText(t, "workspace_feature_pages.roles.social_worker", "Sotsiaaltöötaja");
 }
 
 function workspaceReturn(locale, router, options = {}) {
@@ -175,23 +208,6 @@ function SectionCard({ title, children, className }) {
       <h2>{title}</h2>
       {children}
     </section>
-  );
-}
-
-function ServiceProfileSection({ title, children, className }) {
-  return (
-    <section className={cn("feature-section", "feature-section--profile", className)}>
-      <h2>{title}</h2>
-      {children}
-    </section>
-  );
-}
-
-function Label({ children, className }) {
-  return (
-    <label className={cn("feature-field", className)}>
-      {children}
-    </label>
   );
 }
 
@@ -348,21 +364,24 @@ function PreInquiryAssessmentReviewSection({ t, title, review, situation = "", n
   );
 }
 
-function AdminRoleSelector({ t, locale = "et", value, onChange, className }) {
+/* Valik elab ekraani alumises paremas nurgas (AdminRoleViewCycleButton
+   portaalib end sinna ise); see mähis seob ta ainult lehe rolliolekuga.
+   `placement="inline"` + `className`: leht paneb valiku oma pinnale. */
+function AdminRoleSelector({ t, locale = "et", value, onChange, placement, className }) {
   const handleRoleChanged = (user = {}) => {
     onChange(normalizeWorkspaceRole(user?.effectiveRole || user?.adminViewRole));
   };
 
   return (
-    <div className={className}>
-      <AdminRoleViewCycleButton
-        t={t}
-        locale={locale}
-        value={value}
-        onRoleChanged={handleRoleChanged}
-        ariaLabel={readText(t, "workspace_feature_pages.admin_role.label", "Admini tööroll")}
-      />
-    </div>
+    <AdminRoleViewCycleButton
+      t={t}
+      locale={locale}
+      value={value}
+      onRoleChanged={handleRoleChanged}
+      ariaLabel={readText(t, "workspace_feature_pages.admin_role.label", "Admini tööroll")}
+      placement={placement}
+      className={className}
+    />
   );
 }
 
@@ -402,6 +421,20 @@ function formatDate(value, locale = "et") {
   }
 }
 
+/* Kuupäev ilma kellaajata (loendi märgid). Kuupäevasõne „2026-10-12" loetakse
+   kohaliku päevana, mitte UTC keskööna, et päev ei nihkuks. */
+function formatDay(value, locale = "et") {
+  if (!value) return "";
+  const plain = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(value));
+  const date = plain ? new Date(Number(plain[1]), Number(plain[2]) - 1, Number(plain[3])) : new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  try {
+    return new Intl.DateTimeFormat(locale, { day: "2-digit", month: "2-digit", year: "numeric" }).format(date);
+  } catch {
+    return date.toLocaleDateString();
+  }
+}
+
 function buildLocalPreInquiryDraft({ topic, situation, recipient, assessmentDraftSummary = "" }) {
   const subject = topic?.trim() || "Eelpöördumine";
   const greeting = recipient?.title
@@ -421,7 +454,7 @@ function buildLocalPreInquiryDraft({ topic, situation, recipient, assessmentDraf
     "",
     recipient?.type === "SERVICE_PROVIDER"
       ? "Palun andke teada, kas teie teenus võiks sellises olukorras sobida ning millised on tingimused, vabad ajad ja vajadusel suunamise või otsuse nõuded."
-      : "Palun aidata välja selgitada, millised toetused või teenused võiksid minu olukorras sobida ning millised oleksid järgmised sammud.",
+      : "Palun aidata välja selgitada, millised toetused või teenused võiksid selles olukorras sobida ning millised oleksid järgmised sammud.",
     "",
     "Lugupidamisega"
   ].filter((line, index, source) => line || source[index - 1] !== "");
@@ -493,22 +526,6 @@ function getPreInquiryReferralNotice(entry) {
   ));
   if (!requiresReferral) return "";
   return "Selle teenuse saamine võib vajada KOV-i otsust, SKA suunamist või spetsialisti hinnangut.";
-}
-
-function getPreInquiryStatusLabel(status) {
-  switch (status) {
-    case "READY":
-      return "valmis ülevaatamiseks";
-    case "SENT":
-      return "saadetud";
-    case "DOWNLOADED":
-      return "alla laaditud";
-    case "ARCHIVED":
-      return "arhiveeritud";
-    case "DRAFT":
-    default:
-      return "koostamisel";
-  }
 }
 
 function buildPreInquiryDownloadName(topic) {
@@ -810,13 +827,16 @@ function CaseworkPreparationPanel({ t, inquiry, locale = "et", embedded = false 
   );
 }
 
-function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", isAdmin = false, currentUserId = "", embedded = false }) {
+function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", isAdmin = false, currentUserId = "" }) {
   const router = useRouter();
   const chatWindowRef = useRef(null);
   const inputBarRef = useRef(null);
   const inputRef = useRef(null);
   const fileInputRef = useRef(null);
   const composerDraftApiRef = useRef(null);
+  const newInquiryConfirmRef = useRef(0);
+  /* Ainult valikutega vaate iseliikumise taimer (vt saatja töövoog allpool). */
+  const flowAdvanceRef = useRef(0);
   const [activeInquiryId, setActiveInquiryId] = useState("");
   const [journeySourceId, setJourneySourceId] = useState("");
   const [topic, setTopic] = useState("");
@@ -857,7 +877,11 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
   const [error, setError] = useState("");
   const [savePrivacyPrompt, setSavePrivacyPrompt] = useState(null);
   const [workflowMode, setWorkflowMode] = useState("");
-  const [activeWorkflowStep, setActiveWorkflowStep] = useState("collect");
+  const [activeWorkflowStep, setActiveWorkflowStep] = useState("path");
+  /* Vastuvõtja: milline vaade on ees ja millist järje rühma ta vaatab
+     (tühi = uued, kui neid on, muidu minu töös). */
+  const [receiverStep, setReceiverStep] = useState("queue");
+  const [receiverGroup, setReceiverGroup] = useState("");
   const [assessmentPathChosen, setAssessmentPathChosen] = useState(false);
   /**
    * TEEKONNA JAGAMISVALIK (SOL-JOUR-01, P0).
@@ -1151,10 +1175,29 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     : "";
   const isRecipientRole = activeRole === "SOCIAL_WORKER" || activeRole === "SERVICE_PROVIDER";
   const receiverInquiries = isAdmin && isRecipientRole ? inquiries : receivedInquiries;
-  const showReceivedInquiries = isRecipientRole;
+  /* Pöördumine avatakse tööjärjest teadliku vajutusega; esimest rida ei avata ise. */
   const activeReceivedInquiry = activeInquiryId
     ? receiverInquiries.find((inquiry) => inquiry.id === activeInquiryId) || null
-    : receiverInquiries[0] || null;
+    : null;
+  const receiverQueue = useMemo(() => preInquiryReceiverQueue(receiverInquiries), [receiverInquiries]);
+  /* „Kes on vaadanud": saaja avas juba vastuvõetud pöördumise. Tekst tuli loendiga kaasa,
+     nii et server avamist ise ei näe: läheb taustateade, üks kord pöördumise ja päeva kohta.
+     Vastust ei oodata ja viga ei näidata: jälje puudumine ei tohi tööd segada. */
+  const viewSignalsRef = useRef(new Set());
+  const viewedInquiryId =
+    isRecipientRole &&
+    receiverStep !== "queue" &&
+    activeReceivedInquiry?.openedAt &&
+    activeReceivedInquiry.recipientOwnerId === currentUserId
+      ? activeReceivedInquiry.id
+      : "";
+  useEffect(() => {
+    if (!viewedInquiryId) return;
+    const signal = `${viewedInquiryId}:${new Date().toDateString()}`;
+    if (viewSignalsRef.current.has(signal)) return;
+    viewSignalsRef.current.add(signal);
+    fetch(`/api/pre-inquiries/${encodeURIComponent(viewedInquiryId)}/viewed`, { method: "POST" }).catch(() => {});
+  }, [viewedInquiryId]);
   const activeReceivedJourneySharedInfo = useMemo(
     () => getInquiryJourneySharedInfo(activeReceivedInquiry),
     [activeReceivedInquiry]
@@ -1479,7 +1522,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       });
     });
     setWorkflowMode("known_contact");
-    setActiveWorkflowStep("collect");
+    setActiveWorkflowStep("path");
     setAssessmentPathChosen(false);
     setNotice("Valitud adressaat on eelpöördumise töövoogu kaasa võetud. Saad seda enne saatmist muuta.");
   }, [entries]);
@@ -1487,9 +1530,15 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
   // Deep-link from a journey's "Seotud eelpöördumised" list: open the requested
   // authored inquiry once the list has loaded. handleOpenInquiry is reached via a
   // ref so the effect only depends on `inquiries`.
+  //
+  // The effect waits for the list. It used to run on the first render too, when
+  // the list was still empty: it then took the single-fetch path, the arriving
+  // list cancelled that fetch, and the link opened nothing unless the single
+  // fetch happened to win the race.
   handleOpenInquiryRef.current = handleOpenInquiry;
   useEffect(() => {
     if (openInquiryLoadedRef.current || typeof window === "undefined") return;
+    if (loading || !currentUserId) return;
     const params = new URLSearchParams(window.location.search || "");
     const requestedId = String(params.get("openInquiry") || "").trim();
     if (!requestedId) return;
@@ -1530,7 +1579,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     return () => {
       cancelled = true;
     };
-  }, [currentUserId, inquiries]);
+  }, [currentUserId, inquiries, loading]);
 
   function updateAssessmentState(updater) {
     setAssessmentState((current) => {
@@ -1621,6 +1670,22 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     }));
   }
 
+  /* „Uus eelpöördumine" on vaates „Minu eelpöördumised". Kui pooleli on
+     kirjutatud teksti, ei tühjenda esimene vajutus midagi: see ütleb, mis kaoks,
+     ja alles teine vajutus (kaheksa sekundi sees) alustab uut. */
+  function handleNewInquiryGuarded() {
+    const unsaved = Boolean(String(situation || "").trim() || String(assistantInput || "").trim() || draftTouched);
+    const now = Date.now();
+    if (unsaved && now - newInquiryConfirmRef.current > 8000) {
+      newInquiryConfirmRef.current = now;
+      setError("");
+      setNotice(readText(t, "workspace_feature_pages.pre_inquiries.new_confirm", "Uue alustamine tühjendab praeguse salvestamata teksti. Vajuta uuesti, kui soovid alustada uut."));
+      return;
+    }
+    newInquiryConfirmRef.current = 0;
+    handleNewInquiry();
+  }
+
   function handleNewInquiry() {
     createActionIdRef.current = createPreInquiryActionId();
     setActiveInquiryId("");
@@ -1646,7 +1711,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     setShowMoreContacts(false);
     setDraftTouched(false);
     setWorkflowMode("");
-    setActiveWorkflowStep("collect");
+    setActiveWorkflowStep("path");
     setAssessmentPathChosen(false);
     /* Uus eelpöördumine ei ole ühestki Teekonnast tulnud — jagamisvalikut ei
        ole olemas. Vaikehulk oleks siin väide kasutaja nõusoleku kohta, mida ta
@@ -1683,7 +1748,9 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     setShowMoreContacts(false);
     setDraftTouched(true);
     setWorkflowMode("existing");
-    setActiveWorkflowStep("preview");
+    setActiveWorkflowStep("text");
+    /* Vastuvõtja jõuab lingist („ava pöördumine") otse selle pöördumise vaatesse. */
+    setReceiverStep("inquiry");
     setAssessmentPathChosen(Boolean(inquiry.assessmentState?.path));
     /* Avatud eelpöördumise valik on see, mis TEMA juures salvestatud on —
        mitte vaikehulk. Vale vaikehulk näitaks siin võõra rea kohta valikut,
@@ -1961,7 +2028,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
         })
       : inquiry.userEditedDraft || inquiry.generatedDraft || inquiry.situation || "";
     if (downloadTextFile(content, buildPreInquiryDownloadName(inquiry.topic))) {
-      setNotice(readText(t, "workspace_feature_pages.pre_inquiries.received_download", "Eelpöördumise eelinfo alla laaditud."));
+      setNotice(readText(t, "workspace_feature_pages.pre_inquiries.download_success", "Pöördumise tekst laaditi alla."));
     }
   }
 
@@ -2083,7 +2150,12 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       if (updated) {
         setInquiries((current) => current.map((item) => item.id === updated.id ? updated : item));
       }
-      setNotice(readText(t, "workspace_feature_pages.pre_inquiries.workflow_save_success", "Vastuvõtja tööplaan salvestati."));
+      /* Arhiveerimine ütleb, mis juhtus, mitte „tööplaan salvestati". */
+      setNotice(
+        status === "ARCHIVED"
+          ? readText(t, "workspace_feature_pages.pre_inquiries.archive_success", "Eelpöördumine arhiveeriti.")
+          : readText(t, "workspace_feature_pages.pre_inquiries.workflow_save_success", "Vastuvõtja tööplaan salvestati.")
+      );
     } catch (workflowError) {
       setError(workflowError?.message || readText(t, "workspace_feature_pages.pre_inquiries.errors.workflow_save_failed", "Vastuvõtja tööplaani ei saanud salvestada."));
     } finally {
@@ -2186,6 +2258,12 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
   }
 
   function handleStartWorkflow(mode) {
+    /* Teekonna info tuleb kaasa ainult Teekonna vaatest alustades. Varem oli
+       see valik siin lihtsalt lukus; nüüd viib see inimese sinna, kust saab. */
+    if (mode === "journey" && !canUseJourneyPrefill) {
+      pushWithTransition(router, localizePath("/teekond", locale));
+      return;
+    }
     setWorkflowMode(mode);
     setNotice("");
     setError("");
@@ -2197,7 +2275,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       setActiveWorkflowStep("journey");
       return;
     }
-    setActiveWorkflowStep("collect");
+    setActiveWorkflowStep("path");
   }
 
   function handleSelectRecipient(entry, serviceAction = null) {
@@ -2209,1020 +2287,810 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       ? "ORGANIZATION_INBOX"
       : entry.type === "SERVICE_PROVIDER" ? "SERVICE_PROVIDER" : "KOV_CONTACT");
     setDraftTouched(false);
-    setActiveWorkflowStep("preview");
+    setActiveWorkflowStep("text");
   }
+
+  /* ---------- Saatja töövoog: vaated sammulaval ----------
+     Iga vaade on omaette komponent kaustas ./preInquiry (CollectViews,
+     DomainsView, FlowViews). Siin on ainult see, mis vaateid lehe olekuga seob:
+     millised vaated on, mis seisus need on ja mis tegevus kuhu viib. */
+  const tr = (key, fallback) => readText(t, `workspace_feature_pages.pre_inquiries.${key}`, fallback);
+  const subject = normalizedAssessmentState.subject;
+  const supportContext = normalizedAssessmentState.supportContext;
+  const hasDomains = normalizedAssessmentState.path !== "QUICK_DESCRIPTION";
+  const domainQuestionCount = PRE_INQUIRY_DOMAIN_DEFINITIONS.reduce((sum, definition) => sum + definition.primaryQuestions.length, 0);
+  const domainAnswerCount = normalizedAssessmentState.domains.reduce(
+    (sum, domain) => sum + (domain.primaryAnswers || []).filter((answer) => answer.screenAnswer).length,
+    0
+  );
+  const flowKeys = [
+    ...(workflowMode === "journey" ? ["journey"] : []),
+    "path",
+    "situation",
+    "who",
+    "urgency",
+    ...(hasDomains ? ["domains"] : []),
+    "context",
+    "assistant",
+    "review",
+    "recipient",
+    "text",
+    "send",
+    "saved"
+  ];
+  const partial = (done, any) => (done ? "done" : any ? "partial" : "empty");
+  const flowState = {
+    journey: journeyShareSelections.length ? "done" : "empty",
+    path: assessmentPathChosen ? "done" : "empty",
+    situation: partial(Boolean(situation.trim() && subject.municipalityText?.trim()), Boolean(situation.trim() || subject.municipalityText?.trim())),
+    who: partial(Boolean(subject.concernsAbout && subject.consentStatus), Boolean(subject.concernsAbout || subject.consentStatus)),
+    urgency: subject.urgency ? "done" : "empty",
+    domains: partial(domainAnswerCount === domainQuestionCount, domainAnswerCount > 0),
+    context: supportContext.existingSupport || supportContext.supportAdequacy || supportContext.personWish ? "done" : "empty",
+    assistant: assistantMessage ? "done" : "empty",
+    review: "empty",
+    recipient: selectedRecipient ? "done" : "empty",
+    text: draftTouched || activeInquiry ? "done" : "empty",
+    send: partial(Boolean(activeInquiry?.sentAt || activeInquiry?.status === "SENT"), Boolean(activeInquiry)),
+    saved: "empty"
+  };
+  const flowSummary = {
+    path: assessmentPathChosen ? selectedAssessmentPath.title : "",
+    situation: situation.trim().slice(0, 90),
+    who: [subject.concernsAbout, subject.consentStatus].filter(Boolean).join(" · "),
+    urgency: subject.urgency,
+    domains: hasDomains ? `${domainAnswerCount}/${domainQuestionCount}` : "",
+    context: supportContext.personWish.trim().slice(0, 90),
+    recipient: selectedRecipient?.title || "",
+    text: topic.trim().slice(0, 90),
+    saved: savedInquiries.length ? String(savedInquiries.length) : ""
+  };
+  const preInquirySteps = flowKeys.map((key) => ({
+    key,
+    label: readText(t, `${PRE_INQUIRY_STEPS_KEY}.${key}.title`, key),
+    short: readText(t, `${PRE_INQUIRY_STEPS_KEY}.${key}.short`, key),
+    state: flowState[key],
+    summary: flowSummary[key] || undefined,
+    /* Loendid ja ülevaade võivad olla pikad: nende järgi ühist kõrgust ei võeta. */
+    free: key === "review" || key === "recipient" || key === "saved"
+  }));
 
   if (!isRecipientRole && !workflowMode) {
     return (
-      <div>
-        <section>
-          <div>
-            <h1>
-              {readText(t, "workspace_feature_pages.pre_inquiries.start.title", "Koosta eelpöördumine")}
-            </h1>
-            <p>
-              {readText(t, "workspace_feature_pages.pre_inquiries.start.lead", "Eelpöördumine aitab olukorra arusaadavalt kirja panna ja valida, kelle poole pöörduda. See ei ole ametlik hindamine ega teenuse määramise otsus.")}
-            </p>
-          </div>
-          <div>
-            {PRE_INQUIRY_START_OPTIONS.map((option) => {
-              const disabled = option.id === "journey" && !canUseJourneyPrefill;
-              return (
-                <button
-                  key={option.id}
-                  type="button"
-                  disabled={disabled}
-                  aria-disabled={disabled ? "true" : "false"}
-                  onClick={() => !disabled && handleStartWorkflow(option.id)}
-                >
-                  <span>{option.title}</span>
-                  <span>{option.description}</span>
-                  {disabled ? (
-                    <span>
-                      {readText(t, "workspace_feature_pages.pre_inquiries.start.journey_locked", "Teekonnast jätkamiseks ava eelpöördumine konkreetse Teekonna vaatest.")}
-                    </span>
-                  ) : null}
-                </button>
-              );
-            })}
-          </div>
-        </section>
-      </div>
+      <PreInquiryStart
+        title={readText(t, "workspace_feature_pages.pre_inquiries.start.title", "Koosta eelpöördumine")}
+        lead={readText(t, "workspace_feature_pages.pre_inquiries.start.lead", "Eelpöördumine aitab olukorra arusaadavalt kirja panna ja valida, kelle poole pöörduda. See ei ole ametlik hindamine ega teenuse määramise otsus.")}
+        options={PRE_INQUIRY_START_OPTIONS.map((id) => ({
+          id,
+          title: readText(t, `${PRE_INQUIRY_START_KEY}.${id}.title`, ""),
+          description: readText(
+            t,
+            id === "journey" && !canUseJourneyPrefill
+              ? `${PRE_INQUIRY_START_KEY}.journey.description_open`
+              : `${PRE_INQUIRY_START_KEY}.${id}.description`,
+            ""
+          )
+        }))}
+        onStart={handleStartWorkflow}
+      />
     );
   }
 
   if (isRecipientRole) {
+    /* ---------- Vastuvõtja töövoog: tööjärg ja avatud pöördumise vaated ----------
+       Vaated on failis ./preInquiry/ReceiverViews.jsx, seisu ja järjekorra
+       reegel failis lib/preInquiryReceiverQueue.js. */
+    /* Avatud saab olla ainult rida, mis on tööjärjes: saatmata rida (admini
+       proovivaates enda mustand) ei ole kellegi vastuvõtus. */
+    const activeReceivedState = activeReceivedInquiry ? preInquiryReceiverState(activeReceivedInquiry) : null;
+    const opened = activeReceivedState && activeReceivedState.group !== "none" ? activeReceivedInquiry : null;
+    const openedState = opened ? activeReceivedState : null;
+    const queueGroup = receiverGroup || (receiverQueue.new.length ? "new" : receiverQueue.mine.length ? "mine" : "new");
+    const receiverStateLabel = (state) => {
+      if (state.group === "archived") return { text: tr("views.receiver.state.archived", "arhiveeritud"), tone: "quiet" };
+      if (state.group === "new") {
+        return { text: tr("views.receiver.state.new", "uus, ootab {days}. päeva").replace("{days}", String((state.days ?? 0) + 1)), tone: "wait" };
+      }
+      if (state.contact === "due") {
+        return { text: tr("views.receiver.state.contact_due", "kontakti aeg käes ({date})").replace("{date}", formatDay(state.contactOn, locale)), tone: "wait" };
+      }
+      if (state.contact === "later") {
+        return { text: tr("views.receiver.state.contact_later", "järgmine kontakt {date}").replace("{date}", formatDay(state.contactOn, locale)), tone: "ok" };
+      }
+      return { text: tr("views.receiver.state.accepted", "vastu võetud {date}").replace("{date}", formatDay(state.at, locale)).trim(), tone: "ok" };
+    };
+    const receiverMeta = (inquiry) =>
+      [
+        inquiry.authorErasedAt ? tr("deleted_author", "Kustutatud kasutaja pöördumine") : "",
+        inquiry.selectedRecipientName,
+        tr("views.receiver.arrived", "saabus {date}").replace("{date}", formatDay(inquiry.sentAt || inquiry.updatedAt, locale))
+      ]
+        .filter(Boolean)
+        .join(" · ");
+    const acceptAction = (inquiry) => ({
+      label: acceptingInquiryId === inquiry.id ? tr("actions.saving", "Salvestan...") : tr("views.receiver.accept", "Võtan vastu"),
+      busy: Boolean(acceptingInquiryId),
+      onClick: () => handleAcceptInquiry(inquiry)
+    });
+    const queueRows = receiverQueue[queueGroup].map(({ inquiry, state }) => {
+      const label = receiverStateLabel(state);
+      return {
+        id: inquiry.id,
+        title: inquiry.topic || tr("untitled", "Pealkirjata"),
+        state: label.text,
+        tone: label.tone,
+        meta: receiverMeta(inquiry),
+        excerpt: inquiry.situation || "",
+        selected: inquiry.id === opened?.id,
+        onOpen: () => {
+          setActiveInquiryId(inquiry.id);
+          setNotice("");
+          setError("");
+          setReceiverStep("inquiry");
+        },
+        accept: state.group === "new" ? acceptAction(inquiry) : null
+      };
+    });
+    const queueGroups = [
+      { value: "new", label: tr("views.receiver.queue.group_new", "Uued · {count}").replace("{count}", String(receiverQueue.new.length)) },
+      { value: "mine", label: tr("views.receiver.queue.group_mine", "Minu töös · {count}").replace("{count}", String(receiverQueue.mine.length)) },
+      { value: "archived", label: tr("views.receiver.queue.group_archived", "Arhiiv · {count}").replace("{count}", String(receiverQueue.archived.length)) }
+    ];
+    const queueEmptyText = !receiverInquiries.length
+      ? tr("empty_received", "Sulle adresseeritud eelpöördumised ilmuvad siia.")
+      : queueGroup === "mine"
+        ? tr("views.receiver.queue.empty_mine", "Sinu töös ei ole praegu ühtegi pöördumist.")
+        : queueGroup === "archived"
+          ? tr("views.receiver.queue.empty_archived", "Arhiivis ei ole pöördumisi.")
+          : tr("views.receiver.queue.empty_new", "Uusi pöördumisi ei ole.");
+
+    const receiverKeys = ["queue", ...(opened ? ["inquiry", "info", "check", "plan", "prepare", "network"] : []), "settings"];
+    const planTouched = Boolean(receiverNoteDraft.trim() || nextContactOnDraft);
+    const checkedCount = receiverChecklistDraft.filter((item) => item.checked).length;
+    const receiverStepState = {
+      queue: "empty",
+      inquiry: openedState && openedState.group !== "new" ? "done" : "empty",
+      info: "empty",
+      check: !receiverChecklistDraft.length ? "empty" : checkedCount === receiverChecklistDraft.length ? "done" : checkedCount ? "partial" : "empty",
+      plan: planTouched ? "done" : "empty",
+      prepare: "empty",
+      network: "empty",
+      settings: acceptsPreInquiries ? "done" : "empty"
+    };
+    const receiverStepSummary = {
+      queue: tr("views.receiver.queue.summary", "{new} uut · {mine} töös")
+        .replace("{new}", String(receiverQueue.new.length))
+        .replace("{mine}", String(receiverQueue.mine.length)),
+      inquiry: opened ? (opened.topic || tr("untitled", "Pealkirjata")).slice(0, 90) : "",
+      check: receiverChecklistDraft.length ? `${checkedCount}/${receiverChecklistDraft.length}` : "",
+      plan: nextContactOnDraft ? formatDay(nextContactOnDraft, locale) : ""
+    };
+    const receiverSteps = receiverKeys.map((key) => ({
+      key,
+      label: readText(t, `${PRE_INQUIRY_RECEIVER_STEPS_KEY}.${key}.title`, key),
+      short: readText(t, `${PRE_INQUIRY_RECEIVER_STEPS_KEY}.${key}.short`, key),
+      state: receiverStepState[key],
+      summary: receiverStepSummary[key] || undefined,
+      /* Loend ja eelinfo võivad olla pikad: nende järgi ühist kõrgust ei võeta. */
+      free: key === "queue" || key === "info" || key === "prepare" || key === "network"
+    }));
+    const savingPlan = Boolean(opened && savingReceiverWorkflowId === opened.id);
+    /* Tööplaani salvestamine märgib uue pöördumise serveris vastuvõetuks
+       (updatePreInquiryReceiverWorkflow seab openedAt). Nupp ütleb seda ette. */
+    const savePlanLabel = savingPlan
+      ? tr("actions.saving", "Salvestan...")
+      : openedState?.group === "new"
+        ? tr("views.receiver.plan.save_and_accept", "Võtan vastu ja salvestan")
+        : tr("actions.save_workflow", "Salvesta tööplaan");
+    const savePlanButton = opened ? (
+      <Button type="button" variant="primary" disabled={savingPlan} onClick={() => handleSaveReceiverWorkflow(opened)}>
+        {savePlanLabel}
+      </Button>
+    ) : null;
+    const acceptNote = openedState?.group === "new" ? tr("views.receiver.plan.accept_note", "Salvestamine märgib pöördumise vastuvõetuks ja pöörduja näeb seda.") : "";
+
+    const renderReceiverView = (step) => {
+      switch (step.key) {
+        case "inquiry": {
+          const label = receiverStateLabel(openedState);
+          const text = opened.userEditedDraft || opened.generatedDraft || "";
+          const mailto = buildPreInquiryReplyMailto(opened);
+          return (
+            <InquiryView
+              tr={tr}
+              topic={opened.topic || tr("untitled", "Pealkirjata")}
+              meta={receiverMeta(opened)}
+              state={label.text}
+              tone={label.tone}
+              situation={opened.situation || ""}
+              text={text.trim() && text.trim() !== String(opened.situation || "").trim() ? text : ""}
+              actions={
+                <>
+                  {openedState.group === "new" ? (
+                    <Button type="button" variant="primary" disabled={Boolean(acceptingInquiryId)} onClick={() => handleAcceptInquiry(opened)}>
+                      {acceptAction(opened).label}
+                    </Button>
+                  ) : null}
+                  <Button type="button" variant="secondary" disabled={openingRoomInquiryId === opened.id || !opened.authorId} onClick={() => handleOpenInquiryRoom(opened)}>
+                    {openingRoomInquiryId === opened.id ? tr("actions.opening_room", "Avan...") : tr("actions.open_room", "Ava vestlusruum")}
+                  </Button>
+                  {mailto ? (
+                    <Button as="a" href={mailto} variant="secondary">
+                      {tr("actions.write_email", "Kirjuta e-kiri")}
+                    </Button>
+                  ) : null}
+                </>
+              }
+            />
+          );
+        }
+        case "info":
+          return (
+            <InfoView
+              tr={tr}
+              empty={!shouldShowActiveReceivedJourneySharedInfo && !activeReceivedInquiryAssessmentReview}
+              actions={
+                <Button type="button" variant="secondary" onClick={() => handleDownloadReceivedInquiry(opened)}>
+                  {tr("received_download", "Laadi eelinfo alla")}
+                </Button>
+              }
+            >
+              {shouldShowActiveReceivedJourneySharedInfo ? (
+                <JourneySharedInfoBlock info={activeReceivedJourneySharedInfo} t={t} audience={activeReceivedJourneySharedInfoAudience} serviceLabel={opened.selectedRecipientName || ""} />
+              ) : null}
+              {activeReceivedInquiryAssessmentReview ? (
+                <PreInquiryAssessmentReviewSection
+                  t={t}
+                  title={tr("sections.received_assessment_review", "Eelkaardistuse struktureeritud eelinfo")}
+                  review={activeReceivedInquiryAssessmentReview}
+                  situation={opened.situation || ""}
+                />
+              ) : null}
+            </InfoView>
+          );
+        case "check":
+          return (
+            <CheckView
+              tr={tr}
+              checklist={receiverChecklistDraft.map((item) => ({ id: item.id, checked: item.checked, label: readChecklistLabel(t, item) }))}
+              onCheck={updateReceiverChecklistItem}
+              note={acceptNote}
+              actions={savePlanButton}
+            />
+          );
+        case "plan":
+          return (
+            <PlanView
+              tr={tr}
+              note={receiverNoteDraft}
+              onNote={setReceiverNoteDraft}
+              contactOn={nextContactOnDraft}
+              onContactOn={setNextContactOnDraft}
+              footNote={acceptNote}
+              actions={
+                <>
+                  {savePlanButton}
+                  {opened.status === "ARCHIVED" ? (
+                    <Button type="button" variant="secondary" disabled={savingPlan} onClick={() => handleSaveReceiverWorkflow(opened, "READY")}>
+                      {tr("views.receiver.plan.restore", "Võta tagasi töösse")}
+                    </Button>
+                  ) : (
+                    <Button type="button" variant="secondary" disabled={savingPlan} onClick={() => handleSaveReceiverWorkflow(opened, "ARCHIVED")}>
+                      {tr("actions.archive", "Arhiveeri")}
+                    </Button>
+                  )}
+                </>
+              }
+            />
+          );
+        case "prepare":
+          return (
+            <PrepareView tr={tr}>
+              <CaseworkPreparationPanel t={t} inquiry={opened} locale={locale} embedded />
+            </PrepareView>
+          );
+        case "network":
+          return (
+            <NetworkView tr={tr}>
+              {/* COLLAB-P4: võrgustikku kaasamine sünnib SIIT, sest jagamise
+                  lähteobjekt on just see pöördumine. */}
+              <NetworkShareComposer preInquiryId={opened.id} />
+            </NetworkView>
+          );
+        case "settings":
+          return (
+            <SettingsView
+              tr={tr}
+              canToggle={activeRole === "SOCIAL_WORKER"}
+              accepts={acceptsPreInquiries}
+              onAccepts={setAcceptsPreInquiries}
+              note={
+                activeRole !== "SOCIAL_WORKER"
+                  ? tr("receiving.provider_note", "Vastuvõtukanalid on teenuseprofiilis. Siin kuvatakse sulle adresseeritud eelpöördumised.")
+                  : isAdmin
+                    ? tr("receiving.admin_note", "Admini testvaade; salvestus käib ainult sinu kontole.")
+                    : tr("receiving.note", "Lubab sinu kontole adresseeritud eelpöördumised platvormis vastu võtta.")
+              }
+              saving={savingPreferences}
+              onSave={handleSavePreferences}
+            />
+          );
+        default:
+          return (
+            <QueueView tr={tr} groups={queueGroups} group={queueGroup} onGroup={setReceiverGroup} rows={queueRows} emptyText={queueEmptyText}>
+              {/* COLLAB-P4: saabuv võrgustikujagamine on saaja jaoks sama kujuga mis
+                  saabuv eelpöördumine: samal laual, mitte teises postkastis.
+                  Komponent ei joonista midagi, kui jagamisi ei ole. */}
+              <NetworkShareInbox />
+            </QueueView>
+          );
+      }
+    };
+
     return (
       <div className="pre-inquiry-workflow pre-inquiry-workflow--receiver">
-        <div className="feature-page__intro">
-          <p className={bodyTextClassName}>
-            {`${roleLabel(t, activeRole)} · ${readText(t, "workspace_feature_pages.pre_inquiries.receiver_workspace", "Eelpöördumiste vastuvõtt")}`}
-          </p>
-        </div>
-
-        {loading ? <p className={bodyTextClassName}>{readText(t, "workspace_feature_pages.pre_inquiries.loading", "Laen eelpöördumisi...")}</p> : null}
+        {loading ? <p className={viewStyles.quiet}>{tr("loading", "Laen eelpöördumisi...")}</p> : null}
         {error ? (
-          <p>
+          <p className={viewStyles.notice} data-tone="risk" role="alert">
             {error}
           </p>
         ) : null}
         {notice ? (
-          <p>
+          <p className={viewStyles.notice} aria-live="polite">
             {notice}
           </p>
         ) : null}
-
-        <SectionCard flat={embedded} title={readText(t, "workspace_feature_pages.pre_inquiries.sections.receiving_settings", "Vastuvõtt")}>
-          {activeRole === "SOCIAL_WORKER" ? (
-            <div>
-              <Checkbox
-                checked={acceptsPreInquiries}
-                onChange={(value) => setAcceptsPreInquiries(Boolean(value))}
-                label={
-                  <span className={receivingCheckboxLabelClassName}>
-                    {readText(t, "workspace_feature_pages.pre_inquiries.receiving.accepts_platform", "Võtan eelpöördumisi platvormil vastu")}
-                  </span>
-                }
-              />
-              <p>
-                {isAdmin
-                  ? readText(t, "workspace_feature_pages.pre_inquiries.receiving.admin_note", "Admini testvaade; salvestus käib ainult sinu kontole.")
-                  : readText(t, "workspace_feature_pages.pre_inquiries.receiving.note", "Lubab sinu kontole adresseeritud eelpöördumised platvormis vastu võtta.")}
-              </p>
-              <Button type="button" size="sm" disabled={savingPreferences} onClick={handleSavePreferences}>
-                {savingPreferences
-                  ? readText(t, "workspace_feature_pages.pre_inquiries.actions.saving", "Salvestan...")
-                  : readText(t, "workspace_feature_pages.pre_inquiries.actions.save_preferences", "Salvesta vastuvõtt")}
-              </Button>
-            </div>
-          ) : (
-            <p className={bodyTextClassName}>
-              {readText(t, "workspace_feature_pages.pre_inquiries.receiving.provider_note", "Vastuvõtukanalid on teenuseprofiilis. Siin kuvatakse sulle adresseeritud eelpöördumised.")}
-            </p>
-          )}
-        </SectionCard>
-
-        <SectionCard flat={embedded} title={readText(t, "workspace_feature_pages.pre_inquiries.sections.received", "Saabunud eelpöördumised")}>
-          <div>
-            {receiverInquiries.length ? receiverInquiries.map((inquiry) => (
-              <article key={inquiry.id}>
-                <div>
-                  <div>
-                    <h3>{inquiry.topic || readText(t, "workspace_feature_pages.pre_inquiries.untitled", "Pealkirjata")}</h3>
-                    <p>
-                      {[
-                        inquiry.author?.email || (inquiry.authorErasedAt
-                          ? readText(t, "workspace_feature_pages.pre_inquiries.deleted_author", "Kustutatud kasutaja pöördumine")
-                          : ""),
-                        inquiry.selectedRecipientName,
-                        formatDate(inquiry.updatedAt, locale)
-                      ].filter(Boolean).join(" · ")}
-                    </p>
-                  </div>
-                  <span>
-                    {inquiry.status || "DRAFT"}
-                  </span>
-                </div>
-                <p>
-                  {inquiry.situation}
-                </p>
-                <div>
-                  <Button type="button" size="sm" onClick={() => handleOpenInquiry(inquiry)}>
-                    {readText(t, "workspace_feature_pages.pre_inquiries.actions.open", "Ava")}
-                  </Button>
-                  <Button type="button" size="sm" disabled={acceptingInquiryId === inquiry.id || ["READY", "ARCHIVED"].includes(inquiry.status)} onClick={() => handleAcceptInquiry(inquiry)}>
-                    {acceptingInquiryId === inquiry.id
-                      ? readText(t, "workspace_feature_pages.pre_inquiries.actions.saving", "Salvestan...")
-                      : readText(t, "workspace_feature_pages.pre_inquiries.actions.accept", "Märgi vastuvõetuks")}
-                  </Button>
-                  <Button type="button" size="sm" disabled={openingRoomInquiryId === inquiry.id || !inquiry.authorId} onClick={() => handleOpenInquiryRoom(inquiry)}>
-                    {openingRoomInquiryId === inquiry.id
-                      ? readText(t, "workspace_feature_pages.pre_inquiries.actions.opening_room", "Avan...")
-                      : readText(t, "workspace_feature_pages.pre_inquiries.actions.open_room", "Ava vestlusruum")}
-                  </Button>
-                  {buildPreInquiryReplyMailto(inquiry) ? (
-                    <a href={buildPreInquiryReplyMailto(inquiry)}>
-                      {readText(t, "workspace_feature_pages.pre_inquiries.actions.write_email", "Kirjuta e-kiri")}
-                    </a>
-                  ) : null}
-                </div>
-              </article>
-            )) : (
-              <p className={bodyTextClassName}>{readText(t, "workspace_feature_pages.pre_inquiries.empty_received", "Sulle adresseeritud eelpöördumised ilmuvad siia, kui vastuvõtt on lubatud ja adressaat on kontoga seotud.")}</p>
-            )}
-          </div>
-        </SectionCard>
-
-        {activeReceivedInquiry ? (
-          <CaseworkPreparationPanel t={t} inquiry={activeReceivedInquiry} locale={locale} embedded={embedded} />
-        ) : null}
-
-        {activeReceivedInquiry ? (
-          <SectionCard flat={embedded} title={readText(t, "workspace_feature_pages.pre_inquiries.sections.selected_received", "Valitud eelpöördumine")}>
-            <div>
-              <div>
-                <p>{activeReceivedInquiry.topic || readText(t, "workspace_feature_pages.pre_inquiries.untitled", "Pealkirjata")}</p>
-                <Button type="button" size="sm" onClick={() => handleDownloadReceivedInquiry(activeReceivedInquiry)}>
-                  {readText(t, "workspace_feature_pages.pre_inquiries.received_download", "Laadi eelinfo alla")}
-                </Button>
-              </div>
-              <p className={bodyTextClassName}>{activeReceivedInquiry.situation}</p>
-              {shouldShowActiveReceivedJourneySharedInfo ? (
-                <JourneySharedInfoBlock info={activeReceivedJourneySharedInfo} t={t} audience={activeReceivedJourneySharedInfoAudience} serviceLabel={activeReceivedInquiry.selectedRecipientName || ""} />
-              ) : null}
-              {activeReceivedInquiry.assessmentState ? (
-                <ServiceProfileTextarea
-                  readOnly
-                  value={buildPreInquiryAssessmentExportText(activeReceivedInquiry.assessmentState, {
-                    topic: activeReceivedInquiry.topic || "",
-                    situation: activeReceivedInquiry.situation || "",
-                    draft: activeReceivedInquiry.userEditedDraft || activeReceivedInquiry.generatedDraft || "",
-                    recipientName: activeReceivedInquiry.selectedRecipientName || ""
-                  })}
-                />
-              ) : null}
-              {activeReceivedInquiry.userEditedDraft || activeReceivedInquiry.generatedDraft ? (
-                <ServiceProfileTextarea readOnly value={activeReceivedInquiry.userEditedDraft || activeReceivedInquiry.generatedDraft || ""} />
-              ) : null}
-            </div>
-          </SectionCard>
-        ) : null}
-
-        {activeReceivedInquiry ? (
-          <SectionCard flat={embedded} title={readText(t, "workspace_feature_pages.pre_inquiries.sections.receiver_workflow", "Vastuvõtja tööplaan")}>
-            <p className={bodyTextClassName}>
-              {readText(t, "workspace_feature_pages.pre_inquiries.receiver_workflow_note", "Kasuta seda plokki kohtumise või järgmise kontakti ettevalmistamiseks. Märkmed on nähtavad vastuvõtja töövaates, mitte pöörduja mustandis.")}
-            </p>
-            <div>
-              {receiverChecklistDraft.map((item) => (
-                <Checkbox
-                  key={item.id}
-                  name={`receiver-workflow-${item.id}`}
-                  checked={item.checked}
-                  onChange={(checked) => updateReceiverChecklistItem(item.id, checked)}
-                  label={readChecklistLabel(t, item)}
-                />
-              ))}
-            </div>
-            <Label>
-              <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.receiver_note", "Sisemine märge")}</span>
-              <ServiceProfileTextarea
-                value={receiverNoteDraft}
-                onChange={(event) => setReceiverNoteDraft(event.target.value)}
-                placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.receiver_note", "Mida on vaja enne järgmist kontakti täpsustada või ette valmistada?")}
-              />
-            </Label>
-            <Label>
-              <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.next_contact_on", "Järgmise kontakti kuupäev")}</span>
-              <Input
-                type="date"
-                value={nextContactOnDraft}
-                onChange={(event) => setNextContactOnDraft(event.target.value)}
-              />
-              <small>{readText(t, "workspace_feature_pages.pre_inquiries.next_contact_hint", "Kuupäev on nähtav ainult vastuvõtja töövaates.")}</small>
-            </Label>
-            <div>
-              <Button type="button" size="sm" disabled={savingReceiverWorkflowId === activeReceivedInquiry.id} onClick={() => handleSaveReceiverWorkflow(activeReceivedInquiry)}>
-                {savingReceiverWorkflowId === activeReceivedInquiry.id
-                  ? readText(t, "workspace_feature_pages.pre_inquiries.actions.saving", "Salvestan...")
-                  : readText(t, "workspace_feature_pages.pre_inquiries.actions.save_workflow", "Salvesta tööplaan")}
-              </Button>
-              <Button type="button" size="sm" disabled={savingReceiverWorkflowId === activeReceivedInquiry.id || activeReceivedInquiry.status === "READY"} onClick={() => handleSaveReceiverWorkflow(activeReceivedInquiry, "READY")}>
-                {readText(t, "workspace_feature_pages.pre_inquiries.actions.mark_ready", "Märgi vastuvõetuks")}
-              </Button>
-              <Button type="button" size="sm" variant="primary" disabled={savingReceiverWorkflowId === activeReceivedInquiry.id || activeReceivedInquiry.status === "ARCHIVED"} onClick={() => handleSaveReceiverWorkflow(activeReceivedInquiry, "ARCHIVED")}>
-                {readText(t, "workspace_feature_pages.pre_inquiries.actions.archive", "Arhiveeri")}
-              </Button>
-            </div>
-            {/* COLLAB-P4: võrgustikku kaasamine sünnib SIIT, sest jagamise
-                lähteobjekt on just see pöördumine. Eraldi komponent hoiab selle
-                faili muudatuse ühe rea peal. */}
-            <NetworkShareComposer preInquiryId={activeReceivedInquiry.id} />
-          </SectionCard>
-        ) : null}
-
-        {activeReceivedInquiryAssessmentReview ? (
-          <PreInquiryAssessmentReviewSection
-            t={t}
-            title={readText(t, "workspace_feature_pages.pre_inquiries.sections.received_assessment_review", "Eelkaardistuse struktureeritud eelinfo")}
-            review={activeReceivedInquiryAssessmentReview}
-            situation={activeReceivedInquiry?.situation || ""}
-            note={readText(t, "workspace_feature_pages.pre_inquiries.assessment.receiver_review_note", "Siin on eelpöördumise vastused struktureeritud kujul. Tekstiekspordi saad kasutada siis, kui vajad tervet eelinfot ühe kopeeritava plokina.")}
-          />
-        ) : null}
+        {/* Vaadete loend muutub, kui pöördumine avatakse või suletakse: siis
+            ehitatakse lava uuesti ja see avaneb vaatel, kuhu vastuvõtja läks. */}
+        <StepFlight
+          key={receiverKeys.join("|")}
+          label={tr("views.receiver.flow_label", "Pöördumiste vastuvõtt")}
+          steps={receiverSteps}
+          initialIndex={Math.max(0, receiverKeys.indexOf(receiverStep))}
+          activeKey={receiverKeys.includes(receiverStep) ? receiverStep : "queue"}
+          onStepChange={(index, step) => {
+            if (step) setReceiverStep(step.key);
+          }}
+        >
+          {renderReceiverView}
+        </StepFlight>
       </div>
     );
   }
 
+  /* Paneelis ei ole „Edasi" nuppu (omanik 09.10): edasi liigutakse kiirmenüü
+     noolest või kerides. Ainult valikutega vaade viib pärast vastamist ise
+     edasi; ohuteate korral jääb vaade ette. */
+  const advanceFlow = (key) => {
+    window.clearTimeout(flowAdvanceRef.current);
+    flowAdvanceRef.current = window.setTimeout(() => setActiveWorkflowStep(key), 420);
+  };
+  const stepAfter = (key) => flowKeys[flowKeys.indexOf(key) + 1];
+  /* Seisu märgis on kuupäev ilma kellaajata, nagu vastuvõtja tööjärjes. */
+  const formatStateDate = (value) => formatDay(value, locale);
+  const senderStateLabel = (inquiry) => {
+    const state = preInquirySenderState(inquiry);
+    const text = tr(`sender_state.${state.key}`, state.key)
+      .replace("{date}", state.at ? formatStateDate(state.at) : "")
+      .replace("{days}", String((state.days ?? 0) + 1));
+    return { text: text.trim(), tone: preInquirySenderTone(state.key) };
+  };
+  const describeRecipient = (entry) => ({
+    typeLabel: getPreInquiryRecipientTypeLabel(t, entry),
+    subtitle: getPreInquiryRecipientSubtitle(t, entry),
+    reason: getPreInquiryRecipientReason(entry),
+    region: getPreInquiryRecipientRegion(entry),
+    meta: [getPreInquiryChannelLabel(t, entry.deliveryChannel), entry.email, entry.municipalityName || entry.county].filter(Boolean).join(" · "),
+    referral: getPreInquiryReferralNotice(entry),
+    availability: preInquiryAvailabilityNotices(entry, t),
+    serviceActions:
+      entry.type === "SERVICE_PROVIDER"
+        ? (Array.isArray(entry.serviceActions) ? entry.serviceActions : []).filter((action) => action.platformAllowed || action.emailAllowed)
+        : null,
+    mapHref: entry.type !== "ORGANIZATION_INBOX" ? localizePath(`/teenusekaart?entryId=${encodeURIComponent(entry.id)}`, locale) : "",
+    profileHref: entry.providerProfileId ? localizePath(`/teenuseprofiil?profileId=${encodeURIComponent(entry.providerProfileId)}`, locale) : ""
+  });
+  const sendBlocked = saving || !effectiveSituation.trim() || activeInquiry?.status === "ARCHIVED";
+  const mailto = activeInquiryMailto || selectedRecipientMailto;
+  const sendChoices = [
+    selectedRecipientId && selectedRecipientSupportsPlatform
+      ? {
+          key: "send",
+          title: saving ? tr("actions.saving", "Salvestan...") : tr("actions.send_internal", "Saada platvormis"),
+          description: tr("views.send.internal_hint", "Pöördumine jõuab vastuvõtja Pöördumiste vaatesse. Näed siin, kui see on vastu võetud."),
+          disabled: sendBlocked,
+          onClick: (event) => handleSave(event, { status: "SENT" })
+        }
+      : null,
+    mailto
+      ? {
+          key: "email",
+          title: tr("actions.open_email", "Ava e-kirjana"),
+          description: tr("views.send.email_hint", "Tekst avaneb sinu e-posti rakenduses ülevaatamiseks. Platvorm ise e-kirja ei saada."),
+          onClick: () => {
+            window.location.href = mailto;
+          }
+        }
+      : null,
+    activeInquiryMailto && activeInquiry.status !== "SENT"
+      ? {
+          key: "confirm-email",
+          title: tr("actions.confirm_external_sent", "Kinnita, et saatsid e-kirja"),
+          description: tr("views.send.confirm_hint", "Märgib pöördumise saadetuks. Vastuvõttu platvorm e-kirja puhul ei näe."),
+          disabled: saving,
+          onClick: () => handleConfirmExternalSent(activeInquiry)
+        }
+      : null,
+    {
+      key: "save",
+      title: saving ? tr("actions.saving", "Salvestan...") : tr("actions.save", "Salvesta eelpöördumine"),
+      description: tr("views.send.save_hint", "Jääb sinu eelpöördumiste alla. Midagi ei saadeta."),
+      disabled: sendBlocked,
+      onClick: handleSave
+    },
+    {
+      key: "copy",
+      title: tr("actions.copy", "Kopeeri tekst"),
+      description: tr("views.send.copy_hint", "Pöördumise tekst lõikelauale, et kleepida see sinna, kus vaja."),
+      disabled: !draft.trim(),
+      onClick: handleCopy
+    },
+    {
+      key: "download",
+      title: tr("actions.download", "Laadi alla"),
+      description: tr("views.send.download_hint", "Tekstifail koos eelinfoga sinu seadmesse."),
+      disabled: !draft.trim() && !effectiveSituation.trim(),
+      onClick: handleDownload
+    }
+  ].filter(Boolean);
+  const sendSummary = selectedRecipient
+    ? `${tr("preview.recipient_prefix", "Adressaat")}: ${selectedRecipient.title}. ${tr("preview.delivery_prefix", "Saatmise viis")}: ${
+        selectedRecipientSupportsPlatform
+          ? tr("preview.delivery_platform", "platvormisisene eelpöördumine")
+          : selectedRecipientSupportsEmail
+            ? tr("preview.delivery_email", "e-kirja tekst")
+            : tr("preview.delivery_manual", "salvestamine, kopeerimine või allalaadimine")
+      }.`
+    : tr("views.send.no_recipient", "Adressaat on valimata. Saad pöördumise salvestada, kopeerida või alla laadida.");
+  const sendNotices = [
+    selectedRecipientReferralNotice
+      ? `${selectedRecipientReferralNotice} ${tr("preview.referral_hint", "Sa saad teenuseosutajalt küsida lisainfot või pöörduda KOV-i poole.")}`
+      : "",
+    ...selectedRecipientAvailabilityNotices.map(
+      ({ service, presentation }) => `${presentation.icon} ${service.name}: ${presentation.label}. ${presentation.ageText}. ${presentation.warning}`
+    )
+  ].filter(Boolean);
+  const privacyPromptBlock = savePrivacyPrompt ? (
+    <div className={viewStyles.notice} data-tone="risk" role="alert">
+      <p className={viewStyles.quiet}>
+        {savePrivacyPrompt.warning || readText(t, "privacy.confirmation.warning", "Tekst sisaldab isikuandmeid. Vali enne jatkamist, kuidas neid toodelda.")}
+      </p>
+      {savePrivacyPrompt.findings?.length ? (
+        <p className={viewStyles.quiet}>
+          {readText(t, "privacy.confirmation.detected", "Leitud:")} {savePrivacyPrompt.findings.map((finding) => finding?.label).filter(Boolean).join(", ")}
+        </p>
+      ) : null}
+      {savePrivacyPrompt.redactedText ? <p className={viewStyles.quiet}>{savePrivacyPrompt.redactedText}</p> : null}
+      <div className={viewStyles.links}>
+        <Button
+          type="button"
+          size="sm"
+          onClick={() => {
+            handleEditSaveText();
+            setActiveWorkflowStep("text");
+          }}
+        >
+          {readText(t, "privacy.confirmation.actions.edit", "Muudan teksti")}
+        </Button>
+        <Button type="button" size="sm" variant="secondary" onClick={handleSaveRedacted} disabled={saving}>
+          {readText(t, "privacy.confirmation.actions.send_redacted", "Saada maskeeritult")}
+        </Button>
+        {savePrivacyPrompt.allowOriginal ? (
+          <Button type="button" size="sm" variant="secondary" onClick={handleSaveOriginal} disabled={saving}>
+            {readText(t, "privacy.confirmation.actions.send_original", "Saada siiski")}
+          </Button>
+        ) : null}
+      </div>
+    </div>
+  ) : null;
+  const savedItems = savedInquiries.map((inquiry) => {
+    const state = senderStateLabel(inquiry);
+    return {
+      id: inquiry.id,
+      title: inquiry.topic || tr("untitled", "Pealkirjata"),
+      state: state.text,
+      tone: state.tone,
+      meta: [
+        inquiry.recipientOrganization?.displayName || inquiry.selectedRecipientName,
+        inquiry.updatedAt ? `${tr("views.saved.changed", "muudetud")} ${formatDate(inquiry.updatedAt, locale)}` : ""
+      ]
+        .filter(Boolean)
+        .join(" · "),
+      openLabel: tr("actions.open", "Ava"),
+      onOpen: () => handleOpenInquiry(inquiry),
+      actions: [
+        inquiry.status === "ARCHIVED"
+          ? { key: "reopen", label: tr("actions.reopen", "Taasava muutmiseks"), disabled: saving, onClick: () => handleReopenAuthoredInquiry(inquiry) }
+          : null,
+        {
+          key: "copy",
+          label: tr("actions.copy_short", "Kopeeri"),
+          onClick: () => navigator?.clipboard?.writeText(inquiry.userEditedDraft || inquiry.generatedDraft || inquiry.situation || "")
+        },
+        { key: "download", label: tr("actions.download", "Laadi alla"), onClick: () => handleDownloadSavedInquiry(inquiry) },
+        {
+          key: "archive",
+          label: tr("actions.archive", "Arhiveeri"),
+          disabled: saving || inquiry.status === "SENT" || inquiry.status === "ARCHIVED",
+          onClick: () => handleArchiveAuthoredInquiry(inquiry)
+        }
+      ].filter(Boolean)
+    };
+  });
+
+  const renderFlowView = (step) => {
+    switch (step.key) {
+      case "journey":
+        return (
+          <JourneyView
+            tr={tr}
+            options={journeyShareOptions}
+            labels={JOURNEY_SHARE_LABELS}
+            selected={journeyShareSelections}
+            busy={journeyShareBusy}
+            /* Valik EI OLE lõplik enne serveri vastust: me ei muuda siin olekut
+               ise, vaid küsime uue projektsiooni ja võtame ta tervikuna üle. Nii
+               ei saa ekraan näidata kitsamat valikut kui tekst tegelikult on. */
+            onToggle={(id, checked) =>
+              void refreshJourneyProjection(
+                checked ? [...new Set([...journeyShareSelections, id])] : journeyShareSelections.filter((item) => item !== id)
+              )
+            }
+          >
+            {activeDraftJourneySharedInfo ? (
+              <JourneySharedInfoBlock info={activeDraftJourneySharedInfo} t={t} audience={activeDraftJourneySharedInfoAudience} serviceLabel={selectedRecipient?.title || ""} />
+            ) : (
+              <p className={viewStyles.quiet}>
+                {tr("journey_share.empty", "Teekonna kokkuvõtet ei ole veel kaasa tulnud. Ava eelpöördumine konkreetse Teekonna vaatest või jätka uut eelpöördumist.")}
+              </p>
+            )}
+          </JourneyView>
+        );
+      case "path":
+        return (
+          <PathView
+            tr={tr}
+            paths={PRE_INQUIRY_ASSESSMENT_PATHS}
+            value={normalizedAssessmentState.path}
+            chosen={assessmentPathChosen}
+            onChoose={(pathId) => {
+              handleAssessmentPathChange(pathId);
+              setActiveWorkflowStep("situation");
+            }}
+          />
+        );
+      case "situation":
+        return (
+          <SituationView
+            tr={tr}
+            situation={situation}
+            onSituation={(value) => {
+              setSituation(value);
+              setDraftTouched(false);
+            }}
+            municipality={subject.municipalityText}
+            onMunicipality={(value) => updateAssessmentSubject("municipalityText", value)}
+          />
+        );
+      case "who":
+        return (
+          <WhoView
+            tr={tr}
+            subjectOptions={PRE_INQUIRY_SUBJECT_OPTIONS}
+            consentOptions={PRE_INQUIRY_CONSENT_OPTIONS}
+            subject={subject}
+            onSubject={(field, value) => {
+              updateAssessmentSubject(field, value);
+              const filled = { ...subject, [field]: value };
+              if (filled.concernsAbout && filled.consentStatus && !(subject.concernsAbout && subject.consentStatus)) advanceFlow(stepAfter("who"));
+            }}
+            childNote={
+              subject.concernsAbout === "Lapse või noore kohta" && hasDomains
+                ? tr("assessment.child_note", "See eelkaardistus lähtub praegu täisealise inimese eluvaldkondade põhiküsimustest. Lapse või noore olukorra puhul kirjelda mure kindlasti ka oma sõnadega; eraldi lapse ja pere eelkaardistus vajab oma küsimustikku.")
+                : ""
+            }
+          />
+        );
+      case "urgency":
+        return (
+          <UrgencyView
+            tr={tr}
+            urgencyOptions={PRE_INQUIRY_URGENCY_OPTIONS}
+            urgency={subject.urgency}
+            onUrgency={(value) => {
+              updateAssessmentSubject("urgency", value);
+              const risk = normalizePreInquiryAssessmentState({ ...normalizedAssessmentState, subject: { ...subject, urgency: value } }).riskGate.userVisibleMessage;
+              if (!risk && !subject.urgency) advanceFlow(stepAfter("urgency"));
+              else window.clearTimeout(flowAdvanceRef.current);
+            }}
+            riskMessage={normalizedAssessmentState.riskGate.userVisibleMessage}
+          />
+        );
+      case "domains":
+        return (
+          <DomainsView
+            tr={tr}
+            definitions={PRE_INQUIRY_DOMAIN_DEFINITIONS}
+            domains={normalizedAssessmentState.domains}
+            path={normalizedAssessmentState.path}
+            screenOptions={PRE_INQUIRY_SCREEN_OPTIONS}
+            followUpsOf={getPreInquiryQuestionFollowUpQuestions}
+            onAnswer={updatePrimaryQuestionAnswer}
+            onFollowUp={updatePrimaryQuestionFollowUpAnswer}
+          />
+        );
+      case "context":
+        return <ContextView tr={tr} support={supportContext} onSupport={updateAssessmentSupport} />;
+      case "assistant":
+        return (
+          <AssistantView tr={tr}>
+            <ConversationView
+              t={t}
+              chatWindowRef={chatWindowRef}
+              isStreamingAny={assisting}
+              hiddenCount={0}
+              pageSize={0}
+              onRevealOlder={() => {}}
+              canHideOlder={false}
+              onHideOlder={() => {}}
+              onJumpToBottom={() => {}}
+              messageItems={conversationItems}
+              mainClassName="documents-agent-conversation-main"
+              windowClassName="documents-agent-conversation-window"
+              isMobile={false}
+              isLightTheme
+            />
+            <ChatComposer
+              t={t}
+              locale={locale}
+              isLightTheme
+              hideTools
+              embedded
+              forcePlaceholderVisible
+              placeholderText=""
+              acceptAttr=""
+              ensureAnalysisPanelVisible={() => {}}
+              fileInputRef={fileInputRef}
+              onFileChange={() => {}}
+              inputBarRef={inputBarRef}
+              inputRef={inputRef}
+              onFocusInput={() => setInputFocused(true)}
+              onBlurInput={() => setInputFocused(false)}
+              isGenerating={assisting}
+              isStreamingAny={false}
+              isRoomMode={false}
+              roomBlocked={false}
+              roomAuthRequired={false}
+              onStop={() => {}}
+              onSend={handleComposerSend}
+              voiceEnabled={false}
+              showDictationButton={false}
+              recording={false}
+              recordingPulse={false}
+              handleMic={() => {}}
+              draftApiRef={composerDraftApiRef}
+              inputFocused={inputFocused}
+              isMobile={false}
+              activeModeKey="pre_inquiry"
+            />
+          </AssistantView>
+        );
+      case "review":
+        return (
+          <ReviewView tr={tr} rows={preInquiryOverviewRows} missing={preInquiryMissingInfo}>
+            <PreInquiryAssessmentReviewSection
+              t={t}
+              title={tr("sections.assessment_review", "Vaata eelinfo üle")}
+              review={assessmentReview}
+              situation={effectiveSituation}
+              note={tr("assessment.review_note", "Ülevaade koondab täpselt need eelkaardistuse vastused ja täpsustused, mis lähevad salvestatud eelpöördumise ning allalaaditava eelinfo juurde.")}
+            />
+          </ReviewView>
+        );
+      case "recipient":
+        return (
+          <RecipientView
+            tr={tr}
+            types={[
+              ["KOV_CONTACT", tr("recipient.kov", "KOV kontakt")],
+              ["ORGANIZATION_INBOX", tr("recipient.organization_inbox", "Organisatsiooni vastuvõtutiim")],
+              ["SERVICE_PROVIDER", tr("recipient.provider", "Teenuseosutaja")]
+            ]}
+            type={recipientType}
+            onType={(value) => {
+              setRecipientType(value);
+              setSelectedRecipientId("");
+              setSelectedProviderServiceId("");
+              setSelectedProviderLocationId("");
+              setShowMoreContacts(false);
+              setDraftTouched(false);
+            }}
+            query={recipientQuery}
+            onQuery={setRecipientQuery}
+            confidence={assistantRoutingConfidence}
+            recipients={visibleRecommendedRecipients}
+            describe={describeRecipient}
+            selectedId={selectedRecipientId}
+            onSelect={handleSelectRecipient}
+            hasMore={recommendedRecipients.length > 3}
+            showMore={showMoreContacts}
+            onToggleMore={() => setShowMoreContacts((value) => !value)}
+          />
+        );
+      case "text":
+        return (
+          <TextView
+            tr={tr}
+            topic={topic}
+            onTopic={(value) => {
+              setTopic(value);
+              setDraftTouched(false);
+            }}
+            draft={draft}
+            onDraft={(value) => {
+              setDraft(value);
+              setDraftTouched(true);
+            }}
+            remaining={(count) => t("workspace_feature_pages.pre_inquiries.remaining_characters", { count: Math.max(0, count) })}
+          >
+            {activeDraftJourneySharedInfo ? (
+              <JourneySharedInfoBlock info={activeDraftJourneySharedInfo} t={t} audience={activeDraftJourneySharedInfoAudience} serviceLabel={selectedRecipient?.title || ""} />
+            ) : null}
+          </TextView>
+        );
+      case "send":
+        return (
+          <SendView
+            tr={tr}
+            summary={sendSummary}
+            notices={sendNotices}
+            privacyPrompt={privacyPromptBlock}
+            choices={sendChoices}
+          />
+        );
+      default:
+        return <SavedView tr={tr} items={savedItems} onNew={handleNewInquiryGuarded} />;
+    }
+  };
+
   return (
     <div className="pre-inquiry-workflow">
-      <Button type="button" size="sm" onClick={handleNewInquiry}>
-        {readText(t, "workspace_feature_pages.pre_inquiries.actions.new", "Uus")}
-      </Button>
-
-      {loading ? <p className={bodyTextClassName}>{readText(t, "workspace_feature_pages.pre_inquiries.loading", "Laen eelpöördumisi...")}</p> : null}
+      {loading ? <p className={viewStyles.quiet}>{tr("loading", "Laen eelpöördumisi...")}</p> : null}
       {error ? (
-        <p>
+        <p className={viewStyles.notice} data-tone="risk" role="alert">
           {error}
         </p>
       ) : null}
       {notice ? (
-        <p>
+        <p className={viewStyles.notice} aria-live="polite">
           {notice}
         </p>
       ) : null}
-
-      <div aria-label="Eelpöördumise sammud">
-        {PRE_INQUIRY_WORKFLOW_STEPS.map((step, index) => (
-          <button
-            key={step.id}
-            type="button"
-            data-active={activeWorkflowStep === step.id ? "true" : undefined}
-            onClick={() => setActiveWorkflowStep(step.id)}
-          >
-            <span>{index + 1}</span>
-            <strong>{step.label}</strong>
-          </button>
-        ))}
-      </div>
-
-      <div>
-        <aside>
-          <div>
-            <h2>{readText(t, "workspace_feature_pages.pre_inquiries.overview.title", "Eelinfo ülevaade")}</h2>
-            <p>
-              {readText(t, "workspace_feature_pages.pre_inquiries.overview.lead", "Siin näed infot, mida kasutatakse pöördumise koostamiseks. Enne saatmist saad kõike muuta.")}
-            </p>
-          </div>
-          {preInquiryOverviewRows.length ? (
-            <dl>
-              {preInquiryOverviewRows.slice(0, 8).map(([label, value]) => (
-                <div key={label}>
-                  <dt>{label}</dt>
-                  <dd>{value}</dd>
-                </div>
-              ))}
-            </dl>
-          ) : (
-            <p>
-              {readText(t, "workspace_feature_pages.pre_inquiries.overview.empty", "Eelinfo täitub töövoo käigus.")}
-            </p>
-          )}
-          {preInquiryMissingInfo.length ? (
-            <div>
-              <p>
-                {readText(t, "workspace_feature_pages.pre_inquiries.overview.missing_hint", "Need andmed võivad aidata sobivamat kontakti leida, kuid sa ei pea kõike lisama.")}
-              </p>
-              <ul>
-                {preInquiryMissingInfo.slice(0, 6).map((item) => <li key={item}>{item}</li>)}
-              </ul>
-            </div>
-          ) : null}
-        </aside>
-        <div>
-
-      {activeWorkflowStep === "journey" ? (
-        <SectionCard flat={embedded} title="Vali, mida soovid eelpöördumises kasutada">
-          <p className={bodyTextClassName}>
-            {readText(t, "workspace_feature_pages.pre_inquiries.journey_share.lead", "Teekonna info on privaatne. Märgi ainult need osad, mida soovid selle eelpöördumise koostamisel kasutada.")}
-          </p>
-          {activeDraftJourneySharedInfo ? (
-            <JourneySharedInfoBlock info={activeDraftJourneySharedInfo} t={t} audience={activeDraftJourneySharedInfoAudience} serviceLabel={selectedRecipient?.title || ""} />
-          ) : (
-            <p className={bodyTextClassName}>{readText(t, "workspace_feature_pages.pre_inquiries.journey_share.empty", "Teekonna kokkuvõtet ei ole veel kaasa tulnud. Ava eelpöördumine konkreetse Teekonna vaatest või jätka uut eelpöördumist.")}</p>
-          )}
-          <div>
-            {journeyShareOptions.map((id) => (
-              <Checkbox
-                key={id}
-                checked={journeyShareSelections.includes(id)}
-                disabled={journeyShareBusy}
-                onChange={(checked) => {
-                  /* Valik EI OLE lõplik enne serveri vastust: me ei muuda siin
-                     olekut ise, vaid küsime uue projektsiooni ja võtame ta
-                     tervikuna üle. Nii ei saa ekraan näidata kitsamat valikut
-                     kui tekst tegelikult on. */
-                  const nextKeys = checked
-                    ? [...new Set([...journeyShareSelections, id])]
-                    : journeyShareSelections.filter((item) => item !== id);
-                  void refreshJourneyProjection(nextKeys);
-                }}
-                label={JOURNEY_SHARE_LABELS[id] || id}
-              />
-            ))}
-          </div>
-          <div>
-            <Button type="button" size="sm" variant="primary" onClick={() => setActiveWorkflowStep("recipient")}>
-              {readText(t, "workspace_feature_pages.pre_inquiries.actions.choose_recipient", "Vali adressaat")}
-            </Button>
-            <Button type="button" size="sm" onClick={() => setActiveWorkflowStep("collect")}>
-              {readText(t, "workspace_feature_pages.pre_inquiries.sections.assistant", "Täpsusta eelinfot")}
-            </Button>
-          </div>
-        </SectionCard>
-      ) : null}
-
-      {activeWorkflowStep === "collect" ? (
-      <>
-      <SectionCard flat={embedded} title="Aitan sul pöördumise ette valmistada">
-        <p className={bodyTextClassName}>
-          {readText(t, "workspace_feature_pages.pre_inquiries.assessment.intro", "Tere. Kirjelda lühidalt, mis olukord on. Sa ei pea kõike õigesti sõnastama. Küsin vajadusel ainult neid täpsustusi, mis aitavad pöördumise selgemaks teha ja sobiva kontakti leida.")}
-        </p>
-        <p className={bodyTextClassName}>
-          {readText(t, "workspace_feature_pages.pre_inquiries.assessment.note", "Eelkaardistus ei ole ametlik abivajaduse hindamine ega teenuse määramise otsus. See aitab olukorda läbi mõelda ja pöördumist ette valmistada.")}
-        </p>
-        {assessmentPathChosen ? (
-        <div>
-          <div>
-            <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.assessment_path", "Eelkaardistuse viis")}</span>
-            <DocumentsDropdown
-              ariaLabel={readText(t, "workspace_feature_pages.pre_inquiries.fields.assessment_path", "Eelkaardistuse viis")}
-              portal
-              value={normalizedAssessmentState.path}
-              onChange={handleAssessmentPathChange}
-              options={PRE_INQUIRY_ASSESSMENT_PATHS.map((path) => ({ value: path.id, label: path.title }))}
-            />
-            {selectedAssessmentPath?.description ? (
-              <span>{selectedAssessmentPath.description}</span>
-            ) : null}
-          </div>
-        </div>
-        ) : (
-          <div>
-            {PRE_INQUIRY_ASSESSMENT_PATHS.map((path) => (
-              <button
-                key={path.id}
-                type="button"
-                onClick={() => handleAssessmentPathChange(path.id)}
-              >
-                <span>{path.title}</span>
-                <span>{path.description}</span>
-              </button>
-            ))}
-          </div>
-        )}
-
-        {assessmentPathChosen ? (
-        <>
-        <div>
-          <div>
-            <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.concerns_about", "Kelle kohta pöördumine käib")}</span>
-            <DocumentsDropdown
-              ariaLabel={readText(t, "workspace_feature_pages.pre_inquiries.fields.concerns_about", "Kelle kohta pöördumine käib")}
-              portal
-              value={normalizedAssessmentState.subject.concernsAbout}
-              onChange={(value) => updateAssessmentSubject("concernsAbout", value)}
-              options={PRE_INQUIRY_SUBJECT_OPTIONS.map((option) => ({ value: option, label: option }))}
-            />
-          </div>
-          <div>
-            <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.urgency", "Kiireloomulisus")}</span>
-            <DocumentsDropdown
-              ariaLabel={readText(t, "workspace_feature_pages.pre_inquiries.fields.urgency", "Kiireloomulisus")}
-              portal
-              value={normalizedAssessmentState.subject.urgency}
-              onChange={(value) => updateAssessmentSubject("urgency", value)}
-              options={PRE_INQUIRY_URGENCY_OPTIONS.map((option) => ({ value: option, label: option }))}
-            />
-          </div>
-          <div>
-            <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.consent", "Nõusolek või pöördumise alus")}</span>
-            <DocumentsDropdown
-              ariaLabel={readText(t, "workspace_feature_pages.pre_inquiries.fields.consent", "Nõusolek või pöördumise alus")}
-              portal
-              value={normalizedAssessmentState.subject.consentStatus}
-              onChange={(value) => updateAssessmentSubject("consentStatus", value)}
-              options={PRE_INQUIRY_CONSENT_OPTIONS.map((option) => ({ value: option, label: option }))}
-            />
-          </div>
-          <Label>
-            <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.municipality", "KOV või piirkond")}</span>
-            <ServiceProfileInput
-              value={normalizedAssessmentState.subject.municipalityText}
-              onChange={(event) => updateAssessmentSubject("municipalityText", event.target.value)}
-              maxLength={180}
-              placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.municipality", "Näiteks Tallinn, Põltsamaa vald või piirkond")}
-            />
-          </Label>
-        </div>
-
-        {normalizedAssessmentState.riskGate.userVisibleMessage ? (
-          <p>
-            {normalizedAssessmentState.riskGate.userVisibleMessage}
-          </p>
-        ) : null}
-        {normalizedAssessmentState.subject.concernsAbout === "Lapse või noore kohta" && normalizedAssessmentState.path !== "QUICK_DESCRIPTION" ? (
-          <p>
-            {readText(t, "workspace_feature_pages.pre_inquiries.assessment.child_note", "See eelkaardistus lähtub praegu täisealise inimese eluvaldkondade põhiküsimustest. Lapse või noore olukorra puhul kirjelda mure kindlasti ka oma sõnadega; eraldi lapse ja pere eelkaardistus vajab oma küsimustikku.")}
-          </p>
-        ) : null}
-
-        <Label>
-          <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.situation", "Olukorra kirjeldus inimese sõnadega")}</span>
-          <ServiceProfileTextarea
-            value={situation}
-            onChange={(event) => {
-              setSituation(event.target.value);
-              setDraftTouched(false);
-            }}
-            maxLength={12000}
-            placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.situation", "Kirjelda lühidalt, mis olukord vajab abi. Teenuse nime ei pea teadma.")}
-          />
-        </Label>
-
-        {normalizedAssessmentState.path !== "QUICK_DESCRIPTION" ? (
-          <details>
-            <summary>{readText(t, "workspace_feature_pages.pre_inquiries.assessment.domains_title", "Eluvaldkonnad")}</summary>
-            <div>
-            {PRE_INQUIRY_DOMAIN_DEFINITIONS.map((definition) => {
-              const domain = normalizedAssessmentState.domains.find((item) => item.id === definition.id) || {};
-              return (
-                <div key={definition.id}>
-                  <div>
-                    <h4>{definition.title}</h4>
-                    <p>{definition.helperText}</p>
-                  </div>
-                  <div>
-                    {definition.primaryQuestions.map((primaryQuestion) => {
-                      const primaryAnswer = domain.primaryAnswers?.find((answer) => answer.id === primaryQuestion.id) || {};
-                      const followUpQuestions = getPreInquiryQuestionFollowUpQuestions(
-                        primaryQuestion,
-                        normalizedAssessmentState.path,
-                        primaryAnswer.screenAnswer
-                      );
-                      return (
-                        <div key={primaryQuestion.id}>
-                          <div>
-                            <p>{primaryQuestion.title}</p>
-                            <p>{primaryQuestion.question}</p>
-                          </div>
-                          <div>
-                            {PRE_INQUIRY_SCREEN_OPTIONS.map((option) => (
-                              <OptionCard
-                                key={option.value}
-                                type="radio"
-                                name={`pre-inquiry-question-${definition.id}-${primaryQuestion.id}`}
-                                value={option.value}
-                                checked={primaryAnswer.screenAnswer === option.value}
-                                onChange={() => updatePrimaryQuestionAnswer(definition.id, primaryQuestion.id, option.value)}
-                                fitTextLines={2}
-                              >
-                                <span>{option.label}</span>
-                              </OptionCard>
-                            ))}
-                          </div>
-                          {followUpQuestions.length ? (
-                            <div>
-                              {followUpQuestions.map((question) => (
-                                <Label key={question}>
-                                  <span>{question}</span>
-                                  <ServiceProfileTextarea
-                                    value={primaryAnswer.followUpAnswers?.[question] || ""}
-                                    onChange={(event) => updatePrimaryQuestionFollowUpAnswer(definition.id, primaryQuestion.id, question, event.target.value)}
-                                    maxLength={2000}
-                                    placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.follow_up", "Vasta oma sõnadega. Võid jätta tühjaks, kui ei tea.")}
-                                  />
-                                </Label>
-                              ))}
-                            </div>
-                          ) : null}
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              );
-            })}
-            </div>
-          </details>
-        ) : null}
-
-        <details>
-          <summary>{readText(t, "workspace_feature_pages.pre_inquiries.assessment.extra_details", "Lisainfo ja taust")}</summary>
-          <div>
-          <Label>
-            <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.existing_support", "Olemasolev abi")}</span>
-            <ServiceProfileTextarea
-              value={normalizedAssessmentState.supportContext.existingSupport}
-              onChange={(event) => updateAssessmentSupport("existingSupport", event.target.value)}
-              maxLength={4000}
-              placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.existing_support", "Kes või mis praegu aitab?")}
-            />
-          </Label>
-          <Label>
-            <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.support_adequacy", "Kas abist piisab")}</span>
-            <ServiceProfileTextarea
-              value={normalizedAssessmentState.supportContext.supportAdequacy}
-              onChange={(event) => updateAssessmentSupport("supportAdequacy", event.target.value)}
-              maxLength={180}
-              placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.support_adequacy", "Näiteks piisab, ei piisa või abistaja on ülekoormatud")}
-            />
-          </Label>
-          <Label>
-            <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.person_wish", "Inimese enda soov")}</span>
-            <ServiceProfileTextarea
-              value={normalizedAssessmentState.supportContext.personWish}
-              onChange={(event) => updateAssessmentSupport("personWish", event.target.value)}
-              maxLength={4000}
-              placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.person_wish", "Mida inimene ise kõige rohkem soovib?")}
-            />
-          </Label>
-          </div>
-        </details>
-        </>
-        ) : null}
-      </SectionCard>
-
-      <div>
-        <Button type="button" size="sm" variant="primary" onClick={() => setActiveWorkflowStep("review")}>
-          {readText(t, "workspace_feature_pages.pre_inquiries.sections.assessment_review", "Vaata eelinfo üle")}
-        </Button>
-        <Button type="button" size="sm" onClick={() => setActiveWorkflowStep("recipient")}>
-          {readText(t, "workspace_feature_pages.pre_inquiries.actions.choose_recipient", "Vali adressaat")}
-        </Button>
-      </div>
-      </>
-      ) : null}
-
-      <details open style={{ display: activeWorkflowStep === "review" ? undefined : "none" }}>
-        <summary>{readText(t, "workspace_feature_pages.pre_inquiries.sections.assessment_review", "Vaata eelinfo üle")}</summary>
-      <PreInquiryAssessmentReviewSection
-        t={t}
-        title={readText(t, "workspace_feature_pages.pre_inquiries.sections.assessment_review", "Vaata eelinfo üle")}
-        review={assessmentReview}
-        situation={effectiveSituation}
-        note={readText(t, "workspace_feature_pages.pre_inquiries.assessment.review_note", "Ülevaade koondab täpselt need eelkaardistuse vastused ja täpsustused, mis lähevad salvestatud eelpöördumise ning allalaaditava eelinfo juurde.")}
-      />
-      </details>
-      <details
-        className="pre-inquiry-assistant-panel"
-        open
-        style={{ display: activeWorkflowStep === "collect" ? undefined : "none" }}
+      {/* Vaadete loend muutub, kui inimene valib teise viisi (eluvaldkonnad
+          lisanduvad või kaovad) või jätkab Teekonnast: siis ehitatakse lava
+          uuesti ja ta avaneb samal vaatel, kus inimene parajasti oli. */}
+      <StepFlight
+        key={flowKeys.join("|")}
+        label={tr("views.flow_label", "Eelpöördumine")}
+        steps={preInquirySteps}
+        initialIndex={Math.max(0, flowKeys.indexOf(activeWorkflowStep))}
+        activeKey={activeWorkflowStep}
+        onStepChange={(index, step) => {
+          if (step) setActiveWorkflowStep(step.key);
+        }}
       >
-        <summary>{readText(t, "workspace_feature_pages.pre_inquiries.sections.assistant", "Täpsusta eelinfot")}</summary>
-      <SectionCard flat={embedded} title="Aita pöördumist selgemaks teha">
-        <div>
-          <div>
-            <div>
-              <ConversationView
-                t={t}
-                chatWindowRef={chatWindowRef}
-                isStreamingAny={assisting}
-                hiddenCount={0}
-                pageSize={0}
-                onRevealOlder={() => {}}
-                canHideOlder={false}
-                onHideOlder={() => {}}
-                onJumpToBottom={() => {}}
-                messageItems={conversationItems}
-                mainClassName="documents-agent-conversation-main"
-                windowClassName="documents-agent-conversation-window"
-                isMobile={false}
-                isLightTheme
-              />
-            </div>
-
-            <div>
-              <div>
-                <ChatComposer
-                  t={t}
-                  locale={locale}
-                  isLightTheme
-                  hideTools
-                  embedded
-                  forcePlaceholderVisible
-                  placeholderText=""
-                  acceptAttr=""
-                  ensureAnalysisPanelVisible={() => {}}
-                  fileInputRef={fileInputRef}
-                  onFileChange={() => {}}
-                  inputBarRef={inputBarRef}
-                  inputRef={inputRef}
-                  onFocusInput={() => setInputFocused(true)}
-                  onBlurInput={() => setInputFocused(false)}
-                  isGenerating={assisting}
-                  isStreamingAny={false}
-                  isRoomMode={false}
-                  roomBlocked={false}
-                  roomAuthRequired={false}
-                  onStop={() => {}}
-                  onSend={handleComposerSend}
-                  voiceEnabled={false}
-                  showDictationButton={false}
-                  recording={false}
-                  recordingPulse={false}
-                  handleMic={() => {}}
-                  draftApiRef={composerDraftApiRef}
-                  inputFocused={inputFocused}
-                  isMobile={false}
-                  activeModeKey="pre_inquiry"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {activeRole === "SOCIAL_WORKER" ? (
-          <div>
-            <Checkbox
-              checked={acceptsPreInquiries}
-              onChange={(value) => setAcceptsPreInquiries(Boolean(value))}
-              label={
-                <span className={receivingCheckboxLabelClassName}>
-                  {readText(t, "workspace_feature_pages.pre_inquiries.receiving.accepts_platform", "Võtan eelpöördumisi platvormil vastu")}
-                </span>
-              }
-            />
-            <p>
-              {isAdmin
-                ? readText(t, "workspace_feature_pages.pre_inquiries.receiving.admin_note", "Admini testvaade; salvestus käib ainult sinu kontole.")
-                : readText(t, "workspace_feature_pages.pre_inquiries.receiving.note", "Lubab sinu kontole adresseeritud eelpöördumised platvormis vastu võtta.")}
-            </p>
-            <Button type="button" size="sm" disabled={savingPreferences} onClick={handleSavePreferences}>
-              {savingPreferences
-                ? readText(t, "workspace_feature_pages.pre_inquiries.actions.saving", "Salvestan...")
-                : readText(t, "workspace_feature_pages.pre_inquiries.actions.save_preferences", "Salvesta vastuvõtt")}
-            </Button>
-          </div>
-        ) : null}
-      </SectionCard>
-      </details>
-
-      <div style={{ display: activeWorkflowStep === "recipient" || activeWorkflowStep === "preview" ? undefined : "none" }}>
-      {activeWorkflowStep === "recipient" ? (
-      <SectionCard flat={embedded} title={readText(t, "workspace_feature_pages.pre_inquiries.sections.recipient", "Sobivad kontaktid")}>
-        <p className={bodyTextClassName}>
-          {readText(t, "workspace_feature_pages.pre_inquiries.recipients_lead", "Kontaktid tulevad teenusekaardi struktureeritud andmekihist pärast seda, kui olukord, piirkond ja soovitud pöördumise suund on piisavalt selged. Sotsiaal.pro ei ole selles nimekirjas eelpöördumise adressaat.")}
-        </p>
-        <div>
-          <div role="group" aria-label={readText(t, "workspace_feature_pages.pre_inquiries.fields.recipient_type", "Adressaadi tüüp")}>
-            {[
-              ["KOV_CONTACT", readText(t, "workspace_feature_pages.pre_inquiries.recipient.kov", "KOV kontakt")],
-              ["ORGANIZATION_INBOX", readText(t, "workspace_feature_pages.pre_inquiries.recipient.organization_inbox", "Organisatsiooni vastuvõtutiim")],
-              ["SERVICE_PROVIDER", readText(t, "workspace_feature_pages.pre_inquiries.recipient.provider", "Teenuseosutaja")]
-            ].map(([value, label]) => (
-              <OptionCard
-                key={value}
-                type="checkbox"
-                name="pre-inquiry-recipient-type"
-                value={value}
-                checked={recipientType === value}
-                showIndicator={false}
-                onChange={() => {
-                  setRecipientType((current) => current === value ? "" : value);
-                  setSelectedRecipientId("");
-                  setSelectedProviderServiceId("");
-                  setSelectedProviderLocationId("");
-                  setShowMoreContacts(false);
-                  setDraftTouched(false);
-                }}
-                fitTextLines={2}
-              >
-                <span>{label}</span>
-              </OptionCard>
-            ))}
-          </div>
-          <Label>
-            <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.recipient_search", "Otsi adressaati")}</span>
-            <ServiceProfileInput value={recipientQuery} onChange={(event) => setRecipientQuery(event.target.value)} placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.recipient", "KOV kontakt, organisatsiooni vastuvõtutiim, teenuseosutaja või piirkond")} />
-          </Label>
-        </div>
-        {assistantRoutingConfidence ? (
-          <div>
-            <p>
-              {readText(t, "workspace_feature_pages.pre_inquiries.routing.confidence", "Kontaktisoovituse kindlus")}
-            </p>
-            <p>
-              {assistantRoutingConfidence.label || assistantRoutingConfidence.level}
-            </p>
-            {assistantRoutingConfidence.text ? (
-              <p>{assistantRoutingConfidence.text}</p>
-            ) : null}
-          </div>
-        ) : null}
-        <div>
-          {visibleRecommendedRecipients.length ? visibleRecommendedRecipients.map((entry) => {
-            const isSelectedRecipient = selectedRecipientId === entry.id;
-            return (
-              <article
-                key={entry.id}
-                className="pre-inquiry-recipient-card"
-                data-selected={isSelectedRecipient ? "true" : undefined}
-              >
-                <span>
-                  <span>{entry.title}</span>
-                  <span>
-                    {getPreInquiryRecipientTypeLabel(t, entry)}
-                  </span>
-                </span>
-                <span>{getPreInquiryRecipientSubtitle(t, entry)}</span>
-                <span>
-                  {getPreInquiryRecipientReason(entry)}
-                </span>
-                {entry.routingReason ? (
-                  <span>
-                    {entry.routingReason}
-                  </span>
-                ) : null}
-                {getPreInquiryRecipientRegion(entry) ? (
-                  <span>
-                    {getPreInquiryRecipientRegion(entry)}
-                  </span>
-                ) : null}
-                <span>
-                  {[
-                    getPreInquiryChannelLabel(t, entry.deliveryChannel),
-                    entry.email,
-                    entry.municipalityName || entry.county
-                  ].filter(Boolean).join(" · ")}
-                </span>
-                {isSelectedRecipient ? (
-                  <span>
-                    {readText(t, "workspace_feature_pages.pre_inquiries.recipient.selected", "Valitud kontakt")}
-                  </span>
-                ) : null}
-                {getPreInquiryReferralNotice(entry) ? (
-                  <span>
-                    {getPreInquiryReferralNotice(entry)}
-                  </span>
-                ) : null}
-                {preInquiryAvailabilityNotices(entry, t).map(({ service, presentation }) => (
-                  <span
-                    key={`${service.id || service.name}-availability`}
-                    className="pre-inquiry-recipient-card__availability"
-                    data-tone={presentation.tone}
-                    role="status"
-                  >
-                    {presentation.icon} {service.name}: {presentation.label}. {presentation.ageText}. {presentation.warning}
-                  </span>
-                ))}
-                <span>
-                  {entry.type === "SERVICE_PROVIDER" && Array.isArray(entry.serviceActions)
-                    ? entry.serviceActions.filter((action) => action.platformAllowed || action.emailAllowed).map((action) => (
-                        <Button key={action.providerServiceId} type="button" size="sm" onClick={() => handleSelectRecipient(entry, action)}>
-                          {readText(t, "workspace_feature_pages.pre_inquiries.actions.choose_contact", "Vali see kontakt")}: {action.name}
-                        </Button>
-                      ))
-                    : entry.type !== "SERVICE_PROVIDER" ? (
-                        <Button type="button" size="sm" onClick={() => handleSelectRecipient(entry)}>
-                          {readText(t, "workspace_feature_pages.pre_inquiries.actions.choose_contact", "Vali see kontakt")}
-                        </Button>
-                      ) : null}
-                  {entry.type !== "ORGANIZATION_INBOX" ? (
-                    <Button as="a" href={localizePath(`/teenusekaart?entryId=${encodeURIComponent(entry.id)}`, locale)} size="sm" variant="linkBrand">
-                      {readText(t, "workspace_feature_pages.pre_inquiries.actions.view_service_map", "Vaata teenusekaardil")}
-                    </Button>
-                  ) : null}
-                  {entry.providerProfileId ? (
-                    <Button as="a" href={localizePath(`/teenuseprofiil?profileId=${encodeURIComponent(entry.providerProfileId)}`, locale)} size="sm" variant="linkBrand">
-                      {readText(t, "workspace_feature_pages.pre_inquiries.actions.view_profile", "Vaata profiili")}
-                    </Button>
-                  ) : null}
-                </span>
-              </article>
-            );
-          }) : (
-            <p className={bodyTextClassName}>{readText(t, "workspace_feature_pages.pre_inquiries.recipients_hint", "Kontaktide soovitamiseks lisa vähemalt piirkond või KOV ning lühike olukorra kirjeldus.")}</p>
-          )}
-          {recommendedRecipients.length > 3 ? (
-            <Button type="button" size="sm" onClick={() => setShowMoreContacts((value) => !value)}>
-              {showMoreContacts
-                ? readText(t, "workspace_feature_pages.pre_inquiries.actions.show_less_contacts", "Näita vähem")
-                : readText(t, "workspace_feature_pages.pre_inquiries.actions.show_more_contacts", "Vaata rohkem kontakte")}
-            </Button>
-          ) : null}
-        </div>
-      </SectionCard>
-      ) : null}
-
-      <div className={cn(activeWorkflowStep !== "preview" && "hidden")}>
-      <SectionCard flat={embedded} title="Pöördumise eelvaade">
-        <Label>
-          <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.topic", "Teema")}</span>
-          <ServiceProfileInput maxLength={1000} value={topic} onChange={(event) => { setTopic(event.target.value); setDraftTouched(false); }} placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.topic", "Lühike pealkiri")} />
-          <small>{t("workspace_feature_pages.pre_inquiries.remaining_characters", { count: Math.max(0, 1000 - topic.length) })}</small>
-        </Label>
-        <ServiceProfileTextarea maxLength={12000} value={draft} onChange={(event) => { setDraft(event.target.value); setDraftTouched(true); }} placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.draft", "Koostatud pöördumise tekst")} />
-        <small>{t("workspace_feature_pages.pre_inquiries.remaining_characters", { count: Math.max(0, 12000 - draft.length) })}</small>
-        {activeDraftJourneySharedInfo ? (
-          <JourneySharedInfoBlock info={activeDraftJourneySharedInfo} t={t} audience={activeDraftJourneySharedInfoAudience} serviceLabel={selectedRecipient?.title || ""} />
-        ) : null}
-        {savePrivacyPrompt ? (
-          <div>
-            <p>
-              {savePrivacyPrompt.warning || readText(t, "privacy.confirmation.warning", "Tekst sisaldab isikuandmeid. Vali enne jatkamist, kuidas neid toodelda.")}
-            </p>
-            {savePrivacyPrompt.findings?.length ? (
-              <p>
-                {readText(t, "privacy.confirmation.detected", "Leitud:")}{" "}
-                {savePrivacyPrompt.findings.map((finding) => finding?.label).filter(Boolean).join(", ")}
-              </p>
-            ) : null}
-            {savePrivacyPrompt.redactedText ? (
-              <p>
-                {savePrivacyPrompt.redactedText}
-              </p>
-            ) : null}
-            <div>
-              <Button type="button" size="sm" variant="primary" onClick={handleEditSaveText}>
-                {readText(t, "privacy.confirmation.actions.edit", "Muudan teksti")}
-              </Button>
-              <Button type="button" size="sm" onClick={handleSaveRedacted} disabled={saving}>
-                {readText(t, "privacy.confirmation.actions.send_redacted", "Saada maskeeritult")}
-              </Button>
-              {savePrivacyPrompt.allowOriginal ? (
-                <Button type="button" size="sm" variant="primary" onClick={handleSaveOriginal} disabled={saving}>
-                  {readText(t, "privacy.confirmation.actions.send_original", "Saada siiski")}
-                </Button>
-              ) : null}
-            </div>
-          </div>
-        ) : null}
-        <div>
-          <p>{readText(t, "workspace_feature_pages.pre_inquiries.preview.no_auto_send", "Midagi ei saadeta automaatselt.")}</p>
-          <p>
-            {readText(t, "workspace_feature_pages.pre_inquiries.preview.check_note", "Enne kinnitamist kontrolli adressaati, saatmise viisi, pöördumise teksti ja eelinfot. Platvormisisene pöördumine jõuab vastuvõtja Pöördumiste vaatesse; e-kirja tekst avaneb sinu e-posti rakenduses ülevaatamiseks.")}
-          </p>
-          {selectedRecipient ? (
-            <p>
-              {readText(t, "workspace_feature_pages.pre_inquiries.preview.recipient_prefix", "Adressaat")}: {selectedRecipient.title}. {readText(t, "workspace_feature_pages.pre_inquiries.preview.delivery_prefix", "Saatmise viis")}: {selectedRecipientSupportsPlatform ? readText(t, "workspace_feature_pages.pre_inquiries.preview.delivery_platform", "platvormisisene eelpöördumine") : selectedRecipientSupportsEmail ? readText(t, "workspace_feature_pages.pre_inquiries.preview.delivery_email", "e-kirja tekst") : readText(t, "workspace_feature_pages.pre_inquiries.preview.delivery_manual", "salvestamine, kopeerimine või allalaadimine")}.
-            </p>
-          ) : null}
-          {selectedRecipientReferralNotice ? (
-            <p>{selectedRecipientReferralNotice} {readText(t, "workspace_feature_pages.pre_inquiries.preview.referral_hint", "Sa saad teenuseosutajalt küsida lisainfot või pöörduda KOV-i poole.")}</p>
-          ) : null}
-          {selectedRecipientAvailabilityNotices.map(({ service, presentation }) => (
-            <p key={`${service.id || service.name}-preview-availability`} role="status">
-              {presentation.icon} {service.name}: {presentation.label}. {presentation.ageText}. {presentation.warning}
-            </p>
-          ))}
-        </div>
-        <div>
-          {activeInquiryMailto || selectedRecipientMailto ? (
-            <Button as="a" href={activeInquiryMailto || selectedRecipientMailto} size="sm">
-              {readText(t, "workspace_feature_pages.pre_inquiries.actions.open_email", "Ava e-kirjana")}
-            </Button>
-          ) : null}
-          {activeInquiryMailto && activeInquiry.status !== "SENT" ? (
-            <Button type="button" size="sm" disabled={saving} onClick={() => handleConfirmExternalSent(activeInquiry)}>
-              {readText(t, "workspace_feature_pages.pre_inquiries.actions.confirm_external_sent", "Kinnita, et saatsid e-kirja")}
-            </Button>
-          ) : null}
-          <Button type="button" size="sm" disabled={saving || !effectiveSituation.trim() || activeInquiry?.status === "ARCHIVED"} onClick={handleSave}>
-            {saving
-              ? readText(t, "workspace_feature_pages.pre_inquiries.actions.saving", "Salvestan...")
-              : readText(t, "workspace_feature_pages.pre_inquiries.actions.save", "Salvesta eelpöördumine")}
-          </Button>
-          {selectedRecipientId && selectedRecipientSupportsPlatform ? (
-            <Button type="button" size="sm" disabled={saving || !effectiveSituation.trim() || activeInquiry?.status === "ARCHIVED"} onClick={(event) => handleSave(event, { status: "SENT" })}>
-              {saving
-                ? readText(t, "workspace_feature_pages.pre_inquiries.actions.saving", "Salvestan...")
-                : readText(t, "workspace_feature_pages.pre_inquiries.actions.send_internal", "Saada platvormis")}
-            </Button>
-          ) : null}
-          <Button type="button" size="sm" disabled={!draft.trim()} onClick={handleCopy}>{readText(t, "workspace_feature_pages.pre_inquiries.actions.copy", "Kopeeri tekst")}</Button>
-          <Button type="button" size="sm" disabled={!draft.trim() && !effectiveSituation.trim()} onClick={handleDownload}>{readText(t, "workspace_feature_pages.pre_inquiries.actions.download", "Laadi alla")}</Button>
-        </div>
-      </SectionCard>
-      </div>
-      </div>
-
-      {/* COLLAB-P4: saabuv võrgustikujagamine on saaja jaoks sama kujuga mis
-          saabuv eelpöördumine — samal laual, mitte teises postkastis. Komponent
-          ei renderda midagi, kui jagamisi ei ole. */}
-      {showReceivedInquiries ? <NetworkShareInbox /> : null}
-
-      {showReceivedInquiries ? (
-        <SectionCard flat={embedded} title={readText(t, "workspace_feature_pages.pre_inquiries.sections.received", "Saabunud eelpöördumised")}>
-          <div>
-            {receivedInquiries.length ? receivedInquiries.map((inquiry) => (
-              <article key={inquiry.id}>
-                <div>
-                  <h3>{inquiry.topic || readText(t, "workspace_feature_pages.pre_inquiries.untitled", "Pealkirjata")}</h3>
-                  <p>
-                    {[
-                      inquiry.author?.email || (inquiry.authorErasedAt
-                        ? readText(t, "workspace_feature_pages.pre_inquiries.deleted_author", "Kustutatud kasutaja pöördumine")
-                        : ""),
-                      inquiry.selectedRecipientName,
-                      formatDate(inquiry.updatedAt)
-                    ].filter(Boolean).join(" · ")}
-                  </p>
-                </div>
-                <div>
-                  <span>
-                    {getPreInquiryChannelLabel(t, inquiry.deliveryChannel)}
-                  </span>
-                  <Button type="button" size="sm" onClick={() => handleOpenInquiry(inquiry)}>
-                    {readText(t, "workspace_feature_pages.pre_inquiries.actions.open", "Ava")}
-                  </Button>
-                </div>
-              </article>
-            )) : (
-              <p className={bodyTextClassName}>{readText(t, "workspace_feature_pages.pre_inquiries.empty_received", "Sulle adresseeritud eelpöördumised ilmuvad siia, kui vastuvõtt on lubatud ja adressaat on kontoga seotud.")}</p>
-            )}
-          </div>
-        </SectionCard>
-      ) : null}
-
-      <SectionCard flat={embedded} className={cn(activeWorkflowStep !== "saved" && "hidden")} title={readText(t, "workspace_feature_pages.pre_inquiries.sections.saved", "Minu eelpöördumised")}>
-        <div>
-          {savedInquiries.length ? savedInquiries.map((inquiry) => (
-            <article key={inquiry.id}>
-              <div>
-                <h3>{inquiry.topic || readText(t, "workspace_feature_pages.pre_inquiries.untitled", "Pealkirjata")}</h3>
-                <p>
-                  {[
-                    inquiry.recipientOrganization?.displayName || inquiry.selectedRecipientName,
-                    inquiry.selectedRecipientEmail,
-                    inquiry.createdAt ? `loodud ${formatDate(inquiry.createdAt, locale)}` : "",
-                    inquiry.updatedAt ? `muudetud ${formatDate(inquiry.updatedAt, locale)}` : ""
-                  ].filter(Boolean).join(" · ")}
-                </p>
-              </div>
-              <div>
-                <span>
-                  {getPreInquiryStatusLabel(inquiry.status)}
-                </span>
-                <span>
-                  {getPreInquiryChannelLabel(t, inquiry.deliveryChannel)}
-                </span>
-                <Button type="button" size="sm" onClick={() => handleOpenInquiry(inquiry)}>
-                  {readText(t, "workspace_feature_pages.pre_inquiries.actions.open", "Ava")}
-                </Button>
-                {inquiry.status === "ARCHIVED" ? (
-                  <Button type="button" size="sm" variant="primary" disabled={saving} onClick={() => handleReopenAuthoredInquiry(inquiry)}>
-                    {readText(t, "workspace_feature_pages.pre_inquiries.actions.reopen", "Taasava muutmiseks")}
-                  </Button>
-                ) : inquiry.status !== "SENT" ? (
-                  <Button type="button" size="sm" variant="primary" onClick={() => handleOpenInquiry(inquiry)}>
-                    {readText(t, "workspace_feature_pages.pre_inquiries.actions.edit", "Muuda")}
-                  </Button>
-                ) : null}
-                <Button type="button" size="sm" variant="primary" onClick={() => navigator?.clipboard?.writeText(inquiry.userEditedDraft || inquiry.generatedDraft || inquiry.situation || "")}>
-                  {readText(t, "workspace_feature_pages.pre_inquiries.actions.copy_short", "Kopeeri")}
-                </Button>
-                <Button type="button" size="sm" variant="primary" onClick={() => handleDownloadSavedInquiry(inquiry)}>
-                  {readText(t, "workspace_feature_pages.pre_inquiries.actions.download", "Laadi alla")}
-                </Button>
-                <Button
-                  type="button"
-                  size="sm"
-                  variant="primary"
-                  disabled={saving || inquiry.status === "SENT" || inquiry.status === "ARCHIVED"}
-                  onClick={() => handleArchiveAuthoredInquiry(inquiry)}
-                >
-                  {readText(t, "workspace_feature_pages.pre_inquiries.actions.archive", "Arhiveeri")}
-                </Button>
-              </div>
-            </article>
-          )) : (
-            <p className={bodyTextClassName}>{readText(t, "workspace_feature_pages.pre_inquiries.empty_saved", "Sul ei ole veel salvestatud eelpöördumisi.")}</p>
-          )}
-        </div>
-      </SectionCard>
-        </div>
-      </div>
+        {renderFlowView}
+      </StepFlight>
     </div>
   );
 }
@@ -3242,13 +3110,6 @@ function safeServiceMapWebsiteUrl(value) {
   } catch {
     return "";
   }
-}
-
-function serviceMapPhoneHref(value) {
-  const match = String(value || "").match(/\+?\d(?:[\s()-]*\d){6,11}/u);
-  if (!match) return "";
-  const normalized = String(match[0] || "").replace(/[^\d+]/gu, "");
-  return normalized ? `tel:${normalized}` : "";
 }
 
 function readInitialServiceMapFilters() {
@@ -3499,7 +3360,7 @@ function ServiceMapSurface({
     [selectedUnlocatedEntry]
   );
   const selectedUnlocatedPhoneHref = useMemo(
-    () => serviceMapPhoneHref(selectedUnlocatedEntry?.phone),
+    () => servicePhoneHref(selectedUnlocatedEntry?.phone),
     [selectedUnlocatedEntry]
   );
   const selectedUnlocatedEmail = useMemo(() => {
@@ -3770,16 +3631,7 @@ function ServiceMapSurface({
         >
           <ServiceMapPanelToggleIcon open={panelOpen} />
         </button>
-        {isAdmin ? (
-          <div className="service-map-admin">
-            <AdminRoleSelector
-              t={t}
-              locale={locale}
-              value={activeRole}
-              onChange={onRoleChange}
-            />
-          </div>
-        ) : null}
+
       </div>
 
       {error ? (
@@ -3828,505 +3680,46 @@ function ServiceMapSurface({
           onSelectEntry={handleSelectEntry}
           onConnectHelpEntry={handleConnectHelpMapEntry}
           onStartPreInquiry={handleStartPreInquiry}
+          locale={locale}
           t={t}
         />
+        {/* Kaardilehel ei ole ekraani nurk vaba: aken ulatub servani ja kaardi
+            all paremas nurgas seisab aluskaardi allikaviide. Valik seisab
+            kaardi enda nurgas viite kohal, nagu legend vasakul. */}
+        {isAdmin ? (
+          <AdminRoleSelector
+            t={t}
+            locale={locale}
+            value={activeRole}
+            onChange={onRoleChange}
+            placement="inline"
+            className="service-map-role"
+          />
+        ) : null}
       </div>
     </div>
   );
 }
 
-function joinList(value) {
-  return Array.isArray(value) ? value.join(", ") : String(value || "");
-}
-
-function splitList(value) {
-  return String(value || "")
-    .split(/[,;\n\r]/)
-    .map((part) => part.trim())
-    .filter(Boolean);
-}
-
-function toggleListValue(value, optionValue) {
-  const selected = new Set(splitList(value));
-  if (selected.has(optionValue)) selected.delete(optionValue);
-  else selected.add(optionValue);
-  return [...selected].join(", ");
-}
-
-function serviceProfileSelectedOptionLabels(value, options) {
-  const selected = splitList(value);
-  const labelByValue = new Map(options.map((option) => [option.value, option.label]));
-  return selected.map((item) => labelByValue.get(item) || item);
-}
-
-function serviceProfileCategoryOptions(t) {
-  return [
-    { value: "KOV sotsiaalteenus", label: readText(t, "workspace_feature_pages.service_profile.category_options.kov_social_service", "KOV sotsiaalteenus") },
-    { value: "Nõustamine ja juhendamine", label: readText(t, "workspace_feature_pages.service_profile.category_options.counselling_guidance", "Nõustamine ja juhendamine") },
-    { value: "Pere, lapse ja noore tugi", label: readText(t, "workspace_feature_pages.service_profile.category_options.family_child_youth", "Pere, lapse ja noore tugi") },
-    { value: "Puue, rehabilitatsioon ja abivahendid", label: readText(t, "workspace_feature_pages.service_profile.category_options.disability_rehabilitation", "Puue, rehabilitatsioon ja abivahendid") },
-    { value: "Kodune abi ja hooldus", label: readText(t, "workspace_feature_pages.service_profile.category_options.home_care", "Kodune abi ja hooldus") },
-    { value: "Toimetulek ja võlanõustamine", label: readText(t, "workspace_feature_pages.service_profile.category_options.coping_debt", "Toimetulek ja võlanõustamine") },
-    { value: "Eluase ja turvalisus", label: readText(t, "workspace_feature_pages.service_profile.category_options.housing_safety", "Eluase ja turvalisus") },
-    { value: "Transport ja liikumisabi", label: readText(t, "workspace_feature_pages.service_profile.category_options.transport", "Transport ja liikumisabi") },
-    { value: "Töö, õppimine ja osalemine", label: readText(t, "workspace_feature_pages.service_profile.category_options.work_learning_participation", "Töö, õppimine ja osalemine") },
-    { value: "Digi- ja asjaajamisabi", label: readText(t, "workspace_feature_pages.service_profile.category_options.digital_admin_help", "Digi- ja asjaajamisabi") },
-    { value: "Muu teenus", label: readText(t, "workspace_feature_pages.service_profile.category_options.other", "Muu teenus") }
-  ];
-}
-
-function serviceProfileTargetGroupOptions(t) {
-  return [
-    { value: "Puudega inimene", label: readText(t, "workspace_feature_pages.service_profile.target_group_options.disabled_person", "Puudega inimene") },
-    { value: "Psüühilise erivajadusega inimene", label: readText(t, "workspace_feature_pages.service_profile.target_group_options.psychosocial_disability", "Psüühilise erivajadusega inimene") },
-    { value: "Intellektipuudega inimene", label: readText(t, "workspace_feature_pages.service_profile.target_group_options.intellectual_disability", "Intellektipuudega inimene") },
-    { value: "Vaimse tervise murega inimene", label: readText(t, "workspace_feature_pages.service_profile.target_group_options.mental_health_concern", "Vaimse tervise murega inimene") },
-    { value: "Toimetulekuraskustes inimene", label: readText(t, "workspace_feature_pages.service_profile.target_group_options.coping_difficulty", "Toimetulekuraskustes inimene") },
-    { value: "Eluasemeraskustes inimene", label: readText(t, "workspace_feature_pages.service_profile.target_group_options.housing_difficulty", "Eluasemeraskustes inimene") },
-    { value: "Võlgadega inimene", label: readText(t, "workspace_feature_pages.service_profile.target_group_options.debt_difficulty", "Võlgadega inimene") },
-    { value: "Sõltuvusprobleemiga inimene", label: readText(t, "workspace_feature_pages.service_profile.target_group_options.addiction_concern", "Sõltuvusprobleemiga inimene") },
-    { value: "Vägivalla või kriisiolukorra kogemusega inimene", label: readText(t, "workspace_feature_pages.service_profile.target_group_options.violence_crisis_experience", "Vägivalla või kriisiolukorra kogemusega inimene") },
-    { value: "Hooldaja või lähedane", label: readText(t, "workspace_feature_pages.service_profile.target_group_options.caregiver_close_person", "Hooldaja või lähedane") },
-    { value: "Lapsevanem", label: readText(t, "workspace_feature_pages.service_profile.target_group_options.parent", "Lapsevanem") },
-    { value: "Pere", label: readText(t, "workspace_feature_pages.service_profile.target_group_options.family", "Pere") },
-    { value: "Eestkostja", label: readText(t, "workspace_feature_pages.service_profile.target_group_options.guardian", "Eestkostja") },
-    { value: "Töötu või tööotsija", label: readText(t, "workspace_feature_pages.service_profile.target_group_options.unemployed_jobseeker", "Töötu või tööotsija") },
-    { value: "Sotsiaalselt isoleeritud inimene", label: readText(t, "workspace_feature_pages.service_profile.target_group_options.socially_isolated", "Sotsiaalselt isoleeritud inimene") },
-    { value: "Muu sihtrühm", label: readText(t, "workspace_feature_pages.service_profile.target_group_options.other", "Muu sihtrühm") }
-  ];
-}
-
-function serviceProfileLanguageOptions(t) {
-  return [
-    { value: "eesti", label: readText(t, "workspace_feature_pages.service_profile.language_options.et", "Eesti") },
-    { value: "inglise", label: readText(t, "workspace_feature_pages.service_profile.language_options.en", "Inglise") },
-    { value: "vene", label: readText(t, "workspace_feature_pages.service_profile.language_options.ru", "Vene") },
-    { value: "muu", label: readText(t, "workspace_feature_pages.service_profile.language_options.other", "Muu") }
-  ];
-}
-
-function serviceProfileAgeGroupOptions(t) {
-  return [
-    { value: "Laps", label: readText(t, "workspace_feature_pages.service_profile.age_group_options.child", "Laps") },
-    { value: "Noor", label: readText(t, "workspace_feature_pages.service_profile.age_group_options.youth", "Noor") },
-    { value: "Tööealine inimene", label: readText(t, "workspace_feature_pages.service_profile.age_group_options.working_age", "Tööealine inimene") },
-    { value: "Täisealine inimene", label: readText(t, "workspace_feature_pages.service_profile.age_group_options.adult", "Täisealine inimene") },
-    { value: "Eakas inimene", label: readText(t, "workspace_feature_pages.service_profile.age_group_options.elder", "Eakas inimene") }
-  ];
-}
-
-function serviceProfileRequesterRoleOptions(t) {
-  return [
-    { value: "Inimene ise", label: readText(t, "workspace_feature_pages.service_profile.requester_role_options.self", "Inimene ise") },
-    { value: "Lapsevanem või eestkostja", label: readText(t, "workspace_feature_pages.service_profile.requester_role_options.parent_guardian", "Lapsevanem või eestkostja") },
-    { value: "Lähedane", label: readText(t, "workspace_feature_pages.service_profile.requester_role_options.close_person", "Lähedane") },
-    { value: "Spetsialist", label: readText(t, "workspace_feature_pages.service_profile.requester_role_options.specialist", "Spetsialist") }
-  ];
-}
-
-function serviceProfileNeedTagOptions(t) {
-  return [
-    { value: "Hooldusvajadus", label: readText(t, "workspace_feature_pages.service_profile.need_options.care_need", "Hooldusvajadus") },
-    { value: "Toimetulekuraskus", label: readText(t, "workspace_feature_pages.service_profile.need_options.coping", "Toimetulekuraskus") },
-    { value: "Hoolduskoormus", label: readText(t, "workspace_feature_pages.service_profile.need_options.caregiver_burden", "Hoolduskoormus") },
-    { value: "Lapse heaolu", label: readText(t, "workspace_feature_pages.service_profile.need_options.child_wellbeing", "Lapse heaolu") },
-    { value: "Vaimne tervis", label: readText(t, "workspace_feature_pages.service_profile.need_options.mental_health", "Vaimne tervis") },
-    { value: "Liikumine ja transport", label: readText(t, "workspace_feature_pages.service_profile.need_options.mobility_transport", "Liikumine ja transport") },
-    { value: "Asjaajamine", label: readText(t, "workspace_feature_pages.service_profile.need_options.administration", "Asjaajamine") }
-  ];
-}
-
-function serviceProfileLifeDomainOptions(t) {
-  return [
-    { value: "Kodu ja igapäevaelu", label: readText(t, "workspace_feature_pages.service_profile.life_domain_options.home_daily", "Kodu ja igapäevaelu") },
-    { value: "Tervis", label: readText(t, "workspace_feature_pages.service_profile.life_domain_options.health", "Tervis") },
-    { value: "Pere ja suhted", label: readText(t, "workspace_feature_pages.service_profile.life_domain_options.family", "Pere ja suhted") },
-    { value: "Haridus", label: readText(t, "workspace_feature_pages.service_profile.life_domain_options.education", "Haridus") },
-    { value: "Töö ja hõive", label: readText(t, "workspace_feature_pages.service_profile.life_domain_options.work", "Töö ja hõive") },
-    { value: "Eluase", label: readText(t, "workspace_feature_pages.service_profile.life_domain_options.housing", "Eluase") }
-  ];
-}
-
-function serviceProfileDeliveryModeOptions(t) {
-  return [
-    { value: "Kohapeal", label: readText(t, "workspace_feature_pages.service_profile.delivery_mode_options.onsite", "Kohapeal") },
-    { value: "Inimese kodus", label: readText(t, "workspace_feature_pages.service_profile.delivery_mode_options.home", "Inimese kodus") },
-    { value: "Veebis", label: readText(t, "workspace_feature_pages.service_profile.delivery_mode_options.online", "Veebis") },
-    { value: "Telefonitsi", label: readText(t, "workspace_feature_pages.service_profile.delivery_mode_options.phone", "Telefonitsi") },
-    { value: "Piirkondlikult", label: readText(t, "workspace_feature_pages.service_profile.delivery_mode_options.regional", "Piirkondlikult") }
-  ];
-}
-
-function serviceProfileCommunicationSupportOptions(t) {
-  return [
-    { value: "Lihtsas keeles selgitus", label: readText(t, "workspace_feature_pages.service_profile.communication_support_options.simple_language", "Lihtsas keeles selgitus") },
-    { value: "Tõlk või keeleabi", label: readText(t, "workspace_feature_pages.service_profile.communication_support_options.interpreter", "Tõlk või keeleabi") },
-    { value: "Ligipääsetav suhtlus", label: readText(t, "workspace_feature_pages.service_profile.communication_support_options.accessible", "Ligipääsetav suhtlus") }
-  ];
-}
-
-function serviceProfileOrganizationTypeOptions(t) {
-  return [
-    { value: "", label: readText(t, "workspace_feature_pages.service_profile.organization_type_options.unspecified", "Täpsustamata") },
-    { value: "MTÜ", label: readText(t, "workspace_feature_pages.service_profile.organization_type_options.ngo", "MTÜ") },
-    { value: "SA", label: readText(t, "workspace_feature_pages.service_profile.organization_type_options.foundation", "SA") },
-    { value: "Ettevõte", label: readText(t, "workspace_feature_pages.service_profile.organization_type_options.company", "Ettevõte") },
-    { value: "Avalik asutus", label: readText(t, "workspace_feature_pages.service_profile.organization_type_options.public", "Avalik asutus") },
-    { value: "Muu", label: readText(t, "workspace_feature_pages.service_profile.organization_type_options.other", "Muu") }
-  ];
-}
-
-function serviceProfileServiceAreaTypeOptions(t) {
-  return [
-    { value: "", label: readText(t, "workspace_feature_pages.service_profile.area_type_options.unspecified", "Täpsustamata") },
-    { value: "Üleriigiline", label: readText(t, "workspace_feature_pages.service_profile.area_type_options.national", "Üleriigiline") },
-    { value: "Maakondlik", label: readText(t, "workspace_feature_pages.service_profile.area_type_options.county", "Maakondlik") },
-    { value: "KOV põhine", label: readText(t, "workspace_feature_pages.service_profile.area_type_options.municipality", "KOV põhine") },
-    { value: "Teeninduskoha põhine", label: readText(t, "workspace_feature_pages.service_profile.area_type_options.location", "Teeninduskoha põhine") },
-    { value: "Veebiteenus", label: readText(t, "workspace_feature_pages.service_profile.area_type_options.online", "Veebiteenus") }
-  ];
-}
-
-function serviceProfileAvailabilityOptions(t) {
-  return [
-    { value: "", label: readText(t, "workspace_feature_pages.service_profile.availability_options.unspecified", "Täpsustamata") },
-    { value: "accepting", label: readText(t, "workspace_feature_pages.service_profile.availability_options.accepting", "Võtab uusi pöördumisi vastu") },
-    { value: "waitlist", label: readText(t, "workspace_feature_pages.service_profile.availability_options.waitlist", "Ooteajaga vastuvõtt") },
-    { value: "not_accepting", label: readText(t, "workspace_feature_pages.service_profile.availability_options.not_accepting", "Praegu ei võta uusi pöördumisi") }
-  ];
-}
-
-function serviceProfileRequirementOptions(t) {
-  return [
-    { value: "", label: readText(t, "workspace_feature_pages.service_profile.requirement_options.unspecified", "Täpsustamata") },
-    { value: "Ei", label: readText(t, "workspace_feature_pages.service_profile.requirement_options.no", "Ei") },
-    { value: "Jah", label: readText(t, "workspace_feature_pages.service_profile.requirement_options.yes", "Jah") },
-    { value: "Sõltub olukorrast", label: readText(t, "workspace_feature_pages.service_profile.requirement_options.depends", "Sõltub olukorrast") }
-  ];
-}
-
-function serviceProfileContactModeOptions(t) {
-  return [
-    { value: "", label: readText(t, "workspace_feature_pages.service_profile.contact_mode_options.unspecified", "Täpsustamata") },
-    { value: "Platvormisisene eelpöördumine", label: readText(t, "workspace_feature_pages.service_profile.contact_mode_options.platform", "Platvormisisene eelpöördumine") },
-    { value: "E-post", label: readText(t, "workspace_feature_pages.service_profile.contact_mode_options.email", "E-post") },
-    { value: "Telefon", label: readText(t, "workspace_feature_pages.service_profile.contact_mode_options.phone", "Telefon") },
-    { value: "Veebivorm", label: readText(t, "workspace_feature_pages.service_profile.contact_mode_options.form", "Veebivorm") }
-  ];
-}
-
-function createServiceProfileLocationForm(location = null, index = 0, profile = null) {
-  const mapEntry = profile?.serviceMapEntry || null;
-  return {
-    clientId: location?.id || `location-${index + 1}`,
-    label: location?.label || "",
-    address: location?.address || location?.normalizedAddress || (index === 0 ? profile?.address || "" : ""),
-    normalizedAddress: location?.normalizedAddress || (index === 0 ? profile?.normalizedAddress || mapEntry?.normalizedAddress || "" : ""),
-    county: location?.county || profile?.county || "",
-    latitude: location?.latitude ?? (index === 0 ? mapEntry?.latitude ?? "" : ""),
-    longitude: location?.longitude ?? (index === 0 ? mapEntry?.longitude ?? "" : ""),
-    adsObjectId: location?.adsObjectId || (index === 0 ? mapEntry?.adsObjectId || "" : ""),
-    geocodingProvider: location?.geocodingProvider || location?.geocodingRaw?.provider || (index === 0 ? mapEntry?.geocodingRaw?.provider || "" : ""),
-    geocodingSuggestionToken: location?.geocodingSuggestionToken || "",
-    phone: location?.phone || "",
-    email: location?.email || "",
-    website: location?.website || "",
-    openingHours: location?.openingHours || "",
-    accessibilityInfo: location?.accessibilityInfo || "",
-    mapVisible: location?.mapVisible !== false,
-    status: location?.status || (profile?.status === "PUBLISHED" ? "PUBLISHED" : "DRAFT"),
-    sortOrder: Number.isFinite(Number(location?.sortOrder)) ? Number(location.sortOrder) : index
-  };
-}
-
-function createServiceProfileServiceForm(service = null, index = 0, profile = null) {
-  const hasServiceContact = Boolean(
-    String(service?.contactName || "").trim() ||
-    String(service?.phone || "").trim() ||
-    String(service?.email || "").trim() ||
-    String(service?.website || "").trim()
-  );
-  return {
-    id: service?.id || "",
-    /* A4: seos loakataloogiga säilib kliendipoolses mudelis, et vorm ei
-       teeskleks seost olematuks. VÄLJA temast ei tehta — `serviceKey` muutub
-       ainult eraldi sidumisoperatsiooniga ja server ei loe teda PUT-ist. */
-    serviceKey: service?.serviceKey || null,
-    name: service?.name || "",
-    description: service?.description || "",
-    longDescription: service?.longDescription || "",
-    includesText: service?.includesText || "",
-    excludesText: service?.excludesText || "",
-    additionalInfo: service?.additionalInfo || "",
-    category: service?.category || "",
-    categories: joinList(service?.categories),
-    ageGroups: joinList(service?.ageGroups),
-    targetGroups: joinList(service?.targetGroups),
-    requesterRoles: joinList(service?.requesterRoles),
-    needTags: joinList(service?.needTags),
-    lifeDomains: joinList(service?.lifeDomains),
-    deliveryModes: joinList(service?.deliveryModes),
-    serviceArea: service?.serviceArea || profile?.serviceArea || "",
-    serviceAreaType: service?.serviceAreaType || "",
-    county: service?.county || profile?.county || "",
-    municipalityIds: joinList(service?.municipalityIds),
-    areaDescription: service?.areaDescription || "",
-    serviceLanguages: joinList(service?.serviceLanguages),
-    inquiryLanguages: joinList(service?.inquiryLanguages),
-    communicationSupport: joinList(service?.communicationSupport),
-    feeType: service?.feeType || profile?.feeType || "UNKNOWN",
-    priceDescription: service?.priceDescription || "",
-    availabilityStatus: service?.availabilityStatus || "",
-    availabilityDescription: service?.availabilityDescription || "",
-    availability: service?.availability || null,
-    availabilityFingerprint: service?.availabilityFingerprint || "",
-    directContactAllowed: service?.directContactAllowed || "",
-    requiresKovAssessment: service?.requiresKovAssessment || "",
-    requiresKovDecision: service?.requiresKovDecision || "",
-    requiresSkaReferral: service?.requiresSkaReferral || "",
-    requiresSpecialistReferral: service?.requiresSpecialistReferral || "",
-    requiredDocumentsNote: service?.requiredDocumentsNote || "",
-    referralNotes: service?.referralNotes || "",
-    contactMode: service?.contactMode || "",
-    contactStrategy: hasServiceContact ? "CUSTOM" : "ORGANIZATION",
-    contactName: service?.contactName || "",
-    phone: service?.phone || "",
-    email: service?.email || "",
-    website: service?.website || "",
-    locationIds: Array.isArray(service?.locationIds) ? service.locationIds : [],
-    acceptsPlatformPreInquiries: service?.acceptsPlatformPreInquiries ?? profile?.acceptsPlatformPreInquiries ?? true,
-    acceptsEmailPreInquiries: service?.acceptsEmailPreInquiries ?? profile?.acceptsEmailPreInquiries ?? true,
-    mapVisible: service?.mapVisible !== false,
-    status: service?.status || (profile?.status === "PUBLISHED" ? "PUBLISHED" : "DRAFT"),
-    sortOrder: Number.isFinite(Number(service?.sortOrder)) ? Number(service.sortOrder) : index
-  };
-}
-
-function createServiceProfileForm(profile = null) {
-  const mapEntry = profile?.serviceMapEntry || null;
-  const serviceLocations = Array.isArray(profile?.serviceLocations) && profile.serviceLocations.length
-    ? profile.serviceLocations.map((location, index) => createServiceProfileLocationForm(location, index, profile))
-    : (profile?.address || mapEntry?.normalizedAddress)
-        ? [createServiceProfileLocationForm(null, 0, profile)]
-        : [];
-  const serviceItems = Array.isArray(profile?.serviceItems) && profile.serviceItems.length
-    ? profile.serviceItems.map((service, index) => createServiceProfileServiceForm(service, index, profile))
-    : (Array.isArray(profile?.services) ? profile.services : []).map((name, index) =>
-        createServiceProfileServiceForm({ name, sortOrder: index }, index, profile)
-      );
-  return {
-    organizationName: profile?.organizationName || "",
-    organizationType: profile?.organizationType || "",
-    registryCode: profile?.registryCode || "",
-    shortDescription: profile?.shortDescription || "",
-    longDescription: profile?.longDescription || "",
-    services: joinList(profile?.services),
-    serviceCategories: joinList(profile?.serviceCategories),
-    targetGroups: joinList(profile?.targetGroups),
-    serviceArea: profile?.serviceArea || "",
-    serviceAreaMunicipalityIds: joinList(profile?.serviceAreaMunicipalityIds),
-    county: profile?.county || "",
-    address: profile?.address || "",
-    normalizedAddress: profile?.normalizedAddress || mapEntry?.normalizedAddress || "",
-    latitude: mapEntry?.latitude ?? "",
-    longitude: mapEntry?.longitude ?? "",
-    adsObjectId: mapEntry?.adsObjectId || "",
-    geocodingProvider: mapEntry?.geocodingRaw?.provider || "",
-    geocodingSuggestionToken: profile?.geocodingSuggestionToken || "",
-    phone: profile?.phone || "",
-    email: profile?.email || "",
-    website: profile?.website || "",
-    primaryContactName: profile?.primaryContactName || "",
-    languages: joinList(profile?.languages),
-    accessibilityInfo: profile?.accessibilityInfo || "",
-    generalAccessibilityNote: profile?.generalAccessibilityNote || "",
-    feeType: profile?.feeType || "UNKNOWN",
-    mapVisible: Boolean(profile?.mapVisible),
-    acceptsPlatformPreInquiries: profile?.acceptsPlatformPreInquiries !== false,
-    acceptsEmailPreInquiries: profile?.acceptsEmailPreInquiries !== false,
-    assistantRecommendationAllowed: profile?.assistantRecommendationAllowed === true,
-    status: profile?.status || "DRAFT",
-    serviceItems,
-    serviceLocations
-  };
-}
-
-function serviceProfileMapStatusText(t, mapEntry) {
-  if (!mapEntry) {
-    return readText(
-      t,
-      "workspace_feature_pages.service_profile.map_status.empty",
-      "Kaardiasukoha saab ette valmistada pärast aadressi salvestamist."
-    );
-  }
-
-  const geocodingStatus = String(mapEntry.geocodingStatus || "").toUpperCase();
-  if (geocodingStatus === "MATCHED" || geocodingStatus === "MANUALLY_CONFIRMED") {
-    return readText(
-      t,
-      "workspace_feature_pages.service_profile.map_status.matched",
-      "Aadressil on vaste olemas ja seda saab avaldatud profiili korral teenusekaardil kuvada."
-    );
-  }
-  if (geocodingStatus === "AMBIGUOUS") {
-    return readText(
-      t,
-      "workspace_feature_pages.service_profile.map_status.ambiguous",
-      "Aadress vajab enne kaardil kuvamist täpsustamist."
-    );
-  }
-  if (geocodingStatus === "FAILED") {
-    return readText(
-      t,
-      "workspace_feature_pages.service_profile.map_status.failed",
-      "Aadressile ei leitud veel vastet. Markerit kaardil ei kuvata."
-    );
-  }
-  return readText(t, "workspace_feature_pages.service_profile.map_status.pending", "Aadress ootab vastendamist.");
-}
-
-function ToggleRow({ checked, onChange, title, body, className }) {
-  return (
-    <Checkbox
-      checked={checked}
-      onChange={(value) => onChange(Boolean(value))}
-      className={className}
-      label={
-        <span>
-          <span>{title}</span>
-          {body ? <span>{body}</span> : null}
-        </span>
-      }
-    />
-  );
-}
-
-function ServiceProfileGlowField({ children, className, style }) {
-  return (
-    <div className={className} style={style}>
-      {children}
-    </div>
-  );
-}
-
-function ServiceProfileDropdown({ ariaLabel, value, onChange, options, openDirection = "down" }) {
-  return (
-    <ServiceProfileGlowField>
-      <DocumentsDropdown
-        ariaLabel={ariaLabel}
-        value={value}
-        onChange={onChange}
-        options={options}
-        openDirection={openDirection}
-        portal
-      />
-    </ServiceProfileGlowField>
-  );
-}
-
-function ServiceProfileChoiceChips({ value, options, onChange, ariaLabel }) {
-  const selected = new Set(splitList(value));
-  return (
-    <div role="group" aria-label={ariaLabel}>
-      {options.map((option) => {
-        const checked = selected.has(option.value);
-        return (
-          <button
-            key={option.value}
-            type="button"
-            aria-pressed={checked ? "true" : "false"}
-            onClick={() => onChange(toggleListValue(value, option.value))}
-          >
-            {checked ? <span aria-hidden="true">✓</span> : null}
-            <span>{option.label}</span>
-          </button>
-        );
-      })}
-    </div>
-  );
-}
-
-function ServiceProfileFieldHelp({ children }) {
-  return <p>{children}</p>;
-}
-
-function ServiceProfileChipField({
-  label,
-  value,
-  options,
-  ariaLabel,
-  onChange,
-  selectedLabel = "",
-  selectedEmptyLabel = "-"
-}) {
-  const selectedLabels = serviceProfileSelectedOptionLabels(value, options);
-  return (
-    <div>
-      <span>{label}</span>
-      <ServiceProfileChoiceChips
-        value={value}
-        options={options}
-        ariaLabel={ariaLabel || label}
-        onChange={onChange}
-      />
-      <p>
-        {selectedLabels.length
-          ? `${selectedLabel}: ${selectedLabels.join(", ")}`
-          : `${selectedLabel}: ${selectedEmptyLabel}`}
-      </p>
-    </div>
-  );
-}
-
-function ServiceProfileInput({ className, maxLength = SERVICE_PROFILE_LIMITS.shortText, ...props }) {
-  const valueLength = typeof props.value === "string" ? props.value.length : 0;
-  return (
-    <ServiceProfileGlowField>
-      <Input
-        className={className}
-        maxLength={maxLength}
-        {...props}
-      />
-      <span aria-live="polite">{valueLength} / {maxLength}</span>
-    </ServiceProfileGlowField>
-  );
-}
-
-function ServiceProfileTextarea({ className, maxLength = SERVICE_PROFILE_LIMITS.text, ...props }) {
-  const valueLength = typeof props.value === "string" ? props.value.length : 0;
-  return (
-    <ServiceProfileGlowField className={className}>
-      <textarea
-        maxLength={maxLength}
-        {...props}
-      />
-      <span aria-live="polite">{valueLength} / {maxLength}</span>
-    </ServiceProfileGlowField>
-  );
-}
-
-function ServiceProfileLocationChoice({ checked, onChange, children }) {
-  return (
-    <Checkbox
-      checked={checked}
-      onChange={(value) => onChange(Boolean(value))}
-      label={<span>{children}</span>}
-    />
-  );
-}
-
-function ServiceProfileAddressInput({ t, form, onTyping, onSelect }) {
+/* Aadressivastete otsing avatud teeninduskoha jaoks. Päring ja selle olek on
+   siin, sest leht teeb päringud; välja ja vasted joonistab
+   `serviceProfile/LocationViews.jsx`. Kui ühtegi kohta ei ole avatud, on
+   otsisõna tühi ja päringut ei tehta. */
+function useServiceProfileAddressSearch({ t, form, location, locationIndex }) {
   const [suggestions, setSuggestions] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [open, setOpen] = useState(false);
-  const query = form.address || "";
-  const selectedAddress =
-    form.normalizedAddress &&
-    Number.isFinite(Number(form.latitude)) &&
-    Number.isFinite(Number(form.longitude))
-      ? form.normalizedAddress
-      : "";
+  const query = location?.address || "";
+  const county = location ? location.county || form.county : "";
+  const selectedAddress = location && locationHasMatch(location) ? location.normalizedAddress : "";
+
+  /* Teise koha avamisel ei tohi eelmise koha vasted ette jääda. */
+  useEffect(() => {
+    setSuggestions([]);
+    setError("");
+    setOpen(false);
+  }, [locationIndex]);
 
   useEffect(() => {
     const trimmed = query.trim();
@@ -4346,7 +3739,7 @@ function ServiceProfileAddressInput({ t, form, onTyping, onSelect }) {
           query: trimmed,
           limit: "8"
         });
-        if (form.county) params.set("county", form.county);
+        if (county) params.set("county", county);
         const municipalityContext = splitList(form.serviceAreaMunicipalityIds)[0] || "";
         if (municipalityContext) params.set("municipalityName", municipalityContext);
         const response = await fetch(`/api/service-map/address-suggestions?${params.toString()}`, {
@@ -4371,56 +3764,33 @@ function ServiceProfileAddressInput({ t, form, onTyping, onSelect }) {
       window.clearTimeout(timeout);
       controller.abort();
     };
-  }, [form.county, form.serviceAreaMunicipalityIds, query, selectedAddress, t]);
+  }, [county, form.serviceAreaMunicipalityIds, query, selectedAddress, t]);
 
-  return (
-    <div>
-      <ServiceProfileInput
-        value={query}
-        maxLength={SERVICE_PROFILE_LIMITS.addressQuery}
-        autoComplete="off"
-        placeholder={readText(t, "workspace_feature_pages.service_profile.address_search.placeholder", "Alusta aadressi kirjutamist")}
-        onFocus={() => setOpen(true)}
-        onChange={(event) => onTyping(event.target.value)}
-      />
-      <p>
-        {readText(
-          t,
-          "workspace_feature_pages.service_profile.address_search.hint",
-          "Kirjutamisel pakutakse ametlikke aadressivasteid. Kaardil kuvamiseks vali soovitus."
-        )}
-      </p>
-      {open && (loading || error || suggestions.length > 0) ? (
-        <div role="listbox">
-          {loading ? (
-            <p>
-              {readText(t, "workspace_feature_pages.service_profile.address_search.loading", "Otsin aadresse...")}
-            </p>
-          ) : null}
-          {error ? <p>{error}</p> : null}
-          {!loading && !error ? suggestions.map((suggestion) => (
-            <button
-              key={`${suggestion.adsObjectId || suggestion.normalizedAddress}-${suggestion.latitude}-${suggestion.longitude}`}
-              type="button"
-              onClick={() => {
-                onSelect(suggestion);
-                setOpen(false);
-              }}
-            >
-              <span>{suggestion.label || suggestion.normalizedAddress}</span>
-            </button>
-          )) : null}
-        </div>
-      ) : null}
-      {selectedAddress ? (
-        <p>
-          {readText(t, "workspace_feature_pages.service_profile.address_search.selected", "Valitud ametlik aadressivaste:")} {selectedAddress}
-        </p>
-      ) : null}
-    </div>
-  );
+  return { query, selectedAddress, suggestions, loading, error, open, setOpen };
 }
 
+/* Teine vajutus eemaldamiseks peab tulema selle aja sees. */
+const SERVICE_PROFILE_CONFIRM_MS = 8000;
+/* Asutuse kinnituse seisu ei küsita lehele naastes sagedamini kui kord selle aja jooksul. */
+const REPRESENTATION_REFRESH_MS = 15000;
+
+/**
+ * Teenuseprofiil: teenuseosutaja avalik profiil, tema teenused ja teeninduskohad.
+ *
+ * KUJU (09.10, kujundusaudit K08). Leht oli üks väga pikk vorm ühe
+ * salvestamise nupuga lõpus. Nüüd on see sammulava (`components/stage/StepFlight.jsx`)
+ * vaadetena kolmel tasemel: profiil ise, loendist avatud teenus ja loendist
+ * avatud teeninduskoht. Avatud teenus või koht vahetab lava vaated enda omade
+ * vastu; alumise serva olekurida ütleb, kus inimene on, ja viib tagasi loendisse.
+ *
+ * Siin on andmed, päringud ja olek. Vaated on kaustas ./serviceProfile
+ * (ProfileViews.jsx, ServiceViews.jsx, LocationViews.jsx), reeglid ja
+ * salvestatav keha failis ./serviceProfile/profileModel.js.
+ *
+ * SALVESTAMINE on iga vaate all servas ja salvestab terve profiili (üks päring,
+ * nagu enne). Eemaldamine küsib teist vajutust ja jõustub alles salvestamisel.
+ * Tekstid loeb `tp(võti, varutekst)` nimeruumist `workspace_feature_pages.service_profile`.
+ */
 function ServiceProfileSurface({ t, locale }) {
   const [form, setForm] = useState(() => createServiceProfileForm());
   const [profile, setProfile] = useState(null);
@@ -4429,50 +3799,39 @@ function ServiceProfileSurface({ t, locale }) {
   const [confirmingServiceId, setConfirmingServiceId] = useState("");
   const licence = useServiceLicenceStatuses({ t, locale });
   const [notice, setNotice] = useState("");
+  /* SOL-SPROF-02 hoiatus (assistendi koopia eemaldamine on pooleli või selle
+     uuendamine ebaõnnestus) seisab lava kohal kuni järgmise salvestamiseni.
+     Jalarea vaikse teatena kadus see esimese muudatusega ja „Kõik sammud"
+     vaates seda ei olnud: inimene ei saanud teada, et tema andmed on
+     assistendis veel alles. */
+  const [saveWarning, setSaveWarning] = useState("");
   const [error, setError] = useState("");
   const [conflictProfile, setConflictProfile] = useState(null);
-  const feeOptions = useMemo(
-    () => [
-      { value: "UNKNOWN", label: readText(t, "workspace_feature_pages.service_profile.fee.unknown", "Täpsustamata") },
-      { value: "FREE", label: readText(t, "workspace_feature_pages.service_profile.fee.free", "Tasuta") },
-      { value: "PAID", label: readText(t, "workspace_feature_pages.service_profile.fee.paid", "Tasuline") },
-      { value: "AGREEMENT", label: readText(t, "workspace_feature_pages.service_profile.fee.agreement", "Kokkuleppel") },
-      { value: "MIXED", label: readText(t, "workspace_feature_pages.service_profile.fee.mixed", "Mitu tüüpi") }
-    ],
+  /* Mis on ees: vaate võti ja avatud teenus või teeninduskoht (`{ kind, index }`). */
+  const [view, setView] = useState("who");
+  const [opened, setOpened] = useState(null);
+  /* Teine vajutus: `service` või `location` (eemaldamine), `server` (vormi asendamine serveri versiooniga). */
+  const [confirming, setConfirming] = useState("");
+  const confirmTimer = useRef(0);
+  const armConfirm = useCallback((key) => {
+    window.clearTimeout(confirmTimer.current);
+    setConfirming(key);
+    confirmTimer.current = window.setTimeout(() => setConfirming(""), SERVICE_PROFILE_CONFIRM_MS);
+  }, []);
+  useEffect(() => () => window.clearTimeout(confirmTimer.current), []);
+
+  const tp = useCallback(
+    (key, fallback, vars) => {
+      if (typeof t !== "function") return fallback;
+      return vars ? t(`${SERVICE_PROFILE_KEY}.${key}`, vars, fallback) : t(`${SERVICE_PROFILE_KEY}.${key}`, fallback);
+    },
     [t]
   );
-  const statusOptions = useMemo(
-    () => [
-      { value: "DRAFT", label: readText(t, "workspace_feature_pages.service_profile.status.draft", "Avaldamata") },
-      { value: "REVIEW", label: readText(t, "workspace_feature_pages.service_profile.status.review", "Ülevaatusel") },
-      { value: "PUBLISHED", label: readText(t, "workspace_feature_pages.service_profile.status.published", "Avaldatud") },
-      { value: "HIDDEN", label: readText(t, "workspace_feature_pages.service_profile.status.hidden", "Peidetud") }
-    ],
-    [t]
-  );
-  const categoryOptions = useMemo(() => serviceProfileCategoryOptions(t), [t]);
-  const targetGroupOptions = useMemo(() => serviceProfileTargetGroupOptions(t), [t]);
-  const languageOptions = useMemo(() => serviceProfileLanguageOptions(t), [t]);
-  const ageGroupOptions = useMemo(() => serviceProfileAgeGroupOptions(t), [t]);
-  const requesterRoleOptions = useMemo(() => serviceProfileRequesterRoleOptions(t), [t]);
-  const needTagOptions = useMemo(() => serviceProfileNeedTagOptions(t), [t]);
-  const lifeDomainOptions = useMemo(() => serviceProfileLifeDomainOptions(t), [t]);
-  const deliveryModeOptions = useMemo(() => serviceProfileDeliveryModeOptions(t), [t]);
-  const communicationSupportOptions = useMemo(() => serviceProfileCommunicationSupportOptions(t), [t]);
-  const organizationTypeOptions = useMemo(() => serviceProfileOrganizationTypeOptions(t), [t]);
-  const serviceAreaTypeOptions = useMemo(() => serviceProfileServiceAreaTypeOptions(t), [t]);
-  const availabilityOptions = useMemo(() => serviceProfileAvailabilityOptions(t), [t]);
-  const requirementOptions = useMemo(() => serviceProfileRequirementOptions(t), [t]);
-  const contactModeOptions = useMemo(() => serviceProfileContactModeOptions(t), [t]);
-  const contactStrategyOptions = useMemo(
-    () => [
-      { value: "ORGANIZATION", label: readText(t, "workspace_feature_pages.service_profile.contact_strategy.organization", "Kasuta organisatsiooni põhikontakti") },
-      { value: "CUSTOM", label: readText(t, "workspace_feature_pages.service_profile.contact_strategy.custom", "Määra teenusele eraldi kontakt") }
-    ],
-    [t]
-  );
-  const selectedSummaryLabel = readText(t, "workspace_feature_pages.service_profile.choice_summary.selected", "Valitud");
-  const selectedSummaryEmptyLabel = readText(t, "workspace_feature_pages.service_profile.choice_summary.empty", "-");
+  const options = useMemo(() => serviceProfileOptionSets(tp), [tp]);
+  /* Omavalitsuste register: maakonna ja omavalitsuste valikud piirkonna vaadetes ning
+     kontrolli read teenuste kohta, mille piirkonda ei saa lugeda. Tuleb profiiliga koos. */
+  const [areaRegister, setAreaRegister] = useState([]);
+  const areaChoices = useMemo(() => serviceAreaChoices(areaRegister), [areaRegister]);
 
   const applyLoadedProfile = useCallback((loadedProfile) => {
     setProfile(loadedProfile || null);
@@ -4495,6 +3854,7 @@ function ServiceProfileSurface({ t, locale }) {
         if (!cancelled) {
           const loadedProfile = payload?.profile || null;
           applyLoadedProfile(loadedProfile);
+          setAreaRegister(Array.isArray(payload?.areaRegister) ? payload.areaRegister : []);
         }
       } catch (loadError) {
         if (!cancelled) {
@@ -4614,6 +3974,115 @@ function ServiceProfileSurface({ t, locale }) {
     void loadLicenceStatuses();
   }, [loadLicenceStatuses]);
 
+  const mapEntry = profile?.serviceMapEntry || null;
+  const openedService = opened?.kind === "service" ? form.serviceItems[opened.index] || null : null;
+  const openedLocation = opened?.kind === "location" ? form.serviceLocations[opened.index] || null : null;
+  const level = openedService ? "service" : openedLocation ? "location" : "profile";
+  const viewKeys = level === "service" ? SERVICE_VIEW_KEYS : level === "location" ? LOCATION_VIEW_KEYS : PROFILE_VIEW_KEYS;
+  /* Kui avatud kirjet enam ei ole (nt laaditi serveri versioon), läheb lava tagasi selle loendisse. */
+  const activeView = viewKeys.includes(view) ? view : level === "profile" && opened ? LIST_VIEW_OF[opened.kind] : viewKeys[0];
+  const addressSearch = useServiceProfileAddressSearch({
+    t,
+    form,
+    location: openedLocation,
+    locationIndex: openedLocation ? opened.index : -1
+  });
+  /* Vorm sünnib profiilist, seega on „kas on salvestamata muudatusi" võrdlus sama funktsiooni väljundiga. */
+  const dirty = useMemo(() => serviceProfileDirty(form, profile), [form, profile]);
+  /* Asutuse kinnituse seis vormi registrikoodi kohta: rida registrikoodi juures,
+     avaldamise vaade ja kontroll ütlevad seda enne salvestamist. */
+  const representation = useMemo(() => representationStatus(form, profile, { dirty }), [form, profile, dirty]);
+  /* Kinnitus võib tulla mujalt (lingiga teises aknas või haldurilt), kui see leht
+     on lahti. Lehele naastes loetakse seis uuesti; vormi see ei puutu. */
+  const awaitingRepresentation = representation.kind === "unconfirmed";
+  useEffect(() => {
+    if (!awaitingRepresentation) return undefined;
+    let cancelled = false;
+    let lastAsked = 0;
+    const refresh = async () => {
+      if (document.visibilityState !== "visible" || Date.now() - lastAsked < REPRESENTATION_REFRESH_MS) return;
+      lastAsked = Date.now();
+      try {
+        const response = await fetch("/api/service-provider/profile/representation", { cache: "no-store" });
+        const payload = await response.json().catch(() => ({}));
+        if (!cancelled && response.ok) setProfile((current) => withRepresentationState(current, payload?.state));
+      } catch {
+        /* Seis jääb, nagu oli: salvestamisel otsustab server. */
+      }
+    };
+    document.addEventListener("visibilitychange", refresh);
+    window.addEventListener("focus", refresh);
+    return () => {
+      cancelled = true;
+      document.removeEventListener("visibilitychange", refresh);
+      window.removeEventListener("focus", refresh);
+    };
+  }, [awaitingRepresentation]);
+
+  /* Teenuse või koha avamisel ja sulgemisel ehitatakse lava uuesti ja vajutatud
+     nupp kaob. Fookus läheb siis uue vaate pealkirjale, muidu jääks klaviatuuri
+     ja ekraanilugeja kasutaja lehe algusesse. Vaade võib esimesel kaadril veel
+     peidus olla, seepärast proovime kaadrite kaupa (nagu StepFlight sammu vahetusel). */
+  const surfaceRef = useRef(null);
+  const shownLevel = useRef(level);
+  useEffect(() => {
+    if (shownLevel.current === level) return undefined;
+    shownLevel.current = level;
+    let frame = 0;
+    const deadline = performance.now() + 1200;
+    const tryFocus = () => {
+      const heading = surfaceRef.current?.querySelector('[data-active="1"] [data-step-heading]');
+      heading?.focus({ preventScroll: true });
+      if ((heading && document.activeElement === heading) || performance.now() > deadline) return;
+      frame = requestAnimationFrame(tryFocus);
+    };
+    tryFocus();
+    return () => cancelAnimationFrame(frame);
+  }, [level]);
+
+  const openView = (key) => {
+    setConfirming("");
+    setOpened(null);
+    setView(key);
+  };
+  /* `viewKey`: avaldamise kontrolli rida võib viia otse teenuse vaatesse, kus puuduv asi on. */
+  const openItem = (kind, index, viewKey) => {
+    setConfirming("");
+    setOpened({ kind, index });
+    setView(viewKey || (kind === "service" ? SERVICE_VIEW_KEYS[0] : LOCATION_VIEW_KEYS[0]));
+  };
+  const closeItem = () => {
+    setConfirming("");
+    if (opened) setView(LIST_VIEW_OF[opened.kind]);
+    setOpened(null);
+  };
+  /* Uus teenus või koht avaneb kohe oma esimeses vaates: nimi tuleb sinna. */
+  const addAndOpenService = () => {
+    if (form.serviceItems.length >= SERVICE_PROFILE_LIMITS.services) return;
+    addServiceItem();
+    openItem("service", form.serviceItems.length);
+  };
+  const addAndOpenLocation = () => {
+    if (form.serviceLocations.length >= SERVICE_PROFILE_LIMITS.locations) return;
+    addServiceLocation();
+    openItem("location", form.serviceLocations.length);
+  };
+  /* Eemaldamine võtab kirje vormilt; serveris kaob see alles salvestamisel.
+     Esimene vajutus küsib kinnitust (silt vahetub), teine eemaldab. */
+  const removeOpened = () => {
+    if (!opened) return;
+    if (confirming !== opened.kind) {
+      armConfirm(opened.kind);
+      return;
+    }
+    window.clearTimeout(confirmTimer.current);
+    setConfirming("");
+    if (opened.kind === "service") removeServiceItem(opened.index);
+    else removeServiceLocation(opened.index);
+    setView(LIST_VIEW_OF[opened.kind]);
+    setOpened(null);
+  };
+
   async function confirmServiceAvailability(service) {
     if (!service?.id || !service?.availabilityFingerprint || confirmingServiceId) return;
     setConfirmingServiceId(service.id);
@@ -4648,73 +4117,38 @@ function ServiceProfileSurface({ t, locale }) {
     event.preventDefault();
     if (saving) return;
 
+    /* Vana vorm lasi brauseril kontrollida iga e-posti välja kuju. Avamata
+       teenuse väljad ei ole lehel olemas, seega kontrollib terve vormi mudel ja
+       lava läheb vaatesse, kus vigane aadress on. */
+    const emailProblem = firstEmailProblem(form);
+    if (emailProblem) {
+      setNotice("");
+      setError(
+        t(
+          "forms.error.field",
+          { label: tp("fields.email", "E-post"), message: t("forms.error.email", "Sisesta e-posti aadress kujul nimi@näide.ee.") },
+          "{label}: {message}"
+        )
+      );
+      setConfirming("");
+      setOpened(emailProblem.level === "profile" ? null : { kind: emailProblem.level, index: emailProblem.index });
+      setView(emailProblem.view);
+      return;
+    }
+
     setSaving(true);
     setNotice("");
+    setSaveWarning("");
     setError("");
 
     try {
-      const primaryMapLocation =
-        form.serviceLocations.find((item) =>
-          item.mapVisible !== false &&
-          String(item.address || item.normalizedAddress || "").trim()
-        ) || form.serviceLocations.find((item) => String(item.address || item.normalizedAddress || "").trim()) || null;
       const response = await fetch("/api/service-provider/profile", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
           "Idempotency-Key": globalThis.crypto?.randomUUID?.() || `profile-save-${Date.now()}`
         },
-        body: JSON.stringify({
-          ...form,
-          expectedUpdatedAt: profile?.updatedAt || null,
-          address: primaryMapLocation?.address || form.address,
-          normalizedAddress: primaryMapLocation?.normalizedAddress || form.normalizedAddress,
-          latitude: primaryMapLocation?.latitude || form.latitude,
-          longitude: primaryMapLocation?.longitude || form.longitude,
-          adsObjectId: primaryMapLocation?.adsObjectId || form.adsObjectId,
-          geocodingProvider: primaryMapLocation?.geocodingProvider || form.geocodingProvider,
-          geocodingSuggestionToken: primaryMapLocation?.geocodingSuggestionToken || form.geocodingSuggestionToken,
-          county: primaryMapLocation?.county || form.county,
-          services: [],
-          serviceCategories: [],
-          targetGroups: [],
-          serviceAreaMunicipalityIds: splitList(form.serviceAreaMunicipalityIds),
-          languages: [],
-          serviceLocations: form.serviceLocations
-            .map((item, index) => ({
-              ...item,
-              status: item.status,
-              sortOrder: index
-            }))
-            .filter((item) => String(item.address || item.normalizedAddress || item.label || "").trim()),
-          serviceItems: form.serviceItems
-            .map((item, index) => {
-              const categories = splitList(item.categories);
-              return {
-                ...item,
-                category: categories[0] || "",
-                contactName: item.contactStrategy === "CUSTOM" ? item.contactName : "",
-                phone: item.contactStrategy === "CUSTOM" ? item.phone : "",
-                email: item.contactStrategy === "CUSTOM" ? item.email : "",
-                website: item.contactStrategy === "CUSTOM" ? item.website : "",
-                categories,
-                ageGroups: splitList(item.ageGroups),
-                targetGroups: splitList(item.targetGroups),
-                requesterRoles: splitList(item.requesterRoles),
-                needTags: splitList(item.needTags),
-                lifeDomains: splitList(item.lifeDomains),
-                deliveryModes: splitList(item.deliveryModes),
-                municipalityIds: splitList(item.municipalityIds),
-                serviceLanguages: splitList(item.serviceLanguages),
-                inquiryLanguages: splitList(item.inquiryLanguages),
-                communicationSupport: splitList(item.communicationSupport),
-                locationIds: Array.isArray(item.locationIds) ? item.locationIds : [],
-                status: item.status,
-                sortOrder: index
-              };
-            })
-            .filter((item) => String(item.name || "").trim())
-        })
+        body: JSON.stringify(serviceProfileSavePayload(form, profile?.updatedAt))
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok) {
@@ -4728,11 +4162,26 @@ function ServiceProfileSurface({ t, locale }) {
         throw new Error(payload?.correlationId ? `${message} (${payload.correlationId})` : message);
       }
       const savedProfile = payload?.profile || null;
+      /* Nimeta teenus ja tühi teeninduskoht ei salvestu ning järjekord nihkub:
+         avatud kirje leitakse uuesti üles või lava läheb tagasi loendisse. */
+      if (opened) {
+        const index = opened.kind === "service"
+          ? indexAfterSave(form.serviceItems, opened.index, keepsService)
+          : indexAfterSave(form.serviceLocations, opened.index, keepsLocation);
+        if (index < 0) {
+          setView(LIST_VIEW_OF[opened.kind]);
+          setOpened(null);
+        } else if (index !== opened.index) {
+          setOpened({ kind: opened.kind, index });
+        }
+      }
       applyLoadedProfile(savedProfile);
       /* Registrikood võis muutuda ja hinnang vajab seetõttu värsket vaadet. */
       licence.reset();
       void licence.load();
-      setNotice(serviceProfileSaveNotice(t, savedProfile));
+      const savedText = serviceProfileSaveNotice(t, savedProfile);
+      if (SAVE_WARNING_KEYS.has(serviceProfileSaveNoticeKey(savedProfile).key)) setSaveWarning(savedText);
+      else setNotice(savedText);
     } catch (saveError) {
       setError(saveError?.message || readText(t, "workspace_feature_pages.service_profile.errors.save_failed", "Teenuseprofiili ei saanud salvestada."));
     } finally {
@@ -4740,811 +4189,369 @@ function ServiceProfileSurface({ t, locale }) {
     }
   }
 
-  const mapEntry = profile?.serviceMapEntry || null;
-  const saveLabel = saving
-    ? readText(t, "workspace_feature_pages.service_profile.actions.saving", "Salvestan...")
-    : readText(t, "workspace_feature_pages.service_profile.actions.save", "Salvesta muudatused");
-  const realServiceLocations = form.serviceLocations.filter((location) =>
-    String(location.label || location.address || location.normalizedAddress || "").trim()
+  const publish = serviceProfilePublishState(form, representation);
+  /* Seisu lause registrikoodi juures ja avaldamise vaates; link ainult siis, kui kinnitamise lehele saab kohe minna. */
+  const representationLine = representation.line
+    ? {
+        text: tp(representation.line.key, representation.line.fallback, {
+          date: representationDate(representation.confirmedAt, locale),
+          code: representation.code
+        }),
+        href: representation.step === "confirm" ? localizePath(REPRESENTATION_PATH, locale) : "",
+        warn: representation.blocksPublish
+      }
+    : null;
+  const servicePlaces = realServiceLocations(form);
+  const savedService = openedService ? (profile?.serviceItems || []).find((item) => item.id === openedService.id) || null : null;
+  const licenceRow = openedService?.id ? licence.statuses.get(openedService.id) || null : null;
+  /* Teenuse liik tegevusloa kontrolli jaoks: osutaja kinnitab selle ise ja kinnitus käivitab esimese kontrolli. */
+  const licenceKind = licence.kindState(openedService?.id || "");
+  const licenceKindLabel = (key) => licence.kinds.find((kind) => kind.serviceKey === key)?.label || "";
+
+  const unreadAreas = unreadableServiceAreas(form, areaChoices);
+  const areaUnread = level === "service" && [...unreadAreas.municipality, ...unreadAreas.county].some((item) => item.index === opened.index);
+
+  const steps = serviceProfileSteps(viewKeys, {
+    tp,
+    placeCount: servicePlaces.length,
+    tallArea: level === "service"
+      ? areaViewIsTall("reach", openedService.municipalityIds, openedService.county, areaChoices)
+      : areaViewIsTall("area", form.serviceAreaMunicipalityIds, form.county, areaChoices),
+    states: level === "service"
+      ? serviceViewStates(openedService, { savedAvailability: savedService?.availability || openedService.availability, licenceRow, areaUnread })
+      : level === "location"
+        ? locationViewStates(openedLocation)
+        : profileViewStates(form, mapEntry, areaChoices, representation),
+    summaries: level === "service"
+      ? serviceViewSummaries(openedService, { options })
+      : level === "location"
+        ? locationViewSummaries(openedLocation)
+        : profileViewSummaries(form, mapEntry, { tp, options, areaChoices, representation })
+  });
+
+  /* Salvestamine on iga vaate all servas samas kohas ja salvestab terve profiili. */
+  const nameMissing = !form.organizationName.trim();
+  /* Lava hoiab kõik vaated lehel (avatud teenusel 21), aga põhinupp joonistab
+     oma läike eraldi WebGL-pinnale ja brauser lubab neid korraga piiratud arvu:
+     üle piiri visatakse vanimad minema ja nupu asemele jääb valge kast. Läige
+     on seepärast ainult ees oleval vaatel. */
+  const saveButton = (glow) => (
+    <Button type="submit" glow={glow} disabled={loading || saving || nameMissing || publish.blocking.length > 0}>
+      {saving ? tp("actions.saving", "Salvestan...") : tp("actions.save", "Salvesta muudatused")}
+    </Button>
   );
-  const hasPublishableService = form.serviceItems.some((service) =>
-    String(service.name || "").trim() &&
-    service.mapVisible !== false &&
-    String(service.status || "").toUpperCase() === "PUBLISHED"
-  );
-  const hasMappableLocation = form.serviceLocations.some((location) =>
-    location.mapVisible !== false &&
-    String(location.address || location.normalizedAddress || "").trim()
-  );
-  const hasContact = Boolean(
-    String(form.email || form.phone || form.website || "").trim() ||
-    form.acceptsPlatformPreInquiries ||
-    form.serviceItems.some((service) =>
-      String(service.email || service.phone || service.website || service.contactMode || "").trim() ||
-      service.acceptsPlatformPreInquiries
-    )
-  );
-  const publishContractErrors = form.status === "PUBLISHED"
-    ? [
-        !hasPublishableService
-          ? readText(t, "workspace_feature_pages.service_profile.publish_checks.service_missing", "Lisa vähemalt üks avaldatav teenus.")
-          : "",
-        !hasContact
-          ? readText(t, "workspace_feature_pages.service_profile.publish_checks.contact_missing", "Vali vähemalt üks kontakt või platvormisisene pöördumisviis.")
-          : ""
-      ].filter(Boolean)
-    : [];
-  const publishChecks = [
-    {
-      ok: form.status === "PUBLISHED",
-      text: form.status === "PUBLISHED"
-        ? readText(t, "workspace_feature_pages.service_profile.publish_checks.status_published", "Profiili staatus on avaldatud.")
-        : readText(t, "workspace_feature_pages.service_profile.publish_checks.status_not_published", "Muuda profiili staatus avaldatuks, kui soovid seda avalikus vaates kuvada.")
-    },
-    {
-      ok: form.mapVisible,
-      text: form.mapVisible
-        ? readText(t, "workspace_feature_pages.service_profile.publish_checks.map_visible", "Profiil on teenusekaardil nähtavaks märgitud.")
-        : readText(t, "workspace_feature_pages.service_profile.publish_checks.map_hidden", "Teenusekaardi nähtavus on välja lülitatud.")
-    },
-    {
-      ok: hasPublishableService,
-      text: hasPublishableService
-        ? readText(t, "workspace_feature_pages.service_profile.publish_checks.service_ready", "Vähemalt üks teenus on avaldamiseks olemas.")
-        : readText(t, "workspace_feature_pages.service_profile.publish_checks.service_missing", "Lisa vähemalt üks avaldatav teenus.")
-    },
-    {
-      ok: hasMappableLocation,
-      text: hasMappableLocation
-        ? readText(t, "workspace_feature_pages.service_profile.publish_checks.location_ready", "Vähemalt üks teeninduskoht on kaardil nähtav ja aadressiga.")
-        : readText(t, "workspace_feature_pages.service_profile.publish_checks.location_missing", "Lisa teeninduskoht koos aadressiga, kui soovid kaardimarkerit.")
-    },
-    {
-      ok: hasContact,
-      text: hasContact
-        ? readText(t, "workspace_feature_pages.service_profile.publish_checks.contact_ready", "Üldine e-post või telefon on olemas.")
-        : readText(t, "workspace_feature_pages.service_profile.publish_checks.contact_missing", "Lisa üldine e-post või telefon.")
-    },
-    {
-      ok: form.assistantRecommendationAllowed,
-      text: form.assistantRecommendationAllowed
-        ? readText(t, "workspace_feature_pages.service_profile.publish_checks.assistant_allowed", "Assistent võib avaldatud teenuseid soovitada.")
-        : readText(t, "workspace_feature_pages.service_profile.publish_checks.assistant_blocked", "Assistent ei soovita neid teenuseid enne eraldi loa andmist.")
+  const listTitle = level === "profile" ? "" : tp(`views.${LIST_VIEW_OF[level]}.title`, "");
+  const itemTitle = openedService
+    ? openedService.name.trim() || tp("views.services.unnamed", "Nimeta teenus")
+    : openedLocation
+      ? locationTitle(openedLocation).trim() || tp("locations.new_item_title", "Uus teeninduskoht")
+      : "";
+  const backLabel = tp("views.back_to_list", "Tagasi loendisse: {list}", { list: listTitle });
+  /* Olekurida: miks salvestada ei saa (ja tee vaatesse, kus seda parandada),
+     kas on salvestamata muudatusi või mida viimane salvestamine ütles. */
+  const onView = (key) => level === "profile" && activeView === key;
+  const saveState = loading
+    ? null
+    : nameMissing
+      ? {
+          text: tp("views.name_required", "Salvestamiseks lisa organisatsiooni nimi."),
+          go: onView("who") ? null : { label: tp("views.who.short", "Organisatsioon"), onClick: () => openView("who") }
+        }
+      : publish.blocking.length && !onView("check")
+        ? {
+            text: tp("views.publish_blocked", "Avaldatud profiili ei saa salvestada, kuni puuduv on lisatud."),
+            go: { label: tp("views.check.short", "Kontroll"), onClick: () => openView("check") }
+          }
+        : dirty
+          ? { text: tp("views.unsaved", "Muudatused on salvestamata.") }
+          : notice
+            ? { text: notice }
+            : null;
+  const note = footNote({
+    crumb: level === "profile" ? null : { list: listTitle, name: itemTitle, backLabel, onBack: closeItem },
+    text: saveState?.text,
+    go: saveState?.go
+  });
+  const removeAction = {
+    label: opened && confirming === opened.kind
+      ? tp("views.confirm_remove", "Vajuta uuesti, et eemaldada")
+      : level === "location"
+        ? tp("views.remove_location", "Eemalda teeninduskoht")
+        : tp("views.remove_service", "Eemalda teenus"),
+    onClick: removeOpened
+  };
+
+  const renderView = (step, stepIndex, flight) => {
+    const save = saveButton(flight?.isActive !== false);
+    if (level === "service") {
+      const index = opened.index;
+      const presentation = serviceAvailabilityPresentation(t, savedService?.availability || openedService.availability);
+      const availabilityChanged = Boolean(savedService) && (
+        savedService.availabilityStatus !== openedService.availabilityStatus ||
+        String(savedService.availabilityDescription || "") !== String(openedService.availabilityDescription || "")
+      );
+      return (
+        <ServiceStepView
+          view={step.key}
+          tp={tp}
+          service={openedService}
+          options={options}
+          area={areaChoices}
+          note={note}
+          save={save}
+          remove={removeAction}
+          onField={(field, value) => updateServiceItem(index, field, value)}
+          onContactStrategy={(nextValue) => {
+            updateServiceItem(index, "contactStrategy", nextValue);
+            if (nextValue === "ORGANIZATION") {
+              updateServiceItem(index, "contactName", "");
+              updateServiceItem(index, "phone", "");
+              updateServiceItem(index, "email", "");
+              updateServiceItem(index, "website", "");
+            }
+          }}
+          places={{
+            options: servicePlaces.map((location, locationIndex) => ({
+              value: location.clientId || `location-${locationIndex + 1}`,
+              label: location.label || location.normalizedAddress || location.address
+            })),
+            values: openedService.locationIds || [],
+            onToggle: (locationId) => {
+              const currentIds = new Set(openedService.locationIds || []);
+              if (currentIds.has(locationId)) currentIds.delete(locationId);
+              else currentIds.add(locationId);
+              updateServiceItem(index, "locationIds", [...currentIds]);
+            },
+            onManage: () => openView("locations")
+          }}
+          availability={{
+            options: availabilityChoices(options.availability, openedService.availabilityStatus, tp("availability.legacy", "Varasem kinnitamata väärtus"))
+          }}
+          confirm={{
+            icon: presentation.icon,
+            label: presentation.label,
+            tone: presentation.tone,
+            ageText: presentation.ageText,
+            warning: presentation.warning,
+            /* Kinnitamine laadib profiili serverist uuesti. Salvestamata
+               muudatused läheksid siis kaotsi, seepärast ootab nupp salvestamist. */
+            hint: !savedService
+              ? tp("views.confirm.unsaved", "Kinnitada saab pärast teenuse salvestamist.")
+              : availabilityChanged
+                ? tp("availability.save_before_confirm", "Salvesta muudetud olek või ooteaeg enne eraldi kinnitamist.")
+                : dirty
+                  ? tp("views.confirm.save_first", "Salvesta muudatused enne kinnitamist: kinnitamine laadib profiili serverist uuesti.")
+                  : "",
+            busy: confirmingServiceId === openedService.id && Boolean(confirmingServiceId),
+            disabled: !savedService?.availabilityFingerprint || availabilityChanged || dirty || Boolean(confirmingServiceId),
+            onConfirm: () => confirmServiceAvailability(savedService)
+          }}
+          licence={{
+            hasRow: Boolean(licenceRow),
+            children: <ServiceLicenceStatus t={t} locale={locale} row={licenceRow} />,
+            notice: licence.notice,
+            checking: licence.checking,
+            recheckLabel: readText(t, "service_provider_profile.licence.internal.action_recheck", "Kontrolli uuesti"),
+            onRecheck: () => void licence.recheck(),
+            kind: {
+              ready: licenceKind.known,
+              editing: licenceKind.editing,
+              options: [
+                ...licence.kinds.map((kind) => ({ value: kind.serviceKey, label: kind.label })),
+                { value: "", label: tp("views.licence.kind_none", "Ükski neist") }
+              ],
+              value: licenceKind.chosen,
+              needsRegistryCode: !licence.hasRegistryCode,
+              confirming: licenceKind.confirming,
+              canConfirm: licenceKind.changed && licence.hasRegistryCode && !licence.confirmingAny,
+              canCancel: Boolean(licenceKind.saved),
+              suggestion: licenceKind.suggestions.length
+                ? tp("views.licence.kind_suggestion", "Teenuse nime järgi võib sobida: {kinds}.", {
+                    kinds: licenceKind.suggestions.map(licenceKindLabel).filter(Boolean).join("; ")
+                  })
+                : "",
+              current: licenceKind.currentLabel
+                ? tp("views.licence.kind_current", "Kinnitatud liik: {kind}.", { kind: licenceKind.currentLabel })
+                : "",
+              onChange: (value) => licence.choose(openedService.id, value),
+              onConfirm: () => void licence.confirm(openedService.id),
+              onCancel: () => licence.editKind(openedService.id, false),
+              onEdit: () => licence.editKind(openedService.id, true)
+            }
+          }}
+        />
+      );
     }
-  ];
+    if (level === "location") {
+      const index = opened.index;
+      return (
+        <LocationStepView
+          view={step.key}
+          tp={tp}
+          location={openedLocation}
+          options={options}
+          note={note}
+          save={save}
+          remove={removeAction}
+          onField={(field, value) => updateServiceLocation(index, field, value)}
+          address={{
+            query: addressSearch.query,
+            selected: addressSearch.selectedAddress,
+            open: addressSearch.open,
+            loading: addressSearch.loading,
+            error: addressSearch.error,
+            suggestions: addressSearch.suggestions,
+            onFocus: () => addressSearch.setOpen(true),
+            onTyping: (value) => updateServiceLocationAddressTyping(index, value),
+            onSelect: (suggestion) => {
+              selectServiceLocationAddress(index, suggestion);
+              addressSearch.setOpen(false);
+            }
+          }}
+        />
+      );
+    }
+    return (
+      <ProfileStepView
+        view={step.key}
+        tp={tp}
+        form={form}
+        options={options}
+        statusOptions={statusChoices(options.status, form.status, representation, profile?.status)}
+        representation={representationLine}
+        area={areaChoices}
+        note={note}
+        save={save}
+        onField={updateField}
+        services={{
+          rows: serviceRows(form),
+          max: SERVICE_PROFILE_LIMITS.services,
+          canAdd: form.serviceItems.length < SERVICE_PROFILE_LIMITS.services,
+          notice: licence.notice,
+          onOpen: (index) => openItem("service", index),
+          onAdd: addAndOpenService
+        }}
+        locations={{
+          rows: locationRows(form),
+          max: SERVICE_PROFILE_LIMITS.locations,
+          canAdd: form.serviceLocations.length < SERVICE_PROFILE_LIMITS.locations,
+          onOpen: (index) => openItem("location", index),
+          onAdd: addAndOpenLocation
+        }}
+        check={{
+          blocked: publish.blocking.length > 0,
+          rows: serviceProfilePublishChecks(form, mapEntry, areaChoices, representation).map((row) => {
+            /* Rida teenuse kohta (piirkond) viib selle teenuse vaatesse, muu rida profiili vaatesse. */
+            const targetView = row.item?.view || row.view;
+            return {
+              key: row.key,
+              ok: row.ok,
+              blocking: row.blocking,
+              /* Valik (assistendi luba) kannab silti „Sinu valik", mitte „Vaata üle". */
+              optional: Boolean(row.optional),
+              text: tp(row.textKey, row.fallback),
+              detail: row.detail || "",
+              /* Rida, mis ei ole korras, viib vaatesse, kus seda saab parandada;
+                 kinnitamata asutuse rida viib kinnitamise lehele. */
+              target: row.ok
+                ? null
+                : row.href
+                  ? { name: tp("representation.open", "Asutuse kinnitamine"), href: localizePath(row.href, locale) }
+                  : {
+                    name: tp(`views.${targetView}.short`, ""),
+                    label: tp("views.go_to", "Ava vaade: {view}", { view: tp(`views.${targetView}.title`, "") }),
+                    onClick: () => (row.item ? openItem(row.item.kind, row.item.index, row.item.view) : openView(row.view))
+                  }
+            };
+          })
+        }}
+      />
+    );
+  };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      {loading ? (
-        <p className={bodyTextClassName}>{readText(t, "workspace_feature_pages.service_profile.loading", "Teenuseprofiili laadimine...")}</p>
-      ) : null}
+    /* `validate={false}`: e-posti kuju kontrollib `handleSubmit` terve vormi
+       kohta (ka avamata teenuste omad), mitte ainult lehel olevate väljade. */
+    <Form ref={surfaceRef} className={profileStyles.surface} validate={false} onSubmit={handleSubmit}>
+      {loading ? <p className={profileStyles.quiet}>{tp("loading", "Laen teenuseprofiili...")}</p> : null}
       {error ? (
-        <p>
+        <p className={profileStyles.notice} data-tone="risk" role="alert">
           {error}
         </p>
       ) : null}
-      {notice ? (
-        <p>
-          {notice}
+      {saveWarning ? (
+        <p className={profileStyles.notice} data-tone="wait" aria-live="polite">
+          {saveWarning}
         </p>
       ) : null}
       {conflictProfile ? (
-        <div role="alert">
-          <p>{readText(t, "workspace_feature_pages.service_profile.errors.profile_conflict_detail", "Serveris on uuem versioon. Kohalikud muudatused on vormil alles.")}</p>
-          <dl>
-            <dt>{readText(t, "workspace_feature_pages.service_profile.conflict.local_version", "Kohalik vorm")}</dt>
-            <dd>{form.organizationName || "-"}</dd>
-            <dt>{readText(t, "workspace_feature_pages.service_profile.conflict.server_version", "Serveri uuem versioon")}</dt>
-            <dd>{conflictProfile.organizationName || "-"}</dd>
-          </dl>
-          <Button type="button" onClick={() => {
-            setProfile(conflictProfile);
-            setConflictProfile(null);
-          }}>
-            {readText(t, "workspace_feature_pages.service_profile.actions.keep_local_changes", "Säilita kohalikud muudatused ja proovi uuesti")}
-          </Button>
-          <Button type="button" onClick={() => applyLoadedProfile(conflictProfile)}>
-            {readText(t, "workspace_feature_pages.service_profile.actions.use_server_version", "Kasuta serveri versiooni")}
-          </Button>
-        </div>
-      ) : null}
-
-      <ServiceProfileSection title={readText(t, "workspace_feature_pages.service_profile.sections.profile", "Teenuseosutaja põhainfo")}>
-        <div>
-          <Label>
-            <span>{readText(t, "workspace_feature_pages.service_profile.fields.organization", "Organisatsiooni nimi")}</span>
-            <ServiceProfileInput value={form.organizationName} onChange={(event) => updateField("organizationName", event.target.value)} />
-          </Label>
-          <Label>
-            <span>{readText(t, "workspace_feature_pages.service_profile.fields.organization_type", "Organisatsiooni tüüp")}</span>
-            <ServiceProfileDropdown
-              ariaLabel={readText(t, "workspace_feature_pages.service_profile.fields.organization_type", "Organisatsiooni tüüp")}
-              value={form.organizationType}
-              onChange={(nextValue) => updateField("organizationType", nextValue)}
-              options={organizationTypeOptions}
-            />
-          </Label>
-          <Label>
-            <span>{readText(t, "workspace_feature_pages.service_profile.fields.registry_code", "Registrikood")}</span>
-            <ServiceProfileInput value={form.registryCode} onChange={(event) => updateField("registryCode", event.target.value)} />
-          </Label>
-        </div>
-        <Label>
-          <span>{readText(t, "workspace_feature_pages.service_profile.fields.short_description", "Lühikirjeldus")}</span>
-          <ServiceProfileTextarea
-            value={form.shortDescription}
-            onChange={(event) => updateField("shortDescription", event.target.value)}
-          />
-        </Label>
-        <Label>
-          <span>{readText(t, "workspace_feature_pages.service_profile.fields.long_description", "Pikem kirjeldus")}</span>
-          <ServiceProfileTextarea
-            value={form.longDescription}
-            onChange={(event) => updateField("longDescription", event.target.value)}
-          />
-        </Label>
-        <div>
-          <Label>
-            <span>{readText(t, "workspace_feature_pages.service_profile.fields.website", "Veebileht")}</span>
-            <ServiceProfileInput value={form.website} onChange={(event) => updateField("website", event.target.value)} />
-          </Label>
-          <Label>
-            <span>{readText(t, "workspace_feature_pages.service_profile.fields.email", "Üldine e-post")}</span>
-            <ServiceProfileInput type="email" value={form.email} onChange={(event) => updateField("email", event.target.value)} />
-          </Label>
-          <Label>
-            <span>{readText(t, "workspace_feature_pages.service_profile.fields.phone", "Üldtelefon")}</span>
-            <ServiceProfileInput value={form.phone} onChange={(event) => updateField("phone", event.target.value)} />
-          </Label>
-          <Label>
-            <span>{readText(t, "workspace_feature_pages.service_profile.fields.primary_contact_name", "Põhikontakt")}</span>
-            <ServiceProfileInput value={form.primaryContactName} onChange={(event) => updateField("primaryContactName", event.target.value)} />
-          </Label>
-          <Label>
-            <span>{readText(t, "workspace_feature_pages.service_profile.fields.service_area", "Üldine tegevuspiirkond")}</span>
-            <ServiceProfileInput value={form.serviceArea} onChange={(event) => updateField("serviceArea", event.target.value)} />
-          </Label>
-          <Label>
-            <span>{readText(t, "workspace_feature_pages.service_profile.fields.municipalities", "KOV-id või piirkonnad")}</span>
-            <ServiceProfileInput value={form.serviceAreaMunicipalityIds} onChange={(event) => updateField("serviceAreaMunicipalityIds", event.target.value)} />
-          </Label>
-          <Label>
-            <span>{readText(t, "workspace_feature_pages.service_profile.fields.county", "Maakond")}</span>
-            <ServiceProfileInput value={form.county} onChange={(event) => updateField("county", event.target.value)} />
-          </Label>
-          <Label>
-            <span>{readText(t, "workspace_feature_pages.service_profile.fields.accessibility_info", "Üldine ligipääsetavuse info")}</span>
-            <ServiceProfileTextarea
-              value={form.accessibilityInfo}
-              onChange={(event) => updateField("accessibilityInfo", event.target.value)}
-            />
-          </Label>
-          <Label>
-            <span>{readText(t, "workspace_feature_pages.service_profile.fields.general_accessibility_note", "Ligipääsetavuse täpsustus")}</span>
-            <ServiceProfileTextarea
-              value={form.generalAccessibilityNote}
-              onChange={(event) => updateField("generalAccessibilityNote", event.target.value)}
-            />
-          </Label>
-          <Label>
-            <span>{readText(t, "workspace_feature_pages.service_profile.fields.status", "Profiili staatus")}</span>
-            <ServiceProfileDropdown
-              ariaLabel={readText(t, "workspace_feature_pages.service_profile.fields.status", "Profiili staatus")}
-              value={form.status}
-              onChange={(nextValue) => updateField("status", nextValue)}
-              options={statusOptions}
-            />
-          </Label>
-        </div>
-      </ServiceProfileSection>
-
-      <ServiceProfileSection title={readText(t, "workspace_feature_pages.service_profile.sections.services", "Teenused")}>
-        <ServiceProfileFieldHelp>
-          {readText(
-            t,
-            "workspace_feature_pages.service_profile.field_help.services",
-            "Kirjelda siin konkreetseid teenuseid. Kategooriad, sihtrühmad, keeled ja pöördumise tingimused salvestuvad teenuse tasemele."
-          )}
-        </ServiceProfileFieldHelp>
-        <div className="service-profile-licence-actions">
-          <Button type="button" onClick={() => void licence.recheck()} disabled={licence.checking}>
-            {readText(t, "service_provider_profile.licence.internal.action_recheck", "Kontrolli uuesti")}
-          </Button>
-          {licence.notice ? <p className="service-profile-licence__notice">{licence.notice}</p> : null}
-        </div>
-        <div>
-          <div>
-          {form.serviceItems.length ? form.serviceItems.map((service, index) => (
-            <div key={`service-item-${index}`}>
-              <div>
-                <p>
-                  {readText(t, "workspace_feature_pages.service_profile.service_items.item_title", "Teenus")} {index + 1}
-                </p>
-                <Button
-                  type="button"
-                  variant="danger"
-                  onClick={() => removeServiceItem(index)}
-                >
-                  {readText(t, "workspace_feature_pages.service_profile.service_items.remove", "Eemalda")}
-                </Button>
-              </div>
-              <Label>
-                <span>{readText(t, "workspace_feature_pages.service_profile.service_items.name", "Teenuse nimi")}</span>
-                <ServiceProfileInput value={service.name} onChange={(event) => updateServiceItem(index, "name", event.target.value)} />
-              </Label>
-              <Label>
-                <span>{readText(t, "workspace_feature_pages.service_profile.service_items.status", "Teenuse olek")}</span>
-                <ServiceProfileDropdown
-                  ariaLabel={readText(t, "workspace_feature_pages.service_profile.service_items.status", "Teenuse olek")}
-                  value={service.status}
-                  onChange={(nextValue) => updateServiceItem(index, "status", nextValue)}
-                  options={statusOptions}
-                />
-              </Label>
-              <ServiceLicenceStatus t={t} locale={locale} row={service.id ? licence.statuses.get(service.id) : null} />
-              <Label>
-                <span>{readText(t, "workspace_feature_pages.service_profile.service_items.description", "Kirjeldus")}</span>
-                <ServiceProfileTextarea
-                  value={service.description}
-                  onChange={(event) => updateServiceItem(index, "description", event.target.value)}
-                />
-              </Label>
-              <div>
-                <Label>
-                  <span>{readText(t, "workspace_feature_pages.service_profile.service_items.long_description", "Pikem kirjeldus")}</span>
-                  <ServiceProfileTextarea
-                    value={service.longDescription}
-                    onChange={(event) => updateServiceItem(index, "longDescription", event.target.value)}
-                  />
-                </Label>
-                <Label>
-                  <span>{readText(t, "workspace_feature_pages.service_profile.service_items.includes_text", "Mida teenus sisaldab")}</span>
-                  <ServiceProfileTextarea
-                    value={service.includesText}
-                    onChange={(event) => updateServiceItem(index, "includesText", event.target.value)}
-                  />
-                </Label>
-                <Label>
-                  <span>{readText(t, "workspace_feature_pages.service_profile.service_items.excludes_text", "Mida teenus ei sisalda")}</span>
-                  <ServiceProfileTextarea
-                    value={service.excludesText}
-                    onChange={(event) => updateServiceItem(index, "excludesText", event.target.value)}
-                  />
-                </Label>
-              </div>
-              <div>
-                <ServiceProfileChipField
-                  label={readText(t, "workspace_feature_pages.service_profile.service_items.categories", "Teenuse kategooriad")}
-                  value={service.categories}
-                  options={categoryOptions}
-                  onChange={(nextValue) => updateServiceItem(index, "categories", nextValue)}
-                  selectedLabel={selectedSummaryLabel}
-                  selectedEmptyLabel={selectedSummaryEmptyLabel}
-                />
-                <ServiceProfileChipField
-                  label={readText(t, "workspace_feature_pages.service_profile.service_items.target_groups", "Sihtrühmad")}
-                  value={service.targetGroups}
-                  options={targetGroupOptions}
-                  onChange={(nextValue) => updateServiceItem(index, "targetGroups", nextValue)}
-                  selectedLabel={selectedSummaryLabel}
-                  selectedEmptyLabel={selectedSummaryEmptyLabel}
-                />
-                <ServiceProfileChipField
-                  label={readText(t, "workspace_feature_pages.service_profile.service_items.age_groups", "Vanusegrupid")}
-                  value={service.ageGroups}
-                  options={ageGroupOptions}
-                  onChange={(nextValue) => updateServiceItem(index, "ageGroups", nextValue)}
-                  selectedLabel={selectedSummaryLabel}
-                  selectedEmptyLabel={selectedSummaryEmptyLabel}
-                />
-                <ServiceProfileChipField
-                  label={readText(t, "workspace_feature_pages.service_profile.service_items.requester_roles", "Kes võib pöörduda")}
-                  value={service.requesterRoles}
-                  options={requesterRoleOptions}
-                  onChange={(nextValue) => updateServiceItem(index, "requesterRoles", nextValue)}
-                  selectedLabel={selectedSummaryLabel}
-                  selectedEmptyLabel={selectedSummaryEmptyLabel}
-                />
-                <ServiceProfileChipField
-                  label={readText(t, "workspace_feature_pages.service_profile.service_items.need_tags", "Vajadused ja olukorrad")}
-                  value={service.needTags}
-                  options={needTagOptions}
-                  onChange={(nextValue) => updateServiceItem(index, "needTags", nextValue)}
-                  selectedLabel={selectedSummaryLabel}
-                  selectedEmptyLabel={selectedSummaryEmptyLabel}
-                />
-                <ServiceProfileChipField
-                  label={readText(t, "workspace_feature_pages.service_profile.service_items.life_domains", "Eluvaldkonnad")}
-                  value={service.lifeDomains}
-                  options={lifeDomainOptions}
-                  onChange={(nextValue) => updateServiceItem(index, "lifeDomains", nextValue)}
-                  selectedLabel={selectedSummaryLabel}
-                  selectedEmptyLabel={selectedSummaryEmptyLabel}
-                />
-                <ServiceProfileChipField
-                  label={readText(t, "workspace_feature_pages.service_profile.service_items.delivery_modes", "Osutamise viisid")}
-                  value={service.deliveryModes}
-                  options={deliveryModeOptions}
-                  onChange={(nextValue) => updateServiceItem(index, "deliveryModes", nextValue)}
-                  selectedLabel={selectedSummaryLabel}
-                  selectedEmptyLabel={selectedSummaryEmptyLabel}
-                />
-                <Label>
-                  <span>{readText(t, "workspace_feature_pages.service_profile.service_items.service_area", "Teeninduspiirkond")}</span>
-                  <ServiceProfileTextarea
-                    value={service.serviceArea}
-                    onChange={(event) => updateServiceItem(index, "serviceArea", event.target.value)}
-                  />
-                </Label>
-                <Label>
-                  <span>{readText(t, "workspace_feature_pages.service_profile.service_items.service_area_type", "Piirkonna tüüp")}</span>
-                  <ServiceProfileDropdown
-                    ariaLabel={readText(t, "workspace_feature_pages.service_profile.service_items.service_area_type", "Piirkonna tüüp")}
-                    value={service.serviceAreaType}
-                    onChange={(nextValue) => updateServiceItem(index, "serviceAreaType", nextValue)}
-                    options={serviceAreaTypeOptions}
-                  />
-                </Label>
-                <Label>
-                  <span>{readText(t, "workspace_feature_pages.service_profile.fields.county", "Maakond")}</span>
-                  <ServiceProfileInput value={service.county} onChange={(event) => updateServiceItem(index, "county", event.target.value)} />
-                </Label>
-                <Label>
-                  <span>{readText(t, "workspace_feature_pages.service_profile.service_items.municipality_ids", "KOV-id või piirkonnad")}</span>
-                  <ServiceProfileInput value={service.municipalityIds} onChange={(event) => updateServiceItem(index, "municipalityIds", event.target.value)} />
-                </Label>
-                <Label>
-                  <span>{readText(t, "workspace_feature_pages.service_profile.service_items.area_description", "Piirkonna täpsustus")}</span>
-                  <ServiceProfileTextarea
-                    value={service.areaDescription}
-                    onChange={(event) => updateServiceItem(index, "areaDescription", event.target.value)}
-                  />
-                </Label>
-              </div>
-              {realServiceLocations.length ? (
-                <div>
-                  <p>
-                    {readText(t, "workspace_feature_pages.service_profile.service_items.locations", "Teeninduskohad")}
-                  </p>
-                  <div>
-                    {realServiceLocations.map((location, locationIndex) => {
-                      const locationId = location.clientId || `location-${locationIndex + 1}`;
-                      const checked = (service.locationIds || []).includes(locationId);
-                      return (
-                        <ServiceProfileLocationChoice
-                          key={locationId}
-                          checked={checked}
-                          onChange={(nextChecked) => {
-                            const currentIds = new Set(service.locationIds || []);
-                            if (nextChecked) currentIds.add(locationId);
-                            else currentIds.delete(locationId);
-                            updateServiceItem(index, "locationIds", [...currentIds]);
-                          }}
-                        >
-                          {location.label || location.normalizedAddress || location.address}
-                        </ServiceProfileLocationChoice>
-                      );
-                    })}
-                  </div>
-                </div>
-              ) : (
-                <p className={bodyTextClassName}>
-                  {readText(t, "workspace_feature_pages.service_profile.service_items.location_empty_hint", "Lisa esmalt teeninduskoht, kui soovid teenust kaardil kuvada. Teenus võib olla ka ilma füüsilise teeninduskohata, kui osutamise viis on veebis, telefoni teel, inimese kodus või piirkondlikult.")}
-                </p>
-              )}
-              <div>
-                <Label>
-                  <span>{readText(t, "workspace_feature_pages.service_profile.service_items.fee_type", "Hinnastus")}</span>
-                  <ServiceProfileDropdown
-                    ariaLabel={readText(t, "workspace_feature_pages.service_profile.service_items.fee_type", "Hinnastus")}
-                    value={service.feeType}
-                    onChange={(nextValue) => updateServiceItem(index, "feeType", nextValue)}
-                    options={feeOptions}
-                  />
-                </Label>
-                <Label>
-                  <span>{readText(t, "workspace_feature_pages.service_profile.service_items.price_description", "Hinna täpsustus")}</span>
-                  <ServiceProfileInput value={service.priceDescription} onChange={(event) => updateServiceItem(index, "priceDescription", event.target.value)} />
-                </Label>
-              </div>
-              <div>
-                <ServiceProfileChipField
-                  label={readText(t, "workspace_feature_pages.service_profile.service_items.service_languages", "Teenuse osutamise keeled")}
-                  value={service.serviceLanguages}
-                  options={languageOptions}
-                  onChange={(nextValue) => updateServiceItem(index, "serviceLanguages", nextValue)}
-                  selectedLabel={selectedSummaryLabel}
-                  selectedEmptyLabel={selectedSummaryEmptyLabel}
-                />
-                <ServiceProfileChipField
-                  label={readText(t, "workspace_feature_pages.service_profile.service_items.inquiry_languages", "Pöördumise keeled")}
-                  value={service.inquiryLanguages}
-                  options={languageOptions}
-                  onChange={(nextValue) => updateServiceItem(index, "inquiryLanguages", nextValue)}
-                  selectedLabel={selectedSummaryLabel}
-                  selectedEmptyLabel={selectedSummaryEmptyLabel}
-                />
-                <ServiceProfileChipField
-                  label={readText(t, "workspace_feature_pages.service_profile.service_items.communication_support", "Suhtlustugi")}
-                  value={service.communicationSupport}
-                  options={communicationSupportOptions}
-                  onChange={(nextValue) => updateServiceItem(index, "communicationSupport", nextValue)}
-                  selectedLabel={selectedSummaryLabel}
-                  selectedEmptyLabel={selectedSummaryEmptyLabel}
-                />
-                <Label>
-                  <span>{readText(t, "workspace_feature_pages.service_profile.service_items.availability_status", "Kättesaadavus")}</span>
-                  <ServiceProfileDropdown
-                    ariaLabel={readText(t, "workspace_feature_pages.service_profile.service_items.availability_status", "Kättesaadavus")}
-                    value={service.availabilityStatus}
-                    onChange={(nextValue) => updateServiceItem(index, "availabilityStatus", nextValue)}
-                    options={availabilityOptions.some((option) => option.value === service.availabilityStatus) || !service.availabilityStatus
-                      ? availabilityOptions
-                      : [
-                          ...availabilityOptions,
-                          {
-                            value: service.availabilityStatus,
-                            label: `${readText(t, "workspace_feature_pages.service_profile.availability.legacy", "Varasem kinnitamata väärtus")}: ${service.availabilityStatus}`
-                          }
-                        ]}
-                  />
-                </Label>
-                <Label>
-                  <span>{service.availabilityStatus === "waitlist"
-                    ? readText(t, "workspace_feature_pages.service_profile.availability.wait_description", "Ligikaudne ooteaeg")
-                    : readText(t, "workspace_feature_pages.service_profile.service_items.availability_description", "Kättesaadavuse täpsustus")}</span>
-                  <ServiceProfileTextarea
-                    value={service.availabilityDescription}
-                    onChange={(event) => updateServiceItem(index, "availabilityDescription", event.target.value)}
-                  />
-                </Label>
-                {(() => {
-                  const savedService = (profile?.serviceItems || []).find((item) => item.id === service.id);
-                  const presentation = serviceAvailabilityPresentation(t, savedService?.availability || service.availability);
-                  const availabilityChanged = Boolean(savedService) && (
-                    savedService.availabilityStatus !== service.availabilityStatus ||
-                    String(savedService.availabilityDescription || "") !== String(service.availabilityDescription || "")
-                  );
-                  return (
-                    <div className="service-profile-availability" data-tone={presentation.tone} role="status">
-                      <p className="service-profile-availability__status">
-                        <span aria-hidden="true">{presentation.icon}</span> {presentation.label}
-                      </p>
-                      <p>{presentation.ageText}</p>
-                      {presentation.warning ? <p>{presentation.warning}</p> : null}
-                      {availabilityChanged ? (
-                        <p>{readText(t, "workspace_feature_pages.service_profile.availability.save_before_confirm", "Salvesta muudetud olek või ooteaeg enne eraldi kinnitamist.")}</p>
-                      ) : null}
-                      <Button
-                        type="button"
-                        size="sm"
-                        disabled={!savedService?.availabilityFingerprint || availabilityChanged || Boolean(confirmingServiceId)}
-                        onClick={() => confirmServiceAvailability(savedService)}
-                      >
-                        {confirmingServiceId === service.id
-                          ? readText(t, "workspace_feature_pages.service_profile.availability.confirming", "Kinnitan...")
-                          : readText(t, "workspace_feature_pages.service_profile.availability.confirm", "Kinnitan, et info kehtib")}
-                      </Button>
-                    </div>
-                  );
-                })()}
-              </div>
-              <div>
-                <Label>
-                  <span>{readText(t, "workspace_feature_pages.service_profile.service_items.direct_contact_allowed", "Otsekontakt lubatud")}</span>
-                  <ServiceProfileDropdown
-                    ariaLabel={readText(t, "workspace_feature_pages.service_profile.service_items.direct_contact_allowed", "Otsekontakt lubatud")}
-                    value={service.directContactAllowed}
-                    onChange={(nextValue) => updateServiceItem(index, "directContactAllowed", nextValue)}
-                    options={requirementOptions}
-                  />
-                </Label>
-                <Label>
-                  <span>{readText(t, "workspace_feature_pages.service_profile.service_items.requires_kov_assessment", "Vajab KOV hindamist")}</span>
-                  <ServiceProfileDropdown
-                    ariaLabel={readText(t, "workspace_feature_pages.service_profile.service_items.requires_kov_assessment", "Vajab KOV hindamist")}
-                    value={service.requiresKovAssessment}
-                    onChange={(nextValue) => updateServiceItem(index, "requiresKovAssessment", nextValue)}
-                    options={requirementOptions}
-                  />
-                </Label>
-                <Label>
-                  <span>{readText(t, "workspace_feature_pages.service_profile.service_items.requires_kov_decision", "Vajab KOV otsust")}</span>
-                  <ServiceProfileDropdown
-                    ariaLabel={readText(t, "workspace_feature_pages.service_profile.service_items.requires_kov_decision", "Vajab KOV otsust")}
-                    value={service.requiresKovDecision}
-                    onChange={(nextValue) => updateServiceItem(index, "requiresKovDecision", nextValue)}
-                    options={requirementOptions}
-                  />
-                </Label>
-                <Label>
-                  <span>{readText(t, "workspace_feature_pages.service_profile.service_items.requires_ska_referral", "Vajab SKA suunamist")}</span>
-                  <ServiceProfileDropdown
-                    ariaLabel={readText(t, "workspace_feature_pages.service_profile.service_items.requires_ska_referral", "Vajab SKA suunamist")}
-                    value={service.requiresSkaReferral}
-                    onChange={(nextValue) => updateServiceItem(index, "requiresSkaReferral", nextValue)}
-                    options={requirementOptions}
-                  />
-                </Label>
-                <Label>
-                  <span>{readText(t, "workspace_feature_pages.service_profile.service_items.requires_specialist_referral", "Vajab spetsialisti suunamist")}</span>
-                  <ServiceProfileDropdown
-                    ariaLabel={readText(t, "workspace_feature_pages.service_profile.service_items.requires_specialist_referral", "Vajab spetsialisti suunamist")}
-                    value={service.requiresSpecialistReferral}
-                    onChange={(nextValue) => updateServiceItem(index, "requiresSpecialistReferral", nextValue)}
-                    options={requirementOptions}
-                  />
-                </Label>
-                <Label>
-                  <span>{readText(t, "workspace_feature_pages.service_profile.service_items.contact_mode", "Kontaktiviis")}</span>
-                  <ServiceProfileDropdown
-                    ariaLabel={readText(t, "workspace_feature_pages.service_profile.service_items.contact_mode", "Kontaktiviis")}
-                    value={service.contactMode}
-                    onChange={(nextValue) => updateServiceItem(index, "contactMode", nextValue)}
-                    options={contactModeOptions}
-                  />
-                </Label>
-                <Label>
-                  <span>{readText(t, "workspace_feature_pages.service_profile.service_items.required_documents_note", "Vajalikud dokumendid")}</span>
-                  <ServiceProfileTextarea
-                    value={service.requiredDocumentsNote}
-                    onChange={(event) => updateServiceItem(index, "requiredDocumentsNote", event.target.value)}
-                  />
-                </Label>
-                <Label>
-                  <span>{readText(t, "workspace_feature_pages.service_profile.service_items.referral_notes", "Pöördumise tingimused")}</span>
-                  <ServiceProfileTextarea
-                    value={service.referralNotes}
-                    onChange={(event) => updateServiceItem(index, "referralNotes", event.target.value)}
-                  />
-                </Label>
-                <Label>
-                  <span>{readText(t, "workspace_feature_pages.service_profile.service_items.additional_info", "Lisainfo")}</span>
-                  <ServiceProfileTextarea
-                    value={service.additionalInfo}
-                    onChange={(event) => updateServiceItem(index, "additionalInfo", event.target.value)}
-                  />
-                </Label>
-              </div>
-              <div>
-                <Label>
-                  <span>{readText(t, "workspace_feature_pages.service_profile.contact_strategy.label", "Teenuse kontakt")}</span>
-                  <ServiceProfileDropdown
-                    ariaLabel={readText(t, "workspace_feature_pages.service_profile.contact_strategy.label", "Teenuse kontakt")}
-                    value={service.contactStrategy}
-                    onChange={(nextValue) => {
-                      updateServiceItem(index, "contactStrategy", nextValue);
-                      if (nextValue === "ORGANIZATION") {
-                        updateServiceItem(index, "contactName", "");
-                        updateServiceItem(index, "phone", "");
-                        updateServiceItem(index, "email", "");
-                        updateServiceItem(index, "website", "");
-                      }
-                    }}
-                    options={contactStrategyOptions}
-                  />
-                </Label>
-                {service.contactStrategy === "CUSTOM" ? (
-                  <>
-                    <Label>
-                      <span>{readText(t, "workspace_feature_pages.service_profile.service_items.contact_name", "Kontaktisik")}</span>
-                      <ServiceProfileInput value={service.contactName} onChange={(event) => updateServiceItem(index, "contactName", event.target.value)} />
-                    </Label>
-                    <Label>
-                      <span>{readText(t, "workspace_feature_pages.service_profile.fields.phone", "Telefon")}</span>
-                      <ServiceProfileInput value={service.phone} onChange={(event) => updateServiceItem(index, "phone", event.target.value)} />
-                    </Label>
-                    <Label>
-                      <span>{readText(t, "workspace_feature_pages.service_profile.fields.email", "E-post")}</span>
-                      <ServiceProfileInput type="email" value={service.email} onChange={(event) => updateServiceItem(index, "email", event.target.value)} />
-                    </Label>
-                  </>
-                ) : (
-                  <ServiceProfileFieldHelp>
-                    {readText(t, "workspace_feature_pages.service_profile.contact_strategy.inherited_help", "Eelpöördumise kontaktivalik kasutab järjekorda: teenuse kontakt, teeninduskoha kontakt, organisatsiooni põhikontakt. Selle teenuse puhul kasutatakse praegu organisatsiooni põhikontakti.")}
-                  </ServiceProfileFieldHelp>
-                )}
-              </div>
-              <div>
-                <ToggleRow
-                  checked={service.mapVisible}
-                  onChange={(value) => updateServiceItem(index, "mapVisible", value)}
-                  title={readText(t, "workspace_feature_pages.service_profile.service_items.visible_in_profile", "Nähtav kaardimarkeri all")}
-                />
-                <ToggleRow
-                  checked={service.acceptsPlatformPreInquiries}
-                  onChange={(value) => updateServiceItem(index, "acceptsPlatformPreInquiries", value)}
-                  title={readText(t, "workspace_feature_pages.service_profile.pre_inquiries.accepts_platform", "Võtab vastu Sotsiaal.pro siseseid eelpöördumisi")}
-                />
-                <ToggleRow
-                  checked={service.acceptsEmailPreInquiries}
-                  onChange={(value) => updateServiceItem(index, "acceptsEmailPreInquiries", value)}
-                  title={readText(t, "workspace_feature_pages.service_profile.pre_inquiries.accepts_email", "Lubab e-kirja koostamist")}
-                />
-              </div>
-            </div>
-          )) : (
-            <p className={bodyTextClassName}>
-              {readText(t, "workspace_feature_pages.service_profile.service_items.empty", "Eraldi teenuseid ei ole veel lisatud.")}
-            </p>
-          )}
-          <p aria-live="polite">{form.serviceItems.length} / {SERVICE_PROFILE_LIMITS.services}</p>
-          <Button
-            type="button"
-            variant="primary"
-            onClick={addServiceItem}
-            disabled={form.serviceItems.length >= SERVICE_PROFILE_LIMITS.services}
-          >
-            {readText(t, "workspace_feature_pages.service_profile.service_items.add", "Lisa teenus")}
-          </Button>
-        </div>
-        </div>
-      </ServiceProfileSection>
-
-      <ServiceProfileSection title={readText(t, "workspace_feature_pages.service_profile.sections.locations", "Teeninduskohad")}>
-        <ServiceProfileFieldHelp>
-          {readText(
-            t,
-            "workspace_feature_pages.service_profile.field_help.locations",
-            "Teeninduskoht on kaardimarkeri alus. Lisa siia ainult päris teeninduskohad nime ja aadressiga."
-          )}
-        </ServiceProfileFieldHelp>
-        <div>
-          {form.serviceLocations.length ? form.serviceLocations.map((location, index) => (
-            <div key={location.clientId || `location-${index}`}>
-              <div>
-                <p>
-                  {location.label || location.normalizedAddress || location.address || readText(t, "workspace_feature_pages.service_profile.locations.new_item_title", "Uus teeninduskoht")}
-                </p>
-                <Button type="button" variant="danger" onClick={() => removeServiceLocation(index)}>
-                  {readText(t, "workspace_feature_pages.service_profile.locations.remove", "Eemalda")}
-                </Button>
-              </div>
-              <div>
-                <Label>
-                  <span>{readText(t, "workspace_feature_pages.service_profile.locations.label", "Nimetus")}</span>
-                  <ServiceProfileInput value={location.label} onChange={(event) => updateServiceLocation(index, "label", event.target.value)} />
-                </Label>
-                <Label>
-                  <span>{readText(t, "workspace_feature_pages.service_profile.locations.status", "Teeninduskoha olek")}</span>
-                  <ServiceProfileDropdown
-                    ariaLabel={readText(t, "workspace_feature_pages.service_profile.locations.status", "Teeninduskoha olek")}
-                    value={location.status}
-                    onChange={(nextValue) => updateServiceLocation(index, "status", nextValue)}
-                    options={statusOptions}
-                  />
-                </Label>
-                <Label>
-                  <span>{readText(t, "workspace_feature_pages.service_profile.locations.address", "Aadress")}</span>
-                  <ServiceProfileAddressInput
-                    t={t}
-                    form={{ ...form, ...location, county: location.county || form.county }}
-                    onTyping={(value) => updateServiceLocationAddressTyping(index, value)}
-                    onSelect={(suggestion) => selectServiceLocationAddress(index, suggestion)}
-                  />
-                </Label>
-              </div>
-              <div>
-                <Label>
-                  <span>{readText(t, "workspace_feature_pages.service_profile.fields.phone", "Telefon")}</span>
-                  <ServiceProfileInput value={location.phone} onChange={(event) => updateServiceLocation(index, "phone", event.target.value)} />
-                </Label>
-                <Label>
-                  <span>{readText(t, "workspace_feature_pages.service_profile.fields.email", "E-post")}</span>
-                  <ServiceProfileInput type="email" value={location.email} onChange={(event) => updateServiceLocation(index, "email", event.target.value)} />
-                </Label>
-                <Label>
-                  <span>{readText(t, "workspace_feature_pages.service_profile.fields.website", "Veebileht")}</span>
-                  <ServiceProfileInput value={location.website} onChange={(event) => updateServiceLocation(index, "website", event.target.value)} />
-                </Label>
-                <Label>
-                  <span>{readText(t, "workspace_feature_pages.service_profile.locations.opening_hours", "Lahtiolekuajad")}</span>
-                  <ServiceProfileTextarea
-                    value={location.openingHours}
-                    onChange={(event) => updateServiceLocation(index, "openingHours", event.target.value)}
-                  />
-                </Label>
-              </div>
-              <ToggleRow
-                checked={location.mapVisible}
-                onChange={(value) => updateServiceLocation(index, "mapVisible", value)}
-                title={readText(t, "workspace_feature_pages.service_profile.locations.visible_on_map", "Näita teenusekaardil")}
-              />
-            </div>
-          )) : (
-            <p className={bodyTextClassName}>
-              {readText(t, "workspace_feature_pages.service_profile.locations.empty", "Teeninduskohti ei ole veel lisatud.")}
-            </p>
-          )}
-          <p aria-live="polite">{form.serviceLocations.length} / {SERVICE_PROFILE_LIMITS.locations}</p>
-          <Button
-            type="button"
-            variant="primary"
-            onClick={addServiceLocation}
-            disabled={form.serviceLocations.length >= SERVICE_PROFILE_LIMITS.locations}
-          >
-            {readText(t, "workspace_feature_pages.service_profile.locations.add", "Lisa teeninduskoht")}
-          </Button>
-        </div>
-      </ServiceProfileSection>
-
-      <ServiceProfileSection title={readText(t, "workspace_feature_pages.service_profile.sections.contact", "Kontakt ja eelpöördumised")}>
-        <ServiceProfileFieldHelp>
-          {readText(t, "workspace_feature_pages.service_profile.contact_strategy.priority_help", "Eelpöördumise kontaktivalik kasutab järjekorda: teenuse kontakt, teeninduskoha kontakt, organisatsiooni põhikontakt. Põhikontakti andmed sisesta organisatsiooni põhiinfos.")}
-        </ServiceProfileFieldHelp>
-        <div>
-          <ToggleRow
-            checked={form.acceptsPlatformPreInquiries}
-            onChange={(value) => updateField("acceptsPlatformPreInquiries", value)}
-            title={readText(t, "workspace_feature_pages.service_profile.pre_inquiries.accepts_platform", "Võtab vastu Sotsiaal.pro siseseid eelpöördumisi")}
-            body={readText(t, "workspace_feature_pages.service_profile.pre_inquiries.platform_help", "Inimene saab saata sisemise eelpöördumise selle teenuseosutaja kontole.")}
-          />
-          <ToggleRow
-            checked={form.acceptsEmailPreInquiries}
-            onChange={(value) => updateField("acceptsEmailPreInquiries", value)}
-            title={readText(t, "workspace_feature_pages.service_profile.pre_inquiries.accepts_email", "Lubab e-kirja koostamist")}
-            body={readText(t, "workspace_feature_pages.service_profile.pre_inquiries.email_help", "Kasutaja saab koostada e-kirja eelvaate, mille ta vaatab enne saatmist üle.")}
-          />
-        </div>
-      </ServiceProfileSection>
-
-      <ServiceProfileSection title={readText(t, "workspace_feature_pages.service_profile.sections.publish", "Avaldamine")}>
-        <div>
-          <div>
-            <ToggleRow
-              checked={form.mapVisible}
-              onChange={(value) => updateField("mapVisible", value)}
-              title={readText(t, "workspace_feature_pages.service_profile.visibility.visible", "Avalda teenusekaardil")}
-              body={readText(
-                t,
-                "workspace_feature_pages.service_profile.visibility.visible_help",
-                "Teenusekaart kuvab profiili ainult siis, kui staatus on avaldatud ja vähemalt ühel kaardil nähtaval teeninduskohal on ametlik aadressivaste."
-              )}
-            />
-            <ToggleRow
-              checked={form.assistantRecommendationAllowed}
-              onChange={(value) => updateField("assistantRecommendationAllowed", value)}
-              title={readText(t, "workspace_feature_pages.service_profile.pre_inquiries.assistant_recommendation_allowed", "Luba assistendil avaldatud teenuseid soovitada")}
-              body={readText(t, "workspace_feature_pages.service_profile.pre_inquiries.assistant_recommendation_help", "Avaldatud teenusekirjed lisatakse AI teadmuskihile ainult selle valiku korral.")}
-            />
-            <p className={bodyTextClassName}>
-              {readText(
-                t,
-                "workspace_feature_pages.service_profile.publish_help",
-                "Avaldamata ja ülevaatusel profiil ei ilmu teenusekaardile. Avaldatud profiil vajab markeriks ka usaldusväärset aadressivastet."
-              )}
-            </p>
-            <div aria-label={readText(t, "workspace_feature_pages.service_profile.publish_checks.title", "Avaldamise kontroll")}>
-              <p>
-                {readText(t, "workspace_feature_pages.service_profile.publish_checks.title", "Avaldamise kontroll")}
-              </p>
-              {publishChecks.map((item) => (
-                <p key={item.text}>
-                  <span aria-hidden="true">{item.ok ? "✓" : "!"}</span>
-                  <span>{item.text}</span>
-                </p>
-              ))}
-            </div>
-            {publishContractErrors.length ? (
-              <div role="alert">
-                {publishContractErrors.map((message) => <p key={message}>{message}</p>)}
-              </div>
-            ) : null}
-            <div>
-              <p>
-                {readText(t, "workspace_feature_pages.service_profile.map_status.title", "Aadressi seis")}
-              </p>
-              <p className={bodyTextClassName}>{serviceProfileMapStatusText(t, mapEntry)}</p>
-              {mapEntry?.normalizedAddress || mapEntry?.address ? (
-                <p className={bodyTextClassName}>{mapEntry.normalizedAddress || mapEntry.address}</p>
-              ) : null}
-            </div>
-            <Button type="submit" disabled={loading || saving || !form.organizationName.trim() || publishContractErrors.length > 0}>
-              {saveLabel}
+        <div className={profileStyles.conflict} role="alert">
+          <p className={profileStyles.conflictText}>{tp("errors.profile_conflict_detail", "Serveris on uuem versioon. Kohalikud muudatused on vormil alles.")}</p>
+          <p className={profileStyles.conflictNames}>
+            {tp("conflict.local_version", "Kohalik vorm")}: {form.organizationName || tp("views.no_name", "nimi puudub")}
+            {" · "}
+            {tp("conflict.server_version", "Serveri uuem versioon")}: {conflictProfile.organizationName || tp("views.no_name", "nimi puudub")}
+          </p>
+          <div className={profileStyles.buttons}>
+            <Button
+              type="button"
+              size="sm"
+              variant="secondary"
+              onClick={() => {
+                setProfile(conflictProfile);
+                setConflictProfile(null);
+              }}
+            >
+              {tp("actions.keep_local_changes", "Säilita kohalikud muudatused ja proovi uuesti")}
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              variant="secondary"
+              onClick={() => {
+                /* Serveri versioon kirjutab vormi üle ja kohalikud muudatused
+                   kaovad, seepärast küsib nupp teist vajutust. */
+                if (confirming !== "server") {
+                  armConfirm("server");
+                  return;
+                }
+                window.clearTimeout(confirmTimer.current);
+                closeItem();
+                applyLoadedProfile(conflictProfile);
+              }}
+            >
+              {confirming === "server"
+                ? tp("views.confirm_replace", "Vajuta uuesti: kohalikud muudatused lähevad kaotsi")
+                : tp("actions.use_server_version", "Kasuta serveri versiooni")}
             </Button>
           </div>
         </div>
-      </ServiceProfileSection>
+      ) : null}
+      {/* Vaadete loend muutub, kui teenus või teeninduskoht avatakse või
+          suletakse: siis ehitatakse lava uuesti ja see avaneb vaatel, kuhu
+          inimene läks. */}
+      <StepFlight
+        key={viewKeys.join("|")}
+        label={level === "profile" ? tp("title", "Teenuseprofiil") : itemTitle}
+        steps={steps}
+        initialIndex={Math.max(0, viewKeys.indexOf(activeView))}
+        activeKey={activeView}
+        onStepChange={(index, step) => {
+          if (step) setView(step.key);
+        }}
+        wideLead={
+          level === "profile" ? null : (
+            <p className={profileStyles.itemLead}>
+              <button type="button" className={profileStyles.textButton} aria-label={backLabel} onClick={closeItem}>
+                ‹ {listTitle}
+              </button>
+              <span className={profileStyles.crumbName}>{itemTitle}</span>
+            </p>
+          )
+        }
+      >
+        {renderView}
+      </StepFlight>
     </Form>
   );
 }
@@ -5652,6 +4659,10 @@ export default function WorkspaceFeaturePage({ feature, embedded = false, onBack
               showBack={false}
               holdPressedVisualDisabled
               anchorBack={!embedded && isServiceMap}
+              /* Sammulaval lehtedel (eelpöördumised, teenuseprofiil) on lehe
+                 nimi all kiirmenüüs ja paneel algab sisuga; lehe suur pealkiri
+                 jääks selle kohale kordama. Ekraanilugejale jääb see alles. */
+              headerClassName={featureKey === "pre_inquiries" || featureKey === "service_profile" ? "sr-only" : undefined}
               /* ⓘ EI ole enam siin: platvormi ainus lehe-ⓘ elab paneeli
                  nurgas × kõrval (PanelFrame). Rollipõhise sisu (pre_inquiry
                  vs intake) annab talle usePanelInfoSlot ülalpool. */
@@ -5659,7 +4670,7 @@ export default function WorkspaceFeaturePage({ feature, embedded = false, onBack
               {title}
             </SubpageHeader>
           ) : null}
-          {featureKey === "pre_inquiries" ? <PreInquiriesSurface t={t} locale={locale} activeRole={activeWorkspaceRole} isAdmin={isAdmin} currentUserId={session?.user?.id || ""} embedded={embedded} /> : null}
+          {featureKey === "pre_inquiries" ? <PreInquiriesSurface t={t} locale={locale} activeRole={activeWorkspaceRole} isAdmin={isAdmin} currentUserId={session?.user?.id || ""} /> : null}
           {featureKey === "service_map" ? <ServiceMapSurface t={t} locale={locale} activeRole={activeWorkspaceRole} isAdmin={isAdmin} isAuthenticated={Boolean(session?.user?.id)} onRoleChange={handleAdminWorkspaceRoleChange} onBack={handleBack} /> : null}
           {featureKey === "service_profile" ? <ServiceProfileSurface t={t} locale={locale} /> : null}
         </div>

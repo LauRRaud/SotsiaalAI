@@ -1,0 +1,65 @@
+{
+  "document_id": "web-ska_sotsiaalne_rehabilitatsioon_too_ja_pensioniealiste_sotsiaalne_rehabilitatsioon",
+  "title": "Sotsiaalse rehabilitatsiooni teenus tööealistele ja pensioniealistele",
+  "register_title": "Sotsiaalse rehabilitatsiooni teenus tööealistele ja pensioniealistele",
+  "source_id": "ska_sotsiaalne_rehabilitatsioon_too_ja_pensioniealiste_sotsiaalne_rehabilitatsioon",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/sotsiaalne-rehabilitatsioon/too-ja-pensioniealiste-sotsiaalne-rehabilitatsioon",
+  "source_path": "ska_sotsiaalne_rehabilitatsioon_too_ja_pensioniealiste_sotsiaalne_rehabilitatsioon.html",
+  "source_format": "html",
+  "source_sha256": "5d6cb0f1084b1aa57385cb9d065e5187901cf10a5dd05039c279b9c3caf3e181",
+  "content_sha256": "af853a5276de9647421f190934134795a0a176278c62a4861a463262cda7f9d7",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:35:36.306Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2025-05-13",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:35:34 GMT",
+      "etag": null
+    },
+    "raw_sha256": "13cd3e06993606aa17e38d5281a3eb0771242d5f1623af4c1891673e689d7fb3",
+    "stats": {
+      "words": 1450,
+      "blocks": 53,
+      "headings": 11,
+      "tables": 0,
+      "links": 12,
+      "linksToOtherSites": 5
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-10/SRT%20infoleht%20t%C3%B6%C3%B6-%20ja%20vanaduspensioniealisele%20isikule.pdf",
+      "text": "SRT infoleht töö- ja vanaduspensioniealisele isikule.pdf | 217.86 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

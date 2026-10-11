@@ -1,0 +1,85 @@
+{
+  "document_id": "web-ska_naiste_tugikeskused",
+  "title": "Naiste tugikeskused",
+  "register_title": "Naiste tugikeskused",
+  "source_id": "ska_naiste_tugikeskused",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/naiste-tugikeskused",
+  "source_path": "ska_naiste_tugikeskused.html",
+  "source_format": "html",
+  "source_sha256": "4af7131f2218c5fd363fb699263f2ff77d13247a6439eef523f4523af34ade86",
+  "content_sha256": "a3f8a05d4290a5c6db3ed998d4218c2a3eeebf237e07635f80a26197b510a78e",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:36:18.385Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2025-12-04",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:36:17 GMT",
+      "etag": null
+    },
+    "raw_sha256": "a88c2d927312e493ee8a6fb864dc06287fc85fbbd660a454888fb0d4dc9b8e5e",
+    "stats": {
+      "words": 405,
+      "blocks": 23,
+      "headings": 5,
+      "tables": 1,
+      "links": 11,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 14,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed"
+    ],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://naistetugi.ee/wp-content/uploads/2015/12/Buklett_naistele_EST_32lk_TRYKK.pdf",
+      "text": "Raamat “Turvaline ja vaba elu: mida teha, kui kannatad lähisuhtevägivalla all”",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2022-10/ntk_2021_kogemusuuringu_aruanne.pdf",
+      "text": "Naiste tugikeskuste 2021. aasta kogemusuuringu aruanne | 1.03 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-05/Naiste%20tugikeskuse%20teenuse%20kvaliteedijuhis.pdf",
+      "text": "Naiste tugikeskuse teenuse kvaliteedijuhis | 442.38 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-11/Naiste%20tugikeskuse%20teenuse%20kirjeldus%202023.docx",
+      "text": "Naiste tugikeskuse teenuse kirjeldus 2023.docx | 68.73 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    }
+  ]
+}

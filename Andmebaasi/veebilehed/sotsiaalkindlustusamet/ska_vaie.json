@@ -1,0 +1,65 @@
+{
+  "document_id": "web-ska_vaie",
+  "title": "Vaide esitamine",
+  "register_title": "Vaide esitamine",
+  "source_id": "ska_vaie",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/vaie",
+  "source_path": "ska_vaie.html",
+  "source_format": "html",
+  "source_sha256": "a4b4ae3c84ba10d01adec65337fb62dd3c27f3db38878e42c80962ebdad1e5a5",
+  "content_sha256": "4bec9ed565ba344699b435ea10373453aec4fd852b7a45e454a05728fa5de9e1",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:36:26.344Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2025-02-05",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:36:24 GMT",
+      "etag": null
+    },
+    "raw_sha256": "ef3ac76f1de98af9cfba6cf2af776d3294eacf4c2908fc2e280949fb47a0c337",
+    "stats": {
+      "words": 613,
+      "blocks": 27,
+      "headings": 5,
+      "tables": 0,
+      "links": 8,
+      "linksToOtherSites": 5
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-04/VAIDE%20VORM_29.04.docx",
+      "text": "Vaide vorm | 26.52 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    }
+  ]
+}

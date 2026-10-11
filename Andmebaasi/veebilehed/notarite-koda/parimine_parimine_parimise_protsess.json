@@ -1,0 +1,64 @@
+{
+  "document_id": "web-parimine_parimine_parimise_protsess",
+  "title": "Pärimine",
+  "register_title": "Pärimine",
+  "source_id": "parimine_parimine_parimise_protsess",
+  "source_type": "web_page",
+  "publisher": "Notarite Koda",
+  "language": "et",
+  "url": "https://parimine.notar.ee/parimine/parimise-protsess/",
+  "source_path": "parimine_parimine_parimise_protsess.html",
+  "source_format": "html",
+  "source_sha256": "cabcf7668f6364926710f193a4b2a349e651334961f13d1405cf273cdeac4fba",
+  "content_sha256": "d111fed1309bdadc724fb9c77257926f2d2b951aca301e52ace6f6c6a6459bbf",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:40:06.553Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "2e3ac2d43b4a98db3d1fd79d14e6eb12cc5d512e6e803a4cf2bcc4a0a192fe63",
+    "stats": {
+      "words": 1420,
+      "blocks": 66,
+      "headings": 22,
+      "tables": 0,
+      "links": 11,
+      "linksToOtherSites": 6
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://parimine.notar.ee/wp-content/uploads/2025/08/soome-eestkosteasutuse-selgitused-parandist-loobujatele.pdf",
+      "text": "Soome eestkosteasutuse selgitused pärandist loobujatele",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

@@ -1,12 +1,26 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+/**
+ * Tööheaolu „Minu kirjed": töötaja enda varasemad kirjed ja pooleli tekstid.
+ *
+ * KUJU (09.10). Leht oli üks pikk veerg, kus kirje detail avanes loendi rea
+ * sees. Nüüd on see sammulava (`components/stage/StepFlight.jsx`) vaadetena:
+ * kirjete loend; avatud kirje juures kirje ise, järgmine samm ja mustandid;
+ * lõpus pooleli jäänud tekstid. Vaated on failis ./records/RecordsViews.jsx,
+ * kujundus selle kõrval. Siin on andmed, päringud ja see, mis vaateid olekuga
+ * seob.
+ *
+ * Kirje kustutamine on jäädav, seepärast küsib nupp teist vajutust.
+ */
+
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
+import StepFlight from "@/components/stage/StepFlight";
 import Button from "@/components/ui/Button";
-import Form from "@/components/ui/Form";
-import Input from "@/components/ui/Input";
 import { wellbeingLabel } from "@/lib/wellbeing/displayLabels";
 import { CHECKPOINT_FOLLOW_UP_STATES, describeWellbeingCheckpoint } from "@/lib/wellbeing/checkpointState";
+
+import { NextStepView, RecordDraftsView, RecordsListView, RecordView, UnfinishedView } from "./records/RecordsViews";
 
 /* Töövoo-tüüpide sildivõtmed. Kuvasõna tuleb i18n-st (t), fallback on ET.
    Sisu (tegurid, signaalid) läbib olemasoleva `wellbeingLabel`-i (ET-only
@@ -36,6 +50,11 @@ const PERIOD_PRESETS = {
   week: { key: "week", dayCount: 7 },
   month: { key: "month", dayCount: 30 }
 };
+
+const SIGNAL_TONES = { green: "ok", yellow: "wait", red: "risk", insufficient_data: "quiet" };
+const VIEWS_KEY = "wellbeing.my_records.views";
+/* Teine vajutus kustutamiseks peab tulema selle aja sees. */
+const CONFIRM_MS = 8000;
 
 function normalizeSignalLevel(signal) {
   const level = String(signal || "").trim();
@@ -73,6 +92,19 @@ export default function MyRecordsWorkflow({ onNavigate, locale = "et" }) {
   // Nähtud töövoo-tüübid akumuleeruvad, et filtri nupud ei kaoks filtreerimisel
   // (filtreeritud loend sisaldab ainult üht tüüpi).
   const [knownWorkflowTypes, setKnownWorkflowTypes] = useState([]);
+  const [view, setView] = useState("list");
+  /* Kustutamine küsib teist vajutust: `record`, `record-drafts` või mustandi id. */
+  const [confirming, setConfirming] = useState("");
+  const confirmTimer = useRef(0);
+  const armConfirm = useCallback((key) => {
+    window.clearTimeout(confirmTimer.current);
+    setConfirming(key);
+    confirmTimer.current = window.setTimeout(() => setConfirming(""), CONFIRM_MS);
+  }, []);
+  useEffect(() => () => window.clearTimeout(confirmTimer.current), []);
+  /* Avatud on ainult see kirje, mille detail on päriselt kohal (mitte eelmise kirje oma). */
+  const openedRecord = selectedId && detail?.record?.id === selectedId ? detail.record : null;
+  const plan = useRecordPlan(openedRecord, () => setReloadToken((token) => token + 1));
 
   const dateFormatter = useMemo(
     () => new Intl.DateTimeFormat(locale === "et" ? "et-EE" : locale, { dateStyle: "medium" }),
@@ -262,6 +294,7 @@ export default function MyRecordsWorkflow({ onNavigate, locale = "et" }) {
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload?.ok) throw new Error(payload?.message || "wellbeing.errors.output_draft_not_found");
       setOpenedDraft(null);
+      setConfirming("");
       setOpenDraftStatus(payload.handedOff ? "deleted_handed_off" : "deleted");
       setReloadToken((token) => token + 1);
     } catch {
@@ -287,6 +320,8 @@ export default function MyRecordsWorkflow({ onNavigate, locale = "et" }) {
       setDeleteStatus("deleted");
       setSelectedId(null);
       setDetail(null);
+      setConfirming("");
+      setView("list");
       setReloadToken((token) => token + 1);
     } catch {
       setDeleteStatus("error");
@@ -294,180 +329,282 @@ export default function MyRecordsWorkflow({ onNavigate, locale = "et" }) {
   }
 
   const unconfirmedDrafts = drafts.filter((draft) => draft.status === "draft" && draft.userConfirmed === false);
+  const record = openedRecord;
+  const relatedDrafts = record && Array.isArray(detail.drafts) ? detail.drafts : [];
+  const checkpointState = record ? describeWellbeingCheckpoint(record) : null;
+  const openRecord = (id) => {
+    setSelectedId(id);
+    setConfirming("");
+    setView("record");
+  };
 
-  return (
-    <div>
-      <section aria-labelledby="my-records-heading">
-        <div>
-          <h2 id="my-records-heading">{t("wellbeing.my_records.title", "Minu kirjed")}</h2>
-          <p>
-            {t(
-              "wellbeing.my_records.intro",
-              "Siit näed oma varasemaid tööheaolu kirjeid ja pooleli jäänud mustandeid. Kirjed on privaatsed ja neid saab jätkata või kustutada."
-            )}
-          </p>
-        </div>
-      </section>
+  const viewKeys = ["list", ...(selectedId ? ["record", "next", "drafts"] : []), "unfinished"];
+  const viewState = {
+    list: "empty",
+    record: record ? "done" : "empty",
+    next: record?.checkpoint ? (checkpointState?.needsFollowUp ? "partial" : "done") : "empty",
+    drafts: relatedDrafts.length ? "done" : "empty",
+    unfinished: unconfirmedDrafts.length ? "partial" : "empty"
+  };
+  const viewSummary = {
+    record: record ? `${workflowLabel(record.workflowType)} · ${formatDate(record.createdAt)}` : "",
+    next: record?.checkpoint?.nextStep ? String(record.checkpoint.nextStep).slice(0, 90) : ""
+  };
+  const steps = viewKeys.map((key) => ({
+    key,
+    label: t(`${VIEWS_KEY}.${key}.title`, key),
+    short: t(`${VIEWS_KEY}.${key}.short`, key),
+    state: viewState[key],
+    summary: viewSummary[key] || undefined,
+    /* Loendid võivad olla pikad, ja kirje, kus kõik tegurid on märgitud, samuti:
+       nende järgi ühist kõrgust ei võeta. */
+    free: key !== "drafts"
+  }));
 
-      <section aria-labelledby="my-records-drafts-heading">
-        <h3 id="my-records-drafts-heading">
-          {t("wellbeing.my_records.drafts_heading", "Pooleli jäänud mustandid")}
-        </h3>
-        {unconfirmedDrafts.length > 0 ? (
-          <ul aria-label={t("wellbeing.my_records.drafts_heading", "Pooleli jäänud mustandid")}>
-            {unconfirmedDrafts.map((draft) => (
-              <li key={draft.id} aria-current={focusDraftId === draft.id ? "true" : undefined}>
-                <span>{workflowLabel(draft.sourceWorkflowType)}</span>
-                <span>{formatDate(draft.updatedAt)}</span>
-                {draft.sourceRecordId ? (
+  const deleteNotice = deleteStatus === "deleted"
+    ? { text: t("wellbeing.my_records.deleted", "Kirje kustutati.") }
+    : deleteStatus === "error"
+      ? { text: t("wellbeing.my_records.delete_failed", "Kirje kustutamine ebaõnnestus."), tone: "risk" }
+      : null;
+  const draftNotice = openDraftStatus === "deleted_handed_off"
+    ? { text: t("wellbeing.my_records.draft_deleted_handed_off", "Mustand kustutati. Kovisiooni juba üle antud koopia jääb kovisiooni juhtumisse alles.") }
+    : openDraftStatus === "deleted"
+      ? { text: t("wellbeing.my_records.draft_deleted", "Mustand kustutati.") }
+      : openDraftStatus === "error"
+        ? { text: t("wellbeing.my_records.draft_action_failed", "Mustandi toiming ebaõnnestus."), tone: "risk" }
+        : null;
+  const confirmText = t(`${VIEWS_KEY}.confirm_delete`, "Vajuta uuesti, et kustutada");
+
+  const renderView = (step) => {
+    switch (step.key) {
+      case "record": {
+        const groups = record
+          ? [
+              ["load", "load_factors", "no_load_factors", record.loadFactors, "Koormustegurid", "Koormustegureid ei märgitud."],
+              ["resource", "resource_factors", "no_resource_factors", record.resourceFactors, "Ressursid ja tugevused", "Ressursitegureid ei märgitud."],
+              ["risk", "risk_markers", "no_risk_markers", record.riskMarkers, "Riskimärgid", "Riskimärke ei märgitud."]
+            ].map(([key, titleKey, emptyKey, values, title, empty]) => ({
+              key,
+              title: t(`wellbeing.my_records.${titleKey}`, title),
+              empty: t(`wellbeing.my_records.${emptyKey}`, empty),
+              items: factorList(values).map((value) => ({ key: value, label: wellbeingLabel(value) }))
+            }))
+          : [];
+        const links = record
+          ? [
+              record.supersededBy
+                ? {
+                    key: "corrected",
+                    text: t("wellbeing.correction.corrected_badge", "Parandatud"),
+                    action: t("wellbeing.correction.open_correction", "Ava parandus"),
+                    onClick: () => openRecord(record.supersededBy.id)
+                  }
+                : null,
+              record.supersedesRecordId
+                ? {
+                    key: "original",
+                    text: t("wellbeing.correction.supersedes_note", "See kirje parandab varasemat kirjet."),
+                    action: t("wellbeing.correction.open_original", "Ava parandatud kirje"),
+                    onClick: () => openRecord(record.supersedesRecordId)
+                  }
+                : null
+            ].filter(Boolean)
+          : [];
+        const deleting = deleteStatus === "deleting";
+        return (
+          <RecordView
+            t={t}
+            loading={detailStatus === "loading" && !record}
+            failed={detailStatus === "error" || (detailStatus === "ready" && !record)}
+            heading={record ? `${workflowLabel(record.workflowType)} · ${formatDate(record.createdAt)}` : ""}
+            signal={{
+              text: signalLabel(record?.computedSignal?.signalLevel),
+              tone: SIGNAL_TONES[normalizeSignalLevel(record?.computedSignal?.signalLevel)]
+            }}
+            links={links}
+            groups={groups}
+            note={deleteNotice?.tone === "risk" ? deleteNotice.text : ""}
+            actions={
+              record ? (
+                <>
                   <Button
                     type="button"
                     size="sm"
-                    onClick={() => setSelectedId(draft.sourceRecordId)}
+                    variant="secondary"
+                    disabled={deleting}
+                    onClick={() => (confirming === "record" ? deleteRecord(record.id) : armConfirm("record"))}
                   >
-                    {t("wellbeing.my_records.open_related_record", "Ava seotud kirje")}
+                    {deleting ? t("wellbeing.my_records.deleting", "Kustutan…") : confirming === "record" ? confirmText : t("wellbeing.my_records.delete", "Kustuta kirje")}
                   </Button>
-                ) : null}
-                {/* SOL-WB-16: mustandit sai varem ainult NÄHA, mitte avada ega
-                    kustutada — tundlik tekst jäi kättesaamatuks. */}
-                <Button type="button" size="sm" onClick={() => openDraft(draft.id)}>
-                  {t("wellbeing.my_records.open_draft", "Ava mustand")}
-                </Button>
-                <Button type="button" size="sm" onClick={() => deleteDraft(draft.id)}>
-                  {t("wellbeing.my_records.delete_draft", "Kustuta mustand")}
-                </Button>
-                {openedDraft?.id === draft.id ? (
-                  <p>{openedDraft.editedText || openedDraft.generatedText}</p>
-                ) : null}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>
-            {status === "loading"
-              ? t("wellbeing.my_records.loading", "Laadin…")
-              : t("wellbeing.my_records.drafts_empty", "Pooleli jäänud mustandeid ei ole.")}
-          </p>
-        )}
-        {draftsCursor ? (
-          <Button type="button" size="sm" onClick={loadMoreDrafts} disabled={moreStatus === "loading"}>
-            {t("wellbeing.my_records.load_more", "Laadi veel")}
-          </Button>
-        ) : null}
-        {openDraftStatus === "deleted_handed_off" ? (
-          <p role="status">
-            {t(
-              "wellbeing.my_records.draft_deleted_handed_off",
-              "Mustand kustutati. Kovisiooni juba üle antud koopia jääb kovisiooni juhtumisse alles."
-            )}
-          </p>
-        ) : openDraftStatus === "deleted" ? (
-          <p role="status">{t("wellbeing.my_records.draft_deleted", "Mustand kustutati.")}</p>
-        ) : openDraftStatus === "error" ? (
-          <p role="status">{t("wellbeing.my_records.draft_action_failed", "Mustandi toiming ebaõnnestus.")}</p>
-        ) : null}
-      </section>
-
-      <div aria-label={t("wellbeing.my_records.filters_label", "Kirjete filtrid")}>
-        <div aria-label={t("wellbeing.my_records.filter_workflow_label", "Töövoog")}>
-          {workflowOptions.map((option) => (
-            <Button
-              key={option}
-              type="button"
-              size="sm"
-              aria-pressed={workflowFilter === option}
-              onClick={() => setWorkflowFilter(option)}
-            >
-              {option === "all"
-                ? t("wellbeing.my_records.filter_workflow_all", "Kõik töövood")
-                : workflowLabel(option)}
-            </Button>
-          ))}
-        </div>
-        <div aria-label={t("wellbeing.my_records.filter_period_label", "Periood")}>
-          {["all", "week", "month"].map((option) => (
-            <Button
-              key={option}
-              type="button"
-              size="sm"
-              aria-pressed={periodFilter === option}
-              onClick={() => setPeriodFilter(option)}
-            >
-              {t(`wellbeing.my_records.filter_period_${option}`, option === "all" ? "Kõik" : option === "week" ? "Nädal" : "Kuu")}
-            </Button>
-          ))}
-        </div>
-      </div>
-
-      <section aria-labelledby="my-records-list-heading">
-        <h3 id="my-records-list-heading">{t("wellbeing.my_records.records_heading", "Kirjete kronoloogia")}</h3>
-        {status === "error" ? (
-          <p role="status">{t("wellbeing.my_records.load_failed", "Kirjete laadimine ebaõnnestus.")}</p>
-        ) : status === "loading" ? (
-          <p role="status">{t("wellbeing.my_records.loading", "Laadin…")}</p>
-        ) : records.length === 0 ? (
-          <p>{t("wellbeing.my_records.records_empty", "Selle filtriga kirjeid ei ole veel.")}</p>
-        ) : (
-          <ul aria-label={t("wellbeing.my_records.records_heading", "Kirjete kronoloogia")}>
-            {records.map((record) => (
-              <li key={record.id}>
-                <button
-                  type="button"
-                  className="workspace-dashboard-card"
-                  aria-expanded={selectedId === record.id}
-                  onClick={() => setSelectedId((current) => (current === record.id ? null : record.id))}
-                >
-                  <span>{workflowLabel(record.workflowType)}</span>
-                  <span>{formatDate(record.createdAt)}</span>
-                  <span>{signalLabel(record?.computedSignal?.signalLevel)}</span>
-                  {/* Badge = „siin ootab sinu vastus" (E2, ilma U1-ta). Sama
-                      otsustaja mis U1 taimer: describeWellbeingCheckpoint. */}
-                  {describeWellbeingCheckpoint(record).needsFollowUp ? (
-                    <span className="wellbeing-checkpoint-badge">
-                      {t("wellbeing.checkpoint.badge", "Kontrollpunkt ootab vastust")}
-                    </span>
+                  {/* SOL-WB-16: mustandite saatus on TEADLIK valik. Vaikimisi jäävad nad
+                      alles — mustand on eraldi kirjutatud tekst, mitte kirje tuletis. */}
+                  {relatedDrafts.length > 0 ? (
+                    <Button
+                      type="button"
+                      size="sm"
+                      variant="secondary"
+                      disabled={deleting}
+                      onClick={() => (confirming === "record-drafts" ? deleteRecord(record.id, { deleteDrafts: true }) : armConfirm("record-drafts"))}
+                    >
+                      {confirming === "record-drafts" ? confirmText : t("wellbeing.my_records.delete_with_drafts", "Kustuta koos mustanditega")}
+                    </Button>
                   ) : null}
-                </button>
-                {selectedId === record.id ? (
-                  <RecordDetail
-                    detail={detail}
-                    detailStatus={detailStatus}
-                    deleteStatus={deleteStatus}
-                    onDelete={() => deleteRecord(record.id)}
-                    onDeleteWithDrafts={() => deleteRecord(record.id, { deleteDrafts: true })}
-                    onClose={() => setSelectedId(null)}
-                    onChanged={() => setReloadToken((token) => token + 1)}
-                    onOpenRecord={(id) => setSelectedId(id)}
-                    workflowLabel={workflowLabel}
-                    signalLabel={signalLabel}
-                    formatDate={formatDate}
-                    onNavigate={onNavigate}
-                    t={t}
-                  />
-                ) : null}
-              </li>
-            ))}
-          </ul>
-        )}
-        {recordsCursor ? (
-          <Button type="button" size="sm" onClick={loadMoreRecords} disabled={moreStatus === "loading"}>
-            {t("wellbeing.my_records.load_more", "Laadi veel")}
-          </Button>
-        ) : null}
-        {deleteStatus === "deleted" ? (
-          <p role="status">{t("wellbeing.my_records.deleted", "Kirje kustutati.")}</p>
-        ) : deleteStatus === "error" ? (
-          <p role="status">{t("wellbeing.my_records.delete_failed", "Kirje kustutamine ebaõnnestus.")}</p>
-        ) : null}
-      </section>
+                </>
+              ) : null
+            }
+          />
+        );
+      }
+      case "next": {
+        const actions = record && Array.isArray(record.recommendedActions) ? record.recommendedActions : [];
+        return (
+          <NextStepView
+            t={t}
+            failed={plan.cpStatus === "error" || plan.followStatus === "error" || plan.recStatus === "error"}
+            recBusy={plan.recStatus === "saving"}
+            recommended={actions.map((action) => ({
+              key: action.workflowType || action.label,
+              label: action.label || workflowLabel(action.workflowType),
+              reason: action.reason || "",
+              done: Boolean(action.doneAt),
+              onToggle: action.workflowType ? () => plan.toggleRecommendation(action.workflowType, !action.doneAt) : null
+            }))}
+            /* E2 kontrollpunkt: „järgmine samm + kontrollkuupäev", „kas pidas?" ja
+               eemaldus. Elab eraldi väljadel (checkpoint/checkpointDueOn), MITTE
+               vastuste sees — vastuste plokk jääb pärast salvestamist muutumatuks
+               (TO-1 piir). */
+            plan={
+              record?.checkpoint
+                ? {
+                    step: record.checkpoint.nextStep,
+                    due: t("wellbeing.checkpoint.due_on", "Kontrollkuupäev {date}", { date: formatDate(record.checkpointDueOn) }),
+                    needsFollowUp: Boolean(checkpointState?.needsFollowUp),
+                    answer: checkpointState?.followUpState && !checkpointState.needsFollowUp
+                      ? `${t(`wellbeing.checkpoint.follow_up.${checkpointState.followUpState}`, checkpointState.followUpState)}${
+                          record.checkpoint.followUp?.notedAt
+                            ? ` · ${t("wellbeing.checkpoint.answered", "Vastatud {date}", { date: formatDate(record.checkpoint.followUp.notedAt) })}`
+                            : ""
+                        }`
+                      : "",
+                    answers: CHECKPOINT_FOLLOW_UP_STATES.map((state) => ({
+                      key: state,
+                      label: t(`wellbeing.checkpoint.follow_up.${state}`, state),
+                      onClick: () => plan.submitFollowUp(state)
+                    })),
+                    busy: plan.cpStatus === "saving" || plan.followStatus === "saving",
+                    onClear: plan.clearCheckpoint
+                  }
+                : null
+            }
+            form={{
+              step: plan.checkpointStep,
+              onStep: plan.setCheckpointStep,
+              due: plan.checkpointDue,
+              onDue: plan.setCheckpointDue,
+              disabled: !record || plan.cpStatus === "saving" || !plan.checkpointStep.trim() || !plan.checkpointDue,
+              onSave: plan.saveCheckpoint
+            }}
+          />
+        );
+      }
+      case "drafts":
+        return (
+          <RecordDraftsView
+            t={t}
+            drafts={relatedDrafts.map((draft) => ({
+              id: draft.id,
+              title: workflowLabel(draft.sourceWorkflowType),
+              date: formatDate(draft.updatedAt),
+              status: t(`wellbeing.my_records.draft_status.${draft.status}`, draft.status)
+            }))}
+            handoffs={relatedDrafts
+              .filter((draft) => draft.covisionCaseId || draft.handedOffAt)
+              .map((draft) => ({
+                id: `handoff-${draft.id}`,
+                text: t("wellbeing.my_records.handoff_covision", "Viidi Kovisiooni"),
+                date: formatDate(draft.handedOffAt || draft.updatedAt),
+                onOpen: draft.covisionCaseId ? () => onNavigate?.(`/kovisioon?case=${encodeURIComponent(draft.covisionCaseId)}`) : null
+              }))}
+          />
+        );
+      case "unfinished":
+        return (
+          <UnfinishedView
+            t={t}
+            loading={status === "loading"}
+            notice={draftNotice}
+            more={draftsCursor ? { onClick: loadMoreDrafts, busy: moreStatus === "loading" } : null}
+            rows={unconfirmedDrafts.map((draft) => ({
+              id: draft.id,
+              title: workflowLabel(draft.sourceWorkflowType),
+              date: formatDate(draft.updatedAt),
+              current: focusDraftId === draft.id,
+              /* SOL-WB-16: mustandit sai varem ainult NÄHA, mitte avada ega
+                 kustutada — tundlik tekst jäi kättesaamatuks. */
+              text: openedDraft?.id === draft.id ? openedDraft.editedText || openedDraft.generatedText : "",
+              busy: openDraftStatus === "loading" || openDraftStatus === "deleting",
+              onOpen: () => openDraft(draft.id),
+              onOpenRecord: draft.sourceRecordId ? () => openRecord(draft.sourceRecordId) : null,
+              deleteLabel: confirming === draft.id ? confirmText : t("wellbeing.my_records.delete_draft", "Kustuta mustand"),
+              onDelete: () => (confirming === draft.id ? deleteDraft(draft.id) : armConfirm(draft.id))
+            }))}
+          />
+        );
+      default:
+        return (
+          <RecordsListView
+            t={t}
+            status={status}
+            notice={deleteNotice}
+            workflow={{
+              value: workflowFilter,
+              onChange: setWorkflowFilter,
+              options: workflowOptions.map((option) => ({
+                value: option,
+                label: option === "all" ? t("wellbeing.my_records.filter_workflow_all", "Kõik töövood") : workflowLabel(option)
+              }))
+            }}
+            period={{
+              value: periodFilter,
+              onChange: setPeriodFilter,
+              options: ["all", "week", "month"].map((option) => ({
+                value: option,
+                label: t(`wellbeing.my_records.filter_period_${option}`, option === "all" ? "Kõik" : option === "week" ? "Nädal" : "Kuu")
+              }))
+            }}
+            more={recordsCursor ? { onClick: loadMoreRecords, busy: moreStatus === "loading" } : null}
+            rows={records.map((item) => ({
+              id: item.id,
+              title: workflowLabel(item.workflowType),
+              date: formatDate(item.createdAt),
+              signal: signalLabel(item?.computedSignal?.signalLevel),
+              tone: SIGNAL_TONES[normalizeSignalLevel(item?.computedSignal?.signalLevel)],
+              /* Märk = „siin ootab sinu vastus" (E2, ilma U1-ta). Sama otsustaja
+                 mis U1 taimer: describeWellbeingCheckpoint. */
+              badge: describeWellbeingCheckpoint(item).needsFollowUp ? t("wellbeing.checkpoint.badge", "Kontrollpunkt ootab vastust") : "",
+              selected: item.id === selectedId,
+              onOpen: () => openRecord(item.id)
+            }))}
+          />
+        );
+    }
+  };
 
-      <p>
-        {t(
-          "wellbeing.my_records.privacy",
-          "Kirjed on vaikimisi privaatsed. Ainult sina näed neid; kustutamine eemaldab kirje ka anonüümsest koondist."
-        )}
-      </p>
-    </div>
+  return (
+    /* Vaadete loend muutub, kui kirje avatakse või suletakse: siis ehitatakse
+       lava uuesti ja see avaneb vaatel, kuhu töötaja läks. */
+    <StepFlight
+      key={viewKeys.join("|")}
+      label={t("wellbeing.my_records.title", "Minu kirjed")}
+      steps={steps}
+      initialIndex={Math.max(0, viewKeys.indexOf(view))}
+      activeKey={viewKeys.includes(view) ? view : "list"}
+      onStepChange={(index, step) => {
+        if (step) setView(step.key);
+      }}
+    >
+      {renderView}
+    </StepFlight>
   );
 }
 
@@ -475,21 +612,31 @@ function factorList(values) {
   return (Array.isArray(values) ? values : []).filter(Boolean);
 }
 
-function RecordDetail({
-  detail, detailStatus, deleteStatus, onDelete, onDeleteWithDrafts, onClose, onChanged, onOpenRecord,
-  workflowLabel, signalLabel, formatDate, onNavigate, t
-}) {
-  const record = detail?.record || null;
+/**
+ * Avatud kirje kontrollpunkt ja soovituste märked.
+ *
+ * Kõik mutatsioonid järgivad sama rada: POST/PUT/DELETE, olekulipp, ja
+ * õnnestumisel `onChanged` (leht värskendab detaili + loendi märgi). Vastuseid
+ * ei muudeta kunagi — need marsruudid puudutavad ainult kontrollpunkti ja
+ * soovituse välju.
+ */
+function useRecordPlan(record, onChanged) {
   const [checkpointStep, setCheckpointStep] = useState("");
   const [checkpointDue, setCheckpointDue] = useState("");
   const [cpStatus, setCpStatus] = useState("idle");
   const [followStatus, setFollowStatus] = useState("idle");
   const [recStatus, setRecStatus] = useState("idle");
+  const recordId = record?.id || "";
 
-  /* Kõik kontrollpunkti-mutatsioonid järgivad sama rada: POST/PUT/DELETE,
-     olekulipp, ja õnnestumisel `onChanged` (vanem värskendab detaili + listi
-     badge'i). Vastuseid ei muudeta kunagi — need marsruudid puudutavad ainult
-     kontrollpunkti/soovituse välju. */
+  /* Teise kirje avamisel ei tohi eelmise kirje pooleli tekst kaasa tulla. */
+  useEffect(() => {
+    setCheckpointStep("");
+    setCheckpointDue("");
+    setCpStatus("idle");
+    setFollowStatus("idle");
+    setRecStatus("idle");
+  }, [recordId]);
+
   async function runAction(setStatus, request) {
     setStatus("saving");
     try {
@@ -507,8 +654,7 @@ function RecordDetail({
     }
   }
 
-  async function saveCheckpoint(event) {
-    event.preventDefault();
+  async function saveCheckpoint() {
     if (cpStatus === "saving" || !record) return;
     const ok = await runAction(setCpStatus, () =>
       fetch(`/api/wellbeing/records/${encodeURIComponent(record.id)}/checkpoint`, {
@@ -554,256 +700,17 @@ function RecordDetail({
       }));
   }
 
-  if (detailStatus === "loading") {
-    return <p role="status">{t("wellbeing.my_records.loading", "Laadin…")}</p>;
-  }
-  if (detailStatus === "error" || !record) {
-    return <p role="status">{t("wellbeing.my_records.detail_failed", "Kirje avamine ebaõnnestus.")}</p>;
-  }
-
-  const relatedDrafts = Array.isArray(detail.drafts) ? detail.drafts : [];
-  const handoffDrafts = relatedDrafts.filter((draft) => draft.covisionCaseId || draft.handedOffAt);
-  const loadFactors = factorList(record.loadFactors);
-  const resourceFactors = factorList(record.resourceFactors);
-  const riskMarkers = factorList(record.riskMarkers);
-  const recommendedActions = Array.isArray(record.recommendedActions) ? record.recommendedActions : [];
-  const checkpointState = describeWellbeingCheckpoint(record);
-
-  return (
-    <div aria-label={t("wellbeing.my_records.detail_heading", "Kirje detail")}>
-      {/* TO-1 ahela kuva mõlemas suunas: parandatud kirje viitab parandusele,
-          parandus viitab tagasi originaalile. Kumbki link avab teise kirje. */}
-      {record.supersededBy ? (
-        <p role="status">
-          <strong>{t("wellbeing.correction.corrected_badge", "Parandatud")}</strong>
-          {" · "}
-          <button type="button" onClick={() => onOpenRecord?.(record.supersededBy.id)}>
-            {t("wellbeing.correction.open_correction", "Ava parandus")}
-          </button>
-        </p>
-      ) : null}
-      {record.supersedesRecordId ? (
-        <p>
-          {t("wellbeing.correction.supersedes_note", "See kirje parandab varasemat kirjet.")}
-          {" · "}
-          <button type="button" onClick={() => onOpenRecord?.(record.supersedesRecordId)}>
-            {t("wellbeing.correction.open_original", "Ava parandatud kirje")}
-          </button>
-        </p>
-      ) : null}
-
-      <dl>
-        <div>
-          <dt>{t("wellbeing.my_records.created_at", "Loodud")}</dt>
-          <dd>{formatDate(record.createdAt)}</dd>
-        </div>
-        <div>
-          <dt>{t("wellbeing.my_records.workflow_label", "Töövoog")}</dt>
-          <dd>{workflowLabel(record.workflowType)}</dd>
-        </div>
-        <div>
-          <dt>{t("wellbeing.my_records.signal", "Signaal")}</dt>
-          <dd>{signalLabel(record?.computedSignal?.signalLevel)}</dd>
-        </div>
-      </dl>
-
-      <DetailFactorList
-        title={t("wellbeing.my_records.load_factors", "Koormustegurid")}
-        items={loadFactors}
-        emptyText={t("wellbeing.my_records.no_load_factors", "Koormustegureid ei märgitud.")}
-      />
-      <DetailFactorList
-        title={t("wellbeing.my_records.resource_factors", "Ressursid ja tugevused")}
-        items={resourceFactors}
-        emptyText={t("wellbeing.my_records.no_resource_factors", "Ressursitegureid ei märgitud.")}
-      />
-      <DetailFactorList
-        title={t("wellbeing.my_records.risk_markers", "Riskimärgid")}
-        items={riskMarkers}
-        emptyText={t("wellbeing.my_records.no_risk_markers", "Riskimärke ei märgitud.")}
-      />
-
-      <div>
-        <h4>{t("wellbeing.my_records.recommended", "Soovitatud järgmised sammud")}</h4>
-        {recommendedActions.length > 0 ? (
-          <ul>
-            {recommendedActions.map((action) => (
-              <li key={action.workflowType || action.label}>
-                {action.label || workflowLabel(action.workflowType)}
-                {action.reason ? <small> — {action.reason}</small> : null}
-                {action.workflowType ? (
-                  <Button
-                    type="button"
-                    size="sm"
-                    aria-pressed={Boolean(action.doneAt)}
-                    disabled={recStatus === "saving"}
-                    onClick={() => toggleRecommendation(action.workflowType, !action.doneAt)}
-                  >
-                    {action.doneAt
-                      ? t("wellbeing.correction.recommendation_undo", "Võta märge tagasi")
-                      : t("wellbeing.correction.recommendation_done", "Tehtud")}
-                  </Button>
-                ) : null}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>{t("wellbeing.my_records.no_recommended", "Eraldi soovitusi ei tekkinud.")}</p>
-        )}
-      </div>
-
-      {/* E2 kontrollpunkt: „järgmine samm + kontrollkuupäev", „kas pidas?" ja
-          eemaldus. Elab eraldi väljadel (checkpoint/checkpointDueOn), MITTE
-          vastuste sees — vastuste plokk jääb pärast salvestamist muutumatuks
-          (TO-1 piir). */}
-      <div aria-label={t("wellbeing.checkpoint.title", "Järgmine samm ja kontrollkuupäev")}>
-        <h4>{t("wellbeing.checkpoint.title", "Järgmine samm ja kontrollkuupäev")}</h4>
-        <p>{t("wellbeing.checkpoint.description", "Pane kirja, mida kavatsed teha, ja millal tahad seda üle vaadata. See jääb ainult sinule.")}</p>
-
-        {record.checkpoint ? (
-          <div>
-            <p>{t("wellbeing.checkpoint.planned", "Kokkulepe: {step}", { step: record.checkpoint.nextStep })}</p>
-            <p>{t("wellbeing.checkpoint.due_on", "Kontrollkuupäev {date}", { date: formatDate(record.checkpointDueOn) })}</p>
-            {checkpointState.needsFollowUp ? (
-              <div role="group" aria-label={t("wellbeing.checkpoint.ask", "Kas said selle sammu tehtud?")}>
-                <p>{t("wellbeing.checkpoint.ask", "Kas said selle sammu tehtud?")}</p>
-                {CHECKPOINT_FOLLOW_UP_STATES.map((state) => (
-                  <Button
-                    key={state}
-                    type="button"
-                    size="sm"
-                    disabled={followStatus === "saving"}
-                    onClick={() => submitFollowUp(state)}
-                  >
-                    {t(`wellbeing.checkpoint.follow_up.${state}`, state)}
-                  </Button>
-                ))}
-              </div>
-            ) : checkpointState.followUpState ? (
-              <p role="status">
-                {t(`wellbeing.checkpoint.follow_up.${checkpointState.followUpState}`, checkpointState.followUpState)}
-                {record.checkpoint.followUp?.notedAt
-                  ? ` · ${t("wellbeing.checkpoint.answered", "Vastatud {date}", { date: formatDate(record.checkpoint.followUp.notedAt) })}`
-                  : ""}
-              </p>
-            ) : null}
-            <Button type="button" size="sm" onClick={clearCheckpoint} disabled={cpStatus === "saving"}>
-              {t("wellbeing.checkpoint.clear", "Eemalda kontrollpunkt")}
-            </Button>
-          </div>
-        ) : (
-          <p>{t("wellbeing.checkpoint.none", "Kontrollpunkti ei ole seatud.")}</p>
-        )}
-
-        <Form onSubmit={saveCheckpoint}>
-          <label>
-            <span>{t("wellbeing.checkpoint.next_step_label", "Järgmine samm")}</span>
-            <Input
-              type="text"
-              value={checkpointStep}
-              maxLength={500}
-              onChange={(event) => setCheckpointStep(event.target.value)}
-            />
-          </label>
-          <label>
-            <span>{t("wellbeing.checkpoint.due_label", "Kontrollkuupäev")}</span>
-            <Input
-              type="date"
-              value={checkpointDue}
-              onChange={(event) => setCheckpointDue(event.target.value)}
-            />
-          </label>
-          <Button
-            type="submit"
-            size="sm"
-            disabled={cpStatus === "saving" || !checkpointStep.trim() || !checkpointDue}
-          >
-            {t("wellbeing.checkpoint.save", "Salvesta kontrollpunkt")}
-          </Button>
-          {cpStatus === "error" ? (
-            <p role="status">{t("wellbeing.errors.checkpoint_failed", "Kontrollpunkti salvestamine ebaõnnestus.")}</p>
-          ) : null}
-        </Form>
-      </div>
-
-      <div>
-        <h4>{t("wellbeing.my_records.related_drafts", "Seotud mustandid")}</h4>
-        {relatedDrafts.length > 0 ? (
-          <ul>
-            {relatedDrafts.map((draft) => (
-              <li key={draft.id}>
-                {workflowLabel(draft.sourceWorkflowType)} · {formatDate(draft.updatedAt)}
-                {" · "}
-                {t(`wellbeing.my_records.draft_status.${draft.status}`, draft.status)}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>{t("wellbeing.my_records.no_related_drafts", "Selle kirjega ei ole seotud mustandeid.")}</p>
-        )}
-      </div>
-
-      {handoffDrafts.length > 0 ? (
-        <div>
-          <h4>{t("wellbeing.my_records.handoff_history", "Üleandmise ajalugu")}</h4>
-          <ul>
-            {handoffDrafts.map((draft) => (
-              <li key={`handoff-${draft.id}`}>
-                {draft.covisionCaseId ? (
-                  <button type="button" onClick={() => onNavigate?.(`/kovisioon?case=${encodeURIComponent(draft.covisionCaseId)}`)}>
-                    {t("wellbeing.my_records.handoff_covision", "Viidi Kovisiooni")} · {formatDate(draft.handedOffAt || draft.updatedAt)}
-                  </button>
-                ) : (
-                  <span>{t("wellbeing.my_records.handoff_covision", "Viidi Kovisiooni")} · {formatDate(draft.handedOffAt || draft.updatedAt)}</span>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : null}
-
-      <div>
-        <Button type="button" size="sm" onClick={onClose}>
-          {t("wellbeing.my_records.close_detail", "Sulge")}
-        </Button>
-        <Button
-          type="button"
-          size="sm"
-          onClick={onDelete}
-          disabled={deleteStatus === "deleting"}
-        >
-          {deleteStatus === "deleting"
-            ? t("wellbeing.my_records.deleting", "Kustutan…")
-            : t("wellbeing.my_records.delete", "Kustuta kirje")}
-        </Button>
-        {/* SOL-WB-16: mustandite saatus on TEADLIK valik. Vaikimisi jäävad nad
-            alles — mustand on eraldi kirjutatud tekst, mitte kirje tuletis. */}
-        {(detail?.drafts || []).length > 0 ? (
-          <Button
-            type="button"
-            size="sm"
-            onClick={onDeleteWithDrafts}
-            disabled={deleteStatus === "deleting"}
-          >
-            {t("wellbeing.my_records.delete_with_drafts", "Kustuta koos mustanditega")}
-          </Button>
-        ) : null}
-      </div>
-    </div>
-  );
-}
-
-function DetailFactorList({ title, items, emptyText }) {
-  return (
-    <div>
-      <h4>{title}</h4>
-      {items.length > 0 ? (
-        <ul>
-          {items.map((item) => <li key={item}>{wellbeingLabel(item)}</li>)}
-        </ul>
-      ) : (
-        <p>{emptyText}</p>
-      )}
-    </div>
-  );
+  return {
+    checkpointStep,
+    setCheckpointStep,
+    checkpointDue,
+    setCheckpointDue,
+    cpStatus,
+    followStatus,
+    recStatus,
+    saveCheckpoint,
+    clearCheckpoint,
+    submitFollowUp,
+    toggleRecommendation
+  };
 }

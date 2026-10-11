@@ -1,6 +1,6 @@
 # ADR-098: abivahendite info uuendamine kord kuus
 
-Kuupäev: 06.10.2026. Seis: skriptid ja seis on paigas, esimene päris käivitus tehtud; ajastatud töö on loodud. Korpuse täiendust selle tee kaudu ei ole veel tehtud (esimesel käivitusel ei olnud midagi rakendada).
+Kuupäev: 06.10.2026. Seis: skriptid ja seis on paigas, esimene päris käivitus tehtud; ajastatud töö on loodud. Korpuse täiendust selle tee kaudu ei ole veel tehtud (esimesel käivitusel ei olnud midagi rakendada). Alates 09.10.2026 loeb sama ajastatud töö abivahendite värskenduse järel ka 330 ametlikku juhislehte ([ADR-116](adr-116-official-pages-monthly-refresh.md)); kuu lagi 0,10 USD on mõlemale ühine. Samast päevast kirjutab värskendus kinnitatud lugemiste tabelit ([ADR-117](adr-117-confirmed-reading-day.md)): müüjate ja organisatsioonide lehe kontrolli kuupäev liigub vastustes edasi ka siis, kui leht ei muutunud.
 
 ## Probleem
 
@@ -82,7 +82,7 @@ Lugemine, võrdlus ja aruanne on tasuta. Raha kulub ainult siis, kui on mida kor
    node scripts/rag-v2-corpus-refresh.mjs package --store "$STORE" --policy "<eelmine policy.json>" --review $D/review.json --out $D/ship
    ```
 
-   **Enne üleslaadimist kaks kontrolli** (07.10.2026, v66 õppetund, ADR-099): (1) korpuse lõigud pluss täienduse lõigud ei tohi ületada indeksi mahupiiri (`lib/rag-v2/search/capacity.js`: 80 000 lõiku ja 10 000 dokumenti põlvkonna kohta, ADR-100), muidu keeldub serveri plaan pärast seda, kui hoidla pea on juba tõstetud; (2) serveri kettal peab olema ruumi umbes 380 KB iga uue lõigu kohta, lisaks pakk ja 1,5 GB järgmise väljalaske jaoks. Dokumendi märksõnad (`tags`) on otsinguabi iga lõigu juures: ühist märksõna kogu partiile ei panda.
+   **Enne üleslaadimist kaks kontrolli** (07.10.2026, v66 õppetund, ADR-099): (1) korpuse lõigud pluss täienduse lõigud ei tohi ületada indeksi mahupiiri (`lib/rag-v2/search/capacity.js`: 100 000 lõiku ja 10 000 dokumenti põlvkonna kohta, ADR-108), muidu keeldub serveri plaan pärast seda, kui hoidla pea on juba tõstetud; (2) serveri kettal peab olema ruumi umbes 380 KB iga uue lõigu kohta, lisaks pakk ja 1,5 GB järgmise väljalaske jaoks. Dokumendi märksõnad (`tags`) on otsinguabi iga lõigu juures: ühist märksõna kogu partiile ei panda.
 
    Serverisse: `ship.json` (väike, tavalise ssh-vooga), `policy.json` ja `ship.tgz` skriptiga `rag-v2-upload-parts.sh` kausta `/home/ubuntu/rag-v2-work/rag-v2-v25/` nimedega `ship-v$N.json`, `policy-v$N.json`, `ship-v$N.tgz`. Päeva hinnafail (`…/prices/price-<kuupäev>.json`, `text-embedding-3-large`, kontrollitud ametlikult lehelt; plaan keeldub üle 24 tunni vanusest). Siis `rag-v2-corpus-run-guarded.sh` serveri töökausta ja käivitus lahti ühendatult: versioon, eelmine versioon, plaanifail, ülempiir (kuu laest järelejäänu), lubatud sisendite arv (lõikude arv pluss kümnendik) ja alus kahes keeles.
 
@@ -127,3 +127,7 @@ See näitab, et samm teeb, mida reegel ütleb. Muutus oli tehislik (mina muutsin
 - Hinnad müüjate lehtedel võivad kahe lugemise vahel (kuni kuu) vananeda.
 - Organisatsioonide lehtede lugemine pikendab käivitust (üks päring pooleteise sekundi järel saidi kohta); kui pikaks, näitab esimene päris käivitus.
 - Skripti ja ajastatud töö nimi räägib abivahenditest, kuid loetakse ka organisatsioonide lehti. Nime ei muudetud, et ajastatud töö ja seisukaust jääksid samaks.
+
+## Täiendus 11.10.2026: veel kaks reegliga valitud lehtede rühma (ADR-141)
+
+Sama käsk loeb nüüd organisatsioonide lehtedega samal viisil ka katvuse nimekirjade 564 juhislehte (`accepted/coverage/`) ja 314 ühingute lehte (`accepted/associations/`); käik pikeneb umbes 23 minutit. Aruandes on iga rühm oma reaga (`list`: `organisations`, `coverage`, `associations`). Uus väli `changedAndHeldForAPerson` nimetab lehed, mille muutust ei panda paika iseenesest (sisupiirkond leitakse teisiti kui valimise ajal või valitud tekst on alla poole endisest): ajastatud töö neid ei luba, vaid nimetab aruandes; inimene lubab pärast vaatamist valikuga `--approve-chosen <id>`. Väljad `inStateNotInLists` ja `inListsNotInState` peavad olema tühjad; kui ei ole, on seis nimekirjast maas ja rühm tuleb uuesti külvata (`scripts/rag-v2-chosen-seed.mjs`). Otsus ja proovilugemine: [ADR-141](adr-141-monthly-refresh-of-rule-chosen-pages.md).

@@ -150,3 +150,62 @@ test('an answer gives the links of the forms it relies on, read from the turn re
   assert.deepEqual(pilotChatMessages([turn], 'conv').at(-1).attachments, pilotChatResult(turn, 'conv').attachments);
   assert.deepEqual(pilotChatResult({ ...turn, forms: undefined }, 'conv').attachments, []);
 });
+
+// ADR-129 (10.10.2026): the answer names the provision, and the sources panel shows the same one beside the act's title.
+test('a legal source\'s provision stands beside its act\'s title in the reply, the turn\'s record, the source view and both client layers', async () => {
+  const fs = await import('node:fs/promises');
+  const { pilotChatMessages } = await import('../lib/chat/m4PilotClientContract.js');
+  const { normalizeSources } = await import('../components/chat/utils/sources.js');
+  const { collectMessageSources } = await import('../components/chat/hooks/useConversationSources.js');
+  const { historyRecord, historyMessages, historyTurn, historySourceView } = await import('../lib/rag-v2/pilot/history.js');
+  const answer = { kind: 'grounded', blocks: [{ text: 'Otsus tehakse kümne tööpäeva jooksul (fiktiivsete toetuste seaduse § 133 lg 7).', refs: ['S1', 'S2'] }], limitations: [], clarification: null };
+  const source = extra => ({ ref: 'S1', title: 'Fiktiivsete toetuste seadus', pages: [], version: 'v1', used: true, ...extra });
+  const turn = { id: 'turn-123', state: 'completed', mode: 'real', question: 'Mis tähtaja jooksul?', answer, answerVersion: 'm4-text-refs-4', language: 'et', forms: [],
+    sources: [source({ provision: '§ 133 lg 5–7', checked: '2026-10-01' }), { ref: 'S2', title: 'Fiktiivne juhend', pages: [3], version: 'v2', used: true }] };
+  const reply = pilotChatResult(turn, 'conv-123');
+  // The title stays the act's bare title; label and short_ref carry the provision after it.
+  assert.deepEqual(reply.sources.map(item => [item.title, item.label, item.short_ref === item.label]), [
+    ['Fiktiivsete toetuste seadus', 'S1 · Fiktiivsete toetuste seadus, § 133 lg 5–7 · kontrollitud 01.10.2026 · Vastuses kasutatud', true], ['Fiktiivne juhend', 'S2 · Fiktiivne juhend · Vastuses kasutatud', true]]);
+  for (const provision of ['§ 133', '§ 13¹', '§ 133 lg 5', '§ 142⁴⁷ lg 3¹–12'])
+    assert.equal(pilotChatResult({ ...turn, sources: [source({ provision })] }, 'c').sources[0].label, `S1 · Fiktiivsete toetuste seadus, ${provision} · Vastuses kasutatud`);
+  // Only a string of a label's own shape: a turn's record is stored data.
+  for (const provision of ['§ 133 lg 5–7 <b>x</b>', 'lg 5', '§ 133, lg 5', '§ 133 lg 5-7', '§133', '', 5, null, ['§ 133'], '§ 133 · Vastuses kasutatud'])
+    assert.equal(pilotChatResult({ ...turn, sources: [source({ provision })] }, 'c').sources[0].label, 'S1 · Fiktiivsete toetuste seadus · Vastuses kasutatud', JSON.stringify(provision));
+  // The chat page's two layers between the reply and the panel keep it (a new field of a source was once lost there).
+  const message = { role: 'ai', text: reply.answer, sources: normalizeSources(reply.sources) };
+  assert.ok(message.sources[0].label.includes('Fiktiivsete toetuste seadus, § 133 lg 5–7'), message.sources[0].label);
+  assert.ok(collectMessageSources(message, null)[0].label.includes('Fiktiivsete toetuste seadus, § 133 lg 5–7'));
+  assert.equal(collectMessageSources(message, null)[1].label.includes('§'), false);
+  // The turn's durable record keeps the provision with its cited source, so a turn shown from its record (its audit row
+  // gone) lists the same, and its source view names it.
+  const packet = { reference_map: { S1: { document_id: 'd1', chunk_id: 'c1', source_text_sha256: 'h1' }, S2: { document_id: 'd2', chunk_id: 'c2', source_text_sha256: 'h2' } } };
+  const record = historyRecord({ row: { id: 'turn-123', payload: {} }, view: turn, packet }), stored = { id: 'message-1', metadata: historyMessages(record, turn.question).assistant.metadata };
+  assert.deepEqual(record.sources.map(item => item.provision ?? null), ['§ 133 lg 5–7', null]);
+  assert.deepEqual(pilotChatMessages([historyTurn(stored, turn.question)], 'conv-123').at(-1).sources.map(item => item.label), reply.sources.map(item => item.label));
+  const view = await historySourceView({ adapters: {}, config: {}, record, ref: 'S1' }), other = await historySourceView({ adapters: {}, config: {}, record, ref: 'S2' });
+  assert.deepEqual([view.title, view.provision, 'provision' in other], ['Fiktiivsete toetuste seadus', '§ 133 lg 5–7', false]);
+  // The source page shows it under the title, before the page list and the reference.
+  const page = await fs.readFile('app/chat-source/page.jsx', 'utf8');
+  assert.ok(page.includes('{[source.provision, location, source.ref].filter(Boolean).join(\' · \')}'));
+  // The live source view (a turn whose row is still readable) gives the same label from the passage's place: the one
+  // layer of the chain no other test reached (fit review, 10.10.2026). Pinned by its expression, as the page is.
+  const server = await fs.readFile('lib/chat/m4PilotServer.js', 'utf8');
+  assert.ok(server.includes('const provision = provisionLabel(evidence.legal_place);') && server.includes('pilotJson({ title: evidence.bibliography.title, ...(provision ? { provision } : {}), version: canonical.document_version_id'));
+});
+
+test('an answer refused for a provision its sources do not give has its own text, in every language, and shows no draft', async () => {
+  const fs = await import('node:fs/promises');
+  const { pilotChatMessages } = await import('../lib/chat/m4PilotClientContract.js');
+  const refused = { id: 'turn-9', state: 'answer_rejected', failureKind: 'provision', question: 'Mida ütleb § 999?', responseAudit: { draft: 'SECRET DRAFT § 999' } };
+  const result = pilotChatResult(refused, 'conv');
+  assert.deepEqual([result.ok, result.messageKey, result.completionStatus, result.pilotState, result.sources, result.answer], [true, 'm4Pilot.provisionFailed', 'FAILED', 'answer_rejected', [], undefined]);
+  assert.ok(!JSON.stringify(pilotChatMessages([refused], 'conv')).includes('SECRET DRAFT'));
+  // The other failures keep their own texts.
+  assert.deepEqual(['context', 'references', 'validation', undefined].map(failureKind => pilotChatResult({ state: 'answer_rejected', failureKind }, 'conv').messageKey),
+    ['m4Pilot.contextFailed', 'm4Pilot.referenceFailed', 'm4Pilot.answerFailed', 'm4Pilot.answerFailed']);
+  const texts = {};
+  for (const language of ['et', 'en', 'ru']) texts[language] = JSON.parse(await fs.readFile(`messages/${language}.json`, 'utf8')).m4Pilot.provisionFailed;
+  assert.match(texts.et, /^Vastust ei avaldatud, sest selles nimetati õigusakti sätet, mida selle vastuse allikates ei ole\. .*Palun küsi uuesti\.$/u);
+  assert.match(texts.en, /^The answer was not published because it named a provision of a legal act that its sources do not contain\. .*Please ask again\.$/u);
+  assert.match(texts.ru, /^Ответ не опубликован: в нём названо положение правового акта, которого нет в источниках этого ответа\. .*задайте вопрос ещё раз\.$/u);
+});

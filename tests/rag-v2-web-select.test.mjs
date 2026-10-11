@@ -2,6 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { WEB_SELECTION, chosenMetadata, lowerWords, namesPerson, personPair, selectPage } from '../lib/rag-v2/web-select.js';
+import { COUNTRY_NAMES, countryPair, countryWord } from '../lib/rag-v2/countries.js';
+import { GIVEN_NAMES } from '../lib/rag-v2/web-select-words.js';
 
 // Every name, address and number here is made up.
 const stored = (body, title = 'Näidisliit: Mis on haigus') => `<!doctype html><html lang="et"><meta charset="utf-8"><title>${title}</title><body><article>\n${body}\n</article></body></html>\n`;
@@ -28,10 +30,44 @@ test('a person is two capitalised words that are not the name of something else'
   assert.equal(namesPerson('Asume Tartus ja Ootame Viljandisse kõiki', context), false);
   // A name in capitals is known by its given name; other capitals are headings.
   assert.deepEqual(personPair('MARI TAMMSALU', context), { pair: 'MARI TAMMSALU', by: 'given_name' });
-  for (const text of ['KOGUKONNAS ELAMISE TEENUS', 'MIS ON DIABEET', 'MARI KESKUS']) assert.equal(namesPerson(text, context), false, text);
+  for (const text of ['KOGUKONNAS ELAMISE TEENUS', 'MIS ON DIABEET', 'MARI KESKUS', 'KUST LEIDA ABI JA TUGE?']) assert.equal(namesPerson(text, context), false, text);
   // Without a reading every word counts as unseen: the strict side.
   assert.equal(namesPerson('Raamatu autor on Zuzzu Kask.'), true);
   assert.deepEqual([...lowerWords(['<p>Tere <b>tulemast</b> meie Lehele</p>'])].sort(), ['meie', 'tulemast']);
+});
+
+test('a state\'s name is told from a person\'s by the register of states (ADR-143)', () => {
+  // A name of several words, also in a case form and written without its marks.
+  for (const text of ['Dokumenti ei pea legaliseerima Burkina Faso ja Costa Rica puhul', 'Otsus tehti Sri Lankas', 'Konventsiooniga on liitunud Püha Tool', 'Sao Tome ja Principe', 'Ta elab Araabia Ühendemiraatides',
+    // A state's name beside the word for its form, and two states' names in a row of a table.
+    'see leping Venemaa Föderatsiooniga kehtib', 'otsus tunnustatakse Šveitsi Konföderatsioonis', 'Kasahstan Kasahstani Vabariik', 'leping Rootsi Kuningriigiga']) assert.equal(namesPerson(text, context), false, text);
+  assert.deepEqual([countryPair('Burkina', 'Faso'), countryPair('Venemaa', 'Föderatsioonist'), countryPair('Soome', 'Rootsi'), countryWord('Kasahstanis'), countryWord('Egiptusest')], [true, true, true, true, true]);
+  // One word that is a state's name beside another word is not a state: a family name may be a country's. A given name before it decides as before.
+  assert.deepEqual([countryPair('Zuzzu', 'Soome'), countryPair('Holland', 'Brenkmann'), countryPair('Vabariik', 'Föderatsioon'), countryWord('Brenkmann')], [false, false, false, false]);
+  assert.deepEqual(personPair('Raamatu autor on Zuzzu Soome.', context), { pair: 'Zuzzu Soome', by: 'never_lower_case' });
+  assert.deepEqual(personPair('Lepingu allkirjastas Mari Soome', context), { pair: 'Mari Soome', by: 'given_name' });
+  assert.deepEqual(personPair('Koolituse viib läbi Mari Tammsalu Burkina Fasost', context), { pair: 'Mari Tammsalu', by: 'given_name' });
+  // The register: every state once, and no listed given name is a state's name, so the given name always decides first.
+  assert(COUNTRY_NAMES.length >= 200 && new Set(COUNTRY_NAMES.map(entry => entry.name)).size === COUNTRY_NAMES.length);
+  for (const name of ['Eesti', 'Soome', 'Läti', 'Venemaa', 'Ukraina', 'Ameerika Ühendriigid', 'Ühendkuningriik', 'Saint Kitts ja Nevis']) assert(COUNTRY_NAMES.some(entry => entry.name === name), name);
+  assert.deepEqual([...GIVEN_NAMES].filter(name => countryWord(name)), []);
+});
+
+test('a legal act\'s number dates no page, and a unit\'s mailbox is no person\'s address (ADR-143)', () => {
+  const why = (body, about = meta()) => { const result = selectPage({ html: stored(body), meta: about }, context); return result.keep ? 'kept' : result.why; };
+  const page = `<h1>Mis on haigus</h1>\n<p>${filler}</p>\n<p>${filler}</p>`;
+  // The year of an act's number, written as acts are numbered, and of a convention's name; in the address the same name.
+  for (const title of ['Kohtuotsuse tunnustamine Nõukogu määruse nr 4/2009 alusel', 'Tunnustamine määruse (EÜ) nr 805/2004 alusel', 'Määrus (EL) 2019/1111', 'Nn. Lugano 2007 konventsioon ja elatisabi']) {
+    assert.equal(why(page, meta('https://naidisliit.ee/nn-lugano-2007-konventsioon-ja-elatisabi', { title })), 'kept', title);
+  }
+  // Any other earlier year dates the page as before: a post's year, a number that is no act's, a year beside the act's number.
+  for (const title of ['Näidisliit: Uuring 2024', 'Uudiskiri 2019/05', 'Teabeleht 4/2009', 'Määruse nr 4/2009 muudatused 2015']) assert.match(why(page, meta('https://naidisliit.ee/leht', { title })), /^dated/u, title);
+  assert.match(why(page, meta('https://naidisliit.ee/2007-konverents')), /^dated/u);
+  // An address the page collector reads as a unit's mailbox stays with its paragraph; a person's and one the rule cannot place go as before.
+  const chosen = selectPage({ html: stored(`${page}\n<p>Taotlus saada keskasutusele: central.authority@naidisamet.ee.</p>\n<p>Küsi lisa: sotsiaal.osakond@naidisvald.ee</p>\n<p>Juhendaja aadress on zenta@naidisliit.ee.</p>\n<p>Kirjuta mari.tammsalu@naidisamet.ee</p>`), meta: meta() }, context);
+  assert.deepEqual([chosen.keep, chosen.removed.units], [true, 2]);
+  assert.match(chosen.html, /central\.authority@naidisamet\.ee/u); assert.match(chosen.html, /sotsiaal\.osakond@naidisvald\.ee/u);
+  for (const gone of ['zenta@', 'mari.tammsalu@']) assert.equal(chosen.html.includes(gone), false, gone);
 });
 
 test('a paragraph that names a person is taken out and the page stays', () => {
@@ -80,6 +116,10 @@ test('a page is left out whole when it is mostly about persons, by what it is, o
   assert.match(why(page, meta('https://naidisliit.ee/foorum')), /^by what it is/u);
   assert.match(why(page, meta('https://naidisliit.ee/leht', { title: 'Näidisliit: Tegevuskava' })), /^by what it is/u);
   assert.match(why(page, meta('https://naidisliit.ee/leht', { title: 'Näidisliit: Toetused ja soodustused' }), { leaveOut: /Toetused ja soodustused/iu }), /^by what it is/u);
+  // Donors' pages go; a page written to the one who supports somebody stays.
+  assert.match(why(page, meta('https://naidisliit.ee/leht', { title: 'Näidisliit: Meie toetajad' })), /^by what it is/u);
+  assert.equal(why(page, meta('https://naidisliit.ee/soovitused-leinaja-toetajale', { title: 'Näidisliit: Soovitused leinaja toetajale' })), 'kept');
+  assert.equal(why(page, meta('https://naidisliit.ee/leht', { title: 'Näidisliit: Abimaterjal lähedastele ja nende toetajatele' })), 'kept');
   // A page of a list of posts is titled with its number.
   assert.match(why(page, meta('https://naidisliit.ee/leht', { title: 'Näidisliit: 67' })), /^by what it is/u);
   // Dated by title or address; the year at hand is not an earlier one, and a date in the text is not a sign.

@@ -1,0 +1,65 @@
+{
+  "document_id": "web-ska_puude_raskusastme_tuvastamine_vanaduspensioniealise_puude_raskusastme",
+  "title": "Vanaduspensioniealise puude raskusastme tuvastamine",
+  "register_title": "Vanaduspensioniealise puude raskusastme tuvastamine",
+  "source_id": "ska_puude_raskusastme_tuvastamine_vanaduspensioniealise_puude_raskusastme",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/puude-raskusastme-tuvastamine/vanaduspensioniealise-puude-raskusastme",
+  "source_path": "ska_puude_raskusastme_tuvastamine_vanaduspensioniealise_puude_raskusastme.html",
+  "source_format": "html",
+  "source_sha256": "96ac5ff6aba8b7c467f05bb24e58fd4ee2416e873f896e5a27a977c088630744",
+  "content_sha256": "176a889d9ed2d5bd33db83332b9fa0a5afa69ae23644d017248a83b59b39dd34",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:35:26.102Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2025-02-12",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:35:24 GMT",
+      "etag": null
+    },
+    "raw_sha256": "837cd682dfc954ee9c781346e0dc3ad3a6c61732dc4fbc7c8d3c25259996daba",
+    "stats": {
+      "words": 287,
+      "blocks": 17,
+      "headings": 5,
+      "tables": 0,
+      "links": 4,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-11/PUUDE%20RASKUSASTME%20TUVASTAMISE%20TAOTLUS%20VANADUSPENSIONIEALISELE%20INIMESELE_10.2025.docx",
+      "text": "Puude raskusastme tuvastamise taotlus – vanaduspensioniealine | 41.81 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    }
+  ]
+}

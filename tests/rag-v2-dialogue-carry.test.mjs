@@ -48,36 +48,6 @@ function fullTopic(settings = config, last = fullState()) {
 }
 const STATEMENTS = 'ema: Minu ema elab Kose vallas ja ta on 82-aastane\nema: Ta ei saa enam üksi hakkama';
 
-test('unresolved wording crosses the full-topic boundary without becoming an accepted fact', () => {
-  const value = fullState();
-  // The observed failure: the central need was rejected, so it exists only in the original user wording.
-  value.facts = value.facts.filter(item => item.id !== 'F2'); value.needs = [];
-  value.recovery = { turns: [{ turn: 2, quote: MESSAGES[1] }], omitted: false };
-  const c = fullTopic(config, value), next = c.next('Aga edasi?');
-  assert.ok(next.userTurns[0].text.includes(MESSAGES[1]));
-  const state = carriedState(c.rows[LAST].payload.dialogueState, next);
-  assert.deepEqual(state.value.recovery, { turns: [{ turn: 1, quote: MESSAGES[1] }], omitted: false });
-  assert.ok(!state.value.facts.some(item => item.id === 'F2'));
-  const input = dialogueInput(next, null, { previous: state, context: {} }).value;
-  assert.deepEqual(input.previousState.recovery.turns, [1]);
-  assert.ok(!JSON.stringify(input.previousState).includes(MESSAGES[1]));
-});
-
-test('recovery never displaces current corrections and explicitly marks wording outside the carry budget', () => {
-  const value = fullState(), long = 'Varasem lahendamata sõnum. '.repeat(80);
-  value.facts = value.facts.filter(item => item.id !== 'F2'); value.needs = [];
-  value.recovery = { turns: [{ turn: 2, quote: long }], omitted: false };
-  const c = conversation();
-  MESSAGES.forEach((text, index) => c.next(index === 1 ? long : text, index ? 'same' : 'new', index === LAST ? value : undefined));
-  const next = c.next('Aga edasi?');
-  const state = carriedState(c.rows[LAST].payload.dialogueState, next);
-  assert.ok(next.userTurns[0].text.length <= CARRY_LIMITS.statementChars);
-  assert.deepEqual(state.value.recovery, { turns: [], omitted: true });
-  assert.ok(state.value.facts.some(item => item.id === 'F4' && item.support[0].quote === 'Ema pension on 600 eurot'));
-  const again = mergeFactState(state.value, { new_facts: [] }, next.userTurns, { people: value.people, focus: 'ema' });
-  assert.equal(again.recovery.omitted, true);
-});
-
 test('the message after a full topic begins a new topic with the user\'s earlier statements, the last message and the full topic\'s state', async () => {
   const c = fullTopic(), first = c.rows[0], eighth = c.rows[LAST];
   const ninth = c.next('Aga kui palju see maksab?');

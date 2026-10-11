@@ -1,0 +1,57 @@
+{
+  "document_id": "web-palunabi_et_naiste_tugikeskused",
+  "title": "Naiste tugikeskused",
+  "register_title": "Naiste tugikeskused",
+  "source_id": "palunabi_et_naiste_tugikeskused",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://www.palunabi.ee/et/naiste-tugikeskused",
+  "source_path": "palunabi_et_naiste_tugikeskused.html",
+  "source_format": "html",
+  "source_sha256": "95d30f766194fc63e40d9831d5d99600df809d91b8b35815e119f3aff54fbdfb",
+  "content_sha256": "58c591645baab8c1722f96ad87bb07b828953486c394d0fdf36999055061f414",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:36:49.354Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "59ba535ab55d0a45adaafdf493cf08f5930f98168e0227f2e2ab8faea8c2d0b6",
+    "stats": {
+      "words": 146,
+      "blocks": 5,
+      "headings": 1,
+      "tables": 0,
+      "links": 2,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

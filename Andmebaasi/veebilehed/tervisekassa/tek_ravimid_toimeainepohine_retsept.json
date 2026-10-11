@@ -1,0 +1,64 @@
+{
+  "document_id": "web-tek_ravimid_toimeainepohine_retsept",
+  "title": "Toimeainepõhine retsept",
+  "register_title": "Toimeainepõhine retsept",
+  "source_id": "tek_ravimid_toimeainepohine_retsept",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/ravimid/toimeainepohine-retsept",
+  "source_path": "tek_ravimid_toimeainepohine_retsept.html",
+  "source_format": "html",
+  "source_sha256": "b5519ce02e84041d403a1f01a1a42907731043177988906b4018dd8d31c45fd0",
+  "content_sha256": "fe9f07745cb7c0248db71503797e50908093cf369aa64f89e7e8b19b9874d4fe",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:38:52.481Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:26:08 GMT",
+      "etag": null
+    },
+    "raw_sha256": "e8a9df718350be5cfdf1e626b549c051aa4ac994643abb3bec24857b5a84dadd",
+    "stats": {
+      "words": 350,
+      "blocks": 16,
+      "headings": 4,
+      "tables": 0,
+      "links": 3,
+      "linksToOtherSites": 3
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.haigekassa.ee/sites/default/files/ravimid/hak002_voldik-est.pdf",
+      "text": "Siin",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

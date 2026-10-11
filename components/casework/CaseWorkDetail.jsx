@@ -22,22 +22,53 @@
  * TEKST ON TEKST. Ükski väli ei jõua siit `dangerouslySetInnerHTML`-i — juhtumi
  * punktid on plain text ja HTML nende sees kuvatakse märkidena, mitte
  * märgistusena (testileping 38).
+ *
+ * KUJU (09.10): KOGU JUHTUM ja OSA ERALDI. Detail oli üks pikk veerg raamitud
+ * sektsioone, mida tuli alla kerida. Nüüd on see platvormi sammulava
+ * (`components/stage/StepFlight.jsx`) laua kujul, nagu Juhtumitöö laud: juhtum
+ * avaneb ülevaates (kõik osad plaatidena, igaühel oma seis ühe reaga) ja osa
+ * avaneb omaette vaates. Osad ei ole sammud, seepärast annab leht lavale oma
+ * sõnad („Kogu juhtum", „Osa 3/12"). Päis lava kohal ütleb igas osas, milline
+ * juhtum on lahti ja kas sinna saab kirjutada.
+ *
+ * Juhtumi enda osade vaated on failis ./cases/CaseDetailViews.jsx, kujundus
+ * selle kõrval, osade loend ja ridade sisu failis ./caseViews.js. Siin on
+ * andmed, päringud ja see, mis vaateid olekuga seob. Kohtumise ettevalmistus,
+ * märge, heli, STAR2 järjekord ja ülekandeajalugu on omaette sektsioonid oma
+ * andmetega (`MeetingPrepSection.jsx` jt): nende osa annab neile juhtumi seisu
+ * ja nad joonistavad oma väikesed vaated ise (./sections).
  */
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
+import StepFlight from "@/components/stage/StepFlight";
+import Button from "@/components/ui/Button";
+import { setPanelLeaveGuard, twoPressLeaveGuard } from "@/lib/panelLeaveGuard";
 import { PROVENANCES, provenanceLabelKey } from "@/lib/workspaces/provenance";
 
-import ConfirmButton from "./ConfirmButton";
 import DraftSection from "./DraftSection";
+import MeetingAudioSection from "./MeetingAudioSection";
 import MeetingNoteSection from "./MeetingNoteSection";
 import MeetingPrepSection from "./MeetingPrepSection";
+import { TransferHistory } from "./TransferPanel";
+import {
+  BasicsView,
+  CaseHead,
+  ClientView,
+  ItemsView,
+  MaterialView,
+  MissingView,
+  RetentionView,
+  StarView
+} from "./cases/CaseDetailViews";
+import { Notice } from "./cases/CaseListViews";
+import styles from "./cases/cases.module.css";
+import { caseFormUnsaved, caseParts, itemRows, lockedNote, missingRows, missingStatusOptions, retentionTone, retentionView } from "./caseViews";
 import {
   caseLabelText,
   caseWorkRequest,
   fromLocalInputValue,
-  missingInfoStatusKey,
   retentionLabelKey,
   targetTypeKey,
   toLocalInputValue
@@ -55,8 +86,13 @@ const EXTERNAL_SYSTEMS = ["STAR2"];
 const ITEMS_PAGE_SIZE = 25;
 const MISSING_INFO_PAGE_SIZE = 50;
 
+/* Sektsioonid, mis hoiavad oma loendit ise: ülevaade saab neilt esimese rea.
+   `null` = loend ei ole veel kohal (plaat ei väida siis, et osa on tühi). */
+const NO_SECTION_LISTS = Object.freeze({ prep: null, notes: null, drafts: null, transfer: null });
+
 export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
   const { t, locale } = useI18n();
+  const formId = useId();
 
   const [record, setRecord] = useState(null);
   const [counts, setCounts] = useState({ items: 0, openMissingInfo: 0 });
@@ -79,30 +115,72 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
 
   const [linkType, setLinkType] = useState(TARGET_TYPES[0]);
   const [linkTargetId, setLinkTargetId] = useState("");
+  /* Seotud materjali osa näitab kas loendit või sidumise vormi. */
+  const [linking, setLinking] = useState(false);
 
   const [missingText, setMissingText] = useState("");
   const [missingProvenance, setMissingProvenance] = useState("");
+  /* Puuduva info osa näitab loendit, uue punkti vormi või avatud punkti.
+     `pointStatus` on avatud punktile valitud, veel salvestamata seis. */
+  const [addingPoint, setAddingPoint] = useState(false);
+  const [openPointId, setOpenPointId] = useState(null);
+  const [pointStatus, setPointStatus] = useState(null);
+  const closePoint = useCallback(() => {
+    setOpenPointId(null);
+    setPointStatus(null);
+  }, []);
 
   const [retentionReason, setRetentionReason] = useState("");
+
+  const [sectionLists, setSectionLists] = useState(NO_SECTION_LISTS);
+  /* Kohtumise heli salvesti jääb tööle ka siis, kui ees on juhtumi teine osa:
+     tema plaat ülevaates ütleb, kas salvestus käib. */
+  const [recording, setRecording] = useState(false);
+  /* Salvesti elab oma osas. Kui töötaja kirjutab samal ajal märget, ei näe ta
+     sealt, et mikrofon on sees või et osa jäi salvestamata: rida lava kohal
+     ütleb seda igas teises osas ja viib helisalvestuse juurde. */
+  const [recorderAlert, setRecorderAlert] = useState(false);
+  const [herePart, setHerePart] = useState("");
+  const [goPart, setGoPart] = useState(null);
+  /* Ülekandeajalugu on oma osa, aga teod sünnivad STAR2 järjekorra osas: märk
+     ütleb ajaloole, et ta peab end uuesti laadima. */
+  const [transferToken, setTransferToken] = useState(0);
+  /* Lava ehitatakse uuesti, kui osade loend muutub (kirjutuskaitse võtab
+     töömaterjali osa ära). Pärast seisu muutmist jääb töötaja elutsükli ossa,
+     kust ta seisu muutis, mitte ei kuku ülevaatesse. */
+  const landPartRef = useRef(null);
 
   const isActive = record?.retentionState === "ACTIVE";
   const isTrackA = Boolean(record?.clientUserId);
   const isErased = Boolean(record?.clientErasedAt);
 
-  const loadCase = useCallback(async () => {
+  const loadCase = useCallback(async ({ form = "all" } = {}) => {
     const body = await caseWorkRequest(`/cases/${encodeURIComponent(caseId)}`, { locale });
     setRecord(body.case || null);
     setCounts(body.counts || { items: 0, openMissingInfo: 0 });
     setRetentionClock(body.retentionClock || null);
     /* Vormiväljad tulevad ALATI serveri vastusest, mitte kohalikust mälust:
        kustutatud kliendiviide peab tühjendama ka välja, mille sisse töötaja
-       parasjagu vaatab. */
-    setDisplayName(body.case?.clientDisplayName || "");
-    setExternalRef(body.case?.clientExternalRef || "");
-    setNextContact(toLocalInputValue(body.case?.nextContactAt));
-    setExternalSystem(body.case?.externalSystem || "");
-    setExternalReference(body.case?.externalReference || "");
+       parasjagu vaatab.
+       ERAND: põhiandmete ja STAR-i viite salvestamine värskendab ainult oma
+       osa välju (`form`) ja teise osa tegu (seos, puuduva info punkt,
+       ettevalmistus, märge, mustand) ei värskenda kumbagi (`form: "none"`).
+       Parasjagu peidetud osa pooleli muudatus ei tohi teise osa teoga
+       vaikselt kaduda. */
+    if (form === "all" || form === "basics") {
+      setDisplayName(body.case?.clientDisplayName || "");
+      setExternalRef(body.case?.clientExternalRef || "");
+      setNextContact(toLocalInputValue(body.case?.nextContactAt));
+    }
+    if (form === "all" || form === "star") {
+      setExternalSystem(body.case?.externalSystem || "");
+      setExternalReference(body.case?.externalReference || "");
+    }
   }, [caseId, locale]);
+
+  /* Juhtumi seis ja loendurid ilma vormiväljadeta: seda kutsuvad osad, mille
+     tegu juhtumi vormi ei puuduta. */
+  const refreshCase = useCallback(() => loadCase({ form: "none" }), [loadCase]);
 
   const loadItems = useCallback(
     async ({ cursor = null, append = false } = {}) => {
@@ -154,7 +232,15 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
     loadAll();
   }, [loadAll]);
 
-  /** Üks koht, kus kirjutus õnnestub või annab tõlkevõtmega vea. */
+  /* Viga seisab lava kohal, osa võib aga olla pikk loend ja keritud alla.
+     Tõrge, mida ei ole näha, on töötaja jaoks „vajutasin ja midagi ei
+     juhtunud": teade keritakse nähtavale. */
+  const alertRef = useRef(null);
+  useEffect(() => {
+    if (errorKey) alertRef.current?.scrollIntoView({ block: "nearest" });
+  }, [errorKey]);
+
+  /** Üks koht, kus kirjutus õnnestub või annab tõlkevõtmega vea. Vastus ütleb, kumb juhtus. */
   const run = useCallback(
     async (operation) => {
       setBusy(true);
@@ -162,8 +248,10 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
       try {
         await operation();
         onChanged?.();
+        return true;
       } catch (error) {
         setErrorKey(error?.messageKey || "casework.errors.unexpected");
+        return false;
       } finally {
         setBusy(false);
       }
@@ -171,6 +259,13 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
     [onChanged]
   );
 
+  /* Põhiandmete ja STAR-i viite vaade salvestavad KUMBKI AINULT OMA VÄLJAD.
+     Vanal lehel oli üks nähtav vorm ja üks päring kõigi viie väljaga. Kahe
+     vaatega kirjutaks ühe vaate „Salvesta" vaikselt serverisse ka teise,
+     peidetud vaate salvestamata muudatused, ja pooleli STAR-i paar (süsteem
+     valitud, number puudu) annaks põhiandmete salvestamisel vea, mida inimene
+     seal ei näe. Server võtab vastu osalise sisu: väli, mida päringus ei ole,
+     jääb muutmata (`app/api/casework/cases/[caseId]/route.js`). */
   const saveBasics = useCallback(
     (event) => {
       event.preventDefault();
@@ -180,22 +275,39 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
           locale,
           body: {
             /* Rada A juhtumil ei saadeta vabatekstivälju üldse: nende
-               saatmine — ka tühjana — tähendaks kliendiraja vaikset vahetust. */
+               saatmine, ka tühjana, tähendaks kliendiraja vaikset vahetust. */
             ...(isTrackA || isErased
               ? {}
               : {
                   clientDisplayName: displayName.trim() || null,
                   clientExternalRef: externalRef.trim() || null
                 }),
-            externalSystem: externalSystem || null,
-            externalReference: externalReference.trim() || null,
             nextContactAt: fromLocalInputValue(nextContact)
           }
         });
-        await loadCase();
+        await loadCase({ form: "basics" });
       });
     },
-    [caseId, displayName, externalRef, externalReference, externalSystem, isErased, isTrackA, loadCase, locale, nextContact, run]
+    [caseId, displayName, externalRef, isErased, isTrackA, loadCase, locale, nextContact, run]
+  );
+
+  const saveStar = useCallback(
+    (event) => {
+      event.preventDefault();
+      return run(async () => {
+        await caseWorkRequest(`/cases/${encodeURIComponent(caseId)}`, {
+          method: "PATCH",
+          locale,
+          /* Süsteem ja viide käivad koos (server keeldub poolikust paarist). */
+          body: {
+            externalSystem: externalSystem || null,
+            externalReference: externalReference.trim() || null
+          }
+        });
+        await loadCase({ form: "star" });
+      });
+    },
+    [caseId, externalReference, externalSystem, loadCase, locale, run]
   );
 
   const linkItem = useCallback(
@@ -208,10 +320,13 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
           body: { targetType: linkType, targetId: linkTargetId.trim() }
         });
         setLinkTargetId("");
-        await Promise.all([loadItems(), loadCase()]);
+        /* Seos on tehtud: vorm annab koha loendile tagasi. Tõrke korral jääb
+           vorm ette ja sisestatud tunnus alles. */
+        setLinking(false);
+        await Promise.all([loadItems(), refreshCase()]);
       });
     },
-    [caseId, linkTargetId, linkType, loadCase, loadItems, locale, run]
+    [caseId, linkTargetId, linkType, loadItems, locale, refreshCase, run]
   );
 
   const unlinkItem = useCallback(
@@ -221,9 +336,9 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
           method: "DELETE",
           locale
         });
-        await Promise.all([loadItems(), loadCase()]);
+        await Promise.all([loadItems(), refreshCase()]);
       }),
-    [caseId, loadCase, loadItems, locale, run]
+    [caseId, loadItems, locale, refreshCase, run]
   );
 
   const addMissingInfo = useCallback(
@@ -237,10 +352,11 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
         });
         setMissingText("");
         setMissingProvenance("");
-        await Promise.all([loadMissingInfo(), loadCase()]);
+        setAddingPoint(false);
+        await Promise.all([loadMissingInfo(), refreshCase()]);
       });
     },
-    [caseId, loadCase, loadMissingInfo, locale, missingProvenance, missingText, run]
+    [caseId, loadMissingInfo, locale, missingProvenance, missingText, refreshCase, run]
   );
 
   const setMissingStatus = useCallback(
@@ -250,9 +366,11 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
           `/cases/${encodeURIComponent(caseId)}/missing-info/${encodeURIComponent(itemId)}`,
           { method: "PATCH", locale, body: { status } }
         );
-        await Promise.all([loadMissingInfo(), loadCase()]);
+        /* Seis on salvestatud: punkt sulgub ja ees on jälle loend. */
+        closePoint();
+        await Promise.all([loadMissingInfo(), refreshCase()]);
       }),
-    [caseId, loadCase, loadMissingInfo, locale, run]
+    [caseId, closePoint, loadMissingInfo, locale, refreshCase, run]
   );
 
   const removeMissingInfo = useCallback(
@@ -262,9 +380,10 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
           `/cases/${encodeURIComponent(caseId)}/missing-info/${encodeURIComponent(itemId)}`,
           { method: "DELETE", locale }
         );
-        await Promise.all([loadMissingInfo(), loadCase()]);
+        closePoint();
+        await Promise.all([loadMissingInfo(), refreshCase()]);
       }),
-    [caseId, loadCase, loadMissingInfo, locale, run]
+    [caseId, closePoint, loadMissingInfo, locale, refreshCase, run]
   );
 
   const transitionRetention = useCallback(
@@ -276,6 +395,7 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
           body: { toState, reason: retentionReason }
         });
         setRetentionReason("");
+        landPartRef.current = "retention";
         await loadCase();
       }),
     [caseId, loadCase, locale, retentionReason, run]
@@ -297,10 +417,10 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
           locale,
           body: {}
         });
-        await loadCase();
-        onChanged?.();
+        /* Juhtum jääb aktiivseks: vormi pooleli välju see tegu ei puuduta. */
+        await refreshCase();
       }),
-    [caseId, loadCase, locale, onChanged, run]
+    [caseId, locale, refreshCase, run]
   );
 
   const eraseClientReference = useCallback(
@@ -316,459 +436,402 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
     [caseId, loadCase, locale, run]
   );
 
-  if (state === "loading" && !record) return <p className="cw-empty">{t("casework.page.loading", "")}</p>;
+  /* Sektsioonide teated oma loendi kohta. Funktsioonid on püsivad: sektsioon
+     hoiab neid viitena ja kutsub pärast iga täislaadimist. */
+  const reportList = useMemo(() => {
+    const report = (key) => (list) => setSectionLists((previous) => ({ ...previous, [key]: list }));
+    return { prep: report("prep"), notes: report("notes"), drafts: report("drafts"), transfer: report("transfer") };
+  }, []);
+  const noteTransfer = useCallback(() => setTransferToken((value) => value + 1), []);
+
+  /* SALVESTAMATA TEKST EI KAO KÜSIMATA. Juhtumi enda vormid ja avatud
+     ettevalmistus, märge ning mustand (need teatavad oma seisu ise) loetakse
+     kokku; kuni midagi on salvestamata, peab lehelt lahkumine (tagasi loendisse,
+     kiirmenüü nool, paneeli sulgemine, Esc) esimese korra kinni ja lava kohal
+     seisab põhjus. Teine vajutus lahkub. Sama värava kaudu küsib üle ka avatud
+     kirje sulgemine osa sees (`leaveGate`). */
+  const [sectionUnsaved, setSectionUnsaved] = useState({});
+  const reportUnsaved = useMemo(() => {
+    const set = (key) => (value) =>
+      setSectionUnsaved((current) => (Boolean(current[key]) === Boolean(value) ? current : { ...current, [key]: Boolean(value) }));
+    return { prep: set("prep"), notes: set("notes"), drafts: set("drafts") };
+  }, []);
+  const unsaved =
+    Object.values(sectionUnsaved).some(Boolean) ||
+    caseFormUnsaved(record, {
+      displayName,
+      externalRef,
+      nextContact,
+      savedNextContact: toLocalInputValue(record?.nextContactAt),
+      externalSystem,
+      externalReference,
+      missingText,
+      linkTargetId,
+      retentionReason
+    });
+  const [leaveAsked, setLeaveAsked] = useState(false);
+  const gateRef = useRef(null);
+  useEffect(() => {
+    if (!unsaved) return undefined;
+    const gate = twoPressLeaveGuard({ onAsk: () => setLeaveAsked(true), onClear: () => setLeaveAsked(false) });
+    gateRef.current = gate;
+    const release = setPanelLeaveGuard(gate);
+    const beforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = "";
+    };
+    window.addEventListener("beforeunload", beforeUnload);
+    return () => {
+      gate.clear();
+      gateRef.current = null;
+      release();
+      window.removeEventListener("beforeunload", beforeUnload);
+    };
+  }, [unsaved]);
+  const leaveGate = useCallback((reason) => (gateRef.current ? gateRef.current(reason) : true), []);
+
+  const parts = useMemo(
+    () => (record ? caseParts({ record, counts, lists: sectionLists, recording, t, locale }) : []),
+    [counts, locale, record, recording, sectionLists, t]
+  );
+  const linkRows = useMemo(() => itemRows(items, { t, locale }), [items, locale, t]);
+  const points = useMemo(() => missingRows(missingInfo, { t }), [missingInfo, t]);
+
+  if (state === "loading" && !record) return <p className={styles.quiet}>{t("casework.page.loading", "")}</p>;
 
   if (!record) {
     return (
       <>
-        <button className="cw-button" type="button" onClick={onBack}>
+        <Notice text={t(errorKey || "casework.page.load_error", "")} tone="risk" />
+        <Button type="button" size="sm" variant="secondary" className={styles.more} onClick={onBack}>
           {t("casework.page.back_to_list", "")}
-        </button>
-        <p className="cw-error" role="alert">
-          {t(errorKey || "casework.page.load_error", "")}
-        </p>
+        </Button>
       </>
     );
   }
 
   const writeDisabled = busy || !isActive;
+  const openPoint = openPointId ? points.find((point) => point.id === openPointId) || null : null;
+  const lifecycle = retentionView({ record, retentionClock, t, locale });
+  const landIndex = parts.findIndex((part) => part.key === landPartRef.current);
+
+  const renderPart = (part, _index, flight) => {
+    /* Sektsioonide põhinupp joonistab oma helgi ainult siis, kui osa on ees:
+       lava hoiab kõik osad alles ja iga helk on oma joonistuspind. */
+    const active = flight?.isActive !== false;
+    switch (part.key) {
+      case "basics":
+        return (
+          <BasicsView
+            t={t}
+            formId={`${formId}-basics`}
+            client={{
+              /* Rada A ja kustutatud viide: vabatekstivälju ei näidata (vt päis,
+                 punkt 3), ja lause ütleb, miks neid ei ole. */
+              editable: !(isTrackA || isErased),
+              displayName,
+              onDisplayName: (event) => setDisplayName(event.target.value),
+              externalRef,
+              onExternalRef: (event) => setExternalRef(event.target.value),
+              note: isErased
+                ? t("casework.page.erased", "")
+                : isTrackA
+                  ? t("casework.page.parts.client.account", "")
+                  : ""
+            }}
+            nextContact={nextContact}
+            onNextContact={(event) => setNextContact(event.target.value)}
+            disabled={writeDisabled}
+            onSubmit={saveBasics}
+          />
+        );
+
+      case "star":
+        return (
+          <StarView
+            t={t}
+            formId={`${formId}-star`}
+            system={{
+              /* V1-s on lubatud ainult STAR2 (L6) — vaba tekstiväli tekitaks
+                 süsteeminimede sõnastiku, mida keegi ei halda. */
+              options: [
+                { value: "", label: t("casework.page.parts.star.none", "") },
+                ...EXTERNAL_SYSTEMS.map((system) => ({ value: system, label: system }))
+              ],
+              value: externalSystem,
+              onChange: setExternalSystem
+            }}
+            reference={externalReference}
+            onReference={(event) => setExternalReference(event.target.value)}
+            disabled={writeDisabled}
+            onSubmit={saveStar}
+          />
+        );
+
+      case "items":
+        return (
+          <ItemsView
+            t={t}
+            adding={linking}
+            rows={linkRows}
+            /* `run()` SEES ja `busy` taga: väljaspool teda ei lukustunud nupp,
+               sama cursor sai kaks korda lisanduda ja tõrge jäi hoopis
+               käsitlemata — kasutaja vajutas ja ei juhtunud midagi. */
+            more={itemsCursor ? { busy, onClick: () => run(() => loadItems({ cursor: itemsCursor, append: true })) } : null}
+            disabled={writeDisabled}
+            link={{
+              formId: `${formId}-link`,
+              types: TARGET_TYPES.map((type) => ({ value: type, label: t(targetTypeKey(type), "") })),
+              type: linkType,
+              onType: setLinkType,
+              targetId: linkTargetId,
+              onTargetId: (event) => setLinkTargetId(event.target.value),
+              onSubmit: linkItem
+            }}
+            onAdd={() => setLinking(true)}
+            onCancel={() => setLinking(false)}
+            onUnlink={unlinkItem}
+          />
+        );
+
+      case "missing":
+        return (
+          <MissingView
+            t={t}
+            mode={addingPoint ? "add" : openPoint ? "point" : "list"}
+            rows={points}
+            point={openPoint}
+            more={
+              missingCursor
+                ? { busy, onClick: () => run(() => loadMissingInfo({ cursor: missingCursor, append: true })) }
+                : null
+            }
+            disabled={writeDisabled}
+            add={{
+              formId: `${formId}-missing`,
+              text: missingText,
+              onText: setMissingText,
+              provenance: missingProvenance,
+              onProvenance: setMissingProvenance,
+              provenances: PROVENANCES.map((value) => ({ value, label: t(provenanceLabelKey(value), "") })),
+              onSubmit: addMissingInfo
+            }}
+            status={{
+              options: missingStatusOptions(t),
+              value: pointStatus ?? openPoint?.status,
+              onChange: setPointStatus,
+              /* Sama seisu uuesti valimine ei ole muudatus ega lähe serverisse. */
+              changed: Boolean(openPoint && pointStatus && pointStatus !== openPoint.status),
+              onSave: () => setMissingStatus(openPoint.id, pointStatus)
+            }}
+            onAdd={() => {
+              closePoint();
+              setAddingPoint(true);
+            }}
+            onCancel={() => {
+              setAddingPoint(false);
+              closePoint();
+            }}
+            onOpen={(itemId) => {
+              setPointStatus(null);
+              setOpenPointId(itemId);
+            }}
+            onRemove={removeMissingInfo}
+          />
+        );
+
+      /* JTA-V1 E3 — kohtumise ettevalmistus. Ta seisab puuduva info JÄREL ja
+         kliendiviite EES, sest ettevalmistus loeb puuduvat infot (ptk 4.7:
+         koopiat ei tehta) ja kliendiviite kustutus on juhtumi lõpupunkt. */
+      case "prep":
+        return (
+          <MeetingPrepSection
+            caseId={caseId}
+            locked={!isActive}
+            caseBusy={busy}
+            active={active}
+            onChanged={refreshCase}
+            onListLoaded={reportList.prep}
+            onUnsaved={reportUnsaved.prep}
+            leaveGate={leaveGate}
+          />
+        );
+
+      /* JTA-V1 E4 — kohtumise märge. Ta seisab ettevalmistuse JÄREL, sest
+         ajaline järjekord on sama: enne kohtumist valmistutakse, pärast
+         kirjutatakse üles. */
+      case "notes":
+        return (
+          <MeetingNoteSection
+            caseId={caseId}
+            locked={!isActive}
+            caseBusy={busy}
+            active={active}
+            onChanged={refreshCase}
+            onListLoaded={reportList.notes}
+            onUnsaved={reportUnsaved.notes}
+            leaveGate={leaveGate}
+          />
+        );
+
+      /* Kohtumise heli seisab märkme KÕRVAL, omaette osana: salvestis on
+         dokument, mitte märkme rida, ja salvesti peab töötama edasi ka siis,
+         kui töötaja kirjutab samal ajal märget. Salvestatud osa seotakse
+         juhtumiga ja ilmub seotud materjali alla. */
+      case "audio":
+        return (
+          <MeetingAudioSection
+            caseId={caseId}
+            locked={!isActive}
+            caseBusy={busy}
+            active={active}
+            onLinked={refreshLinkedItems}
+            onRecording={setRecording}
+            onAlert={setRecorderAlert}
+          />
+        );
+
+      /* JTA-V1 E5 — STAR2 mustandi ahel. Seisab märkme JÄREL, sest ajaline
+         järjekord on sama: kohtumine, märge, siis see, mis registrisse
+         kantakse. */
+      case "drafts":
+        return (
+          <DraftSection
+            caseId={caseId}
+            locked={!isActive}
+            archived={record.retentionState === "ARCHIVED"}
+            caseBusy={busy}
+            active={active}
+            onChanged={refreshCase}
+            onListLoaded={reportList.drafts}
+            onTransferRecorded={noteTransfer}
+            onUnsaved={reportUnsaved.drafts}
+            leaveGate={leaveGate}
+          />
+        );
+
+      /* Ajalugu on JUHTUMI oma, mitte avatud mustandi oma: ülekanne on juhtumi
+         sündmus ja töötaja peab teda nägema ka siis, kui ükski element ei ole
+         lahti. Seepärast on ta omaette osa, mitte STAR2 järjekorra lõpp. */
+      case "transfer":
+        return <TransferHistory caseId={caseId} locale={locale} t={t} refreshToken={transferToken} onListLoaded={reportList.transfer} />;
+
+      /* L7: LOENDUS ON NÄHTAV KOGU 12 KUU JOOKSUL, mitte alles siis, kui
+         hoiatus saabub. Kuupäev tuleb serverist sama valemiga, millega
+         kustutus päriselt juhtub.
+
+         PÕHJUS ON KOHUSTUSLIK (L14) ja ta jääb auditisse — nupp on väljas
+         seni, kuni ta on kirjutatud.
+
+         L23 — KELL ÖELDAKSE VÄLJA ENNE TEGU, mitte 30 päeva enne kustutust.
+         Olemasolev `retention_hint` ütleb „tagasiteed ei ole" ja oli oma ajal
+         täielik: JUHTUM-V1-s ei olnud kella. Kell tuleb selle lepinguga, seega
+         tekstivõlg on JTA oma. `READ_ONLY` siire EI KANNA seda teksti ja see ei
+         ole väljajätt: tema ei käivita kella, ja vale hoiatus õpetab kasutajat
+         hoiatusi ignoreerima.
+
+         MÕLEMAD SIIRDED ON KAHEASTMELISED. `ARCHIVED` on terminaalne JA
+         käivitab kustutuskella — ühe vajutusega pöördumatu tegu on täpselt see
+         muster, mille seitsmes audit mujalt maha võttis. Kirjutuskaitse oli
+         seni ühe vajutusega, kuigi ka temal ei ole tagasiteed. */
+      case "retention":
+        return (
+          <RetentionView
+            t={t}
+            view={lifecycle}
+            reason={retentionReason}
+            onReason={(event) => setRetentionReason(event.target.value)}
+            busy={busy}
+            onTransition={transitionRetention}
+          />
+        );
+
+      /* O-JTA-5 rada C — töötaja tegu „arhiveeri töömaterjal".
+         SEE EI ARHIVEERI JUHTUMIT ja seepärast seisab ta arhiveerimisest
+         eraldi, omaette osana: juhtum jääb `ACTIVE`-ks ja tööle, kustub ainult
+         kandmata mustandite SISU. Osa on olemas ainult aktiivsel juhtumil. */
+      case "material":
+        return <MaterialView t={t} busy={busy} onArchive={archiveWorkingMaterial} />;
+
+      /* NUPP ON ALLES KA `READ_ONLY` JA `ARCHIVED` JUHTUMIS (L17) — ainus
+         koht selles vaates, kus `busy` on ainus takistus.
+
+         KÕIGE PÖÖRDUMATUM TEGU SELLES VAATES: viide ei tule tagasi ka konto
+         kustutamise rajalt ja juhtumi nimeks jääb jäädavalt „Kustutatud
+         kliendiviide". Üks vajutus oli selle jaoks liiga vähe. `busy` jääb
+         ainsaks lisatakistuseks — L17 järgi ei tohi see nupp sõltuda
+         retention-olekust. */
+      case "client":
+        return <ClientView t={t} erased={isErased} busy={busy} onErase={eraseClientReference} />;
+
+      default:
+        return null;
+    }
+  };
 
   return (
     <>
-      <header className="cw-intro">
-        <button className="cw-button" type="button" onClick={onBack}>
-          {t("casework.page.back_to_list", "")}
-        </button>
-        <h1 className="cw-title">{caseLabelText(record.label, t)}</h1>
-        <p className="cw-case-meta">
-          <span className="cw-badge">{t(retentionLabelKey(record.retentionState), "")}</span>{" "}
-          {counts.items} {t("casework.page.counts_items", "")} · {counts.openMissingInfo}{" "}
-          {t("casework.page.counts_open_missing_info", "")}
+      <CaseHead
+        t={t}
+        name={caseLabelText(record.label, t)}
+        state={t(retentionLabelKey(record.retentionState), "")}
+        tone={retentionTone(record.retentionState)}
+        /* Kirjutuskaitse lause on päises ja seega näha igas osas: nupud on kinni
+           igal pool ja põhjus peab olema sealsamas. Lause on seisu järgi:
+           kirjutuskaitstud juhtumis saab veel STAR2 jaoks kopeerida, arhiveeritud
+           juhtumis mitte. */
+        note={lockedNote(record.retentionState, t)}
+        onBack={() => {
+          if (leaveGate("back")) onBack?.();
+        }}
+      />
+
+      {errorKey ? (
+        <p className={styles.notice} data-tone="risk" role="alert" ref={alertRef}>
+          {t(errorKey, "")}
         </p>
-        {!isActive ? <p className="cw-notice">{t("casework.page.read_only_notice", "")}</p> : null}
-        {errorKey ? (
-          <p className="cw-error" role="alert">
-            {t(errorKey, "")}
-          </p>
-        ) : null}
-      </header>
-
-      <section className="cw-section">
-        <h2 className="cw-section-title">{t("casework.page.section_basics", "")}</h2>
-        <form className="cw-form" onSubmit={saveBasics}>
-          {isTrackA || isErased ? null : (
-            <>
-              <div className="cw-field">
-                <label className="cw-label" htmlFor="cw-display-name">
-                  {t("casework.page.client_display_name", "")}
-                </label>
-                <input
-                  id="cw-display-name"
-                  className="cw-input"
-                  type="text"
-                  value={displayName}
-                  maxLength={120}
-                  disabled={writeDisabled}
-                  onChange={(event) => setDisplayName(event.target.value)}
-                />
-              </div>
-              <div className="cw-field">
-                <label className="cw-label" htmlFor="cw-external-ref">
-                  {t("casework.page.client_external_ref", "")}
-                </label>
-                <input
-                  id="cw-external-ref"
-                  className="cw-input"
-                  type="text"
-                  value={externalRef}
-                  maxLength={120}
-                  disabled={writeDisabled}
-                  onChange={(event) => setExternalRef(event.target.value)}
-                />
-              </div>
-            </>
-          )}
-
-          <div className="cw-field">
-            <label className="cw-label" htmlFor="cw-next-contact">
-              {t("casework.page.next_contact", "")}
-            </label>
-            <input
-              id="cw-next-contact"
-              className="cw-input"
-              type="datetime-local"
-              value={nextContact}
-              disabled={writeDisabled}
-              onChange={(event) => setNextContact(event.target.value)}
-            />
-          </div>
-
-          <h3 className="cw-section-title">{t("casework.page.section_star", "")}</h3>
-          <div className="cw-field">
-            <label className="cw-label" htmlFor="cw-external-system">
-              {t("casework.page.star_system", "")}
-            </label>
-            {/* V1-s on lubatud ainult STAR2 (L6) — vaba tekstiväli tekitaks
-                süsteeminimede sõnastiku, mida keegi ei halda. */}
-            <select
-              id="cw-external-system"
-              className="cw-select"
-              value={externalSystem}
-              disabled={writeDisabled}
-              onChange={(event) => setExternalSystem(event.target.value)}
-            >
-              <option value="">—</option>
-              {EXTERNAL_SYSTEMS.map((system) => (
-                <option key={system} value={system}>
-                  {system}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="cw-field">
-            <label className="cw-label" htmlFor="cw-external-reference">
-              {t("casework.page.star_reference", "")}
-            </label>
-            <input
-              id="cw-external-reference"
-              className="cw-input"
-              type="text"
-              value={externalReference}
-              maxLength={120}
-              disabled={writeDisabled}
-              onChange={(event) => setExternalReference(event.target.value)}
-            />
-          </div>
-
-          <button className="cw-button" type="submit" disabled={writeDisabled}>
-            {t("casework.page.save", "")}
-          </button>
-        </form>
-      </section>
-
-      <section className="cw-section">
-        <h2 className="cw-section-title">{t("casework.page.section_items", "")}</h2>
-        <p className="cw-hint">{t("casework.page.items_hint", "")}</p>
-
-        {items.length ? (
-          <ul className="cw-list">
-            {items.map((item) => (
-              <li className="cw-item" key={item.id}>
-                <span className="cw-item-text">
-                  <span className="cw-badge">{t(targetTypeKey(item.targetType), "")}</span>{" "}
-                  <span className="cw-item-meta">{item.targetId}</span>
-                </span>
-                <button
-                  className="cw-button"
-                  type="button"
-                  disabled={writeDisabled}
-                  onClick={() => unlinkItem(item.id)}
-                >
-                  {t("casework.page.unlink", "")}
-                </button>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="cw-empty">{t("casework.page.items_empty", "")}</p>
-        )}
-
-        {itemsCursor ? (
-          /* `run()` SEES ja `busy` taga: väljaspool teda ei lukustunud nupp,
-             sama cursor sai kaks korda lisanduda ja tõrge jäi hoopis
-             käsitlemata — kasutaja vajutas ja ei juhtunud midagi. */
-          <button
-            className="cw-button"
-            type="button"
-            disabled={busy}
-            onClick={() => run(() => loadItems({ cursor: itemsCursor, append: true }))}
-          >
-            {t("casework.page.load_more", "")}
-          </button>
-        ) : null}
-
-        <form className="cw-form cw-form--inline" onSubmit={linkItem}>
-          <div className="cw-field">
-            <label className="cw-label" htmlFor="cw-link-type">
-              {t("casework.page.item_type", "")}
-            </label>
-            <select
-              id="cw-link-type"
-              className="cw-select"
-              value={linkType}
-              disabled={writeDisabled}
-              onChange={(event) => setLinkType(event.target.value)}
-            >
-              {TARGET_TYPES.map((type) => (
-                <option key={type} value={type}>
-                  {t(targetTypeKey(type), "")}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="cw-field">
-            <label className="cw-label" htmlFor="cw-link-target">
-              {t("casework.page.item_target_id", "")}
-            </label>
-            <input
-              id="cw-link-target"
-              className="cw-input"
-              type="text"
-              value={linkTargetId}
-              disabled={writeDisabled}
-              onChange={(event) => setLinkTargetId(event.target.value)}
-            />
-          </div>
-          <button className="cw-button" type="submit" disabled={writeDisabled || !linkTargetId.trim()}>
-            {t("casework.page.link_submit", "")}
-          </button>
-        </form>
-      </section>
-
-      <section className="cw-section">
-        <h2 className="cw-section-title">{t("casework.page.section_missing_info", "")}</h2>
-
-        {missingInfo.length ? (
-          <ul className="cw-list">
-            {missingInfo.map((item) => (
-              <li className="cw-item" key={item.id}>
-                {/* Tekst on TEKST: sisu tuleb React'i lapsena, mitte HTML-ina. */}
-                <span className="cw-item-text">{item.text}</span>
-                <span className="cw-item-meta">
-                  <span className="cw-badge">{t(missingInfoStatusKey(item.status), "")}</span>{" "}
-                  <span className="cw-badge">
-                    {t(provenanceLabelKey(item.provenance) || "casework.errors.provenance_unknown", "")}
-                  </span>
-                </span>
-                <span className="cw-row">
-                  {item.status === "OPEN" ? (
-                    <button
-                      className="cw-button"
-                      type="button"
-                      disabled={writeDisabled}
-                      onClick={() => setMissingStatus(item.id, "RESOLVED")}
-                    >
-                      {t("casework.page.mark_resolved", "")}
-                    </button>
-                  ) : (
-                    <button
-                      className="cw-button"
-                      type="button"
-                      disabled={writeDisabled}
-                      onClick={() => setMissingStatus(item.id, "OPEN")}
-                    >
-                      {t("casework.page.reopen", "")}
-                    </button>
-                  )}
-                  <button
-                    className="cw-button"
-                    type="button"
-                    disabled={writeDisabled}
-                    onClick={() => removeMissingInfo(item.id)}
-                  >
-                    {t("casework.page.remove", "")}
-                  </button>
-                </span>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="cw-empty">{t("casework.page.missing_info_empty", "")}</p>
-        )}
-
-        {missingCursor ? (
-          <button
-            className="cw-button"
-            type="button"
-            disabled={busy}
-            onClick={() => run(() => loadMissingInfo({ cursor: missingCursor, append: true }))}
-          >
-            {t("casework.page.load_more", "")}
-          </button>
-        ) : null}
-
-        <form className="cw-form" onSubmit={addMissingInfo}>
-          <div className="cw-field">
-            <label className="cw-label" htmlFor="cw-missing-text">
-              {t("casework.page.missing_info_text", "")}
-            </label>
-            <textarea
-              id="cw-missing-text"
-              className="cw-textarea"
-              value={missingText}
-              maxLength={2000}
-              disabled={writeDisabled}
-              onChange={(event) => setMissingText(event.target.value)}
-            />
-          </div>
-          <div className="cw-field">
-            <label className="cw-label" htmlFor="cw-missing-provenance">
-              {t("casework.page.missing_info_provenance", "")}
-            </label>
-            {/* PÄRITOLU ON KOHUSTUSLIK ja tuleb jagatud sõnastikust
-                (`lib/workspaces/provenance.js`) — teist koopiat siia ei teki. */}
-            <select
-              id="cw-missing-provenance"
-              className="cw-select"
-              value={missingProvenance}
-              disabled={writeDisabled}
-              onChange={(event) => setMissingProvenance(event.target.value)}
-            >
-              <option value="">{t("casework.page.provenance_placeholder", "")}</option>
-              {PROVENANCES.map((value) => (
-                <option key={value} value={value}>
-                  {t(provenanceLabelKey(value), "")}
-                </option>
-              ))}
-            </select>
-          </div>
-          <button
-            className="cw-button"
-            type="submit"
-            disabled={writeDisabled || !missingText.trim() || !missingProvenance}
-          >
-            {t("casework.page.missing_info_add", "")}
-          </button>
-        </form>
-      </section>
-
-      <section className="cw-section">
-        <h2 className="cw-section-title">{t("casework.page.section_retention", "")}</h2>
-        <p className="cw-hint">{t("casework.page.retention_hint", "")}</p>
-        <p className="cw-case-meta">
-          {t("casework.page.retention_state", "")}
-          {": "}
-          <span className="cw-badge">{t(retentionLabelKey(record.retentionState), "")}</span>
+      ) : null}
+      {leaveAsked ? (
+        <p className={styles.notice} role="alert">
+          {t("casework.page.unsaved_leave", "")}
         </p>
+      ) : null}
 
-        {/* L7: LOENDUS ON NÄHTAV KOGU 12 KUU JOOKSUL, mitte alles siis, kui
-            hoiatus saabub. Kuupäev tuleb serverist sama valemiga, millega
-            kustutus päriselt juhtub. */}
-        {record.retentionState === "ARCHIVED" && retentionClock?.deletionAt ? (
-          <p className="cw-notice">
-            {t("casework.page.retention_countdown", "")
-              .replace("{days}", String(retentionClock.daysLeft ?? 0))
-              .replace(
-                "{date}",
-                new Date(retentionClock.deletionAt).toLocaleDateString(locale || "et", { dateStyle: "medium" })
-              )}
-          </p>
-        ) : null}
+      {(recording || recorderAlert) && herePart !== "audio" ? (
+        <p className={styles.recorderLine} role={recorderAlert ? "alert" : undefined}>
+          <span>{t(recorderAlert ? "casework.page.recorder_alert_line" : "casework.page.recording_line", "")}</span>
+          <button type="button" className={styles.recorderOpen} onClick={() => setGoPart("audio")}>
+            {t("casework.page.open_audio", "")}
+          </button>
+        </p>
+      ) : null}
 
-        {record.retentionState === "ARCHIVED" ? null : (
-          <>
-            <div className="cw-field">
-              <label className="cw-label" htmlFor="cw-retention-reason">
-                {t("casework.page.retention_reason", "")}
-              </label>
-              {/* PÕHJUS ON KOHUSTUSLIK (L14) ja ta jääb auditisse — nupp on
-                  väljas seni, kuni ta on kirjutatud. */}
-              <input
-                id="cw-retention-reason"
-                className="cw-input"
-                type="text"
-                value={retentionReason}
-                maxLength={500}
-                disabled={busy}
-                onChange={(event) => setRetentionReason(event.target.value)}
-              />
-            </div>
-
-            {/* L23 — KELL ÖELDAKSE VÄLJA ENNE TEGU, mitte 30 päeva enne
-                kustutust. Olemasolev `retention_hint` ütleb „tagasiteed ei ole"
-                ja oli oma ajal täielik: JUHTUM-V1-s ei olnud kella. Kell tuleb
-                selle lepinguga, seega tekstivõlg on JTA oma.
-
-                `READ_ONLY` siire EI KANNA seda teksti ja see ei ole väljajätt:
-                tema ei käivita kella, ja vale hoiatus õpetab kasutajat hoiatusi
-                ignoreerima. */}
-            {record.retentionState === "READ_ONLY" ? (
-              <p className="cw-error" role="note">
-                {t("casework.page.archive_clock_warning", "")}
-              </p>
-            ) : null}
-
-            <div className="cw-row">
-              {record.retentionState === "ACTIVE" ? (
-                <button
-                  className="cw-button cw-button--danger"
-                  type="button"
-                  disabled={busy || !retentionReason.trim()}
-                  onClick={() => transitionRetention("READ_ONLY")}
-                >
-                  {t("casework.page.retention_to_read_only", "")}
-                </button>
-              ) : (
-                /* Kaheastmeline, sest `ARCHIVED` on terminaalne JA käivitab
-                   kustutuskella — ühe vajutusega pöördumatu tegu on täpselt see
-                   muster, mille seitsmes audit mujalt maha võttis. */
-                <ConfirmButton
-                  label={t("casework.page.retention_to_archived", "")}
-                  confirmLabel={t("casework.page.confirm_retention_to_archived", "")}
-                  cancelLabel={t("casework.page.cancel", "")}
-                  disabled={busy || !retentionReason.trim()}
-                  onConfirm={() => transitionRetention("ARCHIVED")}
-                />
-              )}
-            </div>
-          </>
-        )}
-
-        {/* O-JTA-5 rada C — töötaja tegu „arhiveeri töömaterjal".
-            SEE EI ARHIVEERI JUHTUMIT ja seepärast seisab ta arhiveerimisest
-            eraldi: juhtum jääb `ACTIVE`-ks ja tööle, kustub ainult kandmata
-            mustandite SISU. */}
-        {isActive ? (
-          <div className="cw-row">
-            <p className="cw-hint">{t("casework.page.working_material_hint", "")}</p>
-            <ConfirmButton
-              label={t("casework.page.archive_working_material", "")}
-              confirmLabel={t("casework.page.confirm_archive_working_material", "")}
-              cancelLabel={t("casework.page.cancel", "")}
-              disabled={busy}
-              onConfirm={archiveWorkingMaterial}
-            />
-          </div>
-        ) : null}
-      </section>
-
-      {/* JTA-V1 E3 — kohtumise ettevalmistus. Ta seisab puuduva info JÄREL ja
-          kliendiviite EES, sest ettevalmistus loeb puuduvat infot (ptk 4.7:
-          koopiat ei tehta) ja kliendiviite kustutus on lehe lõpupunkt. */}
-      <MeetingPrepSection caseId={caseId} writeDisabled={writeDisabled} onChanged={loadCase} />
-
-      {/* JTA-V1 E4 — kohtumise märge. Ta seisab ettevalmistuse JÄREL, sest
-          ajaline järjekord on sama: enne kohtumist valmistutakse, pärast
-          kirjutatakse üles. */}
-      <MeetingNoteSection caseId={caseId} writeDisabled={writeDisabled} onChanged={loadCase} onLinked={refreshLinkedItems} />
-
-      {/* JTA-V1 E5 — STAR2 mustandi ahel. Seisab markme JAREL, sest ajaline
-          jarjekord on sama: kohtumine, markme, siis see, mis registrisse
-          kantakse. */}
-      <DraftSection caseId={caseId} writeDisabled={writeDisabled} onChanged={loadCase} />
-
-      <section className="cw-section">
-        <h2 className="cw-section-title">{t("casework.page.section_client_reference", "")}</h2>
-        <p className="cw-hint">{t("casework.page.erase_hint", "")}</p>
-        {isErased ? (
-          <p className="cw-notice">{t("casework.page.erased", "")}</p>
-        ) : (
-          /* NUPP ON ALLES KA `READ_ONLY` JA `ARCHIVED` JUHTUMIS (L17) — ainus
-             koht selles vaates, kus `busy` on ainus takistus. */
-          /* KÕIGE PÖÖRDUMATUM TEGU SELLES VAATES: viide ei tule tagasi ka
-             konto kustutamise rajalt ja juhtumi nimeks jääb jäädavalt
-             „Kustutatud kliendiviide". Üks vajutus oli selle jaoks liiga vähe.
-             `busy` jääb ainsaks lisatakistuseks — L17 järgi ei tohi see nupp
-             sõltuda retention-olekust. */
-          <ConfirmButton
-            label={t("casework.page.erase_client_reference", "")}
-            confirmLabel={t("casework.page.confirm_erase_client_reference", "")}
-            cancelLabel={t("casework.page.cancel", "")}
-            disabled={busy}
-            onConfirm={eraseClientReference}
-          />
-        )}
-      </section>
+      <StepFlight
+        /* Osade loend muutub, kui juhtum läheb kirjutuskaitse alla: siis
+           ehitatakse lava uuesti. */
+        key={parts.map((part) => part.key).join("|")}
+        label={t("casework.page.title", "")}
+        steps={parts}
+        parts
+        activeKey={goPart}
+        onStepChange={(index, step) => {
+          setGoPart(null);
+          setHerePart(step?.key || "");
+        }}
+        /* Juhtum avaneb ülevaates: kõik osad korraga, igaühel oma seis. */
+        startWide={landIndex < 0}
+        initialIndex={Math.max(0, landIndex)}
+        texts={{
+          all: t("casework.page.all_parts", ""),
+          position: (current, total, label) =>
+            t("casework.page.part_position", "")
+              .replace("{current}", String(current))
+              .replace("{total}", String(total))
+              .replace("{label}", label)
+        }}
+      >
+        {renderPart}
+      </StepFlight>
     </>
   );
 }

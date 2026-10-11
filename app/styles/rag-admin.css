@@ -1122,7 +1122,8 @@ body.ra-drawer-open .panel-close {
   background: var(--glass-cell-bg);
 }
 
-.ra-source-feedback-item > div:first-child {
+.ra-source-feedback-item > div:first-child,
+.ra-source-feedback-item > div:first-child + div {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem 0.8rem;
@@ -1137,6 +1138,17 @@ body.ra-drawer-open .panel-close {
 .ra-source-feedback-item label {
   display: grid;
   gap: 0.35rem;
+}
+
+/* Vastuse tagasiside: märkus, küsimus ja vastus hoiavad oma reavahetused. */
+.ra-source-feedback-item .ra-answer-feedback-text {
+  margin: 0.4rem 0 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.ra-source-feedback-item summary {
+  cursor: pointer;
 }
 
 .ra-source-feedback-item textarea {

@@ -9,16 +9,16 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | KOV | 78 | 234 | 78 KOV-i põhipaketti koos metaandmete ja allikaloenditega. |
 | kontaktid | 0 | 10 | Kontaktide otsingumaterjal; kattuvus KOV-pakettidega vajab ühendamist. |
 | organisatsioonid | 1 | 3 | Ühe organisatsiooni (Astangu) käsitsi koostatud pakett: sisu ja allikad. RAG-is seda paketti ei ole. Organisatsioonide enda veebilehed on RAG-is (vt „RAG-i seis“). |
-| oigusaktid | 582 | 596 | XML-aktid, sh eri redaktsioonid ja omavalitsuste teised kehtivad sotsiaalaktid (ADR-058); kehtivus tuleb vastuvõtul kontrollida. Aktide lisadest tuletatud allikad (`lisad/`): kaks tabelit (ADR-050) ja kaksteist omavalitsuse lisa teksti (ADR-053); iga tuletatud allikas nimetab oma akti redaktsiooni. Üks akt on allikas ainult nimetatud paragrahvide ulatuses (registrikirje väli `xml_sections`, ADR-076): `103072026024.xml`, 2026. aasta riigieelarve seaduse § 2; fail ise on Riigi Teataja algfail. |
+| oigusaktid | 640 | 654 | XML-aktid, sh eri redaktsioonid ja omavalitsuste teised kehtivad sotsiaalaktid (ADR-058); kehtivus tuleb vastuvõtul kontrollida. Aktide lisadest tuletatud allikad (`lisad/`): kaks tabelit (ADR-050) ja kaksteist omavalitsuse lisa teksti (ADR-053); iga tuletatud allikas nimetab oma akti redaktsiooni. Üks akt on allikas ainult nimetatud paragrahvide ulatuses (registrikirje väli `xml_sections`, ADR-076): `103072026024.xml`, 2026. aasta riigieelarve seaduse § 2; fail ise on Riigi Teataja algfail. |
 | teadmised | 0 | 7 | Allikapõhised teadmiskaardid (tingimused, erandid, mõisted ja nende seosed) valitud allikatele; iga fail on seotud oma allika räsiga (ADR-054). |
-| register | 0 | 6 | Kavandatud allikate register ja korjatavate veebilehtede nimekirjad (`web_pages.json` ametlikud juhislehed, `web_pages_vendors.json` abivahendite müüjate lehed, `web_pages_organisations.json` puuetega inimeste organisatsioonide lehed koos mustriga, mis pealkirja järgi välja jääb; ADR-095), mitte teadmistekst. Mis müüjate ja organisatsioonide lehtedest RAG-is on, näitab „RAG-i seis“. `newsletter_documents.json` on ajakirja Sotsiaaltöö uudiskirjas viidatud dokumentide loend (ADR-099): pealkiri, väljaandja ametlik aadress ja seis, sh need, mida RAG-is ei ole (ingliskeelsed, tekstikihita, liiga suured, vastuvõtu kinni peetud, arvutabelid). |
-| veebilehed | 31 | 62 | Ametlikud juhislehed, korjatud skriptiga `scripts/rag-v2-web-pages.mjs` (ADR-095): lehe sisuosa ilma saidi menüüde ja isikute kontaktideta, metaandmetes aadress, kontrolli kuupäev ja viidatud dokumendid. |
+| register | 0 | 9 | Kavandatud allikate register ja korjatavate veebilehtede nimekirjad (`web_pages.json` ametlikud juhislehed, `web_pages_state_help.json` riigi tasandi abi juhislehed (pension, perehüvitised, elatisabi, perelepitus; ADR-111), `web_pages_state_help_2.json` riigi tasandi abi teine partii (ravikindlustus, kohtusse pöördumine, võlad, pärimine, ohvriabi, puue ja hoolekanne, politsei juhised; ADR-112), `web_pages_state_help_3.json` kolmas partii (riigi õigusabi, täitemenetlus, perekonna- ja pärimisõigus, kuriteoohvri õigused, toe vajadusega õpilane; ADR-115), `web_pages_vendors.json` abivahendite müüjate lehed, `web_pages_organisations.json` puuetega inimeste organisatsioonide lehed koos mustriga, mis pealkirja järgi välja jääb; ADR-095), mitte teadmistekst. Mis müüjate ja organisatsioonide lehtedest RAG-is on, näitab „RAG-i seis“. `newsletter_documents.json` on ajakirja Sotsiaaltöö uudiskirjas viidatud dokumentide loend (ADR-099): pealkiri, väljaandja ametlik aadress ja seis, sh need, mida RAG-is ei ole (ingliskeelsed, tekstikihita, liiga suured, vastuvõtu kinni peetud, arvutabelid). |
+| veebilehed | 361 | 722 | Ametlikud juhislehed, korjatud skriptiga `scripts/rag-v2-web-pages.mjs` (ADR-095): lehe sisuosa ilma saidi menüüde ja isikute kontaktideta, metaandmetes aadress, kontrolli kuupäev ja viidatud dokumendid. |
 | taastatud_allikad | 0 | 22 | Serveri vanast indeksist taastatud tekst. Enne importi võrrelda põhipakettidega. |
 
 <!-- corpus-state:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
-## RAG-i seis: mis on serveris (korpus v69)
+## RAG-i seis: mis on serveris (korpus v85)
 
-Seis 07.10.2026: serveris töötav RAG (korpus **v69**, indeks `8b1e1008`) sisaldab **8 337 dokumenti** (68 408 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
+Seis 11.10.2026: serveris töötav RAG (korpus **v85**, indeks `0695a9a9`) sisaldab **10 571 dokumenti** (93 471 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
 
 | Mis on RAG-is | Dokumente | Kus on loend |
 |---|---:|---|
@@ -26,14 +26,14 @@ Seis 07.10.2026: serveris töötav RAG (korpus **v69**, indeks `8b1e1008`) sisal
 | Taotlusvormid (vastuses antakse lingina) | 872 | jaotis „Sisufailid“ |
 | Omavalitsuste kontaktid | 1638 | faili lõpus arvudena omavalitsuste kaupa (nimesid siia ei kirjutata) |
 | Ajakirja Sotsiaaltöö artiklid | 892 | jaotis „Sisufailid“ |
-| Õigusaktid | 537 | jaotis „Sisufailid“ |
-| Juhendid, infomaterjalid ja uuringud | 429 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
-| Ametlikud juhislehed (ametite veebilehed) | 30 | jaotis „Sisufailid“ |
-| Puuetega inimeste organisatsioonide lehed | 521 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
+| Õigusaktid | 594 | jaotis „Sisufailid“ |
+| Juhendid, infomaterjalid ja uuringud | 436 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
+| Ametlikud juhislehed (ametite veebilehed) | 1589 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
+| Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) | 1132 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Hooldekodude kohamaksumus omavalitsuste kaupa | 79 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müügi- ja üüripunktid | 93 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müüjate lehed | 51 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
-| **Kokku** | **8337** | |
+| **Kokku** | **10571** | |
 
 <details><summary>Tehniline jaotus arendajale: kus allikafailid asuvad</summary>
 
@@ -43,11 +43,11 @@ Dokumentide arvud ei võrdu ülal olevate failide arvudega: üks fail võib anda
 |---|---:|---|
 | `KOV` | 4498 | kov_service_info 3195, application_form 845, official_contact 431, web_form 17, pdf_form 6, official_form 4 |
 | `ajakiri_sotsiaaltoo` | 892 | file 849, web 43 |
-| `oigusaktid` | 537 | legal_act 537 |
+| `oigusaktid` | 594 | legal_act 594 |
+| `veebilehed` | 361 | web_page 360, research_report 1 |
 | `juhendid_ja_uuringud` | 171 | information_material 81, research_report 46, official_guideline 38, policy_analysis 6 |
-| `veebilehed` | 31 | web_page 30, research_report 1 |
 
-Koodihoidlas (GitHub) ei ole 2208 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
+Koodihoidlas (GitHub) ei ole 4055 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
 
 | Allikas | Dokumente | Millest tehakse | Miks ei ole koodihoidlas |
 |---|---:|---|---|
@@ -55,10 +55,11 @@ Koodihoidlas (GitHub) ei ole 2208 dokumendi allikafaile; need on korpuse hoidlas
 | Hooldekodude kohamaksumuse lehed | 79 | Sotsiaalkindlustusameti hinnaseire tabelist skriptiga `scripts/rag-v2-care-prices.mjs`, iga omavalitsuse kohta üks leht ja üks ülevaade (ADR-104) | hooldekodude telefoninumbrid; leht tehakse tabelist uuesti |
 | Abivahendite müügi- ja üüripunktide lehed | 93 | Sotsiaalkindlustusameti kaarditabelist skriptiga `scripts/rag-v2-assistive-points.mjs`, iga omavalitsuse kohta üks leht (ADR-096) | punktide telefoninumbrid; leht tehakse tabelist uuesti |
 | Abivahendite müüjate lehed | 51 (18 väljaandjat) | nimekiri `register/web_pages_vendors.json`, korjaja `scripts/rag-v2-web-pages.mjs` (ADR-095) | ettevõtete enda tekstid ja telefoninumbrid |
-| Puuetega inimeste organisatsioonide lehed | 521 (43 väljaandjat) | nimekiri `register/web_pages_organisations.json`, korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-095) | organisatsioonide enda tekstid |
-| Uuringud ja juhendid väljaandja ametlikult aadressilt | 257 (30 väljaandjat) | asutuste veebilehtede uuringute ja juhendite loenditest ning ajakirja Sotsiaaltöö uudiskirjas viidatud dokumentidest (`register/newsletter_documents.json`); iga fail on alla laaditud väljaandja ametlikult aadressilt | suured failid; allikas on ametlik aadress |
+| Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) | 1132 (68 väljaandjat) | nimekirjad `register/web_pages_organisations.json`, `register/web_pages_associations.json` ja `register/web_pages_associations_2.json` ning nimekirjade `register/web_pages_coverage_1.json` ja `_2.json` organisatsioonid, korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-095, ADR-137, ADR-140) | organisatsioonide enda tekstid |
+| Asutuste juhislehed, valitud reegliga | 1229 (13 väljaandjat) | nimekirjad `register/web_pages_coverage_1.json`, `register/web_pages_coverage_2.json` ja `register/web_pages_coverage_3.json` (õigusabi lehe toimetatud artiklid), korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-137, ADR-143), ning `register/web_pages_tootukassa.json` (Töötukassa lehed 11.10.2026 brauserikorjest, ADR-146) | valik võtab lehest välja isikut nimetavad lõigud; repos olevate lehtede igakuine uuendus asendaks sellise koopia lugeja omaga |
+| Uuringud ja juhendid väljaandja ametlikult aadressilt | 264 (33 väljaandjat) | asutuste veebilehtede uuringute ja juhendite loenditest ning ajakirja Sotsiaaltöö uudiskirjas viidatud dokumentidest (`register/newsletter_documents.json`); iga fail on alla laaditud väljaandja ametlikult aadressilt | suured failid; allikas on ametlik aadress |
 
-Koodihoidla allikafailid, mida RAG-is ei ole (60):
+Koodihoidla allikafailid, mida RAG-is ei ole (61):
 
 - `juhendid_ja_uuringud/sotsiaalkindlustusamet_seksuaalvagivalla_kriisiabikeskusi_tutvustav_voldik_est.pdf`
 - `juhendid_ja_uuringud/epikoda_uro_puuetega_inimeste_oiguste_konventsioon_ja_fakultatiivpro.pdf`
@@ -120,6 +121,7 @@ Koodihoidla allikafailid, mida RAG-is ei ole (60):
 - `oigusaktid/425042025047-0a444c65d3.xml`
 - `oigusaktid/426022025038-f9529b7eb7.xml`
 - `oigusaktid/428122024033-efb23621fc.xml`
+- `oigusaktid/130062026103.xml`
 
 </details>
 <!-- corpus-state:end -->
@@ -1886,6 +1888,64 @@ Koodihoidla allikafailid, mida RAG-is ei ole (60):
 | 103072026024.xml | [oigusaktid/103072026024.xml](<oigusaktid/103072026024.xml>) |
 | 130062026020.xml | [oigusaktid/130062026020.xml](<oigusaktid/130062026020.xml>) |
 | 130062026021.xml | [oigusaktid/130062026021.xml](<oigusaktid/130062026021.xml>) |
+| 103062026067.xml | [oigusaktid/103062026067.xml](<oigusaktid/103062026067.xml>) |
+| 103072026006.xml | [oigusaktid/103072026006.xml](<oigusaktid/103072026006.xml>) |
+| 103072026035.xml | [oigusaktid/103072026035.xml](<oigusaktid/103072026035.xml>) |
+| 109072026017.xml | [oigusaktid/109072026017.xml](<oigusaktid/109072026017.xml>) |
+| 109072026028.xml | [oigusaktid/109072026028.xml](<oigusaktid/109072026028.xml>) |
+| 109072026046.xml | [oigusaktid/109072026046.xml](<oigusaktid/109072026046.xml>) |
+| 111072026059.xml | [oigusaktid/111072026059.xml](<oigusaktid/111072026059.xml>) |
+| 111072026061.xml | [oigusaktid/111072026061.xml](<oigusaktid/111072026061.xml>) |
+| 111072026066.xml | [oigusaktid/111072026066.xml](<oigusaktid/111072026066.xml>) |
+| 111072026097.xml | [oigusaktid/111072026097.xml](<oigusaktid/111072026097.xml>) |
+| 114032025014.xml | [oigusaktid/114032025014.xml](<oigusaktid/114032025014.xml>) |
+| 114032025019.xml | [oigusaktid/114032025019.xml](<oigusaktid/114032025019.xml>) |
+| 114032025025.xml | [oigusaktid/114032025025.xml](<oigusaktid/114032025025.xml>) |
+| 120062026021.xml | [oigusaktid/120062026021.xml](<oigusaktid/120062026021.xml>) |
+| 130062026001.xml | [oigusaktid/130062026001.xml](<oigusaktid/130062026001.xml>) |
+| 130062026009.xml | [oigusaktid/130062026009.xml](<oigusaktid/130062026009.xml>) |
+| 130062026028.xml | [oigusaktid/130062026028.xml](<oigusaktid/130062026028.xml>) |
+| 130062026034.xml | [oigusaktid/130062026034.xml](<oigusaktid/130062026034.xml>) |
+| 130062026038.xml | [oigusaktid/130062026038.xml](<oigusaktid/130062026038.xml>) |
+| 130062026040.xml | [oigusaktid/130062026040.xml](<oigusaktid/130062026040.xml>) |
+| 130062026052.xml | [oigusaktid/130062026052.xml](<oigusaktid/130062026052.xml>) |
+| 130062026102.xml | [oigusaktid/130062026102.xml](<oigusaktid/130062026102.xml>) |
+| 130062026103.xml | [oigusaktid/130062026103.xml](<oigusaktid/130062026103.xml>) |
+| 130062026132.xml | [oigusaktid/130062026132.xml](<oigusaktid/130062026132.xml>) |
+| 131032022015.xml | [oigusaktid/131032022015.xml](<oigusaktid/131032022015.xml>) |
+| 131122024024.xml | [oigusaktid/131122024024.xml](<oigusaktid/131122024024.xml>) |
+| 131122024048.xml | [oigusaktid/131122024048.xml](<oigusaktid/131122024048.xml>) |
+| 103062026035.xml | [oigusaktid/103062026035.xml](<oigusaktid/103062026035.xml>) |
+| 109072026055.xml | [oigusaktid/109072026055.xml](<oigusaktid/109072026055.xml>) |
+| 111072026078.xml | [oigusaktid/111072026078.xml](<oigusaktid/111072026078.xml>) |
+| 103072026007.xml | [oigusaktid/103072026007.xml](<oigusaktid/103072026007.xml>) |
+| 103072026008.xml | [oigusaktid/103072026008.xml](<oigusaktid/103072026008.xml>) |
+| 103072026036.xml | [oigusaktid/103072026036.xml](<oigusaktid/103072026036.xml>) |
+| 109072026018.xml | [oigusaktid/109072026018.xml](<oigusaktid/109072026018.xml>) |
+| 109072026029.xml | [oigusaktid/109072026029.xml](<oigusaktid/109072026029.xml>) |
+| 109072026077.xml | [oigusaktid/109072026077.xml](<oigusaktid/109072026077.xml>) |
+| 111072026062.xml | [oigusaktid/111072026062.xml](<oigusaktid/111072026062.xml>) |
+| 111072026067.xml | [oigusaktid/111072026067.xml](<oigusaktid/111072026067.xml>) |
+| 111072026079.xml | [oigusaktid/111072026079.xml](<oigusaktid/111072026079.xml>) |
+| 111072026080.xml | [oigusaktid/111072026080.xml](<oigusaktid/111072026080.xml>) |
+| 111072026090.xml | [oigusaktid/111072026090.xml](<oigusaktid/111072026090.xml>) |
+| 111072026091.xml | [oigusaktid/111072026091.xml](<oigusaktid/111072026091.xml>) |
+| 111072026098.xml | [oigusaktid/111072026098.xml](<oigusaktid/111072026098.xml>) |
+| 111072026099.xml | [oigusaktid/111072026099.xml](<oigusaktid/111072026099.xml>) |
+| 111072026102.xml | [oigusaktid/111072026102.xml](<oigusaktid/111072026102.xml>) |
+| 111072026103.xml | [oigusaktid/111072026103.xml](<oigusaktid/111072026103.xml>) |
+| 111072026145.xml | [oigusaktid/111072026145.xml](<oigusaktid/111072026145.xml>) |
+| 111072026146.xml | [oigusaktid/111072026146.xml](<oigusaktid/111072026146.xml>) |
+| 111072026160.xml | [oigusaktid/111072026160.xml](<oigusaktid/111072026160.xml>) |
+| 130062026010.xml | [oigusaktid/130062026010.xml](<oigusaktid/130062026010.xml>) |
+| 130062026029.xml | [oigusaktid/130062026029.xml](<oigusaktid/130062026029.xml>) |
+| 130062026035.xml | [oigusaktid/130062026035.xml](<oigusaktid/130062026035.xml>) |
+| 130062026039.xml | [oigusaktid/130062026039.xml](<oigusaktid/130062026039.xml>) |
+| 130062026041.xml | [oigusaktid/130062026041.xml](<oigusaktid/130062026041.xml>) |
+| 130062026133.xml | [oigusaktid/130062026133.xml](<oigusaktid/130062026133.xml>) |
+| 408102026010.xml | [oigusaktid/408102026010.xml](<oigusaktid/408102026010.xml>) |
+| 111072026158.xml | [oigusaktid/111072026158.xml](<oigusaktid/111072026158.xml>) |
+| 120062026018.xml | [oigusaktid/120062026018.xml](<oigusaktid/120062026018.xml>) |
 | 403072026003.xml | [oigusaktid/403072026003.xml](<oigusaktid/403072026003.xml>) |
 | 130062026065.xml | [oigusaktid/130062026065.xml](<oigusaktid/130062026065.xml>) |
 | 106072023031.xml | [oigusaktid/106072023031.xml](<oigusaktid/106072023031.xml>) |
@@ -1933,14 +1993,302 @@ Koodihoidla allikafailid, mida RAG-is ei ole (60):
 | Tallinna linn sotsiaalteenused ja toetused | [taastatud_allikad/kov-tallinn.json](<taastatud_allikad/kov-tallinn.json>) |
 | Kaebus isikuandmete kaitse asjas | [veebilehed/andmekaitse-inspektsioon/andmekaitse_inspektsioon_aki_kaebus_isikuandmete_kaitse_asjas.html](<veebilehed/andmekaitse-inspektsioon/andmekaitse_inspektsioon_aki_kaebus_isikuandmete_kaitse_asjas.html>) |
 | Nõusolek | [veebilehed/andmekaitse-inspektsioon/andmekaitse_inspektsioon_aki_nousolek.html](<veebilehed/andmekaitse-inspektsioon/andmekaitse_inspektsioon_aki_nousolek.html>) |
+| Dokumentide esitamise nõuded | [veebilehed/eesti-kohtud/kohus_dokumendid_ja_vormid_dokumentide_esitamise_nouded.html](<veebilehed/eesti-kohtud/kohus_dokumendid_ja_vormid_dokumentide_esitamise_nouded.html>) |
+| Dokumendid ja vormid | [veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_dokumendid_ja_vormid.html](<veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_dokumendid_ja_vormid.html>) |
+| Halduskohtumenetlus | [veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_halduskohtumenetlus.html](<veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_halduskohtumenetlus.html>) |
+| Kriminaalmenetlus | [veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_kriminaalmenetlus.html](<veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_kriminaalmenetlus.html>) |
+| Kuidas kohtuga ühendust võtta? | [veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_kuidas_kohtuga_uhendust_votta.html](<veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_kuidas_kohtuga_uhendust_votta.html>) |
+| Meelespea kohtumajja saabudes | [veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_meelespea_kohtumajja_saabudes.html](<veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_meelespea_kohtumajja_saabudes.html>) |
+| Menetluskulud ja menetlusabi | [veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_menetluskulud_ja_menetlusabi.html](<veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_menetluskulud_ja_menetlusabi.html>) |
+| Millega erinevad kohtud tegelevad? | [veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_millega_erinevad_kohtud_tegelevad.html](<veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_millega_erinevad_kohtud_tegelevad.html>) |
+| Sõnaseletusraamat | [veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_sonaseletusraamat.html](<veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_sonaseletusraamat.html>) |
+| Tsiviilkohtumenetlus | [veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_tsiviilkohtumenetlus.html](<veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_tsiviilkohtumenetlus.html>) |
+| Väärteomenetlus | [veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_vaarteomenetlus.html](<veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_vaarteomenetlus.html>) |
+| Info kannatanule | [veebilehed/eesti-kohtud/kohus_kriminaalmenetlus_info_kannatanule.html](<veebilehed/eesti-kohtud/kohus_kriminaalmenetlus_info_kannatanule.html>) |
+| Info tunnistajale | [veebilehed/eesti-kohtud/kohus_kriminaalmenetlus_info_tunnistajale.html](<veebilehed/eesti-kohtud/kohus_kriminaalmenetlus_info_tunnistajale.html>) |
+| Riigilõivu tasumine ja tagastamine | [veebilehed/eesti-kohtud/kohus_menetluskulud_ja_menetlusabi_riigiloivu_tasumine_ja_tagastamine.html](<veebilehed/eesti-kohtud/kohus_menetluskulud_ja_menetlusabi_riigiloivu_tasumine_ja_tagastamine.html>) |
+| Maksekäsu kiirmenetlus | [veebilehed/eesti-kohtud/kohus_tsiviilkohtumenetlus_maksekasu_kiirmenetlus.html](<veebilehed/eesti-kohtud/kohus_tsiviilkohtumenetlus_maksekasu_kiirmenetlus.html>) |
 | Veebikeskkondade ja e-teenuste ligipääsetavus | [veebilehed/eesti-puuetega-inimeste-koda/eesti_puuetega_inimeste_koda_epikoda_digiligipaasetavus.html](<veebilehed/eesti-puuetega-inimeste-koda/eesti_puuetega_inimeste_koda_epikoda_digiligipaasetavus.html>) |
+| Kooliväline nõustamismeeskond | [veebilehed/haridus-ja-noorteamet-rajaleidja/rajaleidja_kvm.html](<veebilehed/haridus-ja-noorteamet-rajaleidja/rajaleidja_kvm.html>) |
+| Eesti lasteaedade ja koolide toimimine ja põhimõtted | [veebilehed/haridus-ja-noorteamet/harno_eesti_lasteaedade_ja_koolide_toimimine_ja_pohimotted.html](<veebilehed/haridus-ja-noorteamet/harno_eesti_lasteaedade_ja_koolide_toimimine_ja_pohimotted.html>) |
+| Kaasav haridus | [veebilehed/haridus-ja-noorteamet/harno_kaasav_haridus.html](<veebilehed/haridus-ja-noorteamet/harno_kaasav_haridus.html>) |
+| Lapsevanema tugi lapsele | [veebilehed/haridus-ja-noorteamet/harno_lapsevanema_tugi_lapsele.html](<veebilehed/haridus-ja-noorteamet/harno_lapsevanema_tugi_lapsele.html>) |
+| Alusharidus | [veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_alusharidus.html](<veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_alusharidus.html>) |
+| Õppimiskohustus | [veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_oppimiskohustus.html](<veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_oppimiskohustus.html>) |
+| Põhiharidus | [veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_pohiharidus.html](<veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_pohiharidus.html>) |
+| Toe vajadusega õpilased: õppekorraldus ja tugiteenused | [veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_toe_vajadusega_opilased.html](<veebilehed/haridus-ja-teadusministeerium/hm_alus_pohi_ja_keskharidus_toe_vajadusega_opilased.html>) |
+| Advokaat | [veebilehed/justiits-ja-digiministeerium/just_elukutsed_advokaat.html](<veebilehed/justiits-ja-digiministeerium/just_elukutsed_advokaat.html>) |
+| Kohtutäitur | [veebilehed/justiits-ja-digiministeerium/just_elukutsed_kohtutaitur.html](<veebilehed/justiits-ja-digiministeerium/just_elukutsed_kohtutaitur.html>) |
+| Notar | [veebilehed/justiits-ja-digiministeerium/just_elukutsed_notar.html](<veebilehed/justiits-ja-digiministeerium/just_elukutsed_notar.html>) |
+| Pankrotihaldur | [veebilehed/justiits-ja-digiministeerium/just_elukutsed_pankrotihaldur.html](<veebilehed/justiits-ja-digiministeerium/just_elukutsed_pankrotihaldur.html>) |
+| Andmekaitse ja isikuandmete vastutustundliku töötlemise põhimõtted | [veebilehed/justiits-ja-digiministeerium/just_haldusoigus_andmekaitse.html](<veebilehed/justiits-ja-digiministeerium/just_haldusoigus_andmekaitse.html>) |
+| Avalik teave | [veebilehed/justiits-ja-digiministeerium/just_haldusoigus_avalik_teave.html](<veebilehed/justiits-ja-digiministeerium/just_haldusoigus_avalik_teave.html>) |
+| Halduskorraldus- ja menetlus | [veebilehed/justiits-ja-digiministeerium/just_haldusoigus_halduskorraldus_ja_menetlus.html](<veebilehed/justiits-ja-digiministeerium/just_haldusoigus_halduskorraldus_ja_menetlus.html>) |
+| Alternatiivkaristused | [veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_alternatiivkaristused.html](<veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_alternatiivkaristused.html>) |
+| Inimkaubandus | [veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_inimkaubandus.html](<veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_inimkaubandus.html>) |
+| Perevägivald | [veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_perevagivald.html](<veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_perevagivald.html>) |
+| Seksuaalne väärkohtlemine | [veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_seksuaalne_vaarkohtlemine.html](<veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_seksuaalne_vaarkohtlemine.html>) |
+| Vangla ja kriminaalhooldus | [veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_vangla_ja_kriminaalhooldus.html](<veebilehed/justiits-ja-digiministeerium/just_kuritegevus_ja_selle_ennetus_vangla_ja_kriminaalhooldus.html>) |
+| Lapsesõbralik menetlus | [veebilehed/justiits-ja-digiministeerium/just_lapsed_ja_noored_lapsesobralik_menetlus.html](<veebilehed/justiits-ja-digiministeerium/just_lapsed_ja_noored_lapsesobralik_menetlus.html>) |
+| Nooresõbralik õigussüsteem | [veebilehed/justiits-ja-digiministeerium/just_lapsed_ja_noored_nooresobralik_oigussusteem.html](<veebilehed/justiits-ja-digiministeerium/just_lapsed_ja_noored_nooresobralik_oigussusteem.html>) |
+| Maksejõuetus | [veebilehed/justiits-ja-digiministeerium/just_maksejouetus.html](<veebilehed/justiits-ja-digiministeerium/just_maksejouetus.html>) |
+| Taastav õigus | [veebilehed/justiits-ja-digiministeerium/just_ohvrite_toetamine_kahjude_heastamine_ja_taastav_oigus.html](<veebilehed/justiits-ja-digiministeerium/just_ohvrite_toetamine_kahjude_heastamine_ja_taastav_oigus.html>) |
+| Kuriteoohvrite õigused | [veebilehed/justiits-ja-digiministeerium/just_ohvrite_toetamine_kuriteoohvrite_oigused.html](<veebilehed/justiits-ja-digiministeerium/just_ohvrite_toetamine_kuriteoohvrite_oigused.html>) |
+| Lähenemiskeeld | [veebilehed/justiits-ja-digiministeerium/just_ohvrite_toetamine_lahenemiskeeld.html](<veebilehed/justiits-ja-digiministeerium/just_ohvrite_toetamine_lahenemiskeeld.html>) |
+| Õigusnõu erivajadustega inimestele | [veebilehed/justiits-ja-digiministeerium/just_oigusabi_oigusnou_erivajadustega_inimestele.html](<veebilehed/justiits-ja-digiministeerium/just_oigusabi_oigusnou_erivajadustega_inimestele.html>) |
+| Õigusabi | [veebilehed/justiits-ja-digiministeerium/just_oigusabi_riigi_toetatud_oigusabi.html](<veebilehed/justiits-ja-digiministeerium/just_oigusabi_riigi_toetatud_oigusabi.html>) |
+| Tasuta õigusnõu eakatele | [veebilehed/justiits-ja-digiministeerium/just_oigusabi_tasuta_oigusnou_eakatele.html](<veebilehed/justiits-ja-digiministeerium/just_oigusabi_tasuta_oigusnou_eakatele.html>) |
+| Pärimisregister | [veebilehed/justiits-ja-digiministeerium/just_registrid_parimisregister.html](<veebilehed/justiits-ja-digiministeerium/just_registrid_parimisregister.html>) |
+| Täitmisregister | [veebilehed/justiits-ja-digiministeerium/just_registrid_taitmisregister.html](<veebilehed/justiits-ja-digiministeerium/just_registrid_taitmisregister.html>) |
+| Täitemenetlus | [veebilehed/justiits-ja-digiministeerium/just_tsiviilmenetlus_taitemenetlus.html](<veebilehed/justiits-ja-digiministeerium/just_tsiviilmenetlus_taitemenetlus.html>) |
+| Tsiviilkohtumenetlus | [veebilehed/justiits-ja-digiministeerium/just_tsiviilmenetlus_tsiviilkohtumenetlus.html](<veebilehed/justiits-ja-digiministeerium/just_tsiviilmenetlus_tsiviilkohtumenetlus.html>) |
+| Miinimumelatis | [veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_miinimumelatise_muutmine.html](<veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_miinimumelatise_muutmine.html>) |
+| Pärimisõigus | [veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_parimisoigus.html](<veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_parimisoigus.html>) |
+| Perekonnaõigus | [veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_perekonnaoigus.html](<veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_perekonnaoigus.html>) |
+| Tsiviilõiguse üldalused | [veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_tsiviiloiguse_uldalused.html](<veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_tsiviiloiguse_uldalused.html>) |
+| Võlaõigus | [veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_volaoigus.html](<veebilehed/justiits-ja-digiministeerium/just_tsiviiloigus_volaoigus.html>) |
+| Elatisevõlgnik ja pankrotimenetlus | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_elatisevolgnik_ja_pankrotimenetlus.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_elatisevolgnik_ja_pankrotimenetlus.html>) |
+| Elatisabi taotlemine | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_elatisvolgnevused_elatisabi_taotlemine.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_elatisvolgnevused_elatisabi_taotlemine.html>) |
+| KKK | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_kkk.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_kkk.html>) |
+| Elatise nõudmine | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_kohtutaiturid_elatisvolgnevused.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_kohtutaiturid_elatisvolgnevused.html>) |
+| Kaebuse esitamine | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_kohtutaiturid_kaebuse_esitamine.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_kohtutaiturid_kaebuse_esitamine.html>) |
+| Nõuete aegumisest | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_kohtutaiturid_nouete_aegumisest.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_kohtutaiturid_nouete_aegumisest.html>) |
+| Täitemenetlusest | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_kohtutaiturid_taitemenetlusest.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_kohtutaiturid_taitemenetlusest.html>) |
+| Töötasu arestimise skeem | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_kohtutaiturid_tootasu_arestimise_skeem.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_kohtutaiturid_tootasu_arestimise_skeem.html>) |
+| Kuidas elatisenõuet täitmisele esitada | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_kuidas_elatisenouet_taitmisele_esitada.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_kuidas_elatisenouet_taitmisele_esitada.html>) |
+| Mida kujutab endast pärandvara pankrot? | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_mida_kujutab_endast_parandvara_pankrot.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_mida_kujutab_endast_parandvara_pankrot.html>) |
+| Hüvitised töötajatele | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_pankrotihaldurid_huvitised_tootajatele.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_pankrotihaldurid_huvitised_tootajatele.html>) |
+| Suhtluskordade praktikast | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_suhtluskordade_praktika.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_suhtluskordade_praktika.html>) |
+| Täite- ja pankrotimenetluse aegsest elatisabist | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_taite_ja_pankrotimenetluse_aegsest_elatisabist.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_taite_ja_pankrotimenetluse_aegsest_elatisabist.html>) |
+| Kohtutäituri tasud | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_tasud.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_tasud.html>) |
+| Töötaja võimalused töötasu sissenõudmiseks püsivalt maksejõuetult ühingult | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_tootaja_voimalused_tootasu_sissenoudmiseks_pusivalt_maksejouetult_uhingult.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_tootaja_voimalused_tootasu_sissenoudmiseks_pusivalt_maksejouetult_uhingult.html>) |
+| Usaldusisiku roll füüsilise isiku maksejõuetus-menetluses | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_usaldusisiku_roll_fuusilise_isiku_maksejouetusmenetluses.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_usaldusisiku_roll_fuusilise_isiku_maksejouetusmenetluses.html>) |
+| Ametitoimingud – notariaalsed teenused ühes kohas | [veebilehed/notarite-koda/notar_ametitoimingud.html](<veebilehed/notarite-koda/notar_ametitoimingud.html>) |
+| Kaugtõestamine | [veebilehed/notarite-koda/notar_ametitoimingud_kaugtoestamine.html](<veebilehed/notarite-koda/notar_ametitoimingud_kaugtoestamine.html>) |
+| Kinnisvaratoimingud | [veebilehed/notarite-koda/notar_ametitoimingud_kinnisvaratoimingud.html](<veebilehed/notarite-koda/notar_ametitoimingud_kinnisvaratoimingud.html>) |
+| Notari tasu arvestamine | [veebilehed/notarite-koda/notar_ametitoimingud_notari_tasu_arvestamine.html](<veebilehed/notarite-koda/notar_ametitoimingud_notari_tasu_arvestamine.html>) |
+| Pärimistoimingud | [veebilehed/notarite-koda/notar_ametitoimingud_parimistoimingud.html](<veebilehed/notarite-koda/notar_ametitoimingud_parimistoimingud.html>) |
+| Perekonnaõiguslikud toimingud | [veebilehed/notarite-koda/notar_ametitoimingud_perekonnaoiguslikud_toimingud.html](<veebilehed/notarite-koda/notar_ametitoimingud_perekonnaoiguslikud_toimingud.html>) |
+| Abieluvararegister | [veebilehed/notarite-koda/notar_registrid_abieluvararegister.html](<veebilehed/notarite-koda/notar_registrid_abieluvararegister.html>) |
+| Pärimisregister | [veebilehed/notarite-koda/notar_registrid_parimisregister.html](<veebilehed/notarite-koda/notar_registrid_parimisregister.html>) |
+| Lisainfo | [veebilehed/notarite-koda/parimine_lisainfo.html](<veebilehed/notarite-koda/parimine_lisainfo.html>) |
+| Notaritasud | [veebilehed/notarite-koda/parimine_notaritasud.html](<veebilehed/notarite-koda/parimine_notaritasud.html>) |
+| Pärandamine | [veebilehed/notarite-koda/parimine_parandamine.html](<veebilehed/notarite-koda/parimine_parandamine.html>) |
+| Pärandamine | [veebilehed/notarite-koda/parimine_parandamine_esemete_parandamine.html](<veebilehed/notarite-koda/parimine_parandamine_esemete_parandamine.html>) |
+| Pärandamine | [veebilehed/notarite-koda/parimine_parandamine_testament_parimisleping.html](<veebilehed/notarite-koda/parimine_parandamine_testament_parimisleping.html>) |
+| Pärimine | [veebilehed/notarite-koda/parimine_parimine_kes_parib.html](<veebilehed/notarite-koda/parimine_parimine_kes_parib.html>) |
+| Pärimine | [veebilehed/notarite-koda/parimine_parimine_mida_parib.html](<veebilehed/notarite-koda/parimine_parimine_mida_parib.html>) |
+| Pärimine | [veebilehed/notarite-koda/parimine_parimine_parimise_protsess.html](<veebilehed/notarite-koda/parimine_parimine_parimise_protsess.html>) |
 | Avaldus õiguskantslerile | [veebilehed/oiguskantsler/oiguskantsler_avaldus_oiguskantslerile.html](<veebilehed/oiguskantsler/oiguskantsler_avaldus_oiguskantslerile.html>) |
 | Tuleohutusnõuded | [veebilehed/paasteamet/paasteamet_paasteamet_tuleohutusnouded.html](<veebilehed/paasteamet/paasteamet_paasteamet_tuleohutusnouded.html>) |
+| Eksinud ja teadmata kadunud | [veebilehed/politsei-ja-piirivalveamet/ppa_eksinud_ja_teadmata_kadunud_loodusesse_minnes.html](<veebilehed/politsei-ja-piirivalveamet/ppa_eksinud_ja_teadmata_kadunud_loodusesse_minnes.html>) |
+| Eksinud ja teadmata kadunud | [veebilehed/politsei-ja-piirivalveamet/ppa_eksinud_ja_teadmata_kadunud_politseitoo_abivajajate_otsingutel.html](<veebilehed/politsei-ja-piirivalveamet/ppa_eksinud_ja_teadmata_kadunud_politseitoo_abivajajate_otsingutel.html>) |
+| Eksinud ja teadmata kadunud | [veebilehed/politsei-ja-piirivalveamet/ppa_eksinud_ja_teadmata_kadunud_vabatahtlike_kaasamine.html](<veebilehed/politsei-ja-piirivalveamet/ppa_eksinud_ja_teadmata_kadunud_vabatahtlike_kaasamine.html>) |
+| Politseile süüteo avalduse esitamine | [veebilehed/politsei-ja-piirivalveamet/ppa_et_avaldus_politseile.html](<veebilehed/politsei-ja-piirivalveamet/ppa_et_avaldus_politseile.html>) |
+| Info seoses sõjaga Ukrainas | [veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_ajutine_kaitse_ukraina_kodanikele_ja_nende_pereliikmetele.html](<veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_ajutine_kaitse_ukraina_kodanikele_ja_nende_pereliikmetele.html>) |
+| Info seoses sõjaga Ukrainas | [veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_ajutise_kaitse_pikendamine.html](<veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_ajutise_kaitse_pikendamine.html>) |
+| Info seoses sõjaga Ukrainas | [veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_olukord_piiril.html](<veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_olukord_piiril.html>) |
+| Info seoses sõjaga Ukrainas | [veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_politsei_kodulehel_vaheneb_venekeelne_sisu.html](<veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_politsei_kodulehel_vaheneb_venekeelne_sisu.html>) |
+| Info seoses sõjaga Ukrainas | [veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_rahvusvahelise_kaitse_pikendamine.html](<veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_rahvusvahelise_kaitse_pikendamine.html>) |
+| Info seoses sõjaga Ukrainas | [veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_rahvusvahelise_kaitse_taotlemine.html](<veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_rahvusvahelise_kaitse_taotlemine.html>) |
+| Info seoses sõjaga Ukrainas | [veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_ukraina_kodanike_viibimisoiguse_ajutine_pikendamine.html](<veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_ukraina_kodanike_viibimisoiguse_ajutine_pikendamine.html>) |
+| Info seoses sõjaga Ukrainas | [veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_ukraina_sojapogenike_eestis_olemise_voimalused.html](<veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_ukraina_sojapogenike_eestis_olemise_voimalused.html>) |
+| Info seoses sõjaga Ukrainas | [veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_venemaa_ei_luba_ukraina_kodanikel_siseneda_venemaale.html](<veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_venemaa_ei_luba_ukraina_kodanikel_siseneda_venemaale.html>) |
+| Isikut tõendava dokumendi taotlemine liikumisvõimetule inimesele | [veebilehed/politsei-ja-piirivalveamet/ppa_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele_kattesaamine.html](<veebilehed/politsei-ja-piirivalveamet/ppa_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele_kattesaamine.html>) |
+| Isikut tõendava dokumendi taotlemine liikumisvõimetule inimesele | [veebilehed/politsei-ja-piirivalveamet/ppa_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele_liikumis_ja_allkirjavoimetule_inimese_dok.html](<veebilehed/politsei-ja-piirivalveamet/ppa_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele_liikumis_ja_allkirjavoimetule_inimese_dok.html>) |
+| Isikut tõendava dokumendi taotlemine liikumisvõimetule inimesele | [veebilehed/politsei-ja-piirivalveamet/ppa_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele_liikumisvoimetule_inimesele_elamisloakaar.html](<veebilehed/politsei-ja-piirivalveamet/ppa_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele_liikumisvoimetule_inimesele_elamisloakaar.html>) |
+| Isikut tõendava dokumendi taotlemine liikumisvõimetule inimesele | [veebilehed/politsei-ja-piirivalveamet/ppa_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele_liikumisvoimetule_inimesele_id_kaardi_tao.html](<veebilehed/politsei-ja-piirivalveamet/ppa_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele_liikumisvoimetule_inimesele_id_kaardi_tao.html>) |
+| Isikut tõendava dokumendi taotlemine liikumisvõimetule inimesele | [veebilehed/politsei-ja-piirivalveamet/ppa_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele_liikumisvoimetule_inimesele_pin_koodide_t.html](<veebilehed/politsei-ja-piirivalveamet/ppa_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele_liikumisvoimetule_inimesele_pin_koodide_t.html>) |
+| Eksinud ja teadmata kadunud | [veebilehed/politsei-ja-piirivalveamet/ppa_juhend_eksinud_ja_teadmata_kadunud.html](<veebilehed/politsei-ja-piirivalveamet/ppa_juhend_eksinud_ja_teadmata_kadunud.html>) |
+| Info seoses sõjaga Ukrainas | [veebilehed/politsei-ja-piirivalveamet/ppa_juhend_info_seoses_ukraina_sojaga.html](<veebilehed/politsei-ja-piirivalveamet/ppa_juhend_info_seoses_ukraina_sojaga.html>) |
+| Isikut tõendava dokumendi taotlemine liikumisvõimetule inimesele | [veebilehed/politsei-ja-piirivalveamet/ppa_juhend_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele.html](<veebilehed/politsei-ja-piirivalveamet/ppa_juhend_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele.html>) |
+| Kaitse ennast kelmide eest | [veebilehed/politsei-ja-piirivalveamet/ppa_juhend_kaitse_ennast_kelmide_eest.html](<veebilehed/politsei-ja-piirivalveamet/ppa_juhend_kaitse_ennast_kelmide_eest.html>) |
+| Laste seksuaalne väärkohtlemine veebis | [veebilehed/politsei-ja-piirivalveamet/ppa_juhend_laste_seksuaalne_vaeaerkohtlemine_veebis.html](<veebilehed/politsei-ja-piirivalveamet/ppa_juhend_laste_seksuaalne_vaeaerkohtlemine_veebis.html>) |
+| Politseile avalduse esitamine | [veebilehed/politsei-ja-piirivalveamet/ppa_juhend_politseile_avalduse_esitamine.html](<veebilehed/politsei-ja-piirivalveamet/ppa_juhend_politseile_avalduse_esitamine.html>) |
+| Rahvusvaheline kaitse | [veebilehed/politsei-ja-piirivalveamet/ppa_juhend_rahvusvaheline_kaitse.html](<veebilehed/politsei-ja-piirivalveamet/ppa_juhend_rahvusvaheline_kaitse.html>) |
+| Taga enda ja oma laste turvalisus | [veebilehed/politsei-ja-piirivalveamet/ppa_juhend_taga_enda_ja_oma_laste_turvalisus.html](<veebilehed/politsei-ja-piirivalveamet/ppa_juhend_taga_enda_ja_oma_laste_turvalisus.html>) |
+| Kaitse ennast kelmide eest | [veebilehed/politsei-ja-piirivalveamet/ppa_kaitse_ennast_kelmide_eest_kelmuse_tuubid_mis_eestis_tana_ringlevad.html](<veebilehed/politsei-ja-piirivalveamet/ppa_kaitse_ennast_kelmide_eest_kelmuse_tuubid_mis_eestis_tana_ringlevad.html>) |
+| Kaitse ennast kelmide eest | [veebilehed/politsei-ja-piirivalveamet/ppa_kaitse_ennast_kelmide_eest_kuhu_poorduda.html](<veebilehed/politsei-ja-piirivalveamet/ppa_kaitse_ennast_kelmide_eest_kuhu_poorduda.html>) |
+| Kaitse ennast kelmide eest | [veebilehed/politsei-ja-piirivalveamet/ppa_kaitse_ennast_kelmide_eest_teavita_petulehest.html](<veebilehed/politsei-ja-piirivalveamet/ppa_kaitse_ennast_kelmide_eest_teavita_petulehest.html>) |
+| Laste seksuaalne väärkohtlemine veebis | [veebilehed/politsei-ja-piirivalveamet/ppa_laste_seksuaalne_vaeaerkohtlemine_veebis_digipadevuse_materjalid.html](<veebilehed/politsei-ja-piirivalveamet/ppa_laste_seksuaalne_vaeaerkohtlemine_veebis_digipadevuse_materjalid.html>) |
+| Politseile avalduse esitamine | [veebilehed/politsei-ja-piirivalveamet/ppa_politseile_avalduse_esitamine_avalduse_esitamine_e_postiga.html](<veebilehed/politsei-ja-piirivalveamet/ppa_politseile_avalduse_esitamine_avalduse_esitamine_e_postiga.html>) |
+| Politseile avalduse esitamine | [veebilehed/politsei-ja-piirivalveamet/ppa_politseile_avalduse_esitamine_avalduse_esitamine_postiga.html](<veebilehed/politsei-ja-piirivalveamet/ppa_politseile_avalduse_esitamine_avalduse_esitamine_postiga.html>) |
+| Rahvusvaheline kaitse | [veebilehed/politsei-ja-piirivalveamet/ppa_rahvusvaheline_kaitse_elamisloa_pikendamine.html](<veebilehed/politsei-ja-piirivalveamet/ppa_rahvusvaheline_kaitse_elamisloa_pikendamine.html>) |
+| Rahvusvaheline kaitse | [veebilehed/politsei-ja-piirivalveamet/ppa_rahvusvaheline_kaitse_kasulikud_kontaktid.html](<veebilehed/politsei-ja-piirivalveamet/ppa_rahvusvaheline_kaitse_kasulikud_kontaktid.html>) |
+| Rahvusvaheline kaitse | [veebilehed/politsei-ja-piirivalveamet/ppa_rahvusvaheline_kaitse_kasulikud_materjalid.html](<veebilehed/politsei-ja-piirivalveamet/ppa_rahvusvaheline_kaitse_kasulikud_materjalid.html>) |
+| Taga enda ja oma laste turvalisus | [veebilehed/politsei-ja-piirivalveamet/ppa_taga_enda_ja_oma_laste_turvalisus_autosoit.html](<veebilehed/politsei-ja-piirivalveamet/ppa_taga_enda_ja_oma_laste_turvalisus_autosoit.html>) |
+| Taga enda ja oma laste turvalisus | [veebilehed/politsei-ja-piirivalveamet/ppa_taga_enda_ja_oma_laste_turvalisus_digiturvalisus.html](<veebilehed/politsei-ja-piirivalveamet/ppa_taga_enda_ja_oma_laste_turvalisus_digiturvalisus.html>) |
+| Taga enda ja oma laste turvalisus | [veebilehed/politsei-ja-piirivalveamet/ppa_taga_enda_ja_oma_laste_turvalisus_kodus.html](<veebilehed/politsei-ja-piirivalveamet/ppa_taga_enda_ja_oma_laste_turvalisus_kodus.html>) |
+| Taga enda ja oma laste turvalisus | [veebilehed/politsei-ja-piirivalveamet/ppa_taga_enda_ja_oma_laste_turvalisus_kuidas_saab_noor_valtida_pahandustesse_sattumist.html](<veebilehed/politsei-ja-piirivalveamet/ppa_taga_enda_ja_oma_laste_turvalisus_kuidas_saab_noor_valtida_pahandustesse_sattumist.html>) |
+| Taga enda ja oma laste turvalisus | [veebilehed/politsei-ja-piirivalveamet/ppa_taga_enda_ja_oma_laste_turvalisus_nouanded_vanematele_laste_turvalisuse_tagamiseks.html](<veebilehed/politsei-ja-piirivalveamet/ppa_taga_enda_ja_oma_laste_turvalisus_nouanded_vanematele_laste_turvalisuse_tagamiseks.html>) |
+| Taga enda ja oma laste turvalisus | [veebilehed/politsei-ja-piirivalveamet/ppa_taga_enda_ja_oma_laste_turvalisus_ohutus_avalikus_kohas.html](<veebilehed/politsei-ja-piirivalveamet/ppa_taga_enda_ja_oma_laste_turvalisus_ohutus_avalikus_kohas.html>) |
+| Taga enda ja oma laste turvalisus | [veebilehed/politsei-ja-piirivalveamet/ppa_taga_enda_ja_oma_laste_turvalisus_taksosoit_ja_uhistransport.html](<veebilehed/politsei-ja-piirivalveamet/ppa_taga_enda_ja_oma_laste_turvalisus_taksosoit_ja_uhistransport.html>) |
+| Ahistav jälitamine | [veebilehed/sotsiaalkindlustusamet/palunabi_et_ahistav_jalitamine.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_ahistav_jalitamine.html>) |
+| Emotsionaalne tugi | [veebilehed/sotsiaalkindlustusamet/palunabi_et_emotsionaalne_tugi.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_emotsionaalne_tugi.html>) |
+| Inimkaubandus | [veebilehed/sotsiaalkindlustusamet/palunabi_et_inimkaubandus.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_inimkaubandus.html>) |
+| Inimkaubandus | [veebilehed/sotsiaalkindlustusamet/palunabi_et_inimkaubandus_0.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_inimkaubandus_0.html>) |
+| Kohtinguvägivald | [veebilehed/sotsiaalkindlustusamet/palunabi_et_kohtinguvagivald.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_kohtinguvagivald.html>) |
+| Kriis | [veebilehed/sotsiaalkindlustusamet/palunabi_et_kriis.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_kriis.html>) |
+| Kriisijuhtumid | [veebilehed/sotsiaalkindlustusamet/palunabi_et_kriisijuhtumid.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_kriisijuhtumid.html>) |
+| Kuriteoohvri hüvitis | [veebilehed/sotsiaalkindlustusamet/palunabi_et_kuriteoohvri_huvitis.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_kuriteoohvri_huvitis.html>) |
+| Lapse väärkohtlemine | [veebilehed/sotsiaalkindlustusamet/palunabi_et_lastevastane_vagivald.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_lastevastane_vagivald.html>) |
+| Mis juhtus? | [veebilehed/sotsiaalkindlustusamet/palunabi_et_mis_juhtus.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_mis_juhtus.html>) |
+| Naiste tugikeskused | [veebilehed/sotsiaalkindlustusamet/palunabi_et_naiste_tugikeskused.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_naiste_tugikeskused.html>) |
+| Naistevastane vägivald | [veebilehed/sotsiaalkindlustusamet/palunabi_et_naistevastane_vagivald.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_naistevastane_vagivald.html>) |
+| Ohvriabi | [veebilehed/sotsiaalkindlustusamet/palunabi_et_ohvriabi.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_ohvriabi.html>) |
+| Ohvriabist | [veebilehed/sotsiaalkindlustusamet/palunabi_et_ohvriabist.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_ohvriabist.html>) |
+| Perevägivald ja lähisuhtevägivald | [veebilehed/sotsiaalkindlustusamet/palunabi_et_perevagivald_ja_lahisuhtevagivald.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_perevagivald_ja_lahisuhtevagivald.html>) |
+| Psühhosotsiaalne kriisiabi | [veebilehed/sotsiaalkindlustusamet/palunabi_et_psuhhosotsiaalne_kriisiabi.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_psuhhosotsiaalne_kriisiabi.html>) |
+| Seksuaalne ahistamine ööelus | [veebilehed/sotsiaalkindlustusamet/palunabi_et_seksuaalne_ahistamine_ooelus.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_seksuaalne_ahistamine_ooelus.html>) |
+| Seksuaalvägivald | [veebilehed/sotsiaalkindlustusamet/palunabi_et_seksuaalvagivald.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_seksuaalvagivald.html>) |
+| Seksuaalvägivalla kriisiabi | [veebilehed/sotsiaalkindlustusamet/palunabi_et_seksuaalvagivalla_kriisiabi.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_seksuaalvagivalla_kriisiabi.html>) |
+| Taastav õigus | [veebilehed/sotsiaalkindlustusamet/palunabi_et_taastav_oigus.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_taastav_oigus.html>) |
+| Traumast taastumist toetav vaimse tervise abi | [veebilehed/sotsiaalkindlustusamet/palunabi_et_traumast_taastumist_toetav_vaimse_tervise_abi.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_traumast_taastumist_toetav_vaimse_tervise_abi.html>) |
+| Vaenukuritegu | [veebilehed/sotsiaalkindlustusamet/palunabi_et_vaenukuritegu.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_vaenukuritegu.html>) |
+| Vägivalla märkajale | [veebilehed/sotsiaalkindlustusamet/palunabi_et_vagivalla_pealtnagijale.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_vagivalla_pealtnagijale.html>) |
+| Vägivallast loobumise toetamine | [veebilehed/sotsiaalkindlustusamet/palunabi_et_vagivallast_loobumise_toetamine.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_vagivallast_loobumise_toetamine.html>) |
+| Rahvusvaheline kaitse | [veebilehed/sotsiaalkindlustusamet/ska_abi_pogenikule_rahvusvahelise_kaitse_taotlemine.html](<veebilehed/sotsiaalkindlustusamet/ska_abi_pogenikule_rahvusvahelise_kaitse_taotlemine.html>) |
+| Saatjata alaealised välismaalased | [veebilehed/sotsiaalkindlustusamet/ska_abi_pogenikule_saatjata_alaealised_valismaalased.html](<veebilehed/sotsiaalkindlustusamet/ska_abi_pogenikule_saatjata_alaealised_valismaalased.html>) |
+| Tõlketeenus rahvusvahelise ja ajutise kaitse saajale | [veebilehed/sotsiaalkindlustusamet/ska_abi_pogenikule_tolketeenus_rahvusvahelise_ja_ajutise_kaitse_saajale.html](<veebilehed/sotsiaalkindlustusamet/ska_abi_pogenikule_tolketeenus_rahvusvahelise_ja_ajutise_kaitse_saajale.html>) |
+| Kuriteoohvri hüvitis | [veebilehed/sotsiaalkindlustusamet/ska_abi_vagivalla_ohvrile_kuriteoohvri_huvitis.html](<veebilehed/sotsiaalkindlustusamet/ska_abi_vagivalla_ohvrile_kuriteoohvri_huvitis.html>) |
+| Lähisuhtevägivald | [veebilehed/sotsiaalkindlustusamet/ska_abi_vagivalla_ohvrile_lahisuhtevagivald.html](<veebilehed/sotsiaalkindlustusamet/ska_abi_vagivalla_ohvrile_lahisuhtevagivald.html>) |
+| Ohvriabi kriisitelefon 116 006 | [veebilehed/sotsiaalkindlustusamet/ska_abi_vagivalla_ohvrile_ohvriabi_kriisitelefon_116006.html](<veebilehed/sotsiaalkindlustusamet/ska_abi_vagivalla_ohvrile_ohvriabi_kriisitelefon_116006.html>) |
+| Traumast taastumist toetav vaimse tervise abi | [veebilehed/sotsiaalkindlustusamet/ska_abi_vagivalla_ohvrile_traumast_taastumist_toetav_vaimse_tervise_abi.html](<veebilehed/sotsiaalkindlustusamet/ska_abi_vagivalla_ohvrile_traumast_taastumist_toetav_vaimse_tervise_abi.html>) |
+| Tugi vägivallast loobumiseks | [veebilehed/sotsiaalkindlustusamet/ska_abi_vagivalla_ohvrile_tugi_vagivallast_loobumiseks.html](<veebilehed/sotsiaalkindlustusamet/ska_abi_vagivalla_ohvrile_tugi_vagivallast_loobumiseks.html>) |
+| Abi põgenikule | [veebilehed/sotsiaalkindlustusamet/ska_abivajav_laps_ja_taiskasvanu_abi_pogenikule.html](<veebilehed/sotsiaalkindlustusamet/ska_abivajav_laps_ja_taiskasvanu_abi_pogenikule.html>) |
+| Abi vägivalla ohvritele | [veebilehed/sotsiaalkindlustusamet/ska_abivajav_laps_ja_taiskasvanu_abi_vagivalla_ohvrile.html](<veebilehed/sotsiaalkindlustusamet/ska_abivajav_laps_ja_taiskasvanu_abi_vagivalla_ohvrile.html>) |
+| Asendushooldus ja kasuvanemlus | [veebilehed/sotsiaalkindlustusamet/ska_abivajav_laps_ja_taiskasvanu_asendushooldus_ja_kasuvanemlus.html](<veebilehed/sotsiaalkindlustusamet/ska_abivajav_laps_ja_taiskasvanu_asendushooldus_ja_kasuvanemlus.html>) |
+| Laste ja perede abistamine | [veebilehed/sotsiaalkindlustusamet/ska_abivajav_laps_ja_taiskasvanu_laste_ja_perede_abistamine.html](<veebilehed/sotsiaalkindlustusamet/ska_abivajav_laps_ja_taiskasvanu_laste_ja_perede_abistamine.html>) |
+| Vaimne tervis kriisis | [veebilehed/sotsiaalkindlustusamet/ska_abivajav_laps_ja_taiskasvanu_vaimne_tervis_kriisis.html](<veebilehed/sotsiaalkindlustusamet/ska_abivajav_laps_ja_taiskasvanu_vaimne_tervis_kriisis.html>) |
+| Abivõimalused seksuaalvägivalla üleelanule | [veebilehed/sotsiaalkindlustusamet/ska_abivoimalused_seksuaalvagivalla_uleelanule.html](<veebilehed/sotsiaalkindlustusamet/ska_abivoimalused_seksuaalvagivalla_uleelanule.html>) |
+| Hoolduspere vanemaks saamine | [veebilehed/sotsiaalkindlustusamet/ska_asendushooldus_ja_kasuvanemlus_hoolduspereks_saamine.html](<veebilehed/sotsiaalkindlustusamet/ska_asendushooldus_ja_kasuvanemlus_hoolduspereks_saamine.html>) |
+| Kasuperede toetamine | [veebilehed/sotsiaalkindlustusamet/ska_asendushooldus_ja_kasuvanemlus_kasuperede_toetamine.html](<veebilehed/sotsiaalkindlustusamet/ska_asendushooldus_ja_kasuvanemlus_kasuperede_toetamine.html>) |
+| Lapsendamine | [veebilehed/sotsiaalkindlustusamet/ska_asendushooldus_ja_kasuvanemlus_lapsendamine.html](<veebilehed/sotsiaalkindlustusamet/ska_asendushooldus_ja_kasuvanemlus_lapsendamine.html>) |
+| Lapsendatu päritoluandmete otsimine | [veebilehed/sotsiaalkindlustusamet/ska_asendushooldus_ja_kasuvanemlus_lapsendatu_paritoluandmete_otsimine.html](<veebilehed/sotsiaalkindlustusamet/ska_asendushooldus_ja_kasuvanemlus_lapsendatu_paritoluandmete_otsimine.html>) |
+| Erihoolekandeteenused | [veebilehed/sotsiaalkindlustusamet/ska_erihoolekanne_erihoolekandeteenused.html](<veebilehed/sotsiaalkindlustusamet/ska_erihoolekanne_erihoolekandeteenused.html>) |
+| Isikukeskse erihoolekande teenusmudel kohalikus omavalitsuses | [veebilehed/sotsiaalkindlustusamet/ska_erihoolekanne_isikukeskse_erihoolekande_teenusmudel.html](<veebilehed/sotsiaalkindlustusamet/ska_erihoolekanne_isikukeskse_erihoolekande_teenusmudel.html>) |
+| Inimkaubandus | [veebilehed/sotsiaalkindlustusamet/ska_inimkaubandus.html](<veebilehed/sotsiaalkindlustusamet/ska_inimkaubandus.html>) |
+| Kui laps vajab rohkem tuge | [veebilehed/sotsiaalkindlustusamet/ska_laste_ja_perede_abistamine_kui_laps_vajab_rohkem_tuge.html](<veebilehed/sotsiaalkindlustusamet/ska_laste_ja_perede_abistamine_kui_laps_vajab_rohkem_tuge.html>) |
+| Lapsevanemate toetamine | [veebilehed/sotsiaalkindlustusamet/ska_laste_ja_perede_abistamine_lapsevanemate_toetamine.html](<veebilehed/sotsiaalkindlustusamet/ska_laste_ja_perede_abistamine_lapsevanemate_toetamine.html>) |
+| Lastemaja | [veebilehed/sotsiaalkindlustusamet/ska_laste_ja_perede_abistamine_lastemaja.html](<veebilehed/sotsiaalkindlustusamet/ska_laste_ja_perede_abistamine_lastemaja.html>) |
+| Täisealise abivajaja toetamine | [veebilehed/sotsiaalkindlustusamet/ska_laste_ja_perede_abistamine_taisealise_abivajaja_toetamine.html](<veebilehed/sotsiaalkindlustusamet/ska_laste_ja_perede_abistamine_taisealise_abivajaja_toetamine.html>) |
+| II samba pensionikindlustusmaksed ERGO ja SEB klientidele | [veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_ii_samba.html](<veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_ii_samba.html>) |
+| Kahjuhüvitis | [veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_kahjuhuvitis_tooonnetuse.html](<veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_kahjuhuvitis_tooonnetuse.html>) |
+| Olümpiavõitja toetus | [veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_olumpiavoitja_riiklik.html](<veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_olumpiavoitja_riiklik.html>) |
+| Represseeritu toetus | [veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_represseeritu_toetused.html](<veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_represseeritu_toetused.html>) |
+| Tagasipöörduja toetus | [veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_tagasipoorduja_toetus.html](<veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_tagasipoorduja_toetus.html>) |
+| Sotsiaaltoetus Tšornobõli AEJ avarii likvideerijale | [veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_toetus_tsornoboli_aej.html](<veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_toetus_tsornoboli_aej.html>) |
+| Üksi elava pensionäri toetus | [veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_uksi_elava_pensionari.html](<veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_uksi_elava_pensionari.html>) |
+| Naiste tugikeskused | [veebilehed/sotsiaalkindlustusamet/ska_naiste_tugikeskused.html](<veebilehed/sotsiaalkindlustusamet/ska_naiste_tugikeskused.html>) |
+| Ohvriabi | [veebilehed/sotsiaalkindlustusamet/ska_ohvriabi.html](<veebilehed/sotsiaalkindlustusamet/ska_ohvriabi.html>) |
+| Ohvriabi lihtsas keeles | [veebilehed/sotsiaalkindlustusamet/ska_ohvriabi_lihtsas_keeles.html](<veebilehed/sotsiaalkindlustusamet/ska_ohvriabi_lihtsas_keeles.html>) |
+| Muud pensioniga seotud hüvitised ja toetused | [veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_muud_pensioniga_seotud_huvitised_ja_toetused.html](<veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_muud_pensioniga_seotud_huvitised_ja_toetused.html>) |
+| Pension välismaal ja välisriigi pension Eestis | [veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pension_valismaal_ja_valisriigi_pension_eestis.html](<veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pension_valismaal_ja_valisriigi_pension_eestis.html>) |
+| Pensioni liigid | [veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pensioni_liigid.html](<veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pensioni_liigid.html>) |
+| Pensioni suurus | [veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pensioni_suurus.html](<veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pensioni_suurus.html>) |
+| Pensioniks valmistumine | [veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pensioniks_valmistumine.html](<veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pensioniks_valmistumine.html>) |
+| Elusolekutõend | [veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_elusolekutoend.html](<veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_elusolekutoend.html>) |
+| Euroopa Liidu pensionid ja lepinguriigid | [veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_euroopa_liidu_pensionid.html](<veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_euroopa_liidu_pensionid.html>) |
+| Pensioni maksmine välisriiki | [veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_pensioni_maksmine.html](<veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_pensioni_maksmine.html>) |
+| Pensioni saamine välisriigist | [veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_pensioni_saamine.html](<veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_pensioni_saamine.html>) |
+| Tõendite taotlemine | [veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_toendite_taotlemine.html](<veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_toendite_taotlemine.html>) |
+| Välispensioni ja rahvapensioni määra vahe | [veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_valispensioni_ja.html](<veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_valispensioni_ja.html>) |
+| Edasilükatud vanaduspension | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_edasilukatud_vanaduspension.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_edasilukatud_vanaduspension.html>) |
+| Eripensionid, kutsealade ja ametikohtade sooduspensionid | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_eripensionid.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_eripensionid.html>) |
+| Paindlik pension | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_paindlik_pension.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_paindlik_pension.html>) |
+| Rahvapension | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_rahvapension.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_rahvapension.html>) |
+| Soodustingimustel vanaduspension | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_soodustingimustel_vanaduspension.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_soodustingimustel_vanaduspension.html>) |
+| Toitjakaotuspension | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_toitjakaotuspension.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_toitjakaotuspension.html>) |
+| Vanaduspension | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_vanaduspension.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_vanaduspension.html>) |
+| Laste kasvatamine ja pension | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_laste_kasvatamine_ja_pension.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_laste_kasvatamine_ja_pension.html>) |
+| Pensioni indekseerimine ja ümberarvutamine | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensioni_indekseerimine_ja_umberarvutus.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensioni_indekseerimine_ja_umberarvutus.html>) |
+| Pensioni suuruse arvutamine | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensioni_suuruse_arvutamine.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensioni_suuruse_arvutamine.html>) |
+| Hüvitiste, toetuste ja pensionide tulumaksustamine | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensioni_tulumaksustamine.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensioni_tulumaksustamine.html>) |
+| Pensionide, toetuste ja hüvitiste määrad | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensionide_toetuste_ja_huvitiste_maarad.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensionide_toetuste_ja_huvitiste_maarad.html>) |
+| Pensionilisad | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensionilisad.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensionilisad.html>) |
+| Töötamine pensioni saamise ajal | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_tootamine_pensioni_saamise_ajal.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_tootamine_pensioni_saamise_ajal.html>) |
+| Pensioni peatamine ja jätkamine | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensioni_peatamine_ja_jatkamine.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensioni_peatamine_ja_jatkamine.html>) |
+| Pensioniavalduse esitamine | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensioniavalduse_esitamine.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensioniavalduse_esitamine.html>) |
+| Pensioniiga | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensioniiga.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensioniiga.html>) |
+| Pensionistaaž | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensionistaaz.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensionistaaz.html>) |
+| Pensionitunnistus | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensionitunnistus.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensionitunnistus.html>) |
+| Pensioni taotlemisel vajalikud dokumendid | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_taotlemiseks_vajalikud_dokumendid.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_taotlemiseks_vajalikud_dokumendid.html>) |
+| Eesti pensionisüsteem | [veebilehed/sotsiaalkindlustusamet/ska_pensioniks_valmistumine_eesti_pensionisusteem.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioniks_valmistumine_eesti_pensionisusteem.html>) |
+| Pensioni planeerimine | [veebilehed/sotsiaalkindlustusamet/ska_pensioniks_valmistumine_pensioni_planeerimine.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioniks_valmistumine_pensioni_planeerimine.html>) |
+| Tööraamat | [veebilehed/sotsiaalkindlustusamet/ska_pensioniks_valmistumine_tooraamatu_esitamine.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioniks_valmistumine_tooraamatu_esitamine.html>) |
+| Elatisabi | [veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_elatisabi.html](<veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_elatisabi.html>) |
+| Lisapuhkepäevad | [veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_lisapuhkepaevad.html](<veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_lisapuhkepaevad.html>) |
+| Perehüvitiste ülevaade | [veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_perehuvitiste_ulevaade.html](<veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_perehuvitiste_ulevaade.html>) |
+| Perekondlikud olukorrad | [veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_perekondlikud_olukorrad.html](<veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_perekondlikud_olukorrad.html>) |
+| Peretoetused | [veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_peretoetused.html](<veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_peretoetused.html>) |
+| Sotsiaalkindlustus Euroopa Liidus | [veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele.html](<veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele.html>) |
+| Toetused ja hüvitised Ukraina põgenikele | [veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_toetused_huvitised_ukraina_pogenikele.html](<veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_toetused_huvitised_ukraina_pogenikele.html>) |
+| Ema vanemahüvitis ja emapuhkus | [veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_ema_vanemahuvitis_ja_emapuhkus.html](<veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_ema_vanemahuvitis_ja_emapuhkus.html>) |
+| Isa vanemahüvitis ja isapuhkus | [veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_isa_vanemahuvitis_ja_isapuhkus.html](<veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_isa_vanemahuvitis_ja_isapuhkus.html>) |
+| Jagatav vanemahüvitis ja vanemapuhkus | [veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_jagatav_vanemahuvitis_ja_vanemapuhkus.html](<veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_jagatav_vanemahuvitis_ja_vanemapuhkus.html>) |
+| Lapsendaja vanemahüvitis ja lapsendajapuhkus | [veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_lapsendaja_vanemahuvitis_ja_lapsendajapuhkus.html](<veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_lapsendaja_vanemahuvitis_ja_lapsendajapuhkus.html>) |
+| Lapsepuhkus ja puudega lapse vanema lapsepuhkus | [veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_lapsepuhkus.html](<veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_lapsepuhkus.html>) |
+| Perehüvitiste määrad | [veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_perehuvitiste_maarad_ja_maksmine.html](<veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_perehuvitiste_maarad_ja_maksmine.html>) |
+| Perehüvitistest loobumine | [veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_perehuvitistest_loobumine.html](<veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_perehuvitistest_loobumine.html>) |
+| Laps ei ela koos oma vanematega | [veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_laps_ei_ela_koos_oma_vanematega.html](<veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_laps_ei_ela_koos_oma_vanematega.html>) |
+| Lapse vanemad ei ela enam koos | [veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_lapse_vanemad_ei_ela_koos.html](<veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_lapse_vanemad_ei_ela_koos.html>) |
+| Puudega vanem | [veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_lapse_vanemal_puue.html](<veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_lapse_vanemal_puue.html>) |
+| Peres kasvavad koos mitme eri vanema lapsed | [veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_peres_kasvavad_koos_mitme_eri_vanema_lapsed.html](<veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_peres_kasvavad_koos_mitme_eri_vanema_lapsed.html>) |
+| Puudega laps | [veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_peres_puudega_laps.html](<veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_peres_puudega_laps.html>) |
+| Varakult lahkunud laps | [veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_varakult_lahkunud_laps.html](<veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_varakult_lahkunud_laps.html>) |
+| Perelepitus | [veebilehed/sotsiaalkindlustusamet/ska_perelepitus.html](<veebilehed/sotsiaalkindlustusamet/ska_perelepitus.html>) |
+| Ajateenija lapse toetus | [veebilehed/sotsiaalkindlustusamet/ska_peretoetused_ajateenija_lapse_toetus.html](<veebilehed/sotsiaalkindlustusamet/ska_peretoetused_ajateenija_lapse_toetus.html>) |
+| Eestkostetava toetus | [veebilehed/sotsiaalkindlustusamet/ska_peretoetused_eestkostetava_lapse_toetus.html](<veebilehed/sotsiaalkindlustusamet/ska_peretoetused_eestkostetava_lapse_toetus.html>) |
+| Lapsendamistoetus | [veebilehed/sotsiaalkindlustusamet/ska_peretoetused_lapsendamistoetus.html](<veebilehed/sotsiaalkindlustusamet/ska_peretoetused_lapsendamistoetus.html>) |
+| Lapsetoetus | [veebilehed/sotsiaalkindlustusamet/ska_peretoetused_lapsetoetus.html](<veebilehed/sotsiaalkindlustusamet/ska_peretoetused_lapsetoetus.html>) |
+| Lasterikka pere toetus | [veebilehed/sotsiaalkindlustusamet/ska_peretoetused_lasterikka_pere_toetus.html](<veebilehed/sotsiaalkindlustusamet/ska_peretoetused_lasterikka_pere_toetus.html>) |
+| Mitmike toetus | [veebilehed/sotsiaalkindlustusamet/ska_peretoetused_mitmike_toetus.html](<veebilehed/sotsiaalkindlustusamet/ska_peretoetused_mitmike_toetus.html>) |
+| Sünnitoetus | [veebilehed/sotsiaalkindlustusamet/ska_peretoetused_sunnitoetus.html](<veebilehed/sotsiaalkindlustusamet/ska_peretoetused_sunnitoetus.html>) |
+| Toitjakaotustoetus | [veebilehed/sotsiaalkindlustusamet/ska_peretoetused_toitjakaotustoetus.html](<veebilehed/sotsiaalkindlustusamet/ska_peretoetused_toitjakaotustoetus.html>) |
+| Üksikvanema lapse toetus | [veebilehed/sotsiaalkindlustusamet/ska_peretoetused_uksikvanema_lapse_toetus.html](<veebilehed/sotsiaalkindlustusamet/ska_peretoetused_uksikvanema_lapse_toetus.html>) |
+| Pensionide, toetuste ja hüvitiste väljamaksmine | [veebilehed/sotsiaalkindlustusamet/ska_praktiline_teave_pensionide_toetuste_ja_huvitiste_valjamaksmine.html](<veebilehed/sotsiaalkindlustusamet/ska_praktiline_teave_pensionide_toetuste_ja_huvitiste_valjamaksmine.html>) |
+| Lapse puude raskusastme tuvastamine | [veebilehed/sotsiaalkindlustusamet/ska_puude_raskusastme_tuvastamine_lapse_puude_raskusastme_tuvastamine.html](<veebilehed/sotsiaalkindlustusamet/ska_puude_raskusastme_tuvastamine_lapse_puude_raskusastme_tuvastamine.html>) |
+| Vanaduspensioniealise puude raskusastme tuvastamine | [veebilehed/sotsiaalkindlustusamet/ska_puude_raskusastme_tuvastamine_vanaduspensioniealise_puude_raskusastme.html](<veebilehed/sotsiaalkindlustusamet/ska_puude_raskusastme_tuvastamine_vanaduspensioniealise_puude_raskusastme.html>) |
+| Erihoolekanne | [veebilehed/sotsiaalkindlustusamet/ska_puue_ja_hoolekanne_erihoolekanne.html](<veebilehed/sotsiaalkindlustusamet/ska_puue_ja_hoolekanne_erihoolekanne.html>) |
+| Puude raskusastme tuvastamine | [veebilehed/sotsiaalkindlustusamet/ska_puue_ja_hoolekanne_puude_raskusastme_tuvastamine.html](<veebilehed/sotsiaalkindlustusamet/ska_puue_ja_hoolekanne_puude_raskusastme_tuvastamine.html>) |
+| Sotsiaalse rehabilitatsiooni teenus | [veebilehed/sotsiaalkindlustusamet/ska_puue_ja_hoolekanne_sotsiaalne_rehabilitatsioon.html](<veebilehed/sotsiaalkindlustusamet/ska_puue_ja_hoolekanne_sotsiaalne_rehabilitatsioon.html>) |
+| Toetused puudega inimestele | [veebilehed/sotsiaalkindlustusamet/ska_puue_ja_hoolekanne_toetused_puudega_inimestele.html](<veebilehed/sotsiaalkindlustusamet/ska_puue_ja_hoolekanne_toetused_puudega_inimestele.html>) |
+| Kogumispensioni täiendavad sissemaksed | [veebilehed/sotsiaalkindlustusamet/ska_ravi_ja_pensionikindlustus_kogumispensioni_taiendavad_sissemaksed.html](<veebilehed/sotsiaalkindlustusamet/ska_ravi_ja_pensionikindlustus_kogumispensioni_taiendavad_sissemaksed.html>) |
+| Seksuaalvägivalla ohvrile | [veebilehed/sotsiaalkindlustusamet/ska_seksuaalvagivalla_ohvrite_kriisiabi.html](<veebilehed/sotsiaalkindlustusamet/ska_seksuaalvagivalla_ohvrite_kriisiabi.html>) |
+| Perehüvitised Euroopa Liidus | [veebilehed/sotsiaalkindlustusamet/ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_perehuvitised.html](<veebilehed/sotsiaalkindlustusamet/ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_perehuvitised.html>) |
+| Väljastpoolt Euroopa Liitu tulijate perehüvitised | [veebilehed/sotsiaalkindlustusamet/ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_valjastpoolt.html](<veebilehed/sotsiaalkindlustusamet/ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_valjastpoolt.html>) |
+| Laste sotsiaalne rehabilitatsioon | [veebilehed/sotsiaalkindlustusamet/ska_sotsiaalne_rehabilitatsioon_laste_sotsiaalne_rehabilitatsioon.html](<veebilehed/sotsiaalkindlustusamet/ska_sotsiaalne_rehabilitatsioon_laste_sotsiaalne_rehabilitatsioon.html>) |
+| Rehabilitatsiooniteenuse reform | [veebilehed/sotsiaalkindlustusamet/ska_sotsiaalne_rehabilitatsioon_rehabilitatsiooniteenuse_reform.html](<veebilehed/sotsiaalkindlustusamet/ska_sotsiaalne_rehabilitatsioon_rehabilitatsiooniteenuse_reform.html>) |
+| Sotsiaalse rehabilitatsiooni teenus tööealistele ja pensioniealistele | [veebilehed/sotsiaalkindlustusamet/ska_sotsiaalne_rehabilitatsioon_too_ja_pensioniealiste_sotsiaalne_rehabilitatsioon.html](<veebilehed/sotsiaalkindlustusamet/ska_sotsiaalne_rehabilitatsioon_too_ja_pensioniealiste_sotsiaalne_rehabilitatsioon.html>) |
+| Juhtkoer vaegnägijale | [veebilehed/sotsiaalkindlustusamet/ska_toetavad_teenused_juhtkoer_vaegnagijale.html](<veebilehed/sotsiaalkindlustusamet/ska_toetavad_teenused_juhtkoer_vaegnagijale.html>) |
+| Kaugtõlge | [veebilehed/sotsiaalkindlustusamet/ska_toetavad_teenused_kaugtolge.html](<veebilehed/sotsiaalkindlustusamet/ska_toetavad_teenused_kaugtolge.html>) |
+| Kirjutustõlge | [veebilehed/sotsiaalkindlustusamet/ska_toetavad_teenused_kirjutustolge.html](<veebilehed/sotsiaalkindlustusamet/ska_toetavad_teenused_kirjutustolge.html>) |
+| Parkimiskaart | [veebilehed/sotsiaalkindlustusamet/ska_toetavad_teenused_parkimiskaart.html](<veebilehed/sotsiaalkindlustusamet/ska_toetavad_teenused_parkimiskaart.html>) |
+| Puudega laste tugiteenused | [veebilehed/sotsiaalkindlustusamet/ska_toetavad_teenused_puudega_lapse_tugiteenused.html](<veebilehed/sotsiaalkindlustusamet/ska_toetavad_teenused_puudega_lapse_tugiteenused.html>) |
+| Perehüvitised Ukraina põgenikele | [veebilehed/sotsiaalkindlustusamet/ska_toetused_huvitised_ukraina_pogenikele_perehuvitised_ukraina.html](<veebilehed/sotsiaalkindlustusamet/ska_toetused_huvitised_ukraina_pogenikele_perehuvitised_ukraina.html>) |
+| Harvikhaigusega lapse toetus | [veebilehed/sotsiaalkindlustusamet/ska_toetused_puudega_inimestele_harvikhaigusega_lapse_toetus.html](<veebilehed/sotsiaalkindlustusamet/ska_toetused_puudega_inimestele_harvikhaigusega_lapse_toetus.html>) |
+| Õppelaenu kustutamine | [veebilehed/sotsiaalkindlustusamet/ska_toetused_puudega_inimestele_oppelaenu_kustutamine.html](<veebilehed/sotsiaalkindlustusamet/ska_toetused_puudega_inimestele_oppelaenu_kustutamine.html>) |
+| Õppetoetus | [veebilehed/sotsiaalkindlustusamet/ska_toetused_puudega_inimestele_oppetoetus.html](<veebilehed/sotsiaalkindlustusamet/ska_toetused_puudega_inimestele_oppetoetus.html>) |
+| Puudega lapse toetus | [veebilehed/sotsiaalkindlustusamet/ska_toetused_puudega_inimestele_puudega_lapse_toetus.html](<veebilehed/sotsiaalkindlustusamet/ska_toetused_puudega_inimestele_puudega_lapse_toetus.html>) |
+| Puudega vanaduspensioniealise inimese toetus | [veebilehed/sotsiaalkindlustusamet/ska_toetused_puudega_inimestele_puudega_vanaduspensioniealise_inimese_toetus.html](<veebilehed/sotsiaalkindlustusamet/ska_toetused_puudega_inimestele_puudega_vanaduspensioniealise_inimese_toetus.html>) |
+| Puudega vanema toetus | [veebilehed/sotsiaalkindlustusamet/ska_toetused_puudega_inimestele_puudega_vanema_toetus.html](<veebilehed/sotsiaalkindlustusamet/ska_toetused_puudega_inimestele_puudega_vanema_toetus.html>) |
+| Täienduskoolitustoetus | [veebilehed/sotsiaalkindlustusamet/ska_toetused_puudega_inimestele_taienduskoolitustoetus.html](<veebilehed/sotsiaalkindlustusamet/ska_toetused_puudega_inimestele_taienduskoolitustoetus.html>) |
+| Vaide esitamine | [veebilehed/sotsiaalkindlustusamet/ska_vaie.html](<veebilehed/sotsiaalkindlustusamet/ska_vaie.html>) |
+| Ohvriabi emotsionaalse toe telefon 116123 | [veebilehed/sotsiaalkindlustusamet/ska_vaimne_tervis_kriisis_emotsionaalse_toe_telefon_116123.html](<veebilehed/sotsiaalkindlustusamet/ska_vaimne_tervis_kriisis_emotsionaalse_toe_telefon_116123.html>) |
+| Psühhosotsiaalne kriisiabi | [veebilehed/sotsiaalkindlustusamet/ska_vaimne_tervis_kriisis_psuhhosotsiaalne_kriisiabi.html](<veebilehed/sotsiaalkindlustusamet/ska_vaimne_tervis_kriisis_psuhhosotsiaalne_kriisiabi.html>) |
+| Vaimse tervise videonõustamine | [veebilehed/sotsiaalkindlustusamet/ska_vaimne_tervis_kriisis_vaimse_tervise_videonoustamine.html](<veebilehed/sotsiaalkindlustusamet/ska_vaimne_tervis_kriisis_vaimse_tervise_videonoustamine.html>) |
 | Sotsiaalkindlustusameti 2024. aasta järelevalves: rohkem rikkumisi, aga ka häid näiteid | [veebilehed/sotsiaalkindlustusamet/sotsiaalkindlustusamet_ska_2024_jarelevalve_kokkuvote.html](<veebilehed/sotsiaalkindlustusamet/sotsiaalkindlustusamet_ska_2024_jarelevalve_kokkuvote.html>) |
 | Abivahendi ettevõttele | [veebilehed/sotsiaalkindlustusamet/sotsiaalkindlustusamet_ska_abivahendi_ettevottele.html](<veebilehed/sotsiaalkindlustusamet/sotsiaalkindlustusamet_ska_abivahendi_ettevottele.html>) |
 | Abivahendi vajajale | [veebilehed/sotsiaalkindlustusamet/sotsiaalkindlustusamet_ska_abivahendi_vajajale.html](<veebilehed/sotsiaalkindlustusamet/sotsiaalkindlustusamet_ska_abivahendi_vajajale.html>) |
 | Sotsiaalteenuste järelevalve | [veebilehed/sotsiaalkindlustusamet/sotsiaalkindlustusamet_ska_sotsiaalteenuste_jarelevalve.html](<veebilehed/sotsiaalkindlustusamet/sotsiaalkindlustusamet_ska_sotsiaalteenuste_jarelevalve.html>) |
 | Väljaspool kodu osutatav üldhooldusteenus | [veebilehed/sotsiaalkindlustusamet/sotsiaalkindlustusamet_uldhooldusteenus_kov_noustamine_jarelevalve_raam.html](<veebilehed/sotsiaalkindlustusamet/sotsiaalkindlustusamet_uldhooldusteenus_kov_noustamine_jarelevalve_raam.html>) |
+| Elatisabi | [veebilehed/sotsiaalministeerium/sm_elatisabi.html](<veebilehed/sotsiaalministeerium/sm_elatisabi.html>) |
+| Perehüvitised ja vanemapuhkused | [veebilehed/sotsiaalministeerium/sm_lapsed_ja_pered_perehuvitised_ja_vanemapuhkused.html](<veebilehed/sotsiaalministeerium/sm_lapsed_ja_pered_perehuvitised_ja_vanemapuhkused.html>) |
+| Pension | [veebilehed/sotsiaalministeerium/sm_pension.html](<veebilehed/sotsiaalministeerium/sm_pension.html>) |
+| Sooduspensionid | [veebilehed/sotsiaalministeerium/sm_pension_sooduspensionid.html](<veebilehed/sotsiaalministeerium/sm_pension_sooduspensionid.html>) |
+| Õendus ja ämmaemandus | [veebilehed/sotsiaalministeerium/sm_ravi_ja_tervise_taastamine_oendus_ja_ammaemandusabi.html](<veebilehed/sotsiaalministeerium/sm_ravi_ja_tervise_taastamine_oendus_ja_ammaemandusabi.html>) |
+| Töötus- ja ravikindlustushüvitised | [veebilehed/sotsiaalministeerium/sm_tootus_ja_ravikindlustushuvitised.html](<veebilehed/sotsiaalministeerium/sm_tootus_ja_ravikindlustushuvitised.html>) |
+| Vanemahüvitis | [veebilehed/sotsiaalministeerium/sm_vanemahuvitis.html](<veebilehed/sotsiaalministeerium/sm_vanemahuvitis.html>) |
 | Ligipääsetavus füüsilisele keskkonnale | [veebilehed/sotsiaalministeeriumi-kompetentsikeskus/4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--ligipaasetavuse-parandamine--ligipaasetavus-fuusilisele-keskkonnale.html](<veebilehed/sotsiaalministeeriumi-kompetentsikeskus/4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--ligipaasetavuse-parandamine--ligipaasetavus-fuusilisele-keskkonnale.html>) |
 | Mis on erivajadus? | [veebilehed/sotsiaalministeeriumi-kompetentsikeskus/4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--aluspohimotted--mis-erivajadus.html](<veebilehed/sotsiaalministeeriumi-kompetentsikeskus/4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--aluspohimotted--mis-erivajadus.html>) |
 | Mis on ligipääsetavus? | [veebilehed/sotsiaalministeeriumi-kompetentsikeskus/4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--aluspohimotted--mis-ligipaasetavus.html](<veebilehed/sotsiaalministeeriumi-kompetentsikeskus/4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--aluspohimotted--mis-ligipaasetavus.html>) |
@@ -1962,12 +2310,54 @@ Koodihoidla allikafailid, mida RAG-is ei ole (60):
 | ÜRO puuetega inimeste õiguste konventsioon | [veebilehed/sotsiaalministeeriumi-kompetentsikeskus/4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--oigusaktid--uro--uro-puuetega-inimeste-oiguste-konventsioon.html](<veebilehed/sotsiaalministeeriumi-kompetentsikeskus/4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--oigusaktid--uro--uro-puuetega-inimeste-oiguste-konventsioon.html>) |
 | Infomaterjalid hoolekandeasutustele | [veebilehed/terviseamet/terviseamet_terviseamet_infomaterjalid_hoolekandeasutustele.html](<veebilehed/terviseamet/terviseamet_terviseamet_infomaterjalid_hoolekandeasutustele.html>) |
 | Sotsiaalasutuste järelevalve | [veebilehed/terviseamet/terviseamet_terviseamet_sotsiaalasutuste_jarelevalve.html](<veebilehed/terviseamet/terviseamet_terviseamet_sotsiaalasutuste_jarelevalve.html>) |
+| Tervishoid koolis | [veebilehed/tervisekassa/tek_arsti_ja_oendusabi_tervishoid_koolis.html](<veebilehed/tervisekassa/tek_arsti_ja_oendusabi_tervishoid_koolis.html>) |
+| Tervishoiuteenused | [veebilehed/tervisekassa/tek_arsti_ja_oendusabi_tervishoiuteenused.html](<veebilehed/tervisekassa/tek_arsti_ja_oendusabi_tervishoiuteenused.html>) |
+| Vaktsiinikahjude hüvitamine Eestis toimunud vaktsineerimise korral | [veebilehed/tervisekassa/tek_haigekassa_huvitised_vaktsiinikahjude_huvitamine.html](<veebilehed/tervisekassa/tek_haigekassa_huvitised_vaktsiinikahjude_huvitamine.html>) |
+| Kasulikku lugemist | [veebilehed/tervisekassa/tek_hambaravi_kasulikku_lugemist.html](<veebilehed/tervisekassa/tek_hambaravi_kasulikku_lugemist.html>) |
+| Laste hambaravi | [veebilehed/tervisekassa/tek_hambaravi_laste_hambaravi.html](<veebilehed/tervisekassa/tek_hambaravi_laste_hambaravi.html>) |
+| Täiskasvanute hambaravi | [veebilehed/tervisekassa/tek_hambaravi_taiskasvanute_hambaravi.html](<veebilehed/tervisekassa/tek_hambaravi_taiskasvanute_hambaravi.html>) |
+| Ajutise töövõimetuse hüvitise saamise piirangud | [veebilehed/tervisekassa/tek_huvitised_ajutise_toovoimetuse_huvitise_saamise_piirangud.html](<veebilehed/tervisekassa/tek_huvitised_ajutise_toovoimetuse_huvitise_saamise_piirangud.html>) |
+| Haigestumine välisriigis | [veebilehed/tervisekassa/tek_huvitised_haigestumine_valisriigis.html](<veebilehed/tervisekassa/tek_huvitised_haigestumine_valisriigis.html>) |
+| Haigushüvitis | [veebilehed/tervisekassa/tek_huvitised_haigushuvitis.html](<veebilehed/tervisekassa/tek_huvitised_haigushuvitis.html>) |
+| Hooldushüvitis | [veebilehed/tervisekassa/tek_huvitised_hooldushuvitis.html](<veebilehed/tervisekassa/tek_huvitised_hooldushuvitis.html>) |
+| Raseda kergemale tööle üle viimine | [veebilehed/tervisekassa/tek_huvitised_raseda_kergemale_toole_ule_viimine.html](<veebilehed/tervisekassa/tek_huvitised_raseda_kergemale_toole_ule_viimine.html>) |
+| Ravimite hüvitamine | [veebilehed/tervisekassa/tek_huvitised_ravimite_huvitamine.html](<veebilehed/tervisekassa/tek_huvitised_ravimite_huvitamine.html>) |
+| Töötingimuste ajutine kergendamine | [veebilehed/tervisekassa/tek_huvitised_tootingimuste_ajutine_kergendamine.html](<veebilehed/tervisekassa/tek_huvitised_tootingimuste_ajutine_kergendamine.html>) |
+| Arsti- ja õendusabi | [veebilehed/tervisekassa/tek_inimesele_arsti_ja_oendusabi.html](<veebilehed/tervisekassa/tek_inimesele_arsti_ja_oendusabi.html>) |
+| Avaldused | [veebilehed/tervisekassa/tek_inimesele_avaldused.html](<veebilehed/tervisekassa/tek_inimesele_avaldused.html>) |
+| Hambaravi | [veebilehed/tervisekassa/tek_inimesele_hambaravi.html](<veebilehed/tervisekassa/tek_inimesele_hambaravi.html>) |
+| Tervisekassa hüvitised | [veebilehed/tervisekassa/tek_inimesele_huvitised.html](<veebilehed/tervisekassa/tek_inimesele_huvitised.html>) |
+| Minu andmed: Terviseportaal; Riigiportaal | [veebilehed/tervisekassa/tek_inimesele_minu_andmed_terviseportaal_riigiportaal.html](<veebilehed/tervisekassa/tek_inimesele_minu_andmed_terviseportaal_riigiportaal.html>) |
+| Ravikindlustus | [veebilehed/tervisekassa/tek_inimesele_ravikindlustus.html](<veebilehed/tervisekassa/tek_inimesele_ravikindlustus.html>) |
+| Ravimid | [veebilehed/tervisekassa/tek_inimesele_ravimid.html](<veebilehed/tervisekassa/tek_inimesele_ravimid.html>) |
+| Teenustasud ja omaosalus | [veebilehed/tervisekassa/tek_inimesele_teenustasud_ja_omaosalus.html](<veebilehed/tervisekassa/tek_inimesele_teenustasud_ja_omaosalus.html>) |
+| Ukraina sõjapõgenikele | [veebilehed/tervisekassa/tek_inimesele_ukraina_sojapogenikele.html](<veebilehed/tervisekassa/tek_inimesele_ukraina_sojapogenikele.html>) |
+| Lastega seotud hüvitised | [veebilehed/tervisekassa/tek_lapse_saamine_ja_lapse_tervis_lastega_seotud_huvitised.html](<veebilehed/tervisekassa/tek_lapse_saamine_ja_lapse_tervis_lastega_seotud_huvitised.html>) |
+| Rase | [veebilehed/tervisekassa/tek_lapse_saamine_ja_lapse_tervis_rase.html](<veebilehed/tervisekassa/tek_lapse_saamine_ja_lapse_tervis_rase.html>) |
+| Laste ortodontia | [veebilehed/tervisekassa/tek_laste_hambaravi_laste_ortodontia.html](<veebilehed/tervisekassa/tek_laste_hambaravi_laste_ortodontia.html>) |
+| Kaebevõimalused ja hüvitamine | [veebilehed/tervisekassa/tek_patsientide_oigused_ja_kaebevoimalused_kaebevoimalused_ja_huvitamine.html](<veebilehed/tervisekassa/tek_patsientide_oigused_ja_kaebevoimalused_kaebevoimalused_ja_huvitamine.html>) |
+| Patsientide õigused | [veebilehed/tervisekassa/tek_patsientide_oigused_ja_kaebevoimalused_patsientide_oigused.html](<veebilehed/tervisekassa/tek_patsientide_oigused_ja_kaebevoimalused_patsientide_oigused.html>) |
+| Inimesed, kelle eest makstakse või kes ise maksab sotsiaalmaksu | [veebilehed/tervisekassa/tek_ravikindlustus_inimesed_kelle_eest_makstakse_voi_kes_ise_maksab_sotsiaalmaksu.html](<veebilehed/tervisekassa/tek_ravikindlustus_inimesed_kelle_eest_makstakse_voi_kes_ise_maksab_sotsiaalmaksu.html>) |
+| Kindlustatuga võrdustatud inimesed | [veebilehed/tervisekassa/tek_ravikindlustus_kindlustatuga_vordustatud_inimesed.html](<veebilehed/tervisekassa/tek_ravikindlustus_kindlustatuga_vordustatud_inimesed.html>) |
+| Vabatahtlik ravikindlustus | [veebilehed/tervisekassa/tek_ravikindlustus_vabatahtlik_ravikindlustus.html](<veebilehed/tervisekassa/tek_ravikindlustus_vabatahtlik_ravikindlustus.html>) |
+| Digiretsept | [veebilehed/tervisekassa/tek_ravimid_digiretsept.html](<veebilehed/tervisekassa/tek_ravimid_digiretsept.html>) |
+| Kehavälise viljastamisega seotud ravimid | [veebilehed/tervisekassa/tek_ravimid_kehavalise_viljastamisega_seotud_ravimid.html](<veebilehed/tervisekassa/tek_ravimid_kehavalise_viljastamisega_seotud_ravimid.html>) |
+| Ravimite erandkorras hüvitamine | [veebilehed/tervisekassa/tek_ravimid_ravimite_erandkorras_huvitamine.html](<veebilehed/tervisekassa/tek_ravimid_ravimite_erandkorras_huvitamine.html>) |
+| Täiendav ravimi- ja meditsiiniseadmehüvitis | [veebilehed/tervisekassa/tek_ravimid_taiendav_ravimi_ja_meditsiiniseadmehuvitis.html](<veebilehed/tervisekassa/tek_ravimid_taiendav_ravimi_ja_meditsiiniseadmehuvitis.html>) |
+| Toimeainepõhine retsept | [veebilehed/tervisekassa/tek_ravimid_toimeainepohine_retsept.html](<veebilehed/tervisekassa/tek_ravimid_toimeainepohine_retsept.html>) |
+| Depressiooni raviteekond | [veebilehed/tervisekassa/tek_raviteekondade_arendamine_depressiooni_raviteekond.html](<veebilehed/tervisekassa/tek_raviteekondade_arendamine_depressiooni_raviteekond.html>) |
+| Insuldi raviteekond | [veebilehed/tervisekassa/tek_raviteekondade_arendamine_insuldi_raviteekond.html](<veebilehed/tervisekassa/tek_raviteekondade_arendamine_insuldi_raviteekond.html>) |
+| Hambaproteeside hüvitis | [veebilehed/tervisekassa/tek_taiskasvanute_hambaravi_hambaproteeside_huvitis.html](<veebilehed/tervisekassa/tek_taiskasvanute_hambaravi_hambaproteeside_huvitis.html>) |
+| Hambaravihüvitis | [veebilehed/tervisekassa/tek_taiskasvanute_hambaravi_hambaravihuvitis.html](<veebilehed/tervisekassa/tek_taiskasvanute_hambaravi_hambaravihuvitis.html>) |
+| Täiskasvanute ortodontia | [veebilehed/tervisekassa/tek_taiskasvanute_hambaravi_taiskasvanute_ortodontia.html](<veebilehed/tervisekassa/tek_taiskasvanute_hambaravi_taiskasvanute_ortodontia.html>) |
+| Tasuta hambaravi | [veebilehed/tervisekassa/tek_taiskasvanute_hambaravi_tasuta_hambaravi.html](<veebilehed/tervisekassa/tek_taiskasvanute_hambaravi_tasuta_hambaravi.html>) |
+| Vältimatu hambaravi | [veebilehed/tervisekassa/tek_taiskasvanute_hambaravi_valtimatu_hambaravi.html](<veebilehed/tervisekassa/tek_taiskasvanute_hambaravi_valtimatu_hambaravi.html>) |
 | Tallinna kontaktid | [kontaktid/tallinn/tallinn.contacts.json](kontaktid/tallinn/tallinn.contacts.json) |
 
 <!-- corpus-outside:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
 ## RAG-is olevad lehed ja kontaktid
 
-Serveris töötav RAG, korpus v69, 07.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
+Serveris töötav RAG, korpus v85, 11.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
 
 ### Hooldekodude kohamaksumuse lehed (79)
 
@@ -2207,10 +2597,64 @@ Serveris töötav RAG, korpus v69, 07.10.2026. Siin on loend sellest, mida jaoti
 | Tervise Abi | Kuulmisabivahendid, häiresüsteemid ja lisad | <https://terviseabi.ee/tootekategooria/kuulmisabivahendid/> |
 | Tervise Abi | Tallinna sotsiaalvalveteenus | <https://terviseabi.ee/teenused/sotsiaalvalveteenus> |
 
-### Puuetega inimeste organisatsioonide lehed (521)
+### Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) (1132)
 
 | Väljaandja | Pealkiri | Aadress |
 |---|---|---|
+| Al-Anon Eesti | 12 sammu | <https://alanoneesti.wordpress.com/12-sammu> |
+| Al-Anon Eesti | 12 traditsiooni | <https://alanoneesti.wordpress.com/12-traditsiooni> |
+| Al-Anon Eesti | Alkohoolikute Täiskasvanud Lapsed | <https://alanoneesti.wordpress.com/atl> |
+| Al-Anon Eesti | Korduma kippuvad küsimused | <https://alanoneesti.wordpress.com/lood> |
+| Al-Anon Eesti | Tutvustus | <https://alanoneesti.wordpress.com/> |
+| Anonüümsed Alkohoolikud | 12 sammu | <https://aaestonia.com/mis-on-aa/12-sammu/> |
+| Anonüümsed Alkohoolikud | 12 traditsiooni | <https://aaestonia.com/mis-on-aa/12-traditsiooni/> |
+| Anonüümsed Alkohoolikud | 15 nõuannet | <https://aaestonia.com/alkoholiprobleem/15-nouannet/> |
+| Anonüümsed Alkohoolikud | AA ei ole | <https://aaestonia.com/mis-on-aa/aa-ei-ole/> |
+| Anonüümsed Alkohoolikud | AA on | <https://aaestonia.com/mis-on-aa/aa-on/> |
+| Anonüümsed Alkohoolikud | AA roll ühiskonnas | <https://aaestonia.com/mis-on-aa/aa-roll-uhiskonnas/> |
+| Anonüümsed Alkohoolikud | AA-st lähemalt | <https://aaestonia.com/mis-on-aa/aa-st-lahemalt/> |
+| Anonüümsed Alkohoolikud | Alkoholiprobleem? | <https://aaestonia.com/alkoholiprobleem/> |
+| Anonüümsed Alkohoolikud | Anonüümsus | <https://aaestonia.com/mis-on-aa/anonuumsus/> |
+| Anonüümsed Alkohoolikud | Kas AA on sinu jaoks? | <https://aaestonia.com/alkoholiprobleem/kas-aa-on-sinu-jaoks/> |
+| Anonüümsed Alkohoolikud | Kas AA sobib kõigile? | <https://aaestonia.com/alkoholiprobleem/kas-aa-sobib-koigile/> |
+| Anonüümsed Alkohoolikud | Korduma kippuvad küsimused | <https://aaestonia.com/mis-on-aa/korduma-kippuvad-kusimused/> |
+| Anonüümsed Alkohoolikud | Kuidas AA rühm toimib | <https://aaestonia.com/alkoholiprobleem/kuidas-aa-ruhm-toimib/> |
+| Anonüümsed Alkohoolikud | Miks me oleme täna siin | <https://aaestonia.com/alkoholiprobleem/miks-me-oleme-tana-siin/> |
+| Anonüümsed Alkohoolikud | Mis anonüümsus tähendab? | <https://aaestonia.com/ajakirjandus/mis-anonuumsus-tahendab/> |
+| Anonüümsed Alkohoolikud | Mis on AA? | <https://aaestonia.com/mis-on-aa/> |
+| Anonüümsed Alkohoolikud | Sotsiaaltöötajatele | <https://aaestonia.com/ajakirjandus/sotsiaaltootajatele/> |
+| Anonüümsed Alkohoolikud | Teavet AA lahtiste koosolekute kohta | <https://aaestonia.com/ajakirjandus/teavet-aa-lahtiste-koosolekute-kohta/> |
+| Anonüümsed Alkohoolikud | Tere tulemast! | <https://aaestonia.com/alkoholiprobleem/tere-tulemast/> |
+| Anonüümsed Alkohoolikud | Tervishoiutöötajatele | <https://aaestonia.com/ajakirjandus/tervishoiutootajatele/> |
+| Anonüümsed Alkohoolikud | Tööandjatele | <https://aaestonia.com/ajakirjandus/tooandjatele/> |
+| Convictus Eesti MTÜ | Convictus Eesti MTÜ | <https://www.convictus.ee/> |
+| Convictus Eesti MTÜ | HIV ja C-hepatiit kiirtestimine | <https://www.convictus.ee/teenused/hiv-ja-c-hepatiit-kiirtestimine> |
+| Convictus Eesti MTÜ | Kahjude vähendaja nõustamine | <https://www.convictus.ee/teenused/kahjude-vahendaja-noustamine> |
+| Convictus Eesti MTÜ | Kahjude vähendamise buss | <https://www.convictus.ee/keskused/kahjude-vahendamise-buss> |
+| Convictus Eesti MTÜ | Kahjude vähendamise teenus välitööna | <https://www.convictus.ee/teenused/kahjude-vahendamise-teenus-valitoona> |
+| Convictus Eesti MTÜ | Kogemusnõustamine | <https://www.convictus.ee/teenused/kogemusnoustamine> |
+| Convictus Eesti MTÜ | Kuidas käituda kui näen kasutatud süstalt? | <https://www.convictus.ee/uudised/kuidas-kaituda-kui-naen-kasutatud-sustalt> |
+| Convictus Eesti MTÜ | Lastekodu 6 Kahjude Vähendamise Keskus | <https://www.convictus.ee/keskused/lastekodu> |
+| Convictus Eesti MTÜ | Leia abi: Kogukond | <https://www.convictus.ee/kogukond> |
+| Convictus Eesti MTÜ | Leia abi: Lähedane | <https://www.convictus.ee/lahedane> |
+| Convictus Eesti MTÜ | Leia abi: Tarvitajale | <https://www.convictus.ee/tarvitaja> |
+| Convictus Eesti MTÜ | Loovteraapia | <https://www.convictus.ee/teenused/loovteraapia> |
+| Convictus Eesti MTÜ | Maardu Kahjude Vähendamise Keskus | <https://www.convictus.ee/keskused/maardu> |
+| Convictus Eesti MTÜ | Ohtlike jäätmete kogumine | <https://www.convictus.ee/teenused/kasutatud-tarvikute-kogumine> |
+| Convictus Eesti MTÜ | Ohutu tarvitamine ja üledooside ennetamine (Naloksoon) | <https://www.convictus.ee/teenused/ohutu-tarvitamine-ja-uledooside-ennetamine-naloksoon> |
+| Convictus Eesti MTÜ | Plasti 23 Kahjude Vähendamise Keskus | <https://www.convictus.ee/keskused/plasti> |
+| Convictus Eesti MTÜ | Programm SÜTIK | <https://www.convictus.ee/programm-sutik> |
+| Convictus Eesti MTÜ | Psühholoogiline nõustamine | <https://www.convictus.ee/teenused/psuhholoogiline-noustamine> |
+| Convictus Eesti MTÜ | Päevakeskus | <https://www.convictus.ee/teenused/paevakeskus> |
+| Convictus Eesti MTÜ | Rakvere Kahjude Vähendamise Keskus | <https://www.convictus.ee/keskused/rakvere> |
+| Convictus Eesti MTÜ | Sitsi 28 Kahjude Vähendamise Keskus | <https://www.convictus.ee/keskused/sitsi> |
+| Convictus Eesti MTÜ | Sotsiaalnõustamine | <https://www.convictus.ee/teenused/sotsiaalnoustamine> |
+| Convictus Eesti MTÜ | Süstlavahetus ja tarvikute jagamine | <https://www.convictus.ee/teenused/sustlavahetus-ja-tarvikute-jagamine> |
+| Convictus Eesti MTÜ | Toidu- ja riideabi | <https://www.convictus.ee/teenused/toidu-ja-riideabi> |
+| Convictus Eesti MTÜ | Tugigrupid ja nõustamine vanglates | <https://www.convictus.ee/teenused/tugigrupid-ja-noustamine-vanglates> |
+| Convictus Eesti MTÜ | Tugigrupp naistele | <https://www.convictus.ee/teenused/tugigrupp-naistele> |
+| Convictus Eesti MTÜ | Tugiisiku nõustamine | <https://www.convictus.ee/teenused/tugiisiku-noustamine> |
+| Convictus Eesti MTÜ | Turvaline seksuaalkäitumine | <https://www.convictus.ee/teenused/turvaline-seksuaalkaitumine> |
 | Dementsuse Kompetentsikeskus | Dementsuse Kompetentsikeskus | <https://dementsus.ee/dementsuse-kompetentsikeskus> |
 | Dementsuse Kompetentsikeskus | Abivahendid | <https://dementsus.ee/abivahendid> |
 | Dementsuse Kompetentsikeskus | Dementsus | <https://dementsus.ee/dementsus> |
@@ -2318,6 +2762,92 @@ Serveris töötav RAG, korpus v69, 07.10.2026. Siin on loend sellest, mida jaoti
 | Eesti Hemofiiliaühing | Infomaterjalid | <https://www.hemofiilia.ee/meist/infomaterjalid> |
 | Eesti Hemofiiliaühing | Tegevused | <https://www.hemofiilia.ee/tegevused> |
 | Eesti Hemofiiliaühing | Veritsushäiretest | <https://www.hemofiilia.ee/meist/veritsushairetest> |
+| Eesti Inimõiguste Keskus | Eesti Inimõiguste Keskus | <https://humanrights.ee/tegevus/keskus/> |
+| Eesti Inimõiguste Keskus | Eesti Inimõiguste Keskus ja digitaalõigused | <https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/eesti-inimoiguste-keskus-ja-digitaaloigused/> |
+| Eesti Inimõiguste Keskus | 7 sammu mitmekesisuse ja kaasatuse arendamiseks | <https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/7-sammu-mitmekesisuse-vaartustamiseks/> |
+| Eesti Inimõiguste Keskus | Avaliku arvamuse uuring LGBT teemadel (2026) | <https://humanrights.ee/materjalid/avaliku-arvamuse-uuring-lgbt-teemadel-2026/> |
+| Eesti Inimõiguste Keskus | Diskrimineerimise keeld | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/diskrimineerimise-keeld/> |
+| Eesti Inimõiguste Keskus | Diskrimineerimise keeld rahvusvahelistes õigusaktides | <https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/diskrimineerimise-keeld-rahvusvahelistes-oigusaktides/> |
+| Eesti Inimõiguste Keskus | Ebaregulaarsed sisserändajad – küsimused ja vastused | <https://humanrights.ee/teemad/pagulased/ebaregulaarsed-sisserandajad/> |
+| Eesti Inimõiguste Keskus | Eessõna | <https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/eessona/> |
+| Eesti Inimõiguste Keskus | Eesti elanike hoiakud LGBT teemadel | <https://humanrights.ee/eesti-elanike-hoiakud-lgbt-teemadel/> |
+| Eesti Inimõiguste Keskus | Halduskius sõjaväeteenistuses osalemise tõlgendamisel | <https://humanrights.ee/kaasused/halduskius-sojavaeteenistuses-osalemise-tolgendamisel/> |
+| Eesti Inimõiguste Keskus | Hea lugeja | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/hea-lugeja/> |
+| Eesti Inimõiguste Keskus | Iga klikk loeb, ka sinu andmeid! | <https://humanrights.ee/iga-klikk-loeb-ka-sinu-andmeid/> |
+| Eesti Inimõiguste Keskus | Infomaterjal vaenukõne ja -kuritegude kohta | <https://humanrights.ee/materjalid/materjal-vaenu-kohta/> |
+| Eesti Inimõiguste Keskus | Inimõigused ja inimõiguste alusväärtused Eesti koolis ja hariduspoliitikas | <https://humanrights.ee/materjalid/inimoigused-ja-inimoiguste-alusvaartused-eesti-koolis-ja-hariduspoliitikas/> |
+| Eesti Inimõiguste Keskus | Inimõigused, infoühiskond ja Eesti: esialgne kaardistus | <https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/> |
+| Eesti Inimõiguste Keskus | Inimõigusi edendava projekti või tegevuse kavandamise ja elluviimise juhend | <https://humanrights.ee/materjalid/inimoigushariduse-tegevuste-kavandamise-ja-elluviimise-juhend/> |
+| Eesti Inimõiguste Keskus | Inimõiguste hariduse meetodid noorsootöötajatele | <https://humanrights.ee/materjalid/inimoiguste-hariduse-meetodid-noorsootootajatele/> |
+| Eesti Inimõiguste Keskus | Inimõiguste kaitsjad | <https://humanrights.ee/teemad/inimoigused-eestis/inimoiguste-kaitsjad/> |
+| Eesti Inimõiguste Keskus | Isikuandmete kaitse | <https://humanrights.ee/tegevus/keskus/isikuandmete-kaitse/> |
+| Eesti Inimõiguste Keskus | Juhend “Seksuaalse ja soolise ahistamise ennetamine töökohal” | <https://humanrights.ee/materjalid/juhend-seksuaalse-ja-soolise-ahistamise-ennetamine-tookohal/> |
+| Eesti Inimõiguste Keskus | Kaardimäng seksuaalse ja soolise mitmekesisusega seotud mõistete kohta | <https://humanrights.ee/materjalid/kaardimang-seksuaalse-ja-soolise-mitmekesisusega-seotud-moistete-kohta/> |
+| Eesti Inimõiguste Keskus | Kes vastutab ja mille eest? | <https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/kes-vastutab-ja-mille-eest/> |
+| Eesti Inimõiguste Keskus | Kogunemisvabaduse piiramine avaliku võimu poolt | <https://humanrights.ee/kaasused/kogunemisvabaduse-piiramine-avaliku-voimu-poolt/> |
+| Eesti Inimõiguste Keskus | Kokkuvõte lihtsas keeles | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/lihtsas-keeles-kokkuvote/> |
+| Eesti Inimõiguste Keskus | Koolitused | <https://humanrights.ee/teemad/mitmekesisus-ja-kaasatus/koolitused/> |
+| Eesti Inimõiguste Keskus | Kuidas luua mitmekesisust ja erinevusi väärtustavat ning kaasavat töökeskkonda? | <https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/> |
+| Eesti Inimõiguste Keskus | Kuidas luua toetav ja turvaline töökeskkond eri kultuuritaustaga inimestele? | <https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/kuidas-luua-toetav-ja-turvaline-tookeskkond-eri-kultuuritaustaga-inimestele/> |
+| Eesti Inimõiguste Keskus | Kuidas luua toetav töökeskkond ATH-ga või autistlikule inimesele? | <https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/kuidas-luua-toetav-tookeskkond-ath-ga-voi-autistlikule-inimesele/> |
+| Eesti Inimõiguste Keskus | Kuidas mõõta mitmekesisust ja kaasatust? | <https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/kuidas-moota-mitmekesisust-ja-kaasatust/> |
+| Eesti Inimõiguste Keskus | Lahendused ja ideed teadlikkuse tõstmiseks | <https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/lahendused-ja-ideed-teadlikkuse-tostmiseks/> |
+| Eesti Inimõiguste Keskus | LGBT+ inimeste olukord | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/lgbt-inimeste-olukord/> |
+| Eesti Inimõiguste Keskus | LGBTI+ filmifestival Festheart | <https://humanrights.ee/kaasused/lgbti-filmifestival-festheart/> |
+| Eesti Inimõiguste Keskus | Materjalid | <https://humanrights.ee/materjalid/> |
+| Eesti Inimõiguste Keskus | Meedia ja vähemused | <https://humanrights.ee/materjalid/meedia-ja-vahemused/> |
+| Eesti Inimõiguste Keskus | Mida teha? | <https://humanrights.ee/teemad/vaen/mida-teha/> |
+| Eesti Inimõiguste Keskus | Miks on mitmekesisuse väärtustamine kasulik? | <https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/miks-on-mitmekesisuse-vaartustamine-kasulik/> |
+| Eesti Inimõiguste Keskus | Miks on vaja soolist palgalõhet mõõta ja vähendada? | <https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/miks-on-vaja-soolist-palgalohet-moota-ja-vahendada/> |
+| Eesti Inimõiguste Keskus | Mis edasi? | <https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/mis-edasi/> |
+| Eesti Inimõiguste Keskus | Mis on ligipääsetavus ja kuidas seda tagada? | <https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/mis-on-ligipaasetavus-ja-kuidas-seda-tagada/> |
+| Eesti Inimõiguste Keskus | Mis on mitmekesisus ja kaasatus? | <https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/mis-on-mitmekesisus-ja-kaasatus/> |
+| Eesti Inimõiguste Keskus | Mis on võrdne kohtlemine? | <https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/mis-on-vordne-kohtlemine/> |
+| Eesti Inimõiguste Keskus | Mitmekesisuse arendamise riskid | <https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/mitmekesisuse-riskid/> |
+| Eesti Inimõiguste Keskus | Mitmekesisuse kuu | <https://humanrights.ee/teemad/mitmekesisus-ja-kaasatus/mitmekesisuse-kuu/> |
+| Eesti Inimõiguste Keskus | Mitmekesisuse päeva tööriistakast | <https://humanrights.ee/materjalid/mitmekesisuse-paeva-tooriistakast/> |
+| Eesti Inimõiguste Keskus | Mitmekesisuse töökoha märgis | <https://humanrights.ee/materjalid/mitmekesisuse-tookoha-margis/> |
+| Eesti Inimõiguste Keskus | Nõustamine | <https://humanrights.ee/noustamine/> |
+| Eesti Inimõiguste Keskus | Olukord Eestis | <https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/olukord-eestis/> |
+| Eesti Inimõiguste Keskus | Olulised institutsioonid Eestis | <https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/olulised-institutsioonid-eestis/> |
+| Eesti Inimõiguste Keskus | Pagulaste ja varjupaigataotlejate õigused | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/pagulaste-ja-varjupaigataotlejate-oigused/> |
+| Eesti Inimõiguste Keskus | Pagulaste palkamine Eesti tööturul | <https://humanrights.ee/materjalid/pagulaste-palkamine-eesti-tooturul/> |
+| Eesti Inimõiguste Keskus | Perekonna taasühinemine | <https://humanrights.ee/kaasused/perekonna-taasuhinemine/> |
+| Eesti Inimõiguste Keskus | Piinamise, ebainimlikult või alandavalt kohtlemise ja karistamise keeld | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/piinamise-ebainimlikult-voi-alandavalt-kohtlemise-ja-karistamise-keeld/> |
+| Eesti Inimõiguste Keskus | Projekt SafeNet | <https://humanrights.ee/teemad/vaen/sotsiaalmeedia/> |
+| Eesti Inimõiguste Keskus | Puuetega inimeste olukord | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/puuetega-inimeste-olukord/> |
+| Eesti Inimõiguste Keskus | Põhiõigustele avalduva mõju hindamise kontrollnimekiri tehisintellektisüsteemide puhul | <https://humanrights.ee/materjalid/pohioigustele-avalduva-moju-hindamise-kontrollnimekiri-tehisintellektisusteemide-puhul/> |
+| Eesti Inimõiguste Keskus | Põimõppekursus “Mitmekesisus ja kaasatus” | <https://humanrights.ee/materjalid/poimoppekursus-mitmekesisus-ja-kaasatus/> |
+| Eesti Inimõiguste Keskus | Rahvusvähemused ja lõimumispoliitika | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/rahvusvahemused-ja-loimumispoliitika/> |
+| Eesti Inimõiguste Keskus | Saa teadmisi inimõiguste kohta eri teemade ja igapäevaste olukordade kaudu | <https://humanrights.ee/teemad/inimoigused-eestis/inimoiguste-e-giid/> |
+| Eesti Inimõiguste Keskus | Sissejuhatus | <https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/sissejuhatus/> |
+| Eesti Inimõiguste Keskus | Sooline võrdsus | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/sooline-vordsus/> |
+| Eesti Inimõiguste Keskus | Strateegiline hagelemine | <https://humanrights.ee/teemad/strateegiline-hagelemine/> |
+| Eesti Inimõiguste Keskus | Sõbraliku tööandja juhend | <https://humanrights.ee/materjalid/sobraliku-tooandja-juhend/> |
+| Eesti Inimõiguste Keskus | Sõnavabadus | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/sonavabadus/> |
+| Eesti Inimõiguste Keskus | Taustauuring TI kasutamise mõju kohta põhiõigustele (inglise keeles) | <https://humanrights.ee/materjalid/taustauuring-ti-kasutamise-moju-kohta-pohioigustele-inglise-keeles/> |
+| Eesti Inimõiguste Keskus | Teema 1: profileerimine ja riik | <https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/teema-1-profileerimine-ja-riik/> |
+| Eesti Inimõiguste Keskus | Teema 2: Isikuandmete kaitse üldmääruse (GDPR) rakendamine | <https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/teema-2-isikuandmete-kaitse-uldmaaruse-gdpr-rakendamine/> |
+| Eesti Inimõiguste Keskus | Teema 3: Väljendusvabadus internetis | <https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/teema-3-valjendusvabadus-internetis/> |
+| Eesti Inimõiguste Keskus | Teemad | <https://humanrights.ee/teemad/> |
+| Eesti Inimõiguste Keskus | Teemade kaardistus | <https://humanrights.ee/materjalid/inimoigused-infouhiskond-ja-eesti-esialgne-kaardistus/teemade-kaardistus/> |
+| Eesti Inimõiguste Keskus | Tehisintellekt ja EL põhiõiguste harta (poliitikadokument) | <https://humanrights.ee/materjalid/poliitikadokument/> |
+| Eesti Inimõiguste Keskus | Tehisintellektisüsteemide arendamine ja põhiõigused: teadlikkuse tagamise, hindamise ja vastutuse hea tava | <https://humanrights.ee/materjalid/tehisintellektisusteemide-arendamine-ja-pohioigused-teadlikkuse-tagamise-hindamise-ja-vastutuse-hea-tava/> |
+| Eesti Inimõiguste Keskus | Turvaline ruum noorsootöös – põhimõtted ja soovitused noorsootöötajatele | <https://humanrights.ee/materjalid/turvaline-ruum-noorsootoos-pohimotted-ja-soovitused-noorsootootajatele/> |
+| Eesti Inimõiguste Keskus | Töö- ja pereelu ühitamise parimad praktikad | <https://humanrights.ee/materjalid/too-ja-pereelu-uhitamise-parimad-praktikad/> |
+| Eesti Inimõiguste Keskus | Usaldusväärne tööandja ennetab ahistamist ja loob turvalise töökeskkonna | <https://humanrights.ee/materjalid/kuidas-luua-mitmekesisust-ja-erinevusi-vaartustavat-ning-kaasavat-tookeskkonda/usaldusvaarne-tooandja-ennetab-ahistamist-ja-loob-turvalise-tookeskkonna/> |
+| Eesti Inimõiguste Keskus | Uuring “Mitmekesisus ja kaasatus tööandjate pilgu läbi” | <https://humanrights.ee/materjalid/uuring-mitmekesisus-ja-kaasatus-tooandjate-pilgu-labi/> |
+| Eesti Inimõiguste Keskus | Vaenukõne ja vaenukuriteod | <https://humanrights.ee/teemad/vaen/vaenukone/> |
+| Eesti Inimõiguste Keskus | Varjupaigataotlejate ja pagulaste nõustamine | <https://humanrights.ee/teemad/pagulased/varjupaigataotlejate-noustamine/> |
+| Eesti Inimõiguste Keskus | Vene pagulaspere lapsendamise kaasus | <https://humanrights.ee/kaasused/pagulaspere-lapsendamise-kaasus/> |
+| Eesti Inimõiguste Keskus | Võitlus vaenu vastu | <https://humanrights.ee/teemad/vaen/> |
+| Eesti Inimõiguste Keskus | Võrdse kohtlemise käsiraamat | <https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/> |
+| Eesti Inimõiguste Keskus | Võrdse kohtlemise normid ja diskrimineerimise keeld Eesti seadustes | <https://humanrights.ee/materjalid/vordse-kohtlemise-kasiraamat/vordse-kohtlemise-normid-ja-diskrimineerimise-keeld-eesti-seadustes/> |
+| Eesti Inimõiguste Keskus | Võrdse kohtlemise võrgustik | <https://humanrights.ee/teemad/vordne-kohtlemine/vordse-kohtlemise-vorgustik/> |
+| Eesti Inimõiguste Keskus | Võrdse kohtlemise võrgustik | <https://humanrights.ee/teemad/inimoigused-eestis/vkv/> |
+| Eesti Inimõiguste Keskus | Võta ühendust | <https://humanrights.ee/tegevus/keskus/vota-uhendust/> |
+| Eesti Inimõiguste Keskus | Õigus perekonna- ja eraelu puutumatusele | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/oigus-perekonna-ja-eraelu-puutumatusele/> |
+| Eesti Inimõiguste Keskus | ÜRO inimõiguste ülevaatus | <https://humanrights.ee/uro-inimoiguste-ulevaatus/> |
 | Eesti Insuldipatsientide Selts | 10 praktilist ideed insuldist taastumise teekonnal | <https://www.insuldiselts.ee/elu-parast-insulti/10-ideed-insuldist-taastumise-teekonnal> |
 | Eesti Insuldipatsientide Selts | 4 olulist A-d | <https://www.insuldiselts.ee/mis-on-insult/4-olulist-a-d> |
 | Eesti Insuldipatsientide Selts | Elu pärast insulti | <https://www.insuldiselts.ee/elu-parast-insulti> |
@@ -2344,6 +2874,9 @@ Serveris töötav RAG, korpus v69, 07.10.2026. Siin on loend sellest, mida jaoti
 | Eesti Insuldipatsientide Selts | Tööle naasmine pärast insulti | <https://www.insuldiselts.ee/elu-parast-insulti/toole-naasmine-parast-insulti> |
 | Eesti Insuldipatsientide Selts | Uue insuldi vältimine | <https://www.insuldiselts.ee/elu-parast-insulti/uue-insuldi-valtimine> |
 | Eesti Insuldipatsientide Selts | Vaimne tervis pärast insulti | <https://www.insuldiselts.ee/elu-parast-insulti/vaimne-tervis-parast-insulti> |
+| Eesti Juristide Liit | Jurist aitab | <https://www.juristaitab.ee/et> |
+| Eesti Juristide Liit | Nõustamiskohad | <https://www.juristaitab.ee/et/noustamiskohad> |
+| Eesti Juristide Liit | Teised õigusnõustajad | <https://www.juristaitab.ee/et/teised-oigusnoustajad> |
 | Eesti Kogelejate Ühing | Eesti Kogelejate Ühing | <https://kogelus.ee/> |
 | Eesti Kogelejate Ühing | Kõneravi lastele | <https://kogelus.ee/koneravi-lastele> |
 | Eesti Kogelejate Ühing | Kõneravi täiskasvanutele | <https://kogelus.ee/koneravi-taiskasvanutele> |
@@ -2397,6 +2930,31 @@ Serveris töötav RAG, korpus v69, 07.10.2026. Siin on loend sellest, mida jaoti
 | Eesti Kuulmispuuetega Laste Vanemate Liit | Kuulmispuudest | <https://www.eklvl.ee/kuulmispuudest> |
 | Eesti Kuulmispuuetega Laste Vanemate Liit | Muud abivahendid | <https://www.eklvl.ee/kuulmispuudest/muud-abivahendid> |
 | Eesti Kuulmispuuetega Laste Vanemate Liit | Teatmik puudega laste peredele | <https://www.eklvl.ee/kuulmispuudest/kasulik-info/teatmik-puudega-laste-peredele> |
+| Eesti Lasterikaste Perede Liit | Avaliku suhtumise kujundamine | <https://www.lasterikkad.ee/avaliku-suhtumise-kujundamine/> |
+| Eesti Lasterikaste Perede Liit | Eetikakoodeks | <https://www.lasterikkad.ee/meist/eetikakoodeks/> |
+| Eesti Lasterikaste Perede Liit | Kogemusnoustamine | <https://www.lasterikkad.ee/kogemusnoustamine/> |
+| Eesti Lasterikaste Perede Liit | Lääne-Harju Lasterikkad Laenutus | <https://www.lasterikkad.ee/laaneharju/meist/laenutus/> |
+| Eesti Lasterikaste Perede Liit | Lääne-Harju Lasterikkad Meie | <https://www.lasterikkad.ee/laaneharju/meist/> |
+| Eesti Lasterikaste Perede Liit | Lääne-Viru Lasterikkad Meist | <https://www.lasterikkad.ee/laane-viru/meist/> |
+| Eesti Lasterikaste Perede Liit | Noustamine | <https://www.lasterikkad.ee/noustamine/?page_id=508> |
+| Eesti Lasterikaste Perede Liit | Noustamine | <https://www.lasterikkad.ee/noustamine/?page_id=506> |
+| Eesti Lasterikaste Perede Liit | Noustamine | <https://www.lasterikkad.ee/noustamine/?page_id=151> |
+| Eesti Lasterikaste Perede Liit | Noustamine | <https://www.lasterikkad.ee/noustamine/?page_id=163> |
+| Eesti Lasterikaste Perede Liit | Noustamine | <https://www.lasterikkad.ee/noustamine/?page_id=165> |
+| Eesti Lasterikaste Perede Liit | Noustamine | <https://www.lasterikkad.ee/noustamine/?page_id=4> |
+| Eesti Lasterikaste Perede Liit | Peresobralik toitlustusasutus | <https://www.lasterikkad.ee/avaliku-suhtumise-kujundamine/peresobralik-toitlustusasutus/> |
+| Eesti Lasterikaste Perede Liit | Peretunde loomine | <https://www.lasterikkad.ee/peretunde-loomine/> |
+| Eesti Lasterikaste Perede Liit | Pärnumaa Lasterikkad Meist | <https://www.lasterikkad.ee/parnumaa/meist/> |
+| Eesti Lasterikaste Perede Liit | Raplamaa Lasterikkad Meist | <https://www.lasterikkad.ee/raplamaa/meist/> |
+| Eesti Lasterikaste Perede Liit | Raplamaa Lasterikkad Peredele | <https://www.lasterikkad.ee/raplamaa/peredele/> |
+| Eesti Lasterikaste Perede Liit | Saaremaa Lasterikaste Perede Ühendus Meist | <https://www.lasterikkad.ee/saaremaa/meist/> |
+| Eesti Lasterikaste Perede Liit | Saku Valla Lasterikkad Meist | <https://www.lasterikkad.ee/saku/meist/> |
+| Eesti Lasterikaste Perede Liit | Samm parema homse nimel | <https://www.lasterikkad.ee/noustamine/> |
+| Eesti Lasterikaste Perede Liit | Taotlemise tingimused | <https://www.lasterikkad.ee/taotlemise-tingimused/> |
+| Eesti Lasterikaste Perede Liit | Tartu Pereliit Eetikakoodeks | <https://www.lasterikkad.ee/tartumaa/meist/dokumendid/> |
+| Eesti Lasterikaste Perede Liit | Tartu Pereliit Meist | <https://www.lasterikkad.ee/tartumaa/meist/> |
+| Eesti Lasterikaste Perede Liit | Valgamaa Lasterikaste Perede Ühing Meist | <https://www.lasterikkad.ee/valgamaa/meist/> |
+| Eesti Lasterikaste Perede Liit | Viljandimaa Lasterikkad Meist | <https://www.lasterikkad.ee/viljandimaa/meist/> |
 | Eesti Lihasehaigete Selts | Eesti Lihasehaigete Selts (ELS) | <https://www.els.ee/> |
 | Eesti Lihasehaigete Selts | ELS infolehed | <https://www.els.ee/infolehed> |
 | Eesti Lihasehaigete Selts | Kaasnähud | <https://www.els.ee/kaasnahud> |
@@ -2410,7 +2968,32 @@ Serveris töötav RAG, korpus v69, 07.10.2026. Siin on loend sellest, mida jaoti
 | Eesti Liikumispuudega Inimeste Liit | Artiklid ja ettekanded meist | <https://elil.ee/et/varia/artiklid-ja-ettekanded-meist> |
 | Eesti Liikumispuudega Inimeste Liit | ELIL eetikakoodeks | <https://elil.ee/et/eesti-liikumispuudega-inimeste-liit/elil-eetikakoodeks> |
 | Eesti Liikumispuudega Inimeste Liit | Liikmete listiga liitumine | <https://elil.ee/et/liikmete-listiga-liitumine> |
+| Eesti Naiste Varjupaikade Liit | Eetikakoodeks | <https://naisteliin.ee/index.php?id=77> |
+| Eesti Naiste Varjupaikade Liit | Eetikakoodeks | <https://www.naisteliin.ee/?id=120> |
+| Eesti Naiste Varjupaikade Liit | ENVL | <https://naisteliin.ee/?id=117> |
+| Eesti Naiste Varjupaikade Liit | Infomaterjalid | <https://naisteliin.ee/?id=148> |
+| Eesti Naiste Varjupaikade Liit | KKK | <https://naisteliin.ee/?id=116> |
+| Eesti Naiste Varjupaikade Liit | Meist | <https://naisteliin.ee/index.php?id=28> |
+| Eesti Naiste Varjupaikade Liit | Mida teha, kui | <https://www.naisteliin.ee/?id=110> |
+| Eesti Naiste Varjupaikade Liit | Naiste tugikeskuste teenused | <https://www.naisteliin.ee/?id=166> |
+| Eesti Naiste Varjupaikade Liit | Naistevastase vägivalla ilmingud | <https://naisteliin.ee/index.php?id=108> |
+| Eesti Naiste Varjupaikade Liit | Paarisuhtevägivald | <https://www.naisteliin.ee/?id=109> |
+| Eesti Naiste Varjupaikade Liit | Teenusekirjeldus | <https://www.naisteliin.ee/?id=139> |
+| Eesti Naiste Varjupaikade Liit | Teenusekirjeldus | <https://naisteliin.ee/index.php?id=159> |
+| Eesti Naiste Varjupaikade Liit | Tugikeskused | <https://naisteliin.ee/index.php?id=111> |
+| Eesti Naiste Varjupaikade Liit | Tugitelefon 1492 | <https://www.naisteliin.ee/?id=115> |
+| Eesti Naiste Varjupaikade Liit | Vägivallast | <https://naisteliin.ee/index.php?id=107> |
+| Eesti Naiste Varjupaikade Liit | Www.naisteliin.ee | <https://www.naisteliin.ee/?id=1> |
 | Eesti Neeruhaigete Liit | Kõik neerudest. | <https://www.neer.ee/> |
+| Eesti Pagulasabi | Kontaktid | <https://pagulasabi.ee/et/kontaktid> |
+| Eesti Pagulasabi | Majanduslik heaolu | <https://www.pagulasabi.ee/et/majanduslik-heaolu> |
+| Eesti Pagulasabi | Märkamatu keeleõpe toetab pagulastaustaga noorte kohanemist | <https://www.pagulasabi.ee/et/markamatu-keeleope-toetab-pagulastaustaga-noorte-kohanemist> |
+| Eesti Pagulasabi | Praktiline juhend: kuidas toetada Ukraina noori keeleõppes ja lõimumises | <https://pagulasabi.ee/et/praktiline-juhend-kuidas-toetada-ukraina-noori-keeleoppes-ja-loimumises> |
+| Eesti Pagulasabi | Privaatsuspoliitika | <https://pagulasabi.ee/node/499> |
+| Eesti Pagulasabi | Sotsiaalne heaolu | <https://www.pagulasabi.ee/et/sotsiaalne-heaolu> |
+| Eesti Pagulasabi | Tutvustus | <https://www.pagulasabi.ee/et/tutvustus> |
+| Eesti Pagulasabi | Tuult tiibadesse: Keeleõppe ja kohanemise tugi aitab Ukraina noortel oma tulevikku kujundada | <https://pagulasabi.ee/et/tuult-tiibadesse-keeleoppe-ja-kohanemise-tugi-aitab-ukraina-noortel-oma-tulevikku-kujundada> |
+| Eesti Pagulasabi | Ukraina noorte toetamine Eestis: keel, kogukond ja tulevikuvõimalused | <https://www.pagulasabi.ee/et/ukraina-noorte-toetamine-eestis-keel-kogukond-ja-tulevikuvoimalused> |
 | Eesti Paralümpiakomitee | Eesti Paralümpiakomitee | <https://www.paralympic.ee/> |
 | Eesti Paralümpiakomitee | Boccia | <https://www.paralympic.ee/et/spordialad/boccia/2> |
 | Eesti Paralümpiakomitee | EPK Dokumendid | <https://www.paralympic.ee/et/epk-dokumendid> |
@@ -2421,6 +3004,18 @@ Serveris töötav RAG, korpus v69, 07.10.2026. Siin on loend sellest, mida jaoti
 | Eesti Paralümpiakomitee | Parajudo | <https://www.paralympic.ee/et/spordialad/parajudo/3> |
 | Eesti Paralümpiakomitee | Spordialad | <https://www.paralympic.ee/et/spordialad> |
 | Eesti Paralümpiakomitee | Sport | <https://www.paralympic.ee/et/sporditurvalisus> |
+| Eesti Patsientide Liit | Abiks arsti juures | <https://patsiendid.ee/patsiendi-oigused/abiks-arsti-juures> |
+| Eesti Patsientide Liit | Abiks ravimi ostmisel | <https://patsiendid.ee/patsiendi-oigused/abiks-ravimi-ostmisel> |
+| Eesti Patsientide Liit | Korduma kippuvad küsimused: | <https://patsiendid.ee/liikmele/kkk> |
+| Eesti Patsientide Liit | Küsi apteekrilt oma ravimite kohta | <https://patsiendid.ee/liikmele/kusi-oma-ravimite-kohta> |
+| Eesti Patsientide Liit | Loe lähemalt tervisest: | <https://patsiendid.ee/liikmele/loe-haiguste-kohta> |
+| Eesti Patsientide Liit | Olulised nõuandetelefonid | <https://patsiendid.ee/partnerid/nouandetelefonid> |
+| Eesti Patsientide Liit | Olulised õigusaktid | <https://patsiendid.ee/patsiendi-oigused/oigusaktid> |
+| Eesti Patsientide Liit | Patsiendi ABC | <https://patsiendid.ee/patsiendi-oigused/patsiendi-abc> |
+| Eesti Patsientide Liit | Patsiendikesksus | <https://patsiendid.ee/patsiendi-oigused/patsiendikesksus> |
+| Eesti Patsientide Liit | Ravimite hüvitamine | <https://patsiendid.ee/patsiendi-oigused/ravimite-huvitamine> |
+| Eesti Patsientide Liit | Riiklikud olulised tervishoiusüsteemi lingid: | <https://patsiendid.ee/partnerid/riik> |
+| Eesti Patsientide Liit | Ühingu eesmärgid: | <https://patsiendid.ee/meist/eesmargid> |
 | Eesti Pimedate Liit | Abivahendid | <https://pimedateliit.ee/abivahendid> |
 | Eesti Pimedate Liit | Arvutid ja nutiseadmed | <https://pimedateliit.ee/arvutid-ja-nutiseadmed> |
 | Eesti Pimedate Liit | Eesti Pimedate Liidust | <https://pimedateliit.ee/> |
@@ -2455,6 +3050,27 @@ Serveris töötav RAG, korpus v69, 07.10.2026. Siin on loend sellest, mida jaoti
 | Eesti Psüühikahäiretega Inimeste Lähedaste Liit | Liitu meiega | <https://epill.ee/> |
 | Eesti Psüühikahäiretega Inimeste Lähedaste Liit | Psüühikahäiretest | <https://epill.ee/psuuhikahairetest> |
 | Eesti Psüühikahäiretega Inimeste Lähedaste Liit | Tegevused | <https://epill.ee/tegevused> |
+| Eesti Punane Rist | Elupäästva esmaabi lühikursus | <https://redcross.ee/koolitused/elupaastva-esmaabi-luhikursus> |
+| Eesti Punane Rist | Esileht | <https://redcross.ee/> |
+| Eesti Punane Rist | Esmaabi põhikoolitus | <https://redcross.ee/koolitused/esmaabi-pohikoolitus-16-h> |
+| Eesti Punane Rist | Esmaabi põhikoolitus osaliselt e-õppena | <https://redcross.ee/koolitused/esmaabi-pohikoolitus-osaliselt-e-oppena> |
+| Eesti Punane Rist | Esmaabi ringõppus | <https://redcross.ee/esmaabi-ringoppus> |
+| Eesti Punane Rist | Esmaabi täiendkoolitus | <https://redcross.ee/koolitused/esmaabi-taiendkoolitus> |
+| Eesti Punane Rist | Esmaabikoolitus lastevanematele | <https://redcross.ee/koolitused/esmaabikoolitus-lastevanematele> |
+| Eesti Punane Rist | Esmaabiõpetajate põhikoolitus | <https://redcross.ee/koolitused/esmaabikoolitajate-pohikoolitus> |
+| Eesti Punane Rist | Esmaabiõpetajate täiendkoolitus | <https://redcross.ee/koolitused/esmaabikoolitajate-taiendkoolitus> |
+| Eesti Punane Rist | Koolitused | <https://www.redcross.ee/koolitused> |
+| Eesti Punane Rist | Koolitusmaterjalid | <https://redcross.ee/koolitusmaterjalid> |
+| Eesti Punane Rist | Korduvad küsimused | <https://redcross.ee/bumerang/KKK> |
+| Eesti Punane Rist | Liikumise põhimõtted | <https://redcross.ee/pohimotted> |
+| Eesti Punane Rist | Psühholoogiline esmaabi | <https://redcross.ee/psuhholoogiline-esmaabi> |
+| Eesti Punane Rist | Psühholoogilise esmaabi koolitus | <https://redcross.ee/koolitused/psuhholoogilise-esmaabi-koolitus> |
+| Eesti Punane Rist | Tegevus | <https://redcross.ee/tegevus> |
+| Eesti Punane Rist | Telli koolitus ettevõttele | <https://redcross.ee/telli-koolitus-ettevottele> |
+| Eesti Punane Rist | Tervise edendamine | <https://redcross.ee/tervise-edendamine> |
+| Eesti Punane Rist | Traumateadliku psühholoogilise esmaabi koolitus | <https://redcross.ee/traumateadliku-psuhholoogilise-esmaabi-koolitus> |
+| Eesti Punane Rist | Vabatahtlike koolitused | <https://redcross.ee/vabatahtlike-koolitused> |
+| Eesti Punane Rist | Väike esmaabiaandja, koolitus lasteaialastele | <https://redcross.ee/koolitused/vaike-esmaabiaandja-koolitus-lasteaialastele> |
 | Eesti Puuetega Inimeste Koda | Eesti Puuetega Inimeste Koda | <https://epikoda.ee/> |
 | Eesti Puuetega Inimeste Koda | Ametlikud arvamused ja pöördumised | <https://epikoda.ee/tegevusvaldkonnad/huvikaitse/ametlikud-arvamused-ja-poordumised> |
 | Eesti Puuetega Inimeste Koda | Andmekaitse tingimused | <https://epikoda.ee/vota-uhendust/andmekaitse> |
@@ -2512,6 +3128,47 @@ Serveris töötav RAG, korpus v69, 07.10.2026. Siin on loend sellest, mida jaoti
 | Eesti Sclerosis Multiplexi Ühingute Liit | SA Sclerosis multiplexi register | <https://smk.ee/sa-sclerosis-multiplexi-register> |
 | Eesti Sclerosis Multiplexi Ühingute Liit | Sümptomid | <https://smk.ee/sumptomid> |
 | Eesti Sclerosis Multiplexi Ühingute Liit | Teavitusmaterjalid | <https://smk.ee/teavitusmaterjalid> |
+| Eesti Seksuaaltervise Liit | Abort ehk raseduse katkestamine | <https://seksuaaltervis.ee/rasedus-2/abort> |
+| Eesti Seksuaaltervise Liit | Ebatõhusad meetodid | <https://seksuaaltervis.ee/rasestumisvastased-vahendid/ebatohusad-meetodid> |
+| Eesti Seksuaaltervise Liit | Emakasisene vahend ehk spiraal | <https://seksuaaltervis.ee/rasestumisvastased-vahendid/spiraal> |
+| Eesti Seksuaaltervise Liit | HIV ja AIDS | <https://seksuaaltervis.ee/suguhaigused/hiv-ja-aids> |
+| Eesti Seksuaaltervise Liit | HPV (Human papillomavirus) ehk inimese papilloomviirus | <https://seksuaaltervis.ee/suguhaigused/hpv-ehk-papilloomviirus> |
+| Eesti Seksuaaltervise Liit | Hädaabimeetodid ehk vahekorrajärgsed rasestumisvastased vahendid | <https://seksuaaltervis.ee/rasestumisvastased-vahendid/sos-pill> |
+| Eesti Seksuaaltervise Liit | Kondoom | <https://seksuaaltervis.ee/rasestumisvastased-vahendid/kondoom> |
+| Eesti Seksuaaltervise Liit | Kontakt | <https://seksuaaltervis.ee/kontakt> |
+| Eesti Seksuaaltervise Liit | Küsi nõu | <https://seksuaaltervis.ee/kusi-nou> |
+| Eesti Seksuaaltervise Liit | Minipillid | <https://seksuaaltervis.ee/rasestumisvastased-vahendid/minipillid> |
+| Eesti Seksuaaltervise Liit | Mis on suguhaigused? | <https://seksuaaltervis.ee/suguhaigused/mis-on-suguhaigused> |
+| Eesti Seksuaaltervise Liit | Muud levinumad suguhaigused | <https://seksuaaltervis.ee/suguhaigused/muud-levinumad-suguhaigused> |
+| Eesti Seksuaaltervise Liit | Nakatumine | <https://seksuaaltervis.ee/suguhaigused/nakatumine> |
+| Eesti Seksuaaltervise Liit | Noorte nõustamiskeskused | <https://seksuaaltervis.ee/noorte-noustamiskeskused> |
+| Eesti Seksuaaltervise Liit | Pillid | <https://seksuaaltervis.ee/rasestumisvastased-vahendid/pillid> |
+| Eesti Seksuaaltervise Liit | Rasedus | <https://seksuaaltervis.ee/rasedus/mis-on-rasedus> |
+| Eesti Seksuaaltervise Liit | Raseduse katkemine | <https://seksuaaltervis.ee/rasedus-2/raseduse-katkemine> |
+| Eesti Seksuaaltervise Liit | Rasestumisvastane implantaat | <https://seksuaaltervis.ee/rasestumisvastased-vahendid/rasestumisvastane-implantaat> |
+| Eesti Seksuaaltervise Liit | Rasestumisvastane plaaster | <https://seksuaaltervis.ee/rasestumisvastased-vahendid/rasestumisvastane-plaaster> |
+| Eesti Seksuaaltervise Liit | Rasestumisvastased meetodid ehk rasestumisvastased vahendid | <https://seksuaaltervis.ee/rasestumisvastased-vahendid/rasestumisvastased-meetodid-ehk-rasestumisvastased-vahendid> |
+| Eesti Seksuaaltervise Liit | Seksuaaltervis | <https://seksuaaltervis.ee/> |
+| Eesti Seksuaaltervise Liit | Sterilisatsioon | <https://seksuaaltervis.ee/rasestumisvastased-vahendid/sterilisatsioon> |
+| Eesti Seksuaaltervise Liit | Sugu | <https://seksuaaltervis.ee/sugu> |
+| Eesti Seksuaaltervise Liit | Sünnitus | <https://seksuaaltervis.ee/rasedus-2/sunnitus> |
+| Eesti Seksuaaltervise Liit | Süstitav hormonaalne meetod | <https://seksuaaltervis.ee/rasestumisvastased-vahendid/sustitav-hormonaalne-meetod> |
+| Eesti Seksuaaltervise Liit | Topeltmeetod | <https://seksuaaltervis.ee/rasestumisvastased-vahendid/topeltmeetod> |
+| Eesti Seksuaaltervise Liit | Tuperõngas | <https://seksuaaltervis.ee/rasestumisvastased-vahendid/tuperongas> |
+| Eesti Seksuaaltervise Liit | Viljatus | <https://seksuaaltervis.ee/rasedus-2/viljatus> |
+| Eesti Sotsiaaltöö Assotsiatsioon | Eetikakäsiraamat \| ESTA | <https://www.eswa.ee/eetikakasiraamat/> |
+| Eesti Toidupank | Kellele jagame toiduabi? | <https://www.toidupank.ee/vajad-abi/kellele-jagame-toiduabi> |
+| Eesti Toidupank | Millest toiduabi koosneb? | <https://www.toidupank.ee/vajad-abi/millest-toiduabi-koosneb> |
+| Eesti Toidupank | Taotle abi | <https://www.toidupank.ee/vajad-abi> |
+| Eesti Toidupank | Toiduabi taotlemise info | <https://www.toidupank.ee/vajad-abi/toiduabi-taotlemise-info> |
+| Eesti Toidupank | Vali toidupank | <https://www.toidupank.ee/foodbanks/jogeva> |
+| Eesti Toidupank | Vali toidupank | <https://www.toidupank.ee/foodbanks/rapla> |
+| Eesti Toidupank | Vali toidupank | <https://www.toidupank.ee/foodbanks/tallinn> |
+| Eesti Toidupank | Vali toidupank | <https://www.toidupank.ee/foodbanks/rakvere> |
+| Eesti Toidupank | Vali toidupank | <https://www.toidupank.ee/foodbanks/valga> |
+| Eesti Toidupank | Vali toidupank | <https://www.toidupank.ee/foodbanks/kuressaare> |
+| Eesti Toidupank | Vali toidupank | <https://www.toidupank.ee/foodbanks/tartu> |
+| Eesti Toidupank | Vali toidupank | <https://www.toidupank.ee/foodbanks/parnu> |
 | Eesti Vaegkuuljate Liit | Aparaadi taotlemine | <https://vaegkuuljad.ee/kuulmisabi/aparaadi-taotlemine> |
 | Eesti Vaegkuuljate Liit | Dokumendid | <https://vaegkuuljad.ee/liidust/dokumendid> |
 | Eesti Vaegkuuljate Liit | Kirjutustõlketeenus | <https://vaegkuuljad.ee/teenused/kirjutustolketeenus> |
@@ -2549,6 +3206,11 @@ Serveris töötav RAG, korpus v69, 07.10.2026. Siin on loend sellest, mida jaoti
 | Eesti Vaimupuudega Inimeste Tugiliit | TÖÖANDJAD | <https://vaimukad.ee/tooandjad> |
 | Eesti Viipekeeletõlkide Kutseühing | Koolitused | <https://evkty.ee/koolitused> |
 | Eesti Viipekeeletõlkide Kutseühing | Kutse andmine | <https://evkty.ee/kutse-omistamine> |
+| Eesti Võlanõustajate Liit | Abiotsijale | <https://evnl.ee/abiotsijale/> |
+| Eesti Võlanõustajate Liit | Eetikakoodeks | <https://evnl.ee/uhingust/eetikakoodeks/> |
+| Eesti Võlanõustajate Liit | Evnl.ee | <https://evnl.ee/> |
+| Eesti Võlanõustajate Liit | Rahatarkus | <https://evnl.ee/abiotsijale/rahatarkus/> |
+| Eesti Võlanõustajate Liit | Teenuse korraldus | <https://evnl.ee/abiotsijale/teenuse-korraldus/> |
 | Eesti Vähiliit | Eesti Vähiliit | <https://cancer.ee/> |
 | Eesti Vähiliit | Eesnäärmevähk | <https://cancer.ee/info-vahist/vahipaikmed/eesnaarmevahk> |
 | Eesti Vähiliit | Emakakaelavähk | <https://cancer.ee/info-vahist/vahipaikmed/emakakaelavahk> |
@@ -2592,6 +3254,25 @@ Serveris töötav RAG, korpus v69, 07.10.2026. Siin on loend sellest, mida jaoti
 | Elu dementsusega | Meist | <https://eludementsusega.ee/mtu-elu-dementsusega> |
 | Elu dementsusega | Tark lähedane | <https://eludementsusega.ee/tark-lahedane> |
 | Elu dementsusega | Tunne dementsust! | <https://eludementsusega.ee/tunne-dementsust> |
+| Hasartmängusõltuvuse Nõustamiskeskus | Hasartmängusõltuvuse Nõustamiskeskus | <https://15410.ee/> |
+| Hasartmängusõltuvuse Nõustamiskeskus | Digisõltuvus | <https://15410.ee/digisoltuvus> |
+| Hasartmängusõltuvuse Nõustamiskeskus | Digisõltuvuse nõustamine ja psühhoteraapia | <https://15410.ee/noustamiskeskus/digisoltuvuse-noustamine-ja-psuhhoteraapia> |
+| Hasartmängusõltuvuse Nõustamiskeskus | Hasartmängusõltuvus | <https://15410.ee/hasartmangusoltuvus> |
+| Hasartmängusõltuvuse Nõustamiskeskus | Hasartmängusõltuvuse nõustamine ja psühhoteraapia | <https://15410.ee/noustamiskeskus/hasartmangusoltuvuse-noustamine-ja-psuhhoteraapia> |
+| Hasartmängusõltuvuse Nõustamiskeskus | Hinnakiri | <https://15410.ee/hinnakiri> |
+| Hasartmängusõltuvuse Nõustamiskeskus | Kontakt | <https://15410.ee/kontakt> |
+| Hasartmängusõltuvuse Nõustamiskeskus | Nõustamiskeskus | <https://15410.ee/noustamiskeskus> |
+| Hasartmängusõltuvuse Nõustamiskeskus | Testi ennast | <https://15410.ee/digisoltuvus/testi-ennast-arvutisoltuvus> |
+| Hasartmängusõltuvuse Nõustamiskeskus | Testi ennast | <https://15410.ee/hasartmangusoltuvus/testi-ennast-hasartmangusoltuvus> |
+| Hingehoid | Hingehoid | <https://www.hingehoid.ee/hingehoid> |
+| Hingehoid | Hinge hoid | <https://www.hingehoid.ee/> |
+| Hingehoid | Hingehoiukeskus | <https://www.hingehoid.ee/hingehoiukeskus> |
+| Hingehoid | Hingehoiutelefon | <https://www.hingehoid.ee/hingehoiutelefon> |
+| Hingehoid | Kutsestandard | <https://www.hingehoid.ee/hingehoidjale> |
+| Hingehoid | KUTSESTANDARD | <https://hingehoid.ee/hingehoidjale/kutsestandard> |
+| Hingehoid | Kõrgharidus | <https://www.hingehoid.ee/korgharidus> |
+| Hingehoid | Vajan tuge | <https://www.hingehoid.ee/vajad-toetust> |
+| Hingehoid | Hingehoidja eetilised põhimõtted | <https://www.hingehoid.ee/hingehoid/hingehoidja-eetilised-pohimotted> |
 | Ida-Virumaa Puuetega Inimeste Koda | Igapäevaelu toetamine | <https://erivajadus.ee/teenused/igapaeva-elu-toetamine> |
 | Ida-Virumaa Puuetega Inimeste Koda | Isikukeskse erihoolekande teenuse mudeli (ISTE) rakendamine kohalikus omavalitsuses – Jõhvi vallavalitsus | <https://erivajadus.ee/teenused/pilootprojekt-isikukeskse-erihoolekande-teenusmudeli-rakendamine-kohalikus-omavalitsuses-johvi-vallavalitsus> |
 | Ida-Virumaa Puuetega Inimeste Koda | Isikukeskse erihoolekande teenuse mudeli (ISTE) rakendamine kohalikus omavalitsuses – Kohtla-Järve linnavalitsus | <https://erivajadus.ee/teenused/pilootprojekt-isikukeskse-erihoolekande-teenusmudeli-rakendamine-kohalikus-omavalitsuses-kohtla-jarve> |
@@ -2604,6 +3285,18 @@ Serveris töötav RAG, korpus v69, 07.10.2026. Siin on loend sellest, mida jaoti
 | Ida-Virumaa Puuetega Inimeste Koda | Üheskoos ületame kõik tõkked | <https://www.erivajadus.ee/> |
 | Lääne-Virumaa Puuetega Inimeste Koda | Rahastatud projektid | <https://www.virukoda.ee/Projektid> |
 | Lääne-Virumaa Puuetega Inimeste Koda | Ühingust | <https://www.virukoda.ee/Meist> |
+| MTÜ Eesti Omastehooldus | Abiks omastehooldajale | <https://omastehooldus.eu/abiks-omastehooldajale> |
+| MTÜ Eesti Omastehooldus | Abivahendid | <https://omastehooldus.eu/abivahendid> |
+| MTÜ Eesti Omastehooldus | Dokumendid | <https://omastehooldus.eu/dokumendid> |
+| MTÜ Eesti Omastehooldus | Omastehoolduse 10 teesi | <https://omastehooldus.eu/omastehoolduse-10-teesi> |
+| MTÜ Eesti Omastehooldus | Ühingud ja ametid | <https://omastehooldus.eu/uhingud-ja-ametid> |
+| MTÜ Eesti Omastehooldus | Ühingust | <https://omastehooldus.eu/uhingust> |
+| MTÜ Eesti Omastehooldus | Üldkontakt | <https://omastehooldus.eu/uldkontakt> |
+| MTÜ Eluliin | Eetilise tegutsemise põhimõtted | <https://www.eluliin.ee/eetilise-tegutsemise-pohimotted> |
+| MTÜ Eluliin | Emotsionaalse toe telefon | <https://www.eluliin.ee/node/15> |
+| MTÜ Eluliin | Harta | <https://www.eluliin.ee/harta> |
+| MTÜ Eluliin | Psühholoogiline kriisinõustamine | <https://www.eluliin.ee/psuhholoogiline-kriisinoustamine> |
+| MTÜ Eluliin | Tule vabatahtlikuks | <https://www.eluliin.ee/tule-vabatahtlikuks> |
 | MTÜ Iseseisev Elu | Eetika | <https://www.iseseisev-elu.ee/iseseisev-elu/eetika> |
 | MTÜ Iseseisev Elu | Igapäevaelu toetamise teenus | <https://www.iseseisev-elu.ee/teenused/iet> |
 | MTÜ Iseseisev Elu | Igapäevaelu toetamise teenusele saamine ja teenuse lõppemine | <https://www.iseseisev-elu.ee/teenused/iet/iet-teenus> |
@@ -2618,6 +3311,306 @@ Serveris töötav RAG, korpus v69, 07.10.2026. Siin on loend sellest, mida jaoti
 | MTÜ Iseseisev Elu | Tooted | <https://www.iseseisev-elu.ee/tooted> |
 | MTÜ Iseseisev Elu | Töötamise toetamise teenus | <https://www.iseseisev-elu.ee/teenused/tootamine> |
 | MTÜ Iseseisev Elu | Visioon, missioon | <https://www.iseseisev-elu.ee/iseseisev-elu/visioon-missioon> |
+| MTÜ Laste ja Noorte Kriisiprogramm | Laager | <https://lastekriis.ee/laagrid/> |
+| MTÜ Laste ja Noorte Kriisiprogramm | Lapsele | <https://lastekriis.ee/lapsele/> |
+| MTÜ Laste ja Noorte Kriisiprogramm | Spetsialistile | <https://lastekriis.ee/spetsialistile/> |
+| MTÜ Laste ja Noorte Kriisiprogramm | Teenused ja hinnakiri | <https://lastekriis.ee/teenused/> |
+| MTÜ Laste ja Noorte Kriisiprogramm | Vanemale | <https://lastekriis.ee/vanemale/> |
+| MTÜ Lastekaitse Liit | Evidence to Protect – laste turvalisus ja õiguste kaitse digikeskkonnas | <https://www.lastekaitseliit.ee/et/evidence-to-protect-laste-turvalisus-ja-oiguste-kaitse-digikeskkonnas> |
+| MTÜ Lastekaitse Liit | Hea nõu lastega peredele | <https://www.lastekaitseliit.ee/et/hea-nou-lastega-peredele> |
+| MTÜ Lastekaitse Liit | HEA ON OLLA LAPS! | <https://www.lastekaitseliit.ee/et/hea-on-olla-laps> |
+| MTÜ Lastekaitse Liit | Huvihariduse küsitluse tulemused | <https://www.lastekaitseliit.ee/et/huviharidusetulemused> |
+| MTÜ Lastekaitse Liit | Koostöövõrgustik laste osaluse edendamiseks Balti- ja Põhjamaades | <https://www.lastekaitseliit.ee/et/koostoovorgustik-laste-osaluse-edendamiseks-balti-ja-pohjamaades> |
+| MTÜ Lastekaitse Liit | Korduma kippuvad küsimused | <https://www.lastekaitseliit.ee/et/korduma-kippuvad-kusimused> |
+| MTÜ Lastekaitse Liit | Kuhu pöörduda abi saamiseks? | <https://www.lastekaitseliit.ee/et/kuhu-poorduda-abi-saamiseks> |
+| MTÜ Lastekaitse Liit | Lapse õigused | <https://www.lastekaitseliit.ee/et/lapse-oigused> |
+| MTÜ Lastekaitse Liit | Lapse õiguste ABC | <https://www.lastekaitseliit.ee/et/laste-oiguste-abc> |
+| MTÜ Lastekaitse Liit | Lapse õiguste saadikud | <https://www.lastekaitseliit.ee/et/lapse-oiguste-saadikud> |
+| MTÜ Lastekaitse Liit | Lastekaitse Liidu Fond | <https://www.lastekaitseliit.ee/et/lastekaitseliit/lastekaitse-liidu-fond> |
+| MTÜ Lastekaitse Liit | Meie tegevused | <https://www.lastekaitseliit.ee/et/meie-tegevused> |
+| MTÜ Lastekaitse Liit | Meist | <https://www.lastekaitseliit.ee/et/meist> |
+| MTÜ Lastekaitse Liit | MTÜ Lastekaitse Liidu üle-eestilise võrgustikutöö arendamine ja liikmeskonna võimendamine | <https://www.lastekaitseliit.ee/et/mtu-lastekaitse-liidu-ule-eestilise-vorgustikutoo-arendamine-ja-liikmeskonna-voimendamine> |
+| MTÜ Lastekaitse Liit | Märka oma kodukohta | <https://www.lastekaitseliit.ee/et/marka-oma-kodukohta> |
+| MTÜ Lastekaitse Liit | Päevapilt "Hea on olla laps" | <https://www.lastekaitseliit.ee/et/> |
+| MTÜ Lastekaitse Liit | Tasuta õigusabi võimalustest | <https://www.lastekaitseliit.ee/et/tasuta-oigusabi-voimalustest> |
+| MTÜ Oma Pere | Eestkostja ja hooldusvanem | <https://www.omapere.ee/eestkostja-ja-hooldusvanem/> |
+| MTÜ Oma Pere | Lapsendaja | <https://www.omapere.ee/lapsendaja/> |
+| MTÜ Oma Pere | Lapsendatu | <https://www.omapere.ee/lapsendatu/> |
+| MTÜ Oma Pere | Oleme tugiorganisatsioon lapsendaja- hooldus- ja eestkosteperedele. | <https://www.omapere.ee/> |
+| MTÜ Oma Pere | Planeerimata rasedus | <https://www.omapere.ee/planeerimata-rasedus/> |
+| MTÜ Oma Pere | Spetsialist | <https://www.omapere.ee/professionaal> |
+| MTÜ Oma Pere | Tugiteenused kasuperedele | <https://www.omapere.ee/noustamine/> |
+| MTÜ Oma Pere | Viljatusravi teekond | <https://www.omapere.ee/lapsendamist-kaaluv/> |
+| MTÜ Pallium | mtü pallium | <https://pallium.ee/palliumist> |
+| MTÜ Pallium | HAIGUSEGA TOIMETULEK KODUS | <https://pallium.ee/patsiendile?articleId=5d07e239981dff0c7d7b10c0> |
+| MTÜ Pallium | Hospiits | <https://pallium.ee/patsiendile?articleId=5d07e269981dff0c7d7b10c1> |
+| MTÜ Pallium | Koduõendusteenus | <https://pallium.ee/patsiendile?articleId=5d07e5b2981dff0c7d7b10c7> |
+| MTÜ Pallium | Kõhulahtisus | <https://pallium.ee/patsiendile?articleId=5d0cb1ed981dff0c7d7b10ce> |
+| MTÜ Pallium | Meeleoluhäired | <https://pallium.ee/patsiendile?articleId=5ceae222d183377aff11a2e5> |
+| MTÜ Pallium | Spetsiifiline kasvajavastane ravi | <https://pallium.ee/patsiendile?articleId=5ceae316d183377aff11a2ec> |
+| MTÜ Pallium | Sümptomaatiline ravi | <https://pallium.ee/patsiendile?articleId=5d0cac02981dff0c7d7b10cd> |
+| MTÜ Pallium | Taastusravi | <https://pallium.ee/patsiendile?articleId=5ceae237d183377aff11a2e6> |
+| MTÜ Pallium | Toetavad teraapiad palliatiivses ravis | <https://pallium.ee/patsiendile?articleId=5ceae032d183377aff11a2e1> |
+| MTÜ Pallium | Turvalisuse tagamise ja kadumise ennetamise abivahendid | <https://pallium.ee/patsiendile?articleId=5d07e558981dff0c7d7b10c6> |
+| MTÜ Pallium | Õendusabi haiglas | <https://pallium.ee/patsiendile?articleId=5ceae180d183377aff11a2e2> |
+| MTÜ Pallium | Õhupuudus | <https://pallium.ee/patsiendile?articleId=5d0cb2fe981dff0c7d7b10cf> |
+| MTÜ Peaasjad | Alatoitumine | <https://peaasi.ee/alatoitumine/> |
+| MTÜ Peaasjad | Anoreksia | <https://peaasi.ee/anoreksia/> |
+| MTÜ Peaasjad | Antidepressandid ja aju | <https://peaasi.ee/antidepressandid-ja-aju/> |
+| MTÜ Peaasjad | Antipsühhootikumid ja aju | <https://peaasi.ee/antipsuhhootikumid-ja-aju/> |
+| MTÜ Peaasjad | Arvutisõltuvus | <https://peaasi.ee/arvutisoltuvus/> |
+| MTÜ Peaasjad | Autismispekter | <https://peaasi.ee/autismispektri-haired/> |
+| MTÜ Peaasjad | Avasta oma psühhootiline osa | <https://peaasi.ee/avasta-oma-psuhhootiline-osa/> |
+| MTÜ Peaasjad | Bipolaarne häire noorukitel | <https://peaasi.ee/bipolaarne-haire-noorukitel/> |
+| MTÜ Peaasjad | Bipolaarse häire ravi | <https://peaasi.ee/bipolaarse-haire-ravi/> |
+| MTÜ Peaasjad | Buliimia | <https://peaasi.ee/buliimia/> |
+| MTÜ Peaasjad | Depressioon | <https://peaasi.ee/depressioon/> |
+| MTÜ Peaasjad | Depressioon ja aju | <https://peaasi.ee/depressioon-ja-aju/> |
+| MTÜ Peaasjad | Depressioon töökohal | <https://peaasi.ee/depressioon-tookohal/> |
+| MTÜ Peaasjad | Depressiooni ennetamine | <https://peaasi.ee/depressiooni-ennetamine/> |
+| MTÜ Peaasjad | Depressiooni võimalikud tagajärjed noorukitel | <https://peaasi.ee/depressiooni-voimalikud-tagajarjed-noorukitel/> |
+| MTÜ Peaasjad | Dieedi pidamine | <https://peaasi.ee/dieedi-pidamine/> |
+| MTÜ Peaasjad | E-nõustamine | <https://peaasi.ee/e-noustamine/> |
+| MTÜ Peaasjad | Emotsionaalsed seisundid | <https://peaasi.ee/emotsionaalsed-seisundid/> |
+| MTÜ Peaasjad | Emotsioonid | <https://peaasi.ee/emotsioonid/> |
+| MTÜ Peaasjad | Emotsioonide vaoshoidmine | <https://peaasi.ee/emotsioonide-vaoshoidmine/> |
+| MTÜ Peaasjad | Emotsioonide väljendumine | <https://peaasi.ee/emotsioonide-valjendumine/> |
+| MTÜ Peaasjad | Enesehinnang | <https://peaasi.ee/enesehinnang/> |
+| MTÜ Peaasjad | Enesesisendus | <https://peaasi.ee/enesesisendus/> |
+| MTÜ Peaasjad | Enesetapp – müüdid ja tegelikkus | <https://peaasi.ee/enesetapp-muudid-ja-tegelikkus/> |
+| MTÜ Peaasjad | Enesetapumõtete tunnused | <https://peaasi.ee/enesetapumotete-tunnused/> |
+| MTÜ Peaasjad | Enesetapuriski hindamine | <https://peaasi.ee/enesetapuriski-hindamine/> |
+| MTÜ Peaasjad | Enesetoetamine | <https://peaasi.ee/enesetoetamine/> |
+| MTÜ Peaasjad | Enesevigastamine ja selle põhjused | <https://peaasi.ee/enesevigastamine-ja-selle-pohjused/> |
+| MTÜ Peaasjad | Enesevigastamise müüdid ja reaalsus | <https://peaasi.ee/enesevigastamise-muudid-ja-reaalsus/> |
+| MTÜ Peaasjad | Enesevigastamise tunnused | <https://peaasi.ee/enesevigastamise-tunnused/> |
+| MTÜ Peaasjad | Erinevate emotsioonidega toimetulek | <https://peaasi.ee/erinevate-emotsioonidega-toimetulek-2/> |
+| MTÜ Peaasjad | Erinevate emotsioonidega toimetulek | <https://peaasi.ee/erinevate-emotsioonidega-toimetulek/> |
+| MTÜ Peaasjad | Harjutus: proovi hirmutavaid olukordi väiksemateks sammudeks teha. Kuidas seda paremini teha? | <https://peaasi.ee/harjutus-hirmud-vaikesteks-sammudeks/> |
+| MTÜ Peaasjad | Hea une tehnikad | <https://peaasi.ee/hea-une-tehnikad/> |
+| MTÜ Peaasjad | Hooajaline depressioon | <https://peaasi.ee/hooajaline-depressioon/> |
+| MTÜ Peaasjad | HÄBIMÄRGISTATUS | <https://peaasi.ee/habimargistatus/> |
+| MTÜ Peaasjad | Hädaabi vahendid: vääratusega toimetulek | <https://peaasi.ee/hadaabi-vahendid-vaaratusega-toimetulek/> |
+| MTÜ Peaasjad | Hädaabi vahendid: Vääratuste vältimine | <https://peaasi.ee/hadaabi-vahendid-vaaratuste-valtimine/> |
+| MTÜ Peaasjad | Internetisuhted | <https://peaasi.ee/internetisuhted/> |
+| MTÜ Peaasjad | Juhised suitsiidiennetuseks spetsialistidele | <https://peaasi.ee/juhised-suitsiidiennetuseks-spetsialistidele/> |
+| MTÜ Peaasjad | Julgeolek ja vaimne vastupanuvõime | <https://peaasi.ee/julgeolek-ja-vaimne-vastupanuvoime/> |
+| MTÜ Peaasjad | Kas seksuaalkäitumise häiret saab diagnoosida moraalsete tõekspidamiste alusel? | <https://peaasi.ee/seksuaalsus-ja-vaimne-tervis-kas-seksuaalkaitumise-hairet-saab-diagnoosida-moraalsete-toekspidamiste-alusel/> |
+| MTÜ Peaasjad | KEHA REAGEERIB | <https://peaasi.ee/keha-reageerib/> |
+| MTÜ Peaasjad | Kiindumussuhe | <https://peaasi.ee/kiindumussuhe/> |
+| MTÜ Peaasjad | Kiusamine | <https://peaasi.ee/kiusamine/> |
+| MTÜ Peaasjad | Kiusamisest vabaks | <https://peaasi.ee/kiusamisest-vabaks/> |
+| MTÜ Peaasjad | Kliimamure | <https://peaasi.ee/kliimamure/> |
+| MTÜ Peaasjad | Kognitiivne käitumisteraapia | <https://peaasi.ee/kognitiivne-kaitumisteraapia/> |
+| MTÜ Peaasjad | Kompulsiivne ületreenimine | <https://peaasi.ee/kompulsiivne-uletreenimine/> |
+| MTÜ Peaasjad | Konflikti lahendamine | <https://peaasi.ee/konflikti-lahendamine/> |
+| MTÜ Peaasjad | Korduma kippuvad küsimused | <https://peaasi.ee/psuhhoos-kkk/> |
+| MTÜ Peaasjad | Korduma kippuvad küsimused | <https://peaasi.ee/korduma-kippuvad-kusimused/> |
+| MTÜ Peaasjad | Kriisis vastupanuvõime säilitamine | <https://peaasi.ee/kriisis-vastupanuvoime-sailitamine/> |
+| MTÜ Peaasjad | Kui sinu lähedane on võtnud endalt elu. Abimaterjal lähedastele ja nende toetajatele | <https://peaasi.ee/kui-sinu-lahedane-on-votnud-endalt-elu-abimaterjal-lahedastele-ja-nende-toetajatele/> |
+| MTÜ Peaasjad | Kuidas aidata enesetapu mõtetega lähedast? | <https://peaasi.ee/kuidas-aidata/> |
+| MTÜ Peaasjad | Kuidas aidata kedagi, kes end vigastab? | <https://peaasi.ee/kuidas-aidata-kedagi-kes-end-vigastab/> |
+| MTÜ Peaasjad | Kuidas aidata lähedasel ärevusega toime tulla? | <https://peaasi.ee/kuidas-aidata-lahedast-arevusega-toime-tulla/> |
+| MTÜ Peaasjad | Kuidas aidata pinge ja ärevusega õpilast? | <https://peaasi.ee/kuidas-aidata-pinge-ja-arevusega-opilast-2/> |
+| MTÜ Peaasjad | Kuidas aidata pinge ja ärevusega õpilast? | <https://peaasi.ee/kuidas-aidata-pinge-ja-arevusega-opilast/> |
+| MTÜ Peaasjad | Kuidas anda vaimse tervise probleemide korral töökohal esmaabi? | <https://peaasi.ee/kuidas-anda-vaimse-tervise-probleemide-korral-tookohal-esmaabi/> |
+| MTÜ Peaasjad | Kuidas arvuti kasutamisele piiri panna? | <https://peaasi.ee/kuidas-arvuti-kasutamisele-piiri-panna/> |
+| MTÜ Peaasjad | Kuidas bipolaarset häiret ära tunda? | <https://peaasi.ee/kuidas-bipolaarset-hairet-ara-tunda/> |
+| MTÜ Peaasjad | Kuidas end ise aidata? | <https://peaasi.ee/kuidas-oma-kehasse-paremini-suhtuda/> |
+| MTÜ Peaasjad | Kuidas ennast aidata? | <https://peaasi.ee/kuidas-ennast-aidata/> |
+| MTÜ Peaasjad | Kuidas ennast autismispektriga toimetulekul toetada? | <https://peaasi.ee/kuidas-ennast-autismispektrihairega-toimetulekul-toetada/> |
+| MTÜ Peaasjad | Kuidas ennast depressiooni korral aidata? | <https://peaasi.ee/moned-soovitused-ja-nipid-enda-abistamiseks/> |
+| MTÜ Peaasjad | Kuidas ennetada? | <https://peaasi.ee/seksuaalsus-ja-vaimne-tervis-kuidas-ennetada/> |
+| MTÜ Peaasjad | Kuidas kiiremini paraneda ja oma tervist hoida? | <https://peaasi.ee/kuidas-kiiremini-paraneda-ja-oma-tervist-hoida/> |
+| MTÜ Peaasjad | Kuidas kuulata? | <https://peaasi.ee/kuidas-kuulata/> |
+| MTÜ Peaasjad | Kuidas ma ennast bipolaarse häire puhul aidata saan? | <https://peaasi.ee/kuidas-ma-ise-ennast-aidata-saan/> |
+| MTÜ Peaasjad | Kuidas mõtlemisest teadlik olemine aitab ärevusega toime tulla? | <https://peaasi.ee/kuidas-kogu-see-motlemise-vark-aitab-mul-arevusega-toime-tulla/> |
+| MTÜ Peaasjad | Kuidas olla ✨targem scrollija✨? | <https://peaasi.ee/sotsiaalmeedia/> |
+| MTÜ Peaasjad | Kuidas olla hea sõber? | <https://peaasi.ee/kuidas-olla-hea-sober/> |
+| MTÜ Peaasjad | Kuidas olla toeks lähedasele, kes on teinud enesetapukatse? | <https://peaasi.ee/kuidas-olla-toeks-lahedasele-kes-on-teinud-enesetapukatse/> |
+| MTÜ Peaasjad | Kuidas oma hirmudest ülevaadet saada? | <https://peaasi.ee/kuidas-hirmudest-ulevaadet-saada/> |
+| MTÜ Peaasjad | Kuidas oma lähedase või sõbra depressiooni ära tunda? | <https://peaasi.ee/kuidas-oma-lahedase-voi-sobra-depressiooni-ara-tunda/> |
+| MTÜ Peaasjad | Kuidas on normaalne süüa? | <https://peaasi.ee/kuidas-on-normaalne-suua/> |
+| MTÜ Peaasjad | Kuidas on tervislik süüa? | <https://peaasi.ee/kuidas-on-tervislik-suua/> |
+| MTÜ Peaasjad | Kuidas rääkida kolleegiga vaimsest tervisest | <https://peaasi.ee/kuidas-raakida-kolleegiga-vaimsest-tervisest/> |
+| MTÜ Peaasjad | KUIDAS RÄÄKIDA LASTELE? | <https://peaasi.ee/kuidas-raakida-lastele/> |
+| MTÜ Peaasjad | Kuidas rääkida? | <https://peaasi.ee/kuidas-raakida/> |
+| MTÜ Peaasjad | Kuidas saaksin oma uskumused muretsemise kasulikkuse kohta ümber hinnata? | <https://peaasi.ee/mureytmberhindamine/> |
+| MTÜ Peaasjad | Kuidas toetada lähedast, kui tal on söömishäire? | <https://peaasi.ee/kuidas-laheneda-soomishairega-inimesele/> |
+| MTÜ Peaasjad | Kuidas tähelepanu- ja keskendumisraskustega toime tulla? | <https://peaasi.ee/kuidas-tahelepanu-ja-keskendumisraskustega-toime-tulla/> |
+| MTÜ Peaasjad | Kuidas äreval ajal vaimset vastupanuvõimet tugevdada? | <https://peaasi.ee/kuidas-areval-ajal-vaimset-vastupanuvoimet-tugevdada/> |
+| MTÜ Peaasjad | Kuidas ärevushäiretega tegeleda | <https://peaasi.ee/kuidas-arevushairetega-tegeleda/> |
+| MTÜ Peaasjad | Kus emotsioonid asuvad? | <https://peaasi.ee/kus-emotsioonid-asuvad/> |
+| MTÜ Peaasjad | KUST LEIDA ABI JA TUGE? | <https://peaasi.ee/kust-leida-abi-ja-tuge/> |
+| MTÜ Peaasjad | Küsi nõustajalt | <https://peaasi.ee/kysi-noustajalt/> |
+| MTÜ Peaasjad | Lase mõtetel minna…. | <https://peaasi.ee/lase-motetel-minna/> |
+| MTÜ Peaasjad | Laste ja perede heaolu | <https://peaasi.ee/laste-ja-perede-heaolu/> |
+| MTÜ Peaasjad | Laste ja perede heaolu toetavad võimalused | <https://peaasi.ee/laste-ja-perede-heaolu-toetavad-voimalused/> |
+| MTÜ Peaasjad | Leia üles oma ärev osa! | <https://peaasi.ee/leia-ules-oma-arev-osa/> |
+| MTÜ Peaasjad | LEIN JA TRAUMA | <https://peaasi.ee/lein-ja-trauma/> |
+| MTÜ Peaasjad | Liigsöömishäire | <https://peaasi.ee/liigsoomishaire/> |
+| MTÜ Peaasjad | Lisavõimalused psühhoosi ravis | <https://peaasi.ee/lisavoimalused-psuhhoosi-ravis/> |
+| MTÜ Peaasjad | Lõdvestusharjutused | <https://peaasi.ee/lodvestusharjutused/> |
+| MTÜ Peaasjad | Lähedastele | <https://peaasi.ee/lahedastele/> |
+| MTÜ Peaasjad | Materjal kuidas raakida vanematele oma murest vaimse tervisega | <https://peaasi.ee/materjal-kuidas-raakida-vanematele-oma-murest-vaimse-tervisega/> |
+| MTÜ Peaasjad | Materjale | <https://peaasi.ee/seksuaalsus-ja-vaimne-tervis-materjale/> |
+| MTÜ Peaasjad | Meeleolustabilisaatorid ja aju | <https://peaasi.ee/meeleolustabilisaatorid-ja-aju/> |
+| MTÜ Peaasjad | Meeste vaimne tervis | <https://peaasi.ee/meeste-vaimne-tervis/> |
+| MTÜ Peaasjad | Meestele | <https://peaasi.ee/meestele/> |
+| MTÜ Peaasjad | Mehed | <https://peaasi.ee/mehed/> |
+| MTÜ Peaasjad | Mida depressiooni korral ette võtta? | <https://peaasi.ee/mida-depressiooni-korral-ette-votta/> |
+| MTÜ Peaasjad | Mida ette võtta? | <https://peaasi.ee/seksuaalsus-ja-vaimne-tervis-mida-ette-votta/> |
+| MTÜ Peaasjad | Mida saab teha õpetaja, kui ta märkab õpilase muutunud käitumist? | <https://peaasi.ee/opilase-muutunud-kaitumine/> |
+| MTÜ Peaasjad | Mida teha ahistava käitumise korral? | <https://peaasi.ee/seksuaalne-vaarkohtlemine/> |
+| MTÜ Peaasjad | Mida teha meeste vaimse tervise heaks? | <https://peaasi.ee/mida-teha-meeste-heaks/> |
+| MTÜ Peaasjad | Mida teha, kui mure kliima pärast vaevab? | <https://peaasi.ee/mure-kliima-parast-mida-teha/> |
+| MTÜ Peaasjad | Mida teha, kui märkad sotsiaalmeedias surmamõtetega seotud postitusi? | <https://peaasi.ee/mida-teha-kui-markad-sotsiaalmeedias-surmamotetega-seotud-postitusi/> |
+| MTÜ Peaasjad | Miks depressioon tekib? | <https://peaasi.ee/miks-depressioon-tekib/> |
+| MTÜ Peaasjad | Miks mul sellised mõtted on? | <https://peaasi.ee/miks-mul-sellised-motted-on/> |
+| MTÜ Peaasjad | Millal pöörduda spetsialisti poole? | <https://peaasi.ee/millal-poorduda-abi-saama/> |
+| MTÜ Peaasjad | Mis eristab kompulsiivset seksuaalkäitumist sõltuvusest? | <https://peaasi.ee/seksuaalsus-ja-vaimne-tervis-mis-eristab-kompulsiivset-seksuaalkaitumist-soltuvusest/> |
+| MTÜ Peaasjad | Mis muudab arvutikasutamise sõltuvuseks? | <https://peaasi.ee/mis-muudab-arvutikasutamise-soltuvuseks/> |
+| MTÜ Peaasjad | Mis mõjutab arvutikasutamise sõltuvuseks muutumist? | <https://peaasi.ee/mis-mojutab-arvutikasutamise-soltuvuseks-muutumist/> |
+| MTÜ Peaasjad | Mis on aktiivsus- ja tähelepanuhäire? | <https://peaasi.ee/mis-on-aktiivsus-ja-tahelepanuhaire/> |
+| MTÜ Peaasjad | Mis on bipolaarne meeleoluhäire? | <https://peaasi.ee/mis-on-bipolaarne-meeleoluhaire/> |
+| MTÜ Peaasjad | Mis on isiksushäired? | <https://peaasi.ee/mis-on-isiksushaired/> |
+| MTÜ Peaasjad | Mis on kompulsiivne seksuaalkäitumine? | <https://peaasi.ee/seksuaalsus-ja-vaimne-tervis-mis-on-kompulsiivne-seksuaalkaitumine/> |
+| MTÜ Peaasjad | Mis on tähelepanu? | <https://peaasi.ee/mis-on-tahelepanu/> |
+| MTÜ Peaasjad | Mis on ärevus? | <https://peaasi.ee/mis-on-arevus/> |
+| MTÜ Peaasjad | Mis põhjustab bipolaarse häire teket? | <https://peaasi.ee/mis-pohjustab-bipolaarse-haire-teket/> |
+| MTÜ Peaasjad | Muretsemine | <https://peaasi.ee/muretsemine/> |
+| MTÜ Peaasjad | Muretsemise müüdid | <https://peaasi.ee/muremyydid/> |
+| MTÜ Peaasjad | Mõtlemisvead | <https://peaasi.ee/motlemisvead/> |
+| MTÜ Peaasjad | Müüdid | <https://peaasi.ee/ravi-muudid/> |
+| MTÜ Peaasjad | Müüdid ja reaalsus | <https://peaasi.ee/muudid-ja-tegelikkus/> |
+| MTÜ Peaasjad | Nipid enda aitamiseks | <https://peaasi.ee/nipid-enda-aitamiseks/> |
+| MTÜ Peaasjad | Nipid lähedase aitamiseks | <https://peaasi.ee/nipid-lahedase-aitamiseks/> |
+| MTÜ Peaasjad | Nõuanded psühhoosi haigestunud inimese lähedasele | <https://peaasi.ee/nouanded-psuhhoosi-haigestunud-inimese-lahedasele/> |
+| MTÜ Peaasjad | Nõuanded õpetaja töö kergendamiseks lastega, kel on raskusi keskendumise ja suhtlemisega | <https://peaasi.ee/nouanded-opetajale-keskendumine-suhtlemine/> |
+| MTÜ Peaasjad | Nõuanded õpetaja töö kergendamiseks, kui esineb agressiivset käitumist | <https://peaasi.ee/nouanded-opetajale-agressiivsus/> |
+| MTÜ Peaasjad | Nõustamine kanepitarvitajatele | <https://peaasi.ee/valik-kanepinoustamine/> |
+| MTÜ Peaasjad | Obsessiiv-kompulsiivne häire | <https://peaasi.ee/obsessiiv-kompulsiivne-haire/> |
+| MTÜ Peaasjad | Ortoreksia | <https://peaasi.ee/ortoreksia/> |
+| MTÜ Peaasjad | Paanikahoog ja paanikahäire – eneseabi | <https://peaasi.ee/paanikahaire-eneseabistrateegiad/> |
+| MTÜ Peaasjad | Paanikahäire | <https://peaasi.ee/paanikahaire/> |
+| MTÜ Peaasjad | Paanikahäire põhjused | <https://peaasi.ee/paanikahaire-pohjused/> |
+| MTÜ Peaasjad | Parema une nõuanded | <https://peaasi.ee/parema-une-nouanded/> |
+| MTÜ Peaasjad | Partnerite tasuta nõustamisteenused | <https://peaasi.ee/partnerite-tasuta-noustamisteenused/> |
+| MTÜ Peaasjad | Peahea noortenõustamine | <https://peaasi.ee/peahea/> |
+| MTÜ Peaasjad | Pealetükkivate mõtete ohjamine | <https://peaasi.ee/pealetukkivate-motete-ohjamine/> |
+| MTÜ Peaasjad | Pereteraapia | <https://peaasi.ee/pereteraapia/> |
+| MTÜ Peaasjad | Post-traumaatiline stressihäire | <https://peaasi.ee/post-traumaatiline-stressihaire/> |
+| MTÜ Peaasjad | Probleemide lahendamine | <https://peaasi.ee/probleemide-lahendamine/> |
+| MTÜ Peaasjad | Psühhiaatri juures | <https://peaasi.ee/psuhhiaatri-juures/> |
+| MTÜ Peaasjad | Psühhoanalüüs | <https://peaasi.ee/psuhhoanaluus/> |
+| MTÜ Peaasjad | Psühhoanalüütiline teraapia | <https://peaasi.ee/psuhhoanaluutiline-teraapia/> |
+| MTÜ Peaasjad | Psühholoogi juures | <https://peaasi.ee/psuhholoogi-juures/> |
+| MTÜ Peaasjad | Psühholoogiline kriis | <https://peaasi.ee/psuhholoogiline-kriis/> |
+| MTÜ Peaasjad | Psühhoos ja aju | <https://peaasi.ee/psuhhoos-ja-aju/> |
+| MTÜ Peaasjad | Psühhoosi põhjused | <https://peaasi.ee/psuhhoosi-pohjused/> |
+| MTÜ Peaasjad | Psühhoosi ravi ja paranemine | <https://peaasi.ee/psuhhoosi-ravi-ja-paranemine/> |
+| MTÜ Peaasjad | Psühhoosi ravi: Psühhoteraapia | <https://peaasi.ee/psuhhoosi-ravi-psuhhoteraapia/> |
+| MTÜ Peaasjad | Psühhoosi ravi: Ravimid | <https://peaasi.ee/psuhhoosi-ravi-ravimid/> |
+| MTÜ Peaasjad | Psühhoosi sümptomid | <https://peaasi.ee/psuhhoosi-sumptomid/> |
+| MTÜ Peaasjad | Psühhootiliste häirete diagnoosid | <https://peaasi.ee/diagnoosid/> |
+| MTÜ Peaasjad | Psühhootiliste häirete müüdid ja reaalsus | <https://peaasi.ee/psuhhootiliste-hairete-muudid-ja-reaalsus/> |
+| MTÜ Peaasjad | Ravi keskkond | <https://peaasi.ee/ravi-keskkond/> |
+| MTÜ Peaasjad | Rõõm | <https://peaasi.ee/roomu-ja-positiivsete-emotsioonide-suurendamine/> |
+| MTÜ Peaasjad | Räägi kolleegiga | <https://peaasi.ee/raagi-kolleegiga/> |
+| MTÜ Peaasjad | Räägi lapsega | <https://peaasi.ee/raagi-lapsega2/> |
+| MTÜ Peaasjad | Räägi lapsevanemaga | <https://peaasi.ee/raagi-lapsevanemaga/> |
+| MTÜ Peaasjad | Räägime lapsega leinast | <https://peaasi.ee/raagime-lapsega-leinast/> |
+| MTÜ Peaasjad | Räägime Lastest lähenemine peredele | <https://peaasi.ee/raagime-lastest-lapsevanemale/> |
+| MTÜ Peaasjad | Räägime rasketel teemadel | <https://peaasi.ee/raagime-rasketel-teemadel/> |
+| MTÜ Peaasjad | Saa ebamäärasusega sõbraks | <https://peaasi.ee/saa-ebamaarasusega-sobraks/> |
+| MTÜ Peaasjad | Samm 1: Nõiaring | <https://peaasi.ee/samm-1/> |
+| MTÜ Peaasjad | Samm 2: Nõiaringi lõhkumine – muutused mõtlemises | <https://peaasi.ee/samm-2/> |
+| MTÜ Peaasjad | Samm 3: Nõiaringi lõhkumine – muutused mõtlemises | <https://peaasi.ee/samm-3-noiaringi-lohkumine-muutused-motlemises/> |
+| MTÜ Peaasjad | Samm 4: Nõiaringi lõhkumine – tunnetega toimetulek | <https://peaasi.ee/samm-4-noiaringi-lohkumine-tunnetega-toimetulek/> |
+| MTÜ Peaasjad | Samm 5: Hea enesetunde säilitamine | <https://peaasi.ee/samm-5-hea-enesetunde-sailitamine/> |
+| MTÜ Peaasjad | Sammud depressiooniga tegelemiseks | <https://peaasi.ee/eneseabi-votted-depressiooniga-tegelemiseks/> |
+| MTÜ Peaasjad | Seksuaalsus ja vaimne tervis | <https://peaasi.ee/seksuaalsus-ja-vaimne-tervis/> |
+| MTÜ Peaasjad | Soomishaired sport ja treenerid vol 1 | <https://peaasi.ee/soomishaired-sport-ja-treenerid-vol-1/> |
+| MTÜ Peaasjad | Soomishaired sport ja treenerid vol 2 | <https://peaasi.ee/soomishaired-sport-ja-treenerid-vol-2/> |
+| MTÜ Peaasjad | Soomishaired sport ja treenerid vol 3 | <https://peaasi.ee/soomishaired-sport-ja-treenerid-vol-3/> |
+| MTÜ Peaasjad | SOOVITUSED ENESEHOOLEKS | <https://peaasi.ee/soovitused-enesehooleks/> |
+| MTÜ Peaasjad | Soovitused leinaja toetajale | <https://peaasi.ee/soovitused-leinaja-toetajale/> |
+| MTÜ Peaasjad | Sotsiaal-emotsionaalne pädevus ja traumat arvestav praktika | <https://peaasi.ee/sotsiaal-emotsionaalne-padevus-ja-traumat-arvestav-praktika/> |
+| MTÜ Peaasjad | Sotsiaalfoobia | <https://peaasi.ee/sotsiaalfoobia/> |
+| MTÜ Peaasjad | Spetsialistile | <https://peaasi.ee/seksuaalsus-ja-vaimne-tervis-spetsialistile/> |
+| MTÜ Peaasjad | Stress | <https://peaasi.ee/stress/> |
+| MTÜ Peaasjad | Stressi ja elu väljakutsetega toimetuleku plaan | <https://peaasi.ee/kriisiplaan/> |
+| MTÜ Peaasjad | Suhtlemine sotsiaalmeedias | <https://peaasi.ee/sotsiaalmeedia-ohud/> |
+| MTÜ Peaasjad | Suitsiid | <https://peaasi.ee/suitsiid/> |
+| MTÜ Peaasjad | Sõltuvuste ja sõltuvushäirete abi | <https://peaasi.ee/soltuvuste-ja-soltuvushairete-abi/> |
+| MTÜ Peaasjad | Söömishäire ja rasedus | <https://peaasi.ee/soomishaire-ja-rasedus/> |
+| MTÜ Peaasjad | Söömishäire või dieet | <https://peaasi.ee/soomishaire-voi-dieet/> |
+| MTÜ Peaasjad | Söömishäired | <https://peaasi.ee/soomishaired/> |
+| MTÜ Peaasjad | Söömishäirest tervenemine ja tagasilangus | <https://peaasi.ee/soomishairest-tervenemine-ja-tagasilangus/> |
+| MTÜ Peaasjad | Söömishäirete müüdid ja reaalsus | <https://peaasi.ee/soomishairete-muudid-ja-reaalsus/> |
+| MTÜ Peaasjad | Söömishäirete põhjused | <https://peaasi.ee/soomishairete-pohjused/> |
+| MTÜ Peaasjad | Söömishäirete ravi | <https://peaasi.ee/soomishairete-ravi/> |
+| MTÜ Peaasjad | Sündmuse käsitlemine | <https://peaasi.ee/juhtunu-kasitlemiseks/> |
+| MTÜ Peaasjad | Sünnitusjärgne depressioon | <https://peaasi.ee/sunnitusjargne-depressioon/> |
+| MTÜ Peaasjad | Tagasilangus ja seisundi ägenemine | <https://peaasi.ee/tagasilangus-ja-seisundi-agenemine/> |
+| MTÜ Peaasjad | Tagasilangused ja vääratused | <https://peaasi.ee/tagasilangused-ja-vaaratused/> |
+| MTÜ Peaasjad | Tehnikad rahunemiseks | <https://peaasi.ee/votted-rahunemiseks/> |
+| MTÜ Peaasjad | Terviseärevus | <https://peaasi.ee/tervisearevus/> |
+| MTÜ Peaasjad | Toimetulek kriisiga | <https://peaasi.ee/toimetulek-kriisiga/> |
+| MTÜ Peaasjad | Toimetulek psühholoogilise traumaga | <https://peaasi.ee/toimetulek-psuhholoogilise-traumaga/> |
+| MTÜ Peaasjad | Toimetuleku parandamine | <https://peaasi.ee/toimetuleku-parandamine/> |
+| MTÜ Peaasjad | Traumaatilised sündmused, surmajuhtumid töökohal või meeskonnaliikmete ja nende pereliikmete seas | <https://peaasi.ee/traumaatilised-sundmused-surmajuhtumid-tookohal-voi-meeskonnaliikmete-ja-nende-pereliikmete-seas/> |
+| MTÜ Peaasjad | Tugevad tunded võivad olla hirmutavad | <https://peaasi.ee/tugevad-tunded-voivad-olla-hirmutavad/> |
+| MTÜ Peaasjad | TUNNETE KEERISES | <https://peaasi.ee/tunnete-keerises/> |
+| MTÜ Peaasjad | Tööle jäämise ja tööle naasmise juhtimine vaimse tervise raskuste korral | <https://peaasi.ee/toole-jaamise-ja-toole-naasmise-juhtimine-vaimse-tervise-raskuste-korral/> |
+| MTÜ Peaasjad | Tööstress ja läbipõlemine | <https://peaasi.ee/toostress-ja-labipolemine/> |
+| MTÜ Peaasjad | Uni | <https://peaasi.ee/uni/> |
+| MTÜ Peaasjad | Vaimne tervis märkamine ja toetamine | <https://peaasi.ee/vaimne-tervis-markamine-ja-toetamine/> |
+| MTÜ Peaasjad | Vaimse tervise hea tava töökohal | <https://peaasi.ee/vaimse-tervise-hea-tava-tookohal/> |
+| MTÜ Peaasjad | Vaimse tervise hoidmine | <https://peaasi.ee/vaimse-tervise-hoidmine/> |
+| MTÜ Peaasjad | Vaimse tervise nõustamise teenused | <https://peaasi.ee/noustamisteenused/> |
+| MTÜ Peaasjad | Vaimse tervise teemad ja materjalid õpilastele | <https://peaasi.ee/vaimse-tervise-teemad-ja-materjalid-opilastele/> |
+| MTÜ Peaasjad | Vaimse tervise toetamine töökeskkonnas | <https://peaasi.ee/vaimse-tervise-toetamine-tookeskkonnas/> |
+| MTÜ Peaasjad | Vaimse tervise tugivõrgustik | <https://peaasi.ee/vaimse-tervise-tugivorgustik/> |
+| MTÜ Peaasjad | Vaimse tervise vitamiini saatekiri – vali ja koosta | <https://peaasi.ee/saatekirjad/> |
+| MTÜ Peaasjad | Valu vähendamine | <https://peaasi.ee/valu-vahendamine/> |
+| MTÜ Peaasjad | Viha ja ärrituvus | <https://peaasi.ee/viha-ja-arrituvus/> |
+| MTÜ Peaasjad | Visualiseerimine | <https://peaasi.ee/visualiseerimine/> |
+| MTÜ Peaasjad | Väärinfo ja ohutunne | <https://peaasi.ee/vaarinfo-ja-ohutunne/> |
+| MTÜ Peaasjad | Õpetaja ja läbipõlemine | <https://peaasi.ee/opetaja-ja-labipolemine/> |
+| MTÜ Peaasjad | Ärevus | <https://peaasi.ee/arevushaired/> |
+| MTÜ Peaasjad | Ärevus ja aju | <https://peaasi.ee/arevus-ja-aju/> |
+| MTÜ Peaasjad | Ärevushäired | <https://peaasi.ee/kui-arevus-hairima-hakkab/> |
+| MTÜ Peaasjad | Ärevushäired töökohal | <https://peaasi.ee/arevushaired-tookohal/> |
+| MTÜ Peaasjad | Ärevushäirete ravi | <https://peaasi.ee/arevushairete-ravi/> |
+| MTÜ Peaasjad | Üksildusest – mida see tähendab ja kuidas sellega paremini toime tulla? | <https://peaasi.ee/uksildusest-mida-see-tahendab-ja-kuidas-sellega-paremini-toime-tulla/> |
+| MTÜ Peaasjad | Üldistunud ärevushäire | <https://peaasi.ee/uldistunud-arevushaire/> |
+| Naiste Tugi- ja Teabekeskus | Isikuandmete töötlemine Naiste Tugi- ja Teabekeskuses | <https://naistetugi.ee/isikuandmete-tootlemine-naiste-tugi-ja-teabekeskuses> |
+| Naiste Tugi- ja Teabekeskus | Naiste Tugi- ja Teabekeskus | <https://naistetugi.ee/abiasutused> |
+| Naiste Tugi- ja Teabekeskus | “Miks ta ei lahku” – kaheksa selgitavat sammu | <https://naistetugi.ee/miks-ta-ei-lahku-kaheksa-selgitavat-sammu> |
+| Naiste Tugi- ja Teabekeskus | Denim Day ehk teksapäev – 29. aprill | <https://naistetugi.ee/denim-day-ehk-teksapaev-29-aprill> |
+| Naiste Tugi- ja Teabekeskus | Eakatevastane vägivald | <https://naistetugi.ee/eakatevastane-vagivald> |
+| Naiste Tugi- ja Teabekeskus | Emotsionaalne vägivald | <https://naistetugi.ee/vagivallast/emotsionaalne-vagivald> |
+| Naiste Tugi- ja Teabekeskus | Haavatud naisele | <https://naistetugi.ee/haavatud-naisele> |
+| Naiste Tugi- ja Teabekeskus | Kaebuste esitamine ja lahendamine | <https://naistetugi.ee/kaebuste-esitamine-ja-lahendamine> |
+| Naiste Tugi- ja Teabekeskus | Kes on süüdi ja miks naised ei lahku? | <https://naistetugi.ee/vagivallast/kes-on-suudi-ja-miks-naised-ei-lahku> |
+| Naiste Tugi- ja Teabekeskus | Kuidas aidata? | <https://naistetugi.ee/vagivallast/kuidas-aidata> |
+| Naiste Tugi- ja Teabekeskus | Kuidas soorollid on seotud perevägivallaga? | <https://naistetugi.ee/kuidas-soorollid-on-seotud-perevagivallaga> |
+| Naiste Tugi- ja Teabekeskus | Meist | <https://naistetugi.ee/meist> |
+| Naiste Tugi- ja Teabekeskus | Miks paljud vägistamisohvid ei hakka vastu ega hüüa appi | <https://naistetugi.ee/miks-paljud-vagistamisohvid-ei-hakka-vastu-ega-huua-appi> |
+| Naiste Tugi- ja Teabekeskus | Ohumärgid | <https://naistetugi.ee/vagivallast/ohumargid> |
+| Naiste Tugi- ja Teabekeskus | Perevägivald | <https://naistetugi.ee/vagivallast/perevagivald> |
+| Naiste Tugi- ja Teabekeskus | Seksuaalvägivalla ohvrite tugiisikute juhendmaterjal | <https://naistetugi.ee/vagivallast/seksuaalvagivallast/seksuaalvagivalla-ohvrite-tugiisikute-juhendmaterjal> |
+| Naiste Tugi- ja Teabekeskus | Seksuaalvägivallast | <https://naistetugi.ee/vagivallast/seksuaalvagivallast> |
+| Naiste Tugi- ja Teabekeskus | Teenuste hinnakiri* | <https://naistetugi.ee/teenuste-hinnakiri> |
+| Naiste Tugi- ja Teabekeskus | Tugiisikute juhendmaterjal kriminaalmenetlusest | <https://naistetugi.ee/vagivallast/seksuaalvagivallast/tugiisikute-juhendmaterjal-kriminaalmenetlusest> |
+| Naiste Tugi- ja Teabekeskus | Täna on 25. november – täna on rahvusvaheline naistevastase vägivalla vastu võitlemise päev! | <https://naistetugi.ee/tana-on-25-november-tana-on-rahvusvaheline-naistevastase-vagivalla-vastu-voitlemise-paev> |
+| Naiste Tugi- ja Teabekeskus | Vägivald ja lapsed | <https://naistetugi.ee/vagivallast/vagivald-ja-lapsed> |
+| Naiste Tugi- ja Teabekeskus | Vägivalda soodustavad tegurid | <https://naistetugi.ee/vagivallast/vagivalda-soodustavad-tegurid> |
+| Naiste Tugi- ja Teabekeskus | Vägivalla tsükliteooria | <https://naistetugi.ee/vagivallast/vagivalla-tsukliteooria> |
+| Naiste Tugi- ja Teabekeskus | Vägivallast | <https://naistetugi.ee/vagivallast/vagivallast> |
+| Naiste Tugi- ja Teabekeskus | Vägivallast on väljapääs. Pakume Sulle nõu ja abi 24h. | <https://naistetugi.ee/> |
+| Naiste Tugi- ja Teabekeskus | Õigusalane info | <https://naistetugi.ee/vagivallast/kasulik-lisalugemine/oigusalane-info> |
 | NIRK | NIRK pakub üle Eesti nägemispuudega inimestele järgmisi teenuseid: | <https://www.nirkkeskus.ee/Rehabilitatsiooniteenused> |
 | NIRK | Andmekaitse | <https://www.nirkkeskus.ee/Andmekaitse> |
 | NIRK | Andmetöötluspõhimõtted | <https://www.nirkkeskus.ee/Andmet%C3%B6%C3%B6tlusp%C3%B5him%C3%B5tted> |
@@ -2651,6 +3644,14 @@ Serveris töötav RAG, korpus v69, 07.10.2026. Siin on loend sellest, mida jaoti
 | Saaremaa Puuetega Inimeste Koda | SPIK TEENUSED | <https://www.saarekoda.ee/7ca6c-about/teenused/spik-teenused> |
 | Saaremaa Puuetega Inimeste Koda | Teenused | <https://www.saarekoda.ee/7ca6c-about/teenused> |
 | Saaremaa Puuetega Inimeste Koda | Uurimused | <https://www.saarekoda.ee/dokumendid/uurimused> |
+| SOS Lasteküla Eesti Ühing | Ennetustöö | <https://sos-lastekyla.ee/ennetustoo/> |
+| SOS Lasteküla Eesti Ühing | Grupikodu | <https://sos-lastekyla.ee/meie-too/asendushooldus/grupikodu/grupikodu/> |
+| SOS Lasteküla Eesti Ühing | Hoolduspere | <https://sos-lastekyla.ee/meie-too/asendushooldus/hoolduspere/> |
+| SOS Lasteküla Eesti Ühing | Info kohaliku omavalitsuse lastekaitsetöötajale | <https://sos-lastekyla.ee/info-kohaliku-omavalitsuse-lastekaitsetootajale/> |
+| SOS Lasteküla Eesti Ühing | Järelhooldus | <https://sos-lastekyla.ee/meie-too/jarelhooldus/> |
+| SOS Lasteküla Eesti Ühing | Perekodu | <https://sos-lastekyla.ee/meie-too/asendushooldus/perekodu/> |
+| SOS Lasteküla Eesti Ühing | Teata abivajavast lapsest | <https://sos-lastekyla.ee/lapse-kaitsmine/> |
+| SOS Lasteküla Eesti Ühing | Võta ühendust | <https://sos-lastekyla.ee/vota-uhendust/> |
 | Tallinna ja Harjumaa Kurtide Ühing | Tallinna ja Harjumaa Kurtide Ühing | <https://www.thky.ee/> |
 | Tallinna ja Harjumaa Kurtide Ühing | Avaleht | <https://www.thky.ee/avaleht> |
 | Tallinna ja Harjumaa Kurtide Ühing | Kontakt | <https://www.thky.ee/organisatsioonist/kontakt> |
@@ -2733,7 +3734,1241 @@ Serveris töötav RAG, korpus v69, 07.10.2026. Siin on loend sellest, mida jaoti
 | Võrumaa Puuetega Inimeste Koda | PIK ringid | <https://www.vorukoda.ee/tegevused/pik-ringid> |
 | Võrumaa Puuetega Inimeste Koda | TASUTA ÕIGUSABI ERIVAJADUSTEGA INIMESTELE | <https://www.vorukoda.ee/tasuta-oigusabi-erivajadustega-inimestele> |
 
-### Uuringud ja juhendid väljaandja ametlikult aadressilt (257)
+### Asutuste juhislehed, valitud reegliga (1229)
+
+| Väljaandja | Pealkiri | Aadress |
+|---|---|---|
+| Andmekaitse Inspektsioon | Andmekaitsespetsialist | <https://www.aki.ee/isikuandmed/andmetootlejale/andmekaitsespetsialist> |
+| Andmekaitse Inspektsioon | Andmekaitsetingimuste koostamine | <https://www.aki.ee/isikuandmed/andmetootlejale/andmekaitsetingimuste-koostamisest> |
+| Andmekaitse Inspektsioon | Andmetega tutvumine | <https://www.aki.ee/isikuandmed/inimese-oigused/isikuandmetega-tutvumine> |
+| Andmekaitse Inspektsioon | Andmeturve | <https://www.aki.ee/isikuandmed/andmetootlejale/andmeturve> |
+| Andmekaitse Inspektsioon | Andmetöötleja vastutus ja kohustused | <https://www.aki.ee/isikuandmed/andmetootlejale/andmetootleja-vastutus-ja-kohustused> |
+| Andmekaitse Inspektsioon | Andmetöötluse põhimõtted | <https://www.aki.ee/isikuandmed/andmetootlejale/andmetootluse-pohimotted> |
+| Andmekaitse Inspektsioon | Automatiseeritud otsused ja profiilianalüüs | <https://www.aki.ee/isikuandmed/inimese-oigused/automatiseeritud-otsused-ja-profiilianaluus> |
+| Andmekaitse Inspektsioon | Haridus ja lapsed | <https://www.aki.ee/isikuandmed/kkk/haridus-ja-lapsed> |
+| Andmekaitse Inspektsioon | Inimese õiguste tagamine | <https://www.aki.ee/isikuandmed/andmetootlejale/inimese-oiguste-tagamine> |
+| Andmekaitse Inspektsioon | Isikuandmed uuringutes | <https://www.aki.ee/isikuandmed/andmetootlejale/isikuandmed-uuringutes> |
+| Andmekaitse Inspektsioon | Isikuandmete kustutamine | <https://www.aki.ee/isikuandmed/inimese-oigused/isikuandmete-kustutamine> |
+| Andmekaitse Inspektsioon | Isikuandmete parandamine | <https://www.aki.ee/isikuandmed/inimese-oigused/isikuandmete-parandamine> |
+| Andmekaitse Inspektsioon | Isikuandmete töötleja üldjuhend | <https://www.aki.ee/isikuandmed/juhendid-ja-abimaterjalid/isikuandmete-tootleja-uldjuhend> |
+| Andmekaitse Inspektsioon | Isikuandmete töötlemine koolis | <https://www.aki.ee/isikuandmete-tootlemine-koolis> |
+| Andmekaitse Inspektsioon | Isikuandmete töötlemine tervishoius | <https://www.aki.ee/isikuandmete-tootlemine-tervishoius> |
+| Andmekaitse Inspektsioon | Isikuandmete töötlemine töösuhetes | <https://www.aki.ee/isikuandmed/juhendid-ja-abimaterjalid/isikuandmete-tootlemine-toosuhetes> |
+| Andmekaitse Inspektsioon | Isikuandmete töötlemise piiramine | <https://www.aki.ee/isikuandmed/inimese-oigused/isikuandmete-tootlemise-piiramine> |
+| Andmekaitse Inspektsioon | Isikuandmete ülekandmine | <https://www.aki.ee/isikuandmed/inimese-oigused/isikuandmete-ulekandmine> |
+| Andmekaitse Inspektsioon | Kaamerad | <https://www.aki.ee/isikuandmed/kkk/kaamerad> |
+| Andmekaitse Inspektsioon | Maksehäired | <https://www.aki.ee/isikuandmed/kkk/maksehaired> |
+| Andmekaitse Inspektsioon | Mõisted | <https://www.aki.ee/isikuandmed/kkk/moisted> |
+| Andmekaitse Inspektsioon | Riik | <https://www.aki.ee/isikuandmed/kkk/riik> |
+| Andmekaitse Inspektsioon | Teave isikuandmete kasutamise kohta | <https://www.aki.ee/isikuandmed/inimese-oigused/teave-isikuandmete-kasutamise-kohta> |
+| Andmekaitse Inspektsioon | Tervishoid | <https://www.aki.ee/isikuandmed/kkk/tervishoid> |
+| Andmekaitse Inspektsioon | Töösuhted | <https://www.aki.ee/isikuandmed/kkk/toosuhted> |
+| Andmekaitse Inspektsioon | Töötlemise õiguslikud alused | <https://www.aki.ee/isikuandmed/andmetootlejale/tootlemise-oiguslikud-alused> |
+| Andmekaitse Inspektsioon | Vastuväidete esitamine | <https://www.aki.ee/isikuandmed/inimese-oigused/vastuvaidete-esitamine> |
+| Andmekaitse Inspektsioon | Ühisjuhend: Abivajavast lapsest teatamine ja andmekaitse | <https://www.aki.ee/juhendid/isikuandmed/uhisjuhend-abivajavast-lapsest-teatamine-ja-andmekaitse> |
+| Eesti Töötukassa | Abi ja nõustamine koondamisel | <https://www.tootukassa.ee/et/teenused/tooandjatele/abi-ja-noustamine-koondamisel> |
+| Eesti Töötukassa | Abiks kandideerijale | <https://www.tootukassa.ee/et/teenused/toootsingud/abiks-kandideerijale> |
+| Eesti Töötukassa | Ajutine töötamine arveloleku ajal | <https://www.tootukassa.ee/et/teenused/toootsingud/ajutine-tootamine-arveloleku-ajal> |
+| Eesti Töötukassa | Alaealise tööle võtmine | <https://www.tootukassa.ee/et/teenused/tooandjatele/alaealise-toole-votmine> |
+| Eesti Töötukassa | Alaealise töötamise toetamine | <https://www.tootukassa.ee/et/teenused/tooandjatele/alaealise-tootamise-toetamine> |
+| Eesti Töötukassa | Arengutreening | <https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/arengutreening> |
+| Eesti Töötukassa | Arstivisiit ja hindamise taotluse esitamine | <https://www.tootukassa.ee/et/teenused/toovoime-hindamine/arstivisiit-ja-hindamise-taotluse-esitamine> |
+| Eesti Töötukassa | Avaldused ja vormid | <https://www.tootukassa.ee/et/otseteed/avaldused-ja-vormid> |
+| Eesti Töötukassa | Eksperdiarvamuse koostamine | <https://www.tootukassa.ee/et/teenused/toovoime-hindamine/eksperdiarvamuse-koostamine> |
+| Eesti Töötukassa | Elektroonilised osavõtuandmed | <https://www.tootukassa.ee/et/artikkel/elektroonilised-osavotuandmed> |
+| Eesti Töötukassa | Esindused \| Töötukassa | <https://www.tootukassa.ee/et/kontaktid/esindused> |
+| Eesti Töötukassa | Ettevõtluse järelteenused | <https://www.tootukassa.ee/et/teenused/ettevotlusega-alustamine/ettevotluse-jarelteenused> |
+| Eesti Töötukassa | Ettevõtlusega alustamine | <https://www.tootukassa.ee/et/teenused/ettevotlusega-alustamine> |
+| Eesti Töötukassa | EURES (Euroopa töövahenduse teenused) | <https://www.tootukassa.ee/et/teenused/eures-euroopa-toovahenduse-teenused> |
+| Eesti Töötukassa | Euroopa Liit ja töötuskindlustus | <https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/euroopa-liit-ja-tootuskindlustus> |
+| Eesti Töötukassa | Euroopa Liit ja töövõimetoetus | <https://www.tootukassa.ee/et/teenused/toovoimetoetus/euroopa-liit-ja-toovoimetoetus> |
+| Eesti Töötukassa | EVAT kasutamine | <https://www.tootukassa.ee/et/teenused/ettevotlusega-alustamine/evat-kasutamine> |
+| Eesti Töötukassa | EVAT kasutamise kontroll | <https://www.tootukassa.ee/et/teenused/ettevotlusega-alustamine/evat-kasutamise-kontroll> |
+| Eesti Töötukassa | EVAT korduma kippuvad küsimused | <https://www.tootukassa.ee/et/teenused/ettevotlusega-alustamine-sai-taotleda-kuni-31032026/evat-korduma-kippuvad-kusimused> |
+| Eesti Töötukassa | Hindamise otsus ja abi töö leidmisel | <https://www.tootukassa.ee/et/teenused/toovoime-hindamine/hindamise-otsus-ja-abi-too-leidmisel> |
+| Eesti Töötukassa | Juhatus ja nõukogu | <https://www.tootukassa.ee/et/kontaktid/juhatus-ja-noukogu> |
+| Eesti Töötukassa | Juhatuse liige | <https://www.tootukassa.ee/et/teenused/toootsingud/juhatuse-liige> |
+| Eesti Töötukassa | Karjäär ja koolitamine | <https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine> |
+| Eesti Töötukassa | Karjääri kujundamine | <https://www.tootukassa.ee/et/karjaarikujundajale/karjaarikujundamine> |
+| Eesti Töötukassa | Karjäärinõustamine | <https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/karjaarinoustamine> |
+| Eesti Töötukassa | Kollektiivne koondamine | <https://www.tootukassa.ee/et/teenused/tooandjatele/kollektiivne-koondamine> |
+| Eesti Töötukassa | Koolitajate otsing | <https://www.tootukassa.ee/et/koolitajad?pageSize=20> |
+| Eesti Töötukassa | Koolitused töötavatele inimestele | <https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/koolitus-tootajale-toota-ja-opi> |
+| Eesti Töötukassa | Koolituskaart | <https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/koolituskaart> |
+| Eesti Töötukassa | Koolitustoetus tööandjatele | <https://www.tootukassa.ee/et/teenused/tooandjatele/koolitustoetus-tooandjatele> |
+| Eesti Töötukassa | Koolitustoetus tööandjatele muutuste olukorras | <https://www.tootukassa.ee/et/teenused/tooandjatele/koolitustoetus-tooandjatele-muutuste-olukorras> |
+| Eesti Töötukassa | Koolitustoetus tööandjatele töötaja digioskuste arendamiseks | <https://www.tootukassa.ee/et/teenused/tooandjatele/koolitustoetus-tooandjatele-tootaja-ikt-oskuste-arendamiseks> |
+| Eesti Töötukassa | Koolitustoetus tööandjatele töötaja eesti keele oskuse arendamiseks | <https://www.tootukassa.ee/et/teenused/tooandjatele/koolitustoetus-tooandjatele-tootaja-eesti-keele-oskuse-arendamiseks> |
+| Eesti Töötukassa | Koolitustoetus tööandjatele töötaja roheoskuste arendamiseks | <https://www.tootukassa.ee/et/teenused/tooandjatele/koolitustoetus-tooandjatele-tootaja-roheoskuste-arendamiseks> |
+| Eesti Töötukassa | Koolitustoetus tööandjatele töötajate värbamiseks | <https://www.tootukassa.ee/et/teenused/tooandjatele/koolitustoetus-tooandjatele-tootajate-varbamiseks> |
+| Eesti Töötukassa | Koondamine ja maksejõuetus | <https://www.tootukassa.ee/et/koondamine-ja-maksejouetus> |
+| Eesti Töötukassa | Koondamise korral | <https://www.tootukassa.ee/et/teenused/toootsingud/koondamise-korral> |
+| Eesti Töötukassa | Koondamishüvitis | <https://www.tootukassa.ee/et/teenused/tooandjatele/koondamishuvitis> |
+| Eesti Töötukassa | Koostöökokkulepped töötuna registreeritud kliendiga | <https://www.tootukassa.ee/et/artikkel/koostookokkulepped-tootuna-registreeritud-kliendiga> |
+| Eesti Töötukassa | Koostöövõimalused EURES Euroopa tööturuasutuste võrgustikuga | <https://www.tootukassa.ee/et/teenused/partneritele/koostoovoimalused-eures-euroopa-tooturuasutuste-vorgustikuga> |
+| Eesti Töötukassa | Koostöövõimalused kogemusnõustajatele | <https://www.tootukassa.ee/et/teenused/partneritele/koostoovoimalused-kogemusnoustajatele> |
+| Eesti Töötukassa | Koostöövõimalused koolitusasutustele | <https://www.tootukassa.ee/et/teenused/partneritele/koostoovoimalused-koolitusasutustele> |
+| Eesti Töötukassa | Koostöövõimalused nõustamisteenuste osutajatele | <https://www.tootukassa.ee/et/teenused/partneritele/koostoovoimalused-noustamisteenuste-osutajatele> |
+| Eesti Töötukassa | Koostöövõimalused tööandjatele | <https://www.tootukassa.ee/et/teenused/partneritele/koostoovoimalused-tooandjatele> |
+| Eesti Töötukassa | Koostöövõimalused üldhariduskoolidele | <https://www.tootukassa.ee/et/teenused/partneritele/koostoovoimalused-uldhariduskoolidele> |
+| Eesti Töötukassa | Luba välismaalase töölevõtmiseks | <https://www.tootukassa.ee/et/teenused/tooandjatele/luba-valismaalase-toolevotmiseks> |
+| Eesti Töötukassa | Maksmise peatamine ja lõpetamine | <https://www.tootukassa.ee/et/teenused/toovoimetoetus/maksmise-peatamine-ja-lopetamine> |
+| Eesti Töötukassa | Maksuvaba tulu alates 1. jaanuarist 2026 | <https://www.tootukassa.ee/et/teenused/tooandjatele/maksuvaba-tulu-alates-1-jaanuarist-2026> |
+| Eesti Töötukassa | Noorele | <https://www.tootukassa.ee/et/teenused/toootsingud/noorele> |
+| Eesti Töötukassa | Nõustamisteenuste osutajad | <https://www.tootukassa.ee/et/noustamisteenused> |
+| Eesti Töötukassa | Oskuste arendamine | <https://www.tootukassa.ee/et/karjaarikujundajale/oskuste-arendamine> |
+| Eesti Töötukassa | Palgatoetus | <https://www.tootukassa.ee/et/teenused/tooandjatele/palgatoetus> |
+| Eesti Töötukassa | Pankrotihüvitis | <https://www.tootukassa.ee/et/teenused/tooandjatele/pankrotihuvitis> |
+| Eesti Töötukassa | Partnerite võimalused | <https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/partnerite-voimalused> |
+| Eesti Töötukassa | Pikaajaline haigusleht | <https://www.tootukassa.ee/et/teenused/too-ja-tervis/pikaajaline-haigusleht> |
+| Eesti Töötukassa | Proovitöö | <https://www.tootukassa.ee/et/teenused/toootsingud/proovitoo> |
+| Eesti Töötukassa | Psühholoogiline ja võlanõustamine | <https://www.tootukassa.ee/et/teenused/toootsingud/psuhholoogiline-ja-volanoustamine> |
+| Eesti Töötukassa | Põlevkivisektori töötajale | <https://www.tootukassa.ee/et/teenused/toootsingud/polevkivisektori-tootajale> |
+| Eesti Töötukassa | Rahvusvahelise kaitse saaja töötamise toetamine (sai taotleda kuni 31.08.2026) | <https://www.tootukassa.ee/et/teenused/tooandjatele/rahvusvahelise-kaitse-saaja-tootamise-toetamine> |
+| Eesti Töötukassa | Ravikindlustus | <https://www.tootukassa.ee/et/teenused/toootsingud/ravikindlustus> |
+| Eesti Töötukassa | Seminarid | <https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/seminarid> |
+| Eesti Töötukassa | Sertifikaadi või kutsetunnistuse kulude hüvitamine | <https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/sertifikaadi-voi-kutsetunnistuse-kulude-huvitamine> |
+| Eesti Töötukassa | Sertifikaadi või kutsetunnistuse saamine | <https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/sertifikaadi-voi-kutsetunnistuse-saamine> |
+| Eesti Töötukassa | Sotsiaalmaksu hüvitamine vähenenud töövõimega inimese eest | <https://www.tootukassa.ee/et/teenused/tooandjatele/sotsiaalmaksu-huvitamine-vahenenud-toovoimega-inimese-eest> |
+| Eesti Töötukassa | Stipendium | <https://www.tootukassa.ee/et/teenused/toootsingud/stipendium> |
+| Eesti Töötukassa | Sõidu- ja majutustoetus | <https://www.tootukassa.ee/et/teenused/toootsingud/soidu-ja-majutustoetus> |
+| Eesti Töötukassa | Taotluse esitamine eestkoste või volitusega | <https://www.tootukassa.ee/et/teenused/toovoimetoetus/taotluse-esitamine-eestkoste-voi-volitusega> |
+| Eesti Töötukassa | Tasemeõppes osalemise toetus | <https://www.tootukassa.ee/et/teenused/karjaar-ja-koolitamine/tasemeoppes-osalemise-toetus> |
+| Eesti Töötukassa | Teiste riikide tööturuasutused | <https://www.tootukassa.ee/et/teenused/eures-euroopa-toovahenduse-teenused/teiste-riikide-tooturuasutused> |
+| Eesti Töötukassa | Tervisepiiranguga inimese tööandja nõustamine | <https://www.tootukassa.ee/et/teenused/tooandjatele/tervisepiiranguga-inimese-tooandja-noustamine> |
+| Eesti Töötukassa | Tervisepiiranguga inimese töötamise toetamine | <https://www.tootukassa.ee/et/teenused/tooandjatele/tervisepiiranguga-inimese-tootamise-toetamine> |
+| Eesti Töötukassa | Toetatavad põhikutsealad | <https://www.tootukassa.ee/et/artikkel/toetatavad-pohikutsealad> |
+| Eesti Töötukassa | Toetatud töölerakendamine | <https://www.tootukassa.ee/et/teenused/too-ja-tervis/toetatud-toolerakendamine> |
+| Eesti Töötukassa | Toetuse maksmine | <https://www.tootukassa.ee/et/teenused/toovoimetoetus/toetuse-maksmine> |
+| Eesti Töötukassa | Toetuse ümberarvutamine suurenenud sissetuleku tõttu | <https://www.tootukassa.ee/et/teenused/toovoimetoetus/toetuse-umberarvutamine-suurenenud-sissetuleku-tottu> |
+| Eesti Töötukassa | Tugiisikuga töötamine | <https://www.tootukassa.ee/et/teenused/too-ja-tervis/tugiisikuga-tootamine> |
+| Eesti Töötukassa | Töö ja tervis | <https://www.tootukassa.ee/et/teenused/too-ja-tervis> |
+| Eesti Töötukassa | Töö ja tervis | <https://www.tootukassa.ee/et/tervisepiiranguga-inimesele/too-ja-tervis> |
+| Eesti Töötukassa | Töö ja töötaja Euroopast (EURES) | <https://www.tootukassa.ee/et/teenused/eures-euroopa-toovahenduse-teenused/too-ja-tootaja-euroopast-eures> |
+| Eesti Töötukassa | Töö kaotamine | <https://www.tootukassa.ee/et/toootsijale/too-kaotamine> |
+| Eesti Töötukassa | Tööalane abivahend | <https://www.tootukassa.ee/et/teenused/too-ja-tervis/tooalane-abivahend> |
+| Eesti Töötukassa | Tööalane rehabilitatsioon | <https://www.tootukassa.ee/et/teenused/too-ja-tervis/tooalane-rehabilitatsioon> |
+| Eesti Töötukassa | Tööalase rehabilitatsiooni osutajad | <https://www.tootukassa.ee/et/rehabilitatsioon> |
+| Eesti Töötukassa | Tööalaste abivahendite ja töökoha kohandamise näited | <https://www.tootukassa.ee/et/artikkel/tooalaste-abivahendite-ja-tookoha-kohandamise-naited> |
+| Eesti Töötukassa | Tööampsude KKK | <https://www.tootukassa.ee/et/artikkel/tooampsude-kkk> |
+| Eesti Töötukassa | Tööandja tegevus kollektiivsel koondamisel | <https://www.tootukassa.ee/et/teenused/tooandjatele/tooandja-tegevus-kollektiivsel-koondamisel> |
+| Eesti Töötukassa | Tööandjatele | <https://www.tootukassa.ee/et/teenused/tooandjatele> |
+| Eesti Töötukassa | Töökeskne nõustamine | <https://www.tootukassa.ee/et/teenused/toootsingud/tookeskne-noustamine> |
+| Eesti Töötukassa | Töökoha kohandamine | <https://www.tootukassa.ee/et/teenused/too-ja-tervis/tookoha-kohandamine> |
+| Eesti Töötukassa | Tööotsing | <https://www.tootukassa.ee/et/toootsijale/toootsing> |
+| Eesti Töötukassa | Tööotsingud | <https://www.tootukassa.ee/et/teenused/toootsingud> |
+| Eesti Töötukassa | Tööpraktika | <https://www.tootukassa.ee/et/teenused/toootsingud/toopraktika> |
+| Eesti Töötukassa | Tööta ja õpi | <https://www.tootukassa.ee/et/toota-ja-opi> |
+| Eesti Töötukassa | Töötaja ja muu isik | <https://www.tootukassa.ee/et/teenused/toootsingud/tootaja-ja-muu-isik> |
+| Eesti Töötukassa | Töötaja leidmine ja koolitamine | <https://www.tootukassa.ee/et/tootaja-leidmine-ja-koolitamine> |
+| Eesti Töötukassa | Töötajate vaba liikumine ja sotsiaalkindlustus | <https://www.tootukassa.ee/et/teenused/eures-euroopa-toovahenduse-teenused/tootajate-vaba-liikumine-ja-sotsiaalkindlustus> |
+| Eesti Töötukassa | Töötamine Eestis | <https://www.tootukassa.ee/et/teenused/toootsingud/tootamine-eestis> |
+| Eesti Töötukassa | Töötukassa esindused | <https://www.tootukassa.ee/kontaktid/tootukassa-esindused> |
+| Eesti Töötukassa | Töötukassast | <https://www.tootukassa.ee/et/tootukassast> |
+| Eesti Töötukassa | Töötuna arveloleku lõpetamine | <https://www.tootukassa.ee/et/teenused/toootsingud/tootuna-arveloleku-lopetamine> |
+| Eesti Töötukassa | Töötuna registreerimine | <https://www.tootukassa.ee/et/teenused/toootsingud/tootuna-registreerimine> |
+| Eesti Töötukassa | Töötushüvitiste maksmise süsteemi muudatuse KKK | <https://www.tootukassa.ee/et/artikkel/tootushuvitiste-maksmise-susteemi-muudatuse-kkk> |
+| Eesti Töötukassa | Töötuskindlustushüvitis | <https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis> |
+| Eesti Töötukassa | Töötuskindlustushüvitis laevapere liikmetele | <https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitis-laevapere-liikmetele> |
+| Eesti Töötukassa | Töötuskindlustushüvitis välisriigis tööd otsides | <https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitis-valisriigis-tood-otsides> |
+| Eesti Töötukassa | Töötuskindlustushüvitise arvestamine ja maksmine | <https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitise-arvestamine-ja-maksmine> |
+| Eesti Töötukassa | Töötuskindlustushüvitise korduv taotlemine | <https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitise-korduv-taotlemine> |
+| Eesti Töötukassa | Töötuskindlustushüvitise maksmise lõpetamine enne perioodi lõppu | <https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitise-maksmise-lopetamine-enne-perioodi-loppu> |
+| Eesti Töötukassa | Töötuskindlustushüvitise maksmise periood | <https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitise-maksmise-periood> |
+| Eesti Töötukassa | Töötuskindlustushüvitise perioodi KKK | <https://www.tootukassa.ee/et/artikkel/tootuskindlustushuvitise-perioodi-kkk> |
+| Eesti Töötukassa | Töötuskindlustushüvitise suurus ja selle arvutamine | <https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitise-suurus-ja-selle-arvutamine> |
+| Eesti Töötukassa | Töötuskindlustushüvitise taotlemine ja määramine | <https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustushuvitise-taotlemine-ja-maaramine> |
+| Eesti Töötukassa | Töötuskindlustusmakse | <https://www.tootukassa.ee/et/teenused/tooandjatele/tootuskindlustusmakse> |
+| Eesti Töötukassa | Töötuskindlustusstaaži arvestamine | <https://www.tootukassa.ee/et/teenused/tootuskindlustushuvitis/tootuskindlustusstaazi-arvestamine> |
+| Eesti Töötukassa | Töövahendus | <https://www.tootukassa.ee/et/teenused/tooandjatele/toovahendus> |
+| Eesti Töötukassa | Töövõime hindamine | <https://www.tootukassa.ee/et/tervisepiiranguga-inimesele/toovoime-hindamine> |
+| Eesti Töötukassa | Töövõime hindamine | <https://www.tootukassa.ee/et/teenused/toovoime-hindamine> |
+| Eesti Töötukassa | Töövõime hindamise põhimõtted ja metoodika | <https://www.tootukassa.ee/et/teenused/toovoime-hindamine/toovoime-hindamise-pohimotted-ja-metoodika> |
+| Eesti Töötukassa | Töövõime hindamise taotlemine välismaal elades | <https://www.tootukassa.ee/et/teenused/toovoime-hindamine/toovoime-hindamise-taotlemine-valismaal-elades> |
+| Eesti Töötukassa | Töövõime hindamise taotluse esitamine esindaja poolt | <https://www.tootukassa.ee/et/teenused/toovoime-hindamine/toovoime-hindamise-taotluse-esitamine-esindaja-poolt> |
+| Eesti Töötukassa | Töövõimekaart | <https://www.tootukassa.ee/et/teenused/toovoime-hindamine/toovoimekaart> |
+| Eesti Töötukassa | Töövõimet hindavad tervishoiuasutused | <https://www.tootukassa.ee/et/teenused/toovoime-hindamine/toovoimet-hindavad-tervishoiuasutused> |
+| Eesti Töötukassa | Töövõimetoetus | <https://www.tootukassa.ee/et/teenused/toovoimetoetus> |
+| Eesti Töötukassa | Töövõimetoetuse maksmise jätkamine kordushindamisel | <https://www.tootukassa.ee/et/teenused/toovoimetoetus/toovoimetoetuse-maksmise-jatkamine-kordushindamisel> |
+| Eesti Töötukassa | Töövõimetoetuse saamise tingimused | <https://www.tootukassa.ee/et/teenused/toovoimetoetus/toovoimetoetuse-saamise-tingimused> |
+| Eesti Töötukassa | Töövõimetoetuse suurus | <https://www.tootukassa.ee/et/teenused/toovoimetoetus/toovoimetoetuse-suurus> |
+| Eesti Töötukassa | Töövõimetoetuse taotlemine | <https://www.tootukassa.ee/et/tervisepiiranguga-inimesele/toovoimetoetuse-taotlemine> |
+| Eesti Töötukassa | Vaide esitamine | <https://www.tootukassa.ee/et/jalus/ametlikku/vaide-esitamine> |
+| Eesti Töötukassa | Vanaduspensioniealisele | <https://www.tootukassa.ee/et/teenused/toootsingud/vanaduspensioniealisele> |
+| Eesti Töötukassa | Vähese tähtsusega abi | <https://www.tootukassa.ee/et/vahese-tahtsusega-abi-ja-riigiabi> |
+| Eesti Töötukassa | Õigus töövõimetoetusele | <https://www.tootukassa.ee/et/teenused/toovoimetoetus/oigus-toovoimetoetusele> |
+| Eesti Töötukassa | Üldkontakt | <https://www.tootukassa.ee/et/kontaktid> |
+| Eesti Töötukassa | Üleminek töövõimetuspensionilt töövõimetoetusele | <https://www.tootukassa.ee/et/teenused/toovoimetoetus/uleminek-toovoimetuspensionilt-toovoimetoetusele> |
+| Haridus- ja Noorteamet (Teeviit) | 10 nippi turvalise kohtingurakenduse kohtumiseks | <https://www.teeviit.ee/10-nippi-turvalisteks-kohtinguteks/> |
+| Haridus- ja Noorteamet (Teeviit) | 10 nippi, kuidas hoiduda läbipõlemisest | <https://www.teeviit.ee/10-nippi-kuidas-hoiduda-labipolemisest/> |
+| Haridus- ja Noorteamet (Teeviit) | 5 küsimust ja vastust alkoholi kohta | <https://www.teeviit.ee/5-kusimust-ja-vastust-alkoholi-kohta/> |
+| Haridus- ja Noorteamet (Teeviit) | 5 tehnikat ärevuse leevendamiseks iseseisvalt | <https://www.teeviit.ee/viis-tehnikat-arevuse-leevendamiseks-iseseisvalt/> |
+| Haridus- ja Noorteamet (Teeviit) | Alkoholi- või narkojoobes juhtimine | <https://www.teeviit.ee/alkoholi-voi-narkojoobes-juhtimine/> |
+| Haridus- ja Noorteamet (Teeviit) | Asjad, mida pead teadma korgijoogist ja seksuaalvägivallast | <https://www.teeviit.ee/asjad-mida-pead-teadma-korgijoogist-ja-seksuaalvagivallast/> |
+| Haridus- ja Noorteamet (Teeviit) | Depressioon – mis see on ja kuidas seda ära tunda? | <https://www.teeviit.ee/depressioon-mis-see-on-ja-kuidas-seda-ara-tunda/> |
+| Haridus- ja Noorteamet (Teeviit) | Depressiooniga toimetulek – mõned soovitused enda abistamiseks | <https://www.teeviit.ee/depressiooniga-toimetulek-moned-soovitused-enda-abistamiseks/> |
+| Haridus- ja Noorteamet (Teeviit) | Digisõltuvus võib tabada igaüht | <https://www.teeviit.ee/digisoltuvus-voib-tabada-igauht/> |
+| Haridus- ja Noorteamet (Teeviit) | E-sigaretid – kuidas tubakatööstus meid oma sõnumitega mõjutab? | <https://www.teeviit.ee/e-sigaretid-kuidas-tubakatoostus-meid-oma-sonumitega-mojutab/> |
+| Haridus- ja Noorteamet (Teeviit) | Emotsioonid ja nende väljendumine | <https://www.teeviit.ee/vaimne-tervis-emotsioonid-ja-nende-valjendumine/> |
+| Haridus- ja Noorteamet (Teeviit) | Enamlevinud vaimse tervise mured | <https://www.teeviit.ee/enamlevinud-vaimse-tervise-mured/> |
+| Haridus- ja Noorteamet (Teeviit) | Energiajookide mõju tervisele – mida peaksid teadma? | <https://www.teeviit.ee/energiajook-ei-erguta/> |
+| Haridus- ja Noorteamet (Teeviit) | Enesevigastamine – mida see tegelikult tähendab? | <https://www.teeviit.ee/enesevigastamine-mida-see-tegelikult-tahendab/> |
+| Haridus- ja Noorteamet (Teeviit) | Kanepist | <https://www.teeviit.ee/kanepist/> |
+| Haridus- ja Noorteamet (Teeviit) | Kool algab, mis seis on su rahaasjadega? | <https://www.teeviit.ee/kool-algab-mis-seis-on-su-rahaasjadega/> |
+| Haridus- ja Noorteamet (Teeviit) | Kooli lõpetamine eelarvesõbralikult: kogumispäeviklaste seas on moes taaskasutus | <https://www.teeviit.ee/kooli-lopetamine-eelarvesobralikult/> |
+| Haridus- ja Noorteamet (Teeviit) | Korgijoogi hädaabijuhend | <https://www.teeviit.ee/korgijoogi-hadaabijuhend/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuhu pöörduda vaimse tervise probleemide korral? | <https://www.teeviit.ee/kuhu-poorduda-vaimse-tervise-probleemide-korral/> |
+| Haridus- ja Noorteamet (Teeviit) | Kui on tarvis võtta õppelaenu | <https://www.teeviit.ee/kui-on-tarvis-votta-oppelaenu/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuidas aidata abivajavat sõpra | <https://www.teeviit.ee/kuidas-aidata-abivajavat-sopra/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuidas enesekindlalt öelda ei alkoholi joomisele? | <https://www.teeviit.ee/kuidas-enesekindlalt-oelda-ei-alkoholi-joomisele/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuidas ja millal helistada hädaabinumbrile 112? | <https://www.teeviit.ee/kui-on-oht-elule-helista-hadaabi-numbrile-112/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuidas kliimaärevusega toime tulla? | <https://www.teeviit.ee/kriis-kriisis-ehk-kliimaarevus/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuidas küberkiusamist ära tunda? | <https://www.teeviit.ee/kuidas-kuberkiusamist-ara-tunda/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuidas luua terveid ja turvalisi suhteid oma partneriga? | <https://www.teeviit.ee/kuidas-luua-terveid-ja-turvalisi-suhteid-oma-partneriga/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuidas olla rahatark? | <https://www.teeviit.ee/kuidas-olla-rahatark/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuidas oma lähedase või sõbra depressiooni ära tunda? | <https://www.teeviit.ee/kuidas-oma-lahedase-voi-sobra-depressiooni-ara-tunda/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuidas rääkida lähedastega oma vaimse tervise murest? | <https://www.teeviit.ee/kuidas-raakida-lahedastega-oma-vaimse-tervise-murest/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuidas tudengina rahaasjadega paremini toime tulla? | <https://www.teeviit.ee/kuidas-tudengina-rahaasjadega-paremini-toime-tulla/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuidas tulla toime eksamistressiga? | <https://www.teeviit.ee/kuidas-tulla-toime-eksamistressiga/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuidas tulla toime stressiga? | <https://www.teeviit.ee/kuidas-tulla-toime-stressiga/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuidas tunda ära kiusamist? | <https://www.teeviit.ee/kuidas-tunda-ara-kiusamist/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuidas tunda ära seksuaalvägivalda? | <https://www.teeviit.ee/kuidas-tunda-ara-seksuaalvagivalda/> |
+| Haridus- ja Noorteamet (Teeviit) | Kuidas valmistuda rahaliselt ootamatusteks ja mil viisil tekitada säästupuhvrit? | <https://www.teeviit.ee/kuidas-valmistuda-rahaliselt-ootamatuteks-ja-mil-viisil-tekitada-saastupuhvrit/> |
+| Haridus- ja Noorteamet (Teeviit) | Laste ja noorte õigused ning kohustused | <https://www.teeviit.ee/laste-ja-noorte-oigused-ning-kohustused/> |
+| Haridus- ja Noorteamet (Teeviit) | Leinast Lootuseni | <https://www.teeviit.ee/leinast-lootuseni/> |
+| Haridus- ja Noorteamet (Teeviit) | Lähisuhtevägivald: mis see on ja kuhu pöörduda? | <https://www.teeviit.ee/lahisuhtevagivald-mis-see-on-ja-kuhu-poorduda/> |
+| Haridus- ja Noorteamet (Teeviit) | Mida peaks töölepingu sõlmimisel kindlasti meeles pidama? | <https://www.teeviit.ee/mida-peaks-toolepingu-solmimisel-kindlasti-meeles-pidama/> |
+| Haridus- ja Noorteamet (Teeviit) | Mida peaksin teadma laenudest? | <https://www.teeviit.ee/mida-peaksin-teadma-laenudest/> |
+| Haridus- ja Noorteamet (Teeviit) | Mida silmas pidada esimese kodu üürimisel? | <https://www.teeviit.ee/mida-silmas-pidada-esimese-kodu-uurimisel/> |
+| Haridus- ja Noorteamet (Teeviit) | Mida teha, kui oled sattunud küberkiusamise ohvriks? | <https://www.teeviit.ee/mida-teha-kui-oled-sattunud-kuberkiusamise-ohvriks/> |
+| Haridus- ja Noorteamet (Teeviit) | Mida teha, kui su kaaslane või lähedane käitub vägivaldselt? | <https://www.teeviit.ee/mida-teha-kui-su-lahedane-kaitub-vagivaldselt/> |
+| Haridus- ja Noorteamet (Teeviit) | Miks ma peaksin igakuise eelarve koostama? | <https://www.teeviit.ee/miks-ma-peaksin-igakuise-eelarve-koostama/> |
+| Haridus- ja Noorteamet (Teeviit) | Miks on narkootikumid ohtlikud? | <https://www.teeviit.ee/miks-on-narkootikumid-ohtlikud/> |
+| Haridus- ja Noorteamet (Teeviit) | Millega peab arvestama alaealisena töötades? | <https://www.teeviit.ee/millega-peab-arvestama-alaealisena-tootades/> |
+| Haridus- ja Noorteamet (Teeviit) | Millist infot pean jagama pangaga, kui võtan laenu? | <https://www.teeviit.ee/millist-infot-pean-jagama-pangaga-kui-votan-laenu/> |
+| Haridus- ja Noorteamet (Teeviit) | Mis on inimõigused? | <https://www.teeviit.ee/mis-on-inimoigused/> |
+| Haridus- ja Noorteamet (Teeviit) | Mis on rahatarkus? | <https://www.teeviit.ee/mis-on-rahatarkus/> |
+| Haridus- ja Noorteamet (Teeviit) | Mis on seksuaalvägivald ja kust saada abi? | <https://www.teeviit.ee/mis-on-seksuaalvagivald-ja-kust-saada-abi/> |
+| Haridus- ja Noorteamet (Teeviit) | Mis on vaimne tervis ja vaimne häire? | <https://www.teeviit.ee/mis-on-vaimne-tervis/> |
+| Haridus- ja Noorteamet (Teeviit) | Mis on õppimiskohustus ja mida see tähendab pärast 9. klassi? | <https://www.teeviit.ee/mis-on-oppimiskohustus-ja-mida-see-tahendab-parast-9-klassi/> |
+| Haridus- ja Noorteamet (Teeviit) | Murrame müüte: vaimne tervis | <https://www.teeviit.ee/murrame-muute-vaimne-tervis/> |
+| Haridus- ja Noorteamet (Teeviit) | Nikotiini mõju vaimsele tervisele | <https://www.teeviit.ee/nikotiini-moju-vaimsele-tervisele/> |
+| Haridus- ja Noorteamet (Teeviit) | Organiseeritus kui vaimse tervise abivahend – kuidas kasutada Notionit? | <https://www.teeviit.ee/organiseeritus-kui-vaimse-tervise-abivahend/> |
+| Haridus- ja Noorteamet (Teeviit) | Praktilised tööriistad sinu vaimse tervise jaoks | <https://www.teeviit.ee/praktilised-tooriistad-sinu-vaimse-tervise-jaoks/> |
+| Haridus- ja Noorteamet (Teeviit) | Räägime e-sigaretist | <https://www.teeviit.ee/raagime-e-sigaretist/> |
+| Haridus- ja Noorteamet (Teeviit) | Söömishäire – mis, miks ja kuidas? | <https://www.teeviit.ee/soomishaire-mis-miks-ja-kuidas/> |
+| Haridus- ja Noorteamet (Teeviit) | Teeviit soovitab nippe: stressivaba õppimine | <https://www.teeviit.ee/teeviit-soovitab-nippe-stressivaba-oppimine/> |
+| Haridus- ja Noorteamet (Teeviit) | Turvaliselt suhtlusportaalides | <https://www.teeviit.ee/turvaliselt-suhtlusportaalides/> |
+| Haridus- ja Noorteamet (Teeviit) | Vanemlus: töötamine suvepuhkuste perioodil | <https://www.teeviit.ee/vanemlus-tootamine-suvepuhkuste-perioodil/> |
+| Haridus- ja Noorteamet (Teeviit) | Ära lase söömishäirel võtta oma elu üle kontrolli | <https://www.teeviit.ee/ara-lase-soomishairel-votta-oma-elu-ule-kontrolli/> |
+| Haridus- ja Noorteamet (Teeviit) | Ärevus ja ärevushäired – müüdid ja reaalsus | <https://www.teeviit.ee/arevushairete-muudid-ja-reaalsus/> |
+| Haridus- ja Noorteamet (Teeviit) | Ärevuse tunne võib hakata segama igapäevaelu | <https://www.teeviit.ee/arevuse-tunne-voib-hakata-segama-igapaevaelu/> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Abielu lahutamine kohtus | <https://www.juristaitab.ee/et/abielu-lahutamine-kohtus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Abielu lahutamine notaris | <https://www.juristaitab.ee/et/abielu-lahutamine-notaris> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Abielu lahutamine perekonnaseisuasutuses | <https://www.juristaitab.ee/et/abielu-lahutamine-perekonnaseisuasutuses> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Abielu sõlmimise eeldused | <https://www.juristaitab.ee/et/abielu-solmimise-eeldused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Abielu sõlmimise ja lahutamise avaldused | <https://www.juristaitab.ee/et/abielu-solmimise-ja-lahutamise-avaldused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Abieluvararegistriga tutvumine ja ärakirjade tellimine | <https://www.juristaitab.ee/et/abieluvararegistriga-tutvumine-ja-arakirjade-tellimine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Abikaasade varalised õigused | <https://www.juristaitab.ee/et/abikaasade-varalised-oigused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Abikaasade vastastikune testament | <https://www.juristaitab.ee/et/abikaasade-vastastikune-testament-3> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Aegumine | <https://www.juristaitab.ee/et/aegumine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Ametliku dokumendi tunnustamine ja täitmine Euroopa Parlamendi ja nõukogu määruse (EÜ) nr 805/2004 alusel | <https://www.juristaitab.ee/et/ametliku-dokumendi-tunnustamine-ja-taitmine-euroopa-parlamendi-ja-noukogu-maaruse-eu-nr-8052004> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Ametliku juriidilise dokumendi tunnustamine ja täitmine Euroopa Nõukogu määruse nr 44/2001 | <https://www.juristaitab.ee/et/ametliku-juriidilise-dokumendi-tunnustamine-ja-taitmine-euroopa-noukogu-maaruse-nr-442001> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Ametliku juriidilise dokumendi tunnustamine ja täitmine Euroopa Parlamendi ja Nõukogu määruse nr 1215/2012, | <https://www.juristaitab.ee/et/ametliku-juriidilise-dokumendi-tunnustamine-ja-taitmine-euroopa-parlamendi-ja-noukogu-maaruse-nr-0> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Ametliku juriidilise dokumendi tunnustamine ja täitmine nn. Lugano 2007 konventsioon | <https://www.juristaitab.ee/et/ametliku-juriidilise-dokumendi-tunnustamine-ja-taitmine-nn-lugano-2007-konventsioon> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Ametliku juriidilise dokumendi tunnustamine ja täitmine välismaal | <https://www.juristaitab.ee/et/ametliku-juriidilise-dokumendi-tunnustamine-ja-taitmine-valismaal> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Asjaajamine Vene Föderatsiooni pädevate asutustega pärast Eesti–Vene õigusabilepingu lõppemist | <https://www.juristaitab.ee/et/asjaajamine-vene-foderatsiooni-padevate-asutustega-parast-eesti-vene-oigusabilepingu-loppemist> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Dokumentide legaliseerimiskohustusest | <https://www.juristaitab.ee/et/dokumentide-legaliseerimiskohustusest> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Dokumentide vormid piiriüleseks asjaajamiseks | <https://www.juristaitab.ee/et/dokumentide-vormid-piiriuleseks-asjaajamiseks> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Eestkoste alaealise üle | <https://www.juristaitab.ee/et/eestkoste-alaealise-ule> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Eestkostja määramine. Kas eestkostja saab määrata ilma eestkostetava nõusolekuta? | <https://www.juristaitab.ee/et/eestkostja-maaramine-kas-eestkostja-saab-maarata-ilma-eestkostetava-nousolekuta> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Ehitus | <https://www.juristaitab.ee/et/ehitus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Ehitusnormid ja -nõuded | <https://www.juristaitab.ee/et/ehitusnormid-ja-nouded> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Ei ole saanud maksuteadet? | <https://www.juristaitab.ee/et/ei-ole-saanud-maksuteadet> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Elame elukaaslasega vabalt koos juba aastaid. Mis siis juriidilises mõttes muutuks, kui me abielu registreeriksime? Kas midagi muutub ka meie laste suhtes? | <https://www.juristaitab.ee/et/elame-elukaaslasega-vabalt-koos-juba-aastaid-mis-siis-juriidilises-mottes-muutuks-kui-me-abielu> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Elatis - hagi või avaldus? Kuhu esitada? | <https://www.juristaitab.ee/et/elatis-hagi-voi-avaldus-kuhu-esitada> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Elatisabi taotlemine kohtumenetluse ajal | <https://www.juristaitab.ee/et/elatisabi-taotlemine-kohtumenetluse-ajal> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Elatisabi taotlemine täitemenetluse ajal | <https://www.juristaitab.ee/et/elatisabi-taotlemine-taitemenetluse-ajal> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Elatisotsuse tunnustamine | <https://www.juristaitab.ee/et/elatisotsuse-tunnustamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Elatisotsuse tunnustamine ja täitemenetlusaegse elatisabi taotlemine kui võlgnik on välisriigis | <https://www.juristaitab.ee/et/elatisotsuse-tunnustamine-ja-taitemenetlusaegse-elatisabi-taotlemine-kui-volgnik-valisriigis> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Erilised nõuded kinnisvara müügil | <https://www.juristaitab.ee/et/erilised-nouded-kinnisvara-muugil> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Euroopa maksekäsk | <https://www.juristaitab.ee/et/euroopa-maksekask> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Füüsilise isiku maksejõuetus | <https://www.juristaitab.ee/et/fuusilise-isiku-maksejouetus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Füüsilise isiku maksejõuetuse seadus | <https://www.juristaitab.ee/et/fuusilise-isiku-maksejouetuse-seadus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Hagile vastamine | <https://www.juristaitab.ee/et/hagile-vastamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Halduskohtusse pöördumine | <https://www.juristaitab.ee/et/halduskohtusse-poordumine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kaasomanike kokkuleppe õiguslikud võimalused | <https://www.juristaitab.ee/et/kaasomanike-kokkuleppe-oiguslikud-voimalused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kahju hüvitamise alused | <https://www.juristaitab.ee/et/kahju-huvitamise-alused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kahju hüvitamise erijuhud | <https://www.juristaitab.ee/et/kahju-huvitamise-erijuhud> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kahju hüvitamise nõude esitamine | <https://www.juristaitab.ee/et/kahju-huvitamise-noude-esitamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kahju hüvitamise ulatus | <https://www.juristaitab.ee/et/kahju-huvitamise-ulatus-0> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kahju liigid | <https://www.juristaitab.ee/et/kahju-liigid> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas abikaasa võib nõuda ülalpidamise andmist ka tagasiulatuvalt? | <https://www.juristaitab.ee/et/kas-abikaasa-voib-nouda-ulalpidamise-andmist-ka-tagasiulatuvalt> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas abikaasad võivad esitada tuludeklaratsiooni ühiselt? | <https://www.juristaitab.ee/et/kas-abikaasad-voivad-esitada-tuludeklaratsiooni-uhiselt> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas abikaasad võivad sõlmida notariaalse kokkuleppe ülalpidamiseks peale lahutust? | <https://www.juristaitab.ee/et/kas-abikaasad-voivad-solmida-notariaalse-kokkuleppe-ulalpidamiseks-peale-lahutust> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas apostillida dokumendi originaal või ärakiri? | <https://www.juristaitab.ee/et/kas-apostillida-dokumendi-originaal-voi-arakiri> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas Eesti kohtutäitur saab minu nõuet täita välisriigis elava/töötava isiku suhtes? | <https://www.juristaitab.ee/et/kas-eesti-kohtutaitur-saab-minu-nouet-taita-valisriigis-elavatootava-isiku-suhtes> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas eestkostja on kohustatud eestkostetavat ülal pidama? | <https://www.juristaitab.ee/et/kas-eestkostja-kohustatud-eestkostetavat-ulal-pidama> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas elatisabi on võimalik saada ka juhul, kui lapsele ei ole elatist kohtu kaudu välja mõistetud? | <https://www.juristaitab.ee/et/kas-elatisabi-voimalik-saada-ka-juhul-kui-lapsele-ei-ole-elatist-kohtu-kaudu-valja-moistetud> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas elatisabi saab taotleda, kui võlgnik elab välismaal ning Eestis ei ole võimalik täitemenetlust alustada? | <https://www.juristaitab.ee/et/kas-elatisabi-saab-taotleda-kui-volgnik-elab-valismaal-ning-eestis-ei-ole-voimalik-taitemenetlust> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas elatist saab nõuda vanavanemalt (asenduskohustus)? | <https://www.juristaitab.ee/et/kas-elatist-saab-nouda-vanavanemalt-asenduskohustus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas hüpoteegiga koormatud kinnisasja saab müüa, kinkida? | <https://www.juristaitab.ee/et/kas-hupoteegiga-koormatud-kinnisasja-saab-muua-kinkida> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas ja millal tulumaksu saab tagasi või tuleb juurde maksta? | <https://www.juristaitab.ee/et/kas-ja-millal-tulumaksu-saab-tagasi-voi-tuleb-juurde-maksta> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas kandeavalduse eest pean maksma? | <https://www.juristaitab.ee/et/kas-kandeavalduse-eest-pean-maksma> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas katseaeg pikeneb haiguse aja võrra? | <https://www.juristaitab.ee/et/kas-katseaeg-pikeneb-haiguse-aja-vorra> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas kohalikul omavalitsusel on õigus/ kohustus kanda minu taotluse alusel juurdepääsutee valla teederegistrisse? | <https://www.juristaitab.ee/et/kas-kohalikul-omavalitsusel-oigus-kohustus-kanda-minu-taotluse-alusel-juurdepaasutee-valla> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas kohtul on õigus keelduda mind kohustustest vabastamast? | <https://www.juristaitab.ee/et/kas-kohtul-oigus-keelduda-mind-kohustustest-vabastamast> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas kohtutäitur peab vastama minu kirjadele ja e-kirjadele? | <https://www.juristaitab.ee/et/kas-kohtutaitur-peab-vastama-minu-kirjadele-ja-e-kirjadele> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas lapse ema võib nõuda lapse isalt ülalpidamist ka endale? Kui isa kasvatab last, kas tema saab nõuda emalt? | <https://www.juristaitab.ee/et/kas-lapse-ema-voib-nouda-lapse-isalt-ulalpidamist-ka-endale-kui-isa-kasvatab-last-kas-tema-saab> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas lapse võib perekonnast eraldada? Kas võib vanemalt hooldusõiguse täielikult ära võtta? | <https://www.juristaitab.ee/et/kas-lapse-voib-perekonnast-eraldada-kas-voib-vanemalt-hooldusoiguse-taielikult-ara-votta> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas legaliseerida dokumendi originaal või ärakiri? | <https://www.juristaitab.ee/et/kas-legaliseerida-dokumendi-originaal-voi-arakiri> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas legaliseeritud dokumendile tuleb lisada tõlge? | <https://www.juristaitab.ee/et/kas-legaliseeritud-dokumendile-tuleb-lisada-tolge> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas lisada apostillitud dokumendile ka tõlge? | <https://www.juristaitab.ee/et/kas-lisada-apostillitud-dokumendile-ka-tolge> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas ma saan Eesti Töötukassalt hüvitist ka siis, kui pankrotimenetlus lõpetatakse raugemise tõttu pankrotti välja kuulutamata? | <https://www.juristaitab.ee/et/kas-ma-saan-eesti-tootukassalt-huvitist-ka-siis-kui-pankrotimenetlus-lopetatakse-raugemise-tottu> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas mul on võimalik lahutamise korral abikaasaga omavahel abieluvara jagamise osas kokku leppida? | <https://www.juristaitab.ee/et/kas-mul-voimalik-lahutamise-korral-abikaasaga-omavahel-abieluvara-jagamise-osas-kokku-leppida> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas oma isiklike asjade (nt auto) müümisest saadud tulu pealt tuleb maksta tulumaksu? | <https://www.juristaitab.ee/et/kas-oma-isiklike-asjade-nt-auto-muumisest-saadud-tulu-pealt-tuleb-maksta-tulumaksu> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas oma maa ja korteri müügi pealt tuleb maksta tulumaksu? | <https://www.juristaitab.ee/et/kas-oma-maa-ja-korteri-muugi-pealt-tuleb-maksta-tulumaksu> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas on võimalus valida erinevate hüpoteekide vahel? Mis on ühishüpoteek? | <https://www.juristaitab.ee/et/kas-voimalus-valida-erinevate-hupoteekide-vahel-mis-uhishupoteek> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas pärandist on võimalik loobuda osaliselt või tingimuslikult? | <https://www.juristaitab.ee/et/kas-parandist-voimalik-loobuda-osaliselt-voi-tingimuslikult> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas riigi õigusabi taotlusele tuleb lisada veel mingeid dokumente? | <https://www.juristaitab.ee/et/kas-riigi-oigusabi-taotlusele-tuleb-lisada-veel-mingeid-dokumente> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas riigipoolne elatisabi maksmine tähendab, et elatisvõlgnik enam lapsele elatist maksma ei pea? | <https://www.juristaitab.ee/et/kas-riigipoolne-elatisabi-maksmine-tahendab-et-elatisvolgnik-enam-lapsele-elatist-maksma-ei-pea> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas sissenõudjal on õigus kohtutäiturit vahetada? | <https://www.juristaitab.ee/et/kas-sissenoudjal-oigus-kohtutaiturit-vahetada> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas suuline kokkulepe on leping? | <https://www.juristaitab.ee/et/kas-suuline-kokkulepe-leping> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas tarbijavaidluste komisjoni poolt tehtud otsuse peale saab edasi kaevata? | <https://www.juristaitab.ee/et/kas-tarbijavaidluste-komisjoni-poolt-tehtud-otsuse-peale-saab-edasi-kaevata> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas tulumaksuga maksustatakse autokompensatsioon? | <https://www.juristaitab.ee/et/kas-tulumaksuga-maksustatakse-autokompensatsioon> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas tulumaksuga maksustatakse välislähetuse päevaraha? | <https://www.juristaitab.ee/et/kas-tulumaksuga-maksustatakse-valislahetuse-paevaraha> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas täitemenetlusaegset elatisabi saab taotleda vaid ühe vanema kohta? | <https://www.juristaitab.ee/et/kas-taitemenetlusaegset-elatisabi-saab-taotleda-vaid-uhe-vanema-kohta> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas töövaidluskomisjon/kohus saab töötajat töökohale ennistada või määratakse hüvitis? | <https://www.juristaitab.ee/et/kas-toovaidluskomisjonkohus-saab-tootajat-tookohale-ennistada-voi-maaratakse-huvitis> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas vanem võib otsustada last puudutavaid küsimusi või esindada last üksinda? | <https://www.juristaitab.ee/et/kas-vanem-voib-otsustada-last-puudutavaid-kusimusi-voi-esindada-last-uksinda> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas vanemad võivad ise elatise osas kokku leppida? | <https://www.juristaitab.ee/et/kas-vanemad-voivad-ise-elatise-osas-kokku-leppida> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas vara müügist saadud kasult tuleb maksta tulumaksu? | <https://www.juristaitab.ee/et/kas-vara-muugist-saadud-kasult-tuleb-maksta-tulumaksu> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas võib maha arvata eluasemelaenu intresse? | <https://www.juristaitab.ee/et/kas-voib-maha-arvata-eluasemelaenu-intresse> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas võib maha arvata koolituskulud? | <https://www.juristaitab.ee/et/kas-voib-maha-arvata-koolituskulud> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas võib nõuda abikaasalt endale ülalpidamist, kui abikaasad elavad lahus, aga abielu on lahutamata? | <https://www.juristaitab.ee/et/kas-voib-nouda-abikaasalt-endale-ulalpidamist-kui-abikaasad-elavad-lahus-aga-abielu-lahutamata> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas ühingu asutamise eest on ette nähtud riigilõiv? | <https://www.juristaitab.ee/et/kas-uhingu-asutamise-eest-ette-nahtud-riigiloiv> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kas üüritulult tuleb maksta tulumaksu? | <https://www.juristaitab.ee/et/kas-uuritulult-tuleb-maksta-tulumaksu> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kasutuslepingu liigid | <https://www.juristaitab.ee/et/kasutuslepingu-liigid> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kasutuslepingu lõpetamine ja vara tagastamine | <https://www.juristaitab.ee/et/kasutuslepingu-lopetamine-ja-vara-tagastamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kasutuslepingu olulised tingimused | <https://www.juristaitab.ee/et/kasutuslepingu-olulised-tingimused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kasutuslepingu pooled ja nende kohustused | <https://www.juristaitab.ee/et/kasutuslepingu-pooled-ja-nende-kohustused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kasutuslepingute eritingimused | <https://www.juristaitab.ee/et/kasutuslepingute-eritingimused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Katseaeg | <https://www.juristaitab.ee/et/katseaeg> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Katseaeg, töölepingu lõpetamine katseajal | <https://www.juristaitab.ee/et/katseaeg-toolepingu-lopetamine-katseajal> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kellele ja millal elatist tuleb maksta? | <https://www.juristaitab.ee/et/kellele-ja-millal-elatist-tuleb-maksta> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kellele kuulub lapse hooldusõigus? | <https://www.juristaitab.ee/et/kellele-kuulub-lapse-hooldusoigus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kellele kuulub leitud vara? | <https://www.juristaitab.ee/et/kellele-kuulub-leitud-vara> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes esitab avalduse uue omaniku kinnistusraamatusse kandmiseks ja kes teeb kinnistusraamatusse vastava muudatuse? | <https://www.juristaitab.ee/et/kes-esitab-avalduse-uue-omaniku-kinnistusraamatusse-kandmiseks-ja-kes-teeb-kinnistusraamatusse> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes kannab menetluskulud maksekäsu kiirmenetluses? | <https://www.juristaitab.ee/et/kes-kannab-menetluskulud-maksekasu-kiirmenetluses> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes kehtestab maksumäära? | <https://www.juristaitab.ee/et/kes-kehtestab-maksumaara> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes maksab maamaksu? | <https://www.juristaitab.ee/et/kes-maksab-maamaksu> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes menetleb kuritegusid? | <https://www.juristaitab.ee/et/kes-menetleb-kuritegusid> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes määrab riigi õigusabi osutava advokaadi? | <https://www.juristaitab.ee/et/kes-maarab-riigi-oigusabi-osutava-advokaadi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes on elatise taotleja? | <https://www.juristaitab.ee/et/kes-elatise-taotleja> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes on maksekäsu kiirmenetluse poolteks elatise nõudes? | <https://www.juristaitab.ee/et/kes-maksekasu-kiirmenetluse-poolteks-elatise-noudes> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes on maksekäsu kiirmenetluses poolteks? | <https://www.juristaitab.ee/et/kes-maksekasu-kiirmenetluses-poolteks> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes on pankrotihaldur? | <https://www.juristaitab.ee/et/kes-pankrotihaldur> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes on pädev allkirja õigsuse kinnitamiseks? | <https://www.juristaitab.ee/et/kes-padev-allkirja-oigsuse-kinnitamiseks> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes on pädev dokumendi tõlke õigsuse kinnitamiseks? | <https://www.juristaitab.ee/et/kes-padev-dokumendi-tolke-oigsuse-kinnitamiseks> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes on pädev dokumendi ärakirja õigsuse kinnitamiseks? | <https://www.juristaitab.ee/et/kes-padev-dokumendi-arakirja-oigsuse-kinnitamiseks> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes on residendist füüsiline isik? | <https://www.juristaitab.ee/et/kes-residendist-fuusiline-isik> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes on usaldusisik? | <https://www.juristaitab.ee/et/kes-usaldusisik> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes otsustab kohustustest vabastamise menetluse algatamise ning millisel juhul ei ole võimalik seda teha? | <https://www.juristaitab.ee/et/kes-otsustab-kohustustest-vabastamise-menetluse-algatamise-ning-millisel-juhul-ei-ole-voimalik-seda> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes otsustab lapse elukoha üle? | <https://www.juristaitab.ee/et/kes-otsustab-lapse-elukoha-ule> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes peab maksma kohtutäituri tasu ja muud kulud? | <https://www.juristaitab.ee/et/kes-peab-maksma-kohtutaituri-tasu-ja-muud-kulud> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes peab tagama lapse ülalpidamise? | <https://www.juristaitab.ee/et/kes-peab-tagama-lapse-ulalpidamise> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes peavad äriregistrit, mittetulundusühingute ja sihtasutuste registrit, kommertspandiregistrit ning laevakinnistusraamatut? | <https://www.juristaitab.ee/et/kes-peavad-ariregistrit-mittetulundusuhingute-ja-sihtasutuste-registrit-kommertspandiregistrit-ning> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes saab taotleda riigi õigusabi? | <https://www.juristaitab.ee/et/kes-saab-taotleda-riigi-oigusabi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes saavad algatada pärimismenetlust? | <https://www.juristaitab.ee/et/kes-saavad-algatada-parimismenetlust> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes saavad asutada ühinguid ja füüsilisest isikust ettevõtjat ettevõtjaportaali kaudu? | <https://www.juristaitab.ee/et/kes-saavad-asutada-uhinguid-ja-fuusilisest-isikust-ettevotjat-ettevotjaportaali-kaudu> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes teeb kande abieluvararegistrisse? | <https://www.juristaitab.ee/et/kes-teeb-kande-abieluvararegistrisse> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kes teostab järelevalvet eestkostja tegevuse üle? | <https://www.juristaitab.ee/et/kes-teostab-jarelevalvet-eestkostja-tegevuse-ule> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kindlustuslepingu liigid | <https://www.juristaitab.ee/et/kindlustuslepingu-liigid> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kindlustuslepingu lõpetamine | <https://www.juristaitab.ee/et/kindlustuslepingu-lopetamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kindlustuslepingu olulised tingimused | <https://www.juristaitab.ee/et/kindlustuslepingu-olulised-tingimused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kindlustuslepingu sõlmimine | <https://www.juristaitab.ee/et/kindlustuslepingu-solmimine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kindlustuslepingu vaidluste lahendamine | <https://www.juristaitab.ee/et/kindlustuslepingu-vaidluste-lahendamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kinke maksustamine | <https://www.juristaitab.ee/et/kinke-maksustamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kinkelepingu erijuhud | <https://www.juristaitab.ee/et/kinkelepingu-erijuhud> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kinkelepingu olulised tingimused | <https://www.juristaitab.ee/et/kinkelepingu-olulised-tingimused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kinkelepingu vorminõuded ja sisu | <https://www.juristaitab.ee/et/kinkelepingu-vorminouded-ja-sisu> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kinkelepingust taganemine | <https://www.juristaitab.ee/et/kinkelepingust-taganemine-5> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kinnisvara laenu tagatiseks | <https://www.juristaitab.ee/et/kinnisvara-laenu-tagatiseks> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kodune testament | <https://www.juristaitab.ee/et/kodune-testament> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kohtuotsuse tunnustamine „Laste ja teiste pereliikmete elatise rahvusvahelise sissenõudmise“ konventsiooni | <https://www.juristaitab.ee/et/kohtuotsuse-tunnustamine-laste-ja-teiste-pereliikmete-elatise-rahvusvahelise-sissenoudmise> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kohtuotsuse tunnustamine Euroopa Parlamendi ja Nõukogu määruse nr 805/2004 | <https://www.juristaitab.ee/et/kohtuotsuse-tunnustamine-euroopa-parlamendi-ja-noukogu-maaruse-nr-8052004> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kohtuotsuse tunnustamine ja elatisabi saamine „Laste ja teiste pereliikmete elatise rahvusvahelise sissenõudmise“ konventsiooni | <https://www.juristaitab.ee/et/kohtuotsuse-tunnustamine-ja-elatisabi-saamine-laste-ja-teiste-pereliikmete-elatise-rahvusvahelise> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kohtuotsuse tunnustamine ja elatisabi taotlemine „Ülalpidamiskohustusi käsitlevate otsuste tunnustamise ja täitmise“ konventsiooni | <https://www.juristaitab.ee/et/kohtuotsuse-tunnustamine-ja-elatisabi-taotlemine-ulalpidamiskohustusi-kasitlevate-otsuste> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kohtuotsuse tunnustamine ja täitmine "Välisriigist ülalpidamise taotlemise" konventsioon | <https://www.juristaitab.ee/et/kohtuotsuse-tunnustamine-ja-taitmine-valisriigist-ulalpidamise-taotlemise-konventsioon> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kohtuotsuse tunnustamine ja täitmine "Välisriigist ülalpidamise taotlemise" konventsioon ja elatisabi | <https://www.juristaitab.ee/et/kohtuotsuse-tunnustamine-ja-taitmine-valisriigist-ulalpidamise-taotlemise-konventsioon-ja-elatisabi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kohtuotsuse tunnustamine ja täitmine „Ülalpidamiskohustusi käsitlevate otsuste tunnustamise ja täitmise” konventsiooni ehk Haagi ülalpidamiskohustuste konventsiooni alusel | <https://www.juristaitab.ee/et/kohtuotsuse-tunnustamine-ja-taitmine-ulalpidamiskohustusi-kasitlevate-otsuste-tunnustamise-ja> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kohtuotsuse tunnustamine ja täitmine Euroopa Nõukogu määruse nr 2201/2003 | <https://www.juristaitab.ee/et/kohtuotsuse-tunnustamine-ja-taitmine-euroopa-noukogu-maaruse-nr-22012003> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kohtuotsuse tunnustamine ja täitmine Euroopa Nõukogu määruse nr 44/2001 | <https://www.juristaitab.ee/et/kohtuotsuse-tunnustamine-ja-taitmine-euroopa-noukogu-maaruse-nr-442001> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kohtuotsuse tunnustamine ja täitmine Euroopa Parlamendi ja Nõukogu määruse nr 1215/2012, | <https://www.juristaitab.ee/et/kohtuotsuse-tunnustamine-ja-taitmine-euroopa-parlamendi-ja-noukogu-maaruse-nr-12152012> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kohtuotsuse tunnustamine ja täitmine ja elatisabi taotlemine Nõukogu määruse nr 4/2009 | <https://www.juristaitab.ee/et/kohtuotsuse-tunnustamine-ja-taitmine-ja-elatisabi-taotlemine-noukogu-maaruse-nr-42009> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kohtuotsuse tunnustamine ja täitmine Nõukogu määruse nr 4/2009 | <https://www.juristaitab.ee/et/kohtuotsuse-tunnustamine-ja-taitmine-noukogu-maaruse-nr-42009> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kohtuotsuse tunnustamine ja täitmine välismaal (mh elatis) | <https://www.juristaitab.ee/et/kohtuotsuse-tunnustamine-ja-taitmine-valismaal-mh-elatis> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kohtutäitur on arestinud minu sissetulekud, mis ei kuulu seaduse kohaselt arestimisele. Mida teha? | <https://www.juristaitab.ee/et/kohtutaitur-arestinud-minu-sissetulekud-mis-ei-kuulu-seaduse-kohaselt-arestimisele-mida-teha> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kokkulepped kohtumenetluses | <https://www.juristaitab.ee/et/kokkulepped-kohtumenetluses> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Korteriomanike õigused ja kohustused | <https://www.juristaitab.ee/et/korteriomanike-oigused-ja-kohustused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Korteriühistu juhtimine | <https://www.juristaitab.ee/et/korteriuhistu-juhtimine-0> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Korteriühistu moodustamine | <https://www.juristaitab.ee/et/korteriuhistu-moodustamine-0> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Korteriühistu probleemide lahendamine | <https://www.juristaitab.ee/et/korteriuhistu-probleemide-lahendamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Korteriühistu ülesanded ja vastutus | <https://www.juristaitab.ee/et/korteriuhistu-ulesanded-ja-vastutus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuhu esitada maksekäsu kiirmenetluse avaldus? | <https://www.juristaitab.ee/et/kuhu-esitada-maksekasu-kiirmenetluse-avaldus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuhu esitada pankrotiavaldus? | <https://www.juristaitab.ee/et/kuhu-esitada-pankrotiavaldus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuhu ja kellele esitada riigi õigusabi taotlus? | <https://www.juristaitab.ee/et/kuhu-ja-kellele-esitada-riigi-oigusabi-taotlus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuhu ja kui palju tuleb tasuda riigilõivu maksekäsu kiirmenetluse avalduse esitamise eest? | <https://www.juristaitab.ee/et/kuhu-ja-kui-palju-tuleb-tasuda-riigiloivu-maksekasu-kiirmenetluse-avalduse-esitamise-eest> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuhu peame vaidluse korral pärandvara jagamiseks pöörduma? | <https://www.juristaitab.ee/et/kuhu-peame-vaidluse-korral-parandvara-jagamiseks-poorduma> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui hooldusõigus on ainult ühel vanemal, kas teine saab seda endale nõuda? | <https://www.juristaitab.ee/et/kui-hooldusoigus-ainult-uhel-vanemal-kas-teine-saab-seda-endale-nouda> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui kaua kohustustest vabastamise menetlus kestab ja mida tuleb pärast seda teha? | <https://www.juristaitab.ee/et/kui-kaua-kohustustest-vabastamise-menetlus-kestab-ja-mida-tuleb-parast-seda-teha> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui kaua peab ülalpidamist lahutatud abikaasale andma? Kas võib nõuda ka tagasiulatuvalt? | <https://www.juristaitab.ee/et/kui-kaua-peab-ulalpidamist-lahutatud-abikaasale-andma-kas-voib-nouda-ka-tagasiulatuvalt> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui kiiresti on võimalik abielu lahutada? | <https://www.juristaitab.ee/et/kui-kiiresti-voimalik-abielu-lahutada> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui kiiresti saab abielluda? | <https://www.juristaitab.ee/et/kui-kiiresti-saab-abielluda> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui kiiresti tehakse abieluvararegistrisse kanne? | <https://www.juristaitab.ee/et/kui-kiiresti-tehakse-abieluvararegistrisse-kanne> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui lahutatud abikaasa on tervislikel põhjustel kodune ja ei oma sissetulekut, kas ta saab lahutatud abikaasalt ülalpidamist nõuda? | <https://www.juristaitab.ee/et/kui-lahutatud-abikaasa-tervislikel-pohjustel-kodune-ja-ei-oma-sissetulekut-kas-ta-saab-lahutatud> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui ma ei saa suhelda registriga elektrooniliselt, siis kuhu täpselt pean minema? | <https://www.juristaitab.ee/et/kui-ma-ei-saa-suhelda-registriga-elektrooniliselt-siis-kuhu-tapselt-pean-minema> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui olen hakanud esitama ettevõtjaportaalist kandeavaldust ja enne registriosakonnale esitamist on tekkinud küsimused, siis kelle poole saan nende küsimustega pöörduda? | <https://www.juristaitab.ee/et/kui-olen-hakanud-esitama-ettevotjaportaalist-kandeavaldust-ja-enne-registriosakonnale-esitamist> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui palju maksab abielu sõlmimine perekonnaseisuametis ja notari juures? | <https://www.juristaitab.ee/et/kui-palju-maksab-abielu-solmimine-perekonnaseisuametis-ja-notari-juures> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui palju maksab abieluvararegistri andmetega tutvumine? | <https://www.juristaitab.ee/et/kui-palju-maksab-abieluvararegistri-andmetega-tutvumine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui palju peab lahutatud abikaasale ülalpidamist maksma? | <https://www.juristaitab.ee/et/kui-palju-peab-lahutatud-abikaasale-ulalpidamist-maksma> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui palju tuleb tasuda pankrotiavalduse esitamisel riigilõivu? | <https://www.juristaitab.ee/et/kui-palju-tuleb-tasuda-pankrotiavalduse-esitamisel-riigiloivu> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui pärijaks on alaealine | <https://www.juristaitab.ee/et/kui-parijaks-alaealine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui registriosakond on teinud mulle puuduste kõrvaldamise määruse, siis mida pean edasi tegema? Kas saan esitada määruskaebuse? | <https://www.juristaitab.ee/et/kui-registriosakond-teinud-mulle-puuduste-korvaldamise-maaruse-siis-mida-pean-edasi-tegema-kas-saan> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui soovin füüsilise isikuna tegeleda ettevõtlusega, kas pean olema sel juhul kantud äriregistrisse? | <https://www.juristaitab.ee/et/kui-soovin-fuusilise-isikuna-tegeleda-ettevotlusega-kas-pean-olema-sel-juhul-kantud-ariregistrisse> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui täiendavat maksuvaba tulu lapse ülalpidamise korral tahavad kasutada mõlemad vanemad? | <https://www.juristaitab.ee/et/kui-taiendavat-maksuvaba-tulu-lapse-ulalpidamise-korral-tahavad-kasutada-molemad-vanemad> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui täitemenetlusaegse elatisabi saaja ei soovi enam elatisabi väljamakseid saada, siis kuhu peaks ta avalduse esitama? | <https://www.juristaitab.ee/et/kui-taitemenetlusaegse-elatisabi-saaja-ei-soovi-enam-elatisabi-valjamakseid-saada-siis-kuhu-peaks> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui vanema majanduslik seis ei võimalda üldse elatist maksta, kas siis ei saagi elatist nõuda? Aga kui vanemal on palju lapsi? | <https://www.juristaitab.ee/et/kui-vanema-majanduslik-seis-ei-voimalda-uldse-elatist-maksta-kas-siis-ei-saagi-elatist-nouda-aga> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kui vanematevahelist vaidlust ei õnnestu lahendada kokkuleppel | <https://www.juristaitab.ee/et/kui-vanematevahelist-vaidlust-ei-onnestu-lahendada-kokkuleppel> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas arvutada vastuväite tähtaega? | <https://www.juristaitab.ee/et/kuidas-arvutada-vastuvaite-tahtaega> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas elatist taotleda Eestis? | <https://www.juristaitab.ee/et/kuidas-elatist-taotleda-eestis> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas elatist taotleda teises Euroopa Liidu liikmesriigis? | <https://www.juristaitab.ee/et/kuidas-elatist-taotleda-teises-euroopa-liidu-liikmesriigis> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas esitada hagiavaldust kohtusse? | <https://www.juristaitab.ee/et/kuidas-esitada-hagiavaldust-kohtusse> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas esitada maksekäsu kiirmenetluse avaldust? | <https://www.juristaitab.ee/et/kuidas-esitada-maksekasu-kiirmenetluse-avaldust> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas esitada täitedokument kohtutäiturile täitmiseks? | <https://www.juristaitab.ee/et/kuidas-esitada-taitedokument-kohtutaiturile-taitmiseks> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas ja kuhu ma saan esitada kaebuse kohtutäituri tegevusele? | <https://www.juristaitab.ee/et/kuidas-ja-kuhu-ma-saan-esitada-kaebuse-kohtutaituri-tegevusele-0> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas ja kuhu ma saan esitada kaebuse kohtutäituri tegevusele? | <https://www.juristaitab.ee/et/kuidas-ja-kuhu-ma-saan-esitada-kaebuse-kohtutaituri-tegevusele> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas jagunevad menetluskulud menetlusabi andmisel? | <https://www.juristaitab.ee/et/kuidas-jagunevad-menetluskulud-menetlusabi-andmisel> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas kulgeb maksekäsu kiirmenetluse protsess? | <https://www.juristaitab.ee/et/kuidas-kulgeb-maksekasu-kiirmenetluse-protsess> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas kulgeb maksekäsu kiirmenetluse protsess? | <https://www.juristaitab.ee/et/kuidas-kulgeb-maksekasu-kiirmenetluse-protsess-0> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas kuriteod liigituvad? | <https://www.juristaitab.ee/et/kuidas-kuriteod-liigituvad> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas käituda siis, kui võlgniku suhtes küll täitemenetlus käib, kuid võlgnik on maksnud lapse elatisraha otse? | <https://www.juristaitab.ee/et/kuidas-kaituda-siis-kui-volgniku-suhtes-kull-taitemenetlus-kaib-kuid-volgnik-maksnud-lapse> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas lepingut sõlmida? | <https://www.juristaitab.ee/et/kuidas-lepingut-solmida> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas ma saan aresti alt vabastatud elatusmiinimumi kasutada? | <https://www.juristaitab.ee/et/kuidas-ma-saan-aresti-alt-vabastatud-elatusmiinimumi-kasutada> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas ma saan täitemenetlusaegset elatisabi taotleda siis, kui lapse isa ei ole märgitud lapse sünnitunnistusele? | <https://www.juristaitab.ee/et/kuidas-ma-saan-taitemenetlusaegset-elatisabi-taotleda-siis-kui-lapse-isa-ei-ole-margitud-lapse> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas määrata kinnisomandi ulatust? | <https://www.juristaitab.ee/et/kuidas-maarata-kinnisomandi-ulatust> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas määratakse elatise suurus? | <https://www.juristaitab.ee/et/kuidas-maaratakse-elatise-suurus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas omand tekib? | <https://www.juristaitab.ee/et/kuidas-omand-tekib> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas on võimalik kinnisasja kinkida? | <https://www.juristaitab.ee/et/kuidas-voimalik-kinnisasja-kinkida> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas pärandit vastu võtta? Kas peab tegema kindlaid toiminguid selleks, et pärand vastu võtta? | <https://www.juristaitab.ee/et/kuidas-parandit-vastu-votta-kas-peab-tegema-kindlaid-toiminguid-selleks-et-parand-vastu-votta> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas saab hüpoteeki seada? | <https://www.juristaitab.ee/et/kuidas-saab-hupoteeki-seada> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas saada kohtumenetluses riigipoolset menetlusabi? | <https://www.juristaitab.ee/et/kuidas-saada-kohtumenetluses-riigipoolset-menetlusabi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas saada riigi õigusabi? | <https://www.juristaitab.ee/et/kuidas-saada-riigi-oigusabi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas saada teada, kes on pankrotistunud ettevõtte pankrotihaldur? | <https://www.juristaitab.ee/et/kuidas-saada-teada-kes-pankrotistunud-ettevotte-pankrotihaldur> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas saan asutada äriühingu, mittetulundusühingu, sihtasutuse, välismaa äriühingu filiaali või füüsilisest isikust ettevõtja? | <https://www.juristaitab.ee/et/kuidas-saan-asutada-ariuhingu-mittetulundusuhingu-sihtasutuse-valismaa-ariuhingu-filiaali-voi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas servituudid jagunevad ja milline on nende olemus? Mille poolest erineb reaalservituut isiklikust servituudist? | <https://www.juristaitab.ee/et/kuidas-servituudid-jagunevad-ja-milline-nende-olemus-mille-poolest-erineb-reaalservituut-isiklikust> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas servituudid tekivad ja lõppevad? Mille poolest erineb servituut võlaõiguslikust lepingust? | <https://www.juristaitab.ee/et/kuidas-servituudid-tekivad-ja-loppevad-mille-poolest-erineb-servituut-volaoiguslikust-lepingust> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas taotleda elatislahendi muutmist teises Euroopa Liidu liikmesriigis? | <https://www.juristaitab.ee/et/kuidas-taotleda-elatislahendi-muutmist-teises-euroopa-liidu-liikmesriigis> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas teada saada, milline täitur minu suhtes esitatud nõuet täidab? | <https://www.juristaitab.ee/et/kuidas-teada-saada-milline-taitur-minu-suhtes-esitatud-nouet-taidab> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas teavitada pankrotihaldurit enda nõudest? | <https://www.juristaitab.ee/et/kuidas-teavitada-pankrotihaldurit-enda-noudest> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas teha testamenti? | <https://www.juristaitab.ee/et/kuidas-teha-testamenti> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas tehakse pärimisregistrisse kandeid? | <https://www.juristaitab.ee/et/kuidas-tehakse-parimisregistrisse-kandeid> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas tellida abieluvararegistrist ärakirju? | <https://www.juristaitab.ee/et/kuidas-tellida-abieluvararegistrist-arakirju> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas toimub apostilliga kinnitamine? | <https://www.juristaitab.ee/et/kuidas-toimub-apostilliga-kinnitamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas toimub kohtutäituri tasu ja muude kulude vaidlustamine? | <https://www.juristaitab.ee/et/kuidas-toimub-kohtutaituri-tasu-ja-muude-kulude-vaidlustamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas toimub lapse isaduse tuvastamine? | <https://www.juristaitab.ee/et/kuidas-toimub-lapse-isaduse-tuvastamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas toimub omandamise ja võõrandamise tehingu sõlmimine? | <https://www.juristaitab.ee/et/kuidas-toimub-omandamise-ja-voorandamise-tehingu-solmimine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas toimub pärandist loobumine? | <https://www.juristaitab.ee/et/kuidas-toimub-parandist-loobumine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas toimub pärimisregistrile päringute esitamine? | <https://www.juristaitab.ee/et/kuidas-toimub-parimisregistrile-paringute-esitamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas toimub testamendi registreerimine? | <https://www.juristaitab.ee/et/kuidas-toimub-testamendi-registreerimine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas tuleb ühist hooldusõigust teostada? | <https://www.juristaitab.ee/et/kuidas-tuleb-uhist-hooldusoigust-teostada> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas täitemenetlusaegset elatisabi arvutatakse? | <https://www.juristaitab.ee/et/kuidas-taitemenetlusaegset-elatisabi-arvutatakse> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas valida oma nõude täitmiseks kohtutäiturit? | <https://www.juristaitab.ee/et/kuidas-valida-oma-noude-taitmiseks-kohtutaiturit> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kuidas vormistada kinnisasja või selle osa kasutusse andmist? | <https://www.juristaitab.ee/et/kuidas-vormistada-kinnisasja-voi-selle-osa-kasutusse-andmist> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kus ja kuidas saan tutvuda registriandmetega? | <https://www.juristaitab.ee/et/kus-ja-kuidas-saan-tutvuda-registriandmetega> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kus kohast leiaksin asutamiseks ühingu põhikirja? | <https://www.juristaitab.ee/et/kus-kohast-leiaksin-asutamiseks-uhingu-pohikirja> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kus kohast saan informatsiooni erinõuetega tegevusaladel tegutsemise kohta? | <https://www.juristaitab.ee/et/kus-kohast-saan-informatsiooni-erinouetega-tegevusaladel-tegutsemise-kohta> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kus kohast saan rohkem informatsiooni laevade registreerimise kohta? | <https://www.juristaitab.ee/et/kus-kohast-saan-rohkem-informatsiooni-laevade-registreerimise-kohta> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kus saab abielu lahutada? | <https://www.juristaitab.ee/et/kus-saab-abielu-lahutada> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kus saab abielu sõlmida? | <https://www.juristaitab.ee/et/kus-saab-abielu-solmida> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kust ma saan teada, kas ettevõte on pankrotis või eelmenetlus on raugenud pankrotti välja kuulutamata? | <https://www.juristaitab.ee/et/kust-ma-saan-teada-kas-ettevote-pankrotis-voi-eelmenetlus-raugenud-pankrotti-valja-kuulutamata> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Kust ma saan teada, kes on määratud pankrotis ettevõtte pankrotihalduriks? | <https://www.juristaitab.ee/et/kust-ma-saan-teada-kes-maaratud-pankrotis-ettevotte-pankrotihalduriks> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Lapsele eestkostja määramine ilma vanema õiguste äravõtmiseta | <https://www.juristaitab.ee/et/lapsele-eestkostja-maaramine-ilma-vanema-oiguste-aravotmiseta> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Lapsele määratud eestkostja õigused ja kohustused | <https://www.juristaitab.ee/et/lapsele-maaratud-eestkostja-oigused-ja-kohustused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Legaliseerimine | <https://www.juristaitab.ee/et/legaliseerimine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Lepingu lõpetamine | <https://www.juristaitab.ee/et/lepingu-lopetamine-1> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Lepingu täitmine ja vastutus | <https://www.juristaitab.ee/et/lepingu-taitmine-ja-vastutus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Lähenemiskeeld | <https://www.juristaitab.ee/et/lahenemiskeeld> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Ma tahaksin kinnitada mingi fakti olemasolu või mitteolemasolu | <https://www.juristaitab.ee/et/ma-tahaksin-kinnitada-mingi-fakti-olemasolu-voi-mitteolemasolu> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Maakohtusse pöördumine | <https://www.juristaitab.ee/et/maakohtusse-poordumine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Maksekäsu kiirmenetlus lapse elatisnõudes | <https://www.juristaitab.ee/et/maksekasu-kiirmenetlus-lapse-elatisnoudes> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Maksekäsu kiirmenetluse avalduste vormid | <https://www.juristaitab.ee/et/maksekasu-kiirmenetluse-avalduste-vormid> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Maksekäsu kiirmenetluse muutumine hagimenetluseks | <https://www.juristaitab.ee/et/maksekasu-kiirmenetluse-muutumine-hagimenetluseks> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Maksekäsu kiirmenetluse muutumine hagimenetluseks | <https://www.juristaitab.ee/et/maksekasu-kiirmenetluse-muutumine-hagimenetluseks-0> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Maksuvabastused ja – soodustused | <https://www.juristaitab.ee/et/maksuvabastused-ja-soodustused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Menetluskulud | <https://www.juristaitab.ee/et/menetluskulud> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida arvestatakse minu majandusliku seisundi hindamisel? | <https://www.juristaitab.ee/et/mida-arvestatakse-minu-majandusliku-seisundi-hindamisel> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida kujutab endast pärandvara inventuur? | <https://www.juristaitab.ee/et/mida-kujutab-endast-parandvara-inventuur> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida peab jälgima lepingute sõlmimisel? | <https://www.juristaitab.ee/et/mida-peab-jalgima-lepingute-solmimisel> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida peab tegema avaliku dokumendi kasutamiseks välismaal? | <https://www.juristaitab.ee/et/mida-peab-tegema-avaliku-dokumendi-kasutamiseks-valismaal> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida peaks vanem teadma lapse vara valitsemisel? | <https://www.juristaitab.ee/et/mida-peaks-vanem-teadma-lapse-vara-valitsemisel> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida pean tegema juhul, kui olen saanud ärikeelu? | <https://www.juristaitab.ee/et/mida-pean-tegema-juhul-kui-olen-saanud-arikeelu> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida pean tegema, kui olen äsja abiellunud ja nime vahetanud ning olen äriregistrisse ühingu juhatuse liikmena kantud vana nimega? | <https://www.juristaitab.ee/et/mida-pean-tegema-kui-olen-asja-abiellunud-ja-nime-vahetanud-ning-olen-ariregistrisse-uhingu> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida pean tegema, kui ühingu juhatuse liikmete volitused hakkavad peagi lõppema? | <https://www.juristaitab.ee/et/mida-pean-tegema-kui-uhingu-juhatuse-liikmete-volitused-hakkavad-peagi-loppema> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha kindlustusjuhtumi korral? | <https://www.juristaitab.ee/et/mida-teha-kindlustusjuhtumi-korral> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha kui on olemas jõustunud kohtuotsus elatise nõudes, kuid teine vanem ei täida otsust vabatahtlikult? | <https://www.juristaitab.ee/et/mida-teha-kui-olemas-joustunud-kohtuotsus-elatise-noudes-kuid-teine-vanem-ei-taida-otsust> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha kui võlgnik ei täida maksekäsku vabatahtlikult? | <https://www.juristaitab.ee/et/mida-teha-kui-volgnik-ei-taida-maksekasku-vabatahtlikult-0> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha kui võlgnik ei täida maksekäsku vabatahtlikult? | <https://www.juristaitab.ee/et/mida-teha-kui-volgnik-ei-taida-maksekasku-vabatahtlikult> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha olukorras, kus kohtutäitur ei ole pikema aja jooksul suutnud nõuet sisse nõuda? | <https://www.juristaitab.ee/et/mida-teha-olukorras-kus-kohtutaitur-ei-ole-pikema-aja-jooksul-suutnud-nouet-sisse-nouda> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha, kui esitatakse nõue kaasomaniku vara vastu? | <https://www.juristaitab.ee/et/mida-teha-kui-esitatakse-noue-kaasomaniku-vara-vastu> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha, kui internetist tellitud kaup ei vasta veebilehel avaldatud kirjeldusele? | <https://www.juristaitab.ee/et/mida-teha-kui-internetist-tellitud-kaup-ei-vasta-veebilehel-avaldatud-kirjeldusele> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha, kui lahuselav vanem ei maksa elatist? | <https://www.juristaitab.ee/et/mida-teha-kui-lahuselav-vanem-ei-maksa-elatist> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha, kui lapse heaolu on ohustatud? | <https://www.juristaitab.ee/et/mida-teha-kui-lapse-heaolu-ohustatud> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha, kui on olemas jõustunud kohtuotsus elatise nõudes, kuid teine vanem ei täida otsust vabatahtlikult ning ka täitemenetlus ei anna tulemust? | <https://www.juristaitab.ee/et/mida-teha-kui-olemas-joustunud-kohtuotsus-elatise-noudes-kuid-teine-vanem-ei-taida-otsust-0> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha, kui on õigus ülalpidamist saada, aga lahutatud abikaasa seda vabatahtlikult ei maksa? | <https://www.juristaitab.ee/et/mida-teha-kui-oigus-ulalpidamist-saada-aga-lahutatud-abikaasa-seda-vabatahtlikult-ei-maksa> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha, kui on ühine hooldusõigus, aga vanematel on vaidlus mingis konkreetses last puudutavas küsimuses? | <https://www.juristaitab.ee/et/mida-teha-kui-uhine-hooldusoigus-aga-vanematel-vaidlus-mingis-konkreetses-last-puudutavas-kusimuses> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha, kui pean kohtusse pöörduma | <https://www.juristaitab.ee/et/mida-teha-kui-pean-kohtusse-poorduma> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha, kui vanemad ei saa/ei taha enam ühist hooldusõigust teostada? | <https://www.juristaitab.ee/et/mida-teha-kui-vanemad-ei-saaei-taha-enam-uhist-hooldusoigust-teostada> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha, kui võlad ületavad varasid? | <https://www.juristaitab.ee/et/mida-teha-kui-volad-uletavad-varasid> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha, kui võlgniku suhtes on Eestis alustatud elatise sissenõudmise täitemenetlus, kuid võlgnik kolis välisriiki? | <https://www.juristaitab.ee/et/mida-teha-kui-volgniku-suhtes-eestis-alustatud-elatise-sissenoudmise-taitemenetlus-kuid-volgnik> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida teha, kui võlgniku suhtes on välisriigis juba täitemenetlus käimas, kuid võlgnik siiski lapsele elatist ei maksa? | <https://www.juristaitab.ee/et/mida-teha-kui-volgniku-suhtes-valisriigis-juba-taitemenetlus-kaimas-kuid-volgnik-siiski-lapsele> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida tähendab „kasu“ vara müügist? | <https://www.juristaitab.ee/et/mida-tahendab-kasu-vara-muugist> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida tähendab „suhtlusõigus“? Mida teha, kui see on vastuolus lapse huvidega? | <https://www.juristaitab.ee/et/mida-tahendab-suhtlusoigus-mida-teha-kui-see-vastuolus-lapse-huvidega> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida tähendab „vanema hooldusõigus“? | <https://www.juristaitab.ee/et/mida-tahendab-vanema-hooldusoigus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida tähendab „vara“, mille müügist saadavalt kasult tuleb maksta tulumaksu? | <https://www.juristaitab.ee/et/mida-tahendab-vara-mille-muugist-saadavalt-kasult-tuleb-maksta-tulumaksu> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida tähendab tulumaksuga maksustamisel „soetamismaksumus“? | <https://www.juristaitab.ee/et/mida-tahendab-tulumaksuga-maksustamisel-soetamismaksumus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida tähendab täiendav maksuvaba tulu lapse ülalpidamise korral? | <https://www.juristaitab.ee/et/mida-tahendab-taiendav-maksuvaba-tulu-lapse-ulalpidamise-korral> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mida võib maksustatavast tulust maha arvata? | <https://www.juristaitab.ee/et/mida-voib-maksustatavast-tulust-maha-arvata> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Miks ei ole kohtutäitur minu arvelduskontole elatusmiinimumi jätnud? | <https://www.juristaitab.ee/et/miks-ei-ole-kohtutaitur-minu-arvelduskontole-elatusmiinimumi-jatnud> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Miks on vajalik 1-kuuline ooteperiood enne kui elatisabi hakatakse maksma? | <https://www.juristaitab.ee/et/miks-vajalik-1-kuuline-ooteperiood-enne-kui-elatisabi-hakatakse-maksma> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millal ja kui palju hakkab riik täitemenetlusaegset elatisabi maksma? | <https://www.juristaitab.ee/et/millal-ja-kui-palju-hakkab-riik-taitemenetlusaegset-elatisabi-maksma> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millal ja kui palju maksta? | <https://www.juristaitab.ee/et/millal-ja-kui-palju-maksta> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millal ja kuidas esitada tuludeklaratsiooni? | <https://www.juristaitab.ee/et/millal-ja-kuidas-esitada-tuludeklaratsiooni> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millal ja kuidas läheb valdus võõrandajalt omandajale üle? | <https://www.juristaitab.ee/et/millal-ja-kuidas-laheb-valdus-voorandajalt-omandajale-ule> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millal ja mis tingimustel on võimalik täitemenetluses rakendada võlgniku suhtes sunnimeetmeid (näiteks võlgniku juhtimisõiguse peatamine)? | <https://www.juristaitab.ee/et/millal-ja-mis-tingimustel-voimalik-taitemenetluses-rakendada-volgniku-suhtes-sunnimeetmeid-naiteks> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millal kinnitab notar allkirja õigsuse? | <https://www.juristaitab.ee/et/millal-kinnitab-notar-allkirja-oigsuse> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millal kohtutäituri poole pöörduda? | <https://www.juristaitab.ee/et/millal-kohtutaituri-poole-poorduda> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millal lõpetatakse kohtumenetlusaegse elatisabi maksmine? | <https://www.juristaitab.ee/et/millal-lopetatakse-kohtumenetlusaegse-elatisabi-maksmine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millal lõppeb pärandvarale hoiumeetme rakendamine? | <https://www.juristaitab.ee/et/millal-loppeb-parandvarale-hoiumeetme-rakendamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millal määratakse lapsele erieestkostja? | <https://www.juristaitab.ee/et/millal-maaratakse-lapsele-erieestkostja> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millal on nõutav kaubal kasutusjuhendi olemasolu ja kas müüja vastutab selles sisalduva teabe mittekorrektsuse korral? | <https://www.juristaitab.ee/et/millal-noutav-kaubal-kasutusjuhendi-olemasolu-ja-kas-muuja-vastutab-selles-sisalduva-teabe> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millal pärimismenetlus lõpeb? | <https://www.juristaitab.ee/et/millal-parimismenetlus-lopeb> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millal saab kinnisvara omandav pool kinnisasja omanikuks? | <https://www.juristaitab.ee/et/millal-saab-kinnisvara-omandav-pool-kinnisasja-omanikuks> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millal võib olla tegemist lapse vara ohustamisega? Mis siis juhtub? | <https://www.juristaitab.ee/et/millal-voib-olla-tegemist-lapse-vara-ohustamisega-mis-siis-juhtub> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mille alusel arvutatakse maamaks? | <https://www.juristaitab.ee/et/mille-alusel-arvutatakse-maamaks> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mille järgi peaks valima täitemenetlust läbiviiva kohtutäituri? | <https://www.juristaitab.ee/et/mille-jargi-peaks-valima-taitemenetlust-labiviiva-kohtutaituri> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mille poolest erineb omand valdusest? | <https://www.juristaitab.ee/et/mille-poolest-erineb-omand-valdusest> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mille poolest erineb töövõtuleping töölepingust? | <https://www.juristaitab.ee/et/mille-poolest-erineb-toovotuleping-toolepingust> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Milles seisneb avalik-õiguslike kitsenduste olemus? | <https://www.juristaitab.ee/et/milles-seisneb-avalik-oiguslike-kitsenduste-olemus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Milline dokument kinnitab abielu lahutamist? | <https://www.juristaitab.ee/et/milline-dokument-kinnitab-abielu-lahutamist> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Milline nimi jääb abikaasadele pärast abiellumist? | <https://www.juristaitab.ee/et/milline-nimi-jaab-abikaasadele-parast-abiellumist> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Milline on apostillimise protseduur? | <https://www.juristaitab.ee/et/milline-apostillimise-protseduur> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Milline on legaliseerimise protseduur? | <https://www.juristaitab.ee/et/milline-legaliseerimise-protseduur> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Milline on perekonnanimi pärast lahutust? | <https://www.juristaitab.ee/et/milline-perekonnanimi-parast-lahutust> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Milline on ületunnitöö ja öötöö? | <https://www.juristaitab.ee/et/milline-uletunnitoo-ja-ootoo> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Milline tulu maksustatakse tulumaksuga? | <https://www.juristaitab.ee/et/milline-tulu-maksustatakse-tulumaksuga> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millise aja jooksul kehtib kaubale või teenusele seadusest tulenev pretensiooni esitamise õigus? | <https://www.juristaitab.ee/et/millise-aja-jooksul-kehtib-kaubale-voi-teenusele-seadusest-tulenev-pretensiooni-esitamise-oigus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millise aja jooksul peab kaupleja tarbija poolt kauba puuduse suhtes esitatud pretensiooni läbi vaatama ning kuidas tuleb pretensioon esitada? | <https://www.juristaitab.ee/et/millise-aja-jooksul-peab-kaupleja-tarbija-poolt-kauba-puuduse-suhtes-esitatud-pretensiooni-labi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millise tähtaja jooksul peab kohtutäitur võlgnikult täitemenetluse läbiviimise raames saadud summad sissenõudjale üle kandma? | <https://www.juristaitab.ee/et/millise-tahtaja-jooksul-peab-kohtutaitur-volgnikult-taitemenetluse-labiviimise-raames-saadud-summad> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised andmed peavad sisalduma maksekäsu kiirmenetluse avalduses lapse elatisnõudes? | <https://www.juristaitab.ee/et/millised-andmed-peavad-sisalduma-maksekasu-kiirmenetluse-avalduses-lapse-elatisnoudes> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised andmed peavad sisalduma maksekäsu kiirmenetluse avalduses? | <https://www.juristaitab.ee/et/millised-andmed-peavad-sisalduma-maksekasu-kiirmenetluse-avalduses> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised dokumendid on vajalikud notarisse kaasa võtta, et algatada pärimisprotsess? | <https://www.juristaitab.ee/et/millised-dokumendid-vajalikud-notarisse-kaasa-votta-et-algatada-parimisprotsess> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised dokumendid on vajalikud omandamise ja võõrandamise tehingu sõlmimiseks? | <https://www.juristaitab.ee/et/millised-dokumendid-vajalikud-omandamise-ja-voorandamise-tehingu-solmimiseks> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised dokumendid tuleb esitada abiellumiseks notari juures? | <https://www.juristaitab.ee/et/millised-dokumendid-tuleb-esitada-abiellumiseks-notari-juures> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised dokumendid tuleb esitada abiellumisel perekonnaseisuametis? | <https://www.juristaitab.ee/et/millised-dokumendid-tuleb-esitada-abiellumisel-perekonnaseisuametis> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised dokumendid tuleb esitada registriosakonnale ühingu asutamiseks, kandeandmete muutmiseks, muude registrisse sisestatud andmete muutmiseks? | <https://www.juristaitab.ee/et/millised-dokumendid-tuleb-esitada-registriosakonnale-uhingu-asutamiseks-kandeandmete-muutmiseks> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised hüvitised on töölepingu ülesütlemisel? | <https://www.juristaitab.ee/et/millised-huvitised-toolepingu-ulesutlemisel> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised nõuded kehtivad ostetud asja parandamise või vahetamise suhtes? | <https://www.juristaitab.ee/et/millised-nouded-kehtivad-ostetud-asja-parandamise-voi-vahetamise-suhtes> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised on elatisabi saaja kohustused? | <https://www.juristaitab.ee/et/millised-elatisabi-saaja-kohustused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised on füüsilisele isikule menetlusabi andmise tingimused ja piirangud? | <https://www.juristaitab.ee/et/millised-fuusilisele-isikule-menetlusabi-andmise-tingimused-ja-piirangud> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised on karistused kuritegude eest? | <https://www.juristaitab.ee/et/millised-karistused-kuritegude-eest> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised on korteriomandi erisused? | <https://www.juristaitab.ee/et/millised-korteriomandi-erisused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised on pankrotihalduri kohustused? | <https://www.juristaitab.ee/et/millised-pankrotihalduri-kohustused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised on pädevad institutsioonid? | <https://www.juristaitab.ee/et/millised-padevad-institutsioonid> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised on pärimisega seotud kulutused? | <https://www.juristaitab.ee/et/millised-parimisega-seotud-kulutused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised on tarbija õigused lennuki või rongi hilinemisel? | <https://www.juristaitab.ee/et/millised-tarbija-oigused-lennuki-voi-rongi-hilinemisel> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised on teede ja tehnorajatistega seotud kitsendused? | <https://www.juristaitab.ee/et/millised-teede-ja-tehnorajatistega-seotud-kitsendused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised on töölepingu kohustuslikud tingimused? | <https://www.juristaitab.ee/et/millised-toolepingu-kohustuslikud-tingimused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised on töölepingu lõpetamise alused? | <https://www.juristaitab.ee/et/millised-toolepingu-lopetamise-alused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised on vee ja veekogudega seotud kitsendused? | <https://www.juristaitab.ee/et/millised-vee-ja-veekogudega-seotud-kitsendused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised tasud on ette nähtud omandamise ja võõrandamise tehingu eest? | <https://www.juristaitab.ee/et/millised-tasud-ette-nahtud-omandamise-ja-voorandamise-tehingu-eest> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millised õigused on tarbijal kauba tagastamiseks kataloogist tellimise korral? | <https://www.juristaitab.ee/et/millised-oigused-tarbijal-kauba-tagastamiseks-kataloogist-tellimise-korral> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Milliseid dokumente ei saa kinnitada apostilliga? | <https://www.juristaitab.ee/et/milliseid-dokumente-ei-saa-kinnitada-apostilliga> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Milliseid dokumente ei saa legaliseerida? | <https://www.juristaitab.ee/et/milliseid-dokumente-ei-saa-legaliseerida> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Milliseid dokumente kohtutäitur täidab? | <https://www.juristaitab.ee/et/milliseid-dokumente-kohtutaitur-taidab> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Milliseid sotsiaalkindlustushüvitisi riik pakub? | <https://www.juristaitab.ee/et/milliseid-sotsiaalkindlustushuvitisi-riik-pakub> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Milliseid vaidlusi lahendab tarbijavaidluste komisjon? | <https://www.juristaitab.ee/et/milliseid-vaidlusi-lahendab-tarbijavaidluste-komisjon> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Milliseid vaidlusi lahendab Tarbijavaidluste komisjon? | <https://www.juristaitab.ee/et/milliseid-vaidlusi-lahendab-tarbijavaidluste-komisjon-0> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millisel juhul on pärandi inventuur kohustuslik? | <https://www.juristaitab.ee/et/millisel-juhul-parandi-inventuur-kohustuslik> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millisel juhul peab omanik sallima võõrast tegevust või mõjutusi oma kinnisasja suhtes? Millal kaotab omanik õiguse teostada oma omandit piiranguteta? | <https://www.juristaitab.ee/et/millisel-juhul-peab-omanik-sallima-voorast-tegevust-voi-mojutusi-oma-kinnisasja-suhtes-millal> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millises järjekorras täidetakse elatise asjas tekkinud võlgnevused? | <https://www.juristaitab.ee/et/millises-jarjekorras-taidetakse-elatise-asjas-tekkinud-volgnevused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millises ulatuses sissetulekut ei arestita? | <https://www.juristaitab.ee/et/millises-ulatuses-sissetulekut-ei-arestita> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millises ulatuses täiskasvanule eestkoste määratakse? | <https://www.juristaitab.ee/et/millises-ulatuses-taiskasvanule-eestkoste-maaratakse> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millises vormis peaks lepingud olema sõlmitud? | <https://www.juristaitab.ee/et/millises-vormis-peaks-lepingud-olema-solmitud> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millises vormis sõlmitakse tehingud kinnisasjadega? | <https://www.juristaitab.ee/et/millises-vormis-solmitakse-tehingud-kinnisasjadega> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millist teavet peab reisikorraldaja andma reisijale enne pakettreisilepingu sõlmimist? | <https://www.juristaitab.ee/et/millist-teavet-peab-reisikorraldaja-andma-reisijale-enne-pakettreisilepingu-solmimist> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millistel juhtudel võib kohus menetlusabi andmise tühistada ja mis saab siis menetlusabi taotlenud isiku menetluskuludest? | <https://www.juristaitab.ee/et/millistel-juhtudel-voib-kohus-menetlusabi-andmise-tuhistada-ja-mis-saab-siis-menetlusabi-taotlenud> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millistel juhtumitel ei saa lahutatud abikaasa ülalpidamist nõuda? | <https://www.juristaitab.ee/et/millistel-juhtumitel-ei-saa-lahutatud-abikaasa-ulalpidamist-nouda> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Millistele nõuetele peab vastama tarbijale müüdav asi? | <https://www.juristaitab.ee/et/millistele-nouetele-peab-vastama-tarbijale-muudav-asi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Minu vastu on algatatud kohtumenetlus | <https://www.juristaitab.ee/et/minu-vastu-algatatud-kohtumenetlus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis ajast alates võib elatist nõuda? | <https://www.juristaitab.ee/et/mis-ajast-alates-voib-elatist-nouda> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis hetkest alates võib kohtutäitur täitemenetluses tasu nõuda? | <https://www.juristaitab.ee/et/mis-hetkest-alates-voib-kohtutaitur-taitemenetluses-tasu-nouda> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis juhtub, kui vanem mingil põhjusel ei ole võimeline hooldusõigust teostama? | <https://www.juristaitab.ee/et/mis-juhtub-kui-vanem-mingil-pohjusel-ei-ole-voimeline-hooldusoigust-teostama> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis keeles tuleb riigi õigusabi taotlus esitada? | <https://www.juristaitab.ee/et/mis-keeles-tuleb-riigi-oigusabi-taotlus-esitada> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis kuupäeval maksab Sotsiaalkindlustusamet elatisabi? | <https://www.juristaitab.ee/et/mis-kuupaeval-maksab-sotsiaalkindlustusamet-elatisabi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis ma edasi tegema pean, kui kohus on teinud määruse, millega on otsustatud algatada kohustustest vabastamise menetlus? | <https://www.juristaitab.ee/et/mis-ma-edasi-tegema-pean-kui-kohus-teinud-maaruse-millega-otsustatud-algatada-kohustustest> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis nõuete puhul ei saa maksekäsu kiirmenetlust kasutada? | <https://www.juristaitab.ee/et/mis-nouete-puhul-ei-saa-maksekasu-kiirmenetlust-kasutada> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis oli haldusõigusrikkumine? | <https://www.juristaitab.ee/et/mis-oli-haldusoigusrikkumine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on abieluvaraleping? | <https://www.juristaitab.ee/et/mis-abieluvaraleping> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on abieluvararegister | <https://www.juristaitab.ee/et/mis-abieluvararegister> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on annak? | <https://www.juristaitab.ee/et/mis-annak> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on avalik dokument? | <https://www.juristaitab.ee/et/mis-avalik-dokument> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on broneerimisleping ja mille poolest erineb see eellepingust? | <https://www.juristaitab.ee/et/mis-broneerimisleping-ja-mille-poolest-erineb-see-eellepingust> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on dokumendi ametlik tõlge? | <https://www.juristaitab.ee/et/mis-dokumendi-ametlik-tolge> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on elatis? | <https://www.juristaitab.ee/et/mis-elatis> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on elatisabi? | <https://www.juristaitab.ee/et/mis-elatisabi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on elatusmiinimum? | <https://www.juristaitab.ee/et/mis-elatusmiinimum> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on hoiatus? Millises vormis see esitatakse? | <https://www.juristaitab.ee/et/mis-hoiatus-millises-vormis-see-esitatakse> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on hoiatustrahv? | <https://www.juristaitab.ee/et/mis-hoiatustrahv> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on hoonestusõigus? | <https://www.juristaitab.ee/et/mis-hoonestusoigus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on hüpoteek? | <https://www.juristaitab.ee/et/mis-hupoteek> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on kahju hüvitamine? | <https://www.juristaitab.ee/et/mis-kahju-huvitamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on kasutusleping? | <https://www.juristaitab.ee/et/mis-kasutusleping> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on kindlustusleping? | <https://www.juristaitab.ee/et/mis-kindlustusleping> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on kinkeleping? | <https://www.juristaitab.ee/et/mis-kinkeleping> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on kinnisasi? | <https://www.juristaitab.ee/et/mis-kinnisasi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on kinnistu ning kinnisasi | <https://www.juristaitab.ee/et/mis-kinnistu-ning-kinnisasi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on kuriteod? | <https://www.juristaitab.ee/et/mis-kuriteod> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on makseettepanek ja maksekäsk? | <https://www.juristaitab.ee/et/mis-makseettepanek-ja-maksekask-0> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on makseettepanek ja maksekäsk? | <https://www.juristaitab.ee/et/mis-makseettepanek-ja-maksekask> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on maksekäsu kiirmenetlus lapse elatisnõudes? | <https://www.juristaitab.ee/et/mis-maksekasu-kiirmenetlus-lapse-elatisnoudes> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on ostu tõendav dokument ning millised nõuded selle suhtes kehtivad? | <https://www.juristaitab.ee/et/mis-ostu-toendav-dokument-ning-millised-nouded-selle-suhtes-kehtivad> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on pankrot? | <https://www.juristaitab.ee/et/mis-pankrot> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on põlvnemine? | <https://www.juristaitab.ee/et/mis-polvnemine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on põlvnemisest tulenev ülalpidamise kohustus ja õigus ning kellele see laieneb? | <https://www.juristaitab.ee/et/mis-polvnemisest-tulenev-ulalpidamise-kohustus-ja-oigus-ning-kellele-see-laieneb> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on pärandvara pankrot? | <https://www.juristaitab.ee/et/mis-parandvara-pankrot> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on pärimisregister? | <https://www.juristaitab.ee/et/mis-parimisregister> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on reaalkoormatise sisuks? Kuidas reaalkoormatis tekib ja lõppeb? | <https://www.juristaitab.ee/et/mis-reaalkoormatise-sisuks-kuidas-reaalkoormatis-tekib-ja-loppeb> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on riigi õigusabi? | <https://www.juristaitab.ee/et/mis-riigi-oigusabi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on riigipoolne menetlusabi? | <https://www.juristaitab.ee/et/mis-riigipoolne-menetlusabi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on süüteod? | <https://www.juristaitab.ee/et/mis-suuteod> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on süüteod? | <https://www.juristaitab.ee/et/mis-suuteod-0> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on teenuse osutamise leping? | <https://www.juristaitab.ee/et/mis-teenuse-osutamise-leping> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on vabatahtliku täitmise tähtaeg? | <https://www.juristaitab.ee/et/mis-vabatahtliku-taitmise-tahtaeg> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on vallasasi? | <https://www.juristaitab.ee/et/mis-vallasasi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on vara juurdekasvu tasaarvestus? | <https://www.juristaitab.ee/et/mis-vara-juurdekasvu-tasaarvestus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on varalahusus? | <https://www.juristaitab.ee/et/mis-varalahusus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on varaühisus? | <https://www.juristaitab.ee/et/mis-varauhisus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on väärteod? | <https://www.juristaitab.ee/et/mis-vaarteod> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis on ärakirja õigsuse kinnitamine? | <https://www.juristaitab.ee/et/mis-arakirja-oigsuse-kinnitamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis peaks lepingus kirjas olema? | <https://www.juristaitab.ee/et/mis-peaks-lepingus-kirjas-olema> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis saab peale nõudeavalduse esitamist? Kas haldur võtab minuga ühendust? | <https://www.juristaitab.ee/et/mis-saab-peale-noudeavalduse-esitamist-kas-haldur-votab-minuga-uhendust> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis saab siis, kui kohus vabastab mind pankrotimenetluses täitmata jäänud kohustustest? Mis saab nendest võlausaldajatest, kes jätsid esitamata või ei esitanud tähtaegselt pankrotimenetluse jooksul nõudeavaldust? | <https://www.juristaitab.ee/et/mis-saab-siis-kui-kohus-vabastab-mind-pankrotimenetluses-taitmata-jaanud-kohustustest-mis-saab> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis tingimustel saab töötasu vähendada? | <https://www.juristaitab.ee/et/mis-tingimustel-saab-tootasu-vahendada> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mis vahe on kaasomandil ja ühisomandil? Kuidas käib kaasomandi ja ühisomandi valdamine, kasutamine ja käsutamine? | <https://www.juristaitab.ee/et/mis-vahe-kaasomandil-ja-uhisomandil-kuidas-kaib-kaasomandi-ja-uhisomandi-valdamine-kasutamine-ja> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mul on küsimus maksude kohta | <https://www.juristaitab.ee/et/mul-kusimus-maksude-kohta> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Mul on küsimus töösuhete kohta | <https://www.juristaitab.ee/et/mul-kusimus-toosuhete-kohta> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Muu kohtuotsuse tunnustamine | <https://www.juristaitab.ee/et/muu-kohtuotsuse-tunnustamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Müügileping | <https://www.juristaitab.ee/et/muugileping> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Müügilepingu korral asja üleandmine ja vastuvõtmine | <https://www.juristaitab.ee/et/muugilepingu-korral-asja-uleandmine-ja-vastuvotmine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Müügilepingu olulised tingimused | <https://www.juristaitab.ee/et/muugilepingu-olulised-tingimused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Müügilepingu puudused ja garantiid | <https://www.juristaitab.ee/et/muugilepingu-puudused-ja-garantiid> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Müügilepingu rikkumine ja tagajärjed | <https://www.juristaitab.ee/et/muugilepingu-rikkumine-ja-tagajarjed> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Müügilepingu vorm | <https://www.juristaitab.ee/et/muugilepingu-vorm> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Müüja ja ostja õigused ja kohustused | <https://www.juristaitab.ee/et/muuja-ja-ostja-oigused-ja-kohustused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Nn. Lugano 2007 konventsioon | <https://www.juristaitab.ee/et/nn-lugano-2007-konventsioon> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Nn. Lugano 2007 konventsioon ja elatisabi | <https://www.juristaitab.ee/et/nn-lugano-2007-konventsioon-ja-elatisabi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Notari tasust vabastamine | <https://www.juristaitab.ee/et/notari-tasust-vabastamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Notariaalne abieluvaraleping | <https://www.juristaitab.ee/et/notariaalne-abieluvaraleping> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Notariaalne testament | <https://www.juristaitab.ee/et/notariaalne-testament> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Notariaalse elatislepingu tunnistamine Nõukogu määruse nr 4/2009, | <https://www.juristaitab.ee/et/notariaalse-elatislepingu-tunnistamine-noukogu-maaruse-nr-42009> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Oleme kaasomanikud ja soovime kaasomandit lõpetada selliselt, et ühest omanikust saab ainuomanik | <https://www.juristaitab.ee/et/oleme-kaasomanikud-ja-soovime-kaasomandit-lopetada-selliselt-et-uhest-omanikust-saab-ainuomanik> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Oleme kaasomanikud ning soovime kokku leppida kaasomandi kasutuskorras | <https://www.juristaitab.ee/et/oleme-kaasomanikud-ning-soovime-kokku-leppida-kaasomandi-kasutuskorras> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Olen saanud täitmisteate. Mida teha? | <https://www.juristaitab.ee/et/olen-saanud-taitmisteate-mida-teha> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Olen võla õigeaegselt tasunud, kuid kohtutäitur algatas minu suhtes täitemenetluse. Mida teha? | <https://www.juristaitab.ee/et/olen-vola-oigeaegselt-tasunud-kuid-kohtutaitur-algatas-minu-suhtes-taitemenetluse-mida-teha> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Omakäeline testament | <https://www.juristaitab.ee/et/omakaeline-testament> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Ostueesõigus | <https://www.juristaitab.ee/et/ostueesoigus-3> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Planeeringud | <https://www.juristaitab.ee/et/planeeringud-0> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Planeeringud ja ehitus | <https://www.juristaitab.ee/et/planeeringud-ja-ehitus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Puhkus: kestus, liigid, puhkuse andmise kohustus, kompenseerimise võimalikkus | <https://www.juristaitab.ee/et/puhkus-kestus-liigid-puhkuse-andmise-kohustus-kompenseerimise-voimalikkus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Pärandit on vaja pärimismenetluse lõppemiseni hooldada. Kes määrab pärandvara hoiumeetmed, hooldaja ja hooldamise piirid? | <https://www.juristaitab.ee/et/parandit-vaja-parimismenetluse-loppemiseni-hooldada-kes-maarab-parandvara-hoiumeetmed-hooldaja-ja> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Pärimisleping | <https://www.juristaitab.ee/et/parimisleping> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Pärimisprotsessi algatamine | <https://www.juristaitab.ee/et/parimisprotsessi-algatamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Rahvusvaheline lapserööv | <https://www.juristaitab.ee/et/rahvusvaheline-lapseroov> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Rahvusvaheline lapserööv | <https://www.juristaitab.ee/et/rahvusvaheline-lapseroov-0> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Rahvusvaheline lastekaitse | <https://www.juristaitab.ee/et/rahvusvaheline-lastekaitse> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Rahvusvaheline õigusabi | <https://www.juristaitab.ee/et/rahvusvaheline-oigusabi> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Riigi õigusabi vormid | <https://www.juristaitab.ee/et/riigi-oigusabi-vormid> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Riigilõiv kohtusse pöördumisel | <https://www.juristaitab.ee/et/riigiloiv-kohtusse-poordumisel> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Riigilõivu tagastamise taotlemine | <https://www.juristaitab.ee/et/riigiloivu-tagastamise-taotlemine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Saladuse hoidmise kohustus ja konkurentsipiirang | <https://www.juristaitab.ee/et/saladuse-hoidmise-kohustus-ja-konkurentsipiirang> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Seadusjärgne pärimine | <https://www.juristaitab.ee/et/seadusjargne-parimine-6> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Soovin täitemenetluses tasuda võlga osade kaupa. Kelle poole ma peaks pöörduma? | <https://www.juristaitab.ee/et/soovin-taitemenetluses-tasuda-volga-osade-kaupa-kelle-poole-ma-peaks-poorduma> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Soovite esitada enda so füüsilise isiku pankrotiavaldust. Kuidas toimida? | <https://www.juristaitab.ee/et/soovite-esitada-enda-so-fuusilise-isiku-pankrotiavaldust-kuidas-toimida> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Soovite esitada ettevõtte vastu pankrotiavaldust. Kuidas toimida? | <https://www.juristaitab.ee/et/soovite-esitada-ettevotte-vastu-pankrotiavaldust-kuidas-toimida> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Sundosa saamise õigust. Kellel on õigus sundosale pärimismenetluses? | <https://www.juristaitab.ee/et/sundosa-saamise-oigust-kellel-oigus-sundosale-parimismenetluses> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Süütegude ennetamine | <https://www.juristaitab.ee/et/suutegude-ennetamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Tagaseljaotsus | <https://www.juristaitab.ee/et/tagaseljaotsus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Tarbijakrediit | <https://www.juristaitab.ee/et/tarbijakrediit> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Teenuse osutaja ja tellija õigused ja kohustused | <https://www.juristaitab.ee/et/teenuse-osutaja-ja-tellija-oigused-ja-kohustused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Teenuse osutamise lepingu sisu ja tingimused | <https://www.juristaitab.ee/et/teenuse-osutamise-lepingu-sisu-ja-tingimused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Tehingud lapse varaga | <https://www.juristaitab.ee/et/tehingud-lapse-varaga> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Testamendi hoidmine | <https://www.juristaitab.ee/et/testamendi-hoidmine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Testamendijärgne pärimine | <https://www.juristaitab.ee/et/testamendijargne-parimine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Tulumaksu tagastuse arestimine | <https://www.juristaitab.ee/et/tulumaksu-tagastuse-arestimine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Tunnistajate juuresolekul kinnitatud testament | <https://www.juristaitab.ee/et/tunnistajate-juuresolekul-kinnitatud-testament> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Tunnustamine Leedus, Lätis või Poolas õigusabilepingute alusel | <https://www.juristaitab.ee/et/tunnustamine-leedus-latis-voi-poolas-oigusabilepingute-alusel> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Tunnustamine Ukrainas õigusabilepingute alusel | <https://www.juristaitab.ee/et/tunnustamine-ukrainas-oigusabilepingute-alusel> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Tunnustamine Ukrainas õigusabilepingute alusel ning elatisabi taotlemine | <https://www.juristaitab.ee/et/tunnustamine-ukrainas-oigusabilepingute-alusel-ning-elatisabi-taotlemine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Tähtajaline tööleping: tähtaeg, tingimused, lõpetamise alused | <https://www.juristaitab.ee/et/tahtajaline-tooleping-tahtaeg-tingimused-lopetamise-alused> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Täiendav maksuvaba tulu vanaduspensionieas | <https://www.juristaitab.ee/et/taiendav-maksuvaba-tulu-vanaduspensionieas> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Täisealiste eestkoste | <https://www.juristaitab.ee/et/taisealiste-eestkoste> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Täitemenetluse aluseks olevate nõuete aegumine | <https://www.juristaitab.ee/et/taitemenetluse-aluseks-olevate-nouete-aegumine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Töölepingu ülesütlemine töötaja algatusel. Tähtajad ja ülesütlemise vorm | <https://www.juristaitab.ee/et/toolepingu-ulesutlemine-tootaja-algatusel-tahtajad-ja-ulesutlemise-vorm> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Töövaidlus | <https://www.juristaitab.ee/et/toovaidlus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Töövaidluste lahendamine töövaidluskomisjonis ja kohtus. Vaidlustamise tähtajad, riigilõiv, edasikaebamine | <https://www.juristaitab.ee/et/toovaidluste-lahendamine-toovaidluskomisjonis-ja-kohtus-vaidlustamise-tahtajad-riigiloiv> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Vahekohtuotsuse tunnustamine ja täitmine välismaal | <https://www.juristaitab.ee/et/vahekohtuotsuse-tunnustamine-ja-taitmine-valismaal> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Vaidluste lahendamine | <https://www.juristaitab.ee/et/vaidluste-lahendamine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Valdus | <https://www.juristaitab.ee/et/valdus-0> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Vanema ja lapse suhte tekkimine ning isaduse kindlakstegemine | <https://www.juristaitab.ee/et/vanema-ja-lapse-suhte-tekkimine-ning-isaduse-kindlakstegemine> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Vanemahüvitis | <https://www.juristaitab.ee/et/vanemahuvitis> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Varalise vastutuse leping | <https://www.juristaitab.ee/et/varalise-vastutuse-leping> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Vastuväide ja selle tähtaeg? | <https://www.juristaitab.ee/et/vastuvaide-ja-selle-tahtaeg> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Viivised, leppetrahvid, sissenõudekulud | <https://www.juristaitab.ee/et/viivised-leppetrahvid-sissenoudekulud> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Võlgadega pärand - kas pärandist loobuda või pärand vastu võtta? | <https://www.juristaitab.ee/et/volgadega-parand-kas-parandist-loobuda-voi-parand-vastu-votta> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Võlgniku põhilised kohustused täitemenetluses | <https://www.juristaitab.ee/et/volgniku-pohilised-kohustused-taitemenetluses> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Võlgniku põhilised õigused täitemenetluses | <https://www.juristaitab.ee/et/volgniku-pohilised-oigused-taitemenetluses> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Väljaande Ametlikud Teadaanded andmetel on ettevõte pankrotis. Mis ma edasi tegema pean? | <https://www.juristaitab.ee/et/valjaande-ametlikud-teadaanded-andmetel-ettevote-pankrotis-mis-ma-edasi-tegema-pean> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Õigusabilepingud | <https://www.juristaitab.ee/et/oigusabilepingud> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Õppefilm "Vaidluste lahendamisest kohtus" | <https://www.juristaitab.ee/et/oppefilm-vaidluste-lahendamisest-kohtus> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Ülalpidamise ulatus ja viis | <https://www.juristaitab.ee/et/ulalpidamise-ulatus-ja-viis> |
+| Justiits- ja Digiministeerium (Jurist aitab) | Ülalpidamiskohustus pärast lahutust seoses ühise lapse hooldamisega | <https://www.juristaitab.ee/et/ulalpidamiskohustus-parast-lahutust-seoses-uhise-lapse-hooldamisega> |
+| Põhja-Eesti Regionaalhaigla | Iseseisev statsionaarne õendusabiteenus | <https://www.regionaalhaigla.ee/iseseisev-statsionaarne-oendusabiteenus> |
+| Põhja-Eesti Regionaalhaigla | Lähedasele | <https://www.regionaalhaigla.ee/patsiendile/lahedasele> |
+| Põhja-Eesti Regionaalhaigla | Palliatiivravi | <https://www.regionaalhaigla.ee/palliatiivravi> |
+| Põhja-Eesti Regionaalhaigla | Palliatiivravi keskus | <https://www.regionaalhaigla.ee/palliatiivravi-keskus> |
+| Põhja-Eesti Regionaalhaigla | Patsiendi õigused ja kohustused | <https://www.regionaalhaigla.ee/patsiendile/patsiendile/patsiendi-oigused-ja-kohustused> |
+| Põhja-Eesti Regionaalhaigla | Õendusabi keskus | <https://www.regionaalhaigla.ee/oendusabi-keskus> |
+| Sotsiaalkindlustusamet | 15. juuni on ülemaailmne eakate väärkohtlemise teadvustamise päev | <https://www.palunabi.ee/et/artiklid/15-juuni-ulemaailmne-eakate-vaarkohtlemise-teadvustamise-paev> |
+| Sotsiaalkindlustusamet | Abiks spetsialistile | <https://www.lasteabi.ee/et/abiks-spetsialistile> |
+| Sotsiaalkindlustusamet | Abivahendi tõendi väljastajale | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/teenuseosutajale/abivahendi-toendi-valjastajale> |
+| Sotsiaalkindlustusamet | Abivajav ja hädaohus olev laps | <https://www.lasteabi.ee/et/abivajav-ja-hadaohus-olev-laps> |
+| Sotsiaalkindlustusamet | Armastus ja suhted | <https://www.lasteabi.ee/et/armastus-ja-suhted> |
+| Sotsiaalkindlustusamet | Asendushoolduse ja järelhoolduse korraldamine | <https://sotsiaalkindlustusamet.ee/asendushoolduse-ja-jarelhoolduse-korraldamine> |
+| Sotsiaalkindlustusamet | Asenduskodu teenuse pakkujale | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/teenuseosutajale/asenduskodu-teenuse-pakkujale> |
+| Sotsiaalkindlustusamet | E- kursused ohvri abistajale | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/ohvri-abistajale/e-kursused-ohvri-abistajale> |
+| Sotsiaalkindlustusamet | E-kursused | <https://www.palunabi.ee/et/e-kursused> |
+| Sotsiaalkindlustusamet | Eaka väärkohtlemine jääb pahatihti nähtamatuks | <https://www.palunabi.ee/et/artiklid/eaka-vaarkohtlemine-jaab-pahatihti-nahtamatuks> |
+| Sotsiaalkindlustusamet | Erihoolekandeteenuse osutajale | <https://sotsiaalkindlustusamet.ee/erihoolekandeteenuse-osutajale> |
+| Sotsiaalkindlustusamet | Hoolin ja märkan: kuidas lasteabi töötab? | <https://www.lasteabi.ee/et/artiklid/hoolin-ja-markan-kuidas-lasteabi-tootab> |
+| Sotsiaalkindlustusamet | Hädaohus oleva täiskasvanud perevägivalla ohvri abistamine (MARAC-i mudel) | <https://sotsiaalkindlustusamet.ee/MARAC> |
+| Sotsiaalkindlustusamet | Iga tunne loeb: LGBTQ+ noorte mõistmine ja toetus | <https://www.lasteabi.ee/et/artiklid/iga-tunne-loeb-lgbtq-noorte-moistmine-ja-toetus> |
+| Sotsiaalkindlustusamet | Isikukeskse erihoolekande teenuse mudeli (ISTE) rakendamine kohalikus omavalitsuses | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/kohalike-omavalitsuste-noustamine/isikukeskse-erihoolekande> |
+| Sotsiaalkindlustusamet | Juhendid, vormid ja täienduskoolitused lastekaitsetöötajale | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/laste-ja-peredega-tootavale-spetsialistile/juhendid-vormid-ja> |
+| Sotsiaalkindlustusamet | Juhtumikorraldus | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/laste-ja-peredega-tootavale-spetsialistile/juhtumikorraldus> |
+| Sotsiaalkindlustusamet | Kadunud laste telefon 116 000 | <https://www.lasteabi.ee/et/kadunud-laste-telefon-116-000> |
+| Sotsiaalkindlustusamet | Kas sina tead, millise taustaga inimene on palgatud suveks või pikemaks lastega töötama? | <https://www.lasteabi.ee/et/artiklid/kas-sina-tead-millise-taustaga-inimene-palgatud-suveks-voi-pikemaks-lastega-tootama-0> |
+| Sotsiaalkindlustusamet | Kasuvanemluse eri tahke avavad „Koduteel“ dokkfilmid | <https://www.lasteabi.ee/et/artiklid/kasuvanemluse-eri-tahke-avavad-koduteel-dokkfilmid> |
+| Sotsiaalkindlustusamet | Kelle palkad lastega töötama? | <https://www.lasteabi.ee/et/artiklid/kelle-palkad-lastega-tootama> |
+| Sotsiaalkindlustusamet | Kelmuse ohvriks sattudes saab tuge ka ohvriabist | <https://www.palunabi.ee/et/artiklid/kelmuse-ohvriks-sattudes-saab-tuge-ka-ohvriabist> |
+| Sotsiaalkindlustusamet | Kes on lastekaitsetöötaja ja miks ta on sulle oluline? | <https://www.lasteabi.ee/et/artiklid/kes-lastekaitsetootaja-ja-miks-ta-sulle-oluline> |
+| Sotsiaalkindlustusamet | Kevadväsimus ja viimased koolikuud: kuidas hoida end tasakaalus? | <https://www.lasteabi.ee/et/artiklid/kevadvasimus-ja-viimased-koolikuud-kuidas-hoida-end-tasakaalus> |
+| Sotsiaalkindlustusamet | Kinnise lasteasutuse teenus (KLAT) | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/laste-ja-noortega-tootavale-spetsialistile/klat> |
+| Sotsiaalkindlustusamet | Kiusamine | <https://www.lasteabi.ee/et/kiusamine> |
+| Sotsiaalkindlustusamet | Kiusamine | <https://www.lasteabi.ee/et/kiusamine-lapsevanem> |
+| Sotsiaalkindlustusamet | Kohalike omavalitsuste nõustamine | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/kohalike-omavalitsuste-noustamine> |
+| Sotsiaalkindlustusamet | Koolitused ja töötoad | <https://www.lasteabi.ee/et/koolitused-ja-tootoad> |
+| Sotsiaalkindlustusamet | Kriisihoolduspere ja erihoolduspere | <https://sotsiaalkindlustusamet.ee/kriisihoolduspere> |
+| Sotsiaalkindlustusamet | Kui õppimine on raske... | <https://www.lasteabi.ee/et/artiklid/kui-oppimine-raske> |
+| Sotsiaalkindlustusamet | Kuidas aidata last, kellel on mure? | <https://www.lasteabi.ee/et/artiklid/kuidas-aidata-last-kellel-mure> |
+| Sotsiaalkindlustusamet | Kuidas koguda tõendusmaterjali kogetud lähisuhtevägivalla kohta? | <https://www.palunabi.ee/et/artiklid/kuidas-koguda-toendusmaterjali-kogetud-lahisuhtevagivalla-kohta> |
+| Sotsiaalkindlustusamet | Kuidas olla toeks enesetapumõtetega inimesele? | <https://www.palunabi.ee/et/artiklid/kuidas-olla-toeks-enesetapumotetega-inimesele> |
+| Sotsiaalkindlustusamet | Kuidas rääkida noortega vägivallast? | <https://www.palunabi.ee/et/artiklid/kuidas-raakida-noortega-vagivallast> |
+| Sotsiaalkindlustusamet | Kuidas sõpra toetada? | <https://www.lasteabi.ee/et/artiklid/kuidas-sopra-toetada> |
+| Sotsiaalkindlustusamet | KUULA: vestlused, mis aitavad lähisuhtevägivalla teemast paremini aru saada | <https://www.palunabi.ee/et/artiklid/kuula-vestlused-mis-aitavad-lahisuhtevagivalla-teemast-paremini-aru-saada> |
+| Sotsiaalkindlustusamet | Kõik sõbrad ei ole mõeldud selleks, et jääda. | <https://www.lasteabi.ee/et/artiklid/koik-sobrad-ei-ole-moeldud-selleks-et-jaada> |
+| Sotsiaalkindlustusamet | Laps kannatab ka siis, kui löögid ei taba teda | <https://www.palunabi.ee/et/artiklid/laps-kannatab-ka-siis-kui-loogid-ei-taba-teda> |
+| Sotsiaalkindlustusamet | Lapse arenguetapid | <https://www.lasteabi.ee/et/lapse-arenguetapid> |
+| Sotsiaalkindlustusamet | Lapse heaolu hindamine | <https://www.lasteabi.ee/et/spetsialistile> |
+| Sotsiaalkindlustusamet | Laste ja peredega töötavale spetsialistile | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/laste-ja-peredega-tootavale-spetsialistile> |
+| Sotsiaalkindlustusamet | Laste seksuaalne väärkohtlemine internetis | <https://www.lasteabi.ee/et/laste-seksuaalne-vaarkohtlemine-internetis> |
+| Sotsiaalkindlustusamet | Lasteabi 116111 | <https://www.lasteabi.ee/et/lasteabi-116111> |
+| Sotsiaalkindlustusamet | Lasteabi 116111 | <https://sotsiaalkindlustusamet.ee/lasteabi-116111> |
+| Sotsiaalkindlustusamet | Lasteabi ja Narva lastekaitseosakonna kohtumine | <https://www.lasteabi.ee/et/artiklid/lasteabi-ja-narva-lastekaitseosakonna-kohtumine> |
+| Sotsiaalkindlustusamet | Lasteabi Kohtla-Järve Kesklinna Põhikoolis | <https://www.lasteabi.ee/et/artiklid/lasteabi-kohtla-jarve-kesklinna-pohikoolis> |
+| Sotsiaalkindlustusamet | Lasteabi nõustamine viipekeeles | <https://www.lasteabi.ee/et/artiklid/lasteabi-noustamine-viipekeeles> |
+| Sotsiaalkindlustusamet | Lasteabi nõustamine viipekeeles | <https://www.lasteabi.ee/et/artiklid/lasteabi-noustamine-viipekeeles-0> |
+| Sotsiaalkindlustusamet | Lasteabi pakub veebiterapeudi teenust | <https://www.lasteabi.ee/et/artiklid/lasteabi-pakub-veebiterapeudi-teenust> |
+| Sotsiaalkindlustusamet | Lasteabi podcast: Hooldusperedesse ei jõua vaid väikelapsed, ka teismelised ootavad kodu ja turvalisust | <https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-hooldusperedesse-ei-joua-vaid-vaikelapsed-ka-teismelised-ootavad-kodu-ja> |
+| Sotsiaalkindlustusamet | Lasteabi podcast: Kas sinu laps oskab enda piire kehtestada? Kas sinu teismeline teab, et „ei“ tähendabki päriselt „ei“? | <https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-kas-sinu-laps-oskab-enda-piire-kehtestada-kas-sinu-teismeline-teab-et-ei> |
+| Sotsiaalkindlustusamet | Lasteabi podcast: kuidas hoida laste ja noorte vaimset tervist? | <https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-kuidas-hoida-laste-ja-noorte-vaimset-tervist> |
+| Sotsiaalkindlustusamet | Lasteabi podcast: kuidas kaitsta lapsi sotsiaalmeedia negatiivse mõju eest? | <https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-kuidas-kaitsta-lapsi-sotsiaalmeedia-negatiivse-moju-eest> |
+| Sotsiaalkindlustusamet | Lasteabi podcast: kuidas saab kool laste vaimset tervist toetada? | <https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-kuidas-saab-kool-laste-vaimset-tervist-toetada> |
+| Sotsiaalkindlustusamet | Lasteabi podcast: kuidas veeta lastega üks tore suvi? | <https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-kuidas-veeta-lastega-uks-tore-suvi> |
+| Sotsiaalkindlustusamet | Lasteabi podcast: Kuidas veipimist ennetada? | <https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-kuidas-veipimist-ennetada> |
+| Sotsiaalkindlustusamet | Lasteabi podcast: Kuigi töö perekodus on emotsionaalselt keeruline, pakub see ka suurt rõõmu | <https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-kuigi-too-perekodus-emotsionaalselt-keeruline-pakub-see-ka-suurt-roomu> |
+| Sotsiaalkindlustusamet | Lasteabi podcast: Mis on turvaline huviharidus? | <https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-mis-turvaline-huviharidus> |
+| Sotsiaalkindlustusamet | Lasteabi podcast: perelepitus aitab peredel hakkama saada ka pärast purunemist | <https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-perelepitus-aitab-peredel-hakkama-saada-ka-parast-purunemist> |
+| Sotsiaalkindlustusamet | Lasteabi podcast: Tüdrukud tarvitavad narkootikume üha enam | <https://www.lasteabi.ee/et/artiklid/lasteabi-podcast-tudrukud-tarvitavad-narkootikume-uha-enam> |
+| Sotsiaalkindlustusamet | Lasteabisse pöördumiste arv kasvas aastaga 14,5%. Aina rohkem tuleb teateid õpetajatelt | <https://www.lasteabi.ee/et/artiklid/lasteabisse-poordumiste-arv-kasvas-aastaga-145-aina-rohkem-tuleb-teateid-opetajatelt> |
+| Sotsiaalkindlustusamet | Lastekaitsealane ennetustöö | <https://sotsiaalkindlustusamet.ee/lastekaitsealane-ennetus> |
+| Sotsiaalkindlustusamet | Lastekaitsealane nõustamine | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/laste-ja-noortega-tootavale-spetsialistile/lastekaitse-noustamine> |
+| Sotsiaalkindlustusamet | Lastemaja | <https://www.lasteabi.ee/et/lastemaja> |
+| Sotsiaalkindlustusamet | Menetlustähtajad | <https://sotsiaalkindlustusamet.ee/menetlustahtajad> |
+| Sotsiaalkindlustusamet | Miks peab kiusamist ennetama ja vähendama? | <https://www.lasteabi.ee/et/artiklid/miks-peab-kiusamist-ennetama-ja-vahendama> |
+| Sotsiaalkindlustusamet | Millal lasteabisse pöörduda? | <https://www.lasteabi.ee/et/millal-lasteabisse-poorduda> |
+| Sotsiaalkindlustusamet | Mis ei ole kiusamine? | <https://www.lasteabi.ee/et/artiklid/mis-ei-ole-kiusamine> |
+| Sotsiaalkindlustusamet | Mis on koolikiusamine? | <https://www.lasteabi.ee/et/artiklid/mis-koolikiusamine> |
+| Sotsiaalkindlustusamet | Mis on küberkiusamine? | <https://www.lasteabi.ee/et/artiklid/mis-kuberkiusamine> |
+| Sotsiaalkindlustusamet | Mitmedimensiooniline pereteraapia | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/laste-ja-peredega-tootavale-spetsialistile/mitmedimensiooniline> |
+| Sotsiaalkindlustusamet | Mul on vastutus | <https://www.lasteabi.ee/et/mul-vastutus> |
+| Sotsiaalkindlustusamet | Mul on võimalus | <https://www.lasteabi.ee/et/mul-voimalus> |
+| Sotsiaalkindlustusamet | Mul on õigus | <https://www.lasteabi.ee/et/mul-oigus> |
+| Sotsiaalkindlustusamet | Noorte toetamine | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/laste-ja-peredega-tootavale-spetsialistile/noorte-toetamine> |
+| Sotsiaalkindlustusamet | Noorte toetamine ja järelhooldus | <https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/asendushooldus-ja-kasuvanemlus/noorte-toetamine-ja-jarelhooldus> |
+| Sotsiaalkindlustusamet | Noortegarantii tugisüsteem | <https://www.lasteabi.ee/et/noortegarantii-tugisusteem> |
+| Sotsiaalkindlustusamet | Noortegarantii tugisüsteem | <https://sotsiaalkindlustusamet.ee/ngts> |
+| Sotsiaalkindlustusamet | Ohvri abistajale | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/ohvri-abistajale> |
+| Sotsiaalkindlustusamet | Ohvri andmete edastamine sotsiaalkindlustusametile | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/ohvri-abistajale/ohvri-andmete-edastamine> |
+| Sotsiaalkindlustusamet | Pensioni taotlemine | <https://sotsiaalkindlustusamet.ee/pensioni-taotlemine> |
+| Sotsiaalkindlustusamet | Perekond | <https://www.lasteabi.ee/et/perekond> |
+| Sotsiaalkindlustusamet | Perekond | <https://www.lasteabi.ee/et/perekond-0> |
+| Sotsiaalkindlustusamet | Perepõhise asendushoolduse tugiteenuste osutajale | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/teenuseosutajale/perepohise-asendushoolduse-tugiteenuste> |
+| Sotsiaalkindlustusamet | Psühholoogiline esmaabi on oskus nagu meditsiiniline esmaabi ning seda võiks osata igaüks | <https://www.palunabi.ee/et/artiklid/psuhholoogiline-esmaabi-oskus-nagu-meditsiiniline-esmaabi-ning-seda-voiks-osata-igauks> |
+| Sotsiaalkindlustusamet | Psühholoogilist traumat arvestav praktika | <https://www.palunabi.ee/et/psuhholoogilist-traumat-arvestav-praktika> |
+| Sotsiaalkindlustusamet | Puhkusetasu ja keskmise töötasu hüvitamine riigieelarvest | <https://sotsiaalkindlustusamet.ee/puhkusetasu-ja-keskmise-tootasu-huvitamine> |
+| Sotsiaalkindlustusamet | Puudega tööealise inimese toetus | <https://sotsiaalkindlustusamet.ee/puudega-tooealise-inimese-toetus> |
+| Sotsiaalkindlustusamet | Pühadestress ja selle leevendamine: kuidas toime tulla erinevates eluetappides | <https://www.lasteabi.ee/et/artiklid/puhadestress-ja-selle-leevendamine-kuidas-toime-tulla-erinevates-eluetappides> |
+| Sotsiaalkindlustusamet | Rahvusvahelise ja ajutise kaitse saanute tugiisikuteenus | <https://sotsiaalkindlustusamet.ee/rahvusvahelise-ja-ajutise-kaitse-saanute-tugiisikuteenus> |
+| Sotsiaalkindlustusamet | Rahvusvahelised peresuhted ja lastekaitse: mida peaks lapsevanemad teadma? | <https://www.lasteabi.ee/et/artiklid/rahvusvahelised-peresuhted-ja-lastekaitse-mida-peaks-lapsevanemad-teadma> |
+| Sotsiaalkindlustusamet | Ravikindlustus | <https://sotsiaalkindlustusamet.ee/ravikindlustus> |
+| Sotsiaalkindlustusamet | Rehabilitatsiooniteenuse osutajatele | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/teenuseosutajale/rehabilitatsiooniteenuse-osutajale> |
+| Sotsiaalkindlustusamet | Riigi abikäsi kuriteoohvrile: rahaline hüvitis | <https://www.palunabi.ee/et/artiklid/riigi-abikasi-kuriteoohvrile-rahaline-huvitis> |
+| Sotsiaalkindlustusamet | Saatjata alaealise välismaalase toetamine | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/kohalike-omavalitsuste-noustamine/saatjata-alaealise> |
+| Sotsiaalkindlustusamet | Safe box | <https://www.lasteabi.ee/et/safe-box> |
+| Sotsiaalkindlustusamet | Seksuaalne kägistamine võib ootamatult lõppeda surmaga | <https://www.palunabi.ee/et/artiklid/seksuaalne-kagistamine-voib-ootamatult-loppeda-surmaga> |
+| Sotsiaalkindlustusamet | Seksuaalne väärkohtlemine internetis | <https://www.lasteabi.ee/et/seksuaalne-vaarkohtlemine-internetis> |
+| Sotsiaalkindlustusamet | Seksuaalne ärakasutamine: mis see on ja kuidas end kaitsta? | <https://www.lasteabi.ee/et/artiklid/seksuaalne-arakasutamine-mis-see-ja-kuidas-end-kaitsta> |
+| Sotsiaalkindlustusamet | Seksuaalsus | <https://www.lasteabi.ee/et/seksuaalsus> |
+| Sotsiaalkindlustusamet | Seksuaaltervis | <https://www.lasteabi.ee/et/seksuaaltervis-lapsevanem> |
+| Sotsiaalkindlustusamet | Sotsiaalkindlustus välismaal ja välismaalt tulijatele | <https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/sotsiaalkindlustus-valismaal-ja-valismaalt-tulijatele-0> |
+| Sotsiaalkindlustusamet | Sotsiaalkindlustusameti tasuta e-kursused kõigile | <https://www.lasteabi.ee/et/artiklid/sotsiaalkindlustusameti-tasuta-e-kursused-koigile> |
+| Sotsiaalkindlustusamet | Sotsiaalteenuste kvaliteedijuhised | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/kohalike-omavalitsuste-noustamine/sotsiaalteenuste> |
+| Sotsiaalkindlustusamet | Sotsiaalteenuste toimepidevus | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/kohalike-omavalitsuste-noustamine/sotsiaalteenuste-toimepidevus> |
+| Sotsiaalkindlustusamet | STAR | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/star> |
+| Sotsiaalkindlustusamet | Suhtlus lapsega | <https://www.lasteabi.ee/et/suhtlus-lapsega> |
+| Sotsiaalkindlustusamet | Suure hooldus- ja abivajadusega lapse hoiu teenuse osutajale | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/teenuseosutajale/suure-hooldus-ja-abivajadusega-laste-hoidjale> |
+| Sotsiaalkindlustusamet | Suure hooldus- ja abivajadusega laste hoiu teenus | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/kohalike-omavalitsuste-noustamine/suure-hooldus-ja> |
+| Sotsiaalkindlustusamet | Sõprus | <https://www.lasteabi.ee/et/soprus> |
+| Sotsiaalkindlustusamet | Sõprus | <https://www.lasteabi.ee/et/soprus-0> |
+| Sotsiaalkindlustusamet | Taastav õigus | <https://sotsiaalkindlustusamet.ee/taastavoigus> |
+| Sotsiaalkindlustusamet | Tahad suvel tööd teha? Tea, millised on sinu õigused! | <https://www.lasteabi.ee/et/artiklid/tahad-suvel-tood-teha-tea-millised-sinu-oigused> |
+| Sotsiaalkindlustusamet | Teata abivajavast lapsest | <https://www.lasteabi.ee/et/teata-abivajavast-lapsest> |
+| Sotsiaalkindlustusamet | Teenuseosutajale | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/teenuseosutajale> |
+| Sotsiaalkindlustusamet | Tegevused iseenda toetuseks | <https://www.lasteabi.ee/et/tegevused-iseenda-toetuseks> |
+| Sotsiaalkindlustusamet | Toimetulekutoetus | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/kohalike-omavalitsuste-noustamine/toimetulekutoetus> |
+| Sotsiaalkindlustusamet | Traumast taastumist toetav vaimse tervise abi | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/teenuseosutajale/traumast-taastumist-toetava-vaimse-tervise-abi> |
+| Sotsiaalkindlustusamet | Tugigrupi töö korraldajale | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/teenuseosutajale/tugigrupi-too-korraldajale> |
+| Sotsiaalkindlustusamet | Tunded | <https://www.lasteabi.ee/et/tunded> |
+| Sotsiaalkindlustusamet | Turvalisus sotsiaalmeedias ja ekraanivaba aeg | <https://www.lasteabi.ee/et/artiklid/turvalisus-sotsiaalmeedias-ja-ekraanivaba-aeg> |
+| Sotsiaalkindlustusamet | Turvalisus spordis ja huvihariduses | <https://www.lasteabi.ee/et/artiklid/turvalisus-spordis-ja-huvihariduses> |
+| Sotsiaalkindlustusamet | Tõlketeenus rahvusvahelise kaitse saajale | <https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/kohalike-omavalitsuste-noustamine/tolketeenus-rahvusvahelise> |
+| Sotsiaalkindlustusamet | Täienda oma teadmisi e-kursusel „Abivajava lapse märkamine ja abistamine“ | <https://www.lasteabi.ee/et/artiklid/taienda-oma-teadmisi-e-kursusel-abivajava-lapse-markamine-ja-abistamine> |
+| Sotsiaalkindlustusamet | Tööealise puude raskusastme tuvastamine | <https://sotsiaalkindlustusamet.ee/tooealise-puude-tuvastamine> |
+| Sotsiaalkindlustusamet | Tööriistakast | <https://www.lasteabi.ee/et/tooriistakast> |
+| Sotsiaalkindlustusamet | Uus ja lihtne viis abivajavast lapsest teatamiseks | <https://www.lasteabi.ee/et/artiklid/uus-ja-lihtne-viis-abivajavast-lapsest-teatamiseks> |
+| Sotsiaalkindlustusamet | Uus vaimse tervise toetamise tööriist: safe box | <https://www.lasteabi.ee/et/artiklid/uus-vaimse-tervise-toetamise-tooriist-safe-box> |
+| Sotsiaalkindlustusamet | Vabatahtlik töö ohvriabis | <https://www.palunabi.ee/et/vabatahtlik-too-ohvriabis> |
+| Sotsiaalkindlustusamet | Vaimne tervis | <https://www.lasteabi.ee/et/vaimne-tervis> |
+| Sotsiaalkindlustusamet | Vaimne tervis | <https://www.lasteabi.ee/et/vaimne-tervis-lapsevanem> |
+| Sotsiaalkindlustusamet | Vaimse tervise veebinõustamine aitab saada oma elu parimaks eksperdiks | <https://www.palunabi.ee/et/artiklid/vaimse-tervise-veebinoustamine-aitab-saada-oma-elu-parimaks-eksperdiks> |
+| Sotsiaalkindlustusamet | Veebimaailm | <https://www.lasteabi.ee/et/veebimaailm> |
+| Sotsiaalkindlustusamet | Vikerraadio Reportertund: Koolistressis noor. Kust saab abi? | <https://www.lasteabi.ee/et/artiklid/vikerraadio-reportertund-koolistressis-noor-kust-saab-abi> |
+| Sotsiaalkindlustusamet | Vägivald | <https://www.lasteabi.ee/et/vagivald> |
+| Sotsiaalkindlustusamet | Vägivald | <https://www.lasteabi.ee/et/vagivald-lapsevanem> |
+| Sotsiaalkindlustusamet | Õppimine | <https://www.lasteabi.ee/et/oppimine> |
+| Sotsiaalkindlustusamet | Ära lase end ära kasutada – hoidu kuritegevusele meelitamisest | <https://www.lasteabi.ee/et/artiklid/ara-lase-end-ara-kasutada-hoidu-kuritegevusele-meelitamisest> |
+| Sotsiaalkindlustusamet | Üheskoos parema interneti nimel: lasteabi toetab noori digimaailmas | <https://www.lasteabi.ee/et/artiklid/uheskoos-parema-interneti-nimel-lasteabi-toetab-noori-digimaailmas> |
+| Sotsiaalministeerium | Abivajav laps | <https://www.sm.ee/lapsed-ja-hoolekanne/lapsed-ja-pered/abivajav-laps> |
+| Sotsiaalministeerium | Alkohol | <https://www.sm.ee/alkohol> |
+| Sotsiaalministeerium | Annetatud toiduabi jagamine | <https://www.sm.ee/annetatud-toiduabi-jagamine> |
+| Sotsiaalministeerium | Asendus- ja järelhooldus | <https://www.sm.ee/lapsed-ja-hoolekanne/lapsed-ja-pered/asendus-ja-jarelhooldus> |
+| Sotsiaalministeerium | Dementsus: riskitegurid ja ennetamine | <https://www.sm.ee/dementsus-riskitegurid-ja-ennetamine> |
+| Sotsiaalministeerium | Erakorraline abi ja kiirabi | <https://www.sm.ee/tervise-edendamine-ravi-ja-ravimid/ravi-ja-tervise-taastamine/erakorraline-abi-ja-kiirabi> |
+| Sotsiaalministeerium | Erivajadusega laste tugisüsteemi reform | <https://www.sm.ee/lapsed-ja-hoolekanne/lapsed-ja-pered/erivajadustega-laste-tugisusteem> |
+| Sotsiaalministeerium | Hooldereform | <https://www.sm.ee/hooldereform> |
+| Sotsiaalministeerium | Hooldereform ja pikaajaline hooldus | <https://www.sm.ee/hooldereform-ja-pikaajaline-hooldus> |
+| Sotsiaalministeerium | Inimkaubandus | <https://www.sm.ee/lapsed-ja-hoolekanne/vagivallaennetus-ja-ohvriabi/inimkaubandus> |
+| Sotsiaalministeerium | Kohaliku omavalitsuse sotsiaalteenused ja toetused | <https://www.sm.ee/lapsed-ja-hoolekanne/hoolekanne/kohaliku-omavalitsuse-sotsiaalteenused-ja-toetused> |
+| Sotsiaalministeerium | Kuidas rääkida dementsusest austavalt ja kaasavalt | <https://www.sm.ee/kuidas-raakida-dementsusest-austavalt-ja-kaasavalt> |
+| Sotsiaalministeerium | Lapse õigused ja heaolu | <https://www.sm.ee/lapsed-ja-hoolekanne/lapsed-ja-pered/lapse-oigused-ja-heaolu> |
+| Sotsiaalministeerium | Laste ja perede toetamise KKK | <https://www.sm.ee/laste-ja-perede-toetamise-kkk> |
+| Sotsiaalministeerium | Lähisuhte- ja naisevastane vägivald | <https://www.sm.ee/lapsed-ja-hoolekanne/vagivallaennetus-ja-ohvriabi/lahisuhte-ja-naisevastane-vagivald> |
+| Sotsiaalministeerium | Naistevastane vägivald | <https://www.sm.ee/naistevastane-vagivald> |
+| Sotsiaalministeerium | Narkootikumid | <https://www.sm.ee/narkootikumid> |
+| Sotsiaalministeerium | Ohvriabi | <https://www.sm.ee/lapsed-ja-hoolekanne/vagivallaennetus-ja-ohvriabi/ohvriabi> |
+| Sotsiaalministeerium | Patsiendi elulõpu tahteavalduse korduma kippuvad küsimused | <https://www.sm.ee/patsiendi-elulopu-tahteavalduse-korduma-kippuvad-kusimused> |
+| Sotsiaalministeerium | Pereõde ja -arst | <https://www.sm.ee/tervise-edendamine-ravi-ja-ravimid/ravi-ja-tervise-taastamine/pereode-ja-arst> |
+| Sotsiaalministeerium | Puudega ja vähenenud töövõimega inimesele | <https://www.sm.ee/puudega-inimesele-1> |
+| Sotsiaalministeerium | Puudega laps | <https://www.sm.ee/lapsed-ja-hoolekanne/lapsed-ja-pered/puudega-laps> |
+| Sotsiaalministeerium | Puuetega inimeste võrdne kohtlemine | <https://www.sm.ee/puuetega-inimeste-vordne-kohtlemine> |
+| Sotsiaalministeerium | Riigi sotsiaalteenused | <https://www.sm.ee/lapsed-ja-hoolekanne/hoolekanne/riigi-sotsiaalteenused> |
+| Sotsiaalministeerium | Seksuaalvägivald | <https://www.sm.ee/lapsed-ja-hoolekanne/vagivallaennetus-ja-ohvriabi/seksuaalvagivald> |
+| Sotsiaalministeerium | Terminid/juhendid | <https://www.sm.ee/terminidjuhendid> |
+| Sotsiaalministeerium | Tervishoid | <https://www.sm.ee/tervise-edendamine-ravi-ja-ravimid/ravi-ja-tervise-taastamine/tervishoid> |
+| Sotsiaalministeerium | Toidu annetamine | <https://www.sm.ee/toiduannetamine> |
+| Sotsiaalministeerium | Toiduabi | <https://www.sm.ee/lapsed-ja-hoolekanne/abivajajale/toiduabi> |
+| Sotsiaalministeerium | Toimetulekutoetus | <https://www.sm.ee/toimetulekutoetus> |
+| Sotsiaalministeerium | Töövahendid ja rakendused patsiendile | <https://www.sm.ee/tervise-edendamine-ravi-ja-ravimid/ravi-ja-tervise-taastamine/toovahendid-ja-rakendused-patsiendile> |
+| Sotsiaalministeerium | Vaimse tervise abi | <https://www.sm.ee/tervise-edendamine-ravi-ja-ravimid/vaimne-tervis/vaimse-tervise-abi> |
+| Sotsiaalministeerium | Vaimse tervise hoidmine | <https://www.sm.ee/tervise-edendamine-ravi-ja-ravimid/vaimne-tervis/vaimse-tervise-hoidmine> |
+| Sotsiaalministeerium | Vaimse tervise ja psühhosotsiaalne tugi kriisides | <https://www.sm.ee/tervise-edendamine-ravi-ja-ravimid/vaimne-tervis/vaimse-tervise-ja-psuhhosotsiaalne-tugi-kriisides> |
+| Sotsiaalministeerium | Vanemlus ja elu lastega | <https://www.sm.ee/lapsed-ja-hoolekanne/lapsed-ja-pered/vanemlus-ja-elu-lastega> |
+| Sotsiaalministeerium | Üldhooldusteenust pakkuvad hoolekandeasutused | <https://www.sm.ee/uldhooldusteenust-pakkuvad-hoolekandeasutused> |
+| Tartu Ülikooli Kliinikum | Alkoholitarvitamise häire | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/alkoholitarvitamise-haire/> |
+| Tartu Ülikooli Kliinikum | Dementsus | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/dementsus/> |
+| Tartu Ülikooli Kliinikum | Depressioon | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/depressioon/> |
+| Tartu Ülikooli Kliinikum | Insuldikoordinaator ja teised toetavad teenused insuldipatsientidele | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/insuldikoordinaator-ja-teised-toetavad-teenused-insuldipatsientidele/> |
+| Tartu Ülikooli Kliinikum | Koduse enteraalse toitmise teenus | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/koduse-enteraalse-toitmise-teenus/> |
+| Tartu Ülikooli Kliinikum | Lamatised | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/lamatised/> |
+| Tartu Ülikooli Kliinikum | Omastehooldus | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/omastehooldus/> |
+| Tartu Ülikooli Kliinikum | Palliatiivravi ja hospiits | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/palliatiivravi-ja-hospiits/> |
+| Tartu Ülikooli Kliinikum | Patsientide külastamine psühhiaatriakliinikus | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/patsientide-kulastamine-psuhhiaatriakliinikus/> |
+| Tartu Ülikooli Kliinikum | Püsiv valu | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/pusiv-valu/> |
+| Tartu Ülikooli Kliinikum | Rahustisõltuvus | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/rahustisoltuvus/> |
+| Tartu Ülikooli Kliinikum | Sotsiaaltöötaja teenus kliinikumis | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/sotsiaaltootaja-teenus-kliinikumis/> |
+| Tartu Ülikooli Kliinikum | Vähktõvega patsiendi hingehoidlik toetamine hematoloogia-onkoloogia kliinikus | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/vahktovega-patsiendi-hingehoidlik-toetamine-hematoloogia-onkoloogia-kliinikus/> |
+| Tartu Ülikooli Kliinikum | Üldistunud ärevushäire | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/uldistunud-arevushaire/> |
+| Tervise Arengu Instituut | 25 põhjust tubakast ja nikotiinist loobumiseks | <https://www.tubakainfo.ee/miks-suitsetamisest-loobuda/25-pohjust-suitsetamisest-loobumiseks/> |
+| Tervise Arengu Instituut | Abivõimalused lastele ja noortele | <https://www.narko.ee/abivoimalused-noortele> |
+| Tervise Arengu Instituut | Abivõimalused sõjapõgenikele | <https://www.narko.ee/siit-saad-abi/abivoimalused-sojapogenikele> |
+| Tervise Arengu Instituut | Ainejäägiga esemete testimise tulemused | <https://www.narko.ee/kogukond/testimine-tulemused> |
+| Tervise Arengu Instituut | Ainete segatarvitamisega kaasnevad riskid | <https://www.narko.ee/tarvitajad/kuidas-vahendada-tarvitamisega-kaasnevaid-ohte/ainete-segatarvitamisega-kaasnevad-riskid> |
+| Tervise Arengu Instituut | Alfa-PVP | <https://www.narko.ee/ained/alfa-pvp> |
+| Tervise Arengu Instituut | Alkohol ja energiajoogid | <https://alkoinfo.ee/et/moju/alkoholi-toime/alkohol-ja-energiajoogid> |
+| Tervise Arengu Instituut | Alkohol ja illegaalsed uimastid | <https://alkoinfo.ee/et/moju/alkoholi-toime/alkohol-ja-illegaalsed-uimastid> |
+| Tervise Arengu Instituut | Alkohol ja ravimid | <https://alkoinfo.ee/et/moju/alkoholi-toime/alkohol-ja-ravimid> |
+| Tervise Arengu Instituut | Alkoholi moju tervisele | <https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele> |
+| Tervise Arengu Instituut | Alkoholi toime | <https://alkoinfo.ee/et/moju/alkoholi-toime> |
+| Tervise Arengu Instituut | Alkoholimurgistus ja esmaabi | <https://alkoinfo.ee/et/moju/alkoholi-toime/alkoholimurgistus-ja-esmaabi> |
+| Tervise Arengu Instituut | Alkoholiprobleeme alalhoidvad motted | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine/alkoholiprobleeme-alalhoidvad-motted> |
+| Tervise Arengu Instituut | Alkoholist loobumine | <https://alkoinfo.ee/et/kuidas-vahendada/kas-muutuda-kas-vahendada/eesmargi-seadmine/alkoholist-loobumine> |
+| Tervise Arengu Instituut | Alkoholiuhik | <https://alkoinfo.ee/et/millal-vahendada/moodukuse-piires/alkoholiuhik> |
+| Tervise Arengu Instituut | Alkovabad joogid | <https://alkoinfo.ee/et/kuidas-vahendada/kuidas-juua-vahem/alkovabad-joogid> |
+| Tervise Arengu Instituut | Amfetamiin | <https://www.narko.ee/ained/amfetamiin> |
+| Tervise Arengu Instituut | AUDIT test | <https://alkoinfo.ee/et/millal-vahendada/moodukuse-piires/audit-test> |
+| Tervise Arengu Instituut | Ayahuasca | <https://www.narko.ee/ained/ayahuasca-caapi-hoasca-vegetal-yage-mihi-dapa> |
+| Tervise Arengu Instituut | Bensodiasepiinid (rahustid) | <https://www.narko.ee/ained/bensodiasepiinid> |
+| Tervise Arengu Instituut | Binge drinking ehk purjutamine | <https://alkoinfo.ee/et/millal-vahendada/ule-piiride/binge-drinking-ehk-purjutamine> |
+| Tervise Arengu Instituut | E-sigaret | <https://www.tubakainfo.ee/mis-on-sigaretis/e-sigaret/> |
+| Tervise Arengu Instituut | Eakad | <https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/eakad> |
+| Tervise Arengu Instituut | Eesmargi seadmine | <https://alkoinfo.ee/et/kuidas-vahendada/kas-muutuda-kas-vahendada/eesmargi-seadmine> |
+| Tervise Arengu Instituut | Efedriin | <https://www.narko.ee/ained/efedriin> |
+| Tervise Arengu Instituut | Ei utlemine | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine/ei-utlemine> |
+| Tervise Arengu Instituut | Enam levinud uimastid noorte seas | <https://www.narko.ee/noored/noorte-seas-enim-levinud-uimastid> |
+| Tervise Arengu Instituut | Enesekehtestamine | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine/enesekehtestamine> |
+| Tervise Arengu Instituut | Fentanüül | <https://www.narko.ee/ained/fentanuul> |
+| Tervise Arengu Instituut | Fentsüklidiin | <https://www.narko.ee/ained/pcp> |
+| Tervise Arengu Instituut | GHB, GBL | <https://www.narko.ee/ained/ghb> |
+| Tervise Arengu Instituut | Heroiin | <https://www.narko.ee/ained/heroiin> |
+| Tervise Arengu Instituut | Ibogaiin | <https://www.narko.ee/ained/ibogaiin> |
+| Tervise Arengu Instituut | Isotonitaseen | <https://www.narko.ee/ained/isotonitaseen> |
+| Tervise Arengu Instituut | Joomissoovi taltsutamine | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine/joomissoovi-taltsutamine> |
+| Tervise Arengu Instituut | Kaassõltuvus – mis see on? | <https://www.narko.ee/lahedased/kaassoltuvus-mis-see-on> |
+| Tervise Arengu Instituut | Kahjude vähendamise keskused ohutumaks tarvitamiseks | <https://www.narko.ee/siit-saad-abi/kahjude-vahendamise-keskused-ohutumaks-tarvitamiseks> |
+| Tervise Arengu Instituut | Kanep, hašiš | <https://www.narko.ee/ained/kanep_marihuaana_hasis> |
+| Tervise Arengu Instituut | Kanepi ohutum tarvitamine | <https://www.narko.ee/tarvitajad/kuidas-vahendada-tarvitamisega-kaasnevaid-ohte/kuidas-vahendada-kanepitarvitamise-riske/kanepi-ohutum-tarvitamine> |
+| Tervise Arengu Instituut | Kas ma peaksin uimastite tarvitamisest loobuma? | <https://www.narko.ee/tarvitajad/kas-ma-peaksin-uimastite-tarvitamisest-loobuma> |
+| Tervise Arengu Instituut | Kas muutuda kas vahendada | <https://alkoinfo.ee/et/kuidas-vahendada/kas-muutuda-kas-vahendada> |
+| Tervise Arengu Instituut | Kas sul on probleem | <https://alkoinfo.ee/et/millal-vahendada/kas-sul-on-probleem> |
+| Tervise Arengu Instituut | Kas uimastite tarvitajad kujutavad endast ohtu? | <https://www.narko.ee/kogukond/kas-uimastite-tarvitajad-kujutavad-endast-ohtu> |
+| Tervise Arengu Instituut | Ketamiin | <https://www.narko.ee/ained/ketamiin> |
+| Tervise Arengu Instituut | Khat | <https://www.narko.ee/ained/khat> |
+| Tervise Arengu Instituut | Kodeiin | <https://www.narko.ee/ained/kodeiin> |
+| Tervise Arengu Instituut | Kokaiin | <https://www.narko.ee/ained/kokaiin> |
+| Tervise Arengu Instituut | Korduma kippuvad küsimused | <https://www.narko.ee/kogukond/korduma-kippuvad-kusimused> |
+| Tervise Arengu Instituut | Kortermaja elanikule | <https://www.tubakainfo.ee/passiivne-suitsetamine/kortermaja-elanikule/> |
+| Tervise Arengu Instituut | Kuhu poorduda | <https://alkoinfo.ee/et/kuidas-vahendada/spetsialisti-abi/kuhu-poorduda> |
+| Tervise Arengu Instituut | Kuhu pöörduda, et saada abi tubakast loobumiseks? | <https://www.tubakainfo.ee/kontakt/> |
+| Tervise Arengu Instituut | Kui lähedane joob | <https://alkoinfo.ee/et/lahedastele> |
+| Tervise Arengu Instituut | Kuidas aidata lahedast | <https://alkoinfo.ee/et/lahedastele/kuidas-aidata-lahedast> |
+| Tervise Arengu Instituut | Kuidas aru saada, et lähedane tarvitab uimasteid? | <https://www.narko.ee/lahedased/kuidas-aru-saada-et-lahedane-tarvitab-uimasteid> |
+| Tervise Arengu Instituut | Kuidas juua vahem | <https://alkoinfo.ee/et/kuidas-vahendada/kuidas-juua-vahem> |
+| Tervise Arengu Instituut | Kuidas juua vahem kodus | <https://alkoinfo.ee/et/kuidas-vahendada/kuidas-juua-vahem/kuidas-juua-vahem-kodus> |
+| Tervise Arengu Instituut | Kuidas juua vahem valjas | <https://alkoinfo.ee/et/kuidas-vahendada/kuidas-juua-vahem/kuidas-juua-vahem-valjas> |
+| Tervise Arengu Instituut | Kuidas kujuneb alkoholi noiaring | <https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/kuidas-kujuneb-alkoholi-noiaring> |
+| Tervise Arengu Instituut | Kuidas käituda, kui sinu lähedane tarvitab uimasteid? | <https://www.narko.ee/lahedased/kuidas-kaituda-kui-sinu-lahedane-tarvitab-uimasteid> |
+| Tervise Arengu Instituut | Kuidas leida motivatsiooni | <https://alkoinfo.ee/et/kuidas-vahendada/kas-muutuda-kas-vahendada/kuidas-leida-motivatsiooni> |
+| Tervise Arengu Instituut | Kuidas mõjutab uimastite tarvitamine lähedasi? | <https://www.narko.ee/lahedased/kuidas-mojutab-uimastite-tarvitamine-lahedasi> |
+| Tervise Arengu Instituut | Kuidas puhade ajal alkoholiga mitte liialdada | <https://alkoinfo.ee/et/kuidas-vahendada/kuidas-juua-vahem/kuidas-puhade-ajal-alkoholiga-mitte-liialdada> |
+| Tervise Arengu Instituut | Kuidas saab aidata ennast alkoholisoltlase lahedane | <https://alkoinfo.ee/et/lahedastele/kuidas-saab-aidata-ennast-alkoholisoltlase-lahedane> |
+| Tervise Arengu Instituut | Kuidas sotsiaalsele survele vastu astuda? | <https://www.narko.ee/noored/kuidas-sotsiaalsele-survele-vastu-astuda> |
+| Tervise Arengu Instituut | Kuidas tagasilangust ennetada ja sellega toime tulla | <https://www.narko.ee/tarvitajad/kuidas-uimastitest-tarvitamisest-vabaneda/kuidas-tagasilangust-ennetada-ja-sellega-toime-tulla> |
+| Tervise Arengu Instituut | Kuidas teha vahema alkoga pidu | <https://alkoinfo.ee/et/kuidas-vahendada/kuidas-juua-vahem/kuidas-teha-vahema-alkoga-pidu> |
+| Tervise Arengu Instituut | Kuidas teistelt toetust saada | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine/kuidas-teistelt-toetust-saada> |
+| Tervise Arengu Instituut | Kuidas tõsta kogukonna turvalisust? | <https://www.narko.ee/kogukond/kuidas-tosta-kogukonna-turvalisust> |
+| Tervise Arengu Instituut | Kuidas uimastite tarvitamisest hoiduda | <https://www.narko.ee/noored/nippe-uimastitest-hoidumiseks> |
+| Tervise Arengu Instituut | Kuidas uimastite tarvitamisest vabaneda | <https://www.narko.ee/tarvitajad/kuidas-uimastitest-tarvitamisest-vabaneda> |
+| Tervise Arengu Instituut | Kuidas vähendada GHB tarvitamise riske | <https://www.narko.ee/tarvitajad/kuidas-vahendada-tarvitamisega-kaasnevaid-ohte/kuidas-vahendada-ghb-tarvitamise-riske> |
+| Tervise Arengu Instituut | Kuidas vähendada hallutsinogeenide tarvitamise riske | <https://www.narko.ee/tarvitajad/kuidas-vahendada-tarvitamisega-kaasnevaid-ohte/kuidas-vahendada-hallutsinogeenide-tarvitamise-riske> |
+| Tervise Arengu Instituut | Kuidas vähendada kanepitarvitamise riske | <https://www.narko.ee/tarvitajad/kuidas-vahendada-tarvitamisega-kaasnevaid-ohte/kuidas-vahendada-kanepitarvitamise-riske> |
+| Tervise Arengu Instituut | Kuidas vähendada tarvitamisega kaasnevaid ohte? | <https://www.narko.ee/tarvitajad/kuidas-vahendada-tarvitamisega-kaasnevaid-ohte> |
+| Tervise Arengu Instituut | Kuidas vähendada? | <https://alkoinfo.ee/et/kuidas-vahendada> |
+| Tervise Arengu Instituut | Kuidas öelda EI? | <https://www.tubakainfo.ee/dr-suits/kuidas-oelda-ei/> |
+| Tervise Arengu Instituut | Kuritarvitamine ja soltuvus | <https://alkoinfo.ee/et/millal-vahendada/ule-piiride/kuritarvitamine-ja-soltuvus> |
+| Tervise Arengu Instituut | Kust tulevad „narkomaanid”? | <https://www.narko.ee/kogukond> |
+| Tervise Arengu Instituut | Kuumutatavad tubakatooted | <https://www.tubakainfo.ee/mis-on-sigaretis/kuumutatavad-tubakatooted/> |
+| Tervise Arengu Instituut | Kärbseseen | <https://www.narko.ee/ained/karbseseen> |
+| Tervise Arengu Instituut | Liigtarvitamise astmed | <https://alkoinfo.ee/et/millal-vahendada/ule-piiride/liigtarvitamise-astmed> |
+| Tervise Arengu Instituut | Loobu tubakast ja nikotiinist | <https://www.tubakainfo.ee/loobu-suitsetamisest/> |
+| Tervise Arengu Instituut | Loobumisplaan | <https://www.tubakainfo.ee/loobu-suitsetamisest/loobumisplaan/> |
+| Tervise Arengu Instituut | Loogastumine | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-sailitamine/loogastumine> |
+| Tervise Arengu Instituut | LSD | <https://www.narko.ee/ained/lsd> |
+| Tervise Arengu Instituut | Luulusalvei, salvia | <https://www.narko.ee/ained/luulusalvei-salvia> |
+| Tervise Arengu Instituut | Lähedane tarvitab uimasteid | <https://www.narko.ee/lahedased/lahedane-tarvitab-uimasteid> |
+| Tervise Arengu Instituut | Maksahaigused | <https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/maksahaigused> |
+| Tervise Arengu Instituut | MDMA, ecstasy | <https://www.narko.ee/ained/mdma-ehk-ecstasy> |
+| Tervise Arengu Instituut | Meeldivad tegevused | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine/meeldivad-tegevused> |
+| Tervise Arengu Instituut | Mehed | <https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/mehed> |
+| Tervise Arengu Instituut | Meskaliin | <https://www.narko.ee/ained/meskaliin> |
+| Tervise Arengu Instituut | Metamfetamiin | <https://www.narko.ee/ained/metaamfetamiin> |
+| Tervise Arengu Instituut | Metüülfenidaat | <https://www.narko.ee/ained/metuulfenidaat> |
+| Tervise Arengu Instituut | Mida teha uimastamis- ja mürgistamiskahtluse korral | <https://www.narko.ee/siit-saad-abi/mida-teha-uimastamis-ja-murgistamiskahtluse-korral> |
+| Tervise Arengu Instituut | Mida teha, kui kahtlustad, et sind on uimastatud ja oled langenud seksuaalvägivalla ohvriks | <https://www.narko.ee/siit-saad-abi/mida-teha-kui-kahtlustad-et-sind-on-uimastatud-ja-oled-langenud-seksuaalkuriteo-ohvriks> |
+| Tervise Arengu Instituut | Mida teha, kui sõber tarvitab uimasteid? | <https://www.narko.ee/noored/mida-teha-kui-sober-tarvitab-uimasteid> |
+| Tervise Arengu Instituut | Miks ja kuidas tekib sõltuvus ning miks on raske sellest vabaneda? | <https://www.narko.ee/narkootikumide-moju-kehale/miks-ja-kuidas-tekib-soltuvus-ning-miks-on-raske-sellest-vabaneda> |
+| Tervise Arengu Instituut | Miks on uimastid ohtlikud? | <https://www.narko.ee/noored/miks-on-uimastid-ohtlikud> |
+| Tervise Arengu Instituut | Miks tubakatoodetest loobuda? | <https://www.tubakainfo.ee/miks-suitsetamisest-loobuda/> |
+| Tervise Arengu Instituut | Miks uimasteid proovitakse | <https://www.narko.ee/noored/uimastite-proovimise-pohjused> |
+| Tervise Arengu Instituut | Millal poorduda spetsialisti poole | <https://alkoinfo.ee/et/kuidas-vahendada/spetsialisti-abi/millal-poorduda-spetsialisti-poole> |
+| Tervise Arengu Instituut | Millal vähendada? | <https://alkoinfo.ee/et/millal-vahendada> |
+| Tervise Arengu Instituut | Milles seisneb alkoholitarvitamise haire ravi | <https://alkoinfo.ee/et/kuidas-vahendada/spetsialisti-abi/milles-seisneb-alkoholitarvitamise-haire-ravi> |
+| Tervise Arengu Instituut | Mis on uimastid ja kuidas neid liigitatakse? | <https://www.narko.ee/mis-on-uimastid-ja-kuidas-neid-liigitatakse> |
+| Tervise Arengu Instituut | Moju elukvaliteedile | <https://alkoinfo.ee/et/moju/moju-elukvaliteedile> |
+| Tervise Arengu Instituut | Moju suhtele | <https://alkoinfo.ee/et/moju/moju-elukvaliteedile/moju-suhtele> |
+| Tervise Arengu Instituut | Moodukas alkoholi tarvitamine | <https://alkoinfo.ee/et/millal-vahendada/moodukuse-piires/moodukas-alkoholi-tarvitamine> |
+| Tervise Arengu Instituut | Moodukuse piires | <https://alkoinfo.ee/et/millal-vahendada/moodukuse-piires> |
+| Tervise Arengu Instituut | Morfiin | <https://www.narko.ee/ained/morfiin> |
+| Tervise Arengu Instituut | Motivatsiooni sailitamine rajal pusimine | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-sailitamine/motivatsiooni-sailitamine-rajal-pusimine> |
+| Tervise Arengu Instituut | Muskaatpähkel | <https://www.narko.ee/ained/muskaatpahkel> |
+| Tervise Arengu Instituut | Muutused mida markad kiiresti | <https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/muutused-mida-markad-kiiresti> |
+| Tervise Arengu Instituut | Muutuste elluviimine | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine> |
+| Tervise Arengu Instituut | Muutuste sailitamine | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-sailitamine> |
+| Tervise Arengu Instituut | Mõju | <https://alkoinfo.ee/et/moju> |
+| Tervise Arengu Instituut | Müüdid | <https://www.narko.ee/muudid> |
+| Tervise Arengu Instituut | Naised | <https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/naised> |
+| Tervise Arengu Instituut | Narkootikumide mõju ajule | <https://www.narko.ee/narkootikumide-moju-kehale/kuidas-narkootikumid-mojutavad-aju> |
+| Tervise Arengu Instituut | Narkootikumide mõju organismile | <https://www.narko.ee/narkootikumide-moju-kehale> |
+| Tervise Arengu Instituut | Narkootikumide tarvitamise ennetamine | <https://www.tai.ee/et/tervis-ja-heaolu/narkootikumide-tarvitamise-ennetamine> |
+| Tervise Arengu Instituut | Narkootikumidega seotud seadusandlusest Eestis | <https://www.narko.ee/olukord-eestis/eesti-seadusandlus> |
+| Tervise Arengu Instituut | Narkootiliste ja psühhotroopsete ainete andmebaas | <https://www.narko.ee/mis-on-uimastid-ja-kuidas-neid-liigitatakse/narkootiliste-ja-psuhhotroopsete-ainete-andmebaas> |
+| Tervise Arengu Instituut | Narkosüütegude märkamine ja neist teavitamine | <https://www.narko.ee/kogukond/narkosuutegude-markamine-ja-neist-teavitamine> |
+| Tervise Arengu Instituut | Nikotiini võõrutusnähud | <https://www.tubakainfo.ee/loobu-suitsetamisest/nikotiini-voorutusnahud/> |
+| Tervise Arengu Instituut | Nikotiinipadi | <https://www.tubakainfo.ee/mis-on-sigaretis/nikotiinipadi/> |
+| Tervise Arengu Instituut | Nitaseenid | <https://www.narko.ee/ained/nitaseenid> |
+| Tervise Arengu Instituut | Noored | <https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/noored> |
+| Tervise Arengu Instituut | Nõuanded | <https://www.tubakainfo.ee/passiivne-suitsetamine/nouanded/> |
+| Tervise Arengu Instituut | Nõuanded festivalikülastajatele | <https://www.narko.ee/tarvitajad/nouanded-festivalikulastajale> |
+| Tervise Arengu Instituut | Nõustamisprogramm kanepitarvitajatele (VALIK programm) | <https://www.narko.ee/siit-saad-abi/noustamisprogramm-kanepitarvitajatele> |
+| Tervise Arengu Instituut | Ohutum süstimine | <https://www.narko.ee/tarvitajad/kuidas-vahendada-tarvitamisega-kaasnevaid-ohte/ohutum-sustimine> |
+| Tervise Arengu Instituut | Olukord Eestis | <https://www.narko.ee/olukord-eestis> |
+| Tervise Arengu Instituut | Oma mustrite teadvustamine | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine/oma-mustrite-teadvustamine> |
+| Tervise Arengu Instituut | Oopium | <https://www.narko.ee/ained/oopium> |
+| Tervise Arengu Instituut | Pankreatiit | <https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/pankreatiit> |
+| Tervise Arengu Instituut | Passiivne suitsetamine | <https://www.tubakainfo.ee/passiivne-suitsetamine/> |
+| Tervise Arengu Instituut | Passiivse suitsetamise ja veipimise ohud | <https://www.tubakainfo.ee/passiivne-suitsetamine/passivsed-tubakatooted/> |
+| Tervise Arengu Instituut | Plussid miinused | <https://alkoinfo.ee/et/kuidas-vahendada/kas-muutuda-kas-vahendada/plussid-miinused> |
+| Tervise Arengu Instituut | Pohmell | <https://alkoinfo.ee/et/moju/alkoholi-toime/pohmell> |
+| Tervise Arengu Instituut | Positiivsed muutused | <https://alkoinfo.ee/et/kuidas-vahendada/kas-muutuda-kas-vahendada/plussid-miinused/positiivsed-muutused> |
+| Tervise Arengu Instituut | Probleemi tunnused | <https://alkoinfo.ee/et/millal-vahendada/kas-sul-on-probleem/probleemi-tunnused> |
+| Tervise Arengu Instituut | Probleemide lahendamine | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine/probleemide-lahendamine> |
+| Tervise Arengu Instituut | Programm selge | <https://alkoinfo.ee/et/kuidas-vahendada/programm-selge> |
+| Tervise Arengu Instituut | Psilotsübiin (maagilised seened) | <https://www.narko.ee/ained/psilotsubiini-ja-psilotsiini-sisaldavad-seened> |
+| Tervise Arengu Instituut | Purjusolek ja joobeastmed | <https://alkoinfo.ee/et/moju/alkoholi-toime/purjusolek-ja-joobeastmed> |
+| Tervise Arengu Instituut | Raha | <https://alkoinfo.ee/et/moju/moju-elukvaliteedile/raha> |
+| Tervise Arengu Instituut | Rasedus ja imetamine | <https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/naised/rasedus-ja-imetamine> |
+| Tervise Arengu Instituut | Riskantsed situatsioonid | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-elluviimine/riskantsed-situatsioonid> |
+| Tervise Arengu Instituut | Sekkumised | <https://www.tai.ee/et/valdkonnad/vaimne-tervis/vaimse-tervise-valdkonna-tegevused/sekkumised> |
+| Tervise Arengu Instituut | Seks | <https://alkoinfo.ee/et/moju/moju-elukvaliteedile/seks> |
+| Tervise Arengu Instituut | Septembris ei joo | <https://alkoinfo.ee/et/kuidas-vahendada/kuidas-juua-vahem/septembris-ei-joo> |
+| Tervise Arengu Instituut | Siit saad abi | <https://www.narko.ee/siit-saad-abi> |
+| Tervise Arengu Instituut | Spetsialisti abi | <https://alkoinfo.ee/et/kuidas-vahendada/spetsialisti-abi> |
+| Tervise Arengu Instituut | Sport | <https://alkoinfo.ee/et/moju/moju-elukvaliteedile/sport> |
+| Tervise Arengu Instituut | Sudame ja veresoonkond | <https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/sudame-ja-veresoonkond> |
+| Tervise Arengu Instituut | Suitsetamine ja veipimine siseruumides ja välisõhus | <https://www.tubakainfo.ee/passiivne-suitsetamine/kodus-autos-oues/> |
+| Tervise Arengu Instituut | Suitsetamise mõju elustiilile ja rahakotile | <https://www.tubakainfo.ee/miks-suitsetamisest-loobuda/suitsetamise-moju-elustiilile-ja-raha-kulu/> |
+| Tervise Arengu Instituut | Suitsetamise mõju lastele ja rasedatele | <https://www.tubakainfo.ee/passiivne-suitsetamine/suitsetamise-moju-lastele-ja-rasedatele/> |
+| Tervise Arengu Instituut | Suitsetatavad tubakatooted | <https://www.tubakainfo.ee/mis-on-sigaretis/suitsetatavad-tubakatooted/> |
+| Tervise Arengu Instituut | Suitsuvabad tubakatooted | <https://www.tubakainfo.ee/mis-on-sigaretis/suitsuvabad-tubakatooted/> |
+| Tervise Arengu Instituut | Sõltuvuse teke tubakatoodetest | <https://www.tubakainfo.ee/mis-on-sigaretis/suitsetamise-soltuvuse-teke/> |
+| Tervise Arengu Instituut | Sõltuvusravi, sh opioidisõltuvuse asendusravi | <https://www.narko.ee/siit-saad-abi/soltuvusravi-sh-opoiodisoltuvuse-asendusravi> |
+| Tervise Arengu Instituut | Sünteetilised opioidid – fentanüülid, nitaseenid, orfiinid | <https://www.narko.ee/ained/sunteetilised-opioidid> |
+| Tervise Arengu Instituut | Tagasilangused | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-sailitamine/tagasilangused> |
+| Tervise Arengu Instituut | Tasuta sotsiaal- ja õigusabi ning tervishoiuteenused ravikindlustamata inimestele | <https://www.narko.ee/siit-saad-abi/tasuta-sotsiaal-ja-oigusabi> |
+| Tervise Arengu Instituut | Tee otsus – loobu nikotiinist! | <https://www.tubakainfo.ee/loobu-suitsetamisest/tee-otsus/> |
+| Tervise Arengu Instituut | Tolerants | <https://alkoinfo.ee/et/millal-vahendada/ule-piiride/kuritarvitamine-ja-soltuvus/tolerants> |
+| Tervise Arengu Instituut | Top 8 põhjust, miks noored narkootikume tarvitavad | <https://www.narko.ee/noored/top-8-pohjust-miks-noored-narkootikume-tarvitavad-2> |
+| Tervise Arengu Instituut | Tsüklorfiin, spirokolrfiin | <https://www.narko.ee/ained/tsuklorfiin> |
+| Tervise Arengu Instituut | Tubaka ja ravimite koostarvitamise mõju | <https://www.tubakainfo.ee/mis-on-sigaretis/ravimitega-koosmoju/> |
+| Tervise Arengu Instituut | Tubakast ja nikotiinist loobumise nõustamine | <https://www.tubakainfo.ee/loobu-suitsetamisest/noustamiskabinetid/> |
+| Tervise Arengu Instituut | Tubakatoodete mõju keskkonnale | <https://www.tubakainfo.ee/miks-suitsetamisest-loobuda/suitsetamise-moju-keskkonnale/> |
+| Tervise Arengu Instituut | Tubakatoodete mõju tervisele ja välimusele | <https://www.tubakainfo.ee/miks-suitsetamisest-loobuda/suitsetamise-moju-tervisele/> |
+| Tervise Arengu Instituut | Tubakatooted | <https://www.tubakainfo.ee/mis-on-sigaretis/> |
+| Tervise Arengu Instituut | Uimasteid tarvitajate inimeste häbimärgistamine | <https://www.narko.ee/kogukond/stigmatiseerimine-ja-selle-moju> |
+| Tervise Arengu Instituut | Uimastiga kokku puutunud esemete testimine | <https://www.narko.ee/kogukond/testimine> |
+| Tervise Arengu Instituut | Uimastite tarvitamise faasid | <https://www.narko.ee/tarvitajad/uimastite-tarvitamise-faasid> |
+| Tervise Arengu Instituut | Uimastite tootmisest ja “puhtusest” | <https://www.narko.ee/uimastite-tootmine-nende-puhtus> |
+| Tervise Arengu Instituut | Ule piiride | <https://alkoinfo.ee/et/millal-vahendada/ule-piiride> |
+| Tervise Arengu Instituut | Ulevaade statistikast | <https://alkoinfo.ee/et/moju/ulevaade-statistikast> |
+| Tervise Arengu Instituut | Unehugieen | <https://alkoinfo.ee/et/kuidas-vahendada/muutuste-sailitamine/unehugieen> |
+| Tervise Arengu Instituut | Uued psühhoaktiivsed ained | <https://www.narko.ee/ained/uued-psuhhoaktiivsed-ained> |
+| Tervise Arengu Instituut | Vahkkasvajad | <https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/vahkkasvajad> |
+| Tervise Arengu Instituut | Vaimne tervis | <https://alkoinfo.ee/et/moju/alkoholi-moju-tervisele/vaimne-tervis> |
+| Tervise Arengu Instituut | Vaimse tervise nõustamine | <https://www.narko.ee/siit-saad-abi/vaimse-tervise-noustamine> |
+| Tervise Arengu Instituut | Vannisoolad | <https://www.narko.ee/ained/vannisoolad> |
+| Tervise Arengu Instituut | Voorutusnahud | <https://alkoinfo.ee/et/millal-vahendada/ule-piiride/kuritarvitamine-ja-soltuvus/voorutusnahud> |
+| Tervise Arengu Instituut | Vota alkoholist puhkust | <https://alkoinfo.ee/et/kuidas-vahendada/kuidas-juua-vahem/vota-alkoholist-puhkust> |
+| Tervise Arengu Instituut | Ära alusta! | <https://www.tubakainfo.ee/dr-suits/ara-alusta/> |
+| Tervise Arengu Instituut | Üledoosi tunnused ja kuidas aidata | <https://www.narko.ee/tarvitajad/kuidas-vahendada-tarvitamisega-kaasnevaid-ohte/uledoosi-tunnused-ja-kuidas-aidata> |
+| Tervisekassa | Alkoholi liigtarvitamine – mis see on ja kust saab abi | <https://www.tervisekassa.ee/infomaterjalid/alkoholi-liigtarvitamine-mis-see-ja-kust-saab-abi> |
+| Tervisekassa | Taastusravi | <https://www.tervisekassa.ee/taastusravi> |
+| Tervisekassa | Õendusabi | <https://www.tervisekassa.ee/oendusabi> |
+| Tervisekassa | Õendusabi hoolekandes | <https://www.tervisekassa.ee/oendusabi-hoolekandes> |
+| Tervisekassa | Õendusabi hoolekandes | <https://www.tervisekassa.ee/kkk/oendusabi-hoolekandes> |
+| Terviseportaal | Arstiabi | <https://www.terviseportaal.ee/arstiabi> |
+| Terviseportaal | Arstiabi ooteajad | <https://www.terviseportaal.ee/arstiabi/arstiabi-ooteajad> |
+| Terviseportaal | Eriarstiabi | <https://www.terviseportaal.ee/arstiabi/eriarstiabi> |
+| Terviseportaal | Haigushüvitis | <https://www.terviseportaal.ee/huvitised/haigushuvitis> |
+| Terviseportaal | Hooldushüvitis | <https://www.terviseportaal.ee/huvitised/hooldushuvitis> |
+| Terviseportaal | Hooldusteenus ja hooldekodud | <https://www.terviseportaal.ee/arstiabi/oendusabi/hooldusteenus> |
+| Terviseportaal | Hüvitiste võrdlus | <https://www.terviseportaal.ee/huvitised/huvitiste-vordlus> |
+| Terviseportaal | Inimene, kelle eest ei maksta sotsiaalmaksu | <https://www.terviseportaal.ee/ravikindlustus/inimene-kelle-eest-ei-maksta-sotsiaalmaksu> |
+| Terviseportaal | Inimene, kelle eest makstakse sotsiaalmaksu | <https://www.terviseportaal.ee/ravikindlustus/inimesed-kelle-eest-makstakse-sotsmaksu> |
+| Terviseportaal | Kaugteenused eriarstiabis | <https://www.terviseportaal.ee/arstiabi/eriarstiabi/kaugteenused-eriarstiabis> |
+| Terviseportaal | Kuhu oma tervisemurega pöörduda | <https://www.terviseportaal.ee/arstiabi/tervisemure> |
+| Terviseportaal | Meeleoluhäired ja depressioon | <https://www.terviseportaal.ee/arstiabi/vaimne-tervis/depressioon> |
+| Terviseportaal | Perearstiabi | <https://www.terviseportaal.ee/arstiabi/perearstiabi> |
+| Terviseportaal | Ravijärjekorrad | <https://www.terviseportaal.ee/arstiabi/arstiabi-ooteajad/ravijarjekorrad> |
+| Terviseportaal | Ravikindlustus | <https://www.terviseportaal.ee/ravikindlustus> |
+| Terviseportaal | Sinu ohutus on tähtis | <https://www.terviseportaal.ee/arstiabi/sinu-ohutus-on-tahtis> |
+| Terviseportaal | Spetsialistid ja abivõimalused | <https://www.terviseportaal.ee/arstiabi/vaimne-tervis/spetsialistid-ja-abivimalused> |
+| Terviseportaal | Sõltuvushäired | <https://www.terviseportaal.ee/arstiabi/vaimne-tervis/soltuvushaired> |
+| Terviseportaal | Söömishäired | <https://www.terviseportaal.ee/arstiabi/vaimne-tervis/soomishaired> |
+| Terviseportaal | Taastusravi | <https://www.terviseportaal.ee/arstiabi/eriarstiabi/taastusravi> |
+| Terviseportaal | Teenustasud ja omaosalus | <https://www.terviseportaal.ee/arstiabi/teenustasud-ja-omaosalus> |
+| Terviseportaal | Tervishoiuspetsialist | <https://www.terviseportaal.ee/arstiabi/tervishoiuspetsialist> |
+| Terviseportaal | Tunnetushäired | <https://www.terviseportaal.ee/arstiabi/vaimne-tervis/tunnetushired> |
+| Terviseportaal | Töötamine pika haiguslehe ajal | <https://www.terviseportaal.ee/pikkhaigusleht> |
+| Terviseportaal | Töötav inimene | <https://www.terviseportaal.ee/ravikindlustus/ttav-inimene> |
+| Terviseportaal | Vabatahtlik kindlustus | <https://www.terviseportaal.ee/ravikindlustus/vabatahtlik-kindlustus> |
+| Terviseportaal | Vaimne tervis | <https://www.terviseportaal.ee/arstiabi/vaimne-tervis> |
+| Terviseportaal | Õendusabi | <https://www.terviseportaal.ee/arstiabi/oendusabi> |
+| Terviseportaal | Ärevushäired | <https://www.terviseportaal.ee/arstiabi/vaimne-tervis/arevushaire> |
+| Tööinspektsioon | Ajateenija ja reservväelane | <https://www.tooelu.ee/et/53/ajateenija-ja-reservvaelane> |
+| Tööinspektsioon | Alaealise töö- ja puhkeaeg | <https://www.tooelu.ee/et/56/alaealise-too-ja-puhkeaeg> |
+| Tööinspektsioon | Alaealise töölevõtmine | <https://www.tooelu.ee/et/54/alaealise-toolevotmine> |
+| Tööinspektsioon | Alaealistele sobivad ja mittesobivad tööd | <https://www.tooelu.ee/et/55/alaealistele-sobivad-ja-mittesobivad-tood> |
+| Tööinspektsioon | Alla 7-aastaste laste töötamine | <https://www.tooelu.ee/et/1773/alla-7-aastaste-laste-tootamine> |
+| Tööinspektsioon | Ametiühingud | <https://www.tooelu.ee/et/49/ametiuhingud> |
+| Tööinspektsioon | Euroopa Liidust Eestisse | <https://www.tooelu.ee/et/41/euroopa-liidust-eestisse> |
+| Tööinspektsioon | Head töösuhted | <https://www.tooelu.ee/et/65/head-toosuhted> |
+| Tööinspektsioon | Hoiatus | <https://www.tooelu.ee/et/32/hoiatus> |
+| Tööinspektsioon | Iseenda toetamiseks | <https://www.tooelu.ee/et/314/iseenda-toetamiseks> |
+| Tööinspektsioon | Iseseisva otsustuspädevusega töötaja | <https://www.tooelu.ee/et/842/iseseisva-otsustuspadevusega-tootaja> |
+| Tööinspektsioon | Kahju hüvitamine | <https://www.tooelu.ee/et/61/kahju-huvitamine> |
+| Tööinspektsioon | Kahju hüvitamine tööõnnetuse korral | <https://www.tooelu.ee/et/118/kahju-huvitamine-tooonnetuse-korral> |
+| Tööinspektsioon | Katseaeg | <https://www.tooelu.ee/et/13/katseaeg> |
+| Tööinspektsioon | Keskmise töötasu arvutamine | <https://www.tooelu.ee/et/176/keskmise-tootasu-arvutamine> |
+| Tööinspektsioon | Koolituskulude hüvitamise kokkulepe | <https://www.tooelu.ee/et/799/koolituskulude-huvitamise-kokkulepe> |
+| Tööinspektsioon | Kui tööl juhtus õnnetus | <https://www.tooelu.ee/et/116/kui-tool-juhtus-onnetus> |
+| Tööinspektsioon | Kutsehaigused ja tööst põhjustatud haigestumised | <https://www.tooelu.ee/et/901/kutsehaigused-ja-toost-pohjustatud-haigestumised> |
+| Tööinspektsioon | Käsundusleping | <https://www.tooelu.ee/et/1443/kasundusleping> |
+| Tööinspektsioon | Käsunduslepingu sõlmimine alaealisega | <https://www.tooelu.ee/et/1772/kasunduslepingu-solmimine-alaealisega> |
+| Tööinspektsioon | Lepingueelsed läbirääkimised | <https://www.tooelu.ee/et/11/lepingueelsed-labiraakimised> |
+| Tööinspektsioon | Lõpparve | <https://www.tooelu.ee/et/33/lopparve> |
+| Tööinspektsioon | Meeskonna toetamiseks | <https://www.tooelu.ee/et/315/meeskonna-toetamiseks> |
+| Tööinspektsioon | Mis on kaugtöö? Millal võib kaugtööd teha? | <https://www.tooelu.ee/et/34/mis-kaugtoo-millal-voib-kaugtood-teha> |
+| Tööinspektsioon | Mis on tööõnnetus? | <https://www.tooelu.ee/et/115/mis-tooonnetus> |
+| Tööinspektsioon | Muud tasud ja hüved | <https://www.tooelu.ee/et/174/muud-tasud-ja-huved> |
+| Tööinspektsioon | Paindliku tööaja kokkulepe | <https://www.tooelu.ee/et/1642/paindliku-tooaja-kokkulepe> |
+| Tööinspektsioon | Praktika | <https://www.tooelu.ee/et/39/praktika> |
+| Tööinspektsioon | Proovipäev | <https://www.tooelu.ee/et/10/proovipaev> |
+| Tööinspektsioon | Psühhosotsiaalsed ohutegurid | <https://www.tooelu.ee/et/67/psuhhosotsiaalsed-ohutegurid> |
+| Tööinspektsioon | Puhkeaeg | <https://www.tooelu.ee/et/25/puhkeaeg> |
+| Tööinspektsioon | Puhkuse ajakava | <https://www.tooelu.ee/et/27/puhkuse-ajakava> |
+| Tööinspektsioon | Puhkuse liigid | <https://www.tooelu.ee/et/26/puhkuse-liigid> |
+| Tööinspektsioon | Puhkused lapsevanematele | <https://www.tooelu.ee/et/63/puhkused-lapsevanematele> |
+| Tööinspektsioon | Puhkusetasu | <https://www.tooelu.ee/et/28/puhkusetasu> |
+| Tööinspektsioon | Renditöö ja töövahendus | <https://www.tooelu.ee/et/40/renditoo-ja-toovahendus> |
+| Tööinspektsioon | Saladus ja konkurents | <https://www.tooelu.ee/et/52/saladus-ja-konkurents> |
+| Tööinspektsioon | Tööaeg | <https://www.tooelu.ee/et/24/tooaeg> |
+| Tööinspektsioon | Tööalane kiusamine | <https://www.tooelu.ee/et/66/tooalane-kiusamine> |
+| Tööinspektsioon | Tööalane ärakasutamine | <https://www.tooelu.ee/et/292/tooalane-arakasutamine> |
+| Tööinspektsioon | Töökorraldus | <https://www.tooelu.ee/et/8/tookorraldus> |
+| Tööinspektsioon | Töölepingu lõppemine | <https://www.tooelu.ee/et/29/toolepingu-loppemine> |
+| Tööinspektsioon | Töölepingu lõppemine poolte kokkuleppel | <https://www.tooelu.ee/et/30/toolepingu-loppemine-poolte-kokkuleppel> |
+| Tööinspektsioon | Töölepingu muutmine | <https://www.tooelu.ee/et/14/toolepingu-muutmine> |
+| Tööinspektsioon | Töölepingu sõlmimine | <https://www.tooelu.ee/et/7/toolepingu-solmimine> |
+| Tööinspektsioon | Töölepingu ühepoolne lõpetamine | <https://www.tooelu.ee/et/31/toolepingu-uhepoolne-lopetamine> |
+| Tööinspektsioon | Tööstress ja läbipõlemine | <https://www.tooelu.ee/et/68/toostress-ja-labipolemine> |
+| Tööinspektsioon | Töötaja privaatsus | <https://www.tooelu.ee/et/69/tootaja-privaatsus> |
+| Tööinspektsioon | Töötamine haiguslehe alusel | <https://www.tooelu.ee/et/1229/tootamine-haiguslehe-alusel> |
+| Tööinspektsioon | Töötamine pere heaks | <https://www.tooelu.ee/et/37/tootamine-pere-heaks> |
+| Tööinspektsioon | Töötamine raseduse ajal | <https://www.tooelu.ee/et/62/tootamine-raseduse-ajal> |
+| Tööinspektsioon | Töötamise registreerimine | <https://www.tooelu.ee/et/12/tootamise-registreerimine> |
+| Tööinspektsioon | Töötasu | <https://www.tooelu.ee/et/175/tootasu> |
+| Tööinspektsioon | Töötukassa teenused | <https://www.tooelu.ee/et/171/tootukassa-teenused> |
+| Tööinspektsioon | Töövaidlused | <https://www.tooelu.ee/et/58/toovaidlused> |
+| Tööinspektsioon | Töövõtuleping | <https://www.tooelu.ee/et/1442/toovotuleping> |
+| Tööinspektsioon | Tüüptingimustega tööleping | <https://www.tooelu.ee/et/9/tuuptingimustega-tooleping> |
+| Tööinspektsioon | Ukraina sõjapõgenikud ja töösuhted | <https://www.tooelu.ee/et/392/ukraina-sojapogenikud-ja-toosuhted> |
+| Tööinspektsioon | Usaldusisik | <https://www.tooelu.ee/et/48/usaldusisik> |
+| Tööinspektsioon | Vabatahtlik töö | <https://www.tooelu.ee/et/38/vabatahtlik-too> |
+| Tööinspektsioon | Vaimse tervise esmaabikapp | <https://www.tooelu.ee/et/307/vaimse-tervise-esmaabikapp> |
+| Tööinspektsioon | Võrdne kohtlemine | <https://www.tooelu.ee/et/36/vordne-kohtlemine> |
+| Tööinspektsioon | Välismaise tööandja juurde tööle minek | <https://www.tooelu.ee/et/47/valismaise-tooandja-juurde-toole-minek> |
+| Tööinspektsioon | Väljaspoolt Euroopa Liitu Eestisse | <https://www.tooelu.ee/et/42/valjaspoolt-euroopa-liitu-eestisse> |
+| Tööinspektsioon | Ümbrikupalk | <https://www.tooelu.ee/et/20/umbrikupalk> |
+| Vanglateenistus | Avavangla | <https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/vabanemiseks-valmistumine/mis-avavangla> |
+| Vanglateenistus | Elektrooniline valve | <https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/kriminaalhooldus/elektrooniline-valve> |
+| Vanglateenistus | Ettevalmistused vabanemiseks | <https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/vabanemiseks-valmistumine/ettevalmistused-vabanemiseks> |
+| Vanglateenistus | Helistamine | <https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/koned-ja-kokkusaamised-kinnipeetavaga/telefonikoned> |
+| Vanglateenistus | Huvitegevused vanglas | <https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/eneseteostus-vanglas/huvitegevused-vanglas> |
+| Vanglateenistus | Igapäevaelu vanglas | <https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/vanglas-elamine/igapaevaelu-vanglas> |
+| Vanglateenistus | Kahjumaksed kannatanule | <https://vanglateenistus.ee/abiks-kannatanule/praktiline-nou/kahjumaksed-kannatanule> |
+| Vanglateenistus | Kinnipeetava kaebeõigus | <https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/kinnipeetava-oigused/kinnipeetava-kaebeoigus> |
+| Vanglateenistus | Kirja saatmine | <https://vanglateenistus.ee/karistuse-kandmine-vanglas/suhtlemine-kinnipeetavaga/kirjavahetus-ja-pakid> |
+| Vanglateenistus | Kohtumine advokaadi, notari või esindajaga | <https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/kinnipeetava-oigused/kohtumine-advokaadi-notari-voi-esindajaga> |
+| Vanglateenistus | Kui karistust kandva inimese käitumine teeb muret | <https://vanglateenistus.ee/abiks-kannatanule/praktiline-nou/kui-karistust-kandva-inimese-kaitumine-teeb-muret> |
+| Vanglateenistus | Kui kinnipeetav vabaneb | <https://vanglateenistus.ee/abiks-kannatanule/karistuse-kandmine/kui-kinnipeetav-vabaneb> |
+| Vanglateenistus | Kui lähedane on kriminaalhooldusalune | <https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/vangistus-lahedase-seisukohast/kui-lahedane-kriminaalhooldusalune> |
+| Vanglateenistus | Kui lähedane on vanglas | <https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/vangistus-lahedase-seisukohast/kui-lahedane-vanglas> |
+| Vanglateenistus | Kuidas lapsega rääkida | <https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/vangistus-lahedase-seisukohast/kuidas-raakida-lapsega-vangistusest> |
+| Vanglateenistus | Kust saavad lähedased infot | <https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/vangistus-lahedase-seisukohast/kust-saavad-lahedased-infot> |
+| Vanglateenistus | Lapsevanema vangistus | <https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/vangistus-lahedase-seisukohast/lapsevanema-vangistus> |
+| Vanglateenistus | Lubatud ja keelatud esemed vanglas | <https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/vanglas-elamine/lubatud-ja-keelatud-esemed-vanglas> |
+| Vanglateenistus | Lühiajaline kokkusaamine | <https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/koned-ja-kokkusaamised-kinnipeetavaga/luhiajaline-kokkusaamine> |
+| Vanglateenistus | Lühiajaline väljasõit | <https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/koned-ja-kokkusaamised-kinnipeetavaga/luhiajaline-valjasoit> |
+| Vanglateenistus | Milles seisneb karistuse kandmine | <https://vanglateenistus.ee/abiks-kannatanule/karistuse-kandmine/milles-seisneb-karistuse-kandmine> |
+| Vanglateenistus | Mis on kriminaalhooldus? | <https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/kriminaalhooldus/mis-kriminaalhooldus> |
+| Vanglateenistus | Paki saatmine | <https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/saadetised-kinnipeetavale/paki-saatmine> |
+| Vanglateenistus | Pikaajaline kokkusaamine | <https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/koned-ja-kokkusaamised-kinnipeetavaga/pikaajaline-kokkusaamine> |
+| Vanglateenistus | Raha saatmine | <https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/saadetised-kinnipeetavale/raha-saatmine> |
+| Vanglateenistus | Riskihindamine ja hoolduskava | <https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/kriminaalhooldus/riskihindamine-ja-hoolduskava> |
+| Vanglateenistus | Riskihindamine ja individuaalne täitmiskava | <https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/vanglas-elamine/riskihindamine-ja-individuaalne-taitmiskava> |
+| Vanglateenistus | Tervishoiuteenused vanglas | <https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/vanglas-elamine/tervishoiuteenused-vanglas> |
+| Vanglateenistus | Tingimisi ennetähtaegne vabastamine | <https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/vabanemiseks-valmistumine/ennetahtaegne-vabanemine> |
+| Vanglateenistus | Turvalise koostöö raamistik (TUKO) | <https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/kriminaalhooldus/turvalise-koostoo-raamistik> |
+| Vanglateenistus | Töötamine vanglas | <https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/eneseteostus-vanglas/tootamine-vanglas> |
+| Vanglateenistus | Vabanemise teekond | <https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/vabanemiseks-valmistumine/vabanemise-teekond> |
+| Vanglateenistus | Vabatahtlike töö vanglas | <https://vanglateenistus.ee/koostoopartnerile-ja-vabatahtlikule/uldkasulik-too-ja-vabatahtlik-too/vabatahtlike-too-vanglas> |
+| Vanglateenistus | Vangistuse etapid | <https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/vanglas-elamine/vangistuse-etapid> |
+| Vanglateenistus | Vangistuseks valmistumine | <https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/vanglas-elamine/vangistuseks-valmistumine> |
+| Vanglateenistus | Videokohtumine | <https://vanglateenistus.ee/abiks-kinnipeetava-lahedastele/koned-ja-kokkusaamised-kinnipeetavaga/videokohtumised> |
+| Vanglateenistus | Õppimine vanglas | <https://vanglateenistus.ee/vanglasse-saabumine-ja-elu-vanglas/eneseteostus-vanglas/oppimine-vanglas> |
+| Vanglateenistus | Üldkasulik töö | <https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/kriminaalhooldus/uldkasulik-too> |
+| Vanglateenistus | Üldkasuliku töö partnerile | <https://vanglateenistus.ee/koostoopartnerile-ja-vabatahtlikule/uldkasulik-too-ja-vabatahtlik-too/uldkasuliku-too-partnerile> |
+
+### Uuringud ja juhendid väljaandja ametlikult aadressilt (264)
 
 | Väljaandja | Pealkiri | Aadress |
 |---|---|---|
@@ -2757,6 +4992,7 @@ Serveris töötav RAG, korpus v69, 07.10.2026. Siin on loend sellest, mida jaoti
 | Eesti Puuetega Inimeste Koda | Elu erilise lapsega – toimetulek ja vajadused. Uuringu raport | <https://www.epikoda.ee/wp-content/uploads/2018/09/Elu_erilise_lapsega_toimetulek_ja_vajadused_uuringu_kokkuvote.pdf> |
 | Eesti Puuetega Inimeste Koda | Puuetega inimeste eluolu Eestis. ÜRO puuetega inimeste õiguste konventsiooni täitmise variraport | <https://epikoda.ee/wp-content/uploads/2025/09/EPIK_variraport_webi.pdf> |
 | Eesti Rakendusuuringute Keskus Centar | Tööga seotud sotsiaalkaitsemudelid ja nende sobivus alternatiivsete tööturuarengute korral | <https://centar.ee/pdf/ee/2018_Tooga_seotud_sotsiaalkaitse_mudelid_ja_nende_sobivus_alternatiivsete_tooturuarengute_korral_Eestis.pdf> |
+| Eesti Sotsiaaltöö Assotsiatsioon | Sotsiaalvaldkonna töötaja eetikakoodeks | <https://www.eswa.ee/wp-content/uploads/2026/05/sotsiaalvaldkonna-tootaja-koodeks.pdf> |
 | Haridus- ja Noorteamet | Noorteinfo käsiraamat | <https://www.teeviit.ee/wp-content/uploads/2025/10/noorteinfo-kasiraamat-2025-1.pdf> |
 | Haridus- ja Teadusministeerium | 19–26aastaste noorte noorsootöös osalemise motivatsioon | <https://www.hm.ee/sites/default/files/documents/2022-10/19-26_osalemine_noorsootoos.pdf> |
 | Haridus- ja Teadusministeerium | Eesti noortevaldkonna töötajaskonna töötingimused | <https://www.hm.ee/sites/default/files/documents/2024-01/Eesti%20noortevaldkonna%20to%CC%88o%CC%88tajaskonna%20to%CC%88o%CC%88tingimused_2.pdf> |
@@ -2845,6 +5081,7 @@ Serveris töötav RAG, korpus v69, 07.10.2026. Siin on loend sellest, mida jaoti
 | Sotsiaalkindlustusamet | Koduteenuse juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-06/Koduteenuse%20juhend_18.06.2024.pdf> |
 | Sotsiaalkindlustusamet | Koduteenuse kvaliteedijuhis | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-08/Koduteenuse%20kvaliteedijuhis%2031.07.2024.pdf> |
 | Sotsiaalkindlustusamet | Koduteenuse lihtsustatud kulumudeli juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-05/koduteenuse_lihtsustatud_kulumudeli_juhend.pdf> |
+| Sotsiaalkindlustusamet | Koduteenuse teenusedisaini projekti raport | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-05/koduteenuse_teenusedisaini_projekti_raport_2022.pdf> |
 | Sotsiaalkindlustusamet | Kolm maja – tööriist lapse kaasamiseks | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-11/Kolm%20maja.pdf> |
 | Sotsiaalkindlustusamet | Koondaruande juhendmaterjal | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-07/Koondaruande%20juhendmaterjal_03.07.2026.pdf> |
 | Sotsiaalkindlustusamet | Kovisiooni juhend lastekaitsetöötajatele | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Kovisiooni-juhend-lastekaitsetootajatele.pdf> |
@@ -2971,6 +5208,7 @@ Serveris töötav RAG, korpus v69, 07.10.2026. Siin on loend sellest, mida jaoti
 | Tartu Ülikool | Noorte osalus otsustusprotsessides | <https://skytte.ut.ee/sites/default/files/2022-05/lopparuanne_19.03_noorte_osalus_rake.pdf> |
 | Tartu Ülikool | Suitsiidimõtete esinemine ja sellega seotud tegurid Eesti 15-aastastel kooliõpilastel aastatel 2006–2022 | <https://dspace.ut.ee/server/api/core/bitstreams/c2947b03-24e3-432d-9d86-d2e653cdb5e6/content> |
 | Tartu Ülikool | Tartu linna vanemaealiste uuring | <https://skytte.ut.ee/sites/default/files/2025-01/Tartu_linna_vanemaealiste_uuring_l%C3%B5pparuanne.pdf> |
+| Tartu Ülikooli Kliinikum | Insuldipatsiendi infomaterjal: Elu pärast insulti | <https://www.kliinikum.ee/wp-content/uploads/2021/02/kliinikum_insult_web.pdf> |
 | Tervise Arengu Instituut | Avaliku sektori esindajate hinnangud vanemluse valdkonnale | <https://tai.ee/sites/default/files/2022-02/Avaliku%20sektori%20esindajate%20hinnangud%20vanelmuse%20valdkonnale_01.2022.pdf> |
 | Tervise Arengu Instituut | Dementsusega inimesi toetav õppiv hoolekandeasutus | <https://www.tai.ee/sites/default/files/2024-09/suvekooli_kokkuvote_2024.pdf> |
 | Tervise Arengu Instituut | Eesti rahvastiku vaimse tervise uuringu lühikokkuvõte | <https://tai.ee/sites/default/files/2023-03/RVTU_lyhikokkuvote_2023.pdf> |
@@ -2993,6 +5231,10 @@ Serveris töötav RAG, korpus v69, 07.10.2026. Siin on loend sellest, mida jaoti
 | Tervise Arengu Instituut | Uimastite tarvitamine koolinoorte seas: tubakatoodete, alkoholi ja narkootiliste ainete tarvitamine Eesti 15–16-aastaste õpilaste seas | <https://www.tai.ee/sites/default/files/2025-04/espad_raport_2024_25.04.2025.pdf> |
 | Tervise Arengu Instituut | Vanemaealiste vigastused 2016─2020 | <https://www.tai.ee/sites/default/files/2022-01/Vanemaealiste%20vigastused%202016-2020.pdf> |
 | Tervise Arengu Instituut | VEPA Käitumisoskuste Mängu rakendamise vahehindamine | <https://www.tai.ee/sites/default/files/2021-03/151721412645_VEPA_vahehindamine_lopparuanne.pdf> |
+| Tervisekassa | Alkoholi liigtarvitamine – mis see on ja kust saab abi | <https://tervisekassa.ee/media/337/download?inline> |
+| Tervisekassa | Vaevuste leevendamine palliatiivses ravis | <https://tervisekassa.ee/media/388/download?inline> |
+| Tervisekassa | Vähem alkoholi. Kas ja kuidas? | <https://tervisekassa.ee/media/321/download?inline> |
+| Tervisekassa | Ärevuse töövihik | <https://tervisekassa.ee/media/712/download?inline> |
 | Verge Eesti | Sekkumised koolivägivalla ja koolikiusamise korral | <https://www.verge.ee/wp-content/uploads/2023/08/verge_koolikiusjavagivald_A4-3.pdf> |
 
 ### Omavalitsuste kontaktid (1638)

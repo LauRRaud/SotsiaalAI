@@ -1,0 +1,51 @@
+/* CheckCard: kast vasakul, pealkiri ja selgitus paremal. */
+
+.card {
+  composes: cell from "./cell.module.css";
+  width: 100%;
+  min-height: var(--hit-target-min, 2.75rem);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 0.15rem 0.8rem;
+  padding: 0.8rem 0.95rem;
+  border-radius: 1rem;
+  text-align: left;
+}
+.box {
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  width: 1.3rem;
+  height: 1.3rem;
+  margin-top: 0.1rem;
+  border: 1px solid color-mix(in srgb, var(--text-warm) 46%, transparent);
+  border-radius: 0.4rem;
+}
+.box svg {
+  width: 0.85rem;
+  height: 0.85rem;
+  opacity: 0;
+}
+.card[aria-checked="true"] .box {
+  border-color: transparent;
+  background: var(--text-warm);
+  color: var(--text-ink, #1e1e1e);
+}
+.card[aria-checked="true"] .box svg {
+  opacity: 1;
+}
+/* Heledas teemas on --text-warm tume: linnuke peab siis olema hele. */
+:global(html.theme-light) .card[aria-checked="true"] .box {
+  color: #f6f4f0;
+}
+.title {
+  font-weight: 560;
+  overflow-wrap: anywhere;
+}
+.description {
+  grid-column: 2;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.45;
+}

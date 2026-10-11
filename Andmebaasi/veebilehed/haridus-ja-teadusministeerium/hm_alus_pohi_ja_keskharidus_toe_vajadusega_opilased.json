@@ -1,0 +1,179 @@
+{
+  "document_id": "web-hm_alus_pohi_ja_keskharidus_toe_vajadusega_opilased",
+  "title": "Toe vajadusega õpilased: õppekorraldus ja tugiteenused",
+  "register_title": "Toe vajadusega õpilased: õppekorraldus ja tugiteenused",
+  "source_id": "hm_alus_pohi_ja_keskharidus_toe_vajadusega_opilased",
+  "source_type": "web_page",
+  "publisher": "Haridus- ja Teadusministeerium",
+  "language": "et",
+  "url": "https://www.hm.ee/uldharidus-ja-noored/alus-pohi-ja-keskharidus/toe-vajadusega-opilased",
+  "source_path": "hm_alus_pohi_ja_keskharidus_toe_vajadusega_opilased.html",
+  "source_format": "html",
+  "source_sha256": "238f068b9aa533d266e48591c1ace2b9190cd789645469ae035b7e653dd5baf2",
+  "content_sha256": "e1beaa73f3a86531f98d81be15a2d6326ecdf9e4018e0f9887532f1ac04e2614",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:27:54.176Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-07-10",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Fri, 09 Oct 2026 16:25:55 GMT",
+      "etag": null
+    },
+    "raw_sha256": "d3a64223c4ce77750d9e80e6ad426df4ce7c1f1a20e85ef06115e3632e2f0169",
+    "stats": {
+      "words": 12062,
+      "blocks": 366,
+      "headings": 91,
+      "tables": 1,
+      "links": 90,
+      "linksToOtherSites": 72
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2022-09/eesti_haridusvaldkonna_arengukava_2035_seisuga_2020.03.27.pdf",
+      "text": "Haridusvaldkonna arengukavas kuni aastani 2035",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2024-04/HEV%20juhendmaterjal%20eestikeelsele%20haridusele%20%C3%BCleminekul_1.pdf",
+      "text": "HEV-juhendmaterjal eestikeelsele haridusele üleminekul",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2026-02/HEV%20%C3%B5pilase%20%C3%B5piteed%20%281%29.pdf",
+      "text": "aknas",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2026-03/Haridusliku%20erivajadusega%20p%C3%B5hikoolil%C3%B5petaja%20edasise%20%C3%B5pitee%20valik%20%281%29.pdf",
+      "text": "Ava joonis uues aknas",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://harno.ee/sites/default/files/documents/2022-02/Juhendmaterjal_6pilase_toetamiseks_22.pdf",
+      "text": "juhendmaterjali õpilaste toetamisest koolis",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2024-05/30.04_esitlus_Viljandimaa.pdf",
+      "text": "Viljandimaa",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2024-05/Ettekanne%20L%C3%A4%C3%A4ne-Viru%20ennetusmudel%20%2830.04.2024%29%20Maia%20K%C3%A4rdla.pdf",
+      "text": "Lääne-Virumaa",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2024-05/HOP%20Tallinn%2030_04_2024.pdf",
+      "text": "Tartumaa heaoluprogramm HOP",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2024-05/Ida-Harjumaa%20%281%29.pdf",
+      "text": "Ida-Harjumaa",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2024-05/HIT_htm%20l%C3%B5puseminar.pdf",
+      "text": "Haapsalu integreeritud tugiteenused",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2024-05/TALLINN30.04.pdf",
+      "text": "Võru",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2024-05/EMP_%20Norra%20toetuste%20programmi%20%E2%80%9EKohalik%20areng%20ja%20vaesuse%20v%C3%A4hendamine%E2%80%9C%20raames%20elluviidud%20projektide%20tulemusi%20tutvustav%20seminar.pdf",
+      "text": "Kokkuvõte arutelu tulemustest",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://harno.ee/sites/default/files/documents/2022-01/Individuaalsuse%20arvestamine%20j%C3%B5ukohase%20%C3%B5ppe%20tagamisel%2022.pdf",
+      "text": "Harno juhendmaterjalist",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tammegymnaasium.ee/wp-content/uploads/2026/03/Lisa1_Tartu-Tamme-Gumnaasiumi-vastuvotukord_06_03_26.pdf",
+      "text": "oma vastuvõtukorras",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://haridus.ut.ee/sites/default/files/inline-files/oppimine_ja_opetamine_3_kooliastmes_1.pdf",
+      "text": "oppimine_ja_opetamine_3_kooliastmes_1.pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://kutsekoda.ee/wp-content/uploads/2025/02/5.-EKR-raamistiku-kirjeldus.pdf",
+      "text": "Eesti kvalifikatsiooniraamistiku kirjeldusele",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2022-10/jarelkasvu_arnengusuunad_aastani_2026_mai_2021.pdf",
+      "text": "õpetajate järelkasvu tegevuskava",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://centar.ee/uus/wp-content/uploads/2017/01/Pohiraport-final.pdf",
+      "text": "Kaasava hariduse uuringu lõppraport",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.european-agency.org/sites/default/files/Five_Key_Messages_for_Inclusive_Education_ET.pdf",
+      "text": "Viis põhisõnumit kaasava hariduse kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.hm.ee/sites/default/files/documents/2023-05/Juhendmaterjal%20EH%C3%9C%20HEV%20aprill%202023.pdf",
+      "text": "Juhendmaterjal eestikeelsele õppele ülemineku toetamiseks",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

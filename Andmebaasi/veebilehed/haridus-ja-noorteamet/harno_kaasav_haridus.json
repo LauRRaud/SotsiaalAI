@@ -1,0 +1,329 @@
+{
+  "document_id": "web-harno_kaasav_haridus",
+  "title": "Kaasav haridus",
+  "register_title": "Kaasav haridus",
+  "source_id": "harno_kaasav_haridus",
+  "source_type": "web_page",
+  "publisher": "Haridus- ja Noorteamet",
+  "language": "et",
+  "url": "https://harno.ee/kaasav-haridus",
+  "source_path": "harno_kaasav_haridus.html",
+  "source_format": "html",
+  "source_sha256": "0e73dc81b933efc5812d3755bc9fc41309f4b031746ccffff34683b6a7ca744e",
+  "content_sha256": "7844ec8c9850d8a9e478e5ed513344f9376e2cd049cde11d6b900cf211d73f76",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:28:02.280Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2024-05-23",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Fri, 09 Oct 2026 16:01:32 GMT",
+      "etag": null
+    },
+    "raw_sha256": "e5b4dc110d3c2a0912035f599d6bb878c30cb289612b27e938cbafb36c3aebbb",
+    "stats": {
+      "words": 1036,
+      "blocks": 52,
+      "headings": 13,
+      "tables": 0,
+      "links": 56,
+      "linksToOtherSites": 47
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://rajaleidja.edu.ee/wp-content/uploads/2019/01/Lapsevanemale_A4-1-3.pdf",
+      "text": "eesti keeles",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.edu.ee/wp-content/uploads/2019/01/Lapsevanemale_RUS_A4-3.pdf",
+      "text": "vene keeles",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.edu.ee/wp-content/uploads/2019/01/Lapsevanemale_ENG_A4-1-3.pdf",
+      "text": "inglise keeles",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.edu.ee/wp-content/uploads/2019/01/Noorele_A4-3.pdf",
+      "text": "eesti keeles",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.edu.ee/wp-content/uploads/2019/01/Noorele_RUS_A4-3.pdf",
+      "text": "vene keeles",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.edu.ee/wp-content/uploads/2019/01/Koolile_A4-3.pdf",
+      "text": "eesti keeles",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.edu.ee/wp-content/uploads/2019/01/Koolile_RUS_A4-3.pdf",
+      "text": "vene keeles",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.edu.ee/wp-content/uploads/2019/01/Lasteaiale_A4-3.pdf",
+      "text": "eesti keeles",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.edu.ee/wp-content/uploads/2019/01/Lasteaiale_RUS_A4-3.pdf",
+      "text": "vene keeles",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.edu.ee/wp-content/uploads/2020/09/Logopeed6_A4_veebi-3.pdf",
+      "text": "eestikeelne veebiversioon",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.edu.ee/wp-content/uploads/2020/09/Logopeed6_A4_3mmbl-3.pdf",
+      "text": "trükiversioon",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.edu.ee/wp-content/uploads/2020/09/Logopeed6_A4_MV-3.pdf",
+      "text": "mustvalge versioon printimiseks",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.edu.ee/wp-content/uploads/2020/09/Logopeed4_A4_veebi-3.pdf",
+      "text": "veebiversioon",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.edu.ee/wp-content/uploads/2020/09/Logopeed4_A4_3mmbl-3.pdf",
+      "text": "trükiversioon",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.edu.ee/wp-content/uploads/2020/09/Logopeed4_A4_MV-3.pdf",
+      "text": "mustvalge versioon printimiseks",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.ee/wp-content/uploads/2020/12/Lapse-kone-areng-4-5_A4_veebi.pdf",
+      "text": "veebiversioon",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.ee/wp-content/uploads/2020/12/Lapse-kone-areng-4-5_A4_3mmbl.pdf",
+      "text": "trükiversioon",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.ee/wp-content/uploads/2020/12/Lapse-kone-areng-4-5_A4_MV.pdf",
+      "text": "mustvalge versioon",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.edu.ee/wp-content/uploads/2019/12/Kone-arengu-voldik-I_A4_mustvalge-2.pdf",
+      "text": "printimiseks",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.edu.ee/wp-content/uploads/2020/09/Logopeed2_RUS_A4_veebi-3.pdf",
+      "text": "venekeelne veebiversioon",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.edu.ee/wp-content/uploads/2020/09/Logopeed2_RUS_A4_3mmbl-3.pdf",
+      "text": "venekeelne trükiversioon",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.edu.ee/wp-content/uploads/2020/09/Logopeed2_RUS_A4_MV-3.pdf",
+      "text": "venekeelne mustvalge versioon printimiseks",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.ee/wp-content/uploads/2020/12/Lpase-kone-areng-6-7_A4_veebi.pdf",
+      "text": "veebiversioon",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.ee/wp-content/uploads/2020/12/Lapse-kone-areng-6-7_A4_3mmbl.pdf",
+      "text": "trükiversioon",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.ee/wp-content/uploads/2020/12/Lapse-kone-areng-6-7_A4_MV.pdf",
+      "text": "mustvalge versioon printimiseks",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.edu.ee/wp-content/uploads/2020/09/Logopeed3_RUS_A4_veebi-3.pdf",
+      "text": "venekeelne veebiversioon",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.edu.ee/wp-content/uploads/2020/09/Logopeed3_RUS_A4_3mmbl-3.pdf",
+      "text": "venekeelne trükiversioon",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.edu.ee/wp-content/uploads/2020/09/Logopeed3_RUS_A4_MV-3.pdf",
+      "text": "venekeelne mustvalge versioon printimiseks",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.edu.ee/wp-content/uploads/2020/09/Logopeed5_A4_veebi-3.pdf",
+      "text": "veebiversioon",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.edu.ee/wp-content/uploads/2020/09/Logopeed5_A4_3mmbl-3.pdf",
+      "text": "trükiversioon",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.edu.ee/wp-content/uploads/2020/09/Logopeed5_A4_MV-3.pdf",
+      "text": "mustvalge versioon printimiseks",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.ee/wp-content/uploads/2020/12/Kui-lugemine-on-lapsele-raske_A4_veebi.pdf",
+      "text": "veebiversioon",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.ee/wp-content/uploads/2020/12/Kui-lugemine-on-lapsele-raske.pdf",
+      "text": "trükiversioon",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.ee/wp-content/uploads/2020/12/Kui-lugemine-on-lapsele-raske_A4_MV.pdf",
+      "text": "mustvalge versioon printimiseks",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.ee/wp-content/uploads/2020/12/Kui-lugemine-on-lapsele-raske_RUS_A4_veebi.pdf",
+      "text": "venekeelne veebiversioon",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.ee/wp-content/uploads/2020/12/Kui-lugemine-on-lapsele-raske_RUS_A4_3mmbl.pdf",
+      "text": "venekeelne trükiversioon",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://rajaleidja.ee/wp-content/uploads/2020/12/Kui-lugemine-on-lapsele-raske_RUS_A4_MV.pdf",
+      "text": "venekeelne mustvalge versioon printimiseks",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://harno.ee/sites/default/files/documents/2023-03/Juhendmaterjal_6pilase_toetamiseks_22_1.pdf",
+      "text": "Juhendmaterjal õpilase toetamiseks koolis",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://harno.ee/sites/default/files/documents/2022-01/Koolitootajad%20jms%20toetav%20s%C3%BCsteemne%20lahenemine_abimaterjal_kujundatud.pdf",
+      "text": "Koolitöötajaid, lapsi, ja lapsevanemaid toetav süsteemne lähenemine haridusasutuses",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://harno.ee/sites/default/files/documents/2022-01/Koolit%C3%B6%C3%B6tajad_Joonised.pdf",
+      "text": "Tabelid ja joonised",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://harno.ee/sites/default/files/documents/2022-01/ErinevateOppijateToetamine_2021.pdf",
+      "text": "Abimaterjal \"Erinevate õppijate toetamine õpetaja ja tugispetsialisti koostöös\"",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://harno.ee/sites/default/files/documents/2022-01/Individuaalsuse%20arvestamine%20j%C3%B5ukohase%20%C3%B5ppe%20tagamisel%2022.pdf",
+      "text": "Õpilase individuaalsuse arvestamine võimetekohase õppimise tagamisel",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://harno.ee/sites/default/files/documents/2022-01/Individuaalse-arengu-jalgimise-kaart-21.docx",
+      "text": "Individuaalse arengu jälgimise kaart | 40.95 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://harno.ee/sites/default/files/documents/2022-06/Individuaalne-oppekava-2022_0.docx",
+      "text": "Individuaalne õppekava | 31.82 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://harno.ee/sites/default/files/documents/2022-02/V2hendamine_2022.pdf",
+      "text": "\"Õpitulemuste vähendamine, asendamine ja kohustusliku õppeaine õppimisest vabastamine\"",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

@@ -218,7 +218,7 @@ Tõend: `docs/audits/evidence/added-documents-answers-2026-10-07.json` (hinnangu
 ## Tegemata
 
 - **Sama võrdlus omavalitsusega küsimustega** ja teise hindajaga.
-- **Märked „[citations omitted]“ ja „[Remove?]“ vastuse tekstis:** põhjus leidmata.
+- **Märked „[citations omitted]“ ja „[Remove?]“ vastuse tekstis:** põhjus leidmata. Alates 09.10.2026 võtab vastuse kontroll sellise märke tekstist välja ([ADR-118](adr-118-editor-marks-out-of-answers.md)).
 
 - **Uudiskirja dokumendid, mis ootavad** (loend `Andmebaasi/register/newsletter_documents.json`): 2 vastuvõtu kinni peetud uuringut (liiga paljudel lehekülgedel puudub tekstikiht), 9 ingliskeelset, 6 tekstikihita, 2 liiga suurt, 13 veebilehena kogutud artiklit (lehtede korjaja tee, ADR-095). Koguja aruandes on veel 12 kättesaamata PDF-i ja 9 muus vormingus allikat.
 - Käivitusskript (`scripts/rag-v2-corpus-run.sh`) oskab nüüd pärast plaani keeldumist uuesti alustada (07.10.2026 õhtu): juba tõstetud pead ei pakita teist korda lahti, uus poliitikafail võetakse vana asemele, tühi plaanikaust eemaldatakse ja ebaõnnestunud käivituse lukk vabastatakse. Pärast ostu katkenud käivitust ta endiselt ise ei jätka.

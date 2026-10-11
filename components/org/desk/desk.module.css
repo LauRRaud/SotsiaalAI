@@ -1,0 +1,75 @@
+/* Organisatsiooni laud (`/org/<id>`): nimi, koha rida ja osade plaadid.
+   Plaadi materjal on sama mis sammulava laias vaates (StepFlight); laused, märk
+   ja sõnade read on organisatsioonide lehtede ühised (../org.module.css). */
+
+/* Ülaserv: organisatsiooni nimi, seisu märk (kui ei ole aktiivne) ja inimese koht. */
+.head {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.8rem;
+}
+.name {
+  margin: 0;
+  max-width: none;
+  min-width: 0;
+  color: var(--text-warm);
+  font-weight: 560;
+  overflow-wrap: anywhere;
+}
+.seat {
+  min-width: 0;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+}
+
+/* Plaadid: ühelaiused lahtrid võrgus. Veergude arv on valitud nii, et 13 osaga
+   laud mahub paneeli (neli rida); kitsamal pinnal vähem veerge. */
+.tiles {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+.tiles > li {
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+}
+.tile {
+  composes: tile from "../../stage/StepFlight.module.css";
+  box-sizing: border-box;
+  /* Madalam kui sammulava plaat: täis laual on neli rida ja need peavad mahtuma
+     paneeli koos privaatsuslausega. */
+  min-height: 4.1rem;
+  gap: 0.1rem;
+  padding: 0.4rem 0.75rem;
+  text-decoration: none;
+}
+.tileTitle {
+  composes: tileTitle from "../../stage/StepFlight.module.css";
+}
+.tileSummary {
+  composes: tileSummary from "../../stage/StepFlight.module.css";
+}
+
+@container (max-width: 40rem) {
+  .tiles {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@container (max-width: 28rem) {
+  /* Telefonis on 13 osaga laual seitse rida: plaadid on tihedamalt, et laud
+     koos privaatsuslausega mahuks ekraanile. */
+  .tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.3rem;
+  }
+  .tile {
+    min-height: 0;
+    padding-block: 0.3rem;
+  }
+}

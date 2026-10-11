@@ -30,10 +30,9 @@ export async function POST(req, { params }) {
       clientUserId: auth.userId,
       decision: body?.decision,
       note: body?.note || "",
-      /* Räsi, mille klient sai koos tekstiga. Kui ta tuleb kaasa, kinnitab ta
-         SEDA teksti, mitte lihtsalt seda rida (SOL-NET-01). Valikuline, sest
-         vana klient ei tea temast midagi — tingimuslik kirjutus katab
-         võistluse niikuinii. */
+      /* Räsi, mille klient sai koos tekstiga: ta kinnitab SEDA teksti, mitte
+         lihtsalt seda rida (SOL-NET-01). Kinnitamisel kohustuslik (audit T02):
+         ilma räsita päring saab vastuseks 428 ja leht laadib teksti uuesti. */
       expectedContentHash: typeof body?.expectedContentHash === "string" ? body.expectedContentHash : null,
       mutationKey: guard.mutationKey
     });

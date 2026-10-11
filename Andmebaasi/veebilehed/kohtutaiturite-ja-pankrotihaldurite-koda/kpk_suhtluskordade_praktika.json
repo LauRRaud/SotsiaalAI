@@ -1,0 +1,59 @@
+{
+  "document_id": "web-kpk_suhtluskordade_praktika",
+  "title": "Suhtluskordade praktikast",
+  "register_title": "Suhtluskordade praktikast",
+  "source_id": "kpk_suhtluskordade_praktika",
+  "source_type": "web_page",
+  "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+  "language": "et",
+  "url": "https://kpkoda.ee/suhtluskordade-praktika/",
+  "source_path": "kpk_suhtluskordade_praktika.html",
+  "source_format": "html",
+  "source_sha256": "cc96db8447f59047e347b02788fb5e449ee03f460236608a1cc18d9a12a931b1",
+  "content_sha256": "085a0a6c58478a34e2967a6abf59da590cf5de3017b0d1d6ea4367e233c5b0c3",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:40:57.856Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "c93ab34189bc40ff3f057e72833e4f25a3055cd411d40ca61856542cb4a57c55",
+    "stats": {
+      "words": 1138,
+      "blocks": 36,
+      "headings": 5,
+      "tables": 0,
+      "links": 4,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 1,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed"
+    ],
+    "needs_review": false
+  },
+  "documents": []
+}

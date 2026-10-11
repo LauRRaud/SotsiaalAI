@@ -1,0 +1,59 @@
+{
+  "document_id": "web-kpk_taite_ja_pankrotimenetluse_aegsest_elatisabist",
+  "title": "Täite- ja pankrotimenetluse aegsest elatisabist",
+  "register_title": "Täite- ja pankrotimenetluse aegsest elatisabist",
+  "source_id": "kpk_taite_ja_pankrotimenetluse_aegsest_elatisabist",
+  "source_type": "web_page",
+  "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+  "language": "et",
+  "url": "https://kpkoda.ee/taite-ja-pankrotimenetluse-aegsest-elatisabist/",
+  "source_path": "kpk_taite_ja_pankrotimenetluse_aegsest_elatisabist.html",
+  "source_format": "html",
+  "source_sha256": "e80fd176e6802200be4a1c0a79b32d95c152698a687f8e67d14bdaa3fb594928",
+  "content_sha256": "297026be2b2610735328cd458daa93b1bd46ab73a1c9dce3084323ec861afe6f",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:40:45.308Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "d859bfb3a32846e8df70127967cab17d7b8bad56463f97474c03fb9ed7239ded",
+    "stats": {
+      "words": 1341,
+      "blocks": 34,
+      "headings": 5,
+      "tables": 0,
+      "links": 5,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 1,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed"
+    ],
+    "needs_review": false
+  },
+  "documents": []
+}

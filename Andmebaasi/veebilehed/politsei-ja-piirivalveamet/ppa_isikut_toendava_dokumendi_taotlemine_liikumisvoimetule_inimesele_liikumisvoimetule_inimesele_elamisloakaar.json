@@ -1,0 +1,64 @@
+{
+  "document_id": "web-ppa_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele_liikumisvoimetule_inimesele_elamisloakaar",
+  "title": "Isikut tõendava dokumendi taotlemine liikumisvõimetule inimesele",
+  "register_title": "Isikut tõendava dokumendi taotlemine liikumisvõimetule inimesele",
+  "source_id": "ppa_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele_liikumisvoimetule_inimesele_elamisloakaar",
+  "source_type": "web_page",
+  "publisher": "Politsei- ja Piirivalveamet",
+  "language": "et",
+  "url": "https://www.politsei.ee/et/juhend/isikut-toendava-dokumendi-taotlemine-liikumisvoimetule-inimesele/liikumisvoimetule-inimesele-elamisloakaardi-taotlemine",
+  "source_path": "ppa_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele_liikumisvoimetule_inimesele_elamisloakaar.html",
+  "source_format": "html",
+  "source_sha256": "6694c8481da82dfd33c70d5c86ba180f341eddc84abdd758c093a56a51cdd72e",
+  "content_sha256": "132e5693537ef2ecf33f7f9067cc83c897cd9862622f23f59f55b9c991dbaa02",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:37:15.760Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": "Thu, 08 Oct 2026 17:07:49 GMT",
+      "etag": null
+    },
+    "raw_sha256": "fa85d35095f5bb6b460b1a491dc8ac62e202a28e48e0a1b4e190885e5e8f50df",
+    "stats": {
+      "words": 268,
+      "blocks": 31,
+      "headings": 8,
+      "tables": 0,
+      "links": 5,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.politsei.ee/files/Dokumentide%20taotlemise%20ankeedid/isikut-t-endavate-dokumentide-taotlusankeet-est-2019-01-14.pdf?c39fc91996",
+      "text": "Elamisloakaardi taotlusankeet.",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

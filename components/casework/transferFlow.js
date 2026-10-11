@@ -62,11 +62,14 @@ export async function runCopyForStar2({ loadBlock, writeClipboard, recordCopy, c
   if (!block?.fieldKeys?.length) {
     /* Tühja ploki kopeerimine ei ole tegu, mille kohta tõendit hoida. Server
        lükkaks ta niikuinii 400-ga tagasi — aga siis oleks tekst juba lõikelaual
-       ja kasutaja näeks viga teo kohta, mis tema jaoks õnnestus. */
+       ja kasutaja näeks viga teo kohta, mis tema jaoks õnnestus.
+       Teade on pinna oma („elemendil ei ole välju"), mitte serveri
+       valideerimisviga „vali vähemalt üks väli": valikut pinnal ei ole,
+       kopeeritakse kõik väljad. */
     return {
       phase: COPY_PHASE.EMPTY,
       block: block || null,
-      errorKey: "casework.errors.transfer_field_keys_required",
+      errorKey: "casework.transfer.copy_empty",
       pendingAudit: null
     };
   }

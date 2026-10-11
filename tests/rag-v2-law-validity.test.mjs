@@ -5,7 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import http from 'node:http';
 import { spawn } from 'node:child_process';
-import { analyseGroup, coverage, exitCode, groupStatus, municipalCoverage } from '../lib/rag-v2/law-validity.js';
+import { actsEnding, analyseGroup, coverage, exitCode, groupsInForce, groupStatus, municipalCoverage } from '../lib/rag-v2/law-validity.js';
 
 // ADR-038: the legal texts of the active corpus against Riigi Teataja.
 const window = { from: '2026-09-27', to: '2027-10-31' };
@@ -122,8 +122,8 @@ function riigiTeataja() {
     response.writeHead(404); response.end();
   });
 }
-const cli = (args, env) => new Promise(resolve => {
-  const child = spawn(process.execPath, ['scripts/rag-v2-law-validity.mjs', ...args], { env: { ...process.env, ...env } });
+const cli = (args, env, node = []) => new Promise(resolve => {
+  const child = spawn(process.execPath, [...node, 'scripts/rag-v2-law-validity.mjs', ...args], { env: { ...process.env, ...env } });
   let stdout = '', stderr = '';
   child.stdout.on('data', d => { stdout += d; }); child.stderr.on('data', d => { stderr += d; });
   child.on('close', code => resolve({ code, stdout, stderr }));
@@ -190,4 +190,95 @@ test('the check writes a repeatable report and tells a failed request apart from
     assert.deepEqual(failed.groups.slice(3).map(g => g.errors.map(e => e.error)), [['not_found'], ['not_found'], ['invalid_response']]);
     assert.equal(failed.groups[3].errors[0].url, '/et/akt/461.xml');
   } finally { server.close(); await fs.rm(dir, { recursive: true, force: true }); }
+});
+
+// ADR-124: what the manifest alone shows about the coming weeks. Today is 10.10.2026; 90 days reach 08.01.2027.
+const indexed = (id, group, from, to, extra = {}) => ({ document_id: `d${id}`, globaal_id: id, group, title: `Seadus ${group}`, issuer: 'Riigikogu', regions: [],
+  index_from: from, index_to: to, ...extra });
+const council = { title: 'Abi andmise kord', issuer: 'Suure Vallavolikogu', regions: ['suur_vald'] };
+const INDEXED = [indexed('1', 'open', '2020-01-01', null), indexed('2', 'ends', '2026-06-12', '2026-10-31'),
+  // The next version is indexed and starts the day after: nothing ends.
+  indexed('3', 'continues', '2026-10-01', '2026-12-31'), indexed('4', 'continues', '2027-01-01', null),
+  // One uncovered day between two indexed versions.
+  indexed('5', 'gap', '2026-08-01', '2026-10-30'), indexed('6', 'gap', '2026-11-01', null),
+  // The same uncovered day, and what resumes stops inside the horizon too.
+  indexed('21', 'twice', '2026-08-01', '2026-10-30'), indexed('22', 'twice', '2026-11-01', '2026-12-31'),
+  // Two versions that follow each other, then nothing for two months.
+  indexed('7', 'chain', '2026-01-01', '2026-10-31'), indexed('8', 'chain', '2026-11-01', '2026-11-30'), indexed('9', 'chain', '2027-02-01', null),
+  // A stale end date beside a shorter version: the later end is the last day.
+  indexed('10', 'stale', '2026-04-10', '2026-12-31'), indexed('11', 'stale', '2026-08-01', '2026-10-30'),
+  // The horizon's last day covered, and one day short of it.
+  indexed('12', 'edge', '2026-01-01', '2027-01-08'), indexed('13', 'short', '2026-01-01', '2027-01-07'),
+  // Not in force today: ended yesterday, or still to start.
+  indexed('14', 'past', '2020-01-01', '2026-10-09'), indexed('15', 'future', '2027-01-01', null),
+  // An act without a group is its own; today is its last day.
+  indexed('16', null, '2026-01-01', '2026-10-10', { title: 'Üksik akt' }),
+  // A municipal procedure that ends, the same council's new act from the next day, another council's, and an act of
+  // the same municipality's government.
+  indexed('17', 'kord', '2025-09-07', '2026-12-31', council), indexed('18', 'uus', '2027-01-01', null, council),
+  indexed('19', 'naaber', '2027-01-01', null, { ...council, issuer: 'Väikese Vallavolikogu', regions: ['vaike_vald'] }),
+  indexed('20', 'maarad', '2026-01-01', '2026-12-31', { ...council, title: 'Toetuste määrad 2026. aastal', issuer: 'Suure Vallavalitsus' })];
+
+test('acts ending: the groups in force today that have no indexed version on some day of the horizon, national first', () => {
+  const ending = actsEnding(INDEXED, '2026-10-10', 90);
+  assert.deepEqual(ending.map(act => [act.group, act.last_day, act.days_left, act.resumes_on, act.gap_days, act.ends_again_on]), [['act:16', '2026-10-10', 0, null, null, null],
+    ['gap', '2026-10-30', 20, '2026-11-01', 1, null], ['twice', '2026-10-30', 20, '2026-11-01', 1, '2026-12-31'], ['ends', '2026-10-31', 21, null, null, null],
+    ['chain', '2026-11-30', 51, '2027-02-01', 62, null], ['stale', '2026-12-31', 82, null, null, null], ['short', '2027-01-07', 89, null, null, null],
+    ['kord', '2026-12-31', 82, null, null, null], ['maarad', '2026-12-31', 82, null, null, null]]);
+  assert.deepEqual(ending[3], { group: 'ends', globaal_id: '2', title: 'Seadus ends', issuer: 'Riigikogu', regions: [], last_day: '2026-10-31', days_left: 21,
+    resumes_on: null, gap_days: null, ends_again_on: null, candidates: [] });
+  // A council's new group from the next day is named beside its ended one, which stays listed. Another issuer's is not,
+  // and a national act gets none: the parliament's law that starts on 01.01.2027 ("future") says nothing about "stale".
+  assert.deepEqual(ending.filter(act => act.candidates.length).map(act => [act.group, act.regions, act.candidates]),
+    [['kord', ['suur_vald'], [{ group: 'uus', title: 'Abi andmise kord', same_title: true }]]]);
+  const groups = (today, days) => actsEnding(INDEXED, today, days).map(act => act.group);
+  // The horizon's last day counts: a group is listed from the horizon that first reaches a day without it.
+  assert.deepEqual([groups('2026-10-10', 0), groups('2026-10-10', 20), groups('2026-10-10', 21)], [[], ['act:16'], ['act:16', 'gap', 'twice']]);
+  // On its uncovered day a group is not in force and not listed (the check reports that as a corpus gap); from the
+  // day its open version starts nothing ends.
+  assert.deepEqual([groups('2026-10-31', 90).includes('gap'), groups('2026-11-01', 90).includes('gap')], [false, false]);
+  assert.deepEqual([groupsInForce(INDEXED, '2026-10-10'), groupsInForce(INDEXED, '2027-01-01')], [{ national: 10, municipal: 2 }, { national: 6, municipal: 2 }]);
+});
+
+// The mode reads one file. The preloaded module ends the child on any connection or request (exit 97).
+const NO_NETWORK = `data:text/javascript;base64,${Buffer.from(`import net from 'node:net';
+const stop = () => { process.stderr.write('network_attempt'); process.exit(97); };
+net.Socket.prototype.connect = stop; globalThis.fetch = stop;`).toString('base64')}`;
+
+test('the ending mode prints the acts by last day from the manifest alone and exits 10 when any ends (ADR-124)', async () => {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'rag-v2-law-ending-'));
+  const manifest = async (name, acts) => { const file = path.join(dir, name); await fs.writeFile(file, JSON.stringify({ store_generation: 'g', generated_at: '2026-10-09T15:00:00.000Z', acts })); return file; };
+  const ending = (...args) => cli(['ending', ...args], {}, ['--import', NO_NETWORK]);
+  try {
+    const file = await manifest('manifest.json', INDEXED), out = path.join(dir, 'reports', 'ending.json');
+    const run = await ending('--manifest', file, '--today', '2026-10-10', '--out', out);
+    assert.equal(run.code, 10, run.stderr);
+    const lines = run.stdout.trim().split('\n'), day = (last_day, national, municipal = 0) => ({ last_day, national, municipal });
+    assert.deepEqual(lines.slice(0, -1).map(line => line.replace(/ {2,}/g, ' | ')), ['last day | left | scope | act',
+      '2026-10-10 | 0 | national | Üksik akt (Riigikogu, group act:16)',
+      '2026-10-30 | 20 | national | Seadus gap (Riigikogu, group gap) [resumes 2026-11-01 after 1 uncovered day]',
+      '2026-10-30 | 20 | national | Seadus twice (Riigikogu, group twice) [resumes 2026-11-01 after 1 uncovered day, ends again 2026-12-31]',
+      '2026-10-31 | 21 | national | Seadus ends (Riigikogu, group ends)',
+      '2026-11-30 | 51 | national | Seadus chain (Riigikogu, group chain) [resumes 2027-02-01 after 62 uncovered days]',
+      '2026-12-31 | 82 | national | Seadus stale (Riigikogu, group stale)',
+      '2027-01-07 | 89 | national | Seadus short (Riigikogu, group short)',
+      '2026-12-31 | 82 | suur_vald | Abi andmise kord (Suure Vallavolikogu, group kord) [candidate: group uus, same title]',
+      '2026-12-31 | 82 | suur_vald | Toetuste määrad 2026. aastal (Suure Vallavalitsus, group maarad)']);
+    // 90 days by default.
+    const summary = { today: '2026-10-10', horizon: '2027-01-08', in_force: { national: 10, municipal: 2 }, ending: { national: 7, municipal: 2 }, resume_after_gap: 3,
+      by_last_day: [day('2026-10-10', 1), day('2026-10-30', 2), day('2026-10-31', 1), day('2026-11-30', 1), day('2026-12-31', 1, 2), day('2027-01-07', 1)] };
+    assert.deepEqual(JSON.parse(lines.at(-1)), { ...summary, exit: 10 });
+    assert.deepEqual(JSON.parse(await fs.readFile(out, 'utf8')), { schema_version: 'rag-v2/law-acts-ending-1', ...summary, horizon_days: 90,
+      manifest: { store_generation: 'g', generated_at: '2026-10-09T15:00:00.000Z' }, acts: actsEnding(INDEXED, '2026-10-10', 90) });
+    const none = await ending('--manifest', await manifest('open.json', INDEXED.slice(0, 1)), '--today', '2026-10-10', '--horizon-days', '400');
+    assert.deepEqual([none.code, JSON.parse(none.stdout)], [0, { today: '2026-10-10', horizon: '2027-11-14', in_force: { national: 1, municipal: 0 },
+      ending: { national: 0, municipal: 0 }, resume_after_gap: 0, by_last_day: [], exit: 0 }]);
+    for (const args of [['--today', '2026-10-10'], ['--manifest', file, '--today', '10.10.2026'], ['--manifest', file, '--horizon-days', 'kolm kuud']]) {
+      const refused = await ending(...args);
+      assert.deepEqual([refused.code, JSON.parse(refused.stderr)], [1, { ok: false, code: 'law_validity_usage' }]);
+    }
+    // The check does make requests, and the preloaded module sees them: its silence above means the mode made none.
+    const check = await cli(['check', '--manifest', file, '--out', path.join(dir, 'check'), '--today', '2026-10-10'], {}, ['--import', NO_NETWORK]);
+    assert.deepEqual([check.code, check.stderr], [97, 'network_attempt']);
+  } finally { await fs.rm(dir, { recursive: true, force: true }); }
 });

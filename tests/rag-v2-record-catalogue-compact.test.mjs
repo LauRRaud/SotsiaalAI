@@ -104,3 +104,17 @@ test('ADR-086: the entry of a contact names the person and the role, its text ho
   assert.equal(scope.record_context.entries[1].fields.phone.value, '5550 0001');
   assert.equal(scope.record_context.relations.length, 6);
 });
+
+// ADR-121 (09.10.2026): the contact directory's room comes from the summaries of the records closest to the question.
+// For a Tallinn question that named no district the city's general directory left one summary where nine fit.
+test('ADR-121: the contact directory is left out when it would leave less than a third of the summaries, and only where few are left', async () => {
+  const { directoryCrowdsOut, DIRECTORY_CHECK_UNDER, DIRECTORY_MIN_SHARE, RECORD_RETRIEVAL_VERSION, READABLE_RECORD_RETRIEVAL_VERSIONS } = await import('../lib/rag-v2/search/structured-record-source.js');
+  assert.deepEqual([DIRECTORY_CHECK_UNDER, DIRECTORY_MIN_SHARE, RECORD_RETRIEVAL_VERSION], [6, 3, 'rag-v2/record-catalogue-5']);
+  assert.ok(READABLE_RECORD_RETRIEVAL_VERSIONS.includes('rag-v2/record-catalogue-4'));
+  // The measured turns (summaries with the directory, without it): only the first loses the directory.
+  for (const [left, without, out] of [[1, 9, true], [4, 11, false], [5, 14, false], [4, 9, false], [6, 13, false], [30, 42, false]]) assert.equal(directoryCrowdsOut(left, without), out, `${left} of ${without}`);
+  // Exactly a third stays; one under it goes; nothing left goes whenever anything would fit; equal counts stay.
+  assert.deepEqual([directoryCrowdsOut(3, 9), directoryCrowdsOut(2, 7), directoryCrowdsOut(0, 1), directoryCrowdsOut(0, 0), directoryCrowdsOut(2, 2)], [false, true, true, false, false]);
+  // A view with six or more summaries is not looked at again, whatever would fit without the directory.
+  assert.deepEqual([directoryCrowdsOut(5, 16), directoryCrowdsOut(6, 40)], [true, false]);
+});

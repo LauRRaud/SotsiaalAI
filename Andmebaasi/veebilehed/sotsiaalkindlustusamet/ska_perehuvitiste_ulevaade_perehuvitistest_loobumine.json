@@ -1,0 +1,71 @@
+{
+  "document_id": "web-ska_perehuvitiste_ulevaade_perehuvitistest_loobumine",
+  "title": "Perehüvitistest loobumine",
+  "register_title": "Perehüvitistest loobumine",
+  "source_id": "ska_perehuvitiste_ulevaade_perehuvitistest_loobumine",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/perehuvitiste-ulevaade/perehuvitistest-loobumine",
+  "source_path": "ska_perehuvitiste_ulevaade_perehuvitistest_loobumine.html",
+  "source_format": "html",
+  "source_sha256": "47191ff89cf749e3ad900a8723b992cf311d590f63a14cbcd5523b7dfa960f09",
+  "content_sha256": "99af058a61bd964c11177d7856cb3d3598eaf156f466a17449d843fbe91b86cd",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:25:18.546Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2024-08-26",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:08:25 GMT",
+      "etag": null
+    },
+    "raw_sha256": "b45397faf210c90be219ed52a88fc85f8a04bf3a521cb5a496884f8d61e46a57",
+    "stats": {
+      "words": 133,
+      "blocks": 8,
+      "headings": 1,
+      "tables": 0,
+      "links": 4,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-12/avaldus_peretoetustest_ja_kogumispensioni_taiendavatest_sissemaksetest%20_loobumiseks%2001.2025.docx",
+      "text": "Avaldus peretoetustest, vanemahüvitisest, kohustusliku kogumispensioni täiendavate sissemaksete tegemisest loobumiseks | 24.2 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-12/avaldus_peretoetustest_ja_kogumispensioni_taiendavatest_sissemaksetest%20_loobumiseks%2001.2025%20PABER.pdf",
+      "text": "Avaldus peretoetustest, vanemahüvitisest, kohustusliku kogumispensioni täiendavate sissemaksete tegemisest loobumiseks | 88.64 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

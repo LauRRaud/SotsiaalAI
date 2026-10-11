@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_pension_ja_seotud_huvitised_pensioniks_valmistumine",
+  "title": "Pensioniks valmistumine",
+  "register_title": "Pensioniks valmistumine",
+  "source_id": "ska_pension_ja_seotud_huvitised_pensioniks_valmistumine",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioniks-valmistumine",
+  "source_path": "ska_pension_ja_seotud_huvitised_pensioniks_valmistumine.html",
+  "source_format": "html",
+  "source_sha256": "7072c8bd48336a11a344497d8c7ec8ef888b3dfb46caeab38b5e14734b9531bc",
+  "content_sha256": "ac9d3c94060196fad870a4b80c01d4e14a9dd32e1650bf214ca0a33e6636f170",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:24:45.936Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-09-16",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:04:36 GMT",
+      "etag": null
+    },
+    "raw_sha256": "95e64ea661a7357d39856c63ff2b5a80a430c1430d57fab90991ce6ab827e8d7",
+    "stats": {
+      "words": 284,
+      "blocks": 28,
+      "headings": 10,
+      "tables": 0,
+      "links": 8,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

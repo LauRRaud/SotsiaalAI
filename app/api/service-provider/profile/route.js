@@ -2,12 +2,14 @@ import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { isAdmin, roleFromSession } from "@/lib/authz";
 import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
+import { listActiveMunicipalities } from "@/lib/help/municipalities";
 import {
   getServiceProviderProfileForOwner,
   serializeServiceProviderProfile,
   upsertServiceProviderProfileForOwner
 } from "@/lib/serviceProviderProfiles";
 import { safeError } from "@/lib/privacy/safeError";
+import { announceProfilePublished, readPublicationStatus } from "@/lib/serviceProviderProfileNotices";
 import {
   consumeServiceProviderProfileRateLimit,
   normalizeIdempotencyKey,
@@ -66,10 +68,19 @@ export async function GET(request) {
         "X-Correlation-ID": correlationId
       });
     }
-    const profile = await getServiceProviderProfileForOwner(auth.userId);
+    const [profile, municipalities] = await Promise.all([
+      getServiceProviderProfileForOwner(auth.userId),
+      /* Piirkonna valikud tulevad omavalitsuste registrist. Kui register ei vasta, avaneb profiil
+         ikka: vorm näitab siis salvestatud sõnu ja valikuloend on tühi. */
+      listActiveMunicipalities().catch((error) => {
+        console.error("[service-provider-profile] municipality register failed", { correlationId, error: safeError(error) });
+        return [];
+      })
+    ]);
     return json({
       ok: true,
       profile: serializeServiceProviderProfile(profile, { includeAvailabilityOperations: true }),
+      areaRegister: municipalities.map(({ slug, displayName, baseName, county }) => ({ slug, displayName, baseName, county })),
       canManageServiceProfile: true
     });
   } catch (error) {
@@ -100,11 +111,14 @@ export async function PUT(request) {
       });
     }
     const body = await request.json().catch(() => ({}));
+    /* Olek enne salvestust: avaldamise teade läheb ainult siis, kui profiil just nüüd avaldus. */
+    const previousStatus = await readPublicationStatus(auth.userId);
     const profile = await upsertServiceProviderProfileForOwner(auth.userId, body, {
       actorUserId: auth.userId,
       correlationId,
       idempotencyKey
     });
+    await announceProfilePublished({ previousStatus, profile, locale });
     return json({
       ok: true,
       profile: serializeServiceProviderProfile(profile, { includeAvailabilityOperations: true })

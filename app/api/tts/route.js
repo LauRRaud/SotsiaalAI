@@ -7,10 +7,9 @@ import { logEvent } from "@/lib/chat/logger";
 import { consumeRateLimit } from "@/lib/rate-limit";
 import { getRequestIpFromRequest } from "@/lib/request-ip";
 import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
-import { normalizeTartuNlpSpeaker, tartuNlpSupportsLocale } from "@/lib/chat/voiceState";
+import { DEFAULT_TARTUNLP_SPEAKER, normalizeTartuNlpSpeaker, tartuNlpSupportsLocale } from "@/lib/chat/voiceState";
 import { readAudioDurationSecondsFromBuffer } from "@/lib/audio/duration";
-import { frameToneProfileFor, softenFrameTones } from "@/lib/audio/frameTones";
-import { convertFloat32WavToPcm16, prependWavSilence } from "@/lib/audio/wavPcm";
+import { prepareTartuNlpWav } from "@/lib/audio/tartuNlpWav";
 import { resolveGoogleApplicationCredentialsPath } from "@/lib/googleCredentials";
 import { safeError } from "@/lib/privacy/safeError";
 import {
@@ -38,10 +37,9 @@ const OPENAI_TTS_VOICE = process.env.OPENAI_TTS_VOICE || "alloy";
 // kasutus tähendab ise-hostitud eksemplari (mudelid on MIT) — sealt tuleb ka
 // kogu mõte, et eestikeelne ettelugemine ei maksa tähemärgi kaupa.
 const TARTUNLP_TTS_URL = process.env.TARTUNLP_TTS_URL || "";
-// Omaniku valik 03.08 pärast viie hääle kuulamist: `kylli`.
-const TARTUNLP_TTS_SPEAKER = process.env.TARTUNLP_TTS_SPEAKER || "kylli";
+// Omaniku lõppvalik 08.10: Meelis koos tema kuulatud kümneribalise EQ-ga.
+const TARTUNLP_TTS_SPEAKER = normalizeTartuNlpSpeaker(process.env.TARTUNLP_TTS_SPEAKER);
 const TARTUNLP_TTS_TIMEOUT_MS = Number(process.env.TARTUNLP_TTS_TIMEOUT_MS || 20_000);
-const TARTUNLP_LEADING_SILENCE_MS = 300;
 const TTS_RATE_LIMIT_WINDOW_MS = Number(process.env.TTS_RATE_LIMIT_WINDOW_MS || 60_000);
 const TTS_RATE_LIMIT_MAX = Number(process.env.TTS_RATE_LIMIT_MAX || 30);
 const NO_STORE_HEADERS = {
@@ -173,18 +171,7 @@ async function synthTartuNlp({ text, speaker, signal }) {
     if (!raw.length) {
       return { ok: false, messageKey: "api.tts.synthesis_failed" };
     }
-    // Float32 → PCM16: pool mahtu ja formaadikood, mida iga brauser tunneb.
-    // Enne ümardamist pehmendatakse hääle metalset kaja (sünteesi kaadritoonid);
-    // profiilita hääl läheb läbi muutmata.
-    const toneProfile = frameToneProfileFor(speaker);
-    const buf = prependWavSilence(
-      await convertFloat32WavToPcm16(raw, {
-        processSamples: toneProfile
-          ? (samples, format) => softenFrameTones(samples, format, toneProfile)
-          : undefined
-      }),
-      TARTUNLP_LEADING_SILENCE_MS
-    );
+    const buf = await prepareTartuNlpWav(raw, speaker);
     return {
       ok: true,
       audioBuffer: buf,
@@ -293,7 +280,7 @@ export async function POST(req) {
   const tartuEnabled = tartuConfigured && tartuNlpSupportsLocale(locale);
   const tartuSpeaker = normalizeTartuNlpSpeaker(
     roleState.isAdmin ? payload?.speaker : null,
-    normalizeTartuNlpSpeaker(TARTUNLP_TTS_SPEAKER, "mari")
+    normalizeTartuNlpSpeaker(TARTUNLP_TTS_SPEAKER, DEFAULT_TARTUNLP_SPEAKER)
   );
   const plannedProvider = tartuEnabled ? "tartunlp" : googleEnabled ? "google" : "openai";
 

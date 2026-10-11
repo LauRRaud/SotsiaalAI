@@ -20,6 +20,21 @@ import WorkplaceViolenceWorkflow from "./WorkplaceViolenceWorkflow";
 import WorkBoundariesWorkflow from "./WorkBoundariesWorkflow";
 import WorkProcessesWorkflow from "./WorkProcessesWorkflow";
 
+/* Töövood, mis on viidud ühisele sammuvormile (`WellbeingStepForm`). */
+const STAGED_TOOLS = new Set([
+  "my-records",
+  "overview",
+  "quick-check",
+  "hard-case",
+  "workplace-violence",
+  "recovery",
+  "work-boundaries",
+  "interruptions",
+  "work-processes",
+  "role-boundaries",
+  "starter-support"
+]);
+
 const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAAL.PRO_CHAT_WORKSPACE_RESTORE__";
 const WORKSPACE_SUBPAGE_ENTRY_STORAGE_KEY = "__SOTSIAAL.PRO_WORKSPACE_SUBPAGE_ENTRY__";
 
@@ -75,6 +90,13 @@ export default function WellbeingPage({ activeTool = null, locale = "et" }) {
     router.push(localizePath(path, locale));
   }, [locale, router]);
 
+  /* Sammudena ümber ehitatud töövood kannavad oma kujundust ise (CSS-moodul
+     komponendi kõrval). Vana ühine kiht (`wellbeing-workflow`) kujundab
+     klassideta märgistust struktuuriselektoritega ja jääb ainult nendele
+     töövoogudele, mida ei ole veel üle viidud. */
+  const staged = STAGED_TOOLS.has(activeTool?.id);
+  const legacyClass = (name) => (activeTool && !staged ? name : undefined);
+
   const handleBack = useCallback(() => {
     if (activeTool) {
       navigate("/tooheaolu");
@@ -91,11 +113,11 @@ export default function WellbeingPage({ activeTool = null, locale = "et" }) {
   return (
     <div className={activeTool ? "feature-page feature-page--wellbeing" : undefined} data-dock-scroll-behavior={activeTool ? "recede" : undefined}>
       <section
-        className={activeTool ? "feature-page__surface wellbeing-workflow" : undefined}
+        className={activeTool ? (staged ? "feature-page__surface" : "feature-page__surface wellbeing-workflow") : undefined}
         role="region"
         aria-labelledby="wellbeing-title"
       >
-        <div className={activeTool ? "wellbeing-workflow__inner" : undefined}>
+        <div className={legacyClass("wellbeing-workflow__inner")}>
           <SubpageHeader
             onBack={handleBack}
             backAriaLabel={t("chat.workspace.wellbeing_page.back_label", "Tagasi")}
@@ -104,7 +126,10 @@ export default function WellbeingPage({ activeTool = null, locale = "et" }) {
             /* Ülevaade (tööriistade menüü) = pealkirjata nagu Töölaud (tellija
                07.07). Pealkiri jääb ekraanilugejale (sr-only). Üksik-tööriista
                vaates (activeTool) pealkiri kuvatakse tavaliselt. */
-            headerClassName={activeTool ? undefined : "sr-only"}
+            /* Sammudena töövoos ütleb lehe nime alumine dokk ja sammu nime
+               sammuriba; suur pealkiri võtaks sammult kõrgust. Ekraanilugejale
+               jääb pealkiri alles. */
+            headerClassName={activeTool && !staged ? undefined : "sr-only"}
             /* ⓘ elab paneeli nurgas × kõrval (PanelFrame) — nii ülevaates
                (PANEL_INFO_IDS["/tooheaolu"]) kui üksik-tööriista vaates
                (usePanelInfoSlot ülalpool annab tööriista sisu). */
@@ -117,7 +142,7 @@ export default function WellbeingPage({ activeTool = null, locale = "et" }) {
           ) : activeTool?.id === "quick-check" ? (
             <QuickCheckWorkflow onNavigate={navigate} />
           ) : activeTool?.id === "overview" ? (
-            <OverviewWorkflow />
+            <OverviewWorkflow onNavigate={navigate} />
           ) : activeTool?.id === "hard-case" ? (
             <HardCaseWorkflow onNavigate={navigate} />
           ) : activeTool?.id === "workplace-violence" ? (

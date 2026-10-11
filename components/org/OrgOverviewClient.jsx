@@ -1,119 +1,86 @@
 "use client";
 
-import { useI18n } from "@/components/i18n/I18nProvider";
+import { useRouter } from "next/navigation";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import OrgHeader from "./OrgHeader";
+import { useI18n } from "@/components/i18n/I18nProvider";
+import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
+
+import { DeskView, PlaceView } from "./desk/DeskViews";
+import { deskChip, deskNoticeKey, deskTiles, placeFacts, seatLine } from "./desk/orgDesk";
+import OrgPart from "./OrgPart";
 
 /**
- * Organisatsiooni ülevaade.
+ * Avatud organisatsioon: LAUD.
+ *
+ * KUJU (11.10). Leht oli ülevaade viie kastiga, mille kohal seisid nimi ja kuni
+ * 13 lingiga rida. Nüüd on esimene vaade laud: organisatsiooni nimi, üks rida
+ * inimese koha kohta ja plaadid kõigi osadega, mida ta näeb. Plaat avab osa
+ * marsruudi; plaat „Minu koht" avab laua enda teise vaate (seis, roll, üksused,
+ * õigused, moodulid), mis oli varem ülevaate sisu.
  *
  * PRIVAATSUSTEADE ON SISU, mitte kaunistus: kasutaja peab nägema mustvalgel,
- * mida organisatsioon tema kohta EI näe (arenduskava §4, §7.4). Seda teadet ei
- * tohi eemaldada „ruumi säästmiseks".
+ * mida organisatsioon tema kohta EI näe (arenduskava §4, §7.4). See seisab
+ * mõlema vaate all servas ja seda ei tohi eemaldada „ruumi säästmiseks".
+ *
+ * Vaated on failis ./desk/DeskViews.jsx, reeglid failis ./desk/orgDesk.js.
  */
-export default function OrgOverviewClient({ context }) {
+export default function OrgOverviewClient({ context, closedParts = [] }) {
   const { t } = useI18n();
-  const units = context?.units || [];
-  const capabilities = context?.capabilities || [];
-  const activeModules = context?.activeModules || [];
+  const router = useRouter();
+  /* ⓘ kiirmenüüs: sama selgitus mis organisatsioonide avalehel. */
+  usePanelInfoSlot({ infoId: "org" });
+  const [view, setView] = useState("desk");
+  const rootRef = useRef(null);
+
+  const tiles = useMemo(() => deskTiles(context, { t, closed: closedParts }), [closedParts, context, t]);
+  const noticeKey = deskNoticeKey(context);
+
+  /* Tavaline vajutus avab osa lehe sees; uue vahekaardi vajutus jääb brauserile. */
+  const openTile = useCallback(
+    (event, tile) => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      router.push(tile.href);
+    },
+    [router]
+  );
+
+  /* Vaate vahetusel (laud ↔ minu koht) kaob vajutatud plaat: fookus läheb vaate
+     pealkirjale. Esimesel joonistusel fookust ei võeta. */
+  const shown = useRef("");
+  useEffect(() => {
+    const first = shown.current === "";
+    const moved = shown.current !== view;
+    shown.current = view;
+    if (first || !moved) return;
+    rootRef.current?.querySelector("[data-step-heading]")?.focus({ preventScroll: true });
+  }, [view]);
+
+  if (view === "place") {
+    return (
+      <div ref={rootRef}>
+        <OrgPart context={context} partLabel={t("org.desk.place.name")} onDesk={() => setView("desk")}>
+          <PlaceView t={t} facts={placeFacts(context, { t })} />
+        </OrgPart>
+      </div>
+    );
+  }
 
   return (
-    <section className="ow-shell">
-      <OrgHeader context={context} />
-
-      {/* Kirjutuskaitse tuleb KAHEST erinevast põhjusest ja neid ei tohi ühte
-          teatesse valada: mustand ootab identiteedikontrolli (normaalne samm),
-          peatamine on platvormi sekkumine (erakorraline). Sama tekst mõlemale
-          ütleks uuele organisatsioonile, et temaga on midagi valesti. */}
-      {context?.writable === false ? (
-        <p className="ow-notice ow-notice--warning" role="status">
-          {context.organization.status === "SUSPENDED"
-            ? t("org.overview.readOnlyNotice")
-            : t("org.overview.pendingNotice")}
-        </p>
-      ) : null}
-
-      <p className="ow-notice ow-notice--privacy">{t("org.overview.privacyNotice")}</p>
-
-      <div className="ow-card">
-        <dl className="ow-meta">
-          <div>
-            <dt className="ow-meta__term">{t("org.overview.status")}</dt>
-            <dd className="ow-meta__value">{t(`org.status.${context.organization.status}`)}</dd>
-          </div>
-          <div>
-            <dt className="ow-meta__term">{t("org.overview.legalKind")}</dt>
-            <dd className="ow-meta__value">{t(`org.legalKind.${context.organization.legalKind}`)}</dd>
-          </div>
-          <div>
-            <dt className="ow-meta__term">{t("org.overview.seatRole")}</dt>
-            <dd className="ow-meta__value">{t(`org.seatRole.${context.membership.seatRole}`)}</dd>
-          </div>
-          <div>
-            <dt className="ow-meta__term">{t("org.payer.label")}</dt>
-            <dd className="ow-meta__value">{t(`org.payer.${context.payerSource}`)}</dd>
-          </div>
-        </dl>
-      </div>
-
-      <div className="ow-grid">
-        <section className="ow-card" aria-labelledby="ow-units-heading">
-          <h2 id="ow-units-heading" className="ow-title" style={{ fontSize: "1rem" }}>
-            {t("org.overview.yourUnits")}
-          </h2>
-          {units.length === 0 ? (
-            <p className="ow-empty">{t("org.overview.noUnits")}</p>
-          ) : (
-            <ul className="ow-chips">
-              {units.map((unit) => (
-                <li key={unit.id} className="ow-chip">
-                  {unit.name}
-                  {unit.isPrimary ? " ★" : ""}
-                </li>
-              ))}
-            </ul>
-          )}
-        </section>
-
-        <section className="ow-card" aria-labelledby="ow-caps-heading">
-          <h2 id="ow-caps-heading" className="ow-title" style={{ fontSize: "1rem" }}>
-            {t("org.overview.yourCapabilities")}
-          </h2>
-          {capabilities.length === 0 ? (
-            <p className="ow-empty">{t("org.overview.noCapabilities")}</p>
-          ) : (
-            <ul className="ow-chips">
-              {capabilities.map((grant) => (
-                <li
-                  key={`${grant.capability}:${grant.scopeUnitId || "org"}`}
-                  className={grant.scopeType === "UNIT" ? "ow-chip ow-chip--scope" : "ow-chip"}
-                >
-                  {t(`org.capability.${grant.capability}`)}
-                  {" · "}
-                  {t(`org.scope.${grant.scopeType}`)}
-                </li>
-              ))}
-            </ul>
-          )}
-        </section>
-
-        <section className="ow-card" aria-labelledby="ow-modules-heading">
-          <h2 id="ow-modules-heading" className="ow-title" style={{ fontSize: "1rem" }}>
-            {t("org.overview.activeModules")}
-          </h2>
-          {activeModules.length === 0 ? (
-            <p className="ow-empty">{t("org.overview.noModules")}</p>
-          ) : (
-            <ul className="ow-chips">
-              {activeModules.map((moduleKey) => (
-                <li key={moduleKey} className="ow-chip">
-                  {t(`org.module.${moduleKey}`)}
-                </li>
-              ))}
-            </ul>
-          )}
-        </section>
-      </div>
-    </section>
+    <div ref={rootRef}>
+      <OrgPart context={context}>
+        <DeskView
+          t={t}
+          name={context.organization.displayName}
+          chip={deskChip(context, { t })}
+          seat={seatLine(context, { t })}
+          notice={noticeKey ? t(noticeKey) : ""}
+          tiles={tiles}
+          onOpen={openTile}
+          onView={setView}
+        />
+      </OrgPart>
+    </div>
   );
 }

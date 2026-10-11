@@ -1,0 +1,60 @@
+{
+  "document_id": "web-ska_perekondlikud_olukorrad_lapse_vanemal_puue",
+  "title": "Puudega vanem",
+  "register_title": "Puudega vanem",
+  "source_id": "ska_perekondlikud_olukorrad_lapse_vanemal_puue",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/perekondlikud-olukorrad/lapse-vanemal-puue",
+  "source_path": "ska_perekondlikud_olukorrad_lapse_vanemal_puue.html",
+  "source_format": "html",
+  "source_sha256": "a40981934142285c1042b9b88028de77d6dc1aaed3340d15d8b80e68362266b0",
+  "content_sha256": "2bc7d84e72295031411d47751c7677b13fa38caa276643eb6ac17f89c4ed1d25",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:25:28.577Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2024-10-11",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:08:35 GMT",
+      "etag": null
+    },
+    "raw_sha256": "44957e870885fc60636286c036add8a495c2a087916ce4cc21d87cfa74c02b19",
+    "stats": {
+      "words": 62,
+      "blocks": 5,
+      "headings": 2,
+      "tables": 0,
+      "links": 1,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "thin_content"
+    ],
+    "needs_review": true
+  },
+  "documents": []
+}

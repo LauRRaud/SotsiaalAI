@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_pensioni_liigid_edasilukatud_vanaduspension",
+  "title": "Edasilükatud vanaduspension",
+  "register_title": "Edasilükatud vanaduspension",
+  "source_id": "ska_pensioni_liigid_edasilukatud_vanaduspension",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-liigid/edasilukatud-vanaduspension",
+  "source_path": "ska_pensioni_liigid_edasilukatud_vanaduspension.html",
+  "source_format": "html",
+  "source_sha256": "4a8ccbdbfb0c766dc5eb427071352bff5fe245a2ef29b9691dde166a9eeb527f",
+  "content_sha256": "f7ebbbb4f7d240b178571bcfb1f33f1abf5a1460a14c6d1e7012f073d789cbc6",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:23:53.304Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2025-11-18",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:07:00 GMT",
+      "etag": null
+    },
+    "raw_sha256": "80f9239350df3d6a3571979ba8581d3683903fa9e317153c48ec5e431adbd8cc",
+    "stats": {
+      "words": 173,
+      "blocks": 11,
+      "headings": 3,
+      "tables": 0,
+      "links": 1,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

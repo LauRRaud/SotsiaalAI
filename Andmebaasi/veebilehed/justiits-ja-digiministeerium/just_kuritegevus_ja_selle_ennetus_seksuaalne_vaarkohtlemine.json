@@ -1,0 +1,126 @@
+{
+  "document_id": "web-just_kuritegevus_ja_selle_ennetus_seksuaalne_vaarkohtlemine",
+  "title": "Seksuaalne väärkohtlemine",
+  "register_title": "Seksuaalne väärkohtlemine",
+  "source_id": "just_kuritegevus_ja_selle_ennetus_seksuaalne_vaarkohtlemine",
+  "source_type": "web_page",
+  "publisher": "Justiits- ja Digiministeerium",
+  "language": "et",
+  "url": "https://www.just.ee/kuritegevus-ja-selle-ennetus/seksuaalne-vaarkohtlemine",
+  "url_final": "https://www.justdigi.ee/kuritegevus-ja-selle-ennetus/seksuaalne-vaarkohtlemine",
+  "source_path": "just_kuritegevus_ja_selle_ennetus_seksuaalne_vaarkohtlemine.html",
+  "source_format": "html",
+  "source_sha256": "8b7f3e33fed8d5a4c244ad9aa0bf7f6bc54b0a1b039483a041e852341189ba5f",
+  "content_sha256": "17d3cbf23ace04249320d70278146cb22ca1c6f2d2233ede34609c03bb170414",
+  "checked_at": "2026-10-09",
+  "retrieved_at": "2026-10-09T16:27:40.989Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2022-12-13",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "d39bcf31cb114ae06d8e86ca983ad7e6486ad06ba63442d5bfe10cd7076f36cc",
+    "stats": {
+      "words": 1515,
+      "blocks": 50,
+      "headings": 17,
+      "tables": 0,
+      "links": 36,
+      "linksToOtherSites": 30
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2021-10/abisaamisvoimalused_uimastamise_voi_murgistamise_ja_seksuaalvagivalla_kahtluse_korral_2020_0.pdf",
+      "text": "Abi uimastamise või mürgistamise ja seksuaalvägivalla kahtluse korral | 6.33 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2021-10/ravi_ja_noustamine_seksuaalkaitumisprobleemide_korral_2020.pdf",
+      "text": "Ravi ja nõustamine seksuaalkäitumisprobleemide korral | 1.1 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://intra.tai.ee/images/prints/documents/154652639359_laste_seksuaalne_areng.pdf",
+      "text": "Laste seksuaalne areng vanuses 0 kuni 18 aastat",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2021-10/Probleemse%20seksuaalk%C3%A4itumise%20murebaromeeter_0.pdf",
+      "text": "Probleemse seksuaalkäitumise murebaromeeter | 2.89 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "http://www.estl.ee/admin/upload/Dokumendid/kohtinguvv_A4_6pik_veebi_EST%281%29.pdf",
+      "text": "„Terved ja turvalised suhted. Noorte kohtinguvägivalla ennetamine“",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://eadse.ee/wp-content/uploads/2021/06/kaitumisjuhend.pdf",
+      "text": "Spordipersonali käitumisjuhend laste ja noorte väärkohtlemise ennetamiseks ning juhtumite lahendamiseks",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.just.ee/sites/default/files/documents/2022-10/Ennast%20v%C3%B5i%20teisi%20kahjustava%20seksuaalk%C3%A4itumisega%20noorte%20m%C3%B5jutamine%20kriminaaljustiitss%C3%BCsteemis_l%C3%B5pparuanne%202022.pdf",
+      "text": "Ennast või teisi kahjustava seksuaalkäitumisega noorte mõjutamine kriminaaljustiitssüsteemis (2022)",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.just.ee/sites/default/files/documents/2022-12/E-voldik_Ennast%20v%C3%B5i%20teisi%20kahjustava%20seksuaalk%C3%A4itumisega%20lapse%20v%C3%B5i%20noorega%20t%C3%B6%C3%B6tavale%20praktikule%202022.pdf",
+      "text": "spetsialistile mõeldud e-voldikuga",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2021-10/laste_ja_noorte_seksuaalse_vaarkohtlemise_uuring_2020_euk.pdf",
+      "text": "Laste ja noorte seksuaalse väärkohtlemise uuring 2020 | 1.8 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2021-10/kokkuv%C3%B5te_laste_ja_noorte_seksuaalse_vaarkohtlemise_hoiakute_ja_kogemuste_uuring_2020.pdf",
+      "text": "Lühikokkuvõte laste ja noorte seksuaalse väärkohtlemise uuringust | 137.57 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.justdigi.ee/sites/default/files/documents/2021-10/laste_ja_noorte_seksuaalse_vaarkohtlemise_leviku_uuring_2015_0.pdf",
+      "text": "Laste ja noorte seksuaalse väärkohtlemise leviku uuring 2015 | 2.13 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

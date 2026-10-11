@@ -1,0 +1,146 @@
+{
+  "document_id": "web-ska_inimkaubandus",
+  "title": "Inimkaubandus",
+  "register_title": "Inimkaubandus",
+  "source_id": "ska_inimkaubandus",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/inimkaubandus",
+  "source_path": "ska_inimkaubandus.html",
+  "source_format": "html",
+  "source_sha256": "8f7b4ead67489176e16499be2f7a2e70d215c74eaac876e3f5c6084f089a7d2c",
+  "content_sha256": "bdae0ed8465144fa2ccc04cbb984fb66e79226fe5cd63c64769c482b58c26b25",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:36:16.310Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-05-28",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:36:14 GMT",
+      "etag": null
+    },
+    "raw_sha256": "06909e395f45fa347d83cb6294b3b02ea4ba401f25afd968ca80ec5d52ff528f",
+    "stats": {
+      "words": 990,
+      "blocks": 45,
+      "headings": 8,
+      "tables": 0,
+      "links": 32,
+      "linksToOtherSites": 26
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 2,
+      "personLinks": 0,
+      "contactCards": 1,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed",
+      "email_needs_review"
+    ],
+    "needs_review": true
+  },
+  "documents": [
+    {
+      "url": "https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/09_inimkaubandus.pdf",
+      "text": "Ülevaade 2018. aasta inimkaubandusega seotud kuritegevusest. Justiitsministeerium 2018",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/kuritegevuseestis_2017_veebi01.pdf",
+      "text": "Ülevaade 2017. aasta inimkaubandusega seotud kuritegevusest. Justiitsministeerium 2017",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/ulevaade_inimkaubanduse_kuritegudest_2016._aastal.pdf",
+      "text": "Ülevaade 2016. aasta inimkaubandusega seotud kuritegevusest. Justiitsministeerium 2016",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/wtb12874_inimkaubaduse_glossary_est_final.pdf",
+      "text": "Inimkaubanduse selgitav sõnastik",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/ik_juhis_2019.pdf",
+      "text": "Inimkaubanduse ohvri tuvastamise ja teenusele suunamise juhend. SoM 2019 | 1.06 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/tooalase_ekspluateerimise_eesmargil_toimuva_inimkaubanduse_avastamise_juhis.pdf",
+      "text": "Tööalase ärakasutamise eesmärgil toimuva inimkaubanduse avastamise juhis. Uurimise abimaterjal õiguskaitseasutustele ja kontrollnimekiri tööinspektoritele. (PDF) Pekka Ylinen, Anniina Jokinen, Anna-Gr",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/hamar_ari.toojou_ekspluateerimise_arimudel.pdf",
+      "text": "Hämar äri. Tööjõu ekspluateerimise ärimudel. (PDF) FOW projekt HEUNI 2019. Autorid Bulgaaria: Anton Kojouharov ja Atanas Rusev, Eesti: Simone Eelmaa ja Anna Markina, Soome: Anniina Jokinen, Läti: Dace",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/inimkaubanduse_ohvrid_ja_andmekaitse_europoli_juhendmaterjal.pdf",
+      "text": "Inimkaubanduse ohvrid ja andmekaitse (PDF). Europoli Ühine Järelevalveasutus",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/juhendmaterjal_omavalitsusuksustele_meetmed_tohustamaks_inimkaubanduse_vastu_voitlemist_kohalikul_tasandil.pdf",
+      "text": "Juhendmaterjal omavalitsusüksustele. Meetmed tõhustamaks inimkaubanduse vastu võitlemist kohalikul tasandil (PDF). Läänemeremaade Nõukogu 2015",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-04/Eesti%20elanikkonna%20teadlikkuse%20uuring%20soop%C3%B5hise%20v%C3%A4givalla%20ja%20inimkaubanduse%20valdkonnas.pdf",
+      "text": "„Eesti elanikkonna teadlikkuse uuring soopõhise vägivalla ja inimkaubanduse valdkonnas“",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.sm.ee/sites/default/files/content-editors/eesmargid_ja_tegevused/Norra_toetused/Koduse_ja_soopohise_vagivalla_vahendamise_programm/lft_inimkaubanduse_uurimus_luhikokkuvote_2015_0.pdf",
+      "text": "„17–20aastaste noorte hoiakud ja teadmised inimkaubandusest, prostitutsioonist ja välismaale tööle- või õppimaminekust“",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/uurimisaruanne_socio_1_.pdf",
+      "text": "„Inimkaubandus ja prostitutsioon – kutse- ja keskkooliõpilaste perspektiiv“",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://enut.ee/files/keskkoolinoored_EST.pdf",
+      "text": "„Keskkooli lõpetavate neidude kui tulevaste tööotsijate teadlikkus inimkaubandusest“",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-02/Noorsootootajate-koolitusmaterjal.pdf",
+      "text": "„Prostitutsiooni kaasatud naiste sh inimkaubanduse ohvrite integratsioon legaalsele tööturule” | 544.87 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

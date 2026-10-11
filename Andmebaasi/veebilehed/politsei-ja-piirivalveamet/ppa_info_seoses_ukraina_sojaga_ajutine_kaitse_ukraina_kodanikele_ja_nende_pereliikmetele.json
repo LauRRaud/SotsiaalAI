@@ -1,0 +1,70 @@
+{
+  "document_id": "web-ppa_info_seoses_ukraina_sojaga_ajutine_kaitse_ukraina_kodanikele_ja_nende_pereliikmetele",
+  "title": "Info seoses sõjaga Ukrainas",
+  "register_title": "Info seoses sõjaga Ukrainas",
+  "source_id": "ppa_info_seoses_ukraina_sojaga_ajutine_kaitse_ukraina_kodanikele_ja_nende_pereliikmetele",
+  "source_type": "web_page",
+  "publisher": "Politsei- ja Piirivalveamet",
+  "language": "et",
+  "url": "https://www.politsei.ee/et/juhend/info-seoses-ukraina-sojaga/ajutine-kaitse-ukraina-kodanikele-ja-nende-pereliikmetele",
+  "source_path": "ppa_info_seoses_ukraina_sojaga_ajutine_kaitse_ukraina_kodanikele_ja_nende_pereliikmetele.html",
+  "source_format": "html",
+  "source_sha256": "46fde7a8251b9042756e27acd809694e70a841426b8da3b24473adada7408e27",
+  "content_sha256": "21f46383fc8c51e98fb8556b7277e64f9bde1155bfc9f0f424ce4a92b84ca7c5",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:35:15.663Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": "Thu, 08 Oct 2026 17:07:48 GMT",
+      "etag": null
+    },
+    "raw_sha256": "d7f140e1e6b5495907109580b0df1364da0dbec32fea07d4fbe777cfa900071e",
+    "stats": {
+      "words": 1082,
+      "blocks": 52,
+      "headings": 23,
+      "tables": 0,
+      "links": 9,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.politsei.ee/files/2023-09/ajk-esmane-2023.pdf?87d7f33e74",
+      "text": "Ajutise kaitse taotlusankeet",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2024_6/pereliikmed-alates-06.06.2024-est.pdf?29d6b2bb3a",
+      "text": "Andmed lähedaste ja pereliikmete kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+/* StepFlight: lennulava ja „Kõik sammud". Vaata StepFlight.jsx. */
+
+.root {
+  min-width: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+/* Samm ise on kiirmenüüs (StepRail). Siin on telefoni jaoks rida sammu kohal. */
+.kicker {
+  display: none;
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 0.74rem;
+  font-weight: 560;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+@media (max-width: 768px) {
+  .kicker {
+    display: block;
+  }
+}
+/* --- Lava: jaamad sügavuses (flight-effect.md §3) ----------------------- */
+.stage {
+  /* Lava lõikab üle ääre ulatuva ära (vt allpool). Et servas oleva nupu
+     fookusrõngas ja kaardi ääris lõikesse ei jääks, on sammul väike polster ja
+     lava on sama palju laiem; sisu joondus lehel ei muutu. */
+  --step-bleed: 0.4rem;
+  position: relative;
+  margin: calc(var(--step-bleed) * -1);
+  min-width: 0;
+  min-height: 10rem;
+  height: var(--step-stage-h, auto);
+  /* Lahkuv samm kasvab kaamerast mööda lennates; lõige hoiab ta lava sees,
+     muidu tekiks paneeli kerimisriba. */
+  overflow: hidden;
+  transition: height 360ms var(--ease-soft);
+}
+.stage[data-wide="1"] {
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+}
+/* Perspektiiv jaamade OTSESEL vanemal; kaamera käib muutujana --cam. */
+.dolly {
+  --cam: 0px;
+  position: absolute;
+  inset: 0;
+  perspective: 1100px;
+  perspective-origin: 50% 40%;
+}
+.stage[data-wide="1"] .dolly {
+  display: none;
+}
+.plane {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  /* Samm täidab lava kõrguse: `StepPanel` hoiab siis tegevusrea all servas ja
+     see on igal sammul samas kohas. */
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: var(--step-bleed);
+  visibility: hidden; /* mootor ja flat-reeglid lülitavad sisse */
+}
+.plane > * {
+  flex: 1 0 auto;
+  min-width: 0;
+}
+.stage[data-mode="3d"] .plane {
+  transform: translateZ(calc(var(--z) + var(--cam, 0px)));
+  opacity: var(--o, 0);
+  will-change: transform, opacity;
+}
+/* Vähendatud liikumine või lame 3D: sama sammumudel, ainult ristsulandus. */
+.stage[data-mode="flat"] .plane {
+  opacity: 0;
+  transition:
+    opacity 260ms var(--ease-soft),
+    visibility 0s linear 260ms;
+}
+.stage[data-mode="flat"] .plane[data-active="1"] {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 260ms var(--ease-soft);
+}
+
+/* --- Kõik sammud: lai vaade --------------------------------------------- */
+/* Lehe sissejuhatus laia vaate plaatide kohal (nt laua piirid ja värskendamine). */
+.wideLead {
+  padding: var(--step-bleed) var(--step-bleed) 0;
+}
+.overview {
+  list-style: none;
+  margin: 0;
+  padding: var(--step-bleed);
+  display: grid;
+  /* Kolm veergu tavalises paneelis: kümme sammu mahub nii kerimata ära. */
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 12.5rem), 1fr));
+  gap: 0.4rem;
+  /* Kaamera tõmbub tagasi: sisu tuleb suuremast väiksemaks. */
+  animation: step-pull-back 320ms var(--ease-soft) both;
+}
+/* Ühine paneelikiht annab igale loendireale alumise vahe (panel.css
+   `.panel-body li`). Plaatide vahe on ruudustiku oma: muidu on ridade vahe
+   veergude vahest kaks korda suurem ja kaksteist plaati ei mahu paneeli. */
+.overview > li {
+  min-width: 0;
+  margin: 0;
+}
+@keyframes step-pull-back {
+  from {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.tile {
+  width: 100%;
+  height: 100%;
+  min-height: 4.75rem;
+  display: grid;
+  align-content: start;
+  gap: 0.2rem;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 1rem;
+  background: var(--glass-cell-bg);
+  color: var(--text-warm);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color 160ms var(--ease-soft),
+    border-color 160ms var(--ease-soft);
+}
+.tile:hover {
+  background: var(--glass-cell-bg-hover);
+}
+.tile:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.tile[data-current="1"] {
+  border-color: color-mix(in srgb, var(--text-warm) 62%, transparent);
+}
+/* Laua osad (mitte sammud): numbrit ei ole; osa, kus on midagi, on selgem. */
+.tile[data-parts="1"][data-state="empty"] {
+  color: var(--text-soft);
+}
+.tile[data-parts="1"][data-state="done"] {
+  border-color: color-mix(in srgb, var(--text-warm) 46%, transparent);
+}
+.tileTop {
+  min-width: 0;
+  display: flex;
+  /* Number on rõngata tekst: kahe rea pealkirja kõrval seisab see esimese rea joonel. */
+  align-items: baseline;
+  gap: 0.55rem;
+}
+.tileTitle {
+  min-width: 0;
+  font-weight: 560;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+.tileSummary {
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.35;
+  /* Kokkuvõte on kuni kaks rida: plaat on ülevaade, mitte sammu sisu. */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage {
+    transition: none;
+  }
+  .overview {
+    animation: none;
+  }
+}
+/* Platvormi enda „vähenda animatsioone" lüliti: mootor vaatab ainult brauseri
+   eelistust, seega sunnime siin sama ristsulanduse, mis flat-režiimis. */
+:global(html[data-reduce-motion="1"]) .stage[data-mode="3d"] .plane {
+  transform: none;
+  opacity: 0;
+  transition: opacity 260ms var(--ease-soft);
+}
+:global(html[data-reduce-motion="1"]) .stage[data-mode="3d"] .plane[data-active="1"] {
+  opacity: 1;
+}
+:global(html[data-reduce-motion="1"]) .stage {
+  transition: none;
+}
+:global(html[data-reduce-motion="1"]) .overview {
+  animation: none;
+}
