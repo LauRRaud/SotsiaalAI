@@ -86,6 +86,7 @@ export function useRoomMessages(roomId, pollMs = 3000, options = {}) {
     roomRole: metaMatchesRoom ? snapshot.meta.roomRole : "",
     isHelpMatchRoom: metaMatchesRoom ? snapshot.meta.isHelpMatchRoom : initialIsHelpMatchRoom,
     roomOrigin: metaMatchesRoom ? snapshot.meta.roomOrigin : null,
+    readOnlyReason: metaMatchesRoom ? snapshot.meta.readOnlyReason || "" : "",
     summaryApprovals: metaMatchesRoom ? snapshot.meta.summaryApprovals : [],
     reload,
     setMessages,

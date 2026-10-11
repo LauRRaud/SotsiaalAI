@@ -6265,7 +6265,11 @@
       "send_correction": "Saada parandus",
       "failed": "Vastuse saatmine ebaõnnestus"
     },
-    "subscription_readonly": "Tellimus ei ole aktiivne. Oma ruume saad lugeda ja neist lahkuda; kirjutamiseks, kõneks ja kutsumiseks aktiveeri tellimus."
+    "subscription_readonly": "Tellimus ei ole aktiivne. Oma ruume saad lugeda ja neist lahkuda; kirjutamiseks, kõneks ja kutsumiseks aktiveeri tellimus.",
+    "read_only": {
+      "archived": "Ruum on arhiveeritud. Vestlust saad lugeda, kuid uusi sõnumeid siia kirjutada ei saa.",
+      "org_work_closed": "Asutus on selle pöördumisega töö lõpetanud. Vestlust saad lugeda, kuid uusi sõnumeid siia kirjutada ei saa. Kui vajad veel abi, saada uus pöördumine."
+    }
   },
   "invite": {
     "success": "Kutsed saadetud",
@@ -9179,7 +9183,8 @@
         "REPLACED": "asendatud parandusega",
         "ARCHIVED": "arhiveeritud"
       },
-      "last_reply": "viimane vastus {date}"
+      "last_reply": "viimane vastus {date}",
+      "work_closed": "asutus lõpetas töö {date}"
     },
     "share": {
       "title": "Vali, millist infot soovid eelpöördumises kasutada.",

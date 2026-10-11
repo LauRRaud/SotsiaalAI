@@ -6265,7 +6265,11 @@
       "send_correction": "Send correction",
       "failed": "Sending the response failed"
     },
-    "subscription_readonly": "Your subscription is not active. You can read your rooms and leave them; to write, call or invite, activate a subscription."
+    "subscription_readonly": "Your subscription is not active. You can read your rooms and leave them; to write, call or invite, activate a subscription.",
+    "read_only": {
+      "archived": "The room is archived. You can read the conversation, but you cannot write new messages here.",
+      "org_work_closed": "The organisation has finished its work on this inquiry. You can read the conversation, but you cannot write new messages here. If you need more help, send a new inquiry."
+    }
   },
   "invite": {
     "success": "Invites sent",
@@ -9179,7 +9183,8 @@
         "REPLACED": "replaced by a correction",
         "ARCHIVED": "archived"
       },
-      "last_reply": "last answer {date}"
+      "last_reply": "last answer {date}",
+      "work_closed": "the organisation finished its work {date}"
     },
     "share": {
       "title": "Choose which information to use in the pre-inquiry.",

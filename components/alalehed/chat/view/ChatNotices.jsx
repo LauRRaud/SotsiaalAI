@@ -45,11 +45,23 @@ function shouldShowRoomOriginPrivacy(origin) {
   return ["PRE_INQUIRY", "SERVICE_PROVIDER_INQUIRY", "JOURNEY"].includes(String(origin?.type || "").trim().toUpperCase());
 }
 
+/* Ainult loetava ruumi põhjus ruumi kohal. Enne seda ei öelnud aken midagi: inimene kirjutas
+   sõnumi valmis ja sai saatmisel üldise veateate. Kui asutus lõpetas vastuvõtulaual töö, ütleb
+   tekst ka selle, mida edasi teha (uus pöördumine); suletud tööd uuesti ei avata. */
+function roomReadOnlyText(t, reason) {
+  if (!reason) return "";
+  if (reason === "ORG_WORK_CLOSED") {
+    return readText(t, "rooms.read_only.org_work_closed", "Asutus on selle pöördumisega töö lõpetanud. Vestlust saad lugeda, kuid uusi sõnumeid siia kirjutada ei saa. Kui vajad veel abi, saada uus pöördumine.");
+  }
+  return readText(t, "rooms.read_only.archived", "Ruum on arhiveeritud. Vestlust saad lugeda, kuid uusi sõnumeid siia kirjutada ei saa.");
+}
+
 export function ChatTopNotices({
   t,
   isRoomMode,
   roomTitle,
   roomOrigin,
+  roomReadOnlyReason = "",
   hideRoomTitle = false,
   isCrisis,
   crisisText,
@@ -60,6 +72,7 @@ export function ChatTopNotices({
   // õiguslikult oluline). MANUAL_INVITE jt "loodi X kaudu" informatiivne tekst
   // eemaldatud — omanik EI taha seda ruumi kohal (23.07).
   const showOriginPrivacy = shouldShowRoomOriginPrivacy(roomOrigin);
+  const readOnlyText = roomReadOnlyText(t, roomReadOnlyReason);
 
   return <>
     {isRoomMode && !hideRoomTitle && displayRoomTitle ? <div className="chat-room-header">
@@ -68,6 +81,9 @@ export function ChatTopNotices({
     {isRoomMode && roomOrigin && showOriginPrivacy ? <div className="chat-room-origin">
       <span>{roomOriginText(t, roomOrigin)}</span>
       <span> {readText(t, "rooms.origin.privacyNote", "Ruumi liikmed näevad ainult ruumis jagatud infot ja kasutaja kinnitatud eelinfot. Privaatset Teekonda ega assistendivestlust ei jagata automaatselt.")}</span>
+    </div> : null}
+    {isRoomMode && readOnlyText ? <div className="chat-room-origin" role="status" data-room-read-only={roomReadOnlyReason}>
+      {readOnlyText}
     </div> : null}
     {isCrisis ? <div role="alert" className="chat-crisis-notice">
       {crisisTextWithLinks(crisisText)}

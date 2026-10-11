@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { createRoomCallService } from "@/lib/calls/roomRoutes";
+import { markRoomArchivedWithin } from "@/lib/rooms/archive";
 import { ROOM_ORIGIN_TYPES } from "@/lib/rooms/origin";
 import { copyRoomSummariesToParticipants } from "@/lib/rooms/summaryHandover";
 import { closeHelpMatchForArchivedRoom } from "@/lib/help/matches";
@@ -187,30 +188,12 @@ export async function PATCH(req, { params }) {
     // edukat `archivedAt` kirjutust, seega audititõrge andis 500 juba arhiveeritud ruumi
     // kohta — kasutaja proovis uuesti seisu, mis oli juba olemas.
     const now = new Date();
-    const archived = await prisma.$transaction(async (tx) => {
-      const updated = await tx.room.updateMany({
-        where: { id: roomId, archivedAt: null },
-        data: { archivedAt: now }
-      });
-      if (updated.count > 0) {
-        await closeHelpMatchForArchivedRoom({ roomId }, tx);
-      }
-      if (updated.count > 0 && tx.dataAuditLog?.create) {
-        await tx.dataAuditLog.create({
-          data: {
-            actorUserId: auth.userId,
-            action: "ROOM_ARCHIVED",
-            resourceType: "Room",
-            resourceId: roomId,
-            meta: { title: room.title || null, originType: room.originType || null }
-          }
-        });
-      }
-      return updated.count;
+    // Kirjutus on kohtunik (`markRoomArchivedWithin`): kui keegi jõudis vahele, on ruum ikka
+    // arhiveeritud — vastus jääb edukaks (idempotentne), aga teist auditirida ei teki.
+    await prisma.$transaction(async (tx) => {
+      const archived = await markRoomArchivedWithin(tx, { room, actorUserId: auth.userId, now });
+      if (archived) await closeHelpMatchForArchivedRoom({ roomId }, tx);
     });
-    // Kirjutus on kohtunik: kui keegi jõudis vahele, on ruum ikka arhiveeritud — vastus
-    // jääb edukaks (idempotentne), aga teist auditirida ei teki.
-    void archived;
     return json({ ok: true, archivedAt: now });
   } catch (err) {
     console.error("[room archive] failed", err);
