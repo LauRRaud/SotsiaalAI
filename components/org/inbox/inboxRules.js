@@ -34,18 +34,34 @@ export function personName(person) {
 export function inboxRow(item, { t }) {
   const assignment = item?.assignment || null;
   const assignee = assignment
-    ? [personName(assignment) || t("org.inbox.unnamed_worker"), assignment.status ? t(`org.workStatus.${assignment.status}`) : ""].filter(Boolean).join(", ")
+    ? afterName(personName(assignment) || t("org.inbox.unnamed_worker"), assignment.status ? t(`org.workStatus.${assignment.status}`) : "")
     : t("org.inbox.unassigned");
   return {
     id: String(item?.id || ""),
     title: stampOf(item?.receivedAt),
     sub: [text(item?.unit?.name), assignee].filter(Boolean).join(" · "),
     urgency: text(item?.urgencyDeclaredBySender),
-    chip: item?.status ? t(`org.inboxStatus.${item.status}`) : "",
+    chip: shownItemStatus(item) ? t(`org.inboxStatus.${shownItemStatus(item)}`) : "",
     /* Loetamatu aeg jääb tühjaks, mitte ei viska viga. */
     receivedAt: stampOf(item?.receivedAt) ? new Date(item.receivedAt).toISOString() : "",
     attention: !assignment
   };
+}
+
+/** Nime järel koma taga algab seisu sõna väikese tähega („Jaan Kask, ootab vastust"). */
+function afterName(name, status) {
+  if (!name) return status;
+  return [name, status ? status.charAt(0).toLocaleLowerCase() + status.slice(1) : ""].filter(Boolean).join(", ");
+}
+
+/**
+ * Kirje seis, nagu see inimesele paistab. Pärast töö üleandmist jääb kirje serveris
+ * seisu „vastu võetud", kuigi uus vastutaja ei ole veel vastanud: lehel seisaks siis
+ * kõrvuti „Vastu võetud" ja „Ootab vastust". Sel juhul on kirje „määratud".
+ */
+export function shownItemStatus(item) {
+  const status = item?.status || "";
+  return status === "ACCEPTED" && item?.assignment?.status === "PENDING" ? "ASSIGNED" : status;
 }
 
 /** Töötajate valikud (määramine, üleandmine). Nimeta liige saab üldnime, mitte sisemise ID. */
@@ -62,13 +78,13 @@ export function assigneeLabel(item, members, { t }) {
   const member = (Array.isArray(members) ? members : []).find((entry) => entry.membershipId === assignment.membershipId);
   const name = personName(member?.person);
   const status = assignment.status ? t(`org.workStatus.${assignment.status}`) : "";
-  return [name, status].filter(Boolean).join(", ");
+  return afterName(name, status);
 }
 
 /** Avatud pöördumise read: seis, vastutaja, saabumise aeg ja saatja märge kiireloomulisusest. */
 export function itemFacts(item, members, { t }) {
   return [
-    { key: "status", label: t("org.inbox.status"), value: item?.status ? t(`org.inboxStatus.${item.status}`) : "" },
+    { key: "status", label: t("org.inbox.status"), value: shownItemStatus(item) ? t(`org.inboxStatus.${shownItemStatus(item)}`) : "" },
     { key: "assignee", label: t("org.inbox.assignee"), value: assigneeLabel(item, members, { t }) },
     { key: "received", label: t("org.inbox.receivedAt"), value: stampOf(item?.receivedAt) },
     { key: "urgency", label: t("org.inbox.urgency"), value: text(item?.urgencyDeclaredBySender) }

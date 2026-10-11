@@ -157,7 +157,7 @@ export function ItemView({ t, tabs, tab, onTab, facts, parts, withheld, work, ro
           </>
         ) : (
           <>
-            <Facts rows={facts} />
+            <Facts rows={facts} inline />
             {withheld ? (
               <p className={shared.notice}>{t("org.inbox.recalledNotice")}</p>
             ) : (

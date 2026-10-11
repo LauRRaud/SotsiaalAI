@@ -106,6 +106,13 @@
 .factValue {
   composes: factValue from "../journey/journey.module.css";
 }
+/* Lühikesed seisuread üksteise kõrval (avatud pöördumine): pöördumise tekstile jääb
+   rohkem ruumi. Kitsal pinnal murduvad need ise mitmele reale. */
+.facts[data-inline="1"] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 1.4rem;
+}
 /* Tühjaks jäetud vabatahtlik väli: sõna on vaiksem kui kirjutatud väärtus. */
 .factValue[data-quiet="1"] {
   color: var(--text-dim);

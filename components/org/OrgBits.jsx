@@ -29,11 +29,12 @@ export function footNote(notice, quiet = "") {
 
 /**
  * Sõnade read: `rows` on `[{ key, label, value, quiet? }]`. Tühja väärtusega
- * rida jääb välja (tühja rida ega kriipsu ei näidata).
+ * rida jääb välja (tühja rida ega kriipsu ei näidata). `inline`: lühikesed read
+ * üksteise kõrval ühel real (murduvad, kui ei mahu).
  */
-export function Facts({ rows, busy = false }) {
+export function Facts({ rows, busy = false, inline = false }) {
   return (
-    <div className={shared.facts} aria-busy={busy ? "true" : undefined}>
+    <div className={shared.facts} data-inline={inline ? "1" : undefined} aria-busy={busy ? "true" : undefined}>
       {rows
         .filter((row) => row.value)
         .map((row) => (

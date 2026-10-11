@@ -7,7 +7,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
-import { assigneeLabel, hasWork, inboxRow, itemFacts, itemTabs, personName, sourceParts, workActions, workerOptions } from '../components/org/inbox/inboxRules.js';
+import { assigneeLabel, hasWork, inboxRow, itemFacts, itemTabs, personName, shownItemStatus, sourceParts, workActions, workerOptions } from '../components/org/inbox/inboxRules.js';
 import { stampOf } from '../components/org/orgRules.js';
 import { OrganizationInboxStatus, OrganizationWorkAssignmentStatus } from '../lib/org/constants.js';
 
@@ -40,10 +40,10 @@ test('loendi rida: saabumise aeg, üksus, vastutaja ja seis; sisu real ei ole', 
   assert.equal(row.chip, 'Saabunud');
   assert.equal(row.attention, true, 'määramata kirje vajab tähelepanu');
   const assigned = inboxRow(item({ status: 'ASSIGNED', assignment: { firstName: 'Jaan', lastName: 'Kask', status: 'PENDING' } }), { t });
-  assert.equal(assigned.sub, 'Jaan Kask, Ootab vastust');
+  assert.equal(assigned.sub, 'Jaan Kask, ootab vastust');
   assert.equal(assigned.attention, false);
   /* Nimeta vastutaja saab üldnime, mitte kriipsu ega sisemist ID-d. */
-  assert.equal(inboxRow(item({ assignment: { firstName: null, lastName: null, status: 'ACCEPTED' } }), { t }).sub, 'Nimeta töötaja, Vastu võetud');
+  assert.equal(inboxRow(item({ assignment: { firstName: null, lastName: null, status: 'ACCEPTED' } }), { t }).sub, 'Nimeta töötaja, vastu võetud');
   for (const lang of LANGS) {
     const tr = translator(lang);
     for (const status of Object.values(OrganizationInboxStatus)) {
@@ -65,9 +65,22 @@ test('töötajate valikud ja vastutaja nimi: sisemist ID-d ei näidata kunagi', 
   assert.deepEqual(workerOptions(null, { t }), []);
   assert.equal(personName({ firstName: ' Mari ', lastName: '' }), 'Mari');
   assert.equal(assigneeLabel(item(), MEMBERS, { t }), 'Määramata');
-  assert.equal(assigneeLabel(item({ assignment: { membershipId: 'm2', status: 'PENDING' } }), MEMBERS, { t }), 'Jaan Kask, Ootab vastust');
+  assert.equal(assigneeLabel(item({ assignment: { membershipId: 'm2', status: 'PENDING' } }), MEMBERS, { t }), 'Jaan Kask, ootab vastust');
   /* Kui liikmete loend ei ole inimesele nähtav, jääb vastutaja kohta seis. */
   assert.equal(assigneeLabel(item({ assignment: { membershipId: 'm2', status: 'ACCEPTED' } }), [], { t }), 'Vastu võetud');
+});
+
+test('pärast üleandmist ei seisa lehel kõrvuti „vastu võetud” ja „ootab vastust”', () => {
+  /* Server jätab kirje seisu ACCEPTED, kuigi uus määramine ootab vastust. */
+  const handedOver = item({ status: 'ACCEPTED', assignment: { membershipId: 'm2', firstName: 'Jaan', lastName: 'Kask', status: 'PENDING' } });
+  assert.equal(shownItemStatus(handedOver), 'ASSIGNED');
+  assert.equal(inboxRow(handedOver, { t }).chip, 'Määratud');
+  assert.equal(itemFacts(handedOver, MEMBERS, { t }).find((row) => row.key === 'status').value, 'Määratud');
+  /* Muud seisud jäävad nii, nagu server ütleb. */
+  assert.equal(shownItemStatus(item({ status: 'ACCEPTED', assignment: { membershipId: 'm2', status: 'ACCEPTED' } })), 'ACCEPTED');
+  assert.equal(shownItemStatus(item({ status: 'ASSIGNED', assignment: { membershipId: 'm2', status: 'PENDING' } })), 'ASSIGNED');
+  assert.equal(shownItemStatus(item({ status: 'CLOSED', assignment: { membershipId: 'm2', status: 'PENDING' } })), 'CLOSED');
+  assert.equal(shownItemStatus(null), '');
 });
 
 test('avatud pöördumise read ja saatja kinnitatud pakett: tühja osa ega kriipsu ei ole', () => {
