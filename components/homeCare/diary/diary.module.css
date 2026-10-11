@@ -1,0 +1,113 @@
+/* Kliendi lehe päevik: loend, otsing ja tabamused varasemast ajaloost.
+   Read, märgid, väljad ja laused on organisatsioonide lehtede ühised
+   (../../org/org.module.css); siin on ainult see, mis on päevikul oma. */
+
+/* Sõna, mis on tegevus (tühjenda otsing). */
+.textButton {
+  composes: textButton from "../client/client.module.css";
+}
+
+/* --- Kirje rida ---------------------------------------------------------------- */
+/* Telefonis üksteise all: aeg ja autor, teksti algus kahe reaga, märgid.
+   Kaks klassi: rea enda veerud ja joondus (teisest failist) ei tohi võita. */
+.entry.entry {
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+}
+.main {
+  composes: main from "../day/day.module.css";
+}
+/* Aeg on rea pealkiri; autor on selle kõrval vaiksem. */
+.title {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.when {
+  composes: rowTitle from "../../org/org.module.css";
+  font-variant-numeric: tabular-nums;
+}
+.who {
+  color: var(--text-soft);
+}
+.who::before {
+  content: " · ";
+}
+/* Teksti algus: terve tekst on avatud kirjes. */
+.text {
+  min-width: 0;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+/* Kokku pandud rida võib alata väikese tähega sõnaga („käik kestis 45 min"). */
+.text[data-made="1"]::first-letter {
+  text-transform: uppercase;
+}
+.text[data-muted="1"] {
+  color: var(--text-dim);
+}
+.entry .chips {
+  justify-content: flex-start;
+}
+
+/* --- Otsing --------------------------------------------------------------------- */
+/* Otsisõna väli on nii lai kui paar sõna; selgitus selle all võib olla pikem. */
+.query.query {
+  max-width: none;
+}
+.query input {
+  width: 20rem;
+  max-width: 100%;
+}
+
+/* --- Tabamused varasemast ajaloost ------------------------------------------------ */
+.hit {
+  display: grid;
+  gap: 0.15rem;
+}
+.hitTitle {
+  composes: rowTitle from "../../org/org.module.css";
+}
+.meta {
+  composes: meta from "../client/client.module.css";
+}
+
+@container (min-width: 34rem) {
+  /* Laiemal pinnal on kirje üks rida: aeg, autor, teksti algus ja märgid kõrvuti.
+     Aja ja autori veerud on kõigil ridadel sama laiad, et tekstid algaksid kohakuti;
+     pikk nimi lõigatakse (terve nimi on avatud kirjes). */
+  .entry.entry {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+  .entry .main {
+    grid-template-columns: 16.5rem minmax(0, 1fr);
+    align-items: baseline;
+    gap: 0 0.9rem;
+  }
+  .entry .title {
+    display: grid;
+    grid-template-columns: 6.4rem minmax(0, 1fr);
+    gap: 0 0.6rem;
+  }
+  .who::before {
+    content: none;
+  }
+  .entry .when,
+  .entry .who,
+  .entry .text {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .entry .chips {
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+  }
+}

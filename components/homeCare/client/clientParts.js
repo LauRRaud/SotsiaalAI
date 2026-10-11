@@ -24,6 +24,9 @@ export const DOOR_VIEWS = Object.freeze(["card", "no_answer", "handovers"]);
 /** Osa „Uus kirje" alavaated: kirjed, mis vormi ei vaja (kõne märkimine ja „Peaaegu juhtus"). */
 export const ENTRY_VIEWS = Object.freeze(["call", "near_miss"]);
 
+/** Osa „Päevik" alavaated: otsing, avatud kirje, tabamused varasemast ajaloost ja varasem ajalugu ise. */
+export const DIARY_VIEWS = Object.freeze(["diary_search", "diary_item", "history_hits", "history"]);
+
 /** Osa nime võti (plaadil ja kiirmenüüs). */
 const NAMES = Object.freeze({
   door: "home_care.parts.names.door",
@@ -95,6 +98,7 @@ export function viewAllowed(view, who, data) {
   if (view === "") return true;
   if (DOOR_VIEWS.includes(view)) return view !== "no_answer" || canOpenNoAnswer(who, data);
   if (ENTRY_VIEWS.includes(view)) return partVisible("entry", who, data);
+  if (DIARY_VIEWS.includes(view)) return partVisible("diary", who, data);
   return partVisible(view, who, data);
 }
 
@@ -102,6 +106,7 @@ export function viewAllowed(view, who, data) {
 export function viewNameKey(view) {
   if (DOOR_VIEWS.includes(view)) return NAMES.door;
   if (ENTRY_VIEWS.includes(view)) return NAMES.entry;
+  if (DIARY_VIEWS.includes(view)) return NAMES.diary;
   return NAMES[view] || "";
 }
 

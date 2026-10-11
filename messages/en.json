@@ -16431,6 +16431,16 @@
         "incident_type": "Choose in the first step what happened.",
         "text": "Write what you saw and did: this entry can be saved only with a text."
       }
+    },
+    "diary": {
+      "more": "Show earlier",
+      "back": "Back to the diary",
+      "item_title": "Entry",
+      "filter_q": "Search: “{q}”",
+      "hits_count": "Passages: {count}",
+      "hits_count_more": "Passages: more than {count}",
+      "history_count": "Documents brought over: {count}",
+      "history_none": "No earlier diary has been brought over"
     }
   },
   "stage": {

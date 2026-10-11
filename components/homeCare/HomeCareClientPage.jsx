@@ -5,8 +5,6 @@ import { useEffect, useId, useRef, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import OrgPart from "@/components/org/OrgPart";
-import DateField from "@/components/ui/DateField";
-import Dropdown from "@/components/ui/Dropdown";
 import { CARE_CLIENT_STATUSES, CARE_ENTRY_KINDS, CARE_STATUS_REASONS, CareCardLineKind, CareClientStatus, CareEndReason } from "@/lib/homeCare/constants";
 
 import styles from "./client/client.module.css";
@@ -24,6 +22,8 @@ import {
   viewNameKey
 } from "./client/clientParts";
 import { DoorView, HandoversView, OldPart, PartsView } from "./client/ClientViews";
+import { DIARY_PAGE, HITS_PAGE, NO_FILTER, diaryPage, diaryRows, filterActive as filterActiveOf, filterLine, historyVisible } from "./diary/diaryRows";
+import { DiarySearchView, DiaryView, HistoryHitsView } from "./diary/DiaryViews";
 import HomeCareCallNote from "./HomeCareCallNote";
 import HomeCareCard from "./HomeCareCard";
 import HomeCareChangeSignals from "./HomeCareChangeSignals";
@@ -63,8 +63,6 @@ import {
 } from "./homeCareClient";
 import { getOutboxManager } from "./homeCareOutbox";
 import { euroText } from "./HomeCareMoney";
-
-const NO_FILTER = Object.freeze({ kind: "", from: "", to: "", q: "" });
 
 function sortEntries(items) {
   return [...items].sort((a, b) => {
@@ -117,6 +115,12 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
   const [applied, setApplied] = useState(NO_FILTER);
   /* Otsingu tabamused imporditud ajaloost: `null`, kui otsingut ei ole. */
   const [historyHits, setHistoryHits] = useState(null);
+  /* Päeviku loend: esimene lehekülg või kõik laaditud kirjed. */
+  const [expanded, setExpanded] = useState(false);
+  /* Tabamused varasemast ajaloost: esimesed lõigud või kõik. */
+  const [allHits, setAllHits] = useState(false);
+  /* Avatud kirje. Hoitakse kirjet ennast, mitte kohta loendis: filtriga päevikus võib parandatud kirje loendist välja jääda. */
+  const [opened, setOpened] = useState(null);
   const [lapsed, setLapsed] = useState(false);
   const [panel, setPanel] = useState(null);
   const [status, setStatus] = useState(initial?.client?.status || CareClientStatus.ACTIVE);
@@ -153,6 +157,8 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
       setApplied(NO_FILTER);
       setFilter(NO_FILTER);
       setHistoryHits(null);
+      setExpanded(false);
+      setOpened(null);
       setNeedsReason(false);
       setLapsed(false);
       page.setError("");
@@ -189,6 +195,7 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
      kohast). Liigi ja ajavahemiku filter sinna ei kehti: sellel tekstil ei ole
      kontrollitud aegu ega liike. */
   const searchHistory = async (query) => {
+    setAllHits(false);
     const q = (query.q || "").trim();
     if (!q || !(data?.histories || []).length) {
       setHistoryHits(null);
@@ -213,6 +220,21 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
     } else if (result.messageKey === ACCESS_REASON_REQUIRED) {
       setLapsed(true);
     }
+    return result.ok;
+  };
+
+  /* Uus otsing (või selle tühjendamine) algab loendi esimesest leheküljest ja toob päeviku ette. */
+  const search = async (next) => {
+    if (!(await applyFilter(next))) return;
+    setExpanded(false);
+    setView("diary");
+  };
+
+  /* „Näita varasemaid": kõigepealt juba laaditud kirjed, siis järgmine lehekülg serverist. */
+  const showEarlier = () => {
+    if (!expanded) setExpanded(true);
+    if (!expanded && entries.items.length > DIARY_PAGE) return;
+    loadMore();
   };
 
   const loadMore = async () => {
@@ -238,6 +260,7 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
      kirje sinna kuulub: laeme filtreeritud lehe uuesti, selle asemel et
      liigi- ja kuupäevareegleid brauseris korrata. */
   const upsertEntry = (entry) => {
+    setOpened((now) => (now && now.id === entry.id ? entry : now));
     if (applied.kind || applied.from || applied.to || applied.q) {
       applyFilter(applied);
       return;
@@ -341,7 +364,7 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
   const who = clientViewer(data);
   const canWrite = who.canWrite;
   const canAddEntry = who.canAddEntry;
-  const filterActive = Boolean(applied.kind || applied.from || applied.to || applied.q);
+  const filterActive = filterActiveOf(applied);
   const activeTeam = team.filter((member) => member.active);
   const format = {
     t,
@@ -355,10 +378,18 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
   /* Päeviku plaadi rida: viimane kirje filtrita päevikust (filtriga päeviku esimene kirje ei ole viimane kirje). */
   const tileData = { ...data, latestEntryAt: (filterActive ? data.entries?.items : entries.items)?.[0]?.occurredAt || "" };
   /* Vaade, mida inimene enam ei näe (näiteks kirje vorm pärast lõpetamist), annab osade laua. */
-  const current = viewAllowed(view, who, data) ? view : "";
+  const allowed = viewAllowed(view, who, data) ? view : "";
+  const hits = historyHits?.items || [];
+  const seesHistory = historyVisible(who, data);
+  /* Alavaade, mille sisu ei ole enam olemas (kirje ei ole avatud, tabamusi ei ole), annab päeviku loendi. */
+  const gone = (allowed === "diary_item" && !opened) || (allowed === "history_hits" && !hits.length) || (allowed === "history" && !seesHistory);
+  const current = gone ? "diary" : allowed;
   const sees = (part) => partVisible(part, who, data);
   const toDoor = { label: t("home_care.door.back"), onBack: () => setView("door") };
   const toEntry = { label: t("home_care.entry_steps.back"), onBack: () => setView("entry") };
+  const toDiary = { label: t("home_care.diary.back"), onBack: () => setView("diary") };
+  const diaryNotice = diary.error ? { text: diary.error, tone: "risk" } : null;
+  const diaryList = diaryPage(diaryRows(entries.items, { t, moment: (value) => formatDateTime(value, timeZone), today: data.today || "" }), { expanded, hasMore: entries.hasMore });
 
   const head = {
     name: client.displayName,
@@ -535,163 +566,146 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
               )
             : null}
 
-          {part(
+          {/* Päevik: kirjed madalate ridadena; kirje, otsing ja varasem ajalugu on omaette vaated. */}
+          {slot(
             "diary",
-            <>
-              <section className="hc-section" aria-label={t("home_care.filter.title")}>
-                <form
-                  className="hc-form"
-                  role="search"
-                  onSubmit={(event) => {
-                    event.preventDefault();
-                    applyFilter(filter);
-                  }}
-                >
-                  <div className="hc-field">
-                    <label className="hc-label" htmlFor={`${fieldId}-search`}>
-                      {t("home_care.filter.search_label")}
-                    </label>
-                    <div className="hc-row hc-row--search">
-                      <input
-                        id={`${fieldId}-search`}
-                        className="hc-input"
-                        type="search"
-                        value={filter.q}
-                        onChange={(event) => setFilter((now) => ({ ...now, q: event.target.value }))}
-                        maxLength={80}
-                        autoComplete="off"
-                        enterKeyHint="search"
-                        aria-describedby={`${fieldId}-search-hint`}
-                      />
-                      <button className="hc-btn" type="submit" disabled={diary.busy}>
-                        {t("home_care.home.search_button")}
-                      </button>
-                    </div>
-                    <p className="hc-hint" id={`${fieldId}-search-hint`}>
-                      {t("home_care.filter.search_hint")}
-                    </p>
-                  </div>
-                </form>
-
-                <form
-                  className="hc-filter"
-                  onSubmit={(event) => {
-                    event.preventDefault();
-                    applyFilter(filter);
-                  }}
-                >
-                  <div className="hc-field">
-                    <span className="hc-label">{t("home_care.entry.kind_label")}</span>
-                    <Dropdown
-                      value={filter.kind}
-                      onChange={(value) => setFilter((now) => ({ ...now, kind: value }))}
-                      ariaLabel={t("home_care.entry.kind_label")}
-                      options={[
-                        { value: "", label: t("home_care.filter.kind_all") },
-                        ...CARE_ENTRY_KINDS.map((value) => ({ value, label: t(`home_care.entry.kinds.${value}`) }))
-                      ]}
-                    />
-                  </div>
-                  <div className="hc-field">
-                    <span className="hc-label">{t("home_care.filter.from")}</span>
-                    <DateField
-                      name="from"
-                      value={filter.from}
-                      onChange={(value) => setFilter((now) => ({ ...now, from: value || "" }))}
-                      ariaLabel={t("home_care.filter.from")}
-                    />
-                  </div>
-                  <div className="hc-field">
-                    <span className="hc-label">{t("home_care.filter.to")}</span>
-                    <DateField
-                      name="to"
-                      value={filter.to}
-                      onChange={(value) => setFilter((now) => ({ ...now, to: value || "" }))}
-                      ariaLabel={t("home_care.filter.to")}
-                    />
-                  </div>
-                  <div className="hc-row">
-                    <button className="hc-btn" type="submit" disabled={diary.busy}>
-                      {t("home_care.filter.apply")}
-                    </button>
-                    {filterActive ? (
-                      <button className="hc-btn hc-btn--quiet" type="button" onClick={() => applyFilter(NO_FILTER)} disabled={diary.busy}>
-                        {t("home_care.filter.clear")}
-                      </button>
-                    ) : null}
-                  </div>
-                </form>
-
-                {diary.error ? (
-                  <p className="hc-error" role="alert">
-                    {diary.error}
-                  </p>
-                ) : null}
-
-                {entries.items.length === 0 ? (
-                  <p className="hc-sub" role="status">
-                    {applied.q ? t("home_care.filter.search_empty") : t("home_care.filter.empty")}
-                  </p>
-                ) : (
-                  <ul className="hc-list hc-list--plain">
-                    {entries.items.map((entry) => (
-                      <HomeCareEntryItem
-                        key={entry.id}
-                        organizationId={organizationId}
-                        entry={entry}
-                        timeZone={timeZone}
-                        canWrite={canWrite}
-                        isCoordinator={access.isCoordinator}
-                        team={team}
-                        viewerMembershipId={access.membershipId}
-                        plan={data.plan}
-                        onChange={upsertEntry}
-                      />
-                    ))}
-                  </ul>
-                )}
-                {entries.hasMore ? (
-                  <div className="hc-row">
-                    <button className="hc-btn" type="button" onClick={loadMore} disabled={diary.busy}>
-                      {t("home_care.filter.more")}
-                    </button>
-                  </div>
-                ) : null}
-
-                {historyHits && historyHits.items.length > 0 ? (
-                  <>
-                    <h3 className="hc-section-title">{t("home_care.history.hits_title")}</h3>
-                    <p className="hc-hint">{t("home_care.history.hits_hint")}</p>
-                    <ul className="hc-list hc-list--plain">
-                      {historyHits.items.map((hit) => (
-                        <li key={`${hit.historyId}-${hit.position}`} className="hc-entry">
-                          <div className="hc-entry__head">
-                            <span className="hc-entry__author">{hit.title}</span>
-                            <span className="hc-badge hc-badge--warn">{t("home_care.history.mark")}</span>
-                          </div>
-                          <p className="hc-entry__text">{hit.text}</p>
-                        </li>
-                      ))}
-                    </ul>
-                    {historyHits.hasMore ? <p className="hc-hint">{t("home_care.history.hits_more")}</p> : null}
-                  </>
-                ) : null}
-              </section>
-
-              <HomeCareHistory
-                organizationId={organizationId}
-                clientId={client.id}
-                histories={data.histories || []}
-                timeZone={timeZone}
-                isCoordinator={access.isCoordinator}
-                canWrite={canWrite}
-                onChange={(next) => {
-                  setData((now) => ({ ...now, histories: next }));
-                  setHistoryHits(null);
-                }}
-              />
-            </>
+            <DiaryView
+              title={t(viewNameKey("diary"))}
+              name={client.displayName}
+              filter={
+                filterActive
+                  ? { line: filterLine(applied, { t, day: planDayLabel }), clear: { label: t("home_care.filter.clear"), onClear: () => search(NO_FILTER) } }
+                  : null
+              }
+              rows={diaryList.rows}
+              onOpen={(id) => {
+                setOpened(entries.items.find((entry) => entry.id === id) || null);
+                setView("diary_item");
+              }}
+              empty={applied.q ? t("home_care.filter.search_empty") : t("home_care.filter.empty")}
+              notice={diaryNotice}
+              busy={diary.busy}
+              hits={
+                hits.length
+                  ? {
+                      title: t("home_care.history.hits_title"),
+                      line: t(historyHits.hasMore ? "home_care.diary.hits_count_more" : "home_care.diary.hits_count", { count: hits.length }),
+                      onOpen: () => setView("history_hits")
+                    }
+                  : null
+              }
+              history={
+                seesHistory
+                  ? {
+                      title: t("home_care.history.title"),
+                      line: (data.histories || []).length ? t("home_care.diary.history_count", { count: data.histories.length }) : t("home_care.diary.history_none"),
+                      onOpen: () => setView("history")
+                    }
+                  : null
+              }
+              search={{
+                label: t("home_care.filter.search_label"),
+                onOpen: () => {
+                  /* Vorm avaneb kehtiva otsinguga, mitte pooleli jäänud valikuga. */
+                  setFilter(applied);
+                  diary.setError("");
+                  setView("diary_search");
+                }
+              }}
+              more={diaryList.more ? { label: t("home_care.diary.more"), onMore: showEarlier } : null}
+            />
           )}
+
+          {slot(
+            "diary_search",
+            <DiarySearchView
+              title={t("home_care.filter.search_label")}
+              name={client.displayName}
+              form={{
+                id: `${fieldId}-diary-search`,
+                onSubmit: (event) => {
+                  event.preventDefault();
+                  search(filter);
+                }
+              }}
+              query={{
+                label: t("home_care.filter.search_label"),
+                hint: t("home_care.filter.search_hint"),
+                value: filter.q,
+                onChange: (q) => setFilter((now) => ({ ...now, q }))
+              }}
+              kind={{
+                label: t("home_care.entry.kind_label"),
+                options: [{ value: "", label: t("home_care.filter.kind_all") }, ...CARE_ENTRY_KINDS.map((value) => ({ value, label: t(`home_care.entry.kinds.${value}`) }))],
+                value: filter.kind,
+                onChange: (kind) => setFilter((now) => ({ ...now, kind }))
+              }}
+              from={{ label: t("home_care.filter.from"), value: filter.from, onChange: (from) => setFilter((now) => ({ ...now, from })) }}
+              to={{ label: t("home_care.filter.to"), value: filter.to, onChange: (to) => setFilter((now) => ({ ...now, to })) }}
+              notice={diaryNotice}
+              busy={diary.busy}
+              clear={filterActive ? { label: t("home_care.filter.clear"), onClear: () => search(NO_FILTER) } : null}
+              back={toDiary}
+              submit={t("home_care.home.search_button")}
+            />
+          )}
+
+          {/* Avatud kirje: sisu on veel vana kihi kirje koos oma tegevustega. */}
+          {slot(
+            "diary_item",
+            opened ? (
+              <OldPart title={t("home_care.diary.item_title")} back={toDiary}>
+                <ul className="hc-list hc-list--plain">
+                  <HomeCareEntryItem
+                    key={opened.id}
+                    organizationId={organizationId}
+                    entry={opened}
+                    timeZone={timeZone}
+                    canWrite={canWrite}
+                    isCoordinator={access.isCoordinator}
+                    team={team}
+                    viewerMembershipId={access.membershipId}
+                    plan={data.plan}
+                    onChange={upsertEntry}
+                  />
+                </ul>
+              </OldPart>
+            ) : null
+          )}
+
+          {slot(
+            "history_hits",
+            <HistoryHitsView
+              title={t("home_care.history.hits_title")}
+              lead={t("home_care.history.hits_hint")}
+              items={(allHits ? hits : hits.slice(0, HITS_PAGE)).map((hit) => ({ key: `${hit.historyId}-${hit.position}`, title: hit.title, text: hit.text }))}
+              mark={t("home_care.history.mark")}
+              note={historyHits?.hasMore ? t("home_care.history.hits_more") : ""}
+              more={!allHits && hits.length > HITS_PAGE ? { label: t("home_care.home.more"), onMore: () => setAllHits(true) } : null}
+              back={toDiary}
+            />
+          )}
+
+          {/* Varasem ajalugu teisest kohast: sisu on veel vana kihi osa. */}
+          {seesHistory
+            ? slot(
+                "history",
+                <OldPart title={t("home_care.history.title")} back={toDiary}>
+                  <HomeCareHistory
+                    organizationId={organizationId}
+                    clientId={client.id}
+                    histories={data.histories || []}
+                    timeZone={timeZone}
+                    isCoordinator={access.isCoordinator}
+                    canWrite={canWrite}
+                    onChange={(next) => {
+                      setData((now) => ({ ...now, histories: next }));
+                      setHistoryHits(null);
+                    }}
+                  />
+                </OldPart>
+              )
+            : null}
 
           {/* Kehtiv hoolduskava (K2-b): mida siin tehakse, kui sageli ja kuidas. Kogu meeskonnale lugemiseks. */}
           {part(

@@ -16431,6 +16431,16 @@
         "incident_type": "Vali esimeses sammus, mis juhtus.",
         "text": "Kirjuta, mida nägid ja tegid: selle kirje saab salvestada ainult tekstiga."
       }
+    },
+    "diary": {
+      "more": "Näita varasemaid",
+      "back": "Tagasi päevikusse",
+      "item_title": "Kirje",
+      "filter_q": "Otsing: „{q}”",
+      "hits_count": "Lõike: {count}",
+      "hits_count_more": "Lõike: üle {count}",
+      "history_count": "Üle toodud dokumente: {count}",
+      "history_none": "Senist päevikut ei ole üle toodud"
     }
   },
   "stage": {
