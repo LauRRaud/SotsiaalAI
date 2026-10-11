@@ -41,6 +41,15 @@ function WhoView({ tp, form, options, onField, note, save }) {
           <LineField size="lg" label={tp("fields.organization", "Organisatsiooni nimi")} value={form.organizationName} onChange={(value) => onField("organizationName", value)} />
           <LineField size="sm" label={tp("fields.registry_code", "Registrikood")} value={form.registryCode} onChange={(value) => onField("registryCode", value)} />
         </div>
+        {/* Registrikoodiga profiili avaldamine nõuab asutuse kinnitust; tee selle leheni. */}
+        {String(form.registryCode || "").trim() ? (
+          <p className={styles.quiet}>
+            {tp("representation.note", "Registrikoodiga profiili saab avaldada, kui asutus on kinnitatud.")}{" "}
+            <a className={styles.textButton} href="/teenuseprofiil/kinnitus">
+              {tp("representation.open", "Asutuse kinnitamine")}
+            </a>
+          </p>
+        ) : null}
         <ChoiceRow
           label={tp("fields.organization_type", "Organisatsiooni tüüp")}
           options={options.organizationType}

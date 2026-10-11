@@ -2730,14 +2730,21 @@
       "organization_name_required": "Enter the organisation name.",
       "profile_conflict": "The profile changed in the meantime. Load the latest state and compare the changes.",
       "publish_contact_required": "Choose at least one contact or an in-platform inquiry path before publishing.",
-      "publish_representation_required": "A profile with a registry code can be published after the platform has confirmed that you represent that organisation. Save the profile as a draft and write to info@sotsiaal.pro; after confirmation you can publish the profile.",
+      "publish_representation_required": "A profile with a registry code can be published after it is confirmed that you represent that organisation. Save the profile as a draft and open the page \"Confirming the organisation\" (sotsiaal.pro/teenuseprofiil/kinnitus).",
       "publish_service_required": "Add at least one visible published service before publishing.",
       "save_failed": "The service profile could not be saved. Try again; if the error persists, give support the correlation ID.",
       "load_failed": "The service profile could not be loaded.",
       "too_many_list_items": "One list contains too many choices.",
       "too_many_locations": "The service-location limit has been reached. Remove one before adding another.",
       "too_many_services": "The service limit has been reached. Remove one before adding another.",
-      "address_suggestions_failed": "Address suggestions could not be loaded."
+      "address_suggestions_failed": "Address suggestions could not be loaded.",
+      "representation_profile_required": "First write the organisation's registry code into the service profile and save the profile as a draft.",
+      "representation_already_confirmed": "The organisation is already confirmed.",
+      "representation_email_invalid": "Write the organisation's e-mail address.",
+      "representation_email_not_in_register": "This address is not listed in the business register as a contact of this registry code. Check your organisation's contacts in the business register (ariregister.rik.ee). Our copy of the register is renewed once a month; if you changed the address recently, write to info@sotsiaal.pro.",
+      "representation_register_unavailable": "The business register check cannot be made right now. Try again later or write to info@sotsiaal.pro.",
+      "representation_mail_failed": "The e-mail could not be sent. Try again.",
+      "representation_link_invalid": "This link is no longer valid or does not belong to this account."
     },
     "licence": {
       "public": {
@@ -2784,6 +2791,30 @@
         "bind_rate_limited": "The kind of service has been changed too many times within the last hour. Try again later.",
         "bind_check_pending": "The kind is confirmed, but the check could not be run right away. Press “Check again”."
       }
+    },
+    "representation": {
+      "title": "Confirming the organisation",
+      "loading": "Reading the state.",
+      "lead": "A service profile with a registry code can be published once it is confirmed that you represent that organisation.",
+      "login_needed": "Sign in with the account the service profile was made with.",
+      "no_profile": "You do not have a service profile with a registry code yet. Write the organisation's registry code into the service profile and save it as a draft.",
+      "open_profile": "Open the service profile",
+      "organization": "{name}, registry code {code}",
+      "confirmed": "The organisation was confirmed on {date}. The profile can be published.",
+      "how": "We send a confirmation link to the organisation's e-mail listed in the business register. You open the link while signed in with this same account.",
+      "email_label": "The organisation's e-mail in the business register",
+      "email_hint": "We do not store the address: we only check that the register lists it for this organisation.",
+      "send": "Send the confirmation link",
+      "sending": "Sending...",
+      "sent": "The confirmation link has been sent. Open it within {days} days while signed in with this same account.",
+      "pending": "A confirmation link was sent on {date} and is valid until {until}. If the e-mail did not arrive, send a new one.",
+      "other_way": "If the register has no e-mail for the organisation or you cannot reach it, write to info@sotsiaal.pro.",
+      "link_title": "Confirm that you represent this organisation",
+      "link_body": "By confirming you prove that the service profile \"{name}\" (registry code {code}) belongs to this organisation.",
+      "link_confirm": "I confirm",
+      "link_confirming": "Confirming...",
+      "link_invalid": "This link is no longer valid or does not belong to this account. Send a new link.",
+      "link_done": "The organisation is confirmed. You can now publish the service profile."
     }
   },
   "service_availability": {
@@ -3862,6 +3893,10 @@
       "conflict": {
         "local_version": "Local form",
         "server_version": "Newer version on the server"
+      },
+      "representation": {
+        "note": "A profile with a registry code can be published once the organisation is confirmed.",
+        "open": "Confirming the organisation"
       }
     },
     "admin_role": {
@@ -6426,6 +6461,11 @@
           "html": "<div style=\"font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1a1a1a;line-height:1.55\"><p>Hello!</p><p>Thank you! Your payment was successful and the invitation was sent.</p><p><strong>Paid:</strong> {amount} {currency}<br><strong>Date:</strong> {paidAt}<br><strong>Invitee:</strong> {inviteeEmail}<br><strong>Room:</strong> {roomTitle}<br><strong>Role:</strong> {roleLabel}</p><p>The invitee receives a join link by email. Their access lasts one month from joining.</p><p style=\"color:#888888;font-size:13px\">Questions? Write to {supportEmail}.</p></div>"
         }
       }
+    },
+    "service_representation": {
+      "subject": "Sotsiaal.pro: confirm your organisation's service profile",
+      "text": "Hello\n\nA Sotsiaal.pro user wants to publish a service profile under the name of the organisation \"{organizationName}\" (registry code {registryCode}). This e-mail came to this address because the business register lists it as a contact of that organisation.\n\nIf the service profile belongs to your organisation, open the link and confirm. The link must be opened while signed in with the Sotsiaal.pro account the profile was made with:\n{confirmUrl}\n\nThe link is valid for {days} days.\n\nIf your organisation has not made a service profile, do not open the link and do not forward it to anyone: without confirmation the profile is not published. You can report this e-mail to info@sotsiaal.pro.\n\nSotsiaal.pro",
+      "html": "<div style=\"font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1a1a1a;line-height:1.55\"><p>Hello</p><p>A Sotsiaal.pro user wants to publish a service profile under the name of the organisation \"{organizationName}\" (registry code {registryCode}). This e-mail came to this address because the business register lists it as a contact of that organisation.</p><p>If the service profile belongs to your organisation, press the button and confirm. The link must be opened while signed in with the Sotsiaal.pro account the profile was made with.</p><p style=\"margin:24px 0\"><a href=\"{confirmUrl}\" style=\"display:inline-block;background-color:#4d4d4d;background-color:rgba(26,26,26,0.78);background-image:linear-gradient(180deg,rgba(255,255,255,0.20) 0%,rgba(255,255,255,0.05) 45%,rgba(255,255,255,0) 100%);color:#f7f7f7;text-decoration:none;padding:14px 34px;border:1px solid rgba(255,255,255,0.30);border-radius:14px;font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-weight:500;font-size:19px;letter-spacing:.04em;box-shadow:0 6px 18px rgba(26,26,26,0.18)\">OPEN CONFIRMATION</a></p><p>The link is valid for {days} days.</p><p style=\"color:#888888;font-size:13px\">If your organisation has not made a service profile, do not open the link and do not forward it to anyone: without confirmation the profile is not published. You can report this e-mail to info@sotsiaal.pro.</p></div>"
     }
   },
   "covision": {
@@ -7704,6 +7744,7 @@
       },
       "state_unconfirmed": "Not confirmed",
       "state_confirmed": "Confirmed {date}",
+      "state_confirmed_link": "Confirmed {date} by e-mail link",
       "state_stale": "The registry code has changed since the confirmation (it was given for code {code}). A new confirmation is needed.",
       "basis_shown": "Basis: {basis}",
       "basis_label": "Basis of the confirmation",

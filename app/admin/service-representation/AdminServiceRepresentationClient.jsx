@@ -126,7 +126,7 @@ export default function AdminServiceRepresentationClient() {
                     <td className="p-3">{t(`admin.service_representation.profile_status.${row.status}`, {}, row.status)}</td>
                     <td className="p-3">
                       {row.confirmed
-                        ? t("admin.service_representation.state_confirmed", { date: dateText(row.confirmedAt, locale) })
+                        ? t(row.method === "EMAIL_LINK" ? "admin.service_representation.state_confirmed_link" : "admin.service_representation.state_confirmed", { date: dateText(row.confirmedAt, locale) })
                         : row.stale
                           ? t("admin.service_representation.state_stale", { code: row.confirmedRegistryCode || "-" })
                           : t("admin.service_representation.state_unconfirmed")}
