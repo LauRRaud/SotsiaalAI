@@ -5,6 +5,7 @@ import { isAdmin, roleFromSession } from "@/lib/authz";
 import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
 import { safeError } from "@/lib/privacy/safeError";
 import { isSameOriginRequest } from "@/lib/security/sameOriginRequest";
+import { announceRepresentationConfirmed, announceRepresentationLinkSent } from "@/lib/serviceProviderProfileNotices";
 import { consumeServiceProviderProfileRateLimit } from "@/lib/serviceProviderProfileBoundary";
 import {
   RepresentationLinkError,
@@ -82,6 +83,8 @@ export async function POST(request) {
       { ownerId: auth.userId, email: body?.email, locale },
       { sendMail: sendRepresentationLinkEmail }
     );
+    /* Konto omanik saab teate (platvormis ja e-kirjana), et kinnitus ootab asutuse postkastis. */
+    await announceRepresentationLinkSent({ ownerId: auth.userId, sentAt: result.sentAt });
     return json({ ok: true, delivery: result.delivery, expiresAt: result.expiresAt });
   } catch (error) {
     return failure(error, RepresentationLinkError.MAIL_FAILED, locale, "request");
@@ -98,6 +101,7 @@ export async function PUT(request) {
     if (blocked) return blocked;
     const body = await request.json().catch(() => ({}));
     const result = await confirmRepresentationByLink({ ownerId: auth.userId, token: body?.token });
+    await announceRepresentationConfirmed({ ownerId: auth.userId, method: result.method, confirmedAt: result.confirmedAt, locale });
     return json({ ok: true, state: result });
   } catch (error) {
     return failure(error, "service_provider_profile.errors.save_failed", locale, "confirm");

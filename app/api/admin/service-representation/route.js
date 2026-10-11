@@ -10,6 +10,7 @@ import {
   listRepresentationAdminRows,
   revokeRepresentationAsAdmin
 } from "@/lib/serviceProviderRepresentation";
+import { announceRepresentationConfirmed, announceRepresentationRevoked } from "@/lib/serviceProviderProfileNotices";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -64,6 +65,13 @@ export async function POST(request) {
           basis: body?.basis
         })
       : await revokeRepresentationAsAdmin({ profileId, adminUserId: authz.userId });
+    /* Teated konto omanikule ja asutusele. Parima püüdluse järgi: teate ebaõnnestumine otsust
+       tagasi ei lükka (announce* ei viska). */
+    if (action === "confirm") {
+      await announceRepresentationConfirmed({ profileId: row.id, method: "ADMIN", confirmedAt: row.confirmedAt, locale });
+    } else {
+      await announceRepresentationRevoked({ profileId: row.id, locale });
+    }
     return json({ ok: true, row });
   } catch (error) {
     const status = Number(error?.status) || 500;
