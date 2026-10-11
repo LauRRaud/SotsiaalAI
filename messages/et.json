@@ -12530,7 +12530,7 @@
       "reject_confirm": "Jah, lükkan tagasi",
       "reject_note": "Töö läheb tagasi määrajale, kes saab selle kellelegi teisele määrata.",
       "close_confirm": "Jah, sulge töö",
-      "close_note": "Suletud töö kaob vastuvõtulaualt."
+      "close_note": "Suletud töö kaob vastuvõtulaualt ja seda ei saa uuesti avada. Pöörduja vestlusruum jääb ainult loetavaks."
     },
     "inboxStatus": {
       "RECEIVED": "Saabunud",

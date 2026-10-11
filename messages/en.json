@@ -12530,7 +12530,7 @@
       "reject_confirm": "Yes, I reject it",
       "reject_note": "The work goes back to the assigner, who can assign it to someone else.",
       "close_confirm": "Yes, close the work",
-      "close_note": "Closed work leaves the intake desk."
+      "close_note": "Closed work leaves the intake desk and cannot be reopened. The sender's conversation room becomes read-only."
     },
     "inboxStatus": {
       "RECEIVED": "Received",
