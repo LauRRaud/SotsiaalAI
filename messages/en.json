@@ -3215,6 +3215,7 @@
         "send": {
           "title": "Sending",
           "internal_hint": "The pre-inquiry reaches the receiver's inbox. You will see here when it has been accepted.",
+          "organization_readers": "The pre-inquiry is read by the organization's intake team. The conversation with you is read by the worker handling it; if the work is handed over, by the next worker too.",
           "email_hint": "The text opens in your e-mail application for review. The platform itself does not send the e-mail.",
           "confirm_hint": "Marks the pre-inquiry as sent. The platform cannot see acceptance for an e-mail.",
           "save_hint": "Stays under your pre-inquiries. Nothing is sent.",
@@ -6381,6 +6382,7 @@
       "serviceProviderInquiry": "The room was created from a service-related inquiry.",
       "journey": "The room is related to a Journey workflow, but the private Journey is not shared automatically.",
       "unknown": "The room has no defined origin.",
+      "organizationReader": "On the organization's side the conversation is read by the worker handling the inquiry; if the work is handed over, by the next worker too.",
       "privacyNote": "Room members see only information shared in this room and user-confirmed preliminary information. The private Teekond and assistant conversation are not shared automatically."
     },
     "summary_approval": {

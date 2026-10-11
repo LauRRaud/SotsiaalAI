@@ -68,7 +68,8 @@ test('vastuvõtja vaade ei näita töövoo koodi ega ava esimest pöördumist is
 
 test('pöörduja seisu sõnad on kataloogis iga seisu jaoks', () => {
   const states = PRE_INQUIRY_SENDER_STATE_KEYS;
-  assert.equal(states.length, 10);
+  /* Kümme pöördumise enda seisu ja kaks asutuse otsust (tagasi lükatud, töö lõpetatud). */
+  assert.equal(states.length, 12);
   for (const lang of ['et', 'en', 'ru']) {
     const labels = catalog(lang).sender_state;
     for (const state of states) assert.equal(typeof labels[state], 'string', `${lang}: ${state}`);
