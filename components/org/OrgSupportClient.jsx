@@ -1,55 +1,82 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import Button from "@/components/ui/Button";
-import Checkbox from "@/components/ui/Checkbox";
-import Dropdown from "@/components/ui/Dropdown";
-import Form from "@/components/ui/Form";
+import StepFlight from "@/components/stage/StepFlight";
 
-import OrgHeader from "./OrgHeader";
+import OrgPart from "./OrgPart";
+import { ConfirmView, ReceivedView, SupportBoard, WhatView, WhoView } from "./support/SupportViews";
+import {
+  EMPTY_SHARE,
+  LIST_TABS,
+  SEND_STEPS,
+  receivedDetail,
+  receivedRow,
+  recipientOptions,
+  sendStepStates,
+  sendSummary,
+  sentRow,
+  shareDirty,
+  shareProblem,
+  shownList
+} from "./support/supportRules";
 import { useOrgApi } from "./useOrgApi";
+import { useSecondPress } from "./useSecondPress";
 
 /**
- * Tugivaade.
- *
- * KOLM ASJA ÜHEL LEHEL, sest need kuuluvad inimese jaoks kokku:
- *   1. kellele ma saata saan (ja et valik on MINU, mitte etteantud);
- *   2. mida ma saadan (ja et kinnitus on eraldi tegu);
+ * Töötaja tugivaade. Kolm asja ühes kohas:
+ *   1. kellele ma saan toeavalduse saata;
+ *   2. mida ma olen saatnud;
  *   3. mis mulle on saadetud.
  *
  * PRIVAATSUSTEADE ON SISU, mitte kaunistus: kasutaja peab nägema mustvalgel, et
  * organisatsioon ei tea, kas ta vormi täitis. Seda teadet ei tohi eemaldada.
+ *
+ * KUJU (11.10). Neli kasti üksteise all on nüüd loend (saadud või saadetud),
+ * üks avatud saadud avaldus ja saatmine kolme väikese vaatena sammulaval. Vaated
+ * on failis ./support/SupportViews.jsx, reeglid failis ./support/supportRules.js;
+ * see fail hoiab olekut ja teeb päringud. Sulgemine ja tagasivõtmine küsivad
+ * teist vajutust; kinnitamata või saajata avaldus ütleb, mis on puudu.
  */
 
-/**
- * Saaja silt EI TOHI KUNAGI olla ainult „—".
- *
- * Kui inimene ei saa aru, KELLELE ta oma tööheaolu kokkuvõtte saadab, ei ole
- * tema nõusolek teadlik — ja §9 järgi on teadlikkus kogu selle voo eeldus.
- * Server saadab `email`-i ainult siis, kui nimi puudub, seega see rida ei
- * lekita kontaktandmeid nimega liikmete kohta.
- */
-function recipientLabel(entry) {
-  const name = [entry.firstName, entry.lastName].filter(Boolean).join(" ");
-  return name || entry.jobTitle || entry.email || "—";
-}
+/* Pärast saatmist laaditakse leht uuesti (loendid tulevad serverist): see märk
+   toob inimese tagasi saadetud avalduste juurde. Ainult selle vahekaardi mälus. */
+const AFTER_RELOAD = "sotsiaalai:org-support:list";
+
 export default function OrgSupportClient({ context, recipients, receivedPage, sentPage }) {
   const { t } = useI18n();
-  const { call, busy, error } = useOrgApi();
-  const [recipientMembershipId, setRecipientMembershipId] = useState("");
-  const [summary, setSummary] = useState("");
-  const [needs, setNeeds] = useState("");
-  const [confirmed, setConfirmed] = useState(false);
-  const [done, setDone] = useState("");
+  const { call, error, setError } = useOrgApi();
+  const [form, setForm] = useState(EMPTY_SHARE);
   const [received, setReceived] = useState(receivedPage?.items || []);
   const [receivedCursor, setReceivedCursor] = useState(receivedPage?.nextCursor || null);
   const [sent, setSent] = useState(sentPage?.items || []);
   const [sentCursor, setSentCursor] = useState(sentPage?.nextCursor || null);
+  const [mode, setMode] = useState("list");
+  const [wantedList, setWantedList] = useState("received");
+  const [openId, setOpenId] = useState("");
+  const [stepKey, setStepKey] = useState("who");
+  /* Mis päring käib: "" | "send" | "more" | "open" | "close" | "recall:<id>". */
+  const [pending, setPending] = useState("");
+  const [notice, setNotice] = useState(null);
+  const confirm = useSecondPress();
+  const clearConfirm = confirm.clear;
+  const sending = useRef(false);
+  const rootRef = useRef(null);
+  const live = useRef(form);
+  live.current = form;
 
   const organizationId = context.organization.id;
   const writable = context?.writable !== false;
+
+  useEffect(() => {
+    try {
+      const wanted = window.sessionStorage.getItem(AFTER_RELOAD);
+      if (!wanted) return;
+      window.sessionStorage.removeItem(AFTER_RELOAD);
+      setWantedList(wanted);
+    } catch {}
+  }, []);
 
   const appendPage = useCallback((setter, items) => {
     setter((current) => {
@@ -76,37 +103,35 @@ export default function OrgSupportClient({ context, recipients, receivedPage, se
     setSentCursor(payload.sentPage.nextCursor || null);
   }, [appendPage, call, organizationId, sentCursor]);
 
-  const send = useCallback(
-    async (event) => {
-      event.preventDefault();
-      setDone("");
-      const payload = await call(`/api/org/${organizationId}/tugi/avaldused`, {
-        method: "POST",
-        body: {
-          action: "send",
-          recipientMembershipId,
-          userConfirmed: confirmed,
-          snapshot: {
-            summary,
-            needs: needs
-              .split("\n")
-              .map((line) => line.trim())
-              .filter(Boolean)
-          }
-        },
-        fallbackKey: "org.errors.support_share_failed"
-      });
-      if (payload) {
-        /* Vorm tühjendatakse ENNE laadimist: kui laadimine mingil põhjusel ei
-           toimu, ei jää saadetud tekst ekraanile nii, nagu oleks saatmata. */
-        setSummary("");
-        setNeeds("");
-        setConfirmed(false);
-        window.location.reload();
-      }
-    },
-    [call, confirmed, needs, organizationId, recipientMembershipId, summary]
-  );
+  const send = useCallback(async () => {
+    const { recipientMembershipId, summary, needs, confirmed } = live.current;
+    const payload = await call(`/api/org/${organizationId}/tugi/avaldused`, {
+      method: "POST",
+      body: {
+        action: "send",
+        recipientMembershipId,
+        userConfirmed: confirmed,
+        snapshot: {
+          summary,
+          needs: needs
+            .split("\n")
+            .map((line) => line.trim())
+            .filter(Boolean)
+        }
+      },
+      fallbackKey: "org.errors.support_share_failed"
+    });
+    if (payload) {
+      /* Vorm tühjendatakse ENNE laadimist: kui laadimine mingil põhjusel ei
+         toimu, ei jää saadetud tekst ekraanile nii, nagu oleks saatmata. */
+      setForm(EMPTY_SHARE);
+      setMode("list");
+      try {
+        window.sessionStorage.setItem(AFTER_RELOAD, "sent");
+      } catch {}
+      window.location.reload();
+    }
+  }, [call, organizationId]);
 
   const act = useCallback(
     async (action, shareId) => {
@@ -115,7 +140,12 @@ export default function OrgSupportClient({ context, recipients, receivedPage, se
         body: { action, shareId },
         fallbackKey: "org.errors.support_share_failed"
       });
-      if (payload) window.location.reload();
+      if (payload) {
+        try {
+          window.sessionStorage.setItem(AFTER_RELOAD, action === "recall" ? "sent" : "received");
+        } catch {}
+        window.location.reload();
+      }
     },
     [call, organizationId]
   );
@@ -134,210 +164,190 @@ export default function OrgSupportClient({ context, recipients, receivedPage, se
     [call, organizationId]
   );
 
-  return (
-    <section className="ow-shell">
-      <OrgHeader context={context} />
+  /* Üks tegevus korraga: topeltvajutus ei saada teist päringut. */
+  const once = useCallback(async (name, work) => {
+    if (sending.current) return;
+    sending.current = true;
+    setPending(name);
+    setNotice(null);
+    try {
+      await work();
+    } finally {
+      sending.current = false;
+      setPending("");
+    }
+  }, []);
 
-      <div className="ow-card">
-        <h2 className="ow-title" style={{ fontSize: "1.125rem" }}>
-          {t("org.support.heading")}
-        </h2>
-        <p className="ow-subtitle">{t("org.support.intro")}</p>
-        <p className="ow-notice ow-notice--privacy">{t("org.support.privacyNotice")}</p>
+  const options = useMemo(() => recipientOptions(recipients, { t }), [recipients, t]);
+  const receivedRows = useMemo(() => received.map((share) => receivedRow(share, { t })), [received, t]);
+  const sentRows = useMemo(() => sent.map((share) => sentRow(share, { t, writable })), [sent, t, writable]);
+  const list = shownList(wantedList);
+  const openShare = received.find((share) => share.id === openId) || null;
+
+  /* Vaate vahetusel kaob vajutatud rida või nupp: fookus läheb vaate pealkirjale.
+     Esimesel joonistusel fookust ei võeta. */
+  const shown = useRef("");
+  const shownKey = `${mode}:${openShare ? openShare.id : ""}`;
+  useEffect(() => {
+    const first = shown.current === "";
+    const moved = shown.current !== shownKey;
+    shown.current = shownKey;
+    if (first || !moved) return undefined;
+    const frame = window.requestAnimationFrame(() => rootRef.current?.querySelector("[data-step-heading]")?.focus({ preventScroll: true }));
+    return () => window.cancelAnimationFrame(frame);
+  }, [shownKey]);
+
+  const fault = error ? { tone: "risk", text: error } : null;
+
+  const leaveSend = useCallback(() => {
+    setForm(EMPTY_SHARE);
+    setMode("list");
+    setStepKey("who");
+    setNotice(null);
+    setError("");
+  }, [setError]);
+
+  if (mode === "share" && openShare) {
+    return (
+      <div ref={rootRef}>
+        <OrgPart context={context} part="support">
+          <ReceivedView
+            t={t}
+            detail={receivedDetail(openShare, { t, writable })}
+            open={{ busy: pending === "open", onOpen: () => once("open", () => open(openShare.id)) }}
+            close={{ armed: confirm.armed === "close", busy: pending === "close", onPress: () => confirm.press("close", () => once("close", () => act("close", openShare.id))) }}
+            notice={fault}
+            onBack={() => {
+              clearConfirm();
+              setError("");
+              setMode("list");
+              setOpenId("");
+            }}
+          />
+        </OrgPart>
       </div>
+    );
+  }
 
-      <section className="ow-card" aria-labelledby="ow-send-support">
-        <h3 id="ow-send-support" className="ow-title" style={{ fontSize: "1rem" }}>
-          {t("org.support.recipients")}
-        </h3>
-        {recipients.length === 0 ? (
-          <p className="ow-empty">{t("org.support.noRecipients")}</p>
-        ) : writable ? (
-          <Form onSubmit={send}>
-            <div className="ow-grid">
-              <label>
-                <span className="ow-meta__term">{t("org.support.recipients")}</span>
-                <Dropdown
-                  required
-                  value={recipientMembershipId}
-                  onChange={setRecipientMembershipId}
-                  ariaLabel={t("org.support.recipients")}
-                  placeholder="—"
-                  options={recipients.map((entry) => ({
-                    value: entry.membershipId,
-                    label: `${recipientLabel(entry)} · ${t(
-                      entry.contactType === "DIRECT_MANAGER"
-                        ? "org.support.directManager"
-                        : entry.contactType === "SAFETY_CONTACT"
-                          ? "org.support.safety"
-                          : "org.support.alternate"
-                    )}`
-                  }))}
+  if (mode === "send" && writable && options.length) {
+    const states = sendStepStates(form);
+    const steps = SEND_STEPS.map((key) => ({
+      key,
+      label: t(`org.support.steps.${key}.title`),
+      short: t(`org.support.steps.${key}.short`),
+      state: states[key]
+    }));
+    const decline = {
+      armed: confirm.armed === "decline",
+      onPress: () => {
+        if (sending.current) return;
+        if (!shareDirty(live.current)) leaveSend();
+        else confirm.press("decline", leaveSend);
+      }
+    };
+    const changeField = (key, value) => {
+      setForm((current) => ({ ...current, [key]: value }));
+      clearConfirm();
+      setNotice(null);
+      setError("");
+    };
+    const noticeOf = (view) => (notice?.view === view ? notice : null);
+    return (
+      <div ref={rootRef}>
+        <OrgPart context={context} part="support" compact>
+          <StepFlight
+            label={t("org.support.steps_label")}
+            steps={steps}
+            activeKey={stepKey}
+            onStepChange={(_index, step) => {
+              setStepKey(step?.key || "who");
+              clearConfirm();
+            }}
+          >
+            {(step, _index, flight) => {
+              const glow = flight?.isActive !== false;
+              if (step.key === "who") {
+                return <WhoView t={t} options={options} value={form.recipientMembershipId} onChoose={(value) => changeField("recipientMembershipId", value)} notice={noticeOf("who")} decline={decline} />;
+              }
+              if (step.key === "what") return <WhatView t={t} form={form} onField={changeField} notice={noticeOf("what")} />;
+              return (
+                <ConfirmView
+                  t={t}
+                  summary={sendSummary(form, recipients, { t })}
+                  confirmed={form.confirmed}
+                  onConfirm={(value) => changeField("confirmed", value)}
+                  problem={shareProblem(form)}
+                  onFix={(problem) => setStepKey(problem.step)}
+                  notice={noticeOf("confirm") || fault}
+                  decline={decline}
+                  send={{
+                    busy: pending === "send",
+                    onSend: () => {
+                      const problem = shareProblem(live.current);
+                      if (problem) {
+                        setNotice({ view: problem.step, tone: "risk", text: t(problem.key) });
+                        setStepKey(problem.step);
+                        return;
+                      }
+                      clearConfirm();
+                      void once("send", send);
+                    }
+                  }}
+                  glow={glow}
                 />
-              </label>
-              <label>
-                <span className="ow-meta__term">{t("org.support.summary")}</span>
-                <textarea
-                  required
-                  rows={3}
-                  value={summary}
-                  onChange={(event) => setSummary(event.target.value)}
-                  style={{ width: "100%" }}
-                />
-              </label>
-              <label>
-                <span className="ow-meta__term">{t("org.support.needs")}</span>
-                <textarea
-                  rows={3}
-                  value={needs}
-                  onChange={(event) => setNeeds(event.target.value)}
-                  style={{ width: "100%" }}
-                />
-              </label>
-            </div>
-            {/* Kinnitus on eraldi TEGU, mitte vaikimisi eeldus (§5.8). */}
-            <label style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start" }}>
-              <Checkbox
-                bare
-                checked={confirmed}
-                onChange={setConfirmed}
-              />
-              <span>{t("org.support.confirm")}</span>
-            </label>
-            <div className="ow-actions">
-              {/* Saaja VÄRAV. Varem hoidis seda kinni natiivne `required`
-                  valikuväljal; oma valikmenüü juures tuleb värav siia. */}
-              <Button type="submit" disabled={busy || !confirmed || !recipientMembershipId}>
-                {t("org.support.send")}
-              </Button>
-            </div>
-          </Form>
-        ) : null}
-      </section>
+              );
+            }}
+          </StepFlight>
+        </OrgPart>
+      </div>
+    );
+  }
 
-      <section className="ow-card" aria-labelledby="ow-received-support">
-        <h3 id="ow-received-support" className="ow-title" style={{ fontSize: "1rem" }}>
-          {t("org.support.received")}
-        </h3>
-        {received.length === 0 ? (
-          <p className="ow-empty">{t("org.support.noReceived")}</p>
-        ) : (
-          <ul className="ow-tree">
-            {received.map((share) => (
-              <li key={share.id} className="ow-card">
-                <p className="ow-meta__term">
-                  {t(`org.supportShareStatus.${share.status}`)} ·{" "}
-                  {new Date(share.sentAt).toISOString().slice(0, 10)}
-                  {share.snapshot?.periodLabel ? ` · ${share.snapshot.periodLabel}` : ""}
-                </p>
-                {/* Kellelt — ilma selleta ei saa saaja avaldusele vastata. */}
-                <p className="ow-meta__value">
-                  <span className="ow-meta__term">{t("org.support.sentBy")}</span>{" "}
-                  {recipientLabel(share.sender || {})}
-                </p>
-                {share.snapshot ? (
-                  <p className="ow-meta__value" style={{ whiteSpace: "pre-wrap" }}>
-                    {share.snapshot.summary || "—"}
-                  </p>
-                ) : share.status === "SENT" ? (
-                  <div className="ow-actions">
-                    <Button type="button" onClick={() => open(share.id)} disabled={busy}>
-                      {t("org.support.open")}
-                    </Button>
-                  </div>
-                ) : null}
-                {share.snapshot?.supportRequested ? (
-                  <p className="ow-meta__value" style={{ whiteSpace: "pre-wrap" }}>
-                    <span className="ow-meta__term">{t("org.support.needs")}</span>{" "}
-                    {share.snapshot.supportRequested}
-                  </p>
-                ) : null}
-                {Array.isArray(share.snapshot?.needs) && share.snapshot.needs.length ? (
-                  <ul className="ow-chips">
-                    {share.snapshot.needs.map((need) => (
-                      <li key={need} className="ow-chip">
-                        {need}
-                      </li>
-                    ))}
-                  </ul>
-                ) : null}
-                {writable && ["SENT", "OPENED"].includes(share.status) ? (
-                  <div className="ow-actions">
-                    <Button type="button" onClick={() => act("close", share.id)} disabled={busy}>
-                      {t("org.support.close")}
-                    </Button>
-                  </div>
-                ) : null}
-              </li>
-            ))}
-          </ul>
-        )}
-        {receivedCursor ? (
-          <div className="ow-actions">
-            <Button type="button" variant="secondary" disabled={busy} onClick={loadReceived}>
-              {t("org.pagination.loadMore")}
-            </Button>
-          </div>
-        ) : null}
-      </section>
-
-      <section className="ow-card" aria-labelledby="ow-sent-support">
-        <h3 id="ow-sent-support" className="ow-title" style={{ fontSize: "1rem" }}>
-          {t("org.support.sent")}
-        </h3>
-        <p className="ow-empty">{t("org.support.recallHint")}</p>
-        {sent.length === 0 ? (
-          <p className="ow-empty">{t("org.support.noSent")}</p>
-        ) : (
-          <div className="ow-tablewrap">
-            <table className="ow-table">
-              <caption>{t("org.support.sent")}</caption>
-              <thead>
-                <tr>
-                  <th scope="col">{t("org.support.sentAt")}</th>
-                  <th scope="col">{t("org.support.sentTo")}</th>
-                  <th scope="col">{t("org.support.status")}</th>
-                  <th scope="col">{t("org.members.actions")}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {sent.map((share) => (
-                  <tr key={share.id}>
-                    <td data-label={t("org.support.sentAt")}>
-                      {new Date(share.sentAt).toISOString().slice(0, 10)}
-                    </td>
-                    <td data-label={t("org.support.sentTo")}>{recipientLabel(share.recipient || {})}</td>
-                    <td data-label={t("org.support.status")}>
-                      {t(`org.supportShareStatus.${share.status}`)}
-                    </td>
-                    <td data-label={t("org.members.actions")}>
-                      {writable && share.status === "SENT" && !share.openedAt ? (
-                        <Button type="button" onClick={() => act("recall", share.id)} disabled={busy}>
-                          {t("org.support.recall")}
-                        </Button>
-                      ) : null}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-        {sentCursor ? (
-          <div className="ow-actions">
-            <Button type="button" variant="secondary" disabled={busy} onClick={loadSent}>
-              {t("org.pagination.loadMore")}
-            </Button>
-          </div>
-        ) : null}
-      </section>
-
-      {done ? <p className="ow-notice ow-notice--privacy">{done}</p> : null}
-      {error ? (
-        <p className="ow-notice ow-notice--warning" role="alert">
-          {error}
-        </p>
-      ) : null}
-    </section>
+  const cursor = list === "sent" ? sentCursor : receivedCursor;
+  return (
+    <div ref={rootRef}>
+      <OrgPart context={context} part="support">
+        <SupportBoard
+          t={t}
+          tabs={[...LIST_TABS]}
+          list={list}
+          onList={(value) => {
+            clearConfirm();
+            setError("");
+            setWantedList(value);
+          }}
+          receivedRows={receivedRows}
+          sentRows={sentRows}
+          onOpen={(id) => {
+            clearConfirm();
+            setError("");
+            setOpenId(id);
+            setMode("share");
+          }}
+          send={
+            writable && options.length
+              ? {
+                  onSend: () => {
+                    clearConfirm();
+                    setError("");
+                    setNotice(null);
+                    setStepKey("who");
+                    setMode("send");
+                  }
+                }
+              : null
+          }
+          noRecipients={options.length === 0}
+          recall={{
+            armedId: confirm.armed.startsWith("recall:") ? confirm.armed.slice(7) : "",
+            busyId: pending.startsWith("recall:") ? pending.slice(7) : "",
+            onPress: (row) => confirm.press(`recall:${row.id}`, () => once(`recall:${row.id}`, () => act("recall", row.id))),
+            onCancel: clearConfirm
+          }}
+          more={cursor ? { busy: pending === "more", onMore: () => once("more", list === "sent" ? loadSent : loadReceived) } : null}
+          notice={fault}
+        />
+      </OrgPart>
+    </div>
   );
 }

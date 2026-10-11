@@ -12502,7 +12502,49 @@
       "reportingLine": "Otsene juht",
       "setReportingLine": "Määra juht",
       "manager": "Juht",
-      "member": "Liige"
+      "member": "Liige",
+      "unnamed": "Nimeta inimene",
+      "tabs": {
+        "label": "Mida näidata",
+        "received": "Saadud",
+        "sent": "Saadetud"
+      },
+      "period": "Periood",
+      "from": "Toeavaldus: {name}",
+      "open_share": "Ava avaldus",
+      "open_note": "Pärast avamist ei saa saatja avaldust enam tagasi võtta.",
+      "no_summary": "Avalduses ei ole kokkuvõtet.",
+      "close_confirm": "Jah, sulge",
+      "close_note": "Teine vajutus sulgeb avalduse.",
+      "recall_confirm": "Jah, võta tagasi",
+      "recall_note": "Avaldus võetakse tagasi ja saaja seda avada ei saa.",
+      "steps_label": "Toeavalduse saatmise sammud",
+      "steps": {
+        "who": {
+          "title": "Kellele",
+          "short": "Kellele"
+        },
+        "what": {
+          "title": "Mida saadad",
+          "short": "Sisu"
+        },
+        "confirm": {
+          "title": "Kinnitus ja saatmine",
+          "short": "Saatmine"
+        }
+      },
+      "who_question": "Kellele sa toeavalduse saadad?",
+      "who_note": "Saaja näeb ainult seda, mille sa ise ära saadad.",
+      "needs_hint": "Üks vajadus real.",
+      "need_recipient": "Vali, kellele avaldus läheb.",
+      "need_summary": "Kirjuta lühikokkuvõte.",
+      "need_confirm": "Kinnita saatmine märkeruuduga.",
+      "to_who": "Vali saaja",
+      "to_what": "Kirjuta kokkuvõte",
+      "confirm_title": "Kinnitan saatmise",
+      "confirm_terms": "Avamata sisu kustub 30 päeva järel, avatud sisu hiljemalt 12 kuu jooksul ja minimaalne jagamiskviitung 3 aasta järel.",
+      "sending": "Saadan avaldust",
+      "decline_note": "Kirjutatu kustub ja avaldust ei saadeta."
     },
     "supportShareStatus": {
       "SENT": "Saadetud",

@@ -184,6 +184,14 @@
   overflow-wrap: anywhere;
 }
 
+/* Loetav loend: read üksteise all äärejoonega, ilma kastita. */
+.lines {
+  composes: lines from "../journey/dashboard/dashboard.module.css";
+}
+.lineItem {
+  composes: lineItem from "../journey/dashboard/dashboard.module.css";
+}
+
 /* --- Rühm pealkirjaga ja tegevuslahtrid --------------------------------------- */
 /* Rühm: väike pealkiri ja selle all sisu (nt „Tal on" ja õiguste lahtrid). */
 .group {

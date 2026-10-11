@@ -12502,7 +12502,49 @@
       "reportingLine": "Direct manager",
       "setReportingLine": "Set manager",
       "manager": "Manager",
-      "member": "Member"
+      "member": "Member",
+      "unnamed": "Unnamed person",
+      "tabs": {
+        "label": "What to show",
+        "received": "Received",
+        "sent": "Sent"
+      },
+      "period": "Period",
+      "from": "Support request: {name}",
+      "open_share": "Open the request",
+      "open_note": "After you open it the sender can no longer take the request back.",
+      "no_summary": "The request has no summary.",
+      "close_confirm": "Yes, close",
+      "close_note": "A second press closes the request.",
+      "recall_confirm": "Yes, take it back",
+      "recall_note": "The request is taken back and the recipient cannot open it.",
+      "steps_label": "Steps of sending a support request",
+      "steps": {
+        "who": {
+          "title": "For whom",
+          "short": "Whom"
+        },
+        "what": {
+          "title": "What you send",
+          "short": "Content"
+        },
+        "confirm": {
+          "title": "Confirmation and sending",
+          "short": "Send"
+        }
+      },
+      "who_question": "Who do you send the support request to?",
+      "who_note": "The recipient sees only what you send yourself.",
+      "needs_hint": "One need per line.",
+      "need_recipient": "Choose who the request goes to.",
+      "need_summary": "Write a short summary.",
+      "need_confirm": "Confirm the sending with the checkbox.",
+      "to_who": "Choose the recipient",
+      "to_what": "Write the summary",
+      "confirm_title": "I confirm the sending",
+      "confirm_terms": "Unopened content is deleted after 30 days, opened content within 12 months at the latest and the minimal sharing receipt after 3 years.",
+      "sending": "Sending the request",
+      "decline_note": "What you wrote is discarded and no request is sent."
     },
     "supportShareStatus": {
       "SENT": "Sent",
