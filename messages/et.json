@@ -2897,7 +2897,6 @@
       "fields": {
         "topic": "Teema",
         "situation": "Olukorra kirjeldus",
-        "recipient_type": "Adressaadi tüüp",
         "recipient_search": "Otsi adressaati",
         "assessment_path": "Eelkaardistuse viis",
         "concerns_about": "Kelle kohta pöördumine käib",
@@ -2913,7 +2912,7 @@
       "placeholders": {
         "topic": "Lühike pealkiri",
         "situation": "Kirjelda olukorda, vajadust või küsimust.",
-        "recipient": "KOV kontakt, organisatsiooni vastuvõtutiim, teenuseosutaja või piirkond",
+        "recipient": "Nimi, omavalitsus või teenus",
         "draft": "Koostatud pöördumise tekst",
         "municipality": "Näiteks Tallinn, Põltsamaa vald või piirkond",
         "existing_support": "Kes või mis praegu aitab?",
@@ -2929,10 +2928,6 @@
         "organization_inbox_description": "Organisatsiooni postkast Sotsiaal.pro platvormis",
         "provider": "Teenuseosutaja",
         "selected": "Valitud kontakt"
-      },
-      "delivery": {
-        "internal": "Sotsiaal.pro sisene",
-        "external_email": "E-post"
       },
       "receiving": {
         "accepts_platform": "Võtan eelpöördumisi platvormil vastu",
@@ -2980,8 +2975,6 @@
         "send_internal": "Saada platvormis",
         "save_workflow": "Salvesta tööplaan",
         "archive": "Arhiveeri",
-        "show_more_contacts": "Vaata rohkem kontakte",
-        "show_less_contacts": "Näita vähem",
         "choose_recipient": "Vali adressaat",
         "choose_contact": "Vali see kontakt",
         "view_service_map": "Vaata teenusekaardil",
@@ -3056,7 +3049,6 @@
         "reprojected": "Eelpöördumise tekst koostati valitud osadest uuesti."
       },
       "preview": {
-        "no_auto_send": "Midagi ei saadeta automaatselt.",
         "check_note": "Enne kinnitamist kontrolli adressaati, saatmise viisi, pöördumise teksti ja eelinfot. Platvormisisene pöördumine jõuab vastuvõtja Pöördumiste vaatesse; e-kirja tekst avaneb sinu e-posti rakenduses ülevaatamiseks.",
         "recipient_prefix": "Adressaat",
         "delivery_prefix": "Saatmise viis",
@@ -3170,7 +3162,6 @@
         },
         "recipient": {
           "title": "Adressaat",
-          "lead": "Kontaktid tulevad teenusekaardilt. Vali, kellele pöördumine läheb; Sotsiaal.pro ise ei ole adressaat.",
           "empty": {
             "loading": "Laen kontakte...",
             "no_contacts": "Teenusekaardil ei ole praegu ühtegi kontakti, kellele pöördumist saata.",
@@ -3178,7 +3169,30 @@
             "none_of_type": "Seda liiki kontakte teenusekaardil praegu ei ole. Vali teine liik.",
             "no_match_type": "Otsingule „{query}” ei vasta ükski seda liiki kontakt. Proovi teist sõna või teist liiki.",
             "no_match": "Otsingule „{query}” ei vasta ükski kontakt. Proovi teist sõna, näiteks omavalitsuse nime."
-          }
+          },
+          "back": "Kõik kontaktid",
+          "source_suggested": "Soovitatud · {count}",
+          "chosen": "Valitud",
+          "facts": {
+            "email": "E-post",
+            "channel": "Pöördumine läheb",
+            "place": "Asukoht",
+            "area": "Teeninduspiirkond",
+            "service": "Teenus"
+          },
+          "channel": {
+            "platform": "Sotsiaal.pro platvormis",
+            "email": "e-kirjaga sinu e-posti rakendusest",
+            "both": "platvormis või e-kirjaga",
+            "manual": "siit saata ei saa; teksti saad kopeerida või alla laadida"
+          },
+          "services": "Mis teenuse kohta pöördud?",
+          "no_services": "Sellel teenuseosutajal ei ole praegu teenust, mille kohta saaks siit pöörduda.",
+          "filters": "Milliseid kontakte näidata",
+          "source_note": "Kontaktid tulevad teenusekaardilt. Sotsiaal.pro ise ei ole adressaat.",
+          "choose_service": "Vali teenus",
+          "change_service": "Vali teine teenus",
+          "back_contact": "Kontakti andmed"
         },
         "text": {
           "title": "Pöördumise tekst",
