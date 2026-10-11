@@ -123,7 +123,7 @@ on alati täies pikkuses). Osade laud mahub 14 plaadiga (arvutis kuni 494/522).
 Elus kontroll #724 järel (omaniku seansiga ainult lugedes): värav ja paigaldus
 rohelised, uued sõnad kolme keele avalikus kataloogis, koduteenuse laud ja 17 teed
 vastavad; kliendi lehte elus ei avatud, uus kuju on nähtud ainult kohalikult.
-**Uus kirje sammudena (12.10 öö, PR „a new entry is four steps”):** kirje vorm oli
+**Uus kirje sammudena (12.10 öö, #727, elus):** kirje vorm oli
 üks pikk vorm (telefonis 1800 px). Nüüd on uus kirje neli sammu kiirmenüüs: kirje
 liik (ja kuidas kokku puututi), mida tegid (kava toimingud; vajutus märgib
 tehtuks, „Täpsusta” avab viisi, ravimitoimingu märke ja tegemata jäämise põhjuse),
@@ -133,7 +133,10 @@ salvestamist on ees üks lause ja tee päevikusse. Vormi olek, mustand seadmes,
 kordussaatmise võti ja järjekord võrguta on tõstetud konksu
 `components/homeCare/entry/useEntryForm.js` (kood liikus sõna-sõnalt); sama konksu
 kasutab kirje paranduse vorm päevikus, mis on veel vanal kihil. Kõne märkimine ja
-„Peaaegu juhtus” on uue kirje alavaated (vana sisu). Mõõdetud kohalikult: telefonis
+„Peaaegu juhtus” on uuel kihil omaette väikesed vaated (12.10 öö, otse `main`-i):
+kliendi lehel uue kirje esimesest sammust, avalehel otsingu tulemuse realt („Märgi
+kõne” rea kõrval, klienti avamata); pärast salvestamist üks lause ja tee tagasi.
+Mõõdetud kohalikult: telefonis
 mahuvad kõik sammud (844/844; et, en, ru), arvutis kuni 513/522 eesti keeles;
 üheksa pika nimega toiminguga loend kerib kogu paneeli (1203/844 ja 711/522), nagu
 pikk loend ikka. Arvutis ei mahtunud viimane samm esmalt ära (593/522): tekst on

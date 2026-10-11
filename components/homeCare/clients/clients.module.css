@@ -60,11 +60,6 @@
   text-underline-offset: 0.2em;
 }
 
-/* Vana kihi osa rea all (kõne märkimine): sama ümbris mis laual. */
-.old {
-  composes: notes from "../desk/desk.module.css";
-}
-
 /* Telefoninumber loendi real: vajutatav sõrmega, numbrid kohakuti. */
 .tel {
   display: inline-flex;

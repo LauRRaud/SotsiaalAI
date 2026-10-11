@@ -14688,7 +14688,6 @@
       }
     },
     "call": {
-      "open": "Kõne: klient või lähedane helistas",
       "caller_label": "Kes helistas",
       "topic_label": "Mille pärast",
       "note_label": "Selgitus (valikuline)",
@@ -14718,7 +14717,8 @@
           "CONCERN": "Oli mures.",
           "OTHER": "Muu teema."
         }
-      }
+      },
+      "back_to_results": "Tagasi tulemuste juurde"
     },
     "calls": {
       "link": "Kõnede loendur",

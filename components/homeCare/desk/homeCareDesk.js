@@ -59,6 +59,8 @@ export const HOME_VIEWS = Object.freeze({
   next: "home_care.slots.next_title",
   clients: "home_care.home.all_clients",
   add: "home_care.home.add_client",
+  /* Kõne märkimine otsingu tulemuse realt. */
+  call: "home_care.entry_steps.quick_call",
   refer: "home_care.referrals.title",
   name: "home_care.desk.names.name"
 });

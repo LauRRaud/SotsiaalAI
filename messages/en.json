@@ -14688,7 +14688,6 @@
       }
     },
     "call": {
-      "open": "Call: the client or a relative called",
       "caller_label": "Who called",
       "topic_label": "What about",
       "note_label": "Explanation (optional)",
@@ -14718,7 +14717,8 @@
           "CONCERN": "Was worried.",
           "OTHER": "Another matter."
         }
-      }
+      },
+      "back_to_results": "Back to the results"
     },
     "calls": {
       "link": "Call counter",

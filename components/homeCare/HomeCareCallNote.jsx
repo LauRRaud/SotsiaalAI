@@ -1,9 +1,14 @@
 "use client";
 
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { newClientActionKey } from "@/components/casework/caseWorkClient";
 import { useI18n } from "@/components/i18n/I18nProvider";
+import { SMALL, footNote } from "@/components/org/OrgBits";
+import ChoiceRow from "@/components/stage/ChoiceRow";
+import StepPanel from "@/components/stage/StepPanel";
+import TextAreaField from "@/components/stage/TextAreaField";
+import Button from "@/components/ui/Button";
 import {
   CARE_CALL_CALLERS,
   CARE_CALL_TOPICS,
@@ -20,7 +25,7 @@ import { getOutboxManager } from "./homeCareOutbox";
 const SAVE_TIMEOUT_MS = 25_000;
 
 /**
- * Kõnemärge: klient või lähedane helistas.
+ * Kõnemärge: klient või lähedane helistas. Omaette väike vaade.
  *
  * Kaks puudutust: mille pärast helistati ja „Salvesta". Helistajaks on vaikimisi
  * lähedane, sest enamik kõnesid tuleb neilt. Selgitus on valikuline: kui seda ei
@@ -29,15 +34,18 @@ const SAVE_TIMEOUT_MS = 25_000;
  * Kõnemärge on päeviku kirje (kontakti viis „telefon") ja käitub nagu iga teine:
  * meeskond näeb seda, otsing leiab ja kui server ei vasta, läheb see seadme
  * järjekorda. Hooldusjuhi loendur loeb neid kuu kaupa.
+ *
+ * Vaade avaneb kahest kohast: kliendi lehel uue kirje esimesest sammust ja
+ * koduteenuse avalehel otsingu tulemuse realt. `back`: { label, onBack } viib
+ * tagasi sinna, kust tuldi; `more`: { label, onOpen } on tee edasi pärast
+ * salvestamist (kliendi lehel päevikusse), kui see on olemas.
  */
-export default function HomeCareCallNote({ organizationId, clientId, clientName = "", viewerMembershipId = null, onSaved }) {
+export default function HomeCareCallNote({ organizationId, clientId, clientName = "", viewerMembershipId = null, onSaved, title, back, more = null }) {
   const { t } = useI18n();
   const { call, busy, error, setError } = useHomeCareApi();
-  const fieldId = useId();
   const attemptRef = useRef(null);
   const device = useMemo(() => getOutboxManager(viewerMembershipId), [viewerMembershipId]);
 
-  const [open, setOpen] = useState(false);
   const [caller, setCaller] = useState(CareCallCaller.RELATIVE);
   const [topic, setTopic] = useState("");
   const [note, setNote] = useState("");
@@ -62,11 +70,9 @@ export default function HomeCareCallNote({ organizationId, clientId, clientName 
     setCaller(CareCallCaller.RELATIVE);
     setTopic("");
     setNote("");
-    setOpen(false);
   };
 
-  const submit = async (event) => {
-    event.preventDefault();
+  const submit = async () => {
     if (sending || !topic) return;
     setSending(true);
     setDone("");
@@ -117,83 +123,57 @@ export default function HomeCareCallNote({ organizationId, clientId, clientName 
     }
   };
 
-  if (!open) {
+  const leave = () => {
+    reset();
+    setDone("");
+    setError("");
+    back.onBack();
+  };
+
+  /* Märge läks teele: üks lause ja tee tagasi (ja kliendi lehel päevikusse). */
+  if (done) {
     return (
-      <div className="hc-field">
-        <div className="hc-row">
-          <button
-            className="hc-btn hc-btn--quiet"
-            type="button"
-            onClick={() => {
-              setDone("");
-              setOpen(true);
-            }}
-          >
-            {t("home_care.call.open")}
-          </button>
-        </div>
-        {done ? (
-          <p className="hc-ok" role="status">
-            {done === "queued" ? t("home_care.entry.queued") : t("home_care.call.saved")}
-          </p>
-        ) : null}
-      </div>
+      <StepPanel
+        title={title}
+        question={done === "queued" ? t("home_care.entry.queued") : t("home_care.call.saved")}
+        actions={
+          <>
+            {more && done === "saved" ? (
+              <Button {...SMALL} data-call="more" onClick={more.onOpen}>
+                {more.label}
+              </Button>
+            ) : null}
+            <Button type="button" size="sm" variant="primary" data-back="1" onClick={leave}>
+              {back.label}
+            </Button>
+          </>
+        }
+      />
     );
   }
 
+  const option = (prefix) => (value) => ({ value, label: t(`${prefix}.${value}`) });
   return (
-    <form className="hc-form" onSubmit={submit} inert={sending} aria-busy={sending}>
-      <div className="hc-field">
-        <span className="hc-label" id={`${fieldId}-caller`}>
-          {t("home_care.call.caller_label")}
-        </span>
-        <div className="hc-chips" role="group" aria-labelledby={`${fieldId}-caller`}>
-          {CARE_CALL_CALLERS.map((value) => (
-            <button key={value} type="button" className="hc-chip" aria-pressed={caller === value} onClick={() => setCaller(value)}>
-              {t(`home_care.call.callers.${value}`)}
-            </button>
-          ))}
-        </div>
+    <StepPanel
+      title={title}
+      question={clientName}
+      note={footNote(error ? { text: error, tone: "risk" } : null)}
+      actions={
+        <>
+          <Button {...SMALL} data-back="1" onClick={leave} disabled={sending}>
+            {t("home_care.entry.cancel")}
+          </Button>
+          <Button type="button" size="sm" variant="primary" data-call="save" disabled={!topic} aria-busy={busy || sending ? "true" : undefined} onClick={submit}>
+            {t("home_care.call.save")}
+          </Button>
+        </>
+      }
+    >
+      <div inert={sending} aria-busy={sending ? "true" : undefined}>
+        <ChoiceRow label={t("home_care.call.caller_label")} options={CARE_CALL_CALLERS.map(option("home_care.call.callers"))} value={caller} onChange={setCaller} columns={3} keepColumns />
+        <ChoiceRow label={t("home_care.call.topic_label")} options={CARE_CALL_TOPICS.map(option("home_care.call.topics"))} value={topic} onChange={setTopic} columns={4} keepColumns />
+        <TextAreaField label={t("home_care.call.note_label")} hint={t("home_care.call.note_hint")} value={note} onChange={setNote} rows={2} maxLength={HOME_CARE_LIMITS.ENTRY_TEXT_MAX} />
       </div>
-      <div className="hc-field">
-        <span className="hc-label" id={`${fieldId}-topic`}>
-          {t("home_care.call.topic_label")}
-        </span>
-        <div className="hc-chips" role="group" aria-labelledby={`${fieldId}-topic`}>
-          {CARE_CALL_TOPICS.map((value) => (
-            <button key={value} type="button" className="hc-chip" aria-pressed={topic === value} onClick={() => setTopic(value)}>
-              {t(`home_care.call.topics.${value}`)}
-            </button>
-          ))}
-        </div>
-      </div>
-      <div className="hc-field">
-        <label className="hc-label" htmlFor={`${fieldId}-note`}>
-          {t("home_care.call.note_label")}
-        </label>
-        <textarea
-          id={`${fieldId}-note`}
-          className="hc-textarea hc-textarea--short"
-          value={note}
-          onChange={(event) => setNote(event.target.value)}
-          maxLength={HOME_CARE_LIMITS.ENTRY_TEXT_MAX}
-          rows={2}
-        />
-        <p className="hc-hint">{t("home_care.call.note_hint")}</p>
-      </div>
-      {error ? (
-        <p className="hc-error" role="alert">
-          {error}
-        </p>
-      ) : null}
-      <div className="hc-row">
-        <button className="hc-btn hc-btn--primary" type="submit" disabled={busy || sending || !topic}>
-          {t("home_care.call.save")}
-        </button>
-        <button className="hc-btn" type="button" onClick={reset} disabled={busy || sending}>
-          {t("home_care.entry.cancel")}
-        </button>
-      </div>
-    </form>
+    </StepPanel>
   );
 }

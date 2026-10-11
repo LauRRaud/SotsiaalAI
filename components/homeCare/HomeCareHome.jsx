@@ -43,9 +43,8 @@ import { clientHref, formatTime, homeCareBase, useHomeCareApi } from "./homeCare
  *
  * VAATED. Hooldaja päev („Täna", kõik tänased käigud, „Minu käes", takistuse
  * teade, järgmised päevad) on kaustas ./day/, kliendid kaustas ./clients/; uue
- * kliendi vorm, „Kuhu suunata" ja nime vorm on oma failides. Vanal `hc-*` kihil
- * on siin veel ainult seadmes ootavate kirjete kast ja kõne märkimine otsingu
- * tulemuse all.
+ * kliendi vorm, „Kuhu suunata", nime vorm ja kõne märkimine on oma failides.
+ * Vanal `hc-*` kihil on siin veel ainult seadmes ootavate kirjete kast.
  *
  * LINGID KLIENDI LEHELE ON `prefetch={false}`. Kliendi lehe avamine jätab
  * avamislogisse rea; ette laadimine kirjutaks sinna avamisi, mida inimene ei
@@ -74,6 +73,8 @@ export default function HomeCareHome({ context, initial, unitOptions, myDay = nu
   const [results, setResults] = useState(null);
   /* Mitu klienti on loendis näha; „Näita veel" pikendab. */
   const [listCount, setListCount] = useState(CLIENTS_PAGE);
+  /* Klient, kelle kohta kõnet märgitakse (otsingu tulemuse realt). */
+  const [callFor, setCallFor] = useState(null);
 
   const who = useMemo(() => deskViewer({ context, initial, myDay, referrals, ownName }), [context, initial, myDay, referrals, ownName]);
   const groups = useMemo(() => deskGroups(who, { t, organizationId }), [organizationId, t, who]);
@@ -293,7 +294,21 @@ export default function HomeCareHome({ context, initial, unitOptions, myDay = nu
     );
   }
 
-  if (view === "clients") {
+  if (view === "call" && callFor) {
+    /* Kõne märkimine otse tulemusest (K5-o): klienti avamata; märge läheb tema päevikusse. */
+    return inPart(
+      <HomeCareCallNote
+        organizationId={organizationId}
+        clientId={callFor.id}
+        clientName={callFor.displayName}
+        viewerMembershipId={context.membership?.id || null}
+        title={viewName("call", who, { t })}
+        back={{ label: t("home_care.call.back_to_results"), onBack: () => setView("clients") }}
+      />
+    );
+  }
+
+  if (view === "clients" || view === "call") {
     const page = pageOf(clients, listCount);
     return inPart(
       <ClientsView
@@ -321,10 +336,13 @@ export default function HomeCareHome({ context, initial, unitOptions, myDay = nu
                   href: clientHref(organizationId, client.id),
                   title: client.displayName,
                   line: resultLine(client, { t }),
-                  /* Kõne märkimine otse tulemusest (K5-o). */
-                  call: canNoteCall(client, results.length) ? (
-                    <HomeCareCallNote organizationId={organizationId} clientId={client.id} clientName={client.displayName} viewerMembershipId={context.membership?.id || null} />
-                  ) : null
+                  /* Kõne märkimine otse tulemusest (K5-o): omaette vaade. */
+                  onCall: canNoteCall(client, results.length)
+                    ? () => {
+                        setCallFor({ id: client.id, displayName: client.displayName });
+                        setView("call");
+                      }
+                    : null
                 })),
                 onClear: () => setResults(null)
               }

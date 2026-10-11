@@ -506,15 +506,16 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
           {sees("entry")
             ? slot(
                 "call",
-                <OldPart title={t("home_care.entry_steps.quick_call")} back={toEntry}>
-                  <HomeCareCallNote
-                    organizationId={organizationId}
-                    clientId={client.id}
-                    clientName={client.displayName}
-                    viewerMembershipId={access.membershipId}
-                    onSaved={upsertEntry}
-                  />
-                </OldPart>
+                <HomeCareCallNote
+                  organizationId={organizationId}
+                  clientId={client.id}
+                  clientName={client.displayName}
+                  viewerMembershipId={access.membershipId}
+                  onSaved={upsertEntry}
+                  title={t("home_care.entry_steps.quick_call")}
+                  back={toEntry}
+                  more={{ label: t("home_care.entry_steps.to_diary"), onOpen: () => setView("diary") }}
+                />
               )
             : null}
 
@@ -522,15 +523,15 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
           {sees("entry")
             ? slot(
                 "near_miss",
-                <OldPart title={t("home_care.near_miss.start")} back={toEntry}>
-                  <HomeCareNearMiss
-                    organizationId={organizationId}
-                    clientId={client.id}
-                    clientName={client.displayName}
-                    viewerMembershipId={access.membershipId}
-                    onSaved={upsertEntry}
-                  />
-                </OldPart>
+                <HomeCareNearMiss
+                  organizationId={organizationId}
+                  clientId={client.id}
+                  clientName={client.displayName}
+                  viewerMembershipId={access.membershipId}
+                  onSaved={upsertEntry}
+                  title={t("home_care.near_miss.start")}
+                  back={toEntry}
+                />
               )
             : null}
 

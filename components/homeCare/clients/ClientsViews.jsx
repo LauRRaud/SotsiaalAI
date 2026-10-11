@@ -51,7 +51,7 @@ function ClientRow({ row }) {
 /**
  * `search`: { id, label, query, onQuery, onSubmit, busy, error, hints } või null (otsida ei tohi;
  *   selgitused on tulemuste juures, sest seal on neid vaja);
- * `results`: null või { rows, onClear } (rea `call` on kõne märkimise osa või null);
+ * `results`: null või { rows, onClear } (rea `onCall` avab kõne märkimise vaate või on null);
  * `list`: { rows, error, empty, expanded, more };
  * `name`: { line, onChange } või null; `foot`: { toggle, importHref, onAdd }.
  */
@@ -124,13 +124,23 @@ export function ClientsView({ t, title, search, results, list, name, foot }) {
             </p>
           ) : (
             <ul className={shared.rows} aria-live="polite">
-              {results.rows.map((row) => (
-                <li key={row.key} className={shared.rowItem}>
-                  <ClientRow row={row} />
-                  {/* Kõne märkimine on veel vanal kihil ja vajab `hc-shell` muutujaid. */}
-                  {row.call ? <div className={`hc-shell ${styles.old}`}>{row.call}</div> : null}
-                </li>
-              ))}
+              {results.rows.map((row) =>
+                row.onCall ? (
+                  /* Kõne saab märkida klienti avamata: tegevus on rea kõrval vaikne sõna. */
+                  <li key={row.key} className={shared.item}>
+                    <ClientRow row={row} />
+                    <span className={shared.itemAside}>
+                      <Button {...SMALL} className={shared.aside} data-clients-call={row.key} aria-label={`${t("home_care.entry_steps.quick_call")}: ${row.title}`} onClick={row.onCall}>
+                        {t("home_care.entry_steps.quick_call")}
+                      </Button>
+                    </span>
+                  </li>
+                ) : (
+                  <li key={row.key} className={shared.rowItem}>
+                    <ClientRow row={row} />
+                  </li>
+                )
+              )}
             </ul>
           )
         ) : (
