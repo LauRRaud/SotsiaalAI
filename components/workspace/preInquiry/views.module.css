@@ -100,18 +100,25 @@
   color: var(--text-soft);
 }
 
-/* Ülevaate read: nimetus vasakul, väärtus paremal. */
+/* Ülevaate read: nimetus vasakul, väärtus paremal.
+   Otseteel (/eelpoordumised) ümbritseb lehte vana ühine kiht, mis teeb iga `dl`-i
+   kaartide võrguks mitmes veerus ja annab reale kaardi tausta: kolme reaga loend läks
+   kolme kitsasse veergu ja väärtus murdus täht tähe alla. Siin on veerg, taust ja polster
+   seepärast välja öeldud. */
 .rows {
   margin: 0;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 0;
 }
 .row {
   display: grid;
   grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
   gap: 0.2rem 1rem;
-  padding-block: 0.45rem;
+  padding: 0.45rem 0;
+  border-radius: 0;
   border-bottom: 1px solid color-mix(in srgb, var(--text-warm) 10%, transparent);
+  background: none;
 }
 .row:last-child {
   border-bottom: 0;
@@ -186,6 +193,24 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem 0.9rem;
+}
+/* Link lause sees (tee teisele lehele): tekst, mitte nupp. */
+.textLink {
+  display: inline;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0.3rem;
+  background: none;
+  box-shadow: none;
+  color: var(--text-warm);
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+.textLink:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
 }
 
 @container (max-width: 40rem) {

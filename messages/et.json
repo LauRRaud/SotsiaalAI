@@ -3041,7 +3041,8 @@
             "description": "Kasuta oma privaatses Teekonnas salvestatud infot ja vali, mida soovid eelpöördumises jagada.",
             "description_open": "Ava oma Teekond ja alusta eelpöördumist sealt: nii tuleb sinu valitud info kaasa. Teekond jääb privaatseks."
           }
-        }
+        },
+        "mine": "Minu eelpöördumised · {count}"
       },
       "overview": {
         "title": "Eelinfo ülevaade",
@@ -3118,6 +3119,14 @@
         "saved": {
           "title": "Minu eelpöördumised",
           "short": "Minu omad"
+        },
+        "sent_state": {
+          "title": "Pöördumise seis",
+          "short": "Seis"
+        },
+        "sent_text": {
+          "title": "Pöördumise tekst",
+          "short": "Tekst"
         }
       },
       "new_confirm": "Uue alustamine tühjendab praeguse salvestamata teksti. Vajuta uuesti, kui soovid alustada uut.",
@@ -3265,6 +3274,29 @@
           "network": {
             "title": "Võrgustik",
             "lead": "Kui selle inimese abistamiseks on vaja teist spetsialisti, kaasa ta siit. Inimene otsustab ise, kas ta jagamisega nõustub."
+          }
+        },
+        "sent": {
+          "recipient": "Adressaat",
+          "no_recipient": "valimata",
+          "sent_at": "Saadetud",
+          "channel_platform": "platvormis",
+          "channel_email": "e-kirjaga",
+          "last_reply": "Viimane vastus",
+          "sharings_link": "Minu jagamised",
+          "recall_hint": "Kuni vastuvõtja ei ole pöördumist vastu võtnud, saad selle tagasi võtta lehel",
+          "correct_hint": "Kui midagi on vaja parandada, saad paranduse saata lehel",
+          "text_lead": "Selle teksti saatsid. Saadetud pöördumist enam muuta ei saa.",
+          "text_lead_unsent": "Arhiveeritud pöördumise tekst. Muutmiseks taasava pöördumine.",
+          "text_heading": "Pöördumise tekst",
+          "next": {
+            "waiting": "Vastuvõtja ei ole pöördumist veel vastu võtnud. Kui ta selle vastu võtab, näed seda siin.",
+            "accepted": "Vastuvõtja on pöördumise vastu võtnud. Vastus tuleb ühisesse vestlusruumi.",
+            "answered": "Vastuvõtja on vastanud. Vastus on ühises vestlusruumis.",
+            "external": "Saatsid selle pöördumise e-kirjaga. Vastus tuleb sinu e-posti; vastuvõtmist platvorm ei näe.",
+            "recalled": "Võtsid selle pöördumise tagasi. Vastuvõtja seda enam ei näe.",
+            "replaced": "Saatsid selle pöördumise kohta paranduse. Vastuvõtja juures kehtib parandatud pöördumine.",
+            "archived": "See pöördumine on saatmata ja arhiveeritud."
           }
         }
       },

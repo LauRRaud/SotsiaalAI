@@ -54,8 +54,9 @@ import { pushWithTransition } from "@/lib/routeTransition";
 import AdminRoleViewCycleButton from "./AdminRoleViewCycleButton";
 import { ContextView, JourneyView, PathView, SituationView, UrgencyView, WhoView } from "./preInquiry/CollectViews";
 import DomainsView from "./preInquiry/DomainsView";
-import { AssistantView, RecipientView, ReviewView, SavedView, SendView, TextView } from "./preInquiry/FlowViews";
+import { AssistantView, RecipientView, ReviewView, SavedView, SendView, SentStateView, SentTextView, TextView } from "./preInquiry/FlowViews";
 import PreInquiryStart from "./preInquiry/PreInquiryStart";
+import { SHARINGS_PATH, replaceInquiryRow, senderFlowKeys, senderListCounts, senderOpenMode, sentInquiryView } from "./preInquiry/senderModel";
 import { CheckView, InfoView, InquiryView, NetworkView, PlanView, PrepareView, QueueView, SettingsView } from "./preInquiry/ReceiverViews";
 import viewStyles from "./preInquiry/views.module.css";
 import LocationStepView from "./serviceProfile/LocationViews";
@@ -1569,10 +1570,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       ) {
         return;
       }
-      setInquiries((current) => [
-        requestedInquiry,
-        ...current.filter((item) => item.id !== requestedInquiry.id)
-      ]);
+      setInquiries((current) => replaceInquiryRow(current, requestedInquiry, { toFront: true }));
       handleOpenInquiryRef.current?.(requestedInquiry);
     }
     loadRequestedInquiry();
@@ -1674,7 +1672,8 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
      kirjutatud teksti, ei tühjenda esimene vajutus midagi: see ütleb, mis kaoks,
      ja alles teine vajutus (kaheksa sekundi sees) alustab uut. */
   function handleNewInquiryGuarded() {
-    const unsaved = Boolean(String(situation || "").trim() || String(assistantInput || "").trim() || draftTouched);
+    /* Saadetud pöördumise lugemisvaates ei ole midagi salvestamata: seal ei küsita. */
+    const unsaved = workflowMode !== "sent" && Boolean(String(situation || "").trim() || String(assistantInput || "").trim() || draftTouched);
     const now = Date.now();
     if (unsaved && now - newInquiryConfirmRef.current > 8000) {
       newInquiryConfirmRef.current = now;
@@ -1747,8 +1746,16 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     setAssistantSuggestions([]);
     setShowMoreContacts(false);
     setDraftTouched(true);
-    setWorkflowMode("existing");
-    setActiveWorkflowStep("text");
+    /* Saadetud (või muul põhjusel muutmisele suletud) pöördumine avaneb lugemisvaates: seis,
+       adressaat ja saadetud tekst. Muutmisvormi ega saatmise sammu sellel ei ole, sest server
+       saadetud pöördumist muuta ei luba (reegel: preInquiry/senderModel.js). */
+    if (senderOpenMode(inquiry) === "read") {
+      setWorkflowMode("sent");
+      setActiveWorkflowStep("sent_state");
+    } else {
+      setWorkflowMode("existing");
+      setActiveWorkflowStep("text");
+    }
     /* Vastuvõtja jõuab lingist („ava pöördumine") otse selle pöördumise vaatesse. */
     setReceiverStep("inquiry");
     setAssessmentPathChosen(Boolean(inquiry.assessmentState?.path));
@@ -1828,7 +1835,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       const inquiry = payload?.inquiry || null;
       if (inquiry) {
         if (!activeInquiryId) createActionIdRef.current = createPreInquiryActionId();
-        setInquiries((current) => [inquiry, ...current.filter((item) => item.id !== inquiry.id)]);
+        setInquiries((current) => replaceInquiryRow(current, inquiry, { toFront: true }));
         setActiveInquiryId(inquiry.id || "");
         setJourneySourceId("");
         setTopic(inquiry.topic || topic);
@@ -1836,6 +1843,12 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
         setAssessmentState(normalizePreInquiryAssessmentState(inquiry.assessmentState || normalizedAssessmentState));
         setDraft(inquiry.userEditedDraft || inquiry.generatedDraft || draft);
         setDraftTouched(true);
+        /* Pärast saatmist ei jää saatmise vaade ette: saadetud pöördumist näidatakse
+           lugemisvaates (seis, adressaat, tekst) ja saatmise nuppu enam ei ole. */
+        if (senderOpenMode(inquiry) === "read") {
+          setWorkflowMode("sent");
+          setActiveWorkflowStep("sent_state");
+        }
       }
       setNotice(nextStatus === "SENT"
         ? readText(t, "workspace_feature_pages.pre_inquiries.send_success", "Eelpöördumine saadetud.")
@@ -1892,7 +1905,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       });
       const payload = await response.json().catch(() => ({}));
       if (response.ok && payload?.inquiry) {
-        setInquiries((current) => current.map((item) => (item.id === payload.inquiry.id ? payload.inquiry : item)));
+        setInquiries((current) => replaceInquiryRow(current, payload.inquiry));
       }
     } catch {
       // network error — leave the inquiry status as-is.
@@ -1957,7 +1970,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
         throw new Error(payload?.message || readText(t, "workspace_feature_pages.pre_inquiries.errors.save_failed", "Pre-inquiry could not be saved."));
       }
       if (payload?.inquiry) {
-        setInquiries((current) => current.map((item) => item.id === inquiryId ? payload.inquiry : item));
+        setInquiries((current) => replaceInquiryRow(current, payload.inquiry));
       }
       setNotice(readText(t, "workspace_feature_pages.pre_inquiries.archive_success", "Eelpöördumine arhiveeriti."));
     } catch (archiveError) {
@@ -1982,7 +1995,9 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       const payload = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(payload?.message || "pre_inquiries.errors.reopen_failed");
       if (payload?.inquiry) {
-        setInquiries((current) => current.map((item) => item.id === inquiryId ? payload.inquiry : item));
+        setInquiries((current) => replaceInquiryRow(current, payload.inquiry));
+        /* Lugemisvaatest taasavatud pöördumine läheb kohe muutmisse. */
+        if (workflowMode === "sent" && activeInquiryId === inquiryId) handleOpenInquiry(payload.inquiry);
       }
       setNotice(readText(t, "workspace_feature_pages.pre_inquiries.reopen_success", "Eelpöördumine taasavati muutmiseks."));
     } catch (reopenError) {
@@ -2007,7 +2022,12 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       const payload = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(payload?.message || "pre_inquiries.errors.send_failed");
       if (payload?.inquiry) {
-        setInquiries((current) => current.map((item) => item.id === inquiryId ? payload.inquiry : item));
+        setInquiries((current) => replaceInquiryRow(current, payload.inquiry));
+        /* E-kirjaga saadetuks märgitud pöördumine on nüüd saadetud: lugemisvaade, mitte saatmise kaardid. */
+        if (activeInquiryId === inquiryId && senderOpenMode(payload.inquiry) === "read") {
+          setWorkflowMode("sent");
+          setActiveWorkflowStep("sent_state");
+        }
       }
       setNotice(readText(t, "workspace_feature_pages.pre_inquiries.external_confirm_success", "E-kirja saatmine märgiti sinu kinnituse põhjal."));
     } catch (confirmError) {
@@ -2303,21 +2323,8 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     (sum, domain) => sum + (domain.primaryAnswers || []).filter((answer) => answer.screenAnswer).length,
     0
   );
-  const flowKeys = [
-    ...(workflowMode === "journey" ? ["journey"] : []),
-    "path",
-    "situation",
-    "who",
-    "urgency",
-    ...(hasDomains ? ["domains"] : []),
-    "context",
-    "assistant",
-    "review",
-    "recipient",
-    "text",
-    "send",
-    "saved"
-  ];
+  /* Sammud töövoo järgi: koostamine, saadetud pöördumise lugemine või ainult loend. */
+  const flowKeys = senderFlowKeys(workflowMode, { hasDomains });
   const partial = (done, any) => (done ? "done" : any ? "partial" : "empty");
   const flowState = {
     journey: journeyShareSelections.length ? "done" : "empty",
@@ -2332,6 +2339,8 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     recipient: selectedRecipient ? "done" : "empty",
     text: draftTouched || activeInquiry ? "done" : "empty",
     send: partial(Boolean(activeInquiry?.sentAt || activeInquiry?.status === "SENT"), Boolean(activeInquiry)),
+    sent_state: "done",
+    sent_text: "done",
     saved: "empty"
   };
   const flowSummary = {
@@ -2343,6 +2352,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     context: supportContext.personWish.trim().slice(0, 90),
     recipient: selectedRecipient?.title || "",
     text: topic.trim().slice(0, 90),
+    sent_text: topic.trim().slice(0, 90),
     saved: savedInquiries.length ? String(savedInquiries.length) : ""
   };
   const preInquirySteps = flowKeys.map((key) => ({
@@ -2352,8 +2362,11 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     state: flowState[key],
     summary: flowSummary[key] || undefined,
     /* Loendid ja ülevaade võivad olla pikad: nende järgi ühist kõrgust ei võeta. */
-    free: key === "review" || key === "recipient" || key === "saved"
+    free: key === "review" || key === "recipient" || key === "saved" || key === "sent_text"
   }));
+  /* Avaekraanilt pääseb oma pöördumiste loendisse (mustandid ja saadetud); varem leidis
+     saadetud pöördumise ainult Teekonna kaudu. */
+  const ownCounts = senderListCounts(savedInquiries);
 
   if (!isRecipientRole && !workflowMode) {
     return (
@@ -2372,6 +2385,19 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
           )
         }))}
         onStart={handleStartWorkflow}
+        mine={
+          ownCounts.total
+            ? {
+                label: tr("start.mine", "Minu eelpöördumised · {count}").replace("{count}", String(ownCounts.total)),
+                onOpen: () => {
+                  setNotice("");
+                  setError("");
+                  setWorkflowMode("list");
+                  setActiveWorkflowStep("saved");
+                }
+              }
+            : null
+        }
       />
     );
   }
@@ -2828,8 +2854,95 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     };
   });
 
-  const renderFlowView = (step) => {
+  /* Saadetud pöördumise lugemisvaade: mida näidata, otsustab senderModel.js. */
+  const sentView = workflowMode === "sent" && activeInquiry ? sentInquiryView(activeInquiry) : null;
+  const sentText = activeInquiry ? activeInquiry.userEditedDraft || activeInquiry.generatedDraft || activeInquiry.situation || "" : "";
+
+  const renderFlowView = (step, stepIndex, flight) => {
     switch (step.key) {
+      case "sent_state": {
+        if (!sentView) return <SentStateView tr={tr} topic={tr("untitled", "Pealkirjata")} state="" facts={[]} />;
+        const label = senderStateLabel(activeInquiry);
+        const facts = [
+          [tr("views.sent.recipient", "Adressaat"), sentView.recipient || tr("views.sent.no_recipient", "valimata")],
+          sentView.sentAt
+            ? [
+                tr("views.sent.sent_at", "Saadetud"),
+                `${formatDate(sentView.sentAt, locale)} · ${
+                  sentView.channel === "platform" ? tr("views.sent.channel_platform", "platvormis") : tr("views.sent.channel_email", "e-kirjaga")
+                }`
+              ]
+            : null,
+          sentView.state.key === "answered" && activeInquiry.lastReplyAt
+            ? [tr("views.sent.last_reply", "Viimane vastus"), formatDay(activeInquiry.lastReplyAt, locale)]
+            : null
+        ].filter(Boolean);
+        const sharingsLink = { label: tr("views.sent.sharings_link", "Minu jagamised"), href: localizePath(SHARINGS_PATH, locale) };
+        const hint = sentView.actions.recall
+          ? { ...sharingsLink, text: tr("views.sent.recall_hint", "Kuni vastuvõtja ei ole pöördumist vastu võtnud, saad selle tagasi võtta lehel") }
+          : sentView.actions.correct
+            ? { ...sharingsLink, text: tr("views.sent.correct_hint", "Kui midagi on vaja parandada, saad paranduse saata lehel") }
+            : null;
+        return (
+          <SentStateView
+            tr={tr}
+            topic={activeInquiry.topic || tr("untitled", "Pealkirjata")}
+            state={label.text}
+            tone={label.tone}
+            facts={facts}
+            next={sentView.next ? tr(`views.sent.next.${sentView.next}`, "") : ""}
+            hint={hint}
+            actions={
+              <>
+                {sentView.actions.room ? (
+                  <Button
+                    type="button"
+                    variant="primary"
+                    glow={flight?.isActive !== false}
+                    disabled={openingRoomInquiryId === activeInquiry.id}
+                    onClick={() => handleOpenInquiryRoom(activeInquiry)}
+                  >
+                    {openingRoomInquiryId === activeInquiry.id ? tr("actions.opening_room", "Avan...") : tr("actions.open_room", "Ava vestlusruum")}
+                  </Button>
+                ) : null}
+                {sentView.actions.reopen ? (
+                  <Button type="button" variant="primary" glow={flight?.isActive !== false} disabled={saving} onClick={() => handleReopenAuthoredInquiry(activeInquiry)}>
+                    {tr("actions.reopen", "Taasava muutmiseks")}
+                  </Button>
+                ) : null}
+                <Button
+                  type="button"
+                  variant="secondary"
+                  disabled={!sentText.trim()}
+                  onClick={async () => {
+                    if (typeof navigator === "undefined" || !navigator.clipboard) return;
+                    await navigator.clipboard.writeText(sentText);
+                    setNotice(tr("copy_success", "Draft copied."));
+                  }}
+                >
+                  {tr("actions.copy", "Kopeeri tekst")}
+                </Button>
+                <Button type="button" variant="secondary" onClick={() => handleDownloadSavedInquiry(activeInquiry)}>
+                  {tr("actions.download", "Laadi alla")}
+                </Button>
+              </>
+            }
+          />
+        );
+      }
+      case "sent_text":
+        return (
+          <SentTextView
+            tr={tr}
+            lead={
+              sentView?.sentAt
+                ? tr("views.sent.text_lead", "Selle teksti saatsid. Saadetud pöördumist enam muuta ei saa.")
+                : tr("views.sent.text_lead_unsent", "Arhiveeritud pöördumise tekst. Muutmiseks taasava pöördumine.")
+            }
+            situation={sentView?.situation || ""}
+            text={sentView?.text || ""}
+          />
+        );
       case "journey":
         return (
           <JourneyView

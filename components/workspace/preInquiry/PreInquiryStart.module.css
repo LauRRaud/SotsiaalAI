@@ -34,3 +34,13 @@
   align-items: stretch;
   gap: 0.5rem;
 }
+/* Pealkiri vasakul, tee enda eelpöördumiste juurde paremal samal real; kitsal ekraanil
+   läheb nupp pealkirja alla. */
+.titleRow {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
