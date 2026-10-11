@@ -127,3 +127,7 @@ See näitab, et samm teeb, mida reegel ütleb. Muutus oli tehislik (mina muutsin
 - Hinnad müüjate lehtedel võivad kahe lugemise vahel (kuni kuu) vananeda.
 - Organisatsioonide lehtede lugemine pikendab käivitust (üks päring pooleteise sekundi järel saidi kohta); kui pikaks, näitab esimene päris käivitus.
 - Skripti ja ajastatud töö nimi räägib abivahenditest, kuid loetakse ka organisatsioonide lehti. Nime ei muudetud, et ajastatud töö ja seisukaust jääksid samaks.
+
+## Täiendus 11.10.2026: veel kaks reegliga valitud lehtede rühma (ADR-141)
+
+Sama käsk loeb nüüd organisatsioonide lehtedega samal viisil ka katvuse nimekirjade 564 juhislehte (`accepted/coverage/`) ja 314 ühingute lehte (`accepted/associations/`); käik pikeneb umbes 23 minutit. Aruandes on iga rühm oma reaga (`list`: `organisations`, `coverage`, `associations`). Uus väli `changedAndHeldForAPerson` nimetab lehed, mille muutust ei panda paika iseenesest (sisupiirkond leitakse teisiti kui valimise ajal või valitud tekst on alla poole endisest): ajastatud töö neid ei luba, vaid nimetab aruandes; inimene lubab pärast vaatamist valikuga `--approve-chosen <id>`. Väljad `inStateNotInLists` ja `inListsNotInState` peavad olema tühjad; kui ei ole, on seis nimekirjast maas ja rühm tuleb uuesti külvata (`scripts/rag-v2-chosen-seed.mjs`). Otsus ja proovilugemine: [ADR-141](adr-141-monthly-refresh-of-rule-chosen-pages.md).
