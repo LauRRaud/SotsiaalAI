@@ -1,6 +1,6 @@
 # ADR-143: õigusabi lehe toimetatud artiklid, indeksi piirid 15 000 dokumenti ja 150 000 lõiku ning riikide register
 
-Kuupäev: 11.10.2026. Teostus Claude Opus 5.5. Seis: **korpus v83 on serveris töös alates 11.10.2026 kell 13:19 (479 artiklit, 0,0422 USD); indeksi piirid, korjaja täiendus, valikureegli parandused ja riikide register on koodis; otsing mõõdetud tasuta; vastuseid mudeliga ei ole mõõdetud.**
+Kuupäev: 11.10.2026. Teostus Claude Opus 5.5. Seis: **korpus v83 on serveris töös alates 11.10.2026 kell 13:19 (479 artiklit, 0,0422 USD); indeksi piirid, korjaja täiendus, valikureegli parandused ja riikide register on koodis; otsing mõõdetud tasuta ja vastused 20 tasulise pöördega (0,0680 USD).**
 
 ## Miks
 
@@ -130,7 +130,41 @@ Artiklid on registrites (`Andmebaasi/REGISTER.json`, `REGISTER.md`: asutuste juh
 | v82 | 9769 | 91 158 | 6,3 s ja 7,5 s | 241 ms | 56 ms |
 | v83 | 10 248 | 91 828 | 6,3 s ja 7,4 s | 328 ms | 57 ms |
 
-Kataloog käitub nagu arvutatud (57 ms 10 248 dokumendiga). **Sõnaotsingu arvud ei ole eelmiste mõõtmistega võrreldavad:** sama põlvkond v77 andis eelmisel ööl 4,6 ja 5,6 s. Mõõtmise ajal läks tööle teise muudatuse kasutuselevõtt (teenuse taaskäivitus ja soojendus; koormus 5 nelja tuuma peal), nii et pink mõõtis koormatud serverit. Kolm põlvkonda on omavahel võrdsed, seega uus sisu ise otsingut aeglasemaks ei teinud; puhas kordus vaiksel serveril on tegemata. Kui see annab ka vaikselt üle 6 s, tuleb 150 000 lõigu arvutus (7,1 ja 8,1 s) üle vaadata.
+Kataloog käitub nagu arvutatud (57 ms 10 248 dokumendiga). **Sõnaotsingu arvud ei ole eelmiste mõõtmistega võrreldavad:** sama põlvkond v77 andis eelmisel ööl 4,6 ja 5,6 s. Mõõtmise ajal läks tööle teise muudatuse kasutuselevõtt (teenuse taaskäivitus ja soojendus; koormus 5 nelja tuuma peal), nii et pink mõõtis koormatud serverit. Kolm põlvkonda on omavahel võrdsed, seega uus sisu ise otsingut aeglasemaks ei teinud.
+
+**Puhas kordus vaiksel serveril** (samal päeval kell 14:23; skript ootas, kuni muud tööd ei käinud ja koormus oli alla 1,5):
+
+| Põlvkond | Dokumente | Lõike | Sõnaotsing, kaks teksti | Vektorotsing | Kataloog |
+|---|---:|---:|---|---:|---:|
+| v77 | 9288 | 88 181 | 4,6 s ja 5,5 s | 318 ms | 53 ms |
+| v82 | 9769 | 91 158 | 4,7 s ja 5,7 s | 321 ms | 55 ms |
+| v83 | 10 248 | 91 828 | 4,8 s ja 5,8 s | 235 ms | 60 ms |
+
+Joon peab: v77 annab sama mis eelmisel ööl (4,6 ja 5,6 s) ja v83 on lõikude arvu võrra aeglasem (0,2 s 3647 lõigu kohta, joone järgi 0,15 s). 150 000 lõigu arvutus (7,1 ja 8,1 s) jääb kehtima. Planeerija statistika värskendati aktiveerimisel (`ANALYZE` kell 13:18) ja planeerija ootab uuele põlvkonnale 11 051 dokumenti (tegelikult 10 248).
+
+### Tasuline vastuste kontroll (11.10.2026)
+
+Omanik 11.10.2026 küsimusele, kas teha tasuline kontroll (kümme õigusküsimust kaks korda, umbes 20 pööret, umbes 0,08 USD, lagi 0,12 USD): „tegutse jah“. Kümme küsimust inimese mure sõnadega, igaüks kaks korda päris vestluse rajal, töötaval väljalaskel ja korpusel v83 (`w4/check-v83` serveris; küsimused ja ettevalitud sätted `tmp/rag-v2-v79/check-v83/`). Iga küsimuse otsustava sätte sõnastus pandi enne paika seaduse tekstist. **20 pööret, vigu 0, 0,0680 USD.**
+
+| Küsimus | Seadusesäte tõendites ja viidatud | Artikleid tõendites (1. ja 2. kord) | Millele vastus viitas |
+|---|---|---|---|
+| Lapse isa ei maksa elatist: kui palju vähemalt ja kuidas nõuda | jah, 2/2 | 4 ja 1 | perekonnaseadus § 101, artiklid „Kuidas määratakse elatise suurus?“, „Kuidas elatist taotleda Eestis?“ |
+| Kohtutäitur ei saa elatist kätte: kas riik maksab | jah, 2/2 (§ 50, vt allpool) | 0 ja 0 | perehüvitiste seadus § 50, Sotsiaalkindlustusameti leht „Elatisabi“ |
+| Kohtutäitur arestis palga: kui palju peab kätte jääma | jah, 2/2 | 0 ja 1 | täitemenetluse seadustik § 132 |
+| Isa suri võlgadega: kas ja mis ajaga loobuda | jah, 2/2 | 2 ja 2 | pärimisseadus § 118–119, artikkel „Kuidas toimub pärandist loobumine?“ |
+| Katseajal öeldi homseks üles | jah, 2/2 | 1 ja 1 | töölepingu seadus § 86 ja § 96, Tööinspektsiooni juhis, artikkel |
+| Tähtajatu üürileping, omanik annab kuu aega | jah, 2/2 | 0 ja 0 | võlaõigusseadus § 312 ja § 311 |
+| Täisealise vaimupuudega poja eest otsustamine | jah, 2/2 | 0 ja 1 | perekonnaseadus § 203, tsiviilkohtumenetluse seadustik |
+| Ei ole raha advokaadi jaoks | jah, 2/2 | 1 ja 1 | riigi õigusabi seadus § 6, § 4, § 8, § 10 |
+| Makseettepanek võla kohta, mida ei tunnista | jah, 2/2 | 2 ja 2 | tsiviilkohtumenetluse seadustik § 485, artikkel „Kuidas arvutada vastuväite tähtaega?“ |
+| Lahkuminek: kes otsustab lapse elukoha | jah, 2/2 | 1 ja 1 | perekonnaseadus, artikkel „Kes otsustab lapse elukoha üle?“ |
+
+- **Seadus ei jäänud ühelgi pöördel välja.** Mudelile antud 122 lõigust olid 72 seaduse lõigud ja 47 veebilehtede omad (neist 21 uutest artiklitest). Ettevalitud sõnastus oli tõendites ja viidatud 18 pöördel 20-st. Kahel elatisabi pöördel olin ise valinud vale sätte (perehüvitiste seaduse § 47, eesmärk): tõendites ja vastuse viites oli sama seaduse § 50 (tingimused ja summa), mis küsimusele tegelikult vastab.
+- **Artikleid kasutati 14 pöördel 20-st** (tõendites) ja vastus viitas neile 11 pöördel. Artikkel andis seda, mida seaduses ei ole: elatise tänavune baassumma, kuidas arvutada vastuväite tähtaega, kuhu avaldus esitada.
+- Vastuste tähtajad ja tingimused kuues küsimuses (katseaeg, üür, pärand, makseettepanek, eestkoste, riigi õigusabi) võrdlesin seaduse tekstiga: klapivad. Summasid (elatise baassumma 295,86 eurot, arestivaba 946 eurot) ma sõltumatu allikaga ei võrrelnud.
+- Pöörde aja mediaan 19,8 s.
+
+Sama päeva teine muudatus ([ADR-145](adr-145-a-passage-points-at-the-provision-it-names.md), teise seansi töö) paneb vestluse järgima lõigus nimetatud seadusesätet igas kirjaviisis; see oli kontrolli ajal juba töös ja kehtib ka nende artiklite kohta.
 
 ## Mis võib valesti minna
 
@@ -150,9 +184,10 @@ Kui otsustav säte mõnes küsimuses kaob, võetakse partii poliitikast tagasi.
 ## Lahtine
 
 - ~~Ost ja korpuse täiendus.~~ Tehtud 11.10.2026 (korpus v83).
-- Mahu mõõtepingi puhas kordus vaiksel serveril ja planeerija hinnangu kontroll uuele põlvkonnale.
-- Tasuline vastuste kontroll õigusküsimustega (umbes 20 pööret, umbes 0,08 USD): kas vastus toob artikli kõrvale ka seaduse sätte. Vajab omaniku luba.
-- Artiklis nimetatud säte ei tule artikliga kaasa: graafi osa loob seoseid ainult seaduse enda sees ja käsitsi tehtud kaartidel.
+- ~~Mahu mõõtepingi puhas kordus ja planeerija hinnang.~~ Tehtud samal päeval (tabel ülal).
+- ~~Tasuline vastuste kontroll õigusküsimustega.~~ Tehtud 11.10.2026: 20 pööret, 0,0680 USD (osa „Tasuline vastuste kontroll“).
+- ~~Artiklis nimetatud säte ei tule artikliga kaasa.~~ Lahendatud samal päeval teise muudatusega ([ADR-145](adr-145-a-passage-points-at-the-provision-it-names.md)): lõigus nimetatud säte loetakse otsingu ajal tekstist.
+- Vastustes olnud summad (elatise baassumma, arestivaba sissetulek) on võrdlemata sõltumatu allikaga.
 - Puuduvad seadused teemadele, kus artikkel jääks üksi (asjaõigusseadus, korteriomandi- ja korteriühistuseadus, pankrotiseadus, tarbijakaitseseadus, tulumaksuseadus, notari tasu seadus): eraldi suurusega samm.
 - Kontrollimise kuupäeva uuendamine, kui tekst ei muutu.
 - 17 alla 30 sõna artiklit: nimekirja oma alampiir, kui neid soovitakse.
