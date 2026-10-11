@@ -189,6 +189,15 @@ export function sentSummaryKey(journey) {
   return "journey.desk.sent.none";
 }
 
+/**
+ * Olukorra osa lugemisvaated. Puuduolev info on omaette vaade ja ainult siis,
+ * kui midagi on kirjas: tähelepanekute kõrval poole laiusega veerus murdusid
+ * kolm küsimust kahele reale ja vaade ei mahtunud paneeli.
+ */
+export function situationReadTabs(journey) {
+  return listItems(journey?.missingInfo).length ? ["text", "noticed", "missing"] : ["text", "noticed"];
+}
+
 /* ---------- Jagamine eelpöördumisena ja abisoovina ---------------------------------- */
 
 /**
@@ -239,6 +248,29 @@ export function reviewedShareHref(href, selected) {
   else params.delete("share");
   const serialized = params.toString();
   return serialized ? `${path}?${serialized}` : path;
+}
+
+/**
+ * Eelvaate päringu seis. `requestKey` on praegu küsitav valik (tühi, kui osa ei
+ * ole ees), `result` viimane lõppenud päring. Ootamine tuleb võrdlusest, mitte
+ * eraldi olekust: nii ei vilgu vahepeal vale lause.
+ */
+export function previewStateOf({ requestKey, result }) {
+  if (!requestKey) return "idle";
+  if (result?.key !== requestKey) return "loading";
+  return result.failed ? "failed" : "ready";
+}
+
+/**
+ * Mida eelvaate kohal öelda, kui teksti ennast ei näidata. Tühi vastus: näita
+ * teksti. Ebaõnnestunud päring ei tohi välja näha nagu „midagi ei lisata”, ja
+ * vana eelvaade ei tohi jääda uue valiku kohta ette.
+ */
+export function previewNoteKey({ state, text }) {
+  if (state === "failed") return "journey.desk.share.preview_failed";
+  if (text) return "";
+  if (state === "loading") return "journey.desk.share.preview_loading";
+  return "journey.share.empty_preview";
 }
 
 /** Valiku lüliti: märgitu maha, märkimata juurde; järjekord on vajutamise oma (nagu vanal lehel). */

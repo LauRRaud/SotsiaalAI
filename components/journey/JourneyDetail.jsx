@@ -69,6 +69,7 @@ import {
   journeyLifeDomains,
   journeyStateKey,
   preInquiryShareOptions,
+  previewStateOf,
   relatedCounts,
   reviewedShareHref,
   shareBlockKey,
@@ -202,6 +203,25 @@ function buildContinuityActions(form, t) {
   return actions;
 }
 
+const NO_PREVIEW = Object.freeze({ key: "", preview: null, failed: false });
+
+/** Mille kohta eelvaadet praegu küsitakse; tühi, kui osa ei ole ees. */
+function previewRequestKey(journey, selectedShareKeys, enabled) {
+  return enabled && journey?.id ? `${journey.id}|${selectedShareKeys.join(",")}` : "";
+}
+
+/**
+ * Eelvaate päringu lõpp: õnnestunud vastus annab teksti, kõik muu (serveri viga,
+ * katkenud ühendus) jääb kirja veana. Varem jäi vea korral ette vana eelvaade või
+ * lause „midagi ei lisata”, kuigi valik oli tehtud.
+ */
+function previewSettler(setResult, key, controller) {
+  return (payload) => {
+    if (controller.signal.aborted) return;
+    setResult(payload?.ok ? { key, preview: payload.prefill || null, failed: false } : { key, preview: null, failed: true });
+  };
+}
+
 /**
  * Eelvaade: mida saaja näeks, kui inimene võtab eelpöördumisse kaasa valitud
  * osad. Server paneb teksti kokku; midagi ei salvestata. Küsitakse ainult siis,
@@ -209,10 +229,12 @@ function buildContinuityActions(form, t) {
  * teele juba lehe avamisel.
  */
 function usePreInquiryPreview(journey, selectedShareKeys, enabled) {
-  const [preview, setPreview] = useState(null);
+  const [result, setResult] = useState(NO_PREVIEW);
+  const requestKey = previewRequestKey(journey, selectedShareKeys, enabled);
   useEffect(() => {
-    if (!enabled || !journey?.id) return undefined;
+    if (!requestKey) return undefined;
     const controller = new AbortController();
+    const settle = previewSettler(setResult, requestKey, controller);
     fetch(`/api/journeys/${encodeURIComponent(journey.id)}/pre-inquiry-draft`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -220,19 +242,20 @@ function usePreInquiryPreview(journey, selectedShareKeys, enabled) {
       signal: controller.signal
     })
       .then((response) => response.json().catch(() => ({})))
-      .then((payload) => { if (!controller.signal.aborted && payload?.ok) setPreview(payload.prefill || null); })
-      .catch(() => { if (!controller.signal.aborted) setPreview(null); });
+      .then(settle, () => settle(null));
     return () => controller.abort();
-  }, [enabled, journey?.id, selectedShareKeys]);
-  return preview;
+  }, [journey?.id, requestKey, selectedShareKeys]);
+  return { preview: result.preview, state: previewStateOf({ requestKey, result }) };
 }
 
 /** Sama abisoovi kohta: mis läheks kuulutuse mustandisse. */
 function useHelpRequestPreview(journey, selectedShareKeys, enabled) {
-  const [preview, setPreview] = useState(null);
+  const [result, setResult] = useState(NO_PREVIEW);
+  const requestKey = previewRequestKey(journey, selectedShareKeys, enabled);
   useEffect(() => {
-    if (!enabled || !journey?.id) return undefined;
+    if (!requestKey) return undefined;
     const controller = new AbortController();
+    const settle = previewSettler(setResult, requestKey, controller);
     fetch(`/api/journeys/${encodeURIComponent(journey.id)}/help-request-draft`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -240,15 +263,10 @@ function useHelpRequestPreview(journey, selectedShareKeys, enabled) {
       signal: controller.signal
     })
       .then((response) => response.json().catch(() => ({})))
-      .then((payload) => {
-        if (!controller.signal.aborted) setPreview(payload?.ok ? payload.prefill || null : null);
-      })
-      .catch(() => {
-        if (!controller.signal.aborted) setPreview(null);
-      });
+      .then(settle, () => settle(null));
     return () => controller.abort();
-  }, [enabled, journey?.id, selectedShareKeys]);
-  return preview;
+  }, [journey?.id, requestKey, selectedShareKeys]);
+  return { preview: result.preview, state: previewStateOf({ requestKey, result }) };
 }
 
 export default function JourneyDetail({ journeyId, startWith: requestedStart = "" }) {
@@ -347,8 +365,8 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
     () => helpRequestShareKeys || helpRequestOptions.filter((option) => HELP_REQUEST_DEFAULT_SHARE.includes(option.value)).map((option) => option.value),
     [helpRequestOptions, helpRequestShareKeys]
   );
-  const preInquiryPreview = usePreInquiryPreview(journey, preInquiryShareKeys, partKey === "share");
-  const helpRequestPreview = useHelpRequestPreview(journey, helpRequestSelected, partKey === "help" && helpRequestViewOpen);
+  const { preview: preInquiryPreview, state: preInquiryPreviewState } = usePreInquiryPreview(journey, preInquiryShareKeys, partKey === "share");
+  const { preview: helpRequestPreview, state: helpRequestPreviewState } = useHelpRequestPreview(journey, helpRequestSelected, partKey === "help" && helpRequestViewOpen);
   const helpRequestPreviewText = [
     helpRequestPreview?.draft?.description,
     /* Abi liik sõnana (sama kataloog mis abikuulutustel), mitte serveri koodina. */
@@ -899,7 +917,8 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
                     options: preInquiryOptions.map((option) => ({ value: option.value, label: t(option.labelKey) })),
                     selected: preInquiryShareKeys,
                     onToggle: (key) => setPreInquiryShareKeys((current) => toggleKey(current, key)),
-                    previewText: preInquiryPreview?.situation || preInquiryPreview?.topic || ""
+                    previewText: preInquiryPreview?.situation || preInquiryPreview?.topic || "",
+                    previewState: preInquiryPreviewState
                   }}
                   ack={{ needed: preInquiryShareKeys.includes("personContext"), checked: thirdPartyAcknowledged, onChange: setThirdPartyAcknowledged }}
                   blockKey={blockKey}
@@ -939,6 +958,7 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
                     selected: helpRequestSelected,
                     onToggle: (key) => setHelpRequestShareKeys(toggleKey(helpRequestSelected, key)),
                     previewText: helpRequestPreviewText,
+                    previewState: helpRequestPreviewState,
                     href: reviewedShareHref(createHelpRequestHref, helpRequestSelected),
                     onView: setHelpRequestViewOpen
                   }}

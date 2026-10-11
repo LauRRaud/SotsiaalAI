@@ -44,13 +44,15 @@ import {
   deviceStatusKey,
   formDirty,
   hasContinuity,
-  rebaseForm,
   journeyWish,
   linkedState,
   listItems,
   pressTooSoon,
+  previewNoteKey,
+  rebaseForm,
   situationForm,
   situationProblemKey,
+  situationReadTabs,
   textToLines
 } from "./journeyDesk";
 
@@ -161,6 +163,9 @@ export function SituationPart({ t, journey, archived, lifeDomains, busy, error, 
   const [form, setForm] = useState(base);
   const [tab, setTab] = useState("text");
   const [readTab, setReadTab] = useState("text");
+  /* Vaade, mida enam ei ole (puuduolev info kustutati ära), langeb kirjeldusele. */
+  const readTabs = situationReadTabs(journey);
+  const shownTab = readTabs.includes(readTab) ? readTab : "text";
   const [problem, setProblem] = useState("");
   /* Muudetud või mitte: võrdlus Teekonna endaga, mitte avamisel võetud koopiaga. */
   const dirty = editing && !archived && formDirty(form, base);
@@ -295,13 +300,12 @@ export function SituationPart({ t, journey, archived, lifeDomains, busy, error, 
         <div className={shared.stack}>
           <Cells
             label={t("journey.desk.situation.read_tabs.label")}
-            options={["text", "noticed"].map((value) => ({ value, label: t(`journey.desk.situation.read_tabs.${value}`) }))}
-            value={readTab}
+            options={readTabs.map((value) => ({ value, label: t(`journey.desk.situation.read_tabs.${value}`) }))}
+            value={shownTab}
             onChange={setReadTab}
           />
-          {readTab === "text" ? (
-            <OwnText text={journey.summary} />
-          ) : (
+          {shownTab === "text" ? <OwnText text={journey.summary} /> : null}
+          {shownTab === "noticed" ? (
             <>
               <Facts
                 items={[
@@ -312,12 +316,11 @@ export function SituationPart({ t, journey, archived, lifeDomains, busy, error, 
               />
               {/* Platvormi pakutud sammud on osas „Järgmised sammud" (sealt saab
                   need sammuks võtta): siin neid teist korda ei loetleta. */}
-              <div className={styles.columns}>
-                <Lines title={t("journey.labels.missing_info")} items={listItems(journey.missingInfo)} emptyText={t("journey.messages.empty_missing_info")} />
-                <Lines title={t("journey.labels.risk_signals")} items={listItems(journey.riskSignals)} emptyText={t("journey.messages.empty_risk_signals")} />
-              </div>
+              <Lines title={t("journey.labels.risk_signals")} items={listItems(journey.riskSignals)} emptyText={t("journey.messages.empty_risk_signals")} />
             </>
-          )}
+          ) : null}
+          {/* Omaette vaade ja täislaiuses: küsimus mahub ühele reale. */}
+          {shownTab === "missing" ? <Lines title={t("journey.labels.missing_info")} items={listItems(journey.missingInfo)} /> : null}
         </div>
       </StepPanel>
     </div>
@@ -486,9 +489,10 @@ export function SentPart({ t, journey, hrefOf, more, error, related, onShare }) 
  * Jagamise valik ja eelvaade kahe lahtrina. Valikud on ühelaiused märkelahtrid;
  * eelvaade on tekst, mille server valitud osadest kokku paneb.
  *
- * `share`: { options: [{ value, label }], selected, onToggle, previewText, emptyText }
+ * `share`: { options: [{ value, label }], selected, onToggle, previewText, previewState }
  */
 function ShareBody({ t, share, tab, onTab, labels, children }) {
+  const previewNote = previewNoteKey({ state: share.previewState, text: share.previewText });
   return (
     <div className={shared.stack}>
       <Cells
@@ -507,7 +511,7 @@ function ShareBody({ t, share, tab, onTab, labels, children }) {
         </>
       ) : (
         <p className={styles.preview} aria-live="polite">
-          {share.previewText || t("journey.share.empty_preview")}
+          {previewNote ? t(previewNote) : share.previewText}
         </p>
       )}
     </div>
@@ -523,7 +527,7 @@ function ShareBody({ t, share, tab, onTab, labels, children }) {
  */
 export function SharePart({ t, share, ack, blockKey, href, desk }) {
   const [tab, setTab] = useState("choose");
-  useStageRemeasure(`${tab}:${share.options.length}:${ack.needed}:${share.previewText?.length || 0}`);
+  useStageRemeasure(`${tab}:${share.options.length}:${ack.needed}:${share.previewState}:${share.previewText?.length || 0}`);
   return (
     <StepPanel
       title={t("journey.desk.parts.share.title")}
@@ -573,7 +577,7 @@ export function HelpPart({ t, kinds, initial, map, mediation, devices, health, r
   useEffect(() => {
     onRequestView?.(requestOpen);
   }, [onRequestView, requestOpen]);
-  useStageRemeasure(`${view}:${requestTab}:${health.draftOpen}:${mediation.loading}:${requestShare.previewText?.length || 0}`);
+  useStageRemeasure(`${view}:${requestTab}:${health.draftOpen}:${mediation.loading}:${requestShare.previewState}:${requestShare.previewText?.length || 0}`);
   /* Lahtri vahetus fookust ei liiguta (lahtririda on raadiorühm ja nooleklahv
      peab selles edasi liikuma): fookus liigub, kui abisoovi vaade avaneb või
      sulgub ja kui küsimuste mustand ilmub või kaob. */
