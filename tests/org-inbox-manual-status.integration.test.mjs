@@ -315,3 +315,28 @@ test('sulgemine käib nagu enne: töö lõpeb, määramine lõpeb ja ruum jääb
   /* Suletud töö ei liigu enam kuhugi, ka mitte tagasivõtmisega. */
   await refused(manual('ASSIGNMENT_PENDING'), 'org.errors.inbox_item_terminal');
 });
+
+test('pöördumise tagasilükkamine: vastutajata pöördumine lõpeb, kaob laua loendist ja pöörduja saab teate', async (t) => {
+  const { applicant, coordinator, inquiry, item, ctx, row, assignments, manual } = await seed(t);
+  const listed = async (options = {}) => (await listInboxItemPage(await ctx(coordinator), { db, ...options })).items.map((entry) => [entry.id, entry.status]);
+  assert.deepEqual(await listed(), [[item.id, 'RECEIVED']]);
+
+  /* Sama päring, mille leht saadab nupuga „Lükka pöördumine tagasi”. */
+  const rejected = await manual('REJECTED');
+  assert.equal(rejected.status, 'REJECTED');
+  assert.ok((await row()).closedAt);
+  assert.deepEqual(await assignments(), []);
+
+  /* Laual seda enam ei ole; ajaloost ja seisufiltriga leiab. Koordinaator saab kirje avada. */
+  assert.deepEqual(await listed(), []);
+  assert.deepEqual(await listed({ includeClosed: true }), [[item.id, 'REJECTED']]);
+  assert.deepEqual(await listed({ status: 'REJECTED' }), [[item.id, 'REJECTED']]);
+  assert.equal((await getInboxItem(await ctx(coordinator), item.id, { db })).status, 'REJECTED');
+
+  /* Pöörduja saab sama teate mis sulgemisel: asutus lõpetas tema pöördumisega töö. */
+  const notices = await db.notificationEvent.findMany({ where: { userId: applicant.id, type: 'PRE_INQUIRY_WORK_CLOSED' }, select: { sourceId: true } });
+  assert.deepEqual(notices, [{ sourceId: inquiry.id }]);
+
+  /* Tagasi lükatud pöördumine ei liigu enam kuhugi. */
+  await refused(manual('REVIEWING'), 'org.errors.inbox_item_terminal');
+});

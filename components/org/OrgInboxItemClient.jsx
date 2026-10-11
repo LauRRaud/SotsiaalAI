@@ -16,7 +16,8 @@ import { useSecondPress } from "./useSecondPress";
 const ARMED_NOTES = Object.freeze({
   close: "org.inbox.close_note",
   reject: "org.inbox.reject_note",
-  takeBack: "org.inbox.take_back_note"
+  takeBack: "org.inbox.take_back_note",
+  rejectItem: "org.inbox.reject_item_note"
 });
 
 /**
@@ -28,7 +29,8 @@ const ARMED_NOTES = Object.freeze({
  *
  * KUJU (11.10). Neli kasti üksteise all on nüüd kaks väikest vaadet (pöördumine
  * ja töö), vt ./inbox/InboxViews.jsx; mis tegevused on võimalikud, otsustab
- * ./inbox/inboxRules.js. Tagasilükkamine, töö tagasivõtmine ja sulgemine küsivad teist vajutust.
+ * ./inbox/inboxRules.js. Töö tagasilükkamine, töö tagasivõtmine, sulgemine ja pöördumise
+ * tagasilükkamine küsivad teist vajutust.
  */
 export default function OrgInboxItemClient({ context, item, members, canAssign }) {
   const { t, locale } = useI18n();
@@ -37,7 +39,7 @@ export default function OrgInboxItemClient({ context, item, members, canAssign }
   const [assigneeId, setAssigneeId] = useState("");
   const [handoverId, setHandoverId] = useState("");
   const [wantedTab, setWantedTab] = useState("package");
-  /* Mis päring käib: "" | "assign" | "accept" | "reject" | "handover" | "takeBack" | "close" | "room". */
+  /* Mis päring käib: "" | "assign" | "accept" | "reject" | "handover" | "takeBack" | "close" | "rejectItem" | "room". */
   const [pending, setPending] = useState("");
   const [hint, setHint] = useState("");
   const confirm = useSecondPress();
@@ -117,6 +119,18 @@ export default function OrgInboxItemClient({ context, item, members, canAssign }
     const payload = await call(`/api/org/${organizationId}/inbox/${item.id}`, {
       method: "PATCH",
       body: { toStatus: "CLOSED" },
+      fallbackKey: "org.errors.inbox_transition_failed"
+    });
+    if (payload) router.push(`/org/${organizationId}/vastuvott`);
+  }, [call, item.id, organizationId, router]);
+
+  /* Pöördumise tagasilükkamine: nii lõpetab koordinaator pöördumise, millel ei ole vastutajat
+     (omaniku otsus 11.10.2026). Server teeb sama mis sulgemisel: töö lõpeb, pöörduja saab
+     teate ja tema vestlusruum, kui see on, jääb ainult loetavaks. */
+  const rejectItem = useCallback(async () => {
+    const payload = await call(`/api/org/${organizationId}/inbox/${item.id}`, {
+      method: "PATCH",
+      body: { toStatus: "REJECTED" },
       fallbackKey: "org.errors.inbox_transition_failed"
     });
     if (payload) router.push(`/org/${organizationId}/vastuvott`);
@@ -224,7 +238,9 @@ export default function OrgInboxItemClient({ context, item, members, canAssign }
             takeBackArmed: confirm.armed === "takeBack",
             onTakeBack: () => confirm.press("takeBack", () => once("takeBack", takeBack)),
             closeArmed: confirm.armed === "close",
-            onClose: () => confirm.press("close", () => once("close", close))
+            onClose: () => confirm.press("close", () => once("close", close)),
+            rejectItemArmed: confirm.armed === "rejectItem",
+            onRejectItem: () => confirm.press("rejectItem", () => once("rejectItem", rejectItem))
           }}
           room={
             item.room?.canOpen

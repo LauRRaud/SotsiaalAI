@@ -11,8 +11,9 @@
  *                  rida avab pöördumise (avamine on pöördujale nähtav)
  *  - `ItemView`    avatud pöördumine kahe väikese vaatega: pöördumine (saatja
  *                  kinnitatud pakett) ja töö (määramine, vastus, üleandmine, töö
- *                  tagasivõtmine, sulgemine; tagasilükkamine, tagasivõtmine ja
- *                  sulgemine küsivad teist vajutust)
+ *                  tagasivõtmine, sulgemine, pöördumise tagasilükkamine; töö
+ *                  tagasilükkamine, tagasivõtmine, sulgemine ja pöördumise
+ *                  tagasilükkamine küsivad teist vajutust)
  *
  * Siin on ainult kuju. Otsused on failis ./inboxRules.js; olek ja päringud
  * lehtedel (`../OrgInboxClient.jsx`, `../OrgInboxItemClient.jsx`).
@@ -72,10 +73,11 @@ export function InboxBoard({ t, rows, hrefOf, onOpen, more, notice }) {
  * Avatud pöördumine.
  *
  * `work`: {
- *   actions: { assign, respond, handOver, takeBack, close },
+ *   actions: { assign, respond, handOver, takeBack, close, rejectItem },
  *   workers, assigneeId, onAssignee, onAssign,
  *   others, handoverId, onHandover, onHandOver,
- *   onAccept, onReject, rejectArmed, onTakeBack, takeBackArmed, onClose, closeArmed, pending
+ *   onAccept, onReject, rejectArmed, onTakeBack, takeBackArmed, onClose, closeArmed,
+ *   onRejectItem, rejectItemArmed, pending
  * }
  * `room`: { busy, onOpen } või null. Töö vastu võtnud töötaja avab vestlusruumi, kus
  *   ta pöördujale vastab; nupp on mõlemas vaates (see on tema järgmine samm).
@@ -103,6 +105,9 @@ export function ItemView({ t, tabs, tab, onTab, facts, parts, withheld, work, ro
           ) : null}
           {onWork && actions.close ? (
             <ArmedButton armed={work.closeArmed} busy={work.pending === "close"} label={t("org.inbox.close")} confirm={t("org.inbox.close_confirm")} onPress={work.onClose} mark="close" />
+          ) : null}
+          {onWork && actions.rejectItem ? (
+            <ArmedButton armed={work.rejectItemArmed} busy={work.pending === "rejectItem"} label={t("org.inbox.reject_item")} confirm={t("org.inbox.reject_item_confirm")} onPress={work.onRejectItem} mark="rejectItem" />
           ) : null}
           {onWork && actions.respond ? (
             <>

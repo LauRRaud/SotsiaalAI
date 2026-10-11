@@ -124,7 +124,11 @@ export function sourceParts(item, { t }) {
  *    selle kirje koordinaator, ütleb server kirje küljes (`item.isCoordinator`);
  *  - töö töötajalt tagasi võtta saab samuti koordinaator ja ainult kirjel, millel on
  *    vastutaja: käsitsi „ootab määramist" lõpetab seal elava määramise. Vastutajata kirjel
- *    muudaks sama päring ainult seisu sõna, seda leht ei paku.
+ *    muudaks sama päring ainult seisu sõna, seda leht ei paku;
+ *  - pöördumise tagasi lükata saab koordinaator kirjel, mille seisust viib siire „tagasi
+ *    lükatuks": täna kirjel, millel ei ole vastutajat (ka pärast töötaja tagasilükkamist või
+ *    töö tagasivõtmist). See on vastutajata pöördumise lõpetamise tee (omaniku otsus
+ *    11.10.2026); vastutajaga töö lõpetab „sulge".
  * Seisud küsitakse samalt seisutabelilt, millelt server (`lib/org/constants.js`), mitte
  * siinsest teisest loendist. Lõpetatud kirjel (suletud, tagasi lükatud, saatja tagasi võetud),
  * kirjutuskaitstud organisatsioonis ja tagasi võetud pöördumisel ei ole ühtegi tegevust.
@@ -144,13 +148,14 @@ export function workActions(item, { context, canAssign = false } = {}) {
     respond: open && mine && assignment?.status === "PENDING",
     handOver: open && Boolean(assignment) && (Boolean(canAssign) || mine),
     takeBack: open && coordinator && Boolean(assignment) && canTransitionInboxStatus(status, OrganizationInboxStatus.ASSIGNMENT_PENDING),
-    close: open && coordinator && canTransitionInboxStatus(status, OrganizationInboxStatus.CLOSED)
+    close: open && coordinator && canTransitionInboxStatus(status, OrganizationInboxStatus.CLOSED),
+    rejectItem: open && coordinator && canTransitionInboxStatus(status, OrganizationInboxStatus.REJECTED)
   };
 }
 
 /** Kas kirjega saab üldse midagi teha (kas töö vaade on olemas). */
 export function hasWork(actions) {
-  return Boolean(actions?.assign || actions?.respond || actions?.handOver || actions?.takeBack || actions?.close);
+  return Boolean(actions?.assign || actions?.respond || actions?.handOver || actions?.takeBack || actions?.close || actions?.rejectItem);
 }
 
 /** Avatud pöördumise vaated lahtritena. */

@@ -12638,7 +12638,10 @@
       "close_note": "Suletud töö kaob vastuvõtulaualt ja seda ei saa uuesti avada. Pöörduja vestlusruum jääb ainult loetavaks.",
       "take_back": "Võta töö tagasi",
       "take_back_confirm": "Jah, võta tagasi",
-      "take_back_note": "Töötaja määramine lõpeb ja ta lahkub vestlusruumist. Ruum jääb pöördujale avatuks ja töö ootab uut määramist."
+      "take_back_note": "Töötaja määramine lõpeb ja ta lahkub vestlusruumist. Ruum jääb pöördujale avatuks ja töö ootab uut määramist.",
+      "reject_item": "Lükka pöördumine tagasi",
+      "reject_item_confirm": "Jah, lükka tagasi",
+      "reject_item_note": "Tagasi lükatud pöördumine kaob vastuvõtulaualt ja seda ei saa uuesti avada. Pöörduja saab teate, et asutus lõpetas tema pöördumisega töö, ja tema vestlusruum jääb ainult loetavaks."
     },
     "inboxStatus": {
       "RECEIVED": "Saabunud",
