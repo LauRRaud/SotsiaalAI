@@ -28,23 +28,10 @@ import StepPanel from "@/components/stage/StepPanel";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 
+import { ArmedButton, Facts, SMALL, footNote, ignoreKeyRepeat } from "../OrgBits";
 import shared from "../org.module.css";
 import styles from "./home.module.css";
 import { NAME_LIMIT, REGISTRY_CODE_LIMIT } from "./orgBoard";
-
-const SMALL = Object.freeze({ type: "button", size: "sm", variant: "secondary" });
-
-/* All hoitud Enter või tühik (klahvikordus) ei tohi sama nuppu teist korda
-   vajutada: esimene ja teine aste on sama nupp. */
-function ignoreKeyRepeat(event) {
-  if (event.repeat && (event.key === "Enter" || event.key === " ")) event.preventDefault();
-}
-
-/** Vaate teade all servas: tõrge hoiatava tooniga, muu rahulikult. */
-function footNote(notice, quiet = "") {
-  if (!notice?.text) return quiet;
-  return notice.tone === "risk" ? <span className={shared.footError}>{notice.text}</span> : notice.text;
-}
 
 /**
  * Loend. Organisatsiooni rida avab tööruumi. Kutse rida on loetav: liitumise
@@ -142,9 +129,13 @@ export function BoardView({ t, filter, onFilter, orgRows, inviteRows, create, hr
 /** Loobumine: kirjutatud vormiga küsib teist vajutust samal nupul. */
 function DeclineButton({ t, decline }) {
   return (
-    <Button {...SMALL} className={decline.armed ? shared.armed : undefined} data-decline="1" onKeyDown={ignoreKeyRepeat} onClick={decline.onPress}>
-      {decline.armed ? t("org.home.create.decline.confirm") : t("org.home.create.decline.label")}
-    </Button>
+    <ArmedButton
+      armed={decline.armed}
+      label={t("org.home.create.decline.label")}
+      confirm={t("org.home.create.decline.confirm")}
+      onPress={decline.onPress}
+      mark="decline"
+    />
   );
 }
 
@@ -292,16 +283,7 @@ export function ConfirmView({ t, summary, problem, onFix, notice, decline, creat
         </>
       }
     >
-      <div className={shared.facts} aria-busy={create.busy ? "true" : undefined}>
-        {summary.map((row) => (
-          <p key={row.key} className={shared.fact}>
-            <span className={shared.factLabel}>{row.label}</span>
-            <span className={shared.factValue} data-quiet={row.quiet ? "1" : undefined}>
-              {row.value}
-            </span>
-          </p>
-        ))}
-      </div>
+      <Facts rows={summary} busy={create.busy} />
     </StepPanel>
   );
 }

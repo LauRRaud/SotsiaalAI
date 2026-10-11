@@ -1,13 +1,16 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import Button from "@/components/ui/Button";
-import { CAPABILITY_TEMPLATES } from "@/lib/org/constants";
+import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 
+import { InviteView, MessageView, WaitingView } from "./join/JoinViews";
+import { inviteFacts, joinState, offeredName, organizationName } from "./join/joinRules";
+import shared from "./org.module.css";
 import { useOrgApi } from "./useOrgApi";
+import { useSecondPress } from "./useSecondPress";
 
 /**
  * Kutse vastuvõtt KAHE sammuna (arenduskava §5.5).
@@ -16,15 +19,29 @@ import { useOrgApi } from "./useOrgApi";
  * hinnastatav roll, kavandatud õigused. See ei muuda mitte midagi.
  * Samm 2 (POST) on teadlik nõustumine. Lingile klikkimine üksi ei tee kellestki
  * liiget — see on tahtlik ja seda ei tohi „mugavuse pärast" ühte sammu suruda.
+ *
+ * KUJU (11.10). Leht oli 674 px kõrgune veerg vanal ühisel kihil. Nüüd on igal
+ * seisul oma väike vaade (`./join/JoinViews.jsx`); mis seis parajasti on ja mis
+ * read eelvaates seisavad, otsustab `./join/joinRules.js`. See fail hoiab
+ * olekut ja teeb päringud. Keeldumine küsib teist vajutust samal nupul; pärast
+ * nõustumist jäävad nupud lukku, kuni tööruum avaneb.
  */
 export default function OrgJoinClient() {
   const { t } = useI18n();
+  /* ⓘ kiirmenüüs: sama selgitus mis organisatsioonide avalehel (liitumine ja kohad). */
+  usePanelInfoSlot({ infoId: "org" });
   const router = useRouter();
   const searchParams = useSearchParams();
   const token = searchParams.get("token") || "";
-  const { call, busy, error } = useOrgApi();
+  const { call, error } = useOrgApi();
   const [preview, setPreview] = useState(null);
   const [done, setDone] = useState("");
+  const [leaving, setLeaving] = useState(false);
+  /* Kumb vastus on teel ("accept" või "decline"): `busy` on tõene ka eelvaate laadimisel. */
+  const [pending, setPending] = useState("");
+  const sending = useRef(false);
+  const rootRef = useRef(null);
+  const confirm = useSecondPress();
 
   useEffect(() => {
     let cancelled = false;
@@ -42,96 +59,87 @@ export default function OrgJoinClient() {
 
   const respond = useCallback(
     async (action) => {
-      const payload = await call("/api/org/join", {
-        method: "POST",
-        body: { token, action },
-        fallbackKey: "org.errors.invite_invalid"
-      });
-      if (!payload) return;
-      if (action === "accept" && payload.organizationId) {
-        router.push(`/org/${payload.organizationId}`);
-        return;
+      /* Topeltvajutus ei saada teist päringut: `busy` jõuab nupuni alles
+         järgmise joonistusega. */
+      if (sending.current) return;
+      sending.current = true;
+      setPending(action);
+      let opening = false;
+      try {
+        const payload = await call("/api/org/join", {
+          method: "POST",
+          body: { token, action },
+          fallbackKey: "org.errors.invite_invalid"
+        });
+        if (!payload) return;
+        if (action === "accept") {
+          /* Lukk jääb peale, kuni tööruum avaneb. */
+          opening = true;
+          setLeaving(true);
+          router.push(payload.organizationId ? `/org/${payload.organizationId}` : "/org");
+          return;
+        }
+        setDone(t("org.invites.declined"));
+        setPreview(null);
+      } finally {
+        if (!opening) {
+          sending.current = false;
+          setPending("");
+        }
       }
-      setDone(t("org.invites.declined"));
-      setPreview(null);
     },
     [call, router, t, token]
   );
 
-  const template = preview ? CAPABILITY_TEMPLATES[preview.capabilityTemplate] : null;
+  const state = joinState({ token, preview, done, error, leaving });
 
+  /* Seisu vahetusel (eelvaade → otsus) kaob vajutatud nupp: fookus läheb vaate
+     pealkirjale. Esimesel joonistusel fookust ei võeta. */
+  const shown = useRef("");
+  useEffect(() => {
+    const first = shown.current === "";
+    const moved = shown.current !== state;
+    shown.current = state;
+    if (first || !moved || state === "waiting") return;
+    rootRef.current?.querySelector("[data-step-heading]")?.focus({ preventScroll: true });
+  }, [state]);
+
+  const title = t("org.invites.previewHeading");
+  const home = { href: "/org", label: t("org.home.heading") };
+  let view;
+  if (state === "no_token") view = <MessageView title={title} text={t("org.join.no_token")} tone="risk" action={home} />;
+  else if (state === "leaving") view = <WaitingView title={title} text={t("org.join.opening")} />;
+  else if (state === "done") view = <MessageView title={title} text={done} action={home} />;
+  else if (state === "failed") view = <MessageView title={title} text={error} tone="risk" action={home} />;
+  else if (state === "waiting") view = <WaitingView title={title} text={t("org.join.loading")} />;
+  else {
+    const name = offeredName(preview);
+    view = (
+      <InviteView
+        t={t}
+        question={t("org.join.invite_question", { name: organizationName(preview, { t }) })}
+        facts={inviteFacts(preview, { t })}
+        nameNote={name ? t("org.invites.previewName", { name }) : ""}
+        notice={error ? { tone: "risk", text: error } : null}
+        decline={{ armed: confirm.armed === "decline", busy: pending === "decline", onPress: () => confirm.press("decline", () => respond("decline")) }}
+        accept={{
+          busy: pending === "accept",
+          onPress: () => {
+            confirm.clear();
+            void respond("accept");
+          }
+        }}
+      />
+    );
+  }
+
+  /* Lehe nimi on kiirmenüüs; pealkiri jääb ekraanilugejale. */
   return (
-    <section className="ow-shell">
-      <header className="ow-header">
-        <div>
-          <h1 className="ow-title">{t("org.invites.previewHeading")}</h1>
-          <p className="ow-subtitle">{t("org.invites.previewIntro")}</p>
-        </div>
-      </header>
-
-      {done ? <p className="ow-notice ow-notice--privacy">{done}</p> : null}
-
-      {preview ? (
-        <div className="ow-card">
-          <dl className="ow-meta">
-            <div>
-              <dt className="ow-meta__term">{t("org.title")}</dt>
-              <dd className="ow-meta__value">{preview.organization.displayName}</dd>
-            </div>
-            <div>
-              <dt className="ow-meta__term">{t("org.invites.seatRole")}</dt>
-              <dd className="ow-meta__value">{t(`org.seatRole.${preview.seatRole}`)}</dd>
-            </div>
-            <div>
-              <dt className="ow-meta__term">{t("org.invites.unit")}</dt>
-              <dd className="ow-meta__value">{preview.unit?.name || "—"}</dd>
-            </div>
-            <div>
-              <dt className="ow-meta__term">{t("org.invites.template")}</dt>
-              <dd className="ow-meta__value">{template ? t(template.labelKey) : preview.capabilityTemplate}</dd>
-            </div>
-          </dl>
-
-          <h2 className="ow-title" style={{ fontSize: "1rem" }}>
-            {t("org.members.capabilities")}
-          </h2>
-          {preview.capabilities.length === 0 ? (
-            <p className="ow-empty">{t("org.overview.noCapabilities")}</p>
-          ) : (
-            <ul className="ow-chips">
-              {preview.capabilities.map((capability) => (
-                <li key={capability} className="ow-chip">
-                  {t(`org.capability.${capability}`)}
-                </li>
-              ))}
-            </ul>
-          )}
-
-          {/* Kutsuja pandud nimi: inimene näeb enne nõustumist, mis nimi talle pakutakse ja millal see kehtima hakkab. */}
-          {preview.name ? (
-            <p className="ow-notice ow-notice--privacy">
-              {t("org.invites.previewName", { name: `${preview.name.firstName} ${preview.name.lastName}` })}
-            </p>
-          ) : null}
-
-          <p className="ow-notice ow-notice--privacy">{t("org.personalWorkspaceHint")}</p>
-
-          <div className="ow-actions">
-            <Button type="button" onClick={() => respond("accept")} disabled={busy}>
-              {t("org.invites.accept")}
-            </Button>
-            <Button type="button" onClick={() => respond("decline")} disabled={busy}>
-              {t("org.invites.decline")}
-            </Button>
-          </div>
-        </div>
-      ) : null}
-
-      {error ? (
-        <p className="ow-notice ow-notice--warning" role="alert">
-          {error}
-        </p>
-      ) : null}
-    </section>
+    <>
+      <h1 className="sr-only">{title}</h1>
+      <div className={shared.page} ref={rootRef}>
+        {view}
+      </div>
+    </>
   );
 }

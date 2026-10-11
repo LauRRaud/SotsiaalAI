@@ -175,6 +175,11 @@ const CARDLESS_DOCK_LABELS = {
   "/toimetulekutoetus": "subsistence.title",
   "/join": "join.heading",
   "/chat-source": "m4Pilot.source",
+  /* Kutse ja tasutud ligipääsu pakkumine avanevad lingist. Ilma oma nimeta
+     kannaksid need kaardi „Organisatsioonid" nime, kuigi pakkumise saaja ei
+     ole organisatsiooni liige. */
+  "/org/liitu": "org.join.dock_invite",
+  "/org/toetus": "org.join.dock_offer",
 };
 /* Leht, mille kaart avab teise tee: kaart „Pöördumised" viib vestluse töölaua
    teele, aga otselink (Teekonnast, „ava pöördumine") avab /eelpoordumised.
