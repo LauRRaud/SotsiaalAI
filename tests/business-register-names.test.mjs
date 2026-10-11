@@ -15,10 +15,10 @@ import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { contactHashCollector, registerCompanies } from '../lib/businessRegisterContacts.js';
+import { checkRegisterName as checkRegisterNameFresh } from '../lib/businessRegisterNameCheck.js';
 import {
   PLAIN_NAME_LEGAL_FORMS,
   RegisterNameResult,
-  checkRegisterName,
   loadRegisterNames,
   loadRegisterNamesOrNull,
   normalizeOrganizationName,
@@ -122,6 +122,14 @@ async function registerFile(...companies) {
   return file;
 }
 
+/* Need testid käivad koopia ja väravate kohta: register „ei vasta" ja vastus tuleb koopiast.
+   Registri enda vastust hoiab tests/business-register-name-check.test.mjs. */
+const registerSilent = async () => ({ status: 'unavailable' });
+async function checkRegisterName(input, { file } = {}) {
+  const { source, ...answer } = await checkRegisterNameFresh(input, { file, fetchEntry: registerSilent });
+  assert.equal(source, 'copy');
+  return answer;
+}
 const check = (file, registryCode, organizationName) => checkRegisterName({ registryCode, organizationName }, { file });
 
 test('nimede võrdlus talub suurtähti, jutumärke ja tühikuid, aga mitte teist nime', () => {
@@ -380,14 +388,28 @@ test('haldur ei saa kinnitada koodi nime all, mis ei ole registris selle koodi n
 test('halduri loend näitab registri nime profiili nime kõrval', async () => {
   const file = await registerFile();
   const loadNames = () => loadRegisterNamesOrNull({ file });
-  const [wrong] = await listRepresentationAdminRows({ db: fakeDb(profile({ organizationName: 'Tuntud Hooldekodu AS' })), loadNames });
+  const checkName = (input) => checkRegisterName(input, { file });
+  const [wrong] = await listRepresentationAdminRows({ db: fakeDb(profile({ organizationName: 'Tuntud Hooldekodu AS' })), loadNames, checkName });
   assert.equal(wrong.nameCheck, 'mismatch');
   assert.equal(wrong.registerName, 'Hea Hoolekanne OÜ');
-  const [right] = await listRepresentationAdminRows({ db: fakeDb(profile()), loadNames });
+  const [right] = await listRepresentationAdminRows({ db: fakeDb(profile()), loadNames, checkName });
   assert.equal(right.nameCheck, 'match');
-  const [unknown] = await listRepresentationAdminRows({ db: fakeDb(profile()), loadNames: async () => null });
+  const nothing = async () => ({ result: 'unavailable', registerName: null });
+  const [unknown] = await listRepresentationAdminRows({ db: fakeDb(profile()), loadNames: async () => null, checkName: nothing });
   assert.equal(unknown.nameCheck, 'unavailable');
   assert.equal(unknown.registerName, null);
+  /* Kinnitamata rida saab sama vastuse, mida kinnitamine ise küsiks (register, siis koopia): uus
+     asutus, mida koopias ei ole, peab loendis olema kinnitatav. Kinnitatud rida loetakse koopiast. */
+  const asked = [];
+  const registerKnows = async (input) => { asked.push(input); return { result: 'match', registerName: 'Uus Hooldus OÜ' }; };
+  const fresh = profile({ registryCode: '10000099', organizationName: 'Uus Hooldus OÜ' });
+  const [waiting] = await listRepresentationAdminRows({ db: fakeDb(fresh), loadNames, checkName: registerKnows });
+  assert.equal(waiting.nameCheck, 'match');
+  assert.deepEqual(asked, [{ registryCode: '10000099', organizationName: 'Uus Hooldus OÜ' }]);
+  const confirmed = { ...fresh, representationConfirmedAt: NOW, representationRegistryCode: '10000099', representationMethod: 'ADMIN' };
+  const [done] = await listRepresentationAdminRows({ db: fakeDb(confirmed), loadNames, checkName: registerKnows });
+  assert.equal(done.nameCheck, 'code_not_listed');
+  assert.equal(asked.length, 1);
 });
 
 test('kinnituslink: vale nimega profiili kohta asutuse postkasti kirja ei lähe', async () => {
@@ -460,7 +482,7 @@ test('organisatsiooni profiil: avaldatud profiili nime ei saa muuta mööda nime
       },
       dataAuditLog: { create: async () => { state.audits += 1; } }
     };
-    return { $transaction: async (run) => run(tx), state };
+    return { ...tx, $transaction: async (run) => run(tx), state };
   };
   const rename = (db, organizationName, over = {}) => updateOrganizationProfile(
     context,

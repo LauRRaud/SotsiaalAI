@@ -202,7 +202,7 @@ test('tagasivõtmine: mustandi seis ega kaardi kirje ei muutu', async () => {
 });
 
 test('halduri loend: kinnitamata on ees ja alus läheb ainult haldurile', async () => {
-  const rows = await listRepresentationAdminRows({ db: fakeDb(profile()), loadNames: async () => null });
+  const rows = await listRepresentationAdminRows({ db: fakeDb(profile()), loadNames: async () => null, checkName: nameMatches });
   assert.equal(rows.length, 1);
   assert.deepEqual(Object.keys(rows[0]).sort(), [
     'basis', 'confirmed', 'confirmedAt', 'confirmedRegistryCode', 'id', 'method', 'nameCheck', 'organizationName',

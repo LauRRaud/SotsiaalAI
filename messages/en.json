@@ -2752,7 +2752,7 @@
       "publish_contact_required": "Choose at least one contact or an in-platform inquiry path before publishing.",
       "publish_representation_required": "A profile with a registry code can be published after it is confirmed that you represent that organisation. Save the profile as a draft and open the page \"Confirming the organisation\" (sotsiaal.pro/teenuseprofiil/kinnitus).",
       "publish_register_name_mismatch": "The profile name is not the name the business register has for this registry code, so the profile cannot be published. Open the step \"Organization\": it shows the register's name and lets you put it on the profile with one click. You can still save the profile as a draft with the current name.",
-      "publish_registry_code_not_listed": "This registry code is not in our copy of the business register, so the profile cannot be published. Check that the code is correct. The copy is renewed once a month: if the organisation was registered recently, write to info@sotsiaal.pro. You can save the profile as a draft.",
+      "publish_registry_code_not_listed": "We did not find a registered organisation with this registry code in the business register, so the profile cannot be published. Check that the code is correct. If the code is correct and the organisation is in the register, write to info@sotsiaal.pro. You can save the profile as a draft.",
       "publish_registry_code_required": "An organisation with this name is in the business register. A profile can be published under this name only with the organisation's registry code and a confirmation that you represent it. Add the registry code in the step \"Organization\", or write the name under which you provide the service yourself.",
       "publish_register_unavailable": "The name cannot be checked against the business register right now, so the profile cannot be published. You can save the profile as a draft. Try again later or write to info@sotsiaal.pro.",
       "publish_service_required": "Add at least one visible published service before publishing.",
@@ -2768,7 +2768,7 @@
       "representation_email_not_in_register": "This address is not listed in the business register as a contact of this registry code. Check your organisation's contacts in the business register (ariregister.rik.ee). Our copy of the register is renewed once a month; if you changed the address recently, write to info@sotsiaal.pro.",
       "representation_register_unavailable": "The business register check cannot be made right now. Try again later or write to info@sotsiaal.pro.",
       "representation_name_mismatch": "The service profile's name is not the name the business register has for this registry code. Correct the name in the service profile step \"Organization\" and save; then the organisation can be confirmed.",
-      "representation_code_not_listed": "This registry code is not in our copy of the business register. Check the code in the service profile. The copy is renewed once a month: if the organisation was registered recently, write to info@sotsiaal.pro.",
+      "representation_code_not_listed": "We did not find a registered organisation with this registry code in the business register. Check the code in the service profile. If the code is correct and the organisation is in the register, write to info@sotsiaal.pro.",
       "representation_mail_failed": "The e-mail could not be sent. Try again.",
       "representation_link_invalid": "This link is no longer valid or does not belong to this account."
     },
@@ -2844,7 +2844,7 @@
       "name_title": "The profile name does not match the business register",
       "name_mismatch": "The service profile is named \"{name}\", but the business register has \"{registerName}\" for registry code {code}. The organisation can be confirmed only under the register's name: correct the name in the service profile step \"Organization\" and save.",
       "name_mismatch_hidden": "The service profile is named \"{name}\", but the business register has a different name for registry code {code}. In the service profile step \"Organization\", write the name exactly as it is in the business register and save.",
-      "code_not_listed": "Registry code {code} is not in our copy of the business register. Check the code in the service profile. The copy is renewed once a month: if the organisation was registered recently, write to info@sotsiaal.pro."
+      "code_not_listed": "We did not find a registered organisation with registry code {code} in the business register. Check the code in the service profile. If the code is correct and the organisation is in the register, write to info@sotsiaal.pro."
     }
   },
   "service_availability": {
@@ -3798,7 +3798,7 @@
         "contact_missing": "Add a contact or allow platform pre-inquiries.",
         "register_name_ok": "The organisation's name matches the business register.",
         "register_name_mismatch": "The organisation's name is not the name the business register has for this registry code.",
-        "register_code_not_listed": "This registry code is not in our copy of the business register.",
+        "register_code_not_listed": "No registered organisation with this registry code was found in the business register.",
         "register_code_required": "An organisation with this name is in the business register: add the registry code to publish.",
         "register_unavailable": "The name cannot be checked against the business register right now.",
         "register_name_detail": "In the register: {name}",
@@ -4018,7 +4018,7 @@
         "mismatch": "The business register has \"{name}\" for this registry code. The profile can be confirmed and published only under that name.",
         "mismatch_hidden": "The business register has a different name for this registry code. Write the name exactly as it is in the business register: the profile cannot be confirmed or published under another name.",
         "use": "Use the register's name",
-        "code_not_listed": "This registry code is not in our copy of the business register. Check the code: the profile cannot be confirmed or published with it.",
+        "code_not_listed": "We did not find a registered organisation with this registry code in the business register. Check the code: the profile cannot be confirmed or published with it.",
         "code_required": "An organisation with this name is in the business register. Add the registry code: without it the profile cannot be published under this name.",
         "unavailable": "The name cannot be checked against the business register right now. You can save a draft; publishing works again once the check does.",
         "as_of": "State of the business register in our copy: {date}."
@@ -7941,8 +7941,8 @@
       "name_match": "The name matches the business register.",
       "name_mismatch": "The name does not match the business register. In the register: {name}",
       "name_mismatch_hidden": "The name does not match the business register (sole proprietor; the register's name is not shown here).",
-      "name_code_not_listed": "This registry code is not in the copy of the business register.",
-      "name_unavailable": "The business register names file cannot be read.",
+      "name_code_not_listed": "No registered organisation with this registry code was found in the business register.",
+      "name_unavailable": "The business register cannot be asked right now and its copy cannot be read.",
       "confirm_blocked": "Confirming is possible once the profile name is the register's name for this code.",
       "basis_shown": "Basis: {basis}",
       "basis_label": "Basis of the confirmation",
@@ -7960,8 +7960,8 @@
         "basis_required": "Write the basis of the confirmation ({min} to {max} characters).",
         "registry_code_changed": "The profile's registry code or name has changed in the meantime. Reload the list and review it.",
         "name_mismatch": "The profile name is not the name the business register has for this registry code. It can be confirmed after the service provider has corrected the name.",
-        "code_not_listed": "This registry code is not in the copy of the business register. If the organisation was registered recently, refresh the register file and try again.",
-        "register_unavailable": "The business register names file cannot be read, so confirming is not possible right now."
+        "code_not_listed": "No registered organisation with this registry code was found in the business register, so it cannot be confirmed. Check the code in the business register.",
+        "register_unavailable": "The business register cannot be asked right now and its copy cannot be read, so confirming is not possible right now."
       }
     },
     "framework_acceptances": {

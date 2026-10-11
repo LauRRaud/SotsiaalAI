@@ -2,7 +2,8 @@ import { getServerSession } from "next-auth";
 
 import { authConfig } from "@/auth";
 import { isAdmin, roleFromSession } from "@/lib/authz";
-import { checkRegisterName, registerNamesMeta } from "@/lib/businessRegisterNames";
+import { RegisterNameSource, checkRegisterName } from "@/lib/businessRegisterNameCheck";
+import { registerNamesMeta } from "@/lib/businessRegisterNames";
 import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
 import { safeError } from "@/lib/privacy/safeError";
 import { consumeServiceProviderProfileRateLimit } from "@/lib/serviceProviderProfileBoundary";
@@ -12,7 +13,10 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 /* Teenuseprofiili vormi nimekontroll: kas kirjutatud nimi vastab äriregistrile.
-   POST { registryCode, organizationName } → { result, registerName, registerDate }.
+   POST { registryCode, organizationName } → { result, registerName, source, registerDate }.
+   Registrikoodi kohta küsib kontroll äriregistrit ennast; `source` on `copy`, kui vastus tuli
+   meie koopiast (register ei vastanud või profiilil ei ole koodi), ja ainult siis on kaasas
+   koopia kuupäev.
    Midagi ei muuda. Keha, mitte aadressirida: registrikoodita profiili nimi võib olla inimese nimi.
    Sama kontrolli teeb server uuesti kinnitamisel ja avaldamisel; see vastus on ainult vormile. */
 const MAX_CODE_LENGTH = 40;
@@ -47,12 +51,15 @@ export async function POST(request) {
       }),
       registerNamesMeta()
     ]);
+    const fromCopy = check.source === RegisterNameSource.COPY;
     return json({
       ok: true,
       result: check.result,
       registerName: check.registerName,
-      /* Registri seis, mille vastu kontrolliti: uus või ümber nimetatud asutus võib failist puududa. */
-      registerDate: meta?.sourceLastModified || meta?.builtAt || null
+      source: check.source,
+      /* Koopia seis loeb ainult siis, kui vastus tuli koopiast: uus või ümber nimetatud asutus
+         võib sealt puududa. Registri enda vastuse juures kuupäeva ei ole. */
+      registerDate: fromCopy ? meta?.sourceLastModified || meta?.builtAt || null : null
     });
   } catch (error) {
     console.error("[service-provider-register-name] check failed", safeError(error));
