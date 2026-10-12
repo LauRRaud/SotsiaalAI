@@ -14957,7 +14957,16 @@
       "signed_on_label": "День подписания",
       "original_label": "Где хранится оригинал",
       "original_hint": "Например, папка в конторе или номер в реестре документов.",
-      "original_line": "оригинал: {place}"
+      "original_line": "оригинал: {place}",
+      "facts": {
+        "period": "Действует",
+        "period_fixed": "с {from} по {until}",
+        "period_open": "с {from}, бессрочно",
+        "volume": "Объём",
+        "fee": "Плата",
+        "sign": "Подпись",
+        "original": "Оригинал"
+      }
     },
     "deadlines": {
       "link": "Сроки",

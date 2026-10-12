@@ -14957,7 +14957,16 @@
       "signed_on_label": "Allkirjastamise päev",
       "original_label": "Kus originaal on",
       "original_hint": "Näiteks kaust kontoris või dokumendiregistri number.",
-      "original_line": "originaal: {place}"
+      "original_line": "originaal: {place}",
+      "facts": {
+        "period": "Kehtib",
+        "period_fixed": "{from} kuni {until}",
+        "period_open": "alates {from}, tähtajatu",
+        "volume": "Maht",
+        "fee": "Tasu",
+        "sign": "Allkiri",
+        "original": "Originaal"
+      }
     },
     "deadlines": {
       "link": "Tähtajad",

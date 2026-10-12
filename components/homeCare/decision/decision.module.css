@@ -1,0 +1,34 @@
+/* Kliendi lehe otsus ja maht. Sõnade read, märk ja laused on organisatsioonide
+   lehtede ühised (../../org/org.module.css); siin on ainult see, mis on otsusel oma. */
+
+/* Otsuse rida: liik, number ja otsustaja; märgid selle järel. */
+.head {
+  composes: openHead from "../diary/diary.module.css";
+  color: var(--text-warm);
+}
+.chips {
+  composes: openChips from "../diary/diary.module.css";
+}
+
+/* Otsuse read ja osutatud aeg: telefonis üksteise all, laiemal pinnal kõrvuti. */
+.cols {
+  min-width: 0;
+  display: grid;
+  gap: 0.65rem 1.4rem;
+}
+.cols > * {
+  min-width: 0;
+}
+
+/* Osutatud aja lause kogu laiuses (kaks klassi: lause enda laius, teisest
+   failist, ei tohi võita). */
+.line.line {
+  max-width: none;
+}
+
+@container (min-width: 34rem) {
+  .cols {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}

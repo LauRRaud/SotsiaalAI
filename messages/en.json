@@ -14957,7 +14957,16 @@
       "signed_on_label": "Day of signing",
       "original_label": "Where the original is kept",
       "original_hint": "For example a folder in the office or the number in the document register.",
-      "original_line": "original: {place}"
+      "original_line": "original: {place}",
+      "facts": {
+        "period": "In force",
+        "period_fixed": "{from} to {until}",
+        "period_open": "from {from}, no end date",
+        "volume": "Volume",
+        "fee": "Fee",
+        "sign": "Signature",
+        "original": "Original"
+      }
     },
     "deadlines": {
       "link": "Deadlines",

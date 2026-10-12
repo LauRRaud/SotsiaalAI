@@ -22,6 +22,8 @@ import {
   viewNameKey
 } from "./client/clientParts";
 import { DoorView, HandoversView, OldPart, PartsView } from "./client/ClientViews";
+import { continuityLine, decisionSheet, decisionVolumeLabel, providedLines } from "./decision/decisionRows";
+import { DecisionView } from "./decision/DecisionViews";
 import { DIARY_PAGE, HITS_PAGE, NO_FILTER, diaryPage, diaryRows, filterActive as filterActiveOf, filterLine, historyVisible } from "./diary/diaryRows";
 import { DiarySearchView, DiaryView, HistoryHitsView } from "./diary/DiaryViews";
 import EntryOpen from "./diary/EntryOpen";
@@ -34,7 +36,6 @@ import HomeCareClientForm from "./HomeCareClientForm";
 import HomeCareControlCalls from "./HomeCareControlCalls";
 import HomeCareDecisionNotices from "./HomeCareDecisionNotices";
 import HomeCareTransport from "./HomeCareTransport";
-import HomeCareDecisionView, { decisionVolumeLabel, minutesLabel } from "./HomeCareDecisionView";
 import EntryFlow from "./entry/EntryFlow";
 import HomeCareReasonForm from "./HomeCareReasonForm";
 import HomeCareRelatives from "./HomeCareRelatives";
@@ -789,49 +790,22 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
             />
           )}
 
-          {/* Täna kehtiv otsus ja otsustatud maht (K2-c). Kogu meeskonnale lugemiseks. */}
-          {part(
-            "decision",
-            <section className="hc-section" aria-label={t("home_care.decision.title")}>
-              {data.decision ? <HomeCareDecisionView decision={data.decision} /> : <p className="hc-hint">{t("home_care.decision.none")}</p>}
-              {/* Osutatud aeg (K2-e): selle nädala ja selle kuu käigu kirjed. */}
-              {data.provided
-                ? ["week", "month"].map((period) => {
-                    const sums = data.provided[period];
-                    return (
-                      <p className="hc-entry__meta" key={period}>
-                        {sums.visits === 0
-                          ? t(`home_care.provided.${period}_none`)
-                          : [
-                              t(`home_care.provided.${period}`, { visits: sums.visits, amount: minutesLabel(t, sums.minutes) }),
-                              sums.withoutLength ? t("home_care.provided.without_length", { count: sums.withoutLength }) : null
-                            ]
-                              .filter(Boolean)
-                              .join(" · ")}
-                      </p>
-                    );
-                  })
-                : null}
-              {/* Püsivuse näit (K5-f): mitu eri töötajat tegi viimase nelja nädala käigud. */}
-              {data.continuity ? (
-                <p className="hc-sub">
-                  {data.continuity.workers === 1
-                    ? t("home_care.continuity.one", { visits: data.continuity.visits })
-                    : t("home_care.continuity.many", {
-                        workers: data.continuity.workers,
-                        top: data.continuity.topWorkers,
-                        percent: data.continuity.topPercent,
-                        visits: data.continuity.visits
-                      })}
-                </p>
-              ) : null}
-              {access.isCoordinator ? (
-                <Link className="hc-btn hc-btn--quiet hc-btn--link" href={`/org/${organizationId}/koduteenus/kliendid/${client.id}/otsused`} prefetch={false}>
-                  {t("home_care.decision.edit_link")}
-                </Link>
-              ) : null}
-            </section>
-          )}
+          {/* Täna kehtiv otsus ja otsustatud maht (K2-c), osutatud aeg (K2-e) ja püsivuse näit (K5-f). Kogu meeskonnale lugemiseks.
+              Osal ei ole oma olekut: see joonistatakse siis, kui ta on ees. */}
+          {current === "decision"
+            ? slot(
+                "decision",
+                <DecisionView
+                  title={t(viewNameKey("decision"))}
+                  name={client.displayName}
+                  sheet={decisionSheet(data.decision, { t })}
+                  empty={t("home_care.decision.none")}
+                  provided={providedLines(data.provided, { t })}
+                  continuity={continuityLine(data.continuity, { t })}
+                  edit={access.isCoordinator ? { label: t("home_care.decision.edit_link"), href: `/org/${organizationId}/koduteenus/kliendid/${client.id}/otsused` } : null}
+                />
+              )
+            : null}
 
           {part(
             "safety",
