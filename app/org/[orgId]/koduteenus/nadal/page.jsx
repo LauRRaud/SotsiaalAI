@@ -1,7 +1,7 @@
 import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 
-import HomeCareWeek from "@/components/homeCare/HomeCareWeek";
+import WeekPlan from "@/components/homeCare/weekPlan/WeekPlan";
 import { getWeekPlan } from "@/lib/homeCare/dayPlan";
 import { isOrgError } from "@/lib/org/errors";
 
@@ -29,5 +29,5 @@ export default async function HomeCareWeekPage({ params }) {
     notFound();
   }
 
-  return <HomeCareWeek context={auth.context} initial={initial} />;
+  return <WeekPlan context={auth.context} initial={initial} />;
 }

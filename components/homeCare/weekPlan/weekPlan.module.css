@@ -1,0 +1,76 @@
+/* Hooldusjuhi nädalaplaan. Read, märk ja laused on organisatsioonide lehtede
+   ühised (../../org/org.module.css); siin on ainult seitsme päeva rida ja töötaja rida. */
+
+/* Seitse päeva ühel real: iga päev on oma lahter (nädalapäeva täht, käikude arv ja vajadusel sõna).
+   Lahtrid on nii kitsad kui sisu, rida ei lähe üle paneeli laiuse. */
+.strip {
+  min-width: 0;
+  max-width: 30rem;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.35rem;
+}
+.cell {
+  composes: option from "../../stage/ChoiceRow.module.css";
+}
+.cell.cell {
+  min-width: 0;
+  min-height: 3.75rem;
+  flex-direction: column;
+  gap: 0.05rem;
+  padding: 0.3rem 0.15rem;
+  text-decoration: none;
+}
+.letter {
+  font-size: 0.78rem;
+  color: var(--text-soft);
+}
+.count {
+  font-size: 1.15rem;
+  font-weight: 620;
+  font-variant-numeric: tabular-nums;
+}
+/* Sõna lahtri all (nt „2 lahti", „ära"): tähelepanu vajav seis ei ole ainult värv. */
+.note {
+  font-size: 0.7rem;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+.cell[data-tone="danger"] {
+  color: var(--text-warm);
+  border-color: color-mix(in srgb, var(--text-warm) 72%, transparent);
+}
+.cell[data-tone="warn"] {
+  border-color: color-mix(in srgb, var(--text-warm) 45%, transparent);
+}
+.cell[data-tone="off"] {
+  color: var(--text-dim);
+}
+/* Tänane päev: tugevam raam ja kaal. */
+.cell[data-today="1"] .letter {
+  color: var(--text-warm);
+  font-weight: 650;
+}
+
+/* Töötaja rida: nimi (ja märk) ning selle all nädala kokkuvõte; tekst murdub (kaks klassi: rea enda veerud, teisest failist, ei tohi võita). */
+.row.row {
+  grid-template-columns: minmax(0, 1fr);
+}
+.main {
+  composes: main from "../day/day.module.css";
+}
+.sub {
+  composes: sub from "../day/day.module.css";
+}
+.who {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.8rem;
+}
+.risk.risk {
+  color: var(--text-warm);
+  font-weight: 650;
+}
