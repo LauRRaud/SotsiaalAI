@@ -10,7 +10,7 @@ import { daysLabel, minutesLabel } from "./HomeCareDecisionView";
 import { euroText } from "./HomeCareMoney";
 import HomeCareOutbox from "./HomeCareOutbox";
 import HomeCareTalkRequests from "./HomeCareTalkRequests";
-import { preconditionLine } from "./HomeCarePreconditions";
+import { preconditionLine } from "./safety/safetyRows";
 import { changeSignalLine, changeWaitingText } from "./HomeCareChangeSignals";
 import { planDayLabel } from "./HomeCarePlanView";
 import { workerRecordLine } from "./HomeCareWorkers";

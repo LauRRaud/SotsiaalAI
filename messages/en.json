@@ -16391,7 +16391,8 @@
         "manage_signals": "Observations waiting for an answer: {count}",
         "manage_review": "Check what is still open"
       },
-      "back": "Back"
+      "back": "Back",
+      "next": "Next"
     },
     "door": {
       "back": "Back to the door",
@@ -16459,6 +16460,22 @@
     },
     "sheets": {
       "name": "Sheets for the client"
+    },
+    "safety_part": {
+      "lines": {
+        "preconditions_none": "No preconditions",
+        "card_none": "The card is not filled in",
+        "card_clear": "No hazards marked",
+        "usual_none": "Not described",
+        "work_none": "No mark"
+      },
+      "all_questions": "All questions",
+      "next_question": "Next question",
+      "unanswered": "not answered",
+      "done_note": "The precondition counts as met and leaves this list. Press again if you are sure.",
+      "drop_note": "The precondition is dropped without being met and leaves this list. Press again if you are sure.",
+      "work_clear_note": "The mark and its reason are deleted. Press again if you are sure.",
+      "crisis_clear_note": "The assessment is deleted and the client is unassessed in the crisis list again. Press again if you are sure."
     }
   },
   "stage": {

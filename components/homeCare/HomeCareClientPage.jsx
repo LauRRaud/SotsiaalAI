@@ -31,7 +31,6 @@ import ImportedHistory from "./diary/ImportedHistory";
 import HomeCareCallNote from "./HomeCareCallNote";
 import HomeCareCard from "./HomeCareCard";
 import HomeCareChangeSignals from "./HomeCareChangeSignals";
-import HomeCareCrisis from "./HomeCareCrisis";
 import HomeCareClientForm from "./HomeCareClientForm";
 import HomeCareControlCalls from "./HomeCareControlCalls";
 import HomeCareDecisionNotices from "./HomeCareDecisionNotices";
@@ -39,17 +38,13 @@ import HomeCareTransport from "./HomeCareTransport";
 import EntryFlow from "./entry/EntryFlow";
 import HomeCareReasonForm from "./HomeCareReasonForm";
 import HomeCareRelatives from "./HomeCareRelatives";
-import HomeCareSafetyCard from "./HomeCareSafetyCard";
 import HomeCareKeys from "./HomeCareKeys";
 import HomeCareNearMiss from "./HomeCareNearMiss";
 import HomeCareNoAnswer from "./HomeCareNoAnswer";
 import HomeCareMoney from "./HomeCareMoney";
-import HomeCarePreconditions from "./HomeCarePreconditions";
 import HomeCareRepresentatives from "./HomeCareRepresentatives";
 import HomeCareSupplies from "./HomeCareSupplies";
-import HomeCareWorkNature from "./HomeCareWorkNature";
 import HomeCareTeam from "./HomeCareTeam";
-import HomeCareUsualState from "./HomeCareUsualState";
 import {
   ACCESS_REASON_REQUIRED,
   HomeCareAccessProvider,
@@ -62,6 +57,8 @@ import { getOutboxManager } from "./homeCareOutbox";
 import OutboxPanel, { OutboxNotice } from "./outbox/OutboxPanel";
 import { planDayLabel, planSheet, planSignals } from "./plan/planRows";
 import { PlanView } from "./plan/PlanViews";
+import ClientSafety from "./safety/ClientSafety";
+import { safetyRights } from "./safety/safetyRows";
 import ClientSlots from "./slots/ClientSlots";
 import { sheetRights } from "./slots/slotRows";
 import { euroText } from "./HomeCareMoney";
@@ -807,31 +804,25 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
               )
             : null}
 
-          {part(
-            "safety",
-            <>
-              {/* Eeltingimus enne teenuse algust (K4-a): kuni see on täitmata, teenust ei alustata. */}
-              <HomeCarePreconditions organizationId={organizationId} clientId={client.id} initial={data.preconditions || []} canEdit={canWrite && access.isCoordinator} />
-
-              {/* Ohutuskaart (K5-n): kodu kui töökoht. Seda peab enne minekut teadma. */}
-              <HomeCareSafetyCard organizationId={organizationId} clientId={client.id} initial={data.safety || null} canEdit={canWrite && access.canEditCard} />
-
-              {/* Tavaline seis (K5-a): selle järgi hindab hooldaja, kas täna oli midagi teisiti. */}
-              <HomeCareUsualState
-                organizationId={organizationId}
-                clientId={client.id}
-                initial={data.usualState || []}
-                canEdit={canWrite && access.canEditCard}
-                onChanged={(usualState) => setData((now) => ({ ...now, usualState }))}
-              />
-
-              {/* Töö iseloom (K3-g): „ainult kahekesi" peab olema näha enne minekut. */}
-              <HomeCareWorkNature organizationId={organizationId} clientId={client.id} initial={data.workNature || null} canEdit={canWrite && access.isCoordinator} />
-
-              {/* Kriisivalmidus (K5-b): kui palju tuge klient kriisis vajab ja millest ta sõltub. */}
-              <HomeCareCrisis organizationId={organizationId} clientId={client.id} initial={data.crisis || null} canEdit={canWrite && access.isCoordinator} />
-            </>
-          )}
+          {/* Ohutus: eeltingimused enne teenuse algust (K4-a), ohutuskaart (K5-n), tavaline seis (K5-a), töö iseloom (K3-g)
+              ja kriisivalmidus (K5-b); iga teema on osa sees omaette vaade.
+              Osa on lehel kogu aja (pooleli vorm elab selle konksudes) ja joonistatakse, kui ta on ees. Salvestus jõuab
+              ka lehe andmetesse: plaadi rida, vaade „Ukse taga" ja uue kirje küsimus „kas midagi oli teisiti" järgivad seda. */}
+          {sees("safety")
+            ? slot(
+                "safety",
+                <ClientSafety
+                  active={current === "safety"}
+                  organizationId={organizationId}
+                  clientId={client.id}
+                  title={t(viewNameKey("safety"))}
+                  name={client.displayName}
+                  rights={safetyRights(who)}
+                  initial={data}
+                  onChanged={(key, value) => setData((now) => ({ ...now, [key]: value }))}
+                />
+              )
+            : null}
 
           {/* Võtmed (K4-b): mis võtmed asutuse käes on ja kelle käes iga võti praegu on. */}
           {part(

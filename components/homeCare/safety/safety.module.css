@@ -1,0 +1,103 @@
+/* Kliendi lehe osa „Ohutus". Read, märk, laused, väljad ja lahtrid on
+   organisatsioonide lehtede ühised (../../org/org.module.css); siin on ainult
+   see, mis on sellel osal oma. */
+
+/* Teema, kus midagi ootab (täitmata eeltingimus): tugevam raam. */
+.waiting {
+  composes: alert from "../client/client.module.css";
+}
+
+/* Rea teine rida murdub (kes korraldab ja mis ajaks). */
+.main {
+  composes: main from "../day/day.module.css";
+}
+.sub {
+  composes: sub from "../day/day.module.css";
+}
+
+/* Kokku pandud rida võib alata väikese tähega sõnaga („korraldab …", „hinnatud …"). */
+.made::first-letter {
+  text-transform: uppercase;
+}
+
+/* Kaardi „jah"-vastused: teema ja selle kõrval märkus; ridu ei lõigata. */
+.lines {
+  composes: lines from "../plan/plan.module.css";
+}
+.line {
+  composes: line from "../plan/plan.module.css";
+}
+.name {
+  composes: name from "../plan/plan.module.css";
+  font-weight: 560;
+}
+.text {
+  min-width: 0;
+  color: var(--text-soft);
+  overflow-wrap: anywhere;
+}
+
+/* Töö iseloomu märgid reas. */
+.chips {
+  margin: 0;
+  max-width: none;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+/* Kui palju tuge klient kriisis vajab: vaate kõige tähtsam lause. */
+.level {
+  margin: 0;
+  max-width: none;
+  color: var(--text-warm);
+  font-weight: 560;
+}
+
+/* --- Vormid ------------------------------------------------------------------------- */
+/* Lühike väli (kuupäev) on nii lai kui sisu; lause väli (kaks klassi: rea enda
+   laius, teisest failist, ei tohi võita) on lai. */
+.field.field {
+  max-width: 14rem;
+}
+.wide.wide {
+  max-width: 34rem;
+}
+/* Valik ja väljad: telefonis üksteise all, laiemal pinnal kõrvuti. */
+.split {
+  min-width: 0;
+  display: grid;
+  gap: 0.65rem 1.4rem;
+}
+.split > * {
+  min-width: 0;
+}
+/* Kuus valdkonda: telefonis üksteise all, laiemal pinnal kahes veerus. */
+.grid {
+  min-width: 0;
+  display: grid;
+  gap: 0.5rem 1.4rem;
+}
+
+@container (max-width: 34rem) {
+  /* Telefonis on küsimuse real ainult teema ja vastus: kümme rida peavad mahtuma
+     ekraanile, märkus on küsimuse enda vaates. Kaks klassi: rea alumise rea
+     reegel (teisest failist) ei tohi võita. */
+  .questions .questionNote {
+    display: none;
+  }
+}
+@container (min-width: 34rem) {
+  .split {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  /* Kümme küsimust kahes veerus: loend jääb poole lühemaks. */
+  .questions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 0.6rem;
+  }
+}

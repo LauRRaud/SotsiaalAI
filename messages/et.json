@@ -16391,7 +16391,8 @@
         "manage_signals": "Märkamisi ootab vastust: {count}",
         "manage_review": "Vaata üle, mis on lahti"
       },
-      "back": "Tagasi"
+      "back": "Tagasi",
+      "next": "Edasi"
     },
     "door": {
       "back": "Tagasi ukse taha",
@@ -16459,6 +16460,22 @@
     },
     "sheets": {
       "name": "Lehed kliendile"
+    },
+    "safety_part": {
+      "lines": {
+        "preconditions_none": "Eeltingimusi ei ole",
+        "card_none": "Kaart on täitmata",
+        "card_clear": "Ohte ei ole märgitud",
+        "usual_none": "Kirjeldamata",
+        "work_none": "Märget ei ole"
+      },
+      "all_questions": "Kõik küsimused",
+      "next_question": "Järgmine küsimus",
+      "unanswered": "vastamata",
+      "done_note": "Eeltingimus loetakse täidetuks ja kaob siit loendist. Vajuta uuesti, kui oled kindel.",
+      "drop_note": "Eeltingimus võetakse maha ilma täitmata ja kaob siit loendist. Vajuta uuesti, kui oled kindel.",
+      "work_clear_note": "Märge ja selle põhjus kustuvad. Vajuta uuesti, kui oled kindel.",
+      "crisis_clear_note": "Hinnang kustub ja klient on kriisinimekirjas jälle hindamata. Vajuta uuesti, kui oled kindel."
     }
   },
   "stage": {
