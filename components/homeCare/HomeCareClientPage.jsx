@@ -37,7 +37,6 @@ import HomeCareDecisionNotices from "./HomeCareDecisionNotices";
 import EntryFlow from "./entry/EntryFlow";
 import HomeCareReasonForm from "./HomeCareReasonForm";
 import HomeCareNearMiss from "./HomeCareNearMiss";
-import HomeCareNoAnswer from "./HomeCareNoAnswer";
 import {
   ACCESS_REASON_REQUIRED,
   HomeCareAccessProvider,
@@ -53,6 +52,7 @@ import { euroText } from "./money/moneyRows";
 import OutboxPanel, { OutboxNotice } from "./outbox/OutboxPanel";
 import { planDayLabel, planSheet, planSignals } from "./plan/planRows";
 import { PlanView } from "./plan/PlanViews";
+import ClientNoAnswer from "./noAnswer/ClientNoAnswer";
 import ClientRelatives from "./relatives/ClientRelatives";
 import ClientTeam from "./team/ClientTeam";
 import ClientSafety from "./safety/ClientSafety";
@@ -507,22 +507,24 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
             />
           )}
 
-          {/* Kui uks ei avane (K4-f): kokkulepitud sammud ja nupp „Ei saa sisse". */}
+          {/* Kui uks ei avane (K4-f): kokkulepitud sammud ja nupp „Ei saa sisse". Osa on lehel kogu aja (pooleli märkimine elab
+              selle konksus) ja joonistatakse, kui ta on ees. */}
           {slot(
             "no_answer",
-            <OldPart title={t("home_care.no_answer.title")} back={toDoor}>
-              <HomeCareNoAnswer
-                organizationId={organizationId}
-                clientId={client.id}
-                clientName={client.displayName}
-                viewerMembershipId={access.membershipId}
-                timeZone={timeZone}
-                initial={data.doorSteps || []}
-                canEdit={canWrite && access.canEditCard}
-                canRecord={canAddEntry}
-                onSaved={upsertEntry}
-              />
-            </OldPart>
+            <ClientNoAnswer
+              active={current === "no_answer"}
+              organizationId={organizationId}
+              clientId={client.id}
+              clientName={client.displayName}
+              viewerMembershipId={access.membershipId}
+              timeZone={timeZone}
+              initial={data.doorSteps || []}
+              canEdit={canWrite && access.canEditCard}
+              canRecord={canAddEntry}
+              onSaved={upsertEntry}
+              title={t("home_care.no_answer.title")}
+              back={toDoor}
+            />
           )}
 
           {/* Uus kirje sammudena. Osa on lehel kogu aja (pooleli kirje elab selle konksus), sammud joonistatakse, kui osa on ees. */}

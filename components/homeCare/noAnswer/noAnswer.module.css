@@ -1,0 +1,37 @@
+/* Kliendi lehe „Kui uks ei avane". Read, märk, väljad ja laused on
+   organisatsioonide lehtede ühised (../../org/org.module.css); siin on ainult
+   see, mis sellel osal on oma. */
+
+/* Sammu rida on üks veerg: sammu tekst (ja märk selle kõrval); tekst murdub,
+   midagi ei lõigata (kaks klassi: rea enda veerud, teisest failist, ei tohi võita). */
+.step.step {
+  grid-template-columns: minmax(0, 1fr);
+}
+.stepMain {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.2rem 0.8rem;
+}
+.stepText {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+/* Märgitud samm: tugevam raam, mitte ainult värv. */
+.step[aria-pressed="true"] {
+  border-color: color-mix(in srgb, var(--status-success) 55%, transparent);
+}
+
+/* Sammude ja märkuse tekstiala on lause väli. */
+.wide.wide {
+  max-width: 34rem;
+}
+
+/* Hädaabi number all servas: alla joonitud link, mitte vaikne tekst. */
+.call {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+}
