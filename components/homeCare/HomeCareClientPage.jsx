@@ -30,7 +30,6 @@ import EntryOpen from "./diary/EntryOpen";
 import ImportedHistory from "./diary/ImportedHistory";
 import HomeCareCallNote from "./HomeCareCallNote";
 import EntryFlow from "./entry/EntryFlow";
-import HomeCareReasonForm from "./HomeCareReasonForm";
 import HomeCareNearMiss from "./HomeCareNearMiss";
 import {
   ACCESS_REASON_REQUIRED,
@@ -49,6 +48,7 @@ import { planDayLabel, planSheet, planSignals } from "./plan/planRows";
 import { PlanView } from "./plan/PlanViews";
 import ClientManage from "./manage/ClientManage";
 import ClientNoAnswer from "./noAnswer/ClientNoAnswer";
+import ClientReason from "./reason/ClientReason";
 import ClientRelatives from "./relatives/ClientRelatives";
 import ClientTeam from "./team/ClientTeam";
 import ClientSafety from "./safety/ClientSafety";
@@ -285,9 +285,7 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
   if (needsReason) {
     return (
       <OrgPart context={context} part="home_care" partLabel={t("home_care.client.page_name")}>
-        <OldPart title={pageName}>
-          <HomeCareReasonForm organizationId={organizationId} clientId={clientId} writable={Boolean(context.writable)} onGranted={() => reload()} />
-        </OldPart>
+        <ClientReason organizationId={organizationId} clientId={clientId} writable={Boolean(context.writable)} onGranted={() => reload()} />
       </OrgPart>
     );
   }
@@ -372,9 +370,9 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
       >
         <HomeCareAccessProvider onReasonRequired={() => setLapsed(true)}>
           {lapsed ? (
-            <section className={`hc-shell ${styles.old}`} data-lapsed="1">
-              <HomeCareReasonForm organizationId={organizationId} clientId={client.id} writable={canWrite} inPage onGranted={() => setLapsed(false)} />
-            </section>
+            <div data-lapsed="1">
+              <ClientReason organizationId={organizationId} clientId={client.id} writable={canWrite} onGranted={() => setLapsed(false)} />
+            </div>
           ) : null}
 
           {/* Seadmes ootavad kirjed: üks rida osade laua ja vaate „Ukse taga" kohal (sinna leht avaneb); rida avab loendi. */}
