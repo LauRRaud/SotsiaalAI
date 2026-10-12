@@ -38,7 +38,6 @@ import HomeCareTransport from "./HomeCareTransport";
 import EntryFlow from "./entry/EntryFlow";
 import HomeCareReasonForm from "./HomeCareReasonForm";
 import HomeCareRelatives from "./HomeCareRelatives";
-import HomeCareKeys from "./HomeCareKeys";
 import HomeCareNearMiss from "./HomeCareNearMiss";
 import HomeCareNoAnswer from "./HomeCareNoAnswer";
 import HomeCareMoney from "./HomeCareMoney";
@@ -54,6 +53,7 @@ import {
   useHomeCareApi
 } from "./homeCareClient";
 import { getOutboxManager } from "./homeCareOutbox";
+import ClientKeys from "./keys/ClientKeys";
 import OutboxPanel, { OutboxNotice } from "./outbox/OutboxPanel";
 import { planDayLabel, planSheet, planSignals } from "./plan/planRows";
 import { PlanView } from "./plan/PlanViews";
@@ -824,20 +824,24 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
               )
             : null}
 
-          {/* Võtmed (K4-b): mis võtmed asutuse käes on ja kelle käes iga võti praegu on. */}
-          {part(
-            "keys",
-            <HomeCareKeys
-              organizationId={organizationId}
-              clientId={client.id}
-              initial={data.keys || []}
-              receivers={data.keyReceivers || []}
-              canManage={access.isCoordinator}
-              canWrite={canWrite}
-              myMembershipId={access.membershipId}
-              onChanged={(keys) => setData((now) => ({ ...now, keys }))}
-            />
-          )}
+          {/* Võtmed (K4-b): mis võtmed asutuse käes on ja kelle käes iga võti praegu on.
+              Osa on lehel kogu aja (pooleli vorm elab selle konksus) ja joonistatakse, kui ta on ees. */}
+          {sees("keys")
+            ? slot(
+                "keys",
+                <ClientKeys
+                  active={current === "keys"}
+                  organizationId={organizationId}
+                  clientId={client.id}
+                  title={t(viewNameKey("keys"))}
+                  name={client.displayName}
+                  initial={data.keys || []}
+                  receivers={data.keyReceivers || []}
+                  who={{ canManage: access.isCoordinator, canWrite, myMembershipId: access.membershipId }}
+                  onChanged={(keys) => setData((now) => ({ ...now, keys }))}
+                />
+              )
+            : null}
 
           {/* Kliendi sularaha vaataja käes (K4-c): arvestus, mitte makse. */}
           {part(

@@ -15420,7 +15420,10 @@
       "truncated": "Showing the first {count} keys.",
       "unreturned_title": "Keys not returned (the service has ended)",
       "unreturned_empty": "The organisation holds no keys of clients whose service has ended.",
-      "register_empty": "The organisation holds no keys."
+      "register_empty": "The organisation holds no keys.",
+      "list_hint": "This is a record of who holds the key. The tag carries only a number.",
+      "returned_note": "The key leaves the institution's record: it has been given back to the client. Press again if you are sure.",
+      "lost_note": "The key is marked lost and leaves the institution's record. Press again if you are sure."
     },
     "money": {
       "title": "Client's money",

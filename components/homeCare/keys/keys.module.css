@@ -1,0 +1,13 @@
+/* Kliendi lehe võtmed. Read, lahtrid, väljad ja laused on organisatsioonide
+   lehtede ühised (../../org/org.module.css); siin on ainult see, mis on võtmetel oma. */
+
+/* Kokku pandud rida algab väikese tähega sõnaga („võti nr 14", „sinu käes"). */
+.made::first-letter {
+  text-transform: uppercase;
+}
+
+/* Ripatsi number on lühike: väli on nii lai kui number (kaks klassi: paari
+   enda laius, teisest failist, ei tohi võita). */
+.tag.tag {
+  flex: 0 0 9rem;
+}

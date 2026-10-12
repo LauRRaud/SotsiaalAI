@@ -6,7 +6,7 @@ import { useId } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import OrgPart from "@/components/org/OrgPart";
 
-import { keyHolderText, keyName } from "./HomeCareKeys";
+import { keyHolderText, keyName } from "./keys/keyRows";
 import { clientHref } from "./homeCareClient";
 
 /**

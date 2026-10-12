@@ -16,7 +16,7 @@ import { HomeDeskView } from "./desk/DeskViews";
 import { deskGroups, deskViewer, landingView, viewName } from "./desk/homeCareDesk";
 import HomeCareCallNote from "./HomeCareCallNote";
 import HomeCareClientForm from "./HomeCareClientForm";
-import { keyName, keyWhere } from "./HomeCareKeys";
+import { keyName, keyWhere } from "./keys/keyRows";
 import { rideText } from "./HomeCareTransport";
 import { euroText } from "./HomeCareMoney";
 import { useHomeCareObstacle } from "./HomeCareObstacle";

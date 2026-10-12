@@ -15420,7 +15420,10 @@
       "truncated": "Näitan esimest {count} võtit.",
       "unreturned_title": "Tagastamata võtmed (teenus on lõppenud)",
       "unreturned_empty": "Lõppenud teenusega klientide võtmeid asutuse käes ei ole.",
-      "register_empty": "Asutuse käes võtmeid ei ole."
+      "register_empty": "Asutuse käes võtmeid ei ole.",
+      "list_hint": "See on arvestus, kelle käes võti on. Ripatsil on ainult number.",
+      "returned_note": "Võti läheb asutuse arvestusest välja: see on kliendile tagasi antud. Vajuta uuesti, kui oled kindel.",
+      "lost_note": "Võti märgitakse kadunuks ja läheb asutuse arvestusest välja. Vajuta uuesti, kui oled kindel."
     },
     "money": {
       "title": "Kliendi raha",
