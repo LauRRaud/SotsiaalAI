@@ -1,7 +1,7 @@
 import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 
-import HomeCareChronology from "@/components/homeCare/HomeCareChronology";
+import Chronology from "@/components/homeCare/chronology/Chronology";
 import { getChronologyClient } from "@/lib/homeCare/chronology";
 import { isOrgError } from "@/lib/org/errors";
 
@@ -33,5 +33,5 @@ export default async function HomeCareChronologyPage({ params }) {
     notFound();
   }
 
-  return <HomeCareChronology context={auth.context} client={client} />;
+  return <Chronology context={auth.context} client={client} />;
 }

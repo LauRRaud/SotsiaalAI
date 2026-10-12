@@ -90,7 +90,7 @@ function RowBody({ row }) {
 /**
  * Read. `rows`: [{ key, title, chip, line, lines, tone, open }] (`open`: rida avab kirje, muidu on see loetav);
  * `onOpen(key)`; `empty`: lause, kui ridu ei ole; `hint`: vaikne rida all servas;
- * `links`: [{ key, title, line, chip, onOpen, href }] (rühm ridu all: need viivad mujale; `href`: link, mis ei eellaadi);
+ * `links`: [{ key, title, line, chip, onOpen, href, blank }] (rühm ridu all: need viivad mujale; `href`: link, mis ei eellaadi; `blank`: avaneb uuel vahelehel);
  * `more`: { label, onMore } või null; `actions`: [{ key, label, onPress, primary, busy }]; `back`: { label, onBack } või null;
  * `lead`: lühike juhis vaate ülaservas.
  */
@@ -122,7 +122,11 @@ export function RowsView({ title, question, lead, rows, onOpen, empty, hint, not
           <ul className={shared.rows}>
             {links.map((link) => (
               <li key={link.key} className={shared.rowItem}>
-                {link.href ? (
+                {link.href && link.blank ? (
+                  <a href={link.href} target="_blank" rel="noopener noreferrer" className={`${shared.row} ${styles.row}`} data-part-link={link.key}>
+                    <RowBody row={link} />
+                  </a>
+                ) : link.href ? (
                   <Link href={link.href} prefetch={false} className={`${shared.row} ${styles.row}`} data-part-link={link.key}>
                     <RowBody row={link} />
                   </Link>
