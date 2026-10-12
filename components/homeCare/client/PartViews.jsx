@@ -66,13 +66,16 @@ function Actions({ back, actions = [] }) {
   );
 }
 
-/** Rea sisu: pealkiri (ja märk selle kõrval) ning selle all read täies pikkuses. `row`: { title, chip, line, lines }. */
+/** Rea sisu: pealkiri (ja märk või märgid selle kõrval) ning selle all read täies pikkuses. `row`: { title, chip, chips, line, lines }. */
 function RowBody({ row }) {
   const lines = row.lines || (row.line ? [row.line] : []);
   return (
     <span className={styles.main}>
       <span className={styles.who}>
         <span className={row.tone === "risk" ? `${shared.rowTitle} ${styles.risk}` : shared.rowTitle}>{row.title}</span>
+        {(row.chips || []).map((chip) => (
+          <Chip key={chip.text} chip={chip} />
+        ))}
         <Chip chip={row.chip} />
       </span>
       {lines.map((line) => (
@@ -138,7 +141,7 @@ export function RowsView({ title, question, lead, rows, onOpen, empty, hint, not
 }
 
 /**
- * Üks kirje. `head`: { name, chip }; `notices`: [{ key, text }] (rahulikud laused); `facts`: [{ key, label, value }];
+ * Üks kirje. `head`: { name, chip, chips } (üks märk või mitu); `notices`: [{ key, text }] (rahulikud laused); `facts`: [{ key, label, value }];
  * `body`: tekst täies pikkuses või tühi; `cells`: [{ key, label, armed, onPress }] (kustutav või lõpetav lahter küsib teist vajutust);
  * `consequence`: lause, mis juhtub (pärast esimest vajutust); `actions`, `back`: nagu `RowsView`-l.
  */
@@ -149,6 +152,9 @@ export function DetailView({ title, question, head, notices = [], facts = [], bo
         {head ? (
           <header className={shared.headBar}>
             <p className={shared.headName}>{head.name}</p>
+            {(head.chips || []).map((chip) => (
+              <Chip key={chip.text} chip={chip} />
+            ))}
             <Chip chip={head.chip} />
           </header>
         ) : null}

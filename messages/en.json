@@ -14972,7 +14972,8 @@
         "fee": "Fee",
         "sign": "Signature",
         "original": "Original"
-      }
+      },
+      "retract_note": "The decision is retracted, not deleted: it stays in the list of decisions marked as retracted. Press again if you are sure."
     },
     "deadlines": {
       "link": "Deadlines",

@@ -1,7 +1,7 @@
 import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 
-import HomeCareDecisions from "@/components/homeCare/HomeCareDecisions";
+import Decisions from "@/components/homeCare/decisions/Decisions";
 import { getDecisionEditor } from "@/lib/homeCare/decisions";
 import { isOrgError } from "@/lib/org/errors";
 
@@ -30,5 +30,5 @@ export default async function HomeCareDecisionsPage({ params }) {
     notFound();
   }
 
-  return <HomeCareDecisions context={auth.context} initial={initial} />;
+  return <Decisions context={auth.context} initial={initial} />;
 }

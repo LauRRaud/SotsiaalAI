@@ -14972,7 +14972,8 @@
         "fee": "Tasu",
         "sign": "Allkiri",
         "original": "Originaal"
-      }
+      },
+      "retract_note": "Otsus tühistatakse, mitte ei kustutata: see jääb otsuste loendisse märkega „tühistatud“. Vajuta uuesti, kui oled kindel."
     },
     "deadlines": {
       "link": "Tähtajad",
