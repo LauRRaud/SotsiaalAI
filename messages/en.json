@@ -15076,7 +15076,8 @@
       "control_calls_empty": "Every client has been called this quarter.",
       "control_calls_line": "last reached on {date}",
       "control_calls_never": "never reached",
-      "contracts_unsigned_no_representative": "contract in force from {date}: signed by a representative, but no right of representation is on record for that day"
+      "contracts_unsigned_no_representative": "contract in force from {date}: signed by a representative, but no right of representation is on record for that day",
+      "none_all": "Nothing needs attention by a deadline."
     },
     "visit": {
       "title": "What you did",

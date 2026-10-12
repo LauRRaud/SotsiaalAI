@@ -12,7 +12,7 @@ import { homeCareBase, useHomeCareApi } from "../homeCareClient";
  * rääkimine on toimunud; mida räägiti, ei kirjutata.
  *
  * Vaade: avatud kirje kliendi lehel (`./EntryOpen.jsx`). Hooldusjuhi loend
- * kõigist soovidest on omaette (`../HomeCareTalkRequests.jsx`).
+ * kõigist soovidest on omaette (`../deadlines/Deadlines.jsx`).
  */
 export function useTalkRequest({ organizationId, clientId, entryId, initial = null }) {
   const { call, busy, error } = useHomeCareApi();

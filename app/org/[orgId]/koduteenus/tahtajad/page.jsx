@@ -1,7 +1,7 @@
 import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 
-import HomeCareDeadlines from "@/components/homeCare/HomeCareDeadlines";
+import Deadlines from "@/components/homeCare/deadlines/Deadlines";
 import { getDeadlines } from "@/lib/homeCare/deadlines";
 import { isOrgError } from "@/lib/org/errors";
 
@@ -29,5 +29,5 @@ export default async function HomeCareDeadlinesPage({ params }) {
     notFound();
   }
 
-  return <HomeCareDeadlines context={auth.context} deadlines={deadlines} />;
+  return <Deadlines context={auth.context} deadlines={deadlines} />;
 }
