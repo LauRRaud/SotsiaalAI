@@ -3566,6 +3566,15 @@ struktureerida — aga saadab alati inimene ise ja saatmise hetkel on näha täp
 kellele läheb. Kuni vastuvõtja ei ole kirja avanud, saab pöördumise tagasi võtta. Kõik
 saadetu jääb inimesele endale nähtavaks vaates „Minu jagamised".
 
+E-kirja tee (12.10.2026): kontaktile, kes platvormis pöördumisi vastu ei võta, saadab inimese
+pöördumise tema enda e-posti rakendus; platvorm ise e-kirja ei saada. Kontakti vaade ütleb real
+„Pöördumine läheb", et e-kiri ei ole otsast lõpuni kaitstud. Kaart „Ava e-kirjana" ei ava
+kirja kohe: enne on vaade hoiatusega (tavaline e-kiri ei ole otsast lõpuni kaitstud, platvormis
+saatmine on turvalisem, sisu otsustab inimene) ja märkeruuduga. Vaikimisi on kirjas ainult
+tervitus, teema ja palve; olukorra kirjeldus ja eelkaardistuse kokkuvõte lähevad kirja ainult
+inimese enda märkega. Kogu tekst jääb saadavale kopeerimise ja alla laadimisega; platvormis
+saadetav pöördumine ja alla laaditav fail ei muutunud.
+
 Vastuvõtja poolel on laud, kus pöördumised seisavad järjekorras koos ettevalmistatud
 kokkuvõttega. Ametnik näeb inimese enda sõnu ja AI koostatud struktuuri eraldi ja
 märgistatult — masina mustandit ei esitata kunagi inimese ütlusena.

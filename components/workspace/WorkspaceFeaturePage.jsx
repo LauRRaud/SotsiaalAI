@@ -468,7 +468,9 @@ function formatDay(value, locale = "et") {
   }
 }
 
-function buildLocalPreInquiryDraft({ topic, situation, recipient, assessmentDraftSummary = "" }) {
+/* `withDetails: false` annab lühikese kirja: tervitus, teema ja palve, ilma olukorra kirjelduse
+   ja eelkaardistuse kokkuvõtteta (e-kirja vaikimisi tekst, vt buildPreInquiryRecipientMailto). */
+function buildLocalPreInquiryDraft({ topic, situation, recipient, assessmentDraftSummary = "", withDetails = true }) {
   const subject = topic?.trim() || "Eelpöördumine";
   const greeting = recipient?.title
     ? `Lugupeetud ${recipient.title}`
@@ -482,9 +484,7 @@ function buildLocalPreInquiryDraft({ topic, situation, recipient, assessmentDraf
     "",
     `Soovin pöörduda teemal: ${subject}.`,
     "",
-    "Olukorra kirjeldus ja eelkaardistus:",
-    details,
-    "",
+    ...(withDetails ? ["Olukorra kirjeldus ja eelkaardistus:", details, ""] : []),
     recipient?.type === "SERVICE_PROVIDER"
       ? "Palun andke teada, kas teie teenus võiks sellises olukorras sobida ning millised on tingimused, vabad ajad ja vajadusel suunamise või otsuse nõuded."
       : "Palun aidata välja selgitada, millised toetused või teenused võiksid selles olukorras sobida ning millised oleksid järgmised sammud.",
@@ -571,11 +571,17 @@ function buildPreInquiryReplyMailto(inquiry) {
   return `mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
-function buildPreInquiryRecipientMailto({ recipient, topic, draft, situation }) {
+/* E-kirja link inimese enda e-posti rakendusse. Vaikimisi on kirjas ainult tervitus, teema ja
+   palve: tavaline e-kiri ei ole otsast lõpuni kaitstud ja veebipostiga on kogu kirja tekst
+   aadressis. Olukorra kirjeldus ja eelkaardistuse kokkuvõte lähevad kirja ainult inimese enda
+   valikul (`withDetails`); kogu tekst on alati saadaval kopeerimise ja alla laadimisega. */
+function buildPreInquiryRecipientMailto({ recipient, topic, draft, situation, withDetails = false }) {
   const email = String(recipient?.email || "").trim();
   if (!email) return "";
   const subject = String(topic || "Pöördumine").trim();
-  const body = String(draft || buildLocalPreInquiryDraft({ topic, situation, recipient }) || "").trim();
+  const body = withDetails
+    ? String(draft || buildLocalPreInquiryDraft({ topic, situation, recipient }) || "").trim()
+    : buildLocalPreInquiryDraft({ topic, recipient, withDetails: false });
   return `mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
@@ -881,6 +887,11 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
   const [nextContactOnDraft, setNextContactOnDraft] = useState("");
   const [acceptsPreInquiries, setAcceptsPreInquiries] = useState(false);
   const [draftTouched, setDraftTouched] = useState(false);
+  /* Kas e-kirja läheb ka olukorra kirjeldus ja eelkaardistus. Vaikimisi ei lähe; valik kehtib
+     ühe pöördumise kohta (uue või teise pöördumise avamine võtab selle maha). */
+  const [emailWithDetails, setEmailWithDetails] = useState(false);
+  /* Saatmise sammu e-kirja vaade (hoiatus ja valik) on ees. */
+  const [emailStepOpen, setEmailStepOpen] = useState(false);
   const [inputFocused, setInputFocused] = useState(false);
   const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
@@ -1065,9 +1076,10 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       recipient: selectedRecipient ? { ...selectedRecipient, email: selectedChannels.address } : null,
       topic,
       draft,
-      situation: effectiveSituation
+      situation: effectiveSituation,
+      withDetails: emailWithDetails
     }),
-    [draft, effectiveSituation, selectedChannels.address, selectedRecipient, topic]
+    [draft, effectiveSituation, emailWithDetails, selectedChannels.address, selectedRecipient, topic]
   );
   // THE canonical downloadable text for the editor's current state — same helper
   // the saved-records list and the server-side change check use, so "what was
@@ -1132,13 +1144,19 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     : null;
   // Confirmation must refer to the exact persisted snapshot. Editor fields may
   // already contain unsaved changes, so a saved inquiry always opens mailto from
-  // the server-returned row rather than from the mutable form state.
+  // the server-returned row rather than from the mutable form state. The short
+  // letter needs the saved recipient's name and kind for its greeting and request.
   const activeInquiryMailto = activeInquiry?.deliveryChannel === "EXTERNAL_EMAIL"
     ? buildPreInquiryRecipientMailto({
-        recipient: { email: activeInquiry.selectedRecipientEmail },
+        recipient: {
+          email: activeInquiry.selectedRecipientEmail,
+          title: activeInquiry.selectedRecipientName,
+          type: activeInquiry.recipientType
+        },
         topic: activeInquiry.topic,
         draft: activeInquiry.userEditedDraft || activeInquiry.generatedDraft,
-        situation: activeInquiry.situation
+        situation: activeInquiry.situation,
+        withDetails: emailWithDetails
       })
     : "";
   const isRecipientRole = activeRole === "SOCIAL_WORKER" || activeRole === "SERVICE_PROVIDER";
@@ -1683,6 +1701,8 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     setRecipientServicesOpen(false);
     setRecipientBrowsing(false);
     setDraftTouched(false);
+    setEmailWithDetails(false);
+    setEmailStepOpen(false);
     setWorkflowMode("");
     setActiveWorkflowStep("path");
     setAssessmentPathChosen(false);
@@ -1724,6 +1744,8 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     setRecipientServicesOpen(false);
     setRecipientBrowsing(false);
     setDraftTouched(true);
+    setEmailWithDetails(false);
+    setEmailStepOpen(false);
     /* Saadetud (või muul põhjusel muutmisele suletud) pöördumine avaneb lugemisvaates: seis,
        adressaat ja saadetud tekst. Muutmisvormi ega saatmise sammu sellel ei ole, sest server
        saadetud pöördumist muuta ei luba (reegel: preInquiry/senderModel.js). */
@@ -2802,10 +2824,9 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       ? {
           key: "email",
           title: tr("actions.open_email", "Ava e-kirjana"),
-          description: tr("views.send.email_hint", "Tekst avaneb sinu e-posti rakenduses ülevaatamiseks. Platvorm ise e-kirja ei saada."),
-          onClick: () => {
-            window.location.href = mailto;
-          }
+          description: tr("views.send.email_hint", "Enne avamist valid, mis kirja läheb. Platvorm ise e-kirja ei saada."),
+          /* Kaart ei ava kirja kohe: enne tuleb e-kirja vaade hoiatuse ja valikuga (vt sendEmail). */
+          onClick: () => setEmailStepOpen(true)
         }
       : null,
     activeInquiryMailto && activeInquiry.status !== "SENT"
@@ -2818,6 +2839,29 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
         }
       : null,
   ].filter(Boolean);
+  /* E-kirja vaade saatmise sammus: avaneb kaardist „Ava e-kirjana" ja on ees üksi. Hoiatus, et
+     tavaline e-kiri ei ole otsast lõpuni kaitstud, valik, kas kirja läheb ka olukorra kirjeldus
+     (vaikimisi ei lähe), ja alles siis nupp, mis kirja inimese e-posti rakenduses avab. Kaartide
+     kõrval tegid hoiatus ja valik saatmise vaate töölaua paneelis 181 px kõrgemaks (268 → 449 px,
+     mahub 516): teenuseosutaja teadetega vaade enam ära ei mahuks. */
+  const sendEmail = mailto
+    ? {
+        open: emailStepOpen,
+        question: tr("views.send.email_question", "Mis e-kirja läheb?"),
+        risk: tr("views.send.email_risk", "Tavaline e-kiri ei ole otsast lõpuni kaitstud. Platvormis saatmine on turvalisem, kui adressaat seda vastu võtab. Mida e-kirja paned, otsustad ise."),
+        detailsLabel: tr("views.send.email_details", "Lisa e-kirja ka olukorra kirjeldus ja eelkaardistus"),
+        detailsHint: tr("views.send.email_details_hint", "Ilma selleta on kirjas tervitus, teema ja palve. Kogu teksti saad alati kopeerida või alla laadida."),
+        withDetails: emailWithDetails,
+        onWithDetails: setEmailWithDetails,
+        openLabel: tr("actions.open_email_app", "Ava e-posti rakenduses"),
+        onOpen: () => {
+          window.location.href = mailto;
+          setEmailStepOpen(false);
+        },
+        backLabel: readText(t, "common.back", "Tagasi"),
+        onBack: () => setEmailStepOpen(false)
+      }
+    : null;
   /* Salvestamine, kopeerimine ja alla laadimine on saatmise vaate jaluses (selgitus vihjena). */
   const sendActions = [
     {
@@ -3040,10 +3084,15 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
         return (
           <SentTextView
             tr={tr}
+            /* E-kirjaga saadetud pöördumise kohta ei saa öelda „selle teksti saatsid": kirjas on
+               vaikimisi ainult tervitus, teema ja palve ning sisu otsustas inimene oma e-posti
+               rakenduses. */
             lead={
-              sentView?.sentAt
-                ? tr("views.sent.text_lead", "Selle teksti saatsid. Saadetud pöördumist enam muuta ei saa.")
-                : tr("views.sent.text_lead_unsent", "Arhiveeritud pöördumise tekst. Muutmiseks taasava pöördumine.")
+              !sentView?.sentAt
+                ? tr("views.sent.text_lead_unsent", "Arhiveeritud pöördumise tekst. Muutmiseks taasava pöördumine.")
+                : sentView.channel === "email"
+                  ? tr("views.sent.text_lead_email", "See on siin salvestatud pöördumise tekst. Mis e-kirjas oli, otsustasid ise. Saadetud pöördumist enam muuta ei saa.")
+                  : tr("views.sent.text_lead", "Selle teksti saatsid. Saadetud pöördumist enam muuta ei saa.")
             }
             situation={sentView?.situation || ""}
             text={sentView?.text || ""}
@@ -3281,6 +3330,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
             summary={sendSummary}
             notices={sendNotices}
             privacyPrompt={privacyPromptBlock}
+            email={sendEmail}
             choices={sendChoices}
             actions={sendActions}
             note={notice}

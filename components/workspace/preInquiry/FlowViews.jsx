@@ -12,6 +12,7 @@
  */
 
 import ActionCard, { ActionCardGrid } from "@/components/stage/ActionCard";
+import CheckCard from "@/components/stage/CheckCard";
 import ChoiceRow from "@/components/stage/ChoiceRow";
 import StepPanel from "@/components/stage/StepPanel";
 import TextAreaField from "@/components/stage/TextAreaField";
@@ -253,7 +254,9 @@ export function RecipientListView({ tr, glow = true, filters, filter, onFilter, 
  *
  * Teenusekaardid olid algul siin samas vaates: koos andmetega oli vaade töölaua paneelis
  * 491 px (mahub 461). Suunamise vajaduse ja kättesaadavuse hoiatus on saatmise sammus valitud
- * teenuse kohta, mitte siin kõigi kohta.
+ * teenuse kohta, mitte siin kõigi kohta. E-kirja tee hoiatus on siin rea „Pöördumine läheb"
+ * väärtuses, mitte eraldi kastis: kastiga oli vaade otseteel 463 px (mahub 445), abilise
+ * põhjendusega veel kaks rida kõrgem.
  */
 export function RecipientContactView({ tr, glow = true, contact, onBack }) {
   return (
@@ -374,11 +377,18 @@ export function TextView({ tr, topic, onTopic, draft, onDraft, remaining, childr
  * vaade töölaua paneelis 471 px ja koos teenuseosutaja teadetega 561 px (mahub 461). Töölaua
  * paneelis määrab kõrgeim vaade kogu lava kõrguse, nii et siis kerisid kõik sammud.
  * Isikuandmete küsimus (`privacyPrompt`) on ees üksi: enne otsust ei ole midagi saata.
+ *
+ * `email` (kui saatmise teede seas on e-kiri): e-kirja vaade, mis avaneb kaardist „Ava e-kirjana"
+ * (`open`) ja on siis ees üksi nagu isikuandmete küsimus. `risk` on hoiatus, et tavaline e-kiri
+ * ei ole otsast lõpuni kaitstud; märkeruut otsustab, kas kirja läheb ka olukorra kirjeldus ja
+ * eelkaardistus (vaikimisi ei lähe); `onOpen` avab kirja inimese e-posti rakenduses.
  */
-export function SendView({ tr, summary, notices, privacyPrompt, choices, actions, note }) {
+export function SendView({ tr, summary, notices, privacyPrompt, email = null, choices, actions, note }) {
+  const emailOpen = Boolean(email?.open) && !privacyPrompt;
   return (
     <StepPanel
       title={tr("views.send.title", "Saatmine")}
+      question={emailOpen ? email.question : undefined}
       note={note || null}
       actions={actions.map((action) => (
         <Button key={action.key} type="button" size="sm" variant="secondary" disabled={action.disabled} title={action.hint} onClick={action.onClick}>
@@ -389,6 +399,19 @@ export function SendView({ tr, summary, notices, privacyPrompt, choices, actions
       <div className={styles.stack}>
         {privacyPrompt ? (
           privacyPrompt
+        ) : emailOpen ? (
+          <>
+            <p className={styles.notice}>{email.risk}</p>
+            <CheckCard title={email.detailsLabel} description={email.detailsHint} checked={email.withDetails} onChange={email.onWithDetails} />
+            <div className={styles.links}>
+              <Button type="button" variant="primary" onClick={email.onOpen}>
+                {email.openLabel}
+              </Button>
+              <Button type="button" variant="secondary" onClick={email.onBack}>
+                {email.backLabel}
+              </Button>
+            </div>
+          </>
         ) : (
           <>
             {summary ? <p className={styles.quiet}>{summary}</p> : null}
