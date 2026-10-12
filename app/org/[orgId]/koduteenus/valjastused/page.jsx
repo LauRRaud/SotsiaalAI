@@ -1,7 +1,7 @@
 import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 
-import HomeCareReleases from "@/components/homeCare/HomeCareReleases";
+import Releases from "@/components/homeCare/releases/Releases";
 import { listChronologyReleases } from "@/lib/homeCare/chronology";
 import { isOrgError } from "@/lib/org/errors";
 
@@ -29,5 +29,5 @@ export default async function HomeCareReleasesPage({ params }) {
     notFound();
   }
 
-  return <HomeCareReleases context={auth.context} initial={initial} />;
+  return <Releases context={auth.context} initial={initial} />;
 }
