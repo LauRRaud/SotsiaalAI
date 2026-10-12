@@ -99,7 +99,10 @@ autentimise, tervisekontrolli ja olemasolevad tehnilised teenuserajad säilivad.
 `/admin` näitab enne sisselogimist ainult LoginModalit; edukas admini sisselogimine
 laeb haldusvaate. Varasem saabumisküpsis ei ava avalikku ruumi. Kohalik brauser,
 ET/EN/RU, sihitud lint ning tühistatud/peatatud admini õiguste kontroll läbisid.
-Päris sisselogimise e-kirja ei saadetud; avaldamine käib selle muudatuse main-lükke kaudu.
+Tootmises `d969e377`; värav ja paigaldus läbisid. Avalik brauser kinnitas suletud
+sissepääsu, õiged otseviidete suunamised ja ainult LoginModali `/admin` lehel.
+Päris sisselogimise e-kirja ei saadetud. Sisemise pordi suunamisviga parandati
+tootmiskontrolli järel; põhjus ja kontroll on paranduse commit’is.
 
 **11.10 Koduteenuse lehed väikesteks vaadeteks (Claude, pooleli):** koduteenuse
 23 lehte olid pikad keritavad lehed (kliendi leht proovandmetega 13 116 px, paneel
