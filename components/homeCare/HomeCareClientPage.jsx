@@ -7,6 +7,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import OrgPart from "@/components/org/OrgPart";
 import { CARE_CLIENT_STATUSES, CARE_ENTRY_KINDS, CARE_STATUS_REASONS, CareCardLineKind, CareClientStatus, CareEndReason } from "@/lib/homeCare/constants";
 
+import ClientCard from "./card/ClientCard";
 import styles from "./client/client.module.css";
 import {
   CLIENT_LANDING,
@@ -29,7 +30,6 @@ import { DiarySearchView, DiaryView, HistoryHitsView } from "./diary/DiaryViews"
 import EntryOpen from "./diary/EntryOpen";
 import ImportedHistory from "./diary/ImportedHistory";
 import HomeCareCallNote from "./HomeCareCallNote";
-import HomeCareCard from "./HomeCareCard";
 import HomeCareChangeSignals from "./HomeCareChangeSignals";
 import HomeCareClientForm from "./HomeCareClientForm";
 import HomeCareControlCalls from "./HomeCareControlCalls";
@@ -491,18 +491,20 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
             />
           )}
 
-          {/* Püsikaart „enne kui lähed": ridade lisamine ja muutmine. */}
+          {/* Püsikaart „enne kui lähed": ridade lisamine ja muutmine. Osa on lehel kogu aja (pooleli vorm elab selle konksus)
+              ja joonistatakse, kui ta on ees. */}
           {slot(
             "card",
-            <OldPart title={t("home_care.card.title")} back={toDoor}>
-              <HomeCareCard
-                organizationId={organizationId}
-                clientId={client.id}
-                lines={card}
-                canEdit={canWrite && access.canEditCard}
-                onChange={(next) => setData((now) => ({ ...now, card: next }))}
-              />
-            </OldPart>
+            <ClientCard
+              active={current === "card"}
+              organizationId={organizationId}
+              clientId={client.id}
+              title={t("home_care.card.title")}
+              lines={card}
+              canEdit={canWrite && access.canEditCard}
+              onChange={(next) => setData((now) => ({ ...now, card: next }))}
+              back={toDoor}
+            />
           )}
 
           {/* Kui uks ei avane (K4-f): kokkulepitud sammud ja nupp „Ei saa sisse". */}

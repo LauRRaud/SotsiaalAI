@@ -14055,7 +14055,8 @@
         "OTHER": "Other"
       },
       "for_driver_label": "Visible to the driver (goes on the transport card)",
-      "for_driver_badge": "for the driver"
+      "for_driver_badge": "for the driver",
+      "remove_note": "The line leaves the card and the history stays. Press again if you are sure."
     },
     "team": {
       "title": "Team",

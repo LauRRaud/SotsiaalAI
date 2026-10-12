@@ -14055,7 +14055,8 @@
         "OTHER": "Muu"
       },
       "for_driver_label": "Nähtav autojuhile (läheb transpordikaardile)",
-      "for_driver_badge": "autojuhile"
+      "for_driver_badge": "autojuhile",
+      "remove_note": "Rida kaob kaardilt, ajalugu jääb alles. Vajuta uuesti, kui oled kindel."
     },
     "team": {
       "title": "Meeskond",
