@@ -20,6 +20,7 @@ import { PickOne, SMALL, footNote } from "@/components/org/OrgBits";
 import shared from "@/components/org/org.module.css";
 import StepPanel from "@/components/stage/StepPanel";
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
 
 import styles from "./card.module.css";
 
@@ -150,10 +151,7 @@ export function CardFormView({ title, form, kind, text, driver, save, notice, ba
           <input className={shared.input} value={text.value} onChange={(event) => text.onChange(event.target.value)} maxLength={text.max} required autoComplete="off" data-card-field="text" />
         </label>
         {/* „Nähtav autojuhile" (K5-y): rida läheb transpordikaardile; muud read sinna ei lähe. */}
-        <label className={styles.check}>
-          <input type="checkbox" checked={driver.checked} onChange={(event) => driver.onChange(event.target.checked)} data-card-field="driver" />
-          <span>{driver.label}</span>
-        </label>
+        <Checkbox className={styles.check} label={driver.label} checked={driver.checked} onChange={driver.onChange} data-card-field="driver" />
       </form>
     </StepPanel>
   );

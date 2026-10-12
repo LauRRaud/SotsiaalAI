@@ -32,19 +32,8 @@
   max-width: 34rem;
 }
 
-/* Märkeruut ja selle sõnad: sõrme kõrgune, sõnad murduvad. */
-.check {
+/* Märkeruut ja selle sõnad (platvormi märkeruut joonistab kasti ja sildi ise): sõnad murduvad, laius on lause välja oma. */
+.check.check {
   min-width: 0;
   max-width: 34rem;
-  min-height: 2.75rem;
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  cursor: pointer;
-}
-.check input {
-  flex: none;
-  width: 1.25rem;
-  height: 1.25rem;
-  accent-color: var(--text-warm);
 }
