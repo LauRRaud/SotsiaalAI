@@ -15446,7 +15446,10 @@
       "holders_title": "This client's money held by staff",
       "holder_line": "{name}: {amount} (last line {date})",
       "mine_title": "Clients' money I hold",
-      "open_line": "{name} holds {amount}, last line {date}"
+      "open_line": "{name} holds {amount}, last line {date}",
+      "none": "No lines recorded.",
+      "list_hint": "This is a record, not a payment.",
+      "retract_note": "The line is taken out of the record and the balance changes. Press again if you are sure."
     },
     "supplies": {
       "title": "Supplies",

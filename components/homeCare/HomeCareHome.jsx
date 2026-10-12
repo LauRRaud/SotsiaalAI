@@ -18,7 +18,7 @@ import HomeCareCallNote from "./HomeCareCallNote";
 import HomeCareClientForm from "./HomeCareClientForm";
 import { keyName, keyWhere } from "./keys/keyRows";
 import { rideText } from "./HomeCareTransport";
-import { euroText } from "./HomeCareMoney";
+import { euroText } from "./money/moneyRows";
 import { useHomeCareObstacle } from "./HomeCareObstacle";
 import { minutesLabel } from "./HomeCareDecisionView";
 import HomeCareOwnName from "./HomeCareOwnName";

@@ -15446,7 +15446,10 @@
       "holders_title": "Selle kliendi raha töötajate käes",
       "holder_line": "{name}: {amount} (viimane rida {date})",
       "mine_title": "Minu käes olev kliendiraha",
-      "open_line": "{name} käes {amount}, viimane rida {date}"
+      "open_line": "{name} käes {amount}, viimane rida {date}",
+      "none": "Ridu ei ole kirjas.",
+      "list_hint": "See on arvestus, mitte makse.",
+      "retract_note": "Rida võetakse arvestusest välja ja jääk muutub. Vajuta uuesti, kui oled kindel."
     },
     "supplies": {
       "title": "Varud",

@@ -1,0 +1,41 @@
+/* Kliendi lehe raha. Read, kõrvaltegevus, väljad ja laused on organisatsioonide
+   lehtede ühised (../../org/org.module.css); siin on ainult see, mis on rahal oma. */
+
+/* Rühma nimi (kelle käes raha on): väike pealkiri. */
+.caption {
+  composes: caption from "../desk/desk.module.css";
+}
+/* Rida kogu laiuses (kaks klassi: lause enda laius, teisest failist, ei tohi võita). */
+.line.line {
+  max-width: none;
+}
+
+/* Arvestuse rida: päev ja mis juhtus, selle all mille jaoks; paremal summa. */
+.main {
+  composes: main from "../day/day.module.css";
+}
+.amount {
+  color: var(--text-warm);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Summa väli on nii lai kui summa; „mille jaoks" on lause (kaks klassi: paari
+   enda laius, teisest failist, ei tohi võita). */
+.sum.sum {
+  flex: 0 0 9rem;
+}
+.what.what {
+  flex: 1 1 16rem;
+  max-width: 26rem;
+}
+
+@container (min-width: 34rem) {
+  /* Laiemal pinnal on rida üks rida: päev ja mis juhtus, mille jaoks ja summa
+     kõrvuti; veerud on kõigil ridadel kohakuti. */
+  .entry .main {
+    grid-template-columns: 15rem minmax(0, 1fr);
+    align-items: baseline;
+    gap: 0 0.9rem;
+  }
+}

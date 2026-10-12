@@ -40,7 +40,6 @@ import HomeCareReasonForm from "./HomeCareReasonForm";
 import HomeCareRelatives from "./HomeCareRelatives";
 import HomeCareNearMiss from "./HomeCareNearMiss";
 import HomeCareNoAnswer from "./HomeCareNoAnswer";
-import HomeCareMoney from "./HomeCareMoney";
 import HomeCareRepresentatives from "./HomeCareRepresentatives";
 import HomeCareSupplies from "./HomeCareSupplies";
 import HomeCareTeam from "./HomeCareTeam";
@@ -54,6 +53,8 @@ import {
 } from "./homeCareClient";
 import { getOutboxManager } from "./homeCareOutbox";
 import ClientKeys from "./keys/ClientKeys";
+import ClientMoney from "./money/ClientMoney";
+import { euroText } from "./money/moneyRows";
 import OutboxPanel, { OutboxNotice } from "./outbox/OutboxPanel";
 import { planDayLabel, planSheet, planSignals } from "./plan/planRows";
 import { PlanView } from "./plan/PlanViews";
@@ -61,7 +62,6 @@ import ClientSafety from "./safety/ClientSafety";
 import { safetyRights } from "./safety/safetyRows";
 import ClientSlots from "./slots/ClientSlots";
 import { sheetRights } from "./slots/slotRows";
-import { euroText } from "./HomeCareMoney";
 
 function sortEntries(items) {
   return [...items].sort((a, b) => {
@@ -843,18 +843,23 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
               )
             : null}
 
-          {/* Kliendi sularaha vaataja käes (K4-c): arvestus, mitte makse. */}
-          {part(
-            "money",
-            <HomeCareMoney
-              organizationId={organizationId}
-              clientId={client.id}
-              initial={data.money || null}
-              canWrite={canWrite && !ended}
-              isCoordinator={access.isCoordinator}
-              onChanged={(money) => setData((now) => ({ ...now, money }))}
-            />
-          )}
+          {/* Kliendi sularaha vaataja käes (K4-c): arvestus, mitte makse.
+              Osa on lehel kogu aja (pooleli rida elab selle konksus) ja joonistatakse, kui ta on ees. */}
+          {sees("money")
+            ? slot(
+                "money",
+                <ClientMoney
+                  active={current === "money"}
+                  organizationId={organizationId}
+                  clientId={client.id}
+                  title={t(viewNameKey("money"))}
+                  initial={data.money || null}
+                  canWrite={canWrite && !ended}
+                  isCoordinator={access.isCoordinator}
+                  onChanged={(money) => setData((now) => ({ ...now, money }))}
+                />
+              )
+            : null}
 
           {/* Varud kliendi kodus (K4-e): seisu märgib igaüks, kes siin käib. */}
           {part(

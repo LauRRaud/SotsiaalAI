@@ -7,7 +7,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import OrgPart from "@/components/org/OrgPart";
 
 import { daysLabel, minutesLabel } from "./HomeCareDecisionView";
-import { euroText } from "./HomeCareMoney";
+import { euroText } from "./money/moneyRows";
 import HomeCareOutbox from "./HomeCareOutbox";
 import HomeCareTalkRequests from "./HomeCareTalkRequests";
 import { preconditionLine } from "./safety/safetyRows";
