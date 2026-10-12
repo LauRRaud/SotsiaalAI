@@ -1,7 +1,7 @@
 import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 
-import HomeCareWorkers from "@/components/homeCare/HomeCareWorkers";
+import Workers from "@/components/homeCare/workers/Workers";
 import { getWorkerCards } from "@/lib/homeCare/workerRecords";
 import { isOrgError } from "@/lib/org/errors";
 
@@ -29,5 +29,5 @@ export default async function HomeCareWorkersPage({ params }) {
     notFound();
   }
 
-  return <HomeCareWorkers context={auth.context} initial={cards} />;
+  return <Workers context={auth.context} initial={cards} />;
 }

@@ -15719,7 +15719,9 @@
       "valid_label": "Kehtib kuni või korda hiljemalt (kui on)",
       "done_on": "tehtud {date}",
       "valid_until": "kehtib kuni {date} ({when})",
-      "expired": "aegunud"
+      "expired": "aegunud",
+      "remove_confirm": "Kinnita: eemalda rida",
+      "remove_note": "Rida eemaldatakse töötaja kaardilt ja tähtaegade leht ei jälgi seda enam. Vajuta uuesti, kui oled kindel."
     },
     "continuity": {
       "one": "Viimasel neljal nädalal käis siin üks töötaja (käike {visits}).",

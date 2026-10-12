@@ -12,7 +12,7 @@
  */
 
 import { daysLabel, minutesLabel } from "../decision/decisionRows";
-import { workerRecordLine } from "../HomeCareWorkers";
+import { workerRecordLine } from "../workers/workerRows";
 import { clientHref } from "../homeCareClient";
 import { changeSignalLine, changeWaitingText } from "../manage/manageRows";
 import { euroText } from "../money/moneyRows";

@@ -15719,7 +15719,9 @@
       "valid_label": "Valid until or repeat by (if any)",
       "done_on": "done {date}",
       "valid_until": "valid until {date} ({when})",
-      "expired": "expired"
+      "expired": "expired",
+      "remove_confirm": "Confirm: remove the row",
+      "remove_note": "The row is removed from the worker's card and the deadlines page no longer follows it. Press again if you are sure."
     },
     "continuity": {
       "one": "In the last four weeks one worker came here ({visits} visits).",
