@@ -1,36 +1,24 @@
 "use client";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import { CARE_ACTIVITY_DOMAINS, CARE_ACTIVITY_GROUPS, CARE_ACTIVITY_GROUP_DOMAIN, CarePlanFrequency } from "@/lib/homeCare/constants";
+import { CARE_ACTIVITY_DOMAINS, CARE_ACTIVITY_GROUP_DOMAIN } from "@/lib/homeCare/constants";
 
-/** `2026-11-15` → `15.11.2026`. Käsitsi, et server ja brauser annaksid sama kuju. */
-export function planDayLabel(day) {
-  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(day || ""));
-  return match ? `${match[3]}.${match[2]}.${match[1]}` : "";
-}
+import { planDayLabel, planFrequencyLabel, planLines } from "./plan/planRows";
 
-/** „3× nädalas" või „vajadusel"; täpsustus oma sõnadega järel. */
-export function planFrequencyLabel(t, line) {
-  const base =
-    line.frequencyKind === CarePlanFrequency.AS_NEEDED
-      ? t("home_care.plan.frequency.AS_NEEDED")
-      : t(`home_care.plan.frequency_count.${line.frequencyKind}`, { count: line.frequencyCount });
-  return line.frequencyNote ? `${base}, ${line.frequencyNote}` : base;
-}
+/* Päeva ja sageduse sõnad on reeglite failis; siit võtavad need vana kihi lehed. */
+export { planDayLabel, planFrequencyLabel };
 
 /**
- * Hoolduskava lugemiseks: eesmärgid, toimingud määruse poolte kaupa (koduabi,
- * isikuabi) koos sageduse ja tegemise viisiga, ülevaatuse päev.
+ * Hoolduskava lugemiseks vanal kihil: eesmärgid, toimingud määruse poolte kaupa
+ * (koduabi, isikuabi) koos sageduse ja tegemise viisiga, ülevaatuse päev.
  *
- * Kasutusel kliendi lehel (kehtiv kava kogu meeskonnale) ja kava koostamise lehel.
+ * Kasutusel kava koostamise lehel. Kliendi lehel on kehtiv kava uuel kihil
+ * (./plan/PlanViews.jsx).
  */
 export default function HomeCarePlanView({ plan }) {
   const { t } = useI18n();
   if (!plan) return null;
-  const order = new Map(CARE_ACTIVITY_GROUPS.map((group, index) => [group, index]));
-  const lines = [...plan.lines].sort(
-    (a, b) => (order.get(a.activityGroup) ?? 99) - (order.get(b.activityGroup) ?? 99) || a.position - b.position
-  );
+  const lines = planLines(plan);
 
   return (
     <>

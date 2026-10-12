@@ -37,7 +37,6 @@ import HomeCareTransport from "./HomeCareTransport";
 import HomeCareDecisionView, { decisionVolumeLabel, minutesLabel } from "./HomeCareDecisionView";
 import EntryFlow from "./entry/EntryFlow";
 import HomeCareFridgeSheet from "./HomeCareFridgeSheet";
-import HomeCarePlanView, { planDayLabel } from "./HomeCarePlanView";
 import HomeCareReasonForm from "./HomeCareReasonForm";
 import HomeCareRelatives from "./HomeCareRelatives";
 import HomeCareSafetyCard from "./HomeCareSafetyCard";
@@ -62,6 +61,8 @@ import {
 } from "./homeCareClient";
 import { getOutboxManager } from "./homeCareOutbox";
 import OutboxPanel, { OutboxNotice } from "./outbox/OutboxPanel";
+import { planDayLabel, planSheet, planSignals } from "./plan/planRows";
+import { PlanView } from "./plan/PlanViews";
 import { euroText } from "./HomeCareMoney";
 
 function sortEntries(items) {
@@ -748,31 +749,26 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
               )
             : null}
 
-          {/* Kehtiv hoolduskava (K2-b): mida siin tehakse, kui sageli ja kuidas. Kogu meeskonnale lugemiseks. */}
-          {part(
-            "plan",
-            <section className="hc-section" aria-label={t("home_care.plan.title")}>
-              {data.plan ? <HomeCarePlanView plan={data.plan} /> : <p className="hc-hint">{t("home_care.plan.none")}</p>}
-              {/* Käigud ilma ühegi erandita (K6-g): märge kliendi, mitte töötaja kohta. Ainult hooldusjuhile. */}
-              {data.exceptionStreak ? (
-                <p className="hc-notice">
-                  {t("home_care.exception_streak.line", { count: data.exceptionStreak.visits, date: formatDateTime(data.exceptionStreak.since, timeZone) })}
-                </p>
-              ) : null}
-              {/* Abi rohkem või vähem kui kavas (K6-d): käigul märgitud viis võrreldes kava reaga. */}
-              {data.helpDrift && data.helpDrift.more + data.helpDrift.less > 0 ? (
-                <p className={data.helpDrift.due ? "hc-notice hc-notice--warn" : "hc-sub"}>
-                  {t("home_care.help_drift.line", { more: data.helpDrift.more, less: data.helpDrift.less, total: data.helpDrift.total })}
-                  {data.helpDrift.due ? ` ${t(access.isCoordinator ? "home_care.help_drift.due_coordinator" : "home_care.help_drift.due_team")}` : ""}
-                </p>
-              ) : null}
-              {access.isCoordinator ? (
-                <Link className="hc-btn hc-btn--quiet hc-btn--link" href={`/org/${organizationId}/koduteenus/kliendid/${client.id}/kava`} prefetch={false}>
-                  {t(data.plan ? "home_care.plan.edit_link" : "home_care.plan.create_link")}
-                </Link>
-              ) : null}
-            </section>
-          )}
+          {/* Kehtiv hoolduskava (K2-b): mida siin tehakse, kui sageli ja kuidas. Kogu meeskonnale lugemiseks.
+              Osal ei ole oma olekut: see joonistatakse siis, kui ta on ees. */}
+          {current === "plan"
+            ? slot(
+                "plan",
+                <PlanView
+                  title={t(viewNameKey("plan"))}
+                  name={client.displayName}
+                  sheet={planSheet(data.plan, { t })}
+                  labels={{ goals: t("home_care.plan.goals"), must: t("home_care.plan.critical_badge") }}
+                  empty={t("home_care.plan.none")}
+                  signals={planSignals(data, who, { t, moment: (value) => formatDateTime(value, timeZone) })}
+                  edit={
+                    access.isCoordinator
+                      ? { label: t(data.plan ? "home_care.plan.edit_link" : "home_care.plan.create_link"), href: `/org/${organizationId}/koduteenus/kliendid/${client.id}/kava` }
+                      : null
+                  }
+                />
+              )
+            : null}
 
           {/* Käigumuster (K3-a): mis päevadel ja kellaaegadel siin käiakse ja kes läheb. */}
           {part(

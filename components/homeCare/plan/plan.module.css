@@ -1,0 +1,57 @@
+/* Kliendi lehe hoolduskava. Laused, märk ja rühm on organisatsioonide lehtede
+   ühised (../../org/org.module.css); siin on ainult see, mis on kaval oma. */
+
+/* Rühma nimi (eesmärgid, koduabi, isikuabi): väike pealkiri. */
+.caption {
+  composes: caption from "../desk/desk.module.css";
+}
+
+/* Koduabi ja isikuabi: telefonis üksteise all, laiemal pinnal kõrvuti. */
+.domains {
+  min-width: 0;
+  display: grid;
+  gap: 0.65rem 1.4rem;
+}
+
+/* Kava read: üks toiming real. Nimi ning kui sageli ja kuidas on ühel real, kui
+   mahuvad; ridu ei lõigata (pika kavaga kerib kogu paneel). */
+.lines {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.2rem;
+}
+.line {
+  composes: activity from "../diary/diary.module.css";
+}
+.name {
+  composes: activityName from "../diary/diary.module.css";
+}
+.how {
+  composes: activityLine from "../diary/diary.module.css";
+}
+/* Märkus toimingu kohta on inimese kirjutatud: omaette real toimingu all. */
+.lineNote {
+  flex-basis: 100%;
+  min-width: 0;
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+  overflow-wrap: anywhere;
+}
+
+/* Kokku pandud rida nime kõrval algab väikese tähega sõnaga („kava nr 3"). */
+.made::first-letter {
+  text-transform: uppercase;
+}
+
+@container (min-width: 34rem) {
+  .domains[data-cols="2"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+  /* Kitsas veerus on „kui sageli ja kuidas" alati nime all: read on ühe kujuga. */
+  .domains[data-cols="2"] .how {
+    flex-basis: 100%;
+  }
+}
