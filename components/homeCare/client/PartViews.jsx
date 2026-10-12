@@ -45,14 +45,26 @@ export const Chip = ({ chip }) =>
     </span>
   ) : null;
 
-/** Tegevused all servas: `[{ key, label, onPress, primary, busy, mark }]`; tagasi-nupp on esimene. */
-function Actions({ back, actions = [] }) {
+/** Tegevused all servas: `[{ key, label, onPress, primary, busy, disabled, href, blank }]`; tagasi-nupp on esimene. `href`: link (`blank`: uuel vahelehel), muidu nupp. */
+export function Actions({ back, actions = [] }) {
   if (!back && !actions.length) return null;
   return (
     <>
       {back ? <BackButton back={back} /> : null}
       {actions.map((action) =>
-        action.primary ? (
+        action.href ? (
+          <Button
+            key={action.key}
+            as="a"
+            href={action.href}
+            size="sm"
+            variant={action.primary ? "primary" : "secondary"}
+            data-part-action={action.key}
+            {...(action.blank ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+          >
+            {action.label}
+          </Button>
+        ) : action.primary ? (
           <Button key={action.key} type="button" size="sm" variant="primary" data-part-action={action.key} disabled={action.disabled} aria-busy={action.busy ? "true" : undefined} onClick={action.onPress}>
             {action.label}
           </Button>

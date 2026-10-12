@@ -1,0 +1,12 @@
+/* Uksesilt. Laused ja read on organisatsioonide lehtede ühised (../../org/org.module.css);
+   siin on ainult QR-kood. */
+
+/* QR-kood on valgel taustal (skänner vajab valget ääreruumi) ja nii suur, et mahub paneeli:
+   korrutis kõrgusega jääb alla paneeli kõrguse, laius ei lähe üle paneeli. */
+.qr {
+  width: min(13.75rem, 100%);
+  height: auto;
+  aspect-ratio: 1;
+  background: #fff;
+  border-radius: 0.4rem;
+}

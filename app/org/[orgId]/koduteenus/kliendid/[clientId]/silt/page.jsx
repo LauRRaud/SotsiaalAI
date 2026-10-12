@@ -1,7 +1,7 @@
 import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 
-import HomeCareDoorTag from "@/components/homeCare/HomeCareDoorTag";
+import DoorTag from "@/components/homeCare/doorTag/DoorTag";
 import { getDoorTag } from "@/lib/homeCare/doorTags";
 import { isOrgError } from "@/lib/org/errors";
 
@@ -30,5 +30,5 @@ export default async function HomeCareDoorTagPage({ params }) {
     notFound();
   }
 
-  return <HomeCareDoorTag context={auth.context} client={initial.client} initialTag={initial.tag} />;
+  return <DoorTag context={auth.context} client={initial.client} initialTag={initial.tag} />;
 }

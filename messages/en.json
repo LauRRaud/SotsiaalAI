@@ -14692,7 +14692,10 @@
         "qr_label": "QR code",
         "what": "Home care worker: scan the code with the phone camera.",
         "safe": "The code opens nobody's data without signing in."
-      }
+      },
+      "manage": "Change the tag",
+      "replace_note": "The tag on the wall stops working: print a new one and put it by the door. Press again if you are sure.",
+      "revoke_note": "The tag on the wall stops working and the client has no tag. Press again if you are sure."
     },
     "call": {
       "caller_label": "Who called",

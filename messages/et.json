@@ -14692,7 +14692,10 @@
         "qr_label": "QR-kood",
         "what": "Koduteenuse töötaja: skanni kood telefoni kaameraga.",
         "safe": "Kood ei ava kellegi andmeid ilma sisselogimiseta."
-      }
+      },
+      "manage": "Muuda silti",
+      "replace_note": "Seinal olev silt lakkab töötamast: prindi uus silt ja pane see ukse kõrvale. Vajuta uuesti, kui oled kindel.",
+      "revoke_note": "Seinal olev silt lakkab töötamast ja kliendil ei ole siis silti. Vajuta uuesti, kui oled kindel."
     },
     "call": {
       "caller_label": "Kes helistas",
