@@ -14502,7 +14502,9 @@
       "type_all": "Kõik liigid",
       "empty": "Selliseid erijuhtumeid ei ole.",
       "focused": "Teavitusest avatud erijuhtum",
-      "empty_other": "Teisi selliseid erijuhtumeid ei ole."
+      "empty_other": "Teisi selliseid erijuhtumeid ei ole.",
+      "filter_title": "Filter",
+      "filter_none": "Filtrit ei ole peal"
     },
     "trail": {
       "toggle": "Käik ja täiendused",

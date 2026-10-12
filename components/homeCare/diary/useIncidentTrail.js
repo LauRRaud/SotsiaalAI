@@ -16,9 +16,8 @@ import { homeCareBase, useHomeCareApi } from "../homeCareClient";
  * Käik laaditakse alles avamisel: päevikus võib olla kümneid erijuhtumeid ja
  * enamikku neist parajasti ei vaadata.
  *
- * Konks hoiab olekut ja päringuid; vaated on avatud kirjes kliendi lehel
- * (`./EntryOpen.jsx`) ja kirje real mitme kliendi loendis
- * (`../HomeCareIncidentTrail.jsx`).
+ * Konks hoiab olekut ja päringuid; vaated on avatud kirjes (`./EntryOpen.jsx`):
+ * kliendi lehel, erijuhtumite registris ja hooldusjuhi ülevaates.
  */
 export function useIncidentTrail({ organizationId, entry, canWrite, isCoordinator, onEntryChange }) {
   const { call, busy, error, setError } = useHomeCareApi();

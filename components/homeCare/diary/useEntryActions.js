@@ -10,9 +10,8 @@ import { entryRights } from "./entryOpen";
  *
  * Konks hoiab seda, mis ei ole joonistamine: avatud vormi, põhjuse ja selgituse
  * teksti, laaditud ajaloo ja päringud. Vaated on eraldi: avatud kirje kliendi
- * lehel (`./EntryOpen.jsx`) ja kirje rida mitme kliendi loendis
- * (`../HomeCareEntryItem.jsx`: erijuhtumite leht ja hooldusjuhi ülevaade).
- * Mõlemad kasutavad sama konksu, et päringud ei oleks kahes kohas.
+ * lehel (`./EntryOpen.jsx`), samuti erijuhtumite registris ja hooldusjuhi
+ * ülevaates (`showClient`: kirje on mitme kliendi loendis).
  *
  * KIRJET EI KUSTUTATA. Tühistatud kirje jääb oma kohale ilma tekstita ja
  * parandatud kirjel on märge; varasemat sisu näevad autor ja hooldusjuht.

@@ -1,7 +1,7 @@
 import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 
-import HomeCareIncidents from "@/components/homeCare/HomeCareIncidents";
+import Incidents from "@/components/homeCare/incidents/Incidents";
 import { getIncident, listIncidents } from "@/lib/homeCare/incidents";
 import { isOrgError } from "@/lib/org/errors";
 
@@ -46,5 +46,5 @@ export default async function HomeCareIncidentsPage({ params, searchParams }) {
     }
   }
 
-  return <HomeCareIncidents context={auth.context} initial={initial} focused={focused} />;
+  return <Incidents context={auth.context} initial={initial} focused={focused} />;
 }

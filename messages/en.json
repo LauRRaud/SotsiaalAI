@@ -14502,7 +14502,9 @@
       "type_all": "All types",
       "empty": "There are no such incidents.",
       "focused": "Incident opened from a notification",
-      "empty_other": "There are no other such incidents."
+      "empty_other": "There are no other such incidents.",
+      "filter_title": "Filter",
+      "filter_none": "No filter applied"
     },
     "trail": {
       "toggle": "Trail and follow-ups",
