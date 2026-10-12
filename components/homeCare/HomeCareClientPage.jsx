@@ -1,11 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import OrgPart from "@/components/org/OrgPart";
-import { CARE_CLIENT_STATUSES, CARE_ENTRY_KINDS, CARE_STATUS_REASONS, CareCardLineKind, CareClientStatus, CareEndReason } from "@/lib/homeCare/constants";
+import { CARE_ENTRY_KINDS, CareCardLineKind, CareClientStatus } from "@/lib/homeCare/constants";
 
 import ClientCard from "./card/ClientCard";
 import styles from "./client/client.module.css";
@@ -30,10 +29,6 @@ import { DiarySearchView, DiaryView, HistoryHitsView } from "./diary/DiaryViews"
 import EntryOpen from "./diary/EntryOpen";
 import ImportedHistory from "./diary/ImportedHistory";
 import HomeCareCallNote from "./HomeCareCallNote";
-import HomeCareChangeSignals from "./HomeCareChangeSignals";
-import HomeCareClientForm from "./HomeCareClientForm";
-import HomeCareControlCalls from "./HomeCareControlCalls";
-import HomeCareDecisionNotices from "./HomeCareDecisionNotices";
 import EntryFlow from "./entry/EntryFlow";
 import HomeCareReasonForm from "./HomeCareReasonForm";
 import HomeCareNearMiss from "./HomeCareNearMiss";
@@ -52,6 +47,7 @@ import { euroText } from "./money/moneyRows";
 import OutboxPanel, { OutboxNotice } from "./outbox/OutboxPanel";
 import { planDayLabel, planSheet, planSignals } from "./plan/planRows";
 import { PlanView } from "./plan/PlanViews";
+import ClientManage from "./manage/ClientManage";
 import ClientNoAnswer from "./noAnswer/ClientNoAnswer";
 import ClientRelatives from "./relatives/ClientRelatives";
 import ClientTeam from "./team/ClientTeam";
@@ -122,11 +118,6 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
   /* Kirje, mille parandus on pooleli (ID); tühi sõne, kui parandust ei ole. */
   const [correcting, setCorrecting] = useState("");
   const [lapsed, setLapsed] = useState(false);
-  const [panel, setPanel] = useState(null);
-  const [status, setStatus] = useState(initial?.client?.status || CareClientStatus.ACTIVE);
-  const [statusReason, setStatusReason] = useState(initial?.client?.statusReason || "");
-  const [statusNote, setStatusNote] = useState(initial?.client?.statusNote || "");
-  const [confirmDeath, setConfirmDeath] = useState(false);
   /* Avatud vaade; tühi sõne on osade laud. */
   const [view, setView] = useState(CLIENT_LANDING);
   /* Vaade, kust seadmes ootavate kirjete loend avati (osade laud või „Ukse taga"): sinna viib „Tagasi". */
@@ -289,54 +280,6 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
     });
   }, [ownerId, clientId]);
 
-  /* Seisu vorm avaneb alati kliendi PRAEGUSE seisuga. Pooleli jäänud valik ei
-     tohi järgmisel avamisel ees olla: „Lõpetatud" jääks muidu märkamatult
-     salvestama. */
-  const openStatusPanel = () => {
-    setStatus(data.client.status);
-    setStatusReason(data.client.statusReason || "");
-    setStatusNote(data.client.statusNote || "");
-    setConfirmDeath(false);
-    setPanel("status");
-  };
-
-  /* Alus kuulub seisu juurde: teise seisu valimisel eelmise seisu alus ei jää külge. */
-  const reasonOptions = CARE_STATUS_REASONS[status] || [];
-  const chooseStatus = (value) => {
-    if (value === status) return;
-    setConfirmDeath(false);
-    setStatus(value);
-    if (!(CARE_STATUS_REASONS[value] || []).includes(statusReason)) setStatusReason("");
-    /* Selgitus kuulub samuti seisu juurde: „haiglas alates 9.10" ei tohi minna kaasa lõpetamisele. */
-    setStatusNote(value === data.client.status ? data.client.statusNote || "" : "");
-  };
-  const reasonMissing = reasonOptions.length > 0 && !reasonOptions.includes(statusReason);
-  /* Surm (kava II.6.5): allikas on kohustuslik ja salvestamine käib kahes sammus. */
-  const death = status === CareClientStatus.ENDED && statusReason === CareEndReason.DIED;
-  const sourceMissing = death && !statusNote.trim();
-
-  const saveStatus = async (event) => {
-    event.preventDefault();
-    if (death && !confirmDeath) {
-      setConfirmDeath(true);
-      return;
-    }
-    const result = await page.call(`${base}/seis`, {
-      method: "POST",
-      body: { status, statusReason: reasonOptions.length ? statusReason : null, statusNote, version: data.client.version },
-      fallbackKey: "home_care.errors.save_failed"
-    });
-    if (result.ok) {
-      setData((current) => ({
-        ...current,
-        client: result.data.client,
-        statusHistory: result.data.statusHistory || current.statusHistory
-      }));
-      setConfirmDeath(false);
-      setPanel(null);
-    }
-  };
-
   const pageName = t("home_care.client.page_name");
 
   if (needsReason) {
@@ -415,7 +358,6 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
       {body}
     </div>
   );
-  const part = (name, body) => (sees(name) ? slot(name, <OldPart title={t(viewNameKey(name))}>{body}</OldPart>) : null);
 
   return (
     <div ref={rootRef}>
@@ -942,150 +884,30 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
               )
             : null}
 
-          {part(
-            "manage",
-            <>
-              {/* Peatamisel ja lõpetamisel üle vaadata (K4-g): mis on selle kliendi juures veel lahti. */}
-              {reviewItems.length ? (
-                <section className="hc-section" aria-labelledby={`${fieldId}-review`}>
-                  <h2 className="hc-section-title" id={`${fieldId}-review`}>
-                    {t(ended ? "home_care.review.ended_title" : "home_care.review.away_title")}
-                  </h2>
-                  <ul className="hc-list hc-list--plain">
-                    {reviewItems.map((item) => (
-                      <li key={item.key}>{item.text}</li>
-                    ))}
-                  </ul>
-                </section>
-              ) : null}
-
-              {/* Märkamised, mis ootavad vastust (K5-a): enne muud, sest need on hooldusjuhi teha. */}
-              <HomeCareChangeSignals
-                organizationId={organizationId}
-                initial={data.changeSignals}
-                timeZone={timeZone}
-                onChanged={(changeSignals) => setData((now) => ({ ...now, changeSignals }))}
-              />
-
-              {/* Kontrollkõne (K6-l): hooldusjuhi enda kõne kliendile kord kvartalis. */}
-              {data.controlCalls ? <HomeCareControlCalls organizationId={organizationId} clientId={client.id} initial={data.controlCalls} canEdit={canWrite} /> : null}
-
-              {/* Teated otsustajale (K5-r). Valikuks on päeviku esimese lehe kirjed. */}
-              <HomeCareDecisionNotices
-                organizationId={organizationId}
-                clientId={client.id}
-                initial={data.decisionNotices || []}
-                entries={entries.items}
-                canEdit={canWrite}
-                today={data.today || ""}
-                timeZone={timeZone}
-              />
-
-              <section className="hc-section" aria-label={t("home_care.client.manage")}>
-                {/* Kronoloogia koostamine on lugemine ja valik, seepärast on link olemas ka
-                    siis, kui asutus ei ole kirjutatav; väljastuse loomise keelab sel
-                    juhul server. */}
-                <div className="hc-row">
-                  <Link className="hc-btn hc-btn--quiet hc-btn--link" href={`/org/${organizationId}/koduteenus/kliendid/${client.id}/kronoloogia`} prefetch={false}>
-                    {t("home_care.chronology.link")}
-                  </Link>
-                  <Link className="hc-btn hc-btn--quiet hc-btn--link" href={`/org/${organizationId}/koduteenus/kliendid/${client.id}/silt`} prefetch={false}>
-                    {t("home_care.door_tag.link")}
-                  </Link>
-                </div>
-
-                {canWrite && panel === null ? (
-                  <div className="hc-row">
-                    <button className="hc-btn hc-btn--quiet" type="button" onClick={() => setPanel("details")}>
-                      {t("home_care.client.edit")}
-                    </button>
-                    <button className="hc-btn hc-btn--quiet" type="button" onClick={openStatusPanel}>
-                      {t("home_care.client.status_title")}
-                    </button>
-                  </div>
-                ) : null}
-
-                {panel === "details" ? (
-                  <>
-                    <h3 className="hc-section-title">{t("home_care.client.details")}</h3>
-                    <HomeCareClientForm
-                      organizationId={organizationId}
-                      client={client}
-                      unitOptions={unitOptions}
-                      onCancel={() => setPanel(null)}
-                      onSaved={(next) => {
-                        setData((now) => ({ ...now, client: next }));
-                        setPanel(null);
-                      }}
-                    />
-                  </>
-                ) : null}
-
-                {panel === "status" ? (
-                  <form className="hc-form" onSubmit={saveStatus}>
-                    <h3 className="hc-section-title">{t("home_care.client.status_title")}</h3>
-                    <div className="hc-chips" role="group" aria-label={t("home_care.client.status_title")}>
-                      {CARE_CLIENT_STATUSES.map((value) => (
-                        <button key={value} type="button" className="hc-chip" aria-pressed={status === value} onClick={() => chooseStatus(value)}>
-                          {t(`home_care.status.${value}`)}
-                        </button>
-                      ))}
-                    </div>
-                    {reasonOptions.length > 0 ? (
-                      <>
-                        <div className="hc-chips" role="group" aria-label={t("home_care.client.status_reason")}>
-                          {reasonOptions.map((value) => (
-                            <button
-                              key={value}
-                              type="button"
-                              className="hc-chip"
-                              aria-pressed={statusReason === value}
-                              onClick={() => {
-                                setConfirmDeath(false);
-                                setStatusReason(value);
-                              }}
-                            >
-                              {t(`home_care.status_reason.${status}.${value}`)}
-                            </button>
-                          ))}
-                        </div>
-                        {status === CareClientStatus.ENDED ? <p className="hc-sub">{t("home_care.client.status_ended_hint")}</p> : null}
-                      </>
-                    ) : null}
-                    <div className="hc-field">
-                      <label className="hc-label" htmlFor={`${fieldId}-status-note`}>
-                        {death ? t("home_care.client.status_source") : t("home_care.client.status_note")}
-                      </label>
-                      <input
-                        id={`${fieldId}-status-note`}
-                        className="hc-input"
-                        value={statusNote}
-                        onChange={(event) => setStatusNote(event.target.value)}
-                        maxLength={300}
-                        autoComplete="off"
-                        required={death}
-                      />
-                    </div>
-                    {death && confirmDeath ? <p className="hc-notice hc-notice--warn">{t("home_care.client.status_death_confirm")}</p> : null}
-                    <div className="hc-row">
-                      <button className="hc-btn hc-btn--primary" type="submit" disabled={page.busy || reasonMissing || sourceMissing}>
-                        {death ? (confirmDeath ? t("home_care.client.status_death_save") : t("home_care.client.status_death_next")) : t("home_care.client.status_save")}
-                      </button>
-                      <button className="hc-btn" type="button" onClick={() => setPanel(null)} disabled={page.busy}>
-                        {t("home_care.client.cancel")}
-                      </button>
-                    </div>
-                  </form>
-                ) : null}
-
-                {page.error ? (
-                  <p className="hc-error" role="alert">
-                    {page.error}
-                  </p>
-                ) : null}
-              </section>
-            </>
-          )}
+          {/* Hooldusjuhile: ülevaatus, märkamised (K5-a), kontrollkõne (K6-l), teated otsustajale (K5-r), andmete ja seisu vorm.
+              Osa on lehel kogu aja (pooleli vorm ja seisu valik elavad selle konksudes) ja joonistatakse, kui ta on ees. */}
+          {sees("manage")
+            ? slot(
+                "manage",
+                <ClientManage
+                  active={current === "manage"}
+                  organizationId={organizationId}
+                  clientId={client.id}
+                  title={t(viewNameKey("manage"))}
+                  name={client.displayName}
+                  data={data}
+                  ended={ended}
+                  who={{ canWrite, isCoordinator: access.isCoordinator }}
+                  reviewItems={reviewItems}
+                  entries={entries.items}
+                  today={data.today || ""}
+                  timeZone={timeZone}
+                  unitOptions={unitOptions}
+                  onSignals={(changeSignals) => setData((now) => ({ ...now, changeSignals }))}
+                  onClient={(next) => setData((now) => ({ ...now, ...next, statusHistory: next.statusHistory || now.statusHistory }))}
+                />
+              )
+            : null}
         </HomeCareAccessProvider>
       </OrgPart>
     </div>

@@ -11,7 +11,7 @@ import { euroText } from "./money/moneyRows";
 import HomeCareOutbox from "./HomeCareOutbox";
 import HomeCareTalkRequests from "./HomeCareTalkRequests";
 import { preconditionLine } from "./safety/safetyRows";
-import { changeSignalLine, changeWaitingText } from "./HomeCareChangeSignals";
+import { changeSignalLine, changeWaitingText } from "./manage/manageRows";
 import { planDayLabel } from "./HomeCarePlanView";
 import { workerRecordLine } from "./HomeCareWorkers";
 import { clientHref, formatDateTime } from "./homeCareClient";

@@ -14023,7 +14023,6 @@
       "away_notice": "The client is temporarily away.",
       "ended_notice": "The service has ended. The page can still be read.",
       "read_only": "The organisation is not writable at the moment; the page is read-only.",
-      "manage": "For the coordinator",
       "unit": "Unit",
       "unit_none": "No unit (whole organisation)",
       "status_reason": "Why",
@@ -16006,7 +16005,8 @@
         "figures_help_drift": "In the last four weeks, of {total} planned activities {more} were done with more help than planned and {less} with less."
       },
       "figures_label": "Add the figures of the last months",
-      "figures_hint": "Visits, time provided and decided, missed visits, the number of incidents and of noticed changes. The figures carry no diary text."
+      "figures_hint": "Visits, time provided and decided, missed visits, the number of incidents and of noticed changes. The figures carry no diary text.",
+      "entry_picked": "picked"
     },
     "day_sheet": {
       "print_one": "Print the day sheet",
@@ -16298,7 +16298,8 @@
       "note_hint": "Write what did not match.",
       "save": "Save",
       "cancel": "Cancel",
-      "retract": "Retract (entered by mistake)"
+      "retract": "Retract (entered by mistake)",
+      "retract_note": "The entry is retracted, not deleted. Press again if you are sure."
     },
     "own_name": {
       "missing": "Write down your name. Colleagues see you by name in the day plan, the key register and messages, and your first name is on the client's fridge sheet. Right now there is a dash.",
@@ -16417,7 +16418,8 @@
         "manage_review": "Check what is still open"
       },
       "back": "Back",
-      "next": "Next"
+      "next": "Next",
+      "count": "{count} entries"
     },
     "door": {
       "back": "Back to the door",

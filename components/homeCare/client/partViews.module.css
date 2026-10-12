@@ -1,0 +1,50 @@
+/* Kliendi lehe osade ühised vaated. Read, märk, lahtrid ja väljad on
+   organisatsioonide lehtede ühised (../../org/org.module.css); siin on ainult
+   see, mis on osade vaadetel ühist oma. */
+
+/* Rea sisu on üks veerg: pealkiri (ja märk selle kõrval) ning selle all read
+   täies pikkuses (kaks klassi: rea enda veerud, teisest failist, ei tohi võita). */
+.row.row {
+  grid-template-columns: minmax(0, 1fr);
+}
+.main {
+  composes: main from "../day/day.module.css";
+}
+/* Tekst murdub: midagi ei lõigata. */
+.sub {
+  composes: sub from "../day/day.module.css";
+}
+.who {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.8rem;
+}
+/* Oht on tugevam: kaal, mitte ainult värv. */
+.risk.risk {
+  color: var(--text-warm);
+  font-weight: 650;
+}
+
+/* Väljad on nii laiad kui sinna kirjutatav sisu (kaks klassi: rea enda laius,
+   teisest failist, ei tohi võita). */
+.wide.wide {
+  max-width: 34rem;
+}
+.name.name {
+  max-width: 20rem;
+}
+.short.short {
+  max-width: none;
+}
+.short input {
+  width: 11rem;
+  max-width: 100%;
+}
+
+/* Märkeruut ja selle sõnad (platvormi märkeruut joonistab kasti ja sildi ise). */
+.check.check {
+  min-width: 0;
+  max-width: 34rem;
+}

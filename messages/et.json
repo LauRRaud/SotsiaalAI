@@ -14023,7 +14023,6 @@
       "away_notice": "Klient on ajutiselt ära.",
       "ended_notice": "Teenus on lõpetatud. Leht on loetav.",
       "read_only": "Organisatsioon ei ole praegu kirjutatav; leht on ainult lugemiseks.",
-      "manage": "Hooldusjuhile",
       "unit": "Üksus",
       "unit_none": "Üksuseta (kogu asutus)",
       "status_reason": "Mille pärast",
@@ -16006,7 +16005,8 @@
         "figures_help_drift": "Viimasel neljal nädalal tehti {total} kava toimingust {more} kavast suurema ja {less} väiksema abiga."
       },
       "figures_label": "Lisa viimaste kuude arvud",
-      "figures_hint": "Käigud, osutatud ja otsustatud aeg, ära jäänud käigud, erijuhtumite ja märkamiste arv. Kirjete teksti arvude hulgas ei ole."
+      "figures_hint": "Käigud, osutatud ja otsustatud aeg, ära jäänud käigud, erijuhtumite ja märkamiste arv. Kirjete teksti arvude hulgas ei ole.",
+      "entry_picked": "valitud"
     },
     "day_sheet": {
       "print_one": "Prindi päevaleht",
@@ -16298,7 +16298,8 @@
       "note_hint": "Kirjuta, mis ei klappinud.",
       "save": "Salvesta",
       "cancel": "Loobu",
-      "retract": "Tühista (ekslik kirje)"
+      "retract": "Tühista (ekslik kirje)",
+      "retract_note": "Kirje tühistatakse, mitte ei kustutata. Vajuta uuesti, kui oled kindel."
     },
     "own_name": {
       "missing": "Pane kirja oma nimi. Kolleegid näevad sind nime järgi päevaplaanis, võtmeraamatus ja teadetes ning sinu eesnimi on kliendi külmkapilehel. Praegu seisab seal kriips.",
@@ -16417,7 +16418,8 @@
         "manage_review": "Vaata üle, mis on lahti"
       },
       "back": "Tagasi",
-      "next": "Edasi"
+      "next": "Edasi",
+      "count": "Kirjeid {count}"
     },
     "door": {
       "back": "Tagasi ukse taha",
