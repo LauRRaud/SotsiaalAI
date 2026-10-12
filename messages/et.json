@@ -10441,6 +10441,8 @@
     "panel_region": "Avatud paneel",
     "close_panel": "Sulge ja naase ruumi",
     "enter": "Sisenen",
+    "opening_soon": "Peagi avame!",
+    "opening_soon_hint": "Platvormi avamine on ettevalmistamisel. Peagi avame!",
     "enter_pending": "Ruum valmistub. Nupp „Sisenen“ muutub kasutatavaks mõne sekundi pärast.",
     "enter_ready": "Nupp „Sisenen“ on nüüd kasutatav.",
     "scroll_label": "Keri",

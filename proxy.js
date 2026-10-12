@@ -6,6 +6,7 @@ import { isHomeCareEnabled } from "@/lib/homeCare/flags";
 import { isServiceLogEnabled } from "@/lib/serviceLog/flags";
 import { prisma } from "@/lib/prisma";
 import { authorizeCurrentAdminToken } from "@/lib/auth/jwtAuthorization";
+import { PUBLIC_PLATFORM_OPEN, isPrelaunchPublicPath, normalizePlatformPath } from "@/lib/publicPlatform";
 
 function isLocalHostname(hostname = "") {
   const h = String(hostname).toLowerCase();
@@ -75,6 +76,40 @@ export async function proxy(req) {
     pathname
   } = req.nextUrl;
 
+  if (!PUBLIC_PLATFORM_OPEN && !isPrelaunchPublicPath(pathname)) {
+    const token = await getToken({
+      req,
+      secret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET
+    });
+    const admin = await authorizeCurrentAdminToken(token, {
+      db: prisma,
+      sessionMaxAgeSeconds:
+        process.env.NEXTAUTH_SESSION_MAX_AGE_SECONDS ||
+        process.env.AUTH_SESSION_MAX_AGE_SECONDS
+    });
+    if (!admin) {
+      if (normalizePlatformPath(pathname).startsWith("/api/")) {
+        return NextResponse.json(
+          { error: "platform_not_open", message: "room.opening_soon" },
+          { status: 503, headers: { "Cache-Control": "no-store" } }
+        );
+      }
+      const destination = req.nextUrl.clone();
+      if (process.env.NODE_ENV === "production") {
+        const origin = new URL(PUBLIC_ORIGIN);
+        destination.protocol = origin.protocol;
+        destination.host = origin.host;
+      }
+      destination.pathname = "/";
+      destination.search = "";
+      const response = NextResponse.redirect(destination, 307);
+      response.headers.set("Cache-Control", "no-store");
+      const locale = pathname.match(/^\/(et|ru|en)(?=\/|$)/)?.[1];
+      if (locale) response.cookies.set("NEXT_LOCALE", locale, { path: "/", sameSite: "lax" });
+      return response;
+    }
+  }
+
   /* LIPU TAGA OLEVAD LEHED (Teenuspäevik, juhtumitöö) — väljas lipuga peab
      marsruut olema ERISTAMATU olematust marsruudist (Teenuspäeviku leping
      DoD 7, juhtumitöö leping L19). Lehe enda `notFound()` sellest EI PIISA:
@@ -143,13 +178,17 @@ export async function proxy(req) {
     });
     return res;
   }
-  return NextResponse.next();
+  const requestHeaders = new Headers(req.headers);
+  requestHeaders.delete("x-sotsiaal-admin-login");
+  if (normalizePlatformPath(pathname) === "/admin") requestHeaders.set("x-sotsiaal-admin-login", "1");
+  return NextResponse.next({ request: { headers: requestHeaders } });
 }
 /* MATCHER PEAB KATMA IGA `FLAGGED_PAGE_REWRITES` TEE. Matcher on staatiline
    massiiv (Next loeb ta build'i ajal), seega teda ei saa ülalt tuletada —
    `tests/casework/closedSurface.test.js` hoiab need kaks nimekirja sünkroonis. */
 export const config = {
   matcher: [
+    "/((?!_next/static|_next/image).*)",
     "/registreerimine",
     "/teenuspaevik",
     "/juhtumid",

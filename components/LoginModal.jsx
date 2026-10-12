@@ -77,6 +77,7 @@ export default function LoginModal({
   onClose,
   suppressRedirect = false,
   onAuthSuccess,
+  defaultNextPath = "/vestlus",
   prefillStoredEmail = true
 }) {
   const leaving = useLogoutTransition();
@@ -97,7 +98,7 @@ export default function LoginModal({
     fallbackKey,
     fallbackText: t(fallbackKey)
   }), [t]);
-  const defaultNextUrl = localizePath("/vestlus", locale);
+  const defaultNextUrl = localizePath(defaultNextPath, locale);
   const toRelative = u => {
     try {
       const base = typeof window !== "undefined" ? window.location.origin : "http://local";

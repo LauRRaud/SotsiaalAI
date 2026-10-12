@@ -117,6 +117,7 @@ import RoomQuickbar from "@/components/room/RoomQuickbar";
 import HandGestures, { HandGestureGuide } from "@/components/room/HandGestures";
 import VeilArt, { VEIL_EFFECTS } from "@/components/room/VeilArt";
 import GlassButton from "@/components/glass/GlassButton";
+import { PUBLIC_PLATFORM_OPEN } from "@/lib/publicPlatform";
 import Button from "@/components/ui/Button";
 import JourneyText from "@/components/glass/JourneyText";
 import {
@@ -259,7 +260,7 @@ function normalizePathname(pathname) {
   return raw.replace(/^\/(et|ru|en)(?=\/|$)/, "") || "/";
 }
 
-export default function RoomStage({ initiallyCompletedArrival = false }) {
+export default function RoomStage({ initiallyCompletedArrival = false, platformAccessAllowed = false }) {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -300,13 +301,14 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
   const [arrivalCompleted, setArrivalCompleted] = useState(() =>
     Boolean(initiallyCompletedArrival)
   );
-  const shouldResumeHome = isHome && arrivalCompleted;
   const isAdmin = useMemo(() => {
     const u = session?.user;
     const role = typeof u?.role === "string" ? u.role.toLowerCase() : "";
     const perms = Array.isArray(u?.permissions) ? u.permissions : [];
     return Boolean(u?.isAdmin || u?.is_admin || role === "admin" || perms.includes("admin"));
   }, [session]);
+  const entryAllowed = PUBLIC_PLATFORM_OPEN || (platformAccessAllowed && isAdmin);
+  const shouldResumeHome = isHome && arrivalCompleted && entryAllowed;
 
   /* Ootel sponsorkutse — hub-teade + RUUMID-kaardi badge (omanik 23.07:
      teade kuulub platvormi hub'i, MITTE eellaadimisstseeni külge; RUUMID
@@ -366,9 +368,10 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
   const [mode, setMode] = useState(() =>
     isHome ? (shouldResumeHome ? "room" : "walk") : isCarouselRoute ? "room" : "panel"
   );
-  const [veil, setVeil] = useState(() =>
+  const [veilState, setVeil] = useState(() =>
     isHome && !shouldResumeHome ? "shown" : "gone"
   );
+  const veil = isHome && !entryAllowed ? "shown" : veilState;
   const [veilReady, setVeilReady] = useState(false);
   const [walkDone, setWalkDone] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -951,16 +954,18 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
 
   const enterFallbackRef = useRef(null);
   const finishVeilEntry = useCallback(() => {
+    if (!entryAllowed) return;
     if (enterFallbackRef.current === null) return;
     window.clearTimeout(enterFallbackRef.current);
     enterFallbackRef.current = null;
     setVeil("fading");
     // Säilita loori senine ülemineku ajastus (420 ms viivitus + 900 ms hajumine).
     window.setTimeout(() => setVeil("gone"), 1320);
-  }, []);
+  }, [entryAllowed]);
   useEffect(() => () => window.clearTimeout(enterFallbackRef.current), []);
 
   const enterRoom = useCallback((event) => {
+    if (!entryAllowed) return;
     if (enteringRef.current) return;
     enteringRef.current = true;
     // Saabumine algab ALATI pimedusest — ka siis, kui brauser jõudis
@@ -982,7 +987,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     enterFallbackRef.current = window.setTimeout(finishVeilEntry, animatedTouch ? 1200 : 0);
     // Lukusta ka desktopi hover-neeldumine enne loori fookuse vabastamist.
     veilRef.current?.dispatchEvent(new CustomEvent("room-enter", { detail: { touch } }));
-  }, [applyScene, readReduced, finishVeilEntry]);
+  }, [applyScene, readReduced, finishVeilEntry, entryAllowed]);
 
   /* Loori all ei saa kerida (kõnd algab alles sisenemisel) */
   useEffect(() => {
@@ -1941,12 +1946,12 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
             fookus käivitaks VeilArt'i neeldumislavastuse (button "focus"
             → activateGate) ka nendel, kes ei ole lävele lähenenud. */}
         <p id="room-veil-status" className="sr-only" role="status">
-          {veilReady ? t("room.enter_ready") : t("room.enter_pending")}
+          {!entryAllowed ? t("room.opening_soon_hint") : veilReady ? t("room.enter_ready") : t("room.enter_pending")}
         </p>
         <GlassButton
           layoutClassName="room-veil-enter"
           data-ready={veilReady ? "1" : "0"}
-          disabled={!veilReady}
+          disabled={!veilReady || !entryAllowed}
           onPointerDown={(event) => {
             if (event.pointerType === "touch") {
               enterTouchRef.current = { x: event.clientX, y: event.clientY };
@@ -1968,7 +1973,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
           }}
           onClick={enterRoom}
         >
-          {t("room.enter")}
+          {entryAllowed ? t("room.enter") : t("room.opening_soon")}
         </GlassButton>
         {/* Taustaheli lüliti kolis kõnni uksekaadrisse (tellija 07.07) */}
       </div>

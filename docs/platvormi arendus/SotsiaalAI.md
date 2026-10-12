@@ -92,6 +92,15 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**12.10 avaliku sissepääsu sulgemine (Codex, omaniku otsus):** avaleht jääb
+avalikuks, sissepääs näitab „Peagi avame!“ ega ava ruumi. Avalikud otseviited
+suunatakse avalehele ja töö-API-d on suletud; admini värske sessioon ning
+autentimise, tervisekontrolli ja olemasolevad tehnilised teenuserajad säilivad.
+`/admin` näitab enne sisselogimist ainult LoginModalit; edukas admini sisselogimine
+laeb haldusvaate. Varasem saabumisküpsis ei ava avalikku ruumi. Kohalik brauser,
+ET/EN/RU, sihitud lint ning tühistatud/peatatud admini õiguste kontroll läbisid.
+Päris sisselogimise e-kirja ei saadetud; avaldamine käib selle muudatuse main-lükke kaudu.
+
 **11.10 Koduteenuse lehed väikesteks vaadeteks (Claude, pooleli):** koduteenuse
 23 lehte olid pikad keritavad lehed (kliendi leht proovandmetega 13 116 px, paneel
 522 px) ja liikumine oli paneeli sees. Omanik vastas klõpsatavale kavandile

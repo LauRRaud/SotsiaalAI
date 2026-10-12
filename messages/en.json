@@ -10441,6 +10441,8 @@
     "panel_region": "Open panel",
     "close_panel": "Close and return to the room",
     "enter": "Enter",
+    "opening_soon": "Opening soon!",
+    "opening_soon_hint": "We are preparing to open the platform. Opening soon!",
     "enter_pending": "The room is getting ready. The “Enter” button becomes available in a few seconds.",
     "enter_ready": "The “Enter” button is now available.",
     "scroll_label": "Scroll",

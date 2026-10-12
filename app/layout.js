@@ -1,5 +1,5 @@
 import "./styles/globals.css";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { getServerSession } from "next-auth";
 import { Exo_2 } from "next/font/google";
 import { catalogScriptPath } from "@/lib/i18n/catalogAsset";
@@ -17,6 +17,7 @@ import SpecularHighlight from "@/components/glass/SpecularHighlight";
 import GlassFilters from "@/components/glass/GlassFilters";
 import { authConfig } from "@/auth";
 import { isEstonianDaytime, resolveThemePreference } from "@/lib/themeDaylight";
+import { PUBLIC_PLATFORM_OPEN } from "@/lib/publicPlatform";
 
 // Exo 2 = platvormi läbiv font (logo font); toetab kirillitsat (vene) ja
 // latin-ext'i (eesti š/ž) — kõik tekstid, nupud, pealkirjad ühes kirjas
@@ -337,6 +338,13 @@ export default async function RootLayout({
      lõpus, vt allpool ja lib/i18n/catalogAsset.js) ja pakkujale läheb ainult keel. */
   const catalogSrc = catalogScriptPath(locale);
   const session = await getServerSession(authConfig).catch(() => null);
+  const platformAccessAllowed = PUBLIC_PLATFORM_OPEN || Boolean(
+    session?.user?.isAdmin === true || String(session?.user?.role || "").toUpperCase() === "ADMIN"
+  );
+  const requestHeaders = await headers();
+  const adminLoginOnly = requestHeaders.get("x-sotsiaal-admin-login") === "1" && !(
+    session?.user?.isAdmin === true || String(session?.user?.role || "").toUpperCase() === "ADMIN"
+  );
   /* Session-cookie without Max-Age: the arrival flow runs once per browser
      session, independent of how long the user has been signed in. */
   const initiallyCompletedRoomArrival =
@@ -384,14 +392,14 @@ export default async function RootLayout({
         <Providers initialLocale={locale} session={session} initialA11yPrefs={initialA11yPrefs}>
           <ViewportLayoutSetter />
           <ServiceWorkerRegistrar />
-          <LiquidCursor />
+          {!adminLoginOnly ? <LiquidCursor /> : null}
           {/* Vormiväljade servahelk — üks passiivne pointermove-kuular kogu
               dokumendil, mis annab kursori all olevale väljale --spec-*
               muutujad. Joonistab CSS (tokens.css --input-spec). Siin, mitte
               lehtedel: „läige peaks olema default igal pool". */}
           <SpecularHighlight />
-          <SkipLink />
-          <AmbientAudio />
+          {!adminLoginOnly ? <SkipLink /> : null}
+          {!adminLoginOnly ? <AmbientAudio /> : null}
           {/* Provider mähib RoomStage'i, PanelFrame'i JA lapsi: leht registreerib
               ⓘ sisu, PanelFrame ütleb, milline info on lahti oleval lehel, ja
               RoomStage'i DOKK renderdab selle kirje lehe nime kõrvale
@@ -401,9 +409,12 @@ export default async function RootLayout({
             {/* Sama põhjus: sammudega leht joonistab oma sammud doki sisse
                 (components/stage/DockSteps), dokk on ruumis ja leht paneelis. */}
             <DockStepsProvider>
-              <RoomStage initiallyCompletedArrival={initiallyCompletedRoomArrival} />
+              {!adminLoginOnly ? <RoomStage
+                initiallyCompletedArrival={platformAccessAllowed && initiallyCompletedRoomArrival}
+                platformAccessAllowed={platformAccessAllowed}
+              /> : null}
               <main id="main" role="main" tabIndex={-1}>
-                <PanelFrame>{children}</PanelFrame>
+                {adminLoginOnly ? children : <PanelFrame>{children}</PanelFrame>}
               </main>
             </DockStepsProvider>
           </PanelInfoSlotProvider>
