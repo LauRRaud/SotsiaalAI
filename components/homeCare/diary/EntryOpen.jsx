@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { CareIncidentStatus, HOME_CARE_LIMITS } from "@/lib/homeCare/constants";
 
+import { useSendOnce } from "../client/useSendOnce";
 import { formatDateTime, formatTime } from "../homeCareClient";
 import { ACTION_LABELS, entryActions, openActivities, openChips, openFacts, openNotes, revisionRows, talkView, trailRows } from "./entryOpen";
 import { AssignView, CloseView, EntryOpenView, RetractView, RevisionsView, TrailAddView, TrailView } from "./EntryOpenViews";
@@ -35,6 +36,8 @@ export default function EntryOpen({ organizationId, entry, timeZone, canWrite = 
   /* Tühistamise esimene vajutus on tehtud. */
   const [armed, setArmed] = useState(false);
   const [reasonMissing, setReasonMissing] = useState(false);
+  /* Teine vajutus päringu ajal ei saada teist päringut (nuppu välja ei lülitata). */
+  const once = useSendOnce();
 
   const { rights, mode } = actions;
   const moment = (value) => formatDateTime(value, timeZone);
@@ -71,7 +74,7 @@ export default function EntryOpen({ organizationId, entry, timeZone, canWrite = 
         setArmed(true);
         return;
       }
-      if (await actions.retract()) setArmed(false);
+      if (await once(actions.retract)) setArmed(false);
     };
     return (
       <div ref={rootRef}>
@@ -104,7 +107,7 @@ export default function EntryOpen({ organizationId, entry, timeZone, canWrite = 
         <CloseView
           title={t("home_care.incident.close")}
           note={{ label: t("home_care.incident.resolution_label"), value: actions.note, onChange: actions.setNote, max: HOME_CARE_LIMITS.ASSESSMENT_MAX }}
-          save={{ label: t("home_care.incident.close"), busy: actions.busy, onSave: () => actions.setIncidentStatus(CareIncidentStatus.CLOSED, actions.note) }}
+          save={{ label: t("home_care.incident.close"), busy: actions.busy, onSave: () => once(() => actions.setIncidentStatus(CareIncidentStatus.CLOSED, actions.note)) }}
           notice={fault(actions.error)}
           back={{ ...toEntry, label: t("home_care.entry.cancel") }}
         />
@@ -153,7 +156,7 @@ export default function EntryOpen({ organizationId, entry, timeZone, canWrite = 
               busy: trail.busy,
               disabled: !trail.text.trim(),
               onSave: async () => {
-                if (await trail.add()) setTrailPart("");
+                if (await once(trail.add)) setTrailPart("");
               }
             }}
             notice={fault(trail.error)}
@@ -204,16 +207,16 @@ export default function EntryOpen({ organizationId, entry, timeZone, canWrite = 
     retract: () => actions.setMode("retract"),
     history: actions.openHistory,
     trail: trail.show,
-    in_review: () => actions.setIncidentStatus(CareIncidentStatus.IN_REVIEW),
+    in_review: () => once(() => actions.setIncidentStatus(CareIncidentStatus.IN_REVIEW)),
     close: () => actions.setMode("close"),
-    reopen: () => actions.setIncidentStatus(CareIncidentStatus.OPEN)
+    reopen: () => once(() => actions.setIncidentStatus(CareIncidentStatus.OPEN))
   };
   /* „Soovin sellest rääkida" (K6-k): raske erijuhtumi autor küsib; soovi näevad tema ja hooldusjuht. */
   const wish = entry.incident && !rights.retracted ? talkView(talk.talk, rights, { t, moment }) : null;
   const wishAction = {
-    ask: { label: t("home_care.talk.ask"), onPress: talk.ask },
-    mine: { label: t("home_care.talk.withdraw"), onPress: talk.withdraw },
-    wants: rights.canHandleTalk ? { label: t("home_care.talk.handled"), onPress: talk.handle } : null,
+    ask: { label: t("home_care.talk.ask"), onPress: () => once(talk.ask) },
+    mine: { label: t("home_care.talk.withdraw"), onPress: () => once(talk.withdraw) },
+    wants: rights.canHandleTalk ? { label: t("home_care.talk.handled"), onPress: () => once(talk.handle) } : null,
     handled: null
   };
 

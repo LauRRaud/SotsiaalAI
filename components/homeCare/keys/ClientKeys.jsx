@@ -6,6 +6,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import { CareKeyOutcome, HOME_CARE_LIMITS } from "@/lib/homeCare/constants";
 
 import { useScreenFocus } from "../client/useScreenFocus";
+import { useSendOnce } from "../client/useSendOnce";
 import { keyHolderText, keyMine, keyName, keyRights, keyRows, receiverOptions } from "./keyRows";
 import { KeyAddView, KeyHandOverView, KeyView, KeysView } from "./KeysViews";
 import { useClientKeys } from "./useClientKeys";
@@ -31,6 +32,8 @@ export default function ClientKeys({ active, organizationId, clientId, title, na
   /* Lõpetamine, mille esimene vajutus on tehtud. */
   const [armed, setArmed] = useState("");
   const rootRef = useScreenFocus(screen);
+  /* Teine vajutus päringu ajal ei saada teist päringut (nuppu välja ei lülitata). */
+  const once = useSendOnce();
 
   if (!active) return null;
 
@@ -53,7 +56,7 @@ export default function ClientKeys({ active, organizationId, clientId, title, na
           id: `${formId}-key`,
           onSubmit: async (event) => {
             event.preventDefault();
-            if (await keys.add()) go("");
+            if (await once(keys.add)) go("");
           }
         }}
         tag={{ label: t("home_care.keys.tag_label"), value: keys.form.tag, onChange: (value) => keys.setField("tag", value), max: HOME_CARE_LIMITS.KEY_TAG_MAX }}
@@ -79,7 +82,7 @@ export default function ClientKeys({ active, organizationId, clientId, title, na
           /* Võti on juba selle käes, kellele seda antakse. */
           disabled: (keys.form.holder || null) === holderId,
           onSave: async () => {
-            if (await keys.patch(opened, { toMembershipId: keys.form.holder || null })) go("");
+            if (await once(() => keys.patch(opened, { toMembershipId: keys.form.holder || null }))) go("");
           }
         }}
         notice={fault}
@@ -96,7 +99,7 @@ export default function ClientKeys({ active, organizationId, clientId, title, na
         return;
       }
       setArmed("");
-      if (await keys.patch(opened, { outcome })) setScreen("");
+      if (await once(() => keys.patch(opened, { outcome }))) setScreen("");
     };
     return wrap(
       <KeyView

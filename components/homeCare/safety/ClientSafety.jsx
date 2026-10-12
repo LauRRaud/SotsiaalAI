@@ -6,6 +6,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import { CARE_CRISIS_DEPENDENCIES, CARE_CRISIS_LEVELS, CARE_PRECONDITION_KINDS, CARE_WORK_NATURE_KINDS, CarePreconditionKind, CarePreconditionOutcome, HOME_CARE_LIMITS } from "@/lib/homeCare/constants";
 
 import { useScreenFocus } from "../client/useScreenFocus";
+import { useSendOnce } from "../client/useSendOnce";
 import { cardQuestions, cardSheet, crisisSheet, nextQuestion, preconditionReady, preconditionRow, safetyTopics, topicTitleKey, topicVisible, usualFields, usualRows, workSheet } from "./safetyRows";
 import {
   CardBody,
@@ -52,6 +53,8 @@ export default function ClientSafety({ active, organizationId, clientId, title, 
   /* Tegevus, mille esimene vajutus on tehtud (teine vajutus teeb selle ära). */
   const [armed, setArmed] = useState("");
   const rootRef = useScreenFocus(screen);
+  /* Teine vajutus päringu ajal ei saada teist päringut (nuppu välja ei lülitata). */
+  const once = useSendOnce();
 
   if (!active) return null;
 
@@ -65,7 +68,7 @@ export default function ClientSafety({ active, organizationId, clientId, title, 
   const backTo = (topic, label = t("home_care.parts.back")) => ({ label, onBack: () => go(topic) });
   const submit = (save, done) => async (event) => {
     event?.preventDefault();
-    if (await save()) go(done);
+    if (await once(save)) go(done);
   };
   /* Teist vajutust küsiv tegevus: esimene vajutus valmistab ette, teine teeb ära. */
   const twice = (key, run) => async () => {
@@ -74,7 +77,7 @@ export default function ClientSafety({ active, organizationId, clientId, title, 
       return;
     }
     setArmed("");
-    await run();
+    await once(run);
   };
   const wrap = (view) => <div ref={rootRef}>{view}</div>;
   const [kind, detail] = screen.split(":");

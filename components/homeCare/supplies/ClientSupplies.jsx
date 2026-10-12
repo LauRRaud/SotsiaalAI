@@ -6,6 +6,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import { CARE_SUPPLY_STATES, HOME_CARE_LIMITS } from "@/lib/homeCare/constants";
 
 import { useScreenFocus } from "../client/useScreenFocus";
+import { useSendOnce } from "../client/useSendOnce";
 import { formatDateTime } from "../homeCareClient";
 import { supplyLines, supplyRights, supplyRows } from "./supplyRows";
 import { SuppliesView, SupplyTrackView, SupplyView } from "./SuppliesViews";
@@ -34,6 +35,8 @@ export default function ClientSupplies({ active, organizationId, clientId, title
   /* Jälgimise lõpetamise esimene vajutus on tehtud. */
   const [armed, setArmed] = useState(false);
   const rootRef = useScreenFocus(screen);
+  /* Teine vajutus päringu ajal ei saada teist päringut (nuppu välja ei lülitata). */
+  const once = useSendOnce();
   /* Seis salvestub ühe puudutusega: teine puudutus päringu ajal ei tohi teist päringut saata. */
   const marking = useRef(false);
 
@@ -58,7 +61,7 @@ export default function ClientSupplies({ active, organizationId, clientId, title
           id: `${formId}-track`,
           onSubmit: async (event) => {
             event.preventDefault();
-            if (await supplies.track()) go("");
+            if (await once(supplies.track)) go("");
           }
         }}
         kind={{
@@ -93,7 +96,7 @@ export default function ClientSupplies({ active, organizationId, clientId, title
           id: `${formId}-note`,
           onSubmit: async (event) => {
             event.preventDefault();
-            if (rights.note && (await supplies.mark(opened, opened.state, supplies.form.note))) go("");
+            if (rights.note && (await once(() => supplies.mark(opened, opened.state, supplies.form.note)))) go("");
           }
         }}
         note={rights.note ? { label: t("home_care.supplies.note_label"), value: supplies.form.note, onChange: (value) => supplies.setField("note", value), max: HOME_CARE_LIMITS.SUPPLY_NOTE_MAX } : null}
@@ -110,7 +113,7 @@ export default function ClientSupplies({ active, organizationId, clientId, title
                     return;
                   }
                   setArmed(false);
-                  if (await supplies.untrack(opened)) setScreen("");
+                  if (await once(() => supplies.untrack(opened))) setScreen("");
                 }
               }
             : null

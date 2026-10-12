@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { HISTORY_TITLE_MAX } from "@/lib/homeCare/historyLimits";
 
+import { useSendOnce } from "../client/useSendOnce";
 import { formatDateTime } from "../homeCareClient";
 import { DOC_PAGE, historyRows } from "./diaryRows";
 import { HistoryAddView, HistoryDocView, HistoryListView } from "./HistoryViews";
@@ -31,6 +32,8 @@ export default function ImportedHistory({ organizationId, clientId, histories, t
   const [armed, setArmed] = useState(false);
   /* Mitu lõiku avatud dokumendist on ees. */
   const [shownBlocks, setShownBlocks] = useState(DOC_PAGE);
+  /* Teine vajutus päringu ajal ei saada teist päringut (nuppu välja ei lülitata). */
+  const once = useSendOnce();
 
   /* Vaate vahetusel algab paneel ülalt ja fookus läheb vaate pealkirjale. Esimesel joonistusel fookust ei võeta. */
   const shown = useRef(screen);
@@ -92,7 +95,7 @@ export default function ImportedHistory({ organizationId, clientId, histories, t
         setArmed(true);
         return;
       }
-      if (await history.remove(doc.id)) {
+      if (await once(() => history.remove(doc.id))) {
         setArmed(false);
         setScreen("");
       }

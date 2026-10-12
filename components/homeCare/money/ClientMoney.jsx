@@ -6,6 +6,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import { CARE_MONEY_KINDS, CareMoneyKind, HOME_CARE_LIMITS } from "@/lib/homeCare/constants";
 
 import { useScreenFocus } from "../client/useScreenFocus";
+import { useSendOnce } from "../client/useSendOnce";
 import { balanceLine, euroText, holderRows, moneyPage, moneyReady, moneyRows } from "./moneyRows";
 import { MoneyAddView, MoneyEntryView, MoneyView } from "./MoneyViews";
 import { useClientMoney } from "./useClientMoney";
@@ -31,6 +32,8 @@ export default function ClientMoney({ active, organizationId, clientId, title, i
   const [armed, setArmed] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const rootRef = useScreenFocus(screen);
+  /* Teine vajutus päringu ajal ei saada teist päringut (nuppu välja ei lülitata). */
+  const once = useSendOnce();
 
   if (!active) return null;
 
@@ -48,7 +51,7 @@ export default function ClientMoney({ active, organizationId, clientId, title, i
           id: `${formId}-money`,
           onSubmit: async (event) => {
             event.preventDefault();
-            if (await money.save()) setScreen("");
+            if (await once(money.save)) setScreen("");
           }
         }}
         kind={{
@@ -98,7 +101,7 @@ export default function ClientMoney({ active, organizationId, clientId, title, i
             }
             setArmed(false);
             const entry = money.money.entries.find((item) => item.id === openedRow.key);
-            if (entry && (await money.retract(entry))) setScreen("");
+            if (entry && (await once(() => money.retract(entry)))) setScreen("");
           }
         }}
         consequence={armed ? t("home_care.money.retract_note") : ""}
