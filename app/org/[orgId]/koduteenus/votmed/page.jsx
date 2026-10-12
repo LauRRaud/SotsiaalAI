@@ -1,7 +1,7 @@
 import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 
-import HomeCareKeyRegister from "@/components/homeCare/HomeCareKeyRegister";
+import KeyRegister from "@/components/homeCare/keyRegister/KeyRegister";
 import { getKeyRegister } from "@/lib/homeCare/keys";
 import { isOrgError } from "@/lib/org/errors";
 
@@ -29,5 +29,5 @@ export default async function HomeCareKeysPage({ params }) {
     notFound();
   }
 
-  return <HomeCareKeyRegister context={auth.context} register={register} />;
+  return <KeyRegister context={auth.context} register={register} />;
 }
