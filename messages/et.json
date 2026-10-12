@@ -14064,7 +14064,11 @@
       "add": "Lisa",
       "remove": "Eemalda",
       "inactive": "ei ole enam aktiivne",
-      "hint": "Meeskond näeb klienti ilma põhjust andmata. Teised hooldajad avavad lehe põhjusega."
+      "hint": "Meeskond näeb klienti ilma põhjust andmata. Teised hooldajad avavad lehe põhjusega.",
+      "pick_label": "Töötaja",
+      "add_none": "Kõik asutuse töötajad on juba meeskonnas.",
+      "remove_note": "Töötaja eemaldatakse meeskonnast, ajalugu jääb alles. Vajuta uuesti, kui oled kindel.",
+      "list_count": "Kirjeid {count}"
     },
     "entry": {
       "new_title": "Uus kirje",
