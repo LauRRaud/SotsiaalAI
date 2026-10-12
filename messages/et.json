@@ -2960,6 +2960,9 @@
         "review_strengths": "Toimivad vastused ja tugevused",
         "review_unanswered": "Vastamata põhiküsimused",
         "review_directions": "Võimalikud teenuse- või kontaktisuunad",
+        "star_where": "STAR-i hindamisvahendis",
+        "star_note_only": "Vahendis on selle põhiküsimuse juures ainult lisainfo väli.",
+        "star_support": "toetuse ja abi korraldus",
         "intro": "Tere. Kirjelda lühidalt, mis olukord on. Sa ei pea kõike õigesti sõnastama. Küsin vajadusel ainult neid täpsustusi, mis aitavad pöördumise selgemaks teha ja sobiva kontakti leida."
       },
       "routing": {
@@ -3094,6 +3097,10 @@
           "title": "Eluvaldkonnad",
           "short": "Valdkonnad"
         },
+        "support": {
+          "title": "Kes aitab",
+          "short": "Abi"
+        },
         "context": {
           "title": "Taust",
           "short": "Taust"
@@ -3154,6 +3161,10 @@
           "previous": "Eelmine küsimus",
           "next": "Järgmine küsimus",
           "all": "Kõik valdkonnad"
+        },
+        "support": {
+          "title": "Kes või mis praegu aitab?",
+          "lead": "Märgi kõik, mis juba olemas on. Võid ka kõik tühjaks jätta."
         },
         "context": {
           "title": "Taust",

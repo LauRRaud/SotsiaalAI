@@ -6,7 +6,7 @@
  * Varem oli kogu eelinfo üks pikk leht: kolm rippvalikut, tekstiväli, 21
  * küsimusega peidetud plokk ja vestlus üksteise all. Siin on igaüks omaette
  * vaade sammulaval (`StepFlight`): viis, olukord, kelle kohta, kiireloomulisus,
- * taust. Eluvaldkondade küsimused on failis `DomainsView.jsx`.
+ * kes aitab, taust. Eluvaldkondade küsimused on failis `DomainsView.jsx`.
  *
  * Vaade ise olekut ei hoia: väärtused ja muutjad tulevad lehelt
  * (`PreInquiriesSurface` failis ../WorkspaceFeaturePage.jsx). `tr(võti, varu)`
@@ -17,6 +17,7 @@
 
 import ActionCard from "@/components/stage/ActionCard";
 import CheckCard from "@/components/stage/CheckCard";
+import ChoiceChips from "@/components/stage/ChoiceChips";
 import ChoiceRow from "@/components/stage/ChoiceRow";
 import StepPanel from "@/components/stage/StepPanel";
 import TextAreaField from "@/components/stage/TextAreaField";
@@ -124,6 +125,26 @@ export function UrgencyView({ tr, urgencyOptions, urgency, onUrgency, riskMessag
           {riskMessage}
         </p>
       ) : null}
+    </StepPanel>
+  );
+}
+
+/**
+ * Kes või mis praegu aitab: STAR-i hindamisvahendi abi korralduse osad
+ * märgitavate lahtritena. Lahtris on lihtne silt; vahendi numbrit ega RFK koodi
+ * pöördujale ei näidata (need näeb vastuvõtja oma vaates). Kümme märkekaarti
+ * (`CheckCard`) oli 317 px kõrge ja pikad sildid murdusid sõna keskelt; lahtrid
+ * on madalamad ja väiksema kirjaga.
+ */
+export function SupportView({ tr, options, selected, onToggle }) {
+  const question = tr("views.support.title", "Kes või mis praegu aitab?");
+  return (
+    <StepPanel
+      title={tr("steps.support.title", "Kes aitab")}
+      question={question}
+      lead={tr("views.support.lead", "Märgi kõik, mis juba olemas on. Võid ka kõik tühjaks jätta.")}
+    >
+      <ChoiceChips label={question} labelHidden options={options} values={selected} onToggle={(value) => onToggle(value, !selected.includes(value))} />
     </StepPanel>
   );
 }

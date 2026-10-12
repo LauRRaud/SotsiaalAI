@@ -2960,6 +2960,9 @@
         "review_strengths": "Working responses and strengths",
         "review_unanswered": "Unanswered core questions",
         "review_directions": "Possible service or contact directions",
+        "star_where": "In the STAR assessment tool",
+        "star_note_only": "In the tool this primary question has only a field for additional information.",
+        "star_support": "how support and help are arranged",
         "intro": "Hello. Briefly describe the situation. You do not have to phrase everything perfectly. If needed, I will only ask for clarifications that help make the inquiry clearer and find a suitable contact."
       },
       "routing": {
@@ -3094,6 +3097,10 @@
           "title": "Life domains",
           "short": "Domains"
         },
+        "support": {
+          "title": "Who helps",
+          "short": "Help"
+        },
         "context": {
           "title": "Background",
           "short": "Background"
@@ -3154,6 +3161,10 @@
           "previous": "Previous question",
           "next": "Next question",
           "all": "All domains"
+        },
+        "support": {
+          "title": "Who or what helps right now?",
+          "lead": "Mark everything that is already in place. You may also leave it all empty."
         },
         "context": {
           "title": "Background",

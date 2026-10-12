@@ -36,6 +36,7 @@ import {
   PRE_INQUIRY_DOMAIN_DEFINITIONS,
   PRE_INQUIRY_SCREEN_OPTIONS,
   PRE_INQUIRY_SUBJECT_OPTIONS,
+  PRE_INQUIRY_SUPPORT_SOURCE_OPTIONS,
   PRE_INQUIRY_URGENCY_OPTIONS,
   buildPreInquiryAssessmentAssistContext,
   buildPreInquiryAssessmentDraftSummary,
@@ -47,11 +48,12 @@ import {
   getPreInquiryQuestionFollowUpQuestions,
   normalizePreInquiryAssessmentState
 } from "@/lib/preInquiriesQuestionnaire";
+import { STAR_CHOICES_HEADING, STAR_ROWS_HEADING, STAR_SUPPORT_HEADING } from "@/lib/preInquiryStarTool";
 import { setPanelLeaveGuard, twoPressLeaveGuard } from "@/lib/panelLeaveGuard";
 import { buildRoomChatPath } from "@/lib/roomPath";
 import { pushWithTransition } from "@/lib/routeTransition";
 import AdminRoleViewCycleButton from "./AdminRoleViewCycleButton";
-import { ContextView, JourneyView, PathView, SituationView, UrgencyView, WhoView } from "./preInquiry/CollectViews";
+import { ContextView, JourneyView, PathView, SituationView, SupportView, UrgencyView, WhoView } from "./preInquiry/CollectViews";
 import DomainsView from "./preInquiry/DomainsView";
 import { AssistantView, RecipientContactView, RecipientListView, RecipientServicesView, ReviewView, SavedView, SendView, SentStateView, SentTextView, TextView } from "./preInquiry/FlowViews";
 import PreInquiryStart from "./preInquiry/PreInquiryStart";
@@ -244,10 +246,58 @@ function SectionCard({ title, children, className }) {
   );
 }
 
-function PreInquiryAssessmentReviewSection({ t, title, review, situation = "", note = "" }) {
+/** Märgitud abi sildid ühe reana (ülevaate rida ja sammu kokkuvõte kiirmenüüs). */
+function supportSourceLabels(supportSources = []) {
+  return PRE_INQUIRY_SUPPORT_SOURCE_OPTIONS.filter((option) => supportSources.includes(option.value))
+    .map((option) => option.label)
+    .join(", ");
+}
+
+/**
+ * STAR-i hindamisvahendi read ühe vastuse juures, avatava plokina. Ainult
+ * vastuvõtja vaates: spetsialist näeb, millise vahendi alamvaldkonna ja ridade
+ * juurde pöörduja vastus kuulub. Pöördujale koode ega määrajat ei näidata.
+ */
+function StarToolRows({ t, star }) {
+  if (!star) return null;
+  const items = star.kind === "choices" ? star.choices : star.kind === "rows" ? star.rows : [];
+  return (
+    <details className={`${viewStyles.fold} ${viewStyles.starFold}`}>
+      <summary className={viewStyles.foldTitle}>
+        {`${readText(t, "workspace_feature_pages.pre_inquiries.assessment.star_where", "STAR-i hindamisvahendis")}: ${star.number} ${star.subdomain}`}
+      </summary>
+      {items.length ? (
+        <>
+          <p className={viewStyles.quiet}>{star.kind === "choices" ? STAR_CHOICES_HEADING : STAR_ROWS_HEADING}</p>
+          <ul className={viewStyles.codeRows}>
+            {items.map((item) =>
+              typeof item === "string" ? (
+                <li key={item} className={viewStyles.codeRow} data-plain="">
+                  {item}
+                </li>
+              ) : (
+                <li key={item.code} className={viewStyles.codeRow}>
+                  <span>{item.code}</span>
+                  <span>{item.text}</span>
+                </li>
+              )
+            )}
+          </ul>
+        </>
+      ) : (
+        <p className={viewStyles.quiet}>
+          {readText(t, "workspace_feature_pages.pre_inquiries.assessment.star_note_only", "Vahendis on selle põhiküsimuse juures ainult lisainfo väli.")}
+        </p>
+      )}
+    </details>
+  );
+}
+
+function PreInquiryAssessmentReviewSection({ t, title, review, situation = "", note = "", audience = "" }) {
   if (!review) return null;
   const situationText = String(situation || "").trim();
   const concernQuestions = [...review.concernQuestions, ...review.unknownQuestions];
+  const forReceiver = audience === "receiver";
 
   return (
     <SectionCard title={title}>
@@ -311,7 +361,7 @@ function PreInquiryAssessmentReviewSection({ t, title, review, situation = "", n
             <article key={question.id}>
               <div>
                 <p>
-                  {`${question.domainTitle} / ${question.title}`}
+                  {`${question.domainTitle} / ${question.heading}`}
                 </p>
                 <span>
                   {question.answerLabel}
@@ -328,6 +378,7 @@ function PreInquiryAssessmentReviewSection({ t, title, review, situation = "", n
                   ))}
                 </div>
               ) : null}
+              {forReceiver ? <StarToolRows t={t} star={question.star} /> : null}
             </article>
           ))}
         </div>
@@ -343,7 +394,7 @@ function PreInquiryAssessmentReviewSection({ t, title, review, situation = "", n
               <article key={question.id}>
                 <div>
                   <p>
-                    {`${question.domainTitle} / ${question.title}`}
+                    {`${question.domainTitle} / ${question.heading}`}
                   </p>
                   <span>
                     {question.answerLabel}
@@ -364,7 +415,7 @@ function PreInquiryAssessmentReviewSection({ t, title, review, situation = "", n
           <div>
             {review.unansweredQuestions.map((question) => (
               <p key={question.id}>
-                {`${question.domainTitle} / ${question.title}`}
+                {`${question.domainTitle} / ${question.heading}`}
               </p>
             ))}
           </div>
@@ -382,6 +433,27 @@ function PreInquiryAssessmentReviewSection({ t, title, review, situation = "", n
                 </div>
               ))}
             </dl>
+          ) : null}
+          {forReceiver && review.supportParts?.length ? (
+            <details className={viewStyles.fold}>
+              <summary className={viewStyles.foldTitle}>
+                {`${readText(t, "workspace_feature_pages.pre_inquiries.assessment.star_where", "STAR-i hindamisvahendis")}: ${readText(t, "workspace_feature_pages.pre_inquiries.assessment.star_support", "toetuse ja abi korraldus")}`}
+              </summary>
+              <p className={viewStyles.quiet}>{STAR_SUPPORT_HEADING}</p>
+              {review.supportParts.map((part) => (
+                <div key={part.id}>
+                  <p>{`${part.number} ${part.title}`}</p>
+                  <ul className={viewStyles.codeRows}>
+                    {part.rows.map((row) => (
+                      <li key={row.code} className={viewStyles.codeRow}>
+                        <span>{row.code}</span>
+                        <span>{row.text}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </details>
           ) : null}
           {review.possibleDirections.length ? (
             <div>
@@ -1211,6 +1283,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       ["Kiireloomulisus", normalizedAssessmentState.subject.urgency],
       ["Nõusolek või pöördumise alus", normalizedAssessmentState.subject.consentStatus],
       ["Olukorra kokkuvõte", effectiveSituation],
+      ["Kes või mis aitab", supportSourceLabels(normalizedAssessmentState.supportContext.supportSources)],
       ["Olemasolev abi", normalizedAssessmentState.supportContext.existingSupport],
       ["Kas abist piisab", normalizedAssessmentState.supportContext.supportAdequacy],
       ["Inimese enda soov", normalizedAssessmentState.supportContext.personWish],
@@ -2048,7 +2121,9 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
           topic: inquiry.topic || "",
           situation: inquiry.situation || "",
           draft: inquiry.userEditedDraft || inquiry.generatedDraft || "",
-          recipientName: inquiry.selectedRecipientName || ""
+          recipientName: inquiry.selectedRecipientName || "",
+          /* Vastuvõtja väljavõttes on iga murega vastuse all STAR-i vahendi read. */
+          audience: "receiver"
         })
       : inquiry.userEditedDraft || inquiry.generatedDraft || inquiry.situation || "";
     if (downloadTextFile(content, buildPreInquiryDownloadName(inquiry.topic))) {
@@ -2345,6 +2420,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     who: partial(Boolean(subject.concernsAbout && subject.consentStatus), Boolean(subject.concernsAbout || subject.consentStatus)),
     urgency: subject.urgency ? "done" : "empty",
     domains: partial(domainAnswerCount === domainQuestionCount, domainAnswerCount > 0),
+    support: supportContext.supportSources.length ? "done" : "empty",
     context: supportContext.existingSupport || supportContext.supportAdequacy || supportContext.personWish ? "done" : "empty",
     assistant: assistantMessage ? "done" : "empty",
     review: "empty",
@@ -2361,6 +2437,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     who: [subject.concernsAbout, subject.consentStatus].filter(Boolean).join(" · "),
     urgency: subject.urgency,
     domains: hasDomains ? `${domainAnswerCount}/${domainQuestionCount}` : "",
+    support: supportSourceLabels(supportContext.supportSources).slice(0, 90),
     context: supportContext.personWish.trim().slice(0, 90),
     recipient: selectedRecipient?.title || "",
     text: topic.trim().slice(0, 90),
@@ -2583,6 +2660,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
                   title={tr("sections.received_assessment_review", "Eelkaardistuse struktureeritud eelinfo")}
                   review={activeReceivedInquiryAssessmentReview}
                   situation={opened.situation || ""}
+                  audience="receiver"
                 />
               ) : null}
             </InfoView>
@@ -3194,6 +3272,20 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
             followUpsOf={getPreInquiryQuestionFollowUpQuestions}
             onAnswer={updatePrimaryQuestionAnswer}
             onFollowUp={updatePrimaryQuestionFollowUpAnswer}
+          />
+        );
+      case "support":
+        return (
+          <SupportView
+            tr={tr}
+            options={PRE_INQUIRY_SUPPORT_SOURCE_OPTIONS}
+            selected={supportContext.supportSources}
+            onToggle={(id, checked) =>
+              updateAssessmentSupport(
+                "supportSources",
+                checked ? [...supportContext.supportSources, id] : supportContext.supportSources.filter((item) => item !== id)
+              )
+            }
           />
         );
       case "context":

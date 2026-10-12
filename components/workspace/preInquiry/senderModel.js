@@ -44,7 +44,8 @@ export function senderOpenMode(inquiry) {
 
 /**
  * Lava sammud töövoo järgi. `sent` on lugemisvaade, `list` avaekraanilt avatud loend;
- * muu on koostamise töövoog (`journey` lisab Teekonna sammu, `hasDomains` eluvaldkonnad).
+ * muu on koostamise töövoog (`journey` lisab Teekonna sammu, `hasDomains` eluvaldkonnad
+ * ja nende järel sammu „kes aitab": mõlemad kuuluvad eelkaardistuse juurde).
  */
 export function senderFlowKeys(workflowMode, { hasDomains = false } = {}) {
   if (workflowMode === "sent") return [...SENT_FLOW_KEYS];
@@ -55,7 +56,7 @@ export function senderFlowKeys(workflowMode, { hasDomains = false } = {}) {
     "situation",
     "who",
     "urgency",
-    ...(hasDomains ? ["domains"] : []),
+    ...(hasDomains ? ["domains", "support"] : []),
     "context",
     "assistant",
     "review",

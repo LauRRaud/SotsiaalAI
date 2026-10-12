@@ -3575,6 +3575,16 @@ tervitus, teema ja palve; olukorra kirjeldus ja eelkaardistuse kokkuvõte lähev
 inimese enda märkega. Kogu tekst jääb saadavale kopeerimise ja alla laadimisega; platvormis
 saadetav pöördumine ja alla laaditav fail ei muutunud.
 
+Eelkaardistus ja STAR-i hindamisvahend (12.10.2026): eelkaardistuse seitse eluvaldkonda ja 21
+põhiküsimust on Sotsiaalkindlustusameti vormi „STAR hindamisvahend TAH 2026" sõnastuses
+(omaniku nõue: sõnaerinevusi ei ole, sest sihiks on liides STAR-iga). Pöörduja vastab ise viie
+valikuga; vahendi „jah/ei" ja RFK määraja 0–4 on hindaja töö ja pöördujale neid ei näidata.
+Vastuvõtja eelinfos ja tema alla laaditavas väljavõttes on iga murega vastuse all vahendi
+alamvaldkonna number ja täpsustavad read koos RFK koodiga (`lib/preInquiryStarTool.js`, 62
+rida; vormist masinaga välja võetud). Samm „Kes aitab" küsib vahendi osade 8–10 kümmet abi
+liiki märgitavate valikutena (`supportContext.supportSources`). Tegemata: vahendi sotsiaalse
+võrgustiku tabel; organisatsiooni vastuvõtulaud näitab endiselt ainult pöördumise teksti.
+
 Vastuvõtja poolel on laud, kus pöördumised seisavad järjekorras koos ettevalmistatud
 kokkuvõttega. Ametnik näeb inimese enda sõnu ja AI koostatud struktuuri eraldi ja
 märgistatult — masina mustandit ei esitata kunagi inimese ütlusena.

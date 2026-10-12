@@ -213,6 +213,37 @@
 .fold > p + p {
   margin-top: 0.5rem;
 }
+/* STAR-i hindamisvahendi read vastuvõtja eelinfos: kood kitsas veerus, rea tekst selle
+   kõrval. Vana ühine kiht annab loendile täpid ja taande; siin on need maha võetud. */
+.codeRows {
+  margin-block: 0.4rem 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.35rem;
+}
+.codeRow {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 3.6rem minmax(0, 1fr);
+  gap: 0.6rem;
+  color: var(--text-soft);
+}
+.codeRow > span:first-child {
+  color: var(--text-warm);
+  font-variant-numeric: tabular-nums;
+}
+/* Vahendi plokk vastuse all: vahe järgmise vastuse pealkirjani. */
+.starFold {
+  margin-block: 0.5rem 1.1rem;
+}
+/* Valikloendi rida (koodita): terve laius. */
+.codeRow[data-plain] {
+  display: block;
+}
+.fold > div + div {
+  margin-top: 0.7rem;
+}
 
 .links {
   display: flex;
