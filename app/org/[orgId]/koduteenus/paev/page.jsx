@@ -1,7 +1,7 @@
 import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 
-import HomeCareDay from "@/components/homeCare/HomeCareDay";
+import DayPlan from "@/components/homeCare/dayPlan/DayPlan";
 import { getDayPlan } from "@/lib/homeCare/dayPlan";
 import { isOrgError } from "@/lib/org/errors";
 
@@ -37,5 +37,5 @@ export default async function HomeCareDayPage({ params, searchParams }) {
   if (initial instanceof Error && initial.messageKey === "home_care.errors.invalid_date") initial = await load({});
   if (initial instanceof Error) notFound();
 
-  return <HomeCareDay context={auth.context} initial={initial} />;
+  return <DayPlan context={auth.context} initial={initial} />;
 }

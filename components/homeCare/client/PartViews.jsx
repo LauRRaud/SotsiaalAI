@@ -99,6 +99,32 @@ function RowBody({ row }) {
   );
 }
 
+/** Rühm ridu, mis viivad mujale. `links`: [{ key, title, line, chip, onOpen, href, blank }]; `href` ei eellaadi, `blank` avab uue vahelehe. */
+function LinkRows({ links = [] }) {
+  if (!links.length) return null;
+  return (
+    <ul className={shared.rows}>
+      {links.map((link) => (
+        <li key={link.key} className={shared.rowItem}>
+          {link.href && link.blank ? (
+            <a href={link.href} target="_blank" rel="noopener noreferrer" className={`${shared.row} ${styles.row}`} data-part-link={link.key}>
+              <RowBody row={link} />
+            </a>
+          ) : link.href ? (
+            <Link href={link.href} prefetch={false} className={`${shared.row} ${styles.row}`} data-part-link={link.key}>
+              <RowBody row={link} />
+            </Link>
+          ) : (
+            <button type="button" className={`${shared.row} ${styles.row}`} data-part-link={link.key} onClick={link.onOpen}>
+              <RowBody row={link} />
+            </button>
+          )}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 /**
  * Read. `rows`: [{ key, title, chip, line, lines, tone, open }] (`open`: rida avab kirje, muidu on see loetav);
  * `onOpen(key)`; `empty`: lause, kui ridu ei ole; `hint`: vaikne rida all servas;
@@ -130,27 +156,7 @@ export function RowsView({ title, question, lead, rows, onOpen, empty, hint, not
         ) : empty ? (
           <p className={shared.quiet}>{empty}</p>
         ) : null}
-        {links.length ? (
-          <ul className={shared.rows}>
-            {links.map((link) => (
-              <li key={link.key} className={shared.rowItem}>
-                {link.href && link.blank ? (
-                  <a href={link.href} target="_blank" rel="noopener noreferrer" className={`${shared.row} ${styles.row}`} data-part-link={link.key}>
-                    <RowBody row={link} />
-                  </a>
-                ) : link.href ? (
-                  <Link href={link.href} prefetch={false} className={`${shared.row} ${styles.row}`} data-part-link={link.key}>
-                    <RowBody row={link} />
-                  </Link>
-                ) : (
-                  <button type="button" className={`${shared.row} ${styles.row}`} data-part-link={link.key} onClick={link.onOpen}>
-                    <RowBody row={link} />
-                  </button>
-                )}
-              </li>
-            ))}
-          </ul>
-        ) : null}
+        <LinkRows links={links} />
       </div>
     </StepPanel>
   );
@@ -158,10 +164,10 @@ export function RowsView({ title, question, lead, rows, onOpen, empty, hint, not
 
 /**
  * Üks kirje. `head`: { name, chip, chips } (üks märk või mitu); `notices`: [{ key, text }] (rahulikud laused); `facts`: [{ key, label, value }];
- * `body`: tekst täies pikkuses või tühi; `cells`: [{ key, label, armed, onPress }] (kustutav või lõpetav lahter küsib teist vajutust);
+ * `body`: tekst täies pikkuses või tühi; `links`: read, mis viivad mujale (nagu `RowsView`-l); `cells`: [{ key, label, armed, onPress }] (kustutav või lõpetav lahter küsib teist vajutust);
  * `consequence`: lause, mis juhtub (pärast esimest vajutust); `actions`, `back`: nagu `RowsView`-l.
  */
-export function DetailView({ title, question, head, notices = [], facts = [], body = "", cells = [], consequence = "", notice, busy, actions = [], back, children, mark = "detail" }) {
+export function DetailView({ title, question, head, notices = [], facts = [], body = "", cells = [], links = [], consequence = "", notice, busy, actions = [], back, children, mark = "detail" }) {
   return (
     <StepPanel title={title} question={question} note={footNote(notice, consequence)} actions={<Actions back={back} actions={actions} />}>
       <div className={shared.stack} aria-busy={busy ? "true" : undefined} data-part-view={mark}>
@@ -186,6 +192,7 @@ export function DetailView({ title, question, head, notices = [], facts = [], bo
         ) : null}
         {facts.length ? <Facts rows={facts} /> : null}
         {children}
+        <LinkRows links={links} />
         {cells.length ? (
           <div className={shared.cells} role="group" aria-label={title}>
             {cells.map((cell) => (
