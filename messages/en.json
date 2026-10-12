@@ -15755,7 +15755,6 @@
       "medication": "Medication activities with no mark of what was done: {count}. Ask the care worker and have the entry corrected."
     },
     "relatives": {
-      "title": "Relatives and what we tell them",
       "none": "No relatives are recorded. Without the client's permission we tell nobody about them.",
       "rule": "Tell a relative only what their level allows. The diary text is not read out to a relative.",
       "add": "Add a relative",
@@ -15780,7 +15779,10 @@
       "doubt_flag": "The client does not remember allowing this",
       "doubt_line": "The client does not remember allowing this (marked by {name}). Until the coordinator has asked again, say only whether a visit took place.",
       "card_open": "Print the sharing card",
-      "card_hint": "The sharing card is the agreement on paper for the client's home: who may be told what about them."
+      "card_hint": "The sharing card is the agreement on paper for the client's home: who may be told what about them.",
+      "doubt_chip": "client does not recall",
+      "card_title": "Sharing card",
+      "remove_note": "The relative and the agreement about them are deleted. Press again if you are sure."
     },
     "recent": {
       "yesterday": "Yesterday",
@@ -16239,7 +16241,6 @@
       "save": "Save",
       "cancel": "Cancel",
       "end": "End the right of representation",
-      "end_confirm": "Confirm ending",
       "states": {
         "UPCOMING": "not yet valid",
         "EXPIRED": "term has passed"
@@ -16249,7 +16250,10 @@
       "period_from": "valid from {from}",
       "period_open": "no end date",
       "copy_line": "copy: {place}",
-      "checked_line": "document seen on {date} by {name}"
+      "checked_line": "document seen on {date} by {name}",
+      "row_none": "No representative on record",
+      "scope_short": "May decide",
+      "end_note": "The right of representation is ended and leaves the list. Press again if you are sure."
     },
     "talk": {
       "ask": "I want to talk about this",

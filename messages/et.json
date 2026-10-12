@@ -15755,7 +15755,6 @@
       "medication": "Ravimitoiminguid ilma märketa, mida tehti: {count}. Küsi hooldajalt ja lase kirje parandada."
     },
     "relatives": {
-      "title": "Lähedased ja mida neile räägime",
       "none": "Lähedasi ei ole kirjas. Ilma kliendi loata ei räägi me tema kohta kellelegi.",
       "rule": "Räägi lähedasele ainult seda, mida tema aste lubab. Päeviku teksti lähedasele ette ei loeta.",
       "add": "Lisa lähedane",
@@ -15780,7 +15779,10 @@
       "doubt_flag": "Klient ei mäleta, et lubas",
       "doubt_line": "Klient ei mäleta, et lubas (märkis {name}). Kuni hooldusjuht ei ole üle küsinud, räägi ainult seda, kas käidi.",
       "card_open": "Prindi jagamiskaart",
-      "card_hint": "Jagamiskaart on kokkulepe paberil kliendi koju: kellele ja mida võib tema kohta rääkida."
+      "card_hint": "Jagamiskaart on kokkulepe paberil kliendi koju: kellele ja mida võib tema kohta rääkida.",
+      "doubt_chip": "klient ei mäleta",
+      "card_title": "Jagamiskaart",
+      "remove_note": "Lähedane ja temaga seotud kokkulepe kustutatakse. Vajuta uuesti, kui oled kindel."
     },
     "recent": {
       "yesterday": "Eile",
@@ -16239,7 +16241,6 @@
       "save": "Salvesta",
       "cancel": "Loobu",
       "end": "Lõpeta esindusõigus",
-      "end_confirm": "Kinnita lõpetamine",
       "states": {
         "UPCOMING": "ei kehti veel",
         "EXPIRED": "tähtaeg on möödas"
@@ -16249,7 +16250,10 @@
       "period_from": "kehtib alates {from}",
       "period_open": "tähtajatu",
       "copy_line": "koopia: {place}",
-      "checked_line": "dokumenti nägi {date} {name}"
+      "checked_line": "dokumenti nägi {date} {name}",
+      "row_none": "Esindajat ei ole kirjas",
+      "scope_short": "Tohib otsustada",
+      "end_note": "Esindusõigus lõpetatakse ja kaob nimekirjast. Vajuta uuesti, kui oled kindel."
     },
     "talk": {
       "ask": "Soovin sellest rääkida",

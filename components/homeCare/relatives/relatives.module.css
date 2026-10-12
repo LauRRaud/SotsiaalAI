@@ -1,0 +1,101 @@
+/* Kliendi lehe lähedased ja esindusõigus. Read, märk, lahtrid, väljad ja laused
+   on organisatsioonide lehtede ühised (../../org/org.module.css); siin on ainult
+   see, mis on sellel osal oma. */
+
+/* Kokku pandud lause algab väikese tähega sõnaga („aste 2: …", „kinnitatud …"). */
+.made::first-letter {
+  text-transform: uppercase;
+}
+
+/* Lähedase rida: nimi (ja märk selle kõrval) ning selle all, mida rääkida võib ja
+   millest mitte; read murduvad. Kaks klassi: rea enda veerud, teisest failist,
+   ei tohi võita. */
+.relative.relative {
+  grid-template-columns: minmax(0, 1fr);
+}
+.who {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.2rem 0.8rem;
+}
+.main {
+  composes: main from "../day/day.module.css";
+}
+.sub {
+  composes: sub from "../day/day.module.css";
+}
+
+/* Mida talle rääkida võib: vaate kõige tähtsam lause. */
+.level {
+  composes: level from "../safety/safety.module.css";
+}
+/* Telefon (helistamise link, sõrme kõrgune) ja selle kõrval vaikne rida. */
+.contact {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.1rem 1.2rem;
+}
+.tel {
+  composes: tel from "../clients/clients.module.css";
+}
+
+/* Jagamisaste: kolm lauset üksteise all, tekst algab vasakult (kaks klassi:
+   valikulahtri enda joondus, teisest failist, ei tohi võita). */
+.levels {
+  min-width: 0;
+  max-width: 34rem;
+  display: grid;
+  gap: 0.4rem;
+}
+.levelOption {
+  composes: option from "../../stage/ChoiceRow.module.css";
+}
+.levelOption.levelOption {
+  justify-content: flex-start;
+  text-align: start;
+}
+
+/* Nimi ja telefon on nii laiad kui sisu; „millest mitte rääkida" ja ulatus on
+   lause (kaks klassi: rea enda laius, teisest failist, ei tohi võita). */
+.name.name {
+  max-width: 20rem;
+}
+.wide.wide {
+  max-width: 34rem;
+}
+/* Kuupäevad: telefonis üksteise all, laiemal pinnal kõrvuti. Kui üks silt murdub
+   kahele reale, jäävad väljad ikka kohakuti. */
+.days {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.65rem 1.4rem;
+}
+.day.day {
+  max-width: none;
+}
+.day input {
+  width: 11rem;
+  max-width: 100%;
+}
+
+@container (min-width: 34rem) {
+  /* Laiemal pinnal on nimi vasakul ja selle kõrval, mida rääkida võib ja millest
+     mitte; veerud on kõigil ridadel kohakuti. */
+  .relative.relative {
+    grid-template-columns: 17rem minmax(0, 1fr);
+    align-items: start;
+  }
+  /* Märk on nime all, mitte teksti kõrval. */
+  .who {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+}

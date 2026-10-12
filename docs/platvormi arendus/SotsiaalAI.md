@@ -243,6 +243,31 @@ Kirjutavad päringud vastati brauseris (kehad sama kujuga mis enne); loa lõppem
 pooleli sooviga jätab teksti alles. **Mõõtmise leid:** tume teema kannab nime
 `mid`; teema `dark` annab päeval heleda (automaatne), nii et varasemad päevased
 „tumeda teema” mõõtmised olid tegelikult heledad.
+**Topeltsaatmise parandus (12.10, commit `dd009611`, elus):** hommikul elusse
+läinud osades (raha, võtmed, varud, ohutus, avatud päevikukirje, varasem ajalugu)
+jäi salvestamise nupp päringu ajal lahti ja kaks kiiret vajutust saatsid kaks
+päringut (kohalikult mõõdetud: raha, võtmed ja varud saatsid kaks POST-i; rahal
+tähendanuks see kahte arvestuse rida). Nüüd saadab iga kokkupanija läbi luku
+`components/homeCare/client/useSendOnce.js`; pärast parandust läheb teele üks päring.
+**Kliendi lehe lähedased ja esindusõigus (12.10 ennelõuna, otse `main`-i):** osa on
+uuel kihil (`components/homeCare/relatives/`). Ees on lähedased ridadena: nimi, märk
+(„küsi kliendilt üle”, „klient ei mäleta”) ning mida talle rääkida võib ja millest
+mitte, täies pikkuses. Rida avab lähedase (telefon lingina, aste, kahtluse lause);
+seal märgitakse kahtlus, avatakse muutmine ja eemaldatakse lähedane (eemaldamine
+küsib teist vajutust; vanal lehel üks vajutus). Vorm on kaks vaadet: kes ta on, siis
+mida klient lubab talle rääkida (kolm astet lausetena üksteise all). Jagamiskaart on
+nupu taga omaette vaade. Esindusõigus on lähedaste all üks rida, mis viib esindajate
+loendisse; esindaja avaneb omaette vaates (lõpetamine küsib teist vajutust samal
+lahtril), uus esindaja on kaks vaadet (kes ja mille alusel; kehtivus ja dokument).
+Kuupäevad on brauseri enda väljad. Esindajate muutus jõuab nüüd ka lehe andmetesse.
+Päringud on samad (11 kutset enne ja pärast, erinevaid 0); `HomeCareRelatives.jsx`
+ja `HomeCareRepresentatives.jsx` on kustutatud. Mõõdetud kohalikult mõlema rolliga
+1536 × 640 ja 390 × 844 aknas, heledas ja tumedas teemas, eesti, inglise ja vene
+keeles, kolme lähedase (üks pika keeluga) ja kahe esindajaga, ühe lähedasega ja
+tühjalt: iga vaade mahub (arvutis kuni 519/522 vene keeles, telefonis 844/844); neli
+lähedast kerib veidi. **Mõõtmine muutis kuju:** märk rea teises veerus surus teksti
+kitsaks (vene keeles arvutis 567/522, telefonis 929/844); märk on nüüd nime juures
+ja tekst kogu laiuses. Loa lõppemine pooleli vormiga jätab teksti alles.
 **Vaadete teste ei ole:** unit-testid kustutati omaniku otsusega 11.10 öösel (#725,
 #726, reegel failis `AGENTS.md`), nende hulgas ümberehituse ajal tehtud laua,
 hooldaja päeva, klientide ja kliendi osade testid; uusi ei kirjutata. Tõend on

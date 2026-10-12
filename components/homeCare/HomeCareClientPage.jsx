@@ -36,10 +36,8 @@ import HomeCareControlCalls from "./HomeCareControlCalls";
 import HomeCareDecisionNotices from "./HomeCareDecisionNotices";
 import EntryFlow from "./entry/EntryFlow";
 import HomeCareReasonForm from "./HomeCareReasonForm";
-import HomeCareRelatives from "./HomeCareRelatives";
 import HomeCareNearMiss from "./HomeCareNearMiss";
 import HomeCareNoAnswer from "./HomeCareNoAnswer";
-import HomeCareRepresentatives from "./HomeCareRepresentatives";
 import HomeCareTeam from "./HomeCareTeam";
 import {
   ACCESS_REASON_REQUIRED,
@@ -56,6 +54,7 @@ import { euroText } from "./money/moneyRows";
 import OutboxPanel, { OutboxNotice } from "./outbox/OutboxPanel";
 import { planDayLabel, planSheet, planSignals } from "./plan/planRows";
 import { PlanView } from "./plan/PlanViews";
+import ClientRelatives from "./relatives/ClientRelatives";
 import ClientSafety from "./safety/ClientSafety";
 import { safetyRights } from "./safety/safetyRows";
 import ClientSlots from "./slots/ClientSlots";
@@ -900,23 +899,24 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
               )
             : null}
 
-          {part(
-            "relatives",
-            <>
-              {/* Lähedased ja jagamisaste (K5-k): kellele ja mida klient on lubanud rääkida. */}
-              <HomeCareRelatives
-                organizationId={organizationId}
-                clientId={client.id}
-                initial={data.relatives || []}
-                canEdit={canWrite && access.isCoordinator}
-                canFlag={canWrite && access.canEditCard}
-                onChanged={(relatives) => setData((now) => ({ ...now, relatives }))}
-              />
-
-              {/* Esindusõigus (K6-i): kes tohib kliendi eest otsustada ja alla kirjutada. */}
-              <HomeCareRepresentatives organizationId={organizationId} clientId={client.id} initial={data.representatives || []} canEdit={canWrite && access.isCoordinator} />
-            </>
-          )}
+          {/* Lähedased ja jagamisaste (K5-k): kellele ja mida klient on lubanud rääkida; esindusõigus (K6-i): kes tohib
+              kliendi eest otsustada ja alla kirjutada. Osa on lehel kogu aja (pooleli vorm elab selle konksudes) ja
+              joonistatakse, kui ta on ees. */}
+          {sees("relatives")
+            ? slot(
+                "relatives",
+                <ClientRelatives
+                  active={current === "relatives"}
+                  organizationId={organizationId}
+                  clientId={client.id}
+                  title={t(viewNameKey("relatives"))}
+                  name={client.displayName}
+                  initial={data}
+                  who={{ canEdit: canWrite && access.isCoordinator, canFlag: canWrite && access.canEditCard }}
+                  onChanged={(key, value) => setData((now) => ({ ...now, [key]: value }))}
+                />
+              )
+            : null}
 
           {part(
             "team",
