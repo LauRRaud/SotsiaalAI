@@ -2842,8 +2842,9 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
   /* E-kirja vaade saatmise sammus: avaneb kaardist „Ava e-kirjana" ja on ees üksi. Hoiatus, et
      tavaline e-kiri ei ole otsast lõpuni kaitstud, valik, kas kirja läheb ka olukorra kirjeldus
      (vaikimisi ei lähe), ja alles siis nupp, mis kirja inimese e-posti rakenduses avab. Kaartide
-     kõrval tegid hoiatus ja valik saatmise vaate töölaua paneelis 181 px kõrgemaks (268 → 449 px,
-     mahub 516): teenuseosutaja teadetega vaade enam ära ei mahuks. */
+     kõrval tegid hoiatus ja valik saatmise vaate töölaua paneelis 181 px kõrgemaks (268 → 449 px;
+     mahub 516, lehe veateatega 461): teenuseosutaja teadetega vaade enam ära ei mahuks. E-kirja
+     vaade ise on seal 416 px, vene keeles 442 px. */
   const sendEmail = mailto
     ? {
         open: emailStepOpen,
