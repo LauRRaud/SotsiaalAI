@@ -1,7 +1,7 @@
 import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 
-import HomeCareCrisisList from "@/components/homeCare/HomeCareCrisisList";
+import CrisisList from "@/components/homeCare/crisis/CrisisList";
 import { getCrisisList } from "@/lib/homeCare/crisis";
 import { isOrgError } from "@/lib/org/errors";
 
@@ -29,5 +29,5 @@ export default async function HomeCareCrisisPage({ params }) {
     notFound();
   }
 
-  return <HomeCareCrisisList context={auth.context} list={list} />;
+  return <CrisisList context={auth.context} list={list} />;
 }
