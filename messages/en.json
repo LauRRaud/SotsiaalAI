@@ -15300,7 +15300,8 @@
       "remove_confirm": "Confirm: the absence was marked by mistake",
       "saved": "The absence is saved.",
       "removed": "The absence is deleted.",
-      "my_notice": "An absence is marked for you today. Your visits today are in the coordinator's day plan."
+      "my_notice": "An absence is marked for you today. Your visits today are in the coordinator's day plan.",
+      "remove_note": "The absence is deleted: the day plan no longer treats the worker as absent for that time. Press again if you are sure."
     },
     "obstacle": {
       "button": "I have an obstacle",

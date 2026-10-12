@@ -15300,7 +15300,8 @@
       "remove_confirm": "Kinnita: puudumine märgiti ekslikult",
       "saved": "Puudumine on salvestatud.",
       "removed": "Puudumine on kustutatud.",
-      "my_notice": "Sul on täna märgitud puudumine. Sinu tänased käigud on hooldusjuhi päevaplaanis."
+      "my_notice": "Sul on täna märgitud puudumine. Sinu tänased käigud on hooldusjuhi päevaplaanis.",
+      "remove_note": "Puudumine kustutatakse: päevaplaan ei pea seda töötajat sel ajal enam puuduvaks. Vajuta uuesti, kui oled kindel."
     },
     "obstacle": {
       "button": "Mul on takistus",
