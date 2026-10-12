@@ -1,7 +1,7 @@
 import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 
-import HomeCareCalls from "@/components/homeCare/HomeCareCalls";
+import Calls from "@/components/homeCare/calls/Calls";
 import { getCallCounts } from "@/lib/homeCare/calls";
 import { isOrgError } from "@/lib/org/errors";
 
@@ -29,5 +29,5 @@ export default async function HomeCareCallsPage({ params }) {
     notFound();
   }
 
-  return <HomeCareCalls context={auth.context} initial={initial} />;
+  return <Calls context={auth.context} initial={initial} />;
 }
