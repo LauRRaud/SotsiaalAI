@@ -8,7 +8,7 @@ import Dropdown from "@/components/ui/Dropdown";
 import { CARE_VISIT_PRIORITIES, CareVisitPriority, HOME_CARE_LIMITS } from "@/lib/homeCare/constants";
 
 import HomeCareOutbox from "./HomeCareOutbox";
-import { WEEKDAYS, slotLine } from "./HomeCareSlotList";
+import { WEEKDAYS, slotLine } from "./slots/slotRows";
 import { homeCareBase, useHomeCareApi } from "./homeCareClient";
 
 /* Plaanitud kestuse kiirvalikud minutites. */

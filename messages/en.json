@@ -16381,7 +16381,8 @@
         "manage": "Status, details and notices",
         "manage_signals": "Observations waiting for an answer: {count}",
         "manage_review": "Check what is still open"
-      }
+      },
+      "back": "Back"
     },
     "door": {
       "back": "Back to the door",
@@ -16446,6 +16447,9 @@
       "pick_file": "Choose a text file",
       "history_remove_confirm": "Confirm the removal",
       "history_remove_note": "The text is removed from here and the search no longer finds it. The original document stays where it came from. Press again if you are sure."
+    },
+    "sheets": {
+      "name": "Sheets for the client"
     }
   },
   "stage": {

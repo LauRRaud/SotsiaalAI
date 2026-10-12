@@ -1,0 +1,58 @@
+/* Kliendi lehe käigud ja lehed kliendi koju. Laused, märk, sõnade read ja
+   tegevuslahtrid on organisatsioonide lehtede ühised (../../org/org.module.css);
+   siin on ainult see, mis on käikudel oma. */
+
+/* Loendi nimi („Käigud nädalas"): väike pealkiri. */
+.caption {
+  composes: caption from "../desk/desk.module.css";
+}
+
+/* Korduvad käigud nädalapäevade kaupa. Telefonis on päev rea peal ja käigud
+   selle all; laiemal pinnal on päevad ühes veerus ja käigud selle kõrval. */
+.days {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.25rem 0.9rem;
+}
+.day {
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  display: grid;
+  line-height: 1.45;
+}
+.dayName {
+  composes: activityName from "../diary/diary.module.css";
+}
+.daySlots {
+  min-width: 0;
+  display: grid;
+}
+/* Üks käik: kell, kestus, kes läheb; märk, kui töötaja liikmesus enam ei kehti. */
+.slot {
+  composes: activity from "../diary/diary.module.css";
+  color: var(--text-soft);
+  overflow-wrap: anywhere;
+}
+
+/* Telefoninumbri väli on nii lai kui number. */
+.phone.phone {
+  max-width: none;
+}
+.phone input {
+  width: 14rem;
+  max-width: 100%;
+}
+
+@container (min-width: 34rem) {
+  .days {
+    grid-template-columns: max-content minmax(0, 1fr);
+  }
+  .day {
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    align-items: baseline;
+  }
+}

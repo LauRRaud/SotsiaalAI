@@ -36,7 +36,6 @@ import HomeCareDecisionNotices from "./HomeCareDecisionNotices";
 import HomeCareTransport from "./HomeCareTransport";
 import HomeCareDecisionView, { decisionVolumeLabel, minutesLabel } from "./HomeCareDecisionView";
 import EntryFlow from "./entry/EntryFlow";
-import HomeCareFridgeSheet from "./HomeCareFridgeSheet";
 import HomeCareReasonForm from "./HomeCareReasonForm";
 import HomeCareRelatives from "./HomeCareRelatives";
 import HomeCareSafetyCard from "./HomeCareSafetyCard";
@@ -46,7 +45,6 @@ import HomeCareNoAnswer from "./HomeCareNoAnswer";
 import HomeCareMoney from "./HomeCareMoney";
 import HomeCarePreconditions from "./HomeCarePreconditions";
 import HomeCareRepresentatives from "./HomeCareRepresentatives";
-import HomeCareSlotList from "./HomeCareSlotList";
 import HomeCareSupplies from "./HomeCareSupplies";
 import HomeCareWorkNature from "./HomeCareWorkNature";
 import HomeCareTeam from "./HomeCareTeam";
@@ -63,6 +61,8 @@ import { getOutboxManager } from "./homeCareOutbox";
 import OutboxPanel, { OutboxNotice } from "./outbox/OutboxPanel";
 import { planDayLabel, planSheet, planSignals } from "./plan/planRows";
 import { PlanView } from "./plan/PlanViews";
+import ClientSlots from "./slots/ClientSlots";
+import { sheetRights } from "./slots/slotRows";
 import { euroText } from "./HomeCareMoney";
 
 function sortEntries(items) {
@@ -770,43 +770,23 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
               )
             : null}
 
-          {/* Käigumuster (K3-a): mis päevadel ja kellaaegadel siin käiakse ja kes läheb. */}
-          {part(
+          {/* Käigumuster (K3-a): mis päevadel ja kellaaegadel siin käiakse ja kes läheb; eilne ja tänane käik seisuga (K5-l).
+              Lehed kliendi koju (külmkapileht K5-g, kuuleht K6-e) on osa sees omaette vaade.
+              Osa on lehel kogu aja (sisestatud telefoninumber elab selle konksus) ja joonistatakse, kui ta on ees. */}
+          {slot(
             "slots",
-            <section className="hc-section" aria-label={t("home_care.slots.title")}>
-              {/* Eilne ja tänane käik seisuga (K5-l): vastus küsimusele „kas käidi?" ühe pilguga. */}
-              {data.recentVisits ? (
-                <ul className="hc-list hc-list--plain">
-                  {data.recentVisits.map((item, index) => (
-                    <li key={item.day}>
-                      <strong>{t(index === 0 ? "home_care.recent.yesterday" : "home_care.recent.today")}:</strong>{" "}
-                      {item.away
-                        ? t("home_care.recent.away")
-                        : item.visits.length
-                          ? item.visits.map((visit) => `${visit.startTime} ${t(`home_care.day.states.${visit.state}`)}`).join(", ")
-                          : t("home_care.recent.none")}
-                    </li>
-                  ))}
-                </ul>
-              ) : null}
-              <h3 className="hc-section-title">{t("home_care.slots.title")}</h3>
-              <HomeCareSlotList slots={data.slots} today={data.today || ""} />
-              {access.isCoordinator ? (
-                <Link className="hc-btn hc-btn--quiet hc-btn--link" href={`/org/${organizationId}/koduteenus/kliendid/${client.id}/kaigud`} prefetch={false}>
-                  {t("home_care.slots.edit_link")}
-                </Link>
-              ) : null}
-              {/* Külmkapileht (K5-g): prinditav leht kliendi koju. Meeskond ja hooldusjuht.
-                  Kliendi kuuleht (K6-e) samalt väljalt: ainult hooldusjuht, ka ilma käigumustrita. */}
-              {(access.canEditCard && data.slots?.length) || access.isCoordinator ? (
-                <HomeCareFridgeSheet
-                  organizationId={organizationId}
-                  clientId={client.id}
-                  showFridge={Boolean(access.canEditCard && data.slots?.length)}
-                  canStatement={access.isCoordinator}
-                />
-              ) : null}
-            </section>
+            <ClientSlots
+              active={current === "slots"}
+              organizationId={organizationId}
+              clientId={client.id}
+              title={t(viewNameKey("slots"))}
+              name={client.displayName}
+              slots={data.slots}
+              recentVisits={data.recentVisits}
+              today={data.today || ""}
+              rights={sheetRights(who, data)}
+              editHref={access.isCoordinator ? `/org/${organizationId}/koduteenus/kliendid/${client.id}/kaigud` : ""}
+            />
           )}
 
           {/* Täna kehtiv otsus ja otsustatud maht (K2-c). Kogu meeskonnale lugemiseks. */}

@@ -16381,7 +16381,8 @@
         "manage": "Seis, andmed ja teated",
         "manage_signals": "Märkamisi ootab vastust: {count}",
         "manage_review": "Vaata üle, mis on lahti"
-      }
+      },
+      "back": "Tagasi"
     },
     "door": {
       "back": "Tagasi ukse taha",
@@ -16446,6 +16447,9 @@
       "pick_file": "Vali tekstifail",
       "history_remove_confirm": "Kinnita eemaldamine",
       "history_remove_note": "Tekst kaob siit ja otsing seda enam ei leia. Algne dokument jääb sinna, kust see toodi. Vajuta uuesti, kui oled kindel."
+    },
+    "sheets": {
+      "name": "Lehed kliendile"
     }
   },
   "stage": {
