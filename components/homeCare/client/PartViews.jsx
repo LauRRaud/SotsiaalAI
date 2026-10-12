@@ -25,6 +25,7 @@ import shared from "@/components/org/org.module.css";
 import StepPanel from "@/components/stage/StepPanel";
 import Button from "@/components/ui/Button";
 import Checkbox from "@/components/ui/Checkbox";
+import Dropdown from "@/components/ui/Dropdown";
 import Input from "@/components/ui/Input";
 import Textarea from "@/components/ui/Textarea";
 
@@ -218,6 +219,7 @@ export function DetailView({ title, question, head, notices = [], facts = [], bo
  *  - "day" / "time": { min, max, required }
  *  - "pick":  { options: [{ value, label }], columns }
  *  - "multi": { label, options: [{ value, label, aria }] } (mitu valikut korraga lühikeste lahtritena; `value` on valitute loend, `onChange(value)` lülitab ühe)
+ *  - "select": { label, options: [{ value, label }], required } (platvormi valikmenüü; sobib pikale valikute loendile, kus kolmeveeruline valik ei mahu)
  *  - "check": { label } (märkeruut; `value` on tõene või väär)
  *  - "note":  { text } (vaikne rida)
  */
@@ -244,6 +246,14 @@ function Field({ field }) {
             </button>
           ))}
         </div>
+      </div>
+    );
+  }
+  if (field.kind === "select") {
+    return (
+      <div className={`${shared.line} ${styles.wide}`}>
+        <span className={shared.fieldLabel}>{field.label}</span>
+        <Dropdown value={field.value} onChange={field.onChange} ariaLabel={field.label} placeholder={field.label} options={field.options} required={field.required} />
       </div>
     );
   }

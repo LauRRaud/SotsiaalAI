@@ -14832,7 +14832,10 @@
       "note": "Note for the care worker (you may leave this empty)",
       "group": "Group",
       "archived_title": "Archived activities",
-      "source": "The groups come from regulation no 40 of the Minister of Social Protection of 29.06.2023, \"Requirements for home care\" (§ 2)."
+      "source": "The groups come from regulation no 40 of the Minister of Social Protection of 29.06.2023, \"Requirements for home care\" (§ 2).",
+      "count": "Activities: {count}",
+      "archive_confirm": "Confirm: archive the activity",
+      "archive_note": "The activity can no longer be chosen after this, old entries stay and you can bring it back from the archive. Press again if you are sure."
     },
     "plan": {
       "title": "Care plan",

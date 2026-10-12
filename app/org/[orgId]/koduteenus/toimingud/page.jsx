@@ -1,7 +1,7 @@
 import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 
-import HomeCareActivities from "@/components/homeCare/HomeCareActivities";
+import Activities from "@/components/homeCare/activities/Activities";
 import { listActivities } from "@/lib/homeCare/activities";
 import { isOrgError } from "@/lib/org/errors";
 
@@ -29,5 +29,5 @@ export default async function HomeCareActivitiesPage({ params }) {
     notFound();
   }
 
-  return <HomeCareActivities context={auth.context} initial={initial} />;
+  return <Activities context={auth.context} initial={initial} />;
 }

@@ -14832,7 +14832,10 @@
       "note": "Selgitus hooldajale (võid jätta tühjaks)",
       "group": "Rühm",
       "archived_title": "Arhiveeritud toimingud",
-      "source": "Rühmad on sotsiaalkaitseministri 29.06.2023 määrusest nr 40 „Nõuded koduteenusele” (§ 2)."
+      "source": "Rühmad on sotsiaalkaitseministri 29.06.2023 määrusest nr 40 „Nõuded koduteenusele” (§ 2).",
+      "count": "Toiminguid {count}",
+      "archive_confirm": "Kinnita: arhiveeri toiming",
+      "archive_note": "Toimingut ei saa pärast seda enam valida, vanad kirjed jäävad alles ja arhiivist saab selle tagasi tuua. Vajuta uuesti, kui oled kindel."
     },
     "plan": {
       "title": "Hoolduskava",
