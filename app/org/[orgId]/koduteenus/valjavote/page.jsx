@@ -1,7 +1,7 @@
 import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 
-import HomeCareExport from "@/components/homeCare/HomeCareExport";
+import ExportFile from "@/components/homeCare/exportFile/ExportFile";
 import { getHomeCareExportOverview } from "@/lib/homeCare/export";
 import { isOrgError } from "@/lib/org/errors";
 
@@ -29,5 +29,5 @@ export default async function HomeCareExportPage({ params }) {
     notFound();
   }
 
-  return <HomeCareExport context={auth.context} initial={initial} />;
+  return <ExportFile context={auth.context} initial={initial} />;
 }

@@ -46,7 +46,7 @@ export const Chip = ({ chip }) =>
     </span>
   ) : null;
 
-/** Tegevused all servas: `[{ key, label, onPress, primary, busy, disabled, href, blank }]`; tagasi-nupp on esimene. `href`: link (`blank`: uuel vahelehel), muidu nupp. */
+/** Tegevused all servas: `[{ key, label, onPress, primary, busy, disabled, href, blank, download }]`; tagasi-nupp on esimene. `href`: link (`blank`: uuel vahelehel; `download`: faili nimi, kui link salvestab faili), muidu nupp. */
 export function Actions({ back, actions = [] }) {
   if (!back && !actions.length) return null;
   return (
@@ -62,6 +62,7 @@ export function Actions({ back, actions = [] }) {
             variant={action.primary ? "primary" : "secondary"}
             data-part-action={action.key}
             {...(action.blank ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+            {...(action.download ? { download: action.download } : {})}
           >
             {action.label}
           </Button>
