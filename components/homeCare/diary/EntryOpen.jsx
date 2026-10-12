@@ -23,12 +23,13 @@ import { useTalkRequest } from "./useTalkRequest";
  * Tühistamine küsib põhjust ja teist vajutust samal nupul. Erijuhtumi tühistab
  * hooldusjuht. Parandus käib uue kirje sammudel (`onCorrect`; leht avab need).
  *
- * `back`: { label, onBack } viib tagasi päeviku loendisse.
+ * `back`: { label, onBack } viib tagasi päeviku loendisse. `showClient`: kirje on mitme kliendi loendis (erijuhtumite leht,
+ * hooldusjuhi ülevaade): kliendi nimi on kirje ülaservas ja parandamine ei käi (see käib kliendi lehel).
  */
-export default function EntryOpen({ organizationId, entry, timeZone, canWrite = false, isCoordinator = false, back, onChange, onCorrect }) {
+export default function EntryOpen({ organizationId, entry, timeZone, canWrite = false, isCoordinator = false, showClient = false, back, onChange, onCorrect }) {
   const { t } = useI18n();
   const rootRef = useRef(null);
-  const actions = useEntryActions({ organizationId, entry, canWrite, isCoordinator, onChange });
+  const actions = useEntryActions({ organizationId, entry, canWrite, isCoordinator, showClient, onChange });
   const trail = useIncidentTrail({ organizationId, entry, canWrite, isCoordinator, onEntryChange: onChange });
   const talk = useTalkRequest({ organizationId, clientId: entry.clientId, entryId: entry.id, initial: entry.talk || null });
   /* Juhtumi käigu alavaade: "" (käik ise), "add" või "assign". */
@@ -224,7 +225,7 @@ export default function EntryOpen({ organizationId, entry, timeZone, canWrite = 
     <div ref={rootRef}>
       <EntryOpenView
         title={t("home_care.diary.item_title")}
-        head={{ when: moment(entry.occurredAt), who: entry.authorName || "", chips: openChips(entry, { t }) }}
+        head={{ when: moment(entry.occurredAt), who: [showClient ? entry.client?.displayName : "", entry.authorName].filter(Boolean).join(" · "), chips: openChips(entry, { t }) }}
         notes={openNotes(entry, { t, moment, isCoordinator })}
         text={rights.retracted ? { value: t("home_care.entry.retracted"), muted: true } : { value: entry.text || "" }}
         facts={openFacts(entry, { t, time: (value) => formatTime(value, timeZone) })}

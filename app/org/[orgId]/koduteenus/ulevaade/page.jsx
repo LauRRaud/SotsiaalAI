@@ -1,7 +1,7 @@
 import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 
-import HomeCareOverview from "@/components/homeCare/HomeCareOverview";
+import Overview from "@/components/homeCare/overview/Overview";
 import { getCoordinatorOverview } from "@/lib/homeCare/overview";
 import { isOrgError } from "@/lib/org/errors";
 
@@ -29,5 +29,5 @@ export default async function HomeCareOverviewPage({ params }) {
     notFound();
   }
 
-  return <HomeCareOverview context={auth.context} overview={overview} />;
+  return <Overview context={auth.context} overview={overview} />;
 }
