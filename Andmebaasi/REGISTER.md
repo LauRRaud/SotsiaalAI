@@ -16,9 +16,9 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | taastatud_allikad | 0 | 22 | Serveri vanast indeksist taastatud tekst. Enne importi võrrelda põhipakettidega. |
 
 <!-- corpus-state:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
-## RAG-i seis: mis on serveris (korpus v86)
+## RAG-i seis: mis on serveris (korpus v88)
 
-Seis 11.10.2026: serveris töötav RAG (korpus **v86**, indeks `ed2d72bd`) sisaldab **10 571 dokumenti** (93 471 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
+Seis 12.10.2026: serveris töötav RAG (korpus **v88**, indeks `451ce0e6`) sisaldab **10 856 dokumenti** (96 115 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
 
 | Mis on RAG-is | Dokumente | Kus on loend |
 |---|---:|---|
@@ -27,13 +27,14 @@ Seis 11.10.2026: serveris töötav RAG (korpus **v86**, indeks `ed2d72bd`) sisal
 | Omavalitsuste kontaktid | 1638 | faili lõpus arvudena omavalitsuste kaupa (nimesid siia ei kirjutata) |
 | Ajakirja Sotsiaaltöö artiklid | 892 | jaotis „Sisufailid“ |
 | Õigusaktid | 594 | jaotis „Sisufailid“ |
-| Juhendid, infomaterjalid ja uuringud | 436 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
-| Ametlikud juhislehed (ametite veebilehed) | 1589 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
+| Juhendid, infomaterjalid ja uuringud | 451 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
+| Ametlikud juhislehed (ametite veebilehed) | 1824 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
 | Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) | 1132 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Hooldekodude kohamaksumus omavalitsuste kaupa | 79 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müügi- ja üüripunktid | 93 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müüjate lehed | 51 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
-| **Kokku** | **10571** | |
+| Eetikaruumi eetikamaterjalid | 35 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
+| **Kokku** | **10856** | |
 
 <details><summary>Tehniline jaotus arendajale: kus allikafailid asuvad</summary>
 
@@ -47,7 +48,7 @@ Dokumentide arvud ei võrdu ülal olevate failide arvudega: üks fail võib anda
 | `veebilehed` | 361 | web_page 360, research_report 1 |
 | `juhendid_ja_uuringud` | 171 | information_material 81, research_report 46, official_guideline 38, policy_analysis 6 |
 
-Koodihoidlas (GitHub) ei ole 4055 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
+Koodihoidlas (GitHub) ei ole 4340 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
 
 | Allikas | Dokumente | Millest tehakse | Miks ei ole koodihoidlas |
 |---|---:|---|---|
@@ -56,8 +57,9 @@ Koodihoidlas (GitHub) ei ole 4055 dokumendi allikafaile; need on korpuse hoidlas
 | Abivahendite müügi- ja üüripunktide lehed | 93 | Sotsiaalkindlustusameti kaarditabelist skriptiga `scripts/rag-v2-assistive-points.mjs`, iga omavalitsuse kohta üks leht (ADR-096) | punktide telefoninumbrid; leht tehakse tabelist uuesti |
 | Abivahendite müüjate lehed | 51 (18 väljaandjat) | nimekiri `register/web_pages_vendors.json`, korjaja `scripts/rag-v2-web-pages.mjs` (ADR-095) | ettevõtete enda tekstid ja telefoninumbrid |
 | Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) | 1132 (68 väljaandjat) | nimekirjad `register/web_pages_organisations.json`, `register/web_pages_associations.json` ja `register/web_pages_associations_2.json` ning nimekirjade `register/web_pages_coverage_1.json` ja `_2.json` organisatsioonid, korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-095, ADR-137, ADR-140) | organisatsioonide enda tekstid |
-| Asutuste juhislehed, valitud reegliga | 1229 (13 väljaandjat) | nimekirjad `register/web_pages_coverage_1.json`, `register/web_pages_coverage_2.json` ja `register/web_pages_coverage_3.json` (õigusabi lehe toimetatud artiklid), korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-137, ADR-143), ning `register/web_pages_tootukassa.json` (Töötukassa lehed 11.10.2026 brauserikorjest, ADR-146) | valik võtab lehest välja isikut nimetavad lõigud; repos olevate lehtede igakuine uuendus asendaks sellise koopia lugeja omaga |
-| Uuringud ja juhendid väljaandja ametlikult aadressilt | 264 (33 väljaandjat) | asutuste veebilehtede uuringute ja juhendite loenditest ning ajakirja Sotsiaaltöö uudiskirjas viidatud dokumentidest (`register/newsletter_documents.json`); iga fail on alla laaditud väljaandja ametlikult aadressilt | suured failid; allikas on ametlik aadress |
+| Asutuste juhislehed, valitud reegliga | 1464 (14 väljaandjat) | nimekirjad `register/web_pages_coverage_1.json`, `register/web_pages_coverage_2.json` ja `register/web_pages_coverage_3.json` (õigusabi lehe toimetatud artiklid), korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-137, ADR-143), ning `register/web_pages_tootukassa.json` (Töötukassa lehed 11.10.2026 brauserikorjest, ADR-146) ning `register/web_pages_coverage_4.json` ja `register/web_pages_coverage_4_by_hand.json` (vanemluse infokeskkond tarkvanem.ee, ADR-148) | valik võtab lehest välja isikut nimetavad lõigud; repos olevate lehtede igakuine uuendus asendaks sellise koopia lugeja omaga |
+| Uuringud ja juhendid väljaandja ametlikult aadressilt | 279 (34 väljaandjat) | asutuste veebilehtede uuringute ja juhendite loenditest ning ajakirja Sotsiaaltöö uudiskirjas viidatud dokumentidest (`register/newsletter_documents.json`); iga fail on alla laaditud väljaandja ametlikult aadressilt | suured failid; allikas on ametlik aadress |
+| Eetikaruumi eetikamaterjalid | 35 (17 väljaandjat) | eetikadokumentide ja -peatükkide pakist, mille loetleb `config/ethics-sources.json` (sh keelevariandid); ette valmistatud ja lisatud 11.10.2026 (korpus v87) | pakifail nimetab iga dokumendi, selle versiooni ja aadressi |
 
 Koodihoidla allikafailid, mida RAG-is ei ole (61):
 
@@ -2357,7 +2359,7 @@ Koodihoidla allikafailid, mida RAG-is ei ole (61):
 <!-- corpus-outside:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
 ## RAG-is olevad lehed ja kontaktid
 
-Serveris töötav RAG, korpus v86, 11.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
+Serveris töötav RAG, korpus v88, 12.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
 
 ### Hooldekodude kohamaksumuse lehed (79)
 
@@ -3734,7 +3736,7 @@ Serveris töötav RAG, korpus v86, 11.10.2026. Siin on loend sellest, mida jaoti
 | Võrumaa Puuetega Inimeste Koda | PIK ringid | <https://www.vorukoda.ee/tegevused/pik-ringid> |
 | Võrumaa Puuetega Inimeste Koda | TASUTA ÕIGUSABI ERIVAJADUSTEGA INIMESTELE | <https://www.vorukoda.ee/tasuta-oigusabi-erivajadustega-inimestele> |
 
-### Asutuste juhislehed, valitud reegliga (1229)
+### Asutuste juhislehed, valitud reegliga (1464)
 
 | Väljaandja | Pealkiri | Aadress |
 |---|---|---|
@@ -4624,6 +4626,241 @@ Serveris töötav RAG, korpus v86, 11.10.2026. Siin on loend sellest, mida jaoti
 | Sotsiaalministeerium | Vaimse tervise ja psühhosotsiaalne tugi kriisides | <https://www.sm.ee/tervise-edendamine-ravi-ja-ravimid/vaimne-tervis/vaimse-tervise-ja-psuhhosotsiaalne-tugi-kriisides> |
 | Sotsiaalministeerium | Vanemlus ja elu lastega | <https://www.sm.ee/lapsed-ja-hoolekanne/lapsed-ja-pered/vanemlus-ja-elu-lastega> |
 | Sotsiaalministeerium | Üldhooldusteenust pakkuvad hoolekandeasutused | <https://www.sm.ee/uldhooldusteenust-pakkuvad-hoolekandeasutused> |
+| Tarkvanem (Sotsiaalkindlustusamet) | „Aga mul ei ole blenderit!“ – kasuperede müüdid ja hirmud | <https://tarkvanem.ee/kasupere-artiklid/aga-mul-ei-ole-blenderit-kasuperede-muudid-ja-hirmud/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | “Ei, aitäh, ma ei joo!” | <https://tarkvanem.ee/alkohol-artiklid/ei-aitah-ma-ei-joo/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | „Teismeline on asenduskodus nii harjunud, et ei tahagi enam hooldusperre minna” – lastekaitsjate müüdid ja tegelikkus | <https://tarkvanem.ee/kasupere-artiklid/lastekaitsjate-muudid-ja-tegelikkus-2023/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 0–1,5-aastase lapse areng | <https://tarkvanem.ee/suhe-lapsega/lapse-arenguetapid/0-1-a-lapse-areng/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 0–6-kuune imik | <https://tarkvanem.ee/toitumine/0-6-k-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 0,5–3-aastane laps | <https://tarkvanem.ee/toitumine/0-3-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 1–3-aastane laps | <https://tarkvanem.ee/liikumine/1-3-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 1,5–3-aastase lapse areng | <https://tarkvanem.ee/suhe-lapsega/lapse-arenguetapid/1-3-a-lapse-areng/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 1% Eestimaa lastest kasvab asendushooldusel | <https://tarkvanem.ee/kasupere-artiklid/1-eestimaa-lastest-kasvab-asendushooldusel/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 10 soovitust lapsevanemale oma lapse interneti ja nutivahendite heaks kasutamiseks | <https://tarkvanem.ee/digimaailm-artiklid/10-soovitust-lapsevanemale-oma-lapse-interneti-ja-nutivahendite-heaks-kasutamiseks/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 10 soovitust mitmekesiseks toitumiseks | <https://tarkvanem.ee/toitumine-artiklid/10-soovitust-mitmekesiseks-toitumiseks/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 10–12-aastane laps | <https://tarkvanem.ee/tubakas/10-12-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 10–12-aastane laps | <https://tarkvanem.ee/vaimne-tervis/10-12-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 10–12-aastane laps | <https://tarkvanem.ee/seksuaalkasvatus/10-12-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 10–15-aastane liikleja | <https://tarkvanem.ee/ohutus/liiklus/10-15-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 11–18-aastane laps | <https://tarkvanem.ee/liikumine/11-18-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 12–18-aastane laps | <https://tarkvanem.ee/narkootikumid/12-18-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 12–18-aastane laps | <https://tarkvanem.ee/alkohol/12-18-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 12–18-aastase lapse areng | <https://tarkvanem.ee/suhe-lapsega/lapse-arenguetapid/12-18-a-lapse-areng/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 13–15-aastane laps | <https://tarkvanem.ee/seksuaalkasvatus/13-15-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 13–18-aastane laps | <https://tarkvanem.ee/vaimne-tervis/13-18-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 13–18-aastane laps | <https://tarkvanem.ee/digimaailm/13-18-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 13–18-aastane laps | <https://tarkvanem.ee/tubakas/13-18-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 16–18-aastane laps | <https://tarkvanem.ee/seksuaalkasvatus/16-18-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 2–3-aastane laps | <https://tarkvanem.ee/vaimne-tervis/2-3-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 3–6-aastane laps | <https://tarkvanem.ee/seksuaalkasvatus/3-6-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 3–6-aastane laps | <https://tarkvanem.ee/digimaailm/3-6-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 3–7-aastane laps | <https://tarkvanem.ee/vaimne-tervis/3-7-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 3–7-aastane laps | <https://tarkvanem.ee/tubakas/3-7-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 4–5-aastase lapse areng | <https://tarkvanem.ee/suhe-lapsega/lapse-arenguetapid/4-5-a-lapse-areng/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 4–6-aastane laps | <https://tarkvanem.ee/liikumine/4-6-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 4–7-aastane laps | <https://tarkvanem.ee/toitumine/4-7-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 4–7-aastane laps | <https://tarkvanem.ee/alkohol/4-7-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 4–7-aastane laps | <https://tarkvanem.ee/narkootikumid/4-7-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 5 iganenud müüti suitsetamisest | <https://tarkvanem.ee/tubakas-artiklid/5-iganenud-muuti-suitsetamisest/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 5–6-aastane liikleja | <https://tarkvanem.ee/ohutus/liiklus/5-6-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 6–10-aastane laps | <https://tarkvanem.ee/tubakas/6-10-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 6–11-aastase lapse areng | <https://tarkvanem.ee/suhe-lapsega/lapse-arenguetapid/6-11-a-lapse-areng/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 7 küsimust ja vastust unetervise kohta | <https://tarkvanem.ee/enda-vajadused/7-kusimust-ja-vastust-unetervise-kohta/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 7 nõuannet, mida iga lapsevanem kasutama peaks | <https://tarkvanem.ee/kasvatamine-artiklid/seitse-nouannet-mida-iga-lapsevanem-kasutama-peaks/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 7–10-aastane laps | <https://tarkvanem.ee/liikumine/7-10-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 7–10-aastane laps | <https://tarkvanem.ee/vaimne-tervis/7-10-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 7–12-aastane laps | <https://tarkvanem.ee/digimaailm/7-12-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 7–9-aastane laps | <https://tarkvanem.ee/seksuaalkasvatus/7-9-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 7–9-aastane liikleja | <https://tarkvanem.ee/ohutus/liiklus/7-9-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 8–11-aastane laps | <https://tarkvanem.ee/narkootikumid/8-11-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | 8–11-aastane laps | <https://tarkvanem.ee/alkohol/8-11-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Abiks vanematele | <https://tarkvanem.ee/abiks-vanematele/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Alkohol | <https://tarkvanem.ee/alkohol/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Alkoholi kahjulikkus sinu lapsele | <https://tarkvanem.ee/alkohol-artiklid/alkoholi-kahjulikkus-sinu-lapsele-2/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Alkoholi mõjust lapsele ja käitumisnõuandeid vanematele | <https://tarkvanem.ee/alkohol-artiklid/alkoholi-mojust-lapsele-ja-kaitusmisnouandeid-vanematele/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Alkoholiga seotud müüdid ja tegelikkus | <https://tarkvanem.ee/alkohol-artiklid/alkoholiga-seotud-muudid-ja-tegelikkus/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Arvutit ei pea kartma. Aga selle kasutamist tuleb suunata! | <https://tarkvanem.ee/digimaailm-artiklid/arvutit-ei-pea-kartma-aga-selle-kasutamist-tuleb-suunata/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Asendushooldus – kus me oleme ja kuhu jõuda tahame? | <https://tarkvanem.ee/kasupere-artiklid/asendushooldus-kus-me-oleme-ja-kuhu-jouda-tahame/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Beebide ja väikelaste ohutus | <https://tarkvanem.ee/ohutus/beebid-ja-vaikelapsed/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Digimaailm | <https://tarkvanem.ee/digimaailm/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Digisõltuvus | <https://tarkvanem.ee/digimaailm/digisoltuvus/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | E-kursus, mis aitab asendushoolduse vanemal lapsele teadlikumalt toeks olla | <https://tarkvanem.ee/kasupere-artiklid/e-kursus-asendushoolduse-vanemale/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Elektroonilised sigaretid ja veipimine – mida lapsevanem teha võiks? | <https://tarkvanem.ee/tubakas-artiklid/e-sigaretid-ja-veipimine-mida-vanem-teha-voiks/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Emme, ma ei ole veel väsinud… | <https://tarkvanem.ee/kasvatamine-artiklid/emme-ma-ei-ole-veel-vasinud/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Enda nähtavaks tegemine liikluses | <https://tarkvanem.ee/ohutus/liiklus/enda-nahtavaks-tegemine/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Erinevad kasvatusstiilid | <https://tarkvanem.ee/kasvatamine-artiklid/erinevad-kasvatusstiilid/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Erinevad peremudelid | <https://tarkvanem.ee/suhe-lapsega/erinevad-peremudelid/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Esimene eluaasta | <https://tarkvanem.ee/liikumine/0-1-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Esimene eluaasta | <https://tarkvanem.ee/vaimne-tervis/0-1-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Esimene öö lapsest eemal: Kuidas valmistuda? | <https://tarkvanem.ee/kasvatamine-artiklid/esimene-oo-lapsest-eemal-kuidas-valmistuda/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Et suvevaheaeg oleks mõnus ja turvaline | <https://tarkvanem.ee/alkohol-artiklid/et-suvevaheaeg-oleks-monus-ja-turvaline/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Hoolduspere vanem peab olema nii tugev, et tema armastus raviks | <https://tarkvanem.ee/kasupere-artiklid/hoolduspere-vanem-peab-olema-nii-tugev-et-tema-armastus-raviks/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Hoolduspereks valmistumine | <https://tarkvanem.ee/kasupere/hoolduspereks-saamine/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Imelised aastad | <https://tarkvanem.ee/koolitused/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Intiimsus ja seksuaalsus paarisuhtes | <https://tarkvanem.ee/paarisuhe/intiimsus-ja-seksuaalsus/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | ISAD ISADELE: isiklikud põhimõtted, mis loovad aluse edasiseks kooskasvamiseks | <https://tarkvanem.ee/kasvatamine-artiklid/isad-isadele-isiklikud-pohimotted/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Jääda kokku või minna lõplikult lahku? | <https://tarkvanem.ee/paarisuhe/lahkuminek-ja-lahutus/jaada-kokku-voi-minna-loplikult-lahku/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kaassõltuvus | <https://tarkvanem.ee/narkootikumid-artiklid/kaassoltuvus/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kaitse oma last ka internetis | <https://tarkvanem.ee/digimaailm-artiklid/kaitse-oma-last-ka-internetis/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kas valetamine on märk lapse iseseisvumisest? | <https://tarkvanem.ee/kasvatamine-artiklid/kas-valetamine-on-mark-lapse-iseseisvumisest/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kasulaps koolis: kuidas oma last aidata? | <https://tarkvanem.ee/kasupere-artiklid/kasulaps-koolis-kuidas-oma-last-aidata/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kasulaps koolis: lapse kooliprobleemide põhjused | <https://tarkvanem.ee/kasupere-artiklid/kasulaps-koolis-probleemide-pohjused/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kasupereks kasvatakse, mitte ei sünnita: loe, kuidas see käib ja mõtle, kas sinugi südames on ruumi | <https://tarkvanem.ee/kasupere-artiklid/kasupereks-kasvatakse-mitte-ei-sunnita-loe-kuidas-see-kaib-ja-motle-kas-sinugi-sudames-on-ruumi/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kasuperes kasvava lapse suhted päritoluperega – kelle huvides? | <https://tarkvanem.ee/kasupere-artiklid/kasuperes-kasvava-lapse-suhted-paritoluperega-kelle-huvides/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kes teeb, see vastutab | <https://tarkvanem.ee/kasvatamine-artiklid/kes-teeb-see-vastutab/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | KKK ehk korduma kippuvad küsimused | <https://tarkvanem.ee/kasupere/kkk/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kohtla-Järve lastekaitse peaspetsialist: teismelistele on raskem uut peret leida, aga kõik on võimalik | <https://tarkvanem.ee/kasupere-artiklid/kohtla-jarve-lastekaitse-peaspetsialist-teismelistele-on-raskem-uut-peret-leida-aga-koik-on-voimalik/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kolm head harjumust, mida ei tohiks suvel unustada | <https://tarkvanem.ee/toitumine-artiklid/kolm-head-harjumust-mida-ei-tohiks-suvel-unustada/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Koolieelik | <https://tarkvanem.ee/liikumine/koolieelik/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Koolilaps ja teismeline | <https://tarkvanem.ee/toitumine/koolilaps-ja-teismeline/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kui noor vajab tuge järgmiste sammude leidmisel | <https://tarkvanem.ee/kasvatamine-artiklid/noortegarantii-tugisusteem/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kui oled sattunud vägivaldsesse paarisuhtesse | <https://tarkvanem.ee/paarisuhe/vagivaldne-paarisuhe/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kuidas arendada iseseisvust? | <https://tarkvanem.ee/kasvatamine-artiklid/kuidas-arendada-iseseisvust/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kuidas aru saada, kas laps tarvitab uimasteid? | <https://tarkvanem.ee/narkootikumid-artiklid/kuidas-aru-saada-kas-laps-tarvitab-uimasteid/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kuidas erinevas vanuses lastega suhelda? | <https://tarkvanem.ee/alkohol-artiklid/kuidas-erinevas-vanuses-lastega-suhelda/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kuidas innustada last igapäevaselt aktiivselt liikuma? | <https://tarkvanem.ee/liikumine-artiklid/kuidas-innustada-last-igapaevaselt-aktiivselt-liikuma/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kuidas lapsega mängida? | <https://tarkvanem.ee/suhe-lapsega/mang/kuidas-mangida/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kuidas lapsega rahast rääkida? | <https://tarkvanem.ee/kasvatamine-artiklid/kuidas-lapsega-rahast-raakida/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kuidas lapsele meelemürkidest rääkida? | <https://tarkvanem.ee/alkohol-artiklid/kuidas-lapsele-meelemurkidest-raakida/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kuidas lapsele piire seada? 5 väärt näpunäidet | <https://tarkvanem.ee/kasvatamine-artiklid/viis-vaart-napunaidet-lapsevanemale-kuidas-lapsele-piire-seada/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kuidas leitakse kodu ja perekond lapsele, kes on eraldatud oma sünniperest? Pärnu linna praktika | <https://tarkvanem.ee/kasupere-artiklid/kuidas-leitakse-perekond-synniperest-eraldatud-lapsele/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kuidas mõjutab omavalitsuste koostöö SKA-ga perehüvitiste saamist? | <https://tarkvanem.ee/kasupere-artiklid/kes-saab-perehuvitisi/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kuidas märgata, et noor tarvitab e-sigaretti, nikotiinipatja või huuletubakat? | <https://tarkvanem.ee/tubakas-artiklid/kuidas-margata-et-noor-tarvitab-e-sigaretti-voi-huuletubakat/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kuidas nikotiin kahjustab laste ja noorte aju? | <https://tarkvanem.ee/tubakas-artiklid/kuidas-nikotiin-kahjustab-laste-ja-noorte-aju/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kuidas pakkuda kodusoojust lapsele, kes ei saa elada sünniperes? | <https://tarkvanem.ee/kasupere-artiklid/kuidas-pakkuda-kodusoojust-lapsele-kes-ei-saa-elada-sunniperes/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kuidas pakkuda peret vajavale lapsele kodu ja armastust ning kuidas riik sind seejuures toetab | <https://tarkvanem.ee/kasupere/kuidas-riik-kasuvanemaid-toetab/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kuidas rääkida alkoholist? Soovitused eelteismelise lapse vanematele | <https://tarkvanem.ee/alkohol-artiklid/raagime-alkoholist-soovitused-eelteismelise-lapse-vanematele/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kuidas rääkida alkoholist? Soovitused koolieeliku ja algklassilapse vanematele | <https://tarkvanem.ee/alkohol-artiklid/raagime-alkoholist-soovitused-koolieeliku-ja-algklassilapse-vanematele/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kuidas rääkida alkoholist? Soovitused teismeeas lapse vanematele | <https://tarkvanem.ee/alkohol-artiklid/raagime-alkoholist-soovitused-teismeeas-lapse-vanematele/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kuidas rääkida lapsele alkoholi mõjust? | <https://tarkvanem.ee/alkohol-artiklid/kuidas-raakida-lapsele-alkoholi-mojust/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kuidas rääkida sõjast nii väiksemate kui suuremate lastega? | <https://tarkvanem.ee/kasvatamine-artiklid/kuidas-lastele-raakida-sojast/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kuidas saab seenior aidata last, kes ei saa kasvada sünniperes? | <https://tarkvanem.ee/kasupere-artiklid/kuidas-saab-seenior-aidata-last-kes-ei-saa-kasvada-sunniperes/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kuidas saaks oma lapsed tervislikumalt toituma? | <https://tarkvanem.ee/toitumine-artiklid/soovitused-vanematele/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kuidas teada saada, kas ja millist abi teismeline vajab? | <https://tarkvanem.ee/narkootikumid-artiklid/kuidas-teada-saada-kas-ja-millist-abi-teismeline-vajab/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kuidas teha lapsega kokkulepped alkoholi ja tubaka osas? | <https://tarkvanem.ee/alkohol-artiklid/kuidas-teha-lapsega-kokkulepped-alkoholi-ja-tubaka-osas/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kuidas toetada koolilast, kes ei kasva sünniperes? | <https://tarkvanem.ee/kasupere-artiklid/kuidas-toetada-koolilast-kes-ei-kasva-sunniperes/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kuidas väikelastega ohtudest rääkida ja traagilisi veeõnnetusi ära hoida | <https://tarkvanem.ee/ohutus-turvalisus-artiklid/kuidas-vaikelastega-ohtudest-raakida-ja-ara-hoida-traagilisi-veeonnetusi/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kuidas õpetada lapsele kriitilist suhtumist meedias leiduvasse | <https://tarkvanem.ee/alkohol-artiklid/kuidas-opetada-lapsele-kriitilist-suhtumist-meedias-leiduvasse/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kuni 2-aastane laps | <https://tarkvanem.ee/seksuaalkasvatus/0-2-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kuni 2-aastane laps | <https://tarkvanem.ee/digimaailm/0-2-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kuni 3-aastane laps | <https://tarkvanem.ee/tubakas/0-3-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kuni 4-aastane liikleja | <https://tarkvanem.ee/ohutus/liiklus/0-4-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kus sa ometi oled?!! | <https://tarkvanem.ee/kasvatamine-artiklid/kus-sa-ometi-oled/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kust leida abi? | <https://tarkvanem.ee/kriis/kust-leida-abi/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kõik algab mängust | <https://tarkvanem.ee/koikalgabmangust/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Lahkuminek ja lahutus paarisuhtes | <https://tarkvanem.ee/paarisuhe/lahkuminek-ja-lahutus/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | LAPS AUTOS | <https://tarkvanem.ee/ohutus/liiklus/lapse-soidutamine/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | LAPS JALAKÄIJANA | <https://tarkvanem.ee/ohutus/liiklus/laps-jalakaijana/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Laps näppab võõraid asju – kas ja millal peaksid muretsema? | <https://tarkvanem.ee/kasvatamine-artiklid/laps-nappab-vooraid-asju-kas-ja-millal-peaksid-muretsema/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Laps on pereootel | <https://tarkvanem.ee/kasupere/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Laps vajab toetavaid ja nõudlikke vanemaid | <https://tarkvanem.ee/kasvatamine-artiklid/laps-vajab-toetavaid-ja-noudlikke-vanemaid/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Lapse arengu ja tervise toetamine | <https://tarkvanem.ee/suhe-lapsega/lapse-tervise-toetamine/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Lapse arenguetapid | <https://tarkvanem.ee/suhe-lapsega/lapse-arenguetapid/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Lapse ettevalmistamine iseseisvuseks – loogiliste tagajärgede seadmine ja kasutamine | <https://tarkvanem.ee/kasvatamine-artiklid/loogiliste-tagajargede-seadmine-ja-kasutamine/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Lapse kindlus on perekond | <https://tarkvanem.ee/kasupere-artiklid/lapse-kindlus-on-perekond/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Lapse tervist toetab vaid 100% suitsuvaba keskkond | <https://tarkvanem.ee/tubakas-artiklid/lapse-tervist-toetab-vaid-100-suitsuvaba-keskkond/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Lapse turvaline magamiskeskkond | <https://tarkvanem.ee/kasvatamine-artiklid/lapse-turvaline-magamiskeskkond/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Lapse uneharjumusi saab leebelt kujundada | <https://tarkvanem.ee/kasvatamine-artiklid/lapse-uneharjumuste-kujundamine/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Lapsed ja alkohol: 7 enamlevinud müüti lapsevanemate seas | <https://tarkvanem.ee/alkohol-artiklid/7-enamlevinud-muuti-lapsevanemate-seas/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Lapsed ja kohustused – kuidas see valem toimib? | <https://tarkvanem.ee/kasvatamine-artiklid/lapsed-ja-kohustused-kuidas-see-valem-toimib/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Lapsed ja suhkur: kui palju on liiga palju? Toitumisnõustaja selgitab | <https://tarkvanem.ee/toitumine-artiklid/lapsed-ja-suhkur-kui-palju-on-liiga-palju/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Lapsega mängimine | <https://tarkvanem.ee/suhe-lapsega/mang/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Lapsel igav? Need viis nippi aitavad üheskoos mängides areneda | <https://tarkvanem.ee/kasvatamine-artiklid/lapsel-igav-need-viis-nippi-aitavad-uheskoos-mangides-areneda/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Lapsendaja vanemahüvitis – uus vanemahüvitise liik, mida võivad taotleda ka hoolduspered | <https://tarkvanem.ee/kasupere-artiklid/lapsendaja-vanemahuvitis-uus-vanemahuvitise-liik-mida-voivad-taotleda-ka-hoolduspered/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Lapsendamiseks valmistumine | <https://tarkvanem.ee/kasupere/lapsendamiseks-valmistumine/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Lapsendamissaladus võib kaduda – õigus teada oma päritolu on inimõigus | <https://tarkvanem.ee/kasupere-artiklid/lapsendamissaladus-voib-kaduda/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Lapsendatu pikk tee juurteni. Lapsendamissaladus ja õigus saada infot päritolu kohta. | <https://tarkvanem.ee/kasupere-artiklid/lapsendatu-pikk-tee-juurteni-lapsendamissaladus-ja-oigus-saada-infot-paritolu-kohta/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Lapsevanemate korduma kippuvad küsimused | <https://tarkvanem.ee/suhe-lapsega/mang/vanemate-kkk/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Laste ja noorte digisõltuvus – kuidas seda märgata ja mida teha? | <https://tarkvanem.ee/digimaailm-artiklid/laste-ja-noorte-digisoltuvus-kuidas-seda-margata-ja-mida-teha/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Lastepsühhiaater: seitsme aastaga oleme surmasuust päästnud 30 last, kes on iseendale ohtlikud | <https://tarkvanem.ee/kasupere-artiklid/lastepsuhhiaater-seitsme-aastaga-oleme-surmasuust-paastnud-30-last-kes-on-iseendale-ohtlikud/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Levinud müüdid | <https://tarkvanem.ee/alkohol-artiklid/levinud-muudid/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Lihtsad igapäevased tehnikad, mis aitavad saavutada positiivseid muutusi lapse käitumises | <https://tarkvanem.ee/kasvatamine-artiklid/lihtsad-igapaevased-tehnikad-mis-aitavad-saavutada-positiivseid-muutusi-lapse-kaitumises/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Liikluses, meelega | <https://tarkvanem.ee/ohutus-turvalisus-artiklid/liikluses-meelega/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Liiklusohutus | <https://tarkvanem.ee/ohutus/liiklus/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Liikumine | <https://tarkvanem.ee/liikumine/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Loomulikud ja loogilised tagajärjed – mis need on ja kuidas nende kasutamine aitab lapses vastutustunnet arendada? | <https://tarkvanem.ee/kasvatamine-artiklid/loomulikud-ja-loogilised-tagajarjed/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Lähedus paarisuhtes | <https://tarkvanem.ee/paarisuhe/lahedus/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Ma olen nii väsinud, et ma ei jaksa enam | <https://tarkvanem.ee/enda-vajadused-artiklid/ma-olen-nii-vasinud-et-ma-ei-jaksa-enam/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Mida lapsevanem võiks teada aju arengust ja sõltuvusainete mõjust? | <https://tarkvanem.ee/alkohol-artiklid/mida-lapsevanem-voiks-teada-aju-arengust-ja-soltuvusainete-mojust/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Mida ma saan teha, et ära hoida oma lapse sõltuvusse sattumist? | <https://tarkvanem.ee/alkohol-artiklid/mida-ma-saan-teha-et-ara-hoida-oma-lapse-soltuvusse-sattumist/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Mida teha, kui hästi käituvast lapsest saab avalikus kohas jonniv paharet? | <https://tarkvanem.ee/kasvatamine-artiklid/mida-teha-kui-hasti-kaituvast-lapsest-saab-avalikus-kohas-jonniv-paharet/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Mida teha, kui laps on ülekaaluline? | <https://tarkvanem.ee/toitumine-artiklid/mida-teha-kui-laps-on-ulekaaluline/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Mida teha, kui su laps tuleb lõhnadega koju? | <https://tarkvanem.ee/alkohol-artiklid/mida-teha-kui-su-laps-tuleb-lohnadega-koju/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Mida teha, kui su lapsel on mure? | <https://tarkvanem.ee/kasvatamine-artiklid/mida-teha-kui-su-lapsel-on-mure/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Mida vajab asendushooldusele jõudnud noor? | <https://tarkvanem.ee/kasupere-artiklid/mida-vajab-asendushooldusele-joudnud-noor/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Miks lapsed vajavad rutiini? | <https://tarkvanem.ee/kasvatamine-artiklid/miks-lapsed-vajavad-rutiini/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Miks on mäng oluline? | <https://tarkvanem.ee/suhe-lapsega/mang/miks-oluline/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Miks on oluline lapsega mängida? | <https://tarkvanem.ee/kasvatamine-artiklid/miks-on-oluline-lapsega-mangida/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Miks on oma aega vaja? | <https://tarkvanem.ee/enda-vajadused/oma-aeg/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Miks, millal ja kuidas last kiita? | <https://tarkvanem.ee/kasvatamine-artiklid/miks-millal-ja-kuidas-last-kiita/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Millal ja kuidas hakata valmistuma teismeeaks? | <https://tarkvanem.ee/kasvatamine-artiklid/millal-ja-kuidas-hakata-valmistuma-teismeeaks/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Millal on õige aeg vestlusi pidada? | <https://tarkvanem.ee/alkohol-artiklid/millal-on-oige-aeg-vestlusi-pidada/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Millest räägib liikluskeskkond? | <https://tarkvanem.ee/ohutus-turvalisus-artiklid/millest-raagib-liikluskeskkond/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Mis teismelise peas toimub? | <https://tarkvanem.ee/alkohol-artiklid/mis-teismelise-peas-toimub/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Mis viib lapse tubakatarvitamiseni? | <https://tarkvanem.ee/tubakas-artiklid/mis-viib-lapse-tubakatarvitamiseni/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Mis või kes on lapse lemmikjõulukink? | <https://tarkvanem.ee/kasvatamine-artiklid/mis-voi-kes-on-lapse-lemmikjoulukink/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Moodsad tubakatooted jäävad lapsevanematele tihti märkamatuks | <https://tarkvanem.ee/tubakas-artiklid/moodsad-tubakatooted-jaavad-lapsevanematele-tihti-markamatuks/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Murettekitavad seosed: nikotiini mõju ajule ohustab noorte vaimset tervist | <https://tarkvanem.ee/tubakas-artiklid/nikotiini-moju-ajule-ohustab-noorte-vaimset-tervist/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Muud koolitused | <https://tarkvanem.ee/koolitused/muud-koolitused/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Narkootikumid | <https://tarkvanem.ee/narkootikumid/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Narkootikumidest taastumine | <https://tarkvanem.ee/narkootikumid-artiklid/taastumine/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Noored.alkoinfo.ee – abiks nii noortele kui lapsevanematele | <https://tarkvanem.ee/alkohol-artiklid/noored-alkoinfo-ee-abiks-nii-noortele-kui-lapsevanematele/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Noortega uimastitest rääkimine | <https://tarkvanem.ee/narkootikumid-artiklid/noortega-uimastitest-raakimine/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Nädalakava | <https://tarkvanem.ee/enda-vajadused/nadalakava/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Ole aktiivne koos lapsega | <https://tarkvanem.ee/liikumine-artiklid/ole-aktiivne-koos-lapsega/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Ole lapsevanem, mitte taksojuht | <https://tarkvanem.ee/kasvatamine-artiklid/ole-lapsevanem-mitte-taksojuht/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Ole teadlik toodetes olevatest lisatud suhkrutest | <https://tarkvanem.ee/toitumine-artiklid/ole-teadlik-toodetes-olevatest-lisatud-suhkrutest/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Ole toeks lapse enesehinnangu kujundamisel | <https://tarkvanem.ee/kasvatamine-artiklid/ole-toeks-lapse-enesehinnangu-kujundamisel/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Paarisuhe | <https://tarkvanem.ee/paarisuhe/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Pereelu arengufaasid | <https://tarkvanem.ee/paarisuhe/pereelu-arengufaasid/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Perelepitus | <https://tarkvanem.ee/paarisuhe/lahkuminek-ja-lahutus/perelepitus/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | PERETERAPEUT SOOVITAB: Lapsevanemad, lapsed ja suvi | <https://tarkvanem.ee/kasvatamine-artiklid/pereterapeut-soovitab-lapsevanemad-lapsed-ja-suvi/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Pilootprojektist valmis kohandatud PRIDE-i koolitus eestkosteperedele | <https://tarkvanem.ee/kasupere-artiklid/pilootprojektist-valmis-kohandatud-pride-i-koolitus-eestkosteperedele/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | PRIDE koolitus tulevastele kasuperedele | <https://tarkvanem.ee/kasupere/pride/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | PRIDE-i koolitus – kellele ja miks? | <https://tarkvanem.ee/kasupere-artiklid/pride-i-koolitus-kellele-ja-miks/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Rahunemispaus | <https://tarkvanem.ee/suhe-lapsega/rahunemispaus/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Rahunemisvõtted | <https://tarkvanem.ee/suhe-lapsega/rahunemispaus/votted/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Rohkem huvi, vähem lisanduvaid peresid – Eesti hooldus- ja lapsendajaperede tugevused ja arengud 2025. aastal | <https://tarkvanem.ee/kasupere-artiklid/2025-eesti-hooldus-ja-lapsendajaperede-tugevused-ja-arengud/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Rääkimise kunst | <https://tarkvanem.ee/kasvatamine-artiklid/raakimise-kunst/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Seks raseduse ajal ja väikelapsega peres | <https://tarkvanem.ee/paarisuhe/seks-raseduse-ajal-ja-vaikelapsega-peres/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Seksuaalkasvatus | <https://tarkvanem.ee/seksuaalkasvatus/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Seksuaalne väärkohtlemine | <https://tarkvanem.ee/seksuaalkasvatus/seksuaalne-vaarkohtlemine/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Seksuaalprobleemid | <https://tarkvanem.ee/paarisuhe/seksuaalprobleemid/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Soovitused perele, kelle laps läheb esimesse klassi | <https://tarkvanem.ee/suhe-lapsega/soovitused-koolimineva-lapse-vanematele/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Soovitused perele, kelle laps läheb lasteaeda | <https://tarkvanem.ee/suhe-lapsega/soovitused-perele-kelle-laps-laheb-lasteaeda/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Soovitused, kuidas rääkida lastega uimastitest | <https://tarkvanem.ee/narkootikumid-artiklid/soovitused-uimastitest-raakimiseks/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Sotsiaalkindlustusamet pakub alates juunikuust asendushoolduse noortele uut teenust | <https://tarkvanem.ee/kasupere-artiklid/asendushoolduse-noorte-uus-teenus/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Stress paarisuhtes: kuidas kriisi kaudu koos kasvada? | <https://tarkvanem.ee/paarisuhe/stress/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Su laps ajab sind venitamisega hulluks? Miks ta seda teeb? | <https://tarkvanem.ee/kasvatamine-artiklid/su-laps-ajab-sind-venitamisega-hulluks-miks-ta-seda-teeb/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Suhe lapsega | <https://tarkvanem.ee/suhe-lapsega/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Suhtekonto | <https://tarkvanem.ee/suhe-lapsega/suhtekonto/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Sünnitusjärgne depressioon | <https://tarkvanem.ee/vaimne-tervis-artiklid/sunnitusjargne-depressioon/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Teismelise ema-isa, millised toitumis- ja liikumisharjumused on teie peres? | <https://tarkvanem.ee/toitumine-artiklid/teismelise-ema-isa-millised-toitumis-ja-liikumisharjumused-on-teie-peres/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Teistmoodi teekond lapsevanemaks | <https://tarkvanem.ee/kasupere-artiklid/teistmoodi-teekond-lapsevanemaks/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Tervislik toitumine: puu- ja köögiviljad | <https://tarkvanem.ee/toitumine-artiklid/puu-ja-koogiviljad/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Tervislik toitumine: pööra tähelepanu! | <https://tarkvanem.ee/toitumine-artiklid/poora-tahelepanu/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Toitumine | <https://tarkvanem.ee/toitumine/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Triple P Beebi | <https://tarkvanem.ee/triplep/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Truudusetus paarisuhtes | <https://tarkvanem.ee/paarisuhe/truudusetus/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Tubaka- ja nikotiinitooted | <https://tarkvanem.ee/tubakas/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Tugiteenused kasuperedele | <https://tarkvanem.ee/kasupere/perede-toetamine-ja-tugiorganisatsioonid/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Tunne huvi oma lapse tegemiste vastu | <https://tarkvanem.ee/ohutus-turvalisus-artiklid/tunne-huvi-oma-lapse-tegemiste-vastu/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Turvaline sport | <https://tarkvanem.ee/liikumine/turvaline-sport/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Turvalise ja ohutu liiklemise põhitõed kooliminevale lapsele ja lapsevanemale | <https://tarkvanem.ee/ohutus-turvalisus-artiklid/turvalise-ja-ohutu-liiklemise-pohitoed-kooliminevale-lapsele-ja-lapsevanemale/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Uurimus: asendus- ja järelhooldus aastatel 2016–2020 | <https://tarkvanem.ee/kasupere-artiklid/uurimus-asendus-ja-jarelhooldus-aastatel-20162020/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Uuring: iga aastaga on perest eraldatud laste arv vähenenud ja ka asendushooldusele suunatakse lapsi vähem | <https://tarkvanem.ee/kasupere-artiklid/perest-eraldatud-lapsed-ja-asendushooldus-aastatel-2011-2021/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Vaimne tervis | <https://tarkvanem.ee/vaimne-tervis/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Vaimse tervise abi saamise võimalused | <https://tarkvanem.ee/enda-vajadused/vaimse-tervise-abi-saamise-voimalused/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Vanem peab oskama selgitada: miks see kahjulik on? | <https://tarkvanem.ee/narkootikumid-artiklid/vanem-peab-oskama-selgitada-miks-see-kahjulik-on/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Vanema vajadused | <https://tarkvanem.ee/enda-vajadused/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Vanemate hoiakud mõjutavad laste sõltuvusainete tarvitamise alustamist | <https://tarkvanem.ee/alkohol-artiklid/vanemate-hoiakud-mojutavad-laste-soltuvusainete-tarvitamise-alustamist/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Vanemlusprogramm „Hoolivad isad” | <https://tarkvanem.ee/koolitused/hoolivad-isad/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Vanemlusstiilid | <https://tarkvanem.ee/suhe-lapsega/vanemlusstiilid/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Üheksa soovitust lapsevanemale, kes soovib last spordis toetada | <https://tarkvanem.ee/liikumine-artiklid/9-soovitust-lapsevanemale-kes-soovib-last-spordis-toetada/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Üle 16-aastane liikleja | <https://tarkvanem.ee/ohutus/liiklus/ule-16-a-laps/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Ülevaade 2024: hooldusperede leidmine vajab hoogu juurde | <https://tarkvanem.ee/kasupere-artiklid/hoolduspere-ulevaade-2024/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Ülevaade seadusandlusest | <https://tarkvanem.ee/tubakas/seadusandlus/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Ülevaade: 2022. aastal paigutati hooldusperedesse rohkem lapsi kui varem, aga uutelt peredelt tuli avaldusi vähem | <https://tarkvanem.ee/kasupere-artiklid/ulevaade-2022-aastal-paigutati-hooldusperedesse-rohkem-lapsi-kui-varem/> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Ülevaade: 2023. aastal leidis igal nädalal üks laps kodu hooldusperes | <https://tarkvanem.ee/kasupere-artiklid/hoolduspere-ulevaade-2023/> |
 | Tartu Ülikooli Kliinikum | Alkoholitarvitamise häire | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/alkoholitarvitamise-haire/> |
 | Tartu Ülikooli Kliinikum | Dementsus | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/dementsus/> |
 | Tartu Ülikooli Kliinikum | Depressioon | <https://www.kliinikum.ee/patsiendiinfo-andmebaas/depressioon/> |
@@ -4968,7 +5205,7 @@ Serveris töötav RAG, korpus v86, 11.10.2026. Siin on loend sellest, mida jaoti
 | Vanglateenistus | Üldkasulik töö | <https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/kriminaalhooldus/uldkasulik-too> |
 | Vanglateenistus | Üldkasuliku töö partnerile | <https://vanglateenistus.ee/koostoopartnerile-ja-vabatahtlikule/uldkasulik-too-ja-vabatahtlik-too/uldkasuliku-too-partnerile> |
 
-### Uuringud ja juhendid väljaandja ametlikult aadressilt (264)
+### Uuringud ja juhendid väljaandja ametlikult aadressilt (279)
 
 | Väljaandja | Pealkiri | Aadress |
 |---|---|---|
@@ -5055,7 +5292,9 @@ Serveris töötav RAG, korpus v86, 11.10.2026. Siin on loend sellest, mida jaoti
 | Sotsiaalkindlustusamet | Abi- ja toetusvajaduse hindamisvahendi metoodiline juhis 2021 | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-11/Abi-%20ja%20toetusvajaduse%20hindamise%20metoodiline%20juhis_01.11.2023.pdf> |
 | Sotsiaalkindlustusamet | Abivahendite muudatuste infoleht 01.09.2025 | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-10/Infoleht_%20AV-muudatus_01.09.2025.pdf> |
 | Sotsiaalkindlustusamet | Asendushooldusel noorte elluastumiskava kontrollnimekiri ja juhendmaterjal | <https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-02/Elluastumiskava%20kontrollnimekiri%20ja%20juhendmaterjal_18.02.2026.pdf> |
+| Sotsiaalkindlustusamet | Asendushooldusel täisealiseks saavate noorte iseseisvumise ja elluastumise toetamine ning järelhooldusteenuse planeerimine ja korraldamine. Soovituslik juhend kohalikule omavalitsusele (2025. aastal kaasajastatud) | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-06/JH%20juhend%20%28uuendatud%202025%29.pdf> |
 | Sotsiaalkindlustusamet | Asendushooldusel täisealiseks saavate noorte toetamine. Juhend asendus- ja järelhooldusteenuse osutajatele | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-06/Asendushooldusel%20t%C3%A4isealiseks%20saavate%20noorte%20toetamine.%20Juhend%20asendus-%20ja%20j%C3%A4relhooldusteenuse%20osutajatele.pdf> |
+| Sotsiaalkindlustusamet | Asendushoolduselt iseseisvasse ellu astuvate noorte toetamine: coachiva vestluse vägi | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-06/Coachiva%20vestluse%20v%C3%A4gi_11.06.2025.pdf> |
 | Sotsiaalkindlustusamet | Asendushooldusteenuse kvaliteedijuhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/asendushooldusteenuse_kvaliteedijuhis.pdf> |
 | Sotsiaalkindlustusamet | Eesti sotsiaalteenuste kvaliteedijuhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-11/Lisa%201.%20Eesti%20sotsiaalteenuste%20kvaliteedijuhis_12.11.2024.pdf> |
 | Sotsiaalkindlustusamet | Elanike teadlikkus ja hoiakud seoses laste vastu suunatud seksuaalvägivalla ennetuse ning abivõimalustega | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-02/Uuring%20elanike%20teadlikkus%20ja%20hoiakud%20seoses%20laste%20seksuaalv%C3%A4givalla%20ennetuse%20ning%20abiv%C3%B5imalustega%202025.pdf> |
@@ -5063,11 +5302,13 @@ Serveris töötav RAG, korpus v86, 11.10.2026. Siin on loend sellest, mida jaoti
 | Sotsiaalkindlustusamet | Eluruumi tagamise teenuse juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-04/Eluruumi%20tagamise%20teenuse%20juhend%2015.04.2024.pdf> |
 | Sotsiaalkindlustusamet | Eluruumi tagamise teenuse kvaliteedijuhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Eluruumi%20tagamise%20teenuse%20kvaliteedijuhis_07.01.2026_0.pdf> |
 | Sotsiaalkindlustusamet | Eluruumi tagamise teenuse kvaliteedijuhis | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/eluruumi_tagamise_teenus_kvaliteedijuhis.pdf> |
+| Sotsiaalkindlustusamet | Enamaarvulise paigutuse kooskõlastuse saamise juhend: lapse paigutamine asendushooldusteenusele, kui peres on seejärel rohkem lapsi, kui üldreegel lubab | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-03/Enamaarvulise%20paigutuse%20koosk%C3%B5lastuse%20saamise%20juhend_0.pdf> |
 | Sotsiaalkindlustusamet | Erihoolekandeteenuste kvaliteedijuhis | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-03/Erihoolekandeteenuste_kvaliteedijuhis.pdf> |
 | Sotsiaalkindlustusamet | Hindamisvahendi metoodiline juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/hindamisvahendi_metoodiline_juhis_2023-2024.pdf> |
 | Sotsiaalkindlustusamet | Hindamisvahendi metoodiline juhis 2025-2026 | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-01/Hindamisvahendi%20metoodiline%20juhis_2025-2026.pdf> |
 | Sotsiaalkindlustusamet | Hoolduskoormuse hindamise juhis 2023 | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-11/Hoolduskoormuse%20hindamise%20juhis%202023.pdf> |
 | Sotsiaalkindlustusamet | Hoolduspere kvaliteedijuhis | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/hoolduspere_kvaliteedijuhis.pdf> |
+| Sotsiaalkindlustusamet | Hoolduspere vanema kompetentsimudel ja kompetentside selgitused | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-11/Hoolduspere%20vanema%20kompetentsimudeli%20selgitused.pdf> |
 | Sotsiaalkindlustusamet | Isikliku abistaja teenuse juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-07/Isikliku%20abistaja%20teenuse%20juhend_04.07.2024.pdf> |
 | Sotsiaalkindlustusamet | Isikliku abistaja teenuse kvaliteedijuhis | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/isikliku_abistaja_teenuse_kvaliteedijuhis.pdf> |
 | Sotsiaalkindlustusamet | Juhend „Traumateadlik ja kiindumuspõhine lähenemine töös lastega“ | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Traumateadlik-ja-kiindumispohine-lahenemine-toos-lastega.pdf> |
@@ -5075,6 +5316,7 @@ Serveris töötav RAG, korpus v86, 11.10.2026. Siin on loend sellest, mida jaoti
 | Sotsiaalkindlustusamet | Juhend lastekaitsetöötajatele lapse üleandmisel ja suhtlemise võimaldamisel täitemenetluses | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Juhis-lastekaitsetootajatele-lapse-uleandmisel-ja-lapsega-suhtlemise-voimaldamisel-taitemenetluses-2025.pdf> |
 | Sotsiaalkindlustusamet | Juhend teenuse korraldamiseks esmasesse psühhoosi haigestunutele | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-01/VEEBI%20juhend_srt_teenuse_korraldamine_esmasesse_psuhhoosi_haigestunule%2014.01.2025.pdf> |
 | Sotsiaalkindlustusamet | Juhend, kuidas haldusakt vormistada ja põhjendada üldhooldusteenuse näitel mai 2023 | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-11/Juhend_kuidas%20haldusakt%20vormistada%20ja%20p%C3%B5hjendada_%C3%BCldhooldusteenuse%20n%C3%A4itel_mai%202023.pdf> |
+| Sotsiaalkindlustusamet | Juhis kohalike omavalitsuste spetsialistidele perest eraldatud lapse hooldusperre paigutamisel | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-04/Juhis%20KOV%20spetsialistidele%20perest%20eraldatud%20lapse%20hooldusperre%20paigutamisel_04.04.2024.pdf> |
 | Sotsiaalkindlustusamet | Järelhooldusteenuse kvaliteedijuhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/jarelhoolduseteenus_kvaliteedijuhis.pdf> |
 | Sotsiaalkindlustusamet | Keskkonna kohandamise abimaterjal kohaliku omavalitsuse spetsialistidele | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-11/keskonna_kohandamise_abimaterjal_kohaliku_omavalitsuse_spetsialistidele.pdf> |
 | Sotsiaalkindlustusamet | Kinnise lasteasutuse teenuse kvaliteedijuhis | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/kinnise_lasteasutuse_teenuse_kvaliteedijuhis.pdf> |
@@ -5084,6 +5326,7 @@ Serveris töötav RAG, korpus v86, 11.10.2026. Siin on loend sellest, mida jaoti
 | Sotsiaalkindlustusamet | Koduteenuse teenusedisaini projekti raport | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-05/koduteenuse_teenusedisaini_projekti_raport_2022.pdf> |
 | Sotsiaalkindlustusamet | Kolm maja – tööriist lapse kaasamiseks | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-11/Kolm%20maja.pdf> |
 | Sotsiaalkindlustusamet | Koondaruande juhendmaterjal | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-07/Koondaruande%20juhendmaterjal_03.07.2026.pdf> |
+| Sotsiaalkindlustusamet | Kooskõlastuse andmine lapse paigutamiseks asendushooldusteenusele vanema või eestkostja nõusolekul. Juhend omavalitsuse spetsialistile | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-03/KOV%20spetsialisti%20juhend.%20Koosk%C3%B5lastuse%20andmine%20lapse%20paigutamiseks%20asendushooldusteenusele%20vanema%C2%A0n%C3%B5usolekul.pdf> |
 | Sotsiaalkindlustusamet | Kovisiooni juhend lastekaitsetöötajatele | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Kovisiooni-juhend-lastekaitsetootajatele.pdf> |
 | Sotsiaalkindlustusamet | Kovisiooni juhend. Meelespea | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Kovisiooni-juhend-meelespea.pdf> |
 | Sotsiaalkindlustusamet | Lapse küsitlemise käsiraamat | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-11/lapse_kusitlemise_kasiraamat_2016_0.pdf> |
@@ -5094,6 +5337,7 @@ Serveris töötav RAG, korpus v86, 11.10.2026. Siin on loend sellest, mida jaoti
 | Sotsiaalkindlustusamet | Lasteabi tulemuslikkuse uuring | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-10/Lasteabi-tulemuslikkuse-uuring-lopparuanne-16.10.2024.pdf> |
 | Sotsiaalkindlustusamet | Lastevastase vägivalla ennetamine ja vähendamine asenduskodudes. Juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-09/Lastevastase%20v%C3%A4givalla%20ennetamine%20ja%20v%C3%A4hendamine%20asenduskodudes.%20Juhend.pdf> |
 | Sotsiaalkindlustusamet | Meeleoluhäiretega täiskasvanute rehabilitatsioonijuhise koondaruanne | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/Meeleoluh%C3%A4iretega%20t%C3%A4iskasvanute%20rehabilitatsioonijuhise%20koondaruanne.pdf> |
+| Sotsiaalkindlustusamet | Minijuhis omavalitsustele olukordadeks, kui sünnib laps, kelle suhtes vanemad soovivad anda nõusoleku lapsendamiseks | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/minijuhis_kov-dele_olukordadeks_kui_sunnib_laps_kelle_suhtes_vanemad_soovivad_anda_nousoleku_lapsendamiseks.pdf> |
 | Sotsiaalkindlustusamet | PACT-i riskihindamise täitmise juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-09/pact_riskihindamise_taitmise_juhend%20%281%29.pdf> |
 | Sotsiaalkindlustusamet | Perevägivalla toimepanijatele suunatud riskihindamisvahendite võrdlev analüüs – Eesti ja Euroopa praktika | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-02/Perevagivalla-riskihindamisvahendite-vordlev-analuus_lopparuanne_12022026.pdf> |
 | Sotsiaalkindlustusamet | Praktikad väärkohtlemise ennetamiseks huvihariduses ja lapsevanemate hoiakud | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-08/Huvihariduse%20uuringu%20aruanne%20Emor%202026.pdf> |
@@ -5127,6 +5371,7 @@ Serveris töötav RAG, korpus v86, 11.10.2026. Siin on loend sellest, mida jaoti
 | Sotsiaalkindlustusamet | Tugigrupi töö korraldajale: Lugemissoovitusi | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-08/7_Lugemissoovitusi_0.pdf> |
 | Sotsiaalkindlustusamet | Tugiisiku teenuse kvaliteedijuhis | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/tugiisiku_teenuse_kvaliteedijuhis.pdf> |
 | Sotsiaalkindlustusamet | Tugiisikuteenuse juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-07/Tugiisikuteenuse%20juhend_04.07.2024.pdf> |
+| Sotsiaalkindlustusamet | Tugiteenused kasuperedele. Juhend lastekaitsetöötajatele kasuvanema teenustele suunamiseks | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-05/Juhend%20kohalikule%20omavalitsusele%20kuidas%20suunata%20kasuvanem%20teenustele_26.05.2026.pdf> |
 | Sotsiaalkindlustusamet | Turvakoduteenus lapsele kvaliteedijuhis | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/turvakoduteenus_lapsele_kvaliteedijuhis.pdf> |
 | Sotsiaalkindlustusamet | Turvakoduteenuse juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Turvakoduteenus%20t%C3%A4iskasvanule%20kvaliteedijuhis_07.01.2026.pdf> |
 | Sotsiaalkindlustusamet | Turvaline sport - infomaterjal lapsele | <https://www.oiguskantsler.ee/sites/default/files/Turvaline%20sport.%20Infomaterjal%20lastele.%2031.05.2023.pdf> |
@@ -5202,6 +5447,13 @@ Serveris töötav RAG, korpus v86, 11.10.2026. Siin on loend sellest, mida jaoti
 | Sotsiaalministeerium | Ühtekuuluvuspoliitika hoolekandeteenuste tulemuslikkuse ja mõju hindamine Sotsiaalministeeriumile. Lõpparuanne | <https://www.sm.ee/media/2313/download> |
 | Statistikaamet | Mis mõjutab noorte NEET-staatusesse langemist? Analüüsi aruanne | <https://www.stat.ee/sites/default/files/2023-10/Mis%20m%C3%B5jutab%20noorte%20NEET-staatusesse%20langemist_Statistikaameti%20anal%C3%BC%C3%BCs_k%C3%BCljendus%202509.pdf> |
 | Targalt Internetis | Võta jutuks. Internet ja laste seksuaalne väärkohtlemine | <https://www.targaltinternetis.ee/wp-content/uploads/2015/12/Vota_jutuks.pdf> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Infomaterjal väikelaste (1–4 a) ohutuse tagamiseks lapsevanematele | <https://tarkvanem.ee/wp-content/uploads/2023/10/infomaterjal-vaikelaste-1-4-ohutuse-tagamiseks-lapsevanematele.pdf> |
+| Tarkvanem (Sotsiaalkindlustusamet) | Kogu tõde hooldusperest (voldik) | <https://tarkvanem.ee/wp-content/uploads/2021/05/Hoolduspere_voldik_est_WEB.pdf> |
+| Tarkvanem (Sotsiaalkindlustusamet) | TÖÖLEHT: Kas oskad kuulata? | <https://tarkvanem.ee/wp-content/uploads/2018/05/tarkvanem_tooleht_kas_oskad_kuulata.pdf> |
+| Tarkvanem (Sotsiaalkindlustusamet) | TÖÖLEHT: Kuidas maha rahuneda? | <https://tarkvanem.ee/wp-content/uploads/2018/05/tarkvanem_tooleht_kuidas_maha_rahuneda.pdf> |
+| Tarkvanem (Sotsiaalkindlustusamet) | TÖÖLEHT: Kuidas mõjuvad reklaamid ja meedia? | <https://tarkvanem.ee/wp-content/uploads/2018/05/tarkvanem_tooleht_kuidas_mojuvad_reklaamid_ja_meedia.pdf> |
+| Tarkvanem (Sotsiaalkindlustusamet) | TÖÖLEHT: Lapsega tülis. Kuidas edasi? | <https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_lapsega_tylis_kuidas_edasi.pdf> |
+| Tarkvanem (Sotsiaalkindlustusamet) | TÖÖLEHT: Mida teha vihaga? | <https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_mida_teha_vihaga.pdf> |
 | Tartu Ülikool | Eesti noorsootöötaja eetikakoodeks | <https://eetika.ee/sites/default/files/2026-06/Noorsoot%C3%B6%C3%B6taja%20eetikakoodeks.pdf> |
 | Tartu Ülikool | EU Kids Online’i 2025. aasta uuringu esialgsed tulemused | <https://sisu.ut.ee/wp-content/uploads/sites/289/EUKO-v6rku-summariga-26_02_18.pdf> |
 | Tartu Ülikool | EU Kids Online’i Eesti 2018. aasta uuringu esialgsed tulemused | <https://sisu.ut.ee/wp-content/uploads/sites/289/eu_kids_online_eesti_2018_raport.pdf> |
@@ -5236,6 +5488,46 @@ Serveris töötav RAG, korpus v86, 11.10.2026. Siin on loend sellest, mida jaoti
 | Tervisekassa | Vähem alkoholi. Kas ja kuidas? | <https://tervisekassa.ee/media/321/download?inline> |
 | Tervisekassa | Ärevuse töövihik | <https://tervisekassa.ee/media/712/download?inline> |
 | Verge Eesti | Sekkumised koolivägivalla ja koolikiusamise korral | <https://www.verge.ee/wp-content/uploads/2023/08/verge_koolikiusjavagivald_A4-3.pdf> |
+
+### Eetikaruumi eetikamaterjalid (35)
+
+| Väljaandja | Pealkiri | Aadress |
+|---|---|---|
+| Andmekaitse Inspektsioon | Andmekaitsetingimused ja nõusolek — AKI | <https://www.aki.ee/sites/default/files/documents/2025-07/AKI_Andmekaitsetingimused%20ja%20n%C3%B5usolek_A4_WEB-links-form.pdf> |
+| BASW | An Ethical Approach to Meeting Needs in Adult Social Care — BASW 2022 | <https://www.basw.co.uk/sites/default/files/2024-04/BASW%20England%20Policy%20An%20Ethical%20Approach%20to%20Meeting%20Needs%20in%20Adult%20Social%20Care%20July%202022.pdf> |
+| BASW | Code of Ethics \| BASW | <https://basw.co.uk/policy-practice/standards/code-ethics> |
+| Eesti Lapsehoidjate Kutseliit / ESTA | Lapsehoidja kutse-eetika | <https://www.eswa.eswa.ee/wp-content/uploads/2020/03/Lisa-3-Lapsehoidja-kutse-eetika.pdf> |
+| ESTA | Code of Ethics for Employees in the Area of Social Affairs — ESTA | <https://www.eswa.ee/wp-content/uploads/2026/05/sotsiaalvaldkonna-tootaja-koodeks_eng.pdf> |
+| ESTA | Eetikakoodeks \| ESTA | <https://eswa.eswa.ee/eetikakoodeks/> |
+| ESTA | Eetikakäsiraamat \| ESTA | <https://eswa.eswa.ee/eetikakasiraamat/> |
+| ESTA | Кодекс этики работников социальной сферы — ESTA | <https://www.eswa.ee/wp-content/uploads/2026/05/sotsiaalvaldkonna-tootaja-koodeks_RU.pdf> |
+| Euroopa Inimõiguste Kohus / Euroopa Nõukogu | Euroopa inimõiguste konventsioon | <https://www.echr.coe.int/documents/604084/839313/Convention_EST.pdf/48a34ce7-a621-b072-765c-ac690cc5a455?download=true&t=1675077940415&version=1.1> |
+| IASSW | Global Social Work Statement of Ethical Principles — IASSW 2018 | <https://www.iassw-aiets.org/wp-content/uploads/2023/06/Global-Social-Work-Statement-of-Ethical-Principles-IASSW-27-April-2018-01-English.pdf> |
+| IASSW / ajakiri Sotsiaaltöö / ESTA | Eetikapõhimõtted sotsiaaltöös — IASSW 2018 (eestikeelne tõlge) | <https://www.eswa.eswa.ee/wp-content/uploads/2020/06/Eetikapohimotted-sotsiaaltoos_Sotsiaaltoo_4_2020.pdf> |
+| IFSW | Ethical Challenges for Social Workers during Covid-19: A Global Perspective — 2020 | <https://www.ifsw.org/wp-content/uploads/2020/07/2020-06-30-Ethical-Challenges-Covid19-FINAL.pdf> |
+| IFSW | Global Social Work Statement of Ethical Principles – International Federation of Social Workers | <https://www.ifsw.org/global-social-work-statement-of-ethical-principles/> |
+| IFSW | Pandemic Ethics: A Resource for Social Work Students, Educators and Practitioners — 2021 | <https://www.ifsw.org/wp-content/uploads/2021/09/2021-08-27-Pandemic-Ethics-Resource-FINAL.pdf> |
+| IFSW | Social Work as a Global Profession: Handbook for Teaching and Learning — 2024 | <https://www.ifsw.org/wp-content/uploads/2024/10/2024-10-02-Handbook-Global-SW-FINAL.pdf> |
+| IFSW / IASSW | Global Standards for Social Work Education and Training – International Federation of Social Workers | <https://www.ifsw.org/global-standards-for-social-work-education-and-training/> |
+| NASW | AI and Social Work | <https://www.socialworkers.org/About/Ethics/AI-and-Social-Work> |
+| NASW | Code of Ethics: English | <https://www.socialworkers.org/Code-of-Ethics> |
+| NASW | Social Workers Ethical Responsibilities in Practice Settings | <https://www.socialworkers.org/About/Ethics/Code-of-Ethics/Code-of-Ethics-English/Social-Workers-Ethical-Responsibilities-in-Practice-Settings> |
+| NASW | Social Workers' Ethical Responsibilities as Professionals | <https://www.socialworkers.org/About/Ethics/Code-of-Ethics/Code-of-Ethics-English/Social-Workers-Ethical-Responsibilities-as-Professionals> |
+| NASW | Social Workers' Ethical Responsibilities to Clients | <https://www.socialworkers.org/About/Ethics/Code-of-Ethics/Code-of-Ethics-English/Social-Workers-Ethical-Responsibilities-to-Clients> |
+| NASW | Social Workers' Ethical Responsibilities to Colleagues | <https://www.socialworkers.org/About/Ethics/Code-of-Ethics/Code-of-Ethics-English/Social-Workers-Ethical-Responsibilities-to-Colleagues> |
+| NASW | Social Workers' Ethical Responsibilities to the Broader Society | <https://www.socialworkers.org/About/Ethics/Code-of-Ethics/Code-of-Ethics-English/Social-Workers-Ethical-Responsibilities-to-the-Broader-Society> |
+| NASW | Social Workers' Ethical Responsibilities to the Social Work Profession | <https://www.socialworkers.org/About/Ethics/Code-of-Ethics/Code-of-Ethics-English/Social-Workers-Ethical-Responsibilities-to-the-Social-Work-Profession> |
+| NASW / ASWB / CSWE / CSWA | Standards for Technology in Social Work Practice | <https://www.socialworkers.org/Practice/NASW-Practice-Standards-Guidelines/Standards-for-Technology-in-Social-Work-Practice/> |
+| OHCHR / ÜRO | Convention on the Rights of the Child | <https://www.ohchr.org/sites/default/files/crc.pdf> |
+| SCIE | A dignified death - SCIE | <https://www.scie.org.uk/providing-care/dignity-in-care/death/> |
+| SCIE | Dignity: Information and good communication - SCIE | <https://www.scie.org.uk/providing-care/dignity-in-care/communication/> |
+| SCIE | Freedom to choose and dignity in care - SCIE | <https://www.scie.org.uk/providing-care/dignity-in-care/freedom/> |
+| SCIE | Involvement and inclusion promoting dignity in care - SCIE | <https://www.scie.org.uk/providing-care/dignity-in-care/involvement/> |
+| SCIE | Recognising the individual to promote dignity in care - SCIE | <https://www.scie.org.uk/providing-care/dignity-in-care/recognising-the-individual/> |
+| Vabaühenduste Liit | Vabaühenduste eetikakoodeks - Hea Kodanik | <https://heakodanik.ee/vabauhenduste-eetikakoodeks/> |
+| Õiguskantsler | Laste ja noorte õigused ja kohustused \| Õiguskantsler | <https://www.oiguskantsler.ee/tegevusvaldkonnad/laste-ja-noorte-oigused/laste-ja-noorte-oigused-ja-kohustused> |
+| ÜRO | UN Enable - Text of the Convention on the Rights of Persons with Disabilities | <https://www.un.org/esa/socdev/enable/rights/convtexte.htm> |
+| ÜRO puuetega inimeste õiguste komitee / Õiguskantsler | Concluding Observations on the Initial Report of Estonia — CRPD Committee 2021 | <https://www.oiguskantsler.ee/sites/default/files/Concluding%20observations%20on%20the%20initial%20report%20of%20Estonia%20%282021%29.pdf> |
 
 ### Omavalitsuste kontaktid (1638)
 

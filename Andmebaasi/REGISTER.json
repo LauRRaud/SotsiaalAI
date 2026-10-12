@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "created_at": "2026-09-07T20:16:49.778Z",
-  "updated_at": "2026-10-11",
+  "updated_at": "2026-10-12",
   "path_base": "Andmebaasi",
   "archive": "../Arhiiv/Andmebaasi_2026-09-07",
   "import_rule": "Use source entries with their metadata. reference_lookup and review_source require reconciliation; metadata, source_register and source_planning_register are not independent knowledge documents. Folder organisation does not assert ingest acceptance.",
@@ -49,11 +49,11 @@
   },
   "corpus": {
     "written_by": "rag-v2/register-corpus-1",
-    "version": "v86",
-    "index_generation": "ed2d72bd",
-    "read_at": "2026-10-11",
-    "documents": 10571,
-    "units": 93471,
+    "version": "v88",
+    "index_generation": "451ce0e6",
+    "read_at": "2026-10-12",
+    "documents": 10856,
+    "units": 96115,
     "note": "What the RAG on the server holds: the documents of the corpus policy by what they are (by_content), and by where the source file is kept (from_repository, outside_repository). One file of the repository may give many documents (a municipality package gives its services, forms and contacts). On a source entry, corpus_documents is the number of corpus documents the file gives; 0 means the file is not in the corpus.",
     "by_content": [
       {
@@ -105,20 +105,20 @@
       {
         "content": "guides",
         "name": "guides, information materials and studies",
-        "documents": 436,
+        "documents": 451,
         "by_source_type": {
           "research_report": 199,
-          "official_guideline": 122,
-          "information_material": 109,
+          "official_guideline": 130,
+          "information_material": 116,
           "policy_analysis": 6
         }
       },
       {
         "content": "official_pages",
         "name": "official guidance pages",
-        "documents": 1589,
+        "documents": 1824,
         "by_source_type": {
-          "web_page": 1589
+          "web_page": 1824
         }
       },
       {
@@ -151,6 +151,14 @@
         "documents": 51,
         "by_source_type": {
           "vendor_page": 51
+        }
+      },
+      {
+        "content": "ethics_materials",
+        "name": "ethics materials of the ethics room",
+        "documents": 35,
+        "by_source_type": {
+          "ethics_material": 35
         }
       }
     ],
@@ -197,10 +205,10 @@
       }
     },
     "source_files_not_in_corpus": 61,
-    "outside_repository_documents": 4055
+    "outside_repository_documents": 4340
   },
   "outside_repository": {
-    "documents": 4055,
+    "documents": 4340,
     "note": "Sources of the corpus that are not files of the repository. Copies are in the corpus store (the main checkout's git-ignored tmp/ and the server). Of contacts only counts are given: a contact's title is a person's name.",
     "kinds": [
       {
@@ -7009,13 +7017,13 @@
       {
         "kind": "guidance_pages",
         "name": "institutions' guidance pages chosen by rule",
-        "documents": 1229,
+        "documents": 1464,
         "by_source_type": {
-          "web_page": 1229
+          "web_page": 1464
         },
-        "made_from": "the lists register/web_pages_coverage_1.json, register/web_pages_coverage_2.json and register/web_pages_coverage_3.json (the legal aid site's edited articles), collected with scripts/rag-v2-web-pages.mjs and chosen with scripts/rag-v2-web-select.mjs (ADR-137, ADR-143), and register/web_pages_tootukassa.json (the unemployment insurance fund's pages, read from a browser capture of 11.10.2026, ADR-146)",
+        "made_from": "the lists register/web_pages_coverage_1.json, register/web_pages_coverage_2.json and register/web_pages_coverage_3.json (the legal aid site's edited articles), collected with scripts/rag-v2-web-pages.mjs and chosen with scripts/rag-v2-web-select.mjs (ADR-137, ADR-143), and register/web_pages_tootukassa.json (the unemployment insurance fund's pages, read from a browser capture of 11.10.2026, ADR-146), and register/web_pages_coverage_4.json with register/web_pages_coverage_4_by_hand.json (the parenting site tarkvanem.ee, ADR-148)",
         "reason": "the choice takes the paragraphs that name a person out of a page; the monthly refresh of the repository's pages would put the collector's own reading in its place",
-        "publishers": 13,
+        "publishers": 14,
         "sources": [
           {
             "title": "Andmekaitsespetsialist",
@@ -11448,6 +11456,1181 @@
             "publisher": "Sotsiaalministeerium"
           },
           {
+            "title": "„Aga mul ei ole blenderit!“ – kasuperede müüdid ja hirmud",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/aga-mul-ei-ole-blenderit-kasuperede-muudid-ja-hirmud/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "“Ei, aitäh, ma ei joo!”",
+            "url": "https://tarkvanem.ee/alkohol-artiklid/ei-aitah-ma-ei-joo/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "„Teismeline on asenduskodus nii harjunud, et ei tahagi enam hooldusperre minna” – lastekaitsjate müüdid ja tegelikkus",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/lastekaitsjate-muudid-ja-tegelikkus-2023/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "0–1,5-aastase lapse areng",
+            "url": "https://tarkvanem.ee/suhe-lapsega/lapse-arenguetapid/0-1-a-lapse-areng/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "0–6-kuune imik",
+            "url": "https://tarkvanem.ee/toitumine/0-6-k-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "0,5–3-aastane laps",
+            "url": "https://tarkvanem.ee/toitumine/0-3-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "1–3-aastane laps",
+            "url": "https://tarkvanem.ee/liikumine/1-3-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "1,5–3-aastase lapse areng",
+            "url": "https://tarkvanem.ee/suhe-lapsega/lapse-arenguetapid/1-3-a-lapse-areng/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "1% Eestimaa lastest kasvab asendushooldusel",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/1-eestimaa-lastest-kasvab-asendushooldusel/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "10 soovitust lapsevanemale oma lapse interneti ja nutivahendite heaks kasutamiseks",
+            "url": "https://tarkvanem.ee/digimaailm-artiklid/10-soovitust-lapsevanemale-oma-lapse-interneti-ja-nutivahendite-heaks-kasutamiseks/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "10 soovitust mitmekesiseks toitumiseks",
+            "url": "https://tarkvanem.ee/toitumine-artiklid/10-soovitust-mitmekesiseks-toitumiseks/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "10–12-aastane laps",
+            "url": "https://tarkvanem.ee/tubakas/10-12-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "10–12-aastane laps",
+            "url": "https://tarkvanem.ee/vaimne-tervis/10-12-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "10–12-aastane laps",
+            "url": "https://tarkvanem.ee/seksuaalkasvatus/10-12-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "10–15-aastane liikleja",
+            "url": "https://tarkvanem.ee/ohutus/liiklus/10-15-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "11–18-aastane laps",
+            "url": "https://tarkvanem.ee/liikumine/11-18-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "12–18-aastane laps",
+            "url": "https://tarkvanem.ee/narkootikumid/12-18-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "12–18-aastane laps",
+            "url": "https://tarkvanem.ee/alkohol/12-18-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "12–18-aastase lapse areng",
+            "url": "https://tarkvanem.ee/suhe-lapsega/lapse-arenguetapid/12-18-a-lapse-areng/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "13–15-aastane laps",
+            "url": "https://tarkvanem.ee/seksuaalkasvatus/13-15-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "13–18-aastane laps",
+            "url": "https://tarkvanem.ee/vaimne-tervis/13-18-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "13–18-aastane laps",
+            "url": "https://tarkvanem.ee/digimaailm/13-18-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "13–18-aastane laps",
+            "url": "https://tarkvanem.ee/tubakas/13-18-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "16–18-aastane laps",
+            "url": "https://tarkvanem.ee/seksuaalkasvatus/16-18-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "2–3-aastane laps",
+            "url": "https://tarkvanem.ee/vaimne-tervis/2-3-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "3–6-aastane laps",
+            "url": "https://tarkvanem.ee/seksuaalkasvatus/3-6-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "3–6-aastane laps",
+            "url": "https://tarkvanem.ee/digimaailm/3-6-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "3–7-aastane laps",
+            "url": "https://tarkvanem.ee/vaimne-tervis/3-7-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "3–7-aastane laps",
+            "url": "https://tarkvanem.ee/tubakas/3-7-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "4–5-aastase lapse areng",
+            "url": "https://tarkvanem.ee/suhe-lapsega/lapse-arenguetapid/4-5-a-lapse-areng/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "4–6-aastane laps",
+            "url": "https://tarkvanem.ee/liikumine/4-6-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "4–7-aastane laps",
+            "url": "https://tarkvanem.ee/toitumine/4-7-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "4–7-aastane laps",
+            "url": "https://tarkvanem.ee/alkohol/4-7-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "4–7-aastane laps",
+            "url": "https://tarkvanem.ee/narkootikumid/4-7-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "5 iganenud müüti suitsetamisest",
+            "url": "https://tarkvanem.ee/tubakas-artiklid/5-iganenud-muuti-suitsetamisest/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "5–6-aastane liikleja",
+            "url": "https://tarkvanem.ee/ohutus/liiklus/5-6-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "6–10-aastane laps",
+            "url": "https://tarkvanem.ee/tubakas/6-10-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "6–11-aastase lapse areng",
+            "url": "https://tarkvanem.ee/suhe-lapsega/lapse-arenguetapid/6-11-a-lapse-areng/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "7 küsimust ja vastust unetervise kohta",
+            "url": "https://tarkvanem.ee/enda-vajadused/7-kusimust-ja-vastust-unetervise-kohta/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "7 nõuannet, mida iga lapsevanem kasutama peaks",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/seitse-nouannet-mida-iga-lapsevanem-kasutama-peaks/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "7–10-aastane laps",
+            "url": "https://tarkvanem.ee/liikumine/7-10-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "7–10-aastane laps",
+            "url": "https://tarkvanem.ee/vaimne-tervis/7-10-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "7–12-aastane laps",
+            "url": "https://tarkvanem.ee/digimaailm/7-12-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "7–9-aastane laps",
+            "url": "https://tarkvanem.ee/seksuaalkasvatus/7-9-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "7–9-aastane liikleja",
+            "url": "https://tarkvanem.ee/ohutus/liiklus/7-9-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "8–11-aastane laps",
+            "url": "https://tarkvanem.ee/narkootikumid/8-11-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "8–11-aastane laps",
+            "url": "https://tarkvanem.ee/alkohol/8-11-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Abiks vanematele",
+            "url": "https://tarkvanem.ee/abiks-vanematele/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Alkohol",
+            "url": "https://tarkvanem.ee/alkohol/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Alkoholi kahjulikkus sinu lapsele",
+            "url": "https://tarkvanem.ee/alkohol-artiklid/alkoholi-kahjulikkus-sinu-lapsele-2/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Alkoholi mõjust lapsele ja käitumisnõuandeid vanematele",
+            "url": "https://tarkvanem.ee/alkohol-artiklid/alkoholi-mojust-lapsele-ja-kaitusmisnouandeid-vanematele/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Alkoholiga seotud müüdid ja tegelikkus",
+            "url": "https://tarkvanem.ee/alkohol-artiklid/alkoholiga-seotud-muudid-ja-tegelikkus/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Arvutit ei pea kartma. Aga selle kasutamist tuleb suunata!",
+            "url": "https://tarkvanem.ee/digimaailm-artiklid/arvutit-ei-pea-kartma-aga-selle-kasutamist-tuleb-suunata/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Asendushooldus – kus me oleme ja kuhu jõuda tahame?",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/asendushooldus-kus-me-oleme-ja-kuhu-jouda-tahame/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Beebide ja väikelaste ohutus",
+            "url": "https://tarkvanem.ee/ohutus/beebid-ja-vaikelapsed/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Digimaailm",
+            "url": "https://tarkvanem.ee/digimaailm/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Digisõltuvus",
+            "url": "https://tarkvanem.ee/digimaailm/digisoltuvus/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "E-kursus, mis aitab asendushoolduse vanemal lapsele teadlikumalt toeks olla",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/e-kursus-asendushoolduse-vanemale/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Elektroonilised sigaretid ja veipimine – mida lapsevanem teha võiks?",
+            "url": "https://tarkvanem.ee/tubakas-artiklid/e-sigaretid-ja-veipimine-mida-vanem-teha-voiks/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Emme, ma ei ole veel väsinud…",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/emme-ma-ei-ole-veel-vasinud/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Enda nähtavaks tegemine liikluses",
+            "url": "https://tarkvanem.ee/ohutus/liiklus/enda-nahtavaks-tegemine/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Erinevad kasvatusstiilid",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/erinevad-kasvatusstiilid/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Erinevad peremudelid",
+            "url": "https://tarkvanem.ee/suhe-lapsega/erinevad-peremudelid/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Esimene eluaasta",
+            "url": "https://tarkvanem.ee/liikumine/0-1-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Esimene eluaasta",
+            "url": "https://tarkvanem.ee/vaimne-tervis/0-1-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Esimene öö lapsest eemal: Kuidas valmistuda?",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/esimene-oo-lapsest-eemal-kuidas-valmistuda/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Et suvevaheaeg oleks mõnus ja turvaline",
+            "url": "https://tarkvanem.ee/alkohol-artiklid/et-suvevaheaeg-oleks-monus-ja-turvaline/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Hoolduspere vanem peab olema nii tugev, et tema armastus raviks",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/hoolduspere-vanem-peab-olema-nii-tugev-et-tema-armastus-raviks/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Hoolduspereks valmistumine",
+            "url": "https://tarkvanem.ee/kasupere/hoolduspereks-saamine/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Imelised aastad",
+            "url": "https://tarkvanem.ee/koolitused/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Intiimsus ja seksuaalsus paarisuhtes",
+            "url": "https://tarkvanem.ee/paarisuhe/intiimsus-ja-seksuaalsus/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "ISAD ISADELE: isiklikud põhimõtted, mis loovad aluse edasiseks kooskasvamiseks",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/isad-isadele-isiklikud-pohimotted/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Jääda kokku või minna lõplikult lahku?",
+            "url": "https://tarkvanem.ee/paarisuhe/lahkuminek-ja-lahutus/jaada-kokku-voi-minna-loplikult-lahku/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kaassõltuvus",
+            "url": "https://tarkvanem.ee/narkootikumid-artiklid/kaassoltuvus/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kaitse oma last ka internetis",
+            "url": "https://tarkvanem.ee/digimaailm-artiklid/kaitse-oma-last-ka-internetis/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kas valetamine on märk lapse iseseisvumisest?",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/kas-valetamine-on-mark-lapse-iseseisvumisest/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kasulaps koolis: kuidas oma last aidata?",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/kasulaps-koolis-kuidas-oma-last-aidata/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kasulaps koolis: lapse kooliprobleemide põhjused",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/kasulaps-koolis-probleemide-pohjused/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kasupereks kasvatakse, mitte ei sünnita: loe, kuidas see käib ja mõtle, kas sinugi südames on ruumi",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/kasupereks-kasvatakse-mitte-ei-sunnita-loe-kuidas-see-kaib-ja-motle-kas-sinugi-sudames-on-ruumi/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kasuperes kasvava lapse suhted päritoluperega – kelle huvides?",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/kasuperes-kasvava-lapse-suhted-paritoluperega-kelle-huvides/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kes teeb, see vastutab",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/kes-teeb-see-vastutab/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "KKK ehk korduma kippuvad küsimused",
+            "url": "https://tarkvanem.ee/kasupere/kkk/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kohtla-Järve lastekaitse peaspetsialist: teismelistele on raskem uut peret leida, aga kõik on võimalik",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/kohtla-jarve-lastekaitse-peaspetsialist-teismelistele-on-raskem-uut-peret-leida-aga-koik-on-voimalik/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kolm head harjumust, mida ei tohiks suvel unustada",
+            "url": "https://tarkvanem.ee/toitumine-artiklid/kolm-head-harjumust-mida-ei-tohiks-suvel-unustada/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Koolieelik",
+            "url": "https://tarkvanem.ee/liikumine/koolieelik/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Koolilaps ja teismeline",
+            "url": "https://tarkvanem.ee/toitumine/koolilaps-ja-teismeline/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kui noor vajab tuge järgmiste sammude leidmisel",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/noortegarantii-tugisusteem/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kui oled sattunud vägivaldsesse paarisuhtesse",
+            "url": "https://tarkvanem.ee/paarisuhe/vagivaldne-paarisuhe/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kuidas arendada iseseisvust?",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/kuidas-arendada-iseseisvust/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kuidas aru saada, kas laps tarvitab uimasteid?",
+            "url": "https://tarkvanem.ee/narkootikumid-artiklid/kuidas-aru-saada-kas-laps-tarvitab-uimasteid/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kuidas erinevas vanuses lastega suhelda?",
+            "url": "https://tarkvanem.ee/alkohol-artiklid/kuidas-erinevas-vanuses-lastega-suhelda/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kuidas innustada last igapäevaselt aktiivselt liikuma?",
+            "url": "https://tarkvanem.ee/liikumine-artiklid/kuidas-innustada-last-igapaevaselt-aktiivselt-liikuma/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kuidas lapsega mängida?",
+            "url": "https://tarkvanem.ee/suhe-lapsega/mang/kuidas-mangida/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kuidas lapsega rahast rääkida?",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/kuidas-lapsega-rahast-raakida/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kuidas lapsele meelemürkidest rääkida?",
+            "url": "https://tarkvanem.ee/alkohol-artiklid/kuidas-lapsele-meelemurkidest-raakida/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kuidas lapsele piire seada? 5 väärt näpunäidet",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/viis-vaart-napunaidet-lapsevanemale-kuidas-lapsele-piire-seada/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kuidas leitakse kodu ja perekond lapsele, kes on eraldatud oma sünniperest? Pärnu linna praktika",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/kuidas-leitakse-perekond-synniperest-eraldatud-lapsele/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kuidas mõjutab omavalitsuste koostöö SKA-ga perehüvitiste saamist?",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/kes-saab-perehuvitisi/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kuidas märgata, et noor tarvitab e-sigaretti, nikotiinipatja või huuletubakat?",
+            "url": "https://tarkvanem.ee/tubakas-artiklid/kuidas-margata-et-noor-tarvitab-e-sigaretti-voi-huuletubakat/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kuidas nikotiin kahjustab laste ja noorte aju?",
+            "url": "https://tarkvanem.ee/tubakas-artiklid/kuidas-nikotiin-kahjustab-laste-ja-noorte-aju/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kuidas pakkuda kodusoojust lapsele, kes ei saa elada sünniperes?",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/kuidas-pakkuda-kodusoojust-lapsele-kes-ei-saa-elada-sunniperes/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kuidas pakkuda peret vajavale lapsele kodu ja armastust ning kuidas riik sind seejuures toetab",
+            "url": "https://tarkvanem.ee/kasupere/kuidas-riik-kasuvanemaid-toetab/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kuidas rääkida alkoholist? Soovitused eelteismelise lapse vanematele",
+            "url": "https://tarkvanem.ee/alkohol-artiklid/raagime-alkoholist-soovitused-eelteismelise-lapse-vanematele/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kuidas rääkida alkoholist? Soovitused koolieeliku ja algklassilapse vanematele",
+            "url": "https://tarkvanem.ee/alkohol-artiklid/raagime-alkoholist-soovitused-koolieeliku-ja-algklassilapse-vanematele/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kuidas rääkida alkoholist? Soovitused teismeeas lapse vanematele",
+            "url": "https://tarkvanem.ee/alkohol-artiklid/raagime-alkoholist-soovitused-teismeeas-lapse-vanematele/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kuidas rääkida lapsele alkoholi mõjust?",
+            "url": "https://tarkvanem.ee/alkohol-artiklid/kuidas-raakida-lapsele-alkoholi-mojust/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kuidas rääkida sõjast nii väiksemate kui suuremate lastega?",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/kuidas-lastele-raakida-sojast/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kuidas saab seenior aidata last, kes ei saa kasvada sünniperes?",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/kuidas-saab-seenior-aidata-last-kes-ei-saa-kasvada-sunniperes/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kuidas saaks oma lapsed tervislikumalt toituma?",
+            "url": "https://tarkvanem.ee/toitumine-artiklid/soovitused-vanematele/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kuidas teada saada, kas ja millist abi teismeline vajab?",
+            "url": "https://tarkvanem.ee/narkootikumid-artiklid/kuidas-teada-saada-kas-ja-millist-abi-teismeline-vajab/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kuidas teha lapsega kokkulepped alkoholi ja tubaka osas?",
+            "url": "https://tarkvanem.ee/alkohol-artiklid/kuidas-teha-lapsega-kokkulepped-alkoholi-ja-tubaka-osas/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kuidas toetada koolilast, kes ei kasva sünniperes?",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/kuidas-toetada-koolilast-kes-ei-kasva-sunniperes/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kuidas väikelastega ohtudest rääkida ja traagilisi veeõnnetusi ära hoida",
+            "url": "https://tarkvanem.ee/ohutus-turvalisus-artiklid/kuidas-vaikelastega-ohtudest-raakida-ja-ara-hoida-traagilisi-veeonnetusi/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kuidas õpetada lapsele kriitilist suhtumist meedias leiduvasse",
+            "url": "https://tarkvanem.ee/alkohol-artiklid/kuidas-opetada-lapsele-kriitilist-suhtumist-meedias-leiduvasse/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kuni 2-aastane laps",
+            "url": "https://tarkvanem.ee/seksuaalkasvatus/0-2-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kuni 2-aastane laps",
+            "url": "https://tarkvanem.ee/digimaailm/0-2-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kuni 3-aastane laps",
+            "url": "https://tarkvanem.ee/tubakas/0-3-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kuni 4-aastane liikleja",
+            "url": "https://tarkvanem.ee/ohutus/liiklus/0-4-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kus sa ometi oled?!!",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/kus-sa-ometi-oled/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kust leida abi?",
+            "url": "https://tarkvanem.ee/kriis/kust-leida-abi/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kõik algab mängust",
+            "url": "https://tarkvanem.ee/koikalgabmangust/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Lahkuminek ja lahutus paarisuhtes",
+            "url": "https://tarkvanem.ee/paarisuhe/lahkuminek-ja-lahutus/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "LAPS AUTOS",
+            "url": "https://tarkvanem.ee/ohutus/liiklus/lapse-soidutamine/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "LAPS JALAKÄIJANA",
+            "url": "https://tarkvanem.ee/ohutus/liiklus/laps-jalakaijana/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Laps näppab võõraid asju – kas ja millal peaksid muretsema?",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/laps-nappab-vooraid-asju-kas-ja-millal-peaksid-muretsema/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Laps on pereootel",
+            "url": "https://tarkvanem.ee/kasupere/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Laps vajab toetavaid ja nõudlikke vanemaid",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/laps-vajab-toetavaid-ja-noudlikke-vanemaid/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Lapse arengu ja tervise toetamine",
+            "url": "https://tarkvanem.ee/suhe-lapsega/lapse-tervise-toetamine/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Lapse arenguetapid",
+            "url": "https://tarkvanem.ee/suhe-lapsega/lapse-arenguetapid/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Lapse ettevalmistamine iseseisvuseks – loogiliste tagajärgede seadmine ja kasutamine",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/loogiliste-tagajargede-seadmine-ja-kasutamine/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Lapse kindlus on perekond",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/lapse-kindlus-on-perekond/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Lapse tervist toetab vaid 100% suitsuvaba keskkond",
+            "url": "https://tarkvanem.ee/tubakas-artiklid/lapse-tervist-toetab-vaid-100-suitsuvaba-keskkond/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Lapse turvaline magamiskeskkond",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/lapse-turvaline-magamiskeskkond/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Lapse uneharjumusi saab leebelt kujundada",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/lapse-uneharjumuste-kujundamine/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Lapsed ja alkohol: 7 enamlevinud müüti lapsevanemate seas",
+            "url": "https://tarkvanem.ee/alkohol-artiklid/7-enamlevinud-muuti-lapsevanemate-seas/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Lapsed ja kohustused – kuidas see valem toimib?",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/lapsed-ja-kohustused-kuidas-see-valem-toimib/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Lapsed ja suhkur: kui palju on liiga palju? Toitumisnõustaja selgitab",
+            "url": "https://tarkvanem.ee/toitumine-artiklid/lapsed-ja-suhkur-kui-palju-on-liiga-palju/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Lapsega mängimine",
+            "url": "https://tarkvanem.ee/suhe-lapsega/mang/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Lapsel igav? Need viis nippi aitavad üheskoos mängides areneda",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/lapsel-igav-need-viis-nippi-aitavad-uheskoos-mangides-areneda/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Lapsendaja vanemahüvitis – uus vanemahüvitise liik, mida võivad taotleda ka hoolduspered",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/lapsendaja-vanemahuvitis-uus-vanemahuvitise-liik-mida-voivad-taotleda-ka-hoolduspered/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Lapsendamiseks valmistumine",
+            "url": "https://tarkvanem.ee/kasupere/lapsendamiseks-valmistumine/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Lapsendamissaladus võib kaduda – õigus teada oma päritolu on inimõigus",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/lapsendamissaladus-voib-kaduda/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Lapsendatu pikk tee juurteni. Lapsendamissaladus ja õigus saada infot päritolu kohta.",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/lapsendatu-pikk-tee-juurteni-lapsendamissaladus-ja-oigus-saada-infot-paritolu-kohta/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Lapsevanemate korduma kippuvad küsimused",
+            "url": "https://tarkvanem.ee/suhe-lapsega/mang/vanemate-kkk/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Laste ja noorte digisõltuvus – kuidas seda märgata ja mida teha?",
+            "url": "https://tarkvanem.ee/digimaailm-artiklid/laste-ja-noorte-digisoltuvus-kuidas-seda-margata-ja-mida-teha/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Lastepsühhiaater: seitsme aastaga oleme surmasuust päästnud 30 last, kes on iseendale ohtlikud",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/lastepsuhhiaater-seitsme-aastaga-oleme-surmasuust-paastnud-30-last-kes-on-iseendale-ohtlikud/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Levinud müüdid",
+            "url": "https://tarkvanem.ee/alkohol-artiklid/levinud-muudid/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Lihtsad igapäevased tehnikad, mis aitavad saavutada positiivseid muutusi lapse käitumises",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/lihtsad-igapaevased-tehnikad-mis-aitavad-saavutada-positiivseid-muutusi-lapse-kaitumises/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Liikluses, meelega",
+            "url": "https://tarkvanem.ee/ohutus-turvalisus-artiklid/liikluses-meelega/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Liiklusohutus",
+            "url": "https://tarkvanem.ee/ohutus/liiklus/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Liikumine",
+            "url": "https://tarkvanem.ee/liikumine/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Loomulikud ja loogilised tagajärjed – mis need on ja kuidas nende kasutamine aitab lapses vastutustunnet arendada?",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/loomulikud-ja-loogilised-tagajarjed/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Lähedus paarisuhtes",
+            "url": "https://tarkvanem.ee/paarisuhe/lahedus/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Ma olen nii väsinud, et ma ei jaksa enam",
+            "url": "https://tarkvanem.ee/enda-vajadused-artiklid/ma-olen-nii-vasinud-et-ma-ei-jaksa-enam/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Mida lapsevanem võiks teada aju arengust ja sõltuvusainete mõjust?",
+            "url": "https://tarkvanem.ee/alkohol-artiklid/mida-lapsevanem-voiks-teada-aju-arengust-ja-soltuvusainete-mojust/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Mida ma saan teha, et ära hoida oma lapse sõltuvusse sattumist?",
+            "url": "https://tarkvanem.ee/alkohol-artiklid/mida-ma-saan-teha-et-ara-hoida-oma-lapse-soltuvusse-sattumist/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Mida teha, kui hästi käituvast lapsest saab avalikus kohas jonniv paharet?",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/mida-teha-kui-hasti-kaituvast-lapsest-saab-avalikus-kohas-jonniv-paharet/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Mida teha, kui laps on ülekaaluline?",
+            "url": "https://tarkvanem.ee/toitumine-artiklid/mida-teha-kui-laps-on-ulekaaluline/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Mida teha, kui su laps tuleb lõhnadega koju?",
+            "url": "https://tarkvanem.ee/alkohol-artiklid/mida-teha-kui-su-laps-tuleb-lohnadega-koju/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Mida teha, kui su lapsel on mure?",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/mida-teha-kui-su-lapsel-on-mure/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Mida vajab asendushooldusele jõudnud noor?",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/mida-vajab-asendushooldusele-joudnud-noor/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Miks lapsed vajavad rutiini?",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/miks-lapsed-vajavad-rutiini/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Miks on mäng oluline?",
+            "url": "https://tarkvanem.ee/suhe-lapsega/mang/miks-oluline/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Miks on oluline lapsega mängida?",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/miks-on-oluline-lapsega-mangida/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Miks on oma aega vaja?",
+            "url": "https://tarkvanem.ee/enda-vajadused/oma-aeg/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Miks, millal ja kuidas last kiita?",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/miks-millal-ja-kuidas-last-kiita/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Millal ja kuidas hakata valmistuma teismeeaks?",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/millal-ja-kuidas-hakata-valmistuma-teismeeaks/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Millal on õige aeg vestlusi pidada?",
+            "url": "https://tarkvanem.ee/alkohol-artiklid/millal-on-oige-aeg-vestlusi-pidada/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Millest räägib liikluskeskkond?",
+            "url": "https://tarkvanem.ee/ohutus-turvalisus-artiklid/millest-raagib-liikluskeskkond/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Mis teismelise peas toimub?",
+            "url": "https://tarkvanem.ee/alkohol-artiklid/mis-teismelise-peas-toimub/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Mis viib lapse tubakatarvitamiseni?",
+            "url": "https://tarkvanem.ee/tubakas-artiklid/mis-viib-lapse-tubakatarvitamiseni/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Mis või kes on lapse lemmikjõulukink?",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/mis-voi-kes-on-lapse-lemmikjoulukink/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Moodsad tubakatooted jäävad lapsevanematele tihti märkamatuks",
+            "url": "https://tarkvanem.ee/tubakas-artiklid/moodsad-tubakatooted-jaavad-lapsevanematele-tihti-markamatuks/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Murettekitavad seosed: nikotiini mõju ajule ohustab noorte vaimset tervist",
+            "url": "https://tarkvanem.ee/tubakas-artiklid/nikotiini-moju-ajule-ohustab-noorte-vaimset-tervist/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Muud koolitused",
+            "url": "https://tarkvanem.ee/koolitused/muud-koolitused/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Narkootikumid",
+            "url": "https://tarkvanem.ee/narkootikumid/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Narkootikumidest taastumine",
+            "url": "https://tarkvanem.ee/narkootikumid-artiklid/taastumine/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Noored.alkoinfo.ee – abiks nii noortele kui lapsevanematele",
+            "url": "https://tarkvanem.ee/alkohol-artiklid/noored-alkoinfo-ee-abiks-nii-noortele-kui-lapsevanematele/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Noortega uimastitest rääkimine",
+            "url": "https://tarkvanem.ee/narkootikumid-artiklid/noortega-uimastitest-raakimine/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Nädalakava",
+            "url": "https://tarkvanem.ee/enda-vajadused/nadalakava/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Ole aktiivne koos lapsega",
+            "url": "https://tarkvanem.ee/liikumine-artiklid/ole-aktiivne-koos-lapsega/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Ole lapsevanem, mitte taksojuht",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/ole-lapsevanem-mitte-taksojuht/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Ole teadlik toodetes olevatest lisatud suhkrutest",
+            "url": "https://tarkvanem.ee/toitumine-artiklid/ole-teadlik-toodetes-olevatest-lisatud-suhkrutest/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Ole toeks lapse enesehinnangu kujundamisel",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/ole-toeks-lapse-enesehinnangu-kujundamisel/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Paarisuhe",
+            "url": "https://tarkvanem.ee/paarisuhe/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Pereelu arengufaasid",
+            "url": "https://tarkvanem.ee/paarisuhe/pereelu-arengufaasid/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Perelepitus",
+            "url": "https://tarkvanem.ee/paarisuhe/lahkuminek-ja-lahutus/perelepitus/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "PERETERAPEUT SOOVITAB: Lapsevanemad, lapsed ja suvi",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/pereterapeut-soovitab-lapsevanemad-lapsed-ja-suvi/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Pilootprojektist valmis kohandatud PRIDE-i koolitus eestkosteperedele",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/pilootprojektist-valmis-kohandatud-pride-i-koolitus-eestkosteperedele/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "PRIDE koolitus tulevastele kasuperedele",
+            "url": "https://tarkvanem.ee/kasupere/pride/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "PRIDE-i koolitus – kellele ja miks?",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/pride-i-koolitus-kellele-ja-miks/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Rahunemispaus",
+            "url": "https://tarkvanem.ee/suhe-lapsega/rahunemispaus/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Rahunemisvõtted",
+            "url": "https://tarkvanem.ee/suhe-lapsega/rahunemispaus/votted/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Rohkem huvi, vähem lisanduvaid peresid – Eesti hooldus- ja lapsendajaperede tugevused ja arengud 2025. aastal",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/2025-eesti-hooldus-ja-lapsendajaperede-tugevused-ja-arengud/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Rääkimise kunst",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/raakimise-kunst/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Seks raseduse ajal ja väikelapsega peres",
+            "url": "https://tarkvanem.ee/paarisuhe/seks-raseduse-ajal-ja-vaikelapsega-peres/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Seksuaalkasvatus",
+            "url": "https://tarkvanem.ee/seksuaalkasvatus/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Seksuaalne väärkohtlemine",
+            "url": "https://tarkvanem.ee/seksuaalkasvatus/seksuaalne-vaarkohtlemine/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Seksuaalprobleemid",
+            "url": "https://tarkvanem.ee/paarisuhe/seksuaalprobleemid/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Soovitused perele, kelle laps läheb esimesse klassi",
+            "url": "https://tarkvanem.ee/suhe-lapsega/soovitused-koolimineva-lapse-vanematele/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Soovitused perele, kelle laps läheb lasteaeda",
+            "url": "https://tarkvanem.ee/suhe-lapsega/soovitused-perele-kelle-laps-laheb-lasteaeda/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Soovitused, kuidas rääkida lastega uimastitest",
+            "url": "https://tarkvanem.ee/narkootikumid-artiklid/soovitused-uimastitest-raakimiseks/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Sotsiaalkindlustusamet pakub alates juunikuust asendushoolduse noortele uut teenust",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/asendushoolduse-noorte-uus-teenus/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Stress paarisuhtes: kuidas kriisi kaudu koos kasvada?",
+            "url": "https://tarkvanem.ee/paarisuhe/stress/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Su laps ajab sind venitamisega hulluks? Miks ta seda teeb?",
+            "url": "https://tarkvanem.ee/kasvatamine-artiklid/su-laps-ajab-sind-venitamisega-hulluks-miks-ta-seda-teeb/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Suhe lapsega",
+            "url": "https://tarkvanem.ee/suhe-lapsega/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Suhtekonto",
+            "url": "https://tarkvanem.ee/suhe-lapsega/suhtekonto/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Sünnitusjärgne depressioon",
+            "url": "https://tarkvanem.ee/vaimne-tervis-artiklid/sunnitusjargne-depressioon/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Teismelise ema-isa, millised toitumis- ja liikumisharjumused on teie peres?",
+            "url": "https://tarkvanem.ee/toitumine-artiklid/teismelise-ema-isa-millised-toitumis-ja-liikumisharjumused-on-teie-peres/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Teistmoodi teekond lapsevanemaks",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/teistmoodi-teekond-lapsevanemaks/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Tervislik toitumine: puu- ja köögiviljad",
+            "url": "https://tarkvanem.ee/toitumine-artiklid/puu-ja-koogiviljad/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Tervislik toitumine: pööra tähelepanu!",
+            "url": "https://tarkvanem.ee/toitumine-artiklid/poora-tahelepanu/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Toitumine",
+            "url": "https://tarkvanem.ee/toitumine/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Triple P Beebi",
+            "url": "https://tarkvanem.ee/triplep/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Truudusetus paarisuhtes",
+            "url": "https://tarkvanem.ee/paarisuhe/truudusetus/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Tubaka- ja nikotiinitooted",
+            "url": "https://tarkvanem.ee/tubakas/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Tugiteenused kasuperedele",
+            "url": "https://tarkvanem.ee/kasupere/perede-toetamine-ja-tugiorganisatsioonid/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Tunne huvi oma lapse tegemiste vastu",
+            "url": "https://tarkvanem.ee/ohutus-turvalisus-artiklid/tunne-huvi-oma-lapse-tegemiste-vastu/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Turvaline sport",
+            "url": "https://tarkvanem.ee/liikumine/turvaline-sport/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Turvalise ja ohutu liiklemise põhitõed kooliminevale lapsele ja lapsevanemale",
+            "url": "https://tarkvanem.ee/ohutus-turvalisus-artiklid/turvalise-ja-ohutu-liiklemise-pohitoed-kooliminevale-lapsele-ja-lapsevanemale/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Uurimus: asendus- ja järelhooldus aastatel 2016–2020",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/uurimus-asendus-ja-jarelhooldus-aastatel-20162020/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Uuring: iga aastaga on perest eraldatud laste arv vähenenud ja ka asendushooldusele suunatakse lapsi vähem",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/perest-eraldatud-lapsed-ja-asendushooldus-aastatel-2011-2021/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Vaimne tervis",
+            "url": "https://tarkvanem.ee/vaimne-tervis/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Vaimse tervise abi saamise võimalused",
+            "url": "https://tarkvanem.ee/enda-vajadused/vaimse-tervise-abi-saamise-voimalused/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Vanem peab oskama selgitada: miks see kahjulik on?",
+            "url": "https://tarkvanem.ee/narkootikumid-artiklid/vanem-peab-oskama-selgitada-miks-see-kahjulik-on/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Vanema vajadused",
+            "url": "https://tarkvanem.ee/enda-vajadused/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Vanemate hoiakud mõjutavad laste sõltuvusainete tarvitamise alustamist",
+            "url": "https://tarkvanem.ee/alkohol-artiklid/vanemate-hoiakud-mojutavad-laste-soltuvusainete-tarvitamise-alustamist/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Vanemlusprogramm „Hoolivad isad”",
+            "url": "https://tarkvanem.ee/koolitused/hoolivad-isad/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Vanemlusstiilid",
+            "url": "https://tarkvanem.ee/suhe-lapsega/vanemlusstiilid/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Üheksa soovitust lapsevanemale, kes soovib last spordis toetada",
+            "url": "https://tarkvanem.ee/liikumine-artiklid/9-soovitust-lapsevanemale-kes-soovib-last-spordis-toetada/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Üle 16-aastane liikleja",
+            "url": "https://tarkvanem.ee/ohutus/liiklus/ule-16-a-laps/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Ülevaade 2024: hooldusperede leidmine vajab hoogu juurde",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/hoolduspere-ulevaade-2024/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Ülevaade seadusandlusest",
+            "url": "https://tarkvanem.ee/tubakas/seadusandlus/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Ülevaade: 2022. aastal paigutati hooldusperedesse rohkem lapsi kui varem, aga uutelt peredelt tuli avaldusi vähem",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/ulevaade-2022-aastal-paigutati-hooldusperedesse-rohkem-lapsi-kui-varem/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Ülevaade: 2023. aastal leidis igal nädalal üks laps kodu hooldusperes",
+            "url": "https://tarkvanem.ee/kasupere-artiklid/hoolduspere-ulevaade-2023/",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
             "title": "Alkoholitarvitamise häire",
             "url": "https://www.kliinikum.ee/patsiendiinfo-andmebaas/alkoholitarvitamise-haire/",
             "publisher": "Tartu Ülikooli Kliinikum"
@@ -13167,15 +14350,15 @@
       {
         "kind": "official_documents",
         "name": "studies and guides taken from their publishers' official addresses",
-        "documents": 264,
+        "documents": 279,
         "by_source_type": {
           "research_report": 152,
-          "official_guideline": 84,
-          "information_material": 28
+          "official_guideline": 92,
+          "information_material": 35
         },
         "made_from": "the lists of studies and guides on the institutions' own sites and the documents the newsletter of the journal Sotsiaaltöö pointed to (register/newsletter_documents.json), each downloaded from its publisher's official address",
         "reason": "large files; the official address is the source",
-        "publishers": 33,
+        "publishers": 34,
         "sources": [
           {
             "title": "Huvihariduse kättesaadavus Eestis",
@@ -13593,8 +14776,18 @@
             "publisher": "Sotsiaalkindlustusamet"
           },
           {
+            "title": "Asendushooldusel täisealiseks saavate noorte iseseisvumise ja elluastumise toetamine ning järelhooldusteenuse planeerimine ja korraldamine. Soovituslik juhend kohalikule omavalitsusele (2025. aastal kaasajastatud)",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-06/JH%20juhend%20%28uuendatud%202025%29.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
             "title": "Asendushooldusel täisealiseks saavate noorte toetamine. Juhend asendus- ja järelhooldusteenuse osutajatele",
             "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-06/Asendushooldusel%20t%C3%A4isealiseks%20saavate%20noorte%20toetamine.%20Juhend%20asendus-%20ja%20j%C3%A4relhooldusteenuse%20osutajatele.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Asendushoolduselt iseseisvasse ellu astuvate noorte toetamine: coachiva vestluse vägi",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-06/Coachiva%20vestluse%20v%C3%A4gi_11.06.2025.pdf",
             "publisher": "Sotsiaalkindlustusamet"
           },
           {
@@ -13633,6 +14826,11 @@
             "publisher": "Sotsiaalkindlustusamet"
           },
           {
+            "title": "Enamaarvulise paigutuse kooskõlastuse saamise juhend: lapse paigutamine asendushooldusteenusele, kui peres on seejärel rohkem lapsi, kui üldreegel lubab",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-03/Enamaarvulise%20paigutuse%20koosk%C3%B5lastuse%20saamise%20juhend_0.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
             "title": "Erihoolekandeteenuste kvaliteedijuhis",
             "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-03/Erihoolekandeteenuste_kvaliteedijuhis.pdf",
             "publisher": "Sotsiaalkindlustusamet"
@@ -13655,6 +14853,11 @@
           {
             "title": "Hoolduspere kvaliteedijuhis",
             "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/hoolduspere_kvaliteedijuhis.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Hoolduspere vanema kompetentsimudel ja kompetentside selgitused",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-11/Hoolduspere%20vanema%20kompetentsimudeli%20selgitused.pdf",
             "publisher": "Sotsiaalkindlustusamet"
           },
           {
@@ -13690,6 +14893,11 @@
           {
             "title": "Juhend, kuidas haldusakt vormistada ja põhjendada üldhooldusteenuse näitel mai 2023",
             "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-11/Juhend_kuidas%20haldusakt%20vormistada%20ja%20p%C3%B5hjendada_%C3%BCldhooldusteenuse%20n%C3%A4itel_mai%202023.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Juhis kohalike omavalitsuste spetsialistidele perest eraldatud lapse hooldusperre paigutamisel",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-04/Juhis%20KOV%20spetsialistidele%20perest%20eraldatud%20lapse%20hooldusperre%20paigutamisel_04.04.2024.pdf",
             "publisher": "Sotsiaalkindlustusamet"
           },
           {
@@ -13735,6 +14943,11 @@
           {
             "title": "Koondaruande juhendmaterjal",
             "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-07/Koondaruande%20juhendmaterjal_03.07.2026.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Kooskõlastuse andmine lapse paigutamiseks asendushooldusteenusele vanema või eestkostja nõusolekul. Juhend omavalitsuse spetsialistile",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-03/KOV%20spetsialisti%20juhend.%20Koosk%C3%B5lastuse%20andmine%20lapse%20paigutamiseks%20asendushooldusteenusele%20vanema%C2%A0n%C3%B5usolekul.pdf",
             "publisher": "Sotsiaalkindlustusamet"
           },
           {
@@ -13785,6 +14998,11 @@
           {
             "title": "Meeleoluhäiretega täiskasvanute rehabilitatsioonijuhise koondaruanne",
             "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/Meeleoluh%C3%A4iretega%20t%C3%A4iskasvanute%20rehabilitatsioonijuhise%20koondaruanne.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Minijuhis omavalitsustele olukordadeks, kui sünnib laps, kelle suhtes vanemad soovivad anda nõusoleku lapsendamiseks",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/minijuhis_kov-dele_olukordadeks_kui_sunnib_laps_kelle_suhtes_vanemad_soovivad_anda_nousoleku_lapsendamiseks.pdf",
             "publisher": "Sotsiaalkindlustusamet"
           },
           {
@@ -13950,6 +15168,11 @@
           {
             "title": "Tugiisikuteenuse juhend",
             "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-07/Tugiisikuteenuse%20juhend_04.07.2024.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Tugiteenused kasuperedele. Juhend lastekaitsetöötajatele kasuvanema teenustele suunamiseks",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-05/Juhend%20kohalikule%20omavalitsusele%20kuidas%20suunata%20kasuvanem%20teenustele_26.05.2026.pdf",
             "publisher": "Sotsiaalkindlustusamet"
           },
           {
@@ -14328,6 +15551,41 @@
             "publisher": "Targalt Internetis"
           },
           {
+            "title": "Infomaterjal väikelaste (1–4 a) ohutuse tagamiseks lapsevanematele",
+            "url": "https://tarkvanem.ee/wp-content/uploads/2023/10/infomaterjal-vaikelaste-1-4-ohutuse-tagamiseks-lapsevanematele.pdf",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "Kogu tõde hooldusperest (voldik)",
+            "url": "https://tarkvanem.ee/wp-content/uploads/2021/05/Hoolduspere_voldik_est_WEB.pdf",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "TÖÖLEHT: Kas oskad kuulata?",
+            "url": "https://tarkvanem.ee/wp-content/uploads/2018/05/tarkvanem_tooleht_kas_oskad_kuulata.pdf",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "TÖÖLEHT: Kuidas maha rahuneda?",
+            "url": "https://tarkvanem.ee/wp-content/uploads/2018/05/tarkvanem_tooleht_kuidas_maha_rahuneda.pdf",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "TÖÖLEHT: Kuidas mõjuvad reklaamid ja meedia?",
+            "url": "https://tarkvanem.ee/wp-content/uploads/2018/05/tarkvanem_tooleht_kuidas_mojuvad_reklaamid_ja_meedia.pdf",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "TÖÖLEHT: Lapsega tülis. Kuidas edasi?",
+            "url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_lapsega_tylis_kuidas_edasi.pdf",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
+            "title": "TÖÖLEHT: Mida teha vihaga?",
+            "url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_mida_teha_vihaga.pdf",
+            "publisher": "Tarkvanem (Sotsiaalkindlustusamet)"
+          },
+          {
             "title": "Eesti noorsootöötaja eetikakoodeks",
             "url": "https://eetika.ee/sites/default/files/2026-06/Noorsoot%C3%B6%C3%B6taja%20eetikakoodeks.pdf",
             "publisher": "Tartu Ülikool"
@@ -14496,6 +15754,194 @@
             "title": "Sekkumised koolivägivalla ja koolikiusamise korral",
             "url": "https://www.verge.ee/wp-content/uploads/2023/08/verge_koolikiusjavagivald_A4-3.pdf",
             "publisher": "Verge Eesti"
+          }
+        ]
+      },
+      {
+        "kind": "ethics_materials",
+        "name": "ethics materials of the ethics room",
+        "documents": 35,
+        "by_source_type": {
+          "ethics_material": 35
+        },
+        "made_from": "the package of ethics documents and chapters that config/ethics-sources.json names, language variants among them; prepared and added on 11.10.2026 (corpus v87)",
+        "reason": "the package file names each document, its version and its address",
+        "publishers": 17,
+        "sources": [
+          {
+            "title": "Andmekaitsetingimused ja nõusolek — AKI",
+            "url": "https://www.aki.ee/sites/default/files/documents/2025-07/AKI_Andmekaitsetingimused%20ja%20n%C3%B5usolek_A4_WEB-links-form.pdf",
+            "publisher": "Andmekaitse Inspektsioon"
+          },
+          {
+            "title": "An Ethical Approach to Meeting Needs in Adult Social Care — BASW 2022",
+            "url": "https://www.basw.co.uk/sites/default/files/2024-04/BASW%20England%20Policy%20An%20Ethical%20Approach%20to%20Meeting%20Needs%20in%20Adult%20Social%20Care%20July%202022.pdf",
+            "publisher": "BASW"
+          },
+          {
+            "title": "Code of Ethics | BASW",
+            "url": "https://basw.co.uk/policy-practice/standards/code-ethics",
+            "publisher": "BASW"
+          },
+          {
+            "title": "Lapsehoidja kutse-eetika",
+            "url": "https://www.eswa.eswa.ee/wp-content/uploads/2020/03/Lisa-3-Lapsehoidja-kutse-eetika.pdf",
+            "publisher": "Eesti Lapsehoidjate Kutseliit / ESTA"
+          },
+          {
+            "title": "Code of Ethics for Employees in the Area of Social Affairs — ESTA",
+            "url": "https://www.eswa.ee/wp-content/uploads/2026/05/sotsiaalvaldkonna-tootaja-koodeks_eng.pdf",
+            "publisher": "ESTA"
+          },
+          {
+            "title": "Eetikakoodeks | ESTA",
+            "url": "https://eswa.eswa.ee/eetikakoodeks/",
+            "publisher": "ESTA"
+          },
+          {
+            "title": "Eetikakäsiraamat | ESTA",
+            "url": "https://eswa.eswa.ee/eetikakasiraamat/",
+            "publisher": "ESTA"
+          },
+          {
+            "title": "Кодекс этики работников социальной сферы — ESTA",
+            "url": "https://www.eswa.ee/wp-content/uploads/2026/05/sotsiaalvaldkonna-tootaja-koodeks_RU.pdf",
+            "publisher": "ESTA"
+          },
+          {
+            "title": "Euroopa inimõiguste konventsioon",
+            "url": "https://www.echr.coe.int/documents/604084/839313/Convention_EST.pdf/48a34ce7-a621-b072-765c-ac690cc5a455?download=true&t=1675077940415&version=1.1",
+            "publisher": "Euroopa Inimõiguste Kohus / Euroopa Nõukogu"
+          },
+          {
+            "title": "Global Social Work Statement of Ethical Principles — IASSW 2018",
+            "url": "https://www.iassw-aiets.org/wp-content/uploads/2023/06/Global-Social-Work-Statement-of-Ethical-Principles-IASSW-27-April-2018-01-English.pdf",
+            "publisher": "IASSW"
+          },
+          {
+            "title": "Eetikapõhimõtted sotsiaaltöös — IASSW 2018 (eestikeelne tõlge)",
+            "url": "https://www.eswa.eswa.ee/wp-content/uploads/2020/06/Eetikapohimotted-sotsiaaltoos_Sotsiaaltoo_4_2020.pdf",
+            "publisher": "IASSW / ajakiri Sotsiaaltöö / ESTA"
+          },
+          {
+            "title": "Ethical Challenges for Social Workers during Covid-19: A Global Perspective — 2020",
+            "url": "https://www.ifsw.org/wp-content/uploads/2020/07/2020-06-30-Ethical-Challenges-Covid19-FINAL.pdf",
+            "publisher": "IFSW"
+          },
+          {
+            "title": "Global Social Work Statement of Ethical Principles – International Federation of Social Workers",
+            "url": "https://www.ifsw.org/global-social-work-statement-of-ethical-principles/",
+            "publisher": "IFSW"
+          },
+          {
+            "title": "Pandemic Ethics: A Resource for Social Work Students, Educators and Practitioners — 2021",
+            "url": "https://www.ifsw.org/wp-content/uploads/2021/09/2021-08-27-Pandemic-Ethics-Resource-FINAL.pdf",
+            "publisher": "IFSW"
+          },
+          {
+            "title": "Social Work as a Global Profession: Handbook for Teaching and Learning — 2024",
+            "url": "https://www.ifsw.org/wp-content/uploads/2024/10/2024-10-02-Handbook-Global-SW-FINAL.pdf",
+            "publisher": "IFSW"
+          },
+          {
+            "title": "Global Standards for Social Work Education and Training – International Federation of Social Workers",
+            "url": "https://www.ifsw.org/global-standards-for-social-work-education-and-training/",
+            "publisher": "IFSW / IASSW"
+          },
+          {
+            "title": "AI and Social Work",
+            "url": "https://www.socialworkers.org/About/Ethics/AI-and-Social-Work",
+            "publisher": "NASW"
+          },
+          {
+            "title": "Code of Ethics: English",
+            "url": "https://www.socialworkers.org/Code-of-Ethics",
+            "publisher": "NASW"
+          },
+          {
+            "title": "Social Workers Ethical Responsibilities in Practice Settings",
+            "url": "https://www.socialworkers.org/About/Ethics/Code-of-Ethics/Code-of-Ethics-English/Social-Workers-Ethical-Responsibilities-in-Practice-Settings",
+            "publisher": "NASW"
+          },
+          {
+            "title": "Social Workers' Ethical Responsibilities as Professionals",
+            "url": "https://www.socialworkers.org/About/Ethics/Code-of-Ethics/Code-of-Ethics-English/Social-Workers-Ethical-Responsibilities-as-Professionals",
+            "publisher": "NASW"
+          },
+          {
+            "title": "Social Workers' Ethical Responsibilities to Clients",
+            "url": "https://www.socialworkers.org/About/Ethics/Code-of-Ethics/Code-of-Ethics-English/Social-Workers-Ethical-Responsibilities-to-Clients",
+            "publisher": "NASW"
+          },
+          {
+            "title": "Social Workers' Ethical Responsibilities to Colleagues",
+            "url": "https://www.socialworkers.org/About/Ethics/Code-of-Ethics/Code-of-Ethics-English/Social-Workers-Ethical-Responsibilities-to-Colleagues",
+            "publisher": "NASW"
+          },
+          {
+            "title": "Social Workers' Ethical Responsibilities to the Broader Society",
+            "url": "https://www.socialworkers.org/About/Ethics/Code-of-Ethics/Code-of-Ethics-English/Social-Workers-Ethical-Responsibilities-to-the-Broader-Society",
+            "publisher": "NASW"
+          },
+          {
+            "title": "Social Workers' Ethical Responsibilities to the Social Work Profession",
+            "url": "https://www.socialworkers.org/About/Ethics/Code-of-Ethics/Code-of-Ethics-English/Social-Workers-Ethical-Responsibilities-to-the-Social-Work-Profession",
+            "publisher": "NASW"
+          },
+          {
+            "title": "Standards for Technology in Social Work Practice",
+            "url": "https://www.socialworkers.org/Practice/NASW-Practice-Standards-Guidelines/Standards-for-Technology-in-Social-Work-Practice/",
+            "publisher": "NASW / ASWB / CSWE / CSWA"
+          },
+          {
+            "title": "Convention on the Rights of the Child",
+            "url": "https://www.ohchr.org/sites/default/files/crc.pdf",
+            "publisher": "OHCHR / ÜRO"
+          },
+          {
+            "title": "A dignified death - SCIE",
+            "url": "https://www.scie.org.uk/providing-care/dignity-in-care/death/",
+            "publisher": "SCIE"
+          },
+          {
+            "title": "Dignity: Information and good communication - SCIE",
+            "url": "https://www.scie.org.uk/providing-care/dignity-in-care/communication/",
+            "publisher": "SCIE"
+          },
+          {
+            "title": "Freedom to choose and dignity in care - SCIE",
+            "url": "https://www.scie.org.uk/providing-care/dignity-in-care/freedom/",
+            "publisher": "SCIE"
+          },
+          {
+            "title": "Involvement and inclusion promoting dignity in care - SCIE",
+            "url": "https://www.scie.org.uk/providing-care/dignity-in-care/involvement/",
+            "publisher": "SCIE"
+          },
+          {
+            "title": "Recognising the individual to promote dignity in care - SCIE",
+            "url": "https://www.scie.org.uk/providing-care/dignity-in-care/recognising-the-individual/",
+            "publisher": "SCIE"
+          },
+          {
+            "title": "Vabaühenduste eetikakoodeks - Hea Kodanik",
+            "url": "https://heakodanik.ee/vabauhenduste-eetikakoodeks/",
+            "publisher": "Vabaühenduste Liit"
+          },
+          {
+            "title": "Laste ja noorte õigused ja kohustused | Õiguskantsler",
+            "url": "https://www.oiguskantsler.ee/tegevusvaldkonnad/laste-ja-noorte-oigused/laste-ja-noorte-oigused-ja-kohustused",
+            "publisher": "Õiguskantsler"
+          },
+          {
+            "title": "UN Enable - Text of the Convention on the Rights of Persons with Disabilities",
+            "url": "https://www.un.org/esa/socdev/enable/rights/convtexte.htm",
+            "publisher": "ÜRO"
+          },
+          {
+            "title": "Concluding Observations on the Initial Report of Estonia — CRPD Committee 2021",
+            "url": "https://www.oiguskantsler.ee/sites/default/files/Concluding%20observations%20on%20the%20initial%20report%20of%20Estonia%20%282021%29.pdf",
+            "publisher": "ÜRO puuetega inimeste õiguste komitee / Õiguskantsler"
           }
         ]
       }

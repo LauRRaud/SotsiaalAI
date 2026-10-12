@@ -1,0 +1,118 @@
+{
+ "version": "web-pages-1",
+ "note": "tarkvanem.ee lehed, mis on korpuses käsitsi paigutatuna ega ole igakuises uuenduses (ADR-148, korpus v88; omanik 12.10.2026: „siiski võiks mingi statistika olla?“): hooldusperede aastaülevaated 2022–2025, kaks Sotsiaalministeeriumi analüüsi kokkuvõtet ja üks nõuandeartikkel lastekaitsetöötajale. Valikureegel jätab need välja pealkirjas või aadressis oleva aastaarvu pärast; aastaülevaates on aasta lehe teema, mitte vananemise märk. Iga leht käis muus osas reeglist läbi (isikut nimetavad lõigud on välja võetud). Uuesti lugemisel tuleb sama samm uuesti teha (tmp/rag-v2-tarkvanem/tools/place-dated.mjs).",
+ "pages": [
+  {
+   "source_id": "tarkvanem_artikkel_uurimus_asendus_ja_jarelhooldus_aastatel_20162020",
+   "url": "https://tarkvanem.ee/kasupere-artiklid/uurimus-asendus-ja-jarelhooldus-aastatel-20162020/",
+   "title": "Uurimus: asendus- ja järelhooldus aastatel 2016–2020",
+   "publisher": "Tarkvanem (Sotsiaalkindlustusamet)",
+   "source_type": "web_page",
+   "language": "et",
+   "jurisdiction_level": "NATIONAL",
+   "subpages": false,
+   "region": ".article__content",
+   "keep": [
+    "aside.card-collapse",
+    "aside.article__aside"
+   ],
+   "updated_region": ".article__meta"
+  },
+  {
+   "source_id": "tarkvanem_artikkel_perest_eraldatud_lapsed_ja_asendushooldus_aastatel_2011_2021",
+   "url": "https://tarkvanem.ee/kasupere-artiklid/perest-eraldatud-lapsed-ja-asendushooldus-aastatel-2011-2021/",
+   "title": "Uuring: iga aastaga on perest eraldatud laste arv vähenenud ja ka asendushooldusele suunatakse lapsi vähem",
+   "publisher": "Tarkvanem (Sotsiaalkindlustusamet)",
+   "source_type": "web_page",
+   "language": "et",
+   "jurisdiction_level": "NATIONAL",
+   "subpages": false,
+   "region": ".article__content",
+   "keep": [
+    "aside.card-collapse",
+    "aside.article__aside"
+   ],
+   "updated_region": ".article__meta"
+  },
+  {
+   "source_id": "tarkvanem_artikkel_ulevaade_2022_aastal_paigutati_hooldusperedesse_rohkem_lapsi_kui_varem",
+   "url": "https://tarkvanem.ee/kasupere-artiklid/ulevaade-2022-aastal-paigutati-hooldusperedesse-rohkem-lapsi-kui-varem/",
+   "title": "Ülevaade: 2022. aastal paigutati hooldusperedesse rohkem lapsi kui varem, aga uutelt peredelt tuli avaldusi vähem",
+   "publisher": "Tarkvanem (Sotsiaalkindlustusamet)",
+   "source_type": "web_page",
+   "language": "et",
+   "jurisdiction_level": "NATIONAL",
+   "subpages": false,
+   "region": ".article__content",
+   "keep": [
+    "aside.card-collapse",
+    "aside.article__aside"
+   ],
+   "updated_region": ".article__meta"
+  },
+  {
+   "source_id": "tarkvanem_artikkel_lastekaitsjate_muudid_ja_tegelikkus_2023",
+   "url": "https://tarkvanem.ee/kasupere-artiklid/lastekaitsjate-muudid-ja-tegelikkus-2023/",
+   "title": "„Teismeline on asenduskodus nii harjunud, et ei tahagi enam hooldusperre minna” – lastekaitsjate müüdid ja tegelikkus",
+   "publisher": "Tarkvanem (Sotsiaalkindlustusamet)",
+   "source_type": "web_page",
+   "language": "et",
+   "jurisdiction_level": "NATIONAL",
+   "subpages": false,
+   "region": ".article__content",
+   "keep": [
+    "aside.card-collapse",
+    "aside.article__aside"
+   ],
+   "updated_region": ".article__meta"
+  },
+  {
+   "source_id": "tarkvanem_artikkel_hoolduspere_ulevaade_2023",
+   "url": "https://tarkvanem.ee/kasupere-artiklid/hoolduspere-ulevaade-2023/",
+   "title": "Ülevaade: 2023. aastal leidis igal nädalal üks laps kodu hooldusperes",
+   "publisher": "Tarkvanem (Sotsiaalkindlustusamet)",
+   "source_type": "web_page",
+   "language": "et",
+   "jurisdiction_level": "NATIONAL",
+   "subpages": false,
+   "region": ".article__content",
+   "keep": [
+    "aside.card-collapse",
+    "aside.article__aside"
+   ],
+   "updated_region": ".article__meta"
+  },
+  {
+   "source_id": "tarkvanem_artikkel_hoolduspere_ulevaade_2024",
+   "url": "https://tarkvanem.ee/kasupere-artiklid/hoolduspere-ulevaade-2024/",
+   "title": "Ülevaade 2024: hooldusperede leidmine vajab hoogu juurde",
+   "publisher": "Tarkvanem (Sotsiaalkindlustusamet)",
+   "source_type": "web_page",
+   "language": "et",
+   "jurisdiction_level": "NATIONAL",
+   "subpages": false,
+   "region": ".article__content",
+   "keep": [
+    "aside.card-collapse",
+    "aside.article__aside"
+   ],
+   "updated_region": ".article__meta"
+  },
+  {
+   "source_id": "tarkvanem_artikkel_2025_eesti_hooldus_ja_lapsendajaperede_tugevused_ja_arengud",
+   "url": "https://tarkvanem.ee/kasupere-artiklid/2025-eesti-hooldus-ja-lapsendajaperede-tugevused-ja-arengud/",
+   "title": "Rohkem huvi, vähem lisanduvaid peresid – Eesti hooldus- ja lapsendajaperede tugevused ja arengud 2025. aastal",
+   "publisher": "Tarkvanem (Sotsiaalkindlustusamet)",
+   "source_type": "web_page",
+   "language": "et",
+   "jurisdiction_level": "NATIONAL",
+   "subpages": false,
+   "region": ".article__content",
+   "keep": [
+    "aside.card-collapse",
+    "aside.article__aside"
+   ],
+   "updated_region": ".article__meta"
+  }
+ ]
+}
