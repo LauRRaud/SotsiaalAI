@@ -226,6 +226,23 @@ on märkijal üks lühike rida. Kliendi lehte ei ole elus avatud: uus kuju on n�
 ainult kohalikult. Lahti: lingid kava, käikude ja otsuste alalehele laadivad lehe
 tervikuna; organisatsioonide lehtede rea kõrvaltegevus (`shared.item`, kutsed ja
 rahastus) võib telefonis teise vajutusega samamoodi laiali minna (leitud, mõõtmata).
+**Kliendi lehe transport (12.10 ennelõuna, otse `main`-i):** osa on uuel kihil
+(`components/homeCare/transport/`: reeglid, konks, vaated, kokkupanija). Ees on
+järgmise korraldatud sõidu lause ja sõidud ridadena (millal, kuhu, seis ühe sõnaga;
+neli rida ja „Näita veel”); rida avab sõidu, kus on kogu tekst, mida on vaja ja
+seis. Hooldusjuhi vastus („Korraldatud”, „Ei saa”), uus soov („Telli transport”) ja
+transpordikaart on omaette vaated; tagasivõtmine küsib teist vajutust ja ütleb, mis
+juhtub (vanal lehel üks vajutus). Kuupäev ja kellaaeg on brauseri enda väljad.
+Teine vajutus päringu ajal ei saada teist soovi ega ava teist akent (lukk
+`components/homeCare/client/useSendOnce.js`). Päringud on samad (16 kutset enne ja
+pärast, erinevaid 0); `HomeCareTransport.jsx` on kustutatud. Mõõdetud kohalikult
+mõlema rolliga 1536 × 640 ja 390 × 844 aknas, heledas ja tumedas teemas, eesti,
+inglise ja vene keeles, kuue pika sõidu, kahe sõidu ja tühja seisuga: iga vaade
+mahub (arvutis kuni 494/522, telefonis 844/844), pikendatud loend kerib veidi.
+Kirjutavad päringud vastati brauseris (kehad sama kujuga mis enne); loa lõppemine
+pooleli sooviga jätab teksti alles. **Mõõtmise leid:** tume teema kannab nime
+`mid`; teema `dark` annab päeval heleda (automaatne), nii et varasemad päevased
+„tumeda teema” mõõtmised olid tegelikult heledad.
 **Vaadete teste ei ole:** unit-testid kustutati omaniku otsusega 11.10 öösel (#725,
 #726, reegel failis `AGENTS.md`), nende hulgas ümberehituse ajal tehtud laua,
 hooldaja päeva, klientide ja kliendi osade testid; uusi ei kirjutata. Tõend on

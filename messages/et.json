@@ -16095,7 +16095,16 @@
       "arrange_save": "Märgi korraldatuks",
       "decline_save": "Salvesta vastus",
       "card_open": "Prindi transpordikaart",
-      "card_hint": "Transpordikaart on leht transpordi korraldajale: nimi, aadress, telefon, eesolevad sõidud ja need püsikaardi read, mille juures on märge „nähtav autojuhile”. Muud kaardi read sinna ei lähe."
+      "card_hint": "Transpordikaart on leht transpordi korraldajale: nimi, aadress, telefon, eesolevad sõidud ja need püsikaardi read, mille juures on märge „nähtav autojuhile”. Muud kaardi read sinna ei lähe.",
+      "chips": {
+        "REQUESTED": "ootab vastust",
+        "ARRANGED": "korraldatud",
+        "DECLINED": "ei saa"
+      },
+      "card_title": "Transpordikaart",
+      "needs_short": "Vaja on",
+      "withdraw_note": "Soov võetakse tagasi ja kaob nimekirjast. Vajuta uuesti, kui oled kindel.",
+      "withdraw_arranged_note": "Sõit võetakse tagasi ja kaob nimekirjast. Tühista see ka transpordi korraldaja juures. Vajuta uuesti, kui oled kindel."
     },
     "transport_card": {
       "doc": {

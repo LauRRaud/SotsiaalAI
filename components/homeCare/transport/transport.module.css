@@ -1,0 +1,46 @@
+/* Kliendi lehe transport. Read, märk, lahtrid, väljad ja laused on
+   organisatsioonide lehtede ühised (../../org/org.module.css); siin on ainult
+   see, mis on transpordil oma. */
+
+/* Kokku pandud lause algab väikese tähega sõnaga („korraldatud: …", „ootab …"). */
+.made::first-letter {
+  text-transform: uppercase;
+}
+
+/* Sõidu rida: millal ja selle all kuhu; paremal seis ühe sõnaga. */
+.main {
+  composes: main from "../day/day.module.css";
+}
+
+/* Päev ja kellaaeg: telefonis üksteise all, laiemal pinnal kõrvuti. Kui üks
+   silt murdub kahele reale, jäävad väljad ikka kohakuti. */
+.when {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.65rem 1.4rem;
+}
+/* Lühike väli on nii lai kui sisu (kaks klassi: rea enda laius, teisest failist,
+   ei tohi võita): silt võib olla pikem kui väli. */
+.short.short {
+  max-width: none;
+}
+.short input {
+  width: 11rem;
+  max-width: 100%;
+}
+/* Kuhu, mida on vaja, märkus: lause väli. */
+.wide.wide {
+  max-width: 34rem;
+}
+
+@container (min-width: 34rem) {
+  /* Laiemal pinnal on rida üks rida: millal ja kuhu kõrvuti; veerud on kõigil
+     ridadel kohakuti. */
+  .ride .main {
+    grid-template-columns: 13rem minmax(0, 1fr);
+    align-items: baseline;
+    gap: 0 0.9rem;
+  }
+}

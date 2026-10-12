@@ -16095,7 +16095,16 @@
       "arrange_save": "Mark as arranged",
       "decline_save": "Save the answer",
       "card_open": "Print the transport card",
-      "card_hint": "The transport card is a page for the transport organiser: name, address, phone, the rides ahead and the standing card lines marked \"visible to the driver\". Other card lines do not go there."
+      "card_hint": "The transport card is a page for the transport organiser: name, address, phone, the rides ahead and the standing card lines marked \"visible to the driver\". Other card lines do not go there.",
+      "chips": {
+        "REQUESTED": "awaiting answer",
+        "ARRANGED": "arranged",
+        "DECLINED": "not possible"
+      },
+      "card_title": "Transport card",
+      "needs_short": "Needed",
+      "withdraw_note": "The request is withdrawn and leaves the list. Press again if you are sure.",
+      "withdraw_arranged_note": "The ride is withdrawn and leaves the list. Cancel it with the transport organiser as well. Press again if you are sure."
     },
     "transport_card": {
       "doc": {

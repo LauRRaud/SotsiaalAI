@@ -18,7 +18,7 @@ import { continuityImpact } from "@/lib/homeCare/continuityImpact";
 
 import { minutesLabel } from "./HomeCareDecisionView";
 import { keyWhere } from "./keys/keyRows";
-import { rideText } from "./HomeCareTransport";
+import { rideText } from "./transport/transportRows";
 import HomeCareOutbox from "./HomeCareOutbox";
 import { planDayLabel } from "./HomeCarePlanView";
 import { clientHref, formatTime, homeCareBase, useHomeCareApi } from "./homeCareClient";

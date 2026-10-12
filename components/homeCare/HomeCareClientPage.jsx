@@ -34,7 +34,6 @@ import HomeCareChangeSignals from "./HomeCareChangeSignals";
 import HomeCareClientForm from "./HomeCareClientForm";
 import HomeCareControlCalls from "./HomeCareControlCalls";
 import HomeCareDecisionNotices from "./HomeCareDecisionNotices";
-import HomeCareTransport from "./HomeCareTransport";
 import EntryFlow from "./entry/EntryFlow";
 import HomeCareReasonForm from "./HomeCareReasonForm";
 import HomeCareRelatives from "./HomeCareRelatives";
@@ -61,6 +60,7 @@ import ClientSafety from "./safety/ClientSafety";
 import { safetyRights } from "./safety/safetyRows";
 import ClientSlots from "./slots/ClientSlots";
 import ClientSupplies from "./supplies/ClientSupplies";
+import ClientTransport from "./transport/ClientTransport";
 import { sheetRights } from "./slots/slotRows";
 
 function sortEntries(items) {
@@ -881,20 +881,24 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
               )
             : null}
 
-          {/* Transport (K5-w): eesolevad sõidud ja soovid; „Telli transport" meeskonnale ja hooldusjuhile. */}
-          {part(
-            "transport",
-            <HomeCareTransport
-              organizationId={organizationId}
-              clientId={client.id}
-              initial={data.transport || null}
-              canRequest={canWrite && access.canEditCard && !ended}
-              isCoordinator={access.isCoordinator}
-              canWrite={canWrite}
-              today={data.today || ""}
-              onChanged={(transport) => setData((now) => ({ ...now, transport }))}
-            />
-          )}
+          {/* Transport (K5-w): eesolevad sõidud ja soovid; „Telli transport" meeskonnale ja hooldusjuhile.
+              Osa on lehel kogu aja (pooleli soov elab selle konksus) ja joonistatakse, kui ta on ees. */}
+          {sees("transport")
+            ? slot(
+                "transport",
+                <ClientTransport
+                  active={current === "transport"}
+                  organizationId={organizationId}
+                  clientId={client.id}
+                  title={t(viewNameKey("transport"))}
+                  name={client.displayName}
+                  initial={data.transport || null}
+                  who={{ canRequest: canWrite && access.canEditCard && !ended, isCoordinator: access.isCoordinator, canWrite }}
+                  today={data.today || ""}
+                  onChanged={(transport) => setData((now) => ({ ...now, transport }))}
+                />
+              )
+            : null}
 
           {part(
             "relatives",
