@@ -41,7 +41,6 @@ import HomeCareRelatives from "./HomeCareRelatives";
 import HomeCareNearMiss from "./HomeCareNearMiss";
 import HomeCareNoAnswer from "./HomeCareNoAnswer";
 import HomeCareRepresentatives from "./HomeCareRepresentatives";
-import HomeCareSupplies from "./HomeCareSupplies";
 import HomeCareTeam from "./HomeCareTeam";
 import {
   ACCESS_REASON_REQUIRED,
@@ -61,6 +60,7 @@ import { PlanView } from "./plan/PlanViews";
 import ClientSafety from "./safety/ClientSafety";
 import { safetyRights } from "./safety/safetyRows";
 import ClientSlots from "./slots/ClientSlots";
+import ClientSupplies from "./supplies/ClientSupplies";
 import { sheetRights } from "./slots/slotRows";
 
 function sortEntries(items) {
@@ -861,19 +861,25 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
               )
             : null}
 
-          {/* Varud kliendi kodus (K4-e): seisu märgib igaüks, kes siin käib. */}
-          {part(
-            "supplies",
-            <HomeCareSupplies
-              organizationId={organizationId}
-              clientId={client.id}
-              initial={data.supplies || []}
-              timeZone={timeZone}
-              canWrite={canWrite && !ended}
-              canManage={access.isCoordinator}
-              onChanged={(supplies) => setData((now) => ({ ...now, supplies }))}
-            />
-          )}
+          {/* Varud kliendi kodus (K4-e): seisu märgib igaüks, kes siin käib.
+              Osa on lehel kogu aja (pooleli märkus elab selle konksus) ja joonistatakse, kui ta on ees. */}
+          {sees("supplies")
+            ? slot(
+                "supplies",
+                <ClientSupplies
+                  active={current === "supplies"}
+                  organizationId={organizationId}
+                  clientId={client.id}
+                  title={t(viewNameKey("supplies"))}
+                  name={client.displayName}
+                  initial={data.supplies || []}
+                  timeZone={timeZone}
+                  canWrite={canWrite && !ended}
+                  canManage={access.isCoordinator}
+                  onChanged={(supplies) => setData((now) => ({ ...now, supplies }))}
+                />
+              )
+            : null}
 
           {/* Transport (K5-w): eesolevad sõidud ja soovid; „Telli transport" meeskonnale ja hooldusjuhile. */}
           {part(

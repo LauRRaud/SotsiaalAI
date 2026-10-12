@@ -187,19 +187,59 @@ kirje jäi seadmesse ootele, tagasi lükatud kirje sai kustutada. 12 vana kihi l
 näitavad sama järjekorda veel vana kastina (`HomeCareOutbox.jsx`), kuni nende ühik
 tuleb. Lahti: pooleli parandus kaob, kui avada teine kirje; avatud kirjes ei ole
 kliendi nime; kliendi lehte ei ole elus avatud.
+**Kliendi lehe igapäevased osad (12.10 hommik, otse `main`-i, seitse lükkamist
+`b673f0cb` kuni varude lükkamine, elus):** hoolduskava, käigud, otsus ja maht,
+ohutus, võtmed, raha ja varud on uuel kihil; iga osa on oma kaustas
+(`components/homeCare/{plan,slots,decision,safety,keys,money,supplies}/`: reeglid,
+vaated, kujundus, olekuga osal konks ja väike kokkupanija). Olekuta osa (hoolduskava,
+otsus ja maht) joonistatakse ainult siis, kui ta on ees; olekuga osa on lehel kogu
+aja, aga joonistab ennast ainult siis, kui ta on ees (`active`), nii et pooleli
+vorm ei kao vaate vahetusel ega loa lõppemisel ja vana peidetud hoidmine jäi ära.
+Hoolduskava: toimingud üks real, laial paneelil koduabi ja isikuabi kõrvuti, ridu ei
+lõigata. Käigud: eile ja täna, korduvad käigud nädalapäevade kaupa; lehed kliendi
+koju (külmkapileht, kuuleht) on nupu taga omaette vaade. Otsus ja maht: read
+nimetuse ja väärtusega, osutatud aeg selle kõrval. Ohutus: viis teemat ridadena
+(eeltingimused, ohutuskaart, tavaline seis, töö iseloom, kriisivalmidus), igal
+lugemisvaade ja vorm omaette vaatena; ohutuskaardi kümme küsimust on read ja üks
+küsimus korraga, kriisivalmiduse hinnang kaks vaadet. Võtmed: rida avab võtme,
+üleandmine on oma vaade. Raha: jääk, neli rida ja „Näita veel”, uus rida oma
+vaatena; see on arvestus, mitte makse. Varud: seis ühe puudutusega, märkus ja
+jälgimise lõpetamine varu enda vaates. **Kustutav või lõpetav tegevus küsib nüüd
+teist vajutust** samal lahtril ja ütleb, mis juhtub (eeltingimuse lõpetamine, töö
+iseloomu märke ja kriisihinnangu mahavõtmine, võtme tagastamine ja kadumine, raha
+rea tühistamine, varu jälgimise lõpetamine); vanal lehel oli see üks vajutus.
+Ohutuse viie teema salvestus jõuab nüüd ka lehe andmetesse (plaadi rida ja „Ukse
+taga” rida järgivad eeltingimuse lisamist ja lõpetamist). Päringud on samad
+(`calls-all.mjs`: 0 erinevat igas lükkamises); 13 vana komponenti on kustutatud,
+`HomeCarePlanView.jsx` ja `HomeCareDecisionView.jsx` jäid kava ja otsuste
+alalehele. Mõõdetud kohalikult mõlema rolliga 1536 × 640 ja 390 × 844 aknas,
+heledas ja tumedas teemas, eesti, inglise ja vene keeles, raskete andmete ja tühja
+seisuga; kirjutavad päringud vastati brauseris (kehad sama kujuga mis enne), päris
+salvestust proovibaasi ei tehtud. Tavaliste andmetega mahub iga vaade; kerivad
+kümne pika toiminguga kava, pikendatud raha loend ja leping, kus kõik väljad on
+pikad (umbes 30 px üle). Mõõtmine muutis kuju mitmes kohas: kava number läks nime
+kõrvale (kuue toiminguga kava oli 526/522), kriisivalmiduse vorm kaheks vaateks
+(telefonis 940/844), ohutuskaardi küsimuse real on vastus nime kõrval (kümme rida
+olid telefonis 1066 kuni 1154), raha rea tühistamine läks rea enda vaatesse (rea
+kõrval oli rida telefonis kuni 148 px ja teine vajutus lõhkus loendi), varu real
+on märkijal üks lühike rida. Kliendi lehte ei ole elus avatud: uus kuju on nähtud
+ainult kohalikult. Lahti: lingid kava, käikude ja otsuste alalehele laadivad lehe
+tervikuna; organisatsioonide lehtede rea kõrvaltegevus (`shared.item`, kutsed ja
+rahastus) võib telefonis teise vajutusega samamoodi laiali minna (leitud, mõõtmata).
 **Vaadete teste ei ole:** unit-testid kustutati omaniku otsusega 11.10 öösel (#725,
 #726, reegel failis `AGENTS.md`), nende hulgas ümberehituse ajal tehtud laua,
 hooldaja päeva, klientide ja kliendi osade testid; uusi ei kirjutata. Tõend on
 brauseris mõõtmine ja läbivajutamine, päringute võrdlus, lint ja kataloogi kontroll.
-**Järgmine ühik** on kliendi lehe igapäevased osad (hoolduskava, käigud, otsus ja maht,
-ohutus, võtmed, raha, varud, transport, lähedased, meeskond); siis hooldusjuhi osa ja kliendi alalehed, päevaplaan,
+**Järgmine** on kliendi lehe ülejäänud igapäevased osad (transport, lähedased ja
+esindusõigus, meeskond) ning osa „Ukse taga” kaks vana alavaadet (kaardi muutmine,
+„Kui uks ei avane”); siis hooldusjuhi osa ja kliendi alalehed, päevaplaan,
 tähtajad ja ülevaade, kuu ja väljavõtted, registrid, vana kihi eemaldamine.
 Päringud, `app/api/**` ja `lib/**` jäävad puutumata (ainus erand oli infotekstide
 fail). Mõõtmine muutis kavandit kahes kohas: viis täispikka käigurida ei mahtunud
 pika päevaga ekraanile (järgmine käik on täies pikkuses, kolm järgmist ühel real)
 ja laua rühmas on kuni kuus plaati. Vaadet „Täna” ei ole elus nähtud: omaniku
 kontol ei ole oma käike; kohalikult on see mõõdetud hooldaja kontoga. Reeglid on
-puhastes failides `components/homeCare/{desk,day,clients,client,entry,diary,outbox}/`. Mõõdud, lõksud,
+puhastes failides `components/homeCare/{desk,day,clients,client,entry,diary,outbox,plan,slots,decision,safety,keys,money,supplies}/`. Mõõdud, lõksud,
 kohaliku eelvaate retsept ja ühikute järjekord on mälumärkmes
 `koduteenus-views-mockup` ja seansside ühises märkmes
 `side-session-notes/local_b3b842f1-182e-48a3-bcc3-6878e50813a2/koduteenus-vaadete-kavand.md`.

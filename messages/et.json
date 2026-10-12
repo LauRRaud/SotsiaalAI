@@ -15469,7 +15469,6 @@
       "unchecked": "seisu ei ole veel märgitud",
       "checked": "märkis {name} {when}",
       "responsible": "täiendab {name}",
-      "note_button": "Lisa märkus",
       "note_label": "Märkus (näiteks: jätkub umbes kolmeks päevaks)",
       "note_save": "Salvesta märkus",
       "track": "Lisa jälgitav varu",
@@ -15479,7 +15478,9 @@
       "save": "Salvesta",
       "cancel": "Loobu",
       "untrack": "Lõpeta jälgimine",
-      "open_line": "{kind}: {state} · täiendab {name} · märgitud {when}"
+      "open_line": "{kind}: {state} · täiendab {name} · märgitud {when}",
+      "list_hint": "Üks puudutus salvestab seisu.",
+      "untrack_note": "Selle varu seisu enam ei küsita ja senine seis kustub. Vajuta uuesti, kui oled kindel."
     },
     "no_answer": {
       "title": "Kui uks ei avane",

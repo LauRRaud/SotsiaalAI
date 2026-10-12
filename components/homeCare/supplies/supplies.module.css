@@ -1,0 +1,58 @@
+/* Kliendi lehe varud. Read, märk, lahtrid, väljad ja laused on organisatsioonide
+   lehtede ühised (../../org/org.module.css); siin on ainult see, mis on varudel oma. */
+
+/* Kokku pandud rida algab väikese tähega sõnaga („küttepuud", „märkis …"). */
+.made::first-letter {
+  text-transform: uppercase;
+}
+
+/* Varu: rida (nimi ja seis sõnadega) ja seisu lahtrid. Telefonis on lahtrid rea
+   all, laiemal pinnal rea kõrval. */
+.supplies {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+.supply {
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  display: grid;
+  gap: 0.3rem 0.8rem;
+}
+.main {
+  composes: main from "../day/day.module.css";
+}
+/* Rea teine rida murdub (märkus, kes märkis, kes täiendab). */
+.sub {
+  composes: sub from "../day/day.module.css";
+}
+/* Seisu lahtrid: kolm ühelaiust lahtrit, valitud seis on tugevam. */
+.states {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+.state {
+  composes: option from "../../stage/ChoiceRow.module.css";
+}
+
+/* Märkuse ja täiendaja väli on lause (kaks klassi: rea enda laius, teisest
+   failist, ei tohi võita). */
+.note.note {
+  max-width: 30rem;
+}
+
+@container (min-width: 34rem) {
+  .supply {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+  }
+  /* Kes seisu märkida ei saa, näeb ainult rida: see on kogu laiuses. */
+  .supply[data-plain="1"] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -15469,7 +15469,6 @@
       "unchecked": "state not marked yet",
       "checked": "marked by {name} {when}",
       "responsible": "refilled by {name}",
-      "note_button": "Add a note",
       "note_label": "Note (for example: enough for about three days)",
       "note_save": "Save the note",
       "track": "Follow another supply",
@@ -15479,7 +15478,9 @@
       "save": "Save",
       "cancel": "Cancel",
       "untrack": "Stop following",
-      "open_line": "{kind}: {state} · refilled by {name} · marked {when}"
+      "open_line": "{kind}: {state} · refilled by {name} · marked {when}",
+      "list_hint": "One touch saves the state.",
+      "untrack_note": "The state of this supply is no longer asked and the state so far is deleted. Press again if you are sure."
     },
     "no_answer": {
       "title": "If the door does not open",
