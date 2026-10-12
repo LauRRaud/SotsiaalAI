@@ -1,0 +1,26 @@
+/* Kliendi lehe meeskond. Read, märk, lahtrid ja laused on organisatsioonide
+   lehtede ühised (../../org/org.module.css); siin on ainult see, mis on
+   meeskonnal oma. */
+
+/* Liikme rida on üks veerg: nimi ja selle märk (kaks klassi: rea enda veerud,
+   teisest failist, ei tohi võita). */
+.member.member {
+  grid-template-columns: minmax(0, 1fr);
+}
+/* Nimi ja märk samal real; kui ei mahu, jääb märk nime alla. */
+.who {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.8rem;
+}
+
+/* Loendi rida: pealkiri ja selle all aeg, märkus ja kes muutis; read murduvad,
+   midagi ei lõigata. */
+.main {
+  composes: main from "../day/day.module.css";
+}
+.sub {
+  composes: sub from "../day/day.module.css";
+}

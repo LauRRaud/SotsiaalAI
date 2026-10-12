@@ -38,7 +38,6 @@ import EntryFlow from "./entry/EntryFlow";
 import HomeCareReasonForm from "./HomeCareReasonForm";
 import HomeCareNearMiss from "./HomeCareNearMiss";
 import HomeCareNoAnswer from "./HomeCareNoAnswer";
-import HomeCareTeam from "./HomeCareTeam";
 import {
   ACCESS_REASON_REQUIRED,
   HomeCareAccessProvider,
@@ -55,6 +54,7 @@ import OutboxPanel, { OutboxNotice } from "./outbox/OutboxPanel";
 import { planDayLabel, planSheet, planSignals } from "./plan/planRows";
 import { PlanView } from "./plan/PlanViews";
 import ClientRelatives from "./relatives/ClientRelatives";
+import ClientTeam from "./team/ClientTeam";
 import ClientSafety from "./safety/ClientSafety";
 import { safetyRights } from "./safety/safetyRows";
 import ClientSlots from "./slots/ClientSlots";
@@ -368,7 +368,6 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
   const canWrite = who.canWrite;
   const canAddEntry = who.canAddEntry;
   const filterActive = filterActiveOf(applied);
-  const activeTeam = team.filter((member) => member.active);
   const format = {
     t,
     day: planDayLabel,
@@ -918,56 +917,26 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
               )
             : null}
 
-          {part(
-            "team",
-            <>
-              <section className="hc-section" aria-label={t("home_care.team.title")}>
-                {access.isCoordinator ? (
-                  <HomeCareTeam organizationId={organizationId} clientId={client.id} team={team} canWrite={canWrite} onChange={(next) => setData((now) => ({ ...now, team: next }))} />
-                ) : (
-                  <p className="hc-sub">{activeTeam.length > 0 ? activeTeam.map((member) => member.name).join(", ") : t("home_care.team.empty")}</p>
-                )}
-              </section>
-
-              {recentOpeners.length > 0 ? (
-                <section className="hc-section" aria-labelledby={`${fieldId}-openers`}>
-                  <h2 className="hc-section-title" id={`${fieldId}-openers`}>
-                    {t("home_care.client.opened_recently")}
-                  </h2>
-                  <ul className="hc-list hc-list--plain">
-                    {recentOpeners.map((opener, index) => (
-                      <li key={`${opener.at}-${index}`} className="hc-entry__meta">
-                        {opener.name} · {t(`home_care.client.basis.${opener.basis}`)} · {formatDateTime(opener.at, timeZone)}
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-              ) : null}
-
-              {statusHistory.length > 0 ? (
-                <section className="hc-section" aria-labelledby={`${fieldId}-status-history`}>
-                  <h2 className="hc-section-title" id={`${fieldId}-status-history`}>
-                    {t("home_care.client.status_history")}
-                  </h2>
-                  <ul className="hc-list hc-list--plain">
-                    {statusHistory.map((change) => (
-                      <li key={change.id} className="hc-entry__meta">
-                        {[
-                          formatDateTime(change.changedAt, timeZone),
-                          t(`home_care.status.${change.toStatus}`),
-                          change.reason ? t(`home_care.status_reason.${change.toStatus}.${change.reason}`) : null,
-                          change.note,
-                          change.actorName
-                        ]
-                          .filter(Boolean)
-                          .join(" · ")}
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-              ) : null}
-            </>
-          )}
+          {/* Meeskond: hooldusjuht lisab ja eemaldab, teised näevad aktiivseid nimesid; „Viimati avasid" ja „Seisu ajalugu" on
+              meeskonna vaate ridade taga. Osa on lehel kogu aja (pooleli valik elab selle konksus) ja joonistatakse, kui ta on ees. */}
+          {sees("team")
+            ? slot(
+                "team",
+                <ClientTeam
+                  active={current === "team"}
+                  organizationId={organizationId}
+                  clientId={client.id}
+                  title={t(viewNameKey("team"))}
+                  name={client.displayName}
+                  team={team}
+                  openers={recentOpeners}
+                  history={statusHistory}
+                  who={{ canWrite, isCoordinator: access.isCoordinator }}
+                  timeZone={timeZone}
+                  onChange={(next) => setData((now) => ({ ...now, team: next }))}
+                />
+              )
+            : null}
 
           {part(
             "manage",

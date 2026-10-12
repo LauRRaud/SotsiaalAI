@@ -14064,7 +14064,11 @@
       "add": "Add",
       "remove": "Remove",
       "inactive": "no longer active",
-      "hint": "The team sees the client without giving a reason. Other carers open the page with a reason."
+      "hint": "The team sees the client without giving a reason. Other carers open the page with a reason.",
+      "pick_label": "Worker",
+      "add_none": "Everyone in the organisation is already on the team.",
+      "remove_note": "The worker is removed from the team and the history stays. Press again if you are sure.",
+      "list_count": "{count} entries"
     },
     "entry": {
       "new_title": "New entry",
