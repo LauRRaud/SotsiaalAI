@@ -1,7 +1,7 @@
 import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 
-import HomeCareClientImport from "@/components/homeCare/HomeCareClientImport";
+import ClientImport from "@/components/homeCare/clientImport/ClientImport";
 import { coordinatorScope } from "@/lib/homeCare/access";
 import { listClientUnitOptions } from "@/lib/homeCare/clients";
 import { isOrgError } from "@/lib/org/errors";
@@ -31,5 +31,5 @@ export default async function HomeCareClientImportPage({ params }) {
     notFound();
   }
 
-  return <HomeCareClientImport context={auth.context} unitOptions={unitOptions} />;
+  return <ClientImport context={auth.context} unitOptions={unitOptions} />;
 }

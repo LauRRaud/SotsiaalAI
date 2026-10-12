@@ -216,7 +216,8 @@ export function DetailView({ title, question, head, notices = [], facts = [], bo
 /**
  * Väli. `field`: { kind, key, label, value, onChange, ... }:
  *  - "text":  { max (pikkus märkides), required, type ("text" | "tel" | "number"), inputMode, min, maxValue (arvuväljal), size ("wide" | "name" | "short") }
- *  - "area":  { max, rows, required, readOnly }
+ *  - "area":  { max, rows, required, readOnly, spellCheck }
+ *  - "file":  { accept, onChange(event) } (faili valik; fail loetakse kutsuja poolel)
  *  - "day" / "time": { min, max, required }
  *  - "pick":  { options: [{ value, label }], columns }
  *  - "multi": { label, options: [{ value, label, aria }] } (mitu valikut korraga lühikeste lahtritena; `value` on valitute loend, `onChange(value)` lülitab ühe)
@@ -263,7 +264,15 @@ function Field({ field }) {
     return (
       <label className={`${shared.line} ${styles.wide}`}>
         <span className={shared.fieldLabel}>{field.label}</span>
-        <Textarea className={shared.input} value={field.value} onChange={(event) => field.onChange(event.target.value)} rows={field.rows || 3} maxLength={field.max} required={field.required} readOnly={field.readOnly} data-part-field={mark} />
+        <Textarea className={shared.input} value={field.value} onChange={(event) => field.onChange(event.target.value)} rows={field.rows || 3} maxLength={field.max} required={field.required} readOnly={field.readOnly} spellCheck={field.spellCheck} data-part-field={mark} />
+      </label>
+    );
+  }
+  if (field.kind === "file") {
+    return (
+      <label className={`${shared.line} ${styles.wide}`}>
+        <span className={shared.fieldLabel}>{field.label}</span>
+        <input className={shared.input} type="file" accept={field.accept} onChange={field.onChange} data-part-field={mark} />
       </label>
     );
   }
