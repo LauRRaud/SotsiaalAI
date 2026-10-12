@@ -48,3 +48,21 @@
   min-width: 0;
   max-width: 34rem;
 }
+
+/* Mitu valikut korraga lühikeste lahtritena (nädalapäevad): üks rida, lahtrid on nii kitsad kui sisu. */
+.multi {
+  min-width: 0;
+  max-width: 30rem;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+.multiCell.multiCell {
+  min-width: 0;
+}
+/* Valitud lahter: tugevam raam ja kaal, mitte ainult värv. */
+.multiCell[aria-pressed="true"] {
+  color: var(--text-warm);
+  font-weight: 620;
+  border-color: color-mix(in srgb, var(--text-warm) 72%, transparent);
+}

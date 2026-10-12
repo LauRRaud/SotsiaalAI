@@ -15195,7 +15195,8 @@
       "today_title": "Today",
       "done_badge": "done",
       "next_title": "Next days",
-      "next_absent": "absence marked"
+      "next_absent": "absence marked",
+      "end_note": "The visit ends as of today and the plan of past days stays. Press again if you are sure."
     },
     "day": {
       "link": "Day plan",

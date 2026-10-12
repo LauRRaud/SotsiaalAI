@@ -190,6 +190,7 @@ export function DetailView({ title, question, head, notices = [], facts = [], bo
  *  - "area":  { max, rows, required, readOnly }
  *  - "day" / "time": { min, max, required }
  *  - "pick":  { options: [{ value, label }], columns }
+ *  - "multi": { label, options: [{ value, label, aria }] } (mitu valikut korraga lühikeste lahtritena; `value` on valitute loend, `onChange(value)` lülitab ühe)
  *  - "check": { label } (märkeruut; `value` on tõene või väär)
  *  - "note":  { text } (vaikne rida)
  */
@@ -197,6 +198,28 @@ function Field({ field }) {
   const mark = field.key;
   if (field.kind === "note") return <p className={shared.quiet}>{field.text}</p>;
   if (field.kind === "pick") return <PickOne label={field.label} options={field.options} value={field.value} onChange={field.onChange} columns={field.columns || 3} />;
+  if (field.kind === "multi") {
+    return (
+      <div className={shared.group} role="group" aria-label={field.label}>
+        <p className={shared.groupTitle}>{field.label}</p>
+        <div className={styles.multi}>
+          {field.options.map((option) => (
+            <button
+              key={option.value}
+              type="button"
+              className={`${shared.cellButton} ${styles.multiCell}`}
+              aria-pressed={field.value.includes(option.value)}
+              aria-label={option.aria || undefined}
+              data-part-multi={option.value}
+              onClick={() => field.onChange(option.value)}
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  }
   if (field.kind === "check") return <Checkbox className={styles.check} label={field.label} checked={Boolean(field.value)} disabled={field.disabled} onChange={field.onChange} data-part-field={mark} />;
   if (field.kind === "area") {
     return (

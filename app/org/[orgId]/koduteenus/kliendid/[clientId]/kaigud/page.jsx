@@ -1,7 +1,7 @@
 import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 
-import HomeCareSlots from "@/components/homeCare/HomeCareSlots";
+import SlotEditor from "@/components/homeCare/slotEditor/SlotEditor";
 import { getSlotEditor } from "@/lib/homeCare/slots";
 import { isOrgError } from "@/lib/org/errors";
 
@@ -30,5 +30,5 @@ export default async function HomeCareSlotsPage({ params }) {
     notFound();
   }
 
-  return <HomeCareSlots context={auth.context} initial={initial} />;
+  return <SlotEditor context={auth.context} initial={initial} />;
 }

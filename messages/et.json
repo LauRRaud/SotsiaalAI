@@ -15195,7 +15195,8 @@
       "today_title": "Täna",
       "done_badge": "tehtud",
       "next_title": "Järgmised päevad",
-      "next_absent": "puudumine märgitud"
+      "next_absent": "puudumine märgitud",
+      "end_note": "Käik lõpeb tänasega, möödunud päevade plaan jääb alles. Vajuta uuesti, kui oled kindel."
     },
     "day": {
       "link": "Päevaplaan",
