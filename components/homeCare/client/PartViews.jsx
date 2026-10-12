@@ -180,7 +180,7 @@ export function DetailView({ title, question, head, notices = [], facts = [], bo
 
 /**
  * Väli. `field`: { kind, key, label, value, onChange, ... }:
- *  - "text":  { max, required, type ("text" | "tel" | "number"), size ("wide" | "name" | "short") }
+ *  - "text":  { max (pikkus märkides), required, type ("text" | "tel" | "number"), inputMode, min, maxValue (arvuväljal), size ("wide" | "name" | "short") }
  *  - "area":  { max, rows, required, readOnly }
  *  - "day" / "time": { min, max, required }
  *  - "pick":  { options: [{ value, label }], columns }
@@ -212,14 +212,26 @@ function Field({ field }) {
   return (
     <label className={`${shared.line} ${size}`}>
       <span className={shared.fieldLabel}>{field.label}</span>
-      <input className={shared.input} type={field.type || "text"} value={field.value} onChange={(event) => field.onChange(event.target.value)} maxLength={field.max} required={field.required} autoComplete="off" data-part-field={mark} />
+      <input
+        className={shared.input}
+        type={field.type || "text"}
+        inputMode={field.inputMode}
+        min={field.min}
+        max={field.maxValue}
+        value={field.value}
+        onChange={(event) => field.onChange(event.target.value)}
+        maxLength={field.max}
+        required={field.required}
+        autoComplete="off"
+        data-part-field={mark}
+      />
     </label>
   );
 }
 
 /**
  * Vorm. `form`: { id, onSubmit }; `fields`: väljade kirjeldused (vt `Field`); `hint`: vaikne rida all servas (või tagajärje lause);
- * `save`: { label, busy, disabled, armed } (põhitegevus all servas); `back`: { label, onBack }; `extra`: [{ key, label, onPress }] (kõrvaltegevused).
+ * `save`: { label, busy, disabled, armed } (põhitegevus all servas) või null (vaade ainult muudab seisu, salvestab mujal); `back`: { label, onBack }; `extra`: [{ key, label, onPress }] (kõrvaltegevused).
  */
 export function FormView({ title, question, lead, form, fields, hint, save, notice, back, extra = [] }) {
   return (
@@ -231,13 +243,15 @@ export function FormView({ title, question, lead, form, fields, hint, save, noti
       actions={
         <>
           <Actions back={back} actions={extra} />
-          <Button type="submit" form={form.id} size="sm" variant="primary" className={save.armed ? shared.armed : undefined} data-part-action="save" disabled={save.disabled} aria-busy={save.busy ? "true" : undefined}>
-            {save.label}
-          </Button>
+          {save ? (
+            <Button type="submit" form={form.id} size="sm" variant="primary" className={save.armed ? shared.armed : undefined} data-part-action="save" disabled={save.disabled} aria-busy={save.busy ? "true" : undefined}>
+              {save.label}
+            </Button>
+          ) : null}
         </>
       }
     >
-      <form id={form.id} className={shared.stack} onSubmit={form.onSubmit} aria-busy={save.busy ? "true" : undefined}>
+      <form id={form.id} className={shared.stack} onSubmit={form.onSubmit} aria-busy={save?.busy ? "true" : undefined}>
         {fields.map((field) => (
           <Field key={field.key} field={field} />
         ))}

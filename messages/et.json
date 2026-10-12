@@ -14884,7 +14884,9 @@
       "discard_confirm": "Kinnita: viska mustand ära",
       "draft_discarded": "Mustand on ära visatud. Kehtiv kava ei muutunud.",
       "history_title": "Varasemad kavad",
-      "history_line": "kava nr {number}: {from} kuni {to}, toiminguid {count}"
+      "history_line": "kava nr {number}: {from} kuni {to}, toiminguid {count}",
+      "activate_note": "Kava hakkab kehtima ja meeskond näeb seda kliendi lehel. Vajuta uuesti, kui oled kindel.",
+      "discard_note": "Mustand kustutatakse, kehtiv kava ei muutu. Vajuta uuesti, kui oled kindel."
     },
     "decision": {
       "title": "Otsus ja maht",
@@ -16419,7 +16421,9 @@
       },
       "back": "Tagasi",
       "next": "Edasi",
-      "count": "Kirjeid {count}"
+      "count": "Kirjeid {count}",
+      "picked": "valitud",
+      "done": "Valmis"
     },
     "door": {
       "back": "Tagasi ukse taha",

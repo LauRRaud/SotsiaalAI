@@ -15,6 +15,7 @@
  * organisatsioonide lehtede ühised osad (../../org/org.module.css).
  */
 
+import { SMALL } from "@/components/org/OrgBits";
 import shared from "@/components/org/org.module.css";
 import StepPanel from "@/components/stage/StepPanel";
 import Button from "@/components/ui/Button";
@@ -27,9 +28,10 @@ import styles from "./plan.module.css";
  * `sheet`: { goals, groups: [{ key, title, rows: [{ key, name, must, how, note }] }], note, foot } või null (kava ei ole);
  * `labels`: { goals, must }; `empty`: lause, kui kava ei ole;
  * `signals`: [{ key, text, wait }] (read kava all; rida, mis ei oota midagi, on vaikne lause all servas);
- * `edit`: { label, href } või null (kava muutmine on hooldusjuhi teha).
+ * `edit`: { label, href } või null (kava muutmine on hooldusjuhi teha);
+ * `back`: { label, onBack } või null (kava koostamise lehel viib tagasi mustandi juurde).
  */
-export function PlanView({ title, name, sheet, labels, empty, signals, edit }) {
+export function PlanView({ title, name, sheet, labels, empty, signals, edit, back = null }) {
   return (
     <StepPanel
       title={title}
@@ -38,10 +40,19 @@ export function PlanView({ title, name, sheet, labels, empty, signals, edit }) {
         .map((signal) => signal.text)
         .join(" ")}
       actions={
-        edit ? (
-          <Button as="a" href={edit.href} size="sm" variant="secondary" data-plan="edit">
-            {edit.label}
-          </Button>
+        edit || back ? (
+          <>
+            {back ? (
+              <Button {...SMALL} data-back="1" onClick={back.onBack}>
+                {back.label}
+              </Button>
+            ) : null}
+            {edit ? (
+              <Button as="a" href={edit.href} size="sm" variant="secondary" data-plan="edit">
+                {edit.label}
+              </Button>
+            ) : null}
+          </>
         ) : null
       }
     >

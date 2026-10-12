@@ -1,7 +1,7 @@
 import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 
-import HomeCarePlanEditor from "@/components/homeCare/HomeCarePlanEditor";
+import PlanEditor from "@/components/homeCare/planEditor/PlanEditor";
 import { getCarePlanEditor } from "@/lib/homeCare/carePlans";
 import { isOrgError } from "@/lib/org/errors";
 
@@ -30,5 +30,5 @@ export default async function HomeCarePlanPage({ params }) {
     notFound();
   }
 
-  return <HomeCarePlanEditor context={auth.context} initial={initial} />;
+  return <PlanEditor context={auth.context} initial={initial} />;
 }

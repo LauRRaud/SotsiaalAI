@@ -1,0 +1,18 @@
+/* Koduteenuse alalehe kest. */
+
+/* Rida vaate kohal (seadmes ootavad kirjed): tühjana ega peidetuna ei võta ruumi. */
+.above {
+  min-width: 0;
+}
+.above:empty,
+.above[hidden] {
+  display: none;
+}
+
+/* Lehe vaated: peidetuna jäävad lehele (pooleli vorm ei kao), ruumi nad ei võta. */
+.page {
+  min-width: 0;
+}
+.page[hidden] {
+  display: none;
+}

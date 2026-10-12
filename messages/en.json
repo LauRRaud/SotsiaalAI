@@ -14884,7 +14884,9 @@
       "discard_confirm": "Confirm: discard the draft",
       "draft_discarded": "The draft is discarded. The plan in force did not change.",
       "history_title": "Earlier plans",
-      "history_line": "plan no {number}: {from} to {to}, activities {count}"
+      "history_line": "plan no {number}: {from} to {to}, activities {count}",
+      "activate_note": "The plan takes effect and the team sees it on the client's page. Press again if you are sure.",
+      "discard_note": "The draft is deleted and the current plan stays. Press again if you are sure."
     },
     "decision": {
       "title": "Decision and volume",
@@ -16419,7 +16421,9 @@
       },
       "back": "Back",
       "next": "Next",
-      "count": "{count} entries"
+      "count": "{count} entries",
+      "picked": "picked",
+      "done": "Done"
     },
     "door": {
       "back": "Back to the door",
