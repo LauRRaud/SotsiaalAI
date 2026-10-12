@@ -16171,7 +16171,9 @@
       "worker_line": "trips {trips} · {km} km, of which {ownKm} km by own car",
       "truncated": "The first {count} rows are shown.",
       "download": "Download the trip log",
-      "download_hint": "A table file (CSV) for accounting: each trip's day, worker, vehicle, readings, kilometres and purpose, and a summary by worker. Compensation is not calculated here."
+      "download_hint": "A table file (CSV) for accounting: each trip's day, worker, vehicle, readings, kilometres and purpose, and a summary by worker. Compensation is not calculated here.",
+      "all_trips": "All trips",
+      "retract_note": "The trip is retracted: it leaves the list, the month's kilometres and the table, the reason stays on record. Press again if you are sure."
     },
     "trip_sheet": {
       "title": "Home care trip log",

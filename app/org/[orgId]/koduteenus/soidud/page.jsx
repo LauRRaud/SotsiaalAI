@@ -1,7 +1,7 @@
 import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 
-import HomeCareTrips from "@/components/homeCare/HomeCareTrips";
+import Trips from "@/components/homeCare/trips/Trips";
 import { getTripLog } from "@/lib/homeCare/trips";
 import { isOrgError } from "@/lib/org/errors";
 
@@ -29,5 +29,5 @@ export default async function HomeCareTripsPage({ params }) {
     notFound();
   }
 
-  return <HomeCareTrips context={auth.context} initial={initial} />;
+  return <Trips context={auth.context} initial={initial} />;
 }

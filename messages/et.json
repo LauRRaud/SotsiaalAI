@@ -16171,7 +16171,9 @@
       "worker_line": "sõite {trips} · {km} km, sellest isikliku autoga {ownKm} km",
       "truncated": "Näidatud on esimesed {count} rida.",
       "download": "Laadi sõidupäevik alla",
-      "download_hint": "Tabelifail (CSV) raamatupidamisele: iga sõidu päev, töötaja, sõiduk, näidud, kilomeetrid ja eesmärk ning kokkuvõte töötaja kaupa. Hüvitist siin ei arvutata."
+      "download_hint": "Tabelifail (CSV) raamatupidamisele: iga sõidu päev, töötaja, sõiduk, näidud, kilomeetrid ja eesmärk ning kokkuvõte töötaja kaupa. Hüvitist siin ei arvutata.",
+      "all_trips": "Kõik sõidud",
+      "retract_note": "Sõit tühistatakse: see kaob loendist, kuu kilomeetritest ja tabelist, põhjus jääb kirja. Vajuta uuesti, kui oled kindel."
     },
     "trip_sheet": {
       "title": "Koduteenuse sõidupäevik",
