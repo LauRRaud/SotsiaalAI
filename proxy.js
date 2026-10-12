@@ -94,14 +94,9 @@ export async function proxy(req) {
           { status: 503, headers: { "Cache-Control": "no-store" } }
         );
       }
-      const destination = req.nextUrl.clone();
-      if (process.env.NODE_ENV === "production") {
-        const origin = new URL(PUBLIC_ORIGIN);
-        destination.protocol = origin.protocol;
-        destination.host = origin.host;
-      }
-      destination.pathname = "/";
-      destination.search = "";
+      // NextURL.host ei eemalda pöördproksi sisemist porti. Uus URL
+      // avalikust originist hoiab :3000 brauserisuunamisest väljas.
+      const destination = new URL("/", process.env.NODE_ENV === "production" ? PUBLIC_ORIGIN : req.nextUrl.origin);
       const response = NextResponse.redirect(destination, 307);
       response.headers.set("Cache-Control", "no-store");
       const locale = pathname.match(/^\/(et|ru|en)(?=\/|$)/)?.[1];
