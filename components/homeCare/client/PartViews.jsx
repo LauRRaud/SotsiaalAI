@@ -99,7 +99,7 @@ function RowBody({ row }) {
   );
 }
 
-/** Rühm ridu, mis viivad mujale. `links`: [{ key, title, line, chip, onOpen, href, blank }]; `href` ei eellaadi, `blank` avab uue vahelehe. */
+/** Rühm ridu, mis viivad mujale. `links`: [{ key, title, line, chip, onOpen, href, blank }]; `href` ei eellaadi, `blank` avab uue vahelehe; ilma lingi ja vajutuseta on rida loetav. */
 function LinkRows({ links = [] }) {
   if (!links.length) return null;
   return (
@@ -114,10 +114,14 @@ function LinkRows({ links = [] }) {
             <Link href={link.href} prefetch={false} className={`${shared.row} ${styles.row}`} data-part-link={link.key}>
               <RowBody row={link} />
             </Link>
-          ) : (
+          ) : link.onOpen ? (
             <button type="button" className={`${shared.row} ${styles.row}`} data-part-link={link.key} onClick={link.onOpen}>
               <RowBody row={link} />
             </button>
+          ) : (
+            <div className={`${shared.rowStatic} ${styles.row}`} data-part-link={link.key}>
+              <RowBody row={link} />
+            </div>
           )}
         </li>
       ))}

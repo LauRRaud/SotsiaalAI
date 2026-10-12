@@ -15148,7 +15148,8 @@
       "signals_line": "Hooldajate märkamisi sel kuul: {opened}; vastuse sai {handled}, vastust ootab {waiting}.",
       "signals_median": "Vastus tuli tavaliselt {days} päevaga.",
       "signals_median_same_day": "Vastus tuli tavaliselt samal päeval.",
-      "worker_km": "sõitis {km} km, sellest isikliku autoga {ownKm} km"
+      "worker_km": "sõitis {km} km, sellest isikliku autoga {ownKm} km",
+      "sheets_title": "Kuulehed ja tabel"
     },
     "slots": {
       "title": "Käigud nädalas",

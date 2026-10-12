@@ -1,7 +1,7 @@
 import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 
-import HomeCareMonth from "@/components/homeCare/HomeCareMonth";
+import Month from "@/components/homeCare/month/Month";
 import { getMonthPage } from "@/lib/homeCare/monthLock";
 import { isOrgError } from "@/lib/org/errors";
 
@@ -32,5 +32,5 @@ export default async function HomeCareMonthPage({ params, searchParams }) {
     notFound();
   }
 
-  return <HomeCareMonth context={auth.context} initial={initial} />;
+  return <Month context={auth.context} initial={initial} />;
 }

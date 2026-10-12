@@ -15148,7 +15148,8 @@
       "signals_line": "Changes noticed by care workers this month: {opened}; answered {handled}, waiting for an answer {waiting}.",
       "signals_median": "An answer usually came within {days} days.",
       "signals_median_same_day": "An answer usually came the same day.",
-      "worker_km": "drove {km} km, of which {ownKm} km by own car"
+      "worker_km": "drove {km} km, of which {ownKm} km by own car",
+      "sheets_title": "Month sheets and table"
     },
     "slots": {
       "title": "Visits in a week",
