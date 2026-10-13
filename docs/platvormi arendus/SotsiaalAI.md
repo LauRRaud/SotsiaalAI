@@ -92,6 +92,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**13.10 logo kvaliteet:** omaniku hinnangul ei sobinud taastatud metalliefekt
+ning logo servad jäid halva kvaliteediga. Viimane logo muudatus on tagasi
+võetud; avalehel on taas senine staatiline SVG-logo. Teravusprobleem on
+lahendamata. „Peagi avame!“ ja avaliku sissepääsu sulgemine säilivad.
+
 **13.10 „Peagi avame!“ nähtavus (Codex):** kasutaja pilt ja tootmisbrauser
 kinnitasid, et tekst oli olemas, kuid `:disabled` peitis selle (`opacity: 0`).
 Valmisoleku saavutanud suletud sissepääs on nüüd nähtav (`opacity: 1`),
@@ -5039,10 +5044,6 @@ teenus 52 s peatatud). Katkematut teenust see ühe protsessi lahendus ei taga.
 peen ümardatud ruut ja vaba ruumiga väljalõige. Ruudu ülaserv on põhisõna kõrgusel.
 Logol pole tunnuslauset. Avalehel on üks logo all keskel, varasemast 25% väiksem;
 1280 px vaates on laius 384 px. Tootmise brauseris kontrollitud.
-`pro` ja nurgaruut kasutavad viimase SotsiaalAI logo sama vedela metalli
-efekti. Põhisõna kuvatakse otse SVG-kontuuridena; metall laeb eraldi ja
-vähendatud liikumise korral jääb logo staatiliseks.
-[Efekti päritolu ja kontrollid](../audits/pro-logo-metal-2026-10-13.md).
 [Kujunduse tõend](../audits/release-build-once-2026-10-04.md).
 
 **Põhidomeen sotsiaal.pro (03.10).** Muudatus `769cf4e4` läbis quality-gate'i ja

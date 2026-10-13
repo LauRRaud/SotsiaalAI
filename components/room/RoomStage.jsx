@@ -120,7 +120,6 @@ import GlassButton from "@/components/glass/GlassButton";
 import { PUBLIC_PLATFORM_OPEN } from "@/lib/publicPlatform";
 import Button from "@/components/ui/Button";
 import JourneyText from "@/components/glass/JourneyText";
-import RoomWordmark from "@/components/brand/RoomWordmark";
 import {
   getAmbientMode,
   setAmbientMode,
@@ -1916,7 +1915,16 @@ export default function RoomStage({ initiallyCompletedArrival = false, platformA
             kutsel läveks. Kunstikiht ei püüa sündmusi; päris tekst ja
             nupp jäävad selle kohal ligipääsetavaks. */}
         {veil !== "gone" ? <VeilArt effect={VEIL_EFFECTS.DIRECT} onAbsorbed={finishVeilEntry} /> : null}
-        <RoomWordmark active={veil !== "gone"} />
+        <div className="room-veil-logo">
+          {/* eslint-disable-next-line @next/next/no-img-element -- Kontuur-SVG ei vaja rasterpildi optimeerimist. */}
+          <img
+            src="/logo/sotsiaal-pro-corner.svg"
+            alt="Sotsiaal.pro"
+            width={2400}
+            height={428}
+            decoding="async"
+          />
+        </div>
         <p id="room-veil-message" className="room-veil-line">
           {/* Iga sõna oma span'is: töölaual voolavad inline ühte ritta,
               mobiilis muutuvad plokk-ridadeks (keskmine nihkes) ja
