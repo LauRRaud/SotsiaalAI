@@ -22,5 +22,13 @@ Kontrollid enne avaldamist:
 - OS-i reduced-motion: 1280 × 720, põhisõna font 74,1569 px,
   logo laius 384 px, opacity 1. Lehe vigu ei olnud.
 
+Tootmises töötab `1f127b19c233063ae3e00a85a3965b7a3a42a0f2`, kinnitatud
+systemd töökataloogist. Quality-gate `38377541889` ja deploy `38377883243`
+läbisid. Avaliku brauseri 1280 × 720 ning 390 × 844 vaates mõõdeti 12
+SVG-tekstielementi, õige Exo 2 font, opacity 1, will-change auto ja
+transform none. Logo all pole pilti ega canvase elementi. Mõlemas vaates
+on „Peagi avame!“ nähtav ja keelatud, loor jääb ette ning ülevoolu või
+JavaScripti vigu ei ole. Mõlemad tootmise ekraanipildid vaadati üle.
+
 Chromiumi emulatsioon ei tõenda kõigi füüsiliste ekraanide ega
-Safari/Firefoxi kuvamist. Tootmiskontroll lisatakse pärast paigaldust.
+Safari/Firefoxi kuvamist. Omaniku hinnang jääb „veidi parem“.
