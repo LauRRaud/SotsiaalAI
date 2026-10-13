@@ -96,8 +96,10 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 otse lõplikus ekraanisuuruses SVG-tekstina. Omaniku hinnang võrdlusele:
 „veidi parem“; täielikku teravusprobleemi lahendust ei väideta. Metalliefekt
 on tagasi võetud. Töölaua-, mobiili- ja reduced-motion kontroll läbisid.
-Tootmises `1f127b19`; värav, paigaldus ning avaliku töölaua- ja mobiilivaate
-kontroll läbisid. Logo kasutab päris SVG-teksti ja avamisteade jääb nähtavaks.
+Tootmises `b7466af8`; värav ja paigaldus läbisid. Avalikus brauseris
+kinnitati tähtede ja ruudu värvi alpha 0,85, konteineri opacity 1 ning
+nähtav suletud avamisteade. Logo kasutab päris SVG-teksti; kohalik töölaua-
+ja mobiilivaate kontroll läbis.
 [Kontrollid ja piirangud](../audits/logo-native-font-2026-10-13.md).
 
 **13.10 „Peagi avame!“ nähtavus (Codex):** kasutaja pilt ja tootmisbrauser
