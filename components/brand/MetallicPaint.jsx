@@ -293,6 +293,7 @@ export default function MetallicPaint({
   tintColor = '#feb3ff',
   tintPulse = 0,
   radial = 0,
+  resolutionScale = 1,
   preserveDrawingBuffer = false,
   onReady
 }) {
@@ -397,7 +398,7 @@ export default function MetallicPaint({
     const rect = canvas.getBoundingClientRect();
     const cssWidth = Math.max(1, rect.width || canvas.clientWidth || 1);
     const cssHeight = Math.max(1, rect.height || canvas.clientHeight || 1);
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = Math.min(window.devicePixelRatio || 1, 2) * resolutionScale;
     const width = Math.max(1, Math.round(cssWidth * dpr));
     const height = Math.max(1, Math.round(cssHeight * dpr));
 
@@ -410,7 +411,7 @@ export default function MetallicPaint({
     if (uniforms.u_ratio) {
       gl.uniform1f(uniforms.u_ratio, cssWidth / cssHeight);
     }
-  }, []);
+  }, [resolutionScale]);
 
   const uploadTexture = useCallback(imgData => {
     const gl = glRef.current;

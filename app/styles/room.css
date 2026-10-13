@@ -187,40 +187,49 @@ main#main:focus-visible {
 .room-veil-logo {
   position: absolute;
   z-index: 2;
-  left: 50%;
+  left: 0;
+  right: 0;
   top: auto;
   bottom: max(-0.1375rem, env(safe-area-inset-bottom, 0px) - 0.1375rem);
-  translate: -50%;
+  margin-inline: auto;
   width: clamp(12.75rem, 30vw, 24.75rem);
   opacity: 0;
 }
-.room-veil-logo img {
+.room-veil-logo-body {
   display: block;
   width: 100%;
   height: auto;
 }
-/* Metall katab AINULT AI piirkonna (mask ai-mark.svg): shaderi
-   voolamisväli arvutatakse siis AI enda kasti (mitte kogu laia logo)
-   järgi — sama rikas muster, mis kinnitatud näidisel (tellija 07.07).
-   Geomeetria h-logost (viewBox 264.37×50, AI nihutatud 0.7u alla):
-   AI kast x [217.17..264.37], y [0.7..48.7] → protsendid generaatorist. */
+/* Pro + nurgaruudu mask: viewBox 4088 -712 1037 566 kogu logo
+   vaatealas 1.922390 -853.813645 5178.221604 923.052372.
+   Metall ja staatilised kontuurid kasutavad täpselt sama geomeetriat. */
 .room-veil-logo-metal {
   position: absolute;
-  left: 82.15%;
-  right: 0;
-  top: 1.40%;
-  bottom: 2.60%;
+  left: 78.908896%;
+  top: 15.363562%;
+  width: 20.026179%;
+  height: 61.318297%;
   pointer-events: none;
   opacity: 1;
   transition: none;
 }
 .room-veil-logo-metal canvas {
-  position: relative;
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
   background: transparent;
   object-fit: contain;
+}
+.room-veil-logo-suffix {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.room-veil-logo-body,
+.room-veil-logo-suffix {
+  fill: #fff;
 }
 @keyframes veil-logo-reveal {
   0% {
@@ -239,8 +248,9 @@ main#main:focus-visible {
   }
 }
 .room-veil[data-state="shown"][data-logo-ready="1"] .room-veil-logo {
-  animation: veil-logo-reveal 2.6s ease-out 0.75s both;
-  will-change: opacity;
+  opacity: 0.7;
+  /* Ära jäta valmis sõnamärki animatsiooni rasterkihile. */
+  animation: veil-logo-reveal 2.6s ease-out 0.75s backwards;
 }
 .room-veil[data-state="fading"] .room-veil-logo {
   animation: veil-logo-hide 420ms ease-in both;
@@ -251,13 +261,11 @@ html[data-reduce-motion="1"]
   .room-veil[data-state="shown"][data-logo-ready="1"]
   .room-veil-logo {
   animation: none;
-  translate: -50% 0;
   opacity: 0.7;
 }
 @media (prefers-reduced-motion: reduce) {
   .room-veil[data-state="shown"][data-logo-ready="1"] .room-veil-logo {
     animation: none;
-    translate: -50% 0;
     opacity: 0.7;
   }
 }

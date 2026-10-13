@@ -5039,6 +5039,10 @@ teenus 52 s peatatud). Katkematut teenust see ühe protsessi lahendus ei taga.
 peen ümardatud ruut ja vaba ruumiga väljalõige. Ruudu ülaserv on põhisõna kõrgusel.
 Logol pole tunnuslauset. Avalehel on üks logo all keskel, varasemast 25% väiksem;
 1280 px vaates on laius 384 px. Tootmise brauseris kontrollitud.
+`pro` ja nurgaruut kasutavad viimase SotsiaalAI logo sama vedela metalli
+efekti. Põhisõna kuvatakse otse SVG-kontuuridena; metall laeb eraldi ja
+vähendatud liikumise korral jääb logo staatiliseks.
+[Efekti päritolu ja kontrollid](../audits/pro-logo-metal-2026-10-13.md).
 [Kujunduse tõend](../audits/release-build-once-2026-10-04.md).
 
 **Põhidomeen sotsiaal.pro (03.10).** Muudatus `769cf4e4` läbis quality-gate'i ja
