@@ -92,10 +92,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**13.10 logo kvaliteet:** omaniku hinnangul ei sobinud taastatud metalliefekt
-ning logo servad jäid halva kvaliteediga. Viimane logo muudatus on tagasi
-võetud; avalehel on taas senine staatiline SVG-logo. Teravusprobleem on
-lahendamata. „Peagi avame!“ ja avaliku sissepääsu sulgemine säilivad.
+**13.10 logo kuvamine:** avalehe logo joonistatakse nüüd lehe Exo 2 fondist
+otse lõplikus ekraanisuuruses SVG-tekstina. Omaniku hinnang võrdlusele:
+„veidi parem“; täielikku teravusprobleemi lahendust ei väideta. Metalliefekt
+on tagasi võetud. Töölaua-, mobiili- ja reduced-motion kontroll läbisid.
+[Kontrollid ja piirangud](../audits/logo-native-font-2026-10-13.md).
 
 **13.10 „Peagi avame!“ nähtavus (Codex):** kasutaja pilt ja tootmisbrauser
 kinnitasid, et tekst oli olemas, kuid `:disabled` peitis selle (`opacity: 0`).
@@ -5039,11 +5040,14 @@ Tootmises on `a154e98d`; ühe protsessi vahetus andis 180 tervisepäringu seas �
 teenus 52 s peatatud). Katkematut teenust see ühe protsessi lahendus ei taga.
 [Mõõtmised ja kontrollid](../audits/release-build-once-2026-10-04.md).
 
-**Avalehe kinnitatud logo.** Suure S-iga `Sotsiaal.pro` kasutab Exo 2 kontuure;
+**Avalehe kinnitatud logo.** Suure S-iga `Sotsiaal.pro` kasutab Exo 2 kirja;
 `pro` joonepaksus on põhisõnaga sobitatud, punkt on all ning `o` ülanurgas on
 peen ümardatud ruut ja vaba ruumiga väljalõige. Ruudu ülaserv on põhisõna kõrgusel.
 Logol pole tunnuslauset. Avalehel on üks logo all keskel, varasemast 25% väiksem;
 1280 px vaates on laius 384 px. Tootmise brauseris kontrollitud.
+Avalehel joonistatakse tähed lehe fondist otse lõplikus ekraanisuuruses;
+SVG vaateala ega valmis logo rasterkiht neid ei skaleeri.
+[Kuvarenderduse kontroll](../audits/logo-native-font-2026-10-13.md).
 [Kujunduse tõend](../audits/release-build-once-2026-10-04.md).
 
 **Põhidomeen sotsiaal.pro (03.10).** Muudatus `769cf4e4` läbis quality-gate'i ja

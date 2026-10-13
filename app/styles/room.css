@@ -187,17 +187,37 @@ main#main:focus-visible {
 .room-veil-logo {
   position: absolute;
   z-index: 2;
-  left: 50%;
+  left: 0;
+  right: 0;
   top: auto;
   bottom: max(-0.1375rem, env(safe-area-inset-bottom, 0px) - 0.1375rem);
-  translate: -50%;
+  margin-inline: auto;
   width: clamp(12.75rem, 30vw, 24.75rem);
+  aspect-ratio: 2400 / 428;
+  container-type: inline-size;
   opacity: 0;
 }
-.room-veil-logo img {
+.room-veil-wordmark {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  fill: #b3b3b3;
+}
+.room-veil-wordmark-letter {
+  font-family: var(--font-exo2);
+  font-size: 19.311652cqw;
+  font-weight: 200;
+  font-kerning: none;
+  font-synthesis: none;
+}
+.room-veil-wordmark-pro {
+  font-size: 12.552574cqw;
+  font-weight: 290.250335;
+}
+.room-veil-wordmark-corner {
+  fill: none;
+  stroke: #b3b3b3;
+  stroke-width: 0.400884cqw;
 }
 /* Metall katab AINULT AI piirkonna (mask ai-mark.svg): shaderi
    voolamisväli arvutatakse siis AI enda kasti (mitte kogu laia logo)
@@ -227,20 +247,20 @@ main#main:focus-visible {
     opacity: 0;
   }
   100% {
-    opacity: 0.7;
+    opacity: 1;
   }
 }
 @keyframes veil-logo-hide {
   0% {
-    opacity: 0.7;
+    opacity: 1;
   }
   100% {
     opacity: 0;
   }
 }
 .room-veil[data-state="shown"][data-logo-ready="1"] .room-veil-logo {
-  animation: veil-logo-reveal 2.6s ease-out 0.75s both;
-  will-change: opacity;
+  opacity: 1;
+  animation: veil-logo-reveal 2.6s ease-out 0.75s backwards;
 }
 .room-veil[data-state="fading"] .room-veil-logo {
   animation: veil-logo-hide 420ms ease-in both;
@@ -251,14 +271,12 @@ html[data-reduce-motion="1"]
   .room-veil[data-state="shown"][data-logo-ready="1"]
   .room-veil-logo {
   animation: none;
-  translate: -50% 0;
-  opacity: 0.7;
+  opacity: 1;
 }
 @media (prefers-reduced-motion: reduce) {
   .room-veil[data-state="shown"][data-logo-ready="1"] .room-veil-logo {
     animation: none;
-    translate: -50% 0;
-    opacity: 0.7;
+    opacity: 1;
   }
 }
 .room-veil-line {
