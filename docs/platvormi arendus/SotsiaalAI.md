@@ -5049,6 +5049,8 @@ Logol pole tunnuslauset. Avalehel on üks logo all keskel, varasemast 25% väiks
 1280 px vaates on laius 384 px. Tootmise brauseris kontrollitud.
 Avalehel joonistatakse tähed lehe fondist otse lõplikus ekraanisuuruses;
 SVG vaateala ega valmis logo rasterkiht neid ei skaleeri.
+Tähed ja nurgaruudu joon on veidi läbipaistvamad (värvi alpha 0,85);
+logo konteineri läbipaistvus jääb 1, et vältida täiendavat rasterkihti.
 [Kuvarenderduse kontroll](../audits/logo-native-font-2026-10-13.md).
 [Kujunduse tõend](../audits/release-build-once-2026-10-04.md).
 
