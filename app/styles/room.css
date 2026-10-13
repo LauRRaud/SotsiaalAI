@@ -336,6 +336,11 @@ html[data-reduce-motion="1"]
   border-color: transparent;
   box-shadow: none;
 }
+/* Avamise teade on pärast lavastust nähtav, kuigi sissepääs on suletud. */
+.glass-btn.room-veil-enter[data-ready="1"]:disabled {
+  opacity: 1;
+  cursor: default;
+}
 .glass-btn.room-veil-enter::before,
 .glass-btn.room-veil-enter::after {
   display: none;

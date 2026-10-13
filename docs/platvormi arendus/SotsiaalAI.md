@@ -92,6 +92,13 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**13.10 „Peagi avame!“ nähtavus (Codex):** kasutaja pilt ja tootmisbrauser
+kinnitasid, et tekst oli olemas, kuid `:disabled` peitis selle (`opacity: 0`).
+Valmisoleku saavutanud suletud sissepääs on nüüd nähtav (`opacity: 1`),
+sisenemine jääb keelatuks. Parandatud CSS-i brauserieelvaade ja vaadatud pildid
+kinnitasid nähtavust nii 1920 × 862 kui 390 × 844 vaates; loor jäi ette.
+`git diff --check` läbis. Avaldamine toimub selle CSS-muudatuse main-lükke kaudu.
+
 **12.10 avaliku sissepääsu sulgemine (Codex, omaniku otsus):** avaleht jääb
 avalikuks, sissepääs näitab „Peagi avame!“ ega ava ruumi. Avalikud otseviited
 suunatakse avalehele ja töö-API-d on suletud; admini värske sessioon ning
