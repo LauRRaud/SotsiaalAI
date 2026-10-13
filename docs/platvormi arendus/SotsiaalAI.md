@@ -97,7 +97,9 @@ kinnitasid, et tekst oli olemas, kuid `:disabled` peitis selle (`opacity: 0`).
 Valmisoleku saavutanud suletud sissepääs on nüüd nähtav (`opacity: 1`),
 sisenemine jääb keelatuks. Parandatud CSS-i brauserieelvaade ja vaadatud pildid
 kinnitasid nähtavust nii 1920 × 862 kui 390 × 844 vaates; loor jäi ette.
-`git diff --check` läbis. Avaldamine toimub selle CSS-muudatuse main-lükke kaudu.
+`git diff --check` läbis. Tootmises `f8008dc7`; värav ja paigaldus läbisid.
+Tootmise töölaua- ja mobiilivaates mõõdeti päris CSS-il `opacity: 1`,
+`disabled: true` ning ees püsinud loori; mõlemad ekraanipildid vaadati üle.
 
 **12.10 avaliku sissepääsu sulgemine (Codex, omaniku otsus):** avaleht jääb
 avalikuks, sissepääs näitab „Peagi avame!“ ega ava ruumi. Avalikud otseviited
