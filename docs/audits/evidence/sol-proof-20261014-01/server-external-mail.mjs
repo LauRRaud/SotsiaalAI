@@ -1,0 +1,30 @@
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+import vm from 'node:vm';
+import {createRequire} from 'node:module';
+import {pathToFileURL} from 'node:url';
+import {recorder} from './server-http-support.mjs';
+const root=process.argv[2],{rec,save,check}=recorder(root,'server-external-mail');
+const {prisma}=await import(pathToFileURL(root+'/lib/prisma.js'));
+const pre=await import(pathToFileURL(root+'/lib/preInquiries.js'));
+const actors=JSON.parse(fs.readFileSync('accounts.json','utf8')).actors;
+rec.limits=['Frontend helpers are extracted by Babel AST from the exact live release source and executed unchanged in an isolated VM. This is CURRENT_FIXTURE, not a browser click or external email delivery.','No mail application is opened and no mail is sent.'];
+try{
+ const source=fs.readFileSync(root+'/components/workspace/WorkspaceFeaturePage.jsx','utf8');
+ const {parse}=createRequire(root+'/package.json')('@babel/parser');
+ const ast=parse(source,{sourceType:'module',plugins:['jsx']});
+ const names=['buildLocalPreInquiryDraft','buildPreInquiryRecipientMailto','buildPreInquiryReplyMailto'];
+ const functions=names.map(name=>{const node=ast.program.body.find(n=>n.type==='FunctionDeclaration'&&n.id?.name===name);if(!node)throw Error('Source function unavailable: '+name);return source.slice(node.start,node.end);});
+ const helpers=vm.runInNewContext('(()=>{'+functions.join('\n')+';return {'+names.join(',')+'};})()', {encodeURIComponent});
+ rec.sourceSha256=crypto.createHash('sha256').update(source).digest('hex');
+ const input={recipient:{email:'sol-proof-external@example.invalid',title:'SOL TEST kontakt'},topic:'SOL TEST väline kanal',situation:'SOL TEST DETAILS olukord',draft:'SOL TEST DETAILS täielik eelinfo'};
+ const minimal=helpers.buildPreInquiryRecipientMailto(input),detailed=helpers.buildPreInquiryRecipientMailto({...input,withDetails:true});
+ const a=new URL(minimal),b=new URL(detailed);
+ check('DATA-03','external_mail_default_no_details',!a.searchParams.get('body').includes('SOL TEST DETAILS')&&minimal.startsWith('mailto:'),{hasDetailMarker:a.searchParams.get('body').includes('SOL TEST DETAILS'),bodyLength:a.searchParams.get('body').length,subject:a.searchParams.get('subject'),protocol:a.protocol},'CURRENT_FIXTURE');
+ check('DATA-03','external_mail_details_explicit_optin',b.searchParams.get('body').includes('SOL TEST DETAILS'),{hasDetailMarker:b.searchParams.get('body').includes('SOL TEST DETAILS'),bodyLength:b.searchParams.get('body').length},'CURRENT_FIXTURE');
+ check('DATA-03','reply_mail_requires_author_email',helpers.buildPreInquiryReplyMailto({topic:'SOL TEST',situation:'SOL TEST DETAILS',author:{id:actors.client.id}})==='',{missingAuthorEmailSuppressesLink:true},'CURRENT_FIXTURE');
+ const external=await pre.createPreInquiry(actors.client.id,{clientActionId:crypto.randomUUID(),topic:'SOL TEST väline kanal',situation:'SOL TEST DETAILS: soovin oma olukorra enne kohtumist kirja panna.',selectedRecipientEmail:input.recipient.email,selectedRecipientName:'SOL TEST väline kontakt',status:'DRAFT'},{db:prisma});
+ rec.created.externalInquiryId=external.id;
+ check('DATA-03','external_draft_channel_explicit',external.deliveryChannel==='EXTERNAL_EMAIL'&&!external.recipientOwnerId,{id:external.id,status:external.status,channel:external.deliveryChannel,platformRecipientAssigned:!!external.recipientOwnerId});
+ fs.writeFileSync('external-fixture.json',JSON.stringify({runId:rec.runId,inquiryId:external.id,detailMarker:'SOL TEST DETAILS',recipient:input.recipient.email},null,2)+'\n');
+}finally{rec.finishedAt=new Date().toISOString();save();await prisma.$disconnect();console.log(JSON.stringify({checks:rec.checks.length,nonpassing:rec.checks.filter(c=>c.status!=='PASS'),created:rec.created}));}

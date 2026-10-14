@@ -1,0 +1,103 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41",
+  "startedAt": "2026-10-14T13:55:02.879Z",
+  "checks": [
+    {
+      "case_id": "OPS-04",
+      "variant_id": "arrival_mail_minimal_correct_recipient",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "capturedCalls": 1,
+        "recipientMatches": true,
+        "containsLoginLink": true,
+        "containsCaseText": false,
+        "transport": "capture fixture"
+      }
+    },
+    {
+      "case_id": "OPS-05",
+      "variant_id": "arrival_mail_failure_not_reported_as_sent",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "result": {
+          "sent": false,
+          "reason": "send_failed"
+        },
+        "transport": "failing fixture"
+      }
+    },
+    {
+      "case_id": "OPS-05",
+      "variant_id": "captured_mail_transport_recovers",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "retryReportedSent": true,
+        "capturedTotal": 2,
+        "attemptsControlled": true
+      }
+    },
+    {
+      "case_id": "OPS-07",
+      "variant_id": "deterministic_urgency_CRISIS",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "level": "CRISIS",
+        "notice": "Kui keegi võib olla vahetus ohus, helista 112 või pöördu kohe sobiva kriisiabi poole.",
+        "modelCalled": false
+      }
+    },
+    {
+      "case_id": "OPS-07",
+      "variant_id": "deterministic_urgency_WARNING",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "level": "WARNING",
+        "notice": "Kirjeldasid kiiret olukorda. Eelpöördumise kõrval kaalu kohe inimese või pädeva teenusega ühendust võtmist.",
+        "modelCalled": false
+      }
+    },
+    {
+      "case_id": "OPS-07",
+      "variant_id": "deterministic_urgency_NONE",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "level": "NONE",
+        "notice": "",
+        "modelCalled": false
+      }
+    }
+  ],
+  "created": {},
+  "externalMessagesSent": false,
+  "newPaidCalls": false,
+  "limits": [
+    "Mail transport is a capturing or failing fixture; no actual SMTP or paid provider call is made by this script.",
+    "Urgency checks exercise deterministic form normalization, not clinical assessment or model answer accuracy."
+  ],
+  "observations": [
+    {
+      "case_id": "OPS-04",
+      "variant_id": "arrival_mail_account_preference",
+      "status": "NOT_PROVEN",
+      "actual": {
+        "notificationEmailEnabled": false,
+        "capturedSendCallsForDisabledAccount": 1
+      },
+      "note": "This arrival-mail function does not check the account email-notification switch. Whether this is a mandatory exception or preference bug needs a product decision. Earlier .invalid fixture HTTPS requests do not establish absence of external SMTP attempts."
+    }
+  ],
+  "finishedAt": "2026-10-14T13:55:03.426Z"
+}

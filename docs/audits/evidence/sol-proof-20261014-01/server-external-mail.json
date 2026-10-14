@@ -1,0 +1,65 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41",
+  "startedAt": "2026-10-14T13:57:38.855Z",
+  "checks": [
+    {
+      "case_id": "DATA-03",
+      "variant_id": "external_mail_default_no_details",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "hasDetailMarker": false,
+        "bodyLength": 225,
+        "subject": "SOL TEST väline kanal",
+        "protocol": "mailto:"
+      }
+    },
+    {
+      "case_id": "DATA-03",
+      "variant_id": "external_mail_details_explicit_optin",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "hasDetailMarker": true,
+        "bodyLength": 32
+      }
+    },
+    {
+      "case_id": "DATA-03",
+      "variant_id": "reply_mail_requires_author_email",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "missingAuthorEmailSuppressesLink": true
+      }
+    },
+    {
+      "case_id": "DATA-03",
+      "variant_id": "external_draft_channel_explicit",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "id": "cmv86cn4y00008dkmlxcboykx",
+        "status": "DRAFT",
+        "channel": "EXTERNAL_EMAIL",
+        "platformRecipientAssigned": false
+      }
+    }
+  ],
+  "created": {
+    "externalInquiryId": "cmv86cn4y00008dkmlxcboykx"
+  },
+  "externalMessagesSent": false,
+  "newPaidCalls": false,
+  "limits": [
+    "Frontend helpers are extracted by Babel AST from the exact live release source and executed unchanged in an isolated VM. This is CURRENT_FIXTURE, not a browser click or external email delivery.",
+    "No mail application is opened and no mail is sent."
+  ],
+  "sourceSha256": "8d4bdfc8ad0f5d704949220e2d2c12b77d065039d0fbf076b7c70ac3d83925f8",
+  "finishedAt": "2026-10-14T13:57:39.494Z"
+}

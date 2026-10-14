@@ -2,7 +2,7 @@
 
 14.10.2026. **Vahetulemus: serveri lähtekontroll on käimas; kogu 52 juhtumiga kavand pole täidetud.** Omaniku juhisel kasutatakse põhiliseks kinnituseks serveris töötavat arendusplatvormi ja selle tegelikku andmebaasi. Platvorm ei ole produktsioonis. Kohalik eraldatud keskkond jääb tõrke- ja hävitavate katsete abivahendiks.
 
-**Jooksev koond:** 116 salvestatud kontrollvarianti: 113 PASS, 1 FAIL, 2 katserakise takistuse vaatlust. Terve 52 juhtumi kavand pole lõpetatud.
+**Jooksev koond:** 126 salvestatud kontrollvarianti: 123 PASS, 1 FAIL, 2 katserakise takistuse vaatlust. Terve 52 juhtumi kavand pole lõpetatud.
 
 Käivituskavand: [14.10 kontrollikavand](sotsiaal-pro-toenduskatsete-kavand-2026-10-14.md). Täpne edenemine ja kõik variandid: [case-progress.json](evidence/sol-proof-20261014-01/case-progress.json).
 
@@ -12,7 +12,7 @@ Käivituskavand: [14.10 kontrollikavand](sotsiaal-pro-toenduskatsete-kavand-2026
 
 Serveri aktiivne väljalase on `b7466af8d039c248e19693a32a3475f47205649b`; frontend töötab. Testid kasutavad sama väljalaske serverimooduleid ja frontendiga sama andmebaasi. Moodulite eraldi käivitus tehakse `/tmp/sol-proof-20261014-01` töökohast: protsess saab ainult vajaliku andmebaasiühenduse ja tegelikud funktsioonilipud, mitte mudeli-, SMTP- või makseteenuste võtmeid. Sellest töökohast ei laadita rakenduse dotenv-faile.
 
-Kõik uued kirjed seotakse selles katses loodud kasutajate ja tegevusvõtmetega. Olemasolevate kasutajate juhtumisisu ei kasutata. Väliseid kirju, päris makseid ega uusi tasulisi mudelipäringuid ei tehta. Uute sünteetiliste testandmete loomine tegelikus serveribaasis on omaniku otsene juhis.
+Kõik uued kirjed seotakse selles katses loodud kasutajate ja tegevusvõtmetega. Olemasolevate kasutajate juhtumisisu ei kasutata. Päris adressaatidele sõnumeid, päris makseid ega uusi tasulisi mudelipäringuid ei tehta. Uute sünteetiliste testandmete loomine tegelikus serveribaasis on omaniku otsene juhis.
 
 Serveri teenusemooduli otsene kutse tõendab selle mooduli ja andmebaasi käitumist. HTTP autentimine, avamisvärav, API rollikontroll ja brauseri tervikrada on sellest eraldi tõendid. Positiivne teenusekatse ei muutu automaatselt kogu UI-raja läbimiseks.
 
@@ -104,6 +104,16 @@ Enne omaniku serverieelistuse täpsustust valmistati tühi kohalik baas ja testi
 Kohaliku testikoopia käivitust takistasid esmalt webpacki kompileerimine ja seejärel Turbopacki nõue hoida sõltuvused failisüsteemi juure sees. Seadistuse lahendamine ei muutnud rakenduse tootekoodi. Need ettevalmistusvead ei lähe platvormi funktsioonivigade arvestusse. Kohalik enda loodud frontend peatati serveri kontrollide prioriseerimise järel.
 
 **Mis jääb järgmisse etappi.**
+
+**Kiire abi, saabumiskiri ja välise e-kirja infopiir — kümme uut varianti.** Deterministlik eelkaardistuse normaliseerija andis valikule „Keegi võib olla vahetus ohus” CRISIS-tähise ja 112 juhise, kiirele sekkumisvajadusele WARNING-juhise ning tavavalikule NONE-i. Mudelivastust selleks ei küsitud. See tõendab etteantud valikute mehhanismi, mitte kõigi vabatekstiliste kriiside äratundmist või kliinilist hindamist.
+
+Saabumiskirja tegelikku serverifunktsiooni kutsuti püüdva mailer-asendusega ja see andis õige testadressaadiga neutraalse teema ning sisselogimislingi, ilma juhtumi sisuta. Ebaõnnestuvat transporti ei nimetatud saadetuks; kontrollitud kordus püüdurisse õnnestus. See ei tõenda taustatöö automaatset taastumist või päris SMTP kättetoimetamist. [Kuus mehhanismikontrolli](evidence/sol-proof-20261014-01/server-safety-mail.json).
+
+Uus tähelepanek: `sendInternalPreInquiryArrivalEmail` ei loe `notificationEmailEnabled` eelistust. Testkonto väärtus oli false, kuid püüduri `sendMail` kutsuti. Kas saabumiskiri peab olema kohustuslik erand või tuleb eelistust arvestada, vajab tooteotsust. Varasemad HTTPS-katsed kasutasid ainult `.invalid` testadresse; need ei tõenda väliste SMTP katsete puudumist. Raporti „päris kirju ei tehtud” tähendab, et päris adressaadile kirja ei saadetud. Salvestatud ettevõtte kontaktmeilile ei saadetud kinnituskirja ega testpöördumist.
+
+Välise e-kirja koostajad võeti Babeli AST abil **muutmata funktsioonidena** serveri tegeliku väljalaske JSX-lähtekoodist ja käivitati eraldatud VM-is. Vaikimisi `mailto` ei sisaldanud detailide kontrollfraasi; `withDetails=true` lisas selle. Saatja meili puudumine keelas vastuskirja lingi. See on frontend-abi koodi fixture-katse, mitte kirjanupu brauseris klõpsamine. Eraldi serverikatse lõi ainult `.invalid` adressaadiga EXTERNAL_EMAIL-mustandi. [Neli kontrolli ja lähtekoodi räsi](evidence/sol-proof-20261014-01/server-external-mail.json).
+
+Esimese rakise lõpust jäi välise mustandi ettevalmistus vale tegevusvõtme vormingu taha; seda ei loetud tootepuuduseks. Kümmet mehhanismikontrolli ei korratud: välise mustandi ja koostajate eraldi skript kasutas õiget UUID-võtit. Brauseri allalaadimine, detailide kasutajavalik ja välise saatmiskinnituse nähtav sõnastus on veel kontrollida.
 
 **Asutuse vastuvõtt, töö määramine ja üleandmine — 17 uut kontrollvarianti.** Katseks loodi eraldi OTHER-liiki „SOL TEST — sünteetiline vastuvõtutiim”; päris OÜ Küberloome profiili ja organisatsiooni ei aktiveeritud. Asutuse esindusõigus, ACTIVE-olek ja esimene töötajaliikmesus valmistati sünteetilise fixture-seadistusena. See ei tõenda päris asutuse kinnitamist ega töötaja kutsumise rada. Enne fixture-aktiveerimist kontrolliti täielikku PENDING_VERIFICATION→ACTIVE katset: tavaroll keelduti 403-ga. Kontode adminiõigusi ei muudetud. [Seadistus ja kontroll](evidence/sol-proof-20261014-01/server-intake-setup.json).
 
