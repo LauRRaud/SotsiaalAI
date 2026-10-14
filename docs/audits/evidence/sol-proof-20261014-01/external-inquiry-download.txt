@@ -1,0 +1,80 @@
+Sotsiaal.pro eelpöördumise eelinfo
+
+See ei ole ametlik abivajaduse hindamine ega teenuse määramise otsus. See aitab olukorda läbi mõelda ja pöördumist ette valmistada.
+
+Rada: Kirjeldan olukorda oma sõnadega
+Põhiküsimuste alus: STAR-i täisealise inimese abi- ja toetusvajaduse hindamisvahend (2026).
+Teema: SOL TEST väline kanal
+
+Eluvaldkonnad
+
+Suhtlemine
+- 1.1 Sotsiaalsed suhted: Kas inimene suudab iseseisvalt suhelda teiste inimestega, luua uusi suhteid või säilitada olemasolevaid?
+  Vastus: Vastamata
+
+Vaimne tervis
+- 2.1 Kognitiivne võimekus: Kas inimene suudab iseseisvalt teha otsuseid igapäevaelu küsimustes ning orienteeruda ajas, kohas ja inimestes?
+  Vastus: Vastamata
+- 2.2 Psüühiline seisund: Kas inimese psüühika on normipärane ja puuduvad psüühikahäirest tulenevad mõjud käitumisele ja tegevusele?
+  Vastus: Vastamata
+- 2.2 Psüühiline seisund (Haigusteadlikkus ja raviplaan): Kas inimesel on haigusteadlikkus ja ta suudab iseseisvalt järgida raviplaani?
+  Vastus: Vastamata
+- 2.3 Riskivaldkonnad: Kas inimese käitumine on adekvaatne ja puudub riskikäitumine, mis ohustab tema enda või teiste turvalisust ja emotsioonidega toimetulekut?
+  Vastus: Vastamata
+- 2.3 Riskivaldkonnad (Turvaline elukeskkond ja võrgustik): Kas inimese elukeskkond ja sotsiaalne võrgustik on turvalised?
+  Vastus: Vastamata
+
+Füüsiline tervis
+- 3.1 Tervise eest hoolitsemine: Kas inimene suudab iseseisvalt hoolitseda oma füüsilise tervise eest ja kasutada tervishoiuteenuseid?
+  Vastus: Vastamata
+- 3.2 Liikumine (Liikumine eluruumides): Kas inimene suudab iseseisvalt liikuda eluruumides (siseruumides, tuttavates kohtades, kodus)?
+  Vastus: Vastamata
+- 3.2 Liikumine (Liikumine väljaspool eluruume): Kas inimene suudab iseseisvalt liikuda väljaspool eluruume (sh füüsiline liikumine, transpordi planeerimine, transpordi kasutamine, abivahendite vajadus – nt trepironija)?
+  Vastus: Vastamata
+
+Elukeskkond
+- 4.1 Sobiva eluaseme saamine/säilitamine: Kas inimene on võimeline iseseisvalt olemasolevat eluaset säilitama või uut sobivat eluaset otsima/taotlema?
+  Vastus: Vastamata
+- 4.2 Eluase ja elamistingimused: Kas inimesel on olemas sobiv elamispind?
+  Vastus: Vastamata
+- 4.2 Eluase ja elamistingimused (Abi kutsumise võimalus): Kas inimesel on olemas võimalus abi kutsumiseks?
+  Vastus: Vastamata
+
+Hõivatus
+- 5.1 Rakenduse leidmine ja säilitamine: Kas inimene on võimeline iseseisvalt leidma või säilitama töö, õppimise vm hõivega seotud rakendust?
+  Vastus: Vastamata
+- 5.1 Rakenduse leidmine ja säilitamine (Seotus hõivega): Kas inimene on töö, õppimise või muu hõivega seotud?
+  Vastus: Vastamata
+- 5.2 Sissetuleku säilimine: Kas inimese töötasu või muu sissetulek on püsinud muutumatu sõltumata tervislikust olukorrast?
+  Vastus: Vastamata
+
+Vaba aeg ja huvitegevus
+- 6.1 Vaba aeg: Kas inimene suudab iseseisvalt oma vaba aega sisustada, leida või säilitada huvitegevuse või kogukonda panustamise võimalusi (sh hoida puhkuse ja tööhõive vahelist tasakaalu)?
+  Vastus: Vastamata
+
+Igapäevaelu toimingud
+- 7.1 Rahadega toimetulek: Kas inimene on iseseisev oma rahade planeerimisel ning asjaajamisel (sh eelarve planeerimisel, rahaliste vahenditega toimetulekul, pangateenuste kasutamisel, arvete tasumisel)?
+  Vastus: Vastamata
+- 7.2 Toidu valmistamine: Kas inimene suudab iseseisvalt süüa valmistada ja teha sellega seotud tegevusi (sh toidu hankimine poest, toidu valmistamine, toidu soojendamine)?
+  Vastus: Vastamata
+- 7.3 Söömine ja joomine: Kas inimene suudab iseseisvalt süüa-juua ja teha sellega seotud tegevusi (sh toidu või joogi tõstmine taldrikule/valamine tassi, noa, kahvli, lusika kasutamine, toidu tükeldamine)?
+  Vastus: Vastamata
+- 7.4 Majapidamine: Kas inimene suudab iseseisvalt teha majapidamisega seotud tegevusi (sh koristamine, pesu pesemine, kodumasinate kasutamine jm elukoha eest hoolitsemisega seotud toimingud)?
+  Vastus: Vastamata
+- 7.5 Enese eest hoolitsemine: Kas inimene on võimeline iseseisvalt teostama enesehooldusega seotud toiminguid (sh enda pesemine, tualeti kasutamine, riietumine kodus ja riietumine välja minemiseks)?
+  Vastus: Vastamata
+
+Olukorra kirjeldus
+SOL TEST DETAILS: soovin oma olukorra enne kohtumist kirja panna.
+
+Pöördumise eelvaade
+Lugupeetud SOL TEST väline kontakt
+
+Soovin pöörduda teemal: SOL TEST väline kanal.
+
+Olukorra lühikokkuvõte ja eelkaardistus:
+SOL TEST DETAILS: soovin oma olukorra enne kohtumist kirja panna.
+
+Palun aidata välja selgitada, millised toetused või teenused võiksid selles olukorras sobida ning millised oleksid järgmised sammud.
+
+Lugupidamisega

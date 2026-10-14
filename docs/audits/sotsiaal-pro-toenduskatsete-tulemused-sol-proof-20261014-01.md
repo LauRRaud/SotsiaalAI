@@ -2,7 +2,7 @@
 
 14.10.2026. **Vahetulemus: serveri lähtekontroll on käimas; kogu 52 juhtumiga kavand pole täidetud.** Omaniku juhisel kasutatakse põhiliseks kinnituseks serveris töötavat arendusplatvormi ja selle tegelikku andmebaasi. Platvorm ei ole produktsioonis. Kohalik eraldatud keskkond jääb tõrke- ja hävitavate katsete abivahendiks.
 
-**Jooksev koond:** 126 salvestatud kontrollvarianti: 123 PASS, 1 FAIL, 2 katserakise takistuse vaatlust. Terve 52 juhtumi kavand pole lõpetatud.
+**Jooksev koond:** 131 salvestatud kontrollvarianti: 128 PASS, 1 FAIL, 2 katserakise takistuse vaatlust. Terve 52 juhtumi kavand pole lõpetatud.
 
 Käivituskavand: [14.10 kontrollikavand](sotsiaal-pro-toenduskatsete-kavand-2026-10-14.md). Täpne edenemine ja kõik variandid: [case-progress.json](evidence/sol-proof-20261014-01/case-progress.json).
 
@@ -104,6 +104,14 @@ Enne omaniku serverieelistuse täpsustust valmistati tühi kohalik baas ja testi
 Kohaliku testikoopia käivitust takistasid esmalt webpacki kompileerimine ja seejärel Turbopacki nõue hoida sõltuvused failisüsteemi juure sees. Seadistuse lahendamine ei muutnud rakenduse tootekoodi. Need ettevalmistusvead ei lähe platvormi funktsioonivigade arvestusse. Kohalik enda loodud frontend peatati serveri kontrollide prioriseerimise järel.
 
 **Mis jääb järgmisse etappi.**
+
+**Välise kanali ja lõpetatud töö brauserivaated — viis uut varianti.** Kliendile kuvati asutuse lõpetatud töö seis ja asutuse kirjutatud selgitus ([pilt](evidence/sol-proof-20261014-01/client-organization-closed.png)). E-kirja valikuvaates oli detailide lisamise linnuke alguses maha võetud, selle sai teadlikult valida ning valik tühistati enne lahkumist. Meilirakendust ei avatud. [Vaikimisi valik](evidence/sol-proof-20261014-01/external-email-default-choice.png).
+
+Tegelik „Laadi alla” nupp andis UTF-8 tekstifaili koos olukorra, kirja ja mitteametlikkuse selgitusega; detailide kontrollfraas säilis. Allalaadimine ei märkinud mustandit saadetuks. [Allalaaditud fail](evidence/sol-proof-20261014-01/external-inquiry-download.txt). Vaba kirjelduse failis on lisaks 21 vastamata küsimuserida; selle lugemiskoormus on FIELD-katse küsimus, mitte automaatselt kinnitatud ajavõit.
+
+Oma saatmiskinnitust katsetati ainult `.invalid` aadressiga sünteetilise kirje juures, päris e-kirja saatmata. Kuvatud seis oli „saadetud e-kirjaga, vastuvõtt teadmata”; API openedAt ja recipientOwnerId jäid nulliks. See toetab eristust inimese enda kinnituse ja asutuse vastuvõtu vahel. [Näidatud seis](evidence/sol-proof-20261014-01/external-sent-self-report.png), [viis varianti](evidence/sol-proof-20261014-01/server-browser-external.json).
+
+Fixture piiri tähelepanek: käsitsi e-postiga API-s loodud mustand kuvas koostamisvaates „adressaat on valimata”, sest sellel puudus Teenusekaardi recipientEntry. Selle põhjal ei loeta läbi tavapärast Teenusekaardilt adressaadi valimise rada; käsitsi/importitud adressaadi tooteleping vajab eraldi kontrolli.
 
 **Kiire abi, saabumiskiri ja välise e-kirja infopiir — kümme uut varianti.** Deterministlik eelkaardistuse normaliseerija andis valikule „Keegi võib olla vahetus ohus” CRISIS-tähise ja 112 juhise, kiirele sekkumisvajadusele WARNING-juhise ning tavavalikule NONE-i. Mudelivastust selleks ei küsitud. See tõendab etteantud valikute mehhanismi, mitte kõigi vabatekstiliste kriiside äratundmist või kliinilist hindamist.
 

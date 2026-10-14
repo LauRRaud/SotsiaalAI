@@ -1,11 +1,11 @@
 {
   "run_id": "sol-proof-20261014-01",
-  "updated_at": "2026-10-14T13:59:58.153Z",
+  "updated_at": "2026-10-14T14:08:34.833Z",
   "phase": "server HTTPS and browser controls in progress; owner-authorized three-account exception",
   "catalog_cases": 52,
   "whole_catalog_completed": false,
-  "observed_variants": 126,
-  "passed_variants": 123,
+  "observed_variants": 131,
+  "passed_variants": 128,
   "failed_variants": 1,
   "blocked_variants": 2,
   "server_fixture_variants": 21,
@@ -194,8 +194,8 @@
       "case_id": "OPS-08",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 3,
-      "passed_variants": 3,
+      "observed_variants": 4,
+      "passed_variants": 4,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -224,8 +224,8 @@
       "case_id": "DATA-03",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 4,
-      "passed_variants": 4,
+      "observed_variants": 8,
+      "passed_variants": 8,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -2441,6 +2441,85 @@
         "platformRecipientAssigned": false
       },
       "evidence_file": "server-external-mail.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "OPS-08",
+      "variant_id": "client_closed_outcome_visible_browser",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS browser",
+      "actual": {
+        "caption": "asutus lõpetas töö 14.10.2026",
+        "closingNoteVisible": true,
+        "screenshot": "client-organization-closed.png"
+      },
+      "evidence_file": "server-browser-external.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "DATA-03",
+      "variant_id": "external_mail_details_default_off_browser",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS browser",
+      "actual": {
+        "detailsCheckboxChecked": false,
+        "noticeVisible": true,
+        "screenshot": "external-email-default-choice.png",
+        "openedMailApplication": false
+      },
+      "evidence_file": "server-browser-external.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "DATA-03",
+      "variant_id": "external_mail_details_explicit_choice_browser",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS browser",
+      "actual": {
+        "explicitChoiceChangesCheckbox": true,
+        "choiceRevertedBeforeLeaving": true,
+        "openedMailApplication": false
+      },
+      "evidence_file": "server-browser-external.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "DATA-03",
+      "variant_id": "browser_download_contains_selected_inquiry",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS browser",
+      "actual": {
+        "suggestedFilename": "sol-test-väline-kanal.txt",
+        "artifact": "external-inquiry-download.txt",
+        "containsDetailMarker": true,
+        "containsUnofficialDisclaimer": true,
+        "storedStateAfterDownload": "DRAFT",
+        "sentAt": null
+      },
+      "evidence_file": "server-browser-external.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "DATA-03",
+      "variant_id": "external_self_report_not_receipt_browser",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS browser and session API",
+      "actual": {
+        "simulatedManualConfirmation": true,
+        "caption": "saadetud e-kirjaga, vastuvõtt teadmata",
+        "state": "SENT",
+        "channel": "EXTERNAL_EMAIL",
+        "openedAt": null,
+        "recipientOwnerId": null,
+        "screenshot": "external-sent-self-report.png",
+        "actualEmailSent": false
+      },
+      "evidence_file": "server-browser-external.json",
       "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
     }
   ]

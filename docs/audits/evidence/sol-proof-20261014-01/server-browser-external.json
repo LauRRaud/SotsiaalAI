@@ -1,0 +1,95 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41",
+  "finishedAt": "2026-10-14T14:08:34.181Z",
+  "checks": [
+    {
+      "case_id": "OPS-08",
+      "variant_id": "client_closed_outcome_visible_browser",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS browser",
+      "actual": {
+        "caption": "asutus lõpetas töö 14.10.2026",
+        "closingNoteVisible": true,
+        "screenshot": "client-organization-closed.png"
+      }
+    },
+    {
+      "case_id": "DATA-03",
+      "variant_id": "external_mail_details_default_off_browser",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS browser",
+      "actual": {
+        "detailsCheckboxChecked": false,
+        "noticeVisible": true,
+        "screenshot": "external-email-default-choice.png",
+        "openedMailApplication": false
+      }
+    },
+    {
+      "case_id": "DATA-03",
+      "variant_id": "external_mail_details_explicit_choice_browser",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS browser",
+      "actual": {
+        "explicitChoiceChangesCheckbox": true,
+        "choiceRevertedBeforeLeaving": true,
+        "openedMailApplication": false
+      }
+    },
+    {
+      "case_id": "DATA-03",
+      "variant_id": "browser_download_contains_selected_inquiry",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS browser",
+      "actual": {
+        "suggestedFilename": "sol-test-väline-kanal.txt",
+        "artifact": "external-inquiry-download.txt",
+        "containsDetailMarker": true,
+        "containsUnofficialDisclaimer": true,
+        "storedStateAfterDownload": "DRAFT",
+        "sentAt": null
+      }
+    },
+    {
+      "case_id": "DATA-03",
+      "variant_id": "external_self_report_not_receipt_browser",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS browser and session API",
+      "actual": {
+        "simulatedManualConfirmation": true,
+        "caption": "saadetud e-kirjaga, vastuvõtt teadmata",
+        "state": "SENT",
+        "channel": "EXTERNAL_EMAIL",
+        "openedAt": null,
+        "recipientOwnerId": null,
+        "screenshot": "external-sent-self-report.png",
+        "actualEmailSent": false
+      }
+    }
+  ],
+  "observations": [
+    {
+      "case_id": "DATA-03",
+      "status": "NOT_PROVEN",
+      "actual": "A free-text download includes 21 unanswered questionnaire rows before the situation and letter. Its reading burden needs human measurement; the actual information is retained."
+    },
+    {
+      "case_id": "DATA-03",
+      "status": "NOT_PROVEN",
+      "actual": "The API-created manual email draft showed 'Adressaat on valimata' although persisted email was present. No service-map recipientEntry was supplied in this fixture. The normal listed-recipient creation UI path was not tested by this variant."
+    }
+  ],
+  "externalMessagesSent": false,
+  "newPaidCalls": false,
+  "limits": [
+    "Synthetic .invalid destination only; no email application opened.",
+    "Manual external-send confirmation was simulated without an actual email.",
+    "Initial draft created through server API, not the complete browser recipient-selection path."
+  ]
+}
