@@ -1,11 +1,11 @@
 {
   "run_id": "sol-proof-20261014-01",
-  "updated_at": "2026-10-14T15:11:42.852Z",
-  "phase": "server HTTPS and browser controls in progress; owner-authorized three-account exception",
+  "updated_at": "2026-10-14T15:38:17.168Z",
+  "phase": "stopped at owner quota request; evidence checkpoint saved",
   "catalog_cases": 52,
   "whole_catalog_completed": false,
-  "observed_variants": 231,
-  "passed_variants": 227,
+  "observed_variants": 233,
+  "passed_variants": 229,
   "failed_variants": 2,
   "blocked_variants": 2,
   "server_fixture_variants": 32,
@@ -44,8 +44,8 @@
       "case_id": "FLOW-01",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 6,
-      "passed_variants": 6,
+      "observed_variants": 8,
+      "passed_variants": 8,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -3982,6 +3982,43 @@
         "actualFunctionSha256": "4bb0e30b0857372406b5caa2608f8c31144a3bc4b8ad9983273c3ccb70bd5029"
       },
       "evidence_file": "server-provider-inquiry.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "FLOW-01",
+      "variant_id": "browser_selects_synthetic_organization_internal_channel",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual server browser, synthetic CLIENT session",
+      "actual": {
+        "organizationId": "cmv85une50000j8kmaizs70io",
+        "recipientName": "SOL TEST — sünteetiline vastuvõtutiim",
+        "channelLabel": "Sotsiaal.pro platvormis",
+        "organizationTemporarilyActive": true
+      },
+      "evidence_file": "server-browser-compose.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "FLOW-01",
+      "variant_id": "browser_saves_fresh_freeform_inquiry_draft",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual browser form and captured POST /api/pre-inquiries response",
+      "actual": {
+        "status": 201,
+        "inquiry": {
+          "id": "cmv89qu8k009ghikmdso679cl",
+          "status": "DRAFT",
+          "channel": "INTERNAL",
+          "organizationId": "cmv85une50000j8kmaizs70io",
+          "topic": "SOL TEST browser fresh inquiry",
+          "situation": "SOL TEST BROWSER SITUATION. Vajan abi testtelefoni kasutamisel ja soovin olukorra enne kohtumist kirja panna.",
+          "userEditedDraft": "SOL TEST BROWSER BODY. Soovin enne kohtumist teada anda, et vajan abi testtelefoni kasutamisel. See on sünteetiline katse.",
+          "assessmentPath": "QUICK_DESCRIPTION"
+        }
+      },
+      "evidence_file": "server-browser-compose.json",
       "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
     }
   ]

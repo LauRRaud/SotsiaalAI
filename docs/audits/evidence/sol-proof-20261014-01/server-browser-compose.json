@@ -1,0 +1,69 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41",
+  "checkpointDate": "2026-10-14",
+  "phase": "stopped at owner's quota request",
+  "checks": [
+    {
+      "case_id": "FLOW-01",
+      "variant_id": "browser_selects_synthetic_organization_internal_channel",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual server browser, synthetic CLIENT session",
+      "actual": {
+        "organizationId": "cmv85une50000j8kmaizs70io",
+        "recipientName": "SOL TEST — sünteetiline vastuvõtutiim",
+        "channelLabel": "Sotsiaal.pro platvormis",
+        "organizationTemporarilyActive": true
+      }
+    },
+    {
+      "case_id": "FLOW-01",
+      "variant_id": "browser_saves_fresh_freeform_inquiry_draft",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual browser form and captured POST /api/pre-inquiries response",
+      "actual": {
+        "status": 201,
+        "inquiry": {
+          "id": "cmv89qu8k009ghikmdso679cl",
+          "status": "DRAFT",
+          "channel": "INTERNAL",
+          "organizationId": "cmv85une50000j8kmaizs70io",
+          "topic": "SOL TEST browser fresh inquiry",
+          "situation": "SOL TEST BROWSER SITUATION. Vajan abi testtelefoni kasutamisel ja soovin olukorra enne kohtumist kirja panna.",
+          "userEditedDraft": "SOL TEST BROWSER BODY. Soovin enne kohtumist teada anda, et vajan abi testtelefoni kasutamisel. See on sünteetiline katse.",
+          "assessmentPath": "QUICK_DESCRIPTION"
+        }
+      }
+    }
+  ],
+  "observations": [
+    {
+      "status": "NOT_PROVEN",
+      "note": "Choosing an existing contact and writing the letter without a situation left both send/save disabled at the sending step; no clear missing-situation explanation was visible there. Returning to the situation step and filling it enabled save. Usability observation, not a confirmed new product failure."
+    },
+    {
+      "status": "NOT_PROVEN",
+      "note": "One immediate manual step change after a radio selection was followed by the scheduled 420 ms auto-advance. Not reproduced before owner stopped testing; not classified as a confirmed defect."
+    },
+    {
+      "status": "NOT_PROVEN",
+      "note": "A synthetic KOV contact with the test namespace was temporarily PUBLISHED but the correctly filtered map API returned zero results. Current source requires accepted contact provenance/freshness. No official provenance or freshness evidence was fabricated."
+    }
+  ],
+  "cleanup": {
+    "organizationId": "cmv85une50000j8kmaizs70io",
+    "organizationStatus": "SUSPENDED",
+    "temporaryContactId": "cmv89i7kc0000imkmagi5gg4u",
+    "temporaryContactStatus": "HIDDEN",
+    "inquiryId": "cmv89qu8k009ghikmdso679cl",
+    "inquiryStatus": "DRAFT",
+    "inquirySent": false
+  },
+  "limits": [
+    "No send, reload, receiver-screen acceptance or screenshot was performed for this fresh draft before the owner requested a stop.",
+    "The whole 52-case plan remains incomplete; no measured time saving, cost saving, current-model semantic accuracy rate or real STAR integration is proved.",
+    "No new paid model request or real-recipient message was made in this browser continuation."
+  ]
+}
