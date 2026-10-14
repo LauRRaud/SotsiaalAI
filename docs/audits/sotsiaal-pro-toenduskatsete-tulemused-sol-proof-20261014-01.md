@@ -32,7 +32,7 @@ Teenuseosutaja testkontole salvestati ettevõtte andmetega privaatne teenuseprof
 
 **Kontrollvariandid, mida praegu saab kinnitada.**
 
-41 salvestatud serverivariandist läbis 40; üks ebaõnnestus. Need puudutavad 14 kataloogijuhtumit. Ükski kataloogijuhtum ei ole üksnes selle koondarvu tõttu tervikuna lõpetatuks märgitud. Kogu 52 juhtumi läbimise protsenti sellest arvust ei arvutata.
+Esialgses serveri teenusekontrollis oli 41 varianti: 40 läbis ja üks ebaõnnestus. Ligipääsu erandi esimene HTTPS-kontroll lisas 32 varianti: 30 läbis, kaks blokeerusid katseprogrammi vale küsimuseindeksi tõttu. Küsimustiku sihitud kordus lisas kuus läbitud varianti ja lahendas mõlemad rakisetakistused. Kokku on **79 salvestatud varianti: 76 PASS, üks FAIL ja kaks ajaloolist HARNESS_OR_PRECONDITION**. Need pole 79 eri kavandijuhtumit. Ükski kataloogijuhtum ei ole üksnes selle koondarvu tõttu tervikuna lõpetatuks märgitud. Kogu 52 juhtumi läbimise protsenti sellest arvust ei arvutata.
 
 | Teema | Vaadeldud tulemus | Tõendi piir |
 |---|---|---|
@@ -52,6 +52,16 @@ Teenuseosutaja testkontole salvestati ettevõtte andmetega privaatne teenuseprof
 | Avaldamise esindusõiguse kontroll | Kinnitamata esindusõigusega profiil lükatakse avaldamise kontrollfunktsioonis tagasi | Avaldamise kirjutavat rada ei käivitatud |
 
 Tõendid: [serveri esmane rada](evidence/sol-proof-20261014-01/server-baseline.json), [kordused ja ettevõte](evidence/sol-proof-20261014-01/server-company-and-lifecycle.json), [organisatsiooni piirid](evidence/sol-proof-20261014-01/server-org-boundaries.json).
+
+**Kolme tavarolli HTTPS-kontroll pärast ligipääsu erandit.**
+
+Väljalaskega `249fa157` läbisid kolme testkonto seanss ja Teekonna töö-API. `/admin` suunas need töölauale; admini teenuse-API keeldus kõigil kolmel. Anonüümne töö-API jäi 503-ga suletuks. Teenuseprofiili API lubas teenuseosutajat ning keeldus kliendi ja sotsiaaltöö spetsialisti rollist.
+
+Kliendi Teekonnast kinnitatud kaks välja (`summary`, `title`) eeltäideti eelpöördumisse. Oma sõnadega mustand salvestati, teksti muudeti ja see saadeti INTERNAL kanalil spetsialistile. Spetsialist sai eelinfo enne fiktiivset kohtumist HTTPS detailivastuses lugeda. Teekonna jagamata privaatne kontrollfraas ei olnud eeltäitmises ega saaja vastuses. Võõras spetsialist ja teenuseosutaja ei saanud Teekonda lugeda, muuta, eksportida ega sellest uut eeltäitmist küsida. Teenuseosutaja ei saanud teisele spetsialistile saadetud pöördumist lugeda, muuta, vastu võtta ega lõpetada. Asutuse mustandile saatmine keelduti, mitte ei märgitud vastuvõetuks.
+
+Lühema ja põhjalikuma küsimustiku täitmise katses eeldas katseprogramm ekslikult, et esimeses eluvaldkonnas on vähemalt kaks küsimust. Test ei jõudnud selle vea tõttu küsimustiku HTTP-kutseni. See on katserakise piir, mitte platvormi funktsiooniviga; mõjutatud kaks varianti korratakse eraldi. [32 HTTP-varianti ja loodud kirjed](evidence/sol-proof-20261014-01/server-http-flow.json). Brauseri vormi ja spetsialisti nähtava töövaate tõend lisatakse eraldi.
+
+**Küsimustiku sihitud kordus: kõik kuus varianti läbisid.** Mõlemad täidetud rajad salvestusid tegeliku HTTPS API kaudu ning jõudsid spetsialistile sama rajatähisega. 21 küsimuse seas säilis vastus UNKNOWN tundmatuna. Lühivormi 19 vastamata küsimuse olek jäi tühjaks, mitte GREEN-iks. Täisvormis täideti kõik 21 põhiküsimust, kuid kõiki vabateksti- ja RFK-harusid see ei kata. Kliendi ja saaja eksportides püsis mitteametliku eelinfo selgitus ning „ei oska öelda” vastus. Eksport genereeriti serveri sama mooduliga, mitte brauseri allalaadimisnupu kaudu. Algsete rakisevigade tõendid säilivad ajaloona ega lähe lahendamata platvormipuuduste hulka. [Kuus korduskontrolli](evidence/sol-proof-20261014-01/server-http-questionnaires.json).
 
 **Kinnitatud puudus: võrgustikujagamine pärast vastuvõttu.**
 

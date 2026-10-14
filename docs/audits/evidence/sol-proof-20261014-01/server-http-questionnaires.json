@@ -1,0 +1,102 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "249fa15700c64cc293422665f5efe7f51468c088",
+  "startedAt": "2026-10-14T11:13:07.630Z",
+  "checks": [
+    {
+      "case_id": "FLOW-02",
+      "variant_id": "filled_TARGETED_ASSESSMENT_corrected_harness",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 201,
+        "path": "TARGETED_ASSESSMENT",
+        "questionCount": 21,
+        "unknownRemainsUnknown": true,
+        "unansweredCount": 19,
+        "unansweredStatusValues": [
+          ""
+        ],
+        "recordId": "cmv80h2bc0005p7kmasvcaw53"
+      }
+    },
+    {
+      "case_id": "FLOW-02",
+      "variant_id": "filled_export_TARGETED_ASSESSMENT",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "clientDisclaimer": true,
+        "receiverDisclaimer": true,
+        "unknownLabel": true,
+        "clientLength": 4383,
+        "receiverLength": 6178
+      }
+    },
+    {
+      "case_id": "FLOW-02",
+      "variant_id": "filled_receiver_TARGETED_ASSESSMENT",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "sendStatus": 200,
+        "recipientStatus": 200,
+        "correctPath": "TARGETED_ASSESSMENT",
+        "unknownRetained": true
+      }
+    },
+    {
+      "case_id": "FLOW-02",
+      "variant_id": "filled_COMPREHENSIVE_ASSESSMENT_corrected_harness",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 201,
+        "path": "COMPREHENSIVE_ASSESSMENT",
+        "questionCount": 21,
+        "unknownRemainsUnknown": true,
+        "unansweredCount": 0,
+        "unansweredStatusValues": [],
+        "recordId": "cmv80h6f40007p7kmanbjc2go"
+      }
+    },
+    {
+      "case_id": "FLOW-02",
+      "variant_id": "filled_export_COMPREHENSIVE_ASSESSMENT",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "clientDisclaimer": true,
+        "receiverDisclaimer": true,
+        "unknownLabel": true,
+        "clientLength": 4426,
+        "receiverLength": 6221
+      }
+    },
+    {
+      "case_id": "FLOW-02",
+      "variant_id": "filled_receiver_COMPREHENSIVE_ASSESSMENT",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "sendStatus": 200,
+        "recipientStatus": 200,
+        "correctPath": "COMPREHENSIVE_ASSESSMENT",
+        "unknownRetained": true
+      }
+    }
+  ],
+  "created": {
+    "TARGETED_ASSESSMENT": "cmv80h2bc0005p7kmasvcaw53",
+    "COMPREHENSIVE_ASSESSMENT": "cmv80h6f40007p7kmanbjc2go"
+  },
+  "externalMessagesSent": false,
+  "newPaidCalls": false,
+  "finishedAt": "2026-10-14T11:13:17.360Z"
+}
