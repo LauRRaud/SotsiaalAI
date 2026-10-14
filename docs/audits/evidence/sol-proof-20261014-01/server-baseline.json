@@ -1,0 +1,327 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "startedAt": "2026-10-14T08:47:06.911Z",
+  "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b",
+  "environment": "actual development server and its database",
+  "checks": [
+    {
+      "case_id": "ENV-03",
+      "variant_id": "actor_client",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "role": "CLIENT",
+        "isAdmin": false,
+        "emailNotifications": false
+      }
+    },
+    {
+      "case_id": "ENV-03",
+      "variant_id": "http_session_client",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "callbackStatus": 200,
+        "sessionStatus": 200,
+        "role": "CLIENT",
+        "fixtureToken": true
+      }
+    },
+    {
+      "case_id": "ENV-02",
+      "variant_id": "closed_gate_client",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "HTTPS API",
+      "actual": {
+        "status": 503,
+        "message": "room.opening_soon"
+      },
+      "workflowStatus": "BLOCKED_BY_INTENTIONAL_PRELAUNCH_GATE"
+    },
+    {
+      "case_id": "ENV-03",
+      "variant_id": "actor_specialist",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "role": "SOCIAL_WORKER",
+        "isAdmin": false,
+        "emailNotifications": false
+      }
+    },
+    {
+      "case_id": "ENV-03",
+      "variant_id": "http_session_specialist",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "callbackStatus": 200,
+        "sessionStatus": 200,
+        "role": "SOCIAL_WORKER",
+        "fixtureToken": true
+      }
+    },
+    {
+      "case_id": "ENV-02",
+      "variant_id": "closed_gate_specialist",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "HTTPS API",
+      "actual": {
+        "status": 503,
+        "message": "room.opening_soon"
+      },
+      "workflowStatus": "BLOCKED_BY_INTENTIONAL_PRELAUNCH_GATE"
+    },
+    {
+      "case_id": "ENV-03",
+      "variant_id": "actor_provider",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "role": "SERVICE_PROVIDER",
+        "isAdmin": false,
+        "emailNotifications": false
+      }
+    },
+    {
+      "case_id": "ENV-03",
+      "variant_id": "http_session_provider",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "callbackStatus": 200,
+        "sessionStatus": 200,
+        "role": "SERVICE_PROVIDER",
+        "fixtureToken": true
+      }
+    },
+    {
+      "case_id": "ENV-02",
+      "variant_id": "closed_gate_provider",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "HTTPS API",
+      "actual": {
+        "status": 503,
+        "message": "room.opening_soon"
+      },
+      "workflowStatus": "BLOCKED_BY_INTENTIONAL_PRELAUNCH_GATE"
+    },
+    {
+      "case_id": "FLOW-04",
+      "variant_id": "journey_create_and_retry",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "id": "jrn_2cf2b8a7703e5dd3976166d14608",
+        "retrySameId": true
+      }
+    },
+    {
+      "case_id": "FLOW-04",
+      "variant_id": "steps",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "rows": [
+          {
+            "id": "cmv7v9aeo0004edkm9y9id303",
+            "title": "Kirjeldan oma muret",
+            "dueOn": "2026-10-15",
+            "state": "TODO"
+          }
+        ],
+        "retrySameId": true
+      }
+    },
+    {
+      "case_id": "FLOW-04",
+      "variant_id": "self_assessments",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "rows": [
+          {
+            "level": 2,
+            "note": "Sünteetiline algseis"
+          },
+          {
+            "level": 4,
+            "note": "Sünteetiline järelhinnang"
+          }
+        ],
+        "individualSelfReport": true
+      }
+    },
+    {
+      "case_id": "DATA-01",
+      "variant_id": "foreign_journey",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "denied": true,
+        "error": {
+          "status": 404,
+          "message": "journeys.errors.not_found"
+        }
+      }
+    },
+    {
+      "case_id": "FLOW-02",
+      "variant_id": "questionnaire_and_export",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "domains": 7,
+        "questions": 21,
+        "variants": [
+          {
+            "path": "QUICK_DESCRIPTION",
+            "clientHasUnofficialDisclaimer": true,
+            "receiverHasUnofficialDisclaimer": true,
+            "clientLength": 4047,
+            "receiverLength": 4125,
+            "receiverAddsRows": true
+          },
+          {
+            "path": "TARGETED_ASSESSMENT",
+            "clientHasUnofficialDisclaimer": true,
+            "receiverHasUnofficialDisclaimer": true,
+            "clientLength": 4035,
+            "receiverLength": 4113,
+            "receiverAddsRows": true
+          },
+          {
+            "path": "COMPREHENSIVE_ASSESSMENT",
+            "clientHasUnofficialDisclaimer": true,
+            "receiverHasUnofficialDisclaimer": true,
+            "clientLength": 4040,
+            "receiverLength": 4118,
+            "receiverAddsRows": true
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "FLOW-01",
+      "variant_id": "free_description_delivery",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "id": "cmv7v9ag50007edkmvvgswitw",
+        "status": "SENT",
+        "deliveryChannel": "INTERNAL",
+        "recipientId": "cmv7uufv50003u3kmxjmb35yj",
+        "hasPreMeetingInfo": true
+      }
+    },
+    {
+      "case_id": "DATA-01",
+      "variant_id": "wrong_recipient_inquiry",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "denied": true
+      }
+    },
+    {
+      "case_id": "FLOW-08",
+      "variant_id": "before_acceptance_share",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "shareId": "cmv7v9aha0008edkm5f2oea62"
+      }
+    },
+    {
+      "case_id": "FLOW-01",
+      "variant_id": "recipient_acceptance",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "status": "READY",
+        "openedAt": "2026-10-14T08:47:07.356Z"
+      }
+    },
+    {
+      "case_id": "FLOW-08",
+      "variant_id": "after_acceptance_share",
+      "status": "FAIL",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "sourceStatus": "READY",
+        "created": false,
+        "error": {
+          "message": "network_share.source_inactive"
+        }
+      }
+    },
+    {
+      "case_id": "TOOLS-02",
+      "variant_id": "provider_draft",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "id": "cmv7v9aig000cedkmws11y54e",
+        "status": "DRAFT",
+        "registryCode": "14206225",
+        "mapVisible": false,
+        "emailMatchesOwnerInput": true
+      }
+    },
+    {
+      "case_id": "TOOLS-02",
+      "variant_id": "organization_draft",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "keys": [
+          "organization",
+          "membership",
+          "replayed"
+        ],
+        "organizationId": "cmv7v9ajq000fedkmwhk7qh00",
+        "status": "DRAFT"
+      }
+    }
+  ],
+  "created": {
+    "journeyId": "jrn_2cf2b8a7703e5dd3976166d14608",
+    "inquiryId": "cmv7v9ag50007edkmvvgswitw",
+    "networkShareId": "cmv7v9aha0008edkm5f2oea62",
+    "providerProfileId": "cmv7v9aig000cedkmws11y54e",
+    "organizationResultKeys": [
+      "organization",
+      "membership",
+      "replayed"
+    ],
+    "organizationId": "cmv7v9ajq000fedkmwhk7qh00"
+  },
+  "limits": [
+    "Service-module calls prove the tested server code and database behavior; they do not replace HTTP/UI authorization tests.",
+    "Authentication uses one-time synthetic fixture tokens; PIN/OTP flow is not claimed."
+  ],
+  "externalMessagesSent": false,
+  "newPaidCalls": false,
+  "finishedAt": "2026-10-14T08:47:07.442Z"
+}

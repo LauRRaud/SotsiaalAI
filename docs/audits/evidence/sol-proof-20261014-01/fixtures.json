@@ -1,0 +1,33 @@
+{
+  "run": "sol-proof-20261014-01",
+  "createdAt": "2026-10-14T08:26:53.243Z",
+  "fixtureIds": {
+    "users": {
+      "client": {
+        "id": "cmv7uj9mk0000v8tspppnt2i6",
+        "role": "CLIENT"
+      },
+      "otherclient": {
+        "id": "cmv7uj9mx0003v8tsxyprp03n",
+        "role": "CLIENT"
+      },
+      "specialist": {
+        "id": "cmv7uj9n80006v8tsaf0awn96",
+        "role": "SOCIAL_WORKER"
+      },
+      "helper": {
+        "id": "cmv7uj9ng0009v8tsqgg9w10w",
+        "role": "SOCIAL_WORKER"
+      },
+      "coordinator": {
+        "id": "cmv7uj9np000cv8tsq0ygqy8m",
+        "role": "SOCIAL_WORKER"
+      },
+      "provider": {
+        "id": "cmv7uj9o0000fv8tseduxhvpp",
+        "role": "SERVICE_PROVIDER"
+      }
+    }
+  },
+  "databaseOrigin": "new empty database, all repository migrations applied; no source database content copied"
+}

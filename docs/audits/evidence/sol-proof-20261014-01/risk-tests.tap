@@ -1,0 +1,62 @@
+✔ F-ERR-03: fail kustutatakse enne rida ja rida ainult siis, kui fail on läinud (3.1001ms)
+✔ F-ERR-03: kui faili ei saanud kustutada (või kustutustööd luua), jääb rida alles (2.2393ms)
+✔ F-ERR-03: rea kustutuse viga jõuab kutsujani (rida jääb nähtavaks ja kordus on võimalik) (0.4563ms)
+✔ F-ERR-01: mustandite kustutuse viga pöörab ka kirje kustutuse tagasi ja kordus teeb mõlemad (1.4186ms)
+✔ F-ERR-01: valik jääb teadlikuks ja omaniku piir samaks (0.4234ms)
+✔ väljalülitatud indeks ei ole takistus, muu ebaõnnestumine on (1.8588ms)
+✔ konto kustutamine jõuab lõpuni, kui indeks on välja lülitatud (2.6359ms)
+✔ konto kustutamine jääb ootele, kui indeksist eemaldamine päriselt ebaõnnestus või faili ei saanud kustutada (0.4702ms)
+✔ toorheli pühkimine: väljalülitatud indeksiga kustuvad nii fail kui rida (1.5902ms)
+✔ toorheli pühkimine: takistuse korral ei kustutata faili enne rida ära (0.3718ms)
+✔ tavaline lause ei ole isikuandmed: kuupäev, summa, arve- ja viitenumber, registrikood, IBAN (7.0686ms)
+✔ telefon, isikukood, e-post ja aadress märgatakse ning varjatakse ainult leitud osa (1.9051ms)
+✔ asutuse üldkontakt märgatakse endiselt: seda ei saa inimese omast eristada (0.2252ms)
+✔ isikukood: sugu ja sajand, kuupäev ja kontrollnumber (0.2407ms)
+✔ kinnitust küsitakse isikuandmetega tekstis; privaatses töövoos võib saata siiski, avalikus mitte (0.9367ms)
+✔ lüliti: vaikimisi sees; väljas on püsiv otsus „saada siiski", inimese enda valik jääb peale (0.7962ms)
+✔ lüliti väljas: privaatses töövoos ei küsita, avalikus küsitakse endiselt (0.6942ms)
+✔ lüliti salvestamine: ainult tõeväärtus ja ainult olemasolev konto (0.4887ms)
+✔ hoiatuse lause ja liikide nimed on lehe keeles (1.839ms)
+✔ lüliti on läbi viidud igas kohas, kus server kinnitust küsib, ja konto seadete lehel (45.2154ms)
+✔ cache classes partition input; reasoning is already in output (1.4258ms)
+✔ 272K boundary applies to each full request, including all cache and output tokens (0.3847ms)
+✔ unknown usage, unknown tiers and inconsistent accounting cannot look free or priced (0.3171ms)
+✔ flex rate rounds once at nano-USD precision and reserve covers the higher long tariff (0.2763ms)
+✔ search assist rejects oversized input before reserving or calling a provider (1.2465ms)
+✔ ECB freshness and exact integer EUR conversion; decimal form values round trip (0.9909ms)
+✔ all response stages preserve cache fields and billing metadata, including rejected output (30.9025ms)
+✖ two real synthetic receipts reproduce cache write/read costs without another API call (0.6153ms)
+✔ R1: a crisis sentence returns the crisis notice after any configuration, search, answer or restore failure (14.5307ms)
+✔ R1 controls: ordinary questions keep their error, completed crisis turns keep the answer, auth still comes first (4.4991ms)
+✔ päris server: avalikult aadressilt tulnud päring on oma, kuigi päringu aadress on sisemine (41.7592ms)
+✔ võõras leht ei ole oma, ka sarnase nime, teise protokolli või pordiga (1.0045ms)
+✔ päritoluta või loetamatu päring ei ole oma; päiseid Host ja X-Forwarded-Host ei usaldata (1.0367ms)
+✔ arendus: päringu enda aadress on oma ka ilma seadistuseta (0.3107ms)
+✔ kõik seadistatud aadressid loevad; vigane seadistus ei luba midagi juurde (0.4913ms)
+ℹ tests 35
+ℹ suites 0
+ℹ pass 34
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4028.3327
+
+✖ failing tests:
+
+test at tests\rag-cost.test.mjs:73:1
+✖ two real synthetic receipts reproduce cache write/read costs without another API call (0.6153ms)
+  Error: ENOENT: no such file or directory, open 'C:\Users\rauds\.codex\test-workspaces\sol-proof-20261014-01\docs\audits\evidence\rag-cost-live-receipts-2026-10-08.json'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (file:///C:/Users/rauds/.codex/test-workspaces/sol-proof-20261014-01/tests/rag-cost.test.mjs:74:32)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'C:\\Users\\rauds\\.codex\\test-workspaces\\sol-proof-20261014-01\\docs\\audits\\evidence\\rag-cost-live-receipts-2026-10-08.json'
+  }

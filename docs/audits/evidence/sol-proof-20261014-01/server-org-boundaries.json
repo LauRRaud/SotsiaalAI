@@ -1,0 +1,107 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b",
+  "startedAt": "2026-10-14T08:59:24.412Z",
+  "checks": [
+    {
+      "case_id": "DATA-01",
+      "variant_id": "draft_organization_owner",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "organizationId": "cmv7v9ajq000fedkmwhk7qh00",
+        "status": "DRAFT",
+        "kind": "organization",
+        "membershipId": "cmv7v9ajt000gedkmh8brmup5"
+      }
+    },
+    {
+      "case_id": "DATA-01",
+      "variant_id": "foreign_organization",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "denied": true,
+        "error": {
+          "status": 404,
+          "message": "org.errors.organization_not_found"
+        }
+      }
+    },
+    {
+      "case_id": "DATA-01",
+      "variant_id": "draft_organization_write",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "denied": true,
+        "error": {
+          "status": 409,
+          "message": "org.errors.organization_not_writable"
+        }
+      }
+    },
+    {
+      "case_id": "DATA-01",
+      "variant_id": "direct_draft_self_activation",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "denied": true,
+        "error": {
+          "status": 409,
+          "message": "org.errors.invalid_status_transition"
+        },
+        "note": "Direct DRAFT→ACTIVE is itself invalid; this variant does not test the full PENDING→ACTIVE admin check."
+      }
+    },
+    {
+      "case_id": "OPS-02",
+      "variant_id": "sole_owner_cannot_leave",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "denied": true,
+        "error": {
+          "status": 409,
+          "message": "org.errors.last_owner_cannot_leave"
+        },
+        "membershipStillActive": true
+      }
+    },
+    {
+      "case_id": "TOOLS-02",
+      "variant_id": "unverified_company_publication_guard",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "server service module",
+      "actual": {
+        "denied": true,
+        "error": {
+          "status": 400,
+          "message": "service_provider_profile.errors.publish_representation_required"
+        },
+        "publicationAttempted": false
+      }
+    }
+  ],
+  "limits": [
+    "Own draft test organization only; active institution intake and staff handover not tested by these variants."
+  ],
+  "observations": [
+    {
+      "case_id": "OPS-06",
+      "variant_id": "closed_background_route",
+      "httpStatus": 503,
+      "message": "room.opening_soon",
+      "error": "platform_not_open",
+      "method": "GET only; no job was started"
+    }
+  ],
+  "finishedAt": "2026-10-14T08:59:24.632Z"
+}

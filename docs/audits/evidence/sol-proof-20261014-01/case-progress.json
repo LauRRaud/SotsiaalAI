@@ -1,0 +1,1204 @@
+{
+  "run_id": "sol-proof-20261014-01",
+  "updated_at": "2026-10-14T11:10:10.410Z",
+  "phase": "server HTTPS and browser controls in progress; owner-authorized three-account exception",
+  "catalog_cases": 52,
+  "whole_catalog_completed": false,
+  "observed_variants": 41,
+  "passed_variants": 40,
+  "failed_variants": 1,
+  "blocked_variants": 0,
+  "server_fixture_variants": 10,
+  "case_progress": [
+    {
+      "case_id": "ENV-01",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "ENV-02",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 3,
+      "passed_variants": 3,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "ENV-03",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 6,
+      "passed_variants": 6,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "FLOW-01",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 2,
+      "passed_variants": 2,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "FLOW-02",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 1,
+      "passed_variants": 1,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "FLOW-03",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "FLOW-04",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 3,
+      "passed_variants": 3,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "FLOW-05",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "FLOW-06",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "FLOW-07",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 1,
+      "passed_variants": 1,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "FLOW-08",
+      "status": "FAIL",
+      "whole_case_complete": false,
+      "observed_variants": 2,
+      "passed_variants": 1,
+      "failed_variants": 1,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "OPS-01",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "OPS-02",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 1,
+      "passed_variants": 1,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "OPS-03",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "OPS-04",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "OPS-05",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "OPS-06",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "OPS-07",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "OPS-08",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 1,
+      "passed_variants": 1,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "DATA-01",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 7,
+      "passed_variants": 7,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "DATA-02",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "DATA-03",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "DATA-04",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "DATA-05",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "DATA-06",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "RAG-01",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "RAG-02",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "RAG-03",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "RAG-04",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 4,
+      "passed_variants": 4,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "RAG-05",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "RAG-06",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "RAG-07",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "RAG-08",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 2,
+      "passed_variants": 2,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "RAG-09",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 3,
+      "passed_variants": 3,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "RAG-10",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "RAG-11",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "RAG-12",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "TOOLS-01",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "TOOLS-02",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 5,
+      "passed_variants": 5,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "TOOLS-03",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "TOOLS-04",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "TOOLS-05",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "TOOLS-06",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "FIELD-01",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "FIELD-02",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "FIELD-03",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "FIELD-04",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "FIELD-05",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "GOV-01",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "GOV-02",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "GOV-03",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    },
+    {
+      "case_id": "GOV-04",
+      "status": "NOT_RUN",
+      "whole_case_complete": false,
+      "observed_variants": 0,
+      "passed_variants": 0,
+      "failed_variants": 0,
+      "blocked_variants": 0,
+      "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
+    }
+  ],
+  "variants": [
+    {
+      "case_id": "ENV-03",
+      "variant_id": "actor_client",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "role": "CLIENT",
+        "isAdmin": false,
+        "emailNotifications": false
+      },
+      "evidence_file": "server-baseline.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "ENV-03",
+      "variant_id": "http_session_client",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "callbackStatus": 200,
+        "sessionStatus": 200,
+        "role": "CLIENT",
+        "fixtureToken": true
+      },
+      "evidence_file": "server-baseline.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "ENV-02",
+      "variant_id": "closed_gate_client",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "HTTPS API",
+      "actual": {
+        "status": 503,
+        "message": "room.opening_soon"
+      },
+      "workflowStatus": "BLOCKED_BY_INTENTIONAL_PRELAUNCH_GATE",
+      "evidence_file": "server-baseline.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "ENV-03",
+      "variant_id": "actor_specialist",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "role": "SOCIAL_WORKER",
+        "isAdmin": false,
+        "emailNotifications": false
+      },
+      "evidence_file": "server-baseline.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "ENV-03",
+      "variant_id": "http_session_specialist",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "callbackStatus": 200,
+        "sessionStatus": 200,
+        "role": "SOCIAL_WORKER",
+        "fixtureToken": true
+      },
+      "evidence_file": "server-baseline.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "ENV-02",
+      "variant_id": "closed_gate_specialist",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "HTTPS API",
+      "actual": {
+        "status": 503,
+        "message": "room.opening_soon"
+      },
+      "workflowStatus": "BLOCKED_BY_INTENTIONAL_PRELAUNCH_GATE",
+      "evidence_file": "server-baseline.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "ENV-03",
+      "variant_id": "actor_provider",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "role": "SERVICE_PROVIDER",
+        "isAdmin": false,
+        "emailNotifications": false
+      },
+      "evidence_file": "server-baseline.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "ENV-03",
+      "variant_id": "http_session_provider",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "callbackStatus": 200,
+        "sessionStatus": 200,
+        "role": "SERVICE_PROVIDER",
+        "fixtureToken": true
+      },
+      "evidence_file": "server-baseline.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "ENV-02",
+      "variant_id": "closed_gate_provider",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "HTTPS API",
+      "actual": {
+        "status": 503,
+        "message": "room.opening_soon"
+      },
+      "workflowStatus": "BLOCKED_BY_INTENTIONAL_PRELAUNCH_GATE",
+      "evidence_file": "server-baseline.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "FLOW-04",
+      "variant_id": "journey_create_and_retry",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "id": "jrn_2cf2b8a7703e5dd3976166d14608",
+        "retrySameId": true
+      },
+      "evidence_file": "server-baseline.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "FLOW-04",
+      "variant_id": "steps",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "rows": [
+          {
+            "id": "cmv7v9aeo0004edkm9y9id303",
+            "title": "Kirjeldan oma muret",
+            "dueOn": "2026-10-15",
+            "state": "TODO"
+          }
+        ],
+        "retrySameId": true
+      },
+      "evidence_file": "server-baseline.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "FLOW-04",
+      "variant_id": "self_assessments",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "rows": [
+          {
+            "level": 2,
+            "note": "Sünteetiline algseis"
+          },
+          {
+            "level": 4,
+            "note": "Sünteetiline järelhinnang"
+          }
+        ],
+        "individualSelfReport": true
+      },
+      "evidence_file": "server-baseline.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "DATA-01",
+      "variant_id": "foreign_journey",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "denied": true,
+        "error": {
+          "status": 404,
+          "message": "journeys.errors.not_found"
+        }
+      },
+      "evidence_file": "server-baseline.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "FLOW-02",
+      "variant_id": "questionnaire_and_export",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "domains": 7,
+        "questions": 21,
+        "variants": [
+          {
+            "path": "QUICK_DESCRIPTION",
+            "clientHasUnofficialDisclaimer": true,
+            "receiverHasUnofficialDisclaimer": true,
+            "clientLength": 4047,
+            "receiverLength": 4125,
+            "receiverAddsRows": true
+          },
+          {
+            "path": "TARGETED_ASSESSMENT",
+            "clientHasUnofficialDisclaimer": true,
+            "receiverHasUnofficialDisclaimer": true,
+            "clientLength": 4035,
+            "receiverLength": 4113,
+            "receiverAddsRows": true
+          },
+          {
+            "path": "COMPREHENSIVE_ASSESSMENT",
+            "clientHasUnofficialDisclaimer": true,
+            "receiverHasUnofficialDisclaimer": true,
+            "clientLength": 4040,
+            "receiverLength": 4118,
+            "receiverAddsRows": true
+          }
+        ]
+      },
+      "evidence_file": "server-baseline.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "FLOW-01",
+      "variant_id": "free_description_delivery",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "id": "cmv7v9ag50007edkmvvgswitw",
+        "status": "SENT",
+        "deliveryChannel": "INTERNAL",
+        "recipientId": "cmv7uufv50003u3kmxjmb35yj",
+        "hasPreMeetingInfo": true
+      },
+      "evidence_file": "server-baseline.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "DATA-01",
+      "variant_id": "wrong_recipient_inquiry",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "denied": true
+      },
+      "evidence_file": "server-baseline.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "FLOW-08",
+      "variant_id": "before_acceptance_share",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "shareId": "cmv7v9aha0008edkm5f2oea62"
+      },
+      "evidence_file": "server-baseline.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "FLOW-01",
+      "variant_id": "recipient_acceptance",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "status": "READY",
+        "openedAt": "2026-10-14T08:47:07.356Z"
+      },
+      "evidence_file": "server-baseline.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "FLOW-08",
+      "variant_id": "after_acceptance_share",
+      "status": "FAIL",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "sourceStatus": "READY",
+        "created": false,
+        "error": {
+          "message": "network_share.source_inactive"
+        }
+      },
+      "evidence_file": "server-baseline.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "TOOLS-02",
+      "variant_id": "provider_draft",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "id": "cmv7v9aig000cedkmws11y54e",
+        "status": "DRAFT",
+        "registryCode": "14206225",
+        "mapVisible": false,
+        "emailMatchesOwnerInput": true
+      },
+      "evidence_file": "server-baseline.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "TOOLS-02",
+      "variant_id": "organization_draft",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "keys": [
+          "organization",
+          "membership",
+          "replayed"
+        ],
+        "organizationId": "cmv7v9ajq000fedkmwhk7qh00",
+        "status": "DRAFT"
+      },
+      "evidence_file": "server-baseline.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "TOOLS-02",
+      "variant_id": "live_company_name",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "current": {
+          "result": "match",
+          "registerName": "OÜ Küberloome",
+          "source": "live"
+        },
+        "previousName": {
+          "result": "mismatch",
+          "registerName": "OÜ Küberloome",
+          "source": "live"
+        },
+        "publicCompanyCode": "14206225"
+      },
+      "evidence_file": "server-company-and-lifecycle.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "FLOW-07",
+      "variant_id": "send_retry_and_recall",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "outcomes": [
+          {
+            "fulfilled": true,
+            "status": "SENT"
+          },
+          {
+            "fulfilled": false,
+            "message": "pre_inquiries.errors.sent_cannot_be_edited"
+          }
+        ],
+        "rowCount": 1,
+        "recalledAt": "2026-10-14T08:51:53.735Z",
+        "recipientDeniedAfterRecall": true
+      },
+      "evidence_file": "server-company-and-lifecycle.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "OPS-08",
+      "variant_id": "receiver_close_and_journey_state",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "status": "ARCHIVED",
+        "linked": [
+          {
+            "id": "cmv7v9ag50007edkmvvgswitw",
+            "topic": "SOL TEST: digiabi",
+            "status": "ARCHIVED",
+            "state": "OPENED",
+            "sentAt": "2026-10-14T08:47:07.323Z",
+            "openedAt": "2026-10-14T08:47:07.356Z",
+            "replyCount": 0,
+            "lastReplyAt": null,
+            "createdAt": "2026-10-14T08:47:07.301Z",
+            "updatedAt": "2026-10-14T08:51:53.749Z"
+          }
+        ]
+      },
+      "evidence_file": "server-company-and-lifecycle.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "DATA-01",
+      "variant_id": "foreign_provider_profile",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "ownProfileFound": true,
+        "otherActorDenied": true
+      },
+      "evidence_file": "server-company-and-lifecycle.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "TOOLS-02",
+      "variant_id": "organization_creation_retry",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "organizationId": "cmv7v9ajq000fedkmwhk7qh00",
+        "replayed": true
+      },
+      "evidence_file": "server-company-and-lifecycle.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "RAG-04",
+      "variant_id": "current",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "server component function",
+      "actual": {
+        "expected": "in_force",
+        "actual": "in_force",
+        "syntheticDates": true
+      },
+      "evidence_file": "server-rag-controls.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "RAG-04",
+      "variant_id": "future",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "server component function",
+      "actual": {
+        "expected": "not_yet_in_force",
+        "actual": "not_yet_in_force",
+        "syntheticDates": true
+      },
+      "evidence_file": "server-rag-controls.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "RAG-04",
+      "variant_id": "expired",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "server component function",
+      "actual": {
+        "expected": "expired",
+        "actual": "expired",
+        "syntheticDates": true
+      },
+      "evidence_file": "server-rag-controls.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "RAG-04",
+      "variant_id": "unknown",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "server component function",
+      "actual": {
+        "expected": "unknown_validity",
+        "actual": "unknown_validity",
+        "syntheticDates": true
+      },
+      "evidence_file": "server-rag-controls.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "RAG-09",
+      "variant_id": "allowed_ref",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "server component function",
+      "actual": {
+        "accepted": true,
+        "error": null,
+        "expectedAcceptance": true
+      },
+      "evidence_file": "server-rag-controls.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "RAG-09",
+      "variant_id": "missing_ref",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "server component function",
+      "actual": {
+        "accepted": false,
+        "error": {
+          "code": "invalid_answer_reference",
+          "status": 422
+        },
+        "expectedAcceptance": false
+      },
+      "evidence_file": "server-rag-controls.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "RAG-09",
+      "variant_id": "unknown_ref",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "server component function",
+      "actual": {
+        "accepted": false,
+        "error": {
+          "code": "invalid_answer_reference",
+          "status": 422
+        },
+        "expectedAcceptance": false
+      },
+      "evidence_file": "server-rag-controls.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "RAG-08",
+      "variant_id": "unsupported",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "server component function",
+      "actual": {
+        "accepted": true,
+        "error": null
+      },
+      "evidence_file": "server-rag-controls.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "RAG-08",
+      "variant_id": "clarification",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "server component function",
+      "actual": {
+        "accepted": true,
+        "error": null
+      },
+      "evidence_file": "server-rag-controls.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "DATA-01",
+      "variant_id": "draft_organization_owner",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "organizationId": "cmv7v9ajq000fedkmwhk7qh00",
+        "status": "DRAFT",
+        "kind": "organization",
+        "membershipId": "cmv7v9ajt000gedkmh8brmup5"
+      },
+      "evidence_file": "server-org-boundaries.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "DATA-01",
+      "variant_id": "foreign_organization",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "denied": true,
+        "error": {
+          "status": 404,
+          "message": "org.errors.organization_not_found"
+        }
+      },
+      "evidence_file": "server-org-boundaries.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "DATA-01",
+      "variant_id": "draft_organization_write",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "denied": true,
+        "error": {
+          "status": 409,
+          "message": "org.errors.organization_not_writable"
+        }
+      },
+      "evidence_file": "server-org-boundaries.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "DATA-01",
+      "variant_id": "direct_draft_self_activation",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "denied": true,
+        "error": {
+          "status": 409,
+          "message": "org.errors.invalid_status_transition"
+        },
+        "note": "Direct DRAFT→ACTIVE is itself invalid; this variant does not test the full PENDING→ACTIVE admin check."
+      },
+      "evidence_file": "server-org-boundaries.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "OPS-02",
+      "variant_id": "sole_owner_cannot_leave",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "denied": true,
+        "error": {
+          "status": 409,
+          "message": "org.errors.last_owner_cannot_leave"
+        },
+        "membershipStillActive": true
+      },
+      "evidence_file": "server-org-boundaries.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    {
+      "case_id": "TOOLS-02",
+      "variant_id": "unverified_company_publication_guard",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "server service module",
+      "actual": {
+        "denied": true,
+        "error": {
+          "status": 400,
+          "message": "service_provider_profile.errors.publish_representation_required"
+        },
+        "publicationAttempted": false
+      },
+      "evidence_file": "server-org-boundaries.json",
+      "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    }
+  ]
+}

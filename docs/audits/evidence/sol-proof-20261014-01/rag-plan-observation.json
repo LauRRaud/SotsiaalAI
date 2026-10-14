@@ -1,0 +1,11 @@
+{
+  "checkedAtUtc": "2026-10-14T09:07:38.993577+00:00",
+  "release": "b7466af8d039c248e19693a32a3475f47205649b",
+  "documentRecords": 10856,
+  "generationId": "search_generation_451ce0e6df373a4c5e831837470656bbd7259c080c12f8c9445f87b221d640e5",
+  "promptVersion": "m4-grounded-dialogue-43",
+  "dialogueVersion": "m4-active-dialogue-1",
+  "usage": "development_only",
+  "mode": "real",
+  "allowedUserCount": 1
+}

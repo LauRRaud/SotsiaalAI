@@ -1,0 +1,53 @@
+{
+  "purpose": "Kirja, saadud tagasiside ja platvormi tõendusanaluusi käigus tehtud lugemispõhiste vaatluste koond; mitte uus töövootest",
+  "observedAtUtc": ["2026-10-13T17:27:25Z", "2026-10-13T17:29:14Z"],
+  "method": "SSH kaudu systemctl show valitud olekuväljad; töötava frontendi keskkonnast ainult nimetatud funktsioonilippude tõeväärtused; aktiivsest RAG-plaanist versioonid, dokumendiarv ja lubatud kasutajate arv. Kohalik Git HEAD ning git ls-remote origin refs/heads/main.",
+  "localHead": "87003d0b3c85fe1b0867f0424fa9361348842732",
+  "remoteMainAtObservation": "87003d0b3c85fe1b0867f0424fa9361348842732",
+  "frontend": {
+    "release": "b7466af8d039c248e19693a32a3475f47205649b",
+    "activeState": "active",
+    "subState": "running",
+    "result": "success"
+  },
+  "backgroundServices": {
+    "sotsiaalai-notifications.service": {
+      "activeState": "failed",
+      "result": "exit-code",
+      "execMainStatus": 1,
+      "lastExitEest": "2026-10-13 20:23:19",
+      "workingRelease": "b7466af8d039c248e19693a32a3475f47205649b"
+    },
+    "sotsiaalai-practice-reviews.service": {
+      "activeState": "failed",
+      "result": "exit-code",
+      "execMainStatus": 22,
+      "lastExitEest": "2026-10-13 03:23:19"
+    }
+  },
+  "frontendFlags": {
+    "ORG_WORKSPACE_ENABLED": true,
+    "ORG_INBOX_ENABLED": true,
+    "CASEWORK_V1_ENABLED": true,
+    "SERVICE_LOG_ENABLED": true,
+    "MTR_DISABLED": false
+  },
+  "ragPlan": {
+    "generation": "search_generation_451ce0e6df373a4c5e831837470656bbd7259c080c12f8c9445f87b221d640e5",
+    "documentRecords": 10856,
+    "promptVersion": "m4-grounded-dialogue-43",
+    "dialogueVersion": "m4-active-dialogue-1",
+    "mode": "real",
+    "usage": "development_only",
+    "allowedUserCount": 1
+  },
+  "limits": [
+    "Koond on tööriistaväljunditest ümber kirjutatud vaatluskirje, mitte täielik serverilogi.",
+    "Üks olekuvaatlus ei näita rikke kestust ega tõenda, et mõni pöördumine või sõnum jäi kätte toimetamata.",
+    "Suletud avaliku ligipääsu värav on koodist tuletatud võimalik teavitustöö tõrke põhjus; tegelikku veavastust ega juurpõhjust ei kinnitatud.",
+    "Funktsioonilipu väärtus ei tõenda terviktöövoo toimimist ega partnerasutuste liitumist.",
+    "RAG-i lubatud kasutajate arv ei ole kogu platvormi kasutajate arv.",
+    "Kasutajasisu, isikute identifikaatoreid, saladusi ega kogu keskkonda ei loetud raportisse.",
+    "Tasulisi mudelipäringuid, sõnumisaatmist, töökäivitusi, ümberkäivitust ega paigaldust ei tehtud."
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "startedAt": "2026-10-14T08:51:53.474Z",
+  "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b",
+  "checks": [
+    {
+      "case_id": "TOOLS-02",
+      "variant_id": "live_company_name",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "current": {
+          "result": "match",
+          "registerName": "OÜ Küberloome",
+          "source": "live"
+        },
+        "previousName": {
+          "result": "mismatch",
+          "registerName": "OÜ Küberloome",
+          "source": "live"
+        },
+        "publicCompanyCode": "14206225"
+      }
+    },
+    {
+      "case_id": "FLOW-07",
+      "variant_id": "send_retry_and_recall",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "outcomes": [
+          {
+            "fulfilled": true,
+            "status": "SENT"
+          },
+          {
+            "fulfilled": false,
+            "message": "pre_inquiries.errors.sent_cannot_be_edited"
+          }
+        ],
+        "rowCount": 1,
+        "recalledAt": "2026-10-14T08:51:53.735Z",
+        "recipientDeniedAfterRecall": true
+      }
+    },
+    {
+      "case_id": "OPS-08",
+      "variant_id": "receiver_close_and_journey_state",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "status": "ARCHIVED",
+        "linked": [
+          {
+            "id": "cmv7v9ag50007edkmvvgswitw",
+            "topic": "SOL TEST: digiabi",
+            "status": "ARCHIVED",
+            "state": "OPENED",
+            "sentAt": "2026-10-14T08:47:07.323Z",
+            "openedAt": "2026-10-14T08:47:07.356Z",
+            "replyCount": 0,
+            "lastReplyAt": null,
+            "createdAt": "2026-10-14T08:47:07.301Z",
+            "updatedAt": "2026-10-14T08:51:53.749Z"
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "DATA-01",
+      "variant_id": "foreign_provider_profile",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "ownProfileFound": true,
+        "otherActorDenied": true
+      }
+    },
+    {
+      "case_id": "TOOLS-02",
+      "variant_id": "organization_creation_retry",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "organizationId": "cmv7v9ajq000fedkmwhk7qh00",
+        "replayed": true
+      }
+    }
+  ],
+  "created": {
+    "recalledInquiryId": "cmv7vfffc0000aakmdg03ae2e"
+  },
+  "environment": "actual development server and its database",
+  "limits": [
+    "Server service entrypoints; complete HTTP/UI paths remain separately gated.",
+    "No business contact verification emails or external messages sent."
+  ],
+  "company": {
+    "source": "https://ariregister.rik.ee/est/company/14206225/O%C3%9C-K%C3%BCberloome",
+    "verifiedBy": "current e-Business Register browser page; cached web extraction still used previous name",
+    "checkedAt": "2026-10-14T08:51:53.788Z",
+    "organizationName": "OÜ Küberloome",
+    "registryCode": "14206225",
+    "email": "raudsoolaur@gmail.com",
+    "address": "Harju maakond, Harku vald, Tabasalu alevik, Kolde tn 6/1, 76901",
+    "status": "DRAFT",
+    "mapVisible": false
+  },
+  "finishedAt": "2026-10-14T08:51:53.788Z"
+}

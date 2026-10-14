@@ -1,0 +1,36 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "createdAt": "2026-10-14T08:35:34.495Z",
+  "serverRelease": "b7466af8d039c248e19693a32a3475f47205649b",
+  "environment": "actual development server and its database; owner-authorized synthetic test accounts",
+  "actors": {
+    "client": {
+      "id": "cmv7uufuo0000u3kmo9ausfgt",
+      "email": "sol-proof-20261014-01-client@example.invalid",
+      "role": "CLIENT",
+      "isAdmin": false,
+      "notificationEmailEnabled": false,
+      "acceptsPreInquiries": false
+    },
+    "specialist": {
+      "id": "cmv7uufv50003u3kmxjmb35yj",
+      "email": "sol-proof-20261014-01-specialist@example.invalid",
+      "role": "SOCIAL_WORKER",
+      "isAdmin": false,
+      "notificationEmailEnabled": false,
+      "acceptsPreInquiries": true
+    },
+    "provider": {
+      "id": "cmv7uufvh0006u3kmo6mc5zrr",
+      "email": "sol-proof-20261014-01-provider@example.invalid",
+      "role": "SERVICE_PROVIDER",
+      "isAdmin": false,
+      "notificationEmailEnabled": false,
+      "acceptsPreInquiries": false
+    }
+  },
+  "realPaymentsCreated": false,
+  "newPaidCalls": false,
+  "externalMessagesSent": false,
+  "normalRoles": true
+}
