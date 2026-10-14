@@ -1,0 +1,846 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41",
+  "startedAt": "2026-10-14T14:58:22.065Z",
+  "checks": [
+    {
+      "case_id": "DATA-01",
+      "variant_id": "client_cannot_read_professional_covision",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 403
+      }
+    },
+    {
+      "case_id": "TOOLS-05",
+      "variant_id": "covision_text_reaches_other_participant",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "writeStatus": 201,
+        "readStatus": 200,
+        "sharedTextVisible": true
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "covision_stage_1_completed",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "nextStage": 2,
+        "phase": "ready_to_share_story",
+        "version": 10,
+        "snapshots": 1
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "covision_stage_2_completed",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "nextStage": 3,
+        "phase": "ready_to_explore",
+        "version": 18,
+        "snapshots": 2
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "covision_stage_3_completed",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "nextStage": 4,
+        "phase": "ready_to_deepen",
+        "version": 29,
+        "snapshots": 3
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "covision_stage_4_completed",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "nextStage": 5,
+        "phase": "ready_for_possibilities",
+        "version": 41,
+        "snapshots": 4
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "covision_stage_5_completed",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "nextStage": 6,
+        "phase": "ready_for_resources",
+        "version": 53,
+        "snapshots": 5
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "covision_stage_6_completed",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "nextStage": 7,
+        "phase": "ready_for_selection",
+        "version": 66,
+        "snapshots": 6
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "covision_owner_private_direction_not_shared",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "ownerPrivateMarkerPresent": true,
+        "participantMarkerAbsent": true
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "covision_stage_7_completed",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "nextStage": 8,
+        "phase": "ready_to_summarize",
+        "version": 83,
+        "snapshots": 7
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "covision_stage_8_completed",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "nextStage": 8,
+        "phase": "complete",
+        "version": 96,
+        "snapshots": 1
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "covision_both_see_final_state",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "ownerPhase": "complete",
+        "participantPhase": "complete"
+      }
+    }
+  ],
+  "created": {
+    "caseId": "cmv88ipy1003ehikmmuez87dj"
+  },
+  "externalMessagesSent": false,
+  "newPaidCalls": false,
+  "actions": [
+    {
+      "stage": 1,
+      "phase": "waiting_room",
+      "action": "START_SESSION",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 1,
+      "phase": "meeting_started",
+      "action": "CONFIRM_CASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 1,
+      "phase": "meeting_started",
+      "action": "CONFIRM_SETTINGS",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 1,
+      "phase": "meeting_started",
+      "action": "CONFIRM_PARTICIPANT",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 1,
+      "phase": "meeting_started",
+      "action": "CONFIRM_PARTICIPANT",
+      "who": "provider",
+      "status": 200
+    },
+    {
+      "stage": 1,
+      "phase": "meeting_started",
+      "action": "PAUSE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 1,
+      "phase": "meeting_started",
+      "action": "RESUME",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 1,
+      "phase": "meeting_started",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 1,
+      "phase": "confirmations_pending",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 1,
+      "phase": "ready_to_open_case",
+      "action": "COMPLETE_STAGE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 2,
+      "phase": "ready_to_share_story",
+      "action": "SUBMIT_WORK_ITEM",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 2,
+      "phase": "ready_to_share_story",
+      "action": "SAVE_PRIVATE_STATE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 2,
+      "phase": "ready_to_share_story",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 2,
+      "phase": "story_sharing",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 2,
+      "phase": "story_complete",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 2,
+      "phase": "picture_review",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 2,
+      "phase": "focus_formulation",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 2,
+      "phase": "ready_to_explore",
+      "action": "COMPLETE_STAGE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 3,
+      "phase": "ready_to_explore",
+      "action": "SUBMIT_WORK_ITEM",
+      "who": "provider",
+      "status": 200
+    },
+    {
+      "stage": 3,
+      "phase": "ready_to_explore",
+      "action": "SAVE_PRIVATE_STATE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 3,
+      "phase": "ready_to_explore",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 3,
+      "phase": "exploration_plan",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 3,
+      "phase": "silent_preparation",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 3,
+      "phase": "question_queue",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 3,
+      "phase": "active_question",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 3,
+      "phase": "canvas_clarification",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 3,
+      "phase": "coverage_review",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 3,
+      "phase": "focus_confirmation",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 3,
+      "phase": "ready_to_continue",
+      "action": "COMPLETE_STAGE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 4,
+      "phase": "ready_to_deepen",
+      "action": "SUBMIT_WORK_ITEM",
+      "who": "provider",
+      "status": 200
+    },
+    {
+      "stage": 4,
+      "phase": "ready_to_deepen",
+      "action": "SAVE_PRIVATE_STATE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 4,
+      "phase": "ready_to_deepen",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 4,
+      "phase": "role_change",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 4,
+      "phase": "silent_reflection",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 4,
+      "phase": "reflection_queue",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 4,
+      "phase": "active_reflection",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 4,
+      "phase": "reflection_placement",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 4,
+      "phase": "perspective_linking",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 4,
+      "phase": "owner_resonance",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 4,
+      "phase": "owner_review",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 4,
+      "phase": "ready_for_possibilities",
+      "action": "COMPLETE_STAGE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 5,
+      "phase": "ready_for_possibilities",
+      "action": "SUBMIT_WORK_ITEM",
+      "who": "provider",
+      "status": 200
+    },
+    {
+      "stage": 5,
+      "phase": "ready_for_possibilities",
+      "action": "SAVE_PRIVATE_STATE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 5,
+      "phase": "ready_for_possibilities",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 5,
+      "phase": "creation_open",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 5,
+      "phase": "silent_ideation",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 5,
+      "phase": "possibility_queue",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 5,
+      "phase": "active_possibility",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 5,
+      "phase": "thanks_and_placement",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 5,
+      "phase": "possibility_field",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 5,
+      "phase": "second_creative_round",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 5,
+      "phase": "owner_resonance",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 5,
+      "phase": "ready_for_resources",
+      "action": "COMPLETE_STAGE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 6,
+      "phase": "ready_for_resources",
+      "action": "SUBMIT_WORK_ITEM",
+      "who": "provider",
+      "status": 200
+    },
+    {
+      "stage": 6,
+      "phase": "ready_for_resources",
+      "action": "SAVE_PRIVATE_STATE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 6,
+      "phase": "ready_for_resources",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 6,
+      "phase": "scope_selection",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 6,
+      "phase": "silent_resource_scan",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 6,
+      "phase": "resource_queue",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 6,
+      "phase": "active_resource",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 6,
+      "phase": "factual_clarification",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 6,
+      "phase": "barriers_and_unknowns",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 6,
+      "phase": "impact_review",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 6,
+      "phase": "resource_mirror",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 6,
+      "phase": "owner_support_picture_review",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 6,
+      "phase": "ready_for_selection",
+      "action": "COMPLETE_STAGE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 7,
+      "phase": "ready_for_selection",
+      "action": "SAVE_PRIVATE_STATE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 7,
+      "phase": "ready_for_selection",
+      "action": "SAVE_PRIVATE_STATE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 7,
+      "phase": "ready_for_selection",
+      "action": "SAVE_PRIVATE_STATE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 7,
+      "phase": "ready_for_selection",
+      "action": "SAVE_PRIVATE_STATE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 7,
+      "phase": "ready_for_selection",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 7,
+      "phase": "private_selection",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 7,
+      "phase": "resonance_sorting",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 7,
+      "phase": "direction_drafting",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 7,
+      "phase": "key_insight",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 7,
+      "phase": "next_step_drafting",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 7,
+      "phase": "support_timeframe_progress",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 7,
+      "phase": "follow_up_draft",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 7,
+      "phase": "quality_responsibility_review",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 7,
+      "phase": "owner_confirmation",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 7,
+      "phase": "public_summary",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 7,
+      "phase": "support_consent",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 7,
+      "phase": "case_work_completed",
+      "action": "COMPLETE_STAGE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 8,
+      "phase": "ready_to_summarize",
+      "action": "SUBMIT_WORK_ITEM",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 8,
+      "phase": "ready_to_summarize",
+      "action": "SAVE_PRIVATE_STATE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 8,
+      "phase": "ready_to_summarize",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 8,
+      "phase": "owner_package_review",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 8,
+      "phase": "follow_up_generalization_confirmation",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 8,
+      "phase": "silent_learning_reflection",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 8,
+      "phase": "learning_queue",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 8,
+      "phase": "active_learning_share",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 8,
+      "phase": "process_reflection",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 8,
+      "phase": "group_generalization",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 8,
+      "phase": "retention_choice",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 8,
+      "phase": "practice_candidate_decision",
+      "action": "SET_PHASE",
+      "who": "specialist",
+      "status": 200
+    },
+    {
+      "stage": 8,
+      "phase": "final_review",
+      "action": "COMPLETE_STAGE",
+      "who": "specialist",
+      "status": 200
+    }
+  ],
+  "limits": [
+    "Reuses the reviewed eight-stage local audit logic with this run and actual server normal-role accounts. No AI, audio, video or human professional quality assessment.",
+    "Only synthetic specialist and provider participate; the client is a role-denial control. Invitation delivery to real people is not tested."
+  ],
+  "observations": [
+    {
+      "case_id": "TOOLS-05",
+      "status": "NOT_PROVEN",
+      "note": "Text path was tested. Microphone refusal, real two-session audio, reconnection and participant removal were not exercised."
+    }
+  ],
+  "finishedAt": "2026-10-14T14:58:23.911Z"
+}

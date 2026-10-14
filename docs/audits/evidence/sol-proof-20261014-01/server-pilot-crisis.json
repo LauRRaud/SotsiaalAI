@@ -1,0 +1,102 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41",
+  "startedAt": "2026-10-14T15:04:50.345Z",
+  "checks": [
+    {
+      "case_id": "RAG-11",
+      "variant_id": "crisis_notice_when_pilot_access_denied_client",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 200,
+        "isCrisis": true,
+        "messageKey": "chat.crisis.notice",
+        "completionStatus": "FAILED",
+        "cache": "no-store, no-cache, must-revalidate, max-age=0"
+      }
+    },
+    {
+      "case_id": "RAG-11",
+      "variant_id": "crisis_notice_when_pilot_access_denied_specialist",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 200,
+        "isCrisis": true,
+        "messageKey": "chat.crisis.notice",
+        "completionStatus": "FAILED",
+        "cache": "no-store, no-cache, must-revalidate, max-age=0"
+      }
+    },
+    {
+      "case_id": "RAG-11",
+      "variant_id": "crisis_notice_when_pilot_access_denied_provider",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 200,
+        "isCrisis": true,
+        "messageKey": "chat.crisis.notice",
+        "completionStatus": "FAILED",
+        "cache": "no-store, no-cache, must-revalidate, max-age=0"
+      }
+    },
+    {
+      "case_id": "RAG-11",
+      "variant_id": "ordinary_question_keeps_access_refusal",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 403,
+        "isCrisis": false
+      }
+    },
+    {
+      "case_id": "ENV-02",
+      "variant_id": "anonymous_pilot_still_prelaunch_closed",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 503,
+        "error": "platform_not_open"
+      }
+    },
+    {
+      "case_id": "RAG-11",
+      "variant_id": "crisis_fallback_creates_no_pilot_turn",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "before": 0,
+        "after": 0,
+        "allTestActorsExcluded": true
+      }
+    }
+  ],
+  "created": {},
+  "externalMessagesSent": false,
+  "newPaidCalls": false,
+  "limits": [
+    "Actual HTTPS pilot path. Before each request the approved plan bytes are verified unchanged and all three test users are verified excluded from model access. No eligibility, config or real-user data is changed.",
+    "This checks the selected explicit crisis phrase when configuration access refuses generation. It does not cover all free-text risks, model crisis content or clinical assessment."
+  ],
+  "planObservation": {
+    "checkedAt": "2026-10-14T15:04:50.353Z",
+    "documentRecords": 10856,
+    "promptVersion": "m4-grounded-dialogue-43",
+    "dialogueVersion": "m4-active-dialogue-1",
+    "mode": "real",
+    "usage": "development_only",
+    "allowedUserCount": 1,
+    "allTestActorsExcluded": true,
+    "planSha256": "fa92b164f5b197ad2524812dd9107dbc1f036dc47c850d0d6b4c4cee9ec719d6"
+  },
+  "finishedAt": "2026-10-14T15:04:50.667Z"
+}

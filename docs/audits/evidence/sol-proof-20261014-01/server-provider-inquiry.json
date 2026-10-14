@@ -1,0 +1,95 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41",
+  "startedAt": "2026-10-14T15:07:42.249Z",
+  "checks": [
+    {
+      "case_id": "FLOW-05",
+      "variant_id": "direct_provider_gets_internal_inquiry",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 200,
+        "channel": "INTERNAL",
+        "recipientMatches": true
+      }
+    },
+    {
+      "case_id": "FLOW-05",
+      "variant_id": "provider_sees_selected_initial_description",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 200,
+        "selectedDescriptionPresent": true,
+        "unselectedPrivateMarkersAbsent": true
+      }
+    },
+    {
+      "case_id": "DATA-01",
+      "variant_id": "unselected_specialist_cannot_read_provider_inquiry",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 404,
+        "descriptionAbsent": true
+      }
+    },
+    {
+      "case_id": "FLOW-05",
+      "variant_id": "provider_acceptance_is_request_receipt",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": "READY",
+        "openedAt": "2026-10-14T15:07:47.504Z",
+        "officialAllocation": false,
+        "realStateDecision": false
+      }
+    },
+    {
+      "case_id": "FLOW-05",
+      "variant_id": "no_referral_notice_for_no_requirement",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "notice": ""
+      }
+    },
+    {
+      "case_id": "FLOW-05",
+      "variant_id": "referral_requirement_has_conditional_notice",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "notice": "Selle teenuse saamine võib vajada KOV-i otsust, SKA suunamist või spetsialisti hinnangut.",
+        "actualFunctionSha256": "4bb0e30b0857372406b5caa2608f8c31144a3bc4b8ad9983273c3ccb70bd5029"
+      }
+    }
+  ],
+  "created": {
+    "inquiryId": "cmv88uq6p009dhikmpoue7f4l"
+  },
+  "externalMessagesSent": false,
+  "newPaidCalls": false,
+  "limits": [
+    "Only the existing provider test account temporarily opts in to internal pre-inquiries; the preference is restored in finally. Its company service profile stays private DRAFT.",
+    "Manual contact route is tested; publishing and selecting a public service-map card is not proved. Conditional referral text is a current-source component fixture.",
+    "No actual service allocation, KOV/SKA decision, state procedure, real email recipient or model call."
+  ],
+  "observations": [
+    {
+      "case_id": "FLOW-05",
+      "status": "NOT_PROVEN",
+      "note": "A provider inquiry and conditional notice are supported. Completion of an actual decision procedure, full public service-card selection and a paid service purchase remain unproved."
+    }
+  ],
+  "preferenceRestored": false,
+  "finishedAt": "2026-10-14T15:07:47.581Z"
+}

@@ -1,0 +1,136 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41",
+  "startedAt": "2026-10-14T15:01:14.912Z",
+  "checks": [
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "mentor_profile_starts_as_draft",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": "DRAFT"
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "mentor_profile_requires_review",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": "PENDING_REVIEW"
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "mentoring_acceptance_and_both_agree_active",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "requestAccepted": true,
+        "agreementAccepted": true,
+        "status": "ACTIVE"
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "mentor_private_note_not_shared",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "ownerPrivateMarkerPresent": true,
+        "menteePrivateMarkerAbsent": true
+      }
+    },
+    {
+      "case_id": "DATA-01",
+      "variant_id": "nonmember_mentoring_relation_denied",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 403,
+        "privateContentAbsent": true
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "mentoring_meeting_visible_to_both",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "meetingId": "cmv88mfh4008ohikmbeg7alwi",
+        "menteeSeesMeeting": true,
+        "mode": "EXTERNAL",
+        "realMeeting": false
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "one_summary_confirmation_not_enough",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": "PENDING_CONFIRM",
+        "confirmations": 1
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "both_confirm_summary",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": "CONFIRMED",
+        "confirmations": 2
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "mentoring_pause_resume",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "pauseStatus": "200",
+        "resumeStatus": "200"
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "mentoring_both_see_closed",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": "CLOSED"
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "closed_mentoring_rejects_new_meeting",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 409
+      }
+    }
+  ],
+  "created": {},
+  "externalMessagesSent": false,
+  "newPaidCalls": false,
+  "limits": [
+    "The existing provider test account creates a SOL TEST mentor profile. ACTIVE approval is a temporary database fixture, not administrator approval or real qualification. Finally the profile is hidden and returned to DRAFT.",
+    "Only the existing specialist/provider and client control accounts are used. Agreements, external meeting and confirmations are scripted and fictitious. No actual meeting, AI, audio/video, real email recipient or paid model call."
+  ],
+  "finishedAt": "2026-10-14T15:01:15.452Z",
+  "fixtureProfileHiddenAndDraft": true
+}

@@ -7,7 +7,7 @@ work=pathlib.Path('/tmp/sol-proof-20261014-01')
 script=work/sys.argv[1]
 assert script.parent==work and script.suffix=='.mjs' and script.exists()
 env={'PATH':os.environ['PATH'],'NODE_ENV':'production','TZ':'UTC','DATABASE_URL':front['DATABASE_URL']}
-for key in ['ORG_WORKSPACE_ENABLED','ORG_CREATION_ENABLED','ORG_SEATS_ENABLED','ORG_INBOX_ENABLED','CASEWORK_V1_ENABLED','SERVICE_LOG_ENABLED','HOME_CARE_ENABLED']:
+for key in ['ORG_WORKSPACE_ENABLED','ORG_CREATION_ENABLED','ORG_SEATS_ENABLED','ORG_INBOX_ENABLED','CASEWORK_V1_ENABLED','SERVICE_LOG_ENABLED','HOME_CARE_ENABLED','M4_PILOT_ENABLED','M4_PILOT_CONFIG']:
     if key in front: env[key]=front[key]
 # No dotenv files or provider credentials are available in the working directory.
 result=subprocess.run(['node','--import',str(root/'scripts/register-node-source-loader.mjs'),str(script),str(root),*sys.argv[2:]],cwd=work,env=env,text=True,capture_output=True)

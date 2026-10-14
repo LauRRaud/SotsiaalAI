@@ -5,9 +5,9 @@ import {pathToFileURL} from 'node:url';
 export async function httpHarness(root){
  const {prisma}=await import(pathToFileURL(root+'/lib/prisma.js'));
  const actors=JSON.parse(fs.readFileSync('accounts.json','utf8')).actors,jars=new Map();
- async function call(key,path,method='GET',body,form=false){
+ async function call(key,path,method='GET',body,form=false,extraHeaders={}){
   const jar=jars.get(key)||new Map();jars.set(key,jar);
-  const r=await fetch('https://sotsiaal.pro'+path,{method,redirect:'manual',signal:AbortSignal.timeout(30000),headers:{Origin:'https://sotsiaal.pro',Cookie:[...jar].map(([k,v])=>`${k}=${v}`).join('; '),...(body?{'Content-Type':form?'application/x-www-form-urlencoded':'application/json'}:{})},...(body?{body:form?new URLSearchParams(body).toString():JSON.stringify(body)}:{})});
+  const r=await fetch('https://sotsiaal.pro'+path,{method,redirect:'manual',signal:AbortSignal.timeout(30000),headers:{Origin:'https://sotsiaal.pro',Cookie:[...jar].map(([k,v])=>`${k}=${v}`).join('; '),...(body?{'Content-Type':form?'application/x-www-form-urlencoded':'application/json'}:{}),...extraHeaders},...(body?{body:form?new URLSearchParams(body).toString():JSON.stringify(body)}:{})});
   for(const c of r.headers.getSetCookie()){const f=c.split(';')[0],i=f.indexOf('=');jar.set(f.slice(0,i),f.slice(i+1));}
   const text=await r.text();let data;try{data=JSON.parse(text);}catch{data=null;}
   return{status:r.status,data,text,cache:r.headers.get('cache-control'),location:r.headers.get('location')};

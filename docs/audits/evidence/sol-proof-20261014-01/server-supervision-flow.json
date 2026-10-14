@@ -1,0 +1,113 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41",
+  "startedAt": "2026-10-14T14:59:42.537Z",
+  "checks": [
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "supervision_contract_invite_accept_active",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": "ACTIVE",
+        "acceptedContract": true
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "supervision_participant_note_private",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "ownerMarkerPresent": true,
+        "supervisorMarkerAbsent": true
+      }
+    },
+    {
+      "case_id": "DATA-01",
+      "variant_id": "nonparticipant_supervision_denied",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 404,
+        "privateMarkerAbsent": true
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "supervision_shared_topic_and_held_meeting",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "topicVisible": true,
+        "meetingStatus": "HELD"
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "supervision_MEETING_summary_approved",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": "APPROVED"
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "supervision_FINAL_summary_approved",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": "APPROVED"
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "supervision_close_preview_ready",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "canClose": true,
+        "pending": []
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "supervision_both_see_closed_outcome",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": "CLOSED",
+        "supervisorOutcomePresent": true,
+        "participantOutcomePresent": true
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "closed_supervision_rejects_new_topic",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 409
+      }
+    }
+  ],
+  "created": {},
+  "externalMessagesSent": false,
+  "newPaidCalls": false,
+  "limits": [
+    "Supervisor eligibility is an explicit one-hour synthetic grant to the existing specialist; no real qualification or platform admin approval is asserted. The grant is revoked in finally.",
+    "Only the three test accounts, fictitious contract/topics/meeting and scripted confirmations are used. No AI, audio/video, real invite recipient or substantive supervision quality assessment."
+  ],
+  "finishedAt": "2026-10-14T14:59:43.184Z",
+  "syntheticGrantRevoked": true
+}

@@ -1,0 +1,32 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import crypto from 'node:crypto';
+import vm from 'node:vm';
+import {createRequire} from 'node:module';
+import {httpHarness,recorder} from './server-http-support.mjs';
+const root=process.argv[2],{prisma,actors,call,login}=await httpHarness(root),{rec,save,check}=recorder(root,'server-provider-inquiry');
+assert.equal(fs.existsSync('provider-inquiry-fixture.json'),false,'Reuse this inquiry instead of making a duplicate.');
+const before=await prisma.user.findUnique({where:{id:actors.provider.id},select:{acceptsPreInquiries:true,email:true}});assert.equal(before.email,actors.provider.email);
+rec.limits=['Only the existing provider test account temporarily opts in to internal pre-inquiries; the preference is restored in finally. Its company service profile stays private DRAFT.','Manual contact route is tested; publishing and selecting a public service-map card is not proved. Conditional referral text is a current-source component fixture.','No actual service allocation, KOV/SKA decision, state procedure, real email recipient or model call.'];
+try{
+ await prisma.user.update({where:{id:actors.provider.id},data:{acceptsPreInquiries:true}});
+ for(const key of Object.keys(actors))await login(key);
+ const c=await call('client','/api/pre-inquiries','POST',{clientActionId:crypto.randomUUID(),topic:'SOL TEST direct provider inquiry',situation:'SOL TEST need a service; please clarify whether a KOV decision is required.',selectedRecipientEmail:actors.provider.email,selectedRecipientName:'SOL TEST provider',status:'DRAFT'});
+ assert.equal(c.status,201,JSON.stringify(c.data));const id=c.data.inquiry.id;rec.created.inquiryId=id;fs.writeFileSync('provider-inquiry-fixture.json',JSON.stringify({inquiryId:id})+'\n');save();
+ const sent=await call('client',`/api/pre-inquiries/${id}`,'PATCH',{status:'SENT',expectedUpdatedAt:c.data.inquiry.updatedAt});assert.equal(sent.status,200,JSON.stringify(sent.data));
+ check('FLOW-05','direct_provider_gets_internal_inquiry',sent.data.inquiry.deliveryChannel==='INTERNAL'&&sent.data.inquiry.recipientOwnerId===actors.provider.id,{status:sent.status,channel:sent.data.inquiry.deliveryChannel,recipientMatches:true});
+ const read=await call('provider',`/api/pre-inquiries/${id}`);
+ check('FLOW-05','provider_sees_selected_initial_description',read.status===200&&read.text.includes('SOL TEST need a service')&&!read.text.includes('SOL TEST PRIVATE WELLBEING')&&!read.text.includes('PRIVAATNE KONTROLLFRAAS'),{status:read.status,selectedDescriptionPresent:read.text.includes('SOL TEST need a service'),unselectedPrivateMarkersAbsent:true});
+ const outside=await call('specialist',`/api/pre-inquiries/${id}`);
+ check('DATA-01','unselected_specialist_cannot_read_provider_inquiry',outside.status===404&&!outside.text.includes('SOL TEST need a service'),{status:outside.status,descriptionAbsent:true});
+ const accepted=await call('provider',`/api/pre-inquiries/${id}/accept`,'POST',{});assert.equal(accepted.status,200,JSON.stringify(accepted.data));
+ const stored=await prisma.preInquiry.findUnique({where:{id}});
+ check('FLOW-05','provider_acceptance_is_request_receipt',stored.status==='READY'&&!!stored.openedAt,{status:stored.status,openedAt:stored.openedAt.toISOString(),officialAllocation:false,realStateDecision:false});
+ const req=createRequire(root+'/package.json'),parser=req('@babel/parser'),source=fs.readFileSync(root+'/components/workspace/WorkspaceFeaturePage.jsx','utf8');
+ const ast=parser.parse(source,{sourceType:'module',plugins:['jsx']}),fn=ast.program.body.find(n=>n.type==='FunctionDeclaration'&&n.id.name==='getPreInquiryReferralNotice');assert.ok(fn);
+ const notice=vm.runInNewContext('('+source.slice(fn.start,fn.end)+')');
+ const notNeeded=notice({providerProfile:{serviceItems:[{requiresKovDecision:false,requiresSkaReferral:false}]}}),needed=notice({providerProfile:{serviceItems:[{requiresKovDecision:true}]}});
+ check('FLOW-05','no_referral_notice_for_no_requirement',notNeeded==='',{notice:notNeeded},'CURRENT_FIXTURE');
+ check('FLOW-05','referral_requirement_has_conditional_notice',needed.includes('KOV')&&needed.includes('SKA')&&needed.includes('võib'),{notice:needed,actualFunctionSha256:crypto.createHash('sha256').update(source.slice(fn.start,fn.end)).digest('hex')},'CURRENT_FIXTURE');
+ rec.observations=[{case_id:'FLOW-05',status:'NOT_PROVEN',note:'A provider inquiry and conditional notice are supported. Completion of an actual decision procedure, full public service-card selection and a paid service purchase remain unproved.'}];
+}finally{await prisma.user.update({where:{id:actors.provider.id},data:{acceptsPreInquiries:before.acceptsPreInquiries}});rec.preferenceRestored=before.acceptsPreInquiries;rec.finishedAt=new Date().toISOString();save();await prisma.$disconnect();console.log(JSON.stringify({checks:rec.checks.length,nonpassing:rec.checks.filter(c=>c.status!=='PASS'),created:rec.created,preferenceRestored:before.acceptsPreInquiries}));}
