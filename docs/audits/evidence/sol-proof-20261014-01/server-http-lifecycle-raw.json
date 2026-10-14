@@ -1,0 +1,168 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41",
+  "startedAt": "2026-10-14T11:23:03.842Z",
+  "checks": [
+    {
+      "case_id": "FLOW-07",
+      "variant_id": "concurrent_create_http",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "statuses": [
+          201,
+          201
+        ],
+        "sameId": true
+      }
+    },
+    {
+      "case_id": "FLOW-07",
+      "variant_id": "concurrent_send_http",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "statuses": [
+          200,
+          409
+        ],
+        "messages": [
+          null,
+          "A sent pre-inquiry can no longer be edited."
+        ],
+        "recordCount": 1,
+        "notificationCountNotMeasured": true
+      }
+    },
+    {
+      "case_id": "FLOW-07",
+      "variant_id": "http_recall_before_accept",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "recallStatus": 200,
+        "recipientStatus": 404,
+        "recipientContentAbsent": true
+      }
+    },
+    {
+      "case_id": "DATA-02",
+      "variant_id": "sent_original_not_silently_changed",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 409,
+        "message": "An opened or already corrected pre-inquiry cannot be edited directly. Send a new correction."
+      }
+    },
+    {
+      "case_id": "DATA-02",
+      "variant_id": "separate_corrected_version",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 201,
+        "created": true,
+        "newId": "cmv80u0pw000ghikmhm8x9igk",
+        "originalId": "cmv80tx8t000ehikmw8zjcjfp"
+      }
+    },
+    {
+      "case_id": "DATA-02",
+      "variant_id": "correction_retry_same_record",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 200,
+        "sameId": true,
+        "created": false
+      }
+    },
+    {
+      "case_id": "DATA-02",
+      "variant_id": "original_and_correction_distinguished",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "originalStatus": 200,
+        "correctedStatus": 200,
+        "originalUnchanged": true,
+        "supersededById": "cmv80u0pw000ghikmhm8x9igk",
+        "correctedAt": "2026-10-14T11:23:12.548Z"
+      }
+    },
+    {
+      "case_id": "FLOW-07",
+      "variant_id": "opened_original_not_recalled",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 409,
+        "message": "The recipient has opened this pre-inquiry. Its history cannot be erased, but you can send a correction."
+      }
+    },
+    {
+      "case_id": "FLOW-06",
+      "variant_id": "receiver_changed_before_send_http",
+      "status": "FAIL",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "sendStatus": 400,
+        "message": "To send in the platform, choose a contact whose account receives pre-inquiries.",
+        "retainedStatus": "DRAFT",
+        "retainedChannel": "INTERNAL"
+      }
+    },
+    {
+      "case_id": "ENV-03",
+      "variant_id": "suspended_test_account_http",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 503,
+        "error": "platform_not_open"
+      }
+    },
+    {
+      "case_id": "ENV-03",
+      "variant_id": "revoked_test_session_http",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 503,
+        "error": "platform_not_open"
+      }
+    },
+    {
+      "case_id": "ENV-03",
+      "variant_id": "fresh_restored_test_session_http",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 200,
+        "isAdmin": false
+      }
+    }
+  ],
+  "created": {
+    "retryId": "cmv80tuep000dhikmob1ok0ex",
+    "correction": "cmv80tx8t000ehikmw8zjcjfp",
+    "correctionId": "cmv80u0pw000ghikmhm8x9igk",
+    "receiver-disabled": "cmv80u419000hhikm6leyrfar"
+  },
+  "externalMessagesSent": false,
+  "newPaidCalls": false,
+  "finishedAt": "2026-10-14T11:23:16.944Z"
+}

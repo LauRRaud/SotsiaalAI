@@ -92,6 +92,26 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**14.10 Soli tõenduskatsete käivitus — pooleli:** omanik suunas põhilise
+kontrolli tegelikku arendusserverisse ja lubas kolm tavarolli testkontot.
+Run `sol-proof-20261014-01`; kontod `...-client`, `...-specialist`,
+`...-provider@example.invalid`, adminiõiguseta. Omaniku loal kasutatud
+OÜ Küberloomet (14206225): privaatne teenuseprofiili ja organisatsiooni
+mustand. Serveris 99 kontrollvarianti: 96 läbis, kaks rakisetakistuse
+vaatlust lahendati sihitud kordusega. READY järel jagamine
+ebaõnnestus `network_share.source_inactive` veaga. Teavitustöö 503 ja
+`platform_not_open` aadressivastus toetavad avamisvärava takistust.
+Omanik lubas ainult nende kolme konto ligipääsu `/admin` kaudu.
+Ajutine avamisvärava erand on serveris; värav ja paigaldus läbisid.
+Kolme tavarolli UI, valikuline eelinfo, küsimustiku UNKNOWN/vastamata
+väärtused, kordused, parandusversioon ja peatatud/tühistatud ligipääs
+kontrolliti. 13 seansi/õiguse fixture-kontrolli läbisid. Saatja päise
+tuvastamine vajab täpsustust. Järgmine: täielikum brauseri koostamisrada,
+aktiivse testasutuse vastuvõtt/määramine/asendamine ja ülejäänud OPS/DATA/TOOLS.
+Erand aegub 16.10 kell 03.00 EEST; adminiõigusi ei anta. Tulemused
+salvestatakse iga testirühma järel. Tasulisi mudelikutseid ja päris kirju ei tehtud.
+52 juhtumi kavand pole lõpetatud. [Vahetulemus ja tõendid](../audits/sotsiaal-pro-toenduskatsete-tulemused-sol-proof-20261014-01.md).
+
 **13.10 logo kuvamine:** avalehe logo joonistatakse nüüd lehe Exo 2 fondist
 otse lõplikus ekraanisuuruses SVG-tekstina. Omaniku hinnang võrdlusele:
 „veidi parem“; täielikku teravusprobleemi lahendust ei väideta. Metalliefekt

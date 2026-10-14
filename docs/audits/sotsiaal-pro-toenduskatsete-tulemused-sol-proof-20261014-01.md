@@ -2,6 +2,8 @@
 
 14.10.2026. **Vahetulemus: serveri lähtekontroll on käimas; kogu 52 juhtumiga kavand pole täidetud.** Omaniku juhisel kasutatakse põhiliseks kinnituseks serveris töötavat arendusplatvormi ja selle tegelikku andmebaasi. Platvorm ei ole produktsioonis. Kohalik eraldatud keskkond jääb tõrke- ja hävitavate katsete abivahendiks.
 
+**Jooksev koond:** 99 salvestatud kontrollvarianti: 96 PASS, 1 FAIL, 2 katserakise takistuse vaatlust. Terve 52 juhtumi kavand pole lõpetatud.
+
 Käivituskavand: [14.10 kontrollikavand](sotsiaal-pro-toenduskatsete-kavand-2026-10-14.md). Täpne edenemine ja kõik variandid: [case-progress.json](evidence/sol-proof-20261014-01/case-progress.json).
 
 **Praegune otsus:** eelpöördumise, Teekonna ja teenuseosutaja mustandi sisuline teostus toimib kontrollitud serveri teenusekihtides. Leiti vastuvõtujärgse võrgustikujagamise viga. Omanik lubas nüüd täpselt kolme tavarolli testkonto ligipääsu `/admin` sisselogimise kaudu. Selleks valmistati ajutine avamisvärava erand; enne serverisse paigaldamist läbisid 13 seansi- ja õigusekontrolli ning sihitud süntaksikontrolli. Algne 41 variandiga lähtekontroll tehti enne seda muudatust.
@@ -32,7 +34,7 @@ Teenuseosutaja testkontole salvestati ettevõtte andmetega privaatne teenuseprof
 
 **Kontrollvariandid, mida praegu saab kinnitada.**
 
-Esialgses serveri teenusekontrollis oli 41 varianti: 40 läbis ja üks ebaõnnestus. Ligipääsu erandi esimene HTTPS-kontroll lisas 32 varianti: 30 läbis, kaks blokeerusid katseprogrammi vale küsimuseindeksi tõttu. Küsimustiku sihitud kordus lisas kuus läbitud varianti ja lahendas mõlemad rakisetakistused. Brauser lisas kaheksa läbitud varianti. Kokku on **87 salvestatud varianti: 84 PASS, üks FAIL ja kaks ajaloolist HARNESS_OR_PRECONDITION**. Need pole 87 eri kavandijuhtumit. Ükski kataloogijuhtum ei ole üksnes selle koondarvu tõttu tervikuna lõpetatuks märgitud. Kogu 52 juhtumi läbimise protsenti sellest arvust ei arvutata.
+Esialgses serveri teenusekontrollis oli 41 varianti: 40 läbis ja üks ebaõnnestus. Ligipääsu erandi esimene HTTPS-kontroll lisas 32 varianti: 30 läbis, kaks blokeerusid katseprogrammi vale küsimuseindeksi tõttu. Küsimustiku sihitud kordus lisas kuus läbitud varianti ja lahendas mõlemad rakisetakistused. Brauser lisas kaheksa läbitud varianti. Selle brauserietapi järel oli **87 salvestatud varianti: 84 PASS, üks FAIL ja kaks ajaloolist HARNESS_OR_PRECONDITION**. Need pole 87 eri kavandijuhtumit. Ükski kataloogijuhtum ei ole üksnes selle koondarvu tõttu tervikuna lõpetatuks märgitud. Kogu 52 juhtumi läbimise protsenti sellest arvust ei arvutata.
 
 | Teema | Vaadeldud tulemus | Tõendi piir |
 |---|---|---|
@@ -83,8 +85,6 @@ Kontroll kinnitas ka piiri: struktuuriliselt sobiv väljamõeldud valeväide pä
 
 14.10 kell 12.07 EEST vaadeldud aktiivses RAG-plaanis oli 10 856 dokumendikirjet, juhis `m4-grounded-dialogue-43`, development_only kasutus ning üks lubatud kasutaja. Lubatud kasutaja identifikaatorit ei avaldatud. [Plaani vaatlus](evidence/sol-proof-20261014-01/rag-plan-observation.json). Uut mudelivastuste kvaliteedivooru selles etapis ei tehtud; praeguse versiooni sisuline õigsusmäär on endiselt NOT_PROVEN.
 
-**Kohalikud täiendavad kontrollid.**
-
 **Serveri brauseri töövaated.** Väljalase `d8776011` jõudis serverisse; selle GitHubi quality-gate ja deploy läbisid. `/admin` sisselogimisrajalt jõudsid kõik kolm fixture-seanssi tavarollis töölauale, mitte haldusvaatesse. Kliendi saadetud pöördumise vaade ütles selgelt „ootab vastuvõtmist”, mitte et abi oleks juba korraldatud. Spetsialisti tööjärjes ja detailis oli enne fiktiivset kohtumist nähtav inimese vabas vormis kirjeldus; küsimustiku puudumine ei takistanud lugemist. Teenuseosutaja salvestas nähtavas vormis OÜ Küberloome organisatsioonitüübi „Ettevõte”; järelpäring kinnitas DRAFT-staatuse ja kaardil mittenähtavuse. Anonüümne avaleht jäi suletud „Peagi avame!” nupuga. [Kaheksa brauserivarianti](evidence/sol-proof-20261014-01/server-browser.json).
 
 Visuaalselt üle vaadatud tõendid: [kliendi seis](evidence/sol-proof-20261014-01/client-sent-before-meeting.png), [spetsialisti eelinfo](evidence/sol-proof-20261014-01/specialist-pre-meeting-info.png), [teenuseosutaja mustand](evidence/sol-proof-20261014-01/provider-private-draft.png). Need näitavad API kaudu koostatud pöördumise lugemisrada ning teenuseprofiili tegelikku vormisalvestust; kliendi kogu uue pöördumise brauserivormi täitmist ei väideta.
@@ -92,6 +92,12 @@ Visuaalselt üle vaadatud tõendid: [kliendi seis](evidence/sol-proof-20261014-0
 **Täpsustamist vajav saatja tuvastamine:** spetsialisti detaili päis kuvab „SOL TEST Spetsialist · saabus …”, kuigi pöörduja konto on teine. API annab saatja ID ja rolli, kuid jätab meili saaja projektsioonist teadlikult välja. UI fallback kasutab seejärel `selectedRecipientName`-i. Seetõttu pole nähtava saatjanime osa FLOW-01 ootusest tõendatud. Pöörduja tuvastamise või teadliku anonüümsuse tooteleping tuleb enne uue kirja tugevat lubadust täpsustada; automaatset isikuandmete avaldamist testija ei lisanud.
 
 **Kohalike kontrollide tõendipiir.**
+
+**Pöördumise elutsükli ja värske ligipääsu HTTPS-kontroll — 12 varianti.** Kaks sama tegevusvõtmega loomist andsid sama kirje; paralleelne saatmine jättis ühe kirje ning üks kordus keelduti 409-ga. Enne vastuvõttu tagasikutsutud pöördumine polnud saajale enam nähtav. Vastuvõetud algteksti vaikne muutmine keelduti. Parandus loodi eraldi kirjena, algtekst säilis, mõlema versiooni seos oli nähtav ning paranduse kordus tagastas sama kirje. Avatud algpöördumise tagasikutsumine keelduti.
+
+Kui spetsialist lülitas vastuvõtu enne saatmist välja, keeldus API 400-ga ja kliendi mustand säilis. Rakis eeldas liiga kitsalt 409-t; kataloog nõuab siin sisulist keeldumist, mitte kindlat koodi. Tegelik vastus vastab ootusele. Algne [toorväljastus](evidence/sol-proof-20261014-01/server-http-lifecycle-raw.json) säilib ja [hinnatud tulemus](evidence/sol-proof-20261014-01/server-http-lifecycle.json) märgib põhjendatud ümberklassifitseerimise. Sama päringut ei korratud üksnes klassifitseerimise tõttu.
+
+Kolme konto erandi serveripiir keeldus ka päriselt ajutiselt peatatud testkontost ja muudetud sessionVersion-iga seansist; värske taastatud testseanss sai jälle tavarollis ligi. Muudeti ainult selle jooksu kontosid ja katsekonfiguratsioon taastati `finally` plokis. Teavituste arvu, kogu õigustemaatriksit ega päris PIN/OTP-kirjarada selle kontrolliga ei tõendata.
 
 Enne omaniku serverieelistuse täpsustust valmistati tühi kohalik baas ja testikoopia. Täiskomplekti ei käivitatud. Kuues sihitud riski-testifailis oli 35 kontrolli: 34 läbisid, üks jäi katsekeskkonnas puuduva salvestatud kulu-fixture taha. Pärast selle tõendifaili lisamist korrati ainult mõjutatud rag-cost faili: kõik kaheksa kontrolli läbisid. Uut API-kulu ei tekkinud. See on kohaliku testikomplekti tulemus, mitte serveri rolliradade läbimise arv. [Algne väljund](evidence/sol-proof-20261014-01/risk-tests.tap), [sihitud kordus](evidence/sol-proof-20261014-01/rag-cost-retest.tap).
 
@@ -110,3 +116,5 @@ Testiseadistuse commit'id: `249fa157` (värske seansi värav ja `/admin` suunami
 Pärast seda otsust saab läbida tavarollide serveri API ja brauseri tervikrajad: täidetud küsimustikud, valikulise info üleandmine, ruum ja vastused, asutuse vastuvõtulaud, teenuse töökorraldus, katkestused ning täielikum ligipääsu- ja ekspordimaatriks. Mõned neist vajavad lisaks sobivaid sünteetilisi organisatsiooniseadistusi ja osalisi.
 
 Inimeste osalust nõudvaid ajavõidu ja kasutuskogemuse katseid, sõltumatut sisulist vastusehindamist ning väliste asutuste/õigushindaja kinnitusi see vahetulemus ei asenda. Kirja mõjuhüpoteese ei kuulutata tehniliste kontrollide põhjal tõestatuks.
+
+**Jätkamise koht pärast omaniku limiiditeadet.** 99 kontrollvarianti on salvestatud; järgmine töö on täielikum brauseri koostamisrada, aktiivse sünteetilise asutuse vastuvõtt/määramine/asendamine ning ülejäänud OPS/DATA/TOOLS variandid. Üks kinnitatud tootepuudus jääb READY-järgse jagamise veaks. Saatja päise identiteediprobleem on eraldi kontrollitav tähelepanek. Kaks küsimustiku rakisetakistust lahendati kuue sihitud variandiga. Ei korrata muutumatu koodi läbitud kontrolle ega tehta tasulisi mudelikutseid ilma olemasoleva lubatud ulatuse ja kulupiirita. Testkontode erand aegub 16.10 kell 03.00 EEST; kontod ja privaatsed testkirjed säilivad jätkamiseks.
