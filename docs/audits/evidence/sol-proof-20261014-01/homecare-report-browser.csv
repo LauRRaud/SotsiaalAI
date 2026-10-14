@@ -1,0 +1,14 @@
+﻿Koduteenuse kuu kokkuvõte;10.2026
+Seis;Kuu ei ole lukus: jooksvad arvud seisuga 14.10.2026.
+
+Kliendi kaupa
+Klient;Seis;Käike;Osutatud tunde;Otsustatud tunde;Vahe (tunde);Kestuseta käike;Ära jäänud käike;Ette ära jäetud käike;Ajutiselt ära (päevi);Tegemata: keeldus;Tegemata: ei olnud vaja;Tegemata: ei saanud
+SOL TEST koduteenuse klient;Aktiivne;1;0,8;;;0;0;1;0;0;0;0
+Kokku;;1;0,8;;;0;0;1;0;0;0;0
+
+Töötaja kaupa
+Töötaja;Käike;Tunde;Raske töö märgiga kliendi käike;Kaasas käike;Kaasas tunde;Kilomeetreid;Sellest isikliku autoga
+SOL TEST Teenuseosutaja;1;0,8;0;0;0;;
+
+Ära jäänud käigud
+Klient;Aeg;Põhjus

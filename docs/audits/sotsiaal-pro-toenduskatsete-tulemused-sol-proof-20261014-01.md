@@ -2,7 +2,7 @@
 
 14.10.2026. **Vahetulemus: serveri lähtekontroll on käimas; kogu 52 juhtumiga kavand pole täidetud.** Omaniku juhisel kasutatakse põhiliseks kinnituseks serveris töötavat arendusplatvormi ja selle tegelikku andmebaasi. Platvorm ei ole produktsioonis. Kohalik eraldatud keskkond jääb tõrke- ja hävitavate katsete abivahendiks.
 
-**Jooksev koond:** 148 salvestatud kontrollvarianti: 144 PASS, 2 FAIL, 2 katserakise takistuse vaatlust. Terve 52 juhtumi kavand pole lõpetatud.
+**Jooksev koond:** 163 salvestatud kontrollvarianti: 159 PASS, 2 FAIL, 2 katserakise takistuse vaatlust. Terve 52 juhtumi kavand pole lõpetatud.
 
 Käivituskavand: [14.10 kontrollikavand](sotsiaal-pro-toenduskatsete-kavand-2026-10-14.md). Täpne edenemine ja kõik variandid: [case-progress.json](evidence/sol-proof-20261014-01/case-progress.json).
 
@@ -104,6 +104,16 @@ Enne omaniku serverieelistuse täpsustust valmistati tühi kohalik baas ja testi
 Kohaliku testikoopia käivitust takistasid esmalt webpacki kompileerimine ja seejärel Turbopacki nõue hoida sõltuvused failisüsteemi juure sees. Seadistuse lahendamine ei muutnud rakenduse tootekoodi. Need ettevalmistusvead ei lähe platvormi funktsioonivigade arvestusse. Kohalik enda loodud frontend peatati serveri kontrollide prioriseerimise järel.
 
 **Mis jääb järgmisse etappi.**
+
+**Koduteenuse tööpäev ja kuukoond — 15 uut varianti.** Serveri tegelik `HOME_CARE_ENABLED=1` mõõdeti; sama sünteetilise testasutuse koduteenuse moodul ja hooldusjuhi õigus valmistati fixture-seadistusena. HTTPS-is loodi üks väljamõeldud klient, määrati kolm plaanitud käiku samale testtegijale ja üks neist jäeti ette ära. Võõras klientkonto ja lõpetatud liikmesusega spetsialist ei saanud hoolduskliendi privaatset sisu lugeda. Kordussalvestus jättis ühe päevikukirje. Esialgne kuukoond oli kaks käiku ja 50 minutit, ette ära jäetud käik eraldi loenduris.
+
+Esimese käigu parandamine 30→45 minutiks säilitas algse teksti, aja ja põhjuse parandusloos. Aegunud parandusvorm sai 409. Teise päevikukirje tühistamise järel jäi kuukoondisse üks käik ja 45 minutit ning ette ära jäetud käik jäi eraldi. Päevaplaanis oli üks DONE ja üks CANCELLED; tühistatud päevikukirje ei täitnud teist käiku. [12 kontrolli](evidence/sol-proof-20261014-01/server-homecare-flow.json), [kuukoond](evidence/sol-proof-20261014-01/homecare-month-report.json), [muutumatu algne paranduslugu](evidence/sol-proof-20261014-01/homecare-revision-history.json).
+
+Brauseris nähti kliendi kaupa samu arve ja lukustamata kuu selgitust. Tegelik allalaadimisnupp andis eestikeelse CSV-faili ning failis oli jooksva seisu hoiatus. Mõlemad ekraanipildid vaadati üle. [Kolm brauserikontrolli](evidence/sol-proof-20261014-01/server-homecare-browser.json), [allalaaditud CSV](evidence/sol-proof-20261014-01/homecare-report-browser.csv). Katse lõpus taastati asutus SUSPENDED-olekusse; päris ettevõtte mustandit ei aktiveeritud.
+
+Rakise kaks eeldust täpsustati: meeskonna loomine tagastab õigesti 201 ja päeviku API kestus asub `entry.visit.minutes` väljas. Algne väljund säilib [toorfailis](evidence/sol-proof-20261014-01/server-homecare-flow-raw.json); kestus ja parandusajalugu kinnitati lugemispäringutega, salvestusi kordamata. Tootepuudust nendest eeldusvigadest ei järeldatud.
+
+Piir: CSV näitab 45 minutit ühe kümnendkohaga kui 0,8 tundi; JSON säilitab 45 minutit. Arveldamise ümardusreegel ja summade võrdlus vajavad eraldi kontrolli. Koduteenuse CSV, teenuspäeviku statistika ja võimalik STAR-i edastus on eri tõendid. Selle katse käigus ei toimunud STAR-i API-ülekannet ega mõõdetud ajasäästu. Terve brauseri koostamisrada ja lõppenud kuu lukustamine jäävad kontrollida.
 
 **Tööheaolu privaatsuse üheksa uut kontrolli.** Spetsialisti sünteetiline raske juhtumi kirje salvestus private-nähtavusega. Omanik sai seda lugeda; teenuseosutaja ja kliendi tavaroll ei saanud seda lugeda ega kustutada. Teenuseosutaja ei pääsenud admini koondile. Sama salvestuse kordus tagastas sama kirje ning tundmatu ohuväärtus keelduti 400-ga, ilma uue kirjeta.
 

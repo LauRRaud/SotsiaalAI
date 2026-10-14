@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "revisions": [
+    {
+      "id": "cmv87hfu5002ehikm9hviitqn",
+      "kind": "CORRECTION",
+      "text": "SOL TEST visit 1",
+      "entryKind": "NOTE",
+      "contactMode": "VISIT",
+      "occurredAt": "2026-10-13T21:10:00.000Z",
+      "visit": {
+        "minutes": 30,
+        "activities": []
+      },
+      "revision": 1,
+      "reason": "SOL TEST duration correction",
+      "actorName": "SOL TEST Teenuseosutaja",
+      "createdAt": "2026-10-14T14:29:22.919Z"
+    }
+  ]
+}

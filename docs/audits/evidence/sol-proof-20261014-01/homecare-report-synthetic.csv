@@ -1,0 +1,14 @@
+﻿home_care.month_sheet.title;10.2026
+home_care.month_sheet.state;home_care.month_sheet.state_running
+
+home_care.month_sheet.clients_title
+home_care.month_sheet.col_client;home_care.month_sheet.col_status;home_care.month_sheet.col_visits;home_care.month_sheet.col_hours;home_care.month_sheet.col_expected;home_care.month_sheet.col_difference;home_care.month_sheet.col_without_length;home_care.month_sheet.col_missed;home_care.month_sheet.col_cancelled;home_care.month_sheet.col_away_days;home_care.month_sheet.col_refused;home_care.month_sheet.col_not_needed;home_care.month_sheet.col_could_not
+SOL TEST koduteenuse klient;home_care.status.ACTIVE;1;0,8;;;0;0;1;0;0;0;0
+home_care.month_sheet.total;;1;0,8;;;0;0;1;0;0;0;0
+
+home_care.month_sheet.workers_title
+home_care.month_sheet.col_worker;home_care.month_sheet.col_visits;home_care.month_sheet.col_worker_hours;home_care.month_sheet.col_heavy;home_care.month_sheet.col_companion_visits;home_care.month_sheet.col_companion_hours;home_care.month_sheet.col_worker_km;home_care.month_sheet.col_worker_own_km
+SOL TEST Teenuseosutaja;1;0,8;0;0;0;;
+
+home_care.month_sheet.missed_title
+home_care.month_sheet.col_client;home_care.month_sheet.col_time;home_care.month_sheet.col_reason

@@ -1,0 +1,195 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41",
+  "startedAt": "2026-10-14T14:28:44.458Z",
+  "checks": [
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "care_client_created_in_own_organization",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 201,
+        "clientId": "cmv87gme2001xhikmh2dha8m8"
+      }
+    },
+    {
+      "case_id": "DATA-01",
+      "variant_id": "care_foreign_or_ended_member_denied_client",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 404,
+        "privateContentAbsent": true
+      }
+    },
+    {
+      "case_id": "DATA-01",
+      "variant_id": "care_foreign_or_ended_member_denied_specialist",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 404,
+        "privateContentAbsent": true
+      }
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "three_planned_visits_assigned",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "count": 3,
+        "allAssignedToSyntheticCoordinator": true,
+        "day": "2026-10-14"
+      }
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "planned_cancellation_visible",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "state": "CANCELLED",
+        "reason": "CLIENT_CANCELLED"
+      }
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "care_retry_has_one_entry",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "sameId": true,
+        "count": 1
+      }
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "month_excludes_planned_cancelled_visit",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "totals": {
+          "visits": 2,
+          "minutes": 50,
+          "withoutLength": 0,
+          "missed": 0,
+          "cancelled": 1,
+          "notDone": 0
+        }
+      }
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "care_correction_keeps_original_and_reason",
+      "status": "FAIL",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "revisionCount": 1,
+        "reasonAndOldTextPresent": true,
+        "historyStatus": 200
+      }
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "care_stale_correction_denied",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 409
+      }
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "care_month_uses_correction_excludes_retraction",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "totals": {
+          "visits": 1,
+          "minutes": 45,
+          "withoutLength": 0,
+          "missed": 0,
+          "cancelled": 1,
+          "notDone": 0
+        },
+        "clientMinutes": 45,
+        "retracted": true
+      }
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "care_day_has_one_done_and_one_cancelled",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "states": [
+          {
+            "slotId": "cmv87herz0024hikm36yebkg4",
+            "state": "DONE"
+          },
+          {
+            "slotId": "cmv87hest0026hikmumf3h1jb",
+            "state": "MISSING"
+          },
+          {
+            "slotId": "cmv87hetd0028hikm6mxrtz5u",
+            "state": "CANCELLED"
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "month_csv_uses_same_report_data",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "state": "RUNNING",
+        "sameInputAsHttpsReport": true,
+        "translationKeysInsteadOfLocalizedLabels": true
+      }
+    }
+  ],
+  "created": {
+    "clientId": "cmv87gme2001xhikmh2dha8m8"
+  },
+  "externalMessagesSent": false,
+  "newPaidCalls": false,
+  "limits": [
+    "HOME_CARE_ENABLED=1 was measured from the active frontend. Only the existing synthetic organization is temporarily activated.",
+    "A HOME_CARE module and coordinator grant are explicit database fixtures, not evidence of commercial onboarding.",
+    "Only the same three non-admin accounts and fictitious care content are used. No STAR API transmission or paid model call."
+  ],
+  "finishedAt": "2026-10-14T14:29:23.026Z",
+  "harnessObservations": [
+    {
+      "note": "Team POST correctly returned 201; initial harness expected 200. No product defect. Existing client and team are reused."
+    }
+  ],
+  "observations": [
+    {
+      "case_id": "TOOLS-01",
+      "status": "NOT_PROVEN",
+      "note": "No STAR API call was made. Care month CSV and service-log STAR statistics are separate outputs; actual field mapping, billing prices and state receipt require separate proof."
+    },
+    {
+      "case_id": "TOOLS-01",
+      "status": "NOT_PROVEN",
+      "note": "UI planning/entry/report path, completed month locking and actual worker paired timing are not proved by these HTTPS checks."
+    }
+  ]
+}

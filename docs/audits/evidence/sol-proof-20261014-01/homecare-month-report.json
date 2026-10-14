@@ -1,0 +1,84 @@
+{
+  "ok": true,
+  "month": "2026-10",
+  "previousMonth": "2026-09",
+  "nextMonth": null,
+  "today": "2026-10-14",
+  "fromDay": "2026-10-01",
+  "untilDay": "2026-10-14",
+  "complete": false,
+  "truncated": false,
+  "totals": {
+    "visits": 1,
+    "minutes": 45,
+    "withoutLength": 0,
+    "missed": 0,
+    "cancelled": 1,
+    "notDone": 0
+  },
+  "clients": [
+    {
+      "client": {
+        "id": "cmv87gme2001xhikmh2dha8m8",
+        "displayName": "SOL TEST koduteenuse klient",
+        "status": "ACTIVE"
+      },
+      "volumeMinutes": null,
+      "volumePeriod": null,
+      "expectedMinutes": null,
+      "visits": 1,
+      "minutes": 45,
+      "withoutLength": 0,
+      "missed": 0,
+      "cancelled": 1,
+      "notDone": {
+        "REFUSED": 0,
+        "NOT_NEEDED": 0,
+        "COULD_NOT": 0
+      }
+    }
+  ],
+  "workers": [
+    {
+      "membershipId": "cmv85uneg0001j8kmjxj8dv3q",
+      "name": "SOL TEST Teenuseosutaja",
+      "visits": 1,
+      "minutes": 45,
+      "heavy": 0,
+      "companionVisits": 0,
+      "companionMinutes": 0
+    }
+  ],
+  "missed": [],
+  "signalStats": {
+    "opened": 0,
+    "handled": 0,
+    "waiting": 0,
+    "medianDays": null
+  },
+  "openItems": {
+    "month": "2026-10",
+    "missing": [
+      {
+        "day": "2026-10-14",
+        "startTime": "00:20",
+        "client": {
+          "id": "cmv87gme2001xhikmh2dha8m8",
+          "displayName": "SOL TEST koduteenuse klient"
+        }
+      }
+    ],
+    "missingCount": 1,
+    "openIncidents": 0,
+    "openSignals": 0,
+    "medicationUnmarked": 0,
+    "clear": false
+  },
+  "lock": {
+    "state": "OPEN",
+    "canLock": false,
+    "blocked": "NOT_OVER",
+    "openItemCount": 1,
+    "history": []
+  }
+}

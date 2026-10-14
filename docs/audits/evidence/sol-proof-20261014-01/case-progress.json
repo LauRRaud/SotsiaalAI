@@ -1,14 +1,14 @@
 {
   "run_id": "sol-proof-20261014-01",
-  "updated_at": "2026-10-14T14:20:33.406Z",
+  "updated_at": "2026-10-14T14:34:35.464Z",
   "phase": "server HTTPS and browser controls in progress; owner-authorized three-account exception",
   "catalog_cases": 52,
   "whole_catalog_completed": false,
-  "observed_variants": 148,
-  "passed_variants": 144,
+  "observed_variants": 163,
+  "passed_variants": 159,
   "failed_variants": 2,
   "blocked_variants": 2,
-  "server_fixture_variants": 24,
+  "server_fixture_variants": 25,
   "case_progress": [
     {
       "case_id": "ENV-01",
@@ -204,8 +204,8 @@
       "case_id": "DATA-01",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 31,
-      "passed_variants": 31,
+      "observed_variants": 33,
+      "passed_variants": 33,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -384,8 +384,8 @@
       "case_id": "TOOLS-01",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 0,
-      "passed_variants": 0,
+      "observed_variants": 13,
+      "passed_variants": 13,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -2780,6 +2780,243 @@
         "familyWithheld": false
       },
       "evidence_file": "server-wellbeing-privacy.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "care_client_created_in_own_organization",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 201,
+        "clientId": "cmv87gme2001xhikmh2dha8m8"
+      },
+      "evidence_file": "server-homecare-flow.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "DATA-01",
+      "variant_id": "care_foreign_or_ended_member_denied_client",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 404,
+        "privateContentAbsent": true
+      },
+      "evidence_file": "server-homecare-flow.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "DATA-01",
+      "variant_id": "care_foreign_or_ended_member_denied_specialist",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 404,
+        "privateContentAbsent": true
+      },
+      "evidence_file": "server-homecare-flow.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "three_planned_visits_assigned",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "count": 3,
+        "allAssignedToSyntheticCoordinator": true,
+        "day": "2026-10-14"
+      },
+      "evidence_file": "server-homecare-flow.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "planned_cancellation_visible",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "state": "CANCELLED",
+        "reason": "CLIENT_CANCELLED"
+      },
+      "evidence_file": "server-homecare-flow.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "care_retry_has_one_entry",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "sameId": true,
+        "count": 1
+      },
+      "evidence_file": "server-homecare-flow.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "month_excludes_planned_cancelled_visit",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "totals": {
+          "visits": 2,
+          "minutes": 50,
+          "withoutLength": 0,
+          "missed": 0,
+          "cancelled": 1,
+          "notDone": 0
+        }
+      },
+      "evidence_file": "server-homecare-flow.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "care_correction_keeps_original_and_reason",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "newMinutes": 45,
+        "oldMinutes": 30,
+        "oldTextAndReasonPreserved": true,
+        "historyStatus": 200,
+        "verifyStatus": 200
+      },
+      "evidence_file": "server-homecare-flow.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "care_stale_correction_denied",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 409
+      },
+      "evidence_file": "server-homecare-flow.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "care_month_uses_correction_excludes_retraction",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "totals": {
+          "visits": 1,
+          "minutes": 45,
+          "withoutLength": 0,
+          "missed": 0,
+          "cancelled": 1,
+          "notDone": 0
+        },
+        "clientMinutes": 45,
+        "retracted": true
+      },
+      "evidence_file": "server-homecare-flow.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "care_day_has_one_done_and_one_cancelled",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "states": [
+          {
+            "slotId": "cmv87herz0024hikm36yebkg4",
+            "state": "DONE"
+          },
+          {
+            "slotId": "cmv87hest0026hikmumf3h1jb",
+            "state": "MISSING"
+          },
+          {
+            "slotId": "cmv87hetd0028hikm6mxrtz5u",
+            "state": "CANCELLED"
+          }
+        ]
+      },
+      "evidence_file": "server-homecare-flow.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "month_csv_uses_same_report_data",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "state": "RUNNING",
+        "sameInputAsHttpsReport": true,
+        "translationKeysInsteadOfLocalizedLabels": true
+      },
+      "evidence_file": "server-homecare-flow.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "care_month_browser_client_totals",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS browser, provider normal-role session",
+      "actual": {
+        "client": "SOL TEST koduteenuse klient",
+        "visits": 1,
+        "minutes": 45,
+        "plannedCancelled": 1,
+        "screenshot": "homecare-month-client.png",
+        "screenshotVisuallyReviewed": true
+      },
+      "evidence_file": "server-homecare-browser.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "care_month_browser_running_state_notice",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS browser",
+      "actual": {
+        "currentMonthUnlockedNoticeVisible": true,
+        "instructionToLockBeforeSendingVisible": true,
+        "screenshot": "homecare-month-download.png",
+        "screenshotVisuallyReviewed": true
+      },
+      "evidence_file": "server-homecare-browser.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "care_month_browser_real_csv_download",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS browser download button",
+      "actual": {
+        "downloadError": null,
+        "suggestedFileName": "koduteenus-kuu-2026-10.csv",
+        "savedFile": "homecare-report-browser.csv",
+        "localizedLabels": true,
+        "clientVisits": 1,
+        "clientHoursDisplayed": "0,8",
+        "plannedCancelled": 1,
+        "stateNotice": "Kuu ei ole lukus: jooksvad arvud seisuga 14.10.2026."
+      },
+      "evidence_file": "server-homecare-browser.json",
       "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
     }
   ]
