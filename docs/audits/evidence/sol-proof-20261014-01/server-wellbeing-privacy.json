@@ -1,0 +1,138 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41",
+  "startedAt": "2026-10-14T14:17:21.443Z",
+  "checks": [
+    {
+      "case_id": "DATA-06",
+      "variant_id": "personal_wellbeing_saved_private",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 201,
+        "visibility": "private",
+        "ownerMatches": true,
+        "privateMarkerSaved": true,
+        "workflowType": "hard-case"
+      }
+    },
+    {
+      "case_id": "TOOLS-04",
+      "variant_id": "wellbeing_same_intent_deduplicated",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 200,
+        "sameId": true,
+        "deduplicated": true
+      }
+    },
+    {
+      "case_id": "DATA-06",
+      "variant_id": "owner_wellbeing_visible",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 200,
+        "ownMarkerPresent": true
+      }
+    },
+    {
+      "case_id": "DATA-06",
+      "variant_id": "foreign_wellbeing_denied_provider",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "readStatus": 403,
+        "deleteStatus": 403,
+        "privateMarkerAbsent": true
+      }
+    },
+    {
+      "case_id": "DATA-06",
+      "variant_id": "foreign_wellbeing_denied_client",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "readStatus": 403,
+        "deleteStatus": 403,
+        "privateMarkerAbsent": true
+      }
+    },
+    {
+      "case_id": "DATA-06",
+      "variant_id": "normal_role_cannot_read_admin_wellbeing",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 403,
+        "privateMarkerAbsent": true
+      }
+    },
+    {
+      "case_id": "DATA-06",
+      "variant_id": "unknown_danger_not_saved_as_safe",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 400,
+        "countBefore": 1,
+        "countAfter": 1,
+        "recordAdded": false
+      }
+    },
+    {
+      "case_id": "DATA-06",
+      "variant_id": "small_cohort_hidden_and_floor_not_lowered",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "suppressed": true,
+        "minimumGroupSize": 5,
+        "sampleSize": 1,
+        "metricCount": 0,
+        "privateTextAbsent": true
+      }
+    },
+    {
+      "case_id": "DATA-06",
+      "variant_id": "complementary_cell_suppression",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "withheldKeys": [
+          "ordinary",
+          "rare_risk"
+        ],
+        "published": [],
+        "familyWithheld": false
+      }
+    }
+  ],
+  "created": {
+    "recordId": "cmv87216u001thikm3q8rbjas"
+  },
+  "externalMessagesSent": false,
+  "newPaidCalls": false,
+  "limits": [
+    "Only this run specialist private record is stored or read. Aggregate uses an isolated fake database returning only this synthetic record.",
+    "No actual cohort, colleague data, national feed or AI recommendation is requested."
+  ],
+  "observations": [
+    {
+      "case_id": "DATA-06",
+      "status": "NOT_PROVEN",
+      "note": "Suppression mechanism and API role guards were checked. A real pilot cohort with explicit participation, viewer grant, exports and representativeness is a separate test."
+    }
+  ],
+  "finishedAt": "2026-10-14T14:17:24.176Z"
+}

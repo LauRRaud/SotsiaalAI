@@ -2,7 +2,7 @@
 
 14.10.2026. **Vahetulemus: serveri lähtekontroll on käimas; kogu 52 juhtumiga kavand pole täidetud.** Omaniku juhisel kasutatakse põhiliseks kinnituseks serveris töötavat arendusplatvormi ja selle tegelikku andmebaasi. Platvorm ei ole produktsioonis. Kohalik eraldatud keskkond jääb tõrke- ja hävitavate katsete abivahendiks.
 
-**Jooksev koond:** 139 salvestatud kontrollvarianti: 135 PASS, 2 FAIL, 2 katserakise takistuse vaatlust. Terve 52 juhtumi kavand pole lõpetatud.
+**Jooksev koond:** 148 salvestatud kontrollvarianti: 144 PASS, 2 FAIL, 2 katserakise takistuse vaatlust. Terve 52 juhtumi kavand pole lõpetatud.
 
 Käivituskavand: [14.10 kontrollikavand](sotsiaal-pro-toenduskatsete-kavand-2026-10-14.md). Täpne edenemine ja kõik variandid: [case-progress.json](evidence/sol-proof-20261014-01/case-progress.json).
 
@@ -104,6 +104,10 @@ Enne omaniku serverieelistuse täpsustust valmistati tühi kohalik baas ja testi
 Kohaliku testikoopia käivitust takistasid esmalt webpacki kompileerimine ja seejärel Turbopacki nõue hoida sõltuvused failisüsteemi juure sees. Seadistuse lahendamine ei muutnud rakenduse tootekoodi. Need ettevalmistusvead ei lähe platvormi funktsioonivigade arvestusse. Kohalik enda loodud frontend peatati serveri kontrollide prioriseerimise järel.
 
 **Mis jääb järgmisse etappi.**
+
+**Tööheaolu privaatsuse üheksa uut kontrolli.** Spetsialisti sünteetiline raske juhtumi kirje salvestus private-nähtavusega. Omanik sai seda lugeda; teenuseosutaja ja kliendi tavaroll ei saanud seda lugeda ega kustutada. Teenuseosutaja ei pääsenud admini koondile. Sama salvestuse kordus tagastas sama kirje ning tundmatu ohuväärtus keelduti 400-ga, ilma uue kirjeta.
+
+Koondimooduli tegelik funktsioon sai eraldatud andmebaasiasendusest ainult selle ühe testkirje: rühm summutati, mõõdikuid ei avaldatud ning konfiguratsiooniga `1` ei saanud langetada viie inimese miinimumpiiri. Väikese lahtri ja avaldatud üldsumma katse summutas ka täiendava lahtri, et väikest väärtust ei saaks lahutamise teel taastada. Need on fixture-mehhanismi kontrollid, mitte päris pilootrühma või kogu riikliku andmevoo valideerimine. [Üheksa kontrolli](evidence/sol-proof-20261014-01/server-wellbeing-privacy.json). Päris töötajate andmeid, päris koondrühma ega AI-soovitust ei kasutatud.
 
 **Omaniku otsuse järel kinnitatud teine puudus — saabumiskirja eelistus.** Omanik vastas: „Arvestab konto e-posti teavituse eelistust”. Kuna testkonto `notificationEmailEnabled=false` juures kutsus tegelik funktsioon püüduri saatmist ikkagi, on OPS-04 eelistuse variant nüüd FAIL. Sama vaatluse klassifikatsioon täpsustati uue tooteotsuse järgi; muutumatu funktsiooni kutset ei korratud. [Leid ja otsus](evidence/sol-proof-20261014-01/server-safety-mail.json).
 
