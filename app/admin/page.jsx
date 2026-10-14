@@ -2,6 +2,7 @@ import Link from "next/link";
 import { cookies } from "next/headers";
 import { unstable_noStore as noStore } from "next/cache";
 import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
 import { authConfig } from "@/auth";
 import { ADMIN_SURFACES } from "@/lib/admin/surfaces";
@@ -9,6 +10,7 @@ import { getLocaleFromCookies } from "@/lib/i18n";
 import { serverT } from "@/lib/i18n/serverMessages";
 import { localizePath } from "@/lib/localizePath";
 import AdminLogin from "@/components/admin/AdminLogin";
+import { isPrelaunchTestUser } from "@/lib/auth/prelaunchAccess";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -26,7 +28,12 @@ export default async function AdminHubPage() {
   const isAdmin =
     Boolean(session?.user?.isAdmin) ||
     String(session?.user?.role || "").toUpperCase() === "ADMIN";
-  if (!isAdmin) return <AdminLogin />;
+  if (!isAdmin) {
+    if (!session?.authDegraded && isPrelaunchTestUser(session?.user)) {
+      redirect(localizePath("/toolaud", locale));
+    }
+    return <AdminLogin />;
+  }
 
   const groups = ["operations", "knowledge"];
   return (

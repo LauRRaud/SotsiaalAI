@@ -1,0 +1,21 @@
+✔ only current ordinary test role admitted: CLIENT (1.5036ms)
+✔ only current ordinary test role admitted: SOCIAL_WORKER (0.182ms)
+✔ only current ordinary test role admitted: SERVICE_PROVIDER (0.1583ms)
+✔ foreign account cannot use stale admin claim (0.1755ms)
+✔ suspended test account denied (0.2394ms)
+✔ revoked version test account denied (0.1365ms)
+✔ deleted or expired tracked session test account denied (0.1212ms)
+✔ role changed test account denied (0.1182ms)
+✔ missing user denied (0.5837ms)
+✔ database error denied and token downgraded (0.4561ms)
+✔ anonymous denied (0.1818ms)
+✔ test exception expires at boundary (0.2794ms)
+✔ fresh actual administrator remains admitted after expiry (0.2557ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 318.1099

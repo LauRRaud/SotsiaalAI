@@ -6,6 +6,7 @@ import { isHomeCareEnabled } from "@/lib/homeCare/flags";
 import { isServiceLogEnabled } from "@/lib/serviceLog/flags";
 import { prisma } from "@/lib/prisma";
 import { authorizeCurrentAdminToken } from "@/lib/auth/jwtAuthorization";
+import { authorizeCurrentPrelaunchToken } from "@/lib/auth/prelaunchAccess";
 import { PUBLIC_PLATFORM_OPEN, isPrelaunchPublicPath, normalizePlatformPath } from "@/lib/publicPlatform";
 
 function isLocalHostname(hostname = "") {
@@ -81,13 +82,13 @@ export async function proxy(req) {
       req,
       secret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET
     });
-    const admin = await authorizeCurrentAdminToken(token, {
+    const allowed = await authorizeCurrentPrelaunchToken(token, {
       db: prisma,
       sessionMaxAgeSeconds:
         process.env.NEXTAUTH_SESSION_MAX_AGE_SECONDS ||
         process.env.AUTH_SESSION_MAX_AGE_SECONDS
     });
-    if (!admin) {
+    if (!allowed) {
       if (normalizePlatformPath(pathname).startsWith("/api/")) {
         return NextResponse.json(
           { error: "platform_not_open", message: "room.opening_soon" },
