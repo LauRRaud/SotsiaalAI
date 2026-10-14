@@ -1,0 +1,112 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41",
+  "startedAt": "2026-10-14T13:48:35.514Z",
+  "checks": [
+    {
+      "case_id": "OPS-02",
+      "variant_id": "handover_clears_old_access_and_requires_new_accept",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "oldWorkerStatus": 404,
+        "newInboxStatus": "ASSIGNED",
+        "newAssignmentStatus": "PENDING",
+        "newRoomBeforeAcceptance": {
+          "canOpen": false,
+          "id": null
+        }
+      }
+    },
+    {
+      "case_id": "DATA-01",
+      "variant_id": "old_worker_room_content_denied_after_handover",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 403
+      }
+    },
+    {
+      "case_id": "OPS-02",
+      "variant_id": "new_worker_gets_same_room_after_acceptance",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "inboxStatus": "ACCEPTED",
+        "roomId": "cmv85xy23000whikmzkxb9uqc",
+        "sameRoom": true,
+        "messagesStatus": 200
+      }
+    },
+    {
+      "case_id": "OPS-02",
+      "variant_id": "ended_member_old_session_denied_personal_account_survives",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "endStatus": 200,
+        "membershipStatus": "ENDED",
+        "oldSessionOrgStatus": 404,
+        "personalStatus": 200
+      }
+    },
+    {
+      "case_id": "OPS-08",
+      "variant_id": "closed_outcome_reaches_client",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "closeStatus": 200,
+        "outcome": {
+          "kind": "closed",
+          "at": "2026-10-14T13:48:35.938Z",
+          "note": "SOL TEST: kokkulepitud juhendamine lõpetatud; järgmine samm on oma seadme iseseisev kasutamine.",
+          "hasRoom": true
+        }
+      }
+    },
+    {
+      "case_id": "OPS-08",
+      "variant_id": "closed_work_has_no_live_assignment_or_new_assignment",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "liveCount": 0,
+        "assignStatus": 409,
+        "message": "org.errors.inbox_item_terminal"
+      }
+    }
+  ],
+  "created": {
+    "roomId": "cmv85xy23000whikmzkxb9uqc",
+    "handoverAssignmentId": "cmv860zlk0012hikmrnb1llh7"
+  },
+  "externalMessagesSent": false,
+  "newPaidCalls": false,
+  "limits": [
+    "Continuation reuses the same receipt, assignment and created room after harness HTTP 201 mismatch.",
+    "Synthetic OTHER organization; provider test actor is the replacement worker. No two-social-worker human validation is claimed."
+  ],
+  "observations": [
+    {
+      "case_id": "OPS-03",
+      "variant_id": "deadline_not_established",
+      "actual": {
+        "receivedAt": "2026-10-14T13:46:13.600Z",
+        "dueAt": null,
+        "lastTransitionAt": "2026-10-14T13:48:35.938Z"
+      },
+      "status": "NOT_PROVEN",
+      "note": "Receipt/acceptance transitions did not establish dueAt. No legal 7/10-day rule is inferred."
+    }
+  ],
+  "fixtureFinalStatus": "SUSPENDED",
+  "finishedAt": "2026-10-14T13:48:35.993Z"
+}

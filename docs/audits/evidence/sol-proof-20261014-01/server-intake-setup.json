@@ -1,0 +1,34 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41",
+  "startedAt": "2026-10-14T13:43:39.888Z",
+  "checks": [
+    {
+      "case_id": "DATA-01",
+      "variant_id": "pending_org_nonadmin_activation",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "server service module",
+      "actual": {
+        "denied": true,
+        "error": {
+          "status": 403,
+          "message": "org.errors.verification_requires_admin"
+        }
+      }
+    }
+  ],
+  "created": {
+    "organizationId": "cmv85une50000j8kmaizs70io",
+    "coordinatorMembershipId": "cmv85uneg0001j8kmjxj8dv3q",
+    "workerMembershipId": "cmv85unfg000aj8km43lyuj9k"
+  },
+  "limits": [
+    "Activation and membership are explicitly synthetic fixture setup, not proof of real organization verification or employee invitation.",
+    "Uses the same three normal-role accounts. No new user, administrator, payment or real communication is created.",
+    "Real company organization and provider profile stay private DRAFT."
+  ],
+  "externalMessagesSent": false,
+  "newPaidCalls": false,
+  "finishedAt": "2026-10-14T13:43:40.062Z"
+}

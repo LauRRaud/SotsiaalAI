@@ -2,7 +2,7 @@
 
 14.10.2026. **Vahetulemus: serveri lähtekontroll on käimas; kogu 52 juhtumiga kavand pole täidetud.** Omaniku juhisel kasutatakse põhiliseks kinnituseks serveris töötavat arendusplatvormi ja selle tegelikku andmebaasi. Platvorm ei ole produktsioonis. Kohalik eraldatud keskkond jääb tõrke- ja hävitavate katsete abivahendiks.
 
-**Jooksev koond:** 99 salvestatud kontrollvarianti: 96 PASS, 1 FAIL, 2 katserakise takistuse vaatlust. Terve 52 juhtumi kavand pole lõpetatud.
+**Jooksev koond:** 116 salvestatud kontrollvarianti: 113 PASS, 1 FAIL, 2 katserakise takistuse vaatlust. Terve 52 juhtumi kavand pole lõpetatud.
 
 Käivituskavand: [14.10 kontrollikavand](sotsiaal-pro-toenduskatsete-kavand-2026-10-14.md). Täpne edenemine ja kõik variandid: [case-progress.json](evidence/sol-proof-20261014-01/case-progress.json).
 
@@ -104,6 +104,16 @@ Enne omaniku serverieelistuse täpsustust valmistati tühi kohalik baas ja testi
 Kohaliku testikoopia käivitust takistasid esmalt webpacki kompileerimine ja seejärel Turbopacki nõue hoida sõltuvused failisüsteemi juure sees. Seadistuse lahendamine ei muutnud rakenduse tootekoodi. Need ettevalmistusvead ei lähe platvormi funktsioonivigade arvestusse. Kohalik enda loodud frontend peatati serveri kontrollide prioriseerimise järel.
 
 **Mis jääb järgmisse etappi.**
+
+**Asutuse vastuvõtt, töö määramine ja üleandmine — 17 uut kontrollvarianti.** Katseks loodi eraldi OTHER-liiki „SOL TEST — sünteetiline vastuvõtutiim”; päris OÜ Küberloome profiili ja organisatsiooni ei aktiveeritud. Asutuse esindusõigus, ACTIVE-olek ja esimene töötajaliikmesus valmistati sünteetilise fixture-seadistusena. See ei tõenda päris asutuse kinnitamist ega töötaja kutsumise rada. Enne fixture-aktiveerimist kontrolliti täielikku PENDING_VERIFICATION→ACTIVE katset: tavaroll keelduti 403-ga. Kontode adminiõigusi ei muudetud. [Seadistus ja kontroll](evidence/sol-proof-20261014-01/server-intake-setup.json).
+
+Kliendi saatmine tekitas ühe vastuvõtukirje samas andmebaasis. Määramata töötaja loend oli tühi ja detail keelduti; klient polnud asutuse liige. Koordinaator ja määratud töötaja said sama kinnitatud infopaketi, milles puudusid Teekonna ID ja privaatne kontrollfraas. Koordinaator ei saanud töö määramist ega töötaja vastuvõttu käsitsi teeselda. Töötaja vastuvõtt salvestas eraldi acceptedAt-ajatempli. Pooleliolev töö takistas liikmesuse lõpetamist.
+
+Üleandmise järel jäi uue vastutaja töö PENDING-iks, kuni ta ise nõustus. Endine töötaja kaotas nii postkastikirje kui olemasoleva vestlusruumi sisu ligipääsu; uus vastutaja sai pärast nõustumist sama ruumi. Endise töötaja liikmesuse lõpetamine eemaldas asutuse ligipääsu ka vana seansiga, kuid isiklik konto töötas edasi. Töö sulgemine jõudis kliendile tulemuse aja ja selgitusena; elavaid määramisi ei jäänud ja suletud töö uus määramine keelduti. Vastutaja vahetust katsetati spetsialisti ja teenuseosutaja sünteetiliste kontode vahel; kahe sotsiaaltöötaja inimkatset sellest ei väideta.
+
+Algne rakis eeldas saabumisolekut NEW, kuid platvormi tegelik seis on RECEIVED; samuti tagastas uus ruum õigesti HTTP 201. Need olid katseprogrammi eeldusvead. [Algne väljund](evidence/sol-proof-20261014-01/server-intake-flow-raw.json) säilib, saabumine on [põhjendatult ümberhinnatud](evidence/sol-proof-20261014-01/server-intake-flow.json) ning [üleandmise jätk](evidence/sol-proof-20261014-01/server-intake-resume.json) kasutas samu kirjeid, mitte ei korranud kümmet muutumatu tee kontrolli. Kokku läbis 1 aktiveerimispiiri, 10 vastuvõtu ja 6 jätkuvarianti. Katse lõpus jäeti sünteetiline asutus SUSPENDED-olekusse.
+
+**Tähtaja piir on endiselt lahti:** saabumise ja vastuvõtmise ajad tekkisid, kuid selle tervikraja jooksul jäi `dueAt` nulliks. See kinnitab siin kontrollitud raja piiri; õiguslikku tähtaega, 7/10 päeva reeglit ega kogu platvormi tähtajafunktsiooni puudumist sellest ei järeldata. Asutuse brauserivaade, üksustevaheline maatriks ja pikemad võistlusolukorrad jäävad veel kontrollida.
 
 Omaniku otsus: „jah, nende kolme kontoga saad sisse logida sotsiaal.pro/admin lehelt“. Valmistatud erand kasutab täpset konto-ID-d ja andmebaasist värskendatud tavarolli; ei anna administraatoriõigusi ega muuda API enda rolli- või juhtumipiire. Tühistatud/peatatud seanss ja andmebaasitõrge sulgevad ligipääsu. `/admin` suunab nende kontode eduka seansi töölauale. Avalik sissepääs ja teiste tavakontode värav jäävad suletuks.
 

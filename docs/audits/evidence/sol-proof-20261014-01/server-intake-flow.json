@@ -1,0 +1,181 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41",
+  "startedAt": "2026-10-14T13:46:13.327Z",
+  "checks": [
+    {
+      "case_id": "OPS-01",
+      "variant_id": "atomic_org_arrival",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "httpStatus": 201,
+        "sourceStatus": "SENT",
+        "inboxStatus": "RECEIVED",
+        "receivedAt": "2026-10-14T13:46:13.600Z",
+        "inboxCount": 1,
+        "dueAt": null
+      },
+      "raw_harness_status": "FAIL",
+      "adjudication": "The current inbox initial state is RECEIVED. NEW was an incorrect harness enum assumption; observed atomic receipt meets the catalog contract."
+    },
+    {
+      "case_id": "DATA-01",
+      "variant_id": "unassigned_worker_empty_list",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 200,
+        "ownTargetAbsent": true
+      }
+    },
+    {
+      "case_id": "DATA-01",
+      "variant_id": "unassigned_worker_detail_denied",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 404,
+        "contentAbsent": true
+      }
+    },
+    {
+      "case_id": "DATA-01",
+      "variant_id": "client_not_org_member",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 404,
+        "contentAbsent": true
+      }
+    },
+    {
+      "case_id": "DATA-01",
+      "variant_id": "coordinator_minimal_source",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "sourceKeys": [
+          "id",
+          "topic",
+          "situation",
+          "generatedDraft",
+          "userEditedDraft",
+          "assessmentState",
+          "status",
+          "sentAt",
+          "openedAt",
+          "recalledAt",
+          "receiverNote",
+          "nextContactOn"
+        ],
+        "privateMarkerAbsent": true,
+        "sourceJourneyIdAbsent": true,
+        "coordinatorCanOpenRoom": false,
+        "coordinatorRoomId": null
+      }
+    },
+    {
+      "case_id": "OPS-01",
+      "variant_id": "coordinator_cannot_fake_acceptance",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 409,
+        "message": "org.errors.inbox_status_follows_assignment"
+      }
+    },
+    {
+      "case_id": "OPS-01",
+      "variant_id": "worker_assigned_same_package",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 200,
+        "inboxStatus": "ASSIGNED",
+        "assignmentStatus": "PENDING",
+        "sameSourcePackage": true,
+        "roomBeforeAcceptance": {
+          "canOpen": false,
+          "id": null
+        }
+      }
+    },
+    {
+      "case_id": "OPS-01",
+      "variant_id": "coordinator_cannot_accept_for_worker",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 404,
+        "message": "org.errors.work_assignment_not_found"
+      }
+    },
+    {
+      "case_id": "OPS-01",
+      "variant_id": "worker_accepts_responsibility",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 200,
+        "assignmentStatus": "ACCEPTED",
+        "acceptedAt": "2026-10-14T13:46:13.753Z"
+      }
+    },
+    {
+      "case_id": "OPS-02",
+      "variant_id": "offboarding_blocked_by_live_work",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 409,
+        "message": "org.errors.membership_has_live_work",
+        "liveWork": 1
+      }
+    }
+  ],
+  "created": {
+    "inquiryId": "cmv85xxwd000nhikmjoh2l92z",
+    "inboxItemId": "cmv85xxwh000ohikmrrpxgrs1",
+    "assignmentId": "cmv85xxzb000rhikmsrnpbb8n"
+  },
+  "externalMessagesSent": false,
+  "newPaidCalls": false,
+  "limits": [
+    "Active OTHER organization and initial membership are synthetic fixture setup, not official KOV onboarding.",
+    "Handover is between the same specialist and provider test actors; it is not a two-social-worker human study.",
+    "No call, AI message, real email or payment is initiated."
+  ],
+  "fixture": {
+    "runId": "sol-proof-20261014-01",
+    "organizationId": "cmv85une50000j8kmaizs70io",
+    "coordinatorMembershipId": "cmv85uneg0001j8kmjxj8dv3q",
+    "workerMembershipId": "cmv85unfg000aj8km43lyuj9k",
+    "coordinatorUserId": "cmv7uufvh0006u3kmo6mc5zrr",
+    "workerUserId": "cmv7uufv50003u3kmxjmb35yj",
+    "activationMode": "SYNTHETIC_FIXTURE_DB_SETUP",
+    "status": "ACTIVE",
+    "module": "KOV_INTAKE",
+    "cleanupPolicy": "set SUSPENDED after bounded runtime tests; preserve records for continuation"
+  },
+  "fixtureFinalStatus": "SUSPENDED",
+  "finishedAt": "2026-10-14T13:46:13.814Z",
+  "rawEvidence": "server-intake-flow-raw.json",
+  "observations": [
+    {
+      "case_id": "OPS-02",
+      "status": "NOT_RUN",
+      "note": "Continuation paused because room creation correctly returned HTTP 201 while harness expected 200. Existing room and test records will be reused."
+    }
+  ]
+}
