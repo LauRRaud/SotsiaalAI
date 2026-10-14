@@ -78,6 +78,22 @@
         "notice": "",
         "modelCalled": false
       }
+    },
+    {
+      "case_id": "OPS-04",
+      "variant_id": "arrival_mail_respects_disabled_preference",
+      "status": "FAIL",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "actual server mail function with capturing transport",
+      "actual": {
+        "notificationEmailEnabled": false,
+        "capturedSendCallsForDisabledAccount": 1
+      },
+      "expected": {
+        "capturedSendCallsForDisabledAccount": 0
+      },
+      "owner_decision": "Arvestab konto e-posti teavituse eelistust",
+      "adjudication": "Owner clarified required behavior. Existing observed call is reused; no duplicate execution or real email sent."
     }
   ],
   "created": {},
@@ -91,12 +107,12 @@
     {
       "case_id": "OPS-04",
       "variant_id": "arrival_mail_account_preference",
-      "status": "NOT_PROVEN",
+      "status": "FAIL",
       "actual": {
         "notificationEmailEnabled": false,
         "capturedSendCallsForDisabledAccount": 1
       },
-      "note": "This arrival-mail function does not check the account email-notification switch. Whether this is a mandatory exception or preference bug needs a product decision. Earlier .invalid fixture HTTPS requests do not establish absence of external SMTP attempts."
+      "note": "Owner confirmed the arrival email must respect the email-notification switch. Captured send despite false preference is a confirmed product defect."
     }
   ],
   "finishedAt": "2026-10-14T13:55:03.426Z"

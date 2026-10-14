@@ -1,0 +1,110 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41",
+  "startedAt": "2026-10-14T14:11:45.609Z",
+  "checks": [
+    {
+      "case_id": "FLOW-04",
+      "variant_id": "http_step_completed_with_doer_and_due",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "httpStatus": 200,
+        "state": "DONE",
+        "doneAt": "2026-10-14T14:11:45.868Z",
+        "doer": "Mina",
+        "dueOn": "2026-10-15"
+      }
+    },
+    {
+      "case_id": "FLOW-04",
+      "variant_id": "http_two_self_assessments_retained",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "assessments": [
+          {
+            "level": 1,
+            "note": "SOL TEST inimese enda hinnang",
+            "createdAt": "2026-10-14T14:11:45.881Z"
+          },
+          {
+            "level": 4,
+            "note": "SOL TEST inimese enda hinnang",
+            "createdAt": "2026-10-14T14:11:45.892Z"
+          }
+        ],
+        "causalEffectNotInferred": true
+      }
+    },
+    {
+      "case_id": "DATA-01",
+      "variant_id": "owner_journey_export_permitted",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 200,
+        "ownPrivateContextPresent": true
+      }
+    },
+    {
+      "case_id": "DATA-01",
+      "variant_id": "foreign_journey_export_and_step_specialist",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "exportStatus": 404,
+        "writeStatus": 404,
+        "privateNoteAbsent": true
+      }
+    },
+    {
+      "case_id": "DATA-01",
+      "variant_id": "foreign_journey_export_and_step_provider",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "exportStatus": 404,
+        "writeStatus": 404,
+        "privateNoteAbsent": true
+      }
+    },
+    {
+      "case_id": "FLOW-04",
+      "variant_id": "stale_journey_change_rejected",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 409,
+        "message": "journeys.errors.conflict"
+      }
+    },
+    {
+      "case_id": "FLOW-04",
+      "variant_id": "archived_journey_readable_but_not_writable",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "archiveStatus": 200,
+        "readStatus": 200,
+        "journeyStatus": "ARCHIVED",
+        "newStepStatus": 409,
+        "stepsStillPresent": true
+      }
+    }
+  ],
+  "created": {
+    "journeyId": "jrn_d3f85cfeef4cb778366bd8154525",
+    "stepId": "cmv86us76001jhikmqpj3r92j"
+  },
+  "externalMessagesSent": false,
+  "newPaidCalls": false,
+  "finishedAt": "2026-10-14T14:11:46.030Z"
+}

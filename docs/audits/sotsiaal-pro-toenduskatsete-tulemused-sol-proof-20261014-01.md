@@ -2,7 +2,7 @@
 
 14.10.2026. **Vahetulemus: serveri lähtekontroll on käimas; kogu 52 juhtumiga kavand pole täidetud.** Omaniku juhisel kasutatakse põhiliseks kinnituseks serveris töötavat arendusplatvormi ja selle tegelikku andmebaasi. Platvorm ei ole produktsioonis. Kohalik eraldatud keskkond jääb tõrke- ja hävitavate katsete abivahendiks.
 
-**Jooksev koond:** 131 salvestatud kontrollvarianti: 128 PASS, 1 FAIL, 2 katserakise takistuse vaatlust. Terve 52 juhtumi kavand pole lõpetatud.
+**Jooksev koond:** 139 salvestatud kontrollvarianti: 135 PASS, 2 FAIL, 2 katserakise takistuse vaatlust. Terve 52 juhtumi kavand pole lõpetatud.
 
 Käivituskavand: [14.10 kontrollikavand](sotsiaal-pro-toenduskatsete-kavand-2026-10-14.md). Täpne edenemine ja kõik variandid: [case-progress.json](evidence/sol-proof-20261014-01/case-progress.json).
 
@@ -104,6 +104,12 @@ Enne omaniku serverieelistuse täpsustust valmistati tühi kohalik baas ja testi
 Kohaliku testikoopia käivitust takistasid esmalt webpacki kompileerimine ja seejärel Turbopacki nõue hoida sõltuvused failisüsteemi juure sees. Seadistuse lahendamine ei muutnud rakenduse tootekoodi. Need ettevalmistusvead ei lähe platvormi funktsioonivigade arvestusse. Kohalik enda loodud frontend peatati serveri kontrollide prioriseerimise järel.
 
 **Mis jääb järgmisse etappi.**
+
+**Omaniku otsuse järel kinnitatud teine puudus — saabumiskirja eelistus.** Omanik vastas: „Arvestab konto e-posti teavituse eelistust”. Kuna testkonto `notificationEmailEnabled=false` juures kutsus tegelik funktsioon püüduri saatmist ikkagi, on OPS-04 eelistuse variant nüüd FAIL. Sama vaatluse klassifikatsioon täpsustati uue tooteotsuse järgi; muutumatu funktsiooni kutset ei korratud. [Leid ja otsus](evidence/sol-proof-20261014-01/server-safety-mail.json).
+
+Hilisem paranduskriteerium: `lib/preInquiries.js` saabumiskirja rada peab peatama saatmise enne transpordi kutset, kui konto e-postiteavitus on välja lülitatud. Sisselülitatud konto neutraalne teavitus ja ebaõnnestunud transpordi aus tulemus peavad säilima. Parandust pole tehtud; see jääb kokkulepitud Astra/Fable arendusetappi.
+
+**Teekonna elutsükli seitse uut HTTPS-varianti.** Uues eraldi test-Teekonnas salvestusid tegija ja kuupäevaga samm ning selle tehtuks märkimise aeg. Inimese enda alg- ja järelhinnangud (1 ja 4) säilisid eraldi ajamärkidega. See ei ole mõju või professionaalse hindamise tõend. Omanik sai privaatset infot eksportida; mõlemad teised tavarollid keelduti ekspordist ja sammu muutmisest. Aegunud Teekonna muutmine andis 409; arhiveerimise järel säilis lugemine, kuid uue sammu lisamine keelduti. [Seitse kontrolli](evidence/sol-proof-20261014-01/server-journey-lifecycle.json). Varasem Teekond ja muud testkirjed säilitati; uus elutsüklikirje jäi ARCHIVED-olekusse.
 
 **Välise kanali ja lõpetatud töö brauserivaated — viis uut varianti.** Kliendile kuvati asutuse lõpetatud töö seis ja asutuse kirjutatud selgitus ([pilt](evidence/sol-proof-20261014-01/client-organization-closed.png)). E-kirja valikuvaates oli detailide lisamise linnuke alguses maha võetud, selle sai teadlikult valida ning valik tühistati enne lahkumist. Meilirakendust ei avatud. [Vaikimisi valik](evidence/sol-proof-20261014-01/external-email-default-choice.png).
 
