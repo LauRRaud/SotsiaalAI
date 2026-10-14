@@ -18,6 +18,7 @@ import GlassFilters from "@/components/glass/GlassFilters";
 import { authConfig } from "@/auth";
 import { isEstonianDaytime, resolveThemePreference } from "@/lib/themeDaylight";
 import { PUBLIC_PLATFORM_OPEN } from "@/lib/publicPlatform";
+import { isPrelaunchTestUser } from "@/lib/auth/prelaunchAccess";
 
 // Exo 2 = platvormi läbiv font (logo font); toetab kirillitsat (vene) ja
 // latin-ext'i (eesti š/ž) — kõik tekstid, nupud, pealkirjad ühes kirjas
@@ -338,8 +339,10 @@ export default async function RootLayout({
      lõpus, vt allpool ja lib/i18n/catalogAsset.js) ja pakkujale läheb ainult keel. */
   const catalogSrc = catalogScriptPath(locale);
   const session = await getServerSession(authConfig).catch(() => null);
+  const prelaunchTestUserId = !session?.authDegraded && isPrelaunchTestUser(session?.user)
+    ? session.user.id : null;
   const platformAccessAllowed = PUBLIC_PLATFORM_OPEN || Boolean(
-    session?.user?.isAdmin === true || String(session?.user?.role || "").toUpperCase() === "ADMIN"
+    session?.user?.isAdmin === true || String(session?.user?.role || "").toUpperCase() === "ADMIN" || prelaunchTestUserId
   );
   const requestHeaders = await headers();
   const adminLoginOnly = requestHeaders.get("x-sotsiaal-admin-login") === "1" && !(
@@ -412,6 +415,7 @@ export default async function RootLayout({
               {!adminLoginOnly ? <RoomStage
                 initiallyCompletedArrival={platformAccessAllowed && initiallyCompletedRoomArrival}
                 platformAccessAllowed={platformAccessAllowed}
+                prelaunchTestUserId={prelaunchTestUserId}
               /> : null}
               <main id="main" role="main" tabIndex={-1}>
                 {adminLoginOnly ? children : <PanelFrame>{children}</PanelFrame>}

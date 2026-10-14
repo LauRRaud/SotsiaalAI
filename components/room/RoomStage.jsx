@@ -261,7 +261,7 @@ function normalizePathname(pathname) {
   return raw.replace(/^\/(et|ru|en)(?=\/|$)/, "") || "/";
 }
 
-export default function RoomStage({ initiallyCompletedArrival = false, platformAccessAllowed = false }) {
+export default function RoomStage({ initiallyCompletedArrival = false, platformAccessAllowed = false, prelaunchTestUserId = null }) {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -308,7 +308,9 @@ export default function RoomStage({ initiallyCompletedArrival = false, platformA
     const perms = Array.isArray(u?.permissions) ? u.permissions : [];
     return Boolean(u?.isAdmin || u?.is_admin || role === "admin" || perms.includes("admin"));
   }, [session]);
-  const entryAllowed = PUBLIC_PLATFORM_OPEN || (platformAccessAllowed && isAdmin);
+  const entryAllowed = PUBLIC_PLATFORM_OPEN || (platformAccessAllowed && (
+    isAdmin || (isAuthed && prelaunchTestUserId && session?.user?.id === prelaunchTestUserId)
+  ));
   const shouldResumeHome = isHome && arrivalCompleted && entryAllowed;
 
   /* Ootel sponsorkutse — hub-teade + RUUMID-kaardi badge (omanik 23.07:
