@@ -1,0 +1,127 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41",
+  "startedAt": "2026-10-14T11:17:54.064Z",
+  "checks": [
+    {
+      "case_id": "ENV-03",
+      "variant_id": "client_admin_to_workspace_browser",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual browser HTTPS",
+      "actual": {
+        "role": "CLIENT",
+        "isAdmin": false,
+        "redirect": "/toolaud",
+        "fixtureLogin": true
+      }
+    },
+    {
+      "case_id": "FLOW-01",
+      "variant_id": "client_sent_state_browser",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual browser HTTPS",
+      "actual": {
+        "statusText": "saadetud, ootab vastuvõtmist (1. päev)",
+        "recipient": "SOL TEST Spetsialist",
+        "screenshot": "client-sent-before-meeting.png",
+        "initialFormSubmittedViaAPI": true
+      }
+    },
+    {
+      "case_id": "ENV-03",
+      "variant_id": "specialist_admin_to_workspace_browser",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual browser HTTPS",
+      "actual": {
+        "role": "SOCIAL_WORKER",
+        "isAdmin": false,
+        "redirect": "/toolaud",
+        "fixtureLogin": true
+      }
+    },
+    {
+      "case_id": "FLOW-01",
+      "variant_id": "specialist_premeeting_text_visible_browser",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual browser HTTPS",
+      "actual": {
+        "hasPreMeetingText": true,
+        "withoutQuestionnaire": true,
+        "status": "uus, ootab 1. päeva",
+        "screenshot": "specialist-pre-meeting-info.png"
+      }
+    },
+    {
+      "case_id": "ENV-03",
+      "variant_id": "provider_admin_to_workspace_browser",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual browser HTTPS",
+      "actual": {
+        "role": "SERVICE_PROVIDER",
+        "isAdmin": false,
+        "redirect": "/toolaud",
+        "fixtureLogin": true
+      }
+    },
+    {
+      "case_id": "TOOLS-02",
+      "variant_id": "provider_private_company_visible_browser",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual browser HTTPS",
+      "actual": {
+        "name": "OÜ Küberloome",
+        "registryCode": "14206225",
+        "representationUnconfirmed": true,
+        "publicationNotPerformed": true,
+        "screenshot": "provider-private-draft.png"
+      }
+    },
+    {
+      "case_id": "TOOLS-02",
+      "variant_id": "provider_save_private_draft_browser",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual browser HTTPS",
+      "actual": {
+        "savedViaVisibleForm": true,
+        "httpStatus": 200,
+        "status": "DRAFT",
+        "mapVisible": false,
+        "organizationType": "Ettevõte",
+        "registryCode": "14206225"
+      }
+    },
+    {
+      "case_id": "ENV-02",
+      "variant_id": "anonymous_public_button_after_exception",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual browser HTTPS",
+      "actual": {
+        "visibleText": "Peagi avame!",
+        "disabled": true
+      }
+    }
+  ],
+  "externalMessagesSent": false,
+  "newPaidCalls": false,
+  "limits": [
+    "Authentication uses synthetic one-time fixture credentials, not PIN/OTP mail.",
+    "Client draft submission was performed by HTTPS API; client UI observed the resulting sent record."
+  ],
+  "observations": [
+    {
+      "case_id": "FLOW-01",
+      "variant_id": "receiver_identity_caption",
+      "status": "NOT_PROVEN",
+      "actual": "Receiver caption shows selectedRecipientName (SOL TEST Spetsialist), not the client's name. The API gives author's ID and role; sender's email is intentionally omitted for this viewer. Identity presentation needs a product decision and further checking."
+    }
+  ],
+  "finishedAt": "2026-10-14T11:20:43.283Z"
+}

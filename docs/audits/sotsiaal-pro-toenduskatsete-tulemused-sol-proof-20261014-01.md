@@ -32,7 +32,7 @@ Teenuseosutaja testkontole salvestati ettevõtte andmetega privaatne teenuseprof
 
 **Kontrollvariandid, mida praegu saab kinnitada.**
 
-Esialgses serveri teenusekontrollis oli 41 varianti: 40 läbis ja üks ebaõnnestus. Ligipääsu erandi esimene HTTPS-kontroll lisas 32 varianti: 30 läbis, kaks blokeerusid katseprogrammi vale küsimuseindeksi tõttu. Küsimustiku sihitud kordus lisas kuus läbitud varianti ja lahendas mõlemad rakisetakistused. Kokku on **79 salvestatud varianti: 76 PASS, üks FAIL ja kaks ajaloolist HARNESS_OR_PRECONDITION**. Need pole 79 eri kavandijuhtumit. Ükski kataloogijuhtum ei ole üksnes selle koondarvu tõttu tervikuna lõpetatuks märgitud. Kogu 52 juhtumi läbimise protsenti sellest arvust ei arvutata.
+Esialgses serveri teenusekontrollis oli 41 varianti: 40 läbis ja üks ebaõnnestus. Ligipääsu erandi esimene HTTPS-kontroll lisas 32 varianti: 30 läbis, kaks blokeerusid katseprogrammi vale küsimuseindeksi tõttu. Küsimustiku sihitud kordus lisas kuus läbitud varianti ja lahendas mõlemad rakisetakistused. Brauser lisas kaheksa läbitud varianti. Kokku on **87 salvestatud varianti: 84 PASS, üks FAIL ja kaks ajaloolist HARNESS_OR_PRECONDITION**. Need pole 87 eri kavandijuhtumit. Ükski kataloogijuhtum ei ole üksnes selle koondarvu tõttu tervikuna lõpetatuks märgitud. Kogu 52 juhtumi läbimise protsenti sellest arvust ei arvutata.
 
 | Teema | Vaadeldud tulemus | Tõendi piir |
 |---|---|---|
@@ -85,6 +85,14 @@ Kontroll kinnitas ka piiri: struktuuriliselt sobiv väljamõeldud valeväide pä
 
 **Kohalikud täiendavad kontrollid.**
 
+**Serveri brauseri töövaated.** Väljalase `d8776011` jõudis serverisse; selle GitHubi quality-gate ja deploy läbisid. `/admin` sisselogimisrajalt jõudsid kõik kolm fixture-seanssi tavarollis töölauale, mitte haldusvaatesse. Kliendi saadetud pöördumise vaade ütles selgelt „ootab vastuvõtmist”, mitte et abi oleks juba korraldatud. Spetsialisti tööjärjes ja detailis oli enne fiktiivset kohtumist nähtav inimese vabas vormis kirjeldus; küsimustiku puudumine ei takistanud lugemist. Teenuseosutaja salvestas nähtavas vormis OÜ Küberloome organisatsioonitüübi „Ettevõte”; järelpäring kinnitas DRAFT-staatuse ja kaardil mittenähtavuse. Anonüümne avaleht jäi suletud „Peagi avame!” nupuga. [Kaheksa brauserivarianti](evidence/sol-proof-20261014-01/server-browser.json).
+
+Visuaalselt üle vaadatud tõendid: [kliendi seis](evidence/sol-proof-20261014-01/client-sent-before-meeting.png), [spetsialisti eelinfo](evidence/sol-proof-20261014-01/specialist-pre-meeting-info.png), [teenuseosutaja mustand](evidence/sol-proof-20261014-01/provider-private-draft.png). Need näitavad API kaudu koostatud pöördumise lugemisrada ning teenuseprofiili tegelikku vormisalvestust; kliendi kogu uue pöördumise brauserivormi täitmist ei väideta.
+
+**Täpsustamist vajav saatja tuvastamine:** spetsialisti detaili päis kuvab „SOL TEST Spetsialist · saabus …”, kuigi pöörduja konto on teine. API annab saatja ID ja rolli, kuid jätab meili saaja projektsioonist teadlikult välja. UI fallback kasutab seejärel `selectedRecipientName`-i. Seetõttu pole nähtava saatjanime osa FLOW-01 ootusest tõendatud. Pöörduja tuvastamise või teadliku anonüümsuse tooteleping tuleb enne uue kirja tugevat lubadust täpsustada; automaatset isikuandmete avaldamist testija ei lisanud.
+
+**Kohalike kontrollide tõendipiir.**
+
 Enne omaniku serverieelistuse täpsustust valmistati tühi kohalik baas ja testikoopia. Täiskomplekti ei käivitatud. Kuues sihitud riski-testifailis oli 35 kontrolli: 34 läbisid, üks jäi katsekeskkonnas puuduva salvestatud kulu-fixture taha. Pärast selle tõendifaili lisamist korrati ainult mõjutatud rag-cost faili: kõik kaheksa kontrolli läbisid. Uut API-kulu ei tekkinud. See on kohaliku testikomplekti tulemus, mitte serveri rolliradade läbimise arv. [Algne väljund](evidence/sol-proof-20261014-01/risk-tests.tap), [sihitud kordus](evidence/sol-proof-20261014-01/rag-cost-retest.tap).
 
 Kohaliku testikoopia käivitust takistasid esmalt webpacki kompileerimine ja seejärel Turbopacki nõue hoida sõltuvused failisüsteemi juure sees. Seadistuse lahendamine ei muutnud rakenduse tootekoodi. Need ettevalmistusvead ei lähe platvormi funktsioonivigade arvestusse. Kohalik enda loodud frontend peatati serveri kontrollide prioriseerimise järel.
@@ -96,6 +104,8 @@ Omaniku otsus: „jah, nende kolme kontoga saad sisse logida sotsiaal.pro/admin 
 Erand aegub automaatselt **16.10.2026 kell 03.00 EEST**. See on testiseadistuse ajutine eeldus, mitte platvormi avalik avamine. [13 sihitud riskikontrolli](evidence/sol-proof-20261014-01/prelaunch-access.tap) on fixture-tõend; tegeliku serveri tervikraja tõend kogutakse paigalduse järel. Omaniku lisajuhise järgi salvestatakse tulemused iga kontrollirühma järel, mitte alles kogu testimise lõpus.
 
 Testiseadistuse commit'id: `249fa157` (värske seansi värav ja `/admin` suunamine) ning `d8776011` (ruumikesta sama erand). Ruumikest saab ainult parajasti lubatud testkonto ID ning nõuab sama konto autentitud kliendiseanssi. Muutumatule autoriseerijale ei korratud samu 13 kontrolle teise commit'i tõttu; mõlema muudatuse failidel tehti sihitud ESLint ja diff-kontroll. Kogu repo värav ja sama artefakti serveripaigaldus on GitHubi töö, nende lõplik seis lisatakse pärast vaatlust.
+
+14.10 järelvaatlus kinnitas mõlema koodimuudatuse värava edu ning serveri töötava väljalaske `d8776011` (MainPID 3974166). Dokumentatsiooni vahecommit'id ei nõua uut ehitust; nende SHA-d ei nimetata serveris paigaldatud rakenduse SHA-ks.
 
 Pärast seda otsust saab läbida tavarollide serveri API ja brauseri tervikrajad: täidetud küsimustikud, valikulise info üleandmine, ruum ja vastused, asutuse vastuvõtulaud, teenuse töökorraldus, katkestused ning täielikum ligipääsu- ja ekspordimaatriks. Mõned neist vajavad lisaks sobivaid sünteetilisi organisatsiooniseadistusi ja osalisi.
 
