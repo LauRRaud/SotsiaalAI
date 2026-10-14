@@ -1,0 +1,89 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41",
+  "startedAt": "2026-10-14T14:40:55.585Z",
+  "checks": [
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "service_entry_replay_one_row",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "sameId": true,
+        "count": 1
+      }
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "final_service_correction_requires_reason",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 400
+      }
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "final_service_correction_is_traceable",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "newQuantity": 1.5,
+        "previousQuantity": 1,
+        "reason": "SOL TEST service quantity correction",
+        "corrections": 1
+      }
+    },
+    {
+      "case_id": "DATA-04",
+      "variant_id": "final_service_record_not_deleted_early",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 409,
+        "recordPreserved": true,
+        "retentionClass": "accounting7y",
+        "recordedFiscalYear": 2026
+      }
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "service_month_separates_final_draft_void",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "totals": [
+          {
+            "unit": "HOUR",
+            "final": 1.5,
+            "draft": 3,
+            "total": 4.5
+          }
+        ],
+        "counts": {
+          "final": 1,
+          "draft": 1,
+          "voided": 1
+        }
+      }
+    }
+  ],
+  "created": {},
+  "externalMessagesSent": false,
+  "newPaidCalls": false,
+  "limits": [
+    "Only this run private SOLO provider profile and fictitious service entries are used. No invoice payment, email recipient, model call or STAR delivery.",
+    "The export HTTP route may archive its own synthetic report document. This is a separate service-log workflow, not automatic home-care journal synchronization."
+  ],
+  "finishedAt": "2026-10-14T14:42:14.084Z",
+  "harnessObservations": [
+    {
+      "note": "Initial harness attempted to select nonexistent retentionUntil. The actual schema stores retentionClass and recordedFiscalYear. Existing entries and correction are reused; three checks are not repeated."
+    }
+  ]
+}

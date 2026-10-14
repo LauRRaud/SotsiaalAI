@@ -1,0 +1,95 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41",
+  "finishedAt": "2026-10-14T14:45:07.598Z",
+  "checks": [
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "star_statistics_explicitly_unverified_and_minimized",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual browser same-origin HTTPS fetch",
+      "actual": {
+        "status": 200,
+        "mappingStatus": "unverified",
+        "schemaVersion": "sotsiaalai.service-log.statistics/1",
+        "totals": {
+          "uniqueClients": 1,
+          "entries": 1,
+          "byUnit": {
+            "0": {
+              "unit": "HOUR",
+              "quantity": 1.5
+            }
+          }
+        },
+        "services": [
+          {
+            "service": null,
+            "unit": "HOUR",
+            "quantity": 1.5,
+            "uniqueClients": 1
+          }
+        ],
+        "privateClientAndNoteAbsent": true,
+        "cache": "no-store, no-cache, must-revalidate"
+      }
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "service_timesheet_csv_excludes_void_draft_and_notes",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual browser same-origin HTTPS fetch",
+      "actual": {
+        "status": 200,
+        "finalQuantity": 1.5,
+        "excludedVoided": 1,
+        "excludedDrafts": 1,
+        "privateNoteAbsent": true,
+        "cache": "no-store, no-cache, must-revalidate"
+      }
+    },
+    {
+      "case_id": "DATA-03",
+      "variant_id": "personal_timesheet_not_allowed_as_star_statistics",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual browser same-origin HTTPS fetch",
+      "actual": {
+        "status": 400,
+        "messageKey": "service_log.errors.star_requires_statistics"
+      }
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "own_report_exports_archived",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual browser same-origin HTTPS fetch",
+      "actual": {
+        "starArchived": "1",
+        "csvArchived": "1",
+        "ownArchivedReportCount": 2
+      }
+    }
+  ],
+  "limits": [
+    "Actual browser same-origin fetch with the provider test session; no STAR delivery or real recipient.",
+    "Report templates are A_TIMESHEET and D_STATISTICS. An initial A_VOLUME request was correctly rejected as unknown."
+  ],
+  "externalMessagesSent": false,
+  "newPaidCalls": false,
+  "observations": [
+    {
+      "case_id": "TOOLS-01",
+      "status": "NOT_PROVEN",
+      "note": "totals.byUnit is an object with numeric keys whose values are {unit,quantity}, rather than an array or HOUR-keyed map. The quantity is present. The intended public JSON contract needs review before state integration."
+    },
+    {
+      "case_id": "TOOLS-01",
+      "status": "NOT_PROVEN",
+      "note": "Statistics export warns not_submittable_all_recipients; no KOV recipient was selected. File download/archive is not submission or receipt."
+    }
+  ]
+}

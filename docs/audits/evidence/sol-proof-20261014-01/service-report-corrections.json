@@ -1,0 +1,16 @@
+{
+  "corrections": [
+    {
+      "id": "cmv87wak3002rhikmio0r1a0p",
+      "reason": "SOL TEST service quantity correction",
+      "changedFields": [
+        "quantity"
+      ],
+      "previousValues": {
+        "quantity": "1"
+      },
+      "createdAt": "2026-10-14T14:40:55.923Z",
+      "actorUserId": "cmv7uufvh0006u3kmo6mc5zrr"
+    }
+  ]
+}

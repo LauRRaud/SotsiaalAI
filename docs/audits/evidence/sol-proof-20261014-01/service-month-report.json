@@ -1,0 +1,116 @@
+{
+  "report": {
+    "month": "2026-10",
+    "summary": {
+      "month": "2026-10",
+      "clients": [
+        {
+          "key": "name:SOL TEST teenuspäeviku klient",
+          "clientUserId": null,
+          "clientDisplayName": "SOL TEST teenuspäeviku klient",
+          "clientExternalRef": "SOL-REPORT-20261014",
+          "services": [
+            {
+              "serviceId": null,
+              "unit": "HOUR",
+              "final": 1.5,
+              "draft": 3,
+              "entryCount": 2,
+              "total": 4.5
+            }
+          ],
+          "entryCount": 2,
+          "draftCount": 1
+        }
+      ],
+      "totalsByUnit": [
+        {
+          "unit": "HOUR",
+          "final": 1.5,
+          "draft": 3,
+          "total": 4.5
+        }
+      ],
+      "entryCounts": {
+        "final": 1,
+        "draft": 1,
+        "voided": 1
+      },
+      "unconfirmed": 1
+    },
+    "entries": [
+      {
+        "id": "cmv87waiz002qhikm2gida4ss",
+        "clientUserId": null,
+        "date": "2026-10-14",
+        "clientDisplayName": "SOL TEST teenuspäeviku klient",
+        "clientExternalRef": "SOL-REPORT-20261014",
+        "unit": "HOUR",
+        "quantity": 3,
+        "status": "DRAFT",
+        "note": "SOL TEST PRIVATE SERVICE NOTE",
+        "noteProvenance": null,
+        "confirmedManually": false,
+        "updatedAt": "2026-10-14T14:40:55.883Z"
+      },
+      {
+        "id": "cmv87wai0002ohikmxwsplufk",
+        "clientUserId": null,
+        "date": "2026-10-14",
+        "clientDisplayName": "SOL TEST teenuspäeviku klient",
+        "clientExternalRef": "SOL-REPORT-20261014",
+        "unit": "HOUR",
+        "quantity": 1.5,
+        "status": "FINAL",
+        "note": "SOL TEST PRIVATE SERVICE NOTE",
+        "noteProvenance": null,
+        "confirmedManually": false,
+        "updatedAt": "2026-10-14T14:40:55.922Z"
+      },
+      {
+        "id": "cmv87wair002phikmv1k5jfe8",
+        "clientUserId": null,
+        "date": "2026-10-14",
+        "clientDisplayName": "SOL TEST teenuspäeviku klient",
+        "clientExternalRef": "SOL-REPORT-20261014",
+        "unit": "HOUR",
+        "quantity": 2,
+        "status": "VOID",
+        "note": "SOL TEST PRIVATE SERVICE NOTE",
+        "noteProvenance": null,
+        "confirmedManually": false,
+        "updatedAt": "2026-10-14T14:42:14.051Z"
+      }
+    ],
+    "reports": [],
+    "referrals": [],
+    "rhythm": {
+      "month": "2026-10",
+      "dueAt": "2026-11-10T00:00:00.000Z",
+      "remindAt": "2026-11-05T00:00:00.000Z",
+      "overdue": false,
+      "unconfirmed": 1,
+      "shouldRemind": false
+    },
+    "annualRhythms": [
+      {
+        "key": "feedback_survey",
+        "source": "quality_guide",
+        "intervalMonths": 12,
+        "lastDoneAt": null,
+        "dueAt": null,
+        "due": false,
+        "neverDone": true
+      },
+      {
+        "key": "interim_assessment",
+        "source": "quality_guide",
+        "intervalMonths": 12,
+        "lastDoneAt": null,
+        "dueAt": null,
+        "due": false,
+        "neverDone": true
+      }
+    ]
+  }
+}

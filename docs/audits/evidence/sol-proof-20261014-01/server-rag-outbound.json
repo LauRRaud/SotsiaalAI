@@ -1,0 +1,78 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41",
+  "startedAt": "2026-10-14T14:46:49.883Z",
+  "checks": [
+    {
+      "case_id": "DATA-05",
+      "variant_id": "captures_actual_provider_request_without_network",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "actual server request builder and provider boundary with capturing transport",
+      "actual": {
+        "transportCalls": 1,
+        "networkCalls": 0,
+        "endpoint": "https://api.openai.com/v1/responses",
+        "method": "POST"
+      }
+    },
+    {
+      "case_id": "DATA-05",
+      "variant_id": "shared_user_text_and_public_evidence_are_processed",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "actual server request builder and provider boundary with capturing transport",
+      "actual": {
+        "chosenUserTextIncluded": true,
+        "chosenEvidenceIncluded": true,
+        "meaning": "No-training is not equivalent to no-processing."
+      }
+    },
+    {
+      "case_id": "DATA-05",
+      "variant_id": "unselected_module_and_foreign_controls_absent",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "actual server request builder and provider boundary with capturing transport",
+      "actual": {
+        "privateJourneyMarkerAbsent": true,
+        "privateWellbeingMarkerAbsent": true,
+        "foreignMarkerAbsent": true,
+        "scope": "provided dialogue/evidence boundary only"
+      }
+    },
+    {
+      "case_id": "DATA-05",
+      "variant_id": "response_storage_is_disabled_in_request",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "actual server request builder and provider boundary with capturing transport",
+      "actual": {
+        "store": false,
+        "meaning": "A request parameter, not proof of vendor retention, training terms or zero data retention."
+      }
+    },
+    {
+      "case_id": "RAG-09",
+      "variant_id": "answer_schema_bounds_refs_to_current_packet",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "actual server request builder and provider boundary with capturing transport",
+      "actual": {
+        "allowedRefs": [
+          "S1"
+        ],
+        "strict": true,
+        "semanticSupportNotGuaranteed": true
+      }
+    }
+  ],
+  "newPaidCalls": false,
+  "externalMessagesSent": false,
+  "limits": [
+    "CURRENT_FIXTURE: current server dialogueRequest and providerCall executed with an injected capturing transport; no network call, real credential or real model is used.",
+    "A deliberately small synthetic config is used without optional model-state/retrieval features. This proves this request-builder/provider boundary, not every upstream selector or the live approved pilot configuration.",
+    "Unselected private-module markers are negative controls. The builder receives only chosen dialogue and evidence; no private-module database query or whole HTTP chat route is claimed."
+  ],
+  "finishedAt": "2026-10-14T14:46:49.901Z"
+}

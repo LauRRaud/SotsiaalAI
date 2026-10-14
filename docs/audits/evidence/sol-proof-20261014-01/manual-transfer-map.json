@@ -1,0 +1,34 @@
+{
+  "caseId": "cmv8890un0033hikmht0phv7l",
+  "draftId": "cmv8890v60034hikm8a6nhupr",
+  "block": {
+    "draftId": "cmv8890v60034hikm8a6nhupr",
+    "draftType": "POORDUMISE_KOKKUVOTE",
+    "transferState": "VALMIS_ULEKANDEKS",
+    "contentPurgedAt": null,
+    "fieldKeys": [
+      "CLIENT_REPORT",
+      "SPECIALIST_ASSESSMENT"
+    ],
+    "contentHash": "b1a72603b8956dbc4874b1f589858f29dec23c4a7ba08d5eb56250b2610b1540",
+    "text": "PREPARATORY DRAFT. This text is not an official entry — the official entry is made in STAR.\n\nCLIENT_REPORT: SOL TEST client says: I need digital support.\nSPECIALIST_ASSESSMENT: SOL TEST specialist interpretation: clarify the requested support at the meeting."
+  },
+  "simulator": {
+    "mode": "SIMULATOR_NOT_STAR",
+    "fields": {
+      "CLIENT_REPORT": "SOL TEST client says: I need digital support.",
+      "SPECIALIST_ASSESSMENT": "SOL TEST specialist interpretation: clarify the requested support at the meeting."
+    },
+    "officialSchemaVerified": false,
+    "humanDuration": null
+  },
+  "missingFields": [],
+  "steps": [
+    "scripted specialist review transitions",
+    "fetch prepared block",
+    "map two synthetic fields into local neutral form",
+    "record simulated copy",
+    "mark simulated transfer separately"
+  ],
+  "stepCount": 5
+}

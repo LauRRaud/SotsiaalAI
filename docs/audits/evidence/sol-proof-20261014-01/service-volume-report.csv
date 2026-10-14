@@ -1,0 +1,17 @@
+provider;OÜ Küberloome
+registryCode;14206225
+recipient;
+period;2026-10-01…2026-10-31
+contractRef;
+
+client;referralNumber;date;service;activities;unit;quantity;worker
+SOL TEST teenuspäeviku klient;;2026-10-14;;;HOUR;1.5;
+
+client;referralNumber;service;unit;quantity
+SOL TEST teenuspäeviku klient;;;HOUR;1.5
+
+total:HOUR;1.5
+entryCount;1
+warning:not_submittable_all_recipients;
+warning:voided_excluded;1
+warning:drafts_excluded;1

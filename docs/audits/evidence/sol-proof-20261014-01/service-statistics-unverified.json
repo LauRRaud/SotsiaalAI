@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "sotsiaalai.service-log.statistics/1",
+  "mappingStatus": "unverified",
+  "generatedAt": "2026-10-14T14:43:02.788Z",
+  "provider": {
+    "name": "OÜ Küberloome",
+    "registryCode": "14206225"
+  },
+  "period": {
+    "from": "2026-10-01",
+    "to": "2026-10-31"
+  },
+  "totals": {
+    "uniqueClients": 1,
+    "entries": 1,
+    "byUnit": {
+      "0": {
+        "unit": "HOUR",
+        "quantity": 1.5
+      }
+    }
+  },
+  "services": [
+    {
+      "service": null,
+      "unit": "HOUR",
+      "quantity": 1.5,
+      "uniqueClients": 1
+    }
+  ],
+  "warnings": [
+    {
+      "code": "not_submittable_all_recipients"
+    },
+    {
+      "code": "voided_excluded",
+      "count": 1
+    },
+    {
+      "code": "drafts_excluded",
+      "count": 1
+    }
+  ]
+}

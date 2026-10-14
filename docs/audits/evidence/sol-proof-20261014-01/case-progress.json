@@ -1,14 +1,14 @@
 {
   "run_id": "sol-proof-20261014-01",
-  "updated_at": "2026-10-14T14:34:35.464Z",
+  "updated_at": "2026-10-14T14:53:43.407Z",
   "phase": "server HTTPS and browser controls in progress; owner-authorized three-account exception",
   "catalog_cases": 52,
   "whole_catalog_completed": false,
-  "observed_variants": 163,
-  "passed_variants": 159,
+  "observed_variants": 187,
+  "passed_variants": 183,
   "failed_variants": 2,
   "blocked_variants": 2,
-  "server_fixture_variants": 25,
+  "server_fixture_variants": 30,
   "case_progress": [
     {
       "case_id": "ENV-01",
@@ -204,8 +204,8 @@
       "case_id": "DATA-01",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 33,
-      "passed_variants": 33,
+      "observed_variants": 35,
+      "passed_variants": 35,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -224,8 +224,8 @@
       "case_id": "DATA-03",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 8,
-      "passed_variants": 8,
+      "observed_variants": 9,
+      "passed_variants": 9,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -234,8 +234,8 @@
       "case_id": "DATA-04",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 0,
-      "passed_variants": 0,
+      "observed_variants": 2,
+      "passed_variants": 2,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -244,8 +244,8 @@
       "case_id": "DATA-05",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 0,
-      "passed_variants": 0,
+      "observed_variants": 4,
+      "passed_variants": 4,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -344,8 +344,8 @@
       "case_id": "RAG-09",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 3,
-      "passed_variants": 3,
+      "observed_variants": 4,
+      "passed_variants": 4,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -384,8 +384,8 @@
       "case_id": "TOOLS-01",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 13,
-      "passed_variants": 13,
+      "observed_variants": 20,
+      "passed_variants": 20,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -434,8 +434,8 @@
       "case_id": "TOOLS-06",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 0,
-      "passed_variants": 0,
+      "observed_variants": 7,
+      "passed_variants": 7,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -3017,6 +3017,373 @@
         "stateNotice": "Kuu ei ole lukus: jooksvad arvud seisuga 14.10.2026."
       },
       "evidence_file": "server-homecare-browser.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "service_entry_replay_one_row",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "sameId": true,
+        "count": 1
+      },
+      "evidence_file": "server-service-report.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "final_service_correction_requires_reason",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 400
+      },
+      "evidence_file": "server-service-report.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "final_service_correction_is_traceable",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "newQuantity": 1.5,
+        "previousQuantity": 1,
+        "reason": "SOL TEST service quantity correction",
+        "corrections": 1
+      },
+      "evidence_file": "server-service-report.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "DATA-04",
+      "variant_id": "final_service_record_not_deleted_early",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 409,
+        "recordPreserved": true,
+        "retentionClass": "accounting7y",
+        "recordedFiscalYear": 2026
+      },
+      "evidence_file": "server-service-report.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "service_month_separates_final_draft_void",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "totals": [
+          {
+            "unit": "HOUR",
+            "final": 1.5,
+            "draft": 3,
+            "total": 4.5
+          }
+        ],
+        "counts": {
+          "final": 1,
+          "draft": 1,
+          "voided": 1
+        }
+      },
+      "evidence_file": "server-service-report.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "star_statistics_explicitly_unverified_and_minimized",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual browser same-origin HTTPS fetch",
+      "actual": {
+        "status": 200,
+        "mappingStatus": "unverified",
+        "schemaVersion": "sotsiaalai.service-log.statistics/1",
+        "totals": {
+          "uniqueClients": 1,
+          "entries": 1,
+          "byUnit": {
+            "0": {
+              "unit": "HOUR",
+              "quantity": 1.5
+            }
+          }
+        },
+        "services": [
+          {
+            "service": null,
+            "unit": "HOUR",
+            "quantity": 1.5,
+            "uniqueClients": 1
+          }
+        ],
+        "privateClientAndNoteAbsent": true,
+        "cache": "no-store, no-cache, must-revalidate"
+      },
+      "evidence_file": "server-service-browser.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "service_timesheet_csv_excludes_void_draft_and_notes",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual browser same-origin HTTPS fetch",
+      "actual": {
+        "status": 200,
+        "finalQuantity": 1.5,
+        "excludedVoided": 1,
+        "excludedDrafts": 1,
+        "privateNoteAbsent": true,
+        "cache": "no-store, no-cache, must-revalidate"
+      },
+      "evidence_file": "server-service-browser.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "DATA-03",
+      "variant_id": "personal_timesheet_not_allowed_as_star_statistics",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual browser same-origin HTTPS fetch",
+      "actual": {
+        "status": 400,
+        "messageKey": "service_log.errors.star_requires_statistics"
+      },
+      "evidence_file": "server-service-browser.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "TOOLS-01",
+      "variant_id": "own_report_exports_archived",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual browser same-origin HTTPS fetch",
+      "actual": {
+        "starArchived": "1",
+        "csvArchived": "1",
+        "ownArchivedReportCount": 2
+      },
+      "evidence_file": "server-service-browser.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "DATA-05",
+      "variant_id": "captures_actual_provider_request_without_network",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "actual server request builder and provider boundary with capturing transport",
+      "actual": {
+        "transportCalls": 1,
+        "networkCalls": 0,
+        "endpoint": "https://api.openai.com/v1/responses",
+        "method": "POST"
+      },
+      "evidence_file": "server-rag-outbound.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "DATA-05",
+      "variant_id": "shared_user_text_and_public_evidence_are_processed",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "actual server request builder and provider boundary with capturing transport",
+      "actual": {
+        "chosenUserTextIncluded": true,
+        "chosenEvidenceIncluded": true,
+        "meaning": "No-training is not equivalent to no-processing."
+      },
+      "evidence_file": "server-rag-outbound.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "DATA-05",
+      "variant_id": "unselected_module_and_foreign_controls_absent",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "actual server request builder and provider boundary with capturing transport",
+      "actual": {
+        "privateJourneyMarkerAbsent": true,
+        "privateWellbeingMarkerAbsent": true,
+        "foreignMarkerAbsent": true,
+        "scope": "provided dialogue/evidence boundary only"
+      },
+      "evidence_file": "server-rag-outbound.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "DATA-05",
+      "variant_id": "response_storage_is_disabled_in_request",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "actual server request builder and provider boundary with capturing transport",
+      "actual": {
+        "store": false,
+        "meaning": "A request parameter, not proof of vendor retention, training terms or zero data retention."
+      },
+      "evidence_file": "server-rag-outbound.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "RAG-09",
+      "variant_id": "answer_schema_bounds_refs_to_current_packet",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "actual server request builder and provider boundary with capturing transport",
+      "actual": {
+        "allowedRefs": [
+          "S1"
+        ],
+        "strict": true,
+        "semanticSupportNotGuaranteed": true
+      },
+      "evidence_file": "server-rag-outbound.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "TOOLS-06",
+      "variant_id": "draft_cannot_be_created_already_transferred",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "initialState": "MUSTAND",
+        "injectedStateIgnored": true
+      },
+      "evidence_file": "server-manual-star.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "TOOLS-06",
+      "variant_id": "editing_does_not_promote_reported_origin",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "actualProvenance": "KLIENDI_OELDUD"
+      },
+      "evidence_file": "server-manual-star.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "TOOLS-06",
+      "variant_id": "transfer_requires_separate_action",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 400
+      },
+      "evidence_file": "server-manual-star.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "TOOLS-06",
+      "variant_id": "prepared_block_has_warning_and_two_fields",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "fieldKeys": [
+          "CLIENT_REPORT",
+          "SPECIALIST_ASSESSMENT"
+        ],
+        "warningLine": "PREPARATORY DRAFT. This text is not an official entry — the official entry is made in STAR.",
+        "contentHash": "b1a72603b8956dbc4874b1f589858f29dec23c4a7ba08d5eb56250b2610b1540",
+        "simulatorOnly": true
+      },
+      "evidence_file": "server-manual-star.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "TOOLS-06",
+      "variant_id": "copy_does_not_mean_transfer_and_retry_is_single",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "stateAfterCopy": "VALMIS_ULEKANDEKS",
+        "transferredAt": null,
+        "sameAuditId": true,
+        "kind": "COPIED_FOR_STAR2"
+      },
+      "evidence_file": "server-manual-star.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "TOOLS-06",
+      "variant_id": "explicit_transfer_mark_is_user_declaration",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "state": "ULE_KANTUD",
+        "transferredAt": "2026-10-14T14:50:50.007Z",
+        "eventKind": "MARKED_AS_TRANSFERRED",
+        "officialReceipt": null,
+        "realStarCall": false
+      },
+      "evidence_file": "server-manual-star.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "TOOLS-06",
+      "variant_id": "transferred_draft_write_protected",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 409
+      },
+      "evidence_file": "server-manual-star.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "DATA-01",
+      "variant_id": "foreign_star_preparation_denied_client",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 403,
+        "contentAbsent": true
+      },
+      "evidence_file": "server-manual-star.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "DATA-01",
+      "variant_id": "foreign_star_preparation_denied_provider",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "status": 404,
+        "contentAbsent": true
+      },
+      "evidence_file": "server-manual-star.json",
+      "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "DATA-04",
+      "variant_id": "transfer_audit_contains_no_field_text",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual HTTPS API with synthetic normal-role session",
+      "actual": {
+        "eventCount": 2,
+        "fieldTextAbsent": true
+      },
+      "evidence_file": "server-manual-star.json",
       "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
     }
   ]

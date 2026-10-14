@@ -1,0 +1,32 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {pathToFileURL} from 'node:url';
+const root=process.argv[2];
+const {dialogueRequest,DIALOGUE_PROMPT_VERSION}=await import(pathToFileURL(root+'/lib/rag-v2/pilot/dialogue.js'));
+const {providerCall}=await import(pathToFileURL(root+'/lib/rag-v2/pilot/provider.js'));
+const markers={shared:'SOL SHARED USER CIRCUMSTANCE',source:'SOL PUBLIC EVIDENCE',privateJourney:'SOL UNSELECTED PRIVATE JOURNEY',privateWellbeing:'SOL UNSELECTED PRIVATE WELLBEING',foreign:'SOL FOREIGN USER CONTENT'};
+const config={mode:'real',model:'fixture-answer-model',maxOutputTokens:1000,reasoning:'low',timeoutMs:1000,accountProject:'fixture-project'};
+const evidence={evidence:[{ref:'S1',text:markers.source}],reference_map:{S1:{evidence_id:'fixture-evidence'}}};
+const dialogue={version:'m4-active-dialogue-1',scope:{person:'synthetic self'},userTurns:[{turn:1,text:markers.shared}],publishedAssistant:null,replyToBlock:null,userRole:'CLIENT'};
+const body=dialogueRequest(config,markers.shared,evidence,'et',dialogue);
+const rec={runId:'sol-proof-20261014-01',serverRelease:root.split('/').at(-1),startedAt:new Date().toISOString(),checks:[],newPaidCalls:false,externalMessagesSent:false,limits:['CURRENT_FIXTURE: current server dialogueRequest and providerCall executed with an injected capturing transport; no network call, real credential or real model is used.','A deliberately small synthetic config is used without optional model-state/retrieval features. This proves this request-builder/provider boundary, not every upstream selector or the live approved pilot configuration.','Unselected private-module markers are negative controls. The builder receives only chosen dialogue and evidence; no private-module database query or whole HTTP chat route is claimed.']};
+const check=(id,variant,ok,actual)=>rec.checks.push({case_id:id,variant_id:variant,status:ok?'PASS':'FAIL',evidence_mode:'CURRENT_FIXTURE',entrypoint:'actual server request builder and provider boundary with capturing transport',actual});
+let captured,calls=0;
+const transport=async(endpoint,options)=>{
+ calls++;captured={endpoint,method:options.method,body:JSON.parse(options.body),headerNames:Object.keys(options.headers)};
+ // A transport fixture returns one response with known usage. It never forwards to fetch.
+ return new Response(JSON.stringify({id:'fixture-response',model:config.model,status:'completed',output:[{type:'message',content:[{type:'output_text',text:JSON.stringify({kind:'grounded',blocks:[{text:'Fixture only',factual:true,refs:['S1']}],limitations:[],clarification:null})}]}],usage:{input_tokens:10,output_tokens:20}}),{status:200,headers:{'x-request-id':'fixture-request'}});
+};
+const response=await providerCall({stage:'answer',body,config,apiKey:'FIXTURE_NOT_A_REAL_CREDENTIAL',transport});
+const serialized=JSON.stringify(captured.body);
+check('DATA-05','captures_actual_provider_request_without_network',calls===1&&captured.method==='POST'&&response.value.kind==='grounded',{transportCalls:calls,networkCalls:0,endpoint:captured.endpoint,method:captured.method});
+check('DATA-05','shared_user_text_and_public_evidence_are_processed',serialized.includes(markers.shared)&&serialized.includes(markers.source),{chosenUserTextIncluded:serialized.includes(markers.shared),chosenEvidenceIncluded:serialized.includes(markers.source),meaning:'No-training is not equivalent to no-processing.'});
+check('DATA-05','unselected_module_and_foreign_controls_absent',![markers.privateJourney,markers.privateWellbeing,markers.foreign].some(m=>serialized.includes(m)),{privateJourneyMarkerAbsent:true,privateWellbeingMarkerAbsent:true,foreignMarkerAbsent:true,scope:'provided dialogue/evidence boundary only'});
+check('DATA-05','response_storage_is_disabled_in_request',captured.body.store===false,{store:captured.body.store,meaning:'A request parameter, not proof of vendor retention, training terms or zero data retention.'});
+const enumRefs=captured.body.text.format.schema.properties.blocks.items.properties.refs.items.enum;
+check('RAG-09','answer_schema_bounds_refs_to_current_packet',enumRefs.length===1&&enumRefs[0]==='S1',{allowedRefs:enumRefs,strict:captured.body.text.format.strict,semanticSupportNotGuaranteed:true});
+assert.ok(!serialized.includes('FIXTURE_NOT_A_REAL_CREDENTIAL'));
+const userInput=JSON.parse(captured.body.input[0].content);
+const shape={runId:rec.runId,serverRelease:rec.serverRelease,promptVersion:DIALOGUE_PROMPT_VERSION,evidenceMode:'CURRENT_FIXTURE',endpoint:captured.endpoint,bodyKeys:Object.keys(captured.body),store:captured.body.store,syntheticModel:captured.body.model,input:captured.body.input.map(p=>({role:p.role,contentLength:p.content.length,...(p.role==='user'?{topLevelKeys:Object.keys(userInput),dialogueKeys:Object.keys(userInput.dialogue),evidenceCount:userInput.evidence.evidence.length}: {})})),schema:{type:captured.body.text.format.type,name:captured.body.text.format.name,strict:captured.body.text.format.strict,allowedRefs:enumRefs},headerNames:captured.headerNames,headerValuesRecorded:false,networkCalls:0};
+fs.writeFileSync('rag-outbound-field-map.json',JSON.stringify(shape,null,2)+'\n');
+rec.finishedAt=new Date().toISOString();fs.writeFileSync('server-rag-outbound.json',JSON.stringify(rec,null,2)+'\n');console.log(JSON.stringify({checks:rec.checks.length,nonpassing:rec.checks.filter(c=>c.status!=='PASS'),networkCalls:0}));

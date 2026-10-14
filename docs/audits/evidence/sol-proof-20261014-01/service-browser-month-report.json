@@ -1,0 +1,143 @@
+{
+  "report": {
+    "month": "2026-10",
+    "summary": {
+      "month": "2026-10",
+      "clients": [
+        {
+          "key": "name:SOL TEST teenuspäeviku klient",
+          "clientUserId": null,
+          "clientDisplayName": "SOL TEST teenuspäeviku klient",
+          "clientExternalRef": "SOL-REPORT-20261014",
+          "services": [
+            {
+              "serviceId": null,
+              "unit": "HOUR",
+              "final": 1.5,
+              "draft": 3,
+              "entryCount": 2,
+              "total": 4.5
+            }
+          ],
+          "entryCount": 2,
+          "draftCount": 1
+        }
+      ],
+      "totalsByUnit": [
+        {
+          "unit": "HOUR",
+          "final": 1.5,
+          "draft": 3,
+          "total": 4.5
+        }
+      ],
+      "entryCounts": {
+        "final": 1,
+        "draft": 1,
+        "voided": 1
+      },
+      "unconfirmed": 1
+    },
+    "entries": [
+      {
+        "id": "cmv87waiz002qhikm2gida4ss",
+        "clientUserId": null,
+        "date": "2026-10-14",
+        "clientDisplayName": "SOL TEST teenuspäeviku klient",
+        "clientExternalRef": "SOL-REPORT-20261014",
+        "unit": "HOUR",
+        "quantity": 3,
+        "status": "DRAFT",
+        "note": "SOL TEST PRIVATE SERVICE NOTE",
+        "noteProvenance": null,
+        "confirmedManually": false,
+        "updatedAt": "2026-10-14T14:40:55.883Z"
+      },
+      {
+        "id": "cmv87wai0002ohikmxwsplufk",
+        "clientUserId": null,
+        "date": "2026-10-14",
+        "clientDisplayName": "SOL TEST teenuspäeviku klient",
+        "clientExternalRef": "SOL-REPORT-20261014",
+        "unit": "HOUR",
+        "quantity": 1.5,
+        "status": "FINAL",
+        "note": "SOL TEST PRIVATE SERVICE NOTE",
+        "noteProvenance": null,
+        "confirmedManually": false,
+        "updatedAt": "2026-10-14T14:40:55.922Z"
+      },
+      {
+        "id": "cmv87wair002phikmv1k5jfe8",
+        "clientUserId": null,
+        "date": "2026-10-14",
+        "clientDisplayName": "SOL TEST teenuspäeviku klient",
+        "clientExternalRef": "SOL-REPORT-20261014",
+        "unit": "HOUR",
+        "quantity": 2,
+        "status": "VOID",
+        "note": "SOL TEST PRIVATE SERVICE NOTE",
+        "noteProvenance": null,
+        "confirmedManually": false,
+        "updatedAt": "2026-10-14T14:42:14.051Z"
+      }
+    ],
+    "reports": [
+      {
+        "id": "cmv8804kf002yhikmanr7s69q",
+        "title": "Teenuspäevik 2026-10 · mall A_TIMESHEET",
+        "fileName": "teenuspaevik-a-timesheet-2026-10-koond.csv",
+        "size": 451,
+        "createdAt": "2026-10-14T14:43:54.783Z",
+        "template": "A_TIMESHEET",
+        "format": "csv",
+        "kovName": null,
+        "entryCount": 1,
+        "issuedCount": 1,
+        "lastIssuedAt": "2026-10-14T14:43:54.781Z"
+      },
+      {
+        "id": "cmv87z0g7002whikmx9s91udj",
+        "title": "Teenuspäevik 2026-10 · mall D_STATISTICS",
+        "fileName": "teenuspaevik-d-statistics-2026-10-koond.json",
+        "size": 773,
+        "createdAt": "2026-10-14T14:43:02.791Z",
+        "template": "D_STATISTICS",
+        "format": "star",
+        "kovName": null,
+        "entryCount": 1,
+        "issuedCount": 1,
+        "lastIssuedAt": "2026-10-14T14:43:02.788Z"
+      }
+    ],
+    "referrals": [],
+    "rhythm": {
+      "month": "2026-10",
+      "dueAt": "2026-11-10T00:00:00.000Z",
+      "remindAt": "2026-11-05T00:00:00.000Z",
+      "overdue": false,
+      "unconfirmed": 1,
+      "shouldRemind": false
+    },
+    "annualRhythms": [
+      {
+        "key": "feedback_survey",
+        "source": "quality_guide",
+        "intervalMonths": 12,
+        "lastDoneAt": null,
+        "dueAt": null,
+        "due": false,
+        "neverDone": true
+      },
+      {
+        "key": "interim_assessment",
+        "source": "quality_guide",
+        "intervalMonths": 12,
+        "lastDoneAt": null,
+        "dueAt": null,
+        "due": false,
+        "neverDone": true
+      }
+    ]
+  }
+}
