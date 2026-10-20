@@ -2,7 +2,7 @@
 
 14.10.2026. **Vahetulemus: katsed peatatud omaniku limiidipalvel; kogu 52 juhtumiga kavand pole täidetud.** Omaniku juhisel kasutatakse põhiliseks kinnituseks serveris töötavat arendusplatvormi ja selle tegelikku andmebaasi. Platvorm ei ole produktsioonis. Kohalik eraldatud keskkond jääb tõrke- ja hävitavate katsete abivahendiks.
 
-**Jooksev koond:** 233 salvestatud kontrollvarianti: 229 PASS, 2 FAIL, 2 katserakise takistuse vaatlust. Terve 52 juhtumi kavand pole lõpetatud.
+**Jooksev koond:** 235 salvestatud kontrollvarianti: 231 PASS, 2 FAIL, 2 katserakise takistuse vaatlust. Terve 52 juhtumi kavand pole lõpetatud.
 
 Käivituskavand: [14.10 kontrollikavand](sotsiaal-pro-toenduskatsete-kavand-2026-10-14.md). Täpne edenemine ja kõik variandid: [case-progress.json](evidence/sol-proof-20261014-01/case-progress.json).
 
@@ -219,3 +219,5 @@ Eraldi uurimis- või tooteotsused on teavitustöö avamisvärava 503, asutuse ko
 Kohalik eraldatud kontroll (`sol_proof_20261020_local`, koopia 14.10 kohalikust baasist, kolm testkontot serveri erandi ID-dega ja sünteetiline vastuvõtutiim) viidi kliendi brauseris eelpöördumise vormi adressaadi sammuni. Mustandit ei salvestatud ega saadetud ning kohalik server peatati. Kohalikku tulemust ei esitata serveri tõendina.
 
 Piir: fixture-tokeniga sisselogimist tegeliku sotsiaal.pro peal (ka HTTPS-skriptiga) Claude Code'i seansis ei tehta, sest see host ei kanna testkeskkonna märget; selle serveri tavarollide brauseri- ja HTTPS-rajad on seetõttu jätkamata. Kontrollimata jäävad 14.10 mustandi `cmv89qu8k009ghikmdso679cl` saatmine ja saajavaade, heli taastumine, vestluse varasemate andmevalikute kontroll ning säilituse/kustutuse täielikkus. 52 juhtumi kavand ei ole lõpetatud.
+
+**20.10 admin-seansi kontroll sotsiaal.pro peal — kaks uut varianti.** Omanik logis ise oma ADMIN-kontoga sisse; testkontode tokenit Claude ei sisestanud. Töölaua vaate lüliti (`PUT /api/profile/view-role`) vahetas kolme rollivaate vahel ja päris roll jäi ADMIN-iks: pöörduja vaates ei olnud töövahendeid, spetsialisti vaates olid Tööheaolu ja Meetodipeegel, teenuseosutaja vaates Teenuseprofiil ja Teenuspäevik. See on adminivaate eelvaade, mitte päris rollide API-õiguste tõend. Pöörduja eelpöördumise vormi adressaatide API (`organization-recipients`) tagastas 200 ja tühja loendi, kui sünteetiline vastuvõtutiim oli SUSPENDED; olek jäi 20.10 uuesti mõõtmata. Midagi ei salvestatud ega saadetud ning vaate eelistus taastati algseisu. Serveri sünteetilise tiimi ajutine aktiveerimine (andmebaasi kirjutus) ei olnud selles seansis lubatud, seega 14.10 mustandi saatmine ja saajavaade jäid tegemata. [Tõend](evidence/sol-proof-20261014-01/server-browser-admin-view.json).

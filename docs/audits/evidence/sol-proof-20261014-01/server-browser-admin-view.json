@@ -1,0 +1,41 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9",
+  "checkpointDate": "2026-10-20",
+  "environment": "actual sotsiaal.pro development server in the built-in browser; the owner signed in himself with his own ADMIN account (no test-account token was entered by Claude); read-only checks, no server data written",
+  "checks": [
+    {
+      "case_id": "ENV-03",
+      "variant_id": "admin_view_role_switch_three_roles_browser",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual browser HTTPS, owner ADMIN session, dashboard view-role switch (PUT /api/profile/view-role via the UI buttons)",
+      "actual": {
+        "actualRoleStayedAdmin": true,
+        "views": {
+          "CLIENT": { "effectiveRole": "CLIENT", "hasTeekond": true, "hasEelpoordumine": true, "hasTeenuseprofiil": false, "hasTeenuspaevik": false, "hasTooheaolu": false, "hasJuhtumitooLaud": false },
+          "SOCIAL_WORKER": { "effectiveRole": "SOCIAL_WORKER", "hasTooheaolu": true, "hasMeetodipeegel": true, "hasJuhtumitooLaud": true, "hasTeenuseprofiil": false, "hasTeenuspaevik": false },
+          "SERVICE_PROVIDER": { "effectiveRole": "SERVICE_PROVIDER", "hasTeenuseprofiil": true, "hasTeenuspaevik": true, "hasJuhtumitooLaud": true, "hasTooheaolu": false, "hasMeetodipeegel": false }
+        },
+        "restoredToDefault": { "adminViewRole": null, "effectiveRole": "SOCIAL_WORKER" }
+      },
+      "limit": "This is the admin view preview of the three dashboards. It does not prove API authorization of the real CLIENT, SOCIAL_WORKER and SERVICE_PROVIDER roles; those were proven earlier with the synthetic accounts."
+    },
+    {
+      "case_id": "FLOW-06",
+      "variant_id": "suspended_synthetic_organization_not_offered_as_recipient_browser",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual browser HTTPS, owner ADMIN session in CLIENT view; pre-inquiry form requested GET /api/pre-inquiries/organization-recipients",
+      "actual": { "status": 200, "recipientsCount": 0, "syntheticOrganizationStatusAtObservation": "SUSPENDED (restored 14.10; not re-measured on 20.10)" },
+      "limit": "The earlier 14.10 browser check showed the same synthetic team as selectable while it was temporarily ACTIVE. The empty list with the SUSPENDED status is consistent with that, but the status was not re-read on 20.10 because the server write needed for it was not permitted in this session. Nothing was saved or sent."
+    }
+  ],
+  "observations": [
+    {
+      "status": "NOT_PROVEN",
+      "note": "Sending the 14.10 browser draft cmv89qu8k009ghikmdso679cl, its receiver view and the other role views with real test accounts remain unproven: they need the synthetic organization temporarily ACTIVE (a server database write) and test-account sessions."
+    }
+  ],
+  "cleanup": { "viewRole": "restored to default (null)", "serverDataWritten": false, "messagesSent": false, "paidModelCalls": false }
+}

@@ -1,11 +1,11 @@
 {
   "run_id": "sol-proof-20261014-01",
-  "updated_at": "2026-10-14T15:38:17.168Z",
+  "updated_at": "2026-10-20T10:38:19.445Z",
   "phase": "stopped at owner quota request; evidence checkpoint saved",
   "catalog_cases": 52,
   "whole_catalog_completed": false,
-  "observed_variants": 233,
-  "passed_variants": 229,
+  "observed_variants": 235,
+  "passed_variants": 231,
   "failed_variants": 2,
   "blocked_variants": 2,
   "server_fixture_variants": 32,
@@ -34,8 +34,8 @@
       "case_id": "ENV-03",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 15,
-      "passed_variants": 15,
+      "observed_variants": 16,
+      "passed_variants": 16,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -94,8 +94,8 @@
       "case_id": "FLOW-06",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 2,
-      "passed_variants": 2,
+      "observed_variants": 3,
+      "passed_variants": 3,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -4020,6 +4020,65 @@
       },
       "evidence_file": "server-browser-compose.json",
       "serverRelease": "d8776011f144c352409663349a89a35d9d4f5b41"
+    },
+    {
+      "case_id": "ENV-03",
+      "variant_id": "admin_view_role_switch_three_roles_browser",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual browser HTTPS, owner ADMIN session, dashboard view-role switch (PUT /api/profile/view-role via the UI buttons)",
+      "actual": {
+        "actualRoleStayedAdmin": true,
+        "views": {
+          "CLIENT": {
+            "effectiveRole": "CLIENT",
+            "hasTeekond": true,
+            "hasEelpoordumine": true,
+            "hasTeenuseprofiil": false,
+            "hasTeenuspaevik": false,
+            "hasTooheaolu": false,
+            "hasJuhtumitooLaud": false
+          },
+          "SOCIAL_WORKER": {
+            "effectiveRole": "SOCIAL_WORKER",
+            "hasTooheaolu": true,
+            "hasMeetodipeegel": true,
+            "hasJuhtumitooLaud": true,
+            "hasTeenuseprofiil": false,
+            "hasTeenuspaevik": false
+          },
+          "SERVICE_PROVIDER": {
+            "effectiveRole": "SERVICE_PROVIDER",
+            "hasTeenuseprofiil": true,
+            "hasTeenuspaevik": true,
+            "hasJuhtumitooLaud": true,
+            "hasTooheaolu": false,
+            "hasMeetodipeegel": false
+          }
+        },
+        "restoredToDefault": {
+          "adminViewRole": null,
+          "effectiveRole": "SOCIAL_WORKER"
+        }
+      },
+      "limit": "This is the admin view preview of the three dashboards. It does not prove API authorization of the real CLIENT, SOCIAL_WORKER and SERVICE_PROVIDER roles; those were proven earlier with the synthetic accounts.",
+      "evidence_file": "server-browser-admin-view.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "FLOW-06",
+      "variant_id": "suspended_synthetic_organization_not_offered_as_recipient_browser",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual browser HTTPS, owner ADMIN session in CLIENT view; pre-inquiry form requested GET /api/pre-inquiries/organization-recipients",
+      "actual": {
+        "status": 200,
+        "recipientsCount": 0,
+        "syntheticOrganizationStatusAtObservation": "SUSPENDED (restored 14.10; not re-measured on 20.10)"
+      },
+      "limit": "The earlier 14.10 browser check showed the same synthetic team as selectable while it was temporarily ACTIVE. The empty list with the SUSPENDED status is consistent with that, but the status was not re-read on 20.10 because server writes and reads through a new shell were blocked in this session. Nothing was saved or sent.",
+      "evidence_file": "server-browser-admin-view.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
     }
   ]
 }
