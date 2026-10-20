@@ -92,38 +92,22 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**14.10 Soli tõenduskatsete käivitus — pooleli:** omaniku juhisel tegelikus
-arendusserveris kolm tavarolli testkontot (`sol-proof-20261014-01`),
-adminiõiguseta. OÜ Küberloome (14206225) profiil ja asutus on privaatsed
-mustandid. Ajutine ligipääs ainult neile kolmele `/admin` kaudu, serveris
-`d8776011`; erand aegub 16.10 kell 03.00 EEST. 233 salvestatud varianti:
-229 PASS, kaks FAIL, kaks lahendatud ajaloolist rakisetakistust.
-Kinnitatud puudused: READY järel võrgustikujagamise `source_inactive` ja
-saabumiskiri eirab e-postiteavituse eelistust. Omaniku otsus: kiri arvestab
-eelistust. Parandused jäävad Astra/Fable etapile. Testasutuse vastuvõtt,
-määramine, üleandmine ja ligipääsu lõppemine kontrolliti; `dueAt` jäi nulliks.
-Teekonna elutsükkel, tööheaolu privaatsus, välise kanali valik/saatekinnitus
-ning koduteenuse paranduse ja tühistuse kuukoond koos brauseri CSV-ga läbisid.
-Sünteetiline testasutus on SUSPENDED. CSV ümardab tunnid ühe kümnendkohani;
-arvelduse sobivust ei väideta. Tulemused salvestuvad iga rühma järel.
-Päris adressaate ja tasulisi mudelikutseid ei kasutatud; `.invalid` API-rada
-ei tõenda SMTP katsete puudumist. Teenuspäeviku eksport eristas mustandi,
-kinnituse ja tühistuse; statistika on `unverified`, mitte STAR-i edastus.
-Käsitsi STAR-i simulatsioon eristas kopeerimist ja kasutaja ülekandemärget.
-Mudeli päringu koostaja/transpordipiir kontrolliti võrku kasutamata; kogu
-vestluse varasemad andmevalikud on tõendamata. Järgmine: ülejäänud
-OPS/DATA/TOOLS. Kovisiooni kaheksa etappi, supervisiooni ja mentorluse
-kokkulepped/kinnitused/lõpetamine ning valimata privaatse info piir läbisid.
-Mentorprofiil taastati DRAFT/peidetuks ja superviisori fixture-luba võeti tagasi.
-Päris HTTPS kriisivarurada andis kolmele rollile teate ka piloodi keeldumisel;
-neil mudeliõigusi ei olnud ja uusi pöördeid ei tekkinud. Otse testteenuseosutajale
-eelpöördumine läbis; päris teenuseotsust ei väideta. Brauseris koostati uus
-vabas vormis INTERNAL/DRAFT `cmv89qu8k009ghikmdso679cl`, salvestus 201;
-saatmist ei tehtud. Ajutine kaardikontakt taastati HIDDEN-olekusse ja asutus
-SUSPENDED-olekusse. Katsed peatati omaniku limiidipalvel, tõendid salvestatud.
-Jätkata selle mustandi saatmis-/saajavaatest ja ülejäänud kavandist.
-Inimkatsete ajasääst, praeguse mudeli sisuline
-õigsus ja riiklik liidestus on tõendamata; 52 juhtumi kavand pole lõpetatud.
+**20.10 Soli tõenduskatsete jätk — pooleli:** 52 juhtumi kavandist 264
+salvestatud varianti: 259 PASS, 3 FAIL, 2 lahendatud rakisetakistust.
+Kinnitatud puudused: READY järel võrgustikujagamise `source_inactive`,
+saabumiskiri eirab e-postiteavituse eelistust ja töö tähtaeg `dueAt` puudub
+kasutusrajal (MISSING_FEATURE). Omaniku otsust vajab: suletud avamisvärav
+keelab võtmega taustatööd (teavitused koos välitöö turvakontrolli ja kiire abi
+aegumisega, praktikate ülevaated); need on serveris failed. Vaatlus: ebaselge
+plaani korral seob RAG esimeses isikus küsimuse fookusisiku omavalitsusega.
+Parandused jäävad Astra/Fable etapile. Kolm tavarolli testkontot
+(`sol-proof-20261014-01`, adminiõiguseta) ja OÜ Küberloome privaatsed mustandid
+säilivad; erand pikendati 27.10 kella 03.00-ni (`1e0205c2`). Claude ei logi
+sotsiaal.pro peal testkontodega sisse; omaniku admin-seansis kontrolliti
+rollivaateid. Kohalikus eraldatud baasis `sol_proof_20261020_local` läbisid
+ENV-01, RAG-03 ja RAG-10 komponendid ning DATA-04 kustutus. Jätkata 14.10
+mustandi `cmv89qu8k009ghikmdso679cl` saatmisest (vajab serveri sünteetilise
+asutuse ajutist aktiveerimist), RAG-02/05–07/12, FIELD- ja GOV-katsetest.
 [Vahetulemus ja tõendid](../audits/sotsiaal-pro-toenduskatsete-tulemused-sol-proof-20261014-01.md).
 
 **13.10 logo kuvamine:** avalehe logo joonistatakse nüüd lehe Exo 2 fondist
